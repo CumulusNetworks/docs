@@ -2317,11 +2317,61 @@ no     BLUE            ::/0                           leaf03            Blackhol
 
 ## netq show job-status
 
+Displays the status of installation and upgrade jobs running on your NetQ appliance or VM.
+
+### Syntax
+
+```
+netq show job-status <text-opta-ip>
+    [json]
+```
+
+### Required Arguments
+
+| Argument | Value | Description |
+| ---- | ---- | ---- |
+| NA | \<text-opta-ip\> | Display the status of jobs running on the appliance or VM with this IP address |
+
+### Options
+
+| Option | Value | Description |
+| ---- | ---- | ---- |
+| json | NA | Display the output in JSON file format instead of default on-screen text format |
+
+### Command History
+
+A release is included if there were changes to the command, otherwise it is not listed.
+
+| Release | Description |
+| ---- | ---- |
+| 1.x | Introduced |
+
+### Sample Usage
+
+Show job status
+
+```
+cumulus@switch:~$ netq show job-status xxx
+```
+
+### Related Commands
+
+- netq xxx
 - - -
 
 ## netq show kubernetes
 
-Displays the configuration and health of the Kubernetes components for the NetQ containers. Outputs vary according to version of the command issued.
+Displays the configuration and health of the non-NetQ Kubernetes components in your container environment. This command enables you to:
+
+- Identify and locate pods, deployment, replica-set and services deployed within the network using IP, name, label, and so forth
+- Track network connectivity of all pods of a service, deployment and replica set
+- Locate what pods have been deployed adjacent to a top of rack (ToR) switch
+
+Outputs vary according to the component of the kubernetes cluster you want to view.
+
+{{<notice tip>}}
+Kubernetes monitoring must be enabled on NetQ Agents. Refer to the <code>netq config add agent</code> command to enable monitoring.
+{{</notice>}}
 
 ### Syntax
 
@@ -2427,7 +2477,129 @@ netq [<hostname>] show kubernetes service
     connectivity
     [around <text-time>]
     [json]
+```
 
+### Required Arguments
+
+| Argument | Value | Description |
+| ---- | ---- | ---- |
+| cluster | NA | Only display kubernetes cluster information |
+| node | NA | Only display kubernetes node information |
+| daemon-set | Only display kubernetes daemon-set information |
+| deployment | NA | Only display kubernetes node information |
+| pod | NA | Only display kubernetes node information |
+| replication-controller | NA | Only display kubernetes node information |
+| replica-set | NA | Only display kubernetes node information |
+| service | NA | Only display kubernetes node information |
+| connectivity | NA | Only display connectivity information for the daemon-set, deployment, or service |
+
+### Options
+
+| Option | Value | Description |
+| ---- | ---- | ---- |
+| NA | \<hostname\> | Only display results for the switch or host with this name |
+| name | \<kube-cluster-name\>, \<kube-node-name\>, \<kube-ds-name\>, \<kube-deployment-name\>, \<kube-pod-name\>, \<kube-rc-name\>, \<kube-rs-name\>, \<kube-service-name\> | Only display results for the Kubernetes component with this name |
+| components | NA | ??? |
+| cluster | \<kube-cluster-name>\ | Only display results for the cluster with this name |
+| label | \<kube-node-label\>, \<kube-ds-label\>, \<kube-deployment-label\>, \<kube-pod-label\>, \<kube-rc-label\>, \<kube-rs-label\>, \<kube-service-label\> | Only display results for components with this label |
+| namespace | \<namespace\> | Only display results for clusters and nodes within this namespace |
+| pod-ip | \<<kube-pod-ipaddress\> | Only display results for the pod with this IP address |
+| service-cluster-ip | \<kube-service-cluster-ip\> | Only display results for the service cluster with this IP address |
+| service-external-ip | \<kube-service-external-ip\> | Only display results for the service with this external IP address |
+| around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. The value is written using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
+| json | NA | Display the output in JSON file format instead of default on-screen text format |
+
+### Command History
+
+A release is included if there were changes to the command, otherwise it is not listed.
+
+| Release | Description |
+| ---- | ---- |
+| 1.x | Introduced |
+
+### Sample Usage
+
+Show health of clusters
+
+```
+cumulus@host:~$ netq show kubernetes cluster
+Matching kube_cluster records:
+Master                   Cluster Name     Controller Status    Scheduler Status Nodes
+------------------------ ---------------- -------------------- ---------------- --------------------
+server11:3.0.0.68        default          Healthy              Healthy          server11 server13 se
+                                                                                rver22 server11 serv
+                                                                                er12 server23 server
+                                                                                24
+server12:3.0.0.69        default          Healthy              Healthy          server12 server21 se
+                                                                                rver23 server13 serv
+                                                                                er14 server21 server
+                                                                                22
+```
+
+Show health of pods
+
+```
+cumulus@host:~$ netq show kubernetes pod
+Matching kube_pod records:
+Master                   Namespace    Name                 IP               Node         Labels               Status   Containers               Last Changed
+------------------------ ------------ -------------------- ---------------- ------------ -------------------- -------- ------------------------ ----------------
+server11:3.0.0.68        default      cumulus-frr-8vssx    3.0.0.70         server13     pod-template-generat Running  cumulus-frr:f8cac70bb217 Fri Feb  8 01:50:50 2019
+                                                                                            ion:1 name:cumulus-f
+                                                                                            rr controller-revisi
+                                                                                            on-hash:3710533951
+server11:3.0.0.68        default      cumulus-frr-dkkgp    3.0.5.135        server24     pod-template-generat Running  cumulus-frr:577a60d5f40c Fri Feb  8 01:50:50 2019
+                                                                                            ion:1 name:cumulus-f
+                                                                                            rr controller-revisi
+                                                                                            on-hash:3710533951
+server11:3.0.0.68        default      cumulus-frr-f4bgx    3.0.3.196        server11     pod-template-generat Running  cumulus-frr:1bc73154a9f5 Fri Feb  8 01:50:50 2019
+                                                                                            ion:1 name:cumulus-f
+                                                                                            rr controller-revisi
+                                                                                            on-hash:3710533951
+server11:3.0.0.68        default      cumulus-frr-gqqxn    3.0.2.5          server22     pod-template-generat Running  cumulus-frr:3ee0396d126a Fri Feb  8 01:50:50 2019
+                                                                                            ion:1 name:cumulus-f
+                                                                                            rr controller-revisi
+                                                                                            on-hash:3710533951`
+...
+```
+
+Show connectivity for a service
+
+```
+cumulus@host:~$ netq show kubernetes service name calico-etcd connectivity
+    calico-etcd -- calico-etcd-pfg9r -- server11:swp1:torbond1 -- swp6:hostbond2:torc-11
+                                     -- server11:swp2:torbond1 -- swp6:hostbond2:torc-12
+                                     -- server11:swp3:NetQBond-2 -- swp16:NetQBond-16:edge01
+                                     -- server11:swp4:NetQBond-2 -- swp16:NetQBond-16:edge02
+    calico-etcd -- calico-etcd-btqgt -- server12:swp1:torbond1 -- swp7:hostbond3:torc-11
+                                     -- server12:swp2:torbond1 -- swp7:hostbond3:torc-12
+                                     -- server12:swp3:NetQBond-2 -- swp17:NetQBond-17:edge01
+                                     -- server12:swp4:NetQBond-2 -- swp17:NetQBond-17:edge02
+```
+
+Refer to {{<link title="Monitor Container Environments Using Kubernetes API Server">}} for more usage examples.
+
+### Related Commands
+
+- netq config add agent kubernetes-monitor
+- netq config del agent kubernetes-monitor
+- netq config show agent kubernetes-monitor
+- netq show impact kubernetes
+
+- - -
+
+## netq show impact kubernetes
+
+Displays the impact on pods, services, replica sets or deployments when a specific ToR switch becomes unavilable.
+
+{{<notice tip>}}
+Kubernetes monitoring must be enabled on NetQ Agents. Refer to the <code>netq config add agent</code> command to enable monitoring.
+{{</notice>}}
+
+Outputs vary according to the component of the kubernetes cluster you want to view. The output is color coded (not shown in the examples) so you can clearly see the impact: green shows no impact, yellow shows partial impact, and red shows full impact. Use the `netq config add color` command to view the colored output.
+
+### Syntax
+
+```
 netq  <hostname>  show impact kubernetes service
     [master <kube-master-node>]
     [name <kube-service-name>]
@@ -2462,14 +2634,20 @@ netq <hostname> show impact kubernetes deployment
 
 | Argument | Value | Description |
 | ---- | ---- | ---- |
-| connectivity | NA | Display ??? |
+| NA | \<hostname\> | Only display results for the switch or host with this name |
+| deployment | NA | Only display kubernetes node information |
+| replica-set | NA | Only display kubernetes node information |
+| service | NA | Only display kubernetes node information |
 
 ### Options
 
 | Option | Value | Description |
 | ---- | ---- | ---- |
-| NA | \<hostname\> | Only display results for the switch or host with this name |
-| name | \<kube-cluster-name\>, <kube-node-name>, <kube-ds-name>, <kube-deployment-name>, 
+| master | \<kube-master-node\> | Only display results for the master node with this name |
+| name | \<kube-deployment-name\>, \<kube-rs-name\>, \<kube-service-name\> | Only display results for the Kubernetes component with this name |
+| cluster | \<kube-cluster-name>\ | Only display results for the cluster with this name |
+| namespace | \<namespace\> | Only display results for clusters and nodes within this namespace |
+| label | \<kube-node-label\>, \<kube-ds-label\>, \<kube-deployment-label\>, \<kube-pod-label\>, \<kube-rc-label\>, \<kube-rs-label\>, \<kube-service-label\> | Only display results for components with this label |
 | around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. The value is written using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 
@@ -2479,9 +2657,54 @@ A release is included if there were changes to the command, otherwise it is not 
 
 | Release | Description |
 | ---- | ---- |
-| 3.2.0 | Introduced |
+| 1.x | Introduced |
 
 ### Sample Usage
+
+Show impact on service availabilty based on the loss of particular node
+
+```
+cumulus@host:~$ netq server11 show impact kubernetes service name calico-etcd
+calico-etcd -- calico-etcd-pfg9r -- server11:swp1:torbond1 -- swp6:hostbond2:torc-11
+                                    -- server11:swp2:torbond1 -- swp6:hostbond2:torc-12
+                                    -- server11:swp3:NetQBond-2 -- swp16:NetQBond-16:edge01
+                                    -- server11:swp4:NetQBond-2 -- swp16:NetQBond-16:edge02
+```
+
+Show impact on the Kubernetes deployment if host or switch becomes unavailable
+
+```
+cumulus@host:~$ netq torc-21 show impact kubernetes deployment name nginx
+nginx -- nginx-8586cf59-wjwgp -- server22:swp1:torbond1 -- swp7:hostbond3:torc-21
+                                -- server22:swp2:torbond1 -- swp7:hostbond3:torc-22
+                                -- server22:swp3:NetQBond-2 -- swp20:NetQBond-20:edge01
+                                -- server22:swp4:NetQBond-2 -- swp20:NetQBond-20:edge02
+        -- nginx-8586cf59-c82ns -- server12:swp2:NetQBond-1 -- swp23:NetQBond-23:edge01
+                                -- server12:swp3:NetQBond-1 -- swp23:NetQBond-23:edge02
+                                -- server12:swp1:swp1 -- swp6:VlanA-1:tor-1
+        -- nginx-8586cf59-26pj5 -- server24:swp2:NetQBond-1 -- swp29:NetQBond-29:edge01
+                                -- server24:swp3:NetQBond-1 -- swp29:NetQBond-29:edge02
+                                -- server24:swp1:swp1 -- swp8:VlanA-1:tor-2
+
+cumulus@server11:~$ netq server12 show impact kubernetes deployment name nginx
+nginx -- nginx-8586cf59-wjwgp -- server22:swp1:torbond1 -- swp7:hostbond3:torc-21
+                                -- server22:swp2:torbond1 -- swp7:hostbond3:torc-22
+                                -- server22:swp3:NetQBond-2 -- swp20:NetQBond-20:edge01
+                                -- server22:swp4:NetQBond-2 -- swp20:NetQBond-20:edge02
+        -- nginx-8586cf59-c82ns -- server12:swp2:NetQBond-1 -- swp23:NetQBond-23:edge01
+                                -- server12:swp3:NetQBond-1 -- swp23:NetQBond-23:edge02
+                                -- server12:swp1:swp1 -- swp6:VlanA-1:tor-1
+        -- nginx-8586cf59-26pj5 -- server24:swp2:NetQBond-1 -- swp29:NetQBond-29:edge01
+                                -- server24:swp3:NetQBond-1 -- swp29:NetQBond-29:edge02
+```
+
+### Related Commands
+
+- netq config add agent kubernetes-monitor
+- netq config del agent kubernetes-monitor
+- netq config show agent kubernetes-monitor
+- netq config add color
+- netq show kubernetes
 
 - - -
 
@@ -2572,7 +2795,6 @@ spine04           swp5                      border01          swp54             
 - netq check lldp
 
 - - -
-
 
 ## netq show mac-commentary
 
@@ -2993,13 +3215,125 @@ Refer to the {{<link title="Monitor Internet Protocol Service/#view-the-neighbor
 
 - - -
 
-## netq show notification proxy
-
-    netq show notification proxy
-
 ## netq show notification
 
-    netq show notification [channel|filter|rule] [json]
+Displays the configuration of notification channels, filters, rules, or the proxy (if configured). Email, PagerDuty, Slack, and Syslog channels are supported. The output varies according to the component you want to view.
+
+### Syntax
+
+```
+netq show notification
+    (channel|filter|rule|proxy)
+    [json]
+```
+
+### Required Arguments
+
+| Argument | Value | Description |
+| ---- | ---- | ---- |
+| channel | NA | Display all channel configurations |
+| filter | NA | Displayy all filter configurations |
+| rule | NA | Display all rule configurations |
+| proxy | NA | Display the proxy configuration |
+
+### Options
+
+| Option | Value | Description |
+| ---- | ---- | ---- |
+| json | NA | Display the output in JSON file format instead of default on-screen text format |
+
+### Command History
+
+A release is included if there were changes to the command, otherwise it is not listed.
+
+| Release | Description |
+| ---- | ---- |
+| xxx | Added `proxy` keyword |
+| 2.1.2 | Introduced. Replaced the `netq config ts add notifier` command. |
+
+### Sample Usage
+
+Show notification channels
+
+```
+cumulus@netq-ts:~$ netq show notification channel
+
+Matching config_notify records:
+Name            Type             Severity         Channel Info
+--------------- ---------------- ---------------- ------------------------
+cloud-email    email            error            password: TEiO98BOwlekUP
+                                                     TrFev2/Q==, port: 587,
+                                                     isEncrypted: True,
+                                                     host: netqsmtp.domain.com,
+                                                     from: netqsmtphostlogin@doma
+                                                     in.com,
+                                                     id: smtphostlogin@domain
+                                                     .com,
+                                                     to: netq-notifications@d
+                                                     omain.com
+pd-netq-events  pagerduty        debug            integration_key: c6d666e
+                                                  210a8425298ef7abde0d1998
+slk-netq-events slack            debug            webhook: https://hooks.s
+                                                  lack.com/services/text/m
+                                                  oretext/evenmoretext
+syslog-netq-eve syslog           debug            syslog_hostname: 10.10.2
+nts                                               0.35, syslog_port: 514
+```
+
+Show filters
+
+```
+cumulus@switch:~$ netq show notification filter
+    Matching config_notify records:
+    Name            Order      Severity         Channels         Rules
+    --------------- ---------- ---------------- ---------------- ----------
+    swp52Drop       1          error            NetqDefaultChann swp52
+                                                el
+    bgpSpine        2          info             pd-netq-events   bgpHostnam
+                                                                 e
+    vni42           3          warning          pd-netq-events   evpnVni
+    configChange    4          info             slk-netq-events  sysconf
+    newFEC          5          info             slk-netq-events  fecSupport
+    svcDown         6          critical         slk-netq-events  svcStatus
+    critTemp        7          critical         onprem-email     overTemp
+```
+
+Show rules
+
+```
+cumulus@switch:~$ netq show notification rule
+Matching config_notify records:
+Name            Rule Key         Rule Value
+--------------- ---------------- --------------------
+bgpHostname     hostname         spine-01
+evpnVni         vni              42
+fecSupport      new_supported_fe supported
+                c
+overTemp        new_s_crit       24
+svcStatus       new_status       down
+swp52           port             swp52
+sysconf         configdiff       updated
+```
+
+Show proxy
+
+```
+cumulus@switch:~$ netq show notification proxy
+Matching config_notify records:
+Proxy URL          Slack Enabled              PagerDuty Enabled
+------------------ -------------------------- ----------------------------------
+proxy4:80          yes                        yes
+```
+
+Refer to {{<link title="Configure Notifications">}} for more detail about configuring notifications.
+
+### Related Commands
+
+- netq add notification
+- netq del notification
+- netq add tca
+- netq del tca
+- netq show tca
 
 - - -
 
@@ -3773,11 +4107,199 @@ border01          ptmd                 9796  default         yes     yes    no  
 
 ## netq show tca
 
-    netq show tca [tca_id <tca-rule-name>]
+Displays the configuration information for all user-specified threshold-based event notifications. You can filter the output by the identifier of the configuration. The output provides the following information for each notification configuration:
+
+- Configuration name
+- Name of the event being managed
+- Scope indicating what is to be included or excluded from management by this configuration
+- Event severity
+- Channels that receive the events
+- Whether the configuration is currently active, disabled, or suppressed
+- Threshold value, unit of measure, and type
+- When suppression of these events ends (if configured)
+
+### Syntax
+
+```
+netq show tca
+    [tca_id <text-tca-id-anchor>]
+    [json]
+```
+
+### Required Arguments
+
+None
+
+### Options
+
+| Option | Value | Description |
+| ---- | ---- | ---- |
+| tca_id | \<text-tca-id-anchor\> | Only display results for the configuration with this ID/name |
+| json | NA | Display the output in JSON file format instead of default on-screen text format |
+
+### Command History
+
+A release is included if there were changes to the command, otherwise it is not listed.
+
+| Release | Description |
+| ---- | ---- |
+| 2.4.0 | Introduced |
+
+### Sample Usage
+
+Show all TCA event configurations
+
+```
+cumulus@switch:~$ netq show tca
+Matching config_tca records:
+TCA Name                     Event Name           Scope                      Severity Channel/s          Active Threshold          Unit     Threshold Type Suppress Until
+---------------------------- -------------------- -------------------------- -------- ------------------ ------ ------------------ -------- -------------- ----------------------------
+TCA_CPU_UTILIZATION_UPPER_1  TCA_CPU_UTILIZATION_ {"hostname":"leaf01"}      info     pd-netq-events,slk True   87                 %        user_set       Fri Oct  9 15:39:35 2020
+                             UPPER                                                    -netq-events
+TCA_CPU_UTILIZATION_UPPER_2  TCA_CPU_UTILIZATION_ {"hostname":"*"}           critical slk-netq-events    True   93                 %        user_set       Fri Oct  9 15:39:56 2020
+                             UPPER
+TCA_DOM_BIAS_CURRENT_ALARM_U TCA_DOM_BIAS_CURRENT {"hostname":"leaf*","ifnam critical slk-netq-events    True   0                  mA       vendor_set     Fri Oct  9 16:02:37 2020
+PPER_1                       _ALARM_UPPER         e":"*"}
+TCA_DOM_RX_POWER_ALARM_UPPER TCA_DOM_RX_POWER_ALA {"hostname":"*","ifname":" info     slk-netq-events    True   0                  mW       vendor_set     Fri Oct  9 15:25:26 2020
+_1                           RM_UPPER             *"}
+TCA_SENSOR_TEMPERATURE_UPPER TCA_SENSOR_TEMPERATU {"hostname":"leaf","s_name critical slk-netq-events    True   32                 degreeC  user_set       Fri Oct  9 15:40:18 2020
+_1                           RE_UPPER             ":"temp1"}
+TCA_TCAM_IPV4_ROUTE_UPPER_1  TCA_TCAM_IPV4_ROUTE_ {"hostname":"*"}           critical pd-netq-events     True   20000              %        user_set       Fri Oct  9 16:13:39 2020
+                             UPPER
+```
+
+Show a specific TCA configuration
+
+```
+cumulus@switch:~$ netq show tca tca_id TCA_TXMULTICAST_UPPER_1
+Matching config_tca records:
+TCA Name                     Event Name           Scope                      Severity         Channel/s          Active Threshold          Suppress Until
+---------------------------- -------------------- -------------------------- ---------------- ------------------ ------ ------------------ ----------------------------
+TCA_TXMULTICAST_UPPER_1      TCA_TXMULTICAST_UPPE {"ifname":"swp3","hostname info             tca-tx-bytes-slack True   0                  Sun Dec  8 16:40:14 2269
+                             R                    ":"leaf01"}
+```
+
+### Related Commands
+
+- netq add tca
+- netq del tca
+- netq show notification
 
 - - -
 
 ## netq show trace
+
+Displays the configuration settings for a given scheduled trace, summary results of all scheduled traces, or full results of scheduled traces. Use the summary form to obtain the job ID. The output varies based on the form of the command. Note that on-demand trace results are shown in the terminal window when the command is run.
+
+### Syntax
+
+There are three forms of this command.
+
+```
+netq show trace results <text-job-id>
+    [json]
+
+netq show trace settings
+    [name <text-trace-name>]
+    [json]
+
+netq show trace summary
+    [name <text-trace-name>]
+    [around <text-time-hr>]
+    [json]
+```
+
+### Required Arguments
+
+| Argument | Value | Description |
+| ---- | ---- | ---- |
+| results | NA | Display the full results, including the available paths, for all scheduled trace requests |
+| NA | \<text-job-id\> | Only display results for the trace request with this job ID |
+| settings | NA | Display trace configuration settings for a given trace request |
+| summary | NA | Display only the name, job ID, status, and duration of all scheduled trace results currently or at a time in the past |
+
+### Options
+
+| Option | Value | Description |
+| ---- | ---- | ---- |
+| name | \<text-trace-name\> | Only display summary results or configuration settings for the trace with this name |
+| around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. The value is written using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
+| json | NA | Display the output in JSON file format instead of default on-screen text format |
+
+### Command History
+
+A release is included if there were changes to the command, otherwise it is not listed.
+
+| Release | Description |
+| ---- | ---- |
+| 2.4.0 | Introduced |
+
+### Sample Usage
+
+Show full results for given trace
+
+```
+cumulus@switch:~$ netq show trace summary name Lf01toBor01Daily json
+cumulus@switch:~$ netq show trace results f501f9b0-cca3-4fa1-a60d-fb6f495b7a0e
+```
+
+Show configuration settings
+
+```
+cumulus@switch:~$ netq show trace settings name Lf01toBor01Daily
+```
+
+Show summary results for last 24 hours
+
+```
+cumulus@switch:~$ netq show trace summary
+Name            Job ID       Status           Status Details               Start Time           End Time
+--------------- ------------ ---------------- ---------------------------- -------------------- ----------------
+leaf01toborder0 f8d6a2c5-54d Complete         0                            Fri Nov  6 15:04:54  Fri Nov  6 15:05
+1               b-44a8-9a5d-                                               2020                 :21 2020
+                9d31f4e4701d
+New Trace       0e65e196-ac0 Complete         1                            Fri Nov  6 15:04:48  Fri Nov  6 15:05
+                5-49d7-8c81-                                               2020                 :03 2020
+                6e6691e191ae
+Svr01toSvr04Hrl 4c580c97-8af Complete         0                            Fri Nov  6 15:01:16  Fri Nov  6 15:01
+y               8-4ea2-8c09-                                               2020                 :44 2020
+                038cde9e196c
+Abc             c7174fad-71c Complete         1                            Fri Nov  6 14:57:18  Fri Nov  6 14:58
+                a-49d3-8c1d-                                               2020                 :11 2020
+                67962039ebf9
+Lf01toBor01Dail f501f9b0-cca Complete         0                            Fri Nov  6 14:52:35  Fri Nov  6 14:57
+y               3-4fa1-a60d-                                               2020                 :55 2020
+                fb6f495b7a0e
+L01toB01Daily   38a75e0e-7f9 Complete         0                            Fri Nov  6 14:50:23  Fri Nov  6 14:57
+                9-4e0c-8449-                                               2020                 :38 2020
+                f63def1ab726
+leaf01toborder0 f8d6a2c5-54d Complete         0                            Fri Nov  6 14:34:54  Fri Nov  6 14:57
+1               b-44a8-9a5d-                                               2020                 :20 2020
+                9d31f4e4701d
+leaf01toborder0 f8d6a2c5-54d Complete         0                            Fri Nov  6 14:04:54  Fri Nov  6 14:05
+1               b-44a8-9a5d-                                               2020                 :20 2020
+                9d31f4e4701d
+New Trace       0e65e196-ac0 Complete         1                            Fri Nov  6 14:04:48  Fri Nov  6 14:05
+                5-49d7-8c81-                                               2020                 :02 2020
+                6e6691e191ae
+Svr01toSvr04Hrl 4c580c97-8af Complete         0                            Fri Nov  6 14:01:16  Fri Nov  6 14:01
+y               8-4ea2-8c09-                                               2020                 :43 2020
+                038cde9e196c
+...
+L01toB01Daily   38a75e0e-7f9 Complete         0                            Thu Nov  5 15:50:23  Thu Nov  5 15:58
+                9-4e0c-8449-                                               2020                 :22 2020
+                f63def1ab726
+leaf01toborder0 f8d6a2c5-54d Complete         0                            Thu Nov  5 15:34:54  Thu Nov  5 15:58
+1               b-44a8-9a5d-                                               2020                 :03 2020
+                9d31f4e4701d
+```
+
+### Related Commands
+
+- netq add trace
+- netq del trace
+- netq trace (on-demand)
+- netq show events type trace
 
 - - -
 
@@ -4213,6 +4735,125 @@ leaf04            4001       EVPN   10.0.1.2         4001                       
 
 ## netq show wjh-drops
 
-Shows drops that are captured by WJH (What just happened) on Mellanox switches
+Displays packet drops due to buffer congestion, incorrect routing, tunnel, ACL and layer 1 and 2 problems that are captured by the WJH (What just happened) feature on Mellanox switches. You can filter all drops by ingress port and severity. You can filter drops of a particular type by numerous attributes. The output varies according to the type of drop. Refer to the {{<link title="WJH Event Messages Reference">}} for descriptions of the supported drop reasons.
+
+{{<notice note>}}
+Cumulus Linux 4.0.0 or later and NetQ Agent 2.4.0 or later are required to view this drop information. The NetQ Agent must also be configured to collect this data.
+
+Additionally, using <em>wjh_dump.py</em> on a Mellanox platform that is running Cumulus Linux 4.0 and the NetQ 2.4.0 Agent causes the NetQ WJH client to stop receiving packet drop call backs. To prevent this issue, run <em>wjh_dump.py</dm> on a different system than the one where the NetQ Agent has WJH enabled, or disable <em>wjh_dump.py</em> and restart the NetQ Agent.
+{{</notice>}}
+
+### Syntax
+
+```
+netq [<hostname>] show wjh-drop
+    [ingress-port <text-ingress-port>]
+    [severity <text-severity>]
+    [details]
+    [between <text-time> and <text-endtime>]
+    [around <text-time>]
+    [json]
+
+netq [<hostname>] show wjh-drop <text-drop-type>
+    [ingress-port <text-ingress-port>]
+    [severity <text-severity>]
+    [reason <text-reason>]
+    [src-ip <text-src-ip>]
+    [dst-ip <text-dst-ip>]
+    [proto <text-proto>]
+    [src-port <text-src-port>]
+    [dst-port <text-dst-port>]
+    [src-mac <text-src-mac>]
+    [dst-mac <text-dst-mac>]
+    [egress-port <text-egress-port>]
+    [traffic-class <text-traffic-class>]
+    [rule-id-acl <text-rule-id-acl>]
+    [between <text-time> and <text-endtime>]
+    [around <text-time>]
+    [json]
+```
+
+### Required Arguments
+
+| Argument | Value | Description |
+| ---- | ---- | ---- |
+| NA | \<text-drop-type\> | Only display results for this category of drops |
+
+### Options
+
+| Option | Value | Description |
+| ---- | ---- | ---- |
+| NA | \<hostname\> | Only display drops for the switch or host with this name |
+| ingress-port | \<text-ingress-port\> | Only display drops for the ingress port with this name |
+| severity | \<text-severity\> | Only display drops with this severity; *error*, *warning*, or *notice* |
+| details | NA | Display drop count and reason for all drop types |
+| reason | \<text-reason\> | Only display drops with this reason |
+| src-ip | \<text-src-ip\> | Only display drops with this source IP address |
+| dst-ip | \<text-dst-ip\> | Only display drops with this destination IP address |
+| proto | \<text-proto\> | Only display drops from the protocol with this name |
+| src-port | \<text-src-port\> | Only display drops with this source port name |
+| dst-port | \<text-dst-port\> | Only display drops with this destination port name |
+| src-mac | \<text-src-mac\> | Only display drops with this source MAC address |
+| dst-mac | \<text-dst-mac\> | Only display drops with this destination MAC address |
+| egress-port | \<text-egress-port\> | Only display drops for the egress port with this name |
+| traffic-class | \<text-traffic-class\> | Only display drops with this traffic class |
+| rule-id-acl | \<text-rule-id-acl\> | Only display ACL drops with this rule ID |
+| between | \<text-time\> and \<text-endtime\> | <p>Only display results between these two times. Times must include a numeric value <em>and</em> the unit of measure:<ul><li><strong>w</strong>: week(s)</li><li><strong>d</strong>: day(s)</li><li><strong>h</strong>: hour(s)</li><li><strong>m</strong>: minute(s)</li><li><strong>s</strong>: second(s)</li><li><strong>now</strong></li></ul></p><p>The start time (<code>text-time</code>) and end time (<code>text-endtime</code>) values can be entered as most recent first and least recent second, or vice versa. The values do not have to have the same unit of measure.</p> |
+| around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. The value is written using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
+| json | NA | Display the output in JSON file format instead of default on-screen text format |
+
+### Command History
+
+A release is included if there were changes to the command, otherwise it is not listed.
+
+| Release | Description |
+| ---- | ---- |
+| 2.1.2 | Removed `changes` option. Use `netq show events` command instead. |
+
+### Sample Usage
+
+Show drops for a given switch or host
+
+```
+cumulus@switch:~$ netq leaf03 show wjh-drop between now and 7d
+Matching wjh records:
+Drop type          Aggregate Count
+------------------ ------------------------------
+L1                 560
+Buffer             224
+Router             144
+L2                 0
+ACL                0
+Tunnel             0
+```
+
+Show drops for a particular drop type
+
+```
+cumulus@mlx-2700-03:mgmt:~$ netq show wjh-drop l2
+Matching wjh records:
+Hostname          Ingress Port             Reason                                        Agg Count          Src Ip           Dst Ip           Proto  Src Port         Dst Port         Src Mac            Dst Mac            First Timestamp                Last Timestamp
+----------------- ------------------------ --------------------------------------------- ------------------ ---------------- ---------------- ------ ---------------- ---------------- ------------------ ------------------ ------------------------------ ----------------------------
+mlx-2700-03       swp1s2                   Port loopback filter                          10                 27.0.0.19        27.0.0.22        0      0                0                00:02:00:00:00:73  0c:ff:ff:ff:ff:ff  Mon Dec 16 11:54:15 2019       Mon Dec 16 11:54:15 2019
+mlx-2700-03       swp1s2                   Source MAC equals destination MAC             10                 27.0.0.19        27.0.0.22        0      0                0                00:02:00:00:00:73  00:02:00:00:00:73  Mon Dec 16 11:53:17 2019       Mon Dec 16 11:53:17 2019
+mlx-2700-03       swp1s2                   Source MAC equals destination MAC             10                 0.0.0.0          0.0.0.0          0      0                0                00:02:00:00:00:73  00:02:00:00:00:73  Mon Dec 16 11:40:44 2019       Mon Dec 16 11:40:44 2019
+```
+
+Show drops of a given severity
+
+```
+cumulus@switch:~$ netq show wjh-drop acl
+Matching wjh records:
+Hostname          Ingress Port             Reason                                        Severity         Agg Count          Src Ip           Dst Ip           Proto  Src Port         Dst Port         Src Mac            Dst Mac            Acl Rule Id            Acl Bind Point               Acl Name         Acl Rule         First Timestamp                Last Timestamp
+----------------- ------------------------ --------------------------------------------- ---------------- ------------------ ---------------- ---------------- ------ ---------------- ---------------- ------------------ ------------------ ---------------------- ---------------------------- ---------------- ---------------- ------------------------------ ----------------------------
+leaf01            swp2                     Ingress router ACL                            Error            49                 55.0.0.1         55.0.0.2         17     8492             21423            00:32:10:45:76:89  00:ab:05:d4:1b:13  0x0                    0                                                              Tue Oct  6 15:29:13 2020       Tue Oct  6 15:29:39 2020
+```
+
+### Related Commands
+
+- netq config add agent wjh
+- netq config add agent wjh-threshold
+- netq config add agent wjh-drop-filter
+- netq config restart agent
 
 - - -

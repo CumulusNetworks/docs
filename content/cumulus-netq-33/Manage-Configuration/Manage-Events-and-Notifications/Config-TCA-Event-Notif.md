@@ -168,7 +168,7 @@ When a rule is filtered by more than one parameter, each is displayed on the car
 
 {{< tab "NetQ CLI" >}}
 
-Scopes are defined with regular expressions, as follows. When two paramaters are used, they are separated by a comma, but no space. When as asterisk (*) is used alone, it must be entered inside either single or double quotes. Single quotes are used here.
+Scopes are defined with regular expressions, as follows. When two parameters are used, they are separated by a comma, but no space. When an asterisk (*) is used alone, it must be entered inside either single or double quotes. Single quotes are used here.
 
 {{< tabs "TabID2270" >}}
 

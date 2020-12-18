@@ -68,15 +68,8 @@ Fixed: 2.1+dfsg-12+deb8u18</p></td>
 <td></td>
 </tr>
 <tr>
-<td>CM-32455</td>
-<td><p>In OVSDB server high availability mode, the openvswitchd-vtep restart command stops traffic on a bond interface but the traffic doesn't resume.<br/>
-To work around this issue, bring the bond interface down, then up with the ip link command.</p></td>
-<td>3.7.14</td>
-<td></td>
-</tr>
-<tr>
 <td>CM-32420</td>
-<td><p>On a traditional mode bride, MLAG bonds flap intermittently from dual to single connected, then back to dual connected, which causes a layer 2 loop and STP state changes.<br/>
+<td><p>When running traditional mode bridges at scale (for example, when you have more than 200 bridges and a large number of MAC addresses), MLAG bonds flap intermittently from dual to single connected, then back to dual connected, which causes a layer 2 loop and STP state changes.<br/>
 To work around this issue, either shut down one side of the MLAG bond or prune out VLANS over the bond.</p></td>
 <td>3.7.13-3.7.14</td>
 <td></td>
@@ -264,6 +257,12 @@ Be aware that restricting users to scp by using the command option in the author
 If you want to use scp -r to copy directory trees, avoid copying directory trees to which attackers may have added maliciously-named files. Archiving the directory tree with tar, zip, or a similar program, then copying the archive over to be extracted on the server avoids having to use scp -r altogether. In addition, OpenSSH provides sftp, which you can use instead of scp to copy files.<br/>
 To disable scp completely, use /bin/chmod 0 /usr/bin/scp .</p></td>
 <td>3.0.0-3.7.14</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30832</td>
+<td><p>The Mellanox SN2700 and SN2410 switch intermittently reports PSU fan state changes with Unable to read from device/fan1_input/pwm1 syslog messages.</p></td>
+<td>3.7.11-3.7.14</td>
 <td></td>
 </tr>
 <tr>
@@ -2364,7 +2363,7 @@ Fixed: 2.1+dfsg-12+deb8u18</p></td>
 </tr>
 <tr>
 <td>CM-32420</td>
-<td><p>On a traditional mode bride, MLAG bonds flap intermittently from dual to single connected, then back to dual connected, which causes a layer 2 loop and STP state changes.<br/>
+<td><p>When running traditional mode bridges at scale (for example, when you have more than 200 bridges and a large number of MAC addresses), MLAG bonds flap intermittently from dual to single connected, then back to dual connected, which causes a layer 2 loop and STP state changes.<br/>
 To work around this issue, either shut down one side of the MLAG bond or prune out VLANS over the bond.</p></td>
 <td>3.7.13-3.7.14</td>
 <td></td>
@@ -2982,6 +2981,12 @@ Vulnerable: &lt;= 2.1+dfsg-12+deb8u15<br/>
 Fixed: 2.1+dfsg-12+deb8u16</p></td>
 <td>3.0.0-3.7.13</td>
 <td>3.7.14</td>
+</tr>
+<tr>
+<td>CM-30832</td>
+<td><p>The Mellanox SN2700 and SN2410 switch intermittently reports PSU fan state changes with Unable to read from device/fan1_input/pwm1 syslog messages.</p></td>
+<td>3.7.11-3.7.14</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-30827</td>
@@ -5735,6 +5740,12 @@ Vulnerable: &lt;= 2.1+dfsg-12+deb8u15<br/>
 Fixed: 2.1+dfsg-12+deb8u16</p></td>
 <td>3.0.0-3.7.13</td>
 <td>3.7.14</td>
+</tr>
+<tr>
+<td>CM-30832</td>
+<td><p>The Mellanox SN2700 and SN2410 switch intermittently reports PSU fan state changes with Unable to read from device/fan1_input/pwm1 syslog messages.</p></td>
+<td>3.7.11-3.7.14</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-30827</td>
@@ -8677,6 +8688,12 @@ Vulnerable: &lt;= 2.1+dfsg-12+deb8u15<br/>
 Fixed: 2.1+dfsg-12+deb8u16</p></td>
 <td>3.0.0-3.7.13</td>
 <td>3.7.14</td>
+</tr>
+<tr>
+<td>CM-30832</td>
+<td><p>The Mellanox SN2700 and SN2410 switch intermittently reports PSU fan state changes with Unable to read from device/fan1_input/pwm1 syslog messages.</p></td>
+<td>3.7.11-3.7.14</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-30818</td>

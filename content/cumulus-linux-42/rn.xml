@@ -7,6 +7,32 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-32786</td>
+<td><p>The net show configuration commands command incorrectly displays the NCLU syntax to disable IPv6 forwarding on interfaces. For example:</p>
+
+# net show configuration commands
+net add vlan 1 ip6-forward off 
+
+
+<p>The correct NCLU command to disable IPv6 forwarding is net add vlan 1 ipv6 forward off (without the hyphen).</p></td>
+<td>4.2.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32716</td>
+<td><p>CVE-2020-27783: A XSS vulnerability was discovered in python-lxml's clean module. The module's parser didn't properly imitate browsers, which caused different behaviors between the sanitizer and the user's page. A remote attacker could exploit this flaw to run arbitrary HTML/JS code.<br/>
+Vulnerable: 4.3.2-1<br/>
+Fixed: 4.3.2-1+deb10u1</p></td>
+<td>4.0.0-4.2.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32647</td>
+<td><p>You might see increasing memory usage when you start asic-monitor.</p></td>
+<td>4.2.1</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-32622</td>
 <td><p>The following vulnerability has been announced in OpenSSL:<br/>
 CVE-2020-1971: A flaw in the GENERAL_NAME_cmp() function could cause a NULL dereference when both GENERAL_NAMEs contain an EDIPARTYNAME, resulting in denial of service.  More information can be found at <a href="https://www.openssl.org/news/secadv/20201208.txt" class="external-link" rel="nofollow">https://www.openssl.org/news/secadv/20201208.txt</a> .<br/>
@@ -241,6 +267,12 @@ To work around this issue, use both PSUs.</p></td>
 <td>CM-31982</td>
 <td><p>The INPUT chain POLICE target acts as ACCEPT instead of continue.</p></td>
 <td>4.2.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31962</td>
+<td><p>In a VRRP configuration, BGP unnumbered sessions for VRFs fail to establish after a networking restart.</p></td>
+<td>4.2.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1976,6 +2008,14 @@ asic-monitor[7389]: File "/usr/lib/python2.7/dist-packages/cumulus/asic_monitor.
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-32716</td>
+<td><p>CVE-2020-27783: A XSS vulnerability was discovered in python-lxml's clean module. The module's parser didn't properly imitate browsers, which caused different behaviors between the sanitizer and the user's page. A remote attacker could exploit this flaw to run arbitrary HTML/JS code.<br/>
+Vulnerable: 4.3.2-1<br/>
+Fixed: 4.3.2-1+deb10u1</p></td>
+<td>4.0.0-4.2.1</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-32622</td>
 <td><p>The following vulnerability has been announced in OpenSSL:<br/>
 CVE-2020-1971: A flaw in the GENERAL_NAME_cmp() function could cause a NULL dereference when both GENERAL_NAMEs contain an EDIPARTYNAME, resulting in denial of service.  More information can be found at <a href="https://www.openssl.org/news/secadv/20201208.txt" class="external-link" rel="nofollow">https://www.openssl.org/news/secadv/20201208.txt</a> .<br/>
@@ -2107,6 +2147,12 @@ Fixed: 2.4.47+dfsg-3+deb10u3</p></td>
 <td>CM-32006</td>
 <td><p>Certain Dell S4048-ON switches show an incorrect vendor name and hang when you issue the reboot command. </p></td>
 <td>3.7.12-3.7.14, 4.0.0-4.2.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31962</td>
+<td><p>In a VRRP configuration, BGP unnumbered sessions for VRFs fail to establish after a networking restart.</p></td>
+<td>4.2.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>

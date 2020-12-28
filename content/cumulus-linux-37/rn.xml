@@ -34453,6 +34453,53 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <td>3.7.6-3.7.14</td>
 </tr>
 <tr>
+<td>CM-32810</td>
+<td><p>The following vulnerability has been announced in the libflac8 package:<br/>
+CVE-2020-0499: In FLAC__bitreader_read_rice_signed_block of bitreader.c, there is a possible out-of-bounds read due to a heap buffer overflow.  This could lead to remote information disclosure with no additional execution privileges needed. However, user interaction is needed for exploitation.<br/>
+Vulnerable: 1.3.0-3<br/>
+Fixed: 1.3.0-3+deb8u1</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32797</td>
+<td><p>The following vulnerabilities have been announced in curl:<br/>
+CVE-2020-8284: Vulnerability to malicious FTP server with PASV response with different IP address.<br/>
+CVE-2020-8285: Wildcard matching is vulnerable to denial of service by running out of stack space.<br/>
+Vulnerable: &lt;= 7.38.0-4+deb8u18<br/>
+Fixed: 7.38.0-4+deb8u19</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32757</td>
+<td><p>It was discovered that the clean_html() function of lxml, a Python library for HTML and XML processing, performed insufficient sanitisation for embedded Javascript code. This might lead to cross-site scripting or possibly the execution of arbitrary code.<br/>
+Vulnerable: &lt;= 3.4.0-1+deb8u2<br/>
+Fixed: 3.4.0-1+deb8u3</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32734</td>
+<td><p>CVE-2018-0734: A minor timing side channel attack was found in the OpenSSL DSA<br/>
+signature algorithm. The fix for that introduced a more severe regression that could also be exploited as a timing side channel attack. This update fixes both the original problem and the subsequent issue.<br/>
+CVE-2020-1971: A flaw in the GENERAL_NAME_cmp() function could cause a NULL dereference, resulting in denial of service.<br/>
+Vulnerable: &lt;= 1.0.1t-1+deb8u12<br/>
+Fixed: 1.0.1t-1+deb8u13</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32689</td>
+<td><p>CVE-2018-19139: Fix memory leaks by registering jpc_unk_destroyparms.<br/>
+CVE-2020-27828: Avoid maxrlvls more than upper bound to cause heap-buffer-overflow.<br/>
+CVE-2018-19543 and CVE-2017-9782: There is a heap-based buffer over-read of size 8 in the function jp2_decode in libjasper/jp2/jp2_dec.c.<br/>
+Vulnerable: &lt;= 1.900.1-debian1-2.4+deb8u6<br/>
+Fixed: 1.900.1-debian1-2.4+deb8u7</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-32609</td>
 <td><p>CVE-2020-25709, CVE-2020-25710: Vulnerabilities in the certificate list syntax verification and in the handling of CSN normalization were discovered in OpenLDAP, a free implementation of the Lightweight Directory Access Protocol. An unauthenticated remote attacker can take advantage of these flaws to cause a denial of service (slapd daemon crash) via specially crafted packets.<br/>
 Vulnerable: &lt;= 2.4.40+dfsg-1+deb8u7<br/>
@@ -37795,6 +37842,53 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <td><p>In testing, it was determined that the MD5 password configured against a BGP listen-range peer-group (used to accept and create dynamic BGP neighbors) is not enforced (connections are accepted from peers that do not specify a password). </p></td>
 <td>3.0.0-3.7.5</td>
 <td>3.7.6-3.7.14</td>
+</tr>
+<tr>
+<td>CM-32810</td>
+<td><p>The following vulnerability has been announced in the libflac8 package:<br/>
+CVE-2020-0499: In FLAC__bitreader_read_rice_signed_block of bitreader.c, there is a possible out-of-bounds read due to a heap buffer overflow.  This could lead to remote information disclosure with no additional execution privileges needed. However, user interaction is needed for exploitation.<br/>
+Vulnerable: 1.3.0-3<br/>
+Fixed: 1.3.0-3+deb8u1</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32797</td>
+<td><p>The following vulnerabilities have been announced in curl:<br/>
+CVE-2020-8284: Vulnerability to malicious FTP server with PASV response with different IP address.<br/>
+CVE-2020-8285: Wildcard matching is vulnerable to denial of service by running out of stack space.<br/>
+Vulnerable: &lt;= 7.38.0-4+deb8u18<br/>
+Fixed: 7.38.0-4+deb8u19</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32757</td>
+<td><p>It was discovered that the clean_html() function of lxml, a Python library for HTML and XML processing, performed insufficient sanitisation for embedded Javascript code. This might lead to cross-site scripting or possibly the execution of arbitrary code.<br/>
+Vulnerable: &lt;= 3.4.0-1+deb8u2<br/>
+Fixed: 3.4.0-1+deb8u3</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32734</td>
+<td><p>CVE-2018-0734: A minor timing side channel attack was found in the OpenSSL DSA<br/>
+signature algorithm. The fix for that introduced a more severe regression that could also be exploited as a timing side channel attack. This update fixes both the original problem and the subsequent issue.<br/>
+CVE-2020-1971: A flaw in the GENERAL_NAME_cmp() function could cause a NULL dereference, resulting in denial of service.<br/>
+Vulnerable: &lt;= 1.0.1t-1+deb8u12<br/>
+Fixed: 1.0.1t-1+deb8u13</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32689</td>
+<td><p>CVE-2018-19139: Fix memory leaks by registering jpc_unk_destroyparms.<br/>
+CVE-2020-27828: Avoid maxrlvls more than upper bound to cause heap-buffer-overflow.<br/>
+CVE-2018-19543 and CVE-2017-9782: There is a heap-based buffer over-read of size 8 in the function jp2_decode in libjasper/jp2/jp2_dec.c.<br/>
+Vulnerable: &lt;= 1.900.1-debian1-2.4+deb8u6<br/>
+Fixed: 1.900.1-debian1-2.4+deb8u7</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-32609</td>
@@ -41263,6 +41357,53 @@ Permanent MAC address sync between MLAG peers is now supported.</p></td>
 <td>3.7.6-3.7.14</td>
 </tr>
 <tr>
+<td>CM-32810</td>
+<td><p>The following vulnerability has been announced in the libflac8 package:<br/>
+CVE-2020-0499: In FLAC__bitreader_read_rice_signed_block of bitreader.c, there is a possible out-of-bounds read due to a heap buffer overflow.  This could lead to remote information disclosure with no additional execution privileges needed. However, user interaction is needed for exploitation.<br/>
+Vulnerable: 1.3.0-3<br/>
+Fixed: 1.3.0-3+deb8u1</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32797</td>
+<td><p>The following vulnerabilities have been announced in curl:<br/>
+CVE-2020-8284: Vulnerability to malicious FTP server with PASV response with different IP address.<br/>
+CVE-2020-8285: Wildcard matching is vulnerable to denial of service by running out of stack space.<br/>
+Vulnerable: &lt;= 7.38.0-4+deb8u18<br/>
+Fixed: 7.38.0-4+deb8u19</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32757</td>
+<td><p>It was discovered that the clean_html() function of lxml, a Python library for HTML and XML processing, performed insufficient sanitisation for embedded Javascript code. This might lead to cross-site scripting or possibly the execution of arbitrary code.<br/>
+Vulnerable: &lt;= 3.4.0-1+deb8u2<br/>
+Fixed: 3.4.0-1+deb8u3</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32734</td>
+<td><p>CVE-2018-0734: A minor timing side channel attack was found in the OpenSSL DSA<br/>
+signature algorithm. The fix for that introduced a more severe regression that could also be exploited as a timing side channel attack. This update fixes both the original problem and the subsequent issue.<br/>
+CVE-2020-1971: A flaw in the GENERAL_NAME_cmp() function could cause a NULL dereference, resulting in denial of service.<br/>
+Vulnerable: &lt;= 1.0.1t-1+deb8u12<br/>
+Fixed: 1.0.1t-1+deb8u13</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32689</td>
+<td><p>CVE-2018-19139: Fix memory leaks by registering jpc_unk_destroyparms.<br/>
+CVE-2020-27828: Avoid maxrlvls more than upper bound to cause heap-buffer-overflow.<br/>
+CVE-2018-19543 and CVE-2017-9782: There is a heap-based buffer over-read of size 8 in the function jp2_decode in libjasper/jp2/jp2_dec.c.<br/>
+Vulnerable: &lt;= 1.900.1-debian1-2.4+deb8u6<br/>
+Fixed: 1.900.1-debian1-2.4+deb8u7</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-32609</td>
 <td><p>CVE-2020-25709, CVE-2020-25710: Vulnerabilities in the certificate list syntax verification and in the handling of CSN normalization were discovered in OpenLDAP, a free implementation of the Lightweight Directory Access Protocol. An unauthenticated remote attacker can take advantage of these flaws to cause a denial of service (slapd daemon crash) via specially crafted packets.<br/>
 Vulnerable: &lt;= 2.4.40+dfsg-1+deb8u7<br/>
@@ -44231,6 +44372,53 @@ To work around this issue, remove the matching network statement. </p></td>
 <td><p>In testing, it was determined that the MD5 password configured against a BGP listen-range peer-group (used to accept and create dynamic BGP neighbors) is not enforced (connections are accepted from peers that do not specify a password). </p></td>
 <td>3.0.0-3.7.5</td>
 <td>3.7.6-3.7.14</td>
+</tr>
+<tr>
+<td>CM-32810</td>
+<td><p>The following vulnerability has been announced in the libflac8 package:<br/>
+CVE-2020-0499: In FLAC__bitreader_read_rice_signed_block of bitreader.c, there is a possible out-of-bounds read due to a heap buffer overflow.  This could lead to remote information disclosure with no additional execution privileges needed. However, user interaction is needed for exploitation.<br/>
+Vulnerable: 1.3.0-3<br/>
+Fixed: 1.3.0-3+deb8u1</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32797</td>
+<td><p>The following vulnerabilities have been announced in curl:<br/>
+CVE-2020-8284: Vulnerability to malicious FTP server with PASV response with different IP address.<br/>
+CVE-2020-8285: Wildcard matching is vulnerable to denial of service by running out of stack space.<br/>
+Vulnerable: &lt;= 7.38.0-4+deb8u18<br/>
+Fixed: 7.38.0-4+deb8u19</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32757</td>
+<td><p>It was discovered that the clean_html() function of lxml, a Python library for HTML and XML processing, performed insufficient sanitisation for embedded Javascript code. This might lead to cross-site scripting or possibly the execution of arbitrary code.<br/>
+Vulnerable: &lt;= 3.4.0-1+deb8u2<br/>
+Fixed: 3.4.0-1+deb8u3</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32734</td>
+<td><p>CVE-2018-0734: A minor timing side channel attack was found in the OpenSSL DSA<br/>
+signature algorithm. The fix for that introduced a more severe regression that could also be exploited as a timing side channel attack. This update fixes both the original problem and the subsequent issue.<br/>
+CVE-2020-1971: A flaw in the GENERAL_NAME_cmp() function could cause a NULL dereference, resulting in denial of service.<br/>
+Vulnerable: &lt;= 1.0.1t-1+deb8u12<br/>
+Fixed: 1.0.1t-1+deb8u13</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32689</td>
+<td><p>CVE-2018-19139: Fix memory leaks by registering jpc_unk_destroyparms.<br/>
+CVE-2020-27828: Avoid maxrlvls more than upper bound to cause heap-buffer-overflow.<br/>
+CVE-2018-19543 and CVE-2017-9782: There is a heap-based buffer over-read of size 8 in the function jp2_decode in libjasper/jp2/jp2_dec.c.<br/>
+Vulnerable: &lt;= 1.900.1-debian1-2.4+deb8u6<br/>
+Fixed: 1.900.1-debian1-2.4+deb8u7</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-32609</td>

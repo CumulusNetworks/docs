@@ -7,6 +7,32 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-32786</td>
+<td><p>The net show configuration commands command incorrectly displays the NCLU syntax to disable IPv6 forwarding on interfaces. For example:</p>
+
+# net show configuration commands
+net add vlan 1 ip6-forward off 
+
+
+<p>The correct NCLU command to disable IPv6 forwarding is net add vlan 1 ipv6 forward off (without the hyphen).</p></td>
+<td>4.2.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32716</td>
+<td><p>CVE-2020-27783: A XSS vulnerability was discovered in python-lxml's clean module. The module's parser didn't properly imitate browsers, which caused different behaviors between the sanitizer and the user's page. A remote attacker could exploit this flaw to run arbitrary HTML/JS code.<br/>
+Vulnerable: 4.3.2-1<br/>
+Fixed: 4.3.2-1+deb10u1</p></td>
+<td>4.0.0-4.2.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32647</td>
+<td><p>You might see increasing memory usage when you start asic-monitor.</p></td>
+<td>4.2.1</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-32622</td>
 <td><p>The following vulnerability has been announced in OpenSSL:<br/>
 CVE-2020-1971: A flaw in the GENERAL_NAME_cmp() function could cause a NULL dereference when both GENERAL_NAMEs contain an EDIPARTYNAME, resulting in denial of service.  More information can be found at <a href="https://www.openssl.org/news/secadv/20201208.txt" class="external-link" rel="nofollow">https://www.openssl.org/news/secadv/20201208.txt</a> .<br/>
@@ -21,6 +47,21 @@ Fixed: 1.1.1d-0+deb10u4</p></td>
 Vulnerable: &lt; 4.11.4+57-g41a822c392-1<br/>
 Fixed: 4.11.4+57-g41a822c392-1</p></td>
 <td>4.0.0-4.2.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32554</td>
+<td><p>An EVPN route map filter matching a VNI on egress on the originating router might not set a large-community correctly:</p>
+
+route-map TEST-TAG permit 10
+  match evpn vni 109001
+  set large-community 20:20:333
+!
+
+
+<p>To work around this issue, remove the VNI match to allow the tag to be applied on egress.<br/>
+The VNI match works if applied at some other non-originating router either in the ingress or egress direction.</p></td>
+<td>4.2.1</td>
 <td></td>
 </tr>
 <tr>
@@ -229,6 +270,12 @@ To work around this issue, use both PSUs.</p></td>
 <td></td>
 </tr>
 <tr>
+<td>CM-31962</td>
+<td><p>In a VRRP configuration, BGP unnumbered sessions for VRFs fail to establish after a networking restart.</p></td>
+<td>4.2.0-4.2.1</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-31959</td>
 <td><p>With traditional bridges, a race condition occurs when Cumulus Linux tries to derive MAC addresses.<br/>
 To work around this issue, use a static MAC address; specify a MAC address in the /etc/network/interfaces file under the bridge's stanza.</p></td>
@@ -241,6 +288,12 @@ To work around this issue, use a static MAC address; specify a MAC address in th
 Vulnerable: 10.3.25-0<br/>
 Fixed: 10.3.25-0+deb10u1</p></td>
 <td>4.0.0-4.2.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31942</td>
+<td><p>After upgrading the Mellanox SN2410 switch from Cumulus Linux 4.1.1 to 4.2.1, the FAN is set to full speed.</p></td>
+<td>4.2.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1955,6 +2008,14 @@ asic-monitor[7389]: File "/usr/lib/python2.7/dist-packages/cumulus/asic_monitor.
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-32716</td>
+<td><p>CVE-2020-27783: A XSS vulnerability was discovered in python-lxml's clean module. The module's parser didn't properly imitate browsers, which caused different behaviors between the sanitizer and the user's page. A remote attacker could exploit this flaw to run arbitrary HTML/JS code.<br/>
+Vulnerable: 4.3.2-1<br/>
+Fixed: 4.3.2-1+deb10u1</p></td>
+<td>4.0.0-4.2.1</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-32622</td>
 <td><p>The following vulnerability has been announced in OpenSSL:<br/>
 CVE-2020-1971: A flaw in the GENERAL_NAME_cmp() function could cause a NULL dereference when both GENERAL_NAMEs contain an EDIPARTYNAME, resulting in denial of service.  More information can be found at <a href="https://www.openssl.org/news/secadv/20201208.txt" class="external-link" rel="nofollow">https://www.openssl.org/news/secadv/20201208.txt</a> .<br/>
@@ -2086,6 +2147,12 @@ Fixed: 2.4.47+dfsg-3+deb10u3</p></td>
 <td>CM-32006</td>
 <td><p>Certain Dell S4048-ON switches show an incorrect vendor name and hang when you issue the reboot command. </p></td>
 <td>3.7.12-3.7.14, 4.0.0-4.2.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31962</td>
+<td><p>In a VRRP configuration, BGP unnumbered sessions for VRFs fail to establish after a networking restart.</p></td>
+<td>4.2.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>

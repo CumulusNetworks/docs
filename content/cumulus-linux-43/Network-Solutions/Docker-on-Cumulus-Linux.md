@@ -10,13 +10,13 @@ On a Mellanox switch, a Docker package is installed as part of the installation 
 
 To run Docker containers on the Cumulus Linux switch:
 
-1. Check if the Docker package is already installed with the `dpkg-query -l cumulus-docker-setup` command.
+1. Check if the Docker package is already installed on the switch with the `dpkg-query -l cumulus-docker-setup` command.
 
 {{< tabs "TabID16 ">}}
 
 {{< tab "Docker is installed    ">}}
 
-The following command output shows that the Docker package is installed. No further action is required. Go to step 2 to enable the docker service.
+The following command output shows that the Docker package is installed. No further action is required. Go to the next step to enable the Docker service.
 
    ```
    cumulus@switch:mgmt:~$ dpkg-query -l cumulus-docker-setup
@@ -65,7 +65,7 @@ Reading package lists... Done
 
 {{< /tabs >}}
 
-2. In the managment VRF, enable the `docker` service. Docker pulls container images from the internet, which requires internet access through the management VRF.
+2. In the managment VRF, enable the Docker service. Docker pulls container images from the internet, which requires internet access through the management VRF.
 
    ```
    cumulus@switch:mgmt:~$ sudo systemctl enable --now docker@mgmt.service
@@ -77,7 +77,7 @@ Reading package lists... Done
 The warning is a known issue, which has no functional impact.
 {{%/notice%}}
 
-3. Check the status of the docker service with the `systemctl status docker@mgmt.service` command. For example:
+3. Check the status of the Docker service with the `systemctl status docker@mgmt.service` command:
 
    ```
    cumulus@switch:mgmt:~$ sudo systemctl status docker@mgmt.service

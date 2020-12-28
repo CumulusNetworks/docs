@@ -195,6 +195,7 @@ For example:
 
 - Output from the `sensors` command varies depending upon the switch hardware you use, as each platform ships with a different type and number of sensors.
 - On a Mellanox switch with the Spectrum ASIC, if both power supply units (PSUs) are energized, the `sensors` command does not flag any ALARM. If only one PSU cable is energized and the other PSU cable is just plugged in without being energized, `lm-sensors` might enumerate this device and flag an ALARM as the VIN field reports zero voltage.
+- On a Mellanox switch, if only one PSU is plugged in, the fan is at maximum speed.
 
 {{%/notice%}}
 

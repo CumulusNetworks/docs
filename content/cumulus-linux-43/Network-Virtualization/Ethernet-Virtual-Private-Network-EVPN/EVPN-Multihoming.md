@@ -38,6 +38,9 @@ Head-end replication is not supported with multihoming, so you must use {{<link 
 {{%/notice%}}
 
 - {{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware bridge mode">}} only.
+- {{<link url="LACP-Bypass">}} is supported.
+  - When an EVPN-MH bond enters LACP bypass state, BGP stops advertising EVPN type-1 and type-4 routes for that bond. Split-horizon and designated forwarder filters are disabled.
+  - When an EVPN-MH bond exits the LACP bypass state, BGP starts advertising EVPN type-1 and type-4 routes for that bond. Split-horizon and designated forwarder filters are enabled.
 - {{<link url="Inter-subnet-Routing/#symmetric-routing" text="Distributed symmetric routing">}}.
 - {{<link url="Basic-Configuration/#arp-and-nd-suppression" text="ARP suppression">}} must be enabled.
 - EVI (*EVPN virtual instance*). Cumulus Linux supports VLAN-based service only, so the EVI is just a layer 2 VNI.

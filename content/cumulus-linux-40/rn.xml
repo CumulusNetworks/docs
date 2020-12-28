@@ -47,6 +47,13 @@ Fixed: 1.0.7-2+deb10u1</p></td>
 <td></td>
 </tr>
 <tr>
+<td>CM-32420</td>
+<td><p>When running traditional mode bridges at scale (for example, when you have more than 200 bridges and a large number of MAC addresses), MLAG bonds flap intermittently from dual to single connected, then back to dual connected, which causes a layer 2 loop and STP state changes.<br/>
+To work around this issue, either shut down one side of the MLAG bond or prune out VLANS over the bond.</p></td>
+<td>3.7.13-3.7.14, 4.0.0-4.2.1</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-32412</td>
 <td><p>CVE-2020-28196: MIT Kerberos 5 (aka krb5) before 1.17.2 and 1.18.x before 1.18.3 allows unbounded recursion via an ASN.1-encoded Kerberos message because the lib/krb5/asn.1/asn1_encode.c support for BER indefinite lengths lacks a recursion limit.<br/>
 Vulnerable: 1.17-3<br/>

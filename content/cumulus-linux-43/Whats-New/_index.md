@@ -38,7 +38,6 @@ Cumulus Linux 4.3.0 supports new platforms, provides bug fixes, and contains sev
 - Docker runtime included by default on Cumulus Linux
 - {{<link url="RDMA-over-Converged-Ethernet-RoCE" text="DoRoCE command">}} to configure RoCE with PFC and ECN on all interfaces
 - {{<link url="Supported-MIBs" text="SNMP MIB for BGP unnumbered peers">}}
-- SVI interface support for DHCPv6
 - Multicast routing over VXLAN is now supported on Mellanox switches
 
 ### Unsupported Platforms

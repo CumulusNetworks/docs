@@ -24,6 +24,21 @@ Fixed: 4.11.4+57-g41a822c392-1</p></td>
 <td></td>
 </tr>
 <tr>
+<td>CM-32554</td>
+<td><p>An EVPN route map filter matching a VNI on egress on the originating router might not set a large-community correctly:</p>
+
+route-map TEST-TAG permit 10
+  match evpn vni 109001
+  set large-community 20:20:333
+!
+
+
+<p>To work around this issue, remove the VNI match to allow the tag to be applied on egress.<br/>
+The VNI match works if applied at some other non-originating router either in the ingress or egress direction.</p></td>
+<td>4.2.1</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-32545</td>
 <td><p>If the FRR and MSTP processes go down, an SNMP TRAP is not generated even with the following configuration in the /etc/snmp/snmpd.conf file. </p>
 
@@ -241,6 +256,12 @@ To work around this issue, use a static MAC address; specify a MAC address in th
 Vulnerable: 10.3.25-0<br/>
 Fixed: 10.3.25-0+deb10u1</p></td>
 <td>4.0.0-4.2.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31942</td>
+<td><p>After upgrading the Mellanox SN2410 switch from Cumulus Linux 4.1.1 to 4.2.1, the FAN is set to full speed.</p></td>
+<td>4.2.1</td>
 <td></td>
 </tr>
 <tr>

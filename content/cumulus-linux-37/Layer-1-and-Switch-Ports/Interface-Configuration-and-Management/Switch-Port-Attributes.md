@@ -242,8 +242,7 @@ UP  swp1    44:38:39:00:00:04  1G        1500  Access/L2
 
 ### Bring Down an Interface for a Bridge Member
 
-In Cumulus Linux 3.7.11 and earlier, when you bring down an interface for a bridge member, the MTU for the
-interface and the MTU for the bridge are both set to the default value of 1500, which might cause issues if you take a port down for maintenance. To work around this issue, run `ifdown` on the interface, then run the `sudo ip link set dev <interface> mtu <mtu>` command.
+When you bring down an interface for a bridge member, the MTU for the interface and the MTU for the bridge are both set to the default value of 1500, which might cause issues if you take a port down for maintenance. To work around this issue, run `ifdown` on the interface, then run the `sudo ip link set dev <interface> mtu <mtu>` command.
 
 For example:
 

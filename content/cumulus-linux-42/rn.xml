@@ -19,17 +19,48 @@ net add vlan 1 ip6-forward off
 <td></td>
 </tr>
 <tr>
-<td>CM-32716</td>
-<td><p>CVE-2020-27783: A XSS vulnerability was discovered in python-lxml's clean module. The module's parser didn't properly imitate browsers, which caused different behaviors between the sanitizer and the user's page. A remote attacker could exploit this flaw to run arbitrary HTML/JS code.<br/>
-Vulnerable: 4.3.2-1<br/>
-Fixed: 4.3.2-1+deb10u1</p></td>
+<td>CM-32733</td>
+<td><p>CVE-2020-29479 CVE-2020-29480 CVE-2020-29481 CVE-2020-29482 CVE-2020-29483 CVE-2020-29484 CVE-2020-29485 CVE-2020-29486 CVE-2020-29566 CVE-2020-29570 CVE-2020-29571<br/>
+Several security issues affecting Xenstore could result in cross domain access (denial of service, information leaks or privilege escalation) or denial of service against xenstored.<br/>
+Additional vulnerabilities could result in guest-to-host denial of<br/>
+service.<br/>
+Vulnerable: &lt;= 4.11.4+57-g41a822c392-1<br/>
+Fixed: 4.11.4+57-g41a822c392-2</p></td>
 <td>4.0.0-4.2.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32723</td>
+<td><p>ospf6d restarts when you run the NCLU net show ospf6 databse command or the vtysh show ipv6 ospf6 database command. </p></td>
+<td>4.2.0-4.2.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32683</td>
+<td><p>When you change the SVI vlan-id value in the /etc/network/interfaces file, then run ifreload -a, the 802.1Q ID for the SVI in the kernel does not change.<br/>
+This operation is not supported in the kernel without recreating the SVI. To apply the change, run ifdown, then ifup for the SVI to recreate the interface.</p></td>
+<td>3.7.13-3.7.14, 4.2.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32661</td>
+<td><p>On the Edgecore AS7312 switch, eth0 and swp use the same MAC address.</p></td>
+<td>3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-32647</td>
 <td><p>You might see increasing memory usage when you start asic-monitor.</p></td>
 <td>4.2.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32641</td>
+<td><p>CVE-2020-27350: Missing input validation in the ar/tar implementations of APT, the high level package manager, could cause out-of-bounds reads or infinite loops, resulting in denial of service when processing malformed deb files.<br/>
+CVE-2020-27351: Various memory and file descriptor leaks were discovered in the Python interface to the APT package management runtime library, which could result in denial of service.<br/>
+Vulnerable: apt &lt;= 1.8.2.1, python-apt &lt;= 1.8.4.1<br/>
+Fixed: apt 1.8.2.2, python-apt 1.8.4.3</p></td>
+<td>4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
@@ -2008,10 +2039,34 @@ asic-monitor[7389]: File "/usr/lib/python2.7/dist-packages/cumulus/asic_monitor.
 <th> Fixed </th>
 </tr>
 <tr>
-<td>CM-32716</td>
-<td><p>CVE-2020-27783: A XSS vulnerability was discovered in python-lxml's clean module. The module's parser didn't properly imitate browsers, which caused different behaviors between the sanitizer and the user's page. A remote attacker could exploit this flaw to run arbitrary HTML/JS code.<br/>
-Vulnerable: 4.3.2-1<br/>
-Fixed: 4.3.2-1+deb10u1</p></td>
+<td>CM-32733</td>
+<td><p>CVE-2020-29479 CVE-2020-29480 CVE-2020-29481 CVE-2020-29482 CVE-2020-29483 CVE-2020-29484 CVE-2020-29485 CVE-2020-29486 CVE-2020-29566 CVE-2020-29570 CVE-2020-29571<br/>
+Several security issues affecting Xenstore could result in cross domain access (denial of service, information leaks or privilege escalation) or denial of service against xenstored.<br/>
+Additional vulnerabilities could result in guest-to-host denial of<br/>
+service.<br/>
+Vulnerable: &lt;= 4.11.4+57-g41a822c392-1<br/>
+Fixed: 4.11.4+57-g41a822c392-2</p></td>
+<td>4.0.0-4.2.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32723</td>
+<td><p>ospf6d restarts when you run the NCLU net show ospf6 databse command or the vtysh show ipv6 ospf6 database command. </p></td>
+<td>4.2.0-4.2.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32661</td>
+<td><p>On the Edgecore AS7312 switch, eth0 and swp use the same MAC address.</p></td>
+<td>3.7.14, 4.0.0-4.2.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32641</td>
+<td><p>CVE-2020-27350: Missing input validation in the ar/tar implementations of APT, the high level package manager, could cause out-of-bounds reads or infinite loops, resulting in denial of service when processing malformed deb files.<br/>
+CVE-2020-27351: Various memory and file descriptor leaks were discovered in the Python interface to the APT package management runtime library, which could result in denial of service.<br/>
+Vulnerable: apt &lt;= 1.8.2.1, python-apt &lt;= 1.8.4.1<br/>
+Fixed: apt 1.8.2.2, python-apt 1.8.4.3</p></td>
 <td>4.0.0-4.2.1</td>
 <td></td>
 </tr>

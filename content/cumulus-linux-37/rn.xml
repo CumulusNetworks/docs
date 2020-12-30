@@ -34,6 +34,13 @@ Fixed: 3.4.0-1+deb8u3</p></td>
 <td></td>
 </tr>
 <tr>
+<td>CM-32750</td>
+<td><p>In an EVPN Active/Active configuration, when one of the peers reboots and begins to refresh IP neighbor entries shared by the MLAG peer, some of these ARP messages might be dropped by the MLAG peer's ARP policer.<br/>
+To work around this issue, increase the burst value of the ARP policers to 200 or higher.</p></td>
+<td>3.7.14</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-32734</td>
 <td><p>CVE-2018-0734: A minor timing side channel attack was found in the OpenSSL DSA<br/>
 signature algorithm. The fix for that introduced a more severe regression that could also be exploited as a timing side channel attack. This update fixes both the original problem and the subsequent issue.<br/>
@@ -51,6 +58,19 @@ CVE-2018-19543 and CVE-2017-9782: There is a heap-based buffer over-read of size
 Vulnerable: &lt;= 1.900.1-debian1-2.4+deb8u6<br/>
 Fixed: 1.900.1-debian1-2.4+deb8u7</p></td>
 <td>3.0.0-3.7.14</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32683</td>
+<td><p>When you change the SVI vlan-id value in the /etc/network/interfaces file, then run ifreload -a, the 802.1Q ID for the SVI in the kernel does not change.<br/>
+This operation is not supported in the kernel without recreating the SVI. To apply the change, run ifdown, then ifup for the SVI to recreate the interface.</p></td>
+<td>3.7.13-3.7.14</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32661</td>
+<td><p>On the Edgecore AS7312 switch, eth0 and swp use the same MAC address.</p></td>
+<td>3.7.14</td>
 <td></td>
 </tr>
 <tr>
@@ -199,6 +219,12 @@ DHCPD_PID="-pf {1}"
 <td>CM-31978</td>
 <td><p>On the Dell N3248PXE switch, fixed RJ45 interfaces with PoE neighbors can end up in <em>Paused</em> mode after a switchd restart, which blocks traffic on that interface. </p></td>
 <td>3.7.12-3.7.14</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31627</td>
+<td><p>On switches with the Spectrum ASIC, the IPv6 default route is present in the kernel but missing in hardware.</p></td>
+<td>3.7.11-3.7.14</td>
 <td></td>
 </tr>
 <tr>
@@ -2423,6 +2449,13 @@ Fixed: 1.900.1-debian1-2.4+deb8u7</p></td>
 <td></td>
 </tr>
 <tr>
+<td>CM-32683</td>
+<td><p>When you change the SVI vlan-id value in the /etc/network/interfaces file, then run ifreload -a, the 802.1Q ID for the SVI in the kernel does not change.<br/>
+This operation is not supported in the kernel without recreating the SVI. To apply the change, run ifdown, then ifup for the SVI to recreate the interface.</p></td>
+<td>3.7.13-3.7.14</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-32609</td>
 <td><p>CVE-2020-25709, CVE-2020-25710: Vulnerabilities in the certificate list syntax verification and in the handling of CSN normalization were discovered in OpenLDAP, a free implementation of the Lightweight Directory Access Protocol. An unauthenticated remote attacker can take advantage of these flaws to cause a denial of service (slapd daemon crash) via specially crafted packets.<br/>
 Vulnerable: &lt;= 2.4.40+dfsg-1+deb8u7<br/>
@@ -2666,6 +2699,12 @@ Vulnerable: 1.631-3<br/>
 Fixed: 1.631-3+deb8u1</p></td>
 <td>3.0.0-3.7.13</td>
 <td>3.7.14</td>
+</tr>
+<tr>
+<td>CM-31627</td>
+<td><p>On switches with the Spectrum ASIC, the IPv6 default route is present in the kernel but missing in hardware.</p></td>
+<td>3.7.11-3.7.14</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-31622</td>
@@ -5546,6 +5585,12 @@ Vulnerable: 1.631-3<br/>
 Fixed: 1.631-3+deb8u1</p></td>
 <td>3.0.0-3.7.13</td>
 <td>3.7.14</td>
+</tr>
+<tr>
+<td>CM-31627</td>
+<td><p>On switches with the Spectrum ASIC, the IPv6 default route is present in the kernel but missing in hardware.</p></td>
+<td>3.7.11-3.7.14</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-31622</td>
@@ -8620,6 +8665,12 @@ Vulnerable: 1.631-3<br/>
 Fixed: 1.631-3+deb8u1</p></td>
 <td>3.0.0-3.7.13</td>
 <td>3.7.14</td>
+</tr>
+<tr>
+<td>CM-31627</td>
+<td><p>On switches with the Spectrum ASIC, the IPv6 default route is present in the kernel but missing in hardware.</p></td>
+<td>3.7.11-3.7.14</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-31622</td>

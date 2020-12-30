@@ -16,8 +16,6 @@ Cumulus Linux 4.3.0 supports new platforms, provides bug fixes, and contains sev
 
 ### New Platforms
 
-- Mellanox SN4600 (200G Spectrum-3)
-- Mellanox SN4410 (400G Spectrum-3)
 - Mellanox SN4800 (100G Spectrum-3)
 
 ### New Features and Enhancements

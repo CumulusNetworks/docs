@@ -26,7 +26,7 @@ Cumulus Linux provides two options. You can either:
 - Copy the necessary files to the container at runtime.
 - Patch the container image.
 
-### Copy Necessary Files to the Container at Runtime
+### Copy Files to the Container at Runtime
 
 To copy the necessary files to the container at runtime, follow these steps:
 

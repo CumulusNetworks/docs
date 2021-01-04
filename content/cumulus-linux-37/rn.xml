@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-32829</td>
+<td><p>The NET-SNMP-EXTEND-MIB, disabled to prevent security vulnerability CVE-2020-15862, is re-enabled read-only.</p></td>
+<td>3.7.14</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-32810</td>
 <td><p>The following vulnerability has been announced in the libflac8 package:<br/>
 CVE-2020-0499: In FLAC__bitreader_read_rice_signed_block of bitreader.c, there is a possible out-of-bounds read due to a heap buffer overflow.  This could lead to remote information disclosure with no additional execution privileges needed. However, user interaction is needed for exploitation.<br/>

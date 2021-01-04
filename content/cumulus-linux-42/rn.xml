@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-32829</td>
+<td><p>The NET-SNMP-EXTEND-MIB, disabled to prevent security vulnerability CVE-2020-15862, is re-enabled read-only.</p></td>
+<td>3.7.14, 4.2.1</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-32786</td>
 <td><p>The net show configuration commands command incorrectly displays the NCLU syntax to disable IPv6 forwarding on interfaces. For example:</p>
 

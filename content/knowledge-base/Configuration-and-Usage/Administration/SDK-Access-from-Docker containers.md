@@ -6,7 +6,7 @@ toc: 4
 ---
 Because Cumulus Linux is Linux, you can install and run containers on the system with full access to popular container management ecosystems. As long as system memory, storage, and CPU capacities are proportional to the application needs, there are no limitations. To protect the primary functions of the system (such as network control and dataplane) from resource contention with other applications, you can define resource caps.
 
-To install the Docker engine, refer to {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux-42/Network-Solutions/Docker-on-Cumulus-Linux/" text="Docker on Cumulus Linux">}}.
+To install the Docker engine, refer to {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux/Network-Solutions/Docker-on-Cumulus-Linux/" text="Docker on Cumulus Linux">}}.
 
 {{%notice note%}}
 The Docker engine installation procedure depends on the Cumulus Linux release you are running. For a Mellanox switch running Cumulus Linux 4.3.0 and later, a Docker package is installed as part of the installation or upgrade process. The Docker package includes Docker Engine, and dependencies and configuration files required to run the Docker service.
@@ -15,7 +15,7 @@ The Docker engine installation procedure depends on the Cumulus Linux release yo
 ## Applications that Require Integration with the Networking Dataplane
 
 There are two main classes of applications that require integration with the networking dataplane:
-- Applications that interact with the system through standard interfaces; for example, installing routes or ACLs in the Linux kernel through `netlink` or command lines (Linux tools like `iproute2` or the Cumulus Linux CUE/REST API). The kernel dataplane settings are offloaded to the ASIC through `switchd`. Using standard interfaces allows for more portable applications. 
+- Applications that interact with the system through standard interfaces; for example, installing routes or ACLs in the Linux kernel through `netlink` or command lines (Linux tools such as `iproute2`). The kernel dataplane settings are offloaded to the ASIC through `switchd`. Using standard interfaces allows for more portable applications. 
 - Applications that require more native access to the forwarding ASIC through the ASIC SDK to access hardware capabilities that are not exposed through the Linux kernel and other standard interfaces.
 
 ## Direct Application Access to the ASIC SDK

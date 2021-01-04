@@ -43,7 +43,7 @@ Follow these steps to setup and configure your VM on a cluster of servers in a r
 
 9. Consider the following for container environments, and make adjustments as needed.
 
-    {{<netq-install/container>}}
+    {{<netq-install/container version="3.3.0">}}
 
 10. Verify that your first worker node meets the VM requirements, as described in Step 1.
 

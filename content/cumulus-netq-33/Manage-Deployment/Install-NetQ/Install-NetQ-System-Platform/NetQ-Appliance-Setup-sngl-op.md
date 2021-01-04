@@ -107,7 +107,7 @@ Now that the appliance is up and running, verify that the software is available 
 
 5. Consider the following for container environments, and make adjustments as needed.
 
-    {{<netq-install/container>}}
+    {{<netq-install/container version="3.3.0">}}
 
 The final step is to install and activate the NetQ software.  You can do this using the Admin UI or the NetQ CLI.
 

@@ -15,7 +15,8 @@ WJH has two components:
 To install and run the WJH service, run the following commands:
 
 ```
-cumulus@switch:~$ sudo apt-get install what-just-happened
+cumulus@switch:~$ sudo -E apt-get update
+cumulus@switch:~$ sudo -E apt-get install what-just-happened
 cumulus@switch:~$ sudo systemctl start what-just-happened
 ```
 

@@ -627,7 +627,7 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-## Suppress Route Advertisement
+<!--## Suppress Route Advertisement
 
 You can configure BGP to wait for a response from the RIB indicating that the routes installed in the RIB are also installed in the FIB before sending updates to peers.
 
@@ -672,7 +672,7 @@ router bgp 65199
 ...
 ```
 
-The {{<link url="Smart-System-Manager" text="Smart System Manager">}} supresses route advertisement automically when upgrading or troubleshooting an active switch so that there is minimal disruption to the network.
+The {{<link url="Smart-System-Manager" text="Smart System Manager">}} supresses route advertisement automically when upgrading or troubleshooting an active switch so that there is minimal disruption to the network.-->
 
 ## BGP add-path
 
@@ -956,7 +956,7 @@ router bgp 65101
 ...
 ```
 
-### Wait for Convergence
+<!--### Wait for Convergence
 
 BGP *wait for convergence* lets you delay the initial best path calculation after you reboot the switch, restart FRR, or run the vtysh `clear ip bgp *` command. This allows peers to become established and converge before BGP installs the resulting routes in zebra or sends updates to peers.
 
@@ -1037,7 +1037,7 @@ Total number of neighbors 1
 ...
 ```
 
-The last convergence event is retained in the output of the NCLU `net show bgp summary json` command or the vtysh `show ip bgp summary json` command.
+The last convergence event is retained in the output of the NCLU `net show bgp summary json` command or the vtysh `show ip bgp summary json` command.-->
 
 ## Route Reflectors
 

@@ -22,7 +22,7 @@ You can restart the switch in one of the following modes.
 - `cold` completely restarts the system and resets all the hardware devices on the switch (including the switching ASIC).  
 - `fast` restarts the system more efficiently with minimal impact to traffic by reloading the kernel and software stack without a hard reset of the hardware. During a fast restart, the system is decoupled from the network to the extent possible using existing protocol extensions before recovering to the operational mode of the system. The forwarding entries of the switching ASIC are maintained through the restart process and the data plane is not affected. The data plane is only interrupted when `switchd` resets and reconfigures the ASIC if the SDK is upgraded. Traffic outage is significantly lower in this mode.
 
-The following commands restart the system in cold mode:
+The following command restarts the system in cold mode:
 
 {{< tabs "27 ">}}
 
@@ -44,7 +44,7 @@ cumulus@switch:~$ sudo csmgrctl -c
 
 {{< /tabs >}}
 
-The following commands restart the system in fast mode:
+The following command restarts the system in fast mode:
 
 {{< tabs "49 ">}}
 
@@ -163,7 +163,7 @@ cumulus@switch:~$ net system maintenance ports up
 
 {{< /tab >}}
 
-{{< tab "Linux Command ">}}
+{{< tab "Linux Commands ">}}
 
 ```
 cumulus@switch:~$ sudo csmgrctl -p0

@@ -50,16 +50,53 @@ Depending on your configuration and network topology, complete isolation might n
 
 Run the following command to enable maintenance mode. When maintenance mode is enabled, Smart System Manager performs a graceful BGP shutdown, redirects traffic over the peerlink and brings down the MLAG port link. `switchd` maintains full capability.
 
+{{< tabs "53 ">}}
+
+{{< tab "NCLU Command ">}}
+
+```
+cumulus@switch:~$ net system maintenance mode enable
+```
+
+{{%notice note%}}
+You do not need to run net commit with the `net system maintenance mode enable` command.
+{{%/notice%}}
+
+{{< /tab >}}
+
+{{< tab "Linux Command ">}}
+
 ```
 cumulus@switch:~$ cl system maintenance enable
 ```
 
+{{< /tab >}}
+
+{{< /tabs >}}
+
 You can use an additional option to bring all the ports down, then up to restore the port admin state.
+
+{{< tabs "75 ">}}
+
+{{< tab "NCLU Command ">}}
+
+```
+cumulus@switch:~$ net system maintenance ports down
+cumulus@switch:~$ net system maintenance ports up
+```
+
+{{< /tab >}}
+
+{{< tab "Linux Command ">}}
 
 ```
 cumulus@switch:~$ cl system maintenance port down
 cumulus@switch:~$ cl system maintenance port up
 ```
+
+{{< /tab >}}
+
+{{< /tabs >}}
 
 {{%notice note%}}
 Before you exit maintenance mode, be sure to bring the ports back up.
@@ -67,6 +104,37 @@ Before you exit maintenance mode, be sure to bring the ports back up.
 
 Run the following command to disable maintenance mode and restore normal operation. When maintenance mode is disabled, Smart System Manager performs a {{<link url="#restart-mode" text="fast restart">}}, runs a BGP graceful restart and brings the MLAG port link back up. `switchd` maintains full capability.
 
+{{< tabs "103 ">}}
+
+{{< tab "NCLU Command ">}}
+
+```
+cumulus@switch:~$ net system maintenance mode disable
+```
+
+{{%notice note%}}
+You do not need to run net commit with the `net system maintenance mode disable` command.
+{{%/notice%}}
+
+{{< /tab >}}
+
+{{< tab "Linux Command ">}}
+
 ```
 cumulus@switch:~$ cl system maintenance disable
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
+To see the status of maintenance mode, run the `net system maintenance show status` command:
+
+```
+cumulus@switch:~$ net system maintenance show status
+Current System Mode: Maintenance since Tue Jan  5 00:13:37 2021 (Duration: 00:00:31)
+ Boot Mode: reboot_cold  
+ 2 registered modules
+ frr     : Maintenance, down
+ switchd : Maintenance, down 
 ```

@@ -11,33 +11,47 @@ Smart System Manager includes the following modes:
 - Upgrade
 - Maintenance
 
+{{%notice note%}}
+The Smart System Manager NCLU commands do not require a `net commit`.
+{{%/notice%}}
+
 ## Restart Mode
 
 You can restart the switch in one of the following modes.
 
-| <div style="width:150px">Option | <div style="width:150px">Desciption | <div style="width:250px">Command |
-|-------------- | ---------- | ------- |
-| `cold` | Completely restarts the system and resets all the hardware devices on the switch (including the switching ASIC). | `cl system mode cold` |
-| `fast` | Restarts the system more efficiently with minimal impact to traffic by reloading the kernel and software stack without a hard reset of the hardware. During a fast restart, the system is decoupled from the network to the extent possible using existing protocol extensions before recovering to the operational mode of the system. The forwarding entries of the switching ASIC are maintained through the restart process and the data plane is not affected. The data plane is only interrupted when `switchd` resets and reconfigures the ASIC if the SDK is upgraded. Traffic outage is significantly lower in this mode. | `cl system mode fast` |
+- `cold` completely restarts the system and resets all the hardware devices on the switch (including the switching ASIC).  
+- `fast` restarts the system more efficiently with minimal impact to traffic by reloading the kernel and software stack without a hard reset of the hardware. During a fast restart, the system is decoupled from the network to the extent possible using existing protocol extensions before recovering to the operational mode of the system. The forwarding entries of the switching ASIC are maintained through the restart process and the data plane is not affected. The data plane is only interrupted when `switchd` resets and reconfigures the ASIC if the SDK is upgraded. Traffic outage is significantly lower in this mode.
+
+The following command restarts the system in cold mode:
+
+```
+cumulus@switch:~$ net system maintenance restart cold
+```
+
+The following command restarts the system in fast mode:
+
+```
+cumulus@switch:~$ net system maintenance restart fast
+```
 
 ## Ugrade Mode
 
 Upgrade mode updates all the components and services on the switch to the latest Cumulus Linux release without traffic loss. After upgrade is complete, you must restart the switch with either a {{<link url="#restart-mode" text="cold or fast restart">}}.
 
-Upgrade mode includes the following options.
+Upgrade mode includes the following options:
+- `all` runs `apt-get upgrade` to upgrade all the system components to the latest release without affecting traffic flow. You must restart the system after the upgrade completes with one of the {{<link url="#restart-mode" text="restart modes">}}.  
+- `dry-run` provides information on the components that will be upgraded.
 
-| <div style="width:150px">Option | <div style="width:150px">Desciption | <div style="width:250px">Command |
-|-------------- | ---------- | ------- |
-| `all` | Runs `apt-get upgrade` to upgrade all the system components to the latest release without affecting traffic flow. You must restart the system after the upgrade completes with one of the {{<link url="#restart-mode" text="restart modes">}}.  | `cl system upgrade all` |
-| `dry-run` | Provides information on the components that will be upgraded. | `cl system upgrade dry-run` |
-| `status` | Shows the current status of the system. | `cl system upgrade status` |
-
-The following example commands upgrade the switch to the latest release, show the current system status, then restart the switch in fast mode (reload the kernel and software stack without a hard reset of the hardware):
+The following command upgrades all the system components:
 
 ```
-cumulus@switch:~$ cl system upgrade all
-cumulus@switch:~$ cl system upgrade status
-cumulus@switch:~$ cl system mode fast
+cumulus@switch:~$ net system maintenance upgrade all
+```
+
+The following command provides information on the components that will be upgraded:
+
+```
+cumulus@switch:~$ net system maintenance upgrade dry-run
 ```
 
 ## Maintenance Mode
@@ -48,85 +62,34 @@ Maintenance mode isolates the system from the rest of the network so that you ca
 Depending on your configuration and network topology, complete isolation might not be possible.
 {{%/notice%}}
 
+### Enable Maintenance Mode
+
 Run the following command to enable maintenance mode. When maintenance mode is enabled, Smart System Manager performs a graceful BGP shutdown, redirects traffic over the peerlink and brings down the MLAG port link. `switchd` maintains full capability.
-
-{{< tabs "53 ">}}
-
-{{< tab "NCLU Command ">}}
 
 ```
 cumulus@switch:~$ net system maintenance mode enable
 ```
 
-{{%notice note%}}
-You do not need to run net commit with the `net system maintenance mode enable` command.
-{{%/notice%}}
-
-{{< /tab >}}
-
-{{< tab "Linux Command ">}}
-
-```
-cumulus@switch:~$ cl system maintenance enable
-```
-
-{{< /tab >}}
-
-{{< /tabs >}}
-
 You can use an additional option to bring all the ports down, then up to restore the port admin state.
-
-{{< tabs "75 ">}}
-
-{{< tab "NCLU Command ">}}
 
 ```
 cumulus@switch:~$ net system maintenance ports down
 cumulus@switch:~$ net system maintenance ports up
 ```
 
-{{< /tab >}}
-
-{{< tab "Linux Command ">}}
-
-```
-cumulus@switch:~$ cl system maintenance port down
-cumulus@switch:~$ cl system maintenance port up
-```
-
-{{< /tab >}}
-
-{{< /tabs >}}
-
 {{%notice note%}}
 Before you exit maintenance mode, be sure to bring the ports back up.
 {{%/notice%}}
 
+### Disable Maintenance Mode
+
 Run the following command to disable maintenance mode and restore normal operation. When maintenance mode is disabled, Smart System Manager performs a {{<link url="#restart-mode" text="fast restart">}}, runs a BGP graceful restart and brings the MLAG port link back up. `switchd` maintains full capability.
-
-{{< tabs "103 ">}}
-
-{{< tab "NCLU Command ">}}
 
 ```
 cumulus@switch:~$ net system maintenance mode disable
 ```
 
-{{%notice note%}}
-You do not need to run net commit with the `net system maintenance mode disable` command.
-{{%/notice%}}
-
-{{< /tab >}}
-
-{{< tab "Linux Command ">}}
-
-```
-cumulus@switch:~$ cl system maintenance disable
-```
-
-{{< /tab >}}
-
-{{< /tabs >}}
+### Show Maintenance Mode Status
 
 To see the status of maintenance mode, run the `net system maintenance show status` command:
 

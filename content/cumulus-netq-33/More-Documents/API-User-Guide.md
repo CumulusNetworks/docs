@@ -1,7 +1,7 @@
 ---
 title: Integrate NetQ API with Your Applications
 author: NVIDIA
-weight: 1110
+weight: 1130
 toc: 3
 ---
 The NetQ API provides access to key telemetry and system monitoring data gathered about the performance and operation of your network and devices so that you can view that data in your internal or third-party analytic tools. The API gives you access to the health of individual switches, network protocols and services, trace and validation results, and views of networkwide inventory and events.

@@ -83,6 +83,52 @@ This example creates congestion thresholds for Class *4* traffic on port *swp1* 
 cumulus@switch:~$ sudo netq config add agent wjh-threshold congestion 4 swp1 200 10
 ```
 
+## Configure Filters
+
+You can filter the WJH events at the NetQ Agent  before it is processed by the NetQ system. Filtering is performed on a drop-type basis. You can filter the drop type further by specifying one or more drop reasons or severity using the NetQ UI or the NetQ CLI.
+
+{{< tabs "TabID90" >}}
+
+{{< tab "NetQ UI" >}}
+
+<!-- Add content here -->
+
+{{< /tab >}}
+
+{{< tab "NetQ CLI" >}}
+
+To configure the NetQ Agent to filter WJH drops, run:
+
+```
+netq config add agent wjh-drop-filter drop-type <text-wjh-drop-type> [drop-reasons <text-wjh-drop-reasons>] [severity <text-drop-severity-list>]
+```
+
+This example configures the NetQ Agent to drop all L1 drops.
+
+```
+cumulus@switch:~$ sudo netq config add agent wjh-drop-filter drop-type (???l1)
+```
+
+This example configures the NetQ Agent to drop only the L1 drops with bad signal integrity.
+
+```
+cumulus@switch:~$ sudo netq config add agent wjh-drop-filter drop-type (???l1) drop-reasons (bad-signal-integrity???)
+```
+
+This example configures the NetQ Agent to drop only L1 drops with info severity.
+
+```
+```
+
+This example configures the NetQ Agent to drop only Router drops with reasons of blackhole route and source IP is a Class E address.
+
+```
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
 ## View What Just Happened Metrics
 
 You can view the WJH metrics from the NetQ UI or the NetQ CLI.
@@ -155,6 +201,24 @@ Hostname          Ingress Port             Reason                               
 mlx-2700-03       swp1s2                   Port loopback filter                          10                 27.0.0.19        27.0.0.22        0      0                0                00:02:00:00:00:73  0c:ff:ff:ff:ff:ff  Mon Dec 16 11:54:15 2019       Mon Dec 16 11:54:15 2019
 mlx-2700-03       swp1s2                   Source MAC equals destination MAC             10                 27.0.0.19        27.0.0.22        0      0                0                00:02:00:00:00:73  00:02:00:00:00:73  Mon Dec 16 11:53:17 2019       Mon Dec 16 11:53:17 2019
 mlx-2700-03       swp1s2                   Source MAC equals destination MAC             10                 0.0.0.0          0.0.0.0          0      0                0                00:02:00:00:00:73  00:02:00:00:00:73  Mon Dec 16 11:40:44 2019       Mon Dec 16 11:40:44 2019
+```
+
+The following two examples include the severity of a drop event (error, warning or notice) for ACLs and routers.
+
+```
+cumulus@switch:~$ netq show wjh-drop acl
+Matching wjh records:
+Hostname          Ingress Port             Reason                                        Severity         Agg Count          Src Ip           Dst Ip           Proto  Src Port         Dst Port         Src Mac            Dst Mac            Acl Rule Id            Acl Bind Point               Acl Name         Acl Rule         First Timestamp                Last Timestamp
+----------------- ------------------------ --------------------------------------------- ---------------- ------------------ ---------------- ---------------- ------ ---------------- ---------------- ------------------ ------------------ ---------------------- ---------------------------- ---------------- ---------------- ------------------------------ ----------------------------
+leaf01            swp2                     Ingress router ACL                            Error            49                 55.0.0.1         55.0.0.2         17     8492             21423            00:32:10:45:76:89  00:ab:05:d4:1b:13  0x0                    0                                                              Tue Oct  6 15:29:13 2020       Tue Oct  6 15:29:39 2020
+```
+
+```
+cumulus@switch:~$ netq show wjh-drop router
+Matching wjh records:
+Hostname          Ingress Port             Reason                                        Severity         Agg Count          Src Ip           Dst Ip           Proto  Src Port         Dst Port         Src Mac            Dst Mac            First Timestamp                Last Timestamp
+----------------- ------------------------ --------------------------------------------- ---------------- ------------------ ---------------- ---------------- ------ ---------------- ---------------- ------------------ ------------------ ------------------------------ ----------------------------
+leaf01            swp1                     Blackhole route                               Notice           36                 46.0.1.2         47.0.2.3         6      1235             43523            00:01:02:03:04:05  00:06:07:08:09:0a  Tue Oct  6 15:29:13 2020       Tue Oct  6 15:29:47 2020
 ```
 
 {{< /tab >}}

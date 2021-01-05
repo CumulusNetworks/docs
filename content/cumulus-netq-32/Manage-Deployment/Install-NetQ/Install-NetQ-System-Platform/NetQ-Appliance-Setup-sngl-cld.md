@@ -24,20 +24,26 @@ If you're looking for hardware specifications (including LED layouts and FRUs li
 1. Log in to the appliance using the default login credentials:
 
     - **Username**: cumulus
-    - **Password**: CumulusLinux!
+    - **Password**: cumulus
 
 2. Change the password using the `passwd` command:
 
     ```
     cumulus@hostname:~$ passwd
     Changing password for cumulus.
-    (current) UNIX password: CumulusLinux!
+    (current) UNIX password: cumulus
     Enter new UNIX password:
     Retype new UNIX password:
     passwd: password updated successfully
     ```
 
-3. The default hostname for the NetQ Cloud Appliance is *netq-appliance*. Change the hostname to fit your naming conventions using the following command:
+3. The default hostname for the NetQ Cloud Appliance is *netq-appliance*. Change the hostname to fit your naming conventions while meeting Internet and Kubernetes naming standards.
+
+    Kubernetes requires that hostnames are composed of a sequence of labels concatenated with dots. For example, "en.wikipedia.org" is a hostname. Each label must be from 1 to 63 characters long. The entire hostname, including the delimiting dots, has a maximum of 253 ASCII characters.
+
+    The Internet standards (RFCs) for protocols specify that labels may contain only the ASCII letters a through z (in lower case), the digits 0 through 9, and the hyphen-minus character ('-').
+
+    Use the following command:
 
     ```
     cumulus@hostname:~$ sudo hostnamectl set-hostname NEW_HOSTNAME
@@ -99,7 +105,7 @@ Now that the appliance is up and running, verify that the software is available 
 
 ## Considerations for Container Environments
 
-{{<netq-install/container>}}
+{{<netq-install/container version="3.2.1">}}
 
 ## Install and Activate the NetQ Software
 

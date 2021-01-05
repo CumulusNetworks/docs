@@ -135,7 +135,13 @@ To install the NetQ Agent and CLI:
 
 ## Configure the NetQ Agent and CLI on a Cumulus Linux Switch
 
-After the NetQ Agents and CLI have been installed on the switches you want to monitor, they must be configured. Two methods are available:
+After the NetQ Agent and CLI have been installed on the servers you want to monitor, the NetQ Agents must be configured to obtain useful and relevant data.
+
+{{%notice note%}}
+The NetQ Agent is aware of and communicates through the designated VRF. If you do not specify one, the default VRF (named *default*) is used. If you later change the VRF configured for the NetQ Agent (using a lifecycle management configuration profile, for example), you might cause the NetQ Agent to lose communication.
+{{%/notice%}}
+
+Two methods are available for configuring a NetQ Agent:
 
 - Edit the configuration file on the switch, or
 - Use the NetQ CLI

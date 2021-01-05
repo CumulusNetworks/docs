@@ -70,7 +70,7 @@ Run the following command to enable maintenance mode. When maintenance mode is e
 cumulus@switch:~$ net system maintenance mode enable
 ```
 
-You can use an additional option to bring all the ports down, then up to restore the port admin state.
+You can run additional commands to bring all the ports down, then up to restore the port admin state.
 
 ```
 cumulus@switch:~$ net system maintenance ports down
@@ -78,7 +78,7 @@ cumulus@switch:~$ net system maintenance ports up
 ```
 
 {{%notice note%}}
-Before you exit maintenance mode, be sure to bring the ports back up.
+Before you disable maintenance mode, be sure to bring the ports back up.
 {{%/notice%}}
 
 ### Disable Maintenance Mode

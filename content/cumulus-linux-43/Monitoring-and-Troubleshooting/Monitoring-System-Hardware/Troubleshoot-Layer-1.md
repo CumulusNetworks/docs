@@ -5,89 +5,6 @@ weight: 1025
 toc: 3
 ---
 
-
-
-```
-cumulus@mlx-2410-53:mgmt:~$ sudo ethtool -m swp10
-	Identifier                                : 0x03 (SFP)
-	Extended identifier                       : 0x04 (GBIC/SFP defined by 2-wire interface ID)
-	Connector                                 : 0x07 (LC)
-	Transceiver codes                         : 0x10 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00
-	Transceiver type                          : 10G Ethernet: 10G Base-SR
-	Encoding                                  : 0x06 (64B/66B)
-	BR, Nominal                               : 10300MBd
-	Rate identifier                           : 0x00 (unspecified)
-	Length (SMF,km)                           : 0km
-	Length (SMF)                              : 0m
-	Length (50um)                             : 80m
-	Length (62.5um)                           : 30m
-	Length (Copper)                           : 0m
-	Length (OM3)                              : 300m
-	Laser wavelength                          : 850nm
-	Vendor name                               : FINISAR CORP.
-	Vendor OUI                                : 00:90:65
-	Vendor PN                                 : FTLX8574D3BCL
-	Vendor rev                                : A
-	Option values                             : 0x00 0x1a
-	Option                                    : RX_LOS implemented
-	Option                                    : TX_FAULT implemented
-	Option                                    : TX_DISABLE implemented
-	BR margin, max                            : 0%
-	BR margin, min                            : 0%
-	Vendor SN                                 : UWK0UTZ
-	Date code                                 : 161217
-	Optical diagnostics support               : Yes
-	Laser bias current                        : 8.546 mA
-	Laser output power                        : 0.5268 mW / -2.78 dBm
-	Receiver signal average optical power     : 0.5426 mW / -2.66 dBm
-	Module temperature                        : 28.77 degrees C / 83.79 degrees F
-	Module voltage                            : 3.3050 V
-	Alarm/warning flags implemented           : Yes
-	Laser bias current high alarm             : Off
-	Laser bias current low alarm              : Off
-	Laser bias current high warning           : Off
-	Laser bias current low warning            : Off
-	Laser output power high alarm             : Off
-	Laser output power low alarm              : Off
-	Laser output power high warning           : Off
-	Laser output power low warning            : Off
-	Module temperature high alarm             : Off
-	Module temperature low alarm              : Off
-	Module temperature high warning           : Off
-	Module temperature low warning            : Off
-	Module voltage high alarm                 : Off
-	Module voltage low alarm                  : Off
-	Module voltage high warning               : Off
-	Module voltage low warning                : Off
-	Laser rx power high alarm                 : Off
-	Laser rx power low alarm                  : Off
-	Laser rx power high warning               : Off
-	Laser rx power low warning                : Off
-	Laser bias current high alarm threshold   : 13.000 mA
-	Laser bias current low alarm threshold    : 4.000 mA
-	Laser bias current high warning threshold : 12.500 mA
-	Laser bias current low warning threshold  : 5.000 mA
-	Laser output power high alarm threshold   : 1.0000 mW / 0.00 dBm
-	Laser output power low alarm threshold    : 0.2512 mW / -6.00 dBm
-	Laser output power high warning threshold : 0.7943 mW / -1.00 dBm
-	Laser output power low warning threshold  : 0.3162 mW / -5.00 dBm
-	Module temperature high alarm threshold   : 78.00 degrees C / 172.40 degrees F
-	Module temperature low alarm threshold    : -13.00 degrees C / 8.60 degrees F
-	Module temperature high warning threshold : 73.00 degrees C / 163.40 degrees F
-	Module temperature low warning threshold  : -8.00 degrees C / 17.60 degrees F
-	Module voltage high alarm threshold       : 3.7000 V
-	Module voltage low alarm threshold        : 2.9000 V
-	Module voltage high warning threshold     : 3.6000 V
-	Module voltage low warning threshold      : 3.0000 V
-	Laser rx power high alarm threshold       : 1.0000 mW / 0.00 dBm
-	Laser rx power low alarm threshold        : 0.0100 mW / -20.00 dBm
-	Laser rx power high warning threshold     : 0.7943 mW / -1.00 dBm
-	Laser rx power low warning threshold      : 0.0158 mW / -18.01 dBm
-cumulus@mlx-2410-53:mgmt:~$
-```
-
----
-
 This chapter describes how to troubleshoot layer 1 issues that can affect the modules connecting a switch to a network.
 
 ## Background
@@ -498,6 +415,8 @@ The Mellanox port firmware automatically troubleshoots link problems and display
 
 ## Troubleshoot Layer 1 Problems
 
+This section contains a troubleshooting methodology and checklist for helping you resolve layer 1 issues for modules whether or not they are on the {{<exlink url="https://cumulusnetworks.com/hcl" text="Cumulus Linux HCL">}}.
+
 Layer 1 problems can be classified as follows:
 
 - Link down
@@ -508,22 +427,18 @@ Layer 1 problems can be classified as follows:
 - I2C issues
 - High power module issues
 
-This section contains a troubleshooting methodology and checklist for helping you resolve layer 1 issues for modules whether or not they are on the {{<exlink url="https://cumulusnetworks.com/hcl" text="Cumulus Linux HCL">}}.
+### Link Is Down or Flapping
 
-### Symptoms of a Down Link or a Flapping Link
+A down or flapping link can exhibit any of the following symptoms:
 
-- `ip link show <swp>` looks like this: `<NO-CARRIER,BROADCAST,MULTICAST,UP>` when it should look like this: `<BROADCAST,MULTICAST,UP,LOWER_UP>`
-- Link is flapping up/down (`ip link show` changes every second or two)
-- `ethtool -S <swp>` shows HwIfInErrors
-- `cl-netstat` shows RX_ERR
+- `ip link show <swp>` returns `<NO-CARRIER,BROADCAST,MULTICAST,UP>` when it should return something like `<BROADCAST,MULTICAST,UP,LOWER_UP>`
+- `ip link show` changing every second or two indicates the link is flapping up/down
+- `ethtool -S <swp>` returns HwIfInErrors
+- `cl-netstat` returns RX_ERR
 - No LLDP data is received, or it is flapping
-- `l1-show` shows: Operational State:   Link Status: Kernel: Down           Hardware: Down
+- `l1-show` returns `Link Status: Kernel: Down` and `Hardware: Down` for the operational state.
 
-The first thing you need to collect is an `l1-show <swp>` on both ends of the link. The output contains all the pertinent information to help troubleshoot the link.
-
-### Troubleshooting Steps
-
-First, collect `l1-show <swp>` for the port on both sides of the link, if possible.
+The first thing you need to do is run `l1-show <swp>` on both ends of the link, if possible. The output contains all the pertinent information to help troubleshoot the link.
 
 ```
 cumulus@switch~$ sudo l1-show swp10
@@ -550,40 +465,40 @@ Port:  swp10
       Troubleshooting Info: No issue was observed.
 ```
 
-Working from top to bottom of the `l1-show` output on both sides, ask these questions:
+Working from top to bottom of the `l1-show` output on both sides of the link, ask the questions listed below.
 
-For Module Info:
+#### Troubleshoot Module Info
 
 - Does the module vendor name and vendor PN match the module that you believe is installed? That is, are you looking at the right link? Is the right module installed?
-- Does the module Type match the technology that you believe the link is?  I.e if you have a 100G DAC installed, is the 'Type: 100G-CR4'?  
+- Does the module type match the technology that you believe the link is? For example, if you have a 100G DAC installed, do you see *Type: 100G-CR4*?  
 - Do both sides agree on the technology being used?
 
-For Configured State:
+#### Troubleshoot Configured State
 
--  Admin: Is the link *Admin Up*?
--  Speed: 25G: Is the configured speed correct?
--  MTU: Does the MTU match on both sides? Note that an MTU mismatch won't prevent the link from coming up, but it does affect traffic forwarding.
-- Autoneg: Does this match what is expected? See the {{<link url="#autonegotiation" text="Autonegotiation">}} section above for more detail.
-      FEC:
+- Admin: Is the link *Admin Up*?
+- Speed: Is the configured speed correct?
+- MTU: Does the MTU match on both sides? Note that an MTU mismatch won't prevent the link from coming up, but it does affect traffic forwarding.
+- Autoneg: Does this match what is expected? See the {{<link url="#autonegotiation" text="Autonegotiation">}} section above for details.
+- FEC: Is the FEC setting correct? See the {{<link url="#fec" text="FEC">}} section above for details.
 
-    1. Collect `l1-show <swp>` for the module on both ends of the link.  If l1-show is not supported, then collect a 
-    cl-support on both sides with the module installed and admin up - any troubleshooting and bug filing will need some 
-    base information.
-        - The files that you will be using the most: Support/ethtool.module, Support/portmap, Support/portstat, Support/port.all, Support/ethtool.fec, Support/ethtool.link
-        - Identify the module with the issue in ethtool.module.  Google the 'Vendor PN' field and get the Vendors data sheet
-        - Get the hardware port mapping from portmap. You must have this to find the correct lines in portstat and portmap
-        - Find the hardware port entry in portstat and port.all (using portmap table)
-        - Find the Transceiver type that this module is claimed to be by the manufacturer (See 1.b. Google 'Vendor PN')
-    2. Verify Correct Transceiver codes in these places:
-        - `ethtool -m <swp>`: The 'Transceiver type' that has the text 'Ethernet' should identify the Vendor's programmed type and the type of module the datasheet states  Note that 10G and 40G DACs often do not use this field.
-        - Find the transceiver in the map of Transceiver types to see if the next items match:
-        - Check the 'Interface' column in the portstat file - it should match the value in ethtool -m Transceiver type
-        - `/cumulus/switchd/config/interface/<swp>/interface_mode` - should match the interface_mode in the map table
-        - `/cumulus/switchd/config/interface/<swp>/ethtool_mode`.  - should match the ethtool_mode in the map table
-        - if not correct, try an override in `/etc/cumulus/portwd.conf`.  For now, search Zendesk on how.  TODO:  quick guide to an override file
-    3. Verify RX and TX:  Note that l1-show provides all this information:
+#### General Troubleshooting Steps
 
-        `ethtool -m <swp>`  DOM output good (if supported, only applies to optical modules not copper) .  This tells if the module thinks it is RX/TX
+1. Collect `l1-show <swp>` for the module on both ends of the link. If `l1-show` is not supported, then collect a cl-support on both sides with the module installed and admin up - any troubleshooting and bug filing will need some base information.
+   - The files that you will be using the most: Support/ethtool.module, Support/portmap, Support/portstat, Support/port.all, Support/ethtool.fec, Support/ethtool.link
+     - Identify the module with the issue in `ethtool.module`. Search the internet for the value in the *Vendor PN* field and get the vendor's data sheet.
+     - Get the hardware port mapping from portmap. You must have this to find the correct lines in portstat and portmap
+     - Find the hardware port entry in portstat and port.all (using portmap table)
+     - Find the transceiver type that this module is claimed to be by the manufacturer (See 1.b. Google 'Vendor PN')
+2. Verify correct transceiver codes in these places:
+   - `ethtool -m <swp>`: The `Transceiver type` field that has the text *Ethernet* should identify the vendor's programmed type and the type of module the datasheet states. Note that 10G and 40G DACs often do not use this field.
+   - Find the transceiver in the map of transceiver types to see if the next items match:
+   - Check the `Interface` column in the `portstat` file. It should match the value in the `Transceiver type` field when you run `ethtool -m`.
+   - `/cumulus/switchd/config/interface/<swp>/interface_mode` should match the `interface_mode` in the map table.
+   - `/cumulus/switchd/config/interface/<swp>/ethtool_mode` should match the `ethtool_mode` in the map table.
+   - if not correct, try an override in `/etc/cumulus/portwd.conf`.  For now, search Zendesk on how.  TODO:  quick guide to an override file
+3. Verify RX and TX: Note that `l1-show` provides all this information:
+
+        `ethtool -m <swp>`  DOM output good (if supported, only applies to optical modules not copper). This tells if the module thinks it is RX/TX
 
         SFP:
                 Optical diagnostics support               : Yes
@@ -609,55 +524,50 @@ For Configured State:
         - Hardware link up: l1-show:  Operational State: Link Status: Hardware   This is the Broadcom or Mellanox ASIC status of the link:  If down, then the link is down at the ASIC level 
         - Signal Detected Information:  l1-show: Port Hardware State section.:  This will show signal status, Lock status and Fault Status (See Note 1 below) as well as Eye info or Link Grade info if the link is up.
         - `ethtool <swp>`:  Link detected: yes. This should be properly synced from the ASIC status.  If it is mismatched, then it is likely a bug.
-    4. Verify no basic settings mismatches (speed, duplex, autoneg) - Check both sides and ensure they match
-        - Check settings in `/etc/network/interfaces`
-        - Check speed/duplex and autoneg? columns in l1-show: Operational State.  They should match on both sides
-        - Check Speed, Duplex, Auto-negotiation values in `ethtool <swp>` (Support/ethtool.link).  This is less reliable, since you can enable autoneg on links that don't support it and ASIC should do the right thing. See User Guide - Interface Recommendations
-    5. Check FEC settings are correct and match on both sides for 100G and 25G:  ethtool --show-fec (Support/ethtool.fec)   See: What the FEC? and FEC Switch Port Attributes section in User Guide
-    6. Loopback tests:  Move the modules and connect dut1-dut1 and dut2-dut2 - see if one box works - go back through steps 1-4 on each side.  If it works one way, try to isolate the issue to one module/port/platform/config
-    7. Try a different module of same type - could be a bad module
-    8. Try a different module of different type - preferably on HCL.  This is step 8, not step 1.
+4. Verify there are no basic setting mismatches (speed, duplex, autoneg). Check both sides and ensure they match.
+   - Check the settings in `/etc/network/interfaces`.
+   - Check speed/duplex and autoneg columns under Operational State in the `l1-show` output. The values should match on both sides.
+   - Check the speed, duplex and autonegotiation values in `ethtool <swp>` (Support/ethtool.link). This is less reliable, since you can enable autoneg on links that don't support it and the ASIC should do the right thing. See {{<link url="Switch-Port-Attributes/#interface-configuration-recommendations-for-broadcom-platforms" text="Interface Recommendations">}} for more information.
+5. Check FEC settings are correct and match on both sides for 100G and 25G: `ethtool --show-fec` (Support/ethtool.fec)   See: What the FEC? and the {{<link url="Switch-Port-Attributes/#fec" text="FEC">}} section of the Switch Port Attributes topic.
+6. Loopback tests: Move the modules and connect dut1-dut1 and dut2-dut2. See if one switch works, then perform steps 1-4 on each side. If it works one way, try to isolate the issue to one module/port/platform/configuration.
+7. Try a different module of the same type; the current module could be bad.
+8. Try a different module of different type - preferably one that is supported on the {{<exlink url="https://cumulusnetworks.com/hcl" text="Cumulus Linux HCL">}}.
 
-### Troubleshoot Fault(Local) and Fault(Remote)
+### Fault(Local) and Fault(Remote) Errors
 
-Fault(Remote) applies to 10G and above (ignore for 1G).  It means the Local modules sees signal from the remote, but the remote doesn't report any signal from us - therefore one or more of these is the case:
+Fault(Remote) applies to 10G speeds and above. It means the local module sees a signal from the remote module, but the remote module doesn't report any signal from the local module. This could be due to one or more of the following issues:
 
-    The local device isn't transmitting
-    The remote is broken on the RX side
-    The fiber/copper path to the remote is broken 
+- The local device isn't transmitting.
+- The remote is broken on the RX side.
+- The fiber/copper path to the remote is broken.
 
-Fault(Local) indicates that the local module does not see any signal from the remote (again 10G and above only).
+Fault(Local) indicates that the local module does not see any signal from the remote. Again, this applies to 10G and above speeds only. This could be due to one or more of the following issues:
 
-    The remote device isn't transmitting
-    The local device is broken on the RX side
-    The fiber/copper path from the remote is broken 
+- The remote device isn't transmitting.
+- The local device is broken on the RX side.
+- The fiber/copper path from the remote is broken.
 
-For Optical modules:
+For optical modules:
 
-    For 1) If the modules support DOM, you can sort of eliminate by checking the Transmit power levels on the Local in ethtool -m. If it is 'zero' or 0.0001 then the module may be disabled, or doesn't have the correct power settings enabled
-    For 2) you can check Receive power levels on the Remote in ethtool -m if the module support DOM. (You should have already found this in step 3.a.  Tsk, tsk...)
-    For 3), you have to try different cables to find which cable/connector is bad.
-    If cable change doesn't work, then swap the modules one at a time.
+- If the local or remote device isn't transmitting, and the modules support DOM, you can try to eliminate the issue by checking the transmit power levels on the local device in the output from `ethtool -m`. If it is 'zero' or 0.0001 then the module may be disabled, or doesn't have the correct power settings enabled
+- If either device is broken on the RX side, and the module supports DOM, you can check the receive power levels on the remote in the output from `ethtool -m`.
+- If the path to or from the remote is broken, try different cables to find which cable/connector is bad. If changing the cable doesn't work, then swap the modules one at a time.
 
-For copper DACs:
-
-you can skip 1) and 2) and go straight to 3).
+For copper DACs, since they don't support DOM, you can try different cables.
 
 ### I2C Problems
 
-When modules disappear or you see 'smbus' or 'i2c' errors in the log, sometimes a module or group of modules is wrecking the I2C bus, which is the bus where we communicate with module EEPROMs as well as with Fans and Temp sensors.
+When modules disappear or you see `smbus` or `i2c` errors in the log, sometimes a module or group of modules is wrecking the I2C bus, which is the bus where Cumulus Linux communicates with module EEPROMs as well as with fans and temperature sensors.
 
-This requires a bit of detective work, and worst case a binary search of removing half the cables at a time until you find the right cable.  The bad cable may wreck comms with another working cable on the bus.  Get help.
+This requires a bit of detective work, and worst case a binary search of removing half the cables at a time until you find the right cable. The bad cable may wreck communications with another working cable on the bus. You should contact the NVIDIA Networking Global Support Services team for help.
 
 ### Module High Power Problems
 
-Some modules require higher power signals and bits to be set for them to be enabled.  One symptom of this may be 0.0001mw Transmit power, when power is expected. 
+Some modules require higher power signals and bits to be set for them to be enabled. One symptom of this may be 0.0001mw transmit power, when power is expected.
 
-This take some platform and EEPROM detective work, and usually is seen once on newer platforms before it is fixed.  Get help.
+This takes some platform and EEPROM detective work, and usually is seen once on newer platforms before it is fixed. You should contact the NVIDIA Networking Global Support Services team for help.
 
-Example:
-
- AOC with Failed RX on Lane 3
+For example, here is the `l1-show` output for an AOC (on swp6) with failed RX on lane 3:
 
 ```
   Port:  swp6
@@ -686,7 +596,7 @@ Example:
             L: 359, R: 343, U: 211, D: 200, L: 0, R: 0, U: 0, D: 0 <- No valid eye on lane 3
 ```
 
-AOC with failed lanes 0 and 1. Note that signal lock is bouncing, and sometimes shows 'Y'
+Here is the `l1-show` output for an AOC with failed lanes 0 and 1. Note that signal lock is bouncing, and sometimes shows *Y*:
 
 ```
 Port:  swp8
@@ -701,7 +611,7 @@ Port:  swp8
       Speed: Kernel: 40G                  Hardware: 40G
       Autoneg: Off                        FEC: None (down)
       TX Power (mW): [1.1762, 1.1827, 1.1272, 1.1062]
-      RX Power (mW): [0.0001, 0.0001, 0.5255, 0.64]  <-- low power on lanes 0,1
+      RX Power (mW): [0.0001, 0.0001, 0.5255, 0.64]  <-- Low power on lanes 0,1
       Topo File Neighbor: switch_2, swp10
       LLDP Neighbor:      None, None
   Port Hardware State:
@@ -714,3 +624,85 @@ Port:  swp8
       Eyes: L: 0, R: 0, U: 0, D: 0, L: 0, R: 0, U: 0, D: 0,  <-- No valid eyes on lanes 0,1
             L: 359, R: 359, U: 214, D: 226, L: 359, R: 359, U: 243, D: 264
 ```
+
+---
+
+```
+cumulus@mlx-2410-53:mgmt:~$ sudo ethtool -m swp10
+	Identifier                                : 0x03 (SFP)
+	Extended identifier                       : 0x04 (GBIC/SFP defined by 2-wire interface ID)
+	Connector                                 : 0x07 (LC)
+	Transceiver codes                         : 0x10 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00
+	Transceiver type                          : 10G Ethernet: 10G Base-SR
+	Encoding                                  : 0x06 (64B/66B)
+	BR, Nominal                               : 10300MBd
+	Rate identifier                           : 0x00 (unspecified)
+	Length (SMF,km)                           : 0km
+	Length (SMF)                              : 0m
+	Length (50um)                             : 80m
+	Length (62.5um)                           : 30m
+	Length (Copper)                           : 0m
+	Length (OM3)                              : 300m
+	Laser wavelength                          : 850nm
+	Vendor name                               : FINISAR CORP.
+	Vendor OUI                                : 00:90:65
+	Vendor PN                                 : FTLX8574D3BCL
+	Vendor rev                                : A
+	Option values                             : 0x00 0x1a
+	Option                                    : RX_LOS implemented
+	Option                                    : TX_FAULT implemented
+	Option                                    : TX_DISABLE implemented
+	BR margin, max                            : 0%
+	BR margin, min                            : 0%
+	Vendor SN                                 : UWK0UTZ
+	Date code                                 : 161217
+	Optical diagnostics support               : Yes
+	Laser bias current                        : 8.546 mA
+	Laser output power                        : 0.5268 mW / -2.78 dBm
+	Receiver signal average optical power     : 0.5426 mW / -2.66 dBm
+	Module temperature                        : 28.77 degrees C / 83.79 degrees F
+	Module voltage                            : 3.3050 V
+	Alarm/warning flags implemented           : Yes
+	Laser bias current high alarm             : Off
+	Laser bias current low alarm              : Off
+	Laser bias current high warning           : Off
+	Laser bias current low warning            : Off
+	Laser output power high alarm             : Off
+	Laser output power low alarm              : Off
+	Laser output power high warning           : Off
+	Laser output power low warning            : Off
+	Module temperature high alarm             : Off
+	Module temperature low alarm              : Off
+	Module temperature high warning           : Off
+	Module temperature low warning            : Off
+	Module voltage high alarm                 : Off
+	Module voltage low alarm                  : Off
+	Module voltage high warning               : Off
+	Module voltage low warning                : Off
+	Laser rx power high alarm                 : Off
+	Laser rx power low alarm                  : Off
+	Laser rx power high warning               : Off
+	Laser rx power low warning                : Off
+	Laser bias current high alarm threshold   : 13.000 mA
+	Laser bias current low alarm threshold    : 4.000 mA
+	Laser bias current high warning threshold : 12.500 mA
+	Laser bias current low warning threshold  : 5.000 mA
+	Laser output power high alarm threshold   : 1.0000 mW / 0.00 dBm
+	Laser output power low alarm threshold    : 0.2512 mW / -6.00 dBm
+	Laser output power high warning threshold : 0.7943 mW / -1.00 dBm
+	Laser output power low warning threshold  : 0.3162 mW / -5.00 dBm
+	Module temperature high alarm threshold   : 78.00 degrees C / 172.40 degrees F
+	Module temperature low alarm threshold    : -13.00 degrees C / 8.60 degrees F
+	Module temperature high warning threshold : 73.00 degrees C / 163.40 degrees F
+	Module temperature low warning threshold  : -8.00 degrees C / 17.60 degrees F
+	Module voltage high alarm threshold       : 3.7000 V
+	Module voltage low alarm threshold        : 2.9000 V
+	Module voltage high warning threshold     : 3.6000 V
+	Module voltage low warning threshold      : 3.0000 V
+	Laser rx power high alarm threshold       : 1.0000 mW / 0.00 dBm
+	Laser rx power low alarm threshold        : 0.0100 mW / -20.00 dBm
+	Laser rx power high warning threshold     : 0.7943 mW / -1.00 dBm
+	Laser rx power low warning threshold      : 0.0158 mW / -18.01 dBm
+cumulus@mlx-2410-53:mgmt:~$
+```
+

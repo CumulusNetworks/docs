@@ -7,6 +7,80 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-32860</td>
+<td><p>The following vulnerabilities were announced in the p11-kit (libp11-kit0) packages:<br/>
+CVE-2020-29361: Multiple integer overflows have been discovered in the array allocations in the p11-kit library and the p11-kit list command, where overflow checks are missing before calling realloc or calloc.<br/>
+CVE-2020-29362: A heap-based buffer over-read has been discovered in the RPC protocol used by thep11-kit server/remote commands and the client library. When the remote entity supplies a byte array through a serialized PKCS#11 function call, the receiving entity may allow the reading of up to 4 bytes of memory past the heap allocation.<br/>
+CVE-2020-29363: A heap-based buffer overflow has been discovered in the RPC protocol used by p11-kit server/remote commands and the client library. When the remote entity supplies a serialized byte array in a CK_ATTRIBUTE, the receiving entity may not allocate sufficient length for the buffer to store the deserialized value.<br/>
+Vulnerable: 0.23.15-2<br/>
+Fixed: 0.23.15-2_deb10u1</p></td>
+<td>4.0.0-4.2.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32829</td>
+<td><p>The NET-SNMP-EXTEND-MIB, disabled to prevent security vulnerability CVE-2020-15862, is re-enabled read-only.</p></td>
+<td>3.7.14, 4.2.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32786</td>
+<td><p>The net show configuration commands command incorrectly displays the NCLU syntax to disable IPv6 forwarding on interfaces. For example:</p>
+
+# net show configuration commands
+net add vlan 1 ip6-forward off 
+
+
+<p>The correct NCLU command to disable IPv6 forwarding is net add vlan 1 ipv6 forward off (without the hyphen).</p></td>
+<td>4.2.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32733</td>
+<td><p>CVE-2020-29479 CVE-2020-29480 CVE-2020-29481 CVE-2020-29482 CVE-2020-29483 CVE-2020-29484 CVE-2020-29485 CVE-2020-29486 CVE-2020-29566 CVE-2020-29570 CVE-2020-29571<br/>
+Several security issues affecting Xenstore could result in cross domain access (denial of service, information leaks or privilege escalation) or denial of service against xenstored.<br/>
+Additional vulnerabilities could result in guest-to-host denial of<br/>
+service.<br/>
+Vulnerable: &lt;= 4.11.4+57-g41a822c392-1<br/>
+Fixed: 4.11.4+57-g41a822c392-2</p></td>
+<td>4.0.0-4.2.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32723</td>
+<td><p>ospf6d restarts when you run the NCLU net show ospf6 databse command or the vtysh show ipv6 ospf6 database command. </p></td>
+<td>4.2.0-4.2.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32683</td>
+<td><p>When you change the SVI vlan-id value in the /etc/network/interfaces file, then run ifreload -a, the 802.1Q ID for the SVI in the kernel does not change.<br/>
+This operation is not supported in the kernel without recreating the SVI. To apply the change, run ifdown, then ifup for the SVI to recreate the interface.</p></td>
+<td>3.7.13-3.7.14, 4.2.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32661</td>
+<td><p>On the Edgecore AS7312 switch, eth0 and swp use the same MAC address.</p></td>
+<td>3.7.14, 4.0.0-4.2.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32647</td>
+<td><p>You might see increasing memory usage when you start asic-monitor.</p></td>
+<td>4.2.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32641</td>
+<td><p>CVE-2020-27350: Missing input validation in the ar/tar implementations of APT, the high level package manager, could cause out-of-bounds reads or infinite loops, resulting in denial of service when processing malformed deb files.<br/>
+CVE-2020-27351: Various memory and file descriptor leaks were discovered in the Python interface to the APT package management runtime library, which could result in denial of service.<br/>
+Vulnerable: apt &lt;= 1.8.2.1, python-apt &lt;= 1.8.4.1<br/>
+Fixed: apt 1.8.2.2, python-apt 1.8.4.3</p></td>
+<td>4.0.0-4.2.1</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-32622</td>
 <td><p>The following vulnerability has been announced in OpenSSL:<br/>
 CVE-2020-1971: A flaw in the GENERAL_NAME_cmp() function could cause a NULL dereference when both GENERAL_NAMEs contain an EDIPARTYNAME, resulting in denial of service.  More information can be found at <a href="https://www.openssl.org/news/secadv/20201208.txt" class="external-link" rel="nofollow">https://www.openssl.org/news/secadv/20201208.txt</a> .<br/>
@@ -21,6 +95,21 @@ Fixed: 1.1.1d-0+deb10u4</p></td>
 Vulnerable: &lt; 4.11.4+57-g41a822c392-1<br/>
 Fixed: 4.11.4+57-g41a822c392-1</p></td>
 <td>4.0.0-4.2.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32554</td>
+<td><p>An EVPN route map filter matching a VNI on egress on the originating router might not set a large-community correctly:</p>
+
+route-map TEST-TAG permit 10
+  match evpn vni 109001
+  set large-community 20:20:333
+!
+
+
+<p>To work around this issue, remove the VNI match to allow the tag to be applied on egress.<br/>
+The VNI match works if applied at some other non-originating router either in the ingress or egress direction.</p></td>
+<td>4.2.1</td>
 <td></td>
 </tr>
 <tr>
@@ -51,6 +140,13 @@ Fixed: 1.0.7-2+deb10u1</p></td>
 <td><p>When using NCLU to add new BGP neighbors to existing configurations, the existence of address-family statements are ignored and the neighbors are added at the end of these lines. This might cause a problem if you try to activate these new neighbors in any of the existing address-family configurations.<br/>
 To work around this issue, configure the new BGP neighbors with vtysh.</p></td>
 <td>3.7.14, 4.2.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32420</td>
+<td><p>When running traditional mode bridges at scale (for example, when you have more than 200 bridges and a large number of MAC addresses), MLAG bonds flap intermittently from dual to single connected, then back to dual connected, which causes a layer 2 loop and STP state changes.<br/>
+To work around this issue, either shut down one side of the MLAG bond or prune out VLANS over the bond.</p></td>
+<td>3.7.13-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
@@ -158,12 +254,6 @@ To work around this issue, configure ip pim use-source on each unnumbered interf
 <td></td>
 </tr>
 <tr>
-<td>CM-32181</td>
-<td><p>The lldpd service sends lldp packets with a MAC address instead of the interface name in the port ID Type-Length-Value (TLV), which results in the lldp neighbor showing the MAC address for the peer interface and can cause a NetQ trace fail.</p></td>
-<td>4.2.1</td>
-<td></td>
-</tr>
-<tr>
 <td>CM-32169</td>
 <td><p>OpenSSH is vulnerable to CVE-2020-14145, as described in <a href="https://www.fzi.de/fileadmin/user_upload/2020-06-26-FSA-2020-2.pdf" class="external-link" rel="nofollow">https://www.fzi.de/fileadmin/user_upload/2020-06-26-FSA-2020-2.pdf</a>.  <br/>
 This is an information leak in algorithm negotiation that can allow man-in-the-middle attacks on initial connection attempts without a previously stored server host key on the client. If desired, mitigation using UpdateHostKeys and HostKeyAlgorithms is also given in that paper.</p></td>
@@ -228,6 +318,12 @@ To work around this issue, use both PSUs.</p></td>
 <td></td>
 </tr>
 <tr>
+<td>CM-31962</td>
+<td><p>In a VRRP configuration, BGP unnumbered sessions for VRFs fail to establish after a networking restart.</p></td>
+<td>4.2.0-4.2.1</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-31959</td>
 <td><p>With traditional bridges, a race condition occurs when Cumulus Linux tries to derive MAC addresses.<br/>
 To work around this issue, use a static MAC address; specify a MAC address in the /etc/network/interfaces file under the bridge's stanza.</p></td>
@@ -244,7 +340,7 @@ Fixed: 10.3.25-0+deb10u1</p></td>
 </tr>
 <tr>
 <td>CM-31942</td>
-<td><p>After upgrading the Mellanox SN2410 switch from Cumulus Linux 4.1.1 to 4.2.1, the FAN is set to full speed.</p></td>
+<td><p>After upgrading the Mellanox SN2410 switch, the FAN is set to full speed.</p></td>
 <td>4.2.1</td>
 <td></td>
 </tr>
@@ -463,7 +559,7 @@ To disable scp completely, use /bin/chmod 0 /usr/bin/scp .</p></td>
 <tr>
 <td>CM-30832</td>
 <td><p>The Mellanox SN2700 and SN2410 switch intermittently reports PSU fan state changes with Unable to read from device/fan1_input/pwm1 syslog messages.</p></td>
-<td>4.1.1-4.2.1</td>
+<td>3.7.11-3.7.14, 4.1.1-4.2.1</td>
 <td></td>
 </tr>
 <tr>
@@ -658,12 +754,6 @@ To work around this issue, look for your string in the output of the net show co
 <p>This issue is resolved in Cumulus Linux 3.7.14.</p></td>
 <td>3.7.9-3.7.13, 4.0.0-4.2.1</td>
 <td>3.7.14</td>
-</tr>
-<tr>
-<td>CM-29809</td>
-<td><p>You might see a three second traffic outage after an MLAG secondary reboot when the MLAG bonds become dual-connected again.</p></td>
-<td>4.1.1-4.2.1</td>
-<td></td>
 </tr>
 <tr>
 <td>CM-29779</td>
@@ -1966,6 +2056,49 @@ asic-monitor[7389]: File "/usr/lib/python2.7/dist-packages/cumulus/asic_monitor.
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-32860</td>
+<td><p>The following vulnerabilities were announced in the p11-kit (libp11-kit0) packages:<br/>
+CVE-2020-29361: Multiple integer overflows have been discovered in the array allocations in the p11-kit library and the p11-kit list command, where overflow checks are missing before calling realloc or calloc.<br/>
+CVE-2020-29362: A heap-based buffer over-read has been discovered in the RPC protocol used by thep11-kit server/remote commands and the client library. When the remote entity supplies a byte array through a serialized PKCS#11 function call, the receiving entity may allow the reading of up to 4 bytes of memory past the heap allocation.<br/>
+CVE-2020-29363: A heap-based buffer overflow has been discovered in the RPC protocol used by p11-kit server/remote commands and the client library. When the remote entity supplies a serialized byte array in a CK_ATTRIBUTE, the receiving entity may not allocate sufficient length for the buffer to store the deserialized value.<br/>
+Vulnerable: 0.23.15-2<br/>
+Fixed: 0.23.15-2_deb10u1</p></td>
+<td>4.0.0-4.2.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32733</td>
+<td><p>CVE-2020-29479 CVE-2020-29480 CVE-2020-29481 CVE-2020-29482 CVE-2020-29483 CVE-2020-29484 CVE-2020-29485 CVE-2020-29486 CVE-2020-29566 CVE-2020-29570 CVE-2020-29571<br/>
+Several security issues affecting Xenstore could result in cross domain access (denial of service, information leaks or privilege escalation) or denial of service against xenstored.<br/>
+Additional vulnerabilities could result in guest-to-host denial of<br/>
+service.<br/>
+Vulnerable: &lt;= 4.11.4+57-g41a822c392-1<br/>
+Fixed: 4.11.4+57-g41a822c392-2</p></td>
+<td>4.0.0-4.2.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32723</td>
+<td><p>ospf6d restarts when you run the NCLU net show ospf6 databse command or the vtysh show ipv6 ospf6 database command. </p></td>
+<td>4.2.0-4.2.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32661</td>
+<td><p>On the Edgecore AS7312 switch, eth0 and swp use the same MAC address.</p></td>
+<td>3.7.14, 4.0.0-4.2.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32641</td>
+<td><p>CVE-2020-27350: Missing input validation in the ar/tar implementations of APT, the high level package manager, could cause out-of-bounds reads or infinite loops, resulting in denial of service when processing malformed deb files.<br/>
+CVE-2020-27351: Various memory and file descriptor leaks were discovered in the Python interface to the APT package management runtime library, which could result in denial of service.<br/>
+Vulnerable: apt &lt;= 1.8.2.1, python-apt &lt;= 1.8.4.1<br/>
+Fixed: apt 1.8.2.2, python-apt 1.8.4.3</p></td>
+<td>4.0.0-4.2.1</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-32622</td>
 <td><p>The following vulnerability has been announced in OpenSSL:<br/>
 CVE-2020-1971: A flaw in the GENERAL_NAME_cmp() function could cause a NULL dereference when both GENERAL_NAMEs contain an EDIPARTYNAME, resulting in denial of service.  More information can be found at <a href="https://www.openssl.org/news/secadv/20201208.txt" class="external-link" rel="nofollow">https://www.openssl.org/news/secadv/20201208.txt</a> .<br/>
@@ -2003,6 +2136,13 @@ monitor -I -r 1  -o prNames.3 -o prErrMessage.3  "Process mstpd is up!!!!" prErr
 Vulnerable: 1.0.7-2<br/>
 Fixed: 1.0.7-2+deb10u1</p></td>
 <td>4.0.0-4.2.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32420</td>
+<td><p>When running traditional mode bridges at scale (for example, when you have more than 200 bridges and a large number of MAC addresses), MLAG bonds flap intermittently from dual to single connected, then back to dual connected, which causes a layer 2 loop and STP state changes.<br/>
+To work around this issue, either shut down one side of the MLAG bond or prune out VLANS over the bond.</p></td>
+<td>3.7.13-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
@@ -2090,6 +2230,12 @@ Fixed: 2.4.47+dfsg-3+deb10u3</p></td>
 <td>CM-32006</td>
 <td><p>Certain Dell S4048-ON switches show an incorrect vendor name and hang when you issue the reboot command. </p></td>
 <td>3.7.12-3.7.14, 4.0.0-4.2.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31962</td>
+<td><p>In a VRRP configuration, BGP unnumbered sessions for VRFs fail to establish after a networking restart.</p></td>
+<td>4.2.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
@@ -2413,7 +2559,7 @@ Fixed: 1.14.2-2+deb10u2</p></td>
 <tr>
 <td>CM-30832</td>
 <td><p>The Mellanox SN2700 and SN2410 switch intermittently reports PSU fan state changes with Unable to read from device/fan1_input/pwm1 syslog messages.</p></td>
-<td>4.1.1-4.2.1</td>
+<td>3.7.11-3.7.14, 4.1.1-4.2.1</td>
 <td></td>
 </tr>
 <tr>
@@ -2770,12 +2916,6 @@ To work around this issue, look for your string in the output of the net show co
 <td><p>On Mellanox switches, when EVPN multihoming is configured, MAC moves are not detected. </p></td>
 <td>4.2.0</td>
 <td>4.2.1</td>
-</tr>
-<tr>
-<td>CM-29809</td>
-<td><p>You might see a three second traffic outage after an MLAG secondary reboot when the MLAG bonds become dual-connected again.</p></td>
-<td>4.1.1-4.2.1</td>
-<td></td>
 </tr>
 <tr>
 <td>CM-29779</td>

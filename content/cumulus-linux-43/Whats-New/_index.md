@@ -16,17 +16,12 @@ Cumulus Linux 4.3.0 supports new platforms, provides bug fixes, and contains sev
 
 ### New Platforms
 
-- Mellanox SN4600 (200G Spectrum-3)
-- Mellanox SN4410 (400G Spectrum-3)
 - Mellanox SN4800 (100G Spectrum-3)
 
 ### New Features and Enhancements
 
 - {{<link url="Smart-System-Manager" text="Smart System Manager">}}, which enables you to upgrade and troubleshoot an active switch with minimal disruption to the network
-- BGP enhancements:
-  - {{<link url="Optional-BGP-Configuration/#graceful-bgp-restart" text="Graceful restart">}}
-  - {{<link url="Optional-BGP-Configuration/#wait-for-convergence" text="Wait for convergence">}}
-  - {{<link url="Optional-BGP-Configuration/#suppress-route-advertisement" text="Suppress Route Advertisement">}}
+- {{<link url="Optional-BGP-Configuration/#graceful-bgp-restart" text="BGP graceful restart">}}
 - {{<link url="SPAN-and-ERSPAN" text="NCLU commands for SPAN and ERSPAN">}}
 - {{<link url="DHCP-Snooping" text="DHCP snooping">}}
 - QoS enhancements:
@@ -35,10 +30,9 @@ Cumulus Linux 4.3.0 supports new platforms, provides bug fixes, and contains sev
 - {{<link url="Netfilter-ACLs/#nonatomic-update-mode-and-atomic-update-mode" text="Incremental nonatomic updates">}} now supported on Mellanox switches
 - {{<link title="Mellanox What Just Happened (WJH)" text="Mellanox WJH commands">}} to troubleshoot and diagnose network issues
 - {{<link url="EVPN-Multihoming" text="EVPN multihoming">}} now supports LACP bypass
-- Docker runtime included by default on Cumulus Linux
-- {{<link url="RDMA-over-Converged-Ethernet-RoCE" text="DoRoCE command">}}
+- {{<link url="Docker-on-Cumulus-Linux" text="Docker runtime ">}} included by default on Cumulus Linux
+- {{<link url="RDMA-over-Converged-Ethernet-RoCE" text="DoRoCE command">}} to configure RoCE with PFC and ECN on all interfaces
 - {{<link url="Supported-MIBs" text="SNMP MIB for BGP unnumbered peers">}}
-- SVI interface support for DHCPv6
 - Multicast routing over VXLAN is now supported on Mellanox switches
 
 ### Unsupported Platforms

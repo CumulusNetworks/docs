@@ -1,74 +1,32 @@
 ---
-title: Validation Commands
+title: C Commands
 author: NVIDIA
 weight: 1102
 toc: 3
-right_toc_levels: 2
+right_toc_levels: 1
 pdfhidden: true
 draft: true
 ---
+
+This topic includes all commands that begin with `netq c*`, including all `netq check` and `netq config` commands.
+
+**About Validation Commands**
+
 There are three sets of validation commands, all for verifying the health and performance of network protocols and services:
 
 - The original on-demand validation commands. These commands all begin with `netq check`. They are used to validate various elements in your network fabric at the current time or a time in the past. They allow filtering by hostname, can include or exclude selected tests, and some have additional options. The results are presented in the NetQ CLI immediately.
 - The newer set of validation commands are used to create on-demand or scheduled validations with the results being displayed in the NetQ UI Validation Result cards. These commands begin with `netq add validation`. They are used to validate various elements in your network fabric currently or on a regular basis. No filtering on results is available within the commands as that is accomplished through the NetQ UI.
 - The validation management commands. These present a list of all jobs and job settings, and the ability to remove validations.
 
-Refer to {{<link title="Validation Checks">}} for a description of the tests run as part of each validation. The commands are described here in alphabetical order, regardless of membership in one of the three sets above.
+Refer to {{<link title="Validation Checks">}} for a description of the tests run as part of each validation. The `netq check`commands are described here. The others are described elsewhere based on on the command names.
 
-## On-demand
+**About Config Commands**
 
-These commands are used to create and run on-demand validations.
-
-### netq add validation
-
-Creates an on-demand validation for various protocols and services, with results displayed in the associated On-demand Validation Result cards in the NetQ UI.
-
-#### Syntax
-
-```
-netq add validation
-    type (ntp | interfaces | license | sensors | evpn | vxlan | agents | mlag | vlan | bgp | mtu | ospf)
-    [alert-on-failure]
-```
-
-#### Required Arguments
-
-| Argument | Value | Description |
-| ---- | ---- | ---- |
-| type | agents, bgp, evpn, interfaces, license, mlag, mtu, ntp, sensors, vlan, or vxlan | Protocol or service to be validated |
-
-#### Options
-
-| Option | Value | Description |
-| ---- | ---- | ---- |
-| alert-on-failure | NA | Reserved |
-
-#### Command History
-
-A release is included if there were changes to the command, otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 3.1.0 | Introduced |
-
-#### Sample Usage
-
-BGP validation; all devices, all tests, currently
-
-```
-cumulus@switch:~$ netq add validation type bgp
-```
-
-#### Related Commands
-
-- netq add validation name
-- netq del validation
-- netq show validation settings
-- netq show validation summary
+Add text here
 
 - - -
 
-### netq check agents
+## netq check agents
 
 Validates the communication status of all nodes (leafs, spines, and hosts) running the NetQ Agent in your network fabric. The output displays the status (passed/failed/skipped) of all tests and a summary including:
 
@@ -78,7 +36,7 @@ Validates the communication status of all nodes (leafs, spines, and hosts) runni
 - Number of nodes that have not been heard from in 90 seconds (rotten)
 - Number of nodes with warnings
 
-#### Syntax
+### Syntax
 
 ```
 netq check agents
@@ -88,11 +46,11 @@ netq check agents
    [json]
 ```
 
-#### Required Arguments
+### Required Arguments
 
 None
 
-#### Options
+### Options
 
 | Option | Value | Description |
 | ---- | ---- | ---- |
@@ -103,7 +61,7 @@ None
 | around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. The value is written using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 
-#### Command History
+### Command History
 
 A release is included if there were changes to the command, otherwise it is not listed.
 
@@ -112,7 +70,7 @@ A release is included if there were changes to the command, otherwise it is not 
 | 3.0.0 | Added `hostnames` option |
 | 2.4.0 | Added `include` and `exclude` options; output changed to include individual test status |
 
-#### Sample Usage
+### Sample Usage
 
 Basic Validation: All devices, all tests, currently
 
@@ -159,7 +117,7 @@ Warning nodes       : 0
 Agent Health Test   : passed
 ```
 
-#### Related Commands
+### Related Commands
 
 - netq show agents
 - netq show unit-tests agent
@@ -169,7 +127,7 @@ Agent Health Test   : passed
 
 - - -
 
-### netq check bgp
+## netq check bgp
 
 Validates that all configured route peering is established in your network fabric by looking for consistency across BGP sessions; in particular, whether duplicate router IDs exist and if any sessions are in the unestablished state. If you have nodes that implement virtual routing and forwarding (VRF), you can request status based on the relevant routing table. VRF is commonly configured in multi-tenancy deployments to maintain separate domains for each tenant.
 
@@ -183,7 +141,7 @@ The output displays the status (passed/failed/skipped) of all tests and a summar
 - Total number of BGP sessions at the specified time
 - Number of sessions that have failed to establish a connection
 
-#### Syntax
+### Syntax
 
 ```
 netq check bgp
@@ -194,11 +152,11 @@ netq check bgp
     [json | summary]
 ```
 
-#### Required Arguments
+### Required Arguments
 
 None
 
-#### Options
+### Options
 
 | Option | Value | Description |
 | ---- | ---- | ---- |
@@ -211,7 +169,7 @@ None
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 | summary | NA | Display only the summary information and test results. Do not display details for tests that failed or had warnings.. |
 
-#### Command History
+### Command History
 
 A release is included if there were changes to the command, otherwise it is not listed.
 
@@ -220,7 +178,7 @@ A release is included if there were changes to the command, otherwise it is not 
 | 3.0.0 | Added `hostnames` option |
 | 2.4.0 | Added `include` and `exclude` options; output changed to include individual test status |
 
-#### Sample Usage
+### Sample Usage
 
 Basic validation: All devices, all tests, currently
 
@@ -243,7 +201,7 @@ Address Families Test        : passed
 Router ID Test               : passed
 ```
 
-#### Related Commands
+### Related Commands
 
 - netq show bgp
 - netq show unit-tests bgp
@@ -252,21 +210,21 @@ Router ID Test               : passed
 
 - - -
 
-### netq check cl-version
+## netq check cl-version
 
 Verifies the Cumulus Linux version is consistent across nodes, matches a specified version, or is greater than or equal to a specified version, based on the options chosen.
 
-#### Syntax
+### Syntax
 
 ```
 netq check cl-version [label <text-label-name> | hostnames <text-list-hostnames>] [match-version <cl-ver> | min-version <cl-ver>] [include <version-number-range-list> | exclude <version-number-range-list>] [around <text-time>] [json | summary]
 ```
 
-#### Required Arguments
+### Required Arguments
 
 None
 
-#### Options
+### Options
 
 | Option | Value | Description |
 | ---- | ---- | ---- |
@@ -280,7 +238,7 @@ None
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 | summary | NA | Display only the summary informationand test results. Do not display details for tests that failed or had warnings.. |
 
-#### Command History
+### Command History
 
 A release is included if there were changes to the command, otherwise it is not listed.
 
@@ -289,7 +247,7 @@ A release is included if there were changes to the command, otherwise it is not 
 | 3.0.0 | Added `hostnames` option |
 | 2.4.0 | Added `include` and `exclude` options; output changed to include individual test status |
 
-#### Sample Usage
+### Sample Usage
 
 Basic validation: All devices have the same version
 
@@ -352,13 +310,13 @@ Warning nodes       : 0
 Cumulus Linux Image Version Test   : passed
 ```
 
-#### Related Commands
+### Related Commands
 
 - netq show unit-tests cl-version
 
 - - -
 
-### netq check clag
+## netq check clag
 
 Verifies CLAG session consistency by identifying all CLAG peers with errors or misconfigurations in the NetQ domain. In particular, it looks for such items as:
 
@@ -376,7 +334,7 @@ The output displays the status (passed/failed/skipped) of all tests and a summar
 - Number of nodes that have not been heard from in 90 seconds (rotten)
 - Number of nodes with warnings
 
-#### Syntax
+### Syntax
 
 ```
 netq check clag
@@ -386,11 +344,11 @@ netq check clag
     [json | summary]
 ```
 
-#### Required Arguments
+### Required Arguments
 
 None
 
-#### Options
+### Options
 
 | Option | Value | Description |
 | ---- | ---- | ---- |
@@ -402,7 +360,7 @@ None
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 | summary | NA | Display only the summary informationand test results. Do not display details for tests that failed or had warnings.. |
 
-#### Command History
+### Command History
 
 A release is included if there were changes to the command, otherwise it is not listed.
 
@@ -411,7 +369,7 @@ A release is included if there were changes to the command, otherwise it is not 
 | 3.0.0 | Added `hostnames` option |
 | 2.4.0 | Added `include` and `exclude` options; output changed to include individual test status |
 
-#### Sample Usage
+### Sample Usage
 
 Basic validation: All devices, all tests, currently
 
@@ -488,7 +446,7 @@ ProtoDown Bonds Test     : passed
 SVI Test                 : passed
 ```
 
-#### Related Commands
+### Related Commands
 
 - netq show clag
 - netq show unit-tests clag
@@ -497,7 +455,7 @@ SVI Test                 : passed
 
 - - -
 
-### netq check evpn
+## netq check evpn
 
 Verifies communication status for all nodes (leafs, spines, and hosts) running instances of Ethernet VPN (EVPN) in your network fabric. In particular, it looks for such items as:
 
@@ -517,7 +475,7 @@ The output displays the status (passed/failed/skipped) of all tests and a summar
 - Number of failed BGP sessions
 - Total number of sessions
 
-#### Syntax
+### Syntax
 
 ```
 netq check evpn
@@ -528,11 +486,11 @@ netq check evpn
     [json | summary]
 ```
 
-#### Required Arguments
+### Required Arguments
 
 None
 
-#### Options
+### Options
 
 | Option | Value | Description |
 | ---- | ---- | ---- |
@@ -546,7 +504,7 @@ the same |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 | summary | NA | Display only the summary informationand test results. Do not display details for tests that failed or had warnings.. |
 
-#### Command History
+### Command History
 
 A release is included if there were changes to the command, otherwise it is not listed.
 
@@ -556,7 +514,7 @@ A release is included if there were changes to the command, otherwise it is not 
 | 2.4.0 | Added `include` and `exclude` options; output changed to include individual test status |
 | 2.2.0 | Added `mac-consistency` option. Removed `hostname` and `vni` options. |
 
-#### Sample Usage
+### Sample Usage
 
 Basic validation: All devices, all tests, currently
 
@@ -585,7 +543,7 @@ Vrf Consistency Test             : passed
 L3 VNI RMAC Test                 : skipped
 ```
 
-#### Related Commands
+### Related Commands
 
 - netq show evpn
 - netq show unit-tests evpn
@@ -594,7 +552,7 @@ L3 VNI RMAC Test                 : skipped
 
 - - -
 
-### netq check interfaces
+## netq check interfaces
 
 Verifies interface communication status for all nodes (leafs, spines, and hosts) or an interface between specific nodes in your network fabric. In particular, it looks for such items as:
 
@@ -613,7 +571,7 @@ The output displays the status (passed/failed/skipped) of all tests and a summar
 - Number of ports that failed validation
 - Number of unverified ports (no peer was found for node)
 
-#### Syntax
+### Syntax
 
 ```
 netq check interfaces
@@ -623,11 +581,11 @@ netq check interfaces
     [json | summary]
 ```
 
-#### Required Arguments
+### Required Arguments
 
 None
 
-#### Options
+### Options
 
 | Option | Value | Description |
 | ---- | ---- | ---- |
@@ -639,7 +597,7 @@ None
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 | summary | NA | Display only the summary information and test results. Do not display details for tests that failed or had warnings.. |
 
-#### Command History
+### Command History
 
 A release is included if there were changes to the command, otherwise it is not listed.
 
@@ -649,7 +607,7 @@ A release is included if there were changes to the command, otherwise it is not 
 | 2.4.0 | Added `include` and `exclude` options; output changed to include individual test status |
 | 2.1.0 | Removed host and peer options (`physical-hostname`, `physical-port`, `peer-physical-hostname`, `peer-physical-port`) and `unverified` option |
 
-#### Sample Usage
+### Sample Usage
 
 Basic validation: All devices, all tests, currently
 
@@ -713,7 +671,7 @@ Speed Test         : passed
 Autoneg Test       : 0 warnings, 12 errors
 ```
 
-#### Related Commands
+### Related Commands
 
 - netq show interfaces
 - netq show unit-tests interfaces
@@ -722,7 +680,7 @@ Autoneg Test       : 0 warnings, 12 errors
 
 - - -
 
-### netq check license
+## netq check license
 
 Verifies license status for all nodes (leafs, spines, and hosts) in your network fabric. In particular, it looks for the validity of the Cumulus Linux license on each node.
 
@@ -736,7 +694,7 @@ The output displays the status (passed/failed/skipped) of all tests and a summar
 - Number of licenses validated
 - Number of licenses that failed validation
 
-#### Syntax
+### Syntax
 
 ```
 netq check license
@@ -746,11 +704,11 @@ netq check license
     [json | summary]
 ```
 
-#### Required Arguments
+### Required Arguments
 
 None
 
-#### Options
+### Options
 
 | Option | Value | Description |
 | ---- | ---- | ---- |
@@ -762,7 +720,7 @@ None
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 | summary | NA | Display only the summary information and test results. Do not display details for tests that failed or had warnings.. |
 
-#### Command History
+### Command History
 
 A release is included if there were changes to the command, otherwise it is not listed.
 
@@ -771,7 +729,7 @@ A release is included if there were changes to the command, otherwise it is not 
 | 3.0.0 | Added `hostnames` option |
 | 2.4.0 | Added `include` and `exclude` options; output changed to include individual test status |
 
-#### Sample Usage
+### Sample Usage
 
 Basic validation: All devices, all tests, currently
 
@@ -792,7 +750,7 @@ Failed Licenses     : 0
 License validity Test   : passed
 ```
 
-#### Related Commands
+### Related Commands
 
 - netq show unit-tests license
 - netq add validation
@@ -800,15 +758,11 @@ License validity Test   : passed
 
 - - -
 
-### netq check lnv
+## netq check mlag
 
-{{<notice info>}}
-This command is not supported for NetQ 3.0.0 and later.
-{{</notice>}}
+<!-- Add info here -->
 
-- - -
-
-### netq check mtu
+## netq check mtu
 
 Verifies consistency of the maximum transmission unit (MTU) across all links in your network fabric. MTU consistency is verified at the level that is appropriate to the specific type of link. For example, bond interfaces have their MTU enforced at the bond level and not at the individual slave level. For MLAG/CLAG bonds, verification confirms whether or not both ends of the bond have the same MTU value configured for their local instance of the bond. You can also view nodes without a peer link.
 
@@ -823,7 +777,7 @@ The output displays the status (passed/failed/skipped) of all tests and a summar
 - Number of links that failed validation
 - Number of links that had warnings
 
-#### Syntax
+### Syntax
 
 ```
 netq check mtu
@@ -834,11 +788,11 @@ netq check mtu
     [json | summary]
 ```
 
-#### Required Arguments
+### Required Arguments
 
 None
 
-#### Options
+### Options
 
 | Option | Value | Description |
 | ---- | ---- | ---- |
@@ -851,7 +805,7 @@ None
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 | summary | NA | Display only the summary information and test results. Do not display details for tests that failed or had warnings. |
 
-#### Command History
+### Command History
 
 A release is included if there were changes to the command, otherwise it is not listed.
 
@@ -860,7 +814,7 @@ A release is included if there were changes to the command, otherwise it is not 
 | 3.0.0 | Added `hostnames` option |
 | 2.4.0 | Added `include` and `exclude` options; output changed to include individual test status |
 
-#### Sample Usage
+### Sample Usage
 
 Basic validation: All devices, all tests, currently
 
@@ -935,7 +889,7 @@ Hostname          Interface                 MTU    Peer              Peer Interf
 oob-mgmt-server   vagrant                   1500   -                 -                         -        No Peer link info
 ```
 
-#### Related Commands
+### Related Commands
 
 - netq show unit-tests mtu
 - netq add validation
@@ -943,7 +897,7 @@ oob-mgmt-server   vagrant                   1500   -                 -          
 
 - - -
 
-### netq check ntp
+## netq check ntp
 
 Verifies network time synchronization using NTP for all nodes (leafs, spines, and hosts) in your network fabric. Nodes that are not in time sychronization with the NetQ appliance or VM may report data with an incorrect timestamp or lose communication altogether.
 
@@ -957,17 +911,17 @@ The output displays the status (passed/failed/skipped) of all tests and a summar
 - Number of nodes found that are unknown to NetQ
 - Number of NTP servers available for synchronization
 
-#### Syntax
+### Syntax
 
 ```
 netq check ntp [label <text-label-name> | hostnames <text-list-hostnames>] [include <ntp-number-range-list> | exclude <ntp-number-range-list>] [around <text-time>] [json | summary]
 ```
 
-#### Required Arguments
+### Required Arguments
 
 None
 
-#### Options
+### Options
 
 | Option | Value | Description |
 | ---- | ---- | ---- |
@@ -979,7 +933,7 @@ None
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 | summary | NA | Display only the summary information and test results. Do not display details for tests that failed or had warnings. |
 
-#### Command History
+### Command History
 
 A release is included if there were changes to the command, otherwise it is not listed.
 
@@ -988,7 +942,7 @@ A release is included if there were changes to the command, otherwise it is not 
 | 3.0.0 | Added `hostnames` option |
 | 2.4.0 | Added `include` and `exclude` options; output changed to include individual test status |
 
-#### Sample Usage
+### Sample Usage
 
 Basic validation: All devices, all tests, currently
 
@@ -1015,7 +969,7 @@ fw1               no       2020-11-18 19:50:31
 fw2               no       2020-11-18 19:50:46
 ```
 
-#### Related Commands
+### Related Commands
 
 - netq show ntp
 - netq show unit-tests ntp
@@ -1024,7 +978,7 @@ fw2               no       2020-11-18 19:50:46
 
 - - -
 
-### netq check ospf
+## netq check ospf
 
 Validates that all configured route peering is established in your network fabric by looking for consistency across OSPF sessions; in particular, whether duplicate router IDs exist and if any sessions are in the unestablished state.
 
@@ -1038,7 +992,7 @@ The output displays the status (passed/failed/skipped) of all tests and a summar
 - Number of nodes with failed adjacencies
 - Total number of adjacencies
 
-#### Syntax
+### Syntax
 
 ```
 netq check ospf
@@ -1048,11 +1002,11 @@ netq check ospf
     [json | summary]
 ```
 
-#### Required Arguments
+### Required Arguments
 
 None
 
-#### Options
+### Options
 
 | Option | Value | Description |
 | ---- | ---- | ---- |
@@ -1064,7 +1018,7 @@ None
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 | summary | NA | Display only the summary information and test results. Do not display details for tests that failed or had warnings. |
 
-#### Command History
+### Command History
 
 A release is included if there were changes to the command, otherwise it is not listed.
 
@@ -1073,7 +1027,7 @@ A release is included if there were changes to the command, otherwise it is not 
 | 3.0.0 | Added `hostnames` option |
 | 2.4.0 | Added `include` and `exclude` options; output changed to include individual test status |
 
-#### Sample Usage
+### Sample Usage
 
 Basic validation: All devices, all tests, currently
 
@@ -1114,7 +1068,7 @@ spine-2           downlink-6                0.0.0.22                  27.0.0.22 
 tor-2             uplink-2                  0.0.0.20                  27.0.0.20                 mtu mismatch                                  Mon Jul  1 16:19:37 2019
 ```
 
-#### Related Commands
+### Related Commands
 
 - netq show ospf
 - netq show unit-tests ospf
@@ -1123,7 +1077,7 @@ tor-2             uplink-2                  0.0.0.20                  27.0.0.20 
 
 - - -
 
-### netq check sensors
+## netq check sensors
 
 Verifies the status of temperature, cooling fan, and power supply sensors for all nodes in your network fabric.
 
@@ -1137,7 +1091,7 @@ The output displays the status (passed/failed/skipped) of all tests and a summar
 - Number of sensors validated
 - Number of sensors that failed validation
 
-#### Syntax
+### Syntax
 
 ```
 netq check sensors
@@ -1147,11 +1101,11 @@ netq check sensors
     [json | summary]
 ```
 
-#### Required Arguments
+### Required Arguments
 
 None
 
-#### Options
+### Options
 
 | Option | Value | Description |
 | ---- | ---- | ---- |
@@ -1163,7 +1117,7 @@ None
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 | summary | NA | Display only the summary information and test results. Do not display details for tests that failed or had warnings. |
 
-#### Command History
+### Command History
 
 A release is included if there were changes to the command, otherwise it is not listed.
 
@@ -1172,7 +1126,7 @@ A release is included if there were changes to the command, otherwise it is not 
 | 3.0.0 | Added `hostnames` option |
 | 2.4.0 | Added `include` and `exclude` options; output changed to include individual test status |
 
-#### Sample Usage
+### Sample Usage
 
 Basic validation: All devices, all tests, currently
 
@@ -1196,7 +1150,7 @@ Fan sensors Test           : passed
 Temperature sensors Test   : passed
 ```
 
-#### Related Commands
+### Related Commands
 
 - netq show sensors
 - netq show unit-tests sensors
@@ -1205,7 +1159,7 @@ Temperature sensors Test   : passed
 
 - - -
 
-### netq check vlan
+## netq check vlan
 
 Verifies consistency of the virtual local area network (VLAN) nodes and interfaces across all links in your network fabric. In particular, it looks for link neighbor and MLAG bond consistency. You can also identify nodes without peers.
 
@@ -1219,7 +1173,7 @@ The output displays the status (passed/failed/skipped) of all tests and a summar
 - Total number of links found
 - Number of links that failed validation
 
-#### Syntax
+### Syntax
 
 ```
 netq check vlan
@@ -1230,11 +1184,11 @@ netq check vlan
     [json | summary]
 ```
 
-#### Required Arguments
+### Required Arguments
 
 None
 
-#### Options
+### Options
 
 | Option | Value | Description |
 | ---- | ---- | ---- |
@@ -1247,7 +1201,7 @@ None
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 | summary | NA | Display only the summary information and test results. Do not display details for tests that failed or had warnings. |
 
-#### Command History
+### Command History
 
 A release is included if there were changes to the command, otherwise it is not listed.
 
@@ -1256,7 +1210,7 @@ A release is included if there were changes to the command, otherwise it is not 
 | 3.0.0 | Added `hostnames` option |
 | 2.4.0 | Added `include` and `exclude` options; output changed to include individual test status |
 
-#### Sample Usage
+### Sample Usage
 
 Basic validation: All devices, all tests, currently
 
@@ -1300,7 +1254,7 @@ border02          bond3                     10,20,30                  -         
                                                                                                                                             n peerlink
 ```
 
-#### Related Commands
+### Related Commands
 
 - netq show vlan
 - netq show unit-tests vlan
@@ -1309,7 +1263,7 @@ border02          bond3                     10,20,30                  -         
 
 - - -
 
-### netq check vxlan
+## netq check vxlan
 
 Verifies consistency of the virtual extensible local area network (VXLAN) nodes and interfaces across all links in your network fabric. In particular, it looks for consistent VXLAN configuration and BUM replication errors.
 
@@ -1321,7 +1275,7 @@ The output displays the status (passed/failed/skipped) of all tests and a summar
 - Number of nodes that have not been heard from in 90 seconds (rotten)
 - Number of nodes with warnings
 
-#### Syntax
+### Syntax
 
 ```
 netq check vxlan
@@ -1331,11 +1285,11 @@ netq check vxlan
     [json | summary]
 ```
 
-#### Required Arguments
+### Required Arguments
 
 None
 
-#### Options
+### Options
 
 | Option | Value | Description |
 | ---- | ---- | ---- |
@@ -1347,7 +1301,7 @@ None
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 | summary | NA | Display only the summary information and test results. Do not display details for tests that failed or had warnings. |
 
-#### Command History
+### Command History
 
 A release is included if there were changes to the command, otherwise it is not listed.
 
@@ -1356,7 +1310,7 @@ A release is included if there were changes to the command, otherwise it is not 
 | 3.0.0 | Added `hostnames` option |
 | 2.4.0 | Added `include` and `exclude` options; output changed to include individual test status |
 
-#### Sample Usage
+### Sample Usage
 
 Basic validation: All devices, all tests, currently
 
@@ -1374,7 +1328,7 @@ Vlan Consistency Test   : passed
 BUM replication Test    : passed
 ```
 
-#### Related Commands
+### Related Commands
 
 - netq show vxlan
 - netq show unit-tests vxlan
@@ -1383,283 +1337,27 @@ BUM replication Test    : passed
 
 - - -
 
-## Scheduled
-
-These commands are used to create and run scheduled validations.
-
-### netq add validation name
-
-Creates a validation for various protocols and services to be run on a regular interval, with results displayed in the associated Scheduled Validation Result cards in the NetQ UI. A maximum of 15 scheduled validation can be configured, not including the default scheduled validations.
-
-#### Syntax
-
-```
-netq add validation
-    name <text-new-validation-name>
-    type (ntp | interfaces | license | sensors | evpn | vxlan | agents | mlag | vlan | bgp | mtu | ospf)
-    interval <text-time-min>
-    [alert-on-failure]
-```
-
-#### Required Arguments
-
-| Argument | Value | Description |
-| ---- | ---- | ---- |
-| name | user defined | Unique name for the validation |
-| type | agents, bgp, evpn, interfaces, license, mlag, mtu, ntp, sensors, vlan, or vxlan | Protocol or service to be validated |
-| interval | \<text-time-min\> | Frequency to run the validation, in minutes. Value must include time unit of *m*, minutes. Default scheduled validations per type run every 60 minutes. |
-
-#### Options
-
-| Option | Value | Description |
-| ---- | ---- | ---- |
-| alert-on-failure | NA | Reserved |
-
-#### Command History
-
-A release is included if there were changes to the command, otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 3.1.0 | Introduced |
-
-#### Sample Usage
-
-BGP validation; all devices, all tests, on a regular basis
-
-```
-cumulus@switch:~$ netq add validation name Bgp15m type bgp interval 15m
-```
-
-#### Related Commands
-
-- netq add validation
-- netq del validation
-- netq show validation settings
-- netq show validation summary
-
-- - -
-
-## Management
-
-These commands are used to manage scheduled validations.
-
-### netq del validation
-
-Removes a scheduled validation. Useful when you have created a scheduled validation for troubleshooting and you no longer need it, or if you are reaching your maximum of 15 scheduled validations and you want to prioritize one validation over another. Use the related `netq show validation settings` command to view the names of existing scheduled validations.
-
-#### Syntax
-
-```
-netq del validation
-    <text-validation-name>
-```
-
-#### Required Arguments
-
-| Argument | Value | Description |
-| ---- | ---- | ---- |
-| NA | \<text-validation-name\> | Name of scheduled validation you want to remove |
-
-#### Options
-
-None
-
-#### Command History
-
-A release is included if there were changes to the command, otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 3.1.0 | Introduced |
-
-#### Sample Usage
-
-```
-cumulus@switch:~$ netq del validation Bgp15m
-Successfully deleted validation Bgp15m
-```
-
-#### Related Commands
-
-- netq add validation name
-- netq show validation settings
-
-- - -
-
-### netq show validation settings
-
-Displays one or all scheduled validations, including their name, type, cadence, when the validation began, when it was created, and whether it is currently active. This is useful for obtaining the name of a scheduled validations for use in other validation commands.
-
-#### Syntax
-
-```
-netq show validation settings
-    [name <text-validation-name>]
-    [type ntp | type interfaces | type license | type sensors | type evpn | type vxlan | type agents | type mlag | type vlan | type bgp | type mtu | type ospf]
-    [json]
-```
-
-#### Required Arguments
-
-None
-
-#### Options
-
-| Option | Value | Description |
-| ---- | ---- | ---- |
-| name | \<text-validation-name\> | Filter output to view settings for the scheduled validation with this name |
-| type | agents, bgp, evpn, interfaces, license, mlag, mtu, ntp, ospf, sensors, vlan, or vxlan | Filter output to view settings for only the indicated protocol or service |
-| json | NA | Display the output in JSON file format instead of default on-screen text format |
-
-#### Command History
-
-A release is included if there were changes to the command, otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 3.1.0 | Introduced |
-
-#### Sample Usage
-
-```
-cumulus@switch:~$ netq show validation settings
-Name            Types      Cadence        Start Time           Creation Time              Active
---------------- ---------- -------------- -------------------- -------------------------- ------
-BGP12hr         bgp, evpn  720m           Thu Nov 12 16:15:00  Thu Nov 12 20:10:05 2020   yes
-                                          2020
-BGP12hr (pre 11 bgp        720m           Thu Nov 12 16:15:00  Thu Nov 12 18:45:52 2020   no
--12-20)                                   2020
-Bgp30m          bgp        30m            Tue Nov 10 21:46:05  Tue Nov 10 21:46:05 2020   yes
-                                          2020
-Default validat interfaces 60m            Wed Nov 11 08:38:40  Wed Nov 11 08:38:40 2020   yes
-ion INTERFACES                            2020
-Default validat mlag       60m            Wed Nov 11 08:38:40  Wed Nov 11 08:38:40 2020   yes
-ion MLAG                                  2020
-Default validat vlan       60m            Wed Nov 11 08:38:40  Wed Nov 11 08:38:40 2020   yes
-ion VLAN                                  2020
-Default validat sensors    60m            Wed Nov 11 08:38:40  Wed Nov 11 08:38:40 2020   yes
-ion SENSORS                               2020
-Default validat vxlan      60m            Wed Nov 11 08:38:40  Wed Nov 11 08:38:40 2020   yes
-ion VXLAN                                 2020
-Default validat ospf       60m            Wed Nov 11 08:38:40  Wed Nov 11 08:38:40 2020   yes
-ion OSPF                                  2020
-Default validat mtu        60m            Wed Nov 11 08:38:40  Wed Nov 11 08:38:40 2020   yes
-ion MTU                                   2020
-Default validat bgp        60m            Wed Nov 11 08:38:40  Wed Nov 11 08:38:40 2020   yes
-ion BGP                                   2020
-Default validat agents     60m            Wed Nov 11 08:38:40  Wed Nov 11 08:38:40 2020   yes
-ion AGENTS                                2020
-Default validat ntp        60m            Wed Nov 11 08:38:40  Wed Nov 11 08:38:40 2020   yes
-ion NTP                                   2020
-Default validat evpn       60m            Wed Nov 11 08:38:40  Wed Nov 11 08:38:40 2020   yes
-ion EVPN                                  2020
-Default validat license    60m            Wed Nov 11 08:38:40  Wed Nov 11 08:38:40 2020   yes
-ion LICENSE                               2020
-```
-
-#### Related Commands
-
-- netq add validation name
-- netq del validation
-- netq show validation summary
-
-- - -
-
-### netq show validation summary
-
-Displays summary status of a scheduled validation for a given protocol or service, including their name, type, job ID, number of nodes validated, number of nodes that failed validation, number of nodes running the protocol or service, and time when the validation was run.
-
-#### Syntax
-
-```
-netq show validation summary
-    [name <text-validation-name>]
-    type (ntp | interfaces | license | sensors | evpn | vxlan | agents | mlag | vlan | bgp | mtu | ospf)
-    [around <text-time-hr>]
-    [json]
-```
-
-#### Required Arguments
-
-| Argument | Value | Description |
-| ---- | ---- | ---- |
-| type | agents, bgp, evpn, interfaces, license, mlag, mtu, ntp, ospf, sensors, vlan, or vxlan | Show validation runs summary for the indicated protocol or service |
-
-#### Options
-
-| Option | Value | Description |
-| ---- | ---- | ---- |
-| name | \<text-validation-name\> | Filter output to view settings for the scheduled validation with this name |
-| around | \<text-time-hr\> | Show summary status for this time in the past. Value must be specified in hours and include the *h* time unit. Default is 24 hours. |
-| json | NA | Display the output in JSON file format instead of default on-screen text format |
-
-#### Command History
-
-A release is included if there were changes to the command, otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 3.1.0 | Introduced |
-
-#### Sample Usage
-
-Basic show: one protocol, within last 24 hours
-
-```
-cumulus@switch:~$ netq show validation summary type evpn
-Name            Type             Job ID       Checked Nodes              Failed Nodes             Total Nodes            Timestamp
---------------- ---------------- ------------ -------------------------- ------------------------ ---------------------- -------------------------
-Default validat scheduled        1129e006-d47 6                          0                        6                      Fri Nov 20 15:43:08 2020
-ion                              2-4ee7-917e-
-                                 f21d15adec22
-Default validat scheduled        1129e006-d47 6                          0                        6                      Fri Nov 20 14:43:21 2020
-ion                              2-4ee7-917e-
-                                 f21d15adec22
-Default validat scheduled        1129e006-d47 6                          0                        6                      Fri Nov 20 13:42:57 2020
-ion                              2-4ee7-917e-
-                                 f21d15adec22
-Default validat scheduled        1129e006-d47 6                          0                        6                      Fri Nov 20 12:42:57 2020
-ion                              2-4ee7-917e-
-                                 f21d15adec22
-Default validat scheduled        1129e006-d47 6                          0                        6                      Fri Nov 20 11:43:15 2020
-ion                              2-4ee7-917e-
-                                 f21d15adec22
-Default validat scheduled        1129e006-d47 6                          0                        6                      Fri Nov 20 10:42:54 2020
-ion                              2-4ee7-917e-
-                                 f21d15adec22
-Default validat scheduled        1129e006-d47 6                          0                        6                      Fri Nov 20 09:42:56 2020
-ion                              2-4ee7-917e-
-                                 f21d15adec22
-Default validat scheduled        1129e006-d47 6                          0                        6                      Fri Nov 20 08:43:25 2020
-ion                              2-4ee7-917e-
-                                 f21d15adec22
-BGP12hr         scheduled        5818f911-d9e 6                          1                        6                      Fri Nov 20 08:10:15 2020
-                                 2-4927-9cc1-
-                                 6972899a3422
-Default validat scheduled        1129e006-d47 6                          0                        6                      Fri Nov 20 07:42:56 2020
-ion                              2-4ee7-917e-
-                                 f21d15adec22
-Default validat scheduled        1129e006-d47 6                          0                        6                      Fri Nov 20 06:42:54 2020
-ion                              2-4ee7-917e-
-                                 f21d15adec22
-Default validat scheduled        1129e006-d47 6                          0                        6                      Fri Nov 20 05:43:12 2020
-ion                              2-4ee7-917e-
-                                 f21d15adec22
-BGP12hr         scheduled        5818f911-d9e 0                          0                        0                      Fri Nov 20 05:14:06 2020
-                                 2-4927-9cc1-
-                                 6972899a3422
-Default validat scheduled        1129e006-d47 6                          0                        6                      Fri Nov 20 04:42:52 2020
-ion                              2-4ee7-917e-
-                                 f21d15adec22
-Default validat scheduled        1129e006-d47 6                          0                        6                      Fri Nov 20 03:42:59 2020
-ion                              2-4ee7-917e-
-                                 f21d15adec22
-...
-```
-
-#### Related Commands
-
-- netq add validation name
-- netq del validation
-- netq show validation settings
+## netq config 
+    add      :  Add netq tca configuration
+    agent    :  Troubleshooting daemon
+    del      :  Delete netq tca configuration
+    reload   :  Reload configuration
+    restart  :  Restart daemon
+    select   :  add help text
+    show     :  Show fabric-wide info about specified object
+    start    :  Start daemon
+    status   :  License state
+    stop     :  Stop daemon
+
+## netq config add agents
+
+    netq config add agent cluster-servers <text-opta-ip-list> [port <text-opta-port>] [vrf <text-vrf-name>]
+    netq config add agent cpu-limit [<text-limit-number>]
+    netq config add agent frr-monitor [<text-frr-docker-name>]
+    netq config add agent kubernetes-monitor [poll-period <text-duration-period>]
+    netq config add agent loglevel [debug|error|info|warning]
+    netq config add agent sensors
+    netq config add agent server <text-opta-ip> [port <text-opta-port>] [vrf <text-vrf-name>]
+    netq config (start|stop|status|restart) agent
+    netq config del agent (cluster-servers|cpu-limit|frr-monitor|kubernetes-monitor|loglevel|sensors|server|stats|wjh)
+    netq config show agent [cpu-limit|frr-monitor|kubernetes-monitor|loglevel|sensors|stats|wjh] [json]

@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 320
 toc: 3
 ---
-Hardware datapath configuration manages packet buffering, queueing and scheduling in hardware. To configure priority groups, and assign the scheduling alogorithm and weights, you edit the `/etc/cumulus/datapath/traffic.conf`.
+Hardware datapath configuration manages packet buffering, queueing and scheduling in hardware.
 
 {{%notice note%}}
 
@@ -26,59 +26,12 @@ The scheduler is configured to use a hybrid scheduling algorithm. It applies str
 
 You can configure Quality of Service (QoS) for switches on the following platforms only:
 
-- Broadcom Tomahawk, Maverick, Trident II, Trident II+, and Trident3
+- Broadcom Tomahawk, Trident II, Trident II+, and Trident3
 - Mellanox Spectrum, Spectrum-2, and Spectrum-3
 
 {{%/notice%}}
 
-## Syntax Checker
-
-Cumulus Linux provides a syntax checker for the `/etc/cumulus/datapath/traffic.conf` file to check for errors, such missing parameters, or invalid parameter labels and values.
-
-On Broadcom switches, the syntax checker runs automatically during `switchd` initialization and reports syntax errors to the `/var/log/switchd.log` file.
-
-On both Broadcom and Mellanox switches, you can run the syntax checker manually from the command line by issuing the `cl-consistency-check --datapath-syntax-check` command. If errors exist, they are written to `stderr` by default. If you run the command with `-q`, errors are written to the `/var/log/switchd.log` file.
-
-The `cl-consistency-check --datapath-syntax-check` command takes the following options:
-
-| <div style="width:120px">Option | Description |
-| ------------------------------- | ----------- |
-| -h | Displays this list of command options. |
-| -q | Runs the command in quiet mode. Errors are written to the `/var/log/switchd.log` file instead of `stderr`. |
-| -t `<file-name>` | Runs the syntax check on a non-default `traffic.conf` file; for example, `/mypath/test-traffic.conf`.|
-
-You can run the syntax checker when `switchd` is either running or stopped.
-
-**Example Commands**
-
-The following example command runs the syntax checker on the default `/etc/cumulus/datapath/traffic.conf` file and shows that no errors are detected:
-
-```
-cumulus@switch:~$ cl-consistency-check --datapath-syntax-check
-No errors detected in traffic config file /etc/cumulus/datapath/traffic.conf
-```
-
-The following example command runs the syntax checker on the default `/etc/cumulus/datapath/traffic.conf` file in quiet mode. If errors exist, they are written to the `/var/log/switchd.log` file.
-
-```
-cumulus@switch:~$ cl-consistency-check --datapath-syntax-check -q
-```
-
-The following example command runs the syntax checker on the `/mypath/test-traffic.conf` file and shows that errors are detected:
-
-```
-cumulus@switch:~$ cl-consistency-check --datapath-syntax-check -t /path/test-traffic.conf
-Traffic source 8021p: missing mapping for priority value '7'
-Errors detected while checking traffic config file /mypath/test-traffic.conf
-```
-
-The following example command runs the syntax checker on the `/mypath/test-traffic.conf` file in quiet mode. If errors exist, they are written to the `/var/log/switchd.log` file.
-
-```
-cumulus@switch:~$ cl-consistency-check --datapath-syntax-check -t /path/test-traffic.conf -q
-```
-
-## Configure Traffic Marking through ACL Rules
+## Traffic Marking
 
 You can mark traffic for egress packets through `iptables` or `ip6tables` rule classifications. To enable these rules, you do one of the following:
 
@@ -183,16 +136,24 @@ pfc.pfc_port_group.cable_length = 10
 | `pfc.port_group_list` | The name of the port group in brackets. |
 | `pfc.pfc_port_group.cos_list` | The CoS value to the ports. |
 | `pfc.pfc_port_group.port_set` | The ports in the port group. |
-| `pfc.pfc_port_group.port_buffer_bytes` | The PFC buffer size. This is the maximum number of bytes allocated for storing bursts of packets, guaranteed at the ingress port. The default is *25000* bytes. |
-| `pfc.pfc_port_group.xoff_size` | The xoff byte limit. This is a threshold for the PFC buffer; when this limit is reached, an xoff transition is initiated, signaling the upstream port to stop sending traffic, during which time packets continue to arrive due to the latency of the communication. The default is *10000* bytes. |
-| `pfc.pfc_port_group.xon_delta` | The xon delta limit. This is the number of bytes to subtract from the xoff limit, which results in a second threshold at which the egress port resumes sending traffic. After the xoff limit is reached and the upstream port stops sending traffic, the buffer begins to drain. When the buffer reaches 8000 bytes (assuming default xoff and xon settings), the egress port signals that it can start receiving traffic again. The default is *2000* bytes. |
+| `pfc.pfc_port_group.port_buffer_bytes` | The PFC buffer size. This is the maximum number of bytes allocated for storing bursts of packets, guaranteed at the ingress port. The default is *25000* bytes.<br>This setting is optional. If not provided, the value is derived from the port speed, port MTU, or port cable length. |
+| `pfc.pfc_port_group.xoff_size` | The xoff byte limit. This is a threshold for the PFC buffer; when this limit is reached, an xoff transition is initiated, signaling the upstream port to stop sending traffic, during which time packets continue to arrive due to the latency of the communication. The default is *10000* bytes.<br>This setting is optional. If not provided, the value is derived from the port speed, port MTU, or port cable length.|
+| `pfc.pfc_port_group.xon_delta` | The xon delta limit. This is the number of bytes to subtract from the xoff limit, which results in a second threshold at which the egress port resumes sending traffic. After the xoff limit is reached and the upstream port stops sending traffic, the buffer begins to drain. When the buffer reaches 8000 bytes (assuming default xoff and xon settings), the egress port signals that it can start receiving traffic again. The default is *2000* bytes.<br>This setting is optional. If not provided, the value is derived from the port speed, port MTU, or port cable length. |
 | `pfc.pfc_port_group.tx_enable` | Enables the egress port to signal the upstream port to stop sending traffic. The default is *true*. |
 | `pfc.pfc_port_group.rx_enable` | Enables the egress port to receive notifications and act on them. The default is *true*. |
 | `pfc.pfc_port_group.cable_length` | The length of the port group cable. |
 
-On a Broadcom switch, restart `switchd` with the `sudo systemctl restart switchd.service` command to allow the PFC configuration changes to take effect. On a Mellanox switch with the Spectrum ASIC, restarting `switchd` is not necessary.
+On Broadcom switches, after you modify the settings in the `/etc/cumulus/datapath/traffic.conf` file, you *must* restart `switchd` for the changes to take effect; run the `cumulus@switch:~$ sudo systemctl restart switchd.service` command.
 
 {{<cl/restart-switchd>}}
+
+On Mellanox switches with the Spectrum ASIC, changes to the settings in the `/etc/cumulus/datapath/traffic.conf` file do *not* require you to restart `switchd`. However, you must run the `echo 1 > /cumulus/switchd/config/traffic/reload` command to apply the settings.
+
+```
+cumulus@switch:~$ echo 1 > /cumulus/switchd/config/traffic/reload
+```
+
+Always run the {{<link url="#syntax-checker" text="syntax checker">}} syntax checker before applying the configuration changes.
 
 ## Port Groups
 
@@ -264,9 +225,21 @@ Here is an example configuration that enables TX pause and RX pause for swp1 thr
  link_pause.pause_port_group.cable_length = 10
 ```
 
-On a Broadcom switch, restart `switchd` with the `sudo systemctl restart switchd.service` command to allow the PFC configuration changes to take effect. On a Mellanox switch with the Spectrum ASIC, restarting `switchd` is not necessary.
+{{%notice note%}}
+This `link_pause.pause_port_group.port_buffer_bytes`, `link_pause.pause_port_group.xoff_size`, and `link_pause.pause_port_group.xon_delta` settings are optional. If not provided, the values are derived from the port speed, port MTU, or port cable length.
+{{%/notice%}}
+
+On Broadcom switches, after you modify the settings in the `/etc/cumulus/datapath/traffic.conf` file, you *must* restart `switchd` for the changes to take effect; run the `cumulus@switch:~$ sudo systemctl restart switchd.service` command.
 
 {{<cl/restart-switchd>}}
+
+On Mellanox switches with the Spectrum ASIC, changes to the settings in the `/etc/cumulus/datapath/traffic.conf` file do *not* require you to restart `switchd`. However, you must run the `echo 1 > /cumulus/switchd/config/traffic/reload` command to apply the settings.
+
+```
+cumulus@switch:~$ echo 1 > /cumulus/switchd/config/traffic/reload
+```
+
+Always run the {{<link url="#syntax-checker" text="syntax checker">}} syntax checker before applying the configuration changes.
 
 ## Cut-through Mode and Store and Forward Switching
 
@@ -319,6 +292,10 @@ To enable store and forward switching, set `cut_through_enable` to *false* in th
 cumulus@switch:~$ sudo nano /etc/cumulus/datapath/traffic.conf
 cut_through_enable = false
 ```
+
+On Broadcom switches, after you modify the settings in the `/etc/cumulus/datapath/traffic.conf` file, you *must* restart `switchd` for the changes to take effect; run the `cumulus@switch:~$ sudo systemctl restart switchd.service` command. Always run the {{<link url="#syntax-checker" text="syntax checker">}} syntax checker before applying the configuration changes.
+
+{{<cl/restart-switchd>}}
 
 {{%notice note%}}
 
@@ -377,42 +354,80 @@ ecn_red.ecn_red_port_group.max_threshold_bytes = 200000
 ecn_red.ecn_red_port_group.probability = 100
 ```
 
-On a Broadcom switch, restart `switchd` with the `sudo systemctl restart switchd.service` command to allow the PFC configuration changes to take effect. On a Mellanox switch with the Spectrum ASIC, restarting `switchd` is not necessary.
+On Broadcom switches, after you modify the settings in the `/etc/cumulus/datapath/traffic.conf` file, you *must* restart `switchd` for the changes to take effect; run the `cumulus@switch:~$ sudo systemctl restart switchd.service` command.
 
 {{<cl/restart-switchd>}}
+
+On Mellanox switches with the Spectrum ASIC, changes to the settings in the `/etc/cumulus/datapath/traffic.conf` file do *not* require you to restart `switchd`. However, you must run the `echo 1 > /cumulus/switchd/config/traffic/reload` command to apply the settings.
+
+```
+cumulus@switch:~$ echo 1 > /cumulus/switchd/config/traffic/reload
+```
+
+Always run the {{<link url="#syntax-checker" text="syntax checker">}} syntax checker before applying the configuration changes.
 
 ## Scheduling Weights Per Egress Queue
 
 On Mellanox switches, you can set the scheduling weight per egress queue, which determines the amount of bandwidth assigned to the queue. Cumulus Linux supports eight queues per port. You can either use a default profile that each port inherits​ or create separate profiles that map a different set of ports. Each profile, including the default profile, has weights configured for each egress queue (0-7)​​.
 
-You set the weights per egress queue as a percentage. The total weight percentages for all egress queues cannot be greater than 100. If you do not define a weight for an egress queue, the value defaults to 0 (always send every single packet in the queue).
+You set the weights per egress queue as a percentage. The total weight percentages for all egress queues cannot be greater than 100. If you do not define a weight for an egress queue, no scheduling is done for packets on this queue if congestion occurs. If you want to configure strict scheduling on an egress queue (always send every single packet in the queue) set the value to 0.
 
 You can configure per queue egress scheduling with NCLU commands or manually by editing the `/etc/cumulus/datapath/traffic.conf` file.
+
+Cumulus Linux provides a default profile. You can either enable the default profile or configure a non-default profile.
 
 {{< tabs "TabID432 ">}}
 
 {{< tab "NCLU Commands ">}}
 
-The following example commands configure the default profile, set the weight for egress queue 2 to 30 percent, and distribute the remaining weight percentage evenly between the remaining egress queues. The settings are applied to all ports.
+The following example commands enable the default profile:
 
 ```
-cumulus@switch:~$ net add qos egress-sched profile default
-cumulus@switch:~$ net add qos egress-sched profile default egr_queue_2 bw_percent 30​
-cumulus@switch:~$ net add qos egress-sched profile default distribute-remaining-bw 
+cumulus@switch:~$ net add qos egress-sched default_profile
 cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-The following commands create a new profile called `profile1` for port group `port_group1`, set the weight for egress queue 2 to 24 percent, and distribute the remaining percentage evenly between the remaining egress queues:
+In the default profile, the egress queue weights are set as follows. You cannot modify these values with NCLU.
 
 ```
-cumulus@switch:~$ net add qos egress-sched profile profile1
-cumulus@switch:~$ net add qos egress-sched profile profile1 port_set swp2-swp3
-cumulus@switch:~$ net add qos egress-sched profile profile1 egr_queue_2 bw_percent 30​
-cumulus@switch:~$ net add qos egress-sched profile profile1 distribute-remaining-bw 
+...
+default_egress_sched.egr_queue_0.bw_percent = 12
+default_egress_sched.egr_queue_1.bw_percent = 12
+default_egress_sched.egr_queue_2.bw_percent = 24
+default_egress_sched.egr_queue_3.bw_percent = 12
+default_egress_sched.egr_queue_4.bw_percent = 12
+default_egress_sched.egr_queue_5.bw_percent = 12
+default_egress_sched.egr_queue_6.bw_percent = 12
+default_egress_sched.egr_queue_7.bw_percent = 0
+```
+
+The following commands create a non-default profile for port group `port_group1` for swp2 and swp3, set the weight to 30 percent on egress queue 2 and strict scheduling on egress queue 3:
+
+```
+cumulus@switch:~$ net add qos egress-sched profile port_set swp2-swp3
+cumulus@switch:~$ net add qos egress_sched profile sched_port_group1 queue 2 dwrr bw_percent 30​
+cumulus@switch:~$ net add qos egress_sched profile sched_port_group1 queue 3 strict
 cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
+
+The NCLU commands save the configuration in the `/etc/cumulus/datapath/traffic.conf` file. For example:
+
+```
+...
+egress_sched.port_group_list = [sched_port_group1]
+egress_sched.sched_port_group1.port_set = swp2-swp3
+egress_sched.sched_port_group1.egr_queue_2.bw_percent = 30
+egress_sched.sched_port_group1.egr_queue_3.bw_percent = 0
+...
+```
+
+{{%notice note%}}
+- To configure a non-default profile with NCLU, you must configure the port set for the profile before you configure the bandwidth percent for the egress queues.
+- The total bandwidth percent for all egress queues cannot be greater than 100.
+- If you delete the port set for a non-default profile, the bandwidth percent for all the queues in that profile are deleted.
+{{%/notice%}}
 
 {{< /tab >}}
 
@@ -420,7 +435,7 @@ cumulus@switch:~$ net commit
 
 To configure per queue egress scheduling manually in the `/etc/cumulus/datapath/traffic.conf` file, update and uncomment the settings in the `default egress scheduling weight per egress queue` section of the `/etc/cumulus/datapath/traffic.conf` file.
 
-The following example configures the default profile and sets the weight to 30 percent for egress queue 2 and 10 percent for the remaining egress queues. The settings are applied to all ports.
+The following example enables the default profile, and sets the weight to 30 percent for egress queue 2 and 10 percent for the remaining egress queues. The settings are applied to all ports.
 
 ```
 # default egress scheduling weight per egress queue 
@@ -438,24 +453,33 @@ default_egress_sched.egr_queue_6.bw_percent = 10
 default_egress_sched.egr_queue_7.bw_percent = 10
 ```
 
-The following example creates a new profile called `profile1` for port group `port_group1`, sets the weight to 30 percent for egress queue 1 and 2, to 0 for egress queue 6 and 7 (always send every single packet from egress queue 6 and 7 before any other queue), and 10 percent for the remaining egress queues:
+The following example creates a non-default profile for port group `port_group1`, sets the weight to 30 percent for egress queue 1 and 2, to 0 for egress queue 6 and 7 (always send every single packet from egress queue 6 and 7 before any other queue), and 10 percent for the remaining egress queues:
 
 ```
-# port_group profile for egress scheduling weight per egress queue 
-# If you do not specify any bw_percent of egress_queues, those egress queues 
-# will assume DWRR weight 0 - no egress scheduling for those queues
-# '0' indicates strict priority
-profile1_egress_sched.port_group_list = [sched_port_group1]
-profile1_egress_sched.sched_port_group1.port_set = swp2-swp3
-profile1_egress_sched.sched_port_group1.egr_queue_0.bw_percent = 10
-profile1_egress_sched.sched_port_group1.egr_queue_1.bw_percent = 30
-profile1_egress_sched.sched_port_group1.egr_queue_2.bw_percent = 30
-profile1_egress_sched.sched_port_group1.egr_queue_3.bw_percent = 10
-profile1_egress_sched.sched_port_group1.egr_queue_4.bw_percent = 10
-profile1_egress_sched.sched_port_group1.egr_queue_5.bw_percent = 10
-profile1_egress_sched.sched_port_group1.egr_queue_6.bw_percent = 0
-profile1_egress_sched.sched_port_group1.egr_queue_7.bw_percent = 0
+...
+egress_sched.port_group_list = [sched_port_group1]
+egress_sched.sched_port_group1.port_set = swp2
+egress_sched.sched_port_group1.egr_queue_0.bw_percent = 10
+egress_sched.sched_port_group1.egr_queue_1.bw_percent = 30
+egress_sched.sched_port_group1.egr_queue_2.bw_percent = 30
+egress_sched.sched_port_group1.egr_queue_3.bw_percent = 10
+egress_sched.sched_port_group1.egr_queue_4.bw_percent = 10
+egress_sched.sched_port_group1.egr_queue_5.bw_percent = 10
+egress_sched.sched_port_group1.egr_queue_6.bw_percent = 0
+egress_sched.sched_port_group1.egr_queue_7.bw_percent = 0
 ```
+
+On Broadcom switches, after you modify the settings in the `/etc/cumulus/datapath/traffic.conf` file, you *must* restart `switchd` for the changes to take effect; run the `cumulus@switch:~$ sudo systemctl restart switchd.service` command.
+
+{{<cl/restart-switchd>}}
+
+On Mellanox switches with the Spectrum ASIC, changes to the settings in the `/etc/cumulus/datapath/traffic.conf` file do *not* require you to restart `switchd`. However, you must run the `echo 1 > /cumulus/switchd/config/traffic/reload` command to apply the settings.
+
+```
+cumulus@switch:~$ echo 1 > /cumulus/switchd/config/traffic/reload
+```
+
+Always run the {{<link url="#syntax-checker" text="syntax checker">}} syntax checker before applying the configuration changes.
 
 {{< /tab >}}
 
@@ -466,6 +490,8 @@ profile1_egress_sched.sched_port_group1.egr_queue_7.bw_percent = 0
 Configure traffic shaping to regulate network traffic by using a lower bitrate than the physical interface is capable of. Traffic shaping prevents packets from being dropped or lost due to bandwidth limits or congestion.
 
 To configure traffic shaping, update and uncomment the settings in the `Hierarchical traffic shaping` section of the the `/etc/cumulus/datapath/traffic.conf` file. You can configure traffic shaping per egress queue or aggregated at the port level.
+
+The egress shaping rate configured in the `/etc/cumulus/datapath/traffic.conf` is always the layer 1 rate. The calculated shaping rate considers overheads in the Ethernet frame like the interframe gap, preamble, cyclic redundancy check (CRC) and so on. The egress layer 3 throughput measured is always less than the maximum shaper rate configured.
 
 The following example shows the `Hierarchical traffic shaping` section of the the `/etc/cumulus/datapath/traffic.conf` file.
 
@@ -508,17 +534,30 @@ The settings are described below:
 | `shaping.shaper_port_group.egr_queue_5.shaper` | The minimum and maximum rates in kbps for egress queue 5. You must enclose the values in square brackets. |
 | `shaping.shaper_port_group.egr_queue_6.shaper` | The minimum and maximum rates in kbps for egress queue 6. You must enclose the values in square brackets. |
 | `shaping.shaper_port_group.egr_queue_7.shaper` | The minimum and maximum rates in kbps for egress queue 7. You must enclose the values in square brackets. |
-| `shaping.shaper_port_group.port.shaper` |  The maximum rate in kbps at the port level. |
+| `shaping.shaper_port_group.port.shaper` |  The maximum rate in kbps at the port level.<br>At the port level, only the maximum shaper rate is supported. |
 | `scheduling.algorithm` | Cumulus Linux supports the Deficit Weighted Round Robin (DWRR) scheduling algorithm only. |
 
 {{%notice note%}}
 In Cumulus Linux, the burst size is set to twice the maximum rate internally; the setting is not configurable.
 {{%/notice%}}
 
-After configuring traffic shaping on a Broadcom switch, restart `switchd` with the `sudo systemctl restart switchd.service` command to allow the configuration changes to take effect. On a Mellanox switch, restarting `switchd` is not necessary.
+On Broadcom switches, when you modify the configuration in the `/etc/cumulus/datapath/traffic.conf` file, you *must* restart `switchd` for the changes to take effect; run the `cumulus@switch:~$ sudo systemctl restart switchd.service` command.
 
 {{<cl/restart-switchd>}}
-## Check Interface Buffer Status
+
+On Broadcom switches, after you modify the settings in the `/etc/cumulus/datapath/traffic.conf` file, you *must* restart `switchd` for the changes to take effect; run the `cumulus@switch:~$ sudo systemctl restart switchd.service` command.
+
+{{<cl/restart-switchd>}}
+
+On Mellanox switches with the Spectrum ASIC, changes to the settings in the `/etc/cumulus/datapath/traffic.conf` file do *not* require you to restart `switchd`. However, you must run the `echo 1 > /cumulus/switchd/config/traffic/reload` command to apply the settings.
+
+```
+cumulus@switch:~$ echo 1 > /cumulus/switchd/config/traffic/reload
+```
+
+Always run the {{<link url="#syntax-checker" text="syntax checker">}} syntax checker before applying the configuration changes.
+
+## Interface Buffer Status
 
 On switches with {{<exlink url="https://cumulusnetworks.com/products/hardware-compatibility-list/?asic%5B0%5D=Mellanox%20Spectrum&asic%5B1%5D=Mellanox%20Spectrum_A1" text="ASICs">}}, you can collect a fine-grained history of queue lengths using histograms maintained by the ASIC; see the {{<link title="ASIC Monitoring">}} for details.
 
@@ -892,22 +931,52 @@ remark.egress_remark_group.cos_6.priority_remark.dscp = [50]
 remark.egress_remark_group.cos_7.priority_remark.dscp = [58]
 ```
 
-{{%/notice%}}
+## Syntax Checker
 
-On Broadcom switches, if you modify the configuration in the `/etc/cumulus/datapath/traffic.conf` file, you *must* restart `switchd` for the changes to take effect; run the `cumulus@switch:~$ sudo systemctl restart switchd.service` command.
+Cumulus Linux provides a syntax checker for the `/etc/cumulus/datapath/traffic.conf` file to check for errors, such missing parameters, or invalid parameter labels and values.
 
-{{<cl/restart-switchd>}}
+On Broadcom switches, the syntax checker runs automatically during `switchd` initialization and reports syntax errors to the `/var/log/switchd.log` file.
 
-On Mellanox switches with the Spectrum ASIC, the following options in the `/etc/cumulus/datapath/traffic.conf` file do *not* require you to restart `switchd`. However, you must run the `echo 1 > /cumulus/switchd/config/traffic/reload` command after you change the options.
+On both Broadcom and Mellanox switches, you can run the syntax checker manually from the command line by issuing the `cl-consistency-check --datapath-syntax-check` command. If errors exist, they are written to `stderr` by default. If you run the command with `-q`, errors are written to the `/var/log/switchd.log` file.
 
-    cumulus@switch:~$ echo 1 > /cumulus/switchd/config/traffic/reload
+The `cl-consistency-check --datapath-syntax-check` command takes the following options:
 
-- DSCP/802.1p to COS remark assignments (`traffic.*`)
-- Explicit congestion notification (ECN) settings (`ecn_red.*`)
-- Priority flow control (PFC) settings (`pfc.*`)
-- Link Pause settings (`link_pause.*`)
-- Queue weight settings (`priority_group.*.weight`)
-- ECMP hash and LAG hash settings
+| <div style="width:120px">Option | Description |
+| ------------------------------- | ----------- |
+| -h | Displays this list of command options. |
+| -q | Runs the command in quiet mode. Errors are written to the `/var/log/switchd.log` file instead of `stderr`. |
+| -t `<file-name>` | Runs the syntax check on a non-default `traffic.conf` file; for example, `/mypath/test-traffic.conf`.|
+
+You can run the syntax checker when `switchd` is either running or stopped.
+
+**Example Commands**
+
+The following example command runs the syntax checker on the default `/etc/cumulus/datapath/traffic.conf` file and shows that no errors are detected:
+
+```
+cumulus@switch:~$ cl-consistency-check --datapath-syntax-check
+No errors detected in traffic config file /etc/cumulus/datapath/traffic.conf
+```
+
+The following example command runs the syntax checker on the default `/etc/cumulus/datapath/traffic.conf` file in quiet mode. If errors exist, they are written to the `/var/log/switchd.log` file.
+
+```
+cumulus@switch:~$ cl-consistency-check --datapath-syntax-check -q
+```
+
+The following example command runs the syntax checker on the `/mypath/test-traffic.conf` file and shows that errors are detected:
+
+```
+cumulus@switch:~$ cl-consistency-check --datapath-syntax-check -t /path/test-traffic.conf
+Traffic source 8021p: missing mapping for priority value '7'
+Errors detected while checking traffic config file /mypath/test-traffic.conf
+```
+
+The following example command runs the syntax checker on the `/mypath/test-traffic.conf` file in quiet mode. If errors exist, they are written to the `/var/log/switchd.log` file.
+
+```
+cumulus@switch:~$ cl-consistency-check --datapath-syntax-check -t /path/test-traffic.conf -q
+```
 
 ## Related Information
 

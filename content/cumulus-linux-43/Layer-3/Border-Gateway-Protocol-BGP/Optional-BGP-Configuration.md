@@ -627,7 +627,7 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-## Suppress Route Advertisement
+<!--## Suppress Route Advertisement
 
 You can configure BGP to wait for a response from the RIB indicating that the routes installed in the RIB are also installed in the FIB before sending updates to peers.
 
@@ -672,7 +672,7 @@ router bgp 65199
 ...
 ```
 
-The {{<link url="Smart-System-Manager" text="Smart System Manager">}} supresses route advertisement automically when upgrading or troubleshooting an active switch so that there is minimal disruption to the network.
+The {{<link url="Smart-System-Manager" text="Smart System Manager">}} supresses route advertisement automically when upgrading or troubleshooting an active switch so that there is minimal disruption to the network.-->
 
 ## BGP add-path
 
@@ -956,7 +956,7 @@ router bgp 65101
 ...
 ```
 
-### Wait for Convergence
+<!--### Wait for Convergence
 
 BGP *wait for convergence* lets you delay the initial best path calculation after you reboot the switch, restart FRR, or run the vtysh `clear ip bgp *` command. This allows peers to become established and converge before BGP installs the resulting routes in zebra or sends updates to peers.
 
@@ -1037,7 +1037,7 @@ Total number of neighbors 1
 ...
 ```
 
-The last convergence event is retained in the output of the NCLU `net show bgp summary json` command or the vtysh `show ip bgp summary json` command.
+The last convergence event is retained in the output of the NCLU `net show bgp summary json` command or the vtysh `show ip bgp summary json` command.-->
 
 ## Route Reflectors
 
@@ -1343,7 +1343,7 @@ You can configure the following graceful restart timers, which are set globally.
 |<div style="width:250px">Timer | Description |
 | ---- | ----------- |
 | `restart-time` | The number of seconds to wait for a graceful restart capable peer to re-establish BGP peering. The default is 120 seconds. You can set a value between 1 and 4095.|
-| `pathselect-defer-time` | The number of seconds a restarting peer defers path-selection when waiting for the EOR marker from peers. The default is 360 seconds. You can set a value between 1 and 3600. |
+| `pathselect-defer-time` | The number of seconds a restarting peer defers path-selection when waiting for the EOR marker from peers. The default is 360 seconds. You can set a value between 0 and 3600. |
 | `stalepath-time` | The number of seconds to hold stale routes for a restarting peer. The default is 360 seconds. You can set a value between 1 and 4095.|
 
 The following example commands set the `restart-time` to 400 seconds, `pathselect-defer-time` to 300 seconds, and `stalepath-time` to 400 seconds:

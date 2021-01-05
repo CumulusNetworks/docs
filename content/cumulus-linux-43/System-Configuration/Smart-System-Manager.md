@@ -22,17 +22,49 @@ You can restart the switch in one of the following modes.
 - `cold` completely restarts the system and resets all the hardware devices on the switch (including the switching ASIC).  
 - `fast` restarts the system more efficiently with minimal impact to traffic by reloading the kernel and software stack without a hard reset of the hardware. During a fast restart, the system is decoupled from the network to the extent possible using existing protocol extensions before recovering to the operational mode of the system. The forwarding entries of the switching ASIC are maintained through the restart process and the data plane is not affected. The data plane is only interrupted when `switchd` resets and reconfigures the ASIC if the SDK is upgraded. Traffic outage is significantly lower in this mode.
 
-The following command restarts the system in cold mode:
+The following commands restart the system in cold mode:
+
+{{< tabs "27 ">}}
+
+{{< tab "NCLU Command ">}}
 
 ```
 cumulus@switch:~$ net system maintenance restart cold
 ```
 
-The following command restarts the system in fast mode:
+{{< /tab >}}
+
+{{< tab "Linux Command ">}}
+
+```
+cumulus@switch:~$ sudo csmgrctl -c
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
+The following commands restart the system in fast mode:
+
+{{< tabs "49 ">}}
+
+{{< tab "NCLU Command ">}}
 
 ```
 cumulus@switch:~$ net system maintenance restart fast
 ```
+
+{{< /tab >}}
+
+{{< tab "Linux Command ">}}
+
+```
+cumulus@switch:~$ sudo csmgrctl -f
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
 
 ## Ugrade Mode
 
@@ -44,15 +76,47 @@ Upgrade mode includes the following options:
 
 The following command upgrades all the system components:
 
+{{< tabs "79 ">}}
+
+{{< tab "NCLU Command ">}}
+
 ```
 cumulus@switch:~$ net system maintenance upgrade all
 ```
 
+{{< /tab >}}
+
+{{< tab "Linux Command ">}}
+
+```
+cumulus@switch:~$ sudo csmgrctl -u
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
 The following command provides information on the components that will be upgraded:
+
+{{< tabs "101 ">}}
+
+{{< tab "NCLU Command ">}}
 
 ```
 cumulus@switch:~$ net system maintenance upgrade dry-run
 ```
+
+{{< /tab >}}
+
+{{< tab "Linux Command ">}}
+
+```
+cumulus@switch:~$ sudo csmgrctl -d
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
 
 ## Maintenance Mode
 
@@ -66,16 +130,49 @@ Depending on your configuration and network topology, complete isolation might n
 
 Run the following command to enable maintenance mode. When maintenance mode is enabled, Smart System Manager performs a graceful BGP shutdown, redirects traffic over the peerlink and brings down the MLAG port link. `switchd` maintains full capability.
 
+{{< tabs "133 ">}}
+
+{{< tab "NCLU Command ">}}
+
 ```
 cumulus@switch:~$ net system maintenance mode enable
 ```
 
+{{< /tab >}}
+
+{{< tab "Linux Command ">}}
+
+```
+cumulus@switch:~$ sudo csmgrctl -m1
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
 You can run additional commands to bring all the ports down, then up to restore the port admin state.
+
+{{< tabs "155 ">}}
+
+{{< tab "NCLU Commands ">}}
 
 ```
 cumulus@switch:~$ net system maintenance ports down
 cumulus@switch:~$ net system maintenance ports up
 ```
+
+{{< /tab >}}
+
+{{< tab "Linux Command ">}}
+
+```
+cumulus@switch:~$ sudo csmgrctl -p0
+cumulus@switch:~$ sudo csmgrctl -p1
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
 
 {{%notice note%}}
 Before you disable maintenance mode, be sure to bring the ports back up.
@@ -85,13 +182,29 @@ Before you disable maintenance mode, be sure to bring the ports back up.
 
 Run the following command to disable maintenance mode and restore normal operation. When maintenance mode is disabled, Smart System Manager performs a {{<link url="#restart-mode" text="fast restart">}}, runs a BGP graceful restart and brings the MLAG port link back up. `switchd` maintains full capability.
 
+{{< tabs "185 ">}}
+
+{{< tab "NCLU Command ">}}
+
 ```
 cumulus@switch:~$ net system maintenance mode disable
 ```
 
+{{< /tab >}}
+
+{{< tab "Linux Command ">}}
+
+```
+cumulus@switch:~$ sudo csmgrctl -m0
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
 ### Show Maintenance Mode Status
 
-To see the status of maintenance mode, run the `net system maintenance show status` command:
+To see if maintanance mode is enabled or disabled, run the NCLU `net system maintenance show status` command or the Linux `sudo csmgrctl -s` command. For example:
 
 ```
 cumulus@switch:~$ net system maintenance show status

@@ -14,11 +14,11 @@ The Linux and NetQ images are available in several variants based on the softwar
 
 The Cumulus Linux Images and NetQ Images cards in the NetQ UI provide a summary of image status in LCM. They show the total number of images in the repository, a count of missing images, and the starting points for adding and managing your images.
 
-The `netq lcm show images` command also displays a summary of the images uploaded to the LCM repo on the NetQ appliance or VM.
+The `netq lcm show cl-images` and `netq lcm show netq-images` commands also display a summary of the images Cumulus Linux and NetQ images uploaded to the LCM repo on the NetQ appliance or VM.
 
 ## Default Cumulus Linux or NetQ Version Assignment
 
-In the NetQ UI, you can assign a specific Cumulus Linux or NetQ version as the default version to use during installation or upgrade of switches. It is recommended that you choose the newest version that you intend to install or upgrade on all, or the majority, of your switches. The default selection can be overridden during individual installation and upgrade job creation if an alternate version is needed for a given set of switches.
+You can assign a specific Cumulus Linux or NetQ version as the default version to use during installation or upgrade of switches. It is recommended that you choose the newest version that you intend to install or upgrade on all, or the majority, of your switches. The default selection can be overridden during individual installation and upgrade job creation if an alternate version is needed for a given set of switches.
 
 ## Missing Images
 

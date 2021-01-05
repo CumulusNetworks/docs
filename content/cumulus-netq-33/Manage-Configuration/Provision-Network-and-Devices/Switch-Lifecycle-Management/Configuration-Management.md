@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 660
 toc: 4
 ---
-You can use the NetQ UI to configure switches using one or more switch configurations. To enable consistent application of configurations, switch configurations can contain network templates for SNMP, NTP, and user accounts, and configuration profiles for interfaces and NetQ Agents.
+You can use the NetQ UI to configure switches using one or more switch configurations. To enable consistent application of configurations, switch configurations can contain network templates for SNMP, NTP, and user accounts, VLAN and MLAG settings, and configuration profiles for interfaces and NetQ Agents.
 
 If you intend to use network templates or configuration profiles, the recommended workflow is as follows:
 
@@ -360,7 +360,7 @@ To remove a NetQ configuration profile:
 
 ## Manage Switch Configuration
 
-To ease the consistent configuration of your switches, NetQ enables you to create and manage multiple switch configuration profiles. Each configuration can contain Cumulus Linux- and NetQ Agent-related settings. These can then be applied to a group of switches at once.
+To ease the consistent configuration of your switches, NetQ enables you to create and manage multiple switch configuration profiles. Each configuration can contain Cumulus Linux, NetQ Agent, and switch settings. These can then be applied to a group of switches at once.
 
 You can view, create, and modify switch configuration profiles and their assignments at any time using the Switch Configurations card.
 
@@ -369,6 +369,8 @@ You can view, create, and modify switch configuration profiles and their assignm
 You can view existing switch configuration profiles using the Switch Configurations card.
 
 1. Open the lifecycle management (Manage Switch Assets) dashboard.
+
+    Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" width="18" height="18">}}, then select **Manage Switches**. Alternately, click {{<img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/06-Servers/server-upload.svg" width="18" height="18">}} in a workbench header.
 
 2. Click **Configuration Management**.
 

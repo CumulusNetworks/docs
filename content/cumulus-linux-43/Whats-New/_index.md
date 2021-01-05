@@ -21,10 +21,7 @@ Cumulus Linux 4.3.0 supports new platforms, provides bug fixes, and contains sev
 ### New Features and Enhancements
 
 - {{<link url="Smart-System-Manager" text="Smart System Manager">}}, which enables you to upgrade and troubleshoot an active switch with minimal disruption to the network
-- BGP enhancements:
-  - {{<link url="Optional-BGP-Configuration/#graceful-bgp-restart" text="Graceful restart">}}
-  - {{<link url="Optional-BGP-Configuration/#wait-for-convergence" text="Wait for convergence">}}
-  - {{<link url="Optional-BGP-Configuration/#suppress-route-advertisement" text="Suppress Route Advertisement">}}
+- {{<link url="Optional-BGP-Configuration/#graceful-bgp-restart" text="BGP graceful restart">}}
 - {{<link url="SPAN-and-ERSPAN" text="NCLU commands for SPAN and ERSPAN">}}
 - {{<link url="DHCP-Snooping" text="DHCP snooping">}}
 - QoS enhancements:

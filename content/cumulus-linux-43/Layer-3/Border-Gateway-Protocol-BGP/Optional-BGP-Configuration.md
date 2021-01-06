@@ -389,6 +389,103 @@ You can replace the private ASNs with your public ASN with the following command
 cumulus@switch:~$ net add bgp neighbor swp51 remove-private-AS replace-AS
 ```
 
+## Use Distinct ASNs for Different VRF Instances
+
+Cumulus Linux supports the use of distinct ASNs for different VRF instances in an EVPN or a virtual route leaking configuration.
+
+{{%notice note%}}
+You can configure distinct ASNs for different VRF instances in FRR only; NCLU commands do not support this option.
+{{%/notice%}}
+
+The following example configures VRF RED and VRF BLUE on border01, where fw1 is in VRF RED with ASN 65532 and fw2 is in VRF RED with ASN 65533.
+
+{{< img src = "/images/cumulus-linux/asn-vrf-config.png" >}}
+
+```
+cumulus@border01:~$ sudo vtysh
+
+border01# configure terminal
+border01(config)# router bgp 65132
+border01(config-router)# router bgp 65532 vrf RED
+border01(config-router)# bgp router-id 10.10.10.63
+border01(config-router)# neighbor swp3 remote-as external
+border01(config-router)# router bgp 65533 vrf BLUE
+border01(config-router)# bgp router-id 10.10.10.63
+border01(config-router)# neighbor swp4 remote-as external
+border01(config-router)# end
+border01# write memory
+border01# exit
+cumulus@border01:~$
+```
+
+The following example shows the `/etc/frr/frr.conf` configuration for border01.
+
+```
+cumulus@border01:~$ cat /etc/frr/frr.conf
+...
+log syslog informational
+!
+vrf RED
+  vni 4001
+vrf BLUE
+  vni 4002
+!
+router bgp 65132
+ bgp router-id 10.10.10.63
+ bgp bestpath as-path multipath-relax
+ neighbor underlay peer-group
+ neighbor underlay remote-as external
+ neighbor peerlink.4094 interface remote-as internal
+ neighbor swp51 interface peer-group underlay
+ neighbor swp52 interface peer-group underlay
+ neighbor swp53 interface peer-group underlay
+ neighbor swp54 interface peer-group underlay
+ !
+ address-family ipv4 unicast
+  redistribute connected
+ exit-address-family
+ !
+ address-family l2vpn evpn
+  neighbor underlay activate
+  advertise-all-vni
+ exit-address-family
+!
+router bgp 65532 vrf RED
+ bgp router-id 10.10.10.63
+ bgp bestpath as-path multipath-relax
+ neighbor swp3 remote-as external
+ !
+ address-family ipv4 unicast
+  redistribute static
+ exit-address-family
+ !
+ address-family l2vpn evpn
+  advertise ipv4 unicast
+ exit-address-family
+!
+router bgp 65533 vrf BLUE
+ bgp router-id 10.10.10.63
+ bgp bestpath as-path multipath-relax
+ neighbor swp4 remote-as external
+ !
+ address-family ipv4 unicast
+  redistribute static
+ exit-address-family
+ !
+ address-family l2vpn evpn
+  advertise ipv4 unicast
+ exit-address-family
+!
+line vty
+```
+
+The following `show ip bgp neighbor` command output on border01 shows that 
+
+```
+cumulus@border01:~$ show ip bgp neighbor
+
+```
+
 ## ECMP
 
 BGP supports equal-cost multipathing ({{<link url="Equal-Cost-Multipath-Load-Sharing-Hardware-ECMP" text="ECMP">}}). If a BGP node hears a certain prefix from multiple peers, it has all the information necessary to program the routing table and forward traffic for that prefix through all of these peers. BGP typically choses one best path for each prefix and installs that route in the forwarding table.

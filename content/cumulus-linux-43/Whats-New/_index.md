@@ -34,6 +34,7 @@ Cumulus Linux 4.3.0 supports new platforms, provides bug fixes, and contains sev
 - {{<link url="RDMA-over-Converged-Ethernet-RoCE" text="DoRoCE command">}} to configure RoCE with PFC and ECN on all interfaces
 - {{<link url="Supported-MIBs" text="SNMP MIB for BGP unnumbered peers">}}
 - Multicast routing over VXLAN is now supported on Mellanox switches
+- Distinct AS numbers for different BGP VRF instances are supported in virtual route leaking and EVPN configurations
 
 ### Unsupported Platforms
 

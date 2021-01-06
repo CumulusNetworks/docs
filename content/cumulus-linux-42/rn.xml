@@ -36,6 +36,12 @@ net add vlan 1 ip6-forward off
 <td></td>
 </tr>
 <tr>
+<td>CM-32753</td>
+<td><p>QinQ (802.1Q) packets routed to a layer 3 subinterface are still double tagged with the VLAN of the subinterface and the original inner VLAN when they leave the subinterface.</p></td>
+<td>4.2.0-4.2.1</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-32733</td>
 <td><p>CVE-2020-29479 CVE-2020-29480 CVE-2020-29481 CVE-2020-29482 CVE-2020-29483 CVE-2020-29484 CVE-2020-29485 CVE-2020-29486 CVE-2020-29566 CVE-2020-29570 CVE-2020-29571<br/>
 Several security issues affecting Xenstore could result in cross domain access (denial of service, information leaks or privilege escalation) or denial of service against xenstored.<br/>
@@ -60,6 +66,13 @@ This operation is not supported in the kernel without recreating the SVI. To app
 <td></td>
 </tr>
 <tr>
+<td>CM-32681</td>
+<td><p>Broadcom switches running Cumulus Linux do not support EVPN Multihoming. When a BGP update with EVPN multihoming attributes is received, switchd crashes. <br/>
+EVPN Multihoming is supported on Mellanox switches only.</p></td>
+<td>4.2.1</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-32661</td>
 <td><p>On the Edgecore AS7312 switch, eth0 and swp use the same MAC address.</p></td>
 <td>3.7.14, 4.0.0-4.2.1</td>
@@ -67,7 +80,7 @@ This operation is not supported in the kernel without recreating the SVI. To app
 </tr>
 <tr>
 <td>CM-32647</td>
-<td><p>You might see increasing memory usage when you start asic-monitor.</p></td>
+<td><p>When you start asic-monitor, you might see increasing memory usage.</p></td>
 <td>4.2.1</td>
 <td></td>
 </tr>
@@ -2064,6 +2077,12 @@ CVE-2020-29363: A heap-based buffer overflow has been discovered in the RPC prot
 Vulnerable: 0.23.15-2<br/>
 Fixed: 0.23.15-2_deb10u1</p></td>
 <td>4.0.0-4.2.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32753</td>
+<td><p>QinQ (802.1Q) packets routed to a layer 3 subinterface are still double tagged with the VLAN of the subinterface and the original inner VLAN when they leave the subinterface.</p></td>
+<td>4.2.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>

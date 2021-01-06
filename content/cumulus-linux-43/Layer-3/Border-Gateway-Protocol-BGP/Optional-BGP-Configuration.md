@@ -408,10 +408,10 @@ border01# configure terminal
 border01(config)# router bgp 65132
 border01(config-router)# router bgp 65532 vrf RED
 border01(config-router)# bgp router-id 10.10.10.63
-border01(config-router)# neighbor swp3 remote-as external
+border01(config-router)# neighbor swp3 interface remote-as external
 border01(config-router)# router bgp 65533 vrf BLUE
 border01(config-router)# bgp router-id 10.10.10.63
-border01(config-router)# neighbor swp4 remote-as external
+border01(config-router)# neighbor swp4 interface remote-as external
 border01(config-router)# end
 border01# write memory
 border01# exit
@@ -477,13 +477,6 @@ router bgp 65533 vrf BLUE
  exit-address-family
 !
 line vty
-```
-
-The following `show ip bgp neighbor` command output on border01 shows that 
-
-```
-cumulus@border01:~$ show ip bgp neighbor
-
 ```
 
 ## ECMP

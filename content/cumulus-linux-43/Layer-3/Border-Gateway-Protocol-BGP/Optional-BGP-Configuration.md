@@ -405,11 +405,11 @@ The following example configures VRF RED and VRF BLUE on border01, where fw1 is 
 cumulus@border01:~$ sudo vtysh
 
 border01# configure terminal
-border01(config)# router bgp 65532 vrf RED
+border01(config)# router bgp 65132
+border01(config-router)# router bgp 65532 vrf RED
 border01(config-router)# bgp router-id 10.10.10.63
 border01(config-router)# neighbor swp3 remote-as external
-border01(config-router)# exit
-border01(config)# router bgp 65533 vrf BLUE
+border01(config-router)# router bgp 65533 vrf BLUE
 border01(config-router)# bgp router-id 10.10.10.63
 border01(config-router)# neighbor swp4 remote-as external
 border01(config-router)# end

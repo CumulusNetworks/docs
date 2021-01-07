@@ -1343,21 +1343,23 @@ Paths: (2 available, best #1, table Default-IP-Routing-Table)
 
 ## Graceful BGP Restart
 
-When BGP restarts on a switch, all BGP peers detect that the session goes down and comes back up. This session transition results in a routing flap that causes BGP to recompute routes, generate route updates, and add unnecessary churn to the forwarding tables. The routing flaps can create transient forwarding blackholes and loops, and also consume resources on the switches affected by the flap, which can affect overall network performance.
+When BGP restarts on a switch, all BGP peers detect that the session goes down and comes back up. This session transition results in a routing flap on BGP peers that causes BGP to recompute routes, generate route updates, and add unnecessary churn to the forwarding tables. The routing flaps can create transient forwarding blackholes and loops, and also consume resources on the switches affected by the flap, which can affect overall network performance.
 
-To help minimize the negative effects that occur when BGP restarts, you can enable the BGP graceful restart feature, which enables a BGP speaker to preserve its forwarding state during a BGP restart.
+To help minimize the negative effects that occur when BGP restarts, you can enable the BGP graceful restart feature. This enables a BGP speaker to signal to its peers that it can preserve its forwarding state and continue data forwarding during a restart. It also enables a BGP speaker to continue to use routes previously announced by a peer even after the peer has gone down.
 
-When a BGP session is established, BGP peers use the BGP OPEN message to negotiate a graceful restart. If the BGP peer also supports graceful restart, it is activated for that neighbor session. If the BGP session is lost, the BGP peer (the restart helper) flags all routes associated with the device as stale but continues to forward packets to these routes for a certain period of time. The restarting device also continues to forward packets during the graceful restart. When the graceful restart is complete, routes are obtained from the restart helper so that the device can return to full operation quickly.
+When a BGP session is established, BGP peers use the BGP OPEN message to negotiate a graceful restart. If the BGP peer also supports graceful restart, it is activated for that neighbor session. If the BGP session is lost, the BGP peer (the restart helper) flags all routes associated with the device as stale but continues to forward packets to these routes for a certain period of time. The restarting device also continues to forward packets during the graceful restart. After it comes back up and re-establishes BGP sessions with its peers (restart helpers), it waits to learn all routes announced by these peers before doing a cumulative path selection; after which, it updates its forwarding tables and re-announces the appropriate routes to its peers. These procedures ensure that if there are any routing changes while the BGP speaker is restarting, they are considered post restart and the network converges.
 
 {{%notice note%}}
 BGP graceful restart is supported for both IPv4 and IPv6.
 {{%/notice%}}
 
-You can enable graceful BGP restart in one of two ways:
+BGP graceful restart helper mode is enabled by default. You can enable restarting router mode in one of two ways:
 - Globally, where all BGP peers inherit the graceful restart capability.
 - Per BGP peer or peer group, which can be useful for misbehaving peers or when working with third party devices. You can also configure a peer or peer group to run in helper mode only, where routes originated and advertised from a BGP peer are not deleted.
 
-Graceful BGP restart is run automatically by the {{<link url="Smart-System-Manager" text="Smart System Manager">}} to upgrade or troubleshoot an active switch with minimal disruption to the network.
+You must enable BGP graceful restart (restarting router mode) as described above to achieve a switch restart or switch software upgrade with minimal traffic loss in a BGP configuration. Refer to {{<link url="Smart-System-Manager" text="Smart System Manager">}} for more information.
+
+BGP goes through a graceful restart (as a restarting router) only with a planned switch restart event initiated by the Smart System Manager. Any other restart of BGP, such as an autonomous restart of the BGP daemon due to a software exception or a user-initiated restart of the FRR service, results in BGP going through a regular restart where the BGP session with peers is  terminated explicitly and BGP learned routes are removed from the forwarding plane during restart.
 
 The following example commands enable global graceful BGP restart:
 

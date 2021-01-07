@@ -1359,7 +1359,9 @@ BGP graceful restart helper mode is enabled by default. You can enable restartin
 
 You must enable BGP graceful restart (restarting router mode) as described above to achieve a switch restart or switch software upgrade with minimal traffic loss in a BGP configuration. Refer to {{<link url="Smart-System-Manager" text="Smart System Manager">}} for more information.
 
+{{%notice note%}}
 BGP goes through a graceful restart (as a restarting router) only with a planned switch restart event initiated by the Smart System Manager. Any other restart of BGP, such as an autonomous restart of the BGP daemon due to a software exception or a user-initiated restart of the FRR service, results in BGP going through a regular restart where the BGP session with peers is  terminated explicitly and BGP learned routes are removed from the forwarding plane during restart.
+{{%/notice%}}
 
 The following example commands enable global graceful BGP restart:
 

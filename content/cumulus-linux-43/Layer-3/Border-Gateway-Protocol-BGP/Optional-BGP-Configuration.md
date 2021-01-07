@@ -373,7 +373,7 @@ The MD5 password configured against a BGP listen-range peer group (used to accep
 
 {{%/notice%}}
 
-## Remove Private ASNs
+## Remove Private BGP ASNs
 
 If you use private ASNs in the data center, any routes you send out to the internet contain your private ASNs. You can remove all the private ASNs from routes to a specific neighbor.
 
@@ -389,7 +389,7 @@ You can replace the private ASNs with your public ASN with the following command
 cumulus@switch:~$ net add bgp neighbor swp51 remove-private-AS replace-AS
 ```
 
-## Use Distinct ASNs for Different VRF Instances
+## Multiple BGP ASNs
 
 Cumulus Linux supports the use of distinct ASNs for different VRF instances in an EVPN or a virtual route leaking configuration.
 
@@ -397,7 +397,7 @@ Cumulus Linux supports the use of distinct ASNs for different VRF instances in a
 You can configure distinct ASNs for different VRF instances in FRR only; NCLU commands do not support this option.
 {{%/notice%}}
 
-The following example configures VRF RED and VRF BLUE on border01, where fw1 is in VRF RED with ASN 65532 and fw2 is in VRF RED with ASN 65533.
+The following example configures VRF RED and VRF BLUE on border01, where fw1 is in VRF RED with ASN 65532 and fw2 is in VRF BLUE with ASN 65533.
 
 {{< img src = "/images/cumulus-linux/asn-vrf-config.png" >}}
 
@@ -477,6 +477,44 @@ router bgp 65533 vrf BLUE
  exit-address-family
 !
 line vty
+```
+
+With the above configuration, the `net show bgp vrf RED summary` command shows fw1 (swp3) as the neighbor and VRF RED with ASN 65532.
+
+```
+cumulus@border01:mgmt:~$ net show bgp vrf RED summary
+show bgp vrf RED ipv4 unicast summary
+=========================================
+BGP router identifier 10.10.10.63, local AS number 65532 vrf-id 35
+BGP table version 1
+RIB entries 1, using 192 bytes of memory
+Peers 1, using 21 KiB of memory
+
+Neighbor      V      AS   MsgRcvd   MsgSent   TblVer  InQ OutQ  Up/Down State/PfxRcd   PfxSnt
+fw1(swp3)     4   65199      2015      2015        0    0    0 01:40:36            1        1
+
+Total number of neighbors 1
+...
+```
+
+The `net show bgp summary` command displays the global table.
+
+```
+cumulus@border01:mgmt:~$ net show bgp summary
+show bgp ipv4 unicast summary
+=============================
+BGP router identifier 10.10.10.63, local AS number 65132 vrf-id 0
+BGP table version 3
+RIB entries 5, using 960 bytes of memory
+Peers 2, using 43 KiB of memory
+Peer groups 1, using 64 bytes of memory
+
+Neighbor        V         AS   MsgRcvd   MsgSent   TblVer  InQ OutQ  Up/Down State/PfxRcd   PfxSnt
+spine01(swp51)  4      65199      2223      2223        0    0    0 01:50:18            1        3
+peerlink.4094   4          0         0         0        0    0    0    never         Idle        0
+
+Total number of neighbors 2
+...
 ```
 
 ## ECMP

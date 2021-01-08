@@ -397,7 +397,7 @@ Cumulus Linux supports the use of distinct ASNs for different VRF instances.
 You can configure distinct ASNs for different VRF instances in FRR only; NCLU commands do not support this option.
 {{%/notice%}}
 
-The following example configures VRF RED and VRF BLUE on border01 to use ASN 65532 towards the forwarding switch fw1 and 65533 towards the forwarding switch fw2:
+The following example configures VRF RED and VRF BLUE on border01 to use ASN 65532 towards fw1 and 65533 towards fw2:
 
 {{< img src = "/images/cumulus-linux/asn-vrf-config.png" >}}
 
@@ -405,11 +405,11 @@ The following example configures VRF RED and VRF BLUE on border01 to use ASN 655
 cumulus@border01:~$ sudo vtysh
 
 border01# configure terminal
-border01(config)# router bgp 65132
-border01(config-router)# router bgp 65532 vrf RED
+border01(config)# router bgp 65532 vrf RED
 border01(config-router)# bgp router-id 10.10.10.63
 border01(config-router)# neighbor swp3 interface remote-as external
-border01(config-router)# router bgp 65533 vrf BLUE
+border01(config-router)# exit
+border01(config)# router bgp 65533 vrf BLUE
 border01(config-router)# bgp router-id 10.10.10.63
 border01(config-router)# neighbor swp4 interface remote-as external
 border01(config-router)# end
@@ -493,7 +493,7 @@ show bgp ipv4 unicast summary
 BGP router identifier 10.10.10.63, local AS number 65132 vrf-id 0
 BGP table version 3
 RIB entries 5, using 960 bytes of memory
-Peers 2, using 43 KiB of memory
+Peers 1, using 43 KiB of memory
 Peer groups 1, using 64 bytes of memory
 
 Neighbor        V         AS   MsgRcvd   MsgSent   TblVer  InQ OutQ  Up/Down State/PfxRcd   PfxSnt

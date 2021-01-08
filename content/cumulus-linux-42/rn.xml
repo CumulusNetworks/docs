@@ -19,7 +19,7 @@ Fixed: 0.23.15-2_deb10u1</p></td>
 </tr>
 <tr>
 <td>CM-32829</td>
-<td><p>The NET-SNMP-EXTEND-MIB, disabled to prevent security vulnerability CVE-2020-15862, is re-enabled read-only.</p></td>
+<td><p>The NET-SNMP-EXTEND-MIB, disabled in Cumulus Linux 4.2.1 and 3.7.14 to prevent security vulnerability CVE-2020-15862, is re-enabled read-only.</p></td>
 <td>3.7.14, 4.2.1</td>
 <td></td>
 </tr>

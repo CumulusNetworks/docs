@@ -8,7 +8,7 @@
 </tr>
 <tr>
 <td>CM-32829</td>
-<td><p>The NET-SNMP-EXTEND-MIB, disabled to prevent security vulnerability CVE-2020-15862, is re-enabled read-only.</p></td>
+<td><p>The NET-SNMP-EXTEND-MIB, disabled in Cumulus Linux 4.2.1 and 3.7.14 to prevent security vulnerability CVE-2020-15862, is re-enabled read-only.</p></td>
 <td>3.7.14</td>
 <td></td>
 </tr>
@@ -180,7 +180,7 @@ Nov 12 12:20:05.099943 leaf01 switchd[9867]: hal_bcm_console.c:299 CRIT loading 
 </tr>
 <tr>
 <td>CM-32225</td>
-<td><p>A slow memory leak is observed (1% per 14 hours) in switchd or clagd. <br/>
+<td><p>A slow memory leak is observed (1% per 14 hours) in kmalloc-256.<br/>
 To work around this issue, reboot the switch.</p></td>
 <td>3.7.12-3.7.14</td>
 <td></td>
@@ -2541,7 +2541,7 @@ Nov 12 12:20:05.099943 leaf01 switchd[9867]: hal_bcm_console.c:299 CRIT loading 
 </tr>
 <tr>
 <td>CM-32225</td>
-<td><p>A slow memory leak is observed (1% per 14 hours) in switchd or clagd. <br/>
+<td><p>A slow memory leak is observed (1% per 14 hours) in kmalloc-256.<br/>
 To work around this issue, reboot the switch.</p></td>
 <td>3.7.12-3.7.14</td>
 <td></td>
@@ -5450,7 +5450,7 @@ Nov 12 12:20:05.099943 leaf01 switchd[9867]: hal_bcm_console.c:299 CRIT loading 
 </tr>
 <tr>
 <td>CM-32225</td>
-<td><p>A slow memory leak is observed (1% per 14 hours) in switchd or clagd. <br/>
+<td><p>A slow memory leak is observed (1% per 14 hours) in kmalloc-256.<br/>
 To work around this issue, reboot the switch.</p></td>
 <td>3.7.12-3.7.14</td>
 <td></td>

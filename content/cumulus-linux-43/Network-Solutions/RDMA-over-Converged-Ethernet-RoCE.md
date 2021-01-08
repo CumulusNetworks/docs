@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 1340
 toc: 3
 ---
-*RDMA over Converged Ethernet* ({{<exlink url="https://en.wikipedia.org/wiki/RDMA_over_Converged_Ethernet" text="RoCE">}}) provides the ability to write to compute or storage elements using remote direct memory access (RDMA) over an Ethernet network instead of using host CPUs. RoCE relies on congestion control and lossless Ethernet to operate. Cumulus Linux supports features that can enable lossless Ethernet for RoCE environments.
+*RDMA over Converged Ethernet* ({{<exlink url="https://en.wikipedia.org/wiki/RDMA_over_Converged_Ethernet" text="RoCE">}}) enables you to write to compute or storage elements using remote direct memory access (RDMA) over an Ethernet network instead of using host CPUs. RoCE relies on congestion control and lossless Ethernet to operate. Cumulus Linux supports features that can enable lossless Ethernet for RoCE environments.
 
 {{%notice note%}}
 
@@ -16,67 +16,19 @@ RoCE helps you obtain a *converged network*, where all services run over the Eth
 
 There are two versions of RoCE, which run at separate layers of the stack:
 
-- RoCEv1, which runs at the link layer and cannot be run over a routed network. Therefore, it requires {{<link url="Buffer-and-Queue-Management#priority-flow-control" text="priority flow control">}} (PFC) to be enabled.
-- RoCEv2, which runs over layer 3. Consider using {{<link url="Buffer-and-Queue-Management#congestion-notification" text="explicit congestion notification">}} (ECN) with RoCEv2. Because it is a routed solution, ECN bits are communicated end-to-end across a routed network.
+- RoCEv1 runs at the link layer and cannot be run over a routed network. Therefore, it requires Priority Flow Control (PFC).
+- RoCEv2 runs over layer 3. Because it is a routed solution, congestion-notification (ECN) bits are communicated end-to-end across a routed network.
 
-## Enable RDMA over Converged Ethernet with PFC
+## Enable RDMA over Converged Ethernet lossless (with PFC and ECN)
 
 RoCEv1 uses the Infiniband (IB) Protocol over converged Ethernet. The IB global route header rides directly on top of the Ethernet header. The lossless Ethernet layer handles congestion hop by hop.
 
-To learn the Cumulus Linux settings you need to configure support for RoCEv1; see the example configuration in the {{<link url="Buffer-and-Queue-Management#priority-flow-control" text="PFC">}} section of the {{<link url="Buffer-and-Queue-Management">}} chapter.
-
-On switches with {{<exlink url="https://cumulusnetworks.com/products/hardware-compatibility-list/?asic%5B0%5D=Mellanox%20Spectrum&asic%5B1%5D=Mellanox%20Spectrum_A1" text="Spectrum ASICs">}}, you can use NCLU to configure RoCE with PFC.
-
-To configure RoCE with PFC on all interfaces:
+On switches with {{<exlink url="https://cumulusnetworks.com/products/hardware-compatibility-list/?asic%5B0%5D=Mellanox%20Spectrum&asic%5B1%5D=Mellanox%20Spectrum_A1" text="Spectrum ASICs">}}, use NCLU to configure RoCE with PFC:
 
 ```
 cumulus@switch:~$ net add roce lossless
 cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
-```
-
-These commands create the following configuration in the `/etc/cumulus/datapath/traffic.conf` file. They configure PFC on cos 3 and ECN on cos 3 in the `/etc/cumulus/datapath/traffic.conf` file. They also add a flow control buffer pool for lossless traffic and change the buffer limits in the `/usr/lib/python2.7/dist-packages/cumulus/__chip_config/mlx/datapath.conf` file.
-
-```
-cumulus@switch:~$ sudo cat /etc/cumulus/datapath/traffic.conf
-...
-ecn_red.ROCE_ECN.port_set = swp1,swp2,swp45,swp46,swp47,swp48,swp49,swp50,swp51,swp52
-ecn_red.ROCE_ECN.cos_list = [0,3]
-ecn_red.ROCE_ECN.min_threshold_bytes = 150000
-ecn_red.ROCE_ECN.max_threshold_bytes = 1500000
-ecn_red.ROCE_ECN.ecn_enable = true
-ecn_red.ROCE_ECN.red_enable = false
-ecn_red.ROCE_ECN.probability = 100
-pfc.ROCE_PFC.port_set = swp1,swp2,swp45,swp46,swp47,swp48,swp49,swp50,swp51,swp52
-pfc.ROCE_PFC.cos_list = [3]
-...
-```
-
-To configure RoCE with PFC on a specific interface:
-
-```
-cumulus@switch:~$ net add interface swp1 storage-optimized pfc
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-These commands create the following configuration in the `/etc/cumulus/datapath/traffic.conf` file. They configure PFC on cos 3 and ECN on cos 3 in the `/etc/cumulus/datapath/traffic.conf` file. They also add a flow control buffer pool for lossless traffic and change the buffer limits in the `/usr/lib/python2.7/dist-packages/cumulus/__chip_config/mlx/datapath.conf` file.
-
-```
-ecn_red.ROCE_ECN.port_set = swp1
-ecn_red.ROCE_ECN.cos_list = [3]
-ecn_red.ROCE_ECN.min_threshold_bytes = 150000
-ecn_red.ROCE_ECN.max_threshold_bytes = 1500000
-ecn_red.ROCE_ECN.ecn_enable = true
-ecn_red.ROCE_ECN.red_enable = true
-ecn_red.ROCE_ECN.probability = 100
-pfc.ROCE_PFC.port_set = swp1
-pfc.ROCE_PFC.cos_list = [3]
-pfc.ROCE_PFC.xoff_size = 18000
-pfc.ROCE_PFC.xon_delta = 18000
-pfc.ROCE_PFC.tx_enable = true
-pfc.ROCE_PFC.rx_enable = true
-pfc.ROCE_PFC.port_buffer_bytes = 70000
 ```
 
 {{%notice note%}}
@@ -85,17 +37,13 @@ pfc.ROCE_PFC.port_buffer_bytes = 70000
 
 {{%/notice%}}
 
-## Enable RDMA over Converged Ethernet with ECN
+## Enable RDMA over Converged Ethernet lossy (with ECN)
 
 RoCEv2 requires flow control for lossless Ethernet. RoCEv2 uses the Infiniband (IB) Transport Protocol over UDP. The IB transport protocol includes an end-to-end reliable delivery mechanism and has its own sender notification mechanism.
 
 RoCEv2 congestion management uses RFC 3168 to signal congestion experienced to the receiver. The receiver generates an RoCEv2 congestion notification packet directed to the source of the packet.
 
-To learn the Cumulus Linux settings, you need to configure support for RoCEv2; see the example configuration in the {{<link url="Buffer-and-Queue-Management#congestion-notification" text="ECN">}} section of the {{<link url="Buffer-and-Queue-Management">}} chapter.
-
-On switches with {{<exlink url="https://cumulusnetworks.com/products/hardware-compatibility-list/?asic%5B0%5D=Mellanox%20Spectrum&asic%5B1%5D=Mellanox%20Spectrum_A1" text="Spectrum ASICs">}}, you can use NCLU to configure RoCE with ECN.
-
-To configure RoCE with ECN on all interfaces:
+On switches with {{<exlink url="https://cumulusnetworks.com/products/hardware-compatibility-list/?asic%5B0%5D=Mellanox%20Spectrum&asic%5B1%5D=Mellanox%20Spectrum_A1" text="Spectrum ASICs">}}, use NCLU to configure RoCE with ECN:
 
 ```
 cumulus@switch:~$ net add roce lossy
@@ -103,43 +51,36 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-These commands create the following configuration in the `/etc/cumulus/datapath/traffic.conf` file:
+## Considerations
 
-```
-cumulus@switch:~$ sudo cat /etc/cumulus/datapath/traffic.conf
-...
-ecn_red.ROCE_ECN.port_set = swp1,swp2,swp45,swp46,swp47,swp48,swp49,swp50,swp51,swp52
-ecn_red.ROCE_ECN.cos_list = [0,3]
-ecn_red.ROCE_ECN.min_threshold_bytes = 150000
-ecn_red.ROCE_ECN.max_threshold_bytes = 1500000
-ecn_red.ROCE_ECN.ecn_enable = true
-ecn_red.ROCE_ECN.red_enable = false
-ecn_red.ROCE_ECN.probability = 100
-```
+- Do not run any other NCLU commands with RoCE commands when you commit the configuration with `net commit`.
+- Make sure there is no pending configuration when you commit the RoCE configuration.
+- The `net add interface <interface> storage-optimized` and `net add interface <interface> storage-optimized pfc` commands configure RoCE with PFC and RoCE with ECN on a specific interface. These commands will be deprecated in a future release. If you configured RoCE on a specific interface in an earlier Cumulus Linux release, you need to migrate to the new RoCE commands (`net add roce lossy` and `net add roce lossless`).
+   {{< expand "Recommended Workflow for Port Breakout Configuration" >}}
 
-```
-cumulus@switch:~$ net add interface swp1 storage-optimized
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
+1. Delete the RoCE configuration:
 
-These commands create the following configuration in the `/etc/cumulus/datapath/traffic.conf` file:
+   ```
+   cumulus@switch:~$ net del roce
+   cumulus@switch:~$ net commit
+   ```
 
-```
-cumulus@switch:~$ sudo cat /etc/cumulus/datapath/traffic.conf
-...
-ecn_red.ROCE_ECN.port_set = swp1
-ecn_red.ROCE_ECN.cos_list = [3]
-ecn_red.ROCE_ECN.min_threshold_bytes = 150000
-ecn_red.ROCE_ECN.max_threshold_bytes = 1500000
-ecn_red.ROCE_ECN.ecn_enable = true
-ecn_red.ROCE_ECN.red_enable = true
-ecn_red.ROCE_ECN.probability = 100
-```
+2. Apply the breakout configuration with NCLU commands:
 
-The `storage-optimized` command changes the buffer limits in the `/usr/lib/python2.7/dist-packages/cumulus/__chip_config/mlx/datapath.conf` file.
+   ```
+   cumulus@switch:~$ net add interface swp5 breakout <breakout configuration>
+   cumulus@switch:~$ net commit
+   ```
 
-It also enables drop behaviors and Random Early Detection (RED). RED identifies packets that have been added to a long egress queue. The ECN action marks the packet and forwards it, requiring the packet to be ECT-capable. However, the drop action drops the packet, requiring the packet to **not** be ECT-capable.
+3. Enable RoCE again:
+
+   ```
+   cumulus@switch:~$ net add roce lossless|lossy
+   cumulus@switch:~$ net commit
+   ```
+{{< /expand >}}
+
+   If you prefer *not* to migrate to the new RoCE commands, you can run `net add storage-optimized correct-legacy-qos-config` to correct storage-optimized issues. Be aware that this command does not perform any migration; it only enables you to correct legacy configurations.
 
 ## Related Information
 

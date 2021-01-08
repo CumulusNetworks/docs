@@ -397,7 +397,7 @@ Cumulus Linux supports the use of distinct ASNs for different VRF instances.
 You can configure distinct ASNs for different VRF instances in FRR only; NCLU commands do not support this option.
 {{%/notice%}}
 
-The following example configures VRF RED and VRF BLUE on border01, where border01 uses ASN 65532 and 65533 towards the forwarding switch fw1:
+The following example configures VRF RED and VRF BLUE on border01 to use ASN 65532 and 65533 towards the forwarding switch fw1:
 
 {{< img src = "/images/cumulus-linux/asn-vrf-config.png" >}}
 
@@ -444,11 +444,6 @@ router bgp 65132
  address-family ipv4 unicast
   redistribute connected
  exit-address-family
- !
- address-family l2vpn evpn
-  neighbor underlay activate
-  advertise-all-vni
- exit-address-family
 !
 router bgp 65532 vrf RED
  bgp router-id 10.10.10.63
@@ -457,10 +452,6 @@ router bgp 65532 vrf RED
  !
  address-family ipv4 unicast
   redistribute static
- exit-address-family
- !
- address-family l2vpn evpn
-  advertise ipv4 unicast
  exit-address-family
 !
 router bgp 65533 vrf BLUE
@@ -471,15 +462,11 @@ router bgp 65533 vrf BLUE
  address-family ipv4 unicast
   redistribute static
  exit-address-family
- !
- address-family l2vpn evpn
-  advertise ipv4 unicast
- exit-address-family
 !
 line vty
 ```
 
-With the above configuration, the `net show bgp vrf RED summary` command shows the local AS as 65532.
+With the above configuration, the `net show bgp vrf RED summary` command shows the local ASN as 65532.
 
 ```
 cumulus@border01:mgmt:~$ net show bgp vrf RED summary

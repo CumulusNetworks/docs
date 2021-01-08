@@ -391,13 +391,13 @@ cumulus@switch:~$ net add bgp neighbor swp51 remove-private-AS replace-AS
 
 ## Multiple BGP ASNs
 
-Cumulus Linux supports the use of distinct ASNs for different VRF instances in an EVPN or a virtual route leaking configuration.
+Cumulus Linux supports the use of distinct ASNs for different VRF instances.
 
 {{%notice note%}}
 You can configure distinct ASNs for different VRF instances in FRR only; NCLU commands do not support this option.
 {{%/notice%}}
 
-The following example configures VRF RED and VRF BLUE on border01, where fw1 is in VRF RED with ASN 65532 and fw2 is in VRF BLUE with ASN 65533.
+The following example configures VRF RED and VRF BLUE on border01, where border01 uses ASN 65532 and 65533 towards the forwarding switch fw1:
 
 {{< img src = "/images/cumulus-linux/asn-vrf-config.png" >}}
 
@@ -479,7 +479,7 @@ router bgp 65533 vrf BLUE
 line vty
 ```
 
-With the above configuration, the `net show bgp vrf RED summary` command shows fw1 (swp3) as the neighbor and VRF RED with ASN 65532.
+With the above configuration, the `net show bgp vrf RED summary` command shows the local AS as 65532.
 
 ```
 cumulus@border01:mgmt:~$ net show bgp vrf RED summary
@@ -497,7 +497,7 @@ Total number of neighbors 1
 ...
 ```
 
-The `net show bgp summary` command displays the global table.
+The `net show bgp summary` command displays the global table, where the local ASN 65132 is used to peer with spine01.
 
 ```
 cumulus@border01:mgmt:~$ net show bgp summary

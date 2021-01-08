@@ -397,7 +397,7 @@ Cumulus Linux supports the use of distinct ASNs for different VRF instances.
 You can configure distinct ASNs for different VRF instances in FRR only; NCLU commands do not support this option.
 {{%/notice%}}
 
-The following example configures VRF RED and VRF BLUE on border01 to use ASN 65532 and 65533 towards the forwarding switch fw1:
+The following example configures VRF RED and VRF BLUE on border01 to use ASN 65532 towards the forwarding switch fw1 and 65533 towards the forwarding switch fw2:
 
 {{< img src = "/images/cumulus-linux/asn-vrf-config.png" >}}
 

@@ -511,9 +511,8 @@ Peer groups 1, using 64 bytes of memory
 
 Neighbor        V         AS   MsgRcvd   MsgSent   TblVer  InQ OutQ  Up/Down State/PfxRcd   PfxSnt
 spine01(swp51)  4      65199      2223      2223        0    0    0 01:50:18            1        3
-peerlink.4094   4          0         0         0        0    0    0    never         Idle        0
 
-Total number of neighbors 2
+Total number of neighbors 1
 ...
 ```
 

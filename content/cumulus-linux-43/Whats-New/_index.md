@@ -23,7 +23,7 @@ Cumulus Linux 4.3.0 supports new platforms, provides bug fixes, and contains sev
 - {{<link url="Smart-System-Manager" text="Smart System Manager">}}, which enables you to upgrade and troubleshoot an active switch with minimal disruption to the network
 - BGP enhancements:
   - {{<link url="Optional-BGP-Configuration/#graceful-bgp-restart" text="BGP graceful restart">}}
-  - {{<link url="Optional-BGP-Configuration/#use-distinct-asns-for-different-vrf-instances" text="Distinct AS numbers for different BGP VRF instances">}} are supported in VRF route leaking and EVPN configurations
+  - {{<link url="Optional-BGP-Configuration/#multiple-bgp-asns" text="Multiple ASNs for different VRF instances">}}
 - {{<link url="SPAN-and-ERSPAN" text="NCLU commands for SPAN and ERSPAN">}}
 - {{<link url="DHCP-Snooping" text="DHCP snooping">}}
 - QoS enhancements:

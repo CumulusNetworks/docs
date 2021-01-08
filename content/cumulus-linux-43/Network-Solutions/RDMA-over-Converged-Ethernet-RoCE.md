@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 1340
 toc: 3
 ---
-*RDMA over Converged Ethernet* ({{<exlink url="https://en.wikipedia.org/wiki/RDMA_over_Converged_Ethernet" text="RoCE">}}) enables you to write to compute or storage elements using remote direct memory access (RDMA) over an Ethernet network instead of using host CPUs. RoCE relies on congestion control and lossless Ethernet to operate. Cumulus Linux supports features that can enable lossless Ethernet for RoCE environments.
+RDMA over Converged Ethernet ({{<exlink url="https://en.wikipedia.org/wiki/RDMA_over_Converged_Ethernet" text="RoCE">}}) enables you to write to compute or storage elements using remote direct memory access (RDMA) over an Ethernet network instead of using host CPUs. RoCE relies on congestion control and lossless Ethernet to operate. Cumulus Linux supports features that can enable lossless Ethernet for RoCE environments.
 
 {{%notice note%}}
 
@@ -62,7 +62,7 @@ cumulus@switch:~$ net commit
 
 The `net add interface <interface> storage-optimized` and `net add interface <interface> storage-optimized pfc` commands configure RoCE on a specific interface. These commands will be deprecated in a future release. If you configured RoCE on a specific interface in an earlier Cumulus Linux release, you need to migrate to the new RoCE commands (`net add roce lossy` and `net add roce lossless`).
 
-{{< expand "Recommended Workflow for Port Breakout Configuration" >}}
+Follow this recommended procedure for port breakout configuration:
 
 1. Delete the RoCE configuration with the `net del roce` command:
 
@@ -80,15 +80,12 @@ The `net add interface <interface> storage-optimized` and `net add interface <in
 
 3. Enable RoCE with the `net add roce lossless` or `net add roce lossy` command. For example:
 
-
    ```
    cumulus@switch:~$ net add roce lossless
    cumulus@switch:~$ net commit
    ```
 
-{{< /expand >}}
-
-If you prefer *not* to migrate to the new RoCE commands, you can run `net add storage-optimized correct-legacy-qos-config` to correct storage-optimized issues. Be aware that this command does not perform any migration; it only enables you to correct legacy configurations.
+If you prefer *not* to migrate to the new RoCE commands, you can run `net add storage-optimized correct-legacy-qos-config` to correct storage-optimized issues. This command does *not* perform any migration; it only enables you to correct legacy configurations.
 
 ## Related Information
 

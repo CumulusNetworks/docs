@@ -373,7 +373,7 @@ The MD5 password configured against a BGP listen-range peer group (used to accep
 
 {{%/notice%}}
 
-## Remove Private ASNs
+## Remove Private BGP ASNs
 
 If you use private ASNs in the data center, any routes you send out to the internet contain your private ASNs. You can remove all the private ASNs from routes to a specific neighbor.
 
@@ -389,15 +389,15 @@ You can replace the private ASNs with your public ASN with the following command
 cumulus@switch:~$ net add bgp neighbor swp51 remove-private-AS replace-AS
 ```
 
-## Use Distinct ASNs for Different VRF Instances
+## Multiple BGP ASNs
 
-Cumulus Linux supports the use of distinct ASNs for different VRF instances in an EVPN or a virtual route leaking configuration.
+Cumulus Linux supports the use of distinct ASNs for different VRF instances.
 
 {{%notice note%}}
 You can configure distinct ASNs for different VRF instances in FRR only; NCLU commands do not support this option.
 {{%/notice%}}
 
-The following example configures VRF RED and VRF BLUE on border01, where fw1 is in VRF RED with ASN 65532 and fw2 is in VRF RED with ASN 65533.
+The following example configures VRF RED and VRF BLUE on border01 to use ASN 65532 towards fw1 and 65533 towards fw2:
 
 {{< img src = "/images/cumulus-linux/asn-vrf-config.png" >}}
 
@@ -405,11 +405,11 @@ The following example configures VRF RED and VRF BLUE on border01, where fw1 is 
 cumulus@border01:~$ sudo vtysh
 
 border01# configure terminal
-border01(config)# router bgp 65132
-border01(config-router)# router bgp 65532 vrf RED
+border01(config)# router bgp 65532 vrf RED
 border01(config-router)# bgp router-id 10.10.10.63
 border01(config-router)# neighbor swp3 interface remote-as external
-border01(config-router)# router bgp 65533 vrf BLUE
+border01(config-router)# exit
+border01(config)# router bgp 65533 vrf BLUE
 border01(config-router)# bgp router-id 10.10.10.63
 border01(config-router)# neighbor swp4 interface remote-as external
 border01(config-router)# end
@@ -444,11 +444,6 @@ router bgp 65132
  address-family ipv4 unicast
   redistribute connected
  exit-address-family
- !
- address-family l2vpn evpn
-  neighbor underlay activate
-  advertise-all-vni
- exit-address-family
 !
 router bgp 65532 vrf RED
  bgp router-id 10.10.10.63
@@ -457,10 +452,6 @@ router bgp 65532 vrf RED
  !
  address-family ipv4 unicast
   redistribute static
- exit-address-family
- !
- address-family l2vpn evpn
-  advertise ipv4 unicast
  exit-address-family
 !
 router bgp 65533 vrf BLUE
@@ -471,12 +462,45 @@ router bgp 65533 vrf BLUE
  address-family ipv4 unicast
   redistribute static
  exit-address-family
- !
- address-family l2vpn evpn
-  advertise ipv4 unicast
- exit-address-family
 !
 line vty
+```
+
+With the above configuration, the `net show bgp vrf RED summary` command shows the local ASN as 65532.
+
+```
+cumulus@border01:mgmt:~$ net show bgp vrf RED summary
+show bgp vrf RED ipv4 unicast summary
+=========================================
+BGP router identifier 10.10.10.63, local AS number 65532 vrf-id 35
+BGP table version 1
+RIB entries 1, using 192 bytes of memory
+Peers 1, using 21 KiB of memory
+
+Neighbor      V      AS   MsgRcvd   MsgSent   TblVer  InQ OutQ  Up/Down State/PfxRcd   PfxSnt
+fw1(swp3)     4   65199      2015      2015        0    0    0 01:40:36            1        1
+
+Total number of neighbors 1
+...
+```
+
+The `net show bgp summary` command displays the global table, where the local ASN 65132 is used to peer with spine01.
+
+```
+cumulus@border01:mgmt:~$ net show bgp summary
+show bgp ipv4 unicast summary
+=============================
+BGP router identifier 10.10.10.63, local AS number 65132 vrf-id 0
+BGP table version 3
+RIB entries 5, using 960 bytes of memory
+Peers 1, using 43 KiB of memory
+Peer groups 1, using 64 bytes of memory
+
+Neighbor        V         AS   MsgRcvd   MsgSent   TblVer  InQ OutQ  Up/Down State/PfxRcd   PfxSnt
+spine01(swp51)  4      65199      2223      2223        0    0    0 01:50:18            1        3
+
+Total number of neighbors 1
+...
 ```
 
 ## ECMP

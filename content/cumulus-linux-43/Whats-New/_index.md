@@ -31,7 +31,6 @@ Cumulus Linux 4.3.0 supports new platforms, provides bug fixes, and contains sev
   - {{<link url="Buffer-and-Queue-Management#scheduling-weights-per-egress-queue" text="Scheduling weights per egress queue">}}
 - {{<link url="Netfilter-ACLs/#nonatomic-update-mode-and-atomic-update-mode" text="Incremental nonatomic updates">}} now supported on Mellanox switches
 - {{<link title="Mellanox What Just Happened (WJH)" text="Mellanox WJH commands">}} to troubleshoot and diagnose network issues
-- {{<link url="EVPN-Multihoming" text="EVPN multihoming">}} now supports LACP bypass
 - {{<link url="Docker-on-Cumulus-Linux" text="Docker runtime ">}} included by default on Cumulus Linux
 - {{<link url="RDMA-over-Converged-Ethernet-RoCE" text="DoRoCE command">}} to configure RoCE with PFC and ECN on all interfaces
 - {{<link url="Supported-MIBs" text="SNMP MIB for BGP unnumbered peers">}}

@@ -83,11 +83,11 @@ To configure a PBR policy:
     cumulus@switch:~$ net add pbr-map map1 seq 1 set nexthop-group group1
     ```
 
-<!-- FOR 4.3 RELEASE 3. If you want the rule to use a specific VRF table as its lookup, set the VRF. If no VRF is set, the rule uses the VRF table the interface is in as its lookup. The example command below sets the rule to use the `dmz` VRF table:
+If you want the rule to use a specific VRF table as its lookup, set the VRF. If no VRF is set, the rule uses the VRF table the interface is in as its lookup. The example command below sets the rule to use the `dmz` VRF table:
 
     ```
     cumulus@switch:~$ net add pbr-map map1 seq 1 set vrf dmz
-    ```-->
+    ```
 
 3. Assign the PBR policy to an ingress interface. The example command below assigns the PBR policy `map1` to interface swp51:
 

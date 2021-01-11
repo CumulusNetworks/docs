@@ -1327,6 +1327,48 @@ Paths: (2 available, best #1, table Default-IP-Routing-Table)
       Last update: Mon Sep 18 17:01:18 2017
 ```
 
+As optional configuration, you can create a route map to do a prepend AS so that reduced preference using a longer AS path can be propagated to other parts of network.
+
+{{< expand "Example Configuration Using a Route Map" >}}
+
+```
+router bgp 65101
+ bgp router-id 10.10.10.1
+ bgp graceful-restart
+ bgp bestpath as-path multipath-relax
+ neighbor fabric peer-group
+ neighbor swp51 interface remote-as external
+
+ address-family ipv4 unicast
+  redistribute connected
+  neighbor swp51 route-map prependas out
+ exit-address-family
+
+bgp community-list standard gshut seq 5 permit graceful-shutdown
+
+route-map prependas permit 10
+ match community gshut exact-match
+ set as-path prepend 65101
+
+route-map prependas permit 20
+```
+
+With the above configuration, the peer sees:
+
+```
+cumulus@spine01:~$ net show bgp 10.10.10.1/32
+BGP routing table entry for 10.10.10.1/32
+Paths: (1 available, best #1, table default)
+Advertised to non peer-group peers:
+65101 65101
+10.10.10.1 from leaf01(10.10.10.1) (10.10.10.1)
+Origin incomplete, metric 0, localpref 0, valid, external, bestpath-from-AS 65101, best (First path received)
+Community: graceful-shutdown
+Last update: Sun Dec 20 03:04:53 2020
+```
+
+{{< /expand >}}
+
 ## Graceful BGP Restart
 
 When BGP restarts on a switch, all BGP peers detect that the session goes down and comes back up. This session transition results in a routing flap on BGP peers that causes BGP to recompute routes, generate route updates, and add unnecessary churn to the forwarding tables. The routing flaps can create transient forwarding blackholes and loops, and also consume resources on the switches affected by the flap, which can affect overall network performance.

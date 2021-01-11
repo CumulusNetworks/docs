@@ -10,6 +10,8 @@ If you intend to use network templates or configuration profiles, the recommende
 
 {{<figure src="/images/netq/lcm-switch-config-workflow-320.png" width="400">}}
 
+If you do not want to use the templates or profiles, simply skip to switch configuration.
+
 ## Manage Network Templates
 
 Network templates provide administrators the option to create switch configuration profiles that can be applied to multiple switches. They can help reduce inconsistencies with switch configuration and speed the process of initial configuration and upgrades. No default templates are provided.
@@ -40,25 +42,26 @@ To create a network template:
 
 3. Click **Add** on the Network Templates card.
 
-    {{<figure src="/images/netq/lcm-ntwk-template-create-new-320.png" width="700">}}
+    {{<figure src="/images/netq/lcm-ntwk-template-forms-general-tab-330.png" width="700">}}
 
-4. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18">}} Create New.
-
-    {{<figure src="/images/netq/lcm-ntwk-template-forms-snmp-320.png" width="700">}}
-
-5. Decide which aspects of configuration you want included in this template: SNMP, NTP, and/or User accounts.
-
+4. Decide which aspects of configuration you want included in this template: SNMP, NTP, LLDP, and/or User accounts.
     {{<notice tip>}}
 
-You can specify your template in any order, but to complete the configuration, you must open the User form to click <strong>Save and Finish</strong>.
+You can specify your template in any order, but to complete the configuration, you must open the <strong>User</strong> form to click <strong>Save and Finish</strong>.
 
     {{</notice>}}
 
-6. Configure the template using the following instructions.
+5. Configure the template using the following instructions.
 
-{{< tabs "TabID51" >}}
+    {{< tabs "TabID51" >}}
 
 {{< tab "General" >}}
+
+1. Provide a name for the template. This field is required and can be a maximum of 22 characters, including spaces.
+
+2. Accept the VRF selection of *Management*, or optionally change it to *Default*. Note that changing the VRF may cause some agents to become unresponsive.
+
+3. Click **Save and Continue to SNMP** or select another tab.
 
 {{< /tab >}}
 
@@ -66,59 +69,95 @@ You can specify your template in any order, but to complete the configuration, y
 
 SNMP provides a way to query, monitor, and manage your devices in addition to NetQ.
 
+{{<figure src="/images/netq/lcm-ntwk-template-forms-snmp-tab-330.png" width="700">}}
+
 To create a network template with SNMP parameters included:
 
-1. Provide a name for the template. This field is required and can be a maximum of 22 characters, including spaces.
+1. Enter the IP addresses of the SNMP Agents on the switches and hosts in your network.
 
-    All other parameters are optional. Configure those as desired, and described here.
+    You can enter individual IP addresses, a range of IP addresses, or select from the address categories provided (click {{<img src="/images/netq/Down.svg" width="14">}}).
 
-2. Enter a comma-separated list of IP addresses of the SNMP Agents on the switches and hosts in your network.
+    After adding one of these, you can create another set of addresses by clicking {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18">}}. Continue until you have entered all desired SNMP agent addresses.
 
-3. Accept the management VRF or change to the default VRF.
+2. Accept the management VRF or change to the default VRF.
+
+3. Enter the SNMP username(s) of persons who have access to the SNMP server.
 
 4. Enter contact information for the SNMP system administrator, including an email address or phone number, their location, and name.
 
 5. Restrict the hosts that should accept SNMP packets:
 
-    1. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18">}}.
+    Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18">}} next to **Add Read only Community**.
 
-    2. Enter the name of an IPv4 or IPv6 community string.
+    {{<figure src="/images/netq/lcm-ntwk-template-forms-snmp-rocomm-330.png" width="700">}}
 
-    3. Indicate which hosts should accept messages:
+<div style="padding-left: 18px;"><ul><li>Enter the name of an IPv4 or IPv6 community string.</li>
 
-        Accept *any* to indicate all hosts are to accept messages (default), or enter the hostnames or IP addresses of the specific hosts that should accept messages.
+<li>Indicate which hosts should accept messages:<br>
+Accept <em>any</em> to indicate all hosts are to accept messages (default), or enter the hostnames or IP addresses of the specific hosts that should accept messages.</li>
 
-    4. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18">}} to add additional community strings.
+<li>Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18">}} to add additional community strings.</li></div>
 
 6. Specify traps to be included:
 
-    1. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18">}}.
+    Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18">}} next to **Add traps**.
 
-    2. Specify the traps as follows:
+    {{<figure src="/images/netq/lcm-ntwk-template-forms-snmp-traps-330.png" width="700">}}
 
-        | Parameter | Description |
-        | ---- | ---- |
-        | Load(1 min) | Threshold CPU load must cross within a minute to trigger a trap |
-        | Trap link down frequency | Toggle on to set the frequency at which to collect link down trap information. Default value is 60 seconds. |
-        | Trap link up frequency | Toggle on to set the frequency at which to collect link up trap information. Default value is 60 seconds.  |
-        | IQuery Secname | Security name for SNMP query |
-        | Trap Destination IP | IPv4 or IPv6 address where the trap information is to be sent. This can be a local host or other valid location. |
-        | Community Password | Authorization password. Any valid string, where an exclamation mark (!) is the only allowed special character. |
-        | Version | SNMP version to use |
+<div style="padding-left: 18px;"><ul><li>Specify the traps as follows:<br>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Load (1 min)</td>
+<td>Threshold CPU load must cross within a minute to trigger a trap</td>
+</tr>
+<tr>
+<td>Trap link down frequency</td>
+<td>Toggle on to set the frequency at which to collect link down trap information. Default value is 60 seconds.</td>
+</tr>
+<tr>
+<td>Trap link up frequency</td>
+<td>Toggle on to set the frequency at which to collect link up trap information. Default value is 60 seconds.</td>
+</tr>
+<tr>
+<td>IQuery Secname</td>
+<td>Security name for SNMP query</td>
+</tr>
+<tr>
+<td>Trap Destination IP</td>
+<td>IPv4 or IPv6 address where the trap information is to be sent. This can be a local host or other valid location.</td>
+</tr>
+<tr>
+<td>Community Password</td>
+<td>Authorization password. Any valid string, where an exclamation mark (!) is the only allowed special character.</td>
+</tr>
+<tr>
+<td>Version</td>
+<td>SNMP version to use</td>
+</tr>
+</tbody>
+</table>
+</li></div>
 
 7. If you are using SNMP version 3, specify relevant V3 support parameters:
 
-    1. Enter the user name of someone who has full access to the SNMP server.
+    Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18">}} next to **Add V3 support**.
 
-    2. Enter the user name of someone who has only read access to the SNMP server.
+    {{<figure src="/images/netq/lcm-ntwk-template-forms-snmp-v3supp-330.png" width="700">}}
 
-    3. Toggle **Authtrap** to enable authentication for users accessing the SNMP server.
+<div style="padding-left: 18px;"><ul>
+<li>Toggle <strong>Authtrap enable</strong> to configure authentication for users accessing the SNMP server.</li>
+<li>Select an authorization type.<br>
+For either MDS or SHA, enter an authorization key and optionally specify AES or DES encryption.</li>
+</ul></div>
 
-    4. Select an authorization type.
-
-        For either MDS or SHA, enter an authorization key and optionally specify AES or DES encryption.
-
-8. Click **Save and Continue**.
+8. Click **Save and Continue to NTP** or select another tab.
 
 {{< /tab >}}
 
@@ -130,7 +169,7 @@ To create a network template with NTP parameters included:
 
 1. Click NTP.
 
-    {{<figure src="/images/netq/lcm-ntwk-template-forms-ntp-320.png" width="700">}}
+    {{<figure src="/images/netq/lcm-ntwk-template-forms-ntp-330.png" width="700">}}
 
 2. Enter the address of one or more of your NTP servers. Toggle to choose between Burst and IBurst to specify whether the server should send a burst of packets when the server is reachable or unreachable, respectively.
 
@@ -138,71 +177,137 @@ To create a network template with NTP parameters included:
 
 4. Enter the interfaces that the NTP server should listen to for synchronization. This can be a IP, broadcast, manycastclient, or reference clock address.
 
-5. Enter the timezone of the NTP server.
+5. Select the timezone of the NTP server.
 
 6. Specify advanced parameters:
 
-    1. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18">}} **Advanced**.
+    Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18">}} next to **Advanced**.
 
-    2. Specify the location of a Drift file containing the frequency offset between the NTP server clock and the UTC clock. It is used to adjust the system clock frequency on every system or service start. Be sure that the location you enter can be written by the NTP daemon.
+    {{<figure src="/images/netq/lcm-ntwk-template-forms-ntpadv-330.png" width="700">}}
 
-    3. Enter an interface for the NTP server to ignore. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18">}} to add more interfaces to be ignored.
+<div style="padding-left: 18px;"><ul>
+<li>Specify the location of a Drift file containing the frequency offset between the NTP server clock and the UTC clock. It is used to adjust the system clock frequency on every system or service start. Be sure that the location you enter can be written by the NTP daemon.</li>
 
-    4. Enter one or more interfaces that xxx. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18">}} to add more interfaces to be dropped.
+<li>Enter an interface for the NTP server to ignore. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18">}} to add more interfaces to be ignored.</li>
 
-    5. Restrict query/configuration access to the NTP server.
+<li>Enter one or more interfaces from which the NTP server should drop all messages. ??? Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18">}} to add more interfaces to be dropped.</li>
 
-        Enter **restrict \<values\>**. Common values include:
+<li>Restrict query and configuration access to the NTP server.<br>
+For each restriction, enter <strong>restrict</strong> followed by the value. Common values include:<br>
+<table>
+<thead>
+<tr>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>default</td>
+<td>Block all queries except as explicitly indicated</td>
+</tr>
+<tr>
+<td>kod (kiss-o-death)</td>
+<td>block all, but time and statistics queries</td>
+</tr>
+<tr>
+<td>nomodify</td>
+<td>block changes to NTP configuration</td>
+</tr>
+<tr>
+<td>notrap</td>
+<td>block control message protocol traps</td>
+</tr>
+<tr>
+<td>nopeer</td>
+<td>block the creation of a peer</td>
+</tr>
+<tr>
+<td>noquery</td>
+<td>block NTP daemon queries, but allow time queries</td>
+</tr>
+</tbody>
+</table>
+Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18">}} to add more access control restrictions.</li>
 
-        | Value | Description |
-        | ---- | ---- |
-        | default | Block all queries except as explicitly indicated |
-        | kod (kiss-o-death) | block all, but time and statistics queries |
-        | nomodify | block changes to NTP configuration |
-        | notrap | block control message protocol traps |
-        | nopeer | block the creation of a peer |
-        | noquery | block NTP daemon queries, but allow time queries |
+<li>Restrict administrative control (host) access to the NTP server.<br>
+Enter the IP address for a host or set of hosts, with or without a mask, followed by a restriction value (as described in step 5.) If no mask is provided, 255.255.255.255 is used. If *default* is specified for query/configuration access, entering the IP address and mask for a host or set of hosts in this field <em>allows</em> query access for these hosts (explicit indication).<br>
+Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18">}} to add more administrative control restrictions.</li>
+</ul></div>
 
-        Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18">}} to add more access control restrictions.
-
-    6. Restrict administrative control (host) access to the NTP server.
-
-        Enter the IP address for a host or set of hosts, with or without a mask, followed by a restriction value (as described in step 5.) If no mask is provided, 255.255.255.255 is used. If *default* is specified for query/configuration access, entering the IP address and mask for a host or set of hosts in this field *allows* query access for these hosts (explicit indication).
-
-        Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18">}} to add more administrative control restrictions.
-
-7. Click **Save and Continue**.
+7. Click **Save and Continue to LLDP** or select another tab.
 
 {{< /tab >}}
 
 {{< tab "LLDP" >}}
 
-intro; defaults???
+LLDP advertises device identities, capabilities, and neighbors. The network template enables you to specify how often you want the advertisement to take place and how long those messages should remain alive on the network.
 
 To create a network template with LLDP parameters included:
 
 1. Click LLDP.
 
-2. Enter the interval, in seconds, that you want LLDP to transmit neighbor information and statistics???
+    {{<figure src="/images/netq/lcm-ntwk-template-forms-lldp-330.png" width="700">}}
 
-3. Enter how many times the transmit interval you want to hold transmit traffic when xxx. Is this the system refresh timer? default =20?
+2. Enter the interval, in seconds, that you want LLDP to transmit neighbor information and statistics.
 
-4. Optionally enable advertisement of (optional/custom???) IEEE 802.1Q TLV (type-length-value) structures, including port description, system name, description and capabilities, management address, and custom names. Mandatory TLVs include end of LLDPPDU, chassis ID, port ID, and time-to-live.
+3. Enter how many times the transmit interval you want for LLDP messages to live on the network.
 
-5. Optionally enable advertisement of system capability codes for the nodes. (if you enable this, must step 4 also be enabled???)
+4. Optionally, specify advanced features by clicking {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18">}} next to **Advanced**.
 
-    | Code | Capability |
-    | --- | --- |
-    | B	 | Bridge (Switch) |
-    | C	| DOCSIS Cable Device |
-    | O	| Other |
-    | P	| Repeater |
-    | R	| Router |
-    | S	| Station |
-    | T	| Telephone |
-    | W	| WLAN Access Point |
+    {{<figure src="/images/netq/lcm-ntwk-template-forms-lldpadv-330.png" width="700">}}
 
-6. Optionally enable advertisement of the IP address used for management of the nodes. (ipv4 or v6? both? why is this separate from step 4?)
+<div style="padding-left: 18px;"><ul>
+<li>Enable advertisement of (optional/custom???) IEEE 802.1Q TLV (type-length-value) structures, including port description, system name, description and capabilities, management address, and custom names. Mandatory TLVs include end of LLDPPDU, chassis ID, port ID, and time-to-live.</li>
+<li>Enable advertisement of system capability codes for the nodes. For example:<br>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Capability</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>B</td>
+<td>Bridge (Switch)</td>
+</tr>
+<tr>
+<td>C</td>
+<td>DOCSIS Cable Device</td>
+</tr>
+<tr>
+<td>O</td>
+<td>Other</td>
+</tr>
+<tr>
+<td>P</td>
+<td>Repeater</td>
+</tr>
+<tr>
+<td>R</td>
+<td>Router</td>
+</tr>
+<tr>
+<td>S</td>
+<td>Station</td>
+</tr>
+<tr>
+<td>T</td>
+<td>Telephone</td>
+</tr>
+<tr>
+<td>W</td>
+<td>WLAN Access Point</td>
+</tr>
+</tbody>
+</table>
+</li>
+
+<li>Enable advertisement of the IP address used for management of the nodes.
+</ul></div>
+
+5. Click **Save and Continue to User** or select another tab.
 
 {{< /tab >}}
 
@@ -214,35 +319,32 @@ To create a network template with user parameters included:
 
 1. Click **User**.
 
-    {{<figure src="/images/netq/lcm-ntwk-template-forms-user-320.png" width="700">}}
+    {{<figure src="/images/netq/lcm-ntwk-template-forms-user-330.png" width="700">}}
 
-2. For individual users or accounts:
+2. Enter the username and password for one or more users.
 
-    1. Enter a username and password for the individual or account.
+3. Provide a description of the users.
 
-    2. Provide a description of the user.
+4. Toggle **Should Expire** to set the password to expire on a given date.
 
-    3. Toggle **Should Expire** to require changes to the password to expire on a given date.
+    The current date and time are automatically provided. Click in the field to modify this to the appropriate expiration date.
 
-        The current date and time are automatically provided to show the correct entry format. Modify this to the appropriate expiration date.
+5. Specify advanced parameters:
 
-3. Specify advanced parameters:
+    Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18">}} next to **Advanced**.
 
-    1. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18">}}.
+    {{<figure src="/images/netq/lcm-ntwk-template-forms-useradv-330.png" width="700">}}
 
-    2. If you do not want a home folder created for this user or account, toggle **Create home folder**.
+<div style="padding-left: 18px;"><ul>
+<li>If you <em>do not</em> want a home folder created for this user or account, toggle <strong>Create home folder</strong>.</li>
+<li>Generate an SSH key pair for this user(s). Toggle <strong>Generate SSH key</strong>. When generation is selected, the key pair is stored in the <em>/home/&lt;user&gt;/.ssh</em> directory.</li>
+<li>If you are looking to remove access for the user or account, toggle <strong>Delete user</strong>. If you <em>do not</em> want to remove the directories associated with this user or account at the same time, leave toggle as is (default, do not delete).</li>
+<li>Identify this account as a system account. Toggle <strong>Is system account</strong>. System users have no expiration date assigned. Their IDs are selected from the SYS_UID_MIN-SYS_UID_MAX range.
+<li>To specify additional access groups these users belongs to, enter the group names in the <strong>Groups</strong> field.<br>
+Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18">}} to add additional groups.</li>
+</ul></div>
 
-    3. Generate an SSH key pair for this user or account. **Toggle Generate SSH key**. When generation is selected, the key pair are stored in the */home/\<user\>/.ssh* directory.
-
-    4. If you are looking to remove access for the user or account, toggle **Delete user if present**. If you *do not* want to remove the directories associated with this user or account at the same time, toggle **Delete user directory**.
-
-    5. Identify this account as a system account. Toggle **Is system account**.
-
-    6. To specify a group this user or account belongs to, enter the group name in the **Groups** field.
-
-        Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18">}} to add additional groups.
-
-4. Click **Save and Finish**.
+6. Click **Save and Finish**.
 
 {{< /tab >}}
 
@@ -274,7 +376,7 @@ To edit a network template:
 
         {{<figure src="/images/netq/lcm-ntwk-template-edit-menu-320.png" width="200">}}
 
-2. Modify the parameters of the SNMP, NTP, or User forms in the same manner as when you created the template.
+2. Modify the parameters of the various forms in the same manner as when you created the template.
 
 3. Click **User**, then **Save and Finish**.
 
@@ -294,11 +396,17 @@ To clone a network template:
 
         {{<figure src="/images/netq/lcm-ntwk-template-edit-menu-320.png" width="200">}}
 
-2. Modify the parameters of the SNMP, NTP, or User forms in the same manner as when you created the template to create the new template.
+2. Enter a new name for this cloned template and click **Yes**. Or to discard the clone, click **No**.
 
-3. Click **User**, then **Save and Finish**.
+    {{<figure src="/images/netq/lcm-ntwk-template-clone-modal-330.png" width="300">}}
+
+3. Modify the parameters of the various forms in the same manner as when you created the template to create the new template.
+
+4. Click **User**, then **Save and Finish**.
 
     The newly cloned template is now visible on the template library.
+
+    {{<figure src="/images/netq/lcm-ntwk-template-library-withclone-330.png" width="500">}}
 
 #### Delete a Network Template
 
@@ -346,8 +454,8 @@ To view existing profiles:
 
 You can specify four options when creating NetQ configuration profiles:
 
-- Basic: Assign a VRF and enable or disable what just happened (WJH) feature
-- Advanced: Set logging level and  enable or disable CPU limit feature
+- Basic: Assign a VRF, and enable or disable what just happened (WJH) feature
+- Advanced: Set logging level, and enable or disable CPU limit feature
 
 To create a profile:
 
@@ -359,7 +467,7 @@ To create a profile:
 
 4. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18" alt="Add Config Profile">}} (Add Config) above the listing.
 
-    {{<figure src="/images/netq/lcm-netq-config-profile-create-310.png" width="450">}}
+    {{<figure src="/images/netq/lcm-netq-config-profile-create-330.png" width="400">}}
 
 5. Enter a name for the profile. This is required.
 

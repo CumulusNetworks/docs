@@ -475,13 +475,17 @@ To create a profile:
 
 7. Optionally enable WJH.
 
-    Refer to {{<link title="Configure and Monitor What Just Happened Metrics/#view-what-just-happened-metrics" text="WJH">}} for information about this feature. *WJH is only available on Mellanox switches.*
+    Refer to {{<link title="Configure and Monitor What Just Happened" text="What Just Happened">}} for information about configuring this feature, and to {{<link title="WJH Event Messages Reference" text="WJH Event Messages Reference">}} for a description of the drop reasons. *WJH is only available on Mellanox switches.*
+
+    If you choose to enable WJH for this profile, you can use the default configuration which collects all statistics, or you can select **Customize** to select which categories and drop reasons you want collected. Click on each category and drop reason you do not want collected, then click **Done**. You can discard your changes (return to all categories and drop reasons) by clicking **Cancel**.
 
 8. To set a logging level, click **Advanced**, then choose the desired level.
 
-    {{<figure src="/images/netq/lcm-netq-config-profile-log-level-310.png" width="450">}}
+    {{<figure src="/images/netq/lcm-netq-config-profile-log-level-330.png" width="400">}}
 
-9. Optionally set a CPU usage limit for the NetQ Agent. Click **Enable** and drag the dot to the desired limit. Refer to this {{<exlink url="https://support.cumulusnetworks.com/hc/en-us/articles/360046925373-NetQ-Agent-CPU-Utilization-on-Cumulus-Linux-Switches" text="Knowledge Base article">}} for information about this feature.
+9. Optionally set a CPU usage limit for the NetQ Agent. Click **Enable** and drag the dot to the desired limit.
+
+    Refer to this {{<exlink url="https://support.cumulusnetworks.com/hc/en-us/articles/360046925373-NetQ-Agent-CPU-Utilization-on-Cumulus-Linux-Switches" text="Knowledge Base article">}} for information about this feature.
 
 10. Click **Add** to complete the configuration or **Close** to discard the configuration.
 
@@ -537,39 +541,47 @@ To create a switch configuration profile:
 
     {{<figure src="/images/netq/lcm-switch-config-add-320.png" width="200">}}
 
-4. Enter a name for the configuration. This is required and must be a maximum of 22 characters, including spaces.
+4. You must begin with the Cumulus Linux option. Then you can decide which other aspects of configuration you want included in this template: NetQ Agent, VLANs, MLAG, and/or interfaces.
 
-5. Decide which aspects of configuration you want included in this template: Cumulus Linux, NetQ Agent, VLANs, MLAG, and/or interfaces.
+5. Specify the settings for each using the following instructions.
 
-6. Specify the settings for each using the following instructions.
-
-{{< tabs "TabID383" >}}
+    {{< tabs "TabID383" >}}
 
 {{< tab "CL Configuration" >}}
 
-Three configuration options are available for the Cumulus Linux configuration portion of the switch configuration profile. Note that two of those are required.
+Four configuration items are available for the Cumulus Linux configuration portion of the switch configuration profile. Items with a red asterisk (*) are required.
 
-1. Enter the management interface (VLAN ID) to be used for communications with the switches with this profile assigned. Commonly this is either *eth0* or *eth1*.
+{{<figure src="/images/netq/lcm-switch-config-cl-tab-330.png" width="700">}}
 
-2. Select the type of switch that will have this configuration assigned from the **Choose Switch type** dropdown. Currently this includes Mellanox SN series of switches.
+1. Enter a name for the configuration. The name can be a maximum of 22 characters, including spaces.
 
-3. If you want to include network settings in this configuration, click **View/Add**.
+2. Enter the management interface (VLAN ID) to be used for communications with the switches with this profile assigned. Commonly this is either *eth0* or *eth1*.
+
+3. Select the type of switch that will have this configuration assigned from the **Switch type** dropdown. Currently this includes Mellanox SN series of switches.
+
+    {{<notice note>}}
+Choose carefully as once this has been selected, it cannot be changed for the given switch configuration profile. You must create a new profile.
+    {{</notice>}}
+
+4. If you want to include network settings in this configuration, click **Add**.
 
     This opens the Network Template forms. You can select an existing network template to pre-populate the parameters already specified in that template, or you can start from scratch to create a different set of network settings.
 
-    {{<figure src="/images/netq/lcm-switch-config-ntwk-template-config-320.png" width="700">}}
+    {{<figure src="/images/netq/lcm-switch-config-ntwk-template-config-330.png" width="700">}}
 
 <div style="padding-left: 18px;"><em>To use an existing network template as a starting point:</em>
 
-1. Select the template from the dropdown.
+- Select the template from the dropdown.
 
-2. If you have selected a network template that has any SNMP parameters specified, you must specify the additional required parameters, then click **Continue** or click **NTP**.
+- If you have selected a network template that has any SNMP parameters specified, verify those parameters and specify any additional required parameters, then click **Continue** or click **NTP**.
 
-3. If the selected network template has any NTP parameters specified, you must specify the additional required parameters, then click **Continue** or click **User**.
+- If the selected network template has any NTP parameters specified, verify those parameters and specify any additional required parameters, then click **Continue** or click **LLDP**.
 
-4. If the selected network template has any User parameters specified, you must specify the additional required parameters, then click **Done**.
+- If the selected network template has any LLDP parameters specified, verify those parameters, then click **Continue** or click **User**.
 
-5. If you think this Cumulus Linux configuration is one that you will use regularly, you can make it a template. Enter a name for the configuration and click **Yes**.
+- If the selected network template has any User parameters specified, verify those parameters and specify any additional required parameters, then click **Done**.
+
+- If you think this Cumulus Linux configuration is one that you will use regularly, you can make it a template. Enter a name for the configuration and click **Yes**.
 
     {{<figure src="/images/netq/lcm-switch-config-save-as-template-dialog-320.png" width="200">}}
 
@@ -577,9 +589,9 @@ Three configuration options are available for the Cumulus Linux configuration po
 
 <div style="padding-left: 18px;"><em>To create a new set of network settings:</em>
 
-1. Select the SNMP, NTP, or User forms to specify parameters for this configuration. Note that selected parameters are required on each form, noted by red asterisks (*). Refer to {{<link title="Manage Switch Configurations/#create-network-templates" text="Create Network Templates">}} for a description of the fields.
+- Select the various forms to specify parameters for this configuration. Note that selected parameters are required on each form, noted by red asterisks (*). Refer to {{<link title="Manage Switch Configurations/#create-network-templates" text="Create Network Templates">}} for a description of the fields.
 
-2. When you have completed the network settings, click **Done**.
+- When you have completed the network settings, click **Done**.
 
     If you are not on the User form, you need to go to that tab for the **Done** option to appear.
 
@@ -587,12 +599,12 @@ In either case, if you change your mind about including network settings, click 
 
 </div>
 
-Click one of the following:
-<ul>
-<li><strong>Reset</strong> to clear your entries and start again</li>
-<li><strong>Save and Continue</strong> to configure additional switch configuration parameters</li>
-<li><strong>Save and Deploy</strong> if the switch configuration is now complete</li>
-</ul>
+5. Click one of the following:
+
+<div style="padding-left: 18px;"><ul><li><strong>Discard</strong> to clear your entries and start again</li>
+    <li><strong>Save and go to NetQ Agent configuration</strong> to configure additional switch configuration parameters</li>
+    <li><strong>Save and deploy on switches</strong> if the switch configuration is now complete</li>
+    </ul></div>
 
 {{< /tab >}}
 
@@ -600,51 +612,56 @@ Click one of the following:
 
 1. Click **NetQ Agent Configuration**.
 
-    {{<figure src="/images/netq/lcm-switch-config-nqagent-config-320.png" width="700">}}
+    {{<figure src="/images/netq/lcm-switch-config-nqagent-config-330.png" width="700">}}
 
 2. Select an existing NetQ Configuration profile or create a custom one.
 
     <em>To use an existing network template as a starting point:</em>
 
-    - Select the configuration profile from the dropdown.
+<div style="padding-left: 18px;"><ul><li>Select the configuration profile from the dropdown.</li>
+<li>Modify any of the parameters as needed.</li></ul>
 
-    - Modify any of the parameters as needed.
+<em>To create a new configuration profile:</em>
 
-    <em>To create a new configuration profile:</em>
-
-    - Select values as appropriate for your situation. Refer to {{<link title="Manage Switch Configurations/#create-cumulus-netq-configuration-profiles" text="Create NetQ Configuration Profiles">}} for descriptions of these parameters.
+<ul><li>Select values as appropriate for your situation. Refer to {{<link title="Manage Switch Configurations/#create-cumulus-netq-configuration-profiles" text="Create NetQ Configuration Profiles">}} for descriptions of these parameters.</li></ul></div>
 
 3. Click one of the following:
 
-    - **Reset** to clear your entries and start again
-    - **Save and Continue** to configure additional switch configuration parameters
-    - **Save and Deploy** if the switch configuration is now complete
+<div style="padding-left: 18px;"><ul><li><strong>Discard</strong> to clear your entries and start again</li>
+    <li><strong>Save and go to VLANs</strong> to configure additional switch configuration parameters</li>
+    <li><strong>Save and deploy on switches</strong> if the switch configuration is now complete</li>
+    </ul></div>
 
 {{< /tab >}}
 
-{{< tab "VLAN Management" >}}
+{{< tab "VLANs" >}}
 
-1. Click **VLAN management**.
+1. Click **VLANs**.
 
-2. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18">}} to add one or more VLANs to the switch configuration.
+2. Click **Add VLAN/s** if none are present, or click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18">}} to add more VLANs to the switch configuration.
+
+    {{<figure src="/images/netq/lcm-switch-config-add-vlans-330.png" width="400">}}
 
 3. Enter a name for the VLAN when creating a single VLAN or enter a prefix (combined with the VLAN ID) for multiple VLANs.
 
 4. Enter a single VLAN ID (1-4096) or a range of IDs. When entering multiple IDs, separate them by commas and do not use spaces. For example, you can enter them:
 
-    - One at a time: 25,26,27,28,85,86,87,88,89,112
-    - As a single range: 25-28 or 85-89
-    - As a set of ranges and individual IDs: 25-28,85-89 or 25-28,85-89,112
+<div style="padding-left: 18px;"><ul><li>One at a time: 25,26,27,28,85,86,87,88,89,112</li>
+<li>As a set of ranges and individual IDs: 25-28,85-89 or 25-28,85-89,112</li>
+<li>As a single range: 25-28 or 85-89</li></ul></div>
 
 5. Click **Create**.
 
     The VLAN/s are displayed in the VLAN list. Once VLANs are in the list, they can be exported, modified, removed, and duplicated using the menu above the list. Simply select one, all, or filter for a subset of VLANs, then click the relevant menu icon.
 
+    {{<figure src="/images/netq/lcm-switch-config-vlans-330.png" width="700">}}
+
 6. Click one of the following:
 
-    - **Reset** to clear your entries and start again
-    - **Save and Continue** to configure additional switch configuration parameters
-    - **Save and Deploy** if the switch configuration is now complete
+<div style="padding-left: 18px;"><ul><li><strong>Discard</strong> to clear your entries and start again</li>
+    <li><strong>Save and go to MLAG</strong> to configure additional switch configuration parameters</li>
+    <li><strong>Save and deploy on switches</strong> if the switch configuration is now complete</li>
+    </ul></div>
 
 {{< /tab >}}
 
@@ -654,153 +671,254 @@ MLAG is disabled by default. If you want to include MLAG in the switch configura
 
 1. Click **Enable**.
 
-2. Select the VLAN over which MLAG traffic is communicated. If you have created a VLAN profile....If you have not yet created a VLAN profile, refer to xxx and then return here.
+    {{<figure src="/images/netq/lcm-switch-config-mlag-330.png" width="700">}}
 
-3. Enter the priority of ???
+2. Select the VLAN over which MLAG traffic is communicated. If you have created VLANs already, select the VLAN from the Management VLAN dropdown. If you have not yet created any VLANs, refer to VLAN tab and then return here.
 
-4. Designate which ports are to be used, including ingress and egress ports.
+3. Accept the default (180 seconds) or modify the amount of time `clagd` should wait to bring up the MLAG bonds and anycast IP addresses.
+
+4. Specify the peerlink. Note items with a red asterisk  (*) are required.
+
+<div style="padding-left: 18px;"><ul><li>Enter the supported MTU for this link</li>
+    <li>Enter the minimum number of links to use. Add additional links to handle link failures of the peerlink bond itself.</li>
+    <li>Select the private VLAN (PVID) from the dropdown. If you have not yet created any VLANs, refer to VLAN tab and then return here.</li>
+    <li>Enter a tagged VLAN range to link switches.</li>
+    <li>Designate which ports are to be used, including ingress and egress ports.</li>
+    </ul></div>
 
 5. Click one of the following:
 
-    - **Reset** to clear your entries and start again or remove the specifications
-    - **Save and Continue** to configure additional switch configuration parameters
-    - **Save and Deploy** if the switch configuration is now complete
+<div style="padding-left: 18px;"><ul><li><strong>Discard</strong> to clear your entries and start again</li>
+    <li><strong>Save and go to Interface profiles</strong> to configure additional switch configuration parameters</li>
+    <li><strong>Save and deploy on switches</strong> if the switch configuration is now complete</li>
+    </ul></div>
 
 {{< /tab >}}
 
-{{< tab "Interface Profile" >}}
+{{< tab "Interface Profiles" >}}
 
-Every interface requires at least one interface profile.  An interface profile must contain a bond, SVI, sub-interface, and port. You can create (up to x or as many desired???) profiles. (or is this profiles in profiles???)
+Every interface requires at least one interface profile.  An interface profile must contain a bond, SVI, sub-interface, and port.
 
 ### Add Bond Profiles
 
-The information needed to define a bond profile is collected into two categories: details and attributes. Begin your definition with the bond details as these items are all required.
+You can create a new bond profile or import an existing one to modify. Bond profiles are used to specify interfaces in the switch configuration.
 
-1. Click **Interface profile**.
+*To create a new bond profile:*
 
-2. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18">}} to add a new bond profile.
+1. Click **Interface profiles**.
 
-3. Enter a unique name for the bond profile.
+2. Click **Create** if no profiles yet exist, or click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18">}} to add another bond profile.
+
+    {{<figure src="/images/netq/lcm-switch-config-ifprofs-add-bond-330.png" width="500">}}
+
+3. Enter a unique name for the bond profile. Note that items with a red asterisk (*) are required.
 
 4. Click on the type of bond this profile is to support; either layer 2 (**L2**) or layer 3 (**L3**).
 
 5. Enter the supported MTU for this bond profile.
 
-6. Select the mode this profile is to support: either **lacp** or **balance-xor**.
+6. Enter the minimum number of links to use. Add additional links to handle link failures of the bond itself.
 
-    Choosing the LACP (link aggregation control protocol) allows for redundancy by load-balancing traffic across all available links. Choosing balance-xor balances traffic load by spreading outgoing packets between the available Ethernet interfaces.
+7. Select the mode this profile is to support: either **Lacp** or **Static**.
 
-    If you select LACP, then you must enable LACP and indicate the rate to expect PDUs at the switch; **fast**&ndash;every second, or **slow**&ndash;every 30 seconds. Click on the appropriate choices.
+    Choosing **Lacp** (link aggregation control protocol) allows for redundancy by load-balancing traffic across all available links. Choosing **Static** provides no load balancing (???).
 
-7. Click **Bond attributes**.
+    If you select LACP, then you must also specify:
+    
+<div style="padding-left: 18px;"><ul><li>The LACP rate: how often to expect PDUs at the switch; <strong>Fast</strong>&ndash;every second, or <strong>Slow</strong>&ndash;every 30 seconds</li>
+    <li>Whether to enable or disable LACP bypass: <strong>Enable</strong> allows a bond configured in 802.3ad mode to become active and forward traffic even when there is no LACP partner</li>
+    </ul></div>
 
-8. Select a private VLAN ID (pvid) for communication from the dropdown.
+8. Enable or disable whether the bond must be dually connected (???). When enabled, you must specify the associated MLAG identifier.
 
-9. Optionally assign one or more tagged VLANs to support traffic from more than one VLAN on a port.
+9. Click **Next** to specify the bond attributes.
 
-10. Indicated whether this bond profile is to support multi-homing (connections to more than one network) (**True**) or to only a single network (**False**).
+    {{<figure src="/images/netq/lcm-switch-config-ifprofs-bond-attr-330.png" width="500">}}
 
-11. Review your specification, clicking **Back** to review the details and **Next** to return to the attributes.
+10. Select a private VLAN ID (pvid) from the dropdown for communication.
 
-12. When you are satisfied with the bond profile specification, click **Create**.
+11. Assign one or more tagged VLANs to support traffic from more than one VLAN on a port.
 
-    The bond profiles are displayed in the Bond list. Once bonds are in the list, they can be exported, modified, removed, and duplicated using the menu above the list. Simply select one, all, or filter for a subset of bonds, then click the relevant menu icon.
+<!-- 10. Indicated whether this bond profile is to support multi-homing (connections to more than one network) (**True**) or to only a single network (**False**). -->
 
-13. Click one of the following:
-
-    - **Reset** to clear your entries and start again
-    - **Save and Continue** to configure additional interface profile components
-    - **Save and Deploy** if your interface profile and the switch configuration is now completed
-
-### Add SVI Profiles
-
-(why include???)
-
-1. Click **SVI**.
-
-2. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18">}} to add a new SVI profile.
-
-3. Enter a unique name for the SVI profile.
-
-4. Enter the supported MTU for this SVI profile.
-
-5. Select a VRF profile from the dropdown. (where is this created???)
-
-6. Enable VRR if desired.
-
-7. Click **Create**.
-
-    (how are the ipv4 and ipv6 addresses populated???)
-
-    The SVI profiles are displayed in the SVI list. Once SVIs are in the list, they can be exported, modified, removed, and duplicated using the menu above the list. Simply select one, all, or filter for a subset of SVIs, then click the relevant menu icon.
-
-8. Click one of the following:
-
-    - **Reset** to clear your entries and start again
-    - **Save and Continue** to configure additional interface profile components
-    - **Save and Deploy** if your interface profile and the switch configuration is now completed
-
-### Add Sub-interfaces Profiles
-
-(why include???)
-
-1. Click **Subinterface**.
-
-2. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18">}} to add a new sub-interface profile.
-
-3. Enter a unique name for the subinterface profile.
-
-4. Enter the supported MTU for this subinterface profile.
-
-5. Select a VRF profile from the dropdown. (where is this created???)
-
-6. Click **Create**.
-
-    The subinterface profiles are displayed in the subinterface list. Once subinterfaces are in the list, they can be exported, modified, removed, and duplicated using the menu above the list. Simply select one, all, or filter for a subset of subinterfaces, then click the relevant menu icon.
-
-7. Click one of the following:
-
-    - **Reset** to clear your entries and start again
-    - **Save and Continue** to configure additional interface profile components
-    - **Save and Deploy** if your interface profile and the switch configuration is now completed
-
-### Add Port Profiles
-
-The information needed to define a port is collected into two categories: details and attributes.
-
-1. Click **Port**.
-
-2. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18">}} to add a new port profile.
-
-3. Enter a unique name for the port profile.
-
-4. Click on the type of port this profile is to support; either layer 2 (**L2**) or layer 3 (**L3**).
-
-5. Optionally enable forward error correction (FEC); click **True**. (what is default value here???)
-
-6. Optionally enable auto-negotiation of link speeds; click **True**.
-
-7. Optionally specify the whether to support transmit and receive on this port (**full**) or either transmit or receive on this port (**half**).
-
-8. Optionally select port speed from the dropdown.
-
-9. Optionally enter the supported MTU for this bond profile.
-
-10. Click **Bond attributes**.
-
-11. Select a private VLAN ID (pvid) for communication from the dropdown.
-
-12. Optionally assign one or more tagged VLANs to support traffic from more than one VLAN on a port.
+12. Review your specification, clicking **Back** to review the bond details.
 
 13. When you are satisfied with the bond profile specification, click **Create**.
 
+    The bond profiles are displayed in the Bond list. Once bonds are in the list, they can be exported, modified, removed, and duplicated using the menu above the list. Simply select one, all, or filter for a subset of bonds, then click the relevant menu icon.
+
+    {{<figure src="/images/netq/lcm-switch-config-ifprofs-bondprofs-330.png" width="700">}}
+
+*To import an existing bond profile:*
+
+1. Click **Interface profiles**.
+
+2. Click **Import** if no profiles yet exist, or click {{<img src="https://icons.cumulusnetworks.com/16-Files-Folders/01-Common-Files/common-file-download.svg" height="18" width="18">}} to import a bond profile.
+
+    {{<figure src="/images/netq/lcm-switch-config-ifprofs-import-bond-330.png" width="500">}}
+
+3. Enter a name for this new bond profile.
+
+4. Select a bond from the dropdown.
+
+5. Click **Import**.
+
+6. Select the profile from the list and click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/22-Edit/pencil-1.svg" height="18" width="18">}} to edit it.
+
+### Add SVI Profiles
+
+You can create a new SVI profile or import an existing one to modify. SVI profiles are used to specify interfaces in the switch configuration.
+
+*To create a new SVI profile:*
+
+1. Click **Interface profiles**.
+
+2. Click **SVI Profiles**.
+
+3. Click **Create** if no profiles yet exist, or click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18">}} to add a new SVI profile.
+
+    {{<figure src="/images/netq/lcm-switch-config-ifprofs-add-svi-330.png" width="500">}}
+
+4. Enter a unique name for the SVI profile.
+
+5. Enter the supported MTU for this SVI profile.
+
+6. Select a VRF profile from the dropdown, or enter the name of a VRF and click *Add VRF*.
+
+7. Enable VRR if desired, and enter the associated MAC address.
+
+8. Click **Create**.
+
+    The SVI profiles are displayed in the SVI list. Once SVIs are in the list, they can be exported, modified, removed, and duplicated using the menu above the list. Simply select one, all, or filter for a subset of SVIs, then click the relevant menu icon.
+
+    {{<figure src="/images/netq/lcm-switch-config-ifprofs-svis-330.png" width="700">}}
+
+*To import an existing SVI profile:*
+
+1. Click **Interface profiles**.
+
+2. Click **SVI Profiles**.
+
+3. Click **Import** if no profiles yet exist, or click {{<img src="https://icons.cumulusnetworks.com/16-Files-Folders/01-Common-Files/common-file-download.svg" height="18" width="18">}} to import an SVI profile.
+
+    {{<figure src="/images/netq/lcm-switch-config-ifprofs-import-bond-330.png" width="500">}}
+
+4. Enter a name for this new SVI profile.
+
+5. Select an SVI from the dropdown.
+
+6. Click **Import**.
+
+7. Select the profile from the list and click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/22-Edit/pencil-1.svg" height="18" width="18">}} to edit it.
+
+### Add Sub-interfaces Profiles
+
+You can create a new subinterface profile or import an existing one to modify. Subinterface profiles are used to specify interfaces in the switch configuration.
+
+1. Click **Interface profiles**.
+
+2. Click **Subinterface Profiles**.
+
+3. Click **Create** if no profiles yet exist, or click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18">}} to add a new sub-interface profile.
+
+    {{<figure src="/images/netq/lcm-switch-config-ifprofs-add-subifprof-330.png" width="500">}}
+
+4. Enter a unique name for the subinterface profile.
+
+5. Enter the supported MTU for this subinterface profile.
+
+6. Select a VRF profile from the dropdown, or enter the name of a VRF and click *Add VRF*.
+
+7. Click **Create**.
+
+    The subinterface profiles are displayed in the subinterface list. Once subinterfaces are in the list, they can be exported, modified, removed, and duplicated using the menu above the list. Simply select one, all, or filter for a subset of subinterfaces, then click the relevant menu icon.
+
+    {{<figure src="/images/netq/lcm-switch-config-ifprofs-subifprofs-330.png" width="700">}}
+
+*To import an existing subinterface profile:*
+
+1. Click **Interface profiles**.
+
+2. Click **Subinterface Profiles**.
+
+3. Click **Import** if no profiles yet exist, or click {{<img src="https://icons.cumulusnetworks.com/16-Files-Folders/01-Common-Files/common-file-download.svg" height="18" width="18">}} to import a subinterface profile.
+
+    {{<figure src="/images/netq/lcm-switch-config-ifprofs-import-subif-330.png" width="500">}}
+
+4. Enter a name for this new subinterface profile.
+
+5. Select a subinterface from the dropdown.
+
+6. Click **Import**.
+
+7. Select the profile from the list and click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/22-Edit/pencil-1.svg" height="18" width="18">}} to edit it.
+
+### Add Port Profiles
+
+You can create a new port profile or import an existing one to modify. Port profiles are used to specify interfaces in the switch configuration.
+
+1. Click **Interface profiles**.
+
+2. Click **Port Profiles**.
+
+3. Click **Create** if no profiles yet exist, or click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18">}} to add a new port profile.
+
+    {{<figure src="/images/netq/lcm-switch-config-ifprofs-add-portprof-330.png" width="500">}}
+
+4. Enter a unique name for the port profile. Note that items with a red asterisk (*) are required.
+
+5. Click on the type of port this profile is to support; either layer 2 (**L2**) or layer 3 (**L3**).
+
+6. Enter the supported MTU for this port profile.
+
+7. Enable or disable forward error correction (FEC).
+
+8. Enable or disable auto-negotiation of link speeds.
+
+9. Specify the whether to support transmit and receive on this port (**Full** duplex) or either transmit or receive on this port (**Half** duplex).
+
+10. Specify the port speed from the dropdown. Choices are based on the switch type selected iin the CL configuration tab.
+
+11. Click **Next** to specify port attributes.
+
+    {{<figure src="/images/netq/lcm-switch-config-ifprofs-add-portprof-attr-330.png" width="500">}}
+
+12. Select a private VLAN ID (pvid) for communication from the dropdown.
+
+13. Assign one or more tagged VLANs to support traffic from more than one VLAN on a port.
+
+14. Review your specification, clicking **Back** to review the bond details.
+
+15. When you are satisfied with the port profile specification, click **Create**.
+
     The port profiles are displayed in the Port list. Once ports are in the list, they can be exported, modified, removed, and duplicated using the menu above the list. Simply select one, all, or filter for a subset of ports, then click the relevant menu icon.
 
-14. Click one of the following:
+    {{<figure src="/images/netq/lcm-switch-config-ifprofs-portprofs-330.png" width="700">}}
 
-    - **Reset** to clear your entries and start again
-    - **Save and Continue** to configure additional interface profile components
-    - **Save and Deploy** if your interface profile and the switch configuration is now completed
+*To import an existing port profile:*
+
+1. Click **Interface profiles**.
+
+2. Click **Port Profiles**.
+
+3. Click **Import** if no profiles yet exist, or click {{<img src="https://icons.cumulusnetworks.com/16-Files-Folders/01-Common-Files/common-file-download.svg" height="18" width="18">}} to import a port profile.
+
+    {{<figure src="/images/netq/lcm-switch-config-ifprofs-import-portprof-330.png" width="500">}}
+
+4. Enter a name for this new port profile.
+
+5. Select a port profile from the dropdown.
+
+6. Click **Import**.
+
+7. Select the profile from the list and click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/22-Edit/pencil-1.svg" height="18" width="18">}} to edit it.
+
+8. Now that you have one complete interface profile defined, click one of the following:
+
+<div style="padding-left: 18px;"><ul><li><strong>Discard</strong> to clear your entries and start again</li>
+    <li><strong>Save and go to Interfaces</strong> to configure additional switch configuration parameters</li>
+    <li><strong>Save and deploy on switches</strong> if the switch configuration is now complete</li>
+    </ul></div>
 
 {{< /tab >}}
 

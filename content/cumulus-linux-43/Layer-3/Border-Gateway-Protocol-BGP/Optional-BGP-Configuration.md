@@ -393,13 +393,28 @@ cumulus@switch:~$ net add bgp neighbor swp51 remove-private-AS replace-AS
 
 Cumulus Linux supports the use of distinct ASNs for different VRF instances.
 
-{{%notice note%}}
-You can configure distinct ASNs for different VRF instances in FRR only; NCLU commands do not support this option.
-{{%/notice%}}
-
 The following example configures VRF RED and VRF BLUE on border01 to use ASN 65532 towards fw1 and 65533 towards fw2:
 
 {{< img src = "/images/cumulus-linux/asn-vrf-config.png" >}}
+
+{{< tabs "400 ">}}
+
+{{< tab "NCLU Commands ">}}
+
+```
+cumulus@border01:~$ net add bgp vrf RED autonomous-system 65532        
+cumulus@border01:~$ net add bgp vrf RED router-id 10.10.10.63
+cumulus@border01:~$ net add bgp neighbor swp3 remote-as external
+cumulus@border01:~$ net add bgp vrf BLUE autonomous-system 65533 
+cumulus@border01:~$ net add bgp vrf BLUE router-id 10.10.10.63
+cumulus@border01:~$ net add bgp neighbor swp4 remote-as external
+cumulus@border01:~$ net pending
+cumulus@border01:~$ net commit
+```
+
+{{< /tab >}}
+
+{{< tab "vtysh Commands ">}}
 
 ```
 cumulus@border01:~$ sudo vtysh
@@ -417,6 +432,10 @@ border01# write memory
 border01# exit
 cumulus@border01:~$
 ```
+
+{{< /tab >}}
+
+{{< /tabs >}}
 
 The following example shows the `/etc/frr/frr.conf` configuration for border01.
 

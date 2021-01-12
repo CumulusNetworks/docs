@@ -843,7 +843,7 @@ Cumulus Linux lets you:
   - You can only break out odd-numbered ports into four logical ports.
   - You must disable the next even-numbered port. For example, if you break out port 11 into four logical ports, you must disable port 12.
 
-  These restrictions do *not* apply to a 2x50G breakout configuration.
+  These restrictions do *not* apply to a 2x50G breakout configuration or to the Mellanox SN2100 and SN2010 switches.
 
 {{%/notice%}}
 

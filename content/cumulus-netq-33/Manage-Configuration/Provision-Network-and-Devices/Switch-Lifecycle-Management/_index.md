@@ -11,7 +11,7 @@ Only administrative users can perform the tasks described in this topic.
 
 {{</notice>}}
 
-As an administrator, you want to manage the deployment of Cumulus Networks product software onto your network devices (servers, appliances, and switches) in the most efficient way and with the most information about the process as possible. With this release, NetQ expands its  lifecycle management (LCM) capabilities to support configuration management for Cumulus Linux switches.
+As an administrator, you want to manage the deployment of Cumulus Networks product software onto your network devices (servers, appliances, and switches) in the most efficient way and with the most information about the process as possible. With this release, NetQ expands its lifecycle management (LCM) capabilities to support configuration management for Cumulus Linux switches.
 
 Using the NetQ UI or CLI, lifecycle management enables you to:
 
@@ -55,7 +55,7 @@ This table summarizes the UI cards and CLI commands available for the LCM featur
 
 | <div style="width:30px">Function </div> | <div style="width:220px">Description</div> | <div style="width:220px">NetQ UI Cards</div> | <div style="width:220px">NetQ CLI Commands</div> |
 | --- | --- | --- | --- |
-| Switch Management | Discover switches, view switch inventory, assign roles, set user access credentials, perform software installation and upgrade networkwide | <ul><li>Switches</li><li>Access</li></ul> | <ul><li>netq lcm show switches</li><li>netq lcm add role</li><li>netq lcm upgrade</li><li>netq lcm add credentials</li><li>netq lcm del credentials</li><li>netq lcm show credentials</li></ul> |
-| Image Management | View, add, and remove images for software installation and upgrade | <ul><li>Cumulus Linux Images</li><li>NetQ Images</li></ul> | <ul><li>netq lcm add cl-image</li><li>netq lcm add netq-image</li><li>netq lcm del image</li><li>netq lcm show images</li></ul> |
+| Switch Management | Discover switches, view switch inventory, assign roles, set user access credentials, perform software installation and upgrade networkwide | <ul><li>Switches</li><li>Access</li></ul> | <ul><li>netq lcm show switches</li><li>netq lcm add role</li><li>netq lcm upgrade</li><li>netq lcm add credentials</li><li>netq lcm del credentials</li><li>netq lcm show credentials</li><li>netq lcm discover (ip-range &lt;text-ip-range> \| csv-file &lt;text-csv-file-path>)</li></ul> |
+| Image Management | View, add, and remove images for software installation and upgrade | <ul><li>Cumulus Linux Images</li><li>NetQ Images</li></ul> | <ul><li>netq lcm add cl-image</li><li>netq lcm add netq-image</li><li>netq lcm del cl-image</li><li>netq lcm del netq-image</li><li>netq lcm show cl-images</li><li>netq lcm show netq-images</li></ul> |
 | Configuration Management | Set up templates for software installation and upgrade, configure and assign switch settings networkwide | <ul><li>NetQ Configurations</li><li>Network Templates</li><li>Switch Configurations</li></ul> | NA |
-| Job History | View the results of installation, upgrade, and configuration assignment jobs | <ul><li>CL Upgrade History</li><li>NetQ Install and Upgrade History</li><li>Config Assignment History</li></ul> | <ul><li>netq lcm show status</li><li>netq lcm show upgrade-jobs</li><li>netq show events type lcm</li></ul> |
+| Job History | View the results of installation, upgrade, and configuration assignment jobs | <ul><li>CL Upgrade History</li><li>NetQ Install and Upgrade History</li><li>Config Assignment History</li></ul> | <ul><li>netq lcm show status</li><li>netq lcm show upgrade-jobs cl-image</li><li>netq lcm show upgrade-jobs netq-image</li><li>netq show events type lcm</li></ul> |

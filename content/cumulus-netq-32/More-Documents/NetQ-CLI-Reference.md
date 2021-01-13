@@ -2114,8 +2114,10 @@ The NetQ CLI provides a number of `netq lcm` commands to perform LCM. The syntax
     netq lcm show credentials [json]
     netq lcm show switches [version <text-cumulus-linux-version>] [json]
     netq lcm show status <text-lcm-job-id> [json]
-    netq lcm add image <text-image-path>
-    netq lcm del image <text-image-id>
+    netq lcm add cl-image <text-image-path>
+    netq lcm add netq-image <text-netq-image-path>
+    netq lcm del cl-image <text-image-id>
+    netq lcm del netq-image <text-image-id>
     netq lcm show images [<text-image-id>] [json]
     netq lcm show upgrade-jobs [json]
 

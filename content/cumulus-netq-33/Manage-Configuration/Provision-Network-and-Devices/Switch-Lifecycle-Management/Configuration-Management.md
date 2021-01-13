@@ -293,6 +293,10 @@ You can view, add, and remove NetQ configuration profiles at any time.
 
 To view existing profiles:
 
+{{< tabs "View existing profiles" >}}
+
+{{< tab "NetQ UI" >}}
+
 1. Click <img src="https://icons.cumulusnetworks.com/03-Computers-Devices-Electronics/09-Hard-Drives/hard-drive-1.svg" height="18" width="18"/> (Switches) in the workbench header, then click **Manage switches**, or click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18" alt="Main Menu">}} (Main Menu) and select **Manage Switches**.
 
 2. Click **Configuration Management**.
@@ -306,6 +310,30 @@ To view existing profiles:
 4. Review the profiles.
 
     {{<figure src="/images/netq/lcm-netq-config-profiles-list-310.png" width="550">}}
+
+{{< /tab >}}
+
+{{< tab "NetQ CLI" >}}
+
+Run the `netq lcm show netq-config` command:
+
+```
+cumulus@switch:~$ netq lcm show netq-config
+ID                        Name            Default Profile                VRF             WJH       CPU Limit Log Level Last Changed
+------------------------- --------------- ------------------------------ --------------- --------- --------- --------- -------------------------
+config_profile_3289efda36 NetQ default co Yes                            mgmt            Disable   Disable   info      Tue Jan  5 05:25:31 2021
+db4065d56f91ebbd34a523b45 nfig
+944fbfd10c5d75f9134d42023
+eb2b
+config_profile_233c151302 CPU limit 75%   No                             mgmt            Disable   75%       info      Mon Jan 11 19:11:35 2021
+eb8ee77d6c27fe2eaca51a9bf
+2dfcbfd77d11ff0af92b807de
+a0dd
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
 
 ### Create NetQ Configuration Profiles
 
@@ -332,7 +360,7 @@ To create a profile:
 
 7. Optionally enable WJH.
 
-    Refer to {{<link title="Configure and Monitor What Just Happened Metrics/#view-what-just-happened-metrics" text="WJH">}} for information about this feature. *WJH is only available on Mellanox switches.*
+    Refer to {{<link title="Configure and Monitor What Just Happened/#view-what-just-happened-metrics" text="WJH">}} for information about this feature. *WJH is only available on Mellanox switches.*
 
 8. To set a logging level, click **Advanced**, then choose the desired level.
 

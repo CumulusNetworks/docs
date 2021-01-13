@@ -709,7 +709,7 @@ You can create a new bond profile or import an existing one to modify. Bond prof
 
 2. Click **Create** if no profiles yet exist, or click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18">}} to add another bond profile.
 
-    {{<figure src="/images/netq/lcm-switch-config-ifprofs-add-bond-330.png" width="500">}}
+    {{<figure src="/images/netq/lcm-switch-config-ifprofs-add-bondprof-330.png" width="400">}}
 
 3. Enter a unique name for the bond profile. Note that items with a red asterisk (*) are required.
 
@@ -733,7 +733,7 @@ You can create a new bond profile or import an existing one to modify. Bond prof
 
 9. Click **Next** to specify the bond attributes.
 
-    {{<figure src="/images/netq/lcm-switch-config-ifprofs-bond-attr-330.png" width="500">}}
+    {{<figure src="/images/netq/lcm-switch-config-ifprofs-bond-attr-330.png" width="400">}}
 
 10. Select a private VLAN ID (pvid) from the dropdown for communication.
 
@@ -755,7 +755,7 @@ You can create a new bond profile or import an existing one to modify. Bond prof
 
 2. Click **Import** if no profiles yet exist, or click {{<img src="https://icons.cumulusnetworks.com/16-Files-Folders/01-Common-Files/common-file-download.svg" height="18" width="18">}} to import a bond profile.
 
-    {{<figure src="/images/netq/lcm-switch-config-ifprofs-import-bond-330.png" width="500">}}
+    {{<figure src="/images/netq/lcm-switch-config-ifprofs-import-bond-330.png" width="400">}}
 
 3. Enter a name for this new bond profile.
 
@@ -777,7 +777,7 @@ You can create a new SVI profile or import an existing one to modify. SVI profil
 
 3. Click **Create** if no profiles yet exist, or click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18">}} to add a new SVI profile.
 
-    {{<figure src="/images/netq/lcm-switch-config-ifprofs-add-svi-330.png" width="500">}}
+    {{<figure src="/images/netq/lcm-switch-config-ifprofs-add-sviprof-330.png" width="400">}}
 
 4. Enter a unique name for the SVI profile.
 
@@ -801,7 +801,7 @@ You can create a new SVI profile or import an existing one to modify. SVI profil
 
 3. Click **Import** if no profiles yet exist, or click {{<img src="https://icons.cumulusnetworks.com/16-Files-Folders/01-Common-Files/common-file-download.svg" height="18" width="18">}} to import an SVI profile.
 
-    {{<figure src="/images/netq/lcm-switch-config-ifprofs-import-bond-330.png" width="500">}}
+    {{<figure src="/images/netq/lcm-switch-config-ifprofs-import-bond-330.png" width="400">}}
 
 4. Enter a name for this new SVI profile.
 
@@ -821,7 +821,7 @@ You can create a new subinterface profile or import an existing one to modify. S
 
 3. Click **Create** if no profiles yet exist, or click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18">}} to add a new sub-interface profile.
 
-    {{<figure src="/images/netq/lcm-switch-config-ifprofs-add-subifprof-330.png" width="500">}}
+    {{<figure src="/images/netq/lcm-switch-config-ifprofs-add-subifprof-330.png" width="400">}}
 
 4. Enter a unique name for the subinterface profile.
 
@@ -843,7 +843,7 @@ You can create a new subinterface profile or import an existing one to modify. S
 
 3. Click **Import** if no profiles yet exist, or click {{<img src="https://icons.cumulusnetworks.com/16-Files-Folders/01-Common-Files/common-file-download.svg" height="18" width="18">}} to import a subinterface profile.
 
-    {{<figure src="/images/netq/lcm-switch-config-ifprofs-import-subif-330.png" width="500">}}
+    {{<figure src="/images/netq/lcm-switch-config-ifprofs-import-subif-330.png" width="400">}}
 
 4. Enter a name for this new subinterface profile.
 
@@ -863,7 +863,7 @@ You can create a new port profile or import an existing one to modify. Port prof
 
 3. Click **Create** if no profiles yet exist, or click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18">}} to add a new port profile.
 
-    {{<figure src="/images/netq/lcm-switch-config-ifprofs-add-portprof-330.png" width="500">}}
+    {{<figure src="/images/netq/lcm-switch-config-ifprofs-add-portprof-330.png" width="400">}}
 
 4. Enter a unique name for the port profile. Note that items with a red asterisk (*) are required.
 
@@ -881,7 +881,7 @@ You can create a new port profile or import an existing one to modify. Port prof
 
 11. Click **Next** to specify port attributes.
 
-    {{<figure src="/images/netq/lcm-switch-config-ifprofs-add-portprof-attr-330.png" width="500">}}
+    {{<figure src="/images/netq/lcm-switch-config-ifprofs-add-portprof-attr-330.png" width="400">}}
 
 12. Select a private VLAN ID (pvid) for communication from the dropdown.
 
@@ -903,7 +903,7 @@ You can create a new port profile or import an existing one to modify. Port prof
 
 3. Click **Import** if no profiles yet exist, or click {{<img src="https://icons.cumulusnetworks.com/16-Files-Folders/01-Common-Files/common-file-download.svg" height="18" width="18">}} to import a port profile.
 
-    {{<figure src="/images/netq/lcm-switch-config-ifprofs-import-portprof-330.png" width="500">}}
+    {{<figure src="/images/netq/lcm-switch-config-ifprofs-import-portprof-330.png" width="400">}}
 
 4. Enter a name for this new port profile.
 
@@ -924,141 +924,216 @@ You can create a new port profile or import an existing one to modify. Port prof
 
 {{< tab "Interfaces" >}}
 
-intro
+Interfaces identify how and where communication occurs. Each interface must have at least one bond, SVI, subinterface, and port.
 
 ### Add Bonds
 
-intro/which parameters required?
+Bonds indicate how interfaces/switches (???) are connected to each other. You must have at least one bond in your interface specification.
 
 1. Click **Interfaces**.
 
-2. Click **Bond management**.
+2. Click **Create** if no bonds exist yet, or click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18">}} to add a new bond.
 
-3. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18">}} to add a new bond.
+    {{<figure src="/images/netq/lcm-switch-config-ifs-add-bond-330.png" width="400">}}
 
-4. Enter a unique name for the bond.
+3. Enter a unique name for the bond.
 
-5. Optionally enter an alias for the bond. Format???
+4. Optionally enter an alias for the bond. (Format, limitations ???)
 
-6. Select an interface profile from the dropdown. If you have not yet created one, refer to (Interface profile tab > Bond submenu. how to link to tab???)
+5. Select a bond profile from the dropdown. If you have not yet created one, follow the instructions in the Interface Profiles tab and then return here.
 
-7. Assign the ports included in this bond. Format???
+6. Assign the ports included in this bond. The port name is provided based on the switch type selection you made earlier. The port numbers are entered here.
 
-8. When you are satisfied with the bond specification, click **Create**.
+7. When you are satisfied with the bond specification, click **Create**.
 
     The bonds are displayed in the Bond list. Once bonds are in the list, they can be exported, modified, removed, and duplicated using the menu above the list. Simply select one, all, or filter for a subset of bonds, then click the relevant menu icon.
 
-    (when select bond a, get an error, was there a step i missed to set these per instance variables???)
+    {{<figure src="/images/netq/lcm-switch-config-ifs-bonds-330.png" width="700">}}
 
-9. Click one of the following:
-
-    - **Reset** to clear your entries and start again
-    - **Save and Continue** to configure additional interface profile components
-    - **Save and Deploy** if your interface profile and the switch configuration is now completed
+8. Repeat these steps to add additional bonds as needed. Then continue to specifying SVIs.
 
 ### Add SVIs
 
-(why include???)
+Add SVIs (switch virtual interfaces) to your switch configuration when you need a virtual interface at layer 3 to a VLAN.
 
-1. Click **SVI Management**.
+1. Click **Interfaces**.
 
-2. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18">}} to add a new SVI.
+2. Click **SVIs**.
 
-3. Enter a unique name for the SVI.
+3. Click **Create** if no SVIs exist, or click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18">}} to add a new SVI.
 
-4. Select a VLAN profile to apply to this SVI.
+    {{<figure src="/images/netq/lcm-switch-config-ifs-add-svi-330.png" width="400">}}
 
-5. Enter the supported MTU for this SVI.
+4. Enter a unique name for the SVI.
 
-6. Select an interface profile to apply to this SVI.
+5. Select a VLAN to apply to this SVI.
 
-7. Click **Create**.
+6. Select an SVI profile to apply to this SVI. If you have not yet created one, follow the instructions in the **Interface Profiles** tab and then return here.
+
+7. When you are satisfied with your SVI specification, click **Create**.
 
     The SVIs are displayed in the SVI list. Once SVIs are in the list, they can be exported, modified, removed, and duplicated using the menu above the list. Simply select one, all, or filter for a subset of SVIs, then click the relevant menu icon.
 
-8. Click one of the following:
+    {{<figure src="/images/netq/lcm-switch-config-ifs-svis-330.png" width="700">}}
 
-    - **Reset** to clear your entries and start again
-    - **Save and Continue** to configure additional interface parameters
-    - **Save and Deploy** if your interfaces and the switch configuration is now completed
+8. Repeat these steps to add additional SVIs as needed. Then continue to specifying subinterfaces.
 
-### Add Sub-interfaces
+### Add Subinterfaces
 
 (why include???)
 
-1. Click **Subinterface management**.
+1. Click **Interfaces**.
 
-2. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18">}} to add a new sub-interface.
+2. Click **Subinterfaces**.
 
-3. Enter a unique name for the subinterface.
+3. Click Create if no subinterfaces exist, or click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18">}} to add a new subinterface.
 
-4. Select a VLAN profile to apply to this subinterface.
+    {{<figure src="/images/netq/lcm-switch-config-ifs-add-subif-330.png" width="400">}}
 
-5. Enter the supported MTU for this subinterface.
+4. Enter a unique name for the subinterface in the format \<parent-interface:subinterface-number\>.
 
-6. Select a parent interface from the dropdown.
+5. Optionally enter an alias for this subinterface. (format, limitations???)
 
-7. Select an interface profile to apply to this subinterface.
+6. Select a VLAN to apply to this subinterface.
 
-8. Click **Create**.
+7. Select a parent interface from the dropdown.
 
-    The subinterface are displayed in the subinterface list. Once subinterfaces are in the list, they can be exported, modified, removed, and duplicated using the menu above the list. Simply select one, all, or filter for a subset of subinterfaces, then click the relevant menu icon.
+8. Select a subinterface profile to apply to this subinterface.
 
-9. Click one of the following:
+9. When you are satisfied with your subinterface specification, click **Create**.
 
-    - **Reset** to clear your entries and start again
-    - **Save and Continue** to configure additional interface parameters
-    - **Save and Deploy** if your interfaces and the switch configuration is now completed
+    The subinterfaces are displayed in the subinterface list. Once subinterfaces are in the list, they can be exported, modified, removed, and duplicated using the menu above the list. Simply select one, all, or filter for a subset of subinterfaces, then click the relevant menu icon.
+
+    {{<figure src="/images/netq/lcm-switch-config-ifs-subifs-330.png" width="700">}}
+
+10. Repeat these steps to add additional subinterfaces as needed. Then continue to specifying ports.
 
 ### Add Ports
 
-This tab describes all of the ports on the identified switch. The port name and bond are provided by default (based on the switch type??? and xxx???). For each port, you must define the speed and assign an interface profile. Optionally you can configure ports to be split to support xxx???. Any caveats related to port configuration on the specified type of switch are listed under the port listing.
+This tab describes all of the ports on the identified switch type. The port name and bond are provided by default (based on your previous switch configuration entries). For each port, you must define the speed and assign an interface profile. Optionally you can configure ports to be split to support multiple interfaces. Any caveats related to port configuration on the specified type of switch are listed under the port listing.
 
-1. Click **Port management**.
+1. Click **Interfaces**.
 
-2. Accept or change the port names.
+2. Click **Ports**.
 
-3. Verify the port speeds. For any port that should be other than 100 G, select either 50 G or 40 G.
+    {{<figure src="/images/netq/lcm-switch-config-ifs-ports-330.png" width="700">}}
+
+3. For each port, verify the port speed. For any port that should be other than the default highlighted, click on the alternate speed choice.
 
 4. If you want to break out selected ports, choose the split value from the dropdown.
 
-5. Select a bond to apply to each port.
+    In the example above, swp1 has its speed set to 100 Gbps. On the Mellanox SN2700 switch being configured here, this port can then be broken into two 50 Gbps speed interfaces or four 25 Gbps speed interfaces. Some limitations on other ports may occur when you breakout a given port. In this case, if we were to choose a 4x breakout, swp2 would become unavailable and you would not be able to configure that port.
 
-6. Select an interface profile for each port.
+    {{<figure src="/images/netq/lcm-switch-config-ifs-ports-brkout-330.png" width="100">}}
 
-<div class="notices tip"><p>For values that apply to all ports, select all ports and then select or enter the value.</p></div>
+5. If a port is missing a bond (all ports must have a bond???), return to **Interfaces** > **Bonds** to assign it.
 
-7. When you are satisfied with the interfaces specification, click one of the following:
+6. Assign an interface profile for each port by clicking on the *Select profile* link.
 
-    - **Reset** to clear your entries and start again
-    - **Save and Continue** to configure additional switch configuration parameters
-    - **Save and Deploy** if your port configuration and the switch configuration is now completed
+    Click L2 or L3 to view available port profiles. If you have not yet created one, follow the instructions in the **Interface Profiles** tab and then return here.
+
+    Click on the port profile card to select it and return to the port list. If you accidentally select the wrong port profile, simply click on the profile name and reselect a different profile.
+
+    {{<figure src="/images/netq/lcm-switch-config-ifs-ports-assignprof-330.png" width="400">}}
+
+7. When you are satisfied with the port specification for all ports, click one of the following:
+
+<div style="padding-left: 18px;"><ul><li><strong>Discard</strong> to clear your entries and start again.</li>
+    <li><strong>Save and go to Switches</strong> to assign the switch configuration to switches now.</li>
+    <li><strong>Save and deploy on switches</strong> to complete the switch configuration and go to your switch configurations listing. You can edit the configuration to assign it to switches at a later time.</li>
+    </ul></div>
 
 {{< /tab >}}
 
-{{< tab "Switches" >}}
+{{< /tabs >}}
 
-The final step is to assign the switch configuration that you have just created to one or more switches.
+### Assign Switch Configuration Profiles to Switches
 
-To assign the configuration:
+After you have completed one or more switch configurations, you can assign them to one or more switches.
 
-1. Click **Switches**.
+To assign a switch configuration:
 
-    A few items to note on this tab:
-    - Above the switches (left), the number of switches that can be assigned and the number of switches that have already been assigned
-    - Above the switches (right), management tools to help find the switches you want to assign with this configuration, including select all, clear, filter, and search.
+1. Open the **Switches** tab in the switch configuration you want to assign:
 
-    {{<figure src="/images/netq/lcm-switch-config-switch-assign-320.png" width="700">}}
+    - If you have just completed creating a switch configuration and are still within the configuration page, simply click the **Switches** tab.
 
-2. Select the switches to be assigned this configuration.
+        {{<figure src="/images/netq/lcm-switch-config-switches-tab-highlight-330.png" width="700">}}
 
-    In this example, we searched for all leaf switches, then clicked select all.
+    - If you want to apply a previously saved configuration, click {{<img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/06-Servers/server-upload.svg" width="18" height="18">}} on a workbench header > click **Configuration Management** > click **Manage** on the Switch Configurations card > locate the desired configuration > click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu-horizontal.svg" height="18" width="18">}} > select **Edit** > click the **Switches** tab.
 
-    {{<figure src="/images/netq/lcm-switch-config-switch-selection-320.png" width="700">}}
+        {{<figure src="/images/netq/lcm-switch-config-edit-switchconfig-330.png" width="700">}}
 
-3. Click **Save and Finish**.
+    In either case, you should land on the switch configuration page with the **Switches** tab open.
 
-4. To run the job to apply the configuration, you first have the option to change the hostnames of the selected switches.
+    {{<figure src="/images/netq/lcm-switch-config-switches-330.png" width="700">}}
+
+<div style="padding-left: 18px;">A few items to note on this tab:
+    <ul><li>Above the switches (left), the number of switches that can be assigned and the number of switches that have already been assigned a switch configuration</li>
+        <li>Above the switches (right), management tools to help find the switches you want to assign with this configuration, including filter and search.</li>
+    </ul></div>
+
+2. Select the switches to be assigned this configuration. Each switch selected must have items specified that are particular to that switch. This can be done in one of two ways:
+
+   - Select an individual switch by clicking on the switch card
+   - Filter or search for switches and then click **Save and deploy on switches/Finish** (??? not working)
+
+   Either way, a per-instance variables form appears for the selected or one of the selected switches.
+
+    {{<figure src="/images/netq/lcm-switch-config-switches-variables-330.png" width="700">}}
+
+3. Enter the required parameters for each switch using the following instructions.
+
+    {{< tabs "TabID1086" >}}
+
+{{< tab "General Changes" >}}
+
+1. Verify the IP address of the switch.
+
+2. Optionally change the hostname of the switch.
+
+3. Enter the loopback IP address for the switch.
+
+4. Enter the System MAC address for the switch.
+
+5. Enter the system ID for the switch.
+
+6. Enter a priority for the switch in the format of a integer, where x is the highest priority.
+
+7. Enter a backup IP address for the switch in the event it becomes unreachable.
+
+8. Enter a VXLAN anycast IP address for the switch.
+
+9. Enter the name of a VRF for the switch.
+
+10. Click **Continue to vrf details**, or click **Save and Exit** to come back later to finish the specification.
+
+{{< /tab >}}
+
+{{< tab "VRF" >}}
+
+{{< /tab >}}
+
+{{< tab "Bond Changes" >}}
+
+{{< /tab >}}
+
+{{< tab "SVI Changes" >}}
+
+{{< /tab >}}
+
+{{< tab "Subinterface Changes" >}}
+
+{{< /tab >}}
+
+{{< tab "Port Changes" >}}
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
+4. Click **Save and Exit**.
+
+5. To run the job to apply the configuration, you first have the option to change the hostnames of the selected switches.
 
     Either change the hostnames and then click **Continue** or just click **Continue** without changing the hostnames.
 
@@ -1078,9 +1153,7 @@ To assign the configuration:
 
 8. Click **View** on the Config Assignment History card to open the details of all assignment jobs. Refer to {{<link title="Manage Switch Configurations/#view-switch-configuration-history">}} for more detail about this card.
 
-{{< /tab >}}
 
-{{< /tabs >}}
 
 ### Edit a Switch Configuration
 

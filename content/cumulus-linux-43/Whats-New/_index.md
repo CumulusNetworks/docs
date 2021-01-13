@@ -24,15 +24,15 @@ Cumulus Linux 4.3.0 supports new platforms, provides bug fixes, and contains sev
 - BGP enhancements:
   - {{<link url="Optional-BGP-Configuration/#graceful-bgp-restart" text="BGP graceful restart">}}
   - {{<link url="Optional-BGP-Configuration/#multiple-bgp-asns" text="Multiple ASNs for different VRF instances">}}
-- {{<link url="SPAN-and-ERSPAN" text="NCLU commands for SPAN and ERSPAN">}}
 - {{<link url="DHCP-Snooping" text="DHCP snooping">}}
 - QoS enhancements:
   - {{<link url="Buffer-and-Queue-Management#traffic-shaping" text="Traffic shaping">}}
   - {{<link url="Buffer-and-Queue-Management#scheduling-weights-per-egress-queue" text="Scheduling weights per egress queue">}}
-- {{<link url="Netfilter-ACLs/#nonatomic-update-mode-and-atomic-update-mode" text="Incremental nonatomic updates">}} now supported on Mellanox switches
 - {{<link title="Mellanox What Just Happened (WJH)" text="Mellanox WJH commands">}} to troubleshoot and diagnose network issues
 - {{<link url="Docker-on-Cumulus-Linux" text="Docker runtime ">}} included by default on Cumulus Linux
+- {{<link url="SPAN-and-ERSPAN" text="NCLU commands for SPAN and ERSPAN">}}
 - {{<link url="RDMA-over-Converged-Ethernet-RoCE" text="DoRoCE command">}} to configure RoCE with PFC and ECN on all interfaces
+- {{<link url="Netfilter-ACLs/#nonatomic-update-mode-and-atomic-update-mode" text="Incremental nonatomic updates">}} now supported on Mellanox switches
 - {{<link url="Supported-MIBs" text="SNMP MIB for BGP unnumbered peers">}}
 - Multicast routing over VXLAN is now supported on Mellanox switches
 

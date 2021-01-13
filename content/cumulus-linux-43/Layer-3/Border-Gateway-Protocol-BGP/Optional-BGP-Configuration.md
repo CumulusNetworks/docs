@@ -404,10 +404,10 @@ The following example configures VRF RED and VRF BLUE on border01 to use ASN 655
 ```
 cumulus@border01:~$ net add bgp vrf RED autonomous-system 65532        
 cumulus@border01:~$ net add bgp vrf RED router-id 10.10.10.63
-cumulus@border01:~$ net add bgp vrf BLUE neighbor swp3 remote-as external
+cumulus@border01:~$ net add bgp vrf BLUE neighbor swp3 interface remote-as external
 cumulus@border01:~$ net add bgp vrf BLUE autonomous-system 65533 
 cumulus@border01:~$ net add bgp vrf BLUE router-id 10.10.10.63
-cumulus@border01:~$ net add bgp vrf BLUE neighbor swp4 remote-as external
+cumulus@border01:~$ net add bgp vrf BLUE neighbor swp4 interface remote-as external
 cumulus@border01:~$ net pending
 cumulus@border01:~$ net commit
 ```

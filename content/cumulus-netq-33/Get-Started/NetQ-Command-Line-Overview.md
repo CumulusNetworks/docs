@@ -146,13 +146,13 @@ Commands:
 To see an exhaustive list of commands, run:
 
 ```
-cumulus@switch:~$ netq help list verbose
-```
-
-To see a list of all NetQ commands and keyword help, run:
-
-```
 cumulus@switch:~$ netq help list
+```
+
+To get usage information for NetQ, run:
+
+```
+cumulus@switch:~$ netq help verbose
 ```
 
 ### Command History

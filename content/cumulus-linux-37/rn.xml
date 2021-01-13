@@ -5068,7 +5068,7 @@ CVE-2019-5188: A specially crafted ext4 directory can cause an out-of-bounds wri
 </tr>
 <tr>
 <td>CM-29037</td>
-<td><p>When a link flap occurs and IPv6 traffic traverses eth0, a kernel panic might occur with the following logs printed to the console:</p>
+<td><p>When a link flap occurs while IPv6 traffic traverses interfaces, a kernel panic may occur with the following logs printed to the console:</p>
 
 [1675080.282051] BUG: unable to handle kernel NULL pointer dereference at 0000000000000110
 [1675080.291007] IP: [&lt;ffffffff81709dec&gt;] fib6_lookup_1+0xac/0x170
@@ -6581,7 +6581,7 @@ CVE-2019-5188: A specially crafted ext4 directory can cause an out-of-bounds wri
 </tr>
 <tr>
 <td>CM-29037</td>
-<td><p>When a link flap occurs and IPv6 traffic traverses eth0, a kernel panic might occur with the following logs printed to the console:</p>
+<td><p>When a link flap occurs while IPv6 traffic traverses interfaces, a kernel panic may occur with the following logs printed to the console:</p>
 
 [1675080.282051] BUG: unable to handle kernel NULL pointer dereference at 0000000000000110
 [1675080.291007] IP: [&lt;ffffffff81709dec&gt;] fib6_lookup_1+0xac/0x170

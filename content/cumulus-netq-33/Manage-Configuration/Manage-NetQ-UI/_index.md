@@ -6,7 +6,7 @@ toc: 2
 ---
 As an administrator, you can manage access to and various application-wide settings for the NetQ UI from a single location.
 
-Individual users have the ability to set preferences specific to their workspaces. This information is covered separately. Refer to {{<link title="Set User Preferences">}}.
+Individual users have the ability to set preferences specific to their workspaces. This information is covered separately. Refer to {{<link title="Set User Preferences" text="Set User Preferences">}}.
 
 ## NetQ Management Workbench
 

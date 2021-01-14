@@ -477,7 +477,7 @@ To create a profile:
 
     Refer to {{<link title="Configure and Monitor What Just Happened" text="What Just Happened">}} for information about configuring this feature, and to {{<link title="WJH Event Messages Reference" text="WJH Event Messages Reference">}} for a description of the drop reasons. *WJH is only available on Mellanox switches.*
 
-    If you choose to enable WJH for this profile, you can use the default configuration which collects all statistics, or you can select **Customize** to select which categories and drop reasons you want collected. Click on each category and drop reason you do not want collected, then click **Done**. You can discard your changes (return to all categories and drop reasons) by clicking **Cancel**.
+    If you choose to enable WJH for this profile, you can use the default configuration which collects all statistics, or you can select **Customize** to select which categories, drop reasons, or event severity you want collected. Click on each category and drop reason you do not want collected, then click **Done**. You can discard your changes (return to all categories and drop reasons) by clicking **Cancel**.
 
 8. To set a logging level, click **Advanced**, then choose the desired level.
 

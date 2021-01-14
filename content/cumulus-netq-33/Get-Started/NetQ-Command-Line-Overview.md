@@ -709,7 +709,7 @@ cumulus@switch:~$ netq add notification channel pagerduty pd-netq-events integra
 Successfully added/updated channel pd-netq-events
 ```
 
-Refer to {{<link title="Configure Notifications" text="Configure Notifications">}} for details about using these commands and additional examples.
+Refer to {{<link title="Configure System Event Notifications">}} for details about using these commands and additional examples.
 
 ### Trace Commands
 

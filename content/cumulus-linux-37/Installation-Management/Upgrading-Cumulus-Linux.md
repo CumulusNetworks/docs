@@ -1,12 +1,12 @@
 ---
 title: Upgrading Cumulus Linux
-author: Cumulus Networks
+author: NVIDIA
 weight: 45
 pageID: 8362647
 ---
 This topic describes how to upgrade Cumulus Linux on your switches to a more recent release.
 
-Cumulus Networks recommends that you deploy, provision, configure, and upgrade switches using automation, even with small networks or test labs. During the upgrade process, you can quickly upgrade dozens of devices in a repeatable manner. Using tools like Ansible, Chef, or Puppet for configuration management greatly increases the speed and accuracy of the next major upgrade; these tools also enable the quick swap of failed switch hardware.
+Consider deploying, provisioning, configuring, and upgrading switches using automation, even with small networks or test labs. During the upgrade process, you can quickly upgrade dozens of devices in a repeatable manner. Using tools like Ansible, Chef, or Puppet for configuration management greatly increases the speed and accuracy of the next major upgrade; these tools also enable the quick swap of failed switch hardware.
 
 {{%notice info%}}
 
@@ -22,7 +22,7 @@ Be sure to read the knowledge base article {{<exlink url="https://docs.cumulusne
 
 {{%/notice%}}
 
-Understanding the location of configuration data is required for successful upgrades, migrations, and backup. As with other Linux distributions, the `/etc` directory is the primary location for all configuration data in Cumulus Linux. The following list is a likely set of files that you need to back up and migrate to a new release. Make sure you examine any file that has been changed. Cumulus Networks recommends you consider making the following files and directories part of a backup strategy.
+Understanding the location of configuration data is required for successful upgrades, migrations, and backup. As with other Linux distributions, the `/etc` directory is the primary location for all configuration data in Cumulus Linux. The following list is a likely set of files that you need to back up and migrate to a new release. Make sure you examine any file that has been changed. Consider making the following files and directories part of a backup strategy.
 
 <details>
 
@@ -124,7 +124,7 @@ Understanding the location of configuration data is required for successful upgr
 
 - If you are using the root user account, consider including `/root/`.
 - If you have custom user accounts, consider including `/home/<username>/`.
-- Cumulus Networks recommends you run the `net show configuration files | grep -B 1 "==="` command and back up the files listed in the command output.
+- Run the `net show configuration files | grep -B 1 "==="` command and back up the files listed in the command output.
 
 {{%/notice%}}
 
@@ -194,7 +194,7 @@ Be aware of the following when upgrading packages:
 
 - You cannot upgrade the switch to a new release train. For example, you **cannot** upgrade the switch from **2**.5.6 to **3**.y.z.
 - If you are upgrading Cumulus Linux from a release earlier than 3.6.2, you might encounter certain issues due to package changes and service restarts.
-- You cannot choose the exact release that you want to run. When you upgrade, you upgrade all packages to the latest available release in the Cumulus Networks repository.
+- You cannot choose the exact release that you want to run. When you upgrade, you upgrade all packages to the latest available release in the Cumulus Linux repository.
 - If you are upgrading from a release earlier than 3.6.2, certain upgrade operations terminate SSH sessions and/or routing on the in-band (front panel) ports, leaving you unable to monitor the upgrade process. (As a workaround, you can use the {{<exlink url="https://docs.cumulusnetworks.com/knowledge-base/Installing-and-Upgrading/Upgrading/Using-dtach-for-In-band-apt-get-Upgrades/" text="dtach tool">}}.)
 - The `sudo -E  apt-get upgrade` command might result in services being restarted or stopped as part of the upgrade process.
 - The `sudo -E apt-get install` command might disrupt core services by changing core service dependency packages.

@@ -1,6 +1,6 @@
 ---
 title: Equal Cost Multipath Load Sharing - Hardware ECMP
-author: Cumulus Networks
+author: NVIDIA
 weight: 191
 pageID: 8362929
 ---

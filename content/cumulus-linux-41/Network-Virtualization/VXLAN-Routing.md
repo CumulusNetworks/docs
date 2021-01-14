@@ -1,6 +1,6 @@
 ---
 title: VXLAN Routing
-author: Cumulus Networks
+author: NVIDIA
 weight: 610
 toc: 3
 ---
@@ -102,7 +102,7 @@ For VXLAN routing on a switch with the Tomahawk+ ASIC, if you use 25G ports as t
 
 ## VXLAN Routing Data Plane and Broadcom Trident II Platforms
 
-VXLAN routing is not supported on Trident II switches, and the external hyperloop workaround for RIOT on Trident II switches has been removed in Cumulus Linux 4.0.0. Cumulus Networks recommends you use native VXLAN routing platforms and EVPN for network virtualization.
+VXLAN routing is not supported on Trident II switches, and the external hyperloop workaround for RIOT on Trident II switches has been removed in Cumulus Linux 4.0.0. Use native VXLAN routing platforms and EVPN for network virtualization.
 
 ## VXLAN Routing Data Plane and the Mellanox Spectrum ASIC
 

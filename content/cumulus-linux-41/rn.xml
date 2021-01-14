@@ -7,9 +7,109 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-32860</td>
+<td><p>The following vulnerabilities were announced in the p11-kit (libp11-kit0) packages:<br/>
+CVE-2020-29361: Multiple integer overflows have been discovered in the array allocations in the p11-kit library and the p11-kit list command, where overflow checks are missing before calling realloc or calloc.<br/>
+CVE-2020-29362: A heap-based buffer over-read has been discovered in the RPC protocol used by thep11-kit server/remote commands and the client library. When the remote entity supplies a byte array through a serialized PKCS#11 function call, the receiving entity may allow the reading of up to 4 bytes of memory past the heap allocation.<br/>
+CVE-2020-29363: A heap-based buffer overflow has been discovered in the RPC protocol used by p11-kit server/remote commands and the client library. When the remote entity supplies a serialized byte array in a CK_ATTRIBUTE, the receiving entity may not allocate sufficient length for the buffer to store the deserialized value.<br/>
+Vulnerable: 0.23.15-2<br/>
+Fixed: 0.23.15-2_deb10u1</p></td>
+<td>4.0.0-4.2.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32733</td>
+<td><p>CVE-2020-29479 CVE-2020-29480 CVE-2020-29481 CVE-2020-29482 CVE-2020-29483 CVE-2020-29484 CVE-2020-29485 CVE-2020-29486 CVE-2020-29566 CVE-2020-29570 CVE-2020-29571<br/>
+Several security issues affecting Xenstore could result in cross domain access (denial of service, information leaks or privilege escalation) or denial of service against xenstored.<br/>
+Additional vulnerabilities could result in guest-to-host denial of<br/>
+service.<br/>
+Vulnerable: &lt;= 4.11.4+57-g41a822c392-1<br/>
+Fixed: 4.11.4+57-g41a822c392-2</p></td>
+<td>4.0.0-4.2.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32661</td>
+<td><p>On the Edgecore AS7312 switch, eth0 and swp use the same MAC address.</p></td>
+<td>3.7.14, 4.0.0-4.2.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32641</td>
+<td><p>CVE-2020-27350: Missing input validation in the ar/tar implementations of APT, the high level package manager, could cause out-of-bounds reads or infinite loops, resulting in denial of service when processing malformed deb files.<br/>
+CVE-2020-27351: Various memory and file descriptor leaks were discovered in the Python interface to the APT package management runtime library, which could result in denial of service.<br/>
+Vulnerable: apt &lt;= 1.8.2.1, python-apt &lt;= 1.8.4.1<br/>
+Fixed: apt 1.8.2.2, python-apt 1.8.4.3</p></td>
+<td>4.0.0-4.2.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32622</td>
+<td><p>The following vulnerability has been announced in OpenSSL:<br/>
+CVE-2020-1971: A flaw in the GENERAL_NAME_cmp() function could cause a NULL dereference when both GENERAL_NAMEs contain an EDIPARTYNAME, resulting in denial of service.  More information can be found at <a href="https://www.openssl.org/news/secadv/20201208.txt" class="external-link" rel="nofollow">https://www.openssl.org/news/secadv/20201208.txt</a> .<br/>
+Vulnerable: &lt;= 1.1.1d-0+deb10u3<br/>
+Fixed: 1.1.1d-0+deb10u4</p></td>
+<td>4.0.0-4.2.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32592</td>
+<td><p>CVE-2020-27670 CVE-2020-27671 CVE-2020-27672 CVE-2020-27674 CVE-2020-28368: Multiple vulnerabilities have been discovered in the Xen hypervisor, which could result in denial of service, privilege escalation or information leaks.<br/>
+Vulnerable: &lt; 4.11.4+57-g41a822c392-1<br/>
+Fixed: 4.11.4+57-g41a822c392-1</p></td>
+<td>4.0.0-4.2.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32545</td>
+<td><p>If the FRR and MSTP processes go down, an SNMP TRAP is not generated even with the following configuration in the /etc/snmp/snmpd.conf file. </p>
+
+proc watchfrr
+proc mstpd
+monitor -I -r 1 -o prNames.5 -o prErrMessage.5 “Process FRRis down!!!” PrErrorFlag.5 != 0
+monitor -I -r 1 -o prNames.5 -o prErrMessage.5 “Process FRR is up!!!” PrErrorFlag.5 = 0
+monitor -I -r 1  -o prNames.3 -o prErrMessage.3  "Process mstpd is down!!!!" prErrorFlag.3 != 0
+monitor -I -r 1  -o prNames.3 -o prErrMessage.3  "Process mstpd is up!!!!" prErrorFlag.3 = 0
+
+</td>
+<td>3.7.12-3.7.14, 4.0.0-4.2.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32532</td>
+<td><p>CVE-2020-8927: A buffer overflow exists in the Brotli library versions prior to 1.0.8 where an attacker controlling the input length of a "one-shot" decompression request to a script can trigger a crash, which happens when copying over chunks of data larger than 2 GiB.  If one cannot update to a fixed version, we recommend to use the "streaming" API as opposed to the "one-shot" API, and impose chunk size limits.<br/>
+Vulnerable: 1.0.7-2<br/>
+Fixed: 1.0.7-2+deb10u1</p></td>
+<td>4.0.0-4.2.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32420</td>
+<td><p>When running traditional mode bridges at scale (for example, when you have more than 200 bridges and a large number of MAC addresses), MLAG bonds flap intermittently from dual to single connected, then back to dual connected, which causes a layer 2 loop and STP state changes.<br/>
+To work around this issue, either shut down one side of the MLAG bond or prune out VLANS over the bond.</p></td>
+<td>3.7.13-3.7.14, 4.0.0-4.2.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32412</td>
+<td><p>CVE-2020-28196: MIT Kerberos 5 (aka krb5) before 1.17.2 and 1.18.x before 1.18.3 allows unbounded recursion via an ASN.1-encoded Kerberos message because the lib/krb5/asn.1/asn1_encode.c support for BER indefinite lengths lacks a recursion limit.<br/>
+Vulnerable: 1.17-3<br/>
+Fixed: 1.17-3+deb10u1</p></td>
+<td>4.0.0-4.2.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32311</td>
+<td><p>CVE-2020-25709, CVE-2020-25710: Two vulnerabilities in the certificate list syntax verification and in the handling of CSN normalization were discovered in OpenLDAP, a free implementation of the Lightweight Directory Access Protocol. An unauthenticated remote attacker can take advantage of these flaws to cause a denial of service (slapd daemon crash) via specially crafted packets.<br/>
+Vulnerable: &lt;= 2.4.47+dfsg-3+deb10u3<br/>
+Fixed: 2.4.47+dfsg-3+deb10u4</p></td>
+<td>4.0.0-4.2.1</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-32226</td>
 <td><p>If switchd successfully signals clagd that it is going down, clagd stops responding to keepalive echo requests from the peer instead of sending a good bye to the peer over both the peerlink and the backup switch. Eventually, the keepalive timer expires and the secondary switch becomes the primary, and brings the bonds and VNIs back up. However, if switchd does not successfully signal it is going down, (in the event of a crash), the primary switch continues to respond to keepalives, and the bonds and VNIs are down on both peers. </p></td>
-<td>3.7.12-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.12-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
@@ -22,13 +122,28 @@
 <td>CM-32169</td>
 <td><p>OpenSSH is vulnerable to CVE-2020-14145, as described in <a href="https://www.fzi.de/fileadmin/user_upload/2020-06-26-FSA-2020-2.pdf" class="external-link" rel="nofollow">https://www.fzi.de/fileadmin/user_upload/2020-06-26-FSA-2020-2.pdf</a>.  <br/>
 This is an information leak in algorithm negotiation that can allow man-in-the-middle attacks on initial connection attempts without a previously stored server host key on the client. If desired, mitigation using UpdateHostKeys and HostKeyAlgorithms is also given in that paper.</p></td>
-<td>3.0.0-3.7.13, 4.0.0-4.2.1</td>
+<td>3.0.0-3.7.14, 4.0.0-4.2.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32112</td>
+<td><p>On the ARM platform, NTP peer associations slowly increase to larger offsets (~500ms).</p></td>
+<td>4.0.0-4.2.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32110</td>
+<td><p>CVE-2020-25692: A vulnerability in the handling of normalization with modrdn was discovered in OpenLDAP, a free implementation of the Lightweight Directory Access Protocol. An unauthenticated remote attacker can use this flaw to cause a denial of service (slapd daemon crash) via a specially crafted packet.<br/>
+The slapd package is not present in the image or repository, although the OpenLDAP libraries are present.<br/>
+Vulnerable: &lt;= 2.4.47+dfsg-3+deb10u2<br/>
+Fixed: 2.4.47+dfsg-3+deb10u3</p></td>
+<td>4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-32006</td>
 <td><p>Certain Dell S4048-ON switches show an incorrect vendor name and hang when you issue the reboot command. </p></td>
-<td>3.7.12-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.12-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
@@ -55,6 +170,14 @@ Fixed: 0.14.0-1.3+deb10u1</p></td>
 <td></td>
 </tr>
 <tr>
+<td>CM-31697</td>
+<td><p>Multiple vulnerabilities have been discovered in the Xen hypervisor, which could result in denial of service, guest-to-host privilege escalation or information leaks.  These include the following:CVE-2020-25595, CVE-2020-25596, CVE-2020-25597, CVE-2020-25599, CVE-2020-25600, CVE-2020-25601, CVE-2020-25602, CVE-2020-25603, CVE-2020-25604.<br/>
+Vulnerable: &lt; 4.11.4+37-g3263f257ca-1<br/>
+Fixed: 4.11.4+37-g3263f257ca-1</p></td>
+<td>4.0.0-4.2.1</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-31605</td>
 <td><p>When you configure an SNMPv3 user with the net-snmp-config configuration command from the libsnmp-dev package, you get an error message similar to the one below:</p>
 
@@ -73,7 +196,7 @@ cumulus@switch:mgmt-vrf:~$ net add snmp-server username user999 auth-md5 user999
 
 
 <p>Alternatively, directly edit the /etc/snmp/snmpd.conf file as described in the documentation.</p></td>
-<td>3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.13-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
@@ -81,7 +204,7 @@ cumulus@switch:mgmt-vrf:~$ net add snmp-server username user999 auth-md5 user999
 <td><p>Multicast traffic on a VPN is sent to remote VTEPs that are not part of the VPN and the remote VTEPs receive multicast traffic encapsulated in a VXLAN ID that doesn't exist.<br/>
 To work around this issue, disable IGMP snooping on the switch.</p></td>
 <td>3.7.12-3.7.13, 4.0.0-4.2.1</td>
-<td></td>
+<td>3.7.14</td>
 </tr>
 <tr>
 <td>CM-31545</td>
@@ -89,7 +212,7 @@ To work around this issue, disable IGMP snooping on the switch.</p></td>
 To work around this issue, restart FRR with the sudo systemctl restart frr.service command.</p>
 </td>
 <td>3.7.10-3.7.13, 4.1.1-4.2.1</td>
-<td></td>
+<td>3.7.14-4.1.0</td>
 </tr>
 <tr>
 <td>CM-31374</td>
@@ -120,7 +243,7 @@ Fixed: 3.1+dfsg-8+deb10u8</p></td>
 <td>CM-31327</td>
 <td><p>After you manually edit the /etc/resolv.conf file to change or remove a VRF for a given DNS server, ifreload does not remove IP rules created for DNS servers in the VRF. <br/>
 To work around this issue, run the net add/del dns nameserver vrf &lt;name&gt; command to force the DNS configuration.</p></td>
-<td>3.7.13, 4.1.1-4.2.1</td>
+<td>3.7.13-3.7.14, 4.1.1-4.2.1</td>
 <td></td>
 </tr>
 <tr>
@@ -156,27 +279,20 @@ Fixed: 9.27~dfsg-2+deb10u4</p></td>
 <td>CM-31150</td>
 <td><p>On the Mellanox SN2410 switch, you see switchd core and GBIN_MALLOC errors.<br/>
 To work around this issue, restart switchd.</p></td>
-<td>3.7.12-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.12-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-31120</td>
 <td><p>In a traditional bridge configuration with ip-forward off, neighbors are synchronized to hardware with a switchd restart but are cleared when you flap the bridge interface.</p></td>
-<td>3.7.10-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.10-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
-</tr>
-<tr>
-<td>CM-31086</td>
-<td><p>When you add a member to a bond that has a subinterface configured (such as peerlink.4094), the new member is assigned only the VLAN of the subinterface for forwarding.<br/>
-To work around this issue, bounce the bond or shutdown the new interface and use the remaining members over the bond.</p></td>
-<td>3.7.10-4.2.0</td>
-<td>4.2.1</td>
 </tr>
 <tr>
 <td>CM-31073</td>
 <td><p>When you set the sysctl settings net.ipv6.conf.all.accept_ra_defrtr (to prevent acceptance of IPv6 default route advertisements) and net.ipv6.conf.default.accept_ra_defrtr (set for newly created interfaces), if you create a new virtual interface, any pre-existing interface does not start accepting IPv6 default route avertisements again.<br/>
 To work around this issue, when you create a new virtual interface, set net.ipv6.conf.&lt;interface&gt;.accept_ra_defrtr to 0 for all interfaces and run sysctl -p --system.</p></td>
-<td>3.7.12-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.12-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
@@ -187,21 +303,12 @@ CVE-2019-11360: A buffer overflow in iptables-restore in netfilter iptables 1.8.
 <td>4.2.1</td>
 </tr>
 <tr>
-<td>CM-31056</td>
-<td><p>After configuring multiple dhcrelay6 instances, then restarting the dhcrelay6 relay service, replies are sent on the incorrect VLAN.<br/>
-This problem does not occur if you only have one instance of dhcrelay6.</p>
-
-<p>Restart on both instances.</p></td>
-<td>4.1.1-4.2.1</td>
-<td></td>
-</tr>
-<tr>
 <td>CM-31055</td>
 <td><p>The following vulnerability has been announced:<br/>
 CVE-2019-20892: net-snmp before 5.8.1.pre1 has a double free in usm_free_usmStateReference in snmplib/snmpusm.c via an SNMPv3 GetBulk request. <br/>
 Fixed:  5.8.0-cl4.2.1u1,  5.8.0-cl3.7.14u1</p></td>
-<td>3.0.0-4.2.0</td>
-<td>4.2.1</td>
+<td>3.0.0-3.7.13, 4.0.0-4.2.0</td>
+<td>3.7.14, 4.2.1</td>
 </tr>
 <tr>
 <td>CM-31038</td>
@@ -215,14 +322,14 @@ Vulnerable: &lt;= 4.19.0-cl4u3</p></td>
 <td>CM-31028</td>
 <td><p>Ingress SPAN/ERSPAN does not mirror packets when the next hop is EVPN encapsulated.</p></td>
 <td>3.7.7-3.7.13, 4.0.0-4.2.1</td>
-<td></td>
+<td>3.7.14</td>
 </tr>
 <tr>
 <td>CM-31016</td>
 <td><p>Changing the order of the bridge ports might cause the bridge MAC address to change, which flaps the bridge and its ports.<br/>
 To work around this issue, manually set the MAC address of the bridge interface by adding hwaddress &lt;mac-address&gt; to the bridge stanza in the /etc/network/interfaces file.</p></td>
-<td>3.0.0-4.2.0</td>
-<td>4.2.1</td>
+<td>3.0.0-3.7.13, 4.0.0-4.2.0</td>
+<td>3.7.14, 4.2.1</td>
 </tr>
 <tr>
 <td>CM-30957</td>
@@ -237,7 +344,7 @@ Fixed: 0.12.1+ds-2+deb10u1</p></td>
 <td>CM-30879</td>
 <td><p>NCLU restarts FRR when removing a BGP VRF IPv4 aggregate-address command.</p>
 </td>
-<td>3.7.12-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.12-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
@@ -264,7 +371,7 @@ The two scenarios where an exploit may be useful to an attacker:<br/>
 Be aware that restricting users to scp by using the command option in the authorized_keys file is not effective in preventing those users from executing arbitrary commands on the server.<br/>
 If you want to use scp -r to copy directory trees, avoid copying directory trees to which attackers may have added maliciously-named files. Archiving the directory tree with tar, zip, or a similar program, then copying the archive over to be extracted on the server avoids having to use scp -r altogether. In addition, OpenSSH provides sftp, which you can use instead of scp to copy files.<br/>
 To disable scp completely, use /bin/chmod 0 /usr/bin/scp .</p></td>
-<td>3.0.0-3.7.13, 4.0.0-4.2.1</td>
+<td>3.0.0-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
@@ -279,15 +386,15 @@ Fixed: 1.14.2-2+deb10u2</p></td>
 <tr>
 <td>CM-30832</td>
 <td><p>The Mellanox SN2700 and SN2410 switch intermittently reports PSU fan state changes with Unable to read from device/fan1_input/pwm1 syslog messages.</p></td>
-<td>4.1.1-4.2.1</td>
+<td>3.7.11-3.7.14, 4.1.1-4.2.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-30827</td>
 <td><p>If the MAC address of an SVI changes, clagd does not update its permanent neighbor entry for the local interface, and it does not report the change to its MLAG peer. This leaves the MLAG peer in a state where its permanent neighbor for the MLAG peer's SVI IP address continues to use the old MAC address, which causes routed traffic over this SVI to be dropped.<br/>
 To work around this issue, ifdown/ifup the SVI when a MAC address changes.</p></td>
-<td>3.7.12-4.2.0</td>
-<td>4.2.1</td>
+<td>3.7.12-3.7.13, 4.0.0-4.2.0</td>
+<td>3.7.14, 4.2.1</td>
 </tr>
 <tr>
 <td>CM-30826</td>
@@ -335,32 +442,32 @@ Fixed: 3.42.1-1+deb10u3</p></td>
 <td>CM-30514</td>
 <td><p>In OVSDB high availability mode, deleting &gt; 200 VLAN bindings might cause ovs-vtepd to crash.  Limit the deletion to 200 or fewer VLAN bindings.</p></td>
 <td>3.7.12-3.7.13, 4.0.0-4.2.1</td>
-<td></td>
+<td>3.7.14</td>
 </tr>
 <tr>
 <td>CM-30504</td>
 <td><p>When the OVSDB VTEP scale increases, the CPU utilization increases and eventually the switch (ptmd) fails to respond to the BFD, causing the BFD session to go down. As a result OVSDB cannot read the BFD socket status and outputs a warning in the ovs-vtepd debugs: PTM socket error: Bad file descriptor.</p></td>
-<td>3.7.12-4.2.0</td>
-<td>4.2.1</td>
+<td>3.7.12-3.7.13, 4.0.0-4.2.0</td>
+<td>3.7.14, 4.2.1</td>
 </tr>
 <tr>
 <td>CM-30503</td>
 <td><p>In OVSDB high availability mode, if you create, then delete a binding, the FDB entry is not replaced and you see an error.</p></td>
-<td>3.7.12-4.2.0</td>
-<td>4.2.1</td>
+<td>3.7.12-3.7.13, 4.0.0-4.2.0</td>
+<td>3.7.14, 4.2.1</td>
 </tr>
 <tr>
 <td>CM-30498</td>
 <td><p>There is a change to the default OVSDB bootstrapping process, where the script created now defaults to VLAN-aware bridge mode. If you want to use traditional bride mode, you need to force it by editing the ovs-vtep-ctl script generated by the bootstrap process.</p></td>
-<td>3.7.12-4.2.0</td>
-<td>4.2.1</td>
+<td>3.7.12-3.7.13, 4.0.0-4.2.0</td>
+<td>3.7.14, 4.2.1</td>
 </tr>
 <tr>
 <td>CM-30486</td>
 <td><p>A host migrated to an 802.1X MAB port within the same broadcast domain fails to have the correct FDB entry installed if a dynamic FDB entry for that MAC address exists from previous connectivity in the broadcast domain.<br/>
 To work around this issue, manually delete the dynamic FDB entry that is associated with the uplink trunk port.</p></td>
-<td>3.7.12-4.2.0</td>
-<td>4.2.1</td>
+<td>3.7.12-3.7.13, 4.1.1-4.2.0</td>
+<td>3.7.14-4.1.0, 4.2.1</td>
 </tr>
 <tr>
 <td>CM-30484</td>
@@ -375,8 +482,8 @@ Fixed: 4.11.4+24-gddaaccbbab-1~deb10u1</p></td>
 <tr>
 <td>CM-30479</td>
 <td><p>When you restart clagd, the edge port setting on the peer link changes.</p></td>
-<td>3.7.2-4.2.0</td>
-<td>4.2.1</td>
+<td>3.7.2-3.7.13, 4.0.0-4.2.0</td>
+<td>3.7.14, 4.2.1</td>
 </tr>
 <tr>
 <td>CM-30473</td>
@@ -398,8 +505,8 @@ To workaround this issue, downgrade to Cumulus Linux 3.7 ESR.</p></td>
 <tr>
 <td>CM-30464</td>
 <td><p>The net show dot1x interface summary command output shows a MAC address with all zeros associated with a port.</p></td>
-<td>3.7.12-4.2.0</td>
-<td>4.2.1</td>
+<td>3.7.12-3.7.13, 4.0.0-4.2.0</td>
+<td>3.7.14, 4.2.1</td>
 </tr>
 <tr>
 <td>CM-30447</td>
@@ -414,7 +521,7 @@ Fixed: 2.5.5-3+deb10u2</p></td>
 <tr>
 <td>CM-30422</td>
 <td><p>When you configure a bridge in the /etc/network/interfaces file, then try to reconfigure the bridge to be a VRF interface with the same name, ifreload/ifup commands fail with an invalid table id or unable to get vrf table id error.</p></td>
-<td>3.7.12-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.12-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
@@ -439,7 +546,7 @@ Fixed: 2.5.5-3+deb10u2</p></td>
 <td>CM-30296</td>
 <td><p>The net show configuration command provides the wrong net add command for ACL under the VLAN interface.</p>
 </td>
-<td>3.7.12-3.7.13, 4.1.0-4.2.1</td>
+<td>3.7.12-3.7.14, 4.1.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
@@ -474,7 +581,7 @@ Because the modules listed above do not return to their default values correctly
 <td><p>switchd memory utilization might continue to increase if there are excessive and continuous link flaps over a long period of time.<br/>
 To work around this issue, correct the cause of the frequent link flaps. You can restart switchd with the sudo systemctl restart switchd command to recover memory; this operation is impactful to all traffic on the switch during the restart.</p></td>
 <td>3.7.11-3.7.12, 4.0.0-4.2.0</td>
-<td>3.7.13, 4.2.1</td>
+<td>3.7.13-3.7.14, 4.2.1</td>
 </tr>
 <tr>
 <td>CM-30231</td>
@@ -504,34 +611,9 @@ zebra increments the local MAC mobility sequence number and considers the MAC ad
 <td></td>
 </tr>
 <tr>
-<td>CM-30224</td>
-<td><p>The show evpn mac vni &lt;vni&gt; mac &lt;mac-address&gt; command stops displaying "Sticky MAC" if that MAC address is seen on a local bridge port. The following example shows the command output <b>before</b> the MAC address is seen on a local bridge:</p>
-
-cumulus@switch:~$ net show evpn mac vni 24 mac 50:6b:4b:aa:aa:aa                                
-MAC: 50:6b:4b:aa:aa:aa                                                                              
- Remote VTEP: 10.0.0.41 Sticky Mac                                                                  
- Local Seq: 0 Remote Seq: 0                                                                         
- Neighbors:                                                                                         
-    No Neighbors
-
-
-<p>The following example shows the command output <b>after</b> the MAC address is seen on a local bridge::</p>
-
-cumulus@switch:~$ net show evpn mac vni 24 mac 50:6b:4b:aa:aa:aa                                
-MAC: 50:6b:4b:aa:aa:aa                                                                              
- Remote VTEP: 10.0.0.41                                                                             
- Local Seq: 1 Remote Seq: 0                                                                         
- Neighbors:                                                                                         
-    10.2.4.14 Inactive 
-
-</td>
-<td>4.0.0-4.2.1</td>
-<td></td>
-</tr>
-<tr>
 <td>CM-30195</td>
 <td><p>On the Dell S3000 switch, after installing the Cumulus Linux 4.1.1 disk image without a license, the switch sends a link beat if a remote host port is configured.</p></td>
-<td>3.7.11-3.7.13, 4.1.1-4.2.1</td>
+<td>3.7.11-3.7.14, 4.1.1-4.2.1</td>
 <td></td>
 </tr>
 <tr>
@@ -556,7 +638,7 @@ MAC: 50:6b:4b:aa:aa:aa
 <td>CM-30165</td>
 <td><p>When you use a phone with EAP and voice VLAN is configured (<b>and MAB is not configured</b>), after the phone authenticates, all tagged traffic from the phone is dropped.<br/>
 To work around this issue, enable MAB on the interface.</p></td>
-<td>3.7.12-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.12-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
@@ -577,19 +659,19 @@ To work around this issue, perform a full switch restart.</p></td>
 <td>CM-30141</td>
 <td><p>In an MLAG configuration with static VXLAN, static tunnels become unreachable.</p></td>
 <td>4.1.1-4.2.0</td>
-<td>4.2.1</td>
+<td>3.7.14-4.1.0, 4.2.1</td>
 </tr>
 <tr>
 <td>CM-30103</td>
 <td><p>On a Broadcom switch with the Trident2+ ASIC, ACL rules for VLANs are not applied after a reboot and the counters remain at zero.<br/>
 To work around this issue, either do not set acl.non_atomic_update_mode = TRUE in the /etc/cumulus/switchd.conf file or run the cl-acltool -i command after the reboot to install the  ACLs.</p></td>
-<td>3.7.12-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.12-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-30101</td>
 <td><p>The NCLU net show bridge spanning-tree command displays the aging timer incorrectly. </p></td>
-<td>3.7.12-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.12-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
@@ -630,32 +712,32 @@ To work around this issue, apply an extended community with a route map using im
 <td>CM-29982</td>
 <td><p>A VRRP role change over the EVPN network causes excessive BGP updates and connectivity issues to VIP for about one minute.</p></td>
 <td>4.1.1-4.2.0</td>
-<td>4.2.1</td>
+<td>3.7.14-4.1.0, 4.2.1</td>
 </tr>
 <tr>
 <td>CM-29978</td>
 <td><p>The received PVST BPDU for a VLAN is flooded even though the ingress port doesn't have the VLAN tagged.</p></td>
-<td>3.7.8-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.8-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-29890</td>
 <td><p>Multiple paths to identical EVPN prefixes are either not displayed or not accepted into the l2vpn evpn table if they are received from a different AS.</p></td>
-<td>3.7.12-3.7.13, 4.1.1-4.2.1</td>
+<td>3.7.12-3.7.14, 4.1.1-4.2.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-29872</td>
 <td><p>Tab completion for the net show rollback description command returns information about a snapshot instead of context help.<br/>
 To work around this issue, run the net show commit history command to find descriptions instead of the net show rollback description command.</p></td>
-<td>3.7.12-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.12-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-29871</td>
 <td><p>The net show rollback description &lt;string&gt; command returns an error even if the string matches a commit description.<br/>
 To work around this issue, look for your string in the output of the net show commit history command (or grep for it there) instead.</p></td>
-<td>3.7.12-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.12-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
@@ -669,17 +751,19 @@ Fixed: 1.9.0-2+deb10u2</p></td>
 <td>4.2.0-4.2.1</td>
 </tr>
 <tr>
+<td>CM-29838</td>
+<td><p>CPU utilization may increase when clag-managed bond interfaces are operationally/LACP down but the physical carrier remains up on the bond member switchports. This condition occurs when clag bond redirection is enabled and bond members remain up while the parent bond does not negotiate LACP.</p>
+
+<p>This issue is resolved in Cumulus Linux 3.7.14.</p></td>
+<td>3.7.9-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.14</td>
+</tr>
+<tr>
 <td>CM-29830</td>
 <td><p>Unicast traffic from downlink hosts is flooded to multiple remote VTEPs, which might also cause high HwIfOutQDrops/TX_DRP on the uplink ports.<br/>
 To work around this issue, restart switchd.</p></td>
-<td>3.7.10-4.1.1</td>
-<td>4.2.0-4.2.1</td>
-</tr>
-<tr>
-<td>CM-29809</td>
-<td><p>You might see a three second traffic outage after an MLAG secondary reboot when the MLAG bonds become dual-connected again.</p></td>
-<td>4.1.1-4.2.1</td>
-<td></td>
+<td>3.7.10-3.7.13, 4.0.0-4.1.1</td>
+<td>3.7.14, 4.2.0-4.2.1</td>
 </tr>
 <tr>
 <td>CM-29808</td>
@@ -691,7 +775,7 @@ To work around this issue, restart switchd.</p></td>
 <td>CM-29779</td>
 <td><p>In LLDP, the snmp subagent loses all subsequent lldpRemSysName (1.0.8802.1.1.2.1.4.1.1.9) entries after an entry with a missing SysName is added.<br/>
 All the information from lldpctl is correct. Only the entries after the entry that is missing a SysName in lldpRemSysName disappear from the snmp subagent.</p></td>
-<td>3.7.12-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.12-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
@@ -702,7 +786,17 @@ May 20 10:48:04.671299 leaf01 poed<span class="error">&#91;8012&#93;</span>: poe
 May 20 10:48:04.708620 leaf01 systemd<span class="error">&#91;1&#93;</span>: cumulus-poe.service: main process exited, code=exited, status=1/FAILURE<br/>
 The service starts automatically but there is an impact to POE devices momentarily.</p></td>
 <td>3.7.12, 4.0.0-4.1.1</td>
-<td>3.7.13, 4.2.0-4.2.1</td>
+<td>3.7.13-3.7.14, 4.2.0-4.2.1</td>
+</tr>
+<tr>
+<td>CM-29774</td>
+<td><p>The sx_sdk service may log errors and/or generate a core file when configuring breakout ports on Mellanox Spectrum platforms. The error message observed will be similar to the following:</p>
+
+<p>sx_sdk: EMAD_RX_THREAD: EMAD transaction FW error</p>
+
+<p>This issue is resolved in Cumulus Linux 4.2.0 and above. </p></td>
+<td>4.1.1</td>
+<td>4.2.0-4.2.1</td>
 </tr>
 <tr>
 <td>CM-29760</td>
@@ -715,17 +809,6 @@ Vulnerable: 9.11.5.P4+dfsg-5.1<br/>
 Fixed: 9.11.5.P4+dfsg-5.1+deb10u1</p></td>
 <td>4.0.0-4.1.1</td>
 <td>4.2.0-4.2.1</td>
-</tr>
-<tr>
-<td>CM-29759</td>
-<td><p>When you use nginx and restserver in management VRF to provide a REST API for the switch, nginx starts but restserver fails to start.<br/>
-To work around this issue, comment out the Requires= line in the /lib/systemd/system/restserver.service. For example:</p>
-
-#Requires=nginx.service restserver.socket
-
-</td>
-<td>3.7.12-3.7.13, 4.0.0-4.2.1</td>
-<td></td>
 </tr>
 <tr>
 <td>CM-29691</td>
@@ -744,14 +827,14 @@ error: invalid signature.
 Press any key to continue...
 
 </td>
-<td>3.7.12-3.7.13, 4.1.1-4.2.1</td>
+<td>3.7.12-3.7.14, 4.1.1-4.2.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-29603</td>
 <td><p>When you move an interface from one VRF to another and modify the description in the same configuration operation, FRR crashes and restarts during a service reload. If these two changes occur in separate reloads, FRR does not crash.</p></td>
-<td>4.1.1-4.2.1</td>
-<td></td>
+<td>4.1.1</td>
+<td>4.2.0-4.2.1</td>
 </tr>
 <tr>
 <td>CM-29594</td>
@@ -762,7 +845,7 @@ warning: cmd '/bin/ip addr del 10.0.0.1/24 dev eth0' failed: returned 2 (RTNETLI
 
 
 <p>To work around this issue,  run the ifreload -a command a second time.</p></td>
-<td>3.7.12-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.12-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
@@ -780,7 +863,7 @@ warning: cmd '/bin/ip addr del 10.0.0.1/24 dev eth0' failed: returned 2 (RTNETLI
 <tr>
 <td>CM-29562</td>
 <td><p>If you have an SVI with multiple VRR IP addresses and try to delete one of the VRR configurations, net commit or ifreload -a returns an error.</p></td>
-<td>3.7.12-3.7.13, 4.1.1-4.2.1</td>
+<td>3.7.12-3.7.14, 4.1.1-4.2.1</td>
 <td></td>
 </tr>
 <tr>
@@ -811,7 +894,7 @@ cumulus@switch:~$ sudo ifup vni10100
 
 
 <p>If you flap the link with the ip link set vni10100 down; ip link set vni10100 up commands, zebra does not re-add the VNI.</p></td>
-<td>3.7.12-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.12-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
@@ -831,13 +914,13 @@ asic-monitor[7389]: File "/usr/lib/python2.7/dist-packages/cumulus/asic_monitor.
 ...
 
 </td>
-<td>3.7.11-4.2.0</td>
-<td>4.2.1</td>
+<td>3.7.11-3.7.13, 4.1.1-4.2.0</td>
+<td>3.7.14-4.1.0, 4.2.1</td>
 </tr>
 <tr>
 <td>CM-29519</td>
 <td><p>The JSON format output of the net show bgp l2vpn evpn summary command shows the incorrect neighbour state. </p></td>
-<td>3.7.12-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.12-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
@@ -859,7 +942,7 @@ cmd '/sbin/ethtool --set-fec &lt;switch-port&gt; encoding rs' failed: returned 2
 -A FORWARD --in-interface swp10 -j span --dport swp1
 
 </td>
-<td>3.7.12-3.7.13, 4.1.1-4.2.1</td>
+<td>3.7.12-3.7.14, 4.1.1-4.2.1</td>
 <td></td>
 </tr>
 <tr>
@@ -948,7 +1031,7 @@ To work around this issue, when you manually configure the rd or route-target fo
 <tr>
 <td>CM-29309</td>
 <td><p>When Optimized Multicast Flooding (OMF) is enabled with the bridge.optimized_mcast_flood = TRUE setting in the /etc/cumulus/switchd.conf file, the switch continues to flood IPv6 multicast traffic to all slave ports when there is no MLD join receive.</p></td>
-<td>3.7.11-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.11-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
@@ -967,7 +1050,7 @@ Fixed: 2.20.1-2+deb10u3</p></td>
 CVE-2020-5260: Felix Wilhelm of Google Project Zero discovered a flaw in git, a fast, scalable, distributed revision control system. With a crafted URL that contains a newline, the credential helper machinery can be fooled to return credential information for a wrong host.<br/>
 CVE-2020-11008: Carlo Arenas discovered a flaw in git, a fast, scalable, distributed revision control system. With a crafted URL that contains a newline or empty host, or lacks a scheme, the credential helper machinery can be fooled into providing credential information that is not appropriate for the protocol in use and host being contacted.</p></td>
 <td>3.0.0-3.7.12, 4.0.0-4.1.1</td>
-<td>3.7.13, 4.2.0-4.2.1</td>
+<td>3.7.13-3.7.14, 4.2.0-4.2.1</td>
 </tr>
 <tr>
 <td>CM-29270</td>
@@ -992,7 +1075,7 @@ CVE-2020-11008: Carlo Arenas discovered a flaw in git, a fast, scalable, distrib
 
 
 <p>These messages are harmless and can be ignored.</p></td>
-<td>3.7.12-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.12-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1025,7 +1108,7 @@ cumulus@switch:~$ sudo echo 0 &gt; /var/run/hw-management/config/suspend
 <tr>
 <td>CM-29148</td>
 <td><p>On MLX switches that contain an OSPF IP unnumbered neighborship with a high scale of prefixes being learned, a link flap might cause the neighbor entry to not be programmed in hardware.</p></td>
-<td>3.7.11-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.11-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1063,13 +1146,13 @@ username cumulus nopassword
 <td><p>A large number of flapping peers causes FRR to require a corresponding update to internal data structures that track peer information. Updating this internal data structure does not delete links that are down due to the flapping. The size of this array then grows to contain both current peers as well as peers that should have been deleted during the flap processing. The contents of this array is processed by FRR to poll the links, which consumes CPU for all items in the array. This additional polling consumes more CPU than necessary but has no functional impact.<br/>
 To work around this issue, restart FRR.</p></td>
 <td>3.7.11-3.7.12, 4.0.0-4.1.1</td>
-<td>3.7.13, 4.2.0-4.2.1</td>
+<td>3.7.13-3.7.14, 4.2.0-4.2.1</td>
 </tr>
 <tr>
 <td>CM-29043</td>
 <td><p>When a multipath route that contains an EVPN path exists together with an IPv4 BGP path in the VRF, the RMAC to VTEP binding is incorrect. This invalid entry occurs because Cumulus Linux treats IPv4 routes received over the eBGP IPv4 peering incorrectly in the VRF.<br/>
 To work around this issue, remove the unnecessary eBGP IPv4 peering.</p></td>
-<td>3.7.12-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.12-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1082,7 +1165,7 @@ W: Possible missing firmware /lib/firmware/tigon/tg3.bin for module tg3
 
 
 <p>You can safely ignore these error messages.</p></td>
-<td>3.7.12-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.12-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1149,7 +1232,7 @@ s&gt; 50.0.0.1/32      0.0.0.0                  0         32768 i
 
 
 <p>To work around this issue, remove, then re-add the component prefix routes.</p></td>
-<td>3.7.12-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.12-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1176,13 +1259,13 @@ Note: A network restart is a disruptive operation. </p></td>
 <td>CM-28867</td>
 <td><p>The QuantaMesh BMS T3048-LY8 switch shows a low fan RPM in syslog.</p></td>
 <td>3.7.5-3.7.12, 4.0.0-4.1.1</td>
-<td>3.7.13, 4.2.0-4.2.1</td>
+<td>3.7.13-3.7.14, 4.2.0-4.2.1</td>
 </tr>
 <tr>
 <td>CM-28862</td>
 <td><p>On the Edgecore AS5812 switch, the Innodisk DIMM causes a DIMM temperature sensor absent alert.</p></td>
 <td>3.7.12, 4.0.0-4.1.1</td>
-<td>3.7.13, 4.2.0-4.2.1</td>
+<td>3.7.13-3.7.14, 4.2.0-4.2.1</td>
 </tr>
 <tr>
 <td>CM-28821</td>
@@ -1196,7 +1279,7 @@ Note: A network restart is a disruptive operation. </p></td>
 CVE-2019-18276 Qualys scan QID 372268 setuid vulnerability<br/>
 When bash or bash scripts are run setuid, bash is supposed to drop privileges, but does so incorrectly, so that an attacker with command access to the shell can use enable -f for runtime loading of a new builtin that calls setuid() to regain dropped privileges.<br/>
 To work around this issue, do not make bash or bash scripts setuid.</p></td>
-<td>3.0.0-3.7.13, 4.0.0-4.2.1</td>
+<td>3.0.0-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1215,31 +1298,31 @@ To work around this issue, do not make bash or bash scripts setuid.</p></td>
 <tr>
 <td>CM-28754</td>
 <td><p>On switches with the Trident2+ ASIC, adding SPAN rules disables PBR rules.</p></td>
-<td>3.7.3-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.3-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-28682</td>
 <td><p>On the Mellanox Spectrum switch in an EVPN symmetric configuration with MLAG, simultaneously shutting down the layer 3 interfaces that serve as uplinks to the VXLAN fabric might result in traffic loss of up to 15 seconds.</p></td>
 <td>4.1.0-4.1.1</td>
-<td>4.2.0-4.2.1</td>
+<td>3.7.14-4.0.0, 4.2.0-4.2.1</td>
 </tr>
 <tr>
 <td>CM-28656</td>
 <td><p>In OVSDB VLAN-aware mode, removing a VTEP binding on the NSX controller fails to clean up all interfaces associated with the logical switch.</p></td>
 <td>3.7.12, 4.0.0-4.1.1</td>
-<td>3.7.13, 4.2.0-4.2.1</td>
+<td>3.7.13-3.7.14, 4.2.0-4.2.1</td>
 </tr>
 <tr>
 <td>CM-28613</td>
 <td><p>In EVPN Active-Active (MLAG) environments, rebooting one member of an MLAG pair should result in the local MAC mobility sequence number reverting to 0. Sometimes a reboot of one MLAG peer results in the local MAC mobility sequence number being set to a non-zero value despite that no more mobility events occur. This issue is cosmetic only, as BGP does not advertise the incorrect sequence number and forwarding entries correctly point to the remote VTEP where the MAC is now located.</p></td>
-<td>3.7.12-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.12-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-28611</td>
 <td><p>In an EVPN Active-Active (MLAG) environment, sometimes a local-to-remote MAC mobility event results in the local sequence number appearing higher than the remote sequence number in zebra. This issue is cosmetic only, as BGP does not advertise the incorrect sequence number and forwarding entries correctly point to the remote VTEP where the MAC is now located.</p></td>
-<td>3.7.12-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.12-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1286,8 +1369,8 @@ Port security is not supported on bond/MLAG interfaces.</p></td>
 <tr>
 <td>CM-28442</td>
 <td><p>PTM mis-detects incorrect hostnames of LLDP neighbors and does not fail them as expected. Instead they end up in an N/A cabling status.</p></td>
-<td>3.7.11-4.1.1</td>
-<td>4.2.0-4.2.1</td>
+<td>3.7.11-3.7.13, 4.0.0-4.1.1</td>
+<td>3.7.14, 4.2.0-4.2.1</td>
 </tr>
 <tr>
 <td>CM-28441</td>
@@ -1299,21 +1382,21 @@ Port security is not supported on bond/MLAG interfaces.</p></td>
 <td>CM-28393</td>
 <td><p>On the Dell S5232F-ON switch, EVPN and dynamic VRF route leaking results in the CPU forwarding traffic to newly-learned type-2 routes.<br/>
 To work around this issue, restart FRR.</p></td>
-<td>3.7.9-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.9-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-28376</td>
 <td><p>On the Dell S5232F-ON switch, the output of ledmgrd shows amber_blinking but smonctl shows all OK.</p></td>
 <td>3.7.11-3.7.12, 4.0.0-4.1.1</td>
-<td>3.7.13, 4.2.0-4.2.1</td>
+<td>3.7.13-3.7.14, 4.2.0-4.2.1</td>
 </tr>
 <tr>
 <td>CM-28340</td>
 <td><p>Mellanox switches with the Spectrum A0 ASIC that are integrated with VMware NSX experience BFD connectivity issues with service nodes. As a result, VXLAN tunnels do not work.<br/>
 Mellanox switches with the Spectrum A1 ASIC do *<b>not</b>* have this issue.</p></td>
 <td>3.7.11-3.7.12, 4.0.0-4.1.1</td>
-<td>3.7.13, 4.2.0-4.2.1</td>
+<td>3.7.13-3.7.14, 4.2.0-4.2.1</td>
 </tr>
 <tr>
 <td>CM-28249</td>
@@ -1339,7 +1422,7 @@ Jan 30 19:22:53 switch123 snmpd[23172]: Cannot statfs /sys/kernel/debug/tracing:
 
 </td>
 <td>4.0.0-4.1.1</td>
-<td>4.2.0-4.2.1</td>
+<td>3.7.14, 4.2.0-4.2.1</td>
 </tr>
 <tr>
 <td>CM-28136</td>
@@ -1348,13 +1431,13 @@ Jan 30 19:22:53 switch123 snmpd[23172]: Cannot statfs /sys/kernel/debug/tracing:
 RTM_NEWNEIGH with unconfigured vlan XXXX on port peerlink
 
 </td>
-<td>3.7.10-4.1.1</td>
-<td>4.2.0-4.2.1</td>
+<td>3.7.10-3.7.13, 4.0.0-4.1.1</td>
+<td>3.7.14, 4.2.0-4.2.1</td>
 </tr>
 <tr>
 <td>CM-28080</td>
 <td><p>TACACS+ through ClearPass is not currently supported. Cumulus Linux sends authorization before authentication, but ClearPass does not accept an authorization before the user is authenticated.</p></td>
-<td>3.7.11-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.11-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1373,14 +1456,14 @@ RTM_NEWNEIGH with unconfigured vlan XXXX on port peerlink
 <td>CM-28003</td>
 <td><p>The FRR service does not provide a way for automation to know if the configuration applied properly.<br/>
 To work around this issue, execute the vtysh -f &lt;file&gt; command in the automation file before starting the FRR service to validate the functional configuration and return an error code.</p></td>
-<td>3.7.11-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.11-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-27999</td>
 <td><p>On the EdgeCore AS7326-56X switch, the PSU fans show constant LOW warnings.</p></td>
 <td>3.7.10-3.7.12, 4.0.0-4.2.0</td>
-<td>3.7.13, 4.2.1</td>
+<td>3.7.13-3.7.14, 4.2.1</td>
 </tr>
 <tr>
 <td>CM-27982</td>
@@ -1397,7 +1480,7 @@ kernel: [159400.526241] switchd[21374]: segfault at 1229cdd84 ip 00000000004142c
 </ul>
 </td>
 <td>3.7.10-3.7.12, 4.0.0-4.1.1</td>
-<td>3.7.13, 4.2.0-4.2.1</td>
+<td>3.7.13-3.7.14, 4.2.0-4.2.1</td>
 </tr>
 <tr>
 <td>CM-27957</td>
@@ -1414,7 +1497,7 @@ To increase the systemd timeout:</p>
 systemd will attempt to restart the switchd service automatically (after the watchdog timeout). If the restart fails multiple times in a short time period, run the sudo systemctl reset-failed command followed by the sudo systemctl restart switchd command.</li>
 </ol>
 </td>
-<td>3.7.11-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.11-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1475,26 +1558,26 @@ This workaround only works when an out-of-band network is present.</p></td>
 <td><p>Mellanox switches might experience higher CPU usage from the sx_sdk service or when BFD is in use.<br/>
 To work around this issue, disable BFD to alleviate some of the CPU load.</p></td>
 <td>4.0.0-4.1.1</td>
-<td>4.2.0-4.2.1</td>
+<td>3.7.14, 4.2.0-4.2.1</td>
 </tr>
 <tr>
 <td>CM-27444</td>
 <td><p>If you use the NCLU commands to configure NTP and run the net add time ntp source &lt;interface&gt; command before you run the net add time ntp server &lt;server&gt; iburst command, the /etc/ntp.conf file is misconfigured.<br/>
 To work around this issue, run the net add time ntp server &lt;server&gt; iburst command before you run the net add time ntp source &lt;interface&gt; command.</p></td>
 <td>3.7.10-3.7.11, 4.0.0-4.2.1</td>
-<td>3.7.12-3.7.13</td>
+<td>3.7.12-3.7.14</td>
 </tr>
 <tr>
 <td>CM-27254</td>
 <td><p>On the Mellanox switch with the Spectrum and Spectrum-2 ASIC, IPv6 egress ACLs are not supported on subinterfaces.</p></td>
 <td>4.0.0-4.1.1</td>
-<td>4.2.0-4.2.1</td>
+<td>3.7.14, 4.2.0-4.2.1</td>
 </tr>
 <tr>
 <td>CM-27243</td>
 <td><p>The length of the netlink message is not set properly for non-bridge family type messages. The same length is used for both bridge and non-bridge even though the bridge family type message has an extra attribute. This causes extra bytes to be left over in non-bridge family type netlink messages.</p></td>
 <td>3.7.10, 4.0.0-4.2.1</td>
-<td>3.7.11-3.7.13</td>
+<td>3.7.11-3.7.14</td>
 </tr>
 <tr>
 <td>CM-27143</td>
@@ -1517,7 +1600,7 @@ To work around this issue, run the net add time ntp server &lt;server&gt; iburst
 <tr>
 <td>CM-27094</td>
 <td><p>On the Delta AG9032v1 switch, smonctl and sensors report inaccurate PSU current and power.</p></td>
-<td>3.5.0-3.7.13, 4.0.0-4.2.1</td>
+<td>3.5.0-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1536,7 +1619,7 @@ To work around this issue and bring the interfaces up, perform the following con
 <tr>
 <td>CM-27018</td>
 <td><p>If you configure more than one VRR interface on an SVI interface, deleting one of the VRR addresses does not remove the interface/address. </p></td>
-<td>3.7.10-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.10-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1548,7 +1631,7 @@ To work around this issue and bring the interfaces up, perform the following con
 <tr>
 <td>CM-26921</td>
 <td><p>If you delete an undefined bond, then add a bond slave, the net commit command fails.</p></td>
-<td>3.7.9-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.9-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1564,7 +1647,7 @@ sudo sh -c "printf 'interface 50 vrf TEST\ndescription L3 routing interface\n' &
 
 
 <p>To work around this issue, configure the interface manually in the /etc/frr/frr.conf file.</p></td>
-<td>3.7.9-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.9-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1577,7 +1660,7 @@ sudo sh -c "printf 'interface 50 vrf TEST\ndescription L3 routing interface\n' &
 <td>CM-26905</td>
 <td><p>When you update the hostname of a switch with the NCLU net add hostname &lt;hostname&gt; command, then run net commit, the lldpd service does not restart and other devices still see the old hostname.<br/>
 To work around this issue, run the sudo systemctl restart lldpd.service command.</p></td>
-<td>3.7.10-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.10-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1603,7 +1686,7 @@ To work around this issue, restart FRR after removing the IPv6 numbered configur
 <td>CM-26769</td>
 <td><p>Setting ProtoDown on ports populated with SFP modules providing RJ-45 1000BASE-T interfaces does not cause the carrier to be dropped. The kernel shows carrier down; however, the remote device still shows a link.</p></td>
 <td>3.7.6-3.7.10, 4.0.0-4.2.1</td>
-<td>3.7.11-3.7.13</td>
+<td>3.7.11-3.7.14</td>
 </tr>
 <tr>
 <td>CM-26655</td>
@@ -1623,33 +1706,33 @@ net commit
 <td>CM-26599</td>
 <td><p>Auto-negotiation does not work with the QSFP28 cables and a remote system operating at 10G. Attempting to enable auto-negotiation with ethtool -s swp&lt;#&gt; autoneg on returns Operation not supported.<br/>
 To work around this issue, do not use auto-negotiation and set the local port speed to 10G.</p></td>
-<td>3.7.9-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.9-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-26595</td>
 <td><p>The NCLU net show lldp command displays the speed of a ganged port group as the speed of one of the individual links, rather than the sum of their speeds.</p></td>
-<td>3.7.9-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.9-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-26516</td>
 <td><p>Applying a policy-based routing (PBR) rule for all traffic from a host might disrupt ARP refresh for that connected host.</p></td>
-<td>3.7.5-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.5-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-26423</td>
 <td><p>NCLU requires you to specify an interface with multiple address-virtual statements in ascending MAC address order. </p>
 </td>
-<td>3.7.5-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.5-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-26412</td>
 <td><p>Mac learning is not disabled by default on a double tagged peer link interface resulting in the MAC address changing between the MLAG bond and the peer link.<br/>
 To work around this issue, disable MAC learning on QinQ VLANs by adding bridge-learning off to the VLAN stanza in the etc/network/interfaces file.</p></td>
-<td>3.7.9-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.9-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1657,26 +1740,26 @@ To work around this issue, disable MAC learning on QinQ VLANs by adding bridge-l
 <td><p>An interface alias configured outside FRR using iproute2 is imported into the FRR running configuration and overrides the internal description. After an FRR reload, this causes FRR to delete the interface alias in an inefficient way. Depending on how many interfaces with aliases you have configured, this can cause a FRR reload to time out.<br/>
 To work around this issue, remove the interface alias description from iproute2.</p></td>
 <td>3.7.8-3.7.10, 4.0.0-4.2.1</td>
-<td>3.7.11-3.7.13</td>
+<td>3.7.11-3.7.14</td>
 </tr>
 <tr>
 <td>CM-26288</td>
 <td><p>On the Mellanox switch, static VXLAN tunnels incorrectly allow traffic from any remote tunnel IP address.</p></td>
-<td>3.7.8-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.8-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-26256</td>
 <td><p>The net show evpn vni detail json command includes an extra empty dictionary at the end of the output. </p>
 </td>
-<td>3.7.8-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.8-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-26241</td>
 <td><p>On the Dell S5248F-ON switch, smond might generate syslog messages indicating that the fan input RPM is lower than the normal low speed of 2500 RPM. Speeds as low as 1700 RPM are acceptable in normal thermal environments; therefore, you can ignore these messages.</p></td>
 <td>3.7.6-3.7.11, 4.0.0-4.2.1</td>
-<td>3.7.12-3.7.13</td>
+<td>3.7.12-3.7.14</td>
 </tr>
 <tr>
 <td>CM-26217</td>
@@ -1695,7 +1778,7 @@ switch(config-router)# area 0.0.0.1 nssa
 
 </td>
 <td>3.7.7-3.7.10, 4.0.0-4.2.1</td>
-<td>3.7.11-3.7.13</td>
+<td>3.7.11-3.7.14</td>
 </tr>
 <tr>
 <td>CM-26179</td>
@@ -1706,7 +1789,7 @@ See /var/log/netd.log for more details.
 
 </td>
 <td>3.7.7-3.7.10, 4.0.0-4.2.1</td>
-<td>3.7.11-3.7.13</td>
+<td>3.7.11-3.7.14</td>
 </tr>
 <tr>
 <td>CM-26147</td>
@@ -1742,7 +1825,7 @@ See /var/log/netd.log for more details.
 
 </td>
 <td>3.7.6-3.7.12, 4.0.0-4.1.1</td>
-<td>3.7.13, 4.2.0-4.2.1</td>
+<td>3.7.13-3.7.14, 4.2.0-4.2.1</td>
 </tr>
 <tr>
 <td>CM-26137</td>
@@ -1751,13 +1834,13 @@ See /var/log/netd.log for more details.
 -A FORWARD -i vni10 -j erspan --src-ip 100.1.1.2 --dst-ip 100.1.1.1 --ttl 64
 
 </td>
-<td>3.7.6-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.6-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-26136</td>
 <td><p>In an ebtables rule, ERSPAN (upper case) does not work. You need to specify erspan (lower case).</p></td>
-<td>3.7.6-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.6-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1777,21 +1860,21 @@ To work around this issue, rely on a different source of default route other tha
 <tr>
 <td>CM-25890</td>
 <td><p>In some cases, the switchd service might warn of excessive MAC moves from one switch port to itself (for example, from swp18 to swp18).</p></td>
-<td>3.7.0-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.0-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-25859</td>
 <td><p>The MTU of an SVI cannot be higher than the MTU on the bridge. Changing the MTU on the SVI with NCLU does not update the bridge MTU. The net commit command succeeds even though the MTU is not changed as expected.<br/>
 To work around this issue, change the MTU on all SVIs and the bridge manually in the /etc/network/interfaces file, then apply the change with the ifreload -a command.</p></td>
-<td>3.7.7-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.7-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-25815</td>
 <td><p>When an SVI with a virtual MAC is configured with a layer 2 VNI in an EVPN environment, if you replace the /etc/network/interfaces file with a different file that does not have the SVI and layer 2 VNI configuration, the original virtual MAC is not populated through the EVPN route until FRR is restarted. </p>
 </td>
-<td>3.7.6-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.6-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1808,39 +1891,39 @@ To work around this issue, configure the bridge with bridge-vlan-protocol 802.1a
 cumulus@switch:~$ net add bridge mybridge vlan-protocol 802.1ad 
 
  </td>
-<td>3.7.6-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.6-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-25694</td>
 <td><p>If a packet is policed by ebtables, it does not increment an ACL drop on the ingress interface. Instead, it increments the TDBGC3/6 drop counter to the CPU.</p></td>
-<td>3.7.6-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.6-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-25674</td>
 <td><p>On Mellanox switches, policer iptables are not working as expected. For example, when using a policer with mode KB/MB/GB to rate-limit interfaces, the syntax is accepted but the data plane transfer speed is not affected by the rule. </p></td>
 <td>3.7.6-3.7.8, 4.0.0-4.2.1</td>
-<td>3.7.9-3.7.13</td>
+<td>3.7.9-3.7.14</td>
 </tr>
 <tr>
 <td>CM-25400</td>
 <td><p>If an SVI exists in the configuration before you assign it an IP address, when you do assign the IP address with the NCLU command, the vlan-id and the raw-device bridge stanzas are not added automatically. </p>
 </td>
-<td>3.7.6-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.6-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-25397</td>
 <td><p>When first creating a bond and enslaving an interface, NCLU hides some of the bridge command suggestions, although they are still accepted. </p>
 </td>
-<td>3.7.3-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.3-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-24894</td>
 <td><p>The maximum-prefix configuration under the IPv4 address family has an optional restart value, which you can configure. This configuration is ignored and, instead of restarting the sessions every x minutes, the peer constantly changes between established and idle due to the prefix count being exceeded. </p></td>
-<td>3.7.5-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.5-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1848,7 +1931,7 @@ cumulus@switch:~$ net add bridge mybridge vlan-protocol 802.1ad
 <td><p>On switches with the Trident2 ASIC, 802.1Q-encapsulated control plane traffic received on an interface with 802.1AD configured subinterfaces might be dropped. <br/>
 This issue only affects QinQ configurations. </p>
 </td>
-<td>3.7.5-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.5-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1862,7 +1945,7 @@ This issue only affects QinQ configurations. </p>
 <td>CM-24652</td>
 <td><p>In an EVPN environment, the centralized MAC address is not installed on the MLAG pair because Cumulus Linux does not perform an SVI MAC check per VLAN. <br/>
 This issue does not affect a pure distributed routing (symmetric or asymmetric) environment or a pure centralized routing environment.</p></td>
-<td>3.7.0-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.0-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1875,14 +1958,14 @@ This issue does not affect a pure distributed routing (symmetric or asymmetric) 
  
  
 </td>
-<td>3.6.1-3.7.13, 4.0.0-4.2.1</td>
+<td>3.6.1-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-24473</td>
 <td><p>SNMP incorrectly requires engine ID specification. </p>
 </td>
-<td>3.7.4-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.4-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1902,7 +1985,7 @@ This issue does not affect a pure distributed routing (symmetric or asymmetric) 
  
  
 </td>
-<td>3.7.2-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.2-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1915,27 +1998,27 @@ This issue does not affect a pure distributed routing (symmetric or asymmetric) 
  
  
 <p> Tab completion for the net add vrf &lt;name&gt; ip address &lt;address&gt; command works correctly. </p></td>
-<td>3.7.4-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.4-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-24379</td>
 <td><p>On the Maverick switch, CPU forwarded packets might be dropped when there is no route to a leaked host route.</p></td>
-<td>3.7.5-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.5-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-24343</td>
 <td><p>The net del bridge bridge mcsnoop yes command does not return the value to the default of disabled. <br/>
 To work around this issue, use the net add bridge bridge mcsnoop no command to delete the mcsnoop attribute and return to the default value.</p></td>
-<td>3.7.4-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.4-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-24332</td>
 <td><p>On the Broadcom switch, when moving configuration from bridged to routed (or toggling from routed to bridged to routed), some traffic is not seen by the kernel. This can cause BGP to not establish on a transit node. </p>
 </td>
-<td>3.7.3-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.3-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1956,7 +2039,7 @@ To work around this issue, use the net add bridge bridge mcsnoop no command to d
  
  
 </td>
-<td>3.7.4-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.4-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1976,7 +2059,7 @@ To work around this issue, use the net add bridge bridge mcsnoop no command to d
  
  
 </td>
-<td>3.7.4-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.4-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1997,14 +2080,14 @@ To work around this issue, run the vtysh commands (inside FRR) to change the def
  
  
 </td>
-<td>3.7.4-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.4-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-24262</td>
 <td><p>NCLU does not honor auto all in the /etc/network/interfaces file and removes the existing configuration if no individual auto &lt;iface&gt; lines exist. </p>
 </td>
-<td>3.7.3-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.3-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
@@ -2017,21 +2100,21 @@ To work around this issue, run the vtysh commands (inside FRR) to change the def
  
  
 </td>
-<td>3.7.2-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.2-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-24222</td>
 <td><p>When an LDAP user that does not have NCLU privileges (either in the netshow or netedit group, or in the /etc/netd.conf file) runs an NCLU command, a traceback occurs instead of a permissions error. </p>
 </td>
-<td>3.7.0-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.0-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-24035</td>
 <td><p>On the Edgecore 4610-54P switch, automatic medium-dependent interface crossover (auto-MDIX) stops working on a 100M full duplex interface and does not detect the required cable connection type. </p>
 </td>
-<td>3.7.2-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.2-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
@@ -2039,34 +2122,34 @@ To work around this issue, run the vtysh commands (inside FRR) to change the def
 <td><p>The net add interface &lt;interface&gt; ptm-enable command adds no ptm-enable for that interface in the frr.conf file. <br/>
  Running the net add or the net del command does not remove no ptm-enable from the frr.conf file. You have to remove it manually using vtysh. </p>
 </td>
-<td>3.7.2-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.2-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-23665</td>
 <td><p>NCLU automatically adds the VLAN ID (for the layer 3 VNI/SVI) to the bridge when you run net add vxlan &lt;layer3-vni&gt; bridge access &lt;vlan&gt;. This configuration breaks network connectivity in an EVPN symmetric routing configuration using MLAG. <br/>
 To restore connectivity, remove the VLAN ID from the bridge. </p></td>
-<td>3.7.2-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.2-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-23661</td>
 <td><p>On the Mellanox switch, when you configure a GRE tunnel, the traffic behind the local tunnel endpoint destined through the GRE tunnel is software-forwarded. </p></td>
-<td>3.7.2-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.2-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-23651</td>
 <td><p>In an EVPN symmetric routing configuration, when an IP address is frozen, kernel neighbor table information and kernel VRF routing table information about the frozen IP address might be out-of-sync. </p>
 </td>
-<td>3.7.3-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.3-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-23584</td>
 <td><p>When you configure a control plane ACL to define permit and deny rules destined to the local switch, NCLU programs the control plane ACL rules into the FORWARD chain. </p>
 </td>
-<td>3.7.2-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.2-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
@@ -2075,20 +2158,20 @@ To restore connectivity, remove the VLAN ID from the bridge. </p></td>
 After you remove the link-speed, ethtool shows the advertised link modes as not reported and Speed/Duplex as unknown.<br/>
 To work around this issue and bring the interface back up, either restart switchd or use ethtool to configure the speed, advertised, duplex or MDI-X settings. <br/>
 Note: The advertised link mode gets set incorrectly if you include 1000baseT/Half. The port will come up successfully at 1G.</p></td>
-<td>3.7.2-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.2-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-23418</td>
 <td><p>For QSFP modules, the sudo ifdown command does not disable the Tx laser. </p>
 </td>
-<td>3.7.2-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.2-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-23417</td>
 <td><p>If you use NCLU to create an iBGP peering across the peer link, running the net add bgp l2vpn evpn neighbor peerlink.4094 activate command creates a new eBGP neighborship when one has already been configured for iBGP. This is unexpected; the existing iBGP configuration is valid. </p></td>
-<td>3.7.0-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.0-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
@@ -2109,27 +2192,27 @@ To work around this issue, disable ARP suppression on the centralized gateway.</
  
 <p> Eventually the dhcrelay service stops. </p>
 </td>
-<td>3.7.1-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.1-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-23021</td>
 <td><p>When you run the mstpctl command, you might see the bridge-port state as blocking when it is actually disabled. You might see the same incorrect bridge-port state when other programs or tools use the output of mstpctl; for example, SNMP output from the BRIDGE-MIB.</p></td>
-<td>3.7.1-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.1-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-22554</td>
 <td><p>If you try to bring down several members of a bond remotely at the same time, the link state of one of the interfaces might not transition correctly to the down state; however, all links show down in hardware. </p>
 </td>
-<td>3.6.2-3.7.13, 4.0.0-4.2.1</td>
+<td>3.6.2-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-22386</td>
 <td><p>The BFD packet redirection logic used by OVSDB server high availability mode redirects BUM packets across the peer link. The iptables rule for redirection does differentiate between BFD and non-BFD VXLAN inner packets because the service node sends all frames with its own IP address as the tunnel source IP address. The VXLAN encapsulated BUM packets do not get forwarded to the CPU and do not go through the iptable redirection rule; only VXLAN encapsulated BFD packets get forwarded to the CPU due to the inner MAC DA lookup in hardware. </p>
 </td>
-<td>3.7.0-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.0-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
@@ -2144,46 +2227,46 @@ To work around this issue, disable ARP suppression on the centralized gateway.</
 <p> These packets are now policed by catch all rules. <br/>
  To work around this issue, the VPORT value on a TRIDENT switch must be changed from binary 011 to 100. </p>
 </td>
-<td>3.6.1-3.7.13, 4.0.0-4.2.1</td>
+<td>3.6.1-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-22287</td>
 <td><p>On the EdgeCore AS7712 (Tomahawk) switch running in atomic mode, when a layer 3 ECMP path is brought down, traffic traversing the path stops working for about four seconds. When the switch is changed to non-atomic mode, the delay is less than one second. This issue is seen across OSPF and static ECMP routes. </p></td>
-<td>3.6.2-3.7.13, 4.0.0-4.2.1</td>
+<td>3.6.2-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-22228</td>
 <td><p>On switches with the Trident 2+ ASIC, counters associated with VLANs and VRFs are not working.</p></td>
-<td>3.7.0-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.0-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-22041</td>
 <td><p>At a high CPU transmit traffic rate (for example, if there is unexpected CPU generated flooding or replication in software), when the ASIC packet driver cannot keep up with the transmit rate because there are no free DMA buffers, it can back pressure by suspending the switch port transmit queues. This can fill up the application socket buffers resulting in No buffer space available error messages on protocol sockets.<br/>
 When the driver recovers, it automatically resumes the transmit queues. In most cases these error messages are transient. In rare cases, the hardware queues might get stuck, which you can recover with a switchd restart.</p></td>
-<td>3.4.3-3.7.13, 4.0.0-4.2.1</td>
+<td>3.4.3-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-22020</td>
 <td><p>On the Trident3 switch, static PIM with IIF based on a layer 2 bridge does not work reliably. PIM Join via signaling is required for IPMC to work properly.<br/>
 To work around this issue, use dynamic signaling (joins) to manage IP multicast traffic.</p></td>
-<td>3.7.0-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.0-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-21785</td>
 <td><p>The source address of the ICMPv6 time exceeded message (traceroute hop) is sourced from the wrong VRF when the traceroute target resides on the same switch but in a different VRF.</p></td>
-<td>3.6.2-3.7.13, 4.0.0-4.2.1</td>
+<td>3.6.2-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-21769</td>
 <td><p>On the Mellanox switch, GRE tunneling does not work if the tunnel source is configured on an SVI interface. If  the tunnel source is configured on a physical switch port, then tunneling works as expected.</p></td>
-<td>3.6.1-4.1.1</td>
-<td>4.2.0-4.2.1</td>
+<td>3.6.1-3.7.13, 4.0.0-4.1.1</td>
+<td>3.7.14, 4.2.0-4.2.1</td>
 </tr>
 <tr>
 <td>CM-21678</td>
@@ -2199,14 +2282,14 @@ To work around this issue, use dynamic signaling (joins) to manage IP multicast 
  
 <p> This message might occur as a result of a timeout at the hardware level, or the switch might be reporting a failure to get a response. </p>
 </td>
-<td>3.5.3-3.7.13, 4.0.0-4.2.1</td>
+<td>3.5.3-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-21667</td>
 <td><p>FRR does not add BGP ttl-security to either the running configuration or to the /etc/frr/frr.conf file when configured on a peer group instead of a specific neighbor. <br/>
 To work around this issue, add ttl-security to individual neighbors instead of the peer group.</p></td>
-<td>3.6.1-3.7.13, 4.0.0-4.2.1</td>
+<td>3.6.1-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
@@ -2214,70 +2297,70 @@ To work around this issue, add ttl-security to individual neighbors instead of t
 <td><p>The net show lldp command sometimes shows the port description in the Remote Port field. The net show interface command shows the correct value in the Remote Host field.<br/>
 To work around this issue, use net show interface command for LLDP output when connected to Cisco equipment.</p></td>
 <td>3.5.3-3.7.10, 4.0.0-4.2.1</td>
-<td>3.7.11-3.7.13</td>
+<td>3.7.11-3.7.14</td>
 </tr>
 <tr>
 <td>CM-21055</td>
 <td><p>On the Mellanox switch, the destination MAC address of ERSPAN GRE packets is set to all zeros; therefore, the first transit switch might drop packets.</p></td>
 <td>3.6.0-3.7.13, 4.0.0-4.2.1</td>
-<td></td>
+<td>3.7.14</td>
 </tr>
 <tr>
 <td>CM-20813</td>
 <td><p>Span rules matching the out-interface as a bond do not mirror packets.</p></td>
-<td>3.6.0-3.7.13, 4.0.0-4.2.1</td>
+<td>3.6.0-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-20508</td>
 <td><p>The Cumulus-Resource-Query-MIB defines the ability to gather buffer utilization status but when these objects are polled, they return nothing. </p></td>
-<td>3.5.3-3.7.13, 4.0.0-4.2.1</td>
+<td>3.5.3-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-20033</td>
 <td><p>The VLAN interface stays up even though the physical link carrying the VLAN is admin or carrier down.</p>
 </td>
-<td>3.5.2-3.7.13, 4.0.0-4.2.1</td>
+<td>3.5.2-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-19724</td>
 <td><p>PIM and MSDP entries are set to the internal COS value of 6 so they are grouped together with the bulk traffic priority group in the default traffic.conf file. However, PIM, IGMP, and MSDP are considered control-plane and should be set to the internal COS value of 7. </p></td>
-<td>3.5.2-3.7.13, 4.0.0-4.2.1</td>
+<td>3.5.2-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-19454</td>
 <td><p>When you use NCLU to bring a bond admin down (net add bond &lt;bond&gt; link down), the bond interface goes into admin down state but the switch ports enslaved to the bond remain UP. If you are using bond-lacp-bypass-allow or balance-xor mode, the host might continue to send traffic. This traffic will be dropped because although the bond slaves are UP, they are not members of the bridge.<br/>
 To work around this issue, use the sudo ifdown &lt;bondname&gt; command.</p></td>
-<td>3.5.0-3.7.13, 4.0.0-4.2.1</td>
+<td>3.5.0-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-17934</td>
 <td><p>FRR tracks interface speed based on the value it learns from the Linux kernel for that interface. If the interface speed changes, FRR does not update its interface speed cache. This can lead to issues for routing protocols that derive metrics from interface speed as the cost can become out of sync with the interface speed.<br/>
 To work around this issue, manually define the routing protocol metric for these interfaces or restart FRR.</p></td>
-<td>3.7.6-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.6-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-17494</td>
 <td><p>In certain cases, a peer device sends an ARP request from a source IP address that is not on the connected subnet and the switch creates a STALE neighbor entry. Eventually, the switch attempts to keep the entry fresh and sends ARP requests to the host. If the host responds, the switch has REACHABLE neighbor entries for hosts that are not on the connected subnet. <br/>
 To work around this issue, change the value of arp_ignore to 2. See <a href="https://docs.cumulusnetworks.com/cumulus-linux/Layer-3/Address-Resolution-Protocol-ARP/" class="external-link" rel="nofollow">Address Resolution Protocol in the Cumulus Linux user guide</a> for more information.</p></td>
-<td>3.3.2-3.7.13, 4.0.0-4.2.1</td>
+<td>3.3.2-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-16571</td>
 <td><p>NCLU cannot manage rsyslog to addresses routed via a VRF.  In Cumulus Linux 4.0.0 and later, management VRF is enabled by default.   To work around this issue, update the /etc/network/interfaces file to disable management VRF.</p></td>
-<td>3.4.3-3.7.13, 4.0.0-4.2.1</td>
+<td>3.4.3-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-15812</td>
 <td><p>Multicast forwarding fails for IP addresses whose DMAC overlaps with reserved DIPs.</p></td>
-<td>3.2.1-3.7.13, 4.0.0-4.2.1</td>
+<td>3.2.1-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 </table>
@@ -2316,7 +2399,7 @@ cumulus@<span class="code-keyword">switch</span>:~$ sudo systemctl restart ssh
 <p><b>Notes</b> </p>
 
 <ul>
-	<li>This issue is fixed in Cumulus Linux 4.1.1. However, Cumulus Networks recommends you generate new SSH host keys as this is the most reliable solution.</li>
+	<li>This issue is fixed in Cumulus Linux 4.1.1. However, we recommend you generate new SSH host keys as this is the most reliable solution.</li>
 	<li>If you upgrade from Cumulus Linux 4.0.0 or 4.1.0 to version 4.1.1 or later using apt-get and you didn't generate new SSH host keys, you will need to generate new SSH host keys after the upgrade.</li>
 	<li>If you perform a fresh install of Cumulus Linux 4.1.1 or later using a disk image, you will lose your existing local configuration.</li>
 </ul>
@@ -2362,9 +2445,109 @@ CVE-2020-10531: An issue was discovered in International Components for Unicode 
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-32860</td>
+<td><p>The following vulnerabilities were announced in the p11-kit (libp11-kit0) packages:<br/>
+CVE-2020-29361: Multiple integer overflows have been discovered in the array allocations in the p11-kit library and the p11-kit list command, where overflow checks are missing before calling realloc or calloc.<br/>
+CVE-2020-29362: A heap-based buffer over-read has been discovered in the RPC protocol used by thep11-kit server/remote commands and the client library. When the remote entity supplies a byte array through a serialized PKCS#11 function call, the receiving entity may allow the reading of up to 4 bytes of memory past the heap allocation.<br/>
+CVE-2020-29363: A heap-based buffer overflow has been discovered in the RPC protocol used by p11-kit server/remote commands and the client library. When the remote entity supplies a serialized byte array in a CK_ATTRIBUTE, the receiving entity may not allocate sufficient length for the buffer to store the deserialized value.<br/>
+Vulnerable: 0.23.15-2<br/>
+Fixed: 0.23.15-2_deb10u1</p></td>
+<td>4.0.0-4.2.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32733</td>
+<td><p>CVE-2020-29479 CVE-2020-29480 CVE-2020-29481 CVE-2020-29482 CVE-2020-29483 CVE-2020-29484 CVE-2020-29485 CVE-2020-29486 CVE-2020-29566 CVE-2020-29570 CVE-2020-29571<br/>
+Several security issues affecting Xenstore could result in cross domain access (denial of service, information leaks or privilege escalation) or denial of service against xenstored.<br/>
+Additional vulnerabilities could result in guest-to-host denial of<br/>
+service.<br/>
+Vulnerable: &lt;= 4.11.4+57-g41a822c392-1<br/>
+Fixed: 4.11.4+57-g41a822c392-2</p></td>
+<td>4.0.0-4.2.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32661</td>
+<td><p>On the Edgecore AS7312 switch, eth0 and swp use the same MAC address.</p></td>
+<td>3.7.14, 4.0.0-4.2.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32641</td>
+<td><p>CVE-2020-27350: Missing input validation in the ar/tar implementations of APT, the high level package manager, could cause out-of-bounds reads or infinite loops, resulting in denial of service when processing malformed deb files.<br/>
+CVE-2020-27351: Various memory and file descriptor leaks were discovered in the Python interface to the APT package management runtime library, which could result in denial of service.<br/>
+Vulnerable: apt &lt;= 1.8.2.1, python-apt &lt;= 1.8.4.1<br/>
+Fixed: apt 1.8.2.2, python-apt 1.8.4.3</p></td>
+<td>4.0.0-4.2.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32622</td>
+<td><p>The following vulnerability has been announced in OpenSSL:<br/>
+CVE-2020-1971: A flaw in the GENERAL_NAME_cmp() function could cause a NULL dereference when both GENERAL_NAMEs contain an EDIPARTYNAME, resulting in denial of service.  More information can be found at <a href="https://www.openssl.org/news/secadv/20201208.txt" class="external-link" rel="nofollow">https://www.openssl.org/news/secadv/20201208.txt</a> .<br/>
+Vulnerable: &lt;= 1.1.1d-0+deb10u3<br/>
+Fixed: 1.1.1d-0+deb10u4</p></td>
+<td>4.0.0-4.2.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32592</td>
+<td><p>CVE-2020-27670 CVE-2020-27671 CVE-2020-27672 CVE-2020-27674 CVE-2020-28368: Multiple vulnerabilities have been discovered in the Xen hypervisor, which could result in denial of service, privilege escalation or information leaks.<br/>
+Vulnerable: &lt; 4.11.4+57-g41a822c392-1<br/>
+Fixed: 4.11.4+57-g41a822c392-1</p></td>
+<td>4.0.0-4.2.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32545</td>
+<td><p>If the FRR and MSTP processes go down, an SNMP TRAP is not generated even with the following configuration in the /etc/snmp/snmpd.conf file. </p>
+
+proc watchfrr
+proc mstpd
+monitor -I -r 1 -o prNames.5 -o prErrMessage.5 “Process FRRis down!!!” PrErrorFlag.5 != 0
+monitor -I -r 1 -o prNames.5 -o prErrMessage.5 “Process FRR is up!!!” PrErrorFlag.5 = 0
+monitor -I -r 1  -o prNames.3 -o prErrMessage.3  "Process mstpd is down!!!!" prErrorFlag.3 != 0
+monitor -I -r 1  -o prNames.3 -o prErrMessage.3  "Process mstpd is up!!!!" prErrorFlag.3 = 0
+
+</td>
+<td>3.7.12-3.7.14, 4.0.0-4.2.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32532</td>
+<td><p>CVE-2020-8927: A buffer overflow exists in the Brotli library versions prior to 1.0.8 where an attacker controlling the input length of a "one-shot" decompression request to a script can trigger a crash, which happens when copying over chunks of data larger than 2 GiB.  If one cannot update to a fixed version, we recommend to use the "streaming" API as opposed to the "one-shot" API, and impose chunk size limits.<br/>
+Vulnerable: 1.0.7-2<br/>
+Fixed: 1.0.7-2+deb10u1</p></td>
+<td>4.0.0-4.2.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32420</td>
+<td><p>When running traditional mode bridges at scale (for example, when you have more than 200 bridges and a large number of MAC addresses), MLAG bonds flap intermittently from dual to single connected, then back to dual connected, which causes a layer 2 loop and STP state changes.<br/>
+To work around this issue, either shut down one side of the MLAG bond or prune out VLANS over the bond.</p></td>
+<td>3.7.13-3.7.14, 4.0.0-4.2.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32412</td>
+<td><p>CVE-2020-28196: MIT Kerberos 5 (aka krb5) before 1.17.2 and 1.18.x before 1.18.3 allows unbounded recursion via an ASN.1-encoded Kerberos message because the lib/krb5/asn.1/asn1_encode.c support for BER indefinite lengths lacks a recursion limit.<br/>
+Vulnerable: 1.17-3<br/>
+Fixed: 1.17-3+deb10u1</p></td>
+<td>4.0.0-4.2.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32311</td>
+<td><p>CVE-2020-25709, CVE-2020-25710: Two vulnerabilities in the certificate list syntax verification and in the handling of CSN normalization were discovered in OpenLDAP, a free implementation of the Lightweight Directory Access Protocol. An unauthenticated remote attacker can take advantage of these flaws to cause a denial of service (slapd daemon crash) via specially crafted packets.<br/>
+Vulnerable: &lt;= 2.4.47+dfsg-3+deb10u3<br/>
+Fixed: 2.4.47+dfsg-3+deb10u4</p></td>
+<td>4.0.0-4.2.1</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-32226</td>
 <td><p>If switchd successfully signals clagd that it is going down, clagd stops responding to keepalive echo requests from the peer instead of sending a good bye to the peer over both the peerlink and the backup switch. Eventually, the keepalive timer expires and the secondary switch becomes the primary, and brings the bonds and VNIs back up. However, if switchd does not successfully signal it is going down, (in the event of a crash), the primary switch continues to respond to keepalives, and the bonds and VNIs are down on both peers. </p></td>
-<td>3.7.12-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.12-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
@@ -2377,13 +2560,28 @@ CVE-2020-10531: An issue was discovered in International Components for Unicode 
 <td>CM-32169</td>
 <td><p>OpenSSH is vulnerable to CVE-2020-14145, as described in <a href="https://www.fzi.de/fileadmin/user_upload/2020-06-26-FSA-2020-2.pdf" class="external-link" rel="nofollow">https://www.fzi.de/fileadmin/user_upload/2020-06-26-FSA-2020-2.pdf</a>.  <br/>
 This is an information leak in algorithm negotiation that can allow man-in-the-middle attacks on initial connection attempts without a previously stored server host key on the client. If desired, mitigation using UpdateHostKeys and HostKeyAlgorithms is also given in that paper.</p></td>
-<td>3.0.0-3.7.13, 4.0.0-4.2.1</td>
+<td>3.0.0-3.7.14, 4.0.0-4.2.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32112</td>
+<td><p>On the ARM platform, NTP peer associations slowly increase to larger offsets (~500ms).</p></td>
+<td>4.0.0-4.2.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32110</td>
+<td><p>CVE-2020-25692: A vulnerability in the handling of normalization with modrdn was discovered in OpenLDAP, a free implementation of the Lightweight Directory Access Protocol. An unauthenticated remote attacker can use this flaw to cause a denial of service (slapd daemon crash) via a specially crafted packet.<br/>
+The slapd package is not present in the image or repository, although the OpenLDAP libraries are present.<br/>
+Vulnerable: &lt;= 2.4.47+dfsg-3+deb10u2<br/>
+Fixed: 2.4.47+dfsg-3+deb10u3</p></td>
+<td>4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-32006</td>
 <td><p>Certain Dell S4048-ON switches show an incorrect vendor name and hang when you issue the reboot command. </p></td>
-<td>3.7.12-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.12-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
@@ -2400,6 +2598,14 @@ Fixed: 10.3.25-0+deb10u1</p></td>
 Both the SPICE client (spice-gtk) and server are affected by these flaws. These flaws allow a malicious client or server to send specially crafted messages that, when processed by the QUIC image compression algorithm, result in a process crash or potential code execution.<br/>
 Vulnerable: 0.14.0-1.3<br/>
 Fixed: 0.14.0-1.3+deb10u1</p></td>
+<td>4.0.0-4.2.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31697</td>
+<td><p>Multiple vulnerabilities have been discovered in the Xen hypervisor, which could result in denial of service, guest-to-host privilege escalation or information leaks.  These include the following:CVE-2020-25595, CVE-2020-25596, CVE-2020-25597, CVE-2020-25599, CVE-2020-25600, CVE-2020-25601, CVE-2020-25602, CVE-2020-25603, CVE-2020-25604.<br/>
+Vulnerable: &lt; 4.11.4+37-g3263f257ca-1<br/>
+Fixed: 4.11.4+37-g3263f257ca-1</p></td>
 <td>4.0.0-4.2.1</td>
 <td></td>
 </tr>
@@ -2422,7 +2628,7 @@ cumulus@switch:mgmt-vrf:~$ net add snmp-server username user999 auth-md5 user999
 
 
 <p>Alternatively, directly edit the /etc/snmp/snmpd.conf file as described in the documentation.</p></td>
-<td>3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.13-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
@@ -2430,7 +2636,7 @@ cumulus@switch:mgmt-vrf:~$ net add snmp-server username user999 auth-md5 user999
 <td><p>Multicast traffic on a VPN is sent to remote VTEPs that are not part of the VPN and the remote VTEPs receive multicast traffic encapsulated in a VXLAN ID that doesn't exist.<br/>
 To work around this issue, disable IGMP snooping on the switch.</p></td>
 <td>3.7.12-3.7.13, 4.0.0-4.2.1</td>
-<td></td>
+<td>3.7.14</td>
 </tr>
 <tr>
 <td>CM-31374</td>
@@ -2490,27 +2696,20 @@ Fixed: 9.27~dfsg-2+deb10u4</p></td>
 <td>CM-31150</td>
 <td><p>On the Mellanox SN2410 switch, you see switchd core and GBIN_MALLOC errors.<br/>
 To work around this issue, restart switchd.</p></td>
-<td>3.7.12-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.12-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-31120</td>
 <td><p>In a traditional bridge configuration with ip-forward off, neighbors are synchronized to hardware with a switchd restart but are cleared when you flap the bridge interface.</p></td>
-<td>3.7.10-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.10-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
-</tr>
-<tr>
-<td>CM-31086</td>
-<td><p>When you add a member to a bond that has a subinterface configured (such as peerlink.4094), the new member is assigned only the VLAN of the subinterface for forwarding.<br/>
-To work around this issue, bounce the bond or shutdown the new interface and use the remaining members over the bond.</p></td>
-<td>3.7.10-4.2.0</td>
-<td>4.2.1</td>
 </tr>
 <tr>
 <td>CM-31073</td>
 <td><p>When you set the sysctl settings net.ipv6.conf.all.accept_ra_defrtr (to prevent acceptance of IPv6 default route advertisements) and net.ipv6.conf.default.accept_ra_defrtr (set for newly created interfaces), if you create a new virtual interface, any pre-existing interface does not start accepting IPv6 default route avertisements again.<br/>
 To work around this issue, when you create a new virtual interface, set net.ipv6.conf.&lt;interface&gt;.accept_ra_defrtr to 0 for all interfaces and run sysctl -p --system.</p></td>
-<td>3.7.12-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.12-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
@@ -2525,8 +2724,8 @@ CVE-2019-11360: A buffer overflow in iptables-restore in netfilter iptables 1.8.
 <td><p>The following vulnerability has been announced:<br/>
 CVE-2019-20892: net-snmp before 5.8.1.pre1 has a double free in usm_free_usmStateReference in snmplib/snmpusm.c via an SNMPv3 GetBulk request. <br/>
 Fixed:  5.8.0-cl4.2.1u1,  5.8.0-cl3.7.14u1</p></td>
-<td>3.0.0-4.2.0</td>
-<td>4.2.1</td>
+<td>3.0.0-3.7.13, 4.0.0-4.2.0</td>
+<td>3.7.14, 4.2.1</td>
 </tr>
 <tr>
 <td>CM-31038</td>
@@ -2540,14 +2739,14 @@ Vulnerable: &lt;= 4.19.0-cl4u3</p></td>
 <td>CM-31028</td>
 <td><p>Ingress SPAN/ERSPAN does not mirror packets when the next hop is EVPN encapsulated.</p></td>
 <td>3.7.7-3.7.13, 4.0.0-4.2.1</td>
-<td></td>
+<td>3.7.14</td>
 </tr>
 <tr>
 <td>CM-31016</td>
 <td><p>Changing the order of the bridge ports might cause the bridge MAC address to change, which flaps the bridge and its ports.<br/>
 To work around this issue, manually set the MAC address of the bridge interface by adding hwaddress &lt;mac-address&gt; to the bridge stanza in the /etc/network/interfaces file.</p></td>
-<td>3.0.0-4.2.0</td>
-<td>4.2.1</td>
+<td>3.0.0-3.7.13, 4.0.0-4.2.0</td>
+<td>3.7.14, 4.2.1</td>
 </tr>
 <tr>
 <td>CM-30957</td>
@@ -2562,7 +2761,7 @@ Fixed: 0.12.1+ds-2+deb10u1</p></td>
 <td>CM-30879</td>
 <td><p>NCLU restarts FRR when removing a BGP VRF IPv4 aggregate-address command.</p>
 </td>
-<td>3.7.12-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.12-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
@@ -2589,7 +2788,7 @@ The two scenarios where an exploit may be useful to an attacker:<br/>
 Be aware that restricting users to scp by using the command option in the authorized_keys file is not effective in preventing those users from executing arbitrary commands on the server.<br/>
 If you want to use scp -r to copy directory trees, avoid copying directory trees to which attackers may have added maliciously-named files. Archiving the directory tree with tar, zip, or a similar program, then copying the archive over to be extracted on the server avoids having to use scp -r altogether. In addition, OpenSSH provides sftp, which you can use instead of scp to copy files.<br/>
 To disable scp completely, use /bin/chmod 0 /usr/bin/scp .</p></td>
-<td>3.0.0-3.7.13, 4.0.0-4.2.1</td>
+<td>3.0.0-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
@@ -2605,8 +2804,8 @@ Fixed: 1.14.2-2+deb10u2</p></td>
 <td>CM-30827</td>
 <td><p>If the MAC address of an SVI changes, clagd does not update its permanent neighbor entry for the local interface, and it does not report the change to its MLAG peer. This leaves the MLAG peer in a state where its permanent neighbor for the MLAG peer's SVI IP address continues to use the old MAC address, which causes routed traffic over this SVI to be dropped.<br/>
 To work around this issue, ifdown/ifup the SVI when a MAC address changes.</p></td>
-<td>3.7.12-4.2.0</td>
-<td>4.2.1</td>
+<td>3.7.12-3.7.13, 4.0.0-4.2.0</td>
+<td>3.7.14, 4.2.1</td>
 </tr>
 <tr>
 <td>CM-30826</td>
@@ -2654,32 +2853,25 @@ Fixed: 3.42.1-1+deb10u3</p></td>
 <td>CM-30514</td>
 <td><p>In OVSDB high availability mode, deleting &gt; 200 VLAN bindings might cause ovs-vtepd to crash.  Limit the deletion to 200 or fewer VLAN bindings.</p></td>
 <td>3.7.12-3.7.13, 4.0.0-4.2.1</td>
-<td></td>
+<td>3.7.14</td>
 </tr>
 <tr>
 <td>CM-30504</td>
 <td><p>When the OVSDB VTEP scale increases, the CPU utilization increases and eventually the switch (ptmd) fails to respond to the BFD, causing the BFD session to go down. As a result OVSDB cannot read the BFD socket status and outputs a warning in the ovs-vtepd debugs: PTM socket error: Bad file descriptor.</p></td>
-<td>3.7.12-4.2.0</td>
-<td>4.2.1</td>
+<td>3.7.12-3.7.13, 4.0.0-4.2.0</td>
+<td>3.7.14, 4.2.1</td>
 </tr>
 <tr>
 <td>CM-30503</td>
 <td><p>In OVSDB high availability mode, if you create, then delete a binding, the FDB entry is not replaced and you see an error.</p></td>
-<td>3.7.12-4.2.0</td>
-<td>4.2.1</td>
+<td>3.7.12-3.7.13, 4.0.0-4.2.0</td>
+<td>3.7.14, 4.2.1</td>
 </tr>
 <tr>
 <td>CM-30498</td>
 <td><p>There is a change to the default OVSDB bootstrapping process, where the script created now defaults to VLAN-aware bridge mode. If you want to use traditional bride mode, you need to force it by editing the ovs-vtep-ctl script generated by the bootstrap process.</p></td>
-<td>3.7.12-4.2.0</td>
-<td>4.2.1</td>
-</tr>
-<tr>
-<td>CM-30486</td>
-<td><p>A host migrated to an 802.1X MAB port within the same broadcast domain fails to have the correct FDB entry installed if a dynamic FDB entry for that MAC address exists from previous connectivity in the broadcast domain.<br/>
-To work around this issue, manually delete the dynamic FDB entry that is associated with the uplink trunk port.</p></td>
-<td>3.7.12-4.2.0</td>
-<td>4.2.1</td>
+<td>3.7.12-3.7.13, 4.0.0-4.2.0</td>
+<td>3.7.14, 4.2.1</td>
 </tr>
 <tr>
 <td>CM-30484</td>
@@ -2694,8 +2886,8 @@ Fixed: 4.11.4+24-gddaaccbbab-1~deb10u1</p></td>
 <tr>
 <td>CM-30479</td>
 <td><p>When you restart clagd, the edge port setting on the peer link changes.</p></td>
-<td>3.7.2-4.2.0</td>
-<td>4.2.1</td>
+<td>3.7.2-3.7.13, 4.0.0-4.2.0</td>
+<td>3.7.14, 4.2.1</td>
 </tr>
 <tr>
 <td>CM-30473</td>
@@ -2717,8 +2909,8 @@ To workaround this issue, downgrade to Cumulus Linux 3.7 ESR.</p></td>
 <tr>
 <td>CM-30464</td>
 <td><p>The net show dot1x interface summary command output shows a MAC address with all zeros associated with a port.</p></td>
-<td>3.7.12-4.2.0</td>
-<td>4.2.1</td>
+<td>3.7.12-3.7.13, 4.0.0-4.2.0</td>
+<td>3.7.14, 4.2.1</td>
 </tr>
 <tr>
 <td>CM-30447</td>
@@ -2733,7 +2925,7 @@ Fixed: 2.5.5-3+deb10u2</p></td>
 <tr>
 <td>CM-30422</td>
 <td><p>When you configure a bridge in the /etc/network/interfaces file, then try to reconfigure the bridge to be a VRF interface with the same name, ifreload/ifup commands fail with an invalid table id or unable to get vrf table id error.</p></td>
-<td>3.7.12-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.12-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
@@ -2746,7 +2938,7 @@ Fixed: 2.5.5-3+deb10u2</p></td>
 <td>CM-30296</td>
 <td><p>The net show configuration command provides the wrong net add command for ACL under the VLAN interface.</p>
 </td>
-<td>3.7.12-3.7.13, 4.1.0-4.2.1</td>
+<td>3.7.12-3.7.14, 4.1.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
@@ -2760,7 +2952,7 @@ Fixed: 2.5.5-3+deb10u2</p></td>
 <td><p>switchd memory utilization might continue to increase if there are excessive and continuous link flaps over a long period of time.<br/>
 To work around this issue, correct the cause of the frequent link flaps. You can restart switchd with the sudo systemctl restart switchd command to recover memory; this operation is impactful to all traffic on the switch during the restart.</p></td>
 <td>3.7.11-3.7.12, 4.0.0-4.2.0</td>
-<td>3.7.13, 4.2.1</td>
+<td>3.7.13-3.7.14, 4.2.1</td>
 </tr>
 <tr>
 <td>CM-30231</td>
@@ -2790,31 +2982,6 @@ zebra increments the local MAC mobility sequence number and considers the MAC ad
 <td></td>
 </tr>
 <tr>
-<td>CM-30224</td>
-<td><p>The show evpn mac vni &lt;vni&gt; mac &lt;mac-address&gt; command stops displaying "Sticky MAC" if that MAC address is seen on a local bridge port. The following example shows the command output <b>before</b> the MAC address is seen on a local bridge:</p>
-
-cumulus@switch:~$ net show evpn mac vni 24 mac 50:6b:4b:aa:aa:aa                                
-MAC: 50:6b:4b:aa:aa:aa                                                                              
- Remote VTEP: 10.0.0.41 Sticky Mac                                                                  
- Local Seq: 0 Remote Seq: 0                                                                         
- Neighbors:                                                                                         
-    No Neighbors
-
-
-<p>The following example shows the command output <b>after</b> the MAC address is seen on a local bridge::</p>
-
-cumulus@switch:~$ net show evpn mac vni 24 mac 50:6b:4b:aa:aa:aa                                
-MAC: 50:6b:4b:aa:aa:aa                                                                              
- Remote VTEP: 10.0.0.41                                                                             
- Local Seq: 1 Remote Seq: 0                                                                         
- Neighbors:                                                                                         
-    10.2.4.14 Inactive 
-
-</td>
-<td>4.0.0-4.2.1</td>
-<td></td>
-</tr>
-<tr>
 <td>CM-30178</td>
 <td><p>NCLU tab completion for net show displays the text add help text instead of system Information for the system option.</p></td>
 <td>3.7.11-4.2.0</td>
@@ -2824,7 +2991,7 @@ MAC: 50:6b:4b:aa:aa:aa
 <td>CM-30165</td>
 <td><p>When you use a phone with EAP and voice VLAN is configured (<b>and MAB is not configured</b>), after the phone authenticates, all tagged traffic from the phone is dropped.<br/>
 To work around this issue, enable MAB on the interface.</p></td>
-<td>3.7.12-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.12-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
@@ -2838,13 +3005,13 @@ To work around this issue, you must update the file from <a href="https://www.ie
 <td>CM-30103</td>
 <td><p>On a Broadcom switch with the Trident2+ ASIC, ACL rules for VLANs are not applied after a reboot and the counters remain at zero.<br/>
 To work around this issue, either do not set acl.non_atomic_update_mode = TRUE in the /etc/cumulus/switchd.conf file or run the cl-acltool -i command after the reboot to install the  ACLs.</p></td>
-<td>3.7.12-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.12-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-30101</td>
 <td><p>The NCLU net show bridge spanning-tree command displays the aging timer incorrectly. </p></td>
-<td>3.7.12-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.12-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
@@ -2877,21 +3044,21 @@ To work around this issue, apply an extended community with a route map using im
 <tr>
 <td>CM-29978</td>
 <td><p>The received PVST BPDU for a VLAN is flooded even though the ingress port doesn't have the VLAN tagged.</p></td>
-<td>3.7.8-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.8-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-29872</td>
 <td><p>Tab completion for the net show rollback description command returns information about a snapshot instead of context help.<br/>
 To work around this issue, run the net show commit history command to find descriptions instead of the net show rollback description command.</p></td>
-<td>3.7.12-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.12-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-29871</td>
 <td><p>The net show rollback description &lt;string&gt; command returns an error even if the string matches a commit description.<br/>
 To work around this issue, look for your string in the output of the net show commit history command (or grep for it there) instead.</p></td>
-<td>3.7.12-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.12-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
@@ -2905,17 +3072,25 @@ Fixed: 1.9.0-2+deb10u2</p></td>
 <td>4.2.0-4.2.1</td>
 </tr>
 <tr>
+<td>CM-29838</td>
+<td><p>CPU utilization may increase when clag-managed bond interfaces are operationally/LACP down but the physical carrier remains up on the bond member switchports. This condition occurs when clag bond redirection is enabled and bond members remain up while the parent bond does not negotiate LACP.</p>
+
+<p>This issue is resolved in Cumulus Linux 3.7.14.</p></td>
+<td>3.7.9-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.14</td>
+</tr>
+<tr>
 <td>CM-29830</td>
 <td><p>Unicast traffic from downlink hosts is flooded to multiple remote VTEPs, which might also cause high HwIfOutQDrops/TX_DRP on the uplink ports.<br/>
 To work around this issue, restart switchd.</p></td>
-<td>3.7.10-4.1.1</td>
-<td>4.2.0-4.2.1</td>
+<td>3.7.10-3.7.13, 4.0.0-4.1.1</td>
+<td>3.7.14, 4.2.0-4.2.1</td>
 </tr>
 <tr>
 <td>CM-29779</td>
 <td><p>In LLDP, the snmp subagent loses all subsequent lldpRemSysName (1.0.8802.1.1.2.1.4.1.1.9) entries after an entry with a missing SysName is added.<br/>
 All the information from lldpctl is correct. Only the entries after the entry that is missing a SysName in lldpRemSysName disappear from the snmp subagent.</p></td>
-<td>3.7.12-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.12-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
@@ -2926,7 +3101,7 @@ May 20 10:48:04.671299 leaf01 poed<span class="error">&#91;8012&#93;</span>: poe
 May 20 10:48:04.708620 leaf01 systemd<span class="error">&#91;1&#93;</span>: cumulus-poe.service: main process exited, code=exited, status=1/FAILURE<br/>
 The service starts automatically but there is an impact to POE devices momentarily.</p></td>
 <td>3.7.12, 4.0.0-4.1.1</td>
-<td>3.7.13, 4.2.0-4.2.1</td>
+<td>3.7.13-3.7.14, 4.2.0-4.2.1</td>
 </tr>
 <tr>
 <td>CM-29760</td>
@@ -2939,17 +3114,6 @@ Vulnerable: 9.11.5.P4+dfsg-5.1<br/>
 Fixed: 9.11.5.P4+dfsg-5.1+deb10u1</p></td>
 <td>4.0.0-4.1.1</td>
 <td>4.2.0-4.2.1</td>
-</tr>
-<tr>
-<td>CM-29759</td>
-<td><p>When you use nginx and restserver in management VRF to provide a REST API for the switch, nginx starts but restserver fails to start.<br/>
-To work around this issue, comment out the Requires= line in the /lib/systemd/system/restserver.service. For example:</p>
-
-#Requires=nginx.service restserver.socket
-
-</td>
-<td>3.7.12-3.7.13, 4.0.0-4.2.1</td>
-<td></td>
 </tr>
 <tr>
 <td>CM-29691</td>
@@ -2969,7 +3133,7 @@ warning: cmd '/bin/ip addr del 10.0.0.1/24 dev eth0' failed: returned 2 (RTNETLI
 
 
 <p>To work around this issue,  run the ifreload -a command a second time.</p></td>
-<td>3.7.12-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.12-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
@@ -3012,33 +3176,13 @@ cumulus@switch:~$ sudo ifup vni10100
 
 
 <p>If you flap the link with the ip link set vni10100 down; ip link set vni10100 up commands, zebra does not re-add the VNI.</p></td>
-<td>3.7.12-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.12-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
-</tr>
-<tr>
-<td>CM-29525</td>
-<td><p>The asic-monitor.service fails when you configure /etc/cumulus/datapath/monitor.conf with monitor.histogram_pg.collect.port_group_list  = <span class="error">&#91;all_packet_pg&#93;</span> and there is traffic passing through the buffer. When the service fails, you see the following traceback in journalctl:</p>
-
-asic-monitor[7389]: asic-monitor-module INFO: 2020-05-01 18:28:12.548734: Egress queue(s) greater than 500 bytes in monitor port group histogram_pg
-asic-monitor[7389]: asic-monitor ERROR: ASIC monitor exception: sx_api_port_counter_tc_get failed: Parameter Error
-asic-monitor[7389]: File "/usr/bin/asic-monitor", line 139, in &lt;module&gt;
-asic-monitor[7389]: main(sys.argv[1:])
-asic-monitor[7389]: File "/usr/bin/asic-monitor", line 126, in main
-asic-monitor[7389]: traceback.print_stack()
-asic-monitor[7389]: Traceback (most recent call last):
-asic-monitor[7389]: File "/usr/bin/asic-monitor", line 117, in main
-asic-monitor[7389]: monitor.run()
-asic-monitor[7389]: File "/usr/lib/python2.7/dist-packages/cumulus/asic_monitor.py", line 158, in run
-...
-
-</td>
-<td>3.7.11-4.2.0</td>
-<td>4.2.1</td>
 </tr>
 <tr>
 <td>CM-29519</td>
 <td><p>The JSON format output of the net show bgp l2vpn evpn summary command shows the incorrect neighbour state. </p></td>
-<td>3.7.12-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.12-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
@@ -3127,7 +3271,7 @@ To work around this issue, when you manually configure the rd or route-target fo
 <tr>
 <td>CM-29309</td>
 <td><p>When Optimized Multicast Flooding (OMF) is enabled with the bridge.optimized_mcast_flood = TRUE setting in the /etc/cumulus/switchd.conf file, the switch continues to flood IPv6 multicast traffic to all slave ports when there is no MLD join receive.</p></td>
-<td>3.7.11-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.11-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
@@ -3146,7 +3290,7 @@ Fixed: 2.20.1-2+deb10u3</p></td>
 CVE-2020-5260: Felix Wilhelm of Google Project Zero discovered a flaw in git, a fast, scalable, distributed revision control system. With a crafted URL that contains a newline, the credential helper machinery can be fooled to return credential information for a wrong host.<br/>
 CVE-2020-11008: Carlo Arenas discovered a flaw in git, a fast, scalable, distributed revision control system. With a crafted URL that contains a newline or empty host, or lacks a scheme, the credential helper machinery can be fooled into providing credential information that is not appropriate for the protocol in use and host being contacted.</p></td>
 <td>3.0.0-3.7.12, 4.0.0-4.1.1</td>
-<td>3.7.13, 4.2.0-4.2.1</td>
+<td>3.7.13-3.7.14, 4.2.0-4.2.1</td>
 </tr>
 <tr>
 <td>CM-29270</td>
@@ -3171,7 +3315,7 @@ CVE-2020-11008: Carlo Arenas discovered a flaw in git, a fast, scalable, distrib
 
 
 <p>These messages are harmless and can be ignored.</p></td>
-<td>3.7.12-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.12-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
@@ -3213,7 +3357,7 @@ Not vulnerable: 3.6.7-4+deb10u3</p></td>
 <tr>
 <td>CM-29148</td>
 <td><p>On MLX switches that contain an OSPF IP unnumbered neighborship with a high scale of prefixes being learned, a link flap might cause the neighbor entry to not be programmed in hardware.</p></td>
-<td>3.7.11-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.11-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
@@ -3255,7 +3399,7 @@ cumulus@<span class="code-keyword">switch</span>:~$ sudo systemctl restart ssh
 <p><b>Notes</b> </p>
 
 <ul>
-	<li>This issue is fixed in Cumulus Linux 4.1.1. However, Cumulus Networks recommends you generate new SSH host keys as this is the most reliable solution.</li>
+	<li>This issue is fixed in Cumulus Linux 4.1.1. However, we recommend you generate new SSH host keys as this is the most reliable solution.</li>
 	<li>If you upgrade from Cumulus Linux 4.0.0 or 4.1.0 to version 4.1.1 or later using apt-get and you didn't generate new SSH host keys, you will need to generate new SSH host keys after the upgrade.</li>
 	<li>If you perform a fresh install of Cumulus Linux 4.1.1 or later using a disk image, you will lose your existing local configuration.</li>
 </ul>
@@ -3286,13 +3430,13 @@ reports to be injected to the input subsystem from a non-bonded source.</p></td>
 <td><p>A large number of flapping peers causes FRR to require a corresponding update to internal data structures that track peer information. Updating this internal data structure does not delete links that are down due to the flapping. The size of this array then grows to contain both current peers as well as peers that should have been deleted during the flap processing. The contents of this array is processed by FRR to poll the links, which consumes CPU for all items in the array. This additional polling consumes more CPU than necessary but has no functional impact.<br/>
 To work around this issue, restart FRR.</p></td>
 <td>3.7.11-3.7.12, 4.0.0-4.1.1</td>
-<td>3.7.13, 4.2.0-4.2.1</td>
+<td>3.7.13-3.7.14, 4.2.0-4.2.1</td>
 </tr>
 <tr>
 <td>CM-29043</td>
 <td><p>When a multipath route that contains an EVPN path exists together with an IPv4 BGP path in the VRF, the RMAC to VTEP binding is incorrect. This invalid entry occurs because Cumulus Linux treats IPv4 routes received over the eBGP IPv4 peering incorrectly in the VRF.<br/>
 To work around this issue, remove the unnecessary eBGP IPv4 peering.</p></td>
-<td>3.7.12-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.12-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
@@ -3305,7 +3449,7 @@ W: Possible missing firmware /lib/firmware/tigon/tg3.bin for module tg3
 
 
 <p>You can safely ignore these error messages.</p></td>
-<td>3.7.12-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.12-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
@@ -3341,7 +3485,7 @@ To recover from this condition, restart switchd with the sudo systemctl restart 
 <td><p>The following security vulnerability has been announced:<br/>
 CVE-2020-10531: An issue was discovered in International Components for Unicode (ICU) for C/C++ through 66.1. An integer overflow, leading to a heap-based buffer overflow, exists in the UnicodeString::doAppend() function in common/unistr.cpp.</p></td>
 <td>3.0.0-3.7.12, 4.0.0-4.1.0</td>
-<td>3.7.13, 4.1.1-4.2.1</td>
+<td>3.7.13-3.7.14, 4.1.1-4.2.1</td>
 </tr>
 <tr>
 <td>CM-28982</td>
@@ -3393,7 +3537,7 @@ s&gt; 50.0.0.1/32      0.0.0.0                  0         32768 i
 
 
 <p>To work around this issue, remove, then re-add the component prefix routes.</p></td>
-<td>3.7.12-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.12-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
@@ -3420,13 +3564,13 @@ Note: A network restart is a disruptive operation. </p></td>
 <td>CM-28867</td>
 <td><p>The QuantaMesh BMS T3048-LY8 switch shows a low fan RPM in syslog.</p></td>
 <td>3.7.5-3.7.12, 4.0.0-4.1.1</td>
-<td>3.7.13, 4.2.0-4.2.1</td>
+<td>3.7.13-3.7.14, 4.2.0-4.2.1</td>
 </tr>
 <tr>
 <td>CM-28862</td>
 <td><p>On the Edgecore AS5812 switch, the Innodisk DIMM causes a DIMM temperature sensor absent alert.</p></td>
 <td>3.7.12, 4.0.0-4.1.1</td>
-<td>3.7.13, 4.2.0-4.2.1</td>
+<td>3.7.13-3.7.14, 4.2.0-4.2.1</td>
 </tr>
 <tr>
 <td>CM-28821</td>
@@ -3440,7 +3584,7 @@ Note: A network restart is a disruptive operation. </p></td>
 CVE-2019-18276 Qualys scan QID 372268 setuid vulnerability<br/>
 When bash or bash scripts are run setuid, bash is supposed to drop privileges, but does so incorrectly, so that an attacker with command access to the shell can use enable -f for runtime loading of a new builtin that calls setuid() to regain dropped privileges.<br/>
 To work around this issue, do not make bash or bash scripts setuid.</p></td>
-<td>3.0.0-3.7.13, 4.0.0-4.2.1</td>
+<td>3.0.0-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
@@ -3459,31 +3603,31 @@ To work around this issue, do not make bash or bash scripts setuid.</p></td>
 <tr>
 <td>CM-28754</td>
 <td><p>On switches with the Trident2+ ASIC, adding SPAN rules disables PBR rules.</p></td>
-<td>3.7.3-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.3-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-28682</td>
 <td><p>On the Mellanox Spectrum switch in an EVPN symmetric configuration with MLAG, simultaneously shutting down the layer 3 interfaces that serve as uplinks to the VXLAN fabric might result in traffic loss of up to 15 seconds.</p></td>
 <td>4.1.0-4.1.1</td>
-<td>4.2.0-4.2.1</td>
+<td>3.7.14-4.0.0, 4.2.0-4.2.1</td>
 </tr>
 <tr>
 <td>CM-28656</td>
 <td><p>In OVSDB VLAN-aware mode, removing a VTEP binding on the NSX controller fails to clean up all interfaces associated with the logical switch.</p></td>
 <td>3.7.12, 4.0.0-4.1.1</td>
-<td>3.7.13, 4.2.0-4.2.1</td>
+<td>3.7.13-3.7.14, 4.2.0-4.2.1</td>
 </tr>
 <tr>
 <td>CM-28613</td>
 <td><p>In EVPN Active-Active (MLAG) environments, rebooting one member of an MLAG pair should result in the local MAC mobility sequence number reverting to 0. Sometimes a reboot of one MLAG peer results in the local MAC mobility sequence number being set to a non-zero value despite that no more mobility events occur. This issue is cosmetic only, as BGP does not advertise the incorrect sequence number and forwarding entries correctly point to the remote VTEP where the MAC is now located.</p></td>
-<td>3.7.12-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.12-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-28611</td>
 <td><p>In an EVPN Active-Active (MLAG) environment, sometimes a local-to-remote MAC mobility event results in the local sequence number appearing higher than the remote sequence number in zebra. This issue is cosmetic only, as BGP does not advertise the incorrect sequence number and forwarding entries correctly point to the remote VTEP where the MAC is now located.</p></td>
-<td>3.7.12-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.12-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
@@ -3530,8 +3674,8 @@ Port security is not supported on bond/MLAG interfaces.</p></td>
 <tr>
 <td>CM-28442</td>
 <td><p>PTM mis-detects incorrect hostnames of LLDP neighbors and does not fail them as expected. Instead they end up in an N/A cabling status.</p></td>
-<td>3.7.11-4.1.1</td>
-<td>4.2.0-4.2.1</td>
+<td>3.7.11-3.7.13, 4.0.0-4.1.1</td>
+<td>3.7.14, 4.2.0-4.2.1</td>
 </tr>
 <tr>
 <td>CM-28441</td>
@@ -3543,21 +3687,21 @@ Port security is not supported on bond/MLAG interfaces.</p></td>
 <td>CM-28393</td>
 <td><p>On the Dell S5232F-ON switch, EVPN and dynamic VRF route leaking results in the CPU forwarding traffic to newly-learned type-2 routes.<br/>
 To work around this issue, restart FRR.</p></td>
-<td>3.7.9-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.9-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-28376</td>
 <td><p>On the Dell S5232F-ON switch, the output of ledmgrd shows amber_blinking but smonctl shows all OK.</p></td>
 <td>3.7.11-3.7.12, 4.0.0-4.1.1</td>
-<td>3.7.13, 4.2.0-4.2.1</td>
+<td>3.7.13-3.7.14, 4.2.0-4.2.1</td>
 </tr>
 <tr>
 <td>CM-28340</td>
 <td><p>Mellanox switches with the Spectrum A0 ASIC that are integrated with VMware NSX experience BFD connectivity issues with service nodes. As a result, VXLAN tunnels do not work.<br/>
 Mellanox switches with the Spectrum A1 ASIC do *<b>not</b>* have this issue.</p></td>
 <td>3.7.11-3.7.12, 4.0.0-4.1.1</td>
-<td>3.7.13, 4.2.0-4.2.1</td>
+<td>3.7.13-3.7.14, 4.2.0-4.2.1</td>
 </tr>
 <tr>
 <td>CM-28249</td>
@@ -3583,7 +3727,7 @@ Jan 30 19:22:53 switch123 snmpd[23172]: Cannot statfs /sys/kernel/debug/tracing:
 
 </td>
 <td>4.0.0-4.1.1</td>
-<td>4.2.0-4.2.1</td>
+<td>3.7.14, 4.2.0-4.2.1</td>
 </tr>
 <tr>
 <td>CM-28136</td>
@@ -3592,13 +3736,13 @@ Jan 30 19:22:53 switch123 snmpd[23172]: Cannot statfs /sys/kernel/debug/tracing:
 RTM_NEWNEIGH with unconfigured vlan XXXX on port peerlink
 
 </td>
-<td>3.7.10-4.1.1</td>
-<td>4.2.0-4.2.1</td>
+<td>3.7.10-3.7.13, 4.0.0-4.1.1</td>
+<td>3.7.14, 4.2.0-4.2.1</td>
 </tr>
 <tr>
 <td>CM-28080</td>
 <td><p>TACACS+ through ClearPass is not currently supported. Cumulus Linux sends authorization before authentication, but ClearPass does not accept an authorization before the user is authenticated.</p></td>
-<td>3.7.11-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.11-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
@@ -3617,14 +3761,14 @@ RTM_NEWNEIGH with unconfigured vlan XXXX on port peerlink
 <td>CM-28003</td>
 <td><p>The FRR service does not provide a way for automation to know if the configuration applied properly.<br/>
 To work around this issue, execute the vtysh -f &lt;file&gt; command in the automation file before starting the FRR service to validate the functional configuration and return an error code.</p></td>
-<td>3.7.11-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.11-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-27999</td>
 <td><p>On the EdgeCore AS7326-56X switch, the PSU fans show constant LOW warnings.</p></td>
 <td>3.7.10-3.7.12, 4.0.0-4.2.0</td>
-<td>3.7.13, 4.2.1</td>
+<td>3.7.13-3.7.14, 4.2.1</td>
 </tr>
 <tr>
 <td>CM-27982</td>
@@ -3641,7 +3785,7 @@ kernel: [159400.526241] switchd[21374]: segfault at 1229cdd84 ip 00000000004142c
 </ul>
 </td>
 <td>3.7.10-3.7.12, 4.0.0-4.1.1</td>
-<td>3.7.13, 4.2.0-4.2.1</td>
+<td>3.7.13-3.7.14, 4.2.0-4.2.1</td>
 </tr>
 <tr>
 <td>CM-27957</td>
@@ -3658,7 +3802,7 @@ To increase the systemd timeout:</p>
 systemd will attempt to restart the switchd service automatically (after the watchdog timeout). If the restart fails multiple times in a short time period, run the sudo systemctl reset-failed command followed by the sudo systemctl restart switchd command.</li>
 </ol>
 </td>
-<td>3.7.11-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.11-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
@@ -3719,26 +3863,26 @@ This workaround only works when an out-of-band network is present.</p></td>
 <td><p>Mellanox switches might experience higher CPU usage from the sx_sdk service or when BFD is in use.<br/>
 To work around this issue, disable BFD to alleviate some of the CPU load.</p></td>
 <td>4.0.0-4.1.1</td>
-<td>4.2.0-4.2.1</td>
+<td>3.7.14, 4.2.0-4.2.1</td>
 </tr>
 <tr>
 <td>CM-27444</td>
 <td><p>If you use the NCLU commands to configure NTP and run the net add time ntp source &lt;interface&gt; command before you run the net add time ntp server &lt;server&gt; iburst command, the /etc/ntp.conf file is misconfigured.<br/>
 To work around this issue, run the net add time ntp server &lt;server&gt; iburst command before you run the net add time ntp source &lt;interface&gt; command.</p></td>
 <td>3.7.10-3.7.11, 4.0.0-4.2.1</td>
-<td>3.7.12-3.7.13</td>
+<td>3.7.12-3.7.14</td>
 </tr>
 <tr>
 <td>CM-27254</td>
 <td><p>On the Mellanox switch with the Spectrum and Spectrum-2 ASIC, IPv6 egress ACLs are not supported on subinterfaces.</p></td>
 <td>4.0.0-4.1.1</td>
-<td>4.2.0-4.2.1</td>
+<td>3.7.14, 4.2.0-4.2.1</td>
 </tr>
 <tr>
 <td>CM-27243</td>
 <td><p>The length of the netlink message is not set properly for non-bridge family type messages. The same length is used for both bridge and non-bridge even though the bridge family type message has an extra attribute. This causes extra bytes to be left over in non-bridge family type netlink messages.</p></td>
 <td>3.7.10, 4.0.0-4.2.1</td>
-<td>3.7.11-3.7.13</td>
+<td>3.7.11-3.7.14</td>
 </tr>
 <tr>
 <td>CM-27143</td>
@@ -3761,7 +3905,7 @@ To work around this issue, run the net add time ntp server &lt;server&gt; iburst
 <tr>
 <td>CM-27094</td>
 <td><p>On the Delta AG9032v1 switch, smonctl and sensors report inaccurate PSU current and power.</p></td>
-<td>3.5.0-3.7.13, 4.0.0-4.2.1</td>
+<td>3.5.0-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
@@ -3780,7 +3924,7 @@ To work around this issue and bring the interfaces up, perform the following con
 <tr>
 <td>CM-27018</td>
 <td><p>If you configure more than one VRR interface on an SVI interface, deleting one of the VRR addresses does not remove the interface/address. </p></td>
-<td>3.7.10-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.10-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
@@ -3792,7 +3936,7 @@ To work around this issue and bring the interfaces up, perform the following con
 <tr>
 <td>CM-26921</td>
 <td><p>If you delete an undefined bond, then add a bond slave, the net commit command fails.</p></td>
-<td>3.7.9-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.9-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
@@ -3808,7 +3952,7 @@ sudo sh -c "printf 'interface 50 vrf TEST\ndescription L3 routing interface\n' &
 
 
 <p>To work around this issue, configure the interface manually in the /etc/frr/frr.conf file.</p></td>
-<td>3.7.9-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.9-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
@@ -3821,7 +3965,7 @@ sudo sh -c "printf 'interface 50 vrf TEST\ndescription L3 routing interface\n' &
 <td>CM-26905</td>
 <td><p>When you update the hostname of a switch with the NCLU net add hostname &lt;hostname&gt; command, then run net commit, the lldpd service does not restart and other devices still see the old hostname.<br/>
 To work around this issue, run the sudo systemctl restart lldpd.service command.</p></td>
-<td>3.7.10-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.10-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
@@ -3847,7 +3991,7 @@ To work around this issue, restart FRR after removing the IPv6 numbered configur
 <td>CM-26769</td>
 <td><p>Setting ProtoDown on ports populated with SFP modules providing RJ-45 1000BASE-T interfaces does not cause the carrier to be dropped. The kernel shows carrier down; however, the remote device still shows a link.</p></td>
 <td>3.7.6-3.7.10, 4.0.0-4.2.1</td>
-<td>3.7.11-3.7.13</td>
+<td>3.7.11-3.7.14</td>
 </tr>
 <tr>
 <td>CM-26655</td>
@@ -3867,33 +4011,33 @@ net commit
 <td>CM-26599</td>
 <td><p>Auto-negotiation does not work with the QSFP28 cables and a remote system operating at 10G. Attempting to enable auto-negotiation with ethtool -s swp&lt;#&gt; autoneg on returns Operation not supported.<br/>
 To work around this issue, do not use auto-negotiation and set the local port speed to 10G.</p></td>
-<td>3.7.9-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.9-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-26595</td>
 <td><p>The NCLU net show lldp command displays the speed of a ganged port group as the speed of one of the individual links, rather than the sum of their speeds.</p></td>
-<td>3.7.9-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.9-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-26516</td>
 <td><p>Applying a policy-based routing (PBR) rule for all traffic from a host might disrupt ARP refresh for that connected host.</p></td>
-<td>3.7.5-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.5-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-26423</td>
 <td><p>NCLU requires you to specify an interface with multiple address-virtual statements in ascending MAC address order. </p>
 </td>
-<td>3.7.5-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.5-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-26412</td>
 <td><p>Mac learning is not disabled by default on a double tagged peer link interface resulting in the MAC address changing between the MLAG bond and the peer link.<br/>
 To work around this issue, disable MAC learning on QinQ VLANs by adding bridge-learning off to the VLAN stanza in the etc/network/interfaces file.</p></td>
-<td>3.7.9-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.9-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
@@ -3901,26 +4045,26 @@ To work around this issue, disable MAC learning on QinQ VLANs by adding bridge-l
 <td><p>An interface alias configured outside FRR using iproute2 is imported into the FRR running configuration and overrides the internal description. After an FRR reload, this causes FRR to delete the interface alias in an inefficient way. Depending on how many interfaces with aliases you have configured, this can cause a FRR reload to time out.<br/>
 To work around this issue, remove the interface alias description from iproute2.</p></td>
 <td>3.7.8-3.7.10, 4.0.0-4.2.1</td>
-<td>3.7.11-3.7.13</td>
+<td>3.7.11-3.7.14</td>
 </tr>
 <tr>
 <td>CM-26288</td>
 <td><p>On the Mellanox switch, static VXLAN tunnels incorrectly allow traffic from any remote tunnel IP address.</p></td>
-<td>3.7.8-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.8-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-26256</td>
 <td><p>The net show evpn vni detail json command includes an extra empty dictionary at the end of the output. </p>
 </td>
-<td>3.7.8-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.8-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-26241</td>
 <td><p>On the Dell S5248F-ON switch, smond might generate syslog messages indicating that the fan input RPM is lower than the normal low speed of 2500 RPM. Speeds as low as 1700 RPM are acceptable in normal thermal environments; therefore, you can ignore these messages.</p></td>
 <td>3.7.6-3.7.11, 4.0.0-4.2.1</td>
-<td>3.7.12-3.7.13</td>
+<td>3.7.12-3.7.14</td>
 </tr>
 <tr>
 <td>CM-26217</td>
@@ -3939,7 +4083,7 @@ switch(config-router)# area 0.0.0.1 nssa
 
 </td>
 <td>3.7.7-3.7.10, 4.0.0-4.2.1</td>
-<td>3.7.11-3.7.13</td>
+<td>3.7.11-3.7.14</td>
 </tr>
 <tr>
 <td>CM-26179</td>
@@ -3950,7 +4094,7 @@ See /var/log/netd.log for more details.
 
 </td>
 <td>3.7.7-3.7.10, 4.0.0-4.2.1</td>
-<td>3.7.11-3.7.13</td>
+<td>3.7.11-3.7.14</td>
 </tr>
 <tr>
 <td>CM-26147</td>
@@ -3986,7 +4130,7 @@ See /var/log/netd.log for more details.
 
 </td>
 <td>3.7.6-3.7.12, 4.0.0-4.1.1</td>
-<td>3.7.13, 4.2.0-4.2.1</td>
+<td>3.7.13-3.7.14, 4.2.0-4.2.1</td>
 </tr>
 <tr>
 <td>CM-26137</td>
@@ -3995,13 +4139,13 @@ See /var/log/netd.log for more details.
 -A FORWARD -i vni10 -j erspan --src-ip 100.1.1.2 --dst-ip 100.1.1.1 --ttl 64
 
 </td>
-<td>3.7.6-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.6-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-26136</td>
 <td><p>In an ebtables rule, ERSPAN (upper case) does not work. You need to specify erspan (lower case).</p></td>
-<td>3.7.6-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.6-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
@@ -4021,21 +4165,21 @@ To work around this issue, rely on a different source of default route other tha
 <tr>
 <td>CM-25890</td>
 <td><p>In some cases, the switchd service might warn of excessive MAC moves from one switch port to itself (for example, from swp18 to swp18).</p></td>
-<td>3.7.0-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.0-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-25859</td>
 <td><p>The MTU of an SVI cannot be higher than the MTU on the bridge. Changing the MTU on the SVI with NCLU does not update the bridge MTU. The net commit command succeeds even though the MTU is not changed as expected.<br/>
 To work around this issue, change the MTU on all SVIs and the bridge manually in the /etc/network/interfaces file, then apply the change with the ifreload -a command.</p></td>
-<td>3.7.7-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.7-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-25815</td>
 <td><p>When an SVI with a virtual MAC is configured with a layer 2 VNI in an EVPN environment, if you replace the /etc/network/interfaces file with a different file that does not have the SVI and layer 2 VNI configuration, the original virtual MAC is not populated through the EVPN route until FRR is restarted. </p>
 </td>
-<td>3.7.6-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.6-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
@@ -4052,39 +4196,39 @@ To work around this issue, configure the bridge with bridge-vlan-protocol 802.1a
 cumulus@switch:~$ net add bridge mybridge vlan-protocol 802.1ad 
 
  </td>
-<td>3.7.6-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.6-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-25694</td>
 <td><p>If a packet is policed by ebtables, it does not increment an ACL drop on the ingress interface. Instead, it increments the TDBGC3/6 drop counter to the CPU.</p></td>
-<td>3.7.6-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.6-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-25674</td>
 <td><p>On Mellanox switches, policer iptables are not working as expected. For example, when using a policer with mode KB/MB/GB to rate-limit interfaces, the syntax is accepted but the data plane transfer speed is not affected by the rule. </p></td>
 <td>3.7.6-3.7.8, 4.0.0-4.2.1</td>
-<td>3.7.9-3.7.13</td>
+<td>3.7.9-3.7.14</td>
 </tr>
 <tr>
 <td>CM-25400</td>
 <td><p>If an SVI exists in the configuration before you assign it an IP address, when you do assign the IP address with the NCLU command, the vlan-id and the raw-device bridge stanzas are not added automatically. </p>
 </td>
-<td>3.7.6-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.6-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-25397</td>
 <td><p>When first creating a bond and enslaving an interface, NCLU hides some of the bridge command suggestions, although they are still accepted. </p>
 </td>
-<td>3.7.3-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.3-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-24894</td>
 <td><p>The maximum-prefix configuration under the IPv4 address family has an optional restart value, which you can configure. This configuration is ignored and, instead of restarting the sessions every x minutes, the peer constantly changes between established and idle due to the prefix count being exceeded. </p></td>
-<td>3.7.5-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.5-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
@@ -4092,7 +4236,7 @@ cumulus@switch:~$ net add bridge mybridge vlan-protocol 802.1ad
 <td><p>On switches with the Trident2 ASIC, 802.1Q-encapsulated control plane traffic received on an interface with 802.1AD configured subinterfaces might be dropped. <br/>
 This issue only affects QinQ configurations. </p>
 </td>
-<td>3.7.5-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.5-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
@@ -4106,7 +4250,7 @@ This issue only affects QinQ configurations. </p>
 <td>CM-24652</td>
 <td><p>In an EVPN environment, the centralized MAC address is not installed on the MLAG pair because Cumulus Linux does not perform an SVI MAC check per VLAN. <br/>
 This issue does not affect a pure distributed routing (symmetric or asymmetric) environment or a pure centralized routing environment.</p></td>
-<td>3.7.0-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.0-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
@@ -4119,14 +4263,14 @@ This issue does not affect a pure distributed routing (symmetric or asymmetric) 
  
  
 </td>
-<td>3.6.1-3.7.13, 4.0.0-4.2.1</td>
+<td>3.6.1-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-24473</td>
 <td><p>SNMP incorrectly requires engine ID specification. </p>
 </td>
-<td>3.7.4-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.4-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
@@ -4146,7 +4290,7 @@ This issue does not affect a pure distributed routing (symmetric or asymmetric) 
  
  
 </td>
-<td>3.7.2-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.2-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
@@ -4159,27 +4303,27 @@ This issue does not affect a pure distributed routing (symmetric or asymmetric) 
  
  
 <p> Tab completion for the net add vrf &lt;name&gt; ip address &lt;address&gt; command works correctly. </p></td>
-<td>3.7.4-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.4-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-24379</td>
 <td><p>On the Maverick switch, CPU forwarded packets might be dropped when there is no route to a leaked host route.</p></td>
-<td>3.7.5-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.5-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-24343</td>
 <td><p>The net del bridge bridge mcsnoop yes command does not return the value to the default of disabled. <br/>
 To work around this issue, use the net add bridge bridge mcsnoop no command to delete the mcsnoop attribute and return to the default value.</p></td>
-<td>3.7.4-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.4-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-24332</td>
 <td><p>On the Broadcom switch, when moving configuration from bridged to routed (or toggling from routed to bridged to routed), some traffic is not seen by the kernel. This can cause BGP to not establish on a transit node. </p>
 </td>
-<td>3.7.3-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.3-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
@@ -4200,7 +4344,7 @@ To work around this issue, use the net add bridge bridge mcsnoop no command to d
  
  
 </td>
-<td>3.7.4-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.4-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
@@ -4220,7 +4364,7 @@ To work around this issue, use the net add bridge bridge mcsnoop no command to d
  
  
 </td>
-<td>3.7.4-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.4-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
@@ -4241,14 +4385,14 @@ To work around this issue, run the vtysh commands (inside FRR) to change the def
  
  
 </td>
-<td>3.7.4-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.4-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-24262</td>
 <td><p>NCLU does not honor auto all in the /etc/network/interfaces file and removes the existing configuration if no individual auto &lt;iface&gt; lines exist. </p>
 </td>
-<td>3.7.3-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.3-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
@@ -4261,21 +4405,21 @@ To work around this issue, run the vtysh commands (inside FRR) to change the def
  
  
 </td>
-<td>3.7.2-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.2-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-24222</td>
 <td><p>When an LDAP user that does not have NCLU privileges (either in the netshow or netedit group, or in the /etc/netd.conf file) runs an NCLU command, a traceback occurs instead of a permissions error. </p>
 </td>
-<td>3.7.0-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.0-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-24035</td>
 <td><p>On the Edgecore 4610-54P switch, automatic medium-dependent interface crossover (auto-MDIX) stops working on a 100M full duplex interface and does not detect the required cable connection type. </p>
 </td>
-<td>3.7.2-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.2-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
@@ -4283,34 +4427,34 @@ To work around this issue, run the vtysh commands (inside FRR) to change the def
 <td><p>The net add interface &lt;interface&gt; ptm-enable command adds no ptm-enable for that interface in the frr.conf file. <br/>
  Running the net add or the net del command does not remove no ptm-enable from the frr.conf file. You have to remove it manually using vtysh. </p>
 </td>
-<td>3.7.2-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.2-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-23665</td>
 <td><p>NCLU automatically adds the VLAN ID (for the layer 3 VNI/SVI) to the bridge when you run net add vxlan &lt;layer3-vni&gt; bridge access &lt;vlan&gt;. This configuration breaks network connectivity in an EVPN symmetric routing configuration using MLAG. <br/>
 To restore connectivity, remove the VLAN ID from the bridge. </p></td>
-<td>3.7.2-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.2-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-23661</td>
 <td><p>On the Mellanox switch, when you configure a GRE tunnel, the traffic behind the local tunnel endpoint destined through the GRE tunnel is software-forwarded. </p></td>
-<td>3.7.2-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.2-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-23651</td>
 <td><p>In an EVPN symmetric routing configuration, when an IP address is frozen, kernel neighbor table information and kernel VRF routing table information about the frozen IP address might be out-of-sync. </p>
 </td>
-<td>3.7.3-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.3-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-23584</td>
 <td><p>When you configure a control plane ACL to define permit and deny rules destined to the local switch, NCLU programs the control plane ACL rules into the FORWARD chain. </p>
 </td>
-<td>3.7.2-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.2-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
@@ -4319,20 +4463,20 @@ To restore connectivity, remove the VLAN ID from the bridge. </p></td>
 After you remove the link-speed, ethtool shows the advertised link modes as not reported and Speed/Duplex as unknown.<br/>
 To work around this issue and bring the interface back up, either restart switchd or use ethtool to configure the speed, advertised, duplex or MDI-X settings. <br/>
 Note: The advertised link mode gets set incorrectly if you include 1000baseT/Half. The port will come up successfully at 1G.</p></td>
-<td>3.7.2-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.2-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-23418</td>
 <td><p>For QSFP modules, the sudo ifdown command does not disable the Tx laser. </p>
 </td>
-<td>3.7.2-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.2-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-23417</td>
 <td><p>If you use NCLU to create an iBGP peering across the peer link, running the net add bgp l2vpn evpn neighbor peerlink.4094 activate command creates a new eBGP neighborship when one has already been configured for iBGP. This is unexpected; the existing iBGP configuration is valid. </p></td>
-<td>3.7.0-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.0-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
@@ -4353,27 +4497,27 @@ To work around this issue, disable ARP suppression on the centralized gateway.</
  
 <p> Eventually the dhcrelay service stops. </p>
 </td>
-<td>3.7.1-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.1-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-23021</td>
 <td><p>When you run the mstpctl command, you might see the bridge-port state as blocking when it is actually disabled. You might see the same incorrect bridge-port state when other programs or tools use the output of mstpctl; for example, SNMP output from the BRIDGE-MIB.</p></td>
-<td>3.7.1-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.1-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-22554</td>
 <td><p>If you try to bring down several members of a bond remotely at the same time, the link state of one of the interfaces might not transition correctly to the down state; however, all links show down in hardware. </p>
 </td>
-<td>3.6.2-3.7.13, 4.0.0-4.2.1</td>
+<td>3.6.2-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-22386</td>
 <td><p>The BFD packet redirection logic used by OVSDB server high availability mode redirects BUM packets across the peer link. The iptables rule for redirection does differentiate between BFD and non-BFD VXLAN inner packets because the service node sends all frames with its own IP address as the tunnel source IP address. The VXLAN encapsulated BUM packets do not get forwarded to the CPU and do not go through the iptable redirection rule; only VXLAN encapsulated BFD packets get forwarded to the CPU due to the inner MAC DA lookup in hardware. </p>
 </td>
-<td>3.7.0-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.0-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
@@ -4388,46 +4532,46 @@ To work around this issue, disable ARP suppression on the centralized gateway.</
 <p> These packets are now policed by catch all rules. <br/>
  To work around this issue, the VPORT value on a TRIDENT switch must be changed from binary 011 to 100. </p>
 </td>
-<td>3.6.1-3.7.13, 4.0.0-4.2.1</td>
+<td>3.6.1-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-22287</td>
 <td><p>On the EdgeCore AS7712 (Tomahawk) switch running in atomic mode, when a layer 3 ECMP path is brought down, traffic traversing the path stops working for about four seconds. When the switch is changed to non-atomic mode, the delay is less than one second. This issue is seen across OSPF and static ECMP routes. </p></td>
-<td>3.6.2-3.7.13, 4.0.0-4.2.1</td>
+<td>3.6.2-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-22228</td>
 <td><p>On switches with the Trident 2+ ASIC, counters associated with VLANs and VRFs are not working.</p></td>
-<td>3.7.0-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.0-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-22041</td>
 <td><p>At a high CPU transmit traffic rate (for example, if there is unexpected CPU generated flooding or replication in software), when the ASIC packet driver cannot keep up with the transmit rate because there are no free DMA buffers, it can back pressure by suspending the switch port transmit queues. This can fill up the application socket buffers resulting in No buffer space available error messages on protocol sockets.<br/>
 When the driver recovers, it automatically resumes the transmit queues. In most cases these error messages are transient. In rare cases, the hardware queues might get stuck, which you can recover with a switchd restart.</p></td>
-<td>3.4.3-3.7.13, 4.0.0-4.2.1</td>
+<td>3.4.3-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-22020</td>
 <td><p>On the Trident3 switch, static PIM with IIF based on a layer 2 bridge does not work reliably. PIM Join via signaling is required for IPMC to work properly.<br/>
 To work around this issue, use dynamic signaling (joins) to manage IP multicast traffic.</p></td>
-<td>3.7.0-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.0-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-21785</td>
 <td><p>The source address of the ICMPv6 time exceeded message (traceroute hop) is sourced from the wrong VRF when the traceroute target resides on the same switch but in a different VRF.</p></td>
-<td>3.6.2-3.7.13, 4.0.0-4.2.1</td>
+<td>3.6.2-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-21769</td>
 <td><p>On the Mellanox switch, GRE tunneling does not work if the tunnel source is configured on an SVI interface. If  the tunnel source is configured on a physical switch port, then tunneling works as expected.</p></td>
-<td>3.6.1-4.1.1</td>
-<td>4.2.0-4.2.1</td>
+<td>3.6.1-3.7.13, 4.0.0-4.1.1</td>
+<td>3.7.14, 4.2.0-4.2.1</td>
 </tr>
 <tr>
 <td>CM-21678</td>
@@ -4443,14 +4587,14 @@ To work around this issue, use dynamic signaling (joins) to manage IP multicast 
  
 <p> This message might occur as a result of a timeout at the hardware level, or the switch might be reporting a failure to get a response. </p>
 </td>
-<td>3.5.3-3.7.13, 4.0.0-4.2.1</td>
+<td>3.5.3-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-21667</td>
 <td><p>FRR does not add BGP ttl-security to either the running configuration or to the /etc/frr/frr.conf file when configured on a peer group instead of a specific neighbor. <br/>
 To work around this issue, add ttl-security to individual neighbors instead of the peer group.</p></td>
-<td>3.6.1-3.7.13, 4.0.0-4.2.1</td>
+<td>3.6.1-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
@@ -4458,70 +4602,70 @@ To work around this issue, add ttl-security to individual neighbors instead of t
 <td><p>The net show lldp command sometimes shows the port description in the Remote Port field. The net show interface command shows the correct value in the Remote Host field.<br/>
 To work around this issue, use net show interface command for LLDP output when connected to Cisco equipment.</p></td>
 <td>3.5.3-3.7.10, 4.0.0-4.2.1</td>
-<td>3.7.11-3.7.13</td>
+<td>3.7.11-3.7.14</td>
 </tr>
 <tr>
 <td>CM-21055</td>
 <td><p>On the Mellanox switch, the destination MAC address of ERSPAN GRE packets is set to all zeros; therefore, the first transit switch might drop packets.</p></td>
 <td>3.6.0-3.7.13, 4.0.0-4.2.1</td>
-<td></td>
+<td>3.7.14</td>
 </tr>
 <tr>
 <td>CM-20813</td>
 <td><p>Span rules matching the out-interface as a bond do not mirror packets.</p></td>
-<td>3.6.0-3.7.13, 4.0.0-4.2.1</td>
+<td>3.6.0-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-20508</td>
 <td><p>The Cumulus-Resource-Query-MIB defines the ability to gather buffer utilization status but when these objects are polled, they return nothing. </p></td>
-<td>3.5.3-3.7.13, 4.0.0-4.2.1</td>
+<td>3.5.3-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-20033</td>
 <td><p>The VLAN interface stays up even though the physical link carrying the VLAN is admin or carrier down.</p>
 </td>
-<td>3.5.2-3.7.13, 4.0.0-4.2.1</td>
+<td>3.5.2-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-19724</td>
 <td><p>PIM and MSDP entries are set to the internal COS value of 6 so they are grouped together with the bulk traffic priority group in the default traffic.conf file. However, PIM, IGMP, and MSDP are considered control-plane and should be set to the internal COS value of 7. </p></td>
-<td>3.5.2-3.7.13, 4.0.0-4.2.1</td>
+<td>3.5.2-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-19454</td>
 <td><p>When you use NCLU to bring a bond admin down (net add bond &lt;bond&gt; link down), the bond interface goes into admin down state but the switch ports enslaved to the bond remain UP. If you are using bond-lacp-bypass-allow or balance-xor mode, the host might continue to send traffic. This traffic will be dropped because although the bond slaves are UP, they are not members of the bridge.<br/>
 To work around this issue, use the sudo ifdown &lt;bondname&gt; command.</p></td>
-<td>3.5.0-3.7.13, 4.0.0-4.2.1</td>
+<td>3.5.0-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-17934</td>
 <td><p>FRR tracks interface speed based on the value it learns from the Linux kernel for that interface. If the interface speed changes, FRR does not update its interface speed cache. This can lead to issues for routing protocols that derive metrics from interface speed as the cost can become out of sync with the interface speed.<br/>
 To work around this issue, manually define the routing protocol metric for these interfaces or restart FRR.</p></td>
-<td>3.7.6-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.6-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-17494</td>
 <td><p>In certain cases, a peer device sends an ARP request from a source IP address that is not on the connected subnet and the switch creates a STALE neighbor entry. Eventually, the switch attempts to keep the entry fresh and sends ARP requests to the host. If the host responds, the switch has REACHABLE neighbor entries for hosts that are not on the connected subnet. <br/>
 To work around this issue, change the value of arp_ignore to 2. See <a href="https://docs.cumulusnetworks.com/cumulus-linux/Layer-3/Address-Resolution-Protocol-ARP/" class="external-link" rel="nofollow">Address Resolution Protocol in the Cumulus Linux user guide</a> for more information.</p></td>
-<td>3.3.2-3.7.13, 4.0.0-4.2.1</td>
+<td>3.3.2-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-16571</td>
 <td><p>NCLU cannot manage rsyslog to addresses routed via a VRF.  In Cumulus Linux 4.0.0 and later, management VRF is enabled by default.   To work around this issue, update the /etc/network/interfaces file to disable management VRF.</p></td>
-<td>3.4.3-3.7.13, 4.0.0-4.2.1</td>
+<td>3.4.3-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-15812</td>
 <td><p>Multicast forwarding fails for IP addresses whose DMAC overlaps with reserved DIPs.</p></td>
-<td>3.2.1-3.7.13, 4.0.0-4.2.1</td>
+<td>3.2.1-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 </table>
@@ -4598,7 +4742,7 @@ Fixed: 7.64.0-4+deb10u1</p></td>
 
 
 <p>To work around this issue, reboot the switch.</p></td>
-<td>3.7.11-4.0.0</td>
+<td>3.7.11-3.7.13, 4.0.0</td>
 </tr>
 <tr>
 <td>CM-28374</td>
@@ -4793,7 +4937,7 @@ To work around this issue, run the cl-support -M command to disable timeouts.</p
 <tr>
 <td>CM-27814</td>
 <td><p>A traditional bridge with QinQ and a VNI does not work for tagged traffic.</p></td>
-<td>3.7.10-4.0.0</td>
+<td>3.7.10-3.7.13</td>
 </tr>
 <tr>
 <td>CM-27801</td>
@@ -4952,7 +5096,7 @@ To work around this issue, downgrade the Broadcom ASIC firmware to an earlier ve
 <tr>
 <td>CM-27354</td>
 <td><p>On the Celestica Pebble switch, if you use IPv6 routes with mask /65 to /127,  the switchd log fills with errors.</p></td>
-<td>3.7.10-4.0.0</td>
+<td>3.7.10-3.7.13</td>
 </tr>
 <tr>
 <td>CM-27351</td>
@@ -4999,7 +5143,7 @@ Running hypervisors for virtual guest operating systems is not supported on Cumu
 <tr>
 <td>CM-27173</td>
 <td><p>On the Trident3 switch, unicast ARP packets received on a VNI and forwarded to the CPU are not policed.</p></td>
-<td>3.7.10-4.0.0</td>
+<td>3.7.10-3.7.13, 4.0.0</td>
 </tr>
 <tr>
 <td>CM-27118</td>

@@ -85,7 +85,7 @@ cumulus@switch:~$ sudo netq config add agent wjh-threshold congestion 4 swp1 200
 
 ## Configure Filters
 
-You can filter the WJH events at the NetQ Agent  before it is processed by the NetQ system. Filtering is performed on a drop-type basis. You can filter the drop type further by specifying one or more drop reasons or severity using the NetQ UI or the NetQ CLI.
+You can filter the WJH events at the NetQ Agent before it is processed by the NetQ system. Filtering is performed on a drop-type basis. You can filter the drop type further by specifying one or more drop reasons or severity using the NetQ UI or the NetQ CLI.
 
 {{< tabs "TabID90" >}}
 
@@ -123,9 +123,16 @@ This example configures the NetQ Agent to drop only router drops with warning se
 cumulus@switch:~$ sudo netq config add agent wjh-drop-filter drop-type router severity Warning
 ```
 
-This example configures the NetQ Agent to drop only Router drops with reasons of blackhole route and source IP is a Class E address.
+This example configures the NetQ Agent to drop only router drops due to blackhole routes.
 
 ```
+cumulus@netq-ts:~$ netq config add agent wjh-drop-filter drop-type router drop-reasons BLACKHOLE_ROUTE
+```
+
+This example configures the NetQ Agent to drop only router drops when the source IP is a class E address.
+
+```
+cumulus@netq-ts:~$ netq config add agent wjh-drop-filter drop-type router drop-reasons SRC_IP_IS_IN_CLASS_E
 ```
 
 {{< /tab >}}

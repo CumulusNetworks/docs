@@ -1,6 +1,6 @@
 ---
 title: Management VRF
-author: Cumulus Networks
+author: NVIDIA
 weight: 870
 toc: 3
 ---
@@ -216,7 +216,7 @@ This also creates a route on the neighbor device to the management network throu
 
 {{%/notice%}}
 
-Cumulus Networks recommends you always use route maps to control the advertised networks redistributed by the `redistribute connected` command. For example, you can specify a route map to redistribute routes in this way (for both BGP and OSPF):
+Always use route maps to control the advertised networks redistributed by the `redistribute connected` command. For example, you can specify a route map to redistribute routes in this way (for both BGP and OSPF):
 
 {{< tabs "TabID0" >}}
 

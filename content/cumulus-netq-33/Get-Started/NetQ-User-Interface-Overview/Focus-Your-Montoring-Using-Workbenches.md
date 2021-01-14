@@ -46,7 +46,7 @@ To create a workbench:
 
 4. Add cards to the workbench using <img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> or <img src="https://icons.cumulusnetworks.com/03-Computers-Devices-Electronics/09-Hard-Drives/hard-drive-1.svg" height="18" width="18"/>.
 
-Refer to {{<link title="Access Data with Cards">}} for information about interacting with cards on your workbenches.
+Refer to {{<link url="Access-Data-with-Cards">}} for information about interacting with cards on your workbenches.
 
 ### Remove a Workbench
 

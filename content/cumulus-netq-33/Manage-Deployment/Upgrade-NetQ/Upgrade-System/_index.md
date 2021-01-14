@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 410
 toc: 4
 ---
-The first step in upgrading your NetQ 2.4.1 - 3.2.0 installation to NetQ 3.2.1 is to upgrade your NetQ appliance(s) or VM(s). This topic describes how to upgrade this for both on-premises and cloud deployments.
+The first step in upgrading your NetQ 2.4.1 - 3.2.1 installation to NetQ 3.3.0 is to upgrade your NetQ appliance(s) or VM(s). This topic describes how to upgrade this for both on-premises and remote deployments.
 
 ## Prepare for Upgrade
 
@@ -22,15 +22,15 @@ To complete the preparation:
 
 2. Download the relevant software.
 
-    {{<netq-install/upgrade-image version="3.2.1">}}
+    {{<netq-install/upgrade-image version="3.3.0">}}
 
 3. Copy the file to the `/mnt/installables/` directory on your appliance or VM.
 
-4. Update `/etc/apt/sources.list.d/cumulus-netq.list` to netq-3.2 as follows:
+4. Update `/etc/apt/sources.list.d/cumulus-netq.list` to netq-3.3 as follows:
 
     ```
     cat /etc/apt/sources.list.d/cumulus-netq.list
-    deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb bionic netq-3.2
+    deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb bionic netq-3.3
     ```
 
 5. Update the NetQ `debian` packages.
@@ -38,7 +38,7 @@ To complete the preparation:
     ```
     cumulus@<hostname>:~$ sudo apt-get update
     Get:1 http://apps3.cumulusnetworks.com/repos/deb bionic InRelease [13.8 kB]
-    Get:2 http://apps3.cumulusnetworks.com/repos/deb bionic/netq-3.2 amd64 Packages [758 B]
+    Get:2 http://apps3.cumulusnetworks.com/repos/deb bionic/netq-3.3 amd64 Packages [758 B]
     Hit:3 http://archive.ubuntu.com/ubuntu bionic InRelease
     Get:4 http://security.ubuntu.com/ubuntu bionic-security InRelease [88.7 kB]
     Get:5 http://archive.ubuntu.com/ubuntu bionic-updates InRelease [88.7 kB]
@@ -59,11 +59,11 @@ To complete the preparation:
     ...
     Fetched 39.8 MB in 3s (13.5 MB/s)
     ...
-    Unpacking netq-agent (3.2.1-ub18.04u31~1603789872.6f62fad) ...
+    Unpacking netq-agent (3.3.0-ub18.04u31~1603789872.6f62fad) ...
     ...
-    Unpacking netq-apps (3.2.1-ub18.04u31~1603789872.6f62fad) ...
-    Setting up netq-apps (3.2.1-ub18.04u31~1603789872.6f62fad) ...
-    Setting up netq-agent (3.2.1-ub18.04u31~1603789872.6f62fad) ...
+    Unpacking netq-apps (3.3.0-ub18.04u31~1603789872.6f62fad) ...
+    Setting up netq-apps (3.3.0-ub18.04u31~1603789872.6f62fad) ...
+    Setting up netq-agent (3.3.0-ub18.04u31~1603789872.6f62fad) ...
     Processing triggers for rsyslog (8.32.0-1ubuntu4) ...
     Processing triggers for man-db (2.8.3-2ubuntu0.1) ...
     ``````
@@ -133,7 +133,7 @@ To complete the preparation:
 
 2. Shutdown the VM.
 
-2. Check the size of the existing disk on the server hosting the VM to confirm it is 32 GB. In this example, the size is shown in the **virtual size** field.
+3. Check the size of the existing disk on the server hosting the VM to confirm it is 32 GB. In this example, the size is shown in the **virtual size** field.
 
     ```
     root@server:/var/lib/libvirt/images# qemu-img info netq-3.1.0-ubuntu-18.04-tscloud-qemu.qcow2
@@ -172,9 +172,9 @@ To complete the preparation:
         corrupt: false
     ```
 
-5. Start the VM and log back in.
+6. Start the VM and log back in.
 
-6. From step 1 we know the name of the root disk is */dev/vda 1*. Use that to run the following commands on the partition.
+7. From step 1 we know the name of the root disk is */dev/vda 1*. Use that to run the following commands on the partition.
 
     ```
     cumulus@netq-310-cloud:~$ sudo growpart /dev/vda 1
@@ -187,7 +187,7 @@ To complete the preparation:
     The filesystem on /dev/vda1 is now 16748795 (4k) blocks long.
     ```
 
-7. Verify the disk is now configured with 64 GB. In this example, the number of 1 MB blocks is now 63341, or 64 GB.
+8. Verify the disk is now configured with 64 GB. In this example, the number of 1 MB blocks is now 63341, or 64 GB.
 
 ```
 cumulus@netq-310-cloud:~$ df -hm /
@@ -209,13 +209,13 @@ To upgrade your NetQ software:
 
 1. Run the bootstrap CLI to upgrade the Admin UI application.
 
-{{< tabs "TabID100" >}}
+    {{< tabs "TabID100" >}}
 
 {{< tab "On-premises Deployments" >}}
 
 ```
-cumulus@<hostname>:~$ netq bootstrap master upgrade /mnt/installables/NetQ-3.2.1.tgz
-2020-04-28 15:39:37.016710: master-node-installer: Extracting tarball /mnt/installables/NetQ-3.2.1.tgz
+cumulus@<hostname>:~$ netq bootstrap master upgrade /mnt/installables/NetQ-3.3.0.tgz
+2020-04-28 15:39:37.016710: master-node-installer: Extracting tarball /mnt/installables/NetQ-3.3.0.tgz
 2020-04-28 15:44:48.188658: master-node-installer: Upgrading NetQ Admin container
 2020-04-28 15:47:35.667579: master-node-installer: Removing old images
 -----------------------------------------------
@@ -227,7 +227,7 @@ Successfully bootstrap-upgraded the master node
 {{< tab "Cloud Deployments" >}}
 
 ```
-netq bootstrap master upgrade /mnt/installables/NetQ-3.2.1-opta.tgz
+netq bootstrap master upgrade /mnt/installables/NetQ-3.3.0-opta.tgz
 ```
 
 {{< /tab >}}
@@ -244,7 +244,7 @@ netq bootstrap master upgrade /mnt/installables/NetQ-3.2.1-opta.tgz
 
 4. Click **Upgrade**.
 
-5. Enter *NetQ-3.2.1.tgz* or *NetQ-3.2.1-opta.tgz* and click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/50-Navigate/navigation-right-circle-1_1.svg" height="18" width="18"/>.
+5. Enter *NetQ-3.3.0.tgz* or *NetQ-3.3.0-opta.tgz* and click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/50-Navigate/navigation-right-circle-1_1.svg" height="18" width="18"/>.
 
     {{<figure src="/images/netq/adminui-upgrade-enter-tar-300.png" width="700">}}
 
@@ -273,7 +273,7 @@ To upgrade:
 {{< tab "On-premises Deployments" >}}
 
 ```
-netq upgrade bundle /mnt/installables/NetQ-3.2.1.tgz
+netq upgrade bundle /mnt/installables/NetQ-3.3.0.tgz
 ```
 
 {{< /tab >}}
@@ -281,7 +281,7 @@ netq upgrade bundle /mnt/installables/NetQ-3.2.1.tgz
 {{< tab "Cloud Deployments" >}}
 
 ```
-netq upgrade bundle /mnt/installables/NetQ-3.2.1-opta.tgz
+netq upgrade bundle /mnt/installables/NetQ-3.3.0-opta.tgz
 ```
 
 {{< /tab >}}
@@ -292,7 +292,7 @@ netq upgrade bundle /mnt/installables/NetQ-3.2.1-opta.tgz
 
     ```
     cumulus@<hostname>:~$ cat /etc/app-release
-    BOOTSTRAP_VERSION=3.2.1
+    BOOTSTRAP_VERSION=3.3.0
     APPLIANCE_MANIFEST_HASH=74ac3017d5
-    APPLIANCE_VERSION=3.2.1
+    APPLIANCE_VERSION=3.3.0
     ```

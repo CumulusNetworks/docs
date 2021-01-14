@@ -794,7 +794,7 @@ To re-enable the rule, set the `is_active` option to *true*.
 
 ### Delete a TCA Rule
 
-You might find that you no longer want to receive event notifications for a particular TCA event. In that case, you can either disable the event if you think you may want to receive them again or delete the rule altogether. Refer to {{<link title="#Disable a Rule" text="Disable a Rule">}} for the first case. Follow the instructions here to remove the rule using either the NetQ UI or NetQ CLI.
+You might find that you no longer want to receive event notifications for a particular TCA event. In that case, you can either disable the event if you think you may want to receive them again or delete the rule altogether. Refer to {{<link title="#Disable a TCA Rule" text="Disable a TCA Rule">}} for the first case. Follow the instructions here to remove the rule using either the NetQ UI or NetQ CLI.
 
 {{< tabs "TabID2858" >}}
 

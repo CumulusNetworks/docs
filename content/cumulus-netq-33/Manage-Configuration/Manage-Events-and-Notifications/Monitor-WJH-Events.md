@@ -103,21 +103,24 @@ To configure the NetQ Agent to filter WJH drops, run:
 netq config add agent wjh-drop-filter drop-type <text-wjh-drop-type> [drop-reasons <text-wjh-drop-reasons>] [severity <text-drop-severity-list>]
 ```
 
+Use tab complete to view the available drop type, drop reason, and severity values.
+
 This example configures the NetQ Agent to drop all L1 drops.
 
 ```
-cumulus@switch:~$ sudo netq config add agent wjh-drop-filter drop-type (???l1)
+cumulus@switch:~$ sudo netq config add agent wjh-drop-filter drop-type l1
 ```
 
 This example configures the NetQ Agent to drop only the L1 drops with bad signal integrity.
 
 ```
-cumulus@switch:~$ sudo netq config add agent wjh-drop-filter drop-type (???l1) drop-reasons (bad-signal-integrity???)
+cumulus@switch:~$ sudo netq config add agent wjh-drop-filter drop-type l1 drop-reasons BAD_SIGNAL_INTEGRITY
 ```
 
-This example configures the NetQ Agent to drop only L1 drops with info severity.
+This example configures the NetQ Agent to drop only router drops with warning severity.
 
 ```
+cumulus@switch:~$ sudo netq config add agent wjh-drop-filter drop-type router severity Warning
 ```
 
 This example configures the NetQ Agent to drop only Router drops with reasons of blackhole route and source IP is a Class E address.

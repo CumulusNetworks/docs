@@ -404,7 +404,7 @@ The following example configures VRF RED and VRF BLUE on border01 to use ASN 655
 ```
 cumulus@border01:~$ net add bgp vrf RED autonomous-system 65532        
 cumulus@border01:~$ net add bgp vrf RED router-id 10.10.10.63
-cumulus@border01:~$ net add bgp vrf BLUE neighbor swp3 interface remote-as external
+cumulus@border01:~$ net add bgp vrf RED neighbor swp3 interface remote-as external
 cumulus@border01:~$ net add bgp vrf BLUE autonomous-system 65533 
 cumulus@border01:~$ net add bgp vrf BLUE router-id 10.10.10.63
 cumulus@border01:~$ net add bgp vrf BLUE neighbor swp4 interface remote-as external
@@ -461,6 +461,11 @@ router bgp 65132
  address-family ipv4 unicast
   redistribute connected
  exit-address-family
+ !
+ address-family l2vpn evpn
+  neighbor underlay activate
+  advertise-all-vni
+ exit-address-family
 !
 router bgp 65532 vrf RED
  bgp router-id 10.10.10.63
@@ -469,6 +474,11 @@ router bgp 65532 vrf RED
  address-family ipv4 unicast
   redistribute static
  exit-address-family
+ !
+ address-family l2vpn evpn
+  neighbor underlay activate
+  advertise-all-vni
+ exit-address-family
 !
 router bgp 65533 vrf BLUE
  bgp router-id 10.10.10.63
@@ -476,6 +486,11 @@ router bgp 65533 vrf BLUE
  !
  address-family ipv4 unicast
   redistribute static
+ exit-address-family
+ !
+ address-family l2vpn evpn
+  neighbor underlay activate
+  advertise-all-vni
  exit-address-family
 !
 line vty

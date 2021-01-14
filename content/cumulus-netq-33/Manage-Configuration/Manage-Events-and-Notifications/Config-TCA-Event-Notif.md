@@ -286,7 +286,7 @@ The attributes presented depend on the event type chosen in the <em>Enter Detail
 
 11. Optionally, select a notification channel where you want the events to be sent.
 
-    Only previously created channels are available for selection. If no channel is available or selected, the notifications can only be retrieved from the database. You can add a channel at a later time and then add it to the rule. Refer to {{<link title="Configure Notifications/#create-a-channel" text="Create a Channel">}} and {{<link title="Configure Notifications/#change-add-or-remove-the-channels-on-a-tca-rule" text="Modify TCA Rules">}}.
+    Only previously created channels are available for selection. If no channel is available or selected, the notifications can only be retrieved from the database. You can add a channel at a later time and then add it to the rule. Refer to {{<link title="Configure System Event Notifications/#create-a-channel" text="Create a Channel">}} and {{<link title="#change-add-or-remove-the-channels-on-a-tca-rule" text="Modify TCA Rules">}}.
 
 12. Click **Finish**.
 
@@ -794,7 +794,7 @@ To re-enable the rule, set the `is_active` option to *true*.
 
 ### Delete a TCA Rule
 
-You might find that you no longer want to receive event notifications for a particular TCA event. In that case, you can either disable the event if you think you may want to receive them again or delete the rule altogether. Refer to {{<link title="#Disable a Rule" text="Disable a Rule">}} for the first case. Follow the instructions here to remove the rule using either the NetQ UI or NetQ CLI.
+You might find that you no longer want to receive event notifications for a particular TCA event. In that case, you can either disable the event if you think you may want to receive them again or delete the rule altogether. Refer to {{<link title="#Disable a TCA Rule" text="Disable a TCA Rule">}} for the first case. Follow the instructions here to remove the rule using either the NetQ UI or NetQ CLI.
 
 {{< tabs "TabID2858" >}}
 

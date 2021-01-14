@@ -119,7 +119,7 @@ netq add notification channel syslog
 | syslog | NA | Create a Syslog channel to receive event notifications |
 | NA | \<text-channel-name\> | Name of the channel |
 | to | \<text-email-toids\> | Comma-separated list of recipient email addresses; no spaces are allowed |
-| integration-key | \<text-integration-key\> | {{<link url="https://support.pagerduty.com/docs/services-and-integrations#create-a-generic-events-api-integration/" text="Service or routing key">}} generated for your PagerDuty Service. Default is an empty string (""). |
+| integration-key | \<text-integration-key\> | {{<exlink url="https://support.pagerduty.com/docs/services-and-integrations#create-a-generic-events-api-integration/" text="Service or routing key">}} generated for your PagerDuty Service. Default is an empty string (""). |
 | webhook | \<text-webhook-url\> | Incoming webhook created in your Slack instance |
 | hostname | \<text-syslog-hostname\> | Name of the syslog server to receive notifications |
 | port | \<text-syslog-port\> | Name of the port on the syslog server to receive notifications |
@@ -174,7 +174,7 @@ cumulus@switch:~$ netq add notification channel syslog syslog-netq-events hostna
 Successfully added/updated channel syslog-netq-events
 ```
 
-Refer to the {{<link title="Configure Notifications">}} topic in the *NetQ User Guide* for more information and complete notification configurations.
+Refer to the {{<link title="Configure System Event Notifications">}} topic in the *NetQ User Guide* for more information and complete notification configurations.
 
 ### Related Commands
 

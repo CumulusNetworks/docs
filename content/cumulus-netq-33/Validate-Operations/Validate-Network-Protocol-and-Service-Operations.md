@@ -304,7 +304,7 @@ After you have run the netq add validation command, you are able to view the res
 
 1. Open the NetQ UI and log in.
 
-2. Open the xxxx workbench where the associated On-demand Trace Result card has been placed.
+2. Open the workbench where the associated On-demand Trace Result card has been placed.
 
 To view more details for this and other traces, refer to Detailed On-demand Trace Results.
 

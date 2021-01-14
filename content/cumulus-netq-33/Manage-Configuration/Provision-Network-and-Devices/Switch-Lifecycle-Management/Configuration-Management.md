@@ -190,7 +190,7 @@ To create a network template with NTP parameters included:
 
 <li>Enter an interface for the NTP server to ignore. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18">}} to add more interfaces to be ignored.</li>
 
-<li>Enter one or more interfaces from which the NTP server should drop all messages. ??? Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18">}} to add more interfaces to be dropped.</li>
+<li>Enter one or more interfaces from which the NTP server should drop all messages. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18">}} to add more interfaces to be dropped.</li>
 
 <li>Restrict query and configuration access to the NTP server.<br>
 For each restriction, enter <strong>restrict</strong> followed by the value. Common values include:<br>
@@ -258,7 +258,7 @@ To create a network template with LLDP parameters included:
     {{<figure src="/images/netq/lcm-ntwk-template-forms-lldpadv-330.png" width="700">}}
 
 <div style="padding-left: 18px;"><ul>
-<li>Enable advertisement of (optional/custom???) IEEE 802.1Q TLV (type-length-value) structures, including port description, system name, description and capabilities, management address, and custom names. Mandatory TLVs include end of LLDPPDU, chassis ID, port ID, and time-to-live.</li>
+<li>Enable advertisement of IEEE 802.1Q TLV (type-length-value) structures, including port description, system name, description and capabilities, management address, and custom names. Mandatory TLVs include end of LLDPPDU, chassis ID, port ID, and time-to-live.</li>
 <li>Enable advertisement of system capability codes for the nodes. For example:<br>
 <table>
 <thead>
@@ -721,7 +721,7 @@ You can create a new bond profile or import an existing one to modify. Bond prof
 
 7. Select the mode this profile is to support: either **Lacp** or **Static**.
 
-    Choosing **Lacp** (link aggregation control protocol) allows for redundancy by load-balancing traffic across all available links. Choosing **Static** provides no load balancing (???).
+    Choosing **Lacp** (link aggregation control protocol) allows for redundancy by load-balancing traffic across all available links. Choosing **Static** provides no load balancing.
 
     If you select LACP, then you must also specify:
     
@@ -729,7 +729,7 @@ You can create a new bond profile or import an existing one to modify. Bond prof
     <li>Whether to enable or disable LACP bypass: <strong>Enable</strong> allows a bond configured in 802.3ad mode to become active and forward traffic even when there is no LACP partner</li>
     </ul></div>
 
-8. Enable or disable whether the bond must be dually connected (???). When enabled, you must specify the associated MLAG identifier.
+8. Enable or disable whether the bond must be dually connected. When enabled, you must specify the associated MLAG identifier.
 
 9. Click **Next** to specify the bond attributes.
 
@@ -928,7 +928,7 @@ Interfaces identify how and where communication occurs. Each interface must have
 
 ### Add Bonds
 
-Bonds indicate how interfaces/switches (???) are connected to each other. You must have at least one bond in your interface specification.
+Bonds indicate how switches are connected to each other. You must have at least one bond in your interface specification.
 
 1. Click **Interfaces**.
 
@@ -938,7 +938,7 @@ Bonds indicate how interfaces/switches (???) are connected to each other. You mu
 
 3. Enter a unique name for the bond.
 
-4. Optionally enter an alias for the bond. (Format, limitations ???)
+4. Optionally enter an alias for the bond.
 
 5. Select a bond profile from the dropdown. If you have not yet created one, follow the instructions in the Interface Profiles tab and then return here.
 
@@ -980,8 +980,6 @@ Add SVIs (switch virtual interfaces) to your switch configuration when you need 
 
 ### Add Subinterfaces
 
-(why include???)
-
 1. Click **Interfaces**.
 
 2. Click **Subinterfaces**.
@@ -992,7 +990,7 @@ Add SVIs (switch virtual interfaces) to your switch configuration when you need 
 
 4. Enter a unique name for the subinterface in the format \<parent-interface:subinterface-number\>.
 
-5. Optionally enter an alias for this subinterface. (format, limitations???)
+5. Optionally enter an alias for this subinterface.
 
 6. Select a VLAN to apply to this subinterface.
 
@@ -1026,7 +1024,7 @@ This tab describes all of the ports on the identified switch type. The port name
 
     {{<figure src="/images/netq/lcm-switch-config-ifs-ports-brkout-330.png" width="100">}}
 
-5. If a port is missing a bond (all ports must have a bond???), return to **Interfaces** > **Bonds** to assign it.
+5. If a port is missing a bond (all ports must have a bond), return to **Interfaces** > **Bonds** to assign it.
 
 6. Assign an interface profile for each port by clicking on the *Select profile* link.
 
@@ -1075,7 +1073,7 @@ To assign a switch configuration:
 2. Select the switches to be assigned this configuration. Each switch selected must have items specified that are particular to that switch. This can be done in one of two ways:
 
    - Select an individual switch by clicking on the switch card
-   - Filter or search for switches and then click **Save and deploy on switches/Finish** (??? not working)
+   - Filter or search for switches and then click **Save and deploy on switches**
 
    Either way, a per-instance variables form appears for the selected or one of the selected switches.
 

@@ -11,7 +11,7 @@ Access these tables through the Main Menu (<img src="https://icons.cumulusnetwor
 
 {{<figure src="/images/netq/main-menu-admin-network-selected-310.png" width="700">}}
 
-Tables can be manipulated using the settings above the tables, shown here and described in {{<link url="Access-Data-with-Cards#table-settings" text="Table Settings">}}.
+Tables can be manipulated using the settings above the tables, shown here and described in {{<link title="Access Data with Cards/#table-settings" text="Table Settings">}}.
 
 {{<figure src="/images/netq/main-menu-ntwk-table-settings-241.png" width="100">}}
 

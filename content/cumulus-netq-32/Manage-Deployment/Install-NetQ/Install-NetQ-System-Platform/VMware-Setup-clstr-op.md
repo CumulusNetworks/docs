@@ -67,7 +67,7 @@ Make a note of the private IP address you assign to the worker node. It is neede
 
 ## Considerations for Container Environments
 
-{{<netq-install/container>}}
+{{<netq-install/container version="3.2.1">}}
 
 ## Install and Activate the NetQ Software
 

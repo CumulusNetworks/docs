@@ -8,7 +8,7 @@ The NetQ API provides access to key telemetry and system monitoring data gathere
 
 This guide provides an overview of the NetQ API framework, the basics of using Swagger UI 2.0 or bash plus curl to view and test the APIs. Descriptions of each endpoint and model parameter are contained in individual API .JSON files.
 
-For information regarding new features, improvements, bug fixes, and known issues present in this NetQ release, refer to the {{<link title="NVIDIA NetQ 3.2 Release Notes" text="release notes">}}.
+For information regarding new features, improvements, bug fixes, and known issues present in this NetQ release, refer to the {{<link title="NVIDIA NetQ 3.3 Release Notes" text="release notes">}}.
 
 ## API Organization
 

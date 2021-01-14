@@ -744,7 +744,7 @@ To view all session details, open the full screen EVPN Service card, and click t
 
 To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> at the top right.
 
-Use the icons above the table to select/deselect, filter, and export items in the list. Refer to {{<link url="Access-Data-with-Cards/#table-settings" text="Table Settings">}} for more detail.
+Use the icons above the table to select/deselect, filter, and export items in the list. Refer to {{<link title="Access Data with Cards/#table-settings" text="Table Settings">}} for more detail.
 
 {{< /tab >}}
 

@@ -10,8 +10,6 @@ Refer to {{<link title="Configure System Event Notifications">}} and {{<link tit
 
 Refer to the {{<link title="NetQ UI Card Reference">}} for details of the cards used with the following procedures.
 
-<!-- Refer to the {{<link title="NetQ CLI Reference" text="NetQ CLI Reference">}} for details about commands used in the following procedures. -->
-
 ## Monitor All System and TCA Events Networkwide
 
 You can monitor all system and TCA events across the network with the NetQ UI and the NetQ CLI.

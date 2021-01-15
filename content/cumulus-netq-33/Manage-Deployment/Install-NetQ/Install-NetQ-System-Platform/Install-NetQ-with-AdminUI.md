@@ -24,7 +24,7 @@ To install NetQ:
 
     The default username is *admin* and the default password in *admin*.
 
-    {{<figure src="/images/netq/adminui-welcome-320.png" width="600">}}
+    {{<figure src="/images/netq/adminui-welcome-330.png" width="600">}}
 
 3. Click **Begin Installation**.
 
@@ -34,7 +34,7 @@ To install NetQ:
 
     Read the descriptions carefully to be sure to select the correct type. Then follow these instructions based on your selection.
 
-{{< tabs "TabID33" >}}
+    {{< tabs "TabID33" >}}
 
 {{< tab "Basic" >}}
 
@@ -46,33 +46,43 @@ To install NetQ:
 
     Choose which type of deployment model you want to use. Both options provide secure access to data and features useful for monitoring and troubleshooting your network.
 
-    {{<figure src="/images/netq/adminui-deploy-type-basic-320.png" width="600">}}
+    {{<figure src="/images/netq/adminui-deploy-type-330.png" width="600">}}
 
 3. Install the NetQ software according to your deployment type.
 
-{{< tabs "TabID49" >}}
+    {{< tabs "TabID49" >}}
 
-{{< tab "On-premises" >}}
+{{< tab "Self-hosted DB" >}}
 
-4. Enter or upload the NetQ 3.3.0 tarball, then click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/50-Navigate/navigation-right-circle-1_1.svg" height="18" width="18"/>.
+- Enter or upload the NetQ 3.3.0 tarball.
 
-    {{<figure src="/images/netq/adminui-install-onprem-basic-320.png" width="600">}}
+    {{<figure src="/images/netq/adminui-install-onprem-basic-330.png" width="600">}}
+
+- Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/50-Navigate/navigation-right-circle-1_1.svg" height="18" width="18"/> once you are ready to install.
+
+    NOTE: You cannot stop the installation once it has begun.
 
 {{< /tab >}}
 
-{{< tab "Cloud" >}}
+{{< tab "Remote-hosted DB" >}}
 
-4. Enter or upload the NetQ 3.3.0 tarball.
+- Enter or upload the NetQ 3.3.0 tarball.
 
-5. Enter your configuration key.
+- Enter your configuration key.
 
-6. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/50-Navigate/navigation-right-circle-1_1.svg" height="18" width="18"/>.
+    {{<figure src="/images/netq/adminui-install-cloud-basic-330.png" width="600">}}
 
-    {{<figure src="/images/netq/adminui-install-cloud-basic-320.png" width="600">}}
+- Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/50-Navigate/navigation-right-circle-1_1.svg" height="18" width="18"/>.
+
+    NOTE: You cannot stop the installation once it has begun.
 
 {{< /tab >}}
 
 {{< /tabs >}}
+
+4. Monitor the progress of the installation job. Click **Details** for a job to see more granular progress.
+
+    {{<figure src="/images/netq/adminui-install-onprem-basic-inprogress-details-330.png" width="600">}}
 
 ### Installation Results
 
@@ -80,19 +90,13 @@ If the installation succeeds, you are directed to the Health page of the Admin U
 
 If the installation fails, a failure indication is given.
 
-{{<figure src="/images/netq/adminui-install-basic-failure-320.png" width="600">}}
+{{<figure src="/images/netq/adminui-install-basic-failure-330.png" width="600">}}
 
-1. Click <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/08-Upload-Download/download-bottom.svg" height="18" width="18"/> to view the reason.
+1. Click <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/08-Upload-Download/download-bottom.svg" height="18" width="18"/> to download a json file with a description why the installation failed.
 
-    {{<figure src="/images/netq/adminui-install-basic-failure-reason-320.png" width="350">}}
+2. Can the error can be resolved by moving to the advanced configuration flow?
 
-<div style="padding-left: 18px;">
-Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/remove-circle.svg" height="18" width="18"/> to close the dialog or click <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/08-Upload-Download/download-bottom.svg" height="18" width="18"/> to download an error file in JSON format.
-</div>
-
-2. Can the error can be resolved by moving to the advanced configuration flow:
-
-    - **No**: close the Admin UI, resolve the error, then reopen the Admin UI to start installation again.
+    - **No**: close the Admin UI, resolve the error, run `netq boostrap reset` and `netq bootstrap master` commands, then reopen the Admin UI to start installation again.
     - **Yes**: click <img src="/images/netq/adminui-install-advanced-icon-320.png" height="18" width="18"/> to be taken to the advanced installation flow and retry the failed task. Refer to the **Advanced** tab for instructions.
 
 {{< /tab >}}
@@ -101,19 +105,19 @@ Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form
 
 1. Select **Advanced Install**, then click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/50-Navigate/navigation-right-circle-1_1.svg" height="18" width="18"/>.
 
-    {{<figure src="/images/netq/adminui-install-type-advanced-320.png" width="600">}}
+    {{<figure src="/images/netq/adminui-install-type-advanced-330.png" width="600">}}
 
 2. Select your deployment type.
 
     Choose the deployment model you want to use. Both options provide secure access to data and features useful for monitoring and troubleshooting your network.
 
-    {{<figure src="/images/netq/adminui-deploy-type-240.png" width="600">}}
+    {{<figure src="/images/netq/adminui-deploy-type-advanced-330.png" width="600">}}
 
 3. Monitor the initialization of the master node. When complete, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/50-Navigate/navigation-right-circle-1_1.svg" height="18" width="18"/>.
 
     {{<figure src="/images/netq/adminui-init-master-advanced-320.png" width="600" caption="On-premises deployment">}}
 
-    {{<figure src="/images/netq/adminui-init-master-cloud-advanced-320.png" width="600" caption="Cloud deployment">}}
+    {{<figure src="/images/netq/adminui-init-master-cloud-advanced-330.png" width="600" caption="Cloud deployment">}}
 
 4. For on-premises deployments only, select your install method. For cloud deployments, skip to Step 5.
 
@@ -141,7 +145,7 @@ If you are moving from a standalone to a server cluster arrangement, you can onl
 
     Select whether you want to deploy your infrastructure as a single stand-alone server or as a cluster of servers.
 
-    {{<figure src="/images/netq/adminui-server-arrange-advanced-320.png" width="600">}}
+    {{<figure src="/images/netq/adminui-server-arrange-advanced-330.png" width="600">}}
 
 {{< tabs "TabID137" >}}
 
@@ -149,7 +153,7 @@ If you are moving from a standalone to a server cluster arrangement, you can onl
 
 Monitor the master configuration. When complete click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/50-Navigate/navigation-right-circle-1_1.svg" height="18" width="18"/>.
 
-{{<figure src="/images/netq/adminui-master-config-advanced-320.png" width="600">}}
+{{<figure src="/images/netq/adminui-master-config-advanced-330.png" width="600">}}
 
 {{< /tab >}}
 
@@ -195,7 +199,7 @@ Refer to {{<link title="Post Installation Configuration Options/#add-more-nodes-
 
 <em>For cloud</em>: Accept the path and filename suggested, or modify these to reflect where you stored your installation file. Enter your configuration key. Then click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/50-Navigate/navigation-right-circle-1_1.svg" height="18" width="18"/>.
 
-{{<figure src="/images/netq/adminui-install-onprem-advanced-320.png" width="600">}}
+{{<figure src="/images/netq/adminui-install-cloud-advanced-330.png" width="600">}}
 
 If the installation fails, a failure indication is given. For example:
 

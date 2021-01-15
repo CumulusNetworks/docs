@@ -224,7 +224,7 @@ Successfully bootstrap-upgraded the master node
 
 {{< /tab >}}
 
-{{< tab "Cloud Deployments" >}}
+{{< tab "Remote Deployments" >}}
 
 ```
 netq bootstrap master upgrade /mnt/installables/NetQ-3.3.0-opta.tgz
@@ -240,13 +240,15 @@ netq bootstrap master upgrade /mnt/installables/NetQ-3.3.0-opta.tgz
 
     The default username is *admin* and the default password in *admin*.
 
-    {{<figure src="/images/netq/adminui-health-tab-onprem-320.png" width="700" caption="On-premises deployment (cloud deployment only has Node and Pod cards">}}
+    {{<figure src="/images/netq/adminui-health-tab-onprem-320.png" width="700" caption="On-premises deployment">}}
+
+    {{<figure src="/images/netq/adminui-health-tab-cloud-330.png" width="700" caption="Remote (cloud) deployment">}}
 
 4. Click **Upgrade**.
 
 5. Enter *NetQ-3.3.0.tgz* or *NetQ-3.3.0-opta.tgz* and click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/50-Navigate/navigation-right-circle-1_1.svg" height="18" width="18"/>.
 
-    {{<figure src="/images/netq/adminui-upgrade-enter-tar-300.png" width="700">}}
+    {{<figure src="/images/netq/adminui-upgrade-enter-tar-330.png" width="700">}}
 
     {{<notice tip>}}
 The <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/50-Navigate/navigation-right-circle-1_1.svg" height="18" width="18"/> is only visible after you enter your tar file information.

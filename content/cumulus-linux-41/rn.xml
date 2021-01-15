@@ -658,7 +658,7 @@ To work around this issue, perform a full switch restart.</p></td>
 <tr>
 <td>CM-30141</td>
 <td><p>In an MLAG configuration with static VXLAN, static tunnels become unreachable.</p></td>
-<td>4.1.1-4.2.0</td>
+<td>3.7.13, 4.1.1-4.2.0</td>
 <td>3.7.14-4.1.0, 4.2.1</td>
 </tr>
 <tr>
@@ -717,8 +717,8 @@ To work around this issue, apply an extended community with a route map using im
 <tr>
 <td>CM-29978</td>
 <td><p>The received PVST BPDU for a VLAN is flooded even though the ingress port doesn't have the VLAN tagged.</p></td>
-<td>3.7.8-3.7.14, 4.0.0-4.2.1</td>
-<td></td>
+<td>3.7.8-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.14</td>
 </tr>
 <tr>
 <td>CM-29890</td>
@@ -811,6 +811,17 @@ Fixed: 9.11.5.P4+dfsg-5.1+deb10u1</p></td>
 <td>4.2.0-4.2.1</td>
 </tr>
 <tr>
+<td>CM-29759</td>
+<td><p>When you use nginx and restserver in management VRF to provide a REST API for the switch, nginx starts but restserver fails to start.<br/>
+To work around this issue, comment out the Requires= line in the /lib/systemd/system/restserver.service. For example:</p>
+
+#Requires=nginx.service restserver.socket
+
+</td>
+<td>3.7.12-3.7.14, 4.0.0-4.2.1</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-29691</td>
 <td><p>The following vulnerability has been announced in the apt package:<br/>
 CVE-2020-3810: Shuaibing Lu discovered that missing input validation in the ar/tar implementations of APT, the high level package manager, could result in denial of service when processing specially crafted deb files.<br/>
@@ -818,6 +829,13 @@ Vulnerable: &lt;= 1.8.2<br/>
 Fixed: 1.8.2.1</p></td>
 <td>4.0.0-4.1.1</td>
 <td>4.2.0-4.2.1</td>
+</tr>
+<tr>
+<td>CM-29667</td>
+<td><p>After installing Cumulus Linux on the Mellanox SN2100 switch, if you break out a port (for example, if you break out swp1 into four ports: swp1s0, swp1s1, swp1s2, swp1s3) in the /etc/cumulus/ports.conf file, then run the systemctl start switchd command, the update does not take effect.<br/>
+To work around this issue, run the systemctl restart switchd command.</p></td>
+<td>3.7.12-3.7.14, 4.0.0-4.2.1</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-29652</td>
@@ -1421,7 +1439,7 @@ Warning: The unit file, source configuration file or drop-ins of hsflowd@mgmt.se
 Jan 30 19:22:53 switch123 snmpd[23172]: Cannot statfs /sys/kernel/debug/tracing: Permission denied
 
 </td>
-<td>4.0.0-4.1.1</td>
+<td>3.7.13, 4.0.0-4.1.1</td>
 <td>3.7.14, 4.2.0-4.2.1</td>
 </tr>
 <tr>
@@ -1557,7 +1575,7 @@ This workaround only works when an out-of-band network is present.</p></td>
 <td>CM-27489</td>
 <td><p>Mellanox switches might experience higher CPU usage from the sx_sdk service or when BFD is in use.<br/>
 To work around this issue, disable BFD to alleviate some of the CPU load.</p></td>
-<td>4.0.0-4.1.1</td>
+<td>3.7.13, 4.0.0-4.1.1</td>
 <td>3.7.14, 4.2.0-4.2.1</td>
 </tr>
 <tr>
@@ -3044,8 +3062,8 @@ To work around this issue, apply an extended community with a route map using im
 <tr>
 <td>CM-29978</td>
 <td><p>The received PVST BPDU for a VLAN is flooded even though the ingress port doesn't have the VLAN tagged.</p></td>
-<td>3.7.8-3.7.14, 4.0.0-4.2.1</td>
-<td></td>
+<td>3.7.8-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.14</td>
 </tr>
 <tr>
 <td>CM-29872</td>
@@ -3116,6 +3134,17 @@ Fixed: 9.11.5.P4+dfsg-5.1+deb10u1</p></td>
 <td>4.2.0-4.2.1</td>
 </tr>
 <tr>
+<td>CM-29759</td>
+<td><p>When you use nginx and restserver in management VRF to provide a REST API for the switch, nginx starts but restserver fails to start.<br/>
+To work around this issue, comment out the Requires= line in the /lib/systemd/system/restserver.service. For example:</p>
+
+#Requires=nginx.service restserver.socket
+
+</td>
+<td>3.7.12-3.7.14, 4.0.0-4.2.1</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-29691</td>
 <td><p>The following vulnerability has been announced in the apt package:<br/>
 CVE-2020-3810: Shuaibing Lu discovered that missing input validation in the ar/tar implementations of APT, the high level package manager, could result in denial of service when processing specially crafted deb files.<br/>
@@ -3123,6 +3152,13 @@ Vulnerable: &lt;= 1.8.2<br/>
 Fixed: 1.8.2.1</p></td>
 <td>4.0.0-4.1.1</td>
 <td>4.2.0-4.2.1</td>
+</tr>
+<tr>
+<td>CM-29667</td>
+<td><p>After installing Cumulus Linux on the Mellanox SN2100 switch, if you break out a port (for example, if you break out swp1 into four ports: swp1s0, swp1s1, swp1s2, swp1s3) in the /etc/cumulus/ports.conf file, then run the systemctl start switchd command, the update does not take effect.<br/>
+To work around this issue, run the systemctl restart switchd command.</p></td>
+<td>3.7.12-3.7.14, 4.0.0-4.2.1</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-29594</td>
@@ -3726,7 +3762,7 @@ Warning: The unit file, source configuration file or drop-ins of hsflowd@mgmt.se
 Jan 30 19:22:53 switch123 snmpd[23172]: Cannot statfs /sys/kernel/debug/tracing: Permission denied
 
 </td>
-<td>4.0.0-4.1.1</td>
+<td>3.7.13, 4.0.0-4.1.1</td>
 <td>3.7.14, 4.2.0-4.2.1</td>
 </tr>
 <tr>
@@ -3862,7 +3898,7 @@ This workaround only works when an out-of-band network is present.</p></td>
 <td>CM-27489</td>
 <td><p>Mellanox switches might experience higher CPU usage from the sx_sdk service or when BFD is in use.<br/>
 To work around this issue, disable BFD to alleviate some of the CPU load.</p></td>
-<td>4.0.0-4.1.1</td>
+<td>3.7.13, 4.0.0-4.1.1</td>
 <td>3.7.14, 4.2.0-4.2.1</td>
 </tr>
 <tr>
@@ -4937,7 +4973,7 @@ To work around this issue, run the cl-support -M command to disable timeouts.</p
 <tr>
 <td>CM-27814</td>
 <td><p>A traditional bridge with QinQ and a VNI does not work for tagged traffic.</p></td>
-<td>3.7.10-3.7.13</td>
+<td>3.7.10-3.7.13, 4.0.0</td>
 </tr>
 <tr>
 <td>CM-27801</td>

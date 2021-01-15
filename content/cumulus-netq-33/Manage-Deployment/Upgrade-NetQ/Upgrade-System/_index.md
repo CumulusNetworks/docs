@@ -224,7 +224,7 @@ Successfully bootstrap-upgraded the master node
 
 {{< /tab >}}
 
-{{< tab "Cloud Deployments" >}}
+{{< tab "Remote Deployments" >}}
 
 ```
 netq bootstrap master upgrade /mnt/installables/NetQ-3.3.0-opta.tgz
@@ -240,7 +240,7 @@ netq bootstrap master upgrade /mnt/installables/NetQ-3.3.0-opta.tgz
 
     The default username is *admin* and the default password in *admin*.
 
-    {{<figure src="/images/netq/adminui-health-tab-onprem-320.png" width="700" caption="On-premises deployment (cloud deployment only has Node and Pod cards">}}
+    {{<figure src="/images/netq/adminui-health-tab-onprem-320.png" width="700" caption="On-premises deployment (cloud deployment only has Node and Pod cards)">}}
 
 4. Click **Upgrade**.
 

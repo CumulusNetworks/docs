@@ -30,7 +30,7 @@ To install NetQ:
 
 4. Choose an installation type: basic or advanced.
 
-    {{<figure src="/images/netq/adminui-install-type-320.png" width="600">}}
+    {{<figure src="/images/netq/adminui-install-type-330.png" width="600">}}
 
     Read the descriptions carefully to be sure to select the correct type. Then follow these instructions based on your selection.
 
@@ -40,7 +40,7 @@ To install NetQ:
 
 1. Select **Basic Install**, then click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/50-Navigate/navigation-right-circle-1_1.svg" height="18" width="18"/>.
 
-    {{<figure src="/images/netq/adminui-install-type-basic-320.png" width="600">}}
+    {{<figure src="/images/netq/adminui-install-type-basic-330.png" width="600">}}
 
 2. Select a deployment type.
 

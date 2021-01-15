@@ -407,6 +407,12 @@ Fixed: 4.11.4+37-g3263f257ca-1</p></td>
 <td></td>
 </tr>
 <tr>
+<td>CM-31627</td>
+<td><p>On switches with the Spectrum ASIC, the IPv6 default route is present in the kernel but missing in hardware.</p></td>
+<td>3.7.11-3.7.14, 4.2.1</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-31605</td>
 <td><p>When you configure an SNMPv3 user with the net-snmp-config configuration command from the libsnmp-dev package, you get an error message similar to the one below:</p>
 
@@ -444,6 +450,13 @@ To work around this issue, restart FRR with the sudo systemctl restart frr.servi
 <td>3.7.14-4.1.0</td>
 </tr>
 <tr>
+<td>CM-31504</td>
+<td><p>On the the Dell N3248-PXE switch, when you insert two PSUs at different times, the newly inserted PSU is detected as OK but the fan and temp sensors are ABSENT.<br/>
+To work around this issue, remove power to both PSUs at the same time, then reinsert power simultaneously.</p></td>
+<td>3.7.12-3.7.13, 4.2.1</td>
+<td>3.7.14-4.2.0</td>
+</tr>
+<tr>
 <td>CM-31469</td>
 <td><p>When you delete a layer 2 VNI and VLAN, the layer 3 VNI reports an incorrect layer 2 VNI number.<br/>
 To work around this issue, either restart FRR or delete the VNI interface first, then delete the VLAN/SVI.</p></td>
@@ -465,6 +478,12 @@ might result in NTP not functioning since the ntp service is still running in th
 <td><p>On the Mellanox SN4700 switch, 8x50G port breakout is not supported currently.</p></td>
 <td>4.2.1</td>
 <td></td>
+</tr>
+<tr>
+<td>CM-31412</td>
+<td><p>On the Dell N3248PXE switch, RJ45 fixed copper ports that auto-negotiate with a 100M or 10M neighbor incorrectly negotiate a half-duplex link that generates errors. Half duplex modes are not supported on this platform.</p></td>
+<td>3.7.12-3.7.13, 4.2.1</td>
+<td>3.7.14-4.2.0</td>
 </tr>
 <tr>
 <td>CM-31407</td>
@@ -496,6 +515,13 @@ To work around this issue, run the net add/del dns nameserver vrf &lt;name&gt; c
 <td><p>RX_DRP on a bond interface increases without any data traffic while the slave port does not increase.</p></td>
 <td>3.7.12-3.7.14, 4.2.0-4.2.1</td>
 <td></td>
+</tr>
+<tr>
+<td>CM-31238</td>
+<td><p>IPv6 TCP or UDP connections (sourcing from an ephemeral port in the range 34048 to 35071) are not forwarded if the switch has more than one layer 2 VNI defined. The traffic might be locally switched on the bridge and dropped. <br/>
+To work around this issue, disable ARP/ND suppression to remove the internal ACL rule that affects the ports.</p></td>
+<td>3.7.13, 4.2.1</td>
+<td>3.7.14-4.2.0</td>
 </tr>
 <tr>
 <td>CM-31150</td>
@@ -737,8 +763,8 @@ To work around this issue, do not enslave the subinterface of a VXLAN layer 3 up
 <tr>
 <td>CM-29978</td>
 <td><p>The received PVST BPDU for a VLAN is flooded even though the ingress port doesn't have the VLAN tagged.</p></td>
-<td>3.7.8-3.7.14, 4.0.0-4.2.1</td>
-<td></td>
+<td>3.7.8-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.14</td>
 </tr>
 <tr>
 <td>CM-29890</td>
@@ -772,6 +798,24 @@ To work around this issue, look for your string in the output of the net show co
 <td>CM-29779</td>
 <td><p>In LLDP, the snmp subagent loses all subsequent lldpRemSysName (1.0.8802.1.1.2.1.4.1.1.9) entries after an entry with a missing SysName is added.<br/>
 All the information from lldpctl is correct. Only the entries after the entry that is missing a SysName in lldpRemSysName disappear from the snmp subagent.</p></td>
+<td>3.7.12-3.7.14, 4.0.0-4.2.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29759</td>
+<td><p>When you use nginx and restserver in management VRF to provide a REST API for the switch, nginx starts but restserver fails to start.<br/>
+To work around this issue, comment out the Requires= line in the /lib/systemd/system/restserver.service. For example:</p>
+
+#Requires=nginx.service restserver.socket
+
+</td>
+<td>3.7.12-3.7.14, 4.0.0-4.2.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29667</td>
+<td><p>After installing Cumulus Linux on the Mellanox SN2100 switch, if you break out a port (for example, if you break out swp1 into four ports: swp1s0, swp1s1, swp1s2, swp1s3) in the /etc/cumulus/ports.conf file, then run the systemctl start switchd command, the update does not take effect.<br/>
+To work around this issue, run the systemctl restart switchd command.</p></td>
 <td>3.7.12-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
@@ -2019,7 +2063,7 @@ To work around this issue, correct the cause of the frequent link flaps. You can
 <tr>
 <td>CM-30141</td>
 <td><p>In an MLAG configuration with static VXLAN, static tunnels become unreachable.</p></td>
-<td>4.1.1-4.2.0</td>
+<td>3.7.13, 4.1.1-4.2.0</td>
 </tr>
 <tr>
 <td>CM-29982</td>
@@ -2861,7 +2905,7 @@ To work around this issue, perform a full switch restart.</p></td>
 <tr>
 <td>CM-30141</td>
 <td><p>In an MLAG configuration with static VXLAN, static tunnels become unreachable.</p></td>
-<td>4.1.1-4.2.0</td>
+<td>3.7.13, 4.1.1-4.2.0</td>
 <td>3.7.14-4.1.0, 4.2.1</td>
 </tr>
 <tr>
@@ -2899,8 +2943,8 @@ To work around this issue, do not enslave the subinterface of a VXLAN layer 3 up
 <tr>
 <td>CM-29978</td>
 <td><p>The received PVST BPDU for a VLAN is flooded even though the ingress port doesn't have the VLAN tagged.</p></td>
-<td>3.7.8-3.7.14, 4.0.0-4.2.1</td>
-<td></td>
+<td>3.7.8-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.14</td>
 </tr>
 <tr>
 <td>CM-29890</td>
@@ -2940,6 +2984,24 @@ To work around this issue, look for your string in the output of the net show co
 <td>CM-29779</td>
 <td><p>In LLDP, the snmp subagent loses all subsequent lldpRemSysName (1.0.8802.1.1.2.1.4.1.1.9) entries after an entry with a missing SysName is added.<br/>
 All the information from lldpctl is correct. Only the entries after the entry that is missing a SysName in lldpRemSysName disappear from the snmp subagent.</p></td>
+<td>3.7.12-3.7.14, 4.0.0-4.2.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29759</td>
+<td><p>When you use nginx and restserver in management VRF to provide a REST API for the switch, nginx starts but restserver fails to start.<br/>
+To work around this issue, comment out the Requires= line in the /lib/systemd/system/restserver.service. For example:</p>
+
+#Requires=nginx.service restserver.socket
+
+</td>
+<td>3.7.12-3.7.14, 4.0.0-4.2.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29667</td>
+<td><p>After installing Cumulus Linux on the Mellanox SN2100 switch, if you break out a port (for example, if you break out swp1 into four ports: swp1s0, swp1s1, swp1s2, swp1s3) in the /etc/cumulus/ports.conf file, then run the systemctl start switchd command, the update does not take effect.<br/>
+To work around this issue, run the systemctl restart switchd command.</p></td>
 <td>3.7.12-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
@@ -4397,7 +4459,7 @@ Mellanox switches with the Spectrum A1 ASIC do *<b>not</b>* have this issue.</p>
 Jan 30 19:22:53 switch123 snmpd[23172]: Cannot statfs /sys/kernel/debug/tracing: Permission denied
 
 </td>
-<td>4.0.0-4.1.1</td>
+<td>3.7.13, 4.0.0-4.1.1</td>
 </tr>
 <tr>
 <td>CM-28136</td>
@@ -4470,7 +4532,7 @@ This workaround only works when an out-of-band network is present.</p></td>
 <td>CM-27489</td>
 <td><p>Mellanox switches might experience higher CPU usage from the sx_sdk service or when BFD is in use.<br/>
 To work around this issue, disable BFD to alleviate some of the CPU load.</p></td>
-<td>4.0.0-4.1.1</td>
+<td>3.7.13, 4.0.0-4.1.1</td>
 </tr>
 <tr>
 <td>CM-27254</td>

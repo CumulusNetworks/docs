@@ -444,12 +444,6 @@ To work around this issue, either do not set acl.non_atomic_update_mode = TRUE i
 <td></td>
 </tr>
 <tr>
-<td>CM-29978</td>
-<td><p>The received PVST BPDU for a VLAN is flooded even though the ingress port doesn't have the VLAN tagged.</p></td>
-<td>3.7.8-3.7.14</td>
-<td></td>
-</tr>
-<tr>
 <td>CM-29890</td>
 <td><p>Multiple paths to identical EVPN prefixes are either not displayed or not accepted into the l2vpn evpn table if they are received from a different AS.</p></td>
 <td>3.7.12-3.7.14</td>
@@ -477,12 +471,30 @@ All the information from lldpctl is correct. Only the entries after the entry th
 <td></td>
 </tr>
 <tr>
+<td>CM-29759</td>
+<td><p>When you use nginx and restserver in management VRF to provide a REST API for the switch, nginx starts but restserver fails to start.<br/>
+To work around this issue, comment out the Requires= line in the /lib/systemd/system/restserver.service. For example:</p>
+
+#Requires=nginx.service restserver.socket
+
+</td>
+<td>3.7.12-3.7.14</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-29740</td>
 <td><p>The exim4 package available for optional installation on Cumulus Linux 3.x has the following vulnerability:<br/>
 DLA-2213-1 / CVE-2020-12783: Exim through 4.93 has an out-of-bounds read in the SPA authenticator that could result in SPA/NTLM authentication bypass in auths/spa.c and auths/auth-spa.c.  The spa authentication driver is not enabled by default.<br/>
 Vulnerable: &lt;= 4.84.2-2+deb8u6<br/>
 Fixed: 4.84.2-2+deb8u7</p></td>
 <td>3.0.0-3.7.14</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29667</td>
+<td><p>After installing Cumulus Linux on the Mellanox SN2100 switch, if you break out a port (for example, if you break out swp1 into four ports: swp1s0, swp1s1, swp1s2, swp1s3) in the /etc/cumulus/ports.conf file, then run the systemctl start switchd command, the update does not take effect.<br/>
+To work around this issue, run the systemctl restart switchd command.</p></td>
+<td>3.7.12-3.7.14</td>
 <td></td>
 </tr>
 <tr>
@@ -1986,6 +1998,12 @@ To work around this issue, restart FRR with the sudo systemctl restart frr.servi
 <td>3.7.10-3.7.13</td>
 </tr>
 <tr>
+<td>CM-31504</td>
+<td><p>On the the Dell N3248-PXE switch, when you insert two PSUs at different times, the newly inserted PSU is detected as OK but the fan and temp sensors are ABSENT.<br/>
+To work around this issue, remove power to both PSUs at the same time, then reinsert power simultaneously.</p></td>
+<td>3.7.12-3.7.13</td>
+</tr>
+<tr>
 <td>CM-31475</td>
 <td><p>The following vulnerabilities have been announced in QEMU packages:<br/>
 CVE-2019-20382: Memory leak in zrle_compress_data in ui/vnc-enc-zrle.c during a VNC disconnect operation because libz is misused, resulting in a situation where memory allocated in deflateInit2 is not freed in deflateEnd.<br/>
@@ -2287,12 +2305,17 @@ To work around this issue, manually delete the dynamic FDB entry that is associa
 <tr>
 <td>CM-30141</td>
 <td><p>In an MLAG configuration with static VXLAN, static tunnels become unreachable.</p></td>
-<td></td>
+<td>3.7.13</td>
 </tr>
 <tr>
 <td>CM-29982</td>
 <td><p>A VRRP role change over the EVPN network causes excessive BGP updates and connectivity issues to VIP for about one minute.</p></td>
 <td></td>
+</tr>
+<tr>
+<td>CM-29978</td>
+<td><p>The received PVST BPDU for a VLAN is flooded even though the ingress port doesn't have the VLAN tagged.</p></td>
+<td>3.7.8-3.7.13</td>
 </tr>
 <tr>
 <td>CM-29838</td>
@@ -2372,7 +2395,7 @@ Fixed: 1.8.10p4-cl3.7.14u1</p></td>
 Jan 30 19:22:53 switch123 snmpd[23172]: Cannot statfs /sys/kernel/debug/tracing: Permission denied
 
 </td>
-<td></td>
+<td>3.7.13</td>
 </tr>
 <tr>
 <td>CM-28136</td>
@@ -2392,7 +2415,7 @@ RTM_NEWNEIGH with unconfigured vlan XXXX on port peerlink
 <td>CM-27489</td>
 <td><p>Mellanox switches might experience higher CPU usage from the sx_sdk service or when BFD is in use.<br/>
 To work around this issue, disable BFD to alleviate some of the CPU load.</p></td>
-<td></td>
+<td>3.7.13</td>
 </tr>
 <tr>
 <td>CM-27354</td>
@@ -2810,6 +2833,13 @@ To work around this issue, disable IGMP snooping on the switch.</p></td>
 To work around this issue, restart FRR with the sudo systemctl restart frr.service command.</p>
 </td>
 <td>3.7.10-3.7.13</td>
+<td>3.7.14</td>
+</tr>
+<tr>
+<td>CM-31504</td>
+<td><p>On the the Dell N3248-PXE switch, when you insert two PSUs at different times, the newly inserted PSU is detected as OK but the fan and temp sensors are ABSENT.<br/>
+To work around this issue, remove power to both PSUs at the same time, then reinsert power simultaneously.</p></td>
+<td>3.7.12-3.7.13</td>
 <td>3.7.14</td>
 </tr>
 <tr>
@@ -3298,6 +3328,12 @@ To work around this issue, enable MAB on the interface.</p></td>
 <td></td>
 </tr>
 <tr>
+<td>CM-30141</td>
+<td><p>In an MLAG configuration with static VXLAN, static tunnels become unreachable.</p></td>
+<td>3.7.13</td>
+<td>3.7.14</td>
+</tr>
+<tr>
 <td>CM-30103</td>
 <td><p>On a Broadcom switch with the Trident2+ ASIC, ACL rules for VLANs are not applied after a reboot and the counters remain at zero.<br/>
 To work around this issue, either do not set acl.non_atomic_update_mode = TRUE in the /etc/cumulus/switchd.conf file or run the cl-acltool -i command after the reboot to install the  ACLs.</p></td>
@@ -3313,8 +3349,8 @@ To work around this issue, either do not set acl.non_atomic_update_mode = TRUE i
 <tr>
 <td>CM-29978</td>
 <td><p>The received PVST BPDU for a VLAN is flooded even though the ingress port doesn't have the VLAN tagged.</p></td>
-<td>3.7.8-3.7.14</td>
-<td></td>
+<td>3.7.8-3.7.13</td>
+<td>3.7.14</td>
 </tr>
 <tr>
 <td>CM-29890</td>
@@ -3359,12 +3395,30 @@ All the information from lldpctl is correct. Only the entries after the entry th
 <td></td>
 </tr>
 <tr>
+<td>CM-29759</td>
+<td><p>When you use nginx and restserver in management VRF to provide a REST API for the switch, nginx starts but restserver fails to start.<br/>
+To work around this issue, comment out the Requires= line in the /lib/systemd/system/restserver.service. For example:</p>
+
+#Requires=nginx.service restserver.socket
+
+</td>
+<td>3.7.12-3.7.14</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-29740</td>
 <td><p>The exim4 package available for optional installation on Cumulus Linux 3.x has the following vulnerability:<br/>
 DLA-2213-1 / CVE-2020-12783: Exim through 4.93 has an out-of-bounds read in the SPA authenticator that could result in SPA/NTLM authentication bypass in auths/spa.c and auths/auth-spa.c.  The spa authentication driver is not enabled by default.<br/>
 Vulnerable: &lt;= 4.84.2-2+deb8u6<br/>
 Fixed: 4.84.2-2+deb8u7</p></td>
 <td>3.0.0-3.7.14</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29667</td>
+<td><p>After installing Cumulus Linux on the Mellanox SN2100 switch, if you break out a port (for example, if you break out swp1 into four ports: swp1s0, swp1s1, swp1s2, swp1s3) in the /etc/cumulus/ports.conf file, then run the systemctl start switchd command, the update does not take effect.<br/>
+To work around this issue, run the systemctl restart switchd command.</p></td>
+<td>3.7.12-3.7.14</td>
 <td></td>
 </tr>
 <tr>
@@ -3690,6 +3744,16 @@ Dec 20 08:43:27 netflow-nms sfcapd[3991]: SFLOW: readFlowSample_header() undefin
 <td></td>
 </tr>
 <tr>
+<td>CM-28189</td>
+<td><p>When host-resources and ucd-snmp-mib are polled, you see permission denied messages similar to the following:</p>
+
+Jan 30 19:22:53 switch123 snmpd[23172]: Cannot statfs /sys/kernel/debug/tracing: Permission denied
+
+</td>
+<td>3.7.13</td>
+<td>3.7.14</td>
+</tr>
+<tr>
 <td>CM-28136</td>
 <td><p>The MLAG switch pair has VLANs defined that are not used on MLAG bonds. These VLANs still synchronize MAC addresses across to the peer switch. This results in log messages that indicate a MAC address is installed and the VLAN is not defined; for example:</p>
 
@@ -3810,6 +3874,13 @@ This workaround only works when an out-of-band network is present.</p></td>
 To work around this issue, remove the empty Bond interfaces from the /etc/network/interfaces file and run sudo ifreload -a.</p></td>
 <td>3.7.10-3.7.14</td>
 <td></td>
+</tr>
+<tr>
+<td>CM-27489</td>
+<td><p>Mellanox switches might experience higher CPU usage from the sx_sdk service or when BFD is in use.<br/>
+To work around this issue, disable BFD to alleviate some of the CPU load.</p></td>
+<td>3.7.13</td>
+<td>3.7.14</td>
 </tr>
 <tr>
 <td>CM-27354</td>
@@ -5704,6 +5775,13 @@ To work around this issue, restart FRR with the sudo systemctl restart frr.servi
 <td>3.7.14</td>
 </tr>
 <tr>
+<td>CM-31504</td>
+<td><p>On the the Dell N3248-PXE switch, when you insert two PSUs at different times, the newly inserted PSU is detected as OK but the fan and temp sensors are ABSENT.<br/>
+To work around this issue, remove power to both PSUs at the same time, then reinsert power simultaneously.</p></td>
+<td>3.7.12-3.7.13</td>
+<td>3.7.14</td>
+</tr>
+<tr>
 <td>CM-31475</td>
 <td><p>The following vulnerabilities have been announced in QEMU packages:<br/>
 CVE-2019-20382: Memory leak in zrle_compress_data in ui/vnc-enc-zrle.c during a VNC disconnect operation because libz is misused, resulting in a situation where memory allocated in deflateInit2 is not freed in deflateEnd.<br/>
@@ -6312,8 +6390,8 @@ Fixed: 1.8.22-0+deb8u3</p></td>
 <tr>
 <td>CM-29978</td>
 <td><p>The received PVST BPDU for a VLAN is flooded even though the ingress port doesn't have the VLAN tagged.</p></td>
-<td>3.7.8-3.7.14</td>
-<td></td>
+<td>3.7.8-3.7.13</td>
+<td>3.7.14</td>
 </tr>
 <tr>
 <td>CM-29922</td>
@@ -6423,6 +6501,17 @@ The service starts automatically but there is an impact to POE devices momentari
 <td>3.7.13-3.7.14</td>
 </tr>
 <tr>
+<td>CM-29759</td>
+<td><p>When you use nginx and restserver in management VRF to provide a REST API for the switch, nginx starts but restserver fails to start.<br/>
+To work around this issue, comment out the Requires= line in the /lib/systemd/system/restserver.service. For example:</p>
+
+#Requires=nginx.service restserver.socket
+
+</td>
+<td>3.7.12-3.7.14</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-29740</td>
 <td><p>The exim4 package available for optional installation on Cumulus Linux 3.x has the following vulnerability:<br/>
 DLA-2213-1 / CVE-2020-12783: Exim through 4.93 has an out-of-bounds read in the SPA authenticator that could result in SPA/NTLM authentication bypass in auths/spa.c and auths/auth-spa.c.  The spa authentication driver is not enabled by default.<br/>
@@ -6439,6 +6528,13 @@ Vulnerable: &lt;= 1.0.9.8.5-cl3u1<br/>
 Fixed: 1.0.9.8.5-cl3u2</p></td>
 <td>3.0.0-3.7.12</td>
 <td>3.7.13-3.7.14</td>
+</tr>
+<tr>
+<td>CM-29667</td>
+<td><p>After installing Cumulus Linux on the Mellanox SN2100 switch, if you break out a port (for example, if you break out swp1 into four ports: swp1s0, swp1s1, swp1s2, swp1s3) in the /etc/cumulus/ports.conf file, then run the systemctl start switchd command, the update does not take effect.<br/>
+To work around this issue, run the systemctl restart switchd command.</p></td>
+<td>3.7.12-3.7.14</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-29652</td>
@@ -9245,8 +9341,8 @@ Fixed: 1.8.22-0+deb8u3</p></td>
 <tr>
 <td>CM-29978</td>
 <td><p>The received PVST BPDU for a VLAN is flooded even though the ingress port doesn't have the VLAN tagged.</p></td>
-<td>3.7.8-3.7.14</td>
-<td></td>
+<td>3.7.8-3.7.13</td>
+<td>3.7.14</td>
 </tr>
 <tr>
 <td>CM-29922</td>
@@ -12456,8 +12552,8 @@ Fixed: 1.8.22-0+deb8u3</p></td>
 <tr>
 <td>CM-29978</td>
 <td><p>The received PVST BPDU for a VLAN is flooded even though the ingress port doesn't have the VLAN tagged.</p></td>
-<td>3.7.8-3.7.14</td>
-<td></td>
+<td>3.7.8-3.7.13</td>
+<td>3.7.14</td>
 </tr>
 <tr>
 <td>CM-29922</td>
@@ -15358,8 +15454,8 @@ Fixed: 1.8.22-0+deb8u3</p></td>
 <tr>
 <td>CM-29978</td>
 <td><p>The received PVST BPDU for a VLAN is flooded even though the ingress port doesn't have the VLAN tagged.</p></td>
-<td>3.7.8-3.7.14</td>
-<td></td>
+<td>3.7.8-3.7.13</td>
+<td>3.7.14</td>
 </tr>
 <tr>
 <td>CM-29922</td>
@@ -18695,8 +18791,8 @@ Fixed: 1.8.22-0+deb8u3</p></td>
 <tr>
 <td>CM-29978</td>
 <td><p>The received PVST BPDU for a VLAN is flooded even though the ingress port doesn't have the VLAN tagged.</p></td>
-<td>3.7.8-3.7.14</td>
-<td></td>
+<td>3.7.8-3.7.13</td>
+<td>3.7.14</td>
 </tr>
 <tr>
 <td>CM-29922</td>

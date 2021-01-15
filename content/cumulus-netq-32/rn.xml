@@ -13,6 +13,12 @@
 <td>3.3.0</td>
 </tr>
 <tr>
+<td>NETQ-8245</td>
+<td><p>If a NetQ Agent is downgraded to the 3.0.0 version from any higher release, the default commands file present in the <em>/etc/netq/commands/</em> also needs to be updated to prevent the NetQ Agent from becoming rotten.</p></td>
+<td>3.0.0-3.3.0</td>
+<td></td>
+</tr>
+<tr>
 <td>NETQ-6640</td>
 <td><p>Infra: Rarely, after a node is restarted, Kubernetes pods do not synchronize properly and the output of netq show opta-health shows failures. Node operation is not functionally impacted. You can safely remove the failures by running kubectl get pods | grep MatchNodeSelector | cut &#45;f1 &#45;d' ' | xargs kubectl delete pod. To work around the issue, do not label nodes using the API. Instead label nodes through local configuration using kubelet flag "--node-labels".</p></td>
 <td>3.1.0-3.3.0</td>
@@ -137,6 +143,12 @@ netq-cli:
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>NETQ-8245</td>
+<td><p>If a NetQ Agent is downgraded to the 3.0.0 version from any higher release, the default commands file present in the <em>/etc/netq/commands/</em> also needs to be updated to prevent the NetQ Agent from becoming rotten.</p></td>
+<td>3.0.0-3.3.0</td>
+<td></td>
 </tr>
 <tr>
 <td>NETQ-7546</td>

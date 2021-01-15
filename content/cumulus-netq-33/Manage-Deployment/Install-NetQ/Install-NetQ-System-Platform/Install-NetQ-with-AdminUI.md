@@ -115,11 +115,11 @@ If the installation fails, a failure indication is given.
 
 3. Monitor the initialization of the master node. When complete, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/50-Navigate/navigation-right-circle-1_1.svg" height="18" width="18"/>.
 
-    {{<figure src="/images/netq/adminui-init-master-advanced-320.png" width="600" caption="On-premises deployment">}}
+    {{<figure src="/images/netq/adminui-init-master-onprem-advanced-330.png" width="600" caption="Self-hosted, on-premises deployment">}}
 
-    {{<figure src="/images/netq/adminui-init-master-cloud-advanced-330.png" width="600" caption="Cloud deployment">}}
+    {{<figure src="/images/netq/adminui-init-master-cloud-advanced-330.png" width="600" caption="Remote-hosted, multi-site or cloud deployment">}}
 
-4. For on-premises deployments only, select your install method. For cloud deployments, skip to Step 5.
+4. For on-premises (self-hosted) deployments only, select your install method. For cloud deployments, skip to Step 5.
 
     Choose between restoring data from a previous version of NetQ or performing a fresh installation.
 
@@ -129,7 +129,7 @@ If you are moving from a standalone to a server cluster arrangement, you can onl
 {{</notice>}}
 </div>
 
-    {{<figure src="/images/netq/adminui-install-method-advanced-320.png" width="600">}}
+    {{<figure src="/images/netq/adminui-install-method-advanced-330.png" width="600">}}
 
 <div style="padding-left: 18px;">
 <ul>
@@ -137,7 +137,7 @@ If you are moving from a standalone to a server cluster arrangement, you can onl
 <li><strong>Maintain Existing Data</strong> (on-premises only): If you have created a backup of your NetQ data, choose this option. Enter the restoration filename in the field provided and click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/50-Navigate/navigation-right-circle-1_1.svg" height="18" width="18"/> or upload it.</li>
 </ul>
 
-    {{<figure src="/images/netq/adminui-restore-db-advanced-320.png" width="600">}}
+    {{<figure src="/images/netq/adminui-restore-db-advanced-330.png" width="600">}}
 
 </div>
 
@@ -161,7 +161,7 @@ Monitor the master configuration. When complete click <img src="https://icons.cu
 
 Use the private IP addresses that you assigned to the nodes being used as worker nodes to add the worker nodes to the server cluster.
 
-{{<figure src="/images/netq/adminui-cluster-config-320.png" width="600">}}
+{{<figure src="/images/netq/adminui-cluster-config-330.png" width="600">}}
 
 Click **Add Worker Node**. Enter the private IP address for the first worker node. Click **Add**.
 
@@ -193,7 +193,7 @@ Refer to {{<link title="Post Installation Configuration Options/#add-more-nodes-
 
     *For on-premises*: Accept the path and filename suggested, or modify these to reflect where you stored your installation file, then click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/50-Navigate/navigation-right-circle-1_1.svg" height="18" width="18"/>. Alternately, upload the file.
 
-    {{<figure src="/images/netq/adminui-install-onprem-advanced-320.png" width="600">}}
+    {{<figure src="/images/netq/adminui-install-onprem-advanced-330.png" width="600">}}
 
 <div style="padding-left: 18px;">
 
@@ -211,11 +211,11 @@ Click <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/0
 
 7. Activate NetQ.
 
-    This final step activates the software and enables you to view the health of your NetQ system. For cloud deployments, you must enter your configuration key.
+    This final step activates the software and enables you to view the health of your NetQ system. For remote deployments, you must enter your configuration key.
 
-    {{<figure src="/images/netq/adminui-activate-netq-onprem-240.png" width="700" caption="On-premises activation">}}
+    {{<figure src="/images/netq/adminui-activate-netq-onprem-240.png" width="700" caption="Self-hosted activation">}}
 
-    {{<figure src="/images/netq/adminui-activate-netq-cloud-240.png" width="700" caption="Cloud activation">}}
+    {{<figure src="/images/netq/adminui-activate-netq-cloud-240.png" width="700" caption="Remote-hosted activation">}}
 
 {{< /tab >}}
 
@@ -232,8 +232,8 @@ When the installation and activation is complete, the NetQ System Health dashboa
 | Server cluster | On-premises | Master, 2+ Workers | Yes | Yes | Yes | Yes |
 | Server cluster | Cloud | Master, 2+ Workers | Yes | No | No | No |
 
-This example shows a standalone server in an on-premises deployment.
+{{<figure src="/images/netq/adminui-health-standalone-onprem-320.png" width="700" caption="Self-hosted, on-premises deployment">}}
 
-{{<figure src="/images/netq/adminui-health-standalone-onprem-320.png" width="700">}}
+{{<figure src="/images/netq/adminui-health-standalone-cloud-330.png" width="700" caption="Remote-hosted, mulit-site or cloud, deployment">}}
 
 Click **Open NetQ** to enter the NetQ application.

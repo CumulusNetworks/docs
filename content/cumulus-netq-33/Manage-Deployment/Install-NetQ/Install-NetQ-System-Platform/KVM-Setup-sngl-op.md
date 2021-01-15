@@ -41,7 +41,7 @@ Follow these steps to setup and configure your VM on a single server in an on-pr
 
 9. Consider the following for container environments, and make adjustments as needed.
 
-    {{<netq-install/container>}}
+    {{<netq-install/container version="3.3.0">}}
 
 The final step is to install and activate the NetQ software. You can do this using the Admin UI or the CLI.
 

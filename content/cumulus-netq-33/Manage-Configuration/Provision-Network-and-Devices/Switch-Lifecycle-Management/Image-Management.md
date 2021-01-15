@@ -18,7 +18,7 @@ The `netq lcm show cl-images` and `netq lcm show netq-images` commands also disp
 
 ## Default Cumulus Linux or NetQ Version Assignment
 
-In the NetQ UI, you can assign a specific Cumulus Linux or NetQ version as the default version to use during installation or upgrade of switches. It is recommended that you choose the newest version that you intend to install or upgrade on all, or the majority, of your switches. The default selection can be overridden during individual installation and upgrade job creation if an alternate version is needed for a given set of switches.
+You can assign a specific Cumulus Linux or NetQ version as the default version to use during installation or upgrade of switches. It is recommended that you choose the newest version that you intend to install or upgrade on all, or the majority, of your switches. The default selection can be overridden during individual installation and upgrade job creation if an alternate version is needed for a given set of switches.
 
 ## Missing Images
 
@@ -32,7 +32,7 @@ While it is not required that you upload images that NetQ determines to be missi
 
 ## Upload Images
 
-For fresh installations of NetQ 3.2, no images have yet been uploaded to the LCM repository. If you are upgrading from NetQ 3.0.0 or 3.1.0, the Cumulus Linux images you have previously added are still present.
+For fresh installations of NetQ {{%version%}}, no images have yet been uploaded to the LCM repository. If you are upgrading from NetQ 3.0.x-3.2.x, the Cumulus Linux images you have previously added are still present.
 
 In preparation for *Cumulus Linux* upgrades, the recommended image upload flow is:
 
@@ -52,7 +52,7 @@ In preparation for *NetQ* installation or upgrade, the recommended image upload 
 
 ### Upload Missing Images
 
-Use the following instructions to upload missing Cumulus Linux and NetQ images:
+Use the following instructions to upload missing Cumulus Linux and NetQ images.
 
 For *Cumulus Linux* images:
 
@@ -60,7 +60,9 @@ For *Cumulus Linux* images:
 
 {{< tab "NetQ UI" >}}
 
-1. Click **Image Management**.
+1. On the Manage Switch Assets page, click **Image Management**.
+
+    {{<figure src="/images/netq/lcm-image-mgmt-tab-330.png" width="600">}}
 
 2. On the Cumulus Linux Images card, click the *View # missing CL images* link to see what images you need. This opens the list of missing images.
 
@@ -265,7 +267,7 @@ To specify a default Cumulus Linux or NetQ version in the NetQ UI:
 
 4. Click **Save**. The default version is now displayed on the relevant Images card.
 
-    {{<figure src="/images/netq/lcm-images-cards-default-assigned-320.png" width="400">}}
+    {{<figure src="/images/netq/lcm-images-cards-default-assigned-330.png" width="400">}}
 
 {{< /tab >}}
 

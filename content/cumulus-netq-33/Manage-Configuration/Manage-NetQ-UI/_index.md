@@ -6,7 +6,7 @@ toc: 2
 ---
 As an administrator, you can manage access to and various application-wide settings for the NetQ UI from a single location.
 
-Individual users have the ability to set preferences specific to their workspaces. This information is covered separately. Refer to {{<link title="Set User Preferences">}}.
+Individual users have the ability to set preferences specific to their workspaces. This information is covered separately. Refer to {{<link title="Set User Preferences" text="Set User Preferences">}}.
 
 ## NetQ Management Workbench
 
@@ -414,7 +414,7 @@ When a rule is filtered by more than one parameter, each is displayed on the car
 
 ### Specify Notification Channels
 
-The notification channel specified by a TCA rule tells NetQ where to send the notification message. Refer to {{<link title="Configure Notifications/#create-a-channel" text="Create a Channel">}}.
+The notification channel specified by a TCA rule tells NetQ where to send the notification message. Refer to {{<link title="Configure System Event Notifications/#create-a-channel" text="Create a Channel">}}.
 
 ### Create a TCA Rule
 

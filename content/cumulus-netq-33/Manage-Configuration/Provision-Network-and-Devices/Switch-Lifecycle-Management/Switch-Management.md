@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 650
 toc: 4
 ---
-On initial installation, the lifecycle management feature provides an inventory of switches that have been automatically discovered by NetQ 3.x and are available for software installation or upgrade through NetQ. This includes all switches running Cumulus Linux 3.6 or later and NetQ Agent 2.4 or later in your network. You assign network roles to switches and select switches for software installation and upgrade from this inventory listing.
+On initial installation, the lifecycle management feature provides an inventory of switches that have been automatically discovered by NetQ and are available for software installation or upgrade through NetQ. This includes all switches running Cumulus Linux 3.6 or later and NetQ Agent 2.4 or later in your network. You assign network roles to switches and select switches for software installation and upgrade from this inventory listing.
 
 ## View the LCM Switch Inventory
 
@@ -20,7 +20,7 @@ A count of the switches NetQ was able to discover and the Cumulus Linux versions
 
 To view a list of all switches known to lifecycle management, click **Manage** on the Switches card.
 
-{{<figure src="/images/netq/lcm-switch-mgmt-list-300.png" width="700">}}
+{{<figure src="/images/netq/lcm-switch-mgmt-list-330.png" width="700">}}
 
 Review the list:
 - Sort the list by any column; hover over column title and click to toggle between ascending and descending order
@@ -84,7 +84,7 @@ This listing is the starting point for Cumulus Linux upgrades or NetQ installati
 - Verify the missing switches are reachable using `ping`
 - Verify the NetQ Agent is fresh and version 2.4.0 or later for switches that already have the agent installed (click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18" alt="Main Menu">}}, then click **Agents** or run `netq show agents`)
 - Install NetQ on the switch (refer to {{<link url="#use-switch-discovery-to-install-and-upgrade-netq" text="Install NetQ">}})
-- Upgrade any NetQ Agents if needed. Refer to {{<link title="Upgrade NetQ Agents">}} for instructions.
+- Upgrade any NetQ Agents if needed (refer to {{<link title="Upgrade NetQ Agents">}} for instructions)
 
 ## Role Management
 
@@ -101,7 +101,7 @@ For example, a group of seven switches are selected for upgrade. Three are spine
 
 When only some of the selected switches have roles assigned in an upgrade job, the switches with roles are upgraded first and then all the switches with no roles assigned are upgraded.
 
-While role assignment is optional, using roles can prevent switches from becoming unreachable due to dependencies between switches or single attachments. And when MLAG pairs are deployed, switch roles avoid upgrade conflicts. For these reasons, Cumulus Networks highly recommends assigning roles to all of your switches.
+While role assignment is optional, using roles can prevent switches from becoming unreachable due to dependencies between switches or single attachments. And when MLAG pairs are deployed, switch roles avoid upgrade conflicts. For these reasons, NVIDIA highly recommends assigning roles to all of your switches.
 
 ### Assign Switch Roles
 
@@ -125,7 +125,7 @@ Roles can be assigned to one or more switches using the NetQ UI or the NetQ CLI.
 
 6. Click **Assign**.
 
-    Note that the **Role** column is updated with the role assigned to the selected switch(es).
+    Note that the **Role** column is updated with the role assigned to the selected switch(es). To return to the full list of switches, click **All**.
 
     {{<figure src="/images/netq/lcm-switches-listing-role-assigned-320.png" width="700">}}
 

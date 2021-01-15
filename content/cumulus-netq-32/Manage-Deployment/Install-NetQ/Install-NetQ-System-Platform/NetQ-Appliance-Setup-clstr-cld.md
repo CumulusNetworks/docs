@@ -137,7 +137,7 @@ Make a note of the private IP addresses you assign to the master and worker node
 
 ## Considerations for Container Environments
 
-{{<netq-install/container>}}
+{{<netq-install/container version="3.2.1">}}
 
 ## Install and Activate the NetQ Software
 

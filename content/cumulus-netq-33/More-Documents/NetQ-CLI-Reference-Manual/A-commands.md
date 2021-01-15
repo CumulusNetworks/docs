@@ -119,7 +119,7 @@ netq add notification channel syslog
 | syslog | NA | Create a Syslog channel to receive event notifications |
 | NA | \<text-channel-name\> | Name of the channel |
 | to | \<text-email-toids\> | Comma-separated list of recipient email addresses; no spaces are allowed |
-| integration-key | \<text-integration-key\> | {{<link url="https://support.pagerduty.com/docs/services-and-integrations#create-a-generic-events-api-integration/" text="Service or routing key">}} generated for your PagerDuty Service. Default is an empty string (""). |
+| integration-key | \<text-integration-key\> | {{<exlink url="https://support.pagerduty.com/docs/services-and-integrations#create-a-generic-events-api-integration/" text="Service or routing key">}} generated for your PagerDuty Service. Default is an empty string (""). |
 | webhook | \<text-webhook-url\> | Incoming webhook created in your Slack instance |
 | hostname | \<text-syslog-hostname\> | Name of the syslog server to receive notifications |
 | port | \<text-syslog-port\> | Name of the port on the syslog server to receive notifications |
@@ -142,7 +142,7 @@ A release is included if there were changes to the command, otherwise it is not 
 | Release | Description |
 | ---- | ---- |
 | 3.1.0 | Added Email channel type |
-| 1.x | Introduced |
+| 2.1.2 | Introduced. Replaced `netq config ts add notifier channel`.  |
 
 ### Sample Usage
 
@@ -174,7 +174,7 @@ cumulus@switch:~$ netq add notification channel syslog syslog-netq-events hostna
 Successfully added/updated channel syslog-netq-events
 ```
 
-Refer to the {{<link title="Configure Notifications">}} topic in the *NetQ User Guide* for more information and complete notification configurations.
+Refer to the {{<link title="Configure System Event Notifications">}} topic in the *NetQ User Guide* for more information and complete notification configurations.
 
 ### Related Commands
 
@@ -227,7 +227,7 @@ A release is included if there were changes to the command, otherwise it is not 
 
 | Release | Description |
 | ---- | ---- |
-| 1.x | Introduced |
+| 2.1.2 | Introduced. Replaced `netq config ts add notifier filter`. |
 
 ### Sample Usage
 
@@ -290,7 +290,7 @@ A release is included if there were changes to the command, otherwise it is not 
 
 | Release | Description |
 | ---- | ---- |
-| 1.x | Introduced |
+| 2.1.2 | Introduced. Replaced `netq config ts add notifier rule`. |
 
 ### Sample Usage
 
@@ -348,7 +348,7 @@ A release is included if there were changes to the command, otherwise it is not 
 
 | Release | Description |
 | ---- | ---- |
-| 1.x | Introduced |
+| 2.1.2 | Introduced |
 
 ### Sample Usage
 
@@ -377,10 +377,21 @@ A TCA event notification configuration must contain one rule. Each rule must con
 
 ### Syntax
 
+There are two forms of the command; one that uses the `event_id` argument used to create the notification, and one that uses the `tca_id` argument used to modify an existing notification.
+
 ```
-netq add tca
-    [event_id <text-event-id-anchor>]
-    [tca_id <text-tca-id-anchor>]
+netq add tca event_id
+    <text-event-id-anchor>
+    scope <text-scope-anchor>
+    [severity info | severity critical]
+    [is_active true | is_active false]
+    [suppress_until <text-suppress-ts>]
+    [threshold_type user_set | threshold_type vendor_set]
+    threshold <text-threshold-value>
+    [channel <text-channel-name-anchor> | channel drop <text-drop-channel-name>]
+
+netq add tca tca_id
+    <text-tca-id-anchor>
     [scope <text-scope-anchor>]
     [severity info | severity critical]
     [is_active true | is_active false]
@@ -389,34 +400,25 @@ netq add tca
     [threshold <text-threshold-value>]
     [channel <text-channel-name-anchor> | channel drop <text-drop-channel-name>]
 
-netq add tca
-    event_id <text-event-id-anchor>
-    scope <text-scope-anchor>
-    threshold <text-threshold-value>
-
 ```
-???
-(older version?)
-    netq add tca event_id <event-name> scope <regex-filter> [severity <critical|info>] threshold <value>
-    netq add tca tca_id <tca-rule-name> is_active <true|false>
-    netq add tca tca_id <tca-rule-name> channel drop <channel-name>
 
 ### Required Arguments
 
-None
+| Argument | Value | Description |
+| ---- | ---- | ---- |
+| event_id | \<text-event-id-anchor\> | Create threshold-based event rule for the type of event with this ID |
+| tca_id | \<text-tca-id-anchor\> | Modify the existing threshold-based event with this ID |
+| scope | \<text-scope-anchor\> | Regular expression that filters the events. When two parameters are used, they are separated by a comma, but no space. When an asterisk (*) is used alone, it must be entered inside either single or double quotes. |
+| threshold | \<text-threshold-value\> | Value when crossed that triggers the event |
 
 ### Options
 
 | Option | Value | Description |
 | ---- | ---- | ---- |
-| event_id | \<text-event-id-anchor\> | Create threshold-based event rule for the type of event with this ID |
-| tca_id | \<text-tca-id-anchor\> | Modify the existing threshold-based event with this ID |
-| scope | \<text-scope-anchor\> | Regular expression that filters the events. When two parameters are used, they are separated by a comma, but no space. When an asterisk (*) is used alone, it must be entered inside either single or double quotes.
 | severity | info, critical | Only include events with this severity |
 | is_active | true, false | Activate or deactivate the TCA event rule |
 | suppress_until | \<text-suppress-ts\>| Suppress this event rule until the specified time; formatted as seconds from now |
 | threshold_type | user_set, vendor_set | Apply threshold specified in `threshold` option or the default specified by the vendor for this attribute |
-| threshold | \<text-threshold-value\> | Value when crossed that triggers the event |
 | channel | \<text-channel-name-anchor\>| Send the events to the channel with this name |
 | channel drop | \<text-drop-channel-name\> | Stop sending events to the channel with this name |
 
@@ -426,16 +428,23 @@ A release is included if there were changes to the command, otherwise it is not 
 
 | Release | Description |
 | ---- | ---- |
+| 3.2.0 | Added `threshold_type` option. Changed order of `tca_id` and `scope` options. |
 | 2.4.0 | Introduced |
 
 ### Sample Usage
 
-Create threshold-based event notification on given channel
+Basic threshold-based event notification
 
 ```
-cumulus@switch:~$ netq add tca event_id TCA_CPU_UTILIZATION_UPPER scope '*' channel tca_slack_ifstats threshold 95
+cumulus@switch:~$ netq add tca event_id TCA_CPU_UTILIZATION_UPPER scope leaf* threshold 80
+Successfully added/updated tca
+```
 
-cumulus@switch:~$ netq add tca event_id TCA_SENSOR_TEMPERATURE_UPPER scope leaf12,temp1 channel syslog-netq threshold 32
+Create threshold-based event notification and deliver to an existing Syslog channel
+
+```
+cumulus@switch:~$ netq add tca event_id TCA_SENSOR_TEMPERATURE_UPPER scope leaf12,temp1 threshold 32 channel syslog-netq-events
+Successfully added/updated tca
 ```
 
 ### Related Commands
@@ -696,7 +705,7 @@ cumulus@switch:~$ netq add validation type bgp
 
 ## netq bootstrap
 
-Load the installation program onto the network switches and hosts in either a single server or server cluster arrangement.
+Load the installation program onto the network switches and hosts in either a single server or server cluster arrangement. This command is the same for any deployment model.
 
 ### Syntax
 
@@ -727,8 +736,8 @@ netq bootstrap worker
 
 | Option | Value | Description |
 | ---- | ---- | ---- |
-| pod-ip-range | \<<text-master-ip\> | Change default  |
-| password | \<text-password\> | Passphrase of user with access to the worker node ??? |
+| pod-ip-range | \<<text-master-ip\> | Change the IP address range to this range for Flannel container environments when you have a conflict. NetQ overrides the default Flannel address range (10.1.0.0/16) with 10.244.0.0/16. |
+| password | \<text-password\> | Passphrase for access to the worker node |
 
 ### Command History
 
@@ -736,6 +745,8 @@ A release is included if there were changes to the command, otherwise it is not 
 
 | Release | Description |
 | ---- | ---- |
+| 3.2.0 | Added `pod-ip-range` option to master form of command |
+| 3.1.0 | Added `password` option to worker form of command |
 | 2.4.1 | Added `ip-addr` option |
 | 2.4.0 | Introduced |
 
@@ -744,7 +755,13 @@ A release is included if there were changes to the command, otherwise it is not 
 Bootstrap single server or master server in a server cluster
 
 ```
-cumulus@:~$ netq bootstrap master interface eth0 tarball /mnt/installables/netq-bootstrap-3.3.0.tgz
+cumulus@switch:~$ netq bootstrap master interface eth0 tarball /mnt/installables/netq-bootstrap-3.3.0.tgz
+```
+
+Bootstrap worker node in server cluster
+
+```
+cumulus@switch:~$ netq bootstrap worker tarball /mnt/installables/netq-bootstrap-3.3.0.tgz  master-ip 192.168.10.20
 ```
 
 ### Related Commands
@@ -754,11 +771,98 @@ cumulus@:~$ netq bootstrap master interface eth0 tarball /mnt/installables/netq-
 
 - - -
 
-### netq bootstrap reset
+## netq bootstrap reset
 
-netq bootstrap reset [keep-db | purge-db]
+Reset the node to prepare it for loading the installation program. In on-premises deployments with database on site, you can choose whether to save the current data or discard it (default) during the reset process. All data is saved by default in remotely-hosted database deployments.
 
-### netq bootstrap master upgrade
+### Syntax
 
-    netq bootstrap master upgrade <text-tarball-name>
+```
+netq bootstrap reset
+    [keep-db | purge-db]
+```
 
+### Required Arguments
+
+None
+
+### Options
+
+| Option | Value | Description |
+| ---- | ---- | ---- |
+| keep-db | NA | Save existing data before resetting the node. Only applies to deployments with local databases. |
+| purge-db | NA | Discard existing data when resetting the node. Only applies to deployments with local databases. |
+
+### Command History
+
+A release is included if there were changes to the command, otherwise it is not listed.
+
+| Release | Description |
+| ---- | ---- |
+| 2.4.1 | Added `keep-db` and `purge-db` options |
+| 2.4.0 | Introduced |
+
+### Sample Usage
+
+Prepare node for bootstrapping (purge data)
+
+```
+cumulus@switch:~$ netq bootstrap reset
+```
+
+Prepare node for bootstrapping while keeping existing data
+
+```
+cumulus@switch:~$ netq bootstrap reset keep-db
+```
+
+### Related Commands
+
+- netq bootstrap
+- netq bootstrap master upgrade
+
+- - -
+
+## netq bootstrap master upgrade
+
+Loads master node with a new NetQ installer in an existing server cluster deployment.
+
+### Syntax
+
+```
+netq bootstrap master upgrade
+    <text-tarball-name>
+```
+
+### Required Arguments
+
+| Argument | Value | Description |
+| ---- | ---- | ---- |
+| NA | \<text-tarball-name\> | Full path of the installation file; for example, */mnt/installables/netq-bootstrap-3.3.0.tgz*  |
+
+### Options
+
+None
+
+### Command History
+
+A release is included if there were changes to the command, otherwise it is not listed.
+
+| Release | Description |
+| ---- | ---- |
+| 2.4.0 | Introduced |
+
+### Sample Usage
+
+Basic bootstrap
+
+```
+cumulus@switch:~$ netq bootstrap master upgrade mnt/installables/netq-bootstrap-3.3.0.tgz
+```
+
+### Related Commands
+
+- netq bootstrap
+- netq bootstrap reset
+
+- - -

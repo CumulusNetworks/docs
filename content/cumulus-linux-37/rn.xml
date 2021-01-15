@@ -27,7 +27,9 @@ Fixed: 6.8.9.9-5+deb8u22</p></td>
 <tr>
 <td>CM-33007</td>
 <td><p>The following vulnerability was announced in the apt packages:<br/>
-CVE-2020-27350: Missing input validation in the ar/tar implementations of APT, the high level package manager, could cause out-of-bounds reads or infinite loops, resulting in denial of service when processing malformed deb files. </p></td>
+CVE-2020-27350: Missing input validation in the ar/tar implementations of APT, the high level package manager, could cause out-of-bounds reads or infinite loops, resulting in denial of service when processing malformed deb files. <br/>
+Vulnerable: &lt;= 1.0.9.8.6<br/>
+Fixed: 1.0.9.8.7</p></td>
 <td>3.0.0-3.7.14</td>
 <td></td>
 </tr>
@@ -2453,7 +2455,9 @@ Fixed: 6.8.9.9-5+deb8u22</p></td>
 <tr>
 <td>CM-33007</td>
 <td><p>The following vulnerability was announced in the apt packages:<br/>
-CVE-2020-27350: Missing input validation in the ar/tar implementations of APT, the high level package manager, could cause out-of-bounds reads or infinite loops, resulting in denial of service when processing malformed deb files. </p></td>
+CVE-2020-27350: Missing input validation in the ar/tar implementations of APT, the high level package manager, could cause out-of-bounds reads or infinite loops, resulting in denial of service when processing malformed deb files. <br/>
+Vulnerable: &lt;= 1.0.9.8.6<br/>
+Fixed: 1.0.9.8.7</p></td>
 <td>3.0.0-3.7.14</td>
 <td></td>
 </tr>
@@ -5401,7 +5405,9 @@ Fixed: 6.8.9.9-5+deb8u22</p></td>
 <tr>
 <td>CM-33007</td>
 <td><p>The following vulnerability was announced in the apt packages:<br/>
-CVE-2020-27350: Missing input validation in the ar/tar implementations of APT, the high level package manager, could cause out-of-bounds reads or infinite loops, resulting in denial of service when processing malformed deb files. </p></td>
+CVE-2020-27350: Missing input validation in the ar/tar implementations of APT, the high level package manager, could cause out-of-bounds reads or infinite loops, resulting in denial of service when processing malformed deb files. <br/>
+Vulnerable: &lt;= 1.0.9.8.6<br/>
+Fixed: 1.0.9.8.7</p></td>
 <td>3.0.0-3.7.14</td>
 <td></td>
 </tr>
@@ -8553,7 +8559,9 @@ Fixed: 6.8.9.9-5+deb8u22</p></td>
 <tr>
 <td>CM-33007</td>
 <td><p>The following vulnerability was announced in the apt packages:<br/>
-CVE-2020-27350: Missing input validation in the ar/tar implementations of APT, the high level package manager, could cause out-of-bounds reads or infinite loops, resulting in denial of service when processing malformed deb files. </p></td>
+CVE-2020-27350: Missing input validation in the ar/tar implementations of APT, the high level package manager, could cause out-of-bounds reads or infinite loops, resulting in denial of service when processing malformed deb files. <br/>
+Vulnerable: &lt;= 1.0.9.8.6<br/>
+Fixed: 1.0.9.8.7</p></td>
 <td>3.0.0-3.7.14</td>
 <td></td>
 </tr>
@@ -11818,7 +11826,9 @@ Fixed: 6.8.9.9-5+deb8u22</p></td>
 <tr>
 <td>CM-33007</td>
 <td><p>The following vulnerability was announced in the apt packages:<br/>
-CVE-2020-27350: Missing input validation in the ar/tar implementations of APT, the high level package manager, could cause out-of-bounds reads or infinite loops, resulting in denial of service when processing malformed deb files. </p></td>
+CVE-2020-27350: Missing input validation in the ar/tar implementations of APT, the high level package manager, could cause out-of-bounds reads or infinite loops, resulting in denial of service when processing malformed deb files. <br/>
+Vulnerable: &lt;= 1.0.9.8.6<br/>
+Fixed: 1.0.9.8.7</p></td>
 <td>3.0.0-3.7.14</td>
 <td></td>
 </tr>
@@ -14745,7 +14755,9 @@ Fixed: 6.8.9.9-5+deb8u22</p></td>
 <tr>
 <td>CM-33007</td>
 <td><p>The following vulnerability was announced in the apt packages:<br/>
-CVE-2020-27350: Missing input validation in the ar/tar implementations of APT, the high level package manager, could cause out-of-bounds reads or infinite loops, resulting in denial of service when processing malformed deb files. </p></td>
+CVE-2020-27350: Missing input validation in the ar/tar implementations of APT, the high level package manager, could cause out-of-bounds reads or infinite loops, resulting in denial of service when processing malformed deb files. <br/>
+Vulnerable: &lt;= 1.0.9.8.6<br/>
+Fixed: 1.0.9.8.7</p></td>
 <td>3.0.0-3.7.14</td>
 <td></td>
 </tr>
@@ -18080,7 +18092,9 @@ Fixed: 6.8.9.9-5+deb8u22</p></td>
 <tr>
 <td>CM-33007</td>
 <td><p>The following vulnerability was announced in the apt packages:<br/>
-CVE-2020-27350: Missing input validation in the ar/tar implementations of APT, the high level package manager, could cause out-of-bounds reads or infinite loops, resulting in denial of service when processing malformed deb files. </p></td>
+CVE-2020-27350: Missing input validation in the ar/tar implementations of APT, the high level package manager, could cause out-of-bounds reads or infinite loops, resulting in denial of service when processing malformed deb files. <br/>
+Vulnerable: &lt;= 1.0.9.8.6<br/>
+Fixed: 1.0.9.8.7</p></td>
 <td>3.0.0-3.7.14</td>
 <td></td>
 </tr>
@@ -21279,7 +21293,9 @@ Fixed: 6.8.9.9-5+deb8u22</p></td>
 <tr>
 <td>CM-33007</td>
 <td><p>The following vulnerability was announced in the apt packages:<br/>
-CVE-2020-27350: Missing input validation in the ar/tar implementations of APT, the high level package manager, could cause out-of-bounds reads or infinite loops, resulting in denial of service when processing malformed deb files. </p></td>
+CVE-2020-27350: Missing input validation in the ar/tar implementations of APT, the high level package manager, could cause out-of-bounds reads or infinite loops, resulting in denial of service when processing malformed deb files. <br/>
+Vulnerable: &lt;= 1.0.9.8.6<br/>
+Fixed: 1.0.9.8.7</p></td>
 <td>3.0.0-3.7.14</td>
 <td></td>
 </tr>
@@ -24839,7 +24855,9 @@ Fixed: 6.8.9.9-5+deb8u22</p></td>
 <tr>
 <td>CM-33007</td>
 <td><p>The following vulnerability was announced in the apt packages:<br/>
-CVE-2020-27350: Missing input validation in the ar/tar implementations of APT, the high level package manager, could cause out-of-bounds reads or infinite loops, resulting in denial of service when processing malformed deb files. </p></td>
+CVE-2020-27350: Missing input validation in the ar/tar implementations of APT, the high level package manager, could cause out-of-bounds reads or infinite loops, resulting in denial of service when processing malformed deb files. <br/>
+Vulnerable: &lt;= 1.0.9.8.6<br/>
+Fixed: 1.0.9.8.7</p></td>
 <td>3.0.0-3.7.14</td>
 <td></td>
 </tr>
@@ -28349,7 +28367,9 @@ Fixed: 6.8.9.9-5+deb8u22</p></td>
 <tr>
 <td>CM-33007</td>
 <td><p>The following vulnerability was announced in the apt packages:<br/>
-CVE-2020-27350: Missing input validation in the ar/tar implementations of APT, the high level package manager, could cause out-of-bounds reads or infinite loops, resulting in denial of service when processing malformed deb files. </p></td>
+CVE-2020-27350: Missing input validation in the ar/tar implementations of APT, the high level package manager, could cause out-of-bounds reads or infinite loops, resulting in denial of service when processing malformed deb files. <br/>
+Vulnerable: &lt;= 1.0.9.8.6<br/>
+Fixed: 1.0.9.8.7</p></td>
 <td>3.0.0-3.7.14</td>
 <td></td>
 </tr>
@@ -31548,7 +31568,9 @@ Fixed: 6.8.9.9-5+deb8u22</p></td>
 <tr>
 <td>CM-33007</td>
 <td><p>The following vulnerability was announced in the apt packages:<br/>
-CVE-2020-27350: Missing input validation in the ar/tar implementations of APT, the high level package manager, could cause out-of-bounds reads or infinite loops, resulting in denial of service when processing malformed deb files. </p></td>
+CVE-2020-27350: Missing input validation in the ar/tar implementations of APT, the high level package manager, could cause out-of-bounds reads or infinite loops, resulting in denial of service when processing malformed deb files. <br/>
+Vulnerable: &lt;= 1.0.9.8.6<br/>
+Fixed: 1.0.9.8.7</p></td>
 <td>3.0.0-3.7.14</td>
 <td></td>
 </tr>
@@ -34805,7 +34827,9 @@ Fixed: 6.8.9.9-5+deb8u22</p></td>
 <tr>
 <td>CM-33007</td>
 <td><p>The following vulnerability was announced in the apt packages:<br/>
-CVE-2020-27350: Missing input validation in the ar/tar implementations of APT, the high level package manager, could cause out-of-bounds reads or infinite loops, resulting in denial of service when processing malformed deb files. </p></td>
+CVE-2020-27350: Missing input validation in the ar/tar implementations of APT, the high level package manager, could cause out-of-bounds reads or infinite loops, resulting in denial of service when processing malformed deb files. <br/>
+Vulnerable: &lt;= 1.0.9.8.6<br/>
+Fixed: 1.0.9.8.7</p></td>
 <td>3.0.0-3.7.14</td>
 <td></td>
 </tr>
@@ -38221,7 +38245,9 @@ Fixed: 6.8.9.9-5+deb8u22</p></td>
 <tr>
 <td>CM-33007</td>
 <td><p>The following vulnerability was announced in the apt packages:<br/>
-CVE-2020-27350: Missing input validation in the ar/tar implementations of APT, the high level package manager, could cause out-of-bounds reads or infinite loops, resulting in denial of service when processing malformed deb files. </p></td>
+CVE-2020-27350: Missing input validation in the ar/tar implementations of APT, the high level package manager, could cause out-of-bounds reads or infinite loops, resulting in denial of service when processing malformed deb files. <br/>
+Vulnerable: &lt;= 1.0.9.8.6<br/>
+Fixed: 1.0.9.8.7</p></td>
 <td>3.0.0-3.7.14</td>
 <td></td>
 </tr>
@@ -41759,7 +41785,9 @@ Fixed: 6.8.9.9-5+deb8u22</p></td>
 <tr>
 <td>CM-33007</td>
 <td><p>The following vulnerability was announced in the apt packages:<br/>
-CVE-2020-27350: Missing input validation in the ar/tar implementations of APT, the high level package manager, could cause out-of-bounds reads or infinite loops, resulting in denial of service when processing malformed deb files. </p></td>
+CVE-2020-27350: Missing input validation in the ar/tar implementations of APT, the high level package manager, could cause out-of-bounds reads or infinite loops, resulting in denial of service when processing malformed deb files. <br/>
+Vulnerable: &lt;= 1.0.9.8.6<br/>
+Fixed: 1.0.9.8.7</p></td>
 <td>3.0.0-3.7.14</td>
 <td></td>
 </tr>
@@ -44801,7 +44829,9 @@ Fixed: 6.8.9.9-5+deb8u22</p></td>
 <tr>
 <td>CM-33007</td>
 <td><p>The following vulnerability was announced in the apt packages:<br/>
-CVE-2020-27350: Missing input validation in the ar/tar implementations of APT, the high level package manager, could cause out-of-bounds reads or infinite loops, resulting in denial of service when processing malformed deb files. </p></td>
+CVE-2020-27350: Missing input validation in the ar/tar implementations of APT, the high level package manager, could cause out-of-bounds reads or infinite loops, resulting in denial of service when processing malformed deb files. <br/>
+Vulnerable: &lt;= 1.0.9.8.6<br/>
+Fixed: 1.0.9.8.7</p></td>
 <td>3.0.0-3.7.14</td>
 <td></td>
 </tr>

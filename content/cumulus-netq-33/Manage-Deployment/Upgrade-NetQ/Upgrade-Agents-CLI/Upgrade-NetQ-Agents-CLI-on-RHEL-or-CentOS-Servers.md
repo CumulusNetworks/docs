@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 510
 toc: 5
 ---
-The following instructions are applicable to both on-premises and cloud deployments.
+The following instructions are applicable to both on-premises and remote deployments.
 
 To upgrade the NetQ Agent:
 

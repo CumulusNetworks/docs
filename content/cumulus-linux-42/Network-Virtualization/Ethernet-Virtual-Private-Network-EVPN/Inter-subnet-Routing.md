@@ -27,7 +27,7 @@ To enable centralized routing, you must configure the gateway VTEPs to advertise
 {{< tab "NCLU Commands ">}}
 
 ```
-cumulus@leaf01:~$ net add bgp autonomous-system 65000
+cumulus@leaf01:~$ net add bgp autonomous-system 65101
 cumulus@leaf01:~$ net add bgp l2vpn evpn advertise-default-gw
 cumulus@leaf01:~$ net pending
 cumulus@leaf01:~$ net commit
@@ -38,16 +38,16 @@ cumulus@leaf01:~$ net commit
 {{< tab "vtysh Commands ">}}
 
 ```
-cumulus@switch:~$ sudo vtysh
+cumulus@leaf01:~$ sudo vtysh
 
-switch# configure terminal
-switch(config)# router bgp 65011
-switch(config-router)# address-family l2vpn evpn
-switch(config-router-af)# advertise-default-gw
-switch(config-router-af)# end
-switch)# write memory
-switch)# exit
-cumulus@switch:~$
+leaf01# configure terminal
+leaf01(config)# router bgp 65101
+leaf01(config-router)# address-family l2vpn evpn
+leaf01(config-router-af)# advertise-default-gw
+leaf01(config-router-af)# end
+leaf01)# write memory
+leaf01)# exit
+cumulus@leaf01:~$
 ```
 
 {{< /tab >}}
@@ -58,7 +58,7 @@ These commands create the following configuration snippet in the `/etc/frr/frr.c
 
 ```
 ...
-router bgp 65000
+router bgp 65101
 ...
   address-family l2vpn evpn
     advertise-default-gw
@@ -114,10 +114,10 @@ Optional configuration includes {{<link url="#configure-rd-and-rts-for-the-tenan
 {{< tab "NCLU Commands ">}}
 
 ```
-cumulus@leaf01:~$ net add vxlan vni104001 vxlan id 104001
-cumulus@leaf01:~$ net add vxlan vni104001 bridge access 4001
-cumulus@leaf01:~$ net add vxlan vni104001 vxlan local-tunnelip 10.0.0.11
-cumulus@leaf01:~$ net add bridge bridge ports vni104001
+cumulus@leaf01:~$ net add vxlan vni10 vxlan id 10
+cumulus@leaf01:~$ net add vxlan vni10 bridge access 10
+cumulus@leaf01:~$ net add vxlan vni10 vxlan local-tunnelip 10.10.10.1
+cumulus@leaf01:~$ net add bridge bridge ports vni10
 cumulus@leaf01:~$ net pending
 cumulus@leaf01:~$ net commit
 ```
@@ -131,15 +131,15 @@ Edit the `/etc/network/interfaces` file. For example:
 ```
 cumulus@leaf01:~$ sudo nano /etc/network/interfaces
 ...
-auto vni104001
-iface vni104001
-    bridge-access 4001
-    vxlan-id 104001
-    vxlan-local-tunnelip 10.0.0.11
+auto vni10
+iface vni10
+    bridge-access 10
+    vxlan-id 10
+    vxlan-local-tunnelip 10.10.10.1
 
 auto bridge
   iface bridge
-    bridge-ports vni104001
+    bridge-ports vni10
     bridge-vlan-aware yes
 ...
 ```
@@ -155,7 +155,7 @@ auto bridge
 {{< tab "NCLU Commands ">}}
 
 ```
-cumulus@leaf01:~$ net add vlan 4001 vrf turtle
+cumulus@leaf01:~$ net add vlan 4001 vrf RED
 cumulus@leaf01:~$ net pending
 cumulus@leaf01:~$ net commit
 ```
@@ -173,7 +173,7 @@ auto vlan4001
 iface vlan4001
     vlan-id 4001
     vlan-raw-device bridge
-    vrf turtle
+    vrf RED
 ...
 ```
 
@@ -194,7 +194,7 @@ When two VTEPs are operating in **VXLAN active-active** mode and performing **sy
 {{< tab "NCLU Commands ">}}
 
 ```
-cumulus@leaf01:~$ net add vrf turtle vni 104001
+cumulus@leaf01:~$ net add vrf RED vni 4001
 cumulus@leaf01:~$ net pending
 cumulus@leaf01:~$ net commit
 ```
@@ -208,8 +208,8 @@ Edit the `/etc/frr/frr.conf` file. For example:
 ```
 cumulus@leaf01:~$ sudo nano /etc/frr/frr.conf
 ...
-vrf turtle
-  vni 104001
+vrf RED
+  vni 4001
 !
 ...
 ```
@@ -227,10 +227,10 @@ If you do not want the RD and RTs (layer 3 RTs) for the tenant VRF to be derived
 {{< tab "NCLU Commands ">}}
 
 ```
-cumulus@switch:~$ net add bgp vrf tenant1 l2vpn evpn rd 172.16.100.1:20
-cumulus@switch:~$ net add bgp vrf tenant1 l2vpn evpn route-target import 65100:20
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
+cumulus@leaf01:~$ net add bgp vrf RED l2vpn evpn rd 10.1.20.2:5
+cumulus@leaf01:~$ net add bgp vrf RED l2vpn evpn route-target import 65102:4001
+cumulus@leaf01:~$ net pending
+cumulus@leaf01:~$ net commit
 ```
 
 {{< /tab >}}
@@ -238,17 +238,17 @@ cumulus@switch:~$ net commit
 {{< tab "vtysh Commands ">}}
 
 ```
-cumulus@switch:~$ sudo vtysh
+cumulus@leaf01:~$ sudo vtysh
 
-switch# configure terminal
-switch(config)# router bgp 65011 vrf tenant1
-switch(config-router)# address-family l2vpn evpn
-switch(config-router-af)# rd 172.16.100.1:20
-switch(config-router-af)# route-target import 65100:20
-switch(config-router-af)# end
-switch# write memory
-switch# exit
-cumulus@switch:~$
+leaf01# configure terminal
+leaf01(config)# router bgp 65101 vrf RED
+leaf01(config-router)# address-family l2vpn evpn
+leaf01(config-router-af)# 10.1.20.2:5
+leaf01(config-router-af)# route-target import 65102:4001
+leaf01(config-router-af)# end
+leaf01# write memory
+leaf01# exit
+cumulus@leaf01:~$
 ```
 
 {{< /tab >}}
@@ -259,10 +259,10 @@ These commands create the following configuration snippet in the `/etc/frr/frr.c
 
 ```
 ...
-router bgp <as> vrf tenant1
+router bgp 65101 vrf RED
   address-family l2vpn evpn
-  rd 172.16.100.1:20
-  route-target import 65100:20
+  rd 10.1.20.2:5
+  route-target import 65102:4001
 ...
 ```
 
@@ -318,9 +318,9 @@ The following configuration is required in the tenant VRF to announce IP prefixe
 {{< tab "NCLU Commands ">}}
 
 ```
-cumulus@switch:~$ net add bgp vrf vrf1 l2vpn evpn advertise ipv4 unicast
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
+cumulus@leaf01:~$ net add bgp vrf RED l2vpn evpn advertise ipv4 unicast
+cumulus@leaf01:~$ net pending
+cumulus@leaf01:~$ net commit
 ```
 
 {{< /tab >}}
@@ -328,16 +328,16 @@ cumulus@switch:~$ net commit
 {{< tab "vtysh Commands ">}}
 
 ```
-cumulus@switch:~$ sudo vtysh
+cumulus@leaf01:~$ sudo vtysh
 
-switch# configure terminal
-switch(config)# router bgp 65011 vrf vrf1
-switch(config-router)# address-family l2vpn evpn
-switch(config-router-af)# advertise ipv4 unicast
-switch(config-router-af)# end
-switch# write memory
-switch# exit
-cumulus@switch:~$
+leaf01# configure terminal
+leaf01(config)# router bgp 65101 vrf RED
+leaf01(config-router)# address-family l2vpn evpn
+leaf01(config-router-af)# advertise ipv4 unicast
+leaf01(config-router-af)# end
+leaf01# write memory
+leaf01# exit
+cumulus@leaf01:~$
 ```
 
 {{< /tab >}}
@@ -348,7 +348,7 @@ These commands create the following snippet in the `/etc/frr/frr.conf` file:
 
 ```
 ...
-router bgp 65005 vrf vrf1
+router bgp 65101 vrf RED
   address-family l2vpn evpn
     advertise ipv4 unicast
   exit-address-family
@@ -369,7 +369,7 @@ The following example commands show how to use the layer 3 VNI for type-5 routes
 {{< tab "NCLU Commands ">}}
 
 ```
-cumulus@leaf01:~$ net add vrf turtle vni 104001 prefix-routes-only
+cumulus@leaf01:~$ net add vrf RED vni 4001 prefix-routes-only
 cumulus@leaf01:~$ net pending
 cumulus@leaf01:~$ net commit
 ```
@@ -389,8 +389,8 @@ Edit the `/etc/frr/frr.conf` file. For example:
 ```
 cumulus@leaf01:~$ sudo nano /etc/frr/frr.conf
 ...
-vrf turtle
-  vni 104001 prefix-routes-only
+vrf RED
+  vni 4001 prefix-routes-only
 ...
 ```
 
@@ -409,9 +409,9 @@ The following commands add a route map filter to IPv4 EVPN type-5 route advertis
 {{< tab "NCLU Commands ">}}
 
 ```
-cumulus@switch:~$ net add bgp vrf turtle l2vpn evpn advertise ipv4 unicast route-map map1
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
+cumulus@leaf01:~$ net add bgp vrf RED l2vpn evpn advertise ipv4 unicast route-map map1
+cumulus@leaf01:~$ net pending
+cumulus@leaf01:~$ net commit
 ```
 
 {{< /tab >}}
@@ -419,16 +419,16 @@ cumulus@switch:~$ net commit
 {{< tab "vtysh Commands ">}}
 
 ```
-cumulus@switch:~$ sudo vtysh
+cumulus@leaf01:~$ sudo vtysh
 
-switch# configure terminal
-switch(config)# router bgp 65011 vrf turtle
-switch(config-router)# address-family l2vpn evpn
-switch(config-router-af)# advertise ipv4 unicast route-map map1
-switch(config-router-af)# end
-switch# write memory
-switch# exit
-cumulus@switch:~$
+leaf01# configure terminal
+leaf01(config)# router bgp 65101 vrf RED
+leaf01(config-router)# address-family l2vpn evpn
+leaf01(config-router-af)# advertise ipv4 unicast route-map map1
+leaf01(config-router-af)# end
+leaf01# write memory
+leaf01# exit
+cumulus@leaf01:~$
 ```
 
 {{< /tab >}}
@@ -442,20 +442,20 @@ Cumulus Linux supports originating EVPN default type-5 routes. The default type-
 To originate a default type-5 route in EVPN, you need to execute FRRouting commands. The following shows an example:
 
 ```
-cumulus@switch:~$ sudo vtysh
+cumulus@leaf01:~$ sudo vtysh
 
-switch# configure terminal
-switch(config)# router bgp 650030 vrf vrf1
-switch(config-router)# address-family l2vpn evpn
-switch(config-router-af)# default-originate ipv4
-switch(config-router-af)# default-originate ipv6
-switch(config-router-af)# end
-switch# write memory
+leaf01# configure terminal
+leaf01(config)# router bgp 65101 vrf RED
+leaf01(config-router)# address-family l2vpn evpn
+leaf01(config-router-af)# default-originate ipv4
+leaf01(config-router-af)# default-originate ipv6
+leaf01(config-router-af)# end
+leaf01# write memory
 ```
 
 ### Advertise Primary IP address (VXLAN Active-Active Mode)
 
- With Cumulus Linux 3.7 and earlier, in EVPN symmetric routing configurations with VXLAN active-active (MLAG), all EVPN routes are advertised with the anycast IP address ({{<link url="VXLAN-Active-active-Mode#terminology" text="clagd-vxlan-anycast-ip">}}) as the next-hop IP address and the anycast MAC address as the router MAC address. In a failure scenario, this can lead to traffic being forwarded to a leaf switch that does not have the destination routes. Traffic has to traverse the peer link (with additional BGP sessions per VRF).
+With Cumulus Linux 3.7 and earlier, in EVPN symmetric routing configurations with VXLAN active-active (MLAG), all EVPN routes are advertised with the anycast IP address ({{<link url="VXLAN-Active-active-Mode#terminology" text="clagd-vxlan-anycast-ip">}}) as the next-hop IP address and the anycast MAC address as the router MAC address. In a failure scenario, this can lead to traffic being forwarded to a leaf switch that does not have the destination routes. Traffic has to traverse the peer link (with additional BGP sessions per VRF).
 
 To prevent sub-optimal routing in Cumulus Linux 4.0 and later, the next hop IP address of the VTEP is conditionally handled depending on the route type: host type-2 (MAC/IP advertisement) or type-5 (IP prefix route).
 
@@ -475,7 +475,7 @@ Run the `address-virtual <anycast-mac>` command under the SVI, where `<anycast-m
 Run the `net add vlan <vlan> ip address-virtual <anycast-mac>` command. For example:
 
 ```
-cumulus@leaf01:~$ net add vlan 4001 ip address-virtual 44:38:39:FF:40:94
+cumulus@leaf01:~$ net add vlan 4001 ip address-virtual 44:38:39:BE:EF:AA
 cumulus@leaf01:~$ net pending
 cumulus@leaf01:~$ net commit
 ```
@@ -491,10 +491,10 @@ cumulus@leaf01:~$ sudo nano /etc/network/interfaces
 ...
 auto vlan4001
 iface vlan4001
-    address-virtual 44:38:39:FF:40:94
-    vlan-id 4001
+    address-virtual 44:38:39:BE:EF:AA
+    vrf RED
     vlan-raw-device bridge
-    vrf turtle
+    vlan-id 4001
 ...
 ```
 
@@ -515,15 +515,15 @@ If you do not want Cumulus Linux to derive the system IP address automatically, 
 
 The system MAC address must be the layer 3 SVI MAC address (not the `clad-sys-mac`).
 
-The following example commands add the system IP address 10.0.0.11 and the system MAC address 44:38:39:ff:00:00:
+The following example commands add the system IP address 10.10.10.1 and the system MAC address 44:38:39:be:ef:aa:
 
 {{< tabs "TabID520 ">}}
 
 {{< tab "NCLU Commands ">}}
 
 ```
-cumulus@switch:~$ net add vlan 4001 hwaddress 44:38:39:ff:00:00
-cumulus@switch:~$ net add bgp vrf vrf1 l2vpn evpn advertise-pip ip 10.0.0.11 mac 44:38:39:ff:00:00
+cumulus@leaf01:~$ net add vlan 4001 hwaddress 44:38:39:ff:00:00
+cumulus@leaf01:~$ net add bgp vrf vrf1 l2vpn evpn advertise-pip ip 10.10.10.1 mac 44:38:39:be:ef:aa
 cumulus@leaf01:~$ net pending
 cumulus@leaf01:~$ net commit
 ```
@@ -533,16 +533,16 @@ cumulus@leaf01:~$ net commit
 {{< tab "vtysh Commands ">}}
 
 ```
-cumulus@switch:~$ sudo vtysh
+cumulus@leaf01:~$ sudo vtysh
 
-switch# configure terminal
-switch(config)# router bgp 65000 vrf vrf1
-switch(config)# address-family l2vpn evpn
-switch(config)# advertise-pip ip 10.0.0.11 mac 44:38:39:ff:00:00
-switch(config-router-af)# end
-switch# write memory
-switch# exit
-cumulus@switch:~$
+leaf01# configure terminal
+leaf01(config)# router bgp 65101 vrf RED
+leaf01(config)# address-family l2vpn evpn
+leaf01(config)# advertise-pip ip 10.10.10.1 mac 44:38:39:be:ef:aa
+leaf01(config-router-af)# end
+leaf01# write memory
+leaf01# exit
+cumulus@leaf01:~$
 ```
 
 {{< /tab >}}
@@ -562,7 +562,7 @@ To disable Advertise Primary IP Address under each tenant VRF BGP instance:
 {{< tab "NCLU Commands ">}}
 
 ```
-cumulus@leaf01:~$ net del bgp vrf vrf1 l2vpn evpn advertise-pip
+cumulus@leaf01:~$ net del bgp vrf RED l2vpn evpn advertise-pip
 cumulus@leaf01:~$ net pending
 cumulus@leaf01:~$ net commit
 ```
@@ -572,15 +572,15 @@ cumulus@leaf01:~$ net commit
 {{< tab "vtysh Commands ">}}
 
 ```
-cumulus@switch:~$ sudo vtysh
-switch# configure terminal
-switch(config)# router bgp 65000 vrf vrf1
-switch(config)# address-family l2vpn evpn
-switch(config)# no advertise-pip
-switch(config-router-af)# end
-switch# write memory
-switch# exit
-cumulus@switch:~$
+cumulus@leaf01:~$ sudo vtysh
+leaf01# configure terminal
+leaf01(config)# router bgp 65101 vrf RED
+leaf01(config)# address-family l2vpn evpn
+leaf01(config)# no advertise-pip
+leaf01(config-router-af)# end
+leaf01# write memory
+leaf01# exit
+cumulus@leaf01:~$
 ```
 
 {{< /tab >}}
@@ -592,51 +592,44 @@ cumulus@switch:~$
 To show Advertise Primary IP Address parameters, run the NCLU `net show bgp l2vpn evpn vni <vni>` command or the vtysh `show bgp l2vpn evpn vni <vni>` command. For example:
 
 ```
-cumulus@switch:~$ sudo vtysh
-switch# show bgp l2vpn evpn vni 4001
+cumulus@leaf01:~$ net show bgp l2vpn evpn vni 4001
 VNI: 4001 (known to the kernel)
- Type: L3
- Tenant VRF: vrf1
- RD: 10.0.0.11:2
- Originator IP: 10.0.0.112 🡨 Anycast IP
- Advertise-gw-macip : n/a
- Advertise-pip: Yes
- System-IP: 10.0.0.11
- System-MAC: 44:38:39:ff:00:00
- Router-MAC: 44:01:02:ff:ff:01
- Import Route Target:
-  5586:4002
- Export Route Target:
-  5586:4002
-switch#
+  Type: L3
+  Tenant VRF: RED
+  RD: 10.1.20.2:5
+  Originator IP: 10.0.1.1
+  Advertise-gw-macip : n/a
+  Advertise-svi-macip : n/a
+  Advertise-pip: Yes
+  System-IP: 10.10.10.1
+  System-MAC: 44:38:39:be:ef:aa
+  Router-MAC: 44:38:39:be:ef:aa
+  Import Route Target:
+    65101:4001
+  Export Route Target:
+    65101:4001
+leaf01#
 ```
 
 To show EVPN routes with Primary IP Advertisement, run the NCLU `net show bgp l2vpn evpn route` command or the vtysh `show bgp l2vpn evpn route` command. For example:
 
 ```
-cumulus@switch:~$ sudo vtysh
-switch# show bgp l2vpn evpn route
- ...
-Route Distinguisher: 10.0.0.11:2
-*> [5]:[0]:[24]:[81.6.1.0]
-                    10.0.0.11                0             0 5541 i
-                    ET:8 RT:5586:4002 Rmac:44:38:39:ff:00:00
- ...
-Route Distinguisher: 10.0.0.11:3
-*> [2]:[0]:[48]:[00:02:00:00:00:2e]:[32]:[45.0.4.2]
-                    10.0.0.11                          32768 i
-                    ET:8 RT:5586:1004 RT:5546:4002 Rmac:44:38:39:ff:00:00
-
-```
-
-To show the learned route from an external router injected as a type-5 route, run the NCLU `net show bgp vrf <vrf> ipv4 unicast` command or the vtysh `show bgp vrf <vrf> ipv4 unicast` command. For example:
-
-```
-cumulus@switch:~$ net show bgp vrf <vrf> ipv4 unicast
+cumulus@leaf01:~$ net show bgp l2vpn evpn route
 ...
- Network          Next Hop            Metric LocPrf Weight Path
-*> 10.0.0.0/8    10.0.0.42                0             0 5541 I
+Route Distinguisher: 10.10.10.1:3
+*> [2]:[0]:[48]:[00:60:08:69:97:ef]
+                    10.0.1.1                           32768 i
+                    ET:8 RT:65101:10 RT:65101:4001 Rmac:44:38:39:be:ef:aa
+*> [2]:[0]:[48]:[26:76:e6:93:32:78]
+                    10.0.1.1                           32768 i
+                    ET:8 RT:65101:10 RT:65101:4001 Rmac:44:38:39:be:ef:aa
+*> [2]:[0]:[48]:[26:76:e6:93:32:78]:[32]:[10.1.10.101]
+                    10.0.1.1                           32768 i
+                    ET:8 RT:65101:10 RT:65101:4001 Rmac:44:38:39:be:ef:aa
+...
 ```
+
+To show the learned route from an external router injected as a type-5 route, run the NCLU `net show bgp vrf <vrf> ipv4 unicast` command or the vtysh `show bgp vrf <vrf> ipv4 unicast` command.
 
 ## Considerations
 

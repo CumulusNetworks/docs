@@ -161,7 +161,7 @@ leaf01# configure terminal
 leaf01(config)# router bgp 65101
 leaf01(config-router)# neighbor 10.10.10.101 remote-as external
 leaf01(config-router)# neighbor 10.10.10.101 ebgp-multihop
-leaf01(config)# exit
+leaf01(config-router)# end
 leaf01# write memory
 leaf01# exit
 cumulus@leaf01:~$
@@ -276,8 +276,7 @@ cumulus@leaf01:~$ sudo vtysh
 leaf01# configure terminal
 leaf01(config)# router bgp 65101
 leaf01(config-router)# neighbor swp51 password mypassword
-leaf01(config-router)# exit
-leaf01(config)# exit
+leaf01(config-router)# end
 leaf01# write memory
 leaf01# exit
 cumulus@leaf01:~$
@@ -707,7 +706,6 @@ switch(config-router)# neighbor 2001:db8:0002::0a00:0002 capability extended-nex
 switch(config-router)# address-family ipv4 unicast
 switch(config-router-af)# neighbor 2001:db8:0002::0a00:0002 activate
 switch(config-router-af)# end
-switch(config)# exit
 switch# write memory
 switch# exit
 cumulus@switch:~$
@@ -903,7 +901,10 @@ cumulus@leaf01:~$ sudo vtysh
 leaf01# configure terminal
 leaf01(config)# router bgp 65101
 leaf01(config-router)# neighbor swp50 addpath-tx-bestpath-per-AS
-leaf01(config-router)#
+leaf01(config-router)# end
+leaf01# write memory
+leaf01# exit
+cumulus@leaf01:~$ 
 ```
 
 {{< /tab >}}
@@ -933,7 +934,10 @@ cumulus@leaf01:~$ sudo vtysh
 leaf01# configure terminal
 leaf01(config)# router bgp 65101
 leaf01(config-router)# neighbor swp50 addpath-tx-all-paths
-leaf01(config-router)#
+leaf01(config-router)# end
+leaf01# write memory
+leaf01# exit
+cumulus@leaf01:~$ 
 ```
 
 {{< /tab >}}
@@ -1139,7 +1143,7 @@ cumulus@switch:~$ sudo vtysh
 
 switch# configure terminal
 switch(config)# router bgp 65101
-switch(config-router)# update-delay 300 200 
+switch(config-router)# update-delay 300 200
 switch(config-router)# end
 switch# write memory
 switch# exit
@@ -1208,13 +1212,13 @@ cumulus@spine01:~$ net commit
 ```
 cumulus@spine01:~$ sudo vtysh
 
-switch# configure terminal
-switch(config)# router bgp 65199
-switch(config-router)# address-family ipv4
-switch(config-router-af)# neighbor swp1 route-reflector-client
-switch(config-router-af)# end
-switch# write memory
-switch# exit
+spine01# configure terminal
+spine01(config)# router bgp 65199
+spine01(config-router)# address-family ipv4
+spine01(config-router-af)# neighbor swp1 route-reflector-client
+spine01(config-router-af)# end
+spine01# write memory
+spine01# exit
 cumulus@spine01:~$
 ```
 
@@ -1251,12 +1255,12 @@ The following example commands set the administrative distance for routes from 1
 ```
 cumulus@spine01:~$ sudo vtysh
 
-switch# configure terminal
-switch(config)# router bgp 65101
-switch(config-router)# distance 100 10.10.10.101/32
-switch(config-router)# end
-switch# write memory
-switch# exit
+spine01# configure terminal
+spine01(config)# router bgp 65101
+spine01(config-router)# distance 100 10.10.10.101/32
+spine01(config-router)# end
+spine01# write memory
+spine01# exit
 cumulus@spine01:~$
 ```
 
@@ -1265,12 +1269,12 @@ The following example commands set the administrative distance for routes extern
 ```
 cumulus@spine01:~$ sudo vtysh
 
-switch# configure terminal
-switch(config)# router bgp 65101
-switch(config-router)# distance bgp 150 110 100
-switch(config-router)# end
-switch# write memory
-switch# exit
+spine01# configure terminal
+spine01(config)# router bgp 65101
+spine01(config-router)# distance bgp 150 110 100
+spine01(config-router)# end
+spine01# write memory
+spine01# exit
 cumulus@spine01:~$
 ```
 
@@ -1313,7 +1317,7 @@ leaf01(config-router)# bgp graceful-shutdown
 leaf01(config-router)# end
 leaf01# write memory
 leaf01# exit
-cumulus@v:~$
+cumulus@leaf01:~$
 ```
 
 To disable graceful shutdown:
@@ -1565,6 +1569,7 @@ switch(config-router)# bgp graceful-restart stalepath-time 400
 switch(config-router)# end
 switch# write memory
 switch# exit
+cumulus@switch:~$ 
 ```
 
 {{< /tab >}}
@@ -1606,6 +1611,10 @@ cumulus@switch:~$ sudo vtysh
 switch# configure terminal
 switch(config)# router bgp 65101
 switch(config-router)# bgp graceful-restart-disable
+switch(config-router)# end
+switch# write memory
+switch# exit
+cumulus@switch:~$
 ```
 
 {{< /tab >}}
@@ -1634,6 +1643,10 @@ cumulus@switch:~$ sudo vtysh
 switch# configure terminal
 switch(config)# router bgp 65101
 switch(config-router)# neighbor swp51 graceful-restart-disable
+switch(config-router)# end
+switch# write memory
+switch# exit
+cumulus@switch:~$
 ```
 
 {{< /tab >}}
@@ -1750,7 +1763,8 @@ Here is an example of a standard community list filter:
 
 ```
 cumulus@switch:~$ net add routing community-list standard COMMUNITY1 permit 100:100
-
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}

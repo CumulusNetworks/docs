@@ -1164,6 +1164,8 @@ Here is an example of a standard community list filter:
 
 ```
 cumulus@switch:~$ net add routing community-list standard COMMUNITY1 permit 100:100
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}

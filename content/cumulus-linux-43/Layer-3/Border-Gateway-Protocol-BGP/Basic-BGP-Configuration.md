@@ -262,6 +262,30 @@ To configure BGP numbered on a BGP node, you need to:
 
 {{< /tab >}}
 
+{{< tab "CUE Commands ">}}
+
+{{< tabs "267 ">}}
+
+{{< tab " leaf01 ">}}
+
+```
+cumulus@leaf01:~$ 
+```
+
+{{< /tab >}}
+
+{{< tab "spine01 ">}}
+
+```
+cumulus@spine01:~$ 
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
+{{< /tab >}}
+
 {{< /tabs >}}
 
 The NCLU and `vtysh` commands save the configuration in the `/etc/frr/frr.conf` file. For example:
@@ -380,7 +404,7 @@ cumulus@spine01:~$ net commit
 
 {{< tab "vtysh Commands ">}}
 
-{{< tabs "390 ">}}
+{{< tabs "407 ">}}
 
 {{< tab "leaf01 ">}}
 
@@ -453,6 +477,30 @@ spine01(config-router-af)# end
 spine01# write memory
 spine01# exit
 cumulus@spine01:~$
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
+{{< /tab >}}
+
+{{< tab "CUE Commands ">}}
+
+{{< tabs "490 ">}}
+
+{{< tab " leaf01 ">}}
+
+```
+cumulus@leaf01:~$ 
+```
+
+{{< /tab >}}
+
+{{< tab "spine01 ">}}
+
+```
+cumulus@spine01:~$ 
 ```
 
 {{< /tab >}}

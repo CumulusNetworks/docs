@@ -52,9 +52,17 @@ cumulus@leaf01:~$
 
 {{< /tab >}}
 
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@leaf01:~$ 
+```
+
+{{< /tab >}}
+
 {{< /tabs >}}
 
-These commands create the following configuration snippet in the `/etc/frr/frr.conf` file.
+The NCLU and vtysh commands create the following configuration snippet in the `/etc/frr/frr.conf` file.
 
 ```
 ...
@@ -146,6 +154,14 @@ auto bridge
 
 {{< /tab >}}
 
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@leaf01:~$ 
+```
+
+{{< /tab >}}
+
 {{< /tabs >}}
 
 ### Configure an SVI for the Layer 3 VNI
@@ -175,6 +191,14 @@ iface vlan4001
     vlan-raw-device bridge
     vrf RED
 ...
+```
+
+{{< /tab >}}
+
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@leaf01:~$ 
 ```
 
 {{< /tab >}}
@@ -216,6 +240,14 @@ vrf RED
 
 {{< /tab >}}
 
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@leaf01:~$ 
+```
+
+{{< /tab >}}
+
 {{< /tabs >}}
 
 ### Configure RD and RTs for the Tenant VRF
@@ -253,9 +285,17 @@ cumulus@leaf01:~$
 
 {{< /tab >}}
 
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@leaf01:~$ 
+```
+
+{{< /tab >}}
+
 {{< /tabs >}}
 
-These commands create the following configuration snippet in the `/etc/frr/frr.conf` file:
+The NCLU and vtysh commands create the following configuration snippet in the `/etc/frr/frr.conf` file:
 
 ```
 ...
@@ -342,9 +382,17 @@ cumulus@leaf01:~$
 
 {{< /tab >}}
 
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@leaf01:~$ 
+```
+
+{{< /tab >}}
+
 {{< /tabs >}}
 
-These commands create the following snippet in the `/etc/frr/frr.conf` file:
+The NCLU and vtysh commands create the following snippet in the `/etc/frr/frr.conf` file:
 
 ```
 ...
@@ -396,6 +444,14 @@ vrf RED
 
 {{< /tab >}}
 
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@leaf01:~$ 
+```
+
+{{< /tab >}}
+
 {{< /tabs >}}
 
 ### Control RIB Routes
@@ -429,6 +485,14 @@ leaf01(config-router-af)# end
 leaf01# write memory
 leaf01# exit
 cumulus@leaf01:~$
+```
+
+{{< /tab >}}
+
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@leaf01:~$ 
 ```
 
 {{< /tab >}}
@@ -500,6 +564,14 @@ iface vlan4001
 
 {{< /tab >}}
 
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@leaf01:~$ 
+```
+
+{{< /tab >}}
+
 {{< /tabs >}}
 
 {{%notice note%}}
@@ -547,6 +619,14 @@ cumulus@leaf01:~$
 
 {{< /tab >}}
 
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@leaf01:~$ 
+```
+
+{{< /tab >}}
+
 {{< /tabs >}}
 
 The system IP address and system MAC address you provide take precedence over the addresses that Cumulus Linux derives automatically.
@@ -581,6 +661,14 @@ leaf01(config-router-af)# end
 leaf01# write memory
 leaf01# exit
 cumulus@leaf01:~$
+```
+
+{{< /tab >}}
+
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@leaf01:~$ 
 ```
 
 {{< /tab >}}

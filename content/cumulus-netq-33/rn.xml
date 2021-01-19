@@ -61,8 +61,8 @@ misc:
 </tr>
 <tr>
 <td>NETQ-8245</td>
-<td><p>If an agent is downgraded to the 3.0.0 version from any higher release, we have to ensure the default commands file present in the /etc/netq/commands/ also needs to be updated. Not doing so would result in rotten agents.</p></td>
-<td>3.3.0</td>
+<td><p>If a NetQ Agent is downgraded to the 3.0.0 version from any higher release, the default commands file present in the <em>/etc/netq/commands/</em> also needs to be updated to prevent the NetQ Agent from becoming rotten.</p></td>
+<td>3.0.0-3.3.0</td>
 <td></td>
 </tr>
 <tr>
@@ -118,11 +118,6 @@ misc:
 <td>NETQ-8311</td>
 <td><p>NetQ Infra: Customers with cloud deployments who wish to use the lifecycle management (LCM) feature in NetQ 3.3.0 must upgrade their NetQ Cloud Appliance or Virtual Machine as well as the NetQ Agent.</p></td>
 <td>3.2.1</td>
-</tr>
-<tr>
-<td>NETQ-8245</td>
-<td><p>If an agent is downgraded to the 3.0.0 version from any higher release, we have to ensure the default commands file present in the /etc/netq/commands/ also needs to be updated. Not doing so would result in rotten agents.</p></td>
-<td>3.3.0</td>
 </tr>
 <tr>
 <td>NETQ-5529</td>

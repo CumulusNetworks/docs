@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>NETQ-8245</td>
+<td><p>If a NetQ Agent is downgraded to the 3.0.0 version from any higher release, the default commands file present in the <em>/etc/netq/commands/</em> also needs to be updated to prevent the NetQ Agent from becoming rotten.</p></td>
+<td>3.0.0-3.3.0</td>
+<td></td>
+</tr>
+<tr>
 <td>NETQ-6732</td>
 <td><p>CLI: Upgrade to NetQ 3.1.0 using the CLI fails due to an authentication issue. To work around this issue, run the netq bootstrap master upgrade command as usual, then use the Admin UI to complete the upgrade at <em><a href="https://" class="external-link" rel="nofollow">https://\</a>&lt;netq-appl-vm-hostname-or-ipaddr\&gt;:8443</em>.</p></td>
 <td>3.1.0</td>

@@ -161,7 +161,7 @@ leaf01# configure terminal
 leaf01(config)# router bgp 65101
 leaf01(config-router)# neighbor 10.10.10.101 remote-as external
 leaf01(config-router)# neighbor 10.10.10.101 ebgp-multihop
-leaf01(config)# exit
+leaf01(config-router)# end
 leaf01# write memory
 leaf01# exit
 cumulus@leaf01:~$
@@ -276,8 +276,7 @@ cumulus@leaf01:~$ sudo vtysh
 leaf01# configure terminal
 leaf01(config)# router bgp 65101
 leaf01(config-router)# neighbor swp51 password mypassword
-leaf01(config-router)# exit
-leaf01(config)# exit
+leaf01(config-router)# end
 leaf01# write memory
 leaf01# exit
 cumulus@leaf01:~$
@@ -563,7 +562,6 @@ switch(config-router)# neighbor 2001:db8:0002::0a00:0002 capability extended-nex
 switch(config-router)# address-family ipv4 unicast
 switch(config-router-af)# neighbor 2001:db8:0002::0a00:0002 activate
 switch(config-router-af)# end
-switch(config)# exit
 switch# write memory
 switch# exit
 cumulus@switch:~$
@@ -712,7 +710,7 @@ cumulus@leaf01:~$ sudo vtysh
 leaf01# configure terminal
 leaf01(config)# router bgp 65101
 leaf01(config-router)# neighbor swp50 addpath-tx-bestpath-per-AS
-leaf01(config-router)# exit
+leaf01(config-router)# end
 leaf01# write memory
 leaf01# exit
 cumulus@leaf01:~$ 
@@ -1002,7 +1000,7 @@ spine01(config)# router bgp 65101
 spine01(config-router)# distance bgp 150 110 100
 spine01(config-router)# end
 spine01# write memory
-v# exit
+spine01# exit
 cumulus@spine01:~$
 ```
 
@@ -1166,7 +1164,6 @@ Here is an example of a standard community list filter:
 
 ```
 cumulus@switch:~$ net add routing community-list standard COMMUNITY1 permit 100:100
-
 ```
 
 {{< /tab >}}

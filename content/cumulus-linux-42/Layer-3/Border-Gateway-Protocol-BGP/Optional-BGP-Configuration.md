@@ -712,7 +712,10 @@ cumulus@leaf01:~$ sudo vtysh
 leaf01# configure terminal
 leaf01(config)# router bgp 65101
 leaf01(config-router)# neighbor swp50 addpath-tx-bestpath-per-AS
-leaf01(config-router)#
+leaf01(config-router)# exit
+leaf01# write memory
+leaf01# exit
+cumulus@leaf01:~$ 
 ```
 
 {{< /tab >}}

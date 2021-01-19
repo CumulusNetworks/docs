@@ -742,7 +742,10 @@ cumulus@leaf01:~$ sudo vtysh
 leaf01# configure terminal
 leaf01(config)# router bgp 65101
 leaf01(config-router)# neighbor swp50 addpath-tx-all-paths
-leaf01(config-router)#
+leaf01(config-router)# end
+leaf01# write memory
+leaf01# exit
+cumulus@leaf01:~$ 
 ```
 
 {{< /tab >}}
@@ -934,13 +937,13 @@ cumulus@spine01:~$ net commit
 ```
 cumulus@spine01:~$ sudo vtysh
 
-switch# configure terminal
-switch(config)# router bgp 65199
-switch(config-router)# address-family ipv4
-switch(config-router-af)# neighbor swp1 route-reflector-client
-switch(config-router-af)# end
-switch# write memory
-switch# exit
+spine01# configure terminal
+spine01(config)# router bgp 65199
+spine01(config-router)# address-family ipv4
+spine01(config-router-af)# neighbor swp1 route-reflector-client
+spine01(config-router-af)# end
+spine01# write memory
+spine01# exit
 cumulus@spine01:~$
 ```
 
@@ -977,12 +980,12 @@ The following example commands set the administrative distance for routes from 1
 ```
 cumulus@spine01:~$ sudo vtysh
 
-switch# configure terminal
-switch(config)# router bgp 65101
-switch(config-router)# distance 100 10.10.10.101/32
-switch(config-router)# end
-switch# write memory
-switch# exit
+spine01# configure terminal
+spine01(config)# router bgp 65101
+spine01(config-router)# distance 100 10.10.10.101/32
+spine01(config-router)# end
+spine01# write memory
+spine01# exit
 cumulus@spine01:~$
 ```
 
@@ -991,12 +994,12 @@ The following example commands set the administrative distance for routes extern
 ```
 cumulus@spine01:~$ sudo vtysh
 
-switch# configure terminal
-switch(config)# router bgp 65101
-switch(config-router)# distance bgp 150 110 100
-switch(config-router)# end
-switch# write memory
-switch# exit
+spine01# configure terminal
+spine01(config)# router bgp 65101
+spine01(config-router)# distance bgp 150 110 100
+spine01(config-router)# end
+spine01# write memory
+v# exit
 cumulus@spine01:~$
 ```
 
@@ -1039,7 +1042,7 @@ leaf01(config-router)# bgp graceful-shutdown
 leaf01(config-router)# end
 leaf01# write memory
 leaf01# exit
-cumulus@v:~$
+cumulus@leaf01:~$
 ```
 
 To disable graceful shutdown:

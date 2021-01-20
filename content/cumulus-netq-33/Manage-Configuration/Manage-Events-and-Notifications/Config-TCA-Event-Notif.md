@@ -138,6 +138,17 @@ You can filter rules based on the following filter parameters.
 
 {{< /tab >}}
 
+{{< tab "WJH" >}}
+| Event ID | Scope Parameters |
+| ---------- | -------------- |
+| TCA_WJH_DROP_AGGREGATE_UPPER  | Hostname |
+| TCA_WJH_ACL_DROP_AGGREGATE_UPPER| Hostname |
+| TCA_WJH_BUFFER_DROP_AGGREGATE_UPPER  | Hostname |
+| TCA_WJH_SYMBOL_ERROR_UPPER  | Hostname |
+| TCA_WJH_CRC_ERROR_UPPER  | Hostname |
+
+{{< /tab >}}
+
 {{< /tabs >}}
 
 ### Specify the Scope
@@ -230,7 +241,11 @@ To create a TCA rule:
 
 2. Click *Threshold Crossing Rules* under **Notifications**.
 
-3. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18"/> to add a rule.
+    {{<figure src="/images/netq/tca-create-rules-330.png" width="600">}}
+
+3. Select the event type for the rule you want to create.
+
+4. Click **Create a Rule** or <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18"/> (Add rule) to add a rule.
 
     The Create TCA Rule dialog opens. Four steps create the rule.
 
@@ -242,7 +257,7 @@ You can move forward and backward until you are satisfied with your rule definit
 {{</notice>}}
 </div>
 
-4. On the **Enter Details** step, enter a name for your rule, choose your TCA event type, and assign a severity.
+5. On the **Enter Details** step, enter a name for your rule and assign a severity. Verify the event type.
 
 <div style="padding-left: 18px;">
 {{<notice note>}}
@@ -250,9 +265,9 @@ The rule name has a maximum of 20 characters (including spaces).
 {{</notice>}}
 </div>
 
-5. Click **Next**.
+6. Click **Next**.
 
-6. On the **Choose Attribute** step, select the attribute to measure against.
+7. On the **Choose Attribute** step, select the attribute to measure against.
 
     {{<figure src="/images/netq/tca-create-rule-attribute-tab-320.png" width="400">}}
 
@@ -262,9 +277,9 @@ The attributes presented depend on the event type chosen in the <em>Enter Detail
 {{</notice>}}
 </div>
 
-7. Click **Next**.
+8. Click **Next**.
 
-8. On the **Set Threshold** step, enter a threshold value.
+9. On the **Set Threshold** step, enter a threshold value.
 
     {{<figure src="/images/netq/tca-create-rule-threshold-tab-320.png" width="400">}}
 
@@ -274,7 +289,7 @@ The attributes presented depend on the event type chosen in the <em>Enter Detail
 
     {{<figure src="/images/netq/tca-create-rule-threshold-tab-dom-userdefined-320.png" width="350">}}
 
-9. Define the scope of the rule.
+10. Define the scope of the rule.
 
     - If you want to restrict the rule to a particular device, and enter values for one or more of the available parameters.
 
@@ -282,13 +297,13 @@ The attributes presented depend on the event type chosen in the <em>Enter Detail
 
     {{<figure src="/images/netq/tca-create-rule-apply-toggle-241.png" width="450">}}
 
-10. Click **Next**.
+11. Click **Next**.
 
-11. Optionally, select a notification channel where you want the events to be sent.
+12. Optionally, select a notification channel where you want the events to be sent.
 
     Only previously created channels are available for selection. If no channel is available or selected, the notifications can only be retrieved from the database. You can add a channel at a later time and then add it to the rule. Refer to {{<link title="Configure Notifications/#create-a-channel" text="Create a Channel">}} and {{<link title="Configure Notifications/#change-add-or-remove-the-channels-on-a-tca-rule" text="Modify TCA Rules">}}.
 
-12. Click **Finish**.
+13. Click **Finish**.
 
 This example shows four rules. The rule on the left triggers an alarm event when the laser bias current exceeds the upper threshold set by the vendor on all interfaces of all leaf switches. The rule second to the left triggers an alarm event when the temperature on the *temp1* sensor exceeds 32 &deg;C on the all leaf switch. The rule second to the right triggers an alarm event when any device exceeds the maximum CPU utilization of 93%. The rule on the right triggers an informational event when switch *leaf01* exceeds the maximum CPU utilization of 87%. Note that the cards indicate all rules are currently Active.
 

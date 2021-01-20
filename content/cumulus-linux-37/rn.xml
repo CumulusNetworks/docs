@@ -7,6 +7,13 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-33012</td>
+<td><p>After you add an interface to the bridge, an OSPF session flap can occur.</p>
+</td>
+<td>3.7.9-3.7.14</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-33008</td>
 <td><p>Several security vulnerabilities were found in ImageMagick, a suite of image manipulation programs. An attacker could cause denial of service and execution of arbitrary code when a crafted image file is processed.<br/>
 CVE-2020-19667 Stack-based buffer overflow and unconditional jump in ReadXPMImage in coders/xpm.c<br/>
@@ -112,6 +119,12 @@ This operation is not supported in the kernel without recreating the SVI. To app
 Vulnerable: &lt;= 2.4.40+dfsg-1+deb8u7<br/>
 Fixed: 2.4.40+dfsg-1+deb8u8</p></td>
 <td>3.0.0-3.7.14</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32597</td>
+<td><p>When you change the anycast address for the MLAG pair (clagd-vxlan-anycast-ip), high peak traffic occurs on the peer link interface of all MLAG switches.</p></td>
+<td>3.7.13-3.7.14</td>
 <td></td>
 </tr>
 <tr>
@@ -295,6 +308,12 @@ cumulus@switch:mgmt-vrf:~$ net add snmp-server username user999 auth-md5 user999
 <td></td>
 </tr>
 <tr>
+<td>CM-31404</td>
+<td><p>On the Delta AG7648 switch, the System LED and the Power LED do not display correctly.</p></td>
+<td>3.7.13-3.7.14</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-31327</td>
 <td><p>After you manually edit the /etc/resolv.conf file to change or remove a VRF for a given DNS server, ifreload does not remove IP rules created for DNS servers in the VRF. <br/>
 To work around this issue, run the net add/del dns nameserver vrf &lt;name&gt; command to force the DNS configuration.</p></td>
@@ -317,6 +336,12 @@ To work around this issue, avoid polling IP-FORWARD-MIB objects.</p></td>
 <tr>
 <td>CM-31263</td>
 <td><p>RX_DRP on a bond interface increases without any data traffic while the slave port does not increase.</p></td>
+<td>3.7.12-3.7.14</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31222</td>
+<td><p>Tenant VRF BGP peers appear in the EVPN RMAC and nexthop tables, which causes the kernel RMAC to point at invalid IP address.</p></td>
 <td>3.7.12-3.7.14</td>
 <td></td>
 </tr>
@@ -1985,6 +2010,11 @@ Fixed: 7.38.0-4+deb8u18</p></td>
 <td>3.0.0-3.7.13</td>
 </tr>
 <tr>
+<td>CM-31618</td>
+<td><p>A ping via a dual-connected bond fails, and the audio stream is not routed or encapsulated through the layer 3 VNI.</p></td>
+<td>3.7.12-3.7.13</td>
+</tr>
+<tr>
 <td>CM-31565</td>
 <td><p>Multicast traffic on a VPN is sent to remote VTEPs that are not part of the VPN and the remote VTEPs receive multicast traffic encapsulated in a VXLAN ID that doesn't exist.<br/>
 To work around this issue, disable IGMP snooping on the switch.</p></td>
@@ -2458,6 +2488,13 @@ To work around this issue, disable BFD to alleviate some of the CPU load.</p></t
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-33012</td>
+<td><p>After you add an interface to the bridge, an OSPF session flap can occur.</p>
+</td>
+<td>3.7.9-3.7.14</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-33008</td>
 <td><p>Several security vulnerabilities were found in ImageMagick, a suite of image manipulation programs. An attacker could cause denial of service and execution of arbitrary code when a crafted image file is processed.<br/>
 CVE-2020-19667 Stack-based buffer overflow and unconditional jump in ReadXPMImage in coders/xpm.c<br/>
@@ -2544,6 +2581,12 @@ This operation is not supported in the kernel without recreating the SVI. To app
 Vulnerable: &lt;= 2.4.40+dfsg-1+deb8u7<br/>
 Fixed: 2.4.40+dfsg-1+deb8u8</p></td>
 <td>3.0.0-3.7.14</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32597</td>
+<td><p>When you change the anycast address for the MLAG pair (clagd-vxlan-anycast-ip), high peak traffic occurs on the peer link interface of all MLAG switches.</p></td>
+<td>3.7.13-3.7.14</td>
 <td></td>
 </tr>
 <tr>
@@ -2799,6 +2842,12 @@ Fixed: 7.38.0-4+deb8u18</p></td>
 <td>3.7.14</td>
 </tr>
 <tr>
+<td>CM-31618</td>
+<td><p>A ping via a dual-connected bond fails, and the audio stream is not routed or encapsulated through the layer 3 VNI.</p></td>
+<td>3.7.12-3.7.13</td>
+<td>3.7.14</td>
+</tr>
+<tr>
 <td>CM-31605</td>
 <td><p>When you configure an SNMPv3 user with the net-snmp-config configuration command from the libsnmp-dev package, you get an error message similar to the one below:</p>
 
@@ -2889,6 +2938,12 @@ Fixed: 1.5.6-5+deb8u1</p></td>
 <td>CM-31407</td>
 <td><p>You cannot configure SNMPv3 trap-destinations in non-default VRFs with an authentication username that contains fewer than eight characters.</p></td>
 <td>3.7.12-3.7.14</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31404</td>
+<td><p>On the Delta AG7648 switch, the System LED and the Power LED do not display correctly.</p></td>
+<td>3.7.13-3.7.14</td>
 <td></td>
 </tr>
 <tr>
@@ -3020,6 +3075,12 @@ To work around this issue, disable ARP/ND suppression to remove the internal ACL
 </td>
 <td>3.7.13</td>
 <td>3.7.14</td>
+</tr>
+<tr>
+<td>CM-31222</td>
+<td><p>Tenant VRF BGP peers appear in the EVPN RMAC and nexthop tables, which causes the kernel RMAC to point at invalid IP address.</p></td>
+<td>3.7.12-3.7.14</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-31210</td>
@@ -5456,6 +5517,13 @@ Typically, the destination MAC address 01:00:5e:xx:xx:xx is used only for PIM/IG
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-33012</td>
+<td><p>After you add an interface to the bridge, an OSPF session flap can occur.</p>
+</td>
+<td>3.7.9-3.7.14</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-33008</td>
 <td><p>Several security vulnerabilities were found in ImageMagick, a suite of image manipulation programs. An attacker could cause denial of service and execution of arbitrary code when a crafted image file is processed.<br/>
 CVE-2020-19667 Stack-based buffer overflow and unconditional jump in ReadXPMImage in coders/xpm.c<br/>
@@ -5760,6 +5828,12 @@ Fixed: 7.38.0-4+deb8u18</p></td>
 <td>3.7.14</td>
 </tr>
 <tr>
+<td>CM-31618</td>
+<td><p>A ping via a dual-connected bond fails, and the audio stream is not routed or encapsulated through the layer 3 VNI.</p></td>
+<td>3.7.12-3.7.13</td>
+<td>3.7.14</td>
+</tr>
+<tr>
 <td>CM-31565</td>
 <td><p>Multicast traffic on a VPN is sent to remote VTEPs that are not part of the VPN and the remote VTEPs receive multicast traffic encapsulated in a VXLAN ID that doesn't exist.<br/>
 To work around this issue, disable IGMP snooping on the switch.</p></td>
@@ -5928,6 +6002,12 @@ Fixed: 3.26-1+debu8u13</p></td>
 These messages and the light are cosmetic issues only and do not otherwise impact the function of the switch.</p></td>
 <td>3.7.12-3.7.13</td>
 <td>3.7.14</td>
+</tr>
+<tr>
+<td>CM-31222</td>
+<td><p>Tenant VRF BGP peers appear in the EVPN RMAC and nexthop tables, which causes the kernel RMAC to point at invalid IP address.</p></td>
+<td>3.7.12-3.7.14</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-31210</td>
@@ -8633,6 +8713,13 @@ net.ipv6.ip6frag_high_thresh = 262144
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>CM-33012</td>
+<td><p>After you add an interface to the bridge, an OSPF session flap can occur.</p>
+</td>
+<td>3.7.9-3.7.14</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-33008</td>
@@ -11902,6 +11989,13 @@ To work around this issue, use net show interface command for LLDP output when c
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-33012</td>
+<td><p>After you add an interface to the bridge, an OSPF session flap can occur.</p>
+</td>
+<td>3.7.9-3.7.14</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-33008</td>
 <td><p>Several security vulnerabilities were found in ImageMagick, a suite of image manipulation programs. An attacker could cause denial of service and execution of arbitrary code when a crafted image file is processed.<br/>
 CVE-2020-19667 Stack-based buffer overflow and unconditional jump in ReadXPMImage in coders/xpm.c<br/>
@@ -14829,6 +14923,13 @@ To work around this issue, change the value of arp_ignore to 2. See <a href="htt
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>CM-33012</td>
+<td><p>After you add an interface to the bridge, an OSPF session flap can occur.</p>
+</td>
+<td>3.7.9-3.7.14</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-33008</td>

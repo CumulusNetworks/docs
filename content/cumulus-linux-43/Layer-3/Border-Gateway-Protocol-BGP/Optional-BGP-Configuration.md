@@ -56,7 +56,11 @@ cumulus@leaf01:~$
 {{< tab "CUE Commands ">}}
 
 ```
-cumulus@leaf01:~$ 
+cumulus@leaf01:~$ cl set vrf default router bgp peer-group SPINE
+cumulus@leaf01:~$ cl set vrf default router bgp peer-group SPINE remote-as external
+cumulus@leaf01:~$ net add bgp neighbor 10.0.1.0 peer-group SPINE
+cumulus@leaf01:~$ net add bgp neighbor 10.0.1.12 peer-group SPINE
+cumulus@leaf01:~$ cl config apply
 ```
 
 {{< /tab >}}

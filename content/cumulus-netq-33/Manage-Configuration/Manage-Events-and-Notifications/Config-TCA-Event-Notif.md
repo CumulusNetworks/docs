@@ -141,11 +141,11 @@ You can filter rules based on the following filter parameters.
 {{< tab "WJH" >}}
 | Event ID | Scope Parameters |
 | ---------- | -------------- |
-| TCA_WJH_DROP_AGGREGATE_UPPER  | Hostname |
-| TCA_WJH_ACL_DROP_AGGREGATE_UPPER| Hostname |
-| TCA_WJH_BUFFER_DROP_AGGREGATE_UPPER  | Hostname |
-| TCA_WJH_SYMBOL_ERROR_UPPER  | Hostname |
-| TCA_WJH_CRC_ERROR_UPPER  | Hostname |
+| TCA_WJH_DROP_AGG_UPPER  | Hostname, Reason, Drop type |
+| TCA_WJH_ACL_DROP_AGG_UPPER| Hostname, Reason, Ingress port, Drop type |
+| TCA_WJH_BUFFER_DROP_AGG_UPPER  | Hostname, Reason, Drop type |
+| TCA_WJH_SYMBOL_ERROR_UPPER  | Hostname, Reason, Drop type |
+| TCA_WJH_CRC_ERROR_UPPER  | Hostname, Port down reason, Drop type |
 
 {{< /tab >}}
 
@@ -153,27 +153,41 @@ You can filter rules based on the following filter parameters.
 
 ### Specify the Scope
 
-Rules require a scope. Scopes are defined and displayed as regular expressions. The definition and display is slightly different between the NetQ UI and the NetQ CLI, but the results are the same.
+Rules require a scope. The scope can be the entire complement of monitored devices or a subset. Scopes are defined and displayed as regular expressions. Each event has a set of attributes that can be used to apply the rule to a subset of all devices. The definition and display is slightly different between the NetQ UI and the NetQ CLI, but the results are the same.
 
 {{< tabs "TabID2234" >}}
 
 {{< tab "NetQ UI" >}}
 
-Scopes are displayed in TCA rule cards using the following format.
+The scope is defined in the Choose Attributes step when creating a TCA event rule. You can choose to apply the rule to all devices or narrow the scope using attributes. If you choose to narrow the scope, but then do not enter any values for the available attributes, the result is all devices and attributes.
 
-| Scope | Display in Card | Result |
-| ------- | ------------------- | ------- |
-| All devices | hostname = * | Show events for all devices |
-| All interfaces | ifname = * | Show events for all devices and all interfaces |
-| All sensors | s_name = * | Show events for all devices and all sensors |
-| Particular device | hostname = leaf01 | Show events for *leaf01* switch |
-| Particular interface | ifname = swp14 | Show events for *swp14* interface |
-| Particular sensor | s_name = fan2 | Show events for the *fan2* fan |
-| Set of devices | hostname ^ leaf | Show events for switches having names starting with *leaf* |
-| Set of interfaces | ifname ^ swp | Show events for interfaces having names starting with *swp* |
-| Set of sensors | s_name ^ fan | Show events for sensors having names starting with *fan* |
+Scopes are displayed in TCA rule cards using the following format: Attribute, Operation, Value.
 
-When a rule is filtered by more than one parameter, each is displayed on the card. Leaving a value blank for a parameter defaults to *all*; all hostnames, interfaces, sensors, forwarding resources, ACL resources, and so forth.
+In this example, three attributes are available. For one or more of these attributes, select the operation (equals or starts with) and provide a value.
+
+{{<figure src="/images/netq/tca-create-rule-scope-define-330.png" width="450">}}
+
+| Create rule to show events from a ... | Attribute | Operation | Value |
+| --- | --- | --- |  --- |
+| Single device | hostname | Equals | \<hostname\> such as *spine01* |
+| Single interface | ifname | Equals | \<interface-name\> such as *swp6* |
+| Single sensor | s_name | Equals | \<sensor-name\> such as *fan2* |
+| Single WJH drop type | drop_type | Equals | \<drop-type\> such as *router* |
+| Single WJH drop reason | reason or port_down_reason | Equals | \<drop-reason\> such as *WRED* |
+| Single WJH ingress port | ingress_port | Equals | \<port-name\> such as *swp9* |
+| Set of devices | hostname | Starts with | \<partial-hostname\> such as *leaf* |
+| Set of interfaces | ifname  | Starts with | \<partial-interface-name\> such as *swp* or *eth* |
+| Set of sensors | s_name | Starts with | \<partial-sensor-name\> such as *fan*, *temp*, or *psu* |
+
+Refer to {{<link title="WJH Event Messages Reference">}} for WJH drop types and reasons. Leaving an attribute value blank defaults to *all*; all hostnames, interfaces, sensors, forwarding resources, ACL resources, and so forth.
+
+Each attribute is displayed on the rule card as a regular expression equivalent to your choices above:
+
+- Equals is displayed as an equals sign (=)
+- Starts with is displayed as a caret (^)
+- Blank (all) is displayed as an asterisk (*)
+
+{{<figure src="/images/netq/tca-create-rule-resulting-rule-card-330.png" width="200">}}
 
 {{< /tab >}}
 
@@ -219,6 +233,20 @@ Scopes are defined with regular expressions, as follows. When two paramaters are
 
 {{< /tab >}}
 
+{{< tab "Hostname, Reason, Drop Type">}}
+
+| Scope Value | Example | Result |
+| --------------- | ---------- | -------- |
+| \<hostname>,\<reason\>,\<drop_type\> | leaf01,xxx,\'\*\' | Deliver WJH events for all drop types and the specified reason on the specified device (*leaf01*) |
+| \'\*\',\<reason\>,\'\*\'  | \'\*\',xxx,\'\*\' | Deliver WJH events for the specified reason for all devices and drop types |
+|  \<hostname>,\'\*\',\<drop_type\> | leaf01,\'\*\',wjh | Deliver WJH events for all reasons on the specified device (*leaf01*) |
+| \<partial-hostname>\*,\<reason\>,\<drop_type\> | leaf*,xxx,wjh | Deliver WJH events for the specified reason on all devices with hostnames starting with the specified text (*leaf*) |
+| \<hostname>,\<partial-reason\>\*,\<drop_type\> | leaf01,xxx\*,wjh | Deliver WJH events for reasons starting with the specified text on the specified device (*leaf01*) |
+| \<hostname>,\<reason\>\*,\<partial_drop_type\> | leaf01,xxx\*,xxx\* | Deliver WJH events for reasons starting with the specified text on the specified device (*leaf01*) |
+| \'\*\',\'\*\',\'\*\' | \'\*\',\'\*\',\'\*\' | Deliver WJH events for all reasons on all devices |
+
+{{< /tab >}}
+
 {{< /tabs >}}
 
 {{< /tab >}}
@@ -243,7 +271,7 @@ To create a TCA rule:
 
     {{<figure src="/images/netq/tca-create-rules-330.png" width="600">}}
 
-3. Select the event type for the rule you want to create.
+3. Select the event type for the rule you want to create. Note that the total count of rules for each event type is also shown.
 
 4. Click **Create a Rule** or <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18"/> (Add rule) to add a rule.
 
@@ -291,7 +319,7 @@ The attributes presented depend on the event type chosen in the <em>Enter Detail
 
 10. Define the scope of the rule.
 
-    - If you want to restrict the rule to a particular device, and enter values for one or more of the available parameters.
+    - If you want to restrict the rule to a particular device, enter values for one or more of the available attributes.
 
     - If you want the rule to apply to all devices, click the scope toggle.
 
@@ -301,13 +329,13 @@ The attributes presented depend on the event type chosen in the <em>Enter Detail
 
 12. Optionally, select a notification channel where you want the events to be sent.
 
-    Only previously created channels are available for selection. If no channel is available or selected, the notifications can only be retrieved from the database. You can add a channel at a later time and then add it to the rule. Refer to {{<link title="Configure Notifications/#create-a-channel" text="Create a Channel">}} and {{<link title="Configure Notifications/#change-add-or-remove-the-channels-on-a-tca-rule" text="Modify TCA Rules">}}.
+    Only previously created channels are available for selection. If no channel is available or selected, the notifications can only be retrieved from the database. You can add a channel at a later time and then add it to the rule. Refer to {{<link title="Configure System Event Notifications/#create-a-channel" text="Create a Channel">}} and {{<link title="Configure Threshold-Based Event Notifications/#change-add-or-remove-the-channels-on-a-tca-rule" text="Modify TCA Rules">}}.
 
 13. Click **Finish**.
 
-This example shows four rules. The rule on the left triggers an alarm event when the laser bias current exceeds the upper threshold set by the vendor on all interfaces of all leaf switches. The rule second to the left triggers an alarm event when the temperature on the *temp1* sensor exceeds 32 &deg;C on the all leaf switch. The rule second to the right triggers an alarm event when any device exceeds the maximum CPU utilization of 93%. The rule on the right triggers an informational event when switch *leaf01* exceeds the maximum CPU utilization of 87%. Note that the cards indicate all rules are currently Active.
+This example shows two interface statistics rules. The rule on the left triggers an informational event when the the total received bytes exceeds the upper threshold of 5 M on all switches. The rule on the right triggers an alarm event when any switch exceeds the total received broadcast bytes af 560 K, indicating a broadcast storm. Note that the cards indicate both rules are currently Active.
 
-{{<figure src="/images/netq/tca-create-rule-examples-320.png" width="700">}}
+{{<figure src="/images/netq/tca-create-rule-ifstats-examples-330.png" width="700">}}
 
 {{< /tab >}}
 
@@ -423,7 +451,11 @@ You can view all of the threshold-crossing event rules you have created in the N
 
     A card is displayed for every rule.
 
-    {{<figure src="/images/netq/tca-rules-allcards-320.png" width="500">}}
+    {{<figure src="/images/netq/tca-create-rule-ifstats-examples-330.png" width="500">}}
+
+When you have at least one rule created, you can use the filters that appear above the rule cards to find the rules of interest. Filter by status, severity, channel, and/or events. When a filter is applied a badge indicating the number of items in the filter is shown on the filter dropdown.
+
+{{<figure src="/images/netq/tca-rules-filter-330.png" width="500">}}
 
 {{< /tab >}}
 
@@ -645,13 +677,13 @@ Successfully added/updated tca TCA_DISK_UTILIZATION_UPPER_1
 
 ### Change the Name of a TCA Rule
 
-You cannot change the name of a TCA rule using the NetQ CLI because the rules are not named. They are given identifiers (tca_id) automatically. In the NetQ UI, to change a rule name, you must delete the rule and re-create it with the new name. Refer to {{<link title="Configure Notifications/#delete-a-tca-rule" text="Delete a TCA Rule">}} and then {{<link title="Configure Notifications/#create-a-tca-rule" text="Create a TCA Rule">}}.
+You cannot change the name of a TCA rule using the NetQ CLI because the rules are not named. They are given identifiers (tca_id) automatically. In the NetQ UI, to change a rule name, you must delete the rule and re-create it with the new name. Refer to {{<link title="#delete-a-tca-rule" text="Delete a TCA Rule">}} and then {{<link title="#create-a-tca-rule" text="Create a TCA Rule">}}.
 
 ### Change the Severity of a TCA Rule
 
 TCA rules have either an informational or critical severity.
 
-In the NetQ UI, the severity cannot be changed by itself, the rule must be deleted and re-created using the new severity. Refer to {{<link title="Configure Notifications/#delete-a-tca-rule" text="Delete a TCA Rule">}} and then {{<link title="Configure Notifications/#create-a-tca-rule" text="Create a TCA Rule">}}.
+In the NetQ UI, the severity cannot be changed by itself, the rule must be deleted and re-created using the new severity. Refer to {{<link title="#delete-a-tca-rule" text="Delete a TCA Rule">}} and then {{<link title="#create-a-tca-rule" text="Create a TCA Rule">}}.
 
 In the NetQ CLI, to change the severity, run:
 

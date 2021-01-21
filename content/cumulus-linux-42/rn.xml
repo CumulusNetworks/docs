@@ -13,13 +13,6 @@
 <td></td>
 </tr>
 <tr>
-<td>CM-33012</td>
-<td><p>After you add an interface to the bridge, an OSPF session flap can occur.</p>
-</td>
-<td>3.7.9-3.7.14, 4.2.1</td>
-<td></td>
-</tr>
-<tr>
 <td>CM-32953</td>
 <td><p>On Mellanox switches, you can't ping the SVI of the MLAG peer over the peer link after the packet is VXLAN decapsulated.</p></td>
 <td>4.2.1</td>
@@ -1914,6 +1907,12 @@ To work around this issue, change the value of arp_ignore to 2. See <a href="htt
 <th> Affects </th>
 </tr>
 <tr>
+<td>CM-33012</td>
+<td><p>After you add an interface to the bridge, an OSPF session flap can occur.</p>
+</td>
+<td>3.7.9-4.2.0</td>
+</tr>
+<tr>
 <td>CM-31374</td>
 <td><p>CVE-2020-15166: ZeroMQ, a lightweight messaging kernel library<br/>
 does not properly handle connecting peers before a handshake is<br/>
@@ -2220,6 +2219,13 @@ asic-monitor[7389]: File "/usr/lib/python2.7/dist-packages/cumulus/asic_monitor.
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>CM-33012</td>
+<td><p>After you add an interface to the bridge, an OSPF session flap can occur.</p>
+</td>
+<td>3.7.9-4.2.0</td>
+<td>4.2.1</td>
 </tr>
 <tr>
 <td>CM-32860</td>

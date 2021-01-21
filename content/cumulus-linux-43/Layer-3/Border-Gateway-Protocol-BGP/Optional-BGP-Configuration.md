@@ -771,14 +771,14 @@ cumulus@switch:~$ net commit
 
 <!--## Suppress Route Advertisement
 
-You can configure BGP to wait for a response from the RIB indicating that the routes installed in the RIB are also installed in the FIB before sending updates to peers.
+You can configure BGP to wait for a response from the RIB indicating that the routes installed in the RIB are also installed in the ASIC before sending updates to peers.
 
 {{< tabs "TabID784 ">}}
 
 {{< tab "NCLU Commands ">}}
 
 ```
-cumulus@switch:~$ net add routing bgp suppress-fib-pending
+cumulus@switch:~$ net add bgp wait-for-install
 cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```

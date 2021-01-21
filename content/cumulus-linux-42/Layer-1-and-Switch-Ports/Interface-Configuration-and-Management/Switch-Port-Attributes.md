@@ -853,7 +853,7 @@ Cumulus Linux lets you:
 
    When you split a port into two interfaces, such as 2x50G, you do **not** have to disable the adjacent port.
 
-Valid port configuration and breakout guidance for each platform is provided in the `/etc/cumulus/ports.conf` file.
+Valid port configuration and breakout guidance for each platform is provided in the `/etc/cumulus/ports.conf`.
 
 {{%/notice%}}
 

@@ -7,6 +7,13 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-33012</td>
+<td><p>After you add an interface to the bridge, an OSPF session flap can occur.</p>
+</td>
+<td>3.7.9-4.2.0</td>
+<td>4.2.1</td>
+</tr>
+<tr>
 <td>CM-32860</td>
 <td><p>The following vulnerabilities were announced in the p11-kit (libp11-kit0) packages:<br/>
 CVE-2020-29361: Multiple integer overflows have been discovered in the array allocations in the p11-kit library and the p11-kit list command, where overflow checks are missing before calling realloc or calloc.<br/>

@@ -340,6 +340,20 @@ To work around this issue, avoid polling IP-FORWARD-MIB objects.</p></td>
 <td></td>
 </tr>
 <tr>
+<td>CM-31232</td>
+<td><p>On the  Dell N3048EP switch, the module information from SFP ports is not displayed in the l1-show command.<br/>
+To work around this issue, use the ethtool -m &lt;interface&gt; command.</p></td>
+<td>3.7.13-3.7.14</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31231</td>
+<td><p>On the Dell N3048EP switch, the module information from SFP ports is not displayed in the l1-show command.<br/>
+To work around this issue, use the ethtool -m &lt;interface&gt; command.</p></td>
+<td>3.7.13-3.7.14</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-31222</td>
 <td><p>Tenant VRF BGP peers appear in the EVPN RMAC and nexthop tables, which causes the kernel RMAC to point at invalid IP address.</p></td>
 <td>3.7.12-3.7.14</td>
@@ -3064,6 +3078,20 @@ These messages and the light are cosmetic issues only and do not otherwise impac
 To work around this issue, disable ARP/ND suppression to remove the internal ACL rule that affects the ports.</p></td>
 <td>3.7.13</td>
 <td>3.7.14</td>
+</tr>
+<tr>
+<td>CM-31232</td>
+<td><p>On the  Dell N3048EP switch, the module information from SFP ports is not displayed in the l1-show command.<br/>
+To work around this issue, use the ethtool -m &lt;interface&gt; command.</p></td>
+<td>3.7.13-3.7.14</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31231</td>
+<td><p>On the Dell N3048EP switch, the module information from SFP ports is not displayed in the l1-show command.<br/>
+To work around this issue, use the ethtool -m &lt;interface&gt; command.</p></td>
+<td>3.7.13-3.7.14</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-31226</td>

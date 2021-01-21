@@ -771,14 +771,14 @@ cumulus@switch:~$ net commit
 
 ## Suppress Route Advertisement
 
-You can configure BGP to wait for a response from the RIB indicating that the routes installed in the RIB are also installed in the FIB before sending updates to peers.
+You can configure BGP to wait for a response from the RIB indicating that the routes installed in the RIB are also installed in the ASIC before sending updates to peers.
 
 {{< tabs "TabID784 ">}}
 
 {{< tab "NCLU Commands ">}}
 
 ```
-cumulus@switch:~$ net add routing bgp suppress-fib-pending
+cumulus@switch:~$ net add bgp wait-for-install
 cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
@@ -814,7 +814,7 @@ router bgp 65199
 ...
 ```
 
-The {{<link url="Smart-System-Manager" text="Smart System Manager">}} supresses route advertisement automically when upgrading or troubleshooting an active switch so that there is minimal disruption to the network.
+The {{<link url="Smart-System-Manager" text="Smart System Manager">}} suppresses route advertisement automatically when upgrading or troubleshooting an active switch so that there is minimal disruption to the network.
 
 ## BGP add-path
 

@@ -269,16 +269,117 @@ To configure BGP numbered on a BGP node, you need to:
 {{< tab " leaf01 ">}}
 
 ```
-cumulus@leaf01:~$ 
-```
+1. Identify the BGP node by assigning an ASN.
+
+     - To assign an ASN manually:
+
+     ```
+     cumulus@leaf01:~$ cl set vrf default router bgp autonomous-system 65101
+     ```
+
+     - To use auto BGP to assign an ASN automatically on the leaf:
+
+     ```
+     cumulus@leaf01:~$ cl set vrf default router bgp autonomous-system auto
+     ```
+
+     The auto BGP `leaf` keyword is only used to configure the ASN. The configuration files and `net show` commands display the AS number. CUE DOESN"T HAVE LEAF AND SPINE OPTIONS - HOW DO YOU DISTINGUISH BETWEEN THEM???
+
+2. Assign the router ID.
+
+    ```
+    cumulus@leaf01:~$ cl set vrf default router bgp router-id 10.10.10.1
+    ```
+
+3. Specify the BGP neighbor to which you want to distribute routing information.
+
+    ```
+    cumulus@leaf01:~$ cl set vrf default router bgp peer 10.0.1.0 remote-as external
+    ```
+
+    For BGP to advertise IPv6 prefixes, you need to run an additional command to activate the BGP neighbor under the IPv6 address family. The IPv4 address family is enabled by default and the `activate` command is not required for IPv4 route exchange.
+
+    ```
+    cumulus@leaf01:~$ cl set vrf default router bgp peer 2001:db8:0002::0a00:0002 remote-as external
+    cumulus@leaf01:~$ cl set vrf default router bgp peer 2001:db8:0002::0a00:0002 enable on
+    ```
+
+    For BGP to advertise *IPv4* prefixes with IPv6 next hops, see {{<link url="Optional-BGP-Configuration#advertise-ipv4-prefixes-with-ipv6-next-hops" text="Advertise IPv4 Prefixes with IPv6 Next Hops">}}.
+
+4. Specify which prefixes to originate:
+
+    ```
+    cumulus@leaf01:~$ cl set vrf default router bgp ????????
+    cumulus@leaf01:~$ cl set vrf default router bgp ????????
+    cumulus@leaf01:~$ cl config diff
+    cumulus@leaf01:~$ cl config apply
+   ```
+
+   IPv6 prefix example:
+
+   ```
+   cumulus@leaf01:~$ cl set vrf default router bgp ????????
+   cumulus@leaf01:~$ cl config diff
+   cumulus@leaf01:~$ cl config apply
+   ```
 
 {{< /tab >}}
 
 {{< tab "spine01 ">}}
 
 ```
-cumulus@spine01:~$ 
-```
+1. Identify the BGP node by assigning an ASN.
+
+    - To assign an ASN manually:
+
+      ```
+      cumulus@spine01:~$ cl set vrf default router bgp autonomous-system 65199
+      ```
+
+    - To use auto BGP to assign an ASN automatically on the spine:
+
+      ```
+      cumulus@spine01:~$ cl set vrf default router bgp autonomous-system auto
+      ```
+
+      The auto BGP `spine` keyword is only used to configure the ASN. The configuration files and `net show` commands display the AS number.
+
+2. Assign the router ID.
+
+    ```
+    cumulus@spine01:~$ cl set vrf default router bgp router-id 10.10.10.101
+    ```
+
+3. Specify the BGP neighbor to which you want to distribute routing information.
+
+    ```
+    cumulus@spine01:~$ cl set vrf default router bgp peer remote-as external
+    ```
+
+    For BGP to advertise IPv6 prefixes, you need to run an additional command to activate the BGP neighbor under the IPv6 address family. The IPv4 address family is enabled by default and the `activate` command is not required for IPv4 route exchange.
+
+    ```
+    cumulus@spine01:~$ cl set vrf default router bgp peer 2001:db8:0002::0a00:1 remote-as external
+    cumulus@spine01:~$ cl set vrf default router bgp peer 2001:db8:0002::0a00:1 enable on
+    ```
+
+    For BGP to advertise *IPv4* prefixes with IPv6 next hops, see {{<link url="Optional-BGP-Configuration#advertise-ipv4-prefixes-with-ipv6-next-hops" text="Advertise IPv4 Prefixes with IPv6 Next Hops">}}.
+
+4. Specify which prefixes to originate:
+
+    ```
+    cumulus@spine01:~$ cl set vrf default router bgp ????????
+    cumulus@spine01:~$ cl config diff
+    cumulus@spine01:~$ cl config apply
+   ```
+
+   IPv6 prefix example:
+
+   ```
+   cumulus@spine01:~$ cl set vrf default router bgp
+   cumulus@spine01:~$ cl config diff
+   cumulus@spine01:~$ cl config apply
+   ```
 
 {{< /tab >}}
 
@@ -492,7 +593,25 @@ cumulus@spine01:~$
 {{< tab " leaf01 ">}}
 
 ```
-cumulus@leaf01:~$ 
+cumulus@leaf01:~$ cl set autonomous-system 65101
+cumulus@leaf01:~$ net add bgp router-id 10.10.10.1
+cumulus@leaf01:~$ net add bgp neighbor swp51 remote-as external
+cumulus@leaf01:~$ net add bgp ipv4 unicast network 10.10.10.1/32
+cumulus@leaf01:~$ net add bgp ipv4 unicast network 10.1.10.0/24
+cumulus@leaf01:~$ net pending
+cumulus@leaf01:~$ net commit
+```
+
+For BGP to advertise IPv6 prefixes, you need to run an additional command to activate the BGP neighbor under the IPv6 address family. The IPv4 address family is enabled by default and the `activate` command is not required for IPv4 route exchange.
+
+```
+cumulus@leaf01:~$ net add bgp autonomous-system 65101
+cumulus@leaf01:~$ net add bgp router-id 10.10.10.1
+cumulus@leaf01:~$ net add bgp neighbor swp51 remote-as external
+cumulus@leaf01:~$ net add bgp ipv6 unicast neighbor swp51 activate
+cumulus@leaf01:~$ net add bgp ipv6 unicast network 2001:db8::1/128
+cumulus@leaf01:~$ net pending
+cumulus@leaf01:~$ net commit
 ```
 
 {{< /tab >}}

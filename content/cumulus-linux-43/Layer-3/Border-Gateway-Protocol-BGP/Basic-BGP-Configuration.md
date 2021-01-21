@@ -282,7 +282,7 @@ To configure BGP numbered on a BGP node, you need to:
        cumulus@leaf01:~$ cl set vrf default router bgp autonomous-system auto leaf
        ```
 
-       The auto BGP `leaf` keyword is only used to configure the ASN. The configuration files and `net show` commands display the AS number. CUE DOESN"T HAVE LEAF AND SPINE OPTIONS - HOW DO YOU DISTINGUISH BETWEEN THEM???
+       The auto BGP `leaf` keyword is only used to configure the ASN. The configuration files and `net show` commands display the AS number. 
 
 2. Assign the router ID.
 

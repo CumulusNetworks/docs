@@ -814,7 +814,7 @@ router bgp 65199
 ...
 ```
 
-The {{<link url="Smart-System-Manager" text="Smart System Manager">}} supresses route advertisement automically when upgrading or troubleshooting an active switch so that there is minimal disruption to the network.-->
+The {{<link url="Smart-System-Manager" text="Smart System Manager">}} suppresses route advertisement automatically when upgrading or troubleshooting an active switch so that there is minimal disruption to the network.-->
 
 ## BGP add-path
 

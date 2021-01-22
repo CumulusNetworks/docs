@@ -75,6 +75,15 @@ iface bridge
 
 {{< /tab >}}
 
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@switch:~$ cl set 
+cumulus@switch:~$ cl config apply
+```
+
+{{< /tab >}}
+
 {{< /tabs >}}
 
 ## Troubleshooting

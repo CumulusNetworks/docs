@@ -85,7 +85,6 @@ leaf01(config-router)# neighbor swp51 interface peer-group SPINE
 
 ```
 cumulus@leaf01:~$ cl set vrf default router bgp peer swp51 peer-group SPINE
-
 ```
 
 {{< /tab >}}

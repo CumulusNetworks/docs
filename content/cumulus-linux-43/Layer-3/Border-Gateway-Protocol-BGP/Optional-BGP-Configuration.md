@@ -19,7 +19,6 @@ If the peer you want to add to a group already exists in the BGP configuration, 
 The following example commands create a peer group called SPINE that includes two external peers.
 
 {{< tabs "34 ">}}
-
 {{< tab "NCLU Commands ">}}
 
 ```
@@ -32,7 +31,6 @@ cumulus@leaf01:~$ net commit
 ```
 
 {{< /tab >}}
-
 {{< tab "vtysh Commands ">}}
 
 ```
@@ -52,19 +50,17 @@ cumulus@leaf01:~$
 ```
 
 {{< /tab >}}
-
 {{< tab "CUE Commands ">}}
 
 ```
 cumulus@leaf01:~$ cl set vrf default router bgp peer-group SPINE
 cumulus@leaf01:~$ cl set vrf default router bgp peer-group SPINE remote-as external
-cumulus@leaf01:~$ net add bgp neighbor 10.0.1.0 peer-group SPINE
-cumulus@leaf01:~$ net add bgp neighbor 10.0.1.12 peer-group SPINE
+cumulus@leaf01:~$ cl set vrf default router bgp peer 10.0.1.0 peer-group SPINE
+cumulus@leaf01:~$ cl set vrf default router bgp peer 10.0.1.12 peer-group SPINE
 cumulus@leaf01:~$ cl config apply
 ```
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 For an unnumbered configuration, you can use a single command to configure a neighbor and attach it to a peer group.
@@ -78,7 +74,6 @@ cumulus@leaf01:~$ net add bgp neighbor swp51 interface peer-group SPINE
 ```
 
 {{< /tab >}}
-
 {{< tab "vtysh Commands ">}}
 
 ```
@@ -86,15 +81,14 @@ leaf01(config-router)# neighbor swp51 interface peer-group SPINE
 ```
 
 {{< /tab >}}
-
 {{< tab "CUE Commands ">}}
 
 ```
-cumulus@leaf01:~$ 
+cumulus@leaf01:~$ cl set vrf default router bgp peer swp51 peer-group SPINE
+
 ```
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 ## BGP Dynamic Neighbors
@@ -106,7 +100,6 @@ You configure dynamic neighbors using the `bgp listen range <ip-address> peer-gr
 The following example commands create the peer group SPINE and configure BGP peering to remote neighbors within the address range 10.0.1.0/31.
 
 {{< tabs "36 ">}}
-
 {{< tab "NCLU Commands ">}}
 
 ```
@@ -121,7 +114,6 @@ cumulus@leaf01:~$ net commit
 The `net add bgp listen limit` command limits the number of dynamic peers. The default value is *100*.
 
 {{< /tab >}}
-
 {{< tab "vtysh Commands ">}}
 
 ```
@@ -140,15 +132,17 @@ cumulus@leaf01:~$
 The `bgp listen limit` command limits the number of dynamic peers. The default value is *100*.
 
 {{< /tab >}}
-
 {{< tab "CUE Commands ">}}
 
 ```
-cumulus@leaf01:~$ 
+cumulus@leaf01:~$ cl set vrf default router bgp peer-group SPINE
+cumulus@leaf01:~$ cl set vrf default router bgp peer-group SPINE remote-as external
+cumulus@leaf01:~$ cl set vrf default router bgp peer-group SPINE NEED COMMAND
+cumulus@leaf01:~$ cl set vrf default router bgp listen limit 5
+cumulus@leaf01:~$ cl config apply
 ```
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 The NCLU and `vtysh` commands save the configuration in the `/etc/frr/frr.conf` file. For example:
@@ -168,7 +162,6 @@ The eBGP multihop option lets you use BGP to exchange routes with an external pe
 To establish a connection between two eBGP peers that are not directly connected:
 
 {{< tabs "42 ">}}
-
 {{< tab "NCLU Commands ">}}
 
 ```
@@ -179,7 +172,6 @@ cumulus@leaf01:~$ net commit
 ```
 
 {{< /tab >}}
-
 {{< tab "vtysh Commands ">}}
 
 ```
@@ -196,15 +188,15 @@ cumulus@leaf01:~$
 ```
 
 {{< /tab >}}
-
 {{< tab "CUE Commands ">}}
 
 ```
-cumulus@leaf01:~$ 
+cumulus@leaf01:~$ cl set vrf default router bgp peer 10.10.10.101 remote-as external
+cumulus@leaf01:~$ cl set vrf default router bgp peer 10.10.10.101 NEED COMMAND
+cumulus@leaf01:~$ cl config apply
 ```
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 ## BGP TTL Security Hop Count
@@ -247,7 +239,8 @@ cumulus@leaf01:~$
 {{< tab "CUE Commands ">}}
 
 ```
-cumulus@leaf01:~$ 
+cumulus@leaf01:~$ cl set vrf default router bgp peer swp51 multihop-ttl 200
+cumulus@leaf01:~$ cl config apply
 ```
 
 {{< /tab >}}
@@ -356,7 +349,8 @@ cumulus@spine01:~$
 {{< tab "leaf01 ">}}
 
 ```
-cumulus@leaf01:~$ 
+cumulus@leaf01:~$ cl set vrf default router bgp peer swp51 password mypassword
+cumulus@leaf01:~$ cl config apply
 ```
 
 {{< /tab >}}
@@ -364,7 +358,8 @@ cumulus@leaf01:~$
 {{< tab "spine01 ">}}
 
 ```
-cumulus@spine01:~$ 
+cumulus@spine01:~$ cl set vrf default router bgp peer swp1 password mypassword
+cumulus@spine01:~$ cl config apply
 ```
 
 {{< /tab >}}
@@ -375,7 +370,7 @@ cumulus@spine01:~$
 
 {{< /tabs >}}
 
-You can confirm the configuration with the NCLU command `net show bgp neighbor <neighbor>` or with the `vtysh` command `show ip bgp neighbor <neighbor>`.
+You can confirm the configuration with the NCLU `net show bgp neighbor <neighbor>` command, the `vtysh` command `show ip bgp neighbor <neighbor>`, or the CUE `cl show vrf <vrf> router bgp peer <neighbor>` command.
 
 {{< expand "net show bgp neighbor <neighbor> example" >}}
 
@@ -447,15 +442,39 @@ If you use private ASNs in the data center, any routes you send out to the inter
 
 The following example command removes private ASNs from routes sent to the neighbor on swp51 (an unnumbered interface):
 
+{{< tabs "445 ">}}
+
+{{< tab "NCLU Commands ">}}
+
 ```
-cumulus@switch:~$ net add bgp neighbor swp51 remove-private-AS
+cumulus@leaf01:~$ net add bgp neighbor swp51 remove-private-AS
 ```
 
 You can replace the private ASNs with your public ASN with the following command:
 
 ```
-cumulus@switch:~$ net add bgp neighbor swp51 remove-private-AS replace-AS
+cumulus@leaf01:~$ net add bgp neighbor swp51 remove-private-AS replace-AS
 ```
+
+{{< /tab >}}
+
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@leaf01:~$ cl set vrf default router bgp peer swp51 NEED COMMAND
+cumulus@leaf01:~$ cl config apply
+```
+
+You can replace the private ASNs with your public ASN with the following command:
+
+```
+cumulus@leaf01:~$ cl set vrf default router bgp peer swp51 NEED COMMAND
+cumulus@leaf01:~$ cl config apply
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
 
 ## Multiple BGP ASNs
 
@@ -506,7 +525,13 @@ cumulus@border01:~$
 {{< tab "CUE Commands ">}}
 
 ```
-cumulus@border01:~$ cl set
+cumulus@border01:~$ cl set vrf RED router bgp autonomous-system 65532        
+cumulus@border01:~$ cl set vrf RED router bgp router-id 10.10.10.63
+cumulus@border01:~$ cl set vrf RED router bgp peer swp3 interface remote-as external NEED COMMAND
+cumulus@border01:~$ cl set vrf BLUE router bgp autonomous-system 65533 
+cumulus@border01:~$ cl set vrf BLUE router bgp router-id 10.10.10.63
+cumulus@border01:~$ cl set vrf BLUE router bgp peer swp4 interface remote-as external NEED COMMAND
+cumulus@border01:~$ cl config apply
 ```
 
 {{< /tab >}}
@@ -649,7 +674,8 @@ cumulus@switch:~$
 {{< tab "CUE Commands ">}}
 
 ```
-cumulus@switch:~$ 
+cumulus@switch:~$ NEED COMMAND
+cumulus@border01:~$ cl config apply
 ```
 
 {{< /tab >}}
@@ -702,7 +728,8 @@ cumulus@switch:~$
 {{< tab "CUE Commands ">}}
 
 ```
-cumulus@switch:~$ 
+cumulus@switch:~$ NEED COMMAND
+cumulus@border01:~$ cl config apply
 ```
 
 {{< /tab >}}

@@ -37,6 +37,7 @@ To configure BGP numbered on a BGP node, you need to:
       ```
 
     - To use auto BGP to assign an ASN automatically on the leaf:
+    <!-- laclac: CUE-2562 auto BGP.  This is not implemented in CUE yet. -->
 
       ```
       cumulus@leaf01:~$ net add bgp auto leaf

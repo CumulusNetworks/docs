@@ -7,6 +7,23 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-33050</td>
+<td><p>The NCLU net del vrf command does not delete a numbered VRF. For example:</p>
+
+cumulus@leaf01:~$ net del vrf 55
+ERROR: Command not found
+
+</td>
+<td>4.2.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33049</td>
+<td><p>You cannot set the time zone can with NCLU commands.</p></td>
+<td>4.1.1-4.2.1</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-33035</td>
 <td><p>EAP-TLS fail on wired connections when the reachability to the RADIUS server does not use the eth0 (mgmt) VRF interface.</p></td>
 <td>4.2.1</td>
@@ -335,6 +352,14 @@ Fixed: 2.4.47+dfsg-3+deb10u3</p></td>
 <td></td>
 </tr>
 <tr>
+<td>CM-32086</td>
+<td><p>If the peer link does not trunk all VLANs on an MLAG bond, all FDB entries learned through that MLAG bond are not redirected over the peer link when the MLAG bond goes down. As a result,  traffic destined to the MAC addresses that arrives on the MLAG peer with the downed MLAG port is dropped.<br/>
+To work around this issue, ensure that the peer link trunks all VLANs that exist on all MLAG bonds.</p>
+</td>
+<td>4.2.0-4.2.1</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-32068</td>
 <td><p>Kernel routes added by iproute2 are missing in FRR after an interface flap.<br/>
 To work around this issue, configure a static route in FRR.</p></td>
@@ -612,6 +637,13 @@ To work around this issue, run the net add/del dns nameserver vrf &lt;name&gt; c
 To work around this issue, disable ARP/ND suppression to remove the internal ACL rule that affects the ports.</p></td>
 <td>3.7.13, 4.2.1</td>
 <td>3.7.14-4.2.0</td>
+</tr>
+<tr>
+<td>CM-31231</td>
+<td><p>On the Dell N3048EP switch, the module information from SFP ports is not displayed in the l1-show command.<br/>
+To work around this issue, use the ethtool -m &lt;interface&gt; command.</p></td>
+<td>3.7.13-3.7.14, 4.2.1</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-31222</td>
@@ -2221,6 +2253,12 @@ asic-monitor[7389]: File "/usr/lib/python2.7/dist-packages/cumulus/asic_monitor.
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-33049</td>
+<td><p>You cannot set the time zone can with NCLU commands.</p></td>
+<td>4.1.1-4.2.1</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-33012</td>
 <td><p>After you add an interface to the bridge, an OSPF session flap can occur.</p>
 </td>
@@ -2408,6 +2446,14 @@ The slapd package is not present in the image or repository, although the OpenLD
 Vulnerable: &lt;= 2.4.47+dfsg-3+deb10u2<br/>
 Fixed: 2.4.47+dfsg-3+deb10u3</p></td>
 <td>4.0.0-4.2.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32086</td>
+<td><p>If the peer link does not trunk all VLANs on an MLAG bond, all FDB entries learned through that MLAG bond are not redirected over the peer link when the MLAG bond goes down. As a result,  traffic destined to the MAC addresses that arrives on the MLAG peer with the downed MLAG port is dropped.<br/>
+To work around this issue, ensure that the peer link trunks all VLANs that exist on all MLAG bonds.</p>
+</td>
+<td>4.2.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>

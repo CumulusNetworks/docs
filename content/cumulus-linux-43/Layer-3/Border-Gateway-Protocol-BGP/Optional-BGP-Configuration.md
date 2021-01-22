@@ -790,7 +790,7 @@ cumulus@switch:~$
 {{< tab "CUE Commands ">}}
 
 ```
-cumulus@switch:~$ 
+cumulus@switch:~$ cl set vrf default router bgp peer 2001:db8:0002::0a00:0002 NEED COMMAND (maybe address-family ipv6-unicast nexthop-setting?????)
 ```
 
 {{< /tab >}}
@@ -844,7 +844,9 @@ cumulus@switch:~$
 {{< tab "CUE Commands ">}}
 
 ```
-cumulus@switch:~$ 
+cumulus@switch:~$ cl set vrf default router bgp peer 2001:db8:0002::0a00:0002 NEED COMMAND (maybe address-family ipv6-unicast nexthop-setting?????)
+cumulus@switch:~$ cl set vrf default router bgp peer 2001:db8:0002::0a00:0002 address-family ipv4-unicast enable on?????
+cumulus@switch:~$ cl config apply
 ```
 
 {{< /tab >}}
@@ -873,6 +875,10 @@ To protect against an internal network connectivity disruption caused by BGP, yo
 
 The following example commands set the maximum number of prefixes allowed from the BGP neighbor on swp51 to 3000:
 
+{{< tabs "878 ">}}
+
+{{< tab "vtysh Commands ">}}
+
 ```
 cumulus@leaf01:~$ sudo vtysh
 
@@ -885,11 +891,28 @@ leaf01# exit
 cumulus@leaf01:~$
 ```
 
+{{< /tab >}}
+
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@switch:~$ cl set vrf default router bgp peer swp51 NEED COMMAND
+cumulus@switch:~$ cl config apply
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
 ## Aggregate Addresses
 
 To minimize the size of the routing table and save bandwidth, you can aggregate a range of networks in your routing table into a single prefix.
 
 The following example command aggregates a range of addresses, such as 10.1.1.0/24, 10.1.2.0/24, 10.1.3.0/24 into the single prefix 10.1.0.0/16.
+
+{{< tabs "913 ">}}
+
+{{< tab "NCLU Commands ">}}
 
 ```
 cumulus@switch:~$ net add bgp aggregate-address 10.1.0.0/16
@@ -905,16 +928,29 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
+{{< /tab >}}
+
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@switch:~$ cl set vrf default router bgp NEED COMMAND
+cumulus@switch:~$ cl config apply
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
 <!--## Suppress Route Advertisement
 
-You can configure BGP to wait for a response from the RIB indicating that the routes installed in the RIB are also installed in the FIB before sending updates to peers.
+You can configure BGP to wait for a response from the RIB indicating that the routes installed in the RIB are also installed in the ASIC before sending updates to peers.
 
 {{< tabs "TabID784 ">}}
 
 {{< tab "NCLU Commands ">}}
 
 ```
-cumulus@switch:~$ net add routing bgp suppress-fib-pending
+cumulus@switch:~$ net add routing bgp wait-for-install
 cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
@@ -940,7 +976,8 @@ cumulus@switch:~$
 {{< tab "CUE Commands ">}}
 
 ```
-cumulus@switch:~$ 
+cumulus@switch:~$ cl set vrf default router bgp NEED COMMAND
+cumulus@switch:~$ cl config apply
 ```
 
 {{< /tab >}}
@@ -958,7 +995,7 @@ router bgp 65199
 ...
 ```
 
-The {{<link url="Smart-System-Manager" text="Smart System Manager">}} supresses route advertisement automically when upgrading or troubleshooting an active switch so that there is minimal disruption to the network.-->
+The {{<link url="Smart-System-Manager" text="Smart System Manager">}} suppresses route advertisement automatically when upgrading or troubleshooting an active switch so that there is minimal disruption to the network.-->
 
 ## BGP add-path
 
@@ -1053,7 +1090,9 @@ leaf01(config-router)#
 {{< tab "CUE Commands ">}}
 
 ```
-cumulus@leaf01:~$ 
+cumulus@leaf01:~$ cl set vrf default router bgp autonomous-system 65101
+cumulus@leaf01:~$ cl set vrf default router bgp peer swp50 NEED COMMAND
+cumulus@leaf01:~$ cl config apply
 ```
 
 {{< /tab >}}
@@ -1091,7 +1130,9 @@ leaf01(config-router)#
 {{< tab "CUE Commands ">}}
 
 ```
-cumulus@leaf01:~$ 
+cumulus@leaf01:~$ cl set vrf default router bgp autonomous-system 65101
+cumulus@leaf01:~$ cl set vrf default router bgp peer swp50 NEED COMMAND
+cumulus@leaf01:~$ cl config apply
 ```
 
 {{< /tab >}}
@@ -1161,11 +1202,12 @@ cumulus@leaf01:~$
 ```
 
 {{< /tab >}}
-
 {{< tab "CUE Commands ">}}
 
 ```
-cumulus@leaf01:~$
+cumulus@leaf01:~$ cl set vrf default router bgp peer swp51 timers keepalive 10
+cumulus@leaf01:~$ cl set vrf default router bgp peer swp51 timers hold 30
+cumulus@leaf01:~$ cl config apply
 ```
 
 {{< /tab >}}
@@ -1215,7 +1257,8 @@ cumulus@leaf01:~$
 {{< tab "CUE Commands ">}}
 
 ```
-cumulus@leaf01:~$
+cumulus@leaf01:~$ cl set vrf default router bgp peer swp51 timers connection-retry 30
+cumulus@leaf01:~$ cl config apply
 ```
 
 {{< /tab >}}
@@ -1264,7 +1307,8 @@ cumulus@leaf01:~$
 {{< tab "CUE Commands ">}}
 
 ```
-cumulus@leaf01:~$
+cumulus@leaf01:~$ cl set vrf default router bgp peer swp51 timers route-advertisement 5
+cumulus@leaf01:~$ cl config apply
 ```
 
 {{< /tab >}}
@@ -1319,7 +1363,7 @@ cumulus@switch:~$ sudo vtysh
 
 switch# configure terminal
 switch(config)# router bgp 65101
-switch(config-router)# update-delay 300 200 
+switch(config-router)# update-delay 300 200
 switch(config-router)# end
 switch# write memory
 switch# exit
@@ -1331,7 +1375,7 @@ cumulus@switch:~$
 {{< tab "CUE Commands ">}}
 
 ```
-cumulus@switch:~$
+cumulus@switch:~$ cl set vrf default router bgp NEED COMMAND
 ```
 
 {{< /tab >}}
@@ -1410,7 +1454,8 @@ cumulus@spine01:~$
 {{< tab "CUE Commands ">}}
 
 ```
-cumulus@spine01:~$
+cumulus@spine01:~$ cl set vrf default router bgp peer swp1 address-family ipv4-unicast route-reflector-client on
+cumulus@spine01:~$ cl config apply
 ```
 
 {{< /tab >}}
@@ -1432,16 +1477,17 @@ router bgp 65199
 ```
 
 {{%notice info%}}
-When configuring BGP for IPv6, you must run the `route-reflector-client` command **after** the `activate` command; otherwise, the `route-reflector-client` command is ignored.
+When configuring BGP for IPv6, you must run the `route-reflector-client` command **after** the NCLU or vtysh `activate` command; otherwise, the `route-reflector-client` command is ignored. STILL THE CASE FOR CUE COMMAND??????
 {{%/notice%}}
 
 ## Administrative Distance
 
 Cumulus Linux uses the administrative distance to choose which routing protocol to use when two different protocols provide route information for the same destination. The smaller the distance, the more reliable the protocol. For example, if the switch receives a route from OSPF with an administrative distance of 110 and the same route from BGP with an administrative distance of 100, the switch chooses BGP.
 
-Set the administrative distance with vtysh commands.
-
 The following example commands set the administrative distance for routes from 10.10.10.101 to 100:
+
+{{< tabs "1489 ">}}
+{{< tab "vtysh Commands ">}}
 
 ```
 cumulus@spine01:~$ sudo vtysh
@@ -1455,7 +1501,21 @@ spine01# exit
 cumulus@spine01:~$
 ```
 
+{{< /tab >}}
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@spine01:~$ cl set vrf default router bgp peer NEED COMMAND
+cumulus@spine01:~$ cl config apply
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
 The following example commands set the administrative distance for routes external to the AS to 150, routes internal to the AS to 110, and local routes to 100:
+
+{{< tabs "1514 ">}}
+{{< tab "vtysh Commands ">}}
 
 ```
 cumulus@spine01:~$ sudo vtysh
@@ -1469,12 +1529,22 @@ spine01# exit
 cumulus@spine01:~$
 ```
 
+{{< /tab >}}
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@spine01:~$ cl set vrf default router bgp NEED COMMAND
+cumulus@spine01:~$ cl config apply
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
 ## Graceful BGP Shutdown
 
 To reduce packet loss during planned maintenance of a router or link, you can configure graceful BGP shutdown, which forces traffic to route around the BGP node:
 
 {{< tabs "Graceful BGP shutdown">}}
-
 {{< tab "NCLU Commands ">}}
 
 To enable graceful shutdown:
@@ -1494,7 +1564,6 @@ cumulus@leaf01:~$ net commit
 ```
 
 {{< /tab >}}
-
 {{< tab "vtysh Commands ">}}
 
 To enable graceful shutdown:
@@ -1526,15 +1595,21 @@ cumulus@leaf01:~$
 ```
 
 {{< /tab >}}
-
 {{< tab "CUE Commands ">}}
 
 ```
-cumulus@leaf01:~$
+cumulus@leaf01:~$ cl set router bgp graceful-shutdown on
+cumulus@leaf01:~$ cl config apply
+```
+
+To disable graceful shutdown:
+
+```
+cumulus@leaf01:~$ cl set router bgp graceful-shutdown off
+cumulus@leaf01:~$ cl config apply
 ```
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 When configured, the `graceful-shutdown` community is added to all paths from eBGP peers and the `local-pref` for that route is set to `0`. To see the configuration, run the NCLU command `net show bgp <route>` or the `vtysh` command `show ip bgp <route>`. For example:
@@ -1657,14 +1732,15 @@ cumulus@leaf01:~$
 {{< tab "CUE Commands ">}}
 
 ```
-cumulus@leaf01:~$
+cumulus@leaf01:~$ cl set vrf default router bgp peer swp51 NEED COMMAND
+cumulus@leaf01:~$ cl config apply
 ```
 
 {{< /tab >}}
 
 {{< /tabs >}}
 
-The following example commands enable BGP graceful restart on the BGP peer connected on swp51. 
+The following example commands enable BGP graceful restart on the BGP peer connected on swp51.
 
 {{< tabs "TabID51 ">}}
 
@@ -1697,7 +1773,8 @@ cumulus@leaf01:~$
 {{< tab "CUE Commands ">}}
 
 ```
-cumulus@leaf01:~$
+cumulus@leaf01:~$ cl set vrf default router bgp peer swp51 graceful-restart-mode full?????
+cumulus@leaf01:~$ cl config apply
 ```
 
 {{< /tab >}}
@@ -1737,7 +1814,8 @@ cumulus@leaf01:~$
 {{< tab "CUE Commands ">}}
 
 ```
-cumulus@leaf01:~$
+cumulus@leaf01:~$ cl set vrf default router bgp peer swp51 graceful-restart-mode helper-only?????
+cumulus@leaf01:~$ cl config apply
 ```
 
 {{< /tab >}}
@@ -1800,7 +1878,8 @@ cumulus@leaf01:~$
 {{< tab "CUE Commands ">}}
 
 ```
-cumulus@leaf01:~$
+cumulus@leaf01:~$ NEED COMMAND
+cumulus@leaf01:~$ cl config apply
 ```
 
 {{< /tab >}}
@@ -1853,7 +1932,8 @@ cumulus@leaf01:~$
 {{< tab "CUE Commands ">}}
 
 ```
-cumulus@leaf01:~$
+cumulus@leaf01:~$ cl set vrf default router bgp NEED COMMAND
+cumulus@leaf01:~$ cl config apply$
 ```
 
 {{< /tab >}}
@@ -1893,7 +1973,8 @@ cumulus@leaf01:~$
 {{< tab "CUE Commands ">}}
 
 ```
-cumulus@leaf01:~$
+cumulus@leaf01:~$ cl set vrf default router bgp peer swp51 graceful-restart-mode off
+cumulus@leaf01:~$ cl config apply
 ```
 
 {{< /tab >}}
@@ -1986,7 +2067,7 @@ cumulus@switch:~$
 {{< tab "CUE Commands ">}}
 
 ```
-cumulus@switch:~$
+cumulus@switch:~$ NEED COMMAND
 ```
 
 {{< /tab >}}
@@ -2041,7 +2122,7 @@ cumulus@switch:~$
 {{< tab "CUE Commands ">}}
 
 ```
-cumulus@switch:~$
+cumulus@switch:~$ NEED COMMAND
 ```
 
 {{< /tab >}}
@@ -2081,7 +2162,7 @@ cumulus@switch:~$
 {{< tab "CUE Commands ">}}
 
 ```
-cumulus@switch:~$
+cumulus@switch:~$ NEED COMMAND
 ```
 
 {{< /tab >}}

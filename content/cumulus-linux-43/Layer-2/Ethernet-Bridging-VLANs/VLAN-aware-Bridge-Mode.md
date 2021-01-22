@@ -82,8 +82,6 @@ cumulus@switch:~$ cl config apply
 
 {{< /tabs >}}
 
-{{%notice note%}}
-
 The Primary VLAN Identifer (PVID) of the bridge defaults to 1. You do *not* have to specify `bridge-pvid` for a bridge or a port. However, even though this does not affect the configuration, it helps other users for readability. The following configurations are identical to each other and the configuration above:
 
 ```
@@ -110,8 +108,6 @@ iface bridge
     bridge-vids 100 200
     bridge-vlan-aware yes
 ```
-
-{{%/notice%}}
 
 {{%notice tip%}}
 

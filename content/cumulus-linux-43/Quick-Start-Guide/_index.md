@@ -113,6 +113,16 @@ iface eth0
 
 {{< /tab >}}
 
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@switch:~$ cl set interface eth0 ip address 192.0.2.42/24
+cumulus@switch:~$ cl set interface eth0 ip gateway 192.0.2.1
+cumulus@switch:~$ cl config apply
+```
+
+{{< /tab >}}
+
 {{< /tabs >}}
 
 ### Configure the Hostname and Timezone
@@ -155,6 +165,15 @@ cumulus@switch:~$ net commit
     ```
     cumulus@switch:~$ sudo nano /etc/hosts
     ```
+
+{{< /tab >}}
+
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@switch:~$ cl set platform hostname <hostname>
+cumulus@switch:~$ cl config apply
+```
 
 {{< /tab >}}
 
@@ -350,6 +369,22 @@ swp1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP mode 
 
 {{< /tab >}}
 
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@switch:~$ cl set interface swp1
+cumulus@switch:~$ cl config apply
+```
+
+To administratively enable all physical ports, run the following command, where swp1-52 represents a switch with switch ports numbered from swp1 to swp52:
+
+```
+cumulus@switch:~$ cl set interface swp1-52
+cumulus@switch:~$ cl config apply
+```
+
+{{< /tab >}}
+
 {{< /tabs >}}
 
 ## Configure Switch Ports
@@ -410,6 +445,25 @@ cumulus@switch:~$ sudo ifquery -a
 
 # Then activate the change if no errors are found:
 cumulus@switch:~$ sudo ifup -a
+```
+
+{{< /tab >}}
+
+{{< tab "CUE Commands ">}}
+
+In the following configuration example, the front panel port swp1 is placed into a bridge called *bridge*.
+
+```
+cumulus@switch:~$ cl set bridge NEED COMMAND
+cumulus@switch:~$ cl config apply
+```
+
+You can add a range of ports in one command. For example, to add swp1 through swp10, swp12, and swp14 through swp20 to bridge:
+
+```
+cumulus@switch:~$ cl set bridge NEED COMMAND
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
@@ -480,6 +534,24 @@ cumulus@switch:~$ sudo ifquery -a
 
 # Then activate the change if no errors are found:
 cumulus@switch:~$ sudo ifup -a
+```
+
+{{< /tab >}}
+
+{{< tab "CUE Commands ">}}
+
+In the following configuration example, the front panel port swp1 is configured as a layer 3 access port:
+
+```
+cumulus@switch:~$ cl set interface swp1 ip address 10.1.1.1/30
+cumulus@switch:~$ cl config apply
+```
+
+To add an IP address to a bridge interface, you must put it into a VLAN interface. If you want to use a VLAN other than the native one, set the bridge PVID:
+
+```
+cumulus@switch:~$ cl set interface swp1 vlan 100 ip address 10.2.2.1/24?????
+cumulus@switch:~$ cl set NEED COMMAND
 ```
 
 {{< /tab >}}
@@ -574,6 +646,55 @@ iface lo inet loopback
 If an IP address is configured without a mask (as shown above), the IP address becomes a /32. So, in the above case, 10.1.1.1 is actually 10.1.1.1/32.
 
 {{%/notice%}}
+
+{{< /tab >}}
+
+{{< tab "CUE Commands ">}}
+
+Use the `cl show interface lo` command.
+
+```
+cumulus@switch:~$ cl show interface lo
+                        running      applied   pending   description
+-----------------------  -----------  --------  --------  ----------------------------------------------------------------------
+type                     loopback     loopback  loopback  The type of interface
+ip
+  vrf                                 default   default   Virtual routing and forwarding
+  ipv4                                forward   forward   IPv4 support on the interface. A value of 'on' means IPv4 is enable...
+  ipv6                                forward   forward   IPv6 support on the interface. A value of 'on' means IPv6 is enable...
+  [address]              127.0.0.1/8                      ipv4 and ipv6 address
+  [address]              ::1/128
+link
+  mtu                    65536                            interface mtu
+  state                  up                               The state of the interface
+  stats
+    carrier-transitions  0                                Number of times the interface state has transitioned between up and...
+    in-bytes             8360290                          total number of bytes received on the interface
+    in-drops             0                                number of received packets dropped
+    in-errors            0                                number of received packets with errors
+    in-pkts              127169                           total number of packets received on the interface
+    out-bytes            8360290                          total number of bytes transmitted out of the interface
+    out-drops            0                                The number of outbound packets that were chosen to be discarded eve...
+    out-errors           0                                The number of outbound packets that could not be transmitted becaus...
+    out-pkts             127169                           total number of packets transmitted out of the interface
+
+Alias
+-----
+loopback interface
+IP Details
+-------------------------  --------------------
+IP:                        127.0.0.1/8, ::1/128
+IP Neighbor(ARP) Entries:  0
+```
+
+The loopback is up and is assigned an IP address of 127.0.0.1.
+
+To add an IP address to a loopback interface, configure the *lo* interface:
+
+```
+cumulus@switch:~$ cl set interface lo ip address 10.1.1.1/32
+cumulus@switch:~$ cl config apply
+```
 
 {{< /tab >}}
 

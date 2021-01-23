@@ -103,6 +103,15 @@ cumulus@switch:~$ ifreload -a
 
 {{< /tab >}}
 
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@switch:~$ cl set 
+cumulus@switch:~$ cl config apply
+```
+
+{{< /tab >}}
+
 {{< /tabs >}}
 
 {{%notice note%}}
@@ -177,6 +186,15 @@ cumulus@switch:~$ sudo mstpctl setbpduguard br2 swp1 yes
 
 {{< /tab >}}
 
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@switch:~$ cl set 
+cumulus@switch:~$ cl config apply
+```
+
+{{< /tab >}}
+
 {{< /tabs >}}
 
 ### PortAutoEdge
@@ -230,6 +248,15 @@ cumulus@switch:~$ sudo ifreload -a
 
 {{< /tab >}}
 
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@switch:~$ cl set 
+cumulus@switch:~$ cl config apply
+```
+
+{{< /tab >}}
+
 {{< /tabs >}}
 
 To re-enable PortAutoEdge for an interface:
@@ -251,6 +278,15 @@ cumulus@switch:~$ net commit
 {{< tab "Linux Commands ">}}
 
 Edit the switch port interface stanza in the `/etc/network/interfaces` file to remove `mstpctl-portautoedge no`, then run the `ifreload -a` command.
+
+{{< /tab >}}
+
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@switch:~$ cl set 
+cumulus@switch:~$ cl config apply
+```
 
 {{< /tab >}}
 
@@ -291,6 +327,15 @@ iface swp5
 
 ```
 cumulus@switch:~$ sudo ifreload -a
+```
+
+{{< /tab >}}
+
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@switch:~$ cl set 
+cumulus@switch:~$ cl config apply
 ```
 
 {{< /tab >}}
@@ -342,6 +387,15 @@ bridge:bond0 CIST info
   clag ISL           no                      clag ISL Oper UP     no
   clag role          unknown                 clag dual conn mac   0:0:0:0:0:0
   clag remote portID F.FFF                   clag system mac      0:0:0:0:0:0
+```
+
+{{< /tab >}}
+
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@switch:~$ cl set 
+cumulus@switch:~$ cl config apply
 ```
 
 {{< /tab >}}
@@ -414,6 +468,15 @@ cumulus@switch:~$ sudo mstpctl showportdetail br1007 swp1.1007 | grep network
 
 {{< /tab >}}
 
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@switch:~$ cl set 
+cumulus@switch:~$ cl config apply
+```
+
+{{< /tab >}}
+
 {{< /tabs >}}
 
 To monitor logs for bridge assurance messages, run the following command:
@@ -478,6 +541,15 @@ To enable BPDU filter at runtime, run `mstpctl`. For example:
 
 ```
 cumulus@switch:~$ sudo mstpctl setportbpdufilter br100 swp1.100=yes swp2.100=yes
+```
+
+{{< /tab >}}
+
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@switch:~$ cl set 
+cumulus@switch:~$ cl config apply
 ```
 
 {{< /tab >}}
@@ -588,6 +660,15 @@ cumulus@switch:~$ sudo mstpctl showport bridge
   E swp1 8.001 forw F.000.00:14:01:01:01:00 F.000.00:14:01:01:01:00 8.001 Desg
     swp4 8.002 forw F.000.00:14:01:01:01:00 F.000.00:14:01:01:01:00 8.002 Desg
   E swp5 8.003 forw F.000.00:14:01:01:01:00 F.000.00:14:01:01:01:00 8.003 Desg
+```
+
+{{< /tab >}}
+
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@switch:~$ cl show 
+cumulus@switch:~$ cl config apply
 ```
 
 {{< /tab >}}

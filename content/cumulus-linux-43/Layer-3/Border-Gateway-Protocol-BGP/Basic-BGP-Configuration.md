@@ -360,7 +360,7 @@ To configure BGP numbered on a BGP node, you need to:
 
     ```
     cumulus@spine01:~$ cl set vrf default router bgp peer 2001:db8:0002::0a00:1 remote-as external
-    cumulus@spine01:~$ cl set vrf default router bgp peer 2001:db8:0002::0a00:1 enable on??????
+    cumulus@spine01:~$ cl set vrf default router bgp peer address-family ipv6-unicast 2001:db8:0002::0a00:1 enable on
     ```
 
     For BGP to advertise *IPv4* prefixes with IPv6 next hops, see {{<link url="Optional-BGP-Configuration#advertise-ipv4-prefixes-with-ipv6-next-hops" text="Advertise IPv4 Prefixes with IPv6 Next Hops">}}.
@@ -629,7 +629,7 @@ For BGP to advertise IPv6 prefixes, you need to run an additional command to act
 cumulus@spine01:~$ cl set vrf default router bgp autonomous-system 65101
 cumulus@spine01:~$ cl set vrf default router bgp router-id 10.10.10.1
 cumulus@spine01:~$ cl set vrf default router bgp peer swp51 remote-as external
-cumulus@spine01:~$ cl set vrf default router bgp address-family ipv6-unicast enable on?????
+cumulus@spine01:~$ cl set vrf default router bgp address-family ipv6-unicast enable on
 cumulus@spine01:~$ cl set vrf default router bgp address-family ipv6-unicast static-network 2001:db8::101/128
 cumulus@spine01:~$ cl config apply
 ```

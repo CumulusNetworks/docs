@@ -270,7 +270,10 @@ To configure BGP numbered on a BGP node, you need to:
 {{< tab " leaf01 ">}}
 
 1. Identify the BGP node by assigning an ASN.
-   
+   <!-- laclac: We have 'global' commands for setting ASN and router-id.  Where/how do we expose the global and inherited stuff in CUE?
+   $ cl set router bgp autonomous-system 651001
+   $ cl set router bgp router-id 10.10.10.1
+   -->
     - To assign an ASN manually:
 
       ```
@@ -301,7 +304,7 @@ To configure BGP numbered on a BGP node, you need to:
 
     ```
     cumulus@leaf01:~$ cl set vrf default router bgp peer 2001:db8:0002::0a00:0002 remote-as external
-    cumulus@leaf01:~$ cl set vrf default router bgp peer 2001:db8:0002::0a00:0002 enable on?????
+    cumulus@leaf01:~$ cl set vrf default router bgp peer 2001:db8:0002::0a00:0002 address-family ipv6-unicast enable on
     ```
 
     For BGP to advertise *IPv4* prefixes with IPv6 next hops, see {{<link url="Optional-BGP-Configuration#advertise-ipv4-prefixes-with-ipv6-next-hops" text="Advertise IPv4 Prefixes with IPv6 Next Hops">}}.

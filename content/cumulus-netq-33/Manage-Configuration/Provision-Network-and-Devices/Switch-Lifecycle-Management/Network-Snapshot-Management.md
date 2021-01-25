@@ -129,13 +129,13 @@ For each network element that is compared, count values and changes are shown:
 
 {{<figure src="/images/netq/snapshot-large-compare-data-interpretation-330.png" width="400">}}
 
-In this example, there are changes to the MAC addresses and neighbors. The snapshot taken before the change (19JanGold) had a total count of 316 MAC addresses and 873 neighbors. The snapshot taken after the changes (Now) has a total count of 320 MAC addresses and 891 neighbors. Between the two totals you can see the number of neighbors added, updated, and removed from one time to the next. This shows four MAC addresses have been added, resulting in 18 new neighbors.
+In this example, there are changes to the MAC addresses and neighbors. The snapshot taken before the change (19JanGold) had a total count of 316 MAC addresses and 873 neighbors. The snapshot taken after the changes (Now) has a total count of 320 MAC addresses and 891 neighbors. Between the two totals you can see the number of neighbors added, updated, and removed from one time to the next. This shows four MAC addresses have been added, 9 MAC addresses have been updated, and 18 neighbors have been added.
 
 {{<notice tip>}}
 The coloring does not indicate whether the additional, removal, or update of items is bad or good. It only indicates that a change has occurred.
 {{</notice>}}
 
-If you select the newer snapshot to be on the left and the older snapshot to be on the right, the additions and removal information swaps. Compare these two views of the same data.
+Be aware that depending on the display order of the snapshots determines what is considered added or removed. Compare these two views of the same data.
 
 {{<figure src="/images/netq/snapshot-large-compare-from-modal-oldernewer-330.png" width="500" caption="More recent snapshot on right">}}
 

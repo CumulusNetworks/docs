@@ -606,7 +606,7 @@ For BGP to advertise IPv6 prefixes, you need to run an additional command to act
 cumulus@leaf01:~$ cl set vrf default router bgp autonomous-system 65101
 cumulus@leaf01:~$ cl set vrf default router bgp router-id 10.10.10.1
 cumulus@leaf01:~$ cl set vrf default router bgp peer swp51 remote-as external
-cumulus@leaf01:~$ cl set vrf default router bgp address-family ipv6-unicast enable on?????
+cumulus@leaf01:~$ cl set vrf default router bgp address-family ipv6-unicast enable on
 cumulus@leaf01:~$ cl set vrf default router bgp address-family ipv6-unicast static-network 2001:db8::1/128
 cumulus@leaf01:~$ cl config apply
 ```

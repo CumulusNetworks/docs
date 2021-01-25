@@ -103,6 +103,15 @@ iface bond2
 
 {{< /tab >}}
 
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@switch:~$ cl set 
+cumulus@switch:~$ cl config apply
+```
+
+{{< /tab >}}
+
 {{< /tabs >}}
 
 3. Add a unique MLAG ID (clag-id) to each bond.
@@ -147,6 +156,15 @@ iface bond2
 
 {{< /tab >}}
 
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@switch:~$ cl set 
+cumulus@switch:~$ cl config apply
+```
+
+{{< /tab >}}
+
 {{< /tabs >}}
 
 4. Add the bonds you created above to a bridge. The example commands below add bond1 and bond2 to a VLAN-aware bridge.
@@ -177,6 +195,15 @@ iface bridge
     bridge-ports bond1 bond2
     bridge-vlan-aware yes
 ...
+```
+
+{{< /tab >}}
+
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@switch:~$ cl set 
+cumulus@switch:~$ cl config apply
 ```
 
 {{< /tab >}}
@@ -345,6 +372,47 @@ Run the `sudo ifreload -a` command to apply all the configuration changes:
 ```
 cumulus@leaf02:~$ sudo ifreload -a
 ```
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
+{{< /tab >}}
+
+{{< tab "CUE Commands ">}}
+
+   {{< tabs "TabID384 ">}}
+
+{{< tab "leaf01 ">}}
+
+```
+cumulus@leaf01:~$ cl set
+cumulus@leaf01:~$ cl config apply
+```
+
+To configure the backup link to a VRF, include the name of the VRF with the `backup-ip` parameter. The following example configures the backup link to VRF RED:
+
+```
+cumulus@leaf01:~$ cl set
+cumulus@leaf01:~$ cl config apply
+```
+
+{{< /tab >}}
+
+{{< tab "leaf02 ">}}
+
+```
+cumulus@leaf01:~$ cl set
+cumulus@leaf01:~$ cl config apply
+```
+
+To configure the backup link to a VRF, include the name of the VRF with the `backup-ip` parameter. The following example configures the backup link to VRF RED:
+
+```
+cumulus@leaf01:~$ cl set
+cumulus@leaf01:~$ cl config apply
+```
+
 {{< /tab >}}
 
 {{< /tabs >}}
@@ -410,6 +478,15 @@ cumulus@switch:~$ sudo ifreload -a
 
 {{< /tab >}}
 
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@switch:~$ cl set 
+cumulus@switch:~$ cl config apply
+```
+
+{{< /tab >}}
+
 {{< /tabs >}}
 
 The switch with the lower priority value is given the primary role; the default value is 32768 and the range is between 0 and 65535.
@@ -464,6 +541,15 @@ iface peerlink.4094
 
 ```
 cumulus@switch:~$ sudo ifreload -a
+```
+
+{{< /tab >}}
+
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@switch:~$ cl set 
+cumulus@switch:~$ cl config apply
 ```
 
 {{< /tab >}}
@@ -532,6 +618,15 @@ cumulus@leaf01:~$ sudo ifreload -a
 
 {{< /tab >}}
 
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@switch:~$ cl set 
+cumulus@switch:~$ cl config apply
+```
+
+{{< /tab >}}
+
 {{< /tabs >}}
 
 ## Best Practices
@@ -594,6 +689,15 @@ cumulus@switch:~$ sudo ifreload -a
 
 {{< /tab >}}
 
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@switch:~$ cl set 
+cumulus@switch:~$ cl config apply
+```
+
+{{< /tab >}}
+
 {{< /tabs >}}
 
 ### STP and MLAG
@@ -635,25 +739,76 @@ To set up the adjacency, configure a {{<link url="Border-Gateway-Protocol-BGP#bg
 
 For BGP, use a configuration like this:
 
+{{< tabs "TabID742 ">}}
+
+{{< tab "NCLU Commands ">}}
+
 ```
 cumulus@switch:~$ net add bgp neighbor peerlink.4094 interface remote-as internal
 cumulus@switch:~$ net commit
 ```
 
+{{< /tab >}}
+
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@switch:~$ cl set 
+cumulus@switch:~$ cl config apply
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
 For OSPF, use a configuration like this:
+
+{{< tabs "TabID766 ">}}
+
+{{< tab "NCLU Commands ">}}
 
 ```
 cumulus@switch:~$ net add interface peerlink.4094 ospf area 0.0.0.1
 cumulus@switch:~$ net commit
 ```
 
+{{< /tab >}}
+
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@switch:~$ cl set 
+cumulus@switch:~$ cl config apply
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
 If you are using {{<link url="Ethernet-Virtual-Private-Network-EVPN" text="EVPN">}} and MLAG, you need to enable the EVPN address family across the peerlink.4094 interface as well:
+
+{{< tabs "TabID790 ">}}
+
+{{< tab "NCLU Commands ">}}
 
 ```
 cumulus@switch:~$ net add bgp neighbor peerlink.4094 interface remote-as internal
 cumulus@switch:~$ net add bgp l2vpn evpn neighbor peerlink.4094 activate
 cumulus@switch:~$ net commit
 ```
+
+{{< /tab >}}
+
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@switch:~$ cl set 
+cumulus@switch:~$ cl config apply
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
 
 {{%notice note%}}
 

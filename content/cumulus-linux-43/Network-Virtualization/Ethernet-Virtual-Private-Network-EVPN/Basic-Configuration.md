@@ -56,9 +56,17 @@ cumulus@leaf01:~$
 
 {{< /tab >}}
 
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@leaf01:~$ 
+```
+
+{{< /tab >}}
+
 {{< /tabs >}}
 
-The above commands create the following configuration snippet in the `/etc/frr/frr.conf` file.
+The NCLU and vtysh commands create the following configuration snippet in the `/etc/frr/frr.conf` file.
 
 ```
 ...
@@ -111,9 +119,17 @@ cumulus@leaf01:~$
 
 {{< /tab >}}
 
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@leaf01:~$ 
+```
+
+{{< /tab >}}
+
 {{< /tabs >}}
 
-The above commands create the following configuration snippet in the `/etc/frr/frr.conf` file.
+The NCLU and vtysh commands create the following configuration snippet in the `/etc/frr/frr.conf` file.
 
 ```
 ...

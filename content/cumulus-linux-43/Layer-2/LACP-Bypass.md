@@ -71,6 +71,15 @@ cumulus@switch:~$ sudo ifreload -a
 
 {{< /tab >}}
 
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@switch:~$ cl set 
+cumulus@switch:~$ cl config apply
+```
+
+{{< /tab >}}
+
 {{< /tabs >}}
 
 To check the status of the configuration, run the following commands.
@@ -138,6 +147,15 @@ cumulus@switch:~$ ip link show swp51s2
 cumulus@switch:~$ ip link show swp52s3
 56: swp51s3: <BROADCAST,MULTICAST,SLAVE,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast master bond1 state UP mode DEFAULT group default qlen 1000
     link/ether c4:54:44:f6:44:5a brd ff:ff:ff:ff:ff:ff
+```
+
+{{< /tab >}}
+
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@switch:~$ cl set 
+cumulus@switch:~$ cl config apply
 ```
 
 {{< /tab >}}

@@ -71,9 +71,16 @@ cumulus@switch:~$ ifreload -a
 
 {{< /tab >}}
 
-{{< /tabs >}}
+{{< tab "CUE Commands ">}}
 
-{{%notice note%}}
+```
+cumulus@switch:~$ cl set 
+cumulus@switch:~$ cl config apply
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
 
 The Primary VLAN Identifer (PVID) of the bridge defaults to 1. You do *not* have to specify `bridge-pvid` for a bridge or a port. However, even though this does not affect the configuration, it helps other users for readability. The following configurations are identical to each other and the configuration above:
 
@@ -101,8 +108,6 @@ iface bridge
     bridge-vids 100 200
     bridge-vlan-aware yes
 ```
-
-{{%/notice%}}
 
 {{%notice tip%}}
 
@@ -202,6 +207,15 @@ cumulus@switch:~$ ifreload -a
 
 {{< /tab >}}
 
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@switch:~$ cl set 
+cumulus@switch:~$ cl config apply
+```
+
+{{< /tab >}}
+
 {{< /tabs >}}
 
 ## Untagged/Access Ports
@@ -271,6 +285,15 @@ iface swp2
 
 ```
 cumulus@switch:~$ ifreload -a
+```
+
+{{< /tab >}}
+
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@switch:~$ cl set 
+cumulus@switch:~$ cl config apply
 ```
 
 {{< /tab >}}
@@ -351,6 +374,15 @@ bridge 1
 
 {{< /tab >}}
 
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@switch:~$ cl set 
+cumulus@switch:~$ cl config apply
+```
+
+{{< /tab >}}
+
 {{< /tabs >}}
 
 ## VLAN Layer 3 Addressing
@@ -397,6 +429,15 @@ iface vlan100
 
 ```
 cumulus@switch:~$ ifreload -a
+```
+
+{{< /tab >}}
+
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@switch:~$ cl set 
+cumulus@switch:~$ cl config apply
 ```
 
 {{< /tab >}}
@@ -448,6 +489,15 @@ iface bridge
         bridge-stp on
         bridge-vids 310 700 707 712 850 910
 ...
+```
+
+{{< /tab >}}
+
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@switch:~$ cl set 
+cumulus@switch:~$ cl config apply
 ```
 
 {{< /tab >}}

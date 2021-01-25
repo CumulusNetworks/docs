@@ -125,6 +125,15 @@ cumulus@switch:~$ ifreload -a
 
 {{< /tab >}}
 
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@switch:~$ cl set 
+cumulus@switch:~$ cl config apply
+```
+
+{{< /tab >}}
+
 {{< /tabs >}}
 
 {{%notice note%}}
@@ -195,6 +204,15 @@ iface bond1
 
 ```
 cumulus@switch:~$ ifreload -a
+```
+
+{{< /tab >}}
+
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@switch:~$ cl set 
+cumulus@switch:~$ cl config apply
 ```
 
 {{< /tab >}}
@@ -293,6 +311,15 @@ Duplex: full
 Link Failure Count: 0
 Permanent HW addr: 44:38:39:00:00:03
 Slave queue ID: 0
+```
+
+{{< /tab >}}
+
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@switch:~$ cl set 
+cumulus@switch:~$ cl config apply
 ```
 
 {{< /tab >}}

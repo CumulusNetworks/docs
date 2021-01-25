@@ -62,6 +62,15 @@ cumulus@switch:~$ sudo ifreload -a
 
 {{< /tab >}}
 
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@switch:~$ cl set 
+cumulus@switch:~$ cl config apply
+```
+
+{{< /tab >}}
+
 {{< /tabs >}}
 
 {{%notice note%}}
@@ -161,6 +170,15 @@ auto br-VLAN200
 iface br-VLAN200
    bridge-ports swp1.200 swp2.200
 ...
+```
+
+{{< /tab >}}
+
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@switch:~$ cl set 
+cumulus@switch:~$ cl config apply
 ```
 
 {{< /tab >}}

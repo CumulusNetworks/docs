@@ -66,6 +66,14 @@ cumulus@switch:~$ ifreload -a
 
 {{< /tab >}}
 
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@switch:~$ 
+```
+
+{{< /tab >}}
+
 {{< /tabs >}}
 
 {{%notice note%}}
@@ -170,6 +178,14 @@ switch(config-if)# end
 switch# write memory
 switch# exit
 cumulus@switch:~$
+```
+
+{{< /tab >}}
+
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@switch:~$ 
 ```
 
 {{< /tab >}}

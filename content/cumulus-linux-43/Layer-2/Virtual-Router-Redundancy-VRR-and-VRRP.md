@@ -97,6 +97,15 @@ cumulus@switch:~$ sudo ifreload -a
 
 {{< /tab >}}
 
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@switch:~$ cl set 
+cumulus@switch:~$ cl config apply
+```
+
+{{< /tab >}}
+
 {{< /tabs >}}
 
 ### Configure the Hosts
@@ -116,6 +125,10 @@ The following examples uses a single virtual MAC address for all VLANs. You can 
 {{%/notice%}}
 
 {{< tabs "TabID111 ">}}
+
+{{< tab "NCLU Commands ">}}
+
+{{< tabs "TabID131 ">}}
 
 {{< tab "leaf01 ">}}
 
@@ -299,6 +312,42 @@ iface vlan400
 
 {{< /tab >}}
 
+{{< /tabs >}}
+
+{{< /tab >}}
+
+{{< tab "CUE Commands ">}}
+
+{{< tabs "TabID413 ">}}
+
+{{< tab "leaf01 ">}}
+
+```
+cumulus@switch:~$ cl set 
+cumulus@switch:~$ cl config apply
+```
+
+{{< /tab >}}
+
+{{< tab "leaf02 ">}}
+
+```
+cumulus@switch:~$ cl set 
+cumulus@switch:~$ cl config apply
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
+#### Server Configuration
+
+{{< tabs "TabID349 ">}}
+
 {{< tab "server01 ">}}
 
 Create a configuration similar to the following on an Ubuntu host:
@@ -339,8 +388,6 @@ iface uplink:300 inet static
 auto uplink:400
 iface uplink:400 inet static
     address 10.0.4.101
-
-# modprobe bonding
 ```
 
 {{< /tab >}}
@@ -385,8 +432,6 @@ iface uplink:300 inet static
 auto uplink:400
 iface uplink:400 inet static
     address 10.0.4.101
-
-# modprobe bonding
 ```
 
 {{< /tab >}}
@@ -494,6 +539,15 @@ cumulus@spine02:~$ net commit
     spine02# write memory
     spine02# exit
     ```
+
+{{< /tab >}}
+
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@switch:~$ cl set 
+cumulus@switch:~$ cl config apply
+```
 
 {{< /tab >}}
 

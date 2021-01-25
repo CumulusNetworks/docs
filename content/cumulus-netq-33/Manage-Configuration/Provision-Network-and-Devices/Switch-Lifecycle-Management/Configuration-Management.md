@@ -477,7 +477,7 @@ To create a profile:
 
     Refer to {{<link title="Configure and Monitor What Just Happened" text="What Just Happened">}} for information about configuring this feature, and to {{<link title="WJH Event Messages Reference" text="WJH Event Messages Reference">}} for a description of the drop reasons. *WJH is only available on Mellanox switches.*
 
-    If you choose to enable WJH for this profile, you can use the default configuration which collects all statistics, or you can select **Customize** to select which categories, drop reasons, or event severity you want collected. Click on each category and drop reason you do not want collected, then click **Done**. You can discard your changes (return to all categories and drop reasons) by clicking **Cancel**.
+    If you choose to enable WJH for this profile, you can use the default configuration which collects all statistics, or you can select **Customize** to select which categories and drop reasons you want collected. *This is an Early Access capability.* Click on each category and drop reason you do not want collected, then click **Done**. You can discard your changes (return to all categories and drop reasons) by clicking **Cancel**.
 
 8. To set a logging level, click **Advanced**, then choose the desired level.
 
@@ -510,6 +510,10 @@ To remove a NetQ configuration profile:
 To ease the consistent configuration of your switches, NetQ enables you to create and manage multiple switch configuration profiles. Each configuration can contain Cumulus Linux, NetQ Agent, and switch settings. These can then be applied to a group of switches at once.
 
 You can view, create, and modify switch configuration profiles and their assignments at any time using the Switch Configurations card.
+
+{{<notice info>}}
+New switch configuration features introduced with release 3.3.0 are Early Access features and are provided in advance of general availability to enable customers to try them out and provide feedback. These features are bundled into the `netq-apps` package so there is no need to install a separate software package. The features are enabled by default and marked in the documentation here as Early Access.
+{{</notice>}}
 
 ### View Switch Configuration Profiles
 
@@ -544,6 +548,10 @@ To create a switch configuration profile:
 4. You must begin with the Cumulus Linux option. Then you can decide which other aspects of configuration you want included in this template: NetQ Agent, VLANs, MLAG, and/or interfaces.
 
 5. Specify the settings for each using the following instructions.
+
+    {{<notice info>}}
+The VLAN, MLAG, Interface profiles and Interfaces settings are provided as Early Access capabilities.
+    {{</notice>}}
 
     {{< tabs "TabID383" >}}
 
@@ -636,6 +644,8 @@ In either case, if you change your mind about including network settings, click 
 
 {{< tab "VLANs" >}}
 
+*This is an Early Access capability.*
+
 1. Click **VLANs**.
 
 2. Click **Add VLAN/s** if none are present, or click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18">}} to add more VLANs to the switch configuration.
@@ -696,6 +706,8 @@ MLAG is disabled by default. If you want to include MLAG in the switch configura
 {{< /tab >}}
 
 {{< tab "Interface Profiles" >}}
+
+*This is an Early Access capability.*
 
 Every interface requires at least one interface profile.  An interface profile must contain a bond, SVI, sub-interface, and port.
 
@@ -924,6 +936,8 @@ You can create a new port profile or import an existing one to modify. Port prof
 
 {{< tab "Interfaces" >}}
 
+*This is an Early Access capability.*
+
 Interfaces identify how and where communication occurs. Each interface must have at least one bond, SVI, subinterface, and port.
 
 ### Add Bonds
@@ -980,6 +994,8 @@ Add SVIs (switch virtual interfaces) to your switch configuration when you need 
 
 ### Add Subinterfaces
 
+Add subinterface to your switch configuration when you want a VLAN associated with a given interface.
+
 1. Click **Interfaces**.
 
 2. Click **Subinterfaces**.
@@ -988,13 +1004,13 @@ Add SVIs (switch virtual interfaces) to your switch configuration when you need 
 
     {{<figure src="/images/netq/lcm-switch-config-ifs-add-subif-330.png" width="400">}}
 
-4. Enter a unique name for the subinterface in the format \<parent-interface:subinterface-number\>.
+4. Enter a unique name for the subinterface in the format \<parent-interface-name:vlan-subinterface-id\>. For example, swp2:1.
 
 5. Optionally enter an alias for this subinterface.
 
-6. Select a VLAN to apply to this subinterface.
+6. Select a VLAN to apply to this subinterface. This should match the name you specified in step 4.
 
-7. Select a parent interface from the dropdown.
+7. Select a parent interface from the dropdown. This should match the name you specified in step 4.
 
 8. Select a subinterface profile to apply to this subinterface.
 
@@ -1077,6 +1093,8 @@ To assign a switch configuration:
 
    Either way, a per-instance variables form appears for the selected or one of the selected switches.
 
+   *This is an Early Access capability.*
+
     {{<figure src="/images/netq/lcm-switch-config-switches-variables-330.png" width="700">}}
 
 3. Enter the required parameters for each switch using the following instructions.
@@ -1084,6 +1102,8 @@ To assign a switch configuration:
     {{< tabs "TabID1086" >}}
 
 {{< tab "General Changes" >}}
+
+*This is an Early Access capability.*
 
 1. Verify the IP address of the switch.
 
@@ -1095,7 +1115,7 @@ To assign a switch configuration:
 
 5. Enter the system ID for the switch.
 
-6. Enter a priority for the switch in the format of a integer, where x is the highest priority.
+6. Enter a priority for the switch in the format of an integer, where zero (0) is the lowest priority.
 
 7. Enter a backup IP address for the switch in the event it becomes unreachable.
 
@@ -1103,13 +1123,19 @@ To assign a switch configuration:
 
 9. Enter the name of a VRF for the switch.
 
-10. Click **Continue to vrf details**, or click **Save and Exit** to come back later to finish the specification.
+    {{<figure src="/images/netq/lcm-switch-config-switches-variables-general-330.png" width="500">}}
+
+10. Click **Continue to vrf details**, or click **Save and Exit** to come back later to finish the specification. If you choose to save and exit, click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/14-Alerts/alert-circle.svg" height="18" width="18">}} on the switch card to return to the per instance variable definition pages.
 
 {{< /tab >}}
 
 {{< tab "VRF" >}}
 
-{{<img src="https://icons.cumulusnetworks.com/11-Content/01-Content-Creation/content-paper-edit.svg" height="36" width="36">}} This topic is in development.
+The VRF identified in **General Changes** is presented. Optionally add the associated IPv4 and IPv6 addresses for this VRF.
+
+{{<figure src="/images/netq/lcm-switch-config-switches-variables-vrf-330.png" width="500">}}
+
+Click **Continue to bond details**, or click **Save and Exit** to come back later to finish the specification. If you choose to save and exit, click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/14-Alerts/alert-circle.svg" height="18" width="18">}} on the switch card to return to the per instance variable definition pages.
 
 {{< /tab >}}
 
@@ -1121,13 +1147,25 @@ To assign a switch configuration:
 
 {{< tab "SVI Changes" >}}
 
-{{<img src="https://icons.cumulusnetworks.com/11-Content/01-Content-Creation/content-paper-edit.svg" height="36" width="36">}} This topic is in development.
+The SVIs specified are presented. If no SVIs are defined and there should be, return to the Interface Profiles and Interfaces tabs to specify them.
+
+Optionally add the associated IPv4 and IPv6 addresses this switch should use for these SVIs.
+
+{{<figure src="/images/netq/lcm-switch-config-switches-variables-svi-330.png" width="500">}}
+
+Click **Continue to subinterface details**, or click **Save and Exit** to come back later to finish the specification. If you choose to save and exit, click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/14-Alerts/alert-circle.svg" height="18" width="18">}} on the switch card to return to the per instance variable definition pages.
 
 {{< /tab >}}
 
 {{< tab "Subinterface Changes" >}}
 
-{{<img src="https://icons.cumulusnetworks.com/11-Content/01-Content-Creation/content-paper-edit.svg" height="36" width="36">}} This topic is in development.
+The subinterfaces specified are presented. If no subinterfaces are defined and there should be, return to the Interface Profiles and Interfaces tabs to specify them.
+
+Optionally add the associated IPv4 and IPv6 addresses this switch should use for these subinterfaces.
+
+{{<figure src="/images/netq/lcm-switch-config-switches-variables-subif-330.png" width="500">}}
+
+Click **Continue to port details**, or click **Save and Exit** to come back later to finish the specification. If you choose to save and exit, click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/14-Alerts/alert-circle.svg" height="18" width="18">}} on the switch card to return to the per instance variable definition pages.
 
 {{< /tab >}}
 
@@ -1141,23 +1179,23 @@ To assign a switch configuration:
 
 4. Click **Save and Exit**.
 
-5. To run the job to apply the configuration, you first have the option to change the hostnames of the selected switches.
+5. To run the job to apply the configuration, click **Save and deploy on switches**.
 
-    Either change the hostnames and then click **Continue** or just click **Continue** without changing the hostnames.
-
-5. Enter a name for the job (maximum of 22 characters including spaces), then click **Continue**.
+6. Enter a name for the job (maximum of 22 characters including spaces). Verify the configuration name and number of switches you have selected to assign this configuratin to. then click **Continue**.
 
     This opens the monitoring page for the assignment jobs, similar to the upgrade jobs. The job title bar indicates the name of the switch configuration being applied and the number of switches that to be assigned with the configuration. (After you have mulitple switch configurations created, you might have more than one configuration being applied in a single job.) Each switch element indicates its hostname, IP address, installed Cumulus Linux and NetQ versions, a note indicating this is a new assignment, the switch configuration being applied, and a menu that provides the detailed steps being executed. The last is useful when the assignment fails as any errors are included in this popup.
 
     {{<figure src="/images/netq/lcm-switch-config-assign-job-success-320.png" width="700">}}
 
-    {{<figure src="/images/netq/lcm-switch-config-assign-job-status-popup-320.png" width="300">}}
+    {{<img src="/images/netq/lcm-switch-config-assign-job-status-popup-320.png" width="230">}} {{<img src="/images/netq/lcm-switch-config-assign-job-status-popup-fail-330.png" width="260">}}
 
 6. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14">}} to return to the switch configuration page where you can either create another configuration and apply it. If you are finished assigning switch configurations to switches, click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/remove-circle.svg" height="18" width="18">}} to return to the lifecycle management dashboard.
 
-7. When you return the dashboard, your Switch Configurations card shows the new configurations and the Config Assignment History card appears that shows a summary status of all configuration assignment jobs attempted.
+7. When you return the dashboard, your Switch Configurations card on the Configuration Management tab shows the new configurations, and the Config Assignment History card appears on the Job History tab that shows a summary status of all configuration assignment jobs attempted.
 
-    {{<figure src="/images/netq/lcm-switch-config-post-assign-config-hist-320.png" width="420">}}
+    {{<figure src="/images/netq/lcm-switch-config-post-assign-switchconfigs-330.png" width="700">}}
+    
+    {{<figure src="/images/netq/lcm-switch-config-post-assign-config-assign-330.png" width="400">}}
 
 8. Click **View** on the Config Assignment History card to open the details of all assignment jobs. Refer to {{<link title="Manage Switch Configurations/#view-switch-configuration-history">}} for more detail about this card.
 
@@ -1167,7 +1205,7 @@ You can edit a switch configuration at any time. After you have made changes to 
 
 To edit a switch configuration:
 
-1. Locate the Switch Configurations card on the lifecycle management dashboard.
+1. Locate the Switch Configurations card on the lifecycle management dashboard **Configuration Management** tab.
 
 2. Click **Manage**.
 

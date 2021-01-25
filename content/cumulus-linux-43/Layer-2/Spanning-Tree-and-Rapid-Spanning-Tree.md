@@ -395,7 +395,6 @@ bridge:bond0 CIST info
 
 ```
 cumulus@switch:~$ cl show bridge domain bridge stp NEED COMMAND 
-cumulus@switch:~$ cl config apply
 ```
 
 {{< /tab >}}
@@ -668,7 +667,6 @@ cumulus@switch:~$ sudo mstpctl showport bridge
 
 ```
 cumulus@switch:~$ cl show bridge domain bridge stp
-cumulus@switch:~$ cl config apply
 ```
 
 {{< /tab >}}

@@ -1109,21 +1109,31 @@ To assign a switch configuration:
 
 {{< tab "VRF" >}}
 
+{{<img src="https://icons.cumulusnetworks.com/11-Content/01-Content-Creation/content-paper-edit.svg" height="36" width="36">}} This topic is in development.
+
 {{< /tab >}}
 
 {{< tab "Bond Changes" >}}
+
+{{<img src="https://icons.cumulusnetworks.com/11-Content/01-Content-Creation/content-paper-edit.svg" height="36" width="36">}} This topic is in development.
 
 {{< /tab >}}
 
 {{< tab "SVI Changes" >}}
 
+{{<img src="https://icons.cumulusnetworks.com/11-Content/01-Content-Creation/content-paper-edit.svg" height="36" width="36">}} This topic is in development.
+
 {{< /tab >}}
 
 {{< tab "Subinterface Changes" >}}
 
+{{<img src="https://icons.cumulusnetworks.com/11-Content/01-Content-Creation/content-paper-edit.svg" height="36" width="36">}} This topic is in development.
+
 {{< /tab >}}
 
 {{< tab "Port Changes" >}}
+
+{{<img src="https://icons.cumulusnetworks.com/11-Content/01-Content-Creation/content-paper-edit.svg" height="36" width="36">}} This topic is in development.
 
 {{< /tab >}}
 
@@ -1150,8 +1160,6 @@ To assign a switch configuration:
     {{<figure src="/images/netq/lcm-switch-config-post-assign-config-hist-320.png" width="420">}}
 
 8. Click **View** on the Config Assignment History card to open the details of all assignment jobs. Refer to {{<link title="Manage Switch Configurations/#view-switch-configuration-history">}} for more detail about this card.
-
-
 
 ### Edit a Switch Configuration
 

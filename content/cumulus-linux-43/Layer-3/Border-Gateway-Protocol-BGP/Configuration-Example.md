@@ -273,26 +273,26 @@ iface eth0 inet dhcp
 auto bridge
 iface bridge
     bridge-ports peerlink bond1 bond2 bond3
-    bridge-vids 10 20 30
+    bridge-vids 40 50 60
     bridge-vlan-aware yes
 
-auto vlan10
-iface vlan10
-    address 10.1.10.2/24
+auto vlan40
+iface vlan40
+    address 10.1.40.2/24
     vlan-raw-device bridge
-    vlan-id 10
+    vlan-id 40
 
-auto vlan20
-iface vlan20
-    address 10.1.20.2/24
+auto vlan50
+iface vlan50
+    address 10.1.50.2/24
     vlan-raw-device bridge
-    vlan-id 20
+    vlan-id 50
 
-auto vlan30
-iface vlan30
-    address 10.1.30.2/24
+auto vlan60
+iface vlan60
+    address 10.1.60.2/24
     vlan-raw-device bridge
-    vlan-id 30
+    vlan-id 60
 
 auto swp51
 iface swp51
@@ -331,7 +331,7 @@ iface bond1
     alias bond1 on swp1
     mtu 9000
     clag-id 1
-    bridge-access 10
+    bridge-access 40
     bond-slaves swp1
     bond-lacp-bypass-allow yes
     mstpctl-bpduguard yes
@@ -347,7 +347,7 @@ iface bond2
     alias bond2 on swp2
     mtu 9000
     clag-id 2
-    bridge-access 20
+    bridge-access 50
     bond-slaves swp2
     bond-lacp-bypass-allow yes
     mstpctl-bpduguard yes
@@ -363,7 +363,7 @@ iface bond3
     alias bond3 on swp3
     mtu 9000
     clag-id 3
-    bridge-access 30
+    bridge-access 60
     bond-slaves swp3
     bond-lacp-bypass-allow yes
     mstpctl-bpduguard yes
@@ -393,26 +393,26 @@ iface eth0 inet dhcp
 auto bridge
 iface bridge
     bridge-ports peerlink bond1 bond2 bond3
-    bridge-vids 10 20 30
+    bridge-vids 40 50 60
     bridge-vlan-aware yes
 
-auto vlan10
-iface vlan10
-    address 10.1.10.3/24
+auto vlan40
+iface vlan40
+    address 10.1.40.3/24
     vlan-raw-device bridge
-    vlan-id 10
+    vlan-id 40
 
-auto vlan20
-iface vlan20
-    address 10.1.20.3/24
+auto vlan50
+iface vlan50
+    address 10.1.50.3/24
     vlan-raw-device bridge
-    vlan-id 20
+    vlan-id 50
 
-auto vlan30
-iface vlan30
-    address 10.1.30.3/24
+auto vlan60
+iface vlan60
+    address 10.1.60.3/24
     vlan-raw-device bridge
-    vlan-id 30
+    vlan-id 60
 
 auto swp51
 iface swp51
@@ -451,7 +451,7 @@ iface bond1
     alias bond1 on swp1
     mtu 9000
     clag-id 1
-    bridge-access 10
+    bridge-access 40
     bond-slaves swp1
     bond-lacp-bypass-allow yes
     mstpctl-bpduguard yes
@@ -467,7 +467,7 @@ iface bond2
     alias bond2 on swp2
     mtu 9000
     clag-id 2
-    bridge-access 20
+    bridge-access 50
     bond-slaves swp2
     bond-lacp-bypass-allow yes
     mstpctl-bpduguard yes
@@ -483,7 +483,7 @@ iface bond3
     alias bond3 on swp3
     mtu 9000
     clag-id 3
-    bridge-access 30
+    bridge-access 60
     bond-slaves swp3
     bond-lacp-bypass-allow yes
     mstpctl-bpduguard yes

@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-33049</td>
+<td><p>You cannot set the time zone can with NCLU commands.</p></td>
+<td>4.1.1-4.2.1</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-33012</td>
 <td><p>After you add an interface to the bridge, an OSPF session flap can occur.</p>
 </td>

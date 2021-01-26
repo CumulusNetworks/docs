@@ -12,7 +12,7 @@ This document supports the Cumulus Linux 4.3 release, and lists new platforms an
 
 ## What's New in Cumulus Linux 4.3.0
 
-Cumulus Linux 4.3.0 provides bug fixes, and contains several new features and improvements.
+Cumulus Linux 4.3.0 provides bug fixes, and contains several new features and enhancements.
 
 ### New Features and Enhancements
 

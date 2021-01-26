@@ -128,7 +128,7 @@ cumulus@switch:~$ ifreload -a
 {{< tab "CUE Commands ">}}
 
 ```
-cumulus@switch:~$ cl set 
+cumulus@switch:~$ cl set interface bond0 bond member swp1-4
 cumulus@switch:~$ cl config apply
 ```
 
@@ -211,7 +211,7 @@ cumulus@switch:~$ ifreload -a
 {{< tab "CUE Commands ">}}
 
 ```
-cumulus@switch:~$ cl set 
+cumulus@switch:~$ cl set interface bond01 bond mode static 
 cumulus@switch:~$ cl config apply
 ```
 
@@ -318,8 +318,7 @@ Slave queue ID: 0
 {{< tab "CUE Commands ">}}
 
 ```
-cumulus@switch:~$ cl set 
-cumulus@switch:~$ cl config apply
+cumulus@switch:~$ cl show interface bond0 
 ```
 
 {{< /tab >}}

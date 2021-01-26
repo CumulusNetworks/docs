@@ -106,8 +106,11 @@ iface bond2
 {{< tab "CUE Commands ">}}
 
 ```
-cumulus@switch:~$ cl set 
-cumulus@switch:~$ cl config apply
+cumulus@leaf01:~$ cl set interface bond1 bond member swp1
+cumulus@leaf01:~$ cl set NEED COMMAND FOR ALIAS
+cumulus@leaf01:~$ cl set interface bond2 bond member swp2
+cumulus@leaf01:~$ cl set NEED COMMAND FOR ALIAS
+cumulus@leaf01:~$ cl config apply
 ```
 
 {{< /tab >}}
@@ -159,8 +162,9 @@ iface bond2
 {{< tab "CUE Commands ">}}
 
 ```
-cumulus@switch:~$ cl set 
-cumulus@switch:~$ cl config apply
+cumulus@leaf01:~$ cl set interface bond1 bond mlag id 1
+cumulus@leaf01:~$ cl set interface bond2 bond mlag id 2 
+cumulus@leaf01:~$ cl config apply
 ```
 
 {{< /tab >}}
@@ -202,7 +206,7 @@ iface bridge
 {{< tab "CUE Commands ">}}
 
 ```
-cumulus@switch:~$ cl set 
+cumulus@switch:~$ cl set interface bond1-2 bridge domain bridge 
 cumulus@switch:~$ cl config apply
 ```
 
@@ -386,14 +390,17 @@ cumulus@leaf02:~$ sudo ifreload -a
 {{< tab "leaf01 ">}}
 
 ```
-cumulus@leaf01:~$ cl set
+cumulus@leaf01:~$ cl set interface swp49-50 type peerlink
+cumulus@leaf01:~$ cl set mlag mac-address 44:38:39:BE:EF:AA
+cumulus@leaf01:~$ cl set mlag backup 10.10.10.2
+cumulus@leaf01:~$ cl set mlag peer-ip linklocal
 cumulus@leaf01:~$ cl config apply
 ```
 
 To configure the backup link to a VRF, include the name of the VRF with the `backup-ip` parameter. The following example configures the backup link to VRF RED:
 
 ```
-cumulus@leaf01:~$ cl set
+cumulus@leaf01:~$ cl set NEED COMMAND
 cumulus@leaf01:~$ cl config apply
 ```
 
@@ -402,14 +409,17 @@ cumulus@leaf01:~$ cl config apply
 {{< tab "leaf02 ">}}
 
 ```
-cumulus@leaf01:~$ cl set
-cumulus@leaf01:~$ cl config apply
+cumulus@leaf02:~$ cl set interface swp49-50 type peerlink
+cumulus@leaf02:~$ cl set mlag mac-address 44:38:39:BE:EF:AA
+cumulus@leaf02:~$ cl set mlag backup 10.10.10.1
+cumulus@leaf02:~$ cl set mlag peer-ip linklocal
+cumulus@leaf02:~$ cl config apply
 ```
 
 To configure the backup link to a VRF, include the name of the VRF with the `backup-ip` parameter. The following example configures the backup link to VRF RED:
 
 ```
-cumulus@leaf01:~$ cl set
+cumulus@leaf01:~$ cl set NEED COMMAND
 cumulus@leaf01:~$ cl config apply
 ```
 
@@ -481,7 +491,7 @@ cumulus@switch:~$ sudo ifreload -a
 {{< tab "CUE Commands ">}}
 
 ```
-cumulus@switch:~$ cl set 
+cumulus@switch:~$ cl set mlag priority 2048
 cumulus@switch:~$ cl config apply
 ```
 
@@ -548,7 +558,7 @@ cumulus@switch:~$ sudo ifreload -a
 {{< tab "CUE Commands ">}}
 
 ```
-cumulus@switch:~$ cl set 
+cumulus@switch:~$ cl set NEED COMMAND
 cumulus@switch:~$ cl config apply
 ```
 
@@ -621,7 +631,7 @@ cumulus@leaf01:~$ sudo ifreload -a
 {{< tab "CUE Commands ">}}
 
 ```
-cumulus@switch:~$ cl set 
+cumulus@switch:~$ cl set NEED COMMAND
 cumulus@switch:~$ cl config apply
 ```
 
@@ -692,7 +702,8 @@ cumulus@switch:~$ sudo ifreload -a
 {{< tab "CUE Commands ">}}
 
 ```
-cumulus@switch:~$ cl set 
+cumulus@switch:~$ cl set NEED COMMAND
+cumulus@switch:~$ cl NEED COMMAND 
 cumulus@switch:~$ cl config apply
 ```
 

@@ -106,7 +106,7 @@ cumulus@switch:~$ ifreload -a
 {{< tab "CUE Commands ">}}
 
 ```
-cumulus@switch:~$ cl set 
+cumulus@switch:~$ cl set bridge domain bridge stp priority 8192
 cumulus@switch:~$ cl config apply
 ```
 
@@ -156,7 +156,7 @@ cumulus@switch:~$ net commit
 Configure PortAdminEdge and BPDU guard under the switch port interface stanza in the `/etc/network/interfaces` file, then run the `ifreload -a` command. The following example configures PortAdminEdge and BPD guard on swp5.
 
 ```
-cumulus@switch:~$ sudo nano /etc/netowrk/interfaces
+cumulus@switch:~$ sudo nano /etc/network/interfaces
 ...
 auto swp5
 iface swp5
@@ -189,7 +189,7 @@ cumulus@switch:~$ sudo mstpctl setbpduguard br2 swp1 yes
 {{< tab "CUE Commands ">}}
 
 ```
-cumulus@switch:~$ cl set 
+cumulus@switch:~$ cl set NEED COMMAND
 cumulus@switch:~$ cl config apply
 ```
 
@@ -251,7 +251,7 @@ cumulus@switch:~$ sudo ifreload -a
 {{< tab "CUE Commands ">}}
 
 ```
-cumulus@switch:~$ cl set 
+cumulus@switch:~$ cl set NEED COMMAND
 cumulus@switch:~$ cl config apply
 ```
 
@@ -284,7 +284,7 @@ Edit the switch port interface stanza in the `/etc/network/interfaces` file to r
 {{< tab "CUE Commands ">}}
 
 ```
-cumulus@switch:~$ cl set 
+cumulus@switch:~$ cl set NEED COMMAND
 cumulus@switch:~$ cl config apply
 ```
 
@@ -334,7 +334,7 @@ cumulus@switch:~$ sudo ifreload -a
 {{< tab "CUE Commands ">}}
 
 ```
-cumulus@switch:~$ cl set 
+cumulus@switch:~$ cl set NEED COMMAND
 cumulus@switch:~$ cl config apply
 ```
 
@@ -394,8 +394,7 @@ bridge:bond0 CIST info
 {{< tab "CUE Commands ">}}
 
 ```
-cumulus@switch:~$ cl set 
-cumulus@switch:~$ cl config apply
+cumulus@switch:~$ cl show bridge domain bridge stp NEED COMMAND 
 ```
 
 {{< /tab >}}
@@ -471,7 +470,7 @@ cumulus@switch:~$ sudo mstpctl showportdetail br1007 swp1.1007 | grep network
 {{< tab "CUE Commands ">}}
 
 ```
-cumulus@switch:~$ cl set 
+cumulus@switch:~$ cl set NEED COMMAND
 cumulus@switch:~$ cl config apply
 ```
 
@@ -548,7 +547,7 @@ cumulus@switch:~$ sudo mstpctl setportbpdufilter br100 swp1.100=yes swp2.100=yes
 {{< tab "CUE Commands ">}}
 
 ```
-cumulus@switch:~$ cl set 
+cumulus@switch:~$ cl set NEED COMMAND
 cumulus@switch:~$ cl config apply
 ```
 
@@ -667,8 +666,7 @@ cumulus@switch:~$ sudo mstpctl showport bridge
 {{< tab "CUE Commands ">}}
 
 ```
-cumulus@switch:~$ cl show 
-cumulus@switch:~$ cl config apply
+cumulus@switch:~$ cl show bridge domain bridge stp
 ```
 
 {{< /tab >}}

@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-33115</td>
+<td><p>When you run any of the vtysh show bgp ipv4 or show bgp ipv6 statistics commands, the bgpd service crashes.</p></td>
+<td>4.2.1</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-33050</td>
 <td><p>The NCLU net del vrf command does not delete a numbered VRF. For example:</p>
 
@@ -279,6 +285,12 @@ Nov 12 12:20:05.099943 leaf01 switchd[9867]: hal_bcm_console.c:299 CRIT loading 
 <td>CM-32274</td>
 <td><p>If you apply an outbound route map to a BGP peer that uses set as-path prepend last-as, advertised locally-originated routes have the ASN of the peer prepended to the AS path.<br/>
 This might trigger AS path loop prevention on the peer, where the peer ignores locally-originated prefixes.</p></td>
+<td>4.2.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32235</td>
+<td><p>In an EVPN multihoming configuration, reloading FRR causes brief traffic loss.</p></td>
 <td>4.2.1</td>
 <td></td>
 </tr>
@@ -602,13 +614,6 @@ might result in NTP not functioning since the ntp service is still running in th
 <tr>
 <td>CM-31358</td>
 <td><p>The Dell 100G-LR4 (Innolight) transceiver cannot link up due to a power budget exceeded error on the Mellanox SN4600C switch.</p></td>
-<td>4.2.0-4.2.1</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-31351</td>
-<td><p>On the Mellanox Spectrum2 and Spectrum3 switch, the bond-downdelay configured under a bond interface has not effect when the physical interface in the bond is physically disconnected.</p>
-</td>
 <td>4.2.0-4.2.1</td>
 <td></td>
 </tr>
@@ -2626,13 +2631,6 @@ Fixed: 3.1+dfsg-8+deb10u8</p></td>
 <tr>
 <td>CM-31358</td>
 <td><p>The Dell 100G-LR4 (Innolight) transceiver cannot link up due to a power budget exceeded error on the Mellanox SN4600C switch.</p></td>
-<td>4.2.0-4.2.1</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-31351</td>
-<td><p>On the Mellanox Spectrum2 and Spectrum3 switch, the bond-downdelay configured under a bond interface has not effect when the physical interface in the bond is physically disconnected.</p>
-</td>
 <td>4.2.0-4.2.1</td>
 <td></td>
 </tr>

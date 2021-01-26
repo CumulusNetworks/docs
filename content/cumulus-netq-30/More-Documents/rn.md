@@ -14,6 +14,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="NETQ-8245"></a> [NETQ-8245](#NETQ-8245) <a name="NETQ-8245"></a> | If a NetQ Agent is downgraded to the 3.0.0 version from any higher release, the default commands file present in the <em>/etc/netq/commands/</em> also needs to be updated to prevent the NetQ Agent from becoming rotten. | 3.0.0-3.3.0 | |
 | <a name="NETQ-6673"></a> [NETQ-6673](#NETQ-6673) <a name="NETQ-6673"></a> | Infra: NetQ VM installation fails if the designated disk size is greater than 2TB. To work around this issue, specify the disk for cloud deployments to be between 256GB and 2TB SSD, and for on-premises deployments to be between 32 GB and 2TB. | 2.4.0-3.1.0 | 3.2.0-3.3.0|
 | <a name="NETQ-5833"></a> [NETQ-5833](#NETQ-5833) <a name="NETQ-5833"></a> | Switch upgrade of Cumulus Linux in the lifecycle management feature fails when attempted by a user with a standard or sudo user role and custom password credentials. To work around this issue, upgrades should be performed by users with root or sudo user role and an SSH key. Optionally, upgrade using a root user role with custom password.  | 3.0.0 | 3.1.0-3.3.0|
 | <a name="NETQ-5808"></a> [NETQ-5808](#NETQ-5808) <a name="NETQ-5808"></a> | When upgrading to NetQ 3.0.0, if you are using NetQ Agent 2.3.1 or earlier and have MLAG configured, the MLAG service becomes unresponsive. To resolve this issue, upgrade your NetQ Agents to version 3.0.0. | 3.0.0 | 3.1.0-3.3.0|

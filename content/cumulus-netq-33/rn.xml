@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>NETQ-8396</td>
+<td><p>Admin UI: For cloud deployments, clicking the <em>Open NetQ</em> link at the bottom of the Admin UI NetQ Health page returns an error <em>default backend - 404</em> as it attempts to open the NetQ UI on the on-site NetQ Cloud Appliance or VM running the NetQ Collector software. In cloud deployments, the NetQ UI is run in the Cloud rather than locally, thus causing the error. To open the NetQ UI and view your data, enter <a href="https://netq.cumulusnetworks.com/" class="external-link" rel="nofollow">https://netq.cumulusnetworks.com/</a> into the address bar of your browser.</p></td>
+<td>3.3.0</td>
+<td></td>
+</tr>
+<tr>
 <td>NETQ-8317</td>
 <td><p>NetQ Infra: When adding a data source with the Grafana plugin, an error message appears "Cannot read property 'status' of undefined" implying the data source is not added when, in fact, it has been. Ignore the error and continue with configuring the plugin.</p></td>
 <td>3.3.0</td>
@@ -61,8 +67,8 @@ misc:
 </tr>
 <tr>
 <td>NETQ-8245</td>
-<td><p>If an agent is downgraded to the 3.0.0 version from any higher release, we have to ensure the default commands file present in the /etc/netq/commands/ also needs to be updated. Not doing so would result in rotten agents.</p></td>
-<td>3.3.0</td>
+<td><p>If a NetQ Agent is downgraded to the 3.0.0 version from any higher release, the default commands file present in the <em>/etc/netq/commands/</em> also needs to be updated to prevent the NetQ Agent from becoming rotten.</p></td>
+<td>3.0.0-3.3.0</td>
 <td></td>
 </tr>
 <tr>
@@ -118,11 +124,6 @@ misc:
 <td>NETQ-8311</td>
 <td><p>NetQ Infra: Customers with cloud deployments who wish to use the lifecycle management (LCM) feature in NetQ 3.3.0 must upgrade their NetQ Cloud Appliance or Virtual Machine as well as the NetQ Agent.</p></td>
 <td>3.2.1</td>
-</tr>
-<tr>
-<td>NETQ-8245</td>
-<td><p>If an agent is downgraded to the 3.0.0 version from any higher release, we have to ensure the default commands file present in the /etc/netq/commands/ also needs to be updated. Not doing so would result in rotten agents.</p></td>
-<td>3.3.0</td>
 </tr>
 <tr>
 <td>NETQ-5529</td>

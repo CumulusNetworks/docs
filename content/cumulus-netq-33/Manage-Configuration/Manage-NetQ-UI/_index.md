@@ -12,13 +12,11 @@ Individual users have the ability to set preferences specific to their workspace
 
 The NetQ Management workbench is accessed from the main menu. For the user(s) responsible for maintaining the application, this is a good place to start each day.
 
-To open the workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/>, and select *Management* under the **Admin** column.
+To open the workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/>, and select *Management* under the **Admin** column. The cards available vary slightly between the on-premises and cloud deployments. The on-premises management dashboard has an LDAP Server Info card, which the cloud version does not. The cloud management dashboard has an SSO Config card, which the on-premises version does not.
 
-{{<figure src="/images/netq/netq-mgmt-wb-onprem-330.png" width="700">}}
+{{<figure src="/images/netq/netq-mgmt-wb-onprem-330.png" width="700" caption="On-premises NetQ Management Dashboard">}}
 
-{{<notice note>}}
-For cloud deployments, the LDAP Server Info card is not available. Refer to {{<link url="Integrate-NetQ-with-Your-LDAP-Server" text="Integrate NetQ with Your LDAP server">}} for details.
-{{</notice>}}
+{{<figure src="/images/netq/netq-mgmt-wb-cloud-330.png" width="700"caption="Cloud NetQ Management Dashboard">}}
 
 ## Manage User Accounts
 
@@ -439,3 +437,88 @@ To view the server information:
 ## Integrate with Your LDAP Server
 
 For on-premises deployments you can integrate your LDAP server with NetQ to provide access to NetQ using LDAP user accounts instead of ,or in addition to, the NetQ user accounts. Refer to {{<link title="Integrate NetQ with Your LDAP Server">}} for more detail.
+
+## Integrate with Your SAML or OAuth Server for SSO
+
+For cloud deployments you can integrate your SAML (Security Assertion Markup Language) or OAuth (Open Authorization) server with the NetQ to support single sign-on (SSO). With this release, both Microsoft Azure AD (active directory) and Google with SAML and OpenId connect protocols are supported. Multi-factor authentication (MFA) is also supported.
+
+### Configure Support
+
+To integrate your authentication server:
+
+1. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18" alt="Main Menu">}}.
+
+2. Select *Management* from the **Admin** column.
+
+3. Locate the SSO Config card.
+
+    {{<figure src="/images/netq/netq-mgmt-sso-card-330.png" width="200">}}
+
+4. Click **Manage**.
+
+5. Click the type of SSO to be integrated:
+
+    - **Open ID**: Choose this option for Google authentication servers using OAuth with OpenID Connect
+    - **SAML**: Choose this option for Microsoft Azure AD server using SAML
+
+6. Specify the required parameters.
+
+    {{< tabs "TabID468" >}}
+
+{{< tab "OAuth+OpenID Connect" >}}
+
+{{<figure src="/images/netq/netq-mgmt-add-sso-oauth-330.png" width="600">}}
+
+1. Enter your administrator password.
+
+2. Enter a name for xxx.
+
+3. Enter the web application identifier in the **Client ID** field.
+
+4. Enter the password to access the application in the **Client Secret** field.
+
+5. Enter the name/ip addr??? of the authorization server in the **Authorization Endpoint** field.
+
+6. Enter the name??? of the resource server (application server) in the **Token Endpoint** field.
+
+7. Click **Add**.
+
+Add list screen???
+
+Show sso card (updated)???
+
+{{< /tab >}}
+
+{{< tab "SAML" >}}
+
+{{<figure src="/images/netq/netq-mgmt-add-sso-saml-330.png" width="600">}}
+
+1. Enter your administrator password.
+
+2. Enter a name for xxx.
+
+3. Enter the URL for the NetQ login page (on-premises = \<hostname-or-ipaddr\>:443 or cloud = netq.cumulusnetworks.com) in the **Login URL** field.
+
+4. Enter the name/ip addr??? of the authorization server in the **Identity Provider Identifier** field.
+
+5. Enter the name??? of the application server in the **Service Provider Identifier** field.
+
+6. Optionally, enter  xxx in the **Email Claim Key" field.
+
+7. Click **Add**.
+
+Add list screen???
+
+Show sso card (updated)???
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
+### Modify Integrations
+
+You can modify the specifications for SSO integration with your authentication server at any time.
+
+change, delete, disable???
+
+

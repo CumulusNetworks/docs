@@ -24,19 +24,22 @@ The CUE command line has a flat structure as opposed to a modal structure. This 
 
 CUE commands all begin with `cl` and fall into one of three syntax categories: configuration (`set` and `unset`), monitoring (`show`), and configuration management (`config`).
 
-`cl set [options] <attribute>` and `cl unset [options] <attribute>`
+```
+cumulus@switch:~$ cl set [options] <attribute>
+cumulus@switch:~$ cl unset [options] <attribute>
+cumulus@switch:~$ cl show [options] <attribute>
+cumulus@switch:~$ cl config <command> [options]
+```
 
-`cl show [options] <attribute>`
-
-`cl config <command> [options]`
+To see the full list of CUE commands, run `cl list-commands`.
 
 ### Command Completion
 
 As you enter commands, you can get help with the valid keywords or options using the Tab key. For example, using Tab completion with `cl set` displays the possible objects for the command, and returns you to the command prompt to complete the command.
 
 ```
-cumulus@switch:~$ cl set check <<press Tab>>
-ridge     interface  nve        router     vrf
+cumulus@switch:~$ cl set <<press Tab>>
+bridge     interface  nve        router     vrf
 evpn       mlag       platform   system
 
 cumulus@switch:~$ cl set
@@ -44,7 +47,7 @@ cumulus@switch:~$ cl set
 
 ### Command Help
 
-As you enter commands, you can get help with command syntax by entering `-h` or `--help` at various points within a command entry. For example, to find out what options are available for `cl set interface`, enter `cl set -h` or `cl set --help`.
+As you enter commands, you can get help with command syntax by entering `-h` or `--help` at various points within a command entry. For example, to find out what options are available for `cl set interface`, enter `cl set interface -h` or `cl set interface --help`.
 
 ```
 cumulus@switch:~$ cl set interface -h
@@ -76,11 +79,9 @@ The CLI stores commands issued within a session, which enables you to review and
 
 While the CLI has a flat structure, the commands can be conceptually grouped into three functional categories:
 
-- Configuration Commands
-- Monitoring Commands
-- Configuration Management Commands
-
-To see the full list of CUE commands, run `cl list-commands`.
+- Configuration
+- Monitoring
+- Configuration Management
 
 ### Configuration Commands
 
@@ -90,7 +91,7 @@ The `cl set` and `cl unset` commands are grouped into the following categories. 
 
 | <div style="width:450px">Command | Description |
 | ------- | ----------- |
-| `cl set router [options] [<attribute> ...]`<br>`cl unset router [options] [<attribute> ...]` | Configures router policies, such as prefix list rules and route maps and global BGP options. |
+| `cl set router [options] [<attribute> ...]`<br>`cl unset router [options] [<attribute> ...]` | Configures router policies, such as prefix list rules and route maps, and global BGP options. |
 | `cl set platform [options] [<attribute> ...]`<br>`cl unsetset platform [options] [<attribute> ...]` | Configures switch platform options, such as the hostname, and specifies how configuration apply operations are performed. |
 | `cl set bridge [options] [<attribute> ...]`<br>`cl unset bridge [options] [<attribute> ...]` | Configures a bridge. |
 | `cl set mlag [options] [<attribute> ...]`<br>`cl unset mlag [options] [<attribute> ...]` | Configures MLAG. |

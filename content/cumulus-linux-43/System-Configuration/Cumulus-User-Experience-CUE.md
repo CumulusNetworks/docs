@@ -8,13 +8,13 @@ toc: 3
 Cumulus User Experience (CUE) is an {{<exlink url="https://docs.cumulusnetworks.com/knowledge-base/Support/Support-Offerings/Early-Access-Features-Defined/" text="early access feature">}}.
 {{%/notice%}}
 
-CUE is a command line interface for Cumulus Linux.
+CUE is a command line interface for Cumulus Linux. Embracing the power of open networking, CUE brings an entirely new interface to Cumulus Linux based on modern operating principles and schema oriented YANG based models.
 
-TALK ABOUT OBJECT MODEL HERE
+The CUE object model is structured as a *big tree* that represents the entire state of a Cumulus Linux instance. At the base of the tree are high level branches such as *router* and *interface*. Under each of these branches are further branches.  As you navigate through the tree, you gain a more specific context. At the leaves of the tree are actual attributes, represented as key/value pairs. The path through the tree is implemented as through a filesystem.
 
 ## Command Line Basics
 
-BLABLABLA
+This section describes the core structure and behavior of the CUE CLI.
 
 ### Command Line Structure
 
@@ -22,7 +22,7 @@ The CUE command line has a flat structure as opposed to a modal structure. This 
 
 ### Command Syntax
 
-CUE commands all begin with `cl` and fall into one of three syntax categories: configuration (set and unset), monitoring (show), and configuration management (config).
+CUE commands all begin with `cl` and fall into one of three syntax categories: configuration (`set` and `unset`), monitoring (`show`), and configuration management (`config`).
 
 `cl set [options] <attribute>` and `cl unset [options] <attribute>`
 
@@ -86,7 +86,7 @@ To see the full list of CUE commands, run `cl list-commands`.
 
 The CUE configuration commands modify switch configuration. You can set and unset configuration options.
 
-The `cl set` and `cl unset` commands are grouped into the following types. Each command group includes subcommands.
+The `cl set` and `cl unset` commands are grouped into the following categories. Each command group includes subcommands.
 
 | <div style="width:450px">Command | Description |
 | ------- | ----------- |
@@ -102,7 +102,7 @@ The `cl set` and `cl unset` commands are grouped into the following types. Each 
 
 ### Monitoring Commands
 
-The CUE monitoring commands show various parts of the network configuration. For example, you can show the complete network configuration or BGP status. The monitoring commands are grouped into the following types. Each command group includes subcommands.
+The CUE monitoring commands show various parts of the network configuration. For example, you can show the complete network configuration, or bridge, interface, VRF, MLAG, BGP or EVPN configuration. The monitoring commands are grouped into the following categories. Each command group includes subcommands.
 
 | <div style="width:450px">Command | Description |
 | ------- | ----------- |

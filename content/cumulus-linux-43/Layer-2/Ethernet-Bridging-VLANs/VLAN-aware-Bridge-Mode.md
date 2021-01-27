@@ -74,7 +74,7 @@ cumulus@switch:~$ ifreload -a
 {{< tab "CUE Commands ">}}
 
 ```
-cumulus@switch:~$ cl set bridge domain bridge ports swp1-2
+cumulus@switch:~$ cl set 
 cumulus@switch:~$ cl config apply
 ```
 
@@ -292,7 +292,8 @@ cumulus@switch:~$ ifreload -a
 {{< tab "CUE Commands ">}}
 
 ```
-cumulus@switch:~$ cl set 
+cumulus@switch:~$ cl set interface swp1-swp2 bridge domain bridge vlan 100
+cumulus@switch:~$ cl set interface swp1-swp2 bridge domain bridge vlan 200
 cumulus@switch:~$ cl config apply
 ```
 
@@ -377,7 +378,7 @@ bridge 1
 {{< tab "CUE Commands ">}}
 
 ```
-cumulus@switch:~$ cl set 
+cumulus@switch:~$ cl set interface swp2 bridge domain bridge untagged none
 cumulus@switch:~$ cl config apply
 ```
 

@@ -143,13 +143,6 @@ monitor -I -r 1  -o prNames.3 -o prErrMessage.3  "Process mstpd is up!!!!" prErr
 <td></td>
 </tr>
 <tr>
-<td>CM-32541</td>
-<td><p>After upgrading Cumulus Linux with the apt-upgrade command, then rebooting an MLAG pair, if there are no bonds configured with a clag-id, the clagd service has difficulty peering, and holds all MLAG interfaces and VNIs in a proto down state.<br/>
-To work around this issue, after upgrading both switches, restart the clagd service with the sudo systemctl restart clagd command on each MLAG pair.</p></td>
-<td>3.7.14</td>
-<td></td>
-</tr>
-<tr>
 <td>CM-32537</td>
 <td><p>CVE-2018-19787, CVE-2020-27783: The clean_html() function of lxml, a Python library for HTML and XML processing, performed insufficient sanitisation for embedded Javascript code. This could lead to cross-site scripting or possibly the execution of arbitrary code.<br/>
 Vulnerable: &lt;= 3.4.0-1+deb8u1<br/>

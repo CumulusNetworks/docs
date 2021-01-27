@@ -42,6 +42,5 @@ These platforms are not supported in Cumulus Linux 4.3. They are supported in Cu
 - Facebook Backpack (100G Tomahawk)
 - Facebook Voyager (100G Tomahawk)
 - Delta AG7648
-- Edgecore AS4610-54T-B
 - QCT QuantaMesh BMS T3048-LY8
 - QCT QuantaMesh BMS T3048-LY9

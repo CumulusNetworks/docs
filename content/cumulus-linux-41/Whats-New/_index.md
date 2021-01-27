@@ -83,6 +83,5 @@ The following platforms are supported in Cumulus Linux 3.7 but are not yet suppo
 
 - Dell N3048EP-ON
 - Delta AG7648
-- Edgecore AS4610-54T-B
 - QCT QuantaMesh BMS T3048-LY8
 - QCT QuantaMesh BMS T3048-LY9

@@ -176,16 +176,6 @@ cumulus@switch:~$ net commit</code></pre></td>
 <td><p><code>100</code></p></td>
 </tr>
 <tr class="even">
-<td><p><code>bond downdelay</code></p></td>
-<td><p>Specifies the time, in milliseconds, to wait before disabling a slave after a link failure has been detected. This option is only valid for the miimon link monitor. The downdelay value must be a multiple of the miimon value; if not, it is rounded down to the nearest multiple.</p></td>
-<td><p>0</p></td>
-</tr>
-<tr class="odd">
-<td><p><code>bond updelay</code></p></td>
-<td><p>Specifies the time, in milliseconds, to wait before enabling a slave after a link recovery has been detected. This option is only valid for the miimon link monitor. The updelay value must be a multiple of the miimon value; if not, it is rounded down to the nearest multiple.</p></td>
-<td><p>0</p></td>
-</tr>
-<tr class="even">
 <td><p><code>bond use-carrier</code></p></td>
 <td><p>Determines the link state.</p></td>
 <td><p><code>1</code></p></td>

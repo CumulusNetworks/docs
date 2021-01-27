@@ -74,7 +74,8 @@ cumulus@switch:~$ ifreload -a
 {{< tab "CUE Commands ">}}
 
 ```
-cumulus@switch:~$ cl set 
+cumulus@switch:~$ cl set interface swp1-swp2 bridge domain bridge vlan 100
+cumulus@switch:~$ cl set interface swp1-swp2 bridge domain bridge vlan 200
 cumulus@switch:~$ cl config apply
 ```
 
@@ -123,7 +124,7 @@ Do not try to bridge the management port, eth0, with any switch ports (swp0, swp
 
 ### Reserved VLAN Range
 
-For hardware data plane internal operations, the switching silicon requires VLANs for every physical port, Linux bridge, and layer 3 subinterface. Cumulus Linux reserves a range of  VLANs by default; the reserved range is 3600-3999.
+For hardware data plane internal operations, the switching silicon requires VLANs for every physical port, Linux bridge, and layer 3 subinterface. Cumulus Linux reserves a range of VLANs by default; the reserved range is 3600-3999.
 
 {{%notice tip%}}
 
@@ -292,8 +293,8 @@ cumulus@switch:~$ ifreload -a
 {{< tab "CUE Commands ">}}
 
 ```
-cumulus@switch:~$ cl set interface swp1-swp2 bridge domain bridge vlan 100
-cumulus@switch:~$ cl set interface swp1-swp2 bridge domain bridge vlan 200
+cumulus@switch:~$ cl set 
+cumulus@switch:~$ cl set 
 cumulus@switch:~$ cl config apply
 ```
 

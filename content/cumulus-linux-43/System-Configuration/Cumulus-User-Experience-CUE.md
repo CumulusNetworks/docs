@@ -88,23 +88,23 @@ The CUE configuration commands modify switch configuration. You can set and unse
 
 The `cl set` and `cl unset` commands are grouped into the following types. Each command group includes subcommands.
 
-| Command | Description |
+| <div style="width:450px">Command | Description |
 | ------- | ----------- |
-| `cl set router [options] [<attribute> ...]` | Configures router policies, such as prefix list rules and route maps and global BGP options. |
-| `cl set platform [options] [<attribute> ...]` | Configures switch platform options, such as the hostname, and specifies how configuration apply operations are performed. |
-| `cl set bridge [options] [<attribute> ...]` | Configures a bridge. |
-| `cl set mlag [options] [<attribute> ...]` | Configures MLAG. |
-| `cl set evpn [options] [<attribute> ...]` | Configures MLAG. |
-| `cl set interface [options] <interface-id> ...` | Configures switch interfaces.|
-| `cl set system [options] [<attribute> ...]` | Configures global system settings, such as NTP, DHCP server, DNS, and syslog. |
-| `cl set vrf [options] <vrf-id> ...` | Configures VRFs. |
-| `cl set nve [options] [<attribute> ...]` | Configures network virtualization settings. |
+| `cl set router [options] [<attribute> ...]`<br>`cl unset router [options] [<attribute> ...]` | Configures router policies, such as prefix list rules and route maps and global BGP options. |
+| `cl set platform [options] [<attribute> ...]`<br>`cl unsetset platform [options] [<attribute> ...]` | Configures switch platform options, such as the hostname, and specifies how configuration apply operations are performed. |
+| `cl set bridge [options] [<attribute> ...]`<br>`cl unset bridge [options] [<attribute> ...]` | Configures a bridge. |
+| `cl set mlag [options] [<attribute> ...]`<br>`cl unset mlag [options] [<attribute> ...]` | Configures MLAG. |
+| `cl set evpn [options] [<attribute> ...]`<br>`cl unset evpn [options] [<attribute> ...]` | Configures MLAG. |
+| `cl set interface [options] <interface-id> ...`<br>`cl unset interface [options] <interface-id> ...` | Configures switch interfaces.|
+| `cl set system [options] [<attribute> ...]`<br>`cl unset system [options] [<attribute> ...]` | Configures global system settings, such as NTP, DHCP server, DNS, and syslog. |
+| `cl set vrf [options] <vrf-id> ...`<br>`cl unset vrf [options] <vrf-id> ...` | Configures VRFs. |
+| `cl set nve [options] [<attribute> ...]`<br>`cl unset nve [options] [<attribute> ...]` | Configures network virtualization settings. |
 
 ### Monitoring Commands
 
 The CUE monitoring commands show various parts of the network configuration. For example, you can show the complete network configuration or BGP status. The monitoring commands are grouped into the following types. Each command group includes subcommands.
 
-| Command | Description |
+| <div style="width:450px">Command | Description |
 | ------- | ----------- |
 | `cl show router [options] [<attribute> ...]` | Shows router information, such as router policies and BGP. |
 | `cl show platform [options] [<attribute> ...]` | Shows platform information, such as hardware and software components, and the hostname of the switch. |
@@ -120,7 +120,7 @@ The CUE monitoring commands show various parts of the network configuration. For
 
 The CUE configuration management commands manage and apply configurations.
 
-| Command | Description |
+| <div style="width:450px">Command | Description |
 | ------- | ----------- |
 | `cl config apply [options] [<revision>]` | Applies the running configuration. The configuration is applied but not saved and does not persist after a reboot.|
 | `cl config save [options]` | Saves the running configuration. The configuration persists after a reboot. |

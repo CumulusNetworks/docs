@@ -6,21 +6,23 @@ toc: 3
 ---
 Switches collect statistics about the performance of their interfaces. The NetQ Agent on each switch collects these statistics every 15 seconds and then sends them to your NetQ Appliance or Virtual Machine.
 
-NetQ collects statistics for *physical* interfaces; it does not collect statistics for *virtual* interfaces, such as bonds, bridges, and VXLANs. NetQ collects these statistics from two data sources: Net-Q and Net-Q-Ethtool.
+NetQ collects statistics for *physical* interfaces; it does not collect statistics for *virtual* interfaces, such as bonds, bridges, and VXLANs.
 
-Net-Q displays:
+<!-- NetQ collects these statistics from two data sources: Net-Q and Net-Q-Ethtool. -->
+
+NetQ displays:
 
 - **Transmit** with *tx\_* prefix: bytes, carrier, colls, drop, errs, packets
 - **Receive** with *rx\_* prefix: bytes, drop, errs, frame, multicast, packets
 
-Net-Q-Ethtool displays:
+<!-- Net-Q-Ethtool displays:
 
 - **Hardware Transmit** with *hw\_if\_out\_* prefix: octets, ucast_pckts, mcast_pkts, bcast_pkts, discards, errors, q_drops, non_q_drops, q_len, pause_pkt, pfc[0-7]_pkt, wred_drops, q[0-9]_wred_drops
 - **Hardware Receive** with *hw\_if\_in\_* prefix: octets, ucast_pckts, mcast_pkts, bcast_pkts, discards, l3_drops, buffer_drops, acl_drops, errors, dot3_length_errors, dot3_frame_errors, pause_pkt, pfc[0-7]_pkt
 - **Software Transmit** with *soft\_out\_* prefix: errors, drops, tx_fifo_full
-- **Software Receive** with *soft\_in\_* prefix: errors, frame_errors, drops
+- **Software Receive** with *soft\_in\_* prefix: errors, frame_errors, drops -->
 
-You can use Grafana version 6.x, an open source analytics and monitoring tool, to view these statistics. The fastest way to achieve this is by installing Grafana on an application server or locally per user, and then installing the NetQ plug-in containing the prepared NetQ dashboard.  
+You can use Grafana version 6.x or 7.x, an open source analytics and monitoring tool, to view these statistics. The fastest way to achieve this is by installing Grafana on an application server or locally per user, and then installing the NetQ plug-in containing the prepared NetQ dashboard.  
 
 {{%notice note%}}
 
@@ -34,7 +36,7 @@ Use the Grafana CLI to install the NetQ plug-in. For more detail about this comm
 
 ```
 grafana-cli --pluginUrl https://netq-grafana-dsrc.s3-us-west-2.amazonaws.com/dist.zip plugins install netq-dashboard
-installing netq-dashboard @ 
+installing netq-dashboard @
 from: https://netq-grafana-dsrc.s3-us-west-2.amazonaws.com/dist.zip
 into: /usr/local/var/lib/grafana/plugins
 

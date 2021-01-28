@@ -495,17 +495,23 @@ Show sso card (updated)???
 
 1. Enter your administrator password.
 
-2. Enter a name for xxx.
+2. Enter a name for the SSO configuration. (format???)
 
-3. Enter the URL for the NetQ login page (on-premises = \<hostname-or-ipaddr\>:443 or cloud = netq.cumulusnetworks.com) in the **Login URL** field.
+3. Enter the URL for the authorization server login page in the **Login URL** field.
 
-4. Enter the name/ip addr??? of the authorization server in the **Identity Provider Identifier** field.
+4. Enter the name of the authorization server in the **Identity Provider Identifier** field.
 
-5. Enter the name??? of the application server in the **Service Provider Identifier** field.
+5. Enter the name of the application server in the **Service Provider Identifier** field.
 
-6. Optionally, enter  xxx in the **Email Claim Key" field.
+6. Optionally, enter xxx in the **Email Claim Key** field.
 
 7. Click **Add**.
+
+8. Enter the redirect URL to your identity provider configuration file.
+
+    1. Open configuration file for editing.
+
+    2. Add `https://api.netq.cumulusnetworks.com/netq/auth/v1/sso-callback` to the xxx section.
 
 Add list screen???
 

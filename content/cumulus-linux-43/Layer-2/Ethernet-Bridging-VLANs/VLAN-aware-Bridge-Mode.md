@@ -12,7 +12,7 @@ The VLAN-aware mode in Cumulus Linux implements a configuration model for large-
 
 {{%notice tip%}}
 
-You can configure both VLAN-aware and traditional mode bridges on thesame network in Cumulus Linux; however do not have more than one VLAN-aware bridge on a given switch.
+You can configure both VLAN-aware and traditional mode bridges on the same network in Cumulus Linux; however do not have more than one VLAN-aware bridge on a given switch.
 
 {{%/notice%}}
 
@@ -32,17 +32,6 @@ cumulus@switch:~$ net add bridge bridge vids 100,200
 cumulus@switch:~$ net add bridge bridge pvid 1
 cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
-```
-
-The above commands create the following code snippet in the `/etc/network/interfaces` file:
-
-```
-auto bridge
-iface bridge
-    bridge-ports swp1 swp2
-    bridge-pvid 1
-    bridge-vids 100 200
-    bridge-vlan-aware yes
 ```
 
 {{< /tab >}}
@@ -73,8 +62,12 @@ cumulus@switch:~$ ifreload -a
 
 {{< tab "CUE Commands ">}}
 
+With CUE, there is a default bridge called `br_default`, which has no ports assigned to it. The example below configures this default bridge.
+
 ```
-cumulus@switch:~$ cl set interface swp1-2 bridge domain bridge vlan 100,200 
+cumulus@switch:~$ cl set interface swp1-2 bridge domain br_default
+cumulus@switch:~$ cl set bridge domain br_default vlan 100,200
+cumulus@switch:~$ cl set bridge domain br_default untagged 1
 cumulus@switch:~$ cl config apply
 ```
 
@@ -121,7 +114,7 @@ Do not try to bridge the management port, eth0, with any switch ports (swp0, swp
 
 {{%/notice%}}
 
-### Reserved VLAN Range
+## Reserved VLAN Range
 
 For hardware data plane internal operations, the switching silicon requires VLANs for every physical port, Linux bridge, and layer 3 subinterface. Cumulus Linux reserves a range of  VLANs by default; the reserved range is 3600-3999.
 
@@ -143,7 +136,7 @@ resv_vlan_range
 
 {{<cl/restart-switchd>}}
 
-## VLAN Filtering (VLAN Pruning)
+## VLAN Pruning
 
 By default, the bridge port inherits the bridge VIDs. To configure a port to override the bridge VIDs:
 
@@ -210,7 +203,10 @@ cumulus@switch:~$ ifreload -a
 {{< tab "CUE Commands ">}}
 
 ```
-cumulus@switch:~$ cl set 
+cumulus@switch:~$ cl set interface swp1-3 bridge domain br_default
+cumulus@switch:~$ cl set bridge domain br_default vlan 100,200
+cumulus@switch:~$ cl set bridge domain br_default untagged 1
+cumulus@switch:~$ cl set interface swp3 bridge domain br_default vlan 200
 cumulus@switch:~$ cl config apply
 ```
 
@@ -292,8 +288,11 @@ cumulus@switch:~$ ifreload -a
 {{< tab "CUE Commands ">}}
 
 ```
-cumulus@switch:~$ cl set interface swp1-swp2 bridge domain bridge vlan 100
-cumulus@switch:~$ cl set interface swp1-swp2 bridge domain bridge vlan 200
+cumulus@switch:~$ cl set interface swp1-2 bridge domain br_default
+cumulus@switch:~$ cl set bridge domain br_default vlan 100,200
+cumulus@switch:~$ cl set bridge domain br_default untagged 1
+cumulus@switch:~$ cl set interface swp1 bridge domain br_default access 100
+cumulus@switch:~$ cl set interface swp2 bridge domain br_default access 100
 cumulus@switch:~$ cl config apply
 ```
 
@@ -378,7 +377,7 @@ bridge 1
 {{< tab "CUE Commands ">}}
 
 ```
-cumulus@switch:~$ cl set interface swp2 bridge domain bridge untagged none
+cumulus@switch:~$ cl set interface swp2 bridge domain br_default_ untagged none
 cumulus@switch:~$ cl config apply
 ```
 
@@ -437,7 +436,8 @@ cumulus@switch:~$ ifreload -a
 {{< tab "CUE Commands ">}}
 
 ```
-cumulus@switch:~$ cl set 
+cumulus@switch:~$ cl set interface vlan100 ip address 192.168.10.1/24
+cumulus@switch:~$ cl set interface vlan100 ip address 2001:db8::1/32
 cumulus@switch:~$ cl config apply
 ```
 
@@ -457,61 +457,13 @@ Cumulus Linux does not often interact directly with end systems as much as end s
 
 The ARP refresh timer defaults to 1080 seconds (18 minutes). To change this setting, follow the procedures outlined in {{<link url="Address-Resolution-Protocol-ARP">}}.
 
-## Configure Multiple Ports in a Range
-
-To save time, you can specify a range of ports or VLANs instead of enumerating each one individually.
-
-To specify a range:
-
-{{< tabs "TabID436 ">}}
-
-{{< tab "NCLU Commands ">}}
-
-In the example below, `swp1-52` indicates that swp1 through swp52 are part of the bridge.
-
-```
-cumulus@switch:~$ net add bridge bridge ports swp1-52
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-{{< /tab >}}
-
-{{< tab "Linux Commands ">}}
-
-The `glob` keyword referenced in the `bridge-ports` attribute indicates that swp1 through swp52 are part of the bridge:
-
-```
-...
-auto bridge
-iface bridge
-        bridge-vlan-aware yes
-        bridge-ports glob swp1-52
-        bridge-stp on
-        bridge-vids 310 700 707 712 850 910
-...
-```
-
-{{< /tab >}}
-
-{{< tab "CUE Commands ">}}
-
-```
-cumulus@switch:~$ cl set 
-cumulus@switch:~$ cl config apply
-```
-
-{{< /tab >}}
-
-{{< /tabs >}}
-
 ## Example Configurations
 
 The following sections provide example VLAN-aware bridge configurations.
 
 ### Access Ports and Pruned VLANs
 
-The following example configuration contains an access port and switch port that are *pruned*; they only sends and receive traffic tagged to and from a specific set of VLANs declared by the `bridge-vids` attribute. It also contains other switch ports that send and receive traffic from all the defined VLANs.
+The following example configuration contains an access port and switch port that are *pruned*; they only send and receive traffic tagged to and from a specific set of VLANs declared by the `bridge-vids` attribute. It also contains other switch ports that send and receive traffic from all the defined VLANs.
 
 ```
 ...

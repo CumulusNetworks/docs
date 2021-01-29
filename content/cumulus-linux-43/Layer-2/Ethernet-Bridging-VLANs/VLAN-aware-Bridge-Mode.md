@@ -74,7 +74,7 @@ cumulus@switch:~$ ifreload -a
 {{< tab "CUE Commands ">}}
 
 ```
-cumulus@switch:~$ cl set 
+cumulus@switch:~$ cl set interface swp1-2 bridge domain bridge vlan 100,200 
 cumulus@switch:~$ cl config apply
 ```
 

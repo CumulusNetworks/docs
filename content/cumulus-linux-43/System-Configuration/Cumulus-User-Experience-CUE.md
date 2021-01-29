@@ -12,6 +12,18 @@ CUE is a command line interface for Cumulus Linux. Embracing the power of open n
 
 The CUE object model is structured as a *big tree* that represents the entire state of a Cumulus Linux instance. At the base of the tree are high level branches such as *router* and *interface*. Under each of these branches are further branches.  As you navigate through the tree, you gain a more specific context. At the leaves of the tree are actual attributes, represented as key/value pairs. The path through the tree is implemented as through a filesystem.
 
+## Install CUE
+
+CUE is not installed by default on Cumulus Linux. To install CUE, follow the procedure below.
+
+{{%notice note%}}
+
+ADD LIMITATIONS ETC HERE
+
+{{%/notice%}}
+
+INSTALLATION INTRUCTIONS
+
 ## Command Line Basics
 
 This section describes the core structure and behavior of the CUE CLI.

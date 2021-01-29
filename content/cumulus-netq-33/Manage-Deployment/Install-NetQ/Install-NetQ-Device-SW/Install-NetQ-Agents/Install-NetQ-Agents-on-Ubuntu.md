@@ -223,7 +223,7 @@ To install the NetQ Agent:
     root@ubuntu:~# dpkg-query -W -f '${Package}\t${Version}\n' netq-agent
     ```
 
-    {{<netq-install/agent-version version="3.2.1" opsys="ub">}}
+    {{<netq-install/agent-version version="3.3.0" opsys="ub">}}
 
 3. Restart `rsyslog` so log files are sent to the correct destination.
 

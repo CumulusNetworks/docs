@@ -22,7 +22,7 @@ The CUE command line has a flat structure as opposed to a modal structure. This 
 
 ### Command Syntax
 
-CUE commands all begin with `cl` and fall into one of three syntax categories: configuration (`set` and `unset`), monitoring (`show`), and configuration management (`config`).
+CUE commands all begin with `cl` and fall into one of three syntax categories: configuration (`set` and `unset`), monitoring (`show`), and configuration management (`config`). The commands include revision options, attributes and subcommands.
 
 ```
 cumulus@switch:~$ cl set [options] <attribute>
@@ -30,6 +30,18 @@ cumulus@switch:~$ cl unset [options] <attribute>
 cumulus@switch:~$ cl show [options] <attribute>
 cumulus@switch:~$ cl config <command> [options]
 ```
+
+The command revision options [options] let you specify where to apply the configuration. The revision options are optional. If you do not specify a revision option, the command is applied or to ????.
+
+| Option | Description |
+| ------ | ----------- |
+| `--rev <revision>` |  Applies the set or unset command to the revision ID you specify. |
+|  `--pending`       |  Applies the set or unset command to one or more configurations that are awaiting to be applied.|
+|  `--applied`       |  Applies the set or unset command to the applied revision. |
+|  `--startup`       |  Applies the set or unset command to the startup revision. The new configuration will run when you restart the switch. |
+|  `--running`       |  Applies the set or unset command to the running revision (the actual system state).  |
+
+The attributes specify a subcommand or the configuration setting. For example, `cl set router bgp graceful-restart mode [options] (full|helper-only|off)`.
 
 To see the full list of CUE commands, run `cl list-commands`.
 
@@ -128,6 +140,6 @@ The CUE configuration management commands manage and apply configurations.
 | `cl config replace [options] <cue-file>` | Replaces the pending configuration with the specified file. |
 | `cl config detach [options]` | Detaches the configuration from the current pending revision. |
 | `cl config diff [options] [(<revision>|--empty)] [<revision>]` | Shows differences between two configuration revisions. |
-| `cl config patch [options] <cue-file>` | Updates the pending revision with a configuration in a specified YAML file. |
+| `cl config patch [options] <cue-file>` | Updates the pending revision with a configuration YAML file. |
 
 ## How is CUE Different from NCLU

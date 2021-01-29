@@ -78,6 +78,7 @@ iface bridge
 {{< tab "CUE Commands ">}}
 
 ```
+cumulus@switch:~$ cl set interface swp1-3 bridge domain bridge vlan 10,100,200,300
 cumulus@switch:~$ cl set 
 cumulus@switch:~$ cl config apply
 ```

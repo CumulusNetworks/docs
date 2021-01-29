@@ -35,7 +35,7 @@ cumulus@switch:~$ net add bond bond1 bond slaves swp51s2,swp51s3
 cumulus@switch:~$ net add bond bond1 clag id 1
 cumulus@switch:~$ net add bond bond1 bond lacp-bypass-allow
 cumulus@switch:~$ net add bond bond1 stp bpduguard
-cumulus@switch:~$ net add bridge bridge ports bond1,bond2,bond3,bond4,peer5
+cumulus@switch:~$ net add bridge bridge ports bond1,bond2,bond3,bond4,bond5
 cumulus@switch:~$ net add bridge bridge vids 100-105
 cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
@@ -74,7 +74,11 @@ cumulus@switch:~$ sudo ifreload -a
 {{< tab "CUE Commands ">}}
 
 ```
-cumulus@switch:~$ cl set 
+cumulus@switch:~$ cl set interface bond1 bond member swp51s2,swp51s3
+cumulus@switch:~$ cl set interface bond1 bond mlag id 1
+cumulus@switch:~$ cl set interface bond1 bond lacp-bypass on
+cumulus@switch:~$ cl set interface bond1,bond2,bond3,bond4,bond5 bridge domain bridge vlan 100-105
+cumulus@switch:~$ cl set interface bond1 bridge domain bridge stp bpdu-guard on
 cumulus@switch:~$ cl config apply
 ```
 
@@ -154,8 +158,7 @@ cumulus@switch:~$ ip link show swp52s3
 {{< tab "CUE Commands ">}}
 
 ```
-cumulus@switch:~$ cl set 
-cumulus@switch:~$ cl config apply
+cumulus@switch:~$ cl show interface bond1 
 ```
 
 {{< /tab >}}

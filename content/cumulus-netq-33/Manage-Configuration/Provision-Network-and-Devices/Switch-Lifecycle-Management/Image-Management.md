@@ -494,6 +494,62 @@ netq lcm del cl-image <text-image-id>
     ]
     ```
 
+To remove NetQ images, run:
+
+```
+netq lcm show netq-images [json]
+netq lcm del netq-image <text-image-id>
+```
+
+1. Determine the ID of the image you want to remove.
+
+    ```
+    cumulus@switch:~$ netq lcm show netq-images json
+    [
+        {
+            "id": "image_d23a9e006641c675ed9e152948a9d1589404e8b83958d53eb0ce7698512e7001",
+            "name": "netq-agent_3.3.0-cl4u32_1609391187.7df4e1d2_amd64.deb",
+            "netqVersion": "3.3.0",
+            "clVersion": "cl4u32",
+            "cpu": "x86_64",
+            "imageType": "NETQ_AGENT",
+            "lastChanged": 1609885430638.0
+        }, 
+        {
+            "id": "image_68db386683c796d86422f2172c103494fef7a820d003de71647315c5d774f834",
+            "name": "netq-apps_3.3.0-cl4u32_1609391187.7df4e1d2_amd64.deb",
+            "netqVersion": "3.3.0",
+            "clVersion": "cl4u32",
+            "cpu": "x86_64",
+            "imageType": "NETQ_CLI",
+            "lastChanged": 1609885434704.0
+        }
+    ]
+    ```
+
+2. Remove the image you no longer need.
+
+    ```
+    cumulus@switch:~$ netq lcm del netq-image image_68db386683c796d86422f2172c103494fef7a820d003de71647315c5d774f834
+    ```
+
+3. Verify it has been removed.
+
+    ```
+    cumulus@switch:~$ netq lcm show netq-images json
+    [
+        {
+            "id": "image_d23a9e006641c675ed9e152948a9d1589404e8b83958d53eb0ce7698512e7001",
+            "name": "netq-agent_3.3.0-cl4u32_1609391187.7df4e1d2_amd64.deb",
+            "netqVersion": "3.3.0",
+            "clVersion": "cl4u32",
+            "cpu": "x86_64",
+            "imageType": "NETQ_AGENT",
+            "lastChanged": 1609885430638.0
+        }
+    ]
+    ```
+
 {{< /tab >}}
 
 {{< /tabs >}}

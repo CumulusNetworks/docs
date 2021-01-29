@@ -7,6 +7,14 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-33160</td>
+<td><p>CVE-2021-3156: A serious heap-based buffer overflow has been discovered in sudo that is exploitable by any local user. It has been given the name Baron Samedit by its discoverer. The bug can be leveraged to elevate privileges to root, even if the user is not listed in the sudoers file. User authentication is not required to exploit the bug.<br/>
+Vulnerable: &lt;= 1.8.27-1+deb10u2<br/>
+Fixed: 1.8.27-1+deb10u3</p></td>
+<td>4.0.0-4.2.1</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-33115</td>
 <td><p>When you run any of the vtysh show bgp ipv4 or show bgp ipv6 statistics commands, the bgpd service crashes.</p></td>
 <td>4.2.1</td>
@@ -33,6 +41,12 @@ ERROR: Command not found
 <td>CM-33035</td>
 <td><p>EAP-TLS fail on wired connections when the reachability to the RADIUS server does not use the eth0 (mgmt) VRF interface.</p></td>
 <td>4.2.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33032</td>
+<td><p>On Edgecore AS4610 switches, the historic CPU usage displayed in /run/sysmonitor/history is sometimes shown as a negative value. </p></td>
+<td>3.7.12-3.7.14, 4.2.1</td>
 <td></td>
 </tr>
 <tr>
@@ -2256,6 +2270,14 @@ asic-monitor[7389]: File "/usr/lib/python2.7/dist-packages/cumulus/asic_monitor.
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>CM-33160</td>
+<td><p>CVE-2021-3156: A serious heap-based buffer overflow has been discovered in sudo that is exploitable by any local user. It has been given the name Baron Samedit by its discoverer. The bug can be leveraged to elevate privileges to root, even if the user is not listed in the sudoers file. User authentication is not required to exploit the bug.<br/>
+Vulnerable: &lt;= 1.8.27-1+deb10u2<br/>
+Fixed: 1.8.27-1+deb10u3</p></td>
+<td>4.0.0-4.2.1</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-33049</td>

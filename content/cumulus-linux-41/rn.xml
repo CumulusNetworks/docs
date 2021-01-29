@@ -7,6 +7,14 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-33160</td>
+<td><p>CVE-2021-3156: A serious heap-based buffer overflow has been discovered in sudo that is exploitable by any local user. It has been given the name Baron Samedit by its discoverer. The bug can be leveraged to elevate privileges to root, even if the user is not listed in the sudoers file. User authentication is not required to exploit the bug.<br/>
+Vulnerable: &lt;= 1.8.27-1+deb10u2<br/>
+Fixed: 1.8.27-1+deb10u3</p></td>
+<td>4.0.0-4.2.1</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-33049</td>
 <td><p>You cannot set the time zone can with NCLU commands.</p></td>
 <td>4.1.1-4.2.1</td>
@@ -2507,6 +2515,14 @@ CVE-2020-10531: An issue was discovered in International Components for Unicode 
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>CM-33160</td>
+<td><p>CVE-2021-3156: A serious heap-based buffer overflow has been discovered in sudo that is exploitable by any local user. It has been given the name Baron Samedit by its discoverer. The bug can be leveraged to elevate privileges to root, even if the user is not listed in the sudoers file. User authentication is not required to exploit the bug.<br/>
+Vulnerable: &lt;= 1.8.27-1+deb10u2<br/>
+Fixed: 1.8.27-1+deb10u3</p></td>
+<td>4.0.0-4.2.1</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-33012</td>

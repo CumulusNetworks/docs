@@ -134,7 +134,7 @@ To install the NetQ Agent:
     root@rhel7:~# rpm -q -netq-agent
     ```
 
-    {{<netq-install/agent-version version="3.2.1" opsys="rh">}}
+    {{<netq-install/agent-version version="3.3.0" opsys="rh">}}
 
 3. Restart `rsyslog` so log files are sent to the correct destination.
 

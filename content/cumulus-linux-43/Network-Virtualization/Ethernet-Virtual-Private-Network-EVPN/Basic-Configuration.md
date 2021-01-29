@@ -126,7 +126,8 @@ cumulus@leaf01:~$
 {{< tab "CUE Commands ">}}
 
 ```
-cumulus@leaf01:~$ 
+cumulus@leaf01:~$ cl set 
+cumulus@leaf01:~$ cl config apply
 ```
 
 {{< /tab >}}

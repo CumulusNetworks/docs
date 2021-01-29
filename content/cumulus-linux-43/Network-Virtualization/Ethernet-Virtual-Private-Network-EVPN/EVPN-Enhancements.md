@@ -111,7 +111,8 @@ cumulus@leaf03:~$
 {{< tab "leaf01 ">}}
 
 ```
-cumulus@leaf01:~$ 
+cumulus@leaf01:~$ cl set 
+
 ```
 
 {{< /tab >}}

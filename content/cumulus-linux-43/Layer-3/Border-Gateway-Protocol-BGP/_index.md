@@ -21,12 +21,6 @@ The ASN is central to how BGP builds a forwarding topology. A BGP route advertis
 
 ASNs were originally 16-bit numbers, but were later modified to be 32-bit. FRRouting supports both 16-bit and 32-bit ASNs, but many implementations still run with 16-bit ASNs.
 
-{{%notice note%}}
-
-In a VRF-lite deployment (where multiple independent routing tables work simultaneously on the same switch), Cumulus Linux supports multiple ASNs. Multiple ASNs are not supported in deployments that use EVPN or VRF route leaking.
-
-{{%/notice%}}
-
 ### Auto BGP
 
 In a two-tier leaf and spine environment, you can use *auto BGP* to generate 32-bit ASNs automatically so that you don't have to think about which numbers to allocate. Auto BGP helps build optimal ASN configurations in your data center to avoid suboptimal routing and path hunting, which occurs when you assign the wrong spine ASNs. Auto BGP makes no changes to standard BGP behavior or configuration.

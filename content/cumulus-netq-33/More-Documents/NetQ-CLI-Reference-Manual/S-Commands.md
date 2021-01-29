@@ -1913,8 +1913,6 @@ spine03           CL              3.7.12                               Mon Aug 1
 spine04           CL              3.7.12                               Mon Aug 10 19:55:08 2020
 ```
 
-Refer to {{<link title="">}} or {{<link title="">}} for additional examples.
-
 ### Related Commands
 
 - netq config agent cpu-limit
@@ -3325,7 +3323,7 @@ Proxy URL          Slack Enabled              PagerDuty Enabled
 proxy4:80          yes                        yes
 ```
 
-Refer to {{<link title="Configure Notifications">}} for more detail about configuring notifications.
+Refer to {{<link title="Configure System Event Notifications">}} for more detail about configuring notifications.
 
 ### Related Commands
 

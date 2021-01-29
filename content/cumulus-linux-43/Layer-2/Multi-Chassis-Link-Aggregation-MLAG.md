@@ -426,7 +426,7 @@ The `clagd` service has a number of timers that you can tune for enhanced perfor
 | ----- | ----------- |
 | `--reloadTimer <seconds>` | The number of seconds to wait for the peer switch to become active. If the peer switch does not become active after the timer expires, the MLAG bonds leave the initialization ({{<link url="#peer-link-interfaces-and-the-protodown-state" text="protodown">}}) state and become active. This provides `clagd` with sufficient time to determine whether the peer switch is coming up or if it is permanently unreachable. <br>The default is 300 seconds.|
 | `--peerTimeout <seconds>` | The number of seconds `clagd` waits without receiving any messages from the peer switch before it determines that the peer is no longer active. At this point, the switch reverts all configuration changes so that it operates as a standard non-MLAG switch. This includes removing all statically assigned MAC addresses, clearing the egress forwarding mask, and allowing addresses to move from any port to the peer port. After a message is again received from the peer, MLAG operation restarts. If this parameter is not specified, `clagd` uses ten times the local `lacpPoll` value. |
-| `--initDelay <seconds>` | The number of seconds `clagd` delays bringing up MLAG bonds and anycast IP addresses. <br>The default is 180 seconds. |
+| `--initDelay <seconds>` | The number of seconds `clagd` delays bringing up MLAG bonds and anycast IP addresses. <br>The default is 180 seconds.<br>This timer is set to 0 automatically under the following conditions:<ul><li>When the peer is not alive and the backup link is not active after a reload timeout</li><li>When the peer sends a goodbye (through the peerlink or the backup link)</li><li>When both MLAG sessions come up at the same time</li></ul>|
 | `--sendTimeout <seconds>` | The number of seconds `clagd` waits until the sending socket times out. If it takes longer than the `sendTimeout` value to send data to the peer, `clagd` generates an exception. <br>The default is 30 seconds. |
 | `--lacpPoll <seconds>` | The number of seconds `clagd` waits before obtaining local LACP information. <br>The default is 2 seconds.|
 
@@ -1896,16 +1896,6 @@ NIC statistics:
 
 {{< /tabs >}}
 
-### Duplicate LACP Partner MAC Warning
-
-When you run the `clagctl` command, you might see output similar to this:
-
-```
-bond1 bond1 52 duplicate lacp - partner mac
-```
-
-This occurs when you have multiple LACP bonds between the same two LACP endpoints; for example, an MLAG switch pair is one endpoint and an ESXi host is another. These bonds have duplicate LACP identifiers, which are MAC addresses. This same warning might trigger when you have a cabling or configuration error.
-
 ### Peer Link Interfaces and the protodown State
 
 In addition to the standard UP and DOWN administrative states, an interface that is a member of an MLAG bond can also be in a `protodown` state. When MLAG detects a problem that might result in connectivity issues, it can put that interface into `protodown` state. Such connectivity issues include:
@@ -1923,6 +1913,18 @@ cumulus@switch:~$ net show bridge link
 3: swp1 state DOWN: <NO-CARRIER,BROADCAST,MULTICAST,MASTER,UP> mtu 9216 master pfifo_fast master host-bond1 state DOWN mode DEFAULT qlen 500 protodown on
     link/ether 44:38:39:00:69:84 brd ff:ff:ff:ff:ff:ff
 ```
+
+### LACP Partner MAC Address Duplicate or Mismatch
+
+Cumulus Linux puts interfaces in a protodown state under the following conditions:
+
+- When there is an LACP partner MAC address mismatch. For example if a bond comes up with a `clag-id` and the peer is using a bond with the same `clag-id` but a different LACP partner MAC address. The `clagctl` command output shows the protodown reason as a `partner-mac-mismatch`.
+
+- When there is a duplicate LACP partner MAC address. For example, when there are multiple LACP bonds between the same two LACP endpoints. The `clagctl` command output shows the protodown reason as a `duplicate-partner-mac`.
+
+  To prevent a bond from coming up when an MLAG bond with an LACP partner MAC address already in use comes up, use the `--clag-args --allowPartnerMacDup False` option. This option puts the slaves of that bond interface in a protodown state and the `clagctl` output shows the protodown reason as a `duplicate-partner-mac`.
+
+After you make the necessary cable or configuration changes to avoid the protodown state and you want MLAG to reevaluate the LACP partners, use the `clagctl clearconflictstate` command to remove `duplicate-partner-mac` or `partner-mac-mismatch` from the protodowned bonds, allowing them to come back up.
 
 ## Related Information
 

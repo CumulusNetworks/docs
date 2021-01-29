@@ -109,7 +109,7 @@ Now that the appliances are up and running, verify that the software is availabl
 
 5. Consider the following for container environments, and make adjustments as needed.
 
-    {{<netq-install/container>}}
+    {{<netq-install/container version="3.3.0">}}
 
 6. On one or your worker nodes, verify that the needed packages are present and of the correct release, version 3.3.0 and update 31 or later.
 

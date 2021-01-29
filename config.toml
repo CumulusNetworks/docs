@@ -30,7 +30,7 @@ disableKinds = ["RSS"]
   [[menu.subnav]]
     identifier = "cumulus-netq"
     title = "NVIDIA NetQ"
-    url = "/cumulus-netq-32/"
+    url = "/cumulus-netq-33/"
     weight = 20
 
   [[menu.subnav]]

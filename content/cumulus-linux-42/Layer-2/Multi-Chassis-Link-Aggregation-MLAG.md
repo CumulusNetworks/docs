@@ -1896,16 +1896,6 @@ NIC statistics:
 
 {{< /tabs >}}
 
-### Duplicate LACP Partner MAC Warning
-
-When you run the `clagctl` command, you might see output similar to this:
-
-```
-bond1 bond1 52 duplicate lacp - partner mac
-```
-
-This occurs when you have multiple LACP bonds between the same two LACP endpoints; for example, an MLAG switch pair is one endpoint and an ESXi host is another. These bonds have duplicate LACP identifiers, which are MAC addresses. This same warning might trigger when you have a cabling or configuration error.
-
 ### Peer Link Interfaces and the protodown State
 
 In addition to the standard UP and DOWN administrative states, an interface that is a member of an MLAG bond can also be in a `protodown` state. When MLAG detects a problem that might result in connectivity issues, it can put that interface into `protodown` state. Such connectivity issues include:
@@ -1923,6 +1913,18 @@ cumulus@switch:~$ net show bridge link
 3: swp1 state DOWN: <NO-CARRIER,BROADCAST,MULTICAST,MASTER,UP> mtu 9216 master pfifo_fast master host-bond1 state DOWN mode DEFAULT qlen 500 protodown on
     link/ether 44:38:39:00:69:84 brd ff:ff:ff:ff:ff:ff
 ```
+
+### LACP Partner MAC Address Duplicate or Mismatch
+
+Cumulus Linux puts interfaces in a protodown state under the following conditions:
+
+- When there is an LACP partner MAC address mismatch. For example if a bond comes up with a `clag-id` and the peer is using a bond with the same `clag-id` but a different LACP partner MAC address. The `clagctl` command output shows the protodown reason as a `partner-mac-mismatch`.
+
+- When there is a duplicate LACP partner MAC address. For example, when there are multiple LACP bonds between the same two LACP endpoints. The `clagctl` command output shows the protodown reason as a `duplicate-partner-mac`.
+
+  To prevent a bond from coming up when an MLAG bond with an LACP partner MAC address already in use comes up, use the `--clag-args --allowPartnerMacDup False` option. This option puts the slaves of that bond interface in a protodown state and the `clagctl` output shows the protodown reason as a `duplicate-partner-mac`.
+
+After you make the necessary cable or configuration changes to avoid the protodown state and you want MLAG to reevaluate the LACP partners, use the `clagctl clearconflictstate` command to remove `duplicate-partner-mac` or `partner-mac-mismatch` from the protodowned bonds, allowing them to come back up.
 
 ## Related Information
 

@@ -12,28 +12,25 @@ This document supports the Cumulus Linux 4.3 release, and lists new platforms an
 
 ## What's New in Cumulus Linux 4.3.0
 
-Cumulus Linux 4.3.0 supports new platforms, provides bug fixes, and contains several new features and improvements.
-
-### New Platforms
-
-- Mellanox SN4800 (100G Spectrum-3)
+Cumulus Linux 4.3.0 provides bug fixes, and contains several new features and enhancements.
 
 ### New Features and Enhancements
 
-- {{<link url="Smart-System-Manager" text="Smart System Manager">}}, which enables you to upgrade and troubleshoot an active switch with minimal disruption to the network
-- {{<link url="Optional-BGP-Configuration/#graceful-bgp-restart" text="BGP graceful restart">}}
-- {{<link url="SPAN-and-ERSPAN" text="NCLU commands for SPAN and ERSPAN">}}
+- {{<link url="Smart-System-Manager" text="Smart System Manager">}} enables you to upgrade and troubleshoot an active switch with minimal disruption to the network
+- BGP enhancements:
+  - {{<link url="Optional-BGP-Configuration/#graceful-bgp-restart" text="BGP graceful restart">}}
+  - {{<link url="Optional-BGP-Configuration/#multiple-bgp-asns" text="Multiple ASNs for different VRF instances">}}
 - {{<link url="DHCP-Snooping" text="DHCP snooping">}}
 - QoS enhancements:
   - {{<link url="Buffer-and-Queue-Management#traffic-shaping" text="Traffic shaping">}}
   - {{<link url="Buffer-and-Queue-Management#scheduling-weights-per-egress-queue" text="Scheduling weights per egress queue">}}
-- {{<link url="Netfilter-ACLs/#nonatomic-update-mode-and-atomic-update-mode" text="Incremental nonatomic updates">}} now supported on Mellanox switches
 - {{<link title="Mellanox What Just Happened (WJH)" text="Mellanox WJH commands">}} to troubleshoot and diagnose network issues
-- {{<link url="EVPN-Multihoming" text="EVPN multihoming">}} now supports LACP bypass
 - {{<link url="Docker-on-Cumulus-Linux" text="Docker runtime ">}} included by default on Cumulus Linux
+- {{<link url="SPAN-and-ERSPAN" text="NCLU commands for SPAN and ERSPAN">}}
 - {{<link url="RDMA-over-Converged-Ethernet-RoCE" text="DoRoCE command">}} to configure RoCE with PFC and ECN on all interfaces
+- {{<link url="Netfilter-ACLs/#nonatomic-update-mode-and-atomic-update-mode" text="Incremental nonatomic updates">}} supported on Mellanox switches
 - {{<link url="Supported-MIBs" text="SNMP MIB for BGP unnumbered peers">}}
-- Multicast routing over VXLAN is now supported on Mellanox switches
+- Multicast routing over VXLAN is supported on Mellanox switches
 
 ### Unsupported Platforms
 
@@ -45,6 +42,5 @@ These platforms are not supported in Cumulus Linux 4.3. They are supported in Cu
 - Facebook Backpack (100G Tomahawk)
 - Facebook Voyager (100G Tomahawk)
 - Delta AG7648
-- Edgecore AS4610-54T-B
 - QCT QuantaMesh BMS T3048-LY8
 - QCT QuantaMesh BMS T3048-LY9

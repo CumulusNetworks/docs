@@ -146,13 +146,13 @@ Commands:
 To see an exhaustive list of commands, run:
 
 ```
-cumulus@switch:~$ netq help list verbose
-```
-
-To see a list of all NetQ commands and keyword help, run:
-
-```
 cumulus@switch:~$ netq help list
+```
+
+To get usage information for NetQ, run:
+
+```
+cumulus@switch:~$ netq help verbose
 ```
 
 ### Command History
@@ -709,7 +709,7 @@ cumulus@switch:~$ netq add notification channel pagerduty pd-netq-events integra
 Successfully added/updated channel pd-netq-events
 ```
 
-Refer to {{<link title="Configure Notifications" text="Configure Notifications">}} for details about using these commands and additional examples.
+Refer to {{<link title="Configure System Event Notifications">}} for details about using these commands and additional examples.
 
 ### Trace Commands
 

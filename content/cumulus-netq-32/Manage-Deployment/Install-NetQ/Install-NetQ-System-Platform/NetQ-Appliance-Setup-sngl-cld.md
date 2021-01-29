@@ -105,7 +105,7 @@ Now that the appliance is up and running, verify that the software is available 
 
 ## Considerations for Container Environments
 
-{{<netq-install/container>}}
+{{<netq-install/container version="3.2.1">}}
 
 ## Install and Activate the NetQ Software
 

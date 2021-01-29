@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 490
 toc: 5
 ---
-The following instructions are applicable to both Cumulus Linux 3.x and 4.x, and for both on-premises and cloud deployments.
+The following instructions are applicable to both Cumulus Linux 3.x and 4.x, and for both on-premises and remote deployments.
 
 To upgrade the NetQ Agent and CLI on a switch or host:
 

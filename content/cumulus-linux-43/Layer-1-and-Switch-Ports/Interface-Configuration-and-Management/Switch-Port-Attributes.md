@@ -839,11 +839,21 @@ Cumulus Linux lets you:
 - For Broadcom switches with ports that support 100G speeds, you *cannot* have more than 128 logical ports.
 - On Mellanox switches with the Spectrum ASIC running in *nonatomic* ACL mode, if you break out a port, then reload the `switchd` service, temporary disruption to traffic occurs while the ACLs are reinstalled.
 - Port ganging is not supported on Mellanox switches with the Spectrum ASIC.
-- Mellanox switches with the Spectrum ASIC have a limit of 64 logical ports. 64-port Broadcom switches with the Tomahawk2 ASIC have a limit of 128 total logical ports. If you want to break ports out to 4x25G or 4x10G, you must configure the logical ports as follows:
+- Mellanox switches with the Spectrum 1 ASIC have a limit of 64 logical ports. 64-port Broadcom switches with the Tomahawk2 ASIC have a limit of 128 total logical ports. If you want to break ports out to 4x25G or 4x10G, you must configure the logical ports as follows:
   - You can only break out odd-numbered ports into four logical ports.
   - You must disable the next even-numbered port. For example, if you break out port 11 into four logical ports, you must disable port 12.
 
-  These restrictions do *not* apply to a 2x50G breakout configuration.
+  These restrictions do *not* apply to a 2x50G breakout configuration or to the Mellanox SN2100 and SN2010 switches.
+- Mellanox switches with the Spectrum 2 and Spectrum 3 ASIC have a limit of 128 logical ports. To ensure that the number of total logical interfaces does not exceed the limit, if you split ports into four interfaces on Spectrum 2 and Spectrum 3 switches with 64 interfaces, you must disable the adjacent port. For example, when splitting port 1 into four 25G interfaces, you must disable port 2 in the `/etc/cumulus/ports.conf` file:
+
+    ```
+    1=4x25G
+    2=disabled
+    ```
+
+   When you split a port into two interfaces, such as 2x50G, you do **not** have to disable the adjacent port.
+
+Valid port configuration and breakout guidance for each platform is provided in the `/etc/cumulus/ports.conf` file.
 
 {{%/notice%}}
 

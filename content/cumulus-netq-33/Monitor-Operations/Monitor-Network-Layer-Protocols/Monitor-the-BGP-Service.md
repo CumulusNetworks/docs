@@ -627,7 +627,7 @@ To view all session details, open the full-screen Network Services|All BGP Sessi
 
 {{<figure src="/images/netq/ntwk-svcs-all-bgp-fullscr-allsess-tab-300.png" width="700">}}
 
-Use the icons above the table to select/deselect, filter, and export items in the list. Refer to {{<link url="Access-Data-with-Cards#table-settings" text="Table Settings">}} for more detail.
+Use the icons above the table to select/deselect, filter, and export items in the list. Refer to {{<link url="Access-Data-with-Cards/#table-settings" text="Table Settings">}} for more detail.
 
 To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner.
 

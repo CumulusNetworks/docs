@@ -18,7 +18,7 @@ There are three sets of validation commands, all for verifying the health and pe
 - The newer set of validation commands are used to create on-demand or scheduled validations with the results being displayed in the NetQ UI Validation Result cards. These commands begin with `netq add validation`. They are used to validate various elements in your network fabric currently or on a regular basis. No filtering on results is available within the commands as that is accomplished through the NetQ UI.
 - The validation management commands. These present a list of all jobs and job settings, and the ability to remove validations.
 
-Refer to {{<link title="Validation Checks">}} for a description of the tests run as part of each validation. The `netq check`commands are described here. The others are described elsewhere based on on the command names.
+Refer to {{<link title="Validation Checks">}} for a description of the tests run as part of each validation. The `netq check`commands are described here. The others are described elsewhere based on the command names.
 
 **About Config Commands**
 
@@ -69,10 +69,11 @@ A release is included if there were changes to the command, otherwise it is not 
 | ---- | ---- |
 | 3.0.0 | Added `hostnames` option |
 | 2.4.0 | Added `include` and `exclude` options; output changed to include individual test status |
+| 1.x | Introduced |
 
 ### Sample Usage
 
-Basic Validation: All devices, all tests, currently
+Basic validation: all devices, all tests, currently
 
 ```
 cumulus@switch:~$ netq check agents
@@ -87,7 +88,7 @@ Warning nodes       : 0
 Agent Health Test   : passed
 ```
 
-Validation for Selected Devices
+Validation for selected devices
 
 ```
 cumulus@switch:~$ netq check agents hostnames leaf01,leaf02,leaf03,leaf04
@@ -177,6 +178,7 @@ A release is included if there were changes to the command, otherwise it is not 
 | ---- | ---- |
 | 3.0.0 | Added `hostnames` option |
 | 2.4.0 | Added `include` and `exclude` options; output changed to include individual test status |
+| 1.x | Introduced |
 
 ### Sample Usage
 
@@ -246,6 +248,7 @@ A release is included if there were changes to the command, otherwise it is not 
 | ---- | ---- |
 | 3.0.0 | Added `hostnames` option |
 | 2.4.0 | Added `include` and `exclude` options; output changed to include individual test status |
+| 1.x | Introduced |
 
 ### Sample Usage
 
@@ -368,6 +371,7 @@ A release is included if there were changes to the command, otherwise it is not 
 | ---- | ---- |
 | 3.0.0 | Added `hostnames` option |
 | 2.4.0 | Added `include` and `exclude` options; output changed to include individual test status |
+| 1.x | Introduced |
 
 ### Sample Usage
 
@@ -513,6 +517,7 @@ A release is included if there were changes to the command, otherwise it is not 
 | 3.0.0 | Added `hostnames` option |
 | 2.4.0 | Added `include` and `exclude` options; output changed to include individual test status |
 | 2.2.0 | Added `mac-consistency` option. Removed `hostname` and `vni` options. |
+| 1.x | Introduced |
 
 ### Sample Usage
 
@@ -606,6 +611,7 @@ A release is included if there were changes to the command, otherwise it is not 
 | 3.0.0 | Added `hostnames` option |
 | 2.4.0 | Added `include` and `exclude` options; output changed to include individual test status |
 | 2.1.0 | Removed host and peer options (`physical-hostname`, `physical-port`, `peer-physical-hostname`, `peer-physical-port`) and `unverified` option |
+| 1.x | Introduced |
 
 ### Sample Usage
 
@@ -728,6 +734,7 @@ A release is included if there were changes to the command, otherwise it is not 
 | ---- | ---- |
 | 3.0.0 | Added `hostnames` option |
 | 2.4.0 | Added `include` and `exclude` options; output changed to include individual test status |
+| 1.x | Introduced |
 
 ### Sample Usage
 
@@ -760,7 +767,143 @@ License validity Test   : passed
 
 ## netq check mlag
 
-<!-- Add info here -->
+Verifies MLAG session consistency by identifying all MLAG peers with errors or misconfigurations in the NetQ domain. In particular, it looks for such items as:
+
+- multiple link pairs with the same system MAC address
+- any interfaces with only a single attachment
+- peer connectivity
+- conflicted bonds
+- whether the backup IP address is pointing to the correct peer
+
+The output displays the status (passed/failed/skipped) of all tests and a summary including:
+
+- Total number of nodes found
+- Number of nodes validated
+- Number of nodes that failed the validation
+- Number of nodes that have not been heard from in 90 seconds (rotten)
+- Number of nodes with warnings
+
+### Syntax
+
+```
+netq check mlag
+    [label <text-label-name> | hostnames <text-list-hostnames> ]
+    [include <mlag-number-range-list> | exclude <mlag-number-range-list>]
+    [around <text-time>]
+    [json | summary]
+```
+
+### Required Arguments
+
+None
+
+### Options
+
+| Option | Value | Description |
+| ---- | ---- | ---- |
+| label | \<text-label-name\> | Reserved |
+| hostnames | \<text-list-hostnames\> | Comma-separated list (no spaces) of hostnames to include in validation |
+| include | \<agent-number-range-list\> | Include the specified validation tests |
+| exclude | \<agent-number-range-list\> | Exclude the specified validation tests |
+| around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. The value is written using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
+| json | NA | Display the output in JSON file format instead of default on-screen text format |
+| summary | NA | Display only the summary informationand test results. Do not display details for tests that failed or had warnings.. |
+
+### Command History
+
+A release is included if there were changes to the command, otherwise it is not listed.
+
+| Release | Description |
+| ---- | ---- |
+| 3.0.0 | Added `hostnames` option |
+| 2.4.0 | Added `include` and `exclude` options; output changed to include individual test status |
+| 1.x | Introduced |
+
+### Sample Usage
+
+Basic validation: All devices, all tests, currently
+
+```
+cumulus@switch:~$ netq check mlag
+clag check result summary:
+
+Total nodes         : 6
+Checked nodes       : 6
+Failed nodes        : 0
+Rotten nodes        : 0
+Warning nodes       : 0
+
+Peering Test             : passed
+Backup IP Test           : passed
+Clag SysMac Test         : passed
+VXLAN Anycast IP Test    : passed
+Bridge Membership Test   : passed
+Spanning Tree Test       : passed
+Dual Home Test           : passed
+Single Home Test         : passed
+Conflicted Bonds Test    : passed
+ProtoDown Bonds Test     : passed
+SVI Test                 : passed
+```
+
+Validate only selected devices
+
+```
+cumulus@switch:~$ netq check mlag hostnames leaf01,leaf02
+clag check result summary:
+
+Total nodes         : 2
+Checked nodes       : 2
+Failed nodes        : 0
+Rotten nodes        : 0
+Warning nodes       : 0
+
+Peering Test             : passed
+Backup IP Test           : passed
+Clag SysMac Test         : passed
+VXLAN Anycast IP Test    : passed
+Bridge Membership Test   : passed
+Spanning Tree Test       : passed
+Dual Home Test           : passed
+Single Home Test         : passed
+Conflicted Bonds Test    : passed
+ProtoDown Bonds Test     : passed
+SVI Test                 : passed
+```
+
+Exclude selected validation tests
+
+```
+cumulus@switch:~$ netq check mlag exclude 2
+clag check result summary:
+
+Total nodes         : 6
+Checked nodes       : 6
+Failed nodes        : 0
+Rotten nodes        : 0
+Warning nodes       : 0
+
+Peering Test             : passed
+Backup IP Test           : passed
+Clag SysMac Test         : skipped
+VXLAN Anycast IP Test    : passed
+Bridge Membership Test   : passed
+Spanning Tree Test       : passed
+Dual Home Test           : passed
+Single Home Test         : passed
+Conflicted Bonds Test    : passed
+ProtoDown Bonds Test     : passed
+SVI Test                 : passed
+```
+
+### Related Commands
+
+- netq show mlag
+- netq show unit-tests mlag
+- netq add validation
+- netq add validation name
+
+- - -
 
 ## netq check mtu
 
@@ -813,6 +956,7 @@ A release is included if there were changes to the command, otherwise it is not 
 | ---- | ---- |
 | 3.0.0 | Added `hostnames` option |
 | 2.4.0 | Added `include` and `exclude` options; output changed to include individual test status |
+| 1.x | Introduced |
 
 ### Sample Usage
 
@@ -941,6 +1085,7 @@ A release is included if there were changes to the command, otherwise it is not 
 | ---- | ---- |
 | 3.0.0 | Added `hostnames` option |
 | 2.4.0 | Added `include` and `exclude` options; output changed to include individual test status |
+| 1.x | Introduced |
 
 ### Sample Usage
 
@@ -1026,6 +1171,7 @@ A release is included if there were changes to the command, otherwise it is not 
 | ---- | ---- |
 | 3.0.0 | Added `hostnames` option |
 | 2.4.0 | Added `include` and `exclude` options; output changed to include individual test status |
+| 1.x | Introduced |
 
 ### Sample Usage
 
@@ -1125,6 +1271,7 @@ A release is included if there were changes to the command, otherwise it is not 
 | ---- | ---- |
 | 3.0.0 | Added `hostnames` option |
 | 2.4.0 | Added `include` and `exclude` options; output changed to include individual test status |
+| 1.x | Introduced |
 
 ### Sample Usage
 
@@ -1209,6 +1356,7 @@ A release is included if there were changes to the command, otherwise it is not 
 | ---- | ---- |
 | 3.0.0 | Added `hostnames` option |
 | 2.4.0 | Added `include` and `exclude` options; output changed to include individual test status |
+| 1.x | Introduced |
 
 ### Sample Usage
 
@@ -1309,6 +1457,7 @@ A release is included if there were changes to the command, otherwise it is not 
 | ---- | ---- |
 | 3.0.0 | Added `hostnames` option |
 | 2.4.0 | Added `include` and `exclude` options; output changed to include individual test status |
+| 1.x | Introduced |
 
 ### Sample Usage
 
@@ -1337,27 +1486,120 @@ BUM replication Test    : passed
 
 - - -
 
-## netq config 
-    add      :  Add netq tca configuration
-    agent    :  Troubleshooting daemon
-    del      :  Delete netq tca configuration
-    reload   :  Reload configuration
-    restart  :  Restart daemon
-    select   :  add help text
-    show     :  Show fabric-wide info about specified object
-    start    :  Start daemon
-    status   :  License state
-    stop     :  Stop daemon
+## netq config add agent cluster-servers
 
-## netq config add agents
+Configures the server cluster where the NetQ Agents on monitored switches and hosts should send their collected data. You can also provide a specific port or VRF to use for the communication. Note that you must restart the NetQ Agent for the configuration to be enabled.
 
-    netq config add agent cluster-servers <text-opta-ip-list> [port <text-opta-port>] [vrf <text-vrf-name>]
-    netq config add agent cpu-limit [<text-limit-number>]
-    netq config add agent frr-monitor [<text-frr-docker-name>]
-    netq config add agent kubernetes-monitor [poll-period <text-duration-period>]
-    netq config add agent loglevel [debug|error|info|warning]
-    netq config add agent sensors
-    netq config add agent server <text-opta-ip> [port <text-opta-port>] [vrf <text-vrf-name>]
-    netq config (start|stop|status|restart) agent
-    netq config del agent (cluster-servers|cpu-limit|frr-monitor|kubernetes-monitor|loglevel|sensors|server|stats|wjh)
-    netq config show agent [cpu-limit|frr-monitor|kubernetes-monitor|loglevel|sensors|stats|wjh] [json]
+### Syntax
+
+```
+netq config add agent cluster-servers
+    <text-opta-ip-list>
+    [port <text-opta-port>]
+    [vrf <text-vrf-name>]
+```
+
+### Required Arguments
+
+| Argument | Value | Description |
+| ---- | ---- | ---- |
+| NA | \<text-opta-ip-list\> | Comma-separated list (no spaces) of IP addresses or hostnames of switches to include in server cluster |
+
+### Options
+
+| Option | Value | Description |
+| ---- | ---- | ---- |
+| port | \<text-opta-port\> | Use the port with this name on each switch to receive data; default is port 31980 |
+| vrf | \<text-vrf-names\> | Use the VRF with this name on each switch to receive data; default VRF is *default* |
+
+### Command History
+
+A release is included if there were changes to the command, otherwise it is not listed.
+
+| Release | Description |
+| ---- | ---- |
+| 2.4.0 | Introduced |
+
+### Sample Usage
+
+Configure cluster with default port and VRF
+
+```
+cumulus@switch:~$ netq config add agent cluster-servers leaf01,leaf02,spine01
+Updated agent for cluster servers leaf01,leaf02,spine01 port 31980 vrf default. Please restart netq-agent (netq config restart agent)
+
+cumulus@switch:~$ netq config restart agent
+```
+
+### Related Commands
+
+- netq config del agent cluster-servers
+
+- - -
+
+## netq config add agent command
+
+Configures, enables, and disables modular agent commands that the NetQ Agent runs at preset intervals.
+
+### Syntax
+
+```
+netq config add agent command
+    service-key <text-service-key-anchor>
+    [poll-period <text-cmd-periodicity>]
+    [command <text-cmd-text>]
+    [enable True | enable False]
+```
+
+- - -
+
+## netq config add agent cpu-limit
+
+### Syntax
+
+```
+netq config add agent cpu-limit
+    [<text-limit-number>]
+```
+
+    2.4.1
+
+netq config agent factory-reset commands
+
+netq config add agent frr-monitor
+    [<text-frr-docker-name>]
+
+netq config add agent kubernetes-monitor
+    [poll-period <text-duration-period>]
+
+netq config add agent loglevel
+    [debug|error|info|warning]
+
+netq config add agent server
+    <text-opta-ip>
+    [port <text-opta-port>]
+    [vrf <text-vrf-name>]
+
+netq config add agent (stats|sensors)
+
+netq config add agent wjh 2.4.1
+
+netq config add agent wjh-threshold
+    (latency|congestion)
+    <text-tc-list>
+    <text-port-list>
+    <text-th-hi>
+    <text-th-lo>
+3.2.0
+```
+
+
+
+### Related Commands
+
+- netq config (start|stop|status|restart) agent
+- netq config del agent
+- netq config show agent
+
+- - -
+

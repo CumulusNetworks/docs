@@ -7,8 +7,56 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-33165</td>
+<td><p>CVE-2021-3156: A serious heap-based buffer overflow has been discovered in sudo that is exploitable by any local user. It has been given the name Baron Samedit by its discoverer. The bug can be leveraged to elevate privileges to root, even if the user is not listed in the sudoers file. User authentication is not required to exploit the bug.<br/>
+Vulnerable: &lt;= 1.8.10p4-cl3.7.14u1<br/>
+Fixed: 1.8.10p4-cl3.7.15u1</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33032</td>
+<td><p>On Edgecore AS4610 switches, the historic CPU usage displayed in /run/sysmonitor/history is sometimes shown as a negative value. </p></td>
+<td>3.7.12-3.7.14</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33012</td>
+<td><p>After you add an interface to the bridge, an OSPF session flap can occur.</p>
+</td>
+<td>3.7.9-3.7.14</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33008</td>
+<td><p>Several security vulnerabilities were found in ImageMagick, a suite of image manipulation programs. An attacker could cause denial of service and execution of arbitrary code when a crafted image file is processed.<br/>
+CVE-2020-19667 Stack-based buffer overflow and unconditional jump in ReadXPMImage in coders/xpm.c<br/>
+CVE-2020-25665 The PALM image coder at coders/palm.c makes an improper call to AcquireQuantumMemory() in routine WritePALMImage() because it needs to be offset by 256. This can cause a out-of-bounds read later on in the routine. This could cause impact to reliability.<br/>
+CVE-2020-25674 WriteOnePNGImage() from coders/png.c (the PNG coder) has a for loop with an improper exit condition that can allow an out-of-bounds READ via heap-buffer-overflow. This occurs because it is possible for the colormap to have less than 256 valid values but the loop condition will loop 256 times, attempting to pass invalid colormap data to the event logger.<br/>
+CVE-2020-27560 ImageMagick allows Division by Zero in OptimizeLayerFrames in MagickCore/layer.c, which may cause a denial of service.<br/>
+CVE-2020-27750 A flaw was found in MagickCore/colorspace-private.h and MagickCore/quantum.h. An attacker who submits a crafted file that is processedcould trigger undefined behavior in the form of values outside the range of type unsigned char and math division by zero. This would most likely lead to an impact to application availability, but could potentially cause other problems related to undefined behavior.<br/>
+CVE-2020-27760 In GammaImage() of /MagickCore/enhance.c, depending on the gamma value, it’s possible to trigger a divide-by-zero condition when a crafted input file is processed by ImageMagick. This could lead to an impact to application availability.<br/>
+CVE-2020-27763 A flaw was found in MagickCore/resize.c. An attacker who submits a crafted file that is processed by ImageMagick could trigger undefined behavior in the form of math division by zero. This would most likely lead to an impact to application availability, but could potentially cause other problems related to undefined behavior.<br/>
+CVE-2020-27765 A flaw was found in MagickCore/segment.c. An attacker who submits a crafted file that is processed by ImageMagick could trigger undefined behavior in the form of math division by zero. This would most likely lead to an impact to application availability, but could potentially cause other problems related to undefined behavior.<br/>
+CVE-2020-27773 A flaw was found in MagickCore/gem-private.h. An attacker who submits a crafted file that is processed by ImageMagick could trigger undefined behavior in the form of values outside the range of type unsigned char or division by zero. This would most likely lead to an impact to application availability, but could potentially cause other problems related to undefined behavior.<br/>
+CVE-2020-29599 ImageMagick mishandles the -authenticate option, which allows setting a password for password-protected PDF files. The user-controlled password was not properly escaped/sanitized and it was therefore possible to inject additional shell commands via coders/pdf.c.<br/>
+Vulnerable: &lt;= 6.8.9.9-5+deb8u21<br/>
+Fixed: 6.8.9.9-5+deb8u22</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33007</td>
+<td><p>The following vulnerability was announced in the apt packages:<br/>
+CVE-2020-27350: Missing input validation in the ar/tar implementations of APT, the high level package manager, could cause out-of-bounds reads or infinite loops, resulting in denial of service when processing malformed deb files. <br/>
+Vulnerable: &lt;= 1.0.9.8.6<br/>
+Fixed: 1.0.9.8.7</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-32829</td>
-<td><p>The NET-SNMP-EXTEND-MIB, disabled to prevent security vulnerability CVE-2020-15862, is re-enabled read-only.</p></td>
+<td><p>The NET-SNMP-EXTEND-MIB, disabled in Cumulus Linux 4.2.1 and 3.7.14 to prevent security vulnerability CVE-2020-15862, is re-enabled read-only.</p></td>
 <td>3.7.14</td>
 <td></td>
 </tr>
@@ -88,6 +136,12 @@ Fixed: 2.4.40+dfsg-1+deb8u8</p></td>
 <td></td>
 </tr>
 <tr>
+<td>CM-32597</td>
+<td><p>When you change the anycast address for the MLAG pair (clagd-vxlan-anycast-ip), high peak traffic occurs on the peer link interface of all MLAG switches.</p></td>
+<td>3.7.13-3.7.14</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-32545</td>
 <td><p>If the FRR and MSTP processes go down, an SNMP TRAP is not generated even with the following configuration in the /etc/snmp/snmpd.conf file. </p>
 
@@ -100,13 +154,6 @@ monitor -I -r 1  -o prNames.3 -o prErrMessage.3  "Process mstpd is up!!!!" prErr
 
 </td>
 <td>3.7.12-3.7.14</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-32541</td>
-<td><p>After upgrading Cumulus Linux with the apt-upgrade command, then rebooting an MLAG pair, if there are no bonds configured with a clag-id, the clagd service has difficulty peering, and holds all MLAG interfaces and VNIs in a proto down state.<br/>
-To work around this issue, after upgrading both switches, restart the clagd service with the sudo systemctl restart clagd command on each MLAG pair.</p></td>
-<td>3.7.14</td>
 <td></td>
 </tr>
 <tr>
@@ -180,7 +227,7 @@ Nov 12 12:20:05.099943 leaf01 switchd[9867]: hal_bcm_console.c:299 CRIT loading 
 </tr>
 <tr>
 <td>CM-32225</td>
-<td><p>A slow memory leak is observed (1% per 14 hours) in switchd or clagd. <br/>
+<td><p>A slow memory leak is observed (1% per 14 hours) in kmalloc-256.<br/>
 To work around this issue, reboot the switch.</p></td>
 <td>3.7.12-3.7.14</td>
 <td></td>
@@ -268,6 +315,12 @@ cumulus@switch:mgmt-vrf:~$ net add snmp-server username user999 auth-md5 user999
 <td></td>
 </tr>
 <tr>
+<td>CM-31404</td>
+<td><p>On the Delta AG7648 switch, the System LED and the Power LED do not display correctly.</p></td>
+<td>3.7.13-3.7.14</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-31327</td>
 <td><p>After you manually edit the /etc/resolv.conf file to change or remove a VRF for a given DNS server, ifreload does not remove IP rules created for DNS servers in the VRF. <br/>
 To work around this issue, run the net add/del dns nameserver vrf &lt;name&gt; command to force the DNS configuration.</p></td>
@@ -290,6 +343,26 @@ To work around this issue, avoid polling IP-FORWARD-MIB objects.</p></td>
 <tr>
 <td>CM-31263</td>
 <td><p>RX_DRP on a bond interface increases without any data traffic while the slave port does not increase.</p></td>
+<td>3.7.12-3.7.14</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31232</td>
+<td><p>On the  Dell N3048EP switch, the module information from SFP ports is not displayed in the l1-show command.<br/>
+To work around this issue, use the ethtool -m &lt;interface&gt; command.</p></td>
+<td>3.7.13-3.7.14</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31231</td>
+<td><p>On the Dell N3048EP switch, the module information from SFP ports is not displayed in the l1-show command.<br/>
+To work around this issue, use the ethtool -m &lt;interface&gt; command.</p></td>
+<td>3.7.13-3.7.14</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31222</td>
+<td><p>Tenant VRF BGP peers appear in the EVPN RMAC and nexthop tables, which causes the kernel RMAC to point at invalid IP address.</p></td>
 <td>3.7.12-3.7.14</td>
 <td></td>
 </tr>
@@ -417,12 +490,6 @@ To work around this issue, either do not set acl.non_atomic_update_mode = TRUE i
 <td></td>
 </tr>
 <tr>
-<td>CM-29978</td>
-<td><p>The received PVST BPDU for a VLAN is flooded even though the ingress port doesn't have the VLAN tagged.</p></td>
-<td>3.7.8-3.7.14</td>
-<td></td>
-</tr>
-<tr>
 <td>CM-29890</td>
 <td><p>Multiple paths to identical EVPN prefixes are either not displayed or not accepted into the l2vpn evpn table if they are received from a different AS.</p></td>
 <td>3.7.12-3.7.14</td>
@@ -450,12 +517,30 @@ All the information from lldpctl is correct. Only the entries after the entry th
 <td></td>
 </tr>
 <tr>
+<td>CM-29759</td>
+<td><p>When you use nginx and restserver in management VRF to provide a REST API for the switch, nginx starts but restserver fails to start.<br/>
+To work around this issue, comment out the Requires= line in the /lib/systemd/system/restserver.service. For example:</p>
+
+#Requires=nginx.service restserver.socket
+
+</td>
+<td>3.7.12-3.7.14</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-29740</td>
 <td><p>The exim4 package available for optional installation on Cumulus Linux 3.x has the following vulnerability:<br/>
 DLA-2213-1 / CVE-2020-12783: Exim through 4.93 has an out-of-bounds read in the SPA authenticator that could result in SPA/NTLM authentication bypass in auths/spa.c and auths/auth-spa.c.  The spa authentication driver is not enabled by default.<br/>
 Vulnerable: &lt;= 4.84.2-2+deb8u6<br/>
 Fixed: 4.84.2-2+deb8u7</p></td>
 <td>3.0.0-3.7.14</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29667</td>
+<td><p>After installing Cumulus Linux on the Mellanox SN2100 switch, if you break out a port (for example, if you break out swp1 into four ports: swp1s0, swp1s1, swp1s2, swp1s3) in the /etc/cumulus/ports.conf file, then run the systemctl start switchd command, the update does not take effect.<br/>
+To work around this issue, run the systemctl restart switchd command.</p></td>
+<td>3.7.12-3.7.14</td>
 <td></td>
 </tr>
 <tr>
@@ -1946,6 +2031,11 @@ Fixed: 7.38.0-4+deb8u18</p></td>
 <td>3.0.0-3.7.13</td>
 </tr>
 <tr>
+<td>CM-31618</td>
+<td><p>A ping via a dual-connected bond fails, and the audio stream is not routed or encapsulated through the layer 3 VNI.</p></td>
+<td>3.7.12-3.7.13</td>
+</tr>
+<tr>
 <td>CM-31565</td>
 <td><p>Multicast traffic on a VPN is sent to remote VTEPs that are not part of the VPN and the remote VTEPs receive multicast traffic encapsulated in a VXLAN ID that doesn't exist.<br/>
 To work around this issue, disable IGMP snooping on the switch.</p></td>
@@ -1957,6 +2047,12 @@ To work around this issue, disable IGMP snooping on the switch.</p></td>
 To work around this issue, restart FRR with the sudo systemctl restart frr.service command.</p>
 </td>
 <td>3.7.10-3.7.13</td>
+</tr>
+<tr>
+<td>CM-31504</td>
+<td><p>On the the Dell N3248-PXE switch, when you insert two PSUs at different times, the newly inserted PSU is detected as OK but the fan and temp sensors are ABSENT.<br/>
+To work around this issue, remove power to both PSUs at the same time, then reinsert power simultaneously.</p></td>
+<td>3.7.12-3.7.13</td>
 </tr>
 <tr>
 <td>CM-31475</td>
@@ -2260,12 +2356,17 @@ To work around this issue, manually delete the dynamic FDB entry that is associa
 <tr>
 <td>CM-30141</td>
 <td><p>In an MLAG configuration with static VXLAN, static tunnels become unreachable.</p></td>
-<td></td>
+<td>3.7.13</td>
 </tr>
 <tr>
 <td>CM-29982</td>
 <td><p>A VRRP role change over the EVPN network causes excessive BGP updates and connectivity issues to VIP for about one minute.</p></td>
 <td></td>
+</tr>
+<tr>
+<td>CM-29978</td>
+<td><p>The received PVST BPDU for a VLAN is flooded even though the ingress port doesn't have the VLAN tagged.</p></td>
+<td>3.7.8-3.7.13</td>
 </tr>
 <tr>
 <td>CM-29838</td>
@@ -2345,7 +2446,7 @@ Fixed: 1.8.10p4-cl3.7.14u1</p></td>
 Jan 30 19:22:53 switch123 snmpd[23172]: Cannot statfs /sys/kernel/debug/tracing: Permission denied
 
 </td>
-<td></td>
+<td>3.7.13</td>
 </tr>
 <tr>
 <td>CM-28136</td>
@@ -2365,7 +2466,7 @@ RTM_NEWNEIGH with unconfigured vlan XXXX on port peerlink
 <td>CM-27489</td>
 <td><p>Mellanox switches might experience higher CPU usage from the sx_sdk service or when BFD is in use.<br/>
 To work around this issue, disable BFD to alleviate some of the CPU load.</p></td>
-<td></td>
+<td>3.7.13</td>
 </tr>
 <tr>
 <td>CM-27354</td>
@@ -2406,6 +2507,54 @@ To work around this issue, disable BFD to alleviate some of the CPU load.</p></t
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>CM-33165</td>
+<td><p>CVE-2021-3156: A serious heap-based buffer overflow has been discovered in sudo that is exploitable by any local user. It has been given the name Baron Samedit by its discoverer. The bug can be leveraged to elevate privileges to root, even if the user is not listed in the sudoers file. User authentication is not required to exploit the bug.<br/>
+Vulnerable: &lt;= 1.8.10p4-cl3.7.14u1<br/>
+Fixed: 1.8.10p4-cl3.7.15u1</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33032</td>
+<td><p>On Edgecore AS4610 switches, the historic CPU usage displayed in /run/sysmonitor/history is sometimes shown as a negative value. </p></td>
+<td>3.7.12-3.7.14</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33012</td>
+<td><p>After you add an interface to the bridge, an OSPF session flap can occur.</p>
+</td>
+<td>3.7.9-3.7.14</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33008</td>
+<td><p>Several security vulnerabilities were found in ImageMagick, a suite of image manipulation programs. An attacker could cause denial of service and execution of arbitrary code when a crafted image file is processed.<br/>
+CVE-2020-19667 Stack-based buffer overflow and unconditional jump in ReadXPMImage in coders/xpm.c<br/>
+CVE-2020-25665 The PALM image coder at coders/palm.c makes an improper call to AcquireQuantumMemory() in routine WritePALMImage() because it needs to be offset by 256. This can cause a out-of-bounds read later on in the routine. This could cause impact to reliability.<br/>
+CVE-2020-25674 WriteOnePNGImage() from coders/png.c (the PNG coder) has a for loop with an improper exit condition that can allow an out-of-bounds READ via heap-buffer-overflow. This occurs because it is possible for the colormap to have less than 256 valid values but the loop condition will loop 256 times, attempting to pass invalid colormap data to the event logger.<br/>
+CVE-2020-27560 ImageMagick allows Division by Zero in OptimizeLayerFrames in MagickCore/layer.c, which may cause a denial of service.<br/>
+CVE-2020-27750 A flaw was found in MagickCore/colorspace-private.h and MagickCore/quantum.h. An attacker who submits a crafted file that is processedcould trigger undefined behavior in the form of values outside the range of type unsigned char and math division by zero. This would most likely lead to an impact to application availability, but could potentially cause other problems related to undefined behavior.<br/>
+CVE-2020-27760 In GammaImage() of /MagickCore/enhance.c, depending on the gamma value, it’s possible to trigger a divide-by-zero condition when a crafted input file is processed by ImageMagick. This could lead to an impact to application availability.<br/>
+CVE-2020-27763 A flaw was found in MagickCore/resize.c. An attacker who submits a crafted file that is processed by ImageMagick could trigger undefined behavior in the form of math division by zero. This would most likely lead to an impact to application availability, but could potentially cause other problems related to undefined behavior.<br/>
+CVE-2020-27765 A flaw was found in MagickCore/segment.c. An attacker who submits a crafted file that is processed by ImageMagick could trigger undefined behavior in the form of math division by zero. This would most likely lead to an impact to application availability, but could potentially cause other problems related to undefined behavior.<br/>
+CVE-2020-27773 A flaw was found in MagickCore/gem-private.h. An attacker who submits a crafted file that is processed by ImageMagick could trigger undefined behavior in the form of values outside the range of type unsigned char or division by zero. This would most likely lead to an impact to application availability, but could potentially cause other problems related to undefined behavior.<br/>
+CVE-2020-29599 ImageMagick mishandles the -authenticate option, which allows setting a password for password-protected PDF files. The user-controlled password was not properly escaped/sanitized and it was therefore possible to inject additional shell commands via coders/pdf.c.<br/>
+Vulnerable: &lt;= 6.8.9.9-5+deb8u21<br/>
+Fixed: 6.8.9.9-5+deb8u22</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33007</td>
+<td><p>The following vulnerability was announced in the apt packages:<br/>
+CVE-2020-27350: Missing input validation in the ar/tar implementations of APT, the high level package manager, could cause out-of-bounds reads or infinite loops, resulting in denial of service when processing malformed deb files. <br/>
+Vulnerable: &lt;= 1.0.9.8.6<br/>
+Fixed: 1.0.9.8.7</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-32810</td>
@@ -2467,6 +2616,12 @@ This operation is not supported in the kernel without recreating the SVI. To app
 Vulnerable: &lt;= 2.4.40+dfsg-1+deb8u7<br/>
 Fixed: 2.4.40+dfsg-1+deb8u8</p></td>
 <td>3.0.0-3.7.14</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32597</td>
+<td><p>When you change the anycast address for the MLAG pair (clagd-vxlan-anycast-ip), high peak traffic occurs on the peer link interface of all MLAG switches.</p></td>
+<td>3.7.13-3.7.14</td>
 <td></td>
 </tr>
 <tr>
@@ -2541,7 +2696,7 @@ Nov 12 12:20:05.099943 leaf01 switchd[9867]: hal_bcm_console.c:299 CRIT loading 
 </tr>
 <tr>
 <td>CM-32225</td>
-<td><p>A slow memory leak is observed (1% per 14 hours) in switchd or clagd. <br/>
+<td><p>A slow memory leak is observed (1% per 14 hours) in kmalloc-256.<br/>
 To work around this issue, reboot the switch.</p></td>
 <td>3.7.12-3.7.14</td>
 <td></td>
@@ -2722,6 +2877,12 @@ Fixed: 7.38.0-4+deb8u18</p></td>
 <td>3.7.14</td>
 </tr>
 <tr>
+<td>CM-31618</td>
+<td><p>A ping via a dual-connected bond fails, and the audio stream is not routed or encapsulated through the layer 3 VNI.</p></td>
+<td>3.7.12-3.7.13</td>
+<td>3.7.14</td>
+</tr>
+<tr>
 <td>CM-31605</td>
 <td><p>When you configure an SNMPv3 user with the net-snmp-config configuration command from the libsnmp-dev package, you get an error message similar to the one below:</p>
 
@@ -2756,6 +2917,13 @@ To work around this issue, disable IGMP snooping on the switch.</p></td>
 To work around this issue, restart FRR with the sudo systemctl restart frr.service command.</p>
 </td>
 <td>3.7.10-3.7.13</td>
+<td>3.7.14</td>
+</tr>
+<tr>
+<td>CM-31504</td>
+<td><p>On the the Dell N3248-PXE switch, when you insert two PSUs at different times, the newly inserted PSU is detected as OK but the fan and temp sensors are ABSENT.<br/>
+To work around this issue, remove power to both PSUs at the same time, then reinsert power simultaneously.</p></td>
+<td>3.7.12-3.7.13</td>
 <td>3.7.14</td>
 </tr>
 <tr>
@@ -2805,6 +2973,12 @@ Fixed: 1.5.6-5+deb8u1</p></td>
 <td>CM-31407</td>
 <td><p>You cannot configure SNMPv3 trap-destinations in non-default VRFs with an authentication username that contains fewer than eight characters.</p></td>
 <td>3.7.12-3.7.14</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31404</td>
+<td><p>On the Delta AG7648 switch, the System LED and the Power LED do not display correctly.</p></td>
+<td>3.7.13-3.7.14</td>
 <td></td>
 </tr>
 <tr>
@@ -2927,6 +3101,20 @@ To work around this issue, disable ARP/ND suppression to remove the internal ACL
 <td>3.7.14</td>
 </tr>
 <tr>
+<td>CM-31232</td>
+<td><p>On the  Dell N3048EP switch, the module information from SFP ports is not displayed in the l1-show command.<br/>
+To work around this issue, use the ethtool -m &lt;interface&gt; command.</p></td>
+<td>3.7.13-3.7.14</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31231</td>
+<td><p>On the Dell N3048EP switch, the module information from SFP ports is not displayed in the l1-show command.<br/>
+To work around this issue, use the ethtool -m &lt;interface&gt; command.</p></td>
+<td>3.7.13-3.7.14</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-31226</td>
 <td><p>Mellanox switches with the Spectrum ASIC fail to read PSU Fan/Temp sensors and report them as Absent. The following messages are observed in syslog:</p>
 
@@ -2936,6 +3124,12 @@ To work around this issue, disable ARP/ND suppression to remove the internal ACL
 </td>
 <td>3.7.13</td>
 <td>3.7.14</td>
+</tr>
+<tr>
+<td>CM-31222</td>
+<td><p>Tenant VRF BGP peers appear in the EVPN RMAC and nexthop tables, which causes the kernel RMAC to point at invalid IP address.</p></td>
+<td>3.7.12-3.7.14</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-31210</td>
@@ -3244,6 +3438,12 @@ To work around this issue, enable MAB on the interface.</p></td>
 <td></td>
 </tr>
 <tr>
+<td>CM-30141</td>
+<td><p>In an MLAG configuration with static VXLAN, static tunnels become unreachable.</p></td>
+<td>3.7.13</td>
+<td>3.7.14</td>
+</tr>
+<tr>
 <td>CM-30103</td>
 <td><p>On a Broadcom switch with the Trident2+ ASIC, ACL rules for VLANs are not applied after a reboot and the counters remain at zero.<br/>
 To work around this issue, either do not set acl.non_atomic_update_mode = TRUE in the /etc/cumulus/switchd.conf file or run the cl-acltool -i command after the reboot to install the  ACLs.</p></td>
@@ -3259,8 +3459,8 @@ To work around this issue, either do not set acl.non_atomic_update_mode = TRUE i
 <tr>
 <td>CM-29978</td>
 <td><p>The received PVST BPDU for a VLAN is flooded even though the ingress port doesn't have the VLAN tagged.</p></td>
-<td>3.7.8-3.7.14</td>
-<td></td>
+<td>3.7.8-3.7.13</td>
+<td>3.7.14</td>
 </tr>
 <tr>
 <td>CM-29890</td>
@@ -3305,12 +3505,30 @@ All the information from lldpctl is correct. Only the entries after the entry th
 <td></td>
 </tr>
 <tr>
+<td>CM-29759</td>
+<td><p>When you use nginx and restserver in management VRF to provide a REST API for the switch, nginx starts but restserver fails to start.<br/>
+To work around this issue, comment out the Requires= line in the /lib/systemd/system/restserver.service. For example:</p>
+
+#Requires=nginx.service restserver.socket
+
+</td>
+<td>3.7.12-3.7.14</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-29740</td>
 <td><p>The exim4 package available for optional installation on Cumulus Linux 3.x has the following vulnerability:<br/>
 DLA-2213-1 / CVE-2020-12783: Exim through 4.93 has an out-of-bounds read in the SPA authenticator that could result in SPA/NTLM authentication bypass in auths/spa.c and auths/auth-spa.c.  The spa authentication driver is not enabled by default.<br/>
 Vulnerable: &lt;= 4.84.2-2+deb8u6<br/>
 Fixed: 4.84.2-2+deb8u7</p></td>
 <td>3.0.0-3.7.14</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29667</td>
+<td><p>After installing Cumulus Linux on the Mellanox SN2100 switch, if you break out a port (for example, if you break out swp1 into four ports: swp1s0, swp1s1, swp1s2, swp1s3) in the /etc/cumulus/ports.conf file, then run the systemctl start switchd command, the update does not take effect.<br/>
+To work around this issue, run the systemctl restart switchd command.</p></td>
+<td>3.7.12-3.7.14</td>
 <td></td>
 </tr>
 <tr>
@@ -3636,6 +3854,16 @@ Dec 20 08:43:27 netflow-nms sfcapd[3991]: SFLOW: readFlowSample_header() undefin
 <td></td>
 </tr>
 <tr>
+<td>CM-28189</td>
+<td><p>When host-resources and ucd-snmp-mib are polled, you see permission denied messages similar to the following:</p>
+
+Jan 30 19:22:53 switch123 snmpd[23172]: Cannot statfs /sys/kernel/debug/tracing: Permission denied
+
+</td>
+<td>3.7.13</td>
+<td>3.7.14</td>
+</tr>
+<tr>
 <td>CM-28136</td>
 <td><p>The MLAG switch pair has VLANs defined that are not used on MLAG bonds. These VLANs still synchronize MAC addresses across to the peer switch. This results in log messages that indicate a MAC address is installed and the VLAN is not defined; for example:</p>
 
@@ -3756,6 +3984,13 @@ This workaround only works when an out-of-band network is present.</p></td>
 To work around this issue, remove the empty Bond interfaces from the /etc/network/interfaces file and run sudo ifreload -a.</p></td>
 <td>3.7.10-3.7.14</td>
 <td></td>
+</tr>
+<tr>
+<td>CM-27489</td>
+<td><p>Mellanox switches might experience higher CPU usage from the sx_sdk service or when BFD is in use.<br/>
+To work around this issue, disable BFD to alleviate some of the CPU load.</p></td>
+<td>3.7.13</td>
+<td>3.7.14</td>
 </tr>
 <tr>
 <td>CM-27354</td>
@@ -5068,7 +5303,7 @@ CVE-2019-5188: A specially crafted ext4 directory can cause an out-of-bounds wri
 </tr>
 <tr>
 <td>CM-29037</td>
-<td><p>When a link flap occurs and IPv6 traffic traverses eth0, a kernel panic might occur with the following logs printed to the console:</p>
+<td><p>When a link flap occurs while IPv6 traffic traverses interfaces, a kernel panic may occur with the following logs printed to the console:</p>
 
 [1675080.282051] BUG: unable to handle kernel NULL pointer dereference at 0000000000000110
 [1675080.291007] IP: [&lt;ffffffff81709dec&gt;] fib6_lookup_1+0xac/0x170
@@ -5331,6 +5566,54 @@ Typically, the destination MAC address 01:00:5e:xx:xx:xx is used only for PIM/IG
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-33165</td>
+<td><p>CVE-2021-3156: A serious heap-based buffer overflow has been discovered in sudo that is exploitable by any local user. It has been given the name Baron Samedit by its discoverer. The bug can be leveraged to elevate privileges to root, even if the user is not listed in the sudoers file. User authentication is not required to exploit the bug.<br/>
+Vulnerable: &lt;= 1.8.10p4-cl3.7.14u1<br/>
+Fixed: 1.8.10p4-cl3.7.15u1</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33032</td>
+<td><p>On Edgecore AS4610 switches, the historic CPU usage displayed in /run/sysmonitor/history is sometimes shown as a negative value. </p></td>
+<td>3.7.12-3.7.14</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33012</td>
+<td><p>After you add an interface to the bridge, an OSPF session flap can occur.</p>
+</td>
+<td>3.7.9-3.7.14</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33008</td>
+<td><p>Several security vulnerabilities were found in ImageMagick, a suite of image manipulation programs. An attacker could cause denial of service and execution of arbitrary code when a crafted image file is processed.<br/>
+CVE-2020-19667 Stack-based buffer overflow and unconditional jump in ReadXPMImage in coders/xpm.c<br/>
+CVE-2020-25665 The PALM image coder at coders/palm.c makes an improper call to AcquireQuantumMemory() in routine WritePALMImage() because it needs to be offset by 256. This can cause a out-of-bounds read later on in the routine. This could cause impact to reliability.<br/>
+CVE-2020-25674 WriteOnePNGImage() from coders/png.c (the PNG coder) has a for loop with an improper exit condition that can allow an out-of-bounds READ via heap-buffer-overflow. This occurs because it is possible for the colormap to have less than 256 valid values but the loop condition will loop 256 times, attempting to pass invalid colormap data to the event logger.<br/>
+CVE-2020-27560 ImageMagick allows Division by Zero in OptimizeLayerFrames in MagickCore/layer.c, which may cause a denial of service.<br/>
+CVE-2020-27750 A flaw was found in MagickCore/colorspace-private.h and MagickCore/quantum.h. An attacker who submits a crafted file that is processedcould trigger undefined behavior in the form of values outside the range of type unsigned char and math division by zero. This would most likely lead to an impact to application availability, but could potentially cause other problems related to undefined behavior.<br/>
+CVE-2020-27760 In GammaImage() of /MagickCore/enhance.c, depending on the gamma value, it’s possible to trigger a divide-by-zero condition when a crafted input file is processed by ImageMagick. This could lead to an impact to application availability.<br/>
+CVE-2020-27763 A flaw was found in MagickCore/resize.c. An attacker who submits a crafted file that is processed by ImageMagick could trigger undefined behavior in the form of math division by zero. This would most likely lead to an impact to application availability, but could potentially cause other problems related to undefined behavior.<br/>
+CVE-2020-27765 A flaw was found in MagickCore/segment.c. An attacker who submits a crafted file that is processed by ImageMagick could trigger undefined behavior in the form of math division by zero. This would most likely lead to an impact to application availability, but could potentially cause other problems related to undefined behavior.<br/>
+CVE-2020-27773 A flaw was found in MagickCore/gem-private.h. An attacker who submits a crafted file that is processed by ImageMagick could trigger undefined behavior in the form of values outside the range of type unsigned char or division by zero. This would most likely lead to an impact to application availability, but could potentially cause other problems related to undefined behavior.<br/>
+CVE-2020-29599 ImageMagick mishandles the -authenticate option, which allows setting a password for password-protected PDF files. The user-controlled password was not properly escaped/sanitized and it was therefore possible to inject additional shell commands via coders/pdf.c.<br/>
+Vulnerable: &lt;= 6.8.9.9-5+deb8u21<br/>
+Fixed: 6.8.9.9-5+deb8u22</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33007</td>
+<td><p>The following vulnerability was announced in the apt packages:<br/>
+CVE-2020-27350: Missing input validation in the ar/tar implementations of APT, the high level package manager, could cause out-of-bounds reads or infinite loops, resulting in denial of service when processing malformed deb files. <br/>
+Vulnerable: &lt;= 1.0.9.8.6<br/>
+Fixed: 1.0.9.8.7</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-32810</td>
 <td><p>The following vulnerability has been announced in the libflac8 package:<br/>
 CVE-2020-0499: In FLAC__bitreader_read_rice_signed_block of bitreader.c, there is a possible out-of-bounds read due to a heap buffer overflow.  This could lead to remote information disclosure with no additional execution privileges needed. However, user interaction is needed for exploitation.<br/>
@@ -5450,7 +5733,7 @@ Nov 12 12:20:05.099943 leaf01 switchd[9867]: hal_bcm_console.c:299 CRIT loading 
 </tr>
 <tr>
 <td>CM-32225</td>
-<td><p>A slow memory leak is observed (1% per 14 hours) in switchd or clagd. <br/>
+<td><p>A slow memory leak is observed (1% per 14 hours) in kmalloc-256.<br/>
 To work around this issue, reboot the switch.</p></td>
 <td>3.7.12-3.7.14</td>
 <td></td>
@@ -5608,6 +5891,12 @@ Fixed: 7.38.0-4+deb8u18</p></td>
 <td>3.7.14</td>
 </tr>
 <tr>
+<td>CM-31618</td>
+<td><p>A ping via a dual-connected bond fails, and the audio stream is not routed or encapsulated through the layer 3 VNI.</p></td>
+<td>3.7.12-3.7.13</td>
+<td>3.7.14</td>
+</tr>
+<tr>
 <td>CM-31565</td>
 <td><p>Multicast traffic on a VPN is sent to remote VTEPs that are not part of the VPN and the remote VTEPs receive multicast traffic encapsulated in a VXLAN ID that doesn't exist.<br/>
 To work around this issue, disable IGMP snooping on the switch.</p></td>
@@ -5620,6 +5909,13 @@ To work around this issue, disable IGMP snooping on the switch.</p></td>
 To work around this issue, restart FRR with the sudo systemctl restart frr.service command.</p>
 </td>
 <td>3.7.10-3.7.13</td>
+<td>3.7.14</td>
+</tr>
+<tr>
+<td>CM-31504</td>
+<td><p>On the the Dell N3248-PXE switch, when you insert two PSUs at different times, the newly inserted PSU is detected as OK but the fan and temp sensors are ABSENT.<br/>
+To work around this issue, remove power to both PSUs at the same time, then reinsert power simultaneously.</p></td>
+<td>3.7.12-3.7.13</td>
 <td>3.7.14</td>
 </tr>
 <tr>
@@ -5769,6 +6065,12 @@ Fixed: 3.26-1+debu8u13</p></td>
 These messages and the light are cosmetic issues only and do not otherwise impact the function of the switch.</p></td>
 <td>3.7.12-3.7.13</td>
 <td>3.7.14</td>
+</tr>
+<tr>
+<td>CM-31222</td>
+<td><p>Tenant VRF BGP peers appear in the EVPN RMAC and nexthop tables, which causes the kernel RMAC to point at invalid IP address.</p></td>
+<td>3.7.12-3.7.14</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-31210</td>
@@ -6231,8 +6533,8 @@ Fixed: 1.8.22-0+deb8u3</p></td>
 <tr>
 <td>CM-29978</td>
 <td><p>The received PVST BPDU for a VLAN is flooded even though the ingress port doesn't have the VLAN tagged.</p></td>
-<td>3.7.8-3.7.14</td>
-<td></td>
+<td>3.7.8-3.7.13</td>
+<td>3.7.14</td>
 </tr>
 <tr>
 <td>CM-29922</td>
@@ -6342,6 +6644,17 @@ The service starts automatically but there is an impact to POE devices momentari
 <td>3.7.13-3.7.14</td>
 </tr>
 <tr>
+<td>CM-29759</td>
+<td><p>When you use nginx and restserver in management VRF to provide a REST API for the switch, nginx starts but restserver fails to start.<br/>
+To work around this issue, comment out the Requires= line in the /lib/systemd/system/restserver.service. For example:</p>
+
+#Requires=nginx.service restserver.socket
+
+</td>
+<td>3.7.12-3.7.14</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-29740</td>
 <td><p>The exim4 package available for optional installation on Cumulus Linux 3.x has the following vulnerability:<br/>
 DLA-2213-1 / CVE-2020-12783: Exim through 4.93 has an out-of-bounds read in the SPA authenticator that could result in SPA/NTLM authentication bypass in auths/spa.c and auths/auth-spa.c.  The spa authentication driver is not enabled by default.<br/>
@@ -6358,6 +6671,13 @@ Vulnerable: &lt;= 1.0.9.8.5-cl3u1<br/>
 Fixed: 1.0.9.8.5-cl3u2</p></td>
 <td>3.0.0-3.7.12</td>
 <td>3.7.13-3.7.14</td>
+</tr>
+<tr>
+<td>CM-29667</td>
+<td><p>After installing Cumulus Linux on the Mellanox SN2100 switch, if you break out a port (for example, if you break out swp1 into four ports: swp1s0, swp1s1, swp1s2, swp1s3) in the /etc/cumulus/ports.conf file, then run the systemctl start switchd command, the update does not take effect.<br/>
+To work around this issue, run the systemctl restart switchd command.</p></td>
+<td>3.7.12-3.7.14</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-29652</td>
@@ -6581,7 +6901,7 @@ CVE-2019-5188: A specially crafted ext4 directory can cause an out-of-bounds wri
 </tr>
 <tr>
 <td>CM-29037</td>
-<td><p>When a link flap occurs and IPv6 traffic traverses eth0, a kernel panic might occur with the following logs printed to the console:</p>
+<td><p>When a link flap occurs while IPv6 traffic traverses interfaces, a kernel panic may occur with the following logs printed to the console:</p>
 
 [1675080.282051] BUG: unable to handle kernel NULL pointer dereference at 0000000000000110
 [1675080.291007] IP: [&lt;ffffffff81709dec&gt;] fib6_lookup_1+0xac/0x170
@@ -8458,6 +8778,48 @@ net.ipv6.ip6frag_high_thresh = 262144
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-33165</td>
+<td><p>CVE-2021-3156: A serious heap-based buffer overflow has been discovered in sudo that is exploitable by any local user. It has been given the name Baron Samedit by its discoverer. The bug can be leveraged to elevate privileges to root, even if the user is not listed in the sudoers file. User authentication is not required to exploit the bug.<br/>
+Vulnerable: &lt;= 1.8.10p4-cl3.7.14u1<br/>
+Fixed: 1.8.10p4-cl3.7.15u1</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33012</td>
+<td><p>After you add an interface to the bridge, an OSPF session flap can occur.</p>
+</td>
+<td>3.7.9-3.7.14</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33008</td>
+<td><p>Several security vulnerabilities were found in ImageMagick, a suite of image manipulation programs. An attacker could cause denial of service and execution of arbitrary code when a crafted image file is processed.<br/>
+CVE-2020-19667 Stack-based buffer overflow and unconditional jump in ReadXPMImage in coders/xpm.c<br/>
+CVE-2020-25665 The PALM image coder at coders/palm.c makes an improper call to AcquireQuantumMemory() in routine WritePALMImage() because it needs to be offset by 256. This can cause a out-of-bounds read later on in the routine. This could cause impact to reliability.<br/>
+CVE-2020-25674 WriteOnePNGImage() from coders/png.c (the PNG coder) has a for loop with an improper exit condition that can allow an out-of-bounds READ via heap-buffer-overflow. This occurs because it is possible for the colormap to have less than 256 valid values but the loop condition will loop 256 times, attempting to pass invalid colormap data to the event logger.<br/>
+CVE-2020-27560 ImageMagick allows Division by Zero in OptimizeLayerFrames in MagickCore/layer.c, which may cause a denial of service.<br/>
+CVE-2020-27750 A flaw was found in MagickCore/colorspace-private.h and MagickCore/quantum.h. An attacker who submits a crafted file that is processedcould trigger undefined behavior in the form of values outside the range of type unsigned char and math division by zero. This would most likely lead to an impact to application availability, but could potentially cause other problems related to undefined behavior.<br/>
+CVE-2020-27760 In GammaImage() of /MagickCore/enhance.c, depending on the gamma value, it’s possible to trigger a divide-by-zero condition when a crafted input file is processed by ImageMagick. This could lead to an impact to application availability.<br/>
+CVE-2020-27763 A flaw was found in MagickCore/resize.c. An attacker who submits a crafted file that is processed by ImageMagick could trigger undefined behavior in the form of math division by zero. This would most likely lead to an impact to application availability, but could potentially cause other problems related to undefined behavior.<br/>
+CVE-2020-27765 A flaw was found in MagickCore/segment.c. An attacker who submits a crafted file that is processed by ImageMagick could trigger undefined behavior in the form of math division by zero. This would most likely lead to an impact to application availability, but could potentially cause other problems related to undefined behavior.<br/>
+CVE-2020-27773 A flaw was found in MagickCore/gem-private.h. An attacker who submits a crafted file that is processed by ImageMagick could trigger undefined behavior in the form of values outside the range of type unsigned char or division by zero. This would most likely lead to an impact to application availability, but could potentially cause other problems related to undefined behavior.<br/>
+CVE-2020-29599 ImageMagick mishandles the -authenticate option, which allows setting a password for password-protected PDF files. The user-controlled password was not properly escaped/sanitized and it was therefore possible to inject additional shell commands via coders/pdf.c.<br/>
+Vulnerable: &lt;= 6.8.9.9-5+deb8u21<br/>
+Fixed: 6.8.9.9-5+deb8u22</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33007</td>
+<td><p>The following vulnerability was announced in the apt packages:<br/>
+CVE-2020-27350: Missing input validation in the ar/tar implementations of APT, the high level package manager, could cause out-of-bounds reads or infinite loops, resulting in denial of service when processing malformed deb files. <br/>
+Vulnerable: &lt;= 1.0.9.8.6<br/>
+Fixed: 1.0.9.8.7</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-32810</td>
 <td><p>The following vulnerability has been announced in the libflac8 package:<br/>
 CVE-2020-0499: In FLAC__bitreader_read_rice_signed_block of bitreader.c, there is a possible out-of-bounds read due to a heap buffer overflow.  This could lead to remote information disclosure with no additional execution privileges needed. However, user interaction is needed for exploitation.<br/>
@@ -9137,8 +9499,8 @@ Fixed: 1.8.22-0+deb8u3</p></td>
 <tr>
 <td>CM-29978</td>
 <td><p>The received PVST BPDU for a VLAN is flooded even though the ingress port doesn't have the VLAN tagged.</p></td>
-<td>3.7.8-3.7.14</td>
-<td></td>
+<td>3.7.8-3.7.13</td>
+<td>3.7.14</td>
 </tr>
 <tr>
 <td>CM-29922</td>
@@ -11698,6 +12060,48 @@ To work around this issue, use net show interface command for LLDP output when c
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-33165</td>
+<td><p>CVE-2021-3156: A serious heap-based buffer overflow has been discovered in sudo that is exploitable by any local user. It has been given the name Baron Samedit by its discoverer. The bug can be leveraged to elevate privileges to root, even if the user is not listed in the sudoers file. User authentication is not required to exploit the bug.<br/>
+Vulnerable: &lt;= 1.8.10p4-cl3.7.14u1<br/>
+Fixed: 1.8.10p4-cl3.7.15u1</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33012</td>
+<td><p>After you add an interface to the bridge, an OSPF session flap can occur.</p>
+</td>
+<td>3.7.9-3.7.14</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33008</td>
+<td><p>Several security vulnerabilities were found in ImageMagick, a suite of image manipulation programs. An attacker could cause denial of service and execution of arbitrary code when a crafted image file is processed.<br/>
+CVE-2020-19667 Stack-based buffer overflow and unconditional jump in ReadXPMImage in coders/xpm.c<br/>
+CVE-2020-25665 The PALM image coder at coders/palm.c makes an improper call to AcquireQuantumMemory() in routine WritePALMImage() because it needs to be offset by 256. This can cause a out-of-bounds read later on in the routine. This could cause impact to reliability.<br/>
+CVE-2020-25674 WriteOnePNGImage() from coders/png.c (the PNG coder) has a for loop with an improper exit condition that can allow an out-of-bounds READ via heap-buffer-overflow. This occurs because it is possible for the colormap to have less than 256 valid values but the loop condition will loop 256 times, attempting to pass invalid colormap data to the event logger.<br/>
+CVE-2020-27560 ImageMagick allows Division by Zero in OptimizeLayerFrames in MagickCore/layer.c, which may cause a denial of service.<br/>
+CVE-2020-27750 A flaw was found in MagickCore/colorspace-private.h and MagickCore/quantum.h. An attacker who submits a crafted file that is processedcould trigger undefined behavior in the form of values outside the range of type unsigned char and math division by zero. This would most likely lead to an impact to application availability, but could potentially cause other problems related to undefined behavior.<br/>
+CVE-2020-27760 In GammaImage() of /MagickCore/enhance.c, depending on the gamma value, it’s possible to trigger a divide-by-zero condition when a crafted input file is processed by ImageMagick. This could lead to an impact to application availability.<br/>
+CVE-2020-27763 A flaw was found in MagickCore/resize.c. An attacker who submits a crafted file that is processed by ImageMagick could trigger undefined behavior in the form of math division by zero. This would most likely lead to an impact to application availability, but could potentially cause other problems related to undefined behavior.<br/>
+CVE-2020-27765 A flaw was found in MagickCore/segment.c. An attacker who submits a crafted file that is processed by ImageMagick could trigger undefined behavior in the form of math division by zero. This would most likely lead to an impact to application availability, but could potentially cause other problems related to undefined behavior.<br/>
+CVE-2020-27773 A flaw was found in MagickCore/gem-private.h. An attacker who submits a crafted file that is processed by ImageMagick could trigger undefined behavior in the form of values outside the range of type unsigned char or division by zero. This would most likely lead to an impact to application availability, but could potentially cause other problems related to undefined behavior.<br/>
+CVE-2020-29599 ImageMagick mishandles the -authenticate option, which allows setting a password for password-protected PDF files. The user-controlled password was not properly escaped/sanitized and it was therefore possible to inject additional shell commands via coders/pdf.c.<br/>
+Vulnerable: &lt;= 6.8.9.9-5+deb8u21<br/>
+Fixed: 6.8.9.9-5+deb8u22</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33007</td>
+<td><p>The following vulnerability was announced in the apt packages:<br/>
+CVE-2020-27350: Missing input validation in the ar/tar implementations of APT, the high level package manager, could cause out-of-bounds reads or infinite loops, resulting in denial of service when processing malformed deb files. <br/>
+Vulnerable: &lt;= 1.0.9.8.6<br/>
+Fixed: 1.0.9.8.7</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-32810</td>
 <td><p>The following vulnerability has been announced in the libflac8 package:<br/>
 CVE-2020-0499: In FLAC__bitreader_read_rice_signed_block of bitreader.c, there is a possible out-of-bounds read due to a heap buffer overflow.  This could lead to remote information disclosure with no additional execution privileges needed. However, user interaction is needed for exploitation.<br/>
@@ -12321,8 +12725,8 @@ Fixed: 1.8.22-0+deb8u3</p></td>
 <tr>
 <td>CM-29978</td>
 <td><p>The received PVST BPDU for a VLAN is flooded even though the ingress port doesn't have the VLAN tagged.</p></td>
-<td>3.7.8-3.7.14</td>
-<td></td>
+<td>3.7.8-3.7.13</td>
+<td>3.7.14</td>
 </tr>
 <tr>
 <td>CM-29922</td>
@@ -14600,6 +15004,48 @@ To work around this issue, change the value of arp_ignore to 2. See <a href="htt
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-33165</td>
+<td><p>CVE-2021-3156: A serious heap-based buffer overflow has been discovered in sudo that is exploitable by any local user. It has been given the name Baron Samedit by its discoverer. The bug can be leveraged to elevate privileges to root, even if the user is not listed in the sudoers file. User authentication is not required to exploit the bug.<br/>
+Vulnerable: &lt;= 1.8.10p4-cl3.7.14u1<br/>
+Fixed: 1.8.10p4-cl3.7.15u1</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33012</td>
+<td><p>After you add an interface to the bridge, an OSPF session flap can occur.</p>
+</td>
+<td>3.7.9-3.7.14</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33008</td>
+<td><p>Several security vulnerabilities were found in ImageMagick, a suite of image manipulation programs. An attacker could cause denial of service and execution of arbitrary code when a crafted image file is processed.<br/>
+CVE-2020-19667 Stack-based buffer overflow and unconditional jump in ReadXPMImage in coders/xpm.c<br/>
+CVE-2020-25665 The PALM image coder at coders/palm.c makes an improper call to AcquireQuantumMemory() in routine WritePALMImage() because it needs to be offset by 256. This can cause a out-of-bounds read later on in the routine. This could cause impact to reliability.<br/>
+CVE-2020-25674 WriteOnePNGImage() from coders/png.c (the PNG coder) has a for loop with an improper exit condition that can allow an out-of-bounds READ via heap-buffer-overflow. This occurs because it is possible for the colormap to have less than 256 valid values but the loop condition will loop 256 times, attempting to pass invalid colormap data to the event logger.<br/>
+CVE-2020-27560 ImageMagick allows Division by Zero in OptimizeLayerFrames in MagickCore/layer.c, which may cause a denial of service.<br/>
+CVE-2020-27750 A flaw was found in MagickCore/colorspace-private.h and MagickCore/quantum.h. An attacker who submits a crafted file that is processedcould trigger undefined behavior in the form of values outside the range of type unsigned char and math division by zero. This would most likely lead to an impact to application availability, but could potentially cause other problems related to undefined behavior.<br/>
+CVE-2020-27760 In GammaImage() of /MagickCore/enhance.c, depending on the gamma value, it’s possible to trigger a divide-by-zero condition when a crafted input file is processed by ImageMagick. This could lead to an impact to application availability.<br/>
+CVE-2020-27763 A flaw was found in MagickCore/resize.c. An attacker who submits a crafted file that is processed by ImageMagick could trigger undefined behavior in the form of math division by zero. This would most likely lead to an impact to application availability, but could potentially cause other problems related to undefined behavior.<br/>
+CVE-2020-27765 A flaw was found in MagickCore/segment.c. An attacker who submits a crafted file that is processed by ImageMagick could trigger undefined behavior in the form of math division by zero. This would most likely lead to an impact to application availability, but could potentially cause other problems related to undefined behavior.<br/>
+CVE-2020-27773 A flaw was found in MagickCore/gem-private.h. An attacker who submits a crafted file that is processed by ImageMagick could trigger undefined behavior in the form of values outside the range of type unsigned char or division by zero. This would most likely lead to an impact to application availability, but could potentially cause other problems related to undefined behavior.<br/>
+CVE-2020-29599 ImageMagick mishandles the -authenticate option, which allows setting a password for password-protected PDF files. The user-controlled password was not properly escaped/sanitized and it was therefore possible to inject additional shell commands via coders/pdf.c.<br/>
+Vulnerable: &lt;= 6.8.9.9-5+deb8u21<br/>
+Fixed: 6.8.9.9-5+deb8u22</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33007</td>
+<td><p>The following vulnerability was announced in the apt packages:<br/>
+CVE-2020-27350: Missing input validation in the ar/tar implementations of APT, the high level package manager, could cause out-of-bounds reads or infinite loops, resulting in denial of service when processing malformed deb files. <br/>
+Vulnerable: &lt;= 1.0.9.8.6<br/>
+Fixed: 1.0.9.8.7</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-32810</td>
 <td><p>The following vulnerability has been announced in the libflac8 package:<br/>
 CVE-2020-0499: In FLAC__bitreader_read_rice_signed_block of bitreader.c, there is a possible out-of-bounds read due to a heap buffer overflow.  This could lead to remote information disclosure with no additional execution privileges needed. However, user interaction is needed for exploitation.<br/>
@@ -15196,8 +15642,8 @@ Fixed: 1.8.22-0+deb8u3</p></td>
 <tr>
 <td>CM-29978</td>
 <td><p>The received PVST BPDU for a VLAN is flooded even though the ingress port doesn't have the VLAN tagged.</p></td>
-<td>3.7.8-3.7.14</td>
-<td></td>
+<td>3.7.8-3.7.13</td>
+<td>3.7.14</td>
 </tr>
 <tr>
 <td>CM-29922</td>
@@ -17910,6 +18356,41 @@ To work around this issue, run the sudo ethtool -S swp1 command to collect inter
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-33165</td>
+<td><p>CVE-2021-3156: A serious heap-based buffer overflow has been discovered in sudo that is exploitable by any local user. It has been given the name Baron Samedit by its discoverer. The bug can be leveraged to elevate privileges to root, even if the user is not listed in the sudoers file. User authentication is not required to exploit the bug.<br/>
+Vulnerable: &lt;= 1.8.10p4-cl3.7.14u1<br/>
+Fixed: 1.8.10p4-cl3.7.15u1</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33008</td>
+<td><p>Several security vulnerabilities were found in ImageMagick, a suite of image manipulation programs. An attacker could cause denial of service and execution of arbitrary code when a crafted image file is processed.<br/>
+CVE-2020-19667 Stack-based buffer overflow and unconditional jump in ReadXPMImage in coders/xpm.c<br/>
+CVE-2020-25665 The PALM image coder at coders/palm.c makes an improper call to AcquireQuantumMemory() in routine WritePALMImage() because it needs to be offset by 256. This can cause a out-of-bounds read later on in the routine. This could cause impact to reliability.<br/>
+CVE-2020-25674 WriteOnePNGImage() from coders/png.c (the PNG coder) has a for loop with an improper exit condition that can allow an out-of-bounds READ via heap-buffer-overflow. This occurs because it is possible for the colormap to have less than 256 valid values but the loop condition will loop 256 times, attempting to pass invalid colormap data to the event logger.<br/>
+CVE-2020-27560 ImageMagick allows Division by Zero in OptimizeLayerFrames in MagickCore/layer.c, which may cause a denial of service.<br/>
+CVE-2020-27750 A flaw was found in MagickCore/colorspace-private.h and MagickCore/quantum.h. An attacker who submits a crafted file that is processedcould trigger undefined behavior in the form of values outside the range of type unsigned char and math division by zero. This would most likely lead to an impact to application availability, but could potentially cause other problems related to undefined behavior.<br/>
+CVE-2020-27760 In GammaImage() of /MagickCore/enhance.c, depending on the gamma value, it’s possible to trigger a divide-by-zero condition when a crafted input file is processed by ImageMagick. This could lead to an impact to application availability.<br/>
+CVE-2020-27763 A flaw was found in MagickCore/resize.c. An attacker who submits a crafted file that is processed by ImageMagick could trigger undefined behavior in the form of math division by zero. This would most likely lead to an impact to application availability, but could potentially cause other problems related to undefined behavior.<br/>
+CVE-2020-27765 A flaw was found in MagickCore/segment.c. An attacker who submits a crafted file that is processed by ImageMagick could trigger undefined behavior in the form of math division by zero. This would most likely lead to an impact to application availability, but could potentially cause other problems related to undefined behavior.<br/>
+CVE-2020-27773 A flaw was found in MagickCore/gem-private.h. An attacker who submits a crafted file that is processed by ImageMagick could trigger undefined behavior in the form of values outside the range of type unsigned char or division by zero. This would most likely lead to an impact to application availability, but could potentially cause other problems related to undefined behavior.<br/>
+CVE-2020-29599 ImageMagick mishandles the -authenticate option, which allows setting a password for password-protected PDF files. The user-controlled password was not properly escaped/sanitized and it was therefore possible to inject additional shell commands via coders/pdf.c.<br/>
+Vulnerable: &lt;= 6.8.9.9-5+deb8u21<br/>
+Fixed: 6.8.9.9-5+deb8u22</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33007</td>
+<td><p>The following vulnerability was announced in the apt packages:<br/>
+CVE-2020-27350: Missing input validation in the ar/tar implementations of APT, the high level package manager, could cause out-of-bounds reads or infinite loops, resulting in denial of service when processing malformed deb files. <br/>
+Vulnerable: &lt;= 1.0.9.8.6<br/>
+Fixed: 1.0.9.8.7</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-32810</td>
 <td><p>The following vulnerability has been announced in the libflac8 package:<br/>
 CVE-2020-0499: In FLAC__bitreader_read_rice_signed_block of bitreader.c, there is a possible out-of-bounds read due to a heap buffer overflow.  This could lead to remote information disclosure with no additional execution privileges needed. However, user interaction is needed for exploitation.<br/>
@@ -18506,8 +18987,8 @@ Fixed: 1.8.22-0+deb8u3</p></td>
 <tr>
 <td>CM-29978</td>
 <td><p>The received PVST BPDU for a VLAN is flooded even though the ingress port doesn't have the VLAN tagged.</p></td>
-<td>3.7.8-3.7.14</td>
-<td></td>
+<td>3.7.8-3.7.13</td>
+<td>3.7.14</td>
 </tr>
 <tr>
 <td>CM-29922</td>
@@ -21082,6 +21563,41 @@ To work around this issue, change the value of arp_ignore to 2. See <a href="htt
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>CM-33165</td>
+<td><p>CVE-2021-3156: A serious heap-based buffer overflow has been discovered in sudo that is exploitable by any local user. It has been given the name Baron Samedit by its discoverer. The bug can be leveraged to elevate privileges to root, even if the user is not listed in the sudoers file. User authentication is not required to exploit the bug.<br/>
+Vulnerable: &lt;= 1.8.10p4-cl3.7.14u1<br/>
+Fixed: 1.8.10p4-cl3.7.15u1</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33008</td>
+<td><p>Several security vulnerabilities were found in ImageMagick, a suite of image manipulation programs. An attacker could cause denial of service and execution of arbitrary code when a crafted image file is processed.<br/>
+CVE-2020-19667 Stack-based buffer overflow and unconditional jump in ReadXPMImage in coders/xpm.c<br/>
+CVE-2020-25665 The PALM image coder at coders/palm.c makes an improper call to AcquireQuantumMemory() in routine WritePALMImage() because it needs to be offset by 256. This can cause a out-of-bounds read later on in the routine. This could cause impact to reliability.<br/>
+CVE-2020-25674 WriteOnePNGImage() from coders/png.c (the PNG coder) has a for loop with an improper exit condition that can allow an out-of-bounds READ via heap-buffer-overflow. This occurs because it is possible for the colormap to have less than 256 valid values but the loop condition will loop 256 times, attempting to pass invalid colormap data to the event logger.<br/>
+CVE-2020-27560 ImageMagick allows Division by Zero in OptimizeLayerFrames in MagickCore/layer.c, which may cause a denial of service.<br/>
+CVE-2020-27750 A flaw was found in MagickCore/colorspace-private.h and MagickCore/quantum.h. An attacker who submits a crafted file that is processedcould trigger undefined behavior in the form of values outside the range of type unsigned char and math division by zero. This would most likely lead to an impact to application availability, but could potentially cause other problems related to undefined behavior.<br/>
+CVE-2020-27760 In GammaImage() of /MagickCore/enhance.c, depending on the gamma value, it’s possible to trigger a divide-by-zero condition when a crafted input file is processed by ImageMagick. This could lead to an impact to application availability.<br/>
+CVE-2020-27763 A flaw was found in MagickCore/resize.c. An attacker who submits a crafted file that is processed by ImageMagick could trigger undefined behavior in the form of math division by zero. This would most likely lead to an impact to application availability, but could potentially cause other problems related to undefined behavior.<br/>
+CVE-2020-27765 A flaw was found in MagickCore/segment.c. An attacker who submits a crafted file that is processed by ImageMagick could trigger undefined behavior in the form of math division by zero. This would most likely lead to an impact to application availability, but could potentially cause other problems related to undefined behavior.<br/>
+CVE-2020-27773 A flaw was found in MagickCore/gem-private.h. An attacker who submits a crafted file that is processed by ImageMagick could trigger undefined behavior in the form of values outside the range of type unsigned char or division by zero. This would most likely lead to an impact to application availability, but could potentially cause other problems related to undefined behavior.<br/>
+CVE-2020-29599 ImageMagick mishandles the -authenticate option, which allows setting a password for password-protected PDF files. The user-controlled password was not properly escaped/sanitized and it was therefore possible to inject additional shell commands via coders/pdf.c.<br/>
+Vulnerable: &lt;= 6.8.9.9-5+deb8u21<br/>
+Fixed: 6.8.9.9-5+deb8u22</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33007</td>
+<td><p>The following vulnerability was announced in the apt packages:<br/>
+CVE-2020-27350: Missing input validation in the ar/tar implementations of APT, the high level package manager, could cause out-of-bounds reads or infinite loops, resulting in denial of service when processing malformed deb files. <br/>
+Vulnerable: &lt;= 1.0.9.8.6<br/>
+Fixed: 1.0.9.8.7</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-32810</td>
@@ -24619,6 +25135,41 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-33165</td>
+<td><p>CVE-2021-3156: A serious heap-based buffer overflow has been discovered in sudo that is exploitable by any local user. It has been given the name Baron Samedit by its discoverer. The bug can be leveraged to elevate privileges to root, even if the user is not listed in the sudoers file. User authentication is not required to exploit the bug.<br/>
+Vulnerable: &lt;= 1.8.10p4-cl3.7.14u1<br/>
+Fixed: 1.8.10p4-cl3.7.15u1</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33008</td>
+<td><p>Several security vulnerabilities were found in ImageMagick, a suite of image manipulation programs. An attacker could cause denial of service and execution of arbitrary code when a crafted image file is processed.<br/>
+CVE-2020-19667 Stack-based buffer overflow and unconditional jump in ReadXPMImage in coders/xpm.c<br/>
+CVE-2020-25665 The PALM image coder at coders/palm.c makes an improper call to AcquireQuantumMemory() in routine WritePALMImage() because it needs to be offset by 256. This can cause a out-of-bounds read later on in the routine. This could cause impact to reliability.<br/>
+CVE-2020-25674 WriteOnePNGImage() from coders/png.c (the PNG coder) has a for loop with an improper exit condition that can allow an out-of-bounds READ via heap-buffer-overflow. This occurs because it is possible for the colormap to have less than 256 valid values but the loop condition will loop 256 times, attempting to pass invalid colormap data to the event logger.<br/>
+CVE-2020-27560 ImageMagick allows Division by Zero in OptimizeLayerFrames in MagickCore/layer.c, which may cause a denial of service.<br/>
+CVE-2020-27750 A flaw was found in MagickCore/colorspace-private.h and MagickCore/quantum.h. An attacker who submits a crafted file that is processedcould trigger undefined behavior in the form of values outside the range of type unsigned char and math division by zero. This would most likely lead to an impact to application availability, but could potentially cause other problems related to undefined behavior.<br/>
+CVE-2020-27760 In GammaImage() of /MagickCore/enhance.c, depending on the gamma value, it’s possible to trigger a divide-by-zero condition when a crafted input file is processed by ImageMagick. This could lead to an impact to application availability.<br/>
+CVE-2020-27763 A flaw was found in MagickCore/resize.c. An attacker who submits a crafted file that is processed by ImageMagick could trigger undefined behavior in the form of math division by zero. This would most likely lead to an impact to application availability, but could potentially cause other problems related to undefined behavior.<br/>
+CVE-2020-27765 A flaw was found in MagickCore/segment.c. An attacker who submits a crafted file that is processed by ImageMagick could trigger undefined behavior in the form of math division by zero. This would most likely lead to an impact to application availability, but could potentially cause other problems related to undefined behavior.<br/>
+CVE-2020-27773 A flaw was found in MagickCore/gem-private.h. An attacker who submits a crafted file that is processed by ImageMagick could trigger undefined behavior in the form of values outside the range of type unsigned char or division by zero. This would most likely lead to an impact to application availability, but could potentially cause other problems related to undefined behavior.<br/>
+CVE-2020-29599 ImageMagick mishandles the -authenticate option, which allows setting a password for password-protected PDF files. The user-controlled password was not properly escaped/sanitized and it was therefore possible to inject additional shell commands via coders/pdf.c.<br/>
+Vulnerable: &lt;= 6.8.9.9-5+deb8u21<br/>
+Fixed: 6.8.9.9-5+deb8u22</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33007</td>
+<td><p>The following vulnerability was announced in the apt packages:<br/>
+CVE-2020-27350: Missing input validation in the ar/tar implementations of APT, the high level package manager, could cause out-of-bounds reads or infinite loops, resulting in denial of service when processing malformed deb files. <br/>
+Vulnerable: &lt;= 1.0.9.8.6<br/>
+Fixed: 1.0.9.8.7</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-32810</td>
 <td><p>The following vulnerability has been announced in the libflac8 package:<br/>
 CVE-2020-0499: In FLAC__bitreader_read_rice_signed_block of bitreader.c, there is a possible out-of-bounds read due to a heap buffer overflow.  This could lead to remote information disclosure with no additional execution privileges needed. However, user interaction is needed for exploitation.<br/>
@@ -28104,6 +28655,41 @@ This issue was discovered on the Helix4 switch but applies to all switches. <br/
 <td>3.7.6-3.7.14</td>
 </tr>
 <tr>
+<td>CM-33165</td>
+<td><p>CVE-2021-3156: A serious heap-based buffer overflow has been discovered in sudo that is exploitable by any local user. It has been given the name Baron Samedit by its discoverer. The bug can be leveraged to elevate privileges to root, even if the user is not listed in the sudoers file. User authentication is not required to exploit the bug.<br/>
+Vulnerable: &lt;= 1.8.10p4-cl3.7.14u1<br/>
+Fixed: 1.8.10p4-cl3.7.15u1</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33008</td>
+<td><p>Several security vulnerabilities were found in ImageMagick, a suite of image manipulation programs. An attacker could cause denial of service and execution of arbitrary code when a crafted image file is processed.<br/>
+CVE-2020-19667 Stack-based buffer overflow and unconditional jump in ReadXPMImage in coders/xpm.c<br/>
+CVE-2020-25665 The PALM image coder at coders/palm.c makes an improper call to AcquireQuantumMemory() in routine WritePALMImage() because it needs to be offset by 256. This can cause a out-of-bounds read later on in the routine. This could cause impact to reliability.<br/>
+CVE-2020-25674 WriteOnePNGImage() from coders/png.c (the PNG coder) has a for loop with an improper exit condition that can allow an out-of-bounds READ via heap-buffer-overflow. This occurs because it is possible for the colormap to have less than 256 valid values but the loop condition will loop 256 times, attempting to pass invalid colormap data to the event logger.<br/>
+CVE-2020-27560 ImageMagick allows Division by Zero in OptimizeLayerFrames in MagickCore/layer.c, which may cause a denial of service.<br/>
+CVE-2020-27750 A flaw was found in MagickCore/colorspace-private.h and MagickCore/quantum.h. An attacker who submits a crafted file that is processedcould trigger undefined behavior in the form of values outside the range of type unsigned char and math division by zero. This would most likely lead to an impact to application availability, but could potentially cause other problems related to undefined behavior.<br/>
+CVE-2020-27760 In GammaImage() of /MagickCore/enhance.c, depending on the gamma value, it’s possible to trigger a divide-by-zero condition when a crafted input file is processed by ImageMagick. This could lead to an impact to application availability.<br/>
+CVE-2020-27763 A flaw was found in MagickCore/resize.c. An attacker who submits a crafted file that is processed by ImageMagick could trigger undefined behavior in the form of math division by zero. This would most likely lead to an impact to application availability, but could potentially cause other problems related to undefined behavior.<br/>
+CVE-2020-27765 A flaw was found in MagickCore/segment.c. An attacker who submits a crafted file that is processed by ImageMagick could trigger undefined behavior in the form of math division by zero. This would most likely lead to an impact to application availability, but could potentially cause other problems related to undefined behavior.<br/>
+CVE-2020-27773 A flaw was found in MagickCore/gem-private.h. An attacker who submits a crafted file that is processed by ImageMagick could trigger undefined behavior in the form of values outside the range of type unsigned char or division by zero. This would most likely lead to an impact to application availability, but could potentially cause other problems related to undefined behavior.<br/>
+CVE-2020-29599 ImageMagick mishandles the -authenticate option, which allows setting a password for password-protected PDF files. The user-controlled password was not properly escaped/sanitized and it was therefore possible to inject additional shell commands via coders/pdf.c.<br/>
+Vulnerable: &lt;= 6.8.9.9-5+deb8u21<br/>
+Fixed: 6.8.9.9-5+deb8u22</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33007</td>
+<td><p>The following vulnerability was announced in the apt packages:<br/>
+CVE-2020-27350: Missing input validation in the ar/tar implementations of APT, the high level package manager, could cause out-of-bounds reads or infinite loops, resulting in denial of service when processing malformed deb files. <br/>
+Vulnerable: &lt;= 1.0.9.8.6<br/>
+Fixed: 1.0.9.8.7</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-32810</td>
 <td><p>The following vulnerability has been announced in the libflac8 package:<br/>
 CVE-2020-0499: In FLAC__bitreader_read_rice_signed_block of bitreader.c, there is a possible out-of-bounds read due to a heap buffer overflow.  This could lead to remote information disclosure with no additional execution privileges needed. However, user interaction is needed for exploitation.<br/>
@@ -31276,6 +31862,41 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <td><p>In testing, it was determined that the MD5 password configured against a BGP listen-range peer-group (used to accept and create dynamic BGP neighbors) is not enforced (connections are accepted from peers that do not specify a password). </p></td>
 <td>3.0.0-3.7.5</td>
 <td>3.7.6-3.7.14</td>
+</tr>
+<tr>
+<td>CM-33165</td>
+<td><p>CVE-2021-3156: A serious heap-based buffer overflow has been discovered in sudo that is exploitable by any local user. It has been given the name Baron Samedit by its discoverer. The bug can be leveraged to elevate privileges to root, even if the user is not listed in the sudoers file. User authentication is not required to exploit the bug.<br/>
+Vulnerable: &lt;= 1.8.10p4-cl3.7.14u1<br/>
+Fixed: 1.8.10p4-cl3.7.15u1</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33008</td>
+<td><p>Several security vulnerabilities were found in ImageMagick, a suite of image manipulation programs. An attacker could cause denial of service and execution of arbitrary code when a crafted image file is processed.<br/>
+CVE-2020-19667 Stack-based buffer overflow and unconditional jump in ReadXPMImage in coders/xpm.c<br/>
+CVE-2020-25665 The PALM image coder at coders/palm.c makes an improper call to AcquireQuantumMemory() in routine WritePALMImage() because it needs to be offset by 256. This can cause a out-of-bounds read later on in the routine. This could cause impact to reliability.<br/>
+CVE-2020-25674 WriteOnePNGImage() from coders/png.c (the PNG coder) has a for loop with an improper exit condition that can allow an out-of-bounds READ via heap-buffer-overflow. This occurs because it is possible for the colormap to have less than 256 valid values but the loop condition will loop 256 times, attempting to pass invalid colormap data to the event logger.<br/>
+CVE-2020-27560 ImageMagick allows Division by Zero in OptimizeLayerFrames in MagickCore/layer.c, which may cause a denial of service.<br/>
+CVE-2020-27750 A flaw was found in MagickCore/colorspace-private.h and MagickCore/quantum.h. An attacker who submits a crafted file that is processedcould trigger undefined behavior in the form of values outside the range of type unsigned char and math division by zero. This would most likely lead to an impact to application availability, but could potentially cause other problems related to undefined behavior.<br/>
+CVE-2020-27760 In GammaImage() of /MagickCore/enhance.c, depending on the gamma value, it’s possible to trigger a divide-by-zero condition when a crafted input file is processed by ImageMagick. This could lead to an impact to application availability.<br/>
+CVE-2020-27763 A flaw was found in MagickCore/resize.c. An attacker who submits a crafted file that is processed by ImageMagick could trigger undefined behavior in the form of math division by zero. This would most likely lead to an impact to application availability, but could potentially cause other problems related to undefined behavior.<br/>
+CVE-2020-27765 A flaw was found in MagickCore/segment.c. An attacker who submits a crafted file that is processed by ImageMagick could trigger undefined behavior in the form of math division by zero. This would most likely lead to an impact to application availability, but could potentially cause other problems related to undefined behavior.<br/>
+CVE-2020-27773 A flaw was found in MagickCore/gem-private.h. An attacker who submits a crafted file that is processed by ImageMagick could trigger undefined behavior in the form of values outside the range of type unsigned char or division by zero. This would most likely lead to an impact to application availability, but could potentially cause other problems related to undefined behavior.<br/>
+CVE-2020-29599 ImageMagick mishandles the -authenticate option, which allows setting a password for password-protected PDF files. The user-controlled password was not properly escaped/sanitized and it was therefore possible to inject additional shell commands via coders/pdf.c.<br/>
+Vulnerable: &lt;= 6.8.9.9-5+deb8u21<br/>
+Fixed: 6.8.9.9-5+deb8u22</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33007</td>
+<td><p>The following vulnerability was announced in the apt packages:<br/>
+CVE-2020-27350: Missing input validation in the ar/tar implementations of APT, the high level package manager, could cause out-of-bounds reads or infinite loops, resulting in denial of service when processing malformed deb files. <br/>
+Vulnerable: &lt;= 1.0.9.8.6<br/>
+Fixed: 1.0.9.8.7</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-32810</td>
@@ -34508,6 +35129,41 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <td><p>In testing, it was determined that the MD5 password configured against a BGP listen-range peer-group (used to accept and create dynamic BGP neighbors) is not enforced (connections are accepted from peers that do not specify a password). </p></td>
 <td>3.0.0-3.7.5</td>
 <td>3.7.6-3.7.14</td>
+</tr>
+<tr>
+<td>CM-33165</td>
+<td><p>CVE-2021-3156: A serious heap-based buffer overflow has been discovered in sudo that is exploitable by any local user. It has been given the name Baron Samedit by its discoverer. The bug can be leveraged to elevate privileges to root, even if the user is not listed in the sudoers file. User authentication is not required to exploit the bug.<br/>
+Vulnerable: &lt;= 1.8.10p4-cl3.7.14u1<br/>
+Fixed: 1.8.10p4-cl3.7.15u1</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33008</td>
+<td><p>Several security vulnerabilities were found in ImageMagick, a suite of image manipulation programs. An attacker could cause denial of service and execution of arbitrary code when a crafted image file is processed.<br/>
+CVE-2020-19667 Stack-based buffer overflow and unconditional jump in ReadXPMImage in coders/xpm.c<br/>
+CVE-2020-25665 The PALM image coder at coders/palm.c makes an improper call to AcquireQuantumMemory() in routine WritePALMImage() because it needs to be offset by 256. This can cause a out-of-bounds read later on in the routine. This could cause impact to reliability.<br/>
+CVE-2020-25674 WriteOnePNGImage() from coders/png.c (the PNG coder) has a for loop with an improper exit condition that can allow an out-of-bounds READ via heap-buffer-overflow. This occurs because it is possible for the colormap to have less than 256 valid values but the loop condition will loop 256 times, attempting to pass invalid colormap data to the event logger.<br/>
+CVE-2020-27560 ImageMagick allows Division by Zero in OptimizeLayerFrames in MagickCore/layer.c, which may cause a denial of service.<br/>
+CVE-2020-27750 A flaw was found in MagickCore/colorspace-private.h and MagickCore/quantum.h. An attacker who submits a crafted file that is processedcould trigger undefined behavior in the form of values outside the range of type unsigned char and math division by zero. This would most likely lead to an impact to application availability, but could potentially cause other problems related to undefined behavior.<br/>
+CVE-2020-27760 In GammaImage() of /MagickCore/enhance.c, depending on the gamma value, it’s possible to trigger a divide-by-zero condition when a crafted input file is processed by ImageMagick. This could lead to an impact to application availability.<br/>
+CVE-2020-27763 A flaw was found in MagickCore/resize.c. An attacker who submits a crafted file that is processed by ImageMagick could trigger undefined behavior in the form of math division by zero. This would most likely lead to an impact to application availability, but could potentially cause other problems related to undefined behavior.<br/>
+CVE-2020-27765 A flaw was found in MagickCore/segment.c. An attacker who submits a crafted file that is processed by ImageMagick could trigger undefined behavior in the form of math division by zero. This would most likely lead to an impact to application availability, but could potentially cause other problems related to undefined behavior.<br/>
+CVE-2020-27773 A flaw was found in MagickCore/gem-private.h. An attacker who submits a crafted file that is processed by ImageMagick could trigger undefined behavior in the form of values outside the range of type unsigned char or division by zero. This would most likely lead to an impact to application availability, but could potentially cause other problems related to undefined behavior.<br/>
+CVE-2020-29599 ImageMagick mishandles the -authenticate option, which allows setting a password for password-protected PDF files. The user-controlled password was not properly escaped/sanitized and it was therefore possible to inject additional shell commands via coders/pdf.c.<br/>
+Vulnerable: &lt;= 6.8.9.9-5+deb8u21<br/>
+Fixed: 6.8.9.9-5+deb8u22</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33007</td>
+<td><p>The following vulnerability was announced in the apt packages:<br/>
+CVE-2020-27350: Missing input validation in the ar/tar implementations of APT, the high level package manager, could cause out-of-bounds reads or infinite loops, resulting in denial of service when processing malformed deb files. <br/>
+Vulnerable: &lt;= 1.0.9.8.6<br/>
+Fixed: 1.0.9.8.7</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-32810</td>
@@ -37899,6 +38555,41 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <td><p>In testing, it was determined that the MD5 password configured against a BGP listen-range peer-group (used to accept and create dynamic BGP neighbors) is not enforced (connections are accepted from peers that do not specify a password). </p></td>
 <td>3.0.0-3.7.5</td>
 <td>3.7.6-3.7.14</td>
+</tr>
+<tr>
+<td>CM-33165</td>
+<td><p>CVE-2021-3156: A serious heap-based buffer overflow has been discovered in sudo that is exploitable by any local user. It has been given the name Baron Samedit by its discoverer. The bug can be leveraged to elevate privileges to root, even if the user is not listed in the sudoers file. User authentication is not required to exploit the bug.<br/>
+Vulnerable: &lt;= 1.8.10p4-cl3.7.14u1<br/>
+Fixed: 1.8.10p4-cl3.7.15u1</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33008</td>
+<td><p>Several security vulnerabilities were found in ImageMagick, a suite of image manipulation programs. An attacker could cause denial of service and execution of arbitrary code when a crafted image file is processed.<br/>
+CVE-2020-19667 Stack-based buffer overflow and unconditional jump in ReadXPMImage in coders/xpm.c<br/>
+CVE-2020-25665 The PALM image coder at coders/palm.c makes an improper call to AcquireQuantumMemory() in routine WritePALMImage() because it needs to be offset by 256. This can cause a out-of-bounds read later on in the routine. This could cause impact to reliability.<br/>
+CVE-2020-25674 WriteOnePNGImage() from coders/png.c (the PNG coder) has a for loop with an improper exit condition that can allow an out-of-bounds READ via heap-buffer-overflow. This occurs because it is possible for the colormap to have less than 256 valid values but the loop condition will loop 256 times, attempting to pass invalid colormap data to the event logger.<br/>
+CVE-2020-27560 ImageMagick allows Division by Zero in OptimizeLayerFrames in MagickCore/layer.c, which may cause a denial of service.<br/>
+CVE-2020-27750 A flaw was found in MagickCore/colorspace-private.h and MagickCore/quantum.h. An attacker who submits a crafted file that is processedcould trigger undefined behavior in the form of values outside the range of type unsigned char and math division by zero. This would most likely lead to an impact to application availability, but could potentially cause other problems related to undefined behavior.<br/>
+CVE-2020-27760 In GammaImage() of /MagickCore/enhance.c, depending on the gamma value, it’s possible to trigger a divide-by-zero condition when a crafted input file is processed by ImageMagick. This could lead to an impact to application availability.<br/>
+CVE-2020-27763 A flaw was found in MagickCore/resize.c. An attacker who submits a crafted file that is processed by ImageMagick could trigger undefined behavior in the form of math division by zero. This would most likely lead to an impact to application availability, but could potentially cause other problems related to undefined behavior.<br/>
+CVE-2020-27765 A flaw was found in MagickCore/segment.c. An attacker who submits a crafted file that is processed by ImageMagick could trigger undefined behavior in the form of math division by zero. This would most likely lead to an impact to application availability, but could potentially cause other problems related to undefined behavior.<br/>
+CVE-2020-27773 A flaw was found in MagickCore/gem-private.h. An attacker who submits a crafted file that is processed by ImageMagick could trigger undefined behavior in the form of values outside the range of type unsigned char or division by zero. This would most likely lead to an impact to application availability, but could potentially cause other problems related to undefined behavior.<br/>
+CVE-2020-29599 ImageMagick mishandles the -authenticate option, which allows setting a password for password-protected PDF files. The user-controlled password was not properly escaped/sanitized and it was therefore possible to inject additional shell commands via coders/pdf.c.<br/>
+Vulnerable: &lt;= 6.8.9.9-5+deb8u21<br/>
+Fixed: 6.8.9.9-5+deb8u22</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33007</td>
+<td><p>The following vulnerability was announced in the apt packages:<br/>
+CVE-2020-27350: Missing input validation in the ar/tar implementations of APT, the high level package manager, could cause out-of-bounds reads or infinite loops, resulting in denial of service when processing malformed deb files. <br/>
+Vulnerable: &lt;= 1.0.9.8.6<br/>
+Fixed: 1.0.9.8.7</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-32810</td>
@@ -41414,6 +42105,41 @@ Permanent MAC address sync between MLAG peers is now supported.</p></td>
 <td>3.7.6-3.7.14</td>
 </tr>
 <tr>
+<td>CM-33165</td>
+<td><p>CVE-2021-3156: A serious heap-based buffer overflow has been discovered in sudo that is exploitable by any local user. It has been given the name Baron Samedit by its discoverer. The bug can be leveraged to elevate privileges to root, even if the user is not listed in the sudoers file. User authentication is not required to exploit the bug.<br/>
+Vulnerable: &lt;= 1.8.10p4-cl3.7.14u1<br/>
+Fixed: 1.8.10p4-cl3.7.15u1</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33008</td>
+<td><p>Several security vulnerabilities were found in ImageMagick, a suite of image manipulation programs. An attacker could cause denial of service and execution of arbitrary code when a crafted image file is processed.<br/>
+CVE-2020-19667 Stack-based buffer overflow and unconditional jump in ReadXPMImage in coders/xpm.c<br/>
+CVE-2020-25665 The PALM image coder at coders/palm.c makes an improper call to AcquireQuantumMemory() in routine WritePALMImage() because it needs to be offset by 256. This can cause a out-of-bounds read later on in the routine. This could cause impact to reliability.<br/>
+CVE-2020-25674 WriteOnePNGImage() from coders/png.c (the PNG coder) has a for loop with an improper exit condition that can allow an out-of-bounds READ via heap-buffer-overflow. This occurs because it is possible for the colormap to have less than 256 valid values but the loop condition will loop 256 times, attempting to pass invalid colormap data to the event logger.<br/>
+CVE-2020-27560 ImageMagick allows Division by Zero in OptimizeLayerFrames in MagickCore/layer.c, which may cause a denial of service.<br/>
+CVE-2020-27750 A flaw was found in MagickCore/colorspace-private.h and MagickCore/quantum.h. An attacker who submits a crafted file that is processedcould trigger undefined behavior in the form of values outside the range of type unsigned char and math division by zero. This would most likely lead to an impact to application availability, but could potentially cause other problems related to undefined behavior.<br/>
+CVE-2020-27760 In GammaImage() of /MagickCore/enhance.c, depending on the gamma value, it’s possible to trigger a divide-by-zero condition when a crafted input file is processed by ImageMagick. This could lead to an impact to application availability.<br/>
+CVE-2020-27763 A flaw was found in MagickCore/resize.c. An attacker who submits a crafted file that is processed by ImageMagick could trigger undefined behavior in the form of math division by zero. This would most likely lead to an impact to application availability, but could potentially cause other problems related to undefined behavior.<br/>
+CVE-2020-27765 A flaw was found in MagickCore/segment.c. An attacker who submits a crafted file that is processed by ImageMagick could trigger undefined behavior in the form of math division by zero. This would most likely lead to an impact to application availability, but could potentially cause other problems related to undefined behavior.<br/>
+CVE-2020-27773 A flaw was found in MagickCore/gem-private.h. An attacker who submits a crafted file that is processed by ImageMagick could trigger undefined behavior in the form of values outside the range of type unsigned char or division by zero. This would most likely lead to an impact to application availability, but could potentially cause other problems related to undefined behavior.<br/>
+CVE-2020-29599 ImageMagick mishandles the -authenticate option, which allows setting a password for password-protected PDF files. The user-controlled password was not properly escaped/sanitized and it was therefore possible to inject additional shell commands via coders/pdf.c.<br/>
+Vulnerable: &lt;= 6.8.9.9-5+deb8u21<br/>
+Fixed: 6.8.9.9-5+deb8u22</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33007</td>
+<td><p>The following vulnerability was announced in the apt packages:<br/>
+CVE-2020-27350: Missing input validation in the ar/tar implementations of APT, the high level package manager, could cause out-of-bounds reads or infinite loops, resulting in denial of service when processing malformed deb files. <br/>
+Vulnerable: &lt;= 1.0.9.8.6<br/>
+Fixed: 1.0.9.8.7</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-32810</td>
 <td><p>The following vulnerability has been announced in the libflac8 package:<br/>
 CVE-2020-0499: In FLAC__bitreader_read_rice_signed_block of bitreader.c, there is a possible out-of-bounds read due to a heap buffer overflow.  This could lead to remote information disclosure with no additional execution privileges needed. However, user interaction is needed for exploitation.<br/>
@@ -44429,6 +45155,41 @@ To work around this issue, remove the matching network statement. </p></td>
 <td><p>In testing, it was determined that the MD5 password configured against a BGP listen-range peer-group (used to accept and create dynamic BGP neighbors) is not enforced (connections are accepted from peers that do not specify a password). </p></td>
 <td>3.0.0-3.7.5</td>
 <td>3.7.6-3.7.14</td>
+</tr>
+<tr>
+<td>CM-33165</td>
+<td><p>CVE-2021-3156: A serious heap-based buffer overflow has been discovered in sudo that is exploitable by any local user. It has been given the name Baron Samedit by its discoverer. The bug can be leveraged to elevate privileges to root, even if the user is not listed in the sudoers file. User authentication is not required to exploit the bug.<br/>
+Vulnerable: &lt;= 1.8.10p4-cl3.7.14u1<br/>
+Fixed: 1.8.10p4-cl3.7.15u1</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33008</td>
+<td><p>Several security vulnerabilities were found in ImageMagick, a suite of image manipulation programs. An attacker could cause denial of service and execution of arbitrary code when a crafted image file is processed.<br/>
+CVE-2020-19667 Stack-based buffer overflow and unconditional jump in ReadXPMImage in coders/xpm.c<br/>
+CVE-2020-25665 The PALM image coder at coders/palm.c makes an improper call to AcquireQuantumMemory() in routine WritePALMImage() because it needs to be offset by 256. This can cause a out-of-bounds read later on in the routine. This could cause impact to reliability.<br/>
+CVE-2020-25674 WriteOnePNGImage() from coders/png.c (the PNG coder) has a for loop with an improper exit condition that can allow an out-of-bounds READ via heap-buffer-overflow. This occurs because it is possible for the colormap to have less than 256 valid values but the loop condition will loop 256 times, attempting to pass invalid colormap data to the event logger.<br/>
+CVE-2020-27560 ImageMagick allows Division by Zero in OptimizeLayerFrames in MagickCore/layer.c, which may cause a denial of service.<br/>
+CVE-2020-27750 A flaw was found in MagickCore/colorspace-private.h and MagickCore/quantum.h. An attacker who submits a crafted file that is processedcould trigger undefined behavior in the form of values outside the range of type unsigned char and math division by zero. This would most likely lead to an impact to application availability, but could potentially cause other problems related to undefined behavior.<br/>
+CVE-2020-27760 In GammaImage() of /MagickCore/enhance.c, depending on the gamma value, it’s possible to trigger a divide-by-zero condition when a crafted input file is processed by ImageMagick. This could lead to an impact to application availability.<br/>
+CVE-2020-27763 A flaw was found in MagickCore/resize.c. An attacker who submits a crafted file that is processed by ImageMagick could trigger undefined behavior in the form of math division by zero. This would most likely lead to an impact to application availability, but could potentially cause other problems related to undefined behavior.<br/>
+CVE-2020-27765 A flaw was found in MagickCore/segment.c. An attacker who submits a crafted file that is processed by ImageMagick could trigger undefined behavior in the form of math division by zero. This would most likely lead to an impact to application availability, but could potentially cause other problems related to undefined behavior.<br/>
+CVE-2020-27773 A flaw was found in MagickCore/gem-private.h. An attacker who submits a crafted file that is processed by ImageMagick could trigger undefined behavior in the form of values outside the range of type unsigned char or division by zero. This would most likely lead to an impact to application availability, but could potentially cause other problems related to undefined behavior.<br/>
+CVE-2020-29599 ImageMagick mishandles the -authenticate option, which allows setting a password for password-protected PDF files. The user-controlled password was not properly escaped/sanitized and it was therefore possible to inject additional shell commands via coders/pdf.c.<br/>
+Vulnerable: &lt;= 6.8.9.9-5+deb8u21<br/>
+Fixed: 6.8.9.9-5+deb8u22</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33007</td>
+<td><p>The following vulnerability was announced in the apt packages:<br/>
+CVE-2020-27350: Missing input validation in the ar/tar implementations of APT, the high level package manager, could cause out-of-bounds reads or infinite loops, resulting in denial of service when processing malformed deb files. <br/>
+Vulnerable: &lt;= 1.0.9.8.6<br/>
+Fixed: 1.0.9.8.7</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-32810</td>

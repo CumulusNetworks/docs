@@ -286,7 +286,7 @@ The attributes presented depend on the event type chosen in the <em>Enter Detail
 
 11. Optionally, select a notification channel where you want the events to be sent.
 
-    Only previously created channels are available for selection. If no channel is available or selected, the notifications can only be retrieved from the database. You can add a channel at a later time and then add it to the rule. Refer to {{<link title="Configure Notifications/#create-a-channel" text="Create a Channel">}} and {{<link title="Configure Notifications/#change-add-or-remove-the-channels-on-a-tca-rule" text="Modify TCA Rules">}}.
+    Only previously created channels are available for selection. If no channel is available or selected, the notifications can only be retrieved from the database. You can add a channel at a later time and then add it to the rule. Refer to {{<link title="Configure System Event Notifications/#create-a-channel" text="Create a Channel">}} and {{<link title="#change-add-or-remove-the-channels-on-a-tca-rule" text="Modify TCA Rules">}}.
 
 12. Click **Finish**.
 
@@ -630,13 +630,13 @@ Successfully added/updated tca TCA_DISK_UTILIZATION_UPPER_1
 
 ### Change the Name of a TCA Rule
 
-You cannot change the name of a TCA rule using the NetQ CLI because the rules are not named. They are given identifiers (tca_id) automatically. In the NetQ UI, to change a rule name, you must delete the rule and re-create it with the new name. Refer to {{<link title="Configure Notifications/#delete-a-tca-rule" text="Delete a TCA Rule">}} and then {{<link title="Configure Notifications/#create-a-tca-rule" text="Create a TCA Rule">}}.
+You cannot change the name of a TCA rule using the NetQ CLI because the rules are not named. They are given identifiers (tca_id) automatically. In the NetQ UI, to change a rule name, you must delete the rule and re-create it with the new name. Refer to {{<link title="Configure Threshold-Based Event Notifications/#delete-a-tca-rule" text="Delete a TCA Rule">}} and then {{<link title="Configure Threshold-Based Event Notifications/#create-a-tca-rule" text="Create a TCA Rule">}}.
 
 ### Change the Severity of a TCA Rule
 
 TCA rules have either an informational or critical severity.
 
-In the NetQ UI, the severity cannot be changed by itself, the rule must be deleted and re-created using the new severity. Refer to {{<link title="Configure Notifications/#delete-a-tca-rule" text="Delete a TCA Rule">}} and then {{<link title="Configure Notifications/#create-a-tca-rule" text="Create a TCA Rule">}}.
+In the NetQ UI, the severity cannot be changed by itself, the rule must be deleted and re-created using the new severity. Refer to {{<link title="Configure Threshold-Based Event Notifications/#delete-a-tca-rule" text="Delete a TCA Rule">}} and then {{<link title="Configure Threshold-Based Event Notifications/#create-a-tca-rule" text="Create a TCA Rule">}}.
 
 In the NetQ CLI, to change the severity, run:
 
@@ -794,7 +794,7 @@ To re-enable the rule, set the `is_active` option to *true*.
 
 ### Delete a TCA Rule
 
-You might find that you no longer want to receive event notifications for a particular TCA event. In that case, you can either disable the event if you think you may want to receive them again or delete the rule altogether. Refer to {{<link title="#Disable a Rule" text="Disable a Rule">}} for the first case. Follow the instructions here to remove the rule using either the NetQ UI or NetQ CLI.
+You might find that you no longer want to receive event notifications for a particular TCA event. In that case, you can either disable the event if you think you may want to receive them again or delete the rule altogether. Refer to {{<link title="#Disable a TCA Rule" text="Disable a TCA Rule">}} for the first case. Follow the instructions here to remove the rule using either the NetQ UI or NetQ CLI.
 
 {{< tabs "TabID2858" >}}
 

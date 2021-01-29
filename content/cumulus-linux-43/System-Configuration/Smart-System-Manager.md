@@ -128,7 +128,7 @@ Depending on your configuration and network topology, complete isolation might n
 
 ### Enable Maintenance Mode
 
-Run the following command to enable maintenance mode. When maintenance mode is enabled, Smart System Manager performs a graceful BGP shutdown, redirects traffic over the peerlink and brings down the MLAG port link. `switchd` maintains full capability.
+Run the following command to enable maintenance mode. When maintenance mode is enabled, Smart System Manager performs a {{<link url="Optional-BGP-Configuration/#graceful-bgp-shutdown" text="graceful BGP shutdown">}}, redirects traffic over the peerlink and brings down the MLAG port link. `switchd` maintains full capability.
 
 {{< tabs "133 ">}}
 
@@ -180,7 +180,7 @@ Before you disable maintenance mode, be sure to bring the ports back up.
 
 ### Disable Maintenance Mode
 
-Run the following command to disable maintenance mode and restore normal operation. When maintenance mode is disabled, Smart System Manager performs a {{<link url="#restart-mode" text="fast restart">}}, runs a BGP graceful restart and brings the MLAG port link back up. `switchd` maintains full capability.
+Run the following command to disable maintenance mode and restore normal operation. When maintenance mode is disabled, Smart System Manager performs a soft restart, runs a BGP graceful restart, and brings the MLAG port link back up. `switchd` maintains full capability.
 
 {{< tabs "185 ">}}
 

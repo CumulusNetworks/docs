@@ -12,7 +12,52 @@ This topic includes all commands that begin with `netq d*`, `netq e*`, `netq f*`
 
 ## netq decommission
 
-netq decommission <hostname-to-decommission>
+{{<link url="Decommission-Switches" text="Removes a switch">}} from the NetQ database.
+
+
+{{%notice note%}}
+
+Before you decommission a switch, you need to stop and disable the NetQ Agent service.
+
+```
+cumulus@switch:~$ sudo systemctl stop netq-agent
+cumulus@switch:~$ sudo systemctl disable netq-agent
+```
+
+{{%/notice%}}
+
+### Syntax
+
+```
+netq decommission <hostname>
+```
+
+### Required Arguments
+
+| Argument | Value | Description |
+| ---- | ---- | ---- |
+| &lt;hostname> |  | The name of the switch to decommission. |
+
+### Options
+
+None
+
+<!-- ### Command History
+
+A release is included if there were changes to the command, otherwise it is not listed.
+
+| Release | Description |
+| ---- | ---- |
+|  | Introduced | -->
+
+### Sample Usage
+
+```
+cumulus@netq-ts:~$ netq decommission switch01
+Successfully decommissioned node switch01
+```
+
+- - -
 
 ## netq del events-config
 
@@ -68,12 +113,15 @@ cumulus@switch:~$ netq del events-config events_config_id eventsconfig_10
 Successfully deleted Events Config eventsconfig_10
 ```
 
+- - -
 
 ## netq del
     notification   :  Send notifications to Slack or PagerDuty
     tca            :  Threshold Crossing Alerts
     trace          :  Control plane trace path across fabric
     validation     :  Schedule a validation check
+
+- - -
 
 ## netq del notification
 
@@ -82,9 +130,13 @@ Successfully deleted Events Config eventsconfig_10
     netq del notification proxy
     netq del notification rule <text-rule-name-anchor>
 
+- - - 
+
 ## netq del tca
 
     netq del tca tca_id <tca-rule-name>
+
+- - -
 
 ## netq del validation
 

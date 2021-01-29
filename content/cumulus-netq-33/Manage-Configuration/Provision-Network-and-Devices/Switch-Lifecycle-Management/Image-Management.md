@@ -14,11 +14,11 @@ The Linux and NetQ images are available in several variants based on the softwar
 
 The Cumulus Linux Images and NetQ Images cards in the NetQ UI provide a summary of image status in LCM. They show the total number of images in the repository, a count of missing images, and the starting points for adding and managing your images.
 
-The `netq lcm show images` command also displays a summary of the images uploaded to the LCM repo on the NetQ appliance or VM.
+The `netq lcm show cl-images` and `netq lcm show netq-images` commands also display a summary of the Cumulus Linux or NetQ images, respectively, uploaded to the LCM repo on the NetQ appliance or VM.
 
 ## Default Cumulus Linux or NetQ Version Assignment
 
-In the NetQ UI, you can assign a specific Cumulus Linux or NetQ version as the default version to use during installation or upgrade of switches. It is recommended that you choose the newest version that you intend to install or upgrade on all, or the majority, of your switches. The default selection can be overridden during individual installation and upgrade job creation if an alternate version is needed for a given set of switches.
+You can assign a specific Cumulus Linux or NetQ version as the default version to use during installation or upgrade of switches. It is recommended that you choose the newest version that you intend to install or upgrade on all, or the majority, of your switches. The default selection can be overridden during individual installation and upgrade job creation if an alternate version is needed for a given set of switches.
 
 ## Missing Images
 
@@ -32,7 +32,7 @@ While it is not required that you upload images that NetQ determines to be missi
 
 ## Upload Images
 
-For fresh installations of NetQ 3.2, no images have yet been uploaded to the LCM repository. If you are upgrading from NetQ 3.0.0 or 3.1.0, the Cumulus Linux images you have previously added are still present.
+For fresh installations of NetQ {{%version%}}, no images have yet been uploaded to the LCM repository. If you are upgrading from NetQ 3.0.x-3.2.x, the Cumulus Linux images you have previously added are still present.
 
 In preparation for *Cumulus Linux* upgrades, the recommended image upload flow is:
 
@@ -48,11 +48,11 @@ In preparation for *NetQ* installation or upgrade, the recommended image upload 
 
 2. Add any missing images: {{<link url="#upload-upgrade-images" text="Upload Missing Images">}}
 
-3. In NetQ UI, optionally specify a default version for installation or upgrade | {{<link url="#specify-a-default-upgrade-image" text="Specify a Default Upgrade Image">}}
+3. In NetQ UI, optionally specify a default version for installation or upgrade: {{<link url="#specify-a-default-upgrade-image" text="Specify a Default Upgrade Image">}}
 
 ### Upload Missing Images
 
-Use the following instructions to upload missing Cumulus Linux and NetQ images:
+Use the following instructions to upload missing Cumulus Linux and NetQ images.
 
 For *Cumulus Linux* images:
 
@@ -60,7 +60,9 @@ For *Cumulus Linux* images:
 
 {{< tab "NetQ UI" >}}
 
-1. Click **Image Management**.
+1. On the Manage Switch Assets page, click **Image Management**.
+
+    {{<figure src="/images/netq/lcm-image-mgmt-tab-330.png" width="600">}}
 
 2. On the Cumulus Linux Images card, click the *View # missing CL images* link to see what images you need. This opens the list of missing images.
 
@@ -113,10 +115,10 @@ If you have already specified a default image, you must click <strong>Manage</st
 
 1. Download the Cumulus Linux disk images (*.bin* files) needed for upgrade from the {{<exlink url="https://cumulusnetworks.com/downloads/#product=Cumulus%20Linux" text="Cumulus Downloads page">}}, selecting the appropriate version, CPU, and ASIC. Place them in an accessible part of your local network.
 
-2. Upload the images to the LCM repository. This example uses a Cumulus Linux 4.1.0 disk image.
+2. Upload the images to the LCM repository. This example uses a Cumulus Linux 4.2.0 disk image.
 
     ```
-    cumulus@switch:~$ netq lcm add cl-image /path/to/download/cumulus-linux-4.1.0-vx-amd64.bin
+    cumulus@switch:~$ netq lcm add cl-image /path/to/download/cumulus-linux-4.2.0-mlnx-amd64.bin
     ```
 
 3. Repeat Step 2 for each image you need to upload to the LCM repository.
@@ -180,11 +182,9 @@ If you have already specified a default image, you must click <strong>Manage</st
 1. Download the NetQ debian packages needed for upgrade from the {{<exlink url="https://cumulusnetworks.com/downloads/#product=NetQ" text="Cumulus Downloads page">}}, selecting the appropriate version and hypervisor/platform. Place them in an accessible part of your local network.
 
 2. Upload the images to the LCM repository. This example uploads the two packages (`netq-agent` and `netq-apps`) needed for NetQ version 3.2.0 for a NetQ appliance or VM running Ubuntu 18.04 with an x86 architecture.
-<!-- update image names -->
-    ```
-    cumulus@switch:~$ netq lcm add netq-image /path/to/download/netq-agent_3.2.0-ub18.04u30~1601400975.104fb9e_amd64
-    cumulus@switch:~$ netq lcm add netq-image /path/to/download/netq-apps_3.2.0-ub18.04u30~1601400975.104fb9e_amd64
-    ```
+
+       cumulus@switch:~$ netq lcm add netq-image /path/to/download/netq-agent_3.3.0-cl4u32_1609391187.7df4e1d2_amd64
+       cumulus@switch:~$ netq lcm add netq-image /path/to/download/netq-apps_3.3.0-cl4u32_1609391187.7df4e1d2_amd64
 
 {{< /tab >}}
 
@@ -253,6 +253,10 @@ Lifecycle management does not have a default Cumulus Linux or NetQ upgrade versi
 
 To specify a default Cumulus Linux or NetQ version in the NetQ UI:
 
+{{< tabs "Specify default version" >}}
+
+{{< tab "NetQ UI" >}}
+
 1. Click **Image Management**.
 
 2. Click the *Click here to set the default CL version* link in the middle of the Cumulus Linux Images card, or click the *Click here to set the default NetQ version* link in the middle of the NetQ Images card.
@@ -263,17 +267,91 @@ To specify a default Cumulus Linux or NetQ version in the NetQ UI:
 
 4. Click **Save**. The default version is now displayed on the relevant Images card.
 
-    {{<figure src="/images/netq/lcm-images-cards-default-assigned-320.png" width="400">}}
+    {{<figure src="/images/netq/lcm-images-cards-default-assigned-330.png" width="400">}}
+
+{{< /tab >}}
+
+{{< tab "NetQ CLI" >}}
+
+To specify a default Cumulus Linux version, run:
+
+```
+cumulus@switch:~$ netq lcm add default-version cl-images <text-cumulus-linux-version>
+```
+
+To specify a default NetQ version, run:
+
+```
+cumulus@switch:~$ netq lcm add default-version netq-images <text-netq-version>
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
 
 After you have specified a default version, you have the option to change it.
 
 To change the default Cumulus Linux or NetQ version:
+
+{{< tabs "Change default version" >}}
+
+{{< tab "NetQ UI" >}}
 
 1. Click **change** next to the currently identified default image on the Cumulus Linux Images or NetQ Images card.
 
 2. Select the image you want to use as the default version for upgrades.
 
 3. Click **Save**.
+
+{{< /tab >}}
+
+{{< tab "NetQ CLI" >}}
+
+To change the default Cumulus Linux version, run:
+
+```
+cumulus@switch:~$ netq lcm add default-version cl-images <text-cumulus-linux-version>
+```
+
+To change the default NetQ version, run:
+
+```
+cumulus@switch:~$ netq lcm add default-version netq-images <text-netq-version>
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
+In the CLI, you can check which version of Cumulus Linux or NetQ has been configured as the default.
+
+To see which version of Cumulus Linux has been configured as the default, run `netq lcm show default-version cl-images`:
+
+```
+cumulus@switch:~$ netq lcm show default-version cl-images 
+ID                        Name            CL Version  CPU      ASIC            Last Changed
+------------------------- --------------- ----------- -------- --------------- -------------------------
+image_cc97be3955042ca4185 cumulus-linux-4 4.2.0       x86_64   VX              Tue Jan  5 22:10:59 2021
+7c4d0fe95296bcea3e372b437 .2.0-vx-amd64-1
+a535a4ad23ca300d52c3      594775435.dirty
+                          zc24426ca.bin
+```
+
+To see which version of NetQ has been configured as the default, run `netq lcm show default-version netq-images`:
+
+```
+cumulus@switch:~$ netq lcm show default-version netq-images 
+ID                        Name            NetQ Version  CL Version  CPU      Image Type           Last Changed
+------------------------- --------------- ------------- ----------- -------- -------------------- -------------------------
+image_d23a9e006641c675ed9 netq-agent_3.3. 3.3.0         cl4u32      x86_64   NETQ_AGENT           Tue Jan  5 22:23:50 2021
+e152948a9d1589404e8b83958 0-cl4u32_160939
+d53eb0ce7698512e7001      1187.7df4e1d2_a
+                          md64.deb
+image_68db386683c796d8642 netq-apps_3.3.0 3.3.0         cl4u32      x86_64   NETQ_CLI             Tue Jan  5 22:23:54 2021
+2f2172c103494fef7a820d003 -cl4u32_1609391
+de71647315c5d774f834      187.7df4e1d2_am
+                          d64.deb
+```
 
 ## Export Images
 
@@ -307,10 +385,10 @@ To export image listings:
 
 {{< tab "NetQ CLI" >}}
 
-Use the `json` option with the `netq lcm show images` command to output a list of the Cumulus Linux image files stored in the LCM repository.
+Use the `json` option with the `netq lcm show cl-images` command to output a list of the Cumulus Linux image files stored in the LCM repository.
 
 ```
-cumulus@switch:~$ netq lcm show images json
+cumulus@switch:~$ netq lcm show cl-images json
 [
     {
         "id": "image_cc97be3955042ca41857c4d0fe95296bcea3e372b437a535a4ad23ca300d52c3",
@@ -366,14 +444,14 @@ To remove images:
 To remove Cumulus Linux images, run:
 
 ```
-netq lcm show images [json]
-netq lcm del image <text-image-id>
+netq lcm show cl-images [json]
+netq lcm del cl-image <text-image-id>
 ```
 
 1. Determine the ID of the image you want to remove.
 
     ```
-    cumulus@switch:~$ netq lcm show images
+    cumulus@switch:~$ netq lcm show cl-images json
     [
         {
             "id": "image_cc97be3955042ca41857c4d0fe95296bcea3e372b437a535a4ad23ca300d52c3",
@@ -397,13 +475,13 @@ netq lcm del image <text-image-id>
 2. Remove the image you no longer need.
 
     ```
-    cumulus@switch:~$ netq lcm del image image_c6e812f0081fb03b9b8625a3c0af14eb82c35d79997db4627c54c76c973ce1ce
+    cumulus@switch:~$ netq lcm del cl-image image_c6e812f0081fb03b9b8625a3c0af14eb82c35d79997db4627c54c76c973ce1ce
     ```
 
 3. Verify it has been removed.
 
     ```
-    cumulus@switch:~$ netq lcm show images
+    cumulus@switch:~$ netq lcm show cl-images json
     [
         {
             "id": "image_cc97be3955042ca41857c4d0fe95296bcea3e372b437a535a4ad23ca300d52c3",
@@ -412,6 +490,62 @@ netq lcm del image <text-image-id>
             "cpu": "x86_64",
             "asic": "VX",
             "lastChanged": 1600726385400.0
+        }
+    ]
+    ```
+
+To remove NetQ images, run:
+
+```
+netq lcm show netq-images [json]
+netq lcm del netq-image <text-image-id>
+```
+
+1. Determine the ID of the image you want to remove.
+
+    ```
+    cumulus@switch:~$ netq lcm show netq-images json
+    [
+        {
+            "id": "image_d23a9e006641c675ed9e152948a9d1589404e8b83958d53eb0ce7698512e7001",
+            "name": "netq-agent_3.3.0-cl4u32_1609391187.7df4e1d2_amd64.deb",
+            "netqVersion": "3.3.0",
+            "clVersion": "cl4u32",
+            "cpu": "x86_64",
+            "imageType": "NETQ_AGENT",
+            "lastChanged": 1609885430638.0
+        }, 
+        {
+            "id": "image_68db386683c796d86422f2172c103494fef7a820d003de71647315c5d774f834",
+            "name": "netq-apps_3.3.0-cl4u32_1609391187.7df4e1d2_amd64.deb",
+            "netqVersion": "3.3.0",
+            "clVersion": "cl4u32",
+            "cpu": "x86_64",
+            "imageType": "NETQ_CLI",
+            "lastChanged": 1609885434704.0
+        }
+    ]
+    ```
+
+2. Remove the image you no longer need.
+
+    ```
+    cumulus@switch:~$ netq lcm del netq-image image_68db386683c796d86422f2172c103494fef7a820d003de71647315c5d774f834
+    ```
+
+3. Verify it has been removed.
+
+    ```
+    cumulus@switch:~$ netq lcm show netq-images json
+    [
+        {
+            "id": "image_d23a9e006641c675ed9e152948a9d1589404e8b83958d53eb0ce7698512e7001",
+            "name": "netq-agent_3.3.0-cl4u32_1609391187.7df4e1d2_amd64.deb",
+            "netqVersion": "3.3.0",
+            "clVersion": "cl4u32",
+            "cpu": "x86_64",
+            "imageType": "NETQ_AGENT",
+            "lastChanged": 1609885430638.0
         }
     ]
     ```

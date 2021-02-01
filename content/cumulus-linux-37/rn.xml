@@ -7,6 +7,28 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-33165</td>
+<td><p>CVE-2021-3156: A serious heap-based buffer overflow has been discovered in sudo that is exploitable by any local user. It has been given the name Baron Samedit by its discoverer. The bug can be leveraged to elevate privileges to root, even if the user is not listed in the sudoers file. User authentication is not required to exploit the bug.<br/>
+Vulnerable: &lt;= 1.8.10p4-cl3.7.14u1<br/>
+Fixed: 1.8.10p4-cl3.7.15u1<br/>
+Note: security scanners may not recognize 1.8.10p4-cl3.7.15u1 as fixed and therefore incorrectly list it as vulnerable.</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33032</td>
+<td><p>On Edgecore AS4610 switches, the historic CPU usage displayed in /run/sysmonitor/history is sometimes shown as a negative value. </p></td>
+<td>3.7.12-3.7.14</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33012</td>
+<td><p>After you add an interface to the bridge, an OSPF session flap can occur.</p>
+</td>
+<td>3.7.9-3.7.14</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-33008</td>
 <td><p>Several security vulnerabilities were found in ImageMagick, a suite of image manipulation programs. An attacker could cause denial of service and execution of arbitrary code when a crafted image file is processed.<br/>
 CVE-2020-19667 Stack-based buffer overflow and unconditional jump in ReadXPMImage in coders/xpm.c<br/>
@@ -115,6 +137,12 @@ Fixed: 2.4.40+dfsg-1+deb8u8</p></td>
 <td></td>
 </tr>
 <tr>
+<td>CM-32597</td>
+<td><p>When you change the anycast address for the MLAG pair (clagd-vxlan-anycast-ip), high peak traffic occurs on the peer link interface of all MLAG switches.</p></td>
+<td>3.7.13-3.7.14</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-32545</td>
 <td><p>If the FRR and MSTP processes go down, an SNMP TRAP is not generated even with the following configuration in the /etc/snmp/snmpd.conf file. </p>
 
@@ -127,13 +155,6 @@ monitor -I -r 1  -o prNames.3 -o prErrMessage.3  "Process mstpd is up!!!!" prErr
 
 </td>
 <td>3.7.12-3.7.14</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-32541</td>
-<td><p>After upgrading Cumulus Linux with the apt-upgrade command, then rebooting an MLAG pair, if there are no bonds configured with a clag-id, the clagd service has difficulty peering, and holds all MLAG interfaces and VNIs in a proto down state.<br/>
-To work around this issue, after upgrading both switches, restart the clagd service with the sudo systemctl restart clagd command on each MLAG pair.</p></td>
-<td>3.7.14</td>
 <td></td>
 </tr>
 <tr>
@@ -295,6 +316,12 @@ cumulus@switch:mgmt-vrf:~$ net add snmp-server username user999 auth-md5 user999
 <td></td>
 </tr>
 <tr>
+<td>CM-31404</td>
+<td><p>On the Delta AG7648 switch, the System LED and the Power LED do not display correctly.</p></td>
+<td>3.7.13-3.7.14</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-31327</td>
 <td><p>After you manually edit the /etc/resolv.conf file to change or remove a VRF for a given DNS server, ifreload does not remove IP rules created for DNS servers in the VRF. <br/>
 To work around this issue, run the net add/del dns nameserver vrf &lt;name&gt; command to force the DNS configuration.</p></td>
@@ -317,6 +344,26 @@ To work around this issue, avoid polling IP-FORWARD-MIB objects.</p></td>
 <tr>
 <td>CM-31263</td>
 <td><p>RX_DRP on a bond interface increases without any data traffic while the slave port does not increase.</p></td>
+<td>3.7.12-3.7.14</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31232</td>
+<td><p>On the  Dell N3048EP switch, the module information from SFP ports is not displayed in the l1-show command.<br/>
+To work around this issue, use the ethtool -m &lt;interface&gt; command.</p></td>
+<td>3.7.13-3.7.14</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31231</td>
+<td><p>On the Dell N3048EP switch, the module information from SFP ports is not displayed in the l1-show command.<br/>
+To work around this issue, use the ethtool -m &lt;interface&gt; command.</p></td>
+<td>3.7.13-3.7.14</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31222</td>
+<td><p>Tenant VRF BGP peers appear in the EVPN RMAC and nexthop tables, which causes the kernel RMAC to point at invalid IP address.</p></td>
 <td>3.7.12-3.7.14</td>
 <td></td>
 </tr>
@@ -1985,6 +2032,11 @@ Fixed: 7.38.0-4+deb8u18</p></td>
 <td>3.0.0-3.7.13</td>
 </tr>
 <tr>
+<td>CM-31618</td>
+<td><p>A ping via a dual-connected bond fails, and the audio stream is not routed or encapsulated through the layer 3 VNI.</p></td>
+<td>3.7.12-3.7.13</td>
+</tr>
+<tr>
 <td>CM-31565</td>
 <td><p>Multicast traffic on a VPN is sent to remote VTEPs that are not part of the VPN and the remote VTEPs receive multicast traffic encapsulated in a VXLAN ID that doesn't exist.<br/>
 To work around this issue, disable IGMP snooping on the switch.</p></td>
@@ -2458,6 +2510,28 @@ To work around this issue, disable BFD to alleviate some of the CPU load.</p></t
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-33165</td>
+<td><p>CVE-2021-3156: A serious heap-based buffer overflow has been discovered in sudo that is exploitable by any local user. It has been given the name Baron Samedit by its discoverer. The bug can be leveraged to elevate privileges to root, even if the user is not listed in the sudoers file. User authentication is not required to exploit the bug.<br/>
+Vulnerable: &lt;= 1.8.10p4-cl3.7.14u1<br/>
+Fixed: 1.8.10p4-cl3.7.15u1<br/>
+Note: security scanners may not recognize 1.8.10p4-cl3.7.15u1 as fixed and therefore incorrectly list it as vulnerable.</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33032</td>
+<td><p>On Edgecore AS4610 switches, the historic CPU usage displayed in /run/sysmonitor/history is sometimes shown as a negative value. </p></td>
+<td>3.7.12-3.7.14</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33012</td>
+<td><p>After you add an interface to the bridge, an OSPF session flap can occur.</p>
+</td>
+<td>3.7.9-3.7.14</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-33008</td>
 <td><p>Several security vulnerabilities were found in ImageMagick, a suite of image manipulation programs. An attacker could cause denial of service and execution of arbitrary code when a crafted image file is processed.<br/>
 CVE-2020-19667 Stack-based buffer overflow and unconditional jump in ReadXPMImage in coders/xpm.c<br/>
@@ -2544,6 +2618,12 @@ This operation is not supported in the kernel without recreating the SVI. To app
 Vulnerable: &lt;= 2.4.40+dfsg-1+deb8u7<br/>
 Fixed: 2.4.40+dfsg-1+deb8u8</p></td>
 <td>3.0.0-3.7.14</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32597</td>
+<td><p>When you change the anycast address for the MLAG pair (clagd-vxlan-anycast-ip), high peak traffic occurs on the peer link interface of all MLAG switches.</p></td>
+<td>3.7.13-3.7.14</td>
 <td></td>
 </tr>
 <tr>
@@ -2799,6 +2879,12 @@ Fixed: 7.38.0-4+deb8u18</p></td>
 <td>3.7.14</td>
 </tr>
 <tr>
+<td>CM-31618</td>
+<td><p>A ping via a dual-connected bond fails, and the audio stream is not routed or encapsulated through the layer 3 VNI.</p></td>
+<td>3.7.12-3.7.13</td>
+<td>3.7.14</td>
+</tr>
+<tr>
 <td>CM-31605</td>
 <td><p>When you configure an SNMPv3 user with the net-snmp-config configuration command from the libsnmp-dev package, you get an error message similar to the one below:</p>
 
@@ -2889,6 +2975,12 @@ Fixed: 1.5.6-5+deb8u1</p></td>
 <td>CM-31407</td>
 <td><p>You cannot configure SNMPv3 trap-destinations in non-default VRFs with an authentication username that contains fewer than eight characters.</p></td>
 <td>3.7.12-3.7.14</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31404</td>
+<td><p>On the Delta AG7648 switch, the System LED and the Power LED do not display correctly.</p></td>
+<td>3.7.13-3.7.14</td>
 <td></td>
 </tr>
 <tr>
@@ -3011,6 +3103,20 @@ To work around this issue, disable ARP/ND suppression to remove the internal ACL
 <td>3.7.14</td>
 </tr>
 <tr>
+<td>CM-31232</td>
+<td><p>On the  Dell N3048EP switch, the module information from SFP ports is not displayed in the l1-show command.<br/>
+To work around this issue, use the ethtool -m &lt;interface&gt; command.</p></td>
+<td>3.7.13-3.7.14</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31231</td>
+<td><p>On the Dell N3048EP switch, the module information from SFP ports is not displayed in the l1-show command.<br/>
+To work around this issue, use the ethtool -m &lt;interface&gt; command.</p></td>
+<td>3.7.13-3.7.14</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-31226</td>
 <td><p>Mellanox switches with the Spectrum ASIC fail to read PSU Fan/Temp sensors and report them as Absent. The following messages are observed in syslog:</p>
 
@@ -3020,6 +3126,12 @@ To work around this issue, disable ARP/ND suppression to remove the internal ACL
 </td>
 <td>3.7.13</td>
 <td>3.7.14</td>
+</tr>
+<tr>
+<td>CM-31222</td>
+<td><p>Tenant VRF BGP peers appear in the EVPN RMAC and nexthop tables, which causes the kernel RMAC to point at invalid IP address.</p></td>
+<td>3.7.12-3.7.14</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-31210</td>
@@ -5456,6 +5568,28 @@ Typically, the destination MAC address 01:00:5e:xx:xx:xx is used only for PIM/IG
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-33165</td>
+<td><p>CVE-2021-3156: A serious heap-based buffer overflow has been discovered in sudo that is exploitable by any local user. It has been given the name Baron Samedit by its discoverer. The bug can be leveraged to elevate privileges to root, even if the user is not listed in the sudoers file. User authentication is not required to exploit the bug.<br/>
+Vulnerable: &lt;= 1.8.10p4-cl3.7.14u1<br/>
+Fixed: 1.8.10p4-cl3.7.15u1<br/>
+Note: security scanners may not recognize 1.8.10p4-cl3.7.15u1 as fixed and therefore incorrectly list it as vulnerable.</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33032</td>
+<td><p>On Edgecore AS4610 switches, the historic CPU usage displayed in /run/sysmonitor/history is sometimes shown as a negative value. </p></td>
+<td>3.7.12-3.7.14</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33012</td>
+<td><p>After you add an interface to the bridge, an OSPF session flap can occur.</p>
+</td>
+<td>3.7.9-3.7.14</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-33008</td>
 <td><p>Several security vulnerabilities were found in ImageMagick, a suite of image manipulation programs. An attacker could cause denial of service and execution of arbitrary code when a crafted image file is processed.<br/>
 CVE-2020-19667 Stack-based buffer overflow and unconditional jump in ReadXPMImage in coders/xpm.c<br/>
@@ -5760,6 +5894,12 @@ Fixed: 7.38.0-4+deb8u18</p></td>
 <td>3.7.14</td>
 </tr>
 <tr>
+<td>CM-31618</td>
+<td><p>A ping via a dual-connected bond fails, and the audio stream is not routed or encapsulated through the layer 3 VNI.</p></td>
+<td>3.7.12-3.7.13</td>
+<td>3.7.14</td>
+</tr>
+<tr>
 <td>CM-31565</td>
 <td><p>Multicast traffic on a VPN is sent to remote VTEPs that are not part of the VPN and the remote VTEPs receive multicast traffic encapsulated in a VXLAN ID that doesn't exist.<br/>
 To work around this issue, disable IGMP snooping on the switch.</p></td>
@@ -5928,6 +6068,12 @@ Fixed: 3.26-1+debu8u13</p></td>
 These messages and the light are cosmetic issues only and do not otherwise impact the function of the switch.</p></td>
 <td>3.7.12-3.7.13</td>
 <td>3.7.14</td>
+</tr>
+<tr>
+<td>CM-31222</td>
+<td><p>Tenant VRF BGP peers appear in the EVPN RMAC and nexthop tables, which causes the kernel RMAC to point at invalid IP address.</p></td>
+<td>3.7.12-3.7.14</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-31210</td>
@@ -8633,6 +8779,22 @@ net.ipv6.ip6frag_high_thresh = 262144
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>CM-33165</td>
+<td><p>CVE-2021-3156: A serious heap-based buffer overflow has been discovered in sudo that is exploitable by any local user. It has been given the name Baron Samedit by its discoverer. The bug can be leveraged to elevate privileges to root, even if the user is not listed in the sudoers file. User authentication is not required to exploit the bug.<br/>
+Vulnerable: &lt;= 1.8.10p4-cl3.7.14u1<br/>
+Fixed: 1.8.10p4-cl3.7.15u1<br/>
+Note: security scanners may not recognize 1.8.10p4-cl3.7.15u1 as fixed and therefore incorrectly list it as vulnerable.</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33012</td>
+<td><p>After you add an interface to the bridge, an OSPF session flap can occur.</p>
+</td>
+<td>3.7.9-3.7.14</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-33008</td>
@@ -11902,6 +12064,22 @@ To work around this issue, use net show interface command for LLDP output when c
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-33165</td>
+<td><p>CVE-2021-3156: A serious heap-based buffer overflow has been discovered in sudo that is exploitable by any local user. It has been given the name Baron Samedit by its discoverer. The bug can be leveraged to elevate privileges to root, even if the user is not listed in the sudoers file. User authentication is not required to exploit the bug.<br/>
+Vulnerable: &lt;= 1.8.10p4-cl3.7.14u1<br/>
+Fixed: 1.8.10p4-cl3.7.15u1<br/>
+Note: security scanners may not recognize 1.8.10p4-cl3.7.15u1 as fixed and therefore incorrectly list it as vulnerable.</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33012</td>
+<td><p>After you add an interface to the bridge, an OSPF session flap can occur.</p>
+</td>
+<td>3.7.9-3.7.14</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-33008</td>
 <td><p>Several security vulnerabilities were found in ImageMagick, a suite of image manipulation programs. An attacker could cause denial of service and execution of arbitrary code when a crafted image file is processed.<br/>
 CVE-2020-19667 Stack-based buffer overflow and unconditional jump in ReadXPMImage in coders/xpm.c<br/>
@@ -14829,6 +15007,22 @@ To work around this issue, change the value of arp_ignore to 2. See <a href="htt
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>CM-33165</td>
+<td><p>CVE-2021-3156: A serious heap-based buffer overflow has been discovered in sudo that is exploitable by any local user. It has been given the name Baron Samedit by its discoverer. The bug can be leveraged to elevate privileges to root, even if the user is not listed in the sudoers file. User authentication is not required to exploit the bug.<br/>
+Vulnerable: &lt;= 1.8.10p4-cl3.7.14u1<br/>
+Fixed: 1.8.10p4-cl3.7.15u1<br/>
+Note: security scanners may not recognize 1.8.10p4-cl3.7.15u1 as fixed and therefore incorrectly list it as vulnerable.</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33012</td>
+<td><p>After you add an interface to the bridge, an OSPF session flap can occur.</p>
+</td>
+<td>3.7.9-3.7.14</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-33008</td>
@@ -18168,6 +18362,15 @@ To work around this issue, run the sudo ethtool -S swp1 command to collect inter
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-33165</td>
+<td><p>CVE-2021-3156: A serious heap-based buffer overflow has been discovered in sudo that is exploitable by any local user. It has been given the name Baron Samedit by its discoverer. The bug can be leveraged to elevate privileges to root, even if the user is not listed in the sudoers file. User authentication is not required to exploit the bug.<br/>
+Vulnerable: &lt;= 1.8.10p4-cl3.7.14u1<br/>
+Fixed: 1.8.10p4-cl3.7.15u1<br/>
+Note: security scanners may not recognize 1.8.10p4-cl3.7.15u1 as fixed and therefore incorrectly list it as vulnerable.</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-33008</td>
 <td><p>Several security vulnerabilities were found in ImageMagick, a suite of image manipulation programs. An attacker could cause denial of service and execution of arbitrary code when a crafted image file is processed.<br/>
 CVE-2020-19667 Stack-based buffer overflow and unconditional jump in ReadXPMImage in coders/xpm.c<br/>
@@ -21367,6 +21570,15 @@ To work around this issue, change the value of arp_ignore to 2. See <a href="htt
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>CM-33165</td>
+<td><p>CVE-2021-3156: A serious heap-based buffer overflow has been discovered in sudo that is exploitable by any local user. It has been given the name Baron Samedit by its discoverer. The bug can be leveraged to elevate privileges to root, even if the user is not listed in the sudoers file. User authentication is not required to exploit the bug.<br/>
+Vulnerable: &lt;= 1.8.10p4-cl3.7.14u1<br/>
+Fixed: 1.8.10p4-cl3.7.15u1<br/>
+Note: security scanners may not recognize 1.8.10p4-cl3.7.15u1 as fixed and therefore incorrectly list it as vulnerable.</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-33008</td>
@@ -24931,6 +25143,15 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-33165</td>
+<td><p>CVE-2021-3156: A serious heap-based buffer overflow has been discovered in sudo that is exploitable by any local user. It has been given the name Baron Samedit by its discoverer. The bug can be leveraged to elevate privileges to root, even if the user is not listed in the sudoers file. User authentication is not required to exploit the bug.<br/>
+Vulnerable: &lt;= 1.8.10p4-cl3.7.14u1<br/>
+Fixed: 1.8.10p4-cl3.7.15u1<br/>
+Note: security scanners may not recognize 1.8.10p4-cl3.7.15u1 as fixed and therefore incorrectly list it as vulnerable.</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-33008</td>
 <td><p>Several security vulnerabilities were found in ImageMagick, a suite of image manipulation programs. An attacker could cause denial of service and execution of arbitrary code when a crafted image file is processed.<br/>
 CVE-2020-19667 Stack-based buffer overflow and unconditional jump in ReadXPMImage in coders/xpm.c<br/>
@@ -28443,6 +28664,15 @@ This issue was discovered on the Helix4 switch but applies to all switches. <br/
 <td>3.7.6-3.7.14</td>
 </tr>
 <tr>
+<td>CM-33165</td>
+<td><p>CVE-2021-3156: A serious heap-based buffer overflow has been discovered in sudo that is exploitable by any local user. It has been given the name Baron Samedit by its discoverer. The bug can be leveraged to elevate privileges to root, even if the user is not listed in the sudoers file. User authentication is not required to exploit the bug.<br/>
+Vulnerable: &lt;= 1.8.10p4-cl3.7.14u1<br/>
+Fixed: 1.8.10p4-cl3.7.15u1<br/>
+Note: security scanners may not recognize 1.8.10p4-cl3.7.15u1 as fixed and therefore incorrectly list it as vulnerable.</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-33008</td>
 <td><p>Several security vulnerabilities were found in ImageMagick, a suite of image manipulation programs. An attacker could cause denial of service and execution of arbitrary code when a crafted image file is processed.<br/>
 CVE-2020-19667 Stack-based buffer overflow and unconditional jump in ReadXPMImage in coders/xpm.c<br/>
@@ -31642,6 +31872,15 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <td><p>In testing, it was determined that the MD5 password configured against a BGP listen-range peer-group (used to accept and create dynamic BGP neighbors) is not enforced (connections are accepted from peers that do not specify a password). </p></td>
 <td>3.0.0-3.7.5</td>
 <td>3.7.6-3.7.14</td>
+</tr>
+<tr>
+<td>CM-33165</td>
+<td><p>CVE-2021-3156: A serious heap-based buffer overflow has been discovered in sudo that is exploitable by any local user. It has been given the name Baron Samedit by its discoverer. The bug can be leveraged to elevate privileges to root, even if the user is not listed in the sudoers file. User authentication is not required to exploit the bug.<br/>
+Vulnerable: &lt;= 1.8.10p4-cl3.7.14u1<br/>
+Fixed: 1.8.10p4-cl3.7.15u1<br/>
+Note: security scanners may not recognize 1.8.10p4-cl3.7.15u1 as fixed and therefore incorrectly list it as vulnerable.</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-33008</td>
@@ -34901,6 +35140,15 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <td><p>In testing, it was determined that the MD5 password configured against a BGP listen-range peer-group (used to accept and create dynamic BGP neighbors) is not enforced (connections are accepted from peers that do not specify a password). </p></td>
 <td>3.0.0-3.7.5</td>
 <td>3.7.6-3.7.14</td>
+</tr>
+<tr>
+<td>CM-33165</td>
+<td><p>CVE-2021-3156: A serious heap-based buffer overflow has been discovered in sudo that is exploitable by any local user. It has been given the name Baron Samedit by its discoverer. The bug can be leveraged to elevate privileges to root, even if the user is not listed in the sudoers file. User authentication is not required to exploit the bug.<br/>
+Vulnerable: &lt;= 1.8.10p4-cl3.7.14u1<br/>
+Fixed: 1.8.10p4-cl3.7.15u1<br/>
+Note: security scanners may not recognize 1.8.10p4-cl3.7.15u1 as fixed and therefore incorrectly list it as vulnerable.</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-33008</td>
@@ -38319,6 +38567,15 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <td><p>In testing, it was determined that the MD5 password configured against a BGP listen-range peer-group (used to accept and create dynamic BGP neighbors) is not enforced (connections are accepted from peers that do not specify a password). </p></td>
 <td>3.0.0-3.7.5</td>
 <td>3.7.6-3.7.14</td>
+</tr>
+<tr>
+<td>CM-33165</td>
+<td><p>CVE-2021-3156: A serious heap-based buffer overflow has been discovered in sudo that is exploitable by any local user. It has been given the name Baron Samedit by its discoverer. The bug can be leveraged to elevate privileges to root, even if the user is not listed in the sudoers file. User authentication is not required to exploit the bug.<br/>
+Vulnerable: &lt;= 1.8.10p4-cl3.7.14u1<br/>
+Fixed: 1.8.10p4-cl3.7.15u1<br/>
+Note: security scanners may not recognize 1.8.10p4-cl3.7.15u1 as fixed and therefore incorrectly list it as vulnerable.</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-33008</td>
@@ -41861,6 +42118,15 @@ Permanent MAC address sync between MLAG peers is now supported.</p></td>
 <td>3.7.6-3.7.14</td>
 </tr>
 <tr>
+<td>CM-33165</td>
+<td><p>CVE-2021-3156: A serious heap-based buffer overflow has been discovered in sudo that is exploitable by any local user. It has been given the name Baron Samedit by its discoverer. The bug can be leveraged to elevate privileges to root, even if the user is not listed in the sudoers file. User authentication is not required to exploit the bug.<br/>
+Vulnerable: &lt;= 1.8.10p4-cl3.7.14u1<br/>
+Fixed: 1.8.10p4-cl3.7.15u1<br/>
+Note: security scanners may not recognize 1.8.10p4-cl3.7.15u1 as fixed and therefore incorrectly list it as vulnerable.</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-33008</td>
 <td><p>Several security vulnerabilities were found in ImageMagick, a suite of image manipulation programs. An attacker could cause denial of service and execution of arbitrary code when a crafted image file is processed.<br/>
 CVE-2020-19667 Stack-based buffer overflow and unconditional jump in ReadXPMImage in coders/xpm.c<br/>
@@ -44903,6 +45169,15 @@ To work around this issue, remove the matching network statement. </p></td>
 <td><p>In testing, it was determined that the MD5 password configured against a BGP listen-range peer-group (used to accept and create dynamic BGP neighbors) is not enforced (connections are accepted from peers that do not specify a password). </p></td>
 <td>3.0.0-3.7.5</td>
 <td>3.7.6-3.7.14</td>
+</tr>
+<tr>
+<td>CM-33165</td>
+<td><p>CVE-2021-3156: A serious heap-based buffer overflow has been discovered in sudo that is exploitable by any local user. It has been given the name Baron Samedit by its discoverer. The bug can be leveraged to elevate privileges to root, even if the user is not listed in the sudoers file. User authentication is not required to exploit the bug.<br/>
+Vulnerable: &lt;= 1.8.10p4-cl3.7.14u1<br/>
+Fixed: 1.8.10p4-cl3.7.15u1<br/>
+Note: security scanners may not recognize 1.8.10p4-cl3.7.15u1 as fixed and therefore incorrectly list it as vulnerable.</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-33008</td>

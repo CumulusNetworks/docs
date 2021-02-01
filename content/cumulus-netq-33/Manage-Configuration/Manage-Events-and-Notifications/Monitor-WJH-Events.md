@@ -87,11 +87,34 @@ cumulus@switch:~$ sudo netq config add agent wjh-threshold congestion 4 swp1 200
 
 You can filter the WJH events at the NetQ Agent before it is processed by the NetQ system. Filtering is performed on a drop-type basis. You can filter the drop type further by specifying one or more drop reasons or severity using the NetQ UI or the NetQ CLI.
 
-{{< tabs "TabID90" >}}
+Drop reasons are organized into the following types:
+
+- *ACL*: ingress and egress port ACLs, ingress and egress router ACLs.
+- *Buffer*: packet latency threshold crossed, port TC congestion threshold crossed, tail drop, WRED.
+- *Layer 1*: autonegotiation failure, bad signal integrity, cable/transceiver unplugged, cable/transceiver unsupported, calibration failure, link training failure, peer sending remote faults, port admin down.
+- *Layer 2*: destination MAC reserved (&lt;DMAC>), ingress spanning tree filter, ingress VLAN filtering, MLAG port isolation, multicast egress port list empty, port loopback filter, source MAC equals destination MAC, source MAC is multicast, unicast MAC table action discard, VLAN tagging mismatch.
+- *Router*: blackhole ARP/neighbor, blackhole route, checksum or IPver or IPv4 IHL too short, destination IP is loopback address, egress router interface is disabled, ingress router interface is disabled, IPv4 destination IP is link local, IPv4 destination IP is local network (destination=&lt;IP/subnet>), IPv4 routing table (LPM) unicast miss, IPv4 source IP is limited broadcast, IPv6 destination in multicast scope &lt;IPv6>, IPv6 routing table (LPM) unicast miss, multicast MAC mismatch, non-IP packet, non-routable packet, packet size is larger than router interface MTU, router interface loopback, source IP equals destination IP, source IP is in class E, source IP is loopback address, source IP is multicast, source IP is unspecified, TTL value is too small, unicast destination IP but multicast destination MAC, unresolved neighbor/next-hop.
+- *Tunnel*: decapsulation error, overlay switch - source MAC equals destination MAC, overlay switch - source MAC is multicast.
+
+{{< tabs "WJH Filters" >}}
 
 {{< tab "NetQ UI" >}}
 
-<!-- Add content here -->
+To configure the NetQ Agent to filter WJH drops, do the following:
+
+1. In the NetQ UI, click **Switches** ({{<img src="https://icons.cumulusnetworks.com/03-Computers-Devices-Electronics/09-Hard-Drives/hard-drive-1.svg" height="18" width="18">}}), then click **Manage switches**.
+
+1. Click **Configuration Management** on the left.
+
+1. Under NetQ Configurations, click **Add Config**.
+
+   {{<img src="/images/netq/lcm-netq-config-profile-enable-wjh.png" width="500px">}}
+
+1. Click **Enable** to enable WJH, then click **Customize**.
+
+   {{<img src="/images/netq/lcm-netq-config-profile-configure-wjh.png" width="500px">}}
+
+1. By default, all drop reasons are selected. Uncheck any drop reasons you don't want to use to generate WJH events, then click **Done**.
 
 {{< /tab >}}
 

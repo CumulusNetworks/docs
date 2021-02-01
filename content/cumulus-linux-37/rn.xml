@@ -10,7 +10,8 @@
 <td>CM-33165</td>
 <td><p>CVE-2021-3156: A serious heap-based buffer overflow has been discovered in sudo that is exploitable by any local user. It has been given the name Baron Samedit by its discoverer. The bug can be leveraged to elevate privileges to root, even if the user is not listed in the sudoers file. User authentication is not required to exploit the bug.<br/>
 Vulnerable: &lt;= 1.8.10p4-cl3.7.14u1<br/>
-Fixed: 1.8.10p4-cl3.7.15u1</p></td>
+Fixed: 1.8.10p4-cl3.7.15u1<br/>
+Note: security scanners may not recognize 1.8.10p4-cl3.7.15u1 as fixed and therefore incorrectly list it as vulnerable.</p></td>
 <td>3.0.0-3.7.14</td>
 <td></td>
 </tr>
@@ -2512,7 +2513,8 @@ To work around this issue, disable BFD to alleviate some of the CPU load.</p></t
 <td>CM-33165</td>
 <td><p>CVE-2021-3156: A serious heap-based buffer overflow has been discovered in sudo that is exploitable by any local user. It has been given the name Baron Samedit by its discoverer. The bug can be leveraged to elevate privileges to root, even if the user is not listed in the sudoers file. User authentication is not required to exploit the bug.<br/>
 Vulnerable: &lt;= 1.8.10p4-cl3.7.14u1<br/>
-Fixed: 1.8.10p4-cl3.7.15u1</p></td>
+Fixed: 1.8.10p4-cl3.7.15u1<br/>
+Note: security scanners may not recognize 1.8.10p4-cl3.7.15u1 as fixed and therefore incorrectly list it as vulnerable.</p></td>
 <td>3.0.0-3.7.14</td>
 <td></td>
 </tr>
@@ -5569,7 +5571,8 @@ Typically, the destination MAC address 01:00:5e:xx:xx:xx is used only for PIM/IG
 <td>CM-33165</td>
 <td><p>CVE-2021-3156: A serious heap-based buffer overflow has been discovered in sudo that is exploitable by any local user. It has been given the name Baron Samedit by its discoverer. The bug can be leveraged to elevate privileges to root, even if the user is not listed in the sudoers file. User authentication is not required to exploit the bug.<br/>
 Vulnerable: &lt;= 1.8.10p4-cl3.7.14u1<br/>
-Fixed: 1.8.10p4-cl3.7.15u1</p></td>
+Fixed: 1.8.10p4-cl3.7.15u1<br/>
+Note: security scanners may not recognize 1.8.10p4-cl3.7.15u1 as fixed and therefore incorrectly list it as vulnerable.</p></td>
 <td>3.0.0-3.7.14</td>
 <td></td>
 </tr>
@@ -8781,7 +8784,8 @@ net.ipv6.ip6frag_high_thresh = 262144
 <td>CM-33165</td>
 <td><p>CVE-2021-3156: A serious heap-based buffer overflow has been discovered in sudo that is exploitable by any local user. It has been given the name Baron Samedit by its discoverer. The bug can be leveraged to elevate privileges to root, even if the user is not listed in the sudoers file. User authentication is not required to exploit the bug.<br/>
 Vulnerable: &lt;= 1.8.10p4-cl3.7.14u1<br/>
-Fixed: 1.8.10p4-cl3.7.15u1</p></td>
+Fixed: 1.8.10p4-cl3.7.15u1<br/>
+Note: security scanners may not recognize 1.8.10p4-cl3.7.15u1 as fixed and therefore incorrectly list it as vulnerable.</p></td>
 <td>3.0.0-3.7.14</td>
 <td></td>
 </tr>
@@ -12063,7 +12067,8 @@ To work around this issue, use net show interface command for LLDP output when c
 <td>CM-33165</td>
 <td><p>CVE-2021-3156: A serious heap-based buffer overflow has been discovered in sudo that is exploitable by any local user. It has been given the name Baron Samedit by its discoverer. The bug can be leveraged to elevate privileges to root, even if the user is not listed in the sudoers file. User authentication is not required to exploit the bug.<br/>
 Vulnerable: &lt;= 1.8.10p4-cl3.7.14u1<br/>
-Fixed: 1.8.10p4-cl3.7.15u1</p></td>
+Fixed: 1.8.10p4-cl3.7.15u1<br/>
+Note: security scanners may not recognize 1.8.10p4-cl3.7.15u1 as fixed and therefore incorrectly list it as vulnerable.</p></td>
 <td>3.0.0-3.7.14</td>
 <td></td>
 </tr>
@@ -15007,7 +15012,8 @@ To work around this issue, change the value of arp_ignore to 2. See <a href="htt
 <td>CM-33165</td>
 <td><p>CVE-2021-3156: A serious heap-based buffer overflow has been discovered in sudo that is exploitable by any local user. It has been given the name Baron Samedit by its discoverer. The bug can be leveraged to elevate privileges to root, even if the user is not listed in the sudoers file. User authentication is not required to exploit the bug.<br/>
 Vulnerable: &lt;= 1.8.10p4-cl3.7.14u1<br/>
-Fixed: 1.8.10p4-cl3.7.15u1</p></td>
+Fixed: 1.8.10p4-cl3.7.15u1<br/>
+Note: security scanners may not recognize 1.8.10p4-cl3.7.15u1 as fixed and therefore incorrectly list it as vulnerable.</p></td>
 <td>3.0.0-3.7.14</td>
 <td></td>
 </tr>
@@ -18359,7 +18365,8 @@ To work around this issue, run the sudo ethtool -S swp1 command to collect inter
 <td>CM-33165</td>
 <td><p>CVE-2021-3156: A serious heap-based buffer overflow has been discovered in sudo that is exploitable by any local user. It has been given the name Baron Samedit by its discoverer. The bug can be leveraged to elevate privileges to root, even if the user is not listed in the sudoers file. User authentication is not required to exploit the bug.<br/>
 Vulnerable: &lt;= 1.8.10p4-cl3.7.14u1<br/>
-Fixed: 1.8.10p4-cl3.7.15u1</p></td>
+Fixed: 1.8.10p4-cl3.7.15u1<br/>
+Note: security scanners may not recognize 1.8.10p4-cl3.7.15u1 as fixed and therefore incorrectly list it as vulnerable.</p></td>
 <td>3.0.0-3.7.14</td>
 <td></td>
 </tr>
@@ -21568,7 +21575,8 @@ To work around this issue, change the value of arp_ignore to 2. See <a href="htt
 <td>CM-33165</td>
 <td><p>CVE-2021-3156: A serious heap-based buffer overflow has been discovered in sudo that is exploitable by any local user. It has been given the name Baron Samedit by its discoverer. The bug can be leveraged to elevate privileges to root, even if the user is not listed in the sudoers file. User authentication is not required to exploit the bug.<br/>
 Vulnerable: &lt;= 1.8.10p4-cl3.7.14u1<br/>
-Fixed: 1.8.10p4-cl3.7.15u1</p></td>
+Fixed: 1.8.10p4-cl3.7.15u1<br/>
+Note: security scanners may not recognize 1.8.10p4-cl3.7.15u1 as fixed and therefore incorrectly list it as vulnerable.</p></td>
 <td>3.0.0-3.7.14</td>
 <td></td>
 </tr>
@@ -25138,7 +25146,8 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <td>CM-33165</td>
 <td><p>CVE-2021-3156: A serious heap-based buffer overflow has been discovered in sudo that is exploitable by any local user. It has been given the name Baron Samedit by its discoverer. The bug can be leveraged to elevate privileges to root, even if the user is not listed in the sudoers file. User authentication is not required to exploit the bug.<br/>
 Vulnerable: &lt;= 1.8.10p4-cl3.7.14u1<br/>
-Fixed: 1.8.10p4-cl3.7.15u1</p></td>
+Fixed: 1.8.10p4-cl3.7.15u1<br/>
+Note: security scanners may not recognize 1.8.10p4-cl3.7.15u1 as fixed and therefore incorrectly list it as vulnerable.</p></td>
 <td>3.0.0-3.7.14</td>
 <td></td>
 </tr>
@@ -28658,7 +28667,8 @@ This issue was discovered on the Helix4 switch but applies to all switches. <br/
 <td>CM-33165</td>
 <td><p>CVE-2021-3156: A serious heap-based buffer overflow has been discovered in sudo that is exploitable by any local user. It has been given the name Baron Samedit by its discoverer. The bug can be leveraged to elevate privileges to root, even if the user is not listed in the sudoers file. User authentication is not required to exploit the bug.<br/>
 Vulnerable: &lt;= 1.8.10p4-cl3.7.14u1<br/>
-Fixed: 1.8.10p4-cl3.7.15u1</p></td>
+Fixed: 1.8.10p4-cl3.7.15u1<br/>
+Note: security scanners may not recognize 1.8.10p4-cl3.7.15u1 as fixed and therefore incorrectly list it as vulnerable.</p></td>
 <td>3.0.0-3.7.14</td>
 <td></td>
 </tr>
@@ -31867,7 +31877,8 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <td>CM-33165</td>
 <td><p>CVE-2021-3156: A serious heap-based buffer overflow has been discovered in sudo that is exploitable by any local user. It has been given the name Baron Samedit by its discoverer. The bug can be leveraged to elevate privileges to root, even if the user is not listed in the sudoers file. User authentication is not required to exploit the bug.<br/>
 Vulnerable: &lt;= 1.8.10p4-cl3.7.14u1<br/>
-Fixed: 1.8.10p4-cl3.7.15u1</p></td>
+Fixed: 1.8.10p4-cl3.7.15u1<br/>
+Note: security scanners may not recognize 1.8.10p4-cl3.7.15u1 as fixed and therefore incorrectly list it as vulnerable.</p></td>
 <td>3.0.0-3.7.14</td>
 <td></td>
 </tr>
@@ -35134,7 +35145,8 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <td>CM-33165</td>
 <td><p>CVE-2021-3156: A serious heap-based buffer overflow has been discovered in sudo that is exploitable by any local user. It has been given the name Baron Samedit by its discoverer. The bug can be leveraged to elevate privileges to root, even if the user is not listed in the sudoers file. User authentication is not required to exploit the bug.<br/>
 Vulnerable: &lt;= 1.8.10p4-cl3.7.14u1<br/>
-Fixed: 1.8.10p4-cl3.7.15u1</p></td>
+Fixed: 1.8.10p4-cl3.7.15u1<br/>
+Note: security scanners may not recognize 1.8.10p4-cl3.7.15u1 as fixed and therefore incorrectly list it as vulnerable.</p></td>
 <td>3.0.0-3.7.14</td>
 <td></td>
 </tr>
@@ -38560,7 +38572,8 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <td>CM-33165</td>
 <td><p>CVE-2021-3156: A serious heap-based buffer overflow has been discovered in sudo that is exploitable by any local user. It has been given the name Baron Samedit by its discoverer. The bug can be leveraged to elevate privileges to root, even if the user is not listed in the sudoers file. User authentication is not required to exploit the bug.<br/>
 Vulnerable: &lt;= 1.8.10p4-cl3.7.14u1<br/>
-Fixed: 1.8.10p4-cl3.7.15u1</p></td>
+Fixed: 1.8.10p4-cl3.7.15u1<br/>
+Note: security scanners may not recognize 1.8.10p4-cl3.7.15u1 as fixed and therefore incorrectly list it as vulnerable.</p></td>
 <td>3.0.0-3.7.14</td>
 <td></td>
 </tr>
@@ -42108,7 +42121,8 @@ Permanent MAC address sync between MLAG peers is now supported.</p></td>
 <td>CM-33165</td>
 <td><p>CVE-2021-3156: A serious heap-based buffer overflow has been discovered in sudo that is exploitable by any local user. It has been given the name Baron Samedit by its discoverer. The bug can be leveraged to elevate privileges to root, even if the user is not listed in the sudoers file. User authentication is not required to exploit the bug.<br/>
 Vulnerable: &lt;= 1.8.10p4-cl3.7.14u1<br/>
-Fixed: 1.8.10p4-cl3.7.15u1</p></td>
+Fixed: 1.8.10p4-cl3.7.15u1<br/>
+Note: security scanners may not recognize 1.8.10p4-cl3.7.15u1 as fixed and therefore incorrectly list it as vulnerable.</p></td>
 <td>3.0.0-3.7.14</td>
 <td></td>
 </tr>
@@ -45160,7 +45174,8 @@ To work around this issue, remove the matching network statement. </p></td>
 <td>CM-33165</td>
 <td><p>CVE-2021-3156: A serious heap-based buffer overflow has been discovered in sudo that is exploitable by any local user. It has been given the name Baron Samedit by its discoverer. The bug can be leveraged to elevate privileges to root, even if the user is not listed in the sudoers file. User authentication is not required to exploit the bug.<br/>
 Vulnerable: &lt;= 1.8.10p4-cl3.7.14u1<br/>
-Fixed: 1.8.10p4-cl3.7.15u1</p></td>
+Fixed: 1.8.10p4-cl3.7.15u1<br/>
+Note: security scanners may not recognize 1.8.10p4-cl3.7.15u1 as fixed and therefore incorrectly list it as vulnerable.</p></td>
 <td>3.0.0-3.7.14</td>
 <td></td>
 </tr>

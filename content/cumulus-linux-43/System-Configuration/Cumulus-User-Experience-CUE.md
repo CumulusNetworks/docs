@@ -115,15 +115,15 @@ The `cl set` and `cl unset` commands are grouped into the following categories. 
 
 | <div style="width:450px">Command | Description |
 | ------- | ----------- |
-| `cl set router [options] [<attribute> ...]`<br>`cl unset router [options] [<attribute> ...]` | Configures router policies, such as prefix list rules and route maps, and global BGP options. |
-| `cl set platform [options] [<attribute> ...]`<br>`cl unsetset platform [options] [<attribute> ...]` | Configures switch platform options, such as the hostname, and specifies how configuration apply operations are performed. |
-| `cl set bridge [options] [<attribute> ...]`<br>`cl unset bridge [options] [<attribute> ...]` | Configures a bridge. |
+| `cl set router [options] [<attribute> ...]`<br>`cl unset router [options] [<attribute> ...]` | Configures global BGP options and router policies, such as prefix list rules and route maps. |
+| `cl set platform [options] [<attribute> ...]`<br>`cl unsetset platform [options] [<attribute> ...]` | Configures hostname options, such as the static hostname for the switch, the local domain, and whether DHCP is allowed to overrride the hostname. This command also specifies how configuration apply operations are performed; for example, you can specify which files to ignore and which files to overwrite. |
+| `cl set bridge [options] [<attribute> ...]`<br>`cl unset bridge [options] [<attribute> ...]` | Configures a bridge domain. |
 | `cl set mlag [options] [<attribute> ...]`<br>`cl unset mlag [options] [<attribute> ...]` | Configures MLAG. |
-| `cl set evpn [options] [<attribute> ...]`<br>`cl unset evpn [options] [<attribute> ...]` | Configures MLAG. |
-| `cl set interface [options] <interface-id> ...`<br>`cl unset interface [options] <interface-id> ...` | Configures switch interfaces.|
-| `cl set system [options] [<attribute> ...]`<br>`cl unset system [options] [<attribute> ...]` | Configures global system settings, such as NTP, DHCP server, DNS, and syslog. |
+| `cl set evpn [options] [<attribute> ...]`<br>`cl unset evpn [options] [<attribute> ...]` | Configures EVPN. |
+| `cl set interface [options] <interface-id> ...`<br>`cl unset interface [options] <interface-id> ...` | Configures the switch interfaces. Use this command to configure bonds, bridge interfaces, interface IP addresses, VLAN IDs, and links (MTU, FEC, speed, duplex, and so on).|
+| `cl set system [options] [<attribute> ...]`<br>`cl unset system [options] [<attribute> ...]` | Configures global system settings, such as NTP, DHCP server, DNS, LLDP, and syslog. |
 | `cl set vrf [options] <vrf-id> ...`<br>`cl unset vrf [options] <vrf-id> ...` | Configures VRFs. |
-| `cl set nve [options] [<attribute> ...]`<br>`cl unset nve [options] [<attribute> ...]` | Configures network virtualization settings. |
+| `cl set nve [options] [<attribute> ...]`<br>`cl unset nve [options] [<attribute> ...]` | Configures network virtualization (VXLAN) settings. |
 
 ### Monitoring Commands
 
@@ -147,8 +147,8 @@ The CUE configuration management commands manage and apply configurations.
 
 | <div style="width:450px">Command | Description |
 | ------- | ----------- |
-| `cl config apply [options] [<revision>]` | Applies the running configuration. The configuration is applied but not saved and does not persist after a reboot.|
-| `cl config save [options]` | Saves the running configuration. The configuration persists after a reboot. |
+| `cl config apply [options] [<revision>]` | Applies the configuration. The configuration is applied but not saved and does not persist after a reboot.|
+| `cl config save [options]` | Saves the configuration. The configuration persists after a reboot. |
 | `cl config replace [options] <cue-file>` | Replaces the pending configuration with the specified file. |
 | `cl config detach [options]` | Detaches the configuration from the current pending revision. |
 | `cl config diff [options] [(<revision>|--empty)] [<revision>]` | Shows differences between two configuration revisions. |

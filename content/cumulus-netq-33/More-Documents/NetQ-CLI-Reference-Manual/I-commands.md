@@ -20,6 +20,7 @@ This topic includes all commands that begin with `netq i*`, `netq j*`, and `netq
 
 inventory
 
+```
 netq [<hostname>] show inventory brief [opta] [json]
 netq [<hostname>] show inventory asic [vendor <asic-vendor>|model <asic-model>|model-id <asic-model-id>] [opta] [json]
 netq [<hostname>] show inventory board [vendor <board-vendor>|model <board-model>] [opta] [json]
@@ -40,6 +41,7 @@ netq [<hostname>] show resource-util [cpu | memory] [around <text-time>] [json]
 netq [<hostname>] show resource-util disk [<text-diskname>] [around <text-time>] [json]
 netq [<hostname>] show cl-ssd-util [around <text-time>] [json]
 netq [<hostname>] show cl-btrfs-info [around <text-time>] [json]
+```
 
 {{<notice note>}}
 The keyword values for the <code>vendor</code>, <code>model</code>, <code>model-id</code>, <code>arch</code>, <code>name</code>, <code>transport</code>, <code>type</code>, <code>version</code>, <code>psu</code>, <code>temp</code>, and <code>fan</code> keywords are specific to your deployment. For example, if you have devices with CPU architectures of only one type, say Intel x86, then that is the only option available for the <code>cpu-arch</code> keyword value. If you have multiple CPU architectures, say you also have ARMv7, then that would also be an option for you.

@@ -102,7 +102,7 @@ Drop reasons are organized into the following types:
 
 To configure the NetQ Agent to filter WJH drops, do the following:
 
-1. In the NetQ UI, click **Switches**, then click **Manage switches**.
+1. In the NetQ UI, click **Switches** ({{<img src="https://icons.cumulusnetworks.com/03-Computers-Devices-Electronics/09-Hard-Drives/hard-drive-1.svg" height="18" width="18">}}), then click **Manage switches**.
 
 1. Click **Configuration Management** on the left.
 

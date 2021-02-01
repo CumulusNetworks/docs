@@ -163,7 +163,7 @@ Use the private IP addresses that you assigned to the nodes being used as worker
 
 {{<figure src="/images/netq/adminui-cluster-config-330.png" width="600">}}
 
-Click **Add Worker Node**. Enter the private IP address for the first worker node. Click **Add**.
+Click **Add Worker Node**. Enter the unique private IP address for the first worker node. It cannot be the same as the master node or other worker nodes. Click **Add**.
 
 {{<figure src="/images/netq/adminui-cluster-config-add-worker-320.png" width="400">}}
 

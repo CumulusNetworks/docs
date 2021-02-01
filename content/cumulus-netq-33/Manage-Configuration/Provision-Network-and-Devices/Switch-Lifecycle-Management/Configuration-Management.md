@@ -479,6 +479,8 @@ To create a profile:
 
     If you choose to enable WJH for this profile, you can use the default configuration which collects all statistics, or you can select **Customize** to select which categories and drop reasons you want collected. *This is an Early Access capability.* Click on each category and drop reason you do not want collected, then click **Done**. You can discard your changes (return to all categories and drop reasons) by clicking **Cancel**.
 
+    {{<figure src="/images/netq/lcm-netq-config-profile-create-wjh-custom-330.png" width="700">}}
+
 8. To set a logging level, click **Advanced**, then choose the desired level.
 
     {{<figure src="/images/netq/lcm-netq-config-profile-log-level-330.png" width="400">}}
@@ -709,7 +711,7 @@ MLAG is disabled by default. If you want to include MLAG in the switch configura
 
 *This is an Early Access capability.*
 
-Every interface requires at least one interface profile.  An interface profile must contain a bond, SVI, sub-interface, and port.
+Every interface requires at least one interface profile.  Specifically, a bond, SVI, sub-interface, or port interface requires at least one corresponding interface profile. Each of these can be configured independently.
 
 ### Add Bond Profiles
 

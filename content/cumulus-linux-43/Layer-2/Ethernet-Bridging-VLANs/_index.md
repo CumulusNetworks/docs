@@ -28,7 +28,7 @@ You can configure both VLAN-aware and traditional mode bridges on the same netwo
 
 ## Bridge MAC Addresses
 
-The MAC address for a frame is learned when the frame enters the bridge through an interface. The MAC address is recorded in the bridge table and the bridge forwards the frame to its intended destination by looking up the destination MAC address. The MAC entry is then maintained for a period of time defined by the `bridge-ageing` configuration option. If the frame is seen with the same source MAC address before the MAC entry age is exceeded, the MAC entry age is refreshed; if the MAC entry age is exceeded, the MAC address is deleted from the bridge table.
+The MAC address for a frame is learned when the frame enters the bridge through an interface. The MAC address is recorded in the bridge table and the bridge forwards the frame to its intended destination by looking up the destination MAC address. The MAC entry is then maintained for 1800 seconds (30 minutes). If the frame is seen with the same source MAC address before the MAC entry age is exceeded, the MAC entry age is refreshed; if the MAC entry age is exceeded, the MAC address is deleted from the bridge table.
 
 The following example NCLU command output shows a MAC address table for the bridge.
 
@@ -41,52 +41,6 @@ untagged  bridge    swp1         44:38:39:00:00:04                permanent     
 ```
 
 The CUE command to show a MAC address table for a bridge is `cl show bridge domain <domain-id> mac-table`.
-
-By default, Cumulus Linux stores MAC addresses in the Ethernet switching table for 1800 seconds (30 minutes). To change the amount of time MAC addresses are stored in the table, configure *bridge ageing*.
-
-The following example commands set MAC address ageing to 600 seconds.
-
-{{< tabs "TabID67 ">}}
-
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@switch:~$ net add bridge bridge ageing 600
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-{{< /tab >}}
-
-{{< tab "Linux Commands ">}}
-
-Edit the `/etc/network/interfaces` file to add `bridge-ageing` to the bridge stanza, then run the `ifreload -a` command.
-
-```
-cumulus@switch:~$ sudo nano /etc/network/interfaces
-...
-auto bridge
-iface bridge
-    bridge-ageing 600
-...
-```
-
-```
-cumulus@switch:~$ ifreload -a
-```
-
-{{< /tab >}}
-
-{{< tab "CUE Commands ">}}
-
-```
-cumulus@switch:~$ NEED COMMAND
-cumulus@switch:~$ cl config apply
-```
-
-{{< /tab >}}
-
-{{< /tabs >}}
 
 ## bridge fdb Command Output
 

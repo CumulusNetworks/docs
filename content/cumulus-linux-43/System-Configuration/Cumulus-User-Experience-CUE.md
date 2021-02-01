@@ -147,11 +147,20 @@ The CUE configuration management commands manage and apply configurations.
 
 | <div style="width:450px">Command | Description |
 | ------- | ----------- |
-| `cl config apply [options] [<revision>]` | Applies the configuration. The configuration is applied but not saved and does not persist after a reboot.|
-| `cl config save [options]` | Saves the configuration. The configuration persists after a reboot. |
+| `cl config apply [options] [<revision>]` | Applies the updates according to the options specified (to the pending or startup configuration) or to the revision ID. If no options are provided, the configuration updates are applied to the pending configuration.<br> You can also use these prompt options:<ul><li>`--y` or `--assume-yes` to automatically reply `yes` to all prompts.</li><li>`--assume-no` to automatically reply `no` to all prompts.</li></ul> {{%notice note%}}The configuration is applied but not saved and does not persist after a reboot.{{%/notice%}}|
+| `cl config save [options]` | Saves the updates according to the options specified (to the pending or startup configuration) or to the revision ID. If no options are provided, the updates are saved to the pending configuration. The configuration persists after a reboot. |
 | `cl config replace [options] <cue-file>` | Replaces the pending configuration with the specified file. |
 | `cl config detach [options]` | Detaches the configuration from the current pending revision. |
 | `cl config diff [options] [(<revision>|--empty)] [<revision>]` | Shows differences between two configuration revisions. |
 | `cl config patch [options] <cue-file>` | Updates the pending revision with a configuration YAML file. |
+
+## Example CUE Commands
+
+The following commands ...
+
+```
+cl set interface swp1 link state up
+cl config apply 
+```
 
 ## How is CUE Different from NCLU

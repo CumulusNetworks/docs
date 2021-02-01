@@ -479,6 +479,8 @@ To create a profile:
 
     If you choose to enable WJH for this profile, you can use the default configuration which collects all statistics, or you can select **Customize** to select which categories and drop reasons you want collected. *This is an Early Access capability.* Click on each category and drop reason you do not want collected, then click **Done**. You can discard your changes (return to all categories and drop reasons) by clicking **Cancel**.
 
+    {{<figure src="/images/netq/lcm-netq-config-profile-create-wjh-custom-330.png" width="700">}}
+
 8. To set a logging level, click **Advanced**, then choose the desired level.
 
     {{<figure src="/images/netq/lcm-netq-config-profile-log-level-330.png" width="400">}}
@@ -709,7 +711,9 @@ MLAG is disabled by default. If you want to include MLAG in the switch configura
 
 *This is an Early Access capability.*
 
-Every interface requires at least one interface profile.  An interface profile must contain a bond, SVI, sub-interface, and port.
+Every interface requires at least one interface profile. Specifically, a bond, SVI, sub-interface, or port interface require at least one corresponding interface profile.  For example, for a given bond interface, you must have at least one bond interface profile. For a given SVI, you must have at least one SVI interface profile. And so forth. Each of these can be configured independently. That is, configuring a bond interface and interface profile does not require you to configure any of the other SVI, sub-interface or port interface options.
+
+Interface profiles are used to speed configuration of switches by configuring common capabilities of an interface component and then referencing that profile in the component specification.
 
 ### Add Bond Profiles
 
@@ -938,11 +942,13 @@ You can create a new port profile or import an existing one to modify. Port prof
 
 *This is an Early Access capability.*
 
-Interfaces identify how and where communication occurs. Each interface must have at least one bond, SVI, subinterface, and port.
+Every interface requires at least one interface profile. Specifically, a bond, SVI, sub-interface, or port interface require at least one corresponding interface profile.  For example, for a given bond interface, you must have at least one bond interface profile. For a given SVI, you must have at least one SVI interface profile. And so forth. Each of these can be configured independently. That is, configuring a bond interface and interface profile does not require you to configure any of the other SVI, sub-interface or port interface options.
+
+Interfaces identify how and where communication occurs.
 
 ### Add Bonds
 
-Bonds indicate how switches are connected to each other. You must have at least one bond in your interface specification.
+Bonds indicate how switches are connected to each other. You must have at least one bond interface profile specified to configure a bond interface (return to the **Interface Profiles** tab and see *Add Bond Interface Profiles* if needed).
 
 1. Click **Interfaces**.
 
@@ -968,7 +974,7 @@ Bonds indicate how switches are connected to each other. You must have at least 
 
 ### Add SVIs
 
-Add SVIs (switch virtual interfaces) to your switch configuration when you need a virtual interface at layer 3 to a VLAN.
+Add SVIs (switch virtual interfaces) to your switch configuration when you need a virtual interface at layer 3 to a VLAN. You must have at least one SVI interface profile specified to configure an SVI interface (return to the **Interface Profiles** tab and see *Add SVI Interface Profiles* if needed).
 
 1. Click **Interfaces**.
 
@@ -994,7 +1000,7 @@ Add SVIs (switch virtual interfaces) to your switch configuration when you need 
 
 ### Add Subinterfaces
 
-Add subinterface to your switch configuration when you want a VLAN associated with a given interface.
+Add subinterface to your switch configuration when you want a VLAN associated with a given interface. You must have at least one subinterface interface profile specified to configure a bond interface (return to the **Interface Profiles** tab and see *Add Subinterface Profiles* if needed).
 
 1. Click **Interfaces**.
 
@@ -1025,6 +1031,8 @@ Add subinterface to your switch configuration when you want a VLAN associated wi
 ### Add Ports
 
 This tab describes all of the ports on the identified switch type. The port name and bond are provided by default (based on your previous switch configuration entries). For each port, you must define the speed and assign an interface profile. Optionally you can configure ports to be split to support multiple interfaces. Any caveats related to port configuration on the specified type of switch are listed under the port listing.
+
+You must have at least one port interface profile specified to configure a port interface (return to the **Interface Profiles** tab and see *Add Port Interface Profiles* if needed).
 
 1. Click **Interfaces**.
 
@@ -1205,7 +1213,7 @@ You can edit a switch configuration at any time. After you have made changes to 
 
 To edit a switch configuration:
 
-1. Locate the Switch Configurations card on the lifecycle management dashboard **Configuration Management** tab.
+1. Locate the Switch Configurations card on the **Configuration Management** tab of the lifecycle management dashboard.
 
 2. Click **Manage**.
 
@@ -1221,7 +1229,7 @@ You can clone a switch configuration assignment job at any time.
 
 To clone an assignment job:
 
-1. Locate the Switch Configurations card on the lifecycle management dashboard.
+1. Locate the Switch Configurations card on the **Configuration Management** tab of the lifecycle management dashboard.
 
 2. Click **Manage**.
 
@@ -1241,7 +1249,7 @@ You can remove a switch configuration at any time; however if there are switches
 
 To remove a switch configuration:
 
-1. Locate the Switch Configurations card on the lifecycle management dashboard.
+1. Locate the Switch Configurations card on the **Configuration Management** tab of the lifecycle management dashboard.
 
 2. Click **Manage**.
 
@@ -1269,7 +1277,7 @@ As new switches are added to your network, you might want to use a switch config
 
 To assign an existing switch configuration to switches:
 
-1. Locate the Switch Configurations card on the lifecycle management dashboard.
+1. Locate the Switch Configurations card on the **Configuration Management** tab of the lifecycle management dashboard.
 
 2. Click **Manage**.
 
@@ -1284,7 +1292,7 @@ To assign an existing switch configuration to switches:
     - **All users**: Search for or select individual users who created a switch configuration, then click **Done**.
     - **All filters**: Display all filters at once to apply multiple filters at once. Additional filter options are included here. Click **Done** when satisfied with your filter criteria.
 
-    By default, filters show *all* of that items of the given filter type until it is restricted by these settings.
+    By default, filters show *all* of the items of the given filter type until it is restricted by these settings.
 
 4. Click **Select switches** in the switch configuration summary.
 
@@ -1292,41 +1300,41 @@ To assign an existing switch configuration to switches:
 
 5. Select the switches that you want to assign to the switch configuration.
 
-    Scroll down or use the **select all**, **clear**, filter , and **Search** options to help find the switches of interest. You can filter by role, Cumulus Linux version, or NetQ version. The badge on the filter icon indicates the number of filters applied. Colors on filter options are only used to distinguish between options. No other indication is intended.
+    Scroll down or use the filter and **Search** options to help find the switches of interest. You can filter by role, Cumulus Linux version, or NetQ version. The badge on the filter icon indicates the number of filters applied. Colors on filter options are only used to distinguish between options. No other indication is intended.
 
-    In this example, we have one role defined, and we have selected that role.
+    In this example, we have three roles defined, and we have selected to filter on the spine role.
 
-    {{<figure src="/images/netq/lcm-switch-config-manage-select-switches-filter-320.png" width="300">}}
+    {{<figure src="/images/netq/lcm-switch-config-manage-select-switches-filter-330.png" width="300">}}
 
-    The result is two switches. Note that only the switches that meet the criteria and have no switch configuration assigned are shown. In this example, there are two additional switches with the spine role, but they already have a switch configuration assigned to them. Click on the link above the list to view those switches.
+    The result is four switches. Note that only the switches that meet the criteria and have no switch configuration assigned are shown. In this example, there are two additional switches with the spine role, but they already have a switch configuration assigned to them. Click on the link above the list to view those switches.
 
     Continue narrowing the list of switches until all or most of the switches are visible.
 
-6. Hover over the switches and click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18">}} or click **select all**.
+6. Click on each switch card to be given the switch configuration.
+
+    When you select a card, if the per-switch variables have not already been specified, you must complete that first. Refer to {{<link title="#assign-switch-configuration-profiles-to-switches" text="Assign Switch Configuration Profiles to Switches">}} beginning at step 2, then return here. If a switch has an incomplete specification of the required variables, click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/14-Alerts/alert-circle.svg" height="18" width="18">}} to enter the required information.
 
     {{<figure src="/images/netq/lcm-switch-config-manage-selected-switches-320.png" width="700">}}
 
-7. Click **Done**.
+7. Verify all of the switches are selected that you want applied with this configuration, then click **Done**.
 
-8. To run the job to apply the configuration, you first have the option to change the hostnames of the selected switches.
+8. If you have additional switches that you want to assign a different switch configuration, follow Steps 3-7 for each switch configuration.
 
-    Either change the hostnames and then click **Continue** or just click **Continue** without changing the hostnames.
+    A job is created with each of the assignments configured. It is shown at the botton of the page. If you have multiple configuration assignments, they all become part of a single assignment job.
 
-9. If you have additional switches that you want to assign a different switch configuration, follow Steps 3-7 for each switch configuration.
+9. Click **Start Assignment** to start the job.
 
-    If you do this, multiple assignment configurations are listed in the bottom area of the page. They all become part of a single assignment job.
-
-10. When you have all the assignments configured, click **Start Assignment** to start the job.
+    This example shows only one switch configuration assignment.
 
     {{<figure src="/images/netq/lcm-switch-config-manage-start-assign-320.png" width="700">}}
 
-11. Enter a name for the job (maximum of 22 characters including spaces), then click **Continue**.
+10. Enter a name for the job (maximum of 22 characters including spaces), then click **Continue**.
 
     {{<figure src="/images/netq/lcm-switch-config-manage-job-name-320.png" width="275">}}
 
-12. Watch the progress or click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14">}} to return to the switch configuration page where you can either create another configuration and apply it. If you are finished assigning switch configurations to switches, click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/remove-circle.svg" height="18" width="18">}} to return to the lifecycle management dashboard.
+11. Watch the progress or click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14">}} to return to the switch configuration page where you can either create another configuration and apply it. If you are finished assigning switch configurations to switches, click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/remove-circle.svg" height="18" width="18">}} to return to the lifecycle management dashboard.
 
-    The Config Assignment History card is updated to include the status of the job you just ran.
+    The Config Assignment History card on the **Job History** tab is updated to include the status of the job you just ran.
 
 #### Change the Configuration Assignment on a Switch
 
@@ -1334,7 +1342,7 @@ You can change the switch configuration assignment at any time. For example you 
 
 To change the configuration assignment on a switch:
 
-1. Locate the Switch Configurations card on the lifecycle management dashboard.
+1. Locate the Switch Configurations card on the **Configuration Management** tab of the lifecycle management dashboard.
 
 2. Click **Manage**.
 
@@ -1348,9 +1356,11 @@ To change the configuration assignment on a switch:
 
 5. Select the switches that you want to assign to the switch configuration.
 
-    Scroll down or use the **select all**, **clear**, filter , and **Search** options to help find the switch(es) of interest.
+    Scroll down or use the filter and **Search** options to help find the switch(es) of interest.
 
-6. Hover over the switches and click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18">}} or click **select all**.
+6. Click on each switch card to be given the switch configuration.
+
+    When you select a card, if the per-switch variables have not already been specified, you must complete that first. Refer to {{<link title="#assign-switch-configuration-profiles-to-switches" text="Assign Switch Configuration Profiles to Switches">}} beginning at step 2, then return here. If a switch has an incomplete specification of the required variables, click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/14-Alerts/alert-circle.svg" height="18" width="18">}} to enter the required information.
 
 7. Click **Done**.
 
@@ -1364,23 +1374,7 @@ To change the configuration assignment on a switch:
 
 10. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14">}} to return to the switch configuration page where you can either create another configuration and apply it. If you are finished assigning switch configurations to switches, click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/remove-circle.svg" height="18" width="18">}} to return to the lifecycle management dashboard.
 
-    The Config Assignment History card is updated to include the status of the job you just ran.
-
-<!-- #### Remove Assignment
-
-You can remove a switch configuration assignment on a switch at any time. 
-
-To remove an assignment:
-
-1. Locate the Switch Configurations card on the lifecycle management dashboard.
-
-2. Click **Manage**.
-
-3. Locate the configuration you want to assign. Scroll down or filter the listing to help find the configuration when there are multiple configurations.
-
-4. Click **Select switches** in the switch configuration summary.
-
-5.  -->
+    The Config Assignment History card on the **Job History** tab is updated to include the status of the job you just ran.
 
 ### View Switch Configuration History
 

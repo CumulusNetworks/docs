@@ -711,7 +711,9 @@ MLAG is disabled by default. If you want to include MLAG in the switch configura
 
 *This is an Early Access capability.*
 
-Every interface requires at least one interface profile.  Specifically, a bond, SVI, sub-interface, or port interface requires at least one corresponding interface profile. Each of these can be configured independently.
+Every interface requires at least one interface profile. Specifically, a bond, SVI, sub-interface, or port interface require at least one corresponding interface profile.  For example, for a given bond interface, you must have at least one bond interface profile. For a given SVI, you must have at least one SVI interface profile. And so forth. Each of these can be configured independently. That is, configuring a bond interface and interface profile does not require you to configure any of the other SVI, sub-interface or port interface options.
+
+Interface profiles are used to speed configuration of switches by configuring common capabilities of an interface component and then referencing that profile in the component specification.
 
 ### Add Bond Profiles
 
@@ -940,11 +942,13 @@ You can create a new port profile or import an existing one to modify. Port prof
 
 *This is an Early Access capability.*
 
-Interfaces identify how and where communication occurs. Each interface must have at least one bond, SVI, subinterface, and port.
+Every interface requires at least one interface profile. Specifically, a bond, SVI, sub-interface, or port interface require at least one corresponding interface profile.  For example, for a given bond interface, you must have at least one bond interface profile. For a given SVI, you must have at least one SVI interface profile. And so forth. Each of these can be configured independently. That is, configuring a bond interface and interface profile does not require you to configure any of the other SVI, sub-interface or port interface options.
+
+Interfaces identify how and where communication occurs.
 
 ### Add Bonds
 
-Bonds indicate how switches are connected to each other. You must have at least one bond in your interface specification.
+Bonds indicate how switches are connected to each other. You must have at least one bond interface profile specified to configure a bond interface (return to the **Interface Profiles** tab and see *Add Bond Interface Profiles* if needed).
 
 1. Click **Interfaces**.
 
@@ -970,7 +974,7 @@ Bonds indicate how switches are connected to each other. You must have at least 
 
 ### Add SVIs
 
-Add SVIs (switch virtual interfaces) to your switch configuration when you need a virtual interface at layer 3 to a VLAN.
+Add SVIs (switch virtual interfaces) to your switch configuration when you need a virtual interface at layer 3 to a VLAN. You must have at least one SVI interface profile specified to configure an SVI interface (return to the **Interface Profiles** tab and see *Add SVI Interface Profiles* if needed).
 
 1. Click **Interfaces**.
 
@@ -996,7 +1000,7 @@ Add SVIs (switch virtual interfaces) to your switch configuration when you need 
 
 ### Add Subinterfaces
 
-Add subinterface to your switch configuration when you want a VLAN associated with a given interface.
+Add subinterface to your switch configuration when you want a VLAN associated with a given interface. You must have at least one subinterface interface profile specified to configure a bond interface (return to the **Interface Profiles** tab and see *Add Subinterface Profiles* if needed).
 
 1. Click **Interfaces**.
 
@@ -1027,6 +1031,8 @@ Add subinterface to your switch configuration when you want a VLAN associated wi
 ### Add Ports
 
 This tab describes all of the ports on the identified switch type. The port name and bond are provided by default (based on your previous switch configuration entries). For each port, you must define the speed and assign an interface profile. Optionally you can configure ports to be split to support multiple interfaces. Any caveats related to port configuration on the specified type of switch are listed under the port listing.
+
+You must have at least one port interface profile specified to configure a port interface (return to the **Interface Profiles** tab and see *Add Port Interface Profiles* if needed).
 
 1. Click **Interfaces**.
 
@@ -1310,7 +1316,7 @@ To assign an existing switch configuration to switches:
 
     {{<figure src="/images/netq/lcm-switch-config-manage-selected-switches-320.png" width="700">}}
 
-7. Verify all of the switch are selected that you want applied with this configuration, then click **Done**.
+7. Verify all of the switches are selected that you want applied with this configuration, then click **Done**.
 
 8. If you have additional switches that you want to assign a different switch configuration, follow Steps 3-7 for each switch configuration.
 
@@ -1369,22 +1375,6 @@ To change the configuration assignment on a switch:
 10. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14">}} to return to the switch configuration page where you can either create another configuration and apply it. If you are finished assigning switch configurations to switches, click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/remove-circle.svg" height="18" width="18">}} to return to the lifecycle management dashboard.
 
     The Config Assignment History card on the **Job History** tab is updated to include the status of the job you just ran.
-
-<!-- #### Remove Assignment
-
-You can remove a switch configuration assignment on a switch at any time. 
-
-To remove an assignment:
-
-1. Locate the Switch Configurations card on the lifecycle management dashboard.
-
-2. Click **Manage**.
-
-3. Locate the configuration you want to assign. Scroll down or filter the listing to help find the configuration when there are multiple configurations.
-
-4. Click **Select switches** in the switch configuration summary.
-
-5.  -->
 
 ### View Switch Configuration History
 

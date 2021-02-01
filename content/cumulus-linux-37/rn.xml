@@ -7,6 +7,14 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-33191</td>
+<td><p>CVE-2020-35512: An issue has been found in dbus, a simple interprocess messaging system. On a system having multiple usernames sharing the same UID a use-after-free might happen, that could result in a denial of service or undefined behaviour, possibly including incorrect authorization decisions.<br/>
+Vulnerable: &lt;= 1.8.22-0+deb8u3<br/>
+Fixed: 1.8.22-0+deb8u4</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-33165</td>
 <td><p>CVE-2021-3156: A serious heap-based buffer overflow has been discovered in sudo that is exploitable by any local user. It has been given the name Baron Samedit by its discoverer. The bug can be leveraged to elevate privileges to root, even if the user is not listed in the sudoers file. User authentication is not required to exploit the bug.<br/>
 Vulnerable: &lt;= 1.8.10p4-cl3.7.14u1<br/>
@@ -2508,6 +2516,14 @@ To work around this issue, disable BFD to alleviate some of the CPU load.</p></t
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>CM-33191</td>
+<td><p>CVE-2020-35512: An issue has been found in dbus, a simple interprocess messaging system. On a system having multiple usernames sharing the same UID a use-after-free might happen, that could result in a denial of service or undefined behaviour, possibly including incorrect authorization decisions.<br/>
+Vulnerable: &lt;= 1.8.22-0+deb8u3<br/>
+Fixed: 1.8.22-0+deb8u4</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-33165</td>
@@ -5566,6 +5582,14 @@ Typically, the destination MAC address 01:00:5e:xx:xx:xx is used only for PIM/IG
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>CM-33191</td>
+<td><p>CVE-2020-35512: An issue has been found in dbus, a simple interprocess messaging system. On a system having multiple usernames sharing the same UID a use-after-free might happen, that could result in a denial of service or undefined behaviour, possibly including incorrect authorization decisions.<br/>
+Vulnerable: &lt;= 1.8.22-0+deb8u3<br/>
+Fixed: 1.8.22-0+deb8u4</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-33165</td>
@@ -8779,6 +8803,14 @@ net.ipv6.ip6frag_high_thresh = 262144
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>CM-33191</td>
+<td><p>CVE-2020-35512: An issue has been found in dbus, a simple interprocess messaging system. On a system having multiple usernames sharing the same UID a use-after-free might happen, that could result in a denial of service or undefined behaviour, possibly including incorrect authorization decisions.<br/>
+Vulnerable: &lt;= 1.8.22-0+deb8u3<br/>
+Fixed: 1.8.22-0+deb8u4</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-33165</td>
@@ -12064,6 +12096,14 @@ To work around this issue, use net show interface command for LLDP output when c
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-33191</td>
+<td><p>CVE-2020-35512: An issue has been found in dbus, a simple interprocess messaging system. On a system having multiple usernames sharing the same UID a use-after-free might happen, that could result in a denial of service or undefined behaviour, possibly including incorrect authorization decisions.<br/>
+Vulnerable: &lt;= 1.8.22-0+deb8u3<br/>
+Fixed: 1.8.22-0+deb8u4</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-33165</td>
 <td><p>CVE-2021-3156: A serious heap-based buffer overflow has been discovered in sudo that is exploitable by any local user. It has been given the name Baron Samedit by its discoverer. The bug can be leveraged to elevate privileges to root, even if the user is not listed in the sudoers file. User authentication is not required to exploit the bug.<br/>
 Vulnerable: &lt;= 1.8.10p4-cl3.7.14u1<br/>
@@ -15007,6 +15047,14 @@ To work around this issue, change the value of arp_ignore to 2. See <a href="htt
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>CM-33191</td>
+<td><p>CVE-2020-35512: An issue has been found in dbus, a simple interprocess messaging system. On a system having multiple usernames sharing the same UID a use-after-free might happen, that could result in a denial of service or undefined behaviour, possibly including incorrect authorization decisions.<br/>
+Vulnerable: &lt;= 1.8.22-0+deb8u3<br/>
+Fixed: 1.8.22-0+deb8u4</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-33165</td>
@@ -18362,6 +18410,14 @@ To work around this issue, run the sudo ethtool -S swp1 command to collect inter
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-33191</td>
+<td><p>CVE-2020-35512: An issue has been found in dbus, a simple interprocess messaging system. On a system having multiple usernames sharing the same UID a use-after-free might happen, that could result in a denial of service or undefined behaviour, possibly including incorrect authorization decisions.<br/>
+Vulnerable: &lt;= 1.8.22-0+deb8u3<br/>
+Fixed: 1.8.22-0+deb8u4</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-33165</td>
 <td><p>CVE-2021-3156: A serious heap-based buffer overflow has been discovered in sudo that is exploitable by any local user. It has been given the name Baron Samedit by its discoverer. The bug can be leveraged to elevate privileges to root, even if the user is not listed in the sudoers file. User authentication is not required to exploit the bug.<br/>
 Vulnerable: &lt;= 1.8.10p4-cl3.7.14u1<br/>
@@ -21570,6 +21626,14 @@ To work around this issue, change the value of arp_ignore to 2. See <a href="htt
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>CM-33191</td>
+<td><p>CVE-2020-35512: An issue has been found in dbus, a simple interprocess messaging system. On a system having multiple usernames sharing the same UID a use-after-free might happen, that could result in a denial of service or undefined behaviour, possibly including incorrect authorization decisions.<br/>
+Vulnerable: &lt;= 1.8.22-0+deb8u3<br/>
+Fixed: 1.8.22-0+deb8u4</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-33165</td>
@@ -25143,6 +25207,14 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-33191</td>
+<td><p>CVE-2020-35512: An issue has been found in dbus, a simple interprocess messaging system. On a system having multiple usernames sharing the same UID a use-after-free might happen, that could result in a denial of service or undefined behaviour, possibly including incorrect authorization decisions.<br/>
+Vulnerable: &lt;= 1.8.22-0+deb8u3<br/>
+Fixed: 1.8.22-0+deb8u4</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-33165</td>
 <td><p>CVE-2021-3156: A serious heap-based buffer overflow has been discovered in sudo that is exploitable by any local user. It has been given the name Baron Samedit by its discoverer. The bug can be leveraged to elevate privileges to root, even if the user is not listed in the sudoers file. User authentication is not required to exploit the bug.<br/>
 Vulnerable: &lt;= 1.8.10p4-cl3.7.14u1<br/>
@@ -28664,6 +28736,14 @@ This issue was discovered on the Helix4 switch but applies to all switches. <br/
 <td>3.7.6-3.7.14</td>
 </tr>
 <tr>
+<td>CM-33191</td>
+<td><p>CVE-2020-35512: An issue has been found in dbus, a simple interprocess messaging system. On a system having multiple usernames sharing the same UID a use-after-free might happen, that could result in a denial of service or undefined behaviour, possibly including incorrect authorization decisions.<br/>
+Vulnerable: &lt;= 1.8.22-0+deb8u3<br/>
+Fixed: 1.8.22-0+deb8u4</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-33165</td>
 <td><p>CVE-2021-3156: A serious heap-based buffer overflow has been discovered in sudo that is exploitable by any local user. It has been given the name Baron Samedit by its discoverer. The bug can be leveraged to elevate privileges to root, even if the user is not listed in the sudoers file. User authentication is not required to exploit the bug.<br/>
 Vulnerable: &lt;= 1.8.10p4-cl3.7.14u1<br/>
@@ -31872,6 +31952,14 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <td><p>In testing, it was determined that the MD5 password configured against a BGP listen-range peer-group (used to accept and create dynamic BGP neighbors) is not enforced (connections are accepted from peers that do not specify a password). </p></td>
 <td>3.0.0-3.7.5</td>
 <td>3.7.6-3.7.14</td>
+</tr>
+<tr>
+<td>CM-33191</td>
+<td><p>CVE-2020-35512: An issue has been found in dbus, a simple interprocess messaging system. On a system having multiple usernames sharing the same UID a use-after-free might happen, that could result in a denial of service or undefined behaviour, possibly including incorrect authorization decisions.<br/>
+Vulnerable: &lt;= 1.8.22-0+deb8u3<br/>
+Fixed: 1.8.22-0+deb8u4</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-33165</td>
@@ -35140,6 +35228,14 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <td><p>In testing, it was determined that the MD5 password configured against a BGP listen-range peer-group (used to accept and create dynamic BGP neighbors) is not enforced (connections are accepted from peers that do not specify a password). </p></td>
 <td>3.0.0-3.7.5</td>
 <td>3.7.6-3.7.14</td>
+</tr>
+<tr>
+<td>CM-33191</td>
+<td><p>CVE-2020-35512: An issue has been found in dbus, a simple interprocess messaging system. On a system having multiple usernames sharing the same UID a use-after-free might happen, that could result in a denial of service or undefined behaviour, possibly including incorrect authorization decisions.<br/>
+Vulnerable: &lt;= 1.8.22-0+deb8u3<br/>
+Fixed: 1.8.22-0+deb8u4</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-33165</td>
@@ -38567,6 +38663,14 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <td><p>In testing, it was determined that the MD5 password configured against a BGP listen-range peer-group (used to accept and create dynamic BGP neighbors) is not enforced (connections are accepted from peers that do not specify a password). </p></td>
 <td>3.0.0-3.7.5</td>
 <td>3.7.6-3.7.14</td>
+</tr>
+<tr>
+<td>CM-33191</td>
+<td><p>CVE-2020-35512: An issue has been found in dbus, a simple interprocess messaging system. On a system having multiple usernames sharing the same UID a use-after-free might happen, that could result in a denial of service or undefined behaviour, possibly including incorrect authorization decisions.<br/>
+Vulnerable: &lt;= 1.8.22-0+deb8u3<br/>
+Fixed: 1.8.22-0+deb8u4</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-33165</td>
@@ -42118,6 +42222,14 @@ Permanent MAC address sync between MLAG peers is now supported.</p></td>
 <td>3.7.6-3.7.14</td>
 </tr>
 <tr>
+<td>CM-33191</td>
+<td><p>CVE-2020-35512: An issue has been found in dbus, a simple interprocess messaging system. On a system having multiple usernames sharing the same UID a use-after-free might happen, that could result in a denial of service or undefined behaviour, possibly including incorrect authorization decisions.<br/>
+Vulnerable: &lt;= 1.8.22-0+deb8u3<br/>
+Fixed: 1.8.22-0+deb8u4</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-33165</td>
 <td><p>CVE-2021-3156: A serious heap-based buffer overflow has been discovered in sudo that is exploitable by any local user. It has been given the name Baron Samedit by its discoverer. The bug can be leveraged to elevate privileges to root, even if the user is not listed in the sudoers file. User authentication is not required to exploit the bug.<br/>
 Vulnerable: &lt;= 1.8.10p4-cl3.7.14u1<br/>
@@ -45169,6 +45281,14 @@ To work around this issue, remove the matching network statement. </p></td>
 <td><p>In testing, it was determined that the MD5 password configured against a BGP listen-range peer-group (used to accept and create dynamic BGP neighbors) is not enforced (connections are accepted from peers that do not specify a password). </p></td>
 <td>3.0.0-3.7.5</td>
 <td>3.7.6-3.7.14</td>
+</tr>
+<tr>
+<td>CM-33191</td>
+<td><p>CVE-2020-35512: An issue has been found in dbus, a simple interprocess messaging system. On a system having multiple usernames sharing the same UID a use-after-free might happen, that could result in a denial of service or undefined behaviour, possibly including incorrect authorization decisions.<br/>
+Vulnerable: &lt;= 1.8.22-0+deb8u3<br/>
+Fixed: 1.8.22-0+deb8u4</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-33165</td>

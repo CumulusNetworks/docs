@@ -8,6 +8,28 @@ This reference lists all of the NetQ-supported WJH metrics and provides a brief 
 
 For instructions on how to configure and monitor What Just Happened events, refer to {{<link title="Configure and Monitor What Just Happened">}}.
 
+## ACL Drops
+
+Displays the reason why an ACL has dropped packets.
+
+| Reason | Description|
+| --- | --- |
+| Ingress port ACL | ACL action set to deny on the physical ingress port or bond |
+| Ingress router ACL | ACL action set to deny on the ingress switch virtual interfaces (SVIs) |
+| Egress port ACL | ACL action set to deny on the physical egress port or bond |
+| Egress router ACL | ACL action set to deny on the egress SVIs |
+
+## Buffer Drops
+
+Displays the reason why the server buffer has dropped packets.
+
+| Reason | Description|
+| --- | --- |
+| Tail drop | Tail drop is enabled, and buffer queue is filled to maximum capacity. |
+| WRED | Weighted Random Early Detection is enabled, and buffer queue is filled to maximum capacity or the RED engine dropped the packet as of random congestion prevention. |
+| Port TC Congestion Threshold Crossed | Percentage of the occupancy buffer exceeded or dropped below the specified high or low threshold |
+| Packet Latency Threshold Crossed | Time a packet spent within the switch exceeded or dropped below the specified high or low threshold |
+
 ## L1 Drops
 
 Displays the reason why a port is in the down state.
@@ -115,25 +137,3 @@ Displays the reason for a tunnel to be down.
 | Overlay switch - source MAC is multicast | Overlay packet's source MAC address is multicast. |
 | Overlay switch - source MAC equals destination MAC | Overlay packet's source MAC address is the same as the destination MAC address. |
 | Decapsulation error | De-capsulation produced incorrect format of packet. For example, encapsulation of packet with many VLANs or IP options on the underlay can cause de-capsulation to result in a short packet. |
-
-## Buffer Drops
-
-Displays the reason why the server buffer has dropped packets.
-
-| Reason | Description|
-| --- | --- |
-| Tail drop | Tail drop is enabled, and buffer queue is filled to maximum capacity. |
-| WRED | Weighted Random Early Detection is enabled, and buffer queue is filled to maximum capacity or the RED engine dropped the packet as of random congestion prevention. |
-| Port TC Congestion Threshold Crossed | Percentage of the occupancy buffer exceeded or dropped below the specified high or low threshold |
-| Packet Latency Threshold Crossed | Time a packet spent within the switch exceeded or dropped below the specified high or low threshold |
-
-## ACL Drops
-
-Displays the reason why an ACL has dropped packets.
-
-| Reason | Description|
-| --- | --- |
-| Ingress port ACL | ACL action set to deny on the physical ingress port or bond |
-| Ingress router ACL | ACL action set to deny on the ingress switch virtual interfaces (SVIs) |
-| Egress port ACL | ACL action set to deny on the physical egress port or bond |
-| Egress router ACL | ACL action set to deny on the egress SVIs |

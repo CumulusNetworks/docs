@@ -7,6 +7,13 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-33196</td>
+<td><p>If you use NCLU to configure an ACL for eth0, you can't designate it as an INPUT rule; the rule is automatically created as a FORWARD rule in the /etc/cumulus/acl/policy.d/50_nclu_acl.rules file.<br/>
+To work around this issue, manually create an ACL in the /etc/cumulus/acl/policy.d/ file with "-A INPUT -i eth0".</p></td>
+<td>4.2.1</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-33160</td>
 <td><p>CVE-2021-3156: A serious heap-based buffer overflow has been discovered in sudo that is exploitable by any local user. It has been given the name Baron Samedit by its discoverer. The bug can be leveraged to elevate privileges to root, even if the user is not listed in the sudoers file. User authentication is not required to exploit the bug.<br/>
 Vulnerable: &lt;= 1.8.27-1+deb10u2<br/>
@@ -17,6 +24,12 @@ Fixed: 1.8.27-1+deb10u3</p></td>
 <tr>
 <td>CM-33115</td>
 <td><p>When you run any of the vtysh show bgp ipv4 or show bgp ipv6 statistics commands, the bgpd service crashes.</p></td>
+<td>4.2.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33112</td>
+<td><p>The MTU size configured under a layer 2 VNI interface is not applied for VXLAN traffic.</p></td>
 <td>4.2.1</td>
 <td></td>
 </tr>
@@ -1988,10 +2001,10 @@ Fixed: 3.1+dfsg-8+deb10u8</p></td>
 </tr>
 <tr>
 <td>CM-31356</td>
-<td><p>On the Mellanox switch with the Spectrum-3 ASIC, Cumulus Linux supports certain port speeds in NRZ mode and certain port speeds in PAM4 mode. Make sure to use the optics accordingly.</p>
+<td><p>On the Mellanox SN4700 switch, certain port speeds operate in both NRZ and PAM4 mode. However, Cumulus Linux currently supports only one of the two possible modes listed below. Use the optics accordingly.</p>
 <ul>
-	<li>Port speeds 50G, 2x50G, 100G work in NRZ mode.</li>
-	<li>Port speeds 4x50G, 8x50G, 2x100G, 4x100G, 200G, 2x200G, 400G work in PAM4 mode.</li>
+	<li>Port speeds 40G, 2x40G, 50G, 2x50G, 100G,  2x100G  work in NRZ mode.</li>
+	<li>Port speeds 4x50G, 8x50G, 4x100G, 200G, 2x200G, 400G work in PAM4 mode.</li>
 </ul>
 </td>
 <td></td>

@@ -6,11 +6,7 @@ toc: 4
 ---
 LCM provides the ability to upgrade Cumulus Linux on one or more switches in your network through the NetQ UI or the NetQ CLI. Up to five upgrade jobs can be run simultaneously; however, a given switch can only be contained in one running job at a time.
 
-{{<notice info>}}
-
-Upgrades can be performed between Cumulus Linux 3.x releases, and between Cumulus Linux 4.x releases. <em>Lifecycle management does not support upgrades from Cumulus Linux 3.x to 4.x releases.</em>
-
-{{</notice>}}
+Upgrades can be performed between Cumulus Linux 3.x releases, between Cumulus Linux 4.x releases, and between Cumulus Linux 3.x and 4.x releases.
 
 ## Workflows for Cumulus Linux Upgrades Using LCM
 

@@ -392,11 +392,7 @@ To configure a these premises so that their data can be viewed from one premises
 
 In this deployment model, the data is stored and can be viewed only from the NetQ UI at the primary premises.
 
-    {{<notice note>}}
-
-The primary NetQ premises must be installed before the secondary premises can be added. For the secondary premises, create the premises here, then install them.
-
-    {{</notice>}}
+<div class="notices note"><p>The primary NetQ premises must be installed before the secondary premises can be added. For the secondary premises, create the premises here, then install them.</p></div>
 
 1. Open the NetQ UI installed on the NetQ Appliance or VM where the database resides (this is your primary premises).
 
@@ -573,7 +569,7 @@ To integrate your authentication server:
 
 {{< /tab >}}
 
-{{< /tabs >}}
+    {{< /tabs >}}
 
 ### Modify Integrations
 

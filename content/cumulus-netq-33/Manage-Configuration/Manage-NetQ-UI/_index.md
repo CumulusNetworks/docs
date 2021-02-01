@@ -750,15 +750,23 @@ To configure a these premises so that their data can be viewed from one premises
 
 10. Click **Next**.
 
-11. 
+11. Select the OPID associated with the premises you want to connect.
 
-xx. Add more secondary premises by clicking {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18">}} and repeating Steps 8-xxx.
+12. Click **Done**.
+
+13. Add more secondary premises by clicking {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18">}} and repeating Steps 8-12.
 
 {{< /tab >}}
 
 {{< tab "NetQ Collector" >}}
 
 In this deployment model, the data is stored and can be viewed only from the NetQ UI at the primary premises.
+
+{{<notice note>}}
+
+The primary NetQ premises must be installed before the secondary premises can be added. For the secondary premises, create the premises here, then install them.
+
+{{</notice>}}
 
 1. Open the NetQ UI installed on the NetQ Appliance or VM where the database resides (this is your primary premises).
 
@@ -782,7 +790,21 @@ In this deployment model, the data is stored and can be viewed only from the Net
 
     {{<figure src="/images/netq/premises-card-premises-tab-list-330.png" width="700">}}
 
-9. Add more secondary premises by repeating Steps 6-8.
+9. Select the premises you just created.
+
+10. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/04-Login-Logout/login-key-1.svg" height="18" width="18">}} to generate a configuration key.
+
+    {{<figure src="/images/netq/premises-card-premises-tab-generate-key-330.png" width="400">}}
+
+11. Click **Copy** to save the key to a safe place, or click **e-mail** to send it to yourself or other administrator as appropriate.
+
+12. Click **Done**.
+
+13. Repeat steps 6-11 to add more secondary premises.
+
+14. Follow the steps in the {{<link title="Install NetQ Using the Admin UI" text="Admin UI" >}} to install and complete the configuration of these secondary premises, using these keys to activate and connect these premises to the primary NetQ premises.
+
+    {{<figure src="/images/netq/adminui-install-cloud-basic-330.png" width="700">}}
 
 {{< /tab >}}
 

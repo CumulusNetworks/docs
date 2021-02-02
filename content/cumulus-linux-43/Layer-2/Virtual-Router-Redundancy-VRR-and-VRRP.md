@@ -100,7 +100,8 @@ cumulus@switch:~$ sudo ifreload -a
 {{< tab "CUE Commands ">}}
 
 ```
-cumulus@switch:~$ cl set 
+cumulus@switch:~$ cl set interface vlan500 ip vrr address 192.0.2.252/24
+cumulus@switch:~$ cl set interface vlan500 ip vrr mac-address 00:00:5e:00:01:00
 cumulus@switch:~$ cl config apply
 ```
 
@@ -545,7 +546,7 @@ cumulus@spine02:~$ net commit
 {{< tab "CUE Commands ">}}
 
 ```
-cumulus@switch:~$ cl set 
+cumulus@switch:~$ NEED COMMAND
 cumulus@switch:~$ cl config apply
 ```
 

@@ -26,10 +26,6 @@ INSTALLATION INTRUCTIONS
 
 ## Command Line Basics
 
-This section describes the core structure and behavior of the CUE CLI.
-
-### Command Line Structure
-
 The CUE command line has a flat structure as opposed to a modal structure. This means that you can run all commands from the primary prompt instead of only in a specific mode.
 
 ### Command Syntax
@@ -43,17 +39,9 @@ cumulus@switch:~$ cl show [options] <attribute>
 cumulus@switch:~$ cl config <command> [options]
 ```
 
-The command `options` let you specify where to apply the configuration and are optional. If you do not specify a revision option, the command is applied to the running configuration.
+`[options}` are revision options, which let you specify where to apply the configuration. The revision options are optional. If you do not specify a revision option, the command is applied to the running configuration. See {{<link url="#revision-options" text="Revision Options">}} below.
 
-| Option | Description |
-| ------ | ----------- |
-| `--rev <revision>` |  Applies the set or unset command to the revision ID you specify. |
-|  `--pending`       |  Applies the set or unset command to one or more configurations that are awaiting to be applied.|
-|  `--applied`       |  Applies the set or unset command to the applied revision. |
-|  `--startup`       |  Applies the set or unset command to the startup revision. The new configuration will run when you restart the switch. |
-|  `--running`       |  Applies the set or unset command to the running revision (the actual system state).  |
-
-The attributes specify a subcommand or the configuration setting. For example, `cl set router bgp graceful-restart mode [options] (full|helper-only|off)`.
+`<attributes>` specify a subcommand or the configuration setting. For example, `cl set router bgp graceful-restart mode [options] (full|helper-only|off)`.
 
 To see the full list of CUE commands, run `cl list-commands`.
 
@@ -141,6 +129,16 @@ The CUE monitoring commands show various parts of the network configuration. For
 | `cl show vrf [options] [<vrf-id> ...]` | Shows VRF information.|
 | `cl show nve [options] [<attribute> ...]` | Shows network virtualization information, such as VXLAN-specfic MLAG configuration and VXLAN flooding.|
 
+## Revision Options
+
+| Option | Description |
+| ------ | ----------- |
+| `--rev <revision>` |  Applies the set or unset command to the revision ID you specify. |
+|  `--pending`       |  Applies the set or unset command to one or more configurations that are awaiting to be applied.|
+|  `--applied`       |  Applies the set or unset command to the applied revision. |
+|  `--startup`       |  Applies the set or unset command to the startup revision. The new configuration will run when you restart the switch. |
+|  `--running`       |  Applies the set or unset command to the running revision (the actual system state).  |
+
 ### Configuration Management Commands
 
 The CUE configuration management commands manage and apply configurations.
@@ -149,18 +147,101 @@ The CUE configuration management commands manage and apply configurations.
 | ------- | ----------- |
 | `cl config apply [options] [<revision>]` | Applies the updates according to the options specified (to the pending or startup configuration) or to the revision ID. If no options are provided, the configuration updates are applied to the pending configuration.<br> You can also use these prompt options:<ul><li>`--y` or `--assume-yes` to automatically reply `yes` to all prompts.</li><li>`--assume-no` to automatically reply `no` to all prompts.</li></ul> {{%notice note%}}The configuration is applied but not saved and does not persist after a reboot.{{%/notice%}}|
 | `cl config save [options]` | Saves the updates according to the options specified (to the pending or startup configuration) or to the revision ID. If no options are provided, the updates are saved to the pending configuration. The configuration persists after a reboot. |
-| `cl config replace [options] <cue-file>` | Replaces the pending configuration with the specified file. |
+| `cl config replace [options] <cue-file>` | Replaces the pending configuration with the specified configuration YAML file. |
 | `cl config detach [options]` | Detaches the configuration from the current pending revision. |
 | `cl config diff [options] [(<revision>|--empty)] [<revision>]` | Shows differences between two configuration revisions. |
 | `cl config patch [options] <cue-file>` | Updates the pending revision with a configuration YAML file. |
 
+## How is CUE Different from NCLU
+
+DESCRIBE THE MAIN DIFFERENCES THAT MIGHT TRIP YOU UP
+
 ## Example CUE Commands
 
-The following commands ...
+This section provides examples of how to configure a Cumulus Linux switch using CUE commands.
+
+### Configure the System Hostname
+
+The example below shows the CUE commands required to change the hostname for the switch to leaf01:
 
 ```
-cl set interface swp1 link state up
-cl config apply 
+cumulus@switch:~$ cl set platform hostname value leaf01
+cumulus@switch:~$ cl config apply
 ```
 
-## How is CUE Different from NCLU
+### Configure the System DNS Server
+
+The example below shows the CUE commands required to define the DNS server for the switch:
+
+```
+cumulus@switch:~$ cl set system dns server 192.168.200.1
+```
+
+### Configure an Interface
+
+The following commands brings up swp1 in the running configuration.
+
+```
+cumulus@switch:~$ cl set interface swp1 link state up
+cumulus@switch:~$ cl config apply 
+```
+
+### Configure a Bond
+
+The example below shows the CUE commands required to configure the front panel port interfaces swp1 thru swp4 to be slaves in bond0.
+
+```
+cumulus@switch:~$ cl set interface bond0 bond member swp1-4
+cumulus@switch:~$ cl config apply
+```
+
+### Configure a Bridge
+
+The example below shows the CUE commands required to create a VLAN-aware bridge that contains two switch ports and includes 3 VLANs; tagged VLANs 100 and 200 and an untagged (native) VLAN of 1.
+
+With CUE, there is a default bridge called `br_default`, which has no ports assigned to it. The example below configures this default bridge.
+
+```
+cumulus@switch:~$ cl set interface swp1-2 bridge domain br_default
+cumulus@switch:~$ cl set bridge domain br_default vlan 100,200
+cumulus@switch:~$ cl set bridge domain br_default untagged 1
+cumulus@switch:~$ cl config apply
+```
+
+## Configure MLAG
+
+The following commands configure MLAG on leaf01. The CUE commands:
+- Places swp1 into bond1 and swp2 into bond2.
+- Configure the MLAG ID to 1 for bond1 and to 2 for bond2.
+- Add the bond1 and bond2 to the default bridge (br_default).
+- Creates the inter-chassis bond (swp49 and swp50) and the peer link (peerlink)
+- Sets the peer link IP address to linklocal, the MLAG system MAC address to 44:38:39:BE:EF:AA, and the backup interface to 10.10.10.2.
+
+```
+cumulus@leaf01:~$ cl set interface bond1 bond member swp1
+cumulus@leaf01:~$ cl set interface bond2 bond member swp2
+cumulus@leaf01:~$ cl set interface bond1 bond mlag id 1
+cumulus@leaf01:~$ cl set interface bond2 bond mlag id 2
+cumulus@switch:~$ cl set interface bond1-2 bridge domain br_default 
+cumulus@leaf01:~$ cl set interface swp49-50 type peerlink
+cumulus@leaf01:~$ cl set mlag mac-address 44:38:39:BE:EF:AA
+cumulus@leaf01:~$ cl set mlag backup 10.10.10.2
+cumulus@leaf01:~$ cl set mlag peer-ip linklocal
+cumulus@leaf01:~$ cl config apply
+```
+
+### Configure BGP Unnumbered
+
+The following commands configure BGP unnumbered on leaf01. The CUE commands:
+- Assign the ASN for this BGP node to 65101.
+- Set the router ID to 10.10.10.1.
+- Distribute routing information to the peer on swp51.
+- Originate prefixes 10.10.10.1/32 from this BGP node.
+
+```
+cumulus@leaf01:~$ cl set router bgp autonomous-system 65101
+cumulus@leaf01:~$ cl set router bgp router-id 10.10.10.1
+cumulus@leaf01:~$ cl set vrf default router bgp peer swp51 remote-as external
+cumulus@leaf01:~$ cl set vrf default router bgp address-family ipv4-unicast static-network 10.10.10.1/32
+cumulus@leaf01:~$ cl config apply
+```

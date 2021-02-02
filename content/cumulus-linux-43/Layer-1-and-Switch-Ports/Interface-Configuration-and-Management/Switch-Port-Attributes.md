@@ -4,6 +4,7 @@ author: NVIDIA
 weight: 300
 toc: 4
 ---
+
 Cumulus Linux exposes network interfaces for several types of physical and logical devices:
 
 - `lo` is the network loopback device
@@ -1128,6 +1129,8 @@ The following example shows the logical port limitation provided in the Dell Z92
 Mellanox SN2700 and SN2700B switches have a limit of 64 logical ports in total. However, the logical ports must be configured in a specific way. See the note above.
 
 ## Verification and Troubleshooting Commands
+
+Following are two basic commands for troubleshooting switch ports. For a more comprehensive troubleshooting guide, read {{<link url="Troubleshoot-Layer-1">}}.
 
 ### Statistics
 

@@ -6,21 +6,23 @@ toc: 3
 ---
 Switches collect statistics about the performance of their interfaces. The NetQ Agent on each switch collects these statistics every 15 seconds and then sends them to your NetQ Appliance or Virtual Machine.
 
-NetQ collects statistics for *physical* interfaces; it does not collect statistics for *virtual* interfaces, such as bonds, bridges, and VXLANs. NetQ collects these statistics from two data sources: Net-Q and Net-Q-Ethtool.
+NetQ collects statistics for *physical* interfaces; it does not collect statistics for *virtual* interfaces, such as bonds, bridges, and VXLANs.
 
-Net-Q displays:
+<!-- NetQ collects these statistics from two data sources: Net-Q and Net-Q-Ethtool. -->
+
+NetQ displays:
 
 - **Transmit** with *tx\_* prefix: bytes, carrier, colls, drop, errs, packets
 - **Receive** with *rx\_* prefix: bytes, drop, errs, frame, multicast, packets
 
-Net-Q-Ethtool displays:
+<!-- Net-Q-Ethtool displays:
 
 - **Hardware Transmit** with *hw\_if\_out\_* prefix: octets, ucast_pckts, mcast_pkts, bcast_pkts, discards, errors, q_drops, non_q_drops, q_len, pause_pkt, pfc[0-7]_pkt, wred_drops, q[0-9]_wred_drops
 - **Hardware Receive** with *hw\_if\_in\_* prefix: octets, ucast_pckts, mcast_pkts, bcast_pkts, discards, l3_drops, buffer_drops, acl_drops, errors, dot3_length_errors, dot3_frame_errors, pause_pkt, pfc[0-7]_pkt
 - **Software Transmit** with *soft\_out\_* prefix: errors, drops, tx_fifo_full
-- **Software Receive** with *soft\_in\_* prefix: errors, frame_errors, drops
+- **Software Receive** with *soft\_in\_* prefix: errors, frame_errors, drops -->
 
-You can use Grafana version 6.x, an open source analytics and monitoring tool, to view these statistics. The fastest way to achieve this is by installing Grafana on an application server or locally per user, and then installing the NetQ plug-in containing the prepared NetQ dashboard.  
+You can use Grafana version 6.x or 7.x, an open source analytics and monitoring tool, to view these statistics. The fastest way to achieve this is by installing Grafana on an application server or locally per user, and then installing the NetQ plug-in containing the prepared NetQ dashboard.  
 
 {{%notice note%}}
 
@@ -33,9 +35,9 @@ If you do not have Grafana installed already, refer to {{<exlink url="https://gr
 Use the Grafana CLI to install the NetQ plug-in. For more detail about this command, refer to the {{<exlink url="https://grafana.com/docs/grafana/latest/administration/cli/" text="Grafana CLI documentation">}}.
 
 ```
-grafana-cli --pluginUrl https://netq-grafana-dsrc.s3-us-west-2.amazonaws.com/dist.zip plugins install netq-dashboard
-installing netq-dashboard @ 
-from: https://netq-grafana-dsrc.s3-us-west-2.amazonaws.com/dist.zip
+grafana-cli --pluginUrl https://netq-shared.s3-us-west-2.amazonaws.com/grafana/dist.zip plugins install netq-dashboard
+installing netq-dashboard @
+from: https://netq-shared.s3-us-west-2.amazonaws.com/grafana/dist.zip
 into: /usr/local/var/lib/grafana/plugins
 
 ✔ Installed netq-dashboard successfully
@@ -59,18 +61,26 @@ The quickest way to view the interface statistics for your Cumulus Linux network
 
 3. Click **Add data source** or {{<img src="/images/netq/grafana-config-icon.png" width="24" height="24">}} > *Data Sources*.
 
-4. Enter **Net-Q** or **Net-Q-Ethtool** in the search box. Alternately, scroll down to the **Other** category, and select one of these sources from there.
+<!-- 4. Enter **Net-Q** or **Net-Q-Ethtool** in the search box. Alternately, scroll down to the **Other** category, and select one of these sources from there.
 
-    {{<figure src="/images/netq/grafana-add-data-src-320.png" width="500">}}
+    {{<figure src="/images/netq/grafana-add-data-src-320.png" width="500">}} -->
 
-5. Enter *Net-Q* or *Net-Q-Ethtool* into the **Name** field.
+4. Enter **Net-Q** in the search box. Alternately, scroll down to the **Other** category, and select one of these sources from there.
+
+    {{<figure src="/images/netq/grafana-add-data-src-330.png" width="500">}}
+
+<!-- 5. Enter *Net-Q* or *Net-Q-Ethtool* into the **Name** field. -->
+
+5. Enter *Net-Q* into the **Name** field.
 
 6. Enter the URL used to access the database:
     - Cloud: *api.netq.cumulusnetworks.com*
     - On-premises: *\<hostname-ipaddr\>*
     - Cumulus in the Cloud (CITC): *air.netq.cumulusnetworks.com*
 
-7. Select which statistics you want to view from the **Module** dropdown; either *procdevstats* or *ethtool*.
+<!-- 7. Select which statistics you want to view from the **Module** dropdown; either *procdevstats* or *ethtool*. -->
+
+7. Select *procdevstats* from the **Module** dropdown.
 
 8. Enter your credentials (the ones used to login).
 
@@ -105,7 +115,9 @@ To create your own dashboard:
 
 5. Enter *Hostname* into the **Label** field.
 
-6. Select *Net-Q* or *Net-Q-Ethtool* from the **Data source** list.
+<!-- 6. Select *Net-Q* or *Net-Q-Ethtool* from the **Data source** list. -->
+
+6. Select *Net-Q* from the **Data source** list.
 
 7. Enter *hostname* into the **Query** field.
 
@@ -119,7 +131,9 @@ To create your own dashboard:
 
     {{<figure src="/images/netq/grafana-create-chart-230.png" width="600">}}
 
-11. Select *Net-Q* or *Net-Q-Ethtool* from the **Query** source list.
+<!-- 11. Select *Net-Q* or *Net-Q-Ethtool* from the **Query** source list. -->
+
+11. Select *Net-Q* from the **Query** source list.
 
 12. Select the interface statistic you want to view from the **Metric** list.
 

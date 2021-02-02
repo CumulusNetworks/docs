@@ -35,9 +35,9 @@ If you do not have Grafana installed already, refer to {{<exlink url="https://gr
 Use the Grafana CLI to install the NetQ plug-in. For more detail about this command, refer to the {{<exlink url="https://grafana.com/docs/grafana/latest/administration/cli/" text="Grafana CLI documentation">}}.
 
 ```
-grafana-cli --pluginUrl https://netq-grafana-dsrc.s3-us-west-2.amazonaws.com/dist.zip plugins install netq-dashboard
+grafana-cli --pluginUrl https://netq-shared.s3-us-west-2.amazonaws.com/grafana/dist.zip plugins install netq-dashboard
 installing netq-dashboard @
-from: https://netq-grafana-dsrc.s3-us-west-2.amazonaws.com/dist.zip
+from: https://netq-shared.s3-us-west-2.amazonaws.com/grafana/dist.zip
 into: /usr/local/var/lib/grafana/plugins
 
 ✔ Installed netq-dashboard successfully
@@ -61,18 +61,26 @@ The quickest way to view the interface statistics for your Cumulus Linux network
 
 3. Click **Add data source** or {{<img src="/images/netq/grafana-config-icon.png" width="24" height="24">}} > *Data Sources*.
 
-4. Enter **Net-Q** or **Net-Q-Ethtool** in the search box. Alternately, scroll down to the **Other** category, and select one of these sources from there.
+<!-- 4. Enter **Net-Q** or **Net-Q-Ethtool** in the search box. Alternately, scroll down to the **Other** category, and select one of these sources from there.
 
-    {{<figure src="/images/netq/grafana-add-data-src-320.png" width="500">}}
+    {{<figure src="/images/netq/grafana-add-data-src-320.png" width="500">}} -->
 
-5. Enter *Net-Q* or *Net-Q-Ethtool* into the **Name** field.
+4. Enter **Net-Q** in the search box. Alternately, scroll down to the **Other** category, and select one of these sources from there.
+
+    {{<figure src="/images/netq/grafana-add-data-src-330.png" width="500">}}
+
+<!-- 5. Enter *Net-Q* or *Net-Q-Ethtool* into the **Name** field. -->
+
+5. Enter *Net-Q* into the **Name** field.
 
 6. Enter the URL used to access the database:
     - Cloud: *api.netq.cumulusnetworks.com*
     - On-premises: *\<hostname-ipaddr\>*
     - Cumulus in the Cloud (CITC): *air.netq.cumulusnetworks.com*
 
-7. Select which statistics you want to view from the **Module** dropdown; either *procdevstats* or *ethtool*.
+<!-- 7. Select which statistics you want to view from the **Module** dropdown; either *procdevstats* or *ethtool*. -->
+
+7. Select *procdevstats* from the **Module** dropdown.
 
 8. Enter your credentials (the ones used to login).
 
@@ -107,7 +115,9 @@ To create your own dashboard:
 
 5. Enter *Hostname* into the **Label** field.
 
-6. Select *Net-Q* or *Net-Q-Ethtool* from the **Data source** list.
+<!-- 6. Select *Net-Q* or *Net-Q-Ethtool* from the **Data source** list. -->
+
+6. Select *Net-Q* from the **Data source** list.
 
 7. Enter *hostname* into the **Query** field.
 
@@ -121,7 +131,9 @@ To create your own dashboard:
 
     {{<figure src="/images/netq/grafana-create-chart-230.png" width="600">}}
 
-11. Select *Net-Q* or *Net-Q-Ethtool* from the **Query** source list.
+<!-- 11. Select *Net-Q* or *Net-Q-Ethtool* from the **Query** source list. -->
+
+11. Select *Net-Q* from the **Query** source list.
 
 12. Select the interface statistic you want to view from the **Metric** list.
 

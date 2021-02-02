@@ -702,8 +702,10 @@ cumulus@switch:~$ sudo ifreload -a
 {{< tab "CUE Commands ">}}
 
 ```
-cumulus@switch:~$ cl set NEED COMMAND
-cumulus@switch:~$ cl NEED COMMAND 
+cumulus@switch:~$ cl set interface peerlink mtu 1500
+cumulus@switch:~$ cl set interface uplink mtu 1500
+cumulus@switch:~$ cl set interface bond1 mtu 1500
+cumulus@switch:~$ cl set interface bond2 mtu 1500
 cumulus@switch:~$ cl config apply
 ```
 
@@ -764,7 +766,7 @@ cumulus@switch:~$ net commit
 {{< tab "CUE Commands ">}}
 
 ```
-cumulus@switch:~$ cl set 
+cumulus@switch:~$ cl set vrf default router bgp peer peerlink.4094 remote-as internal 
 cumulus@switch:~$ cl config apply
 ```
 
@@ -788,7 +790,7 @@ cumulus@switch:~$ net commit
 {{< tab "CUE Commands ">}}
 
 ```
-cumulus@switch:~$ cl set 
+cumulus@switch:~$ cl set NEED COMMAND
 cumulus@switch:~$ cl config apply
 ```
 
@@ -812,10 +814,7 @@ cumulus@switch:~$ net commit
 
 {{< tab "CUE Commands ">}}
 
-```
-cumulus@switch:~$ cl set 
-cumulus@switch:~$ cl config apply
-```
+Currently unavailable
 
 {{< /tab >}}
 

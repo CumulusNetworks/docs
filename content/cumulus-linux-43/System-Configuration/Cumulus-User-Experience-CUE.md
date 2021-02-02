@@ -43,7 +43,7 @@ cumulus@switch:~$ cl show [options] <attribute>
 cumulus@switch:~$ cl config <command> [options]
 ```
 
-The command revision options [options] let you specify where to apply the configuration. The revision options are optional. If you do not specify a revision option, the command is applied or to ????.
+The command `options` let you specify where to apply the configuration and are optional. If you do not specify a revision option, the command is applied to the running configuration.
 
 | Option | Description |
 | ------ | ----------- |

@@ -39,7 +39,7 @@ cumulus@switch:~$ cl show [options] <attribute>
 cumulus@switch:~$ cl config <command> [options]
 ```
 
-`[options}` are revision options, which let you specify where to apply the configuration. The revision options are optional. If you do not specify a revision option, the command is applied to the running configuration. See {{<link url="#revision-options" text="Revision Options">}} below.
+`[options]` are revision options, which let you specify where to apply the configuration. The revision options are optional. If you do not specify a revision option, the command is applied to the running configuration. See {{<link url="#revision-options" text="Revision Options">}} below.
 
 `<attributes>` specify a subcommand or the configuration setting. For example, `cl set router bgp graceful-restart mode [options] (full|helper-only|off)`.
 
@@ -208,7 +208,7 @@ cumulus@switch:~$ cl set bridge domain br_default untagged 1
 cumulus@switch:~$ cl config apply
 ```
 
-## Configure MLAG
+### Configure MLAG
 
 The following commands configure MLAG on leaf01. The CUE commands:
 - Places swp1 into bond1 and swp2 into bond2.

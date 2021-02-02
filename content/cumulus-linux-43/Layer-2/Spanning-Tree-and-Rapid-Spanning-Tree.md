@@ -140,7 +140,7 @@ To configure PortAdminEdge mode:
 
 {{< tab "NCLU Commands ">}}
 
-The following example commands configure PortAdminEdge and BPDU guard for swp5.
+The following example commands configure PortAdminEdge and BPDU guard for swp1.
 
 ```
 cumulus@switch:~$ net add interface swp5 stp bpduguard
@@ -180,8 +180,8 @@ A runtime configuration is non-persistent, which means the configuration you cre
 To configure PortAdminEdge and BPDU guard at runtime, run the following commands:
 
 ```
-cumulus@switch:~$ sudo mstpctl setportadminedge br2 swp1 yes
-cumulus@switch:~$ sudo mstpctl setbpduguard br2 swp1 yes
+cumulus@switch:~$ sudo mstpctl setportadminedge bridge swp5 yes
+cumulus@switch:~$ sudo mstpctl setbpduguard bridge swp5 yes
 ```
 
 {{< /tab >}}
@@ -189,7 +189,8 @@ cumulus@switch:~$ sudo mstpctl setbpduguard br2 swp1 yes
 {{< tab "CUE Commands ">}}
 
 ```
-cumulus@switch:~$ cl set NEED COMMAND
+cumulus@switch:~$ cl set interface swp5 bridge domain br_default stp admin-edge on
+cumulus@switch:~$ cl set interface swp5 bridge domain br_default stp bpdu-guard on
 cumulus@switch:~$ cl config apply
 ```
 
@@ -251,7 +252,7 @@ cumulus@switch:~$ sudo ifreload -a
 {{< tab "CUE Commands ">}}
 
 ```
-cumulus@switch:~$ cl set NEED COMMAND
+cumulus@switch:~$ cl set interface swp1 bridge domain br_default stp auto-edge off
 cumulus@switch:~$ cl config apply
 ```
 
@@ -284,7 +285,7 @@ Edit the switch port interface stanza in the `/etc/network/interfaces` file to r
 {{< tab "CUE Commands ">}}
 
 ```
-cumulus@switch:~$ cl set NEED COMMAND
+cumulus@switch:~$ cl set interface swp1 bridge domain br_default stp auto-edge on
 cumulus@switch:~$ cl config apply
 ```
 
@@ -334,7 +335,7 @@ cumulus@switch:~$ sudo ifreload -a
 {{< tab "CUE Commands ">}}
 
 ```
-cumulus@switch:~$ cl set NEED COMMAND
+cumulus@switch:~$ cl set interface swp5 bridge domain br_default stp bpdu-guard on
 cumulus@switch:~$ cl config apply
 ```
 
@@ -394,7 +395,7 @@ bridge:bond0 CIST info
 {{< tab "CUE Commands ">}}
 
 ```
-cumulus@switch:~$ cl show bridge domain bridge stp NEED COMMAND 
+cumulus@switch:~$ cl show bridge domain br_default stp
 ```
 
 {{< /tab >}}
@@ -470,7 +471,7 @@ cumulus@switch:~$ sudo mstpctl showportdetail br1007 swp1.1007 | grep network
 {{< tab "CUE Commands ">}}
 
 ```
-cumulus@switch:~$ cl set NEED COMMAND
+cumulus@switch:~$ cl set interface swp5 bridge domain br_default stp network on
 cumulus@switch:~$ cl config apply
 ```
 
@@ -547,7 +548,7 @@ cumulus@switch:~$ sudo mstpctl setportbpdufilter br100 swp1.100=yes swp2.100=yes
 {{< tab "CUE Commands ">}}
 
 ```
-cumulus@switch:~$ cl set NEED COMMAND
+cumulus@switch:~$ cl set interface swp5 bridge domain br_default stp bpdu-filter on
 cumulus@switch:~$ cl config apply
 ```
 

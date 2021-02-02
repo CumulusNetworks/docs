@@ -22,7 +22,7 @@ In *all-active* mode, when a bond has multiple slave interfaces, each bond slave
 
 ## Configure LACP Bypass
 
-To enable LACP bypass on the host-facing bond, set `bond-lacp-bypass-allow` to *yes*.
+To enable LACP bypass on the host-facing bond:
 
 {{< tabs "TabID28 ">}}
 

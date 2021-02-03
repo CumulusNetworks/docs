@@ -34,7 +34,7 @@ The memory locations for the various fields in the EEPROM and the common registe
 
 Identifiers used in the first byte of the module memory map:
 
-- 0x03: SFP/SFP+/SFP28 - One 10G or 25G lane - Small Formfactor Pluggable
+- 0x03: SFP/SFP+/SFP28 - One 10G or 25G lane - Small Form factor Pluggable
 - 0x0d: QSFP+ - Four 10G lanes - Quad SFP (40G total)
 - 0x11: QSFP28 - Four 25G or 50G lanes (100G or 200G total) - Quad SFP with 25G or 50G lanes
 - 0x18: QSFP-DD - Eight 50G lanes (400G total) - Quad SFP with a recessed extra card-edge connector to enable 8 lanes of 50G
@@ -94,7 +94,7 @@ Active cables and modules contain transmitters that regenerate the bit signals o
 
 Although some copper cable assemblies are active, they are extremely rare.
 
-Passive cables (copper DACs) directly connect the port side of the module to the copper twinax media on the other side of the module in the assembly. The port TX lines provides the power to drive the signal to the remote end. The port goes through a training sequence with the remote end port to tune the power TX and RX parameters to optimize the received signal and ensure correct clock and data recovery at each RX end.
+Passive cables (copper DACs) directly connect the port side of the module to the copper twinax media on the other side of the module in the assembly. The port TX lines provide the power to drive the signal to the remote end. The port goes through a training sequence with the remote end port to tune the power TX and RX parameters to optimize the received signal and ensure correct clock and data recovery at each RX end.
 
 ### Compliance Codes, Ethernet Type, Ethmode Type, Interface Type
 
@@ -116,9 +116,9 @@ The last part of the compliance code specifies the Ethernet technology and the n
 
 An active module with a passive module compliance code and vice versa would cause the port to be set up incorrectly and may affect signal integrity.
 
-Some modules have vendor specific coding, are older, or are using a proprietary vendor technology that is not listed in the standards. As a result, they are not recognized by default and need to be overridden to the correct compliance code.  On Mellanox platforms, the port firmware has known and support modules hardcoded to the correct compliance code. On Broadcom platforms, the `/usr/share/cumulus/portwd.conf` file contains known overrides for certain modules. On Broadcom platforms, the user can also create an override file in `/etc/cumulus/portwd.conf` to specify that a module is best represented by a particular compliance code.
+Some modules have vendor specific coding, are older, or are using a proprietary vendor technology that is not listed in the standards. As a result, they are not recognized by default and need to be overridden to the correct compliance code. On Mellanox platforms, the port firmware automatically overrides certain supported modules to the correct compliance code. On Broadcom platforms, the `/usr/share/cumulus/portwd.conf` file contains known overrides for certain modules. On Broadcom platforms, the user can also create an override file in `/etc/cumulus/portwd.conf` to specify that a module is best represented by a particular compliance code.
 
-The override file uses the vendor OUI (preferred) or the vendor name, plus the vendor PN (all from the module EEPROM) to specify the correct override compliance code of the module. For example:
+The override file uses the vendor OUI (preferred, more reliable) or the vendor name, plus the vendor PN &mdash; all from the module EEPROM &mdash; to specify the correct override compliance code of the module. For example:
 
 ```
 [cables]
@@ -147,13 +147,13 @@ When a warning or alarm is triggered, the flag flips from *Off* to *On*. Reading
 
 The definition of autonegotiation (or autoneg) has changed slightly with each new Ethernet speed and technology. As a result, there are 3 different types of autoneg (IEEE 802.3 clauses 28, 37, 73), which apply to various Ethernet technologies that Cumulus Linux supports:
 
-- 10/100/1000/10GBASE-T (twisted pair, clause 28): The original Ethernet autoneg, which negotiates speed and duplex (full/half) and flow control (link pause) on full-duplex. Mandatory for 1G/10G data rates.
-- 1000BASE-X (optical, clause 37): Detects unidirectional link (no RX on one side) and signal to bring the port down; this avoids blackholing traffic.
-- 40G/100G/25G/50G/200G/400GBASE-CR (DAC, clause 73): Negotiates speed, performs link training to improve BER and negotiates FEC.
+- 10/100/1000/10GBASE-T (twisted pair, clause 28): The original Ethernet autoneg, which negotiates speed and duplex (full/half) and flow control (link pause) on full-duplex. Mandatory for 1G/10G data rates over twisted pair.
+- 1000BASE-X (optical, clause 37): Detects unidirectional link conditions (no RX on one side). If a unidirectional link condition occurs, clause 37 autoneg signals the port to bring the link down; this avoids blackholing traffic.
+- 40G/100G/25G/50G/200G/400GBASE-CR (DAC, clause 73): Negotiates speed, performs link training to improve the bit error rate (BER) and negotiates FEC.
 
-Note that many Ethernet technologies used in Cumulus Linux switches do not have autoneg capability. Notably:
+Many Ethernet technologies used in Cumulus Linux switches do not have autoneg capability. Notably:
 
-- All 10G links do not have autonegotiation. However, there is an autoneg for backplane links, but these links do not exist on Cumulus Linux switch ports.
+- All 10G DAC and optical links do not have autonegotiation; only 10GBASE-T and backplane links have autoneg standards. Backplane links do not exist on Cumulus Linux switch ports.
 - All optical links except 1G optical do not have autonegotiation.  
 
 Thus, only about half of all modern link types even support autoneg, leading to much confusion regarding whether to enable or disable autoneg.
@@ -168,7 +168,7 @@ The next three subsections provide guidance on when and how to enable autonegoti
 
 For 1000BASE-X, autonegotiation is highly recommended on 1G optical links to detect unidirectional link failures.
 
-For all other optical modules, there is no autonegotiation on any optical links except for 1000BASE-X.
+For all other optical modules besides 1000BASE-X, there is no autonegotiation standard.
 
 For 10G DACs, there is no autonegotiation.
 
@@ -211,11 +211,11 @@ The autodetect feature is usually successful, but if the link does not come up, 
 
 Forward Error Correction (FEC) is an algorithm used to correct bit errors along a medium. FEC encodes the data stream so that the remote device can correct a certain number of bit errors by decoding the stream.
 
-The target IEEE bit error rate (BER) in high-speed Ethernet is 10<sup>-12</sup>. At 25G lane speeds and above, this may not be achievable without error correction, depending on the media type and length. See {{<link url="Switch-Port-Attributes">}} for a more detailed discussion of FEC requirements for certain cable types.
+The target IEEE bit error rate (BER) in high-speed Ethernet is 10<sup>-12</sup>. At 25G lane speeds and above, this may not be achievable without error correction, depending on the media type and length. See {{<link url="Switch-Port-Attributes/#fec">}} for a more detailed discussion of FEC requirements for certain cable types.
 
 {{%notice note%}}
 
-Both sides of a link must have the same FEC encoding algorithm enabled for the link to come up. If both sides appear to have a working signal path, there could be an autoneg mismatch or FEC mismatch in the configuration.
+Both sides of a link must have the same FEC encoding algorithm enabled for the link to come up. If both sides appear to have a working signal path but the link is down, there could be an autoneg mismatch or FEC mismatch in the configuration.
 
 {{%/notice%}}
 
@@ -223,8 +223,8 @@ Both sides of a link must have the same FEC encoding algorithm enabled for the l
 
 - The Reed-Solomon RS-FEC(528,514) algorithm adds 14 bits of encoding information to a 514 bit stream. It replaces and uses the same amount of overhead in the 64B/66B encoding, so that the bit rate is not affected. It can correct 7 bit errors in a 514 bit stream. RS(528,514) is used on 25G (NRZ) lanes, including 25G, 50G-CR2 and 100G-SR4/CR4 interfaces.
 - The Reed-Solomon RS-FEC(544,514) algorithm adds 30 bits of overhead to correct 14+ bit errors per 514 bits. FEC RS is required on 50G (PAM4) lanes, hence, all 200G, 400G, 100G-CR2 and 50G-CR interfaces.
-- Base-R (also known as FireCode/FC) FEC adds 32 bits per 32 blocks of 64B/66B to correct XX bits per 2048 bits. It replaces one bit per block, so it uses the same amount of overhead as 64B/66 encoding. It is used in 25G interfaces only. The algorithm executes faster than the RS-FEC algorithm, so latency is reduced. Both RS-FEC and Base-R FEC are implemented in hardware.
-- None/Off: FEC is optional and is often useful on 25G lanes, which includes 100G-SR4/CR4 and 50G-CR2 links. If the cable quality is good enough to achieve a BER of 10<sup>-12</sup> without FEC, then there is no reason to enable it.  10G/40G links should never require FEC. If a 10G/40G link has errors, replace the cable. None/Off is the default setting on Broadcom switches since autoneg *OFF* is the default setting.
+- Base-R (also known as FireCode/FC) FEC adds 32 bits per 32 blocks of 64B/66B to correct 11 bits per 2048 bits. It replaces one bit per block, so it uses the same amount of overhead as 64B/66B encoding. It is used in 25G interfaces only. The algorithm executes faster than the RS-FEC algorithm, so latency is reduced. Both RS-FEC and Base-R FEC are implemented in hardware.
+- None/Off: FEC is optional and is often useful on 25G lanes, which includes 100G-SR4/CR4 and 50G-CR2 links. If the cable quality is good enough to achieve a BER of 10<sup>-12</sup> without FEC, then there is no reason to enable it.  10G/40G links should never require FEC. If a 10G/40G link has errors, replace the cable or module that is causing the error. *None/Off* is the default setting on Broadcom switches since autoneg *OFF* is the default setting.
 - Auto: FEC can be autonegotiated between 2 devices. When autoneg is *ON*, the default FEC setting is *auto* to enable FEC capability information to be sent and received with the neighbor. The port FEC active/operational setting is set to the result of the negotiation. *Auto* is the default setting on Mellanox switches since autoneg *ON* is the default setting.
 
 In some cases, the configured value may be different than the operational value. In such cases, the `l1-show` command displays both values. For example:
@@ -236,7 +236,7 @@ In some cases, the configured value may be different than the operational value.
 
 The goal of Ethernet protocols and technologies is to enable the bits generated on one side of a link to be received correctly on the other side. The next two sections provide information as to what might be happening on the link level when the link is down or bits are not being received correctly.
 
-#### Link State: RX Power, Signal Detection, Signal Lock, Carrier, RX Fault
+#### Link State: RX Power, Signal Detection, Signal Lock, Carrier Detection, RX Fault
 
 Various characteristics show the state of a link. All characteristics may not be available to display on all platforms.
 
@@ -256,13 +256,13 @@ On Broadcom switches, if both sides are showing signal lock, but not carrier, it
 
 #### Eyes
 
-When a 1 or a 0 bit is transmitted across a link, it is represented on the electrical side of the port as either a high voltage level or a low voltage level, respectively. If an oscilloscope is attached to those leads, as the bit stream is transmitted across it, the transitions between one and zero would form a pattern in the shape of an eye.
+When a 1 or a 0 bit is transmitted across a link, it is represented on the electrical side of the port as either a high voltage level or a low voltage level, respectively. If an oscilloscope is attached to those leads, as the bit stream is transmitted across it, the transitions between 1 and 0 would form a pattern in the shape of an eye.
 
 {{<figure src="/images/cumulus-linux/L1ts-NRZ-eyes.jpg" width="600">}}
 
-The farther the distance between the 1 and 0, the more open the eye appears. The better &mdash; that is, more open &mdash; the eye is, the less likely it is for a bit to be misread. When a bit is misread, it causes a bit-error, which would result in an FCS error on the entire packet being received. A lower eye measurement generally translates to a larger bit-error rate (BER). FEC can correct bit errors up to a point.
+The farther the distance between the 1 and 0, the more open the eye appears. The better &mdash; that is, more open &mdash; the eye is, the less likely it is for a bit to be misread. When a bit is misread, it causes a bit-error, which would result in an FCS error on the entire packet being received. A lower eye measurement generally translates to a larger bit error rate (BER). FEC can correct bit errors up to a point.
 
-Eyes are not measured on fixed copper ports. Nor are they measured when a link is down.
+Eyes are not measured on fixed copper ports, nor are they measured when a link is down.
 
 Each hardware vendor implements some quantitative measurement of eyes and some kind of qualitative measurement.
 
@@ -277,6 +277,8 @@ For 50G lanes (200G- and 400G-capable ports), the link uses PAM4 encoding, which
 ## l1-show Command
 
 Because Linux Ethernet tools do not have a unified approach to the various vendor driver implementations and areas that affect layer 1, the `l1-show` command was added to Cumulus Linux versions 3.7.7 and 4.0.0 in order to show all layer 1 aspects of a Cumulus Linux port and link.
+
+The command must be run as root. The syntax for the command is:
 
 ```
 cumulus@switch:~$ sudo l1-show PORTLIST
@@ -347,7 +349,7 @@ The output is organized into the following sections:
 
 ### Module Information
 
-The vendor name, vendor part number, identifier (Q/SFP type), and type (compliance codes) are read from the vendor EEPROM. If a compliance code override is being applied on a Broadcom platform, it is noted here. See {{<link url="#compliance-codes-ethernet-type-ethmode-type-interface-type" text="Compliance Codes, Ethernet Type, Ethmode Type, Interface type">}} above for an explanation.
+The vendor name, vendor part number, identifier (QSFP/SFP type), and type (compliance codes) are read from the vendor EEPROM. If a compliance code override is being applied on a Broadcom platform, it is noted here. See {{<link url="#compliance-codes-ethernet-type-ethmode-type-interface-type" text="Compliance Codes, Ethernet Type, Ethmode Type, Interface type">}} above for an explanation.
 
 ```
 Module Info
@@ -396,7 +398,7 @@ The operational state shows the current state of the link in the kernel and in t
 - Autoneg/Autodetect: See the discussion in the {{<link url="#autonegotiation" text="Autonegotiation">}} section above for more information about the meaning of these values.
 - FEC: The operational state of FEC on the link. See the discussion in the {{<link url="#fec" text="FEC">}} section above for more information about the meaning of these values.
 - TX Power/RX Power: These values are read from the module DDM/DOM fields to indicate the optical power strength measured on the module if the module implements the feature. Sometimes both are supported, sometimes only RX, sometimes neither. This is not applicable to DAC and twisted pair interfaces.
-- Topo File Neighbor: If the `/etc/ptm.d/topology.dot` file is populated, the entry matching this interface is shown.
+- Topo File Neighbor: If the `/etc/ptm.d/topology.dot` file is populated and the `ptmd` daemon is active, the entry matching this interface is shown.
 - LLDP Neighbor: If the `lldpd` daemon is running and LLDP data is received from the neighbor, the neighbor information is shown here.
 
 ### Port Hardware State
@@ -438,8 +440,8 @@ This section contains a troubleshooting methodology and checklist for helping to
 The root cause of a layer 1 problem falls into one of these three categories:
 
 - Configuration issues: A misconfiguration on one neighbor or the other, or a configuration mismatch between the neighbors.
-- Hardware issues: Failures in fiber patches or modules and, on rare occasions, a QSFP/SFP port.
-- Switch driver errors in handling a particular module type: Very rare and can usually be worked around.
+- Hardware issues: Failures in fiber patches or modules and, on rare occasions, a QSFP or SFP port.
+- Switch driver errors in handling a particular module type. These are very rare and can usually be worked around.
 
 To resolve a layer 1 problem, follow these steps:
 
@@ -447,16 +449,15 @@ To resolve a layer 1 problem, follow these steps:
 - Design a test that best displays the lowest level indicator of that problem behavior. The hierarchy view of `l1-show` is often the best tool to find this indicator.
 - Make changes based on the problem type that lead toward isolating the root cause of the failure. Use the test to track progress.
   - Identify if the issue is likely a configuration issue or a hardware issue. If unclear, start with configuration first.
-  - For configuration issues, ensure the configuration on both ends of the link matches the guidance in this guide and in the {{<link url="Switch-Port-Attributes" text="Switch Port Attributes topic">}}.
-  - For hardware issue isolate the faulty component by methodically moving and replacing components as described in {{<link url="#isolate-faulty-hardware" text="Isolate Faulty Hardware">}}.
+  - For configuration issues, ensure the configuration on both ends of the link matches the guidance in this guide and in {{<link url="Switch-Port-Attributes" text="Switch Port Attributes">}}.
+  - For hardware issue isolate the faulty component by methodically moving and replacing components as described in {{<link url="#isolate-faulty-hardware" text="Isolate Faulty Hardware">}} below.
 - Once the root cause is isolated, make the changes permanent to resolve the problem. For faulty hardware, replace the failed component.
 
 ### Classify the Layer 1 Problem
 
 Layer 1 problems can be classified as follows:
 
-- {{<link url="#troubleshoot-down-or-flapping-links" text="Link down">}}
-- {{<link url="#troubleshoot-down-or-flapping-links" text="Link flapping">}}
+- {{<link url="#troubleshoot-down-or-flapping-links" text="Link down or flapping">}}
 - {{<link url="#troubleshoot-physical-errors-on-a-link" text="Physical errors on link">}} &mdash; these are not the same as *drops*, which are layer 2 or layer 3 switching issues
 - {{<link url="#troubleshoot-signal-integrity-issues" text="Signal integrity issues">}} &mdash; which manifest as errors, link down or link flapping
 - {{<link url="#troubleshoot-mtu-size-mismatches" text="MTU size mismatches">}}
@@ -469,18 +470,18 @@ See the sections below for specific guidance for each problem type.
 
 When you suspect that one of the components in a link is faulty, use the following approach to determine which component is faulty.
 
-First, identify the faulty behavior at the lowest level possible, then design a test that best displays that behavior. Use the hierarchy output of `l1-show <swp>` to find the best indicator. Here are some examples of tests you can use:
+First, identify the faulty behavior at the lowest level possible, then design a test that best displays that behavior. Use the hierarchy output of `l1-show` to find the best indicator. Here are some examples of tests you can use:
 
-- No RX power: Examine the *Rx power* in the *Operational State* section of the `l1-show` output.
-- Local side is not receiving signal: On Broadcom platforms, examine the *Rx Fault* field for the presence of *Local*.
-- Remote side is sending *RX Faults*: On Mellanox platforms, check the *Troubleshooting info* for *neighbor is sending remote faults*. On Broadcom platforms, examine the *Rx Fault* field for the presence of *Remote*.
+- No RX power: Examine the *RX power* in the *Operational State* section of the `l1-show` output.
+- Local side is not receiving signal: On Broadcom platforms, examine the *RX Fault* field for the presence of *Local*.
+- Remote side is sending *RX Faults*: On Mellanox platforms, check the *Troubleshooting info* for *neighbor is sending remote faults*. On Broadcom platforms, examine the *RX Fault* field for the presence of *Remote*.
 - Errors on link when FEC is not required: Examine the *HwIfInErrors* counters in `ethtool -S <swp>` to see if they are incrementing over time.
 
 Try swapping the modules and fibers to determine which component is bad:
 
 - Swap the DAC, AOC or fiber patch cable(s) along the path with known good cables. Does the test indicate that the symptoms change?
 - Swap the modules between the local and remote. Does the test indicate the symptoms move with the module or stay on the same neighbor?
-- Loopback tests: Move one of the modules to the neighbor and connect the two modules back-to-back in the same switch, ideally with the same cable. What does the test indicate now? Now, move both modules to the other side and repeat. Try to isolate the issue to one fiber/module/port/platform/configuration.
+- Loopback tests: Move one of the modules to the neighbor and connect the two modules back-to-back in the same switch, ideally with the same cable. What does the test indicate now? Now, move both modules to the other side and repeat. Try to isolate the issue to a single fiber, module, port, platform or configuration.
 - Replace each module one at a time with a different module of the same type; the current module could be bad.
 - Replace each module with a different module from a different vendor, preferably one that is supported on the {{<exlink url="https://cumulusnetworks.com/hcl" text="Cumulus Linux HCL">}}.
 
@@ -494,7 +495,7 @@ A down or flapping link can exhibit any or all of the following symptoms:
 - Log messages in `/var/log/linkstate` indicate the carrier is flapping up or down.
 - No LLDP data is received, or it is flapping.
 
-To begin troubleshooting, examine the output of `l1-show <swp>` on both ends of the link if possible. The output contains all the pertinent information to help troubleshoot the link.
+To begin troubleshooting, examine the output of `l1-show` on both ends of the link if possible. The output contains all the pertinent information to help troubleshoot the link.
 
 ```
 cumulus@switch~$ sudo l1-show swp10
@@ -569,7 +570,7 @@ Operational State
 - Speed (Kernel and Hardware): Does the operational speed match the configured speed?
   - When the link is up, the kernel and hardware operational values should be in sync with each other and the configured speed.
   - When the link is down and autoneg is enabled, the kernel value is *Unknown!* since the hardware has not synced to a speed.
-  - When the link is down and autoneg is disabled, the kernel speed displays the configured value. The Hardware field may show various values, depending on implementation of the particular hardware interface.
+  - When the link is down and autoneg is disabled, the kernel speed displays the configured value. The *Hardware* field may show various values, depending on implementation of the particular hardware interface.
 - Autoneg/Autodetect: Normally the operational value matches the configured value. This is informational only, but it is useful to know if autodetect is enabled. See the detailed sections on {{<link url="#autonegotiation" text="autonegotiation">}} and {{<link url="#autodetect" text="autodetect">}} for more information.
 - FEC: This field is only useful for informational purposes, since it displays the actual FEC only when the link is up.
   - When the link is down, the operational FEC is *None*.
@@ -625,8 +626,14 @@ Port Hardware State:
   - Examples:
     - `The port is closed by command. Please check that the interface is enabled.` Configure the port so it is set to *Admin Up*.
     - `The cable is unplugged.` There is no module detected. Check to see if a module in installed in this port, or reseat the module.
-    - `Auto-negotiation no partner detected.` The link is down due to not seeing the neighbor. Unfortunately, this is not very helpful to determine the cause.
-    - `Force Mode no partner detected.` Autoneg/autodetect is disabled, link is down due to not seeing the neighbor.  Again, this is not very helpful to determine the cause.
+    - `Auto-negotiation no partner detected.` The link is down due to not seeing the neighbor. Unfortunately, this is not very helpful to determine the cause alone.
+      - Check the configurations on both sides for an autoneg or FEC configuration mismatch.
+      - If the link is a fiber link and the module supports RX/TX Power DDM/DOM, check the *RX Power* and *TX Power* values in the *Operational State* output of `l1-show` to help determine which component may have failed.
+      - Follow the steps in {{<link url="#isolate-faulty-hardware" text="Isolate Faulty Hardware">}}; use this value or the *RX/TX Power* DDM/DOM value as the test.
+    - `Force Mode no partner detected.` Autoneg/autodetect is disabled, link is down due to not seeing the neighbor.  Again, this is not very helpful to determine the cause alone.
+      - Check the configurations on both sides for a speed, autoneg or FEC configuration mismatch.
+      - If the link is a fiber link and the module supports RX/TX Power DDM/DOM, check the *RX Power* and *TX Power* values in the *Operational State* output of `l1-show` to help determine which component may have failed.
+      - Follow the steps in {{<link url="#isolate-faulty-hardware" text="Isolate Faulty Hardware">}}; use this value or the *RX/TX Power* DDM/DOM value as the test.
     - `Neighbor is sending remote faults`. This end of the link is receiving data from the neighbor, but the neighbor is not receiving recognizable data from the local port. See *RX Fault* in the {{<link url="#signal-integrity" text="Signal Integrity">}} section above for details. The local device is not transmitting, the remote receiver is not receiving recognizable data or is broken, or the path to the remote is broken.
 
 #### Broadcom Switches
@@ -664,8 +671,8 @@ Port Hardware State:
 
 For additional explanation of the first two lines of each output, see the {{<link url="#signal-integrity" text="Signal Integrity">}} section.
 
-- Rx Fault: Which side is reporting RxFault - Local, Remote or LocalRemote (both)?
-  - *RX Fault: Local*: One or more of these problems exist:
+- Rx Fault: Which side is reporting Rx Fault &mdash; Local, Remote or LocalRemote (both)?
+  - *Rx Fault: Local*: One or more of these problems exist:
     - The remote device is not transmitting.
     - The local receiver is not receiving recognizable data.
     - The local receiver is broken.
@@ -685,7 +692,7 @@ For additional explanation of the first two lines of each output, see the {{<lin
   - This value is *no* if the link is down. Check for a speed, autoneg or FEC configuration mismatch, then follow the steps in {{<link url="#isolate-faulty-hardware" text="Isolate Faulty Hardware">}}.
 - Rx Signal Detect:
   - If *Y*, then a signal is received from the neighbor.
-  - If *N*, then a signal is not received. Follow the steps in {{<link url="#isolate-faulty-hardware" text="Isolate Faulty Hardware">}} to determine the location of the failure.
+  - If *N*, then a signal was not received. Follow the steps in {{<link url="#isolate-faulty-hardware" text="Isolate Faulty Hardware">}} to determine the location of the failure.
   - If the port has multiple lanes, there is one character per lane.
 - RX Signal Lock:
   - If *Y*, then the local port receiver is locked onto the RX signal bit transitions (clock).
@@ -808,15 +815,15 @@ On Mellanox switches, counts of bit errors that are corrected by FEC on a link c
 
 Signal integrity issues are physical issues and some hardware component in the link usually must be replaced to fix the link. Follow the steps in {{<link url="#isolate-faulty-hardware" text="Isolate Faulty Hardware">}} to isolate and replace the failed hardware component.
 
-On rare occasions, if a module is not recognized correctly and is configured as the wrong type (active vs passive), it can cause a signal integrity issue.
+On rare occasions, if a module is not recognized correctly and is configured as the wrong type (active vs. passive), it can cause a signal integrity issue.
 
-See the discussions in {{<link url="#active-vs-passive" text="Active and Passive Modules and Cables">}}, {{<link url="#compliance-codes-ethernet-type-ethmode-type-interface-type" text="Compliance Codes, Ethernet Type, Ethmode Type, Interface Type">}} and {{<link url="#examine-module-info" text="Examine Module Info">}} for more details.
+See the discussions in {{<link url="#active-and-passive-modules-and-cables" text="Active and Passive Modules and Cables">}}, {{<link url="#compliance-codes-ethernet-type-ethmode-type-interface-type" text="Compliance Codes, Ethernet Type, Ethmode Type, Interface Type">}} and {{<link url="#examine-module-information" text="Examine Module Information">}} for more details.
 
 ## Troubleshoot MTU Size Mismatches
 
 Usually an MTU size mismatch is discovered when higher layer protocols like OSPF adjacencies fail or non-fragmentable packets are lost. Generally, an MTU settings mismatch does not affect link operational status.
 
-To troubleshoot a suspected MTU problem, use the *Configured State* section in the output of `l1-show <swp>`:
+To troubleshoot a suspected MTU problem, use the *Configured State* section in the output of `l1-show`:
 
 ```
 Configured State
@@ -837,7 +844,7 @@ An SFP module can have 3 different power classes:
 1. 1.5W
 1. 2.0W
 
-Cumulus Linux enables power class 2, 1.5W by default. All Cumulus Linux switches support 1.5W across all SFP ports simultaneously.
+Cumulus Linux enables power class 2 (1.5W) by default. All Cumulus Linux switches support 1.5W across all SFP ports simultaneously.
 
 A QSFP module can have 8 different power classes:
 
@@ -850,7 +857,7 @@ A QSFP module can have 8 different power classes:
 1. 5.0W
 1. 10.0W
 
-*Low power mode* is power class 1, 1.5W. This is the state during initial boot.  
+*Low power mode* is power class 1 (1.5W). This is the state during initial boot.  
 
 After hardware initialization, Cumulus Linux enables *normal power mode* on QSFP modules by default &mdash; power classes 2-4, 2.0W to 3.5W.
 
@@ -860,7 +867,7 @@ Some modules require *high power modes* for driving long distance lasers. Power 
 
 To determine if a switch support higher power modes, consult the {{<exlink url="https://cumulusnetworks.com/hcl" text="Cumulus Linux HCL">}} and the hardware manufacturer specifications for power limitations for a switch in question.
 
-Mellanox switches vary in their support of high power modules. For example, on some Mellanox Spectrum 1 switches, only the first and last 2 QSFP ports support up to QSFP power class 6 (4.5W) and only the first and last two SFP ports support SFP power class 3 (2.0W) modules. Other Spectrum 1 switches do not support high power ports at all. Consult the {{<exlink url="https://cumulusnetworks.com/hcl" text="Cumulus Linux HCL">}} and the hardware manufacturer specifications for exact details of which ports support high power modules.
+Mellanox switches vary in their support of high power modules. For example, on some Mellanox Spectrum 1 switches, only the first and last two QSFP ports support up to QSFP power class 6 (4.5W) and only the first and last two SFP ports support SFP power class 3 (2.0W) modules. Other Spectrum 1 switches do not support high power ports at all. Consult the {{<exlink url="https://cumulusnetworks.com/hcl" text="Cumulus Linux HCL">}} and the hardware manufacturer specifications for exact details of which ports support high power modules.
 
 Broadcom switches do not restrict power levels on a per-port basis; the power rating is done for the entire SFP or QSFP power bus.  
 
@@ -870,7 +877,7 @@ The total bus power rating is the default power rating per port type (SFP: 1.5W,
 
 On Broadcom switches, since not all modules pull the full power rating, it possible to insert one high power module in a fully populated switch without issue. If more high power modules are needed, then ports should be left empty to account for the extra power required by the high power module.
 
-To see the requested and enabled status for high power module, refer to the output of `sudo ethtool -m <swp>`. The following output is from a device of power class between 1-4 (1.5W to 3.5W). High power class is not requested by the module or enabled by the switch.
+To see the requested and enabled status for high power module, refer to the output of `sudo ethtool -m`. The following output is from a device of power class between 1-4 (1.5W to 3.5W). High power class is not requested by the module or enabled by the switch.
 
 ```
 cumulus@switch:mgmt:~# sudo ethtool -m swp53
@@ -945,4 +952,4 @@ If the switch is operational again due to one of the above methods, but the modu
 - Replace any module that has caused problems in the past.
 - Replace all modules in the switch.
 
-If needed, contact the NVIDIA Networking Global Support Organization for additional help.
+If needed, contact the {{<exlink url="https://cumulusnetworks.com/support/" text="NVIDIA Cumulus Global Support Services team">}} for additional help.

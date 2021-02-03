@@ -22,6 +22,12 @@ Fixed: 1.8.27-1+deb10u3</p></td>
 <td>4.2.1</td>
 </tr>
 <tr>
+<td>CM-32994</td>
+<td><p>On Broadcom switches, after repeated VLAN or VXLAN configuration changes, switchd memory might not free up appropriately, which can lead to a crash. </p></td>
+<td>3.7.14, 4.0.0-4.2.1</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-32860</td>
 <td><p>The following vulnerabilities were announced in the p11-kit (libp11-kit0) packages:<br/>
 CVE-2020-29361: Multiple integer overflows have been discovered in the array allocations in the p11-kit library and the p11-kit list command, where overflow checks are missing before calling realloc or calloc.<br/>

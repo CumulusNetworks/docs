@@ -24,13 +24,13 @@ Cumulus Linux 4.3.0 provides bug fixes, and contains several new features and en
 - QoS enhancements:
   - {{<link url="Buffer-and-Queue-Management#traffic-shaping" text="Traffic shaping">}}
   - {{<link url="Buffer-and-Queue-Management#scheduling-weights-per-egress-queue" text="Scheduling weights per egress queue">}}
-- {{<link title="Mellanox What Just Happened (WJH)" text="Mellanox WJH commands">}} to troubleshoot and diagnose network issues
-- {{<link url="Docker-on-Cumulus-Linux" text="Docker runtime ">}} included by default on Cumulus Linux
+- {{<link title="Mellanox What Just Happened (WJH)" text="Mellanox WJH commands">}} enable you to troubleshoot and diagnose network issues
+- {{<link url="Docker-on-Cumulus-Linux" text="Docker runtime ">}} is included by default with Cumulus Linux
 - {{<link url="SPAN-and-ERSPAN" text="NCLU commands for SPAN and ERSPAN">}}
-- {{<link url="RDMA-over-Converged-Ethernet-RoCE" text="DoRoCE command">}} to configure RoCE with PFC and ECN on all interfaces
-- {{<link url="Netfilter-ACLs/#nonatomic-update-mode-and-atomic-update-mode" text="Incremental nonatomic updates">}} supported on Mellanox switches
-- {{<link url="Supported-MIBs" text="SNMP MIB for BGP unnumbered peers">}}
-- Multicast routing over VXLAN is supported on Mellanox switches
+- {{<link url="RDMA-over-Converged-Ethernet-RoCE" text="DoRoCE command">}} enables you to configure RoCE with PFC and ECN on all interfaces
+- {{<link url="Netfilter-ACLs/#nonatomic-update-mode-and-atomic-update-mode" text="Incremental nonatomic updates">}} are now supported on Mellanox switches
+- New {{<link url="Supported-MIBs" text="SNMP MIB for BGP unnumbered peers">}}
+- Multicast routing over VXLAN is now supported on Mellanox switches
 
 ### Unsupported Platforms
 

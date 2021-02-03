@@ -119,7 +119,7 @@ In the latter two cases, the large Snapshot card opens. The only difference is i
 
 {{<figure src="/images/netq/snapshot-large-compare-titles-230.png" width="200">}}
 
-{{<figure src="/images/netq/snapshot-large-compare-from-modal-300.png" width="500">}}
+{{<figure src="/images/netq/snapshot-large-compare-from-modal-oldernewer-330.png" width="500">}}
 
 Scroll down to view all element comparisons.
 
@@ -127,17 +127,21 @@ Scroll down to view all element comparisons.
 
 For each network element that is compared, count values and changes are shown:
 
-{{<figure src="/images/netq/snapshot-large-compare-data-interpretation-300.png" width="300">}}
+{{<figure src="/images/netq/snapshot-large-compare-data-interpretation-330.png" width="400">}}
 
-In this example, a change was made to the VLAN. The snapshot taken before the change (17Apr2020) had a total count of 765 neighbors. The snapshot taken after the change (20Apr2020) had a total count of 771 neighbors. Between the two totals you can see the number of neighbors added and removed from one time to the next, resulting in six new neighbors after the change.
-
-{{<notice note>}}
-The red and green coloring indicates only that items were removed (red) or added (green). The coloring does not indicate whether the removal or addition of these items is bad or good.
-{{</notice>}}
+In this example, there are changes to the MAC addresses and neighbors. The snapshot taken before the change (19JanGold) had a total count of 316 MAC addresses and 873 neighbors. The snapshot taken after the changes (Now) has a total count of 320 MAC addresses and 891 neighbors. Between the two totals you can see the number of neighbors added, updated, and removed from one time to the next. This shows four MAC addresses have been added, 9 MAC addresses have been updated, and 18 neighbors have been added.
 
 {{<notice tip>}}
-From this card, you can also change which snapshots to compare. Select an alternate snapshot from one of the two snapshot dropdowns and then click <strong>Compare</strong>.
+The coloring does not indicate whether the additional, removal, or update of items is bad or good. It only indicates that a change has occurred.
 {{</notice>}}
+
+Be aware that depending on the display order of the snapshots determines what is considered added or removed. Compare these two views of the same data.
+
+{{<figure src="/images/netq/snapshot-large-compare-from-modal-oldernewer-330.png" width="500" caption="More recent snapshot on right">}}
+
+{{<figure src="/images/netq/snapshot-large-compare-from-modal-newerolder-330.png" width="500" caption="More recent snapshot on left">}}
+
+You can also change which snapshots to compare. Select an alternate snapshot from one or both of the two snapshot dropdowns and then click **Compare**.
 
 #### View Change Details
 
@@ -145,11 +149,11 @@ You can view additional details about the changes that have occurred between the
 
 From this card you can:
 
-- View changes for each of the elements that had added and/or removed items, and various information about each; only elements with changes are presented
+- View changes for each of the elements that had added, updated, and removed items, and various information about each; only elements with changes are presented
 - Filter the added and removed items by clicking {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/15-Filter/filter-1.svg" height="18" width="18">}}
 - Export all differences in JSON file format by clicking {{<img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/08-Upload-Download/upload-bottom.svg" height="18" width="18">}}
 
-{{<figure src="/images/netq/snapshot-fullscr-change-details-300.png" width="700">}}
+{{<figure src="/images/netq/snapshot-fullscr-change-details-330.png" width="700">}}
 
 The following table describes the information provided for each element type when changes are present:
 
@@ -183,7 +187,7 @@ To view an existing snapshot:
 
 4. Click one or more snapshots you want to view, then click **Finish**.
 
-    Click **Back** or **Choose Action** to cancel viewing of your selected snapshot(s).
+    Click **Choose Action** to cancel viewing of your selected snapshot(s) and choose another action. Or close the network snapshot dialog by clicking {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14">}}.
 
 To remove an existing snapshot:
 
@@ -195,4 +199,4 @@ To remove an existing snapshot:
 
 4. Click one or more snapshots you want to remove, then click **Finish**.
 
-    Click **Back** or **Choose Action** to cancel the deletion of your selected snapshot(s).
+    Click **Choose Action** to cancel the deletion of your selected snapshot(s) and choose another action. Or close the network snapshot dialog by clicking {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14">}}.

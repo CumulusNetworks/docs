@@ -239,7 +239,7 @@ A simple process installs the NetQ CLI on an Ubuntu server.
     root@ubuntu:~# dpkg-query -W -f '${Package}\t${Version}\n' netq-apps
     ```
 
-    {{<netq-install/cli-version version="3.2.1" opsys="ub">}}
+    {{<netq-install/cli-version version="3.3.0" opsys="ub">}}
 
 3. Continue with NetQ CLI configuration in the next section.
 

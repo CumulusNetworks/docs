@@ -3,6 +3,7 @@ title: SDK Access from Docker Containers
 author: Cumulus Networks
 weight: 320
 toc: 4
+draft: true
 ---
 Because Cumulus Linux is Linux, you can install and run containers on the system with full access to popular container management ecosystems. As long as system memory, storage, and CPU capacities are proportional to the application needs, there are no limitations. To protect the primary functions of the system (such as network control and dataplane) from resource contention with other applications, you can define resource caps.
 

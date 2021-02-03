@@ -129,7 +129,7 @@ The CUE monitoring commands show various parts of the network configuration. For
 | `cl show vrf [options] [<vrf-id> ...]` | Shows VRF information.|
 | `cl show nve [options] [<attribute> ...]` | Shows network virtualization information, such as VXLAN-specfic MLAG configuration and VXLAN flooding.|
 
-## Revision Options
+### Revision Options
 
 | Option | Description |
 | ------ | ----------- |

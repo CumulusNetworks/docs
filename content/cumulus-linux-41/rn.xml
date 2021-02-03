@@ -28,6 +28,12 @@ Fixed: 1.8.27-1+deb10u3</p></td>
 <td>4.2.1</td>
 </tr>
 <tr>
+<td>CM-32994</td>
+<td><p>On Broadcom switches, after repeated VLAN or VXLAN configuration changes, switchd memory might not free up appropriately, which can lead to a crash. </p></td>
+<td>3.7.14, 4.0.0-4.2.1</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-32860</td>
 <td><p>The following vulnerabilities were announced in the p11-kit (libp11-kit0) packages:<br/>
 CVE-2020-29361: Multiple integer overflows have been discovered in the array allocations in the p11-kit library and the p11-kit list command, where overflow checks are missing before calling realloc or calloc.<br/>
@@ -988,6 +994,16 @@ asic-monitor[7389]: File "/usr/lib/python2.7/dist-packages/cumulus/asic_monitor.
 </td>
 <td>3.7.11-3.7.13, 4.1.1-4.2.0</td>
 <td>3.7.14-4.1.0, 4.2.1</td>
+</tr>
+<tr>
+<td>CM-29520</td>
+<td><p>On Mellanox switches, when the networking service and switchd starts up, a rare condition might occur where switchd crashes and the following log message is generated:</p>
+
+<code>CRIT backend/mlx/hal_mlx_nexthop.c:294: hal_mlx_ecmp_data_reinit: Assertion &apos;(num_next_hops)' failed.</code>
+
+</td>
+<td>4.1.0-4.2.1</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-29519</td>
@@ -2532,6 +2548,12 @@ Fixed: 1.8.27-1+deb10u3</p></td>
 <td>4.2.1</td>
 </tr>
 <tr>
+<td>CM-32994</td>
+<td><p>On Broadcom switches, after repeated VLAN or VXLAN configuration changes, switchd memory might not free up appropriately, which can lead to a crash. </p></td>
+<td>3.7.14, 4.0.0-4.2.1</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-32860</td>
 <td><p>The following vulnerabilities were announced in the p11-kit (libp11-kit0) packages:<br/>
 CVE-2020-29361: Multiple integer overflows have been discovered in the array allocations in the p11-kit library and the p11-kit list command, where overflow checks are missing before calling realloc or calloc.<br/>
@@ -3309,6 +3331,16 @@ cumulus@switch:~$ sudo ifup vni10100
 
 <p>If you flap the link with the ip link set vni10100 down; ip link set vni10100 up commands, zebra does not re-add the VNI.</p></td>
 <td>3.7.12-3.7.14, 4.0.0-4.2.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29520</td>
+<td><p>On Mellanox switches, when the networking service and switchd starts up, a rare condition might occur where switchd crashes and the following log message is generated:</p>
+
+<code>CRIT backend/mlx/hal_mlx_nexthop.c:294: hal_mlx_ecmp_data_reinit: Assertion &apos;(num_next_hops)' failed.</code>
+
+</td>
+<td>4.1.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>

@@ -121,7 +121,7 @@ The `cl set` and `cl unset` commands are grouped into the following categories. 
 | <div style="width:450px">Command | Description |
 | ------- | ----------- |
 | `cl set router [options] [<attribute> ...]`<br>`cl unset router [options] [<attribute> ...]` | Configures global BGP options and router policies, such as prefix list rules and route maps. |
-| `cl set platform [options] [<attribute> ...]`<br>`cl unsetset platform [options] [<attribute> ...]` | Configures hostname options, such as the static hostname for the switch, the local domain, and whether DHCP is allowed to overrride the hostname. This command also specifies how configuration apply operations are performed; for example, you can specify which files to ignore and which files to overwrite. |
+| `cl set platform [options] [<attribute> ...]`<br>`cl unset platform [options] [<attribute> ...]` | Configures hostname options, such as the static hostname for the switch, the local domain, and whether DHCP is allowed to overrride the hostname. This command also specifies how configuration apply operations are performed; for example, you can specify which files to ignore and which files to overwrite. |
 | `cl set bridge [options] [<attribute> ...]`<br>`cl unset bridge [options] [<attribute> ...]` | Configures a bridge domain. |
 | `cl set mlag [options] [<attribute> ...]`<br>`cl unset mlag [options] [<attribute> ...]` | Configures MLAG. |
 | `cl set evpn [options] [<attribute> ...]`<br>`cl unset evpn [options] [<attribute> ...]` | Configures EVPN. |
@@ -173,9 +173,29 @@ The CUE Revision options enable ADD USE CASES HERE
 
 NEED A SECTION DESCIBING THE USE CASES FOR REVISIONS AND CONFIG MANAGEMENT COMMANDS. THIS IS TRICKY SO NEED TO PROVIDE EXAMPLES
 
-## How is CUE Different from NCLU
+## List all CUE Commands
 
-DESCRIBE THE MAIN DIFFERENCES THAT MIGHT TRIP YOU UP
+To see the full list of CUE commands, run `cl list-commands`. For example:
+
+```
+cumulus@switch:~$ cl list-commands
+...
+cl show interface <interface-id> link lldp neighbor
+cl show interface <interface-id> link lldp neighbor <neighbor-id>
+cl show interface <interface-id> link lldp neighbor <neighbor-id> bridge
+cl show interface <interface-id> link lldp neighbor <neighbor-id> bridge vlan
+cl show interface <interface-id> link lldp neighbor <neighbor-id> bridge vlan <vid>
+cl show interface <interface-id> link stats
+cl show system
+cl show system global
+cl show system ntp
+cl show system ntp server
+cl show system ntp server <server-id>
+cl show system ntp pool
+cl show system ntp pool <server-id>
+cl show system dhcp-server
+...
+```
 
 ## Example CUE Commands
 
@@ -266,3 +286,7 @@ cumulus@leaf01:~$ cl set vrf default router bgp peer swp51 remote-as external
 cumulus@leaf01:~$ cl set vrf default router bgp address-family ipv4-unicast static-network 10.10.10.1/32
 cumulus@leaf01:~$ cl config apply
 ```
+
+## How is CUE Different from NCLU
+
+DESCRIBE THE MAIN DIFFERENCES THAT MIGHT TRIP YOU UP

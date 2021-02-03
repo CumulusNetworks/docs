@@ -16,13 +16,30 @@ The CUE object model is structured as a *big tree* that represents the entire st
 
 CUE is not installed by default on Cumulus Linux. To install CUE, follow the procedure below.
 
-{{%notice note%}}
-
-ADD LIMITATIONS ETC HERE
-
+{{%notice info%}}
+Installing CUE disables NCLU; you will no longer have access to the NCLU CLI. 
 {{%/notice%}}
 
-INSTALLATION INTRUCTIONS
+1. Stop then disable the `netd` service:
+
+   ```
+   cumulus@switch:~$ systemctl stop netd
+   cumulus@switch:~$ systemctl disable netd
+   ```
+
+3. Update the local cache listing of available packages, then install the CUE package:
+
+   ```
+   cumulus@switch:~$ sudo -E apt-get update
+   cumulus@switch:~$ sudo -E apt-get install python3-cue
+   ```
+
+4. Enable then start the CUE service:
+
+   ```
+   cumulus@switch:~$ systemctl enable cued
+   cumulus@switch:~$ systemctl start cued
+   ```
 
 ## Command Line Basics
 

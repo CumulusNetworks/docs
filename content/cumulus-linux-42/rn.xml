@@ -7,6 +7,20 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-33196</td>
+<td><p>If you use NCLU to configure an ACL for eth0, you can't designate it as an INPUT rule; the rule is automatically created as a FORWARD rule in the /etc/cumulus/acl/policy.d/50_nclu_acl.rules file.<br/>
+To work around this issue, manually create an ACL in the /etc/cumulus/acl/policy.d/ file with "-A INPUT -i eth0".</p></td>
+<td>4.2.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33185</td>
+<td><p>In vtysh you can enable and disable debugs from either exec mode or global configuration mode (config t). When disabling OSPF debugs from exec mode, the debug is disabled at runtime but left in the running-configuration.<br/>
+To work around this issue, disable OSPF debugs from global configuration mode (config t).</p></td>
+<td>4.2.1</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-33160</td>
 <td><p>CVE-2021-3156: A serious heap-based buffer overflow has been discovered in sudo that is exploitable by any local user. It has been given the name Baron Samedit by its discoverer. The bug can be leveraged to elevate privileges to root, even if the user is not listed in the sudoers file. User authentication is not required to exploit the bug.<br/>
 Vulnerable: &lt;= 1.8.27-1+deb10u2<br/>
@@ -17,6 +31,12 @@ Fixed: 1.8.27-1+deb10u3</p></td>
 <tr>
 <td>CM-33115</td>
 <td><p>When you run any of the vtysh show bgp ipv4 or show bgp ipv6 statistics commands, the bgpd service crashes.</p></td>
+<td>4.2.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33112</td>
+<td><p>The MTU size configured under a layer 2 VNI interface is not applied for VXLAN traffic.</p></td>
 <td>4.2.1</td>
 <td></td>
 </tr>
@@ -47,6 +67,12 @@ ERROR: Command not found
 <td>CM-33032</td>
 <td><p>On Edgecore AS4610 switches, the historic CPU usage displayed in /run/sysmonitor/history is sometimes shown as a negative value. </p></td>
 <td>3.7.12-3.7.14, 4.2.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32994</td>
+<td><p>On Broadcom switches, after repeated VLAN or VXLAN configuration changes, switchd memory might not free up appropriately, which can lead to a crash. </p></td>
+<td>3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
@@ -768,6 +794,12 @@ To work around this issue, delete the community list sequence before trying to a
 <td>3.7.14</td>
 </tr>
 <tr>
+<td>CM-30485</td>
+<td><p>When you run cl-ecmpcalc to determine a hardware hash result, tests might fail.</p></td>
+<td>4.2.0-4.2.1</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-30473</td>
 <td><p>If you modify an interface name, then reuse the previous interface name for a different VLAN, the ifreload -a command generates an error similar to the following:</p>
 
@@ -1013,6 +1045,16 @@ cumulus@switch:~$ sudo ifup vni10100
 
 <p>If you flap the link with the ip link set vni10100 down; ip link set vni10100 up commands, zebra does not re-add the VNI.</p></td>
 <td>3.7.12-3.7.14, 4.0.0-4.2.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29520</td>
+<td><p>On Mellanox switches, when the networking service and switchd starts up, a rare condition might occur where switchd crashes and the following log message is generated:</p>
+
+<code>CRIT backend/mlx/hal_mlx_nexthop.c:294: hal_mlx_ecmp_data_reinit: Assertion &apos;(num_next_hops)' failed.</code>
+
+</td>
+<td>4.1.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1988,10 +2030,10 @@ Fixed: 3.1+dfsg-8+deb10u8</p></td>
 </tr>
 <tr>
 <td>CM-31356</td>
-<td><p>On the Mellanox switch with the Spectrum-3 ASIC, Cumulus Linux supports certain port speeds in NRZ mode and certain port speeds in PAM4 mode. Make sure to use the optics accordingly.</p>
+<td><p>On the Mellanox SN4700 switch, certain port speeds operate in both NRZ and PAM4 mode. However, Cumulus Linux currently supports only one of the two possible modes listed below. Use the optics accordingly.</p>
 <ul>
-	<li>Port speeds 50G, 2x50G, 100G work in NRZ mode.</li>
-	<li>Port speeds 4x50G, 8x50G, 2x100G, 4x100G, 200G, 2x200G, 400G work in PAM4 mode.</li>
+	<li>Port speeds 40G, 2x40G, 50G, 2x50G, 100G,  2x100G  work in NRZ mode.</li>
+	<li>Port speeds 4x50G, 8x50G, 4x100G, 200G, 2x200G, 400G work in PAM4 mode.</li>
 </ul>
 </td>
 <td></td>
@@ -2291,6 +2333,12 @@ Fixed: 1.8.27-1+deb10u3</p></td>
 </td>
 <td>3.7.9-4.2.0</td>
 <td>4.2.1</td>
+</tr>
+<tr>
+<td>CM-32994</td>
+<td><p>On Broadcom switches, after repeated VLAN or VXLAN configuration changes, switchd memory might not free up appropriately, which can lead to a crash. </p></td>
+<td>3.7.14, 4.0.0-4.2.1</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-32860</td>
@@ -2965,6 +3013,12 @@ To work around this issue, manually delete the dynamic FDB entry that is associa
 <td>3.7.14-4.1.0, 4.2.1</td>
 </tr>
 <tr>
+<td>CM-30485</td>
+<td><p>When you run cl-ecmpcalc to determine a hardware hash result, tests might fail.</p></td>
+<td>4.2.0-4.2.1</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-30484</td>
 <td><p>Multiple vulnerabilities have been discovered in the Xen hypervisor, which might result in denial of service, guest-to-host privilege escalation, or information leaks.<br/>
 The CVE IDs are CVE-2020-11739, CVE-2020-11740, CVE-2020-11741, CVE-2020-11742, CVE-2020-11743, CVE-2020-15563, CVE-2020-15564, CVE-2020-15565, CVE-2020-15566, CVE-2020-15567.<br/>
@@ -3312,6 +3366,16 @@ asic-monitor[7389]: File "/usr/lib/python2.7/dist-packages/cumulus/asic_monitor.
 </td>
 <td>3.7.11-3.7.13, 4.1.1-4.2.0</td>
 <td>3.7.14-4.1.0, 4.2.1</td>
+</tr>
+<tr>
+<td>CM-29520</td>
+<td><p>On Mellanox switches, when the networking service and switchd starts up, a rare condition might occur where switchd crashes and the following log message is generated:</p>
+
+<code>CRIT backend/mlx/hal_mlx_nexthop.c:294: hal_mlx_ecmp_data_reinit: Assertion &apos;(num_next_hops)' failed.</code>
+
+</td>
+<td>4.1.0-4.2.1</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-29519</td>

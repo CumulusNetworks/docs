@@ -28,9 +28,9 @@ Cumulus Linux 4.3.0 provides bug fixes, and contains several new features and en
 - {{<link url="Docker-on-Cumulus-Linux" text="Docker runtime ">}} is included by default with Cumulus Linux
 - {{<link url="SPAN-and-ERSPAN" text="NCLU commands for SPAN and ERSPAN">}}
 - {{<link url="RDMA-over-Converged-Ethernet-RoCE" text="DoRoCE command">}} enables you to configure RoCE with PFC and ECN on all interfaces
-- {{<link url="Netfilter-ACLs/#nonatomic-update-mode-and-atomic-update-mode" text="Incremental nonatomic updates">}} are now supported on Mellanox switches
+- {{<link url="Netfilter-ACLs/#nonatomic-update-mode-and-atomic-update-mode" text="Incremental nonatomic updates">}} are now supported on NVIDIA Mellanox switches
 - New {{<link url="Supported-MIBs" text="SNMP MIB for BGP unnumbered peers">}}
-- Multicast routing over VXLAN is now supported on Mellanox switches
+- Multicast routing over VXLAN is now supported on NVIDIA Mellanox switches
 
 ### Unsupported Platforms
 

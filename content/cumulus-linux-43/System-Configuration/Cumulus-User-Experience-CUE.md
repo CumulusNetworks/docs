@@ -17,7 +17,7 @@ The CUE object model is structured as a *big tree* that represents the entire st
 CUE is not installed by default on Cumulus Linux. To install CUE, follow the procedure below.
 
 {{%notice info%}}
-Installing CUE disables NCLU; you will no longer have access to the NCLU CLI. 
+Installing CUE disables NCLU; after installation you will no longer have access to the NCLU CLI.
 {{%/notice%}}
 
 1. Stop then disable the `netd` service:
@@ -58,7 +58,7 @@ cumulus@switch:~$ cl config <command> [options]
 
 `[options]` are revision options, which let you specify where to apply the configuration. The revision options are optional. If you do not specify a revision option, the command is applied to the running configuration. See {{<link url="#revision-options" text="Revision Options">}} below.
 
-`<attributes>` specify a subcommand or the configuration setting. For example, `cl set router bgp graceful-restart mode [options] (full|helper-only|off)`.
+`<attributes>` specify configuration settings.
 
 To see the full list of CUE commands, run `cl list-commands`.
 
@@ -146,16 +146,6 @@ The CUE monitoring commands show various parts of the network configuration. For
 | `cl show vrf [options] [<vrf-id> ...]` | Shows VRF information.|
 | `cl show nve [options] [<attribute> ...]` | Shows network virtualization information, such as VXLAN-specfic MLAG configuration and VXLAN flooding.|
 
-### Revision Options
-
-| Option | Description |
-| ------ | ----------- |
-| `--rev <revision>` |  Applies the set or unset command to the revision ID you specify. |
-|  `--pending`       |  Applies the set or unset command to one or more configurations that are awaiting to be applied.|
-|  `--applied`       |  Applies the set or unset command to the applied revision. |
-|  `--startup`       |  Applies the set or unset command to the startup revision. The new configuration will run when you restart the switch. |
-|  `--running`       |  Applies the set or unset command to the running revision (the actual system state).  |
-
 ### Configuration Management Commands
 
 The CUE configuration management commands manage and apply configurations.
@@ -168,6 +158,20 @@ The CUE configuration management commands manage and apply configurations.
 | `cl config detach [options]` | Detaches the configuration from the current pending revision. |
 | `cl config diff [options] [(<revision>|--empty)] [<revision>]` | Shows differences between two configuration revisions. |
 | `cl config patch [options] <cue-file>` | Updates the pending revision with a configuration YAML file. |
+
+## Revision Options
+
+The CUE Revision options enable ADD USE CASES HERE
+
+| Option | Description |
+| ------ | ----------- |
+| `--rev <revision>` |  Applies the set or unset command to the revision ID you specify. |
+|  `--pending`       |  Applies the set or unset command to one or more configurations that are awaiting to be applied.|
+|  `--applied`       |  Applies the set or unset command to the applied revision. |
+|  `--startup`       |  Applies the set or unset command to the startup revision. The new configuration will run when you restart the switch. |
+|  `--running`       |  Applies the set or unset command to the running revision (the actual system state).  |
+
+NEED A SECTION DESCIBING THE USE CASES FOR REVISIONS AND CONFIG MANAGEMENT COMMANDS. THIS IS TRICKY SO NEED TO PROVIDE EXAMPLES
 
 ## How is CUE Different from NCLU
 

@@ -1,6 +1,6 @@
 ---
 title: SSH for Remote Access
-author: Cumulus Networks
+author: NVIDIA
 weight: 140
 toc: 4
 ---
@@ -70,7 +70,7 @@ To configure a completely passwordless system, do not enter a passphrase when pr
     Welcome to Cumulus VX (TM)
 
     Cumulus VX (TM) is a community supported virtual appliance designed for
-    experiencing, testing and prototyping Cumulus Networks' latest technology.
+    experiencing, testing and prototyping the latest technology.
     For any questions or technical support, visit our community site at:
     http://community.cumulusnetworks.com
 

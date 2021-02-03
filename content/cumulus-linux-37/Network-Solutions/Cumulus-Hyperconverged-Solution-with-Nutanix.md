@@ -1,6 +1,6 @@
 ---
 title: Cumulus Hyperconverged Solution with Nutanix
-author: Cumulus Networks
+author: NVIDIA
 weight: 261
 pageID: 9012165
 ---
@@ -50,7 +50,7 @@ Cumulus HCS has two major components:
 
 ## Prerequisites
 
-  - 2 {{<exlink url="https://cumulusnetworks.com/hcl" text="Cumulus Networks-compatible switches">}} running Cumulus Linux
+  - 2 {{<exlink url="https://cumulusnetworks.com/hcl" text="compatible switches">}} running Cumulus Linux
     3.7.3 or later
   - Nutanix AOS 5.5.8 or later
   - Nutanix AHV 20170830.185 or later
@@ -144,7 +144,7 @@ If Cumulus Linux is already installed on your switches, follow the steps
 below to configure Cumulus Linux, Nutanix and Cumulus HCS.
 
 1.  Configure MLAG on both the leaf01 and leaf02 nodes. The `sys-mac` is
-    a MAC address from the Cumulus Networks reserved MAC address space
+    a MAC address from the reserved MAC address space
     and must be the same on both MLAG peers. If you are deploying more
     than one pair of switches with MLAG, the `sys-mac` must be unique
     for each pair of MLAG-configured switches.
@@ -352,7 +352,7 @@ is *10.1.1.11/24*; on leaf02, it is *10.1.1.12/24*.
 The second line defines the virtual IP address that is used as the
 default gateway address for any hosts in this VLAN. On both leaf01 and
 leaf02 this IP address is *10.1.1.1/24*. The address-virtual MAC address
-is assigned from a reserved pool of Cumulus Networks MAC addresses. The
+is assigned from a reserved pool of MAC addresses. The
 address must start with 00:00:05:00:01: and end with any hex value
 between 00 and ff. Both leaf01 and leaf02 must have the same MAC
 address. Outside of this switch pair, this MAC address must be unique
@@ -496,4 +496,4 @@ details of the Nutanix node and verify the `SysDescr` field.
 
 ## More Information
 
-- {{<exlink url="https://cumulusnetworks.com/networking-solutions/converged-infrastructure/" text="Hyperconverged infrastructure site">}} on the Cumulus Networks website
+- {{<exlink url="https://cumulusnetworks.com/networking-solutions/converged-infrastructure/" text="Hyperconverged infrastructure site">}}

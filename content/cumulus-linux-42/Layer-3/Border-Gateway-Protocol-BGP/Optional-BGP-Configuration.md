@@ -1,6 +1,6 @@
 ---
 title: Optional BGP Configuration
-author: Cumulus Networks
+author: NVIDIA
 weight: 860
 toc: 3
 ---
@@ -161,7 +161,7 @@ leaf01# configure terminal
 leaf01(config)# router bgp 65101
 leaf01(config-router)# neighbor 10.10.10.101 remote-as external
 leaf01(config-router)# neighbor 10.10.10.101 ebgp-multihop
-leaf01(config)# exit
+leaf01(config-router)# end
 leaf01# write memory
 leaf01# exit
 cumulus@leaf01:~$
@@ -222,7 +222,7 @@ router bgp 65101
 {{%notice note%}}
 
 - When you configure `ttl-security hops` on a peer group instead of a specific neighbor, FRR does not add it to either the running configuration or to the `/etc/frr/frr.conf` file. To work around this issue, add `ttl-security hops` to individual neighbors instead of the peer group.
-- Enabling `ttl-security hops` does not program the hardware with relevant information. Frames are forwarded to the CPU and are dropped. Cumulus Networks recommends that you use the `net add acl` command to explicitly add the relevant entry to hardware. For more information about ACLs, see {{<link title="Netfilter - ACLs">}}.
+- Enabling `ttl-security hops` does not program the hardware with relevant information. Frames are forwarded to the CPU and are dropped. Use the `net add acl` command to explicitly add the relevant entry to hardware. For more information about ACLs, see {{<link title="Netfilter - ACLs">}}.
 
 {{%/notice%}}
 
@@ -276,8 +276,7 @@ cumulus@leaf01:~$ sudo vtysh
 leaf01# configure terminal
 leaf01(config)# router bgp 65101
 leaf01(config-router)# neighbor swp51 password mypassword
-leaf01(config-router)# exit
-leaf01(config)# exit
+leaf01(config-router)# end
 leaf01# write memory
 leaf01# exit
 cumulus@leaf01:~$
@@ -563,7 +562,6 @@ switch(config-router)# neighbor 2001:db8:0002::0a00:0002 capability extended-nex
 switch(config-router)# address-family ipv4 unicast
 switch(config-router-af)# neighbor 2001:db8:0002::0a00:0002 activate
 switch(config-router-af)# end
-switch(config)# exit
 switch# write memory
 switch# exit
 cumulus@switch:~$
@@ -712,7 +710,10 @@ cumulus@leaf01:~$ sudo vtysh
 leaf01# configure terminal
 leaf01(config)# router bgp 65101
 leaf01(config-router)# neighbor swp50 addpath-tx-bestpath-per-AS
-leaf01(config-router)#
+leaf01(config-router)# end
+leaf01# write memory
+leaf01# exit
+cumulus@leaf01:~$ 
 ```
 
 {{< /tab >}}
@@ -742,7 +743,10 @@ cumulus@leaf01:~$ sudo vtysh
 leaf01# configure terminal
 leaf01(config)# router bgp 65101
 leaf01(config-router)# neighbor swp50 addpath-tx-all-paths
-leaf01(config-router)#
+leaf01(config-router)# end
+leaf01# write memory
+leaf01# exit
+cumulus@leaf01:~$ 
 ```
 
 {{< /tab >}}
@@ -934,13 +938,13 @@ cumulus@spine01:~$ net commit
 ```
 cumulus@spine01:~$ sudo vtysh
 
-switch# configure terminal
-switch(config)# router bgp 65199
-switch(config-router)# address-family ipv4
-switch(config-router-af)# neighbor swp1 route-reflector-client
-switch(config-router-af)# end
-switch# write memory
-switch# exit
+spine01# configure terminal
+spine01(config)# router bgp 65199
+spine01(config-router)# address-family ipv4
+spine01(config-router-af)# neighbor swp1 route-reflector-client
+spine01(config-router-af)# end
+spine01# write memory
+spine01# exit
 cumulus@spine01:~$
 ```
 
@@ -965,6 +969,40 @@ router bgp 65199
 {{%notice info%}}
 When configuring BGP for IPv6, you must run the `route-reflector-client` command **after** the `activate` command; otherwise, the `route-reflector-client` command is ignored.
 {{%/notice%}}
+
+## Administrative Distance
+
+Cumulus Linux uses the administrative distance to choose which routing protocol to use when two different protocols provide route information for the same destination. The smaller the distance, the more reliable the protocol. For example, if the switch receives a route from OSPF with an administrative distance of 110 and the same route from BGP with an administrative distance of 100, the switch chooses BGP.
+
+Set the administrative distance with vtysh commands.
+
+The following example commands set the administrative distance for routes from 10.10.10.101 to 100:
+
+```
+cumulus@spine01:~$ sudo vtysh
+
+spine01# configure terminal
+spine01(config)# router bgp 65101
+spine01(config-router)# distance 100 10.10.10.101/32
+spine01(config-router)# end
+spine01# write memory
+spine01# exit
+cumulus@spine01:~$
+```
+
+The following example commands set the administrative distance for routes external to the AS to 150, routes internal to the AS to 110, and local routes to 100:
+
+```
+cumulus@spine01:~$ sudo vtysh
+
+spine01# configure terminal
+spine01(config)# router bgp 65101
+spine01(config-router)# distance bgp 150 110 100
+spine01(config-router)# end
+spine01# write memory
+spine01# exit
+cumulus@spine01:~$
+```
 
 ## Graceful BGP Shutdown
 
@@ -1005,7 +1043,7 @@ leaf01(config-router)# bgp graceful-shutdown
 leaf01(config-router)# end
 leaf01# write memory
 leaf01# exit
-cumulus@v:~$
+cumulus@leaf01:~$
 ```
 
 To disable graceful shutdown:
@@ -1103,89 +1141,6 @@ cumulus@switch:~$
 
 To show information about the state of the update delay, run the NCLU command `net show bgp summary` or the `vtysh` command `show ip bgp summary`.
 
-## Route Maps for Route Updates
-
-You can apply {{<exlink url="http://docs.frrouting.org/en/latest/routemap.html" text="route maps">}} in BGP in one of two ways:
-
-- Filter routes from BGP into Zebra
-- Filter routes from Zebra into the Linux kernel
-
-{{%notice info%}}
-In NCLU, you can only set the community number in a route map. You cannot set other community options such as `no-export`, `no-advertise`, or `additive`. This is a known limitation in `network-docopt`, which NCLU uses to parse commands.
-{{%/notice%}}
-
-### Filter Routes from BGP into Zebra
-
-You can apply a route map on route updates from BGP to Zebra. All the applicable match operations are allowed, such as match on prefix, next hop, communities, and so on. Set operations are limited to metric and next hop only. Applying a route map on route updates from BGP to Zebra does not affect the BGP internal RIB.
-
-Both IPv4 and IPv6 address families are supported. Route maps work on multi-paths; however, the metric setting is based on the best path only.
-
-The following example command applies a route map called routemap1 to filter route updates from BGP into Zebra:
-
-{{< tabs "50 ">}}
-
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@switch:~$ net add bgp table-map routemap1
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-{{< /tab >}}
-
-{{< tab "vtysh Commands ">}}
-
-```
-cumulus@switch:~$ sudo vtysh
-
-switch# configure terminal
-switch(config)# router bgp
-switch(config-router)# table-map routemap1
-switch(config-router)# end
-switch# write memory
-switch# switch
-cumulus@switch:~$
-```
-
-{{< /tab >}}
-
-{{< /tabs >}}
-
-### Filter Routes from Zebra into the Linux Kernel
-
-The following example commands apply a route map called routemap1 to filter route updates from Zebra into the Linux kernel:
-
-{{< tabs "52 ">}}
-
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@switch:~$ net add routing protocol bgp route-map routemap1
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-{{< /tab >}}
-
-{{< tab "vtysh Commands ">}}
-
-```
-cumulus@switch:~$ sudo vtysh
-
-switch# configure terminal
-switch(config)# router bgp
-switch(config-router)# bgp route-map routemap1
-switch(config-router)# end
-switch# write memory
-switch# switch
-cumulus@switch:~$
-```
-
-{{< /tab >}}
-
-{{< /tabs >}}
-
 ## BGP Community Lists
 
 You can use *{{<exlink url="http://docs.frrouting.org/en/latest/bgp.html#community-lists" text="community lists">}}* to define a BGP community to tag one or more routes. You can then use the communities to apply a route policy on either egress or ingress.
@@ -1209,7 +1164,8 @@ Here is an example of a standard community list filter:
 
 ```
 cumulus@switch:~$ net add routing community-list standard COMMUNITY1 permit 100:100
-
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}

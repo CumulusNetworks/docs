@@ -1,6 +1,6 @@
 ---
 title: Configuration Examples
-author: Cumulus Networks
+author: NVIDIA
 weight: 595
 toc: 4
 ---
@@ -14,7 +14,7 @@ The configuration examples are based on the reference topology below:
 
 {{< img src = "/images/cumulus-linux/reference-topology-full.png" >}}
 
-<!-- You can see these configurations in action and explore further by selecting one of the demos in {{<exlink url="https://cumulusnetworks.com/products/cumulus-in-the-cloud/" text="Cumulus in the Cloud">}} (a free, personal, virtual data center network that provides a low-effort way to see Cumulus Networks technology in action). -->
+<!-- You can see these configurations in action and explore further by selecting one of the demos in {{<exlink url="https://cumulusnetworks.com/products/cumulus-in-the-cloud/" text="Cumulus in the Cloud">}} (a free, personal, virtual data center network that provides a low-effort way to see Cumulus Linux technology in action). -->
 
 ## Layer 2 EVPN with External Routing
 

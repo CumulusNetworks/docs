@@ -147,13 +147,13 @@ By default, the NetQ Agent and CLI are upgraded on the selected switches. If you
 To upgrade the NetQ Agent on one or more switches, run:
 
 ```
-netq lcm upgrade name <text-job-name> cl-version <text-cumulus-linux-version> netq-version <text-netq-version> hostnames <text-switch-hostnames> [run-restore-on-failure] [run-before-after]
+netq-image name <text-job-name> [netq-version <text-netq-version>] [upgrade-cli True | upgrade-cli False] hostnames <text-switch-hostnames> [config_profile <text-config-profile>]
 ```
 
-This example creates a NetQ Agent upgrade job called *upgrade-cl410-nq320*. It upgrades the *spine01* and *spine02* switches with NetQ Agents version 3.2.0.
+This example creates a NetQ Agent upgrade job called *upgrade-cl430-nq330*. It upgrades the *spine01* and *spine02* switches with NetQ Agents version 3.3.0.
 
 ```
-cumulus@switch:~$ netq lcm upgrade name upgrade-cl410-nq320 cl-version 4.1.0 netq-version 3.2.0 hostnames spine01,spine02
+cumulus@switch:~$ netq lcm upgrade name upgrade-cl430-nq330 netq-version 3.3.0 hostnames spine01,spine02
 ```
 
 <!-- You can assign an order for which switches to upgrade based on the switch roles defined above. For example, to upgrade the spines before the leafs, add the `order ROLE1,ROLE2` option to the command:
@@ -161,8 +161,6 @@ cumulus@switch:~$ netq lcm upgrade name upgrade-cl410-nq320 cl-version 4.1.0 net
     cumulus@switch:~$ netq lcm upgrade name upgrade-3712 image-id cl_image_69ce56d15b7958de5bb8371e9c4bf2fc9131da9a57b13853e2a60ca109238b22 license LICENSE hostnames spine01,spine02,leaf01,leaf02 order spine,leaf
 
 If the switches have not been assigned a role, then do not use the `order` option. So in this example, if switches spine01 and spine02 have not been assigned the _spine_ role, then do not specify the `order spine` option. -->
-
-Including the `run-restore-on-failure` option restores the switch(es) with their earlier version of NetQ Agent should the upgrade fail. The `run-before-after` option generates a network snapshot before upgrade begins and another when it is completed. The snapshots are visible in the NetQ UI.
 
 {{< /tab >}}
 
@@ -218,21 +216,20 @@ This example shows that an error has occurred trying to upgrade two of the four 
 
 If you were watching this job from the LCM dashboard view, click **View** on the NetQ Install and Upgrade History card to return to the detailed view to resolve any issues that occurred.
 
-<!--CLI
-
 To view the progress of upgrade jobs, run:
 
 ```
-netq lcm show upgrade-jobs [json]
+netq lcm show upgrade-jobs netq-image [json]
 netq lcm show status <text-lcm-job-id> [json]
 ```
 
 You can view the progress of one upgrade job at a time. To do so, you first need the job identifier and then you can view the status of that job.
 
+<!--
 This example shows all upgrade jobs that are currently running or have completed, and then shows the status of the job with a job identifier of xxx.
 
 ```
-cumulus@switch:~$ netq lcm show upgrade-jobs
+cumulus@switch:~$ netq lcm show upgrade-jobs netq-image
 xxx
 
 cumulus@switch:~$ netq lcm show status xxx

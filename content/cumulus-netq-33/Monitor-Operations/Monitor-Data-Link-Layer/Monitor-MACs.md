@@ -567,3 +567,51 @@ Tue Oct 27 22:28:42 2020  leaf01            10     no     vni10            10.0.
 Tue Oct 27 22:28:51 2020  leaf02            10     no     vni10            10.0.1.2               no     yes
 Tue Oct 27 22:29:07 2020  leaf04            10     no     peerlink                                no     yes
 ```
+
+### View MAC Address Commentary
+
+You can get more descriptive information about changes to a given MAC address on a specific VLAN. Commentary is provided for the following MAC address-related events:
+
+- When a MAC address is configured or unconfigured
+- When a bond enslaved or removed as a slave
+- When bridge membership changes
+- When a MAC address is learned or installed by control plane on tunnel interface
+- When a MAC address is flushed or expires
+- When a MAC address moves
+
+{{< tabs "MAC commentary" >}}
+
+{{< tab "NetQ UI" >}}
+
+1. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} (main menu).
+
+1. Click **MACs** under the **Network** heading.
+
+   {{<figure src="/images/netq/main-menu-ntwk-macs-320.png" width="700">}}
+
+3. Select a MAC address in the table and click <img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> (**Open Card**).
+
+1. Choose the time range to view, then click **Continue**.
+
+1. Scroll through the list on the right to see comments related to the MAC moving.
+
+   {{<figure src="/images/netq/main-menu-ntwk-macs-move-commentary.png" width="500">}}
+
+{{< /tab >}}
+
+{{< tab "NetQ CLI" >}}
+
+To see MAC address commentary, use the `netq show mac-commentary` command:
+
+```
+cumulus@switch:~$ netq show mac-commentary 44:38:39:be:ef:ff vlan 4002
+Matching mac_commentary records:
+Last Updated              Hostname         VLAN   Commentary
+------------------------- ---------------- ------ --------------------------------------------------------------------------------
+Thu Oct  1 14:25:18 2020  border01         4002   44:38:39:be:ef:ff configured on interface bridge
+Thu Oct  1 14:25:18 2020  border02         4002   44:38:39:be:ef:ff configured on interface bridge
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}

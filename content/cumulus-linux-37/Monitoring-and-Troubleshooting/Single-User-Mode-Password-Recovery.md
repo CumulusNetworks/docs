@@ -1,6 +1,6 @@
 ---
 title: Single User Mode - Password Recovery
-author: Cumulus Networks
+author: NVIDIA
 weight: 215
 pageID: 8362606
 ---

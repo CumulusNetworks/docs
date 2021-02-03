@@ -1,6 +1,6 @@
 ---
 title: Configuring switchd
-author: Cumulus Networks
+author: NVIDIA
 weight: 73
 pageID: 8362561
 ---

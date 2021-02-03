@@ -1,15 +1,15 @@
 ---
-title: Install and Configure the NetQ Agent on RHEL and CentOS Servers
+title: Install and Configure the NetQ Agent and CLI on RHEL and CentOS Servers
 author: Cumulus Networks
 weight: 390
 toc: 5
 ---
-After installing your Cumulus NetQ software, you should install the NetQ 3.0.0 Agents on each server you want to monitor. NetQ Agents can be installed on servers running:
+After installing your Cumulus NetQ software, you can install the NetQ 3.2.1 Agent and CLI on each server you want to monitor. These can be installed on servers running:
 
 - Red Hat RHEL 7.1
 - CentOS 7
 
-## Prepare for NetQ Agent Installation on a RHEL or CentOS Server
+## Prepare for NetQ Agent and CLI Installation on a RHEL or CentOS Server
 
 For servers running RHEL or CentOS, you need to:
 
@@ -24,7 +24,7 @@ If your network uses a proxy server for external connections, you should first {
 
 ### Verify Service Package Versions
 
-Before you install the NetQ Agent on a Red Hat or CentOS server, make sure the following packages are installed and running these minimum versions:
+Before you install the NetQ Agent and CLI on a Red Hat or CentOS server, make sure the following packages are installed and running these minimum versions:
 
 - iproute-3.10.0-54.el7\_2.1.x86\_64
 - lldpd-0.9.7-5.el7.x86\_64
@@ -84,11 +84,11 @@ If you are running NTP in your out-of-band management network with VRF, specify 
     \*129.250.35.250 249.224.99.213   2 u  101  128  377   14.588   -0.299   0.243
     ```
 
-### Obtain NetQ Agent Software Package
+### Obtain NetQ Agent and CLI Package
 
-To install the NetQ Agent you need to install `netq-agent` on each switch or host. This is available from the Cumulus Networks repository.
+To install the NetQ Agent you need to install `netq-agent` on each switch or host. To install the NetQ CLI you need to install `netq-apps` on each switch or host. These are available from the Cumulus Networks repository.
 
-To obtain the NetQ Agent package:
+To obtain the NetQ packages:
 
 1.  Reference and update the local `yum` repository.
 
@@ -102,30 +102,30 @@ To obtain the NetQ Agent package:
     ```
     root@rhel7:~# vi /etc/yum.repos.d/cumulus-host-el.repo
     ...
-    [cumulus-arch-netq-3.0]
+    [cumulus-arch-netq-3.2]
     name=Cumulus netq packages
-    baseurl=https://apps3.cumulusnetworks.com/repos/rpm/el/7/netq-3.0/$basearch
+    baseurl=https://apps3.cumulusnetworks.com/repos/rpm/el/7/netq-3.2/$basearch
     gpgcheck=1
     enabled=1
-    [cumulus-noarch-netq-3.0]
+    [cumulus-noarch-netq-3.2]
     name=Cumulus netq architecture-independent packages
-    baseurl=https://apps3.cumulusnetworks.com/repos/rpm/el/7/netq-3.0/noarch
+    baseurl=https://apps3.cumulusnetworks.com/repos/rpm/el/7/netq-3.2/noarch
     gpgcheck=1
     enabled=1
     ...
     ```
 
-## Install NetQ Agent on a RHEL or CentOS Server
+## Install NetQ Agent and CLI on a RHEL or CentOS Server
 
-After completing the preparation steps, you can successfully install the agent software onto your server.
+After completing the preparation steps, you can successfully install the NetQ Agent and CLI software onto your server.
 
-To install the NetQ Agent:
+To install the NetQ software:
 
 1.  Install the Bash completion and NetQ packages on the server.
 
     ```
     root@rhel7:~# sudo yum -y install bash-completion
-    root@rhel7:~# sudo yum install netq-agent
+    root@rhel7:~# sudo yum install netq-agent netq-apps
     ```
 
 2. Verify you have the correct version of the Agent.
@@ -134,7 +134,13 @@ To install the NetQ Agent:
     root@rhel7:~# rpm -q -netq-agent
     ```
 
-    {{<netq-install/agent-version version="3.0.0" opsys="rh">}}
+    {{<netq-install/agent-version version="3.2.1" opsys="rh">}}
+
+    ```
+    root@rhel7:~# rpm -q -netq-apps
+    ```
+
+    {{<netq-install/cli-version version="3.2.1" opsys="rh">}}
 
 3. Restart `rsyslog` so log files are sent to the correct destination.
 
@@ -142,18 +148,24 @@ To install the NetQ Agent:
     root@rhel7:~# sudo systemctl restart rsyslog
     ```
 
-4.  Continue with NetQ Agent Configuration in the next section.
+4. Continue with NetQ Agent and CLI Configuration in the next section.
 
-## Configure the NetQ Agent on a RHEL or CentOS Server
+## Configure the NetQ Agent and CLI on a RHEL or CentOS Server
 
-After the NetQ Agents have been installed on the servers you want to monitor, the NetQ Agents must be configured to obtain useful and relevant data. Two methods are available for configuring a NetQ Agent:
+After the NetQ Agent and CLI have been installed on the servers you want to monitor, the NetQ Agents must be configured to obtain useful and relevant data.
+
+{{%notice note%}}
+The NetQ Agent is aware of and communicates through the designated VRF. If you do not specify one, the default VRF (named *default*) is used. If you later change the VRF configured for the NetQ Agent (using a lifecycle management configuration profile, for example), you might cause the NetQ Agent to lose communication.
+{{%/notice%}}
+
+Two methods are available for configuring a NetQ Agent:
 
 - Edit the configuration file on the device, or
 - Use the NetQ CLI.
 
 ### Configure the NetQ Agents Using a Configuration File
 
-You can configure the NetQ Agent in the `netq.yml` configuration file contained in the `/etc/netq/` directory.
+You can configure the NetQ Agent and CLI in the `netq.yml` configuration file contained in the `/etc/netq/` directory.
 
 1. Open the `netq.yml` file using your text editor of choice. For example:
 
@@ -176,10 +188,57 @@ You can configure the NetQ Agent in the `netq.yml` configuration file contained 
     server: 127.0.0.1
     vrf: default
     ```
+Locate the *netq-cli* section, or add it.
 
-### Configure NetQ Agents Using the NetQ CLI
+4. Set the parameters for the CLI based on your deployment type.
 
-If the CLI is configured, you can use it to configure the NetQ Agent to send telemetry data to the NetQ Server or Appliance. If it is not configured, refer to {{<link title="Install and Configure the NetQ CLI on RHEL and CentOS Servers#configure-the-netq-cli-on-a-rhel-or-centos-server" text="Configure the NetQ CLI on a RHEL or CentOS Server">}} and then return here.
+    {{< tabs "TabID1" >}}
+
+{{< tab "On-premises Deployments" >}}
+
+Specify the following parameters:
+
+- netq-user: User who can access the CLI
+- server: IP address of the NetQ server or NetQ Appliance
+- port (default): 32708
+<p> </p>
+Your YAML configuration file should be similar to this:
+
+```
+netq-cli:
+netq-user: admin@company.com
+port: 32708
+server: 192.168.0.254
+```
+
+{{< /tab >}}
+
+{{< tab "Cloud Deployments" >}}
+
+Specify the following parameters:
+
+- netq-user: User who can access the CLI
+- server: api.netq.cumulusnetworks.com
+- port (default): 443
+- premises: Name of premises you want to query
+<p> </p>
+Your YAML configuration file should be similar to this:
+
+```
+netq-cli:
+netq-user: admin@company.com
+port: 443
+premises: datacenterwest
+server: api.netq.cumulusnetworks.com
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
+### Configure NetQ Agent adn CLI Using the NetQ CLI
+
+If the CLI is configured, you can use it to configure the NetQ Agent to send telemetry data to the NetQ Server or Appliance.
 
 {{%notice info%}}
 If you intend to use VRF, skip to {{<link url="#configure-the-netq-agent-to-use-a-vrf" text="Configure the Agent to Use VRF">}}. If you intend to specify a port for communication, skip to {{<link url="#configure-the-netq-agent-to-communicate-over-a-specific-port" text="Configure the Agent to Communicate over a Specific Port">}}.
@@ -199,6 +258,110 @@ root@rhel7:~# sudo netq config add agent server 192.168.1.254
 Updated agent server 192.168.1.254 vrf default. Please restart netq-agent (netq config restart agent).
 root@rhel7:~# sudo netq config restart agent
 ```
+
+The steps to configure the CLI are different depending on whether the NetQ software has been installed for an on-premises or cloud deployment. Follow the instructions for your deployment type.
+
+{{< tabs "TabID0" >}}
+
+{{< tab "On-premises Deployments" >}}
+
+Use the following command to configure the CLI:
+
+```
+netq config add cli server <text-gateway-dest> [vrf <text-vrf-name>] [port <text-gateway-port>]
+```
+
+Restart the CLI afterward to activate the configuration.
+
+This example uses an IP address of 192.168.1.0 and the default port and VRF.
+
+```
+root@rhel7:~# sudo netq config add cli server 192.168.1.0
+root@rhel7:~# sudo netq config restart cli
+```
+
+{{<notice note>}}
+If you have a server cluster deployed, use the IP address of the master server.
+{{</notice>}}
+
+{{< /tab >}}
+
+{{< tab "Cloud Deployments" >}}
+
+To access and configure the CLI on your NetQ Platform or NetQ Cloud Appliance, you must have your username and password to access the NetQ UI to generate AuthKeys. These keys provide authorized access (access key) and user authentication (secret key). Your credentials and NetQ Cloud addresses were provided by Cumulus Networks via an email titled *Welcome to Cumulus NetQ!*
+
+To generate AuthKeys:
+
+1. In your Internet browser, enter **netq.cumulusnetworks.com** into the address field to open the NetQ UI login page.
+
+2. Enter your username and password.
+
+3. From the Main Menu, select *Management* in the **Admin** column.
+
+    {{<figure src="/images/netq/main-menu-admin-mgmt-selected-320.png" width="400">}}
+
+4. Click **Manage** on the User Accounts card.
+
+5. Select your user and click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/04-Login-Logout/login-key-1.svg" height="18" width="18"/> above the table.
+
+6. Copy these keys to a safe place.
+
+    {{<notice info>}}
+The secret key is only shown once. If you do not copy these, you will need to regenerate them and reconfigure CLI access.
+    {{</notice>}}
+
+{{<notice tip>}}
+You can also save these keys to a YAML file for easy reference, and to avoid having to type or copy the key values. You can:
+
+- store the file wherever you like, for example in <em>/home/cumulus/</em> or <em>/etc/netq</em>
+- name the file whatever you like, for example <em>credentials.yml</em>, <em>creds.yml</em>, or <em>keys.yml</em>
+
+BUT, the file must have the following format:
+
+```
+access-key: <user-access-key-value-here>
+secret-key: <user-secret-key-value-here>
+```
+
+{{</notice>}}
+
+7. Now that you have your AuthKeys, use the following command to configure the CLI:
+
+    ```
+    netq config add cli server <text-gateway-dest> [access-key <text-access-key> secret-key <text-secret-key> premises <text-premises-name> | cli-keys-file <text-key-file> premises <text-premises-name>] [vrf <text-vrf-name>] [port <text-gateway-port>]
+    ```
+
+8. Restart the CLI afterward to activate the configuration.
+
+    This example uses the individual access key, a premises of *datacenterwest*,  and the default Cloud address, port and VRF.  **Be sure to replace the key values with your generated keys if you are using this example on your server.**
+
+    ```
+    root@rhel7:~# sudo netq config add cli server api.netq.cumulusnetworks.com access-key 123452d9bc2850a1726f55534279dd3c8b3ec55e8b25144d4739dfddabe8149e secret-key /vAGywae2E4xVZg8F+HtS6h6yHliZbBP6HXU3J98765= premises datacenterwest
+    Successfully logged into NetQ cloud at api.netq.cumulusnetworks.com:443
+    Updated cli server api.netq.cumulusnetworks.com vrf default port 443. Please restart netqd (netq config restart cli)
+
+    root@rhel7:~# sudo netq config restart cli
+    Restarting NetQ CLI... Success!
+    ```
+
+    This example uses an optional keys file. **Be sure to replace the keys filename and path with the *full path* and name of your keys file, and the *datacenterwest* premises name with your premises name if you are using this example on your server.**
+
+    ```
+    root@rhel7:~# sudo netq config add cli server api.netq.cumulusnetworks.com cli-keys-file /home/netq/nq-cld-creds.yml premises datacenterwest
+    Successfully logged into NetQ cloud at api.netq.cumulusnetworks.com:443
+    Updated cli server api.netq.cumulusnetworks.com vrf default port 443. Please restart netqd (netq config restart cli)
+
+    root@rhel7:~# sudo netq config restart cli
+    Restarting NetQ CLI... Success!
+    ```
+
+    {{<notice tip>}}
+Rerun this command if you have multiple premises and want to query a different premises.
+    {{</notice>}}
+
+{{< /tab >}}
+
+{{< /tabs >}}
 
 ## Configure Advanced NetQ Agent Settings
 

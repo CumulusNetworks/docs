@@ -8,7 +8,7 @@ The NetQ API provides access to key telemetry and system monitoring data gathere
 
 This guide provides an overview of the NetQ API framework, the basics of using Swagger UI 2.0 or bash plus curl to view and test the APIs. Descriptions of each endpoint and model parameter are contained in individual API .JSON files.
 
-For information regarding new features, improvements, bug fixes, and known issues present in this NetQ release, refer to the {{<link title="Cumulus NetQ 3.2 Release Notes" text="release notes">}}.
+For information regarding new features, improvements, bug fixes, and known issues present in this NetQ release, refer to the {{<link title="NVIDIA NetQ 3.2 Release Notes" text="release notes">}}.
 
 ## API Organization
 
@@ -24,6 +24,12 @@ The Cumulus NetQ API provides endpoints for:
 
 Each endpoint has its own API. You can make requests for all data and all devices or you can filter the request by a given hostname. Each API returns a predetermined set of data as defined in the API models.
 
+{{%notice info%}}
+
+The Swagger interface displays both public and internal APIs. Public APIs do not have *internal* in their name. Internal APIs are not supported for public use and subject to change without notice.
+
+{{%/notice%}}
+
 ## Get Started
 
 You can access the API gateway and execute requests from the Swagger UI or a terminal interface.
@@ -38,11 +44,15 @@ The API is embedded in the NetQ software, making it easy to access from the Swag
 
 2. Download {{<exlink url="https://swagger.io/tools/swagger-ui/download/" text="Swagger UI 2.0">}}.
 
-<!-- Do we need this step? -->
+3. Open a new browser tab or window, and enter one of the following in the address bar:
 
-3. Open a new browser tab or window, and enter **swagger-ui.\<hostname-ip-addr\>.netq.cumulusnetworks.com** in the address bar.
+    - Cloud deployments:  https://swagger-ui.prod1.netq.cumulusnetworks.com
+    - On-premises deployments: https://\<hostname-or-ipaddr\>/swagger/
+    - Cumulus in the Cloud (CITC): https://swagger-ui.air.netq.cumulusnetworks.com
 
-    This opens the authorization API (auth).
+    This opens the Swagger interface.
+
+4. Select *auth* from the **Select a definition** dropdown at the top right of the window. This opens the authorization API.
 
     {{<figure src="/images/netq/api-swagger-onopen-320.png" width="700">}}
 

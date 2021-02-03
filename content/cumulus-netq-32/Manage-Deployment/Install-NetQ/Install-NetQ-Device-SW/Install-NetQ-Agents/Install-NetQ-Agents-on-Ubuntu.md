@@ -4,7 +4,7 @@ author: Cumulus Networks
 weight: 300
 toc: 5
 ---
-After installing your Cumulus NetQ software, you should install the  NetQ 3.0.0 Agent on each server you want to monitor. NetQ Agents can be installed on servers running:
+After installing your Cumulus NetQ software, you should install the NetQ 3.2.1 Agent on each server you want to monitor. NetQ Agents can be installed on servers running:
 
 - Ubuntu 16.04
 - Ubuntu 18.04 (NetQ 2.2.2 and later)
@@ -201,7 +201,7 @@ deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb bionic netq-latest
 {{< /tabs >}}
 
     {{<notice note>}}
-The use of <code>netq-latest</code> in these examples means that a <code>get</code> to the repository always retrieves the latest version of NetQ, even in the case where a major version update has been made. If you want to keep the repository on a specific version - such as <code>netq-2.4</code> - use that instead.
+The use of <code>netq-latest</code> in these examples means that a <code>get</code> to the repository always retrieves the latest version of NetQ, even in the case where a major version update has been made. If you want to keep the repository on a specific version - such as <code>netq-3.1</code> - use that instead.
     {{</notice>}}
 
 ## Install NetQ Agent on an Ubuntu Server
@@ -223,7 +223,7 @@ To install the NetQ Agent:
     root@ubuntu:~# dpkg-query -W -f '${Package}\t${Version}\n' netq-agent
     ```
 
-    {{<netq-install/agent-version version="3.0.0" opsys="ub">}}
+    {{<netq-install/agent-version version="3.2.1" opsys="ub">}}
 
 3. Restart `rsyslog` so log files are sent to the correct destination.
 
@@ -235,7 +235,13 @@ root@ubuntu:~# sudo systemctl restart rsyslog.service
 
 ## Configure the NetQ Agent on an Ubuntu Server
 
-After the NetQ Agents have been installed on the servers you want to monitor, the NetQ Agents must be configured to obtain useful and relevant data. Two methods are available for configuring a NetQ Agent:
+After the NetQ Agent and CLI have been installed on the servers you want to monitor, the NetQ Agents must be configured to obtain useful and relevant data.
+
+{{%notice note%}}
+The NetQ Agent is aware of and communicates through the designated VRF. If you do not specify one, the default VRF (named *default*) is used. If you later change the VRF configured for the NetQ Agent (using a lifecycle management configuration profile, for example), you might cause the NetQ Agent to lose communication.
+{{%/notice%}}
+
+Two methods are available for configuring a NetQ Agent:
 
 - Edit the configuration file on the device, or
 - Use the NetQ CLI.

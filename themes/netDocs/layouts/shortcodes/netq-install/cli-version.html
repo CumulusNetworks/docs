@@ -117,3 +117,85 @@ You should see version 3.2.0 and update 30 in the results. For example:
 {{ end }}
 
 {{ end }}
+
+
+{{- if eq (.Get "version") "3.2.1" -}}
+
+You should see version 3.2.1 and update 30 or 31 in the results. For example:
+
+{{- if eq (.Get "opsys") "cl" -}}
+
+<ul>
+    <li>Cumulus Linux 3.3.2-3.7.x</li>
+        <ul>
+            <li>netq-apps_<strong>3.2.1</strong>-cl3u<strong>30</strong>~1603788322.6f62fad_armel.deb</li>
+            <li>netq-apps_<strong>3.2.1</strong>-cl3u<strong>30</strong>~1603788322.6f62fad_amd64.deb</li>
+        </ul>
+    <li>Cumulus Linux 4.0.0-4.1.x</li>
+        <ul>
+            <li>netq-apps_<strong>3.2.1</strong>-cl4u<strong>31</strong>~1603788322.6f62fadf_armel.deb</li>
+            <li>netq-apps_<strong>3.2.1</strong>-cl4u<strong>31</strong>~1603788322.6f62fadf_amd64.deb</li>
+        </ul>
+</ul>
+
+{{ end }}
+
+{{- if eq (.Get "opsys") "ub" -}}
+
+<ul>
+    <li>netq-apps_<strong>3.2.1</strong>-ub18.04u<strong>31</strong>~1603789872.6f62fad_amd64.deb</li>
+    <li>netq-apps_<strong>3.2.1</strong>-ub16.04u<strong>31</strong>~1603788317.6f62fad_amd64.deb</li>
+</ul>
+
+{{ end }}
+
+{{- if eq (.Get "opsys") "rh" -}}
+
+<ul>
+    <li>netq-apps-<strong>3.2.1</strong>-rh7u<strong>30</strong>~1603791304.6f62fad.x86_64.rpm</li>
+</ul>
+
+{{ end }}
+
+{{ end }}
+
+
+{{- if eq (.Get "version") "3.3.0" -}}
+
+You should see version 3.3.0 and update 32 in the results. For example:
+
+{{- if eq (.Get "opsys") "cl" -}}
+
+<ul>
+    <li>Cumulus Linux 3.3.2-3.7.x</li>
+        <ul>
+            <li>netq-apps_<strong>3.3.0</strong>-cl3u<strong>32</strong>~1610528866.2e51873_armel.deb</li>
+            <li>netq-apps_<strong>3.3.0</strong>-cl3u<strong>32</strong>~1610528867.2e51873_amd64.deb</li>
+        </ul>
+    <li>Cumulus Linux 4.0.0-4.1.x</li>
+        <ul>
+            <li>netq-apps_<strong>3.3.0</strong>-cl4u<strong>32</strong>~1610528866.2e518733_armel.deb</li>
+            <li>netq-apps_<strong>3.3.0</strong>-cl4u<strong>32</strong>~1610528867.2e518733_amd64.deb</li>
+        </ul>
+</ul>
+
+{{ end }}
+
+{{- if eq (.Get "opsys") "ub" -}}
+
+<ul>
+    <li>netq-apps_<strong>3.3.0</strong>-ub18.04u<strong>32</strong>~1610530013.2e51873_amd64.deb</li>
+    <li>netq-apps_<strong>3.3.0</strong>-ub16.04u<strong>32</strong>~1610528859.2e51873_amd64.deb</li>
+</ul>
+
+{{ end }}
+
+{{- if eq (.Get "opsys") "rh" -}}
+
+<ul>
+    <li>netq-apps-<strong>3.3.0</strong>-rh7u<strong>32</strong>~1610531073.2e51873.x86_64.rpm</li>
+</ul>
+
+{{ end }}
+
+{{ end }}

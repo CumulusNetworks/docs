@@ -1,9 +1,9 @@
 languageCode = "en-us"
-title = "Cumulus Networks Documentation"
+title = "NVIDIA Networking Documentation"
 theme = "netDocs"
 baseURL = "/"
 relURLs = true
-googleAnalytics = "UA-40724538-3"
+googleAnalytics = "G-HTM5Y02305"
 #Book configuration
 disablePathToLower = true
 enableGitInfo= false
@@ -23,19 +23,19 @@ disableKinds = ["RSS"]
 [menu]
   [[menu.subnav]]
     identifier = "cumulus-linux"
-    title = "Cumulus Linux"
+    title = "NVIDIA Cumulus Linux"
     url = "/cumulus-linux-42/"
     weight = 10
 
   [[menu.subnav]]
     identifier = "cumulus-netq"
-    title = "Cumulus NetQ"
-    url = "/cumulus-netq-32/"
+    title = "NVIDIA NetQ"
+    url = "/cumulus-netq-33/"
     weight = 20
 
   [[menu.subnav]]
     identifier = "cumulus-vx"
-    title = "Cumulus VX"
+    title = "NVIDIA Cumulus VX"
     url = "/cumulus-vx/"
     weight = 30
 

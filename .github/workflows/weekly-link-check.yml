@@ -18,5 +18,4 @@ jobs:
 
     - uses: actions/setup-node@v1
     - run: npm install broken-link-checker -g
-    # Excluding external sites is due to false positives. Many sites block the script or rate limit.
-    - run: blc https://docs.cumulusnetworks.com --exclude icons.cumulusnetworks.com --exclude dell.com --exclude mysql.com --exclude microsoft.com --exclude cisco.com --exclude ntp.org --exclude /search/ --exclude support.mellanox.com --exclude youtube.com --exclude linkedin.com --exclude cfengine.com --exclude community.mellanox.com --exclude debian.org --exclude github.com --exclude linuxfoundation.org --exclude .pdf --exclude .xls --exclude cumulus-vx --exclude cumulus-rmp --exclude /rn/ --exclude /cumulus-linux/ --exclude /cumulus-netq/ -r  | awk '/Getting links/ {via_line=$0} /BROKEN/ {print via_line "\n\n" $0}'
+    - run: blc https://docs.cumulusnetworks.com --exclude ntp.org --exclude /search/ --exclude linkedin.com --exclude cfengine.com --exclude community.mellanox.com --exclude debian.org --exclude github.com --exclude linuxfoundation.org --exclude .pdf --exclude .xls --exclude cumulus-vx --exclude cumulus-rmp --exclude /rn/ --exclude /cumulus-linux/ --exclude /cumulus-netq/ -r  | awk '/Getting links/ {via_line=$0} /BROKEN/ {print via_line "\n\n" $0}'

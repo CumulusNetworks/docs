@@ -1,6 +1,6 @@
 ---
 title: Switch Port Attributes
-author: Cumulus Networks
+author: NVIDIA
 weight: 300
 toc: 4
 ---
@@ -24,7 +24,7 @@ Most of these settings are configured automatically for you, depending upon your
 
 For **Spectrum ASICs**, MTU is the only port attribute you can directly configure. The Spectrum firmware configures FEC, link speed, duplex mode and auto-negotiation automatically, following a predefined list of parameter settings until the link comes up. However, you can disable FEC if necessary, which forces the firmware to not try any FEC options.
 
-For **Broadcom-based switches**, Cumulus Networks recommends that you enable auto-negotiation on each port. When enabled, Cumulus Linux automatically configures the best link parameter settings based on the module type (speed, duplex, auto-negotiation, and FEC, where supported).
+For **Broadcom-based switches**, consider enabling auto-negotiation on each port. When enabled, Cumulus Linux automatically configures the best link parameter settings based on the module type (speed, duplex, auto-negotiation, and FEC, where supported).
 
 This topic describes the auto-negotiation, link speed, duplex mode, MTU, and FEC settings and provides a {{<link url="#interface-configuration-recommendations-for-broadcom-platforms" text="table">}} showing the default configuration for various port and cable types. Breakout port configuration, logical switch port limitations, and troubleshooting is also provided.
 
@@ -507,7 +507,7 @@ This depends upon the make of the switch you are using.
 
 A Spectrum switch enables FEC automatically when it powers up; that is, the setting is `fec auto`. The port firmware tests and determines the correct FEC mode to bring the link up with the neighbor. It is possible to get a link up to a Spectrum switch without enabling FEC on the remote device as the switch eventually finds a working combination to the neighbor without FEC.
 
-On a Broadcom switch, Cumulus Linux does not enable FEC by default; that is, the setting is `fec off`. Cumulus Networks recommends you configure FEC explicitly to match the configured FEC on the link neighbor. On 100G DACs, you can configure `link-autoneg` so that the port attempts to negotiate FEC settings with the remote peer.
+On a Broadcom switch, Cumulus Linux does not enable FEC by default; that is, the setting is `fec off`. Consider configuring FEC explicitly to match the configured FEC on the link neighbor. On 100G DACs, you can configure `link-autoneg` so that the port attempts to negotiate FEC settings with the remote peer.
 
 The following sections describe how to show the current FEC mode, and to enable and disable FEC.
 
@@ -782,7 +782,7 @@ Spectrum switches automatically configure these settings following a predefined 
 | 100GBASE-SR4<br>100G AOC | Off | RS | **NCLU commands**<pre>$ net add interface swp1 link speed 100000<br>$ net add interface swp1 link autoneg off<br>$ net add interface swp1 link fec rs</pre>**Configuration in /etc/network/interfaces**<pre>auto swp1<br>iface swp1<br>&nbsp; &nbsp;link-autoneg off<br>&nbsp; &nbsp;link-speed 100000<br>&nbsp; &nbsp;link-fec rs</pre> | |
 | 100GBASE-LR4 | Off | None | **NCLU commands**<pre>$ net add interface swp1 link speed 100000<br>$ net add interface swp1 link autoneg off<br>$ net add interface swp1 link fec off</pre>**Configuration in /etc/network/interfaces**<pre>auto swp1<br>iface swp1<br>&nbsp; &nbsp;link-autoneg off<br>&nbsp; &nbsp;link-speed 100000<br>&nbsp; &nbsp;link-fec off</pre> | |
 | 25GBASE-CR | On | auto-negotiated | **NCLU commands**<pre>$ net add interface swp1 link speed 25000<br>$ net add interface swp1 link autoneg on</pre>**Configuration in /etc/network/interfaces**<pre>auto swp1<br>iface swp1<br>&nbsp; &nbsp;link-autoneg on<br>&nbsp; &nbsp;link-speed 25000</pre> | Tomahawk predates 802.3by. It does not support RS FEC or auto-negotiation of RS FEC on a 25G port or subport. It does support Base-R FEC.|
-| 25GBASE-SR | Off | RS | **NCLU commands**<pre>$ net add interface swp1 link speed 25000<br>$ net add interface swp1 link autoneg off<br>$ net add interface swp1 link fec rs</pre>**Configuration in /etc/network/interfaces**<pre>auto swp1<br>iface swp1<br>&nbsp; &nbsp;link-autoneg off<br>&nbsp; &nbsp;link-speed 25000<br>&nbsp; &nbsp;link-fec rs</pre> | Tomahawk predates 802.3by and does not support RS FEC on a 25G port or subport; however it does support Base-R FEC. The configuration for Base-R FEC is as follows:<br><br>**NCLU commands**<pre>$ net add interface swp1 link speed 25000<br>$ net add interface swp1 link autoneg off<br>$ net add interface swp1 link fec baser</pre>**Configuration in /etc/network/interfaces**<pre>auto swp1<br>iface swp1<br>&nbsp; &nbsp;link-autoneg off<br>&nbsp; &nbsp;link-speed 25000<br>&nbsp; &nbsp;link-fec baser</pre>Cumulus Networks recommends that you configure FEC to the setting that the cable requires.|
+| 25GBASE-SR | Off | RS | **NCLU commands**<pre>$ net add interface swp1 link speed 25000<br>$ net add interface swp1 link autoneg off<br>$ net add interface swp1 link fec rs</pre>**Configuration in /etc/network/interfaces**<pre>auto swp1<br>iface swp1<br>&nbsp; &nbsp;link-autoneg off<br>&nbsp; &nbsp;link-speed 25000<br>&nbsp; &nbsp;link-fec rs</pre> | Tomahawk predates 802.3by and does not support RS FEC on a 25G port or subport; however it does support Base-R FEC. The configuration for Base-R FEC is as follows:<br><br>**NCLU commands**<pre>$ net add interface swp1 link speed 25000<br>$ net add interface swp1 link autoneg off<br>$ net add interface swp1 link fec baser</pre>**Configuration in /etc/network/interfaces**<pre>auto swp1<br>iface swp1<br>&nbsp; &nbsp;link-autoneg off<br>&nbsp; &nbsp;link-speed 25000<br>&nbsp; &nbsp;link-fec baser</pre>Configure FEC to the setting that the cable requires.|
 | 25GBASE-LR | Off | None | **NCLU commands**<pre>$ net add interface swp1 link speed 25000<br>$ net add interface swp1 link autoneg off<br>$ net add interface swp1 link fec off</pre>**Configuration in /etc/network/interfaces**<pre>auto swp1<br>iface swp1<br>&nbsp; &nbsp;link-autoneg off<br>&nbsp; &nbsp; link-speed 25000<br>&nbsp; &nbsp;link-fec off</pre> | |
 
 ## Default Policies for Interface Settings
@@ -830,7 +830,6 @@ Setting the default MTU also applies to the management interface. Be sure to add
 ## Breakout Ports
 
 Cumulus Linux lets you:
-
 - Break out 100G switch ports into 2x50G, 4x25G, or 4x10G with breakout cables.
 - Break out 40G switch ports into four separate 10G ports (4x10G) for use with breakout cables.
 - Combine (*aggregate* or *gang*) four 10G switch ports into one 40G port for use with a breakout cable ({{<link url="Bonding-Link-Aggregation" text="not to be confused with a bond">}}).
@@ -838,14 +837,36 @@ Cumulus Linux lets you:
 {{%notice note%}}
 
 - For Broadcom switches with ports that support 100G speeds, you *cannot* have more than 128 logical ports.
-
-- Mellanox switches with the Spectrum ASIC have a limit of 64 logical ports. 64-port Broadcom switches with the Tomahawk2 ASIC have a limit of 128 total logical ports. If you want to break ports out to 4x25G or 4x10G, you must configure the logical ports as follows:
+- On Mellanox switches with the Spectrum ASIC running in *nonatomic* ACL mode, if you break out a port, then reload the `switchd` service, temporary disruption to traffic occurs while the ACLs are reinstalled.
+- Port ganging is not supported on Mellanox switches with the Spectrum ASIC.
+- Mellanox switches with the Spectrum 1 ASIC have a limit of 64 logical ports. 64-port Broadcom switches with the Tomahawk2 ASIC have a limit of 128 total logical ports. If you want to break ports out to 4x25G or 4x10G, you must configure the logical ports as follows:
   - You can only break out odd-numbered ports into four logical ports.
   - You must disable the next even-numbered port. For example, if you break out port 11 into four logical ports, you must disable port 12.
 
-  These restrictions do *not* apply to a 2x50G breakout configuration.
+  These restrictions do *not* apply to a 2x50G breakout configuration or to the Mellanox SN2100 and SN2010 switches.
+- Mellanox switches with the Spectrum 2 and Spectrum 3 ASIC have a limit of 128 logical ports. To ensure that the number of total logical interfaces does not exceed the limit, if you split ports into four interfaces on Spectrum 2 and Spectrum 3 switches with 64 interfaces, you must disable the adjacent port. For example, when splitting port 1 into four 25G interfaces, you must disable port 2 in the `/etc/cumulus/ports.conf` file:
+
+    ```
+    1=4x25G
+    2=disabled
+    ```
+
+   When you split a port into two interfaces, such as 2x50G, you do **not** have to disable the adjacent port.
+
+Valid port configuration and breakout guidance for each platform is provided in the `/etc/cumulus/ports.conf` file.
 
 {{%/notice%}}
+
+Spectrum 2 and Spectrum 3
+
+Mellanox switches with the Spectrum 2 and Spectrum 3 ASICs have a limit of 128 logical ports. To ensure that the number of total logical interfaces does not exceed the limit, Spectrum 2 and Spectrum 3 platforms with 64 interfaces have the following breakout limitation:
+
+When you split ports into four interfaces, you must configure the adjacent port as "disabled" in this file.
+When splitting a port into two interfaces, such as 2x50G, you do not have to disable the adjacent port. Adjacent ports only need to be disabled when a port is split into four interfaces. For example, when splitting port 1 into four 25G interfaces, port 2 must be configured as "disabled" like this:
+
+1=4x25G
+2=disabled
+
 
 ### Configure a Breakout Port
 
@@ -1025,7 +1046,8 @@ You can *gang* (combine) four 10G ports into one 40G port for use with a breakou
 
 {{%notice note%}}
 
-The `/etc/cumulus/ports.conf` file varies across different hardware platforms. Check the current list of supported platforms on {{<exlink url="https://www.cumulusnetworks.com/hcl" text="the hardware compatibility list">}}.
+- Port ganging is not supported on Mellanox switches with the Spectrum ASIC.
+- The `/etc/cumulus/ports.conf` file varies across different hardware platforms. Check the current list of supported platforms on {{<exlink url="https://www.cumulusnetworks.com/hcl" text="the hardware compatibility list">}}.
 
 {{%/notice%}}
 
@@ -1069,13 +1091,9 @@ To gang swp1 through swp4 into a 40G port, edit the `/etc/cumulus/ports.conf` fi
 5=10G
 ```
 
-On a Broadcom switch, restart `switchd` with the `sudo systemctl restart switchd.service` command. The restart {{<link url="Configuring-switchd" text="interrupts network services">}}.
+Restart `switchd` with the following command:
 
 {{<cl/restart-switchd>}}
-
-On a Mellanox switch, you can reload `switchd` with the `sudo systemctl reload switchd.service` command. The reload does **not** interrupt network services.
-
-    cumulus@switch:~$ sudo systemctl reload switchd.service
 
 {{< /tab >}}
 
@@ -1352,11 +1370,16 @@ To disable the QSFP+ ports, you must set the ports to `disabled`. Do not comment
 
 {{%/notice%}}
 
-### 1000BASE-T SFP Modules Not Supported on Certain 25G and All 100G Platforms
+### 1000BASE-T SFP Modules Supported Only on Certain 25G Platforms
 
-1000BASE-T SFP modules are not supported on 25G or 100G platforms, with two exceptions for 25G: the Cumulus Express CX-5148-S and Edgecore AS7326-56X switches are supported in Cumulus Linux 4.2.0 and later releases, provided the switch has board revision R01D.
+1000BASE-T SFP modules are supported on only the following 25G platforms:
 
-To determine the revision of the board, look for the output in the `label revision` field when you run `decode-syseeprom`.
+- Cumulus Express CX-5148-S and the Edgecore AS7326-56X, provided the switch has board revision R01D (to determine the revision of the board, look for the output in the `label revision` field when you run `decode-syseeprom`)
+- Dell S5248F-ON
+- Mellanox SN2410
+- Mellanox SN2010
+
+1000BASE-T SFP modules are not supported on any 100G or faster platforms.
 
 ### Mellanox SN2100 Switch and eth0 Link Speed
 

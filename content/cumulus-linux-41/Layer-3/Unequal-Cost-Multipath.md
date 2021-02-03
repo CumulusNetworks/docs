@@ -1,6 +1,6 @@
 ---
 title: Unequal Cost Multipath with BGP Link Bandwidth
-author: Cumulus Networks
+author: NVIDIA
 weight: 845
 toc: 3
 ---

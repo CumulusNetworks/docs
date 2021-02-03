@@ -1,0 +1,1 @@
+ntp-dbgsym has no copyright file

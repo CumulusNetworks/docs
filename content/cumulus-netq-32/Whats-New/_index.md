@@ -10,9 +10,15 @@ cascade:
     imgData: cumulus-netq
     siteSlug: cumulus-netq
 ---
-Cumulus NetQ {{<version>}} eases your customers deployment and maintenance activities for their data center networks with new configuration, performance, and security features and improvements.
+NVIDIA NetQ {{<version>}} eases your customers deployment and maintenance activities for their data center networks with new configuration, performance, and security features and improvements.
 
-**Cumulus NetQ 3.2.0** includes the following new features and improvements:
+## What's New in NetQ 3.2.1
+
+NetQ 3.2.1 contains bug fixes.
+
+## What's New in NetQ 3.2.0
+
+NetQ 3.2.0 includes the following new features and improvements:
 
 - Profile-based {{<link title="Manage Switch Configurations" text="switch configuration management">}} for system parameters with one-click configuration push to multiple switches reduces errors and configuration time required by manual configuration
 - Simple and intuitive GUI to {{<link title="Install NetQ" text="install">}} and {{<link title="Upgrade NetQ" text="upgrade">}} the NetQ Platform, Collector, and Agent software simplifies maintenance and reduces downtime
@@ -24,10 +30,11 @@ Cumulus NetQ {{<version>}} eases your customers deployment and maintenance activ
 
 Upgrade paths for customers include:
 
-- NetQ 2.4.x to NetQ 3.2.0
-- NetQ 3.0.0 to NetQ 3.2.0
-- NetQ 3.1.x to NetQ 3.2.0
+- NetQ 2.4.x to NetQ 3.2.1
+- NetQ 3.0.0 to NetQ 3.2.1
+- NetQ 3.1.x to NetQ 3.2.1
+- NetQ 3.2.0 to NetQ 3.2.1
 
 Upgrades from NetQ 2.3.x and earlier require a fresh installation.
 
-For information regarding bug fixes and known issues present in this release, refer to the {{<link title="Cumulus NetQ 3.2 Release Notes" text="release notes">}}.
+For information regarding bug fixes and known issues present in this release, refer to the {{<link title="NVIDIA NetQ 3.2 Release Notes" text="release notes">}}.

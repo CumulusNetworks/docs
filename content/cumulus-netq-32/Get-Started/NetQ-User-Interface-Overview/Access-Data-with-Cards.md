@@ -235,14 +235,15 @@ All cards have a default time period for the data shown on the card, typically t
 To change the time period for a card:
 
 1. Hover over any card.
+
 2. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/18-Time/time-stopwatch.svg" height="18" width="18"/> in the header.
+
 3. Select a time period from the dropdown list.
 
-    {{< figure src="/images/netq/time-picker-popup-222.png" width="200" >}}
+    {{<figure src="/images/netq/time-picker-popup-222.png" width="200">}}
 
 {{<notice tip>}}
-Changing the time period in this manner only changes the time period for
-the given card.
+Changing the time period in this manner only changes the time period for the given card.
 {{</notice>}}
 
 ### Switch to a Different Card Size
@@ -315,7 +316,7 @@ You can rearrange the columns within a table. Click and hold on a column header,
 
 #### Sort Table Data by Column
 
-You can sort table data by a given column for tables on full-screen cards. The data is sorted in ascending or descending order; A to Z, Z to A, 1 to n, or n to 1.
+You can sort tables (with up to 10,000 rows) by a given column for tables on full-screen cards. The data is sorted in ascending or descending order; A to Z, Z to A, 1 to n, or n to 1.
 
 To sort table data by column:
 

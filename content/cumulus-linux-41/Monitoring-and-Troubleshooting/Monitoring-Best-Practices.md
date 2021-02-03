@@ -1,6 +1,6 @@
 ---
 title: Monitoring Best Practices
-author: Cumulus Networks
+author: NVIDIA
 weight: 1100
 toc: 3
 ---
@@ -148,7 +148,7 @@ Prescriptive Topology Manager (PTM) uses LLDP information to compare against a `
 
 {{%notice note%}}
 
-Cumulus Networks recommends that you track peering information through PTM. For more information, refer to the {{<link url="Prescriptive-Topology-Manager-PTM" text="Prescriptive Topology Manager documentation">}}.
+Consider tracking peering information through PTM. For more information, refer to the {{<link url="Prescriptive-Topology-Manager-PTM" text="Prescriptive Topology Manager documentation">}}.
 
 {{%/notice%}}
 

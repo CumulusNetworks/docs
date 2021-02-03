@@ -1,6 +1,6 @@
 ---
 title: Static MAC Bindings with VXLAN
-author: Cumulus Networks
+author: NVIDIA
 weight: 365
 pageID: 8362790
 ---
@@ -28,12 +28,7 @@ Consider the following example:
 
 {{%notice warning%}}
 
-Preconfiguring remote MAC addresses does not scale. A better solution is
-to use the Cumulus Networks
-{{<link url="Lightweight-Network-Virtualization-Overview" text="Lightweight Network Virtualization">}}
-feature, or a controller-based option like
-{{<link url="Integrating-Hardware-VTEPs-with-Midokura-MidoNet-and-OpenStack" text="Midokura MidoNet and OpenStack">}}
-or {{<link url="Integrating-Hardware-VTEPs-with-VMware-NSX-V" text="VMware NSX-V">}}.
+Preconfiguring remote MAC addresses does not scale. A better solution is to use the  {{<link url="Lightweight-Network-Virtualization-Overview" text="Lightweight Network Virtualization">}} feature, or a controller-based option like {{<link url="Integrating-Hardware-VTEPs-with-Midokura-MidoNet-and-OpenStack" text="Midokura MidoNet and OpenStack">}} or {{<link url="Integrating-Hardware-VTEPs-with-VMware-NSX-V" text="VMware NSX-V">}}.
 
 {{%/notice%}}
 

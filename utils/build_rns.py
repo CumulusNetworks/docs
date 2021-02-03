@@ -208,7 +208,7 @@ def build_rn_markdown(json_file, version, file_type):
         output.append("|---	        |---	        |---	    |---	                |")
         output.append("\n")
     else:
-        output.append("### Fixed issues in {}".format(version))
+        output.append("### Fixed Issues in {}".format(version))
         # output.append("<div class=\"table-wrapper\" markdown=\"block\">")
         output.append("\n")
         output.append("|  Issue ID 	|   Description	|   Affects	|")
@@ -243,7 +243,7 @@ def build_markdown_header(product, version):
     output = []
 
     output.append("---\n")
-    output.append("title: {} {} Release Notes\n".format(product, version))
+    output.append("title: NVIDIA {} {} Release Notes\n".format(product, version))
     output.append("author: Cumulus Networks\n")
     output.append("weight: {}\n".format(weight))
     output.append("product: {}\n".format(product))

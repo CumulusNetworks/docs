@@ -1,6 +1,6 @@
 ---
 title: DHCP Relays
-author: Cumulus Networks
+author: NVIDIA
 weight: 340
 toc: 3
 ---
@@ -178,7 +178,7 @@ To enable RFC 3527 support and control the giaddr, run the following commands.
    OPTIONS="-U lo"
    ```
 
-   The first IP address on the loopback interface is typically the 127.0.0.1 address; Cumulus Networks recommends that you use more specific syntax, as shown in the next example.
+   The first IP address on the loopback interface is typically the 127.0.0.1 address; Consider using more specific syntax, as shown in the next example.
 
    The following example uses IP address 10.0.0.1 on the loopback interface as the giaddr:
 
@@ -238,7 +238,7 @@ To enable RFC 3527 support and control the giaddr, run the following commands.
    OPTIONS="-U lo"
    ```
 
-   The first IP address on the loopback interface is typically the 127.0.0.1 address; Cumulus Networks recommends that you use more specific syntax, as shown in the next example.
+   The first IP address on the loopback interface is typically the 127.0.0.1 address; CConsider using more specific syntax, as shown in the next example.
 
    The following example uses IP address 10.0.0.1 on the loopback interface as the giaddr:
 
@@ -366,14 +366,7 @@ Cumulus Linux supports multiple DHCP relay daemons on a switch to enable relayin
 
 To configure multiple DHCP relay daemons on a switch:
 
-1. As the sudo user, open the `/etc/vrf/systemd.conf` file in a text editor and remove `dhcrelay`.
-2. Run the following command to reload the `systemd` files:
-
-   ```
-   cumulus@switch:~$ sudo systemctl daemon-reload
-   ```
-
-3. Create a configuration file in the `/etc/default` directory for each DHCP relay daemon. Use the naming scheme `isc-dhcp-relay-<dhcp-name>` for IPv4 or `isc-dhcp-relay6-<dhcp-name>` for IPv6. An example configuration file for IPv4 is shown below:
+1. Create a configuration file in the `/etc/default` directory for each DHCP relay daemon. Use the naming scheme `isc-dhcp-relay-<dhcp-name>` for IPv4 or `isc-dhcp-relay6-<dhcp-name>` for IPv6. An example configuration file for IPv4 is shown below:
 
    ```
    # Defaults for isc-dhcp-relay initscript
@@ -416,7 +409,7 @@ To configure multiple DHCP relay daemons on a switch:
    OPTIONS=""
    ```
 
-4. Run the following command to start a `dhcrelay` instance, where `<``dhcp-name>` is the instance name or number.
+2. Run the following command to start a `dhcrelay` instance, where `<dhcp-name>` is the instance name or number.
 
    ```
    cumulus@switch:~$ sudo systemctl start dhcrelay@<dhcp-name>

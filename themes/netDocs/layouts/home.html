@@ -130,8 +130,8 @@
             </h3>
           </div>
           <div class="col-12 col-sm-6 col-lg-4 mb-5 mb-lg-0">
-            {{ range where .Site.Menus.subnav "Title" "Cumulus Linux" }}
-              <a href="{{.URL}}"><img src="/home-products-cumulus-linux.jpg" alt="Cumulus Linux" class="mb-6"></a>
+            {{ range where .Site.Menus.subnav "Title" "NVIDIA Cumulus Linux" }}
+              <a href="{{.URL}}"><img src="/home-products-cumulus-linux.jpg" alt="NVIDIA Cumulus Linux" class="mb-6"></a>
               <h3>NVIDIA Cumulus Linux</h3>
               <p class="small">An open network operating system designed for efficiency, automation and scale</p>
               <ul>
@@ -143,19 +143,19 @@
             {{ end }}
           </div>
           <div class="col-12 col-sm-6 col-lg-4 mb-5 mb-lg-0">
-            {{ range where .Site.Menus.subnav "Title" "Cumulus NetQ" }}
-              <a href="{{.URL}}"><img src="/home-products-netq.jpg" alt="Cumulus NetQ" class="mb-6"> </a>
+            {{ range where .Site.Menus.subnav "Title" "NVIDIA NetQ" }}
+              <a href="{{.URL}}"><img src="/home-products-netq.jpg" alt="NVIDIA NetQ" class="mb-6"> </a>
               <h3>NVIDIA NetQ</h3>
               <p class="small">A highly-scalable, modern network operations tool set that provides visibility into your network</p>
               <ul>
                   <li><a href="{{.URL}}">User guide</a></li>
                   <li><a href="{{.URL}}Whats-New/rn/">Release notes</a></li>
-                  <li><a href="{{.URL}}Whats-New/">What's new in Cumulus NetQ</a></li>
+                  <li><a href="{{.URL}}Whats-New/">What's new in NetQ</a></li>
               </ul>
             {{ end }}
           </div>
           <div class="col-12 col-sm-6 col-lg-4 mb-5 mb-lg-0">
-            <a href="/cumulus-vx/"><img src="/home-products-cumulus-express.jpg" alt="Cumulus Express" class="mb-6"></a>
+            <a href="/cumulus-vx/"><img src="/home-products-cumulus-express.jpg" alt="Cumulus VX" class="mb-6"></a>
             <h3>NVIDIA Cumulus VX</h3>
             <p class="small">A free virtual appliance &mdash; download and build a virtual data center using any popular hypervisor</p>
             <ul>
@@ -261,7 +261,7 @@
                 <div class="footer-content">
                     <div class="mb-4">
                         <img src="https://static.cumulusnetworks.com/static/images/shared/nvidia-logo-white.5c3d914c5190.svg">
-                        <p>© <script type="text/javascript">document.write(new Date().getFullYear());</script> NVIDIA Corporation.<br>
+                        <p>© <script type="text/javascript">document.write(new Date().getFullYear());</script>  NVIDIA Corporation.<br>
                         Site by <a href="//unomena.com/" target="_blank">Unomena</a>.</p>
                         <p><a href="/license/"><img src="/images/by-nc-sa.svg" alt="Cumulus Networks CC-by-NC-SA License"></a></p>
                     </div>
@@ -272,17 +272,16 @@
                         <li><a href="//cumulusnetworks.com/products/cumulus-express/">Cumulus Express</a></li>
                     </ul>
                     <ul class="mb-4">
+                      <li><h4 class="text-jade mb-3">Solutions</h4></li>
+                      <li><a href="//cumulusnetworks.com/networking-solutions/automation/">Automation</a></li>
+                      <li><a href="//cumulusnetworks.com/networking-solutions/openstack/">OpenStack</a></li>
+                      <li><a href="//cumulusnetworks.com/networking-solutions/converged-infrastructure/">HCI</a></li>
+                  </ul>
+                  <ul class="mb-4">
                         <li><h4 class="text-jade mb-3">Learn</h4></li>
                         <li><a href="//cumulusnetworks.com/learn/web-scale-networking-education/">Going web-scale</a></li>
                         <li><a href="//cumulusnetworks.com/learn/events/">Events</a></li>
                         <li><a href="//cumulusnetworks.com/blog/">Blog</a></li>
-                    </ul>
-                    <ul class="mb-4">
-                        <li><h4 class="text-jade mb-3">About</h4></li>
-                        <li><a href="//cumulusnetworks.com/about/">Our story</a></li>
-                        <li><a href="//cumulusnetworks.com/about/media-coverage/">Media coverage</a></li>
-                        <li><a href="//docs.cumulusnetworks.com/" target="_blank">Tech docs</a></li>
-                        <li><a href="//cumulusnetworks.com/community/">Community</a></li>
                     </ul>
                     <ul>
                         <li>
@@ -383,7 +382,7 @@
 </div>
 
   {{ template "_internal/google_analytics_async.html" . }}
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script> 
   <script type="text/javascript">
     (function() {
       var didInit = false;

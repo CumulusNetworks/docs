@@ -24,14 +24,14 @@ If you're looking for hardware specifications (including LED layouts and FRUs li
 1. Log in to the appliance using the default login credentials:
 
     - **Username**: cumulus
-    - **Password**: CumulusLinux!
+    - **Password**: cumulus
 
 2. Change the password using the `passwd` command:
 
     ```
     cumulus@hostname:~$ passwd
     Changing password for cumulus.
-    (current) UNIX password: CumulusLinux!
+    (current) UNIX password: cumulus
     Enter new UNIX password:
     Retype new UNIX password:
     passwd: password updated successfully
@@ -87,13 +87,13 @@ If you're looking for hardware specifications (including LED layouts and FRUs li
 
 Now that the appliance is up and running, verify that the software is available and the appliance is ready for installation.
 
-1. Verify that the needed packages are present and of the correct release, version 3.2.0 and update 30.
+1. Verify that the needed packages are present and of the correct release, version 3.2.1 and update 31.
 
-    {{<netq-install/verify-pkgs version="3.2.0" platform="appliance">}}
+    {{<netq-install/verify-pkgs version="3.2.1" platform="appliance">}}
 
-2. Verify the installation images are present and of the correct release, version 3.2.0.
+2. Verify the installation images are present and of the correct release, version 3.2.1.
 
-    {{<netq-install/verify-image deployment="cloud" version="3.2.0">}}
+    {{<netq-install/verify-image deployment="cloud" version="3.2.1">}}
 
 3. Verify the appliance is ready for installation. Fix any errors indicated before installing the NetQ software.
 
@@ -101,15 +101,15 @@ Now that the appliance is up and running, verify that the software is available 
 
 4. Run the Bootstrap CLI. Be sure to replace the *eno1* interface used in this example with the interface or IP address on the appliance used to listen for NetQ Agents.
 
-    {{<netq-install/bootstrap server="single" version="3.2.0" platform="appliance" deployment="cloud">}}
+    {{<netq-install/bootstrap server="single" version="3.2.1" platform="appliance" deployment="cloud">}}
 
 ## Considerations for Container Environments
 
-{{<netq-install/container>}}
+{{<netq-install/container version="3.2.1">}}
 
 ## Install and Activate the NetQ Software
 
-The final step is to install and activate the Cumulus NetQ software. You can do this using the Admin UI or the NetQ CLI.
+The final step is to install and activate the Cumulus NetQ software.  You can do this using the Admin UI or the NetQ CLI.
 
 Click the installation and activation method you want to use to complete installation:
 

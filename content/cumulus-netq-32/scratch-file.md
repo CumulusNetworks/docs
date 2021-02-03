@@ -18,7 +18,29 @@ pdfhidden: true
 
 {{< /tabs >}}
 
-<div style="padding-left: 18px;">
+<div style="padding-left: 18px;">text</div>
+
+<div class="notices note"><p>note text</p></div>
+
+<! --  text to comment out -–>
+
+{{< expand "title" >}}
+
+{{< /expand >}}
+
+{{<notice note>}}
+When entering a time value in the <code>netq show evpn</code> command, you must include a numeric value <em>and</em> the unit of measure:
+<ul>
+<li><strong>w</strong>: week(s)</li>
+<li><strong>d</strong>: day(s)</li>
+<li><strong>h</strong>: hour(s)</li>
+<li><strong>m</strong>: minute(s)</li>
+<li><strong>s</strong>: second(s)</li>
+<li><strong>now</strong>
+</ul>
+
+When using the <code>between</code> option, the start time (<code>text-time</code>) and end time (<code>text-endtime</code>) values can be entered as most recent first and least recent second, or vice versa. The values do not have to have the same unit of measure.
+{{</notice>}}
 
 -------------
 

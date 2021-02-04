@@ -26,6 +26,7 @@ Cumulus Linux 4.3.0 provides bug fixes, and contains several new features and en
   - {{<link url="Buffer-and-Queue-Management#scheduling-weights-per-egress-queue" text="Scheduling weights per egress queue">}}
 - {{<link title="Mellanox What Just Happened (WJH)" text="Mellanox WJH commands">}} enable you to troubleshoot and diagnose network issues
 - {{<link url="Docker-on-Cumulus-Linux" text="Docker runtime ">}} is included by default with Cumulus Linux
+- {{<link url="Troubleshoot-Layer-1" text="Troubleshooting guide for layer 1 issues">}} affecting the port modules connecting switches to networks.
 - {{<link url="SPAN-and-ERSPAN" text="NCLU commands for SPAN and ERSPAN">}}
 - {{<link url="RDMA-over-Converged-Ethernet-RoCE" text="DoRoCE command">}} enables you to configure RoCE with PFC and ECN on all interfaces
 - {{<link url="Netfilter-ACLs/#nonatomic-update-mode-and-atomic-update-mode" text="Incremental nonatomic updates">}} are now supported on NVIDIA Mellanox switches

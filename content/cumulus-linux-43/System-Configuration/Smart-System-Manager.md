@@ -71,7 +71,7 @@ cumulus@switch:~$ sudo csmgrctl -f
 Upgrade mode updates all the components and services on the switch to the latest Cumulus Linux release without traffic loss. After upgrade is complete, you must restart the switch with either a {{<link url="#restart-mode" text="cold or fast restart">}}.
 
 Upgrade mode includes the following options:
-- `all` runs `apt-get upgrade` to upgrade all the system components to the latest release without affecting traffic flow. You must restart the system after the upgrade completes with one of the {{<link url="#restart-mode" text="restart modes">}}.  
+- `all` runs `apt-get upgrade` to upgrade all the system components to the latest release without affecting traffic flow. You must restart the system after the upgrade completes with one of the {{<link url="#restart-mode" text="restart modes">}}.
 - `dry-run` provides information on the components that will be upgraded.
 
 The following command upgrades all the system components:

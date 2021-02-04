@@ -24,7 +24,7 @@ disableKinds = ["RSS"]
   [[menu.subnav]]
     identifier = "cumulus-linux"
     title = "NVIDIA Cumulus Linux"
-    url = "/cumulus-linux-42/"
+    url = "/cumulus-linux-43/"
     weight = 10
 
   [[menu.subnav]]

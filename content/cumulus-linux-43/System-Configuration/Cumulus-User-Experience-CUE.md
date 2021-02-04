@@ -52,9 +52,7 @@ CUE commands all begin with `cl` and fall into one of three syntax categories:
 - Monitoring (`show`)
 - Configuration management (`config`).
 
-The commands include attributes and revision options:
-- Revision options `[options]` let you specify where to apply the configuration and are optional. If you do not specify a revision option, the command is applied to the running configuration. For a description of the revision options, see {{<link url="#revision-options" text="Revision Options">}} below.
-- Attributes (`<attributes>`) specify configuration settings.
+The commands include attributes and options. Attributes (`<attributes>`) specify configuration and show settings. Options `[options]` are either general options that provide help for a command (`-h` or `--help`) or revision options that let you specify where to apply or show the configuration. If you do not specify a revision option, the command is applied to the running configuration. For a description of the revision options, see {{<link url="#revision-options" text="Revision Options">}} below.
 
 ```
 cumulus@switch:~$ cl set [options] <attribute>

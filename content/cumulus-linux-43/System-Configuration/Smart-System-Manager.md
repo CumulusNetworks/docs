@@ -66,7 +66,7 @@ cumulus@switch:~$ sudo csmgrctl -f
 
 {{< /tabs >}}
 
-## Ugrade Mode
+## Upgrade Mode
 
 Upgrade mode updates all the components and services on the switch to the latest Cumulus Linux release without traffic loss. After upgrade is complete, you must restart the switch with either a {{<link url="#restart-mode" text="cold or fast restart">}}.
 

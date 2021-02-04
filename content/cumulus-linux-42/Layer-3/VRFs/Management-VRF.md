@@ -134,7 +134,7 @@ cumulus@switch:~$ ip vrf identify 2055
 mgmt
 ```
 
-Run `ip vrf help` for additional `ip vfr` commands.
+Run `ip vrf help` for additional `ip vrf` commands.
 
 {{%notice note%}}
 

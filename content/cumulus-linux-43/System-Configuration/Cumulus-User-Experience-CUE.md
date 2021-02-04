@@ -158,9 +158,13 @@ The CUE configuration management commands manage and apply configurations.
 | `cl config diff [options] [(<revision>|--empty)] [<revision>]` | Shows differences between two configuration revisions. |
 | `cl config patch [options] <cue-file>` | Updates the pending revision with a configuration YAML file. |
 
-## Revision Options
+## Options
 
-The CUE revision options enable ADD USE CASES HERE
+The CUE commands include general options and revision options.
+
+The general options `-h` or `--help` provide help for the commands.
+
+The revision options enable you to .......
 
 | Option | Description |
 | ------ | ----------- |
@@ -170,11 +174,9 @@ The CUE revision options enable ADD USE CASES HERE
 |  `--startup`       |  Applies the set or unset command to the startup revision. The new configuration will run when you restart the switch. |
 |  `--running`       |  Applies the set or unset command to the running revision (the actual system state).  |
 
-NEED A SECTION DESCIBING THE USE CASES FOR REVISIONS AND CONFIG MANAGEMENT COMMANDS. THIS IS TRICKY SO NEED TO PROVIDE EXAMPLES
-
 ## List all CUE Commands
 
-To see the full list of CUE commands, run `cl list-commands`. For example:
+To show the full list of CUE commands, run `cl list-commands`. For example:
 
 ```
 cumulus@switch:~$ cl list-commands
@@ -194,6 +196,34 @@ cl show system ntp pool
 cl show system ntp pool <server-id>
 cl show system dhcp-server
 ...
+```
+
+You can show the list of commands for a command grouping and for subcommands. For example, to show the list of interface commands:
+
+```
+cumulus@switch:~$ cl list-commands interface
+cl show interface
+cl show interface <interface-id>
+cl show interface <interface-id> bond
+cl show interface <interface-id> bond member
+cl show interface <interface-id> bond member <member-id>
+cl show interface <interface-id> bond mlag
+cl show interface <interface-id> bridge
+cl show interface <interface-id> bridge domain
+cl show interface <interface-id> bridge domain <domain-id>
+cl show interface <interface-id> bridge domain <domain-id> stp
+cl show interface <interface-id> bridge domain <domain-id> vlan
+cl show interface <interface-id> bridge domain <domain-id> vlan <vid>
+cl show interface <interface-id> ip
+...
+```
+
+Use the Tab key to get help the command lists you want to see. For example, to show the list of commands available for the interface swp1, run:
+
+```
+cumulus@switch:~$ cl list-commands interface swp1 <<press Tab>>
+bond    bridge  ip      link
+cumulus@switch:~$ cl list-commands interface swp1
 ```
 
 ## Example CUE Commands

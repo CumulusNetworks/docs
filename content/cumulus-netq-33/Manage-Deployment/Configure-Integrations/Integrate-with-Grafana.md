@@ -22,7 +22,7 @@ NetQ displays:
 - **Software Transmit** with *soft\_out\_* prefix: errors, drops, tx_fifo_full
 - **Software Receive** with *soft\_in\_* prefix: errors, frame_errors, drops -->
 
-You can use Grafana version 6.x or 7.x, an open source analytics and monitoring tool, to view these statistics. The fastest way to achieve this is by installing Grafana on an application server or locally per user, and then installing the NetQ plug-in containing the prepared NetQ dashboard.  
+You can use Grafana version 6.x or 7.x, an open source analytics and monitoring tool, to view these statistics. The fastest way to achieve this is by installing Grafana on an application server or locally per user, and then installing the NetQ plug-in.  
 
 {{%notice note%}}
 
@@ -45,9 +45,9 @@ into: /usr/local/var/lib/grafana/plugins
 Restart grafana after installing plugins . <service grafana-server restart>
 ```
 
-## Set Up the Pre-configured NetQ Dashboard
+## Set Up the NetQ Data Source
 
-The quickest way to view the interface statistics for your Cumulus Linux network is to make use of the pre-configured dashboard installed with the plug-in. Once you are familiar with that dashboard, you can create new dashboards or add new panels to the NetQ dashboard.
+Now that you have the plug-in installed, you need to configure access to the NetQ data source.
 
 1. Open the Grafana user interface.
 
@@ -65,7 +65,7 @@ The quickest way to view the interface statistics for your Cumulus Linux network
 
     {{<figure src="/images/netq/grafana-add-data-src-320.png" width="500">}} -->
 
-4. Enter **Net-Q** in the search box. Alternately, scroll down to the **Other** category, and select one of these sources from there.
+4. Enter **Net-Q** in the search box. Alternately, scroll down to the **Other** category, and select it from there.
 
     {{<figure src="/images/netq/grafana-add-data-src-330.png" width="500">}}
 
@@ -82,7 +82,7 @@ The quickest way to view the interface statistics for your Cumulus Linux network
 
 7. Select *procdevstats* from the **Module** dropdown.
 
-8. Enter your credentials (the ones used to login).
+8. Enter your credentials (the ones used to log in).
 
 9. For NetQ cloud deployments only, if you have more than one premises configured, you can select the premises you want to view, as follows:
 
@@ -93,15 +93,11 @@ The quickest way to view the interface statistics for your Cumulus Linux network
 
 10. Click **Save & Test**.
 
-    {{<figure src="/images/netq/grafana-netq-dashboard-230.png" width="700">}}
+## Create Your NetQ Dashboard
 
-11. Go to {{<link url="#analyze-the-data" text="analyzing your data">}}.
+With the data source configured, you can create a dashboard with the transmit and receive statistics of interest to you.
 
-## Create a Custom Dashboard
-
-You can create a dashboard with only the statistics of interest to you.
-
-To create your own dashboard:
+To create your dashboard:
 
 1. Click {{<img src="/images/netq/grafana-create-dashbd-icon.png" width="24" height="24">}} to open a blank dashboard.
 
@@ -151,7 +147,11 @@ To create your own dashboard:
 
 ## Analyze the Data
 
-Once you have your dashboard configured, you can start analyzing the data:
+Once you have your dashboard configured, you can start analyzing the data.
+
+For reference, this example shows a dashboard with all of the available statistics.
+
+{{<figure src="/images/netq/grafana-netq-dashboard-230.png" width="700">}}
 
 1. Select the hostname from the variable list at the top left of the charts to see the statistics for that switch or host.
 

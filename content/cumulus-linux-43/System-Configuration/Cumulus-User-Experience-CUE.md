@@ -8,7 +8,7 @@ toc: 3
 Cumulus User Experience (CUE) is an {{<exlink url="https://docs.cumulusnetworks.com/knowledge-base/Support/Support-Offerings/Early-Access-Features-Defined/" text="early access feature">}}.
 {{%/notice%}}
 
-CUE is currently available for evaluation. Your feedback is welcome and appreciated as we start to roll out the new Cumulus Linux CLI. You can provide feedback and join the CUE discussion in the **#net-cl-cue-ea-feedback** NVIDIA Slack channel or send an email to net-cl-cue-ea-feedback@nvidia.com.
+CUE is currently available for evaluation. Your feedback is welcome and appreciated as we start to roll out the new Cumulus Linux CLI. You can provide feedback and join the CUE discussion in the **#net-cl-cue-ea-feedback** public Slack channel or send an email to net-cl-cue-ea-feedback@nvidia.com.
 
 ## What is CUE?
 

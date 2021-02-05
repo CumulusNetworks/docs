@@ -48,18 +48,9 @@ The CUE command line has a flat structure as opposed to a modal structure. This 
 ### Command Syntax
 
 CUE commands all begin with `cl` and fall into one of three syntax categories:
-- Configuration (`set` and `unset`)
-- Monitoring (`show`)
-- Configuration management (`config`).
-
-The commands include attributes and options. Attributes (`<attributes>`) specify configuration and show settings. Options `[options]` are either general options that provide help for a command (`-h` or `--help`) or revision options that let you specify where to apply or show the configuration. If you do not specify a revision option, the command is applied to the running configuration. For a description of the revision options, see {{<link url="#revision-options" text="Revision Options">}} below.
-
-```
-cumulus@switch:~$ cl set [options] <attribute>
-cumulus@switch:~$ cl unset [options] <attribute>
-cumulus@switch:~$ cl show [options] <attribute>
-cumulus@switch:~$ cl config <command> [options]
-```
+- Configuration (`cl set` and ` cl unset`)
+- Monitoring (`cl show`)
+- Configuration management (`cl config`).
 
 ### Command Completion
 
@@ -119,19 +110,19 @@ The `cl set` and `cl unset` commands are grouped into the following categories. 
 
 | <div style="width:450px">Command Category | Description |
 | ------- | ----------- |
-| `cl set router [options] [<attribute> ...]`<br>`cl unset router [options] [<attribute> ...]` | Configures router policies, such as prefix list rules and route maps, and global BGP options. This is where you enable and disable BGP, set the ASN, set the router ID, and configure BGP graceful restart and shutdown. |
-| `cl set platform [options] [<attribute> ...]`<br>`cl unset platform [options] [<attribute> ...]` | Configures hostname options, such as the static hostname for the switch, the local domain, and whether DHCP is allowed to overrride the hostname. You can also set how configuration apply operations are performed (specify which files to ignore and which files to overwrite). |
-| `cl set bridge [options] [<attribute> ...]`<br>`cl unset bridge [options] [<attribute> ...]` | Configures a bridge domain. This is where you configure the bridge type (VLAN-aware), 802.1Q encapsulation, the STP state and priority on the bridge, and the VLANs in the bridge domain. |
-| `cl set mlag [options] [<attribute> ...]`<br>`cl unset mlag [options] [<attribute> ...]` | Configures MLAG. This is where you configure the backup IP address or interface, MLAG system MAC address, peer IP address, MLAG priority, and the delay before bonds are brought up. |
-| `cl set evpn [options] [<attribute> ...]`<br>`cl unset evpn [options] [<attribute> ...]` | Configures EVPN. This is where you  enable and disable the EVPN control plane, and set EVPN route advertise options, default gateway configuration for centralized routing, and duplicate address detection options. |
-| `cl set interface [options] <interface-id> ...`<br>`cl unset interface [options] <interface-id> ...` | Configures the switch interfaces. Use this command to configure bond interfaces, bridge interfaces, interface IP addresses, VLAN IDs, and links (MTU, FEC, speed, duplex, and so on).|
-| `cl set system [options] [<attribute> ...]`<br>`cl unset system [options] [<attribute> ...]` | Configures global system settings, such as NTP, DHCP server, DNS, LLDP, and syslog. |
-| `cl set vrf [options] <vrf-id> ...`<br>`cl unset vrf [options] <vrf-id> ...` | Configures VRFs. |
-| `cl set nve [options] [<attribute> ...]`<br>`cl unset nve [options] [<attribute> ...]` | Configures network virtualization (VXLAN) settings. This is where you configure the UDP port for VXLAN frames, control dynamic MAC learning over VXLAN tunnels, and configure how Cumulus Linux handles BUM traffic in the overlay.|
+| `cl set router [<attribute> ...]`<br>`cl unset router [options] [<attribute> ...]` | Configures router policies, such as prefix list rules and route maps, and global BGP options. This is where you enable and disable BGP, set the ASN, set the router ID, and configure BGP graceful restart and shutdown. |
+| `cl set platform [<attribute> ...]`<br>`cl unset platform [options] [<attribute> ...]` | Configures hostname options, such as the static hostname for the switch, the local domain, and whether DHCP is allowed to overrride the hostname. You can also set how configuration apply operations are performed (specify which files to ignore and which files to overwrite). |
+| `cl set bridge [<attribute> ...]`<br>`cl unset bridge [options] [<attribute> ...]` | Configures a bridge domain. This is where you configure the bridge type (VLAN-aware), 802.1Q encapsulation, the STP state and priority on the bridge, and the VLANs in the bridge domain. |
+| `cl set mlag [<attribute> ...]`<br>`cl unset mlag [options] [<attribute> ...]` | Configures MLAG. This is where you configure the backup IP address or interface, MLAG system MAC address, peer IP address, MLAG priority, and the delay before bonds are brought up. |
+| `cl set evpn [<attribute> ...]`<br>`cl unset evpn [options] [<attribute> ...]` | Configures EVPN. This is where you  enable and disable the EVPN control plane, and set EVPN route advertise options, default gateway configuration for centralized routing, and duplicate address detection options. |
+| `cl set interface <interface-id> ...`<br>`cl unset interface [options] <interface-id> ...` | Configures the switch interfaces. Use this command to configure bond interfaces, bridge interfaces, interface IP addresses, VLAN IDs, and links (MTU, FEC, speed, duplex, and so on).|
+| `cl set system [<attribute> ...]`<br>`cl unset system [options] [<attribute> ...]` | Configures global system settings, such as NTP, DHCP server, DNS, LLDP, and syslog. |
+| `cl set vrf  <vrf-id> ...`<br>`cl unset vrf [options] <vrf-id> ...` | Configures VRFs. |
+| `cl set nve [<attribute> ...]`<br>`cl unset nve [options] [<attribute> ...]` | Configures network virtualization (VXLAN) settings. This is where you configure the UDP port for VXLAN frames, control dynamic MAC learning over VXLAN tunnels, and configure how Cumulus Linux handles BUM traffic in the overlay.|
 
 ### Monitoring Commands
 
-The CUE monitoring commands show various parts of the network configuration. For example, you can show the complete network configuration, or bridge, interface, VRF, MLAG, BGP or EVPN configuration. The monitoring commands are grouped into the following categories. Each command group includes subcommands.
+The CUE monitoring commands show various parts of the network configuration. For example, you can show the complete network configuration, or only interface configuration. The monitoring commands are grouped into the following categories. Each command group includes subcommands.
 
 | <div style="width:450px">Command | Description |
 | ------- | ----------- |
@@ -145,34 +136,28 @@ The CUE monitoring commands show various parts of the network configuration. For
 | `cl show vrf [options] [<vrf-id> ...]` | Shows VRF information.|
 | `cl show nve [options] [<attribute> ...]` | Shows network virtualization information, such as VXLAN-specfic MLAG configuration and VXLAN flooding.|
 
+*Revision* options are available for the `cl show` commands. You can choose the configuration you want to show (pending, applied, startup, running):
+
+| Option | Description |
+| ------ | ----------- |
+| `--rev <revision>` | Shows a detached pending configuration. See the `cl config detach` configuration management command below.  |
+| `--pending`       |  Shows the pending configuration.|
+| `--applied`       |  Shows the applied configuration. |
+| `--startup`       |  Shows the startup configuration. |
+| `--running`       |  Shows the running configuration (the actual system state). The running and applied configuration should be the same. If different, inspect the logs.  |
+
 ### Configuration Management Commands
 
 The CUE configuration management commands manage and apply configurations.
 
 | <div style="width:450px">Command | Description |
 | ------- | ----------- |
-| `cl config apply [options] [<revision>]` | Applies the running configuration.<br> You can specify the revision you want to apply to the running configuration. If no revision is specified, the pending configuration is applied to the running configuration.<br>You can also use these prompt options:<ul><li>`--y` or `--assume-yes` to automatically reply `yes` to all prompts.</li><li>`--assume-no` to automatically reply `no` to all prompts.</li></ul> {{%notice note%}}The configuration is applied but not saved and does not persist after a reboot.{{%/notice%}}|
-| `cl config save [options]` | Overwrites the startup configuration with the applied revision. The configuration persists after a reboot. |
-| `cl config replace [options] <cue-file>` | Replaces the pending configuration with the specified configuration YAML file. |
-| `cl config detach [options]` | Detaches the configuration from the current pending revision. |
-| `cl config diff [options] [(<revision>|--empty)] [<revision>]` | Shows differences between two configuration revisions. |
-| `cl config patch [options] <cue-file>` | Updates the pending revision with a configuration YAML file. |
-
-## Options
-
-The CUE commands include general options and revision options.
-
-The general options `-h` or `--help` provide help for the commands.
-
-The revision options enable you to .......
-
-| Option | Description |
-| ------ | ----------- |
-| `--rev <revision>` |  Applies the set or unset command to the revision ID you specify. |
-|  `--pending`       |  Applies the set or unset command to one or more configurations that are awaiting to be applied.|
-|  `--applied`       |  Applies the set or unset command to the applied revision. |
-|  `--startup`       |  Applies the set or unset command to the startup revision. The new configuration will run when you restart the switch. |
-|  `--running`       |  Applies the set or unset command to the running revision (the actual system state).  |
+| `cl config apply` | Applies the pending configuration to become the applied configuration.<br>You can also use these prompt options:<ul><li>`--y` or `--assume-yes` to automatically reply `yes` to all prompts.</li><li>`--assume-no` to automatically reply `no` to all prompts.</li></ul> {{%notice note%}}The configuration is applied but not saved and does not persist after a reboot.{{%/notice%}}|
+| `cl config detach` | Detaches the configuration from the current pending revision. The detached revision is called `pending` and includes a timestamp with extra characters. For example: `pending_20210128_212626_4WSY`|
+| `cl config diff [(<revision>|--empty)] [<revision>]` | Shows differences between configuration revisions. |
+| `cl config patch <cue-file>` | Updates the pending revision with a configuration YAML file. |
+| `cl config replace <cue-file>` | Replaces the pending configuration with the specified configuration YAML file. |
+| `cl config save` | Overwrites the startup configuration with the applied configuration by writing to the `/etc/cued file`. The configuration persists after a reboot. |
 
 ## List all CUE Commands
 
@@ -245,6 +230,7 @@ The example below shows the CUE commands required to define the DNS server for t
 
 ```
 cumulus@switch:~$ cl set system dns server 192.168.200.1
+cumulus@switch:~$ cl config apply
 ```
 
 ### Configure an Interface

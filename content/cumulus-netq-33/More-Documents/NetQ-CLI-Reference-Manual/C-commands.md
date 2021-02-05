@@ -22,7 +22,7 @@ Refer to {{<link title="Validation Checks">}} for a description of the tests run
 
 **About Config Commands**
 
-Add text here
+The `netq config` commands must be run with sudo privileges.
 
 - - -
 
@@ -1043,7 +1043,7 @@ oob-mgmt-server   vagrant                   1500   -                 -          
 
 ## netq check ntp
 
-Verifies network time synchronization using NTP for all nodes (leafs, spines, and hosts) in your network fabric. Nodes that are not in time sychronization with the NetQ appliance or VM may report data with an incorrect timestamp or lose communication altogether.
+Verifies network time synchronization using NTP for all nodes (leafs, spines, and hosts) in your network fabric. Nodes that are not in time synchronization with the NetQ appliance or VM may report data with an incorrect timestamp or lose communication altogether.
 
 The output displays the status (passed/failed/skipped) of all tests and a summary including:
 
@@ -1539,7 +1539,9 @@ cumulus@switch:~$ netq config restart agent
 
 ## netq config add agent command
 
-Configures, enables, and disables modular agent commands that the NetQ Agent runs at preset intervals.
+The NetQ Agent contains a pre-configured set of modular commands that run periodically and send event and resource data to the NetQ appliance or VM. This command lets you fine tune which events the agent can poll and vary the frequency of polling.
+
+Refer to the {{<link title="Manage NetQ Agents/#change-netq-agent-polling-data-and-frequency" text="NetQ User Guide">}} for details of the commands, including their service keys and default polling intervals.
 
 ### Syntax
 
@@ -1550,6 +1552,49 @@ netq config add agent command
     [command <text-cmd-text>]
     [enable True | enable False]
 ```
+
+### Required Arguments
+
+| Argument | Value | Description |
+| ---- | ---- | ---- |
+| service-key | \<text-service-key-anchor\> | Modify the NetQ Agent command with this service key (name) |
+
+### Options
+
+| Option | Value | Description |
+| ---- | ---- | ---- |
+| poll-period | \<text-cmd-periodicity\> | Set the polling period for the NetQ Agent command with the designated service key |
+| command | \<text-cmd-text\> | Run this executable command for the NetQ Agent command with the designated service key |
+| enable | True, False | Enable (True) or disable (False) the NetQ Agent command with the designated service key |
+
+### Command History
+
+A release is included if there were changes to the command, otherwise it is not listed.
+
+| Release | Description |
+| ---- | ---- |
+| 3.0.0 | Introduced |
+
+### Sample Usage
+
+Modify polling frequency for a command
+
+```
+cumulus@switch:~$ netq config add agent command service-key lldp-json poll-period 60
+Successfully added/modified Command service lldpd command /usr/sbin/lldpctl -f json
+```
+
+Disable a command
+
+```
+cumulus@switch:~$ netq config add agent command service-key ospf-neighbor-json enable False
+Command Service ospf-neighbor-json is disabled
+```
+
+### Related Commands
+
+- netq config show agent commands
+- netq config agent factory-reset commands
 
 - - -
 
@@ -1603,3 +1648,4 @@ netq config add agent wjh-threshold
 
 - - -
 
+netq config agent factory-reset commands

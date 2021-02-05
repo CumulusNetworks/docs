@@ -4,7 +4,14 @@ author: NVIDIA
 weight: 1100
 toc: 4
 ---
+
 The `ethtool` command enables you to query or control the network driver and hardware settings. It takes the device name (like swp1) as an argument. When the device name is the only argument to `ethtool`, it prints the current settings of the network device. See `man ethtool(8)` for details. Not all options are currently supported on switch port interfaces.
+
+{{%notice tip%}}
+
+The `l1-show` command is the preferred tool for monitoring Ethernet data. See the {{<link url="Troubleshoot-Layer-1">}} guide for details.
+
+{{%/notice%}}
 
 ## Monitor Interface Status Using ethtool
 

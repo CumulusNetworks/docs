@@ -21,7 +21,8 @@ The CUE object model is structured as a *big tree* that represents the entire st
 CUE is not installed by default on Cumulus Linux. To install CUE, follow the procedure below.
 
 {{%notice info%}}
-Installing CUE disables NCLU; after installation you will no longer have access to the NCLU CLI.
+- Do not install CUE in a production environment.
+- Installing CUE disables NCLU; after installation you will no longer have access to the NCLU CLI.
 {{%/notice%}}
 
 1. Stop then disable the `netd` service:

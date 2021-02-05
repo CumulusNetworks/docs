@@ -364,7 +364,7 @@ When you **save** network configuration using CUE, the configuration is written 
 
 Cumulus Linux also writes to the `/etc/network/interfaces` and `/etc/frr/frr.conf` files when you apply a configuration. You can view these configuration files; however Nvidia recommends that you do not manually edit them while using CUE.
 
-## Bridge Configuration
+### Bridge Configuration
 
 You set global bridge configuration on the bridge domain. For example:
 
@@ -380,7 +380,7 @@ cumulus@leaf01:~$ cl set interface swp1 bridge domain br_default learning on
 
 The default vlan-aware bridge in CUE is `br_default`. The default vlan-aware bridge in NCLU is `bridge`.
 
-## BGP Configuration
+### BGP Configuration
 
 You can set global BGP configuration, such as the ASN, router ID, graceful shutdown and restart with the `cl set router bgp` command. For example:
 

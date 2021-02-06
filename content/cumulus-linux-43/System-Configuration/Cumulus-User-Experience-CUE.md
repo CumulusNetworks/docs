@@ -94,7 +94,7 @@ The CUE CLI stores commands issued within a session, which enables you to review
 
 ## Command Categories
 
-The CLI has a flat structure; however, the commands are conceptually grouped into three functional categories:
+The CUE CLI has a flat structure; however, the commands are conceptually grouped into three functional categories:
 
 - Configuration
 - Monitoring

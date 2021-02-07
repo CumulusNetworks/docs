@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-33258</td>
+<td><p>Cumulus Linux does not support bond members greater than 200G.</p></td>
+<td>4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-33237</td>
 <td><p>CVE-2020-36221, CVE-2020-36222, CVE-2020-36223, CVE-2020-36224, CVE-2020-36225, CVE-2020-36226, CVE-2020-36227, CVE-2020-36228, CVE-2020-36229, CVE-2020-36230:  Several vulnerabilities were discovered in OpenLDAP, a free implementation of the Lightweight Directory Access Protocol. An unauthenticated remote attacker can take advantage of these flaws to cause a denial of service (slapd daemon crash, infinite loops) via specially crafted packets.<br/>
 Vulnerable: &lt;= 2.4.47+dfsg-3+deb10u4<br/>
@@ -675,8 +681,8 @@ might result in NTP not functioning since the ntp service is still running in th
 <tr>
 <td>CM-31358</td>
 <td><p>The Dell 100G-LR4 (Innolight) transceiver cannot link up due to a power budget exceeded error on the Mellanox SN4600C switch.</p></td>
-<td>4.2.0-4.3.0</td>
-<td></td>
+<td>4.2.0-4.2.1</td>
+<td>4.3.0</td>
 </tr>
 <tr>
 <td>CM-31327</td>
@@ -2335,6 +2341,12 @@ asic-monitor[7389]: File "/usr/lib/python2.7/dist-packages/cumulus/asic_monitor.
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-33258</td>
+<td><p>Cumulus Linux does not support bond members greater than 200G.</p></td>
+<td>4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-33237</td>
 <td><p>CVE-2020-36221, CVE-2020-36222, CVE-2020-36223, CVE-2020-36224, CVE-2020-36225, CVE-2020-36226, CVE-2020-36227, CVE-2020-36228, CVE-2020-36229, CVE-2020-36230:  Several vulnerabilities were discovered in OpenLDAP, a free implementation of the Lightweight Directory Access Protocol. An unauthenticated remote attacker can take advantage of these flaws to cause a denial of service (slapd daemon crash, infinite loops) via specially crafted packets.<br/>
 Vulnerable: &lt;= 2.4.47+dfsg-3+deb10u4<br/>
@@ -2778,8 +2790,8 @@ Fixed: 3.1+dfsg-8+deb10u8</p></td>
 <tr>
 <td>CM-31358</td>
 <td><p>The Dell 100G-LR4 (Innolight) transceiver cannot link up due to a power budget exceeded error on the Mellanox SN4600C switch.</p></td>
-<td>4.2.0-4.3.0</td>
-<td></td>
+<td>4.2.0-4.2.1</td>
+<td>4.3.0</td>
 </tr>
 <tr>
 <td>CM-31327</td>

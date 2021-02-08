@@ -193,7 +193,7 @@ Each attribute is displayed on the rule card as a regular expression equivalent 
 
 {{< tab "NetQ CLI" >}}
 
-Scopes are defined with regular expressions, as follows. When two parameters are used, they are separated by a comma, but no space. When an asterisk (*) is used alone, it must be entered inside either single or double quotes. Single quotes are used here.
+Scopes are defined with regular expressions, as follows. When two parameters are used, they are separated by a comma, but no space, and all parameters must be defined in order. When an asterisk (*) is used alone, it must be entered inside either single or double quotes. Single quotes are used here.
 
 {{< tabs "TabID2270" >}}
 
@@ -214,9 +214,9 @@ Scopes are defined with regular expressions, as follows. When two parameters are
 | \<hostname>,\<interface> | leaf01,swp9 | Deliver events for the specified interface (*swp9*) on the specified device (*leaf01*) |
 | \<hostname>,\'\*\' | leaf01,\'\*\' | Deliver events for all interfaces on the specified device (*leaf01*) |
 | \'\*\',\<interface> | \'\*\',swp9 | Deliver events for the specified interface (*swp9*) on all devices |
-| \'\*\',\'\*\' | \'\*\',\'\*\' | Deliver events for all devices and all interfaces |
 | \<partial-hostname>\*,\<interface> | leaf*,swp9 | Deliver events for the specified interface (*swp9*) on all devices with hostnames starting with the specified text (*leaf*) |
-| \<hostname>,\<partial-interface>\* | leaf01,swp* | Deliver events for all interface with names starting with the specified text (*swp*) on the specified device (*leaf01*) |
+| \<hostname>,\<partial-interface>\* | leaf01,swp\* | Deliver events for all interface with names starting with the specified text (*swp*) on the specified device (*leaf01*) |
+| \'\*\',\'\*\' | \'\*\',\'\*\' | Deliver events for all devices and all interfaces |
 
 {{< /tab >}}
 
@@ -228,7 +228,7 @@ Scopes are defined with regular expressions, as follows. When two parameters are
 | \'\*\',\<sensorname> | \'\*\',fan1 | Deliver events for the specified sensor (*fan1*) for all devices |
 |  \<hostname>,\'\*\' | leaf01,\'\*\' | Deliver events for all sensors on the specified device (*leaf01*) |
 | \<partial-hostname>\*,\<interface> | leaf*,fan1 | Deliver events for the specified sensor (*fan1*) on all devices with hostnames starting with the specified text (*leaf*) |
-| \<hostname>,\<partial-sensorname>\* | leaf01,fan* | Deliver events for all sensors with names starting with the specified text (*fan*) on the specified device (*leaf01*) |
+| \<hostname>,\<partial-sensorname>\* | leaf01,fan\* | Deliver events for all sensors with names starting with the specified text (*fan*) on the specified device (*leaf01*) |
 | \'\*\',\'\*\' | \'\*\',\'\*\' | Deliver events for all sensors on all devices |
 
 {{< /tab >}}
@@ -367,6 +367,12 @@ This rule tells NetQ to deliver an event notification to the *syslog-netq* syslo
 cumulus@switch:~$ netq add tca event_id TCA_SENSOR_TEMPERATURE_UPPER scope leaf12,temp1 channel syslog-netq threshold 32
 ```
 
+This rule tells NetQ to deliver an event notification to the *tca-slack* channel when the total number of ACL drops on the *leaf04* switch exceeds 20,000 for any reason, ingress port, or drop type.
+
+```
+cumulus@switch:~$ netq add tca event_id TCA_WJH_ACL_DROP_AGG_UPPER scope leaf04,'*','*','*' channel tca-slack threshold 20000
+```
+
 For a Slack channel, the event messages should be similar to this:
 
 {{<figure src="/images/netq/tca-events-slack-example-240.png" width="500">}}
@@ -488,7 +494,7 @@ TCA_TCAM_IPV4_ROUTE_UPPER_1  TCA_TCAM_IPV4_ROUTE_ {"hostname":"*"}           cri
                              UPPER
 ```
 
-This example display a specific TCA rule:
+This example displays a specific TCA rule:
 
 ```
 cumulus@switch:~$ netq show tca tca_id TCA_TXMULTICAST_UPPER_1

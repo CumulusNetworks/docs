@@ -118,6 +118,7 @@ The `cl set` and `cl unset` commands are grouped into the following categories. 
 | `cl set interface <interface-id>`<br>`cl unset interface <interface-id>` | Configures the switch interfaces. Use this command to configure bond interfaces, bridge interfaces, interface IP addresses, VLAN IDs, and links (MTU, FEC, speed, duplex, and so on).|
 | `cl set system`<br>`cl unset system` | Configures global system settings, such as NTP, DHCP servers, DNS, LLDP, and syslog. |
 | `cl set vrf  <vrf-id>`<br>`cl unset vrf <vrf-id>` | Configures VRFs. |
+| `cl set service`<br>`cl unset service` | Configures DHCP relays. This is where you configure the DHCP relay server IP address, the set of interfaces on which to handle DHCP relay traffic, the DHCP relay gateway IP address on the interfaces, and the source IP address to use on the relayed packet. |
 | `cl set nve`<br>`cl unset nve` | Configures network virtualization (VXLAN) settings. This is where you configure the UDP port for VXLAN frames, control dynamic MAC learning over VXLAN tunnels, and configure how Cumulus Linux handles BUM traffic in the overlay.|
 
 ### Monitoring Commands
@@ -240,7 +241,7 @@ Use the Tab key to get help for the command lists you want to see. For example, 
 cumulus@switch:~$ cl list-commands interface swp1 <<press Tab>>
 bond    bridge  ip      link
 cumulus@switch:~$ cl list-commands interface swp1 bond
-l show interface <interface-id> bond
+cl show interface <interface-id> bond
 cl show interface <interface-id> bond member
 cl show interface <interface-id> bond member <member-id>
 cl show interface <interface-id> bond mlag
@@ -333,7 +334,7 @@ cumulus@leaf01:~$ cl set interface bond2 bond member swp2
 cumulus@leaf01:~$ cl set interface bond1 bond mlag id 1
 cumulus@leaf01:~$ cl set interface bond2 bond mlag id 2
 cumulus@switch:~$ cl set interface bond1-2 bridge domain br_default 
-cumulus@leaf01:~$ cl set interface swp49-50 type peerlink
+cumulus@leaf01:~$ cl set interface peerlink bond member swp49-50
 cumulus@leaf01:~$ cl set mlag mac-address 44:38:39:BE:EF:AA
 cumulus@leaf01:~$ cl set mlag backup 10.10.10.2
 cumulus@leaf01:~$ cl set mlag peer-ip linklocal

@@ -8,7 +8,7 @@
 </tr>
 <tr>
 <td>CM-33258</td>
-<td><p>Cumulus Linux does not support bond members greater than 200G.</p></td>
+<td><p>Cumulus Linux does not support bond members at 200G or greater.</p></td>
 <td>4.0.0-4.3.0</td>
 <td></td>
 </tr>
@@ -2342,7 +2342,7 @@ asic-monitor[7389]: File "/usr/lib/python2.7/dist-packages/cumulus/asic_monitor.
 </tr>
 <tr>
 <td>CM-33258</td>
-<td><p>Cumulus Linux does not support bond members greater than 200G.</p></td>
+<td><p>Cumulus Linux does not support bond members at 200G or greater.</p></td>
 <td>4.0.0-4.3.0</td>
 <td></td>
 </tr>

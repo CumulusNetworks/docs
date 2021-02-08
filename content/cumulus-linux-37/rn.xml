@@ -64,6 +64,12 @@ Fixed: 1.0.9.8.7</p></td>
 <td></td>
 </tr>
 <tr>
+<td>CM-32994</td>
+<td><p>On Broadcom switches, after repeated VLAN or VXLAN configuration changes, switchd memory might not free up appropriately, which can lead to a crash. </p></td>
+<td>3.7.14</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-32829</td>
 <td><p>The NET-SNMP-EXTEND-MIB, disabled in Cumulus Linux 4.2.1 and 3.7.14 to prevent security vulnerability CVE-2020-15862, is re-enabled read-only.</p></td>
 <td>3.7.14</td>
@@ -111,6 +117,12 @@ CVE-2020-1971: A flaw in the GENERAL_NAME_cmp() function could cause a NULL dere
 Vulnerable: &lt;= 1.0.1t-1+deb8u12<br/>
 Fixed: 1.0.1t-1+deb8u13</p></td>
 <td>3.0.0-3.7.14</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32728</td>
+<td><p>On Broadcom switches, when WARN level switchd log messages are generated, switchd might crash resulting in a core file generated on the system.</p></td>
+<td>3.7.14</td>
 <td></td>
 </tr>
 <tr>

@@ -1607,9 +1607,7 @@ netq config add agent cpu-limit
     [<text-limit-number>]
 ```
 
-    2.4.1
-
-netq config agent factory-reset commands
+2.4.1
 
 netq config add agent frr-monitor
     [<text-frr-docker-name>]
@@ -1636,8 +1634,6 @@ netq config add agent wjh-threshold
     <text-th-hi>
     <text-th-lo>
 3.2.0
-```
-
 
 
 ### Related Commands

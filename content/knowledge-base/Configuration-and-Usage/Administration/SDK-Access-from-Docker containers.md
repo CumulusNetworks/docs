@@ -3,7 +3,6 @@ title: SDK Access from Docker Containers
 author: Cumulus Networks
 weight: 320
 toc: 4
-draft: true
 ---
 Because Cumulus Linux is Linux, you can install and run containers on the system with full access to popular container management ecosystems. As long as system memory, storage, and CPU capacities are proportional to the application needs, there are no limitations. To protect the primary functions of the system (such as network control and dataplane) from resource contention with other applications, you can define resource caps.
 
@@ -24,7 +23,7 @@ There are two main classes of applications that require integration with the net
 The Mellanox `sx_sdk` is a standalone process, which supports access from multiple application clients simultaneously through the `sx_api` library with IPC communications. For a containerized application to get access to the SDK, you need to make the `sx_api` and a few other files available to the container while the SDK process continues to run natively on the container host.
 
 Cumulus Linux provides two options. You can either:
-- Copy the necessary files to the container at runtime.
+- Copy the required files to the container at runtime.
 - Patch the container image.
 
 ### Copy Files to the Container at Runtime
@@ -41,7 +40,7 @@ To copy the necessary files to the container at runtime, follow these steps:
    cumulus@switch:mgmt:~$ sudo docker run -d --name=myapp -it --net=host --mount type=bind,source=/var/run/sx_api.sock,target=/var/run/sx_api.sock --mount type=bind,source=/dev/shm/dpt,target=/dev/shm/dpt --mount type=bind,source=/dev/shm/wjh_acl,target=/dev/shm/wjh_acl --mount type=bind,source=/dev/shm/lag,target=/dev/shm/lag --env PYTHONPATH=$PYTHONPATH:/usr/lib/python2.7/dist-packages myimage
    ```
 
-2. Copy the necessary files to the container by running a script called `sdk_prep`:
+2. Copy the required files to the container by running a script called `sdk_prep`:
 
    ```
    cumulus@switch:mgmt:~$ sudo ./sdk_prep myapp
@@ -67,6 +66,7 @@ To copy the necessary files to the container at runtime, follow these steps:
    docker cp $DOCKER_TMP_DIR/* $1:/
    rm -r $DOCKER_TMP_DIR
    ```
+
 3. Verify SDK access from the container:
 
    ```
@@ -111,7 +111,7 @@ Removed /etc/systemd/system/switchd.service.wants/update-ports.service.
 
 With Cumulus Linux, an administrator has full access to all the security measures and tools that are available in the container ecosystems to secure containers and protect the container host. For example, the docker daemon architecture allows for an authorization plugin that can be used to provide fine grain capability and access control to what a container can and cannot do. One such plugin provider is {{<exlink url="https://www.openpolicyagent.org/docs/latest/docker-authorization/" text="Open Policy Agent">}}.
 
-For example, the configuration example below, together with enabling the authorization plugin in the `docker.conf` file, ensures no container can run with the `–privilege` option:
+A configuration like the one below, together with an enabled authorization plugin in the `docker.conf` file, ensures no container can run with the `–privilege` option:
 
 ```
 cumulus@switch:mgmt:~$ cat /etc/docker/policies/authz.rego

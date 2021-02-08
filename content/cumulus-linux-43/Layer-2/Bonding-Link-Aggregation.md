@@ -141,7 +141,7 @@ cumulus@switch:~$ cl config apply
 - The bond is configured by default in IEEE 802.3ad link aggregation mode. To configure the bond in balance-xor mode, see {{<link url="#configure-bond-options" text="Configuration Parameters">}} below.
 - If the bond is *not* going to become part of a bridge, you need to specify an IP address.
 - The name of the bond must be compliant with Linux interface naming conventions and unique within the switch.
-- Cumulus Linux does not currently support bond members greater than 200G.
+- Cumulus Linux does not currently support bond members at 200G or greater.
 
 {{%/notice%}}
 

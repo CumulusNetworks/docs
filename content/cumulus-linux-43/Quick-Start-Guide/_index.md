@@ -142,10 +142,10 @@ To change the hostname:
 
 {{< tab "NCLU Commands ">}}
 
-Run the `net add hostname` command, which modifies both the `/etc/hostname` and `/etc/hosts` files with the desired hostname.
+Run the `net add hostname` command, which modifies both the `/etc/hostname` and `/etc/hosts` files with the desired hostname. The following example sets the hostname to leaf01:
 
 ```
-cumulus@switch:~$ net add hostname <hostname>
+cumulus@switch:~$ net add hostname leaf01
 cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
@@ -170,8 +170,10 @@ cumulus@switch:~$ net commit
 
 {{< tab "CUE Commands ">}}
 
+The following example sets the hostname to leaf01:
+
 ```
-cumulus@switch:~$ cl set platform hostname <hostname>
+cumulus@switch:~$ cl set platform hostname leaf01
 cumulus@switch:~$ cl config apply
 ```
 
@@ -372,14 +374,14 @@ swp1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP mode 
 {{< tab "CUE Commands ">}}
 
 ```
-cumulus@switch:~$ cl set interface swp1
+cumulus@switch:~$ cl set interface swp1 link state up
 cumulus@switch:~$ cl config apply
 ```
 
 To administratively enable all physical ports, run the following command, where swp1-52 represents a switch with switch ports numbered from swp1 to swp52:
 
 ```
-cumulus@switch:~$ cl set interface swp1-52
+cumulus@switch:~$ cl set interface swp1-52 link state up
 cumulus@switch:~$ cl config apply
 ```
 
@@ -451,26 +453,25 @@ cumulus@switch:~$ sudo ifup -a
 
 {{< tab "CUE Commands ">}}
 
-In the following configuration example, the front panel port swp1 is placed into a bridge called *bridge*.
+In the following configuration example, the front panel port swp1 is placed into a bridge called *br_default*.
 
 ```
-cumulus@switch:~$ cl set bridge NEED COMMAND
+cumulus@switch:~$ cl set interface swp1 bridge domain br_default
 cumulus@switch:~$ cl config apply
 ```
 
 You can add a range of ports in one command. For example, to add swp1 through swp10, swp12, and swp14 through swp20 to bridge:
 
 ```
-cumulus@switch:~$ cl set bridge NEED COMMAND
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
+cumulus@switch:~$ cl set interface swp1,swp12,swp14-20 bridge domain br_default
+cumulus@switch:~$ cl config apply
 ```
 
 {{< /tab >}}
 
 {{< /tabs >}}
 
-To view the changes in the kernel, use the `brctl` command:
+To view the changes in the kernel, use the Linux `brctl` command or the C:
 
 ```
 cumulus@switch:~$ brctl show
@@ -550,8 +551,11 @@ cumulus@switch:~$ cl config apply
 To add an IP address to a bridge interface, you must put it into a VLAN interface. If you want to use a VLAN other than the native one, set the bridge PVID:
 
 ```
-cumulus@switch:~$ cl set interface swp1 vlan 100 ip address 10.2.2.1/24?????
-cumulus@switch:~$ cl set NEED COMMAND
+cumulus@switch:~$ cl set interface swp1-2 bridge domain bridge
+cumulus@switch:~$ cl set bridge domain bridge vlan 100
+cumulus@switch:~$ cl set interface vlan100 ip address 10.2.2.1/24
+cumulus@switch:~$ cl set bridge domain br_default untagged 100
+cumulus@switch:~$ cl config apply
 ```
 
 {{< /tab >}}
@@ -575,7 +579,7 @@ cumulus@switch:~$ ip addr show
 
 ## Configure a Loopback Interface
 
-Cumulus Linux has a loopback interface preconfigured in the `/etc/network/interfaces` file. When the switch boots up, it has a loopback interface, called *lo*, which is up and assigned an IP address of 127.0.0.1.
+Cumulus Linux has a preconfigured loopback interface. When the switch boots up, it has a loopback interface, called *lo*, which is up and assigned an IP address of 127.0.0.1.
 
 {{%notice tip%}}
 
@@ -611,7 +615,7 @@ The loopback is up and is assigned an IP address of 127.0.0.1.
 To add an IP address to a loopback interface, configure the *lo* interface:
 
 ```
-cumulus@switch:~$ net add loopback lo ip address 10.1.1.1/32
+cumulus@switch:~$ net add loopback lo ip address 10.10.10.1/32
 cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
@@ -638,7 +642,7 @@ To add an IP address to a loopback interface, add it directly under the `iface l
 ```
 auto lo
 iface lo inet loopback
-    address 10.1.1.1
+    address 10.10.10.10
 ```
 
 {{%notice note%}}
@@ -692,7 +696,7 @@ The loopback is up and is assigned an IP address of 127.0.0.1.
 To add an IP address to a loopback interface, configure the *lo* interface:
 
 ```
-cumulus@switch:~$ cl set interface lo ip address 10.1.1.1/32
+cumulus@switch:~$ cl set interface lo ip address 10.10.10.1/32
 cumulus@switch:~$ cl config apply
 ```
 

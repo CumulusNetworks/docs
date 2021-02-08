@@ -307,13 +307,13 @@ cumulus@switch:~$ cl config apply
 
 ### Configure a Bridge
 
-The example below shows the CUE commands required to create a VLAN-aware bridge that contains two switch ports and includes 3 VLANs; tagged VLANs 100 and 200 and an untagged (native) VLAN of 1.
+The example below shows the CUE commands required to create a VLAN-aware bridge that contains two switch ports (swp1 and swp2) and includes 3 VLANs; tagged VLANs 10 and 20 and an untagged (native) VLAN of 1.
 
 With CUE, there is a default bridge called `br_default`, which has no ports assigned to it. The example below configures this default bridge.
 
 ```
 cumulus@switch:~$ cl set interface swp1-2 bridge domain br_default
-cumulus@switch:~$ cl set bridge domain br_default vlan 100,200
+cumulus@switch:~$ cl set bridge domain br_default vlan 10,20
 cumulus@switch:~$ cl set bridge domain br_default untagged 1
 cumulus@switch:~$ cl config apply
 ```
@@ -371,7 +371,7 @@ Cumulus Linux also writes to the `/etc/network/interfaces` and `/etc/frr/frr.con
 You set global bridge configuration on the bridge domain. For example:
 
 ```
-cumulus@leaf01:~$ cl set bridge domain br_default vlan 100,200
+cumulus@leaf01:~$ cl set bridge domain br_default vlan 10,20
 ```
 
 However, you set specific bridge interface options with interface commands. For example:

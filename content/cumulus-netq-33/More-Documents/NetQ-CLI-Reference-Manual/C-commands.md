@@ -1600,6 +1600,10 @@ Command Service ospf-neighbor-json is disabled
 
 ## netq config add agent cpu-limit
 
+Configures the NetQ Agent use no more than a specified maximum percentage (between 40 and 60 percent) of the CPU resources of the switch. If the command is run without a value, NetQ assumes a limit of 40%. Cumulus Linux versions 3.6 or later or 4.1.0 or later must be running on the switch for this setting to take effect.
+
+For more detail about this feature, refer to this {{<exlink url="https://docs.cumulusnetworks.com/knowledge-base/Configuration-and-Usage/Cumulus-NetQ/NetQ-Agent-CPU-Utilization-on-Cumulus-Linux-Switches/" text="Knowledge Base">}} article.
+
 ### Syntax
 
 ```
@@ -1607,14 +1611,152 @@ netq config add agent cpu-limit
     [<text-limit-number>]
 ```
 
-2.4.1
+### Required Arguments
 
+None
+
+### Options
+
+| Option | Value | Description |
+| ---- | ---- | ---- |
+| NA | \<text-limit-number\> | Set the threshold for the maximum percentage of CPU resource that the NetQ Agent is allowed to use |
+
+### Command History
+
+A release is included if there were changes to the command, otherwise it is not listed.
+
+| Release | Description |
+| ---- | ---- |
+| 2.4.1 | Introduced |
+
+### Sample Usage
+
+Set CPU usage limit by NetQ Agent to 60 percent
+
+```
+cumulus@switch:~$ netq config add agent cpu-limit 60
+Successfully set agent CPU limit to 60
+Please restart agent(netq config restart agent)
+'netq-agent'
+cumulus@switch:~$ netq config restart agent
+Restarting netq-agent... Success!
+```
+
+### Related Commands
+
+- netq config show agent cpu-limit
+- netq config del agent cpu-limit
+- netq config (start|stop|status|restart) agent
+
+- - -
+
+## netq config add agent frr-monitor
+
+Configures the NetQ Agent to monitor the Free Range Router (FRR) function on the switch.
+
+### Syntax
+
+```
 netq config add agent frr-monitor
     [<text-frr-docker-name>]
+```
 
+### Required Arguments
+
+None
+
+### Options
+
+| Option | Value | Description |
+| ---- | ---- | ---- |
+| NA | \<text-frr-docker-name\> | Collect statistics about the FRR docker container with this name |
+
+### Command History
+
+A release is included if there were changes to the command, otherwise it is not listed.
+
+| Release | Description |
+| ---- | ---- |
+| Before 2.1.2 | Introduced |
+
+### Sample Usage
+
+Configure NetQ Agent to collect FRR statistics
+
+```
+cumulus@switch:~$ netq config add agent frr-monitor frr
+Successfully added FRR docker monitoring for netq-agent. Please restart service.
+
+cumulus@switch:~$ netq config restart agent
+Restarting netq-agent... Success!
+```
+
+### Related Commands
+
+- netq config show agent frr-monitor
+- netq config del agent frr-monitor
+- netq config (start|stop|status|restart) agent
+
+- - -
+
+## netq config add agent kubernetes-monitor
+
+Configures the NetQ Agent to monitor kubernetes containers on the switch and to set how often to collect this information (between 10 and 120 seconds).
+
+### Syntax
+
+```
 netq config add agent kubernetes-monitor
     [poll-period <text-duration-period>]
+```
 
+### Required Arguments
+
+None
+
+### Options
+
+| Option | Value | Description |
+| ---- | ---- | ---- |
+| poll-period | \<text-duration-period\> | Collect statistics about kubernetes containers at this frequency |
+
+### Command History
+
+A release is included if there were changes to the command, otherwise it is not listed.
+
+| Release | Description |
+| ---- | ---- |
+| Before 2.1.2 | Introduced |
+
+### Sample Usage
+
+Configure NetQ Agent to monitor kubernetes containers
+
+```
+cumulus@switch:~$ netq config add agent kubernetes-monitor
+Successfully added kubernetes monitor. Please restart netq-agent.
+
+cumulus@switch:~$ netq config restart agent
+Restarting netq-agent... Success!
+```
+
+Configure the polling frequency for kubernetes container data collection
+
+```
+cumulus@switch:~$ netq config add agent kubernetes-monitor poll-period 120
+Successfully added kubernetes monitor. Please restart netq-agent.
+
+cumulus@switch:~$ netq config restart agent
+Restarting netq-agent... Success!
+```
+
+### Related Commands
+
+- netq config show agent kubernetes-monitor
+- netq config del agent kubernetes-monitor
+- netq config (start|stop|status|restart) agent
+
+- - -
 netq config add agent loglevel
     [debug|error|info|warning]
 

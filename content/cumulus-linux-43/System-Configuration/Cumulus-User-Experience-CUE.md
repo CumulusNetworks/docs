@@ -188,7 +188,7 @@ The CUE configuration management commands manage and apply configurations.
 | `cl config apply` | Applies the pending configuration to become the applied configuration.<br>You can also use these prompt options:<ul><li>`--y` or `--assume-yes` to automatically reply `yes` to all prompts.</li><li>`--assume-no` to automatically reply `no` to all prompts.</li></ul> {{%notice note%}}The configuration is applied but not saved and does not persist after a reboot.{{%/notice%}}|
 | `cl config detach` | Detaches the configuration from the current pending revision. The detached revision is called `pending` and includes a timestamp with extra characters. For example: `pending_20210128_212626_4WSY`|
 | `cl config diff <revision> <revision>` | Shows differences between configurations, such as the pending configuration and the applied configuration or the detached configuration and the pending configuration.|
-| `cl config patch <cue-file>` | Updates the pending configuration with a configuration YAML file. |
+| `cl config patch <cue-file>` | Updates the pending configuration with the specified configuration YAML file. |
 | `cl config replace <cue-file>` | Replaces the pending configuration with the specified configuration YAML file. |
 | `cl config save` | Overwrites the startup configuration with the applied configuration by writing to the `/etc/cue.d/startup.yaml file`. The configuration persists after a reboot. |
 

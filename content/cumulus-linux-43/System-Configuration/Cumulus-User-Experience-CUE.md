@@ -291,7 +291,7 @@ cumulus@switch:~$ cl config apply
 
 ### Configure an Interface
 
-The example below brings up swp1.
+The example below shows the CUE commands required to bring up swp1.
 
 ```
 cumulus@switch:~$ cl set interface swp1 link state up

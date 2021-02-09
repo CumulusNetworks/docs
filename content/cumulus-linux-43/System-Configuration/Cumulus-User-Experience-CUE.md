@@ -395,7 +395,7 @@ cumulus@switch:~$ cl config detach
 
 To view differences between configurations, run the `cl config diff` command.
 
-To view differences between detached pending versions, run the `cl config diff` <<TAB>> command to list the current detached pending configurations, then run the `cl config diff` command with the pending configurations you want to differenciate:
+To view differences between detached pending configuration, run the `cl config diff` <<TAB>> command to list the current detached pending configurations, then run the `cl config diff` command with the pending configurations you want to differenciate:
 
 ```
 cumulus@switch:~$ cl config diff <<press Tab>>
@@ -409,7 +409,7 @@ pending_20210208_195937_MJ0S         startup
 cumulus@switch:~$ cl config diff pending_20210208_201140_MJ0V pending_20210208_195315_MJ0P
 ```
 
-To view differences between a detached pending version and the applied version:
+To view differences between a detached pending configuration and the applied configuration:
 
 ```
 cumulus@switch:~$ cl config diff pending_20210208_201140_MJ0V applied

@@ -14,7 +14,7 @@ Your evaluation is welcome and appreciated as we start to roll out this new Cumu
 
 ## What is CUE?
 
-CUE is a command line interface for Cumulus Linux. Embracing the power of open networking, CUE brings an entirely new interface to Cumulus Linux based on modern operating principles and schema oriented YANG based models.
+CUE is a command line interface for Cumulus Linux. Embracing the power of open networking, CUE brings an entirely new interface to Cumulus Linux based on modern operating principles and schema oriented models.
 
 The CUE object model is structured as a *big tree* that represents the entire state of a Cumulus Linux instance. At the base of the tree are high level branches such as *router* and *interface*. Under each of these branches are further branches.  As you navigate through the tree, you gain a more specific context. At the leaves of the tree are actual attributes, represented as key/value pairs. The path through the tree is implemented as through a filesystem.
 
@@ -413,6 +413,20 @@ To view differences between a detached pending configuration and the applied con
 
 ```
 cumulus@switch:~$ cl config diff pending_20210208_201140_MJ0V applied
+```
+
+### Replace and Patch a Pending Configuration
+
+The following example replaces the pending configuration with the contents of the YAML configuration file called `cl-02/13/2021.yaml` located in the `/deps` directory:
+
+```
+cumulus@switch:~$ cl config replace /deps/cl-02/13/2021.yaml
+```
+
+The following example patches the pending configuration (runs the set or unset commands from the configuration in the `cl-02/13/2021.yaml` file located in the `/deps` directory):
+
+```
+cumulus@switch:~$ cl config patch /deps/cl-02/13/2021.yaml
 ```
 
 ## How is CUE Different from NCLU?

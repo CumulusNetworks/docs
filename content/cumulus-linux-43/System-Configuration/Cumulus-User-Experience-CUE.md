@@ -472,7 +472,7 @@ To view differences between two detached pending configurations, run the `cl con
 
 ```
 cumulus@switch:~$ cl config diff <<press Tab>>
-cumulus@leaf01:mgmt:~$ cl config diff
+cumulus@switch:~$ cl config diff
 applied                              pending_20210208_201140_MJ0V
 pending_20210208_195315_MJ0P         pending_20210208_204655_MJ12
 pending_20210208_195937_MJ0S         startup

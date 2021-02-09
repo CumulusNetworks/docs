@@ -384,7 +384,7 @@ cumulus@switch:~$ cl config save
 
 ### Detach a Pending Configuration
 
-The following example commands configure the IP address of the loopback interface, then detach the configuration from the current pending revision. The detached configuration is saved to a file called pending that includes a timestamp with extra characters to distinguish it from other pending revisions; for example: pending_20210128_212626_4WSY.
+The following example commands configure the IP address of the loopback interface, then detach the configuration from the current pending revision. The detached configuration is saved to a file called `pending` that includes a timestamp with extra characters to distinguish it from other pending revisions; for example, `pending_20210128_212626_4WSY`.
 
 ```
 cumulus@switch:~$ cl set interface lo ip address 10.10.10.1
@@ -395,7 +395,7 @@ cumulus@switch:~$ cl config detach
 
 To view differences between configurations, run the `cl config diff` command.
 
-To view differences between detached pending configuration, run the `cl config diff` <<TAB>> command to list the current detached pending configurations, then run the `cl config diff` command with the pending configurations you want to differenciate:
+To view differences between two detached pending configurations, run the `cl config diff` <<TAB>> command to list all the current detached pending configurations, then run the `cl config diff` command with the pending configurations you want to diff:
 
 ```
 cumulus@switch:~$ cl config diff <<press Tab>>

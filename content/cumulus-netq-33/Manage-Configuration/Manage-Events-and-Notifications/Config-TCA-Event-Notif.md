@@ -174,7 +174,7 @@ In this example, three attributes are available. For one or more of these attrib
 | Single sensor | s_name | Equals | \<sensor-name\> such as *fan2* |
 | Single WJH drop type | drop_type | Equals | \<drop-type\> such as *router* |
 | Single WJH drop reason | reason or port_down_reason | Equals | \<drop-reason\> such as *WRED* |
-| Single WJH ingress port | ingress_port | Equals | \<port-name\> such as *swp9* |
+| Single WJH ingress port | ingress_port | Equals | \<port-name\> such as *47* |
 | Set of devices | hostname | Starts with | \<partial-hostname\> such as *leaf* |
 | Set of interfaces | ifname  | Starts with | \<partial-interface-name\> such as *swp* or *eth* |
 | Set of sensors | s_name | Starts with | \<partial-sensor-name\> such as *fan*, *temp*, or *psu* |
@@ -193,11 +193,13 @@ Each attribute is displayed on the rule card as a regular expression equivalent 
 
 {{< tab "NetQ CLI" >}}
 
-Scopes are defined with regular expressions, as follows. When two parameters are used, they are separated by a comma, but no space, and all parameters must be defined in order. When an asterisk (*) is used alone, it must be entered inside either single or double quotes. Single quotes are used here.
+Scopes are defined with regular expressions. When more than one scoping parameters is available, they must be separated by a comma (without spaces), and all parameters must be defined in order. When an asterisk (*) is used alone, it must be entered inside either single or double quotes. Single quotes are used here.
 
 {{< tabs "TabID2270" >}}
 
 {{< tab "Hostname" >}}
+
+The single hostname scope parameter is used by the ACL resources, forwarding resources, and resource utilization events.
 
 | Scope Value | Example | Result |
 | --------------- | ---------- | -------- |
@@ -208,6 +210,8 @@ Scopes are defined with regular expressions, as follows. When two parameters are
 {{< /tab >}}
 
 {{< tab "Hostname, Interface">}}
+
+The hostname and interface scope parameters are used by the digital optics, interface errors, interface statistics, and link flaps events.
 
 | Scope Value | Example | Result |
 | --------------- | ---------- | -------- |
@@ -222,6 +226,8 @@ Scopes are defined with regular expressions, as follows. When two parameters are
 
 {{< tab "Hostname, Sensor Name">}}
 
+The hostname and sensor name scope parameters are used by the sensor events.
+
 | Scope Value | Example | Result |
 | --------------- | ---------- | -------- |
 | \<hostname>,\<sensorname> | leaf01,fan1 | Deliver events for the specified sensor (*fan1*) on the specified device (*leaf01*) |
@@ -233,7 +239,9 @@ Scopes are defined with regular expressions, as follows. When two parameters are
 
 {{< /tab >}}
 
-{{< tab "Hostname, Reason, Drop Type">}}
+{{< tab "Hostname, Reason, Ingress Port, Drop Type">}}
+
+The hostname, reason/port down reason, ingress port, and drop type scope parameters are used by the What Just Happened events.
 
 | Scope Value | Example | Result |
 | --------------- | ---------- | -------- |

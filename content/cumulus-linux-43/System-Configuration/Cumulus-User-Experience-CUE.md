@@ -325,7 +325,7 @@ cumulus@switch:~$ cl config apply
 The example below shows the CUE commands required to configure MLAG on leaf01. The commands:
 - Place swp1 into bond1 and swp2 into bond2.
 - Configure the MLAG ID to 1 for bond1 and to 2 for bond2.
-- Add the bond1 and bond2 to the default bridge (br_default).
+- Add bond1 and bond2 to the default bridge (br_default).
 - Create the inter-chassis bond (swp49 and swp50) and the peer link (peerlink)
 - Set the peer link IP address to linklocal, the MLAG system MAC address to 44:38:39:BE:EF:AA, and the backup interface to 10.10.10.2.
 

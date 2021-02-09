@@ -190,7 +190,7 @@ The CUE configuration management commands manage and apply configurations.
 | `cl config diff <revision> <revision>` | Shows differences between configurations, such as the pending configuration and the applied configuration or the detached configuration and the pending configuration.|
 | `cl config patch <cue-file>` | Updates the pending configuration with a configuration YAML file. |
 | `cl config replace <cue-file>` | Replaces the pending configuration with the specified configuration YAML file. |
-| `cl config save` | Overwrites the startup configuration with the applied configuration by writing to the `/etc/cued file`. The configuration persists after a reboot. |
+| `cl config save` | Overwrites the startup configuration with the applied configuration by writing to the `/etc/cue.d/startup.yaml file`. The configuration persists after a reboot. |
 
 ## List all CUE Commands
 
@@ -356,6 +356,63 @@ cumulus@leaf01:~$ cl set router bgp router-id 10.10.10.1
 cumulus@leaf01:~$ cl set vrf default router bgp peer swp51 remote-as external
 cumulus@leaf01:~$ cl set vrf default router bgp address-family ipv4-unicast static-network 10.10.10.1/32
 cumulus@leaf01:~$ cl config apply
+```
+
+## Example Configuration Management Commands
+
+This section provides some examples of how to use the configuration management commands to apply, save, and detach configurations.
+
+### Apply and Save a Configuration
+
+The following example command configures the front panel port interfaces swp1 thru swp4 to be slaves in bond0. The configuration is only in a pending configuration state. The configuration is **not** applied to the running configuration and does not persisent after a reboot.
+
+```
+cumulus@switch:~$ cl set interface bond0 bond member swp1-4
+```
+
+To apply the pending configuration to the running configuration, run the `cl config apply` command. The configuration does **not** persisent after a reboot.
+
+```
+cumulus@switch:~$ cl config apply
+```
+
+To save the applied configuration to the startup configuration, run the `cl config save` command. This command overwrites the startup configuration with the applied configuration by writing to the `/etc/cue.d/startup.yaml` file. The configuration persists after a reboot.
+
+```
+cumulus@switch:~$ cl config save
+```
+
+### Detach a Pending Configuration
+
+The following example commands configure the IP address of the loopback interface, then detach the configuration from the current pending revision. The detached configuration is saved to a file called pending that includes a timestamp with extra characters to distinguish it from other pending revisions; for example: pending_20210128_212626_4WSY.
+
+```
+cumulus@switch:~$ cl set interface lo ip address 10.10.10.1
+cumulus@switch:~$ cl config detach
+```
+
+### View Differences between Configurations
+
+To view differences between configurations, run the `cl config diff` command.
+
+To view differences between detached pending versions, run the `cl config diff` <<TAB>> command to list the current detached pending configurations, then run the `cl config diff` command with the pending configurations you want to differenciate:
+
+```
+cumulus@switch:~$ cl config diff <<press Tab>>
+cumulus@leaf01:mgmt:~$ cl config diff
+applied                              pending_20210208_201140_MJ0V
+pending_20210208_195315_MJ0P         pending_20210208_204655_MJ12
+pending_20210208_195937_MJ0S         startup
+```
+
+```
+cumulus@switch:~$ cl config diff pending_20210208_201140_MJ0V pending_20210208_195315_MJ0P
+```
+
+To view differences between a detached pending version and the applied version:
+
+```
+cumulus@switch:~$ cl config diff pending_20210208_201140_MJ0V applied
 ```
 
 ## How is CUE Different from NCLU?

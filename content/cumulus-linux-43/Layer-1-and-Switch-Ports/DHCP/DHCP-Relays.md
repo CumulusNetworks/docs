@@ -85,7 +85,6 @@ Specify the IP address of each DHCP server and the interfaces that are used as t
 ```
 cumulus@switch:~$ cl set service dhcp-relay default interface swp51
 cumulus@switch:~$ cl set service dhcp-relay default interface swp52
-cumulus@switch:~$ net add dhcp relay interface vlan1
 cumulus@switch:~$ cl set service dhcp-relay default interface vlan1
 cumulus@switch:~$ cl set service dhcp-relay default server 172.16.1.102
 cumulus@switch:~$ cl apply
@@ -119,13 +118,9 @@ To enable the DHCP Agent Information Option, you configure the `-a` option. By d
 
 {{%notice note%}}
 
-NCLU commands are not currently available for this feature. Use Linux commands or CUE commands.
+NCLU commands are not currently available for this feature. Use Linux commands.
 
 {{%/notice%}}
-
-{{< tabs "TabID126 ">}}
-
-{{< tab "Linux Commands ">}}
 
 - To configure the DHCP relay to inject the ingress *SVI interface* against which the relayed DHCP discover packet is processed, edit `/etc/default/isc-dhcp-relay` file and add `-a` to the `OPTIONS` line. For example:
 
@@ -159,26 +154,6 @@ Make sure to restart the `dhcrelay` service to apply the new configuration:
 ```
 cumulus@switch:~$ sudo systemctl restart dhcrelay.service
 ```
-
-{{< /tab >}}
-
-{{< tab "CUE Commands ">}}
-
-- To configure the DHCP relay to inject the ingress *SVI interface* against which the relayed DHCP discover packet is processed:
-
-   ```
-   cumulus@switch:~$  cl set service dhcp-relay NEED COMMAND
-   ```
-
-- To configure the DHCP relay to inject the *physical switch port* on which the relayed DHCP discover packet arrives instead of the SVI:
-
-   ```
-   cumulus@switch:~$  cl set service dhcp-relay NEED COMMAND
-   ```
-
-{{< /tab >}}
-
-{{< /tabs >}}
 
 ### Control the Gateway IP Address with RFC 3527
 

@@ -110,9 +110,9 @@ The `cl set` and `cl unset` commands are grouped into the following categories. 
 
 | <div style="width:300px">Command Group | Description |
 | ------- | ----------- |
-| `cl set router`<br>`cl unset router` | Configures router policies, such as prefix list rules and route maps, and global BGP options. This is where you enable and disable BGP, set the ASN, set the router ID, and configure BGP graceful restart and shutdown. |
-| `cl set platform`<br>`cl unset platform` | Configures hostname options, such as the static hostname for the switch, the local domain, and whether DHCP is allowed to override the hostname. You can also set how configuration apply operations are performed (specify which files to ignore and which files to overwrite). |
-| `cl set bridge`<br>`cl unset bridge` | Configures a bridge domain. This is where you configure the bridge type (VLAN-aware), 802.1Q encapsulation, the STP state and priority, and the VLANs in the bridge domain. |
+| `cl set router`<br>`cl unset router` | Configures router policies, such as prefix list rules and route maps, and global BGP options. This is where you enable and disable BGP, set the ASN and the router ID, and configure BGP graceful restart and shutdown. |
+| `cl set platform`<br>`cl unset platform` | Configures hostname options, such as the static hostname for the switch, the local domain, and whether DHCP is allowed to override the hostname. You can also set how configuration apply operations are performed (such as which files to ignore and which files to overwrite). |
+| `cl set bridge`<br>`cl unset bridge` | Configures a bridge domain. This is where you configure the bridge type (such as VLAN-aware), 802.1Q encapsulation, the STP state and priority, and the VLANs in the bridge domain. |
 | `cl set mlag`<br>`cl unset mlag` | Configures MLAG. This is where you configure the backup IP address or interface, MLAG system MAC address, peer IP address, MLAG priority, and the delay before bonds are brought up. |
 | `cl set evpn`<br>`cl unset evpn` | Configures EVPN. This is where you enable and disable the EVPN control plane, and set EVPN route advertise options, default gateway configuration for centralized routing, and duplicate address detection options. |
 | `cl set interface <interface-id>`<br>`cl unset interface <interface-id>` | Configures the switch interfaces. Use this command to configure bond interfaces, bridge interfaces, interface IP addresses, VLAN IDs, and links (MTU, FEC, speed, duplex, and so on).|
@@ -123,22 +123,22 @@ The `cl set` and `cl unset` commands are grouped into the following categories. 
 
 ### Monitoring Commands
 
-The CUE monitoring commands show various parts of the network configuration. For example, you can show the complete network configuration, or only interface configuration. The monitoring commands are grouped into the following categories. Each command group includes subcommands. Use command completion (Tab key) to list the subcommands.
+The CUE monitoring commands show various parts of the network configuration. For example, you can show the complete network configuration or only interface configuration. The monitoring commands are grouped into the following categories. Each command group includes subcommands. Use command completion (Tab key) to list the subcommands.
 
 | <div style="width:300px">Command Group | Description |
 | ------- | ----------- |
-| `cl show router` | Shows router information, such as router policies and global BGP configuration. |
-| `cl show platform` | Shows platform information, such as hardware and software components, and the hostname of the switch. |
-| `cl show bridge` | Shows bridge domain information.|
-| `cl show mlag` | Shows MLAG information. |
-| `cl show evpn` |Shows EVPN information. |
-| `cl show interface` |Shows interface information. |
+| `cl show router` | Shows router configuration, such as router policies and global BGP configuration. |
+| `cl show platform` | Shows platform configuration, such as hardware and software components, and the hostname of the switch. |
+| `cl show bridge` | Shows bridge domain configuration.|
+| `cl show mlag` | Shows MLAG configuration. |
+| `cl show evpn` |Shows EVPN configuration. |
+| `cl show interface` |Shows interface configuration. |
 | `cl show system` | Shows global system settings, such as NTP, DHCP server, DNS, syslog and LLDP. |
-| `cl show service` | Shows DHCP relay information, such as the DHCP relay server IP address, the set of interfaces on which DHCP relay traffic is handled, and the DHCP relay gateway IP address on the interfaces. |
-| `cl show vrf` | Shows VRF information.|
-| `cl show nve` | Shows network virtualization information, such as VXLAN-specfic MLAG configuration and VXLAN flooding.|
+| `cl show service` | Shows DHCP relay configuration, such as the DHCP relay server IP address, the set of interfaces on which DHCP relay traffic is handled, and the DHCP relay gateway IP address on the interfaces. |
+| `cl show vrf` | Shows VRF configuration.|
+| `cl show nve` | Shows network virtualization configuration, such as VXLAN-specfic MLAG configuration and VXLAN flooding.|
 
-The following example shows the `cl show system commands` after pressing the TAB key, then shows the output of the `cl show system lldp` command.
+The following example shows the `cl show system` commands after pressing the TAB key, then shows the output of the `cl show system lldp` command.
 
 ```
 cumulus@switch:~$  cl show system <<press Tab>>

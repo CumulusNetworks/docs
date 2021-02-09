@@ -291,7 +291,7 @@ cumulus@switch:~$ cl config apply
 
 ### Configure an Interface
 
-The following commands brings up swp1.
+The example below brings up swp1.
 
 ```
 cumulus@switch:~$ cl set interface swp1 link state up
@@ -322,12 +322,12 @@ cumulus@switch:~$ cl config apply
 
 ### Configure MLAG
 
-The following commands configure MLAG on leaf01. The CUE commands:
-- Places swp1 into bond1 and swp2 into bond2.
+The example below shows the CUE commands required to configure MLAG on leaf01. The commands:
+- Place swp1 into bond1 and swp2 into bond2.
 - Configure the MLAG ID to 1 for bond1 and to 2 for bond2.
 - Add the bond1 and bond2 to the default bridge (br_default).
-- Creates the inter-chassis bond (swp49 and swp50) and the peer link (peerlink)
-- Sets the peer link IP address to linklocal, the MLAG system MAC address to 44:38:39:BE:EF:AA, and the backup interface to 10.10.10.2.
+- Create the inter-chassis bond (swp49 and swp50) and the peer link (peerlink)
+- Set the peer link IP address to linklocal, the MLAG system MAC address to 44:38:39:BE:EF:AA, and the backup interface to 10.10.10.2.
 
 ```
 cumulus@leaf01:~$ cl set interface bond1 bond member swp1
@@ -344,7 +344,7 @@ cumulus@leaf01:~$ cl config apply
 
 ### Configure BGP Unnumbered
 
-The following commands configure BGP unnumbered on leaf01. The CUE commands:
+The example below shows the CUE commands required to configure BGP unnumbered on leaf01. The commands:
 - Assign the ASN for this BGP node to 65101.
 - Set the router ID to 10.10.10.1.
 - Distribute routing information to the peer on swp51.

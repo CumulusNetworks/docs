@@ -1718,7 +1718,7 @@ None
 
 | Option | Value | Description |
 | ---- | ---- | ---- |
-| poll-period | \<text-duration-period\> | Collect statistics about kubernetes containers at this frequency |
+| poll-period | \<text-duration-period\> | Collect statistics about kubernetes containers at this frequency, in seconds |
 
 ### Command History
 
@@ -1757,8 +1757,64 @@ Restarting netq-agent... Success!
 - netq config (start|stop|status|restart) agent
 
 - - -
+
+## netq config add agent loglevel
+
+Configures the amount of information to log about the NetQ Agent activity, from only critical issues to every available message. Identified issues are logged to */var/log/netq-agent.log* file. The default log level is *info*.
+
+- Error: Logs only events classified as errors
+- Warning: Logs events classified as warnings and errors
+- Info: Logs events classified as info, warning, and errors
+- Debug: Logs all events
+
+It is recommended to return a log level of info or higher after you have completed debugging.
+
+### Syntax
+
+```
 netq config add agent loglevel
     [debug|error|info|warning]
+```
+
+### Required Arguments
+
+None
+
+### Options
+
+| Option | Value | Description |
+| ---- | ---- | ---- |
+| NA | debug, error, info, warning | Log NetQ Agent events with this severity |
+
+### Command History
+
+A release is included if there were changes to the command, otherwise it is not listed.
+
+| Release | Description |
+| ---- | ---- |
+| Before 2.1.2 | Introduced |
+
+### Sample Usage
+
+Configure NetQ Agent to log only errors
+
+```
+cumulus@switch:~$ netq config add agent loglevel error
+Successfully added logging for netq-agent. Please restart service.
+
+cumulus@switch:~$ netq config restart agent
+Restarting netq-agent... Success!
+```
+
+### Related Commands
+
+- netq config show agent loglevel
+- netq config del agent loglevel
+- netq config (start|stop|status|restart) agent
+
+- - -
+
+
 
 netq config add agent server
     <text-opta-ip>

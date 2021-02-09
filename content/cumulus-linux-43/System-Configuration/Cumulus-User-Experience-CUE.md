@@ -415,6 +415,20 @@ To view differences between a detached pending configuration and the applied con
 cumulus@switch:~$ cl config diff pending_20210208_201140_MJ0V applied
 ```
 
+### Replace and Patch a Pending Configuration
+
+The following example replaces the pending configuration with the contents of the YAML configuration file called `cl-02/13/2021.yaml` located in the `/deps` directory:
+
+```
+cumulus@switch:~$ cl config replace /deps/config.yaml
+```
+
+The following example patches the pending configuration with a configuration YAML file that includes BGP configuration and is located in the `/deps` directory:
+
+```
+cumulus@switch:~$ cl config patch /deps/bgp-config.yaml
+```
+
 ## How is CUE Different from NCLU?
 
 This section lists some of the differences between CUE and the NCLU command line interface to help you navigate configuration.

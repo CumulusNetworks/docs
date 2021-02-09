@@ -364,13 +364,13 @@ This section provides some examples of how to use the configuration management c
 
 ### Apply and Save a Configuration
 
-The following example command configures the front panel port interfaces swp1 thru swp4 to be slaves in bond0. The configuration is only in a pending configuration state. The configuration is **not** applied to the running configuration and does not persisent after a reboot.
+The following example command configures the front panel port interfaces swp1 thru swp4 to be slaves in bond0. The configuration is only in a pending configuration state. The configuration is **not** applied. CUE has not yet made any changes to the running configuration.
 
 ```
 cumulus@switch:~$ cl set interface bond0 bond member swp1-4
 ```
 
-To apply the pending configuration to the running configuration, run the `cl config apply` command. The configuration does **not** persisent after a reboot.
+To apply the pending configuration to the running configuration, run the `cl config apply` command. The configuration does **not** persist after a reboot.
 
 ```
 cumulus@switch:~$ cl config apply
@@ -384,7 +384,7 @@ cumulus@switch:~$ cl config save
 
 ### Detach a Pending Configuration
 
-The following example commands configure the IP address of the loopback interface, then detach the configuration from the current pending revision. The detached configuration is saved to a file called `pending` that includes a timestamp with extra characters to distinguish it from other pending revisions; for example, `pending_20210128_212626_4WSY`.
+The following example configures the IP address of the loopback interface, then detaches the configuration from the current pending revision. The detached configuration is saved to a file called `pending` that includes a timestamp with extra characters to distinguish it from other pending revisions; for example, `pending_20210128_212626_4WSY`.
 
 ```
 cumulus@switch:~$ cl set interface lo ip address 10.10.10.1

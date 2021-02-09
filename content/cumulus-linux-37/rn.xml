@@ -7,6 +7,30 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-33270</td>
+<td><p>CVE-2020-27351: Various memory and file descriptor leaks were discovered in the Python interface to the APT package management runtime library, which could result in denial of service.<br/>
+Vulnerable: &lt;= 0.9.3.13<br/>
+Fixed: 0.9.3.14</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33260</td>
+<td><p>CVE-2020-36221 CVE-2020-36222 CVE-2020-36223 CVE-2020-36224 CVE-2020-36225 CVE-2020-36226 CVE-2020-36227 CVE-2020-36228 CVE-2020-36229 CVE-2020-36230: Several vulnerabilities were discovered in OpenLDAP, a free implementation of the Lightweight Directory Access Protocol. An unauthenticated remote attacker can take advantage of these flaws to cause a denial of service (slapd daemon crash, infinite loops) via specially crafted packets.<br/>
+Vulnerable: &lt;= 2.4.40+dfsg-1+deb8u8<br/>
+Fixed: 2.4.40+dfsg-1+deb8u9</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33246</td>
+<td><p>CVE-2021-3272: jp2_decode in jp2/jp2_dec.c in libjasper in JasPer has a heap-based buffer over-read when there is an invalid relationship between the number of channels and the number of image components.<br/>
+Vulnerable: &lt;= 1.900.1-debian1-2.4+deb8u6<br/>
+Fixed: 1.900.1-debian1-2.4+deb8u7</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-33191</td>
 <td><p>CVE-2020-35512: An issue has been found in dbus, a simple interprocess messaging system. On a system having multiple usernames sharing the same UID a use-after-free might happen, that could result in a denial of service or undefined behaviour, possibly including incorrect authorization decisions.<br/>
 Vulnerable: &lt;= 1.8.22-0+deb8u3<br/>
@@ -1385,11 +1409,11 @@ To work around this issue, run the vtysh commands (inside FRR) to change the def
 <tr>
 <td>CM-24241</td>
 <td><p>When you try to remove a BGP peer group configuration with NCLU, the command fails but no warning message is shown. For example: </p>
+
  
- 
- cumulus@switch:~$ net del bgp neighbor fabric peer-group 
- 'router bgp 65001' configuration does not have 'neighbor fabric peer-group' 
- 
+cumulus@switch:~$ net del bgp neighbor fabric peer-group
+'router bgp 65001' configuration does not have 'neighbor fabric peer-group' 
+
  
 </td>
 <td>3.7.2-3.7.14</td>
@@ -2528,6 +2552,30 @@ To work around this issue, disable BFD to alleviate some of the CPU load.</p></t
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>CM-33270</td>
+<td><p>CVE-2020-27351: Various memory and file descriptor leaks were discovered in the Python interface to the APT package management runtime library, which could result in denial of service.<br/>
+Vulnerable: &lt;= 0.9.3.13<br/>
+Fixed: 0.9.3.14</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33260</td>
+<td><p>CVE-2020-36221 CVE-2020-36222 CVE-2020-36223 CVE-2020-36224 CVE-2020-36225 CVE-2020-36226 CVE-2020-36227 CVE-2020-36228 CVE-2020-36229 CVE-2020-36230: Several vulnerabilities were discovered in OpenLDAP, a free implementation of the Lightweight Directory Access Protocol. An unauthenticated remote attacker can take advantage of these flaws to cause a denial of service (slapd daemon crash, infinite loops) via specially crafted packets.<br/>
+Vulnerable: &lt;= 2.4.40+dfsg-1+deb8u8<br/>
+Fixed: 2.4.40+dfsg-1+deb8u9</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33246</td>
+<td><p>CVE-2021-3272: jp2_decode in jp2/jp2_dec.c in libjasper in JasPer has a heap-based buffer over-read when there is an invalid relationship between the number of channels and the number of image components.<br/>
+Vulnerable: &lt;= 1.900.1-debian1-2.4+deb8u6<br/>
+Fixed: 1.900.1-debian1-2.4+deb8u7</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-33191</td>
@@ -4485,11 +4533,11 @@ To work around this issue, run the vtysh commands (inside FRR) to change the def
 <tr>
 <td>CM-24241</td>
 <td><p>When you try to remove a BGP peer group configuration with NCLU, the command fails but no warning message is shown. For example: </p>
+
  
- 
- cumulus@switch:~$ net del bgp neighbor fabric peer-group 
- 'router bgp 65001' configuration does not have 'neighbor fabric peer-group' 
- 
+cumulus@switch:~$ net del bgp neighbor fabric peer-group
+'router bgp 65001' configuration does not have 'neighbor fabric peer-group' 
+
  
 </td>
 <td>3.7.2-3.7.14</td>
@@ -5594,6 +5642,30 @@ Typically, the destination MAC address 01:00:5e:xx:xx:xx is used only for PIM/IG
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>CM-33270</td>
+<td><p>CVE-2020-27351: Various memory and file descriptor leaks were discovered in the Python interface to the APT package management runtime library, which could result in denial of service.<br/>
+Vulnerable: &lt;= 0.9.3.13<br/>
+Fixed: 0.9.3.14</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33260</td>
+<td><p>CVE-2020-36221 CVE-2020-36222 CVE-2020-36223 CVE-2020-36224 CVE-2020-36225 CVE-2020-36226 CVE-2020-36227 CVE-2020-36228 CVE-2020-36229 CVE-2020-36230: Several vulnerabilities were discovered in OpenLDAP, a free implementation of the Lightweight Directory Access Protocol. An unauthenticated remote attacker can take advantage of these flaws to cause a denial of service (slapd daemon crash, infinite loops) via specially crafted packets.<br/>
+Vulnerable: &lt;= 2.4.40+dfsg-1+deb8u8<br/>
+Fixed: 2.4.40+dfsg-1+deb8u9</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33246</td>
+<td><p>CVE-2021-3272: jp2_decode in jp2/jp2_dec.c in libjasper in JasPer has a heap-based buffer over-read when there is an invalid relationship between the number of channels and the number of image components.<br/>
+Vulnerable: &lt;= 1.900.1-debian1-2.4+deb8u6<br/>
+Fixed: 1.900.1-debian1-2.4+deb8u7</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-33191</td>
@@ -7976,11 +8048,11 @@ To work around this issue, run the vtysh commands (inside FRR) to change the def
 <tr>
 <td>CM-24241</td>
 <td><p>When you try to remove a BGP peer group configuration with NCLU, the command fails but no warning message is shown. For example: </p>
+
  
- 
- cumulus@switch:~$ net del bgp neighbor fabric peer-group 
- 'router bgp 65001' configuration does not have 'neighbor fabric peer-group' 
- 
+cumulus@switch:~$ net del bgp neighbor fabric peer-group
+'router bgp 65001' configuration does not have 'neighbor fabric peer-group' 
+
  
 </td>
 <td>3.7.2-3.7.14</td>
@@ -8815,6 +8887,30 @@ net.ipv6.ip6frag_high_thresh = 262144
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>CM-33270</td>
+<td><p>CVE-2020-27351: Various memory and file descriptor leaks were discovered in the Python interface to the APT package management runtime library, which could result in denial of service.<br/>
+Vulnerable: &lt;= 0.9.3.13<br/>
+Fixed: 0.9.3.14</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33260</td>
+<td><p>CVE-2020-36221 CVE-2020-36222 CVE-2020-36223 CVE-2020-36224 CVE-2020-36225 CVE-2020-36226 CVE-2020-36227 CVE-2020-36228 CVE-2020-36229 CVE-2020-36230: Several vulnerabilities were discovered in OpenLDAP, a free implementation of the Lightweight Directory Access Protocol. An unauthenticated remote attacker can take advantage of these flaws to cause a denial of service (slapd daemon crash, infinite loops) via specially crafted packets.<br/>
+Vulnerable: &lt;= 2.4.40+dfsg-1+deb8u8<br/>
+Fixed: 2.4.40+dfsg-1+deb8u9</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33246</td>
+<td><p>CVE-2021-3272: jp2_decode in jp2/jp2_dec.c in libjasper in JasPer has a heap-based buffer over-read when there is an invalid relationship between the number of channels and the number of image components.<br/>
+Vulnerable: &lt;= 1.900.1-debian1-2.4+deb8u6<br/>
+Fixed: 1.900.1-debian1-2.4+deb8u7</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-33191</td>
@@ -10986,11 +11082,11 @@ To work around this issue, run the vtysh commands (inside FRR) to change the def
 <tr>
 <td>CM-24241</td>
 <td><p>When you try to remove a BGP peer group configuration with NCLU, the command fails but no warning message is shown. For example: </p>
+
  
- 
- cumulus@switch:~$ net del bgp neighbor fabric peer-group 
- 'router bgp 65001' configuration does not have 'neighbor fabric peer-group' 
- 
+cumulus@switch:~$ net del bgp neighbor fabric peer-group
+'router bgp 65001' configuration does not have 'neighbor fabric peer-group' 
+
  
 </td>
 <td>3.7.2-3.7.14</td>
@@ -12106,6 +12202,30 @@ To work around this issue, use net show interface command for LLDP output when c
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>CM-33270</td>
+<td><p>CVE-2020-27351: Various memory and file descriptor leaks were discovered in the Python interface to the APT package management runtime library, which could result in denial of service.<br/>
+Vulnerable: &lt;= 0.9.3.13<br/>
+Fixed: 0.9.3.14</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33260</td>
+<td><p>CVE-2020-36221 CVE-2020-36222 CVE-2020-36223 CVE-2020-36224 CVE-2020-36225 CVE-2020-36226 CVE-2020-36227 CVE-2020-36228 CVE-2020-36229 CVE-2020-36230: Several vulnerabilities were discovered in OpenLDAP, a free implementation of the Lightweight Directory Access Protocol. An unauthenticated remote attacker can take advantage of these flaws to cause a denial of service (slapd daemon crash, infinite loops) via specially crafted packets.<br/>
+Vulnerable: &lt;= 2.4.40+dfsg-1+deb8u8<br/>
+Fixed: 2.4.40+dfsg-1+deb8u9</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33246</td>
+<td><p>CVE-2021-3272: jp2_decode in jp2/jp2_dec.c in libjasper in JasPer has a heap-based buffer over-read when there is an invalid relationship between the number of channels and the number of image components.<br/>
+Vulnerable: &lt;= 1.900.1-debian1-2.4+deb8u6<br/>
+Fixed: 1.900.1-debian1-2.4+deb8u7</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-33191</td>
@@ -14376,11 +14496,11 @@ To work around this issue, run the vtysh commands (inside FRR) to change the def
 <tr>
 <td>CM-24241</td>
 <td><p>When you try to remove a BGP peer group configuration with NCLU, the command fails but no warning message is shown. For example: </p>
+
  
- 
- cumulus@switch:~$ net del bgp neighbor fabric peer-group 
- 'router bgp 65001' configuration does not have 'neighbor fabric peer-group' 
- 
+cumulus@switch:~$ net del bgp neighbor fabric peer-group
+'router bgp 65001' configuration does not have 'neighbor fabric peer-group' 
+
  
 </td>
 <td>3.7.2-3.7.14</td>
@@ -15059,6 +15179,30 @@ To work around this issue, change the value of arp_ignore to 2. See <a href="htt
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>CM-33270</td>
+<td><p>CVE-2020-27351: Various memory and file descriptor leaks were discovered in the Python interface to the APT package management runtime library, which could result in denial of service.<br/>
+Vulnerable: &lt;= 0.9.3.13<br/>
+Fixed: 0.9.3.14</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33260</td>
+<td><p>CVE-2020-36221 CVE-2020-36222 CVE-2020-36223 CVE-2020-36224 CVE-2020-36225 CVE-2020-36226 CVE-2020-36227 CVE-2020-36228 CVE-2020-36229 CVE-2020-36230: Several vulnerabilities were discovered in OpenLDAP, a free implementation of the Lightweight Directory Access Protocol. An unauthenticated remote attacker can take advantage of these flaws to cause a denial of service (slapd daemon crash, infinite loops) via specially crafted packets.<br/>
+Vulnerable: &lt;= 2.4.40+dfsg-1+deb8u8<br/>
+Fixed: 2.4.40+dfsg-1+deb8u9</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33246</td>
+<td><p>CVE-2021-3272: jp2_decode in jp2/jp2_dec.c in libjasper in JasPer has a heap-based buffer over-read when there is an invalid relationship between the number of channels and the number of image components.<br/>
+Vulnerable: &lt;= 1.900.1-debian1-2.4+deb8u6<br/>
+Fixed: 1.900.1-debian1-2.4+deb8u7</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-33191</td>
@@ -17100,11 +17244,11 @@ To work around this issue, run the vtysh commands (inside FRR) to change the def
 <tr>
 <td>CM-24241</td>
 <td><p>When you try to remove a BGP peer group configuration with NCLU, the command fails but no warning message is shown. For example: </p>
+
  
- 
- cumulus@switch:~$ net del bgp neighbor fabric peer-group 
- 'router bgp 65001' configuration does not have 'neighbor fabric peer-group' 
- 
+cumulus@switch:~$ net del bgp neighbor fabric peer-group
+'router bgp 65001' configuration does not have 'neighbor fabric peer-group' 
+
  
 </td>
 <td>3.7.2-3.7.14</td>
@@ -18420,6 +18564,30 @@ To work around this issue, run the sudo ethtool -S swp1 command to collect inter
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>CM-33270</td>
+<td><p>CVE-2020-27351: Various memory and file descriptor leaks were discovered in the Python interface to the APT package management runtime library, which could result in denial of service.<br/>
+Vulnerable: &lt;= 0.9.3.13<br/>
+Fixed: 0.9.3.14</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33260</td>
+<td><p>CVE-2020-36221 CVE-2020-36222 CVE-2020-36223 CVE-2020-36224 CVE-2020-36225 CVE-2020-36226 CVE-2020-36227 CVE-2020-36228 CVE-2020-36229 CVE-2020-36230: Several vulnerabilities were discovered in OpenLDAP, a free implementation of the Lightweight Directory Access Protocol. An unauthenticated remote attacker can take advantage of these flaws to cause a denial of service (slapd daemon crash, infinite loops) via specially crafted packets.<br/>
+Vulnerable: &lt;= 2.4.40+dfsg-1+deb8u8<br/>
+Fixed: 2.4.40+dfsg-1+deb8u9</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33246</td>
+<td><p>CVE-2021-3272: jp2_decode in jp2/jp2_dec.c in libjasper in JasPer has a heap-based buffer over-read when there is an invalid relationship between the number of channels and the number of image components.<br/>
+Vulnerable: &lt;= 1.900.1-debian1-2.4+deb8u6<br/>
+Fixed: 1.900.1-debian1-2.4+deb8u7</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-33191</td>
@@ -20724,11 +20892,11 @@ To work around this issue, run the vtysh commands (inside FRR) to change the def
 <tr>
 <td>CM-24241</td>
 <td><p>When you try to remove a BGP peer group configuration with NCLU, the command fails but no warning message is shown. For example: </p>
+
  
- 
- cumulus@switch:~$ net del bgp neighbor fabric peer-group 
- 'router bgp 65001' configuration does not have 'neighbor fabric peer-group' 
- 
+cumulus@switch:~$ net del bgp neighbor fabric peer-group
+'router bgp 65001' configuration does not have 'neighbor fabric peer-group' 
+
  
 </td>
 <td>3.7.2-3.7.14</td>
@@ -21638,6 +21806,30 @@ To work around this issue, change the value of arp_ignore to 2. See <a href="htt
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>CM-33270</td>
+<td><p>CVE-2020-27351: Various memory and file descriptor leaks were discovered in the Python interface to the APT package management runtime library, which could result in denial of service.<br/>
+Vulnerable: &lt;= 0.9.3.13<br/>
+Fixed: 0.9.3.14</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33260</td>
+<td><p>CVE-2020-36221 CVE-2020-36222 CVE-2020-36223 CVE-2020-36224 CVE-2020-36225 CVE-2020-36226 CVE-2020-36227 CVE-2020-36228 CVE-2020-36229 CVE-2020-36230: Several vulnerabilities were discovered in OpenLDAP, a free implementation of the Lightweight Directory Access Protocol. An unauthenticated remote attacker can take advantage of these flaws to cause a denial of service (slapd daemon crash, infinite loops) via specially crafted packets.<br/>
+Vulnerable: &lt;= 2.4.40+dfsg-1+deb8u8<br/>
+Fixed: 2.4.40+dfsg-1+deb8u9</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33246</td>
+<td><p>CVE-2021-3272: jp2_decode in jp2/jp2_dec.c in libjasper in JasPer has a heap-based buffer over-read when there is an invalid relationship between the number of channels and the number of image components.<br/>
+Vulnerable: &lt;= 1.900.1-debian1-2.4+deb8u6<br/>
+Fixed: 1.900.1-debian1-2.4+deb8u7</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-33191</td>
@@ -23847,11 +24039,11 @@ To work around this issue, run the vtysh commands (inside FRR) to change the def
 <tr>
 <td>CM-24241</td>
 <td><p>When you try to remove a BGP peer group configuration with NCLU, the command fails but no warning message is shown. For example: </p>
+
  
- 
- cumulus@switch:~$ net del bgp neighbor fabric peer-group 
- 'router bgp 65001' configuration does not have 'neighbor fabric peer-group' 
- 
+cumulus@switch:~$ net del bgp neighbor fabric peer-group
+'router bgp 65001' configuration does not have 'neighbor fabric peer-group' 
+
  
 </td>
 <td>3.7.2-3.7.14</td>
@@ -25217,6 +25409,30 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>CM-33270</td>
+<td><p>CVE-2020-27351: Various memory and file descriptor leaks were discovered in the Python interface to the APT package management runtime library, which could result in denial of service.<br/>
+Vulnerable: &lt;= 0.9.3.13<br/>
+Fixed: 0.9.3.14</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33260</td>
+<td><p>CVE-2020-36221 CVE-2020-36222 CVE-2020-36223 CVE-2020-36224 CVE-2020-36225 CVE-2020-36226 CVE-2020-36227 CVE-2020-36228 CVE-2020-36229 CVE-2020-36230: Several vulnerabilities were discovered in OpenLDAP, a free implementation of the Lightweight Directory Access Protocol. An unauthenticated remote attacker can take advantage of these flaws to cause a denial of service (slapd daemon crash, infinite loops) via specially crafted packets.<br/>
+Vulnerable: &lt;= 2.4.40+dfsg-1+deb8u8<br/>
+Fixed: 2.4.40+dfsg-1+deb8u9</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33246</td>
+<td><p>CVE-2021-3272: jp2_decode in jp2/jp2_dec.c in libjasper in JasPer has a heap-based buffer over-read when there is an invalid relationship between the number of channels and the number of image components.<br/>
+Vulnerable: &lt;= 1.900.1-debian1-2.4+deb8u6<br/>
+Fixed: 1.900.1-debian1-2.4+deb8u7</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-33191</td>
@@ -27588,11 +27804,11 @@ To work around this issue, run the vtysh commands (inside FRR) to change the def
 <tr>
 <td>CM-24241</td>
 <td><p>When you try to remove a BGP peer group configuration with NCLU, the command fails but no warning message is shown. For example: </p>
+
  
- 
- cumulus@switch:~$ net del bgp neighbor fabric peer-group 
- 'router bgp 65001' configuration does not have 'neighbor fabric peer-group' 
- 
+cumulus@switch:~$ net del bgp neighbor fabric peer-group
+'router bgp 65001' configuration does not have 'neighbor fabric peer-group' 
+
  
 </td>
 <td>3.7.2-3.7.14</td>
@@ -28746,6 +28962,30 @@ This issue was discovered on the Helix4 switch but applies to all switches. <br/
 <td><p>In testing, it was determined that the MD5 password configured against a BGP listen-range peer-group (used to accept and create dynamic BGP neighbors) is not enforced (connections are accepted from peers that do not specify a password). </p></td>
 <td>3.0.0-3.7.5</td>
 <td>3.7.6-3.7.14</td>
+</tr>
+<tr>
+<td>CM-33270</td>
+<td><p>CVE-2020-27351: Various memory and file descriptor leaks were discovered in the Python interface to the APT package management runtime library, which could result in denial of service.<br/>
+Vulnerable: &lt;= 0.9.3.13<br/>
+Fixed: 0.9.3.14</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33260</td>
+<td><p>CVE-2020-36221 CVE-2020-36222 CVE-2020-36223 CVE-2020-36224 CVE-2020-36225 CVE-2020-36226 CVE-2020-36227 CVE-2020-36228 CVE-2020-36229 CVE-2020-36230: Several vulnerabilities were discovered in OpenLDAP, a free implementation of the Lightweight Directory Access Protocol. An unauthenticated remote attacker can take advantage of these flaws to cause a denial of service (slapd daemon crash, infinite loops) via specially crafted packets.<br/>
+Vulnerable: &lt;= 2.4.40+dfsg-1+deb8u8<br/>
+Fixed: 2.4.40+dfsg-1+deb8u9</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33246</td>
+<td><p>CVE-2021-3272: jp2_decode in jp2/jp2_dec.c in libjasper in JasPer has a heap-based buffer over-read when there is an invalid relationship between the number of channels and the number of image components.<br/>
+Vulnerable: &lt;= 1.900.1-debian1-2.4+deb8u6<br/>
+Fixed: 1.900.1-debian1-2.4+deb8u7</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-33191</td>
@@ -30819,11 +31059,11 @@ To work around this issue, run the vtysh commands (inside FRR) to change the def
 <tr>
 <td>CM-24241</td>
 <td><p>When you try to remove a BGP peer group configuration with NCLU, the command fails but no warning message is shown. For example: </p>
+
  
- 
- cumulus@switch:~$ net del bgp neighbor fabric peer-group 
- 'router bgp 65001' configuration does not have 'neighbor fabric peer-group' 
- 
+cumulus@switch:~$ net del bgp neighbor fabric peer-group
+'router bgp 65001' configuration does not have 'neighbor fabric peer-group' 
+
  
 </td>
 <td>3.7.2-3.7.14</td>
@@ -31964,6 +32204,30 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <td><p>In testing, it was determined that the MD5 password configured against a BGP listen-range peer-group (used to accept and create dynamic BGP neighbors) is not enforced (connections are accepted from peers that do not specify a password). </p></td>
 <td>3.0.0-3.7.5</td>
 <td>3.7.6-3.7.14</td>
+</tr>
+<tr>
+<td>CM-33270</td>
+<td><p>CVE-2020-27351: Various memory and file descriptor leaks were discovered in the Python interface to the APT package management runtime library, which could result in denial of service.<br/>
+Vulnerable: &lt;= 0.9.3.13<br/>
+Fixed: 0.9.3.14</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33260</td>
+<td><p>CVE-2020-36221 CVE-2020-36222 CVE-2020-36223 CVE-2020-36224 CVE-2020-36225 CVE-2020-36226 CVE-2020-36227 CVE-2020-36228 CVE-2020-36229 CVE-2020-36230: Several vulnerabilities were discovered in OpenLDAP, a free implementation of the Lightweight Directory Access Protocol. An unauthenticated remote attacker can take advantage of these flaws to cause a denial of service (slapd daemon crash, infinite loops) via specially crafted packets.<br/>
+Vulnerable: &lt;= 2.4.40+dfsg-1+deb8u8<br/>
+Fixed: 2.4.40+dfsg-1+deb8u9</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33246</td>
+<td><p>CVE-2021-3272: jp2_decode in jp2/jp2_dec.c in libjasper in JasPer has a heap-based buffer over-read when there is an invalid relationship between the number of channels and the number of image components.<br/>
+Vulnerable: &lt;= 1.900.1-debian1-2.4+deb8u6<br/>
+Fixed: 1.900.1-debian1-2.4+deb8u7</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-33191</td>
@@ -33904,11 +34168,11 @@ To work around this issue, run the vtysh commands (inside FRR) to change the def
 <tr>
 <td>CM-24241</td>
 <td><p>When you try to remove a BGP peer group configuration with NCLU, the command fails but no warning message is shown. For example: </p>
+
  
- 
- cumulus@switch:~$ net del bgp neighbor fabric peer-group 
- 'router bgp 65001' configuration does not have 'neighbor fabric peer-group' 
- 
+cumulus@switch:~$ net del bgp neighbor fabric peer-group
+'router bgp 65001' configuration does not have 'neighbor fabric peer-group' 
+
  
 </td>
 <td>3.7.2-3.7.14</td>
@@ -35240,6 +35504,30 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <td><p>In testing, it was determined that the MD5 password configured against a BGP listen-range peer-group (used to accept and create dynamic BGP neighbors) is not enforced (connections are accepted from peers that do not specify a password). </p></td>
 <td>3.0.0-3.7.5</td>
 <td>3.7.6-3.7.14</td>
+</tr>
+<tr>
+<td>CM-33270</td>
+<td><p>CVE-2020-27351: Various memory and file descriptor leaks were discovered in the Python interface to the APT package management runtime library, which could result in denial of service.<br/>
+Vulnerable: &lt;= 0.9.3.13<br/>
+Fixed: 0.9.3.14</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33260</td>
+<td><p>CVE-2020-36221 CVE-2020-36222 CVE-2020-36223 CVE-2020-36224 CVE-2020-36225 CVE-2020-36226 CVE-2020-36227 CVE-2020-36228 CVE-2020-36229 CVE-2020-36230: Several vulnerabilities were discovered in OpenLDAP, a free implementation of the Lightweight Directory Access Protocol. An unauthenticated remote attacker can take advantage of these flaws to cause a denial of service (slapd daemon crash, infinite loops) via specially crafted packets.<br/>
+Vulnerable: &lt;= 2.4.40+dfsg-1+deb8u8<br/>
+Fixed: 2.4.40+dfsg-1+deb8u9</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33246</td>
+<td><p>CVE-2021-3272: jp2_decode in jp2/jp2_dec.c in libjasper in JasPer has a heap-based buffer over-read when there is an invalid relationship between the number of channels and the number of image components.<br/>
+Vulnerable: &lt;= 1.900.1-debian1-2.4+deb8u6<br/>
+Fixed: 1.900.1-debian1-2.4+deb8u7</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-33191</td>
@@ -37033,11 +37321,11 @@ This issue was discovered on the Helix4 switch but applies to all switches. <br/
 <tr>
 <td>CM-24241</td>
 <td><p>When you try to remove a BGP peer group configuration with NCLU, the command fails but no warning message is shown. For example: </p>
+
  
- 
- cumulus@switch:~$ net del bgp neighbor fabric peer-group 
- 'router bgp 65001' configuration does not have 'neighbor fabric peer-group' 
- 
+cumulus@switch:~$ net del bgp neighbor fabric peer-group
+'router bgp 65001' configuration does not have 'neighbor fabric peer-group' 
+
  
 </td>
 <td>3.7.2-3.7.14</td>
@@ -38675,6 +38963,30 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <td><p>In testing, it was determined that the MD5 password configured against a BGP listen-range peer-group (used to accept and create dynamic BGP neighbors) is not enforced (connections are accepted from peers that do not specify a password). </p></td>
 <td>3.0.0-3.7.5</td>
 <td>3.7.6-3.7.14</td>
+</tr>
+<tr>
+<td>CM-33270</td>
+<td><p>CVE-2020-27351: Various memory and file descriptor leaks were discovered in the Python interface to the APT package management runtime library, which could result in denial of service.<br/>
+Vulnerable: &lt;= 0.9.3.13<br/>
+Fixed: 0.9.3.14</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33260</td>
+<td><p>CVE-2020-36221 CVE-2020-36222 CVE-2020-36223 CVE-2020-36224 CVE-2020-36225 CVE-2020-36226 CVE-2020-36227 CVE-2020-36228 CVE-2020-36229 CVE-2020-36230: Several vulnerabilities were discovered in OpenLDAP, a free implementation of the Lightweight Directory Access Protocol. An unauthenticated remote attacker can take advantage of these flaws to cause a denial of service (slapd daemon crash, infinite loops) via specially crafted packets.<br/>
+Vulnerable: &lt;= 2.4.40+dfsg-1+deb8u8<br/>
+Fixed: 2.4.40+dfsg-1+deb8u9</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33246</td>
+<td><p>CVE-2021-3272: jp2_decode in jp2/jp2_dec.c in libjasper in JasPer has a heap-based buffer over-read when there is an invalid relationship between the number of channels and the number of image components.<br/>
+Vulnerable: &lt;= 1.900.1-debian1-2.4+deb8u6<br/>
+Fixed: 1.900.1-debian1-2.4+deb8u7</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-33191</td>
@@ -40322,11 +40634,11 @@ This issue does not affect a pure distributed routing (symmetric or asymmetric) 
 <tr>
 <td>CM-24241</td>
 <td><p>When you try to remove a BGP peer group configuration with NCLU, the command fails but no warning message is shown. For example: </p>
+
  
- 
- cumulus@switch:~$ net del bgp neighbor fabric peer-group 
- 'router bgp 65001' configuration does not have 'neighbor fabric peer-group' 
- 
+cumulus@switch:~$ net del bgp neighbor fabric peer-group
+'router bgp 65001' configuration does not have 'neighbor fabric peer-group' 
+
  
 </td>
 <td>3.7.2-3.7.14</td>
@@ -42232,6 +42544,30 @@ Permanent MAC address sync between MLAG peers is now supported.</p></td>
 <td><p>In testing, it was determined that the MD5 password configured against a BGP listen-range peer-group (used to accept and create dynamic BGP neighbors) is not enforced (connections are accepted from peers that do not specify a password). </p></td>
 <td>3.0.0-3.7.5</td>
 <td>3.7.6-3.7.14</td>
+</tr>
+<tr>
+<td>CM-33270</td>
+<td><p>CVE-2020-27351: Various memory and file descriptor leaks were discovered in the Python interface to the APT package management runtime library, which could result in denial of service.<br/>
+Vulnerable: &lt;= 0.9.3.13<br/>
+Fixed: 0.9.3.14</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33260</td>
+<td><p>CVE-2020-36221 CVE-2020-36222 CVE-2020-36223 CVE-2020-36224 CVE-2020-36225 CVE-2020-36226 CVE-2020-36227 CVE-2020-36228 CVE-2020-36229 CVE-2020-36230: Several vulnerabilities were discovered in OpenLDAP, a free implementation of the Lightweight Directory Access Protocol. An unauthenticated remote attacker can take advantage of these flaws to cause a denial of service (slapd daemon crash, infinite loops) via specially crafted packets.<br/>
+Vulnerable: &lt;= 2.4.40+dfsg-1+deb8u8<br/>
+Fixed: 2.4.40+dfsg-1+deb8u9</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33246</td>
+<td><p>CVE-2021-3272: jp2_decode in jp2/jp2_dec.c in libjasper in JasPer has a heap-based buffer over-read when there is an invalid relationship between the number of channels and the number of image components.<br/>
+Vulnerable: &lt;= 1.900.1-debian1-2.4+deb8u6<br/>
+Fixed: 1.900.1-debian1-2.4+deb8u7</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-33191</td>
@@ -45293,6 +45629,30 @@ To work around this issue, remove the matching network statement. </p></td>
 <td><p>In testing, it was determined that the MD5 password configured against a BGP listen-range peer-group (used to accept and create dynamic BGP neighbors) is not enforced (connections are accepted from peers that do not specify a password). </p></td>
 <td>3.0.0-3.7.5</td>
 <td>3.7.6-3.7.14</td>
+</tr>
+<tr>
+<td>CM-33270</td>
+<td><p>CVE-2020-27351: Various memory and file descriptor leaks were discovered in the Python interface to the APT package management runtime library, which could result in denial of service.<br/>
+Vulnerable: &lt;= 0.9.3.13<br/>
+Fixed: 0.9.3.14</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33260</td>
+<td><p>CVE-2020-36221 CVE-2020-36222 CVE-2020-36223 CVE-2020-36224 CVE-2020-36225 CVE-2020-36226 CVE-2020-36227 CVE-2020-36228 CVE-2020-36229 CVE-2020-36230: Several vulnerabilities were discovered in OpenLDAP, a free implementation of the Lightweight Directory Access Protocol. An unauthenticated remote attacker can take advantage of these flaws to cause a denial of service (slapd daemon crash, infinite loops) via specially crafted packets.<br/>
+Vulnerable: &lt;= 2.4.40+dfsg-1+deb8u8<br/>
+Fixed: 2.4.40+dfsg-1+deb8u9</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33246</td>
+<td><p>CVE-2021-3272: jp2_decode in jp2/jp2_dec.c in libjasper in JasPer has a heap-based buffer over-read when there is an invalid relationship between the number of channels and the number of image components.<br/>
+Vulnerable: &lt;= 1.900.1-debian1-2.4+deb8u6<br/>
+Fixed: 1.900.1-debian1-2.4+deb8u7</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-33191</td>

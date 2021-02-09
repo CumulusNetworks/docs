@@ -92,7 +92,7 @@ General Options:
 
 ### Command History
 
-The CUE commands you enter are stored within a session, which enables you to review and rerun commands. At the command prompt, press the Up Arrow and Down Arrow keys to move back and forth through the list of commands previously entered. When you find a given command, you can run the command by pressing Enter. Optionally, you can modify the command before you run it.
+At the command prompt, press the Up Arrow and Down Arrow keys to move back and forth through the list of commands previously entered. When you find a given command, you can run the command by pressing Enter. Optionally, you can modify the command before you run it.
 
 ## Command Categories
 

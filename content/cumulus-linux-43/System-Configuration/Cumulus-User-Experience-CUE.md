@@ -269,7 +269,7 @@ cl unset interface <interface-id> bond up-delay
 
 ## Example Configuration Commands
 
-This section provides some examples of how to configure a Cumulus Linux switch using CUE commands.
+This section provides examples of how to configure a Cumulus Linux switch using CUE commands.
 
 ### Configure the System Hostname
 
@@ -358,9 +358,82 @@ cumulus@leaf01:~$ cl set vrf default router bgp address-family ipv4-unicast stat
 cumulus@leaf01:~$ cl config apply
 ```
 
+## Example Monitoring Commands
+
+This section provides monitoring command examples.
+
+### Show Installed Software
+
+The following example command lists the software installed on the switch:
+
+```
+cumulus@switch:~$ cl show platform software
+             running                                applied  description
+-----------  -------------------------------------  -------  --------------------------
+[installed]  acpi                                            List of installed software
+[installed]  acpi-support-base
+[installed]  acpid
+[installed]  adduser
+[installed]  apt
+[installed]  arping
+[installed]  arptables
+[installed]  atftp
+[installed]  atftpd
+[installed]  auditd
+[installed]  base-files
+[installed]  base-passwd
+[installed]  bash
+[installed]  bash-completion
+[installed]  bind9-host
+[installed]  binutils
+[installed]  binutils-common
+[installed]  binutils-x86-64-linux-gnu
+...
+```
+
+### Show Interface Configuration
+
+The following example command shows the running and applied swp1 interface configuration. There is no pending configuration.
+
+```
+cumulus@leaf01:~$ cl show interface swp1
+                        running     applied      description
+-----------------------  ----------  -----------  ----------------------------------------------------------------------
+type                     swp         swp          The type of interface
+bridge
+  [domain]               br_default  br_default   Bridge domains on this interface
+  [domain]                           bridge
+ip
+  vrf                                default      Virtual routing and forwarding
+  ipv4                               forward      IPv4 support on the interface. A value of 'on' means IPv4 is enable...
+  ipv6                               forward      IPv6 support on the interface. A value of 'on' means IPv6 is enable...
+  [address]                          10.1.1.1/30  ipv4 and ipv6 address
+link
+  auto-negotiate                     on           Link speed and characteritic auto negotiation
+  breakout                           1x           sub-divide, aggregate, or disable ports (only valid on plug interfa...
+  duplex                             full         Link duplex
+  fec                                auto         Link forward error correction mechanism
+  mtu                    9216        9216         interface mtu
+  speed                              auto         Link speed
+  dot1x
+    mab                              off          bypass MAC authentication
+    parking-vlan                     off          VLAN for unauthorized MAC addresses
+  state                  down        up           The state of the interface
+  stats
+    carrier-transitions  3                        Number of times the interface state has transitioned between up and...
+    in-bytes             0                        total number of bytes received on the interface
+    in-drops             0                        number of received packets dropped
+    in-errors            0                        number of received packets with errors
+    in-pkts              0                        total number of packets received on the interface
+    out-bytes            65700                    total number of bytes transmitted out of the interface
+    out-drops            0                        The number of outbound packets that were chosen to be discarded eve...
+    out-errors           0                        The number of outbound packets that could not be transmitted becaus...
+    out-pkts             934                      total number of packets transmitted out of the interface
+```
+
 ## Example Configuration Management Commands
 
-This section provides some examples of how to use the configuration management commands to apply, save, and detach configurations.
+This section provides examples of how to use the configuration management commands to apply, save, and detach configurations.
 
 ### Apply and Save a Configuration
 

@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 340
 toc: 3
 ---
-DHCP is a client/server protocol that automatically provides IP hosts with IP addresses and other related  configuration information. A DHCP relay (agent) is a host that forwards DHCP packets between clients and servers. DHCP relays forward requests and replies between clients and servers that are not on the same physical subnet.
+DHCP is a client/server protocol that automatically provides IP hosts with IP addresses and other related configuration information. A DHCP relay (agent) is a host that forwards DHCP packets between clients and servers. DHCP relays forward requests and replies between clients and servers that are not on the same physical subnet.
 
 This topic describes how to configure DHCP relays for IPv4 and IPv6. Configurations on the server hosts, DHCP relays, and DHCP server are provided using the following topology:
 
@@ -78,9 +78,24 @@ cumulus@switch:~$ sudo systemctl restart dhcrelay.service
 
 {{< /tab >}}
 
+{{< tab "CUE Commands ">}}
+
+Specify the IP address of each DHCP server and the interfaces that are used as the uplinks. In the example commands below, the DHCP server IP address is 172.16.1.102, VLAN 1 (the SVI is vlan1) and the uplinks are swp51 and swp52. As per {{<exlink url="https://tools.ietf.org/html/rfc3046" text="RFC 3046">}}, you can specify as many server IP addresses that can fit in 255 octets. You can specify each address only once.
+
+```
+cumulus@switch:~$ cl set service dhcp-relay default interface swp51
+cumulus@switch:~$ cl set service dhcp-relay default interface swp52
+cumulus@switch:~$ net add dhcp relay interface vlan1
+cumulus@switch:~$ cl set service dhcp-relay default interface vlan1
+cumulus@switch:~$ cl set service dhcp-relay default server 172.16.1.102
+cumulus@switch:~$ cl apply
+```
+
+{{< /tab >}}
+
 {{< /tabs >}}
 
-To see the DHCP relay status, use the `systemctl status dhcrelay.service` command:
+To see the DHCP relay status, run the Linux `systemctl status dhcrelay.service` command or the CUE `cl show service dhcp-relay` command:
 
 ```
 cumulus@switch:~$ sudo systemctl status dhcrelay.service
@@ -104,9 +119,13 @@ To enable the DHCP Agent Information Option, you configure the `-a` option. By d
 
 {{%notice note%}}
 
-NCLU commands are not currently available for this feature. Use the following Linux commands.
+NCLU commands are not currently available for this feature. Use Linux commands or CUE commands.
 
 {{%/notice%}}
+
+{{< tabs "TabID126 ">}}
+
+{{< tab "Linux Commands ">}}
 
 - To configure the DHCP relay to inject the ingress *SVI interface* against which the relayed DHCP discover packet is processed, edit `/etc/default/isc-dhcp-relay` file and add `-a` to the `OPTIONS` line. For example:
 
@@ -140,6 +159,26 @@ Make sure to restart the `dhcrelay` service to apply the new configuration:
 ```
 cumulus@switch:~$ sudo systemctl restart dhcrelay.service
 ```
+
+{{< /tab >}}
+
+{{< tab "CUE Commands ">}}
+
+- To configure the DHCP relay to inject the ingress *SVI interface* against which the relayed DHCP discover packet is processed:
+
+   ```
+   cumulus@switch:~$  cl set service dhcp-relay NEED COMMAND
+   ```
+
+- To configure the DHCP relay to inject the *physical switch port* on which the relayed DHCP discover packet arrives instead of the SVI:
+
+   ```
+   cumulus@switch:~$  cl set service dhcp-relay NEED COMMAND
+   ```
+
+{{< /tab >}}
+
+{{< /tabs >}}
 
 ### Control the Gateway IP Address with RFC 3527
 

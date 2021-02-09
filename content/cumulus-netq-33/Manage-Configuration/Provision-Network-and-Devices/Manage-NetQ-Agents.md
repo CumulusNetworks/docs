@@ -426,9 +426,6 @@ ospf-interface-json            60  no        ['/usr/bin/vtysh', '-c', 'show ip o
 You can disable any of these commands if they are not needed on your network. This can help reduce the compute resources the NetQ Agent consumes on the switch. For example, if your network does not run OSPF, you can disable the two OSPF commands:
 
 ```
-cumulus@switch:~$ netq config add agent command service-key ospf-interface-json enable False
-Command Service ospf-interface-json is disabled
-
 cumulus@switch:~$ netq config add agent command service-key ospf-neighbor-json enable False
 Command Service ospf-neighbor-json is disabled
 

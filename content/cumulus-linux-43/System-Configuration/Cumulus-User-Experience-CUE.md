@@ -134,6 +134,7 @@ The CUE monitoring commands show various parts of the network configuration. For
 | `cl show evpn` |Shows EVPN information. |
 | `cl show interface` |Shows interface information. |
 | `cl show system` | Shows global system settings, such as NTP, DHCP server, DNS, syslog and LLDP. |
+| `cl show service` | Shows DHCP relay information, such as the DHCP relay server IP address, the set of interfaces on which DHCP relay traffic is handled, and the DHCP relay gateway IP address on the interfaces. |
 | `cl show vrf` | Shows VRF information.|
 | `cl show nve` | Shows network virtualization information, such as VXLAN-specfic MLAG configuration and VXLAN flooding.|
 

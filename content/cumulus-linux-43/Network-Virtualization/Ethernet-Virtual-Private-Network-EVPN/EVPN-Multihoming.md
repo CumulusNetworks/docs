@@ -75,9 +75,9 @@ A *designated forwarder* (DF) is elected for each Ethernet segment. The DF is re
 
 NCLU generates the EVPN-MH configuration and reloads FRR and `ifupdown2`. The configuration appears in both the `/etc/network/interfaces` file and in `/etc/frr/frr.conf` file.
 
-{{%notice info%}}
+{{%notice note%}}
 
-In addition to the `es-id` and the `es-sys-mac`, you need to specify a unique SVI IP address for each VTEP across the racks. These IP addresses must be reachable from remote VTEPs. You enable the advertisement of these IP addresses using the `advertise-svi-ip` option, under the BGP EVPN address family. See the leaf configurations in the {{<link title="#Example Configuration" text="example configuration">}} below.
+When EVPN-MH is enabled, all SVI MAC addresses are advertised as type 2 routes. You no longer need to configure a unique SVI IP address, or configure the BGP EVPN address family with `advertise-svi-ip`.
 
 {{%/notice%}}
 
@@ -657,7 +657,6 @@ net add bgp l2vpn evpn  neighbor swp2 activate
 net add bgp l2vpn evpn  neighbor swp3 activate
 net add bgp l2vpn evpn  neighbor swp4 activate
 net add bgp l2vpn evpn  advertise-all-vni
-net add bgp l2vpn evpn  advertise-svi-ip
 net add time zone Etc/UTC
 net add ptp global slave-only no
 net add ptp global priority1 255
@@ -927,7 +926,6 @@ leaf01(config-router-af)# neighbor swp2 activate
 leaf01(config-router-af)# neighbor swp3 activate
 leaf01(config-router-af)# neighbor swp4 activate
 leaf01(config-router-af)# advertise-all-vni
-leaf01(config-router-af)# advertise-svi-ip
 leaf01(config-router-af)# exit-address-family
 leaf01(config-router)# exit
 leaf01(config)# line vty
@@ -1006,7 +1004,6 @@ net add bgp l2vpn evpn neighbor swp2 activate
 net add bgp l2vpn evpn neighbor swp3 activate
 net add bgp l2vpn evpn neighbor swp4 activate
 net add bgp l2vpn evpn advertise-all-vni
-net add bgp l2vpn evpn  advertise-svi-ip
 net add time zone Etc/UTC
 net add ptp global slave-only no
 net add ptp global priority1 255
@@ -1297,7 +1294,6 @@ leaf02(config-router-af)# neighbor swp2 activate
 leaf02(config-router-af)# neighbor swp3 activate
 leaf02(config-router-af)# neighbor swp4 activate
 leaf02(config-router-af)# advertise-all-vni
-leaf02(config-router-af)# advertise-svi-ip
 leaf02(config-router-af)# exit-address-family
 leaf02(config-router)# exit
 leaf02(config)# line vty
@@ -1376,7 +1372,6 @@ net add bgp l2vpn evpn  neighbor swp2 activate
 net add bgp l2vpn evpn  neighbor swp3 activate
 net add bgp l2vpn evpn  neighbor swp4 activate
 net add bgp l2vpn evpn  advertise-all-vni
-net add bgp l2vpn evpn  advertise-svi-ip
 net add time zone Etc/UTC
 net add ptp global slave-only no
 net add ptp global priority1 255
@@ -1668,7 +1663,6 @@ leaf03(config-router-af)# neighbor swp2 activate
 leaf03(config-router-af)# neighbor swp3 activate
 leaf03(config-router-af)# neighbor swp4 activate
 leaf03(config-router-af)# advertise-all-vni
-leaf03(config-router-af)# advertise-svi-ip
 leaf03(config-router-af)# exit-address-family
 leaf03(config-router)# exit
 leaf03(config)# line vty
@@ -1886,7 +1880,6 @@ spine01(config-router-af)# neighbor swp4 activate
 spine01(config-router-af)# neighbor swp5 activate
 spine01(config-router-af)# neighbor swp6 activate
 spine01(config-router-af)# advertise-all-vni
-spine01(config-router-af)# advertise-svi-ip
 spine01(config-router-af)# exit-address-family
 spine01(config-router)# exit
 spine01(config)# line vty
@@ -2104,7 +2097,6 @@ spine02(config-router-af)# neighbor swp4 activate
 spine02(config-router-af)# neighbor swp5 activate
 spine02(config-router-af)# neighbor swp6 activate
 spine02(config-router-af)# advertise-all-vni
-spine02(config-router-af)# advertise-svi-ip
 spine02(config-router-af)# exit-address-family
 spine02(config-router)# exit
 spine02(config)# line vty
@@ -4111,7 +4103,6 @@ router bgp 5556
   neighbor swp3 activate
   neighbor swp4 activate
   advertise-all-vni
-  advertise-svi-ip
  exit-address-family
 !
 line vty
@@ -4242,7 +4233,6 @@ router bgp 5557
  neighbor swp3 activate
  neighbor swp4 activate
  advertise-all-vni
- advertise-svi-ip
  exit-address-family
 !
 !
@@ -4392,7 +4382,6 @@ router bgp 5558
  neighbor swp3 activate
  neighbor swp4 activate
  advertise-all-vni
- advertise-svi-ip
  exit-address-family
 !
 

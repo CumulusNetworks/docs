@@ -342,7 +342,7 @@ for the following:
 - **validation**: Schedule a validation check
 - **vlan**: VLAN status
 - **vxlan**: VXLAN data path status
-- **wjh-drop**: dropped packet data from Mellanox What Just Happened
+- **wjh-drop**: dropped packet data from NVIDIA&reg; Mellanox&reg; What Just Happened&reg;
 
 The commands take the form of `netq [<hostname>] show <network-protocol-or-service> [options]`, where the options vary according to the protocol or service. The commands can be restricted from showing the information for *all* devices to showing information for a selected device using the `hostname` option.
 

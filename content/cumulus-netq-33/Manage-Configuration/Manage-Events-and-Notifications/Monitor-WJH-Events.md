@@ -61,7 +61,7 @@ Using <em>wjh_dump.py</em> on a Mellanox platform that is running Cumulus Linux 
 
 ## Configure Latency and Congestion Thresholds
 
-WJH latency and congestion metrics depend on threshold settings to trigger the events. Packet latency is measured as the time spent inside a single system (switch). Congestion is measured as a percentage of buffer occupancy on the switch. When WJH triggers events when the high and low thresholds are crossed.
+WJH latency and congestion metrics depend on threshold settings to trigger the events. Packet latency is measured as the time spent inside a single system (switch). Congestion is measured as a percentage of buffer occupancy on the switch. When specified, WJH triggers events when the high and/or low thresholds are crossed.
 
 To configure these thresholds, run:
 

@@ -18,7 +18,7 @@ There are three sets of validation commands, all for verifying the health and pe
 - The newer set of validation commands are used to create on-demand or scheduled validations with the results being displayed in the NetQ UI Validation Result cards. These commands begin with `netq add validation`. They are used to validate various elements in your network fabric currently or on a regular basis. No filtering on results is available within the commands as that is accomplished through the NetQ UI.
 - The validation management commands. These present a list of all jobs and job settings, and the ability to remove validations.
 
-Refer to {{<link title="Validation Checks">}} for a description of the tests run as part of each validation. The `netq check`commands are described here. The others are described elsewhere based on the command names.
+Refer to {{<link title="Validation Checks">}} for a description of the tests run as part of each validation. The `netq check` commands are described here. The others are described elsewhere based on the command names.
 
 **About Config Commands**
 
@@ -1486,6 +1486,12 @@ BUM replication Test    : passed
 
 - - -
 
+## netq config add addons
+
+Do we support this command ???
+
+- - -
+
 ## netq config add agent cluster-servers
 
 Configures the server cluster where the NetQ Agents on monitored switches and hosts should send their collected data. You can also provide a specific port or VRF to use for the communication. Note that you must restart the NetQ Agent for the configuration to be enabled.
@@ -1534,12 +1540,13 @@ cumulus@switch:~$ netq config restart agent
 ### Related Commands
 
 - netq config del agent cluster-servers
+- netq config restart agent
 
 - - -
 
 ## netq config add agent command
 
-The NetQ Agent contains a pre-configured set of modular commands that run periodically and send event and resource data to the NetQ appliance or VM. This command lets you fine tune which events the agent can poll and vary the frequency of polling.
+The NetQ Agent contains a pre-configured set of modular commands that run periodically and send event and resource data to the NetQ appliance or VM. This command lets you fine tune which events the agent can poll and vary the frequency of polling. Note that you must restart the NetQ Agent for the configuration to be enabled.
 
 Refer to the {{<link title="Manage NetQ Agents/#change-netq-agent-polling-data-and-frequency" text="NetQ User Guide">}} for details of the commands, including their service keys and default polling intervals.
 
@@ -1600,7 +1607,7 @@ Command Service ospf-neighbor-json is disabled
 
 ## netq config add agent cpu-limit
 
-Configures the NetQ Agent use no more than a specified maximum percentage (between 40 and 60 percent) of the CPU resources of the switch. If the command is run without a value, NetQ assumes a limit of 40%. Cumulus Linux versions 3.6 or later or 4.1.0 or later must be running on the switch for this setting to take effect.
+Configures the NetQ Agent use no more than a specified maximum percentage (between 40 and 60 percent) of the CPU resources of the switch. If the command is run without a value, NetQ assumes a limit of 40%. Cumulus Linux versions 3.6 or later or 4.1.0 or later must be running on the switch for this setting to take effect. Note that you must restart the NetQ Agent for the configuration to be enabled.
 
 For more detail about this feature, refer to this {{<exlink url="https://docs.cumulusnetworks.com/knowledge-base/Configuration-and-Usage/Cumulus-NetQ/NetQ-Agent-CPU-Utilization-on-Cumulus-Linux-Switches/" text="Knowledge Base">}} article.
 
@@ -1646,13 +1653,13 @@ Restarting netq-agent... Success!
 
 - netq config show agent cpu-limit
 - netq config del agent cpu-limit
-- netq config (start|stop|status|restart) agent
+- netq config restart agent
 
 - - -
 
 ## netq config add agent frr-monitor
 
-Configures the NetQ Agent to monitor the Free Range Router (FRR) function on the switch.
+Configures the NetQ Agent to monitor the Free Range Router (FRR) function when running in a Docker container. Typically FRR is run as a service. Note that you must restart the NetQ Agent for the configuration to be enabled.
 
 ### Syntax
 
@@ -1669,7 +1676,7 @@ None
 
 | Option | Value | Description |
 | ---- | ---- | ---- |
-| NA | \<text-frr-docker-name\> | Collect statistics about the FRR docker container with this name |
+| NA | \<text-frr-docker-name\> | Collect statistics about the FRR docker container with this name pattern, used by `grep` |
 
 ### Command History
 
@@ -1695,13 +1702,13 @@ Restarting netq-agent... Success!
 
 - netq config show agent frr-monitor
 - netq config del agent frr-monitor
-- netq config (start|stop|status|restart) agent
+- netq config restart agent
 
 - - -
 
 ## netq config add agent kubernetes-monitor
 
-Configures the NetQ Agent to monitor kubernetes containers on the switch and to set how often to collect this information (between 10 and 120 seconds).
+Configures the NetQ Agent to monitor kubernetes containers on the switch and to set how often to collect this information (between 10 and 120 seconds). Note that you must restart the NetQ Agent for the configuration to be enabled.
 
 ### Syntax
 
@@ -1754,7 +1761,7 @@ Restarting netq-agent... Success!
 
 - netq config show agent kubernetes-monitor
 - netq config del agent kubernetes-monitor
-- netq config (start|stop|status|restart) agent
+- netq config restart agent
 
 - - -
 
@@ -1767,7 +1774,7 @@ Configures the amount of information to log about the NetQ Agent activity, from 
 - Info: Logs events classified as info, warning, and errors
 - Debug: Logs all events
 
-It is recommended to return a log level of info or higher after you have completed debugging.
+It is recommended to return a log level of info or higher after you have completed debugging. Note that you must restart the NetQ Agent for the configuration to be enabled.
 
 ### Syntax
 
@@ -1810,36 +1817,436 @@ Restarting netq-agent... Success!
 
 - netq config show agent loglevel
 - netq config del agent loglevel
-- netq config (start|stop|status|restart) agent
+- netq config restart agent
 
 - - -
 
+## netq config add agent opta-discovery-servers
 
+Configures the range of IP addresses to search as part of the lifecycle management discovery process (when NetQ is looking for Cumulus Linux switches not running NetQ).
 
+Ranges can be contiguous, for example *192.168.0.24-64*, or non-contiguous, for example *192.168.0.24-64,128-190,235*, but they must be contained within a single subnet. A maximum of 50 addresses can be included in an address range; if necessary, break the range into smaller ranges.
+
+## Syntax
+
+```
+netq config add agent opta-discovery-servers 
+    <text-opta-discovery-ips> 
+    [vrf <text-vrf-name>]
+    [port <text-discovery-server-port>]
+```
+
+### Required Arguments
+
+| Argument | Value | Description |
+| ---- | ---- | ---- |
+| opta-discovery-servers | \<text-opta-discovery-ips\> | Look for Cumulus Linux switches not running NetQ within this range of IP addresses |
+
+### Options
+
+| Option | Value | Description |
+| ---- | ---- | ---- |
+| vrf | \<text-vrf-name\> | Look for Cumulus Linux switches with the specified IP addresses that use the VRF with this name. When unspecified, the *default* VRF is used. |
+| port | \<text-discovery-server-port\> | Look for Cumulus Linux switches with the specified IP addresses that use this port. When unspecified, port 31980 is used. |
+
+### Command History
+
+A release is included if there were changes to the command, otherwise it is not listed.
+
+| Release | Description |
+| ---- | ---- |
+| 3.2.0 ??? | Introduced |
+
+### Sample Usage
+
+Configure a range of IP addresses to search for switches without NetQ
+
+```
+cumulus@switch:~$ netq config add agent opta-discovery-servers 192.168.0.24-64,128-190
+Updated agent discovery servers 192.168.0.24-64,128-190 port 31980 vrf default. Please restart netq-agent (netq config restart agent)
+
+cumulus@switch:~$ netq config restart agent
+Restarting netq-agent... Success!
+```
+
+### Related Commands
+
+- netq config restart agent
+
+- - -
+
+## netq config add agent sensors
+
+Configures the NetQ Agent to collect information from the sensors on the switch chassis, including fan, power supply, and temperature data. This command must be run from the chassis.
+
+### Syntax
+
+```
+netq config add agent sensors
+```
+
+### Required Arguments
+
+| Argument | Value | Description |
+| ---- | ---- | ---- |
+| sensors | NA | Collect information from all chassis sensors |
+
+### Options
+
+None
+
+### Command History
+
+A release is included if there were changes to the command, otherwise it is not listed.
+
+| Release | Description |
+| ---- | ---- |
+| Before 2.1.2 | Introduced |
+
+### Sample Usage
+
+Configure sensor monitoring
+
+```
+cumulus@chassis:~$ netq config add agent sensors
+Successfully added sensors monitor. Please restart netq-agent (netq config restart agent)
+
+cumulus@chassis:~$ netq config restart agent
+Restarting netq-agent... Success!
+```
+
+### Related Commands
+
+- netq config show agent sensors
+- netq config del agent sensors
+- netq config restart agent
+
+- - -
+
+## netq config add agent server
+
+Configures the destination (NetQ appliance or VM) for the data collected by the NetQ Agent and for API requests.
+
+### Syntax
+
+```
 netq config add agent server
     <text-opta-ip>
     [port <text-opta-port>]
     [vrf <text-vrf-name>]
+```
 
-netq config add agent (stats|sensors)
+### Required Arguments
 
-netq config add agent wjh 2.4.1
+| Argument | Value | Description |
+| ---- | ---- | ---- |
+| server | \<text-opta-ip\> | Use the appliance or VM with this IP address to receive NetQ Agent data and API requests |
 
+### Options
+
+| Option | Value | Description |
+| ---- | ---- | ---- |
+| port | \<text-opta-port\> | Use this port on the appliance or VM to receive NetQ Agent data and API requests |
+| vrf | \<text-vrf-name\> | Use this VRF on the appliance or VM to receive NetQ Agent data and API requests |
+
+### Command History
+
+A release is included if there were changes to the command, otherwise it is not listed.
+
+| Release | Description |
+| ---- | ---- |
+| 2.1.2 | Introduced |
+
+### Sample Usage
+
+Configure destination server with default port and VRF
+
+```
+cumulus@switch:~$ netq config add agent server 192.168.200.250
+Updated agent server 192.168.200.250 port 31980 vrf default. Please restart netq-agent (netq config restart agent)
+
+cumulus@switch:~$ netq config restart agent
+Restarting netq-agent... Success!
+```
+
+### Related Commands
+
+- netq config del agent server
+- netq config restart agent
+
+- - -
+
+## netq config add agent stats
+
+Configures the NetQ Agent to collect and send interface statistics.
+
+### Syntax
+
+```
+netq config add agent stats
+```
+
+### Required Arguments
+
+| Argument | Value | Description |
+| ---- | ---- | ---- |
+| stats | NA | Collect and send interface statistics |
+
+### Options
+
+None
+
+### Command History
+
+A release is included if there were changes to the command, otherwise it is not listed.
+
+| Release | Description |
+| ---- | ---- |
+| Before 2.1.2 | Introduced |
+
+### Sample Usage
+
+```
+cumulus@switch:~$ netq config add agent stats
+Successfully added stats monitor. Please restart netq-agent (netq config restart agent)
+
+cumulus@switch:~$ netq config restart agent
+Restarting netq-agent... Success!
+```
+
+### Related Commands
+
+- netq config show agent stats
+- netq config del agent stats
+- netq config restart agent
+
+- - -
+
+## netq config add agent wjh
+
+Configures the NetQ Agent to collect and send What Just Happened events occurring on NVIDIA Spectrum&trade; switches. Refer to the {{<link title="WJH Event Messages Reference" text="WJH events reference">}} for a list of supported WJH events and to {{<link title="Configure and Monitor What Just Happened" text="WJH configuration">}} for configuration information.
+
+### Syntax
+
+```
+netq config add agent wjh
+```
+
+### Required Arguments
+
+| Argument | Value | Description |
+| ---- | ---- | ---- |
+| wjh | NA | Collect and send What Just Happened events |
+
+### Options
+
+None
+
+### Command History
+
+A release is included if there were changes to the command, otherwise it is not listed.
+
+| Release | Description |
+| ---- | ---- |
+| 2.4.1 | Introduced |
+
+### Sample Usage
+
+```
+cumulus@chassis:~$ netq config add agent wjh
+Successfully added WJH monitor. Please restart netq-agent (netq config restart agent)
+
+cumulus@switch:~$ netq config restart agent
+Restarting netq-agent... Success!
+```
+
+### Related Commands
+
+- netq config show agent wjh
+- netq config del agent wjh
+- netq config add agent wjh-drop-filter
+- netq config add agent wjh-threshold
+- netq config restart agent
+
+- - -
+
+## netq config add agent wjh-drop-filter
+
+Filters the WJH events at the NetQ Agent before it is processed by the NetQ system. Filtering is performed on a drop-type basis. You can filter the drop type further by specifying one or more drop reasons or severities. This command only applies to NVIDIA Spectrum switches.
+
+### Syntax
+
+```
+netq config add agent wjh-drop-filter
+    drop-type <text-wjh-drop-type> 
+    [drop-reasons <text-wjh-drop-reasons>]
+    [severity <text-drop-severity-list>]
+```
+
+### Required Arguments
+
+| Argument | Value | Description |
+| ---- | ---- | ---- |
+| wjh-drop-filter | NA | Collect and send WJH events filtered by drop type, reason or severity |
+| drop-type | \<text-wjh-drop-type\> | Only collect and send WJH events with this drop type. Valid drop types include *acl*, *buffer*, *l1*, *l2*, *router*, and *tunnel*. |
+
+### Options
+
+| Option | Value | Description |
+| ---- | ---- | ---- |
+| drop-reasons | \<text-wjh-drop-reasons\> | Only collect and send WJH events with these drop reasons. When more than one drop reason is desired, this value should be formatted as a comma-separated list, without spaces. Valid drop reasons vary according to the drop type. Refer to the {{<link title="WJH Event Messages Reference" text="WJH events reference">}}. |
+| severity | \<text-drop-severity-list\> | Only collect and send WJH events with this severity. When more than one severity is desired, this value should be formatted as a comma-separated list, without spaces. Valid severities include *Notice*, *Warning*, and *Error*. |
+
+### Command History
+
+A release is included if there were changes to the command, otherwise it is not listed.
+
+| Release | Description |
+| ---- | ---- |
+| 3.3.0 | Introduced |
+
+### Sample Usage
+
+```
+cumulus@switch:~$ netq config add agent wjh-drop-filter drop-type l1 drop-reasons PORT_ADMIN_DOWN,BAD_SIGNAL_INTEGRITY
+
+cumulus@switch:~$ netq config restart agent
+Restarting netq-agent... Success!
+```
+
+### Related Commands
+
+- netq config del agent wjh-drop-filter
+- netq config add agent wjh
+- netq config add agent wjh-threshold
+- netq config restart agent
+
+- - -
+
+## netq config add agent wjh-threshold
+
+WJH latency and congestion metrics depend on threshold settings to trigger the events. Packet latency is measured as the time spent inside a single system (switch). Congestion is measured as a percentage of buffer occupancy on the switch. When configured, the NetQ Agent collects and sends these WJH triggered events when the high and low thresholds are crossed. This command only applies to NVIDIA Spectrum switches.
+
+### Syntax
+
+```
 netq config add agent wjh-threshold
     (latency|congestion)
     <text-tc-list>
     <text-port-list>
     <text-th-hi>
     <text-th-lo>
-3.2.0
+```
 
+### Required Arguments
+
+| Argument | Value | Description |
+| ---- | ---- | ---- |
+| wjh-threshold | NA | Collect and send WJH latency or congestion events triggered by the specified high and low thresholds |
+| latency | NA | Collect and send WJH latency events |
+| congestion | NA | Collect and send WJH congestion events |
+| NA | \<text-tc-list\> | Only send events for these traffic classes. When more than one traffic class is desired, this value should be formatted as a comma-separated list, without spaces. Valid classes include xxx. |
+| NA | \<text-port-list\> | Only send events occurring on these ports. When more than one port is desired, this value should be formatted as a comma-separated list, without spaces. For example *swp1,swp2,swp3,swp4*. |
+| NA | \<text-th-hi\> | Trigger an event when the latency is greater than this amount of time, or when buffer occupancy is greater than this percentage. |
+| NA | \<text-th-lo\> | Trigger an event when the latency is less than this amount of time, or when buffer occupancy is less than this percentage. |
+
+### Options
+
+None
+
+### Command History
+
+A release is included if there were changes to the command, otherwise it is not listed.
+
+| Release | Description |
+| ---- | ---- |
+| 3.2.0 | Introduced |
+
+### Sample Usage
+
+Create latency thresholds for Class *3* traffic on port *swp1* where the upper threshold is *10* and the lower threshold is *1*.
+
+```
+cumulus@switch:~$ sudo netq config add agent wjh-threshold latency 3 swp1 10 1
+```
+
+Create congestion thresholds for Class *4* traffic on port *swp1* where the upper threshold is *200* and the lower threshold is *10*.
+
+```
+cumulus@switch:~$ sudo netq config add agent wjh-threshold congestion 4 swp1 200 10
+```
 
 ### Related Commands
 
-- netq config (start|stop|status|restart) agent
-- netq config del agent
-- netq config show agent
+- netq config show agent wjh-threshold
+- netq config del agent wjh-threshold
+- netq config add agent wjh
+- netq config add agent wjh-drop-filter
+- netq config restart agent
 
 - - -
 
-netq config agent factory-reset commands
+## netq config add cli server
+
+Configures the NetQ CLI on the switch or host where this command is run.
+
+The `access-key` and `secret-key` are required for cloud deployments. The `text-gateway-dest`
+is the only required argument for on-premises deployments.
+
+When the NetQ CLI is not configured, you can run only `netq config` and `netq help` commands, and you must use `sudo` to run them.
+
+### Syntax
+
+```
+netq config add cli server
+    <text-gateway-dest>
+    [access-key <text-access-key> secret-key <text-secret-key> premises <text-premises-name> | cli-keys-file <text-key-file> premises <text-premises-name>]
+    [vrf <text-vrf-name>]
+    [port <text-gateway-port>]
+```
+
+### Required Arguments
+
+| Argument | Value | Description |
+| ---- | ---- | ---- |
+| NA | \<text-gateway-dest\> | Collect and send WJH latency or congestion events triggered by the specified high and low thresholds |
+
+### Options
+
+None Configure the NetQ CLI so that it is running in the VRF where the routing tables are set for connectivity to the telemetry server. Typically this is the management VRF.
+
+### Command History
+
+A release is included if there were changes to the command, otherwise it is not listed.
+
+| Release | Description |
+| ---- | ---- |
+| xxx | Made `premises` option always required; dropped second form of command |
+| 2.3.0 | Split command into two: the first for when you want to specify the premises (syntax as shown above), the second for when you want to use the first premises in your list of premises (same syntax minus the premises option). |
+| 2.2.0 | Added `access-key` and `secret-key` as required arguments for cloud deployments. Added `vrf` and `port` options. |
+| 2.1.x | Introduced |
+
+### Sample Usage
+
+```
+cumulus@switch:~$ sudo netq config add cli server 10.0.1.1 vrf mgmt port 32000
+cumulus@switch:~$ sudo netq config restart cli
+```
+
+### Related Commands
+
+- netq config show agent wjh-threshold
+- netq config del agent wjh-threshold
+- netq config add agent wjh
+- netq config add agent wjh-drop-filter
+- netq config restart agent
+
+- - -
+
+
+
+netq config add color         :  Color-coded ANSI output
+netq config add experimental  :  Experimental features
+
+
+netq config agent factory-reset commands 3.0.0

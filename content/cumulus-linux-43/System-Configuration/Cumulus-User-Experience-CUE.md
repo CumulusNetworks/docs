@@ -117,7 +117,7 @@ The `cl set` and `cl unset` commands are grouped into the following categories. 
 | `cl set evpn`<br>`cl unset evpn` | Configures EVPN. This is where you enable and disable the EVPN control plane, and set EVPN route advertise options, default gateway configuration for centralized routing, and duplicate address detection options. |
 | `cl set interface <interface-id>`<br>`cl unset interface <interface-id>` | Configures the switch interfaces. Use this command to configure bond interfaces, bridge interfaces, interface IP addresses, VLAN IDs, and links (MTU, FEC, speed, duplex, and so on).|
 | `cl set system`<br>`cl unset system` | Configures global system settings, such as NTP, DHCP servers, DNS, LLDP, and syslog. |
-| `cl set vrf  <vrf-id>`<br>`cl unset vrf <vrf-id>` | Configures VRFs. |
+| `cl set vrf  <vrf-id>`<br>`cl unset vrf <vrf-id>` | Configures VRFs.   |
 | `cl set service`<br>`cl unset service` | Configures DHCP relays. This is where you configure the DHCP relay server IP address, the set of interfaces on which to handle DHCP relay traffic, the DHCP relay gateway IP address on the interfaces, and the source IP address to use on the relayed packet. |
 | `cl set nve`<br>`cl unset nve` | Configures network virtualization (VXLAN) settings. This is where you configure the UDP port for VXLAN frames, control dynamic MAC learning over VXLAN tunnels, and configure how Cumulus Linux handles BUM traffic in the overlay.|
 
@@ -536,7 +536,7 @@ You can set global BGP configuration, such as the ASN, router ID, graceful shutd
 cumulus@leaf01:~$ cl set router bgp autonomous-system 65101
 ```
 
-However, bgp peer and peer group, route information, timer, and address family configuration requires a VRF. For example:
+However, BGP peer and peer group, route information, timer, and address family configuration requires a VRF. For example:
 
 ```
 cumulus@leaf01:~$ cl set vrf default router bgp peer swp51 remote-as external

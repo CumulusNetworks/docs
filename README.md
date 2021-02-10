@@ -1,14 +1,11 @@
 # Cumulus Networks Documentation
 
 This the source repository for the Cumulus Networks Documentation, hosted at docs.cumulusnetworks.com.
-The site is built with the static site generator [Hugo](https://gohugo.io/documentation/)
+The site is built with the static site generator [Hugo](https://gohugo.io/documentation/).
 
 ## Installing the Documentation and Running the Local Server
-The docs are built with the static site generator [Hugo](https://gohugo.io/documentation/)
-Hugo contains a local development server to build and view live changes to the repo. Hugo is
-a command line interface.
 
-In order to build and view the live site:
+Hugo contains a local development server to build and view live changes to the repo. In order to build and view the live site:
 
 1. Install Hugo version 0.65.3 **extended** from https://github.com/gohugoio/hugo/releases/tag/v0.65.3.
 
@@ -39,7 +36,7 @@ All site content in Hugo is written in Markdown, and hosted in the /content fold
 The site is built with the file tree and organization of this folder.
 
 Hugo supports basic GitHub Markdown syntax. A helpful guide for Markdown is [here](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet).
-Hugo supports custom shortcodes, which are contained the Writing Guide section of the docs.
+Hugo supports custom shortcodes, which are contained in the Writing Guide section of the docs.
 
 ### Adding a section
 Sections in Hugo are subdirectories of the /content folder. In order to add a section,

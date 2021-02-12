@@ -5,7 +5,7 @@ weight: 115
 toc: 3
 ---
 {{%notice warning%}}
-Cumulus User Experience (CUE) is an {{<exlink url="https://docs.cumulusnetworks.com/knowledge-base/Support/Support-Offerings/Early-Access-Features-Defined/" text="early access feature">}} currently in BETA and open to customer feedback.
+Cumulus User Experience (CUE) is an {{<exlink url="https://docs.cumulusnetworks.com/knowledge-base/Support/Support-Offerings/Early-Access-Features-Defined/" text="early access feature">}} currently in ALPHA and open to customer feedback.
 
 CUE is not currently intended to run in production and is not supported through NVIDIA networking support.
 {{%/notice%}}

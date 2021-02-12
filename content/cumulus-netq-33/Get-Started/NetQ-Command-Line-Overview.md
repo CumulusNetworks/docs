@@ -97,7 +97,7 @@ Thus some valid commands are:
 
 The command output presents results in color for many commands.  Results with errors are shown in <span style="color: #ff0000;">red</span>, and warnings are shown in <span style="color: #ffcc00;">yellow</span>. Results without errors or warnings are shown in either black or <span style="color: #00ff00;">green</span>. VTEPs are shown in <span style="color: #0000ff;">blue</span>. A node in the *pretty* output is shown in **bold**, and a router interface is wrapped in angle brackets (\< \>). To view the output with only black text, run the `netq config del color` command. You can view output with colors again by running `netq config add color`.
 
-All check and show commands are run with a default timeframe of now to one hour ago, unless you specify an approximate time using the `around` keyword. For example, running `netq check bgp` shows the status of BGP over the last hour. Running `netq show bgp around 3h` shows the status of BGP three hours ago.
+All check and show commands are run with a default time frame of now to one hour ago, unless you specify an approximate time using the `around` keyword or a range using the `between` keyword. For example, running `netq check bgp` shows the status of BGP over the last hour. Running `netq show bgp around 3h` shows the status of BGP three hours ago.
 
 ### Command Prompts
 

@@ -12,7 +12,53 @@ This topic includes all commands that begin with `netq d*`, `netq e*`, `netq f*`
 
 ## netq decommission
 
-netq decommission <hostname-to-decommission>
+Decommissions a switch or host currently running NetQ Agent. This removes information about the switch or host from the NetQ database. Before decommissioning a switch, you should stop and disable the NetQ Agent.
+
+You might need to decommission a switch when you:
+
+- Change the hostname of the switch or host being monitored
+- Move the switch or host being monitored from one data center to
+another
+- RMA the switch or host being monitored
+
+### Syntax
+
+```
+netq decommission
+    <hostname-to-decommission>
+```
+
+### Required Arguments
+
+| Argument | Value | Description |
+| ---- | ---- | ---- |
+| NA | \<hostname-to-decommission\> | Decommission the switch with this hostname |
+
+### Options
+
+None
+
+### Command History
+
+A release is included if there were changes to the command, otherwise it is not listed.
+
+| Release | Description |
+| ---- | ---- |
+| Before 2.1.2 | Introduced |
+
+### Sample Usage
+
+```
+cumulus@switch:~$ sudo systemctl stop netq-agent
+cumulus@switch:~$ sudo systemctl disable netq-agent
+cumulus@switch:~$ netq decommission leaf28
+```
+
+### Related Commands
+
+None
+
+- - -
 
 ## netq del events-config
 
@@ -68,6 +114,12 @@ cumulus@switch:~$ netq del events-config events_config_id eventsconfig_10
 Successfully deleted Events Config eventsconfig_10
 ```
 
+### Related Commands
+
+- netq add events-config
+- netq show events-config
+
+- - -
 
 ## netq del
     notification   :  Send notifications to Slack or PagerDuty

@@ -1486,12 +1486,6 @@ BUM replication Test    : passed
 
 - - -
 
-## netq config add addons
-
-Do we support this command ???
-
-- - -
-
 ## netq config add agent cluster-servers
 
 Configures the server cluster where the NetQ Agents on monitored switches and hosts should send their collected data. You can also provide a specific port or VRF to use for the communication. Note that you must restart the NetQ Agent for the configuration to be enabled.
@@ -1827,7 +1821,7 @@ Configures the range of IP addresses to search as part of the lifecycle manageme
 
 Ranges can be contiguous, for example *192.168.0.24-64*, or non-contiguous, for example *192.168.0.24-64,128-190,235*, but they must be contained within a single subnet. A maximum of 50 addresses can be included in an address range; if necessary, break the range into smaller ranges.
 
-## Syntax
+### Syntax
 
 ```
 netq config add agent opta-discovery-servers 
@@ -2008,7 +2002,7 @@ A release is included if there were changes to the command, otherwise it is not 
 
 ```
 cumulus@switch:~$ netq config add agent stats
-Successfully added stats monitor. Please restart netq-agent (netq config restart agent)
+stats config added. Please restart netq-agent (netq config restart agent)
 
 cumulus@switch:~$ netq config restart agent
 Restarting netq-agent... Success!
@@ -2095,7 +2089,7 @@ netq config add agent wjh-drop-filter
 | Option | Value | Description |
 | ---- | ---- | ---- |
 | drop-reasons | \<text-wjh-drop-reasons\> | Only collect and send WJH events with these drop reasons. When more than one drop reason is desired, this value should be formatted as a comma-separated list, without spaces. Valid drop reasons vary according to the drop type. Refer to the {{<link title="WJH Event Messages Reference" text="WJH events reference">}}. |
-| severity | \<text-drop-severity-list\> | Only collect and send WJH events with this severity. When more than one severity is desired, this value should be formatted as a comma-separated list, without spaces. Valid severities include *Notice*, *Warning*, and *Error*. |
+| severity | \<text-drop-severity-list\> | Only collect and send WJH events with these severities. When more than one severity is desired, this value should be formatted as a comma-separated list, without spaces. Valid severities include *Notice*, *Warning*, and *Error*. |
 
 ### Command History
 
@@ -2188,12 +2182,11 @@ cumulus@switch:~$ sudo netq config add agent wjh-threshold congestion 4 swp1 200
 
 ## netq config add cli server
 
-Configures the NetQ CLI on the switch or host where this command is run.
-
-The `access-key` and `secret-key` are required for cloud deployments. The `text-gateway-dest`
-is the only required argument for on-premises deployments.
+Configures the NetQ CLI on the switch or host where this command is run. The `access-key` and `secret-key` options or the `cli-keys-file` option are required for cloud deployments, as well as the `premises` option.
 
 When the NetQ CLI is not configured, you can run only `netq config` and `netq help` commands, and you must use `sudo` to run them.
+
+For additional configuration information, refer to the {{<link title="Install the NetQ System" text="NetQ User Guide">}}.
 
 ### Syntax
 
@@ -2209,11 +2202,18 @@ netq config add cli server
 
 | Argument | Value | Description |
 | ---- | ---- | ---- |
-| NA | \<text-gateway-dest\> | Collect and send WJH latency or congestion events triggered by the specified high and low thresholds |
+| server | \<text-gateway-dest\> | Hostname or IP address of the NetQ appliance or VM in on-premises deployments, or gateway IP address or domain name for cloud/remote deployments. |
+| access-key | \<text-access-key\> | Access key obtained from NetQ UI for cloud/remote deployments |
+| secret-key | \<text-secret-key\> | Secret key obtained from NetQ UI for cloud/remote deployments |
+| premises | \<text-premises-name\> | Name of the premises with the data you want to monitor. When you have multiple premises, you must run this command again to view data from another premises. |
+| cli-keys-file | \<text-key-file\> | Use the access and secret keys contained in this file for cloud/remote deployments, rather than providing keys individually. Value must include entire path to the file. |
 
 ### Options
 
-None Configure the NetQ CLI so that it is running in the VRF where the routing tables are set for connectivity to the telemetry server. Typically this is the management VRF.
+| Argument | Value | Description |
+| ---- | ---- | ---- |
+| vrf | \<text-vrf-name\> | Use this VRF for communication with the telemetry server (NetQ appliance, VM, or cloud gateway). This should be the same VRF where the routing tables are set for connectivity to the telemetry server. Typically this is the management VRF. |
+| port | \<text-gateway-port\> | Use this port for communication with the telemetry server (NetQ appliance, VM, or cloud gateway). The default port is 32708 for on-premises deployments and 443  for cloud deployments. |
 
 ### Command History
 
@@ -2221,32 +2221,1708 @@ A release is included if there were changes to the command, otherwise it is not 
 
 | Release | Description |
 | ---- | ---- |
-| xxx | Made `premises` option always required; dropped second form of command |
+| 2.3.1 | Dropped second form of command |
 | 2.3.0 | Split command into two: the first for when you want to specify the premises (syntax as shown above), the second for when you want to use the first premises in your list of premises (same syntax minus the premises option). |
-| 2.2.0 | Added `access-key` and `secret-key` as required arguments for cloud deployments. Added `vrf` and `port` options. |
+| 2.2.2 | Changed `premise` argument to `premises`. |
+| 2.2.0 | Added `access-key`, `secret-key`, and `premise` as required arguments for cloud deployments. Added `vrf` and `port` options. |
 | 2.1.x | Introduced |
 
 ### Sample Usage
+
+On-premises
 
 ```
 cumulus@switch:~$ sudo netq config add cli server 10.0.1.1 vrf mgmt port 32000
 cumulus@switch:~$ sudo netq config restart cli
 ```
 
+Cloud/remote
+
+```
+cumulus@switch:~# sudo netq config add cli server api.netq.cumulusnetworks.com access-key 45d11f46bc09986db64612c590204054b1f12bc05219324a7d66084cf741779c secret-key zHoQ9feNlScNuGBVzUNqr0c0kJL+FAZbhEz8YtW2Rc0= premises NewYork 
+cumulus@switch:~# sudo netq config restart cli
+```
+
+### Related Commands
+
+- netq config show cli
+- netq config del cli server
+- netq config restart cli
+
+- - -
+
+## netq config add color
+
+Configures command output to presents results in color for many commands.  Results with errors are shown in <span style="color: #ff0000;">red</span>, and warnings are shown in <span style="color: #ffcc00;">yellow</span>. Results without errors or warnings are shown in either black or <span style="color: #00ff00;">green</span>. VTEPs are shown in <span style="color: #0000ff;">blue</span>. A node in the *pretty* output of a trace command is shown in **bold**, and a router interface is wrapped in angle brackets (\< \>). Outputs are shown with color cues as soon as you run the command.
+
+### Syntax
+
+```
+netq config add color
+```
+
+### Required Arguments
+
+| Argument | Value | Description |
+| ---- | ---- | ---- |
+| color | NA | Display command output using color |
+
+### Options
+
+None
+
+### Command History
+
+A release is included if there were changes to the command, otherwise it is not listed.
+
+| Release | Description |
+| ---- | ---- |
+| 1.x | Introduced |
+
+### Sample Usage
+
+```
+cumulus@switch:~$ netq config add color
+Color coded output config added
+```
+
+### Related Commands
+
+- netq config del color
+
+- - -
+
+## netq config agent factory-reset commands
+
+Resets the factory default settings for NetQ Agent modular commands, removing any manual adjustments made to data to collect and polling frequency.
+
+### Syntax
+
+```
+netq config agent factory-reset commands 
+```
+
+### Required Arguments
+
+| Argument | Value | Description |
+| ---- | ---- | ---- |
+| factory-reset commands | NA | Reset NetQ Agent polling data and frequency to factory settings |
+
+### Options
+
+None
+
+### Command History
+
+A release is included if there were changes to the command, otherwise it is not listed.
+
+| Release | Description |
+| ---- | ---- |
+| 3.0.0 | Introduced |
+
+### Sample Usage
+
+```
+cumulus@switch:~$ netq config agent factory-reset commands
+Netq Command factory reset successful
+```
+
+### Related Commands
+
+- netq config add agent command
+- netq config show agent commands
+
+- - -
+
+## netq config del agent cluster-servers
+
+For deployments using a cluster server configuration, this command removes the IP addresses of all cluster servers configured to receive NetQ Agent data.
+
+### Syntax
+
+```
+netq config del agent cluster-servers
+```
+
+### Required Arguments
+
+| Argument | Value | Description |
+| ---- | ---- | ---- |
+| cluster-servers | NA | Remove all cluster servers configured to receive NetQ Agent data |
+
+### Options
+
+None
+
+### Command History
+
+A release is included if there were changes to the command, otherwise it is not listed.
+
+| Release | Description |
+| ---- | ---- |
+| 2.4.0 | Introduced |
+
+### Sample Usage
+
+```
+cumulus@switch:~$ netq config del agent cluster-servers
+Deleted agent cluster servers 10.10.0.101,10.20.0.101 port 31980 vrf default. Please restart netq-agent (netq config restart agent)
+
+cumulus@switch:~$ netq config restart agent
+```
+
+### Related Commands
+
+- netq config add agent cluster-servers
+- netq config restart agent
+
+- - -
+
+## netq config del agent cpu-limit
+
+Removes the CPU usage limit for the NetQ Agent on this device.
+
+### Syntax
+
+```
+netq config del agent cpu-limit
+```
+
+### Required Arguments
+
+| Argument | Value | Description |
+| ---- | ---- | ---- |
+| cpu-limit | NA | Remove CPU usage limit for the NetQ Agent on this device |
+
+### Options
+
+None
+
+### Command History
+
+A release is included if there were changes to the command, otherwise it is not listed.
+
+| Release | Description |
+| ---- | ---- |
+| 2.4.1 | Introduced |
+
+### Sample Usage
+
+```
+cumulus@switch:~$ netq config del agent cpu-limit
+Successfully deleted agent CPU limit
+Please restart agent(netq config restart agent)
+
+cumulus@switch:~$ netq config restart agent
+```
+
+### Related Commands
+
+- netq config show agent cpu-limit
+- netq config add agent cpu-limit
+- netq config restart agent
+
+- - -
+
+## netq config del agent frr-monitor
+
+Disables NetQ Agent from monitoring FRR running in a Docker container. This *does not* disable NetQ Agent from monitoring FRR running as a service.
+
+### Syntax
+
+```
+netq config del agent frr-monitor
+```
+
+### Required Arguments
+
+| Argument | Value | Description |
+| ---- | ---- | ---- |
+| frr-monitor | NA | Stop the NetQ Agent from monitoring FRR when running in a container |
+
+### Options
+
+None
+
+### Command History
+
+A release is included if there were changes to the command, otherwise it is not listed.
+
+| Release | Description |
+| ---- | ---- |
+| Before 2.1.2 | Introduced |
+
+### Sample Usage
+
+```
+cumulus@switch:~$ netq config del agent frr-monitor
+Successfully deleted FRR docker monitoring for netq-agent. Please restart service.
+
+cumulus@switch:~$ netq config restart agent
+```
+
+### Related Commands
+
+- netq config show agent frr-monitor
+- netq config add agent frr-monitor
+- netq config restart agent
+
+- - -
+
+## netq config del agent kubernetes-monitor
+
+Disables NetQ Agent from monitoring Kubernetes container activity on a switch.
+
+### Syntax
+
+```
+netq config del agent kubernetes-monitor
+```
+
+### Required Arguments
+
+| Argument | Value | Description |
+| ---- | ---- | ---- |
+| kubernetes-monitor | NA | Stop the NetQ Agent from monitoring Kubernetes containers |
+
+### Options
+
+None
+
+### Command History
+
+A release is included if there were changes to the command, otherwise it is not listed.
+
+| Release | Description |
+| ---- | ---- |
+| Before 2.1.2 | Introduced |
+
+### Sample Usage
+
+```
+cumulus@switch:~$ netq config del agent kubernetes-monitor
+Successfully deleted kubernetes monitoring for netq-agent. Please restart service.
+
+cumulus@switch:~$ netq config restart agent
+```
+
+### Related Commands
+
+- netq config show agent kubernetes-monitor
+- netq config add agent kubernetes-monitor
+- netq config restart agent
+
+- - -
+
+## netq config del agent loglevel
+
+Disables NetQ Agent logging on a switch.
+
+### Syntax
+
+```
+netq config del agent loglevel
+```
+
+### Required Arguments
+
+| Argument | Value | Description |
+| ---- | ---- | ---- |
+| loglevel | NA | Stops the NetQ Agent from logging events about the agent |
+
+### Options
+
+None
+
+### Command History
+
+A release is included if there were changes to the command, otherwise it is not listed.
+
+| Release | Description |
+| ---- | ---- |
+| Before 2.1.2 | Introduced |
+
+### Sample Usage
+
+```
+cumulus@switch:~$ netq config del agent loglevel
+Successfully deleted logger for netq-agent. Please restart service.
+
+cumulus@switch:~$ netq config restart agent
+```
+
+### Related Commands
+
+- netq config show agent loglevel
+- netq config add agent loglevel
+- netq config restart agent
+
+- - -
+
+## netq config del agent sensors
+
+Disables NetQ Agent from collecting fan, power supply unit, and temperature sensors for a switch chassis.
+
+### Syntax
+
+```
+netq config del agent sensors
+```
+
+### Required Arguments
+
+| Argument | Value | Description |
+| ---- | ---- | ---- |
+| sensors | NA | Stops the NetQ Agent from monitoring chassis sensors |
+
+### Options
+
+None
+
+### Command History
+
+A release is included if there were changes to the command, otherwise it is not listed.
+
+| Release | Description |
+| ---- | ---- |
+| Before 2.1.2 | Introduced |
+
+### Sample Usage
+
+```
+cumulus@switch:~$ netq config del agent sensors
+cumulus@switch:~$ netq config restart agent
+```
+
+### Related Commands
+
+- netq config show agent sensors
+- netq config add agent sensors
+- netq config restart agent
+
+- - -
+
+## netq config del agent server
+
+Removes the destination (NetQ appliance or VM) for the data collected by the NetQ Agent and for API requests.
+
+### Syntax
+
+```
+netq config del agent server
+```
+
+### Required Arguments
+
+| Argument | Value | Description |
+| ---- | ---- | ---- |
+| server | NA | Delete the current destination of NetQ Agent data and API requests |
+
+### Options
+
+None
+
+### Command History
+
+A release is included if there were changes to the command, otherwise it is not listed.
+
+| Release | Description |
+| ---- | ---- |
+| Before 2.1.2 | Introduced |
+
+### Sample Usage
+
+```
+cumulus@switch:~$ netq config del agent server
+Deleted agent server 127.0.0.1 port 31980 vrf default. Please restart netq-agent (netq config restart agent)
+
+cumulus@switch:~$ netq config restart agent
+```
+
+### Related Commands
+
+- netq config add agent server
+- netq config restart agent
+
+- - -
+
+## netq config del agent stats
+
+Disables the NetQ Agent from collecting interface statistics on a switch.
+
+### Syntax
+
+```
+netq config del agent stats
+```
+
+### Required Arguments
+
+| Argument | Value | Description |
+| ---- | ---- | ---- |
+| stats | NA | Stop NetQ Agent from collecting interface statistics |
+
+### Options
+
+None
+
+### Command History
+
+A release is included if there were changes to the command, otherwise it is not listed.
+
+| Release | Description |
+| ---- | ---- |
+| 2.1.2 | Introduced |
+
+### Sample Usage
+
+```
+cumulus@switch:~$ netq config del agent stats
+stats config deleted
+```
+
+### Related Commands
+
+- netq config show agent stats
+- netq config add agent stats
+- netq config restart agent
+
+- - -
+
+## netq config del agent wjh
+
+Disables the NetQ Agent from collecting What Just Happened events on a switch.
+
+### Syntax
+
+```
+netq config del agent wjh
+```
+
+### Required Arguments
+
+| Argument | Value | Description |
+| ---- | ---- | ---- |
+| wjh | NA | Stop NetQ Agent from collecting WJH information |
+
+### Options
+
+None
+
+### Command History
+
+A release is included if there were changes to the command, otherwise it is not listed.
+
+| Release | Description |
+| ---- | ---- |
+| 2.4.1 | Introduced |
+
+### Sample Usage
+
+```
+cumulus@switch:~$ netq config del agent wjh
+cumulus@switch:~$ netq config restart agent
+```
+
+### Related Commands
+
+- netq config del agent wjh
+- netq config del agent wjh-threshold
+- netq config show agent wjh
+- netq config add agent wjh
+- netq config restart agent
+
+- - -
+
+## netq config del agent wjh-drop-filter
+
+Delete a What Just Happened event filter on a switch.
+
+### Syntax
+
+```
+netq config del agent wjh-drop-filter
+    drop-type <text-wjh-drop-type> 
+    [drop-reasons <text-wjh-drop-reasons>]
+    [severity <text-drop-severity-list>]
+```
+
+### Required Arguments
+
+| Argument | Value | Description |
+| ---- | ---- | ---- |
+| wjh-drop-filter | NA | Delete existing WJH event filter |
+| drop-type | \<text-wjh-drop-type\> | Delete WJH event filter with this drop type. Valid drop types include *acl*, *buffer*, *l1*, *l2*, *router*, and *tunnel*. |
+
+### Options
+
+| Option | Value | Description |
+| ---- | ---- | ---- |
+| drop-reasons | \<text-wjh-drop-reasons\> | Delete WJH event filter with these drop reasons. When more than one drop reason is desired, this value should be formatted as a comma-separated list, without spaces. Valid drop reasons vary according to the drop type. Refer to the {{<link title="WJH Event Messages Reference" text="WJH events reference">}}. |
+| severity | \<text-drop-severity-list\> | Delete WJH event filter with these severities. When more than one severity is desired, this value should be formatted as a comma-separated list, without spaces. Valid severities include *Notice*, *Warning*, and *Error*. |
+
+### Command History
+
+A release is included if there were changes to the command, otherwise it is not listed.
+
+| Release | Description |
+| ---- | ---- |
+| 3.3.0 | Introduced |
+
+### Sample Usage
+
+```
+cumulus@switch:~$ netq config del agent wjh-drop-filter drop-type l1 drop-reasons PORT_ADMIN_DOWN,BAD_SIGNAL_INTEGRITY
+
+cumulus@switch:~$ netq config restart agent
+Restarting netq-agent... Success!
+```
+
+### Related Commands
+
+- netq config add agent wjh-drop-filter
+- netq config add/del agent wjh
+- netq config del agent wjh-threshold
+- netq config restart agent
+
+- - -
+
+## netq config del agent wjh-threshold
+
+Remove latency or congestion thresholds for WJH events.
+
+### Syntax
+
+```
+netq config add agent wjh-threshold
+    (latency|congestion)
+    <text-tc-list>
+```
+
+### Required Arguments
+
+| Argument | Value | Description |
+| ---- | ---- | ---- |
+| wjh-threshold | NA | Remove latency or congestion events triggered by thresholds |
+| latency | NA | Remove latency event thresholds |
+| congestion | NA | Remove congestion event thresholds |
+| NA | \<text-tc-list\> | Remove latency or congestion events for these traffic classes. When more than one traffic class is desired, this value should be formatted as a comma-separated list, without spaces. Valid classes include xxx. |
+
+### Options
+
+None
+
+### Command History
+
+A release is included if there were changes to the command, otherwise it is not listed.
+
+| Release | Description |
+| ---- | ---- |
+| 3.2.0 | Introduced |
+
+### Sample Usage
+
+```
+cumulus@switch:~$ netq config del agent wjh-threshold latency 3
+
+cumulus@switch:~$ netq config del agent wjh-threshold congestion 4
+```
+
 ### Related Commands
 
 - netq config show agent wjh-threshold
-- netq config del agent wjh-threshold
-- netq config add agent wjh
-- netq config add agent wjh-drop-filter
+- netq config add agent wjh-threshold
+- netq config del agent wjh
+- netq config del agent wjh-drop-filter
 - netq config restart agent
+
+- - -
+
+## netq config del cli server
+
+Removes the NetQ CLI configuration from a switch.
+
+### Syntax
+
+```
+netq config del cli server
+```
+
+### Required Arguments
+
+| Argument | Value | Description |
+| ---- | ---- | ---- |
+| cli server | NA | Delete the current NetQ CLI configuration |
+
+### Options
+
+None
+
+### Command History
+
+A release is included if there were changes to the command, otherwise it is not listed.
+
+| Release | Description |
+| ---- | ---- |
+| 2.1.2 | Introduced |
+
+### Sample Usage
+
+```
+cumulus@switch:~$ netq config del cli server
+```
+
+### Related Commands
+
+- netq config add cli server
+- netq config show cli
+- netq config restart agent
+
+- - -
+
+## netq config del color
+
+Disables color cues in command output. This command takes effect immediately.
+
+### Syntax
+
+```
+netq config del color
+```
+
+### Required Arguments
+
+| Argument | Value | Description |
+| ---- | ---- | ---- |
+| color | NA | Remove color from command outputs |
+
+### Options
+
+None
+
+### Command History
+
+A release is included if there were changes to the command, otherwise it is not listed.
+
+| Release | Description |
+| ---- | ---- |
+| 1.x | Introduced |
+
+### Sample Usage
+
+```
+cumulus@switch:~$ netq config del color
+Color coded output config deleted
+```
+
+### Related Commands
+
+- netq config add color
+
+- - -
+
+## netq config reload parser
+
+Loads the NetQ configuration file. When/Why ??? Running or other config ???
+
+### Syntax
+
+```
+netq config reload parser
+```
+
+### Required Arguments
+
+None
+
+### Options
+
+None
+
+### Command History
+
+A release is included if there were changes to the command, otherwise it is not listed.
+
+| Release | Description |
+| ---- | ---- |
+| 1.x | Introduced |
+
+### Sample Usage
+
+```
+cumulus@switch:~$ netq config reload parser
+Parser reloaded
+```
+
+### Related Commands
+
+None
+
+- - -
+
+## netq config restart
+
+Restart the NetQ Agent or CLI daemons on a switch. This is used after making changes to the the NetQ Agent or CLI configurations.
+
+### Syntax
+
+```
+netq config restart agent
+
+netq config restart cli
+```
+
+### Required Arguments
+
+| Argument | Value | Description |
+| ---- | ---- | ---- |
+| agent | NA | Restart the NetQ Agent daemon (`netq-agent`) |
+| cli | NA | Restart the NetQ CLI daemon (`netq-cli`) |
+
+### Options
+
+None
+
+### Command History
+
+A release is included if there were changes to the command, otherwise it is not listed.
+
+| Release | Description |
+| ---- | ---- |
+| 1.x | Introduced |
+
+### Sample Usage
+
+```
+cumulus@switch:~$ netq config restart agent
+Restarting netq-agent... Success!
+
+cumulus@switch:~$ netq config restart cli 
+Restarting NetQ CLI... Success!
+```
+
+### Related Commands
+
+- netq config (start|stop) agent
+
+- - -
+
+## netq config select cli premise
+
+In a multi-premises deployment, this command configures the NetQ CLI to view data from the given premises.
+
+### Syntax
+
+```
+netq config select cli
+    premise <text-premise>
+```
+
+### Required Arguments
+
+| Argument | Value | Description |
+| ---- | ---- | ---- |
+| premise | \<text-premise\> | Show data from this premises in the NetQ CLI command outputs |
+
+### Options
+
+None
+
+### Command History
+
+A release is included if there were changes to the command, otherwise it is not listed.
+
+| Release | Description |
+| ---- | ---- |
+| 3.2.0 | Introduced |
+
+### Sample Usage
+
+```
+cumulus@switch:~$ netq config select cli premise Boston
+```
+
+### Related Commands
+
+None
+
+- - -
+
+## netq config show agent
+
+Displays the configuration of the NetQ Agent on a switch.
+
+### Syntax
+
+```
+netq config show agent
+    [json]
+```
+
+### Required Arguments
+
+None
+
+### Options
+
+| Option | Value | Description |
+| ---- | ---- | ---- |
+| json | NA | Display the output in JSON file format instead of default on-screen text format |
+
+### Command History
+
+A release is included if there were changes to the command, otherwise it is not listed.
+
+| Release | Description |
+| ---- | ---- |
+| 2.1.2 | Introduced |
+
+### Sample Usage
+
+Standard output
+
+```
+cumulus@switch:~$ netq config show agent 
+netq-agent             value      default
+---------------------  ---------  ---------
+exhibitport
+exhibiturl
+server                 127.0.0.1  127.0.0.1
+cpu-limit              100        100
+agenturl
+enable-opta-discovery  False      False
+agentport              8981       8981
+port                   31980      31980
+vrf                    default    default
+()
+```
+
+JSON output
+
+```
+cumulus@switch:~$ netq config show agent json
+{
+    "defaults":{
+        "agentport":8981,
+        "agenturl":"",
+        "cpu-limit":"100",
+        "enable-opta-discovery":false,
+        "exhibitport":"",
+        "exhibiturl":"",
+        "port":31980,
+        "server":"127.0.0.1",
+        "vrf":"default"
+    },
+    "netq-agent":{
+        "agentport":8981,
+        "cpu-limit":"100",
+        "enable-opta-discovery":false,
+        "frr_docker":false,
+        "frr_docker_name":"",
+        "opta-discovery-servers":"192.168.0.24-64,128-190",
+        "port":31980,
+        "server":"127.0.0.1",
+        "stats":true,
+        "vrf":"default"
+    }
+}
+```
+
+### Related Commands
+
+- netq config show all
+- netq config show cli
+- netq config add agent
+- netq config del agent
+
+- - -
+
+## netq config show agent commands
+
+The NetQ Agent contains a pre-configured set of modular commands that run periodically and send event and resource data to the NetQ appliance or VM. This command displays the configuration of these commands, including the definition of the commands, which are active, and how often they are run. You can also filter by the service key to view a given command.
+
+### Syntax
+
+```
+netq config show agent commands
+    [service-key <text-service-key-anchor>]
+    [json]
+```
+
+### Required Arguments
+
+| Argument | Value | Description |
+| ---- | ---- | ---- |
+| commands | NA | View the configuration of all NetQ Agent modular commands |
+
+### Options
+
+| Option | Value | Description |
+| ---- | ---- | ---- |
+| service-key | \<text-service-key-anchor\> | View the configuration of the NetQ Agent command with this service key (name) |
+| json | NA | View the configuration information for the specified NetQ Agent commands in JSON format |
+
+### Command History
+
+A release is included if there were changes to the command, otherwise it is not listed.
+
+| Release | Description |
+| ---- | ---- |
+| 3.0.0 | Introduced |
+
+### Sample Usage
+
+Show configuration for all commands
+
+```
+cumulus@switch:~$ netq config show agent commands
+ Service Key        Period    Active       Command
+------------------  --------  --------  ---------------------------------------------------
+ports               3600      yes       Netq Predefined Command
+proc-net-dev        30        yes       Netq Predefined Command
+agent_stats         300       yes       Netq Predefined Command
+agent_util_stats    30        yes       Netq Predefined Command
+ssd-util-json       86400     yes       /usr/sbin/smartctl -a /dev/sda
+lldp-json           30        yes       /usr/sbin/lldpctl -f json
+resource-util-json  30        yes       findmnt / -n -o FS-OPTIONS
+os-release          N/A       yes       cat /etc/os-release
+eprom               N/A       yes       /usr/cumulus/bin/decode-syseeprom -j
+lscpu               N/A       yes       /usr/bin/lscpu
+meminfo             N/A       yes       cat /proc/meminfo
+lsblk               N/A       yes       lsblk -d -n -o name,size,type,vendor,tran,rev,model
+dmicode             N/A       yes       dmidecode -t 17
+is-opta             N/A       yes       cat /etc/app-release
+```
+
+Show configuration for specific command
+
+```
+cumulus@switch:~$ netq config show agent commands service-key agent_stats
+ Service Key       Period  Active       Command
+---------------  --------  --------  -----------------------
+agent_stats           300  yes       Netq Predefined Command
+```
+
+### Related Commands
+
+- netq config add agent commands
+- netq config agent factory-reset commands
+
+- - -
+
+## netq config show agent cpu-limit
+
+Displays the maximum percentage of CPU resources of the switch that a NetQ Agent may use. When restricted by the `netq config add agent cpu-limit` command, the value will be between 40 and 60 percent.
+
+For more detail about this feature, refer to this {{<exlink url="https://docs.cumulusnetworks.com/knowledge-base/Configuration-and-Usage/Cumulus-NetQ/NetQ-Agent-CPU-Utilization-on-Cumulus-Linux-Switches/" text="Knowledge Base">}} article.
+
+### Syntax
+
+```
+netq config show agent cpu-limit
+    [json]
+```
+
+### Required Arguments
+
+| Argument | Value | Description |
+| ---- | ---- | ---- |
+| cpu-limit | NA | View the maximum percentage of CPU resource that the NetQ Agent is allowed to use |
+
+### Options
+
+| Option | Value | Description |
+| ---- | ---- | ---- |
+| json | NA | Display the output in JSON file format instead of default on-screen text format |
+
+### Command History
+
+A release is included if there were changes to the command, otherwise it is not listed.
+
+| Release | Description |
+| ---- | ---- |
+| 2.4.1 | Introduced |
+
+### Sample Usage
+
+Unlimited
+
+```
+cumulus@switch:~$ netq config show agent cpu-limit
+CPU Limit
+-----------
+100%
+()
+```
+
+Limited
+
+```
+cumulus@switch:~$ netq config show agent cpu-limit
+CPU Limit
+-----------
+60%
+()
+```
+
+### Related Commands
+
+- netq config add agent cpu-limit
+- netq config del agent cpu-limit
 
 - - -
 
 
 
-netq config add color         :  Color-coded ANSI output
-netq config add experimental  :  Experimental features
+## netq config show agent frr-monitor
 
+Displays the NetQ Agent Free Range Router (FRR) function monitoring configuration on a switch. If configured, FRR monitoring occurs on FRR running in a Docker container. If not configured, FRR is likely running as a service.
 
-netq config agent factory-reset commands 3.0.0
+### Syntax
+
+```
+netq config show agent frr-monitor
+    [json]
+```
+
+### Required Arguments
+
+| Argument | Value | Description |
+| ---- | ---- | ---- |
+| frr-monitor | NA | Display FRR monitoring configuration |
+
+### Options
+
+| Option | Value | Description |
+| ---- | ---- | ---- |
+| json | NA | Display the output in JSON file format instead of default on-screen text format |
+
+### Command History
+
+A release is included if there were changes to the command, otherwise it is not listed.
+
+| Release | Description |
+| ---- | ---- |
+| Before 2.1.2 | Introduced |
+
+### Sample Usage
+
+With FRR running in a Docker container
+
+```
+cumulus@switch:~$ netq config show agent frr-monitor
+FRR Docker Monitoring    FRR Docker Name
+-----------------------  -----------------
+true                     kube-system
+()
+```
+
+With FRR running as a service
+
+```
+cumulus@switch:~$ netq config show agent frr-monitor
+FRR Docker Monitoring    FRR Docker Name
+-----------------------  -----------------
+false
+()
+
+```
+
+### Related Commands
+
+- netq config add agent frr-monitor
+- netq config del agent frr-monitor
+
+- - -
+
+## netq config show agent kubernetes-monitor
+
+Displays the NetQ Agent kubernetes monitoring configuration on a switch, included whether it is enabled and the polling period.
+
+### Syntax
+
+```
+netq config show agent kubernetes-monitor
+    [json]
+```
+
+### Required Arguments
+
+| Argument | Value | Description |
+| ---- | ---- | ---- |
+| kubernetes-monitor | NA | Display the kubernetes monitoring configuration |
+
+### Options
+
+| Option | Value | Description |
+| ---- | ---- | ---- |
+| json | NA | Display the output in JSON file format instead of default on-screen text format |
+
+### Command History
+
+A release is included if there were changes to the command, otherwise it is not listed.
+
+| Release | Description |
+| ---- | ---- |
+| Before 2.1.2 | Introduced |
+
+### Sample Usage
+
+```
+cumulus@switch:~$ netq config show agent kubernetes-monitor 
+Monitor     Enabled      Poll Period
+----------  ---------  -------------
+kubernetes  true                 120
+()
+```
+
+### Related Commands
+
+- netq config add agent kubernetes-monitor
+- netq config del agent kubernetes-monitor
+
+- - -
+
+## netq config show agent loglevel
+
+Displays the amount of information logged about the NetQ Agent activity, from only critical issues to every available message. Identified issues are logged to */var/log/netq-agent.log* file. The default log level is *info*.
+
+- Error: Logs only events classified as errors
+- Warning: Logs events classified as warnings and errors
+- Info: Logs events classified as info, warning, and errors
+- Debug: Logs all events
+
+### Syntax
+
+```
+netq config show agent loglevel
+    [json]
+```
+
+### Required Arguments
+
+| Argument | Value | Description |
+| ---- | ---- | ---- |
+| loglevel | NA | Display the NetQ Agent logging level configuration |
+
+### Options
+
+| Option | Value | Description |
+| ---- | ---- | ---- |
+| json | NA | Display the output in JSON file format instead of default on-screen text format |
+
+### Command History
+
+A release is included if there were changes to the command, otherwise it is not listed.
+
+| Release | Description |
+| ---- | ---- |
+| Before 2.1.2 | Introduced |
+
+### Sample Usage
+
+Configure NetQ Agent to log only errors
+
+```
+cumulus@switch:~$ netq config show agent loglevel 
+Log Level
+-----------
+info
+()
+```
+
+### Related Commands
+
+- netq config add agent loglevel
+- netq config del agent loglevel
+
+- - -
+
+## netq config show agent sensors
+
+Displays the NetQ Agent sensors configuration on a chassis.
+
+### Syntax
+
+```
+netq config show agent sensors
+    [json]
+```
+
+### Required Arguments
+
+| Argument | Value | Description |
+| ---- | ---- | ---- |
+| sensors | NA | Display NetQ Agent sensors configuration |
+
+### Options
+
+| Option | Value | Description |
+| ---- | ---- | ---- |
+| json | NA | Display the output in JSON file format instead of default on-screen text format |
+
+### Command History
+
+A release is included if there were changes to the command, otherwise it is not listed.
+
+| Release | Description |
+| ---- | ---- |
+| Before 2.1.2 | Introduced |
+
+### Sample Usage
+
+With sensor monitoring configured
+
+```
+cumulus@chassis:~$ netq config show agent sensors
+
+```
+
+Without sensor monitoring configured
+
+```
+cumulus@chassis:~$ netq config show agent sensors
+
+```
+
+### Related Commands
+
+- netq config add agent sensors
+- netq config del agent sensors
+
+- - -
+
+## netq config show agent stats
+
+Displays whether the NetQ Agent is configured for interface statistics monitoring on a switch (true) or not (false).
+
+### Syntax
+
+```
+netq config show agent stats
+    [json]
+```
+
+### Required Arguments
+
+| Argument | Value | Description |
+| ---- | ---- | ---- |
+| stats | NA | Display status of interface statistics |
+
+### Options
+
+| Option | Value | Description |
+| ---- | ---- | ---- |
+| json | NA | Display the output in JSON file format instead of default on-screen text format |
+
+### Command History
+
+A release is included if there were changes to the command, otherwise it is not listed.
+
+| Release | Description |
+| ---- | ---- |
+| Before 2.1.2 | Introduced |
+
+### Sample Usage
+
+Standard output
+
+```
+cumulus@switch:~$ netq config show agent stats
+Stats
+-------
+true
+()
+```
+
+JSON-formatted output
+
+```
+cumulus@switch:~$ netq config show agent stats json
+{
+    "stats":true
+}
+```
+
+### Related Commands
+
+- netq config add agent stats
+- netq config del agent stats
+
+- - -
+
+## netq config show agent wjh
+
+Displays whether the NetQ Agent is configured for What Just Happened event monitoring on an NVIDIA Spectrum switch. Refer to {{<link title="Configure and Monitor What Just Happened" text="WJH configuration">}} for setting up WJH monitoring.
+
+### Syntax
+
+```
+netq config show agent wjh
+    [json]
+```
+
+### Required Arguments
+
+| Argument | Value | Description |
+| ---- | ---- | ---- |
+| wjh | NA | Display NetQ Agent What Just Happened monitoring configuration |
+
+### Options
+
+| Option | Value | Description |
+| ---- | ---- | ---- |
+| json | NA | Display the output in JSON file format instead of default on-screen text format |
+
+### Command History
+
+A release is included if there were changes to the command, otherwise it is not listed.
+
+| Release | Description |
+| ---- | ---- |
+| 2.4.1 | Introduced |
+
+### Sample Usage
+
+```
+cumulus@chassis:~$ netq config show agent wjh
+xxx
+```
+
+### Related Commands
+
+- netq config add agent wjh
+- netq config del agent wjh
+- netq config show agent wjh-threshold
+
+- - -
+
+## netq config show agent wjh-threshold
+
+Displays whether the NetQ Agent is configured with WJH latency and congestion thresholds on an  NVIDIA Spectrum switch.
+
+### Syntax
+
+```
+netq config show agent wjh-threshold
+    [json]
+```
+
+### Required Arguments
+
+| Argument | Value | Description |
+| ---- | ---- | ---- |
+| wjh-threshold | NA | Display NetQ Agent WJH latency and congestion thresholds configuration |
+
+### Options
+
+| Option | Value | Description |
+| ---- | ---- | ---- |
+| json | NA | Display the output in JSON file format instead of default on-screen text format |
+
+### Command History
+
+A release is included if there were changes to the command, otherwise it is not listed.
+
+| Release | Description |
+| ---- | ---- |
+| 3.2.0 | Introduced |
+
+### Sample Usage
+
+```
+cumulus@switch:~$ netq config show agent wjh-threshold
+xxx
+```
+
+### Related Commands
+
+- netq config add agent wjh-threshold
+- netq config del agent wjh-threshold
+- netq config show agent wjh
+
+- - -
+
+## netq config show all
+
+Displays the configuration of the NetQ Agent and NetQ CLI on a switch.
+
+### Syntax
+
+```
+netq config show all
+    [json]
+```
+
+### Required Arguments
+
+None
+
+### Options
+
+| Option | Value | Description |
+| ---- | ---- | ---- |
+| json | NA | Display the output in JSON file format instead of default on-screen text format |
+
+### Command History
+
+A release is included if there were changes to the command, otherwise it is not listed.
+
+| Release | Description |
+| ---- | ---- |
+| 2.1.2 | Introduced |
+
+### Sample Usage
+
+```
+cumulus@switch:~$ netq config show all 
+netq-agent             value      default
+---------------------  ---------  ---------
+exhibitport
+exhibiturl
+server                 127.0.0.1  127.0.0.1
+cpu-limit              100        100
+agenturl
+enable-opta-discovery  False      False
+agentport              8981       8981
+port                   31980      31980
+vrf                    default    default
+()
+netq-cli     value            default
+-----------  ---------------  ---------
+server       192.168.200.250  127.0.0.1
+netq-user
+premises     0
+port         32708            32708
+count        2000             2000
+vrf          default          default
+api-logging  False            False
+()
+```
+
+### Related Commands
+
+- netq config show agent
+- netq config show cli
+
+- - -
+
+## netq config show cli
+
+Displays the configuration of the NetQ CLI on a switch.
+
+### Syntax
+
+```
+netq config show cli
+    [json]
+```
+
+### Required Arguments
+
+None
+
+### Options
+
+| Option | Value | Description |
+| ---- | ---- | ---- |
+| json | NA | Display the output in JSON file format instead of default on-screen text format |
+
+### Command History
+
+A release is included if there were changes to the command, otherwise it is not listed.
+
+| Release | Description |
+| ---- | ---- |
+| 2.1.2 | Introduced |
+
+### Sample Usage
+
+```
+cumulus@switch:~$ netq config show cli
+netq-cli     value            default
+-----------  ---------------  ---------
+server       192.168.200.250  127.0.0.1
+netq-user
+premises     0
+port         32708            32708
+count        2000             2000
+vrf          default          default
+api-logging  False            False
+()
+```
+
+### Related Commands
+
+- netq config show agent
+- netq config show all
+
+- - -
+
+## netq config start agent
+
+Starts the NetQ Agent on a switch.
+
+### Syntax
+
+```
+netq config start agent
+```
+
+### Required Arguments
+
+None
+
+### Options
+
+None
+
+### Command History
+
+A release is included if there were changes to the command, otherwise it is not listed.
+
+| Release | Description |
+| ---- | ---- |
+| Before 2.1.2 | Introduced |
+
+### Sample Usage
+
+```
+cumulus@switch:~$ netq config start agent 
+Starting netq-agent... Success!
+```
+
+### Related Commands
+
+- netq config show agent
+- netq config stop agent
+- netq config restart agent
+
+- - -
+
+## netq config status agent
+
+Displays the operational status of the NetQ Agent on a switch.
+
+### Syntax
+
+```
+netq config status agent
+```
+
+### Required Arguments
+
+None
+
+### Options
+
+None
+
+### Command History
+
+A release is included if there were changes to the command, otherwise it is not listed.
+
+| Release | Description |
+| ---- | ---- |
+| Before 2.1.2 | Introduced |
+
+### Sample Usage
+
+```
+cumulus@switch:~$ netq config status agent 
+netq-agent... Running
+
+cumulus@switch:~$ netq config status agent 
+netq-agent...stopped
+
+```
+
+### Related Commands
+
+- netq config show agent
+- netq config stop agent
+- netq config restart agent
+
+- - -
+
+## netq config status cli
+
+Displays the operational status of the NetQ CLI on a switch.
+
+### Syntax
+
+```
+netq config status cli
+```
+
+### Required Arguments
+
+None
+
+### Options
+
+None
+
+### Command History
+
+A release is included if there were changes to the command, otherwise it is not listed.
+
+| Release | Description |
+| ---- | ---- |
+| Before 2.1.2 | Introduced |
+
+### Sample Usage
+
+```
+cumulus@switch:~$ netq config status cli
+NetQ CLI... Running
+
+```
+
+### Related Commands
+
+- netq config show cli
+- netq config restart cli
+
+- - -
+
+## netq config stop agent
+
+Stops the NetQ Agent on a switch.
+
+### Syntax
+
+```
+netq config stop agent
+```
+
+### Required Arguments
+
+None
+
+### Options
+
+None
+
+### Command History
+
+A release is included if there were changes to the command, otherwise it is not listed.
+
+| Release | Description |
+| ---- | ---- |
+| Before 2.1.2 | Introduced |
+
+### Sample Usage
+
+```
+cumulus@switch:~$ netq config stop agent
+Stopping netq-agent... Success!
+```
+
+### Related Commands
+
+- netq config show agent
+- netq config start agent
+- netq config restart agent
+
+- - -

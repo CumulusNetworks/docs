@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 340
 toc: 3
 ---
-DHCP is a client server protocol that automatically provides IP hosts with IP addresses and other related configuration information. A DHCP relay (agent) is a host that forwards DHCP packets between clients and servers. DHCP relays forward requests and replies between clients and servers that are not on the same physical subnet.
+DHCP is a client server protocol that automatically provides IP hosts with IP addresses and other related configuration information. A DHCP relay (agent) is a host that forwards DHCP packets between clients and servers that are not on the same physical subnet.
 
 This topic describes how to configure DHCP relays for IPv4 and IPv6 using the following topology:
 
@@ -18,7 +18,7 @@ If you intend to run the `dhcrelay` service within a {{<link url="Virtual-Routin
 
 ## Basic Configuration
 
-To set up DHCP relay, you need to provide the IP address of the DHCP server and the interfaces participating in DHCP relay (facing the server and facing the client). As per {{<exlink url="https://tools.ietf.org/html/rfc3046" text="RFC 3046">}}, you can specify as many server IP addresses that can fit in 255 octets.
+To set up DHCP relay, you need to provide the IP address of the DHCP server and the interfaces participating in DHCP relay (facing the server and facing the client). You can specify as many server IP addresses that can fit in 255 octets.
 
 {{< tabs "TabID25 ">}}
 
@@ -109,7 +109,7 @@ NCLU commands are not currently available to configure IPv6 relays. Use the Linu
 
 ## Optional Configuration
 
-This section describes optional DHCP relay configuration. The steps provided in this section assume that you already configured basic DHCP relay configuration, described above.
+This section describes optional DHCP relay configuration. The steps provided in this section assume that you already done basic DHCP relay configuration, described above.
 
 ### DHCP Agent Information Option (Option 82)
 
@@ -163,7 +163,7 @@ To configure DHCP Agent Information Option 82:
 
 ### Control the Gateway IP Address with RFC 3527
 
-When DHCP relay is required in an environment that relies on an anycast gateway (such as EVPN), a unique IP address is necessary on each device for return traffic. By default, in a BGP unnumbered environment with DHCP relay, the source IP address is set to the loopback IP address and the gateway IP address (giaddr) is set as the SVI IP address. However with anycast traffic, the SVI IP address is not unique to each rack; it is typically shared between racks. Most EVPN ToR deployments only possess a single unique IP address, which is the loopback IP address.
+When DHCP relay is required in an environment that relies on an anycast gateway (such as EVPN), a unique IP address is necessary on each device for return traffic. By default, in a BGP unnumbered environment with DHCP relay, the source IP address is set to the loopback IP address and the gateway IP address (giaddr) is set to the SVI IP address. However with anycast traffic, the SVI IP address is not unique to each rack; it is typically shared between racks. Most EVPN ToR deployments only possess a single unique IP address, which is the loopback IP address.
 
 {{<exlink url="https://tools.ietf.org/html/rfc3527" text="RFC 3527">}} enables the DHCP server to react to these environments by introducing a new parameter to the DHCP header called the link selection sub-option, which is built by the DHCP relay agent. The link selection sub-option takes on the normal role of the giaddr in relaying to the DHCP server which subnet is correlated to the DHCP request. When using this sub-option, the giaddr continues to be present but only relays the return IP address that is to be used by the DHCP server; the giaddr becomes the unique loopback IP address.
 

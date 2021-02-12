@@ -24,7 +24,7 @@ CUE is not installed by default on Cumulus Linux. To install CUE, follow the pro
 
 {{%notice info%}}
 - Do not install CUE in a production environment.
-- NVIDIA recommends that you disable NCLU to prevent accidental configuration of a file by 2 different CLIs.
+- NVIDIA recommends that you disable NCLU after you install CUE to prevent accidental configuration of a file by two different CLIs.
 {{%/notice%}}
 
 1. Stop then disable the `netd` service:

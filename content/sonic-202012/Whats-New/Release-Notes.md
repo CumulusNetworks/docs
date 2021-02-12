@@ -1,5 +1,5 @@
 ---
-title: SONiC Release Notes
+title: Release Notes
 author: Cumulus Networks
 weight: 20
 product: SONiC

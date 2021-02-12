@@ -1,7 +1,7 @@
 ---
 title: SONiC Document Revision History
 author: Cumulus Networks
-weight: 90
+weight: 30
 product: SONiC
 version: 4.0
 siteSlug: sonic

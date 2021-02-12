@@ -1,5 +1,5 @@
 ---
-title: Getting Started with SONiC
+title: Quick Start Guide
 author: Cumulus Networks
 weight: 30
 product: SONiC

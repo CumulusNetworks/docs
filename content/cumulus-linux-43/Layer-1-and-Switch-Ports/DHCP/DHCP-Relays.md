@@ -18,7 +18,7 @@ If you intend to run the `dhcrelay` service within a {{<link url="Virtual-Routin
 
 ## Basic Configuration
 
-To set up DHCP relay, you need to provide the IP address of the DHCP servers and the interfaces participating in DHCP relay (facing the server and facing the client).
+To set up DHCP relay, you need to provide the IP address of the DHCP server and the interfaces participating in DHCP relay (facing the server and facing the client). As per {{<exlink url="https://tools.ietf.org/html/rfc3046" text="RFC 3046">}}, you can specify as many server IP addresses that can fit in 255 octets.
 
 {{< tabs "TabID25 ">}}
 
@@ -28,7 +28,7 @@ To set up DHCP relay, you need to provide the IP address of the DHCP servers and
 
 {{< tab "IPv4 ">}}
 
-In the example commands below, the DHCP server IP address is 172.16.1.102, vlan10 is the SVI for VLAN 10 and the uplinks are swp51 and swp52. As per {{<exlink url="https://tools.ietf.org/html/rfc3046" text="RFC 3046">}}, you can specify as many server IP addresses that can fit in 255 octets.
+In the example commands below, the DHCP server IP address is 172.16.1.102, vlan10 is the SVI for VLAN 10 and the uplinks are swp51 and swp52.
 
 ```
 cumulus@leaf01:~$ net add dhcp relay interface swp51
@@ -57,9 +57,7 @@ NCLU commands are not currently available to configure IPv6 relays. Use the Linu
 
 {{< tab "IPv4 ">}}
 
-1. Edit the `/etc/default/isc-dhcp-relay` file to add the IP address of the DHCP servers and the interfaces participating in DHCP relay (facing the server and facing the client).
-
-   In the example below, the DHCP server IP address is 172.16.1.102, vlan10 is the SVI for VLAN 10, and the uplinks are swp51 and swp52. As per {{<exlink url="https://tools.ietf.org/html/rfc3046" text="RFC 3046">}}, you can specify as many server IP addresses that can fit in 255 octets. You can specify each address only once.
+1. Edit the `/etc/default/isc-dhcp-relay` file to add the IP address of the DHCP server and the interfaces participating in DHCP relay. In the example below, the DHCP server IP address is 172.16.1.102, vlan10 is the SVI for VLAN 10, and the uplinks are swp51 and swp52.
 
    ```
    cumulus@leaf01:~$ sudo nano /etc/default/isc-dhcp-relay
@@ -79,9 +77,7 @@ NCLU commands are not currently available to configure IPv6 relays. Use the Linu
 
 {{< tab "IPv6 ">}}
 
-1. Edit the `/etc/default/isc-dhcp-relay6` file to add the IP address of the DHCP servers and the interfaces participating in DHCP relay (facing the server and facing the client). As per {{<exlink url="https://tools.ietf.org/html/rfc3046" text="RFC 3046">}}, you can specify as many server IP addresses that can fit in 255 octets. You can specify each address only once.
-
-   In the example below, the DHCP server IP address is 2001:db8:100::2, vlan10 is the SVI for VLAN 10, and the uplinks are swp51 and swp52.
+1. Edit the `/etc/default/isc-dhcp-relay6` file to add the IP address of the DHCP server and the interfaces participating in DHCP relay. In the example below, the DHCP server IP address is 2001:db8:100::2, vlan10 is the SVI for VLAN 10, and the uplinks are swp51 and swp52.
 
    ```
    cumulus@leaf01:$ sudo nano /etc/default/isc-dhcp-relay6
@@ -95,7 +91,7 @@ NCLU commands are not currently available to configure IPv6 relays. Use the Linu
    cumulus@switch:~$ sudo systemctl enable dhcrelay6.service
    cumulus@switch:~$ sudo systemctl restart dhcrelay6.service
    ```
-   
+
 {{< /tab >}}
 
 {{< /tabs >}}
@@ -344,25 +340,6 @@ To configure multiple DHCP relay daemons on a switch:
    OPTIONS=""
    ```
 
-   An example configuration file for IPv6 is shown below:
-
-   ```
-   # Defaults for isc-dhcp-relay6 initscript
-   # sourced by /etc/init.d/isc-dhcp-relay6
-   # installed at /etc/default/isc-dhcp-relay6 by the maintainer scripts
-
-   #
-   # This is a POSIX shell fragment
-   #
-
-   # Specify upstream and downstream interfaces
-   # For example, "-u eth0 -l swp1"
-   INTF_CMD=""
-
-   # Additional options that are passed to the DHCP relay daemon?
-   OPTIONS=""
-   ```
-
 2. Run the following command to start a `dhcrelay` instance, where `<dhcp-name>` is the instance name or number.
 
    ```
@@ -398,7 +375,7 @@ If you are experiencing issues with DHCP relay, check if there is a problem with
    cumulus@leaf01:~$ /usr/sbin/dhcrelay -4 -i vlan10 172.16.1.102 -i swp51
    ```
 
-- For IPv6, run the `/usr/sbin/dhcrelay -6 -l <interface-facing-host> -u <ip-address-hcp-server>%<interface-facing-dhcp-server>` command. For example:
+- For IPv6, run the `/usr/sbin/dhcrelay -6 -l <interface-facing-host> -u <ip-address-dhcp-server>%<interface-facing-dhcp-server>` command. For example:
 
    ```
    cumulus@leaf01:~$ /usr/sbin/dhcrelay -6 -l vlan10 -u 2001:db8:100::2%swp51

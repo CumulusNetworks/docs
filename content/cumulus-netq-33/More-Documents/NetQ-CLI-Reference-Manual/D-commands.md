@@ -12,50 +12,53 @@ This topic includes all commands that begin with `netq d*`, `netq e*`, `netq f*`
 
 ## netq decommission
 
-{{<link url="Decommission-Switches" text="Removes a switch">}} from the NetQ database.
+Decommissions a switch or host currently running NetQ Agent. This removes information about the switch or host from the NetQ database. Before decommissioning a switch, you should stop and disable the NetQ Agent.
 
+You might need to decommission a switch when you:
 
-{{%notice note%}}
-
-Before you decommission a switch, you need to stop and disable the NetQ Agent service.
-
-```
-cumulus@switch:~$ sudo systemctl stop netq-agent
-cumulus@switch:~$ sudo systemctl disable netq-agent
-```
-
-{{%/notice%}}
+- Change the hostname of the switch or host being monitored
+- Move the switch or host being monitored from one data center to
+another
+- RMA the switch or host being monitored
 
 ### Syntax
 
 ```
-netq decommission <hostname>
+netq decommission
+    <hostname-to-decommission>
 ```
 
 ### Required Arguments
 
 | Argument | Value | Description |
 | ---- | ---- | ---- |
-| &lt;hostname> |  | The name of the switch to decommission. |
+| NA | \<hostname-to-decommission\> | Decommission the switch with this hostname |
 
 ### Options
 
 None
 
-<!-- ### Command History
+### Command History
 
 A release is included if there were changes to the command, otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
-|  | Introduced | -->
+| Before 2.1.2 | Introduced |
 
 ### Sample Usage
 
 ```
-cumulus@netq-ts:~$ netq decommission switch01
-Successfully decommissioned node switch01
+cumulus@switch:~$ sudo systemctl stop netq-agent
+cumulus@switch:~$ sudo systemctl disable netq-agent
+
+cumulus@switch:~$ netq decommission leaf28
+Successfully decommissioned node leaf28
 ```
+
+### Related Commands
+
+None
 
 - - -
 
@@ -112,6 +115,11 @@ eventsconfig_1       job_cl_upgrade_2d89c bgp                  {"vrf":"*","peer"
 cumulus@switch:~$ netq del events-config events_config_id eventsconfig_10
 Successfully deleted Events Config eventsconfig_10
 ```
+
+### Related Commands
+
+- netq add events-config
+- netq show events-config
 
 - - -
 

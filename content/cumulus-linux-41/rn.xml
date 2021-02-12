@@ -7,6 +7,14 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-33283</td>
+<td><p>DSA-4850-1 (no CVE): libzstd adds read permissions to files while being compressed or uncompressed.<br/>
+Vulnerable: 1.3.8+dfsg-3<br/>
+Fixed: 1.3.8+dfsg-3+deb10u1</p></td>
+<td>4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-33258</td>
 <td><p>Cumulus Linux does not support bond members at 200G or greater.</p></td>
 <td>4.0.0-4.3.0</td>
@@ -2637,6 +2645,14 @@ CVE-2020-10531: An issue was discovered in International Components for Unicode 
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>CM-33283</td>
+<td><p>DSA-4850-1 (no CVE): libzstd adds read permissions to files while being compressed or uncompressed.<br/>
+Vulnerable: 1.3.8+dfsg-3<br/>
+Fixed: 1.3.8+dfsg-3+deb10u1</p></td>
+<td>4.0.0-4.3.0</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-33258</td>

@@ -14,6 +14,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="CM-33283"></a> [CM-33283](#CM-33283) <a name="CM-33283"></a> | DSA-4850-1 (no CVE): libzstd adds read permissions to files while being compressed or uncompressed.<br/>Vulnerable: 1.3.8+dfsg-3<br/>Fixed: 1.3.8+dfsg-3+deb10u1 | 4.0.0-4.3.0 | |
 | <a name="CM-33262"></a> [CM-33262](#CM-33262) <a name="CM-33262"></a> | When you change a VRR MAC address, the associated virtual interface goes down.<br/>To work around this issue, run the `ip link set <virtual-interface> up` command or bounce the SVI. | 4.2.1-4.3.0 | |
 | <a name="CM-33258"></a> [CM-33258](#CM-33258) <a name="CM-33258"></a> | Cumulus Linux does not support bond members at 200G or greater. | 4.0.0-4.3.0 | |
 | <a name="CM-33240"></a> [CM-33240](#CM-33240) <a name="CM-33240"></a> | On the on the Mellanox SN2410 switch, when you restart `switchd` or reboot the system, you see the following error messages:<br /><pre>&#91; 1446.599850&#93; switch 2-0048: HW semaphore is not released<br />&#91; 1446.605828&#93; switch 2-0048: Cmd exec failed (opcode=40(ACCESS_REG),opcode_mod=0,in_mod=0,status=30(BAD_PKT))<br />&#91; 1446.616378&#93; switch 2-0048: Reg cmd access failed (reg_id=9002(mfsc),type=write)<br />&#91; 1446.624365&#93; switch 2-0048: Failed to write PWM duty<br /></pre><br />This is a cosmetic issue and does not affect operation of the switch. | 4.3.0 | |

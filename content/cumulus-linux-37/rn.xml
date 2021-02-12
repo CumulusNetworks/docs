@@ -7,6 +7,16 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-33272</td>
+<td><p>CVE-2020-0256: In LoadPartitionTable of gpt.cc, there is a possible out of bounds write due to a missing bounds check. This could lead to local escalation of privilege with no additional execution privileges needed.<br/>
+CVE-2021-0308: In ReadLogicalParts of basicmbr.cc, there is a possible out of bounds write due to a missing bounds check. This could lead to local escalation of privilege with no<br/>
+additional execution privileges needed.<br/>
+Vulnerable: 0.8.10-2<br/>
+Fixed: 0.8.10-2+deb8u1</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-33270</td>
 <td><p>CVE-2020-27351: Various memory and file descriptor leaks were discovered in the Python interface to the APT package management runtime library, which could result in denial of service.<br/>
 Vulnerable: &lt;= 0.9.3.13<br/>
@@ -2552,6 +2562,16 @@ To work around this issue, disable BFD to alleviate some of the CPU load.</p></t
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>CM-33272</td>
+<td><p>CVE-2020-0256: In LoadPartitionTable of gpt.cc, there is a possible out of bounds write due to a missing bounds check. This could lead to local escalation of privilege with no additional execution privileges needed.<br/>
+CVE-2021-0308: In ReadLogicalParts of basicmbr.cc, there is a possible out of bounds write due to a missing bounds check. This could lead to local escalation of privilege with no<br/>
+additional execution privileges needed.<br/>
+Vulnerable: 0.8.10-2<br/>
+Fixed: 0.8.10-2+deb8u1</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-33270</td>
@@ -5642,6 +5662,16 @@ Typically, the destination MAC address 01:00:5e:xx:xx:xx is used only for PIM/IG
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>CM-33272</td>
+<td><p>CVE-2020-0256: In LoadPartitionTable of gpt.cc, there is a possible out of bounds write due to a missing bounds check. This could lead to local escalation of privilege with no additional execution privileges needed.<br/>
+CVE-2021-0308: In ReadLogicalParts of basicmbr.cc, there is a possible out of bounds write due to a missing bounds check. This could lead to local escalation of privilege with no<br/>
+additional execution privileges needed.<br/>
+Vulnerable: 0.8.10-2<br/>
+Fixed: 0.8.10-2+deb8u1</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-33270</td>
@@ -8887,6 +8917,16 @@ net.ipv6.ip6frag_high_thresh = 262144
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>CM-33272</td>
+<td><p>CVE-2020-0256: In LoadPartitionTable of gpt.cc, there is a possible out of bounds write due to a missing bounds check. This could lead to local escalation of privilege with no additional execution privileges needed.<br/>
+CVE-2021-0308: In ReadLogicalParts of basicmbr.cc, there is a possible out of bounds write due to a missing bounds check. This could lead to local escalation of privilege with no<br/>
+additional execution privileges needed.<br/>
+Vulnerable: 0.8.10-2<br/>
+Fixed: 0.8.10-2+deb8u1</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-33270</td>
@@ -12204,6 +12244,16 @@ To work around this issue, use net show interface command for LLDP output when c
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-33272</td>
+<td><p>CVE-2020-0256: In LoadPartitionTable of gpt.cc, there is a possible out of bounds write due to a missing bounds check. This could lead to local escalation of privilege with no additional execution privileges needed.<br/>
+CVE-2021-0308: In ReadLogicalParts of basicmbr.cc, there is a possible out of bounds write due to a missing bounds check. This could lead to local escalation of privilege with no<br/>
+additional execution privileges needed.<br/>
+Vulnerable: 0.8.10-2<br/>
+Fixed: 0.8.10-2+deb8u1</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-33270</td>
 <td><p>CVE-2020-27351: Various memory and file descriptor leaks were discovered in the Python interface to the APT package management runtime library, which could result in denial of service.<br/>
 Vulnerable: &lt;= 0.9.3.13<br/>
@@ -15179,6 +15229,16 @@ To work around this issue, change the value of arp_ignore to 2. See <a href="htt
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>CM-33272</td>
+<td><p>CVE-2020-0256: In LoadPartitionTable of gpt.cc, there is a possible out of bounds write due to a missing bounds check. This could lead to local escalation of privilege with no additional execution privileges needed.<br/>
+CVE-2021-0308: In ReadLogicalParts of basicmbr.cc, there is a possible out of bounds write due to a missing bounds check. This could lead to local escalation of privilege with no<br/>
+additional execution privileges needed.<br/>
+Vulnerable: 0.8.10-2<br/>
+Fixed: 0.8.10-2+deb8u1</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-33270</td>
@@ -18566,6 +18626,16 @@ To work around this issue, run the sudo ethtool -S swp1 command to collect inter
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-33272</td>
+<td><p>CVE-2020-0256: In LoadPartitionTable of gpt.cc, there is a possible out of bounds write due to a missing bounds check. This could lead to local escalation of privilege with no additional execution privileges needed.<br/>
+CVE-2021-0308: In ReadLogicalParts of basicmbr.cc, there is a possible out of bounds write due to a missing bounds check. This could lead to local escalation of privilege with no<br/>
+additional execution privileges needed.<br/>
+Vulnerable: 0.8.10-2<br/>
+Fixed: 0.8.10-2+deb8u1</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-33270</td>
 <td><p>CVE-2020-27351: Various memory and file descriptor leaks were discovered in the Python interface to the APT package management runtime library, which could result in denial of service.<br/>
 Vulnerable: &lt;= 0.9.3.13<br/>
@@ -21806,6 +21876,16 @@ To work around this issue, change the value of arp_ignore to 2. See <a href="htt
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>CM-33272</td>
+<td><p>CVE-2020-0256: In LoadPartitionTable of gpt.cc, there is a possible out of bounds write due to a missing bounds check. This could lead to local escalation of privilege with no additional execution privileges needed.<br/>
+CVE-2021-0308: In ReadLogicalParts of basicmbr.cc, there is a possible out of bounds write due to a missing bounds check. This could lead to local escalation of privilege with no<br/>
+additional execution privileges needed.<br/>
+Vulnerable: 0.8.10-2<br/>
+Fixed: 0.8.10-2+deb8u1</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-33270</td>
@@ -25411,6 +25491,16 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-33272</td>
+<td><p>CVE-2020-0256: In LoadPartitionTable of gpt.cc, there is a possible out of bounds write due to a missing bounds check. This could lead to local escalation of privilege with no additional execution privileges needed.<br/>
+CVE-2021-0308: In ReadLogicalParts of basicmbr.cc, there is a possible out of bounds write due to a missing bounds check. This could lead to local escalation of privilege with no<br/>
+additional execution privileges needed.<br/>
+Vulnerable: 0.8.10-2<br/>
+Fixed: 0.8.10-2+deb8u1</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-33270</td>
 <td><p>CVE-2020-27351: Various memory and file descriptor leaks were discovered in the Python interface to the APT package management runtime library, which could result in denial of service.<br/>
 Vulnerable: &lt;= 0.9.3.13<br/>
@@ -28964,6 +29054,16 @@ This issue was discovered on the Helix4 switch but applies to all switches. <br/
 <td>3.7.6-3.7.14</td>
 </tr>
 <tr>
+<td>CM-33272</td>
+<td><p>CVE-2020-0256: In LoadPartitionTable of gpt.cc, there is a possible out of bounds write due to a missing bounds check. This could lead to local escalation of privilege with no additional execution privileges needed.<br/>
+CVE-2021-0308: In ReadLogicalParts of basicmbr.cc, there is a possible out of bounds write due to a missing bounds check. This could lead to local escalation of privilege with no<br/>
+additional execution privileges needed.<br/>
+Vulnerable: 0.8.10-2<br/>
+Fixed: 0.8.10-2+deb8u1</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-33270</td>
 <td><p>CVE-2020-27351: Various memory and file descriptor leaks were discovered in the Python interface to the APT package management runtime library, which could result in denial of service.<br/>
 Vulnerable: &lt;= 0.9.3.13<br/>
@@ -32204,6 +32304,16 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <td><p>In testing, it was determined that the MD5 password configured against a BGP listen-range peer-group (used to accept and create dynamic BGP neighbors) is not enforced (connections are accepted from peers that do not specify a password). </p></td>
 <td>3.0.0-3.7.5</td>
 <td>3.7.6-3.7.14</td>
+</tr>
+<tr>
+<td>CM-33272</td>
+<td><p>CVE-2020-0256: In LoadPartitionTable of gpt.cc, there is a possible out of bounds write due to a missing bounds check. This could lead to local escalation of privilege with no additional execution privileges needed.<br/>
+CVE-2021-0308: In ReadLogicalParts of basicmbr.cc, there is a possible out of bounds write due to a missing bounds check. This could lead to local escalation of privilege with no<br/>
+additional execution privileges needed.<br/>
+Vulnerable: 0.8.10-2<br/>
+Fixed: 0.8.10-2+deb8u1</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-33270</td>
@@ -35504,6 +35614,16 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <td><p>In testing, it was determined that the MD5 password configured against a BGP listen-range peer-group (used to accept and create dynamic BGP neighbors) is not enforced (connections are accepted from peers that do not specify a password). </p></td>
 <td>3.0.0-3.7.5</td>
 <td>3.7.6-3.7.14</td>
+</tr>
+<tr>
+<td>CM-33272</td>
+<td><p>CVE-2020-0256: In LoadPartitionTable of gpt.cc, there is a possible out of bounds write due to a missing bounds check. This could lead to local escalation of privilege with no additional execution privileges needed.<br/>
+CVE-2021-0308: In ReadLogicalParts of basicmbr.cc, there is a possible out of bounds write due to a missing bounds check. This could lead to local escalation of privilege with no<br/>
+additional execution privileges needed.<br/>
+Vulnerable: 0.8.10-2<br/>
+Fixed: 0.8.10-2+deb8u1</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-33270</td>
@@ -38963,6 +39083,16 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <td><p>In testing, it was determined that the MD5 password configured against a BGP listen-range peer-group (used to accept and create dynamic BGP neighbors) is not enforced (connections are accepted from peers that do not specify a password). </p></td>
 <td>3.0.0-3.7.5</td>
 <td>3.7.6-3.7.14</td>
+</tr>
+<tr>
+<td>CM-33272</td>
+<td><p>CVE-2020-0256: In LoadPartitionTable of gpt.cc, there is a possible out of bounds write due to a missing bounds check. This could lead to local escalation of privilege with no additional execution privileges needed.<br/>
+CVE-2021-0308: In ReadLogicalParts of basicmbr.cc, there is a possible out of bounds write due to a missing bounds check. This could lead to local escalation of privilege with no<br/>
+additional execution privileges needed.<br/>
+Vulnerable: 0.8.10-2<br/>
+Fixed: 0.8.10-2+deb8u1</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-33270</td>
@@ -42546,6 +42676,16 @@ Permanent MAC address sync between MLAG peers is now supported.</p></td>
 <td>3.7.6-3.7.14</td>
 </tr>
 <tr>
+<td>CM-33272</td>
+<td><p>CVE-2020-0256: In LoadPartitionTable of gpt.cc, there is a possible out of bounds write due to a missing bounds check. This could lead to local escalation of privilege with no additional execution privileges needed.<br/>
+CVE-2021-0308: In ReadLogicalParts of basicmbr.cc, there is a possible out of bounds write due to a missing bounds check. This could lead to local escalation of privilege with no<br/>
+additional execution privileges needed.<br/>
+Vulnerable: 0.8.10-2<br/>
+Fixed: 0.8.10-2+deb8u1</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-33270</td>
 <td><p>CVE-2020-27351: Various memory and file descriptor leaks were discovered in the Python interface to the APT package management runtime library, which could result in denial of service.<br/>
 Vulnerable: &lt;= 0.9.3.13<br/>
@@ -45629,6 +45769,16 @@ To work around this issue, remove the matching network statement. </p></td>
 <td><p>In testing, it was determined that the MD5 password configured against a BGP listen-range peer-group (used to accept and create dynamic BGP neighbors) is not enforced (connections are accepted from peers that do not specify a password). </p></td>
 <td>3.0.0-3.7.5</td>
 <td>3.7.6-3.7.14</td>
+</tr>
+<tr>
+<td>CM-33272</td>
+<td><p>CVE-2020-0256: In LoadPartitionTable of gpt.cc, there is a possible out of bounds write due to a missing bounds check. This could lead to local escalation of privilege with no additional execution privileges needed.<br/>
+CVE-2021-0308: In ReadLogicalParts of basicmbr.cc, there is a possible out of bounds write due to a missing bounds check. This could lead to local escalation of privilege with no<br/>
+additional execution privileges needed.<br/>
+Vulnerable: 0.8.10-2<br/>
+Fixed: 0.8.10-2+deb8u1</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-33270</td>

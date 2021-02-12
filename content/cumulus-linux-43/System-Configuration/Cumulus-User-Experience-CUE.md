@@ -47,13 +47,7 @@ Do not install CUE in a production environment.
    cumulus@switch:~$ systemctl start cued
    ```
 
-5. To prevent accidental configuration of a file by two different CLIs, disable NCLU:
-
-   ```
-   cumulus@switch:~$ sudo systemctl stop netd
-   ```
-
-6. Log out of the switch, then log back in to get the CUE CLI prompt.
+5. Log out of the switch, then log back in to get the CUE CLI prompt.
 
 ## Command Line Basics
 

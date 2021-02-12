@@ -173,7 +173,7 @@ graceful-restart
 ```
 
 {{%notice note%}}
-If there are no pending or applied configuration changes, the `cl show system` command only shows the running configuration.
+If there are no pending or applied configuration changes, the `cl show` command only shows the running configuration.
 {{%/notice%}}
 
 *Revision* options are available for the `cl show` commands. You can choose the configuration you want to show (pending, applied, startup, or running):

@@ -7,6 +7,14 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-33283</td>
+<td><p>DSA-4850-1 (no CVE): libzstd adds read permissions to files while being compressed or uncompressed.<br/>
+Vulnerable: 1.3.8+dfsg-3<br/>
+Fixed: 1.3.8+dfsg-3+deb10u1</p></td>
+<td>4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-33262</td>
 <td><p>When you change a VRR MAC address, the associated virtual interface goes down.<br/>
 To work around this issue, run the ip link set &lt;virtual-interface&gt; up command or bounce the SVI.</p></td>

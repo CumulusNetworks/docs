@@ -14,11 +14,17 @@ Your evaluation is welcome and appreciated as we start to roll out this new Cumu
 
 ## What is CUE?
 
-CUE is a command line interface for Cumulus Linux. Embracing the power of open networking, CUE brings an entirely new interface to Cumulus Linux based on modern operating principles and schema oriented models.
+CUE is an object-oriented, schema driven model of a complete Cumulus Linux system (hardware and software) providing a robust API that allows for multiple interfaces to both view (show) and configure (set and unset) any element within a system running the CUE software. The CUE CLI and the REST API leverage the same API to interface with Cumulus Linux.
 
-The CUE object model is structured as a *big tree* that represents the entire state of a Cumulus Linux instance. At the base of the tree are high level branches such as *router* and *interface*. Under each of these branches are further branches.  As you navigate through the tree, you gain a more specific context. At the leaves of the tree are actual attributes, represented as key/value pairs. The path through the tree is implemented as through a filesystem.
+CUE follows a declarative model, removing context-specific commands and settings. It is structured as a *big tree* that represents the entire state of a Cumulus Linux instance. At the base of the tree are high level branches representing objects, such as *router* and *interface*. Under each of these branches are further branches. As you navigate through the tree, you gain a more specific context. At the leaves of the tree are actual attributes, represented as key/value pairs. The path through the tree is similar to a filesystem path.
 
-## Install CUE
+{{<img src = "/images/cumulus-linux/cue-architecture.png">}}
+
+In this ALPHA release of CUE, you have full access to the new CLI, which leverages the underlying CUE API. Future releases will provide access to the API through REST, Python and more.
+
+This documentation describes how to navigate the CUE CLI to configure and monitor Cumulus Linux.
+
+<!--## Install CUE
 
 CUE is not installed by default on Cumulus Linux. To install CUE, follow the procedure below.
 
@@ -47,7 +53,7 @@ Do not install CUE in a production environment.
    cumulus@switch:~$ systemctl start cued
    ```
 
-5. Log out of the switch, then log back in to get the CUE CLI prompt.
+5. Log out of the switch, then log back in to get the CUE CLI prompt.-->
 
 ## Command Line Basics
 
@@ -90,6 +96,10 @@ Identifiers:
 General Options:
   -h, --help        Show help.
 ```
+
+### Command List
+
+You can list all the CUE commands by running the `cl list-commands` command. See {{<link url="#list-all-cue-commands" text="List All CUE Commands">}} below.
 
 ### Command History
 
@@ -139,19 +149,27 @@ The CUE monitoring commands show various parts of the network configuration. For
 | `cl show vrf` | Shows VRF configuration.|
 | `cl show nve` | Shows network virtualization configuration, such as VXLAN-specfic MLAG configuration and VXLAN flooding.|
 
-The following example shows the `cl show system` commands after pressing the TAB key, then shows the output of the `cl show system lldp` command.
+The following example shows the `cl show router` commands after pressing the TAB key, then shows the output of the `cl show router bgp` command.
 
 ```
-cumulus@switch:~$  cl show system <<press Tab>>
-dhcp-server   dns           lldp          syslog
-dhcp-server6  global        ntp
-cumulus@switch:~$  cl show system lldp
-                    running  applied  pending  description
-------------------  -------  -------  -------  ----------------------------------------------------------------------
-dot1-tlv            off      off      off      Enable dot1 TLV advertisements on enabled ports
-tx-hold-multiplier  4        4        4        < TTL of transmitted packets is calculated by multiplying the tx-in...
-tx-interval         30       30       30       change transmit delay
-cumulus@switch:~$ 
+cumulus@leaf01:mgmt:~$ cl show router <<press Tab>>
+bgp     policy
+cumulus@leaf01:mgmt:~$ cl show router bgp
+                                running  applied      pending      description
+------------------------------  -------  -----------  -----------  ----------------------------------------------------------------------
+enable                                   on                        Turn the feature 'on' or 'off'.  The default is 'off'.
+autonomous-system                        65101                     ASN for all VRFs, if a single AS is in use.  If "none", then ASN mu...
+graceful-shutdown                        off                       Graceful shutdown enable will initiate the GSHUT community to be an...
+policy-update-timer                      5                         Wait time in seconds before processing updates to policies to ensur...
+router-id                                10.10.10.1                BGP router-id for all VRFs, if a common one is used.  If "none", th...
+convergence-wait
+  establish-wait-time                    0                         Maximum time to wait to establish BGP sessions. Any peerswhich do...
+  time                                   0                         Time to wait for peers to send end-of-RIB before router performs pa...
+graceful-restart
+  mode                                   helper-only               Role of router during graceful restart. helper-only, router is in h...
+  path-selection-deferral-time           360                       Used by the restarter as an upper-bounds for waiting for peering es...
+  restart-time                           120                       Amount of time taken to restart by router. It is advertised to the...
+  stale-routes-time                      360                       Specifies an upper-bounds on how long we retain routes from a ....
 ```
 
 {{%notice note%}}
@@ -509,9 +527,9 @@ This section lists some of the differences between CUE and the NCLU command line
 
 ### Configuration File
 
-When you **save** network configuration using CUE, the configuration is written to the `/etc/cue.d/startup.yaml` file. Nvidia recommends that you do not edit this file.
+When you **save** network configuration using CUE, the configuration is written to the `/etc/cue.d/startup.yaml` file.
 
-Cumulus Linux also writes to the `/etc/network/interfaces` and `/etc/frr/frr.conf` files when you apply a configuration. You can view these configuration files; however Nvidia recommends that you do not manually edit them while using CUE.
+CUE also writes to underlying Linux files when you apply a configuration, such as the `/etc/network/interfaces` and `/etc/frr/frr.conf` files. You can view these configuration files; however Nvidia recommends that you do not manually edit them while using CUE.
 
 ### Bridge Configuration
 

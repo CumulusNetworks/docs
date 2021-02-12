@@ -23,8 +23,7 @@ The CUE object model is structured as a *big tree* that represents the entire st
 CUE is not installed by default on Cumulus Linux. To install CUE, follow the procedure below.
 
 {{%notice info%}}
-- Do not install CUE in a production environment.
-- NVIDIA recommends that you disable NCLU after you install CUE to prevent accidental configuration of a file by two different CLIs.
+Do not install CUE in a production environment.
 {{%/notice%}}
 
 1. Stop then disable the `netd` service:
@@ -48,7 +47,13 @@ CUE is not installed by default on Cumulus Linux. To install CUE, follow the pro
    cumulus@switch:~$ systemctl start cued
    ```
 
-5. Log out of the switch, then log back in to get the CUE CLI prompt.
+5. To prevent accidental configuration of a file by two different CLIs, disable NCLU:
+
+   ```
+   cumulus@switch:~$ sudo systemctl stop netd
+   ```
+
+6. Log out of the switch, then log back in to get the CUE CLI prompt.
 
 ## Command Line Basics
 

@@ -99,7 +99,7 @@ General Options:
 
 ### Command List
 
-You can list all the CUE commands by running the `cl list-commands` command. See {{<link url="#list-all-cue-commands" text="List All CUE Commands">}} below.
+You can list all the CUE commands by running `cl list-commands`. See {{<link url="#list-all-cue-commands" text="List All CUE Commands">}} below.
 
 ### Command History
 

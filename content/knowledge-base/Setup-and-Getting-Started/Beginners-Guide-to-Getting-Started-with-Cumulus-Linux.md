@@ -95,7 +95,6 @@ Learn how to use the nano text editor ([cheat sheet --- external link](http://ww
 
 ### Cumulus Networks Validated Design Guides
 
-- [Big Data Validated Design](https://cumulusnetworks.com/media/cumulus/pdf/technical/validated-design-guides/Big-Data-Cumulus-Linux-Validated-Design-Guide.pdf)[\
-    ](https://cumulusnetworks.com/media/cumulus/pdf/technical/validated-design-guides/Big-Data-Cumulus-Linux-Validated-Design-Guide.pdf)
-- [OpenStack Validated Design](https://cumulusnetworks.com/media/cumulus/pdf/technical/validated-design-guides/OpenStack-Cumulus-Linux-Validated-Design-Guide.pdf)
-- [VMware VSphere Validated Design](https://cumulusnetworks.com/media/cumulus/pdf/technical/validated-design-guides/VMware-vSphere-Cumulus-Linux-Validated-Design-Guide.pdf)
+<!-- - [Big Data Validated Design](https://cumulusnetworks.com/media/cumulus/pdf/technical/validated-design-guides/Big-Data-Cumulus-Linux-Validated-Design-Guide.pdf) -->
+- [OpenStack Validated Design](https://cumulusnetworks.com/learn/resources/guides/openstack-and-cumulus-linux-installation-guide-2)
+- [VMware VSphere Validated Design](https://cumulusnetworks.com/learn/resources/guides/vmware-vsphere-cumulus-linux-installation-guide-2)

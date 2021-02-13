@@ -50,10 +50,10 @@ The PDF of the 3.7.12 ESR user guide is available {{% pdf_link "here." %}} PDFs 
 
 | Cumulus Linux Version | Download the User Guide     |
 | --------------------- | --------------------------- |
-| 3.7.7                 | {{<exlink url="https://drive.google.com/file/d/1EspnJCZXOa3QO2cRJV-qbPWMumKZBtKC/view?usp=sharing" text="3.7.7 PDF" >}} |
-| 3.7.6                 | {{<exlink url="https://drive.google.com/file/d/1kbtD3xWh0PTj3i9tiOhYnCGAAQZ159qZ/view?usp=sharing" text="3.7.6 PDF" >}} |
-| 3.7.5                 | {{<exlink url="https://drive.google.com/file/d/16TSphHeKpVhsE80DZQJbpExqMGcScDB1/view?usp=sharing" text="3.7.5 PDF" >}} |
-| 3.7.4                 | {{<exlink url="https://drive.google.com/file/d/1AWaamaEO7NhwcwZRaxQgWRWrKQyq8hjM/view?usp=sharing" text="3.7.4 PDF" >}} |
-| 3.7.3                 | {{<exlink url="https://drive.google.com/file/d/1xK7qWGZsj688opVmVsstb45XN3qKTXgc/view?usp=sharing" text="3.7.3 PDF" >}} |
-| 3.7.2                 | {{<exlink url="https://drive.google.com/file/d/1WChlCxlwJVJ7T2l6l2Mve3M5O4jfYSYo/view?usp=sharing" text="3.7.2 PDF" >}} |
-| 3.7.0                 | {{<exlink url="https://drive.google.com/file/d/1iUt4m8NaoejBFHWxboCB5O7DY7n7uLHo/view?usp=sharing" text="3.7.0 PDF" >}} |
+| 3.7.7                 | {{<exlink url="https://drive.google.com/file/d/1yuEINc9hfLlFT6TCFtKQoVF2XkCW3HrX/view?usp=sharing" text="3.7.7 PDF" >}} |
+| 3.7.6                 | {{<exlink url="https://drive.google.com/file/d/1cAebIz7Da9zcGpxcMmWZo_kSXzu4j_nw/view?usp=sharing" text="3.7.6 PDF" >}} |
+| 3.7.5                 | {{<exlink url="https://drive.google.com/file/d/12_T1n8nf1e4oEF1tEiSl7Hv8yvxf8xE_/view?usp=sharing" text="3.7.5 PDF" >}} |
+| 3.7.4                 | {{<exlink url="https://drive.google.com/file/d/1ahhyXTuTvLOK13T557wB0j3cLFsiXyk-/view?usp=sharing" text="3.7.4 PDF" >}} |
+| 3.7.3                 | {{<exlink url="https://drive.google.com/file/d/1TjcZiGyJs5zcTr37h1cQJdNWcMP9WoiS/view?usp=sharing" text="3.7.3 PDF" >}} |
+| 3.7.2                 | {{<exlink url="https://drive.google.com/file/d/1kJSHYGwVpFSJ7o3nrgsYFoWBZuT4obzl/view?usp=sharing" text="3.7.2 PDF" >}} |
+| 3.7.0                 | {{<exlink url="https://drive.google.com/file/d/1qm08ZEe1XoO5UUMwAm8aGIh3zEkyxTjB/view?usp=sharing" text="3.7.0 PDF" >}} |

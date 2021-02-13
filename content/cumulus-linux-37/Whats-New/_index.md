@@ -10,6 +10,23 @@ This document supports the Cumulus Linux 3.7 releases, and lists new platforms a
 - For a list of open and fixed issues in Cumulus Linux 3.7, see the {{<link url="Cumulus-Linux-3.7-Release-Notes" text="Cumulus Linux 3.7 Release Notes">}}.
 - To upgrade to a Cumulus Linux 3.7 release, follow the steps in {{<link url="Upgrading-Cumulus-Linux">}}.
 
+## What's New in Cumulus Linux 3.7.14.2
+
+Cumulus Linux 3.7.14.2 contains these bug and security fixes:
+
+- CM-30832: The Mellanox SN2700 and SN2410 switch intermittently reports PSU fan state changes with `Unable to read from device/fan1_input/pwm1` syslog messages.
+
+- CM-32529: On Mellanox switches, the ASIC temperature sensor reading reports zeros. As a result, the fan speed is higher than normal. You can see the temperature reading in the output of the sensors command.
+
+- CM-32728: On Broadcom switches, when WARN level switchd log messages are generated, `switchd` might crash resulting in a core file generated on the system.
+
+- CM-32994: On Broadcom switches, after repeated VLAN or VXLAN configuration changes, `switchd` memory might not free up appropriately, which can lead to a crash.
+
+- CM-33165: CVE-2021-3156: A serious heap-based buffer overflow has been discovered in sudo that is exploitable by any local user. It has been given the name Baron Samedit by its discoverer. The bug can be leveraged to elevate privileges to root, even if the user is not listed in the sudoers file. User authentication is not required to exploit the bug.
+Vulnerable: <= 1.8.10p4-cl3.7.14u1
+Fixed: 1.8.10p4-cl3.7.15u1
+Security scanners may not recognize 1.8.10p4-cl3.7.15u1 as fixed and therefore incorrectly list it as vulnerable.
+
 ## What's New in Cumulus Linux 3.7.14
 
 Cumulus Linux 3.7.14 contains bug fixes and security fixes.

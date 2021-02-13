@@ -65,9 +65,13 @@ To start your CUE similation in CITC:
 
 2. On the dashboard, click the CUE simulation link under Simulations.
 
+   GRAPHIC
+
    The simulation consists of six leaf switches, four spine switches, 8 Ubuntu servers, two *firewall* devices to isolate tenants, and a complete out of band management networking.
 
 3. On the topology graphic, click the `oob-server` to open a terminal window, then ssh to leaf01.
+
+   GRAPHIC
 
 You are now on the leaf01 switch and can explore the CUE CLI by entering commands. The CUE CLI is described below.
 

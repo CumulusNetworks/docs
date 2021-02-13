@@ -55,6 +55,22 @@ Do not install CUE in a production environment.
 
 5. Log out of the switch, then log back in to get the CUE CLI prompt.-->
 
+## Launch the CUE Simulation in Cumulus in the Cloud
+
+CUE evaluation is available in Cumulus in the Cloud (CITC); a virtual data center network with all of the features and functionality of Cumulus Linux running on real networking hardware.
+
+To start your CUE similation in CITC:
+
+1. Go to {{<exlink url="https://cumulusnetworks.com/products/cumulus-in-the-cloud/Cumulus" text="CUE Simulation" >}}NEED REAL LINK HERE.
+
+2. On the dashboard, click the CUE simulation link under Simulations.
+
+   The simulation consists of six leaf switches, four spine switches, 8 Ubuntu servers, two "firewall" devices to isolate tenants, and a complete out of band management networking.
+
+3. On the topology graphic, click the `oob-server` to open a terminal window, then ssh to leaf01.
+
+You are now on the leaf01 switch and can explore the CUE CLI by entering commands. The CUE CLI is described below.
+
 ## Command Line Basics
 
 The CUE command line has a flat structure as opposed to a modal structure. This means that you can run all commands from the primary prompt instead of only in a specific mode.

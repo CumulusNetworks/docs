@@ -22,7 +22,7 @@ CUE follows a declarative model, removing context-specific commands and settings
 
 In this ALPHA release of CUE, you have full access to the new CLI, which leverages the underlying CUE API. Future releases will provide access to the API through REST, Python and more.
 
-This documentation describes how to navigate the CUE CLI to configure and monitor Cumulus Linux.
+This documentation describes how to access CUE and navigate the CUE CLI to configure and monitor Cumulus Linux.
 
 <!--## Install CUE
 
@@ -61,11 +61,11 @@ CUE evaluation is available in Cumulus in the Cloud (CITC); a virtual data cente
 
 To start your CUE similation in CITC:
 
-1. Go to {{<exlink url="https://cumulusnetworks.com/products/cumulus-in-the-cloud/Cumulus" text="CUE Simulation" >}}NEED REAL LINK HERE.
+1. Go to {{<exlink url="https://cumulusnetworks.com/products/cumulus-in-the-cloud/Cumulus" text="CUE" >}} NEED REAL LINK HERE.
 
 2. On the dashboard, click the CUE simulation link under Simulations.
 
-   The simulation consists of six leaf switches, four spine switches, 8 Ubuntu servers, two "firewall" devices to isolate tenants, and a complete out of band management networking.
+   The simulation consists of six leaf switches, four spine switches, 8 Ubuntu servers, two *firewall* devices to isolate tenants, and a complete out of band management networking.
 
 3. On the topology graphic, click the `oob-server` to open a terminal window, then ssh to leaf01.
 

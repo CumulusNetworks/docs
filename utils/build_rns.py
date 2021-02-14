@@ -75,7 +75,12 @@ def version_string(version):
     if version.count(".") == 1:
         return version
 
-    return version[:version.rfind(".")]
+    # The rfind here will drop the right most value. This means 3.7.14.2 returns "3.7.14".
+    # But we only want "3.7"
+    while version.count(".") > 1:
+        version = version[:version.rfind(".")]
+
+    return version
 
 def get_hugo_folder(product, version):
     '''

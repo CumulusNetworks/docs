@@ -93,8 +93,6 @@ cl-ecmpcalc: error: --sport and --dport required for TCP and UDP frames
 
 `cl-ecmpcalc` can only take input interfaces that can be converted to a single physical port in the port tab file, such as the physical switch ports (swp). Virtual interfaces like bridges, bonds, and subinterfaces are not supported.
 
-`cl-ecmpcalc` is supported only on switches with the {{<exlink url="https://cumulusnetworks.com/hcl/" text="Mellanox Spectrum and the Broadcom Maverick, Tomahawk, Trident II, Trident II+ and Trident3">}} chipsets.
-
 ### ECMP Hash Buckets
 
 When multiple routes are installed in the routing table, each route is assigned to an ECMP *bucket*. When the ECMP hash is executed the result of the hash determines which bucket gets used.
@@ -243,22 +241,10 @@ In Cumulus Linux, when a next hop fails or is removed from an ECMP pool, the has
 
 *Resilient hashing* is an alternate mechanism for managing ECMP groups. The ECMP hash performed with resilient hashing is exactly the same as the default hashing mode. Only the method in which next hops are assigned to hash buckets differs &mdash; they're assigned to buckets by hashing their header fields and using the resulting hash to index into the table of 2^n hash buckets. Since all packets in a given flow have the same header hash value, they all use the same flow bucket.
 
-Resilient hashing supports both IPv4 and IPv6 routes.
-
-Resilient hashing behaves slightly differently depending upon whether you are running Cumulus Linux on a switch with a {{<link url="#resilient-hashing-on-broadcom-switches" text="Broadcom ASIC">}} or   {{<link url="#resilient-hashing-on-mellanox-switches" text="Mellanox ASIC">}}. The differences are described below.
-
+{{%notice note%}}
+- Resilient hashing supports both IPv4 and IPv6 routes.
 - Resilient hashing prevents disruptions when next hops are removed. It does not prevent disruption when next hops are added.
-- Resilient hashing is supported only on switches with the {{<exlink url="https://cumulusnetworks.com/hcl/" text="Broadcom Tomahawk, Trident II, Trident II+, and Trident3 as well as Mellanox Spectrum">}} chipsets. You can run `net show system` to determine the chipset.
-
-### Resilient Hashing on Broadcom Switches
-
-- When a next hop is removed, the assigned buckets are distributed to the remaining next hops.
-- When a next hop is added, **some** buckets assigned to other next hops are migrated to the new next hop.
-- The algorithm assigns buckets to next hops so as to make the number of buckets per next hop as close to equal as possible.
-- The assignment of buckets to next hops is not changed in any other case. In particular, this assignment is not changed due to traffic loading or imbalance.
-- Next hops are assigned to buckets randomly, to minimize the chance of systemic imbalance.
-
-### Resilient Hashing on Mellanox Switches
+{{%/notice%}}
 
 A Mellanox switch has two unique options for configuring resilient hashing, both of which you configure in the `/usr/lib/python2.7/dist-packages/cumulus/__chip_config/mlx/datapath.conf​` file. The recommended values for these options depend largely on the desired outcome for a specific network implementation &mdash; the number and duration of flows, and the importance of keeping these flows pinned without interruption.
 

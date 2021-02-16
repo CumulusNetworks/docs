@@ -167,12 +167,6 @@ If multiple contiguous rules with the same match criteria are applied to `--in-i
 - If all transit traffic needs to have a rule applied, use the FORWARD chain, not the OUTPUT chain.
 - `ebtable` rules are put into either the IPv4 or IPv6 memory space depending on whether the rule utilizes IPv4 or IPv6 to make a decision. Layer 2-only rules that match the MAC address are put into the IPv4 memory space.
 
-{{%notice note%}}
-
-On Broadcom switches, the ingress INPUT chain rules match layer 2 and layer 3 multicast packets **before** multicast packet replication has occurred; therefore, a DROP rule affects all copies.
-
-{{%/notice%}}
-
 ### Rule Placement in Memory
 
 INPUT and ingress (`FORWARD -i`) rules occupy the same memory space. A rule counts as ingress if the `-i` option is set. If both input and output options (`-i` and `-o`) are set, the rule is considered as ingress and occupies that memory space. For example:
@@ -317,7 +311,7 @@ Port ranges are only allowed for ingress rules.
 
     {{%/notice%}}
 
-### Match SVI and Bridged Interfaces in Rules
+<!--BROADCOM ONLY### Match SVI and Bridged Interfaces in Rules
 
 Cumulus Linux supports matching ACL rules for both ingress and egress interfaces on both
 {{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware">}} and {{<link url="Traditional-Bridge-Mode" text="traditional mode">}} bridges, including bridge SVIs ({{<link url="Ethernet-Bridging-VLANs#configure-an-svi-switch-vlan-interface" text="switch VLAN interfaces">}}) for input and output. However, keep the following in mind:
@@ -352,7 +346,7 @@ Example rules for a traditional mode bridge:
 -A FORWARD -i br0 -p icmp -j DROP
 -A FORWARD --out-interface br0 -p icmp -j ACCEPT
 -A FORWARD --in-interface br0 -j POLICE --set-mode  pkt  --set-rate  1 --set-burst 1 --set-class 0
-```
+```-->
 
 ### Match on VLAN IDs on Layer 2 Interfaces
 
@@ -642,55 +636,6 @@ error: hw sync failed (sync_acl hardware installation failed) Rolling back .. fa
 
 In the tables below, the default rules count toward the limits listed. The raw limits below assume only one ingress and one egress table are present.
 
-### Broadcom Tomahawk Limits
-
-|Direction|Atomic Mode IPv4 Rules|Atomic Mode IPv6 Rules|Nonatomic Mode IPv4 Rules|Nonatomic Mode IPv6 Rules|
-|----------|---------|---------|-----------|----------|
-|Ingress raw limit|512|512|1024|1024|
-|Ingress limit with default rules|256 (36 default)| 256 (29 default)|768 (36 default)|768 (29 default)|
-|Egress raw limit |256 |0 |512| 0|
-|Egress limit with default rules|256 (29 default)|0| 512 (29 default) |0|
-
-### Broadcom Trident3 Limits
-
-The Trident3 ASIC is divided into 12 slices, organized into 4 groups for ACLs. Each group contains 3 slices. Each group can support a maximum of 768 rules. You cannot mix IPv4 and IPv6 rules within the same group. IPv4 and MAC rules can be programmed into the same group.
-
-| Direction                        | Atomic Mode IPv4 Rules | Atomic Mode IPv6 Rules | Nonatomic Mode IPv4 Rules | Nonatomic Mode IPv6 Rules |
-| -------------------------------- | ---------------------- | ---------------------- | ------------------------- | ------------------------- |
-| Ingress raw limit                | 768                    | 768                    | 2304                      | 2304                      |
-| Ingress limit with default rules | 768 (44 default)       | 768 (41 default)       | 2304 (44 default)         | 2304 (41 default)         |
-| Egress raw limit                 | 512                    | 0                      | 512                       | 0                         |
-| Egress limit with default rules  | 512 (28 default)       | 0                      | 512 (28 default)          | 0                         |
-
-Due to a hardware limitation on Trident3 switches, certain broadcast packets that are VXLAN decapsulated and sent to the CPU do not hit the normal INPUT chain ACL rules installed with `cl-acltool`. See {{<link text="default ACL considerations" url="Default-Cumulus-Linux-ACL-Configuration#considerations">}}.
-
-### Broadcom Trident II+ Limits
-
-| Direction                        | Atomic Mode IPv4 Rules | Atomic Mode IPv6 Rules | Nonatomic Mode IPv4 Rules | Nonatomic Mode IPv6 Rules |
-| -------------------------------- | ---------------------- | ---------------------- | ------------------------- | ------------------------- |
-| Ingress raw limit                | 4096                   | 4096                   | 8192                      | 8192                      |
-| Ingress limit with default rules | 2048 (36 default)      | 3072 (29 default)      | 6144 (36 default)         | 6144 (29 default)         |
-| Egress raw limit                 | 256                    | 0                      | 512                       | 0                         |
-| Egress limit with default rules  | 256 (29 default)       | 0                      | 512 (29 default)          | 0                         |
-
-### Broadcom Trident II Limits
-
-| Direction|Atomic Mode IPv4 Rules|Atomic Mode IPv6 Rules|Nonatomic Mode IPv4 Rules|Nonatomic Mode IPv6 Rules|
-| -----------|-----------|--------|-------------|---------|
-|Ingress raw limit|1024 |1024 |2048 |2048 |
-|Ingress limit with default rules |512 (36 default) |768 (29 default) |1536 (36 default)|1536 (29 default) |
-|Egress raw limit |256 |0 |512 |0 |
-|Egress limit with default rules |256 (29 default) |0 |512 (29 default) |0 |
-
-### Broadcom Helix4 Limits
-
-|Direction|Atomic Mode IPv4 Rules|Atomic Mode IPv6 Rules|Nonatomic Mode IPv4 Rules|Nonatomic Mode IPv6 Rules|
-| ---------------|----------------|--------------|----------------|--------------|
-|Ingress raw limit |1024 |512 |2048  |1024 |
-|Ingress limit with default rules |768 (36 default) |384 (29 default) |1792 (36 default) |896 (29 default)|
-|Egress raw limit |256 |0 |512 |0|
-|Egress limit with default rules |256 (29 default) |0 |512 (29 default)|0 |
-
 ### Mellanox Spectrum Limits
 
 The Mellanox Spectrum ASIC has one common {{<exlink url="https://en.wikipedia.org/wiki/Content-addressable_memory#Ternary_CAMs" text="TCAM">}} for both ingress and egress, which can be used for other non-ACL-related resources. However, the number of supported rules varies with the {{<link url="Supported-Route-Table-Entries#tcam-resource-profiles-for-spectrum-switches" text="TCAM profile">}} specified for the switch.
@@ -756,26 +701,6 @@ INPUT FORWARD OUTPUT
 
 - Rules that have no matches and accept all packets in a chain are currently ignored.
 - Chain default rules (that are ACCEPT) are also ignored.
-
-### IPv6 Egress Rules on Broadcom Switches
-
-Cumulus Linux supports IPv6 egress rules in `ip6tables` on Broadcom switches. Because there are no slices to allocate in the egress TCAM for IPv6, the matches are implemented using a combination of the ingress IPv6 slice and the existing egress IPv4 MAC slice:
-
-- Cumulus Linux compares all the match fields in the IPv6 ingress slice, except the `--out-interface` field, and marks the packet with a `classid.`
-- The egress IPv4 MAC slice matches on the `classid` and the `out-interface`, and performs the actions.
-
-For example, the `-A FORWARD --out-interface vlan100 -p icmp6 -j ACCEPT` rule is split into the following:
-
-- IPv6 ingress: `-A FORWARD -p icmp6` → action mark (for example, `classid 4`)
-- IPv4 MAC egress: `<match mark 4>` and `--out-interface vlan100 -j ACCEPT`
-
-{{%notice note%}}
-
-- IPv6 egress rules in `ip6tables` are not supported on Hurricane2 switches.
-- You cannot match both input and output interfaces in the same rule.
-- The egress TCAM IPv4 MAC slice is shared with other rules, which constrains the scale to a much lower limit.
-
-{{%/notice%}}
 
 #### Considerations
 
@@ -1206,14 +1131,6 @@ Bridge traffic that matches LOG ACTION rules are not logged in syslog; the kerne
 ### Log Actions Cannot Be Forwarded
 
 Logged packets cannot be forwarded. The hardware cannot both forward a packet and send the packet to the control plane (or kernel) for logging. To emphasize this, a log action must also have a drop action.
-
-### Broadcom Range Checker Limitations
-
-Broadcom platforms have only 24 range checkers. This is a separate resource from the total number of ACLs allowed. If you are creating a large ACL configuration, use port ranges for large ranges of more than 5 ports.
-
-### Inbound LOG Actions Only for Broadcom Switches
-
-On Broadcom-based switches, LOG actions can only be done on inbound interfaces (the ingress direction), not on outbound interfaces (the egress direction).
 
 ### SPAN Sessions that Reference an Outgoing Interface
 

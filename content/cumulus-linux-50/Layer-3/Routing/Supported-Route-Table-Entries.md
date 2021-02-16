@@ -20,7 +20,7 @@ To determine the current table sizes on a switch, use either the NCLU `net show 
 
 ## Forwarding Table Profiles
 
-On Mellanox Spectrum and some Broadcom ASICs, you can configure the allocation of forwarding table resources and mechanisms. Cumulus Linux provides a number of generalized profiles for the platforms described below. These profiles work only with layer 2 and layer 3 unicast forwarding.
+On Mellanox Spectrum, you can configure the allocation of forwarding table resources and mechanisms. Cumulus Linux provides a number of generalized profiles for the platforms described below. These profiles work only with layer 2 and layer 3 unicast forwarding.
 
 Choose the profile that best suits your network architecture and specify the profile name for the `forwarding_table.profile` variable in the `/etc/cumulus/datapath/traffic.conf` file; for example:
 
@@ -34,13 +34,6 @@ forwarding_table.profile = default
 ```
 
 After you specify a different profile, {{%link url="Configuring-switchd#restart-switchd" text="restart `switchd`"%}} for the change to take effect. You can see the forwarding table profile when you run `cl-resource-query`.
-
-{{%notice note%}}
-
-- Broadcom ASICs other than Maverick, Tomahawk/Tomahawk+, Trident II, Trident II+, and Trident3 support only the *default* profile.
-- For Broadcom ASICs, the maximum number of IP multicast entries is 8k.
-
-{{%/notice%}}
 
 ## Supported Route Entries
 
@@ -63,36 +56,6 @@ The values in the following tables reflect results from testing on supported pla
 | v4-lpm-heavy-1 | 8k            | 8k (IPv4) and 2k (IPv6)   | 176k (IPv4) and 2k (IPv6-long) |
 | v6-lpm-heavy   | 40k           | 8k (IPv4) and 40k (IPv6)  | 8k (IPv4), 32k (IPv6-long) and 32K (IPv6/64) |
 | lpm-balanced   | 8k            | 8k (IPv4) and 8k (IPv6)   | Spectrum-2 and Spectrum-3:<br>120k (IPv4) and 120k (IPv6-long)<br>Spectrum:<br>60k (IPv4), 60k (IPv6-long) and 120k (IPv6/64) |
-
-### Broadcom Tomahawk/Tomahawk+ Switches
-
-| Profile                    | MAC Addresses | L3 Neighbors | Longest Prefix Match (LPM)     |
-| -------------------------- | ------------- | ------------ | ------------------------------ |
-| default                    | 40k           | 40k          | 64k (IPv4) or 8k (IPv6-long)   |
-| l2-heavy                   | 72k           | 72k          | 8k (IPv4) or 2k (IPv6-long)    |
-| v4-lpm-heavy<br>v6-lpm-heavy | 8k            | 8k           | 128k (IPv4) or 20k (IPv6-long) |
-
-### Broadcom Trident II/Trident II+/Trident3 Switches
-
-| Profile                      | MAC Addresses | L3 Neighbors | Longest Prefix Match (LPM)     |
-| --------------------------   | ------------- | ------------ | ------------------------------ |
-| default                      | 32k           | 16k          | 128k (IPv4) or 20k (IPv6-long) |
-| l2-heavy                     | 160k          | 96k          | 8k (IPv4) or 2k (IPv6-long)    |
-| v4-lpm-heavy<br>v6-lpm-heavy | 32k           | 16k          | 128k (IPv4) or 20k (IPv6-long) |
-
-### Broadcom Helix4 Switches
-
-Helix4 switches do *not* have profiles.
-
-| MAC Addresses | L3 Neighbors | Longest Prefix Match (LPM)    |
-| ------------- | ------------ | ----------------------------- |
-| 24k           | 12k          | 7.8k (IPv4) or 2k (IPv6-long) |
-
-{{%notice note%}}
-
-For Broadcom switches, IPv4 and IPv6 entries are not carved in separate spaces so it is not possible to define explicit numbers in the L3 Neighbors column of the tables above. An IPv6 entry takes up twice the space of an IPv4 entry.
-
-{{%/notice%}}
 
 ## TCAM Resource Profiles for Spectrum Switches
 
@@ -126,7 +89,3 @@ When {{<link url="Netfilter-ACLs#nonatomic-update-mode-and-atomic-update-mode" t
 | ipmc-heavy | 8500           | 500 (IPv6) or 750 (IPv4)   |
 | acl-heavy  | 450            | 1000 (IPv6) or 1750 (IPv4) |
 | ipmc-max   | 13000          | 500 (IPv6) or 1000 (IPv4)  |
-
-## Route Entry Takes Precedence Over Neighbor Entry
-
-On Broadcom switches running Cumulus Linux 4.0 and later, when there is a /32 IPv4 or /128 IPv6 route and the same prefix is also a neighbor entry in the linux kernel, the route entry takes precedence over the neighbor entry in the forwarding lookup. To change this behaviour, update the `route_preferred_over_neigh` variable to FALSE in the `/etc/cumulus/switchd.conf` file.

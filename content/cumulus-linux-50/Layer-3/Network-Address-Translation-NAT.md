@@ -21,11 +21,11 @@ The following illustration shows a basic NAT configuration.
 
 {{%notice note%}}
 
+- NAT is supported on Mellanox Spectrum-2 and Spectrum-3 switches only.
 - NAT is supported on physical interfaces and bond interfaces and only in the default VRF.
 - IPv6 to IPv4 translation is not supported.
 - Multicast traffic is not supported.
 - NAT is *not* supported in an EVPN configuration.
-- NAT is supported on Broadcom Trident3 X7 and Mellanox Spectrum-2 switches only.
 
 {{%/notice%}}
 
@@ -201,12 +201,6 @@ nat.dynamic_enable = TRUE
 Then restart `switchd`.
 
 {{<cl/restart-switchd>}}
-
-{{%notice note%}}
-
-For dynamic NAT to work on switches with the Broadcom Trident3 ASIC, you must also enable static NAT. Uncomment the `nat.static_enable = TRUE` option in addition to the `nat.dynamic_enable = TRUE` option.
-
-{{%/notice%}}
 
 #### Optional Dynamic NAT Settings
 

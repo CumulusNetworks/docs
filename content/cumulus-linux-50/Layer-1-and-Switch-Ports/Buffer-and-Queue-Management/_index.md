@@ -22,15 +22,6 @@ Priority groups include:
 
 The scheduler is configured to use a hybrid scheduling algorithm. It applies strict priority to control traffic queues and a weighted round robin selection from the remaining queues. Unicast packets and multicast packets with the same priority value are assigned to separate queues, which are assigned equal scheduling weights.
 
-{{%notice note%}}
-
-You can configure Quality of Service (QoS) for switches on the following platforms only:
-
-- Broadcom Tomahawk, Trident II, Trident II+, and Trident3
-- Mellanox Spectrum, Spectrum-2, and Spectrum-3
-
-{{%/notice%}}
-
 ## Traffic Marking
 
 You can mark traffic for egress packets through `iptables` or `ip6tables` rule classifications. To enable these rules, you do one of the following:
@@ -101,8 +92,6 @@ PFC congestion detection is implemented on the switch using xoff and xon thresho
 
 After the downstream switch sends a PFC frame upstream, it continues to receive packets until the upstream switch receives and responds to the PFC frame. The downstream ingress buffer must be large enough to store those additional packets after the xoff threshold is reached.
 
-Priority flow control is fully supported on both {{<exlink url="https://cumulusnetworks.com/products/hardware-compatibility-list/?asic%5B0%5D=Broadcom%20Apollo2&asic%5B1%5D=Broadcom%20Firebolt3&asic%5B2%5D=Broadcom%20Helix4&asic%5B3%5D=Broadcom%20Hurricane2&asic%5B4%5D=Broadcom%20Maverick&asic%5B5%5D=Broadcom%20Tomahawk&asic%5B6%5D=Broadcom%20Tomahawk%2B&asic%5B7%5D=Broadcom%20Tomahawk2&asic%5B8%5D=Broadcom%20Trident&asic%5B9%5D=Broadcom%20Trident%2B&asic%5B10%5D=Broadcom%20Trident2&asic%5B11%5D=Broadcom%20Trident2%2B&asic%5B12%5D=Broadcom%20Trident3%20X7&asic%5B13%5D=Broadcom%20Triumph2&CPUType=x86_64&Brand%5B0%5D=broadcomtrident&Brand%5B1%5D=broadcomtridentplus&Brand%5B2%5D=broadcomtrident2plus&Brand%5B3%5D=broadcomtriumph2&SwitchSilicon=broadcomtrident2" text="Broadcom">}} (including the Edgecore Minipack-AS8000/Trident3) and {{<exlink url="https://cumulusnetworks.com/products/hardware-compatibility-list/?vendor_name%5B0%5D=Mellanox" text="Mellanox">}} switches.
-
 PFC is disabled by default in Cumulus Linux. To configure PFC, update and uncomment the settings in the `priority flow control` section of the `/etc/cumulus/datapath/traffic.conf` file.
 
 ```
@@ -143,11 +132,7 @@ pfc.pfc_port_group.cable_length = 10
 | `pfc.pfc_port_group.rx_enable` | Enables the egress port to receive notifications and act on them. The default is *true*. |
 | `pfc.pfc_port_group.cable_length` | The length of the port group cable. |
 
-On Broadcom switches, after you modify the settings in the `/etc/cumulus/datapath/traffic.conf` file, you *must* restart `switchd` for the changes to take effect; run the `cumulus@switch:~$ sudo systemctl restart switchd.service` command.
-
-{{<cl/restart-switchd>}}
-
-On Mellanox switches with the Spectrum ASIC, changes to the settings in the `/etc/cumulus/datapath/traffic.conf` file do *not* require you to restart `switchd`. However, you must run the `echo 1 > /cumulus/switchd/config/traffic/reload` command to apply the settings.
+Changes to the settings in the `/etc/cumulus/datapath/traffic.conf` file do *not* require you to restart `switchd`. However, you must run the `echo 1 > /cumulus/switchd/config/traffic/reload` command to apply the settings.
 
 ```
 cumulus@switch:~$ echo 1 > /cumulus/switchd/config/traffic/reload
@@ -229,11 +214,7 @@ Here is an example configuration that enables TX pause and RX pause for swp1 thr
 This `link_pause.pause_port_group.port_buffer_bytes`, `link_pause.pause_port_group.xoff_size`, and `link_pause.pause_port_group.xon_delta` settings are optional. If not provided, the values are derived from the port speed, port MTU, or port cable length.
 {{%/notice%}}
 
-On Broadcom switches, after you modify the settings in the `/etc/cumulus/datapath/traffic.conf` file, you *must* restart `switchd` for the changes to take effect; run the `cumulus@switch:~$ sudo systemctl restart switchd.service` command.
-
-{{<cl/restart-switchd>}}
-
-On Mellanox switches with the Spectrum ASIC, changes to the settings in the `/etc/cumulus/datapath/traffic.conf` file do *not* require you to restart `switchd`. However, you must run the `echo 1 > /cumulus/switchd/config/traffic/reload` command to apply the settings.
+Changes to the settings in the `/etc/cumulus/datapath/traffic.conf` file do *not* require you to restart `switchd`. However, you must run the `echo 1 > /cumulus/switchd/config/traffic/reload` command to apply the settings.
 
 ```
 cumulus@switch:~$ echo 1 > /cumulus/switchd/config/traffic/reload
@@ -243,15 +224,9 @@ Always run the {{<link url="#syntax-checker" text="syntax checker">}} syntax che
 
 ## Cut-through Mode and Store and Forward Switching
 
-Cut-through mode is disabled in Cumulus Linux by default on switches with Broadcom ASICs. On Mellanox switches, you cannot disable cut-through mode.
+Mellanox switches support cut-through mode but do **not** support store and forward switching. You cannot disable cut-through mode.
 
-```
-# Cut-through is disabled by default on all chips with the exception of
-# Spectrum.  On Spectrum cut-through cannot be disabled.
-#cut_through_enable = false
-```
-
-If cut-though mode is enabled and link pause is asserted, Cumulus Linux generates a TOVR and TUFL ERROR; certain error counters increment on a given physical port.
+When cut-though mode is enabled and link pause is asserted, Cumulus Linux generates a TOVR and TUFL ERROR; certain error counters increment on a given physical port.
 
 ```
 cumulus@switch:~$ sudo ethtool -S swp49 | grep Error
@@ -286,25 +261,6 @@ cumulus@switch:~$ sudo nano /etc/cumulus/datapath/traffic.conf
 # link_pause.pause_port_group.cable_length = 10
 ```
 
-To enable store and forward switching, set `cut_through_enable` to *false* in the `/etc/cumulus/datapath/traffic.conf` file:
-
-```
-cumulus@switch:~$ sudo nano /etc/cumulus/datapath/traffic.conf
-cut_through_enable = false
-```
-
-On Broadcom switches, after you modify the settings in the `/etc/cumulus/datapath/traffic.conf` file, you *must* restart `switchd` for the changes to take effect; run the `cumulus@switch:~$ sudo systemctl restart switchd.service` command. Always run the {{<link url="#syntax-checker" text="syntax checker">}} syntax checker before applying the configuration changes.
-
-{{<cl/restart-switchd>}}
-
-{{%notice note%}}
-
-On switches using Broadcom Tomahawk, Trident II, Trident II+, and Trident3 ASICs, Cumulus Linux supports store and forward switching but does **not** support cut-through mode.
-
-On switches with the Mellanox Spectrum ASIC, Cumulus Linux supports cut-through mode but does **not** support store and forward switching.
-
-{{%/notice%}}
-
 ## Congestion Notification
 
 *Explicit Congestion Notification* (ECN) is defined by {{<exlink url="https://tools.ietf.org/html/rfc3168" text="RFC 3168">}}. ECN enables the Cumulus Linux switch to mark a packet to signal impending congestion instead of dropping the packet, which is how TCP typically behaves when ECN is not enabled.
@@ -322,8 +278,6 @@ The ECN mechanism on a switch only marks packets to notify the end receiver. It 
 ECN is implemented on the switch using minimum and maximum threshold values for the egress queue length. When a packet enters the queue and the average queue length is between the minimum and maximum threshold values, a configurable probability value will determine whether the packet is marked. If the average queue length is above the maximum threshold value, the packet is always marked.
 
 The downstream switches with ECN enabled perform the same actions as the traffic is received. If the ECN bits are set, they remain set. The only way to overwrite ECN bits is to set the ECN bits to *11*.
-
-ECN is supported on {{<exlink url="https://cumulusnetworks.com/hcl" text="Broadcom Tomahawk, Tomahawk2, Trident II, Trident II+ and Trident3, and Mellanox Spectrum ASICs">}}.
 
 ECN is disabled by default in Cumulus Linux. You can enable ECN for individual switch priorities on specific switch ports in the `/etc/cumulus/datapath/traffic.conf` file:
 
@@ -354,11 +308,7 @@ ecn_red.ecn_red_port_group.max_threshold_bytes = 200000
 ecn_red.ecn_red_port_group.probability = 100
 ```
 
-On Broadcom switches, after you modify the settings in the `/etc/cumulus/datapath/traffic.conf` file, you *must* restart `switchd` for the changes to take effect; run the `cumulus@switch:~$ sudo systemctl restart switchd.service` command.
-
-{{<cl/restart-switchd>}}
-
-On Mellanox switches with the Spectrum ASIC, changes to the settings in the `/etc/cumulus/datapath/traffic.conf` file do *not* require you to restart `switchd`. However, you must run the `echo 1 > /cumulus/switchd/config/traffic/reload` command to apply the settings.
+Changes to the settings in the `/etc/cumulus/datapath/traffic.conf` file do *not* require you to restart `switchd`. However, you must run the `echo 1 > /cumulus/switchd/config/traffic/reload` command to apply the settings.
 
 ```
 cumulus@switch:~$ echo 1 > /cumulus/switchd/config/traffic/reload
@@ -469,11 +419,7 @@ egress_sched.sched_port_group1.egr_queue_6.bw_percent = 0
 egress_sched.sched_port_group1.egr_queue_7.bw_percent = 0
 ```
 
-On Broadcom switches, after you modify the settings in the `/etc/cumulus/datapath/traffic.conf` file, you *must* restart `switchd` for the changes to take effect; run the `cumulus@switch:~$ sudo systemctl restart switchd.service` command.
-
-{{<cl/restart-switchd>}}
-
-On Mellanox switches with the Spectrum ASIC, changes to the settings in the `/etc/cumulus/datapath/traffic.conf` file do *not* require you to restart `switchd`. However, you must run the `echo 1 > /cumulus/switchd/config/traffic/reload` command to apply the settings.
+Changes to the settings in the `/etc/cumulus/datapath/traffic.conf` file do *not* require you to restart `switchd`. However, you must run the `echo 1 > /cumulus/switchd/config/traffic/reload` command to apply the settings.
 
 ```
 cumulus@switch:~$ echo 1 > /cumulus/switchd/config/traffic/reload
@@ -541,15 +487,7 @@ The settings are described below:
 In Cumulus Linux, the burst size is set to twice the maximum rate internally; the setting is not configurable.
 {{%/notice%}}
 
-On Broadcom switches, when you modify the configuration in the `/etc/cumulus/datapath/traffic.conf` file, you *must* restart `switchd` for the changes to take effect; run the `cumulus@switch:~$ sudo systemctl restart switchd.service` command.
-
-{{<cl/restart-switchd>}}
-
-On Broadcom switches, after you modify the settings in the `/etc/cumulus/datapath/traffic.conf` file, you *must* restart `switchd` for the changes to take effect; run the `cumulus@switch:~$ sudo systemctl restart switchd.service` command.
-
-{{<cl/restart-switchd>}}
-
-On Mellanox switches with the Spectrum ASIC, changes to the settings in the `/etc/cumulus/datapath/traffic.conf` file do *not* require you to restart `switchd`. However, you must run the `echo 1 > /cumulus/switchd/config/traffic/reload` command to apply the settings.
+Changes to the settings in the `/etc/cumulus/datapath/traffic.conf` file do *not* require you to restart `switchd`. However, you must run the `echo 1 > /cumulus/switchd/config/traffic/reload` command to apply the settings.
 
 ```
 cumulus@switch:~$ echo 1 > /cumulus/switchd/config/traffic/reload
@@ -563,7 +501,7 @@ On switches with {{<exlink url="https://cumulusnetworks.com/products/hardware-co
 
 ## Example Configuration File
 
-The following example `/etc/cumulus/datapath/traffic.conf` datapath configuration file applies to 10G, 40G, and 100G switches on Broadcom Tomahawk, Trident II, Trident II+, or Trident3 and Mellanox Spectrum {{<exlink url="https://cumulusnetworks.com/hcl/" text="platforms">}} only.
+The following example `/etc/cumulus/datapath/traffic.conf` datapath configuration file applies to 10G, 40G, and 100G switches on Mellanox Spectrum {{<exlink url="https://cumulusnetworks.com/hcl/" text="platforms">}} only.
 
 - For the default source packet fields and mapping, each selected packet field must have a block of mapped values. Any packet field value that is not specified in the configuration is assigned to a default internal switch priority. The configuration applies to every forwarding port unless a custom remark configuration is defined for that port (see below).
 - For the default remark packet fields and mapping, each selected packet field should have a block of mapped values. Any internal switch priority value that is not specified in the configuration is assigned to a default packet field value. The configuration applies to every forwarding port unless a custom remark configuration is defined for that port (see below).
@@ -897,10 +835,6 @@ lag_hash_config.ip_prot = true
 #                   'l2-heavy-1', 'l2-heavy-2', 'v4-lpm-heavy-1',
 #                   'rash-v4-lpm-heavy', 'rash-custom-profile1',
 #                   'rash-custom-profile2', 'lpm-balanced',
-#
-#                   *** Broadcom[XGS] only platforms ***
-#                   'mode-0', 'mode-1', 'mode-2', 'mode-3', 'mode-4',
-#                   'mode-5', 'mode-6', 'mode-7', 'mode-8'
 #                   }
 #
 #   Default value: 'default'
@@ -935,9 +869,7 @@ remark.egress_remark_group.cos_7.priority_remark.dscp = [58]
 
 Cumulus Linux provides a syntax checker for the `/etc/cumulus/datapath/traffic.conf` file to check for errors, such missing parameters, or invalid parameter labels and values.
 
-On Broadcom switches, the syntax checker runs automatically during `switchd` initialization and reports syntax errors to the `/var/log/switchd.log` file.
-
-On both Broadcom and Mellanox switches, you can run the syntax checker manually from the command line by issuing the `cl-consistency-check --datapath-syntax-check` command. If errors exist, they are written to `stderr` by default. If you run the command with `-q`, errors are written to the `/var/log/switchd.log` file.
+You can run the syntax checker manually from the command line by issuing the `cl-consistency-check --datapath-syntax-check` command. If errors exist, they are written to `stderr` by default. If you run the command with `-q`, errors are written to the `/var/log/switchd.log` file.
 
 The `cl-consistency-check --datapath-syntax-check` command takes the following options:
 

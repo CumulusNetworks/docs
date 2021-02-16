@@ -6,7 +6,7 @@ toc: 3
 ---
 You can use Cumulus Linux to run the {{<exlink url="https://www.docker.com/" text="Docker">}} container platform.
 
-On a Mellanox switch, a Docker package is installed as part of the installation or upgrade process. The Docker package includes Docker Engine, and dependencies and configuration files required to run the Docker service. On a Broadcom switch, you must install the Docker package manually.
+On a Mellanox switch, a Docker package is installed as part of the installation or upgrade process. The Docker package includes Docker Engine, and dependencies and configuration files required to run the Docker service.
 
 To run Docker containers on the Cumulus Linux switch:
 
@@ -25,7 +25,7 @@ The following command output shows that the Docker package is installed. No furt
    |/ Err?=(none)/Reinst-required (Status,Err: uppercase=bad)
    ||/ Name                 Version                           Architecture Description
    +++-====================-=================================-============-=========================================
-   ii  cumulus-docker-setup 1.0-cl4.3.0+u1~1607633230.afa6ce7 all          Cumulus Linux docker configuration files.
+   ii  cumulus-docker-setup 1.0-cl5.0.0+u1~1607633230.afa6ce7 all          Cumulus Linux docker configuration files.
    ```
 
 {{< /tab >}}

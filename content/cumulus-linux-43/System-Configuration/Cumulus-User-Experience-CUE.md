@@ -24,7 +24,7 @@ In this ALPHA release of CUE, you have full access to the new CLI, which leverag
 
 This documentation describes how to access CUE and navigate the CUE CLI to configure and monitor Cumulus Linux.
 
-<!--## Install CUE
+## Install CUE
 
 CUE is not installed by default on Cumulus Linux. To install CUE, follow the procedure below.
 
@@ -53,9 +53,9 @@ Do not install CUE in a production environment.
    cumulus@switch:~$ systemctl start cued
    ```
 
-5. Log out of the switch, then log back in to get the CUE CLI prompt.-->
+5. Log out of the switch, then log back in to get the CUE CLI prompt.
 
-## Launch the CUE Simulation in Cumulus in the Cloud
+<!--## Launch the CUE Simulation in Cumulus in the Cloud
 
 CUE evaluation is available in Cumulus in the Cloud (CITC); a virtual data center network with all of the features and functionality of Cumulus Linux running on real networking hardware.
 
@@ -73,7 +73,7 @@ To start your CUE similation in CITC:
 
    GRAPHIC
 
-You are now on the leaf01 switch and can explore the CUE CLI by entering commands. The CUE CLI is described below.
+You are now on the leaf01 switch and can explore the CUE CLI by entering commands. The CUE CLI is described below.-->
 
 ## Command Line Basics
 

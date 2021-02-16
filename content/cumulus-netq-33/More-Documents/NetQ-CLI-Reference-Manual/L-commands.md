@@ -12,10 +12,39 @@ This topic includes all commands that begin with `netq l*`, `netq m*`, `netq n*`
 
 ## netq lcm
 
-    add      :  Add netq tca configuration
-    del      :  Delete netq tca configuration
-    show     :  Show fabric-wide info about specified object
-    upgrade  :  Upgrade NetQ
+cumulus@netq-ts:~$ netq lcm 
+    add       :  Add netq tca configuration
+    del       :  Delete netq tca configuration
+    discover  :  Perform switch discovery operation
+    show      :  Show fabric-wide info about specified object
+    upgrade   :  Upgrade NetQ
+cumulus@netq-ts:~$ netq lcm add 
+    cl-image         :  Cumulus Linux Image
+    credentials      :  Switch credentials
+    default-version  :  add help text
+    netq-image       :  NetQ Agent/CLI Image
+    role             :  Assign switches as superspine, spine, leaf, or exit
+cumulus@netq-ts:~$ netq lcm del 
+    cl-image     :  Cumulus Linux Image
+    credentials  :  Switch credentials
+    netq-image   :  NetQ Agent/CLI Image
+cumulus@netq-ts:~$ netq lcm discover 
+    csv-file  :  Discovery job input as csv file
+    ip-range  :  Discovery job input as ip address range
+cumulus@netq-ts:~$ netq lcm show 
+    cl-images        :  Cumulus Linux Images
+    credentials      :  Switch credentials
+    default-version  :  add help text
+    discovery-job    :  Get status of discovery job
+    netq-config      :  Display NetQ config profiles
+    netq-images      :  NETQ Agent/CLI Images
+    status           :  Get status on CL/NetQ Upgrade
+    switches         :  Switches running Cumulus Linux
+    upgrade-jobs     :  Get history of all upgrade jobs
+cumulus@netq-ts:~$ netq lcm upgrade 
+    cl-image    :  Cumulus Linux Image
+    name        :  Validation name
+    netq-image  :  NetQ Agent/CLI Image
 
     netq lcm upgrade name <text-job-name> image-id <text-image-id> license <text-cumulus-license> hostnames <text-switch-hostnames> [order <text-upgrade-order>] [run-before-after]
     netq lcm add credentials (username <text-switch-username> password <text-switch-password> | ssh-key <text-ssh-key>)

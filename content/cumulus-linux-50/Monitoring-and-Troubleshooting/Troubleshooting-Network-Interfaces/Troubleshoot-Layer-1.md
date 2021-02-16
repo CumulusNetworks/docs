@@ -116,15 +116,7 @@ The last part of the compliance code specifies the Ethernet technology and the n
 
 An active module with a passive module compliance code and vice versa would cause the port to be set up incorrectly and may affect signal integrity.
 
-Some modules have vendor specific coding, are older, or are using a proprietary vendor technology that is not listed in the standards. As a result, they are not recognized by default and need to be overridden to the correct compliance code. On Mellanox platforms, the port firmware automatically overrides certain supported modules to the correct compliance code. On Broadcom platforms, the `/usr/share/cumulus/portwd.conf` file contains known overrides for certain modules. On Broadcom platforms, the user can also create an override file in `/etc/cumulus/portwd.conf` to specify that a module is best represented by a particular compliance code.
-
-The override file uses the vendor OUI (preferred, more reliable) or the vendor name, plus the vendor PN &mdash; all from the module EEPROM &mdash; to specify the correct override compliance code of the module. For example:
-
-```
-[cables]
-44:7c:7f,C41MF=40g-sr4
-DELL EMC,C41MF=40g-sr4
-```
+Some modules have vendor specific coding, are older, or are using a proprietary vendor technology that is not listed in the standards. As a result, they are not recognized by default and need to be overridden to the correct compliance code. On Mellanox platforms, the port firmware automatically overrides certain supported modules to the correct compliance code.
 
 ### Digital Diagnostic Monitoring/Digital Optical Monitoring (DDM/DOM)
 
@@ -156,7 +148,7 @@ Many Ethernet technologies used in Cumulus Linux switches do not have autoneg ca
 - All 10G DAC and optical links do not have autonegotiation; only 10GBASE-T and backplane links have autoneg standards. Backplane links do not exist on Cumulus Linux switch ports.
 - All optical links except 1G optical do not have autonegotiation.  
 
-Thus, only about half of all modern link types even support autoneg, leading to much confusion regarding whether to enable or disable autoneg.
+Therefore, only about half of all modern link types support autoneg, leading to much confusion regarding whether to enable or disable autoneg.
 
 The next three subsections provide guidance on when and how to enable autonegotiation.
 
@@ -164,7 +156,7 @@ The next three subsections provide guidance on when and how to enable autonegoti
 
 1000BASE-T and 10GBASE-T fixed copper ports require autonegotiation for 1G and 10G speeds. This is the default setting and cannot be disabled for 1G speeds. Disabling autoneg on these ports requires setting the speed to 100Mbps or 10Mbps and the correct {{<link url="Switch-Port-Attributes/#port-speed-and-duplex-mode" text="duplex">}} setting.
 
-1000BASE-T SFPs have an onboard PHY that does the autonegotiation automatically on the RJ45 side without involving the port. Do not change the default autoneg setting on these ports; on Mellanox switches, autoneg is *ON* while on Broadcom switches, autoneg is *OFF*.
+1000BASE-T SFPs have an onboard PHY that does the autonegotiation automatically on the RJ45 side without involving the port. Do not change the default autoneg setting on these ports; on Mellanox switches, autoneg is *ON*.
 
 For 1000BASE-X, autonegotiation is highly recommended on 1G optical links to detect unidirectional link failures.
 
@@ -174,12 +166,10 @@ For 10G DACs, there is no autonegotiation.
 
 For DAC cables on speeds higher than 25G, autonegotiation is unnecessary, but is useful because it can improve signal integrity by link training. It also negotiates speed and FEC, but this is less useful since the neighbor speed and FEC is usually known.
 
-On Broadcom platforms, when autonegotiation is enabled, the output of `sudo l1-show <swp>` displays the local advertised autonegotiation capabilities and the remote advertised autonegotiation capabilities, provided the link is up.
-
 #### General Autonegotiation Guidance
 
 - When autoneg is supported on an Ethernet type, both sides of the link must be configured with the same autoneg setting.
-- Cumulus Linux sets a default for autoneg and/or speed, duplex and FEC for each port based on the ASIC and port speed. On Mellanox platforms running Cumulus Linux, autoneg defaults to *ON*. On Broadcom platforms running Cumulus Linux, autoneg and FEC default to *OFF*, and the maximum speed for the port as defined in `ports.conf`.
+- Cumulus Linux sets a default for autoneg and/or speed, duplex and FEC for each port based on the ASIC and port speed. On Mellanox platforms running Cumulus Linux, autoneg defaults to *ON*.
 - If autoneg is *OFF* &mdash; which is called force mode &mdash; then speed, duplex and FEC must also be specified if a non-default value for the port is desired. If autoneg is *ON*, then speed, duplex and FEC should not be specified. The only exception to this is for 1000BASE-X optical interfaces, where speed is *1000* and autoneg is *ON* in order to get unidirectional link detection.
 - If autoneg is enabled on a link type that does not support autoneg, the port enters *autodetect* mode (see the {{<link url="#autodetect" text="next section">}}) to try and determine the most likely speed and FEC settings to bring the link up. This feature is usually successful, but if the link does not come up, it may be necessary to disable autoneg and set these link settings manually.
 - There is no concept of autoneg of MTU. To change the MTU from the default setting, {{<link url="Switch-Port-Attributes/#mtu" text="configure it explicitly">}}.
@@ -192,10 +182,6 @@ As a result of the confusion about when autoneg applies to a link type, many Eth
 When autonegotiation is enabled on a port, the behavior is as follows:
 
 - On Mellanox platforms, when autoneg is *ON*, the port is always in autodetect mode. The port steps through a list of possible autoneg, speed and FEC settings for the port and module combination until the link comes up. The default configuration is autoneg *ON*, which essentially means *autodetect on* for Mellanox switches.
-- On Broadcom platforms, if autoneg is available on the Ethernet type, it is enabled. On Ethernet types that do not support autoneg, Cumulus Linux treats autoneg as *autodetect*. At the port hardware level it sets:
-  - Autoneg to OFF.
-  - Speed to the max speed defined in `ports.conf`.
-  - FEC to RS on 100G, FEC BaseR on 25G, and OFF everywhere else.
 
 Autodetect is a local feature. The neighbor is assumed to either be configured with autoneg off and speed, duplex and FEC set manually, or using some equivalent algorithm to determine the correct speed, duplex and FEC settings.
 
@@ -224,7 +210,7 @@ Both sides of a link must have the same FEC encoding algorithm enabled for the l
 - The Reed-Solomon RS-FEC(528,514) algorithm adds 14 bits of encoding information to a 514 bit stream. It replaces and uses the same amount of overhead in the 64B/66B encoding, so that the bit rate is not affected. It can correct 7 bit errors in a 514 bit stream. RS(528,514) is used on 25G (NRZ) lanes, including 25G, 50G-CR2 and 100G-SR4/CR4 interfaces.
 - The Reed-Solomon RS-FEC(544,514) algorithm adds 30 bits of overhead to correct 14+ bit errors per 514 bits. FEC RS is required on 50G (PAM4) lanes, hence, all 200G, 400G, 100G-CR2 and 50G-CR interfaces.
 - Base-R (also known as FireCode/FC) FEC adds 32 bits per 32 blocks of 64B/66B to correct 11 bits per 2048 bits. It replaces one bit per block, so it uses the same amount of overhead as 64B/66B encoding. It is used in 25G interfaces only. The algorithm executes faster than the RS-FEC algorithm, so latency is reduced. Both RS-FEC and Base-R FEC are implemented in hardware.
-- None/Off: FEC is optional and is often useful on 25G lanes, which includes 100G-SR4/CR4 and 50G-CR2 links. If the cable quality is good enough to achieve a BER of 10<sup>-12</sup> without FEC, then there is no reason to enable it.  10G/40G links should never require FEC. If a 10G/40G link has errors, replace the cable or module that is causing the error. *None/Off* is the default setting on Broadcom switches since autoneg *OFF* is the default setting.
+- None/Off: FEC is optional and is often useful on 25G lanes, which includes 100G-SR4/CR4 and 50G-CR2 links. If the cable quality is good enough to achieve a BER of 10<sup>-12</sup> without FEC, then there is no reason to enable it.  10G/40G links should never require FEC. If a 10G/40G link has errors, replace the cable or module that is causing the error.
 - Auto: FEC can be autonegotiated between 2 devices. When autoneg is *ON*, the default FEC setting is *auto* to enable FEC capability information to be sent and received with the neighbor. The port FEC active/operational setting is set to the result of the negotiation. *Auto* is the default setting on Mellanox switches since autoneg *ON* is the default setting.
 
 In some cases, the configured value may be different than the operational value. In such cases, the `l1-show` command displays both values. For example:
@@ -248,12 +234,6 @@ Various characteristics show the state of a link. All characteristics may not be
   - Local fault indicates the local end does not have signal lock or cannot understand the data sent to it on its RX path.
   - Remote fault indicates that the local end RX path has signal lock and can understand the bit stream from the neighbor, but the remote neighbor is sending alerts over that working path indicating that it has no signal lock or cannot understand the data sent to it over its own RX path.
 
-{{%notice tip%}}
-
-On Broadcom switches, if both sides are showing signal lock, but not carrier, it could be there is an autoneg mismatch or FEC mismatch in the configuration.
-
-{{%/notice%}}
-
 #### Eyes
 
 When a 1 or a 0 bit is transmitted across a link, it is represented on the electrical side of the port as either a high voltage level or a low voltage level, respectively. If an oscilloscope is attached to those leads, as the bit stream is transmitted across it, the transitions between 1 and 0 would form a pattern in the shape of an eye.
@@ -268,8 +248,6 @@ Each hardware vendor implements some quantitative measurement of eyes and some k
 
 On a Mellanox switch, the eyes are assigned a height in mV and a grade. As a rule of thumb for speeds below 100G (NRZ encoding), when the grade goes below 4000, the error rate or stability of the link may be negatively impacted.  
 
-On a Broadcom switch, the eyes are assigned a value for up, down, left, right (U,D,L,R) measurements from the center of the eye. As a rule of thumb, when the up or down measurement goes below *100* or the left/right measurement goes below *150*, the error rate or stability of the link may be negatively impacted.
-
 Note that these rules of thumb are only an indicator when troubleshooting a problem link. A link may have no stability problems with a measurement below these values, and FEC may correct all errors presented on such a link. For some interface types, FEC is required for the very reason to remove errors up to BER levels that are expected on the media.
 
 For 50G lanes (200G- and 400G-capable ports), the link uses PAM4 encoding, which has 3 eyes stacked on top of each other and therefore much smaller eye measurements. The rules of thumb mentioned above do not apply. As noted earlier, FEC is required on these links.
@@ -282,35 +260,6 @@ The command must be run as root. The syntax for the command is:
 
 ```
 cumulus@switch:~$ sudo l1-show PORTLIST
-```
-
-Here is the output from a 25G DAC link on a Broadcom switch:
-
-```
-cumulus@switch:~$ sudo l1-show swp43
-Port:  swp43
-  Module Info
-      Vendor Name: Mellanox               PN: MCP2M00-A003
-      Identifier: 0x03 (SFP)              Type: 25g-cr
-  Configured State
-      Admin: Admin Up     Speed: 25G      MTU: 9216
-      Autoneg: Off                        FEC: Off
-  Operational State
-      Link Status: Kernel: Up             Hardware: Up
-      Speed: Kernel: 25G                  Hardware: 25G
-      Autoneg: Off                        FEC: Off
-      TX Power (mW): None
-      RX Power (mW): None
-      Topo File Neighbor: mlx-switch-1, swp43
-      LLDP Neighbor:      mlx-switch-1, swp43
-  Port Hardware State:
-      Rx Fault: None                      Carrier Detect: yes
-      Rx Signal: Detect: Y                Signal Lock: Y
-      Ethmode Type: 25g-cr                Interface Type: CR
-      Speed: 25G                          Autoneg: Off
-      MDIX: ForcedNormal, Normal          FEC: Off
-      Local Advrtsd: None                 Remote Advrtsd: None
-      Eyes: L: 281, R: 296, U: 118, D: 118
 ```
 
 Here is the output from the Mellanox 2410 switch on the other side of the same link:
@@ -349,7 +298,7 @@ The output is organized into the following sections:
 
 ### Module Information
 
-The vendor name, vendor part number, identifier (QSFP/SFP type), and type (compliance codes) are read from the vendor EEPROM. If a compliance code override is being applied on a Broadcom platform, it is noted here. See {{<link url="#compliance-codes-ethernet-type-ethmode-type-interface-type" text="Compliance Codes, Ethernet Type, Ethmode Type, Interface type">}} above for an explanation.
+The vendor name, vendor part number, identifier (QSFP/SFP type), and type (compliance codes) are read from the vendor EEPROM. See {{<link url="#compliance-codes-ethernet-type-ethmode-type-interface-type" text="Compliance Codes, Ethernet Type, Ethmode Type, Interface type">}} above for an explanation.
 
 ```
 Module Info
@@ -418,19 +367,6 @@ Here is the output on Mellanox platforms:
 
 The Mellanox port firmware automatically troubleshoots link problems and displays items of concern in the *Troubleshooting Info* section of this output.
 
-Here is the output on Broadcom platforms:
-
-```
-  Port Hardware State:
-      Rx Fault: None                      Carrier Detect: yes
-      Rx Signal: Detect: Y                Signal Lock: Y
-      Ethmode Type: 25g-cr                Interface Type: CR
-      Speed: 25G                          Autoneg: Off
-      MDIX: ForcedNormal, Normal          FEC: Off
-      Local Advrtsd: None                 Remote Advrtsd: None
-      Eyes: L: 281, R: 296, U: 118, D: 118
-```
-
 See the discussions in the {{<link url="#fec" text="FEC">}}, {{<link url="#autonegotiation" text="Autonegotiation">}} and {{<link url="#signal-integrity" text="Signal Integrity">}} sections above for more details about each value.
 
 ## Methodology to Troubleshoot Layer 1 Problems
@@ -473,8 +409,7 @@ When you suspect that one of the components in a link is faulty, use the followi
 First, identify the faulty behavior at the lowest level possible, then design a test that best displays that behavior. Use the hierarchy output of `l1-show` to find the best indicator. Here are some examples of tests you can use:
 
 - No RX power: Examine the *RX power* in the *Operational State* section of the `l1-show` output.
-- Local side is not receiving signal: On Broadcom platforms, examine the *RX Fault* field for the presence of *Local*.
-- Remote side is sending *RX Faults*: On Mellanox platforms, check the *Troubleshooting info* for *neighbor is sending remote faults*. On Broadcom platforms, examine the *RX Fault* field for the presence of *Remote*.
+- Remote side is sending *RX Faults*: Check the *Troubleshooting info* for *neighbor is sending remote faults*.
 - Errors on link when FEC is not required: Examine the *HwIfInErrors* counters in `ethtool -S <swp>` to see if they are incrementing over time.
 
 Try swapping the modules and fibers to determine which component is bad:
@@ -594,8 +529,6 @@ Operational State
 
 ### Examine Port Hardware State
 
-#### Mellanox Switches
-
 The following values come from the Mellanox port firmware:
 
 ```
@@ -635,95 +568,6 @@ Port Hardware State:
       - If the link is a fiber link and the module supports RX/TX Power DDM/DOM, check the *RX Power* and *TX Power* values in the *Operational State* output of `l1-show` to help determine which component may have failed.
       - Follow the steps in {{<link url="#isolate-faulty-hardware" text="Isolate Faulty Hardware">}}; use this value or the *RX/TX Power* DDM/DOM value as the test.
     - `Neighbor is sending remote faults`. This end of the link is receiving data from the neighbor, but the neighbor is not receiving recognizable data from the local port. See *RX Fault* in the {{<link url="#signal-integrity" text="Signal Integrity">}} section above for details. The local device is not transmitting, the remote receiver is not receiving recognizable data or is broken, or the path to the remote is broken.
-
-#### Broadcom Switches
-
-The following examples are *Port Hardware State* outputs from Broadcom switches:
-
-Example 1: 100G optical link. Link is up.
-
-```
-Port Hardware State:
-    Rx Fault: None                      Carrier Detect: yes
-    Rx Signal: Detect: YYYY             Signal Lock: YYYY
-    Ethmode Type: 100g-sr4              Interface Type: SR4
-    Speed: 100G                         Autoneg: Off
-    MDIX: ForcedNormal, Normal          FEC: CL91 (RS)
-    Local Advrtsd: None                 Remote Advrtsd: None
-    Eyes: L: 234, R: 265, U: 68, D: 68, L: 250, R: 234, U: 80, D: 82,
-          L: 250, R: 234, U: 76, D: 82, L: 250, R: 234, U: 84, D: 84
-```
-
-Example 2: 100G DAC link. Link is down. Local neighbor has autoneg enabled, remote neighbor does not have autoneg enabled.
-
-```
-Port Hardware State:
-    Rx Fault: Local                     Carrier Detect: no
-    Rx Signal: Detect: YYYY             Signal Lock: YNNN
-    Ethmode Type: 100g-cr4              Interface Type: CR4
-    Speed: 25G                          Autoneg: On
-    MDIX: ForcedNormal, Normal          FEC: Off
-    Local Advrtsd:  fd = 100GB hd =  intf = medium = copper pause =  lb =  flags =
-    Remote Advrtsd: None    <=No autoneg capabilities from neighbor
-    Eyes: L: 0, R: 0, U: 0, D: 0, L: 0, R: 0, U: 0, D: 0,
-          L: 0, R: 0, U: 0, D: 0, L: 0, R: 0, U: 0, D: 0
-```
-
-For additional explanation of the first two lines of each output, see the {{<link url="#signal-integrity" text="Signal Integrity">}} section.
-
-- Rx Fault: Which side is reporting Rx Fault &mdash; Local, Remote or LocalRemote (both)?
-  - *Rx Fault: Local*: One or more of these problems exist:
-    - The remote device is not transmitting.
-    - The local receiver is not receiving recognizable data.
-    - The local receiver is broken.
-    - The fiber or copper DAC path from the remote is broken.
-  - *Rx Fault: Remote*: One or more of these problems exist:
-    - The local device is not transmitting.
-    - The remote receiver is not receiving recognizable data.
-    - The remote receiver is broken.
-    - The fiber or copper DAC path to the remote is broken.
-  - In either of these cases, check the following:
-    - Check the configurations on both sides for an autoneg or FEC configuration mismatch.
-    - If the link is a fiber link and the module supports RX/TX Power DDM/DOM, check the *RX Power* and *TX Power* values in the *Operation State* output of `l1-show` to help determine which component may have failed.
-    - Follow the steps in {{<link url="#isolate-faulty-hardware" text="Isolate Faulty Hardware">}}; use this value or the *RX/TX Power* DDM/DOM value as the test.
-- Carrier Detect:  
-  - Is carrier detected on both sides?
-  - If *yes*, on 10G speeds and above, this indicates both ends of the link are up. 1G fiber marks unidirectional failures as carrier down only if autoneg is enabled.
-  - This value is *no* if the link is down. Check for a speed, autoneg or FEC configuration mismatch, then follow the steps in {{<link url="#isolate-faulty-hardware" text="Isolate Faulty Hardware">}}.
-- Rx Signal Detect:
-  - If *Y*, then a signal is received from the neighbor.
-  - If *N*, then a signal was not received. Follow the steps in {{<link url="#isolate-faulty-hardware" text="Isolate Faulty Hardware">}} to determine the location of the failure.
-  - If the port has multiple lanes, there is one character per lane.
-- RX Signal Lock:
-  - If *Y*, then the local port receiver is locked onto the RX signal bit transitions (clock).
-  - If *N*, then the local port is not locked onto an RX signal. Check for a speed configuration mismatch, then follow the steps in {{<link url="#isolate-faulty-hardware" text="Isolate Faulty Hardware">}} to determine the location of the failure.
-  - Note in *Example 2* that autonegotiation is done on the first channel out of four, so Signal Lock is only *Y* on the first channel until the negotiation is successful.
-- Ethmode Type: Does the cable type match the type of cable installed?
-- Speed:
-  - Does the speed match the expected speed?
-  - If autonegotiation is enabled and the link is down, this may be *N/A*, or not the expected speed.  
-  - In *Example 2*, with autonegotiation failed, the speed is showing as 25G since the 100G link is has not completed autonegotiation.
-- Autoneg:
-  - Is there an autonegotiation protocol running? Is that expected based on the configuration?
-  - In *Example 1*, the port has autoneg/autodetect configured, but since there is no Autoneg protocol for 100G optical, the port correctly shows *Autoneg: Off*.
-- FEC:
-  - Does the current active FEC value match the neighbor FEC active value?
-  - If FEC is being autonegotiated, this value is the result of that negotiation when successful.
-- Local Advrtsd: If autonegotiation is enabled, this value represents the autonegotiation capabilities that the local port is sending.
-- Remote Advrtsd: If autonegotiation is enabled, this value represents the autonegotiation capabilities received from the remote port.
-  - Are the autonegotiation capabilities received from the neighbor if autoneg is enabled?
-  - Is autoneg enabled on the remote?
-  - Do the local and remote ports have common values that they can negotiate to?
-- Eyes:
-  - If the link is not up, the values for all entries is *0*.
-  - If the link is up, these values are the RX eye values.
-  - See the discussion in the {{<link url="#eyes" text="Eyes">}} section for more information.
-
-{{%notice tip%}}
-
-If both sides are showing *Signal Lock: Y* on the first lane or all lanes, but *Carrier Detect: no* and/or *RX fault: Local*, then it is likely that there is an autoneg mismatch or FEC mismatch in the configuration.
-
-{{%/notice%}}
 
 ### RX Signal Failure Examples
 
@@ -869,13 +713,7 @@ To determine if a switch support higher power modes, consult the {{<exlink url="
 
 Mellanox switches vary in their support of high power modules. For example, on some Mellanox Spectrum 1 switches, only the first and last two QSFP ports support up to QSFP power class 6 (4.5W) and only the first and last two SFP ports support SFP power class 3 (2.0W) modules. Other Spectrum 1 switches do not support high power ports at all. Consult the {{<exlink url="https://cumulusnetworks.com/hcl" text="Cumulus Linux HCL">}} and the hardware manufacturer specifications for exact details of which ports support high power modules.
 
-Broadcom switches do not restrict power levels on a per-port basis; the power rating is done for the entire SFP or QSFP power bus.  
-
-Cumulus Linux supports power classes up to 7 (5.0W) on each Broadcom QSFP port, but the total power rating must remain below the total power rating per bus.
-
 The total bus power rating is the default power rating per port type (SFP: 1.5W, QSFP: 3.5W) multiplied by the number of ports of each type present on the bus.
-
-On Broadcom switches, since not all modules pull the full power rating, it possible to insert one high power module in a fully populated switch without issue. If more high power modules are needed, then ports should be left empty to account for the extra power required by the high power module.
 
 To see the requested and enabled status for high power module, refer to the output of `sudo ethtool -m`. The following output is from a device of power class between 1-4 (1.5W to 3.5W). High power class is not requested by the module or enabled by the switch.
 

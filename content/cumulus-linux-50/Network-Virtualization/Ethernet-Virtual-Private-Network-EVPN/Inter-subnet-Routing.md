@@ -297,7 +297,6 @@ EVPN prefix routes carry the layer 3 VNI and router MAC address and follow the s
 
 - When connecting to a WAN edge router to reach destinations outside the data center, deploy specific border/exit leaf switches to originate the type-5 routes.
 - On switches with Spectrum ASICs, centralized routing, symmetric routing, and prefix-based routing only work with the Spectrum A1 chip.
-- If you are using a Broadcom Trident II+ switch as a border/exit leaf, see {{<link url="#considerations" text="Considerations">}} below for a required workaround; the workaround only applies to Trident II+ switches, not Tomahawk or Spectrum.
 
 {{%/notice%}}
 
@@ -632,92 +631,6 @@ Route Distinguisher: 10.10.10.1:3
 To show the learned route from an external router injected as a type-5 route, run the NCLU `net show bgp vrf <vrf> ipv4 unicast` command or the vtysh `show bgp vrf <vrf> ipv4 unicast` command.
 
 ## Considerations
-
-### VXLAN Decapsulation on Maverick and Broadcom Trident II Switches
-
-On the Broadcom Trident II+ and Maverick-based switch, when a lookup is done after VXLAN decapsulation on the external-facing switch (the exit or border leaf), the switch does not rewrite the MAC addresses or TTL. For through traffic, packets are dropped by the next hop instead of correctly routing from a VXLAN overlay network into a non-VXLAN external network (such as the Internet). This applies to all forms of VXLAN routing (centralized, asymmetric, and symmetric) and affects all traffic from VXLAN overlay hosts that need to be routed after VXLAN decapsulation on an exit or border leaf. This includes traffic destined to external networks (through traffic) and traffic destined to the exit leaf SVI address. To work around this issue, modify the external-facing interface for each VLAN sub-interface on the exit leaf by creating a temporary VNI and associating it with the existing VLAN ID.
-
-{{< expand "Example Workaround "  >}}
-
-For example, if the expected interface configuration is:
-
-```
-auto swp3.2001
-iface swp3.2001
-    vrf vrf1
-    address 10.0.0.2/24
-# where swp3 is the external facing port and swp3.2001 is the VLAN sub-interface
-
-auto bridge
-iface bridge
-    bridge-vlan-aware yes
-    bridge ports vx-4001
-    bridge-vids 4001
-
-auto vx-4001
-iface vx-4001
-    vxlan-id 4001
-    <... usual vxlan config ...>
-      bridge-access 4001
-# where vnid 4001 represents the L3 VNI
-
-auto vlan4001
-iface vlan4001
-    vlan-id 4001
-    vlan-raw-device bridge
-    vrf vrf1
-```
-
-Modify the configuration as follows:
-
-```
-auto swp3
-iface swp3
-    bridge-access 2001
-# associate the port (swp3) with bridge 2001
-
-auto bridge
-iface bridge
-    bridge-vlan-aware yes
-    bridge ports swp3 vx-4001 vx-16000000
-    bridge-vids 2001
-# where vx-4001 is the existing VNI and vx-16000000 is a new temporary VNI
-# this is now bridging the port (swp3), the VNI (vx-4001),
-# and the new temporary VNI (vx-16000000)
-# the bridge VLAN ID is now 2001
-
-auto vlan2001
-iface vlan2001
-    vlan-id 2001
-    vrf vrf1
-    address 10.0.0.2/24
-    vlan-raw-device bridge
-# create a VLAN 2001 with the associated VRF and IP address
-
-auto vx-16000000
-iface vx-16000000
-    vxlan-id 16000000
-    bridge-access 2001
-    <... usual vxlan config ...>
-# associate the temporary VNI (vx-16000000) with bridge 2001
-
- auto vx-4001
-iface vx-4001
-    vxlan-id 4001
-    <... usual vxlan config ...>
-    bridge-access 4001
-# where vnid 4001 represents the L3 VNI
-
-auto vlan4001
-iface vlan4001
-    vlan-id 4001
-    vlan-raw-device bridge
-    vrf vrf1
-```
-
-If you use an MLAG pair instead of a single exit/border leaf, add the same temporary VNIs on both switches of the MLAG pair.
-
-{{< /expand >}}
 
 ### Centralized Routing with ARP Suppression Enabled on the Gateway
 

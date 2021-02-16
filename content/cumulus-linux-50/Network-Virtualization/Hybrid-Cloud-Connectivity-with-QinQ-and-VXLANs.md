@@ -13,10 +13,7 @@ In Cumulus Linux, you map QinQ packets to VXLANs through:
 - *Single tag translation*, where you map a customer to a VNI and preserve the service as an inner VLAN inside a VXLAN packet.
 - *Double tag translation*, where you map a customer and service to a VNI.
 
-QinQ is available on switches with the following ASICs:
-
-- Broadcom Tomahawk 2, Tomahawk+, Tomahawk, Trident3, Trident II+ and Trident II.
-- Mellanox Spectrum 1, Spectrum 2 and Spectrum 3, only with {{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware bridges">}} with 802.1ad and only with single tag translation.
+QinQ is available on Mellanox Spectrum 1, Spectrum 2 and Spectrum 3, only with {{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware bridges">}} with 802.1ad and only with single tag translation.
 
 ## Configure Single Tag Translation
 

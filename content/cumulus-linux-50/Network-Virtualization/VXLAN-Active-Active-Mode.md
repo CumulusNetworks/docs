@@ -16,8 +16,7 @@ toc: 3
 | spine | The aggregation switch for multiple leafs. Specifically used when a data center is using a {{<exlink url="https://en.wikipedia.org/wiki/Clos_network" text="Clos network architecture">}}. Read more about spine-leaf architecture in this {{<exlink url="https://cumulusnetworks.com/learn/resources/whitepapers/building-scalable-data-center-networks" text="white paper">}}. |
 | exit leaf | A switch dedicated to peering the Clos network to an outside network; also referred to as a border leaf, service leaf, or edge leaf. |
 | anycast | An IP address that is advertised from multiple locations. Anycast enables multiple devices to share the same IP address and effectively load balance traffic across them. With VXLAN, anycast is used to share a VTEP IP address between a pair of MLAG switches. |
-| RIOT | Routing in and out of tunnels. A Broadcom feature for routing in and out of tunnels. Allows a VXLAN bridge to have a switch VLAN interface associated with it, and traffic to exit a VXLAN into the layer 3 fabric. Also called VXLAN Routing. |
-| VXLAN routing | The industry standard term for the ability to route in and out of a VXLAN. Equivalent to the Broadcom RIOT feature. |
+| VXLAN routing | The industry standard term for the ability to route in and out of a VXLAN. |
 | clagd-vxlan-anycast-ip | The anycast address for the MLAG pair to share and bind to when MLAG is up and running. |
 
 ## Configure VXLAN Active-active Mode

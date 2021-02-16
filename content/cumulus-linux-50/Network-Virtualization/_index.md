@@ -16,7 +16,7 @@ Cumulus Linux can initiate and terminate VTEPs in hardware and supports wire-rat
 
 Cumulus Linux includes the native Linux VXLAN kernel support and integrates with controller-based overlay solutions like {{<link url="Integrating-Hardware-VTEPs-with-VMware-NSX-MH" text="VMware NSX">}} and {{<link url="Integrating-Hardware-VTEPs-with-Midokura-MidoNet-and-OpenStack" text="Midokura MidoNet">}}.
 
-VXLAN is supported only on switches in the {{<exlink url="https://www.cumulusnetworks.com/hcl/" text="Cumulus Linux HCL">}} using the Broadcom Tomahawk, Trident II, Trident II+ and Trident3 chipsets, as well as the Mellanox Spectrum chipset.
+VXLAN is supported on switches in the {{<exlink url="https://www.cumulusnetworks.com/hcl/" text="Cumulus Linux HCL">}} using the the Mellanox Spectrum chipset.
 
 {{%notice note%}}
 
@@ -29,8 +29,6 @@ The VXLAN tunnel endpoints cannot share a common subnet; there must be at least 
 ## Considerations
 
 ### Cut-through Mode and Store and Forward Switching
-
-On switches using Broadcom Tomahawk, Trident II, Trident II+, and Trident3 ASICs, Cumulus Linux supports store and forward switching for VXLANs but does **not** support {{<link url="Buffer-and-Queue-Management#cut-through-mode-and-store-and-forward-switching" text="cut-through mode">}}.
 
 On switches using Mellanox Spectrum ASICs, Cumulus Linux supports cut-through mode for VXLANs but does **not** support store and forward switching.
 

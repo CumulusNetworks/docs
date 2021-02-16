@@ -20,7 +20,7 @@ MLD snooping processes MLD v1/v2 reports, queries and v1 done messages for IPv6 
 
 {{< img src = "/images/cumulus-linux/igmp_snoop_diagram.png" >}}
 
-## Configure IGMP/MLD Snooping over VXLAN
+<!--BROADCOM ONLY## Configure IGMP/MLD Snooping over VXLAN
 
 Cumulus Linux supports IGMP/MLD snooping over VXLAN bridges, where VXLAN ports are set as router ports, on Broadcom switches.
 
@@ -65,7 +65,7 @@ cumulus@switch:~$ sudo ifreload -a
 
 Consider also configuring IGMP/MLD querier. See {{<link url="#configure-igmpmld-querier" text="Configure IGMP/MLD Querier">}}, below.
 
-To disable IGMP/MLD snooping over VXLAN, run the `net add bridge <bridge> mcsnoop no` command.
+To disable IGMP/MLD snooping over VXLAN, run the `net add bridge <bridge> mcsnoop no` command.-->
 
 ## Configure IGMP/MLD Querier
 

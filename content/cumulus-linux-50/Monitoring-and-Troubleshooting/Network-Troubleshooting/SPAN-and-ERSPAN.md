@@ -26,7 +26,6 @@ All three methods are described below.
 - Mirrored traffic is not guaranteed. If the MTP is congested, mirrored packets might be discarded.
 - A SPAN and ERSPAN destination interface that is oversubscribed might result in data plane buffer depletion and buffer drops. Exercise caution when enabling SPAN and ERSPAN when the aggregate speed of all source ports exceeds the destination port.
 - Because SPAN and ERSPAN is done in hardware, eth0 is not supported as a destination.
-- Cut-through mode is not supported for ERSPAN in Cumulus Linux on switches using Broadcom Tomahawk, Trident II+ and Trident II ASICs.
 - Cumulus Linux does not support IPv6 ERSPAN destinations.
 - ERSPAN does not cause the kernel to send ARP requests to resolve the next hop for the ERSPAN destination. If an ARP entry for the destination or next hop does not already exist in the kernel, you need to manually resolve this before mirrored traffic is sent (use ping or arping).
 - Mirroring to the same interface that is being monitored causes a recursive flood of traffic and might impact traffic on other interfaces.
@@ -45,7 +44,7 @@ The command parameters are described below.
 | `session <id>` | The session ID. This is a number between 0 and 7. |
 | `ingress|egress` | The session direction:<ul><li> Ingress, where packets received on a port are sent to a sniffer port (SPAN) or destination IP address (ERSPAN).</li><li>Egress, where packets transmitted by the port are sent to the sniffer port (SPAN) or destination IP address (ERSPAN).</li></ul><br>To configure both ingress and egress, create two sessions.|
 | `src-port <interface>` | The interface or list of interfaces on which the mirror session applies. You can specify swp or bond interfaces. Separate the interfaces in the list with a comma; for example swp1,swp45,swp46.{{%notice note%}}For ERSPAN, you can specify only one interface.{{%/notice%}}|
-| `dst-port <interface>` | The interface to which the frame is mirrored for SPAN. A traffic analyzer, monitor or a host can be connected to this interface to observe the traffic sniffed from the source interface. Only swp interfaces are supported.<br><br>On Broadcom switches, Cumulus Linux supports a maximum of four ingress interfaces and four egress interfaces. You can configure a maximum of four mirroring sessions per switch.<br><br> On Mellanox Spectrum switches, Cumulus Linux supports a maximum of three analyzer ports. On Mellanox switches with the Spectrum-2 and Spectrum-3 ASIC, Cumulus Linux supports a maximum of eight analyzer ports. You can configure multiple sessions to a single analyzer port.|
+| `dst-port <interface>` | The interface to which the frame is mirrored for SPAN. A traffic analyzer, monitor or a host can be connected to this interface to observe the traffic sniffed from the source interface. Only swp interfaces are supported.<br><br>On Mellanox Spectrum switches, Cumulus Linux supports a maximum of three analyzer ports. On Mellanox switches with the Spectrum-2 and Spectrum-3 ASIC, Cumulus Linux supports a maximum of eight analyzer ports. You can configure multiple sessions to a single analyzer port.|
 | `src-ip <ip-address>` | The source IP address for ERSPAN encapsulation. This is typically the loopback address of the switch. |
 | `dst-ip <ip-address>` | The destination IP address for ERSPAN encapsulation. This is typically the loopback address of the destination device.|
 
@@ -137,9 +136,7 @@ Always place your rule files under `/etc/cumulus/acl/policy.d/`.
 
 {{%/notice%}}
 
-- For Broadcom switches, Cumulus Linux supports a maximum of two SPAN destinations.
 - For Mellanox Spectrum switches, Cumulus Linux supports only a single SPAN destination in atomic mode or three SPAN destinations in non-atomic mode.
-- To configure SPAN or ERSPAN on a Tomahawk or Trident3 switch, you must enable {{<link url="Netfilter-ACLs#nonatomic-update-mode-and-atomic-update-mode" text="non-atomic update  mode">}}.
 - Mellanox Spectrum switches reject SPAN ACL rules for an output interface that is a subinterface.
 - Multiple rules (SPAN sources) can point to the same SPAN destination, but a given SPAN source *cannot* specify two SPAN destinations.
 
@@ -354,14 +351,6 @@ To mirror all forwarded TCP packets with only FIN set:
 ### ERSPAN
 
 This section describes how to configure ERSPAN.
-
-{{%notice note%}}
-
-{{<link url="Buffer-and-Queue-Management#configure-cut-through-mode-and-store-and-forward-switching" text="Cut-through mode">}} is **not** supported for ERSPAN in Cumulus Linux on switches using Broadcom Tomahawk, Trident II+, and Trident II ASICs.
-
-Cut-through mode **is** supported for ERSPAN in Cumulus Linux on switches using Mellanox Spectrum ASICs.
-
-{{%/notice%}}
 
 1. Create a rules file in `/etc/cumulus/acl/policy.d/`. The following rule configures ERSPAN for all packets coming in from swp1 to destination 10.10.10.234.
 

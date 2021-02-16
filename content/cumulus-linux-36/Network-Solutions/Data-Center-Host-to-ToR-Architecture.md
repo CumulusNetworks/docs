@@ -318,7 +318,7 @@ iface eth1 inet static
 <li><p>No redundancy, uses single ToR as gateway.</p></li>
 </ul></td>
 <td><ul>
-<li><p><a href="https://cumulusnetworks.com/media/cumulus/pdf/technical/validated-design-guides/Big-Data-Cumulus-Linux-Validated-Design-Guide.pdf" class="external-link">Big Data validated design guide</a> uses single attached ToR</p></li>
+<li><p><!-- <a href="https://cumulusnetworks.com/media/cumulus/pdf/technical/validated-design-guides/Big-Data-Cumulus-Linux-Validated-Design-Guide.pdf" class="external-link">Big Data validated design guide</a> uses single attached ToR --></p></li>
 </ul></td>
 </tr>
 </tbody>

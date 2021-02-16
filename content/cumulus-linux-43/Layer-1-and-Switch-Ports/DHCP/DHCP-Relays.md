@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 340
 toc: 3
 ---
-DHCP is a client server protocol that automatically provides IP hosts with IP addresses and other related configuration information. A DHCP relay (agent) is a host that forwards DHCP packets between clients and servers. DHCP relays forward requests and replies between clients and servers that are not on the same physical subnet.
+DHCP is a client server protocol that automatically provides IP hosts with IP addresses and other related configuration information. A DHCP relay (agent) is a host that forwards DHCP packets between clients and servers that are not on the same physical subnet.
 
 This topic describes how to configure DHCP relays for IPv4 and IPv6 using the following topology:
 
@@ -18,7 +18,7 @@ If you intend to run the `dhcrelay` service within a {{<link url="Virtual-Routin
 
 ## Basic Configuration
 
-To set up DHCP relay, you need to provide the IP address of the DHCP server and the interfaces participating in DHCP relay. Follow the commands below.
+To set up DHCP relay, you need to provide the IP address of the DHCP server and the interfaces participating in DHCP relay (facing the server and facing the client). You can specify as many server IP addresses that can fit in 255 octets.
 
 {{< tabs "TabID25 ">}}
 
@@ -28,9 +28,7 @@ To set up DHCP relay, you need to provide the IP address of the DHCP server and 
 
 {{< tab "IPv4 ">}}
 
-Specify the IP address of each DHCP server and both interfaces participating in DHCP relay (facing the server and facing the client).
-
-In the example commands below, the DHCP server IP address is 172.16.1.102, vlan10 is the SVI for VLAN 10 and the uplinks are swp51 and swp52. As per {{<exlink url="https://tools.ietf.org/html/rfc3046" text="RFC 3046">}}, you can specify as many server IP addresses that can fit in 255 octets. You can specify each address only once.
+In the example commands below, the DHCP server IP address is 172.16.1.102, vlan10 is the SVI for VLAN 10 and the uplinks are swp51 and swp52.
 
 ```
 cumulus@leaf01:~$ net add dhcp relay interface swp51
@@ -59,9 +57,7 @@ NCLU commands are not currently available to configure IPv6 relays. Use the Linu
 
 {{< tab "IPv4 ">}}
 
-1. Edit the `/etc/default/isc-dhcp-relay` file to add the IP address of the DHCP server and both interfaces participating in DHCP relay (facing the server and facing the client).
-
-   In the example below, the DHCP server IP address is 172.16.1.102, vlan10 is the SVI for VLAN 10, and the uplinks are swp51 and swp52. As per {{<exlink url="https://tools.ietf.org/html/rfc3046" text="RFC 3046">}}, you can specify as many server IP addresses that can fit in 255 octets. You can specify each address only once.
+1. Edit the `/etc/default/isc-dhcp-relay` file to add the IP address of the DHCP server and the interfaces participating in DHCP relay. In the example below, the DHCP server IP address is 172.16.1.102, vlan10 is the SVI for VLAN 10, and the uplinks are swp51 and swp52.
 
    ```
    cumulus@leaf01:~$ sudo nano /etc/default/isc-dhcp-relay
@@ -81,9 +77,7 @@ NCLU commands are not currently available to configure IPv6 relays. Use the Linu
 
 {{< tab "IPv6 ">}}
 
-1. Edit the `/etc/default/isc-dhcp-relay6` file to add the IP address of the DHCP server and both interfaces participating in DHCP relay (facing the server and facing the client). As per {{<exlink url="https://tools.ietf.org/html/rfc3046" text="RFC 3046">}}, you can specify as many server IP addresses that can fit in 255 octets. You can specify each address only once.
-
-   In the example below, the DHCP server IP address is 2001:db8:100::2, vlan10 is the SVI for VLAN 10, and the uplinks are swp51 and swp52.
+1. Edit the `/etc/default/isc-dhcp-relay6` file to add the IP address of the DHCP server and the interfaces participating in DHCP relay. In the example below, the DHCP server IP address is 2001:db8:100::2, vlan10 is the SVI for VLAN 10, and the uplinks are swp51 and swp52.
 
    ```
    cumulus@leaf01:$ sudo nano /etc/default/isc-dhcp-relay6
@@ -104,69 +98,29 @@ NCLU commands are not currently available to configure IPv6 relays. Use the Linu
 
 {{< /tab >}}
 
-{{< tab "CUE Commands ">}}
-
-{{< tabs "TabID121 ">}}
-
-{{< tab "IPv4 ">}}
-
-Specify the IP address of each DHCP server and both interfaces participating in DHCP relay (facing the server and facing the client).
-
-In the example commands below, the DHCP server IP address is 172.16.1.102, vlan10 is the SVI for VLAN 10, and the uplinks are swp51 and swp52. As per {{<exlink url="https://tools.ietf.org/html/rfc3046" text="RFC 3046">}}, you can specify as many server IP addresses that can fit in 255 octets. You can specify each address only once.
-
-```
-cumulus@leaf01:~$ cl set service dhcp-relay default interface swp51
-cumulus@leaf01:~$ cl set service dhcp-relay default interface swp52
-cumulus@leaf01:~$ cl set service dhcp-relay default interface vlan10
-cumulus@leaf01:~$ cl set service dhcp-relay default server 172.16.1.102
-cumulus@leaf01:~$ cl apply
-```
-
-{{< /tab >}}
-
-{{< tab "IPv6 ">}}
-
-Specify the IP address of each DHCP server and both interfaces participating in DHCP relay (facing the server and facing the client).
-
-In the example commands below, the DHCP server IP address is 2001:db8:100::2, vlan10 is the SVI for VLAN 10, and the uplinks are swp51 and swp52. As per {{<exlink url="https://tools.ietf.org/html/rfc3046" text="RFC 3046">}}, you can specify as many server IP addresses that can fit in 255 octets. You can specify each address only once.
-
-```
-cumulus@leaf01:~$ cl set service dhcp-relay6 default interface swp51
-cumulus@leaf01:~$ cl set service dhcp-relay6 default interface swp52
-cumulus@leaf01:~$ cl set service dhcp-relay6 default interface vlan10
-cumulus@leaf01:~$ cl set service dhcp-relay6 default server 2001:db8:100::2
-cumulus@leaf01:~$ cl apply
-```
-
-{{< /tab >}}
-
-{{< /tabs >}}
-
-{{< /tab >}}
-
 {{< /tabs >}}
 
 {{%notice note%}}
 
-- You configure a DHCP relay on a per-VLAN basis, specifying the SVI, not the parent bridge. In the example above, you specify *vlan10* as the SVI for VLAN 1 but you do not specify the bridge named *bridge*.
+- You configure a DHCP relay on a per-VLAN basis, specifying the SVI, not the parent bridge. In the example above, you specify *vlan10* as the SVI for VLAN 10 but you do not specify the bridge named *bridge*.
 - When you configure DHCP relay with VRR, the DHCP relay client must run on the SVI; not on the -v0 interface.
 
 {{%/notice%}}
 
 ## Optional Configuration
 
-This section describes optional DHCP relay configuration. The steps provided in this section assume that you already configured basic DHCP relay configuration, described above.
+This section describes optional DHCP relay configuration. The steps provided in this section assume that you already done basic DHCP relay configuration, described above.
 
 ### DHCP Agent Information Option (Option 82)
 
-Cumulus Linux supports DHCP Agent Information Option 82, which allows a DHCP relay to insert circuit or relay specific information into a request that is being forwarded to a DHCP server. Two options are provided:
+Cumulus Linux supports DHCP Agent Information Option 82, which allows a DHCP relay to insert circuit or relay specific information into a request that is being forwarded to a DHCP server. The following options are provided:
 
 - *Circuit ID* includes information about the circuit on which the request comes in, such as the SVI or physical port. By default, this is the printable name of the interface on which the client request is received.
 - *Remote ID* includes information that identifies the relay agent, such as the MAC address. By default, this is the system MAC address of the device on which DHCP relay is running.
 
 {{%notice note%}}
 
-NCLU and CUE commands are not currently available for this feature. Use Linux commands.
+NCLU commands are not currently available for this feature. Use Linux commands.
 
 {{%/notice%}}
 
@@ -192,7 +146,7 @@ To configure DHCP Agent Information Option 82:
    OPTIONS="-a --use-pif-circuit-id"
    ```
 
-   To customize the Remote ID sub-option, add `-a -r` to the `OPTIONS` line followed by a custom string (up to 255 characters) that is used for the Remote ID:
+   To customize the Remote ID sub-option, add `-a -r` to the `OPTIONS` line followed by a custom string (up to 255 characters):
 
    ```
    cumulus@leaf01:~$ sudo nano /etc/default/isc-dhcp-relay
@@ -209,7 +163,7 @@ To configure DHCP Agent Information Option 82:
 
 ### Control the Gateway IP Address with RFC 3527
 
-When DHCP relay is required in an environment that relies on an anycast gateway (such as EVPN), a unique IP address is necessary on each device for return traffic. By default, in a BGP unnumbered environment with DHCP relay, the source IP address is set to the loopback IP address and the gateway IP address (giaddr) is set as the SVI IP address. However with anycast traffic, the SVI IP address is not unique to each rack; it is typically shared amongst all racks. Most EVPN ToR deployments only possess a single unique IP address, which is the loopback IP address.
+When DHCP relay is required in an environment that relies on an anycast gateway (such as EVPN), a unique IP address is necessary on each device for return traffic. By default, in a BGP unnumbered environment with DHCP relay, the source IP address is set to the loopback IP address and the gateway IP address (giaddr) is set to the SVI IP address. However with anycast traffic, the SVI IP address is not unique to each rack; it is typically shared between racks. Most EVPN ToR deployments only possess a single unique IP address, which is the loopback IP address.
 
 {{<exlink url="https://tools.ietf.org/html/rfc3527" text="RFC 3527">}} enables the DHCP server to react to these environments by introducing a new parameter to the DHCP header called the link selection sub-option, which is built by the DHCP relay agent. The link selection sub-option takes on the normal role of the giaddr in relaying to the DHCP server which subnet is correlated to the DHCP request. When using this sub-option, the giaddr continues to be present but only relays the return IP address that is to be used by the DHCP server; the giaddr becomes the unique loopback IP address.
 
@@ -221,11 +175,11 @@ RFC 3527 is supported for IPv4 DHCP relays only.
 
 {{%/notice%}}
 
-The following illustration demonstrates how you can control the giaddr with RFC 3527.
+<!--The following illustration demonstrates how you can control the giaddr with RFC 3527.
 
-{{< img src = "/images/cumulus-linux/dhcp-relay-RFC3527.png" >}}
+{{< img src = "/images/cumulus-linux/dhcp-relay-RFC3527.png" >}}-->
 
-To enable RFC 3527 support and control the giaddr, run the following commands.
+To enable RFC 3527 support and control the giaddr:
 
 {{< tabs "TabID166 ">}}
 
@@ -382,17 +336,6 @@ cumulus@leaf:~$ net commit
 
 {{< /tab >}}
 
-{{< tab "CUE Commands ">}}
-
-Run the `cl set service dhcp-relay default source-ip giaddress` command:
-
-```
-cumulus@leaf01:~$ cl set service dhcp-relay default source-ip giaddress
-cumulus@leaf01:~$ cl config apply
-```
-
-{{< /tab >}}
-
 {{< /tabs >}}
 
 ### Configure Multiple DHCP Relays
@@ -420,25 +363,6 @@ To configure multiple DHCP relay daemons on a switch:
    # This will be used in the actual dhcrelay command
    # For example, "-i eth0 -i eth1"
    INTF_CMD="-i swp2s2 -i swp2s3"
-
-   # Additional options that are passed to the DHCP relay daemon?
-   OPTIONS=""
-   ```
-
-   An example configuration file for IPv6 is shown below:
-
-   ```
-   # Defaults for isc-dhcp-relay6 initscript
-   # sourced by /etc/init.d/isc-dhcp-relay6
-   # installed at /etc/default/isc-dhcp-relay6 by the maintainer scripts
-
-   #
-   # This is a POSIX shell fragment
-   #
-
-   # Specify upstream and downstream interfaces
-   # For example, "-u eth0 -l swp1"
-   INTF_CMD=""
 
    # Additional options that are passed to the DHCP relay daemon?
    OPTIONS=""
@@ -551,4 +475,4 @@ To resolve the issue, manually edit the `/etc/default/isc-dhcp-relay` file to re
 
 ## Considerations
 
-The `dhcrelay` command does not bind to an interface if the interface's name is longer than 14 characters. This is a known limitation in `dhcrelay`.
+The `dhcrelay` command does not bind to an interface if the interface name is longer than 14 characters. This is a known limitation in `dhcrelay`.

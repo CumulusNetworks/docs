@@ -163,7 +163,6 @@ Service neighmgrd          enabled    active
 Service netd               enabled    active
 Service netq-agent         enabled    active
 Service ntp                enabled    active
-Service portwd             enabled    active
 Service ptmd               enabled    active
 Service pwmd               enabled    active
 Service smond              enabled    active

@@ -7,6 +7,13 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-33315</td>
+<td><p>CVE-2020-35498: A vulnerability was found in openvswitch. A limitation in the implementation of userspace packet parsing can allow a malicious user to send a specially crafted packet causing the resulting megaflow in the kernel to be too wide, potentially causing a denial of service. The highest threat from this vulnerability is to system availability.<br/>
+Vulnerable: &lt;= 2.8.90-1-cl4u5</p></td>
+<td>4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-33283</td>
 <td><p>DSA-4850-1 (no CVE): libzstd adds read permissions to files while being compressed or uncompressed.<br/>
 Vulnerable: 1.3.8+dfsg-3<br/>
@@ -1670,6 +1677,11 @@ Fixed: 4.11.4+37-g3263f257ca-1</p></td>
 <td>CM-31627</td>
 <td><p>On switches with the Spectrum ASIC, the IPv6 default route is present in the kernel but missing in hardware.</p></td>
 <td>3.7.11-4.2.1</td>
+</tr>
+<tr>
+<td>CM-31623</td>
+<td><p>The next hop for static routes configured in a non-default VRF might be incorrectly flagged as inactive. Remove and reconfigure the static VRF route to recover from this condition. </p></td>
+<td>4.2.1</td>
 </tr>
 <tr>
 <td>CM-31618</td>

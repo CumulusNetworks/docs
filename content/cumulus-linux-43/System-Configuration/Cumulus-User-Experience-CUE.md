@@ -547,7 +547,7 @@ This section lists some of the differences between CUE and the NCLU command line
 
 ### Configuration File
 
-When you **save** network configuration using CUE, the configuration is written to the `/etc/cue.d/startup.yaml` file.
+When you save network configuration using CUE, the configuration is written to the `/etc/cue.d/startup.yaml` file.
 
 CUE also writes to underlying Linux files when you apply a configuration, such as the `/etc/network/interfaces` and `/etc/frr/frr.conf` files. You can view these configuration files; however Nvidia recommends that you do not manually edit them while using CUE.
 

@@ -81,7 +81,7 @@ To do this, you need a {{<exlink url="https://cumulusnetworks.com/cumulus-on-a-s
     #PEERLINK=swp49,swp50
     ```
 
-3. Place the USB stick into the Cumulus Linux switch (leaf01) and power on the switch. Cumulus Linux is automatically installed, including the license and a baseline configuration. The switch reboots multiple times during this process. Depending on your specific hardware platform, this process can take up to 20 minutes. After the installation completes, the LEDs corresponding to the ports connected to the Nutanix nodes illuminate in green.
+3. Place the USB stick into the Cumulus Linux switch (leaf01) and power on the switch. Cumulus Linux is automatically installed, including<!--the license and--> a baseline configuration. The switch reboots multiple times during this process. Depending on your specific hardware platform, this process can take up to 20 minutes. After the installation completes, the LEDs corresponding to the ports connected to the Nutanix nodes illuminate in green.
 
 4. When the installation completes, remove the USB stick and repeat this procedure on the other Cumulus Linux switch (leaf02).
 
@@ -330,7 +330,7 @@ Cumulus RMP does not support MLAG or active/active connections across Cumulus RM
 
 ### Other Cumulus Linux 1G Switches
 
-If you want to use a non-Cumulus RMP 1G switch that supports Cumulus Linux for out-of-band management, you must manually install the Cumulus Linux software and license and set up the baseline configuration. The default {{<exlink url="https://cumulusnetworks.com/cumulus-on-a-stick/" text="Cumulus on a Stick image">}} has this information.
+If you want to use a non-Cumulus RMP 1G switch that supports Cumulus Linux for out-of-band management, you must manually install the Cumulus Linux software<!--  and license--> and set up the baseline configuration. The default {{<exlink url="https://cumulusnetworks.com/cumulus-on-a-stick/" text="Cumulus on a Stick image">}} has this information.
 
 After you install the software, you can use the following command to configure all ports for a single, untagged management VLAN, including any uplinks.
 

@@ -25,7 +25,7 @@ The following command output shows that the Docker package is installed. No furt
    |/ Err?=(none)/Reinst-required (Status,Err: uppercase=bad)
    ||/ Name                 Version                           Architecture Description
    +++-====================-=================================-============-=========================================
-   ii  cumulus-docker-setup 1.0-cl4.3.0+u1~1607633230.afa6ce7 all          Cumulus Linux docker configuration files.
+   ii  cumulus-docker-setup 1.0-cl5.0.0+u1~1607633230.afa6ce7 all          Cumulus Linux docker configuration files.
    ```
 
 {{< /tab >}}

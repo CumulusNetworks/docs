@@ -33,7 +33,7 @@ In the following procedures:
 {{<exlink url="http://opencomputeproject.github.io/onie/design-spec/discovery.html#default-file-name-search-order" text="ONIE naming schemes">}} mentioned here.
 - In the example commands, `[PLATFORM]` can be any supported Cumulus Linux platform, such as *x86\_64*, or *arm*.
 - Run the `sudo onie-install -h` command to show the ONIE installer options.
-- After you install the Cumulus Linux image, you need to install the license file. Refer to {{<link url="Quick-Start-Guide#install-the-license" text="Install the License">}}.
+<!--- After you install the Cumulus Linux image, you need to install the license file. Refer to {{<link url="Quick-Start-Guide#install-the-license" text="Install the License">}}.-->
 
 ## Install Using a DHCP/Web Server with DHCP Options
 
@@ -485,7 +485,7 @@ sudo mount /dev/sdb1 /mnt/usb
 You can run several installer command line options from ONIE to perform basic switch configuration automatically after installation completes and Cumulus Linux boots for the first time. These options enable you to:
 
 - Set a unique password for the *cumulus* user
-- Apply a Cumulus Linux license
+<!--- Apply a Cumulus Linux license-->
 - Provide an initial network configuration
 - Execute a ZTP script to perform necessary configuration
 
@@ -536,13 +536,13 @@ If you specify both the `--password` and `--hashed-password` options, the `--has
 
 {{%/notice%}}
 
-### Apply a Cumulus Linux License
+<!--### Apply a Cumulus Linux License
 
 To apply a license and start the `switchd` service automatically after Cumulus Linux boots for the first time after installation, use the `--license <license-string>` option. For example:
 
 ```
 ONIE:/ # ./cumulus-linux-5.0.0-mlx-amd64.bin  --license 'customer@datacenter.com|4C3YMCACDiK0D/EnrxlXpj71FBBNAg4Yrq+brza4ZtJFCInvalid'
-```
+```-->
 
 ### Provide Initial Network Configuration
 

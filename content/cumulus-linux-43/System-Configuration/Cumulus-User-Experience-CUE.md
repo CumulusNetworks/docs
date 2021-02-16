@@ -225,7 +225,7 @@ The CUE configuration management commands manage and apply configurations.
 | <div style="width:450px">Command | Description |
 | ------- | ----------- |
 | `cl config apply` | Applies the pending configuration to become the applied configuration.<br>You can also use these prompt options:<ul><li>`--y` or `--assume-yes` to automatically reply `yes` to all prompts.</li><li>`--assume-no` to automatically reply `no` to all prompts.</li></ul> {{%notice note%}}The configuration is applied but not saved and does not persist after a reboot.{{%/notice%}}|
-| `cl config detach` | Detaches the configuration from the current pending revision. The detached revision is called `pending` and includes a timestamp with extra characters. For example: `pending_20210128_212626_4WSY`|
+| `cl config detach` | Detaches the configuration from the current pending configuration. The detached configuration is called `pending` and includes a timestamp with extra characters. For example: `pending_20210128_212626_4WSY`|
 | `cl config diff <revision> <revision>` | Shows differences between configurations, such as the pending configuration and the applied configuration or the detached configuration and the pending configuration.|
 | `cl config patch <cue-file>` | Updates the pending configuration with the specified YAML configuration file. |
 | `cl config replace <cue-file>` | Replaces the pending configuration with the specified YAML configuration file. |
@@ -496,7 +496,7 @@ cumulus@switch:~$ cl config save
 
 ### Detach a Pending Configuration
 
-The following example configures the IP address of the loopback interface, then detaches the configuration from the current pending revision. The detached configuration is saved to a file called `pending` that includes a timestamp with extra characters to distinguish it from other pending revisions; for example, `pending_20210128_212626_4WSY`.
+The following example configures the IP address of the loopback interface, then detaches the configuration from the current pending configuration. The detached configuration is saved to a file called `pending` that includes a timestamp with extra characters to distinguish it from other pending configurations; for example, `pending_20210128_212626_4WSY`.
 
 ```
 cumulus@switch:~$ cl set interface lo ip address 10.10.10.1

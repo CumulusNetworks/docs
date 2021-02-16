@@ -52,9 +52,9 @@ If you are running a version of Cumulus Linux earlier than 3.6 or Cumulus NetQ e
 | 2.2 CLI Guide                                      | {{<exlink url="https://drive.google.com/file/d/18eBtJknj2Oh1w9xHGGGTFpHYMLGkl8En/view?usp=sharing" text="2.2 CLI Guide PDF" >}}          |
 | 2.2 Deployment Guide                               | {{<exlink url="https://drive.google.com/file/d/11t3u9XNzd68BufVf0H-Y_MU9lupUGUgH/view?usp=sharing" text="2.2 Deployment Guide PDF" >}}   |
 | 2.2 UI User Guide                                  | {{<exlink url="https://drive.google.com/file/d/16bSLPF7LND2svvEX0bqGzYc8guJd_UII/view?usp=sharing" text="2.2 UI Guide PDF" >}}           |
-| 2.1.2 CLI User Guide                               | {{<exlink url="https://drive.google.com/file/d/1StA5Hr33uC3DcsmWVU2QinPDmE7yeg8Y/view?usp=sharing" text="2.1.2 CLI Guide PDF" >}}        |
-| 2.1.2 Deployment Guide                             | {{<exlink url="https://drive.google.com/file/d/1GR2deyIg0W7RRa2t76k6NUr4PtU0hYkJ/view?usp=sharing" text="2.1.2 Deployment Guide PDF" >}} |
-| 2.1.2 UI User Guide                                | {{<exlink url="https://drive.google.com/file/d/11Zbs1xMk-b6ZtagNrg5pW57s6EkRh6lL/view?usp=sharing" text="2.1.2 User Interface Guide PDF" >}}         |
+| 2.1.2 CLI User Guide                               | {{<exlink url="https://drive.google.com/file/d/1kBEKyVH9pIoIKrqtjMYh8yOdZBHWy1fE/view?usp=sharing" text="2.1.2 CLI Guide PDF" >}}        |
+| 2.1.2 Deployment Guide                             | {{<exlink url="https://drive.google.com/file/d/1d-2kZGNynGzvPYBERxejFwzzkDQQWv6q/view?usp=sharing" text="2.1.2 Deployment Guide PDF" >}} |
+| 2.1.2 UI User Guide                                | {{<exlink url="https://drive.google.com/file/d/1rxW6Jiwh_tAVt4TnrAQWhTDwAHDB2Pjf/view?usp=sharing" text="2.1.2 User Interface Guide PDF" >}}         |
 | 1.4.0 Primer                                       | {{<exlink url="https://drive.google.com/file/d/1i-Nk1YAcszAInU2YX_OtsARtLxSprLAJ/view?usp=sharing" text="1.4.0 Primer PDF">}}                   |
 | 1.4.0 Deployment Guide                             | {{<exlink url="https://drive.google.com/file/d/1uMjy-qUz9i1Vpi9E2EDeofjV0FzIlFos/view?usp=sharing" text="1.4.0 Deployment Guide PDF">}}                   |
 | 1.4.0 Image and Provisioning Management User Guide | {{<exlink url="https://drive.google.com/file/d/1-Dx_BdtIbMBv7wXMS13xtc7gFn0iEb_W/view?usp=sharing" text="1.4.0 Image and Provisioning Management User Guide PDF">}}                   |
@@ -64,6 +64,6 @@ If you are running a version of Cumulus Linux earlier than 3.6 or Cumulus NetQ e
 | 1.1.0                                              | {{<exlink url="https://drive.google.com/file/d/1AHt-a0yR2De7H3Wz-LB1ZETMMQkXl2Vx/view?usp=sharing" text="1.1.0 PDF">}}                   |
 | 1.0.0                                              | {{<exlink url="https://drive.google.com/file/d/1el6arIsVvKBiYKYYnc2wz_YJhpeRAhn-/view?usp=sharing" text="1.0.0 PDF">}}                   |
 
-## Cumulus Chassis PDF Archive
+<!-- ## Cumulus Chassis PDF Archive
 
-{{<exlink url="https://drive.google.com/open?id=1HgxfqpHPR4kQdlkRck98X7fXd9YE4oFh" text="Cumulus Chassis PDF">}}
+{{<exlink url="https://drive.google.com/open?id=1HgxfqpHPR4kQdlkRck98X7fXd9YE4oFh" text="Cumulus Chassis PDF">}} -->

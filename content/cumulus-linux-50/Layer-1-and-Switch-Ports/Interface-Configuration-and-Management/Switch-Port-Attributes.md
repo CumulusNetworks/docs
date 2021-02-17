@@ -21,202 +21,13 @@ Each physical network interface (port) has a number of configurable settings:
 - {{<exlink url="https://en.wikipedia.org/wiki/Maximum_transmission_unit" text="MTU">}} (maximum transmission unit)
 - {{<exlink url="https://en.wikipedia.org/wiki/Forward_error_correction" text="FEC">}} (forward error correction)
 
-Most of these settings are configured automatically for you, depending upon your switch ASIC; however, you must always set MTU manually.
-
 For **Spectrum ASICs**, MTU is the only port attribute you can directly configure. The Spectrum firmware configures FEC, link speed, duplex mode and auto-negotiation automatically, following a predefined list of parameter settings until the link comes up. However, you can disable FEC if necessary, which forces the firmware to not try any FEC options.
-
-## Auto-negotiation
-
-By default on a Broadcom-based switch, auto-negotiation is disabled - except on 10G and 1000BASE-T fixed copper switch ports, where it is required for links to work. For RJ-45 SFP adapters, you need to manually configure the desired link speed and auto-negotiation as described in the {{<link url="#interface-configuration-recommendations-for-broadcom-platforms" text="default settings table">}} below.
-
-If you disable auto-negotiation later or never enable it, then you have to configure any settings that deviate from the port default - such as duplex mode, FEC, and link speed settings.
-
-{{%notice warning%}}
-
-Some module types support auto-negotiation while others do not. To enable a simpler configuration, Cumulus Linux allows you to configure auto-negotiation on all port types on Broadcom switches; the port configuration software then configures the underlying hardware according to its capabilities.
-
-If you do decide to disable auto-negotiation, be aware of the following:
-
-- You must manually set any non-default link speed, duplex, pause, and FEC.
-- Disabling auto-negotiation on a 1G optical cable prevents detection of single fiber breaks.
-- You cannot disable auto-negotiation on 1GT or 10GT fixed copper switch ports.
-
-For 1000BASE-T RJ-45 SFP adapters, auto-negotiation is automatically done on the SFP PHY, so enabling auto-negotiation on the port settings is not required. You must manually configure these ports using the {{<link url="#interface-configuration-recommendations-for-broadcom-platforms" text="settings below">}}.
-
-{{%/notice%}}
-
-Depending upon the connector used for a port, enabling auto-negotiation also enables forward error correction (FEC), if the cable requires it (see the {{<link url="#interface-configuration-recommendations-for-broadcom-platforms" text="table below">}}). The correct FEC mode is set based on the speed of the cable when auto-negotiation is enabled.
-
-To configure auto-negotiation for a switch:
-
-{{< tabs "TabID57 ">}}
-
-{{< tab "NCLU Commands ">}}
-
-Run the `net add interface <interface> link autoneg` command. The following example commands enable auto-negotiation for the swp1 interface:
-
-```
-cumulus@switch:~$ net add interface swp1 link autoneg on
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-{{< /tab >}}
-
-{{< tab "Linux Commands ">}}
-
-Edit the `/etc/network/interfaces` file, then run the `ifreload -a` command. The following example disables auto-negotiation for the swp1 interface.
-
-```
-cumulus@switch:~$ sudo nano /etc/network/interfaces
-
-auto swp1
-iface swp1
-    link-autoneg off
-```
-
-```
-cumlus@switch:~$ sudo ifreload -a
-```
-
-**Runtime Configuration (Advanced)**
-
-You can use `ethtool` to configure auto-negotiation. The following example command enables auto-negotiation for the swp1 interface:
-
-```
-ethtool -s swp1 speed 10000 duplex full autoneg on|off
-```
-
-{{%notice warning%}}
-
-A runtime configuration is non-persistent; the configuration you create here does not persist after you reboot the switch.
-
-{{%/notice%}}
-
-{{< /tab >}}
-
-{{< /tabs >}}
-
-{{%notice note%}}
-
-Any time you enable auto-negotiation, Cumulus Linux restores the default configuration settings specified in the {{<link url="#interface-configuration-recommendations-for-broadcom-platforms" text="table below">}}.
-
-{{%/notice%}}
-
-## Port Speed and Duplex Mode
-
-Cumulus Linux supports both half- and {{<exlink url="http://en.wikipedia.org/wiki/Duplex_%28telecommunications%29" text="full-duplex">}} configurations. Half-duplex is supported only with speeds of less than 1G.
-
-Supported port speeds include 100M, 1G, 10G, 25G, 40G, 50G and 100G. In Cumulus Linux, you set the speed on a Broadcom switch in Mbps, where the setting for 1G is *1000*, 40G is *40000*, and 100G is *100000*.
-
-You can configure ports to the following speeds (unless there are restrictions in the `/etc/cumulus/ports.conf` file of a particular platform).
-
-| <div style="width:130px">Switch Port Type | Other Configurable Speeds                                |
-| ---------------- | --------------------------------------------------------- |
-| 1G               | 100 Mb                                                    |
-| 10G              | 1 Gigabit (1000 Mb)                                       |
-| 40G              | 4x10G (10G lanes) creates four 1-lane ports each running at 10G |
-| 100G             | 50G or 2x50G (25G lanes) - 50G creates one 2-lane port running at 25G and 2x50G creates two 2-lane ports each running at 25G<br>40G (10G lanes) creates one 4-lane port running at 40G<br>4x25G (25G lanes) creates four 1-lane ports each running at 25G<br>4x10G (10G lanes) creates four 1-lane ports each running at 10G |
-
-{{%notice note%}}
-
-**Platform Limitations**
-
-- On Lenovo NE2572O switches, swp1 through swp8 only support 25G speed.
-- For 10G and 1G SFPs inserted in a 25G port on a Broadcom switch, you must edit the `/etc/cumulus/ports.conf` file and configure the four ports in the same core to be 10G. See {{<link url="#considerations" text="Considerations">}} below.
-- A switch with the Maverick ASIC limits multicast traffic by the lowest speed port that has joined a particular group. For example, if you are sending 100G multicast through and subscribe with one 100G and one 25G port, traffic on both egress ports is limited to 25Gbps. If you remove the 25G port from the group, traffic correctly forwards at 100Gbps.
-
-{{%/notice%}}
-
-To configure the port speed and duplex mode:
-
-{{< tabs "TabID139 ">}}
-
-{{< tab "NCLU Commands ">}}
-
-Run the `net add interface <interface> link speed` command. The following commands configure the port speed for the swp1 interface. The duplex mode setting defaults to *full*. You only need to specify `link duplex` if you want to set half-duplex mode.
-
-```
-cumulus@switch:~$ net add interface swp1 link speed 10000
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-The above commands create the following `/etc/network/interfaces` file code snippet:
-
-```
-auto swp1
-iface swp1
-    link-speed 10000
-```
-
-The following commands configure the port speed and set half-duplex mode for the swp31 interface.
-
-```
-cumulus@switch:~$ net add interface swp31 link speed 100
-cumulus@switch:~$ net add interface swp31 link duplex half
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-The above commands create the following `/etc/network/interfaces` file code snippet:
-
-```
-auto swp31
-iface swp31
-    link-speed 100
-    link-duplex half
-```
-
-{{< /tab >}}
-
-{{< tab "Linux Commands ">}}
-
-To create a persistent configuration for the port speeds, edit the `/etc/network/interfaces` file, then run the `ifreload -a` command.
-
-Add the appropriate lines for each switch port stanza. The following example shows that the port speed for the swp1 interface is set to 10G and the duplex mode is set to *full*.
-
-If you specify the port speed in the `/etc/network/interfaces` file, you must also specify the duplex mode setting; otherwise, the interface defaults to half duplex.
-
-```
-cumulus@switch:~$ sudo nano /etc/network/interfaces
-
-auto swp1
-iface swp1
-    address 10.1.1.1/24
-    link-speed 10000
-    link-duplex full
-```
-
-```
-cumulus@switch:~$ sudo ifreload -a
-```
-
-**Runtime Configuration (Advanced)**
-
-You can use `ethtool` to configure the port speed and duplex mode for your switch ports. You must specify both the port speed and the duplex mode in the `ethtool` command; auto-negotiation is optional.
-
-The following example command sets the port speed to 10G and duplex mode to full on the swp1 interface:
-
-```
-cumulus@switch:~$  ethtool -s swp1 speed 10000 duplex full
-```
-
-{{%notice warning%}}
-
-A runtime configuration is non-persistent, which means the configuration you create here does not persist after you reboot the switch.
-
-{{%/notice%}}
-
-{{< /tab >}}
-
-{{< /tabs >}}
 
 ## MTU
 
 Interface MTU applies to traffic traversing the management port, front panel or switch ports, bridge, VLAN subinterfaces, and bonds (both physical and logical interfaces). MTU is the only interface setting that you must set manually.
 
-In Cumulus Linux, `ifupdown2` assigns 9216 as the default MTU setting. On a Mellanox switch, the initial MTU value set by the driver is 9238. After you configure the interface, the default MTU setting is 9216.
+In Cumulus Linux, `ifupdown2` assigns 9216 as the default MTU setting. The initial MTU value set by the driver is 9238. After you configure the interface, the default MTU setting is 9216.
 
 To change the MTU setting, run the following commands:
 
@@ -492,7 +303,7 @@ When linking to a non-Spectrum peer, the firmware lets the peer decide. The Spec
 
 ### How Does Cumulus Linux use FEC?
 
-A Spectrum switch enables FEC automatically when it powers up; that is, the setting is `fec auto`. The port firmware tests and determines the correct FEC mode to bring the link up with the neighbor. It is possible to get a link up to a Spectrum switch without enabling FEC on the remote device as the switch eventually finds a working combination to the neighbor without FEC.
+A Spectrum switch enables FEC automatically when it powers up. The port firmware tests and determines the correct FEC mode to bring the link up with the neighbor. It is possible to get a link up to a Spectrum switch without enabling FEC on the remote device as the switch eventually finds a working combination to the neighbor without FEC.
 
 The following sections describe how to show the current FEC mode, and to enable and disable FEC.
 
@@ -772,7 +583,7 @@ cumulus@switch:~$ cat /etc/network/ifupdown2/policy.d/address.json
 
 {{%notice note%}}
 
-Setting the default MTU also applies to the management interface. Be sure to add the *iface\_defaults* to override the MTU for eth0, to remain at 9216.
+Setting the default MTU also applies to the management interface. Be sure to add the *iface_defaults* to override the MTU for eth0, to remain at 9216.
 
 {{%/notice%}}
 
@@ -781,7 +592,6 @@ Setting the default MTU also applies to the management interface. Be sure to add
 Cumulus Linux lets you:
 - Break out 100G switch ports into 2x50G, 4x25G, or 4x10G with breakout cables.
 - Break out 40G switch ports into four separate 10G ports (4x10G) for use with breakout cables.
-- Combine (*aggregate* or *gang*) four 10G switch ports into one 40G port for use with a breakout cable ({{<link url="Bonding-Link-Aggregation" text="not to be confused with a bond">}}).
 
 {{%notice note%}}
 
@@ -1091,7 +901,7 @@ If you change the port speed in the `/etc/cumulus/ports.conf` file but the speed
 
 ### 1000BASE-T SFP Modules Supported Only on Certain 25G Platforms
 
-1000BASE-T SFP modules are supported on only the following 25G platforms:
+1000BASE-T SFP modules are supported on the following 25G platforms:
 
 - Mellanox SN2410
 - Mellanox SN2010
@@ -1114,9 +924,9 @@ modprobe igb
 
 When you remove two transceivers simultaneously from a switch, both interfaces show the `carrier down` status immediately. However, it takes one second for the second interface to show the `operational down` status. In addition, the services on this interface also take an extra second to come down.
 
-### Mellanox Spectrum-2 and Tomahawk-based Switches Support Different FEC Modes
+### Mellanox Spectrum-2 Switches and FEC Mode
 
-The Mellanox Spectrum-2 (25G) switch only supports RS FEC. The Tomahawk-based switch only supports BASE-R FEC. These two switches do not share compatible FEC modes and do not interoperate reliably.
+The Mellanox Spectrum-2 (25G) switch only supports RS FEC.
 
 ## Related Information
 

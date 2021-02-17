@@ -13,13 +13,13 @@ Cumulus Linux exposes network interfaces for several types of physical and logic
 - (optional) `brN` are bridges (IEEE 802.1Q VLANs)
 - (optional) `bondN` are bonds (IEEE 802.3ad link aggregation trunks, or port channels)
 
-Each physical network interface (port) has a number of configurable settings:
+Each physical network interface (port) has a number of settings:
 
-- {{<exlink url="http://en.wikipedia.org/wiki/Autonegotiation" text="Auto-negotiation">}}
-- {{<exlink url="http://en.wikipedia.org/wiki/Duplex_%28telecommunications%29" text="Duplex Mode">}}
+- Auto-negotiation
+- Duplex Mode
 - Link speed
-- {{<exlink url="https://en.wikipedia.org/wiki/Maximum_transmission_unit" text="MTU">}} (maximum transmission unit)
-- {{<exlink url="https://en.wikipedia.org/wiki/Forward_error_correction" text="FEC">}} (forward error correction)
+- MTU (maximum transmission unit)
+- FEC (forward error correction)
 
 For **Spectrum ASICs**, MTU is the only port attribute you can directly configure. The Spectrum firmware configures FEC, link speed, duplex mode and auto-negotiation automatically, following a predefined list of parameter settings until the link comes up. However, you can disable FEC if necessary, which forces the firmware to not try any FEC options.
 
@@ -87,13 +87,7 @@ A runtime configuration is non-persistent, which means the configuration you cre
 
 {{< /tabs >}}
 
-{{%notice note%}}
-
-Some switches might not support the same maximum MTU setting in hardware for both the management interface (eth0) and the data plane ports.
-
-{{%/notice%}}
-
-### Set a Policy for Global System MTU
+### Set a Global Policy
 
 For a global policy to set MTU, create a policy document (called `mtu.json`). For example:
 
@@ -111,7 +105,7 @@ The policies and attributes in any file in `/etc/network/ifupdown2/policy.d/` ov
 
 {{%/notice%}}
 
-### MTU for a Bridge
+### Bridge MTU
 
 The MTU setting is the lowest MTU of any interface that is a member of the bridge (every interface specified in `bridge-ports` in the bridge configuration of the `/etc/network/interfaces` file). There is **no** need to specify an MTU on the bridge. Consider this bridge configuration:
 
@@ -214,7 +208,7 @@ Expect error packets to be zero or extremely low compared to good packets. If a 
 
 For **25G, 4x25G Breakout, and 100G Fiber modules and AOCs**, there is no classification of 25G cable types for dB loss, BER or length. FEC is recommended but might not be required if the BER is low enough.
 
-### Determine Cable Class of 100G and 25G DACs
+### Cable Class of 100G and 25G DACs
 
 You can determine the cable class for 100G and 25G DACs from the Extended Specification Compliance Code field (SFP28: 0Ah, byte 35, QSFP28: Page 0, byte 192) in the cable EEPROM programming.
 

@@ -132,10 +132,10 @@ To change the hostname:
 
 {{< tab "NCLU Commands ">}}
 
-Run the `net add hostname` command, which modifies both the `/etc/hostname` and `/etc/hosts` files with the desired hostname.
+Run the `net add hostname <hostname>` command, which modifies both the `/etc/hostname` and `/etc/hosts` files with the desired hostname. The following example command configures the hostname to be leaf01:
 
 ```
-cumulus@switch:~$ net add hostname <hostname>
+cumulus@switch:~$ net add hostname leaf01
 cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
@@ -187,7 +187,7 @@ Programs that are already running (including log files) and users currently logg
 
 ### Verify the System Time
 
-<!--Before you install the license,-->Verify that the date and time on the switch are correct, and {{<link url="Setting-Date-and-Time" text="correct the date and time">}} if necessary. If the date and time is incorrect, the switch might not be able to synchronize with Puppet or might return errors after you restart `switchd`:
+Verify that the date and time on the switch are correct, and {{<link url="Setting-Date-and-Time" text="correct the date and time">}} if necessary. If the date and time is incorrect, the switch might not be able to synchronize with Puppet or might return errors after you restart `switchd`:
 
 ```
 Warning: Unit file of switchd.service changed on disk, 'systemctl daemon-reload' recommended.
@@ -271,52 +271,29 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-To view link status, use the `net show interface all` command. The following examples show the output of ports in `admin down`, `down`, and `up` modes:
+To view link status, use the `net show interface all` command:
 
 ```
 cumulus@switch:~$ net show interface all
-State  Name           Spd  MTU    Mode           LLDP                    Summary
------  -------------  ---  -----  -------------  ----------------------  -------------------------
-UP     lo             N/A  65536  Loopback                               IP: 127.0.0.1/8
-       lo                                                                IP: 10.0.0.11/32
-       lo                                                                IP: 10.0.0.112/32
-       lo                                                                IP: ::1/128
-UP     eth0           1G   1500   Mgmt           oob-mgmt-switch (swp6)  Master: mgmt(UP)
-       eth0                                                              IP: 192.168.0.11/24(DHCP)
-UP     swp1           1G   9000   BondMember     server01 (eth1)         Master: bond01(UP)
-UP     swp2           1G   9000   BondMember     server02 (eth1)         Master: bond02(UP)
-ADMDN  swp45          N/A  1500   NotConfigured
-ADMDN  swp46          N/A  1500   NotConfigured
-ADMDN  swp47          N/A  1500   NotConfigured
-ADMDN  swp48          N/A  1500   NotConfigured
-UP     swp49          1G   9000   BondMember     leaf02 (swp49)          Master: peerlink(UP)
-UP     swp50          1G   9000   BondMember     leaf02 (swp50)          Master: peerlink(UP)
-UP     swp51          1G   9216   NotConfigured  spine01 (swp1)
-UP     swp52          1G   9216   NotConfigured  spine02 (swp1)
-UP     bond01         1G   9000   802.3ad                                Master: bridge(UP)
-       bond01                                                            Bond Members: swp1(UP)
-UP     bond02         1G   9000   802.3ad                                Master: bridge(UP)
-       bond02                                                            Bond Members: swp2(UP)
-UP     bridge         N/A  1500   Bridge/L2
-UP     mgmt           N/A  65536  Interface/L3                           IP: 127.0.0.1/8
-UP     peerlink       2G   9000   802.3ad                                Master: bridge(UP)
-       peerlink                                                          Bond Members: swp49(UP)
-       peerlink                                                          Bond Members: swp50(UP)
-DN     peerlink.4094  2G   9000   SubInt/L3                              IP: 169.254.1.1/30
-ADMDN  vagrant        N/A  1500   NotConfigured
-UP     vlan13         N/A  1500   Interface/L3                           Master: vrf1(UP)
-       vlan13                                                            IP: 10.1.3.11/24
-UP     vlan13-v0      N/A  1500   Interface/L3                           Master: vrf1(UP)
-       vlan13-v0                                                         IP: 10.1.3.1/24
-UP     vlan24         N/A  1500   Interface/L3                           Master: vrf1(UP)
-       vlan24                                                            IP: 10.2.4.11/24
-UP     vlan24-v0      N/A  1500   Interface/L3                           Master: vrf1(UP)
-       vlan24-v0                                                         IP: 10.2.4.1/24
-UP     vlan4001       N/A  1500   NotConfigured                          Master: vrf1(UP)
-UP     vni13          N/A  9000   Access/L2                              Master: bridge(UP)
-UP     vni24          N/A  9000   Access/L2                              Master: bridge(UP)
-UP     vrf1           N/A  65536  NotConfigured
-UP     vxlan4001      N/A  1500   Access/L2                              Master: bridge(UP)
+State  Name     Spd  MTU    Mode           LLDP                    Summary
+-----  -------  ---  -----  -------------  ----------------------  -------------------------
+UP     lo       N/A  65536  Loopback                               IP: 127.0.0.1/8
+       lo                                                          IP: ::1/128
+UP     eth0     1G   1500   Mgmt           oob-mgmt-switch (swp8)  Master: mgmt(UP)
+       eth0                                                        IP: 192.168.0.13/24(DHCP)
+UP     swp1     1G   9216   Default
+UP     swp2     1G   9216   Default
+ADMDN  swp45    N/A  1500   NotConfigured
+ADMDN  swp46    N/A  1500   NotConfigured
+ADMDN  swp47    N/A  1500   NotConfigured
+ADMDN  swp48    N/A  1500   NotConfigured
+UP     swp49    1G   9216   Default
+UP     swp50    1G   9216   Default
+UP     swp51    1G   9216   Default        spine01 (swp3)
+ADMDN  swp52    N/A  1500   NotConfigured
+UP     mgmt     N/A  65536  VRF                                    IP: 127.0.0.1/8
+       mgmt                                                        IP: ::1/128
+ADMDN  vagrant  N/A  1500   NotConfigured
 ```
 
 {{< /tab >}}

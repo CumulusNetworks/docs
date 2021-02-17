@@ -15,7 +15,6 @@ To enter single user mode:
 
 ```
 ...
-CLOCKS:ARM Core=1000Hz, AXI=500Hz, APB=125Hz, Peripheral=500Hz
 USB0:  Bringing USB2 host out of reset...
 Net:   eth-0
 SF:    MX25L6405D with page size 4 KiB, total 8 MiB

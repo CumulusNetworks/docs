@@ -10,8 +10,7 @@ toc: 4
 
 {{%notice note%}}
 
-- sFlow is not supported on Broadcom switches with the Hurricane2 ASIC.
-- If you intend to run this service within a {{<link url="Virtual-Routing-and-Forwarding-VRF" text="VRF">}},
+If you intend to run this service within a {{<link url="Virtual-Routing-and-Forwarding-VRF" text="VRF">}},
 including the {{<link url="Management-VRF" text="management VRF">}}, follow {{<link url="Management-VRF#run-services-within-the-management-vrf" text="these steps">}} for configuring the service.
 
 {{%/notice%}}

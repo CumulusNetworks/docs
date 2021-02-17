@@ -55,13 +55,13 @@ Cumulus Linux supports the use of a FAT32, FAT16, or VFAT-formatted USB drive as
 
 At minimum, the script must:
 
-- Install the Cumulus Linux operating system and license.
+- Install the Cumulus Linux operating system<!-- and license-->.
 - Copy over a basic configuration to the switch.
 - Restart the switch or the relevant services to get `switchd` up and running with that configuration.
 
 Follow these steps to perform ZTP using a USB drive:
 
-1. Copy the Cumulus Linux license and installation image to the USB drive.
+1. Copy the <!--Cumulus Linux license and -->installation image to the USB drive.
 2. The `ztp` process searches the root filesystem of the newly mounted drive for filenames matching an {{<exlink url="https://opencomputeproject.github.io/onie/user-guide/index.html#directly-connected-scenario" text="ONIE-style waterfall">}} (see the patterns and examples above), looking for the most specific name first, and ending at the most generic.
 3. The contents of the script are parsed to ensure it contains the `CUMULUS-AUTOPROVISIONING` flag (see {{<link url="#write-ztp-scripts" text="example scripts">}}).
 
@@ -174,7 +174,7 @@ You can write the script in any language currently supported by Cumulus Linux, s
 
 The script must return an exit code of 0 upon success, as this triggers the autoprovisioning process to be marked as complete in the autoprovisioning configuration file.
 
-The following script installs Cumulus Linux and its license from a USB drive and applies a configuration:
+The following script installs Cumulus Linux<!-- and its license--> from a USB drive and applies a configuration:
 
 ```
 #!/bin/bash
@@ -259,7 +259,7 @@ If you have an insecure management network, set the password with an encrypted h
    set_password
    ```
 
-### Install a License
+<!--### Install a License
 
 Use the following function to include error checking for license file installation.
 
@@ -277,7 +277,7 @@ function install_license(){
          exit 1
      fi
 }
-```
+```-->
 
 ### Test DNS Name Resolution
 
@@ -602,7 +602,7 @@ ZTP checks for these manual configurations during bootup:
 - Users and groups changes
 - Packages changes
 - Interfaces changes
-- The presence of an installed license
+<!--- The presence of an installed license-->
 
 When the switch is booted for the very first time, ZTP records the state of important files that are most likely going to be modified after that the switch is configured. If ZTP is still enabled after a reboot, ZTP compares the recorded state to the current state of these files. If they do not match, ZTP considers that the switch has already been provisioned and exits. These files are only erased after a reset.
 

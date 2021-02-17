@@ -10,7 +10,7 @@ In VXLAN-based networks, there are a range of complexities and challenges in det
 
 ## Requirements
 
-Static VXLAN tunnels are supported only on switches in the {{<exlink url="https://cumulusnetworks.com/hcl/" text="HCL">}} that use the Mellanox Spectrum ASICs or the Broadcom Tomahawk, Trident II+, Trident II, Trident3, and Maverick ASICs.
+Static VXLAN tunnels are supported on switches in the {{<exlink url="https://cumulusnetworks.com/hcl/" text="HCL">}} that use the Mellanox Spectrum ASICs.
 
 For a basic VXLAN configuration, make sure that:
 
@@ -297,7 +297,7 @@ After you create the file, run `ifreload -a` to load the new configuration.
 
 {{%/notice%}}
 
-## Control Link-local Multicast across a Static VXLAN Tunnel
+<!-- BROADCOM ONLY## Control Link-local Multicast across a Static VXLAN Tunnel
 
 By default, when you configure static VXLAN tunnels, Cumulus Linux forwards link-local multicast packets to the CPU and floods the ASIC. Cumulus Linux 3.7.12 and later provides a configuration option on Broadcom switches to disable forwarding of link-local multicast packets to the CPU so that such packets only flood the ASIC, which reduces CPU usage.
 
@@ -322,4 +322,4 @@ hal.bcm.ll_mcast_punt_disable = TRUE
 ...
 ```
 
-A `switchd` restart is **not** required.
+A `switchd` restart is **not** required.-->

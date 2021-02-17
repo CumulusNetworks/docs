@@ -44,7 +44,7 @@ You have more options for installing Cumulus Linux with ONIE. Read {{<link url="
 After installing Cumulus Linux, you are ready to:
 
 - Log in to Cumulus Linux on the switch.
-- Install the Cumulus Linux license.
+<!--\- Install the Cumulus Linux license.-->
 - Configure Cumulus Linux. This quick start guide provides instructions on configuring switch ports and a loopback interface.
 
 ## Get Started
@@ -187,13 +187,13 @@ Programs that are already running (including log files) and users currently logg
 
 ### Verify the System Time
 
-Before you install the license, verify that the date and time on the switch are correct, and {{<link url="Setting-Date-and-Time" text="correct the date and time">}} if necessary. If the date and time is incorrect, the switch might not be able to synchronize with Puppet or might return errors after you restart `switchd`:
+<!--Before you install the license,-->Verify that the date and time on the switch are correct, and {{<link url="Setting-Date-and-Time" text="correct the date and time">}} if necessary. If the date and time is incorrect, the switch might not be able to synchronize with Puppet or might return errors after you restart `switchd`:
 
 ```
 Warning: Unit file of switchd.service changed on disk, 'systemctl daemon-reload' recommended.
 ```
 
-### Install the License
+<!--### Install the License
 
 Cumulus Linux is licensed on a per-instance basis. Each network system is fully operational, enabling any capability to be utilized on the switch with the exception of forwarding on switch panel ports. Only eth0 and console ports are activated on an unlicensed instance of Cumulus Linux. Enabling front panel ports requires a license.
 
@@ -239,7 +239,7 @@ It is not necessary to reboot the switch to activate the switch ports. After you
 
 If a license is not installed on a Cumulus Linux switch, the `switchd` service does not start. After you install the license, start `switchd` as described above.
 
-{{%/notice%}}
+{{%/notice%}}-->
 
 ## Configure Breakout Ports with Splitter Cables
 

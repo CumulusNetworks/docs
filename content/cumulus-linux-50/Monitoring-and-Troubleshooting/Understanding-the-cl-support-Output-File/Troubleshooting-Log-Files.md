@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 1060
 toc: 4
 ---
-The only real unique entity for logging on Cumulus Linux compared to any other Linux distribution is `switchd.log`, which logs the HAL (hardware abstraction layer) from hardware like the Broadcom or Mellanox Spectrum ASIC.
+The only real unique entity for logging on Cumulus Linux compared to any other Linux distribution is `switchd.log`, which logs the HAL (hardware abstraction layer) from hardware like the Mellanox Spectrum ASIC.
 
 Read {{<exlink url="http://www.cyberciti.biz/faq/linux-log-files-location-and-how-do-i-view-logs-files/" text="this guide on NixCraft">}} to understand how `/var/log` works.
 

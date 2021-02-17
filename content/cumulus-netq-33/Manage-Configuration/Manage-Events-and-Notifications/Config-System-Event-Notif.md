@@ -2162,7 +2162,7 @@ For integrations with threshold-based event notifications, refer to {{<link titl
 
 ### Remove an Event Notification Channel
 
-If you retire selected channels from a given notification appliacation, you might want to remove them from NetQ as well. You can remove channels using the NetQ UI or the NetQ CLI.
+If you retire selected channels from a given notification application, you might want to remove them from NetQ as well. You can remove channels using the NetQ UI or the NetQ CLI.
 
 {{< tabs "TabID1908" >}}
 

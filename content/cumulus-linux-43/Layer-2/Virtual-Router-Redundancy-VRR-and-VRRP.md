@@ -554,7 +554,16 @@ cumulus@switch:~$ cl config apply
 
 {{< /tabs >}}
 
-The NCLU and vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+The NCLU and vtysh commands save the configuration in the `/etc/network/interfaces` file and the `/etc/frr/frr.conf` file. For example:
+
+```
+cumulus@spine01:~$ sudo cat /etc/network/interfaces
+...
+auto swp1
+iface swp1
+    vrrp 44 10.0.0.1/24 2001:0db8::1/64
+...
+```
 
 ```
 cumulus@spine01:~$ sudo cat /etc/frr/frr.conf

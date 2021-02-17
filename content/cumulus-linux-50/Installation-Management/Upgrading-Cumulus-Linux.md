@@ -6,7 +6,7 @@ toc: 3
 ---
 {{%notice warning%}}
 
-In Cumulus Linux 4.2.0 and later, the default password for the *cumulus* user account is `cumulus`. The first time you log into Cumulus Linux, you are **required** to change this default password. Be sure to update any automation scripts before you upgrade. You can use ONIE command line options to change the default password automatically during the Cumulus Linux image installation process. Refer to {{<link url="Installing-a-New-Cumulus-Linux-Image#onie-installation-options" text="ONIE Installation Options">}}.
+The default password for the *cumulus* user account is `cumulus`. The first time you log into Cumulus Linux, you are **required** to change this default password. Be sure to update any automation scripts before you upgrade. You can use ONIE command line options to change the default password automatically during the Cumulus Linux image installation process. Refer to {{<link url="Installing-a-New-Cumulus-Linux-Image#onie-installation-options" text="ONIE Installation Options">}}.
 
 {{%/notice%}}
 
@@ -70,7 +70,6 @@ Understanding the location of configuration data is required for successful upgr
 
 | File Name and Location  | Explanation |
 | ----------------------- | ----------- |
-| `/etc/bcm.d/` | Per-platform hardware configuration directory, created on first boot. Do not copy. |
 | `/etc/mlx/` | Per-platform hardware configuration directory, created on first boot. Do not copy. |
 | `/etc/default/clagd` | Created and managed by `ifupdown2`. Do not copy.|
 | `/etc/default/grub` | Grub `init` table. Do not modify manually. |
@@ -123,7 +122,7 @@ Upgrading an MLAG pair requires additional steps. If you are using MLAG to dual 
 
 The decision to upgrade Cumulus Linux by either installing a Cumulus Linux image or upgrading packages depends on your environment and your preferences. Here are some recommendations for each upgrade method.
 
-**Installing a Cumulus Linux image** is recommended if you are performing a rolling upgrade in a production environment and if are using up-to-date and comprehensive automation scripts. This upgrade method enables you to choose the exact release to which you want to upgrade and is the *only* method available to upgrade your switch to a new release train (for example, from 3.7.12 to 4.1.0).
+**Installing a Cumulus Linux image** is recommended if you are performing a rolling upgrade in a production environment and if are using up-to-date and comprehensive automation scripts. This upgrade method enables you to choose the exact release to which you want to upgrade and is the *only* method available to upgrade your switch to a new release train (for example, from 4.3.0 to 5.0.0).
 
 Be aware of the following when installing the Cumulus Linux image:
 
@@ -135,11 +134,11 @@ Be aware of the following when installing the Cumulus Linux image:
 - If configuration files are not restored correctly, you might be unable to ssh to the switch from in-band management. Out-of-band connectivity (eth0 or console) is recommended.
 - You *must* reinstall and reconfigure third-party applications after upgrade.
 
-**Package upgrade** is recommended if you are upgrading from Cumulus Linux 4.0, or if you use third-party applications (package upgrade does not replace or remove third-party applications, unlike the Cumulus Linux image install).
+**Package upgrade** is recommended if you are upgrading from Cumulus Linux 5.0.0 to a later 5.x release, or if you use third-party applications (package upgrade does not replace or remove third-party applications, unlike the Cumulus Linux image install).
 
 Be aware of the following when upgrading packages:
 
-- You cannot upgrade the switch to a new release train. For example, you **cannot** upgrade the switch from **3**.7.x to **4**.1.0.
+- You cannot upgrade the switch to a new release train. For example, you **cannot** upgrade the switch from **4**.2.1 to **5**.0.0.
 - The `sudo -E  apt-get upgrade` command might result in services being restarted or stopped as part of the upgrade process.
 - The `sudo -E apt-get upgrade` command might disrupt core services by changing core service dependency packages.
 - After you upgrade, account UIDs and GIDs created by packages might be different on different switches, depending on the configuration and package installation history.
@@ -206,6 +205,7 @@ To upgrade the switch using package upgrade:
     Policy: Removed /usr/sbin/policy-rc.d
     Policy: Upgrade is finished
     ```
+
     If the upgrade process encounters changed configuration files that have new versions in the release to which you are upgrading, you see a message similar to this:
 
     ```
@@ -219,18 +219,13 @@ To upgrade the switch using package upgrade:
     Z : start a shell to examine the situation
     The default action is to keep your current version.
     *** daemons (Y/I/N/O/D/Z) [default=N] ?
-
-    - To see the differences between the currently installed version and the
-    new version, type `D`- To keep the currently installed version, type `N`.
-    The new package version is installed with the suffix `_.dpkg-dist`
-    (for example, `/etc/frr/daemons.dpkg-dist`). When upgrade is complete and
-    **before** you reboot, merge your changes with the changes from the newly
-    installed file.
-    - To install the new version, type `I`. Your currently installed version is
-    saved with the suffix `.dpkg-old`.
-    When the upgrade is complete, you can search for the files with the
-    `sudo find / -mount -type f -name '*.dpkg-*'` command.
     ```
+
+    - To see the differences between the currently installed version and the new version, type `D`.
+    - To keep the currently installed version, type `N`. The new package version is installed with the suffix `.dpkg-dist` (for example, `/etc/frr/daemons.dpkg-dist`). When upgrade is complete and **before** you reboot, merge your changes with the changes from the newly installed file.
+    - To install the new version, type `I`. Your currently installed version is saved with the suffix `.dpkg-old`. 
+    
+    When the upgrade is complete, you can search for the files with the `sudo find / -mount -type f -name '*.dpkg-*'` command.
 
     If you see errors for expired GPG keys that prevent you from upgrading packages, follow the steps in {{<exlink url="https://docs.cumulusnetworks.com/knowledge-base/Installing-and-Upgrading/Upgrading/Update-Expired-GPG-Keys/" text="Upgrading Expired GPG Keys">}}.
 
@@ -264,15 +259,14 @@ You must upgrade both switches in the MLAG pair to the same release of Cumulus L
 
 {{%notice warning%}}
 
-For networks with MLAG deployments, you can only upgrade to Cumulus Linux 4.3 from version 3.7.10 or later. If you are using a version of Cumulus Linux earlier than 3.7.10, you must upgrade to version 3.7.10 first, then upgrade to version 4.3. Version 3.7.10 is available on the
-{{<exlink url="https://cumulusnetworks.com/downloads/#product=Cumulus%20Linux&version=3.7.10" text="downloads page">}} on our website.
+For networks with MLAG deployments, you can only upgrade to Cumulus Linux 5.0 from version 3.7.10 or later. If you are using a version of Cumulus Linux earlier than 3.7.10, you must upgrade to version 3.7.10 first, then upgrade to version 5.0. Version 3.7.10 is available on the {{<exlink url="https://cumulusnetworks.com/downloads/#product=Cumulus%20Linux&version=3.7.10" text="downloads page">}}.
 
 {{%/notice%}}
 
 {{%notice info%}}
 During upgrade, MLAG bonds stay single-connected while the switches are running different major releases; for example, while leaf01 is running 4.3.0 and leaf02 is running 5.0.0.
 
-This is due to a change in the bonding driver regarding how the *actor port key* is derived, which causes the port key to have a different value for links with the same speed/duplex settings across different major releases. The port key received from the LACP partner must remain consistent between all bond members in order for all bonds to be synchronized. When each MLAG switch sends LACPDUs with different port keys, only links to one MLAG switch are in sync.
+This is due to a change in the bonding driver to handle how the *actor port key* is derived, which causes the port key to have a different value for links with the same speed/duplex settings across different major releases. The port key received from the LACP partner must remain consistent between all bond members for all bonds to be synchronized. When each MLAG switch sends LACPDUs with different port keys, only links to one MLAG switch are in sync.
 {{%/notice%}}
 
 1. Verify the switch is in the secondary role:
@@ -339,16 +333,16 @@ This is due to a change in the bonding driver regarding how the *actor port key*
 
 ## Roll Back a Cumulus Linux Installation
 
-Even the most well planned and tested upgrades can result in unforeseen problems; sometimes the best solution is to roll back to the previous state. There are three main strategies; all require detailed planning and execution:
+Even the most well planned and tested upgrades can result in unforeseen problems and sometimes the best solution is to roll back to the previous state. There are three main strategies, all of which require detailed planning and execution:
 
-- Flatten and rebuild: If the OS becomes unusable, you can use orchestration tools to reinstall the previous OS release from scratch and then rebuild the configuration automatically.
-- Backup and restore: Another common strategy is to restore to a previous state using a backup captured before the upgrade. See {{<link title="Back up and Restore">}}.
+- Flatten and rebuild. If the OS becomes unusable, you can use orchestration tools to reinstall the previous OS release from scratch and then rebuild the configuration automatically.
+- Backup and restore. Restore to a previous state using a backup captured before the upgrade. See {{<link title="Back up and Restore">}}.
 
-The method you employ is specific to your deployment strategy, so providing detailed steps for each scenario is outside the scope of this document.
+The method you employ is specific to your deployment strategy. Providing detailed steps for each scenario is outside the scope of this document.
 
 ## Third Party Packages
 
-Third party packages in the *Linux host* world often use the same package system as the distribution into which it is to be installed (for example, Debian uses `apt-get`). Or, the package might be compiled and installed by the system administrator. Configuration and executable files generally follow the same filesystem hierarchy standards as other applications.
+Third party packages in the *Linux host* world often use the same package system as the distribution into which they are to be installed (for example, Debian uses `apt-get`). Or, the package might be compiled and installed by the system administrator. Configuration and executable files generally follow the same filesystem hierarchy standards as other applications.
 
 If you install any third party applications on a Cumulus Linux switch, configuration data is typically installed into the `/etc` directory, but it is not guaranteed. It is your responsibility to understand the behavior and configuration file information of any third party packages installed on the switch.
 

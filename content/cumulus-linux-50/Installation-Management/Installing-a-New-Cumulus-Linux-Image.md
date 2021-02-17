@@ -6,7 +6,7 @@ toc: 3
 ---
 {{%notice warning%}}
 
-In Cumulus Linux 4.2.0 and later, the default password for the *cumulus* user account is `cumulus`. The first time you log into Cumulus Linux, you are **required** to change this default password. Be sure to update any automation scripts before installing a new image. Cumulus Linux provides command line options to change the default password automatically during the installation process. Refer to [ONIE Installation Options](#onie-installation-options).
+The default password for the *cumulus* user account is `cumulus`. The first time you log into Cumulus Linux, you are **required** to change this default password. Be sure to update any automation scripts before installing a new image. Cumulus Linux provides command line options to change the default password automatically during the installation process. Refer to [ONIE Installation Options](#onie-installation-options).
 
 {{%/notice%}}
 
@@ -31,7 +31,7 @@ In the following procedures:
 
 - You can name your Cumulus Linux image using any of the
 {{<exlink url="http://opencomputeproject.github.io/onie/design-spec/discovery.html#default-file-name-search-order" text="ONIE naming schemes">}} mentioned here.
-- In the example commands, `[PLATFORM]` can be any supported Cumulus Linux platform, such as *x86\_64*, or *arm*.
+- In the example commands, `[PLATFORM]` is the supported Cumulus Linux platform, *x86_64*.
 - Run the `sudo onie-install -h` command to show the ONIE installer options.
 <!--- After you install the Cumulus Linux image, you need to install the license file. Refer to {{<link url="Quick-Start-Guide#install-the-license" text="Install the License">}}.-->
 
@@ -39,10 +39,10 @@ In the following procedures:
 
 To install Cumulus Linux using a DHCP/web server *with* DHCP options, set up a DHCP/web server on your laptop and connect the eth0 management port of the switch to your laptop. After you connect the cable, the installation proceeds as follows:
 
-1. The bare metal switch boots up and requests an IP address (DHCP request).
+1. The switch boots up and requests an IP address (DHCP request).
 2. The DHCP server acknowledges and responds with DHCP option 114 and the location of the installation image.
 3. ONIE downloads the Cumulus Linux image, installs, and reboots.
-4. Success\! You are now running Cumulus Linux.
+4. Success! You are now running Cumulus Linux.
 
 {{< img src = "/images/cumulus-linux/install-image-onie-dhcp.png" >}}
 
@@ -276,8 +276,7 @@ Installing the Cumulus Linux image referencing a local file from ONIE is not sup
 
 ## Install Using a USB Drive
 
-Follow the steps below to install the Cumulus Linux image using a USB drive. Instructions are provided for x86 and ARM platforms.
-
+Follow the steps below to install the Cumulus Linux image using a USB drive.
 {{%notice tip%}}
 
 Installing Cumulus Linux using a USB drive is fine for a single switch here and there but is not scalable. DHCP can scale to hundreds of switch installs with zero manual input unlike USB installs.
@@ -286,7 +285,7 @@ Installing Cumulus Linux using a USB drive is fine for a single switch here and 
 
 ### Prepare for USB Installation
 
-1. From the {{<exlink url="http://cumulusnetworks.com/downloads/" text="Cumulus Linux Downloads page">}}, download the appropriate Cumulus Linux image for your x86 or ARM platform.
+1. From the {{<exlink url="http://cumulusnetworks.com/downloads/" text="Cumulus Linux Downloads page">}}, download the appropriate Cumulus Linux image for your platform.
 2.  From a computer, prepare your USB drive by formatting it using one of the supported formats: FAT32, vFAT or EXT2.
 
     {{< expand "Optional: Prepare a USB Drive inside Cumulus Linux"  >}}
@@ -328,37 +327,28 @@ sudo mount /dev/sdb1 /mnt/usb
 
 {{< /expand >}}
 
-3. Copy the Cumulus Linux image to the USB drive, then rename the image file to:
-
-    - `onie-installer-x86_64`, if installing on an x86 platform
-    - `onie-installer-arm`, if installing on an ARM platform
+3. Copy the Cumulus Linux image to the USB drive, then rename the image file to `onie-installer-x86_64`.
 
     You can also use any of the {{<exlink url="http://opencomputeproject.github.io/onie/design-spec/discovery.html#default-file-name-search-order" text="ONIE naming schemes mentioned here">}}.
 
     When using a Mac or Windows computer to rename the installation file, the file extension might still be present. Make sure to remove the file extension otherwise ONIE is not able to detect the file.
 
-4. Insert the USB drive into the switch, then continue with the appropriate instructions below for your x86 or ARM platform.
-
-{{< tabs "TabID330 ">}}
-
-{{< tab "x86 Platforms ">}}
-
-1. Prepare the switch for installation:
+4. Insert the USB drive into the switch, then prepare the switch for installation:
 
     - If the switch is offline, connect to the console and power on the switch.
     - If the switch is already online in ONIE, use the `reboot` command.
 
     SSH sessions to the switch get dropped after this step. To complete the remaining instructions, connect to the console of the switch. Cumulus Linux switches display their boot process to the console; you need to monitor the console specifically to complete the next step.
 
-2. Monitor the console and select the ONIE option from the first GRUB screen shown below.
+5. Monitor the console and select the ONIE option from the first GRUB screen shown below.
 
     {{< img src = "/images/cumulus-linux/install-image-GNUx86-1.png" >}}
 
-3. Cumulus Linux on x86 uses GRUB chainloading to present a second GRUB menu specific to the ONIE partition. No action is necessary in this menu to select the default option *ONIE: Install OS*.
+6. Cumulus Linux on x86 uses GRUB chainloading to present a second GRUB menu specific to the ONIE partition. No action is necessary in this menu to select the default option *ONIE: Install OS*.
 
     {{< img src = "/images/cumulus-linux/install-image-GNUx86-2.png" >}}
 
-4. The USB drive is recognized and mounted automatically. The image file is located and automatic installation of Cumulus Linux begins. Here is some sample output:
+7. The USB drive is recognized and mounted automatically. The image file is located and automatic installation of Cumulus Linux begins. Here is some sample output:
 
     ```
     ONIE: OS Install Mode  ...
@@ -392,93 +382,7 @@ sudo mount /dev/sdb1 /mnt/usb
     Homepage: http://www.cumulusnetworks.com/
     ```
 
-5. After installation completes, the switch automatically reboots into the newly installed instance of Cumulus Linux.
-
-{{< /tab >}}
-
-{{< tab "ARM Platforms ">}}
-
-1. Prepare the switch for installation:
-
-    - If the switch is offline, connect to the console and power on the switch.
-    - If the switch is already online in ONIE, use the `reboot` command.
-
-    SSH sessions to the switch get dropped after this step. To complete the remaining instructions, connect to the console of the switch. Cumulus Linux switches display their boot process to the console; you need to monitor the console specifically to complete the next step.
-
-2. Interrupt the normal boot process before the countdown (shown below) completes. Press any key to stop the autoboot.
-
-    ```
-    U-Boot 2013.01-00016-gddbf4a9-dirty (Feb 14 2014 - 16:30:46) Accton: 1.4.0.5
-
-    CPU0: P2020, Version: 2.1, (0x80e20021)
-    Core: E500, Version: 5.1, (0x80211051)
-    Clock Configuration:
-        CPU0:1200 MHz, CPU1:1200 MHz,
-        CCB:600 MHz,
-        DDR:400 MHz (800 MT/s data rate) (Asynchronous), LBC:37.500 MHz
-    L1: D-cache 32 kB enabled
-    I-cache 32 kB enabled
-
-    <...snip ...>
-
-    USB: USB2513 hub OK
-    Hit any key to stop autoboot: 0
-    ```
-
-3. A command prompt appears so that you can run commands. Execute the following command:
-
-    ```
-    run onie_bootcmd
-    ```
-
-4. The USB drive is recognized and mounted automatically. The image file is located and automatic installation of Cumulus Linux begins. Here is some sample output:
-
-    ```
-    Loading Open Network Install Environment  ...
-    Platform: arm-as4610_54p-r0
-    Version : 1.6.1.3
-    WARNING: adjusting available memory to 30000000
-    ## Booting kernel from Legacy Image at ec040000  ...
-        Image Name:   as6701_32x.1.6.1.3
-        Image Type:   ARM Linux Multi-File Image (gzip compressed)
-        Data Size:    4456555 Bytes = 4.3 MiB
-        Load Address: 00000000
-        Entry Point:  00000000
-        Contents:
-            Image 0: 3738543 Bytes = 3.6 MiB
-            Image 1: 706440 Bytes = 689.9 KiB
-            Image 2: 11555 Bytes = 11.3 KiB
-    Verifying Checksum ... OK
-    ## Loading init Ramdisk from multi component Legacy Image at ec040000  ...
-    ## Flattened Device Tree from multi component Image at EC040000
-    Booting using the fdt at 0xec47d388
-    Uncompressing Multi-File Image ... OK
-    Loading Ramdisk to 2ff53000, end 2ffff788 ... OK
-    Loading Device Tree to 03ffa000, end 03fffd22 ... OK
-
-    <...snip...>
-
-    ONIE: Starting ONIE Service Discovery
-    ONIE: Executing installer: file://dev/sdb1/onie-installer-arm
-    Verifying image checksum ... OK.
-    Preparing image archive ... OK.
-    Dumping image info ...
-    Control File Contents
-    =====================
-    Description: Cumulus Linux
-    OS-Release: 4.1.0
-    Architecture: arm
-    Date: Fri, 13 March 2020 17:08:35 -0700
-    Installer-Version: 1.2
-    Platforms: accton_as4600_54t, accton_as6701_32x, accton_5652, accton_as5610_52x, dni_6448, dni_7448, dni_c7448n, cel_kennisis, cel_redstone, cel_smallstone, cumulus_p2020, quanta_lb9, quanta_ly2, quanta_ly2r, quanta_ly6_p2020
-    Homepage: http://www.cumulusnetworks.com/
-    ```
-
-5. After installation completes, the switch automatically reboots into the newly installed instance of Cumulus Linux.
-
-{{< /tab >}}
-
-{{< /tabs >}}
+6. After installation completes, the switch automatically reboots into the newly installed instance of Cumulus Linux.
 
 ## ONIE Installation Options
 
@@ -496,7 +400,7 @@ The `onie-nos-install` command does *not* allow you specify command line paramet
 The following example commands transfer a disk image to the switch, make the image executable, and install the image with the `--password` option to change the default cumulus user password:
 
 ```
-ONIE:/ # wget http://myserver.datacenter.com/cumulus-linux-5.0.0-bcm-amd64.bin
+ONIE:/ # wget http://myserver.datacenter.com/cumulus-linux-5.0.0-mlx-amd64.bin
 ONIE:/ # chmod 755 cumulus-linux-5.0.0-mlx-amd64.bin
 ONIE:/ # ./cumulus-linux-5.0.0-mlx-amd64.bin --password 'MyP4$$word'
 ```
@@ -595,10 +499,10 @@ The variables you can set are described below:
 | -------- | ----------- |
 | `CL_INSTALLER_PASSWORD` |Defines the clear text password.<br>This variable is equivalent to the ONIE installer command line option `--password`.  |
 | `CL_INSTALLER_HASHED_PASSWORD` | Defines the hashed password.<br>This variable is equivalent to the ONIE installer command line option `--hashed-password`.<br>If you set both the `CL_INSTALLER_PASSWORD` and `CL_INSTALLER_HASHED_PASSWORD` variable, the `CL_INSTALLER_HASHED_PASSWORD` takes precedence. |
-| `CL_INSTALLER_LICENSE` | Defines the Cumulus Linux license you want to install.<br>This variable is equivalent to the ONIE installer command line option `--license`.|
 | `CL_INSTALLER_INTERFACES_FILENAME` | Defines the name of the file on the ONIE filesystem you want to use as the `/etc/network/interfaces` file. <br>This variable is equivalent to the ONIE installer command line option `--interfaces-file`.|
 | `CL_INSTALLER_INTERFACES_CONTENT` | Describes the network interfaces available on your system and how to activate them. Setting this variable defines the contents of the `/etc/network/interfaces` file.<br>There is no equivalent ONIE installer command line option.<br>If you set both the `CL_INSTALLER_INTERFACES_FILENAME` and `CL_INSTALLER_INTERFACES_CONTENT` variables, the `CL_INSTALLER_INTERFACES_FILENAME` takes precedence. |
 | `CL_INSTALLER_ZTP_FILENAME` | Defines the name of the ZTP file on the ONIE filesystem you want to execute at first boot after installation. <br>This variable is equivalent to the ONIE installer command line option `--ztp`|
+<!-- | `CL_INSTALLER_LICENSE` | Defines the Cumulus Linux license you want to install.<br>This variable is equivalent to the ONIE installer command line option `--license`.| -->
 
 ### Edit the Image File
 

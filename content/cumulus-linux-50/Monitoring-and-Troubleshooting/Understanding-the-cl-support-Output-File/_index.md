@@ -27,16 +27,6 @@ If the Cumulus Linux support team requests that you submit the output from `cl-s
 cumulus@switch:~$ sudo cl-support -s
 ```
 
-{{%notice note%}}
-
-On ARM switches, the cl-support FRR module might time out even when FRR is not running. To disable the timeout, run the `cl-support` command with the `-M` option; for example:
-
-```
-cumulus@switch:~$ sudo cl-support -M
-```
-
-{{%/notice%}}
-
 For information on the directories included in the `cl-support` archive, see:
 
 - {{<link url="Troubleshooting-the-etc-Directory">}}. The `/etc` directory contains the largest number of files; however, log files might be significantly larger in file size.

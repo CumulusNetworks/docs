@@ -8,35 +8,11 @@ This chapter introduces the basics for monitoring and troubleshooting Cumulus Li
 
 ## Serial Console
 
-The serial console is a useful tool for debugging issues, especially when you find yourself rebooting the switch often or if you do not have a reliable network connection.
+The serial console is a useful tool for debugging issues, especially if you reboot the switch often or if you do not have a reliable network connection.
 
 The default serial console baud rate is 115200, which is the baud rate {{<exlink url="http://opencomputeproject.github.io/onie" text="ONIE">}} uses.
 
-### Configure the Serial Console on ARM Switches
-
-On ARM switches, the U-Boot environment variable `baudrate` identifies the baud rate of the serial console. To change the `baudrate` variable, use the `fw_setenv` command:
-
-```
-cumulus@switch:~$ sudo fw_setenv baudrate 9600
-Updating environment variable: `baudrate'
-Proceed with update [N/y]? y
-```
-
-You must reboot the switch for the `baudrate` change to take effect.
-
-The valid values for `baudrate` are:
-
-- 300
-- 600
-- 1200
-- 2400
-- 4800
-- 9600
-- 19200
-- 38400
-- 115200
-
-### Configure the Serial Console on x86 Switches
+### Configure the Serial Console
 
 On x86 switches, you configure serial console baud rate by editing `grub`.
 
@@ -118,8 +94,8 @@ For information about the version of Cumulus Linux running on the switch, run th
 cumulus@switch:~$ net show version
 NCLU_VERSION=1.0-cl4u1
 DISTRIB_ID="Cumulus Linux"
-DISTRIB_RELEASE=4.1.0
-DISTRIB_DESCRIPTION="Cumulus Linux 4.1.0"
+DISTRIB_RELEASE=5.0.0
+DISTRIB_DESCRIPTION="Cumulus Linux 5.0.0"
 ```
 
 For general information about the switch, run `net show system`, which gathers information about the switch from a number of files in the system:

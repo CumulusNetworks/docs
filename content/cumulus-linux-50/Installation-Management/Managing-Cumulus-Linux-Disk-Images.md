@@ -8,26 +8,6 @@ The Cumulus Linux operating system resides on a switch as a *disk image*. This s
 
 To install a new Cumulus Linux image, refer to {{<link title="Installing a New Cumulus Linux Image">}}. To upgrade Cumulus Linux, refer to {{<link title="Upgrading Cumulus Linux">}}.
 
-## Determine the Switch Platform
-
-To determine if your switch is on an x86 or ARM platform, run the `uname -m` command.
-
-For example, on an x86 platform, `uname -m` outputs *x86\_64*:
-
-```
-cumulus@switch:~$ uname -m
- x86_64
-```
-
-On an ARM platform, `uname -m` outputs *armv7l*:
-
-```
-cumulus@switch:~$ uname -m
- armv7l
-```
-
-You can also visit the HCL ({{<exlink url="https://cumulusnetworks.com/products/hardware-compatibility-list/" text="hardware compatibility list">}}) to look at your hardware and determine the processor type.
-
 ## Reprovision the System (Restart the Installer)
 
 Reprovisioning the system deletes all system data from the switch.

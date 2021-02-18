@@ -14,8 +14,6 @@ Cumulus Linux advertises the maximum number of route table entries supported on 
 - ECMP next hops, which are IP address entries in a router's routing table that specify the next closest or most optimal router in its routing path
 - MAC addresses
 
-In addition, Tomahawk, Trident II, Trident II+, and Trident3 switches are configured to manage route table entries using Algorithm Longest Prefix Match (ALPM). In ALPM mode, the hardware can store significantly more route entries.
-
 To determine the current table sizes on a switch, use either the NCLU `net show system asic` command or `{{<link url="Resource-Diagnostics-Using-cl-resource-query" text="cl-resource-query">}}`.
 
 ## Forwarding Table Profiles

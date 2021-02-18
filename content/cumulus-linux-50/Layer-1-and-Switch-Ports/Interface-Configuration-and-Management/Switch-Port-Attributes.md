@@ -773,32 +773,29 @@ cumulus@switch:~$ sudo systemctl reload switchd.service
 
 Before you configure any logical/unganged ports on a switch, check the limitations listed in `/etc/cumulus/ports.conf`.
 
-The following example shows the logical port limitation provided in the Dell Z9254F-ON `ports.conf` file. The maximum number of ports for this switch is 128.
+The following example shows the logical port limitation provided in a `ports.conf` file. The maximum number of ports for this switch is 128.
 
 ```
 # ports.conf --
 #
-#   configure port speed, aggregation, and subdivision.
+#        This file controls port speed, aggregation and subdivision.
 #
-# The Dell Z9264F has:
-#      64 QSFP28 ports numbered 1-64
-#         These ports are configurable as 100G, 50G, 40G, or split into
-#         2x50G, 4x25G, or 4x10G ports.
+# For example, the zQSFP ports can be split into multiple interfaces. This
+# file sets the number of interfaces per port and the speed of those interfaces.
 #
-# NOTE:  You must restart switchd for any changes to take effect.
-# Only "odd-numbered " port can be split into 4 interfaces and if an odd-numbered
-# port is split in a 4X configuration, the port adjacent to it (even-numbered port)
-# has to be set to "disabled " in this file. When splitting a port into two
-# interfaces, like 2x50G, it is NOT required that the adjacent port be
-# disabled. For example, when splitting port 11 into 4 10G interfaces, port
-# 12 must be configured as "disabled" like this:
+# You must reload switchd for changes to take effect.
 #
-#   11=4x10G
-#   12=disabled
+# mlnx,x86_MSN3700c has:
+#     32 QSFP28 ports numbered 1-32
+#         These ports are configurable as 40G, 50G, 2x50G, or 100G; or can be
+#         split into 4x25G or 4x10G.
+#
 
 # QSFP28 ports
 #
-# <port label> = [100G|50G|40G|2x50G|4x25G|4x10G|disabled]
+# <port label>    = [40G|50G|100G]
+#   or when split = [2x50G|4x10G|4x25G|disabled]
+...
 ```
 
 Mellanox SN2700 and SN2700B switches have a limit of 64 logical ports in total. However, the logical ports must be configured in a specific way. See the note above.

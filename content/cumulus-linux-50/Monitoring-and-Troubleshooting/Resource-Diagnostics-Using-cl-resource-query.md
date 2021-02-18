@@ -18,126 +18,46 @@ This translates to about 314 routes with ECMP nexthops, if every route has the m
 
 To monitor the routes in Cumulus Linux hardware, use the `cl-resource-query` command. The results  ary between switches running on different chipsets.
 
-The example below shows `cl-resource-query` results for a Broadcom Tomahawk switch:
+The example below shows `cl-resource-query` results for a Mellanox Spectrum-2 switch:
 
 ```
 cumulus@switch:~$ sudo cl-resource-query
-IPv4/IPv6 host entries:                 0,   0% of maximum value  40960
+IPv4 host entries:                      0,   0% of maximum value  41360
+IPv6 host entries:                      0,   0% of maximum value  20680
 IPv4 neighbors:                         0
 IPv6 neighbors:                         0
-IPv4 route entries:                     4,   0% of maximum value  65536
-IPv6 route entries:                     8,   0% of maximum value   8192
-IPv4 Routes:                            4
-IPv6 Routes:                            8
-Total Routes:                          12,   0% of maximum value  65536
-ECMP nexthops:                          0,   0% of maximum value  16327
-MAC entries:                            1,   0% of maximum value  40960
-Total Mcast Routes:                     0,   0% of maximum value  20480
-Ingress ACL entries:                  195,  12% of maximum value   1536
-Ingress ACL counters:                 195,  12% of maximum value   1536
-Ingress ACL meters:                    21,   1% of maximum value   2048
-Ingress ACL slices:                     6, 100% of maximum value      6
-Egress ACL entries:                    58,  11% of maximum value    512
-Egress ACL counters:                   58,   5% of maximum value   1024
-Egress ACL meters:                     29,   5% of maximum value    512
-Egress ACL slices:                      2, 100% of maximum value      2
-Ingress ACL ipv4_mac filter table:     36,  14% of maximum value    256 (allocated: 256)
-Ingress ACL ipv6 filter table:         29,  11% of maximum value    256 (allocated: 256)
-Ingress ACL mirror table:               0,   0% of maximum value      0 (allocated: 0)
-Ingress ACL 8021x filter table:         0,   0% of maximum value      0 (allocated: 0)
-Ingress PBR ipv4_mac filter table:      0,   0% of maximum value      0 (allocated: 0)
-Ingress PBR ipv6 filter table:          0,   0% of maximum value      0 (allocated: 0)
-Ingress ACL ipv4_mac mangle table:      0,   0% of maximum value      0 (allocated: 0)
-Ingress ACL ipv6 mangle table:          0,   0% of maximum value      0 (allocated: 0)
-Egress ACL ipv4_mac filter table:      29,  11% of maximum value    256 (allocated: 256)
-Egress ACL ipv6 filter table:           0,   0% of maximum value      0 (allocated: 0)
-ACL L4 port range checkers:             2,   6% of maximum value     32
-```
-
-The example below shows `cl-resource-query` results for a Broadcom Trident II switch:
-
-```
-cumulus@switch:~$ sudo cl-resource-query
-IPv4/IPv6 host entries:                 0,   0% of maximum value  16384
-IPv4 neighbors:                         0
-IPv6 neighbors:                         0
-IPv4 route entries:                     0,   0% of maximum value 131072
-IPv6 route entries:                     1,   0% of maximum value  20480
+IPv4 route entries:                     0,   0% of maximum value  82720
+IPv6 route entries:                    22,   0% of maximum value  74446
 IPv4 Routes:                            0
-IPv6 Routes:                            1
-Total Routes:                           1,   0% of maximum value 131072
-ECMP nexthops:                          0,   0% of maximum value  16346
-MAC entries:                            0,   0% of maximum value  32768
-Total Mcast Routes:                     0,   0% of maximum value   8192
-Ingress ACL entries:                  130,   6% of maximum value   2048
-Ingress ACL counters:                  86,   4% of maximum value   2048
-Ingress ACL meters:                    21,   0% of maximum value   4096
-Ingress ACL slices:                     4,  66% of maximum value      6
-Egress ACL entries:                    58,  11% of maximum value    512
-Egress ACL counters:                   58,   5% of maximum value   1024
-Egress ACL meters:                     29,   5% of maximum value    512
-Egress ACL slices:                      2, 100% of maximum value      2
-Ingress ACL ipv4_mac filter table:     36,   7% of maximum value    512 (allocated: 256)
-Ingress ACL ipv6 filter table:         29,   3% of maximum value    768 (allocated: 512)
-Ingress ACL mirror table:               0,   0% of maximum value      0 (allocated: 0)
-Ingress ACL 8021x filter table:         0,   0% of maximum value      0 (allocated: 0)
-Ingress PBR ipv4_mac filter table:      0,   0% of maximum value      0 (allocated: 0)
-Ingress PBR ipv6 filter table:          0,   0% of maximum value      0 (allocated: 0)
-Ingress ACL ipv4_mac mangle table:      0,   0% of maximum value      0 (allocated: 0)
-Ingress ACL ipv6 mangle table:          0,   0% of maximum value      0 (allocated: 0)
-Egress ACL ipv4_mac filter table:      29,  11% of maximum value    256 (allocated: 256)
-Egress ACL ipv6 filter table:           0,   0% of maximum value      0 (allocated: 0)
-ACL L4 port range checkers:             2,   8% of maximum value     24
-```
-
-{{%notice note%}}
-
-On a switch with a {{<exlink url="https://cumulusnetworks.com/products/hardware-compatibility-list/?asic%5B0%5D=Mellanox%20Spectrum&asic%5B1%5D=Mellanox%20Spectrum_A1" text="Spectrum ASIC">}}, the `cl-resource-query` command shows the number of TCAM entries used by the different types of ACL resources.
-
-{{%/notice%}}
-
-The example below shows `cl-resource-query` results for a NVIDIA Mellanox Spectrum switch:
-```
-cumulus@switch:~$ sudo cl-resource-query
-IPv4 host entries:                      0,   0% of maximum value  32768
-IPv6 host entries:                      0,   0% of maximum value  16384
-IPv4 neighbors:                         0
-IPv6 neighbors:                         0
-IPv4 route entries:                     0,   0% of maximum value  65536
-IPv6 route entries:                     7,   0% of maximum value  28672
-IPv4 Routes:                            0
-IPv6 Routes:                            7
-Total Routes:                           7,   0% of maximum value  94208
-ECMP nexthops:                          0,   0% of maximum value   4101
-MAC entries:                            0,   0% of maximum value  40960
-Total Mcast Routes:                     0,   0% of maximum value    400
-Ingress ACL entries:                    0,   0% of maximum value      0
-Ingress ACL counters:                   0,   0% of maximum value      0
-Ingress ACL meters:                     0,   0% of maximum value      0
-Ingress ACL slices:                     0,   0% of maximum value      0
-Egress ACL entries:                     0,   0% of maximum value      0
-Egress ACL counters:                    0,   0% of maximum value      0
-Egress ACL meters:                      0,   0% of maximum value      0
-Egress ACL slices:                      0,   0% of maximum value      0
-Ingress ACL ipv4_mac filter table:      0,   0% of maximum value      0 (allocated: 0)
-Ingress ACL ipv6 filter table:          0,   0% of maximum value      0 (allocated: 0)
-Ingress ACL mirror table:               0,   0% of maximum value      0 (allocated: 0)
-Ingress ACL 8021x filter table:         0,   0% of maximum value      0 (allocated: 0)
-Ingress PBR ipv4_mac filter table:      0,   0% of maximum value      0 (allocated: 0)
-Ingress PBR ipv6 filter table:          0,   0% of maximum value      0 (allocated: 0)
-Ingress ACL ipv4_mac mangle table:      0,   0% of maximum value      0 (allocated: 0)
-Ingress ACL ipv6 mangle table:          0,   0% of maximum value      0 (allocated: 0)
-Egress ACL ipv4_mac filter table:       0,   0% of maximum value      0 (allocated: 0)
-Egress ACL ipv6 filter table:           0,   0% of maximum value      0 (allocated: 0)
-ACL L4 port range checkers:             0,   0% of maximum value      0
+IPv6 Routes:                           12
+Total Routes:                          22,   0% of maximum value 157166
+Unicast Adjacency entries:              0,   0% of maximum value  33087
+ECMP entries:                           0,   0% of maximum value   8571
+MAC entries:                           38,   0% of maximum value  57903
+Total Mcast Routes:                     0,   0% of maximum value   1000
+Ingress ACL entries:                    0
+Egress ACL entries:                     0
 ACL Regions:                            4,   1% of maximum value    400
-ACL 18B Rules Key:                      2,   0% of maximum value   2256
-ACL 32B Rules Key:                      0,   0% of maximum value   1024
-ACL 54B Rules Key:                      2,   0% of maximum value   1024
+ACL 18B Rules Key:                      1,   0% of maximum value  57476
+ACL 36B Rules Key:                      0,   0% of maximum value  57475
+ACL 54B Rules Key:                      0,   0% of maximum value  34485
+Ingress ACL mac filter table:           0    18B : 0 36B : 0 54B : 0 
+Ingress ACL ipv4 filter table:          0    18B : 0 36B : 0 54B : 0 
+Ingress ACL ipv6 filter table:          0    18B : 0 36B : 0 54B : 0 
+Egress ACL mac filter table:            0    18B : 0 36B : 0 54B : 0 
+Egress ACL ipv4 filter table:           0    18B : 0 36B : 0 54B : 0 
+Egress ACL ipv6 filter table:           0    18B : 0 36B : 0 54B : 0 
+Ingress ACL ipv4 mangle table:          0    18B : 0 36B : 0 54B : 0 
+Ingress ACL ipv6 mangle table:          0    18B : 0 36B : 0 54B : 0 
+Ingress PBR ipv4 filter table:          0    18B : 0 36B : 0 54B : 0 
+Ingress PBR ipv6 filter table:          0    18B : 0 36B : 0 54B : 0 
+Flow Counters:                          2,   0% of maximum value  39430
+RIF Basic Counters:                     0,   0% of maximum value   7885
+RIF Enhanced Counters:                 38,   1% of maximum value   2666
+Dynamic SNAT entries:                   0,   0% of maximum value   1024
+Dynamic DNAT entries:                   0,   0% of maximum value   1024
+Dynamic Config SNAT entries:            0,   0% of maximum value     64
+Dynamic Config DNAT entries:            0,   0% of maximum value     64
 ```
-
-{{%notice note%}}
 
 Ingress ACL and Egress ACL entries show the counts in single wide (*not* double-wide). For information about ACL entries, see {{<link url="Netfilter-ACLs#estimate-the-number-of-rules" text="Estimate the Number of ACL Rules">}}.
-
-{{%/notice%}}

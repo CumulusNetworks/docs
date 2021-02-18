@@ -209,7 +209,7 @@ The `/etc/cumulus/switchd.conf` file includes the following configuration option
 | Option | Description |
 | ------ | ----------- |
 | nat.age_poll_interval | The period of inactivity before `switchd` releases a NAT entry from the translation table.<br>The default value is 5 minutes. The minimum value is 1 minute. The maximum value is 24 hours.|
-| nat.table_size | The maximum number of dynamic `snat` and `dnat` entries in the translation table. The default value is 1024.<br>Trident3 switches support a maximum of 1024  entries.<br>Mellanox Spectrum-2 switches support a maximum of 8192 entries. |
+| nat.table_size | The maximum number of dynamic `snat` and `dnat` entries in the translation table. The default value is 1024.<br>Mellanox Spectrum-2 switches support a maximum of 8192 entries. |
 | nat.config_table_size | The maximum number of rules allowed (NCLU or cl-acltool).<br>The default value is 64. The minimum value is 64. The maximum value is 1024. |
 
 After you change any of the dynamic NAT configuration options, restart `switchd`.

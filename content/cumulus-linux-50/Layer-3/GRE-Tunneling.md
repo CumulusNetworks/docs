@@ -18,7 +18,6 @@ GRE uses multiple protocols over a single-protocol backbone and is less demandin
 
 {{%notice note%}}
 
-- GRE tunneling is supported for switches with {{<exlink url="https://cumulusnetworks.com/products/hardware-compatibility-list/?asic%5B0%5D=Mellanox%20Spectrum&asic%5B1%5D=Mellanox%20Spectrum_A1" text="Spectrum ASICs">}} only.
 - Only static routes are supported as a destination for the tunnel interface.
 - IPv6 endpoints are not supported.
 

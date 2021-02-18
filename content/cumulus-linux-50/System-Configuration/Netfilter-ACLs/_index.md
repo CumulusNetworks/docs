@@ -14,60 +14,7 @@ NCLU and `cl-acltool` operate on various configuration files and use `iptables`,
 
 In many instances, you can use NCLU to configure ACLs; however, in some cases, you must use `cl-acltool`. The examples below specify when to use which tool.
 
-If you need help to configure ACLs, run `net example acl` to see a basic configuration:
-
-{{< expand "Example "  >}}
-
-```
-cumulus@leaf01:~$ net example acl
-
-Scenario
-========
-We would like to use access-lists on 'switch' to
-- Restrict inbound traffic on swp1 to traffic from 10.1.1.0/24 destined for 10.1.2.0/24
-- Restrict outbound traffic on swp2 to http, https, or ssh
-
-         *switch
-            /\
-      swp1 /  \ swp2
-          /    \
-         /      \
-     host-11   host-12
-
-switch net commands
-====================
-
-Create an ACL that accepts traffic from 10.1.1.0/24 destined for 10.1.2.0/24 and drops all other traffic
-
-switch# net add acl ipv4 MYACL accept source-ip 10.1.1.0/24 dest-ip 10.1.2.0/24
-switch# net add acl ipv4 MYACL drop source-ip any dest-ip any
-
-Apply MYACL inbound on swp1
-
-switch# net add interface swp1 acl ipv4 MYACL inbound
-
-Create an ACL that accepts http, https, or ssh traffic and drops all other traffic.
-
-switch# net add acl ipv4 WEB_OR_SSH accept tcp source-ip any source-port any dest-ip any dest-port http
-switch# net add acl ipv4 WEB_OR_SSH accept tcp source-ip any source-port http dest-ip any dest-port any
-switch# net add acl ipv4 WEB_OR_SSH accept tcp source-ip any source-port any dest-ip any dest-port https
-switch# net add acl ipv4 WEB_OR_SSH accept tcp source-ip any source-port https dest-ip any dest-port any
-switch# net add acl ipv4 WEB_OR_SSH accept tcp source-ip any source-port any dest-ip any dest-port ssh
-switch# net add acl ipv4 WEB_OR_SSH accept tcp source-ip any source-port ssh dest-ip any dest-port any
-switch# net add acl ipv4 WEB_OR_SSH drop source-ip any dest-ip any
-
-Apply WEB_OR_SSH outbound on swp2
-switch# net add interface swp2 acl ipv4 WEB_OR_SSH outbound
-
-commit the staged changes
-switch# net commit
-
-Verification
-============
-switch# net show configuration acl
-```
-
-{{< /expand >}}
+If you need help to configure ACLs, run `net example acl` to see a basic configuration.
 
 ## Traffic Rules In Cumulus Linux
 
@@ -310,43 +257,6 @@ By default, each entry occupies one double wide entry, except if the entry is on
 Port ranges are only allowed for ingress rules.
 
     {{%/notice%}}
-
-<!--BROADCOM ONLY### Match SVI and Bridged Interfaces in Rules
-
-Cumulus Linux supports matching ACL rules for both ingress and egress interfaces on both
-{{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware">}} and {{<link url="Traditional-Bridge-Mode" text="traditional mode">}} bridges, including bridge SVIs ({{<link url="Ethernet-Bridging-VLANs#configure-an-svi-switch-vlan-interface" text="switch VLAN interfaces">}}) for input and output. However, keep the following in mind:
-
-- If a traditional mode bridge has a mix of different VLANs, or has both access and trunk members, output interface matching is not supported.
-- For `iptables` rules, all IP packets in a bridge are matched, not just routed packets.
-- You cannot match both input and output interfaces in a rule.
-- For routed packets, Cumulus Linux cannot match the output bridge for SPAN/ERSPAN.
-- Matching SVI interfaces in `ebtable` rules is supported on switches based on Broadcom ASICs. This feature is not currently supported on switches with Mellanox Spectrum ASICs.
-
-Example rules for a VLAN-aware bridge:
-
-```
-[ebtables]
--A FORWARD -i vlan100 -p IPv4 --ip-protocol icmp -j DROP
--A FORWARD -o vlan100 -p IPv4 --ip-protocol icmp -j ACCEPT
-
-[iptables]
--A FORWARD -i vlan100 -p icmp -j DROP
--A FORWARD --out-interface vlan100 -p icmp -j ACCEPT
--A FORWARD --in-interface vlan100 -j POLICE --set-mode  pkt  --set-rate  1 --set-burst 1 --set-class 0
-```
-
-Example rules for a traditional mode bridge:
-
-```
-[ebtables]
--A FORWARD -i br0 -p IPv4 --ip-protocol icmp -j DROP
--A FORWARD -o br0 -p IPv4 --ip-protocol icmp -j ACCEPT
-
-[iptables]
--A FORWARD -i br0 -p icmp -j DROP
--A FORWARD --out-interface br0 -p icmp -j ACCEPT
--A FORWARD --in-interface br0 -j POLICE --set-mode  pkt  --set-rate  1 --set-burst 1 --set-class 0
-```-->
 
 ### Match on VLAN IDs on Layer 2 Interfaces
 
@@ -622,7 +532,6 @@ include /etc/cumulus/acl/policy.d/01_new.datapathacl
 
 The maximum number of rules that can be handled in hardware is a function of the following factors:
 
-- The platform type (switch silicon, like Tomahawk or Spectrum - see the {{<exlink url="https://cumulusnetworks.com/support/hcl" text="HCL">}} to determine which platform type applies to a particular switch).
 - The mix of IPv4 and IPv6 rules; Cumulus Linux does not support the maximum number of rules for both IPv4 and IPv6 simultaneously.
 - The number of default rules provided by Cumulus Linux.
 - Whether the rules are applied on ingress or egress.
@@ -733,28 +642,6 @@ Rule 1: `-A FORWARD --out-interface vlan100 -p icmp6 -j ACCEPT`
 Rule 2: `-A FORWARD --out-interface vlan101 -p icmp6 -j DROP`
 
 Rule 2 will never be match on ingress. Both rules share the same mark.
-
-#### Matching Untagged Packets (Trident3 Switches)
-
-Untagged packets do not have an associated VLAN to match on egress; therefore, the match must be on the underlying layer 2 port. For example, for a bridge configured with pvid 100, member port swp1s0 and swp1s1, and SVI vlan100, the output interface match on vlan100 has to be expanded into each member port. The `-A FORWARD -o vlan100 -p icmp6 -j ACCEPT` rule must be specified as two rules:
-
-Rule 1: `-A FORWARD -o swp1s0 -p icmp6 -J ACCEPT`
-
-Rule 2: `-A FORWARD -o swp1s1 -p icmp6 -j ACCEPT`
-
-Matching on an egress port matches all packets egressing the port, tagged as well as untagged. Therefore, to match only untagged traffic on the port, you must specify additional rules above this rule to prevent tagged packets matching the rule. This is true for bridge member ports as well as regular layer 2 ports. In the example rule above, if vlan101 is also present on the bridge, add a rule above rule 1 and rule 2 to protect vlan101 tagged traffic:
-
-Rule 0: `-A FORWARD -o vlan101 -p icmp6 -j ACCEPT`
-
-Rule 1: `-A FORWARD -o swp1s0 -p icmp6 -j ACCEPT`
-
-Rule 2: `-A FORWARD -o swp1s1 -p icmp6 -j ACCEPT`
-
-For a standalone port or subinterface on swp1s2:
-
-Rule 0: `-A FORWARD -o swp1s2.101 -p icmp6 -j ACCEPT`
-
-Rule 1: `-A FORWARD -o swp1s2 -p icmp6 -j ACCEPT`
 
 ## Common Examples
 
@@ -1136,50 +1023,6 @@ Logged packets cannot be forwarded. The hardware cannot both forward a packet an
 
 SPAN sessions that reference an outgoing interface create mirrored packets based on the ingress interface before the routing/switching decision. See {{<link url="SPAN-and-ERSPAN#span-sessions-that-reference-an-outgoing-interface" text="SPAN Sessions that Reference an Outgoing Interface">}} and {{<link url="SPAN-and-ERSPAN/#use-the-cpu-port-as-the-span-destination" text="Use the CPU Port as the SPAN Destination">}} in the Network Troubleshooting section.
 
-### Tomahawk Hardware Limitations
-
-#### Rate Limiting per Pipeline, Not Global
-
-On Tomahawk switches, the field processor (FP) polices on a per-pipeline basis instead of globally, as with a Trident II switch. If packets come in to different switch ports that are on different pipelines on the ASIC, they might be rate limited differently.
-
-For example, your switch is set so BFD is rate limited to 2000 packets per second. When the BFD packets are received on port1/pipe1 and port2/pipe2, they are each rate limited at 2000 pps; the switch is rate limiting at 4000 pps overall. Because there are four pipelines on a Tomahawk switch, you might see a fourfold increase of your configured rate limits.
-
-#### Atomic Update Mode Enabled by Default
-
-In Cumulus Linux, atomic update mode is enabled by default. If you have Tomahawk switches and plan to use SPAN and/or mangle rules, you must disable atomic update mode.
-
-To do so, enable nonatomic update mode by setting the value for `acl.non_atomic_update_mode` to TRUE in `/etc/cumulus/switchd.conf`, then {{%link url="Configuring-switchd#restart-switchd" text="restart `switchd`"%}}.
-
-```
-acl.non_atomic_update_mode = TRUE
-```
-
-#### Packets Undercounted during ACL Updates
-
-On Tomahawk switches, when updating egress FP rules, some packets do no get counted. This results in an underreporting of counts during ping-pong or incremental switchover.
-
-### Trident II+ Hardware Limitations
-
-On a Trident II+ switch, the TCAM allocation for ACLs is limited to 2048 rules in atomic mode for a default setup instead of 4096, as advertised for ingress rules.
-
-### Trident3 Hardware Limitations
-
-#### TCAM Allocation
-
-On a Trident3 switch, the TCAM allocation for ACLs is limited to 2048 rules in atomic mode for a default setup instead of 4096, as advertised for ingress rules.
-
-#### Enable Nonatomic Mode
-
-On a Trident3 switch, you must enable nonatomic update mode before you can configure ERSPAN. To do so, set the value for `acl.non_atomic_update_mode` to TRUE in `/etc/cumulus/switchd.conf`, then {{%link url="Configuring-switchd#restart-switchd" text="restart `switchd`"%}}.
-
-```
-acl.non_atomic_update_mode = TRUE
-```
-
-#### Egress ACL Rules
-
-On Trident3 switches, egress ACL rules matching on the output SVI interface match layer 3 routed packets only, not bridged packets. To match layer 2 traffic, use egress bridge member port-based rules.
-
 ### iptables Interactions with cl-acltool
 
 Because Cumulus Linux is a Linux operating system, the `iptables` commands can be used directly. However, consider using `cl-acltool` instead because:
@@ -1247,11 +1090,7 @@ Installing acl policy... Rolling back ..
 failed.
 ```
 
-### Dell S3048-ON Supports only 24K MAC Addresses
-
-The Dell S3048-ON has a limit of 24576 MAC address entries instead of 32K for other 1G switches.
-
-### Mellanox Spectrum ASICs and INPUT Chain Rules
+### INPUT Chain Rules
 
 On switches with Mellanox Spectrum ASICs, INPUT chain rules are implemented using a trap mechanism. Packets headed to the CPU are assigned trap IDs. The default INPUT chain rules are mapped to these trap IDs. However, if a packet matches multiple traps, they are resolved by an internal priority mechanism that might be different from the rule priorities. Packets might not get policed by the default expected rule, but by another rule instead. For example, ICMP packets headed to the CPU are policed by the LOCAL rule instead of the ICMP rule. Also, multiple rules might share the same trap. In this case the policer that is applied is the largest of the policer values.
 
@@ -1269,7 +1108,7 @@ For example:
 
     -A FORWARD --out-interface swp49s1.100 -j ACCEPT
 
-### Mellanox Switches and Egress ACL Matching on Bonds
+### Egress ACL Matching on Bonds
 
 On the Mellanox switch, ACL rules that match on an outbound *bond* interface are not supported. For example, the following rule is not supported:
 

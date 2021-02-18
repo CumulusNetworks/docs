@@ -4,23 +4,19 @@ author: NVIDIA
 weight: 430
 toc: 4
 ---
-The Cumulus Linux bridge driver supports two configuration modes, one that is VLAN-aware, and one that follows a more traditional Linux bridge model.
-
-For {{<link url="Traditional-Bridge-Mode" text="traditional Linux bridges">}}, the kernel supports VLANs in the form of VLAN subinterfaces. Enabling bridging on multiple VLANs means configuring a bridge for each VLAN and, for each member port on a bridge, creating one or more VLAN subinterfaces out of that port. This mode poses scalability challenges in terms of configuration size as well as boot time and run time state management, when the number of ports times the number of VLANs becomes large.
-
-The VLAN-aware mode in Cumulus Linux implements a configuration model for large-scale layer 2 environments, with **one single instance** of {{<link url="Spanning-Tree-and-Rapid-Spanning-Tree-STP" text="spanning tree protocol">}}. Each physical bridge member port is configured with the list of allowed VLANs as well as its port VLAN ID, either primary VLAN Identifier (PVID) or native VLAN. MAC address learning, filtering and forwarding are *VLAN-aware*. This significantly reduces the configuration size, and eliminates the large overhead of managing the port/VLAN instances as subinterfaces, replacing them with lightweight VLAN bitmaps and state updates.
+The VLAN-aware mode in Cumulus Linux implements a configuration model for large-scale layer 2 environments, with *one single instance* of {{<link url="Spanning-Tree-and-Rapid-Spanning-Tree-STP" text="spanning tree protocol">}}. Each physical bridge member port is configured with the list of allowed VLANs as well as its port VLAN ID, either primary VLAN Identifier (PVID) or native VLAN. MAC address learning, filtering and forwarding are *VLAN-aware*. This significantly reduces the configuration size, and eliminates the large overhead of managing the port and VLAN instances as subinterfaces, replacing them with lightweight VLAN bitmaps and state updates.
 
 {{%notice tip%}}
 
-You can configure both VLAN-aware and traditional mode bridges on thesame network in Cumulus Linux; however do not have more than one VLAN-aware bridge on a given switch.
+You can configure both VLAN-aware and traditional mode bridges on the same network in Cumulus Linux; however do not have more than one VLAN-aware bridge on a given switch.
 
 {{%/notice%}}
 
 ## Configure a VLAN-aware Bridge
 
-The example below shows the commands required to create a VLAN-aware bridge configured for STP that contains two switch ports and includes 3 VLANs; the tagged VLANs 100 and 200 and the untagged (native) VLAN of 1.
+The example below shows the commands required to create a VLAN-aware bridge configured for STP that contains two switch ports and includes 3 VLANs; the tagged VLANs 10 and 20 and the untagged (native) VLAN of 1.
 
-{{< img src = "/images/cumulus-linux/ethernet-bridging-basic-trunking.png" >}}
+{{< img src = "/images/cumulus-linux/ethernet-bridging-basic-trunking1.png" >}}
 
 {{< tabs "TabID27 ">}}
 
@@ -28,7 +24,7 @@ The example below shows the commands required to create a VLAN-aware bridge conf
 
 ```
 cumulus@switch:~$ net add bridge bridge ports swp1-2
-cumulus@switch:~$ net add bridge bridge vids 100,200
+cumulus@switch:~$ net add bridge bridge vids 10,20
 cumulus@switch:~$ net add bridge bridge pvid 1
 cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
@@ -41,7 +37,7 @@ auto bridge
 iface bridge
     bridge-ports swp1 swp2
     bridge-pvid 1
-    bridge-vids 100 200
+    bridge-vids 10 20
     bridge-vlan-aware yes
 ```
 
@@ -57,7 +53,7 @@ cumulus@switch:~$ sudo nano /etc/network/interfaces
 auto bridge
 iface bridge
     bridge-ports swp1 swp2
-    bridge-vids 100 200
+    bridge-vids 10 20
     bridge-pvid 1
     bridge-vlan-aware yes
 ...
@@ -81,7 +77,7 @@ The Primary VLAN Identifer (PVID) of the bridge defaults to 1. You do *not* have
 auto bridge
 iface bridge
     bridge-ports swp1 swp2
-    bridge-vids 1 100 200
+    bridge-vids 1 10 20
     bridge-vlan-aware yes
 ```
 
@@ -90,7 +86,7 @@ auto bridge
 iface bridge
     bridge-ports swp1 swp2
     bridge-pvid 1
-    bridge-vids 1 100 200
+    bridge-vids 1 10 20
     bridge-vlan-aware yes
 ```
 
@@ -98,7 +94,7 @@ iface bridge
 auto bridge
 iface bridge
     bridge-ports swp1 swp2
-    bridge-vids 100 200
+    bridge-vids 10 20
     bridge-vlan-aware yes
 ```
 
@@ -142,7 +138,7 @@ resv_vlan_range
 
 By default, the bridge port inherits the bridge VIDs. To configure a port to override the bridge VIDs:
 
-{{< img src = "/images/cumulus-linux/ethernet-bridging-vlan-pruned.png" >}}
+{{< img src = "/images/cumulus-linux/ethernet-bridging-vlan-pruned1.png" >}}
 
 {{< tabs "TabID157 ">}}
 
@@ -152,9 +148,9 @@ The following example commands configure swp3 to override the bridge VIDs:
 
 ```
 cumulus@switch:~$ net add bridge bridge ports swp1-3
-cumulus@switch:~$ net add bridge bridge vids 100,200
+cumulus@switch:~$ net add bridge bridge vids 10,20
 cumulus@switch:~$ net add bridge bridge pvid 1
-cumulus@switch:~$ net add interface swp3 bridge vids 200
+cumulus@switch:~$ net add interface swp3 bridge vids 20
 cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
@@ -166,12 +162,12 @@ auto bridge
 iface bridge
     bridge-ports swp1 swp2 swp3
     bridge-pvid 1
-    bridge-vids 100 200
+    bridge-vids 10 20
     bridge-vlan-aware yes
 
 auto swp3
 iface swp3
-  bridge-vids 200
+  bridge-vids 20
 ```
 
 {{< /tab >}}
@@ -187,12 +183,12 @@ auto bridge
 iface bridge
     bridge-ports swp1 swp2 swp3
     bridge-pvid 1
-    bridge-vids 100 200
+    bridge-vids 10 20
     bridge-vlan-aware yes
 
 auto swp3
 iface swp3
-  bridge-vids 200
+  bridge-vids 20
 ...
 ```
 
@@ -206,9 +202,9 @@ cumulus@switch:~$ ifreload -a
 
 ## Untagged/Access Ports
 
-Access ports ignore all tagged packets. In the configuration below, swp1 and swp2 are configured as access ports, while all untagged traffic goes to VLAN 100:
+Access ports ignore all tagged packets. In the configuration below, swp1 and swp2 are configured as access ports, while all untagged traffic goes to VLAN 10:
 
-{{< img src = "/images/cumulus-linux/ethernet-bridging-vlan_untagged_access_ports.png" >}}
+{{< img src = "/images/cumulus-linux/ethernet-bridging-vlan_untagged_access_ports1.png" >}}
 
 {{< tabs "TabID223 ">}}
 
@@ -216,10 +212,10 @@ Access ports ignore all tagged packets. In the configuration below, swp1 and swp
 
 ```
 cumulus@switch:~$ net add bridge bridge ports swp1-2
-cumulus@switch:~$ net add bridge bridge vids 100,200
+cumulus@switch:~$ net add bridge bridge vids 10,20
 cumulus@switch:~$ net add bridge bridge pvid 1
-cumulus@switch:~$ net add interface swp1 bridge access 100
-cumulus@switch:~$ net add interface swp2 bridge access 100
+cumulus@switch:~$ net add interface swp1 bridge access 10
+cumulus@switch:~$ net add interface swp2 bridge access 10
 cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
@@ -231,16 +227,16 @@ auto bridge
 iface bridge
     bridge-ports swp1 swp2
     bridge-pvid 1
-    bridge-vids 100 200
+    bridge-vids 10 20
     bridge-vlan-aware yes
 
 auto swp1
 iface swp1
-    bridge-access 100
+    bridge-access 10
 
 auto swp2
 iface swp2
-    bridge-access 100
+    bridge-access 10
 ```
 
 {{< /tab >}}
@@ -256,16 +252,16 @@ auto bridge
 iface bridge
     bridge-ports swp1 swp2
     bridge-pvid 1
-    bridge-vids 100 200
+    bridge-vids 10 20
     bridge-vlan-aware yes
 
 auto swp1
 iface swp1
-    bridge-access 100
+    bridge-access 10
 
 auto swp2
 iface swp2
-    bridge-access 100
+    bridge-access 10
 ...
 ```
 
@@ -300,11 +296,11 @@ Interface      VLAN   Flags
 -----------  ------   ---------------------
 swp1              1   PVID, Egress Untagged
                  10
-                100
-                200
+                 10
+                 20
 swp2             10
-                100
-                200
+                 10
+                 20
 ```
 
 {{< /tab >}}
@@ -327,7 +323,7 @@ auto bridge
 iface bridge
     bridge-ports swp1 swp2
     bridge-pvid 1
-    bridge-vids 10 100 200
+    bridge-vids 10 10 20
     bridge-vlan-aware yes
 ...
 ```
@@ -342,9 +338,9 @@ When you check VLAN membership for that port, it shows that there is **no** unta
 cumulus@switch:~$ bridge -c vlan show
 portvlan ids
 swp1 1 PVID Egress Untagged
-  10 100 200
+  10 10 20
 
-swp2 10 100 200
+swp2 10 10 20
 
 bridge 1
 ```
@@ -364,8 +360,8 @@ When configuring the VLAN attributes for the bridge, specify the attributes for 
 The following example commands declare native VLAN 100 with IPv4 address 192.168.10.1/24 and IPv6 address 2001:db8::1/32.
 
 ```
-cumulus@switch:~$ net add vlan 100 ip address 192.168.10.1/24
-cumulus@switch:~$ net add vlan 100 ipv6 address 2001:db8::1/32
+cumulus@switch:~$ net add vlan 10 ip address 192.168.10.1/24
+cumulus@switch:~$ net add vlan 10 ipv6 address 2001:db8::1/32
 cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
@@ -374,7 +370,7 @@ cumulus@switch:~$ net commit
 
 {{< tab "Linux Commands ">}}
 
-Edit the `/etc/network/interfaces` file, then run the `ifreload -a` command. The following example declares native VLAN 100 with IPv4 address 192.168.10.1/24 and IPv6 address 2001:db8::1/32.
+Edit the `/etc/network/interfaces` file, then run the `ifreload -a` command. The following example declares native VLAN 10 with IPv4 address 192.168.10.1/24 and IPv6 address 2001:db8::1/32.
 
 ```
 cumulus@switch:~$ sudo nano /etc/network/interfaces
@@ -383,14 +379,14 @@ auto bridge
 iface bridge
     bridge-ports swp1 swp2
     bridge-pvid 1
-    bridge-vids 10 100 200
+    bridge-vids 10 10 20
     bridge-vlan-aware yes
 
-auto vlan100
-iface vlan100
+auto vlan10
+iface vlan10
     address 192.168.10.1/24
     address 2001:db8::1/32
-    vlan-id 100
+    vlan-id 10
     vlan-raw-device bridge
 ...
 ```

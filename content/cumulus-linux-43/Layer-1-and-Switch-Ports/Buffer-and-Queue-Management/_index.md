@@ -931,6 +931,8 @@ remark.egress_remark_group.cos_6.priority_remark.dscp = [50]
 remark.egress_remark_group.cos_7.priority_remark.dscp = [58]
 ```
 
+{{%/notice%}}
+
 ## Syntax Checker
 
 Cumulus Linux provides a syntax checker for the `/etc/cumulus/datapath/traffic.conf` file to check for errors, such missing parameters, or invalid parameter labels and values.

@@ -40,9 +40,6 @@ Cumulus Linux hashes on the following fields:
 - Ingress interface
 - Source IPv4 or IPv6 address
 - Destination IPv4 or IPv6 address
-
-Further, on switches with {{<exlink url="https://cumulusnetworks.com/products/hardware-compatibility-list/?asic%5B0%5D=Mellanox%20Spectrum&asic%5B1%5D=Mellanox%20Spectrum_A1" text="Spectrum ASICs">}}, Cumulus Linux hashes on these additional fields:
-
 - Source MAC address
 - Destination MAC address
 - Ethertype
@@ -161,12 +158,6 @@ ecmp_hash_seed = 50
 
 ### ECMP Custom Hashing
 
-{{%notice note%}}
-
-Custom hashing is supported on Mellanox switches.
-
-{{%/notice%}}
-
 You can configure the set of fields used to hash upon during ECMP load balancing. For example, if you do not want to use source or destination port numbers in the hash calculation, you can disable the source port and destination port fields.
 
 You can enable/disable the following fields:
@@ -231,7 +222,7 @@ hash_config.inner_ip6_label = false
 
 {{%notice note%}}
 
-Symmetric hashing is enabled by default on Mellanox switches. Make sure that the settings for the source IP (`hash_config.sip`) and destination IP (`hash_config.dip`) fields match, and that the settings for the source port (`hash_config.sport`) and destination port (`hash_config.dport`) fields match; otherwise symmetric hashing is disabled automatically. You can disable symmetric hashing manually in the `/etc/cumulus/datapath/traffic.conf` file by setting `symmetric_hash_enable = FALSE`.
+Symmetric hashing is enabled by default. Make sure that the settings for the source IP (`hash_config.sip`) and destination IP (`hash_config.dip`) fields match, and that the settings for the source port (`hash_config.sport`) and destination port (`hash_config.dport`) fields match; otherwise symmetric hashing is disabled automatically. You can disable symmetric hashing manually in the `/etc/cumulus/datapath/traffic.conf` file by setting `symmetric_hash_enable = FALSE`.
 
 {{%/notice%}}
 
@@ -246,7 +237,7 @@ In Cumulus Linux, when a next hop fails or is removed from an ECMP pool, the has
 - Resilient hashing prevents disruptions when next hops are removed. It does not prevent disruption when next hops are added.
 {{%/notice%}}
 
-A Mellanox switch has two unique options for configuring resilient hashing, both of which you configure in the `/usr/lib/python2.7/dist-packages/cumulus/__chip_config/mlx/datapath.conf​` file. The recommended values for these options depend largely on the desired outcome for a specific network implementation &mdash; the number and duration of flows, and the importance of keeping these flows pinned without interruption.
+There are two unique options for configuring resilient hashing, both of which you configure in the `/usr/lib/python2.7/dist-packages/cumulus/__chip_config/mlx/datapath.conf​` file. The recommended values for these options depend largely on the desired outcome for a specific network implementation &mdash; the number and duration of flows, and the importance of keeping these flows pinned without interruption.
 
 - `resilient_hash_active_timer`: A timer that protects TCP sessions from being
   disrupted while attempting to populate new next hops. You specify the number of

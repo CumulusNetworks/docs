@@ -426,7 +426,6 @@ Cumulus Linux includes the `linuxptp` package for PTP, which uses the `phc2sys` 
 
 {{%notice note%}}
 
-- Cumulus Linux currently supports PTP on the Mellanox Spectrum ASIC only.
 - PTP is supported in boundary clock mode only (the switch provides timing to downstream servers; it is a slave to a higher-level clock and a master to downstream clocks).
 - The switch uses hardware time stamping to capture timestamps from an Ethernet frame at the physical layer. This allows PTP to account for delays in message transfer and greatly improves the accuracy of time synchronization.
 - Only IPv4/UDP PTP packets are supported.

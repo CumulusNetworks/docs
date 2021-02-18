@@ -13,7 +13,7 @@ In Cumulus Linux, you map QinQ packets to VXLANs through:
 - *Single tag translation*, where you map a customer to a VNI and preserve the service as an inner VLAN inside a VXLAN packet.
 - *Double tag translation*, where you map a customer and service to a VNI.
 
-QinQ is available on Mellanox Spectrum 1, Spectrum 2 and Spectrum 3, only with {{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware bridges">}} with 802.1ad and only with single tag translation.
+QinQ is available only on {{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware bridges">}} with 802.1ad and only with single tag translation.
 
 ## Configure Single Tag Translation
 
@@ -323,7 +323,7 @@ iface br10
 - {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="MLAG">}} is only supported with single-tagged translation.
 - Mixing 802.1Q and 802.1ad subinterfaces on the same switch port is not supported.
 - When configuring bridges in {{<link url="Traditional-Bridge-Mode" text="traditional mode">}}, all VLANs that are members of the same switch port must use the same `vlan_protocol`.
-- When using switches with Mellanox Spectrum ASICs in an MLAG pair:
+- When using switches in an MLAG pair:
   - Configure the peerlink (peerlink.4094) between the MLAG pair for VLAN protocol 802.1ad.
   - You cannot use the peerlink as a backup datapath in case one of the MLAG peers loses all uplinks.
 - For switches with any type of Spectrum ASIC, when the bridge VLAN protocol is 802.1ad and is VXLAN-enabled, either:

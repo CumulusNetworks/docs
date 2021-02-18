@@ -76,12 +76,6 @@ To put the rule in the mangle table, include `-t mangle`; to put the rule in the
 
 *Priority flow control*, as defined in the {{<exlink url="http://www.ieee802.org/1/pages/802.1bb.html" text="IEEE 802.1Qbb standard">}}, provides a link-level flow control mechanism that can be controlled independently for each Class of Service (CoS) with the intention to ensure no data frames are lost when congestion occurs in a bridged network.
 
-{{%notice note%}}
-
-PFC is not supported on switches with the Helix4 ASIC.
-
-{{%/notice%}}
-
 PFC is a layer 2 mechanism that prevents congestion by throttling packet transmission. When PFC is enabled for received packets on a set of switch ports, the switch detects congestion in the ingress buffer of the receiving port and signals the upstream switch to stop sending traffic. If the upstream switch has PFC enabled for packet transmission on the designated priorities, it responds to the downstream switch and stops sending those packets for a period of time.
 
 PFC operates between two adjacent neighbor switches; it does not provide end-to-end flow control. However, when an upstream neighbor throttles packet transmission, it could build up packet congestion and propagate PFC frames further upstream: eventually the sending server could receive PFC frames and stop sending traffic for a time.
@@ -312,7 +306,7 @@ Always run the {{<link url="#syntax-checker" text="syntax checker">}} syntax che
 
 ## Scheduling Weights Per Egress Queue
 
-On Mellanox switches, you can set the scheduling weight per egress queue, which determines the amount of bandwidth assigned to the queue. Cumulus Linux supports eight queues per port. You can either use a default profile that each port inherits​ or create separate profiles that map a different set of ports. Each profile, including the default profile, has weights configured for each egress queue (0-7)​​.
+You can set the scheduling weight per egress queue, which determines the amount of bandwidth assigned to the queue. Cumulus Linux supports eight queues per port. You can either use a default profile that each port inherits​ or create separate profiles that map a different set of ports. Each profile, including the default profile, has weights configured for each egress queue (0-7)​​.
 
 You set the weights per egress queue as a percentage. The total weight percentages for all egress queues cannot be greater than 100. If you do not define a weight for an egress queue, no scheduling is done for packets on this queue if congestion occurs. If you want to configure strict scheduling on an egress queue (always send every single packet in the queue) set the value to 0.
 
@@ -491,11 +485,11 @@ Always run the {{<link url="#syntax-checker" text="syntax checker">}} syntax che
 
 ## Interface Buffer Status
 
-On switches with {{<exlink url="https://cumulusnetworks.com/products/hardware-compatibility-list/?asic%5B0%5D=Mellanox%20Spectrum&asic%5B1%5D=Mellanox%20Spectrum_A1" text="ASICs">}}, you can collect a fine-grained history of queue lengths using histograms maintained by the ASIC; see the {{<link title="ASIC Monitoring">}} for details.
+You can collect a fine-grained history of queue lengths using histograms maintained by the ASIC; see the {{<link title="ASIC Monitoring">}} for details.
 
 ## Example Configuration File
 
-The following example `/etc/cumulus/datapath/traffic.conf` datapath configuration file applies to 10G, 40G, and 100G switches on Mellanox Spectrum {{<exlink url="https://cumulusnetworks.com/hcl/" text="platforms">}} only.
+The following example `/etc/cumulus/datapath/traffic.conf` datapath configuration file applies to 10G, 40G, and 100G switches.
 
 - For the default source packet fields and mapping, each selected packet field must have a block of mapped values. Any packet field value that is not specified in the configuration is assigned to a default internal switch priority. The configuration applies to every forwarding port unless a custom remark configuration is defined for that port (see below).
 - For the default remark packet fields and mapping, each selected packet field should have a block of mapped values. Any internal switch priority value that is not specified in the configuration is assigned to a default packet field value. The configuration applies to every forwarding port unless a custom remark configuration is defined for that port (see below).
@@ -842,7 +836,7 @@ forwarding_table.profile = default
 
 {{%notice note%}}
 
-On switches with {{<exlink url="https://cumulusnetworks.com/products/hardware-compatibility-list/?asic%5B0%5D=Mellanox%20Spectrum&asic%5B1%5D=Mellanox%20Spectrum_A1" text="Spectrum ASICs">}}, you must enable packet priority remark on the **ingress** port. A packet received on a remark-enabled port is remarked according to the priority mapping configured on the **egress** port. If you configure packet priority remark the same way on every port, the default configuration example above is correct. However, per-port customized configurations require two port groups, one for the ingress ports and one for the egress ports, as below:
+You must enable packet priority remark on the **ingress** port. A packet received on a remark-enabled port is remarked according to the priority mapping configured on the **egress** port. If you configure packet priority remark the same way on every port, the default configuration example above is correct. However, per-port customized configurations require two port groups, one for the ingress ports and one for the egress ports, as below:
 
 ```
 remark.port_group_list = [ingress_remark_group, egress_remark_group]
@@ -858,6 +852,8 @@ remark.egress_remark_group.cos_5.priority_remark.dscp = [42]
 remark.egress_remark_group.cos_6.priority_remark.dscp = [50]
 remark.egress_remark_group.cos_7.priority_remark.dscp = [58]
 ```
+
+{{%/notice%}}
 
 ## Syntax Checker
 

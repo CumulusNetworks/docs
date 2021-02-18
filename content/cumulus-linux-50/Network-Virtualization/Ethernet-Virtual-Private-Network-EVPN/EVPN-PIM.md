@@ -14,12 +14,6 @@ In the above example, host01 sends an ARP request to resolve host03. leaf01 (in 
 
 For PIM-SM, type-3 routes do not result in any forwarding entries. Cumulus Linux does **not** advertise type-3 routes for a layer 2 VNI when BUM mode for that VNI is PIM-SM.
 
-{{%notice note%}}
-
-EVPN-PIM is supported on Mellanox Spectrum, Spectrum-2, and Spectrum-3 switches.
-
-{{%/notice%}}
-
 ## Configure Multicast VXLAN Tunnels
 
 To configure multicast VXLAN tunnels, you need to configure PIM-SM in the underlay:

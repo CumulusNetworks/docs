@@ -14,9 +14,9 @@ You can configure both VLAN-aware and traditional mode bridges on the same netwo
 
 ## Configure a VLAN-aware Bridge
 
-The example below shows the commands required to create a VLAN-aware bridge configured for STP that contains two switch ports and includes 3 VLANs; the tagged VLANs 100 and 200 and the untagged (native) VLAN of 1.
+The example below shows the commands required to create a VLAN-aware bridge configured for STP that contains two switch ports and includes 3 VLANs; the tagged VLANs 10 and 20 and the untagged (native) VLAN of 1.
 
-{{< img src = "/images/cumulus-linux/ethernet-bridging-basic-trunking.png" >}}
+{{< img src = "/images/cumulus-linux/ethernet-bridging-basic-trunking1.png" >}}
 
 {{< tabs "TabID27 ">}}
 
@@ -138,7 +138,7 @@ resv_vlan_range
 
 By default, the bridge port inherits the bridge VIDs. To configure a port to override the bridge VIDs:
 
-{{< img src = "/images/cumulus-linux/ethernet-bridging-vlan-pruned.png" >}}
+{{< img src = "/images/cumulus-linux/ethernet-bridging-vlan-pruned1.png" >}}
 
 {{< tabs "TabID157 ">}}
 
@@ -204,7 +204,7 @@ cumulus@switch:~$ ifreload -a
 
 Access ports ignore all tagged packets. In the configuration below, swp1 and swp2 are configured as access ports, while all untagged traffic goes to VLAN 10:
 
-{{< img src = "/images/cumulus-linux/ethernet-bridging-vlan_untagged_access_ports.png" >}}
+{{< img src = "/images/cumulus-linux/ethernet-bridging-vlan_untagged_access_ports1.png" >}}
 
 {{< tabs "TabID223 ">}}
 

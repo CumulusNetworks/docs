@@ -12,11 +12,36 @@ This topic includes all commands that begin with `netq t*`, `netq u*`, `netq v*`
 ## netq trace
 
     <ip>   :  IPv4 or v6 address (no mask)
-    <mac>  :  MAC address
+
+### Syntax
+
+There are three forms of this command; one for layer 3 and two for layer 2 traces.
+
+```
+netq trace
+	<ip>
+	from
+	(<src-hostname>|<ip-src>)
+	[vrf <vrf>]
+	[around <text-time>]
+	[json|detail|pretty]
+
+netq trace
+	(<mac> vlan <1-4096>)
+	from (<src-hostname>|<ip-src>)
+	[vrf <vrf>] [around <text-time>]
+	[json|detail|pretty]
+	
+netq trace
+	(<mac> vlan <1-4096>)
+	from <mac-src>
+	[around <text-time>]
+	[json|detail|pretty]
+```
+
 
 - - -
 
---------------------------
+## netq upgrade
 
-
-
+netq upgrade bundle <text-bundle-url>

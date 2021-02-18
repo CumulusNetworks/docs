@@ -4455,6 +4455,24 @@ To work around this issue, change the value of arp_ignore to 2. See <a href="htt
 <th> Affects </th>
 </tr>
 <tr>
+<td>CM-31294</td>
+<td><p>When the following conditions exist, clagd might fail to establish a TCP control session across the subinterface (such as, peerlink.4094): </p>
+<ul>
+	<li>clagd uses an IPv6 link-local address (LLA) to establish the TCP connection (the clagd-peer-ip linklocal command configures an IPv6 LLA connection)</li>
+</ul>
+
+
+<ul>
+	<li>Subsequent VLAN changes are made to VLAN sub-interfaces or adding or removing SVIs</li>
+</ul>
+
+
+<p>This issue occurs because the hardware stores one entry per VRF to represent the IPv6 LLA. The hardware entry for the LLA is removed when another interface is changed because the software interfaces are represented by a single entity in hardware. As a result, packets destined to the local IPv6 LLA address are received on the port but do not get forwarded to CPU for further processing.</p>
+
+<p>To workaround this issue, use IPv4 addresses under peerlink.4094 and configure clagd to peer on IPv4 addresses.</p></td>
+<td>3.7.12-3.7.13</td>
+</tr>
+<tr>
 <td>CM-30525</td>
 <td><p>When a specific PIM join/prune packet is received from a PIM neighbor the pimd process might crash with a core file.</p></td>
 <td>4.0.0-4.1.1</td>

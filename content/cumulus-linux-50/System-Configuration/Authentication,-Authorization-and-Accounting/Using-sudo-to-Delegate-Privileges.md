@@ -10,13 +10,13 @@ You can add more user accounts as needed. Like the *cumulus* account, these acco
 
 ## sudo Basics
 
-`sudo` allows you to execute a command as superuser or another user as specified by the security policy. See `man sudo(8)` for details.
+`sudo` allows you to execute a command as superuser or another user as specified by the security policy.
 
-The default security policy is *sudoers*, which is configured using `/etc/sudoers`. Use `/etc/sudoers.d/` to add to the default sudoers policy. See `man sudoers(5)` for details.
+The default security policy is *sudoers*, which is configured using `/etc/sudoers`. Use `/etc/sudoers.d/` to add to the default sudoers policy.
 
 {{%notice warning%}}
 
-Use `visudo` only to edit the `sudoers` file; do not use another editor like `vi` or `emacs`. See `man` `visudo(8)` for details.
+Use `visudo` only to edit the `sudoers` file; do not use another editor like `vi` or `emacs`.
 
 When creating a new file in `/etc/sudoers.d`, use `visudo -f`. This option performs sanity checks before writing the file to avoid errors that prevent sudo from working.
 

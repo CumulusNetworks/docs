@@ -102,18 +102,17 @@ For general information about the switch, run `net show system`, which gathers i
 
 ```
 cumulus@switch:~$ net show system
-Hostname......... celRED
-
-Build............ Cumulus Linux 4.1.0
-Uptime........... 8 days, 12:24:01.770000
-
-Model............ Cel REDSTONE
-CPU.............. x86_64 Intel Atom C2538 2.4 GHz
-Memory........... 4GB
-Disk............. 14.9GB
-ASIC............. Broadcom Trident2 BCM56854
-Ports............ 48 x 10G-SFP+ & 6 x 40G-QSFP+
-Base MAC Address. a0:00:00:00:00:50
+Hostname......... mlx-3700
+Build............ Cumulus Linux 4.3.0~1605304302.c2213761
+Uptime........... 19 days, 9:35:29.710000
+ 
+Model............ Mlnx MSN3700C
+CPU.............. x86_64 Intel Pentium D D1508 2.20 GHz
+Memory........... 8GB
+Disk............. 28GB
+ASIC............. Mellanox Spectrum-2 MTxxxxxx
+Ports............ 32 x 100G-QSFP28
+...
 ```
 
 ## Diagnostics Using cl-support

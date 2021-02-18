@@ -20,12 +20,6 @@ To integrate a VXLAN with MidoNet, you need to:
 
 For more information about MidoNet, see the MidoNet Operations Guide, version 1.8 or later.
 
-{{%notice note%}}
-
-There is no support for {{<link url="VXLAN-Routing" text="VXLAN routing">}} in the Trident II chipset.
-
-{{%/notice%}}
-
 ## Configure the MidoNet Integration on the Switch
 
 Before you start to configure the MidoNet tunnel zones and VTEP binding, and connect virtual ports to the VXLAN, you need to enable and start the `openvswitch-vtep` service, and configure the MidoNet integration on the switch. This creates the VTEP gateway and initializes the OVS database server.

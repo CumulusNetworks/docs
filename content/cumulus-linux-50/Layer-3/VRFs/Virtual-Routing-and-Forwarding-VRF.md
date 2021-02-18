@@ -1461,7 +1461,6 @@ You can also show routes in a VRF using the `ip [-6] route show vrf <vrf-name>` 
 
 ## Considerations
 
-- Switches using the Hurricane2 ASIC (such as the Penguin Computing Arctica 4804IP) do not support VRFs.
 - Table selection is based on the incoming interface only; currently, packet attributes or output-interface-based selection are not available.
 - Setting the router ID outside of BGP using the `router-id` option causes all BGP instances to get the same router ID. If you want each BGP instance to have its own router ID, specify the `router-id` under the BGP instance using `bgp router-id`. If both are specified, the one under the BGP instance overrides the one provided outside BGP.
 - You cannot configure {{<link url="Basic-Configuration/#enable-evpn-between-bgp-neighbors" text="EVPN address families">}} within a VRF.

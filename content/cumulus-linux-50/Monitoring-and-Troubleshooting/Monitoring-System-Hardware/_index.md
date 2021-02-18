@@ -21,22 +21,23 @@ The following is an example. The command output is different on different switch
 ```
 cumulus@switch:~$ decode-syseeprom
 TlvInfo Header:
-    Id String:    TlvInfo
-    Version:      1
-    Total Length: 114
+   Id String:    TlvInfo
+   Version:      1
+   Total Length: 629
 TLV Name             Code Len Value
 -------------------- ---- --- -----
-Product Name         0x21   4 4804
-Part Number          0x22  14 R0596-F0009-00
-Device Version       0x26   1 2
-Serial Number        0x23  19 D1012023918PE000012
-Manufacture Date     0x25  19 10/09/2013 20:39:02
-Base MAC Address     0x24   6 00:E0:EC:25:7B:D0
-MAC Addresses        0x2A   2 53
-Vendor Name          0x2D  17 Penguin Computing
-Label Revision       0x27   4 4804
-Manufacture Country  0x2C   2 CN
-CRC-32               0xFE   4 0x96543BC5
+Product Name         0x21  64 MSN3700C
+Part Number          0x22  20 MSN3700-CSBFO
+Serial Number        0x23  24 MT2043X05294
+Base MAC Address     0x24   6 1C:34:DA:24:C9:00
+Manufacture Date     0x25  19 10/21/2020 20:57:29
+Device Version       0x26   1 1
+MAC Addresses        0x2A   2 254
+Manufacturer         0x2B   8 Mellanox
+Vendor Extension     0xFD  52 0x00 0x00 0x81 0x19 0x00 0x2E 0x00 0x02 0x07 0x98 0x00 0x00 0x31 0x00 0x20 0x00 0x00 0x00 0x00 0x00 0x07 0x07 0x07 0x07 0x07 0x07 0x07 0x07 0x07 0x07 0x07 0x07 0x07 0x07 0x07 0x07 0x07 0x07 0x07 0x07 0x07 0x07 0x07 0x07 0x07 0x07 0x07 0x07 0x07 0x07 0x07 0x07 
+Platform Name        0x28  64 x86_64-mlnx_msn3700C-r0
+ONIE Version         0x29  23 2019.11-5.2.0020-115200
+CRC-32               0xFE   4 0x11D0954D
 (checksum valid)
 ```
 
@@ -88,34 +89,7 @@ Temp9     (Right side of the board               ):  OK
 
 {{%notice note%}}
 
-When the switch is not powered on, `smonctl` shows the PSU status as *BAD* instead of *POWERED OFF* or *NOT DETECTED*. This is a known limitation.
-
-{{%/notice%}}
-
-{{%notice note%}}
-
-On the Dell S4148 switch, `smonctl` shows PSU1 and PSU2; however in the sensors output, both PSUs are listed as PSU1.
-
-{{%/notice%}}
-
-{{%notice note%}}
-
-Some switch models lack the sensor for reading voltage information, so this data is not output from the `smonctl` command.
-
-For example, the Dell S4048 series has this sensor and displays power and voltage information:
-
-```
-cumulus@dell-s4048-ON:~$ sudo smonctl -v -s PSU2
-PSU2:  OK
-power:8.5 W   (voltages = ['11.98', '11.87'] V currents = ['0.72'] A)
-```
-
-The Penguin Arctica 3200c does not have this sensor:
-
-```
-cumulus@cel-sea:~/tmp$ sudo smonctl -v -s PSU1
-PSU1:  OK
-```
+-When the switch is not powered on, `smonctl` shows the PSU status as *BAD* instead of *POWERED OFF* or *NOT DETECTED*. This is a known limitation.
 
 {{%/notice%}}
 

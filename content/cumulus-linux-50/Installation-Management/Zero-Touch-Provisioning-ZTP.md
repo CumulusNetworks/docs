@@ -29,16 +29,6 @@ ZTP only looks once for a ZTP script on the local file system when the switch bo
 - `'cumulus-ztp-' + architecture`
 - `'cumulus-ztp'`
 
-For example:
-
-```
-cumulus-ztp-amd64-cel_pebble-rUNKNOWN
-cumulus-ztp-amd64-cel_pebble
-cumulus-ztp-cel_pebble
-cumulus-ztp-amd64
-cumulus-ztp
-```
-
 You can also trigger the ZTP process manually by running the `ztp --run <URL>` command, where the URL is the path to the ZTP script.
 
 ## Use a USB Drive
@@ -137,14 +127,14 @@ Header                        Value                 Example
 ------                        -----                 -------
 User-Agent                                          CumulusLinux-AutoProvision/0.4
 CUMULUS-ARCH                  CPU architecture      x86_64
-CUMULUS-BUILD                                       4.1.0
+CUMULUS-BUILD                                       5.0.0
 CUMULUS-LICENSE-INSTALLED     Either 0 or 1         1
 CUMULUS-MANUFACTURER                                odm
 CUMULUS-PRODUCTNAME                                 switch_model
 CUMULUS-SERIAL                                      XYZ123004
 CUMULUS-BASE-MAC                                    44:38:39:FF:40:94
 CUMULUS-MGMT-MAC                                    44:38:39:FF:00:00
-CUMULUS-VERSION                                     4.1.0
+CUMULUS-VERSION                                     5.0.0
 CUMULUS-PROV-COUNT                                  0
 CUMULUS-PROV-MAX                                    32
 ```
@@ -224,7 +214,7 @@ ZTP scripts come in different forms and frequently perform many of the same task
 
 ### Set the Default Cumulus User Password
 
-The default *cumulus* user account password is `cumulus`. When you log into Cumulus Linux for the first time, you must provide a new password for the *cumulus* account, then log back into the system. This password change at first login is **required** in Cumulus Linux 4.2 and later.
+The default *cumulus* user account password is `cumulus`. When you log into Cumulus Linux for the first time, you must provide a new password for the *cumulus* account, then log back into the system. This password change at first login is **required**.
 
 Add the following function to your ZTP script to change the default *cumulus* user account password to a clear-text password. The example changes the password `cumulus` to `MyP4$$word`.
 
@@ -313,7 +303,7 @@ function init_ztp(){
     #do normal ZTP tasks
 }
 
-CUMULUS_TARGET_RELEASE=3.5.3
+CUMULUS_TARGET_RELEASE=5.0.0
 CUMULUS_CURRENT_RELEASE=$(cat /etc/lsb-release  | grep RELEASE | cut -d "=" -f2)
 IMAGE_SERVER_HOSTNAME=webserver.example.com
 IMAGE_SERVER= "http:// "$IMAGE_SERVER_HOSTNAME "/ "$CUMULUS_TARGET_RELEASE ".bin "

@@ -81,5 +81,4 @@ To configure a completely passwordless system, do not enter a passphrase when pr
 
 ## Related Information
 
-- {{<exlink url="https://debian-administration.org/article/152/Password-less_logins_with_OpenSSH" text="Debian Documentation - Password-less logins with OpenSSH">}}
-- {{<exlink url="http://en.wikipedia.org/wiki/Secure_Shell" text="Wikipedia - Secure Shell (SSH)">}}
+{{<exlink url="https://debian-administration.org/article/152/Password-less_logins_with_OpenSSH" text="Debian Documentation - Password-less logins with OpenSSH">}}

@@ -189,10 +189,6 @@ ii  atftpd              0.7.git20120829-3.1       amd64        advanced TFTP ser
 
 {{< /tabs >}}
 
-{{%notice note%}}
-The apps repository was removed in Cumulus Linux 4.0.0.
-{{%/notice%}}
-
 ## Show the Version of a Package
 
 To show the version of a specific package installed on the system:
@@ -269,7 +265,7 @@ After this operation, 1008 kB of additional disk space will be used
 You can install several packages at the same time:
 
 ```
-cumulus@switch:~$ sudo -E apt-get install <package 1> <package 2> <package 3>
+cumulus@switch:~$ sudo -E apt-get install <package1> <package2> <package3>
 ```
 
 {{%notice tip%}}

@@ -17,7 +17,7 @@ Before you install Cumulus Linux, the switch can be in two different states:
 - No image is installed on the switch (the switch is only running ONIE).
 - Cumulus Linux is already installed on the switch but you want to use ONIE to reinstall Cumulus Linux or upgrade to a newer version.
 
-The sections below describe some of the different ways you can install the Cumulus Linux image, such as using a DHCP/web server, FTP, a local file, or a USB drive. Steps are provided for both installing directly from ONIE (if no image is installed on the switch) and from Cumulus Linux (if the image is already installed on the switch), where applicable. For additional methods to find and install the Cumulus Linux image, see the {{<exlink url="http://opencomputeproject.github.io/onie/design-spec/discovery.html" text="ONIE Design Specification">}}.
+The sections below describe some of the different ways you can install the Cumulus Linux image. Steps are provided for both installing directly from ONIE (if no image is installed on the switch) and from Cumulus Linux (if the image is already installed on the switch). For additional methods to find and install the Cumulus Linux image, see the {{<exlink url="http://opencomputeproject.github.io/onie/design-spec/discovery.html" text="ONIE Design Specification">}}.
 
 You can download a Cumulus Linux image from the {{<exlink url="http://cumulusnetworks.com/downloads/" text="Cumulus Linux Downloads">}} page.
 
@@ -31,7 +31,6 @@ In the following procedures:
 
 - You can name your Cumulus Linux image using any of the
 {{<exlink url="http://opencomputeproject.github.io/onie/design-spec/discovery.html#default-file-name-search-order" text="ONIE naming schemes">}} mentioned here.
-- In the example commands, `[PLATFORM]` is the supported Cumulus Linux platform, *x86_64*.
 - Run the `sudo onie-install -h` command to show the ONIE installer options.
 <!--- After you install the Cumulus Linux image, you need to install the license file. Refer to {{<link url="Quick-Start-Guide#install-the-license" text="Install the License">}}.-->
 
@@ -57,7 +56,7 @@ Here is an example DHCP configuration with an {{<exlink url="http://www.isc.org/
 ```
 subnet 172.0.24.0 netmask 255.255.255.0 {
   range 172.0.24.20 172.0.24.200;
-  option default-url = "http://172.0.24.14/onie-installer-[PLATFORM]";
+  option default-url = "http://172.0.24.14/onie-installer-x86_64";
 }
 ```
 
@@ -65,7 +64,7 @@ Here is an example DHCP configuration with {{<exlink url="http://www.thekelleys.
 
 ```
 dhcp-host=sw4,192.168.100.14,6c:64:1a:00:03:ba,set:sw4
-dhcp-option=tag:sw4,114,"http://roz.rtplab.test/onie-installer-[PLATFORM]"
+dhcp-option=tag:sw4,114,"http://roz.rtplab.test/onie-installer-x86_64"
 ```
 
 If you do not have a web server, you can use {{<exlink url="https://www.apachefriends.org/index.html" text="this free Apache example">}}.
@@ -82,7 +81,7 @@ Follow the steps below if you can log into the switch on a serial console (ONIE)
 2. Run the `onie-nos-install` command:
 
     ```
-    ONIE:/ #onie-nos-install http://10.0.1.251/path/to/cumulus-install-[PLATFORM].bin
+    ONIE:/ #onie-nos-install http://10.0.1.251/path/to/cumulus-install-x86_64.bin
     ```
 
 {{< /tab >}}
@@ -94,7 +93,7 @@ Follow the steps below if you can log into the switch on a serial console (ONIE)
 2. From the Cumulus Linux command prompt, run the `onie-install` command, then reboot the switch.
 
     ```
-    cumulus@switch:~$ sudo onie-install -a -i http://10.0.1.251/path/to/cumulus-install-[PLATFORM].bin
+    cumulus@switch:~$ sudo onie-install -a -i http://10.0.1.251/path/to/cumulus-install-x86_64.bin
     ```
 
 {{< /tab >}}
@@ -103,7 +102,7 @@ Follow the steps below if you can log into the switch on a serial console (ONIE)
 
 ## Install Using a Web Server with no DHCP
 
-Follow the steps below if you can log into the switch on a serial console (ONIE), or log in on the console or with ssh (Install from Cumulus Linux) but *no* DHCP server is available.
+Follow the steps below if you can log into the switch on a serial console (ONIE), or you can log in on the console or with ssh (Install from Cumulus Linux) but *no* DHCP server is available.
 
 {{%notice note%}}
 
@@ -138,7 +137,7 @@ You need a console connection to access the switch; you cannot perform this proc
 4. Run the installer manually (because there are no DHCP options):
 
     ```
-    ONIE:/ #onie-nos-install http://10.0.1.251/path/to/cumulus-install-[PLATFORM].bin
+    ONIE:/ #onie-nos-install http://10.0.1.251/path/to/cumulus-install-x86_64.bin
     ```
 
 {{< /tab >}}
@@ -150,7 +149,7 @@ You need a console connection to access the switch; you cannot perform this proc
 2. From the Cumulus Linux command prompt, run the `onie-install` command, then reboot the switch.
 
     ```
-    cumulus@switch:~$ sudo onie-install -a -i http://10.0.1.251/path/to/cumulus-install-[PLATFORM].bin
+    cumulus@switch:~$ sudo onie-install -a -i http://10.0.1.251/path/to/cumulus-install-x86_64.bin
     ```
 
 {{< /tab >}}
@@ -160,12 +159,6 @@ You need a console connection to access the switch; you cannot perform this proc
 ## Install Using FTP Without a Web Server
 
 Follow the steps below if your laptop is on the same network as the switch eth0 interface but *no* DHCP server is available.
-
-{{%notice note%}}
-
-Installing the Cumulus Linux image using FTP from ONIE is not supported on the Dell N3048EP-ON switch. Use one of the other installation methods, such as a USB, or install the image from Cumulus Linux.
-
-{{%/notice%}}
 
 {{< tabs "TabID162 ">}}
 
@@ -194,9 +187,9 @@ Installing the Cumulus Linux image using FTP from ONIE is not supported on the D
 4. If you are not using DHCP options, run one of the following commands (`tftp` for TFTP or `ftp` for FTP):
 
     ```
-    ONIE# onie-nos-install ftp://local-ftp-server/cumulus-install-[PLATFORM].bin
+    ONIE# onie-nos-install ftp://local-ftp-server/cumulus-install-x86_64.bin
 
-    ONIE# onie-nos-install tftp://local-tftp-server/cumulus-install-[PLATFORM].bin
+    ONIE# onie-nos-install tftp://local-tftp-server/cumulus-install-x86_64.bin
     ```
 
 {{< /tab >}}
@@ -209,9 +202,9 @@ Installing the Cumulus Linux image using FTP from ONIE is not supported on the D
     commands (`tftp` for TFTP or `ftp` for FTP), then reboot the switch.
 
     ```
-    cumulus@switch:~$ sudo onie-install -a -i ftp://local-ftp-server/cumulus-install-[PLATFORM].bin
+    cumulus@switch:~$ sudo onie-install -a -i ftp://local-ftp-server/cumulus-install-x86_64.bin
 
-    cumulus@switch:~$ sudo onie-install -a -i tftp://local-ftp-server/cumulus-install-[PLATFORM].bin
+    cumulus@switch:~$ sudo onie-install -a -i tftp://local-ftp-server/cumulus-install-x86_64.bin
     ```
 
 {{< /tab >}}
@@ -221,12 +214,6 @@ Installing the Cumulus Linux image using FTP from ONIE is not supported on the D
 ## Install Using a Local File
 
 Follow the steps below to install the Cumulus Linux image referencing a local file.
-
-{{%notice note%}}
-
-Installing the Cumulus Linux image referencing a local file from ONIE is not supported on the Dell N3048EP-ON switch. Use one of the other installation methods, such as a web server or USB, or install the image from Cumulus Linux.
-
-{{%/notice%}}
 
 {{< tabs "TabID217 ">}}
 
@@ -255,7 +242,7 @@ Installing the Cumulus Linux image referencing a local file from ONIE is not sup
 4. Run the installer manually from ONIE:
 
     ```
-    ONIE:/ #onie-nos-install /path/to/local/file/cumulus-install-[PLATFORM].bin
+    ONIE:/ #onie-nos-install /path/to/local/file/cumulus-install-x86_64.bin
     ```
 
 {{< /tab >}}
@@ -267,7 +254,7 @@ Installing the Cumulus Linux image referencing a local file from ONIE is not sup
 2. From the Cumulus Linux command prompt, run the `onie-install` command, then reboot the switch.
 
     ```
-    cumulus@switch:~$ sudo onie-install -a -i /path/to/local/file/cumulus-install-[PLATFORM].bin
+    cumulus@switch:~$ sudo onie-install -a -i /path/to/local/file/cumulus-install-x86_64.bin
     ```
 
 {{< /tab >}}
@@ -290,40 +277,39 @@ Installing Cumulus Linux using a USB drive is fine for a single switch here and 
 
     {{< expand "Optional: Prepare a USB Drive inside Cumulus Linux"  >}}
 
-1. Insert your USB drive into the USB port on the switch running Cumulus Linux and log in to the switch. Examine output from `cat /proc/partitions` and `sudo fdisk -l [device]` to determine on which device your USB drive can be found. For example, `sudo fdisk -l /dev/sdb`.
+a. Insert your USB drive into the USB port on the switch running Cumulus Linux and log in to the switch. Examine output from `cat /proc/partitions` and `sudo fdisk -l [device]` to determine on which device your USB drive can be found. For example, `sudo fdisk -l /dev/sdb`.
 
-    These instructions assume your USB drive is the `/dev/sdb` device, which is typical if you insert
- the USB drive after the machine is already booted. However, if you insert the USB drive during the boot process, it is possible that your USB drive is the `/dev/sda` device. Make sure to modify the commands below to use the proper device for your USB drive.
+   These instructions assume your USB drive is the `/dev/sdb` device, which is typical if you insert the USB drive after the machine is already booted. However, if you insert the USB drive during the boot process, it is possible that your USB drive is the `/dev/sda` device. Make sure to modify the commands below to use the proper device for your USB drive.
 
-2. Create a new partition table on the USB drive. (The `parted` utility should already be installed. However, if it is not, install it with `sudo -E apt-get install parted`.)
+b. Create a new partition table on the USB drive. (The `parted` utility should already be installed. However, if it is not, install it with `sudo -E apt-get install parted`.)
 
-    ```
-    sudo parted /dev/sdb mklabel msdos
-    ```
+   ```
+   sudo parted /dev/sdb mklabel msdos
+   ```
 
-3. Create a new partition on the USB drive:
+c. Create a new partition on the USB drive:
 
-    ```
-    sudo parted /dev/sdb -a optimal mkpart primary 0% 100%
-    ```
+   ```
+   sudo parted /dev/sdb -a optimal mkpart primary 0% 100%
+   ```
 
-4. Format the partition to your filesystem of choice using *one* of the examples below:
+d. Format the partition to your filesystem of choice using *one* of the examples below:
 
-    ```
-    sudo mkfs.ext2 /dev/sdb1
-    sudo mkfs.msdos -F 32 /dev/sdb1
-    sudo mkfs.vfat /dev/sdb1
-    ```
+   ```
+   sudo mkfs.ext2 /dev/sdb1
+   sudo mkfs.msdos -F 32 /dev/sdb1
+   sudo mkfs.vfat /dev/sdb1
+   ```
 
-    To use `mkfs.msdos` or `mkfs.vfat`, you need to install the `dosfstools` package from the
+   To use `mkfs.msdos` or `mkfs.vfat`, you need to install the `dosfstools` package from the
 {{<link url="Adding-and-Updating-Packages" text="Debian software repositories">}}, as they are not included by default.
 
-5. To continue installing Cumulus Linux, mount the USB drive to move files
+e. To continue installing Cumulus Linux, mount the USB drive to move files:
 
-```
-sudo mkdir /mnt/usb
-sudo mount /dev/sdb1 /mnt/usb
-```
+   ```
+   sudo mkdir /mnt/usb
+   sudo mount /dev/sdb1 /mnt/usb
+   ```
 
 {{< /expand >}}
 
@@ -348,48 +334,15 @@ sudo mount /dev/sdb1 /mnt/usb
 
     {{< img src = "/images/cumulus-linux/install-image-GNUx86-2.png" >}}
 
-7. The USB drive is recognized and mounted automatically. The image file is located and automatic installation of Cumulus Linux begins. Here is some sample output:
+7. The USB drive is recognized and mounted automatically. The image file is located and automatic installation of Cumulus Linux begins.
 
-    ```
-    ONIE: OS Install Mode  ...
-
-    Version : quanta_common_rangeley-2019.05.05-6919d98-201410171013
-    Build  Date: 2019-10-17T10:13+0800
-    Info: Mounting kernel filesystems...  done.
-    Info: Mounting LABEL=ONIE-BOOT on /mnt/onie-boot  ...
-    initializing eth0...
-    scsi 6:0:0:0: Direct-Access  SanDisk Cruzer Facet 1.26 PQ: 0 ANSI: 6
-    sd 6:0:0:0: [sdb] 31266816 512-byte logical blocks: (16.0 GB/14.9 GiB)
-    sd 6:0:0:0: [sdb] Write Protect is off
-    sd 6:0:0:0: [sdb] Write cache: disabled, read cache: enabled, doesn't support DPO or FUA
-    sd 6:0:0:0: [sdb] Attached SCSI disk
-
-    <...snip...>
-
-    ONIE:  Executing installer: file://dev/sdb1/onie-installer-x86_64
-    Verifying image checksum ... OK.
-    Preparing image archive ... OK.
-    Dumping image info...
-    Control File Contents
-    =====================
-    Description: Cumulus Linux
-    OS-Release:  4.1.0
-    Architecture: amd64
-    Date:  Fri, 22 November 2019 17:10:30 -0700
-    Installer-Version:  1.2
-    Platforms: accton_as5712_54x accton_as6712_32x  mlx_sx1400_i73612 dell_s4000_c2338 dell_s3000_c2338  cel_redstone_xp cel_smallstone_xp cel_pebble quanta_panther  quanta_ly8_rangeley quanta_ly6_rangeley quanta_ly9_rangeley
-
-    Homepage: http://www.cumulusnetworks.com/
-    ```
-
-6. After installation completes, the switch automatically reboots into the newly installed instance of Cumulus Linux.
+8. After installation completes, the switch automatically reboots into the newly installed instance of Cumulus Linux.
 
 ## ONIE Installation Options
 
 You can run several installer command line options from ONIE to perform basic switch configuration automatically after installation completes and Cumulus Linux boots for the first time. These options enable you to:
 
-- Set a unique password for the *cumulus* user
-<!--- Apply a Cumulus Linux license-->
+- Set a unique password for the *cumulus* user<!-- - Apply a Cumulus Linux license-->
 - Provide an initial network configuration
 - Execute a ZTP script to perform necessary configuration
 
@@ -568,7 +521,7 @@ CL_INSTALLER_ZTP_FILENAME=''
 ...
 ```
 
-You can install this edited image file in the usual way; using the ONIE install waterfall or the `onie-nos-install` command.
+You can install this edited image file in the usual way, by using the ONIE install waterfall or the `onie-nos-install` command.
 
 If you install the modified installation image and specify installer command line parameters, the command line parameters take precedence over the variables modified in the image.
 

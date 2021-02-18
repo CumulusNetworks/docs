@@ -16,8 +16,6 @@ Cumulus Linux can initiate and terminate VTEPs in hardware and supports wire-rat
 
 Cumulus Linux includes the native Linux VXLAN kernel support and integrates with controller-based overlay solutions like {{<link url="Integrating-Hardware-VTEPs-with-VMware-NSX-MH" text="VMware NSX">}} and {{<link url="Integrating-Hardware-VTEPs-with-Midokura-MidoNet-and-OpenStack" text="Midokura MidoNet">}}.
 
-VXLAN is supported on switches in the {{<exlink url="https://www.cumulusnetworks.com/hcl/" text="Cumulus Linux HCL">}} using the the Mellanox Spectrum chipset.
-
 {{%notice note%}}
 
 VXLAN encapsulation over layer 3 subinterfaces (for example, swp3.111) or SVIs is not supported as traffic transiting through the switch may get dropped; even if the subinterface is used only for underlay traffic and does not perform VXLAN encapsulation, traffic may still get dropped. Only configure VXLAN uplinks as layer 3 interfaces without any subinterfaces (for example, swp3).

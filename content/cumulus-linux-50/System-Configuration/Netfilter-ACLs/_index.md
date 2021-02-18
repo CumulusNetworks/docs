@@ -260,9 +260,7 @@ Port ranges are only allowed for ingress rules.
 
 ### Match on VLAN IDs on Layer 2 Interfaces
 
-On switches with {{<exlink url="https://cumulusnetworks.com/products/hardware-compatibility-list/?asic%5B0%5D=Mellanox%20Spectrum&asic%5B1%5D=Mellanox%20Spectrum_A1" text="Spectrum ASICs">}}, you can match on VLAN IDs on layer 2 interfaces for ingress rules.
-
-The following example matches on a VLAN and DSCP class, and sets the internal class of the packet. This can be combined with ingress iptable rules to get extended matching on IP fields.
+You can match on VLAN IDs on layer 2 interfaces for ingress rules. The following example matches on a VLAN and DSCP class, and sets the internal class of the packet. This can be combined with ingress iptable rules to get extended matching on IP fields.
 
 ```
 [ebtables]
@@ -1092,7 +1090,7 @@ failed.
 
 ### INPUT Chain Rules
 
-On switches with Mellanox Spectrum ASICs, INPUT chain rules are implemented using a trap mechanism. Packets headed to the CPU are assigned trap IDs. The default INPUT chain rules are mapped to these trap IDs. However, if a packet matches multiple traps, they are resolved by an internal priority mechanism that might be different from the rule priorities. Packets might not get policed by the default expected rule, but by another rule instead. For example, ICMP packets headed to the CPU are policed by the LOCAL rule instead of the ICMP rule. Also, multiple rules might share the same trap. In this case the policer that is applied is the largest of the policer values.
+INPUT chain rules are implemented using a trap mechanism. Packets headed to the CPU are assigned trap IDs. The default INPUT chain rules are mapped to these trap IDs. However, if a packet matches multiple traps, they are resolved by an internal priority mechanism that might be different from the rule priorities. Packets might not get policed by the default expected rule, but by another rule instead. For example, ICMP packets headed to the CPU are policed by the LOCAL rule instead of the ICMP rule. Also, multiple rules might share the same trap. In this case the policer that is applied is the largest of the policer values.
 
 To work around this issue, create rules on the INPUT and FORWARD chains (INPUT,FORWARD).
 
@@ -1110,7 +1108,7 @@ For example:
 
 ### Egress ACL Matching on Bonds
 
-On the Mellanox switch, ACL rules that match on an outbound *bond* interface are not supported. For example, the following rule is not supported:
+ACL rules that match on an outbound *bond* interface are not supported. For example, the following rule is not supported:
 
 ```
 [iptables]

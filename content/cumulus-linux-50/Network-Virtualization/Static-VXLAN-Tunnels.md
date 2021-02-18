@@ -10,8 +10,6 @@ In VXLAN-based networks, there are a range of complexities and challenges in det
 
 ## Requirements
 
-Static VXLAN tunnels are supported on switches in the {{<exlink url="https://cumulusnetworks.com/hcl/" text="HCL">}} that use the Mellanox Spectrum ASICs.
-
 For a basic VXLAN configuration, make sure that:
 
 - The VXLAN has a network identifier (VNI). Do not use VNI ID 0 or 16777215; these are reserved values under Cumulus Linux.

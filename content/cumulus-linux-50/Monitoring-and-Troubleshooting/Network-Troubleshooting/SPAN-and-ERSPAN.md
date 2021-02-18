@@ -284,8 +284,7 @@ Cumulus Linux controls how much traffic reaches the CPU so that mirrored traffic
 
 {{%notice note%}}
 
-- CPU port as a SPAN destination interface is supported on Mellanox switches only.
-- Egress mirroring for control plane generated traffic to the CPU port is not supported.
+Egress mirroring for control plane generated traffic to the CPU port is not supported.
 
 {{%/notice%}}
 

@@ -653,7 +653,7 @@ iface swp3s3
 ...
 ```
 
-When you commit your change on a Mellanox switch, `switchd` reloads and there is no interruption to network services.
+When you commit your change, `switchd` reloads and there is no interruption to network services.
 
 {{< /tab >}}
 
@@ -690,7 +690,7 @@ iface swp310s3
 ...
 ```
 
-On a Mellanox switch, you can reload `switchd` with the `sudo systemctl reload switchd.service` command. The reload does **not** interrupt network services.
+Reload `switchd` with the `sudo systemctl reload switchd.service` command. The reload does **not** interrupt network services.
 
 ```
 cumulus@switch:~$ sudo systemctl reload switchd.service
@@ -732,7 +732,7 @@ To remove a breakout port:
     ...
     ```
 
-On a Mellanox switch, you can reload `switchd` with the `sudo systemctl reload switchd.service` command. The reload does **not** interrupt network services.
+Reload `switchd` with the `sudo systemctl reload switchd.service` command. The reload does **not** interrupt network services.
 
 ```
 cumulus@switch:~$ sudo systemctl reload switchd.service
@@ -755,11 +755,11 @@ cumulus@switch:~$ sudo systemctl reload switchd.service
     ...
     ```
 
-On a Mellanox switch, you can reload `switchd` with the `sudo systemctl reload switchd.service` command. The reload does **not** interrupt network services.
+2. Reload `switchd` with the `sudo systemctl reload switchd.service` command. The reload does **not** interrupt network services.
 
-```
-cumulus@switch:~$ sudo systemctl reload switchd.service
-```
+   ```
+   cumulus@switch:~$ sudo systemctl reload switchd.service
+   ```
 
 {{< /tab >}}
 

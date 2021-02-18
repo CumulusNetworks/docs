@@ -4,7 +4,13 @@ author: NVIDIA
 weight: 440
 toc: 4
 ---
-Use a {{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware bridge">}} on your switch. Use traditional mode bridges only if you need to run more than one bridge on the switch or if you need to use PVSTP+.
+For {{<link url="Traditional-Bridge-Mode" text="traditional Linux bridges">}}, the kernel supports VLANs in the form of VLAN subinterfaces. Enabling bridging on multiple VLANs means configuring a bridge for each VLAN and, for each member port on a bridge, creating one or more VLAN subinterfaces out of that port. This mode can pose scalability challenges in terms of configuration size as well as boot time and run time state management, when the number of ports times the number of VLANs becomes large.
+
+{{%notice note%}}
+
+Use *{{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware mode">}}* bridges instead of *traditional mode* bridges. The bridge driver in Cumulus Linux is capable of VLAN filtering, which allows for configurations that are similar to incumbent network devices. Use traditional mode bridges only if you need to run more than one bridge on the switch or if you need to use PVSTP+. For a comparison of traditional and VLAN-aware modes, read {{<exlink url="https://docs.cumulusnetworks.com/knowledge-base/Configuration-and-Usage/Network-Interfaces/Compare-Traditional-Bridge-Mode-to-VLAN-aware-Bridge-Mode/" text="this knowledge base article">}}.
+
+{{%/notice%}}
 
 ## Configure a Traditional Mode Bridge
 

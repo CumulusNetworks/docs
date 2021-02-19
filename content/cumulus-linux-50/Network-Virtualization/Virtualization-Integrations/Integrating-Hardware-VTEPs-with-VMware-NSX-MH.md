@@ -12,19 +12,19 @@ Cumulus Linux also supports integration with VMware NSX in high availability mod
 
 ## Get Started
 
-Before you integrate VXLANs with NSX-MH, make sure you have a layer 2 gateway; a switch with Mellanox Spectrum or Spectrum A1 running Cumulus Linux. Cumulus Linux includes OVSDB server (`ovsdb-server`) and VTEPd (`ovs-vtepd`), which support {{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware bridges">}}.
+Before you integrate VXLANs with NSX-MH, make sure you have a layer 2 gateway. Cumulus Linux includes OVSDB server (`ovsdb-server`) and VTEPd (`ovs-vtepd`), which support {{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware bridges">}}.
 
 To integrate a VXLAN with NSX-MH, you need to:
 
 - Configure the NSX-MH integration on the switch.
 - Configure the transport and logical layers from the NSX Manager.
-- Verify the VXLAN configuration.
+- Verify VXLAN configuration.
 
 {{%notice note%}}
 
 Cumulus Linux supports security protocol version TLSv1.2 for SSL connections between the OVSDB server and the NSX controller. NSX-MH does not work with TLSv1.2. This has the following impacts:
 
-- In order for NSX-MH to work with Cumulus Linux 4.x or later, you must remove the minimum TLS enforcement of version 1.2. But you must understand that there are implications to the security of your network, possibly exposing the network to vulnerabilities.
+- For NSX-MH to work with Cumulus Linux 4.x or later, you must remove the minimum TLS enforcement of version 1.2. But you must understand that there are implications to the security of your network, possibly exposing the network to vulnerabilities.
 
   To remove the TLSv1.2 requirement, edit `/etc/ssl/openssl.conf`.
 

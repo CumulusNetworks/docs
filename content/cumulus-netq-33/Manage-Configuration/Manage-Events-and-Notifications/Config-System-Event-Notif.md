@@ -6,11 +6,11 @@ toc: 3
 ---
 To take advantage of the numerous event messages generated and processed by NetQ, you must integrate with third-party event notification applications. You can integrate NetQ with Syslog, PagerDuty, Slack, and Email. You may integrate with one or more of these applications simultaneously.
 
-In an on-premises deployment, the NetQ On-premises Appliance or VM receives the raw data stream from the NetQ Agents, processes the data and delivers events to the Notification function. Notification then stores, filters and sends messages to any configured notification applications. In a cloud deployment, the NetQ Cloud Appliance or VM passes the raw data stream on to the NetQ Cloud service for processing and delivery.
+In an on-premises deployment, the NetQ On-premises Appliance or VM receives the raw data stream from the NetQ Agents, processes the data, stores, and delivers events to the Notification function. Notification then filters and sends messages to any configured notification applications. In a cloud deployment, the NetQ Cloud Appliance or VM passes the raw data stream on to the NetQ Cloud service for processing and delivery.
 
-{{<figure src="/images/netq/event-notif-arch-onprem-320.png">}}
+{{<figure src="/images/netq/event-notif-arch-onprem-330.png">}}
 
-{{<figure src="/images/netq/event-notif-arch-cloud-320.png">}}
+{{<figure src="/images/netq/event-notif-arch-cloud-330.png">}}
 
 {{<notice note>}}
 

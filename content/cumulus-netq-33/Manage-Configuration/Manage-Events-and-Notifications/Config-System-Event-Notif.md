@@ -2156,13 +2156,13 @@ For example:
 
 ## Manage NetQ Event Notification Integrations
 
-You might need to modify event notification configurations at some point in the lifecycle of your deployment. You can add and remove channels, rules, filters, and a proxy at any time.
+You might need to modify event notification configurations at some point in the lifecycle of your deployment. You can add channels, rules, filters, and a proxy at any time. You can remove channels, rules, and filters if they are not part of an existing notification configuration.
 
 For integrations with threshold-based event notifications, refer to {{<link title="#Manage Threshold-based Event Notifications">}}.
 
 ### Remove an Event Notification Channel
 
-If you retire selected channels from a given notification application, you might want to remove them from NetQ as well. You can remove channels using the NetQ UI or the NetQ CLI.
+If you retire selected channels from a given notification application, you might want to remove them from NetQ as well. You can remove channels if they are not part of an existing notification configuration using the NetQ UI or the NetQ CLI.
 
 {{< tabs "TabID1908" >}}
 
@@ -2214,7 +2214,7 @@ pd-netq-events  pagerduty        info             integration-key: 1234567
 
 ### Delete an Event Notification Rule
 
-You may find after some experience with a given rule that you want to edit or remove the rule to better meet your needs. You can remove rules using the NetQ CLI.
+You may find after some experience with a given rule that you want to edit or remove the rule to better meet your needs. You can remove rules if they are not part of an existing notification configuration using the NetQ CLI.
 
 To remove notification rules, run:
 
@@ -2242,7 +2242,7 @@ sysconf         configdiff       updated
 
 ### Delete an Event Notification Filter
 
-You may find after some experience with a given filter that you want to edit or remove the filter to better meet your current needs. You can remove filters using the NetQ CLI.
+You may find after some experience with a given filter that you want to edit or remove the filter to better meet your current needs. You can remove filters if they are not part of an existing notification configuration using the NetQ CLI.
 
 To remove notification filters, run:
 

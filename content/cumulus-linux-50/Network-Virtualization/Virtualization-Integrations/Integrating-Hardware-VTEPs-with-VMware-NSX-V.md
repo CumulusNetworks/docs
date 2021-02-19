@@ -12,13 +12,13 @@ Cumulus Linux also supports integration with VMware NSX in high availability mod
 
 ## Get Started
 
-Before you integrate VXLANs with NSX-V, make sure you have a layer 2 gateway; a switch with Mellanox Spectrum or Spectrum A1 running Cumulus Linux. Cumulus Linux includes OVSDB server (`ovsdb-server`) and VTEPd (`ovs-vtepd`), which support {{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware bridges">}}.
+Before you integrate VXLANs with NSX-V, make sure you have a layer 2 gateway. Cumulus Linux includes OVSDB server (`ovsdb-server`) and VTEPd (`ovs-vtepd`), which support {{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware bridges">}}.
 
 To integrate a VXLAN with NSX-V, you need to:
 
 - Configure the NSX-V integration on the switch.
 - Configure the transport and logical layers from the NSX Manager.
-- Verify the VXLAN configuration.
+- Verify VXLAN configuration.
 
 {{%notice note%}}
 
@@ -40,12 +40,6 @@ To enable and start the `openvswitch-vtep` service, run the following command:
 cumulus@switch:~$ sudo systemctl enable openvswitch-vtep.service
 cumulus@switch:~$ sudo systemctl start openvswitch-vtep.service
 ```
-
-{{%notice note%}}
-
-In previous versions of Cumulus Linux, you had to edit the `/etc/default/openvswitch-vtep` file and then start the `openvswitch-vtep` service . Now, you just have to enable and start the `openvswitch-vtep` service .
-
-{{%/notice%}}
 
 ### Configure the NSX-V Integration Using the Configuration Script
 

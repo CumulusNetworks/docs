@@ -1,17 +1,50 @@
 ---
 title: Quick Start Guide
 author: Cumulus Networks
-weight: 30
+weight: 110
 product: SONiC
 version: 4.0
 siteSlug: sonic
 ---
 
-## Configuring the Switch for the First Time
+This topic assumes you are configuring SONiC for the first time and have already installed and powered on your switch according to the instructions in the Hardware Installation Guide that was shipped with the switch.
 
-The procedures described in this page assume that you have already installed and powered on your switch according to the instructions in the Hardware Installation Guide, which was shipped with the product.
+## Installing SONiC Image
 
-### Using the RJ-45 Console
+The switch may already have ONIE or another network operating system pre-installed. In order to install SONiC on it, follow the preparatory steps below before you start the installation.
+
+### Prepare to Install
+
+Using older platforms prior to 201811 might require BIOS and ONIE versions upgrade. For instructions, please contact Mellanox Support.
+
+1. Verify your switch model is {{<exlink url="https://github.com/Azure/SONiC/wiki/Supported-Devices-and-Platforms" text="supported">}}.
+1. Connect to the switch via the serial console.
+1. If the switch has a network operating system installed, uninstall the existing NOS first before installing SONiC. To do so, simply boot into ONIE and select **Uninstall OS**:
+
+       GNU GRUB version 2.02-beta3
+       +-----------------------------------
+       | ONIE: Install OS
+       | ONIE: Rescue
+       | *ONIE: Uninstall OS
+       | ONIE: Update ONIE
+       | ONIE: Embed ONIE
+
+1. Reboot the switch into ONIE and select **Install OS**.
+1. A discovery process starts automatically, searching for the OS to install. Stop the ONIE discovery by running:
+
+       onie-stop
+1. Verify SMIBIOS parameters by running:
+
+       dmidecode -t1 -t2 | grep "Product Name"
+       Product Name: MSN2700
+       Product Name: VMOD0001
+
+If the output is like the example below, please contact Mellanox Support to correct the settings.
+
+    Product Name: Mellanox switch
+    Product Name: Mellanox x86 SFF board
+
+### Install Using the RJ-45 Console
 
 1. Connect the host PC to the console (RJ-45) port of the switch system using the supplied cable.
 
@@ -28,47 +61,11 @@ The procedures described in this page assume that you have already installed and
    | Parity | None |
    | Stop bits | 1 |
 
-### Via the Management IP
+### Install Using the Management IP
 
 DHCP is enabled by default over the MGT port. Therefore, if you have configured your DHCP server and connected an RJ-45 cable to the MGT port, simply log in using the designated IP address.
 
-## Installing SONiC Image
-
-The switch may be received with ONIE or another OS pre-installed. In order to install SONiC on it, the prerequisites below must be applied prior to installing the SONiC software.
-
-### Prerequisites
-
-Using older platforms prior to 201811 might require BIOS and ONIE versions upgrade. For instructions, please contact Mellanox Support.
-
-1. Verify your model is supported. See https://github.com/Azure/SONiC/wiki/Supported-Devices-and-Platforms.
-2. Connect to the switch via the serial console.
-3. If the switch has NOS installed, uninstall the existing NOS first before installing SONiC. To do so, simply boot into ONIE and select 'Uninstall OS':
-
-       GNU GRUB version 2.02-beta3
-       +-----------------------------------
-       | ONIE: Install OS
-       | ONIE: Rescue
-       | *ONIE: Uninstall OS
-       | ONIE: Update ONIE
-       | ONIE: Embed ONIE
-
-4. Reboot the switch into ONIE and select 'Install OS'
-5. A discovery process starts automatically, trying to search for the OS to install. Stop the ONIE discovery by running:
-
-       onie-stop
-6. Verify SMIBIOS params by running:
-
-       dmidecode -t1 -t2 | grep "Product Name"
-       Product Name: MSN2700
-       Product Name: VMOD0001
-
-If the output is like the example below, please contact Mellanox Support to correct the settings.
-
-Product Name: Mellanox switch
-
-Product Name: Mellanox x86 SFF board
-
-### Installing SONiC
+## Install SONiC
 
 1. Reboot the switch into ONIE and select 'Install OS':
 

@@ -1,9 +1,9 @@
 ---
 title: Illegal Drop Counters
 author: Cumulus Networks
-weight: 55
+weight: 670
 product: SONiC
-version: 4.0
+version: 202012
 siteSlug: sonic
 ---
 

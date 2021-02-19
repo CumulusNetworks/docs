@@ -1,9 +1,9 @@
 ---
 title: Thermal Control
 author: Cumulus Networks
-weight: 57
+weight: 680
 product: SONiC
-version: 4.0
+version: 202012
 siteSlug: sonic
 ---
 

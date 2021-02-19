@@ -1,7 +1,7 @@
 ---
 title: SONiC User Interfaces
 author: Cumulus Networks
-weight: 40
+weight: 9900
 product: SONiC
 version: 4.0
 siteSlug: sonic

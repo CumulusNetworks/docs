@@ -1,7 +1,7 @@
 ---
 title: SONiC Platform APIs
 author: Cumulus Networks
-weight: 80
+weight: 8000
 product: SONiC
 version: 4.0
 siteSlug: sonic

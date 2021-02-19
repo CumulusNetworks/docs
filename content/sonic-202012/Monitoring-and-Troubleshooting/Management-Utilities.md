@@ -1,9 +1,9 @@
 ---
 title: SONiC Management Utilities
 author: Cumulus Networks
-weight: 60
+weight: 630
 product: SONiC
-version: 4.0
+version: 202012
 siteSlug: sonic
 ---
 

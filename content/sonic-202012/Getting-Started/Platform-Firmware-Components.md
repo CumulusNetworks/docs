@@ -1,9 +1,9 @@
 ---
 title: Platform Firmware Components
 author: Cumulus Networks
-weight: 56
+weight: 130
 product: SONiC
-version: 4.0
+version: 202012
 siteSlug: sonic
 ---
 
@@ -413,3 +413,5 @@ x86_64-mlnx_msn3800-r0  N/A       ONIE         /etc/mlnx/fw/sn3800/onie-updater-
 
        Using GPIO update!
        Processing virtual machine file (/tmp/mpfa-zRSyCC/FUI000093_Refresh_Tigris_CPLD000120_REV0700_CPLD000165_REV0400_CPLD000166_REV0300_CPLD000167_REV0100.vme)......
+
+

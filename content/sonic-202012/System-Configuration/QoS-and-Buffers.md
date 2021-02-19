@@ -1,7 +1,7 @@
 ---
 title: QoS and Buffers
 author: Cumulus Networks
-weight: 58
+weight: 350
 product: SONiC
 version: 4.0
 siteSlug: sonic

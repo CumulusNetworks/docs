@@ -1,9 +1,9 @@
 ---
 title: SONiC Debug Tools
 author: Cumulus Networks
-weight: 70
+weight: 610
 product: SONiC
-version: 4.0
+version: 202012
 siteSlug: sonic
 ---
 

@@ -6,12 +6,6 @@ toc: 4
 ---
 The following sections provide the basic configuration needed to use EVPN as the control plane for VXLAN. The steps provided assume you have already configured VXLAN interfaces, attached them to a bridge, and mapped VLANs to VNIs.
 
-{{%notice note%}}
-
-In Cumulus Linux 4.0, MAC learning is disabled and ARP/ND suppression is enabled by default. This is a change from earlier Cumulus Linux releases, where MAC learning is *enabled* and ARP/ND suppression *disabled* by default. Be sure to update any configuration scripts, if necessary.
-
-{{%/notice%}}
-
 ## Enable EVPN between BGP Neighbors
 
 To enable EVPN between {{<link url="Border-Gateway-Protocol-BGP" text="BGP">}} neighbors, add the address family *evpn* to the existing neighbor `address-family` activation command.

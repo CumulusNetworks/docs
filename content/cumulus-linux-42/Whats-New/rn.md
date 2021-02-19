@@ -14,6 +14,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="CM-33359"></a> [CM-33359](#CM-33359) <a name="CM-33359"></a> | CVE-2020-8625: A buffer overflow vulnerability was discovered in the SPNEGO implementation affecting the GSSAPI security policy negotiation in BIND, a DNS server implementation, which could result in denial of service (daemon crash), or potentially the execution of arbitrary code.<br/>Vulnerable: <= 9.11.5.P4+dfsg-5.1+deb10u2<br/>Fixed: 9.11.5.P4+dfsg-5.1+deb10u3 | 4.0.0-4.3.0 | |
 | <a name="CM-33315"></a> [CM-33315](#CM-33315) <a name="CM-33315"></a> | CVE-2020-35498: A vulnerability was found in openvswitch. A limitation in the implementation of userspace packet parsing can allow a malicious user to send a specially crafted packet causing the resulting megaflow in the kernel to be too wide, potentially causing a denial of service. The highest threat from this vulnerability is to system availability.<br/>Vulnerable: <= 2.8.90-1-cl4u5 | 4.0.0-4.3.0 | |
 | <a name="CM-33283"></a> [CM-33283](#CM-33283) <a name="CM-33283"></a> | DSA-4850-1 (no CVE): libzstd adds read permissions to files while being compressed or uncompressed.<br/>Vulnerable: 1.3.8+dfsg-3<br/>Fixed: 1.3.8+dfsg-3+deb10u1 | 4.0.0-4.3.0 | |
 | <a name="CM-33262"></a> [CM-33262](#CM-33262) <a name="CM-33262"></a> | When you change a VRR MAC address, the associated virtual interface goes down.<br/>To work around this issue, run the `ip link set <virtual-interface> up` command or bounce the SVI. | 4.2.1-4.3.0 | |
@@ -320,6 +321,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="CM-33359"></a> [CM-33359](#CM-33359) <a name="CM-33359"></a> | CVE-2020-8625: A buffer overflow vulnerability was discovered in the SPNEGO implementation affecting the GSSAPI security policy negotiation in BIND, a DNS server implementation, which could result in denial of service (daemon crash), or potentially the execution of arbitrary code.<br/>Vulnerable: <= 9.11.5.P4+dfsg-5.1+deb10u2<br/>Fixed: 9.11.5.P4+dfsg-5.1+deb10u3 | 4.0.0-4.3.0 | |
 | <a name="CM-33315"></a> [CM-33315](#CM-33315) <a name="CM-33315"></a> | CVE-2020-35498: A vulnerability was found in openvswitch. A limitation in the implementation of userspace packet parsing can allow a malicious user to send a specially crafted packet causing the resulting megaflow in the kernel to be too wide, potentially causing a denial of service. The highest threat from this vulnerability is to system availability.<br/>Vulnerable: <= 2.8.90-1-cl4u5 | 4.0.0-4.3.0 | |
 | <a name="CM-33283"></a> [CM-33283](#CM-33283) <a name="CM-33283"></a> | DSA-4850-1 (no CVE): libzstd adds read permissions to files while being compressed or uncompressed.<br/>Vulnerable: 1.3.8+dfsg-3<br/>Fixed: 1.3.8+dfsg-3+deb10u1 | 4.0.0-4.3.0 | |
 | <a name="CM-33258"></a> [CM-33258](#CM-33258) <a name="CM-33258"></a> | Cumulus Linux does not support bond members at 200G or greater. | 4.0.0-4.3.0 | |

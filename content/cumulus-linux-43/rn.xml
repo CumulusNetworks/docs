@@ -7,6 +7,14 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-33359</td>
+<td><p>CVE-2020-8625: A buffer overflow vulnerability was discovered in the SPNEGO implementation affecting the GSSAPI security policy negotiation in BIND, a DNS server implementation, which could result in denial of service (daemon crash), or potentially the execution of arbitrary code.<br/>
+Vulnerable: &lt;= 9.11.5.P4+dfsg-5.1+deb10u2<br/>
+Fixed: 9.11.5.P4+dfsg-5.1+deb10u3</p></td>
+<td>4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-33315</td>
 <td><p>CVE-2020-35498: A vulnerability was found in openvswitch. A limitation in the implementation of userspace packet parsing can allow a malicious user to send a specially crafted packet causing the resulting megaflow in the kernel to be too wide, potentially causing a denial of service. The highest threat from this vulnerability is to system availability.<br/>
 Vulnerable: &lt;= 2.8.90-1-cl4u5</p></td>
@@ -19,6 +27,18 @@ Vulnerable: &lt;= 2.8.90-1-cl4u5</p></td>
 Vulnerable: 1.3.8+dfsg-3<br/>
 Fixed: 1.3.8+dfsg-3+deb10u1</p></td>
 <td>4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33281</td>
+<td><p>The ethtool -m &lt;interface&gt; command does not show Mellanox 100G transceiver MMA1L30-CM information and produces the following error:</p>
+
+root@spine01:mgmt:~# ethtool -m swp51
+Cannot get Module EEPROM data: Invalid argument
+
+
+<p>To work around this issue, run the mlxlink -d /dev/mst/mt53104_pciconf0 -c -m -e --show_fec --show_serdes_tx --show_device -p 51 command to show the transceiver information.</p></td>
+<td>4.3.0</td>
 <td></td>
 </tr>
 <tr>

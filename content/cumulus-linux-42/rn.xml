@@ -7,6 +7,14 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-33359</td>
+<td><p>CVE-2020-8625: A buffer overflow vulnerability was discovered in the SPNEGO implementation affecting the GSSAPI security policy negotiation in BIND, a DNS server implementation, which could result in denial of service (daemon crash), or potentially the execution of arbitrary code.<br/>
+Vulnerable: &lt;= 9.11.5.P4+dfsg-5.1+deb10u2<br/>
+Fixed: 9.11.5.P4+dfsg-5.1+deb10u3</p></td>
+<td>4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-33315</td>
 <td><p>CVE-2020-35498: A vulnerability was found in openvswitch. A limitation in the implementation of userspace packet parsing can allow a malicious user to send a specially crafted packet causing the resulting megaflow in the kernel to be too wide, potentially causing a denial of service. The highest threat from this vulnerability is to system availability.<br/>
 Vulnerable: &lt;= 2.8.90-1-cl4u5</p></td>
@@ -2359,6 +2367,14 @@ asic-monitor[7389]: File "/usr/lib/python2.7/dist-packages/cumulus/asic_monitor.
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>CM-33359</td>
+<td><p>CVE-2020-8625: A buffer overflow vulnerability was discovered in the SPNEGO implementation affecting the GSSAPI security policy negotiation in BIND, a DNS server implementation, which could result in denial of service (daemon crash), or potentially the execution of arbitrary code.<br/>
+Vulnerable: &lt;= 9.11.5.P4+dfsg-5.1+deb10u2<br/>
+Fixed: 9.11.5.P4+dfsg-5.1+deb10u3</p></td>
+<td>4.0.0-4.3.0</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-33315</td>

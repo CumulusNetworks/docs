@@ -14,18 +14,18 @@ Use *{{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware mode">}}* bridges ins
 
 ## Configure a Traditional Mode Bridge
 
-The following examples show how to create a simple traditional mode bridge configuration on the switch. The example also shows some optional elements:
+The following examples show how to create a simple traditional mode bridge configuration on the switch and use some optional elements:
 
 - You can add an IP address to provide IP access to the bridge interface.
 - You can specify a range of interfaces.
 
 To configure spanning tree options for a bridge interface, refer to {{<link title="Spanning Tree and Rapid Spanning Tree - STP">}}.
 
+The following example commands configure a traditional mode bridge called my_bridge with IP address 10.10.10.10/24. swp1, swp2, swp3, and swp4 are members of the bridge.
+
 {{< tabs "TabID20 ">}}
 
 {{< tab "NCLU Commands ">}}
-
-The following example commands configure a traditional mode bridge called my\_bridge with IP address 10.10.10.10/24. swp1, swp2, swp3, and swp4 are members of the bridge.
 
 ```
 cumulus@switch:~$ net add bridge my_bridge ports swp1-4
@@ -38,7 +38,7 @@ cumulus@switch:~$ net commit
 
 {{< tab "Linux Commands ">}}
 
-Edit the `/etc/network/interfaces` file, then run the `ifreload -a` command. The following example command configures a traditional mode bridge called my\_bridge with IP address 10.10.10.10/24. swp1, swp2, swp3, and swp4 are members of the bridge.
+Edit the `/etc/network/interfaces` file, then run the `ifreload -a` command.
 
 ```
 ...
@@ -118,7 +118,7 @@ iface bridge-B
 
 The {{<exlink url="http://www.ieee802.org/1/pages/802.1Q.html" text=" standard">}} for trunking is 802.1Q. The 802.1Q specification adds a 4 byte header within the Ethernet frame that identifies the VLAN of which the frame is a member.
 
-802.1Q also identifies an *untagged* frame as belonging to the *native* VLAN (most network devices default their native VLAN to 1). The concept of native, non-native, tagged or untagged has generated confusion due to mixed terminology and vendor-specific implementations. In Cumulus Linux:
+802.1Q also identifies an *untagged* frame as belonging to the *native* VLAN (most network devices default their native VLAN to 1). In Cumulus Linux:
 
 - A *trunk port* is a switch port configured to send and receive 802.1Q tagged frames.
 - A switch sending an untagged (bare Ethernet) frame on a trunk port is sending from the native VLAN defined on the trunk port.
@@ -126,17 +126,17 @@ The {{<exlink url="http://www.ieee802.org/1/pages/802.1Q.html" text=" standard">
 - A switch receiving an untagged (bare Ethernet) frame on a trunk port places that frame in the native VLAN defined on the trunk port.
 - A switch receiving a tagged frame on a trunk port places that frame in the VLAN identified by the 802.1Q tag.
 
-A bridge in traditional mode has no concept of trunks, just tagged or untagged frames. With a trunk of 200 VLANs, there would need to be 199 bridges, each containing a tagged physical interface, and one bridge containing the native untagged VLAN. See the examples below for more information.
+A bridge in traditional mode has no concept of trunks, just tagged or untagged frames. With a trunk of 200 VLANs, there would need to be 199 bridges, each containing a tagged physical interface, and one bridge containing the native untagged VLAN.
 
 {{%notice note%}}
 
-The interaction of tagged and un-tagged frames on the same trunk often leads to undesired and unexpected behavior. A switch that uses VLAN 1 for the native VLAN may send frames to a switch that uses VLAN 2 for the native VLAN, thus merging those two VLANs and their spanning tree state.
+The interaction of tagged and un-tagged frames on the same trunk often leads to undesired and unexpected behavior. A switch that uses VLAN 1 for the native VLAN might send frames to a switch that uses VLAN 2 for the native VLAN, merging those two VLANs and their spanning tree state.
 
 {{%/notice%}}
 
 ### Trunk Example
 
-{{< img src = "/images/cumulus-linux/ethernet-bridging-trunk.png" >}}
+{{< img src = "/images/cumulus-linux/ethernet-bridging-trunk1.png" >}}
 
 To create the above example:
 
@@ -145,8 +145,8 @@ To create the above example:
 {{< tab "NCLU Commands ">}}
 
 ```
-cumulus@switch:~$ net add bridge br-VLAN100 ports swp1.100,swp2.100
-cumulus@switch:~$ net add bridge br-VLAN200 ports swp1.200,swp2.200
+cumulus@switch:~$ net add bridge br-VLAN10 ports swp1.10,swp2.10
+cumulus@switch:~$ net add bridge br-VLAN20 ports swp1.20,swp2.20
 cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
@@ -159,13 +159,13 @@ Add the following configuration to the `/etc/network/interfaces` file:
 
 ```
 ...
-auto br-VLAN100
-iface br-VLAN100
-   bridge-ports swp1.100 swp2.100
+auto br-VLAN10
+iface br-VLAN10
+   bridge-ports swp1.10 swp2.10
 
-auto br-VLAN200
-iface br-VLAN200
-   bridge-ports swp1.200 swp2.200
+auto br-VLAN20
+iface br-VLAN20
+   bridge-ports swp1.20 swp2.20
 ...
 ```
 
@@ -173,9 +173,7 @@ iface br-VLAN200
 
 {{< /tabs >}}
 
-### VLAN Tagging Examples
-
-You can find more examples of VLAN tagging in {{<link url="VLAN-Tagging" text="the VLAN tagging chapter">}}.
+For more examples of VLAN tagging, see {{<link url="VLAN-Tagging" text="VLAN Tagging">}}.
 
 ### Configure ARP Timers
 

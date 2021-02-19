@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 790
 toc: 3
 ---
-*Redistribute neighbor* provides a mechanism for IP subnets to span racks without forcing the end hosts to run a routing protocol.
+*Redistribute neighbor* provides a way for IP subnets to span racks without forcing the end hosts to run a routing protocol.
 
 The fundamental premise behind redistribute neighbor is to announce individual host /32 routes in the routed fabric. Other hosts on the fabric can then use this new path to access the hosts in the fabric. If multiple equal-cost paths (ECMP) are available, traffic can load balance across the available paths natively.
 
@@ -21,6 +21,7 @@ The current implementation of redistribute neighbor:
 - Supports IPv4 only.
 - Does not support {{<link url="Virtual-Routing-and-Forwarding-VRF" text="VRFs">}}.
 - Supports a maximum of 1024 interfaces. Using more than 1024 interfaces might crash the `rdnbrd` service.
+- Is not supported with EVPN. Enabling both redistribute neighbor and EVPN leads to unreachable IPv4 ARP and IPv6 neighbor entries.
 
 {{%/notice%}}
 
@@ -41,7 +42,7 @@ Follow these guidelines:
 - Make sure that IP addressing is non-overlapping, as the host IP addresses are directly advertised into the routed fabric.
 - Run redistribute neighbor on Linux-based hosts. NVIDIA has not actively tested other host operating systems.
 
-## How It Works
+## How Redistribute Neighbor Works
 
 Redistribute neighbor works as follows:
 
@@ -242,8 +243,6 @@ line vty
 
 There are a few possible host configurations that range in complexity. This document only covers the basic use case: dual-connected Linux hosts with static IP addresses assigned.
 
-#### Configure a Dual-connected Host
-
 Configure a host with the same /32 IP address on its loopback (lo) and uplinks (in this example, eth1 and eth2). This is done so both leaf switches advertise the same /32 regardless of the interface. Cumulus Linux relies on {{<link url="Equal-Cost-Multipath-Load-Sharing-Hardware-ECMP" text="ECMP">}} to load balance across the interfaces southbound, and an equal cost static route (see the configuration below) for load balancing northbound.
 
 The loopback hosts the primary service IP address(es) and to which you can bind services.
@@ -281,9 +280,9 @@ iface eth2
 
 {{< /expand >}}
 
-#### Install ifplugd
+### Install ifplugd
 
-Additionally, install and use `{{<link url="ifplugd">}}`. `ifplugd` modifies the behavior of the Linux routing table when an interface undergoes a link transition (carrier up/down). The Linux kernel by default leaves routes up even when the physical interface is unavailable (NO-CARRIER).
+Install and use `{{<link url="ifplugd">}}`, which modifies the behavior of the Linux routing table when an interface undergoes a link transition (carrier up/down). The Linux kernel by default leaves routes up even when the physical interface is unavailable (NO-CARRIER).
 
 After you install `ifplugd`, edit `/etc/default/ifplugd` as follows, where *eth1* and *eth2* are the interface names that your host uses to connect to the leaves.
 
@@ -299,9 +298,9 @@ For full instructions on installing `ifplugd` on Ubuntu, {{<exlink url="https://
 
 ## Troubleshooting
 
-### How do I determine if rdnbrd (the redistribute neighbor daemon) is running?
+### Check if rdnbrd is Running
 
-Run the `systemctl status rdnbrd.service` command:
+`rdnbrd` is the redistribute neighbor daemon. To check if the daemon is running, run the `systemctl status rdnbrd.service` command:
 
 ```
 cumulus@leaf01:~$ systemctl status rdnbrd.service
@@ -313,9 +312,9 @@ cumulus@leaf01:~$ systemctl status rdnbrd.service
  `-1501 /usr/bin/python /usr/sbin/rdnbrd -d
 ```
 
-### How do I change the default configuration of rdnbrd?
+### Change rdnbrd Configuration
 
-Edit the `/etc/rdnbrd.conf` file, then run `systemctl restart rdnbrd.service`:
+To change the default configuration of `rdnbrd`, edit the `/etc/rdnbrd.conf` file, then run `systemctl restart rdnbrd.service`:
 
 ```
 cumulus@leaf01:~$ sudo nano /etc/rdnbrd.conf
@@ -346,7 +345,7 @@ unicast_arp_requests = True
 cumulus@leaf01:~$ sudo systemctl restart rdnbrd.service
 ```
 
-### What is table 10? Why was table 10 chosen?
+### Set the Routing Table ID
 
 The Linux kernel supports multiple routing tables and can utilize 0 through 255 as table IDs; however tables 0, 253, 254 and 255 are reserved, and 1 is usually the first one utilized. Therefore, `rdnbrd` only allows you to specify 2-252. Cumulus Linux uses table ID 10, however you can set the ID to any value between 2-252. You can see all the tables specified here:
 
@@ -367,7 +366,7 @@ cumulus@leaf01:~$ cat /etc/iproute2/rt_tables
 
 For more information, refer to {{<exlink url="http://linux-ip.net/html/routing-tables.html" text="Linux route tables">}} or you can read the {{<exlink url="https://manpages.ubuntu.com/manpages/eoan/en/man8/ip-route.8.html" text="Ubuntu man pages for ip route">}}.
 
-### How do I determine that the /32 redistribute neighbor routes are being advertised to my neighbor?
+### Check /32 Redistribute Neighbor Advertised Routes
 
 For BGP, run the NCLU `net show bgp neighbor <interface> advertise-routes` command or the vtysh `show ip bgp neighbor swp51 advertised-routes` command. For example:
 
@@ -387,9 +386,9 @@ Origin codes: i - IGP, e - EGP, ? - incomplete
 Total number of prefixes 4
 ```
 
-### How do I verify that the kernel routing table is being correctly populated?
+### Verify the Kernel Routing Table
 
-Use the following workflow to verify that the kernel routing table isbeing populated correctly and that routes are being correctly imported/advertised:
+Use the following workflow to verify that the kernel routing table isbeing populated correctly and that routes are being correctly imported and advertised:
 
 1. Verify that ARP neighbor entries are being populated into the Kernel routing table 10.
 
@@ -423,16 +422,12 @@ Use the following workflow to verify that the kernel routing table isbeing popul
 
 ### TCAM Route Scale
 
-This feature adds each ARP entry as a /32 host route into the routing table of all switches within a summarization domain. Take care to keep the number of hosts minus fabric routes under the TCAM size of the switch. Review the {{<exlink url="https://cumulusnetworks.com/hcl/" text="Cumulus Networks datasheets">}} for up to date scalability limits of your chosen hardware platforms. If in doubt, contact support representative.
+This feature adds each ARP entry as a /32 host route into the routing table of all switches within a summarization domain. Make sure the number of hosts minus fabric routes is under the TCAM size of the switch. Review the {{<exlink url="https://cumulusnetworks.com/hcl/" text="Cumulus Networks datasheets">}} for up to date scalability limits of your hardware platform. If in doubt, contact your support representative.
 
-### Possible Uneven Traffic Distribution
+### Uneven Traffic Distribution
 
 Linux uses *source* layer 3 addresses only to do load balancing on most older distributions.
 
 ### Silent Hosts Never Receive Traffic
 
 Freshly provisioned hosts that have never sent traffic may not ARP for their default gateways. The post-up ARPing in `/etc/network/interfaces` on the host should take care of this. If the host does not ARP, then `rdnbrd` on the leaf cannot learn about the host.
-
-### Unsupported with EVPN
-
-Redistribute neighbor is unsupported when the BGP EVPN Address Family is enabled. Enabling both redistribute neighbor and EVPN will lead to unreachable IPv4 ARP and IPv6 neighbor entries.

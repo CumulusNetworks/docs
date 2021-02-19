@@ -239,33 +239,21 @@ In Cumulus Linux, when a next hop fails or is removed from an ECMP pool, the has
 
 There are two unique options for configuring resilient hashing, both of which you configure in the `/usr/lib/python2.7/dist-packages/cumulus/__chip_config/mlx/datapath.conf​` file. The recommended values for these options depend largely on the desired outcome for a specific network implementation &mdash; the number and duration of flows, and the importance of keeping these flows pinned without interruption.
 
-- `resilient_hash_active_timer`: A timer that protects TCP sessions from being
-  disrupted while attempting to populate new next hops. You specify the number of
-  seconds when at least one hash bucket consistently sees no traffic before
-  Cumulus Linux rebalances the flows; the default is 120 seconds. If any
-  one bucket is idle; that is, it sees no traffic for the defined period, the next
-  new flow utilizes that bucket and flows to the new link. Thus, if the network is
-  experiencing a large number of flows or very consistent or persistent flows, there
-  may not be any buckets remaining idle for a consistent 120 second period, and the
-  imbalance remains until that timer has been met. If a new link is brought up and
-  added back to a group during this time, traffic does not get allocated to utilize
-  it until a bucket qualifies as *empty*, meaning it has been idle for 120 seconds.
-  This is when a rebalance can occur.
-- `resilient_hash_max_unbalanced_timer`: You can force a rebalance every N seconds
-  with this option. However, while this could correct the persistent imbalance that
-  is expected with resilient hashing, this rebalance would result in the movement of
-  all flows and thus a break in any TCP sessions that are active at that time.
+- `resilient_hash_active_timer`: A timer that protects TCP sessions from being disrupted while attempting to populate new next hops. You specify the number of seconds when at least one hash bucket consistently sees no traffic before Cumulus Linux rebalances the flows; the default is 120 seconds. If any one bucket is idle; that is, it sees no traffic for the defined period, the next new flow utilizes that bucket and flows to the new link. Thus, if the network is experiencing a large number of flows or very consistent or persistent flows, there might not be any buckets remaining idle for a consistent 120 second period, and the imbalance remains until that timer has been met. If a new link is brought up and added back to a group during this time, traffic does not get allocated to utilize it until a bucket qualifies as *empty*, meaning it has been idle for 120 seconds. This is when a rebalance can occur.
+- `resilient_hash_max_unbalanced_timer`: You can force a rebalance every N seconds with this option. However, while this could correct the persistent imbalance that is expected with resilient hashing, this rebalance would result in the movement of all flows and thus a break in any TCP sessions that are active at that time.
 
-Note that when you configure these options, a new next hop might not get populated for a long time.
+{{%notice note%}}
+When you configure these options, a new next hop might not get populated for a long time.
+{{%/notice%}}
 
-The Mellanox Spectrum ASIC assigns packets to hash buckets and assigns hash buckets to next hops as follows. It also runs a background thread that monitors and may migrate buckets between next hops to rebalance the load.
+The Mellanox Spectrum ASIC assigns packets to hash buckets and assigns hash buckets to next hops as follows. It also runs a background thread that monitors and can migrate buckets between next hops to rebalance the load.
 
 - When a next hop is removed, the assigned buckets are distributed to the remaining next hops.
 - When a next hop is added, **no** buckets are assigned to the new next hop until the background thread rebalances the load.
-- The load gets rebalanced when the active flow timer specified by the `resilient_hash_active_timer` setting expires if, and only if, there are inactive hash buckets available; the new next hop may remain unpopulated until the period set in `resilient_hash_active_timer` expires.
+- The load gets rebalanced when the active flow timer specified by the `resilient_hash_active_timer` setting expires if, and only if, there are inactive hash buckets available; the new next hop might remain unpopulated until the period set in `resilient_hash_active_timer` expires.
 - When the `resilient_hash_max_unbalanced_timer` setting expires and the load is not balanced, the thread migrates any bucket(s) to different next hops to rebalance the load.
 
-As a result, any flow may be migrated to any next hop, depending on flow activity and load balance conditions; over time, the flow may get pinned, which is the default setting and behavior.
+As a result, any flow can be migrated to any next hop, depending on flow activity and load balance conditions; over time, the flow might get pinned, which is the default setting and behavior.
 
 ### Resilient Hash Buckets
 
@@ -291,7 +279,7 @@ Resilient hashing does not prevent possible impact to existing flows when new ne
 
 {{< img src = "/images/cumulus-linux/ecmp-reshash-add.png" >}}
 
-As a result, some flows may hash to new next hops, which can impact anycast deployments.
+As a result, some flows might hash to new next hops, which can impact anycast deployments.
 
 ### Configure Resilient Hashing
 
@@ -312,27 +300,19 @@ cumulus@switch:~$ ip route show 10.1.1.0/24
 
 All ECMP routes must use the same number of buckets (the number of buckets cannot be configured per ECMP route).
 
-The number of buckets can be configured as 64, 128, 256, 512 or 1024; the default is 128:
+The number of buckets can be configured as 64, 512, or 1024; the default is 64:
 
 | Number of Hash Buckets | Number of Supported ECMP Groups |
 | ---------------------- | ------------------------------- |
-| 64                     | 1024                            |
-| **128**                | **512**                         |
-| 256                    | 256                             |
+| **64**                 | **1024**                        |
 | 512                    | 128                             |
 | 1024                   | 64                              |
-
-{{%notice note%}}
-
-Mellanox switches with the Spectrum ASIC do not support 128 or 256 hash buckets. The default number of hash buckets is 64.
-
-{{%/notice%}}
 
 A larger number of ECMP buckets reduces the impact on adding new next hops to an ECMP route. However, the system supports fewer ECMP routes. If the maximum number of ECMP routes have been installed, new ECMP routes log an error and are not installed.
 
 {{%notice note%}}
 
-Mellanox switches with the Spectrum ASIC allow for two custom options to allocate route and  MAC address hardware resources depending on ECMP bucket size changes. More information about this is available in the Routing section on {{%link title="Routing#Mellanox Spectrum Switches" text="Mellanox Spectrum routing resources" %}}
+Two custom options are provided to allocate route and  MAC address hardware resources depending on ECMP bucket size changes. See {{%link title="Routing#Mellanox Spectrum Switches" text="Mellanox Spectrum routing resources" %}}.
 
 {{%/notice%}}
 
@@ -367,7 +347,7 @@ To work around this issue, you can enable the IPv6 route replacement option.
 
 {{%notice info%}}
 
-Be aware that for certain configurations, the IPv6 route replacement option can lead to incorrect forwarding decisions and lost traffic. For example, it is possible for a destination to have next hops with a gateway value with the outbound interface or just the outbound interface itself, without a gateway address defined. If both types of next hops for the same destination exist, route replacement does not operate correctly; Cumulus Linux adds an additional route entry and next hop but does not delete the previous route entry and next hop.
+For certain configurations, the IPv6 route replacement option can lead to incorrect forwarding decisions and lost traffic. For example, it is possible for a destination to have next hops with a gateway value with the outbound interface or just the outbound interface itself, without a gateway address defined. If both types of next hops for the same destination exist, route replacement does not operate correctly; Cumulus Linux adds an additional route entry and next hop but does not delete the previous route entry and next hop.
 
 {{%/notice%}}
 
@@ -382,15 +362,15 @@ To enable the IPv6 route replacement option:
     zebra_options=" -M cumulus_mlag -M snmp -A 127.0.0.1 --v6-rr-semantics -s 90000000"
     bgpd_options=" -M snmp  -A 127.0.0.1"
     ospfd_options=" -M snmp -A 127.0.0.1"
-      ...
+    ...
     ```
 
 2. {{<cl/restart-frr>}}
 
 To verify that the IPv6 route replacement option is enabled, run the `systemctl status frr` command:
 
-    ```
-    cumulus@switch:~$ systemctl status frr
+```
+cumulus@switch:~$ systemctl status frr
 
     ● frr.service - FRRouting
       Loaded: loaded (/lib/systemd/system/frr.service; enabled; vendor preset: enabled)
@@ -403,4 +383,4 @@ To verify that the IPv6 route replacement option is enabled, run the `systemctl 
             ├─4701 /usr/lib/frr/zebra -d -M snmp -A 127.0.0.1 --v6-rr-semantics -s 90000000
             ├─4705 /usr/lib/frr/bgpd -d -M snmp -A 127.0.0.1
             └─4711 /usr/lib/frr/staticd -d -A 127.0.0.1
-    ```
+```

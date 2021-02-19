@@ -157,7 +157,7 @@ switch(config)# interface swp1
 switch(config-if)#
 ```
 
-When the routing protocol specific commands are invoked, the prompt changes to:
+When you run the routing protocol specific commands, the prompt changes:
 
 ```
 switch(config)# router ospf
@@ -225,7 +225,7 @@ cumulus@leaf01:mgmt:~$ sudo vtysh -c 'find mlag'
   (config)  no ip pim mlag
 ```
 
-Displaying state can be done at any level, including the top level. For example, to see the routing table as seen by `zebra`:
+You can display the state at any level, including the top level. For example, to see the routing table as seen by `zebra`:
 
 ```
 switch# show ip route
@@ -249,7 +249,7 @@ B>* 172.16.3.0/24 [20/0] via fe80::4638:39ff:fe00:57, swp3, 00:11:59
   *                      via fe80::4638:39ff:fe00:43, swp4, 00:11:59
 ```
 
-To run the same command at a config level, prepend `do` to it:
+To run the same command at a config level, prepend `do`:
 
 ```
 switch(config-router)# do show ip route
@@ -273,7 +273,7 @@ B>* 172.16.3.0/24 [20/0] via fe80::4638:39ff:fe00:57, swp3, 00:05:18
   *                      via fe80::4638:39ff:fe00:43, swp4, 00:05:18
 ```
 
-To run single commands with `vtysh`, use the `-c` option of `vtysh`:
+To run single commands with `vtysh`, use the `-c` option:
 
 ```
 cumulus@switch:~$ sudo vtysh -c 'sh ip route'
@@ -297,7 +297,7 @@ To run a command multiple levels down:
 cumulus@switch:~$ sudo vtysh -c 'configure terminal' -c 'router ospf' -c 'area 0.0.0.1 range 10.10.10.0/24'
 ```
 
-Notice that the commands also take a partial command name (for example, `sh ip route`) as long as the partial command name is not aliased:
+The commands also take a partial command name (for example, `sh ip route`) as long as the partial command name is not aliased:
 
 ```
 cumulus@switch:~$ sudo vtysh -c 'sh ip r'

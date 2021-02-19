@@ -113,7 +113,7 @@ mpls label global-block 100 200
 ...
 ```
 
-## View the Configuration
+## Troubleshooting
 
 You can see the label-index when you show the BGP configuration on a router. Run the NCLU `net show configuration bgp` command or the vtysh `show running-config bgp` command. For example:
 
@@ -175,7 +175,7 @@ Local label: 104 (installed)
 cumulus@r1:~$
 ```
 
-You can see the MPLS routing table that is installed in the kernel as well:
+To show the MPLS routing table that is installed in the kernel:
 
 ```
 cumulus@r1:~$ ip -f mpls route show

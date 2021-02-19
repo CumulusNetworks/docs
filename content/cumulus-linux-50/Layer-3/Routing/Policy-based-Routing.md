@@ -32,12 +32,6 @@ A PBR policy contains one or more policy maps. Each policy map:
 
 To use PBR in Cumulus linux, you define a PBR policy and apply it to the ingress interface (the interface must already have an IP address assigned). Traffic is matched against the match rules in sequential order and forwarded according to the set rule in the first match. Traffic that does not match any rule is passed onto the normal destination based routing mechanism.
 
-{{%notice note%}}
-
-For Tomahawk and Tomahawk+ platforms, you must configure the switch to operate in non-atomic mode, which offers better scaling as all TCAM resources are used to actively impact traffic. Add the line `acl.non_atomic_update_mode = TRUE` to the `/etc/cumulus/switchd.conf` file.
-
-{{%/notice%}}
-
 To configure a PBR policy:
 
 {{< tabs "TabID45 ">}}
@@ -234,63 +228,7 @@ pbr-map map1 seq 1
 ...
 ```
 
-## Review Your Configuration
-
-Use the following commands to see the configured PBR policies.
-
-To see the policies applied to all interfaces on the switch, run the NCLU `net show pbr interface` command or the `vtysh` `show pbr interface` command. For example:
-
-```
-cumulus@switch:~$ net show pbr interface
-swp55s3(67) with pbr-policy map1
-```
-
-To see the policies applied to a specific interface on the switch, add the interface name at the end of the command; for example, `net show pbr interface swp51` (or `show pbr interface swp51` in `vtysh`).
-
-To see information about all policies, including mapped table and rule numbers, run the NCLU `net show pbr map` command or the `vtysh` `show pbr map` command. If the rule is not set, you see a reason why.
-
-```
-cumulus@switch:~$ net show pbr map
- pbr-map map1 valid: yes
-  Seq: 700 rule: 999 Installed: yes Reason: Valid
-      SRC Match: 10.0.0.1/32
-  nexthop 192.168.0.32
-      Installed: yes Tableid: 10003
-  Seq: 701 rule: 1000 Installed: yes Reason: Valid
-      SRC Match: 90.70.0.1/32
-  nexthop 192.168.0.32
-      Installed: yes Tableid: 10004
-```
-
-To see information about a specific policy, what it matches, and with which interface it is associated, add the map name at the end of the command; for example, `net show pbr map map1` (or `show pbr map map1` in `vtysh`).
-
-To see information about all next hop groups, run the NCLU `net show pbr nexthop-group` command or the `vtysh` `show pbr nexthop-group` command.
-
-```
-cumulus@switch:~$ net show pbr nexthop-group
-Nexthop-Group: map1701 Table: 10004 Valid: yes Installed: yes
-Valid: yes nexthop 10.1.1.2
-Nexthop-Group: map1700 Table: 10003 Valid: yes Installed: yes
-Valid: yes nexthop 10.1.1.2
-Nexthop-Group: group1 Table: 10000 Valid: yes Installed: yes
-Valid: yes nexthop 192.168.10.0 bond1
-Valid: yes nexthop 192.168.10.2
-Valid: yes nexthop 192.168.10.3 vlan70
-Nexthop-Group: group2 Table: 10001 Valid: yes Installed: yes
-Valid: yes nexthop 192.168.8.1
-Valid: yes nexthop 192.168.8.2
-Valid: yes nexthop 192.168.8.3
-```
-
-To see information about a specific next hop group, add the group name at the end of the command; for example, `net show pbr nexthop-group group1` (or `show pbr nexthop-group group1` in `vtysh`).
-
-{{%notice note%}}
-
-A new Linux routing table ID is used for each next hop and next hop group.
-
-{{%/notice%}}
-
-## Modify Existing PBR Rules
+## Modify PBR Rules
 
 When you want to change or extend an existing PBR rule, you must first delete the conditions in the rule, then add the rule back with the modification or addition.
 
@@ -586,6 +524,60 @@ net add pbr-map pbr-policy seq 6 match src-ip 10.1.4.1/24
 net add pbr-map pbr-policy seq 6 set nexthop 192.168.0.21
 net commit
 ```
+
+{{%/notice%}}
+
+## Troubleshooting
+
+To see the policies applied to all interfaces on the switch, run the NCLU `net show pbr interface` command or the `vtysh` `show pbr interface` command. For example:
+
+```
+cumulus@switch:~$ net show pbr interface
+swp55s3(67) with pbr-policy map1
+```
+
+To see the policies applied to a specific interface on the switch, add the interface name at the end of the command; for example, `net show pbr interface swp51` (or `show pbr interface swp51` in `vtysh`).
+
+To see information about all policies, including mapped table and rule numbers, run the NCLU `net show pbr map` command or the `vtysh` `show pbr map` command. If the rule is not set, you see a reason why.
+
+```
+cumulus@switch:~$ net show pbr map
+ pbr-map map1 valid: yes
+  Seq: 700 rule: 999 Installed: yes Reason: Valid
+      SRC Match: 10.0.0.1/32
+  nexthop 192.168.0.32
+      Installed: yes Tableid: 10003
+  Seq: 701 rule: 1000 Installed: yes Reason: Valid
+      SRC Match: 90.70.0.1/32
+  nexthop 192.168.0.32
+      Installed: yes Tableid: 10004
+```
+
+To see information about a specific policy, what it matches, and with which interface it is associated, add the map name at the end of the command; for example, `net show pbr map map1` (or `show pbr map map1` in `vtysh`).
+
+To see information about all next hop groups, run the NCLU `net show pbr nexthop-group` command or the `vtysh` `show pbr nexthop-group` command.
+
+```
+cumulus@switch:~$ net show pbr nexthop-group
+Nexthop-Group: map1701 Table: 10004 Valid: yes Installed: yes
+Valid: yes nexthop 10.1.1.2
+Nexthop-Group: map1700 Table: 10003 Valid: yes Installed: yes
+Valid: yes nexthop 10.1.1.2
+Nexthop-Group: group1 Table: 10000 Valid: yes Installed: yes
+Valid: yes nexthop 192.168.10.0 bond1
+Valid: yes nexthop 192.168.10.2
+Valid: yes nexthop 192.168.10.3 vlan70
+Nexthop-Group: group2 Table: 10001 Valid: yes Installed: yes
+Valid: yes nexthop 192.168.8.1
+Valid: yes nexthop 192.168.8.2
+Valid: yes nexthop 192.168.8.3
+```
+
+To see information about a specific next hop group, add the group name at the end of the command; for example, `net show pbr nexthop-group group1` (or `show pbr nexthop-group group1` in `vtysh`).
+
+{{%notice note%}}
+
+A new Linux routing table ID is used for each next hop and next hop group.
 
 {{%/notice%}}
 

@@ -25,17 +25,17 @@ The above example shows how traffic towards 192.168.10.1/32 is load balanced whe
 
 Now, each spine has four UCMP routes:
 
-- via Leaf01 with weight 2
-- via Leaf02 with weight 2
-- via Leaf03 with weight 1
-- via Leaf04 with weight 1
+- through Leaf01 with weight 2
+- through Leaf02 with weight 2
+- through Leaf03 with weight 1
+- through Leaf04 with weight 1
 
 The border leafs also have four UCMP routes:
 
-- via Spine01 with weight 6
-- via Spine02 with weight 6
-- via Spine03 with weight 6
-- via Spine04 with weight 6
+- through Spine01 with weight 6
+- through Spine02 with weight 6
+- through Spine03 with weight 6
+- through Spine04 with weight 6
 
 The border leafs balance traffic equally; all weights are equal to the spines. Only the spines have unequal load sharing based on the weight values.
 

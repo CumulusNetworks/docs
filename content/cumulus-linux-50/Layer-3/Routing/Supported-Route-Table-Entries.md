@@ -4,21 +4,21 @@ author: NVIDIA
 weight: 740
 toc: 3
 ---
-Cumulus Linux advertises the maximum number of route table entries supported on a given platform, including:
+Cumulus Linux advertises the maximum number of route table entries supported on the switch, including:
 
 - Layer 3 IPv4 LPM (longest prefix match) entries that have a mask less than /32
 - Layer 3 IPv6 LPM entries that have a mask of /64 or less
 - Layer 3 IPv6 LPM entries that have a mask greater than /64
 - Layer 3 IPv4 neighbor (or host) entries that are the next hops seen in `ip neighbor`
 - Layer 3 IPv6 neighbor entries that are the next hops seen in `ip -6 neighbor`
-- ECMP next hops, which are IP address entries in a router's routing table that specify the next closest or most optimal router in its routing path
+- ECMP next hops, which are IP address entries in the routing table that specify the next closest or most optimal router in its routing path
 - MAC addresses
 
 To determine the current table sizes on a switch, use either the NCLU `net show system asic` command or `{{<link url="Resource-Diagnostics-Using-cl-resource-query" text="cl-resource-query">}}`.
 
 ## Forwarding Table Profiles
 
-You can configure the allocation of forwarding table resources and mechanisms. Cumulus Linux provides a number of generalized profiles for the platforms described below. These profiles work only with layer 2 and layer 3 unicast forwarding.
+You can configure the allocation of forwarding table resources and mechanisms. Cumulus Linux provides a number of generalized profiles, described below. These profiles work only with layer 2 and layer 3 unicast forwarding.
 
 Choose the profile that best suits your network architecture and specify the profile name for the `forwarding_table.profile` variable in the `/etc/cumulus/datapath/traffic.conf` file; for example:
 
@@ -35,15 +35,13 @@ After you specify a different profile, {{%link url="Configuring-switchd#restart-
 
 ## Supported Route Entries
 
-The following tables list the number of MAC addresses, layer 3 neighbors, and LPM routes validated for each forwarding table profile for supported platforms. If you do not specify any profiles as described above, the switch uses the *default* values.
+The following tables list the number of MAC addresses, layer 3 neighbors, and LPM routes validated for each forwarding table profile for Mellanox switches. If you do not specify any profiles as described above, the switch uses the *default* values.
 
 {{%notice tip%}}
 
-The values in the following tables reflect results from testing on supported platforms, which might differ from published manufacturer specifications.
+The values in the following tables reflect results from testing, which might differ from published manufacturer specifications.
 
 {{%/notice%}}
-
-### Mellanox Spectrum Switches
 
 | <div style="width:100px">Profile| MAC Addresses | <div style="width:190px">L3 Neighbors| Longest Prefix Match (LPM)  |
 | -------------- | ------------- | ------------------------- | ------------------------------ |
@@ -55,9 +53,9 @@ The values in the following tables reflect results from testing on supported pla
 | v6-lpm-heavy   | 40k           | 8k (IPv4) and 40k (IPv6)  | 8k (IPv4), 32k (IPv6-long) and 32K (IPv6/64) |
 | lpm-balanced   | 8k            | 8k (IPv4) and 8k (IPv6)   | Spectrum-2 and Spectrum-3:<br>120k (IPv4) and 120k (IPv6-long)<br>Spectrum:<br>60k (IPv4), 60k (IPv6-long) and 120k (IPv6/64) |
 
-## TCAM Resource Profiles for Spectrum Switches
+## TCAM Resource Profiles
 
-You can configure TCAM resource allocation, which is shared between IP multicast forwarding entries and ACL tables. Cumulus Linux provides a number of general profiles for this platform. Choose the profile that best suits your network architecture and specify that profile name in the `tcam_resource.profile` variable in the `/usr/lib/python2.7/dist-packages/cumulus/__chip_config/mlx/datapath.conf` file; for example:
+You can configure TCAM resource allocation, which is shared between IP multicast forwarding entries and ACL tables. Cumulus Linux provides a number of general profiles. Choose the profile that best suits your network architecture and specify that profile name in the `tcam_resource.profile` variable in the `/usr/lib/python2.7/dist-packages/cumulus/__chip_config/mlx/datapath.conf` file; for example:
 
 ```
 cumulus@switch:~$ cat /usr/lib/python2.7/dist-packages/cumulus/__chip_config/mlx/datapath.conf | grep -B3 "tcam_resource"

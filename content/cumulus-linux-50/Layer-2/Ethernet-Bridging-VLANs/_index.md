@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 420
 toc: 3
 ---
-Ethernet bridges enable hosts to communicate through layer 2 by connecting all of the physical and logical interfaces in the system into a single layer 2 domain. The bridge is a logical interface with a MAC address and an {{<link url="Switch-Port-Attributes#mtu" text="MTU">}} (maximum transmission unit). The bridge MTU is the minimum MTU among all its members. By default, the {{<exlink url="https://docs.cumulusnetworks.com/knowledge-base/Configuration-and-Usage/Network-Configuration/Cumulus-Linux-Derivation-of-MAC-Address-for-a-Bridge/" text="the MAC address of the bridge">}} is the MAC address of the first port in the `bridge-ports` list. You can also assign an IP address to the bridge.
+Ethernet bridges enable hosts to communicate through layer 2 by connecting all of the physical and logical interfaces in the system into a single layer 2 domain. The bridge is a logical interface with a MAC address and {{<link url="Switch-Port-Attributes#mtu" text="MTU">}}. The bridge MTU is the minimum MTU among all its members. By default, the {{<exlink url="https://docs.cumulusnetworks.com/knowledge-base/Configuration-and-Usage/Network-Configuration/Cumulus-Linux-Derivation-of-MAC-Address-for-a-Bridge/" text="the MAC address of the bridge">}} is the MAC address of the first port in the `bridge-ports` list. You can also assign an IP address to the bridge.
 
 {{< img src = "/images/cumulus-linux/ethernet-bridging-example.png" >}}
 
@@ -199,7 +199,7 @@ Edit the `/etc/network/interfaces` file to add the line `ipv6-addrgen off` to th
 cumulus@switch:~$ sudo nano /etc/network/interfaces
 ...
 auto vlan10
-iface vlan 10
+iface vlan10
     ipv6-addrgen off
     vlan-id 10
     vlan-raw-device bridge
@@ -238,7 +238,7 @@ Edit the `/etc/network/interfaces` file to **remove** the `ipv6-addrgen off` lin
 cumulus@switch:~$ sudo nano /etc/network/interfaces
 ...
 auto vlan10
-iface vlan 10
+iface vlan10
     vlan-id 10
     vlan-raw-device bridge
 ...

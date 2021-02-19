@@ -261,7 +261,7 @@ In some cases, it may be useful to relax this restriction. For example, two serv
 
 {{%notice note%}}
 
-A bridge in {{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware mode">}} cannot have VLAN translation enabled for it; only bridges configured in {{<link url="Traditional-Bridge-Mode" text="traditional mode">}} can utilize VLAN translation.
+A bridge in {{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware mode">}} cannot have VLAN translation enabled; only bridges configured in {{<link url="Traditional-Bridge-Mode" text="traditional mode">}} can use VLAN translation.
 
 {{%/notice%}}
 

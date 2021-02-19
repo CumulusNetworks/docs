@@ -589,8 +589,8 @@ Cumulus Linux lets you:
 
 {{%notice note%}}
 
-- On Mellanox switches with the Spectrum ASIC running in *nonatomic* ACL mode, if you break out a port, then reload the `switchd` service, temporary disruption to traffic occurs while the ACLs are reinstalled.
-- Port ganging is not supported on Mellanox switches with the Spectrum ASIC.
+- If you break out a port, then reload the `switchd` service on a switch running in *nonatomic* ACL mode, temporary disruption to traffic occurs while the ACLs are reinstalled.
+- Port ganging is not supported.
 - Mellanox switches with the Spectrum 1 ASIC have a limit of 64 logical ports. If you want to break ports out to 4x25G or 4x10G, you must configure the logical ports as follows:
   - You can only break out odd-numbered ports into four logical ports.
   - You must disable the next even-numbered port. For example, if you break out port 11 into four logical ports, you must disable port 12.
@@ -659,7 +659,7 @@ When you commit your change, `switchd` reloads and there is no interruption to n
 
 {{< tab "Linux Commands ">}}
 
-1. Edit the `/etc/cumulus/ports.conf` file to configure the port breakout. The following example breaks out the 100G port on swp3 into four 25G ports. To break out swp3 into four 10G ports, use 3=4x10G. On Mellanox switches with the Spectrum ASIC, you need to disable the next port. The example also disables swp4.
+1. Edit the `/etc/cumulus/ports.conf` file to configure the port breakout. The following example breaks out the 100G port on swp3 into four 25G ports. To break out swp3 into four 10G ports, use 3=4x10G. You also need to disable the next port. The example also disables swp4.
 
    ```
    cumulus@switch:~$ sudo cat /etc/cumulus/ports.conf
@@ -767,11 +767,7 @@ cumulus@switch:~$ sudo systemctl reload switchd.service
 
 ## Logical Switch Port Limitations
 
-100G and 40G switches can support a certain number of logical ports, depending on the switch; these include:
-
-- Mellanox SN2700, SN2700B, SN2410, and SN2410B switches
-
-Before you configure any logical/unganged ports on a switch, check the limitations listed in `/etc/cumulus/ports.conf`.
+100G and 40G switches can support a certain number of logical ports depending on the switch. Before you configure any logical ports on a switch, check the limitations listed in `/etc/cumulus/ports.conf`.
 
 The following example shows the logical port limitation provided in a `ports.conf` file. The maximum number of ports for this switch is 128.
 

@@ -20,9 +20,7 @@ While you can specify a different `es-sys-mac` on different Ethernet segments at
 
 {{%notice info%}}
 
-When using Spectrum 2 or Spectrum 3 switches, an Ethernet segment can span more than two switches. Each Ethernet segment is a distinct redundancy group.
-
-However, when using Spectrum A1 switches, a maximum of two switches can participate in a redundancy group or Ethernet segment.
+When using Spectrum 2 or Spectrum 3 switches, an Ethernet segment can span more than two switches. Each Ethernet segment is a distinct redundancy group. However, when using Spectrum A1 switches, a maximum of two switches can participate in a redundancy group or Ethernet segment.
 
 {{%/notice%}}
 

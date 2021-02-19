@@ -17,7 +17,7 @@ The Cumulus Linux *reference topology* includes cabling (in DOT format for dual 
 | Hostname | eth0 IP | eth0 MAC | Interface Count |
 | -------- | ------- | ---------| ----------------|
 | oob-mgmt-server | 192.168.0.254 | any |  |
-| oob-mgmt-switch | 192.168.0.1   | any | {{<exlink url="https://docs.cumulusnetworks.com/cumulus-rmp/" text="Cumulus RMP">}} |
+| oob-mgmt-switch | 192.168.0.1   | any |  |
 | leaf01 | 192.168.0.11  | A0:00:00:00:00:11 | 48x10g w/ 6x40g uplink |
 | leaf02 | 192.168.0.12  | A0:00:00:00:00:12 | 48x10g w/ 6x40g uplink |
 | leaf03 | 192.168.0.13  | A0:00:00:00:00:13 | 48x10g w/ 6x40g uplink |

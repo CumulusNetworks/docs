@@ -42,7 +42,7 @@ None
 | events_config_id | \<text-events-config-id-anchor\> | Identifier for existing configuration; use to edit existing configuration |
 | events_config_name | \<text-events-config-name-anchor\> | User-defined name for the configuration |
 | message_type | \<text-message-type-anchor\> | Type of message to be suppressed. Values include *agent*, *bgp*, *btrfsinfo*, *clag*, *clsupport*, *configdiff*, *evpn*, *link*, *ntp*, *ospf*, *sensor*, *services*, and *ssdutil*. |
-| scope | \<text-events-scope-anchor\> | xxx |
+| scope | \<text-events-scope-anchor\> | Rule, in the form of a regular expression, indicating which devices, subset of devices or attributes to suppress |
 | is_active | true, false | Enables or disables configuration |
 | suppress_until | \<text-suppress-until\> | Amount of time, in seconds, to suppress the specified events |
 

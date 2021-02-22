@@ -10,7 +10,7 @@ OVSDB server high availability is an {{<exlink url="https://docs.cumulusnetworks
 
 {{%/notice%}}
 
-Cumulus Linux supports integration with VMware NSX in both *standalonemode* and *OVSDB server high availability mode* (where the data plane is running in active-active mode). For information about VMware NSX in standalone mode and for a description of the components that work together to integrate VMware NSX and Cumulus Linux, see {{<link url="Integrating-Hardware-VTEPs-with-VMware-NSX-MH">}} or {{<link url="Integrating-Hardware-VTEPs-with-VMware-NSX-V">}}.
+Cumulus Linux supports integration with VMware NSX in both *standalonemode* and *OVSDB server high availability mode* (where the data plane is running in active-active mode). For information about VMware NSX in standalone mode and for a description of the components that work together to integrate VMware NSX and Cumulus Linux, see {{<link url="Integrating-Hardware-VTEPs-with-VMware-NSX-V">}}.
 
 {{%notice note%}}
 
@@ -201,7 +201,7 @@ The certificate and key pairs for authenticating with the NSX controller are gen
 
 ## Configure the Transport and Logical Layers
 
-After you finish configuring the NSX integration on both the MLAG primary and MLAG secondary switch, you need to configure the transport and logical layers from the NSX Manager. Refer to {{<link url="Integrating-Hardware-VTEPs-with-VMware-NSX-MH">}} or {{<link url="Integrating-Hardware-VTEPs-with-VMware-NSX-V">}}.
+After you finish configuring the NSX integration on both the MLAG primary and MLAG secondary switch, you need to configure the transport and logical layers from the NSX Manager. Refer to {{<link url="Integrating-Hardware-VTEPs-with-VMware-NSX-V">}}.
 
 ## Troubleshooting
 

@@ -14,7 +14,7 @@ Hosts on a given virtual network are joined together through an overlay protocol
 
 Cumulus Linux can initiate and terminate VTEPs in hardware and supports wire-rate VXLAN. VXLAN provides an efficient hashing scheme across the IP fabric during the encapsulation process; the source UDP port is unique, with the hash based on layer 2 through layer 4 information from the original frame. The UDP destination port is the standard port 4789.
 
-Cumulus Linux includes the native Linux VXLAN kernel support and integrates with controller-based overlay solutions, such as {{<link url="Integrating-Hardware-VTEPs-with-VMware-NSX-MH" text="VMware NSX">}}.
+Cumulus Linux includes the native Linux VXLAN kernel support and integrates with controller-based overlay solutions, such as {{<link url="Integrating-Hardware-VTEPs-with-VMware-NSX-V" text="VMware NSX">}}.
 
 {{%notice note%}}
 

@@ -1,13 +1,29 @@
 ---
-title: Configure FRRouting
+title: FRRouting
 author: NVIDIA
-weight: 820
+weight: 810
 toc: 3
 ---
+Cumulus Linux uses FRRouting (FRR) to provide the routing protocols for dynamic routing and supports the following routing protocols:
+
+- Open Shortest Path First ({{<link url="Open-Shortest-Path-First-v2-OSPFv2" text="v2">}} and {{<link url="Open-Shortest-Path-First-v3-OSPFv3" text="v3">}})
+- {{<link url="Border-Gateway-Protocol-BGP">}}
+
+## Architecture
+
+{{< img src = "/images/cumulus-linux/frrouting-overview-daemons.png" >}}
+
+The FRRouting suite consists of various protocol-specific daemons and a protocol-independent daemon called `zebra`. Each of the protocol-specific daemons are responsible for running the relevant protocol and building the routing table based on the information exchanged.
+
+It is not uncommon to have more than one protocol daemon running at the same time. For example, at the edge of an enterprise, protocols internal to an enterprise (called IGP for Interior Gateway Protocol) such as {{<link url="Open-Shortest-Path-First-OSPF" text="OSPF text">}} or RIP run alongside the protocols that connect an enterprise to the rest of the world (called EGP or Exterior Gateway Protocol) such as {{<link url="Border-Gateway-Protocol-BGP" text="BGP">}}.
+
+`zebra` is the daemon that resolves the routes provided by multiple protocols (including the static routes you specify) and programs these routes in the Linux kernel via `netlink` (in Linux). The {{<exlink url="http://docs.frrouting.org/en/latest/zebra.html" text="FRRouting documentation">}} defines `zebra` as the IP routing manager for FRRouting that "provides kernel routing table updates, interface lookups, and redistribution of routes between different routing protocols."
+
+## Configure FRRouting
 
 FRRouting does not start by default in Cumulus Linux. Before you run FRRouting, make sure you have enabled the relevant daemons that you intend to use (`bgpd`, `ospfd`, `ospf6d` or `pimd`) in the `/etc/frr/daemons` file.
 
-{{%notice info%}}
+{{%notice note%}}
 
 NVIDIA has not tested RIP, RIPv6, IS-IS and Babel.
 
@@ -424,8 +440,6 @@ If you try to configure a routing protocol that has not been started, `vtysh` si
 
 {{%/notice%}}
 
-If you do not want to use a modal CLI to configure FRRouting, you can use a suite of {{<link url="Comparing-NCLU-and-vtysh-Commands" text="Cumulus Linux-specific commands">}} instead.
-
 ## Reload the FRRouting Configuration
 
 If you make a change to your routing configuration, you need to reload FRRouting so your changes take place. *FRRouting reload* enables you to apply only the modifications you make to your FRRouting configuration, synchronizing its running state with the configuration in `/etc/frr/frr.conf`. This is useful for optimizing FRRouting automation in your environment or to apply changes made at runtime.
@@ -472,7 +486,7 @@ In FRRouting, Cumulus Linux stores obfuscated passwords for BGP and OSPF (ISIS, 
 
 ### Duplicate Hostnames
 
-If you change the hostname, either with NCLU or with the `hostname` command in `vtysh`, the switch can have two hostnames in the FRR configuration. For example:
+The switch can have two hostnames in the FRR configuration. For example:
 
 ```
 Spine01# configure terminal
@@ -490,12 +504,14 @@ hostname Spine01-1
 
 {{%notice note%}}
 
-Accidentally configuring the same numbered BGP neighbor using both the `neighbor x.x.x.x` and `neighbor swp# interface` commands results in two neighbor entries being present for the same IP address in the configuration and operationally. To correct this issue, update the configuration and restart the FRR service.
+Accidentally configuring the same numbered BGP neighbor using both the `neighbor x.x.x.x` and `neighbor swp# interface` commands results in two neighbor entries being present for the same IP address in the configuration. To correct this issue, update the configuration and restart the FRR service.
 
 {{%/notice%}}
 
 ## Related Information
 
+- {{<exlink url="https://frrouting.org" text="FRRouting website">}}
+- {{<exlink url="https://github.com/FRRouting/frr" text="FRRouting project on GitHub">}}
 - {{<exlink url="http://docs.frrouting.org/en/latest/bgp.html" text="FRR BGP documentation">}}
 - {{<exlink url="http://docs.frrouting.org/en/latest/ipv6.html" text="FRR IPv6 support">}}
 - {{<exlink url="http://docs.frrouting.org/en/latest/zebra.html" text="FRR Zebra documentation">}}

@@ -41,7 +41,7 @@ To configure the segment routing example above:
     cumulus@switch:~$ net add bgp network 10.1.1.5/32 label-index 5
     ```
 
-2. For each switch in the topology, define the *global-block* of labels to use for segment routing in {{<link url="Configure-FRRouting" text="FRR">}}. The default global-block is 16000-23999. The example configuration uses global-block `100 200`. The *local label* is the MPLS label global-block plus the label-index.
+2. For each switch in the topology, define the *global-block* of labels to use for segment routing in {{<link url="FRRouting" text="FRR">}}. The default global-block is 16000-23999. The example configuration uses global-block `100 200`. The *local label* is the MPLS label global-block plus the label-index.
 
     ```
     cumulus@switch:~$ net add mpls label global-block 100 200
@@ -71,7 +71,7 @@ To configure the segment routing example above:
     switch(config)#
     ```
 
-2. For each switch in the topology, define the *global-block* of labels to use for segment routing in {{<link url="Configure-FRRouting" text="FRR">}}. The default global-block is 16000-23999. The example configuration uses global-block `100 200`. The *local label* is the MPLS label global-block plus the label-index.
+2. For each switch in the topology, define the *global-block* of labels to use for segment routing in {{<link url="FRRouting" text="FRR">}}. The default global-block is 16000-23999. The example configuration uses global-block `100 200`. The *local label* is the MPLS label global-block plus the label-index.
 
     ```
     switch(config)# mpls label global-block 100 200

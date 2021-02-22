@@ -4,4 +4,4 @@ author: NVIDIA
 weight: 280
 toc: 2
 ---
-This section discusses how to configure network interfaces and DHCP delays and servers. The Prescriptive Topology Manager (PTM) cabling verification tool is also discussed.
+This section discusses layer 1 and switch port configuration.

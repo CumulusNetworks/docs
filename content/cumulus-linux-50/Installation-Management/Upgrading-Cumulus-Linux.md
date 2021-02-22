@@ -147,12 +147,6 @@ Be aware of the following when upgrading packages:
 
 ONIE is an open source project (equivalent to PXE on servers) that enables the installation of network operating systems (NOS) on a bare metal switch.
 
-{{%notice note%}}
-
-Lightweight network virtualization (LNV) is deprecated in Cumulus Linux 4.0 in favor of Ethernet virtual private networks ({{<link url="Ethernet-Virtual-Private-Network-EVPN" text="EVPN">}}. If your network is configured for LNV, you need to migrate your network configuration to a BGP EVPN configuration that is functionally equivalent ***before*** you upgrade. Refer to {{<link title="Migrating from LNV to EVPN">}}.
-
-{{%/notice%}}
-
 To upgrade the switch:
 
 1. Back up the configurations off the switch.

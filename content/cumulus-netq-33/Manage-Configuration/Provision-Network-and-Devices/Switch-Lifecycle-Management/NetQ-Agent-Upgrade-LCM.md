@@ -225,17 +225,88 @@ netq lcm show status <text-lcm-job-id> [json]
 
 You can view the progress of one upgrade job at a time. To do so, you first need the job identifier and then you can view the status of that job.
 
-<!--
-This example shows all upgrade jobs that are currently running or have completed, and then shows the status of the job with a job identifier of xxx.
+This example shows all upgrade jobs that are currently running or have completed, and then shows the status of the job with a job identifier of job_netq_install_7152a03a8c63c906631c3fb340d8f51e70c3ab508d69f3fdf5032eebad118cc7.
 
 ```
-cumulus@switch:~$ netq lcm show upgrade-jobs netq-image
-xxx
+cumulus@switch:~$ netq lcm show upgrade-jobs netq-image json
+[
+    {
+        "jobId": "job_netq_install_7152a03a8c63c906631c3fb340d8f51e70c3ab508d69f3fdf5032eebad118cc7",
+        "name": "Leaf01-02 to NetQ330",
+        "netqVersion": "3.3.0",
+        "overallStatus": "FAILED",
+        "pre-checkStatus": "COMPLETED",
+        "warnings": [],
+        "errors": [],
+        "startTime": 1611863290557.0
+    }
+]
 
-cumulus@switch:~$ netq lcm show status xxx
-xxx
+cumulus@switch:~$ netq lcm show status netq-image job_netq_install_7152a03a8c63c906631c3fb340d8f51e70c3ab508d69f3fdf5032eebad118cc7
+NetQ Upgrade FAILED
+
+Upgrade Summary
+---------------
+Start Time: 2021-01-28 19:48:10.557000
+End Time: 2021-01-28 19:48:17.972000
+Upgrade CLI: True
+NetQ Version: 3.3.0
+Pre Check Status COMPLETED
+Precheck Task switch_precheck COMPLETED
+	Warnings: []
+	Errors: []
+Precheck Task version_precheck COMPLETED
+	Warnings: []
+	Errors: []
+Precheck Task config_precheck COMPLETED
+	Warnings: []
+	Errors: []
+
+
+Hostname          CL Version  NetQ Version  Prev NetQ Ver Config Profile               Status           Warnings         Errors       Start Time
+                                            sion
+----------------- ----------- ------------- ------------- ---------------------------- ---------------- ---------------- ------------ --------------------------
+leaf01            4.2.1       3.3.0         3.2.1         ['NetQ default config']      FAILED           []               ["Unreachabl Thu Jan 28 19:48:10 2021
+                                                                                                                         e at Invalid
+                                                                                                                         /incorrect u
+                                                                                                                         sername/pass
+                                                                                                                         word. Skippi
+                                                                                                                         ng remaining
+                                                                                                                         10 retries t
+                                                                                                                         o prevent ac
+                                                                                                                         count lockou
+                                                                                                                         t: Warning:
+                                                                                                                         Permanently
+                                                                                                                         added '192.1
+                                                                                                                         68.200.11' (
+                                                                                                                         ECDSA) to th
+                                                                                                                         e list of kn
+                                                                                                                         own hosts.\r
+                                                                                                                         \nPermission
+                                                                                                                         denied,
+                                                                                                                         please try a
+                                                                                                                         gain."]
+leaf02            4.2.1       3.3.0         3.2.1         ['NetQ default config']      FAILED           []               ["Unreachabl Thu Jan 28 19:48:10 2021
+                                                                                                                         e at Invalid
+                                                                                                                         /incorrect u
+                                                                                                                         sername/pass
+                                                                                                                         word. Skippi
+                                                                                                                         ng remaining
+                                                                                                                         10 retries t
+                                                                                                                         o prevent ac
+                                                                                                                         count lockou
+                                                                                                                         t: Warning:
+                                                                                                                         Permanently
+                                                                                                                         added '192.1
+                                                                                                                         68.200.12' (
+                                                                                                                         ECDSA) to th
+                                                                                                                         e list of kn
+                                                                                                                         own hosts.\r
+                                                                                                                         \nPermission
+                                                                                                                         denied,
+                                                                                                                         please try a
+                                                                                                                         gain."]
 ```
--->
 
 ### Reasons for NetQ Agent Upgrade Failure
 

@@ -7,6 +7,53 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-33398</td>
+<td><p>CVE-2021-0326: An issue has been found in wpa, a set of tools to support WPA and WPA2 (IEEE 802.11i). Missing validation of data can result in a buffer over-write, which might lead to a DoS of the wpa_supplicant process or potentially arbitrary code execution.<br/>
+Vulnerable: &lt;= 2.8.0-cl3.7.14u1, &lt;= 2.8.0-cl4.2.1u1</p></td>
+<td>3.0.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33397</td>
+<td><p>CVE-2021-27212: A vulnerability in the Certificate List Exact Assertion validation was discovered in OpenLDAP, a free implementation of the Lightweight Directory Access Protocol. An unauthenticated remote attacker can take advantage of this flaw to cause a denial of service (slapd daemon crash) via specially crafted packets.<br/>
+Vulnerable: &lt;= 2.4.40+dfsg-1+deb8u9<br/>
+Fixed: 2.4.40+dfsg-1+deb8u10</p></td>
+<td>3.0.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33396</td>
+<td><p>CVE-2020-8625: Buffer overflow attack in the bind9 DNS server caused by an issue in the GSSAPI (“Generic Security Services”) security policy negotiation.<br/>
+Vulnerable: &lt;= 9.9.5.dfsg-9+deb8u20<br/>
+Fixed: 9.9.5.dfsg-9+deb8u21</p></td>
+<td>3.0.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33385</td>
+<td><p>In a configuration with both traditional and vlan-aware bridges, the VLAN membership check on a vlan-aware switch does not drop PVST BPBUs that come from a traditional bridge.</p></td>
+<td>3.7.14-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33370</td>
+<td><p>CVE-2019-20367: An issue has been found in libbsd, a library with utility functions from BSD systems. A non-NUL terminated symbol name in the string table might result in an out-of-bounds read.<br/>
+Vulnerable: &lt;= 0.7.0-2+deb8u1<br/>
+Fixed: 0.7.0-2+deb8u2</p></td>
+<td>3.0.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33369</td>
+<td><p>The following vulnerabilities have been announced in the openssl package:<br/>
+CVE-2021-23840: an issue where “Digital EnVeloPe” EVP-related calls could cause applications to behave incorrectly or even crash.<br/>
+CVE-2021-23841: an issue in the X509 certificate parsing caused by the lack of error handling while ingesting the “issuer” field.<br/>
+Vulnerable: &lt;= 1.0.1t-1+deb8u13<br/>
+Fixed: 1.0.1t-1+deb8u14</p></td>
+<td>3.0.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-33333</td>
 <td><p>CVE-2020-15469 A MemoryRegionOps object may lack read/write callback methods, leading to a NULL pointer dereference.<br/>
 CVE-2020-15859 QEMU has a use-after-free in hw/net/e1000e_core.c because a guest OS user can trigger an e1000e packet with the data’s address set to the e1000e’s MMIO address. <br/>
@@ -1997,6 +2044,53 @@ You can see the temperature reading in the output of the sensors command.</p></t
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>CM-33398</td>
+<td><p>CVE-2021-0326: An issue has been found in wpa, a set of tools to support WPA and WPA2 (IEEE 802.11i). Missing validation of data can result in a buffer over-write, which might lead to a DoS of the wpa_supplicant process or potentially arbitrary code execution.<br/>
+Vulnerable: &lt;= 2.8.0-cl3.7.14u1, &lt;= 2.8.0-cl4.2.1u1</p></td>
+<td>3.0.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33397</td>
+<td><p>CVE-2021-27212: A vulnerability in the Certificate List Exact Assertion validation was discovered in OpenLDAP, a free implementation of the Lightweight Directory Access Protocol. An unauthenticated remote attacker can take advantage of this flaw to cause a denial of service (slapd daemon crash) via specially crafted packets.<br/>
+Vulnerable: &lt;= 2.4.40+dfsg-1+deb8u9<br/>
+Fixed: 2.4.40+dfsg-1+deb8u10</p></td>
+<td>3.0.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33396</td>
+<td><p>CVE-2020-8625: Buffer overflow attack in the bind9 DNS server caused by an issue in the GSSAPI (“Generic Security Services”) security policy negotiation.<br/>
+Vulnerable: &lt;= 9.9.5.dfsg-9+deb8u20<br/>
+Fixed: 9.9.5.dfsg-9+deb8u21</p></td>
+<td>3.0.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33385</td>
+<td><p>In a configuration with both traditional and vlan-aware bridges, the VLAN membership check on a vlan-aware switch does not drop PVST BPBUs that come from a traditional bridge.</p></td>
+<td>3.7.14-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33370</td>
+<td><p>CVE-2019-20367: An issue has been found in libbsd, a library with utility functions from BSD systems. A non-NUL terminated symbol name in the string table might result in an out-of-bounds read.<br/>
+Vulnerable: &lt;= 0.7.0-2+deb8u1<br/>
+Fixed: 0.7.0-2+deb8u2</p></td>
+<td>3.0.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33369</td>
+<td><p>The following vulnerabilities have been announced in the openssl package:<br/>
+CVE-2021-23840: an issue where “Digital EnVeloPe” EVP-related calls could cause applications to behave incorrectly or even crash.<br/>
+CVE-2021-23841: an issue in the X509 certificate parsing caused by the lack of error handling while ingesting the “issuer” field.<br/>
+Vulnerable: &lt;= 1.0.1t-1+deb8u13<br/>
+Fixed: 1.0.1t-1+deb8u14</p></td>
+<td>3.0.0-3.7.14.2</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-33333</td>
@@ -4586,6 +4680,47 @@ To work around this issue, disable BFD to alleviate some of the CPU load.</p></t
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>CM-33398</td>
+<td><p>CVE-2021-0326: An issue has been found in wpa, a set of tools to support WPA and WPA2 (IEEE 802.11i). Missing validation of data can result in a buffer over-write, which might lead to a DoS of the wpa_supplicant process or potentially arbitrary code execution.<br/>
+Vulnerable: &lt;= 2.8.0-cl3.7.14u1, &lt;= 2.8.0-cl4.2.1u1</p></td>
+<td>3.0.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33397</td>
+<td><p>CVE-2021-27212: A vulnerability in the Certificate List Exact Assertion validation was discovered in OpenLDAP, a free implementation of the Lightweight Directory Access Protocol. An unauthenticated remote attacker can take advantage of this flaw to cause a denial of service (slapd daemon crash) via specially crafted packets.<br/>
+Vulnerable: &lt;= 2.4.40+dfsg-1+deb8u9<br/>
+Fixed: 2.4.40+dfsg-1+deb8u10</p></td>
+<td>3.0.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33396</td>
+<td><p>CVE-2020-8625: Buffer overflow attack in the bind9 DNS server caused by an issue in the GSSAPI (“Generic Security Services”) security policy negotiation.<br/>
+Vulnerable: &lt;= 9.9.5.dfsg-9+deb8u20<br/>
+Fixed: 9.9.5.dfsg-9+deb8u21</p></td>
+<td>3.0.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33370</td>
+<td><p>CVE-2019-20367: An issue has been found in libbsd, a library with utility functions from BSD systems. A non-NUL terminated symbol name in the string table might result in an out-of-bounds read.<br/>
+Vulnerable: &lt;= 0.7.0-2+deb8u1<br/>
+Fixed: 0.7.0-2+deb8u2</p></td>
+<td>3.0.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33369</td>
+<td><p>The following vulnerabilities have been announced in the openssl package:<br/>
+CVE-2021-23840: an issue where “Digital EnVeloPe” EVP-related calls could cause applications to behave incorrectly or even crash.<br/>
+CVE-2021-23841: an issue in the X509 certificate parsing caused by the lack of error handling while ingesting the “issuer” field.<br/>
+Vulnerable: &lt;= 1.0.1t-1+deb8u13<br/>
+Fixed: 1.0.1t-1+deb8u14</p></td>
+<td>3.0.0-3.7.14.2</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-33333</td>
@@ -7718,6 +7853,47 @@ Typically, the destination MAC address 01:00:5e:xx:xx:xx is used only for PIM/IG
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>CM-33398</td>
+<td><p>CVE-2021-0326: An issue has been found in wpa, a set of tools to support WPA and WPA2 (IEEE 802.11i). Missing validation of data can result in a buffer over-write, which might lead to a DoS of the wpa_supplicant process or potentially arbitrary code execution.<br/>
+Vulnerable: &lt;= 2.8.0-cl3.7.14u1, &lt;= 2.8.0-cl4.2.1u1</p></td>
+<td>3.0.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33397</td>
+<td><p>CVE-2021-27212: A vulnerability in the Certificate List Exact Assertion validation was discovered in OpenLDAP, a free implementation of the Lightweight Directory Access Protocol. An unauthenticated remote attacker can take advantage of this flaw to cause a denial of service (slapd daemon crash) via specially crafted packets.<br/>
+Vulnerable: &lt;= 2.4.40+dfsg-1+deb8u9<br/>
+Fixed: 2.4.40+dfsg-1+deb8u10</p></td>
+<td>3.0.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33396</td>
+<td><p>CVE-2020-8625: Buffer overflow attack in the bind9 DNS server caused by an issue in the GSSAPI (“Generic Security Services”) security policy negotiation.<br/>
+Vulnerable: &lt;= 9.9.5.dfsg-9+deb8u20<br/>
+Fixed: 9.9.5.dfsg-9+deb8u21</p></td>
+<td>3.0.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33370</td>
+<td><p>CVE-2019-20367: An issue has been found in libbsd, a library with utility functions from BSD systems. A non-NUL terminated symbol name in the string table might result in an out-of-bounds read.<br/>
+Vulnerable: &lt;= 0.7.0-2+deb8u1<br/>
+Fixed: 0.7.0-2+deb8u2</p></td>
+<td>3.0.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33369</td>
+<td><p>The following vulnerabilities have been announced in the openssl package:<br/>
+CVE-2021-23840: an issue where “Digital EnVeloPe” EVP-related calls could cause applications to behave incorrectly or even crash.<br/>
+CVE-2021-23841: an issue in the X509 certificate parsing caused by the lack of error handling while ingesting the “issuer” field.<br/>
+Vulnerable: &lt;= 1.0.1t-1+deb8u13<br/>
+Fixed: 1.0.1t-1+deb8u14</p></td>
+<td>3.0.0-3.7.14.2</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-33333</td>
@@ -11005,6 +11181,47 @@ net.ipv6.ip6frag_high_thresh = 262144
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>CM-33398</td>
+<td><p>CVE-2021-0326: An issue has been found in wpa, a set of tools to support WPA and WPA2 (IEEE 802.11i). Missing validation of data can result in a buffer over-write, which might lead to a DoS of the wpa_supplicant process or potentially arbitrary code execution.<br/>
+Vulnerable: &lt;= 2.8.0-cl3.7.14u1, &lt;= 2.8.0-cl4.2.1u1</p></td>
+<td>3.0.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33397</td>
+<td><p>CVE-2021-27212: A vulnerability in the Certificate List Exact Assertion validation was discovered in OpenLDAP, a free implementation of the Lightweight Directory Access Protocol. An unauthenticated remote attacker can take advantage of this flaw to cause a denial of service (slapd daemon crash) via specially crafted packets.<br/>
+Vulnerable: &lt;= 2.4.40+dfsg-1+deb8u9<br/>
+Fixed: 2.4.40+dfsg-1+deb8u10</p></td>
+<td>3.0.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33396</td>
+<td><p>CVE-2020-8625: Buffer overflow attack in the bind9 DNS server caused by an issue in the GSSAPI (“Generic Security Services”) security policy negotiation.<br/>
+Vulnerable: &lt;= 9.9.5.dfsg-9+deb8u20<br/>
+Fixed: 9.9.5.dfsg-9+deb8u21</p></td>
+<td>3.0.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33370</td>
+<td><p>CVE-2019-20367: An issue has been found in libbsd, a library with utility functions from BSD systems. A non-NUL terminated symbol name in the string table might result in an out-of-bounds read.<br/>
+Vulnerable: &lt;= 0.7.0-2+deb8u1<br/>
+Fixed: 0.7.0-2+deb8u2</p></td>
+<td>3.0.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33369</td>
+<td><p>The following vulnerabilities have been announced in the openssl package:<br/>
+CVE-2021-23840: an issue where “Digital EnVeloPe” EVP-related calls could cause applications to behave incorrectly or even crash.<br/>
+CVE-2021-23841: an issue in the X509 certificate parsing caused by the lack of error handling while ingesting the “issuer” field.<br/>
+Vulnerable: &lt;= 1.0.1t-1+deb8u13<br/>
+Fixed: 1.0.1t-1+deb8u14</p></td>
+<td>3.0.0-3.7.14.2</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-33333</td>
@@ -14364,6 +14581,47 @@ To work around this issue, use net show interface command for LLDP output when c
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-33398</td>
+<td><p>CVE-2021-0326: An issue has been found in wpa, a set of tools to support WPA and WPA2 (IEEE 802.11i). Missing validation of data can result in a buffer over-write, which might lead to a DoS of the wpa_supplicant process or potentially arbitrary code execution.<br/>
+Vulnerable: &lt;= 2.8.0-cl3.7.14u1, &lt;= 2.8.0-cl4.2.1u1</p></td>
+<td>3.0.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33397</td>
+<td><p>CVE-2021-27212: A vulnerability in the Certificate List Exact Assertion validation was discovered in OpenLDAP, a free implementation of the Lightweight Directory Access Protocol. An unauthenticated remote attacker can take advantage of this flaw to cause a denial of service (slapd daemon crash) via specially crafted packets.<br/>
+Vulnerable: &lt;= 2.4.40+dfsg-1+deb8u9<br/>
+Fixed: 2.4.40+dfsg-1+deb8u10</p></td>
+<td>3.0.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33396</td>
+<td><p>CVE-2020-8625: Buffer overflow attack in the bind9 DNS server caused by an issue in the GSSAPI (“Generic Security Services”) security policy negotiation.<br/>
+Vulnerable: &lt;= 9.9.5.dfsg-9+deb8u20<br/>
+Fixed: 9.9.5.dfsg-9+deb8u21</p></td>
+<td>3.0.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33370</td>
+<td><p>CVE-2019-20367: An issue has been found in libbsd, a library with utility functions from BSD systems. A non-NUL terminated symbol name in the string table might result in an out-of-bounds read.<br/>
+Vulnerable: &lt;= 0.7.0-2+deb8u1<br/>
+Fixed: 0.7.0-2+deb8u2</p></td>
+<td>3.0.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33369</td>
+<td><p>The following vulnerabilities have been announced in the openssl package:<br/>
+CVE-2021-23840: an issue where “Digital EnVeloPe” EVP-related calls could cause applications to behave incorrectly or even crash.<br/>
+CVE-2021-23841: an issue in the X509 certificate parsing caused by the lack of error handling while ingesting the “issuer” field.<br/>
+Vulnerable: &lt;= 1.0.1t-1+deb8u13<br/>
+Fixed: 1.0.1t-1+deb8u14</p></td>
+<td>3.0.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-33333</td>
 <td><p>CVE-2020-15469 A MemoryRegionOps object may lack read/write callback methods, leading to a NULL pointer dereference.<br/>
 CVE-2020-15859 QEMU has a use-after-free in hw/net/e1000e_core.c because a guest OS user can trigger an e1000e packet with the data’s address set to the e1000e’s MMIO address. <br/>
@@ -17381,6 +17639,47 @@ To work around this issue, change the value of arp_ignore to 2. See <a href="htt
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>CM-33398</td>
+<td><p>CVE-2021-0326: An issue has been found in wpa, a set of tools to support WPA and WPA2 (IEEE 802.11i). Missing validation of data can result in a buffer over-write, which might lead to a DoS of the wpa_supplicant process or potentially arbitrary code execution.<br/>
+Vulnerable: &lt;= 2.8.0-cl3.7.14u1, &lt;= 2.8.0-cl4.2.1u1</p></td>
+<td>3.0.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33397</td>
+<td><p>CVE-2021-27212: A vulnerability in the Certificate List Exact Assertion validation was discovered in OpenLDAP, a free implementation of the Lightweight Directory Access Protocol. An unauthenticated remote attacker can take advantage of this flaw to cause a denial of service (slapd daemon crash) via specially crafted packets.<br/>
+Vulnerable: &lt;= 2.4.40+dfsg-1+deb8u9<br/>
+Fixed: 2.4.40+dfsg-1+deb8u10</p></td>
+<td>3.0.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33396</td>
+<td><p>CVE-2020-8625: Buffer overflow attack in the bind9 DNS server caused by an issue in the GSSAPI (“Generic Security Services”) security policy negotiation.<br/>
+Vulnerable: &lt;= 9.9.5.dfsg-9+deb8u20<br/>
+Fixed: 9.9.5.dfsg-9+deb8u21</p></td>
+<td>3.0.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33370</td>
+<td><p>CVE-2019-20367: An issue has been found in libbsd, a library with utility functions from BSD systems. A non-NUL terminated symbol name in the string table might result in an out-of-bounds read.<br/>
+Vulnerable: &lt;= 0.7.0-2+deb8u1<br/>
+Fixed: 0.7.0-2+deb8u2</p></td>
+<td>3.0.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33369</td>
+<td><p>The following vulnerabilities have been announced in the openssl package:<br/>
+CVE-2021-23840: an issue where “Digital EnVeloPe” EVP-related calls could cause applications to behave incorrectly or even crash.<br/>
+CVE-2021-23841: an issue in the X509 certificate parsing caused by the lack of error handling while ingesting the “issuer” field.<br/>
+Vulnerable: &lt;= 1.0.1t-1+deb8u13<br/>
+Fixed: 1.0.1t-1+deb8u14</p></td>
+<td>3.0.0-3.7.14.2</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-33333</td>
@@ -20810,6 +21109,47 @@ To work around this issue, run the sudo ethtool -S swp1 command to collect inter
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-33398</td>
+<td><p>CVE-2021-0326: An issue has been found in wpa, a set of tools to support WPA and WPA2 (IEEE 802.11i). Missing validation of data can result in a buffer over-write, which might lead to a DoS of the wpa_supplicant process or potentially arbitrary code execution.<br/>
+Vulnerable: &lt;= 2.8.0-cl3.7.14u1, &lt;= 2.8.0-cl4.2.1u1</p></td>
+<td>3.0.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33397</td>
+<td><p>CVE-2021-27212: A vulnerability in the Certificate List Exact Assertion validation was discovered in OpenLDAP, a free implementation of the Lightweight Directory Access Protocol. An unauthenticated remote attacker can take advantage of this flaw to cause a denial of service (slapd daemon crash) via specially crafted packets.<br/>
+Vulnerable: &lt;= 2.4.40+dfsg-1+deb8u9<br/>
+Fixed: 2.4.40+dfsg-1+deb8u10</p></td>
+<td>3.0.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33396</td>
+<td><p>CVE-2020-8625: Buffer overflow attack in the bind9 DNS server caused by an issue in the GSSAPI (“Generic Security Services”) security policy negotiation.<br/>
+Vulnerable: &lt;= 9.9.5.dfsg-9+deb8u20<br/>
+Fixed: 9.9.5.dfsg-9+deb8u21</p></td>
+<td>3.0.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33370</td>
+<td><p>CVE-2019-20367: An issue has been found in libbsd, a library with utility functions from BSD systems. A non-NUL terminated symbol name in the string table might result in an out-of-bounds read.<br/>
+Vulnerable: &lt;= 0.7.0-2+deb8u1<br/>
+Fixed: 0.7.0-2+deb8u2</p></td>
+<td>3.0.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33369</td>
+<td><p>The following vulnerabilities have been announced in the openssl package:<br/>
+CVE-2021-23840: an issue where “Digital EnVeloPe” EVP-related calls could cause applications to behave incorrectly or even crash.<br/>
+CVE-2021-23841: an issue in the X509 certificate parsing caused by the lack of error handling while ingesting the “issuer” field.<br/>
+Vulnerable: &lt;= 1.0.1t-1+deb8u13<br/>
+Fixed: 1.0.1t-1+deb8u14</p></td>
+<td>3.0.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-33333</td>
 <td><p>CVE-2020-15469 A MemoryRegionOps object may lack read/write callback methods, leading to a NULL pointer dereference.<br/>
 CVE-2020-15859 QEMU has a use-after-free in hw/net/e1000e_core.c because a guest OS user can trigger an e1000e packet with the data’s address set to the e1000e’s MMIO address. <br/>
@@ -24092,6 +24432,47 @@ To work around this issue, change the value of arp_ignore to 2. See <a href="htt
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>CM-33398</td>
+<td><p>CVE-2021-0326: An issue has been found in wpa, a set of tools to support WPA and WPA2 (IEEE 802.11i). Missing validation of data can result in a buffer over-write, which might lead to a DoS of the wpa_supplicant process or potentially arbitrary code execution.<br/>
+Vulnerable: &lt;= 2.8.0-cl3.7.14u1, &lt;= 2.8.0-cl4.2.1u1</p></td>
+<td>3.0.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33397</td>
+<td><p>CVE-2021-27212: A vulnerability in the Certificate List Exact Assertion validation was discovered in OpenLDAP, a free implementation of the Lightweight Directory Access Protocol. An unauthenticated remote attacker can take advantage of this flaw to cause a denial of service (slapd daemon crash) via specially crafted packets.<br/>
+Vulnerable: &lt;= 2.4.40+dfsg-1+deb8u9<br/>
+Fixed: 2.4.40+dfsg-1+deb8u10</p></td>
+<td>3.0.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33396</td>
+<td><p>CVE-2020-8625: Buffer overflow attack in the bind9 DNS server caused by an issue in the GSSAPI (“Generic Security Services”) security policy negotiation.<br/>
+Vulnerable: &lt;= 9.9.5.dfsg-9+deb8u20<br/>
+Fixed: 9.9.5.dfsg-9+deb8u21</p></td>
+<td>3.0.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33370</td>
+<td><p>CVE-2019-20367: An issue has been found in libbsd, a library with utility functions from BSD systems. A non-NUL terminated symbol name in the string table might result in an out-of-bounds read.<br/>
+Vulnerable: &lt;= 0.7.0-2+deb8u1<br/>
+Fixed: 0.7.0-2+deb8u2</p></td>
+<td>3.0.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33369</td>
+<td><p>The following vulnerabilities have been announced in the openssl package:<br/>
+CVE-2021-23840: an issue where “Digital EnVeloPe” EVP-related calls could cause applications to behave incorrectly or even crash.<br/>
+CVE-2021-23841: an issue in the X509 certificate parsing caused by the lack of error handling while ingesting the “issuer” field.<br/>
+Vulnerable: &lt;= 1.0.1t-1+deb8u13<br/>
+Fixed: 1.0.1t-1+deb8u14</p></td>
+<td>3.0.0-3.7.14.2</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-33333</td>
@@ -27739,6 +28120,47 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-33398</td>
+<td><p>CVE-2021-0326: An issue has been found in wpa, a set of tools to support WPA and WPA2 (IEEE 802.11i). Missing validation of data can result in a buffer over-write, which might lead to a DoS of the wpa_supplicant process or potentially arbitrary code execution.<br/>
+Vulnerable: &lt;= 2.8.0-cl3.7.14u1, &lt;= 2.8.0-cl4.2.1u1</p></td>
+<td>3.0.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33397</td>
+<td><p>CVE-2021-27212: A vulnerability in the Certificate List Exact Assertion validation was discovered in OpenLDAP, a free implementation of the Lightweight Directory Access Protocol. An unauthenticated remote attacker can take advantage of this flaw to cause a denial of service (slapd daemon crash) via specially crafted packets.<br/>
+Vulnerable: &lt;= 2.4.40+dfsg-1+deb8u9<br/>
+Fixed: 2.4.40+dfsg-1+deb8u10</p></td>
+<td>3.0.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33396</td>
+<td><p>CVE-2020-8625: Buffer overflow attack in the bind9 DNS server caused by an issue in the GSSAPI (“Generic Security Services”) security policy negotiation.<br/>
+Vulnerable: &lt;= 9.9.5.dfsg-9+deb8u20<br/>
+Fixed: 9.9.5.dfsg-9+deb8u21</p></td>
+<td>3.0.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33370</td>
+<td><p>CVE-2019-20367: An issue has been found in libbsd, a library with utility functions from BSD systems. A non-NUL terminated symbol name in the string table might result in an out-of-bounds read.<br/>
+Vulnerable: &lt;= 0.7.0-2+deb8u1<br/>
+Fixed: 0.7.0-2+deb8u2</p></td>
+<td>3.0.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33369</td>
+<td><p>The following vulnerabilities have been announced in the openssl package:<br/>
+CVE-2021-23840: an issue where “Digital EnVeloPe” EVP-related calls could cause applications to behave incorrectly or even crash.<br/>
+CVE-2021-23841: an issue in the X509 certificate parsing caused by the lack of error handling while ingesting the “issuer” field.<br/>
+Vulnerable: &lt;= 1.0.1t-1+deb8u13<br/>
+Fixed: 1.0.1t-1+deb8u14</p></td>
+<td>3.0.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-33333</td>
 <td><p>CVE-2020-15469 A MemoryRegionOps object may lack read/write callback methods, leading to a NULL pointer dereference.<br/>
 CVE-2020-15859 QEMU has a use-after-free in hw/net/e1000e_core.c because a guest OS user can trigger an e1000e packet with the data’s address set to the e1000e’s MMIO address. <br/>
@@ -31334,6 +31756,47 @@ This issue was discovered on the Helix4 switch but applies to all switches. <br/
 <td>3.7.6-3.7.14.2</td>
 </tr>
 <tr>
+<td>CM-33398</td>
+<td><p>CVE-2021-0326: An issue has been found in wpa, a set of tools to support WPA and WPA2 (IEEE 802.11i). Missing validation of data can result in a buffer over-write, which might lead to a DoS of the wpa_supplicant process or potentially arbitrary code execution.<br/>
+Vulnerable: &lt;= 2.8.0-cl3.7.14u1, &lt;= 2.8.0-cl4.2.1u1</p></td>
+<td>3.0.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33397</td>
+<td><p>CVE-2021-27212: A vulnerability in the Certificate List Exact Assertion validation was discovered in OpenLDAP, a free implementation of the Lightweight Directory Access Protocol. An unauthenticated remote attacker can take advantage of this flaw to cause a denial of service (slapd daemon crash) via specially crafted packets.<br/>
+Vulnerable: &lt;= 2.4.40+dfsg-1+deb8u9<br/>
+Fixed: 2.4.40+dfsg-1+deb8u10</p></td>
+<td>3.0.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33396</td>
+<td><p>CVE-2020-8625: Buffer overflow attack in the bind9 DNS server caused by an issue in the GSSAPI (“Generic Security Services”) security policy negotiation.<br/>
+Vulnerable: &lt;= 9.9.5.dfsg-9+deb8u20<br/>
+Fixed: 9.9.5.dfsg-9+deb8u21</p></td>
+<td>3.0.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33370</td>
+<td><p>CVE-2019-20367: An issue has been found in libbsd, a library with utility functions from BSD systems. A non-NUL terminated symbol name in the string table might result in an out-of-bounds read.<br/>
+Vulnerable: &lt;= 0.7.0-2+deb8u1<br/>
+Fixed: 0.7.0-2+deb8u2</p></td>
+<td>3.0.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33369</td>
+<td><p>The following vulnerabilities have been announced in the openssl package:<br/>
+CVE-2021-23840: an issue where “Digital EnVeloPe” EVP-related calls could cause applications to behave incorrectly or even crash.<br/>
+CVE-2021-23841: an issue in the X509 certificate parsing caused by the lack of error handling while ingesting the “issuer” field.<br/>
+Vulnerable: &lt;= 1.0.1t-1+deb8u13<br/>
+Fixed: 1.0.1t-1+deb8u14</p></td>
+<td>3.0.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-33333</td>
 <td><p>CVE-2020-15469 A MemoryRegionOps object may lack read/write callback methods, leading to a NULL pointer dereference.<br/>
 CVE-2020-15859 QEMU has a use-after-free in hw/net/e1000e_core.c because a guest OS user can trigger an e1000e packet with the data’s address set to the e1000e’s MMIO address. <br/>
@@ -34616,6 +35079,47 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <td><p>In testing, it was determined that the MD5 password configured against a BGP listen-range peer-group (used to accept and create dynamic BGP neighbors) is not enforced (connections are accepted from peers that do not specify a password). </p></td>
 <td>3.0.0-3.7.5</td>
 <td>3.7.6-3.7.14.2</td>
+</tr>
+<tr>
+<td>CM-33398</td>
+<td><p>CVE-2021-0326: An issue has been found in wpa, a set of tools to support WPA and WPA2 (IEEE 802.11i). Missing validation of data can result in a buffer over-write, which might lead to a DoS of the wpa_supplicant process or potentially arbitrary code execution.<br/>
+Vulnerable: &lt;= 2.8.0-cl3.7.14u1, &lt;= 2.8.0-cl4.2.1u1</p></td>
+<td>3.0.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33397</td>
+<td><p>CVE-2021-27212: A vulnerability in the Certificate List Exact Assertion validation was discovered in OpenLDAP, a free implementation of the Lightweight Directory Access Protocol. An unauthenticated remote attacker can take advantage of this flaw to cause a denial of service (slapd daemon crash) via specially crafted packets.<br/>
+Vulnerable: &lt;= 2.4.40+dfsg-1+deb8u9<br/>
+Fixed: 2.4.40+dfsg-1+deb8u10</p></td>
+<td>3.0.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33396</td>
+<td><p>CVE-2020-8625: Buffer overflow attack in the bind9 DNS server caused by an issue in the GSSAPI (“Generic Security Services”) security policy negotiation.<br/>
+Vulnerable: &lt;= 9.9.5.dfsg-9+deb8u20<br/>
+Fixed: 9.9.5.dfsg-9+deb8u21</p></td>
+<td>3.0.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33370</td>
+<td><p>CVE-2019-20367: An issue has been found in libbsd, a library with utility functions from BSD systems. A non-NUL terminated symbol name in the string table might result in an out-of-bounds read.<br/>
+Vulnerable: &lt;= 0.7.0-2+deb8u1<br/>
+Fixed: 0.7.0-2+deb8u2</p></td>
+<td>3.0.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33369</td>
+<td><p>The following vulnerabilities have been announced in the openssl package:<br/>
+CVE-2021-23840: an issue where “Digital EnVeloPe” EVP-related calls could cause applications to behave incorrectly or even crash.<br/>
+CVE-2021-23841: an issue in the X509 certificate parsing caused by the lack of error handling while ingesting the “issuer” field.<br/>
+Vulnerable: &lt;= 1.0.1t-1+deb8u13<br/>
+Fixed: 1.0.1t-1+deb8u14</p></td>
+<td>3.0.0-3.7.14.2</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-33333</td>
@@ -37958,6 +38462,47 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <td><p>In testing, it was determined that the MD5 password configured against a BGP listen-range peer-group (used to accept and create dynamic BGP neighbors) is not enforced (connections are accepted from peers that do not specify a password). </p></td>
 <td>3.0.0-3.7.5</td>
 <td>3.7.6-3.7.14.2</td>
+</tr>
+<tr>
+<td>CM-33398</td>
+<td><p>CVE-2021-0326: An issue has been found in wpa, a set of tools to support WPA and WPA2 (IEEE 802.11i). Missing validation of data can result in a buffer over-write, which might lead to a DoS of the wpa_supplicant process or potentially arbitrary code execution.<br/>
+Vulnerable: &lt;= 2.8.0-cl3.7.14u1, &lt;= 2.8.0-cl4.2.1u1</p></td>
+<td>3.0.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33397</td>
+<td><p>CVE-2021-27212: A vulnerability in the Certificate List Exact Assertion validation was discovered in OpenLDAP, a free implementation of the Lightweight Directory Access Protocol. An unauthenticated remote attacker can take advantage of this flaw to cause a denial of service (slapd daemon crash) via specially crafted packets.<br/>
+Vulnerable: &lt;= 2.4.40+dfsg-1+deb8u9<br/>
+Fixed: 2.4.40+dfsg-1+deb8u10</p></td>
+<td>3.0.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33396</td>
+<td><p>CVE-2020-8625: Buffer overflow attack in the bind9 DNS server caused by an issue in the GSSAPI (“Generic Security Services”) security policy negotiation.<br/>
+Vulnerable: &lt;= 9.9.5.dfsg-9+deb8u20<br/>
+Fixed: 9.9.5.dfsg-9+deb8u21</p></td>
+<td>3.0.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33370</td>
+<td><p>CVE-2019-20367: An issue has been found in libbsd, a library with utility functions from BSD systems. A non-NUL terminated symbol name in the string table might result in an out-of-bounds read.<br/>
+Vulnerable: &lt;= 0.7.0-2+deb8u1<br/>
+Fixed: 0.7.0-2+deb8u2</p></td>
+<td>3.0.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33369</td>
+<td><p>The following vulnerabilities have been announced in the openssl package:<br/>
+CVE-2021-23840: an issue where “Digital EnVeloPe” EVP-related calls could cause applications to behave incorrectly or even crash.<br/>
+CVE-2021-23841: an issue in the X509 certificate parsing caused by the lack of error handling while ingesting the “issuer” field.<br/>
+Vulnerable: &lt;= 1.0.1t-1+deb8u13<br/>
+Fixed: 1.0.1t-1+deb8u14</p></td>
+<td>3.0.0-3.7.14.2</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-33333</td>
@@ -41459,6 +42004,47 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <td><p>In testing, it was determined that the MD5 password configured against a BGP listen-range peer-group (used to accept and create dynamic BGP neighbors) is not enforced (connections are accepted from peers that do not specify a password). </p></td>
 <td>3.0.0-3.7.5</td>
 <td>3.7.6-3.7.14.2</td>
+</tr>
+<tr>
+<td>CM-33398</td>
+<td><p>CVE-2021-0326: An issue has been found in wpa, a set of tools to support WPA and WPA2 (IEEE 802.11i). Missing validation of data can result in a buffer over-write, which might lead to a DoS of the wpa_supplicant process or potentially arbitrary code execution.<br/>
+Vulnerable: &lt;= 2.8.0-cl3.7.14u1, &lt;= 2.8.0-cl4.2.1u1</p></td>
+<td>3.0.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33397</td>
+<td><p>CVE-2021-27212: A vulnerability in the Certificate List Exact Assertion validation was discovered in OpenLDAP, a free implementation of the Lightweight Directory Access Protocol. An unauthenticated remote attacker can take advantage of this flaw to cause a denial of service (slapd daemon crash) via specially crafted packets.<br/>
+Vulnerable: &lt;= 2.4.40+dfsg-1+deb8u9<br/>
+Fixed: 2.4.40+dfsg-1+deb8u10</p></td>
+<td>3.0.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33396</td>
+<td><p>CVE-2020-8625: Buffer overflow attack in the bind9 DNS server caused by an issue in the GSSAPI (“Generic Security Services”) security policy negotiation.<br/>
+Vulnerable: &lt;= 9.9.5.dfsg-9+deb8u20<br/>
+Fixed: 9.9.5.dfsg-9+deb8u21</p></td>
+<td>3.0.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33370</td>
+<td><p>CVE-2019-20367: An issue has been found in libbsd, a library with utility functions from BSD systems. A non-NUL terminated symbol name in the string table might result in an out-of-bounds read.<br/>
+Vulnerable: &lt;= 0.7.0-2+deb8u1<br/>
+Fixed: 0.7.0-2+deb8u2</p></td>
+<td>3.0.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33369</td>
+<td><p>The following vulnerabilities have been announced in the openssl package:<br/>
+CVE-2021-23840: an issue where “Digital EnVeloPe” EVP-related calls could cause applications to behave incorrectly or even crash.<br/>
+CVE-2021-23841: an issue in the X509 certificate parsing caused by the lack of error handling while ingesting the “issuer” field.<br/>
+Vulnerable: &lt;= 1.0.1t-1+deb8u13<br/>
+Fixed: 1.0.1t-1+deb8u14</p></td>
+<td>3.0.0-3.7.14.2</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-33333</td>
@@ -45084,6 +45670,47 @@ Permanent MAC address sync between MLAG peers is now supported.</p></td>
 <td>3.7.6-3.7.14.2</td>
 </tr>
 <tr>
+<td>CM-33398</td>
+<td><p>CVE-2021-0326: An issue has been found in wpa, a set of tools to support WPA and WPA2 (IEEE 802.11i). Missing validation of data can result in a buffer over-write, which might lead to a DoS of the wpa_supplicant process or potentially arbitrary code execution.<br/>
+Vulnerable: &lt;= 2.8.0-cl3.7.14u1, &lt;= 2.8.0-cl4.2.1u1</p></td>
+<td>3.0.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33397</td>
+<td><p>CVE-2021-27212: A vulnerability in the Certificate List Exact Assertion validation was discovered in OpenLDAP, a free implementation of the Lightweight Directory Access Protocol. An unauthenticated remote attacker can take advantage of this flaw to cause a denial of service (slapd daemon crash) via specially crafted packets.<br/>
+Vulnerable: &lt;= 2.4.40+dfsg-1+deb8u9<br/>
+Fixed: 2.4.40+dfsg-1+deb8u10</p></td>
+<td>3.0.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33396</td>
+<td><p>CVE-2020-8625: Buffer overflow attack in the bind9 DNS server caused by an issue in the GSSAPI (“Generic Security Services”) security policy negotiation.<br/>
+Vulnerable: &lt;= 9.9.5.dfsg-9+deb8u20<br/>
+Fixed: 9.9.5.dfsg-9+deb8u21</p></td>
+<td>3.0.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33370</td>
+<td><p>CVE-2019-20367: An issue has been found in libbsd, a library with utility functions from BSD systems. A non-NUL terminated symbol name in the string table might result in an out-of-bounds read.<br/>
+Vulnerable: &lt;= 0.7.0-2+deb8u1<br/>
+Fixed: 0.7.0-2+deb8u2</p></td>
+<td>3.0.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33369</td>
+<td><p>The following vulnerabilities have been announced in the openssl package:<br/>
+CVE-2021-23840: an issue where “Digital EnVeloPe” EVP-related calls could cause applications to behave incorrectly or even crash.<br/>
+CVE-2021-23841: an issue in the X509 certificate parsing caused by the lack of error handling while ingesting the “issuer” field.<br/>
+Vulnerable: &lt;= 1.0.1t-1+deb8u13<br/>
+Fixed: 1.0.1t-1+deb8u14</p></td>
+<td>3.0.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-33333</td>
 <td><p>CVE-2020-15469 A MemoryRegionOps object may lack read/write callback methods, leading to a NULL pointer dereference.<br/>
 CVE-2020-15859 QEMU has a use-after-free in hw/net/e1000e_core.c because a guest OS user can trigger an e1000e packet with the data’s address set to the e1000e’s MMIO address. <br/>
@@ -48209,6 +48836,47 @@ To work around this issue, remove the matching network statement. </p></td>
 <td><p>In testing, it was determined that the MD5 password configured against a BGP listen-range peer-group (used to accept and create dynamic BGP neighbors) is not enforced (connections are accepted from peers that do not specify a password). </p></td>
 <td>3.0.0-3.7.5</td>
 <td>3.7.6-3.7.14.2</td>
+</tr>
+<tr>
+<td>CM-33398</td>
+<td><p>CVE-2021-0326: An issue has been found in wpa, a set of tools to support WPA and WPA2 (IEEE 802.11i). Missing validation of data can result in a buffer over-write, which might lead to a DoS of the wpa_supplicant process or potentially arbitrary code execution.<br/>
+Vulnerable: &lt;= 2.8.0-cl3.7.14u1, &lt;= 2.8.0-cl4.2.1u1</p></td>
+<td>3.0.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33397</td>
+<td><p>CVE-2021-27212: A vulnerability in the Certificate List Exact Assertion validation was discovered in OpenLDAP, a free implementation of the Lightweight Directory Access Protocol. An unauthenticated remote attacker can take advantage of this flaw to cause a denial of service (slapd daemon crash) via specially crafted packets.<br/>
+Vulnerable: &lt;= 2.4.40+dfsg-1+deb8u9<br/>
+Fixed: 2.4.40+dfsg-1+deb8u10</p></td>
+<td>3.0.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33396</td>
+<td><p>CVE-2020-8625: Buffer overflow attack in the bind9 DNS server caused by an issue in the GSSAPI (“Generic Security Services”) security policy negotiation.<br/>
+Vulnerable: &lt;= 9.9.5.dfsg-9+deb8u20<br/>
+Fixed: 9.9.5.dfsg-9+deb8u21</p></td>
+<td>3.0.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33370</td>
+<td><p>CVE-2019-20367: An issue has been found in libbsd, a library with utility functions from BSD systems. A non-NUL terminated symbol name in the string table might result in an out-of-bounds read.<br/>
+Vulnerable: &lt;= 0.7.0-2+deb8u1<br/>
+Fixed: 0.7.0-2+deb8u2</p></td>
+<td>3.0.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33369</td>
+<td><p>The following vulnerabilities have been announced in the openssl package:<br/>
+CVE-2021-23840: an issue where “Digital EnVeloPe” EVP-related calls could cause applications to behave incorrectly or even crash.<br/>
+CVE-2021-23841: an issue in the X509 certificate parsing caused by the lack of error handling while ingesting the “issuer” field.<br/>
+Vulnerable: &lt;= 1.0.1t-1+deb8u13<br/>
+Fixed: 1.0.1t-1+deb8u14</p></td>
+<td>3.0.0-3.7.14.2</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-33333</td>

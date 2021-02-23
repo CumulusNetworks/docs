@@ -56,7 +56,6 @@ leaf01(config-router)# end
 leaf01# write memory
 leaf01# exit
 cumulus@leaf01:~$
-
 ```
 
 {{< /tab >}}
@@ -72,17 +71,17 @@ cumulus@leaf01:~$ cl set vrf default router bgp peer swp51 peer-group SPINE
 ```
 
 {{< /tab >}}
-{{< tab "vtysh Commands ">}}
-
-```
-leaf01(config-router)# neighbor swp51 interface peer-group SPINE
-```
-
-{{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
 ```
 cumulus@leaf01:~$ net add bgp neighbor swp51 interface peer-group SPINE
+```
+
+{{< /tab >}}
+{{< tab "vtysh Commands ">}}
+
+```
+leaf01(config-router)# neighbor swp51 interface peer-group SPINE
 ```
 
 {{< /tab >}}

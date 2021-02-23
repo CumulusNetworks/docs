@@ -99,7 +99,7 @@ For more information, read `man smond` and `man smonctl`.
 
 You can also run these NCLU commands to show sensor information: `net show system sensors`, `net show system sensors detail`, and `net show system sensors json`.
 
-## sensors
+## sensors Command
 
 Use the `sensors` command to monitor the health of your switch hardware, such as power, temperature and fan speeds. This command executes `{{<exlink url="https://en.wikipedia.org/wiki/Lm_sensors" text="lm-sensors">}}`.
 
@@ -146,8 +146,8 @@ The following table shows the `sensors` command options.
 
 | Option<img width="200" /> | Description |
 | ----------- | ----------- |
-| `-c`, `--config-file` | Specify a config file; use `-` after `-c` to read the config file from `stdin`; by default, `sensors` references the configuration file in `/etc/sensors.d/`. |
-| `-s`, `--set` | Executes set statements in the config file (root only); `sensors -s` is run once at boot time and applies all the settings to the boot drivers. |
+| `-c`, `--config-file` | Specify a configuration file; use `-` after `-c` to read the configuration file from `stdin`; by default, `sensors` references the configuration file in `/etc/sensors.d/`. |
+| `-s`, `--set` | Execute set statements in the configuration file (root only); `sensors -s` is run once at boot time and applies all the settings to the boot drivers. |
 | `-f`, `--fahrenheit`  | Show temperatures in degrees Fahrenheit. |
 | `-A`, `--no-adapter`  | Do not show the adapter for each chip.|
 | `--bus-list`| Generate bus statements for `sensors.conf`. |
@@ -164,28 +164,7 @@ To disable the watchdog, disable and stop the `wd_keepalive` service:
 cumulus@switch:~$ sudo systemctl disable wd_keepalive ; systemctl stop wd_keepalive 
 ```
 
-You can modify the settings for the watchdog, such as the timeout and the scheduler priority, in the `/etc/watchdog.conf` configuration file. Here is the default configuration file:
-
-```
-cumulus@switch:~$ cat /etc/watchdog.conf
-
-watchdog-device	= /dev/watchdog
-
-# Set the hardware watchdog timeout in seconds
-watchdog-timeout = 30
-
-# Kick the hardware watchdog every 'interval' seconds
-interval = 5
-
-# Log a status message every (interval * logtick) seconds.  Requires
-# --verbose option to enable.
-logtick = 240
-
-# Run the daemon using default scheduler SCHED_OTHER with slightly
-# elevated process priority.  See man setpriority(2).
-realtime = no
-priority = -2
-```
+You can modify the settings for the watchdog, such as the timeout and the scheduler priority, in the `/etc/watchdog.conf` configuration file.
 
 ## Related Information
 

@@ -54,7 +54,7 @@ The `smond` process provides monitoring functionality for various switch hardwar
 
 {{%notice note%}}
 
-Not all switch models include a sensor for monitoring power consumption and voltage. See {{<link url="Monitoring-System-Hardware#monitor-system-units-using-smond" text="this note">}} for details.
+Not all switch models include a sensor for monitoring power consumption and voltage. See {{<link url="Monitoring-System-Hardware#smond-daemon" text="this note">}} for details.
 
 {{%/notice%}}
 

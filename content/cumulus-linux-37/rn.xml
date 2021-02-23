@@ -562,6 +562,12 @@ To work around this issue, either do not set acl.non_atomic_update_mode = TRUE i
 <td></td>
 </tr>
 <tr>
+<td>CM-29978</td>
+<td><p>The received PVST BPDU for a VLAN is flooded even though the ingress port doesn't have the VLAN tagged.</p></td>
+<td>3.7.8-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-29890</td>
 <td><p>Multiple paths to identical EVPN prefixes are either not displayed or not accepted into the l2vpn evpn table if they are received from a different AS.</p></td>
 <td>3.7.12-3.7.14.2</td>
@@ -2663,6 +2669,12 @@ To work around this issue, either do not set acl.non_atomic_update_mode = TRUE i
 <td></td>
 </tr>
 <tr>
+<td>CM-29978</td>
+<td><p>The received PVST BPDU for a VLAN is flooded even though the ingress port doesn't have the VLAN tagged.</p></td>
+<td>3.7.8-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-29890</td>
 <td><p>Multiple paths to identical EVPN prefixes are either not displayed or not accepted into the l2vpn evpn table if they are received from a different AS.</p></td>
 <td>3.7.12-3.7.14.2</td>
@@ -4537,11 +4549,6 @@ To work around this issue, manually delete the dynamic FDB entry that is associa
 <td></td>
 </tr>
 <tr>
-<td>CM-29978</td>
-<td><p>The received PVST BPDU for a VLAN is flooded even though the ingress port doesn't have the VLAN tagged.</p></td>
-<td>3.7.8-3.7.13</td>
-</tr>
-<tr>
 <td>CM-29838</td>
 <td><p>CPU utilization may increase when clag-managed bond interfaces are operationally/LACP down but the physical carrier remains up on the bond member switchports. This condition occurs when clag bond redirection is enabled and bond members remain up while the parent bond does not negotiate LACP.</p>
 
@@ -5748,8 +5755,8 @@ To work around this issue, either do not set acl.non_atomic_update_mode = TRUE i
 <tr>
 <td>CM-29978</td>
 <td><p>The received PVST BPDU for a VLAN is flooded even though the ingress port doesn't have the VLAN tagged.</p></td>
-<td>3.7.8-3.7.13</td>
-<td>3.7.14-3.7.14.2</td>
+<td>3.7.8-3.7.14.2</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-29890</td>
@@ -8938,8 +8945,8 @@ Fixed: 1.8.22-0+deb8u3</p></td>
 <tr>
 <td>CM-29978</td>
 <td><p>The received PVST BPDU for a VLAN is flooded even though the ingress port doesn't have the VLAN tagged.</p></td>
-<td>3.7.8-3.7.13</td>
-<td>3.7.14-3.7.14.2</td>
+<td>3.7.8-3.7.14.2</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-29922</td>
@@ -12020,8 +12027,8 @@ Fixed: 1.8.22-0+deb8u3</p></td>
 <tr>
 <td>CM-29978</td>
 <td><p>The received PVST BPDU for a VLAN is flooded even though the ingress port doesn't have the VLAN tagged.</p></td>
-<td>3.7.8-3.7.13</td>
-<td>3.7.14-3.7.14.2</td>
+<td>3.7.8-3.7.14.2</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-29922</td>
@@ -15362,8 +15369,8 @@ Fixed: 1.8.22-0+deb8u3</p></td>
 <tr>
 <td>CM-29978</td>
 <td><p>The received PVST BPDU for a VLAN is flooded even though the ingress port doesn't have the VLAN tagged.</p></td>
-<td>3.7.8-3.7.13</td>
-<td>3.7.14-3.7.14.2</td>
+<td>3.7.8-3.7.14.2</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-29922</td>
@@ -18395,8 +18402,8 @@ Fixed: 1.8.22-0+deb8u3</p></td>
 <tr>
 <td>CM-29978</td>
 <td><p>The received PVST BPDU for a VLAN is flooded even though the ingress port doesn't have the VLAN tagged.</p></td>
-<td>3.7.8-3.7.13</td>
-<td>3.7.14-3.7.14.2</td>
+<td>3.7.8-3.7.14.2</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-29922</td>
@@ -21856,8 +21863,8 @@ Fixed: 1.8.22-0+deb8u3</p></td>
 <tr>
 <td>CM-29978</td>
 <td><p>The received PVST BPDU for a VLAN is flooded even though the ingress port doesn't have the VLAN tagged.</p></td>
-<td>3.7.8-3.7.13</td>
-<td>3.7.14-3.7.14.2</td>
+<td>3.7.8-3.7.14.2</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-29922</td>

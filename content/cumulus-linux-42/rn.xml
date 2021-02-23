@@ -1052,8 +1052,8 @@ To work around this issue, do not enslave the subinterface of a VXLAN layer 3 up
 <tr>
 <td>CM-29978</td>
 <td><p>The received PVST BPDU for a VLAN is flooded even though the ingress port doesn't have the VLAN tagged.</p></td>
-<td>3.7.8-3.7.13, 4.0.0-4.2.1</td>
-<td>3.7.14, 4.3.0</td>
+<td>3.7.8-3.7.14.2, 4.0.0-4.3.0</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-29890</td>
@@ -3479,8 +3479,8 @@ To work around this issue, do not enslave the subinterface of a VXLAN layer 3 up
 <tr>
 <td>CM-29978</td>
 <td><p>The received PVST BPDU for a VLAN is flooded even though the ingress port doesn't have the VLAN tagged.</p></td>
-<td>3.7.8-3.7.13, 4.0.0-4.2.1</td>
-<td>3.7.14, 4.3.0</td>
+<td>3.7.8-3.7.14.2, 4.0.0-4.3.0</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-29890</td>

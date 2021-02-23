@@ -552,6 +552,12 @@ To work around this issue, do not enslave the subinterface of a VXLAN layer 3 up
 <td></td>
 </tr>
 <tr>
+<td>CM-29978</td>
+<td><p>The received PVST BPDU for a VLAN is flooded even though the ingress port doesn't have the VLAN tagged.</p></td>
+<td>3.7.8-3.7.14.2, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-29890</td>
 <td><p>Multiple paths to identical EVPN prefixes are either not displayed or not accepted into the l2vpn evpn table if they are received from a different AS.</p></td>
 <td>3.7.12-3.7.14.2, 4.1.1-4.3.0</td>
@@ -1956,11 +1962,6 @@ To work around this issue, perform a full switch restart.</p></td>
 <td><p>On a Broadcom switch with the Trident2+ ASIC, ACL rules for VLANs are not applied after a reboot and the counters remain at zero.<br/>
 To work around this issue, either do not set acl.non_atomic_update_mode = TRUE in the /etc/cumulus/switchd.conf file or run the cl-acltool -i command after the reboot to install the  ACLs.</p></td>
 <td>3.7.12-4.2.1</td>
-</tr>
-<tr>
-<td>CM-29978</td>
-<td><p>The received PVST BPDU for a VLAN is flooded even though the ingress port doesn't have the VLAN tagged.</p></td>
-<td>3.7.8-3.7.13, 4.0.0-4.2.1</td>
 </tr>
 <tr>
 <td>CM-29838</td>

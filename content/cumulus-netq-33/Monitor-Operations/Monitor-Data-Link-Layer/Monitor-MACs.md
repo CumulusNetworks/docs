@@ -392,7 +392,7 @@ leaf04            vlan30-v0                 macvlan          up         BLUE    
 
 ## View the History of a MAC Address
 
-It is useful when debugging to be able to see when a MAC address is learned, when and where it moved in the network after that, if there was a duplicate at any time, and so forth. The `netq show mac-history` command makes this information available. It enables you to see:
+It is useful when debugging to be able to see A MAC address is learned, And where it moved in the network after that, if there was a duplicate at any time, and so forth. The `netq show mac-history` command makes this information available. It enables you to see:
 
 - each change that was made chronologically
 - changes made between two points in time, using the `between` option
@@ -580,17 +580,17 @@ Tue Oct 27 22:29:07 2020  leaf04            10     no     peerlink              
 
 You can get more descriptive information about changes to a given MAC address on a specific VLAN. Commentary is provided for the following MAC address-related events based on their classification (refer to the definition of these at the beginning of this topic):
 
-| MAC Type | Event Triggers | Example Commentary |
-| --- | --- | --- |
-| Origin | When a MAC address is configured or changed | border01 44:38:39:be:ef:ff configured on interface bridge, border01 44:38:39:be:ef:ff unconfigured on interface bridge |
-| Origin | When an interface becomes a slave in, or is removed from, a bond | border02 44:38:39:00:00:4e learned on MLAG peer dually connected interface bond1 |
-| Origin | When an interface is a bridge and it inherits a different MAC address due to a membership change | ??? |
-| Remote | When a MAC address is learned or installed by control plane on a tunnel interface | 44:38:39:00:00:5d learned/installed on vni vni10 pointing to remote dest 10.0.1.34 |
-| Remote | When a MAC address is flushed or expires | leaf01 44:38:39:00:00:5d is flushed or expired |
-| Remote | When a MAC address moves: it changes origin or the first-hop switch causing the node to point to a different remote destination or to become a local MAC address | leaf12: 00:08:00:00:aa:13 moved from local interface hostbond2 to remote dest 27.0.0.22 |
-| Local | When a MAC address is learned at the first-hop switch (if more than one first-hop switch is present, verify MLAG relationship and whether it is dually connected) | leaf04 44:38:39:00:00:5d learned on first hop switch |
-| Local | When a MAC address is flushed or expires | leaf01 44:38:39:00:00:5d is flushed or expired |
-| Local | When a MAC address moves: a given MAC address and VLAN on a first-hop switch moves to another interface on the same switch or another switch | leaf01: 00:08:00:00:aa:13 moved from remote dest 36.0.0.24 to local interface swp6 |
+| Event Triggers | Example Commentary |
+| --- | --- |
+| A MAC address is created, or the MAC address on the interface is changed via the `hwaddress` option in */etc/network/interface* | leaf01 00:00:5e:00:00:03 configured on interface vlan1000-v0 |
+| An interface becomes a slave in, or is removed from, a bond | leaf01 00:00:5e:00:00:03 configured on interface vlan1000-v0|
+| An interface is a bridge and it inherits a different MAC address due to a membership change | leaf01 00:00:5e:00:00:03 configured on interface vlan1000-v0 |
+| A remote MAC address is learned or installed by control plane on a tunnel interface | 44:38:39:00:00:5d learned/installed on vni vni10 pointing to remote dest 10.0.1.34 |
+| A remote MAC address is flushed or expires | leaf01 44:38:39:00:00:5d is flushed or expired |
+| A remote MAC address moves from behind one remote switch to another remote switch or becomes a local MAC address | leaf02: 00:08:00:00:aa:13 moved from remote dest 27.0.0.22 to remote dest 27.0.0.34 <br> 00:08:00:00:aa:13 moved from remote dest 27.0.0.22 to local interface hostbond2 |
+| A MAC address is learned at the first-hop switch (or MLAG switch pair) | leaf04 (and MLAG peer leaf05): 44:38:39:00:00:5d learned on first hop switch, pointing to local interface bond4 |
+| A local MAC address is flushed or expires | leaf04 (and MLAG peer leaf05) 44:38:39:00:00:5d is flushed or expires from bond4 |
+| A local MAC address moves from one interface to another interface or to another switch | leaf04: 00:08:00:00:aa:13 moved from hostbond2 to hostbond3 <br> 00:08:00:00:aa:13 moved from hostbond2 to remote dest 27.0.0.13 |
 
 {{< tabs "MAC commentary" >}}
 

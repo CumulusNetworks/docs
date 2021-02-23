@@ -24,7 +24,7 @@ To configure BGP numbered on a BGP node, you need to:
 
 {{< tab "NCLU Commands ">}}
 
-{{< tabs "109 ">}}
+{{< tabs "27 ">}}
 
 {{< tab " leaf01 ">}}
 
@@ -147,11 +147,11 @@ To configure BGP numbered on a BGP node, you need to:
 
 {{< tab "vtysh Commands ">}}
 
-{{< tabs "205 ">}}
+{{< tabs "150 ">}}
 
 {{< tab " leaf01 ">}}
 
-1. Enable the `bgpd` daemon as described in {{<link title="Configure FRRouting">}}.
+1. Enable the `bgpd` daemon as described in {{<link title="FRRouting">}}.
 
 2. Identify the BGP node by assigning an ASN and the router ID:
 
@@ -206,7 +206,7 @@ To configure BGP numbered on a BGP node, you need to:
 
 {{< tab "spine01 ">}}
 
-1. Enable the `bgpd` daemon as described in {{<link title="Configure FRRouting">}}.
+1. Enable the `bgpd` daemon as described in {{<link title="FRRouting">}}.
 
 2. Identify the BGP node by assigning an ASN and the router ID:
 
@@ -262,11 +262,131 @@ To configure BGP numbered on a BGP node, you need to:
 
 {{< /tab >}}
 
+{{< tab "CUE Commands ">}}
+
+{{< tabs "267 ">}}
+
+{{< tab " leaf01 ">}}
+
+1. Identify the BGP node by assigning an ASN.
+
+    - To assign an ASN manually:
+
+      ```
+      cumulus@leaf01:~$ cl set router bgp autonomous-system 65101
+      ```
+
+    - To use auto BGP to assign an ASN automatically on the leaf:
+
+       ```
+       cumulus@leaf01:~$ cl set router bgp autonomous-system NEED COMMAND
+       ```
+
+       The auto BGP `leaf` keyword is only used to configure the ASN. The configuration files and `cl show` commands display the AS number.
+
+2. Assign the router ID.
+
+   ```
+   cumulus@leaf01:~$ cl set router bgp router-id 10.10.10.1
+   ```
+
+3. Specify the BGP neighbor to which you want to distribute routing information.
+
+    ```
+    cumulus@leaf01:~$ cl set vrf default router bgp peer 10.0.1.0 remote-as external
+    ```
+
+    For BGP to advertise IPv6 prefixes, you need to run an additional command to activate the BGP neighbor under the IPv6 address family. The IPv4 address family is enabled by default and the `activate` command is not required for IPv4 route exchange.
+
+    ```
+    cumulus@leaf01:~$ cl set vrf default router bgp peer 2001:db8:0002::0a00:0002 remote-as external
+    cumulus@leaf01:~$ cl set vrf default router bgp peer 2001:db8:0002::0a00:0002 address-family ipv6-unicast enable on
+    ```
+
+    For BGP to advertise *IPv4* prefixes with IPv6 next hops, see {{<link url="Optional-BGP-Configuration#advertise-ipv4-prefixes-with-ipv6-next-hops" text="Advertise IPv4 Prefixes with IPv6 Next Hops">}}.
+
+4. Specify which prefixes to originate:
+
+    ```
+    cumulus@leaf01:~$ cl set vrf default router bgp address-family ipv4-unicast static-network 10.10.10.1/32
+    cumulus@leaf01:~$ cl set vrf default router bgp address-family ipv4-unicast static-network 10.1.10.0/24
+    cumulus@leaf01:~$ cl config apply
+    ```
+
+   IPv6 prefix example:
+
+   ```
+   cumulus@leaf01:~$ cl set vrf default router bgp address-family ipv6-unicast static-network 2001:db8::1/128
+   cumulus@leaf01:~$ cl config apply
+   ```
+
+{{< /tab >}}
+
+{{< tab "spine01 ">}}
+
+1. Identify the BGP node by assigning an ASN.
+
+    - To assign an ASN manually:
+
+      ```
+      cumulus@spine01:~$ cl set router bgp autonomous-system 65199
+      ```
+
+    - To use auto BGP to assign an ASN automatically on the spine:
+
+      ```
+      cumulus@spine01:~$ cl set router bgp autonomous-system NEED COMMAND
+      ```
+
+      The auto BGP `spine` keyword is only used to configure the ASN. The configuration files and `cl show` commands display the AS number.
+
+2. Assign the router ID.
+
+    ```
+    cumulus@spine01:~$ cl set router bgp router-id 10.10.10.101
+    ```
+
+3. Specify the BGP neighbor to which you want to distribute routing information.
+
+    ```
+    cumulus@spine01:~$ cl set vrf default router bgp peer remote-as external
+    ```
+
+    For BGP to advertise IPv6 prefixes, you need to run an additional command to activate the BGP neighbor under the IPv6 address family. The IPv4 address family is enabled by default and the `activate` command is not required for IPv4 route exchange.
+
+    ```
+    cumulus@spine01:~$ cl set vrf default router bgp peer 2001:db8:0002::0a00:1 remote-as external
+    cumulus@spine01:~$ cl set vrf default router bgp peer address-family ipv6-unicast 2001:db8:0002::0a00:1 enable on
+    ```
+
+    For BGP to advertise *IPv4* prefixes with IPv6 next hops, see {{<link url="Optional-BGP-Configuration#advertise-ipv4-prefixes-with-ipv6-next-hops" text="Advertise IPv4 Prefixes with IPv6 Next Hops">}}.
+
+4. Specify which prefixes to originate:
+
+    ```
+    cumulus@spine01:~$ cl set vrf default router bgp address-family ipv4-unicast static-network 10.10.10.101/32
+    cumulus@spine01:~$ cl config diff
+    cumulus@spine01:~$ cl config apply
+    ```
+
+   IPv6 prefix example:
+
+   ```
+   cumulus@spine01:~$ cl set vrf default router bgp address-family ipv6-unicast static-network 2001:db8::101/128
+   cumulus@spine01:~$ cl config apply
+   ```
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
+{{< /tab >}}
+
 {{< /tabs >}}
 
 The NCLU and `vtysh` commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
-{{< tabs "2286 ">}}
+{{< tabs "392 ">}}
 
 {{< tab " leaf01 ">}}
 
@@ -321,7 +441,7 @@ The only difference between a BGP unnumbered configuration and the BGP numbered 
 
 {{< tab "NCLU Commands ">}}
 
-{{< tabs "358 ">}}
+{{< tabs "447 ">}}
 
 {{< tab "leaf01 ">}}
 
@@ -380,7 +500,7 @@ cumulus@spine01:~$ net commit
 
 {{< tab "vtysh Commands ">}}
 
-{{< tabs "390 ">}}
+{{< tabs "506 ">}}
 
 {{< tab "leaf01 ">}}
 
@@ -461,11 +581,66 @@ cumulus@spine01:~$
 
 {{< /tab >}}
 
+{{< tab "CUE Commands ">}}
+
+{{< tabs "589 ">}}
+
+{{< tab " leaf01 ">}}
+
+```
+cumulus@leaf01:~$ cl set router bgp autonomous-system 65101
+cumulus@leaf01:~$ cl set router bgp router-id 10.10.10.1
+cumulus@leaf01:~$ cl set vrf default router bgp peer swp51 remote-as external
+cumulus@leaf01:~$ cl set vrf default router bgp address-family ipv4-unicast static-network 10.10.10.1/32
+cumulus@leaf01:~$ cl set vrf default router bgp address-family ipv4-unicast static-network 10.1.10.0/24
+cumulus@leaf01:~$ cl config apply
+```
+
+For BGP to advertise IPv6 prefixes, you need to run an additional command to activate the BGP neighbor under the IPv6 address family. The IPv4 address family is enabled by default and the `enable` command is not required for IPv4 route exchange.
+
+```
+cumulus@leaf01:~$ cl set router bgp autonomous-system 65101
+cumulus@leaf01:~$ cl set router bgp router-id 10.10.10.1
+cumulus@leaf01:~$ cl set vrf default router bgp peer swp51 remote-as external
+cumulus@leaf01:~$ cl set vrf default router bgp address-family ipv6-unicast enable on
+cumulus@leaf01:~$ cl set vrf default router bgp address-family ipv6-unicast static-network 2001:db8::1/128
+cumulus@leaf01:~$ cl config apply
+```
+
+{{< /tab >}}
+
+{{< tab "spine01 ">}}
+
+```
+cumulus@spine01:~$ cl set router bgp autonomous-system 65199
+cumulus@spine01:~$ cl set router bgp router-id 10.10.10.101
+cumulus@spine01:~$ cl set vrf default router bgp peer swp1 remote-as external
+cumulus@spine01:~$ cl set vrf default router bgp address-family ipv4-unicast static-network 10.10.10.101/32
+cumulus@spine01:~$ cl config apply
+```
+
+For BGP to advertise IPv6 prefixes, you need to run an additional command to activate the BGP neighbor under the IPv6 address family. The IPv4 address family is enabled by default and the `enable` command is not required for IPv4 route exchange.
+
+```
+cumulus@spine01:~$ cl set router bgp autonomous-system 65101
+cumulus@spine01:~$ cl set router bgp router-id 10.10.10.1
+cumulus@spine01:~$ cl set vrf default router bgp peer swp51 remote-as external
+cumulus@spine01:~$ cl set vrf default router bgp address-family ipv6-unicast enable on
+cumulus@spine01:~$ cl set vrf default router bgp address-family ipv6-unicast static-network 2001:db8::101/128
+cumulus@spine01:~$ cl config apply
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
+{{< /tab >}}
+
 {{< /tabs >}}
 
 The NCLU and vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
-{{< tabs "416 ">}}
+{{< tabs "646 ">}}
 
 {{< tab "leaf01 ">}}
 

@@ -4,19 +4,18 @@ author: NVIDIA
 weight: 1020
 toc: 3
 ---
-You monitor system hardware using the following commands and utilities:
+You can monitor system hardware with the following commands and utilities:
 
 - `decode-syseeprom`
 - `smond`
 - `sensors`
-- {{<link url="Simple-Network-Management-Protocol-SNMP" text="Net-SNMP">}}
 - watchdog
 
-## Retrieve Hardware Information Using decode-syseeprom
+## decode-syseeprom Command
 
-The `decode-syseeprom` command enables you to retrieve information about the switch's EEPROM. If the EEPROM is writable, you can set values on the EEPROM.
+The `decode-syseeprom` command enables you to retrieve information about the switch EEPROM. If the EEPROM is writable, you can set values on the EEPROM.
 
-The following is an example. The command output is different on different switches:
+The following is example `decode-syseeprom` command output. The output is different on different switches:
 
 ```
 cumulus@switch:~$ decode-syseeprom
@@ -41,33 +40,29 @@ CRC-32               0xFE   4 0x11D0954D
 (checksum valid)
 ```
 
-### Command Options
-
-Usage: `/usr/cumulus/bin/decode-syseeprom [-a][-r][-s [args]][-t <target>][-e][-m]`
+The `decode-syseeprom` command has the following options:
 
 | Option<img width="200" />| Description |
 |---------------------- |--------------------------- |
 | `-h`, `-help` | Displays the help message and exits. |
 | `-a` | Prints the base MAC address for switch interfaces. |
-| `-r` | Prints the number of MACs allocated for switch interfaces. |
-| `-s` | Sets the EEPROM content if the EEPROM is writable. args can be supplied in the command line in a comma separated list of the form `<field>=<value>`. `.` `,` and `=` are illegal characters in field names and values. Fields that are not specified default to their current values. If args are supplied in the command line, they will be written without confirmation. If args is empty, the values will be prompted interactively. |
+| `-r` | Prints the number of MAC addresses allocated for the switch interfaces. |
+| `-s` | Sets the EEPROM content (if the EEPROM is writable). You can provide arguments in the command line in a comma separated list in the form `<field>=<value>`. <ul><li>`.` `,` and `=` are not allowed in field names and values.</li><li>Fields that are not specified default to their current values.</li></ul> |
 | `-j`, `--json` | Displays JSON output. |
-| `-t <target>` | Prints the target EEPROM (board, psu2, psu1) information. |
+| `-t <target>` | Prints the target EEPROM information (board, psu2, psu1). |
 | `--serial`, `-e` | Prints the device serial number. |
-| `-m` | Prints the base MAC address for management interfaces. |
+| `-m` | Prints the base MAC address for the management interfaces. |
 | `--init` | Clears and initializes the board EEPROM cache. |
 
-### Related Commands
+Run the `dmidecode` command to retrieve hardware configuration information populated in the BIOS.
 
-You can also use the `dmidecode` command to retrieve hardware configuration information that is populated in the BIOS.
+Use `apt-get` to install the `lshw` program on the switch, which also retrieves hardware configuration information.
 
-You can use `apt-get` to install the `lshw` program on the switch, which also retrieves hardware configuration information.
+## smond Daemon
 
-## Monitor System Units Using smond
+The `smond` daemon monitors system units like power supply and fan, updates their corresponding LEDs, and logs the change in the state. Changes in system unit state are detected by the `cpld` registers. `smond` utilizes these registers to read all sources, which determines the health of the unit and updates the system LEDs.
 
-The `smond` daemon monitors system units like power supply and fan, updates their corresponding LEDs, and logs the change in the state. Changes in system unit state are detected via the `cpld` registers. `smond` utilizes these registers to read all sources, which impacts the health of the system unit, determines the unit's health, and updates the system LEDs.
-
-Use `smonctl` to display sensor information for the various system units:
+Run the  `sudo smonctl` command to display sensor information for the various system units:
 
 ```
 cumulus@switch:~$ sudo smonctl
@@ -89,13 +84,11 @@ Temp9     (Right side of the board               ):  OK
 
 {{%notice note%}}
 
--When the switch is not powered on, `smonctl` shows the PSU status as *BAD* instead of *POWERED OFF* or *NOT DETECTED*. This is a known limitation.
+When the switch is not powered on, `smonctl` shows the PSU status as *BAD* instead of *POWERED OFF* or *NOT DETECTED*. This is a known limitation.
 
 {{%/notice%}}
 
-The following table shows the `smonctl` command options.
-
-Usage: `smonctl [OPTION]... [CHIP]...`
+The `smonctl` command has the following options:
 
 | Option <img width="200" /> | Description |
 | --------| ----------- |
@@ -106,13 +99,13 @@ For more information, read `man smond` and `man smonctl`.
 
 You can also run these NCLU commands to show sensor information: `net show system sensors`, `net show system sensors detail`, and `net show system sensors json`.
 
-## Monitor Hardware Using sensors
+## sensors Command
 
 Use the `sensors` command to monitor the health of your switch hardware, such as power, temperature and fan speeds. This command executes `{{<exlink url="https://en.wikipedia.org/wiki/Lm_sensors" text="lm-sensors">}}`.
 
 {{%notice note%}}
 
-Even though you can use the `sensors` command to monitor the health of your switch hardware, the `smond` daemon is the recommended method for monitoring hardware health. See {{<link url="#monitor-system-units-using-smond" text="Monitor System Units Using smond">}}
+Even though you can use the `sensors` command to monitor the health of your switch hardware, the `smond` daemon is the recommended method for monitoring hardware health. See {{<link url="#smond-daemon" text="smond Daemon">}}
 above.
 
 {{%/notice%}}
@@ -144,69 +137,34 @@ fan2:        13560 RPM
 
 {{%notice note%}}
 
-- Output from the `sensors` command varies depending upon the switch hardware you use, as each platform ships with a different type and number of sensors.
-- On a Mellanox switch, if only one PSU is plugged in, the fan is at maximum speed.
+- Output from the `sensors` command varies depending upon the switch.
+- If only one PSU is plugged in, the fan is at maximum speed.
 
 {{%/notice%}}
 
 The following table shows the `sensors` command options.
 
-Usage: `sensors [OPTION]... [CHIP]...`
-
 | Option<img width="200" /> | Description |
 | ----------- | ----------- |
-| `-c`, `--config-file` | Specify a config file; use `-` after `-c` to read the config file from `stdin`; by default, `sensors` references the configuration file in `/etc/sensors.d/`. |
-| `-s`, `--set` | Executes set statements in the config file (root only); `sensors -s` is run once at boot time and applies all the settings to the boot drivers. |
+| `-c`, `--config-file` | Specify a configuration file; use `-` after `-c` to read the configuration file from `stdin`; by default, `sensors` references the configuration file in `/etc/sensors.d/`. |
+| `-s`, `--set` | Execute set statements in the configuration file (root only); `sensors -s` is run once at boot time and applies all the settings to the boot drivers. |
 | `-f`, `--fahrenheit`  | Show temperatures in degrees Fahrenheit. |
 | `-A`, `--no-adapter`  | Do not show the adapter for each chip.|
 | `--bus-list`| Generate bus statements for `sensors.conf`. |
 
-If `[CHIP]` is not specified in the command, all chip information is printed. Example chip names include:
+## Hardware Watchdog
 
-- lm78-i2c-0-2d \*-i2c-0-2d
-- lm78-i2c-0-\* \*-i2c-0-\*
-- lm78-i2c-\*-2d \*-i2c-\*-2d
-- lm78-i2c-\*-\* \*-i2c-\*-\*
-- lm78-isa-0290 \*-isa-0290
-- lm78-isa-\* \*-isa-\*
-- lm78-\*
+Cumulus Linux includes a simplified version of the `wd_keepalive(8)` daemon than the one provided in the standard `watchdog` Debian package. `wd_keepalive` writes to a file called `/dev/watchdog` periodically (at least once per minute) to keep the switch from resetting. Each write delays the reboot time by another minute. After one minute of inactivity, where `wd_keepalive` does not write to `/dev/watchdog`, the switch resets itself.
 
-## Monitor Switch Hardware Using SNMP
-
-The Net-SNMP documentation is discussed {{<link url="Simple-Network-Management-Protocol-SNMP" text="here">}}.
-
-## Keep the Switch Alive Using the Hardware Watchdog
-
-Cumulus Linux includes a simplified version of the `wd_keepalive(8)` daemon from the standard `watchdog` Debian package. `wd_keepalive` writes to a file called `/dev/watchdog` periodically to keep the switch from resetting, at least once per minute. Each write delays the reboot time by another minute. After one minute of inactivity where `wd_keepalive` doesn't write to `/dev/watchdog`, the switch resets itself.
-
-The watchdog is enabled by default on all supported switches, and starts when you boot the switch, before `switchd` starts.
+The watchdog is enabled by default on all supported switches and starts when you boot the switch (before `switchd` starts).
 
 To disable the watchdog, disable and stop the `wd_keepalive` service:
 
-    cumulus@switch:~$ sudo systemctl disable wd_keepalive ; systemctl stop wd_keepalive 
-
-You can modify the settings for the watchdog &mdash; like the timeout setting and scheduler priority &mdash; in the configuration file, `/etc/watchdog.conf`. Here is the default configuration file:
-
 ```
-cumulus@switch:~$ cat /etc/watchdog.conf
-
-watchdog-device	= /dev/watchdog
-
-# Set the hardware watchdog timeout in seconds
-watchdog-timeout = 30
-
-# Kick the hardware watchdog every 'interval' seconds
-interval = 5
-
-# Log a status message every (interval * logtick) seconds.  Requires
-# --verbose option to enable.
-logtick = 240
-
-# Run the daemon using default scheduler SCHED_OTHER with slightly
-# elevated process priority.  See man setpriority(2).
-realtime = no
-priority = -2
+cumulus@switch:~$ sudo systemctl disable wd_keepalive ; systemctl stop wd_keepalive 
 ```
+
+You can modify the settings for the watchdog, such as the timeout and the scheduler priority, in the `/etc/watchdog.conf` configuration file.
 
 ## Related Information
 

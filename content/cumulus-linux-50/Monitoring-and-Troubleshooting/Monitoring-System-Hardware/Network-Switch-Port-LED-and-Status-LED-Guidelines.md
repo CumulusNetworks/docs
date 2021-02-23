@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 1030
 toc: 4
 ---
-Data centers today have a large number of network switches manufactured by different hardware vendors running network operating systems (NOS) from different providers. This chapter provides a set of guidelines for how network port and status LEDs should appear on the front panel of a network switch. This provides a network operator with a standard way to identify the state of a switch and its ports by looking at its front panel, irrespective of the hardware vendor or NOS.
+Data centers today have a large number of network switches manufactured by different hardware vendors running network operating systems (NOS) from different providers. This chapter provides a set of guidelines for how network port and status LEDs should appear on the front panel of a network switch. This provides you with a standard way to identify the state of a switch and its ports by looking at its front panel, irrespective of the hardware vendor or NOS.
 
 ## Network Port LEDs
 
@@ -17,7 +17,7 @@ A network port LED indicates the state of the link, such as link UP or Tx/Rx act
 - **Signaling** - The table below indicates the information that can be conveyed via port LEDs and how it should be done.
     - **Max Speed** indicates the maximum speed at which the port can be run. For a 10G port, if the port speed is 10G, then it is running at its maximum speed. If the 10G port is running at 1G speed then its running at a *lower speed*.
     - **Physical Link Up/Down** displays layer 2 link status.
-    - **Beaconing** provides a way for a network operator to identify a particular link. The administrator can *beacon* that port from a remote location so the network operator has visual indication for that port.
+    - **Beaconing** provides a way for you to identify a particular link. The administrator can *beacon* that port from a remote location so the network operator has visual indication for that port.
     - **Fault** can also be considered a form of beaconing or vice versa. Both try to draw attention of the network operator towards the port, thus they are signaled the same way.
     - **Blinking amber** implies a blink rate of 33ms. *Slow blinking amber* indicates a blink rate of 500ms, with a 50% on/off duty cycle. In other words, a slow blinking amber LED is amber for 500 ms and then off for 500ms.
 

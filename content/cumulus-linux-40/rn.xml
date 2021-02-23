@@ -7,10 +7,59 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-33398</td>
+<td><p>CVE-2021-0326: An issue has been found in wpa, a set of tools to support WPA and WPA2 (IEEE 802.11i). Missing validation of data can result in a buffer over-write, which might lead to a DoS of the wpa_supplicant process or potentially arbitrary code execution.<br/>
+Vulnerable: &lt;= 2.8.0-cl3.7.14u1, &lt;= 2.8.0-cl4.2.1u1</p></td>
+<td>3.0.0-3.7.14.2, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33395</td>
+<td><p>CVE-2021-26937: A  flaw in the handling of combining characters in screen, a terminal multiplexer with VT100/ANSI terminal emulation can result in denial of service, or potentially the execution of arbitrary code via a specially crafted UTF-8 character sequence.<br/>
+Vulnerable: 4.6.2-3<br/>
+Fixed: 4.6.2-3+deb10u1</p></td>
+<td>4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33394</td>
+<td><p>CVE-2021-27212: A vulnerability in the Certificate List Exact Assertion validation was discovered in OpenLDAP, a free implementation of the Lightweight Directory Access Protocol. An unauthenticated remote attacker can take advantage of this flaw to cause a denial of service (slapd daemon crash) via specially crafted packets.<br/>
+Vulnerable: &lt;= 2.4.47+dfsg-3+deb10u5<br/>
+Fixed: 2.4.47+dfsg-3+deb10u6</p></td>
+<td>4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33393</td>
+<td><p>DSA-4859-1 (no CVE): zstd, a compression utility, was vulnerable to a race condition: it temporarily exposed, during a very short timeframe, a world-readable version of its input even if the original file had restrictive permissions.<br/>
+Vulnerable: &lt;= 1.3.8+dfsg-3+deb10u1<br/>
+Fixed: 1.3.8+dfsg-3+deb10u2</p></td>
+<td>4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33385</td>
+<td><p>In a configuration with both traditional and vlan-aware bridges, the VLAN membership check on a vlan-aware switch does not drop PVST BPBUs that come from a traditional bridge.</p></td>
+<td>3.7.14-3.7.14.2, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-33359</td>
 <td><p>CVE-2020-8625: A buffer overflow vulnerability was discovered in the SPNEGO implementation affecting the GSSAPI security policy negotiation in BIND, a DNS server implementation, which could result in denial of service (daemon crash), or potentially the execution of arbitrary code.<br/>
 Vulnerable: &lt;= 9.11.5.P4+dfsg-5.1+deb10u2<br/>
 Fixed: 9.11.5.P4+dfsg-5.1+deb10u3</p></td>
+<td>4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-33334</td>
+<td><p>The following vulnerabilities have been announced in the openssl packages:<br/>
+CVE-2021-23840: Calls to EVP_CipherUpdate, EVP_EncryptUpdate and EVP_DecryptUpdate may overflow the output length argument in some cases where the input length is close to the maximum permissable length for an integer on the platform. In such cases the return value from the function call will be 1 (indicating success), but the output length value will be negative. This could cause applications to behave incorrectly or crash.<br/>
+CVE-2021-23841: The OpenSSL public API function X509_issuer_and_serial_hash() attempts to create a unique hash value based on the issuer and serial number data contained<br/>
+within an X509 certificate. However it fails to correctly handle any errors that may occur while parsing the issuer field (which might occur if the issuer field is maliciously constructed). This may subsequently result in a NULL pointer deref and a crash leading to a potential denial of service attack.<br/>
+CVE-2019-1551: There is an overflow bug in the x64_64 Montgomery squaring procedure used in exponentiation with 512-bit moduli. No EC algorithms are affected. Analysis suggests that attacks against 2-prime RSA1024, 3-prime RSA1536, and DSA1024 as a result of this defect would be very difficult to perform and are not believed likely. Attacks against DH512 are considered just feasible. However, for an attack the target would have to re-use the DH512 private key, which is not recommended anyway. Also applications directly using the low level API BN_mod_exp may be affected if they use BN_FLG_CONSTTIME.<br/>
+Vulnerable: &lt;= 1.1.1d-0+deb10u4<br/>
+Fixed: 1.1.1d-0+deb10u5</p></td>
 <td>4.0.0-4.3.0</td>
 <td></td>
 </tr>
@@ -815,8 +864,8 @@ To work around this issue, comment out the Requires= line in the /lib/systemd/sy
 #Requires=nginx.service restserver.socket
 
 </td>
-<td>3.7.12-4.2.1</td>
-<td>4.3.0</td>
+<td>3.7.12-3.7.14.2, 4.0.0-4.3.0</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-29691</td>

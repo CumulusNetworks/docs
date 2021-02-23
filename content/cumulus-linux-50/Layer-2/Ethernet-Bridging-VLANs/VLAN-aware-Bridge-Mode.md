@@ -25,7 +25,7 @@ With CUE, there is a default bridge called `br_default`, which has no ports assi
 
 ```
 cumulus@switch:~$ cl set interface swp1-2 bridge domain br_default
-cumulus@switch:~$ cl set bridge domain br_default vlan 100,200
+cumulus@switch:~$ cl set bridge domain br_default vlan 10,20
 cumulus@switch:~$ cl set bridge domain br_default untagged 1
 cumulus@switch:~$ cl config apply
 ```
@@ -145,9 +145,9 @@ The following example shows how to configure swp3 to override the bridge VIDs:
 
 ```
 cumulus@switch:~$ cl set interface swp1-3 bridge domain br_default
-cumulus@switch:~$ cl set bridge domain br_default vlan 100,200
+cumulus@switch:~$ cl set bridge domain br_default vlan 10,20
 cumulus@switch:~$ cl set bridge domain br_default untagged 1
-cumulus@switch:~$ cl set interface swp3 bridge domain br_default vlan 200
+cumulus@switch:~$ cl set interface swp3 bridge domain br_default vlan 20
 cumulus@switch:~$ cl config apply
 ```
 
@@ -202,10 +202,10 @@ Access ports ignore all tagged packets. In the configuration below, swp1 and swp
 
 ```
 cumulus@switch:~$ cl set interface swp1-2 bridge domain br_default
-cumulus@switch:~$ cl set bridge domain br_default vlan 100,200
+cumulus@switch:~$ cl set bridge domain br_default vlan 10,20
 cumulus@switch:~$ cl set bridge domain br_default untagged 1
-cumulus@switch:~$ cl set interface swp1 bridge domain br_default access 100
-cumulus@switch:~$ cl set interface swp2 bridge domain br_default access 100
+cumulus@switch:~$ cl set interface swp1 bridge domain br_default access 10
+cumulus@switch:~$ cl set interface swp2 bridge domain br_default access 10
 cumulus@switch:~$ cl config apply
 ```
 

@@ -721,8 +721,14 @@ When BGP peering uses IPv6 global addresses and IPv4 prefixes are being advertis
 
 To enable advertisement of IPv4 prefixes with IPv6 next hops over global IPv6 peerings, add the `extended-nexthop` capability to the global IPv6 neighbor statements on each end of the BGP sessions.
 
-{{< tabs "655 ">}}
+{{< tabs "724 ">}}
+{{< tab "CUE Commands ">}}
 
+```
+cumulus@switch:~$ cl set vrf default router bgp peer 2001:db8:0002::0a00:0002 NEED COMMAND (maybe address-family ipv6-unicast nexthop-setting?????)
+```
+
+{{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
 ```
@@ -732,12 +738,10 @@ cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
-
 {{< tab "vtysh Commands ">}}
 
 ```
 cumulus@switch:~$ sudo vtysh
-
 switch# configure terminal
 switch(config)# router bgp 65101
 switch(config-router)# neighbor 2001:db8:0002::0a00:0002 capability extended-nexthop
@@ -747,11 +751,7 @@ switch# exit
 cumulus@switch:~$
 ```
 
-{{< /tab >}}
-
-{{< /tabs >}}
-
-The NCLU and `vtysh` commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+The `vtysh` commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
 ```
 ...
@@ -761,10 +761,21 @@ router bgp 65101
 ...
 ```
 
+{{< /tab >}}
+{{< /tabs >}}
+
 Ensure that the IPv6 peers are activated under the IPv4 unicast address family; otherwise, all peers are activated in the IPv4 unicast address family by default. If `no bgp default ipv4-unicast` is configured, you need to explicitly activate the IPv6 neighbor under the IPv4 unicast address family as shown below:
 
-{{< tabs "697 ">}}
+{{< tabs "769 ">}}
+{{< tab "CUE Commands ">}}
 
+```
+cumulus@switch:~$ cl set vrf default router bgp peer 2001:db8:0002::0a00:0002 NEED COMMAND (maybe address-family ipv6-unicast nexthop-setting?????)
+cumulus@switch:~$ cl set vrf default router bgp peer 2001:db8:0002::0a00:0002 address-family ipv4-unicast enable on?????
+cumulus@switch:~$ cl config apply
+```
+
+{{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
 ```
@@ -775,12 +786,10 @@ cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
-
 {{< tab "vtysh Commands ">}}
 
 ```
 cumulus@switch:~$ sudo vtysh
-
 switch# configure terminal
 switch(config)# router bgp 65101
 switch(config-router)# neighbor 2001:db8:0002::0a00:0002 capability extended-nexthop
@@ -792,11 +801,7 @@ switch# exit
 cumulus@switch:~$
 ```
 
-{{< /tab >}}
-
-{{< /tabs >}}
-
-The NCLU and `vtysh` commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+The `vtysh` commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
 ```
 ...
@@ -812,11 +817,25 @@ exit-address-family
 ...
 ```
 
+{{< /tab >}}
+{{< /tabs >}}
+
 ## Neighbor Maximum Prefixes
 
 To protect against an internal network connectivity disruption caused by BGP, you can control how many route announcements (prefixes) can be received from a BGP neighbor.
 
 The following example commands set the maximum number of prefixes allowed from the BGP neighbor on swp51 to 3000:
+
+{{< tabs "829 ">}}
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@switch:~$ cl set vrf default router bgp peer swp51 NEED COMMAND
+cumulus@switch:~$ cl config apply
+```
+
+{{< /tab >}}
+{{< tab "vtysh Commands ">}}
 
 ```
 cumulus@leaf01:~$ sudo vtysh
@@ -830,11 +849,25 @@ leaf01# exit
 cumulus@leaf01:~$
 ```
 
+{{< /tab >}}
+{{< /tabs >}}
+
 ## Aggregate Addresses
 
 To minimize the size of the routing table and save bandwidth, you can aggregate a range of networks in your routing table into a single prefix.
 
 The following example command aggregates a range of addresses, such as 10.1.1.0/24, 10.1.2.0/24, 10.1.3.0/24 into the single prefix 10.1.0.0/16.
+
+{{< tabs "861 ">}}
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@switch:~$ cl set vrf default router bgp NEED COMMAND
+cumulus@switch:~$ cl config apply
+```
+
+{{< /tab >}}
+{{< tab "NCLU Commands ">}}
 
 ```
 cumulus@switch:~$ net add bgp aggregate-address 10.1.0.0/16
@@ -850,12 +883,22 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
+{{< /tab >}}
+{{< /tabs >}}
+
 <!--## Suppress Route Advertisement
 
 You can configure BGP to wait for a response from the RIB indicating that the routes installed in the RIB are also installed in the ASIC before sending updates to peers.
 
 {{< tabs "TabID788 ">}}
+{{< tab "CUE Commands ">}}
 
+```
+cumulus@switch:~$ cl set vrf default router bgp NEED COMMAND
+cumulus@switch:~$ cl config apply
+```
+
+{{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
 ```
@@ -865,12 +908,10 @@ cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
-
 {{< tab "vtysh Commands ">}}
 
 ```
 cumulus@switch:~$ sudo vtysh
-
 switch# configure terminal
 switch(config)# router bgp 65101
 switch(config-router)# bgp suppress-fib-pending
@@ -879,10 +920,6 @@ switch# write memory
 switch# exit
 cumulus@switch:~$
 ```
-
-{{< /tab >}}
-
-{{< /tabs >}}
 
 The NCLU and vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
@@ -894,6 +931,9 @@ router bgp 65199
  bgp suppress-fib-pending
 ...
 ```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 The {{<link url="Smart-System-Manager" text="Smart System Manager">}} suppresses route advertisement automatically when upgrading or troubleshooting an active switch so that there is minimal disruption to the network.-->
 

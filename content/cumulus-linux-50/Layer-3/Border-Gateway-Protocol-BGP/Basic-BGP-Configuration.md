@@ -20,12 +20,126 @@ To configure BGP numbered on a BGP node, you need to:
   - The ASN can be a number, or `internal` for a neighbor in the same AS or `external` for a neighbor in a different AS.
 - Specify which prefixes to originate from this BGP node.
 
-{{< tabs "10 ">}}
+{{< tabs "23 ">}}
+{{< tab "CUE Commands ">}}
 
+{{< tabs "26 ">}}
+{{< tab " leaf01 ">}}
+
+1. Identify the BGP node by assigning an ASN.
+
+    - To assign an ASN manually:
+
+      ```
+      cumulus@leaf01:~$ cl set router bgp autonomous-system 65101
+      ```
+
+    - To use auto BGP to assign an ASN automatically on the leaf:
+
+       ```
+       cumulus@leaf01:~$ cl set router bgp autonomous-system NEED COMMAND
+       ```
+
+       The auto BGP `leaf` keyword is only used to configure the ASN. The configuration files and `cl show` commands display the AS number.
+
+2. Assign the router ID.
+
+   ```
+   cumulus@leaf01:~$ cl set router bgp router-id 10.10.10.1
+   ```
+
+3. Specify the BGP neighbor to which you want to distribute routing information.
+
+    ```
+    cumulus@leaf01:~$ cl set vrf default router bgp peer 10.0.1.0 remote-as external
+    ```
+
+    For BGP to advertise IPv6 prefixes, you need to run an additional command to activate the BGP neighbor under the IPv6 address family. The IPv4 address family is enabled by default and the `activate` command is not required for IPv4 route exchange.
+
+    ```
+    cumulus@leaf01:~$ cl set vrf default router bgp peer 2001:db8:0002::0a00:0002 remote-as external
+    cumulus@leaf01:~$ cl set vrf default router bgp peer 2001:db8:0002::0a00:0002 address-family ipv6-unicast enable on
+    ```
+
+    For BGP to advertise *IPv4* prefixes with IPv6 next hops, see {{<link url="Optional-BGP-Configuration#advertise-ipv4-prefixes-with-ipv6-next-hops" text="Advertise IPv4 Prefixes with IPv6 Next Hops">}}.
+
+4. Specify which prefixes to originate:
+
+    ```
+    cumulus@leaf01:~$ cl set vrf default router bgp address-family ipv4-unicast static-network 10.10.10.1/32
+    cumulus@leaf01:~$ cl set vrf default router bgp address-family ipv4-unicast static-network 10.1.10.0/24
+    cumulus@leaf01:~$ cl config apply
+    ```
+
+   IPv6 prefix example:
+
+   ```
+   cumulus@leaf01:~$ cl set vrf default router bgp address-family ipv6-unicast static-network 2001:db8::1/128
+   cumulus@leaf01:~$ cl config apply
+   ```
+
+{{< /tab >}}
+{{< tab "spine01 ">}}
+
+1. Identify the BGP node by assigning an ASN.
+
+    - To assign an ASN manually:
+
+      ```
+      cumulus@spine01:~$ cl set router bgp autonomous-system 65199
+      ```
+
+    - To use auto BGP to assign an ASN automatically on the spine:
+
+      ```
+      cumulus@spine01:~$ cl set router bgp autonomous-system NEED COMMAND
+      ```
+
+      The auto BGP `spine` keyword is only used to configure the ASN. The configuration files and `cl show` commands display the AS number.
+
+2. Assign the router ID.
+
+    ```
+    cumulus@spine01:~$ cl set router bgp router-id 10.10.10.101
+    ```
+
+3. Specify the BGP neighbor to which you want to distribute routing information.
+
+    ```
+    cumulus@spine01:~$ cl set vrf default router bgp peer remote-as external
+    ```
+
+    For BGP to advertise IPv6 prefixes, you need to run an additional command to activate the BGP neighbor under the IPv6 address family. The IPv4 address family is enabled by default and the `activate` command is not required for IPv4 route exchange.
+
+    ```
+    cumulus@spine01:~$ cl set vrf default router bgp peer 2001:db8:0002::0a00:1 remote-as external
+    cumulus@spine01:~$ cl set vrf default router bgp peer address-family ipv6-unicast 2001:db8:0002::0a00:1 enable on
+    ```
+
+    For BGP to advertise *IPv4* prefixes with IPv6 next hops, see {{<link url="Optional-BGP-Configuration#advertise-ipv4-prefixes-with-ipv6-next-hops" text="Advertise IPv4 Prefixes with IPv6 Next Hops">}}.
+
+4. Specify which prefixes to originate:
+
+    ```
+    cumulus@spine01:~$ cl set vrf default router bgp address-family ipv4-unicast static-network 10.10.10.101/32
+    cumulus@spine01:~$ cl config diff
+    cumulus@spine01:~$ cl config apply
+    ```
+
+   IPv6 prefix example:
+
+   ```
+   cumulus@spine01:~$ cl set vrf default router bgp address-family ipv6-unicast static-network 2001:db8::101/128
+   cumulus@spine01:~$ cl config apply
+   ```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+{{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
-{{< tabs "109 ">}}
-
+{{< tabs "27 ">}}
 {{< tab " leaf01 ">}}
 
 1. Identify the BGP node by assigning an ASN.
@@ -83,7 +197,6 @@ To configure BGP numbered on a BGP node, you need to:
    ```
 
 {{< /tab >}}
-
 {{< tab "spine01 ">}}
 
 1. Identify the BGP node by assigning an ASN.
@@ -140,24 +253,20 @@ To configure BGP numbered on a BGP node, you need to:
    ```
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 {{< /tab >}}
-
 {{< tab "vtysh Commands ">}}
 
-{{< tabs "205 ">}}
-
+{{< tabs "150 ">}}
 {{< tab " leaf01 ">}}
 
-1. Enable the `bgpd` daemon as described in {{<link title="Configure FRRouting">}}.
+1. Enable the `bgpd` daemon as described in {{<link title="FRRouting">}}.
 
 2. Identify the BGP node by assigning an ASN and the router ID:
 
     ```
     cumulus@leaf01:~$ sudo vtysh
-
     leaf01# configure terminal
     leaf01(config)# router bgp 65101
     leaf01(config-router)# bgp router-id 10.10.10.1
@@ -202,17 +311,31 @@ To configure BGP numbered on a BGP node, you need to:
     cumulus@leaf01:~$
     ```
 
-{{< /tab >}}
+The `vtysh` commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
+```
+cumulus@leaf01:~$  sudo cat /etc/frr/frr.conf
+...
+router bgp 65101
+ bgp router-id 10.10.10.1
+ neighbor 10.0.1.0 remote-as external
+ !
+ address-family ipv4 unicast
+  network 10.10.10.1/32
+  network 10.1.10.0/24
+ exit-address-family
+...
+```
+
+{{< /tab >}}
 {{< tab "spine01 ">}}
 
-1. Enable the `bgpd` daemon as described in {{<link title="Configure FRRouting">}}.
+1. Enable the `bgpd` daemon as described in {{<link title="FRRouting">}}.
 
 2. Identify the BGP node by assigning an ASN and the router ID:
 
     ```
     cumulus@spine01:~$ sudo vtysh
-
     spine01# configure terminal
     spine01(config)# router bgp 65199
     spine01(config-router)# bgp router-id 10.10.10.101
@@ -256,37 +379,7 @@ To configure BGP numbered on a BGP node, you need to:
     cumulus@spine01:~$
     ```
 
-{{< /tab >}}
-
-{{< /tabs >}}
-
-{{< /tab >}}
-
-{{< /tabs >}}
-
-The NCLU and `vtysh` commands save the configuration in the `/etc/frr/frr.conf` file. For example:
-
-{{< tabs "2286 ">}}
-
-{{< tab " leaf01 ">}}
-
-```
-cumulus@leaf01:~$  sudo cat /etc/frr/frr.conf
-...
-router bgp 65101
- bgp router-id 10.10.10.1
- neighbor 10.0.1.0 remote-as external
- !
- address-family ipv4 unicast
-  network 10.10.10.1/32
-  network 10.1.10.0/24
- exit-address-family
-...
-```
-
-{{< /tab >}}
-
-{{< tab "spine01 ">}}
+The `vtysh` commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
 ```
 cumulus@spine01:~$  sudo cat /etc/frr/frr.conf
@@ -302,7 +395,6 @@ router bgp 65199
 ```
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 {{%notice note%}}
@@ -311,6 +403,9 @@ When using auto BGP, there are no references to `leaf` or `spine` in the configu
 
 {{%/notice%}}
 
+{{< /tab >}}
+{{< /tabs >}}
+
 ## BGP Unnumbered
 
 The following example commands show a basic {{<link title="Border Gateway Protocol - BGP#bgp-unnumbered" text="BGP unnumbered">}} configuration for two switches, leaf01 and spine01, which are eBGP peers.
@@ -318,11 +413,60 @@ The following example commands show a basic {{<link title="Border Gateway Protoc
 The only difference between a BGP unnumbered configuration and the BGP numbered configuration shown above is that the BGP neighbor is specified as an interface (insead of an IP address). The interface between the two peers does **not** need to have an IP address configured on each side.
 
 {{< tabs "354 ">}}
+{{< tab "CUE Commands ">}}
 
+{{< tabs "589 ">}}
+{{< tab " leaf01 ">}}
+
+```
+cumulus@leaf01:~$ cl set router bgp autonomous-system 65101
+cumulus@leaf01:~$ cl set router bgp router-id 10.10.10.1
+cumulus@leaf01:~$ cl set vrf default router bgp peer swp51 remote-as external
+cumulus@leaf01:~$ cl set vrf default router bgp address-family ipv4-unicast static-network 10.10.10.1/32
+cumulus@leaf01:~$ cl set vrf default router bgp address-family ipv4-unicast static-network 10.1.10.0/24
+cumulus@leaf01:~$ cl config apply
+```
+
+For BGP to advertise IPv6 prefixes, you need to run an additional command to activate the BGP neighbor under the IPv6 address family. The IPv4 address family is enabled by default and the `enable` command is not required for IPv4 route exchange.
+
+```
+cumulus@leaf01:~$ cl set router bgp autonomous-system 65101
+cumulus@leaf01:~$ cl set router bgp router-id 10.10.10.1
+cumulus@leaf01:~$ cl set vrf default router bgp peer swp51 remote-as external
+cumulus@leaf01:~$ cl set vrf default router bgp address-family ipv6-unicast enable on
+cumulus@leaf01:~$ cl set vrf default router bgp address-family ipv6-unicast static-network 2001:db8::1/128
+cumulus@leaf01:~$ cl config apply
+```
+
+{{< /tab >}}
+{{< tab "spine01 ">}}
+
+```
+cumulus@spine01:~$ cl set router bgp autonomous-system 65199
+cumulus@spine01:~$ cl set router bgp router-id 10.10.10.101
+cumulus@spine01:~$ cl set vrf default router bgp peer swp1 remote-as external
+cumulus@spine01:~$ cl set vrf default router bgp address-family ipv4-unicast static-network 10.10.10.101/32
+cumulus@spine01:~$ cl config apply
+```
+
+For BGP to advertise IPv6 prefixes, you need to run an additional command to activate the BGP neighbor under the IPv6 address family. The IPv4 address family is enabled by default and the `enable` command is not required for IPv4 route exchange.
+
+```
+cumulus@spine01:~$ cl set router bgp autonomous-system 65101
+cumulus@spine01:~$ cl set router bgp router-id 10.10.10.1
+cumulus@spine01:~$ cl set vrf default router bgp peer swp51 remote-as external
+cumulus@spine01:~$ cl set vrf default router bgp address-family ipv6-unicast enable on
+cumulus@spine01:~$ cl set vrf default router bgp address-family ipv6-unicast static-network 2001:db8::101/128
+cumulus@spine01:~$ cl config apply
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+{{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
-{{< tabs "358 ">}}
-
+{{< tabs "447 ">}}
 {{< tab "leaf01 ">}}
 
 ```
@@ -348,7 +492,6 @@ cumulus@leaf01:~$ net commit
 ```
 
 {{< /tab >}}
-
 {{< tab "spine01 ">}}
 
 ```
@@ -373,20 +516,16 @@ cumulus@spine01:~$ net commit
 ```
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 {{< /tab >}}
-
 {{< tab "vtysh Commands ">}}
 
-{{< tabs "390 ">}}
-
+{{< tabs "506 ">}}
 {{< tab "leaf01 ">}}
 
 ```
 cumulus@leaf01:~$ sudo vtysh
-
 leaf01# configure terminal
 leaf01(config)# router bgp 65101
 leaf01(config-router)# bgp router-id 10.10.10.1
@@ -404,7 +543,6 @@ For BGP to advertise IPv6 prefixes, you need to run an additional command to act
 
 ```
 cumulus@leaf01:~$ sudo vtysh
-
 leaf01# configure terminal
 leaf01(config)# router bgp 65101
 leaf01(config-router)# bgp router-id 10.10.10.1
@@ -418,56 +556,7 @@ leaf01# exit
 cumulus@leaf01:~$
 ```
 
-{{< /tab >}}
-
-{{< tab "spine01 ">}}
-
-```
-cumulus@spine01:~$ sudo vtysh
-
-spine01# configure terminal
-spine01(config)# router bgp 65199
-spine01(config-router)# bgp router-id 10.10.10.101
-spine01(config-router)# neighbor swp1 remote-as external
-spine01(config-router)# address-family ipv4
-spine01(config-router-af)# network 10.10.10.101/32
-spine01(config-router-af)# end
-spine01# write memory
-spine01# exit
-cumulus@spine01:~$
-```
-
-For BGP to advertise IPv6 prefixes, you need to run an additional command to activate the BGP neighbor under the IPv6 address family. The IPv4 address family is enabled by default and the `activate` command is not required for IPv4 route exchange.
-
-```
-cumulus@spine01:~$ sudo vtysh
-
-spine01# configure terminal
-spine01(config)# router bgp 65199
-spine01(config-router)# bgp router-id 10.10.10.101
-spine01(config-router)# neighbor swp1 remote-as external
-spine01(config-router)# address-family ipv6 unicast
-spine01(config-router-af)# neighbor swp1 activate
-spine01(config-router-af)# network 2001:db8::101/128
-spine01(config-router-af)# end
-spine01# write memory
-spine01# exit
-cumulus@spine01:~$
-```
-
-{{< /tab >}}
-
-{{< /tabs >}}
-
-{{< /tab >}}
-
-{{< /tabs >}}
-
-The NCLU and vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
-
-{{< tabs "416 ">}}
-
-{{< tab "leaf01 ">}}
+The vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
 ```
 cumulus@leaf01:~$  sudo cat /etc/frr/frr.conf
@@ -485,8 +574,40 @@ router bgp 65101
 ```
 
 {{< /tab >}}
-
 {{< tab "spine01 ">}}
+
+```
+cumulus@spine01:~$ sudo vtysh
+spine01# configure terminal
+spine01(config)# router bgp 65199
+spine01(config-router)# bgp router-id 10.10.10.101
+spine01(config-router)# neighbor swp1 remote-as external
+spine01(config-router)# address-family ipv4
+spine01(config-router-af)# network 10.10.10.101/32
+spine01(config-router-af)# end
+spine01# write memory
+spine01# exit
+cumulus@spine01:~$
+```
+
+For BGP to advertise IPv6 prefixes, you need to run an additional command to activate the BGP neighbor under the IPv6 address family. The IPv4 address family is enabled by default and the `activate` command is not required for IPv4 route exchange.
+
+```
+cumulus@spine01:~$ sudo vtysh
+spine01# configure terminal
+spine01(config)# router bgp 65199
+spine01(config-router)# bgp router-id 10.10.10.101
+spine01(config-router)# neighbor swp1 remote-as external
+spine01(config-router)# address-family ipv6 unicast
+spine01(config-router-af)# neighbor swp1 activate
+spine01(config-router-af)# network 2001:db8::101/128
+spine01(config-router-af)# end
+spine01# write memory
+spine01# exit
+cumulus@spine01:~$
+```
+
+The vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
 ```
 cumulus@spine01:~$  sudo cat /etc/frr/frr.conf
@@ -503,5 +624,7 @@ router bgp 65199
 ```
 
 {{< /tab >}}
+{{< /tabs >}}
 
+{{< /tab >}}
 {{< /tabs >}}

@@ -19,7 +19,18 @@ The example below shows the commands required to create a VLAN-aware bridge conf
 {{< img src = "/images/cumulus-linux/ethernet-bridging-basic-trunking1.png" >}}
 
 {{< tabs "TabID27 ">}}
+{{< tab "CUE Commands ">}}
 
+With CUE, there is a default bridge called `br_default`, which has no ports assigned to it. The example below configures this default bridge.
+
+```
+cumulus@switch:~$ cl set interface swp1-2 bridge domain br_default
+cumulus@switch:~$ cl set bridge domain br_default vlan 100,200
+cumulus@switch:~$ cl set bridge domain br_default untagged 1
+cumulus@switch:~$ cl config apply
+```
+
+{{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
 ```
@@ -30,19 +41,7 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-The above commands create the following code snippet in the `/etc/network/interfaces` file:
-
-```
-auto bridge
-iface bridge
-    bridge-ports swp1 swp2
-    bridge-pvid 1
-    bridge-vids 10 20
-    bridge-vlan-aware yes
-```
-
 {{< /tab >}}
-
 {{< tab "Linux Commands ">}}
 
 Edit the `/etc/network/interfaces` file and add the bridge. An example configuration is shown below.
@@ -66,7 +65,6 @@ cumulus@switch:~$ ifreload -a
 ```
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 {{%notice note%}}
@@ -143,7 +141,17 @@ The following example shows how to configure swp3 to override the bridge VIDs:
 {{< img src = "/images/cumulus-linux/ethernet-bridging-vlan-pruned1.png" >}}
 
 {{< tabs "TabID157 ">}}
+{{< tab "CUE Commands ">}}
 
+```
+cumulus@switch:~$ cl set interface swp1-3 bridge domain br_default
+cumulus@switch:~$ cl set bridge domain br_default vlan 100,200
+cumulus@switch:~$ cl set bridge domain br_default untagged 1
+cumulus@switch:~$ cl set interface swp3 bridge domain br_default vlan 200
+cumulus@switch:~$ cl config apply
+```
+
+{{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
 ```
@@ -155,23 +163,7 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-The above commands create the following code snippets in the `/etc/network/interfaces` file:
-
-```
-auto bridge
-iface bridge
-    bridge-ports swp1 swp2 swp3
-    bridge-pvid 1
-    bridge-vids 10 20
-    bridge-vlan-aware yes
-
-auto swp3
-iface swp3
-  bridge-vids 20
-```
-
 {{< /tab >}}
-
 {{< tab "Linux Commands ">}}
 
 Edit the `/etc/network/interfaces` file, then run the `ifreload -a` command.
@@ -197,7 +189,6 @@ cumulus@switch:~$ ifreload -a
 ```
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 ## Untagged/Access Ports
@@ -207,7 +198,18 @@ Access ports ignore all tagged packets. In the configuration below, swp1 and swp
 {{< img src = "/images/cumulus-linux/ethernet-bridging-vlan_untagged_access_ports1.png" >}}
 
 {{< tabs "TabID223 ">}}
+{{< tab "CUE Commands ">}}
 
+```
+cumulus@switch:~$ cl set interface swp1-2 bridge domain br_default
+cumulus@switch:~$ cl set bridge domain br_default vlan 100,200
+cumulus@switch:~$ cl set bridge domain br_default untagged 1
+cumulus@switch:~$ cl set interface swp1 bridge domain br_default access 100
+cumulus@switch:~$ cl set interface swp2 bridge domain br_default access 100
+cumulus@switch:~$ cl config apply
+```
+
+{{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
 ```
@@ -220,27 +222,7 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-The above commands create the following code snippets in the `/etc/network/interfaces` file:
-
-```
-auto bridge
-iface bridge
-    bridge-ports swp1 swp2
-    bridge-pvid 1
-    bridge-vids 10 20
-    bridge-vlan-aware yes
-
-auto swp1
-iface swp1
-    bridge-access 10
-
-auto swp2
-iface swp2
-    bridge-access 10
-```
-
 {{< /tab >}}
-
 {{< tab "Linux Commands ">}}
 
 Edit the `/etc/network/interfaces` file, then run the `ifreload -a` command.
@@ -270,7 +252,6 @@ cumulus@switch:~$ ifreload -a
 ```
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 ## Drop Untagged Frames
@@ -280,7 +261,14 @@ With VLAN-aware bridge mode, you configure the *switch port* (not to the bridge)
 The following example command configures swp2 to drop untagged frames.
 
 {{< tabs "TabID294 ">}}
+{{< tab "CUE Commands ">}}
 
+```
+cumulus@switch:~$ cl set interface swp2 bridge domain br_default untagged none
+cumulus@switch:~$ cl config apply
+```
+
+{{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
 ```
@@ -304,7 +292,6 @@ swp2             10
 ```
 
 {{< /tab >}}
-
 {{< tab "Linux Commands ">}}
 
 Edit the `/etc/network/interfaces` file to add the `bridge-allow-untagged no` line under the switch port interface stanza, then run the `ifreload -a` command.
@@ -346,7 +333,6 @@ bridge 1
 ```
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 ## VLAN Layer 3 Addressing
@@ -354,7 +340,15 @@ bridge 1
 When configuring the VLAN attributes for the bridge, specify the attributes for each VLAN interface. If you are configuring the switch virtual interface (SVI) for the native VLAN, you must declare the native VLAN and specify its IP address. Specifying the IP address in the bridge stanza itself returns an error.
 
 {{< tabs "TabID370 ">}}
+{{< tab "CUE Commands ">}}
 
+```
+cumulus@switch:~$ cl set interface vlan10 ip address 192.168.10.1/24
+cumulus@switch:~$ cl set interface vlan10 ip address 2001:db8::1/32
+cumulus@switch:~$ cl config apply
+```
+
+{{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
 The following example commands declare native VLAN 100 with IPv4 address 192.168.10.1/24 and IPv6 address 2001:db8::1/32.
@@ -367,7 +361,6 @@ cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
-
 {{< tab "Linux Commands ">}}
 
 Edit the `/etc/network/interfaces` file, then run the `ifreload -a` command. The following example declares native VLAN 10 with IPv4 address 192.168.10.1/24 and IPv6 address 2001:db8::1/32.
@@ -396,7 +389,6 @@ cumulus@switch:~$ ifreload -a
 ```
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 {{%notice note%}}

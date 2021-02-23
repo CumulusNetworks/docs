@@ -265,11 +265,31 @@ To enable MD5 authentication for BGP peers, set the same password on each peer.
 The following example commands set the password *mypassword* on BGP peers leaf01 and spine01:
 
 {{< tabs "40 ">}}
+{{< tab "CUE Commands ">}}
 
+{{< tabs "270 ">}}
+{{< tab "leaf01 ">}}
+
+```
+cumulus@leaf01:~$ cl set vrf default router bgp peer swp51 password mypassword
+cumulus@leaf01:~$ cl config apply
+```
+
+{{< /tab >}}
+{{< tab "spine01 ">}}
+
+```
+cumulus@spine01:~$ cl set vrf default router bgp peer swp1 password mypassword
+cumulus@spine01:~$ cl config apply
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+{{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
-{{< tabs "253 ">}}
-
+{{< tabs "292 ">}}
 {{< tab "leaf01 ">}}
 
 ```
@@ -279,7 +299,6 @@ cumulus@leaf01:~$ net commit
 ```
 
 {{< /tab >}}
-
 {{< tab "spine01 ">}}
 
 ```
@@ -289,15 +308,12 @@ cumulus@spine01:~$ net commit
 ```
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 {{< /tab >}}
-
 {{< tab "vtysh Commands ">}}
 
 {{< tabs "281 ">}}
-
 {{< tab "leaf01 ">}}
 
 ```
@@ -313,7 +329,6 @@ cumulus@leaf01:~$
 ```
 
 {{< /tab >}}
-
 {{< tab "spine01 ">}}
 
 ```
@@ -329,11 +344,9 @@ cumulus@spine01:~$
 ```
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 You can confirm the configuration with the NCLU command `net show bgp neighbor <neighbor>` or with the `vtysh` command `show ip bgp neighbor <neighbor>`.
@@ -408,6 +421,24 @@ If you use private ASNs in the data center, any routes you send out to the inter
 
 The following example command removes private ASNs from routes sent to the neighbor on swp51 (an unnumbered interface):
 
+{{< tabs "424 ">}}
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@leaf01:~$ cl set vrf default router bgp peer swp51 NEED COMMAND
+cumulus@leaf01:~$ cl config apply
+```
+
+You can replace the private ASNs with your public ASN with the following command:
+
+```
+cumulus@leaf01:~$ cl set vrf default router bgp peer swp51 NEED COMMAND
+cumulus@leaf01:~$ cl config apply
+```
+
+{{< /tab >}}
+{{< tab "NCLU Commands ">}}
+
 ```
 cumulus@switch:~$ net add bgp neighbor swp51 remove-private-AS
 ```
@@ -418,6 +449,9 @@ You can replace the private ASNs with your public ASN with the following command
 cumulus@switch:~$ net add bgp neighbor swp51 remove-private-AS replace-AS
 ```
 
+{{< /tab >}}
+{{< /tabs >}}
+
 ## Multiple BGP ASNs
 
 Cumulus Linux supports the use of distinct ASNs for different VRF instances.
@@ -427,7 +461,19 @@ The following example configures VRF RED and VRF BLUE on border01 to use ASN 655
 {{< img src = "/images/cumulus-linux/asn-vrf-config.png" >}}
 
 {{< tabs "411 ">}}
+{{< tab "CUE Commands ">}}
 
+```
+cumulus@border01:~$ cl set vrf RED router bgp autonomous-system 65532        
+cumulus@border01:~$ cl set vrf RED router bgp router-id 10.10.10.63
+cumulus@border01:~$ cl set vrf RED router bgp peer swp3 interface remote-as external NEED COMMAND
+cumulus@border01:~$ cl set vrf BLUE router bgp autonomous-system 65533 
+cumulus@border01:~$ cl set vrf BLUE router bgp router-id 10.10.10.63
+cumulus@border01:~$ cl set vrf BLUE router bgp peer swp4 interface remote-as external NEED COMMAND
+cumulus@border01:~$ cl config apply
+```
+
+{{< /tabs >}}
 {{< tab "NCLU Commands ">}}
 
 ```
@@ -442,12 +488,10 @@ cumulus@border01:~$ net commit
 ```
 
 {{< /tab >}}
-
 {{< tab "vtysh Commands ">}}
 
 ```
 cumulus@border01:~$ sudo vtysh
-
 border01# configure terminal
 border01(config)# router bgp 65532 vrf RED
 border01(config-router)# bgp router-id 10.10.10.63
@@ -462,11 +506,7 @@ border01# exit
 cumulus@border01:~$
 ```
 
-{{< /tab >}}
-
-{{< /tabs >}}
-
-The following example shows the `/etc/frr/frr.conf` configuration for border01.
+The vtysh commands save the configuration in the `/etc/frr/frr.conf` file:
 
 ```
 cumulus@border01:~$ cat /etc/frr/frr.conf
@@ -525,6 +565,9 @@ router bgp 65533 vrf BLUE
 line vty
 ```
 
+{{< /tab >}}
+{{< /tabs >}}
+
 With the above configuration, the `net show bgp vrf RED summary` command shows the local ASN as 65532.
 
 ```
@@ -570,8 +613,15 @@ In Cumulus Linux, the *BGP multipath* option is enabled by default with the maxi
 
 The example commands change the maximum number of paths to 120. You can set a value between 1 and 256. 1 disables the BGP multipath option.
 
-{{< tabs "555 ">}}
+{{< tabs "617 ">}}
+{{< tab "CUE Commands ">}}
 
+```
+cumulus@switch:~$ NEED COMMAND
+cumulus@border01:~$ cl config apply
+```
+
+{{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
 ```
@@ -581,12 +631,10 @@ cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
-
 {{< tab "vtysh Commands ">}}
 
 ```
 cumulus@switch:~$ sudo vtysh
-
 switch# configure terminal
 switch(config)# router bgp 65101
 switch(config-router)# address-family ipv4
@@ -597,11 +645,7 @@ switch# exit
 cumulus@switch:~$
 ```
 
-{{< /tab >}}
-
-{{< /tabs >}}
-
-The NCLU and `vtysh` commands save the configuration in the `address-family` stanza of the `/etc/frr/frr.conf` file. For example:
+The `vtysh` commands save the configuration in the `address-family` stanza of the `/etc/frr/frr.conf` file. For example:
 
 ```
 ...
@@ -614,10 +658,20 @@ exit-address-family
 ...
 ```
 
+{{< /tab >}}
+{{< /tabs >}}
+
 When *BGP multipath* is enabled, only BGP routes from the same AS are load balanced. If the routes go across several different AS neighbors, even if the AS path length is the same, they are not load balanced. To be able to load balance between multiple paths received from different AS neighbors, you need to set the `bestpath as-path multipath-relax` option.
 
 {{< tabs "601 ">}}
+{{< tab "CUE Commands ">}}
 
+```
+cumulus@switch:~$ NEED COMMAND
+cumulus@border01:~$ cl config apply
+```
+
+{{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
 ```
@@ -627,12 +681,10 @@ cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
-
 {{< tab "vtysh Commands ">}}
 
 ```
 cumulus@switch:~$ sudo vtysh
-
 switch# configure terminal
 switch(config)# router bgp 65101
 switch(config-router)# bgp bestpath as-path multipath-relax
@@ -642,11 +694,7 @@ switch# exit
 cumulus@switch:~$
 ```
 
-{{< /tab >}}
-
-{{< /tabs >}}
-
-The NCLU and `vtysh` commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+The `vtysh` commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
 ```
 ...
@@ -655,6 +703,9 @@ router bgp 65101
   bgp bestpath as-path multipath-relax
 ...
 ```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 {{%notice note%}}
 

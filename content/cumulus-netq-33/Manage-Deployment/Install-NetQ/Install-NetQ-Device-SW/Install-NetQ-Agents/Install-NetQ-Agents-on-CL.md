@@ -117,7 +117,7 @@ To install the NetQ Agent:
     cumulus@switch:~$ dpkg-query -W -f '${Package}\t${Version}\n' netq-agent
     ```
 
-    {{<netq-install/agent-version version="3.3.0" opsys="cl">}}
+    {{<netq-install/agent-version version="3.3.1" opsys="cl">}}
 
 3. Restart `rsyslog` so log files are sent to the correct destination.
 

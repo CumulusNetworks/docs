@@ -18,8 +18,18 @@ If the peer you want to add to a group already exists in the BGP configuration, 
 
 The following example commands create a peer group called SPINE that includes two external peers.
 
-{{< tabs "34 ">}}
+{{< tabs "21 ">}}
+{{< tab "CUE Commands ">}}
 
+```
+cumulus@leaf01:~$ cl set vrf default router bgp peer-group SPINE
+cumulus@leaf01:~$ cl set vrf default router bgp peer-group SPINE remote-as external
+cumulus@leaf01:~$ cl set vrf default router bgp peer 10.0.1.0 peer-group SPINE
+cumulus@leaf01:~$ cl set vrf default router bgp peer 10.0.1.12 peer-group SPINE
+cumulus@leaf01:~$ cl config apply
+```
+
+{{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
 ```
@@ -32,12 +42,10 @@ cumulus@leaf01:~$ net commit
 ```
 
 {{< /tab >}}
-
 {{< tab "vtysh Commands ">}}
 
 ```
 cumulus@leaf01:~$ sudo vtysh
-
 leaf01# configure terminal
 leaf01(config)# router bgp 65101
 leaf01(config-router)# neighbor SPINE peer-group
@@ -52,21 +60,18 @@ cumulus@leaf01:~$
 ```
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 For an unnumbered configuration, you can use a single command to configure a neighbor and attach it to a peer group.
 
-{{< tabs "16 ">}}
-
-{{< tab "NCLU Commands ">}}
+{{< tabs "62 ">}}
+{{< tab "CUE Commands ">}}
 
 ```
-cumulus@leaf01:~$ net add bgp neighbor swp51 interface peer-group SPINE
+cumulus@leaf01:~$ cl set vrf default router bgp peer swp51 peer-group SPINE
 ```
 
 {{< /tab >}}
-
 {{< tab "vtysh Commands ">}}
 
 ```
@@ -74,7 +79,13 @@ leaf01(config-router)# neighbor swp51 interface peer-group SPINE
 ```
 
 {{< /tab >}}
+{{< tab "NCLU Commands ">}}
 
+```
+cumulus@leaf01:~$ net add bgp neighbor swp51 interface peer-group SPINE
+```
+
+{{< /tab >}}
 {{< /tabs >}}
 
 ## BGP Dynamic Neighbors
@@ -85,8 +96,18 @@ You configure dynamic neighbors using the `bgp listen range <ip-address> peer-gr
 
 The following example commands create the peer group SPINE and configure BGP peering to remote neighbors within the address range 10.0.1.0/31.
 
-{{< tabs "36 ">}}
+{{< tabs "100 ">}}
+{{< tab "CUE Commands ">}}
 
+```
+cumulus@leaf01:~$ cl set vrf default router bgp peer-group SPINE
+cumulus@leaf01:~$ cl set vrf default router bgp peer-group SPINE remote-as external
+cumulus@leaf01:~$ cl set vrf default router bgp peer-group SPINE NEED COMMAND
+cumulus@leaf01:~$ cl set vrf default router bgp listen limit 5
+cumulus@leaf01:~$ cl config apply
+```
+
+{{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
 ```
@@ -101,12 +122,10 @@ cumulus@leaf01:~$ net commit
 The `net add bgp listen limit` command limits the number of dynamic peers. The default value is *100*.
 
 {{< /tab >}}
-
 {{< tab "vtysh Commands ">}}
 
 ```
 cumulus@leaf01:~$ sudo vtysh
-
 leaf01# configure terminal
 leaf01(config)# router bgp 65101
 leaf01(config-router)# bgp listen range 10.0.1.0/24 peer-group SPINE
@@ -119,11 +138,7 @@ cumulus@leaf01:~$
 
 The `bgp listen limit` command limits the number of dynamic peers. The default value is *100*.
 
-{{< /tab >}}
-
-{{< /tabs >}}
-
-The NCLU and `vtysh` commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+The `vtysh` commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
 ```
 router bgp 65101
@@ -133,14 +148,25 @@ router bgp 65101
   bgp listen range 10.0.1.0/24 peer-group SPINE
 ```
 
+{{< /tab >}}
+{{< /tabs >}}
+
 ## eBGP Multihop
 
 The eBGP multihop option lets you use BGP to exchange routes with an external peer that is more than one hop away.
 
 To establish a connection between two eBGP peers that are not directly connected:
 
-{{< tabs "42 ">}}
+{{< tabs "154 ">}}
+{{< tab "CUE Commands ">}}
 
+```
+cumulus@leaf01:~$ cl set vrf default router bgp peer 10.10.10.101 remote-as external
+cumulus@leaf01:~$ cl set vrf default router bgp peer 10.10.10.101 NEED COMMAND
+cumulus@leaf01:~$ cl config apply
+```
+
+{{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
 ```
@@ -151,7 +177,6 @@ cumulus@leaf01:~$ net commit
 ```
 
 {{< /tab >}}
-
 {{< tab "vtysh Commands ">}}
 
 ```
@@ -168,7 +193,6 @@ cumulus@leaf01:~$
 ```
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 ## BGP TTL Security Hop Count
@@ -182,7 +206,15 @@ When TTL security is in use, eBGP multihop is no longer needed.
 
 The following command example sets the TTL security hop count value to 200:
 
-{{< tabs "44 ">}}
+{{< tabs "197 ">}}
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@leaf01:~$ cl set vrf default router bgp peer swp51 multihop-ttl 200
+cumulus@leaf01:~$ cl config apply
+```
+
+{{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
 ```
@@ -196,7 +228,6 @@ cumulus@leaf01:~$ net commit
 
 ```
 cumulus@leaf01:~$ sudo vtysh
-
 leaf01# configure terminal
 leaf01(config)# router bgp 65101
 leaf01(config-router)# neighbor swp51 ttl-security hops 200
@@ -206,10 +237,7 @@ leaf01# exit
 cumulus@leaf01:~$
 ```
 
-{{< /tab >}}
-{{< /tabs >}}
-
-The NCLU and `vtysh` commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+The `vtysh` commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
 ```
 ...
@@ -222,9 +250,12 @@ router bgp 65101
 {{%notice note%}}
 
 - When you configure `ttl-security hops` on a peer group instead of a specific neighbor, FRR does not add it to either the running configuration or to the `/etc/frr/frr.conf` file. To work around this issue, add `ttl-security hops` to individual neighbors instead of the peer group.
-- Enabling `ttl-security hops` does not program the hardware with relevant information. Frames are forwarded to the CPU and are dropped. Use the `net add acl` command to explicitly add the relevant entry to hardware. For more information about ACLs, see {{<link title="Netfilter - ACLs">}}.
+- Enabling `ttl-security hops` does not program the hardware with relevant information. Frames are forwarded to the CPU and are dropped. Use the CUE command to explicitly add the relevant entry to hardware. For more information about ACLs, see {{<link title="Netfilter - ACLs">}}.
 
 {{%/notice%}}
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ## MD5-enabled BGP Neighbors
 
@@ -238,7 +269,7 @@ The following example commands set the password *mypassword* on BGP peers leaf01
 
 {{< tab "NCLU Commands ">}}
 
-{{< tabs "1273 ">}}
+{{< tabs "253 ">}}
 
 {{< tab "leaf01 ">}}
 
@@ -266,7 +297,7 @@ cumulus@spine01:~$ net commit
 
 {{< tab "vtysh Commands ">}}
 
-{{< tabs "1295 ">}}
+{{< tabs "281 ">}}
 
 {{< tab "leaf01 ">}}
 
@@ -396,7 +427,7 @@ The following example configures VRF RED and VRF BLUE on border01 to use ASN 655
 
 {{< img src = "/images/cumulus-linux/asn-vrf-config.png" >}}
 
-{{< tabs "400 ">}}
+{{< tabs "411 ">}}
 
 {{< tab "NCLU Commands ">}}
 
@@ -540,7 +571,7 @@ In Cumulus Linux, the *BGP multipath* option is enabled by default with the maxi
 
 The example commands change the maximum number of paths to 120. You can set a value between 1 and 256. 1 disables the BGP multipath option.
 
-{{< tabs "297 ">}}
+{{< tabs "555 ">}}
 
 {{< tab "NCLU Commands ">}}
 
@@ -586,7 +617,7 @@ exit-address-family
 
 When *BGP multipath* is enabled, only BGP routes from the same AS are load balanced. If the routes go across several different AS neighbors, even if the AS path length is the same, they are not load balanced. To be able to load balance between multiple paths received from different AS neighbors, you need to set the `bestpath as-path multipath-relax` option.
 
-{{< tabs "12 ">}}
+{{< tabs "601 ">}}
 
 {{< tab "NCLU Commands ">}}
 
@@ -640,7 +671,7 @@ When BGP peering uses IPv6 global addresses and IPv4 prefixes are being advertis
 
 To enable advertisement of IPv4 prefixes with IPv6 next hops over global IPv6 peerings, add the `extended-nexthop` capability to the global IPv6 neighbor statements on each end of the BGP sessions.
 
-{{< tabs "18 ">}}
+{{< tabs "655 ">}}
 
 {{< tab "NCLU Commands ">}}
 
@@ -682,7 +713,7 @@ router bgp 65101
 
 Ensure that the IPv6 peers are activated under the IPv4 unicast address family; otherwise, all peers are activated in the IPv4 unicast address family by default. If `no bgp default ipv4-unicast` is configured, you need to explicitly activate the IPv6 neighbor under the IPv4 unicast address family as shown below:
 
-{{< tabs "20 ">}}
+{{< tabs "697 ">}}
 
 {{< tab "NCLU Commands ">}}
 
@@ -773,7 +804,7 @@ cumulus@switch:~$ net commit
 
 You can configure BGP to wait for a response from the RIB indicating that the routes installed in the RIB are also installed in the ASIC before sending updates to peers.
 
-{{< tabs "TabID784 ">}}
+{{< tabs "TabID788 ">}}
 
 {{< tab "NCLU Commands ">}}
 
@@ -880,7 +911,7 @@ BGP add-path TX enables BGP to advertise more than just the best path for a pref
 
 The following example commands configure leaf01 to advertise the best path learned from each AS to the BGP neighbor on swp50:
 
-{{< tabs "897 ">}}
+{{< tabs "895 ">}}
 
 {{< tab "NCLU Commands ">}}
 
@@ -913,7 +944,7 @@ cumulus@leaf01:~$
 
 The following example commands configure leaf01 to advertise all paths learned from each AS to the BGP neighbor on swp50:
 
-{{< tabs "927 ">}}
+{{< tabs "928 ">}}
 
 {{< tab "NCLU Commands ">}}
 
@@ -982,7 +1013,7 @@ By default, BGP exchanges periodic keepalive messages to measure and ensure that
 
 The following example commands set the keepalive interval to 10 seconds and the hold time to 30 seconds.
 
-{{< tabs "64 ">}}
+{{< tabs "997 ">}}
 {{< tab "NCLU Commands ">}}
 
 ```
@@ -1025,7 +1056,7 @@ By default, the BGP process attempts to connect to a peer after a failure (or on
 
 The following example commands set the reconnect value to 30 seconds:
 
-{{< tabs "204 ">}}
+{{< tabs "1040 ">}}
 {{< tab "NCLU Commands ">}}
 
 ```
@@ -1067,7 +1098,7 @@ After making a new best path decision for a prefix, BGP can optionally insert a 
 
 The following example commands set the advertisement interval to 5 seconds:
 
-{{< tabs "68 ">}}
+{{< tabs "1082 ">}}
 {{< tab "NCLU Commands ">}}
 
 ```
@@ -1124,7 +1155,7 @@ BGP *wait for convergence* is run automatically by the {{<link url="Smart-System
 
 The following example commands set the `update-delay` timer to 300 seconds and the `establish-wait` timer to 200 seconds:
 
-{{< tabs "TabID12 ">}}
+{{< tabs "TabID1139 ">}}
 
 {{< tab "NCLU Commands ">}}
 
@@ -1197,7 +1228,7 @@ In the following example, spine01 is acting as a route reflector. The leaf switc
 
 To configure the BGP node as a route reflector for a BGP peer, set the neighbor `route-reflector-client` option. The following example sets spine01 shown in the illustration above to be a route reflector for leaf01 (on swp1), which is a route reflector client. No configuration is required on the client.
 
-{{< tabs "344 ">}}
+{{< tabs "1212 ">}}
 {{< tab "NCLU Commands ">}}
 
 ```
@@ -1427,7 +1458,7 @@ BGP goes through a graceful restart (as a restarting router) only with a planned
 
 The following example commands enable global graceful BGP restart:
 
-{{< tabs "TabID19 ">}}
+{{< tabs "TabID1442 ">}}
 
 {{< tab "NCLU Commands ">}}
 
@@ -1459,7 +1490,7 @@ cumulus@switch:~$
 
 The following example commands enable BGP graceful restart on the BGP peer connected on swp51. 
 
-{{< tabs "TabID51 ">}}
+{{< tabs "TabID1474 ">}}
 
 {{< tab "NCLU Commands ">}}
 
@@ -1491,7 +1522,7 @@ cumulus@switch:~$
 
 The following example commands enable helper mode only for the BGP peer connected on swp51. Routes originated and advertised from the peer are not deleted.
 
-{{< tabs "TabID83 ">}}
+{{< tabs "TabID1506 ">}}
 
 {{< tab "NCLU Commands ">}}
 
@@ -1542,7 +1573,7 @@ You can configure the following graceful restart timers, which are set globally.
 
 The following example commands set the `restart-time` to 400 seconds, `pathselect-defer-time` to 300 seconds, and `stalepath-time` to 400 seconds:
 
-{{< tabs "TabID125 ">}}
+{{< tabs "TabID1557 ">}}
 
 {{< tab "NCLU Commands ">}}
 
@@ -1591,7 +1622,7 @@ router bgp 65199
 
 The following example commands disable global graceful restart:
 
-{{< tabs "TabID162 ">}}
+{{< tabs "TabID1606 ">}}
 
 {{< tab "NCLU Commands ">}}
 
@@ -1708,7 +1739,7 @@ The default value for `max-delay` is 0, which disables read-only mode. The `upda
 
 The following example commands enable read-only mode by setting the `max-delay` timer to 300 seconds and the `establish-wait` timer to 90 seconds.
 
-{{< tabs "48 ">}}
+{{< tabs "1723 ">}}
 
 {{< tab "NCLU Commands ">}}
 
@@ -1788,7 +1819,7 @@ cumulus@switch:~$
 
 You can apply the community list to a route map to define the routing policy:
 
-{{< tabs "1127">}}
+{{< tabs "1803">}}
 
 {{< tab "NCLU Commands ">}}
 

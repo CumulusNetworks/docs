@@ -10,8 +10,8 @@ The `cl-support` script generates a compressed archive file of useful informatio
 
 The system creates the `cl-support` archive file automatically for the following reasons:
 
-- When there is a {{<exlink url="http://linux.die.net/man/5/core" text="core file dump">}} of any application (not specific to Cumulus Linux, but something all Linux distributions support), located in `/var/support/core`.
-- After the first failure of one of several monitored services since the switch was rebooted or power cycled.
+- When there is a {{<exlink url="http://linux.die.net/man/5/core" text="core dump file">}} for any application (not specific to Cumulus Linux, but something all Linux distributions support), located in `/var/support/core`.
+- After the first failure of one of several monitored services since the switch rebooted or power cycled.
 
 ## Manual cl-support File
 
@@ -21,7 +21,7 @@ To create the `cl-support` archive file manually, run the `cl-support` command:
 cumulus@switch:~$ sudo cl-support
 ```
 
-If the Cumulus Linux support team requests that you submit the output from `cl-support` to help with the investigation of issues you might experience with Cumulus Linux and you need to include security-sensitive information, such as the `sudoers` file, use the `-s` option:
+If the Cumulus Linux support team requests that you submit the output from `cl-support` to help with the investigation of issues you experience and you need to include security-sensitive information, such as the `sudoers` file, use the `-s` option:
 
 ```
 cumulus@switch:~$ sudo cl-support -s

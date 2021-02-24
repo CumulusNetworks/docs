@@ -261,7 +261,7 @@ iface eth1 inet static
 
 | <div style="width:300px">FHR (First Hop Redundancy) | More Information |
 | ---------------------------|------------------|
-|<ul><li>The first hop is still the ToR, just like redistribute neighbor</li><li>A default route can be advertised by all leaf/ToRs for dynamic ECMP paths</li></ul>|<ul><li>{{<exlink url="http://docs.frrouting.org/en/latest/installation.html" text="Installing the FRRouting Package on an Ubuntu Server">}}</li><li>{{<link url="Configure-FRRouting">}}</li></ul>|
+|<ul><li>The first hop is still the ToR, just like redistribute neighbor</li><li>A default route can be advertised by all leaf/ToRs for dynamic ECMP paths</li></ul>|<ul><li>{{<exlink url="http://docs.frrouting.org/en/latest/installation.html" text="Installing the FRRouting Package on an Ubuntu Server">}}</li><li>{{<link url="FRRouting">}}</li></ul>|
 
 ## Layer 3 - Routing on the VM
 
@@ -275,7 +275,7 @@ iface eth1 inet static
 
 | <div style="width:300px">FHR (First Hop Redundancy) | More Information |
 | ---------------------------|------------------|
-| <ul><li>The first hop is still the ToR, just like redistribute neighbor</li><li>You can use multiple ToRs (two or more)</li><ul>|<ul><li>{{<exlink url="http://docs.frrouting.org/en/latest/installation.html" text="Installing the FRRouting Package on an Ubuntu Server">}}</li><li>{{<link url="Configure-FRRouting">}}</li><ul>|
+| <ul><li>The first hop is still the ToR, just like redistribute neighbor</li><li>You can use multiple ToRs (two or more)</li><ul>|<ul><li>{{<exlink url="http://docs.frrouting.org/en/latest/installation.html" text="Installing the FRRouting Package on an Ubuntu Server">}}</li><li>{{<link url="FRRouting">}}</li><ul>|
 
 ## Layer 3 - Virtual Router
 
@@ -289,7 +289,7 @@ iface eth1 inet static
 
 | <div style="width:300px">FHR (First Hop Redundancy) | More Information |
 | ---------------------------|------------------|
-|<ul><li>The gateway is the vRouter, which has two routes out (two ToRs)</li><li>You can use multiple vRouters</li></ul>|<ul><li>{{<exlink url="http://docs.frrouting.org/en/latest/installation.html" text="Installing the FRRouting Package on an Ubuntu Server">}}</li><li>{{<link url="Configure-FRRouting">}}</li></ul>|
+|<ul><li>The gateway is the vRouter, which has two routes out (two ToRs)</li><li>You can use multiple vRouters</li></ul>|<ul><li>{{<exlink url="http://docs.frrouting.org/en/latest/installation.html" text="Installing the FRRouting Package on an Ubuntu Server">}}</li><li>{{<link url="FRRouting">}}</li></ul>|
 
 ## Layer 3 - Anycast with Manual Redistribution
 

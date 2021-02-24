@@ -136,8 +136,8 @@ Always place your rule files under `/etc/cumulus/acl/policy.d/`.
 
 {{%/notice%}}
 
-- For Mellanox Spectrum switches, Cumulus Linux supports only a single SPAN destination in atomic mode or three SPAN destinations in non-atomic mode.
-- Mellanox Spectrum switches reject SPAN ACL rules for an output interface that is a subinterface.
+- Cumulus Linux supports only a single SPAN destination in atomic mode or three SPAN destinations in non-atomic mode.
+- SPAN ACL rules for an output interface that is a subinterface are not supported.
 - Multiple rules (SPAN sources) can point to the same SPAN destination, but a given SPAN source *cannot* specify two SPAN destinations.
 
 ### SPAN for Switch Ports

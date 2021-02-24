@@ -15,7 +15,7 @@ The `l1-show` command is the preferred tool for monitoring Ethernet data. See th
 
 ## Monitor Interface Status Using ethtool
 
-To check the status of an interface using `ethtool`:
+To check the status of an interface with `ethtool`:
 
 ```
 cumulus@switch:~$ ethtool swp1
@@ -41,7 +41,7 @@ Link detected: yes
 
 {{%notice note%}}
 
-The switch hardware contains the {{<link url="Switch-Port-Attributes" text="active port settings">}}. The output of `ethtool swpXX` shows the port settings stored in the kernel. The `switchd` process keeps the hardware and kernel in sync for the important port settings (speed, auto-negotiation, and link detected) when they change. However, many of the fields in `ethtool`, like Supported Link Modes and Advertised Link Modes are not updated based on the actual module inserted in the port and therefore are incorrect or misleading.
+The switch hardware contains the {{<link url="Switch-Port-Attributes" text="active port settings">}}. The output of `ethtool swpXX` shows the port settings stored in the kernel. The `switchd` process keeps the hardware and kernel in sync for the important port settings (speed, auto-negotiation, and link detected) when they change. However, many of the fields in `ethtool`, such as Supported Link Modes and Advertised Link Modes, are not updated based on the actual module inserted in the port and therefore can be incorrect or misleading.
 
 {{%/notice%}}
 
@@ -79,7 +79,7 @@ NIC statistics:
 
 ## View and Clear Interface Counters
 
-Interface counters contain information about an interface. You can view this information when you run `cl-netstat`, `ifconfig`, or `cat /proc/net/dev`. You can also use `cl-netstat` to save or clear this information:
+Interface counters provide information about an interface. You can view this information when you run `cl-netstat`, `ifconfig`, or `cat /proc/net/dev`. You can also run `cl-netstat` to save or clear this information:
 
 ```
 cumulus@switch:~$ sudo cl-netstat

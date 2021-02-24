@@ -18,8 +18,18 @@ If the peer you want to add to a group already exists in the BGP configuration, 
 
 The following example commands create a peer group called SPINE that includes two external peers.
 
-{{< tabs "34 ">}}
+{{< tabs "21 ">}}
+{{< tab "CUE Commands ">}}
 
+```
+cumulus@leaf01:~$ cl set vrf default router bgp peer-group SPINE
+cumulus@leaf01:~$ cl set vrf default router bgp peer-group SPINE remote-as external
+cumulus@leaf01:~$ cl set vrf default router bgp peer 10.0.1.0 peer-group SPINE
+cumulus@leaf01:~$ cl set vrf default router bgp peer 10.0.1.12 peer-group SPINE
+cumulus@leaf01:~$ cl config apply
+```
+
+{{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
 ```
@@ -32,12 +42,10 @@ cumulus@leaf01:~$ net commit
 ```
 
 {{< /tab >}}
-
 {{< tab "vtysh Commands ">}}
 
 ```
 cumulus@leaf01:~$ sudo vtysh
-
 leaf01# configure terminal
 leaf01(config)# router bgp 65101
 leaf01(config-router)# neighbor SPINE peer-group
@@ -48,17 +56,21 @@ leaf01(config-router)# end
 leaf01# write memory
 leaf01# exit
 cumulus@leaf01:~$
-
 ```
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 For an unnumbered configuration, you can use a single command to configure a neighbor and attach it to a peer group.
 
-{{< tabs "16 ">}}
+{{< tabs "62 ">}}
+{{< tab "CUE Commands ">}}
 
+```
+cumulus@leaf01:~$ cl set vrf default router bgp peer swp51 peer-group SPINE
+```
+
+{{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
 ```
@@ -66,7 +78,6 @@ cumulus@leaf01:~$ net add bgp neighbor swp51 interface peer-group SPINE
 ```
 
 {{< /tab >}}
-
 {{< tab "vtysh Commands ">}}
 
 ```
@@ -74,7 +85,6 @@ leaf01(config-router)# neighbor swp51 interface peer-group SPINE
 ```
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 ## BGP Dynamic Neighbors
@@ -85,8 +95,18 @@ You configure dynamic neighbors using the `bgp listen range <ip-address> peer-gr
 
 The following example commands create the peer group SPINE and configure BGP peering to remote neighbors within the address range 10.0.1.0/31.
 
-{{< tabs "36 ">}}
+{{< tabs "100 ">}}
+{{< tab "CUE Commands ">}}
 
+```
+cumulus@leaf01:~$ cl set vrf default router bgp peer-group SPINE
+cumulus@leaf01:~$ cl set vrf default router bgp peer-group SPINE remote-as external
+cumulus@leaf01:~$ cl set vrf default router bgp peer-group SPINE NEED COMMAND
+cumulus@leaf01:~$ cl set vrf default router bgp listen limit 5
+cumulus@leaf01:~$ cl config apply
+```
+
+{{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
 ```
@@ -101,12 +121,10 @@ cumulus@leaf01:~$ net commit
 The `net add bgp listen limit` command limits the number of dynamic peers. The default value is *100*.
 
 {{< /tab >}}
-
 {{< tab "vtysh Commands ">}}
 
 ```
 cumulus@leaf01:~$ sudo vtysh
-
 leaf01# configure terminal
 leaf01(config)# router bgp 65101
 leaf01(config-router)# bgp listen range 10.0.1.0/24 peer-group SPINE
@@ -119,11 +137,7 @@ cumulus@leaf01:~$
 
 The `bgp listen limit` command limits the number of dynamic peers. The default value is *100*.
 
-{{< /tab >}}
-
-{{< /tabs >}}
-
-The NCLU and `vtysh` commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+The `vtysh` commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
 ```
 router bgp 65101
@@ -133,14 +147,25 @@ router bgp 65101
   bgp listen range 10.0.1.0/24 peer-group SPINE
 ```
 
+{{< /tab >}}
+{{< /tabs >}}
+
 ## eBGP Multihop
 
 The eBGP multihop option lets you use BGP to exchange routes with an external peer that is more than one hop away.
 
 To establish a connection between two eBGP peers that are not directly connected:
 
-{{< tabs "42 ">}}
+{{< tabs "154 ">}}
+{{< tab "CUE Commands ">}}
 
+```
+cumulus@leaf01:~$ cl set vrf default router bgp peer 10.10.10.101 remote-as external
+cumulus@leaf01:~$ cl set vrf default router bgp peer 10.10.10.101 NEED COMMAND
+cumulus@leaf01:~$ cl config apply
+```
+
+{{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
 ```
@@ -151,7 +176,6 @@ cumulus@leaf01:~$ net commit
 ```
 
 {{< /tab >}}
-
 {{< tab "vtysh Commands ">}}
 
 ```
@@ -168,7 +192,6 @@ cumulus@leaf01:~$
 ```
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 ## BGP TTL Security Hop Count
@@ -182,7 +205,15 @@ When TTL security is in use, eBGP multihop is no longer needed.
 
 The following command example sets the TTL security hop count value to 200:
 
-{{< tabs "44 ">}}
+{{< tabs "197 ">}}
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@leaf01:~$ cl set vrf default router bgp peer swp51 multihop-ttl 200
+cumulus@leaf01:~$ cl config apply
+```
+
+{{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
 ```
@@ -196,7 +227,6 @@ cumulus@leaf01:~$ net commit
 
 ```
 cumulus@leaf01:~$ sudo vtysh
-
 leaf01# configure terminal
 leaf01(config)# router bgp 65101
 leaf01(config-router)# neighbor swp51 ttl-security hops 200
@@ -206,10 +236,7 @@ leaf01# exit
 cumulus@leaf01:~$
 ```
 
-{{< /tab >}}
-{{< /tabs >}}
-
-The NCLU and `vtysh` commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+The `vtysh` commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
 ```
 ...
@@ -222,9 +249,12 @@ router bgp 65101
 {{%notice note%}}
 
 - When you configure `ttl-security hops` on a peer group instead of a specific neighbor, FRR does not add it to either the running configuration or to the `/etc/frr/frr.conf` file. To work around this issue, add `ttl-security hops` to individual neighbors instead of the peer group.
-- Enabling `ttl-security hops` does not program the hardware with relevant information. Frames are forwarded to the CPU and are dropped. Use the `net add acl` command to explicitly add the relevant entry to hardware. For more information about ACLs, see {{<link title="Netfilter - ACLs">}}.
+- Enabling `ttl-security hops` does not program the hardware with relevant information. Frames are forwarded to the CPU and are dropped. Use the CUE command to explicitly add the relevant entry to hardware. For more information about ACLs, see {{<link title="Netfilter - ACLs">}}.
 
 {{%/notice%}}
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ## MD5-enabled BGP Neighbors
 
@@ -235,11 +265,31 @@ To enable MD5 authentication for BGP peers, set the same password on each peer.
 The following example commands set the password *mypassword* on BGP peers leaf01 and spine01:
 
 {{< tabs "40 ">}}
+{{< tab "CUE Commands ">}}
 
+{{< tabs "270 ">}}
+{{< tab "leaf01 ">}}
+
+```
+cumulus@leaf01:~$ cl set vrf default router bgp peer swp51 password mypassword
+cumulus@leaf01:~$ cl config apply
+```
+
+{{< /tab >}}
+{{< tab "spine01 ">}}
+
+```
+cumulus@spine01:~$ cl set vrf default router bgp peer swp1 password mypassword
+cumulus@spine01:~$ cl config apply
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+{{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
-{{< tabs "1273 ">}}
-
+{{< tabs "292 ">}}
 {{< tab "leaf01 ">}}
 
 ```
@@ -249,7 +299,6 @@ cumulus@leaf01:~$ net commit
 ```
 
 {{< /tab >}}
-
 {{< tab "spine01 ">}}
 
 ```
@@ -259,15 +308,12 @@ cumulus@spine01:~$ net commit
 ```
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 {{< /tab >}}
-
 {{< tab "vtysh Commands ">}}
 
-{{< tabs "1295 ">}}
-
+{{< tabs "281 ">}}
 {{< tab "leaf01 ">}}
 
 ```
@@ -283,7 +329,6 @@ cumulus@leaf01:~$
 ```
 
 {{< /tab >}}
-
 {{< tab "spine01 ">}}
 
 ```
@@ -299,11 +344,9 @@ cumulus@spine01:~$
 ```
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 You can confirm the configuration with the NCLU command `net show bgp neighbor <neighbor>` or with the `vtysh` command `show ip bgp neighbor <neighbor>`.
@@ -378,6 +421,24 @@ If you use private ASNs in the data center, any routes you send out to the inter
 
 The following example command removes private ASNs from routes sent to the neighbor on swp51 (an unnumbered interface):
 
+{{< tabs "424 ">}}
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@leaf01:~$ cl set vrf default router bgp peer swp51 NEED COMMAND
+cumulus@leaf01:~$ cl config apply
+```
+
+You can replace the private ASNs with your public ASN with the following command:
+
+```
+cumulus@leaf01:~$ cl set vrf default router bgp peer swp51 NEED COMMAND
+cumulus@leaf01:~$ cl config apply
+```
+
+{{< /tab >}}
+{{< tab "NCLU Commands ">}}
+
 ```
 cumulus@switch:~$ net add bgp neighbor swp51 remove-private-AS
 ```
@@ -388,6 +449,9 @@ You can replace the private ASNs with your public ASN with the following command
 cumulus@switch:~$ net add bgp neighbor swp51 remove-private-AS replace-AS
 ```
 
+{{< /tab >}}
+{{< /tabs >}}
+
 ## Multiple BGP ASNs
 
 Cumulus Linux supports the use of distinct ASNs for different VRF instances.
@@ -396,8 +460,20 @@ The following example configures VRF RED and VRF BLUE on border01 to use ASN 655
 
 {{< img src = "/images/cumulus-linux/asn-vrf-config.png" >}}
 
-{{< tabs "400 ">}}
+{{< tabs "411 ">}}
+{{< tab "CUE Commands ">}}
 
+```
+cumulus@border01:~$ cl set vrf RED router bgp autonomous-system 65532        
+cumulus@border01:~$ cl set vrf RED router bgp router-id 10.10.10.63
+cumulus@border01:~$ cl set vrf RED router bgp peer swp3 interface remote-as external NEED COMMAND
+cumulus@border01:~$ cl set vrf BLUE router bgp autonomous-system 65533 
+cumulus@border01:~$ cl set vrf BLUE router bgp router-id 10.10.10.63
+cumulus@border01:~$ cl set vrf BLUE router bgp peer swp4 interface remote-as external NEED COMMAND
+cumulus@border01:~$ cl config apply
+```
+
+{{< /tabs >}}
 {{< tab "NCLU Commands ">}}
 
 ```
@@ -412,12 +488,10 @@ cumulus@border01:~$ net commit
 ```
 
 {{< /tab >}}
-
 {{< tab "vtysh Commands ">}}
 
 ```
 cumulus@border01:~$ sudo vtysh
-
 border01# configure terminal
 border01(config)# router bgp 65532 vrf RED
 border01(config-router)# bgp router-id 10.10.10.63
@@ -432,11 +506,7 @@ border01# exit
 cumulus@border01:~$
 ```
 
-{{< /tab >}}
-
-{{< /tabs >}}
-
-The following example shows the `/etc/frr/frr.conf` configuration for border01.
+The vtysh commands save the configuration in the `/etc/frr/frr.conf` file:
 
 ```
 cumulus@border01:~$ cat /etc/frr/frr.conf
@@ -495,6 +565,9 @@ router bgp 65533 vrf BLUE
 line vty
 ```
 
+{{< /tab >}}
+{{< /tabs >}}
+
 With the above configuration, the `net show bgp vrf RED summary` command shows the local ASN as 65532.
 
 ```
@@ -540,8 +613,15 @@ In Cumulus Linux, the *BGP multipath* option is enabled by default with the maxi
 
 The example commands change the maximum number of paths to 120. You can set a value between 1 and 256. 1 disables the BGP multipath option.
 
-{{< tabs "297 ">}}
+{{< tabs "617 ">}}
+{{< tab "CUE Commands ">}}
 
+```
+cumulus@switch:~$ NEED COMMAND
+cumulus@border01:~$ cl config apply
+```
+
+{{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
 ```
@@ -551,12 +631,10 @@ cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
-
 {{< tab "vtysh Commands ">}}
 
 ```
 cumulus@switch:~$ sudo vtysh
-
 switch# configure terminal
 switch(config)# router bgp 65101
 switch(config-router)# address-family ipv4
@@ -567,11 +645,7 @@ switch# exit
 cumulus@switch:~$
 ```
 
-{{< /tab >}}
-
-{{< /tabs >}}
-
-The NCLU and `vtysh` commands save the configuration in the `address-family` stanza of the `/etc/frr/frr.conf` file. For example:
+The `vtysh` commands save the configuration in the `address-family` stanza of the `/etc/frr/frr.conf` file. For example:
 
 ```
 ...
@@ -584,10 +658,20 @@ exit-address-family
 ...
 ```
 
+{{< /tab >}}
+{{< /tabs >}}
+
 When *BGP multipath* is enabled, only BGP routes from the same AS are load balanced. If the routes go across several different AS neighbors, even if the AS path length is the same, they are not load balanced. To be able to load balance between multiple paths received from different AS neighbors, you need to set the `bestpath as-path multipath-relax` option.
 
-{{< tabs "12 ">}}
+{{< tabs "601 ">}}
+{{< tab "CUE Commands ">}}
 
+```
+cumulus@switch:~$ NEED COMMAND
+cumulus@border01:~$ cl config apply
+```
+
+{{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
 ```
@@ -597,12 +681,10 @@ cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
-
 {{< tab "vtysh Commands ">}}
 
 ```
 cumulus@switch:~$ sudo vtysh
-
 switch# configure terminal
 switch(config)# router bgp 65101
 switch(config-router)# bgp bestpath as-path multipath-relax
@@ -612,11 +694,7 @@ switch# exit
 cumulus@switch:~$
 ```
 
-{{< /tab >}}
-
-{{< /tabs >}}
-
-The NCLU and `vtysh` commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+The `vtysh` commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
 ```
 ...
@@ -625,6 +703,9 @@ router bgp 65101
   bgp bestpath as-path multipath-relax
 ...
 ```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 {{%notice note%}}
 
@@ -640,8 +721,14 @@ When BGP peering uses IPv6 global addresses and IPv4 prefixes are being advertis
 
 To enable advertisement of IPv4 prefixes with IPv6 next hops over global IPv6 peerings, add the `extended-nexthop` capability to the global IPv6 neighbor statements on each end of the BGP sessions.
 
-{{< tabs "18 ">}}
+{{< tabs "724 ">}}
+{{< tab "CUE Commands ">}}
 
+```
+cumulus@switch:~$ cl set vrf default router bgp peer 2001:db8:0002::0a00:0002 NEED COMMAND (maybe address-family ipv6-unicast nexthop-setting?????)
+```
+
+{{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
 ```
@@ -651,12 +738,10 @@ cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
-
 {{< tab "vtysh Commands ">}}
 
 ```
 cumulus@switch:~$ sudo vtysh
-
 switch# configure terminal
 switch(config)# router bgp 65101
 switch(config-router)# neighbor 2001:db8:0002::0a00:0002 capability extended-nexthop
@@ -666,11 +751,7 @@ switch# exit
 cumulus@switch:~$
 ```
 
-{{< /tab >}}
-
-{{< /tabs >}}
-
-The NCLU and `vtysh` commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+The `vtysh` commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
 ```
 ...
@@ -680,10 +761,21 @@ router bgp 65101
 ...
 ```
 
+{{< /tab >}}
+{{< /tabs >}}
+
 Ensure that the IPv6 peers are activated under the IPv4 unicast address family; otherwise, all peers are activated in the IPv4 unicast address family by default. If `no bgp default ipv4-unicast` is configured, you need to explicitly activate the IPv6 neighbor under the IPv4 unicast address family as shown below:
 
-{{< tabs "20 ">}}
+{{< tabs "769 ">}}
+{{< tab "CUE Commands ">}}
 
+```
+cumulus@switch:~$ cl set vrf default router bgp peer 2001:db8:0002::0a00:0002 NEED COMMAND (maybe address-family ipv6-unicast nexthop-setting?????)
+cumulus@switch:~$ cl set vrf default router bgp peer 2001:db8:0002::0a00:0002 address-family ipv4-unicast enable on?????
+cumulus@switch:~$ cl config apply
+```
+
+{{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
 ```
@@ -694,12 +786,10 @@ cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
-
 {{< tab "vtysh Commands ">}}
 
 ```
 cumulus@switch:~$ sudo vtysh
-
 switch# configure terminal
 switch(config)# router bgp 65101
 switch(config-router)# neighbor 2001:db8:0002::0a00:0002 capability extended-nexthop
@@ -711,11 +801,7 @@ switch# exit
 cumulus@switch:~$
 ```
 
-{{< /tab >}}
-
-{{< /tabs >}}
-
-The NCLU and `vtysh` commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+The `vtysh` commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
 ```
 ...
@@ -731,11 +817,25 @@ exit-address-family
 ...
 ```
 
+{{< /tab >}}
+{{< /tabs >}}
+
 ## Neighbor Maximum Prefixes
 
 To protect against an internal network connectivity disruption caused by BGP, you can control how many route announcements (prefixes) can be received from a BGP neighbor.
 
 The following example commands set the maximum number of prefixes allowed from the BGP neighbor on swp51 to 3000:
+
+{{< tabs "829 ">}}
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@switch:~$ cl set vrf default router bgp peer swp51 NEED COMMAND
+cumulus@switch:~$ cl config apply
+```
+
+{{< /tab >}}
+{{< tab "vtysh Commands ">}}
 
 ```
 cumulus@leaf01:~$ sudo vtysh
@@ -749,11 +849,25 @@ leaf01# exit
 cumulus@leaf01:~$
 ```
 
+{{< /tab >}}
+{{< /tabs >}}
+
 ## Aggregate Addresses
 
 To minimize the size of the routing table and save bandwidth, you can aggregate a range of networks in your routing table into a single prefix.
 
 The following example command aggregates a range of addresses, such as 10.1.1.0/24, 10.1.2.0/24, 10.1.3.0/24 into the single prefix 10.1.0.0/16.
+
+{{< tabs "861 ">}}
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@switch:~$ cl set vrf default router bgp NEED COMMAND
+cumulus@switch:~$ cl config apply
+```
+
+{{< /tab >}}
+{{< tab "NCLU Commands ">}}
 
 ```
 cumulus@switch:~$ net add bgp aggregate-address 10.1.0.0/16
@@ -769,12 +883,22 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
+{{< /tab >}}
+{{< /tabs >}}
+
 <!--## Suppress Route Advertisement
 
 You can configure BGP to wait for a response from the RIB indicating that the routes installed in the RIB are also installed in the ASIC before sending updates to peers.
 
-{{< tabs "TabID784 ">}}
+{{< tabs "TabID788 ">}}
+{{< tab "CUE Commands ">}}
 
+```
+cumulus@switch:~$ cl set vrf default router bgp NEED COMMAND
+cumulus@switch:~$ cl config apply
+```
+
+{{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
 ```
@@ -784,12 +908,10 @@ cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
-
 {{< tab "vtysh Commands ">}}
 
 ```
 cumulus@switch:~$ sudo vtysh
-
 switch# configure terminal
 switch(config)# router bgp 65101
 switch(config-router)# bgp suppress-fib-pending
@@ -799,11 +921,7 @@ switch# exit
 cumulus@switch:~$
 ```
 
-{{< /tab >}}
-
-{{< /tabs >}}
-
-The NCLU and vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+The vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
 ```
 ...
@@ -813,6 +931,9 @@ router bgp 65199
  bgp suppress-fib-pending
 ...
 ```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 The {{<link url="Smart-System-Manager" text="Smart System Manager">}} suppresses route advertisement automatically when upgrading or troubleshooting an active switch so that there is minimal disruption to the network.-->
 
@@ -880,8 +1001,16 @@ BGP add-path TX enables BGP to advertise more than just the best path for a pref
 
 The following example commands configure leaf01 to advertise the best path learned from each AS to the BGP neighbor on swp50:
 
-{{< tabs "897 ">}}
+{{< tabs "895 ">}}
+{{< tab "CUE Commands ">}}
 
+```
+cumulus@leaf01:~$ cl set vrf default router bgp autonomous-system 65101
+cumulus@leaf01:~$ cl set vrf default router bgp peer swp50 NEED COMMAND
+cumulus@leaf01:~$ cl config apply
+```
+
+{{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
 ```
@@ -892,12 +1021,10 @@ cumulus@leaf01:~$ net commit
 ```
 
 {{< /tab >}}
-
 {{< tab "vtysh Commands ">}}
 
 ```
 cumulus@leaf01:~$ sudo vtysh
-
 leaf01# configure terminal
 leaf01(config)# router bgp 65101
 leaf01(config-router)# neighbor swp50 addpath-tx-bestpath-per-AS
@@ -908,13 +1035,20 @@ cumulus@leaf01:~$
 ```
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 The following example commands configure leaf01 to advertise all paths learned from each AS to the BGP neighbor on swp50:
 
-{{< tabs "927 ">}}
+{{< tabs "928 ">}}
+{{< tab "CUE Commands ">}}
 
+```
+cumulus@leaf01:~$ cl set vrf default router bgp autonomous-system 65101
+cumulus@leaf01:~$ cl set vrf default router bgp peer swp50 NEED COMMAND
+cumulus@leaf01:~$ cl config apply
+```
+
+{{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
 ```
@@ -925,12 +1059,10 @@ cumulus@leaf01:~$ net commit
 ```
 
 {{< /tab >}}
-
 {{< tab "vtysh Commands ">}}
 
 ```
 cumulus@leaf01:~$ sudo vtysh
-
 leaf01# configure terminal
 leaf01(config)# router bgp 65101
 leaf01(config-router)# neighbor swp50 addpath-tx-all-paths
@@ -941,7 +1073,6 @@ cumulus@leaf01:~$
 ```
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 The following example configuration shows how BGP add-path TX is used to advertise the best path learned from each AS.
@@ -982,7 +1113,16 @@ By default, BGP exchanges periodic keepalive messages to measure and ensure that
 
 The following example commands set the keepalive interval to 10 seconds and the hold time to 30 seconds.
 
-{{< tabs "64 ">}}
+{{< tabs "1120 ">}}
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@leaf01:~$ cl set vrf default router bgp peer swp51 timers keepalive 10
+cumulus@leaf01:~$ cl set vrf default router bgp peer swp51 timers hold 30
+cumulus@leaf01:~$ cl config apply
+```
+
+{{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
 ```
@@ -996,7 +1136,6 @@ cumulus@leaf01:~$ net commit
 
 ```
 cumulus@leaf01:~$ sudo vtysh
-
 leaf01# configure terminal
 leaf01(config)# router bgp
 leaf01(config-router)# neighbor swp51 timers 10 30
@@ -1006,10 +1145,7 @@ leaf01# exit
 cumulus@leaf01:~$
 ```
 
-{{< /tab >}}
-{{< /tabs >}}
-
-The NCLU and `vtysh` commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+The `vtysh` commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
 ```
 ...
@@ -1019,13 +1155,24 @@ router bgp 65101
 ...
 ```
 
+{{< /tab >}}
+{{< /tabs >}}
+
 ### Reconnect Interval
 
 By default, the BGP process attempts to connect to a peer after a failure (or on startup) every 10 seconds. You can change this value to suit your needs.
 
 The following example commands set the reconnect value to 30 seconds:
 
-{{< tabs "204 ">}}
+{{< tabs "1040 ">}}
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@leaf01:~$ cl set vrf default router bgp peer swp51 timers connection-retry 30
+cumulus@leaf01:~$ cl config apply
+```
+
+{{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
 ```
@@ -1039,7 +1186,6 @@ cumulus@leaf01:~$ net commit
 
 ```
 cumulus@leaf01:~$ sudo vtysh
-
 leaf01# configure terminal
 leaf01(config)# router bgp
 leaf01(config-router)# neighbor swp51 timers connect 30
@@ -1049,10 +1195,8 @@ leaf01# exit
 cumulus@leaf01:~$
 ```
 
-{{< /tab >}}
-{{< /tabs >}}
+The `vtysh` commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
-The NCLU and `vtysh` commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 ```
 ...
 router bgp 65101
@@ -1061,13 +1205,24 @@ router bgp 65101
 ...
 ```
 
+{{< /tab >}}
+{{< /tabs >}}
+
 ### Advertisement Interval
 
 After making a new best path decision for a prefix, BGP can optionally insert a delay before advertising the new results to a peer. This delay is used to rate limit the amount of changes advertised to downstream peers and lowers processing requirements by slowing down convergence. By default, this interval is set to 0 seconds for both eBGP and iBGP sessions, which allows for very fast convergence. For more information about the advertisement interval, see {{<exlink url="http://tools.ietf.org/html/draft-jakma-mrai-02" text="this IETF draft">}}.
 
 The following example commands set the advertisement interval to 5 seconds:
 
-{{< tabs "68 ">}}
+{{< tabs "1082 ">}}
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@leaf01:~$ cl set vrf default router bgp peer swp51 timers route-advertisement 5
+cumulus@leaf01:~$ cl config apply
+```
+
+{{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
 ```
@@ -1081,7 +1236,6 @@ cumulus@leaf01:~$ net commit
 
 ```
 cumulus@leaf01:~$ sudo vtysh
-
 leaf01# configure terminal
 leaf01(config)# router bgp
 leaf01(config-router)# neighbor swp51 advertisement-interval 5
@@ -1091,10 +1245,7 @@ leaf01# exit
 cumulus@leaf01:~$
 ```
 
-{{< /tab >}}
-{{< /tabs >}}
-
-The NCLU and `vtysh` commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+The `vtysh` commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
 ```
 ...
@@ -1103,6 +1254,9 @@ router bgp 65101
   neighbor swp51 advertisement-interval 5
 ...
 ```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 <!--### Wait for Convergence
 
@@ -1124,8 +1278,14 @@ BGP *wait for convergence* is run automatically by the {{<link url="Smart-System
 
 The following example commands set the `update-delay` timer to 300 seconds and the `establish-wait` timer to 200 seconds:
 
-{{< tabs "TabID12 ">}}
+{{< tabs "TabID1139 ">}}
+{{< tab "CUE Commands ">}}
 
+```
+cumulus@switch:~$ cl set vrf default router bgp NEED COMMAND
+```
+
+{{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
 ```
@@ -1135,12 +1295,10 @@ cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
-
 {{< tab "vtysh Commands ">}}
 
 ```
 cumulus@switch:~$ sudo vtysh
-
 switch# configure terminal
 switch(config)# router bgp 65101
 switch(config-router)# update-delay 300 200
@@ -1150,11 +1308,7 @@ switch# exit
 cumulus@switch:~$
 ```
 
-{{< /tab >}}
-
-{{< /tabs >}}
-
-The NCLU and vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+The vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
 ```
 ...
@@ -1164,6 +1318,9 @@ router bgp 65199
  bgp update-delay 300 200
 ...
 ```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 To show the configured timers and information about the transitions when a convergence event occurs, run the NCLU `net show bgp summary` command or the vtysh `show ip bgp summary` command.
 
@@ -1197,7 +1354,15 @@ In the following example, spine01 is acting as a route reflector. The leaf switc
 
 To configure the BGP node as a route reflector for a BGP peer, set the neighbor `route-reflector-client` option. The following example sets spine01 shown in the illustration above to be a route reflector for leaf01 (on swp1), which is a route reflector client. No configuration is required on the client.
 
-{{< tabs "344 ">}}
+{{< tabs "1212 ">}}
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@spine01:~$ cl set vrf default router bgp peer swp1 address-family ipv4-unicast route-reflector-client on
+cumulus@spine01:~$ cl config apply
+```
+
+{{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
 ```
@@ -1211,7 +1376,6 @@ cumulus@spine01:~$ net commit
 
 ```
 cumulus@spine01:~$ sudo vtysh
-
 spine01# configure terminal
 spine01(config)# router bgp 65199
 spine01(config-router)# address-family ipv4
@@ -1222,10 +1386,7 @@ spine01# exit
 cumulus@spine01:~$
 ```
 
-{{< /tab >}}
-{{< /tabs >}}
-
-The NCLU and `vtysh` commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+The vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
 ```
 ...
@@ -1240,6 +1401,9 @@ router bgp 65199
 ...
 ```
 
+{{< /tab >}}
+{{< /tabs >}}
+
 {{%notice info%}}
 When configuring BGP for IPv6, you must run the `route-reflector-client` command **after** the `activate` command; otherwise, the `route-reflector-client` command is ignored.
 {{%/notice%}}
@@ -1251,6 +1415,17 @@ Cumulus Linux uses the administrative distance to choose which routing protocol 
 Set the administrative distance with vtysh commands.
 
 The following example commands set the administrative distance for routes from 10.10.10.101 to 100:
+
+{{< tabs "1423 ">}}
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@spine01:~$ cl set vrf default router bgp peer NEED COMMAND
+cumulus@spine01:~$ cl config apply
+```
+
+{{< /tab >}}
+{{< tab "vtysh Commands ">}}
 
 ```
 cumulus@spine01:~$ sudo vtysh
@@ -1264,7 +1439,21 @@ spine01# exit
 cumulus@spine01:~$
 ```
 
+{{< /tab >}}
+{{< /tabs >}}
+
 The following example commands set the administrative distance for routes external to the AS to 150, routes internal to the AS to 110, and local routes to 100:
+
+{{< tabs "1451 ">}}
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@spine01:~$ cl set vrf default router bgp NEED COMMAND
+cumulus@spine01:~$ cl config apply
+```
+
+{{< /tab >}}
+{{< tab "vtysh Commands ">}}
 
 ```
 cumulus@spine01:~$ sudo vtysh
@@ -1278,12 +1467,29 @@ spine01# exit
 cumulus@spine01:~$
 ```
 
+{{< /tab >}}
+{{< /tabs >}}
+
 ## Graceful BGP Shutdown
 
 To reduce packet loss during planned maintenance of a router or link, you can configure graceful BGP shutdown, which forces traffic to route around the BGP node:
 
-{{< tabs "Graceful BGP shutdown">}}
+{{< tabs "1481 ">}}
+{{< tab "CUE Commands ">}}
 
+```
+cumulus@leaf01:~$ cl set router bgp graceful-shutdown on
+cumulus@leaf01:~$ cl config apply
+```
+
+To disable graceful shutdown:
+
+```
+cumulus@leaf01:~$ cl set router bgp graceful-shutdown off
+cumulus@leaf01:~$ cl config apply
+```
+
+{{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
 To enable graceful shutdown:
@@ -1303,14 +1509,12 @@ cumulus@leaf01:~$ net commit
 ```
 
 {{< /tab >}}
-
 {{< tab "vtysh Commands ">}}
 
 To enable graceful shutdown:
 
 ```
 cumulus@leaf01:~$ sudo vtysh
-
 leaf01# configure terminal
 leaf01(config)# router bgp 65101
 leaf01(config-router)# bgp graceful-shutdown
@@ -1324,7 +1528,6 @@ To disable graceful shutdown:
 
 ```
 cumulus@leaf01:~$ sudo vtysh
-
 leaf01# configure terminal
 leaf01(config)# router bgp 65101
 leaf01(config-router)# no bgp graceful-shutdown
@@ -1335,7 +1538,6 @@ cumulus@leaf01:~$
 ```
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 When configured, the `graceful-shutdown` community is added to all paths from eBGP peers and the `local-pref` for that route is set to `0`. To see the configuration, run the NCLU command `net show bgp <route>` or the `vtysh` command `show ip bgp <route>`. For example:
@@ -1427,8 +1629,15 @@ BGP goes through a graceful restart (as a restarting router) only with a planned
 
 The following example commands enable global graceful BGP restart:
 
-{{< tabs "TabID19 ">}}
+{{< tabs "TabID1442 ">}}
+{{< tab "CUE Commands ">}}
 
+```
+cumulus@leaf01:~$ cl set vrf default router bgp peer swp51 NEED COMMAND
+cumulus@leaf01:~$ cl config apply
+```
+
+{{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
 ```
@@ -1438,12 +1647,10 @@ cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
-
 {{< tab "vtysh Commands ">}}
 
 ```
 cumulus@switch:~$ sudo vtysh
-
 switch# configure terminal
 switch(config)# router bgp 65101
 switch(config-router)# bgp graceful-restart
@@ -1454,13 +1661,19 @@ cumulus@switch:~$
 ```
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
-The following example commands enable BGP graceful restart on the BGP peer connected on swp51. 
+The following example commands enable BGP graceful restart on the BGP peer connected on swp51.
 
-{{< tabs "TabID51 ">}}
+{{< tabs "TabID1474 ">}}
+{{< tab "CUE Commands ">}}
 
+```
+cumulus@leaf01:~$ cl set vrf default router bgp peer swp51 graceful-restart-mode full?????
+cumulus@leaf01:~$ cl config apply
+```
+
+{{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
 ```
@@ -1470,12 +1683,10 @@ cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
-
 {{< tab "vtysh Commands ">}}
 
 ```
 cumulus@switch:~$ sudo vtysh
-
 switch# configure terminal
 switch(config)# router bgp 65101
 switch(config-router)# neighbor swp51 graceful-restart
@@ -1486,13 +1697,19 @@ cumulus@switch:~$
 ```
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 The following example commands enable helper mode only for the BGP peer connected on swp51. Routes originated and advertised from the peer are not deleted.
 
-{{< tabs "TabID83 ">}}
+{{< tabs "TabID1506 ">}}
+{{< tab "CUE Commands ">}}
 
+```
+cumulus@leaf01:~$ cl set vrf default router bgp peer swp51 graceful-restart-mode helper-only?????
+cumulus@leaf01:~$ cl config apply
+```
+
+{{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
 ```
@@ -1502,12 +1719,10 @@ cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
-
 {{< tab "vtysh Commands ">}}
 
 ```
 cumulus@switch:~$ sudo vtysh
-
 switch# configure terminal
 switch(config)# router bgp 65101
 switch(config-router)# neighbor swp51 graceful-restart-helper
@@ -1517,11 +1732,7 @@ switch# exit
 cumulus@switch:~$
 ```
 
-{{< /tab >}}
-
-{{< /tabs >}}
-
-The NCLU and vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+The vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
 ```
 ...
@@ -1531,6 +1742,9 @@ router bgp 65199
  neighbor swp51 graceful-restart
 ...
 ```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 You can configure the following graceful restart timers, which are set globally.
 
@@ -1542,8 +1756,15 @@ You can configure the following graceful restart timers, which are set globally.
 
 The following example commands set the `restart-time` to 400 seconds, `pathselect-defer-time` to 300 seconds, and `stalepath-time` to 400 seconds:
 
-{{< tabs "TabID125 ">}}
+{{< tabs "TabID1557 ">}}
+{{< tab "CUE Commands ">}}
 
+```
+cumulus@leaf01:~$ NEED COMMAND
+cumulus@leaf01:~$ cl config apply
+```
+
+{{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
 ```
@@ -1555,12 +1776,10 @@ cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
-
 {{< tab "vtysh Commands ">}}
 
 ```
 cumulus@switch:~$ sudo vtysh
-
 switch# configure terminal
 switch(config)# router bgp 65101
 switch(config-router)# bgp graceful-restart restart-time 400
@@ -1572,11 +1791,7 @@ switch# exit
 cumulus@switch:~$ 
 ```
 
-{{< /tab >}}
-
-{{< /tabs >}}
-
-The NCLU and vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+The vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
 ```
 ...
@@ -1589,10 +1804,20 @@ router bgp 65199
 ...
 ```
 
+{{< /tab >}}
+{{< /tabs >}}
+
 The following example commands disable global graceful restart:
 
-{{< tabs "TabID162 ">}}
+{{< tabs "TabID1816 ">}}
+{{< tab "CUE Commands ">}}
 
+```
+cumulus@leaf01:~$ cl set vrf default router bgp NEED COMMAND
+cumulus@leaf01:~$ cl config apply$
+```
+
+{{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
 ```
@@ -1602,12 +1827,10 @@ cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
-
 {{< tab "vtysh Commands ">}}
 
 ```
 cumulus@switch:~$ sudo vtysh
-
 switch# configure terminal
 switch(config)# router bgp 65101
 switch(config-router)# bgp graceful-restart-disable
@@ -1618,13 +1841,19 @@ cumulus@switch:~$
 ```
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 The following example commands disable graceful BGP restart on a BGP peer:
 
 {{< tabs "TabID169 ">}}
+{{< tab "CUE Commands ">}}
 
+```
+cumulus@leaf01:~$ cl set vrf default router bgp peer swp51 graceful-restart-mode off
+cumulus@leaf01:~$ cl config apply
+```
+
+{{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
 ```
@@ -1634,12 +1863,10 @@ cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
-
 {{< tab "vtysh Commands ">}}
 
 ```
 cumulus@switch:~$ sudo vtysh
-
 switch# configure terminal
 switch(config)# router bgp 65101
 switch(config-router)# neighbor swp51 graceful-restart-disable
@@ -1650,7 +1877,6 @@ cumulus@switch:~$
 ```
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 To show BGP graceful restart information, run the NCLU `net show bgp neighbor <neighbour> graceful-restart` command or the vtysh `show bgp neighbor <neighbor> graceful-restart` command.
@@ -1708,8 +1934,14 @@ The default value for `max-delay` is 0, which disables read-only mode. The `upda
 
 The following example commands enable read-only mode by setting the `max-delay` timer to 300 seconds and the `establish-wait` timer to 90 seconds.
 
-{{< tabs "48 ">}}
+{{< tabs "1723 ">}}
+{{< tab "CUE Commands ">}}
 
+```
+cumulus@switch:~$ NEED COMMAND
+```
+
+{{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
 ```
@@ -1719,12 +1951,10 @@ cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
-
 {{< tab "vtysh Commands ">}}
 
 ```
 cumulus@switch:~$ sudo vtysh
-
 switch# configure terminal
 switch(config)# router bgp
 switch(config-router)# update-delay 300 90
@@ -1735,7 +1965,6 @@ cumulus@switch:~$
 ```
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 To show information about the state of the update delay, run the NCLU command `net show bgp summary` or the `vtysh` command `show ip bgp summary`.
@@ -1757,8 +1986,14 @@ When the neighbor receives the prefix, it examines the community value and takes
 
 Here is an example of a standard community list filter:
 
-{{< tabs "54 ">}}
+{{< tabs "1995 ">}}
+{{< tab "CUE Commands ">}}
 
+```
+cumulus@switch:~$ NEED COMMAND
+```
+
+{{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
 ```
@@ -1768,12 +2003,10 @@ cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
-
 {{< tab "vtysh Commands ">}}
 
 ```
 cumulus@switch:~$ sudo vtysh
-
 switch# configure terminal
 switch(config)# bgp community-list standard COMMUNITY1 permit 100:100
 switch(config)# exit
@@ -1783,13 +2016,18 @@ cumulus@switch:~$
 ```
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 You can apply the community list to a route map to define the routing policy:
 
-{{< tabs "1127">}}
+{{< tabs "2029">}}
+{{< tab "CUE Commands ">}}
 
+```
+cumulus@switch:~$ NEED COMMAND
+```
+
+{{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
 ```
@@ -1799,12 +2037,10 @@ cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
-
 {{< tab "vtysh Commands ">}}
 
 ```
 cumulus@switch:~$ sudo vtysh
-
 switch# configure terminal
 switch(config)# router bgp 65101
 switch(config-router)# table-map ROUTE-MAP1
@@ -1815,7 +2051,6 @@ cumulus@switch:~$
 ```
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 ## Related Information

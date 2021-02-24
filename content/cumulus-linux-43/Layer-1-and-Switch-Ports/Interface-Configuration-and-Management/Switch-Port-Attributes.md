@@ -1207,9 +1207,9 @@ cumulus@switch:~$ sudo ethtool -m swp4 | egrep 'Vendor|type|power\s+:'
 
 ## Considerations
 
-### Auto-negotiationa and FEC on Mellanox Switches
+### Auto-negotiation and FEC on Mellanox Spectrum Switches
 
-On Spectrum switches, if auto-negotiation is disabled on 100G and 25G interfaces, you must set FEC to off, RS, or BaseR to match the neighbor. The FEC default configuration of `auto` does not link up when auto-negotiation is disabled.
+On Mellanox Spectrum switches, if auto-negotiation is disabled on 100G and 25G interfaces, you must set FEC to *OFF*, RS, or BaseR to match the neighbor. The FEC default setting of *auto* does not link up when auto-negotiation is disabled.
 
 ### Port Speed and the ifreload -a Command
 

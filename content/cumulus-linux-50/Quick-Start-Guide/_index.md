@@ -110,7 +110,7 @@ iface eth0
 Configure the hostname and timezone for your switch. The hostname identifies the switch; make sure you configure the hostname to be unique and descriptive.
 
 {{%notice note%}}
-Do not use an underscore (\_), apostrophe ('), or non-ASCII character in the hostname.
+Do not use an underscore (_), apostrophe ('), or non-ASCII character in the hostname.
 {{%/notice%}}
 
 To change the hostname:
@@ -221,13 +221,11 @@ Check that your license is installed with the `cl-license` command.
     user@example.com|$ampleL1cen$et3xt
 
 {{%notice note%}}
-
 It is not necessary to reboot the switch to activate the switch ports. After you install the license, restart the `switchd` service. All front panel ports become active and show up as swp1, swp2, and so on.
 
 {{<cl/restart-switchd>}}
 
 If a license is not installed on a Cumulus Linux switch, the `switchd` service does not start. After you install the license, start `switchd` as described above.
-
 {{%/notice%}}-->
 
 ## Configure Breakout Ports with Splitter Cables
@@ -263,8 +261,6 @@ cumulus@switch:~$ cl show interface
 
 {{< /tab >}}
 {{< tab "NCLU Commands ">}}
-
-To administratively enable a port:
 
 ```
 cumulus@switch:~$ net add interface swp1

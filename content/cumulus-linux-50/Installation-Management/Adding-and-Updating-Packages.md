@@ -5,22 +5,18 @@ weight: 80
 toc: 3
 ---
 
-You use the Advanced Packaging Tool (`apt`) to manage additional applications (in the form of packages) and to install the latest updates.
+To manage additional applications in the form of packages and to install the latest updates, use the Advanced Packaging Tool (`apt`).
 
 {{%notice warning%}}
-
 Updating, upgrading, and installing packages with `apt` causes disruptions to network services:
-
 - Upgrading a package might result in services being restarted or stopped as part of the upgrade process.
 - Installing a package might disrupt core services by changing core service dependency packages. In some cases, installing new packages might also upgrade additional existing packages due to dependencies.
-
-If services are stopped, you might need to reboot the switch for those services to restart.
-
+- If services are stopped, you might need to reboot the switch for those services to restart.
 {{%/notice%}}
 
 ## Update the Package Cache
 
-To work properly, `apt` relies on a local cache listing of the available packages. You must populate the cache initially, then periodically update it with `sudo -E apt-get update`:
+To work correctly, `apt` relies on a local cache listing of the available packages. You must populate the cache initially, then periodically update it with `sudo -E apt-get update`:
 
 ```
 cumulus@switch:~$ sudo -E apt-get update
@@ -129,17 +125,28 @@ Filename: pool/upstream/t/tcpdump/tcpdump_4.9.3-1~deb10u1_amd64.deb
 ```
 
 {{%notice note%}}
-
 The search commands look for the search terms not only in the package name but in other parts of the package information; the search matches on more packages than you might expect.
-
 {{%/notice%}}
 
 ## List Packages Installed on the System
 
-`apt-cache` command shows information about all the packages available in the repository. To see which packages are actually installed on your system with their versions, run the following commands.
+The `apt-cache` command shows information about all the packages available in the repository. To see which packages are actually installed on your system with the version, run the following commands.
 
 {{< tabs "TabID143 ">}}
+{{< tab "CUE Commands ">}}
 
+Run the `cl show platform software installed` command:
+
+```
+cumulus@switch:~$ cl show platform software installed
+                                       description                                                                                                                   package                                version
+-------------------------------------  ----------------------------------------------------------------------------------------------------------------------------  -------------------------------------  ----------------------------------------------
+acpi                                   displays information on ACPI devices                                                                                          acpi                                   1.7-1.1
+acpi-support-base                      scripts for handling base ACPI events such as the power button                                                                acpi-support-base                      0.142-8
+acpid                                  Advanced Configuration and Power Interface event daemon                                                                       acpid                                  1:2.0.31-1
+```
+
+{{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
 Run the `net show package version` command:
@@ -161,7 +168,6 @@ atftpd                             0.7.git20120829-3.1
 ```
 
 {{< /tab >}}
-
 {{< tab "Linux Commands ">}}
 
 Run the `dpkg -l` command:
@@ -186,7 +192,6 @@ ii  atftpd              0.7.git20120829-3.1       amd64        advanced TFTP ser
 ```
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 ## Show the Version of a Package
@@ -194,10 +199,23 @@ ii  atftpd              0.7.git20120829-3.1       amd64        advanced TFTP ser
 To show the version of a specific package installed on the system:
 
 {{< tabs "TabID202 ">}}
+{{< tab "CUE Commands ">}}
 
+Run the `cl show platform software installed <package>` command. The following example command shows which version of the `vrf` package is installed on the system:
+
+```
+cumulus@switch:~$ cl show platform software installed vrf
+             running              applied  pending  description
+-----------  -------------------  -------  -------  -----------
+description  Linux tools for VRF                    Description
+package      vrf                                    Package
+version      1.0-cl4.2.1+u1                         Version
+```
+
+{{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
-Run the `net show package version <package>` command. For example, the following command shows which version of the `vrf` package is installed on the system:
+Run the `net show package version <package>` command. The following example command shows which version of the `vrf` package is installed on the system:
 
 ```
 cumulus@switch:~$ net show package version vrf
@@ -205,10 +223,9 @@ cumulus@switch:~$ net show package version vrf
 ```
 
 {{< /tab >}}
-
 {{< tab "Linux Commands ">}}
 
-Run the Linux `dpkg -l <package_name>` command. For example, the following command shows which version of the `vrf` package is installed on the system:
+Run the Linux `dpkg -l <package_name>` command. The following example command shows which version of the `vrf` package is installed on the system:
 
 ```
 cumulus@switch:~$ dpkg -l vrf
@@ -221,7 +238,6 @@ ii  vrf        1.0-cl4u2    amd64        Linux tools for VRF
 ```
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 ## Upgrade Packages
@@ -233,7 +249,7 @@ cumulus@switch:~$ sudo -E apt-get update
 cumulus@switch:~$ sudo -E apt-get upgrade
 ```
 
-A list of packages that will be upgraded is displayed and you are prompted to continue.
+The packages that will be upgraded are listed and you are prompted to continue.
 
 The above commands upgrade all installed versions with their latest versions but do not install any new packages.
 
@@ -269,27 +285,19 @@ cumulus@switch:~$ sudo -E apt-get install <package1> <package2> <package3>
 ```
 
 {{%notice tip%}}
-
 In some cases, installing a new package might also upgrade additional existing packages due to dependencies. To view these additional packages before you install, run the `apt-get install --dry-run` command.
-
 {{%/notice%}}
 
 ## Add Packages from Another Repository
 
 As shipped, Cumulus Linux searches the Cumulus Linux repository for available packages. You can add additional repositories to search by adding them to the list of sources that `apt-get` consults. See `man sources.list` for more information.
 
-{{%notice tip%}}
-
 NVIDIA has added features or made bug fixes to certain packages; you must not replace these packages with versions from other repositories. Cumulus Linux is configured to ensure that the packages from the Cumulus Linux repository are always preferred over packages from other repositories.
-
-{{%/notice%}}
 
 If you want to install packages that are not in the Cumulus Linux repository, the procedure is the same as above, but with one additional step.
 
 {{%notice note%}}
-
 Packages that are not part of the Cumulus Linux Repository are not typically tested and might not be supported by Cumulus Linux Technical Support.
-
 {{%/notice%}}
 
 Installing packages outside of the Cumulus Linux repository requires the use of `sudo -E apt-get`; however, depending on the package, you can use `easy-install` and other commands.

@@ -380,9 +380,11 @@ To configure a these premises so that their data can be viewed from one premises
 
 10. Click **Next**.
 
-11. Select the OPID associated with the premises you want to connect.
+11. Select the premises you want to connect.
 
-12. Click **Done**.
+    {{<figure src="/images/netq/premises-card-select-external-prems-330.png" width="350">}}
+
+12. Click **Finish**.
 
 13. Add more secondary premises by clicking {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18">}} and repeating Steps 8-12.
 

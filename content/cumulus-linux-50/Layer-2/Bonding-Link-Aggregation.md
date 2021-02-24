@@ -93,7 +93,14 @@ In the example below, the front panel port interfaces swp1 thru swp4 are slaves 
 To create and configure a bond:
 
 {{< tabs "TabID46 ">}}
+{{< tab "CUE Commands ">}}
 
+```
+cumulus@switch:~$ cl set interface bond0 bond member swp1-4
+cumulus@switch:~$ cl config apply
+```
+
+{{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
 Run the `net add bond` command. The example command below creates a bond called `bond0` with slaves swp1, swp2, swp3, and swp4:
@@ -105,7 +112,6 @@ cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
-
 {{< tab "Linux Commands ">}}
 
 Edit the `/etc/network/interfaces` file to add a stanza for the bond, then run the `ifreload -a` command. The example below creates a bond called `bond0` with slaves swp1, swp2, swp3, and swp4:
@@ -124,7 +130,6 @@ cumulus@switch:~$ ifreload -a
 ```
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 {{%notice note%}}
@@ -167,7 +172,16 @@ All slave interfaces within a bond have the same MAC address as the bond. Typica
 The configuration options for a bond are are described in the table below. To configure a bond:
 
 {{< tabs "TabID119 ">}}
+{{< tab "CUE Commands ">}}
 
+The following example sets the bond mode for bond01 to balance-xor (static):
+
+```
+cumulus@switch:~$ cl set interface bond01 bond mode static 
+cumulus@switch:~$ cl config apply
+```
+
+{{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
 Run `net add bond <bond-name> bond <option>`. The following example sets the bond mode for bond01 to `balance-xor`:
@@ -179,7 +193,6 @@ cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
-
 {{< tab "Linux Commands ">}}
 
 Edit the `/etc/network/interfaces` file to add the parameter to the bond stanza, then run the `ifreload -a` command. The following example sets the bond mode for bond01 to `balance-xor`:
@@ -199,7 +212,6 @@ cumulus@switch:~$ ifreload -a
 ```
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 {{%notice note%}}
@@ -223,7 +235,13 @@ Each bond configuration option, except for `bond slaves,` is set to the recommen
 To show information for a bond:
 
 {{< tabs "TabID177 ">}}
+{{< tab "CUE Commands ">}}
 
+```
+cumulus@switch:~$ cl show interface bond0 
+```
+
+{{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
 Run the `net show interface <bond>` command:
@@ -268,7 +286,6 @@ swp4(P)  ====  swp2(p1c1h1)Routing
 ```
 
 {{< /tab >}}
-
 {{< tab "Linux Commands ">}}
 
 Run the `sudo cat /proc/net/bonding/<bond>` command:
@@ -295,7 +312,6 @@ Slave queue ID: 0
 ```
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 {{%notice info%}}

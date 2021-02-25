@@ -59,7 +59,8 @@ ecn_red.ROCE_ECN.probability = 100
 
 {{%notice note%}}
 
-While {{<link url="Buffer-and-Queue-Management#link-pause" text="link pause">}} is another way to provide lossless ethernet, PFC is the preferred method. PFC allows more granular control by pausing the traffic flow for a given CoS group, rather than the entire link.
+- While {{<link url="Buffer-and-Queue-Management#link-pause" text="link pause">}} is another way to provide lossless ethernet, PFC is the preferred method. PFC allows more granular control by pausing the traffic flow for a given CoS group, rather than the entire link.
+- RoCEv1 depends on 802.1p fields for traffic classification; therefore it is not supported with access ports. Use trunk ports with RoCEv1.
 
 {{%/notice%}}
 

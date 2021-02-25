@@ -75,7 +75,7 @@ Now that you have the plug-in installed, you need to configure access to the Net
 
 6. Enter the URL used to access the database:
     - Cloud: *api.netq.cumulusnetworks.com*
-    - On-premises: *\<hostname-or-ipaddr\>/api*
+    - On-premises: *\<hostname-or-ipaddr-of-netq-appl-or-vm\>/api*
     - Cumulus in the Cloud (CITC): *air.netq.cumulusnetworks.com*
 
 <!-- 7. Select which statistics you want to view from the **Module** dropdown; either *procdevstats* or *ethtool*. -->

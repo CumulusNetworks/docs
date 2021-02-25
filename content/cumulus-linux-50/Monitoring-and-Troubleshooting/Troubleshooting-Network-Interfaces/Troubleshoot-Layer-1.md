@@ -98,15 +98,13 @@ Passive cables (copper DACs) directly connect the port side of the module to the
 
 ### Compliance Codes, Ethernet Type, Ethmode Type, Interface Type
 
-These four terms essentially mean the same thing: the type of Ethernet technology that the module implements.
+Compliance codes, Ethernet type, Ethmode type, and interface type are all terms for the type of Ethernet technology that the module implements.
 
-In order for the port to know the characteristics of the module that is inserted, the SFP or QSFP module EEPROMs have a standardized set of data to describe the module characteristics. These values appear in the output of `ethtool -m <swp>`.
+For the port to know the characteristics of the module that is inserted, the SFP or QSFP module EEPROMs have a standardized set of data to describe the module characteristics. These values appear in the output of `ethtool -m <swp>`.
 
-The compliance codes describe the type of Ethernet technology the module implements. Examples include 1000Base-T, 10GBase-SR, 10GBase-CR, 40GBase-SR4 and 100GBase-CR4.
+The compliance codes describe the type of Ethernet technology the module implements, such as 1000Base-T, 10GBase-SR, 10GBase-CR, 40GBase-SR4, and 100GBase-CR4.
 
-The first part of the compliance code gives the full line rate speed of the technology.
-
-The last part of the compliance code specifies the Ethernet technology and the number of lanes used:
+The first part of the compliance code gives the full line rate speed of the technology. The last part of the compliance code specifies the Ethernet technology and the number of lanes used:
 
 - \-T: Twisted pair.
 - CR: Copper twinax (passive DAC). CR4 uses a bundle of 4 twinax cables for 4 lanes, CR2 uses 2 cables, CR uses 1.
@@ -114,9 +112,9 @@ The last part of the compliance code specifies the Ethernet technology and the n
 - LR: Optical long range. LR4 uses 4 wavelengths over one fiber pair to transmit 4 lanes over long distances (kilometers).
 - xWDM (SWDM, CWDM, DWDM): Optical wavelength multiplexed technologies (various). Multiple lanes are transmitted by different wavelengths.
 
-An active module with a passive module compliance code and vice versa would cause the port to be set up incorrectly and may affect signal integrity.
+An active module with a passive module compliance code or a passive module with an active module compliance code causes the port to be set up incorrectly and may affect signal integrity.
 
-Some modules have vendor specific coding, are older, or are using a proprietary vendor technology that is not listed in the standards. As a result, they are not recognized by default and need to be overridden to the correct compliance code. On Mellanox platforms, the port firmware automatically overrides certain supported modules to the correct compliance code.
+Some modules have vendor specific coding, are older, or use a proprietary vendor technology that is not listed in the standards. As a result, they are not recognized by default and need to be overridden to the correct compliance code. On Mellanox switches, the port firmware automatically overrides certain supported modules to the correct compliance code.
 
 ### Digital Diagnostic Monitoring/Digital Optical Monitoring (DDM/DOM)
 

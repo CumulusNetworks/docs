@@ -480,7 +480,7 @@ cumulus@spine02:~$ net commit
        address 2001:0db8::2/64
    ```
 
-2. Enable the `vrrpd` daemon, then start the FRRouting service. See {{<link title="Configure FRRouting">}}.
+2. Enable the `vrrpd` daemon, then start the FRRouting service with the `sudo systemctl start frr.service` command.
 
 3. From the vtysh shell, configure VRRP.
 

@@ -67,7 +67,7 @@ The quickest way to view the interface statistics for your Cumulus Linux network
 
 6. Enter the URL used to access the database:
     - Cloud: *api.netq.cumulusnetworks.com*
-    - On-premises: *\<hostname-ipaddr\>*
+    - On-premises: *\<hostname-or-ipaddr\>/api*
     - Cumulus in the Cloud (CITC): *air.netq.cumulusnetworks.com*
 
 7. Select which statistics you want to view from the **Module** dropdown; either *procdevstats* or *ethtool*.

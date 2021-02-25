@@ -302,7 +302,7 @@ This is due to a change in the bonding driver to handle how the *actor port key*
 7. Verify core uplinks and peer links are UP:
 
     ```
-    cumulus@switch:~$ net show interface
+    cumulus@switch:~$ cl show interface
     ```
 
 8. Verify MLAG convergence:

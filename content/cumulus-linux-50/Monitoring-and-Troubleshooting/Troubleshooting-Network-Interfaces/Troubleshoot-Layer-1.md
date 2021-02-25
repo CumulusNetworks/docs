@@ -104,9 +104,7 @@ For the port to know the characteristics of the module that is inserted, the SFP
 
 The compliance codes describe the type of Ethernet technology the module implements, such as 1000Base-T, 10GBase-SR, 10GBase-CR, 40GBase-SR4, and 100GBase-CR4.
 
-The first part of the compliance code gives the full line rate speed of the technology.
-
-The last part of the compliance code specifies the Ethernet technology and the number of lanes used:
+The first part of the compliance code gives the full line rate speed of the technology. The last part of the compliance code specifies the Ethernet technology and the number of lanes used:
 
 - \-T: Twisted pair.
 - CR: Copper twinax (passive DAC). CR4 uses a bundle of 4 twinax cables for 4 lanes, CR2 uses 2 cables, CR uses 1.

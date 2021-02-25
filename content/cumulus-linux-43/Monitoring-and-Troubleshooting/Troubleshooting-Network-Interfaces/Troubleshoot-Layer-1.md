@@ -98,11 +98,11 @@ Passive cables (copper DACs) directly connect the port side of the module to the
 
 ### Compliance Codes, Ethernet Type, Ethmode Type, Interface Type
 
-These four terms essentially mean the same thing: the type of Ethernet technology that the module implements.
+Compliance codes, Ethernet type, Ethmode type, and interface type are all terms for the type of Ethernet technology that the module implements.
 
-In order for the port to know the characteristics of the module that is inserted, the SFP or QSFP module EEPROMs have a standardized set of data to describe the module characteristics. These values appear in the output of `ethtool -m <swp>`.
+For the port to know the characteristics of the module that is inserted, the SFP or QSFP module EEPROMs have a standardized set of data to describe the module characteristics. These values appear in the output of `ethtool -m <swp>`.
 
-The compliance codes describe the type of Ethernet technology the module implements. Examples include 1000Base-T, 10GBase-SR, 10GBase-CR, 40GBase-SR4 and 100GBase-CR4.
+The compliance codes describe the type of Ethernet technology the module implements, such as 1000Base-T, 10GBase-SR, 10GBase-CR, 40GBase-SR4, and 100GBase-CR4.
 
 The first part of the compliance code gives the full line rate speed of the technology.
 
@@ -114,17 +114,23 @@ The last part of the compliance code specifies the Ethernet technology and the n
 - LR: Optical long range. LR4 uses 4 wavelengths over one fiber pair to transmit 4 lanes over long distances (kilometers).
 - xWDM (SWDM, CWDM, DWDM): Optical wavelength multiplexed technologies (various). Multiple lanes are transmitted by different wavelengths.
 
-An active module with a passive module compliance code and vice versa would cause the port to be set up incorrectly and may affect signal integrity.
+An active module with a passive module compliance code or a passive module with an active module compliance code causes the port to be set up incorrectly and might affect signal integrity.
 
-Some modules have vendor specific coding, are older, or are using a proprietary vendor technology that is not listed in the standards. As a result, they are not recognized by default and need to be overridden to the correct compliance code. On Mellanox platforms, the port firmware automatically overrides certain supported modules to the correct compliance code. On Broadcom platforms, the `/usr/share/cumulus/portwd.conf` file contains known overrides for certain modules. On Broadcom platforms, the user can also create an override file in `/etc/cumulus/portwd.conf` to specify that a module is best represented by a particular compliance code.
+Some modules have vendor specific coding, are older, or use a proprietary vendor technology that is not listed in the standards. As a result, they are not recognized by default and need to be overridden to the correct compliance code.
+- On Mellanox platforms, the port firmware automatically overrides certain supported modules to the correct compliance code.
+- On Broadcom switches, the `/usr/share/cumulus/portwd.conf` file contains known overrides for certain modules. You can also create an override file in `/etc/cumulus/portwd.conf` to specify that a module is best represented by a particular compliance code. The override file uses the vendor OUI (preferred, more reliable) or the vendor name, plus the vendor PN (all from the module EEPROM) to specify the correct override compliance code of the module. For example:
 
-The override file uses the vendor OUI (preferred, more reliable) or the vendor name, plus the vendor PN &mdash; all from the module EEPROM &mdash; to specify the correct override compliance code of the module. For example:
+   ```
+   [cables]
+   44:7c:7f,C41MF=40g-sr4
+   DELL EMC,C41MF=40g-sr4
+   ```
 
-```
-[cables]
-44:7c:7f,C41MF=40g-sr4
-DELL EMC,C41MF=40g-sr4
-```
+   After you create an override file in `/etc/cumulus/portwd.conf`, you must restart the `portwd` service:
+
+   ```
+   cumulus@switch:~$ sudo systemctl restart portwd.service
+   ```
 
 ### Digital Diagnostic Monitoring/Digital Optical Monitoring (DDM/DOM)
 

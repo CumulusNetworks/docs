@@ -417,7 +417,7 @@ The NCLU commands write VRRP configuration to the `/etc/network/interfaces` file
 The following example commands configure two switches (spine01 and spine02) that form one virtual router group (VRID 44) with IPv4 address 10.0.0.1/24 and IPv6 address 2001:0db8::1/64. *spine01* is the master; it has a priority of 254. *spine02* is the backup VRRP router.
 
 {{%notice note%}}
-VRRP needs a primary address assigned to the parent interface to use as the source address on VRRP advertisement packets (swp1 in the example below).
+A primary address is required for the parent interface to use as the source address on VRRP advertisement packets.
 {{%/notice%}}
 
 {{< tabs "TabID438 ">}}

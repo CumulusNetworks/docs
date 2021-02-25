@@ -10,6 +10,14 @@ draft: true
 
 This topic includes all commands that begin with `netq i*`, `netq j*`, and `netq k*`.
 
+NetQ installation can be performed with a single command or you can perform the individual steps using multiple commands. Generally, using a single command is recommended. However, the individual commands can be useful for troubleshooting the installation process.
+
+{{<figure src="/images/netq/cliref-install-onprem-single-server-330.png" width="500" caption="On-premises single server">}}
+
+{{<figure src="/images/netq/cliref-install-onprem-server-cluster-330.png" width="600" caption="On-premises server cluster">}}
+
+{{<figure src="/images/netq/cliref-install-cloud-remote-330.png" width="250" caption="Cloud/remote">}}
+
 ## netq install cluster activate-job
 
 Activates a NetQ instance after an initial server cluster (master and two worker nodes) is configured. Activation requires a configuration key. For cloud deployments, this can be found in an email titled "*A new site has been added to your Cumulus NetQ account*". For multi-site on-premises deployments, you must generate the key from the NetQ UI as described in the {{<link title="Manage the NetQ UI/#configure-multiple-premises" text="NetQ user guide">}}.

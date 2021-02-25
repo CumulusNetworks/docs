@@ -115,7 +115,7 @@ The first part of the compliance code gives the full line rate speed of the tech
 An active module with a passive module compliance code or a passive module with an active module compliance code causes the port to be set up incorrectly and might affect signal integrity.
 
 Some modules have vendor specific coding, are older, or use a proprietary vendor technology that is not listed in the standards. As a result, they are not recognized by default and need to be overridden to the correct compliance code.
-- On Mellanox platforms, the port firmware automatically overrides certain supported modules to the correct compliance code.
+- On Mellanox Spectrum switches, the port firmware automatically overrides certain supported modules to the correct compliance code.
 - On Broadcom switches, the `/usr/share/cumulus/portwd.conf` file contains known overrides for certain modules. You can also create an override file in `/etc/cumulus/portwd.conf` to specify that a module is best represented by a particular compliance code. The override file uses the vendor OUI (preferred, more reliable) or the vendor name, plus the vendor PN (all from the module EEPROM) to specify the correct override compliance code of the module. For example:
 
    ```

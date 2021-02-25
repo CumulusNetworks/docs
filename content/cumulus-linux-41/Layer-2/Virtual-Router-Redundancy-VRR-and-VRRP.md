@@ -403,8 +403,8 @@ All virtual routers use 00:00:5E:00:01:XX for IPv4 gateways or 00:00:5E:00:02:XX
 
 - Cumulus Linux supports both VRRPv2 and VRRPv3. The default protocol version is VRRPv3.
 - 255 virtual routers are supported per switch.
-- VRRP is not supported currently in an MLAG environment or with EVPN.
-- To configure VRRP on an SVI, you need to edit the `/etc/frr/frr.conf` file; The NCLU commands are not supported for SVIs.
+- VRRP is not supported in an MLAG environment or with EVPN.
+- To configure VRRP on an SVI, you need to edit the `/etc/frr/frr.conf` file; NCLU commands are not supported for SVIs.
 
 {{%/notice%}}
 
@@ -433,13 +433,18 @@ The NCLU commands write VRRP configuration to the `/etc/network/interfaces` file
 
 The following example commands configure two switches (spine01 and spine02) that form one virtual router group (VRID 44) with IPv4 address 10.0.0.1/24 and IPv6 address 2001:0db8::1/64. *spine01* is the master; it has a priority of 254. *spine02* is the backup VRRP router.
 
-{{< tabs "TabID438 ">}}
+{{%notice note%}}
+A primary address is required for the parent interface to use as the source address on VRRP advertisement packets.
+{{%/notice%}}
 
+{{< tabs "TabID440 ">}}
 {{< tab "NCLU Commands ">}}
 
 **spine01**
 
 ```
+cumulus@spine01:~$ net add interface swp1 ip address 10.0.0.2/24
+cumulus@spine01:~$ net add interface swp1 ipv6 address 2001:0db8::2/64
 cumulus@spine01:~$ net add interface swp1 vrrp 44 10.0.0.1/24
 cumulus@spine01:~$ net add interface swp1 vrrp 44 2001:0db8::1/64
 cumulus@spine01:~$ net add interface swp1 vrrp 44 priority 254
@@ -451,6 +456,8 @@ cumulus@spine01:~$ net commit
 **spine02**
 
 ```
+cumulus@spine02:~$ net add interface swp1 ip address 10.0.0.3/24
+cumulus@spine02:~$ net add interface swp1 ipv6 address 2001:0db8::3/64
 cumulus@spine02:~$ net add interface swp1 vrrp 44 10.0.0.1/24
 cumulus@spine02:~$ net add interface swp1 vrrp 44 2001:0db8::1/64
 cumulus@spine02:~$ net pending
@@ -458,12 +465,22 @@ cumulus@spine02:~$ net commit
 ```
 
 {{< /tab >}}
-
 {{< tab "Linux and vtysh Commands ">}}
 
-1. Enable the `vrrpd` daemon, then start the FRRouting service. See {{<link title="Configuring FRRouting">}}.
+1. Edit the `/etc/network/interface` file to assign an IP address to the parent interface; for example:
 
-2. From the vtysh shell, configure VRRP.
+   ```
+   cumulus@spine01:~$ sudo vi /etc/network/interfaces
+   ...
+   auto swp1
+   iface swp1
+       address 10.0.0.2/24
+       address 2001:0db8::2/64
+   ```
+
+2. Enable the `vrrpd` daemon, then start the FRRouting service with the `sudo systemctl start frr.service` command.
+
+3. From the vtysh shell, configure VRRP.
 
    **spine01**
 
@@ -496,7 +513,6 @@ cumulus@spine02:~$ net commit
     ```
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 The NCLU and vtysh commands save the configuration in the `/etc/network/interfaces` file and the `/etc/frr/frr.conf` file. For example:
@@ -506,6 +522,8 @@ cumulus@spine01:~$ sudo cat /etc/network/interfaces
 ...
 auto swp1
 iface swp1
+    address 10.0.0.2/24
+    address 2001:0db8::2/64
     vrrp 44 10.0.0.1/24 2001:0db8::1/64
 ...
 ```
@@ -535,8 +553,8 @@ Shutdown                             No
 Interface                            swp1
  VRRP interface (v4)                 vrrp4-3-1
 VRRP interface (v6)                  vrrp6-3-1
-Primary IP (v4)
-Primary IP (v6)                      fe80::54df:e543:5c12:7762
+Primary IP (v4)                      10.0.0.2
+Primary IP (v6)                      2001:0db8::2
 Virtual MAC (v4)                     00:00:5e:00:01:01
 Virtual MAC (v6)                     00:00:5e:00:02:01
 Status (v4)                          Master

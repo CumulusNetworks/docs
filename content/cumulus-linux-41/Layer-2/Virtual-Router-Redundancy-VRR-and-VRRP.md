@@ -22,27 +22,16 @@ You cannot configure both VRR and VRRP on the same switch.
 
 ## VRR
 
-The diagram below illustrates a basic VRR-enabled network configuration. The network includes several hosts and two routers running Cumulus Linux configured with {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="multi-chassis link aggregation">}} (MLAG).
+The diagram below illustrates a basic VRR-enabled network configuration.
 
-{{%notice note%}}
+{{< img src="/images/cumulus-linux/vrr-active-active.png" width="600" >}}
 
-Cumulus Linux only supports VRR on switched virtual interfaces (SVIs). VRR is not supported on physical interfaces or virtual subinterfaces.
+The network includes several hosts and two routers running Cumulus Linux and configured with {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="multi-chassis link aggregation">}} (MLAG).
+- As the bridges in each of the redundant routers are connected, they each receive and reply to ARP requests for the virtual router IP address.
+- Each ARP request made by a host receives replies from each switch; these replies are identical, and the host receiving the replies either ignores replies after the first, or accepts them and overwrites the previous identical reply.
+- A range of MAC addresses is reserved for use with VRR to prevent MAC address conflicts with other interfaces in the same bridged network. The reserved range is `00:00:5E:00:01:00` to `00:00:5E:00:01:ff`.
 
-{{%/notice%}}
-
-{{< img src = "/images/cumulus-linux/vrr-active-active.png" >}}
-
-A production implementation has many more server hosts and network connections than are shown here. However, this basic configuration provides a complete description of the important aspects of the VRR setup.
-
-As the bridges in each of the redundant routers are connected, they each receive and reply to ARP requests for the virtual router IP address.
-
-Each ARP request made by a host receives replies from each router; these replies are identical and the host receiving the replies either ignores replies after the first, or accepts them and overwrites the previous identical reply.
-
-A range of MAC addresses is reserved for use with VRR to prevent MAC address conflicts with other interfaces in the same bridged network. The reserved range is `00:00:5E:00:01:00` to `00:00:5E:00:01:ff`.
-
-Use MAC addresses from the reserved range when configuring VRR.
-
-The reserved MAC address range for VRR is the same as for the Virtual Router Redundancy Protocol (VRRP), as they serve similar purposes.
+   Use MAC addresses from the reserved range when configuring VRR. The reserved MAC address range for VRR is the same as for the Virtual Router Redundancy Protocol (VRRP).
 
 ### Configure the Routers
 
@@ -50,6 +39,10 @@ The routers implement the layer 2 network interconnecting the hosts and the redu
 
 - One bond interface or switch port interface to each host. For networks using MLAG, use bond interfaces. Otherwise, use switch port interfaces.
 - One or more interfaces to each peer router. To accommodate higher bandwidth between the routers and to offer link redundancy, multiple inter-peer links are typically bonded interfaces. The VLAN interface must have unique IP addresses for both the physical (the `address` option below) and virtual (the `address-virtual` option below) interfaces; the unique address is used when the switch initiates an ARP request.
+
+{{%notice note%}}
+Cumulus Linux only supports VRR on switched virtual interfaces (SVIs). VRR is not supported on physical interfaces or virtual subinterfaces.
+{{%/notice%}}
 
 {{< tabs "TabID53 ">}}
 

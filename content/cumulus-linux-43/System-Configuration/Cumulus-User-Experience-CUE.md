@@ -35,8 +35,8 @@ Do not install CUE in a production environment.
 1. Stop then disable the `netd` service:
 
    ```
-   cumulus@switch:~$ systemctl stop netd
-   cumulus@switch:~$ systemctl disable netd
+   cumulus@switch:~$ sudo systemctl stop netd
+   cumulus@switch:~$ sudo systemctl disable netd
    ```
 
 3. Update the local cache listing of available packages, then install the CUE package:
@@ -49,8 +49,8 @@ Do not install CUE in a production environment.
 4. Enable then start the CUE service:
 
    ```
-   cumulus@switch:~$ systemctl enable cued
-   cumulus@switch:~$ systemctl start cued
+   cumulus@switch:~$ sudo systemctl enable cued
+   cumulus@switch:~$ sudo systemctl start cued
    ```
 
 5. Log out of the switch, then log back in to get the CUE CLI prompt.

@@ -103,8 +103,17 @@ The default NTP configuration comprises the following servers, which are listed 
 
 To add the NTP server or servers you want to use:
 
-{{< tabs "TabID102 ">}}
+{{< tabs "TabID106 ">}}
+{{< tab "CUE Commands ">}}
 
+Run the following commands. Include the `iburst` option to increase the sync speed.
+
+```
+cumulus@switch:~$ cl set system ntp pool 4.cumulusnetworks.pool.ntp.org iburst on
+cumulus@switch:~$ cl config apply
+```
+
+{{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
 Run the following commands. Include the `iburst` option to increase the sync speed.
@@ -129,7 +138,6 @@ server 4.cumulusnetworks.pool.ntp.org iburst
 ```
 
 {{< /tab >}}
-
 {{< tab "Linux Commands ">}}
 
 Edit the `/etc/ntp.conf` file to add or update NTP server information:
@@ -147,15 +155,10 @@ server 4.cumulusnetworks.pool.ntp.org iburst
 ```
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 {{%notice note%}}
-
-To set the initial date and time with NTP before starting the `ntpd` daemon, run the `ntpd -q` command. This command is the same as `ntpdate`, which is to be retired and no longer available.
-
-Be aware that `ntpd -q` can hang if the time servers are not reachable.
-
+To set the initial date and time with NTP before starting the `ntpd` daemon, run the `ntpd -q` command. Be aware that `ntpd -q` can hang if the time servers are not reachable.
 {{%/notice%}}
 
 To verify that `ntpd` is running on the system:
@@ -168,10 +171,14 @@ ntp       4074     1  0 Jun20 ?        00:00:33 /usr/sbin/ntpd -p /var/run/ntpd.
 To check the NTP peer status:
 
 {{< tabs "TabID166 ">}}
+{{< tab "CUE Commands ">}}
 
+```
+cumulus@switch:~$ cl show system ntp server
+```
+
+{{< /tab >}}
 {{< tab "NCLU Commands ">}}
-
-Run the `net show time ntp servers` command:
 
 ```
 cumulus@switch:~$ net show time ntp servers
@@ -184,7 +191,6 @@ cumulus@switch:~$ net show time ntp servers
 ```
 
 {{< /tab >}}
-
 {{< tab "Linux Commands ">}}
 
 Run the `ntpq -p` command:
@@ -200,14 +206,25 @@ cumulus@switch:~$ ntpq -p
 ```
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 To remove one or more NTP servers:
 
 {{< tabs "TabID204 ">}}
+{{< tab "CUE Commands ">}}
+
+The following example commands remove some of the default NTP servers.
+
+```
+cumulus@switch:~$ cl unset system ntp server 0.cumulusnetworks.pool.ntp.org
+cumulus@switch:~$ cl unset system ntp server 1.cumulusnetworks.pool.ntp.org
+cumulus@switch:~$ cl unset system ntp server 2.cumulusnetworks.pool.ntp.org
+cumulus@switch:~$ cl unset system ntp server 3.cumulusnetworks.pool.ntp.org
+cumulus@switch:~$ cl config apply
+```
 
 {{< tab "NCLU Commands ">}}
+{{< /tab >}}
 
 Run the `net del time ntp <server>` command. The following example commands remove some of the default NTP servers.
 
@@ -221,7 +238,6 @@ cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
-
 {{< tab "Linux Commands ">}}
 
 Edit the ` /etc/ntp.conf  `file to delete the NTP servers.
@@ -237,7 +253,6 @@ server 4.cumulusnetworks.pool.ntp.org iburst
 ```
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 ### Specify the NTP Source Interface
@@ -245,7 +260,14 @@ server 4.cumulusnetworks.pool.ntp.org iburst
 By default, the source interface that NTP uses is eth0. To change the source interface:
 
 {{< tabs "TabID243 ">}}
+{{< tab "CUE Commands ">}}
 
+```
+cumulus@switch:~$ cl set system ntp listen swp10
+cumulus@switch:~$ cl config apply
+```
+
+{{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
 Run the `net add time ntp source <interface>` command. The following command example changes the NTP source interface to swp10.
@@ -266,7 +288,6 @@ interface listen swp10
 ```
 
 {{< /tab >}}
-
 {{< tab "Linux Commands ">}}
 
 Edit the `/etc/ntp.conf` file and modify the entry under the **\# Specify interfaces** comment. The following example shows that the NTP source interface is swp10.
@@ -280,7 +301,6 @@ interface listen swp10
 ```
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 ### Use NTP in a DHCP Environment

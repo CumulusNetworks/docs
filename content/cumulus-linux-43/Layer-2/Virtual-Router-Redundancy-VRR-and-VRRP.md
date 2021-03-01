@@ -15,34 +15,21 @@ Cumulus Linux provides the option of using Virtual Router Redundancy (VRR) or Vi
    Use VRRP when you have multiple distinct devices that connect to a layer 2 segment through multiple logical connections (not through a single bond). VRRP elects a single active forwarder that *owns* the virtual MAC address while it is active. This prevents the forwarding database of the layer 2 domain from continuously updating in response to MAC flaps as frames sourced from the virtual MAC address are received from discrete logical connections.
 
 {{%notice note%}}
-
 You cannot configure both VRR and VRRP on the same switch.
-
 {{%/notice%}}
 
 ## VRR
 
-The diagram below illustrates a basic VRR-enabled network configuration. The network includes several hosts and two routers running Cumulus Linux configured with {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="multi-chassis link aggregation">}} (MLAG).
+The diagram below illustrates a basic VRR-enabled network configuration.
 
-{{%notice note%}}
+{{< img src="/images/cumulus-linux/vrr-active-active.png" width="600" >}}
 
-Cumulus Linux only supports VRR on switched virtual interfaces (SVIs). VRR is not supported on physical interfaces or virtual subinterfaces.
+The network includes several hosts and two routers running Cumulus Linux that are configured with {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="multi-chassis link aggregation">}} (MLAG).
+- As the bridges in each of the redundant routers are connected, they each receive and reply to ARP requests for the virtual router IP address.
+- Each ARP request made by a host receives replies from each switch; these replies are identical, and the host receiving the replies either ignores replies after the first, or accepts them and overwrites the previous identical reply.
+- A range of MAC addresses is reserved for use with VRR to prevent MAC address conflicts with other interfaces in the same bridged network. The reserved range is `00:00:5E:00:01:00` to `00:00:5E:00:01:ff`.
 
-{{%/notice%}}
-
-{{< img src = "/images/cumulus-linux/vrr-active-active.png" >}}
-
-A production implementation has many more server hosts and network connections than are shown here. However, this basic configuration provides a complete description of the important aspects of the VRR setup.
-
-As the bridges in each of the redundant routers are connected, they each receive and reply to ARP requests for the virtual router IP address.
-
-Each ARP request made by a host receives replies from each router; these replies are identical, and the host receiving the replies either ignores replies after the first, or accepts them and overwrites the previous identical reply.
-
-A range of MAC addresses is reserved for use with VRR to prevent MAC address conflicts with other interfaces in the same bridged network. The reserved range is `00:00:5E:00:01:00` to `00:00:5E:00:01:ff`.
-
-Use MAC addresses from the reserved range when configuring VRR.
-
-The reserved MAC address range for VRR is the same as for the Virtual Router Redundancy Protocol (VRRP), as they serve similar purposes.
+   Use MAC addresses from the reserved range when configuring VRR. The reserved MAC address range for VRR is the same as for the Virtual Router Redundancy Protocol (VRRP).
 
 ### Configure the Routers
 
@@ -51,8 +38,11 @@ The routers implement the layer 2 network interconnecting the hosts and the redu
 - One bond interface or switch port interface to each host. For networks using MLAG, use bond interfaces. Otherwise, use switch port interfaces.
 - One or more interfaces to each peer router. To accommodate higher bandwidth between the routers and to offer link redundancy, multiple inter-peer links are typically bonded interfaces. The VLAN interface must have unique IP addresses for both the physical (the `address` option below) and virtual (the `address-virtual` option below) interfaces; the unique address is used when the switch initiates an ARP request.
 
-{{< tabs "TabID53 ">}}
+{{%notice note%}}
+Cumulus Linux only supports VRR on switched virtual interfaces (SVIs). VRR is not supported on physical interfaces or virtual subinterfaces.
+{{%/notice%}}
 
+{{< tabs "TabID53 ">}}
 {{< tab "NCLU Commands ">}}
 
 The example NCLU commands below create a VLAN-aware bridge interface for a VRR-enabled network:
@@ -68,7 +58,6 @@ cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
-
 {{< tab "Linux Commands ">}}
 
 Edit the `/etc/network/interfaces` file, then run the `ifreload -a` command. The example file configuration below create a VLAN-aware bridge interface for a VRR-enabled network:
@@ -96,7 +85,6 @@ cumulus@switch:~$ sudo ifreload -a
 ```
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 ### Configure the Hosts
@@ -110,13 +98,10 @@ Configure the links between the hosts and the routers in *active-active* mode fo
 To create an {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="MLAG">}} configuration that incorporates VRR, use a configuration similar to the following.
 
 {{%notice note%}}
-
 The following examples uses a single virtual MAC address for all VLANs. You can add a unique MAC address for each VLAN, but this is not necessary.
-
 {{%/notice%}}
 
 {{< tabs "TabID111 ">}}
-
 {{< tab "leaf01 ">}}
 
 ```
@@ -207,7 +192,6 @@ iface vlan400
 ```
 
 {{< /tab >}}
-
 {{< tab "leaf02 ">}}
 
 ```
@@ -298,7 +282,6 @@ iface vlan400
 ```
 
 {{< /tab >}}
-
 {{< tab "server01 ">}}
 
 Create a configuration similar to the following on an Ubuntu host:
@@ -344,7 +327,6 @@ iface uplink:400 inet static
 ```
 
 {{< /tab >}}
-
 {{< tab "server02 ">}}
 
 Create a configuration similar to the following on an Ubuntu host:
@@ -390,7 +372,6 @@ iface uplink:400 inet static
 ```
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 ## VRRP
@@ -400,12 +381,10 @@ VRRP allows for a single virtual default gateway to be shared among two or more 
 All virtual routers use 00:00:5E:00:01:XX for IPv4 gateways or 00:00:5E:00:02:XX for IPv6 gateways as their MAC address. The last byte of the address is the Virtual Router IDentifier (VRID), which is different for each virtual router in the network. This MAC address is used by only one physical router at a time, which replies with this address when ARP requests or neighbor solicitation packets are sent for the IP addresses of the virtual router.
 
 {{%notice note%}}
-
 - Cumulus Linux supports both VRRPv2 and VRRPv3. The default protocol version is VRRPv3.
 - 255 virtual routers are supported per switch.
-- VRRP is not supported currently in an MLAG environment or with EVPN.
-- To configure VRRP on an SVI, you need to edit the `/etc/frr/frr.conf` file; The NCLU commands are not supported for SVIs.
-
+- VRRP is not supported in an MLAG environment or with EVPN.
+- To configure VRRP on an SVI, you need to edit the `/etc/frr/frr.conf` file; NCLU commands are not supported for SVIs.
 {{%/notice%}}
 
 {{<exlink url="https://tools.ietf.org/html/rfc5798#section-4.1" text="RFC 5798">}} describes VRRP in detail.
@@ -417,7 +396,6 @@ The following example illustrates a basic VRRP configuration.
 ### Configure VRRP
 
 To configure VRRP, specify the following information on each switch:
-
 - **A virtual router ID (VRID) that identifies the group of VRRP routers**. You must specify the same ID across all virtual routers in the group.
 - **One or more virtual IP addresses that are assigned to the virtual router group**. These are IP addresses that do not directly connect to a specific interface. Inbound packets sent to a virtual IP address are redirected to a physical network interface.
 
@@ -433,13 +411,18 @@ The NCLU commands write VRRP configuration to the `/etc/network/interfaces` file
 
 The following example commands configure two switches (spine01 and spine02) that form one virtual router group (VRID 44) with IPv4 address 10.0.0.1/24 and IPv6 address 2001:0db8::1/64. *spine01* is the master; it has a priority of 254. *spine02* is the backup VRRP router.
 
-{{< tabs "TabID438 ">}}
+{{%notice note%}}
+A primary address is required for the parent interface to use as the source address on VRRP advertisement packets.
+{{%/notice%}}
 
+{{< tabs "TabID438 ">}}
 {{< tab "NCLU Commands ">}}
 
 **spine01**
 
 ```
+cumulus@spine01:~$ net add interface swp1 ip address 10.0.0.2/24
+cumulus@spine01:~$ net add interface swp1 ipv6 address 2001:0db8::2/64
 cumulus@spine01:~$ net add interface swp1 vrrp 44 10.0.0.1/24
 cumulus@spine01:~$ net add interface swp1 vrrp 44 2001:0db8::1/64
 cumulus@spine01:~$ net add interface swp1 vrrp 44 priority 254
@@ -451,6 +434,8 @@ cumulus@spine01:~$ net commit
 **spine02**
 
 ```
+cumulus@spine02:~$ net add interface swp1 ip address 10.0.0.3/24
+cumulus@spine02:~$ net add interface swp1 ipv6 address 2001:0db8::3/64
 cumulus@spine02:~$ net add interface swp1 vrrp 44 10.0.0.1/24
 cumulus@spine02:~$ net add interface swp1 vrrp 44 2001:0db8::1/64
 cumulus@spine02:~$ net pending
@@ -458,12 +443,22 @@ cumulus@spine02:~$ net commit
 ```
 
 {{< /tab >}}
-
 {{< tab "Linux and vtysh Commands ">}}
 
-1. Enable the `vrrpd` daemon, then start the FRRouting service. See {{<link title="Configure FRRouting">}}.
+1. Edit the `/etc/network/interface` file to assign an IP address to the parent interface; for example:
 
-2. From the vtysh shell, configure VRRP.
+   ```
+   cumulus@spine01:~$ sudo vi /etc/network/interfaces
+   ...
+   auto swp1
+   iface swp1
+       address 10.0.0.2/24
+       address 2001:0db8::2/64
+   ```
+
+2. Enable the `vrrpd` daemon, then start the FRRouting service. See {{<link title="Configure FRRouting">}}.
+
+3. From the vtysh shell, configure VRRP.
 
    **spine01**
 
@@ -496,10 +491,20 @@ cumulus@spine02:~$ net commit
     ```
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
-The NCLU and vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+The NCLU and vtysh commands save the configuration in the `/etc/network/interfaces` file and the `/etc/frr/frr.conf` file. For example:
+
+```
+cumulus@spine01:~$ sudo cat /etc/network/interfaces
+...
+auto swp1
+iface swp1
+    address 10.0.0.2/24
+    address 2001:0db8::2/64
+    vrrp 44 10.0.0.1/24 2001:0db8::1/64
+...
+```
 
 ```
 cumulus@spine01:~$ sudo cat /etc/frr/frr.conf
@@ -526,8 +531,8 @@ Shutdown                             No
 Interface                            swp1
  VRRP interface (v4)                 vrrp4-3-1
 VRRP interface (v6)                  vrrp6-3-1
-Primary IP (v4)
-Primary IP (v6)                      fe80::54df:e543:5c12:7762
+Primary IP (v4)                      10.0.0.2
+Primary IP (v6)                      2001:0db8::2
 Virtual MAC (v4)                     00:00:5e:00:01:01
 Virtual MAC (v6)                     00:00:5e:00:02:01
 Status (v4)                          Master

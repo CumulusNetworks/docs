@@ -80,3 +80,45 @@
 <div class="notices note"><p>Ignore the Firmware, Documentation, and More files options as these do not apply to NetQ.</p></div>
 
 {{ end }}
+
+
+{{- if eq (.Get "version") "3.3.1" -}}
+
+<p>Access to the software downloads depends on whether you are an existing customer before September 1, 2020 or whether you are a new customer. Please follow the instructions accordingly.</p>
+
+<strong>Existing customer</strong> who has downloaded NetQ software before September 1, 2020:
+<ol>
+    <li>On the <a href="https://cumulusnetworks.com/downloads/">Cumulus Downloads</a> page, select <em>NetQ</em> from the <strong>Product</strong> list.</li>
+    <li>Click <em>3.3</em> from the <strong>Version</strong> list, and then select <em>3.3.1</em> from the submenu.</li>
+    <li>Select the relevant software from the </strong>HyperVisor/Platform</strong> list:<br>
+    <p>If you are upgrading NetQ Platform software for a NetQ On-premises Appliance or VM, select <em>Appliance</em>  to download the <em>NetQ-3.3.1.tgz</em> file. If you are upgrading NetQ Collector software for a NetQ Cloud Appliance or VM, select <em>Appliance (Cloud)</em> to download the <em>NetQ-3.3.1-opta.tgz</em> file.</p>
+    <p><img src="/images/netq/netq-33-download-options-330.png" width="500"></p></li>
+    <li>Scroll down to view the image, and click <strong>Download</strong> on the on-premises or cloud NetQ Appliance image.
+    <p><img src="/images/netq/netq-33-appliance-onpremcld-dwnld-330.png" width="420" ></p>
+
+    <div class="notices note"><p>You can ignore the note on the image card because, unlike during installation, you <em>do not</em> need to download the bootstrap file for an upgrade.</p></div>
+    </li>
+</ol>
+
+<strong>Newer customer</strong> downloading NetQ software on or after September 1, 2020:
+<ol>
+    <li>On the <a href="http://support.mellanox.com/s/">My Mellanox support</a> page, log in to your account. If needed create a new account and then log in.<br>
+        <img src="/images/netq/mymellanox-login-320.png" width="500"><br>
+        Your username is based on your Email address. For example, user1@domain.com.mlnx.</li>
+    <li>Open the <strong>Downloads</strong> menu.</li>
+    <li>Click <strong>Software</strong>.</li>
+    <li>Open the <strong>Cumulus Software</strong> option.<br>
+        <img src="/images/netq/mymellanox-cumulus-software-download-320.png" width="500"></li>
+    <li>Click <strong>All downloads</strong> next to <strong>Cumulus NetQ</strong>.</li>
+    <li>Select <strong>3.3.1</strong> from the <strong>NetQ Version</strong> dropdown.</li>
+    <li>Select the relevant software from the </strong>HyperVisor/Platform</strong> list:<br>
+        <p>If you are upgrading NetQ Platform software for a NetQ On-premises Appliance or VM, select <em>Appliance</em> to download the <em>NetQ-3.3.1.tgz</em> file. If you are upgrading NetQ Collector software for a NetQ Cloud Appliance or VM, select <em>Appliance (Cloud)</em> to download the <em>NetQ-3.3.1-opta.tgz</em> file.</p>
+        <p><img src="/images/netq/netq-32-download-options-mlnx-330.png" width="500"></p></li>
+    <li>Click <strong>Show Download</strong>.<br>
+        <img src="/images/netq/mymellanox-netq-download-app-330.png" width="500"></li>
+    <li>Verify this is the correct image, then click <strong>Download</strong>.</li>
+</ol>
+
+<div class="notices note"><p>Ignore the Firmware, Documentation, and More files options as these do not apply to NetQ.</p></div>
+
+{{ end }}

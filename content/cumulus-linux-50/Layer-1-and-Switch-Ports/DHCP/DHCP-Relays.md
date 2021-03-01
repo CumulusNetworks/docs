@@ -18,10 +18,10 @@ If you intend to run the `dhcrelay` service within a {{<link url="Virtual-Routin
 
 To set up DHCP relay, you need to provide the IP address of the DHCP server and the interfaces participating in DHCP relay (facing the server and facing the client). You can specify as many server IP addresses that can fit in 255 octets.
 
-{{< tabs "TabID25 ">}}
+{{< tabs "TabID21 ">}}
 {{< tab "CUE Commands ">}}
 
-{{< tabs "TabID121 ">}}
+{{< tabs "TabID24 ">}}
 {{< tab "IPv4 ">}}
 
 Specify the IP address of each DHCP server and both interfaces participating in DHCP relay (facing the server and facing the client).
@@ -57,7 +57,7 @@ cumulus@leaf01:~$ cl apply
 {{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
-{{< tabs "TabID27 ">}}
+{{< tabs "TabID60 ">}}
 {{< tab "IPv4 ">}}
 
 In the example commands below, the DHCP server IP address is 172.16.1.102, vlan10 is the SVI for VLAN 10 and the uplinks are swp51 and swp52.
@@ -82,7 +82,7 @@ NCLU commands are not currently available to configure IPv6 relays. Use the Linu
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-{{< tabs "TabID55 ">}}
+{{< tabs "TabID85 ">}}
 {{< tab "IPv4 ">}}
 
 1. Edit the `/etc/default/isc-dhcp-relay` file to add the IP address of the DHCP server and the interfaces participating in DHCP relay. In the example below, the DHCP server IP address is 172.16.1.102, vlan10 is the SVI for VLAN 10, and the uplinks are swp51 and swp52.
@@ -200,7 +200,7 @@ RFC 3527 is supported for IPv4 DHCP relays only.
 
 To enable RFC 3527 support and control the giaddr:
 
-{{< tabs "TabID166 ">}}
+{{< tabs "TabID203 ">}}
 {{< tab "CUE Commands ">}}
 
 Run the `cl set service dhcp-relay default giaddress-interface` command with the interface/IP address you want to use. The following example uses the first IP address on the loopback interface as the gateway IP address:
@@ -316,7 +316,7 @@ This option impacts all relayed IPv4 packets globally.
 
 To use the gateway IP address as the source IP address:
 
-{{< tabs "TabID302 ">}}
+{{< tabs "TabID319 ">}}
 {{< tab "CUE Commands ">}}
 
 Run the `cl set service dhcp-relay default source-ip giaddress` command:
@@ -400,7 +400,28 @@ This section provides troubleshooting tips.
 
 ### Show DHCP Relay Status
 
-To show the DHCP relay status, run the Linux `systemctl status dhcrelay.service` command (`systemctl status dhcrelay6.service` command for IPv6). For example:
+To show the DHCP relay status:
+
+{{< tabs "TabID405 ">}}
+{{< tab "CUE Commands ">}}
+
+Run the `cl show service dhcp-relay` command for IPv4 or the `cl show service dhcp-relay6` command for IPv6:
+
+```
+cumulus@leaf01:~$ cl show service dhcp-relay
+           source-ip  Summary
+---------  ---------  -----------------------
++ default  auto       giaddress-interface: lo
+  default             interface:        swp51
+  default             interface:        swp52
+  default             interface:        vlan10
+  default             server:    172.16.1.102
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Run the Linux `systemctl status dhcrelay.service` command for IPv4 or the `systemctl status dhcrelay6.service` command for IPv6:
 
 ```
 cumulus@leaf01:~$ sudo systemctl status dhcrelay.service
@@ -412,6 +433,9 @@ Main PID: 1997 (dhcrelay)
     CGroup: /system.slice/dhcrelay.service
             └─1997 /usr/sbin/dhcrelay --nl -d -q -i vlan10 -i swp51 -i swp52 172.16.1.102
 ```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ### Check systemd
 

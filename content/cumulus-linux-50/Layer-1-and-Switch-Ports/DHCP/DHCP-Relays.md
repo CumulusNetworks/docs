@@ -11,9 +11,7 @@ This topic describes how to configure DHCP relays for IPv4 and IPv6 using the fo
 {{< img src = "/images/cumulus-linux/dhcp-relay-topology-basic.png" >}}
 
 {{%notice note%}}
-
 If you intend to run the `dhcrelay` service within a {{<link url="Virtual-Routing-and-Forwarding-VRF" text="VRF">}}, including the {{<link url="Management-VRF" text="management VRF">}}, follow {{<link url="Management-VRF/#run-services-within-the-management-vrf" text="these steps">}}.
-
 {{%/notice%}}
 
 ## Basic Configuration
@@ -21,11 +19,45 @@ If you intend to run the `dhcrelay` service within a {{<link url="Virtual-Routin
 To set up DHCP relay, you need to provide the IP address of the DHCP server and the interfaces participating in DHCP relay (facing the server and facing the client). You can specify as many server IP addresses that can fit in 255 octets.
 
 {{< tabs "TabID25 ">}}
+{{< tab "CUE Commands ">}}
 
+{{< tabs "TabID121 ">}}
+{{< tab "IPv4 ">}}
+
+Specify the IP address of each DHCP server and both interfaces participating in DHCP relay (facing the server and facing the client).
+
+In the example commands below, the DHCP server IP address is 172.16.1.102, vlan10 is the SVI for VLAN 10, and the uplinks are swp51 and swp52. As per {{<exlink url="https://tools.ietf.org/html/rfc3046" text="RFC 3046">}}, you can specify as many server IP addresses that can fit in 255 octets. You can specify each address only once.
+
+```
+cumulus@leaf01:~$ cl set service dhcp-relay default interface swp51
+cumulus@leaf01:~$ cl set service dhcp-relay default interface swp52
+cumulus@leaf01:~$ cl set service dhcp-relay default interface vlan10
+cumulus@leaf01:~$ cl set service dhcp-relay default server 172.16.1.102
+cumulus@leaf01:~$ cl apply
+```
+
+{{< /tab >}}
+{{< tab "IPv6 ">}}
+
+Specify the IP address of each DHCP server and both interfaces participating in DHCP relay (facing the server and facing the client).
+
+In the example commands below, the DHCP server IP address is 2001:db8:100::2, vlan10 is the SVI for VLAN 10, and the uplinks are swp51 and swp52. As per {{<exlink url="https://tools.ietf.org/html/rfc3046" text="RFC 3046">}}, you can specify as many server IP addresses that can fit in 255 octets. You can specify each address only once.
+
+```
+cumulus@leaf01:~$ cl set service dhcp-relay6 default interface swp51
+cumulus@leaf01:~$ cl set service dhcp-relay6 default interface swp52
+cumulus@leaf01:~$ cl set service dhcp-relay6 default interface vlan10
+cumulus@leaf01:~$ cl set service dhcp-relay6 default server 2001:db8:100::2
+cumulus@leaf01:~$ cl apply
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+{{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
 {{< tabs "TabID27 ">}}
-
 {{< tab "IPv4 ">}}
 
 In the example commands below, the DHCP server IP address is 172.16.1.102, vlan10 is the SVI for VLAN 10 and the uplinks are swp51 and swp52.
@@ -40,21 +72,17 @@ cumulus@leaf01:~$ net commit
 ```
 
 {{< /tab >}}
-
 {{< tab "IPv6 ">}}
 
 NCLU commands are not currently available to configure IPv6 relays. Use the Linux Commands.
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 {{< /tab >}}
-
 {{< tab "Linux Commands ">}}
 
 {{< tabs "TabID55 ">}}
-
 {{< tab "IPv4 ">}}
 
 1. Edit the `/etc/default/isc-dhcp-relay` file to add the IP address of the DHCP server and the interfaces participating in DHCP relay. In the example below, the DHCP server IP address is 172.16.1.102, vlan10 is the SVI for VLAN 10, and the uplinks are swp51 and swp52.
@@ -74,7 +102,6 @@ NCLU commands are not currently available to configure IPv6 relays. Use the Linu
    ```
 
 {{< /tab >}}
-
 {{< tab "IPv6 ">}}
 
 1. Edit the `/etc/default/isc-dhcp-relay6` file to add the IP address of the DHCP server and the interfaces participating in DHCP relay. In the example below, the DHCP server IP address is 2001:db8:100::2, vlan10 is the SVI for VLAN 10, and the uplinks are swp51 and swp52.
@@ -93,18 +120,14 @@ NCLU commands are not currently available to configure IPv6 relays. Use the Linu
    ```
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 {{%notice note%}}
-
 - You configure a DHCP relay on a per-VLAN basis, specifying the SVI, not the parent bridge. In the example above, you specify *vlan10* as the SVI for VLAN 10 but you do not specify the bridge named *bridge*.
 - When you configure DHCP relay with VRR, the DHCP relay client must run on the SVI; not on the -v0 interface.
-
 {{%/notice%}}
 
 ## Optional Configuration
@@ -119,9 +142,7 @@ Cumulus Linux supports DHCP Agent Information Option 82, which allows a DHCP rel
 - *Remote ID* includes information that identifies the relay agent, such as the MAC address. By default, this is the system MAC address of the device on which DHCP relay is running.
 
 {{%notice note%}}
-
 NCLU commands are not currently available for this feature. Use Linux commands.
-
 {{%/notice%}}
 
 To configure DHCP Agent Information Option 82:
@@ -170,9 +191,7 @@ When DHCP relay is required in an environment that relies on an anycast gateway 
 When enabling RFC 3527 support, you can specify an interface, such as the loopback interface or a switch port interface to be used as the giaddr. The relay picks the first IP address on that interface. If the interface has multiple IP addresses, you can specify a specific IP address for the interface.
 
 {{%notice note%}}
-
 RFC 3527 is supported for IPv4 DHCP relays only.
-
 {{%/notice%}}
 
 <!--The following illustration demonstrates how you can control the giaddr with RFC 3527.
@@ -182,7 +201,33 @@ RFC 3527 is supported for IPv4 DHCP relays only.
 To enable RFC 3527 support and control the giaddr:
 
 {{< tabs "TabID166 ">}}
+{{< tab "CUE Commands ">}}
 
+Run the `cl set service dhcp-relay default giaddress-interface` command with the interface/IP address you want to use. The following example uses the first IP address on the loopback interface as the gateway IP address:
+
+```
+cumulus@leaf01:~$ cl set service dhcp-relay default giaddress-interface lo
+```
+
+The first IP address on the loopback interface is typically the 127.0.0.1 address. This example uses IP address 10.10.10.1 on the loopback interface as the giaddr:
+
+```
+cumulus@leaf01:~$ cl set service dhcp-relay default giaddress-interface lo 10.10.10.1
+```
+
+This example uses the first IP address on swp2 as the giaddr:
+
+```
+cumulus@leaf01:~$ cl set service dhcp-relay default giaddr-interface swp2
+```
+
+This example uses IP address 10.0.0.4 on swp2 as the giaddr:
+
+```
+cumulus@leaf01:~$ cl set service dhcp-relay default giaddr-interface swp2 10.0.0.4
+```
+
+{{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
 Run the `net add dhcp relay giaddr-interface` command with the interface or the interface and IP address you want to use.
@@ -212,7 +257,6 @@ cumulus@leaf01:~$ net add dhcp relay giaddr-interface swp2 10.0.0.4
 ```
 
 {{< /tab >}}
-
 {{< tab "Linux Commands ">}}
 
 1. Edit the `/etc/default/isc-dhcp-relay` file and provide the `-U` option with the interface or IP address you want to use as the giaddr.
@@ -260,7 +304,6 @@ cumulus@leaf01:~$ net add dhcp relay giaddr-interface swp2 10.0.0.4
    ```
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 ### Gateway IP Address as Source IP for Relayed DHCP Packets (Advanced)
@@ -268,15 +311,22 @@ cumulus@leaf01:~$ net add dhcp relay giaddr-interface swp2 10.0.0.4
 You can configure the `dhcrelay` service to forward IPv4 (only) DHCP packets to a DHCP server and ensure that the source IP address of the relayed packet is the same as the gateway IP address.
 
 {{%notice note%}}
-
 This option impacts all relayed IPv4 packets globally.
-
 {{%/notice%}}
 
 To use the gateway IP address as the source IP address:
 
 {{< tabs "TabID302 ">}}
+{{< tab "CUE Commands ">}}
 
+Run the `cl set service dhcp-relay default source-ip giaddress` command:
+
+```
+cumulus@leaf01:~$ cl set service dhcp-relay default source-ip giaddress
+cumulus@leaf01:~$ cl config apply
+```
+
+{{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
 Run the `net add dhcp relay use-giaddr-as-src` command:
@@ -288,7 +338,6 @@ cumulus@leaf:~$ net commit
 ```
 
 {{< /tab >}}
-
 {{< tab "Linux Commands ">}}
 
 1. Edit the `/etc/default/isc-dhcp-relay` file to add `--giaddr-src` to the `OPTIONS` line. An example is shown below.
@@ -307,7 +356,6 @@ cumulus@leaf:~$ net commit
    ```
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 ### Configure Multiple DHCP Relays

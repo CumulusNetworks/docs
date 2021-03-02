@@ -6,7 +6,7 @@ toc: 3
 ---
 You can use Cumulus Linux to run the {{<exlink url="https://www.docker.com/" text="Docker">}} container platform.
 
-A Docker package is installed as part of the ONIE installation or upgrade process. The Docker package includes Docker Engine, and dependencies and configuration files required to run the Docker service.
+The Docker package is installed as part of the installation or ONIE upgrade process. The Docker package includes Docker Engine, and dependencies and configuration files required to run the Docker service. If you upgraded the switch with `apt-upgrade`, you must install the Docker package manually.
 
 To run Docker containers on the Cumulus Linux switch:
 
@@ -137,5 +137,24 @@ The warning is a known issue, which has no functional impact.
    For more examples and ideas, visit:
    https://docs.docker.com/get-started/
    ```
+
+{{%notice note%}}
+The Docker daemon runs in the management VRF; however, Docker containers run outside a VRF by default. To run a container process inside the management VRF on the host, run the `docker run —privileged —ulimit memlock=131072 —rm —network host ip vrf exec mgmt` command. For example:
+
+```
+cumulus@switch:mgmt:~$ sudo docker run —privileged —ulimit memlock=131072 —rm —network host debian ip vrf exec mgmt ping -c3 8.8.8.8
+
+PING 8.8.8.8 (8.8.8.8) 56(84) bytes of data.
+64 bytes from 8.8.8.8: icmp_seq=1 ttl=110 time=1.21 ms
+64 bytes from 8.8.8.8: icmp_seq=2 ttl=110 time=1.24 ms
+64 bytes from 8.8.8.8: icmp_seq=3 ttl=110 time=1.26 ms
+8.8.8.8 ping statistics -
+
+3 packets transmitted, 3 received, 0% packet loss, time 5ms
+rtt min/avg/max/mdev = 1.212/1.237/1.262/0.045 ms
+```
+
+If you see the error `Failed to load BPF prog: ‘Operation not permitted’`, increase the `memlock` limit by doubling the value.
+{{%/notice%}}
 
 Be mindful of the types of applications you want to run in containers on a Cumulus Linux switch. Depending on the configuration of the container, DHCP servers, custom scripts, and other lightweight services run well. However, VPN, NAT and encryption-type services are CPU-intensive and might lead to undesirable effects on critical applications. Resource-intensive services are not supported.

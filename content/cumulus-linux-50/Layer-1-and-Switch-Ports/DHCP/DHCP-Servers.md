@@ -6,31 +6,62 @@ toc: 3
 ---
 A DHCP Server automatically provides and assigns IP addresses and other network parameters to client devices. It relies on the Dynamic Host Configuration Protocol to respond to broadcast requests from clients.
 
-This topic describes how to configure a DHCP server for IPv4 and IPv6 using the following topology.
+This topic describes how to configure a DHCP server for IPv4 and IPv6 using the following topology, where the DHCP server is a switch running Cumulus Linux.
 
 {{< img src = "/images/cumulus-linux/dhcp-server-topology.png" >}}
 
-The DHCP server is a switch running Cumulus Linux; however, the DHCP server can also be located on a dedicated server in your environment.
-
 {{%notice note%}}
-
 If you intend to run the `dhcpd` service within a {{<link url="Virtual-Routing-and-Forwarding-VRF" text="VRF">}}, including the {{<link url="Management-VRF" text="management VRF">}}, follow {{<link url="Management-VRF/#run-services-within-the-management-vrf" text="these steps">}}.
-
 {{%/notice%}}
 
 For information about DHCP relays, refer to {{<link title="DHCP Relays">}}.
 
-## Configure the DHCP Server on a Cumulus Linux Switch
+## Basic Configuration
 
-To configure the DHCP server on a Cumulus Linux switch, edit the `/etc/dhcp/dhcp.conf` or `/etc/dhcp/dhcpd6.conf` configuration file. Sample configurations are provided.
+To configure the DHCP server on a Cumulus Linux switch:
+
+{{< tabs "TabID27 ">}}
+{{< tab "CUE Commands ">}}
+
+1. Create a DHCP pool and provide the IP addresses of the DNS Servers you want to use in the pool.
+2. Define the range of IP addresses that the DHCP server provides to clients.
+3. Provide the default gateway IP address.
+
+{{< tabs "TabI32 ">}}
+{{< tab "IPv4 ">}}
+
+```
+cumulus@switch:~$ cl set system dhcp-server pool 1
+cumulus@switch:~$ cl set system dhcp-server pool 1 pool-name NAME
+cumulus@switch:~$ cl set system dhcp-server pool 1 domain-name-server 10.0.0.0
+cumulus@switch:~$ cl set system dhcp-server pool 1 range 10.0.0.2 to 10.0.0.60
+cumulus@switch:~$ cl set system dhcp-server pool 1 gateway
+```
+
+{{< /tab >}}
+{{< tab "IPv6 ">}}
+
+```
+cumulus@switch:~$ cl set system dhcp-server6 pool 1 
+cumulus@switch:~$ cl set system dhcp-server6 pool 1 domain-name-server 2001:db8:100::/64
+cumulus@switch:~$ cl set system dhcp-server6 pool 1 range 2001:db8:1::100 2001:db8:1::200 
+cumulus@switch:~$ cl set system dhcp-server6 pool 1 gateway
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Edit the `/etc/dhcp/dhcp.conf` or `/etc/dhcp/dhcpd6.conf` configuration file. Sample configurations are provided.
 
 You must include two pools in the DHCP configuration files:
 
 - Pool 1 is the subnet that includes the IP addresses of the interfaces on the DHCP server.
 - Pool 2 is the subnet that includes the IP addresses being assigned.
 
-{{< tabs "TabID55 ">}}
-
+{{< tabs "TabID53 ">}}
 {{< tab "IPv4 ">}}
 
 1. In a text editor, edit the `/etc/dhcp/dhcpd.conf` file. Use following configuration as an example:
@@ -67,7 +98,6 @@ You must include two pools in the DHCP configuration files:
    ```
 
 {{< /tab >}}
-
 {{< tab "IPv6 ">}}
 
 1. In a text editor, edit the `/etc/dhcp/dhcpd6.conf` file. Use following configuration as an example:
@@ -82,7 +112,7 @@ You must include two pools in the DHCP configuration files:
    subnet6 2001:db8:100::/64 {
    }
    subnet6 2001:db8:1::/64 {
-       range6 2001:db8:1::100 2001:db8:1::200;
+       range 2001:db8:1::100 2001:db8:1::200;
    }
    ```
 
@@ -103,10 +133,31 @@ You must include two pools in the DHCP configuration files:
    ```
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
-## Assign Port-based IP Addresses
+{{< /tab >}}
+{{< /tabs >}}
+
+## Optional Configuration
+
+### Lease Time
+
+You can set the network address lease time (in seconds) assigned to DHCP clients.
+180-31536000
+
+```
+cumulus@switch:~$ cl set system dhcp-server pool 1 lease-time 200000
+```
+
+### Ping Check
+
+Configure the DHCP server to ping the address to be offered to a client before issuing the offer. If no response is received the offer is delivered; otherwise the address is abandoned and no response is sent to the client.
+
+```
+cumulus@switch:~$ cl set system dhcp-server pool 1 ping-check on
+```
+
+### Assign Port-based IP Addresses
 
 You can assign an IP address and other DHCP options based on physical location or port regardless of MAC address to clients that are attached directly to the Cumulus Linux switch through a switch port. This is helpful when swapping out switches and servers; you can avoid the inconvenience of collecting the MAC address and sending it to the network administrator to modify the DHCP server configuration.
 
@@ -121,7 +172,9 @@ host myhost {
 
 ## Troubleshooting
 
-The DHCP server determines if a DHCP request is a relay or a non-relay DHCP request. You can run the following command to see the DHCP request:
+To show the current DHCP server settings, run the `cl show system dhcp-server` command.
+
+The DHCP server determines if a DHCP request is a relay or a non-relay DHCP request. Run the following command to see the DHCP request:
 
 ```
 cumulus@server02:~$ sudo tail /var/log/syslog | grep dhcpd

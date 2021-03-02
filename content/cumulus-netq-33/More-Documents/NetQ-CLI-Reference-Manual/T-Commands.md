@@ -180,4 +180,43 @@ Id  Hop Hostname    InPort          InTun, RtrIf    OutRtrIf, Tun   OutPort
 
 ## netq upgrade
 
+Upgrades NetQ on NetQ On-premises Appliances or VMs.
+
+Obtain the software upgrade bundle from the {{<exlink url="https://cumulusnetworks.com/downloads/#product=NetQ" text="Cumulus Downloads">}} page or {{<exlink url="http://support.mellanox.com/s/" text="My Mellanox support">}} page.
+
+### Syntax
+
+```
 netq upgrade bundle <text-bundle-url>
+```
+
+### Required Arguments
+
+| Argument | Value | Description |
+| ---- | ---- | ---- |
+| bundle | \<text-bundle-url\> | Upgrade this appliance or VM with the `NetQ-x.y.z.tgz` package at this location; the full path is required |
+
+### Options
+
+None
+
+### Command History
+
+A release is included if there were changes to the command, otherwise it is not listed.
+
+| Release | Description |
+| ---- | ---- |
+| 2.4.1 | Introduced; replaced `netq upgrade opta config-key` and `netq upgrade opta tarball` |
+
+### Sample Usage
+
+<!-- Add output/results??? -->
+```
+cumulus@<hostname>:~$ netq upgrade bundle /mnt/installables/NetQ-3.3.0.tgz
+```
+
+### Related Commands
+
+None
+
+- - -

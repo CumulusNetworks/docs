@@ -111,7 +111,10 @@ A release is included if there were changes to the command, otherwise it is not 
 
 | Release | Description |
 | ---- | ---- |
-| 2.4.0 | Introduced |
+| 2.4.1 | Added `ip-addr` argument |
+| 2.4.0 | Added `cluster` and `full` arguments. Removed `download`, `file`, and `force` options. |
+| 2.2.2 | Added `download` options |
+| Before 2.2.1 | Introduced |
 
 ### Sample Usage
 
@@ -359,7 +362,7 @@ A release is included if there were changes to the command, otherwise it is not 
 
 | Release | Description |
 | ---- | ---- |
-| 2.4.0 | Introduced |
+| 2.4.1 | Introduced |
 
 ### Sample Usage
 
@@ -420,7 +423,10 @@ A release is included if there were changes to the command, otherwise it is not 
 
 | Release | Description |
 | ---- | ---- |
-| 2.4.0 | Introduced |
+| 2.4.1 | Added `ip-addr` argument, `proxy-host` and `proxy-port` options |
+| 2.4.0 | Added `cluster` and `full` arguments. Removed `download`, `file`, and `force` options. |
+| 2.2.2 | Added `download` options |
+| Before 2.2.1 | Introduced |
 
 ### Sample Usage
 
@@ -493,7 +499,45 @@ cumulus@<hostname>:~$ netq install opta standalone full interface en01 bundle /m
 
 ## netq install patch
 
-netq install patch <text-tarball-name>
+Installs a focused software fix using a compressed file package (rather than a full installation or upgrade). Run this command on the NetQ appliance or VM as appropriate.
+
+### Syntax
+
+```
+netq install patch
+    <text-tarball-name>
+```
+
+### Required Arguments
+
+| Argument | Value | Description |
+| ---- | ---- | ---- |
+| NA | \<text-tarball-name\> | Install the software patch contained in the tarball at this location; full path is required |
+
+### Options
+
+None
+
+### Command History
+
+A release is included if there were changes to the command, otherwise it is not listed.
+
+| Release | Description |
+| ---- | ---- |
+| 2.4.1 | Introduced |
+
+### Sample Usage
+
+<!-- Add output/results??? -->
+```
+cumulus@<hostname>:~$ netq install patch /mnt/installables/[NetQ-3.3.0.tgz??? standard format for patch files?]
+```
+
+### Related Commands
+
+- netq upgrade
+
+- - -
 
 ## netq install standalone activate-job
 
@@ -525,6 +569,7 @@ A release is included if there were changes to the command, otherwise it is not 
 
 | Release | Description |
 | ---- | ---- |
+| 2.4.1 | Replaced `netq update opta config-key` |
 | 2.4.0 | Introduced |
 
 ### Sample Usage
@@ -548,8 +593,6 @@ cumulus@switch:~$ netq install standalone activate-job config-key ju8Kl4IhZ3cucH
 Installs the NetQ Platform software on the NetQ On-premises Appliance or VM in an on-premises, single server deployment, all with a single command. You must have the hostname or IP address of the server, and the NetQ software bundle to run the command. A configuration key is optional.
 
 Obtain the software release bundle from the {{<exlink url="https://cumulusnetworks.com/downloads/#product=NetQ" text="Cumulus Downloads">}} page or {{<exlink url="http://support.mellanox.com/s/" text="My Mellanox support">}} page.
-
-Obtain the configuration key from ???
 
 ### Syntax
 
@@ -581,7 +624,10 @@ A release is included if there were changes to the command, otherwise it is not 
 
 | Release | Description |
 | ---- | ---- |
-| 2.4.0 | Introduced |
+| 2.4.1 | Added `ip-addr` argument |
+| 2.4.0 | Added `standalone` and `full` arguments. Removed `download`, `file`, and `force` options. |
+| 2.2.2 | Added `download` options |
+| Before 2.2.1 | Introduced |
 
 ### Sample Usage
 
@@ -743,6 +789,44 @@ cumulus@<hostname>:~$ netq install standalone install-job bundle /mnt/installabl
 
 ## netq install update-settings
 
-netq install update-settings <text-key> <text-value>
+Overrides system variables after encountering issues during installation. File a {{<exlink url="https://support.mellanox.com/s/contact-support-page" text="support ticket">}} with the NVIDIA Cumulus Networks Global Support Services team before trying this command.
 
-3.1.0 intro
+### Syntax
+
+```
+netq install update-settings
+    <text-key>
+    <text-value>
+```
+
+### Required Arguments
+
+| Argument | Value | Description |
+| ---- | ---- | ---- |
+| NA | \<text-key\> | Update the environment variable with this name |
+| NA | \<text-value\> | Update the specified environment variable with this value |
+
+### Options
+
+None
+
+### Command History
+
+A release is included if there were changes to the command, otherwise it is not listed.
+
+| Release | Description |
+| ---- | ---- |
+| 3.1.0 | Introduced |
+
+### Sample Usage
+
+<!-- Add output/results??? -->
+```
+cumulus@<hostname>:~$ netq install update-settings xxx xxx
+```
+
+### Related Commands
+
+None
+
+- - -

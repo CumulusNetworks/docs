@@ -37,11 +37,11 @@ To configure the DHCP server on a Cumulus Linux switch to assign dynamic IP addr
 
 ```
 cumulus@switch:~$ cl set system dhcp-server pool 10.1.10.0/24
-cumulus@switch:~$ cl set system dhcp-server pool 10.1.10.0/24 pool-name sf-office
-cumulus@switch:~$ cl set system dhcp-server pool 10.1.10.0/24 domain-name-server 10.0.0.0
-cumulus@switch:~$ cl set system dhcp-server pool 10.1.10.0/24 domain-name cumulus.com
-cumulus@switch:~$ cl set system dhcp-server pool 10.1.10.0/24 range 10.1.10.2 to 10.1.10.60
-cumulus@switch:~$ cl set system dhcp-server pool 10.1.10.0/24 gateway 10.10.10.1
+cumulus@switch:~$ cl set system dhcp-server pool 10.1.10.0/24 pool-name storage-servers
+cumulus@switch:~$ cl set system dhcp-server pool 10.1.10.0/24 domain-name-server 192.168.200.53
+cumulus@switch:~$ cl set system dhcp-server pool 10.1.10.0/24 domain-name example.com
+cumulus@switch:~$ cl set system dhcp-server pool 10.1.10.0/24 range 10.1.10.100 to 10.1.10.199
+cumulus@switch:~$ cl set system dhcp-server pool 10.1.10.0/24 gateway 10.1.10.1
 cumulus@switch:~$ cl config apply
 ```
 
@@ -50,10 +50,10 @@ cumulus@switch:~$ cl config apply
 
 ```
 cumulus@switch:~$ cl set system dhcp-server6 pool 2001:db8::1/128 
-cumulus@switch:~$ cl set system dhcp-server6 pool 2001:db8::1/128 pool-name sf-office
+cumulus@switch:~$ cl set system dhcp-server6 pool 2001:db8::1/128 pool-name storage-servers
 cumulus@switch:~$ cl set system dhcp-server6 pool 2001:db8::1/128 domain-name-server 2001:db8:100::/64
-cumulus@switch:~$ cl set system dhcp-server6 pool 2001:db8::1/128 domain-name cumulus.com
-cumulus@switch:~$ cl set system dhcp-server6 pool 2001:db8::1/128 range 2001:db8:1::100 2001:db8:1::200 
+cumulus@switch:~$ cl set system dhcp-server6 pool 2001:db8::1/128 domain-name example.com
+cumulus@switch:~$ cl set system dhcp-server6 pool 2001:db8::1/128 range 2001:db8:1::100 2001:db8:1::199 
 cumulus@switch:~$ cl set system dhcp-server6 pool 2001:db8::1/128 gateway 2001:db8::a0a:0a01
 cumulus@switch:~$ cl config apply
 ```
@@ -165,8 +165,6 @@ To configure the DHCP server on a Cumulus Linux switch to assign a static IP add
 {{< tab "IPv4 ">}}
 
 ```
-cumulus@switch:~$ cl set system dhcp-server domain-name-server 10.0.0.0
-cumulus@switch:~$ cl set system dhcp-server domain-name mydomain.com
 cumulus@switch:~$ cl set system dhcp-server static server1
 cumulus@switch:~$ cl set system dhcp-server static server1 ip-address 10.0.0.2
 cumulus@switch:~$ cl set system dhcp-server static server1 mac-address 44:38:39:00:01:7e

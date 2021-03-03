@@ -25,11 +25,11 @@ To configure the DHCP server on a Cumulus Linux switch to assign dynamic IP addr
 {{< tabs "TabID27 ">}}
 {{< tab "CUE Commands ">}}
 
-1. Create a DHCP pool by providing a pool ID. The ID is an IPv4 or IPv6 prefix for the clients .
+1. Create a DHCP pool by providing a pool ID. The ID is an IPv4 or IPv6 prefix.
 2. Provide a name for the pool.
 3. Provide the IP address of the DNS Server you want to use in this pool. You can assign multiple DNS servers.
-4. Provide the domain name you want to use for this pool. Optional???
-5. Define the range of all available IP addresses.
+4. Provide the domain name you want to use for this pool so that name resolution is provided. Optional???
+5. Define the range of all IP addresses available for assignment.
 6. Provide the default gateway IP address. Optional.
 
 {{< tabs "TabI32 ">}}
@@ -150,7 +150,7 @@ You must include two pools in the DHCP configuration files:
 
 ## Static Assignment
 
-To configure the DHCP server on a Cumulus Linux switch to assign a static IP addresses to a resource, such as a server or printer:
+To configure the DHCP server on a Cumulus Linux switch to assign a static IP address to a resource, such as a server or printer:
 
 {{< tabs "TabID155 ">}}
 {{< tab "CUE Commands ">}}

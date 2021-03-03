@@ -209,15 +209,17 @@ cumulus@switch:~$ cl config apply
 
    ```
    cumulus@switch:~$ sudo nano /etc/dhcp/dhcpd.conf
-   ddns-update-style none;
-
-   default-lease-time 200000;
-   max-lease-time 7200;
-
-   subnet 10.0.0.0 netmask 255.255.255.0 {
-   }
-   subnet 10.0.0.0 netmask 255.255.255.0 {
-      range 10.0.0.2 10.0.0.60;
+   authoritative;
+   subnet 10.1.10.0 netmask 255.255.255.0 {
+      option domain-name-servers 192.168.200.53;
+      option domain-name example.com;
+      option routers 10.1.10.1;
+      default-lease-time 200000;
+      max-lease-time 200000;
+      default-url ;
+   pool {
+          range 10.1.10.100 10.1.10.199;
+          }
    }
    ```
 
@@ -234,15 +236,17 @@ cumulus@switch:~$ cl config apply
 
    ```
    cumulus@switch:~$ sudo nano /etc/dhcp/dhcpd6.conf
-   ddns-update-style none;
-
-   default-lease-time 200000;
-   max-lease-time 7200;
-
-   subnet6 2001:db8:100::/64 {
-   }
-   subnet6 2001:db8:1::/64 {
-       range 2001:db8:1::100 2001:db8:1::200;
+   authoritative;
+   subnet6 2001:db8::1/128 {
+      option domain-name-servers 2001:db8:100::64;
+      option domain-name example.com;
+      option routers 2001:db8::a0a:0a01;
+      default-lease-time 200000;
+      max-lease-time 200000;
+      default-url ;
+      pool {
+          range6 2001:db8:1::100 2001:db8:1::199;
+      }
    }
    ```
 
@@ -278,6 +282,68 @@ cumulus@switch:~$ cl set system dhcp-server pool 10.1.10.0/24 ping-check on
 ```
 cumulus@switch:~$ cl set system dhcp-server6 pool 10.1.10.0/24 ping-check on
 ```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+{{< tabs "TabID299 ">}}
+{{< tab "IPv4 ">}}
+
+1. Edit the `/etc/dhcp/dhcpd.conf` file to add `ping-check true;`:
+
+   ```
+   cumulus@switch:~$ sudo nano /etc/dhcp/dhcpd.conf
+   authoritative;
+   subnet 10.1.10.0 netmask 255.255.255.0 {
+      option domain-name-servers 192.168.200.53;
+      option domain-name example.com;
+      option routers 10.1.10.1;
+      default-lease-time 200000;
+      max-lease-time 200000;
+      ping-check true;
+      default-url ;
+   pool {
+          range 10.1.10.100 10.1.10.199;
+          }
+   }
+   ```
+   
+2. Restart the `dhcpd` service:
+
+   ```
+   cumulus@switch:~$ sudo systemctl restart dhcpd6.service
+   ```
+
+{{< /tab >}}
+{{< tab "IPv6 ">}}
+
+1. Edit the `/etc/dhcp/dhcpd6.conf` file to add `ping-check true;`:
+
+   ```
+   cumulus@switch:~$ sudo nano /etc/dhcp/dhcpd6.conf
+   authoritative;
+   subnet6 2001:db8::1/128 {
+      option domain-name-servers 2001:db8:100::64;
+      option domain-name example.com;
+      option routers 2001:db8::a0a:0a01;
+      default-lease-time 200000;
+      max-lease-time 200000;
+      ping-check true;
+      default-url ;
+      pool {
+          range6 2001:db8:1::100 2001:db8:1::199;
+      }
+   }
+   ```
+
+2. Restart the `dhcpd6` service:
+
+   ```
+   cumulus@switch:~$ sudo systemctl restart dhcpd6.service
+   ```
 
 {{< /tab >}}
 {{< /tabs >}}
@@ -364,7 +430,18 @@ cumulus@switch:~$ cl set system dhcp-server6 static server1 interface swp1
 
 ## Troubleshooting
 
-To show the current DHCP server settings, run the `cl show system dhcp-server` command.
+To show the current DHCP server settings, run the `cl show system dhcp-server` command:
+
+```
+umulus@leaf02:mgmt:~$ cl show system dhcp-server
+                      running       applied       description
+--------------------  ------------  ------------  ----------------------------------------------
+[domain-name]                                     DHCP domain names
+[domain-name-server]                              DHCP domain name servers
+[pool]                10.1.10.0/24  10.1.10.0/24  DHCP Pools
+[static]              server1       server1       DHCP clients with fixed IP address assignments
+[static]              server2       server2
+```
 
 The DHCP server determines if a DHCP request is a relay or a non-relay DHCP request. Run the following command to see the DHCP request:
 

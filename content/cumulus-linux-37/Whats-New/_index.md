@@ -139,7 +139,6 @@ Cumulus Linux 3.7.3 supports new platforms, provides bug fixes, and contains sev
 ### New Features and Enhancements
 
 - The {{<link url="Ethernet-Virtual-Private-Network-EVPN#freeze-a-detected-duplicate-address" text="EVPN duplicate address detection freeze option">}} lets you freeze a duplicate address permanently or for a certain amount of time
-- {{<link url="Cumulus-Hyperconverged-Solution-with-Nutanix" text="The Cumulus Hyperconverged Solution (HCS)">}} supports automated integration with the Nutanix Prism Management solution and the Nutanix AHV hypervisor
 
 ## What's New in Cumulus Linux 3.7.2
 

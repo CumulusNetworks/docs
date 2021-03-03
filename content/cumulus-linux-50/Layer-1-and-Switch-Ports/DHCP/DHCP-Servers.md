@@ -78,7 +78,7 @@ You must include two pools in the DHCP configuration files:
 
    ```
 
-   cumulus@switch:~$ cat /etc/dhcp/dhcpd.conf
+   cumulus@switch:~$ sudo nano /etc/dhcp/dhcpd.conf
    ddns-update-style none;
 
    default-lease-time 600;
@@ -94,7 +94,7 @@ You must include two pools in the DHCP configuration files:
 2. Edit the `/etc/default/isc-dhcp-server` configuration file so that the DHCP server starts when the system boots. Here is an example configuration:
 
    ```
-   cumulus@switch:~$ cat /etc/default/isc-dhcp-server
+   cumulus@switch:~$ sudo nano /etc/default/isc-dhcp-server
    DHCPD_CONF="-cf /etc/dhcp/dhcpd.conf"
 
    INTERFACES="swp1"
@@ -113,7 +113,7 @@ You must include two pools in the DHCP configuration files:
 1. In a text editor, edit the `/etc/dhcp/dhcpd6.conf` file. Use following configuration as an example:
 
    ```
-   cumulus@switch:~$ cat /etc/dhcp/dhcpd6.conf
+   cumulus@switch:~$ sudo nano /etc/dhcp/dhcpd6.conf
    ddns-update-style none;
 
    default-lease-time 600;
@@ -129,7 +129,7 @@ You must include two pools in the DHCP configuration files:
 2. Edit the `/etc/default/isc-dhcp-server6` file so that the DHCP server launches when the system boots. Here is an example configuration:
 
    ```
-   cumulus@switch:~$ cat /etc/default/isc-dhcp-server6
+   cumulus@switch:~$ sudo nano /etc/default/isc-dhcp-server6
    DHCPD_CONF="-cf /etc/dhcp/dhcpd6.conf"
 
    INTERFACES="swp1"
@@ -148,7 +148,7 @@ You must include two pools in the DHCP configuration files:
 {{< /tab >}}
 {{< /tabs >}}
 
-## Static Assignment
+### Static Assignment
 
 To configure the DHCP server on a Cumulus Linux switch to assign a static IP address to a resource, such as a server or printer:
 
@@ -181,7 +181,7 @@ cumulus@switch:~$ cl set system dhcp-server6 domain-name-server 2001:db8:100::/6
 cumulus@switch:~$ cl set system dhcp-server6 domain-name mydomain.com
 cumulus@switch:~$ cl set system dhcp-server6 static server2
 cumulus@switch:~$ cl set system dhcp-server6 static server2 ip-address 2001:db8:1::100
-cumulus@switch:~$ cl set system dhcp-server6 static server2  mac-address 44:38:39:00:01:6e
+cumulus@switch:~$ cl set system dhcp-server6 static server2 mac-address 44:38:39:00:01:6e
 cumulus@switch:~$ cl config apply
 ```
 
@@ -200,7 +200,7 @@ Edit the `/etc/dhcp/dhcp.conf` or `/etc/dhcp/dhcpd6.conf` configuration file. Sa
 
    ```
 
-   cumulus@switch:~$ cat /etc/dhcp/dhcpd.conf
+   cumulus@switch:~$ sudo nano /etc/dhcp/dhcpd.conf
    ddns-update-style none;
 
    default-lease-time 600;
@@ -216,7 +216,7 @@ Edit the `/etc/dhcp/dhcp.conf` or `/etc/dhcp/dhcpd6.conf` configuration file. Sa
 2. Edit the `/etc/default/isc-dhcp-server` configuration file so that the DHCP server starts when the system boots. Here is an example configuration:
 
    ```
-   cumulus@switch:~$ cat /etc/default/isc-dhcp-server
+   cumulus@switch:~$ sudo nano /etc/default/isc-dhcp-server
    DHCPD_CONF="-cf /etc/dhcp/dhcpd.conf"
 
    INTERFACES="swp1"
@@ -235,7 +235,7 @@ Edit the `/etc/dhcp/dhcp.conf` or `/etc/dhcp/dhcpd6.conf` configuration file. Sa
 1. In a text editor, edit the `/etc/dhcp/dhcpd6.conf` file. Use the following configuration as an example:
 
    ```
-   cumulus@switch:~$ cat /etc/dhcp/dhcpd6.conf
+   cumulus@switch:~$ sudo nano /etc/dhcp/dhcpd6.conf
    ddns-update-style none;
 
    default-lease-time 600;
@@ -251,7 +251,7 @@ Edit the `/etc/dhcp/dhcp.conf` or `/etc/dhcp/dhcpd6.conf` configuration file. Sa
 2. Edit the `/etc/default/isc-dhcp-server6` file so that the DHCP server launches when the system boots. Here is an example configuration:
 
    ```
-   cumulus@switch:~$ cat /etc/default/isc-dhcp-server6
+   cumulus@switch:~$ sudo nano /etc/default/isc-dhcp-server6
    DHCPD_CONF="-cf /etc/dhcp/dhcpd6.conf"
 
    INTERFACES="swp1"
@@ -272,9 +272,44 @@ Edit the `/etc/dhcp/dhcp.conf` or `/etc/dhcp/dhcpd6.conf` configuration file. Sa
 
 ## Optional Configuration
 
+### Configure the Port to Use with a Remote DHCP Server
+
+By default, the switch uses eth0 for DHCP. You can configure the switch to use a different port.
+
+The examle commands below configure the switch to use swp1 with a remote DHCP server:
+
+{{< tabs "TabID281 ">}}
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@switch:~$ cl set interface swp1 ip address dhcp
+cumulus@switch:~$ cl config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+1. Edit the switch port stanza in the `/etc/network/interfaces` file:
+
+   ```
+   cumulus@switch:~$ sudo nano /etc/network/interfaces
+   auto swp1
+   iface swp1 inet dhcp
+   ...
+   ```
+
+2. Restart the `dhcpd` service for IPv4 or the `dhcpd6` service for IPv6:
+
+   ```
+   cumulus@switch:~$ sudo systemctl restart dhcpd.service
+   ```
+
+{{< /tab >}}
+{{< /tabs >}}
+
 ### Lease Time
 
-You can set the network address lease time assigned to DHCP clients. You can specify the number of seconds between 180 and 31536000. The default lease time is 600 seconds.
+You can set the network address lease time assigned to DHCP clients. You can specify a number between 180 and 31536000. The default lease time is 600 seconds.
 
 {{< tabs "TabID274 ">}}
 {{< tab "CUE Commands ">}}
@@ -283,7 +318,7 @@ You can set the network address lease time assigned to DHCP clients. You can spe
 {{< tab "IPv4 ">}}
 
 ```
-cumulus@switch:~$ cl set system dhcp-server pool 1 lease-time 200000
+cumulus@switch:~$ cl set system dhcp-server pool 10.1.10.0/24 lease-time 200000
 cumulus@switch:~$ cl config apply
 ```
 
@@ -291,7 +326,7 @@ cumulus@switch:~$ cl config apply
 {{< tab "IPv6 ">}}
 
 ```
-cumulus@switch:~$ cl set system dhcp-server6 pool 1 lease-time 200000
+cumulus@switch:~$ cl set system dhcp-server6 pool 10.1.10.0/24 lease-time 200000
 cumulus@switch:~$ cl config apply
 ```
 
@@ -307,7 +342,7 @@ cumulus@switch:~$ cl config apply
 1. Edit the `/etc/dhcp/dhcpd.conf` file to set the lease time (in seconds):
 
    ```
-   cumulus@switch:~$ cat /etc/dhcp/dhcpd.conf
+   cumulus@switch:~$ sudo nano /etc/dhcp/dhcpd.conf
    ddns-update-style none;
 
    default-lease-time 200000;
@@ -332,7 +367,7 @@ cumulus@switch:~$ cl config apply
 1. Edit the `/etc/dhcp/dhcpd6.conf` file to set the lease time (in seconds):
 
    ```
-   cumulus@switch:~$ cat /etc/dhcp/dhcpd6.conf
+   cumulus@switch:~$ sudo nano /etc/dhcp/dhcpd6.conf
    ddns-update-style none;
 
    default-lease-time 200000;
@@ -368,14 +403,14 @@ Configure the DHCP server to ping the address to be assigned to a client before 
 {{< tab "IPv4 ">}}
 
 ```
-cumulus@switch:~$ cl set system dhcp-server pool 1 ping-check on
+cumulus@switch:~$ cl set system dhcp-server pool 10.1.10.0/24 ping-check on
 ```
 
 {{< /tab >}}
 {{< tab "IPv6 ">}}
 
 ```
-cumulus@switch:~$ cl set system dhcp-server6 pool 1 ping-check on
+cumulus@switch:~$ cl set system dhcp-server6 pool 10.1.10.0/24 ping-check on
 ```
 
 {{< /tab >}}
@@ -388,14 +423,78 @@ cumulus@switch:~$ cl set system dhcp-server6 pool 1 ping-check on
 
 You can assign an IP address and other DHCP options based on physical location or port regardless of MAC address to clients that are attached directly to the Cumulus Linux switch through a switch port. This is helpful when swapping out switches and servers; you can avoid the inconvenience of collecting the MAC address and sending it to the network administrator to modify the DHCP server configuration.
 
-Edit the `/etc/dhcp/dhcpd.conf` file and add the interface name `ifname` to assign an IP address through DHCP. The following provides an example:
+{{< tabs "TabID426 ">}}
+{{< tab "CUE Commands ">}}
+
+{{< tabs "TabID429 ">}}
+{{< tab "IPv4 ">}}
 
 ```
-host myhost {
-    ifname "swp1" ;
-    fixed-address 10.0.0.10 ;
-}
+cumulus@switch:~$ cl set system dhcp-server static server1 ip-address 10.0.0.2
+cumulus@switch:~$ cl set system dhcp-server static server1 interface swp1
 ```
+
+{{< /tab >}}
+{{< tab "IPv6 ">}}
+
+```
+cumulus@switch:~$ cl set system dhcp-server6 static server1 ip-address 2001:db8:1::100
+cumulus@switch:~$ cl set system dhcp-server6 static server1 interface swp1
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+{{< tabs "TabID449 ">}}
+{{< tab "IPv4 ">}}
+
+1. Edit the `/etc/dhcp/dhcpd.conf` file and add the interface name `ifname` to assign an IP address through DHCP. The following provides an example:
+
+   ```
+   cumulus@switch:~$ sudo nano /etc/dhcp/dhcpd.conf
+   ...
+   host myhost {
+       ifname "swp1" ;
+       fixed-address 10.0.0.10 ;
+   }
+   ...
+   ```
+
+2. Restart the `dhcpd` service:
+
+   ```
+   cumulus@switch:~$ sudo systemctl restart dhcpd.service
+   ```
+
+{{< /tab >}}
+{{< tab "IPv6 ">}}
+
+1. Edit the `/etc/dhcp/dhcpd6.conf` file and add the interface name `ifname` to assign an IP address through DHCP. The following provides an example:
+
+   ```
+   cumulus@switch:~$ sudo nano /etc/dhcp/dhcpd6.conf
+   ...
+   host myhost {
+       ifname "swp1" ;
+       fixed-address 10.0.0.10 ;
+   }
+   ...
+   ```
+
+2. Restart the `dhcpd6` service:
+
+   ```
+   cumulus@switch:~$ sudo systemctl restart dhcpd6.service
+   ```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ## Troubleshooting
 

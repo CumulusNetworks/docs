@@ -14,49 +14,70 @@ For information about DHCP relays, refer to {{<link title="DHCP Relays">}}.
 
 ## Basic Configuration
 
-This section shows you how to configure a DHCP server for IPv4 and IPv6 using the following topology, where the DHCP server is a switch running Cumulus Linux.
+This section shows you how to configure a DHCP server using the following topology, where the DHCP server is a switch running Cumulus Linux.
 
 {{< img src = "/images/cumulus-linux/dhcp-server-topology.png" >}}
 
-### Dynamic Assignment
+To configure the DHCP server on a Cumulus Linux switch:
+- Create a DHCP pool by providing a pool ID. The ID is an IPv4 or IPv6 prefix.
+- Provide a name for the pool (optional).
+- Provide the IP address of the DNS Server you want to use in this pool. You can assign multiple DNS servers.
+- Provide the domain name you want to use for this pool so that name resolution is provided (optional).
+- Define the range of all IP addresses available for assignment.
+- Provide the default gateway IP address (optional).
 
-To configure the DHCP server on a Cumulus Linux switch to assign dynamic IP addresses:
+In addition, you can configure a static IP address for a resource, such as a server or printer:
+- Create an ID for the static assignment. This is typically the name of the resource.
+- Provide the static IP address you want to assign to this resource.
+- Provide the MAC address of the resource to which you want to assign the IP address.
+
+{{%notice note%}}
+- To configure static IP address assignments, you must first configure a pool.
+- You can set the DNS server IP address and domain name globally or specify different DNS server IP addresses and domain names for different pools. The following example commands configure a DNS server IP address and domain name for a pool.
+{{%/notice%}}
 
 {{< tabs "TabID27 ">}}
 {{< tab "CUE Commands ">}}
-
-1. Create a DHCP pool by providing a pool ID. The ID is an IPv4 or IPv6 prefix.
-2. Provide a name for the pool.
-3. Provide the IP address of the DNS Server you want to use in this pool. You can assign multiple DNS servers.
-4. Provide the domain name you want to use for this pool so that name resolution is provided. Optional???
-5. Define the range of all IP addresses available for assignment.
-6. Provide the default gateway IP address. Optional.
 
 {{< tabs "TabI32 ">}}
 {{< tab "IPv4 ">}}
 
 ```
 cumulus@switch:~$ cl set system dhcp-server pool 10.1.10.0/24
-cumulus@switch:~$ cl set system dhcp-server pool 10.1.10.0/24 pool-name sf-office
-cumulus@switch:~$ cl set system dhcp-server pool 10.1.10.0/24 domain-name-server 10.0.0.0
-cumulus@switch:~$ cl set system dhcp-server pool 10.1.10.0/24 domain-name cumulus.com
-cumulus@switch:~$ cl set system dhcp-server pool 10.1.10.0/24 range 10.1.10.2 to 10.1.10.60
-cumulus@switch:~$ cl set system dhcp-server pool 10.1.10.0/24 gateway 10.10.10.1
+cumulus@switch:~$ cl set system dhcp-server pool 10.1.10.0/24 pool-name storage-servers
+cumulus@switch:~$ cl set system dhcp-server pool 10.1.10.0/24 domain-name-server 192.168.200.53
+cumulus@switch:~$ cl set system dhcp-server pool 10.1.10.0/24 domain-name example.com
+cumulus@switch:~$ cl set system dhcp-server pool 10.1.10.0/24 range 10.1.10.100 to 10.1.10.199
+cumulus@switch:~$ cl set system dhcp-server pool 10.1.10.0/24 gateway 10.1.10.1
+cumulus@switch:~$ cl set system dhcp-server static server1
+cumulus@switch:~$ cl set system dhcp-server static server1 ip-address 10.0.0.2
+cumulus@switch:~$ cl set system dhcp-server static server1 mac-address 44:38:39:00:01:7e
 cumulus@switch:~$ cl config apply
 ```
+
+{{%notice note%}}
+To set the DNS server IP address and domain name globally, use the `cl set system dhcp-server domain-name-server` and `cl set system dhcp-server domain-name` commands.
+{{%/notice%}}
 
 {{< /tab >}}
 {{< tab "IPv6 ">}}
 
 ```
 cumulus@switch:~$ cl set system dhcp-server6 pool 2001:db8::1/128 
-cumulus@switch:~$ cl set system dhcp-server6 pool 2001:db8::1/128 pool-name sf-office
-cumulus@switch:~$ cl set system dhcp-server6 pool 2001:db8::1/128 domain-name-server 2001:db8:100::/64
-cumulus@switch:~$ cl set system dhcp-server6 pool 2001:db8::1/128 domain-name cumulus.com
-cumulus@switch:~$ cl set system dhcp-server6 pool 2001:db8::1/128 range 2001:db8:1::100 2001:db8:1::200 
+cumulus@switch:~$ cl set system dhcp-server6 pool 2001:db8::1/128 pool-name storage-servers
+cumulus@switch:~$ cl set system dhcp-server6 pool 2001:db8::1/128 domain-name-server 2001:db8:100::64
+cumulus@switch:~$ cl set system dhcp-server6 pool 2001:db8::1/128 domain-name example.com
+cumulus@switch:~$ cl set system dhcp-server6 pool 2001:db8::1/128 range 2001:db8:1::100 to 2001:db8:1::199 
 cumulus@switch:~$ cl set system dhcp-server6 pool 2001:db8::1/128 gateway 2001:db8::a0a:0a01
+cumulus@switch:~$ cl set system dhcp-server6 static server1
+cumulus@switch:~$ cl set system dhcp-server6 static server1 ip-address 2001:db8:1::100
+cumulus@switch:~$ cl set system dhcp-server6 static server1 mac-address 44:38:39:00:01:7e
 cumulus@switch:~$ cl config apply
 ```
+
+{{%notice note%}}
+To set the DNS server IP address and domain name globally, use the `cl set system dhcp-server6 domain-name-server` and `cl set system dhcp-server6 domain-name` commands.
+{{%/notice%}}
 
 {{< /tab >}}
 {{< /tabs >}}
@@ -64,37 +85,54 @@ cumulus@switch:~$ cl config apply
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Edit the `/etc/dhcp/dhcp.conf` or `/etc/dhcp/dhcpd6.conf` configuration file. Sample configurations are provided.
-
-You must include two pools in the DHCP configuration files:
-
-- Pool 1 is the subnet that includes the IP addresses of the interfaces on the DHCP server.
-- Pool 2 is the subnet that includes the IP addresses being assigned.
-
 {{< tabs "TabID53 ">}}
 {{< tab "IPv4 ">}}
 
 1. In a text editor, edit the `/etc/dhcp/dhcpd.conf` file. Use following configuration as an example:
 
    ```
-
-   cumulus@switch:~$ cat /etc/dhcp/dhcpd.conf
-   ddns-update-style none;
-
-   default-lease-time 600;
-   max-lease-time 7200;
-
-   subnet 10.0.0.0 netmask 255.255.255.0 {
+   cumulus@switch:~$ sudo nano /etc/dhcp/dhcpd.conf
+   authoritative;
+   subnet 10.1.10.0 netmask 255.255.255.0 {
+      option domain-name-servers 192.168.200.53;
+      option domain-name example.com;
+      option routers 10.1.10.1;
+      default-lease-time 3600;
+      max-lease-time 3600;
+      default-url ;
+   pool {
+          range 10.1.10.100 10.1.10.199;
+          }
    }
-   subnet 10.0.0.0 netmask 255.255.255.0 {
-      range 10.0.0.2 10.0.0.60;
+   #Statics
+   group {
+      host server1 {
+         hardware ethernet 44:38:39:00:01:7e;
+         fixed-address 10.0.0.2;
+      }
    }
    ```
+
+   {{%notice note%}}
+To set the DNS server IP address and domain name globally, add the DNS server IP address and domain name before the pool information in the `/etc/dhcp/dhcpd.conf` file. For example:
+
+```
+cumulus@switch:~$ sudo nano /etc/dhcp/dhcpd.conf
+authoritative;
+option domain-name servers;
+option domain-name-servers 192.168.200.51;
+subnet 10.1.10.0 netmask 255.255.255.0 {
+   option routers 10.10.10.1;
+   default-lease-time 3600;
+   max-lease-time 3600;
+...
+```
+{{%/notice%}}
 
 2. Edit the `/etc/default/isc-dhcp-server` configuration file so that the DHCP server starts when the system boots. Here is an example configuration:
 
    ```
-   cumulus@switch:~$ cat /etc/default/isc-dhcp-server
+   cumulus@switch:~$ sudo nano /etc/default/isc-dhcp-server
    DHCPD_CONF="-cf /etc/dhcp/dhcpd.conf"
 
    INTERFACES="swp1"
@@ -113,145 +151,48 @@ You must include two pools in the DHCP configuration files:
 1. In a text editor, edit the `/etc/dhcp/dhcpd6.conf` file. Use following configuration as an example:
 
    ```
-   cumulus@switch:~$ cat /etc/dhcp/dhcpd6.conf
-   ddns-update-style none;
-
-   default-lease-time 600;
-   max-lease-time 7200;
-
-   subnet6 2001:db8:100::/64 {
+   cumulus@switch:~$ sudo nano /etc/dhcp/dhcpd6.conf
+   authoritative;
+   subnet6 2001:db8::1/128 {
+      option domain-name-servers 2001:db8:100::64;
+      option domain-name example.com;
+      option routers 2001:db8::a0a:0a01;
+      default-lease-time 3600;
+      max-lease-time 3600;
+      default-url ;
+      pool {
+          range6 2001:db8:1::100 2001:db8:1::199;
+      }
    }
-   subnet6 2001:db8:1::/64 {
-       range 2001:db8:1::100 2001:db8:1::200;
+   #Statics
+   group {
+      host server1 {
+          hardware ethernet 44:38:39:00:01:7e;
+          fixed-address6 2001:db8:1::100;
+      }
    }
    ```
+
+    {{%notice note%}}
+To set the DNS server IP address and domain name globally, add the DNS server IP address and domain name before the pool information in the `/etc/dhcp/dhcpd6.conf` file. For example:
+
+```
+cumulus@switch:~$ sudo nano /etc/dhcp/dhcpd6.conf
+authoritative;
+option domain-name servers;
+option domain-name-servers 2001:db8:100::64;
+subnet6 2001:db8::1/128 {
+   option routers 2001:db8::a0a:0a01;
+   default-lease-time 3600;
+   max-lease-time 3600;
+...
+```
+{{%/notice%}}
 
 2. Edit the `/etc/default/isc-dhcp-server6` file so that the DHCP server launches when the system boots. Here is an example configuration:
 
    ```
-   cumulus@switch:~$ cat /etc/default/isc-dhcp-server6
-   DHCPD_CONF="-cf /etc/dhcp/dhcpd6.conf"
-
-   INTERFACES="swp1"
-   ```
-
-3. Enable and start the `dhcpd6` service:
-
-   ```
-   cumulus@switch:~$ sudo systemctl enable dhcpd6.service
-   cumulus@switch:~$ sudo systemctl start dhcpd6.service
-   ```
-
-{{< /tab >}}
-{{< /tabs >}}
-
-{{< /tab >}}
-{{< /tabs >}}
-
-## Static Assignment
-
-To configure the DHCP server on a Cumulus Linux switch to assign a static IP address to a resource, such as a server or printer:
-
-{{< tabs "TabID155 ">}}
-{{< tab "CUE Commands ">}}
-
-1. Provide the IP address of the DNS server you want to use.
-2. Provide the domain name so that name resolution is provided.
-3. Create an ID for the static assignment. This is typically the name of the resource.
-4. Provide the static IP address you want to assign to this resource.
-5. Provide the MAC address of the resource to which you want to assign the IP address.
-
-{{< tabs "TabI61 ">}}
-{{< tab "IPv4 ">}}
-
-```
-cumulus@switch:~$ cl set system dhcp-server domain-name-server 10.0.0.0
-cumulus@switch:~$ cl set system dhcp-server domain-name mydomain.com
-cumulus@switch:~$ cl set system dhcp-server static server1
-cumulus@switch:~$ cl set system dhcp-server static server1 ip-address 10.0.0.2
-cumulus@switch:~$ cl set system dhcp-server static server1 mac-address 44:38:39:00:01:7e
-cumulus@switch:~$ cl config apply
-```
-
-{{< /tab >}}
-{{< tab "IPv6 ">}}
-
-```
-cumulus@switch:~$ cl set system dhcp-server6 domain-name-server 2001:db8:100::/64
-cumulus@switch:~$ cl set system dhcp-server6 domain-name mydomain.com
-cumulus@switch:~$ cl set system dhcp-server6 static server2
-cumulus@switch:~$ cl set system dhcp-server6 static server2 ip-address 2001:db8:1::100
-cumulus@switch:~$ cl set system dhcp-server6 static server2  mac-address 44:38:39:00:01:6e
-cumulus@switch:~$ cl config apply
-```
-
-{{< /tab >}}
-{{< /tabs >}}
-
-{{< /tab >}}
-{{< tab "Linux Commands ">}}
-
-Edit the `/etc/dhcp/dhcp.conf` or `/etc/dhcp/dhcpd6.conf` configuration file. Sample configurations are provided.
-
-{{< tabs "TabID191 ">}}
-{{< tab "IPv4 ">}}
-
-1. In a text editor, edit the `/etc/dhcp/dhcpd.conf` file. Use the following configuration as an example:
-
-   ```
-
-   cumulus@switch:~$ cat /etc/dhcp/dhcpd.conf
-   ddns-update-style none;
-
-   default-lease-time 600;
-   max-lease-time 7200;
-
-   subnet 10.0.0.0 netmask 255.255.255.0 {
-   }
-   subnet 10.0.0.0 netmask 255.255.255.0 {
-      range 10.0.0.2 10.0.0.60;
-   }
-   ```
-
-2. Edit the `/etc/default/isc-dhcp-server` configuration file so that the DHCP server starts when the system boots. Here is an example configuration:
-
-   ```
-   cumulus@switch:~$ cat /etc/default/isc-dhcp-server
-   DHCPD_CONF="-cf /etc/dhcp/dhcpd.conf"
-
-   INTERFACES="swp1"
-   ```
-
-3. Enable and start the `dhcpd` service:
-
-   ```
-   cumulus@switch:~$ sudo systemctl enable dhcpd.service
-   cumulus@switch:~$ sudo systemctl start dhcpd.service
-   ```
-
-{{< /tab >}}
-{{< tab "IPv6 ">}}
-
-1. In a text editor, edit the `/etc/dhcp/dhcpd6.conf` file. Use the following configuration as an example:
-
-   ```
-   cumulus@switch:~$ cat /etc/dhcp/dhcpd6.conf
-   ddns-update-style none;
-
-   default-lease-time 600;
-   max-lease-time 7200;
-
-   subnet6 2001:db8:100::/64 {
-   }
-   subnet6 2001:db8:1::/64 {
-       range 2001:db8:1::100 2001:db8:1::200;
-   }
-   ```
-
-2. Edit the `/etc/default/isc-dhcp-server6` file so that the DHCP server launches when the system boots. Here is an example configuration:
-
-   ```
-   cumulus@switch:~$ cat /etc/default/isc-dhcp-server6
+   cumulus@switch:~$ sudo nano /etc/default/isc-dhcp-server6
    DHCPD_CONF="-cf /etc/dhcp/dhcpd6.conf"
 
    INTERFACES="swp1"
@@ -274,16 +215,16 @@ Edit the `/etc/dhcp/dhcp.conf` or `/etc/dhcp/dhcpd6.conf` configuration file. Sa
 
 ### Lease Time
 
-You can set the network address lease time assigned to DHCP clients. You can specify the number of seconds between 180 and 31536000. The default lease time is 600 seconds.
+You can set the network address lease time assigned to DHCP clients. You can specify a number between 180 and 31536000. The default lease time is 600 seconds.
 
-{{< tabs "TabID274 ">}}
+{{< tabs "TabID206 ">}}
 {{< tab "CUE Commands ">}}
 
-{{< tabs "TabID277 ">}}
+{{< tabs "TabID209 ">}}
 {{< tab "IPv4 ">}}
 
 ```
-cumulus@switch:~$ cl set system dhcp-server pool 1 lease-time 200000
+cumulus@switch:~$ cl set system dhcp-server pool 10.1.10.0/24 lease-time 200000
 cumulus@switch:~$ cl config apply
 ```
 
@@ -291,7 +232,7 @@ cumulus@switch:~$ cl config apply
 {{< tab "IPv6 ">}}
 
 ```
-cumulus@switch:~$ cl set system dhcp-server6 pool 1 lease-time 200000
+cumulus@switch:~$ cl set system dhcp-server6 pool 10.1.10.0/24 lease-time 200000
 cumulus@switch:~$ cl config apply
 ```
 
@@ -301,22 +242,24 @@ cumulus@switch:~$ cl config apply
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-{{< tabs "TabID299 ">}}
+{{< tabs "TabID231 ">}}
 {{< tab "IPv4 ">}}
 
 1. Edit the `/etc/dhcp/dhcpd.conf` file to set the lease time (in seconds):
 
    ```
-   cumulus@switch:~$ cat /etc/dhcp/dhcpd.conf
-   ddns-update-style none;
-
-   default-lease-time 200000;
-   max-lease-time 7200;
-
-   subnet 10.0.0.0 netmask 255.255.255.0 {
-   }
-   subnet 10.0.0.0 netmask 255.255.255.0 {
-      range 10.0.0.2 10.0.0.60;
+   cumulus@switch:~$ sudo nano /etc/dhcp/dhcpd.conf
+   authoritative;
+   subnet 10.1.10.0 netmask 255.255.255.0 {
+      option domain-name-servers 192.168.200.53;
+      option domain-name example.com;
+      option routers 10.1.10.1;
+      default-lease-time 200000;
+      max-lease-time 200000;
+      default-url ;
+   pool {
+          range 10.1.10.100 10.1.10.199;
+          }
    }
    ```
 
@@ -332,16 +275,18 @@ cumulus@switch:~$ cl config apply
 1. Edit the `/etc/dhcp/dhcpd6.conf` file to set the lease time (in seconds):
 
    ```
-   cumulus@switch:~$ cat /etc/dhcp/dhcpd6.conf
-   ddns-update-style none;
-
-   default-lease-time 200000;
-   max-lease-time 7200;
-
-   subnet6 2001:db8:100::/64 {
-   }
-   subnet6 2001:db8:1::/64 {
-       range 2001:db8:1::100 2001:db8:1::200;
+   cumulus@switch:~$ sudo nano /etc/dhcp/dhcpd6.conf
+   authoritative;
+   subnet6 2001:db8::1/128 {
+      option domain-name-servers 2001:db8:100::64;
+      option domain-name example.com;
+      option routers 2001:db8::a0a:0a01;
+      default-lease-time 200000;
+      max-lease-time 200000;
+      default-url ;
+      pool {
+          range6 2001:db8:1::100 2001:db8:1::199;
+      }
    }
    ```
 
@@ -361,22 +306,84 @@ cumulus@switch:~$ cl config apply
 
 Configure the DHCP server to ping the address to be assigned to a client before issuing the IP address. If no response is received, the IP address is delivered; otherwise the IP address is abandoned and no response is sent to the client.
 
-{{< tabs "TabID359 ">}}
+{{< tabs "TabID295 ">}}
 {{< tab "CUE Commands ">}}
 
-{{< tabs "TabID362 ">}}
+{{< tabs "TabID298 ">}}
 {{< tab "IPv4 ">}}
 
 ```
-cumulus@switch:~$ cl set system dhcp-server pool 1 ping-check on
+cumulus@switch:~$ cl set system dhcp-server pool 10.1.10.0/24 ping-check on
 ```
 
 {{< /tab >}}
 {{< tab "IPv6 ">}}
 
 ```
-cumulus@switch:~$ cl set system dhcp-server6 pool 1 ping-check on
+cumulus@switch:~$ cl set system dhcp-server6 pool 10.1.10.0/24 ping-check on
 ```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+{{< tabs "TabID318 ">}}
+{{< tab "IPv4 ">}}
+
+1. Edit the `/etc/dhcp/dhcpd.conf` file to add `ping-check true;`:
+
+   ```
+   cumulus@switch:~$ sudo nano /etc/dhcp/dhcpd.conf
+   authoritative;
+   subnet 10.1.10.0 netmask 255.255.255.0 {
+      option domain-name-servers 192.168.200.53;
+      option domain-name example.com;
+      option routers 10.1.10.1;
+      default-lease-time 200000;
+      max-lease-time 200000;
+      ping-check true;
+      default-url ;
+   pool {
+          range 10.1.10.100 10.1.10.199;
+          }
+   }
+   ```
+   
+2. Restart the `dhcpd` service:
+
+   ```
+   cumulus@switch:~$ sudo systemctl restart dhcpd6.service
+   ```
+
+{{< /tab >}}
+{{< tab "IPv6 ">}}
+
+1. Edit the `/etc/dhcp/dhcpd6.conf` file to add `ping-check true;`:
+
+   ```
+   cumulus@switch:~$ sudo nano /etc/dhcp/dhcpd6.conf
+   authoritative;
+   subnet6 2001:db8::1/128 {
+      option domain-name-servers 2001:db8:100::64;
+      option domain-name example.com;
+      option routers 2001:db8::a0a:0a01;
+      default-lease-time 200000;
+      max-lease-time 200000;
+      ping-check true;
+      default-url ;
+      pool {
+          range6 2001:db8:1::100 2001:db8:1::199;
+      }
+   }
+   ```
+
+2. Restart the `dhcpd6` service:
+
+   ```
+   cumulus@switch:~$ sudo systemctl restart dhcpd6.service
+   ```
 
 {{< /tab >}}
 {{< /tabs >}}
@@ -388,18 +395,93 @@ cumulus@switch:~$ cl set system dhcp-server6 pool 1 ping-check on
 
 You can assign an IP address and other DHCP options based on physical location or port regardless of MAC address to clients that are attached directly to the Cumulus Linux switch through a switch port. This is helpful when swapping out switches and servers; you can avoid the inconvenience of collecting the MAC address and sending it to the network administrator to modify the DHCP server configuration.
 
-Edit the `/etc/dhcp/dhcpd.conf` file and add the interface name `ifname` to assign an IP address through DHCP. The following provides an example:
+{{< tabs "TabID384 ">}}
+{{< tab "CUE Commands ">}}
+
+{{< tabs "TabID387 ">}}
+{{< tab "IPv4 ">}}
 
 ```
-host myhost {
-    ifname "swp1" ;
-    fixed-address 10.0.0.10 ;
-}
+cumulus@switch:~$ cl set system dhcp-server static server1 ip-address 10.0.0.2
+cumulus@switch:~$ cl set system dhcp-server static server1 interface swp1
 ```
+
+{{< /tab >}}
+{{< tab "IPv6 ">}}
+
+```
+cumulus@switch:~$ cl set system dhcp-server6 static server1 ip-address 2001:db8:1::100
+cumulus@switch:~$ cl set system dhcp-server6 static server1 interface swp1
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+{{< tabs "TabID409 ">}}
+{{< tab "IPv4 ">}}
+
+1. Edit the `/etc/dhcp/dhcpd.conf` file and add the interface name `ifname` to assign an IP address through DHCP. The following provides an example:
+
+   ```
+   cumulus@switch:~$ sudo nano /etc/dhcp/dhcpd.conf
+   ...
+   host myhost {
+       ifname "swp1" ;
+       fixed-address 10.0.0.10 ;
+   }
+   ...
+   ```
+
+2. Restart the `dhcpd` service:
+
+   ```
+   cumulus@switch:~$ sudo systemctl restart dhcpd.service
+   ```
+
+{{< /tab >}}
+{{< tab "IPv6 ">}}
+
+1. Edit the `/etc/dhcp/dhcpd6.conf` file and add the interface name `ifname` to assign an IP address through DHCP. The following provides an example:
+
+   ```
+   cumulus@switch:~$ sudo nano /etc/dhcp/dhcpd6.conf
+   ...
+   host myhost {
+       ifname "swp1" ;
+       fixed-address 10.0.0.10 ;
+   }
+   ...
+   ```
+
+2. Restart the `dhcpd6` service:
+
+   ```
+   cumulus@switch:~$ sudo systemctl restart dhcpd6.service
+   ```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ## Troubleshooting
 
-To show the current DHCP server settings, run the `cl show system dhcp-server` command.
+To show the current DHCP server settings, run the `cl show system dhcp-server` command:
+
+```
+umulus@leaf02:mgmt:~$ cl show system dhcp-server
+                      running       applied       description
+--------------------  ------------  ------------  ----------------------------------------------
+[domain-name]                                     DHCP domain names
+[domain-name-server]                              DHCP domain name servers
+[pool]                10.1.10.0/24  10.1.10.0/24  DHCP Pools
+[static]              server1       server1       DHCP clients with fixed IP address assignments
+[static]              server2       server2
+```
 
 The DHCP server determines if a DHCP request is a relay or a non-relay DHCP request. Run the following command to see the DHCP request:
 

@@ -52,7 +52,7 @@ You configure {{<exlink url="https://wiki.archlinux.org/index.php/proxy_settings
     cumulus@switch:~$ source /etc/profile.d/proxy.sh
     ```
 
-The proxy is now configured. The `echo` command can be used to confirm aproxy is set up correctly:
+The proxy is now configured. The `echo` command can be used to confirm a proxy is set up correctly:
 
 - HTTP proxy:
 

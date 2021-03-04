@@ -111,7 +111,7 @@ Any time you enable auto-negotiation, Cumulus Linux restores the default configu
 
 Cumulus Linux supports both half- and {{<exlink url="http://en.wikipedia.org/wiki/Duplex_%28telecommunications%29" text="full-duplex">}} configurations. Half-duplex is supported only with speeds of less than 1G.
 
-Supported port speeds include 100M, 1G, 10G, 25G, 40G, 50G and 100G. In Cumulus Linux, you set the speed on a Broadcom switch in Mbps, where the setting for 1G is *1000*, 40G is *40000*, and 100G is *100000*.
+Supported port speeds include 100M, 1G, 10G, 25G, 40G, 50G and 100G. In Cumulus Linux, you set the speed on a Broadcom switch in mbps, where the setting for 1G is *1000*, 40G is *40000*, and 100G is *100000*.
 
 You can configure ports to the following speeds (unless there are restrictions in the `/etc/cumulus/ports.conf` file of a particular platform).
 
@@ -220,7 +220,7 @@ A runtime configuration is non-persistent, which means the configuration you cre
 
 Interface MTU applies to traffic traversing the management port, front panel or switch ports, bridge, VLAN subinterfaces, and bonds (both physical and logical interfaces). MTU is the only interface setting that you must set manually.
 
-In Cumulus Linux, `ifupdown2` assigns 9216 as the default MTU setting. On a Mellanox switch, the initial MTU value set by the driver is 9238. After you configure the interface, the default MTU setting is 9216.
+In Cumulus Linux, `ifupdown2` assigns 9216 as the default MTU setting. On an NVIDIA Spectrum switch, the initial MTU value set by the driver is 9238. After you configure the interface, the default MTU setting is 9216.
 
 To change the MTU setting, run the following commands:
 
@@ -514,7 +514,7 @@ The following sections describe how to show the current FEC mode, and to enable 
 
 ### Show the Current FEC Mode
 
-Cumulus Linux returns different output for the `ethtool --show-fec` command, depending upon whether you are using a Broadcom or Mellanox Spectrum switch.
+Cumulus Linux returns different output for the `ethtool --show-fec` command, depending upon whether you are using a Broadcom or NVIDIA Spectrum switch.
 
 On a Broadcom switch, the `--show-fec` output tells you exactly what you configured, even if the link is down due to a FEC mismatch with the neighbor.
 
@@ -838,14 +838,14 @@ Cumulus Linux lets you:
 {{%notice note%}}
 
 - For Broadcom switches with ports that support 100G speeds, you *cannot* have more than 128 logical ports.
-- On Mellanox switches with the Spectrum ASIC running in *nonatomic* ACL mode, if you break out a port, then reload the `switchd` service, temporary disruption to traffic occurs while the ACLs are reinstalled.
-- Port ganging is not supported on Mellanox switches with the Spectrum ASIC.
-- Mellanox switches with the Spectrum 1 ASIC have a limit of 64 logical ports. 64-port Broadcom switches with the Tomahawk2 ASIC have a limit of 128 total logical ports. If you want to break ports out to 4x25G or 4x10G, you must configure the logical ports as follows:
+- On NVIDIA Spectrum switches running in *nonatomic* ACL mode, if you break out a port, then reload the `switchd` service, temporary disruption to traffic occurs while the ACLs are reinstalled.
+- Port ganging is not supported on NVIDIA Spectrum switches.
+- NVIDIA Spectrum-1 ASICs have a limit of 64 logical ports. 64-port Broadcom switches with the Tomahawk2 ASIC have a limit of 128 total logical ports. If you want to break ports out to 4x25G or 4x10G, you must configure the logical ports as follows:
   - You can only break out odd-numbered ports into four logical ports.
   - You must disable the next even-numbered port. For example, if you break out port 11 into four logical ports, you must disable port 12.
 
-  These restrictions do *not* apply to a 2x50G breakout configuration or to the Mellanox SN2100 and SN2010 switches.
-- Mellanox switches with the Spectrum 2 and Spectrum 3 ASIC have a limit of 128 logical ports. To ensure that the number of total logical interfaces does not exceed the limit, if you split ports into four interfaces on Spectrum 2 and Spectrum 3 switches with 64 interfaces, you must disable the adjacent port. For example, when splitting port 1 into four 25G interfaces, you must disable port 2 in the `/etc/cumulus/ports.conf` file:
+  These restrictions do *not* apply to a 2x50G breakout configuration or to the NVIDIA Spectrum SN2100 and SN2010 switches.
+- NVIDIA Spectrum-2 and Spectrum-3 ASICs have a limit of 128 logical ports. To ensure that the number of total logical interfaces does not exceed the limit, if you split ports into four interfaces on Spectrum 2 and Spectrum 3 switches with 64 interfaces, you must disable the adjacent port. For example, when splitting port 1 into four 25G interfaces, you must disable port 2 in the `/etc/cumulus/ports.conf` file:
 
     ```
     1=4x25G
@@ -876,7 +876,7 @@ cumulus@switch:~$ net commit
 
 To break out swp3 into four 10G ports, run the `net add interface swp3 breakout 4x10G` command.
 
-On Mellanox switches with the Spectrum ASIC and 64-port Broadcom switches, you need to disable the next port. The following example command disables swp4.
+On NVIDIA Spectrum switches and 64-port Broadcom switches, you need to disable the next port. The following example command disables swp4.
 
 ```
 cumulus@switch:~$ net add interface swp4 breakout disabled
@@ -905,7 +905,7 @@ iface swp3s3
 
 {{%notice note%}}
 
-When you commit your change on a Broadcom switch, `switchd` restarts to apply the changes. The restart {{<link url="Configuring-switchd" text="interrupts network services">}}. When you commit your change on a Mellanox switch, `switchd` reloads and there is no interruption to network services.
+When you commit your change on a Broadcom switch, `switchd` restarts to apply the changes. The restart {{<link url="Configuring-switchd" text="interrupts network services">}}. When you commit your change on an NVIDIA Spectrum switch, `switchd` reloads and there is no interruption to network services.
 
 {{%/notice%}}
 
@@ -913,7 +913,7 @@ When you commit your change on a Broadcom switch, `switchd` restarts to apply th
 
 {{< tab "Linux Commands ">}}
 
-1. Edit the `/etc/cumulus/ports.conf` file to configure the port breakout. The following example breaks out the 100G port on swp3 into four 25G ports. To break out swp3 into four 10G ports, use 3=4x10G. On Mellanox switches with the Spectrum ASIC and 64-port Broadcom switches with the Tomahawk2 ASIC, you need to disable the next port. The example also disables swp4.
+1. Edit the `/etc/cumulus/ports.conf` file to configure the port breakout. The following example breaks out the 100G port on swp3 into four 25G ports. To break out swp3 into four 10G ports, use 3=4x10G. On NVIDIA Spectrum switches and 64-port Broadcom switches with the Tomahawk2 ASIC, you need to disable the next port. The example also disables swp4.
 
    ```
    cumulus@switch:~$ sudo cat /etc/cumulus/ports.conf
@@ -950,7 +950,7 @@ iface swp310s3
 
    {{<cl/restart-switchd>}}
 
-   On a Mellanox switch, you can reload `switchd` with the `sudo systemctl reload switchd.service` command. The reload does **not** interrupt network services.
+   On an NVIDIA Spectrum switch, you can reload `switchd` with the `sudo systemctl reload switchd.service` command. The reload does **not** interrupt network services.
 
        cumulus@switch:~$ sudo systemctl reload switchd.service
 
@@ -994,7 +994,7 @@ To remove a breakout port:
 
    {{<cl/restart-switchd>}}
 
-   On a Mellanox switch, you can reload `switchd` with the `sudo systemctl reload switchd.service` command. The reload does **not** interrupt network services.
+   On an NVIDIA Spectrum switch, you can reload `switchd` with the `sudo systemctl reload switchd.service` command. The reload does **not** interrupt network services.
 
        cumulus@switch:~$ sudo systemctl reload switchd.service
 
@@ -1019,7 +1019,7 @@ To remove a breakout port:
 
    {{<cl/restart-switchd>}}
 
-   On a Mellanox switch, you can reload `switchd` with the `sudo systemctl reload switchd.service` command. The reload does **not** interrupt network services.
+   On an NVIDIA Spectrum switch, you can reload `switchd` with the `sudo systemctl reload switchd.service` command. The reload does **not** interrupt network services.
 
        cumulus@switch:~$ sudo systemctl reload switchd.service
 
@@ -1036,7 +1036,7 @@ You can *gang* (combine) four 10G ports into one 40G port for use with a breakou
 
 {{%notice note%}}
 
-- Port ganging is not supported on Mellanox switches with the Spectrum ASIC.
+- Port ganging is not supported on NVIDIA Spectrum switches.
 - The `/etc/cumulus/ports.conf` file varies across different hardware platforms. Check the current list of supported platforms on {{<exlink url="https://www.cumulusnetworks.com/hcl" text="the hardware compatibility list">}}.
 
 {{%/notice%}}
@@ -1093,7 +1093,7 @@ Restart `switchd` with the following command:
 
 100G and 40G switches can support a certain number of logical ports, depending on the manufacturer; these include:
 
-- Mellanox SN2700, SN2700B, SN2410, and SN2410B switches
+- NVIDIA Spectrum SN2700, SN2700B, SN2410, and SN2410B switches
 - Switches with Broadcom Tomahawk, Trident II, Trident II+, and Trident3 chipsets (check the {{<exlink url="https://cumulusnetworks.com/hcl" text="HCL">}})
 
 Before you configure any logical/unganged ports on a switch, check the limitations listed in `/etc/cumulus/ports.conf`; this file is specific to each manufacturer.
@@ -1126,7 +1126,7 @@ The following example shows the logical port limitation provided in the Dell Z92
 # <port label> = [100G|50G|40G|2x50G|4x25G|4x10G|disabled]
 ```
 
-Mellanox SN2700 and SN2700B switches have a limit of 64 logical ports in total. However, the logical ports must be configured in a specific way. See the note above.
+NVIDIA Spectrum SN2700 and SN2700B switches have a limit of 64 logical ports in total. However, the logical ports must be configured in a specific way. See the note above.
 
 ## Verification and Troubleshooting Commands
 
@@ -1207,9 +1207,9 @@ cumulus@switch:~$ sudo ethtool -m swp4 | egrep 'Vendor|type|power\s+:'
 
 ## Considerations
 
-### Auto-negotiation and FEC on Mellanox Spectrum Switches
+### Auto-negotiation and FEC on NVIDIA Spectrum Switches
 
-On Mellanox Spectrum switches, if auto-negotiation is disabled on 100G and 25G interfaces, you must set FEC to *OFF*, RS, or BaseR to match the neighbor. The FEC default setting of *auto* does not link up when auto-negotiation is disabled.
+On NVIDIA Spectrum switches, if auto-negotiation is disabled on 100G and 25G interfaces, you must set FEC to *OFF*, RS, or BaseR to match the neighbor. The FEC default setting of *auto* does not link up when auto-negotiation is disabled.
 
 ### Port Speed and the ifreload -a Command
 
@@ -1372,14 +1372,14 @@ To disable the QSFP+ ports, you must set the ports to `disabled`. Do not comment
 
 - Cumulus Express CX-5148-S and the Edgecore AS7326-56X, provided the switch has board revision R01D (to determine the revision of the board, look for the output in the `label revision` field when you run `decode-syseeprom`)
 - Dell S5248F-ON
-- Mellanox SN2410
-- Mellanox SN2010
+- NVIDIA Spectrum SN2410
+- NVIDIA Spectrum SN2010
 
 1000BASE-T SFP modules are not supported on any 100G or faster platforms.
 
-### Mellanox SN2100 Switch and eth0 Link Speed
+### NVIDIA Spectrum SN2100 Switch and eth0 Link Speed
 
-After rebooting the Melllanox SN2100 switch, eth0 always has a speed of 100Mb/s. If you bring the interface down and then back up again, the interface negotiates 1000Mb. This only occurs the first time the interface comes up.
+After rebooting the NVIDIA Spectrum SN2100 switch, eth0 always has a speed of 100Mb/s. If you bring the interface down and then back up again, the interface negotiates 1000Mb. This only occurs the first time the interface comes up.
 
 To work around this issue, add the following commands to the `/etc/rc.local` file to flap the interface automatically when the switch boots:
 
@@ -1433,9 +1433,9 @@ The following switches that use Serial over LAN technology (SOL) do not support 
 
 When you remove two transceivers simultaneously from a switch, both interfaces show the `carrier down` status immediately. However, it takes one second for the second interface to show the `operational down` status. In addition, the services on this interface also take an extra second to come down.
 
-### Mellanox Spectrum-2 and Tomahawk-based Switches Support Different FEC Modes
+### NVIDIA Spectrum-2 and Tomahawk-based Switches Support Different FEC Modes
 
-The Mellanox Spectrum-2 (25G) switch only supports RS FEC. The Tomahawk-based switch only supports BASE-R FEC. These two switches do not share compatible FEC modes and do not interoperate reliably.
+The NVIDIA Spectrum-2 (25G) switch only supports RS FEC. The Tomahawk-based switch only supports BASE-R FEC. These two switches do not share compatible FEC modes and do not interoperate reliably.
 
 ### Maverick Switches with Modules that Don't Support Auto-negotiation
 

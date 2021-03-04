@@ -566,7 +566,7 @@ If you use the `--ztp` option together with any of the other command line option
 
 ## Edit the Cumulus Linux Image (Advanced)
 
-The Cumulus Linux disk image file contains a BASH script that includes a set of variables. You can set these variables to be able to install a fully-configured system with a single image file.
+The Cumulus Linux disk image file contains a BASH script that includes a set of variables. You can set these variables to be able to install a fully configured system with a single image file.
 
 {{< expand "To edit the image"  >}}
 

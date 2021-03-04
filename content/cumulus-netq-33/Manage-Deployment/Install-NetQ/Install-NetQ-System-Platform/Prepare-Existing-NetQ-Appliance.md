@@ -174,7 +174,7 @@ The use of <code>netq-latest</code> in this example means that a <code>get</code
 
     5. Click **All downloads** next to **Cumulus NetQ**.
 
-    6. Select *3.3.0* from the **NetQ Version** dropdown.
+    6. Select *3.3.1* from the **NetQ Version** dropdown.
 
     7. Select *KVM* from the **Hypervisor** dropdown.
 
@@ -184,18 +184,18 @@ The use of <code>netq-latest</code> in this example means that a <code>get</code
 
     9. Verify this is the correct image, then click **Download**.
 
-    10. Copy these two files, *netq-bootstrap-3.3.0.tgz* and either *NetQ-3.3.0.tgz* (on-premises) or *NetQ-3.3.0-opta.tgz* (cloud), to the */mnt/installables/* directory on the appliance.
+    10. Copy these two files, *netq-bootstrap-3.3.1.tgz* and either *NetQ-3.3.1.tgz* (on-premises) or *NetQ-3.3.1-opta.tgz* (cloud), to the */mnt/installables/* directory on the appliance.
 
-    11. Verify that the needed files are present and of the correct release. This example shows on-premises files. The only difference for cloud files is that it should list *NetQ-3.3.0-opta.tgz* instead of *NetQ-3.3.0.tgz*.
+    11. Verify that the needed files are present and of the correct release. This example shows on-premises files. The only difference for cloud files is that it should list *NetQ-3.3.1-opta.tgz* instead of *NetQ-3.3.1.tgz*.
 
         ```
         cumulus@<hostname>:~$ dpkg -l | grep netq
-        ii  netq-agent   3.3.0-ub18.04u32~1610530013.2e51873_amd64   Cumulus NetQ Telemetry Agent for Ubuntu
-        ii  netq-apps    3.3.0-ub18.04u32~1610530013.2e51873_amd64   Cumulus NetQ Fabric Validation Application for Ubuntu
+        ii  netq-agent   3.3.1-ub18.04u32~1610530013.2e51873_amd64   Cumulus NetQ Telemetry Agent for Ubuntu
+        ii  netq-apps    3.3.1-ub18.04u32~1610530013.2e51873_amd64   Cumulus NetQ Fabric Validation Application for Ubuntu
 
         cumulus@<hostname>:~$ cd /mnt/installables/
         cumulus@<hostname>:/mnt/installables$ ls
-        NetQ-3.3.0.tgz  netq-bootstrap-3.3.0.tgz
+        NetQ-3.3.1.tgz  netq-bootstrap-3.3.1.tgz
         ```
 
     12. Run the following commands.
@@ -211,7 +211,7 @@ The use of <code>netq-latest</code> in this example means that a <code>get</code
 
     Run the bootstrap CLI on your appliance. Be sure to replace the *eth0* interface used in this example with the interface or IP address on the appliance used to listen for NetQ Agents.
 
-    {{<netq-install/bootstrap server="single" version="3.3.0">}}
+    {{<netq-install/bootstrap server="single" version="3.3.1">}}
 
 {{<notice note>}}
 If you are creating a server cluster, you need to prepare each of those appliances as well. Repeat these steps if you are using a previously deployed appliance or refer to {{<link title="Install the NetQ System">}} for a new appliance.

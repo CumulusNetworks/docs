@@ -236,4 +236,6 @@ When the installation and activation is complete, the NetQ System Health dashboa
 
 {{<figure src="/images/netq/adminui-health-standalone-cloud-330.png" width="700" caption="Remote-hosted, mulit-site or cloud, deployment">}}
 
-Click **Open NetQ** to enter the NetQ application.
+If you have deployed an on-premises solution, you can add a custom signed certificate. Refer to {{<link title="Post Installation Configuration Options/#install-a-custom-signed-certificate" text="Install a Certificate">}} for instructions.
+
+Click **Open NetQ** to enter the NetQ UI application.

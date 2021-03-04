@@ -37,31 +37,32 @@ into: /usr/local/var/lib/grafana/plugins
 Restart grafana after installing plugins . <service grafana-server restart>
 ```
 
-## Set Up a Pre-configured Dashboard
+## Set Up the NetQ Data Source
 
-The quickest way to view the interface statistics for your Cumulus Linux network is to make use of the pre-configured dashboard installed with the plug-in. Once you are familiar with that dashboard, you can create new dashboards or add new panels to the NetQ dashboard.
+Now that you have the plug-in installed, you need to configure access to the NetQ data source.
 
-1.  Open the Grafana user interface.
+1. Open the Grafana user interface.
 
-2.  Log in using your application credentials.
-    
+2. Log in using your application credentials.
+
     {{<figure src="/images/netq/grafana-login-230.png" width="400">}}
-    
+
     The Home Dashboard appears.
 
     {{<figure src="/images/netq/grafana-home-page-230.png" width="700">}}
 
 3. Click **Add data source** or {{<img src="/images/netq/grafana-config-icon.png" width="24" height="24">}} > *Data Sources*.
 
-    {{<figure src="/images/netq/grafana-add-data-src-230.png" width="500">}}
-
 4. Enter **Net-Q** in the search box or scroll down to the **Other** category, and select *Net-Q* from there.
+
+    {{<figure src="/images/netq/grafana-add-data-src-230.png" width="500">}}
 
 5. Enter *Net-Q* into the **Name** field.
 
 6. Enter the URL used to access the database:
     - Cloud: *api.netq.cumulusnetworks.com*
-    - On-premises: *\<hostname-ipaddr\>*
+    - On-premises: *\<hostname-or-ipaddr-of-netq-appl-or-vm\>/api*
+    - Cumulus in the Cloud (CITC): *air.netq.cumulusnetworks.com*
 
 7. Enter your credentials (the ones used to login)
 
@@ -76,19 +77,11 @@ The quickest way to view the interface statistics for your Cumulus Linux network
 
     {{<figure src="/images/netq/grafana-netq-dashboard-230.png" width="700">}}
 
-10. Go to {{<link url="#analyze-the-data" text="analyzing your data">}}.
+## Create Your NetQ Dashboard
 
-## Create a Dashboard
+With the data source configured, you can create a dashboard with the transmit and receive statistics of interest to you.
 
-You can either use the dashboard provided with the plug-in, NetQ Interface Statistics, or create your own.
-
-To use the Cumulus-provided dashboard, select the *NetQ Interface Statistics* from the left panel of the Home Page.
-
-{{<figure src="/images/netq/grafana-netq-dashboard-230.png" width="700">}}
-
-If you choose this option, you can skip directly to {{<link url="#analyze-the-data" text="analyzing your data">}}.
-
-To create your own dashboard:
+To create your dashboard:
 
 1. Click {{<img src="/images/netq/grafana-create-dashbd-icon.png" width="24" height="24">}} to open a blank dashboard.
 
@@ -134,7 +127,11 @@ To create your own dashboard:
 
 ## Analyze the Data
 
-Once you have your dashboard configured, you can start analyzing the data:
+Once you have your dashboard configured, you can start analyzing the data.
+
+For reference, this example shows a dashboard with all of the available statistics.
+
+{{<figure src="/images/netq/grafana-netq-dashboard-230.png" width="700">}}
 
 1. Select the hostname from the variable list at the top left of the charts to see the statistics for that switch or host.
 

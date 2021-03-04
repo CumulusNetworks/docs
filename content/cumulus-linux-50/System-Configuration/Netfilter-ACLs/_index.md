@@ -88,7 +88,7 @@ The Linux packet forwarding construct is an overlay for how the silicon undernea
 
     {{%notice warning%}}
 
-If multiple contiguous rules with the same match criteria are applied to `--in-interface`, **only** the first rule gets processeand then terminates processing. This is a misconfiguration; there is no reason to have duplicate rules with different actions.
+If multiple contiguous rules with the same match criteria are applied to `--in-interface`, **only** the first rule gets processed and then processing terminates. Do not configure duplicate rules with different actions.
 
     {{%/notice%}}
 

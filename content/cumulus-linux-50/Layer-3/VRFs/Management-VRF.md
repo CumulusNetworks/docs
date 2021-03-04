@@ -334,12 +334,6 @@ cumulus@switch:~$ ip route get <ip-address> oif mgmt
 
 In `ifupdown2`, {{<link url="Interface-Configuration-and-Management#ifupdown2-interface-classes" text="interface classes">}} are used to create a user-defined grouping for interfaces. The special class *mgmt* is available to separate the management interfaces of the switch from the data interfaces. This allows you to manage the data interfaces by default using `ifupdown2` commands. Performing operations on the *mgmt* interfaces requires specifying the `--allow-mgmt` option, which prevents inadvertent outages on the management interfaces. Cumulus Linux by default brings up all interfaces in both the *auto* (default) class and the *mgmt* interface class when the switch boots.
 
-{{%notice warning%}}
-
-The management VRF interface class is not supported if you are configuring Cumulus Linux using {{<link url="Network-Command-Line-Utility-NCLU" text="NCLU">}}.
-
-{{%/notice%}}
-
 You configure the management interface in the `/etc/network/interfaces` file. In the example below, the management interface eth0 and the management VRF stanzas are added to the *mgmt* interface class:
 
 ```

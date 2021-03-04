@@ -4,11 +4,13 @@ author: NVIDIA
 weight: 290
 toc: 3
 ---
-`ifupdown` is the network interface manager for Cumulus Linux.
+This section discusses how to configure and manage network interfaces.
 
-By default, `ifupdown` is quiet. Use the verbose option (`-v`) to show commands as they are executed when bringing an interface down or up.
+Cumulus Linux uses `ifupdown2` to manage network interfaces, which is a new implementation of the Debian network interface manager `ifupdown`.
 
 ## Basic Commands
+
+### Bring up the Physical Connection to an Interface
 
 To bring up the physical connection to an interface or apply changes to an existing interface, run the `sudo ifup <interface>` command. The following example command brings up the physical connection to swp1:
 
@@ -24,7 +26,13 @@ cumulus@switch:~$ sudo ifdown swp1
 
 The `ifdown` command always deletes logical interfaces after bringing them down. When you bring down the physical connection to an interface, it is brought back up automatically after any future reboots or configuration changes with `ifreload -a`.
 
-To administratively bring the interface up or down; for example, to bring down a port, bridge, or bond but not the physical connection for a port, bridge, or bond, you can use the `--admin-state` option. Alternatively, you can use CUE commands.
+{{%notice note%}}
+By default, `ifupdown` is quiet. Use the verbose option (`-v`) to show commands as they are executed when bringing an interface down or up.
+{{%/notice%}}
+
+### Bring up an Interface Administratively
+
+When you bring an interface up or down administratively (admin up or admin down), you bring down a port, bridge, or bond but not the physical connection for the port, bridge, or bond.
 
 When you put an interface into an admin down state, the interface *remains down* after any future reboots or configuration changes with `ifreload -a`.
 
@@ -90,19 +98,11 @@ cumulus@switch:~$ sudo ifup swp1 --admin-state
 {{< /tab >}}
 {{< /tabs >}}
 
-To see the link and administrative state, use the CUE `cl show interface swp1 link state` command or the Linux `ip link show` command. In the following example, swp1 is administratively UP and the physical link is UP (LOWER\_UP flag).
-
-```
-cumulus@switch:~$ ip link show dev swp1
-3: swp1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP mode DEFAULT qlen 500
-    link/ether 44:38:39:00:03:c1 brd ff:ff:ff:ff:ff:ff
-```
-
 For additional information on interface administrative state and physical state, refer to {{<exlink url="https://docs.cumulusnetworks.com/knowledge-base/Configuration-and-Usage/Monitoring/Monitor-Interface-Administrative-State-and-Physical-State-on-Cumulus-Linux/" text="this knowledge base article">}}.
 
-## ifupdown2 Interface Classes
+## Interface Classes
 
-`ifupdown2` enables you to group interfaces into separate classes, where a class is a user-defined label that groups interfaces that share a common function (such as uplink, downlink or compute). You specify classes in the `/etc/network/interfaces` file.
+`ifupdown2` enables you to group interfaces into separate classes. A class is a user-defined label that groups interfaces that share a common function (such as uplink, downlink or compute). You specify classes in the `/etc/network/interfaces` file.
 
 The most common class is *auto*, which you configure like this:
 
@@ -183,7 +183,7 @@ cumulus@switch:~$ sudo bash -c "ifreload -s -a && ifreload -a"
 
 For more information, see the individual man pages for `ifup(8)`, `ifdown(8)`, `ifreload(8)`.
 
-## Configure a Loopback Interface
+## Loopback Interface
 
 Cumulus Linux has a preconfigured loopback interface. When the switch boots up, the loopback interface called *lo* is up and assigned an IP address of 127.0.0.1.
 
@@ -191,88 +191,7 @@ Cumulus Linux has a preconfigured loopback interface. When the switch boots up, 
 The loopback interface *lo* must always be specified in the  `/etc/network/interfaces` file and must always be up.
 {{%/notice%}}
 
-To see the status of the loopback interface (lo):
-
-{{< tabs "TabID211 ">}}
-{{< tab "CUE Commands ">}}
-
-Use the `cl show interface lo` command.
-
-```
-cumulus@switch:~$ cl show interface lo
-                         running      applied   description
------------------------  -----------  --------  ----------------------------------------------------------------------
-type                     loopback     loopback  The type of interface
-ip
-  vrf                                 default   Virtual routing and forwarding
-  [address]              127.0.0.1/8            ipv4 and ipv6 address
-  [address]              ::1/128
-  ipv4
-    forward                           on        Enable or disable forwarding.
-  ipv6
-    enable                            on        Turn the feature 'on' or 'off'.  The default is 'on'.
-    forward                           on        Enable or disable forwarding.
-link
-  mtu                    65536                  interface mtu
-  state                  up                     The state of the interface
-  stats
-    carrier-transitions  0                      Number of times the interface state has transitioned between up and...
-    in-bytes             27211641               total number of bytes received on the interface
-    in-drops             0                      number of received packets dropped
-    in-errors            0                      number of received packets with errors
-    in-pkts              413828                 total number of packets received on the interface
-    out-bytes            27211641               total number of bytes transmitted out of the interface
-    out-drops            0                      The number of outbound packets that were chosen to be discarded eve...
-    out-errors           0                      The number of outbound packets that could not be transmitted becaus...
-    out-pkts             413828                 total number of packets transmitted out of the interface
-```
-
-The loopback is up and is assigned an IP address of 127.0.0.1.
-
-{{< /tab >}}
-{{< tab "NCLU Commands ">}}
-
-Use the `net show interface lo` command.
-
-```
-cumulus@switch:~$ net show interface lo
-    Name    MAC                Speed    MTU    Mode
---  ------  -----------------  -------  -----  --------
-UP  lo      00:00:00:00:00:00  N/A      65536  Loopback
-
-Alias
------
-loopback interface
-IP Details
--------------------------  --------------------
-IP:                        127.0.0.1/8, ::1/128
-IP Neighbor(ARP) Entries:  0
-```
-
-The loopback is up and is assigned an IP address of 127.0.0.1.
-
-{{< /tab >}}
-{{< tab "Linux Commands ">}}
-
-Use the `ip addr show lo` command.
-
-```
-cumulus@switch:~$ ip addr show lo
-1: lo: <LOOPBACK,UP,LOWER_UP> mtu 16436 qdisc noqueue state UNKNOWN
-    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
-    inet 127.0.0.1/8 scope host lo
-    inet6 ::1/128 scope host
-        valid_lft forever preferred_lft forever
-```
-
-The loopback is up and is assigned an IP address of 127.0.0.1.
-
-{{< /tab >}}
-{{< /tabs >}}
-
-### Configure Multiple Loopbacks
-
-You can configure multiple loopback addresses by assigning additional IP addresses to the lo interface.
+You can configure multiple loopback addresses by assigning additional IP addresses to the lo interface:
 
 {{< tabs "TabID281 ">}}
 {{< tab "CUE Commands ">}}
@@ -310,7 +229,7 @@ If an IP address is configured without a mask (as shown above), the IP address b
 {{< /tab >}}
 {{< /tabs >}}
 
-## ifupdown2 Behavior with Child Interfaces
+## Child Interfaces
 
 By default, `ifupdown2` recognizes and uses any interface present on the system that is listed as a dependent of an interface (for example, a VLAN, bond, or physical interface). You are not required to list interfaces in the `interfaces` file unless they need a specific configuration for {{<link url="Switch-Port-Attributes" text="MTU, link speed, and so on">}}. If you need to delete a child interface, delete all references to that interface from the `interfaces` file.
 
@@ -378,7 +297,7 @@ iface br-100
 
 For more information about bridges in traditional mode and bridges in VLAN-aware mode, read {{<exlink url="https://docs.cumulusnetworks.com/knowledge-base/Configuration-and-Usage/Network-Interfaces/Compare-Traditional-Bridge-Mode-to-VLAN-aware-Bridge-Mode/" text="this knowledge base article">}}.
 
-## ifupdown2 Interface Dependencies
+## Interface Dependencies
 
 `ifupdown2` understands interface dependency relationships. When you run `ifup` and `ifdown` with all interfaces, the commands always run with all interfaces in dependency order. When you run `ifup` and `ifdown`
 with the interface list on the command line, the default behavior is to *not* run with dependents; however, if there are any built-in dependents, they will be brought up or down.
@@ -508,9 +427,9 @@ On Linux, an *interface* is a network device that can be either physical, like a
 
 A VLAN subinterface only receives traffic  {{<link url="VLAN-Tagging" text="tagged">}} for that VLAN; therefore, swp1.100 only receives packets tagged with VLAN 100 on switch port swp1. Similarly, any packets transmitted from swp1.100 are tagged with VLAN 100.
 
-In an {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="MLAG">}} configuration, the peer link interface that connects the two switches in the MLAG pair has a VLAN subinterface named 4094 by default if you configured the subinterface with {{<link url="Network-Command-Line-Utility-NCLU" text="NCLU">}}. The peerlink.4094 subinterface only receives traffic tagged for VLAN 4094.
+In an {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="MLAG">}} configuration, the peer link interface that connects the two switches in the MLAG pair has a VLAN subinterface named 4094. The peerlink.4094 subinterface only receives traffic tagged for VLAN 4094.
 
-## ifup and Upper (Parent) Interfaces
+## Parent Interfaces
 
 When you run `ifup` on a logical interface (like a bridge, bond or VLAN interface), if the `ifup` results in the creation of the logical interface, it implicitly tries to execute on the interface's upper (or parent) interfaces as well.
 
@@ -639,19 +558,7 @@ For more details on the options available to manage and query interfaces, see `m
 {{< /tab >}}
 {{< /tabs >}}
 
-To show the assigned IP address on an interface, run the `ip addr show` command. The following example command shows the assigned IP address on swp1.
-
-```
-cumulus@switch:~$ ip addr show dev swp1
-3: swp1: <BROADCAST,MULTICAST,SLAVE,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP qlen 500
-    link/ether 44:38:39:00:03:c1 brd ff:ff:ff:ff:ff:ff
-    inet 192.0.2.1/30 scope global swp1
-    inet 192.0.2.2/30 scope global swp1
-    inet6 2001:DB8::1/126 scope global tentative
-        valid_lft forever preferred_lft forever
-```
-
-### Specify IP Address Scope
+### IP Address Scope
 
 `ifupdown2` does not honor the configured IP address scope setting in the `/etc/network/interfaces` file, treating all addresses as global. It does not report an error. Consider this example configuration:
 
@@ -811,7 +718,7 @@ iface bond0
     bond-slaves swp25 swp26
 ```
 
-## Use Globs for Port Lists
+## Globs for Port Lists
 
 Globs define a range of ports.
 
@@ -895,7 +802,7 @@ To comment out content in Mako templates, use double hash marks (\#\#). For exam
 
 For more examples of configuring Mako templates, read this {{<exlink url="https://docs.cumulusnetworks.com/knowledge-base/Configuration-and-Usage/Automation/Configure-the-interfaces-File-with-Mako/" text="knowledge base article">}}.
 
-## Run ifupdown Scripts under /etc/network/ with ifupdown2
+## ifupdown Scripts
 
 Unlike the traditional `ifupdown` system, `ifupdown2` does not run scripts installed in `/etc/network/*/` automatically to configure network interfaces.
 
@@ -915,9 +822,16 @@ addon_scripts_support=1
 - `$METHOD` represents the address method; for example, loopback, DHCP, DHCP6, manual, static, and so on.
 - `$ADDRFAM` represents the address families associated with the interface, formatted in a comma-separated list for example, `"inet,inet6"`.
 
-## Add Descriptions to Interfaces
+## Add Interface Descriptions
 
 You can add descriptions to interfaces configured in the `/etc/network/interfaces` file by using the *alias* keyword.
+
+Interface descriptions also appear in the {{<link url="Simple-Network-Management-Protocol-SNMP" text="SNMP">}} OID {{<exlink url="https://cumulusnetworks.com/static/mibs/IF-MIB.txt" text="IF-MIB::ifAlias">}}.
+
+{{%notice note%}}
+- Aliases are limited to 256 characters.
+- Avoid using apostrophes or non-ASCII characters in the alias string. Cumulus Linux does not parse these characters.
+{{%/notice%}}
 
 The following example commands create an alias for swp1:
 
@@ -954,6 +868,28 @@ iface swp1
 {{< /tab >}}
 {{< /tabs >}}
 
+## Troubleshooting
+
+To see the link and administrative state of an interface, use the CUE `cl show interface swp1 link state` command or the Linux `ip link show` command. In the following example, swp1 is administratively UP and the physical link is UP (LOWER\_UP flag).
+
+```
+cumulus@switch:~$ ip link show dev swp1
+3: swp1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP mode DEFAULT qlen 500
+    link/ether 44:38:39:00:03:c1 brd ff:ff:ff:ff:ff:ff
+```
+
+To show the assigned IP address on an interface, run the `ip addr show` command. The following example command shows the assigned IP address on swp1.
+
+```
+cumulus@switch:~$ ip addr show dev swp1
+3: swp1: <BROADCAST,MULTICAST,SLAVE,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP qlen 500
+    link/ether 44:38:39:00:03:c1 brd ff:ff:ff:ff:ff:ff
+    inet 192.0.2.1/30 scope global swp1
+    inet 192.0.2.2/30 scope global swp1
+    inet6 2001:DB8::1/126 scope global tentative
+        valid_lft forever preferred_lft forever
+```
+
 To show the description (alias) for an interface:
 
 {{< tabs "TabID1094 ">}}
@@ -981,6 +917,79 @@ Alias
 -----
 hypervisor_port_1
 ```
+
+To see the status of the loopback interface (lo):
+
+{{< tabs "TabID211 ">}}
+{{< tab "CUE Commands ">}}
+
+Use the `cl show interface lo` command.
+
+```
+cumulus@switch:~$ cl show interface lo
+                         running      applied   description
+-----------------------  -----------  --------  ----------------------------------------------------------------------
+type                     loopback     loopback  The type of interface
+ip
+  vrf                                 default   Virtual routing and forwarding
+  [address]              127.0.0.1/8            ipv4 and ipv6 address
+  [address]              ::1/128
+  ipv4
+    forward                           on        Enable or disable forwarding.
+  ipv6
+    enable                            on        Turn the feature 'on' or 'off'.  The default is 'on'.
+    forward                           on        Enable or disable forwarding.
+link
+  mtu                    65536                  interface mtu
+  state                  up                     The state of the interface
+  stats
+    carrier-transitions  0                      Number of times the interface state has transitioned between up and...
+    in-bytes             27211641               total number of bytes received on the interface
+    in-drops             0                      number of received packets dropped
+    in-errors            0                      number of received packets with errors
+    in-pkts              413828                 total number of packets received on the interface
+    out-bytes            27211641               total number of bytes transmitted out of the interface
+    out-drops            0                      The number of outbound packets that were chosen to be discarded eve...
+    out-errors           0                      The number of outbound packets that could not be transmitted becaus...
+    out-pkts             413828                 total number of packets transmitted out of the interface
+```
+
+{{< /tab >}}
+{{< tab "NCLU Commands ">}}
+
+Use the `net show interface lo` command.
+
+```
+cumulus@switch:~$ net show interface lo
+    Name    MAC                Speed    MTU    Mode
+--  ------  -----------------  -------  -----  --------
+UP  lo      00:00:00:00:00:00  N/A      65536  Loopback
+
+Alias
+-----
+loopback interface
+IP Details
+-------------------------  --------------------
+IP:                        127.0.0.1/8, ::1/128
+IP Neighbor(ARP) Entries:  0
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Use the `ip addr show lo` command.
+
+```
+cumulus@switch:~$ ip addr show lo
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 16436 qdisc noqueue state UNKNOWN
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+    inet6 ::1/128 scope host
+        valid_lft forever preferred_lft forever
+```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 To show the interface description (alias) for all interfaces on the switch:
 
@@ -1017,13 +1026,6 @@ cumulus@switch$ ip link show swp1
 
 {{< /tab >}}
 {{< /tabs >}}
-
-Interface descriptions also appear in the {{<link url="Simple-Network-Management-Protocol-SNMP" text="SNMP">}} OID {{<exlink url="https://cumulusnetworks.com/static/mibs/IF-MIB.txt" text="IF-MIB::ifAlias">}}.
-
-{{%notice note%}}
-- Aliases are limited to 256 characters.
-- Avoid using apostrophes or non-ASCII characters in the alias string. Cumulus Linux does not parse these characters.
-{{%/notice%}}
 
 ## Considerations
 

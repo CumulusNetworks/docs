@@ -147,7 +147,7 @@ On Broadcom switches, after you modify the settings in the `/etc/cumulus/datapat
 
 {{<cl/restart-switchd>}}
 
-On Mellanox switches with the Spectrum ASIC, changes to the settings in the `/etc/cumulus/datapath/traffic.conf` file do *not* require you to restart `switchd`. However, you must run the `echo 1 > /cumulus/switchd/config/traffic/reload` command to apply the settings.
+On NVIDIA Spectrum switches, changes to the settings in the `/etc/cumulus/datapath/traffic.conf` file do *not* require you to restart `switchd`. However, you must run the `echo 1 > /cumulus/switchd/config/traffic/reload` command to apply the settings.
 
 ```
 cumulus@switch:~$ echo 1 > /cumulus/switchd/config/traffic/reload
@@ -233,7 +233,7 @@ On Broadcom switches, after you modify the settings in the `/etc/cumulus/datapat
 
 {{<cl/restart-switchd>}}
 
-On Mellanox switches with the Spectrum ASIC, changes to the settings in the `/etc/cumulus/datapath/traffic.conf` file do *not* require you to restart `switchd`. However, you must run the `echo 1 > /cumulus/switchd/config/traffic/reload` command to apply the settings.
+On NVIDIA Spectrum switches, changes to the settings in the `/etc/cumulus/datapath/traffic.conf` file do *not* require you to restart `switchd`. However, you must run the `echo 1 > /cumulus/switchd/config/traffic/reload` command to apply the settings.
 
 ```
 cumulus@switch:~$ echo 1 > /cumulus/switchd/config/traffic/reload
@@ -243,7 +243,7 @@ Always run the {{<link url="#syntax-checker" text="syntax checker">}} syntax che
 
 ## Cut-through Mode and Store and Forward Switching
 
-Cut-through mode is disabled in Cumulus Linux by default on switches with Broadcom ASICs. On Mellanox switches, you cannot disable cut-through mode.
+Cut-through mode is disabled in Cumulus Linux by default on switches with Broadcom ASICs. On NVIDIA Spectrum switches, you cannot disable cut-through mode.
 
 ```
 # Cut-through is disabled by default on all chips with the exception of
@@ -358,7 +358,7 @@ On Broadcom switches, after you modify the settings in the `/etc/cumulus/datapat
 
 {{<cl/restart-switchd>}}
 
-On Mellanox switches with the Spectrum ASIC, changes to the settings in the `/etc/cumulus/datapath/traffic.conf` file do *not* require you to restart `switchd`. However, you must run the `echo 1 > /cumulus/switchd/config/traffic/reload` command to apply the settings.
+On NVIDIA Spectrum switches, changes to the settings in the `/etc/cumulus/datapath/traffic.conf` file do *not* require you to restart `switchd`. However, you must run the `echo 1 > /cumulus/switchd/config/traffic/reload` command to apply the settings.
 
 ```
 cumulus@switch:~$ echo 1 > /cumulus/switchd/config/traffic/reload
@@ -368,7 +368,7 @@ Always run the {{<link url="#syntax-checker" text="syntax checker">}} syntax che
 
 ## Scheduling Weights Per Egress Queue
 
-On Mellanox switches, you can set the scheduling weight per egress queue, which determines the amount of bandwidth assigned to the queue. Cumulus Linux supports eight queues per port. You can either use a default profile that each port inherits​ or create separate profiles that map a different set of ports. Each profile, including the default profile, has weights configured for each egress queue (0-7)​​.
+On NVIDIA Spectrum switches, you can set the scheduling weight per egress queue, which determines the amount of bandwidth assigned to the queue. Cumulus Linux supports eight queues per port. You can either use a default profile that each port inherits​ or create separate profiles that map a different set of ports. Each profile, including the default profile, has weights configured for each egress queue (0-7)​​.
 
 You set the weights per egress queue as a percentage. The total weight percentages for all egress queues cannot be greater than 100. If you do not define a weight for an egress queue, no scheduling is done for packets on this queue if congestion occurs. If you want to configure strict scheduling on an egress queue (always send every single packet in the queue) set the value to 0.
 
@@ -473,7 +473,7 @@ On Broadcom switches, after you modify the settings in the `/etc/cumulus/datapat
 
 {{<cl/restart-switchd>}}
 
-On Mellanox switches with the Spectrum ASIC, changes to the settings in the `/etc/cumulus/datapath/traffic.conf` file do *not* require you to restart `switchd`. However, you must run the `echo 1 > /cumulus/switchd/config/traffic/reload` command to apply the settings.
+On NVIDIA Spectrum switches, changes to the settings in the `/etc/cumulus/datapath/traffic.conf` file do *not* require you to restart `switchd`. However, you must run the `echo 1 > /cumulus/switchd/config/traffic/reload` command to apply the settings.
 
 ```
 cumulus@switch:~$ echo 1 > /cumulus/switchd/config/traffic/reload
@@ -493,7 +493,7 @@ To configure traffic shaping, update and uncomment the settings in the `Hierarch
 
 The egress shaping rate configured in the `/etc/cumulus/datapath/traffic.conf` is always the layer 1 rate. The calculated shaping rate considers overheads in the Ethernet frame like the interframe gap, preamble, cyclic redundancy check (CRC) and so on. The egress layer 3 throughput measured is always less than the maximum shaper rate configured.
 
-The following example shows the `Hierarchical traffic shaping` section of the the `/etc/cumulus/datapath/traffic.conf` file.
+The following example shows the `Hierarchical traffic shaping` section of the `/etc/cumulus/datapath/traffic.conf` file.
 
 ```
 ...
@@ -549,7 +549,7 @@ On Broadcom switches, after you modify the settings in the `/etc/cumulus/datapat
 
 {{<cl/restart-switchd>}}
 
-On Mellanox switches with the Spectrum ASIC, changes to the settings in the `/etc/cumulus/datapath/traffic.conf` file do *not* require you to restart `switchd`. However, you must run the `echo 1 > /cumulus/switchd/config/traffic/reload` command to apply the settings.
+On NVIDIA Spectrum switches, changes to the settings in the `/etc/cumulus/datapath/traffic.conf` file do *not* require you to restart `switchd`. However, you must run the `echo 1 > /cumulus/switchd/config/traffic/reload` command to apply the settings.
 
 ```
 cumulus@switch:~$ echo 1 > /cumulus/switchd/config/traffic/reload
@@ -939,7 +939,7 @@ Cumulus Linux provides a syntax checker for the `/etc/cumulus/datapath/traffic.c
 
 On Broadcom switches, the syntax checker runs automatically during `switchd` initialization and reports syntax errors to the `/var/log/switchd.log` file.
 
-On both Broadcom and Mellanox switches, you can run the syntax checker manually from the command line by issuing the `cl-consistency-check --datapath-syntax-check` command. If errors exist, they are written to `stderr` by default. If you run the command with `-q`, errors are written to the `/var/log/switchd.log` file.
+On both Broadcom and NVIDIA switches, you can run the syntax checker manually from the command line by issuing the `cl-consistency-check --datapath-syntax-check` command. If errors exist, they are written to `stderr` by default. If you run the command with `-q`, errors are written to the `/var/log/switchd.log` file.
 
 The `cl-consistency-check --datapath-syntax-check` command takes the following options:
 

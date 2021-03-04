@@ -9,7 +9,7 @@ Hugo contains a local development server to build and view live changes to the r
 
 1. Install Hugo version 0.65.3 **extended** from https://github.com/gohugoio/hugo/releases/tag/v0.65.3.
 
-2. Verify Hugo with `Hugo version`. This site supports Hugo version 0.65.3. The output of the `hugo version` command should read:
+2. Verify Hugo with `hugo version`. This site supports Hugo version 0.65.3. The output of the `hugo version` command should read:
 
 <!-- vale off -->
 ```

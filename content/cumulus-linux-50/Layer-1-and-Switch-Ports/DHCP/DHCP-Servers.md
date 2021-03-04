@@ -423,7 +423,7 @@ cumulus@switch:~$ cl set system dhcp-server6 static server1 interface swp1
 {{< tabs "TabID409 ">}}
 {{< tab "IPv4 ">}}
 
-1. Edit the `/etc/dhcp/dhcpd.conf` file and add the interface name `ifname` to assign an IP address through DHCP. The following provides an example:
+1. Edit the `/etc/dhcp/dhcpd.conf` file to add the interface and IP address:
 
    ```
    cumulus@switch:~$ sudo nano /etc/dhcp/dhcpd.conf
@@ -444,7 +444,7 @@ cumulus@switch:~$ cl set system dhcp-server6 static server1 interface swp1
 {{< /tab >}}
 {{< tab "IPv6 ">}}
 
-1. Edit the `/etc/dhcp/dhcpd6.conf` file and add the interface name `ifname` to assign an IP address through DHCP. The following provides an example:
+1. Edit the `/etc/dhcp/dhcpd6.conf` file to add the interface and IP address:
 
    ```
    cumulus@switch:~$ sudo nano /etc/dhcp/dhcpd6.conf

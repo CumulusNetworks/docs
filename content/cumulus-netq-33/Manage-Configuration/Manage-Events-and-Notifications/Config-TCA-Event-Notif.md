@@ -144,7 +144,7 @@ For each event type, you can filter rules based on the following filter paramete
 | TCA_WJH_DROP_AGG_UPPER | Hostname, Reason |
 | TCA_WJH_ACL_DROP_AGG_UPPER | Hostname, Reason, Ingress port |
 | TCA_WJH_BUFFER_DROP_AGG_UPPER | Hostname, Reason |
-| TCA_WJH_SYMBOL_ERROR_UPPER | Hostname, Reason |
+| TCA_WJH_SYMBOL_ERROR_UPPER | Hostname, Port down reason |
 | TCA_WJH_CRC_ERROR_UPPER | Hostname, Port down reason |
 
 {{< /tab >}}

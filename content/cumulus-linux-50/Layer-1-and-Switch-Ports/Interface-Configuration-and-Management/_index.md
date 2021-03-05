@@ -36,7 +36,7 @@ When you bring an interface up or down administratively (admin up or admin down)
 
 When you put an interface into an admin down state, the interface *remains down* after any future reboots or configuration changes with `ifreload -a`.
 
-{{< tabs "TabID42 ">}}
+{{< tabs "TabID39 ">}}
 {{< tab "CUE Commands ">}}
 
 To put an interface into an admin *down* state:
@@ -75,21 +75,13 @@ cumulus@switch:~$ net commit
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-To put an interface into an *admin* *down* state, run the `sudo ifdown <interface> --admin-state` command:
+To put an interface into an *admin* *down* state:
 
 ```
 cumulus@switch:~$ sudo ifdown swp1 --admin-state
 ```
 
-These commands create the following configuration in the `/etc/network/interfaces` file:
-
-```
-auto swp1
-iface swp1
-    link-down yes
-```
-
-To bring the interface back *up*, run the `sudo ifup <interface> --admin-state` command:
+To bring the interface back *up*:
 
 ```
 cumulus@switch:~$ sudo ifup swp1 --admin-state
@@ -173,7 +165,7 @@ To reload all network interfaces marked `auto`, use the `ifreload` command. This
 cumulus@switch:~$ sudo ifreload -a
 ```
 
-{{%notice tip%}}
+{{%notice note%}}
 Certain syntax checks are done by default. As a precaution, apply configurations only if the syntax check passes. Use the following compound command:
 
 ```
@@ -187,17 +179,18 @@ For more information, see the individual man pages for `ifup(8)`, `ifdown(8)`, `
 
 Cumulus Linux has a preconfigured loopback interface. When the switch boots up, the loopback interface called *lo* is up and assigned an IP address of 127.0.0.1.
 
-{{%notice tip%}}
-The loopback interface *lo* must always be specified in the  `/etc/network/interfaces` file and must always be up.
+{{%notice note%}}
+The loopback interface *lo* must always exist and must always be up.
 {{%/notice%}}
 
-You can configure multiple loopback addresses by assigning additional IP addresses to the lo interface:
+You can configure multiple IP addresses for the loopback interface:
 
-{{< tabs "TabID281 ">}}
+{{< tabs "TabID196 ">}}
 {{< tab "CUE Commands ">}}
 
 ```
 cumulus@switch:~$ cl set interface lo ip address 172.16.2.1/24
+cumulus@switch:~$ cl set interface lo ip address 10.0.0.1
 cumulus@switch:~$ cl config apply
 ```
 
@@ -206,6 +199,7 @@ cumulus@switch:~$ cl config apply
 
 ```
 cumulus@switch:~$ net add loopback lo ip address 172.16.2.1/24
+cumulus@switch:~$ net add loopback lo ip address 10.0.0.1
 cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
@@ -218,20 +212,20 @@ Add multiple `address` lines in the `/etc/network/interfaces` file:
 ```
 auto lo
 iface lo inet loopback
-    address 10.1.1.1
+    address 10.0.0.1
     address 172.16.2.1/24
 ```
-
-{{%notice note%}}
-If an IP address is configured without a mask (as shown above), the IP address becomes a /32. So, in the above case, 10.1.1.1 is actually 10.1.1.1/32.
-{{%/notice%}}
 
 {{< /tab >}}
 {{< /tabs >}}
 
+{{%notice note%}}
+If the IP address is configured without a mask, the IP address automatically becomes a /32. For example, 10.1.1.1 is 10.1.1.1/32.
+{{%/notice%}}
+
 ## Child Interfaces
 
-By default, `ifupdown2` recognizes and uses any interface present on the system that is listed as a dependent of an interface (for example, a VLAN, bond, or physical interface). You are not required to list interfaces in the `interfaces` file unless they need a specific configuration for {{<link url="Switch-Port-Attributes" text="MTU, link speed, and so on">}}. If you need to delete a child interface, delete all references to that interface from the `interfaces` file.
+By default, `ifupdown2` recognizes and uses any interface present on the system that is listed as a dependent (child) of an interface (for example, a VLAN, bond, or physical interface). You do not need to list interfaces in the `/etc/network/interfaces` file unless the interfaces need specific configuration for {{<link url="Switch-Port-Attributes" text="MTU, link speed, and so on">}}. If you need to delete a child interface, delete all references to that interface from the `/etc/network/interfaces` file.
 
 In the following example, swp1 and swp2 do not need an entry in the `interfaces` file. The following stanzas defined in `/etc/network/interfaces` provide the exact same configuration:
 
@@ -295,15 +289,11 @@ iface br-100
     bridge-stp on
 ```
 
-For more information about bridges in traditional mode and bridges in VLAN-aware mode, read {{<exlink url="https://docs.cumulusnetworks.com/knowledge-base/Configuration-and-Usage/Network-Interfaces/Compare-Traditional-Bridge-Mode-to-VLAN-aware-Bridge-Mode/" text="this knowledge base article">}}.
-
 ## Interface Dependencies
 
-`ifupdown2` understands interface dependency relationships. When you run `ifup` and `ifdown` with all interfaces, the commands always run with all interfaces in dependency order. When you run `ifup` and `ifdown`
-with the interface list on the command line, the default behavior is to *not* run with dependents; however, if there are any built-in dependents, they will be brought up or down.
+`ifupdown2` understands interface dependency relationships. When you run `ifup` and `ifdown` with all interfaces, the commands always run with all interfaces in dependency order. When you run `ifup` and `ifdown` with the interface list on the command line, the default behavior is to *not* run with dependents; however, if there are any built-in dependents, they will be brought up or down.
 
-To run with dependents when you specify the interface list, use the `--with-depends` option. The `--with-depends` option walks through all dependents in the dependency tree rooted at the interface you specify.
-Consider the following example configuration:
+To run with dependents when you specify the interface list, use the `--with-depends` option. The `--with-depends` option walks through all dependents in the dependency tree rooted at the interface you specify. Consider the following example configuration:
 
 ```
 auto bond1
@@ -366,23 +356,9 @@ swp31 : None
 swp32 : None
 ```
 
-To print the dependency list of a single interface, run the `ifquery --print-dependency=list <interface>` command. The following example command shows the dependency list for br2001:
+To print the dependency list of a single interface, run the `ifquery --print-dependency=list <interface>` command.
 
-```
-cumulus@switch:~$ sudo ifquery --print-dependency=list br2001
-br2001 : ['bond1.2001', 'bond2.2001']
-bond1.2001 : ['bond1']
-bond2.2001 : ['bond2']
-bond1 : ['swp29', 'swp30']
-bond2 : ['swp31', 'swp32']
-swp29 : None
-swp30 : None
-swp31 : None
-swp32 : None
-```
-
-To show the dependency information for an interface in `dot` format, run the `ifquery --print-dependency=dot <interface>` command. The following example command shows the dependency information for interface br2001 in
-`dot` format:
+To show the dependency information for an interface in `dot` format, run the `ifquery --print-dependency=dot <interface>` command. The following example command shows the dependency information for interface br2001 in `dot` format:
 
 ```
 cumulus@switch:~$ sudo ifquery --print-dependency=dot br2001
@@ -423,15 +399,15 @@ cumulus@switch:~$ sudo ifquery --print-dependency=dot -a >interfaces_all.dot
 
 ## Subinterfaces
 
-On Linux, an *interface* is a network device that can be either physical, like a switch port (for example, swp1) or virtual, like a VLAN (for example, vlan100). A *VLAN subinterface* is a VLAN device on an interface, and the VLAN ID is appended to the parent interface using dot (.) VLAN notation. For example, a VLAN with ID 100 that is a subinterface of swp1 is named swp1.100. The dot VLAN notation for a VLAN device name is a standard way to specify a VLAN device on Linux. Many Linux configuration tools, such as `ifupdown2` and its predecessor `ifupdown`, recognize such a name as a VLAN interface name.
+On Linux, an *interface* is a network device that can be either physical, (for example, swp1) or virtual (for example, vlan100). A *VLAN subinterface* is a VLAN device on an interface, and the VLAN ID is appended to the parent interface using dot (.) VLAN notation. For example, a VLAN with ID 100 that is a subinterface of swp1 is named swp1.100. The dot VLAN notation for a VLAN device name is a standard way to specify a VLAN device on Linux.
 
-A VLAN subinterface only receives traffic  {{<link url="VLAN-Tagging" text="tagged">}} for that VLAN; therefore, swp1.100 only receives packets tagged with VLAN 100 on switch port swp1. Similarly, any packets transmitted from swp1.100 are tagged with VLAN 100.
+A VLAN subinterface only receives traffic  {{<link url="VLAN-Tagging" text="tagged">}} for that VLAN; therefore, swp1.100 only receives packets tagged with VLAN 100 on switch port swp1. Any packets transmitted from swp1.100 are tagged with VLAN 100.
 
 In an {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="MLAG">}} configuration, the peer link interface that connects the two switches in the MLAG pair has a VLAN subinterface named 4094. The peerlink.4094 subinterface only receives traffic tagged for VLAN 4094.
 
 ## Parent Interfaces
 
-When you run `ifup` on a logical interface (like a bridge, bond or VLAN interface), if the `ifup` results in the creation of the logical interface, it implicitly tries to execute on the interface's upper (or parent) interfaces as well.
+When you run `ifup` on a logical interface (like a bridge, bond, or VLAN interface), if the `ifup` results in the creation of the logical interface, it implicitly tries to execute on the interface's upper (or parent) interfaces as well.
 
 Consider this example configuration:
 
@@ -449,7 +425,7 @@ If you run `ifdown bond1`, `ifdown` deletes bond1 and the VLAN interface on bond
 
 There can be cases where an upper interface (like br100) is not in the right state, which can result in warnings. The warnings are mostly harmless.
 
-If you want to disable these warnings, you can disable the implicit upper interface handling by setting `skip_upperifaces=1` in the `/etc/network/ifupdown2/ifupdown2.conf` file.
+If you want to disable these warnings, set `skip_upperifaces=1` in the `/etc/network/ifupdown2/ifupdown2.conf` file.
 
 With `skip_upperifaces=1`, you have to explicitly execute `ifup` on the upper interfaces. In this case, you will have to run `ifup br100` after an `ifup bond1` to add bond1 back to bridge br100.
 
@@ -457,14 +433,16 @@ With `skip_upperifaces=1`, you have to explicitly execute `ifup` on the upper in
 Although specifying a subinterface like swp1.100 and then running `ifup swp1.100` results in the automatic creation of the swp1 interface in the kernel, consider also specifying the parent interface swp1. A parent interface is one where any physical layer configuration can reside, such as `link-speed 1000` or `link-duplex full`. If you only create swp1.100 and not swp1, then you cannot run `ifup swp1` because you did not specify it.
 {{%/notice%}}
 
-## Configure IP Addresses
+## Interface IP Addresses
 
-To configure IP addresses, run the following commands.
+You can specify both IPv4 and IPv6 addresses for the same interface.
 
-{{< tabs "TabID557 ">}}
+For IPv6 addresses, you can create or modify the IP address for an interface using either `::` or `0:0:0` notation. For example,both 2620:149:43:c109:0:0:0:5 and 2001:DB8::1/126 are valid.
+
+The following example commands configure three IP addresses for swp1; two IPv4 addresses and one IPv6 address.
+
+{{< tabs "TabID464 ">}}
 {{< tab "CUE Commands ">}}
-
-The following commands configure three IP addresses for swp1: two IPv4 addresses, and one IPv6 address.
 
 ```
 cumulus@switch:~$ cl set interface swp1 ip address 10.0.0.1/30
@@ -476,8 +454,6 @@ cumulus@switch:~$ cl config apply
 {{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
-The following commands configure three IP addresses for swp1: two IPv4 addresses, and one IPv6 address.
-
 ```
 cumulus@switch:~$ net add interface swp1 ip address 10.0.0.1/30
 cumulus@switch:~$ net add interface swp1 ip address 10.0.0.2/30
@@ -486,46 +462,17 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-{{%notice note%}}
-You can specify both IPv4 and IPv6 addresses for the same interface.
-
-For IPv6 addresses, you can create or modify the IP address for an interface using either `::` or `0:0:0` notation. Both of the following examples are valid:
-
-```
-cumulus@switch:~$ net add bgp neighbor 2620:149:43:c109:0:0:0:5 remote-as internal
-cumulus@switch:~$ net add interface swp1 ipv6 address 2001:DB8::1/126
-```
-{{%/notice%}}
-
-{{%notice note%}}
-NCLU adds the address method and address family when needed, specifically when you are creating DHCP or loopback interfaces.
+NCLU adds the address method and address family when needed (for example, when you create DHCP or loopback interfaces).
 
 ```
 auto lo
 iface lo inet loopback
 ```
-{{%/notice%}}
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-In the `/etc/network/interfaces` file, list all IP addresses under the `iface` section. The following command example adds IP address 10.0.0.1/30 and 10.0.0.2/30 to swp1.
-
-```
-auto swp1
-iface swp1
-    address 10.0.0.1/30
-    address 10.0.0.2/30
-```
-
-The address method and address family are not mandatory; they default to `inet/inet6` and `static`. However, you must specify `inet/inet6` when you are creating DHCP or loopback interfaces.
-
-```
-auto lo
-iface lo inet loopback
-```
-
-You can specify both IPv4 and IPv6 addresses in the same `iface` stanza:
+In the `/etc/network/interfaces` file, list all IP addresses under the `iface` section.
 
 ```
 auto swp1
@@ -535,9 +482,12 @@ iface swp1
     address 2001:DB8::1/126
 ```
 
-{{%notice warning%}}
-A runtime configuration is non-persistent; the configuration you create does not persist after you reboot the switch.
-{{%/notice%}}
+The address method and address family are not mandatory; they default to `inet/inet6` and `static`. However, you must specify `inet/inet6` when you are creating DHCP or loopback interfaces.
+
+```
+auto lo
+iface lo inet loopback
+```
 
 To make non-persistent changes to interfaces at runtime, use `ip addr add`:
 
@@ -553,40 +503,23 @@ cumulus@switch:~$ sudo ip addr del 10.0.0.1/30 dev swp1
 cumulus@switch:~$ sudo ip addr del 2001:DB8::1/126 dev swp1
 ```
 
-For more details on the options available to manage and query interfaces, see `man ip`.
-
 {{< /tab >}}
 {{< /tabs >}}
 
-### IP Address Scope
+## Interface Descriptions
 
-`ifupdown2` does not honor the configured IP address scope setting in the `/etc/network/interfaces` file, treating all addresses as global. It does not report an error. Consider this example configuration:
+You can add a description (alias) to an interface.
 
-```
-auto swp2
-iface swp2
-    address 35.21.30.5/30
-    address 3101:21:20::31/80
-    scope link
-```
+Interface descriptions also appear in the {{<link url="Simple-Network-Management-Protocol-SNMP" text="SNMP">}} OID {{<exlink url="https://cumulusnetworks.com/static/mibs/IF-MIB.txt" text="IF-MIB::ifAlias">}}.
 
-When you run `ifreload -a` on this configuration, `ifupdown2` considers all IP addresses as global.
+{{%notice note%}}
+- Interface descriptions are limited to 256 characters.
+- Avoid using apostrophes or non-ASCII characters. Cumulus Linux does not parse these characters.
+{{%/notice%}}
 
-```
-cumulus@switch:~$ ip addr show swp2
-5: swp2: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP group default qlen 1000
-link/ether 74:e6:e2:f5:62:82 brd ff:ff:ff:ff:ff:ff
-inet 35.21.30.5/30 scope global swp2
-valid_lft forever preferred_lft forever
-inet6 3101:21:20::31/80 scope global
-valid_lft forever preferred_lft forever
-inet6 fe80::76e6:e2ff:fef5:6282/64 scope link
-valid_lft forever preferred_lft forever
-```
+The following example commands create a description for swp1:
 
-To work around this issue, configure the IP address scope:
-
-{{< tabs "TabID701 ">}}
+{{< tabs "TabID838 ">}}
 {{< tab "CUE Commands ">}}
 
 ```
@@ -598,7 +531,7 @@ cumulus@switch:~$ cl config apply
 {{< tab "NCLU Commands ">}}
 
 ```
-cumulus@switch:~$ net add interface swp6 post-up ip address add 71.21.21.20/32 dev swp6 scope site
+cumulus@switch:~$ net add interface swp1 alias hypervisor_port_1
 cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
@@ -606,38 +539,28 @@ cumulus@switch:~$ net commit
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-In the `/etc/network/interfaces` file, configure the IP address scope using `post-up ip address add <address> dev <interface> scope <scope>`. For example:
+In the `/etc/network/interfaces` file, add a description using the *alias* keyword:
 
 ```
-auto swp6
-iface swp6
-    post-up ip address add 71.21.21.20/32 dev swp6 scope site
-```
+cumulus@switch:~# sudo nano /etc/network/interfaces
 
-Then run the `ifreload -a` command on this configuration.
+auto swp1
+iface swp1
+    alias swp1 hypervisor_port_1
+```
 
 {{< /tab >}}
 {{< /tabs >}}
 
-The following configuration shows the correct scope:
+## Interface Commands
 
-```
-cumulus@switch:~$ ip addr show swp6
-9: swp6: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP group default qlen 1000
-link/ether 74:e6:e2:f5:62:86 brd ff:ff:ff:ff:ff:ff
-inet 71.21.21.20/32 scope site swp6
-valid_lft forever preferred_lft forever
-inet6 fe80::76e6:e2ff:fef5:6286/64 scope link
-valid_lft forever preferred_lft forever
-```
-
-## Specify User Commands
-
-You can specify additional user commands in the `/etc/network/interfaces` file. The interface stanzas in `/etc/network/interfaces` can have a command that runs at pre-up, up, post-up, pre-down, down, and post-down.
+You can specify user commands for an interface that run at pre-up, up, post-up, pre-down, down, and post-down.
 
 You can add any valid command in the sequence to bring an interface up or down; however, limit the scope to network-related commands associated with the particular interface. For example, it does not make sense to install a Debian package on `ifup` of swp1, even though it is technically possible. See `man interfaces` for more details.
 
-{{< tabs "TabID764 ">}}
+The following examples adds a command to an interface to enable proxy ARP:
+
+{{< tabs "TabID640 ">}}
 {{< tab "CUE Commands ">}}
 
 ```
@@ -646,8 +569,6 @@ cumulus@switch:~$ NEED COMMAND
 
 {{< /tab >}}
 {{< tab "NCLU Commands ">}}
-
-To add a command to an interface stanza to enable proxy ARP:
 
 ```
 cumulus@switch:~$ net add interface swp1 post-up echo 1 > /proc/sys/net/ipv4/conf/swp1/proxy_arp
@@ -666,8 +587,6 @@ cumulus@switch:~$ net add vlan 100 post-up systemctl --no-block restart dhcrelay
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
-
-To add a command to an interface stanza, add the command in the `/etc/network/interfaces` file. For example:
 
 ```
 cumulus@switch:~# sudo nano /etc/network/interfaces
@@ -692,7 +611,7 @@ iface bridge.100
 
 ## Source Interface File Snippets
 
-Sourcing interface files helps organize and manage the `interfaces` file. For example:
+Sourcing interface files helps organize and manage the `/etc/network/interfaces` file. For example:
 
 ```
 cumulus@switch:~$ sudo cat /etc/network/interfaces
@@ -718,14 +637,14 @@ iface bond0
     bond-slaves swp25 swp26
 ```
 
-## Globs for Port Lists
+## Port Ranges
 
-Globs define a range of ports.
+You can specify port ranges in commands (for example, swp1-4,6,10-12).
 
-{{< tabs "TabID919 ">}}
+{{< tabs "TabID725 ">}}
 {{< tab "CUE Commands ">}}
 
-Use commas to separate different ranges of ports in the command:
+Use commas to separate different port ranges (for example, swp1-46,10-12):
 
 ```
 cumulus@switch:~$ cl set interface swp1-4,6,10-12 bridge domain br_default
@@ -735,7 +654,7 @@ cumulus@switch:~$ cl config apply
 {{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
-Use commas to separate different ranges of ports in the command:
+Use commas to separate different port ranges in the command:
 
 ```
 cumulus@switch:~$ net add bridge bridge ports swp1-4,6,10-12
@@ -771,9 +690,7 @@ While `ifupdown2` supports Mako templates, NCLU does not understand them. As a r
 
 {{%/notice%}}
 
-Use the template to declare cookie-cutter bridges in the `interfaces` file:
-
-And use it to declare addresses in the `interfaces` file:
+Use the template to declare cookie-cutter bridges and to declare addresses in the `interfaces` file:
 
 ```
 %for i in [1,12]:
@@ -783,14 +700,11 @@ iface swp${i}
 ```
 
 {{%notice note%}}
-In Mako syntax, use square brackets (`[1,12]`) to specify a list of individual numbers (in this case, 1 and 12). Use `range(1,12)` to specify a range of interfaces.
+- In Mako syntax, use square brackets (`[1,12]`) to specify a list of individual numbers. Use `range(1,12)` to specify a range of interfaces.
+- To test your template and confirm it evaluates correctly, run `mako-render /etc/network/interfaces`.
 {{%/notice%}}
 
-{{%notice tip%}}
-You can test your template and confirm it evaluates correctly by running `mako-render /etc/network/interfaces`.
-{{%/notice%}}
-
-To comment out content in Mako templates, use double hash marks (\#\#). For example:
+To comment out content in Mako templates, use double hash marks (##). For example:
 
 ```
 ## % for i in range(1, 4):
@@ -800,13 +714,13 @@ To comment out content in Mako templates, use double hash marks (\#\#). For exam
 ##
 ```
 
-For more examples of configuring Mako templates, read this {{<exlink url="https://docs.cumulusnetworks.com/knowledge-base/Configuration-and-Usage/Automation/Configure-the-interfaces-File-with-Mako/" text="knowledge base article">}}.
+For more Mako template examples, refer to this {{<exlink url="https://docs.cumulusnetworks.com/knowledge-base/Configuration-and-Usage/Automation/Configure-the-interfaces-File-with-Mako/" text="knowledge base article">}}.
 
 ## ifupdown Scripts
 
 Unlike the traditional `ifupdown` system, `ifupdown2` does not run scripts installed in `/etc/network/*/` automatically to configure network interfaces.
 
-To enable or disable `ifupdown2` scripting, edit the `addon_scripts_support` line in the `/etc/network/ifupdown2/ifupdown2.conf` file. `1` enables scripting and `2` disables scripting. The following example enables scripting.
+To enable or disable `ifupdown2` scripting, edit the `addon_scripts_support` line in the `/etc/network/ifupdown2/ifupdown2.conf` file. `1` enables scripting and `2` disables scripting. For example:
 
 ```
 cumulus@switch:~$ sudo nano /etc/network/ifupdown2/ifupdown2.conf
@@ -822,55 +736,21 @@ addon_scripts_support=1
 - `$METHOD` represents the address method; for example, loopback, DHCP, DHCP6, manual, static, and so on.
 - `$ADDRFAM` represents the address families associated with the interface, formatted in a comma-separated list for example, `"inet,inet6"`.
 
-## Add Interface Descriptions
+## Troubleshooting
 
-You can add descriptions to interfaces configured in the `/etc/network/interfaces` file by using the *alias* keyword.
+To see the link and administrative state of an interface:
 
-Interface descriptions also appear in the {{<link url="Simple-Network-Management-Protocol-SNMP" text="SNMP">}} OID {{<exlink url="https://cumulusnetworks.com/static/mibs/IF-MIB.txt" text="IF-MIB::ifAlias">}}.
-
-{{%notice note%}}
-- Aliases are limited to 256 characters.
-- Avoid using apostrophes or non-ASCII characters in the alias string. Cumulus Linux does not parse these characters.
-{{%/notice%}}
-
-The following example commands create an alias for swp1:
-
-{{< tabs "TabID1054 ">}}
+{{< tabs "TabID875 ">}}
 {{< tab "CUE Commands ">}}
 
 ```
-cumulus@switch:~$ NEED COMMAND
-cumulus@switch:~$ cl config apply
-```
-
-{{< /tab >}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@switch:~$ net add interface swp1 alias hypervisor_port_1
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
+cumulus@switch:~$ cl show interface swp1 link state
 ```
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-In the `/etc/network/interfaces` file, add a description using the *alias* keyword:
-
-```
-cumulus@switch:~# sudo nano /etc/network/interfaces
-
-auto swp1
-iface swp1
-    alias swp1 hypervisor_port_1
-```
-
-{{< /tab >}}
-{{< /tabs >}}
-
-## Troubleshooting
-
-To see the link and administrative state of an interface, use the CUE `cl show interface swp1 link state` command or the Linux `ip link show` command. In the following example, swp1 is administratively UP and the physical link is UP (LOWER\_UP flag).
+In the following example, swp1 is administratively UP and the physical link is UP (LOWER_UP).
 
 ```
 cumulus@switch:~$ ip link show dev swp1
@@ -878,10 +758,23 @@ cumulus@switch:~$ ip link show dev swp1
     link/ether 44:38:39:00:03:c1 brd ff:ff:ff:ff:ff:ff
 ```
 
-To show the assigned IP address on an interface, run the `ip addr show` command. The following example command shows the assigned IP address on swp1.
+{{< /tab >}}
+{{< /tabs >}}
+
+To show the assigned IP address on an interface:
+
+{{< tabs "TabID898 ">}}
+{{< tab "CUE Commands ">}}
 
 ```
-cumulus@switch:~$ ip addr show dev swp1
+cumulus@switch:~$ cl show interface swp1 ip address
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+```
+cumulus@switch:~$ ip addr show swp1
 3: swp1: <BROADCAST,MULTICAST,SLAVE,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP qlen 500
     link/ether 44:38:39:00:03:c1 brd ff:ff:ff:ff:ff:ff
     inet 192.0.2.1/30 scope global swp1
@@ -890,9 +783,12 @@ cumulus@switch:~$ ip addr show dev swp1
         valid_lft forever preferred_lft forever
 ```
 
+{{< /tab >}}
+{{< /tabs >}}
+
 To show the description (alias) for an interface:
 
-{{< tabs "TabID1094 ">}}
+{{< tabs "TabID923 ">}}
 {{< tab "CUE Commands ">}}
 
 ```
@@ -918,12 +814,23 @@ Alias
 hypervisor_port_1
 ```
 
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+```
+cumulus@switch$ ip link show swp1
+3: swp1: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc pfifo_fast state DOWN mode DEFAULT qlen 500
+    link/ether aa:aa:aa:aa:aa:bc brd ff:ff:ff:ff:ff:ff
+    alias hypervisor_port_1
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
 To see the status of the loopback interface (lo):
 
-{{< tabs "TabID211 ">}}
+{{< tabs "TabID951 ">}}
 {{< tab "CUE Commands ">}}
-
-Use the `cl show interface lo` command.
 
 ```
 cumulus@switch:~$ cl show interface lo
@@ -957,14 +864,11 @@ link
 {{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
-Use the `net show interface lo` command.
-
 ```
 cumulus@switch:~$ net show interface lo
     Name    MAC                Speed    MTU    Mode
 --  ------  -----------------  -------  -----  --------
 UP  lo      00:00:00:00:00:00  N/A      65536  Loopback
-
 Alias
 -----
 loopback interface
@@ -977,8 +881,6 @@ IP Neighbor(ARP) Entries:  0
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Use the `ip addr show lo` command.
-
 ```
 cumulus@switch:~$ ip addr show lo
 1: lo: <LOOPBACK,UP,LOWER_UP> mtu 16436 qdisc noqueue state UNKNOWN
@@ -986,42 +888,6 @@ cumulus@switch:~$ ip addr show lo
     inet 127.0.0.1/8 scope host lo
     inet6 ::1/128 scope host
         valid_lft forever preferred_lft forever
-```
-
-{{< /tab >}}
-{{< /tabs >}}
-
-To show the interface description (alias) for all interfaces on the switch:
-
-```
-cumulus@switch:~$ net show interface alias
-State    Name            Mode              Alias
------    -------------   -------------     ------------------
-UP       bond01          LACP
-UP       bond02          LACP
-UP       bridge          Bridge/L2
-UP       eth0            Mgmt
-UP       lo              Loopback          loopback interface
-UP       mgmt            Interface/L3
-UP       peerlink        LACP
-UP       peerlink.4094   SubInt/L3
-UP       swp1            BondMember        hypervisor_port_1
-UP       swp2            BondMember        to Server02
-...
-```
-
-To show the interface description for all interfaces on the switch in JSON format, run the `net show interface alias json` command.
-
-{{< /tab >}}
-{{< tab "Linux Commands ">}}
-
-To show the description (alias) for an interface, run the `ip link show` command. The alias appears on the `alias` line:
-
-```
-cumulus@switch$ ip link show swp1
-3: swp1: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc pfifo_fast state DOWN mode DEFAULT qlen 500
-    link/ether aa:aa:aa:aa:aa:bc brd ff:ff:ff:ff:ff:ff
-    alias hypervisor_port_1
 ```
 
 {{< /tab >}}
@@ -1077,6 +943,79 @@ If you encounter issues, remove the interface name from the `/etc/network/interf
 ```
 cumulus@switch:~$ sudo nano /etc/network/interfaces
 cumulus@switch:~$ sudo systemctl restart networking.service
+```
+
+### IP Address Scope
+
+`ifupdown2` does not honor the configured IP address scope setting in the `/etc/network/interfaces` file, treating all addresses as global. It does not report an error. Consider this example configuration:
+
+```
+auto swp2
+iface swp2
+    address 35.21.30.5/30
+    address 3101:21:20::31/80
+    scope link
+```
+
+When you run `ifreload -a` on this configuration, `ifupdown2` considers all IP addresses as global.
+
+```
+cumulus@switch:~$ ip addr show swp2
+5: swp2: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP group default qlen 1000
+link/ether 74:e6:e2:f5:62:82 brd ff:ff:ff:ff:ff:ff
+inet 35.21.30.5/30 scope global swp2
+valid_lft forever preferred_lft forever
+inet6 3101:21:20::31/80 scope global
+valid_lft forever preferred_lft forever
+inet6 fe80::76e6:e2ff:fef5:6282/64 scope link
+valid_lft forever preferred_lft forever
+```
+
+To work around this issue, configure the IP address scope:
+
+{{< tabs "TabID589 ">}}
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@switch:~$ NEED COMMAND
+cumulus@switch:~$ cl config apply
+```
+
+{{< /tab >}}
+{{< tab "NCLU Commands ">}}
+
+```
+cumulus@switch:~$ net add interface swp6 post-up ip address add 71.21.21.20/32 dev swp6 scope site
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+In the `/etc/network/interfaces` file, configure the IP address scope using `post-up ip address add <address> dev <interface> scope <scope>`. For example:
+
+```
+auto swp6
+iface swp6
+    post-up ip address add 71.21.21.20/32 dev swp6 scope site
+```
+
+Then run the `ifreload -a` command on this configuration.
+
+{{< /tab >}}
+{{< /tabs >}}
+
+The following configuration shows the correct scope:
+
+```
+cumulus@switch:~$ ip addr show swp6
+9: swp6: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP group default qlen 1000
+link/ether 74:e6:e2:f5:62:86 brd ff:ff:ff:ff:ff:ff
+inet 71.21.21.20/32 scope site swp6
+valid_lft forever preferred_lft forever
+inet6 fe80::76e6:e2ff:fef5:6286/64 scope link
+valid_lft forever preferred_lft forever
 ```
 
 ## Related Information

@@ -180,7 +180,7 @@ For more information, see the individual man pages for `ifup(8)`, `ifdown(8)`, `
 Cumulus Linux has a preconfigured loopback interface. When the switch boots up, the loopback interface called *lo* is up and assigned an IP address of 127.0.0.1.
 
 {{%notice note%}}
-The loopback interface *lo* must always exist and must always be up.
+The loopback interface *lo* must always exist on the switch and must always be up.
 {{%/notice%}}
 
 You can configure multiple IP addresses for the loopback interface:
@@ -190,7 +190,7 @@ You can configure multiple IP addresses for the loopback interface:
 
 ```
 cumulus@switch:~$ cl set interface lo ip address 172.16.2.1/24
-cumulus@switch:~$ cl set interface lo ip address 10.0.0.1
+cumulus@switch:~$ cl set interface lo ip address 10.10.10.1
 cumulus@switch:~$ cl config apply
 ```
 
@@ -199,7 +199,7 @@ cumulus@switch:~$ cl config apply
 
 ```
 cumulus@switch:~$ net add loopback lo ip address 172.16.2.1/24
-cumulus@switch:~$ net add loopback lo ip address 10.0.0.1
+cumulus@switch:~$ net add loopback lo ip address 10.10.10.1
 cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
@@ -212,7 +212,7 @@ Add multiple `address` lines in the `/etc/network/interfaces` file:
 ```
 auto lo
 iface lo inet loopback
-    address 10.0.0.1
+    address 10.10.10.1
     address 172.16.2.1/24
 ```
 
@@ -220,7 +220,7 @@ iface lo inet loopback
 {{< /tabs >}}
 
 {{%notice note%}}
-If the IP address is configured without a mask, the IP address automatically becomes a /32. For example, 10.1.1.1 is 10.1.1.1/32.
+If the IP address is configured without a mask, the IP address automatically becomes a /32. For example, 10.10.10.1 is 10.10.10.1/32.
 {{%/notice%}}
 
 ## Child Interfaces

@@ -527,56 +527,16 @@ cumulus@switch:~$ ip addr show
 
 Cumulus Linux has a loopback interface preconfigured in the `/etc/network/interfaces` file. When the switch boots up, it has a loopback interface, called *lo*, which is up and assigned an IP address of 127.0.0.1.
 
-{{%notice tip%}}
-
-The loopback interface *lo* must always be specified in the `/etc/network/interfaces` file and must always be up.
-
+{{%notice note%}}
+The loopback interface *lo* must always exist on the switch and must always be up.
 {{%/notice%}}
 
-To see the status of the loopback interface (lo):
+To see the status of the loopback interface (lo), run the CUE `cl show interface lo` command or the Linux `ip addr show lo` command.
 
-{{< tabs "TabID522 ">}}
+To add an IP address to a loopback interface:
+
+{{< tabs "TabID538 ">}}
 {{< tab "CUE Commands ">}}
-
-Use the `cl show interface lo` command.
-
-```
-cumulus@switch:~$ cl show interface lo
-                        running      applied   pending   description
------------------------  -----------  --------  --------  ----------------------------------------------------------------------
-type                     loopback     loopback  loopback  The type of interface
-ip
-  vrf                                 default   default   Virtual routing and forwarding
-  ipv4                                forward   forward   IPv4 support on the interface. A value of 'on' means IPv4 is enable...
-  ipv6                                forward   forward   IPv6 support on the interface. A value of 'on' means IPv6 is enable...
-  [address]              127.0.0.1/8                      ipv4 and ipv6 address
-  [address]              ::1/128
-link
-  mtu                    65536                            interface mtu
-  state                  up                               The state of the interface
-  stats
-    carrier-transitions  0                                Number of times the interface state has transitioned between up and...
-    in-bytes             8360290                          total number of bytes received on the interface
-    in-drops             0                                number of received packets dropped
-    in-errors            0                                number of received packets with errors
-    in-pkts              127169                           total number of packets received on the interface
-    out-bytes            8360290                          total number of bytes transmitted out of the interface
-    out-drops            0                                The number of outbound packets that were chosen to be discarded eve...
-    out-errors           0                                The number of outbound packets that could not be transmitted becaus...
-    out-pkts             127169                           total number of packets transmitted out of the interface
-
-Alias
------
-loopback interface
-IP Details
--------------------------  --------------------
-IP:                        127.0.0.1/8, ::1/128
-IP Neighbor(ARP) Entries:  0
-```
-
-The loopback is up and is assigned an IP address of 127.0.0.1.
-
-To add an IP address to a loopback interface, configure the lo interface:
 
 ```
 cumulus@switch:~$ cl set interface lo ip address 10.10.10.1/32
@@ -586,29 +546,8 @@ cumulus@switch:~$ cl config apply
 {{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
-Use the `net show interface lo` command.
-
 ```
-cumulus@switch:~$ net show interface lo
-    Name    MAC                Speed    MTU    Mode
---  ------  -----------------  -------  -----  --------
-UP  lo      00:00:00:00:00:00  N/A      65536  Loopback
-
-Alias
------
-loopback interface
-IP Details
--------------------------  --------------------
-IP:                        127.0.0.1/8, ::1/128
-IP Neighbor(ARP) Entries:  0
-```
-
-The loopback is up and is assigned an IP address of 127.0.0.1.
-
-To add an IP address to a loopback interface, configure the *lo* interface:
-
-```
-cumulus@switch:~$ net add loopback lo ip address 10.1.1.1/32
+cumulus@switch:~$ net add loopback lo ip address 10.10.10.1/32
 cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
@@ -616,37 +555,22 @@ cumulus@switch:~$ net commit
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Use the `ip addr show lo` command.
-
-```
-cumulus@switch:~$ ip addr show lo
-1: lo: <LOOPBACK,UP,LOWER_UP> mtu 16436 qdisc noqueue state UNKNOWN
-    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
-    inet 127.0.0.1/8 scope host lo
-    inet6 ::1/128 scope host
-        valid_lft forever preferred_lft forever
-```
-
-The loopback is up and is assigned an IP address of 127.0.0.1.
-
-To add an IP address to a loopback interface, add it directly under the `iface lo inet loopback` definition in the `/etc network/interfaces` file:
+Add the IP address directly under the `iface lo inet loopback` definition in the `/etc network/interfaces` file:
 
 ```
 auto lo
 iface lo inet loopback
-    address 10.1.1.1
+    address 10.10.10.1
 ```
-
-{{%notice note%}}
-If an IP address is configured without a mask (as shown above), the IP address becomes a /32. So, in the above case, 10.1.1.1 is actually 10.1.1.1/32.
-{{%/notice%}}
 
 {{< /tab >}}
 {{< /tabs >}}
 
-### Multiple Loopbacks
+{{%notice note%}}
+If an IP address is configured without a mask, the IP address becomes a /32. For example, 10.10.10.1 is 10.10.10.1/32.
+{{%/notice%}}
 
-You can add multiple loopback addresses. See {{<link url="Interface-Configuration-and-Management#configure-multiple-loopbacks" text="Configure Multiple Loopbacks">}} for details.
+You can add multiple loopback addresses. See {{<link url="Interface-Configuration-and-Management#configure-multiple-loopbacks" text="Configure Multiple Loopbacks">}} for more details.
 
 ## Reboot the Switch
 

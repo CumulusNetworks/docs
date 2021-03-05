@@ -187,7 +187,7 @@ Most logs within Cumulus Linux are sent through `rsyslog`, which writes them to 
 | 25-switchd.conf | Logs `switchd` messages to `/var/log/switchd.log`. |
 | 30-ptmd.conf  | Logs `ptmd` messages to `/var/log/ptmd.log` for {{<link url="Prescriptive-Topology-Manager-PTM" text="Prescription Topology Manager">}}. |
 | 35-rdnbrd.conf | Logs `rdnbrd` messages to `/var/log/rdnbrd.log` for {{<link url="Redistribute-Neighbor">}}. |
-| 40-netd.conf | Logs `netd` messages to `/var/log/netd.log` for {{<link url="Network-Command-Line-Utility-NCLU" text="NCLU">}}. |
+| 40-netd.conf | Logs `netd` messages to `/var/log/netd.log` for NCLU. |
 | 45-frr.conf  | Logs routing protocol messages to `/var/log/frr/frr.log`. This includes BGP and OSPF log messages.  |
 | 99-syslog.conf | All remaining processes that use `rsyslog` are sent to `/var/log/syslog`. |
 

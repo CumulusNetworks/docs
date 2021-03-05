@@ -107,7 +107,7 @@ The policies and attributes in any file in `/etc/network/ifupdown2/policy.d/` ov
 
 ### Bridge MTU
 
-The MTU setting is the lowest MTU of any interface that is a member of the bridge (every interface specified in `bridge-ports` in the bridge configuration of the `/etc/network/interfaces` file). There is **no** need to specify an MTU on the bridge. Consider this bridge configuration:
+The MTU setting is the lowest MTU of any interface that is a member of the bridge (every interface specified in `bridge-ports` in the bridge configuration of the `/etc/network/interfaces` file). You are not required to specify an MTU on the bridge. Consider this bridge configuration:
 
 ```
 auto bridge
@@ -117,7 +117,7 @@ iface bridge
     bridge-vlan-aware yes
 ```
 
-For *bridge* to have an MTU of 9000, set the MTU for each of the member interfaces (bond1 to bond 4, and peer5), to 9000 at minimum.
+For *bridge* to have an MTU of 9000, set the MTU for each of the member interfaces (bond1 to bond 4, and peer5) to 9000 at minimum.
 
 {{%notice tip%}}
 
@@ -127,7 +127,7 @@ Two common MTUs for jumbo frames are 9216 (the default value) and 9000 bytes. Th
 
 {{%/notice%}}
 
-When configuring MTU for a bond, configure the MTU value directly under the bond interface; the configured value is inherited by member links/slave interfaces. If you need a different MTU on the bond, set it on the bond interface, as this ensures the slave interfaces pick it up. There is no need to specify MTU on the slave interfaces.
+When configuring MTU for a bond, configure the MTU value directly under the bond interface; the configured value is inherited by member links/slave interfaces. If you need a different MTU on the bond, set it on the bond interface, as this ensures the slave interfaces pick it up. You are not required to specify an MTU on the slave interfaces.
 
 VLAN interfaces inherit their MTU settings from their physical devices or their lower interface; for example, swp1.100 inherits its MTU setting from swp1. Therefore, specifying an MTU on swp1 ensures that swp1.100 inherits the MTU setting for swp1.
 

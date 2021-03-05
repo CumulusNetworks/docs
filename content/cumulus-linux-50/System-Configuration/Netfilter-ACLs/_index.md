@@ -7,7 +7,7 @@ toc: 3
 {{<exlink url="http://www.netfilter.org/" text="Netfilter">}} is the packet filtering framework in Cumulus Linux as well as most other Linux distributions. There are a number of tools available for configuring ACLs in Cumulus Linux:
 
 - `iptables`, `ip6tables`, and `ebtables` are Linux userspace tools used to administer filtering rules for IPv4 packets, IPv6 packets, and Ethernet frames (layer 2 using MAC addresses).
-- {{<link url="Network-Command-Line-Utility-NCLU" text="NCLU">}} is a Cumulus Linux-specific userspace tool used to configure custom ACLs.
+- NCLU is a Cumulus Linux-specific userspace tool used to configure custom ACLs.
 - `cl-acltool` is a Cumulus Linux-specific userspace tool used to administer filtering rules and configure default ACLs.
 
 NCLU and `cl-acltool` operate on various configuration files and use `iptables`, `ip6tables`, and `ebtables` to install rules into the kernel. In addition, NCLU and `cl-acltool` program rules in hardware for interfaces involving switch port interfaces, which `iptables`, `ip6tables` and `ebtables` cannot do on their own.
@@ -88,7 +88,7 @@ The Linux packet forwarding construct is an overlay for how the silicon undernea
 
     {{%notice warning%}}
 
-If multiple contiguous rules with the same match criteria are applied to `--in-interface`, **only** the first rule gets processeand then terminates processing. This is a misconfiguration; there is no reason to have duplicate rules with different actions.
+If multiple contiguous rules with the same match criteria are applied to `--in-interface`, **only** the first rule gets processed and then processing terminates. Do not configure duplicate rules with different actions.
 
     {{%/notice%}}
 

@@ -23,7 +23,7 @@ To configure the DHCP server on a Cumulus Linux switch:
 - Provide a name for the pool (optional).
 - Provide the IP address of the DNS Server you want to use in this pool. You can assign multiple DNS servers.
 - Provide the domain name you want to use for this pool so that name resolution is provided (optional).
-- Define the range of all IP addresses available for assignment.
+- Define the range of IP addresses available for assignment.
 - Provide the default gateway IP address (optional).
 
 In addition, you can configure a static IP address for a resource, such as a server or printer:
@@ -304,7 +304,7 @@ cumulus@switch:~$ cl config apply
 
 ### Ping Check
 
-Configure the DHCP server to ping the address to be assigned to a client before issuing the IP address. If no response is received, the IP address is delivered; otherwise the IP address is abandoned and no response is sent to the client.
+Configure the DHCP server to ping the address to be assigned to a client before issuing the IP address. If no response is received, the IP address is delivered; otherwise, the next available address in the range is attempted.
 
 {{< tabs "TabID295 ">}}
 {{< tab "CUE Commands ">}}
@@ -423,7 +423,7 @@ cumulus@switch:~$ cl set system dhcp-server6 static server1 interface swp1
 {{< tabs "TabID409 ">}}
 {{< tab "IPv4 ">}}
 
-1. Edit the `/etc/dhcp/dhcpd.conf` file and add the interface name `ifname` to assign an IP address through DHCP. The following provides an example:
+1. Edit the `/etc/dhcp/dhcpd.conf` file to add the interface and IP address:
 
    ```
    cumulus@switch:~$ sudo nano /etc/dhcp/dhcpd.conf
@@ -444,7 +444,7 @@ cumulus@switch:~$ cl set system dhcp-server6 static server1 interface swp1
 {{< /tab >}}
 {{< tab "IPv6 ">}}
 
-1. Edit the `/etc/dhcp/dhcpd6.conf` file and add the interface name `ifname` to assign an IP address through DHCP. The following provides an example:
+1. Edit the `/etc/dhcp/dhcpd6.conf` file to add the interface and IP address:
 
    ```
    cumulus@switch:~$ sudo nano /etc/dhcp/dhcpd6.conf

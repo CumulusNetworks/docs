@@ -154,11 +154,11 @@ iface swp1
     link-speed 10000
 ```
 
-The following commands configure the port speed and set half-duplex mode for the swp31 interface.
+The following commands configure the port speed and set half-duplex mode for the swp1 interface.
 
 ```
-cumulus@switch:~$ net add interface swp31 link speed 100
-cumulus@switch:~$ net add interface swp31 link duplex half
+cumulus@switch:~$ net add interface swp1 link speed 100
+cumulus@switch:~$ net add interface swp1 link duplex half
 cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
@@ -166,8 +166,8 @@ cumulus@switch:~$ net commit
 The above commands create the following `/etc/network/interfaces` file code snippet:
 
 ```
-auto swp31
-iface swp31
+auto swp1
+iface swp1
     link-speed 100
     link-duplex half
 ```
@@ -371,7 +371,7 @@ cumulus@switch:~$ ip link show dev swp1
 
 ## FEC
 
-{{<exlink url="https://en.wikipedia.org/wiki/Forward_error_correction" text="Forward Error Correction (FEC)">}} is an encoding and decoding layer that enables the switch to detect and correct bit errors introduced over the cable between two interfaces. The target IEEE bit error rate (BER) on high speed ethernet link is 10<sup>-12</sup>. Because 25G transmission speeds can introduce a higher than acceptable BER on a link, FEC is often required to correct errors to achieve the target BER at 25G, 4x25G, 100G, and higher link speeds.  The type and grade of a cable or module and the medium of transmission will determine which FEC setting is needed. 
+{{<exlink url="https://en.wikipedia.org/wiki/Forward_error_correction" text="Forward Error Correction (FEC)">}} is an encoding and decoding layer that enables the switch to detect and correct bit errors introduced over the cable between two interfaces. The target IEEE bit error rate (BER) on high speed ethernet link is 10<sup>-12</sup>. Because 25G transmission speeds can introduce a higher than acceptable BER on a link, FEC is often required to correct errors to achieve the target BER at 25G, 4x25G, 100G, and higher link speeds.  The type and grade of a cable or module and the medium of transmission will determine which FEC setting is needed.
 
 For the link to come up, the two interfaces on each end must use the same FEC setting.
 
@@ -523,8 +523,8 @@ On a Spectrum switch, the `--show-fec` output tells you the current active state
 To show the FEC mode currently enabled on a given switch port, run the `ethtool --show-fec <interface>` command.
 
 ```
-cumulus@switch:~$ sudo ethtool --show-fec swp23
-FEC parameters for swp23:
+cumulus@switch:~$ sudo ethtool --show-fec swp1
+FEC parameters for swp1:
 Configured FEC encodings: Auto
 Active FEC encoding: Off
 ```
@@ -540,7 +540,7 @@ To enable **Reed Solomon (RS) FEC** on a link:
 Run the `net add interface <interface> link fec rs` command. For example:
 
 ```
-cumulus@switch:~$ sudo net add interface swp23 link fec rs
+cumulus@switch:~$ sudo net add interface swp1 link fec rs
 cumulus@switch:~$ sudo net pending
 cumulus@switch:~$ sudo net commit
 ```
@@ -592,7 +592,7 @@ To enable **Base-R/FireCode FEC** on a link:
 Run the `net add interface <interface> link fec baser` command. For example:
 
 ```
-cumulus@switch:~$ sudo net add interface swp23 link fec baser
+cumulus@switch:~$ sudo net add interface swp1 link fec baser
 cumulus@switch:~$ sudo net pending
 cumulus@switch:~$ sudo net commit
 ```
@@ -626,9 +626,7 @@ cumulus@switch:~$ sudo ethtool --set-fec swp1 encoding BaseR
 ```
 
 {{%notice warning%}}
-
-A runtime configuration is non-persistent, which means the configuration you create here does not persist after you reboot the switch.
-
+A runtime configuration is non-persistent. The configuration you create does not persist after you reboot the switch.
 {{%/notice%}}
 
 {{< /tab >}}
@@ -647,10 +645,10 @@ FEC with auto-negotiation is supported on DACs only.
 
 {{< tab "NCLU Commands ">}}
 
-Run the `net add interface <interface> link autoneg` `on` command. The following example command enables FEC with auto-negotiation on the swp12 interface:
+Run the `net add interface <interface> link autoneg` `on` command. The following example command enables FEC with auto-negotiation on the swp1 interface:
 
 ```
-cumulus@switch:~$ sudo net add interface swp12 link autoneg on
+cumulus@switch:~$ sudo net add interface swp1 link autoneg on
 cumulus@switch:~$ sudo net pending
 cumulus@switch:~$ sudo net commit
 ```
@@ -682,20 +680,17 @@ ethtool -s swp1 speed 10000 duplex full autoneg on
 ```
 
 {{%notice warning%}}
-
-A runtime configuration is non-persistent, which means the configuration you create here does not persist after you reboot the switch.
-
+A runtime configuration is non-persistent. The configuration you create does not persist after you reboot the switch.
 {{%/notice%}}
 
 {{< /tab >}}
 
 {{< /tabs >}}
 
-To show the FEC and auto-negotiation settings for an interface, run the
-following command:
+To show the FEC and auto-negotiation settings for an interface, run the following command:
 
 ```
-cumulus@switch:~$ sudo ethtool swp12 | egrep 'FEC|auto'
+cumulus@switch:~$ sudo ethtool swp1 | egrep 'FEC|auto'
 Supports auto-negotiation: Yes
 Supported FEC modes: RS
 Advertised auto-negotiation: Yes
@@ -713,7 +708,7 @@ To disable FEC on a link:
 Run the `net add interface <interface> link fec off` command. For example:
 
 ```
-cumulus@switch:~$ sudo net add interface swp23 link fec off
+cumulus@switch:~$ sudo net add interface swp1 link fec off
 cumulus@switch:~$ sudo net pending
 cumulus@switch:~$ sudo net commit
 ```
@@ -727,8 +722,8 @@ Edit the `/etc/network/interfaces` file, then run the `ifreload -a` command. The
 ```
 cumulus@switch:~$ sudo nano /etc/network/interfaces
 
-auto swp23
-iface swp23
+auto swp1
+iface swp1
 link-fec off
 ```
 
@@ -741,13 +736,11 @@ cumulus@switch:~$ sudo ifreload -a
 Run the `ethtool --set-fec <interface> encoding off` command. For example:
 
 ```
-cumulus@switch:~$ sudo ethtool --set-fec swp23 encoding off
+cumulus@switch:~$ sudo ethtool --set-fec swp1 encoding off
 ```
 
 {{%notice warning%}}
-
-A runtime configuration is non-persistent, which means the configuration you create here does not persist after you reboot the switch.
-
+A runtime configuration is non-persistent. The configuration you create does not persist after you reboot the switch.
 {{%/notice%}}
 
 {{< /tab >}}
@@ -866,40 +859,40 @@ To configure a breakout port:
 
 {{< tab "NCLU Commands ">}}
 
-This example command breaks out the 100G port on swp3 into four 25G ports:
+This example command breaks out the 100G port on swp1 into four 25G ports:
 
 ```
-cumulus@switch:~$ net add interface swp3 breakout 4x
+cumulus@switch:~$ net add interface swp1 breakout 4x25G
 cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-To break out swp3 into four 10G ports, run the `net add interface swp3 breakout 4x10G` command.
+To break out swp1 into four 10G ports, run the `net add interface swp1 breakout 4x10G` command.
 
-On NVIDIA Spectrum switches and 64-port Broadcom switches, you need to disable the next port. The following example command disables swp4.
+On NVIDIA Spectrum switches and 64-port Broadcom switches, you need to disable the next port. The following example command disables swp2.
 
 ```
-cumulus@switch:~$ net add interface swp4 breakout disabled
+cumulus@switch:~$ net add interface swp2 breakout disabled
 cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-These commands break out swp3 into four 25G interfaces in the `/etc/cumulus/ports.conf` file and create four interfaces in the `/etc/network/interfaces` file:
+These commands break out swp1 into four 25G interfaces in the `/etc/cumulus/ports.conf` file and create four interfaces in the `/etc/network/interfaces` file:
 
 ```
 cumulus@switch:~$ cat /etc/network/interfaces
 ...
-auto swp3s0
-iface swp3s0
+auto swp1s0
+iface swp1s0
 
-auto swp3s1
-iface swp3s1
+auto swp1s1
+iface swp1s1
 
-auto swp3s2
-iface swp3s2
+auto swp1s2
+iface swp1s2
 
-auto swp3s3
-iface swp3s3
+auto swp1s3
+iface swp1s3
 ...
 ```
 
@@ -913,36 +906,36 @@ When you commit your change on a Broadcom switch, `switchd` restarts to apply th
 
 {{< tab "Linux Commands ">}}
 
-1. Edit the `/etc/cumulus/ports.conf` file to configure the port breakout. The following example breaks out the 100G port on swp3 into four 25G ports. To break out swp3 into four 10G ports, use 3=4x10G. On NVIDIA Spectrum switches and 64-port Broadcom switches with the Tomahawk2 ASIC, you need to disable the next port. The example also disables swp4.
+1. Edit the `/etc/cumulus/ports.conf` file to configure the port breakout. The following example breaks out the 100G port on swp1 into four 25G ports. To break out swp1 into four 10G ports, use 1=4x10G. On NVIDIA Spectrum switches and 64-port Broadcom switches with the Tomahawk2 ASIC, you need to disable the next port. The example also disables swp2.
 
    ```
    cumulus@switch:~$ sudo cat /etc/cumulus/ports.conf
    ...
-   1=100G
-   2=100G
-   3=4x25G
-   4=disabled
+   1=4x25G
+   2=disabled
+   3=100G
+   4=100G
    ...
    ```
 
    The `/etc/cumulus/ports.conf` file varies across different hardware platforms. Check the current list of supported platforms in {{<exlink url="https://www.cumulusnetworks.com/hcl" text="the hardware compatibility list">}}.
 
-2. Configure the breakout ports in the `/etc/network/interfaces` file. The following example shows the swp3 breakout ports (swp1s0, swp1s1, swp1s2, and swp1s3).
+2. Configure the breakout ports in the `/etc/network/interfaces` file. The following example shows the swp1 breakout ports (swp1s0, swp1s1, swp1s2, and swp1s3).
 
 ```
 cumulus@switch:~$ sudo cat /etc/network/interfaces
 ...
-auto swp3s0
+auto swp1s0
 iface swp1s0
 
-auto swp3s1
-iface swp3s1
+auto swp1s1
+iface swp1s1
 
-auto swp3s2
-iface swp3s2
+auto swp1s2
+iface swp1s2
 
-auto swp3s3
-iface swp310s3
+auto swp1s3
+iface swp1s3
 ...
 ```
 
@@ -969,10 +962,10 @@ To remove a breakout port:
 1. Run the `net del interface <interface>` command. For example:
 
     ```
-    cumulus@switch:~$ net del interface swp3s0
-    cumulus@switch:~$ net del interface swp3s1
-    cumulus@switch:~$ net del interface swp3s2
-    cumulus@switch:~$ net del interface swp3s3
+    cumulus@switch:~$ net del interface swp1s0
+    cumulus@switch:~$ net del interface swp1s1
+    cumulus@switch:~$ net del interface swp1s2
+    cumulus@switch:~$ net del interface swp1s3
     cumulus@switch:~$ net pending
     cumulus@switch:~$ net commit
     ```
@@ -994,7 +987,7 @@ To remove a breakout port:
 
    {{<cl/restart-switchd>}}
 
-   On an NVIDIA Spectrum switch, you can reload `switchd` with the `sudo systemctl reload switchd.service` command. The reload does **not** interrupt network services.
+   On a Spectrum switch, you can reload `switchd` with the `sudo systemctl reload switchd.service` command. The reload does **not** interrupt network services.
 
        cumulus@switch:~$ sudo systemctl reload switchd.service
 
@@ -1191,10 +1184,10 @@ NIC statistics:
 
 ### Query SFP Port Information
 
-To verify SFP settings, run the `ethtool -m` command. The following example shows the vendor, type and power output for the swp4 interface.
+To verify SFP settings, run the `ethtool -m` command. The following example shows the vendor, type and power output for the swp1 interface.
 
 ```
-cumulus@switch:~$ sudo ethtool -m swp4 | egrep 'Vendor|type|power\s+:'
+cumulus@switch:~$ sudo ethtool -m swp1 | egrep 'Vendor|type|power\s+:'
         Transceiver type                          : 10G Ethernet: 10G Base-LR
         Vendor name                               : FINISAR CORP.
         Vendor OUI                                : 00:90:65

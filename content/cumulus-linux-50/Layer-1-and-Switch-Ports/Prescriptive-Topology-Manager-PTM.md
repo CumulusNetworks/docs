@@ -209,7 +209,14 @@ cumulus@switch:~$
 To disable the checks, delete the `ptm-enable` parameter from the interface:
 
 {{< tabs "TabID234 ">}}
+{{< tab "CUE Commands ">}}
 
+```
+cumulus@switch:~$ NEED COMMAND 
+cumulus@switch:~$ 
+```
+
+{{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
 ```
@@ -219,7 +226,6 @@ cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
-
 {{< tab "vtysh Commands ">}}
 
 ```
@@ -234,13 +240,19 @@ cumulus@switch:~$
 ```
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 If you need to re-enable PTM for that interface:
 
 {{< tabs "TabID265 ">}}
+{{< tab "CUE Commands ">}}
 
+```
+cumulus@switch:~$ NEED COMMAND 
+cumulus@switch:~$ 
+```
+
+{{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
 ```
@@ -250,7 +262,6 @@ cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
-
 {{< tab "vtysh Commands ">}}
 
 ```
@@ -266,13 +277,18 @@ cumulus@switch:~$
 ```
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 With PTM enabled on an interface, the `zebra` daemon connects to `ptmd` over a Unix socket. Any time there is a change of status for an interface, `ptmd` sends notifications to `zebra`. Zebra maintains a `ptm-status` flag per interface and evaluates routing adjacency based on this flag. To check the per-interface `ptm-status`:
 
 {{< tabs "TabID297 ">}}
+{{< tab "CUE Commands ">}}
 
+```
+cumulus@switch:~$ cl show interface swp1
+```
+
+{{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
 ```
@@ -289,7 +305,6 @@ Interface swp1 is up, line protocol is up
 ```
 
 {{< /tab >}}
-
 {{< tab "vtysh Commands ">}}
 
 ```
@@ -306,7 +321,6 @@ Interface swp1 is up, line protocol is up
 ```
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 ## ptmd Service Commands

@@ -432,7 +432,7 @@ You can determine for which grade the manufacturer has designated the cable as f
 For the **SFP28 DAC**, run the following command:
 
 ```
-cumulus@switch:~$ sudo ethtool -m swp35 hex on | grep 0020 | awk '{ print $6}'
+cumulus@switch:~$ sudo ethtool -m swp1 hex on | grep 0020 | awk '{ print $6}'
 0c
 ```
 
@@ -445,7 +445,7 @@ The values at location 0x0024 are:
 For the **QSFP28 DAC**, run the following command:
 
 ```
-cumulus@switch:~$ sudo ethtool -m swp51s0 hex on | grep 00c0 | awk '{print $2}'
+cumulus@switch:~$ sudo ethtool -m swp1s0 hex on | grep 00c0 | awk '{print $2}'
 0b
 ```
 

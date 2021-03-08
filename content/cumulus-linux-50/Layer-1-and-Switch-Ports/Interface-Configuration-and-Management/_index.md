@@ -430,7 +430,7 @@ If you want to disable these warnings, set `skip_upperifaces=1` in the `/etc/net
 With `skip_upperifaces=1`, you have to explicitly execute `ifup` on the upper interfaces. In this case, you will have to run `ifup br100` after an `ifup bond1` to add bond1 back to bridge br100.
 
 {{%notice note%}}
-Although specifying a subinterface like swp1.100 and then running `ifup swp1.100` results in the automatic creation of the swp1 interface in the kernel, consider also specifying the parent interface swp1. A parent interface is one where any physical layer configuration can reside, such as `link-speed 1000` or `link-duplex full`. If you only create swp1.100 and not swp1, then you cannot run `ifup swp1` because you did not specify it.
+If you specify a subinterface, such as swp1.100, then run `ifup swp1.100`, the swp1 interface is created automatically in the kernel. Consider also specifying the parent interface swp1. A parent interface is one where any physical layer configuration can reside, such as `link-speed 1000` or `link-duplex full`. If you create only swp1.100 and not swp1, you cannot run `ifup swp1`.
 {{%/notice%}}
 
 ## Interface IP Addresses

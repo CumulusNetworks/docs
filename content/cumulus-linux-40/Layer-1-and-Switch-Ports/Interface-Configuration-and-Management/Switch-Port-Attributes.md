@@ -94,7 +94,7 @@ cumulus@switch:~$ net commit
 
     {{%notice warning%}}
 
-A runtime configuration is non-persistent; the configuration you create here does not persist after you reboot the switch.
+A runtime configuration is non-persistent. The configuration you create does not persist after you reboot the switch.
 
     {{%/notice%}}
 
@@ -213,7 +213,7 @@ If you specify the port speed in the `/etc/network/interfaces` file, you must al
 
     {{%notice warning%}}
 
-A runtime configuration is non-persistent, which means the configuration you create here does not persist after you reboot the switch.
+A runtime configuration is non-persistent. The configuration you create does not persist after you reboot the switch.
 
     {{%/notice%}}
 
@@ -279,7 +279,7 @@ iface swp1
 
     {{%notice warning%}}
 
-A runtime configuration is non-persistent, which means the configuration you create here does not persist after you reboot the switch.
+A runtime configuration is non-persistent. The configuration you create does not persist after you reboot the switch.
 
     {{%/notice%}}
 
@@ -584,7 +584,7 @@ cumulus@switch:~$ sudo net commit
 
     {{%notice warning%}}
 
-A runtime configuration is non-persistent. The configuration you create here does not persist after you reboot the switch.
+A runtime configuration is non-persistent. The configuration you create does not persist after you reboot the switch.
 
     {{%/notice%}}
 
@@ -638,7 +638,7 @@ cumulus@switch:~$ sudo net commit
 
     {{%notice warning%}}
 
-A runtime configuration is non-persistent. The configuration you create here does not persist after you reboot the switch.
+A runtime configuration is non-persistent. The configuration you create does not persist after you reboot the switch.
 
     {{%/notice%}}
 

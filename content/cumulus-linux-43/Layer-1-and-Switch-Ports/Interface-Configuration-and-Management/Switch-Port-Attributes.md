@@ -93,7 +93,7 @@ ethtool -s swp1 speed 10000 duplex full autoneg on|off
 
 {{%notice warning%}}
 
-A runtime configuration is non-persistent; the configuration you create here does not persist after you reboot the switch.
+A runtime configuration is non-persistent. The configuration you create does not persist after you reboot the switch.
 
 {{%/notice%}}
 
@@ -208,7 +208,7 @@ cumulus@switch:~$  ethtool -s swp1 speed 10000 duplex full
 
 {{%notice warning%}}
 
-A runtime configuration is non-persistent, which means the configuration you create here does not persist after you reboot the switch.
+A runtime configuration is non-persistent. The configuration you create does not persist after you reboot the switch.
 
 {{%/notice%}}
 
@@ -272,7 +272,7 @@ cumulus@switch:~$ sudo ip link set dev swp1 mtu 1500
 
 {{%notice warning%}}
 
-A runtime configuration is non-persistent, which means the configuration you create here does not persist after you reboot the switch.
+A runtime configuration is non-persistent. The configuration you create does not persist after you reboot the switch.
 
 {{%/notice%}}
 
@@ -575,7 +575,7 @@ cumulus@switch:~$ sudo ethtool --set-fec swp1 encoding RS
 
 {{%notice warning%}}
 
-A runtime configuration is non-persistent, which means the configuration you create here does not persist after you reboot the switch.
+A runtime configuration is non-persistent. The configuration you create does not persist after you reboot the switch.
 
 {{%/notice%}}
 

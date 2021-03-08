@@ -28,9 +28,7 @@ cumulus@switch:~$ sudo systemctl restart networking.service
 ```
 
 {{%notice note%}}
-
 The service name is written **after** the `systemctl` subcommand, not before it.
-
 {{%/notice%}}
 
 To show all the services currently running, run the `systemctl status` command. For example:
@@ -80,8 +78,7 @@ cumulus@switch:~$ sudo systemctl status
 
 ### systemctl Subcommands
 
-`systemctl` has a number of subcommands that perform a specific operation on a given service.
-
+`systemctl` has subcommands that perform a specific operation on a given service:
 - **status** returns the status of the specified service.
 - **start** starts the service.
 - **stop** stops the service.
@@ -91,7 +88,7 @@ cumulus@switch:~$ sudo systemctl status
 - **disable** disables the service, but does not stop it unless you use the `systemctl stop SERVICENAME.service` command or reboot the switch. You can start or stop a disabled service.
 - **reenable** disables, then enables a service. You might need to do this so that any new *Wants* or *WantedBy* lines create the symlinks necessary for ordering. This has no side effects on other services.
 
-There is often little reason to interact with the services directly using these commands. If a critical service crashes or encounters an error, it is automatically respawned by systemd. systemd is effectively the caretaker of services in modern Linux systems and is responsible for starting all the necessary services at boot time.
+There is little reason to interact with the services directly using these commands. If a critical service crashes or encounters an error, it is automatically respawned by `systemd`, which is the caretaker of services in modern Linux systems and responsible for starting all the necessary services at boot time.
 
 ### Ensure a Service Starts after Multiple Restarts
 
@@ -160,7 +157,7 @@ Service cumulus-poe                   inactive
 Service lldpd              enabled    active
 Service mstpd              enabled    active
 Service neighmgrd          enabled    active
-Service netd               enabled    active
+Service cued               enabled    active
 Service netq-agent         enabled    active
 Service ntp                enabled    active
 Service ptmd               enabled    active
@@ -210,13 +207,13 @@ cumulus-platform.service               enabled
 
 ## Identify Essential Services
 
-If you need to know which services are required to run when the switch boots, run:
+To identify which services are required to run when the switch boots, run:
 
 ```
 cumulus@switch:~$ systemctl list-dependencies --before basic.target
 ```
 
-To see which services are needed for networking, run:
+To identify which services are needed for networking, run:
 
 <pre style="line-height: 1rem;">cumulus@switch:~$ systemctl list-dependencies --after network.target
 <span style="color: #5cdd49;"> <strong>●</strong> </span> ├─switchd.service
@@ -247,7 +244,7 @@ The following table lists the most important services in Cumulus Linux.
 |neighmgrd|Synchronizes MAC address information if using MLAG.|YES if using MLAG|
 |mstpd|{{<link url="Spanning-Tree-and-Rapid-Spanning-Tree-STP" text="Spanning tree protocol">}} daemon.|YES if using layer 2|
 |ptmd|{{<link url="Prescriptive-Topology-Manager-PTM" text="Prescriptive Topology Manager">}}. Verifies cabling based on {{<link url="Link-Layer-Discovery-Protocol" text="LLDP">}} output. Also sets up {{<link url="Bidirectional-Forwarding-Detection-BFD" text="BFD">}} sessions.|YES if using BFD|
-|netd| NCLU back end.|NO|
+|cued| Handles the CUE object model.|NO|
 |rsyslog|Handles logging of syslog messages.|NO|
 |ntp|{{<link url="Setting-Date-and-Time" text="Network time protocol">}}.|NO|
 |ledmgrd|{{<link url="Network-Switch-Port-LED-and-Status-LED-Guidelines" text="LED manager">}}. Reads the state of system LEDs.|NO|

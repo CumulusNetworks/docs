@@ -229,7 +229,7 @@ By default, `ifupdown2` recognizes and uses any interface present on the system 
 
 In the following example, swp1 and swp2 do not need an entry in the `interfaces` file. The following stanzas defined in `/etc/network/interfaces` provide the exact same configuration:
 
-**With Child Interfaces Defined**:
+**With Child Interfaces Defined**
 
 ```
 auto swp1
@@ -256,7 +256,7 @@ iface bridge
     bridge-ports swp1 swp2
     bridge-vids 1-100
     bridge-pvid 1
-    bridge-stp on</code></pre></td>
+    bridge-stp on
 ```
 
 In the following example, swp1.100 and swp2.100 do not need an entry in the `interfaces` file. The following stanzas defined in `/etc/network/interfaces` provide the exact same configuration:

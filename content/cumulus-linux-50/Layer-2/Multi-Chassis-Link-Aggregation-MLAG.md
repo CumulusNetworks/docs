@@ -234,7 +234,7 @@ cumulus@leaf01:~$ cl config apply
 To configure the backup link to a VRF, include the name of the VRF with the `backup-ip` parameter. The following example configures the backup link to VRF RED:
 
 ```
-cumulus@leaf01:~$ cl set NEED COMMAND
+cumulus@leaf01:~$ cl set mlag backup 10.10.10.2 vrf RED
 cumulus@leaf01:~$ cl config apply
 ```
 
@@ -252,8 +252,8 @@ cumulus@leaf02:~$ cl config apply
 To configure the backup link to a VRF, include the name of the VRF with the backup-ip parameter. The following example configures the backup link to VRF RED:
 
 ```
-cumulus@leaf01:~$ cl set NEED COMMAND
-cumulus@leaf01:~$ cl config apply
+cumulus@leaf02:~$ cl set mlag backup 10.10.10.1 vrf RED
+cumulus@leaf02:~$ cl config apply
 ```
 
 {{< /tab >}}
@@ -610,7 +610,11 @@ The following example commands set an MTU of 1500 for each of the bond interface
 {{< tab "CUE Commands ">}}
 
 ```
-cumulus@switch:~$ NEED COMMAND
+cumulus@switch:~$ cl set interface peerlink.4094 link mtu 1500
+cumulus@switch:~$ cl set interface uplink link mtu 1500
+cumulus@switch:~$ cl set interface bond1 link mtu 1500
+cumulus@switch:~$ cl set interface bond2 link mtu 1500
+cumulus@switch:~$ cl config apply
 ```
 
 {{< /tab >}}
@@ -714,8 +718,21 @@ cumulus@switch:~$ cl config apply
 
 ```
 cumulus@switch:~$ net add bgp neighbor peerlink.4094 interface remote-as internal
+cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
+
+If you are using {{<link url="Ethernet-Virtual-Private-Network-EVPN" text="EVPN">}} and MLAG, you need to enable the EVPN address family across the peerlink.4094 interface as well:
+
+```
+cumulus@switch:~$ net add bgp neighbor peerlink.4094 interface remote-as internal
+cumulus@switch:~$ net add bgp l2vpn evpn neighbor peerlink.4094 activate
+cumulus@switch:~$ net commit
+```
+
+{{%notice note%}}
+The `net add bgp l2vpn evpn neighbor peerlink.4094 activate` command creates a new eBGP neighborship when one is already configured for iBGP. The existing iBGP configuration is still valid.
+{{%/notice%}}
 
 {{< /tab >}}
 {{< tab "vtysh Commands ">}}
@@ -727,6 +744,22 @@ leaf01(config)# router bgp 65101
 leaf01(config-router)# bgp router-id 10.10.10.1
 leaf01(config-router)# neighbor peerlink remote-as external
 leaf01(config-router)# end
+leaf01# write memory
+leaf01# exit
+cumulus@leaf01:~$
+```
+
+If you are using {{<link url="Ethernet-Virtual-Private-Network-EVPN" text="EVPN">}} and MLAG, you need to enable the EVPN address family across the peerlink.4094 interface as well:
+
+```
+cumulus@leaf01:~$ sudo vtysh
+leaf01# configure terminal
+leaf01(config)# router bgp 65101
+leaf01(config-router)# bgp router-id 10.10.10.1
+leaf01(config-router)# neighbor peerlink remote-as external
+leaf01(config-router)# address-family l2vpn evpn
+leaf01(config-router-af)# neighbor peerlink activate
+leaf01(config-router-af)# end
 leaf01# write memory
 leaf01# exit
 cumulus@leaf01:~$
@@ -752,38 +785,6 @@ cumulus@switch:~$ cl config apply
 cumulus@switch:~$ net add interface peerlink.4094 ospf area 0.0.0.1
 cumulus@switch:~$ net commit
 ```
-
-{{< /tab >}}
-{{< tab "Linux Commands ">}}
-
-{{< /tab >}}
-{{< /tabs >}}
-
-If you are using {{<link url="Ethernet-Virtual-Private-Network-EVPN" text="EVPN">}} and MLAG, you need to enable the EVPN address family across the peerlink.4094 interface as well:
-
-{{< tabs "TabID764 ">}}
-{{< tab "CUE Commands ">}}
-
-```
-cumulus@switch:~$ cl set vrf default router bgp peer peerlink remote-as internal
-cumulus@switch:~$ NEED COMMAND
-```
-
-{{< /tab >}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@switch:~$ net add bgp neighbor peerlink.4094 interface remote-as internal
-cumulus@switch:~$ net add bgp l2vpn evpn neighbor peerlink.4094 activate
-cumulus@switch:~$ net commit
-```
-
-{{%notice note%}}
-The `net add bgp l2vpn evpn neighbor peerlink.4094 activate` command creates a new eBGP neighborship when one is already configured for iBGP. The existing iBGP configuration is still valid.
-{{%/notice%}}
-
-{{< /tab >}}
-{{< tab "Linux Commands ">}}
 
 {{< /tab >}}
 {{< /tabs >}}

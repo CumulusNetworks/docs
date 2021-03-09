@@ -4,263 +4,55 @@ author: NVIDIA
 weight: 420
 toc: 3
 ---
-Ethernet bridges enable hosts to communicate through layer 2 by connecting all of the physical and logical interfaces in the system into a single layer 2 domain. The bridge is a logical interface with a MAC address and {{<link url="Switch-Port-Attributes#mtu" text="MTU">}}. The bridge MTU is the minimum MTU among all its members. By default, the {{<exlink url="https://docs.cumulusnetworks.com/knowledge-base/Configuration-and-Usage/Network-Configuration/Cumulus-Linux-Derivation-of-MAC-Address-for-a-Bridge/" text="the MAC address of the bridge">}} is the MAC address of the first port in the `bridge-ports` list. You can also assign an IP address to the bridge.
+Ethernet bridges enable hosts to communicate through layer 2 by connecting all of the physical and logical interfaces in the system into a single layer 2 domain. The bridge is a logical interface with a MAC address and an {{<link url="Switch-Port-Attributes#mtu" text="MTU">}} (maximum transmission unit). The bridge MTU is the minimum MTU among all its members. By default, the {{<exlink url="https://docs.cumulusnetworks.com/knowledge-base/Configuration-and-Usage/Network-Configuration/Cumulus-Linux-Derivation-of-MAC-Address-for-a-Bridge/" text="bridge's MAC address">}} is the MAC address of the first port in the `bridge-ports` list. The bridge can also be assigned an IP address, as discussed {{<link url="#bridge-mac-addresses" text="below">}}.
 
-{{< img src = "/images/cumulus-linux/ethernet-bridging-example.png" >}}
+{{%notice note%}}
+Bridge members can be individual physical interfaces, bonds, or logical interfaces that traverse an 802.1Q VLAN trunk.
 
-The Cumulus Linux bridge driver supports two configuration modes, one that is VLAN-aware, and one that follows a more traditional Linux bridge model.
+Cumulus Linux does not put all ports into a bridge by default.
+{{%/notice%}}
+
+## Ethernet Bridge Types
+
+The Cumulus Linux bridge driver supports two configuration modes; one that is VLAN-aware and one that follows a more traditional Linux bridge model.
+
+NVIDIA recommends that you use *{{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware mode">}}* bridges instead of *traditional mode* bridges. The Cumulus Linux bridge driver is capable of VLAN filtering, which allows for configurations that are similar to incumbent network devices. For a comparison of traditional and VLAN-aware modes, read
+{{<exlink url="https://docs.cumulusnetworks.com/knowledge-base/Configuration-and-Usage/Network-Interfaces/Compare-Traditional-Bridge-Mode-to-VLAN-aware-Bridge-Mode/" text="this knowledge base article">}}.
+
+You can configure both VLAN-aware and traditional mode bridges on the same network in Cumulus Linux; however you cannot have more than one VLAN-aware bridge on a switch.
 
 - To create a VLAN-aware bridge, see {{<link title="VLAN-aware Bridge Mode">}}.
 - To create a traditional mode bridge, see {{<link title="Traditional Bridge Mode">}}.
 
-{{%notice note%}}
-
-- Cumulus Linux does not put all ports into a bridge by default.
-- Bridge members can be individual physical interfaces, bonds, or logical interfaces that traverse an 802.1Q VLAN trunk.
-- You can configure both VLAN-aware and traditional mode bridges on the same network in Cumulus Linux; however you cannot have more than one VLAN-aware bridge on a switch.
-
-{{%/notice%}}
-
 ## Bridge MAC Addresses
 
-The MAC address for a frame is learned when the frame enters the bridge through an interface. The MAC address is recorded in the bridge table and the bridge forwards the frame to its intended destination by looking up the destination MAC address. The MAC entry is then maintained for 1800 seconds (30 minutes). If the frame is seen with the same source MAC address before this time is exceeded, the MAC entry age is refreshed; otherwise, the MAC address is deleted from the bridge table.
+The MAC address for a frame is learned when the frame enters the bridge through an interface. The MAC address is recorded in the bridge table and the bridge forwards the frame to its intended destination by looking up the destination MAC address. The MAC entry is then maintained for 1800 seconds (30 minutes). If the frame is seen with the same source MAC address before the MAC entry age is exceeded, the MAC entry age is refreshed; if the MAC entry age is exceeded, the MAC address is deleted from the bridge table.
 
-The following example output shows a MAC address table for the bridge:
-
-```
-cumulus@switch:~$ net show bridge macs
-VLAN      Master    Interface    MAC                  TunnelDest  State      Flags    LastSeen
---------  --------  -----------  -----------------  ------------  ---------  -------  -----------------
-untagged  bridge    swp1         44:38:39:00:00:03                                    00:00:15
-untagged  bridge    swp1         44:38:39:00:00:04                permanent           20 days, 01:14:03
-```
-
-## Configure a Switch Virtual Interface
-
-You can include bridges as part of a routing topology after you assign them an IP address. This enables hosts within the bridge to communicate with other hosts outside of the bridge through a *switch virtual interface* (SVI), which provides layer 3 routing. The IP address of the bridge is typically from the same subnet as the member hosts of the bridge.
-
-{{%notice note%}}
-
-When you add an interface to a bridge, it ceases to function as a router interface and the IP address on the interface becomes unreachable.
-
-{{%/notice%}}
-
-To configure the SVI:
-
-{{< tabs "TabID114 ">}}
-
-{{< tab "NCLU Commands ">}}
-
-Run the `net add bridge` and `net add vlan` commands. The following example commands configure an SVI using swp1 and swp2, and VLAN ID 10.
+The following example CUE command output shows a MAC address table for the bridge.
 
 ```
-cumulus@switch:~$ net add bridge bridge ports swp1-2
-cumulus@switch:~$ net add vlan 10 ip address 10.100.100.1/24
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
+cumulus@switch:~$ cl show bridge domain br_default mac-table
+     age    entry-type  interface  last-update  mac                vlan  vni  Summary
+---  -----  ----------  ---------  -----------  -----------------  ----  ---  -------
++ 0  1394   permanent   swp1       1394         44:38:39:00:00:31
++ 1  1394   permanent   swp2       1394         44:38:39:00:00:33
++ 2  99388  permanent   swp3       99388        44:38:39:00:00:35
++ 3  99388  permanent   swp4       99388        44:38:39:00:00:e6
++ 4  99388  permanent   swp6       99388        44:38:39:00:00:e8
++ 5  99388  permanent   swp10      99388        44:38:39:00:00:ec
++ 6  99388  permanent   swp11      99388        44:38:39:00:00:ed
++ 7  99388  permanent   swp12      99388        44:38:39:00:00:ee
 ```
-
-{{< /tab >}}
-
-{{< tab "Linux Commands ">}}
-
-Edit the `/etc/network/interfaces` file to add the interfaces and VLAN ID you want to use, then run the `ifreload -a` command. The following configures an SVI using swp1 and swp2, and VLAN ID 10. The `bridge-vlan-aware` parameter associates the SVI with the VLAN-aware bridge.
-
-```
-cumulus@switch:~$ sudo nano /etc/network/interfaces
-...
-auto bridge
-iface bridge
-    bridge-ports swp1 swp2
-    bridge-vids 10
-    bridge-vlan-aware yes
-
-auto bridge.10
-iface bridge.10
-    address 10.100.100.1/24
-...
-```
-
-```
-cumulus@switch:~$ ifreload -a
-```
-
-{{< /tab >}}
-
-{{< /tabs >}}
-
-When you configure a switch initially, all southbound bridge ports might be down; therefore, the SVI is also down. You can force the SVI to always be up by disabling interface state tracking, which leaves the SVI in the UP state always, even if all member ports are down. Other implementations describe this feature as *no autostate*. This is beneficial if you want to perform connectivity testing.
-
-To keep the SVI perpetually UP, create a dummy interface, then make the dummy interface a member of the bridge.
-
-{{< expand "Example Configuration"  >}}
-
-Consider the following configuration, without a dummy interface in the bridge:
-
-```
-cumulus@switch:~$ sudo cat /etc/network/interfaces
-...
-
-auto bridge
-iface bridge
-    bridge-vlan-aware yes
-    bridge-ports swp1
-    bridge-vids 10
-    bridge-pvid 1
-...
-```
-
-With this configuration, when swp1 is down, the SVI is also down:
-
-```
-cumulus@switch:~$ ip link show swp1
-5: swp1: <BROADCAST,MULTICAST> mtu 1500 qdisc pfifo_fast master bridge state DOWN mode DEFAULT group default qlen 1000
-    link/ether 2c:60:0c:66:b1:7f brd ff:ff:ff:ff:ff:ff
-cumulus@switch:~$ ip link show bridge
-35: bridge: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc noqueue state DOWN mode DEFAULT group default
-    link/ether 2c:60:0c:66:b1:7f brd ff:ff:ff:ff:ff:ff
-```
-
-Now add the dummy interface to your network configuration:
-
-1. Edit the `/etc/network/interfaces` file and add the dummy interface stanza before the bridge stanza:
-
-    ```
-    cumulus@switch:~$ sudo nano /etc/network/interfaces
-    ...
-
-    auto dummy
-    iface dummy
-        link-type dummy
-
-    auto bridge
-    iface bridge
-    ...
-    ```
-
-2. Add the dummy interface to the `bridge-ports` line in the bridge configuration:
-
-    ```
-    auto bridge
-    iface bridge
-        bridge-vlan-aware yes
-        bridge-ports swp1 dummy
-        bridge-vids 10
-        bridge-pvid 1
-    ```
-
-3. Save and exit the file, then reload the configuration:
-
-    ```
-    cumulus@switch:~$ sudo ifreload -a
-    ```
-
-    Now, even when swp1 is down, both the dummy interface and the bridge remain up:
-
-    ```
-    cumulus@switch:~$ ip link show swp1
-    5: swp1: <BROADCAST,MULTICAST> mtu 1500 qdisc pfifo_fast master bridge state DOWN mode DEFAULT group default qlen 1000
-        link/ether 2c:60:0c:66:b1:7f brd ff:ff:ff:ff:ff:ff
-    cumulus@switch:~$ ip link show dummy
-    37: dummy: <BROADCAST,NOARP,UP,LOWER_UP> mtu 1500 qdisc noqueue master bridge state UNKNOWN mode DEFAULT group default
-        link/ether 66:dc:92:d4:f3:68 brd ff:ff:ff:ff:ff:ff
-    cumulus@switch:~$ ip link show bridge
-    35: bridge: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP mode DEFAULT group default
-        link/ether 2c:60:0c:66:b1:7f brd ff:ff:ff:ff:ff:ff
-    ```
-
-{{< /expand >}}
-
-## IPv6 Link-local Address Generation
-
-By default, Cumulus Linux automatically generates IPv6 {{<exlink url="https://en.wikipedia.org/wiki/Link-local_address" text="link-local addresses">}} on VLAN interfaces. If you want to use a different mechanism to assign link-local addresses, you can disable this feature. You can disable link-local automatic address generation for both regular IPv6 addresses and address-virtual (macvlan) addresses.
-
-To disable automatic address generation for a regular IPv6 address on a VLAN:
-
-{{< tabs "TabID248 ">}}
-
-{{< tab "NCLU Commands ">}}
-
-The following example command disables automatic address generation for a regular IPv6 address on a VLAN 10.
-
-```
-cumulus@switch:~$ net add vlan 10 ipv6-addrgen off
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-{{< /tab >}}
-
-{{< tab "Linux Commands ">}}
-
-Edit the `/etc/network/interfaces` file to add the line `ipv6-addrgen off` to the VLAN stanza, then run the `ifreload -a` command. The following example disables automatic address generation for a regular IPv6 address on VLAN 10.
-
-```
-cumulus@switch:~$ sudo nano /etc/network/interfaces
-...
-auto vlan10
-iface vlan10
-    ipv6-addrgen off
-    vlan-id 10
-    vlan-raw-device bridge
-...
-```
-
-```
-cumulus@switch:~$ ifreload -a
-```
-
-{{< /tab >}}
-
-{{< /tabs >}}
-
-To re-enable automatic link-local address generation for a VLAN:
-
-{{< tabs "TabID287 ">}}
-
-{{< tab "NCLU Commands ">}}
-
-The following example command re-enables automatic address generation for a regular IPv6 address on VLAN 10.
-
-```
-cumulus@switch:~$ net del vlan 10 ipv6-addrgen off
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-{{< /tab >}}
-
-{{< tab "Linux Commands ">}}
-
-Edit the `/etc/network/interfaces` file to **remove** the `ipv6-addrgen off` line from the VLAN stanza, then run the `ifreload -a` command.
-
-```
-cumulus@switch:~$ sudo nano /etc/network/interfaces
-...
-auto vlan10
-iface vlan10
-    vlan-id 10
-    vlan-raw-device bridge
-...
-```
-
-```
-cumulus@switch:~$ ifreload -a
-```
-
-{{< /tab >}}
-
-{{< /tabs >}}
 
 ## bridge fdb Command Output
 
-The `bridge fdb` command in Linux interacts with the forwarding database table (FDB), which the bridge uses to store the MAC addresses it learns and the ports on which it learns those MAC addresses. The `bridge fdb show` command output contains some specific keywords:
+The Linux `bridge fdb` command interacts with the forwarding database table (FDB), which the bridge uses to store the MAC addresses it learns and the ports on which it learns those MAC addresses. The `bridge fdb show` command output contains some specific keywords:
 
 | Keyword| Description |
 |--- |--- |
-| self | Indicates that the FDB entry belongs to the FDB on the device referenced by the device. For example, this FDB entry belongs to the VXLAN device `vx-1000`:<br>`00:02:00:00:00:08 dev vx-1000 dst 27.0.0.10 self` |
-| master |Indicates that the FDB entry belongs to the FDB on the device's master and the FDB entry is pointing to a master's port. For example, this FDB entry is from the master device named bridge and is pointing to the VXLAN bridge port `vx-1001`:<br>`02:02:00:00:00:08 dev vx-1001 vlan 1001 master bridge` |
-| extern_learn | Indicates that the FDB entry is managed (offloaded) by an external control plane, such as the BGP control plane for EVPN.|
+| self | The FDB entry belongs to the FDB on the device referenced by the device.<br>For example, this FDB entry belongs to the VXLAN device:<br>`vx-1000`: `00:02:00:00:00:08 dev vx-1000 dst 27.0.0.10 self` |
+| master |The FDB entry belongs to the FDB on the device's master and the FDB entry is pointing to a master's port.<br>For example, this FDB entry is from the master device named bridge and is pointing to the VXLAN bridge port:<br>`vx-1001`: `02:02:00:00:00:08 dev vx-1001 vlan 1001 master bridge` |
+| extern_learn | The FDB entry is managed (or offloaded) by an external control plane, such as the BGP control plane for EVPN.|
 
 The following example shows the `bridge fdb show` command output:
 
@@ -279,10 +71,10 @@ cumulus@switch:~$ bridge fdb show | grep 02:02:00:00:00:08
 ## Considerations
 
 - A bridge cannot contain multiple subinterfaces of the **same** port. Attempting this configuration results in an error.
-- In a configuration where both VLAN-aware and traditional bridges are used, if a traditional bridge has a subinterface of a bond that is a normal interface in a VLAN-aware bridge, the bridge is flapped when the bond subinterface of the traditional bridge is brought down.
+- In environments where both VLAN-aware and traditional bridges are used, if a traditional bridge has a subinterface of a bond that is a normal interface in a VLAN-aware bridge, the bridge is flapped when the traditional bridge's bond subinterface is brought down.
 - You cannot enslave a VLAN raw device to a different master interface (you cannot edit the `vlan-raw-device` setting in the `/etc/network/interfaces` file). You need to delete the VLAN and recreate it.
 - Cumulus Linux supports up to 2000 VLANs. This includes the internal interfaces, bridge interfaces, logical interfaces, and so on.
-- In Cumulus Linux, MAC learning is enabled by default on traditional or VLAN-aware bridge interfaces. Do not disable MAC learning unless you are using EVPN. See {{<link title="Ethernet Virtual Private Network - EVPN">}}.
+- In Cumulus Linux, MAC learning is enabled by default on traditional and VLAN-aware bridge interfaces. Do not disable MAC learning unless you are using EVPN. See {{<link title="Ethernet Virtual Private Network - EVPN">}}.
 
 ## Related Information
 

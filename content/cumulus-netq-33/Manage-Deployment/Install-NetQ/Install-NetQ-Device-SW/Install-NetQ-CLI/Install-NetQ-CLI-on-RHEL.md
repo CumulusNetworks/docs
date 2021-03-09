@@ -100,14 +100,14 @@ A simple process installs the NetQ CLI on a RHEL or CentOS server.
     ```
     root@rhel7:~# vi /etc/yum.repos.d/cumulus-host-el.repo
     ...
-    [cumulus-arch-netq-3.2]
+    [cumulus-arch-netq-3.3]
     name=Cumulus netq packages
     baseurl=https://apps3.cumulusnetworks.com/repos/rpm/el/7/netq-3.2/$basearch
     gpgcheck=1
     enabled=1
-    [cumulus-noarch-netq-3.2]
+    [cumulus-noarch-netq-3.3]
     name=Cumulus netq architecture-independent packages
-    baseurl=https://apps3.cumulusnetworks.com/repos/rpm/el/7/netq-3.2/noarch
+    baseurl=https://apps3.cumulusnetworks.com/repos/rpm/el/7/netq-3.3/noarch
     gpgcheck=1
     enabled=1
     ...
@@ -126,7 +126,7 @@ A simple process installs the NetQ CLI on a RHEL or CentOS server.
     root@rhel7:~# rpm -q -netq-apps
     ```
 
-    {{<netq-install/cli-version version="3.2.1" opsys="rh">}}
+    {{<netq-install/cli-version version="3.3.0" opsys="rh">}}
 
 5. Continue with the next section.
 

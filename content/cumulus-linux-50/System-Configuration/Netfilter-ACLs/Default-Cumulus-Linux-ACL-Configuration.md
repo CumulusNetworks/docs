@@ -198,9 +198,7 @@ Bridge chain: OUTPUT, entries: 0, policy: ACCEPT
 | Set class 0 | All |
 
 {{%notice note%}}
-
 Set class is internal to the switch - it does not set any precedence bits.
-
 {{%/notice%}}
 
 ## ip6tables
@@ -220,9 +218,7 @@ Set class is internal to the switch - it does not set any precedence bits.
 | Set class 0 | All |
 
 {{%notice note%}}
-
 Set class is internal to the switch - it does not set any precedence bits.
-
 {{%/notice%}}
 
 ## ebtables
@@ -236,7 +232,5 @@ Set class is internal to the switch - it does not set any precedence bits.
 | Catch All (applied at end):<br>Set class: 0<br>Police: packet rate 100 burst rate 100<br>Any switchport | ALL OTHER |
 
 {{%notice note%}}
-
 Set class is internal to the switch. It does not set any precedence bits.
-
 {{%/notice%}}

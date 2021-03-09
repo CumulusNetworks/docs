@@ -61,9 +61,7 @@ cumulus@switch:~$ date +%Z
 ```
 
 {{%notice note%}}
-
 If you need to reconfigure the current time zone, refer to the instructions above.
-
 {{%/notice%}}
 
 Then, to set the system clock according to the time zone configured:
@@ -71,8 +69,6 @@ Then, to set the system clock according to the time zone configured:
 ```
 cumulus@switch:~$ sudo date -s "Tue Jan 12 00:37:13 2016"
 ```
-
-See `man date(1)` for more information.
 
 You can write the current value of the system (software) clock to the hardware clock using the `hwclock` command:
 
@@ -87,9 +83,7 @@ See `man hwclock(8)` for more information.
 The `ntpd` daemon running on the switch implements the NTP protocol. It synchronizes the system time with time servers listed in the `/etc/ntp.conf` file. The `ntpd` daemon is started at boot by default. See `man ntpd(8)` for details.
 
 {{%notice note%}}
-
 If you intend to run this service within a {{<link url="Virtual-Routing-and-Forwarding-VRF" text="VRF">}}, including the {{<link url="Management-VRF" text="management VRF">}}, follow {{<link url="Management-VRF#run-services-within-the-management-vrf" text="these steps">}} for configuring the service.
-
 {{%/notice%}}
 
 ### Configure NTP Servers
@@ -240,7 +234,7 @@ cumulus@switch:~$ net commit
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Edit the ` /etc/ntp.conf  `file to delete the NTP servers.
+Edit the `/etc/ntp.conf` file to delete the NTP servers.
 
 ```
 cumulus@switch:~$ sudo nano /etc/ntp.conf
@@ -317,9 +311,7 @@ ExecStart=/usr/sbin/ntpd -n -u ntp:ntp -g -c /run/ntp.conf.dhcp
 ```
 
 {{%notice note%}}
-
 The  `sudo -E systemctl edit ntp.service` command always updates the base `ntp.service` even if `ntp@mgmt.service` is used.  The `ntp@mgmt.service` is re-generated automatically.
-
 {{%/notice%}}
 
 To validate that your configuration, run these commands:
@@ -332,9 +324,7 @@ cumulus@switch:~$ sudo systemctl status -n0 ntp.service
 If the state is not *Active*, or the alternate configuration file does not appear in the `ntp` command line, it is likely that a mistake was made. In this case, correct the mistake and rerun the three commands above to verify.
 
 {{%notice note%}}
-
 When you use the above procedure to specify your NTP servers, the NCLU commands for changing NTP settings do not take effect.
-
 {{%/notice%}}
 
 ### Configure NTP with Authorization Keys

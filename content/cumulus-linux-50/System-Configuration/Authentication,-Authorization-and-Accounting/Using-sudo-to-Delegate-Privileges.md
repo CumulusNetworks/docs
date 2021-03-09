@@ -15,13 +15,11 @@ You can add more user accounts as needed. Like the *cumulus* account, these acco
 The default security policy is *sudoers*, which is configured using `/etc/sudoers`. Use `/etc/sudoers.d/` to add to the default sudoers policy.
 
 {{%notice warning%}}
-
 Use `visudo` only to edit the `sudoers` file; do not use another editor like `vi` or `emacs`.
 
 When creating a new file in `/etc/sudoers.d`, use `visudo -f`. This option performs sanity checks before writing the file to avoid errors that prevent sudo from working.
 
 Errors in the `sudoers` file can result in losing the ability to elevate privileges to root. You can fix this issue only by power cycling the switch and booting into single user mode. Before modifying `sudoers`, enable the root user by setting a password for the root user.
-
 {{%/notice%}}
 
 By default, users in the *sudo* group can use `sudo` to execute privileged commands. To add users to the sudo group, use the `useradd(8)` or `usermod(8)` command. To see which users belong to the sudo group, see `/etc/group` (`man group(5)`).

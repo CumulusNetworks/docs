@@ -10,9 +10,7 @@ Cumulus Linux uses Pluggable Authentication Modules (PAM) and Name Service Switc
 - PAM handles the interaction between the user and the system, providing login handling, session setup, authentication of users, and authorization of user actions.
 
 {{%notice note%}}
-
 There are three common ways to configure LDAP authentication on Linux: you can use `libnss-ldap`, `libnss-ldapd`, or `libnss-sss`. This chapter describes `libnss-ldapd` only. From internal testing, this library worked best with Cumulus Linux and is the easiest to configure, automate, and troubleshoot.
-
 {{%/notice%}}
 
 ## Install libnss-ldapd
@@ -50,9 +48,7 @@ shadow: compat ldap
 ```
 
 {{%notice warning%}}
-
 Keep `compat` as the first source in NSS for *passwd*, *group*, and *shadow*. This prevents you from getting locked out of the system.
-
 {{%/notice%}}
 
 Entering incorrect information during the installation process might produce configuration errors. You can correct the information after installation by editing certain configuration files.
@@ -62,7 +58,9 @@ Entering incorrect information during the installation process might produce con
 
 Be sure to restart `netd` after editing the files.
 
-    cumulus@switch:~$ sudo systemctl restart netd.service
+```
+cumulus@switch:~$ sudo systemctl restart netd.service
+```
 
 {{< expand "Alternative Installation Method Using debconf-utils "  >}}
 
@@ -132,9 +130,7 @@ After installation, update the main configuration file (`/etc/nslcd.conf`) to ac
 This section documents some of the more important options that relate to security and how queries are handled. For details on all the available configuration options, read the {{<exlink url="http://linux.die.net/man/5/nslcd.conf" text="nslcd.conf man page">}}.
 
 {{%notice note%}}
-
 After first editing the `/etc/nslcd.conf` file and/or enabling LDAP in the `/etc/nsswitch.conf` file, you must restart `netd` with the `sudo systemctl restart netd` command. If you disable LDAP, you need to restart the `netd` service.
-
 {{%/notice%}}
 
 ### Connection
@@ -184,9 +180,7 @@ map    passwd shell "/bin/bash"
 ```
 
 {{%notice note%}}
-
 In LDAP, the ***map*** refers to one of the supported maps specified in the `manpage` for `nslcd.conf` (such as *passwd* or *group*).
-
 {{%/notice%}}
 
 ### Create Home Directory on Login
@@ -202,7 +196,6 @@ cumulus@switch:~$ sudo pam-auth-update
 The home directory for any user that logs in (using LDAP or not) is created and populated with the standard dotfiles from `/etc/skel` if it does not already exist.
 
 {{%notice note%}}
-
 When `nslcd` starts, you might see an error message similar to the following (where 5816 is the `nslcd` PID):
 
 ```
@@ -211,7 +204,6 @@ shared object file: No such file or directory
 ```
 
 You can safely ignore this message. The `libdb` package and resulting log messages from `nslcd` do not cause any issues when you use LDAP as a client for login and authentication.
-
 {{%/notice%}}
 
 ### Example Configuration
@@ -522,14 +514,12 @@ nslcd: [8b4567] <passwd="myuser"> DEBUG: ldap_result(): end of results (0 total)
    ```
 
 {{%notice note%}}
-
 If you are running the `nslcd` service in a management VRF, you need to run the `systemctl restart nslcd@mgmt.service` command instead of the `systemctl restart nslcd.service` command. For example:
 
 ```
 cumulus@switch:~$ sudo nscd -K
 cumulus@switch:~$ sudo systemctl restart nslcd@mgmt.service
 ```
-
 {{%/notice%}}
 
 #### LDAP

@@ -16,7 +16,7 @@ Cumulus Linux implements TACACS+ client AAA (Accounting, Authentication, and Aut
 
 ## Install the TACACS+ Client Packages
 
-You can install the TACACS+ packages even if the switch is not connected to the internet, as they are contained in the `cumulus-local-apt-archive` repository that is {{<link url="Adding-and-Updating-Packages#add-packages-from-the-cumulus-linux-local-archive" text="embedded">}} in the Cumulus Linux image.
+You can install the TACACS+ packages even if the switch is not connected to the internet, as they are provided in the `cumulus-local-apt-archive` repository that is {{<link url="Adding-and-Updating-Packages#add-packages-from-the-cumulus-linux-local-archive" text="embedded">}} in the Cumulus Linux image.
 
 To install all required packages, run these commands:
 

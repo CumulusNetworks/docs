@@ -25,14 +25,20 @@ The Cumulus Linux bridge driver supports two configuration modes, one that is VL
 
 The MAC address for a frame is learned when the frame enters the bridge through an interface. The MAC address is recorded in the bridge table and the bridge forwards the frame to its intended destination by looking up the destination MAC address. The MAC entry is then maintained for 1800 seconds (30 minutes). If the frame is seen with the same source MAC address before this time is exceeded, the MAC entry age is refreshed; otherwise, the MAC address is deleted from the bridge table.
 
-The following example output shows a MAC address table for the bridge:
+The following example CUE command output shows a MAC address table for the default bridge `br_default`:
 
 ```
-cumulus@switch:~$ net show bridge macs
-VLAN      Master    Interface    MAC                  TunnelDest  State      Flags    LastSeen
---------  --------  -----------  -----------------  ------------  ---------  -------  -----------------
-untagged  bridge    swp1         44:38:39:00:00:03                                    00:00:15
-untagged  bridge    swp1         44:38:39:00:00:04                permanent           20 days, 01:14:03
+cumulus@switch:~$ cl show bridge domain br_default mac-table
+     age    entry-type  interface  last-update  mac                vlan  vni  Summary
+---  -----  ----------  ---------  -----------  -----------------  ----  ---  -------
++ 0  9709   permanent   swp1       9709         44:38:39:00:00:31
++ 1  9709   permanent   swp2       9709         44:38:39:00:00:33
++ 2  95420  permanent   swp3       95420        44:38:39:00:00:35
++ 3  95420  permanent   swp4       95420        44:38:39:00:00:e6
++ 4  95420  permanent   swp6       95420        44:38:39:00:00:e8
++ 5  95420  permanent   swp10      95420        44:38:39:00:00:ec
++ 6  95420  permanent   swp11      95420        44:38:39:00:00:ed
++ 7  95420  permanent   swp12      95420        44:38:39:00:00:ee
 ```
 
 ## Configure a Switch Virtual Interface
@@ -48,20 +54,27 @@ When you add an interface to a bridge, it ceases to function as a router interfa
 To configure the SVI:
 
 {{< tabs "TabID114 ">}}
+{{< tab "CUE Commands ">}}
 
+```
+cumulus@switch:~$ cl set interface swp1-2 bridge domain br_default
+cumulus@switch:~$ cl set bridge domain br_default vlan 10
+cumulus@switch:~$ NEED COMMAND 
+```
+
+{{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
 Run the `net add bridge` and `net add vlan` commands. The following example commands configure an SVI using swp1 and swp2, and VLAN ID 10.
 
 ```
 cumulus@switch:~$ net add bridge bridge ports swp1-2
-cumulus@switch:~$ net add vlan 10 ip address 10.100.100.1/24
+cumulus@switch:~$ net add bridge vlan 10 ip address 10.100.100.1/24
 cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
-
 {{< tab "Linux Commands ">}}
 
 Edit the `/etc/network/interfaces` file to add the interfaces and VLAN ID you want to use, then run the `ifreload -a` command. The following configures an SVI using swp1 and swp2, and VLAN ID 10. The `bridge-vlan-aware` parameter associates the SVI with the VLAN-aware bridge.
@@ -86,7 +99,6 @@ cumulus@switch:~$ ifreload -a
 ```
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 When you configure a switch initially, all southbound bridge ports might be down; therefore, the SVI is also down. You can force the SVI to always be up by disabling interface state tracking, which leaves the SVI in the UP state always, even if all member ports are down. Other implementations describe this feature as *no autostate*. This is beneficial if you want to perform connectivity testing.
@@ -178,7 +190,16 @@ By default, Cumulus Linux automatically generates IPv6 {{<exlink url="https://en
 To disable automatic address generation for a regular IPv6 address on a VLAN:
 
 {{< tabs "TabID248 ">}}
+{{< tab "CUE Commands ">}}
 
+The following example command disables automatic address generation for a regular IPv6 address on a VLAN 10.
+
+```
+cumulus@switch:~$ NEED COMMAND
+cumulus@switch:~$ cl config apply
+```
+
+{{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
 The following example command disables automatic address generation for a regular IPv6 address on a VLAN 10.
@@ -190,7 +211,6 @@ cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
-
 {{< tab "Linux Commands ">}}
 
 Edit the `/etc/network/interfaces` file to add the line `ipv6-addrgen off` to the VLAN stanza, then run the `ifreload -a` command. The following example disables automatic address generation for a regular IPv6 address on VLAN 10.
@@ -211,13 +231,21 @@ cumulus@switch:~$ ifreload -a
 ```
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 To re-enable automatic link-local address generation for a VLAN:
 
 {{< tabs "TabID287 ">}}
+{{< tab "CUE Commands ">}}
 
+The following example command re-enables automatic address generation for a regular IPv6 address on VLAN 10.
+
+```
+cumulus@switch:~$ NEED COMMAND
+cumulus@switch:~$ cl config apply
+```
+
+{{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
 The following example command re-enables automatic address generation for a regular IPv6 address on VLAN 10.
@@ -229,7 +257,6 @@ cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
-
 {{< tab "Linux Commands ">}}
 
 Edit the `/etc/network/interfaces` file to **remove** the `ipv6-addrgen off` line from the VLAN stanza, then run the `ifreload -a` command.
@@ -249,7 +276,6 @@ cumulus@switch:~$ ifreload -a
 ```
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 ## bridge fdb Command Output

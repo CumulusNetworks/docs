@@ -124,7 +124,7 @@ resv_vlan_range
 
 By default, the bridge port inherits the bridge VIDs. To configure a port to override the bridge VIDs:
 
-{{< img src = "/images/cumulus-linux/ethernet-bridging-vlan-pruned.png" >}}
+{{< img src = "/images/cumulus-linux/ethernet-bridging-vlan-pruned1.png" >}}
 
 {{< tabs "TabID157 ">}}
 {{< tab "CUE Commands ">}}
@@ -183,7 +183,7 @@ cumulus@switch:~$ ifreload -a
 
 Access ports ignore all tagged packets. In the configuration below, swp1 and swp2 are configured as access ports, while all untagged traffic goes to VLAN 10:
 
-{{< img src = "/images/cumulus-linux/ethernet-bridging-vlan_untagged_access_ports.png" >}}
+{{< img src = "/images/cumulus-linux/ethernet-bridging-vlan_untagged_access_ports1.png" >}}
 
 {{< tabs "TabID223 ">}}
 {{< tab "CUE Commands ">}}

@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 350
 toc: 5
 ---
-After installing your NetQ software and the NetQ 3.2.1 Agents on each switch you want to monitor, you can also install the NetQ CLI on servers running:
+After installing your NetQ software and the NetQ {{<version>}} Agents on each switch you want to monitor, you can also install the NetQ CLI on servers running:
 
 - Red Hat RHEL 7.1
 - CentOS 7

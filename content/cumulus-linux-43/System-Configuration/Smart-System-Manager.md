@@ -12,8 +12,10 @@ Smart System Manager includes the following modes:
 - Maintenance
 
 {{%notice note%}}
-The Smart System Manager is a Spectrum-only ASIC feature
-The Smart System Manager NCLU commands do not require a `net commit`.
+
+- The Smart System Manager is supported on Spectrum 1, 2 and 3 ASICs only.
+- The Smart System Manager NCLU commands do not require a `net commit`.
+
 {{%/notice%}}
 
 ## Restart Mode

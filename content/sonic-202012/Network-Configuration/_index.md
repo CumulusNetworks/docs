@@ -3,6 +3,6 @@ title: Network Configuration
 author: Cumulus Networks
 weight: 400
 product: SONiC
-version: 4.0
+version: 201911_MUR5
 siteSlug: sonic
 ---

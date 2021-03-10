@@ -3,7 +3,7 @@ title: SONiC Management Utilities
 author: Cumulus Networks
 weight: 630
 product: SONiC
-version: 202012
+version: 201911_MUR5
 siteSlug: sonic
 ---
 

@@ -3,6 +3,6 @@ title: Equal Cost Multipathing - ECMP
 author: Cumulus Networks
 weight: 530
 product: SONiC
-version: 4.0
+version: 201911_MUR5
 siteSlug: sonic
 ---

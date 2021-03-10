@@ -3,6 +3,6 @@ title: Critcial Resource Monitoring
 author: Cumulus Networks
 weight: 690
 product: SONiC
-version: 202012
+version: 201911_MUR5
 siteSlug: sonic
 ---

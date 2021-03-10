@@ -3,7 +3,7 @@ title: Flex Counters and Polling Intervals
 author: Cumulus Networks
 weight: 660
 product: SONiC
-version: 202012
+version: 201911_MUR5
 siteSlug: sonic
 ---
 

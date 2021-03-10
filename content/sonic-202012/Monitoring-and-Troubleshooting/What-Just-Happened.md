@@ -3,7 +3,7 @@ title: What Just Happened
 author: Cumulus Networks
 weight: 620
 product: SONiC
-version: 202012
+version: 201911_MUR5
 siteSlug: sonic
 ---
 

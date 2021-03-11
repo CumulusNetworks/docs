@@ -200,7 +200,6 @@ cumulus-aclcheck.service               static
 cumulus-core.service                   static  
 cumulus-fastfailover.service           enabled
 cumulus-firstboot.service              disabled
-cumulus-hyperconverged.service         disabled
 cumulus-platform.service               enabled  
 ...
 ```

@@ -29,7 +29,7 @@ cumulus@switch:~$ sudo systemctl restart networking.service
 
 {{%notice note%}}
 
-The service name is written **after** the `systemctl` subcommand, not before it.
+The service name is written **after** the `systemctl` argument, not before it.
 
 {{%/notice%}}
 
@@ -77,10 +77,10 @@ cumulus@switch:~$ sudo systemctl status
               │ └─430 /usr/sbin/switchd -vx
               ...
 ```
-
-### systemctl Subcommands
-
-`systemctl` has a number of subcommands that perform a specific operation on a given service.
+<!-- vale off -->
+### systemctl Arguments
+<!-- vale on -->
+`systemctl` has a number of arguments that perform a specific operation on a given service.
 
 - **status** returns the status of the specified service.
 - **start** starts the service.
@@ -91,7 +91,7 @@ cumulus@switch:~$ sudo systemctl status
 - **disable** disables the service, but does not stop it unless you use the `systemctl stop SERVICENAME.service` command or reboot the switch. You can start or stop a disabled service.
 - **reenable** disables, then enables a service. You might need to do this so that any new *Wants* or *WantedBy* lines create the symlinks necessary for ordering. This has no side effects on other services.
 
-There is often little reason to interact with the services directly using these commands. If a critical service crashes or encounters an error, it is automatically respawned by systemd. systemd is effectively the caretaker of services in modern Linux systems and is responsible for starting all the necessary services at boot time.
+There is often little reason to interact with the services directly using these commands. If a critical service crashes or encounters an error, it is automatically restarted by systemd. systemd is effectively the caretaker of services in modern Linux systems and is responsible for starting all the necessary services at boot time.
 
 ### Ensure a Service Starts after Multiple Restarts
 
@@ -204,7 +204,6 @@ cumulus-aclcheck.service               static
 cumulus-core.service                   static  
 cumulus-fastfailover.service           enabled
 cumulus-firstboot.service              disabled
-cumulus-hyperconverged.service         disabled
 cumulus-platform.service               enabled  
 ...
 ```

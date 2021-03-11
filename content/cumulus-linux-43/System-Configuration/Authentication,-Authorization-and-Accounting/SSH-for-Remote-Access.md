@@ -12,7 +12,7 @@ You can generate authentication keys to access a Cumulus Linux switch securely w
 
     {{%notice info%}}
 
-To configure a completely passwordless system, do not enter a passphrase when prompted in the following step.
+To configure a completely password free system, do not enter a passphrase when prompted in the following step.
 
     {{%/notice%}}
 

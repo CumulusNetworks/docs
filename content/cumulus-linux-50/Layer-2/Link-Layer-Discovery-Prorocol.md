@@ -4,28 +4,51 @@ author: NVIDIA
 weight: 400
 toc: 3
 ---
-The `lldpd` daemon implements the IEEE802.1AB (Link Layer Discovery Protocol, or LLDP) standard. LLDP shows you which ports are neighbors of a given port. By default, `lldpd` runs as a daemon and starts at system boot. `lldpd` command line arguments are placed in `/etc/default/lldpd`. All `lldpd` configuration options are saved in `/etc/lldpd.conf` or under `/etc/lldpd.d/`.
+The `lldpd` daemon implements the IEEE802.1AB (Link Layer Discovery Protocol, or LLDP) standard. LLDP shows you which ports are neighbors of a given port.
 
-For more details on the command line arguments and configuration options, see `man lldpd(8)`.
+By default, `lldpd` runs as a daemon and starts at system boot. `lldpd` command line arguments are in the `/etc/default/lldpd` file. All `lldpd` configuration options are saved in the `/etc/lldpd.conf` file or under `/etc/lldpd.d/`.
 
 `lldpd` supports CDP (Cisco Discovery Protocol, v1 and v2) and logs by default into `/var/log/daemon.log` with an `lldpd` prefix.
 
 You can use the `lldpcli` CLI tool to query the `lldpd` daemon for neighbors, statistics, and other running configuration information. See `man lldpcli(8)` for details.
 
-## Configure LLDP
+## Configure LLDP Timers
 
-You configure `lldpd` settings in `/etc/lldpd.conf` or `/etc/lldpd.d/`.
+You can configure the frequency of LLDP updates (between 10-300 seconds) and the amount of time to hold the information before discarding it. The hold time interval is a multiple of the `tx-interval`.
 
-Here is an example persistent configuration:
+The following example commands configure the frequency of LLDP updates to 100 and the hold time to 3.
+
+{{< tabs "TabID67 ">}}
+{{< tab "CUE Commands ">}}
 
 ```
-cumulus@switch:~$ sudo cat /etc/lldpd.conf
+cumulus@switch:~$ cl set system lldp tx-interval 100
+cumulus@switch:~$ cl set system lldp tx-hold-multiplier 3
+cumulus@switch:~$ cl config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Add the timers to the `/etc/lldpd.conf` file or to your `.conf` file in the `/etc/lldpd.d/` directory.
+
+{{%notice note%}}
+Cumulus Linux does not ship with a `/etc/lldpd.conf` file. You must create the `/etc/lldpd.conf` file or create a `.conf` file in the `/etc/lldpd.d/` directory.
+{{%/notice%}}
+
+```
+cumulus@switch:~$ sudo nano /etc/lldpd.conf
 configure lldp tx-interval 40
 configure lldp tx-hold 3
-configure system interface pattern *,!eth0,swp*
+...
 ```
 
-The last line in the example above shows that LLDP is disabled on eth0. To disable LLDP on a single port, edit the `/etc/default/lldpd` file. This file specifies the default options to present to the `lldpd` service when it starts. The following example uses the `-I` option to disable LLDP on swp43:
+{{< /tab >}}
+{{< /tabs >}}
+
+## Disable LLDP on an Interface
+
+To disable LLDP on a single interface, edit the `/etc/default/lldpd` file. This file specifies the default options to present to the `lldpd` service when it starts. The following example uses the `-I` option to disable LLDP on swp43:
 
 ```
 cumulus@switch:~$ sudo nano /etc/default/lldpd
@@ -35,22 +58,54 @@ cumulus@switch:~$ sudo nano /etc/default/lldpd
 DAEMON_ARGS="-c -I *,!swp43"
 ```
 
-`lldpd` has two timers defined by the `tx-interval` setting that affect each switch port:
+{{< expand "Runtime Configuration (Advanced) "  >}}
 
-- The first timer catches any port-related changes.
-- The second is a system-based refresh timer on each port that looks for other changes like hostname. This timer uses the `tx-interval` value multiplied by 20.
+{{%notice warning%}}
+A runtime configuration does not persist when you reboot the switch; all changes are lost.
+{{%/notice%}}
 
-`lldpd` logs to `/var/log/daemon.log` with the *lldpd* prefix:
+To configure active interfaces:
 
 ```
-cumulus@switch:~$ sudo tail -f /var/log/daemon.log  | grep lldp
-Aug  7 17:26:17 switch lldpd[1712]: unable to get system name
-Aug  7 17:26:17 switch lldpd[1712]: unable to get system name
-Aug  7 17:26:17 switch lldpcli[1711]: lldpd should resume operations
-Aug  7 17:26:32 switch lldpd[1805]: NET-SNMP version 5.4.3 AgentX subagent connected
+cumulus@switch:~$ sudo lldpcli configure system interface pattern "swp*"
 ```
 
-## Example lldpcli Commands
+To configure inactive interfaces:
+
+```
+cumulus@switch:~$ sudo lldpcli configure system interface pattern *,!eth0,swp*
+```
+
+{{%notice note%}}
+The active interface list always overrides the inactive interface list.
+{{%/notice%}}
+
+To reset any interface list to none:
+
+```
+cumulus@switch:~$ sudo lldpcli configure system interface pattern ""
+```
+
+{{< /expand >}}
+
+## Enable the SNMP Subagent
+
+LLDP does not enable the SNMP subagent by default. To enable the SNMP subagent, edit the `/etc/default/lldpd` file and add the `-x` option:
+
+```
+cumulus@switch:~$ sudo nano /etc/default/lldpd
+
+# Add "-x" to DAEMON_ARGS to start SNMP subagent
+
+# Enable CDP by default
+DAEMON_ARGS="-c -x -M 4"
+```
+
+{{%notice note%}}
+`-c` enables backwards compatability with CDP and `-M 4` sends a field in discovery packets to indicate that the switch is a network device.
+{{%/notice%}}
+
+## Troubleshooting
 
 To show all neighbors on all ports and interfaces:
 
@@ -109,46 +164,7 @@ Interface:    swp3, via: LLDP, RID: 11, Time: 0 day, 17:08:27
   Port:
     PortID:       ifname swp1
     PortDescr:    swp1
--------------------------------------------------------------------------------
-Interface:    swp4, via: LLDP, RID: 11, Time: 0 day, 17:08:27
-  Chassis:
-    ChassisID:    mac 00:01:00:00:0a:00
-    SysName:      MSP-2
-    SysDescr:     Cumulus Linux version 4.1.0 running on QEMU Standard PC (i440FX + PIIX, 1996)
-    MgmtIP:       192.0.2.10
-    MgmtIP:       fe80::201:ff:fe00:a00
-    Capability:   Bridge, off
-    Capability:   Router, on
-  Port:
-    PortID:       ifname swp2
-    PortDescr:    swp2
--------------------------------------------------------------------------------
-Interface:    swp49s1, via: LLDP, RID: 9, Time: 0 day, 16:55:00
-  Chassis:
-    ChassisID:    mac 00:01:00:00:0c:00
-    SysName:      TORC-1-2
-    SysDescr:     Cumulus Linux version 4.1.0 running on QEMU Standard PC (i440FX + PIIX, 1996)
-    MgmtIP:       192.0.2.12
-    MgmtIP:       fe80::201:ff:fe00:c00
-    Capability:   Bridge, on
-    Capability:   Router, on
-  Port:
-    PortID:       ifname swp6
-    PortDescr:    swp6
--------------------------------------------------------------------------------
-Interface:    swp49s0, via: LLDP, RID: 9, Time: 0 day, 16:55:00
-  Chassis:
-    ChassisID:    mac 00:01:00:00:0c:00
-    SysName:      TORC-1-2
-    SysDescr:     Cumulus Linux version 4.1.0 running on QEMU Standard PC (i440FX + PIIX, 1996)
-    MgmtIP:       192.0.2.12
-    MgmtIP:       fe80::201:ff:fe00:c00
-    Capability:   Bridge, on
-    Capability:   Router, on
-  Port:
-    PortID:       ifname swp5
-    PortDescr:    swp5
--------------------------------------------------------------------------------
+...
 ```
 
 To show `lldpd` statistics for all ports:
@@ -197,7 +213,7 @@ Interface:    swp3
 ...
 ```
 
-To show `lldpd` statistics summary for all ports:
+To show a summary of `lldpd` statistics for all ports:
 
 ```
 cumulus@switch:~$ sudo lldpcli show statistics summary
@@ -214,7 +230,7 @@ Summary of stats:
   Deleted:      10
 ```
 
-To show the `lldpd` running configuration:
+To show the running LLDP configuration:
 
 ```
 cumulus@switch:~$ sudo lldpcli show running-configuration
@@ -243,52 +259,7 @@ Configuration:
 --------------------------------------------------------------------
 ```
 
-{{< expand "Runtime Configuration (Advanced) "  >}}
-
-{{%notice warning%}}
-
-A runtime configuration does not persist when you reboot the switch; all changes are lost.
-
-{{%/notice%}}
-
-To configure active interfaces:
-
-```
-cumulus@switch:~$ sudo lldpcli configure system interface pattern "swp*"
-```
-
-To configure inactive interfaces:
-
-```
-cumulus@switch:~$ sudo lldpcli configure system interface pattern *,!eth0,swp*
-```
-
-{{%notice note%}}
-
-The active interface list always overrides the inactive interface list.
-
-{{%/notice%}}
-
-To reset any interface list to none:
-
-```
-cumulus@switch:~$ sudo lldpcli configure system interface pattern ""
-```
-
-{{< /expand >}}
-
-## Enable the SNMP Subagent in LLDP
-
-LLDP does not enable the SNMP subagent by default. You need to edit `/etc/default/lldpd` and enable the `-x` option.
-
-```
-cumulus@switch:~$ sudo nano /etc/default/lldpd
-
-# Add "-x" to DAEMON_ARGS to start SNMP subagent
-
-# Enable CDP by default
-DAEMON_ARGS="-c"
-```
+You can also run the CUE `cl show system lldp` command to show the running LLDP configuration.
 
 ## Considerations
 

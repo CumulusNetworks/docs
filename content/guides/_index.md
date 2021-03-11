@@ -17,5 +17,5 @@ Currently, the available documents here include the following:
 
 - [Campus architecture solution guide](campus-architecture-guide)
 - [Cumulus Linux security guide](cumulus-linux-security-guide)
-- [NSX-T deployoment solution guide](nsx-t-deployment)
+- [NSX-T deployoment with Cumulus Linux Underlay](Cumulus-nsxt)
 <!-- - [Production Ready Automation guide](production-ready-automation)-->

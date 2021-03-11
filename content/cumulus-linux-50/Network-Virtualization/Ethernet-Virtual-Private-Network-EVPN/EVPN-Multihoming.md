@@ -50,6 +50,8 @@ In order to use EVPN-MH, you must remove any MLAG configuration on the switch. T
 
 - Removing the `clag-id` from all interfaces in the `/etc/network/interfaces` file.
 - Removing the peerlink interfaces in the `/etc/network/interfaces` file.
+- Removing any existing `hwaddress` (from a Cumulus Linux 3.x MLAG configuration) or `address-virtual` (from a Cumulus Linux 4.x MLAG configuration) entries from all SVIs corresponding to a layer 3 VNI in the `/etc/network/interfaces` file.
+- Removing any `clagd-vxlan-anycast-ip` configuration in the `/etc/network/interfaces` file.
 - Then running `ifreload` to reload the configuration:<pre>cumulus@switch:~$ sudo ifreload</pre>
 
 {{%/notice%}}

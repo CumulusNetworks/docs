@@ -268,7 +268,7 @@ If you are using 4x10G DAC or AOC cables, or want to break out 100G or 40G switc
 
 ## Test Cable Connectivity
 
-By default, all data plane ports (every Ethernet port except the management interface, eth0) are disabled.
+By default, all data plane ports (every Ethernet port except the management interface, eth0) are turned off.
 
 To test cable connectivity:
 
@@ -647,7 +647,7 @@ iface lo inet loopback
 
 {{%notice note%}}
 
-If an IP address is configured without a mask (as shown above), the IP address becomes a /32. So, in the above case, 10.1.1.1 is actually 10.1.1.1/32.
+If an IP address is configured without a mask (as shown in the preceding example), the IP address becomes a /32. In the preceding case, 10.1.1.1 is actually 10.1.1.1/32.
 
 {{%/notice%}}
 
@@ -703,11 +703,11 @@ cumulus@switch:~$ cl config apply
 {{< /tab >}}
 
 {{< /tabs >}}
-
+<!-- vale off -->
 ### Multiple Loopbacks
 
 You can add multiple loopback addresses. See {{<link url="Interface-Configuration-and-Management#configure-multiple-loopbacks" text="Configure Multiple Loopbacks">}} for details.
-
+<!-- vale on --> 
 ## Reboot the Switch
 
 After you complete the configuration in this section, reboot the switch:

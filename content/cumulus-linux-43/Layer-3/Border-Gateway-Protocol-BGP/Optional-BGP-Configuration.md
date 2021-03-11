@@ -1144,11 +1144,11 @@ cumulus@leaf01:~$ cl config apply
 {{< /tabs >}}
 
 The following example configuration shows how BGP add-path TX is used to advertise the best path learned from each AS.
-
+<!-- vale off -->
 | <div style="width:500px">   |    |
 | -- | -- |
 | {{< img src = "/images/cumulus-linux/bgp-add-path-tx.png" >}} | In this configuration:<ul><li>Every leaf and every spine has a different ASN</li><li>eBGP is configured between:<ul><li>leaf01 and spine01, spine02</li><li>leaf03 and spine01, spine02</li><li>leaf01 and leaf02 (leaf02 only has a single peer, which is leaf01)</li></ul><li>leaf01 is configured to advertise the best path learned from each AS to BGP neighbor leaf02</li><li>leaf03 generates a loopback IP address (10.10.10.3/32) into BGP with a network statement</li></ul>|
-
+<!-- vale on -->
 When you run the `net show bgp 10.10.10.3/32` command on leaf02, the command output shows the leaf03 loopback IP address and that two BGP paths are learned, both from leaf01:
 
 ```

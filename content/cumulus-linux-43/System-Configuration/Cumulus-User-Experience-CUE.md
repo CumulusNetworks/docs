@@ -9,9 +9,9 @@ Cumulus User Experience (CUE) is an {{<exlink url="https://docs.cumulusnetworks.
 
 CUE is not currently intended to run in production and is not supported through NVIDIA networking support.
 {{%/notice%}}
-
+<!-- vale off -->
 Your evaluation is welcome and appreciated as we start to roll out this new Cumulus Linux CLI. You can provide feedback by sending an email to net-cl-cue-ea-feedback@nvidia.com.
-
+<!-- vale on -->
 ## What is CUE?
 
 CUE is an object-oriented, schema driven model of a complete Cumulus Linux system (hardware and software) providing a robust API that allows for multiple interfaces to both view (show) and configure (set and unset) any element within a system running the CUE software. The CUE CLI and the REST API leverage the same API to interface with Cumulus Linux.
@@ -35,8 +35,8 @@ Do not install CUE in a production environment.
 1. Stop then disable the `netd` service:
 
    ```
-   cumulus@switch:~$ systemctl stop netd
-   cumulus@switch:~$ systemctl disable netd
+   cumulus@switch:~$ sudo systemctl stop netd
+   cumulus@switch:~$ sudo systemctl disable netd
    ```
 
 3. Update the local cache listing of available packages, then install the CUE package:
@@ -49,8 +49,8 @@ Do not install CUE in a production environment.
 4. Enable then start the CUE service:
 
    ```
-   cumulus@switch:~$ systemctl enable cued
-   cumulus@switch:~$ systemctl start cued
+   cumulus@switch:~$ sudo systemctl enable cued
+   cumulus@switch:~$ sudo systemctl start cued
    ```
 
 5. Log out of the switch, then log back in to get the CUE CLI prompt.
@@ -137,7 +137,7 @@ The CUE CLI has a flat structure; however, the commands are conceptually grouped
 
 The CUE configuration commands modify switch configuration. You can set and unset configuration options.
 
-The `cl set` and `cl unset` commands are grouped into the following categories. Each command group includes subcommands. Use command completion (Tab key) to list the subcommands.
+The `cl set` and `cl unset` commands are grouped into the following categories. Each command group includes arguments. Use command completion (Tab key) to list the subcommands.
 
 | <div style="width:300px">Command Group | Description |
 | ------- | ----------- |
@@ -549,7 +549,7 @@ This section lists some of the differences between CUE and the NCLU command line
 
 When you save network configuration using CUE, the configuration is written to the `/etc/cue.d/startup.yaml` file.
 
-CUE also writes to underlying Linux files when you apply a configuration, such as the `/etc/network/interfaces` and `/etc/frr/frr.conf` files. You can view these configuration files; however Nvidia recommends that you do not manually edit them while using CUE.
+CUE also writes to underlying Linux files when you apply a configuration, such as the `/etc/network/interfaces` and `/etc/frr/frr.conf` files. You can view these configuration files; however NVIDIA recommends that you do not manually edit them while using CUE.
 
 ### Bridge Configuration
 

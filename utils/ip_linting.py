@@ -162,7 +162,6 @@ def check_files(directory, skip_list):
         False if no errors are found
     '''
     for md_file in glob.glob(directory, recursive=True):
-    #for md_file in glob.glob("./content/cumulus-linux-43/Layer-2/Virtual-Router-Redundancy-VRR-and-VRRP.md"):
         if DEBUG:
             print("file: {}".format(md_file))
         if os.path.split(md_file)[1][:-3] in skip_list:
@@ -199,7 +198,7 @@ def check_files(directory, skip_list):
                     print("{:<10d}{:>20s}".format(line_num, message))
             print("\n")
 
-        return errors
+    return errors
 
 def main(argv):
     """

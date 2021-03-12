@@ -118,7 +118,7 @@ If you start, restart, or reload any `systemd` service that can be started from 
 ## Identify Active Listener Ports for IPv4 and IPv6
 
 You can identify the active listener ports under both IPv4 and IPv6 using the `netstat` command:
-
+<!-- vale off -->
 ```
 cumulus@switch:~$ netstat -nlp --inet --inet6
 Active Internet connections (only servers)
@@ -144,7 +144,7 @@ udp6       0      0 :::123                  :::*                                
 udp6       0      0 :::4784                 :::*                                909/ptmd
 udp6       0      0 :::3784                 :::*                                909/ptmd
 ```
-
+<!-- vale on -->
 ## Identify Services Currently Active or Stopped
 
 To determine which services are currently active or stopped, run the `cl-service-summary` command:

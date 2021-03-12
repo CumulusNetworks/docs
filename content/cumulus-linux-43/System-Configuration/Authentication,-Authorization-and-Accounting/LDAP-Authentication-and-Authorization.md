@@ -322,14 +322,14 @@ uid=1230(myuser) gid=3000(Development) groups=3000(Development),500(Employees),2
 The `getent` command retrieves all records found with NSS for a given map. It can also retrieve a specific entry under that map. You can perform tests with the `passwd`, `group`, `shadow`, or any other map configured in the `/etc/nsswitch.conf` file. The output from this command is formatted according to the map requested. For the  `passwd` service, the structure of the output is the same as the entries in `/etc/passwd`. The group map outputs the same structure as `/etc/group`. 
 
 In this example, looking up a specific user in the `passwd` map, the user *cumulus* is locally defined in `/etc/passwd`, and *myuser* is only in LDAP.
-
+<!-- vale off -->
 ```
 cumulus@switch:~$ getent passwd cumulus
 cumulus:x:1000:1000::/home/cumulus:/bin/bash
 cumulus@switch:~$ getent passwd myuser
 myuser:x:1230:3000:My Test User:/home/myuser:/bin/bash
 ```
-
+<!-- vale on -->
 In the next example, looking up a specific group in the group service, the group *cumulus* is locally defined in `/etc/groups`, and *netadmin* is on LDAP.
 
 ```

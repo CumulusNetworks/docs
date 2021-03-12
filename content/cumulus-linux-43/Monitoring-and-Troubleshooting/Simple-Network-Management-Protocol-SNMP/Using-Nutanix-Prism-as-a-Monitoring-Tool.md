@@ -102,7 +102,7 @@ The switch has been added correctly when interfaces hooked up to the Nutanix hos
 - Discard TX packets (transmitted).
 
 The Nutanix appliance will use Switch IDs that can also be viewed on the Prism CLI (by SSHing to the box). To view information from the Nutanix CLI, login using the default username *nutanix*, and the password *nutanix/4u*.
-
+<!-- vale off -->
 ```
 nutanix@NTNX-14SM15270093-D-CVM:192.168.0.184:~$ ncli network list-switch
     Switch ID                 : 00051a76-f711-89b6-0000-000000003bac::5f13678e-6ffd-4b33-912f-f1aa6e8da982
@@ -116,7 +116,7 @@ nutanix@NTNX-14SM15270093-D-CVM:192.168.0.184:~$ ncli network list-switch
     Switch Vendor Name        : Unknown
     Port Ids                  : 00051a76-f711-89b6-0000-000000003bac::5f13678e-6ffd-4b33-912f-f1aa6e8da982:52, 00051a76-f711-89b6-0000-000000003bac::5f13678e-6ffd-4b33-912f-f1aa6e8da982:53, 00051a76-f711-89b6-0000-000000003bac::5f13678e-6ffd-4b33-912f-f1aa6e8da982:54, 00051a76-f711-89b6-0000-000000003bac::5f13678e-6ffd-4b33-912f-f1aa6e8da982:55
 ```
-
+<!-- vale on -->
 ## Enable LLDP/CDP on VMware ESXi (Hypervisor on Nutanix)
 
 1. Follow the directions on one of the following websites to enable CDP:

@@ -48,9 +48,10 @@ After installing Cumulus Linux, you are ready to:
 - Configure Cumulus Linux. This quick start guide provides instructions on configuring switch ports and a loopback interface.
 
 ## Get Started
-
+<!-- vale off -->
+<!-- NVIDIA.WordStyles switch is the preferred term for box -->
 When starting Cumulus Linux for the first time, the management port makes a DHCPv4 request. To determine the IP address of the switch, you can cross reference the MAC address of the switch with your DHCP server. The MAC address is typically located on the side of the switch or on the box in which the unit ships.
-
+<!-- vale on -->
 ### Login Credentials
 
 The default installation includes the system account (root), with full system privileges and the user account (cumulus), with `sudo` privileges. The *root* account password is locked by default (which prohibits login). The *cumulus* account is configured with this default password:
@@ -115,9 +116,9 @@ iface eth0
 
 {{< /tabs >}}
 
-### Configure the Hostname and Timezone
+### Configure the Hostname and Time Zone
 
-Configure the hostname and timezone for your switch. The hostname identifies the switch; make sure you configure the hostname to be unique and descriptive.
+Configure the hostname and time zone for your switch. The hostname identifies the switch; make sure you configure the hostname to be unique and descriptive.
 
 {{%notice note%}}
 
@@ -167,9 +168,9 @@ cumulus@switch:~$ net commit
 
 {{%/notice%}}
 
-The default timezone on the switch is (Coordinated Universal Time) UTC. Change the timezone on your switch to be the timezone for your location.
+The default time zone on the switch is (Coordinated Universal Time) UTC. Change the time zone on your switch to be the time zone for your location.
 
-To update the timezone, use NTP interactive mode:
+To update the time zone, use NTP interactive mode:
 
 1. Run the following command in a terminal.
 
@@ -181,7 +182,7 @@ To update the timezone, use NTP interactive mode:
 
 {{%notice note%}}
 
-Programs that are already running (including log files) and users currently logged in, do not see timezone changes made with interactive mode. To set the timezone for all services and daemons, reboot the switch.
+Programs that are already running (including log files) and users currently logged in, do not see time zone changes made with interactive mode. To set the time zone for all services and daemons, reboot the switch.
 
 {{%/notice%}}
 

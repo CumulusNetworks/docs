@@ -1,0 +1,18 @@
+---
+# Suggestion: Gitlab.Simplicity
+#
+# Checks for words implying ease of use, to avoid cognitive dissonance for frustrated users.
+#
+# Based on Vale rule from GitLab: https://gitlab.com/gitlab-org/gitlab/-/tree/master/doc/.vale/gitlab
+extends: existence
+message: 'Avoid words like "%s" that imply ease of use, because the user may find this action hard.'
+level: suggestion
+ignorecase: true
+link: https://docs.gitlab.com/ee/development/documentation/styleguide/index.html#usage-list
+tokens:
+  - easy
+  - easily
+  - handy
+  - simple
+  - simply
+  - useful

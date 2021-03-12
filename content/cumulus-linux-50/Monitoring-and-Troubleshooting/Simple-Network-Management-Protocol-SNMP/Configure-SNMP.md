@@ -581,9 +581,23 @@ To enable SNMP support for FRR:
    cumulus@switch:~$ net commit
    ```
 
-2. Update the SNMP configuration to enable FRR to respond to SNMP requests. Open the `/etc/snmp/snmpd.conf` file in a text editor and verify that the following configuration exists:
+2. Edit `/etc/frr/daemons` and add a line like the following to configure the appropriate routing daemon; the example below uses `bgpd`, the BGP daemon.
 
    ```
+   cumulus@switch:~$ sudo nano /etc/frr/daemons
+   bgpd_options=" -M snmp -A 127.0.0.1"
+   ```
+
+3. Restart FRR.
+
+   ```
+   cumulus@switch:~$ sudo systemctl restart frr.service
+   ```
+
+4. Update the SNMP configuration to enable FRR to respond to SNMP requests. Edit `/etc/snmp/snmpd.conf` and verify that the following configuration exists:
+
+   ```
+   cumulus@switch:~$ sudo nano /etc/snmp/snmpd.conf
    agentxsocket /var/agentx/master
    agentxperms 777 777 snmp snmp
    master agentx
@@ -602,7 +616,7 @@ drwxr-xr-x  2 root root  4096 Nov 11 12:06 agentx
 
    {{%/notice%}}
 
-3. Optionally, you might need to expose various MIBs:
+5. Optionally, you might need to expose various MIBs:
 
     - For the BGP4 MIB, allow access to `1.3.6.1.2.1.15`
     - For the OSPF MIB, allow access to `1.3.6.1.2.1.14`

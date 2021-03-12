@@ -25,8 +25,8 @@ Displays the reason why the server buffer has dropped packets.
 
 | Reason | Description|
 | --- | --- |
-| Tail drop | Tail drop is enabled, and buffer queue is filled to maximum capacity. |
-| WRED | Weighted Random Early Detection is enabled, and buffer queue is filled to maximum capacity or the RED engine dropped the packet as of random congestion prevention. |
+| Tail drop | Tail drop is enabled, and buffer queue is filled to maximum capacity |
+| WRED | Weighted Random Early Detection is enabled, and buffer queue is filled to maximum capacity or the RED engine dropped the packet as of random congestion prevention |
 | Port TC Congestion Threshold Crossed | Percentage of the occupancy buffer exceeded or dropped below the specified high or low threshold |
 | Packet Latency Threshold Crossed | Time a packet spent within the switch exceeded or dropped below the specified high or low threshold |
 
@@ -43,7 +43,7 @@ Displays the reason why a port is in the down state.
 | Peer is sending remote faults | Peer node is not operating correctly |
 | Bad signal integrity | Integrity of the signal on port is not sufficient for good communication |
 | Cable/transceiver is not supported | The attached cable or transceiver is not supported by this port |
-| Cable/transceiver is unplugged | A cable or transceiver is missing or not fully plugged into the port |
+| Cable/transceiver is unplugged | A cable or transceiver is missing or not fully inserted into the port |
 | Calibration failure | Calibration failure |
 | Port state changes counter | Cumulative number of state changes |
 | Symbol error counter | Cumulative number of symbol errors |
@@ -101,7 +101,7 @@ Displays the reason why the server is unable to route a packet.
 
 | Reason | Description|
 | --- | --- |
-| Non-routable packet | Packet has no route in routing table. |
+| Non-routable packet |  Packet has no route in routing table |
 | Blackhole route | Packet received with action equal to discard |
 | Unresolved next-hop | The next hop in the route is unknown |
 | Blackhole ARP/neighbor | Packet received with blackhole adjacency |
@@ -124,7 +124,7 @@ Displays the reason why the server is unable to route a packet.
 | Egress router interface is disabled | Packet destined to a different subnet cannot be routed because egress router interface is disabled |
 | IPv4 routing table (LPM) unicast miss | No route available in routing table for packet |
 | IPv6 routing table (LPM) unicast miss | No route available in routing table for packet |
-| Router interface loopback | Packet has destination IP address that is local. For example, SIP = 1.1.1.1, DIP = 1.1.1.128 |
+| Router interface loopback | Packet has destination IP address that is local. For example, SIP = 1.1.1.1, DIP = 1.1.1.128. |
 | Packet size is larger than MTU | Packet has larger MTU configured than the VLAN |
 | TTL value is too small | Packet has TTL value of 1 |
 
@@ -134,6 +134,6 @@ Displays the reason for a tunnel to be down.
 
 | Reason | Description|
 | --- | --- |
-| Overlay switch - source MAC is multicast | Overlay packet's source MAC address is multicast. |
-| Overlay switch - source MAC equals destination MAC | Overlay packet's source MAC address is the same as the destination MAC address. |
+| Overlay switch - source MAC is multicast | Overlay packet's source MAC address is multicast |
+| Overlay switch - source MAC equals destination MAC | Overlay packet's source MAC address is the same as the destination MAC address |
 | Decapsulation error | De-capsulation produced incorrect format of packet. For example, encapsulation of packet with many VLANs or IP options on the underlay can cause de-capsulation to result in a short packet. |

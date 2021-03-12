@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 812
 toc: 4
 ---
-This reference lists the threshold-based events that NetQ supports for ACL resources, digital optics, forwarding resources, interface errors and statistics, link flaps, resource utilization, and sensors. These messages can be viewed through third-party notification applications. For details about configuring notifications for these events, refer to {{<link title="Configure Threshold-Based Event Notifications">}}.
+This reference lists the threshold-based events that NetQ supports for ACL resources, digital optics, forwarding resources, interface errors and statistics, link flaps, resource utilization, sensors, and What Just Happened. These messages can be viewed through third-party notification applications. For details about configuring notifications for these events, refer to {{<link title="Configure Threshold-Based Event Notifications">}}.
 
 ## ACL Resources
 
@@ -113,3 +113,69 @@ Some of the event IDs have changed. If you have TCA rules configured for digital
 | Power Supply Watts | TCA_SENSOR_POWER_UPPER| Power supply output exceeded user-defined maximum threshold on a switch | Sensor for leaf14 exceeded threshold power 120 watts for sensor psu1 |
 | Power Supply Volts | TCA_SENSOR_VOLTAGE_UPPER  | Power supply voltage exceeded user-defined maximum threshold on a switch | Sensor for leaf14 exceeded threshold voltage 12 volts for sensor psu2 |
 | Switch Temperature | TCA_SENSOR_TEMPERATURE_UPPER  | Temperature (&deg; C) exceeded user-defined maximum threshold on a switch | Sensor for leaf14 exceeded threshold temperature 90 for sensor temp1 |
+
+## What Just Happened
+
+| NetQ UI Name | NetQ CLI Event ID | Drop Type | Reason/Port Down Reason | Description |
+| --- | --- | :---: | --- | --- |
+| ACL Drop Aggregate Upper | TCA_WJH_ACL_DROP_AGG_UPPER | ACL | Egress port ACL | ACL action set to deny on the physical egress port or bond |
+| ACL Drop Aggregate Upper | TCA_WJH_ACL_DROP_AGG_UPPER | ACL | Egress router ACL | ACL action set to deny on the egress switch virtual interfaces (SVIs) |
+| ACL Drop Aggregate Upper | TCA_WJH_ACL_DROP_AGG_UPPER | ACL | Ingress port ACL | ACL action set to deny on the physical ingress port or bond |
+| ACL Drop Aggregate Upper | TCA_WJH_ACL_DROP_AGG_UPPER | ACL | Ingress router ACL | ACL action set to deny on the ingress switch virtual interfaces (SVIs) |
+| Buffer Drop Aggregate Upper | TCA_WJH_BUFFER_DROP_AGG_UPPER | Buffer | Packet Latency Threshold Crossed | Time a packet spent within the switch exceeded or dropped below the specified high or low threshold |
+| Buffer Drop Aggregate Upper | TCA_WJH_BUFFER_DROP_AGG_UPPER | Buffer | Port TC Congestion Threshold Crossed | Percentage of the occupancy buffer exceeded or dropped below the specified high or low threshold |
+| Buffer Drop Aggregate Upper | TCA_WJH_BUFFER_DROP_AGG_UPPER | Buffer | Tail drop | Tail drop is enabled, and buffer queue is filled to maximum capacity |
+| Buffer Drop Aggregate Upper | TCA_WJH_BUFFER_DROP_AGG_UPPER | Buffer | WRED | Weighted Random Early Detection is enabled, and buffer queue is filled to maximum capacity or the RED engine dropped the packet as of random congestion prevention |
+| CRC Error Upper | TCA_WJH_CRC_ERROR_UPPER | L1 | Auto-negotiation failure | Negotiation of port speed with peer has failed |
+| CRC Error Upper | TCA_WJH_CRC_ERROR_UPPER | L1 | Bad signal integrity | Integrity of the signal on port is not sufficient for good communication |
+| CRC Error Upper | TCA_WJH_CRC_ERROR_UPPER | L1 | Cable/transceiver is not supported | The attached cable or transceiver is not supported by this port |
+| CRC Error Upper | TCA_WJH_CRC_ERROR_UPPER | L1 | Cable/transceiver is unplugged | A cable or transceiver is missing or not fully inserted into the port |
+| CRC Error Upper | TCA_WJH_CRC_ERROR_UPPER | L1 | Calibration failure | Calibration failure |
+| CRC Error Upper | TCA_WJH_CRC_ERROR_UPPER | L1 | Link training failure | Link is not able to go operational up due to link training failure |
+| CRC Error Upper | TCA_WJH_CRC_ERROR_UPPER | L1 | Peer is sending remote faults | Peer node is not operating correctly |
+| CRC Error Upper | TCA_WJH_CRC_ERROR_UPPER | L1 | Port admin down | Port has been purposely set down by user |
+| Drop Aggregate Upper | TCA_WJH_DROP_AGG_UPPER | L2 | Destination MAC is reserved (DMAC=01-80-C2-00-00-0x) | The address cannot be used by this link |
+| Drop Aggregate Upper | TCA_WJH_DROP_AGG_UPPER | L2 | Ingress spanning tree filter | Port is in Spanning Tree blocking state |
+| Drop Aggregate Upper | TCA_WJH_DROP_AGG_UPPER | L2 | Ingress VLAN filtering | Frames whose port is not a member of the VLAN are discarded |
+| Drop Aggregate Upper | TCA_WJH_DROP_AGG_UPPER | L2 | MLAG port isolation | Not supported for port isolation implemented with system ACL |
+| Drop Aggregate Upper | TCA_WJH_DROP_AGG_UPPER | L2 | Multicast egress port list is empty | No ports are defined for multicast egress |
+| Drop Aggregate Upper | TCA_WJH_DROP_AGG_UPPER | L2 | Port loopback filter | Port is operating in loopback mode; packets are being sent to itself (source MAC address is the same as the destination MAC address |
+| Drop Aggregate Upper | TCA_WJH_DROP_AGG_UPPER | L2 | Unicast MAC table action discard | Currently not supported |
+| Drop Aggregate Upper | TCA_WJH_DROP_AGG_UPPER | L2 | VLAN tagging mismatch | VLAN tags on the source and destination do not match |
+| Drop Aggregate Upper | TCA_WJH_DROP_AGG_UPPER | Router | Blackhole ARP/neighbor | Packet received with blackhole adjacency |
+| Drop Aggregate Upper | TCA_WJH_DROP_AGG_UPPER | Router | Blackhole route | Packet received with action equal to discard |
+| Drop Aggregate Upper | TCA_WJH_DROP_AGG_UPPER | Router | Checksum or IPver or IPv4 IHL too short | Cannot read packet due to header checksum error, IP version mismatch, or IPv4 header length is too short |
+| Drop Aggregate Upper | TCA_WJH_DROP_AGG_UPPER | Router | Destination IP is loopback address | Cannot read packet as destination IP address is a loopback address (dip=>127.0.0.0/8) |
+| Drop Aggregate Upper | TCA_WJH_DROP_AGG_UPPER | Router | Egress router interface is disabled | Packet destined to a different subnet cannot be routed because egress router interface is disabled |
+| Drop Aggregate Upper | TCA_WJH_DROP_AGG_UPPER | Router | Ingress router interface is disabled | Packet destined to a different subnet cannot be routed because ingress router interface is disabled |
+| Drop Aggregate Upper | TCA_WJH_DROP_AGG_UPPER | Router | IPv4 destination IP is link local | Packet has IPv4 destination address that is a local link |
+| Drop Aggregate Upper | TCA_WJH_DROP_AGG_UPPER | Router | IPv4 destination IP is local network (destination=0.0.0.0/8) | Packet has IPv4 destination address that is a local network (destination=0.0.0.0/8) |
+| Drop Aggregate Upper | TCA_WJH_DROP_AGG_UPPER | Router | IPv4 routing table (LPM) unicast miss | No route available in routing table for packet |
+| Drop Aggregate Upper | TCA_WJH_DROP_AGG_UPPER | Router | IPv4 source IP is limited broadcast | Packet has broadcast source IP address |
+| Drop Aggregate Upper | TCA_WJH_DROP_AGG_UPPER | Router | IPv6 destination in multicast scope FFx0:/16 | Packet received with multicast destination address in FFx0:/16 address range |
+| Drop Aggregate Upper | TCA_WJH_DROP_AGG_UPPER | Router | IPv6 destination in multicast scope FFx1:/16 | Packet received with multicast destination address in FFx1:/16 address range |
+| Drop Aggregate Upper | TCA_WJH_DROP_AGG_UPPER | Router | IPv6 routing table (LPM) unicast miss | No route available in routing table for packet |
+| Drop Aggregate Upper | TCA_WJH_DROP_AGG_UPPER | Router | Multicast MAC mismatch | For IPv4, destination MAC address is not equal to {0x01-00-5E-0 (25 bits), DIP\[22:0\]} and DIP is multicast. For IPv6, destination MAC address is not equal to {0x3333, DIP\[31:0\]} and DIP is multicast |
+| Drop Aggregate Upper | TCA_WJH_DROP_AGG_UPPER | Router | Non IP packet | Cannot read packet header because it is not an IP packet |
+| Drop Aggregate Upper | TCA_WJH_DROP_AGG_UPPER | Router | Non-routable packet | Packet has no route in routing table |
+| Drop Aggregate Upper | TCA_WJH_DROP_AGG_UPPER | Router | Packet size is larger than router interface MTU | Packet has larger MTU configured than the VLAN |
+| Drop Aggregate Upper | TCA_WJH_DROP_AGG_UPPER | Router | Router interface loopback | Packet has destination IP address that is local. For example, SIP = 1.1.1.1, DIP = 1.1.1.128. |
+| Drop Aggregate Upper | TCA_WJH_DROP_AGG_UPPER | Router | Source IP equals destination IP | Packet has a source IP address equal to the destination IP address |
+| Drop Aggregate Upper | TCA_WJH_DROP_AGG_UPPER | Router | Source IP is in class E | Cannot read packet as source IP address is a Class E address |
+| Drop Aggregate Upper | TCA_WJH_DROP_AGG_UPPER | Router | Source IP is loopback address | Cannot read packet as source IP address is a loopback address ( ipv4 => 127.0.0.0/8 for ipv6 => ::1/128) |
+| Drop Aggregate Upper | TCA_WJH_DROP_AGG_UPPER | Router | Source IP is multicast | Cannot read packet as source IP address is a multicast address (ipv4 SIP => 224.0.0.0/4) |
+| Drop Aggregate Upper | TCA_WJH_DROP_AGG_UPPER | Router | Source IP is unspecified | Cannot read packet as source IP address is unspecified (ipv4 = 0.0.0.0/32; for ipv6 = ::0) |
+| Drop Aggregate Upper | TCA_WJH_DROP_AGG_UPPER | Router | TTL value is too small | Packet has TTL value of 1 |
+| Drop Aggregate Upper | TCA_WJH_DROP_AGG_UPPER | Router | Unicast destination IP but multicast destination MAC | Cannot read packet with IP unicast address when destination MAC address is not unicast (FF:FF:FF:FF:FF:FF) |
+| Drop Aggregate Upper | TCA_WJH_DROP_AGG_UPPER | Router | Unresolved neighbor/next-hop  | The next hop in the route is unknown |
+| Drop Aggregate Upper | TCA_WJH_DROP_AGG_UPPER | Tunnel | Decapsulation error | De-capsulation produced incorrect format of packet. For example, encapsulation of packet with many VLANs or IP options on the underlay can cause de-capsulation to result in a short packet. |
+| Drop Aggregate Upper | TCA_WJH_DROP_AGG_UPPER | Tunnel | Overlay switch - Source MAC equals destination MAC | Overlay packet's source MAC address is the same as the destination MAC address |
+| Drop Aggregate Upper | TCA_WJH_DROP_AGG_UPPER | Tunnel | Overlay switch - Source MAC is multicast | Overlay packet's source MAC address is multicast |
+| Symbol Error Upper | TCA_WJH_SYMBOL_ERROR_UPPER | L1 | Auto-negotiation failure | Negotiation of port speed with peer has failed |
+| Symbol Error Upper | TCA_WJH_SYMBOL_ERROR_UPPER | L1 | Bad signal integrity |Integrity of the signal on port is not sufficient for good communication |
+| Symbol Error Upper | TCA_WJH_SYMBOL_ERROR_UPPER | L1 | Cable/transceiver is not supported | The attached cable or transceiver is not supported by this port |
+| Symbol Error Upper | TCA_WJH_SYMBOL_ERROR_UPPER | L1 | Cable/transceiver is unplugged | A cable or transceiver is missing or not fully inserted into the port |
+| Symbol Error Upper | TCA_WJH_SYMBOL_ERROR_UPPER | L1 | Calibration failure | Calibration failure |
+| Symbol Error Upper | TCA_WJH_SYMBOL_ERROR_UPPER | L1 | Link training failure | Link is not able to go operational up due to link training failure |
+| Symbol Error Upper | TCA_WJH_SYMBOL_ERROR_UPPER | L1 | Peer is sending remote faults | Peer node is not operating correctly |
+| Symbol Error Upper | TCA_WJH_SYMBOL_ERROR_UPPER | L1 | Port admin down | Port has been purposely set down by user |

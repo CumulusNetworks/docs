@@ -7,9 +7,7 @@ toc: 3
 Hardware datapath configuration manages packet buffering, queueing and scheduling in hardware.
 
 {{%notice note%}}
-
 The `/usr/lib/python2.7/dist-packages/cumulus/__chip_config/[bcm|mlx]/datapath.conf` assigns buffer space and egress queues. {{<exlink url="https://support.mellanox.com/s/contact-support-page" text="Work with a Cumulus support engineer">}} to change buffer limits in the `datapath.conf` file.
-
 {{%/notice%}}
 
 Each packet is assigned to an ASIC Class of Service (CoS) value based on the priority value of the packet stored in the 802.1p (Class of Service) or DSCP (Differentiated Services Code Point) header field. The choice to schedule packets based on COS or DSCP is a configurable option in the `/etc/cumulus/datapath/traffic.conf` file.
@@ -53,9 +51,7 @@ You can specify one of the following targets for SETQOS/setqos:
 | `--set-dscp-class class`| Sets the DSCP field in the packet header to the value represented by the DiffServ class value. This class can be EF, BE or any of the CSxx or AFxx classes.|
 
 {{%notice note%}}
-
 You can specify either `--set-dscp` or `--set-dscp-class`, but not both.
-
 {{%/notice%}}
 
 Here are two example rules:
@@ -172,10 +168,8 @@ The PAUSE frame is a flow control mechanism that halts the transmission of the t
 Link pause is disabled by default. To enable link pause, you must configure settings in the `/etc/cumulus/datapath traffic.conf` file.
 
 {{< expand "What's the difference between link pause and priority flow control?" >}}
-
 - Priority flow control is applied to an individual priority group for a specific ingress port.
 - Link pause (also known as port pause or global pause) is applied to all the traffic for a specific ingress port.
-
 {{< /expand >}}
 
 Here is an example configuration that enables TX pause and RX pause for swp1 through swp4 and swp6:
@@ -315,7 +309,16 @@ You can configure per queue egress scheduling with NCLU commands or manually by 
 Cumulus Linux provides a default profile. You can either enable the default profile or configure a non-default profile.
 
 {{< tabs "TabID432 ">}}
+{{< tab "CUE Commands ">}}
 
+The following example commands enable the default profile:
+
+```
+cumulus@switch:~$ NEED COMMAND
+cumulus@switch:~$ cl config apply
+```
+
+{{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
 The following example commands enable the default profile:
@@ -368,7 +371,6 @@ egress_sched.sched_port_group1.egr_queue_3.bw_percent = 0
 {{%/notice%}}
 
 {{< /tab >}}
-
 {{< tab "Edit the traffic.conf File ">}}
 
 To configure per queue egress scheduling manually in the `/etc/cumulus/datapath/traffic.conf` file, update and uncomment the settings in the `default egress scheduling weight per egress queue` section of the `/etc/cumulus/datapath/traffic.conf` file.
@@ -416,7 +418,6 @@ cumulus@switch:~$ echo 1 > /cumulus/switchd/config/traffic/reload
 Always run the {{<link url="#syntax-checker" text="syntax checker">}} syntax checker before applying the configuration changes.
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 ## Traffic Shaping
@@ -835,7 +836,6 @@ forwarding_table.profile = default
 {{< /expand >}}
 
 {{%notice note%}}
-
 You must enable packet priority remark on the **ingress** port. A packet received on a remark-enabled port is remarked according to the priority mapping configured on the **egress** port. If you configure packet priority remark the same way on every port, the default configuration example above is correct. However, per-port customized configurations require two port groups, one for the ingress ports and one for the egress ports, as below:
 
 ```
@@ -852,7 +852,6 @@ remark.egress_remark_group.cos_5.priority_remark.dscp = [42]
 remark.egress_remark_group.cos_6.priority_remark.dscp = [50]
 remark.egress_remark_group.cos_7.priority_remark.dscp = [58]
 ```
-
 {{%/notice%}}
 
 ## Syntax Checker

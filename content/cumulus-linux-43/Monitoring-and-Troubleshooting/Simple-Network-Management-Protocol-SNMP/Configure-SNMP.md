@@ -244,13 +244,13 @@ cumulus@switch:~$ net commit
 ```
 
 You can restrict a user to a particular OID tree. The OID can be either a string of period separated decimal numbers or a unique text string that identifies an SNMP MIB object. The MIBs included in Cumulus Linux are located in `/usr/share/snmp/mibs/`. If the MIB you want to use is not installed by default, you must install it with the latest Debian `snmp-mibs-downloader` package.
-
+<!-- vale off -->
 ```
 cumulus@switch:~$ net add snmp-server username limiteduser1 auth-md5 md5password1 encrypt-aes myaessecret oid 1.3.6.1.2.1.1
 cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
-
+<!-- vale on -->
 Or you can restrict a user to a predefined view if one is specified.
 
 ```
@@ -260,7 +260,7 @@ cumulus@switch:~$ net commit
 ```
 
 The example below defines five users, each with a different combination of authentication and encryption:
-
+<!-- vale off -->
 ```
 cumulus@switch:~$ net add snmp-server username user1 auth-none
 cumulus@switch:~$ net add snmp-server username user2 auth-md5 user2password
@@ -274,7 +274,7 @@ cumulus@switch:~$ net add snmp-server username user3 auth-sha testshax encrypt-a
 cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
-
+<!-- vale on -->
 {{< /tab >}}
 
 {{< tab "Linux Commands" >}}
@@ -297,7 +297,7 @@ rouser snmptrapusernameX
 ```
 
 The example below defines five users, each with a different combination of authentication and encryption:
-
+<!-- vale off -->
 ```
 cumulus@switch:~$ sudo nano /etc/snmp/snmpd.conf
 ...
@@ -327,7 +327,7 @@ rwuser user666
 rwuser user999
 ...
 ```
-
+<!-- vale on -->
 {{%notice tip%}}
 
 The following example shows a more advanced but slightly more secure method of configuring SNMPv3 users without creating cleartext passwords:
@@ -380,7 +380,7 @@ By default, the `snmpd.conf` file contains numerous views within the *systemonly
 {{< tabs "viewname" >}}
 
 {{< tab "NCLU Commands" >}}
-
+<!-- vale off -->
 ```
 cumulus@switch:~$ net add snmp-server viewname cumulusOnly included .1.3.6.1.4.1.40310
 cumulus@switch:~$ net add snmp-server viewname cumulusCounters included .1.3.6.1.4.1.40310.2
@@ -390,7 +390,7 @@ cumulus@switch:~$ net add snmp-server username limiteduser1 auth-md5 md5password
 cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
-
+<!-- vale on -->
 {{< /tab >}}
 
 {{< tab "Linux Commands" >}}
@@ -398,7 +398,7 @@ cumulus@switch:~$ net commit
 Edit the `/etc/snmp/snmpd.conf` file and add the `view` command.
 
 The *systemonly* view is used by `rocommunity` to create a password for access to only these branches of the OID tree.
-
+<!-- vale off -->
 ```
 cumulus@switch:~$ sudo nano /etc/snmp/snmpd.conf
 ...
@@ -407,7 +407,7 @@ view systemonly included .1.3.6.1.2.1.2
 view systemonly included .1.3.6.1.2.1.3
 ...
 ```
-
+<!-- vale on -->
 {{< /tab >}}
 
 {{< /tabs >}}
@@ -431,14 +431,14 @@ The following example configuration:
 - Sets the read only community string to *simplepassword* for SNMP requests
 - Restricts requests to only those sourced from hosts in the 192.168.200.10/24 subnet
 - Restricts viewing to the *mysystem* view defined with the `viewname` command
-
+<!-- vale off -->
 ```
 cumulus@switch:~$ net add snmp-server viewname mysystem included 1.3.6.1.2.1.1
 cumulus@switch:~$ net add snmp-server readonly-community simplepassword access 192.168.200.10/24 view mysystem
 cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
-
+<!-- vale on -->
 This example creates a read-only community password *showitall* that allows access to the entire OID tree for requests originating from any source IP address.
 
 ```
@@ -556,9 +556,9 @@ sysname CumulusBox number 1,543,567
 SNMP supports routing MIBs in {{<link url="FRRouting" text="FRRouting">}}. To enable SNMP support for FRRouting, you need to configure {{<exlink url="http://www.net-snmp.org/docs/README.agentx.html" text="AgentX">}} (ASX) access in FRR.
 
 The default `/etc/snmp/snmpd.conf` configuration already enables AgentX and sets the correct permissions.
-
+<!-- vale off -->
 Enabling FRR includes support for BGP. However, if you plan on using the BGP4 MIB, be sure to provide access to the MIB tree 1.3.6.1.2.1.15.
-
+<!-- vale on -->
 {{%notice note%}}
 
 At this time, SNMP does not support monitoring BGP unnumbered neighbors.
@@ -566,9 +566,9 @@ At this time, SNMP does not support monitoring BGP unnumbered neighbors.
 {{%/notice%}}
 
 {{%notice tip%}}
-
+<!-- vale off -->
 If you plan on using the OSPFv2 MIB, provide access to 1.3.6.1.2.1.14 and to 1.3.6.1.2.1.191 for the OSPv3 MIB.
-
+<!-- vale on -->
 {{%/notice%}}
 
 To enable SNMP support for FRR:
@@ -581,9 +581,23 @@ To enable SNMP support for FRR:
    cumulus@switch:~$ net commit
    ```
 
-2. Update the SNMP configuration to enable FRR to respond to SNMP requests. Open the `/etc/snmp/snmpd.conf` file in a text editor and verify that the following configuration exists:
+2. Edit `/etc/frr/daemons` and add a line like the following to configure the appropriate routing daemon; the example below uses `bgpd`, the BGP daemon.
 
    ```
+   cumulus@switch:~$ sudo nano /etc/frr/daemons
+   bgpd_options=" -M snmp -A 127.0.0.1"
+   ```
+
+3. Restart FRR.
+
+   ```
+   cumulus@switch:~$ sudo systemctl restart frr.service
+   ```
+
+4. Update the SNMP configuration to enable FRR to respond to SNMP requests. Edit `/etc/snmp/snmpd.conf` and verify that the following configuration exists:
+
+   ```
+   cumulus@switch:~$ sudo nano /etc/snmp/snmpd.conf
    agentxsocket /var/agentx/master
    agentxperms 777 777 snmp snmp
    master agentx
@@ -602,14 +616,15 @@ drwxr-xr-x  2 root root  4096 Nov 11 12:06 agentx
 
    {{%/notice%}}
 
-3. Optionally, you might need to expose various MIBs:
+5. Optionally, you might need to expose various MIBs:
 
+<!-- vale off -->
     - For the BGP4 MIB, allow access to `1.3.6.1.2.1.15`
     - For the OSPF MIB, allow access to `1.3.6.1.2.1.14`
     - For the OSPFV3 MIB, allow access to `1.3.6.1.2.1.191`
-
+<!-- vale on -->
 To verify the configuration, run `snmpwalk`. For example, if you have a running OSPF configuration with routes, you can check this OSPF-MIB first from the switch itself with:
-
+<!-- vale off -->
 ```
 cumulus@switch:~$ sudo snmpwalk -v2c -cpublic localhost 1.3.6.1.2.1.14
 ```
@@ -617,7 +632,7 @@ cumulus@switch:~$ sudo snmpwalk -v2c -cpublic localhost 1.3.6.1.2.1.14
 ### Enable the .1.3.6.1.2.1 Range
 
 Some MIBs, including storage information, are not included by default in `snmpd.conf` in Cumulus Linux. This results in some default views on common network tools (like `librenms`) to return less than optimal data. You can include more MIBs by enabling the complete .1.3.6.1.2.1 range. This simplifies the configuration file, removing the concern that any required MIBs might be missed by the monitoring system. Various MIBs included were added to the default SNMPv3 configuration and include the following:
-
+<!-- vale on -->
 - ENTITY-MIB
 - ENTITY-SENSOR MIB
 - Parts of the BRIDGE-MIB and Q-BRIDGE-MIBs
@@ -627,9 +642,9 @@ Some MIBs, including storage information, are not included by default in `snmpd.
 This configuration grants access to a large number of MIBs, including all SNMPv2-MIB, which might reveal more data than expected. In addition to being a security vulnerability, it might consume more CPU resources.
 
 {{%/notice%}}
-
+<!-- vale off -->
 To enable the .1.3.6.1.2.1 range, make sure the view commands include the required MIB objects.
-
+<!-- vale on -->
 ## Restore the Default SNMP Configuration
 
 The following command removes all custom entries in the `/etc/snmp/snmpd.conf` file and replaces them with defaults, including for all SNMPv3 usernames and readonly-communities. A `listening-address` for the localhost is configured in its place.
@@ -642,7 +657,7 @@ cumulus@switch:~$ net commit
 ## Set up the Custom Cumulus Networks MIBs on the NMS
 
 No changes are required in the `/etc/snmp/snmpd.conf` file on the switch to support the custom Cumulus Networks MIBs. The following lines are already included by default and provide support for both the Cumulus Counters and the Cumulus Resource Query MIBs.
-
+<!-- vale off -->
 ```
 cumulus@switch:~$ cat /etc/snmp/snmpd.conf
 ...
@@ -651,7 +666,7 @@ pass_persist .1.3.6.1.4.1.40310.1 /usr/share/snmp/resq_pp.py
 pass_persist .1.3.6.1.4.1.40310.2 /usr/share/snmp/cl_drop_cntrs_pp.py
 ...
 ```
-
+<!-- vale on -->
 However, you need to copy several files to the NMS server for the custom Cumulus MIB to be recognized on the NMS server.
 
 - `/usr/share/snmp/mibs/Cumulus-Snmp-MIB.txt`
@@ -705,7 +720,7 @@ cumulus@switch:~$ net commit
 ```
 
 These commands create the following `/etc/snmp/snmpd.conf` file:
-
+<!-- vale off -->
 ```
 cumulus@switch:~$ sudo nano /etc/snmp/snmpd.conf
 agentaddress udp:161
@@ -736,13 +751,13 @@ sysobjectid 1.3.6.1.4.1.40310
 sysservices 72
 trap2sink 1.1.1.1 mypass
 ```
-
+<!-- vale on -->
 {{< /tab >}}
 
 {{< tab "Linux Commands" >}}
 
 Edit the `/etc/snmp/snmpd.conf` file and apply the following configuration (add every line starting with a +):
-
+<!-- vale off -->
 ```
 cumulus@switch:~$ sudo nano /etc/snmp/snmpd.conf
 +agentaddress udp:161
@@ -773,7 +788,7 @@ sysobjectid 1.3.6.1.4.1.40310
 sysservices 72
 +trap2sink 1.1.1.1 mypass
 ```
-
+<!-- vale on -->
 {{< /tab >}}
 
 {{< /tabs >}}

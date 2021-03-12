@@ -1070,7 +1070,7 @@ s2(169.254.2.14)
 Total number of neighbors 3
 ```
 
-To show BGP (IPv4) routes in a VRF, run the `net show bgp vrf <vrf-name>` command. For example::
+To show BGP (IPv4) routes in a VRF, run the `net show bgp vrf <vrf-name>` command. For example:
 
 ```
 cumulus@switch:~$ net show bgp vrf vrf1012

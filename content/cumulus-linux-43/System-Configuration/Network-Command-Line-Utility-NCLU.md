@@ -210,7 +210,7 @@ to this:
 ?: complete
 ```
 
-Save the file and reconnect to the switch. The ? (question mark) abilitywill work on all subsequent sessions on the switch.
+Save the file and reconnect to the switch. The ? (question mark) ability will work on all subsequent sessions on the switch.
 
 ```
 cumulus@switch:~$ net
@@ -228,7 +228,7 @@ cumulus@switch:~$ net
 
 {{%notice note%}}
 
-When the question mark is typed, NCLU autocompletes and shows all available options, but the question mark does not actually appear on the terminal. This is normal, expected behavior.
+When the question mark is typed, NCLU will autocomplete and show all available options, but the question mark does not actually appear on the terminal. This is normal, expected behavior.
 
 {{%/notice%}}
 
@@ -424,7 +424,7 @@ After you edit the `netd.conf` file, restart the `netd` service for the changes 
 cumulus@switch:~$ sudo nano /etc/netd.conf
 cumulus@switch:~$ sudo systemctl restart netd.service
 ```
-
+<!-- vale off -->
 | Configuration Variable <img width=150/>| Default Setting <img width=250/>|Description <img width=200/>|
 |-------------------------------------- |------------------------------- |--------------------------- |
 | show_linux_command | False | When true, displays the Linux command running in the background. |
@@ -435,7 +435,7 @@ cumulus@switch:~$ sudo systemctl restart netd.service
 | users_with_show | root, cumulus | Controls which users are allowed to run show commands.|
 | groups_with_show | root, cumulus | Controls which groups are allowed to run show commands.|
 | ifupdown_blacklist | address-purge, bond-ad-actor-sys-prio, bond-ad-actor-system, bond-num-grat-arp,bond-num-unsol-na, bond-use-carrier, bond-xmit-hash-policy, bridge-bridgeprio, bridge-fd, bridge-hashel, bridge-hashmax, bridge-hello, bridge-igmp-querier-src, bridge-maxage, bridge-maxwait, bridge-mclmc, bridge-mclmi bridge-mcmi, bridge-mcqi, bridge-mcqpi, bridge-mcqri, bridge-mcrouter, bridge-mcsqc, bridge-mcsqi, bridge-pathcosts, bridge-port-pvids, bridge-port-vids, bridge-portprios, bridge-waitport, broadcast, link-type, mstpctl-ageing, mstpctl-fdelay, mstpctl-forcevers, mstpctl-hello, mstpctl-maxage, mstpctl-maxhops, mstpctl-portp2p, mstpctl-portpathcost, mstpctl-portrestrtcn, mstpctl-treeportcost, mstpctl-treeportprio, mstpctl-txholdcount, netmask, preferred-lifetime, scope, vxlan-ageing, vxlan-learning, vxlan-port, up, down, bridge-gcint, bridge-mcqifaddr, bridge-mcqv4src|Hides corner case command options from tab complete, to simplify and streamline output. |
-
+<!-- vale on -->
 {{%notice info%}}
 
 `net` provides an environment variable to set where the `net` output is directed. To only use `stdout`, set the `NCLU_TAB_STDOUT` environment variable to *true*. The value is not case sensitive.
@@ -448,5 +448,4 @@ cumulus@switch:~$ sudo systemctl restart netd.service
 NCLU does not support interfaces named `dev`.
 
 ### Bonds With No Configured Members
-If a bond interface is configured and it contains no members NCLU will report the interace does not exist. 
-
+If a bond interface is configured and it contains no members NCLU will report the interface does not exist. 

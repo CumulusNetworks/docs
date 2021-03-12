@@ -39,7 +39,7 @@ following:
 
 ### Generate an SSH Key for the root Account
 
-1. In a terminal on your host system (not the switch), check to see if a key already exists:
+1. In a terminal on your host system (not the switch), see if a key already exists:
 
     ```
     root@host:~# ls -al ~/.ssh/

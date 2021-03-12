@@ -576,9 +576,9 @@ iface swp1
 {{%notice note%}}
 
 You can specify both IPv4 and IPv6 addresses for the same interface.
-
+<!-- vale off -->
 For IPv6 addresses, you can create or modify the IP address for an interface using either `::` or `0:0:0` notation. Both of the following examples are valid:
-
+<!-- vale on -->
 ```
 cumulus@switch:~$ net add bgp neighbor 2620:149:43:c109:0:0:0:5 remote-as internal
 cumulus@switch:~$ net add interface swp1 ipv6 address 2001:DB8::1/126

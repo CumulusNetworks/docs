@@ -20,18 +20,18 @@ Nutanix Prism is a graphical user interface (GUI) for managing infrastructure an
 3. Uncomment the following 3 lines in the `/etc/snmp/snmpd.conf` file, then save the file:
 
     - bridge\_pp.py
-
+<!-- vale off -->
           pass_persist .1.3.6.1.2.1.17 /usr/share/snmp/bridge_pp.py
-
+<!-- vale on -->
    - Community
 
           rocommunity public  default    -V systemonly
-
+<!-- vale off -->
     - Line directly below the Q-BRIDGE-MIB (.1.3.6.1.2.1.17)
 
           \# BRIDGE-MIB and Q-BRIDGE-MIB tables
           view   systemonly  included   .1.3.6.1.2.1.17
-
+<!-- vale on -->
 4. Restart `snmpd`:
 
        cumulus@switch:~$ sudo systemctl restart snmpd.service

@@ -97,7 +97,7 @@ netq install cluster full
 | interface | \<text-opta-ifname\> | Install a server cluster with a master node using this interface to communicate with the NetQ Agents on the worker nodes |
 | ip-addr | \<text-ip-addr\> | Install a server cluster with a master node with this IP address to communicate with the NetQ Agents on the worker nodes |
 | bundle | \<text-bundle-url\> | Install the NetQ software bundle at this location; a full path is required |
-| workers | \<text-worker-01\> \<text-worker-02\> | Install the worker nodes with these hostnames or IP addresses |
+| workers | \<text-worker-01\> \<text-worker-02\> | Install the worker nodes with these IP addresses |
 
 ### Options
 
@@ -201,7 +201,7 @@ netq install cluster join-workers
 | Argument | Value | Description |
 | ---- | ---- | ---- |
 | join-workers | NA | Identify at least one worker node for the server cluster |
-| NA | \<text-worker-node-01\> | Private IP address of server to be configured as the first worker node in this server cluster |
+| NA | \<text-worker-node-01\> | IP address of server to be configured as the first worker node in this server cluster |
 
 ### Options
 
@@ -250,7 +250,7 @@ netq install cluster infra-job
 
 | Argument | Value | Description |
 | ---- | ---- | ---- |
-| infra-job | NA | ??? |
+| infra-job | NA | Runs infra-job on the NetQ admin app. |
 
 ### Options
 
@@ -407,7 +407,7 @@ netq install opta cluster full
 | interface | \<text-opta-ifname\> | Install a server cluster with a master node using this interface to communicate with the NetQ Agents on the worker nodes |
 | ip-addr | \<text-ip-addr\> | Install a server cluster with a master node with this IP address to communicate with the NetQ Agents on the worker nodes |
 | bundle | \<text-bundle-url\> | Install the NetQ software bundle at this location; a full path is required |
-| workers | \<text-worker-01\> \<text-worker-02\> | Install the worker nodes with these hostnames or IP addresses |
+| workers | \<text-worker-01\> \<text-worker-02\> | Install the worker nodes with these IP addresses |
 | conifg-key | \<text-opta-key\> | Use this unique key to activate the software |
 
 ### Options

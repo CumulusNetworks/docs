@@ -13,6 +13,7 @@ This topic discusses configuring various interfaces:
 - Management interface
 - Network interfaces
 - VLAN interfaces
+- Switch virtual interfaces (SVIs)
 
 ## Configure the Loopback Interface
 

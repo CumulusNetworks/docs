@@ -295,7 +295,6 @@ to list all services on the switch and see which ones are enabled:
     cumulus-core.service                   static  
     cumulus-fastfailover.service           enabled
     cumulus-firstboot.service              disabled
-    cumulus-hyperconverged.service         disabled
     cumulus-platform.service               enabled
     cumulus-support.service                static  
     dbus-org.freedesktop.hostname1.service static  

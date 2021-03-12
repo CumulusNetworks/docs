@@ -13,7 +13,6 @@ To run Docker containers on the Cumulus Linux switch:
 1. Check if the Docker package is already installed on the switch with the `dpkg-query -l cumulus-docker-setup` command.
 
 {{< tabs "TabID16 ">}}
-
 {{< tab "Docker is installed    ">}}
 
 The following command output shows that the Docker package is installed. No further action is required. Go to the next step to enable the Docker service.
@@ -29,7 +28,6 @@ The following command output shows that the Docker package is installed. No furt
    ```
 
 {{< /tab >}}
-
 {{< tab "Docker is not installed ">}}
 
 The following command output shows that the Docker package is *not* installed:
@@ -62,7 +60,6 @@ Do you want to continue? [Y/n]
 ```
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 2. In the managment VRF, enable the Docker service. Docker pulls container images from the internet, which requires internet access through the management VRF.
@@ -137,5 +134,24 @@ The warning is a known issue, which has no functional impact.
    For more examples and ideas, visit:
    https://docs.docker.com/get-started/
    ```
+
+{{%notice note%}}
+The Docker daemon runs in the management VRF; however, Docker containers run outside a VRF by default. To run a container process inside the management VRF on the host, run the `docker run —privileged —ulimit memlock=131072 —rm —network host ip vrf exec mgmt` command. For example:
+
+```
+cumulus@switch:mgmt:~$ sudo docker run —privileged —ulimit memlock=131072 —rm —network host debian ip vrf exec mgmt ping -c3 8.8.8.8
+
+PING 8.8.8.8 (8.8.8.8) 56(84) bytes of data.
+64 bytes from 8.8.8.8: icmp_seq=1 ttl=110 time=1.21 ms
+64 bytes from 8.8.8.8: icmp_seq=2 ttl=110 time=1.24 ms
+64 bytes from 8.8.8.8: icmp_seq=3 ttl=110 time=1.26 ms
+8.8.8.8 ping statistics -
+
+3 packets transmitted, 3 received, 0% packet loss, time 5ms
+rtt min/avg/max/mdev = 1.212/1.237/1.262/0.045 ms
+```
+
+If you see the error `Failed to load BPF prog: ‘Operation not permitted’`, increase the `memlock` limit by doubling the value.
+{{%/notice%}}
 
 Be mindful of the types of applications you want to run in containers on a Cumulus Linux switch. Depending on the configuration of the container, DHCP servers, custom scripts, and other lightweight services run well. However, VPN, NAT and encryption-type services are CPU-intensive and might lead to undesirable effects on critical applications. Resource-intensive services are not supported.

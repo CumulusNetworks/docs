@@ -52,7 +52,7 @@ switch# write memory</li><li>Do not use a spine switch as an RP. If you are runn
 
 ### PIM Neighbors
 
-When PIM is configured on an interface, `PIM Hello` messages are sent to the link local multicast group 224.0.0.13. Any other router configured with PIM on the segment that hears the PIM Hello messages builds a PIM neighbor with the sending device.
+When PIM is configured on an interface, `PIM Hello` messages are sent to the linklocal multicast group 224.0.0.13. Any other router configured with PIM on the segment that hears the PIM Hello messages builds a PIM neighbor with the sending device.
 
 {{%notice note%}}
 
@@ -198,9 +198,10 @@ switch(config)# ip pim rp 192.168.0.2 224.10.2.0/24
 {{< /tab >}}
 
 {{< /tabs >}}
-
+<!-- vale off -->
+<!-- vale.ai Issue #253 -->
 ## PIM Sparse Mode (PIM-SM)
-
+<!-- vale on -->
 PIM Sparse Mode (PIM-SM) is a *pull* multicast distribution method; multicast traffic is only sent through the network if receivers explicitly ask for it. When a receiver *pulls* multicast traffic, the network must be periodically notified that the receiver wants to continue the multicast stream.
 
 {{%notice note%}}
@@ -222,9 +223,10 @@ Cumulus Linux only supports ASM and SSM. PIM BiDir is not currently supported.
 {{%/notice%}}
 
 For additional information, see {{<exlink url="https://tools.ietf.org/html/rfc7761" text="RFC 7761 - Protocol Independent Multicast - Sparse Mode">}}.
-
+<!-- vale off -->
+<!-- vale.ai Issue #253 -->
 ### Any-source Multicast Routing (ASM)
-
+<!-- vale on -->
 Multicast routing behaves differently depending on whether the source is sending before receivers request the multicast stream, or if a receiver tries to join a stream before there are any sources.
 
 #### Receiver Joins First
@@ -293,7 +295,7 @@ To view the configured prefix-list, run the `vtysh` `show ip mroute` command or 
 ```
 switch# show ip mroute
 Source          Group           Proto  Input      Output     TTL  Uptime
-*               235.0.0.0       IGMP   swp31s0    pimreg     1    00:03:3
+*               235.0.0.0       IGMP   swp31s0    pimreg     1    00:03:03
                                 IGMP              br1        1    00:03:38
 *               238.0.0.0       IGMP   swp31s0    br1        1    00:02:08
 ```
@@ -306,16 +308,17 @@ When the RP receives the PIM register, it builds an (S,G) mroute; however, there
 
 The RP drops the PIM register message and immediately sends a PIM register stop message to the FHR.
 
-Receiving a PIM register stop without any associated PIM joins leaves the FHR without any outgoing interfaces. The FHR drops this multicast traffic until a PIM join is received.
+Receiving a PIM register stop without any associated PIM joins causes the FHR to not have any outgoing interfaces. The FHR drops this multicast traffic until a PIM join is received.
 
 {{%notice note%}}
 
 PIM register messages are sourced from the interface that receives the multicast traffic and are destined to the RP address. The PIM register is not sourced from the interface towards the RP.
 
 {{%/notice%}}
-
+<!-- vale off -->
+<!-- vale.ai Issue #253 -->
 #### PIM Null-Register
-
+<!-- vale on --> 
 To notify the RP that multicast traffic is still flowing when the RP has no receiver, or if the RP is not on the SPT tree, the FHR periodically sends PIM null register messages. The FHR sends a PIM register with the Null-Register flag set, but without any data. This special PIM register notifies the RP that a multicast source is still sending, in case any new receivers come online.
 
 After receiving a PIM Null-Register, the RP immediately sends a PIM register stop to acknowledge the reception of the PIM null register message.
@@ -327,9 +330,10 @@ The source-specific multicast method uses prefix lists to configure a receiver t
 #### Receiver Joins First
 
 When a receiver sends an IGMPv3 Join with the source defined the LHR builds an S,G entry and sends a PIM S,G join to the PIM neighbor closest to the source, according to the routing table.
-
+<!-- vale off -->
+<!-- NVIDIA.WordStyles "receiver leaves" instead of leafs -->
 The full path between LHR and FHR contains an S,G state, although no multicast traffic is flowing. Periodic IGMPv3 joins between the receiver and LHR, as well as PIM S,G joins between PIM neighbors, maintain this state until the receiver leaves.
-
+<!-- vale on -->
 When the sender begins, traffic immediately flows over the pre-built SPT from the sender to the receiver.
 
 #### Sender Starts Before Receivers Join
@@ -340,14 +344,15 @@ In SSM when a sender begins sending, the FHR does not have any existing mroutes.
 
 SSM differs from ASM multicast in the following ways:
 
-- An RP is not configured or used. SSM does not require an RP since receivers always know the addresses of the senders.
+- An RP is not configured or used. SSM does not require an RP because receivers always know the addresses of the senders.
 - There is no *,G PIM Join message. The multicast sender is always known so the PIM Join messages used in SSM are always S,G Join messages.
 - There is no Shared Tree or *,G tree. The PIM join message is always sent towards the source, building the SPT along the way. There is no shared tree or *,G state.
 - IGMPv3 is required. ASM allows for receivers to specify only the group they want to join without knowledge of the sender. This can be done in both IGMPv2 and IGMPv3. Only IGMPv3 supports requesting a specific source for a multicast group (the sending an S,G IGMP join).
 - No PIM Register process or SPT Switchover. Without a shared tree or RP, there is no need for the PIM register process. S,G joins are sent directly towards the FHR.
-
+<!-- vale off -->
+<!-- vale.ai Issue #253 -->
 ### PIM Active-Active with MLAG
-
+<!-- vale on -->
 For a multicast sender or receiver to be supported over a dual-attached MLAG bond, you must configure `pim active-active`.
 
 To configure PIM active-active with MLAG, run the following commands:
@@ -474,7 +479,7 @@ PIM joins sent towards the source can be ECMP load shared by upstream PIM neighb
 
 #### Multicast Receiver
 
-A dual-attached multicast receiver sends an IGMP join on the attached VLAN. The specific interface that is used is determined based on the host. The IGMP join is received on one of the MLAG switches, and the IGMP join is added to the IGMP Join table and layer 2 MDB table. The layer 2 MDB table, like the unicast MAC address table, is synced via MLAG control messages over the peerlink. This allows both MLAG switches to program IGMP and MDB table forwarding information.
+A dual-attached multicast receiver sends an IGMP join on the attached VLAN. The specific interface that is used is determined based on the host. The IGMP join is received on one of the MLAG switches, and the IGMP join is added to the IGMP Join table and layer 2 MDB table. The layer 2 MDB table, like the unicast MAC address table, syncs via MLAG control messages over the peerlink. This allows both MLAG switches to program IGMP and MDB table forwarding information.
 
 Both switches send *,G PIM Join messages towards the RP. If the source is already sending, both MLAG switches receive the multicast stream.
 
@@ -488,7 +493,7 @@ To prevent duplicate multicast packets, a Designated Forward (DF) is elected. Th
 
 ## Additional PIM Features
 
-### Custom SSM multicast group ranges
+### Custom SSM Multicast Group Ranges
 
 PIM considers `232.0.0.0/8` the default SSM range. You can change the SSM range by defining a prefix-list and attaching it to the `ssm-range` command. You can change the default SSM group or add additional group ranges to be treated as SSM groups.
 
@@ -572,7 +577,7 @@ PIM uses the RPF procedure to choose an upstream interface to build a forwarding
 
 {{< tab "NCLU Commands ">}}
 
-Run the `net add pim ecmp` command to enable PIM to use all the available nexthops for the installation of mroutes. For example, if you have four-way ECMP, PIM spreads the S,G and \*,G mroutes across the four different paths.
+Run the `net add pim ecmp` command to enable PIM to use all the available next hops for the installation of mroutes. For example, if you have four-way ECMP, PIM spreads the S,G and \*,G mroutes across the four different paths.
 
 ```
 cumulus@switch:~$ net add pim ecmp
@@ -632,9 +637,10 @@ The rebalance command might cause some packet loss.
 {{< /tab >}}
 
 {{< /tabs >}}
-
+<!-- vale off -->
+<!-- NVIDIA.WordStyles, nexthop should be next hop -->
 To show which nexthop is selected for a specific source/group, run the `show ip pim nexthop` command from the `vtysh` shell:
-
+<!-- vale on --> 
 ```
 cumulus@switch:~$ sudo vtysh
 switch# show ip pim nexthop
@@ -837,7 +843,7 @@ The mesh group must include all RPs in the domain as members, with a unique addr
 
 {{<link url="Virtual-Routing-and-Forwarding-VRF" text="VRFs">}} divide the routing table on a per-tenant basis, ultimately providing for separate layer 3 networks over a single layer 3 infrastructure. With a VRF, each tenant has its own virtualized layer 3 network, so IP addresses can overlap between tenants.
 
-PIM in a VRF enables PIM trees and multicast data traffic to run inside a layer 3 virtualized network, with a separate tree per domain or tenant. Each VRF has its own multicast tree with its own RP(s), sources, and so on. Therefore, you can have one tenant per corporate division, client, or product; for example.
+PIM in a VRF enables PIM trees and multicast data traffic to run inside a layer 3 virtualized network, with a separate tree per domain or tenant. Each VRF has its own multicast tree with its own RP or RPs, sources, and so on. Therefore, you can have one tenant per corporate division, client, or product; for example.
 
 VRFs on different switches typically connect or are peered over subinterfaces, where each subinterface is in its own VRF, provided MP-BGP VPN is not enabled or supported.
 

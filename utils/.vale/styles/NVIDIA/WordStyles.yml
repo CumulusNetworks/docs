@@ -4,10 +4,9 @@
 # Use proper house styles for known words
 #
 extends: substitution
-message: The correct form of '%s' is '%s'
+message: "'%s' is the house style of '%s'"
 link: https://wikinox.mellanox.com/display/BUS/House+Style+Guide#HouseStyleGuide-TerminologyandCommonly-usedWords
 level: warning
-scope: heading
 ignorecase: true
 swap:
   autonegotation: auto-negotation
@@ -25,25 +24,21 @@ swap:
   'doubleclick': double-click
   'drop down': dropdown
   'e-mail': email
-  'host': server
   'host name': hostname
-  L1: layer 1
-  L2: layer 2
-  L3: layer 3
-  L4: layer 4
+  L1: 'layer 1'
+  L2: 'layer 2'
+  L3: 'layer 3'
+  L4: 'layer 4'
   leaves: leafs
-  logon: login or log in
-  'login to': log in to
-  'log in and password': login and password
-  'next-hop': next hop
-  nexthop: next hop
+  logon: 'login or log in'
+  'login to': 'log in to'
+  'log in and password': 'login and password'
+  'next-hop': 'next hop'
+  nexthop: 'next hop'
   once: after
   'right click': right-click
-  type: run
-  issue: run
-  'setup the': set up the
+  'setup the': 'set up the'
   since: because
-  \/: and
   '(?:synched|synced|synch)': sync
   '(?:syncing|synching)': synchronizing
   'time stamp': timestamp

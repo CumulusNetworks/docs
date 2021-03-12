@@ -6,7 +6,7 @@ toc: 4
 ---
 
 Below are the MIBs supported by Cumulus Linux, as well as suggested uses for them. The overall Cumulus Linux MIB is defined in the `/usr/share/snmp/mibs/Cumulus-Snmp-MIB.txt` file.
-
+<!-- vale off -->
 | <div style="width:250px">MIB Name | Suggested Uses |
 | -------- | -------------- |
 | {{<exlink url="https://cumulusnetworks.com/static/mibs/BGP4-MIB.txt" text="BGP4-MIB">}}<br>{{<exlink url="https://cumulusnetworks.com/static/mibs/OSPFv2-MIB.txt" text="OSPFv2-MIB">}}<br>{{<exlink url="https://cumulusnetworks.com/static/mibs/OSPFv3-MIB.txt" text="OSPFv3-MIB">}}<br>{{<exlink url="https://cumulusnetworks.com/static/mibs/RIPv2-MIB.txt" text="RIPv2-MIB">}} | You can enable FRRouting SNMP support to provide support for OSPF-MIB (RFC-1850), OSPFV3-MIB (RFC-5643), and BGP4-MIB (RFC-1657). See the FRRouting section above. |
@@ -38,7 +38,7 @@ Below are the MIBs supported by Cumulus Linux, as well as suggested uses for the
 | {{<exlink url="https://cumulusnetworks.com/static/mibs/TCP-MIB.txt" text="TCP-MIB">}} | TCP-related information. |
 | {{<exlink url="https://cumulusnetworks.com/static/mibs/UCD-SNMP-MIB.txt" text="UCD-SNMP-MIB">}} | System memory, load, CPU, disk IO. |
 | {{<exlink url="https://cumulusnetworks.com/static/mibs/UDP-MIB.txt" text="UDP-MIB">}} | UDP-related information. |
-
+<!-- vale on -->
 ## List All Installed MIBs
 
 Due to licensing restrictions, not all supported MIBs are installed in Cumulus Linux. The MIBs that are not installed require the "non-free" archive to be added to `/etc/apt/sources.list`. To see which MIBs are installed on your switch, run `ls /usr/share/snmp/mibs/`.

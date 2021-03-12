@@ -25,8 +25,8 @@ To test the connection to an IPv6 host:
 ```
 cumulus@switch:~$ ping6 -I swp1 2001::db8:ff:fe00:2
 PING 2001::db8:ff:fe00:2(2001::db8:ff:fe00:2) from 2001::db8:ff:fe00:1 swp1: 56 data bytes
-64 bytes from 2001::db8:ff:fe00:2: icmp_seq=1 ttl=64 time=1.43 ms
-64 bytes from 2001::db8:ff:fe00:2: icmp_seq=2 ttl=64 time=0.927 ms
+64 bytes from 2001::db8:ff:fe00:2 icmp_seq=1 ttl=64 time=1.43 ms
+64 bytes from 2001::db8:ff:fe00:2 icmp_seq=2 ttl=64 time=0.927 ms
 ```
 
 When troubleshooting intermittent connectivity issues, it is helpful to send continuous pings to a host.

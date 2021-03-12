@@ -1139,9 +1139,9 @@ cumulus@switch$ ip link show swp1
 {{< /tab >}}
 
 {{< /tabs >}}
-
+<!-- vale off -->
 Interface descriptions also appear in the {{<link url="Simple-Network-Management-Protocol-SNMP" text="SNMP">}} OID {{<exlink url="https://cumulusnetworks.com/static/mibs/IF-MIB.txt" text="IF-MIB::ifAlias">}}.
-
+<!-- vale on -->
 {{%notice note%}}
 
 - Aliases are limited to 256 characters.

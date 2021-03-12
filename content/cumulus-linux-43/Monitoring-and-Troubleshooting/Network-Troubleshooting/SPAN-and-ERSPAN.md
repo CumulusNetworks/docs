@@ -300,7 +300,7 @@ To use the CPU port as the SPAN destination, create a file in the `/etc/cumulus/
 ```
 
 This example rule matches on swp1 egress traffic that has the source IP Address 10.10.1.1.
-When a match occurs, the traffic is is mirrored to the CPU:
+When a match occurs, the traffic is mirrored to the CPU:
 
 ```
 [iptables]

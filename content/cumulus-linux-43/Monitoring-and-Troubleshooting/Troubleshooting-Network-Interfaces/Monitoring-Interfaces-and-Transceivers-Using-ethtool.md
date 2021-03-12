@@ -109,7 +109,7 @@ Cleared counters
 To see hardware capabilities and measurement information on the SFP or QSFP module installed in a particular port, use the `ethtool -m` command. If the SFP/QSFP supports Digital Optical Monitoring (that is, the `Optical diagnostics support` field in the output below is set to *Yes*), the optical power levels and thresholds are also printed below the standard hardware details.
 
 In the sample output below, you can see that this module is a 1000BASE-SX short-range optical module, manufactured by JDSU, part number PLRXPL-VI-S24-22. The second half of the output displays the current readings of the Tx power levels (`Laser output power`) and Rx power (`Receiver signal average optical power`), temperature, voltage and alarm threshold settings.
-
+<!-- vale off -->
 ```
 cumulus@switch$ sudo ethtool -m swp3
         Identifier                                : 0x03 (SFP)
@@ -185,3 +185,4 @@ cumulus@switch$ sudo ethtool -m swp3
         Laser rx power high warning threshold     : 1.0000 mW / 0.00 dBm
         Laser rx power low warning threshold      : 0.0200 mW / -16.99 dBm
 ```
+<!-- vale on -->

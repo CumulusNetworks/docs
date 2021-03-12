@@ -217,7 +217,7 @@ You can safely ignore this message. The `libdb` package and resulting log messag
 ### Example Configuration
 
 Here is an example configuration using Cumulus Linux.
-
+<!-- vale off -->
 ```
 # /etc/nslcd.conf
 # nslcd configuration file. See nslcd.conf(5)
@@ -287,7 +287,7 @@ filter group (&(|(objectClass=group)(Objectclass=user))(!(objectClass=computer))
 map    group gidNumber     objectSid:S-1-5-21-1391733952-3059161487-1245441232
 map    group cn            sAMAccountName
 ```
-
+<!-- vale on -->
 ## Configure LDAP Authorization
 
 Linux uses the *sudo* command to allow non-administrator users (such as the default *cumulus* user account) to perform privileged operations. To control the users authorized to use sudo, the `/etc/sudoers` file and files located in the `/etc/sudoers.d/` directory define a series of rules. Typically, the rules are based on groups, but can also be defined for specific users. You can add sudo rules using the group names from LDAP. For example, if a group of users are associated with the group *netadmin*, you can add a rule to give those users sudo privileges. Refer to the sudoers manual (`man sudoers`) for a complete usage description. The following shows an example in the `/etc/sudoers` file:
@@ -322,14 +322,14 @@ uid=1230(myuser) gid=3000(Development) groups=3000(Development),500(Employees),2
 The `getent` command retrieves all records found with NSS for a given map. It can also retrieve a specific entry under that map. You can perform tests with the `passwd`, `group`, `shadow`, or any other map configured in the `/etc/nsswitch.conf` file. The output from this command is formatted according to the map requested. For the  `passwd` service, the structure of the output is the same as the entries in `/etc/passwd`. The group map outputs the same structure as `/etc/group`. 
 
 In this example, looking up a specific user in the `passwd` map, the user *cumulus* is locally defined in `/etc/passwd`, and *myuser* is only in LDAP.
-
+<!-- vale off -->
 ```
 cumulus@switch:~$ getent passwd cumulus
 cumulus:x:1000:1000::/home/cumulus:/bin/bash
 cumulus@switch:~$ getent passwd myuser
 myuser:x:1230:3000:My Test User:/home/myuser:/bin/bash
 ```
-
+<!-- vale on -->
 In the next example, looking up a specific group in the group service, the group *cumulus* is locally defined in `/etc/groups`, and *netadmin* is on LDAP.
 
 ```

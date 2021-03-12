@@ -312,7 +312,7 @@ cumulus@switch:~$ sudo -E apt-get autoremove --purge
 You can use the `getent` command to determine if TACACS+ is configured correctly and if the local password is stored in the configuration files. In the example commands below, the cumulus user represents the local user, while cumulusTAC represents the TACACS user.
 
 To look up the username within all NSS methods:
-
+<!-- vale off -->
 ```
 cumulus@switch:~$ sudo getent passwd cumulusTAC
 cumulusTAC:x:1016:1001:TACACS+ mapped user at privilege level 15,,,:/home/tacacs15:/bin/bash
@@ -331,7 +331,7 @@ To look up the user within the TACACS+ database only:
 cumulus@switch:~$ sudo getent -s tacplus passwd cumulusTAC
 cumulusTAC:x:1016:1001:TACACS+ mapped user at privilege level 15,,,:/home/tacacs15:/bin/bash
 ```
-
+<!-- vale on -->
 If TACACS does not appear to be working correctly, debug the following configuration files by adding the *debug=1* parameter to one or more of these files:
 
 - `/etc/tacplus_servers`

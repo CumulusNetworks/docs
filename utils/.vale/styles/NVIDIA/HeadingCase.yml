@@ -9,3 +9,11 @@ link: https://wikinox.mellanox.com/display/BUS/House+Style+Guide#HouseStyleGuide
 level: warning
 scope: heading
 match: $title
+exceptions:
+  - FHR
+  - mroute
+  - SSM
+  - PIM
+  - MLAG
+  - TCP
+  - UDP

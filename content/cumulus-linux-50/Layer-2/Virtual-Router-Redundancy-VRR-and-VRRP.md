@@ -15,9 +15,7 @@ Cumulus Linux provides the option of using Virtual Router Redundancy (VRR) or Vi
    Use VRRP when you have multiple distinct devices that connect to a layer 2 segment through multiple logical connections (not through a single bond). VRRP elects a single active forwarder that *owns* the virtual MAC address while it is active. This prevents the forwarding database of the layer 2 domain from continuously updating in response to MAC flaps as frames sourced from the virtual MAC address are received from discrete logical connections.
 
 {{%notice note%}}
-
 You cannot configure both VRR and VRRP on the same switch.
-
 {{%/notice%}}
 
 ## VRR
@@ -44,11 +42,19 @@ The routers implement the layer 2 network interconnecting the hosts and the redu
 Cumulus Linux only supports VRR on switched virtual interfaces (SVIs). VRR is not supported on physical interfaces or virtual subinterfaces.
 {{%/notice%}}
 
+The example commands below create a VLAN-aware bridge interface for a VRR-enabled network:
+
 {{< tabs "TabID53 ">}}
+{{< tab "CUE Commands ">}}
 
+```
+cumulus@switch:~$ cl set interface vlan500 ip vrr address 192.0.2.252/24
+cumulus@switch:~$ cl set interface vlan500 ip vrr mac-address 00:00:5e:00:01:00
+cumulus@switch:~$ cl config apply
+```
+
+{{< /tab >}}
 {{< tab "NCLU Commands ">}}
-
-The example NCLU commands below create a VLAN-aware bridge interface for a VRR-enabled network:
 
 ```
 cumulus@switch:~$ net add bridge
@@ -61,10 +67,9 @@ cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
-
 {{< tab "Linux Commands ">}}
 
-Edit the `/etc/network/interfaces` file, then run the `ifreload -a` command. The example file configuration below create a VLAN-aware bridge interface for a VRR-enabled network:
+Edit the `/etc/network/interfaces` file, then run the `ifreload -a` command.
 
 ```
 cumulus@switch:~$ sudo nano /etc/network/interfaces
@@ -89,7 +94,6 @@ cumulus@switch:~$ sudo ifreload -a
 ```
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 ### Configure the Hosts
@@ -103,14 +107,17 @@ Configure the links between the hosts and the routers in *active-active* mode fo
 To create an {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="MLAG">}} configuration that incorporates VRR, use a configuration similar to the following.
 
 {{%notice note%}}
-
 The following examples uses a single virtual MAC address for all VLANs. You can add a unique MAC address for each VLAN, but this is not necessary.
-
 {{%/notice%}}
 
-{{< tabs "TabID111 ">}}
-
+{{< tabs "TabID119 ">}}
 {{< tab "leaf01 ">}}
+
+{{< tabs "TabID146 ">}}
+{{< tab "CUE Commands ">}}
+
+{{< /tab >}}
+{{< tab "NCLU Commands ">}}
 
 ```
 cumulus@leaf01:~$ net add interface eth0 ip address 192.168.0.21
@@ -138,7 +145,8 @@ cumulus@leaf01:~$ net pending
 cumulus@leaf01:~$ net commit
 ```
 
-These commands create the following configuration in the `/etc/network/interfaces` file:
+{{< /tab >}}
+{{< tab "/etc/network/interfaces">}}
 
 ```
 auto eth0
@@ -200,8 +208,16 @@ iface vlan400
 ```
 
 {{< /tab >}}
+{{< /tabs >}}
 
+{{< /tab >}}
 {{< tab "leaf02 ">}}
+
+{{< tabs "TabID246 ">}}
+{{< tab "CUE Commands ">}}
+
+{{< /tab >}}
+{{< tab "NCLU Commands ">}}
 
 ```
 cumulus@leaf02:~$ net add interface eth0 ip address 192.168.0.22
@@ -229,7 +245,8 @@ cumulus@leaf02:~$ net pending
 cumulus@leaf02:~$ net commit
 ```
 
-These commands create the following configuration in the `/etc/network/interfaces` file:
+{{< /tab >}}
+{{< tab "/etc/network/interfaces ">}}
 
 ```
 auto eth0
@@ -291,7 +308,9 @@ iface vlan400
 ```
 
 {{< /tab >}}
+{{< /tabs >}}
 
+{{< /tab >}}
 {{< tab "server01 ">}}
 
 Create a configuration similar to the following on an Ubuntu host:
@@ -337,7 +356,6 @@ iface uplink:400 inet static
 ```
 
 {{< /tab >}}
-
 {{< tab "server02 ">}}
 
 Create a configuration similar to the following on an Ubuntu host:
@@ -383,7 +401,6 @@ iface uplink:400 inet static
 ```
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 ## VRRP
@@ -393,12 +410,10 @@ VRRP allows for a single virtual default gateway to be shared among two or more 
 All virtual routers use 00:00:5E:00:01:XX for IPv4 gateways or 00:00:5E:00:02:XX for IPv6 gateways as their MAC address. The last byte of the address is the Virtual Router IDentifier (VRID), which is different for each virtual router in the network. This MAC address is used by only one physical router at a time, which replies with this address when ARP requests or neighbor solicitation packets are sent for the IP addresses of the virtual router.
 
 {{%notice note%}}
-
 - Cumulus Linux supports both VRRPv2 and VRRPv3. The default protocol version is VRRPv3.
 - 255 virtual routers are supported per switch.
 - VRRP is not supported in an MLAG environment or with EVPN.
 - To configure VRRP on an SVI, you need to edit the `/etc/frr/frr.conf` file; NCLU commands are not supported for SVIs.
-
 {{%/notice%}}
 
 {{<exlink url="https://tools.ietf.org/html/rfc5798#section-4.1" text="RFC 5798">}} describes VRRP in detail.
@@ -430,7 +445,24 @@ The following example commands configure two switches (spine01 and spine02) that
 A primary address is required for the parent interface to use as the source address on VRRP advertisement packets.
 {{%/notice%}}
 
-{{< tabs "TabID440 ">}}
+{{< tabs "TabID448 ">}}
+{{< tab "CUE Commands ">}}
+
+**spine01**
+
+```
+cumulus@switch:~$ NEED COMMAND
+cumulus@switch:~$ cl config apply
+```
+
+**spine02**
+
+```
+cumulus@switch:~$ NEED COMMAND
+cumulus@switch:~$ cl config apply
+```
+
+{{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
 **spine01**
@@ -471,7 +503,7 @@ cumulus@spine02:~$ net commit
        address 2001:0db8::2/64
    ```
 
-2. Enable the `vrrpd` daemon, then start the FRRouting service. See {{<link title="Configure FRRouting">}}.
+2. Enable the `vrrpd` daemon, then start the FRRouting service. See {{<link title="FRRouting">}}.
 
 3. From the vtysh shell, configure VRRP.
 

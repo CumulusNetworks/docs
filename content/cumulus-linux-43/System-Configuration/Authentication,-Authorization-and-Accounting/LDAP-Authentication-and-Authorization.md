@@ -217,7 +217,7 @@ You can safely ignore this message. The `libdb` package and resulting log messag
 ### Example Configuration
 
 Here is an example configuration using Cumulus Linux.
-
+<!-- vale off -->
 ```
 # /etc/nslcd.conf
 # nslcd configuration file. See nslcd.conf(5)
@@ -287,7 +287,7 @@ filter group (&(|(objectClass=group)(Objectclass=user))(!(objectClass=computer))
 map    group gidNumber     objectSid:S-1-5-21-1391733952-3059161487-1245441232
 map    group cn            sAMAccountName
 ```
-
+<!-- vale on -->
 ## Configure LDAP Authorization
 
 Linux uses the *sudo* command to allow non-administrator users (such as the default *cumulus* user account) to perform privileged operations. To control the users authorized to use sudo, the `/etc/sudoers` file and files located in the `/etc/sudoers.d/` directory define a series of rules. Typically, the rules are based on groups, but can also be defined for specific users. You can add sudo rules using the group names from LDAP. For example, if a group of users are associated with the group *netadmin*, you can add a rule to give those users sudo privileges. Refer to the sudoers manual (`man sudoers`) for a complete usage description. The following shows an example in the `/etc/sudoers` file:

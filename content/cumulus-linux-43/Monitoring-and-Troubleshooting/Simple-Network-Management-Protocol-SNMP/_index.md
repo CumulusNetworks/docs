@@ -33,9 +33,9 @@ The MIB is a database for the `snmpd` daemon that runs on the agent. MIBs adhere
 - Cumulus-Snmp-MIB.txt
 
 The MIB is structured as a top-down hierarchical tree. Each branch that forks off is labeled with both an identifying number (starting with 1) and an identifying string that is unique for that level of the hierarchy. The strings and numbers can be used interchangeably. The parent IDs (numbers or strings) are strung together, starting with the most general to form an address for the MIB object. Each junction in the hierarchy is represented by a dot in this notation so that the address ends up being a series of ID strings or numbers separated by dots. This entire address is known as an object identifier (OID).
-
-You can use various online and command line tools to translate between numbers and strings and to also provide definitions for the various MIB objects. For example, you can view the *sysLocation* object (which is defined in `SNMPv2-MIB.txt`) in the system table as either a series of numbers *1.3.6.1.2.1.1.6* or as the string *iso.org.dod.internet.mgmt.mib-2.system.sysLocation*. You view the definition with the `snmptranslate` command, which is part of the `snmp` Debian package in Cumulus Linux.
 <!-- vale off -->
+You can use various online and command line tools to translate between numbers and strings and to also provide definitions for the various MIB objects. For example, you can view the *sysLocation* object (which is defined in `SNMPv2-MIB.txt`) in the system table as either a series of numbers *1.3.6.1.2.1.1.6* or as the string *iso.org.dod.internet.mgmt.mib-2.system.sysLocation*. You view the definition with the `snmptranslate` command, which is part of the `snmp` Debian package in Cumulus Linux.
+
 ```
 cumulus@switch:~$ snmptranslate -Td -On SNMPv2-MIB::sysLocation
 .1.3.6.1.2.1.1.6
@@ -51,9 +51,9 @@ sysLocation OBJECT-TYPE
             value is the zero-length string."
 ::= { iso(1) org(3) dod(6) internet(1) mgmt(2) mib-2(1) system(1) 6 }
 ```
-<!-- vale on -->
-In the last line above, the section *1.3.6.1* or *iso.org.dod.internet* is the OID that defines internet resources. The *2* or *mgmt* that follows is for a management subcategory. The *1* or *mib-2* under that defines the MIB-2 specification. And finally, the *1* or *system* is the parent for a number of child objects *sysDescr*, *sysObjectID*, *sysUpTime*, *sysContact*, *sysName*, *sysLocation*, *sysServices*, and so on, as seen in the tree output from the second `snmptranslate` command below, where *sysLocation* is defined as *6*.
 
+In the last line above, the section *1.3.6.1* or *iso.org.dod.internet* is the OID that defines internet resources. The *2* or *mgmt* that follows is for a management subcategory. The *1* or *mib-2* under that defines the MIB-2 specification. And finally, the *1* or *system* is the parent for a number of child objects *sysDescr*, *sysObjectID*, *sysUpTime*, *sysContact*, *sysName*, *sysLocation*, *sysServices*, and so on, as seen in the tree output from the second `snmptranslate` command below, where *sysLocation* is defined as *6*.
+<!-- vale on -->
 ```
 cumulus@leaf01:mgmt:~$ snmptranslate -Tp -IR system
 +--system(1)

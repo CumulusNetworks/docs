@@ -66,7 +66,7 @@ The following example command sets the tree priority to 8192:
 {{< tab "CUE Commands ">}}
 
 ```
-cumulus@switch:~$ cl set bridge domain bridge stp priority 8192
+cumulus@switch:~$ cl set bridge domain br_default stp priority 8192
 cumulus@switch:~$ cl config apply
 ```
 
@@ -532,7 +532,7 @@ To check STP status for a bridge:
 {{< tab "CUE Commands ">}}
 
 ```
-cumulus@switch:~$ cl show bridge domain bridge stp
+cumulus@switch:~$ cl show bridge domain br_default stp
 ```
 
 {{< /tab >}}

@@ -22,9 +22,9 @@ You cannot configure both VRR and VRRP on the same switch.
 
 The diagram below illustrates a basic VRR-enabled network configuration.
 
-{{< img src="/images/cumulus-linux/vrr-active-active.png" width="600" >}}
+{{< img src = "/images/cumulus-linux/mlag-dual-connect.png" >}}
 
-The network includes several hosts and two routers running Cumulus Linux that are configured with {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="multi-chassis link aggregation">}} (MLAG).
+The network includes three hosts and two routers running Cumulus Linux that are configured with {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="multi-chassis link aggregation">}} (MLAG).
 - As the bridges in each of the redundant routers are connected, they each receive and reply to ARP requests for the virtual router IP address.
 - Each ARP request made by a host receives replies from each switch; these replies are identical, and the host receiving the replies either ignores replies after the first, or accepts them and overwrites the previous identical reply.
 - A range of MAC addresses is reserved for use with VRR to prevent MAC address conflicts with other interfaces in the same bridged network. The reserved range is `00:00:5E:00:01:00` to `00:00:5E:00:01:ff`.
@@ -46,8 +46,6 @@ The example commands below create a VLAN-aware bridge interface for a VRR-enable
 
 {{< tabs "TabID53 ">}}
 {{< tab "CUE Commands ">}}
-
-IPv4 Commands:
 
 ```
 cumulus@switch:~$ cl set interface vlan10 ip vrr address 10.1.10.1/24
@@ -73,7 +71,7 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-For IPv6, use these commands:
+For IPv6, use this commands:
 
 ```
 cumulus@switch:~$ net add vlan 10 ipv6 address-virtual 00:00:5e:00:01:00 2001:db8::f/32
@@ -154,17 +152,14 @@ cumulus@leaf01:~$ cl config apply
 
 ```
 cumulus@leaf01:~$ net add interface eth0 ip address 192.168.200.11/24
-cumulus@leaf01:~$ net add bond server01 bond slaves swp1-2
-cumulus@leaf01:~$ net add bond server01 clag id 1
-cumulus@leaf01:~$ net add bond server01 mtu 9216
-cumulus@leaf01:~$ net add bond server01 alias LACP etherchannel to uplink on server01
-cumulus@leaf01:~$ net add bond peerlink bond slaves swp49-50
-cumulus@leaf01:~$ net add interface peerlink.4094 peerlink.4094
-cumulus@leaf01:~$ net add interface peerlink.4094 ip address 169.254.255.1/30
-cumulus@leaf01:~$ net add interface peerlink.4094 clag peer-ip 169.254.255.2
-cumulus@leaf01:~$ net add interface peerlink.4094 clag backup-ip 192.168.0.22
-cumulus@leaf01:~$ net add interface peerlink.4094 clag sys-mac 44:38:39:FF:40:90
-cumulus@leaf01:~$ net add bridge bridge ports server01,peerlink
+cumulus@leaf01:~$ net add bond bond1 bond slaves swp1
+cumulus@leaf01:~$ net add bond bond1 alias bond1 on swp1
+cumulus@leaf01:~$ net add bond bond2 bond slaves swp2
+cumulus@leaf01:~$ net add bond bond2 alias bond2 on swp2
+cumulus@leaf01:~$ net add bond bond1 clag id 1
+cumulus@leaf01:~$ net add bond bond2 clag id 2
+cumulus@leaf01:~$ net add bridge bridge ports bond1,bond2
+cumulus@leaf01:~$ net add clag peer sys-mac 44:38:39:BE:EF:AA interface swp49-50 primary backup-ip 10.10.10.2
 cumulus@leaf01:~$ net add vlan 10 ip address 10.0.1.2/24
 cumulus@leaf01:~$ net add vlan 10 ip address-virtual 00:00:5e:00:01:00 10.0.1.1/24
 cumulus@leaf01:~$ net add vlan 20 ip address 10.0.2.2/24
@@ -281,27 +276,19 @@ cumulus@leaf02:~$ cl config apply
 {{< tab "NCLU Commands ">}}
 
 ```
-cumulus@leaf02:~$ net add interface eth0 ip address 192.168.0.22
-cumulus@leaf02:~$ net add bond server01 bond slaves swp1-2
-cumulus@leaf02:~$ net add bond server01 clag id 1
-cumulus@leaf02:~$ net add bond server01 mtu 9216
-cumulus@leaf02:~$ net add bond server01 alias LACP etherchannel to uplink on server01
-cumulus@leaf02:~$ net add bond peerlink bond slaves swp49-50
-cumulus@leaf02:~$ net add interface peerlink.4094 peerlink.4094
-cumulus@leaf02:~$ net add interface peerlink.4094 ip address 169.254.255.2/30
-cumulus@leaf02:~$ net add interface peerlink.4094 clag peer-ip 169.254.255.1
-cumulus@leaf02:~$ net add interface peerlink.4094 clag backup-ip 192.168.0.21
-cumulus@leaf02:~$ net add interface peerlink.4094 clag sys-mac 44:38:39:FF:40:90
-cumulus@leaf02:~$ net add bridge bridge ports server01,peerlink
-cumulus@leaf02:~$ net add bridge stp treeprio 4096
-cumulus@leaf02:~$ net add vlan 100 ip address 10.0.1.3/24
-cumulus@leaf02:~$ net add vlan 100 ip address-virtual 00:00:5e:00:01:00 10.0.1.1/24
-cumulus@leaf02:~$ net add vlan 200 ip address 10.0.2.3/24
-cumulus@leaf02:~$ net add vlan 200 ip address-virtual 00:00:5e:00:01:00 10.0.2.1/24
-cumulus@leaf02:~$ net add vlan 300 ip address 10.0.3.3/24
-cumulus@leaf02:~$ net add vlan 300 ip address-virtual 00:00:5e:00:01:00 10.0.3.1/24
-cumulus@leaf02:~$ net add vlan 400 ip address 10.0.4.3/24
-cumulus@leaf02:~$ net add vlan 400 ip address-virtual 00:00:5e:00:01:00 10.0.4.1/24
+cumulus@leaf02:~$ net add interface eth0 ip address 192.168.200.12/24
+cumulus@leaf01:~$ net add bond bond1 bond slaves swp1
+cumulus@leaf01:~$ net add bond bond1 alias bond1 on swp1
+cumulus@leaf01:~$ net add bond bond2 bond slaves swp2
+cumulus@leaf01:~$ net add bond bond2 alias bond2 on swp2
+cumulus@leaf01:~$ net add bond bond1 clag id 1
+cumulus@leaf01:~$ net add bond bond2 clag id 2
+cumulus@leaf01:~$ net add bridge bridge ports bond1,bond2
+cumulus@leaf01:~$ net add clag peer sys-mac 44:38:39:BE:EF:AA interface swp49-50 primary backup-ip 10.10.10.1
+cumulus@leaf02:~$ net add vlan 10 ip address 10.1.10.3/24
+cumulus@leaf02:~$ net add vlan 10 ip address-virtual 00:00:5e:00:01:00 10.1.10.1/24
+cumulus@leaf02:~$ net add vlan 20 ip address 10.1.20.3/24
+cumulus@leaf02:~$ net add vlan 20 ip address-virtual 00:00:5e:00:01:00 10.1.20.1/24
 cumulus@leaf02:~$ net pending
 cumulus@leaf02:~$ net commit
 ```
@@ -514,14 +501,8 @@ A primary address is required for the parent interface to use as the source addr
 {{< tabs "TabID448 ">}}
 {{< tab "CUE Commands ">}}
 
-**spine01**
-
-```
-cumulus@switch:~$ NEED COMMAND
-cumulus@switch:~$ cl config apply
-```
-
-**spine02**
+{{< tabs "TabID504 ">}}
+{{< tab "spine01 ">}}
 
 ```
 cumulus@switch:~$ NEED COMMAND
@@ -529,9 +510,21 @@ cumulus@switch:~$ cl config apply
 ```
 
 {{< /tab >}}
+{{< tab "spine02 ">}}
+
+```
+cumulus@switch:~$ NEED COMMAND
+cumulus@switch:~$ cl config apply
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+{{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
-**spine01**
+{{< tabs "TabID526 ">}}
+{{< tab "spine01 ">}}
 
 ```
 cumulus@spine01:~$ net add interface swp1 ip address 10.0.0.2/24
@@ -544,7 +537,8 @@ cumulus@spine01:~$ net pending
 cumulus@spine01:~$ net commit
 ```
 
-**spine02**
+{{< /tab >}}
+{{< tab "spine02 ">}}
 
 ```
 cumulus@spine02:~$ net add interface swp1 ip address 10.0.0.3/24
@@ -554,9 +548,14 @@ cumulus@spine02:~$ net add interface swp1 vrrp 44 2001:0db8::1/64
 cumulus@spine02:~$ net pending
 cumulus@spine02:~$ net commit
 ```
+{{< /tab >}}
+{{< /tabs >}}
 
 {{< /tab >}}
 {{< tab "Linux and vtysh Commands ">}}
+
+{{< tabs "TabID557 ">}}
+{{< tab "spine01 ">}}
 
 1. Edit the `/etc/network/interface` file to assign an IP address to the parent interface; for example:
 
@@ -573,8 +572,6 @@ cumulus@spine02:~$ net commit
 
 3. From the vtysh shell, configure VRRP.
 
-   **spine01**
-
     ```
     cumulus@spine01:~$ sudo vtysh
 
@@ -589,19 +586,38 @@ cumulus@spine02:~$ net commit
     spine01# exit
     ```
 
-   **spine02**
+{{< /tab >}}
+{{< tab "spine02 ">}}
 
-    ```
-    cumulus@spine02:~$ sudo vtysh
+1. Edit the `/etc/network/interface` file to assign an IP address to the parent interface; for example:
 
-    spine02# configure terminal
-    spine02(config)# interface swp1
-    spine02(config-if)# vrrp 44 ip 10.0.0.1
-    spine02(config-if)# vrrp 44 ipv6 2001:0db8::1
-    spine02(config-if)# end
-    spine02# write memory
-    spine02# exit
-    ```
+   ```
+   cumulus@spine02:~$ sudo vi /etc/network/interfaces
+   ...
+   auto swp1
+   iface swp1
+       address 10.0.0.3/24
+       address 2001:0db8::3/64
+   ```
+
+2. Enable the `vrrpd` daemon, then start the FRRouting service. See {{<link title="FRRouting">}}.
+
+3. From the vtysh shell, configure VRRP.
+
+   ```
+   cumulus@spine02:~$ sudo vtysh
+
+   spine02# configure terminal
+   spine02(config)# interface swp1
+   spine02(config-if)# vrrp 44 ip 10.0.0.1
+   spine02(config-if)# vrrp 44 ipv6 2001:0db8::1
+   spine02(config-if)# end
+   spine02# write memory
+   spine02# exit
+   ```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 {{< /tab >}}
 {{< /tabs >}}

@@ -154,14 +154,14 @@ router bgp 65101
 
 The eBGP multihop option lets you use BGP to exchange routes with an external peer that is more than one hop away.
 
-To establish a connection between two eBGP peers that are not directly connected:
+The following example command configures Cumulus Linux to establish a connection between two eBGP peers that are not directly connected and sets the maximum number of hops used to reach a eBGP peer to 1.
 
 {{< tabs "154 ">}}
 {{< tab "CUE Commands ">}}
 
 ```
 cumulus@leaf01:~$ cl set vrf default router bgp peer 10.10.10.101 remote-as external
-cumulus@leaf01:~$ cl set vrf default router bgp peer 10.10.10.101 NEED COMMAND
+cumulus@leaf01:~$ cl set vrf default router bgp peer 10.10.10.101 multihop-ttl 1
 cumulus@leaf01:~$ cl config apply
 ```
 
@@ -209,7 +209,7 @@ The following command example sets the TTL security hop count value to 200:
 {{< tab "CUE Commands ">}}
 
 ```
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp51 multihop-ttl 200
+cumulus@leaf01:~$ cl set vrf default router bgp peer swp51 ttl-security hops 200
 cumulus@leaf01:~$ cl config apply
 ```
 
@@ -423,14 +423,14 @@ The following example command removes private ASNs from routes sent to the neigh
 {{< tab "CUE Commands ">}}
 
 ```
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp51 NEED COMMAND
+cumulus@leaf01:~$ NEED COMMAND
 cumulus@leaf01:~$ cl config apply
 ```
 
 You can replace the private ASNs with your public ASN with the following command:
 
 ```
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp51 NEED COMMAND
+cumulus@leaf01:~$ cl set vrf default router bgp peer swp51 local-as replace on
 cumulus@leaf01:~$ cl config apply
 ```
 

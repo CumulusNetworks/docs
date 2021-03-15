@@ -14,6 +14,7 @@ This topic discusses configuring various interfaces:
 - Network interfaces
 - VLAN interfaces
 - Switch virtual interfaces (SVIs)
+- VRFs
 
 ## Configure the Loopback Interface
 
@@ -112,6 +113,20 @@ Save your changes to the configuration:
 
 Configure the network interfaces in the INTERFACE table in `/etc/sonic/config_db.json`.
 
+| Option | Description |
+| ------ | ----------- |
+| fec | Sets the FEC (forward error correction) |
+| ip | Adds or removes an IP address for the interface. |
+| mtu | Sets the MTU (maximum transmission unit) size for the interface. |
+| pfc | Sets the PFC (priority flow control) configuration for the interface. |
+| shutdown | Administratively shuts down the interface. |
+| speed | Sets the interface port speed. |
+| startup | Administratively brings up the interface. |
+| transceiver | Enables or disables low power mode for a transceiver. Also can reset the transceiver. |
+| vrf | Binds or unbinds the interface to the specified VRF. |
+
+    breakout - to set interface breakout mode (how now?)
+
 {{<tab "SONiC CLI">}}
 
 
@@ -157,6 +172,49 @@ admin@switch:~$ sudo vi /etc/sonic/config_db.json
 Save your changes to the configuration:
 
     admin@switch:~$ sudo config save -y
+
+
+For SVI, see: https://docs.cumulusnetworks.com/cumulus-linux-43/Layer-2/Ethernet-Bridging-VLANs/#configure-a-switch-virtual-interface-svi
+
+
+## Configure VRFs
+
+This command is used to bind a interface to a vrf. By default, all L3 interfaces will be in default vrf. 
+
+Configure the VLAN interfaces in the VRF table in `/etc/sonic/config_db.json`.
+
+{{<tabs "VRFs">}}
+
+{{<tab "SONiC CLI">}}
+
+admin@switch:~$ sudo config interface vrf bind Ethernet0 rocket
+
+{{</tab>}}
+
+{{<tab "config_db.json">}}
+
+```
+admin@switch:~$ sudo vi /etc/sonic/config_db.json
+'VRF:rocket': {
+	'v4': 'true',
+	'v6': 'false',
+	'src_mac': '02:04:05:06:07:08',
+	'ttl_action': 'copy',
+	'ip_opt_action': 'deny',
+	'l3_mc_action': 'drop'
+}
+```
+
+{{</tab>}}
+
+{{</tabs>}}
+
+Save your changes to the configuration:
+
+    admin@switch:~$ sudo config save -y
+
+
+
 
 {{<tabs "TITLE">}}
 

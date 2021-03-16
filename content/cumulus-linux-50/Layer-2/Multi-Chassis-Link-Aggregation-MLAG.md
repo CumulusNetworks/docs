@@ -67,9 +67,7 @@ If you cannot use LACP in your environment, you can configure the bonds in {{<li
 
 ```
 cumulus@leaf01:~$ cl set interface bond1 bond member swp1
-cumulus@leaf01:~$ cl set NEED COMMAND FOR ALIAS
 cumulus@leaf01:~$ cl set interface bond2 bond member swp2
-cumulus@leaf01:~$ cl set NEED COMMAND FOR ALIAS
 cumulus@leaf01:~$ cl config apply
 ```
 
@@ -318,8 +316,8 @@ Edit the `/etc/network/interfaces` file to add the following parameters, then ru
 ```
 cumulus@leaf01:~$ sudo nano /etc/network/interfaces
 ...
-auto bridge
-iface bridge
+auto br_default
+iface br_default
     bridge-ports bond1 bond2 peerlink
     bridge-vlan-aware yes
 ...
@@ -360,8 +358,8 @@ cumulus@leaf01:~$ sudo ifreload -a
 ```
 cumulus@leaf02:~$ sudo nano /etc/network/interfaces
 ...
-auto bridge
-iface bridge
+auto br_default
+iface br_default
     bridge-ports bond1 bond2 peerlink
     bridge-vlan-aware yes
 ...
@@ -637,8 +635,8 @@ Edit the `/etc/network/interfaces` file, then run the `ifreload -a` command. For
 ```
 cumulus@switch:~$ sudo nano /etc/network/interfaces
 ...
-auto bridge
-iface bridge
+auto br_default
+iface br_default
     bridge-ports peerlink uplink bond1 bond2
 
 auto peerlink
@@ -789,15 +787,15 @@ cumulus@switch:~$ net commit
 {{< /tab >}}
 {{< /tabs >}}
 
-## Configuration Examples
-
-### Basic Example
+## Configuration Example
 
 The example below shows a basic MLAG configuration, where:
 - leaf01 and leaf02 are MLAG peers
 - Three bonds are configured for MLAG, each with a single port, a peer link that is a bond with two member ports, and three VLANs on each port
 
 {{< figure src="/images/cumulus-linux/mlag-config.png" width="450" >}}
+
+For an example configuration with MLAG and BGP, see the {{<link title="Configuration Example" text="BGP configuration example">}}.
 
 #### CUE Commands
 
@@ -834,16 +832,6 @@ cumulus@leaf02:~$ cl config apply
 ```
 
 {{< /tab >}}
-{{< tab "spine01 ">}}
-
-```
-cumulus@spine01:~$ 
-cumulus@spine01:~$ 
-cumulus@spine01:~$ 
-cumulus@spine01:~$ 
-```
-
-{{< /tab >}}
 {{< /tabs >}}
 
 #### Configuration Files
@@ -860,109 +848,91 @@ iface lo inet loopback
 
 auto mgmt
 iface mgmt
-    vrf-table auto
     address 127.0.0.1/8
     address ::1/128
+    vrf-table auto
 
 auto eth0
 iface eth0 inet dhcp
+    ip-forward off
+    ip6-forward off
     vrf mgmt
 
-auto bridge
-iface bridge
-    bridge-ports peerlink
-    bridge-ports bond1 bond2 bond3
-    bridge-vids 10 20 30  
-    bridge-vlan-aware yes
+auto bond1
+iface bond1
+    bond-slaves swp1
+    bond-mode 802.3ad
+    bond-lacp-bypass-allow no
+    clag-id 1
+
+auto bond2
+iface bond2
+    bond-slaves swp2
+    bond-mode 802.3ad
+    bond-lacp-bypass-allow no
+    clag-id 2
+
+auto bond3
+iface bond3
+    bond-slaves swp3
+    bond-mode 802.3ad
+    bond-lacp-bypass-allow no
+    clag-id 3
+
+auto peerlink
+iface peerlink
+    bond-slaves swp49 swp50
+    bond-mode 802.3ad
+    bond-lacp-bypass-allow no
+
+auto peerlink.4094
+iface peerlink.4094
+    clagd-peer-ip linklocal
+    clagd-backup-ip 10.10.10.2
+    clagd-sys-mac 44:38:39:BE:EF:AA
+    clagd-args --initDelay 180
 
 auto vlan10
 iface vlan10
     address 10.1.10.2/24
-    vlan-raw-device bridge
+    vlan-raw-device br_default
     vlan-id 10
 
 auto vlan20
 iface vlan20
     address 10.1.20.2/24
-    vlan-raw-device bridge
+    vlan-raw-device br_default
     vlan-id 20
 
 auto vlan30
 iface vlan30
     address 10.1.30.2/24
-    vlan-raw-device bridge
+    vlan-raw-device br_default
     vlan-id 30
-
-auto swp51
-iface swp51
-    alias leaf to spine
-
-auto swp49
-iface swp49
-    alias peerlink
-
-auto swp50
-iface swp50
-    alias peerlink
-
-auto peerlink
-iface peerlink
-    bond-slaves swp49 swp50
-
-auto peerlink.4094
-iface peerlink.4094
-    clagd-backup-ip 10.10.10.2
-    clagd-peer-ip linklocal
-    clagd-priority 1000
-    clagd-sys-mac 44:38:39:BE:EF:AA
 
 auto swp1
 iface swp1
-    alias bond member of bond1
-    mtu 9000
-
-auto bond1
-iface bond1
-    alias bond1 on swp1
-    mtu 9000
-    clag-id 1
-    bridge-access 10
-    bond-slaves swp1
-    bond-lacp-bypass-allow yes
-    mstpctl-bpduguard yes
-    mstpctl-portadminedge yes
 
 auto swp2
 iface swp2
-    alias bond member of bond2
-    mtu 9000
-
-auto bond2
-iface bond2
-    alias bond2 on swp2
-    mtu 9000
-    clag-id 2
-    bridge-access 20
-    bond-slaves swp2
-    bond-lacp-bypass-allow yes
-    mstpctl-bpduguard yes
-    mstpctl-portadminedge yes
 
 auto swp3
 iface swp3
-    alias bond member of bond3
-    mtu 9000
 
-auto bond3
-iface bond3
-    alias bond3 on swp3
-    mtu 9000
-    clag-id 3
-    bridge-access 30
-    bond-slaves swp3
-    bond-lacp-bypass-allow yes
-    mstpctl-bpduguard yes
-    mstpctl-portadminedge yes
+auto swp49
+iface swp49
+
+auto swp50
+iface swp50
+
+auto swp51
+iface swp51
+
+auto br_default
+iface br_default
+    bridge-ports peerlink bond1 bond2 bond3
+    bridge-vids 10 20 30  
+    bridge-vlan-aware yes
 ```
 
 {{< /tab >}}
@@ -977,109 +947,91 @@ iface lo inet loopback
 
 auto mgmt
 iface mgmt
-    vrf-table auto
     address 127.0.0.1/8
     address ::1/128
+    vrf-table auto
 
 auto eth0
 iface eth0 inet dhcp
+    ip-forward off
+    ip6-forward off
     vrf mgmt
 
-auto bridge
-iface bridge
-    bridge-ports peerlink
-    bridge-ports bond1 bond2 bond3
+auto bond1
+iface bond1
+    bond-slaves swp1
+    bond-mode 802.3ad
+    bond-lacp-bypass-allow no
+    clag-id 1
+
+auto bond2
+iface bond2
+    bond-slaves swp2
+    bond-mode 802.3ad
+    bond-lacp-bypass-allow no
+    clag-id 2
+
+auto bond3
+iface bond3
+    bond-slaves swp3
+    bond-mode 802.3ad
+    bond-lacp-bypass-allow no
+    clag-id 3
+
+auto peerlink
+iface peerlink
+    bond-slaves swp49 swp50
+    bond-mode 802.3ad
+    bond-lacp-bypass-allow no
+
+auto peerlink.4094
+iface peerlink.4094
+    clagd-peer-ip linklocal
+    clagd-backup-ip 10.10.10.1
+    clagd-sys-mac 44:38:39:BE:EF:AA
+    clagd-args --initDelay 180
+
+auto vlan10
+iface vlan10
+    address 10.1.10.3/24
+    vlan-raw-device br_default
+    vlan-id 10
+
+auto vlan20
+iface vlan20
+    address 10.1.20.3/24
+    vlan-raw-device br_default
+    vlan-id 20
+
+auto vlan30
+iface vlan30
+    address 10.1.30.3/24
+    vlan-raw-device br_default
+    vlan-id 30
+
+auto swp1
+iface swp1
+
+auto swp2
+iface swp2
+
+auto swp3
+iface swp3
+
+auto swp49
+iface swp49
+
+auto swp50
+iface swp50
+
+auto swp51
+iface swp51
+
+auto br_default
+iface br_default
+    bridge-ports peerlink bond1 bond2 bond3
     bridge-vids 10 20 30  
     bridge-vlan-aware yes
-
-auto vlan10
-iface vlan10
-    address 10.1.10.3/24
-    vlan-raw-device bridge
-    vlan-id 10
-
-auto vlan20
-iface vlan20
-    address 10.1.20.3/24
-    vlan-raw-device bridge
-    vlan-id 20
-
-auto vlan30
-iface vlan30
-    address 10.1.30.3/24
-    vlan-raw-device bridge
-    vlan-id 30
-
-auto swp51
-iface swp51
-    alias leaf to spine
-
-auto swp49
-iface swp49
-    alias peerlink
-
-auto swp50
-iface swp50
-    alias peerlink
-
-auto peerlink
-iface peerlink
-    bond-slaves swp49 swp50
-
-auto peerlink.4094
-iface peerlink.4094
-    clagd-backup-ip 10.10.10.1
-    clagd-peer-ip linklocal
-    clagd-priority 32768
-    clagd-sys-mac 44:38:39:BE:EF:AA
-
-auto swp1
-iface swp1
-    alias bond member of bond1
-    mtu 9000
-
-auto bond1
-iface bond1
-    alias bond1 on swp1
-    mtu 9000
-    clag-id 1
-    bridge-access 10
-    bond-slaves swp1
-    bond-lacp-bypass-allow yes
-    mstpctl-bpduguard yes
-    mstpctl-portadminedge yes
-
-auto swp2
-iface swp2
-    alias bond member of bond2
-    mtu 9000
-
-auto bond2
-iface bond2
-    alias bond2 on swp2
-    mtu 9000
-    clag-id 2
-    bridge-access 20
-    bond-slaves swp2
-    bond-lacp-bypass-allow yes
-    mstpctl-bpduguard yes
-    mstpctl-portadminedge yes
-
-auto swp3
-iface swp3
-    alias bond member of bond3
-    mtu 9000
-
-auto bond3
-iface bond3
-    alias bond3 on swp3
-    mtu 9000
-    clag-id 3
-    bridge-access 30
-    bond-slaves swp3
-    bond-lacp-bypass-allow yes
-    mstpctl-bpduguard yes
-    mstpctl-portadminedge yes
 ```
 
 {{< /tab >}}
@@ -1094,776 +1046,18 @@ iface lo inet loopback
 
 auto mgmt
 iface mgmt
-    vrf-table auto
     address 127.0.0.1/8
     address ::1/128
+    vrf-table auto
 
 auto eth0
 iface eth0 inet dhcp
+    ip-forward off
+    ip6-forward off
     vrf mgmt
 
 auto swp1
 iface swp1
-    alias leaf to spine
-```
-
-{{< /tab >}}
-{{< /tabs >}}
-
-### MLAG and BGP Example
-
-The example configuration below shows an MLAG configuration where:
-- leaf01 and leaf02 are MLAG peers, and leaf03 and leaf04 are are MLAG peers
-- Three bonds are configured for MLAG, each with a single port, a peer link that is a bond with two member ports, and three VLANs on each port
-- BGP unnumbered is configured on the leafs and spines with a routed adjacency across the `peerlink.4094` interface
-
-{{< figure src = "/images/cumulus-linux/mlag-config-peering.png" >}}
-
-**/etc/network/interfaces**
-
-{{< tabs "TabID901 ">}}
-
-{{< tab "leaf01 ">}}
-
-```
-cumulus@leaf01:~$ cat /etc/network/interfaces
-auto lo
-iface lo inet loopback
-    address 10.10.10.1/32
-
-auto mgmt
-iface mgmt
-    vrf-table auto
-    address 127.0.0.1/8
-    address ::1/128
-
-auto eth0
-iface eth0 inet dhcp
-    vrf mgmt
-
-auto bridge
-iface bridge
-    bridge-ports peerlink
-    bridge-ports bond1 bond2 bond3
-    bridge-vids 10 20 30
-    bridge-vlan-aware yes
-
-auto vlan10
-iface vlan10
-    address 10.1.10.2/24
-    vlan-raw-device bridge
-    vlan-id 10
-
-auto vlan20
-iface vlan20
-    address 10.1.20.2/24
-    vlan-raw-device bridge
-    vlan-id 20
-
-auto vlan30
-iface vlan30
-    address 10.1.30.2/24
-    vlan-raw-device bridge
-    vlan-id 30
-
-auto swp51
-iface swp51
-    alias leaf to spine
-
-auto swp52
-iface swp52
-    alias leaf to spine
-
-auto swp49
-iface swp49
-    alias peerlink
-
-auto swp50
-iface swp50
-    alias peerlink
-
-auto peerlink
-iface peerlink
-    bond-slaves swp49 swp50
-
-auto peerlink.4094
-iface peerlink.4094
-    clagd-backup-ip 10.10.10.2
-    clagd-peer-ip linklocal
-    clagd-priority 1000
-    clagd-sys-mac 44:38:39:BE:EF:AA
-
-auto swp1
-iface swp1
-    alias bond member of bond1
-    mtu 9000
-
-auto bond1
-iface bond1
-    alias bond1 on swp1
-    mtu 9000
-    clag-id 1
-    bridge-access 10
-    bond-slaves swp1
-    bond-lacp-bypass-allow yes
-    mstpctl-bpduguard yes
-    mstpctl-portadminedge yes
-
-auto swp2
-iface swp2
-    alias bond member of bond2
-    mtu 9000
-
-auto bond2
-iface bond2
-    alias bond2 on swp2
-    mtu 9000
-    clag-id 2
-    bridge-access 20
-    bond-slaves swp2
-    bond-lacp-bypass-allow yes
-    mstpctl-bpduguard yes
-    mstpctl-portadminedge yes
-
-auto swp3
-iface swp3
-    alias bond member of bond3
-    mtu 9000
-
-auto bond3
-iface bond3
-    alias bond3 on swp3
-    mtu 9000
-    clag-id 3
-    bridge-access 30
-    bond-slaves swp3
-    bond-lacp-bypass-allow yes
-    mstpctl-bpduguard yes
-    mstpctl-portadminedge yes
-```
-
-{{< /tab >}}
-
-{{< tab "leaf02 ">}}
-
-```
-cumulus@leaf02:~$ cat /etc/network/interfaces
-auto lo
-iface lo inet loopback
-    address 10.10.10.2/32
-
-auto mgmt
-iface mgmt
-    vrf-table auto
-    address 127.0.0.1/8
-    address ::1/128
-
-
-auto eth0
-iface eth0 inet dhcp
-    vrf mgmt
-
-auto bridge
-iface bridge
-    bridge-ports peerlink
-    bridge-ports bond1 bond2 bond3
-    bridge-vids 10 20 30
-    bridge-vlan-aware yes
-
-auto vlan10
-iface vlan10
-    address 10.1.10.3/24
-    vlan-raw-device bridge
-    vlan-id 10
-
-auto vlan20
-iface vlan20
-    address 10.1.20.3/24
-    vlan-raw-device bridge
-    vlan-id 20
-
-auto vlan30
-iface vlan30
-    address 10.1.30.3/24
-    vlan-raw-device bridge
-    vlan-id 30
-
-auto swp51
-iface swp51
-    alias leaf to spine
-
-auto swp52
-iface swp52
-    alias leaf to spine
-
-auto swp49
-iface swp49
-    alias peerlink
-
-auto swp50
-iface swp50
-    alias peerlink
-
-auto peerlink
-iface peerlink
-    bond-slaves swp49 swp50
-
-auto peerlink.4094
-iface peerlink.4094
-    clagd-backup-ip 10.10.10.1
-    clagd-peer-ip linklocal
-    clagd-priority 32768
-    clagd-sys-mac 44:38:39:BE:EF:AA
-
-auto swp1
-iface swp1
-    alias bond member of bond1
-    mtu 9000
-
-auto bond1
-iface bond1
-    alias bond1 on swp1
-    mtu 9000
-    clag-id 1
-    bridge-access 10
-    bond-slaves swp1
-    bond-lacp-bypass-allow yes
-    mstpctl-bpduguard yes
-    mstpctl-portadminedge yes
-
-auto swp2
-iface swp2
-    alias bond member of bond2
-    mtu 9000
-
-auto bond2
-iface bond2
-    alias bond2 on swp2
-    mtu 9000
-    clag-id 2
-    bridge-access 20
-    bond-slaves swp2
-    bond-lacp-bypass-allow yes
-    mstpctl-bpduguard yes
-    mstpctl-portadminedge yes
-
-auto swp3
-iface swp3
-    alias bond member of bond3
-    mtu 9000
-
-auto bond3
-iface bond3
-    alias bond3 on swp3
-    mtu 9000
-    clag-id 3
-    bridge-access 30
-    bond-slaves swp3
-    bond-lacp-bypass-allow yes
-    mstpctl-bpduguard yes
-    mstpctl-portadminedge yes
-```
-
-{{< /tab >}}
-{{< tab "leaf03 ">}}
-
-```
-cumulus@leaf03:~$ cat /etc/network/interfaces
-auto lo
-iface lo inet loopback
-    address 10.10.10.3/32
-
-auto mgmt
-iface mgmt
-    vrf-table auto
-    address 127.0.0.1/8
-    address ::1/128
-
-
-auto eth0
-iface eth0 inet dhcp
-    vrf mgmt
-
-auto bridge
-iface bridge
-    bridge-ports peerlink
-    bridge-ports bond1 bond2 bond3
-    bridge-vids 10 20 30
-    bridge-vlan-aware yes
-
-auto vlan10
-iface vlan10
-    address 10.1.10.2/24
-    vlan-raw-device bridge
-    vlan-id 10
-
-auto vlan20
-iface vlan20
-    address 10.1.20.2/24
-    vlan-raw-device bridge
-    vlan-id 20
-
-auto vlan30
-iface vlan30
-    address 10.1.30.2/24
-    vlan-raw-device bridge
-    vlan-id 30
-
-auto swp51
-iface swp51
-    alias leaf to spine
-
-auto swp52
-iface swp52
-    alias leaf to spine
-
-auto swp49
-iface swp49
-    alias peerlink
-
-auto swp50
-iface swp50
-    alias peerlink
-
-auto peerlink
-iface peerlink
-    bond-slaves swp49 swp50
-
-auto peerlink.4094
-iface peerlink.4094
-    clagd-backup-ip 10.10.10.4
-    clagd-peer-ip linklocal
-    clagd-priority 1000
-    clagd-sys-mac 44:38:39:BE:EF:BB
-
-auto swp1
-iface swp1
-    alias bond member of bond1
-    mtu 9000
-
-auto bond1
-iface bond1
-    alias bond1 on swp1
-    mtu 9000
-    clag-id 1
-    bridge-access 10
-    bond-slaves swp1
-    bond-lacp-bypass-allow yes
-    mstpctl-bpduguard yes
-    mstpctl-portadminedge yes
-
-auto swp2
-iface swp2
-    alias bond member of bond2
-    mtu 9000
-
-auto bond2
-iface bond2
-    alias bond2 on swp2
-    mtu 9000
-    clag-id 2
-    bridge-access 20
-    bond-slaves swp2
-    bond-lacp-bypass-allow yes
-    mstpctl-bpduguard yes
-    mstpctl-portadminedge yes
-
-auto swp3
-iface swp3
-    alias bond member of bond3
-    mtu 9000
-
-auto bond3
-iface bond3
-    alias bond3 on swp3
-    mtu 9000
-    clag-id 3
-    bridge-access 30
-    bond-slaves swp3
-    bond-lacp-bypass-allow yes
-    mstpctl-bpduguard yes
-    mstpctl-portadminedge yes
-```
-
-{{< /tab >}}
-{{< tab "leaf04 ">}}
-
-```
-cumulus@leaf04:~$ cat /etc/network/interfaces
-auto lo
-iface lo inet loopback
-    address 10.10.10.4/32
-
-auto mgmt
-iface mgmt
-    vrf-table auto
-    address 127.0.0.1/8
-    address ::1/128
-
-auto eth0
-iface eth0 inet dhcp
-    vrf mgmt
-
-auto bridge
-iface bridge
-    bridge-ports peerlink
-    bridge-ports bond1 bond2 bond3
-    bridge-vids 10 20 30
-    bridge-vlan-aware yes
-
-auto vlan10
-iface vlan10
-    address 10.1.10.3/24
-    vlan-raw-device bridge
-    vlan-id 10
-
-auto vlan20
-iface vlan20
-    address 10.1.20.3/24
-    vlan-raw-device bridge
-    vlan-id 20
-
-auto vlan30
-iface vlan30
-    address 10.1.30.3/24
-    vlan-raw-device bridge
-    vlan-id 30
-
-auto swp51
-iface swp51
-    alias leaf to spine
-
-auto swp52
-iface swp52
-    alias leaf to spine
-
-auto swp49
-iface swp49
-    alias peerlink
-
-auto swp50
-iface swp50
-    alias peerlink
-
-auto peerlink
-iface peerlink
-    bond-slaves swp49 swp50
-
-auto peerlink.4094
-iface peerlink.4094
-    clagd-backup-ip 10.10.10.3
-    clagd-peer-ip linklocal
-    clagd-priority 32768
-    clagd-sys-mac 44:38:39:BE:EF:BB
-
-auto swp1
-iface swp1
-    alias bond member of bond1
-    mtu 9000
-
-auto bond1
-iface bond1
-    alias bond1 on swp1
-    mtu 9000
-    clag-id 1
-    bridge-access 10
-    bond-slaves swp1
-    bond-lacp-bypass-allow yes
-    mstpctl-bpduguard yes
-    mstpctl-portadminedge yes
-
-auto swp2
-iface swp2
-    alias bond member of bond2
-    mtu 9000
-
-auto bond2
-iface bond2
-    alias bond2 on swp2
-    mtu 9000
-    clag-id 2
-    bridge-access 20
-    bond-slaves swp2
-    bond-lacp-bypass-allow yes
-    mstpctl-bpduguard yes
-    mstpctl-portadminedge yes
-
-auto swp3
-iface swp3
-    alias bond member of bond3
-    mtu 9000
-
-auto bond3
-iface bond3
-    alias bond3 on swp3
-    mtu 9000
-    clag-id 3
-    bridge-access 30
-    bond-slaves swp3
-    bond-lacp-bypass-allow yes
-    mstpctl-bpduguard yes
-    mstpctl-portadminedge yes
-```
-
-{{< /tab >}}
-{{< tab "spine01 ">}}
-
-```
-cumulus@spine01:~$ cat /etc/network/interfaces
-auto lo
-iface lo inet loopback
-    address 10.10.10.101/32
-
-auto mgmt
-iface mgmt
-    vrf-table auto
-    address 127.0.0.1/8
-    address ::1/128
-
-auto eth0
-iface eth0 inet dhcp
-    vrf mgmt
-auto swp1
-iface swp1
-    alias leaf to spine
-
-auto swp2
-iface swp2
-    alias leaf to spine
-
-auto swp3
-iface swp3
-    alias leaf to spine
-
-auto swp4
-iface swp4
-    alias leaf to spine
-```
-
-{{< /tab >}}
-{{< tab "spine02 ">}}
-
-```
-cumulus@spine02:~$ cat /etc/network/interfaces
-auto lo
-iface lo inet loopback
-    address 10.10.10.102/32
-
-auto mgmt
-iface mgmt
-    vrf-table auto
-    address 127.0.0.1/8
-    address ::1/128
-
-auto eth0
-iface eth0 inet dhcp
-    vrf mgmt
-
-auto swp1
-iface swp1
-    alias leaf to spine
-
-auto swp2
-iface swp2
-    alias leaf to spine
-
-auto swp3
-iface swp3
-    alias leaf to spine
-
-auto swp4
-iface swp4
-    alias leaf to spine
-```
-
-{{< /tab >}}
-{{< /tabs >}}
-
-**/etc/frr/frr.conf**
-
-{{< tabs "TabID944 ">}}
-{{< tab "leaf01 ">}}
-
-```
-cumulus@leaf01:~$ cat /etc/frr/frr.conf
-...
-service integrated-vtysh-config
-!
-log syslog informational
-!
-router bgp 65101
- bgp router-id 10.10.10.1
- bgp bestpath as-path multipath-relax
- neighbor underlay peer-group
- neighbor underlay remote-as external
- neighbor peerlink.4094 interface remote-as internal
- neighbor swp51 interface peer-group underlay
- neighbor swp52 interface peer-group underlay
- !
- !
- address-family ipv4 unicast
-  redistribute connected
- exit-address-family
- !
-!
-line vty
-!
-```
-
-{{< /tab >}}
-{{< tab "leaf02 ">}}
-
-```
-cumulus@leaf02:~$ cat /etc/frr/frr.conf
-...
-service integrated-vtysh-config
-!
-log syslog informational
-!
-router bgp 65101
- bgp router-id 10.10.10.2
- bgp bestpath as-path multipath-relax
- neighbor underlay peer-group
- neighbor underlay remote-as external
- neighbor peerlink.4094 interface remote-as internal
- neighbor swp51 interface peer-group underlay
- neighbor swp52 interface peer-group underlay
- !
- !
- address-family ipv4 unicast
-  redistribute connected
- exit-address-family
- !
-!
-
-!
-line vty
-!
-```
-
-{{< /tab >}}
-{{< tab "leaf03 ">}}
-
-```
-cumulus@leaf03:~$ cat /etc/frr/frr.conf
-...
-service integrated-vtysh-config
-!
-log syslog informational
-!
-router bgp 65102
- bgp router-id 10.10.10.3
- bgp bestpath as-path multipath-relax
- neighbor underlay peer-group
- neighbor underlay remote-as external
- neighbor peerlink.4094 interface remote-as internal
- neighbor swp51 interface peer-group underlay
- neighbor swp52 interface peer-group underlay
- !
- !
- address-family ipv4 unicast
-  redistribute connected
- exit-address-family
-!
-
-!
-line vty
-!
-
-```
-
-{{< /tab >}}
-{{< tab "leaf04 ">}}
-
-```
-cumulus@leaf04:~$ cat /etc/frr/frr.conf
-...
-service integrated-vtysh-config
-!
-log syslog informational
-!
-router bgp 65102
- bgp router-id 10.10.10.4
- bgp bestpath as-path multipath-relax
- neighbor underlay peer-group
- neighbor underlay remote-as external
- neighbor peerlink.4094 interface remote-as internal
- neighbor swp51 interface peer-group underlay
- neighbor swp52 interface peer-group underlay
- !
- !
- address-family ipv4 unicast
-  redistribute connected
- exit-address-family
- !
-
-!
-line vty
-!
-```
-
-{{< /tab >}}
-{{< tab "spine01 ">}}
-
-```
-cumulus@spine01:~$ cat /etc/frr/frr.conf
-...
-service integrated-vtysh-config
-!
-log syslog informational
-!
-!
-router bgp 65199
- bgp router-id 10.10.10.101
- bgp bestpath as-path multipath-relax
- neighbor underlay peer-group
- neighbor underlay remote-as external
- neighbor swp1 interface peer-group underlay
- neighbor swp2 interface peer-group underlay
- neighbor swp3 interface peer-group underlay
- neighbor swp4 interface peer-group underlay
- !
- !
- address-family ipv4 unicast
-  redistribute connected
- exit-address-family
-!
-
-!
-line vty
-!
-```
-
-{{< /tab >}}
-{{< tab "spine02 ">}}
-
-```
-cumulus@spine02:~$ cat /etc/frr/frr.conf
-...
-service integrated-vtysh-config
-!
-log syslog informational
-!
-!
-router bgp 65199
- bgp router-id 10.10.10.102
- bgp bestpath as-path multipath-relax
- neighbor underlay peer-group
- neighbor underlay remote-as external
- neighbor swp1 interface peer-group underlay
- neighbor swp2 interface peer-group underlay
- neighbor swp3 interface peer-group underlay
- neighbor swp4 interface peer-group underlay
- !
- !
- address-family ipv4 unicast
-  redistribute connected
- exit-address-family
-!
-
-!
-line vty
-!
 ```
 
 {{< /tab >}}

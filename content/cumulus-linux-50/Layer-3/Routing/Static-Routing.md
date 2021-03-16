@@ -62,9 +62,6 @@ leaf01# exit
 cumulus@leaf01:~$
 ```
 
-{{< /tab >}}
-{{< /tabs >}}
-
 The commands save the static route configuration in the `/etc/frr/frr.conf` file. For example:
 
 ```
@@ -74,6 +71,9 @@ ip route 10.10.10.101/32 10.0.1.0
 !
 ...
 ```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 The following example commands configure Cumulus Linux to send traffic with the destination prefix 10.10.10.61/32 out swp3 (10.0.0.32/31) to the next hop 10.0.0.33 in vrf BLUE.
 
@@ -128,9 +128,6 @@ border01# exit
 cumulus@border01:~$
 ```
 
-{{< /tab >}}
-{{< /tabs >}}
-
 The commands save the static route configuration in the `/etc/frr/frr.conf` file. For example:
 
 ```
@@ -139,6 +136,9 @@ vrf BLUE
  ip route 10.10.10.61/32 10.0.0.33
 ...
 ```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 To delete a static route:
 
@@ -223,10 +223,10 @@ iface swp51
     post-down ip route del 10.10.10.101/32 via 10.0.1.0
 ```
 
+The `ip route` command allows you to manipulate the kernel routing table directly from the Linux shell. See `man ip(8)` for details. FRRouting monitors the kernel routing table changes and updates its own routing table accordingly.
+
 {{< /tab >}}
 {{< /tabs >}}
-
-The `ip route` command allows you to manipulate the kernel routing table directly from the Linux shell. See `man ip(8)` for details. FRRouting monitors the kernel routing table changes and updates its own routing table accordingly.
 
 ## Configure a Gateway or Default Route
 
@@ -241,6 +241,10 @@ The following example configures the default route 0.0.0.0/0, which indicates an
 cumulus@leaf01:~$ cl set vrf default router static 0.0.0.0/0 via 10.0.1.0
 cumulus@leaf01:~$ cl config apply
 ```
+
+{{%notice note%}}
+Instead of 0.0.0.0/0, you can specify `default` or `default6`.
+{{%/notice%}}
 
 {{< /tab >}}
 {{< tab "NCLU Commands ">}}
@@ -265,14 +269,7 @@ leaf01# exit
 cumulus@leaf01:~$
 ```
 
-{{%notice note%}}
-The default route created by the `gateway` parameter in ifupdown2 is not installed in FRR and cannot be redistributed into other routing protocols. See {{<link url="Interface-Configuration-and-Management#ifupdown2-and-the-gateway-parameter" text="ifupdown2 and the gateway Parameter" >}} for more information.
-{{%/notice%}}
-
-{{< /tab >}}
-{{< /tabs >}}
-
-The NCLU and vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+The vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
 ```
 ...
@@ -281,6 +278,13 @@ ip route 0.0.0.0/0 10.0.1.0
 !
 ...
 ```
+
+{{%notice note%}}
+The default route created by the `gateway` parameter in ifupdown2 is not installed in FRR and cannot be redistributed into other routing protocols. See {{<link url="Interface-Configuration-and-Management#ifupdown2-and-the-gateway-parameter" text="ifupdown2 and the gateway Parameter" >}} for more information.
+{{%/notice%}}
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ## Considerations
 

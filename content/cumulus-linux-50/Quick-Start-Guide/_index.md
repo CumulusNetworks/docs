@@ -350,7 +350,7 @@ cumulus@switch:~$ cl set interface swp1 bridge domain br_default
 cumulus@switch:~$ cl config apply
 ```
 
-You can add a range of ports in one command. For example, to add swp1 through swp10, swp12, and swp14 through swp20 to bridge:
+You can add a range of ports in one command. For example, to add swp1 through swp10, swp12, and swp14 through swp20 to the bridge:
 
 ```
 cumulus@switch:~$ cl set interface swp1,swp12,swp14-20 bridge domain br_default
@@ -361,9 +361,9 @@ To show the bridges configured on the switch, use the `cl show bridge` command:
 
 ```
 cumulus@switch:~$ cl show bridge
-          running  applied     pending     description
---------  -------  ----------  ----------  --------------
-[domain]  bridge1  br_default  br_default  Bridge domains
+          running     applied      description
+--------  -------     ----------   --------------
+[domain]  br_default  br_default   Bridge domains
 ```
 
 {{< /tab >}}
@@ -377,7 +377,7 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-You can add a range of ports in one command. For example, to add swp1 through swp10, swp12, and swp14 through swp20 to bridge:
+You can add a range of ports in one command. For example, to add swp1 through swp10, swp12, and swp14 through swp20 to the bridge:
 
 ```
 cumulus@switch:~$ net add bridge bridge ports swp1-10,12,14-20
@@ -388,24 +388,24 @@ cumulus@switch:~$ net commit
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-In the following configuration example, the front panel port swp1 is placed into a bridge called br0:
+In the following configuration example, the front panel port swp1 is placed into the bridge `br_default`:
 
 ```
-    ...
-    auto br0
-    iface br0
-      bridge-ports swp1
-      bridge-stp on
+...
+auto br_default
+iface br_default
+    bridge-ports swp1
+...
 ```
 
-To put a range of ports into a bridge, use the `glob` keyword. For example, to add swp1 through swp10, swp12, and swp14 through swp20 to br0:
+To put a range of ports into a bridge, use the `glob` keyword. For example, to add swp1 through swp10, swp12, and swp14 through swp20 to `br_default`:
 
 ```
-    ...
-    auto br0
-    iface br0
-      bridge-ports glob swp1-10 swp12 glob swp14-20
-      bridge-stp on
+...
+auto br_default
+iface br_default
+    bridge-ports glob swp1-10 swp12 glob swp14-20
+...
 ```
 
 To activate or apply the configuration to the kernel:
@@ -416,14 +416,6 @@ cumulus@switch:~$ sudo ifquery -a
 
 # Then activate the change if no errors are found:
 cumulus@switch:~$ sudo ifup -a
-```
-
-To view the changes in the kernel, use the `brctl` command:
-
-```
-cumulus@switch:~$ brctl show
-bridge name     bridge id              STP enabled     interfaces
-br0             8000.089e01cedcc2       yes              swp1
 ```
 
 {{< /tab >}}
@@ -487,12 +479,11 @@ iface swp1
 To add an IP address to a bridge interface, include the address under the `iface` stanza in the `/etc/network/interfaces` file. If you want to use a VLAN other than the native one, set the bridge PVID:
 
 ```
-auto br0
-iface br0
+auto br_default
+iface br_default
     address 10.2.2.1/24
     bridge-ports glob swp1-10 swp12 glob swp14-20
     bridge-pvid 100
-    bridge-stp on
 ```
 
 To activate or apply the configuration to the kernel:
@@ -507,21 +498,6 @@ cumulus@switch:~$ sudo ifup -a
 
 {{< /tab >}}
 {{< /tabs >}}
-
-To view the changes in the kernel, use the `ip addr show` command:
-
-```
-cumulus@switch:~$ ip addr show
-...
-4. swp1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast master bridge state UP group default qlen 1000
-        link/ether 44:38:39:00:6e:fe brd ff:ff:ff:ff:ff:ff
-...
-14: bridge: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default
-    link/ether 44:38:39:00:00:04 brd ff:ff:ff:ff:ff:ff
-    inet6 fe80::4638:39ff:fe00:4/64 scope link
-        valid_lft forever preferred_lft forever
-...
-```
 
 ## Configure a Loopback Interface
 

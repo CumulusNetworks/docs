@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 730
 toc: 3
 ---
-You can use static routing if you don't require the complexity of a dynamic routing protocol (such as BGP or OSPF), if you have routes that do not change frequently and for which the destination is only one or two paths away.
+You can use static routing if you do not require the complexity of a dynamic routing protocol (such as BGP or OSPF), if you have routes that do not change frequently and for which the destination is only one or two paths away.
 
 With static routing, you configure the switch manually to send traffic with a specific destination prefix to a specific next hop. When the switch receives a packet, it looks up the destination IP address in the routing table and forwards the packet accordingly.
 
@@ -17,7 +17,15 @@ The following example commands configure Cumulus Linux to send traffic with the 
 {{< img src="/images/cumulus-linux/static-routing.png" width="300" >}}
 
 {{< tabs "TabID17 ">}}
+{{< tab "CUE Commands ">}}
 
+```
+cumulus@leaf01:~$ cl set interface swp1 ip address 10.0.1.1/31
+cumulus@leaf01:~$ cl set vrf default router static 10.10.10.101/32 via 10.0.1.0
+cumulus@leaf01:~$ cl config apply
+```
+
+{{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
 ```
@@ -28,7 +36,6 @@ cumulus@leaf01:~$ net commit
 ```
 
 {{< /tab >}}
-
 {{< tab "Linux and vtysh Commands ">}}
 
 Edit the `/etc/network/interfaces` file to configure an IP address for the interface on the switch that sends out traffic. For example:
@@ -55,10 +62,6 @@ leaf01# exit
 cumulus@leaf01:~$
 ```
 
-{{< /tab >}}
-
-{{< /tabs >}}
-
 The commands save the static route configuration in the `/etc/frr/frr.conf` file. For example:
 
 ```
@@ -69,12 +72,24 @@ ip route 10.10.10.101/32 10.0.1.0
 ...
 ```
 
+{{< /tab >}}
+{{< /tabs >}}
+
 The following example commands configure Cumulus Linux to send traffic with the destination prefix 10.10.10.61/32 out swp3 (10.0.0.32/31) to the next hop 10.0.0.33 in vrf BLUE.
 
 {{< img src="/images/cumulus-linux/static-vrf-example.png" width="400" >}}
 
 {{< tabs "TabID76 ">}}
+{{< tab "CUE Commands ">}}
 
+```
+cumulus@border01:~$ cl set interface swp3 ip address 10.0.0.32/31
+cumulus@border01:~$ cl set interface swp3 ip vrf BLUE
+cumulus@border01:~$ cl set vrf BLUE router static 10.10.10.61/32 via 10.0.0.33
+cumulus@border01:~$ cl config apply
+```
+
+{{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
 ```
@@ -86,7 +101,6 @@ cumulus@border01:~$ net commit
 ```
 
 {{< /tab >}}
-
 {{< tab "Linux and vtysh Commands ">}}
 
 Edit the `/etc/network/interfaces` file to configure an IP address for the interface on the switch that sends out traffic. For example:
@@ -114,10 +128,6 @@ border01# exit
 cumulus@border01:~$
 ```
 
-{{< /tab >}}
-
-{{< /tabs >}}
-
 The commands save the static route configuration in the `/etc/frr/frr.conf` file. For example:
 
 ```
@@ -127,10 +137,20 @@ vrf BLUE
 ...
 ```
 
+{{< /tab >}}
+{{< /tabs >}}
+
 To delete a static route:
 
 {{< tabs "TabID58 ">}}
+{{< tab "CUE Commands ">}}
 
+```
+cumulus@leaf01:~$ cl unset vrf default router static 10.10.10.101/32 via 10.0.1.0
+cumulus@leaf01:~$ cl config apply
+```
+
+{{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
 ```
@@ -140,13 +160,10 @@ cumulus@leaf01:~$ net commit
 ```
 
 {{%notice tip%}}
-
 When you use NCLU commands to delete routing configuration such as static routes, commit ten or fewer delete commands at a time to avoid commit failures.
-
 {{%/notice%}}
 
 {{< /tab >}}
-
 {{< tab "vtysh Commands ">}}
 
 ```
@@ -161,7 +178,6 @@ cumulus@leaf01:~$
 ```
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 To view static routes, run the NCLU `net show route static` command or the vtysh `show ip route` command. For example:
@@ -182,7 +198,6 @@ S>* 10.10.10.101/32 [1/0] via 10.0.1.0, swp51, weight 1, 00:02:07
 You can also create a static route by adding the route to a switch port configuration. For example:
 
 {{< tabs "TabID187 ">}}
-
 {{< tab "NCLU Commands ">}}
 
 ```
@@ -194,7 +209,6 @@ cumulus@leaf01:~$ net commit
 ```
 
 {{< /tab >}}
-
 {{< tab "Linux Commands ">}}
 
 Edit the `/etc/network/interfaces` file and add the following `post-up` and `post-down` lines to the interface stanza:
@@ -209,11 +223,10 @@ iface swp51
     post-down ip route del 10.10.10.101/32 via 10.0.1.0
 ```
 
-{{< /tab >}}
-
-{{< /tabs >}}
-
 The `ip route` command allows you to manipulate the kernel routing table directly from the Linux shell. See `man ip(8)` for details. FRRouting monitors the kernel routing table changes and updates its own routing table accordingly.
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ## Configure a Gateway or Default Route
 
@@ -222,7 +235,18 @@ On each switch, consider creating a *gateway* or *default route* for traffic des
 The following example configures the default route 0.0.0.0/0, which indicates any IP address can be sent to the gateway. The gateway is another switch with the IP address 10.0.1.0.
 
 {{< tabs "TabID310 ">}}
+{{< tab "CUE Commands ">}}
 
+```
+cumulus@leaf01:~$ cl set vrf default router static 0.0.0.0/0 via 10.0.1.0
+cumulus@leaf01:~$ cl config apply
+```
+
+{{%notice note%}}
+Instead of 0.0.0.0/0, you can specify `default` or `default6`.
+{{%/notice%}}
+
+{{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
 ```
@@ -232,7 +256,6 @@ cumulus@leaf01:~$ net commit
 ```
 
 {{< /tab >}}
-
 {{< tab "vtysh Commands ">}}
 
 ```
@@ -246,11 +269,7 @@ leaf01# exit
 cumulus@leaf01:~$
 ```
 
-{{< /tab >}}
-
-{{< /tabs >}}
-
-The NCLU and vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+The vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
 ```
 ...
@@ -261,10 +280,11 @@ ip route 0.0.0.0/0 10.0.1.0
 ```
 
 {{%notice note%}}
-
 The default route created by the `gateway` parameter in ifupdown2 is not installed in FRR and cannot be redistributed into other routing protocols. See {{<link url="Interface-Configuration-and-Management#ifupdown2-and-the-gateway-parameter" text="ifupdown2 and the gateway Parameter" >}} for more information.
-
 {{%/notice%}}
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ## Considerations
 

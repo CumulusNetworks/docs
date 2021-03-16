@@ -101,8 +101,8 @@ The following example commands create the peer group SPINE and configure BGP pee
 ```
 cumulus@leaf01:~$ cl set vrf default router bgp peer-group SPINE
 cumulus@leaf01:~$ cl set vrf default router bgp peer-group SPINE remote-as external
-cumulus@leaf01:~$ cl set vrf default router bgp peer-group SPINE NEED COMMAND
-cumulus@leaf01:~$ cl set vrf default router bgp listen limit 5
+cumulus@leaf01:~$ NEED COMMAND
+cumulus@leaf01:~$ NEED COMMAND
 cumulus@leaf01:~$ cl config apply
 ```
 
@@ -154,14 +154,14 @@ router bgp 65101
 
 The eBGP multihop option lets you use BGP to exchange routes with an external peer that is more than one hop away.
 
-To establish a connection between two eBGP peers that are not directly connected:
+The following example command configures Cumulus Linux to establish a connection between two eBGP peers that are not directly connected and sets the maximum number of hops used to reach a eBGP peer to 1.
 
 {{< tabs "154 ">}}
 {{< tab "CUE Commands ">}}
 
 ```
 cumulus@leaf01:~$ cl set vrf default router bgp peer 10.10.10.101 remote-as external
-cumulus@leaf01:~$ cl set vrf default router bgp peer 10.10.10.101 NEED COMMAND
+cumulus@leaf01:~$ cl set vrf default router bgp peer 10.10.10.101 multihop-ttl 1
 cumulus@leaf01:~$ cl config apply
 ```
 
@@ -209,7 +209,7 @@ The following command example sets the TTL security hop count value to 200:
 {{< tab "CUE Commands ">}}
 
 ```
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp51 multihop-ttl 200
+cumulus@leaf01:~$ cl set vrf default router bgp peer swp51 ttl-security hops 200
 cumulus@leaf01:~$ cl config apply
 ```
 
@@ -247,10 +247,8 @@ router bgp 65101
 ```
 
 {{%notice note%}}
-
 - When you configure `ttl-security hops` on a peer group instead of a specific neighbor, FRR does not add it to either the running configuration or to the `/etc/frr/frr.conf` file. To work around this issue, add `ttl-security hops` to individual neighbors instead of the peer group.
 - Enabling `ttl-security hops` does not program the hardware with relevant information. Frames are forwarded to the CPU and are dropped. Use the CUE command to explicitly add the relevant entry to hardware. For more information about ACLs, see {{<link title="Netfilter - ACLs">}}.
-
 {{%/notice%}}
 
 {{< /tab >}}
@@ -425,14 +423,14 @@ The following example command removes private ASNs from routes sent to the neigh
 {{< tab "CUE Commands ">}}
 
 ```
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp51 NEED COMMAND
+cumulus@leaf01:~$ NEED COMMAND
 cumulus@leaf01:~$ cl config apply
 ```
 
 You can replace the private ASNs with your public ASN with the following command:
 
 ```
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp51 NEED COMMAND
+cumulus@leaf01:~$ cl set vrf default router bgp peer swp51 local-as replace on
 cumulus@leaf01:~$ cl config apply
 ```
 
@@ -466,10 +464,10 @@ The following example configures VRF RED and VRF BLUE on border01 to use ASN 655
 ```
 cumulus@border01:~$ cl set vrf RED router bgp autonomous-system 65532        
 cumulus@border01:~$ cl set vrf RED router bgp router-id 10.10.10.63
-cumulus@border01:~$ cl set vrf RED router bgp peer swp3 interface remote-as external NEED COMMAND
+cumulus@border01:~$ cl set vrf RED router bgp peer swp3 remote-as external NEED COMMAND
 cumulus@border01:~$ cl set vrf BLUE router bgp autonomous-system 65533 
 cumulus@border01:~$ cl set vrf BLUE router bgp router-id 10.10.10.63
-cumulus@border01:~$ cl set vrf BLUE router bgp peer swp4 interface remote-as external NEED COMMAND
+cumulus@border01:~$ cl set vrf BLUE router bgp peer swp4 remote-as external NEED COMMAND
 cumulus@border01:~$ cl config apply
 ```
 
@@ -617,7 +615,7 @@ The example commands change the maximum number of paths to 120. You can set a va
 {{< tab "CUE Commands ">}}
 
 ```
-cumulus@switch:~$ NEED COMMAND
+cumulus@switch:~$ cl set vrf default router bgp address-family ipv4-unicast multipaths ibgp 120 
 cumulus@border01:~$ cl config apply
 ```
 
@@ -725,7 +723,8 @@ To enable advertisement of IPv4 prefixes with IPv6 next hops over global IPv6 pe
 {{< tab "CUE Commands ">}}
 
 ```
-cumulus@switch:~$ cl set vrf default router bgp peer 2001:db8:0002::0a00:0002 NEED COMMAND (maybe address-family ipv6-unicast nexthop-setting?????)
+cumulus@switch:~$ cl set vrf default router bgp peer 2001:db8:0002::0a00:0002 capabilities extended-nexthop on
+cumulus@switch:~$ cl config apply
 ```
 
 {{< /tab >}}
@@ -770,8 +769,8 @@ Ensure that the IPv6 peers are activated under the IPv4 unicast address family; 
 {{< tab "CUE Commands ">}}
 
 ```
-cumulus@switch:~$ cl set vrf default router bgp peer 2001:db8:0002::0a00:0002 NEED COMMAND (maybe address-family ipv6-unicast nexthop-setting?????)
-cumulus@switch:~$ cl set vrf default router bgp peer 2001:db8:0002::0a00:0002 address-family ipv4-unicast enable on?????
+cumulus@switch:~$ cl set vrf default router bgp peer 2001:db8:0002::0a00:0002 capabilities extended-nexthop on
+cumulus@switch:~$ cl set vrf default router bgp peer 2001:db8:0002::0a00:0002 address-family ipv4-unicast enable on
 cumulus@switch:~$ cl config apply
 ```
 
@@ -830,7 +829,7 @@ The following example commands set the maximum number of prefixes allowed from t
 {{< tab "CUE Commands ">}}
 
 ```
-cumulus@switch:~$ cl set vrf default router bgp peer swp51 NEED COMMAND
+cumulus@switch:~$ cl set vrf default router bgp peer swp51 address-family ipv4-unicast prefix-limits inbound maximum 3000
 cumulus@switch:~$ cl config apply
 ```
 
@@ -862,7 +861,14 @@ The following example command aggregates a range of addresses, such as 10.1.1.0/
 {{< tab "CUE Commands ">}}
 
 ```
-cumulus@switch:~$ cl set vrf default router bgp NEED COMMAND
+cumulus@switch:~$ cl set vrf default router bgp address-family ipv4-unicast aggregate-route 10.1.0.0/16 
+cumulus@switch:~$ cl config apply
+```
+
+The `summary-only` option ensures that longer-prefixes inside the aggregate address are suppressed before sending BGP updates:
+
+```
+cumulus@switch:~$ cl set vrf default router bgp address-family ipv4-unicast aggregate-route 10.1.0.0/16 summary-only on
 cumulus@switch:~$ cl config apply
 ```
 
@@ -886,7 +892,7 @@ cumulus@switch:~$ net commit
 {{< /tab >}}
 {{< /tabs >}}
 
-<!--## Suppress Route Advertisement
+## Suppress Route Advertisement
 
 You can configure BGP to wait for a response from the RIB indicating that the routes installed in the RIB are also installed in the ASIC before sending updates to peers.
 
@@ -935,7 +941,7 @@ router bgp 65199
 {{< /tab >}}
 {{< /tabs >}}
 
-The {{<link url="Smart-System-Manager" text="Smart System Manager">}} suppresses route advertisement automatically when upgrading or troubleshooting an active switch so that there is minimal disruption to the network.-->
+The {{<link url="Smart-System-Manager" text="Smart System Manager">}} suppresses route advertisement automatically when upgrading or troubleshooting an active switch so that there is minimal disruption to the network.
 
 ## BGP add-path
 
@@ -1258,7 +1264,7 @@ router bgp 65101
 {{< /tab >}}
 {{< /tabs >}}
 
-<!--### Wait for Convergence
+### Wait for Convergence
 
 BGP *wait for convergence* lets you delay the initial best path calculation after you reboot the switch, restart FRR, or run the vtysh `clear ip bgp *` command. This allows peers to become established and converge before BGP installs the resulting routes in zebra or sends updates to peers.
 
@@ -1282,7 +1288,9 @@ The following example commands set the `update-delay` timer to 300 seconds and t
 {{< tab "CUE Commands ">}}
 
 ```
-cumulus@switch:~$ cl set vrf default router bgp NEED COMMAND
+cumulus@switch:~$ cl set router bgp convergence-wait establish-wait-time 200
+cumulus@switch:~$ cl set router bgp convergence-wait NEED COMMAND
+cumulus@switch:~$ cl config apply
 ```
 
 {{< /tab >}}
@@ -1342,7 +1350,7 @@ Total number of neighbors 1
 ...
 ```
 
-The last convergence event is retained in the output of the NCLU `net show bgp summary json` command or the vtysh `show ip bgp summary json` command.-->
+The last convergence event is retained in the output of the NCLU `net show bgp summary json` command or the vtysh `show ip bgp summary json` command.
 
 ## Route Reflectors
 
@@ -1412,20 +1420,20 @@ When configuring BGP for IPv6, you must run the `route-reflector-client` command
 
 Cumulus Linux uses the administrative distance to choose which routing protocol to use when two different protocols provide route information for the same destination. The smaller the distance, the more reliable the protocol. For example, if the switch receives a route from OSPF with an administrative distance of 110 and the same route from BGP with an administrative distance of 100, the switch chooses BGP.
 
-Set the administrative distance with vtysh commands.
-
-The following example commands set the administrative distance for routes from 10.10.10.101 to 100:
-
 {{< tabs "1423 ">}}
 {{< tab "CUE Commands ">}}
 
+The following example commands set the administrative distance for routes from 10.10.10.101 to 100:
+
 ```
-cumulus@spine01:~$ cl set vrf default router bgp peer NEED COMMAND
+cumulus@spine01:~$ NEED COMMAND
 cumulus@spine01:~$ cl config apply
 ```
 
 {{< /tab >}}
 {{< tab "vtysh Commands ">}}
+
+The following example commands set the administrative distance for routes from 10.10.10.101 to 100:
 
 ```
 cumulus@spine01:~$ sudo vtysh
@@ -1442,13 +1450,14 @@ cumulus@spine01:~$
 {{< /tab >}}
 {{< /tabs >}}
 
-The following example commands set the administrative distance for routes external to the AS to 150, routes internal to the AS to 110, and local routes to 100:
+The following example commands set the administrative distance for external routes to 150 and internal routes to 110:
 
 {{< tabs "1451 ">}}
 {{< tab "CUE Commands ">}}
 
 ```
-cumulus@spine01:~$ cl set vrf default router bgp NEED COMMAND
+cumulus@spine01:~$ cl set vrf default router bgp address-family ipv4-unicast admin-distance external 150
+cumulus@spine01:~$ cl set vrf default router bgp address-family ipv4-unicast admin-distance internal 110
 cumulus@spine01:~$ cl config apply
 ```
 
@@ -1460,7 +1469,7 @@ cumulus@spine01:~$ sudo vtysh
 
 spine01# configure terminal
 spine01(config)# router bgp 65101
-spine01(config-router)# distance bgp 150 110 100
+spine01(config-router)# distance bgp 150 110
 spine01(config-router)# end
 spine01# write memory
 spine01# exit
@@ -1633,7 +1642,7 @@ The following example commands enable global graceful BGP restart:
 {{< tab "CUE Commands ">}}
 
 ```
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp51 NEED COMMAND
+cumulus@leaf01:~$ cl set vrf default router bgp raceful-restart
 cumulus@leaf01:~$ cl config apply
 ```
 
@@ -1669,7 +1678,7 @@ The following example commands enable BGP graceful restart on the BGP peer conne
 {{< tab "CUE Commands ">}}
 
 ```
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp51 graceful-restart-mode full?????
+cumulus@leaf01:~$ cl set vrf default router bgp peer swp51 graceful-restart-mode full
 cumulus@leaf01:~$ cl config apply
 ```
 
@@ -1705,7 +1714,7 @@ The following example commands enable helper mode only for the BGP peer connecte
 {{< tab "CUE Commands ">}}
 
 ```
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp51 graceful-restart-mode helper-only?????
+cumulus@leaf01:~$ cl set vrf default router bgp peer swp51 graceful-restart-mode helper-only
 cumulus@leaf01:~$ cl config apply
 ```
 
@@ -1760,7 +1769,9 @@ The following example commands set the `restart-time` to 400 seconds, `pathselec
 {{< tab "CUE Commands ">}}
 
 ```
-cumulus@leaf01:~$ NEED COMMAND
+cumulus@leaf01:~$ cl set router bgp graceful-restart restart-time 400
+cumulus@leaf01:~$ cl set router bgp graceful-restart path-selection-deferral-time 300
+cumulus@leaf01:~$ cl set router bgp graceful-restart stale-routes-time 400
 cumulus@leaf01:~$ cl config apply
 ```
 
@@ -1813,7 +1824,7 @@ The following example commands disable global graceful restart:
 {{< tab "CUE Commands ">}}
 
 ```
-cumulus@leaf01:~$ cl set vrf default router bgp NEED COMMAND
+cumulus@leaf01:~$ cl unset router bgp graceful-restart mode
 cumulus@leaf01:~$ cl config apply$
 ```
 
@@ -1849,7 +1860,7 @@ The following example commands disable graceful BGP restart on a BGP peer:
 {{< tab "CUE Commands ">}}
 
 ```
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp51 graceful-restart-mode off
+cumulus@leaf01:~$ cl unset vrf default router bgp peer swp51 graceful-restart-mode
 cumulus@leaf01:~$ cl config apply
 ```
 

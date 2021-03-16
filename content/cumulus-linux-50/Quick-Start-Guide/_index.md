@@ -446,8 +446,8 @@ cumulus@switch:~$ cl config apply
 To add an IP address to a bridge interface, you must put it into a VLAN interface. If you want to use a VLAN other than the native one, set the bridge PVID:
 
 ```
-cumulus@switch:~$ cl set interface swp1-2 bridge domain bridge
-cumulus@switch:~$ cl set bridge domain bridge vlan 100
+cumulus@switch:~$ cl set interface swp1-2 bridge domain br_default
+cumulus@switch:~$ cl set bridge domain br_default vlan 100
 cumulus@switch:~$ cl set interface vlan100 ip address 10.2.2.1/24
 cumulus@switch:~$ cl set bridge domain br_default untagged 100
 cumulus@switch:~$ cl config apply

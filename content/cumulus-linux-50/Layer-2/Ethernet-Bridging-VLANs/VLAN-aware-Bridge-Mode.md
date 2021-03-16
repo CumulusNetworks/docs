@@ -49,8 +49,8 @@ Edit the `/etc/network/interfaces` file and add the bridge. An example configura
 ```
 cumulus@switch:~$ sudo nano /etc/network/interfaces
 ...
-auto bridge
-iface bridge
+auto br_default
+iface br_default
     bridge-ports swp1 swp2
     bridge-vids 10 20
     bridge-pvid 1
@@ -70,16 +70,16 @@ cumulus@switch:~$ ifreload -a
 The Primary VLAN Identifer (PVID) of the bridge defaults to 1. You do *not* have to specify `bridge-pvid` for a bridge or port. However, even though this does not affect the configuration, it helps other users for readability. The following configurations are identical to each other and the configuration above:
 
 ```
-auto bridge
-iface bridge
+auto br_default
+iface br_default
     bridge-ports swp1 swp2
     bridge-vids 1 10 20
     bridge-vlan-aware yes
 ```
 
 ```
-auto bridge
-iface bridge
+auto br_default
+iface br_default
     bridge-ports swp1 swp2
     bridge-pvid 1
     bridge-vids 1 10 20
@@ -87,8 +87,8 @@ iface bridge
 ```
 
 ```
-auto bridge
-iface bridge
+auto br_default
+iface br_default
     bridge-ports swp1 swp2
     bridge-vids 10 20
     bridge-vlan-aware yes
@@ -159,8 +159,8 @@ Edit the `/etc/network/interfaces` file, then run the `ifreload -a` command.
 ```
 cumulus@switch:~$ sudo nano /etc/network/interfaces
 ...
-auto bridge
-iface bridge
+auto br_default
+iface br_default
     bridge-ports swp1 swp2 swp3
     bridge-pvid 1
     bridge-vids 10 20
@@ -218,8 +218,8 @@ Edit the `/etc/network/interfaces` file, then run the `ifreload -a` command.
 ```
 cumulus@switch:~$ sudo nano /etc/network/interfaces
 ...
-auto bridge
-iface bridge
+auto br_default
+iface br_default
     bridge-ports swp1 swp2
     bridge-pvid 1
     bridge-vids 10 20
@@ -278,8 +278,8 @@ auto swp2
 iface swp2
     bridge-allow-untagged no
 
-auto bridge
-iface bridge
+auto br_default
+iface br_default
     bridge-ports swp1 swp2
     bridge-pvid 1
     bridge-vids 10 20
@@ -344,8 +344,8 @@ Specifying the IP address in the bridge stanza itself returns an error.
 ```
 cumulus@switch:~$ sudo nano /etc/network/interfaces
 ...
-auto bridge
-iface bridge
+auto br_default
+iface br_default
     bridge-ports swp1 swp2
     bridge-pvid 1
     bridge-vids 10 20
@@ -356,7 +356,7 @@ iface vlan10
     address 10.1.10.2/24
     address 2001:db8::1/32
     vlan-id 10
-    vlan-raw-device bridge
+    vlan-raw-device br_default
 ...
 ```
 
@@ -383,8 +383,8 @@ Consider the following configuration, without a dummy interface in the bridge:
 cumulus@switch:~$ sudo cat /etc/network/interfaces
 ...
 
-auto bridge
-iface bridge
+auto br_default
+iface br_default
     bridge-vlan-aware yes
     bridge-ports swp3
     bridge-vids 10
@@ -396,10 +396,10 @@ With this configuration, when swp3 is down, the SVI is also down:
 
 ```
 cumulus@switch:~$ ip link show swp3
-5: swp3: <BROADCAST,MULTICAST> mtu 1500 qdisc pfifo_fast master bridge state DOWN mode DEFAULT group default qlen 1000
+5: swp3: <BROADCAST,MULTICAST> mtu 1500 qdisc pfifo_fast master br_default state DOWN mode DEFAULT group default qlen 1000
     link/ether 2c:60:0c:66:b1:7f brd ff:ff:ff:ff:ff:ff
-cumulus@switch:~$ ip link show bridge
-35: bridge: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc noqueue state DOWN mode DEFAULT group default
+cumulus@switch:~$ ip link show br_default
+35: br_default: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc noqueue state DOWN mode DEFAULT group default
     link/ether 2c:60:0c:66:b1:7f brd ff:ff:ff:ff:ff:ff
 ```
 
@@ -415,16 +415,16 @@ Now add the dummy interface to your network configuration:
     iface dummy
         link-type dummy
 
-    auto bridge
-    iface bridge
+    auto br_default
+    iface br_default
     ...
     ```
 
 2. Add the dummy interface to the `bridge-ports` line in the bridge configuration:
 
     ```
-    auto bridge
-    iface bridge
+    auto br_default
+    iface br_default
         bridge-vlan-aware yes
         bridge-ports swp3 dummy
         bridge-vids 10
@@ -441,13 +441,13 @@ Now add the dummy interface to your network configuration:
 
     ```
     cumulus@switch:~$ ip link show swp3
-    5: swp3: <BROADCAST,MULTICAST> mtu 1500 qdisc pfifo_fast master bridge state DOWN mode DEFAULT group default qlen 1000
+    5: swp3: <BROADCAST,MULTICAST> mtu 1500 qdisc pfifo_fast master br_default state DOWN mode DEFAULT group default qlen 1000
         link/ether 2c:60:0c:66:b1:7f brd ff:ff:ff:ff:ff:ff
     cumulus@switch:~$ ip link show dummy
-    37: dummy: <BROADCAST,NOARP,UP,LOWER_UP> mtu 1500 qdisc noqueue master bridge state UNKNOWN mode DEFAULT group default
+    37: dummy: <BROADCAST,NOARP,UP,LOWER_UP> mtu 1500 qdisc noqueue master br_default state UNKNOWN mode DEFAULT group default
         link/ether 66:dc:92:d4:f3:68 brd ff:ff:ff:ff:ff:ff
-    cumulus@switch:~$ ip link show bridge
-    35: bridge: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP mode DEFAULT group default
+    cumulus@switch:~$ ip link show br_default
+    35: br_default: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP mode DEFAULT group default
         link/ether 2c:60:0c:66:b1:7f brd ff:ff:ff:ff:ff:ff
     ```
 
@@ -488,7 +488,7 @@ auto vlan10
 iface vlan 10
     ipv6-addrgen off
     vlan-id 10
-    vlan-raw-device bridge
+    vlan-raw-device br_default
 ...
 ```
 
@@ -541,8 +541,8 @@ The following example configuration contains an access port and switch port that
 # ports swp3-swp48 are trunk ports that inherit vlans from the 'bridge'
 # vlans 310,700,707,712,850,910
 #
-auto bridge
-iface bridge
+auto br_default
+iface br_default
       bridge-ports swp1 swp2 swp3 ... swp51 swp52
       bridge-vids 310 700 707 712 850 910
       bridge-vlan-aware yes
@@ -571,7 +571,7 @@ iface swp49
       mstpctl-portpathcost 10
 
 # The following port is the trunk uplink and inherits all vlans
-# from 'bridge'; bridge assurance is enabled using 'portnetwork' attribute
+# from 'br_default'; bridge assurance is enabled using 'portnetwork' attribute
  auto swp50
  iface swp50
       mstpctl-portnetwork yes
@@ -673,8 +673,8 @@ auto lo
 iface lo inet loopback
     address 10.10.10.1/32
 
-auto bridge
-iface bridge
+auto br_default
+iface br_default
     bridge-ports uplink
     bridge-pvid 1
     bridge-vids 1-100

@@ -22,9 +22,9 @@ You cannot configure both VRR and VRRP on the same switch.
 
 The diagram below illustrates a basic VRR-enabled network configuration.
 
-{{< img src="/images/cumulus-linux/vrr-active-active.png" width="600" >}}
+{{< img src = "/images/cumulus-linux/mlag-dual-connect.png" >}}
 
-The network includes several hosts and two routers running Cumulus Linux that are configured with {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="multi-chassis link aggregation">}} (MLAG).
+The network includes three hosts and two routers running Cumulus Linux that are configured with {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="multi-chassis link aggregation">}} (MLAG).
 - As the bridges in each of the redundant routers are connected, they each receive and reply to ARP requests for the virtual router IP address.
 - Each ARP request made by a host receives replies from each switch; these replies are identical, and the host receiving the replies either ignores replies after the first, or accepts them and overwrites the previous identical reply.
 - A range of MAC addresses is reserved for use with VRR to prevent MAC address conflicts with other interfaces in the same bridged network. The reserved range is `00:00:5E:00:01:00` to `00:00:5E:00:01:ff`.
@@ -36,34 +36,45 @@ The network includes several hosts and two routers running Cumulus Linux that ar
 The routers implement the layer 2 network interconnecting the hosts and the redundant routers. To configure the routers, add a bridge with the following interfaces to each router:
 
 - One bond interface or switch port interface to each host. For networks using MLAG, use bond interfaces. Otherwise, use switch port interfaces.
-- One or more interfaces to each peer router. To accommodate higher bandwidth between the routers and to offer link redundancy, multiple inter-peer links are typically bonded interfaces. The VLAN interface must have unique IP addresses for both the physical (the `address` option below) and virtual (the `address-virtual` option below) interfaces; the unique address is used when the switch initiates an ARP request.
+- One or more interfaces to each peer router. To accommodate higher bandwidth between the routers and to offer link redundancy, multiple inter-peer links are typically bonded interfaces. The VLAN interface must have a unique IP address for both the physical and virtual interface; the unique address is used when the switch initiates an ARP request.
 
 {{%notice note%}}
 Cumulus Linux only supports VRR on switched virtual interfaces (SVIs). VRR is not supported on physical interfaces or virtual subinterfaces.
 {{%/notice%}}
 
-The example commands below create a VLAN-aware bridge interface for a VRR-enabled network:
+The example commands below create a VLAN-aware bridge interface for a VRR-enabled network. The example assumes you have already configured a VLAN-aware bridge with VLAN 10 and that VLAN 10 has an IP address:
 
 {{< tabs "TabID53 ">}}
 {{< tab "CUE Commands ">}}
 
 ```
-cumulus@switch:~$ cl set interface vlan500 ip vrr address 192.0.2.252/24
-cumulus@switch:~$ cl set interface vlan500 ip vrr mac-address 00:00:5e:00:01:00
+cumulus@switch:~$ cl set interface vlan10 ip vrr address 10.1.10.1/24
+cumulus@switch:~$ cl set interface vlan10 ip vrr mac-address 00:00:5e:00:01:00
+cumulus@switch:~$ cl set interface vlan10 ip vrr state up
 cumulus@switch:~$ cl config apply
+```
+
+Use the same commands for IPV6 addresses; for example:
+
+```
+cumulus@switch:~$ cl set interface vlan10 ip vrr address 2001:db8::1/32
+cumulus@switch:~$ cl set interface vlan10 ip vrr mac-address 00:00:5e:00:01:00
+cumulus@switch:~$ cl set interface vlan10 ip vrr state up
 ```
 
 {{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
 ```
-cumulus@switch:~$ net add bridge
-cumulus@switch:~$ net add vlan 500 ip address 192.0.2.252/24
-cumulus@switch:~$ net add vlan 500 ip address-virtual 00:00:5e:00:01:00 192.0.2.254/24
-cumulus@switch:~$ net add vlan 500 ipv6 address 2001:db8::1/32
-cumulus@switch:~$ net add vlan 500 ipv6 address-virtual 00:00:5e:00:01:00 2001:db8::f/32
+cumulus@switch:~$ net add vlan 10 ip address-virtual 00:00:5e:00:01:00 10.1.10.1/24
 cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
+```
+
+For IPv6, use this commands:
+
+```
+cumulus@switch:~$ net add vlan 10 ipv6 address-virtual 00:00:5e:00:01:00 2001:db8::f/32
 ```
 
 {{< /tab >}}
@@ -74,18 +85,12 @@ Edit the `/etc/network/interfaces` file, then run the `ifreload -a` command.
 ```
 cumulus@switch:~$ sudo nano /etc/network/interfaces
 ...
-auto bridge
-iface bridge
-    bridge-vids 500
-    bridge-vlan-aware yes
-
-auto vlan500
-iface vlan500
-    address 192.0.2.252/24
-    address 2001:db8::1/32
-    address-virtual 00:00:5e:00:01:00 2001:db8::f/32 192.0.2.254/24
-    vlan-id 500
-    vlan-raw-device bridge
+auto vlan10
+iface vlan10
+    address 10.1.10.2/24
+    address-virtual 00:00:5e:00:01:00 10.1.10.1/24
+    vlan-raw-device br_default
+    vlan-id 10
 ...
 ```
 
@@ -107,7 +112,7 @@ Configure the links between the hosts and the routers in *active-active* mode fo
 To create an {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="MLAG">}} configuration that incorporates VRR, use a configuration similar to the following.
 
 {{%notice note%}}
-The following examples uses a single virtual MAC address for all VLANs. You can add a unique MAC address for each VLAN, but this is not necessary.
+The following examples uses a single virtual MAC address for VLANs. You can add a unique MAC address for each VLAN, but this is not necessary.
 {{%/notice%}}
 
 {{< tabs "TabID119 ">}}
@@ -116,31 +121,49 @@ The following examples uses a single virtual MAC address for all VLANs. You can 
 {{< tabs "TabID146 ">}}
 {{< tab "CUE Commands ">}}
 
+```
+cumulus@leaf01:~$ cl set interface eth0 ip address 192.168.200.11/24
+cumulus@leaf01:~$ cl set interface bond1 bond member swp1
+cumulus@leaf01:~$ cl set NEED COMMAND FOR ALIAS
+cumulus@leaf01:~$ cl set interface bond2 bond member swp2
+cumulus@leaf01:~$ cl set NEED COMMAND FOR ALIAS
+cumulus@leaf01:~$ cl set interface bond1 bond mlag id 1
+cumulus@leaf01:~$ cl set interface bond2 bond mlag id 2
+cumulus@leaf01:~$ cl set interface bond1-2 bridge domain br_default
+cumulus@leaf01:~$ cl set interface peerlink bond member swp49-50
+cumulus@leaf01:~$ cl set mlag mac-address 44:38:39:BE:EF:AA
+cumulus@leaf01:~$ cl set mlag backup 10.10.10.2
+cumulus@leaf01:~$ cl set mlag peer-ip linklocal
+cumulus@leaf01:~$ cl set bridge domain br_default vlan 10,20
+cumulus@leaf01:~$ cl set bridge domain br_default untagged 1
+cumulus@leaf01:~$ cl set interface vlan10 ip address 10.1.10.2/24
+cumulus@leaf01:~$ cl set interface vlan10 ip vrr address 10.1.10.1/24
+cumulus@leaf01:~$ cl set interface vlan10 ip vrr mac-address 00:00:5e:00:01:00
+cumulus@leaf01:~$ cl set interface vlan10 ip vrr state up
+cumulus@leaf01:~$ cl set interface vlan20 ip address 10.1.20.2/24
+cumulus@leaf01:~$ cl set interface vlan20 ip vrr address 10.1.20.1/24
+cumulus@leaf01:~$ cl set interface vlan20 ip vrr mac-address 00:00:5e:00:01:00
+cumulus@leaf01:~$ cl set interface vlan20 ip vrr state up
+cumulus@leaf01:~$ cl config apply
+```
+
 {{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
 ```
-cumulus@leaf01:~$ net add interface eth0 ip address 192.168.0.21
-cumulus@leaf01:~$ net add bond server01 bond slaves swp1-2
-cumulus@leaf01:~$ net add bond server01 clag id 1
-cumulus@leaf01:~$ net add bond server01 mtu 9216
-cumulus@leaf01:~$ net add bond server01 alias LACP etherchannel to uplink on server01
-cumulus@leaf01:~$ net add bond peerlink bond slaves swp49-50
-cumulus@leaf01:~$ net add interface peerlink.4094 peerlink.4094
-cumulus@leaf01:~$ net add interface peerlink.4094 ip address 169.254.255.1/30
-cumulus@leaf01:~$ net add interface peerlink.4094 clag peer-ip 169.254.255.2
-cumulus@leaf01:~$ net add interface peerlink.4094 clag backup-ip 192.168.0.22
-cumulus@leaf01:~$ net add interface peerlink.4094 clag sys-mac 44:38:39:FF:40:90
-cumulus@leaf01:~$ net add bridge bridge ports server01,peerlink
-cumulus@leaf01:~$ net add bridge stp treeprio 4096
-cumulus@leaf01:~$ net add vlan 100 ip address 10.0.1.2/24
-cumulus@leaf01:~$ net add vlan 100 ip address-virtual 00:00:5E:00:01:01 10.0.1.1/24
-cumulus@leaf01:~$ net add vlan 200 ip address 10.0.2.2/24
-cumulus@leaf01:~$ net add vlan 200 ip address-virtual 00:00:5E:00:01:01 10.0.2.1/24
-cumulus@leaf01:~$ net add vlan 300 ip address 10.0.3.2/24
-cumulus@leaf01:~$ net add vlan 300 ip address-virtual 00:00:5E:00:01:01 10.0.3.1/24
-cumulus@leaf01:~$ net add vlan 400 ip address 10.0.4.2/24
-cumulus@leaf01:~$ net add vlan 400 ip address-virtual 00:00:5E:00:01:01 10.0.4.1/24
+cumulus@leaf01:~$ net add interface eth0 ip address 192.168.200.11/24
+cumulus@leaf01:~$ net add bond bond1 bond slaves swp1
+cumulus@leaf01:~$ net add bond bond1 alias bond1 on swp1
+cumulus@leaf01:~$ net add bond bond2 bond slaves swp2
+cumulus@leaf01:~$ net add bond bond2 alias bond2 on swp2
+cumulus@leaf01:~$ net add bond bond1 clag id 1
+cumulus@leaf01:~$ net add bond bond2 clag id 2
+cumulus@leaf01:~$ net add bridge bridge ports bond1,bond2
+cumulus@leaf01:~$ net add clag peer sys-mac 44:38:39:BE:EF:AA interface swp49-50 primary backup-ip 10.10.10.2
+cumulus@leaf01:~$ net add vlan 10 ip address 10.0.1.2/24
+cumulus@leaf01:~$ net add vlan 10 ip address-virtual 00:00:5e:00:01:00 10.0.1.1/24
+cumulus@leaf01:~$ net add vlan 20 ip address 10.0.2.2/24
+cumulus@leaf01:~$ net add vlan 20 ip address-virtual 00:00:5e:00:01:00 10.0.2.1/24
 cumulus@leaf01:~$ net pending
 cumulus@leaf01:~$ net commit
 ```
@@ -149,62 +172,69 @@ cumulus@leaf01:~$ net commit
 {{< tab "/etc/network/interfaces">}}
 
 ```
+auto lo
+iface lo inet loopback
+
+auto mgmt
+iface mgmt
+    address 127.0.0.1/8
+    address ::1/128
+    vrf-table auto
+
 auto eth0
-iface eth0
-    address 192.168.0.21
+iface eth0 inet dhcp
+    address 192.168.200.11/24
+    ip-forward off
+    ip6-forward off
+    vrf mgmt
 
-auto bridge
-iface bridge
-    bridge-ports server01 peerlink
-    bridge-vids 100 200 300 400
-    bridge-vlan-aware yes
-    mstpctl-treeprio 4096
-
-auto server01
-iface server01
-    alias LACP etherchannel to uplink on server01
-    bond-slaves swp1 swp2
+auto bond1
+iface bond1
+    bond-slaves swp1
+    bond-mode 802.3ad
+    bond-lacp-bypass-allow no
     clag-id 1
-    mtu 9216
+
+auto bond2
+iface bond2
+    bond-slaves swp2
+    bond-mode 802.3ad
+    bond-lacp-bypass-allow no
+    clag-id 2
 
 auto peerlink
 iface peerlink
     bond-slaves swp49 swp50
+    bond-mode 802.3ad
+    bond-lacp-bypass-allow no
 
 auto peerlink.4094
 iface peerlink.4094
-    address 169.254.255.1/30
-    clagd-backup-ip 192.168.0.22
-    clagd-peer-ip 169.254.255.2
-    clagd-sys-mac 44:38:39:FF:40:90
+    clagd-peer-ip linklocal
+    clagd-backup-ip 10.10.10.2
+    clagd-sys-mac 44:38:39:BE:EF:AA
+    clagd-args --initDelay 180
 
-auto vlan100
-iface vlan100
-    address 10.0.1.2/24
-    address-virtual 00:00:5E:00:01:01 10.0.1.1/24
-    vlan-id 100
-    vlan-raw-device bridge
+auto vlan10
+iface vlan10
+    address 10.1.10.2/24
+    address-virtual 00:00:5e:00:01:00 10.1.10.1/24
+    vlan-raw-device br_default
+    vlan-id 10
 
-auto vlan200
-iface vlan200
-    address 10.0.2.2/24
-    address-virtual 00:00:5E:00:01:01 10.0.2.1/24
-    vlan-id 200
-    vlan-raw-device bridge
+auto vlan20
+iface vlan20
+    address 10.1.20.2/24
+    address-virtual 00:00:5e:00:01:00 10.1.20.1/24
+    vlan-raw-device br_default
+    vlan-id 20
 
-auto vlan300
-iface vlan300
-    address 10.0.3.2/24
-    address-virtual 00:00:5E:00:01:01 10.0.3.1/24
-    vlan-id 300
-    vlan-raw-device bridge
-
-auto vlan400
-iface vlan400
-    address 10.0.4.2/24
-    address-virtual 00:00:5E:00:01:01 10.0.4.1/24
-    vlan-id 400
-    vlan-raw-device bridge
+auto br_default
+iface br_default
+    bridge-ports peerlink bond1 bond2
+    bridge-vlan-aware yes
+    bridge-vids 10 20
+    bridge-pvid 1
 ```
 
 {{< /tab >}}
@@ -216,31 +246,49 @@ iface vlan400
 {{< tabs "TabID246 ">}}
 {{< tab "CUE Commands ">}}
 
+```
+cumulus@leaf02:~$ cl set interface eth0 ip address 192.168.200.12/24
+cumulus@leaf02:~$ cl set interface bond1 bond member swp1
+cumulus@leaf02:~$ cl set NEED COMMAND FOR ALIAS
+cumulus@leaf02:~$ cl set interface bond2 bond member swp2
+cumulus@leaf02:~$ cl set NEED COMMAND FOR ALIAS
+cumulus@leaf02:~$ cl set interface bond1 bond mlag id 1
+cumulus@leaf02:~$ cl set interface bond2 bond mlag id 2
+cumulus@leaf02:~$ cl set interface bond1-2 bridge domain br_default
+cumulus@leaf02:~$ cl set interface peerlink bond member swp49-50
+cumulus@leaf02:~$ cl set mlag mac-address 44:38:39:BE:EF:AA
+cumulus@leaf02:~$ cl set mlag backup 10.10.10.1
+cumulus@leaf02:~$ cl set mlag peer-ip linklocal
+cumulus@leaf02:~$ cl set bridge domain br_default vlan 10,20
+cumulus@leaf02:~$ cl set bridge domain br_default untagged 1
+cumulus@leaf02:~$ cl set interface vlan10 ip address 10.1.10.3/24
+cumulus@leaf02:~$ cl set interface vlan10 ip vrr address 10.1.10.1/24
+cumulus@leaf02:~$ cl set interface vlan10 ip vrr mac-address 00:00:5e:00:01:00
+cumulus@leaf02:~$ cl set interface vlan10 ip vrr state up
+cumulus@leaf02:~$ cl set interface vlan20 ip address 10.1.20.3/24
+cumulus@leaf02:~$ cl set interface vlan20 ip vrr address 10.1.20.1/24
+cumulus@leaf02:~$ cl set interface vlan20 ip vrr mac-address 00:00:5e:00:01:00
+cumulus@leaf02:~$ cl set interface vlan20 ip vrr state up
+cumulus@leaf02:~$ cl config apply
+```
+
 {{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
 ```
-cumulus@leaf02:~$ net add interface eth0 ip address 192.168.0.22
-cumulus@leaf02:~$ net add bond server01 bond slaves swp1-2
-cumulus@leaf02:~$ net add bond server01 clag id 1
-cumulus@leaf02:~$ net add bond server01 mtu 9216
-cumulus@leaf02:~$ net add bond server01 alias LACP etherchannel to uplink on server01
-cumulus@leaf02:~$ net add bond peerlink bond slaves swp49-50
-cumulus@leaf02:~$ net add interface peerlink.4094 peerlink.4094
-cumulus@leaf02:~$ net add interface peerlink.4094 ip address 169.254.255.2/30
-cumulus@leaf02:~$ net add interface peerlink.4094 clag peer-ip 169.254.255.1
-cumulus@leaf02:~$ net add interface peerlink.4094 clag backup-ip 192.168.0.21
-cumulus@leaf02:~$ net add interface peerlink.4094 clag sys-mac 44:38:39:FF:40:90
-cumulus@leaf02:~$ net add bridge bridge ports server01,peerlink
-cumulus@leaf02:~$ net add bridge stp treeprio 4096
-cumulus@leaf02:~$ net add vlan 100 ip address 10.0.1.3/24
-cumulus@leaf02:~$ net add vlan 100 ip address-virtual 00:00:5E:00:01:01 10.0.1.1/24
-cumulus@leaf02:~$ net add vlan 200 ip address 10.0.2.3/24
-cumulus@leaf02:~$ net add vlan 200 ip address-virtual 00:00:5E:00:01:01 10.0.2.1/24
-cumulus@leaf02:~$ net add vlan 300 ip address 10.0.3.3/24
-cumulus@leaf02:~$ net add vlan 300 ip address-virtual 00:00:5E:00:01:01 10.0.3.1/24
-cumulus@leaf02:~$ net add vlan 400 ip address 10.0.4.3/24
-cumulus@leaf02:~$ net add vlan 400 ip address-virtual 00:00:5E:00:01:01 10.0.4.1/24
+cumulus@leaf02:~$ net add interface eth0 ip address 192.168.200.12/24
+cumulus@leaf01:~$ net add bond bond1 bond slaves swp1
+cumulus@leaf01:~$ net add bond bond1 alias bond1 on swp1
+cumulus@leaf01:~$ net add bond bond2 bond slaves swp2
+cumulus@leaf01:~$ net add bond bond2 alias bond2 on swp2
+cumulus@leaf01:~$ net add bond bond1 clag id 1
+cumulus@leaf01:~$ net add bond bond2 clag id 2
+cumulus@leaf01:~$ net add bridge bridge ports bond1,bond2
+cumulus@leaf01:~$ net add clag peer sys-mac 44:38:39:BE:EF:AA interface swp49-50 primary backup-ip 10.10.10.1
+cumulus@leaf02:~$ net add vlan 10 ip address 10.1.10.3/24
+cumulus@leaf02:~$ net add vlan 10 ip address-virtual 00:00:5e:00:01:00 10.1.10.1/24
+cumulus@leaf02:~$ net add vlan 20 ip address 10.1.20.3/24
+cumulus@leaf02:~$ net add vlan 20 ip address-virtual 00:00:5e:00:01:00 10.1.20.1/24
 cumulus@leaf02:~$ net pending
 cumulus@leaf02:~$ net commit
 ```
@@ -249,62 +297,69 @@ cumulus@leaf02:~$ net commit
 {{< tab "/etc/network/interfaces ">}}
 
 ```
+auto lo
+iface lo inet loopback
+
+auto mgmt
+iface mgmt
+    address 127.0.0.1/8
+    address ::1/128
+    vrf-table auto
+
 auto eth0
 iface eth0
-    address 192.168.0.22
+    address 192.168.200.12/24
+    ip-forward off
+    ip6-forward off
+    vrf mgmt
 
-auto bridge
-iface bridge
-    bridge-ports server01 peerlink
-    bridge-vids 100 200 300 400
-    bridge-vlan-aware yes
-    mstpctl-treeprio 4096
-
-auto server01
-iface server01
-    alias LACP etherchannel to uplink on server01
-    bond-slaves swp1 swp2
+auto bond1
+iface bond1
+    bond-slaves swp1
+    bond-mode 802.3ad
+    bond-lacp-bypass-allow no
     clag-id 1
-    mtu 9216
+
+auto bond2
+iface bond2
+    bond-slaves swp2
+    bond-mode 802.3ad
+    bond-lacp-bypass-allow no
+    clag-id 2
 
 auto peerlink
 iface peerlink
     bond-slaves swp49 swp50
+    bond-mode 802.3ad
+    bond-lacp-bypass-allow no
 
 auto peerlink.4094
 iface peerlink.4094
-    address 169.254.255.1/30
-    clagd-backup-ip 192.168.0.22
-    clagd-peer-ip 169.254.255.2
-    clagd-sys-mac 44:38:39:FF:40:90
+    clagd-peer-ip linklocal
+    clagd-backup-ip 10.10.10.1
+    clagd-sys-mac 44:38:39:BE:EF:AA
+    clagd-args --initDelay 180
 
-auto vlan100
-iface vlan100
-    address 10.0.1.3/24
-    address-virtual 00:00:5E:00:01:01 10.0.1.1/24
-    vlan-id 100
-    vlan-raw-device bridge
+auto vlan10
+iface vlan10
+    address 10.1.10.3/24
+    address-virtual 00:00:5e:00:01:00 10.1.10.1/24
+    vlan-raw-device br_default
+    vlan-id 10
 
-auto vlan200
-iface vlan200
-    address 10.0.2.3/24
-    address-virtual 00:00:5E:00:01:01 10.0.2.1/24
-    vlan-id 200
-    vlan-raw-device bridge
+auto vlan20
+iface vlan20
+    address 10.1.20.3/24
+    address-virtual 00:00:5e:00:01:00 10.1.20.1/24
+    vlan-raw-device br_default
+    vlan-id 20
 
-auto vlan300
-iface vlan300
-    address 10.0.3.3/24
-    address-virtual 00:00:5E:00:01:01 10.0.3.1/24
-    vlan-id 300
-    vlan-raw-device bridge
-
-auto vlan400
-iface vlan400
-    address 10.0.4.3/24
-    address-virtual 00:00:5E:00:01:01 10.0.4.1/24
-    vlan-id 400
-    vlan-raw-device bridge
+auto br_default
+iface br_default
+    bridge-ports peerlink bond1 bond2
+    bridge-vlan-aware yes
+    bridge-vids 10 20
+    bridge-pvid 1
 ```
 
 {{< /tab >}}
@@ -437,8 +492,6 @@ You can also set these optional parameters. If you do not set these parameters, 
 | `advertisement interval` | 1000 milliseconds | The advertisement interval is the interval between successive advertisements by the master in a virtual router group. You can specify a value between 10 and 40950.|
 | `preempt` | enabled | Preempt mode lets the router take over as master for a virtual router group if it has a higher priority than the current master. Preempt mode is enabled by default. To disable preempt mode, you need to edit the `/etc/frr/frr.conf` file and add the line `no vrrp <VRID> preempt` to the interface stanza, then restart the FRR service.|
 
-The NCLU commands write VRRP configuration to the `/etc/network/interfaces` file and the `/etc/frr/frr.conf` file.
-
 The following example commands configure two switches (spine01 and spine02) that form one virtual router group (VRID 44) with IPv4 address 10.0.0.1/24 and IPv6 address 2001:0db8::1/64. *spine01* is the master; it has a priority of 254. *spine02* is the backup VRRP router.
 
 {{%notice note%}}
@@ -448,14 +501,8 @@ A primary address is required for the parent interface to use as the source addr
 {{< tabs "TabID448 ">}}
 {{< tab "CUE Commands ">}}
 
-**spine01**
-
-```
-cumulus@switch:~$ NEED COMMAND
-cumulus@switch:~$ cl config apply
-```
-
-**spine02**
+{{< tabs "TabID504 ">}}
+{{< tab "spine01 ">}}
 
 ```
 cumulus@switch:~$ NEED COMMAND
@@ -463,9 +510,21 @@ cumulus@switch:~$ cl config apply
 ```
 
 {{< /tab >}}
+{{< tab "spine02 ">}}
+
+```
+cumulus@switch:~$ NEED COMMAND
+cumulus@switch:~$ cl config apply
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+{{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
-**spine01**
+{{< tabs "TabID526 ">}}
+{{< tab "spine01 ">}}
 
 ```
 cumulus@spine01:~$ net add interface swp1 ip address 10.0.0.2/24
@@ -478,7 +537,8 @@ cumulus@spine01:~$ net pending
 cumulus@spine01:~$ net commit
 ```
 
-**spine02**
+{{< /tab >}}
+{{< tab "spine02 ">}}
 
 ```
 cumulus@spine02:~$ net add interface swp1 ip address 10.0.0.3/24
@@ -488,9 +548,14 @@ cumulus@spine02:~$ net add interface swp1 vrrp 44 2001:0db8::1/64
 cumulus@spine02:~$ net pending
 cumulus@spine02:~$ net commit
 ```
+{{< /tab >}}
+{{< /tabs >}}
 
 {{< /tab >}}
 {{< tab "Linux and vtysh Commands ">}}
+
+{{< tabs "TabID557 ">}}
+{{< tab "spine01 ">}}
 
 1. Edit the `/etc/network/interface` file to assign an IP address to the parent interface; for example:
 
@@ -507,8 +572,6 @@ cumulus@spine02:~$ net commit
 
 3. From the vtysh shell, configure VRRP.
 
-   **spine01**
-
     ```
     cumulus@spine01:~$ sudo vtysh
 
@@ -523,19 +586,38 @@ cumulus@spine02:~$ net commit
     spine01# exit
     ```
 
-   **spine02**
+{{< /tab >}}
+{{< tab "spine02 ">}}
 
-    ```
-    cumulus@spine02:~$ sudo vtysh
+1. Edit the `/etc/network/interface` file to assign an IP address to the parent interface; for example:
 
-    spine02# configure terminal
-    spine02(config)# interface swp1
-    spine02(config-if)# vrrp 44 ip 10.0.0.1
-    spine02(config-if)# vrrp 44 ipv6 2001:0db8::1
-    spine02(config-if)# end
-    spine02# write memory
-    spine02# exit
-    ```
+   ```
+   cumulus@spine02:~$ sudo vi /etc/network/interfaces
+   ...
+   auto swp1
+   iface swp1
+       address 10.0.0.3/24
+       address 2001:0db8::3/64
+   ```
+
+2. Enable the `vrrpd` daemon, then start the FRRouting service. See {{<link title="FRRouting">}}.
+
+3. From the vtysh shell, configure VRRP.
+
+   ```
+   cumulus@spine02:~$ sudo vtysh
+
+   spine02# configure terminal
+   spine02(config)# interface swp1
+   spine02(config-if)# vrrp 44 ip 10.0.0.1
+   spine02(config-if)# vrrp 44 ipv6 2001:0db8::1
+   spine02(config-if)# end
+   spine02# write memory
+   spine02# exit
+   ```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 {{< /tab >}}
 {{< /tabs >}}

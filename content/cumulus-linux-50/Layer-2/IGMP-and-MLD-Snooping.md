@@ -122,7 +122,14 @@ iface br0
 To disable IGMP and MLD snooping, set the `bridge-mcsnoop` value to *0*.
 
 {{< tabs "TabID142 ">}}
+{{< tab "CUE Commands ">}}
 
+```
+cumulus@switch:~$ NEED COMMAND
+cumulus@switch:~$ cl config apply
+```
+
+{{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
 ```
@@ -132,7 +139,6 @@ cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
-
 {{< tab "Linux Commands ">}}
 
 Edit the `/etc/network/interfaces` file and set `bridge-mcsnoop to 0` in the bridge stanza:
@@ -158,7 +164,6 @@ cumulus@switch:~$ sudo ifreload -a
 ```
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 ## Troubleshooting

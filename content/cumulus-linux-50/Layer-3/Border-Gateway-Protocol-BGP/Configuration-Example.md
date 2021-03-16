@@ -8,10 +8,105 @@ This section shows a BGP configuration example based on the reference topology. 
 
 {{< img src = "/images/cumulus-linux/mlag-config-peering.png" >}}
 
+## CUE Commands
+
+{{< tabs "TabID13 ">}}
+{{< tab "leaf01 ">}}
+
+```
+cumulus@leaf01:~$ cl set interface lo ip address 10.10.10.1/32
+cumulus@leaf01:~$ cl set interface bond1 bond member swp1
+cumulus@leaf01:~$ cl set interface bond2 bond member swp2
+cumulus@leaf01:~$ cl set interface bond3 bond member swp3
+cumulus@leaf01:~$ cl set interface bond1 bond mlag id 1
+cumulus@leaf01:~$ cl set interface bond2 bond mlag id 2
+cumulus@leaf01:~$ cl set interface bond3 bond mlag id 3
+cumulus@switch:~$ cl set interface bond1-3 bridge domain br_default 
+cumulus@leaf01:~$ cl set interface peerlink bond member swp49-50
+cumulus@leaf01:~$ cl set mlag mac-address 44:38:39:BE:EF:AA
+cumulus@leaf01:~$ cl set mlag backup 10.10.10.2
+cumulus@leaf01:~$ cl set mlag peer-ip linklocal
+cumulus@leaf01:~$ cl set interface vlan10 ip address 10.1.10.2/24
+cumulus@leaf01:~$ cl set interface vlan20 ip address 10.1.20.2/24
+cumulus@leaf01:~$ cl set interface vlan30 ip address 10.1.30.2/24
+cumulus@leaf01:~$ cl set bridge domain br_default vlan 10,20,30
+cumulus@leaf01:~$ cl set bridge domain br_default untagged 1
+cumulus@leaf01:~$ cl set router bgp autonomous-system 65101
+cumulus@leaf01:~$ cl set router bgp router-id 10.10.10.1
+cumulus@leaf01:~$ cl set vrf default router bgp peer swp51 remote-as external
+cumulus@leaf01:~$ cl set vrf default router bgp peer swp52 remote-as external
+cumulus@leaf01:~$ cl set vrf default router bgp address-family ipv4-unicast static-network 10.10.10.1/32
+cumulus@leaf01:~$ cl set vrf default router bgp address-family ipv4-unicast static-network 10.1.10.0/24
+cumulus@leaf01:~$ cl config apply
+```
+
+{{< /tab >}}
+{{< tab "leaf02 ">}}
+
+```
+cumulus@leaf02:~$ cl set interface lo ip address 10.10.10.2/32
+cumulus@leaf02:~$ cl set interface bond1 bond member swp1
+cumulus@leaf02:~$ cl set interface bond2 bond member swp2
+cumulus@leaf02:~$ cl set interface bond3 bond member swp3
+cumulus@leaf02:~$ cl set interface bond1 bond mlag id 1
+cumulus@leaf02:~$ cl set interface bond2 bond mlag id 2
+cumulus@leaf02:~$ cl set interface bond3 bond mlag id 3
+cumulus@switc2:~$ cl set interface bond1-3 bridge domain br_default 
+cumulus@leaf02:~$ cl set interface peerlink bond member swp49-50
+cumulus@leaf02:~$ cl set mlag mac-address 44:38:39:BE:EF:AA
+cumulus@leaf02:~$ cl set mlag backup 10.10.10.1
+cumulus@leaf02:~$ cl set mlag peer-ip linklocal
+cumulus@leaf02:~$ cl set interface vlan10 ip address 10.1.10.3/24
+cumulus@leaf02:~$ cl set interface vlan20 ip address 10.1.20.3/24
+cumulus@leaf02:~$ cl set interface vlan30 ip address 10.1.30.3/24
+cumulus@leaf02:~$ cl set bridge domain br_default vlan 10,20,30
+cumulus@leaf02:~$ cl set bridge domain br_default untagged 1
+cumulus@leaf02:~$ cl set router bgp autonomous-system 65102
+cumulus@leaf02:~$ cl set router bgp router-id 10.10.10.2
+cumulus@leaf02:~$ cl set vrf default router bgp peer swp51 remote-as external
+cumulus@leaf02:~$ cl set vrf default router bgp peer swp52 remote-as external
+cumulus@leaf02:~$ cl set vrf default router bgp address-family ipv4-unicast static-network 10.10.10.2/32
+cumulus@leaf02:~$ cl config apply
+```
+
+{{< /tab >}}
+{{< tab "leaf03 ">}}
+
+```
+cumulus@leaf03:~$ 
+cumulus@leaf03:~$ 
+```
+
+{{< /tab >}}
+{{< tab "leaf04 ">}}
+
+```
+cumulus@leaf04:~$ 
+cumulus@leaf04:~$ 
+```
+
+{{< /tab >}}
+{{< tab "spine01 ">}}
+
+```
+cumulus@spine01:~$ 
+cumulus@spine01:~$ 
+```
+
+{{< /tab >}}
+{{< tab "spine02 ">}}
+
+```
+cumulus@spine02:~$ 
+cumulus@spine02:~$ 
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
 ## /etc/network/interfaces
 
 {{< tabs "TabID901 ">}}
-
 {{< tab "leaf01 ">}}
 
 ```
@@ -131,7 +226,6 @@ iface bond3
 ```
 
 {{< /tab >}}
-
 {{< tab "leaf02 ">}}
 
 ```
@@ -251,7 +345,6 @@ iface bond3
 ```
 
 {{< /tab >}}
-
 {{< tab "leaf03 ">}}
 
 ```
@@ -371,7 +464,6 @@ iface bond3
 ```
 
 {{< /tab >}}
-
 {{< tab "leaf04 ">}}
 
 ```
@@ -491,7 +583,6 @@ iface bond3
 ```
 
 {{< /tab >}}
-
 {{< tab "spine01 ">}}
 
 ```
@@ -528,7 +619,6 @@ iface swp4
 ```
 
 {{< /tab >}}
-
 {{< tab "spine02 ">}}
 
 ```
@@ -565,13 +655,11 @@ iface swp4
 ```
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 ## /etc/frr/frr.conf
 
 {{< tabs "TabID944 ">}}
-
 {{< tab "leaf01 ">}}
 
 ```
@@ -596,7 +684,6 @@ line vty
 ```
 
 {{< /tab >}}
-
 {{< tab "leaf02 ">}}
 
 ```
@@ -621,7 +708,6 @@ line vty
 ```
 
 {{< /tab >}}
-
 {{< tab "leaf03 ">}}
 
 ```
@@ -646,7 +732,6 @@ line vty
 ```
 
 {{< /tab >}}
-
 {{< tab "leaf04 ">}}
 
 ```
@@ -671,7 +756,6 @@ line vty
 ```
 
 {{< /tab >}}
-
 {{< tab "spine01 ">}}
 
 ```
@@ -697,7 +781,6 @@ line vty
 ```
 
 {{< /tab >}}
-
 {{< tab "spine02 ">}}
 
 ```
@@ -723,5 +806,4 @@ line vty
 ```
 
 {{< /tab >}}
-
 {{< /tabs >}}

@@ -11,14 +11,12 @@ Policy-based routing (PBR) lets you make routing decisions based on filters that
 Policy-based routing is applied to incoming packets. All packets received on a PBR-enabled interface pass through enhanced packet filters that determine rules and specify where to forward the packets.
 
 {{%notice note%}}
-
 - You can create a *maximum* of 255 PBR match rules and 256 next hop groups (this is the ECMP limit).
 - You can apply only one PBR policy per input interface.
 - You can match on *source* and *destination* IP address, or match on Differentiated Services Code Point (DSCP) or Explicit Congestion Notification (ECN) values within a packet.
 - PBR is not supported for GRE or VXLAN tunneling.
 - PBR is not supported on management interfaces, such as eth0.
 - A PBR rule cannot contain both IPv4 and IPv6 addresses.
-
 {{%/notice%}}
 
 ## Configure PBR
@@ -35,7 +33,15 @@ To use PBR in Cumulus linux, you define a PBR policy and apply it to the ingress
 To configure a PBR policy:
 
 {{< tabs "TabID45 ">}}
+{{< tab "CUE Commands ">}}
 
+```
+cumulus@leaf01:~$ NEED COMMAND
+cumulus@leaf01:~$ 
+cumulus@leaf01:~$ 
+```
+
+{{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
 1. Configure the policy map.
@@ -92,13 +98,10 @@ If you want the rule to use a specific VRF table as its lookup, set the VRF. If 
     ```
 
 {{%notice note%}}
-
 You can only set one policy per interface.
-
 {{%/notice%}}
 
 {{< /tab >}}
-
 {{< tab "vtysh Commands ">}}
 
 1. Enable the `pbrd` service in the `/etc/frr/daemons` file:
@@ -200,13 +203,10 @@ You can only set one policy per interface.
     ```
 
 {{%notice note%}}
-
 You can only set one policy per interface.
-
 {{%/notice%}}
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 The NCLU and `vtysh` commands save the configuration in the `/etc/frr/frr.conf` file. For example:
@@ -314,25 +314,25 @@ nexthop 192.168.0.21
 The NCLU commands for the above configuration are:
 
 ```
-net add pbr-map pbr-policy seq 3 match src-ip 10.1.4.1/24
-net add pbr-map pbr-policy seq 3 set nexthop 192.168.0.21
+cumulus@switch:~$ net add pbr-map pbr-policy seq 3 match src-ip 10.1.4.1/24
+cumulus@switch:~$ net add pbr-map pbr-policy seq 3 set nexthop 192.168.0.21
 ```
 
 To add a destination IP match to the rule, you must delete the existing rule sequence:
 
 ```
-net del pbr-map pbr-policy seq 3 match src-ip 10.1.4.1/24
-net del pbr-map pbr-policy seq 3 set nexthop 192.168.0.21
-net commit
+cumulus@switch:~$ net del pbr-map pbr-policy seq 3 match src-ip 10.1.4.1/24
+cumulus@switch:~$ net del pbr-map pbr-policy seq 3 set nexthop 192.168.0.21
+cumulus@switch:~$ net commit
 ```
 
 Add back the source IP match and nexthop condition, and add the new destination IP match (dst-ip 10.1.2.0/24):
 
 ```
-net add pbr-map pbr-policy seq 3 match src-ip 10.1.4.1/24
-net add pbr-map pbr-policy seq 3 match dst-ip 10.1.2.0/24
-net add pbr-map pbr-policy seq 3 set nexthop 192.168.0.21
-net commit
+cumulus@switch:~$ net add pbr-map pbr-policy seq 3 match src-ip 10.1.4.1/24
+cumulus@switch:~$ net add pbr-map pbr-policy seq 3 match dst-ip 10.1.2.0/24
+cumulus@switch:~$ net add pbr-map pbr-policy seq 3 set nexthop 192.168.0.21
+cumulus@switch:~$ net commit
 ```
 
 Run the `net show pbr map` command to verify the update:
@@ -366,13 +366,17 @@ cumulus@mlx-2400-91:~$ cat /cumulus/switchd/run/iprule/show | grep 302 -A 1
 You can delete a PBR rule, a next hop group, or a policy. The following commands provide examples.
 
 {{%notice note%}}
-
 Use caution when deleting PBR rules and next hop groups, as you might create an incorrect configuration for the PBR policy.
-
 {{%/notice%}}
 
 {{< tabs "TabID451 ">}}
+{{< tab "CUE Commands ">}}
 
+```
+cumulus@switch:~$ NEED COMMAND
+```
+
+{{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
 The following examples show how to delete a PBR rule match:
@@ -416,7 +420,6 @@ cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
-
 {{< tab "vtysh Commands ">}}
 
 The following examples show how to delete a PBR rule match:
@@ -483,10 +486,7 @@ cumulus@switch:~$
 ```
 
 {{< /tab >}}
-
 {{< /tabs >}}
-
-{{%notice note%}}
 
 If a PBR rule has multiple conditions (for example, a source IP match and a destination IP match), but you only want to delete one condition, you have to delete all conditions first, then re-add the ones you want to keep.
 
@@ -503,29 +503,27 @@ nexthop 192.168.0.21
 The NCLU commands for the above configuration are:
 
 ```
-net add pbr-map pbr-policy seq 6 match src-ip 10.1.4.1/24
-net add pbr-map pbr-policy seq 6 match dst-ip 10.1.2.0/24
-net add pbr-map pbr-policy seq 6 set nexthop 192.168.0.21
+cumulus@switch:~$ net add pbr-map pbr-policy seq 6 match src-ip 10.1.4.1/24
+cumulus@switch:~$ net add pbr-map pbr-policy seq 6 match dst-ip 10.1.2.0/24
+cumulus@switch:~$ net add pbr-map pbr-policy seq 6 set nexthop 192.168.0.21
 ```
 
 To remove the destination IP match, you must first delete all existing conditions defined under this sequence:
 
 ```
-net del pbr-map pbr-policy seq 6 match src-ip 10.1.4.1/24
-net del pbr-map pbr-policy seq 6 match dst-ip 10.1.2.0/24
-net del pbr-map pbr-policy seq 6 set nexthop 192.168.0.21
-net commit
+cumulus@switch:~$ net del pbr-map pbr-policy seq 6 match src-ip 10.1.4.1/24
+cumulus@switch:~$ net del pbr-map pbr-policy seq 6 match dst-ip 10.1.2.0/24
+cumulus@switch:~$ net del pbr-map pbr-policy seq 6 set nexthop 192.168.0.21
+cumulus@switch:~$ net commit
 ```
 
 Then, add back the conditions you want to keep:
 
 ```
-net add pbr-map pbr-policy seq 6 match src-ip 10.1.4.1/24
-net add pbr-map pbr-policy seq 6 set nexthop 192.168.0.21
-net commit
+cumulus@switch:~$ net add pbr-map pbr-policy seq 6 match src-ip 10.1.4.1/24
+cumulus@switch:~$ net add pbr-map pbr-policy seq 6 set nexthop 192.168.0.21
+cumulus@switch:~$ net commit
 ```
-
-{{%/notice%}}
 
 ## Troubleshooting
 
@@ -576,9 +574,7 @@ Valid: yes nexthop 192.168.8.3
 To see information about a specific next hop group, add the group name at the end of the command; for example, `net show pbr nexthop-group group1` (or `show pbr nexthop-group group1` in `vtysh`).
 
 {{%notice note%}}
-
 A new Linux routing table ID is used for each next hop and next hop group.
-
 {{%/notice%}}
 
 ## Example Configuration
@@ -590,7 +586,15 @@ In the following example, the PBR-enabled switch has a PBR policy to route all t
 The configuration for the example above is:
 
 {{< tabs "TabID197 ">}}
+{{< tab "CUE Commands ">}}
 
+```
+cumulus@leaf01:~$ NEED COMMAND
+cumulus@leaf01:~$ 
+cumulus@leaf01:~$ 
+```
+
+{{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
 ```
@@ -602,7 +606,6 @@ cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
-
 {{< tab "vtysh Commands ">}}
 
 ```
@@ -622,7 +625,6 @@ cumulus@switch:~$
 ```
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 The NCLU and `vtysh` commands save the configuration in the `/etc/frr/frr.conf` file. For example:

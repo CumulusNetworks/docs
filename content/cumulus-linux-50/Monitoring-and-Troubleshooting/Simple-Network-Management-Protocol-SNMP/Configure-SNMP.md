@@ -559,12 +559,6 @@ The default `/etc/snmp/snmpd.conf` configuration already enables AgentX and sets
 
 Enabling FRR includes support for BGP. However, if you plan on using the BGP4 MIB, be sure to provide access to the MIB tree 1.3.6.1.2.1.15.
 
-{{%notice note%}}
-
-At this time, SNMP does not support monitoring BGP unnumbered neighbors.
-
-{{%/notice%}}
-
 {{%notice tip%}}
 
 If you plan on using the OSPFv2 MIB, provide access to 1.3.6.1.2.1.14 and to 1.3.6.1.2.1.191 for the OSPv3 MIB.

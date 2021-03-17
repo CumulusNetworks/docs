@@ -36,15 +36,15 @@ iface bridge
   bridge-ports swp1 peerlink
   bridge-vids 1-2000
   bridge-stp on
- 
+
 auto bridge.10
 iface bridge.10
   address 10.1.10.2/24
- 
+
 auto peerlink
 iface peerlink
     bond-slaves glob swp49-50
- 
+
 auto swp1
 iface swp1
   mstpctl-portadminedge yes
@@ -52,20 +52,20 @@ iface swp1
 <p><strong>Example Host Config (Ubuntu)</strong></p>
 <pre><code>auto eth1
 iface eth1 inet manual
- 
+
 auto eth1.10
 iface eth1.10 inet manual
- 
+
 auto eth2
 iface eth1 inet manual
- 
+
 auto eth2.20
 iface eth2.20 inet manual
- 
+
 auto br-10
 iface br-10 inet manual
   bridge-ports eth1.10 vnet0
- 
+
 auto br-20
 iface br-20 inet manual
   bridge-ports eth2.20 vnet1</code></pre></td>
@@ -156,23 +156,23 @@ iface bridge
   bridge-ports host-01 peerlink
   bridge-vids 1-2000
   bridge-stp on
- 
+
 auto bridge.10
 iface bridge.10
   address 172.16.1.2/24
   address-virtual 44:38:39:00:00:10 172.16.1.1/24
- 
+
 auto peerlink
 iface peerlink
     bond-slaves glob swp49-50
- 
+
 auto peerlink.4094
 iface peerlink.4094
     address 169.254.1.2
     clagd-enable yes
     clagd-peer-ip 169.254.1.2
     clagd-system-mac 44:38:39:FF:40:94
- 
+
 auto host-01
 iface host-01
   bond-slaves swp1
@@ -183,10 +183,10 @@ iface host-01
 iface bond0 inet manual
   bond-slaves eth0 eth1
   {bond-defaults removed for brevity}
- 
+
 auto bond0.10
 iface bond0.10 inet manual
- 
+
 auto vm-br10
 iface vm-br10 inet manual
   bridge-ports bond0.10 vnet0</code></pre></td>
@@ -318,7 +318,7 @@ iface eth1 inet static
 <li><p>No redundancy, uses single ToR as gateway.</p></li>
 </ul></td>
 <td><ul>
-<li><p><a href="https://cumulusnetworks.com/media/cumulus/pdf/technical/validated-design-guides/Big-Data-Cumulus-Linux-Validated-Design-Guide.pdf" class="external-link">Big Data validated design guide</a> uses single attached ToR</p></li>
+<li><p><a href="https://cumulusnetworks.com/learn/resources/guides/big-data-cumulus-linux-installation-guide-2" class="external-link">Big Data validated design guide</a> uses single attached ToR</p></li>
 </ul></td>
 </tr>
 </tbody>

@@ -63,7 +63,7 @@ Edit the `/etc/apt/sources.list` file to add the repository for NetQ.
 ```
 cumulus@switch:~$ sudo nano /etc/apt/sources.list
 ...
-deb http://apps3.cumulusnetworks.com/repos/deb CumulusLinux-3 netq-3.2
+deb http://apps3.cumulusnetworks.com/repos/deb CumulusLinux-3 netq-{{<version>}}
 ...
 ```
 
@@ -80,7 +80,7 @@ Add the repository:
 ```
 cumulus@switch:~$ sudo nano /etc/apt/sources.list
 ...
-deb http://apps3.cumulusnetworks.com/repos/deb CumulusLinux-4 netq-3.2
+deb http://apps3.cumulusnetworks.com/repos/deb CumulusLinux-4 netq-{{<version>}}
 ...
 ```
 

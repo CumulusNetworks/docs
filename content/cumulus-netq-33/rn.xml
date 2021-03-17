@@ -72,12 +72,6 @@ misc:
 <td></td>
 </tr>
 <tr>
-<td>NETQ-8244</td>
-<td><p>NetQ Infra: It is important to plan your upgrade to NetQ 3.3.0 because the NetQ Appliance or VM becomes unavailable for approximately an hour during the process. No data is lost in the process.</p></td>
-<td>3.3.0</td>
-<td></td>
-</tr>
-<tr>
 <td>NETQ-8117</td>
 <td><p>NetQ UI: Switches with LLDP enabled only on eth0 are not shown on the topology diagram.</p></td>
 <td>3.3.0</td>

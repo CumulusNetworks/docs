@@ -41,9 +41,8 @@ from: https://netq-shared.s3-us-west-2.amazonaws.com/grafana/dist.zip
 into: /usr/local/var/lib/grafana/plugins
 
 ✔ Installed netq-dashboard successfully
-
-Restart grafana after installing plugins . <service grafana-server restart>
 ```
+After installing the plugin a restart of Grafana is required. Restart Grafana according to your implementation.
 
 ## Set Up the NetQ Data Source
 

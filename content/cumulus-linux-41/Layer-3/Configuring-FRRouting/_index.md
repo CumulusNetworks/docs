@@ -469,10 +469,6 @@ To write debug messages to the log file, you must run the `log syslog debug` com
 
 ## Caveats
 
-### Obfuscated Passwords
-
-In FRRouting, Cumulus Linux stores obfuscated passwords for BGP and OSPF (ISIS, OSPF area, and BGP neighbor passwords). All passwords in configuration files and those displayed in `show` commands are obfuscated. The obfuscation algorithm protects passwords from casual viewing. The system can retrieve the original password when needed.
-
 ### Duplicate Hostnames
 
 If you change the hostname, either with NCLU or with the `hostname` command in `vtysh`, the switch can have two hostnames in the FRR configuration. For example:

@@ -359,7 +359,7 @@ sudo mount /dev/sdb1 /mnt/usb
     {{< img src = "/images/cumulus-linux/install-image-GNUx86-2.png" >}}
 
 4. The USB drive is recognized and mounted automatically. The image file is located and automatic installation of Cumulus Linux begins. Here is some sample output:
-
+<!-- vale off -->
     ```
     ONIE: OS Install Mode  ...
 
@@ -391,7 +391,7 @@ sudo mount /dev/sdb1 /mnt/usb
 
     Homepage: http://www.cumulusnetworks.com/
     ```
-
+<!-- vale on -->
 5. After installation completes, the switch automatically reboots into the newly installed instance of Cumulus Linux.
 
 {{< /tab >}}
@@ -432,7 +432,7 @@ sudo mount /dev/sdb1 /mnt/usb
     ```
 
 4. The USB drive is recognized and mounted automatically. The image file is located and automatic installation of Cumulus Linux begins. Here is some sample output:
-
+<!-- vale off -->
     ```
     Loading Open Network Install Environment  ...
     Platform: arm-as4610_54p-r0
@@ -473,7 +473,7 @@ sudo mount /dev/sdb1 /mnt/usb
     Platforms: accton_as4600_54t, accton_as6701_32x, accton_5652, accton_as5610_52x, dni_6448, dni_7448, dni_c7448n, cel_kennisis, cel_redstone, cel_smallstone, cumulus_p2020, quanta_lb9, quanta_ly2, quanta_ly2r, quanta_ly6_p2020
     Homepage: http://www.cumulusnetworks.com/
     ```
-
+<!-- vale on -->
 5. After installation completes, the switch automatically reboots into the newly installed instance of Cumulus Linux.
 
 {{< /tab >}}
@@ -566,7 +566,7 @@ If you use the `--ztp` option together with any of the other command line option
 
 ## Edit the Cumulus Linux Image (Advanced)
 
-The Cumulus Linux disk image file contains a BASH script that includes a set of variables. You can set these variables to be able to install a fully-configured system with a single image file.
+The Cumulus Linux disk image file contains a BASH script that includes a set of variables. You can set these variables to be able to install a fully configured system with a single image file.
 
 {{< expand "To edit the image"  >}}
 

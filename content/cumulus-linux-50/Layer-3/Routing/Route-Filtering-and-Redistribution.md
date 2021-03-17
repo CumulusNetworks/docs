@@ -133,7 +133,14 @@ To apply the route map, you specify the routing protocol (bgp, ospf, or static) 
 The following example filters routes from Zebra into the Linux kernel. The commands apply the route map called routemap1 to BGP:
 
 {{< tabs "TabID152 ">}}
+{{< tab "CUE Commands ">}}
 
+```
+cumulus@switch:~$ cl set vrf default router bgp address-family ipv4-unicast rib-filter routemap1
+cumulus@switch:~$ cl config apply
+```
+
+{{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
 ```
@@ -143,7 +150,6 @@ cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
-
 {{< tab "vtysh Commands ">}}
 
 ```
@@ -158,7 +164,6 @@ cumulus@switch:~$
 ```
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 The NCLU and vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
@@ -182,9 +187,7 @@ cumulus@switch:$ net add bgp table-map routemap2
 ```
 
 {{%notice note%}}
-
 In NCLU, you can only set the community number in a route map. You cannot set other community options such as `no-export`, `no-advertise`, or `additive`.
-
 {{%/notice%}}
 
 ## Route Redistribution
@@ -194,7 +197,14 @@ Route redistribution allows a network to use a routing protocol to route traffic
 To redistribute protocol routes, run the `net add <protocol> redistribute` command. The following example commands redistribute routing information from ospf routes into BGP:
 
 {{< tabs "TabID219 ">}}
+{{< tab "CUE Commands ">}}
 
+```
+cumulus@switch:~$ NEED COMMAND
+cumulus@switch:~$ cl config apply
+```
+
+{{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
 ```
@@ -204,7 +214,6 @@ cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
-
 {{< tab "vtysh Commands ">}}
 
 ```
@@ -220,13 +229,19 @@ cumulus@switch:~$
 ```
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 To redistribute all directly connected networks, use the `redistribute connected` command. For example:
 
 {{< tabs "TabID251 ">}}
+{{< tab "CUE Commands ">}}
 
+```
+cumulus@switch:~$ NEED COMMAND
+cumulus@switch:~$ cl config apply
+```
+
+{{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
 ```
@@ -236,7 +251,6 @@ cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
-
 {{< tab "vtysh Commands ">}}
 
 ```
@@ -252,13 +266,10 @@ cumulus@switch:~$
 ```
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 {{%notice note%}}
-
 For OSPF, redistribution loads the database unnecessarily with type-5 LSAs. Only use this method to generate real external prefixes (type-5 LSAs).
-
 {{%/notice%}}
 
 ## Configuration Examples

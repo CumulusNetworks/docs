@@ -858,8 +858,6 @@ iface mgmt
 
 auto eth0
 iface eth0 inet dhcp
-    ip-forward off
-    ip6-forward off
     vrf mgmt
 
 auto bond1
@@ -957,8 +955,6 @@ iface mgmt
 
 auto eth0
 iface eth0 inet dhcp
-    ip-forward off
-    ip6-forward off
     vrf mgmt
 
 auto bond1
@@ -1056,8 +1052,6 @@ iface mgmt
 
 auto eth0
 iface eth0 inet dhcp
-    ip-forward off
-    ip6-forward off
     vrf mgmt
 
 auto swp1

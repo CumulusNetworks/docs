@@ -196,8 +196,8 @@ A release is included if there were changes to the command, otherwise it is not 
 ### Sample Usage
 
 ```
-cumulus@switch:~$ netq lcm add netq-image /path/to/download/netq-agent_3.3.0-ub18.04u32~1610530013.2e51873_amd64
-cumulus@switch:~$ netq lcm add netq-image /path/to/download/netq-apps_3.3.0-ub18.04u32~1610530013.2e51873_amd64
+cumulus@switch:~$ netq lcm add netq-image /path/to/download/netq-agent_3.3.1-ub18.04u33~1614767175.886b337_amd64.deb
+cumulus@switch:~$ netq lcm add netq-image /path/to/download/netq-apps_3.3.1-ub18.04u33~1614767175.886b337_amd64.deb
 ```
 
 ### Related Commands

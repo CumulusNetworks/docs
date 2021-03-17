@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 340
 toc: 5
 ---
-After installing your NetQ software, you should install the NetQ 3.2.1 Agents on each switch you want to monitor. NetQ Agents can be installed on servers running:
+After installing your NetQ software, you should install the NetQ {{<version>}} Agents on each switch you want to monitor. NetQ Agents can be installed on servers running:
 
 - Ubuntu 16.04
 - Ubuntu 18.04 (NetQ 2.2.2 and later)

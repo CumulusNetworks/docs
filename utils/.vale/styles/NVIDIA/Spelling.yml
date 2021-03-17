@@ -1,0 +1,12 @@
+---
+# Warning: NVIDIA.Spelling
+#
+# Checks for possible spelling mistakes in content, not code. Results from links using angle brackets (<https://example.com>) should be corrected.
+#
+#
+# Based on Vale rule from GitLab: https://gitlab.com/gitlab-org/gitlab/-/tree/master/doc/.vale/gitlab
+extends: spelling
+message: 'Spelling check: "%s"?'
+level: warning
+ignore:
+  - NVIDIA/spelling-exceptions.txt

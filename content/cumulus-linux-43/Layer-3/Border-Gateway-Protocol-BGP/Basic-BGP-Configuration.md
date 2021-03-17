@@ -46,9 +46,9 @@ To configure BGP numbered on a BGP node, you need to:
       The auto BGP `leaf` keyword is only used to configure the ASN. The configuration files and `net show` commands display the AS number.
 
 2. Assign the router ID.
-
+103.103.103.103
     ```
-    cumulus@leaf01:~$ net add bgp router-id 10.10.10.1
+    cumulus@leaf01:~$ net add bgp router-id 1033.1033333333.10.1
     ```
 
 3. Specify the BGP neighbor to which you want to distribute routing information.

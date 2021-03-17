@@ -951,9 +951,10 @@ Here is a brief summary of the area type differences:
 | Normal non-zero area | LSA types 1, 2, 3, 4 area-scoped, type 5 externals, inter-area routes summarized |
 | Stub area | LSA types 1, 2, 3, 4 area-scoped, no type 5 externals, inter-area routes summarized |
 | Totally stubby area | LSA types 1, 2 area-scoped, default summary, no type 3, 4, 5 LSA types allowed |
-
-### Auto-cost Reference Bandwidth
-
+<!-- vale off -->
+<!-- vale.ai Issue #253 -->
+### Auto-Cost Reference Bandwidth
+<!-- vale on -->
 When you set the *auto-cost reference bandwidth,* Cumulus Linux dynamically calculates the OSPF interface cost to support higher speed links. The default value is *100000* for 100Gbps link speed. The cost of interfaces with link speeds lower than 100Gbps is higher.
 
 {{%notice tip%}}

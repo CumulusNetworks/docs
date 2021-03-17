@@ -1420,36 +1420,6 @@ When configuring BGP for IPv6, you must run the `route-reflector-client` command
 
 Cumulus Linux uses the administrative distance to choose which routing protocol to use when two different protocols provide route information for the same destination. The smaller the distance, the more reliable the protocol. For example, if the switch receives a route from OSPF with an administrative distance of 110 and the same route from BGP with an administrative distance of 100, the switch chooses BGP.
 
-{{< tabs "1423 ">}}
-{{< tab "CUE Commands ">}}
-
-The following example commands set the administrative distance for routes from 10.10.10.101 to 100:
-
-```
-cumulus@spine01:~$ NEED COMMAND
-cumulus@spine01:~$ cl config apply
-```
-
-{{< /tab >}}
-{{< tab "vtysh Commands ">}}
-
-The following example commands set the administrative distance for routes from 10.10.10.101 to 100:
-
-```
-cumulus@spine01:~$ sudo vtysh
-
-spine01# configure terminal
-spine01(config)# router bgp 65101
-spine01(config-router)# distance 100 10.10.10.101/32
-spine01(config-router)# end
-spine01# write memory
-spine01# exit
-cumulus@spine01:~$
-```
-
-{{< /tab >}}
-{{< /tabs >}}
-
 The following example commands set the administrative distance for external routes to 150 and internal routes to 110:
 
 {{< tabs "1451 ">}}
@@ -1478,6 +1448,19 @@ cumulus@spine01:~$
 
 {{< /tab >}}
 {{< /tabs >}}
+
+<!--You can set the administrative distance for routes from a specific IP address using vtysh. The following example sets the administrative distance to 100 for routes from 10.10.10.101:
+
+```
+cumulus@spine01:~$ sudo vtysh
+spine01# configure terminal
+spine01(config)# router bgp 65101
+spine01(config-router)# distance 100 10.10.10.101/32
+spine01(config-router)# end
+spine01# write memory
+spine01# exit
+cumulus@spine01:~$
+```-->
 
 ## Graceful BGP Shutdown
 

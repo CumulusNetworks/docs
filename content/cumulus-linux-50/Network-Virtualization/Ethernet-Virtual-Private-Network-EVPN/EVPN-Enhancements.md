@@ -17,11 +17,35 @@ For eBGP EVPN peering, the peers are in a different AS so using an automatic RT 
 If you do *not* want RDs and RTs to be derived automatically, you can define them manually. The following example commands are per VNI. You must specify these commands under `address-family l2vpn evpn` in BGP.
 
 {{< tabs "TabID19 ">}}
+{{< tab "CUE Commands ">}}
 
+{{< tabs "TabID22 ">}}
+{{< tab "leaf01 ">}}
+
+``` 
+cumulus@leaf01:~$ cl set evpn evi 10 route-target 10.10.10.1:20
+cumulus@leaf01:~$ cl set evpn evi 10 route-target export 65101:10
+cumulus@leaf01:~$ cl set evpn evi 10 route-target import 65102:10
+cumulus@leaf01:~$ cl config apply
+```
+
+{{< /tab >}}
+{{< tab "leaf03 ">}}
+
+```
+cumulus@leaf03:~$ cl set evpn evi 10 route-target 10.10.10.3:20
+cumulus@leaf03:~$ cl set evpn evi 10 route-target export 65102:10
+cumulus@leaf03:~$ cl set evpn evi 10 route-target import 65101:10
+cumulus@leaf03:~$ cl config apply
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+{{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
-{{< tabs "TabID23 ">}}
-
+{{< tabs "TabID37 ">}}
 {{< tab "leaf01 ">}}
 
 ```
@@ -34,7 +58,6 @@ cumulus@leaf01:~$ net commit
 ```
 
 {{< /tab >}}
-
 {{< tab "leaf03 ">}}
 
 ```
@@ -47,15 +70,12 @@ cumulus@leaf03:~$ net commit
 ```
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 {{< /tab >}}
-
 {{< tab "vtysh Commands ">}}
 
 {{< tabs "TabID50 ">}}
-
 {{< tab "leaf01 ">}}
 
 ```
@@ -77,7 +97,6 @@ cumulus@leaf01:~$
 ```
 
 {{< /tab >}}
-
 {{< tab "leaf03 ">}}
 
 ```
@@ -99,17 +118,14 @@ cumulus@leaf03:~$
 ```
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 These commands create the following configuration snippet in the `/etc/frr/frr.conf` file.
 
 {{< tabs "TabID73 ">}}
-
 {{< tab "leaf01 ">}}
 
 ```
@@ -124,7 +140,6 @@ address-family l2vpn evpn
 ```
 
 {{< /tab >}}
-
 {{< tab "leaf03 ">}}
 
 ```
@@ -138,23 +153,44 @@ address-family l2vpn evpn
 ```
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 {{%notice note%}}
-
 If you delete the RD or RT later, it reverts back to its corresponding default value.
-
 {{%/notice%}}
 
 You can configure multiple RT values. In addition, you can configure both the import and export route targets with a single command by using `route-target both`:
 
 {{< tabs "TabID199 ">}}
+{{< tab "CUE Commands ">}}
 
+{{< tabs "TabID167 ">}}
+{{< tab "leaf01 ">}}
+
+```
+cumulus@leaf01:~$ cl set evpn evi 10 route-target import 65102:10
+cumulus@leaf01:~$ cl set evpn evi 10 route-target import 65102:20
+cumulus@leaf01:~$ cl set evpn evi 20 route-target both 65101:10
+cumulus@leaf01:~$ cl config apply
+```
+
+{{< /tab >}}
+{{< tab "leaf03 ">}}
+
+```
+cumulus@leaf03:~$ cl set evpn evi 10 route-target import 65101:10
+cumulus@leaf03:~$ cl set evpn evi 10 route-target import 65101:20
+cumulus@leaf03:~$ cl set evpn evi 20 route-target both 65102:10
+cumulus@leaf03:~$ cl config apply
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+{{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
 {{< tabs "TabID110 ">}}
-
 {{< tab "leaf01 ">}}
 
 ```
@@ -166,7 +202,6 @@ cumulus@leaf01:~$ net commit
 ```
 
 {{< /tab >}}
-
 {{< tab "leaf03 ">}}
 
 ```
@@ -178,15 +213,12 @@ cumulus@leaf03:~$ net commit
 ```
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 {{< /tab >}}
-
 {{< tab "vtysh Commands ">}}
 
 {{< tabs "TabID150 ">}}
-
 {{< tab "leaf01 ">}}
 
 ```
@@ -208,7 +240,6 @@ cumulus@leaf01:~$
 ```
 
 {{< /tab >}}
-
 {{< tab "leaf03 ">}}
 
 ```
@@ -230,17 +261,14 @@ cumulus@leaf03:~$
 ```
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 The above commands create the following configuration snippet in the `/etc/frr/frr.conf` file:
 
 {{< tabs "TabID189 ">}}
-
 {{< tab "leaf01 ">}}
 
 ```
@@ -256,7 +284,6 @@ address-family l2vpn evpn
 ```
 
 {{< /tab >}}
-
 {{< tab "leaf03 ">}}
 
 ```
@@ -272,7 +299,6 @@ address-family l2vpn evpn
 ```
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 ## Enable EVPN in an iBGP Environment with an OSPF Underlay
@@ -282,7 +308,13 @@ You can use EVPN with an {{<link url="Open-Shortest-Path-First-OSPF" text="OSPF"
 The leaf switches peer with each other in a full mesh within the EVPN address family without using route reflectors. The leafs generally peer to their loopback addresses, which are advertised in OSPF. The receiving VTEP imports routes into a specific VNI with a matching route target community.
 
 {{< tabs "TabID257 ">}}
+{{< tab "CUE Commands ">}}
 
+```
+cumulus@leaf01:~$ NEED COMMANDS
+```
+
+{{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
 ```
@@ -310,12 +342,10 @@ cumulus@leaf01:~$ net commit
 ```
 
 {{< /tab >}}
-
 {{< tab "vtysh Commands ">}}
 
 ```
 cumulus@leaf01:~$ sudo vtysh
-
 leaf01# configure terminal
 leaf01(config)# router bgp 65101
 leaf01(config-router)# neighbor 10.10.10.2 remote-as internal
@@ -357,7 +387,6 @@ cumulus@leaf01:~$
 ```
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 These commands create the following configuration snippet in the `/etc/frr/frr.conf` file.
@@ -412,7 +441,27 @@ In a centralized routing deployment, you must configure layer 3 interfaces even 
 The following examples show a configuration using two VXLANs (10 and 20) and two VLANs (10 and 20).
 
 {{< tabs "TabID367 ">}}
+{{< tab "CUE Commands ">}}
 
+NEED HELP HERE - INCORRECT COMMANDS
+
+```
+cumulus@leaf01:~$ cl set interface VNI10,VNI20 bridge domain br_default
+cumulus@leaf01:~$ cl set bridge domain br_default vlan 10,20
+cumulus@leaf01:~$ cl set vrf default evpn vni 10
+cumulus@leaf01:~$ cl set vrf default evpn vni 20
+cumulus@leaf01:~$ cl set interface vni10 bridge domain br_default access 10
+cumulus@leaf01:~$ cl set interface vni20 bridge domain br_default access 20
+cumulus@leaf01:~$ cl set vrf default evpn vni 10 NEED COMMAND for local-tunnelip
+cumulus@leaf01:~$ cl set vrf default evpn vni 20 NEED COMMAND for local-tunnelip
+cumulus@leaf01:~$ cl set interface vlan10 ip ipv4 forward off
+cumulus@leaf01:~$ cl set interface vlan10 ip ipv6 forward off
+cumulus@leaf01:~$ cl set interface vlan20 ip ipv4 forward off
+cumulus@leaf01:~$ cl set interface vlan20 ip ipv6 forward off
+cumulus@leaf01:~$ cl config apply
+```
+
+{{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
 ```
@@ -433,7 +482,6 @@ cumulus@leaf01:~$ net commit
 ```
 
 {{< /tab >}}
-
 {{< tab "Linux Commands ">}}
 
 Edit the `/etc/network/interfaces` file.
@@ -477,7 +525,6 @@ iface vni20
 ```
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 For a bridge in {{<link url="Traditional-Bridge-Mode" text="traditional mode">}}, you must edit the bridge configuration in the `/etc/network/interfaces` file using a text editor:
@@ -512,7 +559,14 @@ net.ipv6.neigh.default.gc_thresh2=8192
 Keep ARP and ND suppression enabled to reduce flooding of ARP/ND packets over VXLAN tunnels. However, if you need to disable ARP and ND suppression, follow the example commands below.
 
 {{< tabs "TabID475 ">}}
+{{< tab "CUE Commands ">}}
 
+```
+cumulus@leaf01:~$ 
+cumulus@leaf01:~$ 
+```
+
+{{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
 ```
@@ -520,11 +574,9 @@ cumulus@leaf01:~$ net del vxlan vni10 bridge arp-nd-suppress
 cumulus@leaf01:~$ net del vxlan vni20 bridge arp-nd-suppress
 cumulus@leaf01:~$ net pending
 cumulus@leaf01:~$ net commit
-
 ```
 
 {{< /tab >}}
-
 {{< tab "Linux Commands ">}}
 
 Edit the `/etc/network/interfaces` file to remove `bridge-arp-nd-suppress on` from the VNI.
@@ -548,7 +600,6 @@ iface vni20
 ```
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 ## Configure Static MAC Addresses
@@ -603,15 +654,21 @@ iface bridge
 
 A common deployment scenario for large data centers is to sub divide the data center into multiple pods with full host mobility within a pod but only do prefix-based routing across pods. You can achieve this by only exchanging EVPN type-5 routes across pods.
 
-To filter EVPN routes based on the route type and allow only certain types of EVPN routes to be advertised in the fabric:
+The following example commands configure EVPN to advertise type-5 routes:
 
 {{< tabs "TabID63 ">}}
+{{< tab "CUE Commands ">}}
 
+```
+cumulus@leaf01:~$ cl set router policy route-map map1 rule 10 match evpn-route-type ip-prefix
+cumulus@leaf01:~$ cl set router policy route-map map1 rule 10 action permit
+cumulus@leaf01:~$ cl set vrf default router bgp address-family ipv4-unicast route-export to-evpn route-map map1
+```
+
+{{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
 Use the `net add routing route-map <route_map_name> (deny|permit) <1-65535> match evpn default-route` command or the `net add routing route-map <route_map_name> (deny|permit) <1-65535> match evpn route-type (macip|prefix|multicast)` command.
-
-The following example commands configure EVPN to advertise type-5 routes only:
 
 ```
 cumulus@leaf01:~$ net add routing route-map map1 permit 1 match evpn route-type prefix
@@ -619,11 +676,12 @@ cumulus@leaf01:~$ net pending
 cumulus@leaf01:~$ net commit
 ```
 
+{{%notice note%}}
+You must apply the route map for the configuration to take effect. See {{<link url="Route-Filtering-and-Redistribution/#route-maps" text="Route Maps">}} for more information.
+{{%/notice%}}
+
 {{< /tab >}}
-
 {{< tab "vtysh Commands ">}}
-
-The following example configures EVPN to advertise type-5 routes only:
 
 ```
 cumulus@leaf01:~$ sudo vtysh
@@ -638,12 +696,7 @@ cumulus@leaf01:~$
 ```
 
 {{< /tab >}}
-
 {{< /tabs >}}
-
-{{%notice note%}}
-You must apply the route map for the configuration to take effect. See {{<link url="Route-Filtering-and-Redistribution/#route-maps" text="Route Maps">}} for more information.
-{{%/notice%}}
 
 ## Advertise SVI IP Addresses
 
@@ -659,7 +712,14 @@ In a typical EVPN deployment, you *reuse* SVI IP addresses on VTEPs across multi
 To advertise *all* SVI IP/MAC addresses on the switch, run these commands:
 
 {{< tabs "TabID635 ">}}
+{{< tab "CUE Commands ">}}
 
+```
+cumulus@leaf01:~$ cl 
+cumulus@leaf01:~$ 
+```
+
+{{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
 ```
@@ -669,7 +729,6 @@ cumulus@leaf01:~$ net commit
 ```
 
 {{< /tab >}}
-
 {{< tab "vtysh Commands ">}}
 
 ```
@@ -686,7 +745,6 @@ cumulus@leaf01:~$
 ```
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 To advertise a *specific* SVI IP/MAC address, run these commands:

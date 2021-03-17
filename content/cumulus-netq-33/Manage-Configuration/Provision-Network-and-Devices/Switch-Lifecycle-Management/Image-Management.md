@@ -183,11 +183,11 @@ If you have already specified a default image, you must click <strong>Manage</st
 
 1. Download the NetQ debian packages needed for upgrade from the {{<exlink url="https://cumulusnetworks.com/downloads/#product=NetQ" text="Cumulus Downloads page">}}, selecting the appropriate version and hypervisor/platform. Place them in an accessible part of your local network.
 
-2. Upload the images to the LCM repository. This example uploads the two packages (`netq-agent` and `netq-apps`) needed for NetQ version 3.3.0 for a NetQ appliance or VM running Ubuntu 18.04 with an x86 architecture.
+2. Upload the images to the LCM repository. This example uploads the two packages (`netq-agent` and `netq-apps`) needed for NetQ version 3.3.1 for a NetQ appliance or VM running Ubuntu 18.04 with an x86 architecture.
 
     ```
-    cumulus@switch:~$ netq lcm add netq-image /path/to/download/netq-agent_3.3.0-ub18.04u32~1610530013.2e51873_amd64
-    cumulus@switch:~$ netq lcm add netq-image /path/to/download/netq-apps_3.3.0-ub18.04u32~1610530013.2e51873_amd64
+    cumulus@switch:~$ netq lcm add netq-image /path/to/download/netq-agent_3.3.1-ub18.04u33~1614767175.886b337_amd64.deb
+    cumulus@switch:~$ netq lcm add netq-image /path/to/download/netq-apps_3.3.1-ub18.04u33~1614767175.886b337_amd64.deb
     ```
 
 {{< /tab >}}
@@ -243,8 +243,8 @@ cumulus@switch:~$ netq lcm add image /path/to/download/cumulus-linux-4.2.0-mlx-a
 NetQ images:
 
 ```
-cumulus@switch:~$ netq lcm add image /path/to/download/netq-agent_3.3.0-ub18.04u32~1610530013.2e51873_amd64
-cumulus@switch:~$ netq lcm add image /path/to/download/netq-apps_3.3.0-ub18.04u32~1610530013.2e51873_amd64
+cumulus@switch:~$ netq lcm add image /path/to/download/	netq-agent_3.3.1-ub18.04u33~1614767175.886b337_amd64.deb
+cumulus@switch:~$ netq lcm add image /path/to/download/netq-apps_3.3.1-ub18.04u33~1614767175.886b337_amd64.deb
 ```
 
 {{< /tab >}}

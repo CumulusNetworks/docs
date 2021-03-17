@@ -12,9 +12,9 @@ cascade:
 ---
 NVIDIA NetQ {{<version>}} eases your customers deployment and maintenance activities for their data center networks with new configuration, performance, and security features and improvements.
 
-<!-- ## What's New in NetQ 3.3.1
+## What's New in NetQ 3.3.1
 
-NetQ 3.3.1 is a maintenance release that contains bug fixes. -->
+NetQ 3.3.1 is a maintenance release that contains bug fixes.
 
 ## What's New in NetQ 3.3.0
 
@@ -42,19 +42,13 @@ As an early access feature, NetQ 3.3.0 also expanded life cycle management (LCM)
 
 ## Upgrade Paths
 
-You can upgrade NetQ versions 2.4.x through 3.2.x directly to version 3.3.0:
-
-- NetQ 2.4.x to NetQ 3.3.0
-- NetQ 3.0.0 to NetQ 3.3.0
-- NetQ 3.1.x to NetQ 3.3.0
-- NetQ 3.2.x to NetQ 3.3.0
-
-<!-- You can upgrade NetQ versions 2.4.x through 3.2.x directly to version 3.3.0:
+You can upgrade NetQ versions 2.4.x through 3.3.0 directly to version 3.3.1:
 
 - NetQ 2.4.x to NetQ 3.3.1
 - NetQ 3.0.0 to NetQ 3.3.1
 - NetQ 3.1.x to NetQ 3.3.1
-- NetQ 3.2.x to NetQ 3.3.1 -->
+- NetQ 3.2.x to NetQ 3.3.1
+- NetQ 3.3.0 to NetQ 3.3.1
 
 Upgrades from NetQ 2.3.x and earlier require a fresh installation.
 

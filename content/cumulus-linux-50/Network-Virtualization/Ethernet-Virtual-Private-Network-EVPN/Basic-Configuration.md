@@ -17,7 +17,15 @@ The other BGP neighbor address family specific configurations supported for EVPN
 To configure an EVPN route exchange with a BGP peer, activate the peer or peer group within the EVPN address family. For example:
 
 {{< tabs "TabID26 ">}}
+{{< tab "CUE Commands ">}}
 
+cumulus@leaf01:~$ cl set router bgp autonomous-system 65101
+cumulus@leaf01:~$ cl set router bgp router-id 10.10.10.1
+cumulus@leaf01:~$ cl set vrf default router bgp peer swp51 remote-as external
+cumulus@leaf01:~$ cl set vrf default router bgp peer swp51 address-family l2vpn-evpn enable on
+cumulus@leaf01:~$ cl config apply
+
+{{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
 ```
@@ -30,7 +38,6 @@ cumulus@leaf01:~$ net commit
 ```
 
 {{< /tab >}}
-
 {{< tab "vtysh Commands ">}}
 
 ```
@@ -49,7 +56,6 @@ cumulus@leaf01:~$
 ```
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 The above commands create the following configuration snippet in the `/etc/frr/frr.conf` file.
@@ -71,13 +77,18 @@ The above configuration does not result in BGP knowing about the local VNIs defi
 FRR is not aware of any local VNIs and MACs, or hosts (neighbors) associated with those VNIs until you enable the BGP control plane for all VNIs configured on the switch by setting the `advertise-all-vni` option.
 
 {{%notice note%}}
-
 This configuration is only needed on leaf switches that are VTEPs. EVPN routes received from a BGP peer are accepted, even without this explicit EVPN configuration. These routes are maintained in the global EVPN routing table. However, they only become effective (imported into the per-VNI routing table and appropriate entries installed in the kernel) when the VNI corresponding to the received route is locally known.
-
 {{%/notice%}}
 
 {{< tabs "TabID89 ">}}
+{{< tab "CUE Commands ">}}
 
+```
+cumulus@leaf01:~$ NEED COMMAND
+cumulus@leaf01:~$ cl config apply
+```
+
+{{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
 ```
@@ -87,7 +98,6 @@ cumulus@leaf01:~$ net commit
 ```
 
 {{< /tab >}}
-
 {{< tab "vtysh Commands ">}}
 
 ```
@@ -104,7 +114,6 @@ cumulus@leaf01:~$
 ```
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 The above commands create the following configuration snippet in the `/etc/frr/frr.conf` file.

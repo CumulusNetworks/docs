@@ -180,7 +180,7 @@ See the `snmpd.conf` {{<exlink url="http://www.net-snmp.org/docs/man/snmpd.conf.
 You can configure `snmpd` to monitor the operational status of either the Entity MIB or Entity-Sensor MIB by adding the `monitor` directive to the `snmpd.conf` file. Once you know the OID, you can determine the operational status &mdash; which can be a value of *ok(1)*, *unavailable(2)* or *nonoperational(3)* &mdash; by adding a configuration like the following example to `/etc/snmp/snmpd.conf` and adjusting the values:
 
 - Using the `entPhySensorOperStatus` integer:
-
+<!-- vale off -->
 ```
 cumulus@switch:~$ sudo nano /etc/snmp/snmpd.conf
 ...
@@ -190,7 +190,7 @@ monitor -I -r 10  -o 1.3.6.1.2.1.47.1.1.1.1.7.100011001 "Fan1 Not OK"  1.3.6.1.2
 # Any Entity Status non OK (greater than 1)
 monitor  -r 10  -o 1.3.6.1.2.1.47.1.1.1.1.7  "Sensor Status Failure"  1.3.6.1.2.1.99.1.1.1.5 > 1
 ```
-
+<!-- vale on -->
 - Using the OID name. You can use the OID name if the `snmp-mibs-downloader` package is installed (see {{<link url="#enable-mib-to-oid-translation" text="below">}}).
 
 ```  
@@ -209,7 +209,7 @@ The `entPhySensorOperStatus` integer can be found by walking the `entPhysicalNam
    {{%/notice%}}
 
 To get all sensor information, run `snmpwalk` on the `entPhysicalName` table. For example:
-
+<!-- vale off -->
 ```
 cumulus@leaf01:~$ snmpwalk -v 2c -cpublic localhost .1.3.6.1.2.1.47.1.1.1.1.7
 iso.3.6.1.2.1.47.1.1.1.1.7.100000001 = STRING: "PSU1Temp1"
@@ -230,7 +230,7 @@ iso.3.6.1.2.1.47.1.1.1.1.7.100011008 = STRING: "PSU2Fan1"
 iso.3.6.1.2.1.47.1.1.1.1.7.110000001 = STRING: "PSU1"
 iso.3.6.1.2.1.47.1.1.1.1.7.110000002 = STRING: "PSU2"
 ```
-
+<!-- vale on -->
 Restart the `snmpd` service to apply the changes.
 
 ```

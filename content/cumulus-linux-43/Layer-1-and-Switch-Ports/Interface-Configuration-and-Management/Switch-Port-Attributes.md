@@ -1185,7 +1185,7 @@ NIC statistics:
 ### Query SFP Port Information
 
 To verify SFP settings, run the `ethtool -m` command. The following example shows the vendor, type and power output for the swp1 interface.
-
+<!-- vale off -->
 ```
 cumulus@switch:~$ sudo ethtool -m swp1 | egrep 'Vendor|type|power\s+:'
         Transceiver type                          : 10G Ethernet: 10G Base-LR
@@ -1197,7 +1197,7 @@ cumulus@switch:~$ sudo ethtool -m swp1 | egrep 'Vendor|type|power\s+:'
         Laser output power                        : 0.5230 mW / -2.81 dBm
         Receiver signal average optical power     : 0.7285 mW / -1.38 dBm
 ```
-
+<!-- vale on -->
 ## Considerations
 
 ### Auto-negotiation and FEC on NVIDIA Spectrum Switches

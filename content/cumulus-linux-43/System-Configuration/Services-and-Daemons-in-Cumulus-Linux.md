@@ -71,7 +71,7 @@ cumulus@switch:~$ sudo systemctl status
               ├─rasdaemon.service
               │ └─275 /usr/sbin/rasdaemon -f -r
               ├─clagd.service
-              │ └─11443 /usr/bin/python /usr/sbin/clagd --daemon 169.254.1.2 peerlink.4094 44:39:39:ff:40:9
+              │ └─11443 /usr/bin/python /usr/sbin/clagd --daemon 169.254.1.2 peerlink.4094 44:39:39:ff:40:90
               --priority 100 --vxlanAnycas
               ├─switchd.service
               │ └─430 /usr/sbin/switchd -vx
@@ -118,7 +118,7 @@ If you start, restart, or reload any `systemd` service that can be started from 
 ## Identify Active Listener Ports for IPv4 and IPv6
 
 You can identify the active listener ports under both IPv4 and IPv6 using the `netstat` command:
-
+<!-- vale off -->
 ```
 cumulus@switch:~$ netstat -nlp --inet --inet6
 Active Internet connections (only servers)
@@ -144,7 +144,7 @@ udp6       0      0 :::123                  :::*                                
 udp6       0      0 :::4784                 :::*                                909/ptmd
 udp6       0      0 :::3784                 :::*                                909/ptmd
 ```
-
+<!-- vale on -->
 ## Identify Services Currently Active or Stopped
 
 To determine which services are currently active or stopped, run the `cl-service-summary` command:

@@ -363,7 +363,7 @@ cumulus@switch:~$ net show bridge spanning-tree | grep bpdu
 {{< /tab >}}
 
 {{< tab "Linux Commands ">}}
-
+<!-- vale off -->
 ```
 cumulus@switch:~$ mstpctl showportdetail bridge bond0
 bridge:bond0 CIST info
@@ -389,7 +389,7 @@ bridge:bond0 CIST info
   clag role          unknown                 clag dual conn mac   0:0:0:0:0:0
   clag remote portID F.FFF                   clag system mac      0:0:0:0:0:0
 ```
-
+<!-- vale on -->
 {{< /tab >}}
 
 {{< tab "CUE Commands ">}}

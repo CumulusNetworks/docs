@@ -18,7 +18,15 @@ Prefix lists are access lists for route advertisements that match routes instead
 The following example commands configure a prefix list that permits all prefixes in the range 10.0.0.0/16 with a subnet mask less than or equal to /30. For networks 10.0.0.0/24, 10.10.10.0/24, and 10.0.0.10/32, only 10.0.0.0/24 is matched (10.10.10.0/24 has a different prefix and 10.0.0.10/32 has a greater subnet mask).
 
 {{< tabs "TabID22 ">}}
+{{< tab "CUE Commands ">}}
 
+```
+cumulus@switch:~$ cl set router policy prefix-list prefixlist1 rule 1 match 10.0.0.0/16 max-prefix-len 30
+cumulus@switch:~$ cl set router policy prefix-list prefixlist1 rule 1 action permit
+cumulus@switch:~$ cl config apply
+```
+
+{{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
 ```
@@ -28,7 +36,6 @@ cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
-
 {{< tab "vtysh Commands ">}}
 
 ```
@@ -43,7 +50,6 @@ cumulus@switch:~$
 ```
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 The NCLU and vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
@@ -69,7 +75,15 @@ Route maps are routing policies that are considered before the router examines t
 The following example commands configure a route map that sets the metric to 50 for interface swp51:
 
 {{< tabs "TabID73 ">}}
+{{< tab "CUE Commands ">}}
 
+```
+cumulus@switch:~$ cl set router policy route-map routemap1 rule 10 match interface swp51
+cumulus@switch:~$ cl set router policy route-map routemap1 rule 10 set metric 50
+cumulus@switch:~$ cl set router policy route-map routemap1 rule 10 action permit
+```
+
+{{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
 ```
@@ -80,7 +94,6 @@ cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
-
 {{< tab "vtysh Commands ">}}
 
 ```
@@ -97,7 +110,6 @@ cumulus@switch:~$
 ```
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 The NCLU and vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:

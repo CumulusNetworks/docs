@@ -162,7 +162,7 @@ For reference, this example shows a dashboard with all of the available statisti
 3. Explore the data more by modifying the data view in one of several ways using the dashboard tool set:
 
     {{<figure src="/images/netq/grafana-dashboard-tools-230.png" width="600">}}
-    
+
     - Select a different time period for the data by clicking the forward or back arrows. The default time range is dependent on the width of your browser window.
     - Zoom in on the dashboard by clicking the magnifying glass.
     - Manually refresh the dashboard data, or set an automatic refresh rate for the dashboard from the down arrow.

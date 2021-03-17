@@ -9,7 +9,7 @@ A number of commands have changed in this release to accommodate the addition of
 
 ## New Commands
 
-The following table summarizes the new commands available with this release. They include history for IP address and neighbors, selecting a premise and MAC commentary.
+The following table summarizes the new commands available with this release.
 
 | Command | Summary | Version |
 | ------- | ------- | ------- |

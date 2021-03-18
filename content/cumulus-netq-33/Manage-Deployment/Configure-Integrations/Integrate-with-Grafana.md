@@ -96,76 +96,123 @@ Now that you have the plug-in installed, you need to configure access to the Net
 
 With the data source configured, you can create a dashboard with the transmit and receive statistics of interest to you.
 
-To create your dashboard:
+### Create a Dashboard
 
 1. Click {{<img src="/images/netq/grafana-create-dashbd-icon.png" width="24" height="24">}} to open a blank dashboard.
 
 2. Click {{<img src="/images/netq/grafana-config-icon.png" width="24" height="24">}} (Dashboard Settings) at the top of the dashboard.
 
-3. Click **Variables**.
+### Add Variables
 
-    {{<figure src="/images/netq/grafana-add-hostname-variable-230.png" width="600">}}
+1. Click **Variables**.
 
-4. Enter *hostname* into the **Name** field.
+    {{<figure src="/images/netq/grafana-add-hostname-variable-331.png" width="600">}}
 
-5. Enter *Hostname* into the **Label** field.
+2. Enter *hostname* into the **Name** field.
 
-<!-- 6. Select *Net-Q* or *Net-Q-Ethtool* from the **Data source** list. -->
+3. Enter *hostname* into the **Label** field.
 
-6. Select *Net-Q* from the **Data source** list.
+<!-- 4. Select *Net-Q* or *Net-Q-Ethtool* from the **Data source** list. -->
 
-7. Enter *hostname* into the **Query** field.
+4. Select *Net-Q* from the **Data source** list.
 
-8. Click **Add**.
+5. Select *On Dashboard Load* from the **Refresh** list.
+
+6. Enter *hostname* into the **Query** field.
+
+7. Click **Add**.
 
     You should see a preview at the bottom of the hostname values.
 
-9. Click {{<img src="/images/netq/grafana-back-button-230.png" width="24" height="24">}} to return to the new dashboard.
+8. Click **Variables** to add another variable for the interface name.
 
-10. Click **Add Query**.
+    {{<figure src="/images/netq/grafana-add-ifname-variable-331.png" width="600">}}
+
+9. Enter *ifname* into the **Name** field.
+
+10. Enter *ifname* into the **Label** field.
+
+<!-- 11. Select *Net-Q* or *Net-Q-Ethtool* from the **Data source** list. -->
+
+11. Select *Net-Q* from the **Data source** list.
+
+12. Select *On Dashboard Load* from the **Refresh** list.
+
+13. Enter *ifname* into the **Query** field.
+
+14. Click **Add**.
+
+    You should see a preview at the bottom of the ifname values.
+
+15. Click **Variables** to add another variable for metrics.
+
+    {{<figure src="/images/netq/grafana-add-metrics-variable-331.png" width="600">}}
+
+16. Enter *metrics* into the **Name** field.
+
+17. Enter *metrics* into the **Label** field.
+
+<!-- 18. Select *Net-Q* or *Net-Q-Ethtool* from the **Data source** list. -->
+
+18. Select *Net-Q* from the **Data source** list.
+
+19. Select *On Dashboard Load* from the **Refresh** list.
+
+20. Enter *metrics* into the **Query** field.
+
+21. Click **Add**.
+
+    You should see a preview at the bottom of the metrics values.
+
+### Add Charts
+
+1. Now that the variables are defined, click {{<img src="/images/netq/grafana-back-button-230.png" width="24" height="24">}} to return to the new dashboard.
+
+2. Click **Add Query**.
 
     {{<figure src="/images/netq/grafana-create-chart-230.png" width="600">}}
 
-<!-- 11. Select *Net-Q* or *Net-Q-Ethtool* from the **Query** source list. -->
+<!-- 3. Select *Net-Q* or *Net-Q-Ethtool* from the **Query** source list. -->
 
-11. Select *Net-Q* from the **Query** source list.
+3. Select *Net-Q* from the **Query** source list.
 
-12. Select the interface statistic you want to view from the **Metric** list.
+4. Select the interface statistic you want to view from the **Metric** list.
 
-13. Click the **General** icon.
+5. Click the **General** icon.
 
     {{<figure src="/images/netq/grafana-create-chart-general-settings-230.png" width="600">}}
 
-14. Select *hostname* from the **Repeat** list.
+6. Select *hostname* from the **Repeat** list.
 
-15. Set any other parameters around how to display the data.
+7. Set any other parameters around how to display the data.
 
-16. Return to the dashboard.
+8. Return to the dashboard.
 
-17. Add additional panels with other metrics to complete your dashboard.
+9. Select one or more hostnames from the **hostname** list.
+
+    {{<figure src="/images/netq/grafana-create-chart-select-hostname-331.png" width="600">}}
+
+10. Select one or more interface names from the **ifname** list.
+
+    {{<figure src="/images/netq/grafana-create-chart-select-ifname-331.png" width="600">}}
+
+11. Selectric one or more metrics to display for these hostnames and interfaces from the **metrics** list.
+
+    {{<figure src="/images/netq/grafana-create-chart-select-metrics-331.png" width="600">}}
+
+This example shows a dashboard with two hostnames, two interfaces, and one metric selected. The more values you select from the variable options, the more charts appear on your dashboard.
+
+{{<figure src="/images/netq/grafana-netq-dashboard-331.png" width="600">}}
 
 ## Analyze the Data
 
-Once you have your dashboard configured, you can start analyzing the data.
+Once you have your dashboard configured, you can start analyzing the data. Review the statistics, looking for peaks and valleys, unusual patterns, and so forth. Explore the data more by modifying the data view in one of several ways using the dashboard tool set:
 
-For reference, this example shows a dashboard with all of the available statistics.
+{{<figure src="/images/netq/grafana-dashboard-tools-230.png" width="600">}}
 
-{{<figure src="/images/netq/grafana-netq-dashboard-230.png" width="700">}}
-
-1. Select the hostname from the variable list at the top left of the charts to see the statistics for that switch or host.
-
-    {{<figure src="/images/netq/grafana-variable-list-230.png" width="200">}}
-
-2. Review the statistics, looking for peaks and valleys, unusual patterns, and so forth.
-
-3. Explore the data more by modifying the data view in one of several ways using the dashboard tool set:
-
-    {{<figure src="/images/netq/grafana-dashboard-tools-230.png" width="600">}}
-
-    - Select a different time period for the data by clicking the forward or back arrows. The default time range is dependent on the width of your browser window.
-    - Zoom in on the dashboard by clicking the magnifying glass.
-    - Manually refresh the dashboard data, or set an automatic refresh rate for the dashboard from the down arrow.
-    - Add a new variable by clicking the cog wheel, then selecting **Variables**
-    - Add additional panels
-    - Click any chart title to edit or remove it from the dashboard
-    - Rename the dashboard by clicking the cog wheel and entering the new name
+- Select a different time period for the data by clicking the forward or back arrows. The default time range is dependent on the width of your browser window.
+- Zoom in on the dashboard by clicking the magnifying glass.
+- Manually refresh the dashboard data, or set an automatic refresh rate for the dashboard from the down arrow.
+- Add additional panels
+- Click any chart title to edit or remove it from the dashboard
+- Rename the dashboard by clicking the cog wheel and entering the new name

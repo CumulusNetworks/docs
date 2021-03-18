@@ -114,8 +114,9 @@ Optional configuration includes {{<link url="#configure-rd-and-rts-for-the-tenan
 {{< tab "CUE Commands ">}}
 
 ```
-cumulus@leaf01:~$ cl set vrf default evpn vni 10
-cumulus@leaf01:~$ 
+cumulus@leaf01:~$ cl set bridge domain br_default vlan 10 vni 10 
+cumulus@leaf01:~$ cl set nve vxlan source address 10.10.10.10
+cumulus@leaf01:~$ cl config apply
 ```
 
 {{< /tab >}}
@@ -157,7 +158,14 @@ auto bridge
 ### Configure an SVI for the Layer 3 VNI
 
 {{< tabs "TabID154 ">}}
+{{< tab "CUE Commands ">}}
 
+```
+cumulus@leaf01:~$ 
+cumulus@leaf01:~$ 
+```
+
+{{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
 ```
@@ -167,7 +175,6 @@ cumulus@leaf01:~$ net commit
 ```
 
 {{< /tab >}}
-
 {{< tab "Linux Commands ">}}
 
 Edit the `/etc/network/interfaces` file. For example:

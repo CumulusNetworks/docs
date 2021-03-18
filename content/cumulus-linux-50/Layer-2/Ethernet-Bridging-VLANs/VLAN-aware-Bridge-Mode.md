@@ -683,10 +683,6 @@ Cumulus Linux supports using VXLANs with VLAN-aware bridge configuration. This p
 
 The configuration example below shows the differences between a VXLAN configured for traditional bridge mode and one configured for VLAN-aware mode. The configurations use head end replication (HER) together with the VLAN-aware bridge to map VLANs to VNIs.
 
-{{%notice note%}}
-See {{<link title="VXLAN Scale">}} for information about the number of VXLANs you can configure simultaneously.
-{{%/notice%}}
-
 ```
 ...
 auto lo

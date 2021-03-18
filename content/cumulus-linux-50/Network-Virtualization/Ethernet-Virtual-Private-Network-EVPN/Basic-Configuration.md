@@ -4,29 +4,106 @@ author: NVIDIA
 weight: 550
 toc: 4
 ---
-The following sections provide the basic configuration needed to use EVPN as the control plane for VXLAN. The steps provided assume you have already configured VXLAN interfaces, attached them to a bridge, and mapped VLANs to VNIs.
+The following sections provide the basic configuration needed to use EVPN as the control plane for VXLAN. For additional EVPN configuration, see {{<link url="EVPN-Enhancements" text="EVPN Enhancements">}}
 
-## Enable EVPN between BGP Neighbors
+The steps provided assume you have already {{<link url="Border-Gateway-Protocol-BGP" text="Configured BGP">}} and {{<link url="VLAN-aware-Bridge-Mode/#vxlans-with-vlan-aware-bridges" text="created VXLAN interfaces">}}, attached them to a bridge, mapped VLANs to VNIs, and configured the VXLAN local tunnel IP address.
+
+{{< expand "Example BGP Configuration" >}}
+
+{{< tabs "TabID14 ">}}
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@leaf01:~$ cl set router bgp autonomous-system 65101
+cumulus@leaf01:~$ cl set router bgp router-id 10.10.10.1
+cumulus@leaf01:~$ cl set vrf default router bgp peer swp51 remote-as external
+cumulus@leaf01:~$ cl set vrf default router bgp address-family ipv4-unicast static-network 10.10.10.1/32
+cumulus@leaf01:~$ cl config apply
+```
+
+{{< /tab >}}
+{{< tab "vtysh Commands ">}}
+
+```
+cumulus@leaf01:~$ sudo vtysh
+leaf01# configure terminal
+leaf01(config)# router bgp 65101
+leaf01(config-router)# bgp router-id 10.10.10.1
+leaf01(config-router)# neighbor 10.0.1.0 remote-as external
+leaf01(config-router)# address-family ipv4
+leaf01(config-router-af)# network 10.10.10.1/32
+leaf01(config-router-af)# end
+leaf01# write memory
+leaf01# exit
+cumulus@leaf01:~$
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+{{< /expand >}}
+
+{{< expand "Example VXLAN Interface Configuration" >}}
+
+{{< tabs "TabID41 ">}}
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@leaf01:~$ cl set bridge domain br_default vlan 10 vni 10
+cumulus@leaf01:~$ cl set nve vxlan source address 10.10.10.10
+cumulus@leaf01:~$ cl config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+```
+cumulus@leaf01:~$ sudo nano /etc/network/interfaces
+...
+auto lo
+iface lo inet loopback
+        address 10.10.10.1/32
+        vxlan-local-tunnelip 10.10.10.10
+
+auto vni10
+iface vni10
+        bridge-access 10
+        bridge-learning off
+        vxlan-id 10
+
+auto br_default
+iface br_default
+        bridge-ports vni10
+        bridge-vlan-aware yes
+        bridge-vids 10
+        bridge-pvid 1
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+{{< /expand >}}
+
+## Configure EVPN
+  
+The following example commands show basic EVPN configuration.
+
+{{< tabs "TabID25 ">}}
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@leaf01:~$ cl set evpn enable on
+cumulus@leaf01:~$ cl set vrf default router bgp address-family l2vpn-evpn enable on
+cumulus@leaf01:~$ cl set vrf default router bgp peer swp51 address-family l2vpn-evpn enable on
+cumulus@leaf01:~$ cl config apply
+```
+
+{{< /tab >}}
+{{< tab "NCLU Commands ">}}
 
 To enable EVPN between {{<link url="Border-Gateway-Protocol-BGP" text="BGP">}} neighbors, add the address family *evpn* to the existing neighbor `address-family` activation command.
 
 For a non-VTEP device that is merely participating in EVPN route exchange, such as a spine switch where the network deployment uses hop-by-hop eBGP or the switch is acting as an iBGP route reflector, activating the interface for the EVPN address family is the fundamental configuration needed in {{<link url="FRRouting" text="FRRouting">}}.
-
-The other BGP neighbor address family specific configurations supported for EVPN are `allowas-in` and `route-reflector-client`.
-
-To configure an EVPN route exchange with a BGP peer, activate the peer or peer group within the EVPN address family. For example:
-
-{{< tabs "TabID26 ">}}
-{{< tab "CUE Commands ">}}
-
-cumulus@leaf01:~$ cl set router bgp autonomous-system 65101
-cumulus@leaf01:~$ cl set router bgp router-id 10.10.10.1
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp51 remote-as external
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp51 address-family l2vpn-evpn enable on
-cumulus@leaf01:~$ cl config apply
-
-{{< /tab >}}
-{{< tab "NCLU Commands ">}}
 
 ```
 cumulus@leaf01:~$ net add bgp autonomous-system 65101
@@ -39,6 +116,10 @@ cumulus@leaf01:~$ net commit
 
 {{< /tab >}}
 {{< tab "vtysh Commands ">}}
+
+To enable EVPN between {{<link url="Border-Gateway-Protocol-BGP" text="BGP">}} neighbors, add the address family *evpn* to the existing neighbor `address-family` activation command.
+
+For a non-VTEP device that is merely participating in EVPN route exchange, such as a spine switch where the network deployment uses hop-by-hop eBGP or the switch is acting as an iBGP route reflector, activating the interface for the EVPN address family is the fundamental configuration needed in {{<link url="FRRouting" text="FRRouting">}}.
 
 ```
 cumulus@leaf01:~$ sudo vtysh
@@ -70,9 +151,9 @@ address-family l2vpn evpn
 ...
 ```
 
-The above configuration does not result in BGP knowing about the local VNIs defined on the system and advertising them to peers. This requires additional configuration, described in {{<link url="#advertise-all-vnis" text="Advertise All VNIs">}}, below.
+<!--The above configuration does not result in BGP knowing about the local VNIs defined on the system and advertising them to peers. This requires additional configuration, described in {{<link url="#advertise-all-vnis" text="Advertise All VNIs">}}, below.
 
-## Advertise All VNIs
+# Advertise All VNIs
 
 FRR is not aware of any local VNIs and MACs, or hosts (neighbors) associated with those VNIs until you enable the BGP control plane for all VNIs configured on the switch by setting the `advertise-all-vni` option.
 
@@ -127,7 +208,7 @@ router bgp 65101
 neighbor swp51 activate
   advertise-all-vni
 ...
-```
+``` -->
 
 ## EVPN and VXLAN Active-active Mode
 

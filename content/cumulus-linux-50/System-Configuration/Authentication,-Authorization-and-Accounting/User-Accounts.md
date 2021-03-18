@@ -17,7 +17,7 @@ The *root* account:
 
 - Has the default password disabled by default
 - Has the standard Linux root user access to everything on the switch
-- Disabled password prohibits login to the switch by SSH, telnet, FTP, and so on
+- The disabled password prevents you from using SSH, telnet, FTP, and so on, to log in to the switch.
 
 You can add additional user accounts as needed. Like the *cumulus* account, these accounts must use `sudo` to {{<link url="Using-sudo-to-Delegate-Privileges" text="execute privileged commands">}}; be sure to include them in the *sudo* group. For example:
 

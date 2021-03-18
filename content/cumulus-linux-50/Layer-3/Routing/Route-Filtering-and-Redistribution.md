@@ -128,7 +128,7 @@ route-map routemap1 permit 10
 
 ### Apply a Route Map
 
-To apply the route map, you specify the routing protocol (bgp, ospf, or static) and the route map name.
+To apply the route map, you specify the routing protocol and the route map name.
 
 The following example filters routes from Zebra into the Linux kernel. The commands apply the route map called routemap1 to BGP:
 
@@ -200,7 +200,7 @@ To redistribute protocol routes, run the `net add <protocol> redistribute` comma
 {{< tab "CUE Commands ">}}
 
 ```
-cumulus@switch:~$ NEED COMMAND
+cumulus@switch:~$ cl set vrf default router bgp address-family ipv4-unicast route-redistribution ospf
 cumulus@switch:~$ cl config apply
 ```
 
@@ -237,7 +237,7 @@ To redistribute all directly connected networks, use the `redistribute connected
 {{< tab "CUE Commands ">}}
 
 ```
-cumulus@switch:~$ NEED COMMAND
+cumulus@switch:~$ cl set vrf default router bgp address-family ipv4-unicast route-redistribution connected
 cumulus@switch:~$ cl config apply
 ```
 

@@ -236,7 +236,7 @@ cumulus@<hostname>:~$ netq install cluster join-workers 192.168.10.23 192.168.10
 
 ## netq install cluster infra-job
 
-After initialization and worker nodes have been configured, this command configures ??? [other infra stuff?]
+After initialization and worker nodes have been configured, this command installs the Kafka service and operators to aid in installation of the NetQ software.
 
 Alternately, use {{<link title="#netq-install-cluster-full" text="netq install cluster full">}} (on-premises) or {{<link title="#netq-install-opta-cluster" text="netq install opta cluster">}} (remote/cloud) to perform this and all other steps of a NetQ installation with a single command.
 
@@ -250,7 +250,7 @@ netq install cluster infra-job
 
 | Argument | Value | Description |
 | ---- | ---- | ---- |
-| infra-job | NA | Runs infra-job on the NetQ admin app. |
+| infra-job | NA | Adds infrastructure aids to support installation |
 
 ### Options
 

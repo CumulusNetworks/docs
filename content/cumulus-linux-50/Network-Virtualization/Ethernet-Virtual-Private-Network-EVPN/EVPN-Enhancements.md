@@ -14,7 +14,7 @@ The RD disambiguates EVPN routes in different VNIs (as they may have the same MA
 
 For eBGP EVPN peering, the peers are in a different AS so using an automatic RT of *AS:VNI* does not work for route import. Therefore, the import RT is treated as *\*:VNI* to determine which received routes are applicable to a particular VNI. This only applies when the import RT is auto-derived and not configured.
 
-If you do *not* want RDs and RTs to be derived automatically, you can define them manually. The following example commands are per VNI. You must specify these commands under `address-family l2vpn evpn` in BGP.
+If you do *not* want RDs and RTs to be derived automatically, you can define them manually. The following example commands are per VNI. <!--You must specify these commands under `address-family l2vpn evpn` in BGP.-->
 
 {{< tabs "TabID19 ">}}
 {{< tab "CUE Commands ">}}
@@ -562,8 +562,8 @@ Keep ARP and ND suppression enabled to reduce flooding of ARP/ND packets over VX
 {{< tab "CUE Commands ">}}
 
 ```
-cumulus@leaf01:~$ 
-cumulus@leaf01:~$ 
+cumulus@leaf01:~$ cl set nve vxlan arp-nd-suppress off
+cumulus@leaf01:~$ cl config apply
 ```
 
 {{< /tab >}}
@@ -607,7 +607,14 @@ iface vni20
 MAC addresses that are intended to be pinned to a particular VTEP can be provisioned on the VTEP as a static bridge FDB entry. EVPN picks up these MAC addresses and advertises them to peers as remote static MACs. You configure static bridge FDB entries for MACs under the bridge configuration:
 
 {{< tabs "TabID13 ">}}
+{{< tab "CUE Commands ">}}
 
+```
+cumulus@leaf01:~$ NEED COMMAND
+cumulus@leaf01:~$ cl config apply
+```
+
+{{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
 ```
@@ -629,7 +636,6 @@ iface br10
 ```
 
 {{< /tab >}}
-
 {{< tab "Linux Commands ">}}
 
 Edit the `/etc/network/interfaces` file. For example:
@@ -647,7 +653,6 @@ iface bridge
 ```
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 ## Filter EVPN Routes
@@ -715,8 +720,8 @@ To advertise *all* SVI IP/MAC addresses on the switch, run these commands:
 {{< tab "CUE Commands ">}}
 
 ```
-cumulus@leaf01:~$ cl 
-cumulus@leaf01:~$ 
+cumulus@leaf01:~$ cl set evpn route-advertise svi-ip on
+cumulus@leaf01:~$ cl config apply
 ```
 
 {{< /tab >}}
@@ -750,7 +755,14 @@ cumulus@leaf01:~$
 To advertise a *specific* SVI IP/MAC address, run these commands:
 
 {{< tabs "TabID711 ">}}
+{{< tab "CUE Commands ">}}
 
+```
+cumulus@leaf01:~$ cl set evpn evi 10 route-advertise svi-ip on
+cumulus@leaf01:~$ cl config apply
+```
+
+{{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
 ```
@@ -760,7 +772,6 @@ cumulus@leaf01:~$ net commit
 ```
 
 {{< /tab >}}
-
 {{< tab "vtysh Commands ">}}
 
 ```
@@ -778,7 +789,6 @@ cumulus@leaf01:~$
 ```
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 The NCLU and vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
@@ -807,10 +817,19 @@ For information on EVPN BUM flooding with PIM, refer to {{<link url="EVPN-BUM-Tr
 
 {{%/notice%}}
 
-To disable BUM flooding, run the NCLU `net add bgp l2vpn evpn disable-flooding` command or the vtysh `flooding disable` command. For example:
+To disable BUM flooding:
 
 {{< tabs "TabID212 ">}}
+{{< tab "CUE Commands ">}}
 
+```
+cumulus@leaf01:~$ cl set nve vxlan flooding enable off
+cumulus@leaf01:~$ cl config apply
+```
+
+To renable BUM flodding, run the `cl set nve vxlan enable on` command.
+
+{{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
 ```
@@ -819,8 +838,9 @@ cumulus@leaf01:~$ net pending
 cumulus@leaf01:~$ net commit
 ```
 
-{{< /tab >}}
+The `net del bgp l2vpn evpn disable-flooding` command renables BUM flooding.
 
+{{< /tab >}}
 {{< tab "vtysh Commands ">}}
 
 ```
@@ -835,37 +855,7 @@ leaf01)# exit
 cumulus@leaf01:~$
 ```
 
-{{< /tab >}}
-
-{{< /tabs >}}
-
-The NCLU and vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
-
-```
-...
-router bgp 65101
- !
- address-family l2vpn evpn
-  flooding disable
- exit-address-family
-...
-```
-
-To re-enable BUM flooding, run the NCLU `net del bgp l2vpn evpn disable-flooding` command or the vtysh `flooding head-end-replication` command. For example:
-
-{{< tabs "TabID256 ">}}
-
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@leaf01:~$ net del bgp l2vpn evpn disable-flooding
-cumulus@leaf01:~$ net pending
-cumulus@leaf01:~$ net commit
-```
-
-{{< /tab >}}
-
-{{< tab "vtysh Commands ">}}
+To renable BUM flodding:
 
 ```
 cumulus@leaf01:~$ sudo vtysh
@@ -880,10 +870,19 @@ cumulus@leaf01:~$
 ```
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
-### Verify Configuration
+The commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+
+```
+...
+router bgp 65101
+ !
+ address-family l2vpn evpn
+  flooding disable
+ exit-address-family
+...
+```
 
 To show that BUM flooding is disabled, run the NCLU `net show bgp l2vpn evpn vni` command or the vtysh `show bgp l2vpn evpn vni` command. For example:
 
@@ -944,15 +943,9 @@ Duplicate address detection is enabled by default and triggers when:
 By default, when a duplicate address is detected, Cumulus Linux flags the address as a duplicate and generates an error in syslog so that you can troubleshoot the reason and address the fault, then clear the duplicate address flag. No functional action is taken on the address.
 
 {{%notice note%}}
+- If a MAC address is flagged as a duplicate, all IP addresses associated with that MAC are flagged as duplicates. However, in an MLAG configuration, only one of the MLAG peers might flag the associated IP addresses as duplicates.
 
-If a MAC address is flagged as a duplicate, all IP addresses associated with that MAC are flagged as duplicates. However, in an MLAG configuration, only one of the MLAG peers might flag the associated IP addresses as duplicates.
-
-{{%/notice%}}
-
-{{%notice note%}}
-
-In an MLAG configuration, MAC mobility detection runs independently on each switch in the MLAG pair. Based on the sequence in which local learning and/or route withdrawal from the remote VTEP occurs, a type-2 route might have its MAC mobility counter incremented only on one of the switches in the MLAG pair. In rare cases, it is possible for neither VTEP to increment the MAC mobility counter for the type-2 prefix.
-
+- In an MLAG configuration, MAC mobility detection runs independently on each switch in the MLAG pair. Based on the sequence in which local learning and, or route withdrawal from the remote VTEP occurs, a type-2 route might have its MAC mobility counter incremented only on one of the switches in the MLAG pair. In rare cases, it is possible for neither VTEP to increment the MAC mobility counter for the type-2 prefix.
 {{%/notice%}}
 
 ### When Does Duplicate Address Detection Trigger?
@@ -970,7 +963,15 @@ To change the threshold for MAC and IP address moves, run the `net add bgp l2vpn
 The following example command sets the maximum number of address moves allowed to 10 and the duplicate address detection time interval to 1200 seconds.
 
 {{< tabs "TabID372 ">}}
+{{< tab "CUE Commands ">}}
 
+```
+cumulus@switch:~$ cl set evpn dad mac-move-threshold 10
+cumulus@switch:~$ cl set evpn dad move-window 1200
+cumulus@switch:~$ cl config apply
+```
+
+{{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
 ```
@@ -978,7 +979,6 @@ cumulus@switch:~$ net add bgp l2vpn evpn dup-addr-detection max-moves 10 time 12
 ```
 
 {{< /tab >}}
-
 {{< tab "vtysh Commands ">}}
 
 ```
@@ -995,7 +995,6 @@ cumulus@switch:~$
 ```
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 To disable duplicate address detection, see {{<link url="#disable-duplicate-address-detection" text="Disable Duplicate Address Detection">}} below.
@@ -1026,9 +1025,7 @@ When you enable the freeze option and a duplicate address is detected:
 **To recover from a freeze**, shut down the faulty host or VM or fix any other misconfiguration in the network. If the address is frozen *permanently,* issue the {{<link url="#clear-duplicate-addresses" text="clear command">}} on the VTEP where the address is marked as duplicate. If the address is frozen for a defined period of time, it is cleared automatically after the timer expires (you can clear the duplicate address before the timer expires with the {{<link url="#clear-duplicate-addresses" text="clear command">}}).
 
 {{%notice note%}}
-
 If you issue the clear command or the timer expires before you address the fault, duplicate address detection might occur repeatedly.
-
 {{%/notice%}}
 
 After you clear a frozen address, if it is present behind a remote VTEP, the kernel and hardware forwarding tables are updated. If the address is locally learned on this VTEP, the address is advertised to remote VTEPs. All VTEPs get the correct address as soon as the host communicates . Silent hosts are learned only after the faulty entries age out, or you intervene and clear the faulty MAC and ARP table entries.
@@ -1040,7 +1037,14 @@ To enable Cumulus Linux to *freeze* detected duplicate addresses, run the `net a
 The following example command freezes duplicate addresses for a period of 1000 seconds, after which it is cleared automatically:
 
 {{< tabs "TabID442 ">}}
+{{< tab "CUE Commands ">}}
 
+```
+cumulus@switch:~$ cl set evpn dad duplicate-action freeze duration 1000
+cumulus@switch:~$ cl config apply
+```
+
+{{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
 ```
@@ -1048,7 +1052,6 @@ cumulus@switch:~$ net add bgp l2vpn evpn dup-addr-detection freeze 1000
 ```
 
 {{< /tab >}}
-
 {{< tab "vtysh Commands ">}}
 
 ```
@@ -1065,19 +1068,23 @@ cumulus@switch:~$
 ```
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 {{%notice note%}}
-
 Set the freeze timer to be three times the duplicate address detection window. For example, if the duplicate address detection window is set to the default of 180 seconds, set the freeze timer to 540 seconds.
-
 {{%/notice%}}
 
 The following example command freezes duplicate addresses permanently (until you issue the {{<link url="#clear-duplicate-addresses" text="clear command">}}):
 
 {{< tabs "TabID479 ">}}
+{{< tab "CUE Commands ">}}
 
+```
+cumulus@switch:~$ cl set evpn dad duplicate-action freeze duration permanent
+cumulus@switch:~$ cl config apply
+```
+
+{{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
 ```
@@ -1085,7 +1092,6 @@ cumulus@switch:~$ net add bgp l2vpn evpn dup-addr-detection freeze permanent
 ```
 
 {{< /tab >}}
-
 {{< tab "vtysh Commands ">}}
 
 ```
@@ -1102,7 +1108,6 @@ cumulus@switch:~$
 ```
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 ### Clear Duplicate Addresses
@@ -1110,7 +1115,14 @@ cumulus@switch:~$
 You can clear a duplicate MAC or IP address (and unfreeze a frozen address). The following example command clears IP address 10.0.0.9 for VNI 101.
 
 {{< tabs "TabID512 ">}}
+{{< tab "CUE Commands ">}}
 
+```
+cumulus@switch:~$ NEED COMMAND
+cumulus@switch:~$ cl config apply
+```
+
+{{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
 ```
@@ -1118,7 +1130,6 @@ cumulus@switch:~$ net clear evpn dup-addr vni 101 ip 10.0.0.9
 ```
 
 {{< /tab >}}
-
 {{< tab "vtysh Commands ">}}
 
 ```
@@ -1130,13 +1141,19 @@ cumulus@switch:~$
 ```
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 To clear duplicate addresses for all VNIs, run the following command:
 
 {{< tabs "TabID538 ">}}
+{{< tab "CUE Commands ">}}
 
+```
+cumulus@switch:~$ NEED COMMAND
+cumulus@switch:~$ cl config apply
+```
+
+{{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
 ```
@@ -1144,7 +1161,6 @@ cumulus@switch:~$ net clear evpn dup-addr vni all
 ```
 
 {{< /tab >}}
-
 {{< tab "vtysh Commands ">}}
 
 ```
@@ -1156,19 +1172,14 @@ cumulus@switch:~$
 ```
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 {{%notice note%}}
-
 In an MLAG configuration, you need to run the clear command on both the MLAG primary and secondary switch.
-
 {{%/notice%}}
 
 {{%notice note%}}
-
 When you clear a duplicate MAC address, all its associated IP addresses are also cleared. However, you cannot clear an associated IP address if its MAC address is still in a duplicate state.
-
 {{%/notice%}}
 
 ### Disable Duplicate Address Detection
@@ -1176,7 +1187,14 @@ When you clear a duplicate MAC address, all its associated IP addresses are also
 By default, duplicate address detection is enabled and a syslog error is generated when a duplicate address is detected. To disable duplicate address detection, run the following command.
 
 {{< tabs "TabID578 ">}}
+{{< tab "CUE Commands ">}}
 
+```
+cumulus@switch:~$ cl set evpn dad enable on
+cumulus@switch:~$ cl config apply
+```
+
+{{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
 ```
@@ -1184,7 +1202,6 @@ cumulus@switch:~$ net del bgp l2vpn evpn dup-addr-detection
 ```
 
 {{< /tab >}}
-
 {{< tab "vtysh Commands ">}}
 
 ```
@@ -1201,7 +1218,6 @@ cumulus@switch:~$
 ```
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 When you disable duplicate address detection, Cumulus Linux clears the configuration and all existing duplicate addresses.

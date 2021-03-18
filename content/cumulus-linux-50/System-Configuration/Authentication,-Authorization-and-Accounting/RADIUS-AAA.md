@@ -86,7 +86,7 @@ The VSA vendor name (Cisco-AVPair in the example above) can have any content. Th
 
 ## Enable Login without Local Accounts
 
-Because LDAP is not commonly used with switches and adding accounts locally is cumbersome, Cumulus Linux includes a mapping capability with the `libnss-mapuser` package.
+LDAP is not commonly used with switches and adding accounts locally is cumbersome, Cumulus Linux includes a mapping capability with the `libnss-mapuser` package.
 
 Mapping is done using two NSS (Name Service Switch) plugins, one for account name, and one for UID lookup. These accounts are configured automatically in `/etc/nsswitch.conf` during installation and are removed when the package is removed. See the `nss_mapuser (8)` man page for the full description of this plugin.
 

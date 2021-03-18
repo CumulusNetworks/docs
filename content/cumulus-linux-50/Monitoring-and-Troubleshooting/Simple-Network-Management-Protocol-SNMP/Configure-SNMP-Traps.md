@@ -177,7 +177,7 @@ An SNMP agent (`snmpd`) waits for incoming SNMP requests and responds to them. I
 
 See the `snmpd.conf` {{<exlink url="http://www.net-snmp.org/docs/man/snmpd.conf.html" text="man page">}} for details on the `monitor` directive.
 
-You can configure `snmpd` to monitor the operational status of either the Entity MIB or Entity-Sensor MIB by adding the `monitor` directive to the `snmpd.conf` file. Once you know the OID, you can determine the operational status &mdash; which can be a value of *ok(1)*, *unavailable(2)* or *nonoperational(3)* &mdash; by adding a configuration like the following example to `/etc/snmp/snmpd.conf` and adjusting the values:
+You can configure `snmpd` to monitor the operational status of either the Entity MIB or Entity-Sensor MIB by adding the `monitor` directive to the `snmpd.conf` file. After you know the OID, you can determine the operational status &mdash; which can be a value of *ok(1)*, *unavailable(2)* or *nonoperational(3)* &mdash; by adding a configuration like the following example to `/etc/snmp/snmpd.conf` and adjusting the values:
 
 - Using the `entPhySensorOperStatus` integer:
 
@@ -494,7 +494,7 @@ MIB names can be used instead of OIDs, which greatly improves the readability of
    # This file controls the activity of snmpd and snmptrapd
 
    # Don't load any MIBs by default.
-   # You might comment this lines once you have the MIBs Downloaded.
+   # You might comment this lines after you have the MIBs Downloaded.
    #export MIBS=
    ```
 

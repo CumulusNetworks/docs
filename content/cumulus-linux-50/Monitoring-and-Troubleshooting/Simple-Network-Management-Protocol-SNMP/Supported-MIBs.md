@@ -26,7 +26,7 @@ Below are the MIBs supported by Cumulus Linux, as well as suggested uses for the
 | {{<exlink url="https://cumulusnetworks.com/static/mibs/IP-MIB.txt" text="IP-MIB (includes ICMP)">}} | IPv4, IPv4 addresses counters, netmasks. |
 | {{<exlink url="https://cumulusnetworks.com/static/mibs/IPV6-MIB.txt" text="IPv6-MIB">}} | IPv6 counters. |
 | {{<exlink url="https://cumulusnetworks.com/static/mibs/LLDP-MIB.txt" text="LLDP-MIB">}} | Layer 2 neighbor information from `lldpd` (you need to {{<link url="Link-Layer-Discovery-Protocol#enable-the-snmp-subagent-in-lldp" text="enable the SNMP subagent">}} in LLDP). You need to start `lldpd` with the `-x` option to enable connectivity to `snmpd`(AgentX). |
-| {{<exlink url="https://cumulusnetworks.com/static/mibs/LM-SENSORS-MIB.txt" text="LM-SENSORS MIB">}} | Fan speed, temperature sensor values, voltages. This is deprecated since the ENTITY-SENSOR MIB has been added. |
+| {{<exlink url="https://cumulusnetworks.com/static/mibs/LM-SENSORS-MIB.txt" text="LM-SENSORS MIB">}} | Fan speed, temperature sensor values, voltages. This is deprecated with the addition of the ENTITY-SENSOR MIB. |
 | {{<exlink url="https://cumulusnetworks.com/static/mibs/NET-SNMP-AGENT-MIB.txt" text="NET-SNMP-AGENT-MIB">}} | Agent timers, user, group config. |
 | {{<exlink url="https://cumulusnetworks.com/static/mibs/NET-SNMP-VACM-MIB.txt" text="NET-SNMP-VACM-MIB">}} | Agent timers, user, group config. |
 | {{<exlink url="https://cumulusnetworks.com/static/mibs/NOTIFICATION-LOG-MIB.txt" text="NOTIFICATION-LOG-MIB">}} | Local logging. |

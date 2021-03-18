@@ -440,7 +440,7 @@ cumulus@switch:~$ cl set interface lo ip address 10.10.10.1
 cumulus@switch:~$ cl config detach
 ```
 
-### View Differences between Configurations
+### View Differences Between Configurations
 
 To view differences between configurations, run the `cl config diff` command.
 

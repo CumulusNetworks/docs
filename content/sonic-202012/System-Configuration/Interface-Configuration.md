@@ -12,8 +12,8 @@ This topic discusses configuring various interfaces:
 - Loopback interface
 - Management interface
 - Network interfaces
-- VLAN interfaces
 - Switch virtual interfaces (SVIs)
+- VLAN interfaces
 - VRFs
 
 ## Configure the Loopback Interface
@@ -108,14 +108,11 @@ Save your changes to the configuration:
 
 ## Configure Network Interfaces
 
-
-{{<tabs "Network Interfaces">}}
-
-Configure the network interfaces in the INTERFACE table in `/etc/sonic/config_db.json`.
+You can configure the following settings for the physical interfaces on the switch:
 
 | Option | Description |
 | ------ | ----------- |
-| fec | Sets the FEC (forward error correction) |
+| fec | Sets the FEC (forward error correction). FEC options include `rs`, `fc` (*fire code*, AKA base-R) or `none`. |
 | ip | Adds or removes an IP address for the interface. |
 | mtu | Sets the MTU (maximum transmission unit) size for the interface. |
 | pfc | Sets the PFC (priority flow control) configuration for the interface. |
@@ -125,83 +122,48 @@ Configure the network interfaces in the INTERFACE table in `/etc/sonic/config_db
 | transceiver | Enables or disables low power mode for a transceiver. Also can reset the transceiver. |
 | vrf | Binds or unbinds the interface to the specified VRF. |
 
-    breakout - to set interface breakout mode (how now?)
+ <!--   breakout - to set interface breakout mode (how now?) -->
+
+### FEC
+
+{{<exlink url="https://en.wikipedia.org/wiki/Forward_error_correction" text="Forward error correction (FEC)">}} is an encoding and decoding layer that enables the switch to detect and correct bit errors introduced over the cable between two interfaces. The target IEEE bit error rate (BER) on high speed ethernet link is 10-12. Because 25G transmission speeds can introduce a higher than acceptable BER on a link, FEC is often required to correct errors to achieve the target BER at 25G, 4x25G, 100G, and higher link speeds. The type and grade of a cable or module and the medium of transmission will determine which FEC setting is needed.
+
+For the link to come up, the two interfaces on each end must use the same FEC setting.
+
+{{%notice note%}}
+
+There is a very small latency overhead required for FEC. For most applications, this small amount of latency is preferable to error packet retransmission latency.
+
+{{%/notice%}}
+
+SONiC supports these FEC types:
+
+- **RS** (Reed Solomon), IEEE 802.3 Clause 108 (CL108) on individual 25G channels and Clause 91 on 100G (4channels). This is the highest FEC algorithm, providing the best bit-error correction. Use the `rs` option to specify Reed Solomon FEC.
+- **FC** (Fire Code, also called Base-R or BaseR), IEEE 802.3 Clause 74 (CL74). Base-R provides less protection from bit errors than RS FEC but adds less latency. Use the `fc` option to specify Fire Code FEC.
+- **None**. No error correction is done. Use the `none` option to specify no FEC.
+
+{{<tabs "FEC">}}
 
 {{<tab "SONiC CLI">}}
 
+    admin@leaf01:~$ sudo config interface fec Ethernet4 fc
 
 {{</tab>}}
 
 {{<tab "config_db.json">}}
 
-```
-admin@switch:~$ sudo vi /etc/sonic/config_db.json
-
-```
-
-{{</tab>}}
-
-{{</tabs>}}
-
-Save your changes to the configuration:
-
-    admin@switch:~$ sudo config save -y
-
-## Configure VLANs
-
-Configure the VLAN interfaces in the VLAN_INTERFACE table in `/etc/sonic/config_db.json`.
-
-{{<tabs "VLANs">}}
-
-{{<tab "SONiC CLI">}}
-
-
-{{</tab>}}
-
-{{<tab "config_db.json">}}
+Configure FEC in the PORT table in `/etc/sonic/config_db.json`.
 
 ```
 admin@switch:~$ sudo vi /etc/sonic/config_db.json
 
-```
-
-{{</tab>}}
-
-{{</tabs>}}
-
-Save your changes to the configuration:
-
-    admin@switch:~$ sudo config save -y
-
-
-For SVI, see: https://docs.cumulusnetworks.com/cumulus-linux-43/Layer-2/Ethernet-Bridging-VLANs/#configure-a-switch-virtual-interface-svi
-
-
-## Configure VRFs
-
-This command is used to bind a interface to a vrf. By default, all L3 interfaces will be in default vrf. 
-
-Configure the VLAN interfaces in the VRF table in `/etc/sonic/config_db.json`.
-
-{{<tabs "VRFs">}}
-
-{{<tab "SONiC CLI">}}
-
-admin@switch:~$ sudo config interface vrf bind Ethernet0 rocket
-
-{{</tab>}}
-
-{{<tab "config_db.json">}}
-
-```
-admin@switch:~$ sudo vi /etc/sonic/config_db.json
-'VRF:rocket': {
-	'v4': 'true',
-	'v6': 'false',
-	'src_mac': '02:04:05:06:07:08',
-	'ttl_action': 'copy',
-	'ip_opt_action': 'deny',
-	'l3_mc_action': 'drop'
+"PORT": {
+    "Ethernet4": {
+        ...
+        "fec": "fc",
+        ...
+    },
+    ...
 }
 ```
 
@@ -213,23 +175,321 @@ Save your changes to the configuration:
 
     admin@switch:~$ sudo config save -y
 
+### MTU
 
+The MTU (*maximum transmission unit*) for an interface applies to traffic traversing the management port, front panel or switch ports, bridge, VLAN subinterfaces, and bonds (both physical and logical interfaces).
 
+The default MTU is 9100.
 
-{{<tabs "TITLE">}}
+{{<tabs "MTU">}}
 
 {{<tab "SONiC CLI">}}
 
+    admin@leaf01:~$ sudo config interface mtu Ethernet4 1500
 
 {{</tab>}}
 
 {{<tab "config_db.json">}}
 
+Configure MTU in the PORT table in `/etc/sonic/config_db.json`.
+
 ```
 admin@switch:~$ sudo vi /etc/sonic/config_db.json
 
+"PORT": {
+    "Ethernet4": {
+        ...
+        "mtu": "1500",
+        ...
+    },
+    ...
+}
 ```
 
 {{</tab>}}
 
 {{</tabs>}}
+
+Save your changes to the configuration:
+
+    admin@switch:~$ sudo config save -y
+
+### IP Address
+
+Use the `ip` command option to configure the IP address for an interface, including a physical interface, port channel, VLAN or loopback.
+
+You can specify an IPv4 or IPv6 address.
+
+{{<tabs "IP">}}
+
+{{<tab "SONiC CLI">}}
+
+    admin@leaf01:~$ sudo config interface ip add Ethernet4 10.255.255.4/32
+    admin@leaf01:~$ sudo config interface ip add Ethernet4 2001:DB8::4/32
+
+To remove the IP address, use:
+
+    admin@leaf01:~$ sudo config interface ip remove Ethernet4 10.255.255.4/32
+
+{{</tab>}}
+
+{{<tab "config_db.json">}}
+
+Configure the IP address in the INTERFACE table in `/etc/sonic/config_db.json`.
+
+```
+admin@switch:~$ sudo vi /etc/sonic/config_db.json
+
+"INTERFACE": {
+    "Ethernet4": {},
+    ...
+    "Ethernet4|10.255.255.4/32": {},
+    "Ethernet4|2001:DB8::4/32": {},
+    ...
+}
+```
+
+{{</tab>}}
+
+{{</tabs>}}
+
+Save your changes to the configuration:
+
+    admin@switch:~$ sudo config save -y
+
+### Port Speed
+
+You configure the port speed in terms of Mbps (megabits per second).
+
+To determine the valid port speeds for your switch, run:
+
+    admin@switch:~$ sudo docker exec -it syncd sx_api_ports_dump.py
+
+{{<tabs "Speed">}}
+
+{{<tab "SONiC CLI">}}
+
+    admin@leaf01:~$ sudo config interface speed Ethernet4 10000
+
+{{</tab>}}
+
+{{<tab "config_db.json">}}
+
+Configure port speed in the PORT table in `/etc/sonic/config_db.json`.
+
+```
+admin@switch:~$ sudo vi /etc/sonic/config_db.json
+
+"PORT": {
+    "Ethernet4": {
+        ...
+        "speed": "10000", 
+        ...
+    },
+    ...
+}
+```
+
+{{</tab>}}
+
+{{</tabs>}}
+
+Save your changes to the configuration:
+
+    admin@switch:~$ sudo config save -y
+
+### Asymmetric Priority Flow Control
+
+*Priority flow control* (PFC), as defined in the {{<exlink url="http://www.ieee802.org/1/pages/802.1bb.html" text="IEEE 802.1Qbb">}} standard, provides a link-level flow control mechanism that can be controlled independently for each Class of Service (CoS) with the intention to ensure no data frames are lost when congestion occurs in a bridged network.
+
+Asymmetric PFC provides the Ethernet PAUSE functionality in each direction independently on an interface. The configuration for generating and responding to PAUSE messages can be different at both ends of the link.
+
+{{<tabs "PFC">}}
+
+{{<tab "SONiC CLI">}}
+
+To enable asymmetric PFC, run:
+
+    admin@leaf01:~$ sudo config interface pfc asymmetric Ethernet4 on
+
+To disable asymmetric PFC, run:
+
+    admin@leaf01:~$ sudo config interface pfc asymmetric Ethernet4 off
+
+{{</tab>}}
+
+{{<tab "config_db.json">}}
+
+Configure asymmetric PFC in the PORT table in `/etc/sonic/config_db.json`.
+
+```
+admin@switch:~$ sudo vi /etc/sonic/config_db.json
+
+"PORT": {
+    "Ethernet4": {
+        ...
+        "pfc_asym": "on",
+        ...
+    },
+    ...
+}
+```
+
+To disable it, set it to *off*:
+
+```
+admin@switch:~$ sudo vi /etc/sonic/config_db.json
+
+"PORT": {
+    "Ethernet4": {
+        ...
+        "pfc_asym": "off",
+        ...
+    },
+    ...
+}
+```
+
+{{</tab>}}
+
+{{</tabs>}}
+
+Save your changes to the configuration:
+
+    admin@switch:~$ sudo config save -y
+
+### Bind to a VRF
+
+Read the {{<link url="Virtual-Routing-and-Forwarding-VRF" text="VRF">}} topic for information on creating a VRF.
+
+### Administratively Bring a Port Up or Down
+
+The *administrative state* of an interface determines the state of that interface when the switch boots up; the interface can be up or down.
+
+{{<tabs "AdminUpDown">}}
+
+{{<tab "SONiC CLI">}}
+
+To configure an interface to be administratively up, run:
+
+    admin@leaf01:~$ sudo config interface startup Ethernet4
+
+To configure an interface to be administratively down, run:
+
+    admin@leaf01:~$ sudo config interface shutdown Ethernet4
+
+{{</tab>}}
+
+{{<tab "config_db.json">}}
+
+Configure the port's administrative state in the PORT table in `/etc/sonic/config_db.json`. To set the port to always be administratively up, set the `admin_status` to `up`:
+
+```
+admin@switch:~$ sudo vi /etc/sonic/config_db.json
+
+"PORT": {
+    "Ethernet4": {
+        ...
+        "admin_status": "up",
+        ...
+    },
+    ...
+}
+```
+
+To set the port to always be administratively down, so it doesn't come up after a reboot, set the `admin_status` to `down`:
+
+```
+admin@switch:~$ sudo vi /etc/sonic/config_db.json
+
+"PORT": {
+    "Ethernet4": {
+        ...
+        "admin_status": "down",
+        ...
+    },
+    ...
+}
+```
+
+{{</tab>}}
+
+{{</tabs>}}
+
+Save your changes to the configuration:
+
+    admin@switch:~$ sudo config save -y
+
+### Low Power Mode for a Transceiver
+
+If the interface in question is an SFP transceiver, you can enable or disable low power mode for that interface. You can also can reset it.
+
+{{<tabs "transceiver">}}
+
+{{<tab "SONiC CLI">}}
+
+To enable low power mode, run:
+
+    admin@leaf01:~$ sudo config interface transceiver lpmode Ethernet4 enable
+
+To disable low power mode, run:
+
+    admin@leaf01:~$ sudo config interface transceiver lpmode Ethernet4 disable
+
+To reset the transceiver, run:
+
+    admin@leaf01:~$ sudo config interface transceiver reset Ethernet4
+
+{{</tab>}}
+
+{{<tab "config_db.json">}}
+
+Configure low power mode for the port in the PORT table in `/etc/sonic/config_db.json`.
+
+```
+admin@switch:~$ sudo vi /etc/sonic/config_db.json
+
+"PORT": {
+    "Ethernet4": {
+        ...
+        "lpmode": "enabled",
+        ...
+    },
+
+    ...
+
+}
+```
+
+To disable low power mode for the port, set `lpmode` to `disabled`:
+
+```
+admin@switch:~$ sudo vi /etc/sonic/config_db.json
+
+"PORT": {
+    "Ethernet4": {
+        ...
+        "lpmode": "disabled",
+        ...
+    },
+
+    ...
+
+}
+```
+
+{{</tab>}}
+
+{{</tabs>}}
+
+Save your changes to the configuration:
+
+    admin@switch:~$ sudo config save -y
+
+## Configure SVIs
+
+Read the {{<link url="VLANs">}} topic for information on creating a switch virtual interface.
+
+## Configure VLANs
+
+Read the {{<link url="VLANs">}} topic for information on creating a VLAN interface.

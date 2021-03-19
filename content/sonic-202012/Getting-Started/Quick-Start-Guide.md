@@ -28,12 +28,13 @@ Using a SONiC release earlier than 201811 might require upgrades to the BIOS and
        | ONIE: Embed ONIE
 
 1. Reboot the switch into ONIE and select **Install OS**.
+
 1. A discovery process starts automatically, searching for the OS to install. Stop the ONIE discovery by running:
 
-       $ onie-stop
+       onie:$ onie-stop
 1. Verify SMIBIOS parameters by running:
 
-       $ dmidecode -t1 -t2 | grep "Product Name"
+       onie:$ dmidecode -t1 -t2 | grep "Product Name"
        Product Name: MSN2700
        Product Name: VMOD0001
 
@@ -43,11 +44,11 @@ Using a SONiC release earlier than 201811 might require upgrades to the BIOS and
 
    {{%notice info%}}
 
-   Make sure to connect to the console RJ-45 port of the switch and not to the management port.
+Make sure to connect to the console RJ-45 port of the switch and not to the management port.
 
    {{%/notice%}}
 
-2. Configure a serial terminal with the settings described below:
+2. Configure a serial terminal with the settings described below.
 
    The baud rate might be different based on the BIOS or ONIE version.
 
@@ -65,7 +66,7 @@ DHCP is enabled by default over the management port. Therefore, if you configure
 
 ## Install SONiC
 
-1. Reboot the switch into ONIE and select **Install OS**:
+1. Reboot the switch into ONIE and select **ONIE: Install OS**:
 
        GNU GRUB version 2.02-beta3
        +-----------------------------------
@@ -79,9 +80,9 @@ DHCP is enabled by default over the management port. Therefore, if you configure
 
    {{%notice info%}}
 
-   The latest successful build might not be fully tested.
+The latest successful build might not be fully tested.
 
-   It is recommended to contact your switch manufacturer's support team to receive the latest approved hash for production.
+It is recommended to contact your switch manufacturer's support team to receive the latest approved hash for production.
 
    {{%/notice%}}
 
@@ -126,7 +127,7 @@ DHCP is enabled by default over the management port. Therefore, if you configure
 
 6. Verify that all the Docker containers are running.
 
-   The list in the example below is basic and more containers can be loaded based on the user system's configuration.
+   The list in the example below is the default. More containers can be loaded based on the user system's configuration.
 
    It might take up to 2 minutes for the full list of running containers and interfaces to appear.
 
@@ -182,11 +183,11 @@ DHCP is enabled by default over the management port. Therefore, if you configure
        Ethernet120  101,102,103,104      40G   9216    N/A  fortyGigE0/120  routed    down       up     N/A         N/A
        Ethernet124     97,98,99,100      40G   9216    N/A  fortyGigE0/124  routed    down       up     N/A         N/A
 
-By default, all physical ports (etpXX) should be shown. The number of ports depends on the system you are using.
+By default, all physical ports (Ethernet##) should appear. The number of ports depends on the system you are using.
 
 {{%notice tip%}}
 
-If the SKU includes split ports, then a lowercase letter (*a*, *b*, *c*, *d*) is appended to the physical port alias. For example, if port etp12 is split in two, the resulting ports are named *etp12a* and *etp12b*.
+If the SKU includes split ports, then a lowercase letter (*a*, *b*, *c*, *d*) is appended to the physical port alias. For example, if port Ethernet12 is broken out to two ports, the resulting ports are named *fortyGigE0/12a* and *fortyGigE0/12b*.
 
 {{%/notice%}}
 
@@ -194,4 +195,4 @@ If no interfaces are showing, it might indicate one of the following:
 
 - The `/etc/sonic/config_db.json` file is missing or was misconfigured.
 - There is an issue with the `syncd` container.
-- There was a failure to process `port_config.ini/minigraph/config_db.json/etc`.
+- There was an error processing a configuration file such as `port_config.ini` or `config_db.json`.

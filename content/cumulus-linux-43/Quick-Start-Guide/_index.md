@@ -1,6 +1,6 @@
 ---
 title: Quick Start Guide
-author: Cumulus Networks
+author: NVIDIA
 weight: 10
 toc: 2
 ---
@@ -48,9 +48,10 @@ After installing Cumulus Linux, you are ready to:
 - Configure Cumulus Linux. This quick start guide provides instructions on configuring switch ports and a loopback interface.
 
 ## Get Started
-
+<!-- vale off -->
+<!-- NVIDIA.WordStyles switch is the preferred term for box -->
 When starting Cumulus Linux for the first time, the management port makes a DHCPv4 request. To determine the IP address of the switch, you can cross reference the MAC address of the switch with your DHCP server. The MAC address is typically located on the side of the switch or on the box in which the unit ships.
-
+<!-- vale on -->
 ### Login Credentials
 
 The default installation includes the system account (root), with full system privileges and the user account (cumulus), with `sudo` privileges. The *root* account password is locked by default (which prohibits login). The *cumulus* account is configured with this default password:
@@ -115,9 +116,9 @@ iface eth0
 
 {{< /tabs >}}
 
-### Configure the Hostname and Timezone
+### Configure the Hostname and Time Zone
 
-Configure the hostname and timezone for your switch. The hostname identifies the switch; make sure you configure the hostname to be unique and descriptive.
+Configure the hostname and time zone for your switch. The hostname identifies the switch; make sure you configure the hostname to be unique and descriptive.
 
 {{%notice note%}}
 
@@ -167,9 +168,9 @@ cumulus@switch:~$ net commit
 
 {{%/notice%}}
 
-The default timezone on the switch is (Coordinated Universal Time) UTC. Change the timezone on your switch to be the timezone for your location.
+The default time zone on the switch is (Coordinated Universal Time) UTC. Change the time zone on your switch to be the time zone for your location.
 
-To update the timezone, use NTP interactive mode:
+To update the time zone, use NTP interactive mode:
 
 1. Run the following command in a terminal.
 
@@ -181,7 +182,7 @@ To update the timezone, use NTP interactive mode:
 
 {{%notice note%}}
 
-Programs that are already running (including log files) and users currently logged in, do not see timezone changes made with interactive mode. To set the timezone for all services and daemons, reboot the switch.
+Programs that are already running (including log files) and users currently logged in, do not see time zone changes made with interactive mode. To set the time zone for all services and daemons, reboot the switch.
 
 {{%/notice%}}
 
@@ -197,7 +198,7 @@ Warning: Unit file of switchd.service changed on disk, 'systemctl daemon-reload'
 
 Cumulus Linux is licensed on a per-instance basis. Each network system is fully operational, enabling any capability to be utilized on the switch with the exception of forwarding on switch panel ports. Only eth0 and console ports are activated on an unlicensed instance of Cumulus Linux. Enabling front panel ports requires a license.
 
-You receive a license key from Cumulus Networks or an authorized reseller. Here is a sample license key:
+You receive a license key from NVIDIA or an authorized reseller. Here is a sample license key:
 
 ```
 user@company.com|thequickbrownfoxjumpsoverthelazydog312
@@ -247,7 +248,7 @@ If you are using 4x10G DAC or AOC cables, or want to break out 100G or 40G switc
 
 ## Test Cable Connectivity
 
-By default, all data plane ports (every Ethernet port except the management interface, eth0) are disabled.
+By default, all data plane ports (every Ethernet port except the management interface, eth0) are turned off.
 
 To test cable connectivity:
 
@@ -571,18 +572,18 @@ iface lo inet loopback
 
 {{%notice note%}}
 
-If an IP address is configured without a mask (as shown above), the IP address becomes a /32. So, in the above case, 10.1.1.1 is actually 10.1.1.1/32.
+If an IP address is configured without a mask (as shown in the preceding example), the IP address becomes a /32. In the preceding case, 10.1.1.1 is actually 10.1.1.1/32.
 
 {{%/notice%}}
 
 {{< /tab >}}
 
 {{< /tabs >}}
-
+<!-- vale off -->
 ### Multiple Loopbacks
 
 You can add multiple loopback addresses. See {{<link url="Interface-Configuration-and-Management#configure-multiple-loopbacks" text="Configure Multiple Loopbacks">}} for details.
-
+<!-- vale on --> 
 ## Reboot the Switch
 
 After you complete the configuration in this section, reboot the switch:

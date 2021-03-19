@@ -1,6 +1,6 @@
 ---
 title: EVPN Multihoming
-author: Cumulus Networks
+author: NVIDIA
 weight: 570
 toc: 4
 ---
@@ -12,9 +12,17 @@ toc: 4
 - Provides a single BGP-EVPN control plane
 - Allows multi-vendor interoperability
 
-EVPN-MH uses BGP-EVPN type-1, type-2 and type-4 routes for discovering Ethernet segments (ES) and for forwarding traffic to those Ethernet segments. The MAC and neighbor databases are synced between the Ethernet segment peers via these routes as well. An *{{<exlink url="https://tools.ietf.org/html/rfc7432#section-5" text="Ethernet segment">}}* is a group of switch links that are attached to the same server. Each Ethernet segment has an unique Ethernet segment ID (`es-id`) across the entire PoD.
+EVPN-MH uses {{<link url="#supported-evpn-route-types" text="BGP-EVPN type-1, type-2 and type-4 routes">}} for discovering Ethernet segments (ES) and for forwarding traffic to those Ethernet segments. The MAC and neighbor databases are synced between the Ethernet segment peers via these routes as well. An *{{<exlink url="https://tools.ietf.org/html/rfc7432#section-5" text="Ethernet segment">}}* is a group of switch links that are attached to the same server. Each Ethernet segment has an unique Ethernet segment ID (`es-id`) across the entire PoD.
 
-Configuring EVPN-MH involves setting an Ethernet segment system MAC address (`es-sys-mac`) and a local Ethernet segment ID (`local-es-id`) on a static or LACP bond. The `es-sys-mac` and `local-es-id` are used to build a type-3 `es-id`. This `es-id` must be globally unique across all the EVPN VTEPs. The same `es-sys-mac` can be configured on multiple interfaces.
+Configuring EVPN-MH involves setting an Ethernet segment system MAC address (`es-sys-mac`) and a local Ethernet segment ID (`local-es-id`) on a static or LACP bond. These two parameters are used to automatically generate the unique MAC-based ESI value ({{<exlink url="https://tools.ietf.org/html/rfc7432#section-5" text="type-3">}}):
+
+- The `es-sys-mac` is used for the LACP system identifier.
+- The `es-id` configuration defines a local discriminator to uniquely enumerate each bond that shares the same es-sys-mac.
+- The resulting 10-byte ESI value has the following format:
+
+      03:MM:MM:MM:MM:MM:MM:XX:XX:XX
+
+  where the MMs denote the 6-byte `es-sys-mac` and the XXs denote the 3-byte `es-id` value.
 
 While you can specify a different `es-sys-mac` on different Ethernet segments attached to the same switch, the `es-sys-mac` must be the same on the downlinks attached to the same server.
 
@@ -26,22 +34,17 @@ However, when using Spectrum A1 switches, a maximum of two switches can particip
 
 {{%/notice%}}
 
-## Supported Features
+## Required and Supported Features
 
-- Known unicast traffic multihoming via type-1/EAD (Ethernet auto discovery) routes and type-2 (non-zero ESI) routes. Includes all-active redundancy via aliasing and support for fast failover.
-- EVPN BUM traffic handling with {{<link title="EVPN BUM Traffic with PIM-SM" text="EVPN-PIM">}} on multihomed sites via Type-4/ESR routes, which includes split-horizon-filtering and designated forwarder election.
+This section describes features that must be enabled in order to use EVPN multihoming, other supported features and features that are not supported.
 
-  {{%notice warning%}}
+### Required Features
 
-Head-end replication is not supported with multihoming, so you must use EVPN-PIM for BUM traffic handling.
+The following features must be enabled in order to use EVPN-MH:
 
-{{%/notice%}}
-
-- {{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware bridge mode">}} only.
-- {{<link url="Inter-subnet-Routing/#symmetric-routing" text="Distributed symmetric routing">}}.
-- {{<link url="Basic-Configuration/#arp-and-nd-suppression" text="ARP suppression">}} must be enabled.
-- EVI (*EVPN virtual instance*). Cumulus Linux supports VLAN-based service only, so the EVI is just a layer 2 VNI.
-- Supported {{<exlink url="https://cumulusnetworks.com/hcl" text="ASICs">}} include Mellanox Spectrum A1, Spectrum 2 and Spectrum 3.
+- {{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware bridge mode">}}
+- {{<link url="Basic-Configuration/#arp-and-nd-suppression" text="ARP suppression">}}
+- EVPN BUM traffic handling with {{<link title="EVPN BUM Traffic with PIM-SM" text="EVPN-PIM">}} on multihomed sites via Type-4/ESR routes, which includes split-horizon-filtering and designated forwarder election
 
 {{%notice warning%}}
 
@@ -49,9 +52,40 @@ In order to use EVPN-MH, you must remove any MLAG configuration on the switch. T
 
 - Removing the `clag-id` from all interfaces in the `/etc/network/interfaces` file.
 - Removing the peerlink interfaces in the `/etc/network/interfaces` file.
+- Removing any existing `hwaddress` (from a Cumulus Linux 3.x MLAG configuration) or `address-virtual` (from a Cumulus Linux 4.x MLAG configuration) entries from all SVIs corresponding to a layer 3 VNI in the `/etc/network/interfaces` file.
+- Removing any `clagd-vxlan-anycast-ip` configuration in the `/etc/network/interfaces` file.
 - Then running `ifreload` to reload the configuration:<pre>cumulus@switch:~$ sudo ifreload</pre>
 
 {{%/notice%}}
+
+### Other Supported Features
+
+- Known unicast traffic multihoming via type-1/EAD (Ethernet auto discovery) routes and type-2 (non-zero ESI) routes. Includes all-active redundancy via aliasing and support for fast failover.
+- {{<link url="LACP-Bypass">}} is supported.
+  - When an EVPN-MH bond enters LACP bypass state, BGP stops advertising EVPN type-1 and type-4 routes for that bond. Split-horizon and designated forwarder filters are disabled.
+  - When an EVPN-MH bond exits the LACP bypass state, BGP starts advertising EVPN type-1 and type-4 routes for that bond. Split-horizon and designated forwarder filters are enabled.
+- EVI (*EVPN virtual instance*). Cumulus Linux supports VLAN-based service only, so the EVI is just a layer 2 VNI.
+- Supported {{<exlink url="https://cumulusnetworks.com/hcl" text="ASICs">}} include Mellanox Spectrum A1, Spectrum 2 and Spectrum 3.
+
+### Supported EVPN Route Types
+
+EVPN multihoming supports the following route types.
+
+| Route Type | Description | RFC or Draft |
+| ---------- | ----------- | ------------ |
+| 1 | Ethernet auto-discovery (A-D) route | {{<exlink url="https://tools.ietf.org/html/rfc7432" text="RFC 7432">}} |
+| 2 | MAC/IP advertisement route | {{<exlink url="https://tools.ietf.org/html/rfc7432" text="RFC 7432">}} |
+| 3 | Inclusive multicast route | {{<exlink url="https://tools.ietf.org/html/rfc7432" text="RFC 7432">}} |
+| 4 | Ethernet segment route | {{<exlink url="https://tools.ietf.org/html/rfc7432" text="RFC 7432">}} |
+| 5 | IP prefix route | {{<exlink url="https://tools.ietf.org/html/draft-ietf-bess-evpn-prefix-advertisement-04" text="draft-ietf-bess-evpn-prefix-advertisement-04">}} |
+
+### Unsupported Features
+
+The following features are not supported with EVPN-MH:
+
+- {{<link url="Traditional-Bridge-Mode" text="Traditional bridge mode">}}
+- {{<link url="Inter-subnet-Routing/#asymmetric-routing" text="Distributed asymmetric routing">}}
+- Head-end replication; use {{<link title="EVPN BUM Traffic with PIM-SM" text="EVPN-PIM">}} for BUM traffic handling instead
 
 ## Configure EVPN-MH
 
@@ -72,9 +106,9 @@ A *designated forwarder* (DF) is elected for each Ethernet segment. The DF is re
 
 NCLU generates the EVPN-MH configuration and reloads FRR and `ifupdown2`. The configuration appears in both the `/etc/network/interfaces` file and in `/etc/frr/frr.conf` file.
 
-{{%notice info%}}
+{{%notice note%}}
 
-In addition to the `es-id` and the `es-sys-mac`, you need to specify a unique SVI IP address for each VTEP across the racks. These IP addresses must be reachable from remote VTEPs. You enable the advertisement of these IP addresses using the `advertise-svi-ip` option, under the BGP EVPN address family. See the leaf configurations in the {{<link title="#Example Configuration" text="example configuration">}} below.
+When EVPN-MH is enabled, all SVI MAC addresses are advertised as type 2 routes. You no longer need to configure a unique SVI IP address, or configure the BGP EVPN address family with `advertise-svi-ip`.
 
 {{%/notice%}}
 
@@ -625,7 +659,7 @@ net add snmp-server listening-address localhost
 net add bgp autonomous-system 5556
 net add bond hostbond1-3 evpn mh es-df-pref 50000
 net add bond hostbond1-3 evpn mh es-sys-mac 44:38:39:ff:ff:01
-net add interface ipmr-lo,lo,swp1-4 pim
+net add interface lo,swp1-4 pim
 net add interface swp1-4 evpn mh uplink
 net add bond hostbond1 evpn mh es-id 1
 net add bond hostbond2 evpn mh es-id 2
@@ -654,7 +688,6 @@ net add bgp l2vpn evpn  neighbor swp2 activate
 net add bgp l2vpn evpn  neighbor swp3 activate
 net add bgp l2vpn evpn  neighbor swp4 activate
 net add bgp l2vpn evpn  advertise-all-vni
-net add bgp l2vpn evpn  advertise-svi-ip
 net add time zone Etc/UTC
 net add ptp global slave-only no
 net add ptp global priority1 255
@@ -841,7 +874,7 @@ leaf01(config)# log file /var/log/frr/bgpd.log
 leaf01(config)# log timestamp precision 6
 leaf01(config)# evpn mh startup-delay 30
 leaf01(config)# zebra nexthop proto only
-leaf01(config)# ip pim rp 192.0.2.5 239.1.1.0/24
+leaf01(config)# ip pim rp 10.0.0.100 239.1.1.0/24
 leaf01(config)# ip pim spt-switchover infinity-and-beyond
 leaf01(config)# service integrated-vtysh-config
 leaf01(config)# debug bgp evpn mh es
@@ -878,11 +911,7 @@ leaf01(config-if)# evpn mh es-df-pref 50000
 leaf01(config-if)# evpn mh es-id 3
 leaf01(config-if)# evpn mh es-sys-mac 44:38:39:ff:ff:01
 leaf01(config-if)# exit
-leaf01(config)# interface ipmr-lo
-leaf01(config-if)# ip pim
-leaf01(config-if)# exit
 leaf01(config)# interface lo
-leaf01(config-if)# ip igmp
 leaf01(config-if)# ip pim
 leaf01(config-if)# exit
 leaf01(config)# interface swp1
@@ -924,7 +953,6 @@ leaf01(config-router-af)# neighbor swp2 activate
 leaf01(config-router-af)# neighbor swp3 activate
 leaf01(config-router-af)# neighbor swp4 activate
 leaf01(config-router-af)# advertise-all-vni
-leaf01(config-router-af)# advertise-svi-ip
 leaf01(config-router-af)# exit-address-family
 leaf01(config-router)# exit
 leaf01(config)# line vty
@@ -1003,7 +1031,6 @@ net add bgp l2vpn evpn neighbor swp2 activate
 net add bgp l2vpn evpn neighbor swp3 activate
 net add bgp l2vpn evpn neighbor swp4 activate
 net add bgp l2vpn evpn advertise-all-vni
-net add bgp l2vpn evpn  advertise-svi-ip
 net add time zone Etc/UTC
 net add ptp global slave-only no
 net add ptp global priority1 255
@@ -1188,7 +1215,7 @@ leaf02(config)# log file /var/log/frr/bgpd.log
 leaf02(config)# log timestamp precision 6
 leaf02(config)# evpn mh startup-delay 30
 leaf02(config)# ip forwarding
-leaf02(config)# ip pim rp 192.0.2.5 239.1.1.0/24
+leaf02(config)# ip pim rp 10.0.0.100 239.1.1.0/24
 leaf02(config)# ip pim spt-switchover infinity-and-beyond
 leaf02(config)# debug bgp evpn mh es
 leaf02(config)# debug bgp evpn mh route
@@ -1252,7 +1279,6 @@ leaf02(config-if)# evpn mh es-id 3
 leaf02(config-if)# evpn mh es-sys-mac 44:38:39:ff:ff:01
 leaf02(config-if)# exit
 leaf02(config)# interface lo
-leaf02(config-if)# ip igmp
 leaf02(config-if)# ip pim
 leaf02(config-if)# exit
 leaf02(config)# interface swp1
@@ -1294,7 +1320,6 @@ leaf02(config-router-af)# neighbor swp2 activate
 leaf02(config-router-af)# neighbor swp3 activate
 leaf02(config-router-af)# neighbor swp4 activate
 leaf02(config-router-af)# advertise-all-vni
-leaf02(config-router-af)# advertise-svi-ip
 leaf02(config-router-af)# exit-address-family
 leaf02(config-router)# exit
 leaf02(config)# line vty
@@ -1373,7 +1398,6 @@ net add bgp l2vpn evpn  neighbor swp2 activate
 net add bgp l2vpn evpn  neighbor swp3 activate
 net add bgp l2vpn evpn  neighbor swp4 activate
 net add bgp l2vpn evpn  advertise-all-vni
-net add bgp l2vpn evpn  advertise-svi-ip
 net add time zone Etc/UTC
 net add ptp global slave-only no
 net add ptp global priority1 255
@@ -1558,7 +1582,7 @@ leaf03(config)# log file /var/log/frr/bgpd.log
 leaf03(config)# log timestamp precision 6
 leaf03(config)# evpn mh startup-delay 30
 leaf03(config)# ip forwarding
-leaf03(config)# ip pim rp 192.0.2.5 239.1.1.0/24
+leaf03(config)# ip pim rp 10.0.0.100 239.1.1.0/24
 leaf03(config)# ip pim spt-switchover infinity-and-beyond
 leaf03(config)# debug bgp zebra
 leaf03(config)# debug zebra vxlan
@@ -1622,7 +1646,6 @@ leaf03(config-if)# evpn mh es-id 3
 leaf03(config-if)# evpn mh es-sys-mac 44:38:39:ff:ff:01
 leaf03(config-if)# exit
 leaf03(config)# interface lo
-leaf03(config-if)# ip igmp
 leaf03(config-if)# ip pim
 leaf03(config-if)# exit
 leaf03(config)# interface swp1
@@ -1665,7 +1688,6 @@ leaf03(config-router-af)# neighbor swp2 activate
 leaf03(config-router-af)# neighbor swp3 activate
 leaf03(config-router-af)# neighbor swp4 activate
 leaf03(config-router-af)# advertise-all-vni
-leaf03(config-router-af)# advertise-svi-ip
 leaf03(config-router-af)# exit-address-family
 leaf03(config-router)# exit
 leaf03(config)# line vty
@@ -1767,8 +1789,9 @@ net add interface swp3 alias Local Node spine01 and Ports swp3 <==> Remote Node/
 net add interface swp4 alias Local Node spine01 and Ports swp4 <==> Remote Node/s leaf02 and Ports swp2
 net add interface swp5 alias Local Node spine01 and Ports swp5 <==> Remote Node/s leaf03 and Ports swp1
 net add interface swp6 alias Local Node spine01 and Ports swp6 <==> Remote Node/s leaf03 and Ports swp2
-net add loopback lo alias BGP un-numbered Use for Vxlan Src Tunnel
+net add loopback lo alias MSDP Anycast PIM-SM RP
 net add loopback lo ip address 172.16.0.17/32
+net add loopback lo ip address 10.0.0.100/32
 net add vrf mgmt ip address 172.16.0.1/8
 net add vrf mgmt ipv6 address ::1/128
 net add vrf mgmt vrf-table auto
@@ -1796,8 +1819,10 @@ spine01(config)# log file /var/log/frr/zebra.log
 spine01(config)# log file /var/log/frr/bgpd.log
 spine01(config)# log timestamp precision 6
 spine01(config)# ip forwarding
-spine01(config)# ip pim rp 192.0.2.5 239.1.1.0/24
+spine01(config)# ip pim rp 10.0.0.100 239.1.1.0/24
 spine01(config)# ip pim spt-switchover infinity-and-beyond
+spine01(config)# ip msdp mesh-group cumulus member 172.16.0.18
+spine01(config)# ip msdp mesh-group cumulus source 172.16.0.17
 spine01(config)# debug bgp zebra
 spine01(config)# debug zebra vxlan
 spine01(config)# debug zebra kernel
@@ -1828,6 +1853,7 @@ spine01(config-vrf)# vni 4003
 spine01(config-vrf)# exit-vrf
 spine01(config)# interface lo
 spine01(config-if)# ip pim
+spine01(config-if)# ip pim use-source 10.0.0.100
 spine01(config-if)# exit
 spine01(config)# interface swp1
 spine01(config-if)# ip pim
@@ -1883,7 +1909,6 @@ spine01(config-router-af)# neighbor swp4 activate
 spine01(config-router-af)# neighbor swp5 activate
 spine01(config-router-af)# neighbor swp6 activate
 spine01(config-router-af)# advertise-all-vni
-spine01(config-router-af)# advertise-svi-ip
 spine01(config-router-af)# exit-address-family
 spine01(config-router)# exit
 spine01(config)# line vty
@@ -1985,8 +2010,9 @@ net add interface swp3 alias Local Node spine02 and Ports swp3 <==> Remote Node/
 net add interface swp4 alias Local Node spine02 and Ports swp4 <==> Remote Node/s leaf02 and Ports swp4
 net add interface swp5 alias Local Node spine02 and Ports swp5 <==> Remote Node/s leaf03 and Ports swp3
 net add interface swp6 alias Local Node spine02 and Ports swp6 <==> Remote Node/s leaf03 and Ports swp4
-net add loopback lo alias BGP un-numbered Use for Vxlan Src Tunnel
+net add loopback lo alias MSDP Anycast PIM-SM RP
 net add loopback lo ip address 172.16.0.18/32
+net add loopback lo ip address 10.0.0.100/32
 net add vrf mgmt ip address 172.16.0.1/8
 net add vrf mgmt ipv6 address ::1/128
 net add vrf mgmt vrf-table auto
@@ -2014,8 +2040,10 @@ spine02(config)# log file /var/log/frr/zebra.log
 spine02(config)# log file /var/log/frr/bgpd.log
 spine02(config)# log timestamp precision 6
 spine02(config)# ip forwarding
-spine02(config)# ip pim rp 192.0.2.5 239.1.1.0/24
+spine02(config)# ip pim rp 10.0.0.100 239.1.1.0/24
 spine02(config)# ip pim spt-switchover infinity-and-beyond
+spine02(config)# ip msdp mesh-group cumulus member 172.16.0.17
+spine02(config)# ip msdp mesh-group cumulus source 172.16.0.18
 spine02(config)# debug bgp zebra
 spine02(config)# debug zebra vxlan
 spine02(config)# debug zebra kernel
@@ -2046,6 +2074,7 @@ spine02(config-vrf)# vni 4003
 spine02(config-vrf)# exit-vrf
 spine02(config)# interface lo
 spine02(config-if)# ip pim
+spine02(config-if)# ip pim use-source 10.0.0.100
 spine02(config-if)# exit
 spine02(config)# interface swp1
 spine02(config-if)# ip pim
@@ -2101,7 +2130,6 @@ spine02(config-router-af)# neighbor swp4 activate
 spine02(config-router-af)# neighbor swp5 activate
 spine02(config-router-af)# neighbor swp6 activate
 spine02(config-router-af)# advertise-all-vni
-spine02(config-router-af)# advertise-svi-ip
 spine02(config-router-af)# exit-address-family
 spine02(config-router)# exit
 spine02(config)# line vty
@@ -2121,9 +2149,21 @@ cumulus@spine02:~$
 
 If you are using the {{<link title="#Configuration Commands" text="NCLU commands">}} listed above, they create the following configurations in the `/etc/network/interfaces` files for the leaf and spine switches.
 
-If you are not using NCLU and are configuring the topology on the command line, copy the configurations below to the appropriate switches or servers. For the leaf and spine switch configurations, reload the new configuration by running `ifreload -a`:
+If you are not using NCLU and are configuring the topology on the command line, do the following:
 
-    cumulus@switch:~$ sudo ifreload -a
+1. For the leaf and spine switch configurations, edit the `daemons` file to enable `pimd` (change *no* to *yes*):
+
+       cumulus@switch:~$ sudo nano /etc/frr/daemons
+
+       ...
+       pimd=yes
+       ...
+
+1. Copy the configurations below to the appropriate switches or servers.
+
+1. For the leaf and spine switch configurations, reload the new configuration by running `ifreload -a`:
+
+       cumulus@switch:~$ sudo ifreload -a
 
 {{<tabs "/etc/network/interfaces">}}
 
@@ -3243,7 +3283,8 @@ iface mgmt
 auto lo
 iface lo
     address 172.16.0.17/32
-    alias BGP un-numbered Use for Vxlan Src Tunnel
+    address 10.0.0.100/32
+    alias MSDP Anycast PIM-SM RP
 
 auto swp1
 iface swp1
@@ -3298,7 +3339,8 @@ iface mgmt
 auto lo
 iface lo
     address 172.16.0.18/32
-    alias BGP un-numbered Use for Vxlan Src Tunnel
+    address 10.0.0.100/32
+    alias MSDP Anycast PIM-SM RP
 
 auto swp1
 iface swp1
@@ -4016,7 +4058,7 @@ log file /var/log/frr/bgpd.log
 log timestamp precision 6
 evpn mh startup-delay 30
 zebra nexthop proto only
-ip pim rp 192.0.2.5 239.1.1.0/24
+ip pim rp 10.0.0.100 239.1.1.0/24
 ip pim spt-switchover infinity-and-beyond
 service integrated-vtysh-config
 !
@@ -4059,11 +4101,7 @@ interface hostbond3
  evpn mh es-id 3
  evpn mh es-sys-mac 44:38:39:ff:ff:01
 !
-interface ipmr-lo
- ip pim
-!
 interface lo
- ip igmp
  ip pim
 !
 interface swp1
@@ -4108,7 +4146,6 @@ router bgp 5556
   neighbor swp3 activate
   neighbor swp4 activate
   advertise-all-vni
-  advertise-svi-ip
  exit-address-family
 !
 line vty
@@ -4158,7 +4195,7 @@ debug mroute
 debug mroute detail
 debug zebra mlag
 debug msdp events
-ip pim rp 192.0.2.5 239.1.1.0/24
+ip pim rp 10.0.0.100 239.1.1.0/24
 ip pim spt-switchover infinity-and-beyond
 no debug zebra kernel
 no debug zebra events
@@ -4239,7 +4276,6 @@ router bgp 5557
  neighbor swp3 activate
  neighbor swp4 activate
  advertise-all-vni
- advertise-svi-ip
  exit-address-family
 !
 !
@@ -4262,7 +4298,6 @@ interface swp4
 !
 interface lo
  ip pim
- ip igmp
 !
 line vty
  exec-timeout 0 0
@@ -4310,7 +4345,7 @@ debug mroute
 debug mroute detail
 debug zebra mlag
 debug msdp events
-ip pim rp 192.0.2.5 239.1.1.0/24
+ip pim rp 10.0.0.100 239.1.1.0/24
 ip pim spt-switchover infinity-and-beyond
 no debug zebra kernel
 no debug zebra events
@@ -4389,7 +4424,6 @@ router bgp 5558
  neighbor swp3 activate
  neighbor swp4 activate
  advertise-all-vni
- advertise-svi-ip
  exit-address-family
 !
 
@@ -4414,7 +4448,6 @@ interface swp4
 !
 interface lo
  ip pim
- ip igmp
 !
 line vty
  exec-timeout 0 0
@@ -4462,8 +4495,10 @@ debug mroute
 debug mroute detail
 debug zebra mlag
 debug msdp events
-ip pim rp 192.0.2.5 239.1.1.0/24
+ip pim rp 10.0.0.100 239.1.1.0/24
 ip pim spt-switchover infinity-and-beyond
+ip msdp mesh-group cumulus member 172.16.0.18
+ip msdp mesh-group cumulus source 172.16.0.17
 !
 !
 log file /var/log/frr/bgpd.log
@@ -4612,6 +4647,7 @@ interface swp16
 !
 interface lo
  ip pim
+ ip pim use-source 10.0.0.100
 !
 line vty
  exec-timeout 0 0
@@ -4659,8 +4695,10 @@ debug mroute
 debug mroute detail
 debug zebra mlag
 debug msdp events
-ip pim rp 192.0.2.5 239.1.1.0/24
+ip pim rp 10.0.0.100 239.1.1.0/24
 ip pim spt-switchover infinity-and-beyond
+ip msdp mesh-group cumulus member 172.16.0.17
+ip msdp mesh-group cumulus source 172.16.0.18
 !
 !
 !
@@ -4810,6 +4848,7 @@ interface swp16
 !
 interface lo
  ip pim
+ ip pim use-source 10.0.0.100
 !
 line vty
  exec-timeout 0 0

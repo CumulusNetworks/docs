@@ -1,6 +1,6 @@
 ---
 title: Optional BGP Configuration
-author: Cumulus Networks
+author: NVIDIA
 weight: 860
 toc: 3
 ---
@@ -161,7 +161,7 @@ leaf01# configure terminal
 leaf01(config)# router bgp 65101
 leaf01(config-router)# neighbor 10.10.10.101 remote-as external
 leaf01(config-router)# neighbor 10.10.10.101 ebgp-multihop
-leaf01(config)# exit
+leaf01(config-router)# end
 leaf01# write memory
 leaf01# exit
 cumulus@leaf01:~$
@@ -222,7 +222,7 @@ router bgp 65101
 {{%notice note%}}
 
 - When you configure `ttl-security hops` on a peer group instead of a specific neighbor, FRR does not add it to either the running configuration or to the `/etc/frr/frr.conf` file. To work around this issue, add `ttl-security hops` to individual neighbors instead of the peer group.
-- Enabling `ttl-security hops` does not program the hardware with relevant information. Frames are forwarded to the CPU and are dropped. Cumulus Networks recommends that you use the `net add acl` command to explicitly add the relevant entry to hardware. For more information about ACLs, see {{<link title="Netfilter - ACLs">}}.
+- Enabling `ttl-security hops` does not program the hardware with relevant information. Frames are forwarded to the CPU and are dropped. Use the `net add acl` command to explicitly add the relevant entry to hardware. For more information about ACLs, see {{<link title="Netfilter - ACLs">}}.
 
 {{%/notice%}}
 
@@ -276,8 +276,7 @@ cumulus@leaf01:~$ sudo vtysh
 leaf01# configure terminal
 leaf01(config)# router bgp 65101
 leaf01(config-router)# neighbor swp51 password mypassword
-leaf01(config-router)# exit
-leaf01(config)# exit
+leaf01(config-router)# end
 leaf01# write memory
 leaf01# exit
 cumulus@leaf01:~$
@@ -563,7 +562,6 @@ switch(config-router)# neighbor 2001:db8:0002::0a00:0002 capability extended-nex
 switch(config-router)# address-family ipv4 unicast
 switch(config-router-af)# neighbor 2001:db8:0002::0a00:0002 activate
 switch(config-router-af)# end
-switch(config)# exit
 switch# write memory
 switch# exit
 cumulus@switch:~$
@@ -712,7 +710,10 @@ cumulus@leaf01:~$ sudo vtysh
 leaf01# configure terminal
 leaf01(config)# router bgp 65101
 leaf01(config-router)# neighbor swp50 addpath-tx-bestpath-per-AS
-leaf01(config-router)#
+leaf01(config-router)# end
+leaf01# write memory
+leaf01# exit
+cumulus@leaf01:~$ 
 ```
 
 {{< /tab >}}
@@ -742,7 +743,10 @@ cumulus@leaf01:~$ sudo vtysh
 leaf01# configure terminal
 leaf01(config)# router bgp 65101
 leaf01(config-router)# neighbor swp50 addpath-tx-all-paths
-leaf01(config-router)#
+leaf01(config-router)# end
+leaf01# write memory
+leaf01# exit
+cumulus@leaf01:~$ 
 ```
 
 {{< /tab >}}
@@ -934,13 +938,13 @@ cumulus@spine01:~$ net commit
 ```
 cumulus@spine01:~$ sudo vtysh
 
-switch# configure terminal
-switch(config)# router bgp 65199
-switch(config-router)# address-family ipv4
-switch(config-router-af)# neighbor swp1 route-reflector-client
-switch(config-router-af)# end
-switch# write memory
-switch# exit
+spine01# configure terminal
+spine01(config)# router bgp 65199
+spine01(config-router)# address-family ipv4
+spine01(config-router-af)# neighbor swp1 route-reflector-client
+spine01(config-router-af)# end
+spine01# write memory
+spine01# exit
 cumulus@spine01:~$
 ```
 
@@ -972,17 +976,17 @@ Cumulus Linux uses the administrative distance to choose which routing protocol 
 
 Set the administrative distance with vtysh commands.
 
-The following example commands set the administrative distance for route 10.10.10.101/32 to 100:
+The following example commands set the administrative distance for routes from 10.10.10.101 to 100:
 
 ```
 cumulus@spine01:~$ sudo vtysh
 
-switch# configure terminal
-switch(config)# router bgp 65101
-switch(config-router)# distance 100 10.10.10.101/32
-switch(config-router)# end
-switch# write memory
-switch# exit
+spine01# configure terminal
+spine01(config)# router bgp 65101
+spine01(config-router)# distance 100 10.10.10.101/32
+spine01(config-router)# end
+spine01# write memory
+spine01# exit
 cumulus@spine01:~$
 ```
 
@@ -991,12 +995,12 @@ The following example commands set the administrative distance for routes extern
 ```
 cumulus@spine01:~$ sudo vtysh
 
-switch# configure terminal
-switch(config)# router bgp 65101
-switch(config-router)# distance bgp 150 110 100
-switch(config-router)# end
-switch# write memory
-switch# exit
+spine01# configure terminal
+spine01(config)# router bgp 65101
+spine01(config-router)# distance bgp 150 110 100
+spine01(config-router)# end
+spine01# write memory
+spine01# exit
 cumulus@spine01:~$
 ```
 
@@ -1039,7 +1043,7 @@ leaf01(config-router)# bgp graceful-shutdown
 leaf01(config-router)# end
 leaf01# write memory
 leaf01# exit
-cumulus@v:~$
+cumulus@leaf01:~$
 ```
 
 To disable graceful shutdown:
@@ -1160,7 +1164,8 @@ Here is an example of a standard community list filter:
 
 ```
 cumulus@switch:~$ net add routing community-list standard COMMUNITY1 permit 100:100
-
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}

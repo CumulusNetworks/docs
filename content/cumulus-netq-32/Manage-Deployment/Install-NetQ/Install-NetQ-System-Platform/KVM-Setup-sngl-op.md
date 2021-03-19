@@ -23,21 +23,25 @@ Follow these steps to setup and configure your VM on a single server in an on-pr
 
     {{<netq-install/vm-setup hypervisor="kvm" deployment="onprem" version="3.2.1">}}
 
-5. Verify the platform is ready for installation. Fix any errors indicated before installing the NetQ software.
+5. Log in to the VM and change the password.
+
+    {{<netq-install/change-pswd>}}
+
+6. Verify the platform is ready for installation. Fix any errors indicated before installing the NetQ software.
 
     {{<netq-install/verify-cmd deployment="onprem">}}
 
-6. Change the hostname for the VM from the default value.
+7. Change the hostname for the VM from the default value.
 
     {{<netq-install/set-hostname>}}
 
-7. Run the Bootstrap CLI. Be sure to replace the *eth0* interface used in this example with the interface on the server used to listen for NetQ Agents.
+8. Run the Bootstrap CLI. Be sure to replace the *eth0* interface used in this example with the interface on the server used to listen for NetQ Agents.
 
     {{<netq-install/bootstrap version="3.2.1" server="single" platform="vm" deployment="onprem">}}
 
 ## Considerations for Container Environments
 
-{{<netq-install/container>}}
+{{<netq-install/container version="3.2.1">}}
 
 ## Install and Activate the NetQ Software
 

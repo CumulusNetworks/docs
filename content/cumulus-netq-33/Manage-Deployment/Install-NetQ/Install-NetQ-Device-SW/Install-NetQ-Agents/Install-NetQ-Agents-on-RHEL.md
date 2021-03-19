@@ -1,10 +1,10 @@
 ---
 title: Install and Configure the NetQ Agent on RHEL and CentOS Servers
-author: Cumulus Networks
+author: NVIDIA
 weight: 310
 toc: 5
 ---
-After installing your Cumulus NetQ software, you should install the NetQ 3.2.1 Agents on each server you want to monitor. NetQ Agents can be installed on servers running:
+After installing your NetQ software, you should install the NetQ 3.2.1 Agents on each server you want to monitor. NetQ Agents can be installed on servers running:
 
 - Red Hat RHEL 7.1
 - CentOS 7
@@ -134,7 +134,7 @@ To install the NetQ Agent:
     root@rhel7:~# rpm -q -netq-agent
     ```
 
-    {{<netq-install/agent-version version="3.2.1" opsys="rh">}}
+    {{<netq-install/agent-version version="3.3.1" opsys="rh">}}
 
 3. Restart `rsyslog` so log files are sent to the correct destination.
 
@@ -146,7 +146,13 @@ To install the NetQ Agent:
 
 ## Configure the NetQ Agent on a RHEL or CentOS Server
 
-After the NetQ Agents have been installed on the servers you want to monitor, the NetQ Agents must be configured to obtain useful and relevant data. Two methods are available for configuring a NetQ Agent:
+After the NetQ Agents have been installed on the servers you want to monitor, the NetQ Agents must be configured to obtain useful and relevant data.
+
+{{%notice note%}}
+The NetQ Agent is aware of and communicates through the designated VRF. If you do not specify one, the default VRF (named *default*) is used. If you later change the VRF configured for the NetQ Agent (using a lifecycle management configuration profile, for example), you might cause the NetQ Agent to lose communication.
+{{%/notice%}}
+
+Two methods are available for configuring a NetQ Agent:
 
 - Edit the configuration file on the device, or
 - Use the NetQ CLI.

@@ -71,7 +71,7 @@ cumulus@switch:~$ snmpwalk -v 3 -u userSHAwithAES -l authPriv -a SHA -x AES -A s
 This command gets the first MIB object in the system table; in this case, the SNMPv2 system name specified above:
 
 ```
-cumulus@switch:~$ sudo ip vrf exec default snmpgetnext -v 2c -c mynotsosecretpassword localhost SNMPv2-MIB::sysName
+cumulus@switch:~$ snmpgetnext -v 2c -c mynotsosecretpassword localhost SNMPv2-MIB::sysName
 SNMPv2-MIB::sysName.0 = STRING: my little router
 ```
 
@@ -100,3 +100,14 @@ cumulus@switch:~$ snmpwalk -v 3 -u user3 -l authPriv -a MD5 -A user3password -x 
 cumulus@switch:~$ snmpwalk -v 3 -u user666 -l authPriv -a SHA -x AES -A user666password -X user666encryption localhost 1.3.6.1.2.1.1
 cumulus@switch:~$ snmpwalk -v 3 -u user999 -l authPriv -a MD5 -x DES -A user999password -X user999encryption localhost 1.3.6.1.2.1.1
 ```
+
+{{%notice note%}}
+
+As mentioned in {{<link url="Configure-SNMP/#snmp-and-vrfs" text="Configure SNMP">}}, SNMP is VRF-aware. To run commands like `snmpget` or `snmpwalk` in a VRF, preface the command with `sudo ip vrf exec <VRF>`, like this:
+
+```
+cumulus@switch:~$ sudo ip vrf exec default snmpgetnext -v 2c -c mynotsosecretpassword localhost SNMPv2-MIB::sysName
+SNMPv2-MIB::sysName.0 = STRING: my little router
+```
+
+{{%/notice%}}

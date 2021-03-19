@@ -232,4 +232,6 @@ This example shows a standalone server in an on-premises deployment.
 
 {{<figure src="/images/netq/adminui-health-standalone-onprem-320.png" width="700">}}
 
+If you have deployed an on-premises solution, you can add a custom signed certificate. Refer to {{<link title="Post Installation Configuration Options/#install-a-custom-signed-certificate" text="Install a Certificate">}} for instructions.
+
 Click **Open NetQ** to enter the NetQ application.

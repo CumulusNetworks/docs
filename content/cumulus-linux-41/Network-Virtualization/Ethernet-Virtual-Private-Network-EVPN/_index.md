@@ -1,6 +1,6 @@
 ---
 title: Ethernet Virtual Private Network - EVPN
-author: Cumulus Networks
+author: NVIDIA
 weight: 530
 toc: 3
 ---

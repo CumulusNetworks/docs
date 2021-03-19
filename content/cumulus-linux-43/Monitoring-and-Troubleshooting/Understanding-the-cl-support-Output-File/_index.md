@@ -1,6 +1,6 @@
 ---
 title: Understanding the cl-support Output File
-author: Cumulus Networks
+author: NVIDIA
 weight: 1050
 toc: 3
 ---
@@ -21,7 +21,7 @@ To create the `cl-support` archive file manually, run the `cl-support` command:
 cumulus@switch:~$ sudo cl-support
 ```
 
-If the Cumulus Networks support team requests that you submit the output from `cl-support` to help with the investigation of issues you might experience with Cumulus Linux and you need to include security-sensitive information, such as the `sudoers` file, use the `-s` option:
+If the Cumulus Linux support team requests that you submit the output from `cl-support` to help with the investigation of issues you might experience with Cumulus Linux and you need to include security-sensitive information, such as the `sudoers` file, use the `-s` option:
 
 ```
 cumulus@switch:~$ sudo cl-support -s
@@ -39,5 +39,5 @@ cumulus@switch:~$ sudo cl-support -M
 
 For information on the directories included in the `cl-support` archive, see:
 
-- {{<link url="Troubleshooting-the-etc-Directory">}}. The `/etc` directory contains the largest number of files to send to Cumulus Networks; however, log files might be significantly larger in file size.
+- {{<link url="Troubleshooting-the-etc-Directory">}}. The `/etc` directory contains the largest number of files; however, log files might be significantly larger in file size.
 - {{<link url="Troubleshooting-Log-Files">}}. This guide highlights the most important log files to inspect. Keep in mind, `cl-support` includes all of the log files.

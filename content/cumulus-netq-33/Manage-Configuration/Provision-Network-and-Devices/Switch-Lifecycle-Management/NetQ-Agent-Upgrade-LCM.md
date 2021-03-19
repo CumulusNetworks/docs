@@ -1,10 +1,10 @@
 ---
-title: Upgrade Cumulus NetQ Agent Using LCM
-author: Cumulus Networks
+title: Upgrade NetQ Agent Using LCM
+author: NVIDIA
 weight: 670
 toc: 4
 ---
-The lifecycle management (LCM) feature enables you to upgrade to Cumulus NetQ 3.2.0 on switches with an existing NetQ Agent 2.4.x, 3.0.0, or 3.1.0 release using the NetQ UI. You can upgrade only the NetQ Agent or upgrade both the NetQ Agent and the NetQ CLI at the same time. Up to five jobs can be run simultaneously; however, a given switch can only be contained in one running job at a time.
+The lifecycle management (LCM) feature enables you to upgrade to NetQ 3.3.0 on switches with an existing NetQ Agent 2.4.x-3.2.1 release using the NetQ UI. You can upgrade only the NetQ Agent or upgrade both the NetQ Agent and the NetQ CLI at the same time. Up to five jobs can be run simultaneously; however, a given switch can only be contained in one running job at a time.
 
 The upgrade workflow includes the following steps:
 
@@ -12,11 +12,11 @@ The upgrade workflow includes the following steps:
 
 {{<notice info>}}
 
-Upgrades can be performed from NetQ Agents of 2.4.x, 3.0.0, and 3.1.0 releases to the NetQ 3.2.0 release. <em>Lifecycle management does not support upgrades from NetQ 2.3.1 or earlier releases; you must perform a new installation in these cases.</em> Refer to {{<link title="Install NetQ Agents">}}.
+Upgrades can be performed from NetQ Agents of 2.4.x and 3.0.x-3.2.x releases. <em>Lifecycle management does not support upgrades from NetQ 2.3.1 or earlier releases; you must perform a new installation in these cases.</em> Refer to {{<link title="Install NetQ Agents">}}.
 
 {{</notice>}}
 
-## Prepare for a Cumulus NetQ Agent Upgrade
+## Prepare for a NetQ Agent Upgrade
 
 Prepare for NetQ Agent upgrade on switches as follows:
 
@@ -24,7 +24,7 @@ Prepare for NetQ Agent upgrade on switches as follows:
 
 {{< tab "NetQ UI" >}}
 
-1. Click {{<img src="https://icons.cumulusnetworks.com/03-Computers-Devices-Electronics/09-Hard-Drives/hard-drive-1.svg" height="18" width="18">}} (Switches) in the workbench header, then click **Manage switches**, or click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18" alt="Main Menu">}} (Main Menu) and select **Manage Switches**.
+1. Click {{<img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/06-Servers/server-upload.svg" width="18" height="18">}} (Upgrade) in the workbench header.
 
 2. Add the {{<link title="Manage Cumulus Linux and NetQ Images/#upload-upgrade-images" text="upgrade images">}}.
 
@@ -36,7 +36,7 @@ Prepare for NetQ Agent upgrade on switches as follows:
 
 Your LCM dashboard should look similar to this after you have completed the above steps:
 
-{{<figure src="/images/netq/lcm-netq-upgrade-dashboard-post-prep-320.png" width="600">}}
+{{<figure src="/images/netq/lcm-netq-upgrade-dashboard-post-prep-330.png" width="600">}}
 
 {{< /tab >}}
 
@@ -52,17 +52,17 @@ Your LCM dashboard should look similar to this after you have completed the abov
 
 {{< /tabs >}}
 
-## Perform a Cumulus NetQ Agent Upgrade
+## Perform a NetQ Agent Upgrade
 
-You can upgrade Cumulus NetQ Agents on switches as follows:
+You can upgrade NetQ Agents on switches as follows:
 
 {{< tabs "TabID61" >}}
 
 {{< tab "NetQ UI" >}}
 
-1. Click **Manage** on the Switches card.
+1. In the **Switch Management** tab, click **Manage** on the Switches card.
 
-2. Select the individual switches (or click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/check-circle-1.svg" height="16" width="18">}} to select all switches) with older NetQ releases that you want to upgrade. If needed, use the filter to narrow the listing and find the relevant switches.
+2. Select the individual switches (or click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/check-circle-1.svg" height="16" width="18">}} to select all switches) with older NetQ releases that you want to upgrade. Filter by role (on left) to narrow the listing and sort by column heading (such as hostname or IP address) to order the list in a way that helps you find the switches you want to upgrade.
 
 3. Click {{<img src="/images/netq/netq-upgrade-icon-blk.png" height="18" width="18">}} (Upgrade NetQ) above the table.
 
@@ -76,7 +76,7 @@ You can upgrade Cumulus NetQ Agents on switches as follows:
 
 6. Review each switch:
 
-    - Is the NetQ Agent version between 2.4.0 and 3.1.1? If not, this switch can only be upgraded through the {{<link title="Upgrade Cumulus Linux Using LCM/#upgrade-cumulus-linux-on-switches-without-netq-agent-installed" text="switch discovery">}} process.
+    - Is the NetQ Agent version between 2.4.0 and 3.2.1? If not, this switch can only be upgraded through the {{<link title="Upgrade Cumulus Linux Using LCM/#upgrade-cumulus-linux-on-switches-without-netq-agent-installed" text="switch discovery">}} process.
     - Is the configuration profile the one you want to apply? If not, click **Change config**, then select an alternate profile to apply to all selected switches.
 
 <div style="padding-left: 18px;">
@@ -136,7 +136,7 @@ By default, the NetQ Agent and CLI are upgraded on the selected switches. If you
 
     For the switches you upgraded, you can verify the version is correctly listed in the **NetQ_Version** column. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14">}} to return to the lifecycle management dashboard.
 
-    The NetQ Install and Upgrade History card is now visible and shows the status of this upgrade job.
+    The NetQ Install and Upgrade History card is now visible in the **Job History** tab and shows the status of this upgrade job.
 
     {{<figure src="/images/netq/lcm-netq-upgrade-success-history-card-320.png" width="200">}}
 
@@ -147,13 +147,13 @@ By default, the NetQ Agent and CLI are upgraded on the selected switches. If you
 To upgrade the NetQ Agent on one or more switches, run:
 
 ```
-netq lcm upgrade name <text-job-name> cl-version <text-cumulus-linux-version> netq-version <text-netq-version> hostnames <text-switch-hostnames> [run-restore-on-failure] [run-before-after]
+netq-image name <text-job-name> [netq-version <text-netq-version>] [upgrade-cli True | upgrade-cli False] hostnames <text-switch-hostnames> [config_profile <text-config-profile>]
 ```
 
-This example creates a NetQ Agent upgrade job called *upgrade-cl410-nq320*. It upgrades the *spine01* and *spine02* switches with NetQ Agents version 3.2.0.
+This example creates a NetQ Agent upgrade job called *upgrade-cl430-nq330*. It upgrades the *spine01* and *spine02* switches with NetQ Agents version 3.3.0.
 
 ```
-cumulus@switch:~$ netq lcm upgrade name upgrade-cl410-nq320 cl-version 4.1.0 netq-version 3.2.0 hostnames spine01,spine02
+cumulus@switch:~$ netq lcm upgrade name upgrade-cl430-nq330 netq-version 3.3.0 hostnames spine01,spine02
 ```
 
 <!-- You can assign an order for which switches to upgrade based on the switch roles defined above. For example, to upgrade the spines before the leafs, add the `order ROLE1,ROLE2` option to the command:
@@ -161,8 +161,6 @@ cumulus@switch:~$ netq lcm upgrade name upgrade-cl410-nq320 cl-version 4.1.0 net
     cumulus@switch:~$ netq lcm upgrade name upgrade-3712 image-id cl_image_69ce56d15b7958de5bb8371e9c4bf2fc9131da9a57b13853e2a60ca109238b22 license LICENSE hostnames spine01,spine02,leaf01,leaf02 order spine,leaf
 
 If the switches have not been assigned a role, then do not use the `order` option. So in this example, if switches spine01 and spine02 have not been assigned the _spine_ role, then do not specify the `order spine` option. -->
-
-Including the `run-restore-on-failure` option restores the switch(es) with their earlier version of NetQ Agent should the upgrade fail. The `run-before-after` option generates a network snapshot before upgrade begins and another when it is completed. The snapshots are visible in the NetQ UI.
 
 {{< /tab >}}
 
@@ -200,7 +198,7 @@ Several viewing options are available for monitoring the upgrade job.
 
     By default, filters show *all* of that items of the given filter type until it is restricted by these settings.
 
-- Monitor the job through the NetQ Install and Upgrade History card on the LCM dashboard. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14">}} twice to return to the LCM dashboard.
+- Monitor the job through the NetQ Install and Upgrade History card in the **Job History** tab. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14">}} twice to return to the LCM dashboard.
 
     {{<figure src="/images/netq/lcm-netq-upgrade-history-card-inprogress-310.png" width="200">}}
 
@@ -218,31 +216,101 @@ This example shows that an error has occurred trying to upgrade two of the four 
 
 If you were watching this job from the LCM dashboard view, click **View** on the NetQ Install and Upgrade History card to return to the detailed view to resolve any issues that occurred.
 
-<!--CLI
-
 To view the progress of upgrade jobs, run:
 
 ```
-netq lcm show upgrade-jobs [json]
+netq lcm show upgrade-jobs netq-image [json]
 netq lcm show status <text-lcm-job-id> [json]
 ```
 
 You can view the progress of one upgrade job at a time. To do so, you first need the job identifier and then you can view the status of that job.
 
-This example shows all upgrade jobs that are currently running or have completed, and then shows the status of the job with a job identifier of xxx.
+This example shows all upgrade jobs that are currently running or have completed, and then shows the status of the job with a job identifier of job_netq_install_7152a03a8c63c906631c3fb340d8f51e70c3ab508d69f3fdf5032eebad118cc7.
 
 ```
-cumulus@switch:~$ netq lcm show upgrade-jobs
-xxx
+cumulus@switch:~$ netq lcm show upgrade-jobs netq-image json
+[
+    {
+        "jobId": "job_netq_install_7152a03a8c63c906631c3fb340d8f51e70c3ab508d69f3fdf5032eebad118cc7",
+        "name": "Leaf01-02 to NetQ330",
+        "netqVersion": "3.3.0",
+        "overallStatus": "FAILED",
+        "pre-checkStatus": "COMPLETED",
+        "warnings": [],
+        "errors": [],
+        "startTime": 1611863290557.0
+    }
+]
 
-cumulus@switch:~$ netq lcm show status xxx
-xxx
+cumulus@switch:~$ netq lcm show status netq-image job_netq_install_7152a03a8c63c906631c3fb340d8f51e70c3ab508d69f3fdf5032eebad118cc7
+NetQ Upgrade FAILED
+
+Upgrade Summary
+---------------
+Start Time: 2021-01-28 19:48:10.557000
+End Time: 2021-01-28 19:48:17.972000
+Upgrade CLI: True
+NetQ Version: 3.3.0
+Pre Check Status COMPLETED
+Precheck Task switch_precheck COMPLETED
+	Warnings: []
+	Errors: []
+Precheck Task version_precheck COMPLETED
+	Warnings: []
+	Errors: []
+Precheck Task config_precheck COMPLETED
+	Warnings: []
+	Errors: []
+
+
+Hostname          CL Version  NetQ Version  Prev NetQ Ver Config Profile               Status           Warnings         Errors       Start Time
+                                            sion
+----------------- ----------- ------------- ------------- ---------------------------- ---------------- ---------------- ------------ --------------------------
+leaf01            4.2.1       3.3.0         3.2.1         ['NetQ default config']      FAILED           []               ["Unreachabl Thu Jan 28 19:48:10 2021
+                                                                                                                         e at Invalid
+                                                                                                                         /incorrect u
+                                                                                                                         sername/pass
+                                                                                                                         word. Skippi
+                                                                                                                         ng remaining
+                                                                                                                         10 retries t
+                                                                                                                         o prevent ac
+                                                                                                                         count lockou
+                                                                                                                         t: Warning:
+                                                                                                                         Permanently
+                                                                                                                         added '192.1
+                                                                                                                         68.200.11' (
+                                                                                                                         ECDSA) to th
+                                                                                                                         e list of kn
+                                                                                                                         own hosts.\r
+                                                                                                                         \nPermission
+                                                                                                                         denied,
+                                                                                                                         please try a
+                                                                                                                         gain."]
+leaf02            4.2.1       3.3.0         3.2.1         ['NetQ default config']      FAILED           []               ["Unreachabl Thu Jan 28 19:48:10 2021
+                                                                                                                         e at Invalid
+                                                                                                                         /incorrect u
+                                                                                                                         sername/pass
+                                                                                                                         word. Skippi
+                                                                                                                         ng remaining
+                                                                                                                         10 retries t
+                                                                                                                         o prevent ac
+                                                                                                                         count lockou
+                                                                                                                         t: Warning:
+                                                                                                                         Permanently
+                                                                                                                         added '192.1
+                                                                                                                         68.200.12' (
+                                                                                                                         ECDSA) to th
+                                                                                                                         e list of kn
+                                                                                                                         own hosts.\r
+                                                                                                                         \nPermission
+                                                                                                                         denied,
+                                                                                                                         please try a
+                                                                                                                         gain."]
 ```
--->
 
 ### Reasons for NetQ Agent Upgrade Failure
 
-Upgrades can fail at any of the stages of the process, including when backing up data, upgrading the Cumulus NetQ software, and restoring the data. Failures can also occur when attempting to connect to a switch or perform a particular task on the switch.
+Upgrades can fail at any of the stages of the process, including when backing up data, upgrading the NetQ software, and restoring the data. Failures can also occur when attempting to connect to a switch or perform a particular task on the switch.
 
 Some of the common reasons for upgrade failures and the errors they present:
 

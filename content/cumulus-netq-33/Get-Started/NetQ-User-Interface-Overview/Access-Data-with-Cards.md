@@ -1,6 +1,6 @@
 ---
 title: Access Data with Cards
-author: Cumulus Networks
+author: NVIDIA
 weight: 140
 toc: 4
 ---
@@ -299,14 +299,13 @@ You can manipulate the data in a data grid in a full-screen card in several ways
 | <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/58-Tags-Bookmarks/tags.svg" height="18" width="18"/> | Assign role | Opens role assignment options for switches. |
 | <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/08-Upload-Download/upload-bottom.svg" height="18" width="18"/> | Export | Exports selected data into either a .csv or JSON-formatted file. Refer to {{<link url="#export-data" text="Export Data">}} for more detail. |
 
-When there are numerous items in a table, NetQ loads the first 25 by default and provides the rest in additional table pages. In this case, pagination is shown under the table.
+When there are numerous items in a table, NetQ loads up to 25 by default and provides the rest in additional table pages. In this case, pagination is shown under the table.
 
-{{<figure src="/images/netq/table-pagination-241.png" width="400">}}
+{{<figure src="/images/netq/table-pagination-320.png" width="400">}}
 
 From there, you can:
 
 - View the total number of items in the list
-- Set NetQ to load 25, 50, or 100 items per page
 - Move forward or backward one page at a time (<img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-right-1.svg" height="14" width="14"/>, <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-left-1.svg" height="14" width="14"/>)
 - Go to the first or last page in the list (<img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-left-1.svg" height="14" width="14"/>, <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-right-1.svg" height="14" width="14"/>)
 
@@ -394,7 +393,7 @@ For tables that offer filtering by multiple parameters, the Filter dialog is sli
 
 You can export tabular data from a full-screen card to a CSV- or JSON-formatted file.
 
-To export the *all* data:
+To export *all* data:
 
 1. Click <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/08-Upload-Download/upload-bottom.svg" height="18" width="18"/> above the table.
 

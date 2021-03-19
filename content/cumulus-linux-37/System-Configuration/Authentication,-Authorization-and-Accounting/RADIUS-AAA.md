@@ -1,15 +1,10 @@
 ---
 title: RADIUS AAA
-author: Cumulus Networks
+author: NVIDIA
 weight: 283
 pageID: 8362559
 ---
-Cumulus Networks offers add-on packages that enable
-{{<exlink url="https://en.wikipedia.org/wiki/RADIUS" text="RADIUS">}} users to log in to
-Cumulus Linux switches in a transparent way with minimal configuration.
-There is no need to create accounts or directories on the switch.
-Authentication is handled with PAM and includes login, `ssh`, `sudo` and
-`su`.
+Various add-on packages are available that enable {{<exlink url="https://en.wikipedia.org/wiki/RADIUS" text="RADIUS">}} users to log in to Cumulus Linux switches in a transparent way with minimal configuration. There is no need to create accounts or directories on the switch. Authentication is handled with PAM and includes login, `ssh`, `sudo` and `su`.
 
 ## Install the RADIUS Packages
 
@@ -330,5 +325,5 @@ mapping file; this might be the first or second user that logged in.
 ## Related Information
 
   - {{<link url="TACACS-Plus" text="TACACS+ client">}}
-  - {{<exlink url="https://github.com/CumulusNetworks/cldemo-radius" text="Cumulus Networks RADIUS demo on GitHub">}}
-  - {{<exlink url="https://github.com/CumulusNetworks/cldemo-tacacs" text="Cumulus Network TACACS demo on GitHub">}}
+  - {{<exlink url="https://github.com/CumulusNetworks/cldemo-radius" text="Cumulus Linux RADIUS demo on GitHub">}}
+  - {{<exlink url="https://github.com/CumulusNetworks/cldemo-tacacs" text="Cumulus Linux TACACS demo on GitHub">}}

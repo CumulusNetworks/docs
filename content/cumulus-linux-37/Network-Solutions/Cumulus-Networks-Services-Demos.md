@@ -1,24 +1,14 @@
 ---
 title: Cumulus Networks Services Demos
-author: Cumulus Networks
+author: NVIDIA
 weight: 251
 pageID: 8362987
 ---
-The Cumulus Networks Services team demos provide a virtual environment
-built using either VirtualBox or `libvirt` using Vagrant to manage the
-VMs. This environment utilizes the reference topology shown below.
-Vagrant and Cumulus VX can be used together to build virtual simulations
-of production networks to validate configurations, develop automation
-code and simulate failure scenarios.
+The Services team demos provide a virtual environment built using either VirtualBox or `libvirt` using Vagrant to manage the VMs. This environment utilizes the reference topology shown below. Vagrant and Cumulus VX can be used together to build virtual simulations of production networks to validate configurations, develop automation code and simulate failure scenarios.
 
 ## Reference Topology
 
-The Cumulus Networks *reference topology* includes cabling (in DOT
-format for dual use with
-{{<link url="Prescriptive-Topology-Manager-PTM" text="PTM">}}),
-MAC addressing, IP addressing, switches and servers. This topology is
-blessed by the Professional Services Team at Cumulus Networks to fit a
-majority of designs seen in the field.
+The *reference topology* includes cabling (in DOT format for dual use with {{<link url="Prescriptive-Topology-Manager-PTM" text="PTM">}}), MAC addressing, IP addressing, switches and servers. This topology is blessed by our Professional Services Team to fit a majority of designs seen in the field.
 
 {{% imgOld 0 %}}
 
@@ -47,13 +37,7 @@ majority of designs seen in the field.
 
 #### Virtual Appliance
 
-You can build out the reference topology in hardware or using Cumulus VX
-(the free Cumulus Networks virtual appliance). The
-{{<exlink url="https://github.com/CumulusNetworks/cldemo-vagrant" text="Cumulus Reference Topology using Vagrant">}} 
-is essentially the reference topology built out inside Vagrant with
-VirtualBox or KVM. The installation and setup instructions for bringing
-up the entire reference topology on a laptop or server are on the
-{{<exlink url="https://github.com/CumulusNetworks/cldemo-vagrant" text="cldemo-vagrant GitHub repo">}}.
+You can build out the reference topology in hardware or using Cumulus VX. The {{<exlink url="https://github.com/CumulusNetworks/cldemo-vagrant" text="Cumulus Reference Topology using Vagrant">}} is essentially the reference topology built out inside Vagrant with VirtualBox or KVM. The installation and setup instructions for bringing up the entire reference topology on a laptop or server are on the {{<exlink url="https://github.com/CumulusNetworks/cldemo-vagrant" text="cldemo-vagrant GitHub repo">}}.
 
 #### Hardware
 

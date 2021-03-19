@@ -1,6 +1,6 @@
 ---
 title: Ethernet Bridging - VLANs
-author: Cumulus Networks
+author: NVIDIA
 weight: 121
 pageID: 8362655
 ---
@@ -26,11 +26,11 @@ interfaces that traverse an 802.1Q VLAN trunk.
 
 {{%notice tip%}}
 
-Cumulus Networks recommends using *{{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware mode">}}* bridges,
+Use *{{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware mode">}}* bridges,
 rather than *traditional mode* bridges. The bridge driver in Cumulus Linux is
 capable of VLAN filtering, which allows for configurations that are similar to
 incumbent network devices. While Cumulus Linux supports Ethernet bridges in
-traditional mode, Cumulus Networks recommends using VLAN-aware mode.
+traditional mode, it's best to use VLAN-aware mode.
 
 {{%/notice%}}
 
@@ -363,7 +363,7 @@ Some things you should note about the output:
 - In environments where both VLAN-aware and traditional bridges are in use, if a traditional bridge has a subinterface of a bond that is a normal interface in a VLAN-aware bridge, the bridge is flapped when the traditional bridge's bond subinterface is brought down.
 - You cannot enslave a VLAN raw device to a different master interface (that is, you cannot edit the `vlan-raw-device` setting in the `/etc/network/interfaces` file). You need to delete the VLAN and create it again.
 - Cumulus Linux supports up to 2000 VLANs. This includes the internal interfaces, bridge interfaces, logical interfaces, and so on.
-- In Cumulus Linux, MAC learning is enabled by default on traditional or VLAN-aware bridge interfaces. Cumulus Networks recommends you do not disable MAC learning unless you are using EVPN. See {{<link url="Ethernet-Virtual-Private-Network-EVPN">}}.
+- In Cumulus Linux, MAC learning is enabled by default on traditional or VLAN-aware bridge interfaces. Do not disable MAC learning unless you are using EVPN. See {{<link url="Ethernet-Virtual-Private-Network-EVPN">}}.
 
 ## Related Information
 

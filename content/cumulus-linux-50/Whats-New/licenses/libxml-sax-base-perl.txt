@@ -1,0 +1,35 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: XML-SAX-Base
+Upstream-Contact: Grant McLean <grantm@cpan.org>
+Source: https://metacpan.org/release/XML-SAX-Base
+
+Files: *
+Copyright: 2001, Kip Hampton <khampton@totalcinema.com>
+ 2001, Robin Berjon <robin@knowscape.com>
+ 2001, Matt Sergeant <matt@sergeant.org>
+ 2011, Grant McLean <grantm@cpan.org>
+License: Artistic or GPL-1+
+Comment: The upstream distribution does not contain an explicit statement of
+ copyright ownership. Pursuant to the Berne Convention for the Protection of
+ Literary and Artistic Works, it is assumed that all content is copyright by
+ its respective authors unless otherwise stated.
+
+Files: debian/*
+Copyright: 2011-2017, Florian Schlichting <fsfs@debian.org>
+License: Artistic or GPL-1+
+
+License: Artistic
+ This program is free software; you can redistribute it and/or modify
+ it under the terms of the Artistic License, which comes with Perl.
+ .
+ On Debian systems, the complete text of the Artistic License can be
+ found in `/usr/share/common-licenses/Artistic'.
+
+License: GPL-1+
+ This program is free software; you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation; either version 1, or (at your option)
+ any later version.
+ .
+ On Debian systems, the complete text of version 1 of the GNU General
+ Public License can be found in `/usr/share/common-licenses/GPL-1'.

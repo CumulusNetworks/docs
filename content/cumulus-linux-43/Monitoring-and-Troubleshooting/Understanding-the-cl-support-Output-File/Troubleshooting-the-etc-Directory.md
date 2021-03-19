@@ -1,6 +1,6 @@
 ---
 title: Troubleshooting the etc Directory
-author: Cumulus Networks
+author: NVIDIA
 weight: 1070
 toc: 4
 ---
@@ -9,7 +9,7 @@ The `{{<link url="Understanding-the-cl-support-Output-File" text="cl-support">}}
 This is the alphabetical list of the output from running `ls -l` on the `/etc` directory structure created by `cl-support`.
 
 ## etc Directory Contents
-
+<!-- vale off -->
 | **File**                  |
 | ------------------------- |
 | acpi |
@@ -201,3 +201,4 @@ This is the alphabetical list of the output from running `ls -l` on the `/etc` d
 | xattr.conf |
 | xdg |
 | xml |
+<!-- vale on -->

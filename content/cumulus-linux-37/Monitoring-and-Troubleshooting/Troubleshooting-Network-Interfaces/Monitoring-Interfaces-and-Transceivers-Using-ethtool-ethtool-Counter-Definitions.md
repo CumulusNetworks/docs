@@ -1,6 +1,6 @@
 ---
 title: "Monitoring Interfaces and Transceivers Using ethtool - ethtool Counter Definitions"
-author: Cumulus Networks
+author: NVIDIA
 weight: 459
 pageID: 9018051
 ---

@@ -1,6 +1,6 @@
 ---
 title: Monitoring System Hardware
-author: Cumulus Networks
+author: NVIDIA
 weight: 1020
 toc: 3
 ---
@@ -180,7 +180,8 @@ fan2:        13560 RPM
 
 {{%notice note%}}
 
-Output from the `sensors` command varies depending upon the switch hardware you use, as each platform ships with a different type and number of sensors.
+- Output from the `sensors` command varies depending upon the switch hardware you use, as each platform ships with a different type and number of sensors.
+- On an NVIDIA Spectrum switch, if only one PSU is plugged in, the fan is at maximum speed.
 
 {{%/notice%}}
 
@@ -190,14 +191,14 @@ Usage: `sensors [OPTION]... [CHIP]...`
 
 | Option<img width="200" /> | Description |
 | ----------- | ----------- |
-| `-c`, `--config-file` | Specify a config file; use `-` after `-c` to read the config file from `stdin`; by default, `sensors` references the configuration file in `/etc/sensors.d/`. |
+| `-c`, `--config-file` | Specify a configuration file; use `-` after `-c` to read the configuration file from `stdin`; by default, `sensors` references the configuration file in `/etc/sensors.d/`. |
 | `-s`, `--set` | Executes set statements in the config file (root only); `sensors -s` is run once at boot time and applies all the settings to the boot drivers. |
 | `-f`, `--fahrenheit`  | Show temperatures in degrees Fahrenheit. |
 | `-A`, `--no-adapter`  | Do not show the adapter for each chip.|
 | `--bus-list`| Generate bus statements for `sensors.conf`. |
 
 If `[CHIP]` is not specified in the command, all chip information is printed. Example chip names include:
-
+<!--vale off-->
 - lm78-i2c-0-2d \*-i2c-0-2d
 - lm78-i2c-0-\* \*-i2c-0-\*
 - lm78-i2c-\*-2d \*-i2c-\*-2d
@@ -205,7 +206,7 @@ If `[CHIP]` is not specified in the command, all chip information is printed. Ex
 - lm78-isa-0290 \*-isa-0290
 - lm78-isa-\* \*-isa-\*
 - lm78-\*
-
+<!--vale on-->
 ## Monitor Switch Hardware Using SNMP
 
 The Net-SNMP documentation is discussed {{<link url="Simple-Network-Management-Protocol-SNMP" text="here">}}.
@@ -220,7 +221,7 @@ To disable the watchdog, disable and stop the `wd_keepalive` service:
 
     cumulus@switch:~$ sudo systemctl disable wd_keepalive ; systemctl stop wd_keepalive 
 
-You can modify the settings for the watchdog &mdash; like the timeout setting and scheduler priority &mdash; in the configuration file, `/etc/watchdog.conf`. Here is the default configuration file:
+You can modify the settings for the watchdog, like the timeout setting and scheduler priority, in the configuration file, `/etc/watchdog.conf`. Here is the default configuration file:
 
 ```
 cumulus@switch:~$ cat /etc/watchdog.conf

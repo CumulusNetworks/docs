@@ -1,6 +1,6 @@
 ---
 title: Mellanox What Just Happened (WJH)
-author: Cumulus Networks
+author: NVIDIA
 weight: 1130
 toc: 4
 ---

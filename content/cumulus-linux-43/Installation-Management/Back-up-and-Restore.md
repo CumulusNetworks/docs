@@ -1,6 +1,6 @@
 ---
 title: Back up and Restore
-author: Cumulus Networks
+author: NVIDIA
 weight: 70
 toc: 3
 ---
@@ -62,7 +62,7 @@ cumulus@switch:~$ sudo config-backup -pv
 
 ## Restore Backup Files
 
-You can restore a backup to the same switch or to a different switch. When restoring to a different switch, the switch must be of the **same type and release**. For example, you can restore a backup from a Broadcom Trident3 switch to a Broadcom Trident3 switch; however, you cannot restore a backup from a Broadcom Trident3 switch to a Mellanox Spectrum or to a Broadcom Tomahawk2 switch.
+You can restore a backup to the same switch or to a different switch. When restoring to a different switch, the switch must be of the **same type and release**. For example, you can restore a backup from a Broadcom Trident3 switch to a Broadcom Trident3 switch; however, you cannot restore a backup from a Broadcom Trident3 switch to an NVIDIA Spectrum or to a Broadcom Tomahawk2 switch.
 
 To restore a backup file, run the `config-restore` command with a specific filename (`-b <filename>`), file number (`-n <number>`), *or* the `-N` option, which restores the most recent backup file.
 

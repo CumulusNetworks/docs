@@ -1,10 +1,10 @@
 ---
 title: Anycast Design Guide
-author: Cumulus Networks
+author: NVIDIA
 weight: 1330
 toc: 3
 ---
-Cumulus Networks Routing on the Host enables you to run {{<link url="Open-Shortest-Path-First-OSPF" text="OSPF">}} or {{<link url="Border-Gateway-Protocol-BGP" text="BGP">}} directly on server hosts. This can enable a network architecture known as *anycast*, where many servers can provide the same service without needing layer 2 extensions or load balancer appliances.
+Routing on the Host enables you to run {{<link url="Open-Shortest-Path-First-OSPF" text="OSPF">}} or {{<link url="Border-Gateway-Protocol-BGP" text="BGP">}} directly on server hosts. This can enable a network architecture known as *anycast*, where many servers can provide the same service without needing layer 2 extensions or load balancer appliances.
 
 Anycast is not a new protocol or protocol implementation and does not require any additional network configuration. Anycast leverages the {{<link url="Equal-Cost-Multipath-Load-Sharing-Hardware-ECMP" text="equal cost multipath">}} (ECMP) capabilities inherent in layer 3 networks to provide stateless load sharing services.
 
@@ -45,7 +45,7 @@ ecmpcalc: will query hardware
 swp3
 ```
 
-## Anycast with TCP and UDP
+## Anycast With TCP and UDP
 
 A key component to the functionality and cost effective nature of anycast is that the network does not maintain state for flows. Every packet is handled individually through the routing table, saving memory and resources that would be required to track individual flows, similar to the functionality of a load balancing appliance.
 
@@ -73,7 +73,7 @@ As leaf03 is brought back into service, the hashing function on spine02 changes,
 
 {{< img src = "/images/cumulus-linux/network-solutions-anycast5.png" >}}
 
-Just as the addition of a device can impact unrelated traffic, the removal of a device can also impact unrelated traffic, since again, the modulo of the hash function is changed. You can see this below, where the blue dotted flow goes through leaf01 and the red dashed line goes through leaf04.
+Just as the addition of a device can impact unrelated traffic, the removal of a device can also impact unrelated traffic, because the modulo of the hash function is changed. You can see this below, where the blue dotted flow goes through leaf01 and the red dashed line goes through leaf04.
 
 {{< img src = "/images/cumulus-linux/network-solutions-anycast6.png" >}}
 
@@ -81,7 +81,7 @@ Now, leaf02 has failed. As a result, the modulo on spine02 has changed from four
 
 {{< img src = "/images/cumulus-linux/network-solutions-anycast7.png" >}}
 
-To help solve this issue, resilient hashing can prevent traffic flows from shifting on unrelated failure scenarios. With resilient hashing enabled, the failure of leaf02 does not impact both existing flows, since they do not currently flow through leaf02:
+To help solve this issue, resilient hashing can prevent traffic flows from shifting on unrelated failure scenarios. With resilient hashing enabled, the failure of leaf02 does not impact both existing flows, because they do not currently flow through leaf02:
 
 {{< img src = "/images/cumulus-linux/network-solutions-anycast8.png" >}}
 
@@ -98,7 +98,7 @@ When considering applications to be deployed in an anycast scenario, the first t
 - Whether the application relies on TCP for proper sequencing of data.
 - Whether the application relies on more than one session as part of the application.
 
-### Applications with Multiple Connections
+### Applications With Multiple Connections
 
 The network has no knowledge of any sessions or relationships between different sessions for the same application. This affects protocols that rely on more than one TCP or UDP connection to function properly - one example being FTP.
 

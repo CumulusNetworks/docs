@@ -1,6 +1,6 @@
 ---
 title: NetQ Command Line Overview
-author: Cumulus Networks
+author: NVIDIA
 weight: 160
 toc: 3
 ---
@@ -9,7 +9,7 @@ The NetQ CLI provides access to all of the network state and event information c
 
 {{<notice note>}}
 
-The NetQ command line interface only runs on switches and server hosts implemented with Intel x86 or ARM-based architectures. If you are unsure what architecture your switch or server employs, check the Cumulus {{<exlink url="https://cumulusnetworks.com/hcl" text="Hardware Compatibility List">}} and verify the value in the <strong>Platforms</strong> tab > <strong>CPU</strong> column.
+The NetQ command line interface only runs on switches and server hosts implemented with Intel x86 or ARM-based architectures. If you are unsure what architecture your switch or server employs, check the {{<exlink url="https://cumulusnetworks.com/hcl" text="Hardware Compatibility List">}} and verify the value in the <strong>Platforms</strong> tab > <strong>CPU</strong> column.
 
 {{</notice>}}
 
@@ -58,11 +58,11 @@ This section describes the core structure and behavior of the NetQ CLI. It inclu
 
 ### Command Line Structure
 
-The Cumulus NetQ command line has a flat structure as opposed to a modal structure. This means that all commands can be run from the primary prompt instead of only in a specific mode. For example, some command lines require the administrator to switch between a configuration mode and an operation mode. Configuration commands can only be run in the configuration mode and operational commands can only be run in operation mode. This structure requires the administrator to switch between modes to run commands which can be tedious and time consuming. Cumulus NetQ command line enables the administrator to run all of its commands at the same level.
+The NetQ command line has a flat structure as opposed to a modal structure. This means that all commands can be run from the primary prompt instead of only in a specific mode. For example, some command lines require the administrator to switch between a configuration mode and an operation mode. Configuration commands can only be run in the configuration mode and operational commands can only be run in operation mode. This structure requires the administrator to switch between modes to run commands which can be tedious and time consuming. NetQ command line enables the administrator to run all of its commands at the same level.
 
 ### Command Syntax
 
-NetQ CLI commands all begin with `netq`. Cumulus NetQ commands fall into one of four syntax categories: validation (check), monitoring (show), configuration, and trace.
+NetQ CLI commands all begin with `netq`. NetQ commands fall into one of four syntax categories: validation (check), monitoring (show), configuration, and trace.
 
 ```
 netq check <network-protocol-or-service> [options]
@@ -97,7 +97,7 @@ Thus some valid commands are:
 
 The command output presents results in color for many commands.  Results with errors are shown in <span style="color: #ff0000;">red</span>, and warnings are shown in <span style="color: #ffcc00;">yellow</span>. Results without errors or warnings are shown in either black or <span style="color: #00ff00;">green</span>. VTEPs are shown in <span style="color: #0000ff;">blue</span>. A node in the *pretty* output is shown in **bold**, and a router interface is wrapped in angle brackets (\< \>). To view the output with only black text, run the `netq config del color` command. You can view output with colors again by running `netq config add color`.
 
-All check and show commands are run with a default timeframe of now to one hour ago, unless you specify an approximate time using the `around` keyword. For example, running `netq check bgp` shows the status of BGP over the last hour. Running `netq show bgp around 3h` shows the status of BGP three hours ago.
+All check and show commands are run with a default time frame of now to one hour ago, unless you specify an approximate time using the `around` keyword or a range using the `between` keyword. For example, running `netq check bgp` shows the status of BGP over the last hour. Running `netq show bgp around 3h` shows the status of BGP three hours ago.
 
 ### Command Prompts
 
@@ -146,13 +146,13 @@ Commands:
 To see an exhaustive list of commands, run:
 
 ```
-cumulus@switch:~$ netq help list verbose
-```
-
-To see a list of all NetQ commands and keyword help, run:
-
-```
 cumulus@switch:~$ netq help list
+```
+
+To get usage information for NetQ, run:
+
+```
+cumulus@switch:~$ netq help verbose
 ```
 
 ### Command History
@@ -342,7 +342,7 @@ for the following:
 - **validation**: Schedule a validation check
 - **vlan**: VLAN status
 - **vxlan**: VXLAN data path status
-- **wjh-drop**: dropped packet data from Mellanox What Just Happened
+- **wjh-drop**: dropped packet data from NVIDIA&reg; Mellanox&reg; What Just Happened&reg;
 
 The commands take the form of `netq [<hostname>] show <network-protocol-or-service> [options]`, where the options vary according to the protocol or service. The commands can be restricted from showing the information for *all* devices to showing information for a selected device using the `hostname` option.
 
@@ -709,7 +709,7 @@ cumulus@switch:~$ netq add notification channel pagerduty pd-netq-events integra
 Successfully added/updated channel pd-netq-events
 ```
 
-Refer to {{<link title="Configure Notifications" text="Configure Notifications">}} for details about using these commands and additional examples.
+Refer to {{<link title="Configure System Event Notifications">}} for details about using these commands and additional examples.
 
 ### Trace Commands
 

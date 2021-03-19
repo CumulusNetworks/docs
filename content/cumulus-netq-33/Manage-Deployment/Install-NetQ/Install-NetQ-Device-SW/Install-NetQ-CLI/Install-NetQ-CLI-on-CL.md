@@ -1,10 +1,10 @@
 ---
 title: Install and Configure the NetQ CLI on Cumulus Linux Switches
-author: Cumulus Networks
+author: NVIDIA
 weight: 330
 toc: 5
 ---
-After installing your Cumulus NetQ software and the NetQ 3.2.1 Agent on each switch you want to monitor, you can also install the NetQ CLI on switches running:
+After installing your NetQ software and the NetQ 3.3.1 Agent on each switch you want to monitor, you can also install the NetQ CLI on switches running:
 
 - Cumulus Linux version 3.3.2-3.7.x
 - Cumulus Linux version 4.0.0 and later
@@ -21,7 +21,7 @@ If your network uses a proxy server for external connections, you should first {
 
 To obtain the NetQ Agent package:
 
-Edit the `/etc/apt/sources.list` file to add the repository for Cumulus NetQ.
+Edit the `/etc/apt/sources.list` file to add the repository for NetQ.
 
 *Note that NetQ has a separate repository from Cumulus Linux.*
 
@@ -32,7 +32,7 @@ Edit the `/etc/apt/sources.list` file to add the repository for Cumulus NetQ.
 ```
 cumulus@switch:~$ sudo nano /etc/apt/sources.list
 ...
-deb http://apps3.cumulusnetworks.com/repos/deb CumulusLinux-3 netq-3.2
+deb http://apps3.cumulusnetworks.com/repos/deb CumulusLinux-3 netq-3.3
 ...
 ```
 
@@ -47,7 +47,7 @@ The repository <code>deb http://apps3.cumulusnetworks.com/repos/deb CumulusLinux
 ```
 cumulus@switch:~$ sudo nano /etc/apt/sources.list
 ...
-deb http://apps3.cumulusnetworks.com/repos/deb CumulusLinux-4 netq-3.2
+deb http://apps3.cumulusnetworks.com/repos/deb CumulusLinux-4 netq-3.3
 ...
 ```
 
@@ -72,7 +72,7 @@ The repository <code>deb http://apps3.cumulusnetworks.com/repos/deb CumulusLinux
     cumulus@switch:~$ dpkg-query -W -f '${Package}\t${Version}\n' netq-agent
     ```
 
-    {{<netq-install/cli-version version="3.2.1" opsys="cl">}}
+    {{<netq-install/cli-version version="3.3.1" opsys="cl">}}
 
 4. Continue with NetQ CLI configuration in the next section.
 
@@ -116,7 +116,7 @@ If you have a server cluster deployed, use the IP address of the master server.
 
 {{< tab "Cloud Deployments" >}}
 
-To access and configure the CLI on your NetQ Cloud Appliance or VM, you must have your username and password to access the NetQ UI to generate AuthKeys. These keys provide authorized access (access key) and user authentication (secret key). Your credentials and NetQ Cloud addresses were provided by Cumulus Networks via an email titled *Welcome to Cumulus NetQ!*
+To access and configure the CLI on your NetQ Cloud Appliance or VM, you must have your username and password to access the NetQ UI to generate AuthKeys. These keys provide authorized access (access key) and user authentication (secret key). Your credentials and NetQ Cloud addresses were provided by Cumulus Networks via an email titled *Welcome to NetQ!*
 
 To generate AuthKeys:
 

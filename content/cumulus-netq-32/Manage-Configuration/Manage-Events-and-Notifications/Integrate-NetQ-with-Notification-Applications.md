@@ -6,11 +6,11 @@ toc: 3
 ---
 To take advantage of the numerous event messages generated and processed by NetQ, you must integrate with third-party event notification applications. You can integrate NetQ with Syslog, PagerDuty, Slack, and Email. You may integrate with one or more of these applications simultaneously.
 
-In an on-premises deployment, the NetQ On-premises Appliance or VM receives the raw data stream from the NetQ Agents, processes the data and delivers events to the Notification function. Notification then stores, filters and sends messages to any configured notification applications. In a cloud deployment, the NetQ Cloud Appliance or VM passes the raw data stream on to the NetQ Cloud service for processing and delivery.
+In an on-premises deployment, the NetQ On-premises Appliance or VM receives the raw data stream from the NetQ Agents, processes the data, stores, and delivers events to the Notification function. Notification then filters and sends messages to any configured notification applications. In a cloud deployment, the NetQ Cloud Appliance or VM passes the raw data stream on to the NetQ Cloud service for processing and delivery.
 
-{{<figure src="/images/netq/event-notif-arch-onprem-320.png">}}
+{{<figure src="/images/netq/event-notif-arch-onprem-330.png">}}
 
-{{<figure src="/images/netq/event-notif-arch-cloud-320.png">}}
+{{<figure src="/images/netq/event-notif-arch-cloud-330.png">}}
 
 {{<notice note>}}
 
@@ -1561,6 +1561,222 @@ bgpSpine        4          info             pd-netq-events   bgpHostnam
 vni42           5          warning          pd-netq-events   evpnVni
 configChange    6          info             slk-netq-events  sysconf
 newFEC          7          info             slk-netq-events  fecSupport
+```
+
+### Suppress Events
+
+Cumulus NetQ can generate many network events. You can configure whether to suppress any events from appearing in NetQ output. By default, all events are delivered.
+
+You can suppress an event until a certain period of time; otherwise, the event is suppressed for 2 years. Providing an end time eliminates the generation of messages for a short period of time, which is useful when you are testing a new network configuration and the switch may be generating many messages.
+
+You can suppress events for the following types of messages:
+
+- agent: NetQ Agent messages
+- bgp: BGP-related messages
+- btrfsinfo: Messages related to the BTRFS file system in Cumulus Linux
+- clag: MLAG-related messages
+- clsupport: Messages generated when creating the `cl-support script`
+- configdiff: Messages related to the difference between two configurations
+- evpn: EVPN-related messages
+- link: Messages related to links, including state and interface name
+- ntp: NTP-related messages
+- ospf: OSPF-related messages
+- sensor: Messages related to various sensors
+- services: Service-related information, including whether a service is active or inactive
+- ssdutil: Messages related to the storage on the switch
+
+#### Add an Event Suppression Configuration
+
+When you add a new configuration, you can specify a scope, which limits the suppression in the following order:
+
+1. Hostname.
+1. Severity.
+1. Message type-specific filters. For example, the target VNI for EVPN messages, or the interface name for a link message.
+
+NetQ has a predefined set of filter conditions. To see these conditions, run `netq show events-config show-filter-conditions`:
+
+```
+cumulus@switch:~$ netq show events-config show-filter-conditions
+Matching config_events records:
+Message Name             Filter Condition Name                      Filter Condition Hierarchy                           Filter Condition Description
+------------------------ ------------------------------------------ ---------------------------------------------------- --------------------------------------------------------
+evpn                     vni                                        3                                                    Target VNI
+evpn                     severity                                   2                                                    Severity critical/info
+evpn                     hostname                                   1                                                    Target Hostname
+clsupport                fileAbsName                                3                                                    Target File Absolute Name
+clsupport                severity                                   2                                                    Severity critical/info
+clsupport                hostname                                   1                                                    Target Hostname
+link                     new_state                                  4                                                    up / down
+link                     ifname                                     3                                                    Target Ifname
+link                     severity                                   2                                                    Severity critical/info
+link                     hostname                                   1                                                    Target Hostname
+ospf                     ifname                                     3                                                    Target Ifname
+ospf                     severity                                   2                                                    Severity critical/info
+ospf                     hostname                                   1                                                    Target Hostname
+sensor                   new_s_state                                4                                                    New Sensor State Eg. ok
+sensor                   sensor                                     3                                                    Target Sensor Name Eg. Fan, Temp
+sensor                   severity                                   2                                                    Severity critical/info
+sensor                   hostname                                   1                                                    Target Hostname
+configdiff               old_state                                  5                                                    Old State
+configdiff               new_state                                  4                                                    New State
+configdiff               type                                       3                                                    File Name
+configdiff               severity                                   2                                                    Severity critical/info
+configdiff               hostname                                   1                                                    Target Hostname
+ssdutil                  info                                       3                                                    low health / significant health drop
+ssdutil                  severity                                   2                                                    Severity critical/info
+ssdutil                  hostname                                   1                                                    Target Hostname
+agent                    db_state                                   3                                                    Database State
+agent                    severity                                   2                                                    Severity critical/info
+agent                    hostname                                   1                                                    Target Hostname
+ntp                      new_state                                  3                                                    yes / no
+ntp                      severity                                   2                                                    Severity critical/info
+ntp                      hostname                                   1                                                    Target Hostname
+bgp                      vrf                                        4                                                    Target VRF
+bgp                      peer                                       3                                                    Target Peer
+bgp                      severity                                   2                                                    Severity critical/info
+bgp                      hostname                                   1                                                    Target Hostname
+services                 new_status                                 4                                                    active / inactive
+services                 name                                       3                                                    Target Service Name Eg.netqd, mstpd, zebra
+services                 severity                                   2                                                    Severity critical/info
+services                 hostname                                   1                                                    Target Hostname
+btrfsinfo                info                                       3                                                    high btrfs allocation space / data storage efficiency
+btrfsinfo                severity                                   2                                                    Severity critical/info
+btrfsinfo                hostname                                   1                                                    Target Hostname
+clag                     severity                                   2                                                    Severity critical/info
+clag                     hostname                                   1                                                    Target Hostname
+```
+
+For example, to create a configuration called `mybtrfs` that suppresses OSPF-related events on leaf01 for the next 10 minutes, run:
+
+```
+netq add events-config events_config_name mybtrfs message_type ospf scope '[{"scope_name":"hostname","scope_value":"leaf01"},{"scope_name":"severity","scope_value":"*"}]' suppress_until 600
+```
+
+#### Remove an Event Suppression Configuration
+
+To remove an event suppression configuration, run `netq del events-config events_config_id <text-events-config-id-anchor>`.
+
+```
+cumulus@switch:~$ netq del events-config events_config_id eventsconfig_10
+Successfully deleted Events Config eventsconfig_10
+```
+
+#### Show Event Suppression Configurations
+
+You can view all event suppression configurations, or you can filter by a specific configuration or message type.
+
+```
+cumulus@switch:~$ netq show events-config events_config_id eventsconfig_1
+Matching config_events records:
+Events Config ID     Events Config Name   Message Type         Scope                                                        Active Suppress Until
+-------------------- -------------------- -------------------- ------------------------------------------------------------ ------ --------------------
+eventsconfig_1       job_cl_upgrade_2d89c agent                {"db_state":"*","hostname":"spine02","severity":"*"}         True   Tue Jul  7 16:16:20
+                     21b3effd79796e585c35                                                                                          2020
+                     096d5fc6cef32b463e37
+                     cca88d8ee862ae104d5_
+                     spine02
+eventsconfig_1       job_cl_upgrade_2d89c bgp                  {"vrf":"*","peer":"*","hostname":"spine04","severity":"*"}   True   Tue Jul  7 16:16:20
+                     21b3effd79796e585c35                                                                                          2020
+                     096d5fc6cef32b463e37
+                     cca88d8ee862ae104d5_
+                     spine04
+eventsconfig_1       job_cl_upgrade_2d89c btrfsinfo            {"hostname":"spine04","info":"*","severity":"*"}             True   Tue Jul  7 16:16:20
+                     21b3effd79796e585c35                                                                                          2020
+                     096d5fc6cef32b463e37
+                     cca88d8ee862ae104d5_
+                     spine04
+eventsconfig_1       job_cl_upgrade_2d89c clag                 {"hostname":"spine04","severity":"*"}                        True   Tue Jul  7 16:16:20
+                     21b3effd79796e585c35                                                                                          2020
+                     096d5fc6cef32b463e37
+                     cca88d8ee862ae104d5_
+                     spine04
+eventsconfig_1       job_cl_upgrade_2d89c clsupport            {"fileAbsName":"*","hostname":"spine04","severity":"*"}      True   Tue Jul  7 16:16:20
+                     21b3effd79796e585c35                                                                                          2020
+                     096d5fc6cef32b463e37
+                     cca88d8ee862ae104d5_
+                     spine04
+eventsconfig_1       job_cl_upgrade_2d89c configdiff           {"new_state":"*","old_state":"*","type":"*","hostname":"spin True   Tue Jul  7 16:16:20
+                     21b3effd79796e585c35                      e04","severity":"*"}                                                2020
+                     096d5fc6cef32b463e37
+                     cca88d8ee862ae104d5_
+                     spine04
+eventsconfig_1       job_cl_upgrade_2d89c evpn                 {"hostname":"spine04","vni":"*","severity":"*"}              True   Tue Jul  7 16:16:20
+                     21b3effd79796e585c35                                                                                          2020
+                     096d5fc6cef32b463e37
+                     cca88d8ee862ae104d5_
+                     spine04
+eventsconfig_1       job_cl_upgrade_2d89c link                 {"ifname":"*","new_state":"*","hostname":"spine04","severity True   Tue Jul  7 16:16:20
+                     21b3effd79796e585c35                      ":"*"}                                                              2020
+                     096d5fc6cef32b463e37
+                     cca88d8ee862ae104d5_
+                     spine04
+eventsconfig_1       job_cl_upgrade_2d89c ntp                  {"new_state":"*","hostname":"spine04","severity":"*"}        True   Tue Jul  7 16:16:20
+                     21b3effd79796e585c35                                                                                          2020
+                     096d5fc6cef32b463e37
+                     cca88d8ee862ae104d5_
+                     spine04
+eventsconfig_1       job_cl_upgrade_2d89c ospf                 {"ifname":"*","hostname":"spine04","severity":"*"}           True   Tue Jul  7 16:16:20
+                     21b3effd79796e585c35                                                                                          2020
+                     096d5fc6cef32b463e37
+                     cca88d8ee862ae104d5_
+                     spine04
+eventsconfig_1       job_cl_upgrade_2d89c sensor               {"sensor":"*","new_s_state":"*","hostname":"spine04","severi True   Tue Jul  7 16:16:20
+                     21b3effd79796e585c35                      ty":"*"}                                                            2020
+                     096d5fc6cef32b463e37
+                     cca88d8ee862ae104d5_
+                     spine04
+eventsconfig_1       job_cl_upgrade_2d89c services             {"new_status":"*","name":"*","hostname":"spine04","severity" True   Tue Jul  7 16:16:20
+                     21b3effd79796e585c35                      :"*"}                                                               2020
+                     096d5fc6cef32b463e37
+                     cca88d8ee862ae104d5_
+                     spine04
+eventsconfig_1       job_cl_upgrade_2d89c ssdutil              {"hostname":"spine04","info":"*","severity":"*"}             True   Tue Jul  7 16:16:20
+                     21b3effd79796e585c35                                                                                          2020
+                     096d5fc6cef32b463e37
+                     cca88d8ee862ae104d5_
+                     spine04
+eventsconfig_10      job_cl_upgrade_2d89c btrfsinfo            {"hostname":"fw2","info":"*","severity":"*"}                 True   Tue Jul  7 16:16:22
+                     21b3effd79796e585c35                                                                                          2020
+                     096d5fc6cef32b463e37
+                     cca88d8ee862ae104d5_
+                     fw2
+eventsconfig_10      job_cl_upgrade_2d89c clag                 {"hostname":"fw2","severity":"*"}                            True   Tue Jul  7 16:16:22
+                     21b3effd79796e585c35                                                                                          2020
+                     096d5fc6cef32b463e37
+                     cca88d8ee862ae104d5_
+                     fw2
+eventsconfig_10      job_cl_upgrade_2d89c clsupport            {"fileAbsName":"*","hostname":"fw2","severity":"*"}          True   Tue Jul  7 16:16:22
+                     21b3effd79796e585c35                                                                                          2020
+                     096d5fc6cef32b463e37
+                     cca88d8ee862ae104d5_
+                     fw2
+eventsconfig_10      job_cl_upgrade_2d89c link                 {"ifname":"*","new_state":"*","hostname":"fw2","severity":"* True   Tue Jul  7 16:16:22
+                     21b3effd79796e585c35                      "}                                                                  2020
+                     096d5fc6cef32b463e37
+                     cca88d8ee862ae104d5_
+                     fw2
+eventsconfig_10      job_cl_upgrade_2d89c ospf                 {"ifname":"*","hostname":"fw2","severity":"*"}               True   Tue Jul  7 16:16:22
+                     21b3effd79796e585c35                                                                                          2020
+                     096d5fc6cef32b463e37
+                     cca88d8ee862ae104d5_
+                     fw2
+eventsconfig_10      job_cl_upgrade_2d89c sensor               {"sensor":"*","new_s_state":"*","hostname":"fw2","severity": True   Tue Jul  7 16:16:22
+                     21b3effd79796e585c35                      "*"}                                                                2020
+                     096d5fc6cef32b463e37
+                     cca88d8ee862ae104d5_
+                     fw2
+```
+
+If you are filtering for a message type, you must include the `show-filter-conditions` keyword to show the conditions associated with that message type and the hierarchy in which they're processed.
+
+```
+cumulus@switch:~$ netq show events-config message_type evpn show-filter-conditions
+Matching config_events records:
+Message Name             Filter Condition Name                      Filter Condition Hierarchy                           Filter Condition Description
+------------------------ ------------------------------------------ ---------------------------------------------------- --------------------------------------------------------
+evpn                     vni                                        3                                                    Target VNI
+evpn                     severity                                   2                                                    Severity critical/info
+evpn                     hostname                                   1                                                    Target Hostname
 ```
 
 ## Examples of Advanced Notification Configurations

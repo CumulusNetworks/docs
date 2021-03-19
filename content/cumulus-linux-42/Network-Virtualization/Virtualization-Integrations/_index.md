@@ -1,6 +1,6 @@
 ---
 title: Virtualization Integrations
-author: Cumulus Networks
+author: NVIDIA
 weight: 660
 toc: 3
 ---

@@ -1,6 +1,6 @@
 ---
 title: LACP Bypass
-author: Cumulus Networks
+author: NVIDIA
 weight: 125
 pageID: 8362694
 ---
@@ -27,7 +27,7 @@ Keep in the mind the following caveats with all-active mode:
 - Configure the layer 3 interface on the physical link instead of using a bond
 - Configure the LACP bond on the switch port so that the AS has neighbor LACP information
 - Configure the bond interface as {{<link url="Bonding-Link-Aggregation#enable-balance-xor-mode" text="balance-xor">}} mode instead of LACP
-- Spanning tree protocol (STP) does not run on the individual bond slave interfaces when the LACP bond is in all-active mode. Therefore, only use all-active mode on host-facing LACP bonds. Cumulus Networks highly recommends you configure {{<link url="Spanning-Tree-and-Rapid-Spanning-Tree#bpdu-guard" text="STP BPDU guard">}} along with all-active mode.
+- Spanning tree protocol (STP) does not run on the individual bond slave interfaces when the LACP bond is in all-active mode. Therefore, only use all-active mode on host-facing LACP bonds. Consider configuring {{<link url="Spanning-Tree-and-Rapid-Spanning-Tree#bpdu-guard" text="STP BPDU guard">}} together with all-active mode.
 
 {{%notice note%}}
 

@@ -1,6 +1,6 @@
 ---
 title: Interface Configuration and Management
-author: Cumulus Networks
+author: NVIDIA
 weight: 91
 pageID: 8363023
 ---
@@ -433,12 +433,7 @@ after an `ifup bond1` to add bond1 back to bridge br100.
 
 {{%notice note%}}
 
-Although specifying a subinterface like swp1.100 and then running `ifup
-swp1.100` will also result in the automatic creation of the swp1
-interface in the kernel, Cumulus Networks recommends you specify the
-parent interface swp1 as well. A parent interface is one where any
-physical layer configuration can reside, such as `link-speed 1000` or
-`link-duplex full`.
+Although specifying a subinterface like swp1.100 and then running `ifup swp1.100` will also result in the automatic creation of the swp1 interface in the kernel, also specifying the parent interface swp1 is recommended. A parent interface is one where any physical layer configuration can reside, such as `link-speed 1000` or `link-duplex full`.
 
 It's important to note that if you only create swp1.100 and not swp1,
 then you cannot run `ifup swp1` since you did not specify it.
@@ -840,8 +835,7 @@ JSON format, run the `net show interface alias json` command.
 ## Caveats and Errata
 
 While `ifupdown2` supports the inclusion of multiple `iface` stanzas for
-the same interface, Cumulus Networks recommends you use a single `iface`
-stanza for each interface, if possible.
+the same interface, use a single `iface` stanza for each interface, if possible.
 
 There are cases where you must specify more than one `iface` stanza for
 the same interface. For example, the configuration for a single

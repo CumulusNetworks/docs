@@ -1,9 +1,9 @@
 ---
 title: Monitor System Inventory
-author: Cumulus Networks
+author: NVIDIA
 weight: 750
 ---
-In addition to network and switch inventory, the Cumulus NetQ UI provides a view into the current status and configuration of the software network constructs in a tabular, networkwide view. These are helpful when you want to see all data for all of a particular element in your network for troubleshooting, or you want to export a list view.
+In addition to network and switch inventory, the NetQ UI provides a view into the current status and configuration of the software network constructs in a tabular, networkwide view. These are helpful when you want to see all data for all of a particular element in your network for troubleshooting, or you want to export a list view.
 
 Some of these views provide data that is also available through the card workflows, but these views are not treated like cards. They only provide the current status; you cannot change the time period of the views, or graph the data within the UI.
 
@@ -11,7 +11,7 @@ Access these tables through the Main Menu (<img src="https://icons.cumulusnetwor
 
 {{<figure src="/images/netq/main-menu-admin-network-selected-310.png" width="700">}}
 
-Tables can be manipulated using the settings above the tables, shown here and described in {{<link url="Access-Data-with-Cards#table-settings" text="Table Settings">}}.
+Tables can be manipulated using the settings above the tables, shown here and described in {{<link url="Access-Data-with-Cards/#table-settings" text="Table Settings">}}.
 
 {{<figure src="/images/netq/main-menu-ntwk-table-settings-241.png" width="100">}}
 
@@ -143,7 +143,7 @@ The IP Addresses view provides all available parameter data about all IP address
 
 Refer to the following for information about:
 <ul>
-<li>What Just Happened: {{<link title="Configure and Monitor What Just Happened Metrics" text="Configure and Monitor What Just Happened Metrics">}}</li>
+<li>What Just Happened: {{<link title="Configure and Monitor What Just Happened" text="Configure and Monitor What Just Happened">}}</li>
 <li>Sensors: {{<link title="Monitor Networkwide Inventory/#view-sensor-information" text="View Sensor Information">}} or {{<link title="Monitor Switch Inventory/#view-sensor-information-for-a-switch" text="View Sensor Information for a Switch">}}</li>
 <li>Digital Optics: {{<link title="Monitor Switch Inventory/#view-digital-optics-information-for-a-switch" text="View Digital Optics Information for a Switch">}}</li>
 </ul>

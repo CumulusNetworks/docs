@@ -1,6 +1,6 @@
 ---
 title: Optional BGP Configuration
-author: Cumulus Networks
+author: NVIDIA
 weight: 860
 toc: 3
 ---
@@ -161,7 +161,7 @@ leaf01# configure terminal
 leaf01(config)# router bgp 65101
 leaf01(config-router)# neighbor 10.10.10.101 remote-as external
 leaf01(config-router)# neighbor 10.10.10.101 ebgp-multihop
-leaf01(config)# exit
+leaf01(config-router)# end
 leaf01# write memory
 leaf01# exit
 cumulus@leaf01:~$
@@ -222,7 +222,7 @@ router bgp 65101
 {{%notice note%}}
 
 - When you configure `ttl-security hops` on a peer group instead of a specific neighbor, FRR does not add it to either the running configuration or to the `/etc/frr/frr.conf` file. To work around this issue, add `ttl-security hops` to individual neighbors instead of the peer group.
-- Enabling `ttl-security hops` does not program the hardware with relevant information. Frames are forwarded to the CPU and are dropped. Cumulus Networks recommends that you use the `net add acl` command to explicitly add the relevant entry to hardware. For more information about ACLs, see {{<link title="Netfilter - ACLs">}}.
+- Enabling `ttl-security hops` does not program the hardware with relevant information. Frames are forwarded to the CPU and are dropped. Use the `net add acl` command to explicitly add the relevant entry to hardware. For more information about ACLs, see {{<link title="Netfilter - ACLs">}}.
 
 {{%/notice%}}
 
@@ -276,8 +276,7 @@ cumulus@leaf01:~$ sudo vtysh
 leaf01# configure terminal
 leaf01(config)# router bgp 65101
 leaf01(config-router)# neighbor swp51 password mypassword
-leaf01(config-router)# exit
-leaf01(config)# exit
+leaf01(config-router)# end
 leaf01# write memory
 leaf01# exit
 cumulus@leaf01:~$
@@ -373,7 +372,7 @@ The MD5 password configured against a BGP listen-range peer group (used to accep
 
 {{%/notice%}}
 
-## Remove Private ASNs
+## Remove Private BGP ASNs
 
 If you use private ASNs in the data center, any routes you send out to the internet contain your private ASNs. You can remove all the private ASNs from routes to a specific neighbor.
 
@@ -387,6 +386,150 @@ You can replace the private ASNs with your public ASN with the following command
 
 ```
 cumulus@switch:~$ net add bgp neighbor swp51 remove-private-AS replace-AS
+```
+
+## Multiple BGP ASNs
+
+Cumulus Linux supports the use of distinct ASNs for different VRF instances.
+
+The following example configures VRF RED and VRF BLUE on border01 to use ASN 65532 towards fw1 and 65533 towards fw2:
+
+{{< img src = "/images/cumulus-linux/asn-vrf-config.png" >}}
+
+{{< tabs "400 ">}}
+
+{{< tab "NCLU Commands ">}}
+
+```
+cumulus@border01:~$ net add bgp vrf RED autonomous-system 65532        
+cumulus@border01:~$ net add bgp vrf RED router-id 10.10.10.63
+cumulus@border01:~$ net add bgp vrf RED neighbor swp3 interface remote-as external
+cumulus@border01:~$ net add bgp vrf BLUE autonomous-system 65533 
+cumulus@border01:~$ net add bgp vrf BLUE router-id 10.10.10.63
+cumulus@border01:~$ net add bgp vrf BLUE neighbor swp4 interface remote-as external
+cumulus@border01:~$ net pending
+cumulus@border01:~$ net commit
+```
+
+{{< /tab >}}
+
+{{< tab "vtysh Commands ">}}
+
+```
+cumulus@border01:~$ sudo vtysh
+
+border01# configure terminal
+border01(config)# router bgp 65532 vrf RED
+border01(config-router)# bgp router-id 10.10.10.63
+border01(config-router)# neighbor swp3 interface remote-as external
+border01(config-router)# exit
+border01(config)# router bgp 65533 vrf BLUE
+border01(config-router)# bgp router-id 10.10.10.63
+border01(config-router)# neighbor swp4 interface remote-as external
+border01(config-router)# end
+border01# write memory
+border01# exit
+cumulus@border01:~$
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
+The following example shows the `/etc/frr/frr.conf` configuration for border01.
+
+```
+cumulus@border01:~$ cat /etc/frr/frr.conf
+...
+log syslog informational
+!
+vrf RED
+  vni 4001
+vrf BLUE
+  vni 4002
+!
+router bgp 65132
+ bgp router-id 10.10.10.63
+ bgp bestpath as-path multipath-relax
+ neighbor underlay peer-group
+ neighbor underlay remote-as external
+ neighbor peerlink.4094 interface remote-as internal
+ neighbor swp51 interface peer-group underlay
+ neighbor swp52 interface peer-group underlay
+ !
+ address-family ipv4 unicast
+  redistribute connected
+ exit-address-family
+ !
+ address-family l2vpn evpn
+  neighbor underlay activate
+  advertise-all-vni
+ exit-address-family
+!
+router bgp 65532 vrf RED
+ bgp router-id 10.10.10.63
+ neighbor swp3 remote-as external
+ !
+ address-family ipv4 unicast
+  redistribute static
+ exit-address-family
+ !
+ address-family l2vpn evpn
+  neighbor underlay activate
+  advertise-all-vni
+ exit-address-family
+!
+router bgp 65533 vrf BLUE
+ bgp router-id 10.10.10.63
+ neighbor swp4 remote-as external
+ !
+ address-family ipv4 unicast
+  redistribute static
+ exit-address-family
+ !
+ address-family l2vpn evpn
+  neighbor underlay activate
+  advertise-all-vni
+ exit-address-family
+!
+line vty
+```
+
+With the above configuration, the `net show bgp vrf RED summary` command shows the local ASN as 65532.
+
+```
+cumulus@border01:mgmt:~$ net show bgp vrf RED summary
+show bgp vrf RED ipv4 unicast summary
+=========================================
+BGP router identifier 10.10.10.63, local AS number 65532 vrf-id 35
+BGP table version 1
+RIB entries 1, using 192 bytes of memory
+Peers 1, using 21 KiB of memory
+
+Neighbor      V      AS   MsgRcvd   MsgSent   TblVer  InQ OutQ  Up/Down State/PfxRcd   PfxSnt
+fw1(swp3)     4   65199      2015      2015        0    0    0 01:40:36            1        1
+
+Total number of neighbors 1
+...
+```
+
+The `net show bgp summary` command displays the global table, where the local ASN 65132 is used to peer with spine01.
+
+```
+cumulus@border01:mgmt:~$ net show bgp summary
+show bgp ipv4 unicast summary
+=============================
+BGP router identifier 10.10.10.63, local AS number 65132 vrf-id 0
+BGP table version 3
+RIB entries 5, using 960 bytes of memory
+Peers 1, using 43 KiB of memory
+Peer groups 1, using 64 bytes of memory
+
+Neighbor        V         AS   MsgRcvd   MsgSent   TblVer  InQ OutQ  Up/Down State/PfxRcd   PfxSnt
+spine01(swp51)  4      65199      2223      2223        0    0    0 01:50:18            1        3
+
+Total number of neighbors 1
+...
 ```
 
 ## ECMP
@@ -563,7 +706,6 @@ switch(config-router)# neighbor 2001:db8:0002::0a00:0002 capability extended-nex
 switch(config-router)# address-family ipv4 unicast
 switch(config-router-af)# neighbor 2001:db8:0002::0a00:0002 activate
 switch(config-router-af)# end
-switch(config)# exit
 switch# write memory
 switch# exit
 cumulus@switch:~$
@@ -627,16 +769,16 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-## Suppress Route Advertisement
+<!--## Suppress Route Advertisement
 
-You can configure BGP to wait for a response from the RIB indicating that the routes installed in the RIB are also installed in the FIB before sending updates to peers.
+You can configure BGP to wait for a response from the RIB indicating that the routes installed in the RIB are also installed in the ASIC before sending updates to peers.
 
 {{< tabs "TabID784 ">}}
 
 {{< tab "NCLU Commands ">}}
 
 ```
-cumulus@switch:~$ net add routing bgp suppress-fib-pending
+cumulus@switch:~$ net add bgp wait-for-install
 cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
@@ -671,6 +813,8 @@ router bgp 65199
  bgp suppress-fib-pending
 ...
 ```
+
+The {{<link url="Smart-System-Manager" text="Smart System Manager">}} suppresses route advertisement automatically when upgrading or troubleshooting an active switch so that there is minimal disruption to the network.-->
 
 ## BGP add-path
 
@@ -757,7 +901,10 @@ cumulus@leaf01:~$ sudo vtysh
 leaf01# configure terminal
 leaf01(config)# router bgp 65101
 leaf01(config-router)# neighbor swp50 addpath-tx-bestpath-per-AS
-leaf01(config-router)#
+leaf01(config-router)# end
+leaf01# write memory
+leaf01# exit
+cumulus@leaf01:~$ 
 ```
 
 {{< /tab >}}
@@ -787,7 +934,10 @@ cumulus@leaf01:~$ sudo vtysh
 leaf01# configure terminal
 leaf01(config)# router bgp 65101
 leaf01(config-router)# neighbor swp50 addpath-tx-all-paths
-leaf01(config-router)#
+leaf01(config-router)# end
+leaf01# write memory
+leaf01# exit
+cumulus@leaf01:~$ 
 ```
 
 {{< /tab >}}
@@ -795,11 +945,11 @@ leaf01(config-router)#
 {{< /tabs >}}
 
 The following example configuration shows how BGP add-path TX is used to advertise the best path learned from each AS.
-
+<!-- vale off -->
 | <div style="width:500px">   |    |
 | -- | -- |
 | {{< img src = "/images/cumulus-linux/bgp-add-path-tx.png" >}} | In this configuration:<ul><li>Every leaf and every spine has a different ASN</li><li>eBGP is configured between:<ul><li>leaf01 and spine01, spine02</li><li>leaf03 and spine01, spine02</li><li>leaf01 and leaf02 (leaf02 only has a single peer, which is leaf01)</li></ul><li>leaf01 is configured to advertise the best path learned from each AS to BGP neighbor leaf02</li><li>leaf03 generates a loopback IP address (10.10.10.3/32) into BGP with a network statement</li></ul>|
-
+<!-- vale on -->
 When you run the `net show bgp 10.10.10.3/32` command on leaf02, the command output shows the leaf03 loopback IP address and that two BGP paths are learned, both from leaf01:
 
 ```
@@ -954,7 +1104,7 @@ router bgp 65101
 ...
 ```
 
-### Wait for Convergence
+<!--### Wait for Convergence
 
 BGP *wait for convergence* lets you delay the initial best path calculation after you reboot the switch, restart FRR, or run the vtysh `clear ip bgp *` command. This allows peers to become established and converge before BGP installs the resulting routes in zebra or sends updates to peers.
 
@@ -964,6 +1114,8 @@ To enable BGP wait for convergence, you configure the following BGP timers globa
 | ----- | ----------- |
 | `update-delay` | The longest BGP waits for all eligible peers to converge. A peer is considered converged if it reaches the established state and sends an explicit or implicit EoR. |
 | `establish-wait`| Optional. The time by which peers must reach the established state to be considered for convergence. This guards against extremely slow peers or peers that are configured but not reachable.<br><br>Peers that are locally shutdown are not considered for the convergence event.|
+
+BGP *wait for convergence* is run automatically by the {{<link url="Smart-System-Manager" text="Smart System Manager">}} to upgrade or troubleshoot an active switch with minimal disruption to the network.
 
 {{%notice note%}}
 - The `update-delay` and `establish-wait` timers are used by all VRFs, including the default VRF and any VRFs that you add later.
@@ -991,7 +1143,7 @@ cumulus@switch:~$ sudo vtysh
 
 switch# configure terminal
 switch(config)# router bgp 65101
-switch(config-router)# update-delay 300 200 
+switch(config-router)# update-delay 300 200
 switch(config-router)# end
 switch# write memory
 switch# exit
@@ -1033,7 +1185,7 @@ Total number of neighbors 1
 ...
 ```
 
-The last convergence event is retained in the output of the NCLU `net show bgp summary json` command or the vtysh `show ip bgp summary json` command.
+The last convergence event is retained in the output of the NCLU `net show bgp summary json` command or the vtysh `show ip bgp summary json` command.-->
 
 ## Route Reflectors
 
@@ -1060,13 +1212,13 @@ cumulus@spine01:~$ net commit
 ```
 cumulus@spine01:~$ sudo vtysh
 
-switch# configure terminal
-switch(config)# router bgp 65199
-switch(config-router)# address-family ipv4
-switch(config-router-af)# neighbor swp1 route-reflector-client
-switch(config-router-af)# end
-switch# write memory
-switch# exit
+spine01# configure terminal
+spine01(config)# router bgp 65199
+spine01(config-router)# address-family ipv4
+spine01(config-router-af)# neighbor swp1 route-reflector-client
+spine01(config-router-af)# end
+spine01# write memory
+spine01# exit
 cumulus@spine01:~$
 ```
 
@@ -1098,17 +1250,17 @@ Cumulus Linux uses the administrative distance to choose which routing protocol 
 
 Set the administrative distance with vtysh commands.
 
-The following example commands set the administrative distance for route 10.10.10.101/32 to 100:
+The following example commands set the administrative distance for routes from 10.10.10.101 to 100:
 
 ```
 cumulus@spine01:~$ sudo vtysh
 
-switch# configure terminal
-switch(config)# router bgp 65101
-switch(config-router)# distance 100 10.10.10.101/32
-switch(config-router)# end
-switch# write memory
-switch# exit
+spine01# configure terminal
+spine01(config)# router bgp 65101
+spine01(config-router)# distance 100 10.10.10.101/32
+spine01(config-router)# end
+spine01# write memory
+spine01# exit
 cumulus@spine01:~$
 ```
 
@@ -1117,12 +1269,12 @@ The following example commands set the administrative distance for routes extern
 ```
 cumulus@spine01:~$ sudo vtysh
 
-switch# configure terminal
-switch(config)# router bgp 65101
-switch(config-router)# distance bgp 150 110 100
-switch(config-router)# end
-switch# write memory
-switch# exit
+spine01# configure terminal
+spine01(config)# router bgp 65101
+spine01(config-router)# distance bgp 150 110 100
+spine01(config-router)# end
+spine01# write memory
+spine01# exit
 cumulus@spine01:~$
 ```
 
@@ -1165,7 +1317,7 @@ leaf01(config-router)# bgp graceful-shutdown
 leaf01(config-router)# end
 leaf01# write memory
 leaf01# exit
-cumulus@v:~$
+cumulus@leaf01:~$
 ```
 
 To disable graceful shutdown:
@@ -1209,21 +1361,69 @@ Paths: (2 available, best #1, table Default-IP-Routing-Table)
       Last update: Mon Sep 18 17:01:18 2017
 ```
 
+As optional configuration, you can create a route map to do a prepend AS so that reduced preference using a longer AS path can be propagated to other parts of network.
+
+{{< expand "Example Configuration Using a Route Map" >}}
+
+```
+router bgp 65101
+ bgp router-id 10.10.10.1
+ bgp graceful-restart
+ bgp bestpath as-path multipath-relax
+ neighbor fabric peer-group
+ neighbor swp51 interface remote-as external
+
+ address-family ipv4 unicast
+  redistribute connected
+  neighbor swp51 route-map prependas out
+ exit-address-family
+
+bgp community-list standard gshut seq 5 permit graceful-shutdown
+
+route-map prependas permit 10
+ match community gshut exact-match
+ set as-path prepend 65101
+
+route-map prependas permit 20
+```
+
+With the above configuration, the peer sees:
+
+```
+cumulus@spine01:~$ net show bgp 10.10.10.1/32
+BGP routing table entry for 10.10.10.1/32
+Paths: (1 available, best #1, table default)
+Advertised to non peer-group peers:
+65101 65101
+10.10.10.1 from leaf01(10.10.10.1) (10.10.10.1)
+Origin incomplete, metric 0, localpref 0, valid, external, bestpath-from-AS 65101, best (First path received)
+Community: graceful-shutdown
+Last update: Sun Dec 20 03:04:53 2020
+```
+
+{{< /expand >}}
+
 ## Graceful BGP Restart
 
-When BGP restarts on a switch, all BGP peers detect that the session goes down and comes back up. This session transition results in a routing flap that causes BGP to recompute routes, generate route updates, and add unnecessary churn to the forwarding tables. The routing flaps can create transient forwarding blackholes and loops, and also consume resources on the control plane of the switches affected by the flap, which can affect overall network performance.
+When BGP restarts on a switch, all BGP peers detect that the session goes down and comes back up. This session transition results in a routing flap on BGP peers that causes BGP to recompute routes, generate route updates, and add unnecessary churn to the forwarding tables. The routing flaps can create transient forwarding blackholes and loops, and also consume resources on the switches affected by the flap, which can affect overall network performance.
 
-To help minimize the negative effects that occur when BGP restarts, you can enable the BGP graceful restart feature, which enables a BGP speaker to preserve its forwarding state during a BGP restart. 
+To help minimize the negative effects that occur when BGP restarts, you can enable the BGP graceful restart feature. This enables a BGP speaker to signal to its peers that it can preserve its forwarding state and continue data forwarding during a restart. It also enables a BGP speaker to continue to use routes previously announced by a peer even after the peer has gone down.
 
-When a BGP session is established, BGP peers use the BGP OPEN message to negotiate graceful restart support. If the BGP peer also supports graceful restart, it is activated for that neighbor session. If the BGP session is lost, the BGP peer (called the restart helper) flags all routes associated with the device as stale but continues to forward packets to these routes for a certain period of time. The restarting device also continues to forward packets during the graceful restart. When the graceful restart is complete, routes are obtained from the helper so that the device can return to full operation quickly.
+When a BGP session is established, BGP peers use the BGP OPEN message to negotiate a graceful restart. If the BGP peer also supports graceful restart, it is activated for that neighbor session. If the BGP session is lost, the BGP peer (the restart helper) flags all routes associated with the device as stale but continues to forward packets to these routes for a certain period of time. The restarting device also continues to forward packets during the graceful restart. After it comes back up and re-establishes BGP sessions with its peers (restart helpers), it waits to learn all routes announced by these peers before doing a cumulative path selection; after which, it updates its forwarding tables and re-announces the appropriate routes to its peers. These procedures ensure that if there are any routing changes while the BGP speaker is restarting, they are considered post restart and the network converges.
 
 {{%notice note%}}
 BGP graceful restart is supported for both IPv4 and IPv6.
 {{%/notice%}}
 
-You can enable graceful BGP restart in one of two ways:
+BGP graceful restart helper mode is enabled by default. You can enable restarting router mode in one of two ways:
 - Globally, where all BGP peers inherit the graceful restart capability.
-- Per BGP peer or peer group, which cna be useful for misbehaving peers or to work with third party devices). You can also configure a peer or peer group to run in helper mode only, where routes originated and advertised from a BGP peer are not deleted.
+- Per BGP peer or peer group, which can be useful for misbehaving peers or when working with third party devices. You can also configure a peer or peer group to run in helper mode only, where routes originated and advertised from a BGP peer are not deleted.
+
+You must enable BGP graceful restart (restarting router mode) as described above to achieve a switch restart or switch software upgrade with minimal traffic loss in a BGP configuration. Refer to {{<link url="Smart-System-Manager" text="Smart System Manager">}} for more information.
+
+{{%notice note%}}
+BGP goes through a graceful restart (as a restarting router) only with a planned switch restart event initiated by the Smart System Manager. Any other restart of BGP, such as an autonomous restart of the BGP daemon due to a software exception or a user-initiated restart of the FRR service, results in BGP going through a regular restart where the BGP session with peers is  terminated explicitly and BGP learned routes are removed from the forwarding plane during restart.
+{{%/notice%}}
 
 The following example commands enable global graceful BGP restart:
 
@@ -1337,7 +1537,7 @@ You can configure the following graceful restart timers, which are set globally.
 |<div style="width:250px">Timer | Description |
 | ---- | ----------- |
 | `restart-time` | The number of seconds to wait for a graceful restart capable peer to re-establish BGP peering. The default is 120 seconds. You can set a value between 1 and 4095.|
-| `pathselect-defer-time` | The number of seconds a restarting peer defers path-selection when waiting for the End-of-RIB marker (EOR) from peers. The default is 360 seconds. You can set a value between 1 and 3600. |
+| `pathselect-defer-time` | The number of seconds a restarting peer defers path-selection when waiting for the EOR marker from peers. The default is 360 seconds. You can set a value between 0 and 3600. |
 | `stalepath-time` | The number of seconds to hold stale routes for a restarting peer. The default is 360 seconds. You can set a value between 1 and 4095.|
 
 The following example commands set the `restart-time` to 400 seconds, `pathselect-defer-time` to 300 seconds, and `stalepath-time` to 400 seconds:
@@ -1369,13 +1569,14 @@ switch(config-router)# bgp graceful-restart stalepath-time 400
 switch(config-router)# end
 switch# write memory
 switch# exit
+cumulus@switch:~$ 
 ```
 
 {{< /tab >}}
 
 {{< /tabs >}}
 
-The NCLU and vtysh commands save the configuration in the ``/etc/frr/frr.conf` file. For example:
+The NCLU and vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
 ```
 ...
@@ -1410,6 +1611,10 @@ cumulus@switch:~$ sudo vtysh
 switch# configure terminal
 switch(config)# router bgp 65101
 switch(config-router)# bgp graceful-restart-disable
+switch(config-router)# end
+switch# write memory
+switch# exit
+cumulus@switch:~$
 ```
 
 {{< /tab >}}
@@ -1438,6 +1643,10 @@ cumulus@switch:~$ sudo vtysh
 switch# configure terminal
 switch(config)# router bgp 65101
 switch(config-router)# neighbor swp51 graceful-restart-disable
+switch(config-router)# end
+switch# write memory
+switch# exit
+cumulus@switch:~$
 ```
 
 {{< /tab >}}
@@ -1491,7 +1700,7 @@ While in read-only mode, BGP does not run best-path or generate any updates to i
 
 To enable read-only mode, you set the `max-delay` timer and, optionally, the `establish-wait` timer. Read-only mode begins as soon as the first peer reaches its established state and the `max-delay` timer starts, and continues until either of the following two conditions are met:
 
-- All the configured peers (except the shutdown peers) have sent an explicit EOR (End-Of-RIB) or an implicit EOR. The first keep-alive after BGP reaches the established state is considered an implicit EOR.  If you specify the `establish-wait` option, BGP only considers peers that have reached the established state from the moment the `max-delay` timer starts until the `establish-wait` period ends. The minimum set of established peers for which EOR is expected are the peers that are established during the `establish-wait` window, not necessarily all the configured neighbors.
+- All the configured peers (except the shutdown peers) have sent an explicit EOR or an implicit EOR. The first keep-alive after BGP reaches the established state is considered an implicit EOR.  If you specify the `establish-wait` option, BGP only considers peers that have reached the established state from the moment the `max-delay` timer starts until the `establish-wait` period ends. The minimum set of established peers for which EOR is expected are the peers that are established during the `establish-wait` window, not necessarily all the configured neighbors.
 
 - The timer reaches the configured `max-delay`.
 
@@ -1554,7 +1763,8 @@ Here is an example of a standard community list filter:
 
 ```
 cumulus@switch:~$ net add routing community-list standard COMMUNITY1 permit 100:100
-
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}

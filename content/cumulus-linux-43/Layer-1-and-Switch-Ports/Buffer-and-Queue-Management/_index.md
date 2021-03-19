@@ -1,14 +1,14 @@
 ---
 title: Buffer and Queue Management
-author: Cumulus Networks
+author: NVIDIA
 weight: 320
 toc: 3
 ---
-Hardware datapath configuration manages packet buffering, queueing and scheduling in hardware. To configure priority groups, and assign the scheduling alogorithm and weights, you edit the `/etc/cumulus/datapath/traffic.conf`.
+Hardware datapath configuration manages packet buffering, queueing and scheduling in hardware.
 
 {{%notice note%}}
 
-The `/usr/lib/python2.7/dist-packages/cumulus/__chip_config/[bcm|mlx]/datapath.conf` assigns buffer space and egress queues. Cumulus Networks strongly recommends you {{<exlink url="https://support.mellanox.com/s/contact-support-page" text="work with a Cumulus support engineer">}} to change buffer limits in the `datapath.conf` file.
+The `/usr/lib/python2.7/dist-packages/cumulus/__chip_config/[bcm|mlx]/datapath.conf` assigns buffer space and egress queues. {{<exlink url="https://support.mellanox.com/s/contact-support-page" text="Work with a Cumulus support engineer">}} to change buffer limits in the `datapath.conf` file.
 
 {{%/notice%}}
 
@@ -31,54 +31,7 @@ You can configure Quality of Service (QoS) for switches on the following platfor
 
 {{%/notice%}}
 
-## Syntax Checker
-
-Cumulus Linux provides a syntax checker for the `/etc/cumulus/datapath/traffic.conf` file to check for errors, such missing parameters, or invalid parameter labels and values.
-
-On Broadcom switches, the syntax checker runs automatically during `switchd` initialization and reports syntax errors to the `/var/log/switchd.log` file.
-
-On both Broadcom and Mellanox switches, you can run the syntax checker manually from the command line by issuing the `cl-consistency-check --datapath-syntax-check` command. If errors exist, they are written to `stderr` by default. If you run the command with `-q`, errors are written to the `/var/log/switchd.log` file.
-
-The `cl-consistency-check --datapath-syntax-check` command takes the following options:
-
-| <div style="width:120px">Option | Description |
-| ------------------------------- | ----------- |
-| -h | Displays this list of command options. |
-| -q | Runs the command in quiet mode. Errors are written to the `/var/log/switchd.log` file instead of `stderr`. |
-| -t `<file-name>` | Runs the syntax check on a non-default `traffic.conf` file; for example, `/mypath/test-traffic.conf`.|
-
-You can run the syntax checker when `switchd` is either running or stopped.
-
-**Example Commands**
-
-The following example command runs the syntax checker on the default `/etc/cumulus/datapath/traffic.conf` file and shows that no errors are detected:
-
-```
-cumulus@switch:~$ cl-consistency-check --datapath-syntax-check
-No errors detected in traffic config file /etc/cumulus/datapath/traffic.conf
-```
-
-The following example command runs the syntax checker on the default `/etc/cumulus/datapath/traffic.conf` file in quiet mode. If errors exist, they are written to the `/var/log/switchd.log` file.
-
-```
-cumulus@switch:~$ cl-consistency-check --datapath-syntax-check -q
-```
-
-The following example command runs the syntax checker on the `/mypath/test-traffic.conf` file and shows that errors are detected:
-
-```
-cumulus@switch:~$ cl-consistency-check --datapath-syntax-check -t /path/test-traffic.conf
-Traffic source 8021p: missing mapping for priority value '7'
-Errors detected while checking traffic config file /mypath/test-traffic.conf
-```
-
-The following example command runs the syntax checker on the `/mypath/test-traffic.conf` file in quiet mode. If errors exist, they are written to the `/var/log/switchd.log` file.
-
-```
-cumulus@switch:~$ cl-consistency-check --datapath-syntax-check -t /path/test-traffic.conf -q
-```
-
-## Configure Traffic Marking through ACL Rules
+## Traffic Marking
 
 You can mark traffic for egress packets through `iptables` or `ip6tables` rule classifications. To enable these rules, you do one of the following:
 
@@ -142,39 +95,28 @@ PFC is a layer 2 mechanism that prevents congestion by throttling packet transmi
 
 PFC operates between two adjacent neighbor switches; it does not provide end-to-end flow control. However, when an upstream neighbor throttles packet transmission, it could build up packet congestion and propagate PFC frames further upstream: eventually the sending server could receive PFC frames and stop sending traffic for a time.
 
-The PFC mechanism can be enabled for individual switch priorities on specific switch ports for RX and/or TX traffic. The switch port's ingress buffer occupancy is used to measure congestion. If congestion is present, the switch transmits flow control frames to the upstream switch. Packets with priority values that do not have PFC configured are not counted during congestion detection; neither do they get throttled by the upstream switch when it receives flow control frames.
+The PFC mechanism can be enabled for individual switch priorities on all or specific switch ports for received and/or transmitted traffic. The ingress buffer occupancy of the switch port is used to measure congestion. If congestion is present, the switch transmits flow control frames to the upstream switch. Packets with priority values that do not have PFC configured are not counted during congestion detection and they do not get throttled by the upstream switch when it receives flow control frames.
 
-PFC congestion detection is implemented on the switch using xoff and xon threshold values for the specific ingress buffer which is used by the targeted switch priorities. When a packet enters the buffer and the buffer occupancy is above the xoff threshold, the switch transmits an Ethernet PFC frame to the upstream switch to signal packet transmission should stop. When the buffer occupancy drops below the xon threshold, the switch sends another PFC frame upstream to signal that packet transmission can resume. (PFC frames contain a quanta value to indicate a timeout value for the upstream switch: packet transmission can resume after the timer has expired, or when a PFC frame with quanta == 0 is received from the downstream switch.)
+PFC congestion detection is implemented on the switch using xoff and xon threshold values for the specific ingress buffer used by the targeted switch priorities. When a packet enters the buffer and the buffer occupancy is above the xoff threshold, the switch transmits an Ethernet PFC frame to the upstream switch to signal packet transmission must stop. When the buffer occupancy drops below the xon threshold, the switch sends another PFC frame upstream to signal that packet transmission can resume. (PFC frames contain a quanta value to indicate a timeout value for the upstream switch: packet transmission can resume after the timer has expired or when a PFC frame with quanta == 0 is received from the downstream switch.)
 
-After the downstream switch has sent a PFC frame upstream, it continues to receive packets until the upstream switch receives and responds to the PFC frame. The downstream ingress buffer must be large enough to store those additional packets after the xoff threshold has been reached.
+After the downstream switch sends a PFC frame upstream, it continues to receive packets until the upstream switch receives and responds to the PFC frame. The downstream ingress buffer must be large enough to store those additional packets after the xoff threshold is reached.
 
 Priority flow control is fully supported on both {{<exlink url="https://cumulusnetworks.com/products/hardware-compatibility-list/?asic%5B0%5D=Broadcom%20Apollo2&asic%5B1%5D=Broadcom%20Firebolt3&asic%5B2%5D=Broadcom%20Helix4&asic%5B3%5D=Broadcom%20Hurricane2&asic%5B4%5D=Broadcom%20Maverick&asic%5B5%5D=Broadcom%20Tomahawk&asic%5B6%5D=Broadcom%20Tomahawk%2B&asic%5B7%5D=Broadcom%20Tomahawk2&asic%5B8%5D=Broadcom%20Trident&asic%5B9%5D=Broadcom%20Trident%2B&asic%5B10%5D=Broadcom%20Trident2&asic%5B11%5D=Broadcom%20Trident2%2B&asic%5B12%5D=Broadcom%20Trident3%20X7&asic%5B13%5D=Broadcom%20Triumph2&CPUType=x86_64&Brand%5B0%5D=broadcomtrident&Brand%5B1%5D=broadcomtridentplus&Brand%5B2%5D=broadcomtrident2plus&Brand%5B3%5D=broadcomtriumph2&SwitchSilicon=broadcomtrident2" text="Broadcom">}} (including the Edgecore Minipack-AS8000/Trident3) and {{<exlink url="https://cumulusnetworks.com/products/hardware-compatibility-list/?vendor_name%5B0%5D=Mellanox" text="Mellanox">}} switches.
 
-PFC is disabled by default in Cumulus Linux. To enable priority flow control (PFC), you must configure the following settings in the `/etc/cumulus/datapath/traffic.conf` file on the switch:
-
-- Specify the name of the port group in `pfc.port_group_list` in brackets; for example, *pfc.port\_group\_list = \[pfc\_port\_group\]*.
-- Assign a CoS value to the port group in `pfc.pfc_port_group.cos_list` setting. *pfc\_port\_group* is the name of a port group you specified above and is used throughout the following settings.
-- Populate the port group with its member ports in `pfc.pfc_port_group.port_set`.
-- Set a PFC buffer size in `pfc.pfc_port_group.port_buffer_bytes`. This is the maximum number of bytes allocated for storing bursts of packets, guaranteed at the ingress port. The default is *25000* bytes.
-- Set the xoff byte limit in `pfc.pfc_port_group.xoff_size`. This is a threshold for the PFC buffer; when this limit is reached, an xoff transition is initiated, signaling the upstream port to stop sending traffic, during which time packets continue to arrive due to the latency of the communication. The default is *10000* bytes.
-- Set the xon delta limit in `pfc.pfc_port_group.xon_delta`. This is the number of bytes to subtract from the xoff limit, which results in a second threshold at which the egress port resumes sending traffic. After the xoff limit is reached and the upstream port stops sending traffic, the buffer begins to drain. When the buffer reaches 8000 bytes (assuming default xoff and xon settings), the egress port signals that it can start receiving traffic again. The default is *2000* bytes.
-- Enable the egress port to signal the upstream port to stop sending traffic (`pfc.pfc_port_group.tx_enable`). The default is *true*.
-- Enable the egress port to receive notifications and act on them (`pfc.pfc_port_group.rx_enable`). The default is *true*.
-- The switch priority value(s) are mapped to the specific ingress buffer for each targeted switch port. Cumulus Linux looks at either the 802.1p bits or the IP layer DSCP bits depending on which is configured in the `traffic.conf` file to map packets to internal switch priority values.
-
-The following configuration example shows PFC configured for ports swp1 through swp4 and swp6:
+PFC is disabled by default in Cumulus Linux. To configure PFC, update and uncomment the settings in the `priority flow control` section of the `/etc/cumulus/datapath/traffic.conf` file.
 
 ```
 # to configure priority flow control on a group of ports:
 # -- assign cos value(s) to the cos list
-# -- add or replace a port group names in the port group list
+# -- add or replace port group names in the port group list
 # -- for each port group in the list
 #    -- populate the port set, e.g.
 #       swp1-swp4,swp8,swp50s0-swp50s3
 #    -- set a PFC buffer size in bytes for each port in the group
-#    -- set the xoff byte limit (buffer limit that triggers PFC frame transmit to start)
-#    -- set the xon byte delta (buffer limit that triggers PFC frame transmit to stop)
+#    -- set the xoff byte limit (buffer limit that triggers PFC frames transmit to start)
+#    -- set the xon byte delta (buffer limit that triggers PFC frames transmit to stop)
 #    -- enable PFC frame transmit and/or PFC frame receive
+
 # priority flow control
 pfc.port_group_list = [pfc_port_group]
 pfc.pfc_port_group.cos_list = []
@@ -184,14 +126,41 @@ pfc.pfc_port_group.xoff_size = 10000
 pfc.pfc_port_group.xon_delta = 2000
 pfc.pfc_port_group.tx_enable = true
 pfc.pfc_port_group.rx_enable = true
+#
+# Specify cable length in mts
+pfc.pfc_port_group.cable_length = 10
 ```
+
+| PFC Setting | Description |
+| ---- | ----- |
+| `pfc.port_group_list` | The name of the port group in brackets. |
+| `pfc.pfc_port_group.cos_list` | The CoS value to the ports. |
+| `pfc.pfc_port_group.port_set` | The ports in the port group. |
+| `pfc.pfc_port_group.port_buffer_bytes` | The PFC buffer size. This is the maximum number of bytes allocated for storing bursts of packets, guaranteed at the ingress port. The default is *25000* bytes.<br>This setting is optional. If not provided, the value is derived from the port speed, port MTU, or port cable length. |
+| `pfc.pfc_port_group.xoff_size` | The xoff byte limit. This is a threshold for the PFC buffer; when this limit is reached, an xoff transition is initiated, signaling the upstream port to stop sending traffic, during which time packets continue to arrive due to the latency of the communication. The default is *10000* bytes.<br>This setting is optional. If not provided, the value is derived from the port speed, port MTU, or port cable length.|
+| `pfc.pfc_port_group.xon_delta` | The xon delta limit. This is the number of bytes to subtract from the xoff limit, which results in a second threshold at which the egress port resumes sending traffic. After the xoff limit is reached and the upstream port stops sending traffic, the buffer begins to drain. When the buffer reaches 8000 bytes (assuming default xoff and xon settings), the egress port signals that it can start receiving traffic again. The default is *2000* bytes.<br>This setting is optional. If not provided, the value is derived from the port speed, port MTU, or port cable length. |
+| `pfc.pfc_port_group.tx_enable` | Enables the egress port to signal the upstream port to stop sending traffic. The default is *true*. |
+| `pfc.pfc_port_group.rx_enable` | Enables the egress port to receive notifications and act on them. The default is *true*. |
+| `pfc.pfc_port_group.cable_length` | The length of the port group cable. |
+
+On Broadcom switches, after you modify the settings in the `/etc/cumulus/datapath/traffic.conf` file, you *must* restart `switchd` for the changes to take effect; run the `cumulus@switch:~$ sudo systemctl restart switchd.service` command.
+
+{{<cl/restart-switchd>}}
+
+On NVIDIA Spectrum switches, changes to the settings in the `/etc/cumulus/datapath/traffic.conf` file do *not* require you to restart `switchd`. However, you must run the `echo 1 > /cumulus/switchd/config/traffic/reload` command to apply the settings.
+
+```
+cumulus@switch:~$ echo 1 > /cumulus/switchd/config/traffic/reload
+```
+
+Always run the {{<link url="#syntax-checker" text="syntax checker">}} syntax checker before applying the configuration changes.
 
 ## Port Groups
 
 A *port group* refers to one or more sequences of contiguous ports. You can define multiple port groups by adding:
 
-- A comma-separated list of port group names to the port\_group\_list.
-- The port\_set, rx\_enable, and tx\_enable configuration lines for each port group.
+- A comma-separated list of port group names to the `port_group_list`.
+- The `port_set`, `rx_enable`, and `tx_enable` configuration lines for each port group.
 
 You can specify the set of ports in a port group in comma-separate sequences of contiguous ports; you can see which ports are contiguous in the `/var/lib/cumulus/porttab` file. The syntax supports:
 
@@ -214,29 +183,23 @@ swp7
 ...
 ```
 
-On a Broadcom switch, restart `switchd` with the `sudo systemctl restart switchd.service` command to allow the PFC configuration changes to take effect. On a Mellanox switch with the Spectrum ASIC, restarting `switchd` is not necessary.
-
-{{<cl/restart-switchd>}}
-
 ## Link Pause
 
-The PAUSE frame is a flow control mechanism that halts the transmission of the transmitter for a specified period of time. A server or other network node within the data center may be receiving traffic faster than it can handle it, thus the PAUSE frame. In Cumulus Linux, you can configure individual ports to execute link pause by:
+The PAUSE frame is a flow control mechanism that halts the transmission of the transmitter for a specified period of time, which might be needed if a server or other network node within the data center receives traffic faster than it can handle. In Cumulus Linux, you can configure individual ports to execute link pause by:
 
-- Transmitting pause frames when its ingress buffers become congested (TX pause enable).
+- Transmitting pause frames when the ingress buffers become congested (TX pause enable).
 - Responding to received pause frames (RX pause enable).
 
-Link pause is disabled by default. To enabling link pause, you must configure settings in the `/etc/cumulus/datapath traffic.conf` file.
+Link pause is disabled by default. To enable link pause, you must configure settings in the `/etc/cumulus/datapath traffic.conf` file.
 
-{{%notice tip%}}
-
-What's the difference between link pause and priority flow control?
+{{< expand "What's the difference between link pause and priority flow control?" >}}
 
 - Priority flow control is applied to an individual priority group for a specific ingress port.
 - Link pause (also known as port pause or global pause) is applied to all the traffic for a specific ingress port.
 
-{{%/notice%}}
+{{< /expand >}}
 
-Here is an example configuration that enables both types of link pause for swp1 through swp4 and swp6:
+Here is an example configuration that enables TX pause and RX pause for swp1 through swp4 and swp6:
 
 ``` 
 # to configure pause on a group of ports:
@@ -244,27 +207,51 @@ Here is an example configuration that enables both types of link pause for swp1 
 # -- for each port group in the list
 #    -- populate the port set, e.g.
 #       swp1-swp4,swp8,swp50s0-swp50s3
-#    -- set a pause buffer size in bytes for each port in the group
+#    -- set a pause buffer size in bytes for each port
 #    -- set the xoff byte limit (buffer limit that triggers pause frames transmit to start)
 #    -- set the xon byte delta (buffer limit that triggers pause frames transmit to stop)
+#    -- enable pause frame transmit and/or pause frame receive
 
-# link pause
-link_pause.port_group_list = [pause_port_group]
-link_pause.pause_port_group.port_set = swp1-swp4,swp6
-link_pause.pause_port_group.port_buffer_bytes = 25000
-link_pause.pause_port_group.xoff_size = 10000
-link_pause.pause_port_group.xon_delta = 2000
-link_pause.pause_port_group.rx_enable = true
-link_pause.pause_port_group.tx_enable = true
+ link pause
+ link_pause.port_group_list = [pause_port_group]
+ link_pause.pause_port_group.port_set = swp1-swp4,swp6
+ link_pause.pause_port_group.port_buffer_bytes = 25000
+ link_pause.pause_port_group.xoff_size = 10000
+ link_pause.pause_port_group.xon_delta = 2000
+ link_pause.pause_port_group.rx_enable = true
+ link_pause.pause_port_group.tx_enable = true
+
+# Specify cable length in mts
+ link_pause.pause_port_group.cable_length = 10
 ```
 
-On a Broadcom switch, restart `switchd` with the `sudo systemctl restart switchd.service` command to allow the PFC configuration changes to take effect. On a Mellanox switch with the Spectrum ASIC, restarting `switchd` is not necessary.
+{{%notice note%}}
+This `link_pause.pause_port_group.port_buffer_bytes`, `link_pause.pause_port_group.xoff_size`, and `link_pause.pause_port_group.xon_delta` settings are optional. If not provided, the values are derived from the port speed, port MTU, or port cable length.
+{{%/notice%}}
+
+On Broadcom switches, after you modify the settings in the `/etc/cumulus/datapath/traffic.conf` file, you *must* restart `switchd` for the changes to take effect; run the `cumulus@switch:~$ sudo systemctl restart switchd.service` command.
 
 {{<cl/restart-switchd>}}
 
+On NVIDIA Spectrum switches, changes to the settings in the `/etc/cumulus/datapath/traffic.conf` file do *not* require you to restart `switchd`. However, you must run the `echo 1 > /cumulus/switchd/config/traffic/reload` command to apply the settings.
+
+```
+cumulus@switch:~$ echo 1 > /cumulus/switchd/config/traffic/reload
+```
+
+Always run the {{<link url="#syntax-checker" text="syntax checker">}} syntax checker before applying the configuration changes.
+
 ## Cut-through Mode and Store and Forward Switching
 
-Cut-through mode is disabled in Cumulus Linux by default on switches with Broadcom ASICs. With cut-though mode enabled and link pause is asserted, Cumulus Linux generates a TOVR and TUFL ERROR; certain error counters increment on a given physical port.
+Cut-through mode is disabled in Cumulus Linux by default on switches with Broadcom ASICs. On NVIDIA Spectrum switches, you cannot disable cut-through mode.
+
+```
+# Cut-through is disabled by default on all chips with the exception of
+# Spectrum.  On Spectrum cut-through cannot be disabled.
+#cut_through_enable = false
+```
+
+If cut-though mode is enabled and link pause is asserted, Cumulus Linux generates a TOVR and TUFL ERROR; certain error counters increment on a given physical port.
 
 ```
 cumulus@switch:~$ sudo ethtool -S swp49 | grep Error
@@ -282,16 +269,21 @@ HwIfInErrors: 297595762
 HwIfInDot3FrameErrors: 293710518
 ```
 
-To work around this issue, disable link pause or disable cut-through mode in the `/etc/cumulus/datapath/traffic.conf` file.
-
-To disable link pause, comment out the `link_pause*` section in the `/etc/cumulus/datapath/traffic.conf` file:
+To work around this issue, disable link pause by commenting out the `link_pause*` section in the `/etc/cumulus/datapath/traffic.conf` file:
 
 ```
-cumulus@switch:~$ sudo nano /etc/cumulus/datapath/traffic.conf 
-#link_pause.port_group_list = [port_group_0]
-#link_pause.port_group_0.port_set = swp45-swp54
-#link_pause.port_group_0.rx_enable = true
-#link_pause.port_group_0.tx_enable = true
+cumulus@switch:~$ sudo nano /etc/cumulus/datapath/traffic.conf
+# link pause
+# link_pause.port_group_list = [pause_port_group]
+# link_pause.pause_port_group.port_set = swp1-swp4,swp6
+# link_pause.pause_port_group.port_buffer_bytes = 25000
+# link_pause.pause_port_group.xoff_size = 10000
+# link_pause.pause_port_group.xon_delta = 2000
+# link_pause.pause_port_group.rx_enable = true
+# link_pause.pause_port_group.tx_enable = true
+#
+# Specify cable length in mts
+# link_pause.pause_port_group.cable_length = 10
 ```
 
 To enable store and forward switching, set `cut_through_enable` to *false* in the `/etc/cumulus/datapath/traffic.conf` file:
@@ -300,6 +292,10 @@ To enable store and forward switching, set `cut_through_enable` to *false* in th
 cumulus@switch:~$ sudo nano /etc/cumulus/datapath/traffic.conf
 cut_through_enable = false
 ```
+
+On Broadcom switches, after you modify the settings in the `/etc/cumulus/datapath/traffic.conf` file, you *must* restart `switchd` for the changes to take effect; run the `cumulus@switch:~$ sudo systemctl restart switchd.service` command. Always run the {{<link url="#syntax-checker" text="syntax checker">}} syntax checker before applying the configuration changes.
+
+{{<cl/restart-switchd>}}
 
 {{%notice note%}}
 
@@ -313,7 +309,7 @@ On switches with the Mellanox Spectrum ASIC, Cumulus Linux supports cut-through 
 
 *Explicit Congestion Notification* (ECN) is defined by {{<exlink url="https://tools.ietf.org/html/rfc3168" text="RFC 3168">}}. ECN enables the Cumulus Linux switch to mark a packet to signal impending congestion instead of dropping the packet, which is how TCP typically behaves when ECN is not enabled.
 
-ECN is a layer 3 end-to-end congestion notification mechanism only. Packets can be marked as *ECN-capable transport* (ECT) by the sending server. If congestion is observed by any switch while the packet is getting forwarded, the ECT-enabled packet can be marked by the switch to indicate the congestion. The end receiver can respond to the ECN-marked packets by signaling the sending server to slow down transmission. The sending server marks a packet *ECT* by setting the least 2 significant bits in an IP header `DiffServ` (ToS) field to *01* or *10*. A packet that has the least 2 significant bits set to *00* indicates a non-ECT-enabled packet.
+ECN is a layer 3 end-to-end congestion notification mechanism only. Packets can be marked as *ECN-capable transport* (ECT) by the sending server. If congestion is observed by any switch while the packet is getting forwarded, the ECT-enabled packet can be marked by the switch to indicate the congestion. The end receiver can respond to the ECN-marked packets by signaling the sending server to slow down transmission. The sending server marks a packet *ECT* by setting the least two significant bits in an IP header `DiffServ` (ToS) field to *01* or *10*. A packet that has the least teo significant bits set to *00* indicates a non-ECT-enabled packet.
 
 The ECN mechanism on a switch only marks packets to notify the end receiver. It does not take any other action or change packet handling in any way, nor does it respond to packets that have already been marked ECN by an upstream switch.
 
@@ -323,19 +319,17 @@ The ECN mechanism on a switch only marks packets to notify the end receiver. It 
 
 {{%/notice%}}
 
-ECN is implemented on the switch using minimum and maximum threshold values for the egress queue length. When a packet enters the queue and the average queue length is between the minimum and maximum threshold values, a configurable probability value will determine whether the packet will be marked. If the average queue length is above the maximum threshold value, the packet is always marked.
+ECN is implemented on the switch using minimum and maximum threshold values for the egress queue length. When a packet enters the queue and the average queue length is between the minimum and maximum threshold values, a configurable probability value will determine whether the packet is marked. If the average queue length is above the maximum threshold value, the packet is always marked.
 
 The downstream switches with ECN enabled perform the same actions as the traffic is received. If the ECN bits are set, they remain set. The only way to overwrite ECN bits is to set the ECN bits to *11*.
 
 ECN is supported on {{<exlink url="https://cumulusnetworks.com/hcl" text="Broadcom Tomahawk, Tomahawk2, Trident II, Trident II+ and Trident3, and Mellanox Spectrum ASICs">}}.
 
-{{< expand "Click to learn how to configure ECN "  >}}
-
 ECN is disabled by default in Cumulus Linux. You can enable ECN for individual switch priorities on specific switch ports in the `/etc/cumulus/datapath/traffic.conf` file:
 
 - Specify the name of the port group in `ecn.port_group_list` in brackets; for example, `ecn.port_group_list = [ecn_port_group]`.
-- Assign a CoS value to the port group in `ecn.ecn_port_group.cos_list`. If the CoS value of a packet matches the value of this setting, then ECN is applied. Note that *ecn\_port\_group* is the name of a port group you specified above.
-- Populate the port group with its member ports (`ecn.ecn_port_group.port_set`), where *ecn\_port\_group* is the name of the port group you specified above. Congestion is measured on the egress port queue for the ports listed here, using the average queue length: if congestion is present, a packet entering the queue may be marked to indicate that congestion was observed. Marking a packet involves setting the least 2 significant bits in the IP header DiffServ (ToS) field to *11*.
+- Assign a CoS value to the port group in `ecn.ecn_port_group.cos_list`. If the CoS value of a packet matches the value of this setting, ECN is applied.
+- Populate the port group with its member ports (`ecn.ecn_port_group.port_set`). Congestion is measured on the egress port queue for the ports listed here, using the average queue length: if congestion is present, a packet entering the queue can be marked to indicate that congestion was observed. Marking a packet involves setting the least 2 significant bits in the IP header DiffServ (ToS) field to *11*.
 - The switch priority value(s) are mapped to specific egress queues for the target switch ports.
 - The `ecn.ecn_port_group.probability` value indicates the probability of a packet being marked if congestion is experienced.
 
@@ -343,31 +337,229 @@ The following configuration example shows ECN configured for ports swp1 through 
 
 ```
 # Explicit Congestion Notification
-# to configure ECN on a group of ports:
+# to configure ECN and RED on a group of ports:
 # -- add or replace port group names in the port group list
-# -- assign cos value(s) to the cos list  *ECN will only be applied to traffic matching this COS*
+# -- assign cos value(s) to the cos list
 # -- for each port group in the list
 #    -- populate the port set, e.g.
 #       swp1-swp4,swp8,swp50s0-swp50s3
-  ecn.port_group_list = [ecn_port_group]
-  ecn.ecn_port_group.cos_list = [0]
-  ecn.ecn_port_group.port_set = swp1-swp4,swp6
-  ecn.ecn_port_group.min_threshold_bytes = 40000
-  ecn.ecn_port_group.max_threshold_bytes = 200000
-  ecn.ecn_port_group.probability = 100
+# -- to enable RED requires the latest traffic.conf
+ecn_red.port_group_list = [ecn_red_port_group]
+ecn_red.ecn_red_port_group.cos_list = [3]
+ecn_red.ecn_red_port_group.port_set = swp1-swp4,swp6
+ecn_red.ecn_red_port_group.ecn_enable = true
+ecn_red.ecn_red_port_group.red_enable = false
+ecn_red.ecn_red_port_group.min_threshold_bytes = 40000
+ecn_red.ecn_red_port_group.max_threshold_bytes = 200000
+ecn_red.ecn_red_port_group.probability = 100
 ```
 
-On a Broadcom switch, restart `switchd` with the `sudo systemctl restart switchd.service` command to allow the PFC configuration changes to take effect. On a Mellanox switch with the Spectrum ASIC, restarting `switchd` is not necessary.
+On Broadcom switches, after you modify the settings in the `/etc/cumulus/datapath/traffic.conf` file, you *must* restart `switchd` for the changes to take effect; run the `cumulus@switch:~$ sudo systemctl restart switchd.service` command.
 
 {{<cl/restart-switchd>}}
 
-{{< /expand >}}
+On NVIDIA Spectrum switches, changes to the settings in the `/etc/cumulus/datapath/traffic.conf` file do *not* require you to restart `switchd`. However, you must run the `echo 1 > /cumulus/switchd/config/traffic/reload` command to apply the settings.
 
-## Check Interface Buffer Status
+```
+cumulus@switch:~$ echo 1 > /cumulus/switchd/config/traffic/reload
+```
 
-- On switches with 
-{{<exlink url="https://cumulusnetworks.com/products/hardware-compatibility-list/?asic%5B0%5D=Mellanox%20Spectrum&asic%5B1%5D=Mellanox%20Spectrum_A1" text="ASICs">}}, you can collect a fine-grained history of queue lengths using histograms maintained by the ASIC; see the {{<link title="ASIC Monitoring">}} for details.
-- On Broadcom switches, the buffer status is not visible currently.
+Always run the {{<link url="#syntax-checker" text="syntax checker">}} syntax checker before applying the configuration changes.
+
+## Scheduling Weights Per Egress Queue
+
+On NVIDIA Spectrum switches, you can set the scheduling weight per egress queue, which determines the amount of bandwidth assigned to the queue. Cumulus Linux supports eight queues per port. You can either use a default profile that each port inherits​ or create separate profiles that map a different set of ports. Each profile, including the default profile, has weights configured for each egress queue (0-7)​​.
+
+You set the weights per egress queue as a percentage. The total weight percentages for all egress queues cannot be greater than 100. If you do not define a weight for an egress queue, no scheduling is done for packets on this queue if congestion occurs. If you want to configure strict scheduling on an egress queue (always send every single packet in the queue) set the value to 0.
+
+You can configure per queue egress scheduling with NCLU commands or manually by editing the `/etc/cumulus/datapath/traffic.conf` file.
+
+Cumulus Linux provides a default profile. You can either enable the default profile or configure a non-default profile.
+
+{{< tabs "TabID432 ">}}
+
+{{< tab "NCLU Commands ">}}
+
+The following example commands enable the default profile:
+
+```
+cumulus@switch:~$ net add qos egress-sched default_profile
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+In the default profile, the egress queue weights are set as follows. You cannot modify these values with NCLU.
+
+```
+...
+default_egress_sched.egr_queue_0.bw_percent = 12
+default_egress_sched.egr_queue_1.bw_percent = 12
+default_egress_sched.egr_queue_2.bw_percent = 24
+default_egress_sched.egr_queue_3.bw_percent = 12
+default_egress_sched.egr_queue_4.bw_percent = 12
+default_egress_sched.egr_queue_5.bw_percent = 12
+default_egress_sched.egr_queue_6.bw_percent = 12
+default_egress_sched.egr_queue_7.bw_percent = 0
+```
+
+The following commands create a non-default profile for port group `port_group1` for swp2 and swp3, set the weight to 30 percent on egress queue 2 and strict scheduling on egress queue 3:
+
+```
+cumulus@switch:~$ net add qos egress-sched profile port_set swp2-swp3
+cumulus@switch:~$ net add qos egress_sched profile sched_port_group1 queue 2 dwrr bw_percent 30​
+cumulus@switch:~$ net add qos egress_sched profile sched_port_group1 queue 3 strict
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+The NCLU commands save the configuration in the `/etc/cumulus/datapath/traffic.conf` file. For example:
+
+```
+...
+egress_sched.port_group_list = [sched_port_group1]
+egress_sched.sched_port_group1.port_set = swp2-swp3
+egress_sched.sched_port_group1.egr_queue_2.bw_percent = 30
+egress_sched.sched_port_group1.egr_queue_3.bw_percent = 0
+...
+```
+
+{{%notice note%}}
+- To configure a non-default profile with NCLU, you must configure the port set for the profile before you configure the bandwidth percent for the egress queues.
+- The total bandwidth percent for all egress queues cannot be greater than 100.
+- If you delete the port set for a non-default profile, the bandwidth percent for all the queues in that profile are deleted.
+{{%/notice%}}
+
+{{< /tab >}}
+
+{{< tab "Edit the traffic.conf File ">}}
+
+To configure per queue egress scheduling manually in the `/etc/cumulus/datapath/traffic.conf` file, update and uncomment the settings in the `default egress scheduling weight per egress queue` section of the `/etc/cumulus/datapath/traffic.conf` file.
+
+The following example enables the default profile, and sets the weight to 30 percent for egress queue 2 and 10 percent for the remaining egress queues. The settings are applied to all ports.
+
+```
+# default egress scheduling weight per egress queue 
+# To be applied to all the ports if port_group profile not configured
+# If you do not specify any bw_percent of egress_queues, those egress queues 
+# will assume DWRR weight 0 - no egress scheduling for those queues
+# '0' indicates strict priority
+default_egress_sched.egr_queue_0.bw_percent = 10
+default_egress_sched.egr_queue_1.bw_percent = 10
+default_egress_sched.egr_queue_2.bw_percent = 30
+default_egress_sched.egr_queue_3.bw_percent = 10
+default_egress_sched.egr_queue_4.bw_percent = 10
+default_egress_sched.egr_queue_5.bw_percent = 10
+default_egress_sched.egr_queue_6.bw_percent = 10
+default_egress_sched.egr_queue_7.bw_percent = 10
+```
+
+The following example creates a non-default profile for port group `port_group1`, sets the weight to 30 percent for egress queue 1 and 2, to 0 for egress queue 6 and 7 (always send every single packet from egress queue 6 and 7 before any other queue), and 10 percent for the remaining egress queues:
+
+```
+...
+egress_sched.port_group_list = [sched_port_group1]
+egress_sched.sched_port_group1.port_set = swp2
+egress_sched.sched_port_group1.egr_queue_0.bw_percent = 10
+egress_sched.sched_port_group1.egr_queue_1.bw_percent = 30
+egress_sched.sched_port_group1.egr_queue_2.bw_percent = 30
+egress_sched.sched_port_group1.egr_queue_3.bw_percent = 10
+egress_sched.sched_port_group1.egr_queue_4.bw_percent = 10
+egress_sched.sched_port_group1.egr_queue_5.bw_percent = 10
+egress_sched.sched_port_group1.egr_queue_6.bw_percent = 0
+egress_sched.sched_port_group1.egr_queue_7.bw_percent = 0
+```
+
+On Broadcom switches, after you modify the settings in the `/etc/cumulus/datapath/traffic.conf` file, you *must* restart `switchd` for the changes to take effect; run the `cumulus@switch:~$ sudo systemctl restart switchd.service` command.
+
+{{<cl/restart-switchd>}}
+
+On NVIDIA Spectrum switches, changes to the settings in the `/etc/cumulus/datapath/traffic.conf` file do *not* require you to restart `switchd`. However, you must run the `echo 1 > /cumulus/switchd/config/traffic/reload` command to apply the settings.
+
+```
+cumulus@switch:~$ echo 1 > /cumulus/switchd/config/traffic/reload
+```
+
+Always run the {{<link url="#syntax-checker" text="syntax checker">}} syntax checker before applying the configuration changes.
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
+## Traffic Shaping
+
+Configure traffic shaping to regulate network traffic by using a lower bitrate than the physical interface is capable of. Traffic shaping prevents packets from being dropped or lost due to bandwidth limits or congestion.
+
+To configure traffic shaping, update and uncomment the settings in the `Hierarchical traffic shaping` section of the the `/etc/cumulus/datapath/traffic.conf` file. You can configure traffic shaping per egress queue or aggregated at the port level.
+
+The egress shaping rate configured in the `/etc/cumulus/datapath/traffic.conf` is always the layer 1 rate. The calculated shaping rate considers overheads in the Ethernet frame like the interframe gap, preamble, cyclic redundancy check (CRC) and so on. The egress layer 3 throughput measured is always less than the maximum shaper rate configured.
+
+The following example shows the `Hierarchical traffic shaping` section of the `/etc/cumulus/datapath/traffic.conf` file.
+
+```
+...
+# Hierarchical traffic shaping
+# to configure shaping at 2 levels:
+#     - per egress queue egr_queue_0 - egr_queue_7
+#     - port level aggregate
+# -- add or replace a port group names in the port group list
+# -- for each port group in the list
+#    -- populate the port set, e.g.
+#       swp1-swp4,swp8,swp50s0-swp50s3
+#    -- set min and max rates in kbps for each egr_queue [min, max]
+#    -- set max rate in kbps at port level
+shaping.port_group_list = [shaper_port_group]
+shaping.shaper_port_group.port_set = swp1-swp3
+shaping.shaper_port_group.egr_queue_0.shaper = [50000, 100000]
+shaping.shaper_port_group.egr_queue_1.shaper = [51000, 150000]
+shaping.shaper_port_group.egr_queue_2.shaper = [52000, 200000]
+shaping.shaper_port_group.egr_queue_3.shaper = [53000, 250000]
+shaping.shaper_port_group.egr_queue_4.shaper = [54000, 300000]
+shaping.shaper_port_group.egr_queue_5.shaper = [55000, 350000]
+shaping.shaper_port_group.egr_queue_6.shaper = [56000, 400000]
+shaping.shaper_port_group.egr_queue_7.shaper = [57000, 450000]
+# shaping.shaper_port_group.port.shaper = 900000
+```
+
+The settings are described below:
+
+| Traffic Shaping Setting | Description|
+| ------------------------| ---------- |
+| `shaping.port_group_list` | The name of the port group. You must enclose the name in square brackets; for example, `shaping.port_group_list = [shaper_port_group1]`. |
+| `shaping.shaper_port_group.port_set` | The list of ports in the port group. |
+| `shaping.shaper_port_group.egr_queue_0.shaper` | The minimum and maximum rates in kbps for egress queue 0. You must enclose the values in square brackets. |
+| `shaping.shaper_port_group.egr_queue_1.shaper` | The minimum and maximum rates in kbps for egress queue 1. You must enclose the values in square brackets. |
+| `shaping.shaper_port_group.egr_queue_2.shaper` | The minimum and maximum rates in kbps for egress queue 2. You must enclose the values in square brackets. |
+| `shaping.shaper_port_group.egr_queue_3.shaper` | The minimum and maximum rates in kbps for egress queue 3. You must enclose the values in square brackets. |
+| `shaping.shaper_port_group.egr_queue_4.shaper` | The minimum and maximum rates in kbps for egress queue 4. You must enclose the values in square brackets. |
+| `shaping.shaper_port_group.egr_queue_5.shaper` | The minimum and maximum rates in kbps for egress queue 5. You must enclose the values in square brackets. |
+| `shaping.shaper_port_group.egr_queue_6.shaper` | The minimum and maximum rates in kbps for egress queue 6. You must enclose the values in square brackets. |
+| `shaping.shaper_port_group.egr_queue_7.shaper` | The minimum and maximum rates in kbps for egress queue 7. You must enclose the values in square brackets. |
+| `shaping.shaper_port_group.port.shaper` |  The maximum rate in kbps at the port level.<br>At the port level, only the maximum shaper rate is supported. |
+| `scheduling.algorithm` | Cumulus Linux supports the Deficit Weighted Round Robin (DWRR) scheduling algorithm only. |
+
+{{%notice note%}}
+In Cumulus Linux, the burst size is set to twice the maximum rate internally; the setting is not configurable.
+{{%/notice%}}
+
+On Broadcom switches, when you modify the configuration in the `/etc/cumulus/datapath/traffic.conf` file, you *must* restart `switchd` for the changes to take effect; run the `cumulus@switch:~$ sudo systemctl restart switchd.service` command.
+
+{{<cl/restart-switchd>}}
+
+On Broadcom switches, after you modify the settings in the `/etc/cumulus/datapath/traffic.conf` file, you *must* restart `switchd` for the changes to take effect; run the `cumulus@switch:~$ sudo systemctl restart switchd.service` command.
+
+{{<cl/restart-switchd>}}
+
+On NVIDIA Spectrum switches, changes to the settings in the `/etc/cumulus/datapath/traffic.conf` file do *not* require you to restart `switchd`. However, you must run the `echo 1 > /cumulus/switchd/config/traffic/reload` command to apply the settings.
+
+```
+cumulus@switch:~$ echo 1 > /cumulus/switchd/config/traffic/reload
+```
+
+Always run the {{<link url="#syntax-checker" text="syntax checker">}} syntax checker before applying the configuration changes.
+
+## Interface Buffer Status
+
+On switches with {{<exlink url="https://cumulusnetworks.com/products/hardware-compatibility-list/?asic%5B0%5D=Mellanox%20Spectrum&asic%5B1%5D=Mellanox%20Spectrum_A1" text="ASICs">}}, you can collect a fine-grained history of queue lengths using histograms maintained by the ASIC; see the {{<link title="ASIC Monitoring">}} for details.
 
 ## Example Configuration File
 
@@ -384,57 +576,14 @@ The following example `/etc/cumulus/datapath/traffic.conf` datapath configuratio
 cumulus@switch:~$ sudo cat /etc/cumulus/datapath/traffic.conf
 #
 # /etc/cumulus/datapath/traffic.conf
+# Copyright 2014, 2015, 2016, 2017, 2020 Cumulus Networks, Inc.  All rights reserved.
 #
 
 # packet header field used to determine the packet priority level
 # fields include {802.1p, dscp}
-traffic.packet_priority_source_set = [802.1p,dscp]
+traffic.packet_priority_source_set = [802.1p]
 
-# remark packet priority value
-# fields include {802.1p, none}
-# remark packet priority value
-# fields include {802.1p, dscp}
-traffic.packet_priority_remark_set = [802.1p,dscp]
-
-# packet priority remark values assigned from each internal cos value
-# internal cos values {cos_0..cos_7}
-# (internal cos 3 has been reserved for CPU-generated traffic)
-#
-# 802.1p values = {0..7}
-
-traffic.cos_0.priority_remark.8021p = [1]
-traffic.cos_1.priority_remark.8021p = [0]
-traffic.cos_2.priority_remark.8021p = [3]
-traffic.cos_3.priority_remark.8021p = [2]
-traffic.cos_4.priority_remark.8021p = [4]
-traffic.cos_5.priority_remark.8021p = [5]
-traffic.cos_6.priority_remark.8021p = [7]
-traffic.cos_7.priority_remark.8021p = [6]
-
-# dscp values = {0..63}
-traffic.cos_0.priority_remark.dscp = [1]
-traffic.cos_1.priority_remark.dscp = [9]
-traffic.cos_2.priority_remark.dscp = [17]
-traffic.cos_3.priority_remark.dscp = [25]
-traffic.cos_4.priority_remark.dscp = [33]
-traffic.cos_5.priority_remark.dscp = [41]
-traffic.cos_6.priority_remark.dscp = [49]
-traffic.cos_7.priority_remark.dscp = [57]
-
-# Per-port remark packet fields and mapping: applies to the designated set of ports.
-remark.port_group_list = [remark_port_group]
-remark.remark_port_group.packet_priority_remark_set = [802.1p,dscp]
-remark.remark_port_group.port_set = swp1-swp4,swp6
-remark.remark_port_group.cos_0.priority_remark.dscp = [2]
-remark.remark_port_group.cos_1.priority_remark.dscp = [10]
-remark.remark_port_group.cos_2.priority_remark.dscp = [18]
-remark.remark_port_group.cos_3.priority_remark.dscp = [26]
-remark.remark_port_group.cos_4.priority_remark.dscp = [34]
-remark.remark_port_group.cos_5.priority_remark.dscp = [42]
-remark.remark_port_group.cos_6.priority_remark.dscp = [50]
-remark.remark_port_group.cos_7.priority_remark.dscp = [58]
-
-# packet priority values assigned to each internal cos value
+# packet priority source values assigned to each internal cos value
 # internal cos values {cos_0..cos_7}
 # (internal cos 3 has been reserved for CPU-generated traffic)
 #
@@ -449,27 +598,66 @@ traffic.cos_6.priority_source.8021p = [6]
 traffic.cos_7.priority_source.8021p = [7]
 
 # dscp values = {0..63}
-traffic.cos_0.priority_source.dscp = [0,1,2,3,4,5,6,7]
-traffic.cos_1.priority_source.dscp = [8,9,10,11,12,13,14,15]
-traffic.cos_2.priority_source.dscp = []
-traffic.cos_3.priority_source.dscp = []
-traffic.cos_4.priority_source.dscp = []
-traffic.cos_5.priority_source.dscp = []
-traffic.cos_6.priority_source.dscp = []
-traffic.cos_7.priority_source.dscp = [56,57,58,59,60,61,62,63]
+#traffic.cos_0.priority_source.dscp = [0,1,2,3,4,5,6,7]
+#traffic.cos_1.priority_source.dscp = [8,9,10,11,12,13,14,15]
+#traffic.cos_2.priority_source.dscp = [16,17,18,19,20,21,22,23]
+#traffic.cos_3.priority_source.dscp = [24,25,26,27,28,29,30,31]
+#traffic.cos_4.priority_source.dscp = [32,33,34,35,36,37,38,39]
+#traffic.cos_5.priority_source.dscp = [40,41,42,43,44,45,46,47]
+#traffic.cos_6.priority_source.dscp = [48,49,50,51,52,53,54,55]
+#traffic.cos_7.priority_source.dscp = [56,57,58,59,60,61,62,63]
 
-# Per-port source packet fields and mapping: applies to the designated set of ports.
-source.port_group_list = [source_port_group]
-source.source_port_group.packet_priority_source_set = [802.1p,dscp]
-source.source_port_group.port_set = swp1-swp4,swp6
-source.source_port_group.cos_0.priority_source.8021p = [7]
-source.source_port_group.cos_1.priority_source.8021p = [6]
-source.source_port_group.cos_2.priority_source.8021p = [5]
-source.source_port_group.cos_3.priority_source.8021p = [4]
-source.source_port_group.cos_4.priority_source.8021p = [3]
-source.source_port_group.cos_5.priority_source.8021p = [2]
-source.source_port_group.cos_6.priority_source.8021p = [1]
-source.source_port_group.cos_7.priority_source.8021p = [0]
+# remark packet priority value
+# fields include {802.1p, dscp}
+traffic.packet_priority_remark_set = []
+
+# packet priority remark values assigned from each internal cos value
+# internal cos values {cos_0..cos_7}
+# (internal cos 3 has been reserved for CPU-generated traffic)
+#
+# 802.1p values = {0..7}
+#traffic.cos_0.priority_remark.8021p = [0]
+#traffic.cos_1.priority_remark.8021p = [1]
+#traffic.cos_2.priority_remark.8021p = [2]
+#traffic.cos_3.priority_remark.8021p = [3]
+#traffic.cos_4.priority_remark.8021p = [4]
+#traffic.cos_5.priority_remark.8021p = [5]
+#traffic.cos_6.priority_remark.8021p = [6]
+#traffic.cos_7.priority_remark.8021p = [7]
+
+# dscp values = {0..63}
+#traffic.cos_0.priority_remark.dscp = [0]
+#traffic.cos_1.priority_remark.dscp = [8]
+#traffic.cos_2.priority_remark.dscp = [16]
+#traffic.cos_3.priority_remark.dscp = [24]
+#traffic.cos_4.priority_remark.dscp = [32]
+#traffic.cos_5.priority_remark.dscp = [40]
+#traffic.cos_6.priority_remark.dscp = [48]
+#traffic.cos_7.priority_remark.dscp = [56]
+
+# source.port_group_list = [source_port_group]
+# source.source_port_group.packet_priority_source_set = [dscp]
+# source.source_port_group.port_set = swp1-swp4,swp6
+# source.source_port_group.cos_0.priority_source.dscp = [0,1,2,3,4,5,6,7]
+# source.source_port_group.cos_1.priority_source.dscp = [8,9,10,11,12,13,14,15]
+# source.source_port_group.cos_2.priority_source.dscp = [16,17,18,19,20,21,22,23]
+# source.source_port_group.cos_3.priority_source.dscp = [24,25,26,27,28,29,30,31]
+# source.source_port_group.cos_4.priority_source.dscp = [32,33,34,35,36,37,38,39]
+# source.source_port_group.cos_5.priority_source.dscp = [40,41,42,43,44,45,46,47]
+# source.source_port_group.cos_6.priority_source.dscp = [48,49,50,51,52,53,54,55]
+# source.source_port_group.cos_7.priority_source.dscp = [56,57,58,59,60,61,62,63]
+
+# remark.port_group_list = [remark_port_group]
+# remark.remark_port_group.packet_priority_remark_set = [dscp]
+# remark.remark_port_group.port_set = swp1-swp4,swp6
+# remark.remark_port_group.cos_0.priority_remark.dscp = [0]
+# remark.remark_port_group.cos_1.priority_remark.dscp = [8]
+# remark.remark_port_group.cos_2.priority_remark.dscp = [16]
+# remark.remark_port_group.cos_3.priority_remark.dscp = [24]
+# remark.remark_port_group.cos_4.priority_remark.dscp = [32]
+# remark.remark_port_group.cos_5.priority_remark.dscp = [40]
+# remark.remark_port_group.cos_6.priority_remark.dscp = [48]
+# remark.remark_port_group.cos_7.priority_remark.dscp = [56]
 
 # priority groups
 traffic.priority_group_list = [control, service, bulk]
@@ -481,6 +669,13 @@ priority_group.control.cos_list = [7]
 priority_group.service.cos_list = [2]
 priority_group.bulk.cos_list = [0,1,3,4,5,6]
 
+# Alias Name defined for each priority group
+# Valid string between 0-255 chars
+# Sample alias support for naming priority groups
+#priority_group.control.alias = "Control"
+#priority_group.service.alias = "Service"
+#priority_group.bulk.alias = "Bulk"
+
 # to configure priority flow control on a group of ports:
 # -- assign cos value(s) to the cos list
 # -- add or replace a port group names in the port group list
@@ -488,9 +683,10 @@ priority_group.bulk.cos_list = [0,1,3,4,5,6]
 #    -- populate the port set, e.g.
 #       swp1-swp4,swp8,swp50s0-swp50s3
 #    -- set a PFC buffer size in bytes for each port in the group
-#    -- set the xoff byte limit (buffer limit that triggers PFC frame transmit to start)
-#    -- set the xon byte delta (buffer limit that triggers PFC frame transmit to stop)
+#    -- set the xoff byte limit (buffer limit that triggers PFC frames transmit to start)
+#    -- set the xon byte delta (buffer limit that triggers PFC frames transmit to stop)
 #    -- enable PFC frame transmit and/or PFC frame receive
+
 # priority flow control
 # pfc.port_group_list = [pfc_port_group]
 # pfc.pfc_port_group.cos_list = []
@@ -500,15 +696,19 @@ priority_group.bulk.cos_list = [0,1,3,4,5,6]
 # pfc.pfc_port_group.xon_delta = 2000
 # pfc.pfc_port_group.tx_enable = true
 # pfc.pfc_port_group.rx_enable = true
+#
+# Specify cable length in mts
+# pfc.pfc_port_group.cable_length = 10
 
 # to configure pause on a group of ports:
 # -- add or replace port group names in the port group list
 # -- for each port group in the list
 #    -- populate the port set, e.g.
 #       swp1-swp4,swp8,swp50s0-swp50s3
-#    -- set a pause buffer size in bytes for each port in the group
+#    -- set a pause buffer size in bytes for each port
 #    -- set the xoff byte limit (buffer limit that triggers pause frames transmit to start)
 #    -- set the xon byte delta (buffer limit that triggers pause frames transmit to stop)
+#    -- enable pause frame transmit and/or pause frame receive
 
 # link pause
 # link_pause.port_group_list = [pause_port_group]
@@ -518,6 +718,48 @@ priority_group.bulk.cos_list = [0,1,3,4,5,6]
 # link_pause.pause_port_group.xon_delta = 2000
 # link_pause.pause_port_group.rx_enable = true
 # link_pause.pause_port_group.tx_enable = true
+#
+# Specify cable length in mts
+# link_pause.pause_port_group.cable_length = 10
+
+# Explicit Congestion Notification
+# to configure ECN and RED on a group of ports:
+# -- add or replace port group names in the port group list
+# -- assign cos value(s) to the cos list
+# -- for each port group in the list
+#    -- populate the port set, e.g.
+#       swp1-swp4,swp8,swp50s0-swp50s3
+# -- to enable RED requires the latest traffic.conf
+# ecn_red.port_group_list = [ecn_red_port_group]
+# ecn_red.ecn_red_port_group.cos_list = []
+# ecn_red.ecn_red_port_group.port_set = swp1-swp4,swp6
+# ecn_red.ecn_red_port_group.ecn_enable = true
+# ecn_red.ecn_red_port_group.red_enable = false
+# ecn_red.ecn_red_port_group.min_threshold_bytes = 40000
+# ecn_red.ecn_red_port_group.max_threshold_bytes = 200000
+# ecn_red.ecn_red_port_group.probability = 100
+
+# Hierarchical traffic shaping
+# to configure shaping at 2 levels:
+#     - per egress queue egr_queue_0 - egr_queue_7
+#     - port level aggregate
+# -- add or replace a port group names in the port group list
+# -- for each port group in the list
+#    -- populate the port set, e.g.
+#       swp1-swp4,swp8,swp50s0-swp50s3
+#    -- set min and max rates in kbps for each egr_queue [min, max]
+#    -- set max rate in kbps at port level
+# shaping.port_group_list = [shaper_port_group]
+# shaping.shaper_port_group.port_set = swp1-swp3,swp5,swp7s0-swp7s3
+# shaping.shaper_port_group.egr_queue_0.shaper = [50000, 100000]
+# shaping.shaper_port_group.egr_queue_1.shaper = [51000, 150000]
+# shaping.shaper_port_group.egr_queue_2.shaper = [52000, 200000]
+# shaping.shaper_port_group.egr_queue_3.shaper = [53000, 250000]
+# shaping.shaper_port_group.egr_queue_4.shaper = [54000, 300000]
+# shaping.shaper_port_group.egr_queue_5.shaper = [55000, 350000]
+# shaping.shaper_port_group.egr_queue_6.shaper = [56000, 400000]
+# shaping.shaper_port_group.egr_queue_7.shaper = [57000, 450000]
+# shaping.shaper_port_group.port.shaper = 900000
 
 # scheduling algorithm: algorithm values = {dwrr}
 scheduling.algorithm = dwrr
@@ -529,11 +771,40 @@ priority_group.control.weight = 0
 priority_group.service.weight = 32
 priority_group.bulk.weight = 16
 
+# default egress scheduling weight per egress queue 
+# To be applied to all the ports if port_group profile not configured
+# If you do not specify any bw_percent of egress_queues, those egress queues 
+# will assume DWRR weight 0 - no egress scheduling for those queues
+# '0' indicates strict priority
+#default_egress_sched.egr_queue_0.bw_percent = 12
+#default_egress_sched.egr_queue_1.bw_percent = 12
+#default_egress_sched.egr_queue_2.bw_percent = 24
+#default_egress_sched.egr_queue_3.bw_percent = 12
+#default_egress_sched.egr_queue_4.bw_percent = 12
+#default_egress_sched.egr_queue_5.bw_percent = 12
+#default_egress_sched.egr_queue_6.bw_percent = 12
+#default_egress_sched.egr_queue_7.bw_percent = 0
+
+# port_group profile for egress scheduling weight per egress queue 
+# If you do not specify any bw_percent of egress_queues, those egress queues 
+# will assume DWRR weight 0 - no egress scheduling for those queues
+# '0' indicates strict priority
+#egress_sched.port_group_list = [sched_port_group1]
+#egress_sched.sched_port_group1.port_set = swp2
+#egress_sched.sched_port_group1.egr_queue_0.bw_percent = 10
+#egress_sched.sched_port_group1.egr_queue_1.bw_percent = 20
+#egress_sched.sched_port_group1.egr_queue_2.bw_percent = 30
+#egress_sched.sched_port_group1.egr_queue_3.bw_percent = 10
+#egress_sched.sched_port_group1.egr_queue_4.bw_percent = 10
+#egress_sched.sched_port_group1.egr_queue_5.bw_percent = 10
+#egress_sched.sched_port_group1.egr_queue_6.bw_percent = 10
+#egress_sched.sched_port_group1.egr_queue_7.bw_percent = 0
+
 # To turn on/off Denial of service (DOS) prevention checks
 dos_enable = false
 
 # Cut-through is disabled by default on all chips with the exception of
-# Spectrum. On Spectrum cut-through cannot be disabled.
+# Spectrum.  On Spectrum cut-through cannot be disabled.
 #cut_through_enable = false
 
 # Enable resilient hashing
@@ -548,7 +819,7 @@ dos_enable = false
 
 # Set sflow/sample ingress cpu packet rate and burst in packets/sec
 # Values: {0..16384}
-#sflow.rate = 16384  
+#sflow.rate = 16384
 #sflow.burst = 16384
 
 #Specify the maximum number of paths per route entry.
@@ -557,7 +828,8 @@ dos_enable = false
 #ecmp_max_paths = 0
 
 #Specify the hash seed for Equal cost multipath entries
-# Default value 0
+# and for cutom ecmp and lag hash
+# Default value : random
 # Value Rang: {0..4294967295}
 #ecmp_hash_seed = 42
 
@@ -614,15 +886,28 @@ lag_hash_config.ip_prot = true
 # Specify the forwarding table resource allocation profile, applicable
 # only on platforms that support universal forwarding resources.
 #
-# /usr/cumulus/sbin/cl-rsource-query reports the allocated table sizes
+# /usr/cumulus/sbin/cl-resource-query reports the allocated table sizes
 # based on the profile setting.
 #
-#   Values: one of {'default', 'l2-heavy', 'v4-lpm-heavy', 'v6-lpm-heavy'}
-#   Default value: 'default'
-#   Note: some devices may support more modes, please consult user
-#         guide for more details
+#   Values: one of { *** Common ***
+#                   'default', 'l2-heavy', 'v4-lpm-heavy', 'v6-lpm-heavy',
+#                   'ipmc-heavy',
 #
-#forwarding_table.profile = default
+#                   *** Mellanox only platforms ***
+#                   'l2-heavy-1', 'l2-heavy-2', 'v4-lpm-heavy-1',
+#                   'rash-v4-lpm-heavy', 'rash-custom-profile1',
+#                   'rash-custom-profile2', 'lpm-balanced',
+#
+#                   *** Broadcom[XGS] only platforms ***
+#                   'mode-0', 'mode-1', 'mode-2', 'mode-3', 'mode-4',
+#                   'mode-5', 'mode-6', 'mode-7', 'mode-8'
+#                   }
+#
+#   Default value: 'default'
+#   Notes: some devices may support more modes, please consult user
+#          guide for more details
+#
+forwarding_table.profile = default
 ```
 
 {{< /expand >}}
@@ -648,20 +933,52 @@ remark.egress_remark_group.cos_7.priority_remark.dscp = [58]
 
 {{%/notice%}}
 
-On Broadcom switches, if you modify the configuration in the `/etc/cumulus/datapath/traffic.conf` file, you *must* restart `switchd` for the changes to take effect; run the `cumulus@switch:~$ sudo systemctl restart switchd.service` command.
+## Syntax Checker
 
-{{<cl/restart-switchd>}}
+Cumulus Linux provides a syntax checker for the `/etc/cumulus/datapath/traffic.conf` file to check for errors, such missing parameters, or invalid parameter labels and values.
 
-On Mellanox switches with the Spectrum ASIC, the following options in the `/etc/cumulus/datapath/traffic.conf` file do *not* require you to restart `switchd`. However, you must run the `echo 1 > /cumulus/switchd/config/traffic/reload` command after you change the options.
+On Broadcom switches, the syntax checker runs automatically during `switchd` initialization and reports syntax errors to the `/var/log/switchd.log` file.
 
-    cumulus@switch:~$ echo 1 > /cumulus/switchd/config/traffic/reload
+On both Broadcom and NVIDIA switches, you can run the syntax checker manually from the command line by issuing the `cl-consistency-check --datapath-syntax-check` command. If errors exist, they are written to `stderr` by default. If you run the command with `-q`, errors are written to the `/var/log/switchd.log` file.
 
-- DSCP/802.1p to COS remark assignments (`traffic.*`)
-- Explicit congestion notification (ECN) settings (`ecn_red.*`)
-- Priority flow control (PFC) settings (`pfc.*`)
-- Link Pause settings (`link_pause.*`)
-- Queue weight settings (`priority_group.*.weight`)
-- ECMP hash and LAG hash settings
+The `cl-consistency-check --datapath-syntax-check` command takes the following options:
+
+| <div style="width:120px">Option | Description |
+| ------------------------------- | ----------- |
+| -h | Displays this list of command options. |
+| -q | Runs the command in quiet mode. Errors are written to the `/var/log/switchd.log` file instead of `stderr`. |
+| -t `<file-name>` | Runs the syntax check on a non-default `traffic.conf` file; for example, `/mypath/test-traffic.conf`.|
+
+You can run the syntax checker when `switchd` is either running or stopped.
+
+**Example Commands**
+
+The following example command runs the syntax checker on the default `/etc/cumulus/datapath/traffic.conf` file and shows that no errors are detected:
+
+```
+cumulus@switch:~$ cl-consistency-check --datapath-syntax-check
+No errors detected in traffic config file /etc/cumulus/datapath/traffic.conf
+```
+
+The following example command runs the syntax checker on the default `/etc/cumulus/datapath/traffic.conf` file in quiet mode. If errors exist, they are written to the `/var/log/switchd.log` file.
+
+```
+cumulus@switch:~$ cl-consistency-check --datapath-syntax-check -q
+```
+
+The following example command runs the syntax checker on the `/mypath/test-traffic.conf` file and shows that errors are detected:
+
+```
+cumulus@switch:~$ cl-consistency-check --datapath-syntax-check -t /path/test-traffic.conf
+Traffic source 8021p: missing mapping for priority value '7'
+Errors detected while checking traffic config file /mypath/test-traffic.conf
+```
+
+The following example command runs the syntax checker on the `/mypath/test-traffic.conf` file in quiet mode. If errors exist, they are written to the `/var/log/switchd.log` file.
+
+```
+cumulus@switch:~$ cl-consistency-check --datapath-syntax-check -t /path/test-traffic.conf -q
+```
 
 ## Related Information
 

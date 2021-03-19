@@ -1,6 +1,6 @@
 ---
 title: Setting Date and Time
-author: Cumulus Networks
+author: NVIDIA
 weight: 120
 toc: 3
 ---
@@ -172,7 +172,7 @@ To check the NTP peer status:
 {{< tab "NCLU Commands ">}}
 
 Run the `net show time ntp servers` command:
-
+<!-- vale off -->
 ```
 cumulus@switch:~$ net show time ntp servers
       remote           refid      st t when poll reach   delay   offset  jitter
@@ -198,7 +198,7 @@ cumulus@switch:~$ ntpq -p
 *69.195.159.158  199.102.46.72    2 u  133 1024  377   48.047   -0.457   1.856
 -2.time.dbsinet. 198.60.22.240    2 u 1057 1024  377   63.973    2.182   2.692
 ```
-
+<!-- vale on --> 
 {{< /tab >}}
 
 {{< /tabs >}}

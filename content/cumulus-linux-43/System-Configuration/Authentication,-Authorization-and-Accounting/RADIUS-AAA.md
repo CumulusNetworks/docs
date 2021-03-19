@@ -1,10 +1,10 @@
 ---
 title: RADIUS AAA
-author: Cumulus Networks
+author: NVIDIA
 weight: 190
 toc: 4
 ---
-Cumulus Networks offers add-on packages that enable {{<exlink url="https://en.wikipedia.org/wiki/RADIUS" text="RADIUS">}} users to log in to Cumulus Linux switches in a transparent way with minimal configuration. There is no need to create accounts or directories on the switch. Authentication is handled with PAM and includes login, `ssh`, `sudo` and `su`.
+Various add-on packages enable {{<exlink url="https://en.wikipedia.org/wiki/RADIUS" text="RADIUS">}} users to log in to Cumulus Linux switches in a transparent way with minimal configuration. There is no need to create accounts or directories on the switch. Authentication is handled with PAM and includes login, `ssh`, `sudo` and `su`.
 
 ## Install the RADIUS Packages
 
@@ -93,7 +93,7 @@ Mapping is done using two NSS (Name Service Switch) plugins, one for account nam
 A username is mapped at login to a fixed account specified in the configuration file, with the fields of the fixed account used as a template for the user that is logging in.
 
 For example, if the name being looked up is *dave* and the fixed account in the configuration file is *radius\_user*, and that entry in `/etc/passwd` is:
-
+<!-- vale off -->
 ```
 radius_user:x:1017:1002:radius user:/home/radius_user:/bin/bash
 ```
@@ -104,7 +104,7 @@ then the matching line returned by running `getent passwd dave` is:
 cumulus@switch:~$ getent passwd dave
 dave:x:1017:1002:dave mapped user:/home/dave:/bin/bash
 ```
-
+<!-- vale on -->
 The home directory `/home/dave` is created during the login process if it does not already exist and is populated with the standard skeleton files by the `mkhomedir_helper` command.
 
 The configuration file `/etc/nss_mapuser.conf` is used to configure the plugins. The file includes the mapped account name, which is `radius_user` by default. You can change the mapped account name by editing the file. The `nss_mapuser (5)` man page describes the configuration file.
@@ -116,9 +116,9 @@ A flat file mapping is done based on the session number assigned during login, w
 If a site wants to allow local fallback authentication for a user when none of the RADIUS servers can be reached you can add a privileged user account as a local account on the switch. The local account must have the same unique identifier as the privileged user and the shell must be the same.
 
 To configure local fallback authentication:
-
+<!-- vale off -->
 1. Add a local privileged user account. For example, if the `radius_priv_user` account in the `/etc/passwd` file is `radius_priv_user:x:1002:1001::/home/radius_priv_user:/sbin/radius_shell`, run the following command to add a local privileged user account named johnadmin:
-
+<!-- vale on -->
     ```
     cumulus@switch:~$ sudo useradd -u 1002 -g 1001 -o -s /sbin/radius_shell johnadmin
     ```
@@ -132,14 +132,14 @@ To configure local fallback authentication:
     ```
 
 3. Edit the `/etc/passwd` file to move the local user line before to the `radius_priv_user` line:
-
+<!-- vale off -->
     ```
     cumulus@switch:~$ sudo vi /etc/passwd
     ...
     johnadmin:x:1002:1001::/home/johnadmin:/sbin/radius_shell
     radius_priv_user:x:1002:1001::/home/radius_priv_user:/sbin/radius_shell
     ```
-
+<!-- vale on -->
 4. To set the local password for the local user, run the following command:
 
     ```

@@ -1,10 +1,10 @@
 ---
-title: Prepare Your Existing NetQ Appliances for a NetQ 3.2 Deployment
-author: Cumulus Networks
+title: Prepare Your Existing NetQ Appliances for a NetQ 3.3 Deployment
+author: NVIDIA
 weight: 235
 toc: 5
 ---
-This topic describes how to prepare a NetQ 2.4.x or earlier NetQ Appliance before installing NetQ 3.x. The steps are the same for both the on-premises and cloud appliances. The only difference is the software you download for each platform. On completion of the steps included here, you will be ready to perform a fresh installation of NetQ 3.x.
+This topic describes how to prepare a NetQ 3.2.x or earlier NetQ Appliance before installing NetQ {{<version>}}. The steps are the same for both the on-premises and cloud appliances. The only difference is the software you download for each platform. On completion of the steps included here, you will be ready to perform a fresh installation of NetQ {{<version>}}.
 
 The preparation workflow is summarized in this figure:
 
@@ -34,7 +34,7 @@ To prepare your appliance:
         ```
         cumulus@<hostname>:~$ cd /opt/<backup-directory>
         cumulus@<hostname>:~/opt/<backup-directory># ls
-        netq_master_snapshot_2020-01-09_07_24_50_UTC.tar.gz
+        netq_master_snapshot_2021-01-13_07_24_50_UTC.tar.gz
         ```
 
 3. Install Ubuntu 18.04 LTS
@@ -158,44 +158,47 @@ The use of <code>netq-latest</code> in this example means that a <code>get</code
 
 8. Download the bootstrap and NetQ installation tarballs.
 
-    Download the software from the {{<exlink url="https://cumulusnetworks.com/downloads/" text="Cumulus Downloads">}} page.
+    1. On the {{<exlink url="http://support.mellanox.com/s/" text="My Mellanox support">}} page, log in to your account. If needed create a new account and then log in.
 
-    1. Select *NetQ* from the **Product** list.
+        {{<figure src="/images/netq/mymellanox-login-320.png" width="500">}}
 
-    2. Select *3.2* from the **Version** list, and then select *3.2.1* from the submenu.
+        Your username is based on your Email address. For example, user1@domain.com.mlnx.
 
-        {{<figure src="/images/netq/netq-32-bootstrap-download-321.png" width="500" >}}
+    2. Open the **Downloads** menu.
 
-    3. Select *Bootstrap* from the **Hypervisor/Platform** list.
-        Note that the bootstrap file is the same for both appliances.
+    3. Click **Software**.
 
-        {{<figure src="/images/netq/netq-321-download-bootstrap.png" width="200" >}}
+    4. Open the **Cumulus Software** option.
 
-    4. Scroll down and click **Download**.
+        {{<figure src="/images/netq/mymellanox-cumulus-software-download-320.png" width="500">}}
 
-    5. Select *Appliance* for the NetQ On-premises Appliance or *Appliance (Cloud)* for the NetQ Cloud Appliance from the **Hypervisor/Platform** list.
+    5. Click **All downloads** next to **Cumulus NetQ**.
 
-        Make sure you select the right install choice based on whether you are preparing the on-premises or cloud version of the appliance.
+    6. Select *3.3.1* from the **NetQ Version** dropdown.
 
-        {{<figure src="/images/netq/netq-32-appliance-onpremcld-dwnld-321.png" width="410" >}}
+    7. Select *KVM* from the **Hypervisor** dropdown.
 
-    6. Scroll down and click **Download**.
+    8. Click **Show Download**.
 
-    7. Copy these two files, *netq-bootstrap-3.2.1.tgz* and either *NetQ-3.2.1.tgz* (on-premises) or *NetQ-3.2.1-opta.tgz* (cloud), to the */mnt/installables/* directory on the appliance.
+        {{<figure src="/images/netq/mymellanox-netq-download-kvm-321.png" width="500">}}
 
-    8. Verify that the needed files are present and of the correct release. This example shows on-premises files. The only difference for cloud files is that it should list *NetQ-3.2.1-opta.tgz* instead of *NetQ-3.2.1.tgz*.
+    9. Verify this is the correct image, then click **Download**.
+
+    10. Copy these two files, *netq-bootstrap-3.3.1.tgz* and either *NetQ-3.3.1.tgz* (on-premises) or *NetQ-3.3.1-opta.tgz* (cloud), to the */mnt/installables/* directory on the appliance.
+
+    11. Verify that the needed files are present and of the correct release. This example shows on-premises files. The only difference for cloud files is that it should list *NetQ-3.3.1-opta.tgz* instead of *NetQ-3.3.1.tgz*.
 
         ```
         cumulus@<hostname>:~$ dpkg -l | grep netq
-        ii  netq-agent   3.2.1-ub18.04u31~1603789872.6f62fad_amd64   Cumulus NetQ Telemetry Agent for Ubuntu
-        ii  netq-apps    3.2.1-ub18.04u31~1603789872.6f62fad_amd64   Cumulus NetQ Fabric Validation Application for Ubuntu
+        ii  netq-agent   3.3.1-ub18.04u32~1610530013.2e51873_amd64   Cumulus NetQ Telemetry Agent for Ubuntu
+        ii  netq-apps    3.3.1-ub18.04u32~1610530013.2e51873_amd64   Cumulus NetQ Fabric Validation Application for Ubuntu
 
         cumulus@<hostname>:~$ cd /mnt/installables/
         cumulus@<hostname>:/mnt/installables$ ls
-        NetQ-3.2.1.tgz  netq-bootstrap-3.2.1.tgz
+        NetQ-3.3.1.tgz  netq-bootstrap-3.3.1.tgz
         ```
 
-    9. Run the following commands.
+    12. Run the following commands.
 
         ```
         sudo systemctl disable apt-{daily,daily-upgrade}.{service,timer}
@@ -208,7 +211,7 @@ The use of <code>netq-latest</code> in this example means that a <code>get</code
 
     Run the bootstrap CLI on your appliance. Be sure to replace the *eth0* interface used in this example with the interface or IP address on the appliance used to listen for NetQ Agents.
 
-    {{<netq-install/bootstrap server="single" version="3.2.1">}}
+    {{<netq-install/bootstrap server="single" version="3.3.1">}}
 
 {{<notice note>}}
 If you are creating a server cluster, you need to prepare each of those appliances as well. Repeat these steps if you are using a previously deployed appliance or refer to {{<link title="Install the NetQ System">}} for a new appliance.

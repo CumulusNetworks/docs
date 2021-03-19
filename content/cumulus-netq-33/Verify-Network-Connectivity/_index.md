@@ -1,6 +1,6 @@
 ---
 title: Verify Network Connectivity
-author: Cumulus Networks
+author: NVIDIA
 weight: 1030
 toc: 2
 ---
@@ -54,8 +54,6 @@ When entering a time value, you must include a numeric value *and* the unit of m
 - **m**: minute(s)
 - **s**: second(s)
 - **now**
-
-When using the `between` option, the start time (`text-time`) and end time (`text-endtime`) values can be entered as most recent first and least recent second, or vice versa. The values do not have to have the same unit of measure.
 
 ### Result Display Options
 

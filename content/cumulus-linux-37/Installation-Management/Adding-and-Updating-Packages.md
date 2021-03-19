@@ -1,6 +1,6 @@
 ---
 title: Adding and Updating Packages
-author: Cumulus Networks
+author: NVIDIA
 weight: 49
 pageID: 8362631
 ---
@@ -56,7 +56,7 @@ To work properly, `apt` relies on a local cache listing of the available package
 
 {{%notice tip%}}
 
-Cumulus Networks recommends you use the `-E` option with `sudo` whenever you run any `apt-get` command. This option preserves your environment variables (such as HTTP proxies) before you install new packages or upgrade your distribution.
+Use the `-E` option with `sudo` whenever you run any `apt-get` command. This option preserves your environment variables (such as HTTP proxies) before you install new packages or upgrade your distribution.
 
 {{%/notice%}}
 
@@ -229,7 +229,7 @@ As shipped, Cumulus Linux searches the Cumulus Linux repository for available pa
 
 {{%notice tip%}}
 
-Cumulus Networks has added features or made bug fixes to certain packages; you must not replace these packages with versions from other repositories. Cumulus Linux is configured to ensure that the packages from the Cumulus Linux repository are always preferred over packages from other repositories.
+NVIDIA has added features or made bug fixes to certain packages; you must not replace these packages with versions from other repositories. Cumulus Linux is configured to ensure that the packages from the Cumulus Linux repository are always preferred over packages from other repositories.
 
 {{%/notice%}}
 
@@ -288,9 +288,9 @@ cumulus@switch:~$ sudo -E apt-get upgrade
 
 ## Cumulus Supplemental Repository
 
-Cumulus Networks provides a *Supplemental Repository* that contains third party applications commonly installed on switches.
+NVIDIA provides a *Supplemental Repository* that contains third party applications commonly installed on switches.
 
-The repository is provided for convenience only. You can download and use these applications; however, the applications in this repository are not tested, developed, certified, or supported by Cumulus Networks.
+The repository is provided for convenience only. You can download and use these applications; however, the applications in this repository are not tested, developed, certified, or supported by NVIDIA.
 
 Below is a non-exhaustive list of some of the packages present in the repository:
 

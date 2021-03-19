@@ -1,6 +1,6 @@
 ---
 title: EVPN Enhancements
-author: Cumulus Networks
+author: NVIDIA
 weight: 550
 toc: 4
 ---
@@ -237,7 +237,7 @@ ARP suppression with EVPN allows a VTEP to suppress ARP flooding over VXLAN tunn
 
 ARP/ND suppression is enabled by default on all VNIs in Cumulus Linux to reduce flooding of ARP/ND packets over VXLAN tunnels.
 
-In a centralized routing deployment, you must configure layer 3 interfaces even if the switch is configured only for layer 2 (you are not using VXLAN routing). To avoid unnecessary layer 3 information from being installed, Cumulus Networks recommends you configure the `ip forward off` or `ip6 forward off` options as appropriate on the VLANs. See the example configuration below.
+In a centralized routing deployment, you must configure layer 3 interfaces even if the switch is configured only for layer 2 (you are not using VXLAN routing). To avoid unnecessary layer 3 information from being installed, configure the `ip forward off` or `ip6 forward off` options as appropriate on the VLANs. See the example configuration below.
 
 The following examples show a configuration using two VXLANs (10100 and 10200) and two VLANs (100 and 200).
 
@@ -339,7 +339,7 @@ net.ipv6.neigh.default.gc_thresh2=8192
 
 {{< /expand >}}
 
-Cumulus Networks recommends that you keep ARP and ND suppression enabled to reduce flooding of ARP/ND packets over VXLAN tunnels. However, if you need to disable ARP and ND suppression, follow the example commands below.
+Keep ARP and ND suppression enabled to reduce flooding of ARP/ND packets over VXLAN tunnels. However, if you need to disable ARP and ND suppression, follow the example commands below.
 
 {{< tabs "TabID12" >}}
 
@@ -385,7 +385,7 @@ iface vni200
 
 MAC addresses that are intended to be pinned to a particular VTEP can be provisioned on the VTEP as a static bridge FDB entry. EVPN picks up these MAC addresses and advertises them to peers as remote static MACs. You configure static bridge FDB entries for MACs under the bridge configuration:
 
-{{< tabs "TabID0" >}}
+{{< tabs "TabID38" >}}
 
 {{< tab "NCLU Commands" >}}
 
@@ -435,7 +435,7 @@ A common deployment scenario for large data centers is to sub divide the data ce
 
 To filter EVPN routes based on the route-type and allow only certain types of EVPN routes to be advertised in the fabric:
 
-{{< tabs "TabID2" >}}
+{{< tabs "TabID43" >}}
 
 {{< tab "NCLU Commands" >}}
 
@@ -484,7 +484,7 @@ In a typical EVPN deployment, you *reuse* SVI IP addresses on VTEPs across multi
 
 To advertise *all* SVI IP/MAC addresses on the switch, run these commands:
 
-{{< tabs "TabID4" >}}
+{{< tabs "TabID487" >}}
 
 {{< tab "NCLU Commands" >}}
 
@@ -524,7 +524,7 @@ exit-address-family
 
 To advertise a *specific* SVI IP/MAC address, run these commands:
 
-{{< tabs "TabID6" >}}
+{{< tabs "TabID527" >}}
 
 {{< tab "NCLU Commands" >}}
 
@@ -631,7 +631,7 @@ To change the threshold for MAC and IP address moves, run the `net add bgp l2vpn
 
 The following example command sets the maximum number of address moves allowed to 10 and the duplicate address detection time interval to 1200 seconds.
 
-{{< tabs "TabID8" >}}
+{{< tabs "TabID634" >}}
 
 {{< tab "NCLU Commands" >}}
 
@@ -701,7 +701,7 @@ To enable Cumulus Linux to *freeze* detected duplicate addresses, run the `net a
 
 The following example command freezes duplicate addresses for a period of 1000 seconds, after which it is cleared automatically:
 
-{{< tabs "TabID10" >}}
+{{< tabs "TabID704" >}}
 
 {{< tab "NCLU Commands" >}}
 
@@ -732,13 +732,13 @@ cumulus@switch:~$
 
 {{%notice note%}}
 
-Cumulus Networks recommends you set the freeze timer to be three times the duplicate address detection window. For example, if the duplicate address detection window is set to the default of 180 seconds, set the freeze timer to 540 seconds.
+Set the freeze timer to be three times the duplicate address detection window. For example, if the duplicate address detection window is set to the default of 180 seconds, set the freeze timer to 540 seconds.
 
 {{%/notice%}}
 
 The following example command freezes duplicate addresses permanently (until you issue the {{<link url="#clear-duplicate-addresses" text="clear command">}}):
 
-{{< tabs "TabID12" >}}
+{{< tabs "TabID741" >}}
 
 {{< tab "NCLU Commands" >}}
 
@@ -771,7 +771,7 @@ cumulus@switch:~$
 
 You can clear a duplicate MAC or IP address (and unfreeze a frozen address). The following example command clears IP address 10.0.0.9 for VNI 101.
 
-{{< tabs "TabID14" >}}
+{{< tabs "TabID774" >}}
 
 {{< tab "NCLU Commands" >}}
 
@@ -797,7 +797,7 @@ cumulus@switch:~$
 
 To clear duplicate addresses for all VNIs, run the following command:
 
-{{< tabs "TabID16" >}}
+{{< tabs "TabID800" >}}
 
 {{< tab "NCLU Commands" >}}
 
@@ -837,7 +837,7 @@ When you clear a duplicate MAC address, all its associated IP addresses are also
 
 By default, duplicate address detection is enabled and a syslog error is generated when a duplicate address is detected. To disable duplicate address detection, run the following command.
 
-{{< tabs "TabID18" >}}
+{{< tabs "TabID840" >}}
 
 {{< tab "NCLU Commands" >}}
 

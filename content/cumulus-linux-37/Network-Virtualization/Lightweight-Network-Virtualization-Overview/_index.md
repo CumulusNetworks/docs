@@ -1,16 +1,12 @@
 ---
 title: Lightweight Network Virtualization Overview
-author: Cumulus Networks
+author: NVIDIA
 weight: 145
 pageID: 8362706
 ---
 {{%notice warning%}}
 
-As of Cumulus Linux 3.7, the lightweight network virtualization
-feature (LNV) has been deprecated. The feature will be removed in
-Cumulus Linux 4.0. Cumulus Networks recommends you use
-{{<link url="Ethernet-Virtual-Private-Network-EVPN" text="EVPN">}}
-for network virtualization.
+As of Cumulus Linux 3.7, the lightweight network virtualization feature (LNV) has been deprecated. The feature will be removed in Cumulus Linux 4.0. Use {{<link url="Ethernet-Virtual-Private-Network-EVPN" text="EVPN">}} for network virtualization.
 
 {{%/notice%}}
 
@@ -24,15 +20,6 @@ node coupled with traditional MAC address learning.
 
 To see an example of a full solution before reading the following
 background information, {{<link url="LNV-Full-Example" text="read this chapter">}}.
-
-{{%notice note%}}
-
-LNV is a lightweight controller option.
-{{<exlink url="https://support.mellanox.com/s/contact-support-page" text="Contact Cumulus Networks">}}
-with your scale requirements so we can make sure this is the right fit
-for you. There are also other controller options that can work on Cumulus Linux.
-
-{{%/notice%}}
 
 {{%notice note%}}
 
@@ -123,8 +110,7 @@ Cumulus Linux also supports service node replication for VXLAN BUM
 packets. This is useful with LNV if you have more than 128 VTEPs.
 However, it is not recommended because it forces the spine switches
 running the `vxsnd` (service node daemon) to replicate the packets in
-software instead of in hardware, unlike head end replication. If you are
-not using a controller but have more than 128 VTEPs, contact {{<exlink url="mailto:support@cumulusnetworks.com" text="Cumulus Networks">}}.
+software instead of in hardware, unlike head end replication.
 
 To enable service node replication:
 
@@ -160,27 +146,15 @@ You only specify this parameter when head end replication is
 
 ### Hardware Requirements
 
-  - Switches with the Broadcom Tomahawk, Trident II+, or Trident II ASIC
-    or switches with the Mellanox Spectrum ASIC running Cumulus Linux
-    2.5.4 or later. Please refer to the Cumulus Networks
-    {{<exlink url="https://cumulusnetworks.com/hcl" text="hardware compatibility list">}}
-    for a list of supported switch models.
+Switches with the Broadcom Tomahawk, Trident II+, or Trident II ASIC or switches with the Mellanox Spectrum ASIC running Cumulus Linux 2.5.4 or later. Refer to the {{<exlink url="https://cumulusnetworks.com/hcl" text="hardware compatibility list">}} for a list of supported switch models.
 
 ### Configuration Requirements
 
-  - The VXLAN has an associated **VXLAN Network Identifier**
-    (VNI), also interchangeably called a VXLAN ID.
-  - The VNI cannot be 0 or 16777215, as these two numbers are reserved
-    values under Cumulus Linux.
-  - The VXLAN link and physical interfaces are added to the bridge to
-    create the association between the port, VLAN, and VXLAN instance.
-  - Each bridge on the switch has only one VXLAN interface. Cumulus
-    Linux does not support more than one VXLAN link in a bridge;
-    however, a switch can have multiple bridges.
-  - An SVI (Switch VLAN Interface) or layer 3 address on the bridge is
-    not supported. For example, you cannot ping from the leaf1 SVI to
-    the leaf2 SVI through the VXLAN tunnel; you need to use server1 and
-    server2 to verify.
+- The VXLAN has an associated **VXLAN Network Identifier** (VNI), also interchangeably called a VXLAN ID.
+- The VNI cannot be 0 or 16777215, as these two numbers are reserved values under Cumulus Linux.
+- The VXLAN link and physical interfaces are added to the bridge to create the association between the port, VLAN, and VXLAN instance.
+- Each bridge on the switch has only one VXLAN interface. Cumulus Linux does not support more than one VXLAN link in a bridge; however, a switch can have multiple bridges.
+- An SVI (Switch VLAN Interface) or layer 3 address on the bridge is not supported. For example, you cannot ping from the leaf1 SVI to the leaf2 SVI through the VXLAN tunnel; you need to use server1 and server2 to verify.
 
 ### Install the LNV Packages
 

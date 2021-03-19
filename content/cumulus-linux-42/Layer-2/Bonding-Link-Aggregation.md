@@ -1,6 +1,6 @@
 ---
 title: Bonding - Link Aggregation
-author: Cumulus Networks
+author: NVIDIA
 weight: 480
 toc: 3
 ---
@@ -132,6 +132,7 @@ cumulus@switch:~$ ifreload -a
 - The bond is configured by default in IEEE 802.3ad link aggregation mode. To configure the bond in balance-xor mode, see {{<link url="#configure-bond-options" text="Configuration Parameters">}} below.
 - If the bond is *not* going to become part of a bridge, you need to specify an IP address.
 - The name of the bond must be compliant with Linux interface naming conventions and unique within the switch.
+- Cumulus Linux does not support bond members at 200G or greater.
 
 {{%/notice%}}
 
@@ -212,8 +213,6 @@ Each bond configuration option, except for `bond slaves,` is set to the recommen
 | `bond-mode 802.3ad`\|`balance-xor` | Cumulus Linux supports IEEE 802.3ad link aggregation mode (802.3ad) and balance-xor mode.<br>The default mode is 802.3ad.<br><br>**Note:** When you enable balance-xor mode, the bonding of slave interfaces are static and all slave interfaces are active for load balancing and fault tolerance purposes. Packet transmission on the bond is based on the hash policy specified by xmit-hash-policy.<br><br>When using balance-xor mode to dual-connect host-facing bonds in an MLAG environment, you must configure the clag-id parameter on the MLAG bonds and it must be the same on both MLAG switches. Otherwise, the bonds are treated by the MLAG switch pair as single-connected.<br><br>Use balance-xor mode only if you cannot use LACP; LACP can detect mismatched link attributes between bond members and can even detect misconnections. |
 | `bond-slaves <interface-list>` | The list of slaves in the bond. |
 | `bond miimon <value>` |Defines how often the link state of each slave is inspected for failures. You can specify a value between 0 and 255. The default value is 100. |
-| `bond downdelay <milliseconds>` |Specifies the time, in milliseconds (between 0 and 65535), to wait before disabling a slave after a link failure is detected. The default value is 0.<br><br>This option is only valid for the miimon link monitor. The downdelay value must be a multiple of the miimon value; if not, it is rounded down to the nearest multiple. |
-| `bond-updelay <milliseconds>` |Specifies the time, in milliseconds (between 0 and 65535), to wait before enabling a slave after a link recovery is detected. The default value is 0.<br><br>This option is only valid for the miimon link monitor. The updelay value must be a multiple of the miimon value; if not, it is rounded down to the nearest multiple. |
 | `bond-use-carrier no` | Determines the link state. |
 | `bond-lacp-bypass-allow`| Enables LACP bypass. |
 | `bond-lacp-rate slow` | Sets the rate to ask the link partner to transmit LACP control packets. slow is the only option. |

@@ -1,8 +1,9 @@
 ---
 title: PDF
-author: Cumulus Networks
-weight: 1120
+author: NVIDIA
+weight: 1140
+toc: 3
 pdfhidden: true
 ---
 
-You can download a PDF version of the entire Cumulus NetQ {{% version %}} user guide {{%pdf_link "here."%}}
+You can download a PDF version of the entire NetQ {{% version %}} user guide {{%pdf_link "here."%}}

@@ -1,6 +1,6 @@
 ---
 title: Resource Diagnostics Using cl-resource-query
-author: Cumulus Networks
+author: NVIDIA
 weight: 1210
 toc: 3
 ---
@@ -16,7 +16,7 @@ ecmp_nhs_per_route: 52
 
 This translates to about 314 routes with ECMP nexthops, if every route has the maximum ECMP nexthops.
 
-To monitor the routes in Cumulus Linux hardware, use the `cl-resource-query` command. The results  ary between switches running on different chipsets.
+To monitor the routes in Cumulus Linux hardware, use the `cl-resource-query` command. The results vary between switches running on different chipsets.
 
 The example below shows `cl-resource-query` results for a Broadcom Tomahawk switch:
 

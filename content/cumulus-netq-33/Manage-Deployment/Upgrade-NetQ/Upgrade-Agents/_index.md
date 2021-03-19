@@ -1,6 +1,6 @@
 ---
 title: Upgrade NetQ Agents
-author: Cumulus Networks
+author: NVIDIA
 weight: 420
 toc: 4
 ---

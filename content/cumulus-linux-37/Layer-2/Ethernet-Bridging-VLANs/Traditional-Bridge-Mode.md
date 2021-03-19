@@ -1,13 +1,10 @@
 ---
 title: Traditional Bridge Mode
-author: Cumulus Networks
+author: NVIDIA
 weight: 349
 pageID: 8362670
 ---
-Cumulus Networks recommends you use a
-{{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware bridge">}}
-on your switch. You use traditional mode bridges only if you need to run
-more than one bridge on the switch or if you need to use PVSTP+.
+Using {{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware bridges">}} on your switch is recommended. Use traditional mode bridges only if you need to run more than one bridge on the switch or if you need to use PVSTP+.
 
 ## Create a Traditional Mode Bridge
 

@@ -1,6 +1,6 @@
 ---
 title: Configure FRRouting
-author: Cumulus Networks
+author: NVIDIA
 weight: 820
 toc: 3
 ---
@@ -9,7 +9,7 @@ FRRouting does not start by default in Cumulus Linux. Before you run FRRouting, 
 
 {{%notice info%}}
 
-Cumulus Networks has not tested RIP, RIPv6, IS-IS and Babel.
+NVIDIA has not tested RIP, RIPv6, IS-IS and Babel.
 
 {{%/notice%}}
 
@@ -465,10 +465,6 @@ To write debug messages to the log file, you must run the `log syslog debug` com
 {{%/notice%}}
 
 ## Considerations
-
-### Obfuscated Passwords
-
-In FRRouting, Cumulus Linux stores obfuscated passwords for BGP and OSPF (ISIS, OSPF area, and BGP neighbor passwords). All passwords in configuration files and those displayed in `show` commands are obfuscated. The obfuscation algorithm protects passwords from casual viewing. The system can retrieve the original password when needed.
 
 ### Duplicate Hostnames
 

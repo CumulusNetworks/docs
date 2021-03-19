@@ -127,3 +127,49 @@ ii  netq-apps    3.2.1-ub18.04u31~1603789872.6f62fad_amd64   Cumulus NetQ Fabric
 {{ end }}
 
 {{ end }}
+
+
+{{- if  eq (.Get "version") "3.3.0" -}}
+
+{{- if  eq (.Get "platform") "appliance" -}}
+
+<pre>cumulus@hostname:~$ dpkg -l | grep netq
+ii  netq-agent   3.3.0-ub18.04u32~1610530013.2e51873_amd64   Cumulus NetQ Telemetry Agent for Ubuntu
+ii  netq-apps    3.3.0-ub18.04u32~1610530013.2e51873_amd64   Cumulus NetQ Fabric Validation Application for Ubuntu</pre>
+
+{{ end }}
+
+{{- if  eq (.Get "platform") "vm" -}}
+
+For Ubuntu 18.04, you should see:
+
+<pre>cumulus@hostname:~$ dpkg -l | grep netq
+ii  netq-agent   3.3.0-ub18.04u32~1610530013.2e51873_amd64   Cumulus NetQ Telemetry Agent for Ubuntu
+ii  netq-apps    3.3.0-ub18.04u32~1610530013.2e51873_amd64   Cumulus NetQ Fabric Validation Application for Ubuntu</pre>
+
+{{ end }}
+
+{{ end }}
+
+
+{{- if  eq (.Get "version") "3.3.1" -}}
+
+{{- if  eq (.Get "platform") "appliance" -}}
+
+<pre>cumulus@hostname:~$ dpkg -l | grep netq
+ii  netq-agent   3.3.1-ub18.04u33~1610530013.2e51873_amd64   Cumulus NetQ Telemetry Agent for Ubuntu
+ii  netq-apps    3.3.1-ub18.04u33~1610530013.2e51873_amd64   Cumulus NetQ Fabric Validation Application for Ubuntu</pre>
+
+{{ end }}
+
+{{- if  eq (.Get "platform") "vm" -}}
+
+For Ubuntu 18.04, you should see:
+
+<pre>cumulus@hostname:~$ dpkg -l | grep netq
+ii  netq-agent   3.3.1-ub18.04u33~1610530013.2e51873_amd64   Cumulus NetQ Telemetry Agent for Ubuntu
+ii  netq-apps    3.3.1-ub18.04u33~1610530013.2e51873_amd64   Cumulus NetQ Fabric Validation Application for Ubuntu</pre>
+
+{{ end }}
+
+{{ end }}

@@ -1,6 +1,6 @@
 ---
 title: Prescriptive Topology Manager - PTM
-author: Cumulus Networks
+author: NVIDIA
 weight: 370
 toc: 3
 ---
@@ -53,7 +53,7 @@ domain name (`fqdn`) while looking for the `self-node` in the graph file. For ex
 
 {{%notice tip%}}
 
-Cumulus Networks recommends you always wrap the hostname in double quotes; for example, `"www.example.com"` to prevent `ptmd` from failing.
+Always wrap the hostname in double quotes; for example, `"www.example.com"` to prevent `ptmd` from failing.
 
 To avoid errors when starting the `ptmd` process, make sure that `/etc/hosts` and `/etc/hostname` both reflect the hostname you are using in the `topology.dot` file.
 
@@ -133,8 +133,8 @@ In this template, LLDP1 and LLDP2 are templates for LLDP parameters. BFD1 and BF
 
 `ptmd` supports the following BFD parameters:
 
-- `upMinTx` is the minimum transmit interval, which defaults to *300ms*, specified in milliseconds.
-- `requiredMinRx` is the minimum interval between received BFD packets, which defaults to *300ms*, specified in milliseconds.
+- `upMinTx` is the minimum transmit interval, which defaults to *300 ms*, specified in milliseconds.
+- `requiredMinRx` is the minimum interval between received BFD packets, which defaults to *300 ms*, specified in milliseconds.
 - `detectMult` is the detect multiplier, which defaults to *3*, and can be any non-zero value.
 - `afi` is the address family to be supported for the edge. The address family must be one of the following:
   - *v4*: BFD sessions will be built for only IPv4 connected peer. This is the default value.
@@ -153,7 +153,7 @@ graph G {
 `ptmd` supports the following LLDP parameters:
 
 - `match_type`, which defaults to the interface name (`ifname`), but can accept a port description (`portdescr`) instead if you want `lldpd` to compare the topology against the port description instead of the interface name. You can set this parameter globally or at the per-port level.
-- `match_hostname`, which defaults to the host name (`hostname`), but enables PTM to match the topology using the fully-qualified domain name (`fqdn`) supplied by LLDP.
+- `match_hostname`, which defaults to the host name (`hostname`), but enables PTM to match the topology using the fully qualified domain name (`fqdn`) supplied by LLDP.
 
 The following is an example of a topology with LLDP applied at the port level:
 
@@ -183,7 +183,7 @@ BFD provides low overhead and rapid detection of failures in the paths between t
 
 ## Check Link State with FRRouting
 
-The FRRouting routing suite enables additional checks to ensure that routing adjacencies are formed only on links that have connectivity conformant to the specification, as determined by `ptmd`.
+The FRRouting routing suite enables additional checks to ensure that routing adjacencies are formed only on links that have connectivity matching the specification, as determined by `ptmd`.
 
 {{%notice note%}}
 

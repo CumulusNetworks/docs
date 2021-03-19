@@ -149,7 +149,7 @@ You can ignore the note on the image card because, unlike during installation, y
 
 2. Shutdown the VM.
 
-2. Check the size of the existing disk on the server hosting the VM to confirm it is 32 GB. In this example, the size is shown in the **virtual size** field.
+3. Check the size of the existing disk on the server hosting the VM to confirm it is 32 GB. In this example, the size is shown in the **virtual size** field.
 
     ```
     root@server:/var/lib/libvirt/images# qemu-img info netq-3.1.0-ubuntu-18.04-tscloud-qemu.qcow2
@@ -188,9 +188,9 @@ You can ignore the note on the image card because, unlike during installation, y
         corrupt: false
     ```
 
-5. Start the VM and log back in.
+6. Start the VM and log back in.
 
-6. From step 1 we know the name of the root disk is */dev/vda 1*. Use that to run the following commands on the partition.
+7. From step 1 we know the name of the root disk is */dev/vda 1*. Use that to run the following commands on the partition.
 
     ```
     cumulus@netq-310-cloud:~$ sudo growpart /dev/vda 1
@@ -203,7 +203,7 @@ You can ignore the note on the image card because, unlike during installation, y
     The filesystem on /dev/vda1 is now 16748795 (4k) blocks long.
     ```
 
-7. Verify the disk is now configured with 64 GB. In this example, the number of 1 MB blocks is now 63341, or 64 GB.
+8. Verify the disk is now configured with 64 GB. In this example, the number of 1 MB blocks is now 63341, or 64 GB.
 
 ```
 cumulus@netq-310-cloud:~$ df -hm /

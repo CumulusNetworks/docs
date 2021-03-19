@@ -1,6 +1,6 @@
 ---
 title: Default Cumulus Linux ACL Configuration
-author: Cumulus Networks
+author: NVIDIA
 weight: 210
 toc: 4
 ---
@@ -185,7 +185,7 @@ Bridge chain: OUTPUT, entries: 0, policy: ACCEPT
 {{</expand>}}
 
 ## iptables
-
+<!-- vale off -->
 |Action/Value <img width=250/>|Protocol/IP Address<img width=450/>|
 |---------------------------- |---------------------------------- |
 | Drop<br>Destination IP: Any | Source IPv4:<br>240.0.0.0/5<br>loopback/8<br>224.0.0.0/4<br>255.255.255.255|
@@ -196,7 +196,7 @@ Bridge chain: OUTPUT, entries: 0, policy: ACCEPT
 | Set class: 0<br>Police: Rate 1000 burst 1000<br>Source IP: Any<br>Destination IP: Any | ADDRTYPE match dst-type LOCAL <br>**Note**: LOCAL is any local address -> Receiving a packet with a destination matching a local IP address on the switch will go to the CPU. |
 | Set class: 0<br>Police: Rate 400 burst 100<br>Source IP: Any<br>Destination IP: Any | ADDRTYPE match dst-type IPROUTER <br>**Note**: IPROUTER is any unresolved address -> On a l2/l3 boundary receiving a packet from L3 and needs to go to CPU in order to ARP for the destination. |
 | Set class 0 | All |
-
+<!-- vale on -->
 {{%notice note%}}
 
 Set class is internal to the switch - it does not set any precedence bits.

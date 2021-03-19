@@ -1,6 +1,6 @@
 ---
 title: NetQ User Interface Overview
-author: Cumulus Networks
+author: NVIDIA
 weight: 90
 toc: 3
 ---
@@ -10,6 +10,6 @@ The UI is accessible from both on-premises and cloud deployments. It is supporte
 
 {{<notice tip>}}
 
-Before you get started, you should refer to the {{<link title="NVIDIA NetQ 3.2 Release Notes" text="release notes">}} for this version.
+Before you get started, you should refer to the {{<link title="NVIDIA NetQ 3.3 Release Notes" text="release notes">}} for this version.
 
 {{</notice>}}

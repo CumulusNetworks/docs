@@ -1,6 +1,6 @@
 ---
 title: Netfilter - ACLs
-author: Cumulus Networks
+author: NVIDIA
 weight: 200
 toc: 3
 ---
@@ -115,9 +115,9 @@ Rules have several different components; the examples below highlight those diff
 
 - **Table:** The first argument is the *table*. Notice the second example does not specify a table, that is because the filter table is implied if a table is not specified.
 - **Chain:** The second argument is the *chain*. Each table supports several different chains. See Understanding Tables above.
-- **Matches:** The third argument(s) are called the *matches*. You can specify multiple matches in a single rule. However, the more matches you use in a rule, the more memory that rule consumes.
+- **Matches:** The third arguments are called the *matches*. You can specify multiple matches in a single rule. However, the more matches you use in a rule, the more memory that rule consumes.
 - **Jump:** The *jump* specifies the target of the rule; that is, what action to take if the packet matches the rule. If this option is omitted in a rule, then matching the rule will have no effect on the packet's fate, but the counters on the rule will be incremented.
-- **Target(s):** The *target* can be a user-defined chain (other than the one this rule is in), one of the special built-in targets that decides the fate of the packet immediately (like DROP), or an extended target. See the {{<link url="#supported-rule-types" text="Supported Rule Types">}} section below for examples of different targets.
+- **Targets:** The *target* can be one more more a user-defined chain (other than the one this rule is in), one of the special built-in targets that decides the fate of the packet immediately (like DROP), or an extended target. See the {{<link url="#supported-rule-types" text="Supported Rule Types">}} section below for examples of different targets.
 
 ### How Rules Are Parsed and Applied
 
@@ -141,7 +141,7 @@ The Linux packet forwarding construct is an overlay for how the silicon undernea
 
     {{%notice warning%}}
 
-If multiple contiguous rules with the same match criteria are applied to `--in-interface`, **only** the first rule gets processeand then terminates processing. This is a misconfiguration; there is no reason to have duplicate rules with different actions.
+If multiple contiguous rules with the same match criteria are applied to `--in-interface`, **only** the first rule is processed and then terminates processing. This is a misconfiguration; there is no reason to have duplicate rules with different actions.
 
     {{%/notice%}}
 
@@ -226,12 +226,6 @@ You can enable nonatomic updates for `switchd`, which offer better scaling becau
 - mirror (ingress only)
 - ipv4-mac (can be both ingress and egress)
 - ipv6 (ingress only)
-
-{{%notice warning%}}
-
-Only switches with the Broadcom ASIC support *incremental* nonataomic updates. Mellanox switches with the Spectrum-based ASIC only support *standard* nonatomic updates; using nonatomic mode on Spectrum-based ASICs impacts traffic on ACL updates.
-
-{{%/notice%}}
 
 The incremental nonatomic update operation follows this order:
 
@@ -332,7 +326,7 @@ Cumulus Linux supports matching ACL rules for both ingress and egress interfaces
 - For `iptables` rules, all IP packets in a bridge are matched, not just routed packets.
 - You cannot match both input and output interfaces in a rule.
 - For routed packets, Cumulus Linux cannot match the output bridge for SPAN/ERSPAN.
-- Matching SVI interfaces in `ebtable` rules is supported on switches based on Broadcom ASICs. This feature is not currently supported on switches with Mellanox Spectrum ASICs.
+- Matching SVI interfaces in `ebtable` rules is supported on switches based on Broadcom ASICs. This feature is not currently supported on switches with NVIDIA Spectrum ASICs.
 
 Example rules for a VLAN-aware bridge:
 
@@ -697,9 +691,9 @@ Due to a hardware limitation on Trident3 switches, certain broadcast packets tha
 |Egress raw limit |256 |0 |512 |0|
 |Egress limit with default rules |256 (29 default) |0 |512 (29 default)|0 |
 
-### Mellanox Spectrum Limits
+### NVIDIA Spectrum Limits
 
-The Mellanox Spectrum ASIC has one common {{<exlink url="https://en.wikipedia.org/wiki/Content-addressable_memory#Ternary_CAMs" text="TCAM">}} for both ingress and egress, which can be used for other non-ACL-related resources. However, the number of supported rules varies with the {{<link url="Supported-Route-Table-Entries#tcam-resource-profiles-for-spectrum-switches" text="TCAM profile">}} specified for the switch.
+The NVIDIA Spectrum ASIC has one common {{<exlink url="https://en.wikipedia.org/wiki/Content-addressable_memory#Ternary_CAMs" text="TCAM">}} for both ingress and egress, which can be used for other non-ACL-related resources. However, the number of supported rules varies with the {{<link url="Supported-Route-Table-Entries#tcam-resource-profiles-for-spectrum-switches" text="TCAM profile">}} specified for the switch.
 
 |Profile |Atomic Mode IPv4 Rules |Atomic Mode IPv6 Rules |Nonatomic Mode IPv4 Rules |Nonatomic Mode IPv6 Rules |
 |------------|-------------------|-------------------|-------------------|-------------------------|
@@ -711,7 +705,7 @@ The Mellanox Spectrum ASIC has one common {{<exlink url="https://en.wikipedia.or
 
 {{%notice note%}}
 
-Even though the table above specifies that zero IPv6 rules are supported with the ip-acl-heavy profile, Cumulus Networks does not prevent you from configuring IPv6 rules. However, there is no guarantee that IPv6 rules work under the ip-acl-heavy profile.
+Even though the table above specifies that zero IPv6 rules are supported with the ip-acl-heavy profile, Cumulus Linux does not prevent you from configuring IPv6 rules. However, there is no guarantee that IPv6 rules work under the ip-acl-heavy profile.
 
 {{%/notice%}}
 
@@ -1223,7 +1217,7 @@ On Broadcom-based switches, LOG actions can only be done on inbound interfaces (
 
 ### SPAN Sessions that Reference an Outgoing Interface
 
-SPAN sessions that reference an outgoing interface create mirrored packets based on the ingress interface before the routing/switching decision. See {{<link url="Network-Troubleshooting#span-sessions-that-reference-an-outgoing-interface" text="SPAN Sessions that Reference an Outgoing Interface">}} and {{<link url="Network-Troubleshooting/#use-the-cpu-port-as-the-span-destination" text="Use the CPU Port as the SPAN Destination">}} in the Network Troubleshooting section.
+SPAN sessions that reference an outgoing interface create mirrored packets based on the ingress interface before the routing/switching decision. See {{<link url="SPAN-and-ERSPAN#span-sessions-that-reference-an-outgoing-interface" text="SPAN Sessions that Reference an Outgoing Interface">}} and {{<link url="SPAN-and-ERSPAN/#use-the-cpu-port-as-the-span-destination" text="Use the CPU Port as the SPAN Destination">}} in the Network Troubleshooting section.
 
 ### Tomahawk Hardware Limitations
 
@@ -1242,9 +1236,9 @@ To do so, enable nonatomic update mode by setting the value for `acl.non_atomic_
 ```
 acl.non_atomic_update_mode = TRUE
 ```
-
+<!-- vale off -->
 #### Packets Undercounted during ACL Updates
-
+<!-- vale on -->
 On Tomahawk switches, when updating egress FP rules, some packets do no get counted. This results in an underreporting of counts during ping-pong or incremental switchover.
 
 ### Trident II+ Hardware Limitations
@@ -1298,7 +1292,7 @@ pkts bytes target  prot opt in   out   source    destination
 
 However, running `cl-acltool -i` or `reboot` removes them. To ensure all rules that can be in hardware are hardware accelerated, place them in the `/etc/cumulus/acl/policy.conf` file, then run `cl-acltool -i`.
 
-### Mellanox Spectrum Hardware Limitations
+### NVIDIA Spectrum Hardware Limitations
 
 Due to hardware limitations in the Spectrum ASIC, {{<link url="Bidirectional-Forwarding-Detection-BFD" text="BFD policers">}} are shared between all BFD-related control plane rules. Specifically the following default rules share the same policer in the `00control_plan.rules` file:
 
@@ -1340,9 +1334,9 @@ failed.
 
 The Dell S3048-ON has a limit of 24576 MAC address entries instead of 32K for other 1G switches.
 
-### Mellanox Spectrum ASICs and INPUT Chain Rules
+### NVIDIA Spectrum ASICs and INPUT Chain Rules
 
-On switches with Mellanox Spectrum ASICs, INPUT chain rules are implemented using a trap mechanism. Packets headed to the CPU are assigned trap IDs. The default INPUT chain rules are mapped to these trap IDs. However, if a packet matches multiple traps, they are resolved by an internal priority mechanism that might be different from the rule priorities. Packets might not get policed by the default expected rule, but by another rule instead. For example, ICMP packets headed to the CPU are policed by the LOCAL rule instead of the ICMP rule. Also, multiple rules might share the same trap. In this case the policer that is applied is the largest of the policer values.
+On switches with NVIDIA Spectrum ASICs, INPUT chain rules are implemented using a trap mechanism. Packets headed to the CPU are assigned trap IDs. The default INPUT chain rules are mapped to these trap IDs. However, if a packet matches multiple traps, they are resolved by an internal priority mechanism that might be different from the rule priorities. Packets might not get policed by the default expected rule, but by another rule instead. For example, ICMP packets headed to the CPU are policed by the LOCAL rule instead of the ICMP rule. Also, multiple rules might share the same trap. In this case the policer that is applied is the largest of the policer values.
 
 To work around this issue, create rules on the INPUT and FORWARD chains (INPUT,FORWARD).
 
@@ -1358,9 +1352,9 @@ For example:
 
     -A FORWARD --out-interface swp49s1.100 -j ACCEPT
 
-### Mellanox Switches and Egress ACL Matching on Bonds
+### NVIDIA Spectrum Switches and Egress ACL Matching on Bonds
 
-On the Mellanox switch, ACL rules that match on an outbound *bond* interface are not supported. For example, the following rule is not supported:
+On the NVIDIA Spectrum switch, ACL rules that match on an outbound *bond* interface are not supported. For example, the following rule is not supported:
 
 ```
 [iptables]

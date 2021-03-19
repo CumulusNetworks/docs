@@ -1,6 +1,6 @@
 ---
 title: Monitor Switch Inventory
-author: Cumulus Networks
+author: NVIDIA
 weight: 740
 toc: 4
 ---
@@ -18,7 +18,7 @@ To monitor networkwide inventory, refer to {{<link title="Monitor Networkwide In
 
 ## Access Switch Inventory Data
 
-The Cumulus NetQ UI provides the Inventory | Switches card for monitoring the hardware and software component inventory on switches running NetQ in your network. Access this card from the Cumulus Workbench, or add it to your own workbench by clicking <img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> (Add card) > **Inventory**  > Inventory|Switches card > **Open Cards**.
+The NetQ UI provides the Inventory | Switches card for monitoring the hardware and software component inventory on switches running NetQ in your network. Access this card from the Cumulus Workbench, or add it to your own workbench by clicking <img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> (Add card) > **Inventory**  > Inventory|Switches card > **Open Cards**.
 
 {{<figure src="/images/netq/inventory-switch-medium-320.png" width="200">}}
 
@@ -457,9 +457,6 @@ netq-ts           DIMM 3          RAM              16384 MB   Unknown    QEMU   
 
 {{< /tabs >}}
 
-
-
-
 ## View Switch Software Inventory
 
 You can view software components deployed on a given switch in your network.
@@ -701,44 +698,25 @@ Hostname          Release ID           ASIC Vendor          CPU Arch            
 server01            3.7.1                vx                   x86_64               lldpd                0.9.8-0-cl3u11       Wed Feb  5 04:36:30 2020
 ```
 
+This example shows the version of the switchd package that is recommended for use with Cumulus Linux 3.7.2.
 
-
-from the switch
-2:58
-cumulus@noc-pr:~$ netq act-5712-09 show recommended-pkg-version release-id 3.6.2 package-name switchd
-Matching manifest records:
-Hostname          Release ID           ASIC Vendor          CPU Arch             Package Name         Version              Last Changed
------------------ -------------------- -------------------- -------------------- -------------------- -------------------- -------------------------
-act-5712-09       3.6.2                bcm                  x86_64               switchd              1.0-cl3u27           Wed Feb  5 04:36:30 2020
-cumulus@noc-pr:~$ netq act-5712-09 show recommended-pkg-version release-id 3.7.2 package-name switchd
+```
+cumulus@switch:~$ netq act-5712-09 show recommended-pkg-version release-id 3.7.2 package-name switchd
 Matching manifest records:
 Hostname          Release ID           ASIC Vendor          CPU Arch             Package Name         Version              Last Changed
 ----------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------------
 act-5712-09       3.7.2                bcm                  x86_64               switchd              1.0-cl3u31           Wed Feb  5 04:36:30 2020
-cumulus@noc-pr:~$
-cumulus@noc-pr:~$
-3:02
-very old one too
-3:02
-cumulus@noc-pr:~$ netq act-5712-09 show recommended-pkg-version release-id 3.6.2 package-name switchd
-Matching manifest records:
-Hostname          Release ID           ASIC Vendor          CPU Arch             Package Name         Version              Last Changed
------------------ -------------------- -------------------- -------------------- -------------------- -------------------- -------------------------
-act-5712-09       3.6.2                bcm                  x86_64               switchd              1.0-cl3u27           Wed Feb  5 04:36:30 2020
-cumulus@noc-pr:~$ netq act-5712-09 show recommended-pkg-version release-id 3.7.2 package-name switchd
-Matching manifest records:
-Hostname          Release ID           ASIC Vendor          CPU Arch             Package Name         Version              Last Changed
------------------ -------------------- -------------------- -------------------- -------------------- -------------------- -------------------------
-act-5712-09       3.7.2                bcm                  x86_64               switchd              1.0-cl3u31           Wed Feb  5 04:36:30 2020
-cumulus@noc-pr:~$
-cumulus@noc-pr:~$
-3:02
+```
+
+This example shows the version of the switchd package that is recommended for use with Cumulus Linux 3.1.0. Note the version difference from the example for Cumulus Linux 3.7.2.
+
+```
 cumulus@noc-pr:~$ netq act-5712-09 show recommended-pkg-version release-id 3.1.0 package-name switchd
 Matching manifest records:
 Hostname          Release ID           ASIC Vendor          CPU Arch             Package Name         Version              Last Changed
 ----------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------------
 act-5712-09       3.1.0                bcm                  x86_64               switchd              1.0-cl3u4            Wed Feb  5 04:36:30 2020
-cumulus@noc-pr:~$
+```
 
 <!-- move to switch performance -->
 
@@ -797,8 +775,7 @@ Cumulus Linux and NetQ run a number of services to deliver the various features 
 - **ntp**: NTP service
 - **ntpd**: NTP daemon
 - **ptmd**: PTM (Prescriptive Topology Manager) daemon
-- **pwmd**: PWM (Password Manager)
-daemon
+- **pwmd**: PWM (Password Manager) daemon
 - **rsyslog**: Rocket-fast system event logging processing service
 - **smond**: System monitor daemon
 - **ssh**: Secure Shell service for switches and servers

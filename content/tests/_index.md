@@ -30,6 +30,11 @@ This is some text inside an expand
 This is some **markdown** inside an expand
 {{< /expand >}} 
 
+## Img
+
+### External Image
+{{<img src="https://s3.amazonaws.com/cms.ipressroom.com/219/files/20149/544a0d86f6091d6699000060_NVLogo_2D/NVLogo_2D_362acb00-8e1b-476b-9662-9fe138a4a920-prv.jpg" external="true" >}}
+
 ## Figure
 
 ### Inline Figure

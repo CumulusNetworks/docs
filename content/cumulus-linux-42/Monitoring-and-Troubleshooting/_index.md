@@ -1,6 +1,6 @@
 ---
 title: Monitoring and Troubleshooting
-author: Cumulus Networks
+author: NVIDIA
 weight: 1010
 toc: 2
 ---
@@ -110,7 +110,7 @@ For more details about the `dmesg` command, run `man dmesg`.
 
 ## Show General System Information
 
-Two commands are helpful for getting general information about the switch and the version of Cumulus Linux you are running. These are helpful with system diagnostics and if you need to submit a support request to Cumulus Networks.
+Two commands are helpful for getting general information about the switch and the version of Cumulus Linux you are running. These are helpful with system diagnostics and if you need to submit a support request.
 
 For information about the version of Cumulus Linux running on the switch, run the `net show version`,command which displays the contents of `/etc/lsb-release`:
 
@@ -144,7 +144,7 @@ Base MAC Address. a0:00:00:00:00:50
 
 You can use `cl-support` to generate a single export file that contains various details and the configuration from a switch. This is useful for remote debugging and troubleshooting. For more information about `cl-support`, read {{<link url="Understanding-the-cl-support-Output-File">}}.
 
-Run `cl-support` before you submit a support request to Cumulus Networks as this file helps in the investigation of issues.
+Run `cl-support` before you submit a support request as this file helps in the investigation of issues.
 
 ```
 cumulus@switch:~$ sudo cl-support -h

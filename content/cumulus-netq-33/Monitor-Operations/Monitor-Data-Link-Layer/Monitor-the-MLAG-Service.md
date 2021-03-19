@@ -1,6 +1,6 @@
 ---
 title: Monitor the MLAG Service
-author: Cumulus Networks
+author: NVIDIA
 weight: 920
 toc: 4
 ---
@@ -9,7 +9,7 @@ Multi-Chassis Link Aggregation (MLAG) is used to enable a server or switch with 
 {{%notice note%}}
 
 **MLAG or CLAG?**
-The Cumulus Linux implementation of MLAG is referred to by other vendors as MLAG, MC-LAG or VPC. The Cumulus NetQ UI uses the MLAG terminology predominantly. However, the management daemon, named `clagd`, and other options in the code, such as `clag-id`, remain for historical purposes.
+The Cumulus Linux implementation of MLAG is referred to by other vendors as MLAG, MC-LAG or VPC. The NetQ UI uses the MLAG terminology predominantly. However, the management daemon, named `clagd`, and other options in the code, such as `clag-id`, remain for historical purposes.
 
 {{%/notice%}}
 
@@ -515,7 +515,7 @@ To view all switch details:
 
     {{<figure src="/images/netq/ntwk-svcs-all-mlag-fullscr-all-switches-tab-241.png" width="700">}}
 
-<div style="padding-left: 18px;">Use the icons above the table to select/deselect, filter, and export items in the list. Refer to {{<link url="Access-Data-with-Cards#table-settings" text="Table Settings">}} for more detail.</div>
+<div style="padding-left: 18px;">Use the icons above the table to select/deselect, filter, and export items in the list. Refer to {{<link url="Access-Data-with-Cards/#table-settings" text="Table Settings">}} for more detail.</div>
 
 To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner.
 
@@ -538,7 +538,7 @@ To view all session details:
 
     {{<figure src="/images/netq/ntwk-svcs-all-lldp-fullscr-allsess-tab-320.png" width="700">}}
 
-<div style="padding-left: 18px;">Use the icons above the table to select/deselect, filter, and export items in the list. Refer to {{<link url="Access-Data-with-Cards#table-settings" text="Table Settings">}} for more detail.</div>
+<div style="padding-left: 18px;">Use the icons above the table to select/deselect, filter, and export items in the list. Refer to {{<link url="Access-Data-with-Cards/#table-settings" text="Table Settings">}} for more detail.</div>
 
 Return to your workbench by clicking <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner.
 

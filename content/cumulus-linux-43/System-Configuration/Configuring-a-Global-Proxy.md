@@ -1,6 +1,6 @@
 ---
 title: Configuring a Global Proxy
-author: Cumulus Networks
+author: NVIDIA
 weight: 260
 toc: 3
 ---
@@ -29,13 +29,13 @@ You configure {{<exlink url="https://wiki.archlinux.org/index.php/proxy_settings
         ```
 
 3. Create a file in the `/etc/apt/apt.conf.d` directory and add the following lines to the file for acquiring the HTTP and HTTPS proxies; the example below uses `http_proxy` as the file name:
-
+<!-- vale off -->
     ```
     cumulus@switch:~$ sudo nano /etc/apt/apt.conf.d/http_proxy
     Acquire::http::Proxy "http://myproxy.domain.com:8080";
     Acquire::https::Proxy "https://myproxy.domain.com:8080";
     ```
-
+<!-- vale on -->
 4. Add the proxy addresses to `/etc/wgetrc`; you may have to uncomment the `http_proxy` and `https_proxy` lines:
 
     ```
@@ -52,7 +52,7 @@ You configure {{<exlink url="https://wiki.archlinux.org/index.php/proxy_settings
     cumulus@switch:~$ source /etc/profile.d/proxy.sh
     ```
 
-The proxy is now configured. The `echo` command can be used to confirm aproxy is set up correctly:
+The proxy is now configured. The `echo` command can be used to confirm a proxy is set up correctly:
 
 - HTTP proxy:
 

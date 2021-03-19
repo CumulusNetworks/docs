@@ -1,11 +1,11 @@
 ---
 title: Choose a Virtual Machine for an On-premises Server Cluster
-author: Cumulus Networks
+author: NVIDIA
 toc: 5
 bookhidden: true
 pdfhidden: true
 ---
-The next step is to identify which hypervisor you want to use. NetQ supports KVM and VMware VMs.
+The next installation consideration is to select which hypervisor you want to use. NetQ supports KVM and VMware VMs.
 
 Click the hypervisor you want to use to continue installation:
 

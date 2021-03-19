@@ -1,6 +1,6 @@
 ---
 title: Management VRF
-author: Cumulus Networks
+author: NVIDIA
 weight: 950
 toc: 3
 ---
@@ -134,7 +134,7 @@ cumulus@switch:~$ ip vrf identify 2055
 mgmt
 ```
 
-Run `ip vrf help` for additional `ip vfr` commands.
+Run `ip vrf help` for additional `ip vrf` commands.
 
 {{%notice note%}}
 
@@ -215,7 +215,7 @@ This also creates a route on the neighbor device to the management network throu
 
 {{%/notice%}}
 
-Cumulus Networks recommends you always use route maps to control the advertised networks redistributed by the `redistribute connected` command. For example, you can specify a route map to redistribute routes in this way (for both BGP and OSPF):
+Consider lways using route maps to control the advertised networks redistributed by the `redistribute connected` command. For example, you can specify a route map to redistribute routes in this way (for both BGP and OSPF):
 
 {{< tabs "TabID222 ">}}
 

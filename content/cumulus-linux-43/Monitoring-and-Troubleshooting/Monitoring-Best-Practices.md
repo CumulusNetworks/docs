@@ -1,6 +1,6 @@
 ---
 title: Monitoring Best Practices
-author: Cumulus Networks
+author: NVIDIA
 weight: 1240
 toc: 3
 ---
@@ -13,7 +13,7 @@ This document describes:
 
 ## Trend Analysis Using Metrics
 
-A metric is a quantifiable measure that is used to track and assess the status of a specific infrastructure component. It is a check collectedover time. Examples of metrics include bytes on an interface, CPU utilization, and total number of routes.
+A metric is a quantifiable measure that is used to track and assess the status of a specific infrastructure component. It is a check collected over time. Examples of metrics include bytes on an interface, CPU utilization, and total number of routes.
 
 Metrics are more valuable when used for trend analysis.
 
@@ -126,7 +126,7 @@ Interface counters are obtained from either querying the hardware or the Linux k
 |-------------------------- |-------------------- |------------- |
 | Interface counters | <pre>cumulus@switch:~$ cat /sys/class/net/[iface]/statistics/[stat_name]<br>cumulus@switch:~$ net show counters json<br>cumulus@switch:~$ cl-netstat -j<br>cumulus@switch:~$ ethtool -S [ iface]</pre> | 10 seconds |
 
-| Layer 1 Logs |L og Location | Log Entries |
+| Layer 1 Logs |Log Location | Log Entries |
 |------------- |------------- |------------ |
 | Link failure/Link flap | <pre>/var/log/switchd.log</pre> | <pre>switchd[5692]: nic.c:213 nic_set_carrier: swp17: setting kernel carrier: down<br>switchd[5692]: netlink.c:291 libnl: swp1, family 0, ifi 20, oper down<br>switchd[5692]: nic.c:213 nic_set_carrier: swp1: setting kernel carrier: up<br>switchd[5692]: netlink.c:291 libnl: swp17, family 0, ifi 20, oper up</pre> |
 | Unidirectional link | <pre>/var/log/switchd.log<br>/var/log/ptm.log</pre>|<pre>ptmd[7146]: ptm_bfd.c:2471 Created new session 0x1 with peer 10.255.255.11 port swp1<br>ptmd[7146]: ptm_bfd.c:2471 Created new session 0x2 with peer fe80::4638:39ff:fe00:5b port swp1<br>ptmd[7146]: ptm_bfd.c:2471 Session 0x1 down to peer 10.255.255.11, Reason 8<br>ptmd[7146]: ptm_bfd.c:2471 Detect timeout on session 0x1 with peer 10.255.255.11, in state 1</pre> |
@@ -143,11 +143,11 @@ Interface counters are obtained from either querying the hardware or the Linux k
 | MLAG port negotiation Flapping | <pre>/var/log/syslog</pre>|<pre>mstpd: one_clag_cmd: setting (0) mac 00:00:00:00:00:00 <server01, None><br>mstpd: one_clag_cmd: setting (1) mac 44:38:39:00:00:03 <server01, None></pre> |
 | | <pre>/var/log/clagd.log</pre> | <pre>clagd[14291]: server01 is no longer dual connected<br>clagd[14291]: server01 is now dual connected.</pre> |
 
-Prescriptive Topology Manager (PTM) uses LLDP information to compare against a `topology.dot` file that describes the network. It has built in alerting capabilities, so it is preferable to use PTM on box rather than polling LLDP information regularly. The PTM code is available on the Cumulus Networks {{<exlink url="https://github.com/CumulusNetworks/ptm" text="GitHub repository">}}. Additional PTM, BFD, and associated logs are documented in the code.
+Prescriptive Topology Manager (PTM) uses LLDP information to compare against a `topology.dot` file that describes the network. It has built in alerting capabilities, so it is preferable to use PTM on box rather than polling LLDP information regularly. The PTM code is available with the Cumulus Linux {{<exlink url="https://github.com/CumulusNetworks/ptm" text="GitHub repository">}}. Additional PTM, BFD, and associated logs are documented in the code.
 
 {{%notice note%}}
 
-Cumulus Networks recommends that you track peering information through PTM. For more information, refer to the {{<link url="Prescriptive-Topology-Manager-PTM" text="Prescriptive Topology Manager documentation">}}.
+Consider tracking peering information through PTM. For more information, refer to the {{<link url="Prescriptive-Topology-Manager-PTM" text="Prescriptive Topology Manager documentation">}}.
 
 {{%/notice%}}
 

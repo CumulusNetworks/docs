@@ -1,6 +1,6 @@
 ---
 title: Prescriptive Topology Manager - PTM
-author: Cumulus Networks
+author: NVIDIA
 weight: 370
 toc: 3
 ---
@@ -72,7 +72,7 @@ domain name (`fqdn`) while looking for the `self-node` in the graph file. For ex
 
 {{%notice tip%}}
 
-Cumulus Networks recommends you always wrap the hostname in double quotes; for example, `"www.example.com"` to prevent `ptmd` from failing.
+Always wrap the hostname in double quotes; for example, `"www.example.com"` to prevent `ptmd` from failing.
 
 To avoid errors when starting the `ptmd` process, make sure that `/etc/hosts` and `/etc/hostname` both reflect the hostname you are using in the `topology.dot` file.
 

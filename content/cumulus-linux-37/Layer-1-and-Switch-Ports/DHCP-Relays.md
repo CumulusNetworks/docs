@@ -1,6 +1,6 @@
 ---
 title: DHCP Relays
-author: Cumulus Networks
+author: NVIDIA
 weight: 95
 pageID: 8363036
 ---
@@ -144,8 +144,7 @@ The above command creates the following configuration in the
 {{%notice note%}}
 
 The first IP address on the loopback interface is typically the
-127.0.0.1 address; Cumulus Networks recommends that you use more
-specific syntax, as shown in the next example.
+127.0.0.1 address. Use more specific syntax, as shown in the next example.
 
 {{%/notice%}}
 
@@ -229,14 +228,7 @@ relaying of packets from different bridges to different upstreams.
 
 To configure multiple DHCP relay daemons on a switch:
 
-1.  As the sudo user, open the `/etc/vrf/systemd.conf` file in a text
-    editor and remove `dhcrelay`.
-
-2.  To reload the `systemd` files, run the following command:
-
-        cumulus@switch:~$ sudo systemctl daemon-reload
-
-3.  Create a config file in `/etc/default` using the following format
+1.  Create a config file in `/etc/default` using the following format
     for each dhcrelay: `isc-dhcp-relay-<dhcp-name>`. An example file is
     shown below:
 
@@ -256,7 +248,7 @@ To configure multiple DHCP relay daemons on a switch:
         # Additional options that are passed to the DHCP relay daemon?
         OPTIONS=""
 
-4.  Run the following command to start a dhcrelay instance. Replace
+2.  Run the following command to start a dhcrelay instance. Replace
     `dhcp-name` with the instance name or number:
 
         cumulus@switch:~$ sudo systemctl start dhcrelay@<dhcp-name>

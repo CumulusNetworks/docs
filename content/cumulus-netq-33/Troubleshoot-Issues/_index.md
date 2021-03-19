@@ -1,12 +1,12 @@
 ---
 title: Troubleshoot Issues
-author: Cumulus Networks
+author: NVIDIA
 weight: 1050
 subsection: true
 toc: 2
 cascade:
     product: Cumulus NetQ
-    version: "3.2"
+    version: "3.3"
     imgData: cumulus-netq
     siteSlug: cumulus-netq
 ---

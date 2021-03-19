@@ -1,6 +1,6 @@
 ---
 title: Install NetQ Quick Start
-author: Cumulus Networks
+author: NVIDIA
 weight: 260
 toc: 5
 ---
@@ -18,9 +18,9 @@ Do not skip the normal installation flow until you have performed this process m
 | On premises | Server cluster | Cumulus NetQ Appliance | NA | {{<link title="Install a NetQ On-premises Appliance Cluster" text="Start Install" >}} |
 | On premises | Server cluster | Own Hardware plus VM | KVM | {{<link title="Set Up Your KVM Virtual Machine for an On-premises Server Cluster" text="Start Install" >}} |
 | On premises | Server cluster | Own Hardware plus VM | VMware | {{<link title="Set Up Your VMware Virtual Machine for an On-premises Server Cluster" text="Start Install" >}} |
-| Cloud | Single server | Cumulus NetQ Cloud Appliance | NA | {{<link title="Install the NetQ Cloud Appliance" text="Start Install" >}} |
-| Cloud | Single server | Own Hardware plus VM | KVM | {{<link title="Set Up Your KVM Virtual Machine for a Single Cloud Server" text="Start Install" >}} |
-| Cloud | Single server | Own Hardware plus VM | VMware | {{<link title="Set Up Your VMware Virtual Machine for a Single Cloud Server" text="Start Install" >}} |
-| Cloud | Server cluster | Cumulus NetQ Cloud Appliance | NA | {{<link title="Install the NetQ Cloud Appliance" text="Start Install" >}} |
-| Cloud | Server cluster | Own Hardware plus VM | KVM | {{<link title="Set Up Your KVM Virtual Machine for a Cloud Server Cluster" text="Start Install" >}} |
-| Cloud | Server cluster | Own Hardware plus VM | VMware | {{<link title="Set Up Your VMware Virtual Machine for a Cloud Server Cluster" text="Start Install" >}} |
+| Remote | Single server | Cumulus NetQ Cloud Appliance | NA | {{<link title="Install the NetQ Cloud Appliance" text="Start Install" >}} |
+| Remote | Single server | Own Hardware plus VM | KVM | {{<link title="Set Up Your KVM Virtual Machine for a Single Remote Server" text="Start Install" >}} |
+| Remote | Single server | Own Hardware plus VM | VMware | {{<link title="Set Up Your VMware Virtual Machine for a Single Remote Server" text="Start Install" >}} |
+| Remote | Server cluster | Cumulus NetQ Cloud Appliance | NA | {{<link title="Install the NetQ Cloud Appliance" text="Start Install" >}} |
+| Remote | Server cluster | Own Hardware plus VM | KVM | {{<link title="Set Up Your KVM Virtual Machine for a Remote Server Cluster" text="Start Install" >}} |
+| Remote | Server cluster | Own Hardware plus VM | VMware | {{<link title="Set Up Your VMware Virtual Machine for a Remote Server Cluster" text="Start Install" >}} |

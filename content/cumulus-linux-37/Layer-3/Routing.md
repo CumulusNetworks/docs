@@ -1,6 +1,6 @@
 ---
 title: Routing
-author: Cumulus Networks
+author: NVIDIA
 weight: 169
 pageID: 8362912
 ---
@@ -287,7 +287,7 @@ Static routes added via FRRouting can be deleted via Linux shell. This operation
 
 ### Using NCLU Commands to Delete Routing Configuration
 
-When you use NCLU commands to delete routing (FRR) configuration, such as static routes or route map rules  (multiples of which can exist in a configuration), Cumulus Networks recommends that you commit ten or fewer delete commands at a time to avoid commit failures.
+When you use NCLU commands to delete routing (FRR) configuration, such as static routes or route map rules  (multiples of which can exist in a configuration), commit ten or fewer delete commands at a time to avoid commit failures.
 
 ### Add IPv6 Default Route with src Address on eth0 Fails without Adding Delay
 

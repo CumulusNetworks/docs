@@ -1,10 +1,10 @@
 ---
 title: Install and Configure the NetQ Agent and CLI on Cumulus Linux Switches
-author: Cumulus Networks
+author: NVIDIA
 weight: 370
 toc: 5
 ---
-After installing your Cumulus NetQ software, you can install the NetQ 3.2.1 Agents and CLI on each switch you want to monitor. These can be installed on switches running:
+After installing your NetQ software, you can install the NetQ 3.2.1 Agents and CLI on each switch you want to monitor. These can be installed on switches running:
 
 - Cumulus Linux version 3.3.2-3.7.x
 - Cumulus Linux version 4.0.0 and later
@@ -52,7 +52,7 @@ To install the NetQ Agent you need to install `netq-agent` on each switch or hos
 
 To obtain the NetQ packages:
 
-Edit the `/etc/apt/sources.list` file to add the repository for Cumulus NetQ.
+Edit the `/etc/apt/sources.list` file to add the repository for NetQ.
 
 *Note that NetQ has a separate repository from Cumulus Linux.*
 
@@ -117,13 +117,13 @@ To install the NetQ Agent and CLI:
     cumulus@switch:~$ dpkg-query -W -f '${Package}\t${Version}\n' netq-agent
     ```
 
-    {{<netq-install/agent-version version="3.2.1" opsys="cl">}}
+    {{<netq-install/agent-version version="3.3.1" opsys="cl">}}
 
     ```
     cumulus@switch:~$ dpkg-query -W -f '${Package}\t${Version}\n' netq-agent
     ```
 
-    {{<netq-install/cli-version version="3.2.1" opsys="cl">}}
+    {{<netq-install/cli-version version="3.3.1" opsys="cl">}}
 
 3. Restart `rsyslog` so log files are sent to the correct destination.
 
@@ -135,7 +135,13 @@ To install the NetQ Agent and CLI:
 
 ## Configure the NetQ Agent and CLI on a Cumulus Linux Switch
 
-After the NetQ Agents and CLI have been installed on the switches you want to monitor, they must be configured. Two methods are available:
+After the NetQ Agent and CLI have been installed on the servers you want to monitor, the NetQ Agents must be configured to obtain useful and relevant data.
+
+{{%notice note%}}
+The NetQ Agent is aware of and communicates through the designated VRF. If you do not specify one, the default VRF (named *default*) is used. If you later change the VRF configured for the NetQ Agent (using a lifecycle management configuration profile, for example), you might cause the NetQ Agent to lose communication.
+{{%/notice%}}
+
+Two methods are available:
 
 - Edit the configuration file on the switch, or
 - Use the NetQ CLI

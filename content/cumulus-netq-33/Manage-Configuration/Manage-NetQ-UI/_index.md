@@ -1,24 +1,22 @@
 ---
 title: Manage the NetQ UI
-author: Cumulus Networks
+author: NVIDIA
 weight: 600
 toc: 2
 ---
-As an administrator, you can manage access to and various application-wide settings for the Cumulus NetQ UI from a single location.
+As an administrator, you can manage access to and various application-wide settings for the NetQ UI from a single location.
 
-Individual users have the ability to set preferences specific to their workspaces. This information is covered separately. Refer to {{<link title="Set User Preferences">}}.
+Individual users have the ability to set preferences specific to their workspaces. This information is covered separately. Refer to {{<link title="Set User Preferences" text="Set User Preferences">}}.
 
 ## NetQ Management Workbench
 
 The NetQ Management workbench is accessed from the main menu. For the user(s) responsible for maintaining the application, this is a good place to start each day.
 
-To open the workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/>, and select *Management* under the **Admin** column.
+To open the workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/>, and select *Management* under the **Admin** column. The cards available vary slightly between the on-premises and cloud deployments. The on-premises management dashboard has an LDAP Server Info card, which the cloud version does not. The cloud management dashboard has an SSO Config card, which the on-premises version does not.
 
-{{<figure src="/images/netq/netq-mgmt-wb-onprem-300.png" width="700">}}
+{{<figure src="/images/netq/netq-mgmt-wb-onprem-330.png" width="700" caption="On-premises NetQ Management Dashboard">}}
 
-{{<notice note>}}
-For cloud deployments, the LDAP Server Info card is not available. Refer to {{<link url="Integrate-NetQ-with-Your-LDAP-Server" text="Integrate NetQ with Your LDAP server">}} for details.
-{{</notice>}}
+{{<figure src="/images/netq/netq-mgmt-wb-cloud-330.png" width="700"caption="Cloud NetQ Management Dashboard">}}
 
 ## Manage User Accounts
 
@@ -164,13 +162,11 @@ To configure these login policies:
 
 3. Click **Manage**.
 
-    {{<figure src="/images/netq/netq-mgmt-login-mgmt-config-modal-320.png" width="400" >}}
+    {{<figure src="/images/netq/netq-mgmt-login-mgmt-config-modal-330.png" width="400" >}}
 
-4. Select how long a user may be logged in before logging in again; 30 minutes, 1, 3, 5, or 8 hours.
+4. Select how long a user may be logged in before logging in again; 30 minutes, 1, 3, 5, 6, or 8 hours. Default for on-premises deployments is 6 hours. Default for cloud deployments is 30 minutes.
 
-    Default for on-premises deployments is 6 hours. Default for cloud deployments is 30 minutes.
-
-5. Indicate the number of times (between 1 and 100) the application can be refreshed before the user must log in again. Default is unspecified.
+5. Indicate the amount of time in seconds the application can be refreshed before the user must log in again. Default is 1440 seconds (1 day).
 
 6. Enter your admin password.
 
@@ -178,7 +174,7 @@ To configure these login policies:
 
     The Login Management card shows the configuration.
 
-    {{<figure src="/images/netq/netq-mgmt-login-mgmt-card-configd-320.png" width="200" >}}
+    {{<figure src="/images/netq/netq-mgmt-login-mgmt-card-configd-330.png" width="200" >}}
 
 ## Monitor User Activity
 
@@ -302,339 +298,9 @@ To export a scheduled validation:
 
 ## Manage Threshold Crossing Rules
 
-NetQ supports a set of events that are triggered by crossing a user-defined threshold. These events allow detection and prevention of network failures for selected interface, utilization,  sensor, forwarding, and ACL events.
+NetQ supports a set of events that are triggered by crossing a user-defined threshold, called TCA events. These events allow detection and prevention of network failures for selected ACL resources, digital optics, forwarding resources, interface errors and statistics, link flaps, resource utilization, sensor and WJH events. A complete list of supported events can be found in the {{<link title="TCA Event Messages Reference">}}.
 
-A notification configuration must contain one rule. Each rule must contain a scope and a threshold.
-
-### Supported Events
-
-The following events are supported:
-
-| Category | Event ID | Description |
-| ----------- | ---------- | -------------- |
-| Interface Statistics | TCA_RXBROADCAST_UPPER  |  rx_broadcast bytes per second on a given switch or host is greater than maximum threshold |
-| Interface Statistics | TCA_RXBYTES_UPPER |  rx_bytes per second on a given switch or host is greater than maximum threshold |
-| Interface Statistics | TCA_RXMULTICAST_UPPER |  rx_multicast per second on a given switch or host is greater than maximum threshold |
-| Interface Statistics | TCA_TXBROADCAST_UPPER |  tx_broadcast bytes per second on a given switch or host is greater than maximum threshold |
-| Interface Statistics | TCA_TXBYTES_UPPER     |  tx_bytes per second on a given switch or host is greater than maximum threshold |
-| Interface Statistics | TCA_TXMULTICAST_UPPER |  tx_multicast bytes per second on a given switch or host is greater than maximum threshold |
-| Resource Utilization | TCA_CPU_UTILIZATION_UPPER | CPU utilization (%) on a given switch or host is greater than maximum threshold |
-| Resource Utilization | TCA_DISK_UTILIZATION_UPPER  |  Disk utilization (%) on a given switch or host is greater than maximum threshold |
-| Resource Utilization | TCA_MEMORY_UTILIZATION_UPPER  |  Memory utilization (%) on a given switch or host is greater than maximum threshold |
-| Sensors | TCA_SENSOR_FAN_UPPER  |  Switch sensor reported fan speed on a given switch or host is greater than maximum threshold |
-| Sensors | TCA_SENSOR_POWER_UPPER|  Switch sensor reported power (Watts) on a given switch or host is greater than maximum threshold |
-| Sensors | TCA_SENSOR_TEMPERATURE_UPPER  |  Switch sensor reported temperature (&deg;C) on a given switch or host is greater than maximum threshold |
-| Sensors | TCA_SENSOR_VOLTAGE_UPPER  |  Switch sensor reported voltage (Volts) on a given switch or host is greater than maximum threshold |
-| Forwarding Resources | TCA_TCAM_TOTAL_ROUTE_ENTRIES_UPPER | Number of routes on a given switch or host is greater than maximum threshold |
-| Forwarding Resources | TCA_TCAM_TOTAL_MCAST_ROUTES_UPPER | Number of multicast routes on a given switch or host is greater than maximum threshold |
-| Forwarding Resources | TCA_TCAM_MAC_ENTRIES_UPPER | Number of MAC addresses on a given switch or host is greater than maximum threshold |
-| Forwarding Resources | TCA_TCAM_IPV4_ROUTE_UPPER | Number of IPv4 routes on a given switch or host is greater than maximum threshold |
-| Forwarding Resources | TCA_TCAM_IPV4_HOST_UPPER | Number of IPv4 hosts on a given switch or host is greater than maximum threshold |
-| Forwarding Resources | TCA_TCAM_IPV6_ROUTE_UPPER | Number of IPv6 hosts on a given switch or host is greater than maximum threshold |
-| Forwarding Resources | TCA_TCAM_IPV6_HOST_UPPER | Number of IPv6 hosts on a given switch or host is greater than maximum threshold |
-| Forwarding Resources | TCA_TCAM_ECMP_NEXTHOPS_UPPER | Number of equal cost multi-path (ECMP) next hop entries on a given switch or host is greater than maximum threshold |
-| ACL Resources | TCA_TCAM_IN_ACL_V4_FILTER_UPPER | Number of ingress ACL filters for IPv4 addresses on a given switch or host is greater than maximum threshold |
-| ACL Resources | TCA_TCAM_EG_ACL_V4_FILTER_UPPER | Number of egress ACL filters for IPv4 addresses on a given switch or host is greater than maximum threshold |
-| ACL Resources | TCA_TCAM_IN_ACL_V4_MANGLE_UPPER | Number of ingress ACL mangles for IPv4 addresses on a given switch or host is greater than maximum threshold |
-| ACL Resources | TCA_TCAM_EG_ACL_V4_MANGLE_UPPER | Number of egress ACL mangles for IPv4 addresses on a given switch or host is greater than maximum threshold |
-| ACL Resources | TCA_TCAM_IN_ACL_V6_FILTER_UPPER | Number of ingress ACL filters for IPv6 addresses on a given switch or host is greater than maximum threshold |
-| ACL Resources | TCA_TCAM_EG_ACL_V6_FILTER_UPPER | Number of egress ACL filters for IPv6 addresses on a given switch or host is greater than maximum threshold |
-| ACL Resources | TCA_TCAM_IN_ACL_V6_MANGLE_UPPER | Number of ingress ACL mangles for IPv6 addresses on a given switch or host is greater than maximum threshold |
-| ACL Resources | TCA_TCAM_EG_ACL_V6_MANGLE_UPPER | Number of egress ACL mangles for IPv6 addresses on a given switch or host is greater than maximum threshold |
-| ACL Resources | TCA_TCAM_IN_ACL_8021x_FILTER_UPPER | Number of ingress ACL 802.1 filters on a given switch or host is greater than maximum threshold |
-| ACL Resources | TCA_TCAM_ACL_L4_PORT_CHECKERS_UPPER | Number of ACL port range checkers on a given switch or host is greater than maximum threshold |
-| ACL Resources | TCA_TCAM_ACL_REGIONS_UPPER | Number of ACL regions on a given switch or host is greater than maximum threshold |
-| ACL Resources | TCA_TCAM_IN_ACL_MIRROR_UPPER | Number of ingress ACL mirrors on a given switch or host is greater than maximum threshold |
-| ACL Resources | TCA_TCAM_ACL_18B_RULES_UPPER | Number of ACL 18B rules on a given switch or host is greater than maximum threshold |
-| ACL Resources | TCA_TCAM_ACL_32B_RULES_UPPER | Number of ACL 32B rules on a given switch or host is greater than maximum threshold |
-| ACL Resources | TCA_TCAM_ACL_54B_RULES_UPPER | Number of ACL 54B rules on a given switch or host is greater than maximum threshold |
-| ACL Resources | TCA_TCAM_IN_PBR_V4_FILTER_UPPER | Number of ingress policy-based routing (PBR) filters for IPv4 addresses on a given switch or host is greater than maximum threshold |
-| ACL Resources | TCA_TCAM_IN_PBR_V6_FILTER_UPPER | Number of ingress policy-based routing (PBR) filters for IPv6 addresses on a given switch or host is greater than maximum threshold |
-
-### Define a Scope
-
-A scope is used to filter the events generated by a given rule. Scope values are set on a per TCA rule basis. All rules can be filtered on Hostname. Some rules can also be filtered by other parameters, as shown in this table:
-
-| Category | Event ID | Scope Parameters |
-| ------------ | ---------- | -------------- |
-| Interface Statistics | TCA_RXBROADCAST_UPPER  | Hostname, Interface |
-| Interface Statistics | TCA_RXBYTES_UPPER | Hostname, Interface |
-| Interface Statistics | TCA_RXMULTICAST_UPPER | Hostname, Interface |
-| Interface Statistics | TCA_TXBROADCAST_UPPER | Hostname, Interface |
-| Interface Statistics | TCA_TXBYTES_UPPER | Hostname, Interface |
-| Interface Statistics | TCA_TXMULTICAST_UPPER | Hostname, Interface |
-| Resource Utilization | TCA_CPU_UTILIZATION_UPPER | Hostname |
-| Resource Utilization | TCA_DISK_UTILIZATION_UPPER  | Hostname |
-| Resource Utilization | TCA_MEMORY_UTILIZATION_UPPER  | Hostname |
-| Sensors | TCA_SENSOR_FAN_UPPER  | Hostname, Sensor Name |
-| Sensors | TCA_SENSOR_POWER_UPPER| Hostname, Sensor Name |
-| Sensors | TCA_SENSOR_TEMPERATURE_UPPER  | Hostname, Sensor Name |
-| Sensors | TCA_SENSOR_VOLTAGE_UPPER  | Hostname, Sensor Name |
-| Forwarding Resources | TCA_TCAM_TOTAL_ROUTE_ENTRIES_UPPER | Hostname |
-| Forwarding Resources | TCA_TCAM_TOTAL_MCAST_ROUTES_UPPER | Hostname |
-| Forwarding Resources | TCA_TCAM_MAC_ENTRIES_UPPER | Hostname |
-| Forwarding Resources | TCA_TCAM_ECMP_NEXTHOPS_UPPER | Hostname |
-| Forwarding Resources | TCA_TCAM_IPV4_ROUTE_UPPER | Hostname |
-| Forwarding Resources | TCA_TCAM_IPV4_HOST_UPPER | Hostname |
-| Forwarding Resources | TCA_TCAM_IPV6_ROUTE_UPPER | Hostname |
-| Forwarding Resources | TCA_TCAM_IPV6_HOST_UPPER | Hostname |
-| ACL Resources | TCA_TCAM_IN_ACL_V4_FILTER_UPPER | Hostname |
-| ACL Resources | TCA_TCAM_EG_ACL_V4_FILTER_UPPER | Hostname |
-| ACL Resources | TCA_TCAM_IN_ACL_V4_MANGLE_UPPER | Hostname |
-| ACL Resources | TCA_TCAM_EG_ACL_V4_MANGLE_UPPER | Hostname |
-| ACL Resources | TCA_TCAM_IN_ACL_V6_FILTER_UPPER | Hostname |
-| ACL Resources | TCA_TCAM_EG_ACL_V6_FILTER_UPPER | Hostname |
-| ACL Resources | TCA_TCAM_IN_ACL_V6_MANGLE_UPPER | Hostname |
-| ACL Resources | TCA_TCAM_EG_ACL_V6_MANGLE_UPPER | Hostname |
-| ACL Resources | TCA_TCAM_IN_ACL_8021x_FILTER_UPPER | Hostname |
-| ACL Resources | TCA_TCAM_ACL_L4_PORT_CHECKERS_UPPER | Hostname |
-| ACL Resources | TCA_TCAM_ACL_REGIONS_UPPER | Hostname |
-| ACL Resources | TCA_TCAM_IN_ACL_MIRROR_UPPER | Hostname |
-| ACL Resources | TCA_TCAM_ACL_18B_RULES_UPPER | Hostname |
-| ACL Resources | TCA_TCAM_ACL_32B_RULES_UPPER | Hostname |
-| ACL Resources | TCA_TCAM_ACL_54B_RULES_UPPER | Hostname |
-| ACL Resources | TCA_TCAM_IN_PBR_V4_FILTER_UPPER | Hostname |
-| ACL Resources | TCA_TCAM_IN_PBR_V6_FILTER_UPPER | Hostname |
-
-Scopes are displayed as regular expressions in the rule card.
-
-| Scope | Display in Card | Result |
-| ------- | ------------------- | ------- |
-| All devices | hostname = * | Show events for all devices |
-| All interfaces | ifname = * | Show events for all devices and all interfaces |
-| All sensors | s_name = * | Show events for all devices and all sensors |
-| Particular device | hostname = leaf01 | Show events for *leaf01* switch |
-| Particular interfaces | ifname = swp14 | Show events for *swp14* interface |
-| Particular sensors | s_name = fan2 | Show events for the *fan2* fan |
-| Set of devices | hostname ^ leaf | Show events for switches having names starting with *leaf* |
-| Set of interfaces | ifname ^ swp | Show events for interfaces having names starting with *swp* |
-| Set of sensors | s_name ^ fan | Show events for sensors having names starting with *fan* |
-
-When a rule is filtered by more than one parameter, each is displayed on the card. Leaving a value blank for a parameter defaults to all; all hostnames, interfaces, sensors, forwarding and ACL resources.
-
-### Specify Notification Channels
-
-The notification channel specified by a TCA rule tells NetQ where to send the notification message. Refer to {{<link title="Configure Notifications/#create-a-channel" text="Create a Channel">}}.
-
-### Create a TCA Rule
-
-Now that you know which events are supported and how to set the scope, you can create a basic rule to deliver one of the TCA events to a notification channel.
-
-To create a TCA rule:
-
-1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> to open the Main Menu.
-
-    {{<figure src="/images/netq/main-menu-tcarules-selected-300.png" width="600">}}
-
-2. Click *Threshold Crossing Rules* under **Notifications**.
-
-3. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18"/> to add a rule.
-
-    The Create TCA Rule dialog opens. Four steps create the rule.
-
-    {{<figure src="/images/netq/tca-create-rule-details-tab-300.png" width="400">}}
-
-    {{<notice tip>}}
-You can move forward and backward until you are satisfied with your rule definition.
-    {{</notice>}}
-
-4. On the **Enter Details** step, enter a name for your rule, choose your TCA event type, and assign a severity.
-
-    {{<notice note>}}
-The rule name has a maximum of 20 characters (including spaces).
-    {{</notice>}}
-
-5. Click **Next**.
-
-6. On the **Choose Event** step, select the attribute to measure against.
-
-    {{<figure src="/images/netq/tca-create-rule-event-tab-300.png" width="400">}}
-
-    {{<notice note>}}
-The attributes presented depend on the event type chosen in the <em>Enter Details</em> step. This example shows the attributes available when <em>Resource Utilization</em> was selected.
-    {{</notice>}}
-
-7. Click **Next**.
-
-8. On the **Set Threshold** step, enter a threshold value.
-
-    {{<figure src="/images/netq/tca-create-rule-threshold-tab-300.png" width="400">}}
-
-9. Define the scope of the rule.
-
-    - If you want to restrict the rule to a particular device, and enter values for one or more of the available parameters.
-
-    - If you want the rule to apply to all devices, click the scope toggle.
-
-    {{<figure src="/images/netq/tca-create-rule-apply-toggle-241.png" width="450">}}
-
-10. Click **Next**.
-
-11. Optionally, select a notification channel where you want the events to be sent. If no channel is select, the notifications are only available from the database. You can add a channel at a later time. Refer to {{<link title="#Modify TCA Rules" text="Modify TCA Rules">}}.
-
-12. Click **Finish**.
-
-This example shows two rules. The rule on the left triggers an informational event when switch *leaf01* exceeds the maximum CPU utilization of 87%. The rule on the right triggers a critical event when any device exceeds the maximum CPU utilization of 93%. Note that the cards indicate both rules are currently Active.
-
-{{<figure src="/images/netq/tca-create-rule-examples-300.png" width="420">}}
-
-### View All TCA Rules
-
-You can view all of the threshold-crossing event rules you have created by clicking <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> and then selecting *Threshold Crossing Rules* under **Notifications**.
-
-### Modify TCA Rules
-
-You can modify the threshold value and scope of any existing rules.
-
-To edit a rule:
-
-1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> to open the Main Menu.
-
-2. Click *Threshold Crossing Rules* under **Notifications**.
-
-3. Locate the rule you want to modify and hover over the card.
-
-4. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/22-Edit/pencil-1.svg" height="18" width="18"/>.
-
-    {{<figure src="/images/netq/tca-edit-rule-300.png" width="200">}}
-
-5. Modify the rule, changing the threshold, scope or associated channel.
-
-    {{<figure src="/images/netq/tca-edit-rule-example-300.png" width="500">}}
-
-    {{<notice tip>}}
-If you want to modify the rule name or severity after creating the rule, you must delete the rule and recreate it.
-    {{</notice>}}
-
-6. Click **Update Rule**.
-
-### Manage TCA Rules
-
-Once you have created a bunch of rules, you might have the need to manage them; suppress a rule, disable a rule, or delete a rule.
-
-#### Rule States
-
-The TCA rules have three possible states:
-
-- **Active**: Rule is operating, delivering events. This would be the normal operating state.
-- **Suppressed**: Rule is disabled until a designated date and time. When that time occurs, the rule is automatically re-enabled. This state is useful during troubleshooting or maintenance of a switch when you do not want erroneous events being generated.
-- **Disabled**: Rule is disabled until a user manually re-enables it. This state is useful when you are unclear when you want the rule to be re-enabled. This is not the same as deleting the rule.
-
-#### Suppress a Rule
-
-To suppress a rule for a designated amount of time, you must change the state of the rule.
-
-To suppress a rule:
-
-1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> to open the Main Menu.
-
-2. Click *Threshold Crossing Rules* under **Notifications**.
-
-3. Locate the rule you want to suppress.
-
-4. Click **Disable**.
-
-    {{<figure src="/images/netq/tca-suppress-rule-300.png" width="300">}}
-
-5. Click in the **Date/Time** field to set when you want the rule to be *automatically re-enabled*.
-
-6. Click **Disable**.
-
-    {{<figure src="/images/netq/tca-suppress-rule-example-300.png" width="200">}}
-
-    Note the changes in the card:
-
-    - The state is now marked as *Inactive*,  but remains green
-    - The date and time that the rule will be enabled is noted in the **Suppressed** field
-    - The **Disable** option has changed to **Disable Forever**. Refer to [Disable a Rule](#disable-a-rule) for information about this change.
-
-#### Disable a Rule
-
-To disable a rule until you want to manually re-enable it, you must change the state of the rule.
-
-To disable a rule that is currently active:
-
-1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> to open the Main Menu.
-
-2. Click *Threshold Crossing Rules* under **Notifications**.
-
-3. Locate the rule you want to disable.
-
-4. Click **Disable**.
-
-5. Leave the **Date/Time** field blank.
-
-6. Click **Disable**.
-
-    {{<figure src="/images/netq/tca-disable-rule-example-300.png" width="200">}}
-
-    Note the changes in the card:
-
-    - The state is now marked as *Inactive* and is red
-    - The rule definition is grayed out
-    - The **Disable** option has changed to **Enable** to reactivate the rule when you are ready
-
-To disable a rule that is currently suppressed:
-
-1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> to open the Main Menu.
-
-2. Click *Threshold Crossing Rules* under **Notifications**.
-
-3. Locate the rule you want to disable.
-
-4. Click **Disable Forever**.
-
-    Note the changes in the card:
-
-    - The state is now marked as *Inactive* and is red
-    - The rule definition is grayed out
-    - The **Disable** option has changed to **Enable** to reactivate the rule when you are ready
-
-#### Delete a Rule
-
-You might find that you no longer want to received event notifications for a particular TCA event. In that case, you can either disable the event if you think you may want to receive them again or delete the rule altogether. Refer to [Disable a Rule](#disable-a-rule) in the first case. Follow the instructions here to remove the rule. The rule can be in any of the three states.
-
-To delete a rule:
-
-1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> to open the Main Menu.
-
-2. Click *Threshold Crossing Rules* under **Notifications**.
-
-3. Locate the rule you want to remove and hover over the card.
-
-4. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/bin-1.svg" height="18" width="18"/>.
-
-{{<figure src="/images/netq/tca-delete-rule-300.png" width="200">}}
-
-#### Resolve Scope Conflicts
-
-There may be occasions where the scope defined by multiple rules for a given TCA event may overlap each other. In such cases, the TCA rule with the most specific scope that is still true is used to generate the event.
-
-To clarify this, consider this example. Three events have occurred:
-
-- First event on switch *leaf01*, interface *swp1*
-- Second event on switch *leaf01*, interface *swp3*
-- Third event on switch *spine01*, interface *swp1*
-
-NetQ attempts to match the TCA event against hostname and interface name with three TCA rules with different scopes:
-
-- Scope 1 send events for the *swp1* interface on switch *leaf01* (very specific)
-- Scope 2 send events for all interfaces on switches that start with *leaf* (moderately specific)
-- Scope 3 send events for all switches and interfaces (very broad)
-
-The result is:
-
-- For the first event, NetQ applies the scope from rule 1 because it matches scope 1 exactly
-- For the second event, NetQ applies the scope from rule 2 because it does not match scope 1, but does match scope 2
-- For the third event, NetQ applies the scope from rule 3 because it does not match either scope 1 or scope 2
-
-In summary:
-
-| Input Event | Scope Parameters | Rule 1, Scope 1 | Rule 2, Scope 2 | Rule 3, Scope 3 | Scope Applied |
-| --- | --- | --- | --- | --- | --- |
-| leaf01, swp1 | Hostname, Interface | hostname=leaf01, ifname=swp1 | hostname ^ leaf, ifname=\* | hostname=\*, ifname=\* | Scope 1 |
-| leaf01, swp3 | Hostname, Interface | hostname=leaf01, ifname=swp1 | hostname ^ leaf, ifname=\* | hostname=\*, ifname=\* | Scope 2 |
-| spine01, swp1 | Hostname, Interface | hostname=leaf01, ifname=swp1 | hostname ^ leaf, ifname=\* | hostname=\*, ifname=\* | Scope 3 |
+Instructions for managing these rules can be found in {{<link title="Configure Threshold-Based Event Notifications/#manage-threshold-based-event-notifications" text="Manage Threshold-based Event Notifications">}}.
 
 ## Manage Notification Channels
 
@@ -652,130 +318,129 @@ In either case, the Channels view is opened.
 
 {{<figure src="/images/netq/channels-none-created-300.png" width="700">}}
 
-Determine the type of channel you want to add and follow the instructions for the selected type.
-
-### Specify Slack Channels
-
-To specify Slack channels:
-
-1. Create one or more channels using Slack.
-
-2. In NetQ, click **Slack** in the Channels view.
-
-3. When no channels have been specified, click on the note. When at least one channel has been specified, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18"/> above the table.
-
-4. Provide a unique name for the channel. Note that spaces are not allowed. Use dashes or camelCase instead.
-
-    {{<figure src="/images/netq/channels-add-slack-300.png" width="250">}}
-
-5. Copy and paste the incoming webhook URL for a channel you created in Step 1 (or earlier).
-
-6. Click **Add**.
-
-    {{<figure src="/images/netq/channels-slack-created-300.png" width="700">}}
-
-7. Repeat to add additional Slack channels as needed.
-
-### Specify PagerDuty Channels
-
-To specify PagerDuty channels:
-
-1. Create one or more channels using PagerDuty.
-
-2. In NetQ, click **PagerDuty** in the Channels view.
-
-3. When no channels have been specified, click on the note. When at least one channel has been specified, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18"/> above the table.
-
-4. Provide a unique name for the channel. Note that spaces are not allowed. Use dashes or camelCase instead.
-
-    {{<figure src="/images/netq/channels-add-pagerduty-300.png" width="250">}}
-
-5. Copy and paste the integration key for a PagerDuty channel you created in Step 1 (or earlier).
-
-6. Click **Add**.
-
-7. Repeat to add additional PagerDuty channels as needed.
-
-### Specify a Syslog Channel
-
-To specify a Syslog channel:
-
-1. Click **Syslog** in the Channels view.
-
-3. When no channels have been specified, click on the note. When at least one channel has been specified, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18"/> above the table.
-
-4. Provide a unique name for the channel. Note that spaces are not allowed. Use dashes or camelCase instead.
-
-    {{<figure src="/images/netq/channels-add-syslog-300.png" width="250">}}
-
-5. Enter the IP address and port of the Syslog server.
-
-6. Click **Add**.
-
-7. Repeat to add additional Syslog channels as needed.
-
-### Remove Notification Channels
-
-You can view your notification channels at any time. If you create new channels or retire selected channels, you might need to add or remove them from NetQ as well. To add channels refer to {{<link title="#Specify Notification Channels" text="Specify Notification Channels">}}.
-
-To remove channels:
-
-1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/>, and then click **Channels** in the **Notifications** column.
-
-    {{<figure src="/images/netq/main-menu-channels-selected-300.png" width="600">}}
-
-    This opens the Channels view.
-
-    {{<figure src="/images/netq/channels-slack-created-300.png" width="700">}}
-
-2. Click the tab for the type of channel you want to remove (Slack, PagerDuty, or Syslog).
-
-3. Select one or more channels.
-
-4. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/bin-1.svg" height="18" width="18"/>.
+Determine the type of channel you want to add and follow the instructions for the selected type in {{<link title="Configure System Event Notifications">}}. Refer to {{<link title="Configure System Event Notifications/#remove-an-event-notification-channel" text="Remove a Channel">}} to remove a channel you no longer need.
 
 ## Configure Multiple Premises
 
-The NetQ Management dashboard provides the ability to configure a single NetQ UI and  CLI for monitoring data from multiple external premises in addition to your local premises.
+The NetQ Management dashboard provides the ability to configure a single NetQ UI and CLI for monitoring data from multiple premises. This eliminates the need to log in to each premises to view the data.
 
-A complete NetQ deployment is required at each premises. The NetQ appliance or VM of one of the deployments acts as the primary (similar to a proxy) for the premises in the other deployments. A list of these external premises is stored with the primary deployment. After the multiple premises are configured, you can view this list of external premises, change the name of premises on the list, and delete premises from the list.
+As of NetQ 3.3.0 there are two ways to implement a multi-site on-premises deployment.
 
-{{<figure src="/images/netq/appmgmt-multisite-onprem-300.png" width="500">}}
+- Full NetQ deployment at each premises
+    - NetQ appliance or VM running NetQ Platform software with a database
+    - Each premises has its own NetQ UI and CLI and operates independently
+    - The NetQ appliance or VM at one of the deployments acts as the primary premises for the premises in the other deployments (similar to a proxy)
+    - A list of these secondary premises is stored with the primary deployment
 
-To configure monitoring of external premises:
+    {{<figure src="/images/netq/appmgmt-multisite-onprem-fulldeploy-330.png" width="500">}}
 
-1. Sign in to primary NetQ Appliance or VM.
+- Full NetQ deployment at primary site and smaller deployment at secondary sites
+    - The NetQ appliance or VM at one of the deployments acts as the primary premises for the premises in the other deployments (similar to a proxy)
+    - The primary premises runs the NetQ Platform software (including the NetQ UI and CLI) and houses the database
+    - All other deployments are secondary premises; they run the NetQ Controller software and send their data to the primary premises for storage and processing
+    - A list of these secondary premises is stored with the primary deployment
 
-2. In the NetQ UI, click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18" alt="Main Menu">}}.
+    {{<figure src="/images/netq/appmgmt-multisite-onprem-mixeddeploy-330.png" width="500">}}
+
+After the multiple premises are configured, you can view this list of premises in the NetQ UI at the primary premises, change the name of premises on the list, and delete premises from the list.
+
+To configure secondary premises so that you can view their data using the primary site NetQ UI, follow the instructions for the relevant deployment type of the *secondary* premises.
+
+{{< tabs "TabID759" >}}
+
+{{< tab "NetQ Platform" >}}
+
+In this deployment model, each NetQ deployment can be installed separately. The data is stored and can be viewed from the NetQ UI at each premises.
+
+To configure a these premises so that their data can be viewed from one premises:
+
+1. Open the NetQ UI installed on the NetQ Appliance or VM in any of the premises.
+
+2. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18" alt="Main Menu">}} (Main menu).
 
 3. Select *Management* from the **Admin** column.
 
-4. Locate the External Premises card.
+4. Locate the Premises card.
 
-    {{<figure src="/images/netq/premises-card-300.png" width="200">}}
+    {{<figure src="/images/netq/premises-card-330.png" width="200">}}
 
 5. Click **Manage**.
 
-6. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18"/> to open the Add Premises dialog.
+6. Click **External Premises**.
 
-    {{<figure src="/images/netq/premises-add-300.png" width="300">}}
+    {{<figure src="/images/netq/premises-card-external-prems-tab-330.png" width="700">}}
 
-7. Specify an external premises.
+7. Click **Add External Premises**.
 
-    - Enter an IP address for the API gateway on the external NetQ Appliance or VM in the Hostname field (required)
-    - Enter the access credentials
+    {{<figure src="/images/netq/premises-card-add-external-prems-330.png" width="350">}}
 
-8. Click **Next**.
+8. Enter the IP address for the API gateway on the NetQ appliance or VM for one of the secondary premises.
 
-9. Select from the available premises associated with this deployment by clicking on their names.
+9. Enter the access credentials for this host.
 
-10. Click **Finish**.
+10. Click **Next**.
 
-11. Add more external premises by repeating Steps 6-10.
+11. Select the premises you want to connect.
+
+    {{<figure src="/images/netq/premises-card-select-external-prems-330.png" width="350">}}
+
+12. Click **Finish**.
+
+13. Add more secondary premises by clicking {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18">}} and repeating Steps 8-12.
+
+{{< /tab >}}
+
+{{< tab "NetQ Collector" >}}
+
+In this deployment model, the data is stored and can be viewed only from the NetQ UI at the primary premises.
+
+<div class="notices note"><p>The primary NetQ premises must be installed before the secondary premises can be added. For the secondary premises, create the premises here, then install them.</p></div>
+
+1. Open the NetQ UI installed on the NetQ Appliance or VM where the database resides (this is your primary premises).
+
+2. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18" alt="Main Menu">}} (Main menu).
+
+3. Select *Management* from the **Admin** column.
+
+4. Locate the Premises card.
+
+    {{<figure src="/images/netq/premises-card-330.png" width="200">}}
+
+5. Click **Manage**. Your primary premises (*OPID0*) is shown by default.
+
+6. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18">}} (Add Premises).
+
+    {{<figure src="/images/netq/premises-create-prem-330.png" width="300">}}
+
+7. Enter the name of one of the secondary premises you want to add.
+
+8. Click **Done**.
+
+    {{<figure src="/images/netq/premises-card-premises-tab-list-330.png" width="700">}}
+
+9. Select the premises you just created.
+
+10. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/04-Login-Logout/login-key-1.svg" height="18" width="18">}} to generate a configuration key.
+
+    {{<figure src="/images/netq/premises-card-premises-tab-generate-key-330.png" width="400">}}
+
+11. Click **Copy** to save the key to a safe place, or click **e-mail** to send it to yourself or other administrator as appropriate.
+
+12. Click **Done**.
+
+13. Repeat steps 6-11 to add more secondary premises.
+
+14. Follow the steps in the {{<link title="Install NetQ Using the Admin UI" text="Admin UI" >}} to install and complete the configuration of these secondary premises, using these keys to activate and connect these premises to the primary NetQ premises.
+
+    {{<figure src="/images/netq/adminui-install-cloud-basic-330.png" width="700">}}
+
+{{< /tab >}}
+
+{{< /tabs >}}
 
 ## System Server Information
 
-You can easily view the configuration of the physical server or VM from the NetQ Management dashboard. 
+You can easily view the configuration of the physical server or VM from the NetQ Management dashboard.
 
 To view the server information:
 
@@ -792,3 +457,176 @@ To view the server information:
 ## Integrate with Your LDAP Server
 
 For on-premises deployments you can integrate your LDAP server with NetQ to provide access to NetQ using LDAP user accounts instead of ,or in addition to, the NetQ user accounts. Refer to {{<link title="Integrate NetQ with Your LDAP Server">}} for more detail.
+
+## Integrate with Your Microsoft Azure or Google Cloud for SSO
+
+You can integrate your NetQ Cloud deployment with a Microsoft Azure Active Directory (AD) or Google Cloud authentication server to support single sign-on (SSO) to NetQ. NetQ supports integration with SAML (Security Assertion Markup Language) or OAuth (Open Authorization). Multi-factor authentication (MFA) is also supported. Only one SSO configuration can be configured at a time. You must enable the configuration for the configuration to take effect.
+
+### Configure Support
+
+To integrate your authentication server:
+
+1. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18" alt="Main Menu">}}.
+
+2. Select *Management* from the **Admin** column.
+
+3. Locate the SSO Config card.
+
+    {{<figure src="/images/netq/netq-mgmt-sso-card-330.png" width="200">}}
+
+4. Click **Manage**.
+
+5. Click the type of SSO to be integrated:
+
+    - **Open ID**: Choose this option to integrate using OAuth with OpenID Connect
+    - **SAML**: Choose this option to integrate using SAML
+
+6. Specify the required parameters.
+
+    You need several pieces of data from your Microsoft Azure or Google account and authentication server to complete the integration. Open your account for easy cut and paste of this data into the NetQ form.
+
+    {{< tabs "TabID468" >}}
+
+{{< tab "OAuth+OpenID Connect" >}}
+
+{{<figure src="/images/netq/netq-mgmt-add-sso-oauth-330.png" width="600">}}
+
+1. Enter your administrator password. This is required when creating a new configuration.
+
+2. Enter a unique name for the SSO configuration.
+
+3. Copy the identifier for your Resource Server into the **Client ID** field.
+
+4. Copy the secret key for your Resource Server into the **Client Secret** field.
+
+5. Copy the URL of the authorization application into the **Authorization Endpoint** field.
+
+6. Copy the URL of the authorization token into the **Token Endpoint** field.
+
+    This example shows a Microsoft Azure AD integration.
+
+    {{<figure src="/images/netq/netq-mgmt-add-sso-oauth-msazure-330.png" width="600">}}
+
+7. Click **Add**.
+
+    {{<figure src="/images/netq/netq-mgmt-sso-success-330.png" width="600">}}
+
+8. As indicated, copy the redirect URL *https://api.netq.cumulusnetworks.com/netq/auth/v1/sso-callback* into your OpenID Connect configuration.
+
+9. Click **Test** to verify you are sent to the right place and can login. If it is not working, you are logged out. Check your specification and retest the configuration until it is working properly.
+
+10. Click **Close**. The SSO Config card reflects the configuration.
+
+    {{<figure src="/images/netq/netq-mgmt-sso-oauth-config-disabled-330.png" width="200">}}
+
+11. To require users to log in to NetQ using this SSO configuration, click **change** under the current Disabled status.
+
+12. Enter your administrator password.
+
+13. Click **Submit** to enable the configuration. The SSO card reflects this new status.
+
+    {{<figure src="/images/netq/netq-mgmt-sso-oauth-config-enabled-330.png" width="200">}}
+
+{{< /tab >}}
+
+{{< tab "SAML" >}}
+
+{{<figure src="/images/netq/netq-mgmt-add-sso-saml-330.png" width="600">}}
+
+1. Enter your administrator password.
+
+2. Enter a unique name for the SSO configuration.
+
+3. Copy the URL for the authorization server login page into the **Login URL** field.
+
+4. Copy the name of the authorization server into the **Identity Provider Identifier** field.
+
+5. Copy the name of the application server into the **Service Provider Identifier** field.
+
+6. Optionally, copy a claim into the **Email Claim Key** field. When left blank, the user email address is captured.
+
+    This example shows a Google Cloud integration.
+
+    {{<figure src="/images/netq/netq-mgmt-add-sso-saml-google-330.png" width="600">}}
+
+7. Click **Add**.
+
+    {{<figure src="/images/netq/netq-mgmt-sso-success-330.png" width="600">}}
+
+8. As indicated, copy the redirect URL *https://api.netq.cumulusnetworks.com/netq/auth/v1/sso-callback* into your identity provider configuration.
+
+9. Click **Test** to verify you are sent to the right place and can login. If it is not working, you are logged out. Check your specification and retest the configuration until it is working properly.
+
+10. Click **Close**. The SSO Config card reflects the configuration.
+
+    {{<figure src="/images/netq/netq-mgmt-sso-saml-config-disabled-330.png" width="200">}}
+
+11. To require users to log in to NetQ using this SSO configuration, click **change** under the current Disabled status.
+
+12. Enter your administrator password.
+
+13. Click **Submit** to enable the configuration. The SSO card reflects this new status.
+
+    {{<figure src="/images/netq/netq-mgmt-sso-saml-config-enabled-330.png" width="200">}}
+
+{{< /tab >}}
+
+    {{< /tabs >}}
+
+### Modify Integrations
+
+You can change the specifications for SSO integration with your authentication server at any time, including changing to an alternate SSO type, disabling the existing configuration, or reconfiguring the current configuration.
+
+#### Change SSO Type
+
+To choose a different SSO type:
+
+1. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18" alt="Main Menu">}}.
+
+2. Select *Management* from the **Admin** column.
+
+3. Locate the SSO Config card.
+
+4. Click **Disable**.
+
+5. Click **Yes**.
+
+6. Click **Manage**.
+
+7. Select the desired SSO type and complete the form with the relevant data for that SSO type.
+
+8. copy the redirect URL on the success dialog into your identity provider configuration.
+
+9. Click **Test** to verify proper login operation. Modify your specification and retest the configuration until it is working properly.
+
+10. Click **Update**.
+
+#### Disable SSO Configuration
+
+To disable the existing SSO configuration:
+
+1. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18" alt="Main Menu">}}.
+
+2. Select *Management* from the **Admin** column.
+
+3. Locate the SSO Config card.
+
+4. Click **Disable**.
+
+5. Click **Yes** to disable the configuration, or **Cancel** to keep it enabled.
+
+#### Edit the SSO Configuration
+
+To edit the existing SSO configuration:
+
+1. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18" alt="Main Menu">}}.
+
+2. Select *Management* from the **Admin** column.
+
+3. Locate the SSO Config card.
+
+4. Modify any of the fields as needed.
+
+5. Click **Test** to verify proper login operation. Modify your specification and retest the configuration until it is working properly.
+
+6. Click **Update**.

@@ -1,6 +1,6 @@
 ---
 title: Monitor the BGP Service
-author: Cumulus Networks
+author: NVIDIA
 weight: 950
 toc: 4
 ---
@@ -59,7 +59,7 @@ To view the summary, open the small Network Services|All BGP Sessions card.
 
 To view the summary, run `netq show bgp`.
 
-This example shows each node, their neighbor, VRF, ASN, Peer ASN, Address Prefix, and last time this was changed.
+This example shows each node, their neighbor, VRF, ASN, peer ASN, received address IPv4/IPv6/EVPN prefix, and last time this was changed.
 
 ```
 cumulus@switch:~$ netq show bgp
@@ -627,7 +627,7 @@ To view all session details, open the full-screen Network Services|All BGP Sessi
 
 {{<figure src="/images/netq/ntwk-svcs-all-bgp-fullscr-allsess-tab-300.png" width="700">}}
 
-Use the icons above the table to select/deselect, filter, and export items in the list. Refer to {{<link url="Access-Data-with-Cards#table-settings" text="Table Settings">}} for more detail.
+Use the icons above the table to select/deselect, filter, and export items in the list. Refer to {{<link url="Access-Data-with-Cards/#table-settings" text="Table Settings">}} for more detail.
 
 To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner.
 

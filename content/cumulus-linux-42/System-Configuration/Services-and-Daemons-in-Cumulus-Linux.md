@@ -1,6 +1,6 @@
 ---
 title: Services and Daemons in Cumulus Linux
-author: Cumulus Networks
+author: NVIDIA
 weight: 230
 toc: 3
 ---
@@ -204,7 +204,6 @@ cumulus-aclcheck.service               static
 cumulus-core.service                   static  
 cumulus-fastfailover.service           enabled
 cumulus-firstboot.service              disabled
-cumulus-hyperconverged.service         disabled
 cumulus-platform.service               enabled  
 ...
 ```

@@ -1,7 +1,8 @@
 ---
 title: Glossary
-author: Cumulus Networks
-weight: 1130
+author: NVIDIA
+weight: 1150
+toc: 3
 ---
 
 ## Common Cumulus Linux and NetQ Terminology

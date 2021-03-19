@@ -1,6 +1,6 @@
 ---
 title: Monitor Switch Performance
-author: Cumulus Networks
+author: NVIDIA
 weight: 830
 toc: 4
 ---
@@ -1816,7 +1816,7 @@ netq <hostname> show dom type (module_temperature|module_voltage) [interface <te
 This example shows module temperature information for the *spine01* switch.
 
 ```
-cumulus@switch:~$ netq spine01 show dom type module_temperature
+cumulus@switch:~$ netq spine01 show dom type module_temp
 Matching dom records:
 Hostname          Interface  type                 high_alarm_threshold low_alarm_threshold  high_warning_thresho low_warning_threshol value                Last Updated
                                                                                             ld                   d

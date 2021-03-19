@@ -1,18 +1,18 @@
 ---
 title: Integrate NetQ API with Your Applications
-author: Cumulus Networks
-weight: 1110
+author: NVIDIA
+weight: 1130
 toc: 3
 ---
 The NetQ API provides access to key telemetry and system monitoring data gathered about the performance and operation of your network and devices so that you can view that data in your internal or third-party analytic tools. The API gives you access to the health of individual switches, network protocols and services, trace and validation results, and views of networkwide inventory and events.
 
 This guide provides an overview of the NetQ API framework, the basics of using Swagger UI 2.0 or bash plus curl to view and test the APIs. Descriptions of each endpoint and model parameter are contained in individual API .JSON files.
 
-For information regarding new features, improvements, bug fixes, and known issues present in this NetQ release, refer to the {{<link title="NVIDIA NetQ 3.2 Release Notes" text="release notes">}}.
+For information regarding new features, improvements, bug fixes, and known issues present in this NetQ release, refer to the {{<link title="NVIDIA NetQ 3.3 Release Notes" text="release notes">}}.
 
 ## API Organization
 
-The Cumulus NetQ API provides endpoints for:
+The NetQ API provides endpoints for:
 
 - **Network protocols**: BGP, EVPN, LLDP, CLAG, MSTP, Neighbors, NTP, Routes
 - **Virtual networks**: VLAN

@@ -1,6 +1,6 @@
 ---
 title: Open Shortest Path First v2 - OSPFv2
-author: Cumulus Networks
+author: NVIDIA
 weight: 900
 toc: 3
 ---
@@ -496,8 +496,7 @@ This section describes optional configuration. The steps provided in this sectio
 ### Interface Parameters
 
 You can define the following OSPF parameters per interface:
-- Network type (point-to-point or broadcast). Broadcast is the default setting.
-  Cumulus Networks recommends that you configure the interface as point-to-point unless you intend to use the Ethernet media as a LAN with multiple connected routers. Point-to-point provides a simplified adjacency state machine; there is no need for DR/BDR election and *LSA reflection*. See {{<exlink url="http://tools.ietf.org/rfc/rfc5309" text="RFC5309">}} for a more information.
+- Network type (point-to-point or broadcast). Broadcast is the default setting. Configure the interface as point-to-point unless you intend to use the Ethernet media as a LAN with multiple connected routers. Point-to-point provides a simplified adjacency state machine; there is no need for DR/BDR election and *LSA reflection*. See {{<exlink url="http://tools.ietf.org/rfc/rfc5309" text="RFC5309">}} for a more information.
   {{%notice note%}}
   Point-to-point is required for {{<link url="#ospfv2-unnumbered" text="OSPFv2 unnumbered">}}.
   {{%/notice%}}
@@ -952,9 +951,10 @@ Here is a brief summary of the area type differences:
 | Normal non-zero area | LSA types 1, 2, 3, 4 area-scoped, type 5 externals, inter-area routes summarized |
 | Stub area | LSA types 1, 2, 3, 4 area-scoped, no type 5 externals, inter-area routes summarized |
 | Totally stubby area | LSA types 1, 2 area-scoped, default summary, no type 3, 4, 5 LSA types allowed |
-
-### Auto-cost Reference Bandwidth
-
+<!-- vale off -->
+<!-- vale.ai Issue #253 -->
+### Auto-Cost Reference Bandwidth
+<!-- vale on -->
 When you set the *auto-cost reference bandwidth,* Cumulus Linux dynamically calculates the OSPF interface cost to support higher speed links. The default value is *100000* for 100Gbps link speed. The cost of interfaces with link speeds lower than 100Gbps is higher.
 
 {{%notice tip%}}

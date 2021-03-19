@@ -1,6 +1,6 @@
 ---
 title: Installation Management
-author: Cumulus Networks
+author: NVIDIA
 weight: 20
 toc: 2
 ---

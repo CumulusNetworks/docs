@@ -1,10 +1,10 @@
 ---
 title: Monitor Using Topology View
-author: Cumulus Networks
+author: NVIDIA
 weight: 1040
 toc: 3
 ---
-The core capabilities of Cumulus NetQ enable you to monitor your network by viewing performance and configuration data about your individual network devices and the entire fabric networkwide. The topics contained in this section describe monitoring tasks that can be performed from a topology view rather than through the NetQ UI card workflows or the NetQ CLI.
+The core capabilities of NetQ enable you to monitor your network by viewing performance and configuration data about your individual network devices and the entire fabric networkwide. The topics contained in this section describe monitoring tasks that can be performed from a topology view rather than through the NetQ UI card workflows or the NetQ CLI.
 
 ## Access the Topology View
 
@@ -115,3 +115,21 @@ The JSON file will be similar to this example:
 ...
 {"inventory":{"asic":"Cumulus Networks VX","license_state":"ok","netq_agent_status":"Fresh","netq_agent_version":"2.2.1-cl3u19~1564507571.4cb6474","os":"CL 3.7.6","platform":"Cumulus Networks VX"},"name":"leaf04","tier":1,"interfaces":[{"name":"swp50","connected_to":{"interface":"swp50","link":24,"node":"leaf03"}},{"name":"swp51","connected_to":{"interface":"swp4","link":40,"node":"spine01"}},{"name":"swp2","connected_to":{"interface":"eth2","link":5,"node":"server04"}},{"name":"swp1","connected_to":{"interface":"eth2","link":35,"node":"server03"}},{"name":"swp49","connected_to":{"interface":"swp49","link":2,"node":"leaf03"}},{"name":"swp52","connected_to":{"interface":"swp4","link":11,"node":"spine02"}}],"protocol":{"bgp":false,"clag":false,"evpn":false,"lldp":true,"vni":[]},"events":{"count_alarm":0,"count_info":0}}],"events":{"count_alarm":0,"count_info":0}}
 ```
+
+### Rearrange the Topology Layout
+
+The network topology is generated automatically by NetQ and the nodes are positioned automatically. In large topologies, the position of the nodes may not be suitable for easy viewing. You can move the components of the topology around on screen to suit your needs. You can save the new layout so other users can see it.
+
+1. Consider the following topology:
+
+   {{<figure src="/images/netq/topo-move-before.png" width="700">}}
+
+1. Click {{<img src="/images/netq/topo-move-icon.png" width="25">}} the **Move** icon.
+
+1. In the example below, we switch the positions of the two border switches (border01 and border02):
+
+   {{<figure src="/images/netq/topo-move-after.png" width="700">}}
+
+1. Click {{<img src="/images/netq/topo-save-icon.png" width="25">}} the **Save** icon.
+
+

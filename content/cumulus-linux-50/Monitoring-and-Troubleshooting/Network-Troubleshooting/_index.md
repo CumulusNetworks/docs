@@ -94,7 +94,7 @@ cumulus@switch:~$ sudo ip vrf exec Tenant1 traceroute -i swp1 -s 192.0.1.1 8.8.8
 cumulus@switch:~$ sudo ip vrf exec Tenant1 traceroute6 -i swp1 -s 2001:db8::1 2001:4860:4860::8888
 ```
 
-Because the VRF context for `ping` and `traceroute` commands is automatically shifted to the default VRF context, you must use the source interface flag to specify the management VRF. Typically, this is not an issue since there is only a single interface in the management VRF - eth0 - and in most situations only a single IPv4 address or IPv6 global unicast address is assigned to it. But it is worth mentioning since, as stated earlier, you cannot specify both a source interface and a source IP address with `ping -I`.
+Because the VRF context for `ping` and `traceroute` commands is automatically shifted to the default VRF context, you must use the source interface flag to specify the management VRF. Typically, this is not an issue because there is only a single interface in the management VRF - eth0 - and in most situations only a single IPv4 address or IPv6 global unicast address is assigned to it. You cannot specify both a source interface and a source IP address with `ping -I`.
 
 ## Manipulate the System ARP Cache
 

@@ -37,7 +37,7 @@ To configure the RADIUS client, edit the `/etc/pam_radius_auth.conf` file:
 
     {{%notice tip%}}
 
-The hostname of the switch must be resolvable to an IP address, which, in general, is fixed in DNS. If for some reason you cannot find the hostname in DNS, you can add the hostname to the `/etc/hosts` file manually. However, this can cause problems since the IP address is usually assigned by DHCP, which can change at any time.
+The hostname of the switch must be resolvable to an IP address, which, in general, is fixed in DNS. If for some reason you cannot find the hostname in DNS, you can add the hostname to the `/etc/hosts` file manually. However, this can cause problems because the IP address is usually assigned by DHCP, which can change at any time.
 
 {{%/notice%}}
 

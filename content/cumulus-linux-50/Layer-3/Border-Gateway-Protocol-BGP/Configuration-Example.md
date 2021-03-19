@@ -21,7 +21,7 @@ cumulus@leaf01:~$ cl set interface bond3 bond member swp3
 cumulus@leaf01:~$ cl set interface bond1 bond mlag id 1
 cumulus@leaf01:~$ cl set interface bond2 bond mlag id 2
 cumulus@leaf01:~$ cl set interface bond3 bond mlag id 3
-cumulus@switch:~$ cl set interface bond1-3 bridge domain br_default 
+cumulus@leaf01:~$ cl set interface bond1-3 bridge domain br_default 
 cumulus@leaf01:~$ cl set interface peerlink bond member swp49-50
 cumulus@leaf01:~$ cl set mlag mac-address 44:38:39:BE:EF:AA
 cumulus@leaf01:~$ cl set mlag backup 10.10.10.2
@@ -51,7 +51,7 @@ cumulus@leaf02:~$ cl set interface bond3 bond member swp3
 cumulus@leaf02:~$ cl set interface bond1 bond mlag id 1
 cumulus@leaf02:~$ cl set interface bond2 bond mlag id 2
 cumulus@leaf02:~$ cl set interface bond3 bond mlag id 3
-cumulus@switc2:~$ cl set interface bond1-3 bridge domain br_default 
+cumulus@leaf02:~$ cl set interface bond1-3 bridge domain br_default 
 cumulus@leaf02:~$ cl set interface peerlink bond member swp49-50
 cumulus@leaf02:~$ cl set mlag mac-address 44:38:39:BE:EF:AA
 cumulus@leaf02:~$ cl set mlag backup 10.10.10.1
@@ -80,7 +80,7 @@ cumulus@leaf03:~$ cl set interface bond3 bond member swp3
 cumulus@leaf03:~$ cl set interface bond1 bond mlag id 1
 cumulus@leaf03:~$ cl set interface bond2 bond mlag id 2
 cumulus@leaf03:~$ cl set interface bond3 bond mlag id 3
-cumulus@switc3:~$ cl set interface bond1-3 bridge domain br_default 
+cumulus@leaf03:~$ cl set interface bond1-3 bridge domain br_default 
 cumulus@leaf03:~$ cl set interface peerlink bond member swp49-50
 cumulus@leaf03:~$ cl set mlag mac-address 44:38:39:BE:EF:AA
 cumulus@leaf03:~$ cl set mlag backup 10.10.10.4
@@ -109,7 +109,7 @@ cumulus@leaf04:~$ cl set interface bond3 bond member swp3
 cumulus@leaf04:~$ cl set interface bond1 bond mlag id 1
 cumulus@leaf04:~$ cl set interface bond2 bond mlag id 2
 cumulus@leaf04:~$ cl set interface bond3 bond mlag id 3
-cumulus@switc4:~$ cl set interface bond1-3 bridge domain br_default 
+cumulus@leaf04:~$ cl set interface bond1-3 bridge domain br_default 
 cumulus@leaf04:~$ cl set interface peerlink bond member swp49-50
 cumulus@leaf04:~$ cl set mlag mac-address 44:38:39:BE:EF:AA
 cumulus@leaf04:~$ cl set mlag backup 10.10.10.3

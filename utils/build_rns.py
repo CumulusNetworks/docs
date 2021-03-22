@@ -155,6 +155,10 @@ def sanatize_rn_for_markdown(string):
     # Special Linux command, CM-29033
     output_string = output_string.replace("&amp;&amp;", "&&")
 
+    # Formatting due to JIRA to Redmine migration
+    output_string = output_string.replace("{{", "<code>")
+    output_string = output_string.replace("}}", "</code>")
+
     return output_string
 
 def sanatize_rn_for_xls(string):
@@ -221,11 +225,32 @@ def build_rn_markdown(json_file, version, file_type):
         output.append("|---	        |---	        |---	    |")
         output.append("\n")
 
+    '''
+    Generic JSON format is
+    {
+        "ticket": "2556037",
+        "jira_ticket": "CM-33012",
+        "affects_versions": [
+        "3.7.9-4.2.0"
+        ],
+        "release_notes_text": "After you add an interface to the bridge, an OSPF session flap can occur.\r\n\r\n"
+    }
+    '''
     for bug in json_file:
-        if file_type == "affects":
-            output.append("| <a name=\"" + bug["ticket"] + "\"></a> [" + bug["ticket"] + "](#" + bug["ticket"] + ") <a name=\"" + bug["ticket"] + "\"></a> | " + sanatize_rn_for_markdown(bug["release_notes_text"]) + " | " + ", ".join(bug["affects_versions"]) + " | " + ", ".join(bug["fixed_versions"]) + "|")
+        '''
+        With the conversion from Jira to Redmine the JSON file is now inconsistent.
+        "ticket" may be a Jira CM or Redmine issue number.
+        The filed "jira_ticket" is the Jira CM number, but not every issue has a mapped Jira ticket.
+        '''
+        if "jira_ticket" in bug and not bug["jira_ticket"] == "":
+                issue_id_string = "| <a name=\"" + bug["ticket"] + "\"></a> [" + bug["ticket"] + "](#" + bug["ticket"] + ") <a name=\"" + bug["ticket"] + "\"></a> <br />" + bug["jira_ticket"] + " | "
         else:
-            output.append("| <a name=\"" + bug["ticket"] + "\"></a> [" + bug["ticket"] + "](#" + bug["ticket"] + ") | " + sanatize_rn_for_markdown(bug["release_notes_text"]) + " | " + ", ".join(bug["affects_versions"]) + " | " + "|")
+            issue_id_string = "| <a name=\"" + bug["ticket"] + "\"></a> [" + bug["ticket"] + "](#" + bug["ticket"] + ") <a name=\"" + bug["ticket"] + "\"></a> <br /> | "
+
+        if file_type == "affects":
+            output.append(issue_id_string + sanatize_rn_for_markdown(bug["release_notes_text"]) + " | " + ", ".join(bug["affects_versions"]) + " | " + ", ".join(bug["fixed_versions"]) + "|")
+        else:
+            output.append(issue_id_string + sanatize_rn_for_markdown(bug["release_notes_text"]) + " | " + ", ".join(bug["affects_versions"]) + " | " + "|")
 
         output.append("\n")
 

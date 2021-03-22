@@ -537,7 +537,7 @@ def main():
 
     for product in products:
         build_rn_markdown_files(product, products[product])
-        #build_rn_xls_files(product, products[product])
+        build_rn_xls_files(product, products[product])
 
     exit(0)
 

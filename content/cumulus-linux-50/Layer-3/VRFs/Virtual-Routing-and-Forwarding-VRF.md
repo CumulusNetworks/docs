@@ -249,7 +249,7 @@ When you use route leaking:
 
 - You cannot reach the loopback address of a VRF (the address assigned to the VRF device) from another VRF.
 - When using route leaking, you must use the `redistribute` command in BGP to leak non-BGP routes (connected or static routes); you cannot use the `network` command.
-- Routes in the management VRF with the next-hop as eth0 or the management interface are not leaked.
+- Routes in the management VRF with the next hop as eth0 or the management interface are not leaked.
 - Routes learned with iBGP or multi-hop eBGP in a VRF can be leaked even if their next hops become unreachable. Therefore, route leaking for BGP-learned routes is recommended only when they are learned through single-hop eBGP.
 - You cannot configure VRF instances of BGP in multiple autonomous systems (AS) or an AS that is not the same as the global AS.
 - Do not use the default VRF as a shared service VRF. Create another VRF for shared services.

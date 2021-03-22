@@ -98,7 +98,7 @@ When you use BGP unnumbered, BGP learns the prefixes, calculates the routes and 
 - If an IPv4 /30 or /31 IP address is assigned to the interface, IPv4 peering is used over IPv6 link-local peering.
 - BGP unnumbered only works with two switches at a time, as it is designed to work with point-to-point links.
 - The IPv6 implementation on the peering device uses the MAC address as the interface ID when assigning the IPv6 link-local address, as suggested by RFC 4291.
-- Every router or end host must have an IPv4 address to complete a `traceroute` of IPv4 addresses. In this case, the IPv4 address used is that of the loopback device. Even if extended next-hop encoding (ENHE) is not used in the data center, link addresses are not typically advertised because they take up valuable FIB resources and also expose an additional attack vector for intruders to use to either break in or engage in DDOS attacks. Assigning an IP address to the loopback device is essential.
+- Every router or end host must have an IPv4 address to complete a `traceroute` of IPv4 addresses. In this case, the IPv4 address used is that of the loopback device. Even if extended next hop encoding (ENHE) is not used in the data center, link addresses are not typically advertised because they take up valuable FIB resources and also expose an additional attack vector for intruders to use to either break in or engage in DDOS attacks. Assigning an IP address to the loopback device is essential.
 
 {{%/notice%}}
 

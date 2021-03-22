@@ -10,6 +10,7 @@ This will also write the XML files that are used to generate xls files for the r
 '''
 
 from operator import itemgetter
+import re
 import requests
 
 def get_json(product, version, json_file):
@@ -99,6 +100,39 @@ def get_hugo_folder(product, version):
         print("ERROR: Unknown product {}".format(product))
         exit(1)
 
+def add_code_markdown(input_string, tag_to_replace):
+    '''
+    Replaces a generic tag with a <pre></pre> code block.
+    This should be used for matching tags that do not indicate an open or close.
+
+    For example:
+    {noformat}
+    this is some code
+    {noformat}
+
+    The requirement of a pair prevents a simple string.replace()
+
+    Inputs:
+        input_string - The string to search and replace on
+        tag_to_replace - String representation of what to replace (e.g., "{noformat}")
+    Returns:
+        Updated string with the given tag replaced with open/closing <pre> tags
+    '''
+    matches = re.finditer(tag_to_replace, input_string)
+
+    close_noformat = False
+    for match in matches:
+        if close_noformat:
+            tag = "</pre>"
+            close_noformat = False
+        else:
+            tag = "<pre>"
+            close_noformat = True
+
+        input_string = input_string.replace(tag_to_replace, tag, 1)
+
+    return input_string
+
 def sanatize_rn_for_markdown(string):
     '''
     Strip any special or problematic characters from the a string.
@@ -108,14 +142,19 @@ def sanatize_rn_for_markdown(string):
     '''
 
     # # Remove HTML tags
-    # TAG_RE = re.compile(r'<[^>]+>')
-    # output_string = TAG_RE.sub('', string)
     output_string = string.replace("<p>", "")
     output_string = output_string.replace("</p>", "")
 
     output_string = output_string.replace("`", "'")
 
+    # Fix code blocks
+    output_string = add_code_markdown(output_string, "{noformat}")
+    output_string = add_code_markdown(output_string, "{code}")
+
+    # Replace and clean up line returns
     output_string = output_string.replace("\r\n", "<br />")
+    output_string = output_string.replace("\n ", "<br />")
+    output_string = output_string.replace(".\n", "<br />")
     output_string = output_string.replace("\n", "")
 
     output_string = output_string.replace("&lt;", "<")
@@ -124,22 +163,24 @@ def sanatize_rn_for_markdown(string):
     output_string = output_string.replace("<tt>", "`")
     output_string = output_string.replace("</tt>", "`")
 
-    #CM-21678
-    output_string = output_string.replace('<div class=\"preformatted\" style=\"border-width: 1px;\"><div class=\"preformattedContent panelContent\"><pre>', "<br /><pre>")
-    output_string = output_string.replace("</pre></div></div>", "</pre><br />")
-
-    # Remove line returns and replace them with HTML breaks
-    output_string = output_string.replace("\r", "")
-    #output_string = output_string.replace("\n\n", "<br />")
-    #output_string = output_string.replace("\n", "<br />")
-
-    # Escape pipe characters
-    output_string = output_string.replace("|", "\|")
-
     #Replace @ characters to prevent auto email link creation
     output_string = output_string.replace("@", "&#64;")
     output_string = output_string.replace("[", "&#91;")
     output_string = output_string.replace("]", "&#93;")
+
+    #CM-21678
+    output_string = output_string.replace('<div class=\"preformatted\" style=\"border-width: 1px;\"><div class=\"preformattedContent panelContent\"><pre>', "<br /><pre>")
+    output_string = output_string.replace('<div class=\"code panel\" style=\"border-width: 1px;\"><div class=\"codeContent panelContent\">', '<br /><pre>')
+    output_string = output_string.replace('<pre class=\"code-java\">', "")
+    output_string = output_string.replace('<span class=\"code-keyword\">', "")
+    output_string = output_string.replace("</span>", "")
+    output_string = output_string.replace("</pre>\n</div></div>", "</pre><br />")
+
+    # This is later due to other cleanups needing to run first
+    output_string = output_string.replace("\r", "")
+
+    # Escape pipe characters
+    output_string = output_string.replace("|", "\|")
 
     # NetQ-5774 Fix. The use of "<>" in a string inside a code (<pre>) block disappears
     output_string = output_string.replace("<ipaddr>", "\<ipaddr\>")

@@ -1956,7 +1956,7 @@ cumulus@leaf01:~$ cl set interface lo ip address 10.10.10.63/32
 cumulus@leaf01:~$ cl set interface swp1-4,swp49-54
 cumulus@leaf01:~$ cl set interface swp3 link mtu 9000
 cumulus@leaf01:~$ cl set interface bond3 bond member swp3
-cumulus@leaf01:~$ cl set interface bond3 bond mlag id 3
+cumulus@leaf01:~$ cl set interface bond3 bond mlag id 1
 cumulus@leaf01:~$ cl set interface bond3 bond lacp-bypass on
 cumulus@leaf01:~$ cl set interface bond3 link mtu 9000
 cumulus@leaf01:~$ cl set interface bond3 bridge domain br_default
@@ -1969,12 +1969,15 @@ cumulus@leaf01:~$ cl set mlag init-delay 10
 cumulus@leaf01:~$ cl set interface vlan10 ip address 10.1.10.2/24
 cumulus@leaf01:~$ cl set interface vlan10 ip vrr address 10.1.10.1/24
 cumulus@leaf01:~$ cl set interface vlan10 ip vrr mac-address 00:00:00:00:00:10
+cumulus@leaf01:~$ cl set interface vlan10 ip vrr state up
 cumulus@leaf01:~$ cl set interface vlan20 ip address 10.1.10.2/24
 cumulus@leaf01:~$ cl set interface vlan20 ip vrr address 10.1.20.2/24
 cumulus@leaf01:~$ cl set interface vlan20 ip vrr mac-address 00:00:00:00:00:20
+cumulus@leaf01:~$ cl set interface vlan20 ip vrr state up
 cumulus@leaf01:~$ cl set bridge domain br_default vlan 10 vni 10
 cumulus@leaf01:~$ cl set bridge domain br_default vlan 20 vni 20
-cumulus@leaf01:~$ cl set nve vxlan mlag shared-address 10.0.1.254
+cumulus@leaf01:~$ cl set interface bond3 bridge domain br_default vlan 10,20
+cumulus@leaf01:~$ cl set nve vxlan mlag shared-address 10.0.1.255
 cumulus@leaf01:~$ cl set nve vxlan source address 10.10.10.63
 cumulus@leaf01:~$ cl set nve vxlan arp-nd-suppress on
 cumulus@leaf01:~$ cl set evpn enable on
@@ -2000,7 +2003,7 @@ cumulus@leaf01:~$ cl set interface lo ip address 10.10.10.64/32
 cumulus@leaf01:~$ cl set interface swp1-4,swp49-54
 cumulus@leaf01:~$ cl set interface swp3 link mtu 9000
 cumulus@leaf01:~$ cl set interface bond3 bond member swp3
-cumulus@leaf01:~$ cl set interface bond3 bond mlag id 3
+cumulus@leaf01:~$ cl set interface bond3 bond mlag id 1
 cumulus@leaf01:~$ cl set interface bond3 bond lacp-bypass on
 cumulus@leaf01:~$ cl set interface bond3 link mtu 9000
 cumulus@leaf01:~$ cl set interface bond3 bridge domain br_default
@@ -2013,12 +2016,15 @@ cumulus@leaf01:~$ cl set mlag init-delay 10
 cumulus@leaf01:~$ cl set interface vlan10 ip address 10.1.10.1/24
 cumulus@leaf01:~$ cl set interface vlan10 ip vrr address 10.1.10.1/24
 cumulus@leaf01:~$ cl set interface vlan10 ip vrr mac-address 00:00:00:00:00:10
+cumulus@leaf01:~$ cl set interface vlan10 ip vrr state up
 cumulus@leaf01:~$ cl set interface vlan20 ip address 10.1.20.1/24
 cumulus@leaf01:~$ cl set interface vlan20 ip vrr address 10.1.20.1/24
 cumulus@leaf01:~$ cl set interface vlan20 ip vrr mac-address 00:00:00:00:00:20
+cumulus@leaf01:~$ cl set interface vlan20 ip vrr state up
 cumulus@leaf01:~$ cl set bridge domain br_default vlan 10 vni 10
 cumulus@leaf01:~$ cl set bridge domain br_default vlan 20 vni 20
-cumulus@leaf01:~$ cl set nve vxlan mlag shared-address 10.0.1.254
+cumulus@leaf01:~$ cl set interface bond3 bridge domain br_default vlan 10,20
+cumulus@leaf01:~$ cl set nve vxlan mlag shared-address 10.0.1.255
 cumulus@leaf01:~$ cl set nve vxlan source address 10.10.10.64
 cumulus@leaf01:~$ cl set nve vxlan arp-nd-suppress on
 cumulus@leaf01:~$ cl set evpn enable on
@@ -2751,7 +2757,7 @@ cumulus@border01:~$ cat /etc/network/interfaces
 auto lo
 iface lo inet loopback
     address 10.10.10.63/32
-    clagd-vxlan-anycast-ip 10.0.1.254
+    clagd-vxlan-anycast-ip 10.0.1.255
     vxlan-local-tunnelip 10.10.10.63
 
 auto mgmt
@@ -2791,14 +2797,14 @@ iface vni20
 auto vlan10
 iface vlan10
     address 10.1.10.2/24
-    address-virtual 00:00:00:00:00:1a 10.1.10.1/24
+    address-virtual 00:00:00:00:00:10 10.1.10.1/24
     vlan-raw-device bridge
     vlan-id 10
 
 auto vlan20
 iface vlan20
     address 10.1.20.2/24
-    address-virtual 00:00:00:00:00:1a 10.1.20.1/24
+    address-virtual 00:00:00:00:00:20 10.1.20.1/24
     vlan-raw-device bridge
     vlan-id 20
 
@@ -2903,15 +2909,15 @@ iface vni20
 
 auto vlan10
 iface vlan10
-    address 10.1.10.2/24
-    address-virtual 00:00:00:00:00:1a 10.1.10.1/24
+    address 10.1.10.1/24
+    address-virtual 00:00:00:00:00:10 10.1.10.1/24
     vlan-raw-device bridge
     vlan-id 10
 
 auto vlan20
 iface vlan20
-    address 10.1.20.2/24
-    address-virtual 00:00:00:00:00:1a 10.1.20.1/24
+    address 10.1.20.1/24
+    address-virtual 00:00:00:00:00:20 10.1.20.1/24
     vlan-raw-device bridge
     vlan-id 20
 

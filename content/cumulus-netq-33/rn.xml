@@ -26,7 +26,7 @@
 </tr>
 <tr>
 <td>2551545</td>
-<td>Infra: Rarely, after a node is restarted, Kubernetes pods do not synchronize properly and the output of {{netq show opta-health}} shows failures. Node operation is not functionally impacted. You can safely remove the failures by running {{kubectl get pods | grep MatchNodeSelector | cut \-f1 \-d' ' | xargs kubectl delete pod}}. To work around the issue, do not label nodes using the API. Instead label nodes through local configuration using {{kubelet flag &quot;--node-labels&quot;}}.</td>
+<td>Infra: Rarely, after a node is restarted, Kubernetes pods do not synchronize properly and the output of {{netq show opta-health}} shows failures. Node operation is not functionally impacted. You can safely remove the failures by running {{kubectl get pods | grep MatchNodeSelector | cut \-f1 \-d' ' | xargs kubectl delete pod}}. To work around the issue, do not label nodes using the API. Instead label nodes through local configuration using {{kubelet flag "--node-labels"}}.</td>
 <td>3.1.0-3.3.1</td>
 <td></td>
 </tr>
@@ -61,36 +61,36 @@
 1. Open the _armel-netq-commands.yml_ file in the _/etc/netq/commands/_ directory for editing.
 2. Copy and append the following to the file:
 {code} 
-- service: &quot;inventory&quot;
+- service: "inventory"
     commands:
-      - key: &quot;os-release&quot;
-        command: &quot;cat /etc/os-release&quot;
+      - key: "os-release"
+        command: "cat /etc/os-release"
         isactive: true
-        parser: &quot;local&quot;
-      - key: &quot;eprom&quot;
-        command: &quot;/usr/cumulus/bin/decode-syseeprom -j&quot;
+        parser: "local"
+      - key: "eprom"
+        command: "/usr/cumulus/bin/decode-syseeprom -j"
         isactive: true
-        parser: &quot;local&quot;
-      - key: &quot;lscpu&quot;
-        command: &quot;/usr/bin/lscpu&quot;
+        parser: "local"
+      - key: "lscpu"
+        command: "/usr/bin/lscpu"
         isactive: true
-        parser: &quot;local&quot;
-      - key: &quot;meminfo&quot;
-        command: &quot;cat /proc/meminfo&quot;
+        parser: "local"
+      - key: "meminfo"
+        command: "cat /proc/meminfo"
         isactive: true
-        parser: &quot;local&quot;
-      - key: &quot;lsblk&quot;
-        command: &quot;lsblk -d -n -o name,size,type,vendor,tran,rev,model&quot;
+        parser: "local"
+      - key: "lsblk"
+        command: "lsblk -d -n -o name,size,type,vendor,tran,rev,model"
         isactive: true
-        parser: &quot;local&quot;
-      - key: &quot;dmicode&quot;
-        command: &quot;dmidecode -t 17&quot;
+        parser: "local"
+      - key: "dmicode"
+        command: "dmidecode -t 17"
         isactive: true
-        parser: &quot;local&quot;
-      - key: &quot;is-opta&quot;
-        command: &quot;cat /etc/app-release&quot;
+        parser: "local"
+      - key: "is-opta"
+        command: "cat /etc/app-release"
         isactive: true
-        parser: &quot;local&quot;
+        parser: "local"
 {code}
 3. Remove the existing generated command file.
 {code}
@@ -132,11 +132,11 @@ cumulus@switch:~$ netq config restart agent
 <td>NetQ UI: In multi-site on-premises deployments, when a new premises (created using the Premises card) is selected from the dropdown in the application header, the NetQ UI becomes unresponsive for many navigation tabs. To work around this issue, manually update the database as follows:
 # In a terminal window, open the database shell (cqlsh).
 {code}
-$ CASSANDRA_POD=&amp;apos;kubectl get pods | grep cassandra | cut -f1 -d&quot; &quot;&amp;apos; ; kubectl exec -it $CASSANDRA_POD -- cqlsh
+$ CASSANDRA_POD=&apos;kubectl get pods | grep cassandra | cut -f1 -d" "&apos; ; kubectl exec -it $CASSANDRA_POD -- cqlsh
 {code}
 # Display the premises table.
 {code}
-cqlsh&gt; select opid,name,namespace from master.premises ;
+cqlsh> select opid,name,namespace from master.premises ;
 {code}
 The resulting output would be similar to this, with new premises having an empty namespace:
 {code}
@@ -151,11 +151,11 @@ The resulting output would be similar to this, with new premises having an empty
 {code}
 # For each new premises, insert a _null_ value into the database to resolve the issue. For example the new premises _site3_ has an empty namespace value, run following query against its opid _20003_ to change the value.
 {code}
-cqlsh&gt; insert into master.premises (opid,namespace) values (20003,null);
+cqlsh> insert into master.premises (opid,namespace) values (20003,null);
 {code}
 # Verify the new premises now have null values in the database.
 {code}
-cqlsh&gt; select opid,name,namespace from master.premises ;
+cqlsh> select opid,name,namespace from master.premises ;
  opid  | name  | namespace
 -------+-------+-----------
  20001 | site1 |      null
@@ -196,23 +196,23 @@ kubectl edit netquis netqui
 # Locate the _misc_ section. For example:
 {code}
 misc:
-  cassandraReconnectLogOnly: &quot;true&quot;
+  cassandraReconnectLogOnly: "true"
   clusterName: netq
   forgotPasswordLink: /link/to/set/password
   ...
-  smtpSSL: &quot;true&quot;
-  tlsEnabled: &quot;true&quot;
+  smtpSSL: "true"
+  tlsEnabled: "true"
 {code}
 # Add the {{document_namespace}} parameter below the {{tlsEnabled}} parameter.
 {code}
 misc:
-  cassandraReconnectLogOnly: &quot;true&quot;
+  cassandraReconnectLogOnly: "true"
   clusterName: netq
   forgotPasswordLink: /link/to/set/password
   ...
-  smtpSSL: &quot;true&quot;
-  tlsEnabled: &quot;true&quot;
-  document_namespace: &quot;default&quot;
+  smtpSSL: "true"
+  tlsEnabled: "true"
+  document_namespace: "default"
 {code}
 # Save the file.</td>
 <td>3.3.0</td>
@@ -246,36 +246,36 @@ misc:
 1. Open the _armel-netq-commands.yml_ file in the _/etc/netq/commands/_ directory for editing.
 2. Copy and append the following to the file:
 {code} 
-- service: &quot;inventory&quot;
+- service: "inventory"
     commands:
-      - key: &quot;os-release&quot;
-        command: &quot;cat /etc/os-release&quot;
+      - key: "os-release"
+        command: "cat /etc/os-release"
         isactive: true
-        parser: &quot;local&quot;
-      - key: &quot;eprom&quot;
-        command: &quot;/usr/cumulus/bin/decode-syseeprom -j&quot;
+        parser: "local"
+      - key: "eprom"
+        command: "/usr/cumulus/bin/decode-syseeprom -j"
         isactive: true
-        parser: &quot;local&quot;
-      - key: &quot;lscpu&quot;
-        command: &quot;/usr/bin/lscpu&quot;
+        parser: "local"
+      - key: "lscpu"
+        command: "/usr/bin/lscpu"
         isactive: true
-        parser: &quot;local&quot;
-      - key: &quot;meminfo&quot;
-        command: &quot;cat /proc/meminfo&quot;
+        parser: "local"
+      - key: "meminfo"
+        command: "cat /proc/meminfo"
         isactive: true
-        parser: &quot;local&quot;
-      - key: &quot;lsblk&quot;
-        command: &quot;lsblk -d -n -o name,size,type,vendor,tran,rev,model&quot;
+        parser: "local"
+      - key: "lsblk"
+        command: "lsblk -d -n -o name,size,type,vendor,tran,rev,model"
         isactive: true
-        parser: &quot;local&quot;
-      - key: &quot;dmicode&quot;
-        command: &quot;dmidecode -t 17&quot;
+        parser: "local"
+      - key: "dmicode"
+        command: "dmidecode -t 17"
         isactive: true
-        parser: &quot;local&quot;
-      - key: &quot;is-opta&quot;
-        command: &quot;cat /etc/app-release&quot;
+        parser: "local"
+      - key: "is-opta"
+        command: "cat /etc/app-release"
         isactive: true
-        parser: &quot;local&quot;
+        parser: "local"
 {code}
 3. Remove the existing generated command file.
 {code}
@@ -323,11 +323,11 @@ cumulus@switch:~$ netq config restart agent
 <td>NetQ UI: In multi-site on-premises deployments, when a new premises (created using the Premises card) is selected from the dropdown in the application header, the NetQ UI becomes unresponsive for many navigation tabs. To work around this issue, manually update the database as follows:
 # In a terminal window, open the database shell (cqlsh).
 {code}
-$ CASSANDRA_POD=&amp;apos;kubectl get pods | grep cassandra | cut -f1 -d&quot; &quot;&amp;apos; ; kubectl exec -it $CASSANDRA_POD -- cqlsh
+$ CASSANDRA_POD=&apos;kubectl get pods | grep cassandra | cut -f1 -d" "&apos; ; kubectl exec -it $CASSANDRA_POD -- cqlsh
 {code}
 # Display the premises table.
 {code}
-cqlsh&gt; select opid,name,namespace from master.premises ;
+cqlsh> select opid,name,namespace from master.premises ;
 {code}
 The resulting output would be similar to this, with new premises having an empty namespace:
 {code}
@@ -342,11 +342,11 @@ The resulting output would be similar to this, with new premises having an empty
 {code}
 # For each new premises, insert a _null_ value into the database to resolve the issue. For example the new premises _site3_ has an empty namespace value, run following query against its opid _20003_ to change the value.
 {code}
-cqlsh&gt; insert into master.premises (opid,namespace) values (20003,null);
+cqlsh> insert into master.premises (opid,namespace) values (20003,null);
 {code}
 # Verify the new premises now have null values in the database.
 {code}
-cqlsh&gt; select opid,name,namespace from master.premises ;
+cqlsh> select opid,name,namespace from master.premises ;
  opid  | name  | namespace
 -------+-------+-----------
  20001 | site1 |      null
@@ -377,7 +377,7 @@ cumulus@switch:~$ netq config restart agent
 </tr>
 <tr>
 <td>2556015</td>
-<td>NetQ Infra: When adding a data source with the Grafana plugin, an error message appears &quot;Cannot read property 'status' of undefined&quot; implying the data source is not added when, in fact, it has been. Ignore the error and continue with configuring the plugin.</td>
+<td>NetQ Infra: When adding a data source with the Grafana plugin, an error message appears "Cannot read property 'status' of undefined" implying the data source is not added when, in fact, it has been. Ignore the error and continue with configuring the plugin.</td>
 <td>3.3.0</td>
 <td>3.3.1</td>
 </tr>
@@ -395,23 +395,23 @@ kubectl edit netquis netqui
 # Locate the _misc_ section. For example:
 {code}
 misc:
-  cassandraReconnectLogOnly: &quot;true&quot;
+  cassandraReconnectLogOnly: "true"
   clusterName: netq
   forgotPasswordLink: /link/to/set/password
   ...
-  smtpSSL: &quot;true&quot;
-  tlsEnabled: &quot;true&quot;
+  smtpSSL: "true"
+  tlsEnabled: "true"
 {code}
 # Add the {{document_namespace}} parameter below the {{tlsEnabled}} parameter.
 {code}
 misc:
-  cassandraReconnectLogOnly: &quot;true&quot;
+  cassandraReconnectLogOnly: "true"
   clusterName: netq
   forgotPasswordLink: /link/to/set/password
   ...
-  smtpSSL: &quot;true&quot;
-  tlsEnabled: &quot;true&quot;
-  document_namespace: &quot;default&quot;
+  smtpSSL: "true"
+  tlsEnabled: "true"
+  document_namespace: "default"
 {code}
 # Save the file.</td>
 <td>3.3.0</td>
@@ -455,7 +455,7 @@ misc:
 </tr>
 <tr>
 <td>2551545</td>
-<td>Infra: Rarely, after a node is restarted, Kubernetes pods do not synchronize properly and the output of {{netq show opta-health}} shows failures. Node operation is not functionally impacted. You can safely remove the failures by running {{kubectl get pods | grep MatchNodeSelector | cut \-f1 \-d' ' | xargs kubectl delete pod}}. To work around the issue, do not label nodes using the API. Instead label nodes through local configuration using {{kubelet flag &quot;--node-labels&quot;}}.</td>
+<td>Infra: Rarely, after a node is restarted, Kubernetes pods do not synchronize properly and the output of {{netq show opta-health}} shows failures. Node operation is not functionally impacted. You can safely remove the failures by running {{kubectl get pods | grep MatchNodeSelector | cut \-f1 \-d' ' | xargs kubectl delete pod}}. To work around the issue, do not label nodes using the API. Instead label nodes through local configuration using {{kubelet flag "--node-labels"}}.</td>
 <td>3.1.0-3.3.1</td>
 <td></td>
 </tr>

@@ -33,30 +33,30 @@
 <tr>
 <td>2549721</td>
 <td>When installing NetQ on switches running in Cumulus Linux 3.7.x  with management VRF configured, the CLI and Agent server are configured as follows:
-
-netq config add cli server [ipaddr] vrf mgmt
+&lt;pre&gt;
+netq config add cli server &lt;ipaddr&gt; vrf mgmt
 netq config restart cli
 
-netq config add agent server [ipaddr] vrf mgmt
+netq config add agent server &lt;ipaddr&gt; vrf mgmt
 netq config restart agent
-
+&lt;/pre&gt;
 This results in {{netqd}} running in both default and management VRF and the NetQ Agent running in default VRF. In this scenario, the NetQ Agent status is not reported correctly to the management VRF. To workaround this issue: 
 
 
 If you have management VRF configured, run the following commands:
-
+&lt;pre&gt;
 systemctl stop netqd.service
 systemctl disable netqd.service
 systemctl enable netqd@mgmt.service
 systemctl restart netqd@mgmt.service
-
+&lt;/pre&gt;
 If you have default VRF configured, run the following commands:
-
+&lt;pre&gt;
 systemctl stop netqd@mgmt.service
 systemctl disable netqd@mgmt.service
 systemctl enable netqd.service
 systemctl restart netqd.service
-
+&lt;/pre&gt;
 </td>
 <td>3.0.0-3.0.1</td>
 <td>3.1.0-3.3.1</td>

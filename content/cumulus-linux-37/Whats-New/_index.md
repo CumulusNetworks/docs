@@ -10,6 +10,10 @@ This document supports the Cumulus Linux 3.7 releases, and lists new platforms a
 - For a list of open and fixed issues in Cumulus Linux 3.7, see the {{<link url="Cumulus-Linux-3.7-Release-Notes" text="Cumulus Linux 3.7 Release Notes">}}.
 - To upgrade to a Cumulus Linux 3.7 release, follow the steps in {{<link url="Upgrading-Cumulus-Linux">}}.
 
+## What's New in Cumulus Linux 3.7.14.2
+
+Cumulus Linux 3.7.14.2 contains bug fixes and security fixes.
+
 ## What's New in Cumulus Linux 3.7.14
 
 Cumulus Linux 3.7.14 contains bug fixes and security fixes.
@@ -134,8 +138,7 @@ Cumulus Linux 3.7.3 supports new platforms, provides bug fixes, and contains sev
 
 ### New Features and Enhancements
 
-- The {{<link url="Ethernet-Virtual-Private-Network-EVPN#freeze-a-detected-duplicate-address" text="EVPN duplicate address detection freeze option">}} lets you freeze a duplicate address permanently or for a certain amount of time
-- {{<link url="Cumulus-Hyperconverged-Solution-with-Nutanix" text="The Cumulus Hyperconverged Solution (HCS)">}} supports automated integration with the Nutanix Prism Management solution and the Nutanix AHV hypervisor
+- The {{<link url="Ethernet-Virtual-Private-Network-EVPN#freeze-a-detected-duplicate-address" text="EVPN duplicate address detection freeze option">}} lets you freeze a duplicate address permanently or for a certain amount of time.
 
 ## What's New in Cumulus Linux 3.7.2
 

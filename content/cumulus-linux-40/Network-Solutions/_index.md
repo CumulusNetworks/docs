@@ -4,4 +4,4 @@ author: NVIDIA
 weight: 1130
 toc: 2
 ---
-This section discusses the various architectures and strategies available with Cumulus Linux, provides demos from our Services team to help you build virtual simulations of production networks and validate configurations, and describes different solutions, such as Cumulus Hyperconverged Solution (HCS) and RDMA over Converged Ethernet (RoCE).
+This section discusses the various architectures and strategies available with Cumulus Linux and describes different solutions, such as RDMA over Converged Ethernet (RoCE).

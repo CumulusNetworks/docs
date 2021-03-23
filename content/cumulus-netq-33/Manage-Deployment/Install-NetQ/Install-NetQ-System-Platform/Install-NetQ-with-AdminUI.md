@@ -163,7 +163,7 @@ Use the private IP addresses that you assigned to the nodes being used as worker
 
 {{<figure src="/images/netq/adminui-cluster-config-330.png" width="600">}}
 
-Click **Add Worker Node**. Enter the private IP address for the first worker node. Click **Add**.
+Click **Add Worker Node**. Enter the unique private IP address for the first worker node. It cannot be the same as the master node or other worker nodes. Click **Add**.
 
 {{<figure src="/images/netq/adminui-cluster-config-add-worker-320.png" width="400">}}
 
@@ -236,4 +236,6 @@ When the installation and activation is complete, the NetQ System Health dashboa
 
 {{<figure src="/images/netq/adminui-health-standalone-cloud-330.png" width="700" caption="Remote-hosted, mulit-site or cloud, deployment">}}
 
-Click **Open NetQ** to enter the NetQ application.
+If you have deployed an on-premises solution, you can add a custom signed certificate. Refer to {{<link title="Post Installation Configuration Options/#install-a-custom-signed-certificate" text="Install a Certificate">}} for instructions.
+
+Click **Open NetQ** to enter the NetQ UI application.

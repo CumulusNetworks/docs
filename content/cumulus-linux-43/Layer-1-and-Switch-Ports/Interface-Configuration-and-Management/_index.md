@@ -346,7 +346,7 @@ iface bridge
     bridge-ports swp1 swp2
     bridge-vids 1-100
     bridge-pvid 1
-    bridge-stp on</code></pre></td>
+    bridge-stp on
 ```
 
 In the following example, swp1.100 and swp2.100 do not need an entry in the `interfaces` file. The following stanzas defined in `/etc/network/interfaces` provide the exact same configuration:
@@ -576,9 +576,9 @@ iface swp1
 {{%notice note%}}
 
 You can specify both IPv4 and IPv6 addresses for the same interface.
-
+<!-- vale off -->
 For IPv6 addresses, you can create or modify the IP address for an interface using either `::` or `0:0:0` notation. Both of the following examples are valid:
-
+<!-- vale on -->
 ```
 cumulus@switch:~$ net add bgp neighbor 2620:149:43:c109:0:0:0:5 remote-as internal
 cumulus@switch:~$ net add interface swp1 ipv6 address 2001:DB8::1/126
@@ -1139,9 +1139,9 @@ cumulus@switch$ ip link show swp1
 {{< /tab >}}
 
 {{< /tabs >}}
-
+<!-- vale off -->
 Interface descriptions also appear in the {{<link url="Simple-Network-Management-Protocol-SNMP" text="SNMP">}} OID {{<exlink url="https://cumulusnetworks.com/static/mibs/IF-MIB.txt" text="IF-MIB::ifAlias">}}.
-
+<!-- vale on -->
 {{%notice note%}}
 
 - Aliases are limited to 256 characters.
@@ -1209,6 +1209,7 @@ cumulus@switch:~$ sudo systemctl restart networking.service
 
 ## Related Information
 
+- {{<link url="Troubleshoot-Layer-1">}}
 - {{<exlink url="http://wiki.debian.org/NetworkConfiguration" text="Debian - Network Configuration">}}
 - {{<exlink url="http://www.linuxfoundation.org/collaborate/workgroups/networking/bonding" text="Linux Foundation - Bonds">}}
 - {{<exlink url="http://www.linuxfoundation.org/collaborate/workgroups/networking/vlan" text="Linux Foundation - VLANs">}}

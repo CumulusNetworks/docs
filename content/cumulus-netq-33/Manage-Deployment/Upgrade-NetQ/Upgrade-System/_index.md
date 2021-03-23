@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 410
 toc: 4
 ---
-The first step in upgrading your NetQ 2.4.1 - 3.2.1 installation to NetQ 3.3.0 is to upgrade your NetQ appliance(s) or VM(s). This topic describes how to upgrade this for both on-premises and remote deployments.
+The first step in upgrading your NetQ 2.4.1 - 3.3.0 installation to NetQ 3.3.1 is to upgrade your NetQ appliance(s) or VM(s). This topic describes how to upgrade this for both on-premises and remote deployments.
 
 ## Prepare for Upgrade
 
@@ -22,7 +22,7 @@ To complete the preparation:
 
 2. Download the relevant software.
 
-    {{<netq-install/upgrade-image version="3.3.0">}}
+    {{<netq-install/upgrade-image version="3.3.1">}}
 
 3. Copy the file to the `/mnt/installables/` directory on your appliance or VM.
 
@@ -59,11 +59,11 @@ To complete the preparation:
     ...
     Fetched 39.8 MB in 3s (13.5 MB/s)
     ...
-    Unpacking netq-agent (3.3.0-ub18.04u31~1603789872.6f62fad) ...
+    Unpacking netq-agent (3.3.1-ub18.04u33~1614767175.886b337) ...
     ...
-    Unpacking netq-apps (3.3.0-ub18.04u31~1603789872.6f62fad) ...
-    Setting up netq-apps (3.3.0-ub18.04u31~1603789872.6f62fad) ...
-    Setting up netq-agent (3.3.0-ub18.04u31~1603789872.6f62fad) ...
+    Unpacking netq-apps (3.3.1-ub18.04u33~1614767175.886b337) ...
+    Setting up netq-apps (3.3.1-ub18.04u33~1614767175.886b337) ...
+    Setting up netq-agent (3.3.1-ub18.04u33~1614767175.886b337) ...
     Processing triggers for rsyslog (8.32.0-1ubuntu4) ...
     Processing triggers for man-db (2.8.3-2ubuntu0.1) ...
     ``````
@@ -214,8 +214,8 @@ To upgrade your NetQ software:
 {{< tab "On-premises Deployments" >}}
 
 ```
-cumulus@<hostname>:~$ netq bootstrap master upgrade /mnt/installables/NetQ-3.3.0.tgz
-2020-04-28 15:39:37.016710: master-node-installer: Extracting tarball /mnt/installables/NetQ-3.3.0.tgz
+cumulus@<hostname>:~$ netq bootstrap master upgrade /mnt/installables/NetQ-3.3.1.tgz
+2020-04-28 15:39:37.016710: master-node-installer: Extracting tarball /mnt/installables/NetQ-3.3.1.tgz
 2020-04-28 15:44:48.188658: master-node-installer: Upgrading NetQ Admin container
 2020-04-28 15:47:35.667579: master-node-installer: Removing old images
 -----------------------------------------------
@@ -227,7 +227,7 @@ Successfully bootstrap-upgraded the master node
 {{< tab "Remote Deployments" >}}
 
 ```
-netq bootstrap master upgrade /mnt/installables/NetQ-3.3.0-opta.tgz
+netq bootstrap master upgrade /mnt/installables/NetQ-3.3.1-opta.tgz
 ```
 
 {{< /tab >}}
@@ -246,7 +246,7 @@ netq bootstrap master upgrade /mnt/installables/NetQ-3.3.0-opta.tgz
 
 4. Click **Upgrade**.
 
-5. Enter *NetQ-3.3.0.tgz* or *NetQ-3.3.0-opta.tgz* and click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/50-Navigate/navigation-right-circle-1_1.svg" height="18" width="18"/>.
+5. Enter *NetQ-3.3.1.tgz* or *NetQ-3.3.1-opta.tgz* and click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/50-Navigate/navigation-right-circle-1_1.svg" height="18" width="18"/>.
 
     {{<figure src="/images/netq/adminui-upgrade-enter-tar-330.png" width="700">}}
 
@@ -275,7 +275,7 @@ To upgrade:
 {{< tab "On-premises Deployments" >}}
 
 ```
-netq upgrade bundle /mnt/installables/NetQ-3.3.0.tgz
+netq upgrade bundle /mnt/installables/NetQ-3.3.1.tgz
 ```
 
 {{< /tab >}}
@@ -283,7 +283,7 @@ netq upgrade bundle /mnt/installables/NetQ-3.3.0.tgz
 {{< tab "Cloud Deployments" >}}
 
 ```
-netq upgrade bundle /mnt/installables/NetQ-3.3.0-opta.tgz
+netq upgrade bundle /mnt/installables/NetQ-3.3.1-opta.tgz
 ```
 
 {{< /tab >}}
@@ -294,7 +294,7 @@ netq upgrade bundle /mnt/installables/NetQ-3.3.0-opta.tgz
 
     ```
     cumulus@<hostname>:~$ cat /etc/app-release
-    BOOTSTRAP_VERSION=3.3.0
+    BOOTSTRAP_VERSION=3.3.1
     APPLIANCE_MANIFEST_HASH=74ac3017d5
-    APPLIANCE_VERSION=3.3.0
+    APPLIANCE_VERSION=3.3.1
     ```

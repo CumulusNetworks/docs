@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 330
 toc: 5
 ---
-After installing your NetQ software and the NetQ 3.2.1 Agent on each switch you want to monitor, you can also install the NetQ CLI on switches running:
+After installing your NetQ software and the NetQ {{<version>}} Agent on each switch you want to monitor, you can also install the NetQ CLI on switches running:
 
 - Cumulus Linux version 3.3.2-3.7.x
 - Cumulus Linux version 4.0.0 and later
@@ -32,7 +32,7 @@ Edit the `/etc/apt/sources.list` file to add the repository for NetQ.
 ```
 cumulus@switch:~$ sudo nano /etc/apt/sources.list
 ...
-deb http://apps3.cumulusnetworks.com/repos/deb CumulusLinux-3 netq-3.2
+deb http://apps3.cumulusnetworks.com/repos/deb CumulusLinux-3 netq-3.3
 ...
 ```
 
@@ -47,7 +47,7 @@ The repository <code>deb http://apps3.cumulusnetworks.com/repos/deb CumulusLinux
 ```
 cumulus@switch:~$ sudo nano /etc/apt/sources.list
 ...
-deb http://apps3.cumulusnetworks.com/repos/deb CumulusLinux-4 netq-3.2
+deb http://apps3.cumulusnetworks.com/repos/deb CumulusLinux-4 netq-3.3
 ...
 ```
 
@@ -72,7 +72,7 @@ The repository <code>deb http://apps3.cumulusnetworks.com/repos/deb CumulusLinux
     cumulus@switch:~$ dpkg-query -W -f '${Package}\t${Version}\n' netq-agent
     ```
 
-    {{<netq-install/cli-version version="3.2.1" opsys="cl">}}
+    {{<netq-install/cli-version version="3.3.1" opsys="cl">}}
 
 4. Continue with NetQ CLI configuration in the next section.
 

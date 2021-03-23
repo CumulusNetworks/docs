@@ -464,14 +464,6 @@ However, when you manually define a log target with the `log file
 
 {{%/notice%}}
 
-## Obfuscated Passwords
-
-In FRRouting, Cumulus Linux stores obfuscated passwords for BGP and OSPF
-(ISIS, OSPF area, and BGP neighbor passwords). All passwords in
-configuration files and those displayed in show commands are obfuscated.
-The obfuscation algorithm protects passwords from casual viewing. The
-system can retrieve the original password when needed.
-
 ## Related Information
 
   - [FRR BGP documentation](http://docs.frrouting.org/en/latest/bgp.html)

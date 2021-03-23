@@ -37,7 +37,7 @@ To configure the HTTP API services, edit the `/etc/nginx/sites-available/nginx-r
 
 ### IP and Port Settings
 
-You can modify the IP:port combinations to which services listen by changing the parameters of the `listen` directive(s). By default, `nginx-restapi.conf` has only one `listen` parameter.
+You can modify the IP:port combinations to which services listen by changing the parameters of the `listen` directives. By default, `nginx-restapi.conf` has only one `listen` parameter.
 
 {{%notice note%}}
 
@@ -66,9 +66,9 @@ For step by step documentation for generating self-signed certificates and keys,
 Do not copy the `cumulus.pem` or `cumulus.key` files. After installation, edit the `ssl_certificate` and `ssl_certificate_key` values in the configuration file for your hardware.
 
 {{%/notice%}}
-
+<!-- vale off -->
 ### cURL Examples
-
+<!-- vale on --> 
 This section includes several example cURL commands you can use to send HTTP requests to a host. The following settings are used for these examples:
 
 - Username: `user`

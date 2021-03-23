@@ -33,7 +33,8 @@ cumulus@switch:~$ net commit
 
 {{%notice note%}}
 
-{{<link url="Buffer-and-Queue-Management#link-pause" text="Link pause">}} is another way to provide lossless ethernet; however, PFC is the preferred method. PFC allows more granular control by pausing the traffic flow for a given CoS group instead of the entire link.
+- {{<link url="Buffer-and-Queue-Management#link-pause" text="Link pause">}} is another way to provide lossless ethernet; however, PFC is the preferred method. PFC allows more granular control by pausing the traffic flow for a given CoS group instead of the entire link.
+- RoCEv1 depends on 802.1p fields for traffic classification; therefore it is not supported with access ports. Use trunk ports with RoCEv1.
 
 {{%/notice%}}
 

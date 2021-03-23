@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 300
 toc: 5
 ---
-After installing your NetQ software, you should install the NetQ 3.2.1 Agent on each server you want to monitor. NetQ Agents can be installed on servers running:
+After installing your NetQ software, you should install the NetQ {{<version>}} Agent on each server you want to monitor. NetQ Agents can be installed on servers running:
 
 - Ubuntu 16.04
 - Ubuntu 18.04 (NetQ 2.2.2 and later)
@@ -223,7 +223,7 @@ To install the NetQ Agent:
     root@ubuntu:~# dpkg-query -W -f '${Package}\t${Version}\n' netq-agent
     ```
 
-    {{<netq-install/agent-version version="3.2.1" opsys="ub">}}
+    {{<netq-install/agent-version version="3.3.1" opsys="ub">}}
 
 3. Restart `rsyslog` so log files are sent to the correct destination.
 

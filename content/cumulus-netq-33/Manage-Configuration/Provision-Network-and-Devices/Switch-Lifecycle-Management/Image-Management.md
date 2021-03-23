@@ -143,11 +143,13 @@ For *NetQ* images:
 If you have already specified a default image, you must click <strong>Manage</strong> and then <strong>Missing</strong> to see the missing images.
     {{</notice>}}</div>
 
-3. Select one or all of the missing images and make note of the OS version, CPU architecture, and image type. Remember that you need both image types for NetQ to perform the installation or upgrade.
+3. Select one or all of the missing images and make note of the OS version, CPU architecture, and image type. Remember that you need both `netq-apps` and `neta-agent` for NetQ to perform the installation or upgrade.
 
     {{<figure src="/images/netq/lcm-netq-images-missing-list-310.png" width="700">}}
 
-4. Download the NetQ debian packages needed for upgrade from the {{<exlink url="https://cumulusnetworks.com/downloads/#product=NetQ" text="Cumulus Downloads page">}}, selecting the appropriate version and hypervisor/platform. Place them in an accessible part of your local network.
+4. Download the NetQ debian packages needed for upgrade from the {{<exlink url="http://apps3.cumulusnetworks.com/repos/deb/pool/netq-3.3/p/python-netq/" text="NetQ repository">}}, selecting the appropriate OS version and architecture. Place the files in an accessible part of your local network.
+
+    {{<figure src="/images/netq/lcm-import-netq-image-repo-330.png" width="400">}}
 
 5. Back in the UI, click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18">}} (Add Image) above the table.
 
@@ -181,10 +183,12 @@ If you have already specified a default image, you must click <strong>Manage</st
 
 1. Download the NetQ debian packages needed for upgrade from the {{<exlink url="https://cumulusnetworks.com/downloads/#product=NetQ" text="Cumulus Downloads page">}}, selecting the appropriate version and hypervisor/platform. Place them in an accessible part of your local network.
 
-2. Upload the images to the LCM repository. This example uploads the two packages (`netq-agent` and `netq-apps`) needed for NetQ version 3.2.0 for a NetQ appliance or VM running Ubuntu 18.04 with an x86 architecture.
+2. Upload the images to the LCM repository. This example uploads the two packages (`netq-agent` and `netq-apps`) needed for NetQ version 3.3.1 for a NetQ appliance or VM running Ubuntu 18.04 with an x86 architecture.
 
-       cumulus@switch:~$ netq lcm add netq-image /path/to/download/netq-agent_3.3.0-cl4u32_1609391187.7df4e1d2_amd64
-       cumulus@switch:~$ netq lcm add netq-image /path/to/download/netq-apps_3.3.0-cl4u32_1609391187.7df4e1d2_amd64
+    ```
+    cumulus@switch:~$ netq lcm add netq-image /path/to/download/netq-agent_3.3.1-ub18.04u33~1614767175.886b337_amd64.deb
+    cumulus@switch:~$ netq lcm add netq-image /path/to/download/netq-apps_3.3.1-ub18.04u33~1614767175.886b337_amd64.deb
+    ```
 
 {{< /tab >}}
 
@@ -194,7 +198,7 @@ If you have already specified a default image, you must click <strong>Manage</st
 
 To upload the Cumulus Linux or NetQ images that you want to use for upgrade:
 
-First download the Cumulus Linux disk images (*.bin* files) and NetQ debian packages needed for upgrade from the {{<exlink url="https://cumulusnetworks.com/downloads/" text="Cumulus Downloads page">}}. Place them in an accessible part of your local network.
+First download the Cumulus Linux disk images (*.bin* files) and NetQ debian packages needed for upgrade from the {{<exlink url="https://cumulusnetworks.com/downloads/" text="Cumulus Downloads page">}} and {{<exlink url="http://apps3.cumulusnetworks.com/repos/deb/pool/netq-3.3/p/python-netq/" text="NetQ repository">}}, respectively. Place them in an accessible part of your local network.
 
 If you are upgrading Cumulus Linux on switches with different ASIC vendors or CPU architectures, you will need more than one image. For NetQ, you need both the `netq-apps` and `netq-agent` packages for each variant.
 
@@ -237,10 +241,10 @@ cumulus@switch:~$ netq lcm add image /path/to/download/cumulus-linux-4.2.0-mlx-a
 ```
 
 NetQ images:
-<!-- get new image names -->
+
 ```
-cumulus@switch:~$ netq lcm add image /path/to/download/netq-agent_3.2.0-ub18.04u30~1601400975.104fb9e_amd64
-cumulus@switch:~$ netq lcm add image /path/to/download/netq-apps_3.2.0-ub18.04u30~1601400975.104fb9e_amd64
+cumulus@switch:~$ netq lcm add image /path/to/download/	netq-agent_3.3.1-ub18.04u33~1614767175.886b337_amd64.deb
+cumulus@switch:~$ netq lcm add image /path/to/download/netq-apps_3.3.1-ub18.04u33~1614767175.886b337_amd64.deb
 ```
 
 {{< /tab >}}

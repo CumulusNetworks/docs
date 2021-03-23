@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 290
 toc: 5
 ---
-After installing your NetQ software, you should install the NetQ 3.2.1 Agents on each switch you want to monitor. NetQ Agents can be installed on switches running:
+After installing your NetQ software, you should install the NetQ {{<version>}} Agents on each switch you want to monitor. NetQ Agents can be installed on switches running:
 
 - Cumulus Linux version 3.3.2-3.7.x
 - Cumulus Linux version 4.0.0 and later
@@ -63,7 +63,7 @@ Edit the `/etc/apt/sources.list` file to add the repository for NetQ.
 ```
 cumulus@switch:~$ sudo nano /etc/apt/sources.list
 ...
-deb http://apps3.cumulusnetworks.com/repos/deb CumulusLinux-3 netq-3.2
+deb http://apps3.cumulusnetworks.com/repos/deb CumulusLinux-3 netq-{{<version>}}
 ...
 ```
 
@@ -80,7 +80,7 @@ Add the repository:
 ```
 cumulus@switch:~$ sudo nano /etc/apt/sources.list
 ...
-deb http://apps3.cumulusnetworks.com/repos/deb CumulusLinux-4 netq-3.2
+deb http://apps3.cumulusnetworks.com/repos/deb CumulusLinux-4 netq-{{<version>}}
 ...
 ```
 
@@ -117,7 +117,7 @@ To install the NetQ Agent:
     cumulus@switch:~$ dpkg-query -W -f '${Package}\t${Version}\n' netq-agent
     ```
 
-    {{<netq-install/agent-version version="3.2.1" opsys="cl">}}
+    {{<netq-install/agent-version version="3.3.1" opsys="cl">}}
 
 3. Restart `rsyslog` so log files are sent to the correct destination.
 

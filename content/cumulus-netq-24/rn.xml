@@ -61,7 +61,7 @@
 </tr>
 <tr>
 <td>2545119</td>
-<td>NetQ UI and CLI: EVPN failure details do not appear in the full screen EVPN Service card or when running &amp;apos;netq show validation results type evpn&amp;apos; in the NetQ CLI, even though the EVPN failure is seen on validation.</td>
+<td>NetQ UI and CLI: EVPN failure details do not appear in the full screen EVPN Service card or when running &apos;netq show validation results type evpn&apos; in the NetQ CLI, even though the EVPN failure is seen on validation.</td>
 <td>2.3.1-2.4.0</td>
 </tr>
 </table>
@@ -110,7 +110,7 @@
 </tr>
 <tr>
 <td>2545119</td>
-<td>NetQ UI and CLI: EVPN failure details do not appear in the full screen EVPN Service card or when running &amp;apos;netq show validation results type evpn&amp;apos; in the NetQ CLI, even though the EVPN failure is seen on validation.</td>
+<td>NetQ UI and CLI: EVPN failure details do not appear in the full screen EVPN Service card or when running &apos;netq show validation results type evpn&apos; in the NetQ CLI, even though the EVPN failure is seen on validation.</td>
 <td>2.3.1-2.4.0</td>
 <td>2.4.1</td>
 </tr>
@@ -150,8 +150,8 @@ cumulus@opta:~$ tar -xvzf /home/cumulus/NetQ-2.3.1.1.tgz update-app.sh
 {noformat}
 cumulus@opta:~$ ./update-app.sh /home/cumulus/NetQ-2.3.1.1.tgz
 Loading the new app
-e9b2c1648ab5: Loading layer [==================================================&gt;]  2.048kB/2.048kB
-e7acfa3378f4: Loading layer [==================================================&gt;]  20.59MB/20.59MB
+e9b2c1648ab5: Loading layer [==================================================>]  2.048kB/2.048kB
+e7acfa3378f4: Loading layer [==================================================>]  20.59MB/20.59MB
 ...
 Loaded image: 498186410471.dkr.ecr.us-west-2.amazonaws.com/netq-gui:2.3.1
 Restarting the app with new image

@@ -8,7 +8,7 @@ toc: 1
 type: rn
 pdfhidden: True
 ---
-<a href="/cumulus-netq-31/rn.xls"><img src="/images/xls_icon.png" height="20px" width="20px" alt="Download 3.1 Release Notes xls" /></a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="/cumulus-netq-31/rn.xls">Download all 3.1 release notes as .xls</a>
+<a href="/cumulus-netq-31/rn.xls"><img src={"/images/xls_icon.png" | absURL} height="20px" width="20px" alt="Download 3.1 Release Notes xls" /></a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="/cumulus-netq-31/rn.xls">Download all 3.1 release notes as .xls</a>
 ## 3.1.0 Release Notes
 ### Open issues in 3.1.0
 

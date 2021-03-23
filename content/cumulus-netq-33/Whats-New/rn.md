@@ -8,7 +8,7 @@ toc: 1
 type: rn
 pdfhidden: True
 ---
-<a href="/cumulus-netq-33/rn.xls"><img src={"/images/xls_icon.png" | absURL} height="20px" width="20px" alt="Download 3.3 Release Notes xls" /></a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="/cumulus-netq-33/rn.xls">Download all 3.3 release notes as .xls</a>
+<a href="/cumulus-netq-33/rn.xls"><img src={"images/xls_icon.png" | absURL} height="20px" width="20px" alt="Download 3.3 Release Notes xls" /></a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="/cumulus-netq-33/rn.xls">Download all 3.3 release notes as .xls</a>
 ## 3.3.1 Release Notes
 ### Open issues in 3.3.1
 

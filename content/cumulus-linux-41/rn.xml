@@ -8,7 +8,7 @@
 </tr>
 <tr>
 <td>CM-30832</td>
-<td>&lt;p&gt;The Mellanox SN2700 and SN2410 switch intermittently reports PSU fan state changes with Unable to read from device/fan1_input/pwm1 syslog messages.&lt;/p&gt;</td>
+<td>&lt;p&gt;The Mellanox SN2700 and SN2410 switch intermittently reports PSU fan state changes with &lt;tt&gt;Unable to read from device/fan1_input/pwm1&lt;/tt&gt; syslog messages.&lt;/p&gt;</td>
 <td>3.7.11-3.7.14, 4.1.1-4.2.1</td>
 <td>3.7.14.2, 4.3.0</td>
 </tr>
@@ -21,15 +21,15 @@
 <tr>
 <td>CM-21678</td>
 <td>&lt;p&gt;On a Dell switch with a Maverick ASIC, NetQ might receive false alerts like the following via PagerDuty: &lt;/p&gt;
- 
- 
+ &lt;div class="code panel" style="border-width: 1px;"&gt;&lt;div class="codeContent panelContent"&gt;
+&lt;pre class="code-java"&gt; 
  cumulus@&lt;span class="code-keyword"&gt;switch&lt;/span&gt;:~$ netq show sensors temp changes | grep absent | grep -v psu 
  P2Leaf01 temp9 networking asic die temp sensor absent 43 105 100 5 Unable to find driver path: /cumulu Add 7d:22h:1m:41s 
  P2Leaf01 temp6 networking asic die temp sensor absent 45 105 100 5 Unable to find driver path: /cumulu Add 7d:22h:1m:41s 
  P2Leaf01 temp6 networking asic die temp sensor absent 47 105 100 5 Unable to read temp4_highest Add 9d:23h:26m:6s 
  P2Leaf01 temp6 networking asic die temp sensor absent 45 105 100 5 Unable to read temp4_highest Add 14d:22h:46m:45s 
- 
- 
+ &lt;/pre&gt;
+&lt;/div&gt;&lt;/div&gt; 
 &lt;p&gt; This message might occur as a result of a timeout at the hardware level, or the switch might be reporting a failure to get a response. &lt;/p&gt;
 </td>
 <td>3.5.3-3.7.14.2, 4.0.0-4.3.0</td>
@@ -1260,7 +1260,7 @@ asic-monitor[7389]: File "/usr/lib/python2.7/dist-packages/cumulus/asic_monitor.
 <td>2549784</td>
 <td>On Mellanox switches, when the networking service and {{switchd}} starts up, a rare condition might occur where {{switchd}} crashes and the following log message is generated:
 
-{{CRIT backend/mlx/hal_mlx_nexthop.c:294: hal_mlx_ecmp_data_reinit: Assertion &apos;(num_next_hops)' failed.}}
+{{CRIT backend/mlx/hal_mlx_nexthop.c:294: hal_mlx_ecmp_data_reinit: Assertion &amp;apos;(num_next_hops)' failed.}}
 </td>
 <td>4.1.0-4.2.1</td>
 <td>4.3.0</td>
@@ -2779,7 +2779,7 @@ reports to be injected to the input subsystem from a non-bonded source.</td>
 </tr>
 <tr>
 <td>2548655</td>
-<td>When using {{apt-get update && apt-get upgrade}} to upgrade from Cumulus Linux 4.0.0 or 4.1.0 to version 4.1.1 or later, a message similar to the following may appear. 
+<td>When using {{apt-get update &amp;&amp; apt-get upgrade}} to upgrade from Cumulus Linux 4.0.0 or 4.1.0 to version 4.1.1 or later, a message similar to the following may appear. 
 
 Reading package lists... Done
 E: Repository 'http://apt.cumulusnetworks.com/repo CumulusLinux-4-latest InRelease' changed its 'Label' value from 'cumulus-repository-4.0.0' to 'cumulus-repository-4.1.0'
@@ -2812,15 +2812,15 @@ CVE-2020-10531: An issue was discovered in International Components for Unicode 
 <tr>
 <td>CM-21678</td>
 <td>&lt;p&gt;On a Dell switch with a Maverick ASIC, NetQ might receive false alerts like the following via PagerDuty: &lt;/p&gt;
- 
- 
+ &lt;div class="code panel" style="border-width: 1px;"&gt;&lt;div class="codeContent panelContent"&gt;
+&lt;pre class="code-java"&gt; 
  cumulus@&lt;span class="code-keyword"&gt;switch&lt;/span&gt;:~$ netq show sensors temp changes | grep absent | grep -v psu 
  P2Leaf01 temp9 networking asic die temp sensor absent 43 105 100 5 Unable to find driver path: /cumulu Add 7d:22h:1m:41s 
  P2Leaf01 temp6 networking asic die temp sensor absent 45 105 100 5 Unable to find driver path: /cumulu Add 7d:22h:1m:41s 
  P2Leaf01 temp6 networking asic die temp sensor absent 47 105 100 5 Unable to read temp4_highest Add 9d:23h:26m:6s 
  P2Leaf01 temp6 networking asic die temp sensor absent 45 105 100 5 Unable to read temp4_highest Add 14d:22h:46m:45s 
- 
- 
+ &lt;/pre&gt;
+&lt;/div&gt;&lt;/div&gt; 
 &lt;p&gt; This message might occur as a result of a timeout at the hardware level, or the switch might be reporting a failure to get a response. &lt;/p&gt;
 </td>
 <td>3.5.3-3.7.14.2, 4.0.0-4.3.0</td>
@@ -3848,7 +3848,7 @@ If you flap the link with the {{ip link set vni10100 down; ip link set vni10100 
 <td>2549784</td>
 <td>On Mellanox switches, when the networking service and {{switchd}} starts up, a rare condition might occur where {{switchd}} crashes and the following log message is generated:
 
-{{CRIT backend/mlx/hal_mlx_nexthop.c:294: hal_mlx_ecmp_data_reinit: Assertion &apos;(num_next_hops)' failed.}}
+{{CRIT backend/mlx/hal_mlx_nexthop.c:294: hal_mlx_ecmp_data_reinit: Assertion &amp;apos;(num_next_hops)' failed.}}
 </td>
 <td>4.1.0-4.2.1</td>
 <td>4.3.0</td>
@@ -4122,7 +4122,7 @@ You can safely ignore these error messages.</td>
 </tr>
 <tr>
 <td>2548655</td>
-<td>When using {{apt-get update && apt-get upgrade}} to upgrade from Cumulus Linux 4.0.0 or 4.1.0 to version 4.1.1 or later, a message similar to the following may appear. 
+<td>When using {{apt-get update &amp;&amp; apt-get upgrade}} to upgrade from Cumulus Linux 4.0.0 or 4.1.0 to version 4.1.1 or later, a message similar to the following may appear. 
 
 Reading package lists... Done
 E: Repository 'http://apt.cumulusnetworks.com/repo CumulusLinux-4-latest InRelease' changed its 'Label' value from 'cumulus-repository-4.0.0' to 'cumulus-repository-4.1.0'
@@ -5539,7 +5539,7 @@ Fixed: 1.8.4.1</td>
 <td>2547147</td>
 <td>The {{ospfd}} daemon might crash with the following kernel trace: 
 
-2019-11-06T23:00:08.261749+09:00 cumulus ospfd[5339]: Assertion &apos;node' failed in file ospfd/ospf_packet.c, line 671, function ospf_write
+2019-11-06T23:00:08.261749+09:00 cumulus ospfd[5339]: Assertion &amp;apos;node' failed in file ospfd/ospf_packet.c, line 671, function ospf_write
 </td>
 <td>3.7.11-3.7.12, 4.0.0-4.0.1</td>
 </tr>

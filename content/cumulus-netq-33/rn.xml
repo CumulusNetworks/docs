@@ -62,7 +62,7 @@
 1. Open the _armel-netq-commands.yml_ file in the _/etc/netq/commands/_ directory for editing.
 
 2. Copy and append the following to the file:
- 
+&lt;pre&gt; 
 - service: "inventory"
     commands:
       - key: "os-release"
@@ -93,17 +93,17 @@
         command: "cat /etc/app-release"
         isactive: true
         parser: "local"
-
+&lt;/pre&gt;
 
 3. Remove the existing generated command file.
-
+&lt;pre&gt;
 cumulus@switch:~$ rm /var/run/netq/netq-commands.yml
-
+&lt;/pre&gt;
 
 4. Restart the NetQ Agent.
-
+&lt;pre&gt;
 cumulus@switch:~$ netq config restart agent
-</td>
+&lt;/pre&gt;</td>
 <td>3.3.0</td>
 </tr>
 <tr>
@@ -136,7 +136,7 @@ cumulus@switch:~$ netq config restart agent
 <td>NetQ UI: In multi-site on-premises deployments, when a new premises (created using the Premises card) is selected from the dropdown in the application header, the NetQ UI becomes unresponsive for many navigation tabs. To work around this issue, manually update the database as follows:
 # In a terminal window, open the database shell (cqlsh).
 {code}
-$ CASSANDRA_POD=&apos;kubectl get pods | grep cassandra | cut -f1 -d" "&apos; ; kubectl exec -it $CASSANDRA_POD -- cqlsh
+$ CASSANDRA_POD=&amp;apos;kubectl get pods | grep cassandra | cut -f1 -d" "&amp;apos; ; kubectl exec -it $CASSANDRA_POD -- cqlsh
 {code}
 # Display the premises table.
 {code}
@@ -176,30 +176,30 @@ cqlsh&gt; select opid,name,namespace from master.premises ;
 <td>NetQ Infra: The NetQ Agent fails to start when switch is running Cumulus Linux version 4.1.1 or 4.2.0. To work around this issue, run the following on each switch:
 
 For CL 4.1.1, rename the WJH types file to the 4.3.3260 version:
-
+&lt;pre&gt;
 cumulus@switch:~$ sudo mv /usr/lib/cumulus/wjh/wjh_types_4.4.3260.py /usr/lib/cumulus/wjh/wjh_types_4.3.3260.py
 cumulus@switch:~$ netq config restart agent
-
+&lt;/pre&gt;
 For CL 4.2.0, edit the following line in the /usr/sbin/netq-agent-prestart script to change the version from 4.4.095 to 4.4.0952:
-
+&lt;pre&gt;
 elif [ $sx_sdk_ver == “4.4.0952” ] || [  $sx_sdk_ver == “4.4.1624” ] || [ $sx_sdk_ver == “4.3.3260” ]; then
 cumulus@switch:~$ netq config restart agent
-</td>
+&lt;/pre&gt;</td>
 <td>3.3.0</td>
 </tr>
 <tr>
 <td>2556007</td>
 <td>NetQ API: Several APIs are presenting the following error when viewed in Swagger UI:
-
+&lt;pre&gt;
 Fetch errorundefined https://api.prod2.netq.cumulusnetworks.com/netq/telemetry/v1/api-docs/events/swagger.json
-
+&lt;/pre&gt;
 To correct this presentation issue:
 # Open the netqui YAML file for editing.
-
+&lt;pre&gt;
 kubectl edit netquis netqui
-
+&lt;/pre&gt;
 # Locate the _misc_ section. For example:
-
+&lt;pre&gt;
 misc:
   cassandraReconnectLogOnly: "true"
   clusterName: netq
@@ -207,9 +207,9 @@ misc:
   ...
   smtpSSL: "true"
   tlsEnabled: "true"
-
+&lt;/pre&gt;
 # Add the {{document_namespace}} parameter below the {{tlsEnabled}} parameter.
-
+&lt;pre&gt;
 misc:
   cassandraReconnectLogOnly: "true"
   clusterName: netq
@@ -218,7 +218,7 @@ misc:
   smtpSSL: "true"
   tlsEnabled: "true"
   document_namespace: "default"
-
+&lt;/pre&gt;
 # Save the file.</td>
 <td>3.3.0</td>
 </tr>
@@ -252,7 +252,7 @@ misc:
 1. Open the _armel-netq-commands.yml_ file in the _/etc/netq/commands/_ directory for editing.
 
 2. Copy and append the following to the file:
- 
+&lt;pre&gt; 
 - service: "inventory"
     commands:
       - key: "os-release"
@@ -283,17 +283,17 @@ misc:
         command: "cat /etc/app-release"
         isactive: true
         parser: "local"
-
+&lt;/pre&gt;
 
 3. Remove the existing generated command file.
-
+&lt;pre&gt;
 cumulus@switch:~$ rm /var/run/netq/netq-commands.yml
-
+&lt;/pre&gt;
 
 4. Restart the NetQ Agent.
-
+&lt;pre&gt;
 cumulus@switch:~$ netq config restart agent
-</td>
+&lt;/pre&gt;</td>
 <td>3.3.0</td>
 <td>3.3.1</td>
 </tr>
@@ -332,7 +332,7 @@ cumulus@switch:~$ netq config restart agent
 <td>NetQ UI: In multi-site on-premises deployments, when a new premises (created using the Premises card) is selected from the dropdown in the application header, the NetQ UI becomes unresponsive for many navigation tabs. To work around this issue, manually update the database as follows:
 # In a terminal window, open the database shell (cqlsh).
 {code}
-$ CASSANDRA_POD=&apos;kubectl get pods | grep cassandra | cut -f1 -d" "&apos; ; kubectl exec -it $CASSANDRA_POD -- cqlsh
+$ CASSANDRA_POD=&amp;apos;kubectl get pods | grep cassandra | cut -f1 -d" "&amp;apos; ; kubectl exec -it $CASSANDRA_POD -- cqlsh
 {code}
 # Display the premises table.
 {code}
@@ -373,15 +373,15 @@ cqlsh&gt; select opid,name,namespace from master.premises ;
 <td>NetQ Infra: The NetQ Agent fails to start when switch is running Cumulus Linux version 4.1.1 or 4.2.0. To work around this issue, run the following on each switch:
 
 For CL 4.1.1, rename the WJH types file to the 4.3.3260 version:
-
+&lt;pre&gt;
 cumulus@switch:~$ sudo mv /usr/lib/cumulus/wjh/wjh_types_4.4.3260.py /usr/lib/cumulus/wjh/wjh_types_4.3.3260.py
 cumulus@switch:~$ netq config restart agent
-
+&lt;/pre&gt;
 For CL 4.2.0, edit the following line in the /usr/sbin/netq-agent-prestart script to change the version from 4.4.095 to 4.4.0952:
-
+&lt;pre&gt;
 elif [ $sx_sdk_ver == “4.4.0952” ] || [  $sx_sdk_ver == “4.4.1624” ] || [ $sx_sdk_ver == “4.3.3260” ]; then
 cumulus@switch:~$ netq config restart agent
-</td>
+&lt;/pre&gt;</td>
 <td>3.3.0</td>
 <td>3.3.1</td>
 </tr>
@@ -394,16 +394,16 @@ cumulus@switch:~$ netq config restart agent
 <tr>
 <td>2556007</td>
 <td>NetQ API: Several APIs are presenting the following error when viewed in Swagger UI:
-
+&lt;pre&gt;
 Fetch errorundefined https://api.prod2.netq.cumulusnetworks.com/netq/telemetry/v1/api-docs/events/swagger.json
-
+&lt;/pre&gt;
 To correct this presentation issue:
 # Open the netqui YAML file for editing.
-
+&lt;pre&gt;
 kubectl edit netquis netqui
-
+&lt;/pre&gt;
 # Locate the _misc_ section. For example:
-
+&lt;pre&gt;
 misc:
   cassandraReconnectLogOnly: "true"
   clusterName: netq
@@ -411,9 +411,9 @@ misc:
   ...
   smtpSSL: "true"
   tlsEnabled: "true"
-
+&lt;/pre&gt;
 # Add the {{document_namespace}} parameter below the {{tlsEnabled}} parameter.
-
+&lt;pre&gt;
 misc:
   cassandraReconnectLogOnly: "true"
   clusterName: netq
@@ -422,7 +422,7 @@ misc:
   smtpSSL: "true"
   tlsEnabled: "true"
   document_namespace: "default"
-
+&lt;/pre&gt;
 # Save the file.</td>
 <td>3.3.0</td>
 <td>3.3.1</td>

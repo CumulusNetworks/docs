@@ -43,6 +43,12 @@ To work around this issue, run the apt-get upgrade command again and reboot the 
 <td></td>
 </tr>
 <tr>
+<td>2589747</td>
+<td>If {{switchd}} successfully signals {{clagd}} that it is going down, {{clagd}} stops responding to keepalive echo requests from the peer instead of sending a good bye to the peer over both the peerlink and the backup switch. Eventually, the keepalive timer expires and the secondary switch becomes the primary, and brings the bonds and VNIs back up. However, if {{switchd}} does not successfully signal it is going down, (in the event of a crash), the primary switch continues to respond to keepalives, and the bonds and VNIs are down on both peers. </td>
+<td>3.7.12-4.2.1</td>
+<td>4.3.0</td>
+</tr>
+<tr>
 <td>2574294</td>
 <td>CVE-2021-3410: A buffer overflow issue in caca_resize function in libcaca/caca/canvas.c may lead to local execution of arbitrary code in the user context.
 Vulnerable: <= 0.99.beta19-2+deb8u1
@@ -385,12 +391,6 @@ Nov 12 12:20:05.099892 leaf01 switchd[9867]:
 Nov 12 12:20:05.099943 leaf01 switchd[9867]: hal_bcm_console.c:299 CRIT loading of rc script failed, aborting!
 {noformat}</td>
 <td>3.7.11-4.2.1</td>
-<td>4.3.0</td>
-</tr>
-<tr>
-<td>2554720</td>
-<td>If {{switchd}} successfully signals {{clagd}} that it is going down, {{clagd}} stops responding to keepalive echo requests from the peer instead of sending a good bye to the peer over both the peerlink and the backup switch. Eventually, the keepalive timer expires and the secondary switch becomes the primary, and brings the bonds and VNIs back up. However, if {{switchd}} does not successfully signal it is going down, (in the event of a crash), the primary switch continues to respond to keepalives, and the bonds and VNIs are down on both peers. </td>
-<td>3.7.12-4.2.1</td>
 <td>4.3.0</td>
 </tr>
 <tr>
@@ -1840,6 +1840,12 @@ To work around this issue, run the apt-get upgrade command again and reboot the 
 <td></td>
 </tr>
 <tr>
+<td>2589747</td>
+<td>If {{switchd}} successfully signals {{clagd}} that it is going down, {{clagd}} stops responding to keepalive echo requests from the peer instead of sending a good bye to the peer over both the peerlink and the backup switch. Eventually, the keepalive timer expires and the secondary switch becomes the primary, and brings the bonds and VNIs back up. However, if {{switchd}} does not successfully signal it is going down, (in the event of a crash), the primary switch continues to respond to keepalives, and the bonds and VNIs are down on both peers. </td>
+<td>3.7.12-4.2.1</td>
+<td>4.3.0</td>
+</tr>
+<tr>
 <td>2574294</td>
 <td>CVE-2021-3410: A buffer overflow issue in caca_resize function in libcaca/caca/canvas.c may lead to local execution of arbitrary code in the user context.
 Vulnerable: <= 0.99.beta19-2+deb8u1
@@ -2237,12 +2243,6 @@ Nov 12 12:20:05.099892 leaf01 switchd[9867]:
 Nov 12 12:20:05.099943 leaf01 switchd[9867]: hal_bcm_console.c:299 CRIT loading of rc script failed, aborting!
 {noformat}</td>
 <td>3.7.11-4.2.1</td>
-<td>4.3.0</td>
-</tr>
-<tr>
-<td>2554720</td>
-<td>If {{switchd}} successfully signals {{clagd}} that it is going down, {{clagd}} stops responding to keepalive echo requests from the peer instead of sending a good bye to the peer over both the peerlink and the backup switch. Eventually, the keepalive timer expires and the secondary switch becomes the primary, and brings the bonds and VNIs back up. However, if {{switchd}} does not successfully signal it is going down, (in the event of a crash), the primary switch continues to respond to keepalives, and the bonds and VNIs are down on both peers. </td>
-<td>3.7.12-4.2.1</td>
 <td>4.3.0</td>
 </tr>
 <tr>
@@ -4306,6 +4306,12 @@ To work around this issue, run the apt-get upgrade command again and reboot the 
 <td></td>
 </tr>
 <tr>
+<td>2589747</td>
+<td>If {{switchd}} successfully signals {{clagd}} that it is going down, {{clagd}} stops responding to keepalive echo requests from the peer instead of sending a good bye to the peer over both the peerlink and the backup switch. Eventually, the keepalive timer expires and the secondary switch becomes the primary, and brings the bonds and VNIs back up. However, if {{switchd}} does not successfully signal it is going down, (in the event of a crash), the primary switch continues to respond to keepalives, and the bonds and VNIs are down on both peers. </td>
+<td>3.7.12-4.2.1</td>
+<td>4.3.0</td>
+</tr>
+<tr>
 <td>2558184</td>
 <td>The Mellanox SN2700 and SN2410 switch intermittently reports PSU fan state changes with {{Unable to read from device/fan1_input/pwm1}} syslog messages.</td>
 <td>3.7.11-3.7.14.2, 4.1.1-4.3.0</td>
@@ -4382,12 +4388,6 @@ Nov 12 12:20:05.099892 leaf01 switchd[9867]:
 Nov 12 12:20:05.099943 leaf01 switchd[9867]: hal_bcm_console.c:299 CRIT loading of rc script failed, aborting!
 {noformat}</td>
 <td>3.7.11-4.2.1</td>
-<td>4.3.0</td>
-</tr>
-<tr>
-<td>2554720</td>
-<td>If {{switchd}} successfully signals {{clagd}} that it is going down, {{clagd}} stops responding to keepalive echo requests from the peer instead of sending a good bye to the peer over both the peerlink and the backup switch. Eventually, the keepalive timer expires and the secondary switch becomes the primary, and brings the bonds and VNIs back up. However, if {{switchd}} does not successfully signal it is going down, (in the event of a crash), the primary switch continues to respond to keepalives, and the bonds and VNIs are down on both peers. </td>
-<td>3.7.12-4.2.1</td>
 <td>4.3.0</td>
 </tr>
 <tr>
@@ -6996,6 +6996,12 @@ To work around this issue, run the apt-get upgrade command again and reboot the 
 <td></td>
 </tr>
 <tr>
+<td>2589747</td>
+<td>If {{switchd}} successfully signals {{clagd}} that it is going down, {{clagd}} stops responding to keepalive echo requests from the peer instead of sending a good bye to the peer over both the peerlink and the backup switch. Eventually, the keepalive timer expires and the secondary switch becomes the primary, and brings the bonds and VNIs back up. However, if {{switchd}} does not successfully signal it is going down, (in the event of a crash), the primary switch continues to respond to keepalives, and the bonds and VNIs are down on both peers. </td>
+<td>3.7.12-4.2.1</td>
+<td>4.3.0</td>
+</tr>
+<tr>
 <td>2558184</td>
 <td>The Mellanox SN2700 and SN2410 switch intermittently reports PSU fan state changes with {{Unable to read from device/fan1_input/pwm1}} syslog messages.</td>
 <td>3.7.11-3.7.14.2, 4.1.1-4.3.0</td>
@@ -7052,12 +7058,6 @@ Nov 12 12:20:05.099892 leaf01 switchd[9867]:
 Nov 12 12:20:05.099943 leaf01 switchd[9867]: hal_bcm_console.c:299 CRIT loading of rc script failed, aborting!
 {noformat}</td>
 <td>3.7.11-4.2.1</td>
-<td>4.3.0</td>
-</tr>
-<tr>
-<td>2554720</td>
-<td>If {{switchd}} successfully signals {{clagd}} that it is going down, {{clagd}} stops responding to keepalive echo requests from the peer instead of sending a good bye to the peer over both the peerlink and the backup switch. Eventually, the keepalive timer expires and the secondary switch becomes the primary, and brings the bonds and VNIs back up. However, if {{switchd}} does not successfully signal it is going down, (in the event of a crash), the primary switch continues to respond to keepalives, and the bonds and VNIs are down on both peers. </td>
-<td>3.7.12-4.2.1</td>
 <td>4.3.0</td>
 </tr>
 <tr>

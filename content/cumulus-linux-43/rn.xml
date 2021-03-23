@@ -1788,11 +1788,6 @@ Nov 12 12:20:05.099943 leaf01 switchd[9867]: hal_bcm_console.c:299 CRIT loading 
 <td>4.2.1</td>
 </tr>
 <tr>
-<td>2554720</td>
-<td>If {{switchd}} successfully signals {{clagd}} that it is going down, {{clagd}} stops responding to keepalive echo requests from the peer instead of sending a good bye to the peer over both the peerlink and the backup switch. Eventually, the keepalive timer expires and the secondary switch becomes the primary, and brings the bonds and VNIs back up. However, if {{switchd}} does not successfully signal it is going down, (in the event of a crash), the primary switch continues to respond to keepalives, and the bonds and VNIs are down on both peers. </td>
-<td>3.7.12-4.2.1</td>
-</tr>
-<tr>
 <td>2554711</td>
 <td>On the Mellanox SN3700C switch, running {{cl-support}} with a large number of ports configured can cause {{switchd}} to crash.</td>
 <td>4.2.1</td>

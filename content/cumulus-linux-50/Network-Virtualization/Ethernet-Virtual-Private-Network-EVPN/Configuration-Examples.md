@@ -38,6 +38,7 @@ The following images shows traffic flow between tenants. The spines and other de
 ```
 cumulus@leaf01:~$ cl set interface lo ip address 10.10.10.1/32
 cumulus@leaf01:~$ cl set interface swp1-2,swp49-54
+cumulus@leaf01:~$ cl set interface swp1 link mtu 9000
 cumulus@leaf01:~$ cl set interface swp2 link mtu 9000
 cumulus@leaf01:~$ cl set interface bond1 bond member swp1
 cumulus@leaf01:~$ cl set interface bond2 bond member swp2
@@ -85,6 +86,7 @@ cumulus@leaf01:~$ cl config apply
 ```
 cumulus@leaf01:~$ cl set interface lo ip address 10.10.10.2/32
 cumulus@leaf01:~$ cl set interface swp1-2,swp49-54
+cumulus@leaf01:~$ cl set interface swp1 link mtu 9000
 cumulus@leaf01:~$ cl set interface swp2 link mtu 9000
 cumulus@leaf01:~$ cl set interface bond1 bond member swp1
 cumulus@leaf01:~$ cl set interface bond2 bond member swp2
@@ -132,6 +134,7 @@ cumulus@leaf01:~$ cl config apply
 ```
 cumulus@leaf01:~$ cl set interface lo ip address 10.10.10.3/32
 cumulus@leaf01:~$ cl set interface swp1-2,swp49-54
+cumulus@leaf01:~$ cl set interface swp1 link mtu 9000
 cumulus@leaf01:~$ cl set interface swp2 link mtu 9000
 cumulus@leaf01:~$ cl set interface bond1 bond member swp1
 cumulus@leaf01:~$ cl set interface bond2 bond member swp2
@@ -179,6 +182,7 @@ cumulus@leaf01:~$ cl config apply
 ```
 cumulus@leaf01:~$ cl set interface lo ip address 10.10.10.4/32
 cumulus@leaf01:~$ cl set interface swp1-2,swp49-54
+cumulus@leaf01:~$ cl set interface swp1 link mtu 9000
 cumulus@leaf01:~$ cl set interface swp2 link mtu 9000
 cumulus@leaf01:~$ cl set interface bond1 bond member swp1
 cumulus@leaf01:~$ cl set interface bond2 bond member swp2
@@ -330,7 +334,7 @@ cumulus@leaf01:~$ cl set interface vlan10
 cumulus@leaf01:~$ cl set interface vlan20
 cumulus@leaf01:~$ cl set bridge domain br_default vlan 10 vni 10
 cumulus@leaf01:~$ cl set bridge domain br_default vlan 20 vni 20
-cumulus@leaf01:~$ cl set nve vxlan mlag shared-address 10.0.1.254
+cumulus@leaf01:~$ cl set nve vxlan mlag shared-address 10.0.1.255
 cumulus@leaf01:~$ cl set nve vxlan source address 10.10.10.63
 cumulus@leaf01:~$ cl set nve vxlan arp-nd-suppress on
 cumulus@leaf01:~$ cl set evpn enable on
@@ -370,7 +374,7 @@ cumulus@leaf01:~$ cl set interface vlan10
 cumulus@leaf01:~$ cl set interface vlan20
 cumulus@leaf01:~$ cl set bridge domain br_default vlan 10 vni 10
 cumulus@leaf01:~$ cl set bridge domain br_default vlan 20 vni 20
-cumulus@leaf01:~$ cl set nve vxlan mlag shared-address 10.0.1.254
+cumulus@leaf01:~$ cl set nve vxlan mlag shared-address 10.0.1.255
 cumulus@leaf01:~$ cl set nve vxlan source address 10.10.10.64
 cumulus@leaf01:~$ cl set nve vxlan arp-nd-suppress on
 cumulus@leaf01:~$ cl set evpn enable on
@@ -402,7 +406,7 @@ cumulus@leaf01:~$ cat /etc/network/interfaces
 auto lo
 iface lo inet loopback
     address 10.10.10.1/32
-    clagd-vxlan-anycast-ip 10.0.1.1
+    clagd-vxlan-anycast-ip 10.0.1.12
     vxlan-local-tunnelip 10.10.10.1
 
 auto mgmt
@@ -413,12 +417,15 @@ iface mgmt
 
 auto eth0
 iface eth0 inet dhcp
+    ip-forward off
+    ip6-forward off
     vrf mgmt
 
-auto bridge
-iface bridge
+auto br_default
+iface br_default
     bridge-ports peerlink bond1 bond2 vni10 vni20
-    bridge-vids 10 20  
+    bridge-vids 10 20
+    bridge-pvid 1  
     bridge-vlan-aware yes
 
 auto vni10
@@ -435,17 +442,13 @@ iface vni20
 
 auto vlan10
 iface vlan10
-    vlan-raw-device bridge
+    vlan-raw-device br_default
     vlan-id 10
-    ip-forward off
-    ip6-forward off
 
 auto vlan20
 iface vlan20
-    vlan-raw-device bridge
+    vlan-raw-device br_default
     vlan-id 20
-    ip-forward off
-    ip6-forward off
 
 auto swp51
 iface swp51
@@ -468,6 +471,8 @@ iface swp50
 auto peerlink
 iface peerlink
     bond-slaves swp49 swp50
+    bond-mode 802.3ad
+    bond-lacp-bypass-allow no
 
 auto peerlink.4094
 iface peerlink.4094
@@ -486,6 +491,7 @@ iface bond1
     clag-id 1
     bridge-access 10
     bond-slaves swp1
+    bond-mode 802.3ad
     bond-lacp-bypass-allow yes
 
 auto swp2
@@ -498,6 +504,7 @@ iface bond2
     clag-id 2
     bridge-access 20
     bond-slaves swp2
+    bond-mode 802.3ad
     bond-lacp-bypass-allow yes
 ```
 
@@ -510,7 +517,7 @@ cumulus@leaf02:~$ cat /etc/network/interfaces
 auto lo
 iface lo inet loopback
     address 10.10.10.2/32
-    clagd-vxlan-anycast-ip 10.0.1.1
+    clagd-vxlan-anycast-ip 10.0.1.12
     vxlan-local-tunnelip 10.10.10.2
 
 auto mgmt
@@ -521,12 +528,15 @@ iface mgmt
 
 auto eth0
 iface eth0 inet dhcp
+    ip-forward off
+    ip6-forward off
     vrf mgmt
 
-auto bridge
-iface bridge
+auto br_default
+iface br_default
     bridge-ports peerlink bond1 bond2 vni10 vni20
-    bridge-vids 10 20  
+    bridge-vids 10 20
+    bridge-pvid 1 
     bridge-vlan-aware yes
 
 auto vni10
@@ -543,17 +553,13 @@ iface vni20
 
 auto vlan10
 iface vlan10
-    vlan-raw-device bridge
+    vlan-raw-device br_default
     vlan-id 10
-    ip-forward off
-    ip6-forward off
 
 auto vlan20
 iface vlan20
-    vlan-raw-device bridge
+    vlan-raw-device br_default
     vlan-id 20
-    ip-forward off
-    ip6-forward off
 
 auto swp51
 iface swp51
@@ -576,6 +582,8 @@ iface swp50
 auto peerlink
 iface peerlink
     bond-slaves swp49 swp50
+    bond-mode 802.3ad
+    bond-lacp-bypass-allow no
 
 auto peerlink.4094
 iface peerlink.4094
@@ -594,6 +602,7 @@ iface bond1
     clag-id 1
     bridge-access 10
     bond-slaves swp1
+    bond-mode 802.3ad
     bond-lacp-bypass-allow yes
 
 auto swp2
@@ -606,6 +615,7 @@ iface bond2
     clag-id 2
     bridge-access 20
     bond-slaves swp2
+    bond-mode 802.3ad
     bond-lacp-bypass-allow yes
 ```
 
@@ -618,7 +628,7 @@ cumulus@leaf03:~$ cat /etc/network/interfaces
 auto lo
 iface lo inet loopback
     address 10.10.10.3/32
-    clagd-vxlan-anycast-ip 10.0.1.2
+    clagd-vxlan-anycast-ip 10.0.1.34
     vxlan-local-tunnelip 10.10.10.3
 
 auto mgmt
@@ -629,12 +639,15 @@ iface mgmt
 
 auto eth0
 iface eth0 inet dhcp
+    ip-forward off
+    ip6-forward off
     vrf mgmt
 
-auto bridge
-iface bridge
+auto br_default
+iface br_default
     bridge-ports peerlink bond1 bond2 vni10 vni20
-    bridge-vids 10 20  
+    bridge-vids 10 20
+    bridge-pvid 1  
     bridge-vlan-aware yes
 
 auto vni10
@@ -651,17 +664,13 @@ iface vni20
 
 auto vlan10
 iface vlan10
-    vlan-raw-device bridge
+    vlan-raw-device br_default
     vlan-id 10
-    ip-forward off
-    ip6-forward off
 
 auto vlan20
 iface vlan20
-    vlan-raw-device bridge
+    vlan-raw-device br_default
     vlan-id 20
-    ip-forward off
-    ip6-forward off
 
 auto swp51
 iface swp51
@@ -684,6 +693,8 @@ iface swp50
 auto peerlink
 iface peerlink
     bond-slaves swp49 swp50
+    bond-mode 802.3ad
+    bond-lacp-bypass-allow no
 
 auto peerlink.4094
 iface peerlink.4094
@@ -702,6 +713,7 @@ iface bond1
     clag-id 1
     bridge-access 10
     bond-slaves swp1
+    bond-mode 802.3ad
     bond-lacp-bypass-allow yes
 
 auto swp2
@@ -714,6 +726,7 @@ iface bond2
     clag-id 2
     bridge-access 20
     bond-slaves swp2
+    bond-mode 802.3ad
     bond-lacp-bypass-allow yes
 ```
 
@@ -726,7 +739,7 @@ cumulus@leaf04:~$ cat /etc/network/interfaces
 auto lo
 iface lo inet loopback
     address 10.10.10.4/32
-    clagd-vxlan-anycast-ip 10.0.1.2
+    clagd-vxlan-anycast-ip 10.0.1.34
     vxlan-local-tunnelip 10.10.10.4
 
 auto mgmt
@@ -737,12 +750,15 @@ iface mgmt
 
 auto eth0
 iface eth0 inet dhcp
+    ip-forward off
+    ip6-forward off
     vrf mgmt
 
-auto bridge
-iface bridge
+auto peerlink
+iface peerlink
     bridge-ports peerlink bond1 bond2 vni10 vni20
-    bridge-vids 10 20  
+    bridge-vids 10 20
+    bridge-pvid 1  
     bridge-vlan-aware yes
 
 auto vni10
@@ -759,17 +775,13 @@ iface vni20
 
 auto vlan10
 iface vlan10
-    vlan-raw-device bridge
+    vlan-raw-device br_default
     vlan-id 10
-    ip-forward off
-    ip6-forward off
 
 auto vlan20
 iface vlan20
-    vlan-raw-device bridge
+    vlan-raw-device br_default
     vlan-id 20
-    ip-forward off
-    ip6-forward off
 
 auto swp51
 iface swp51
@@ -792,6 +804,8 @@ iface swp50
 auto peerlink
 iface peerlink
     bond-slaves swp49 swp50
+    bond-mode 802.3ad
+    bond-lacp-bypass-allow no
 
 auto peerlink.4094
 iface peerlink.4094
@@ -810,6 +824,7 @@ iface bond1
     clag-id 1
     bridge-access 10
     bond-slaves swp1
+    bond-mode 802.3ad
     bond-lacp-bypass-allow yes
 
 auto swp2
@@ -822,6 +837,7 @@ iface bond2
     clag-id 2
     bridge-access 20
     bond-slaves swp2
+    bond-mode 802.3ad
     bond-lacp-bypass-allow yes
 ```
 
@@ -843,6 +859,8 @@ iface mgmt
 
 auto eth0
 iface eth0 inet dhcp
+    ip-forward off
+    ip6-forward off
     vrf mgmt
 
 auto swp1
@@ -882,6 +900,8 @@ iface mgmt
 
 auto eth0
 iface eth0 inet dhcp
+    ip-forward off
+    ip6-forward off
     vrf mgmt
 
 auto swp1
@@ -921,6 +941,8 @@ iface mgmt
 
 auto eth0
 iface eth0 inet dhcp
+    ip-forward off
+    ip6-forward off
     vrf mgmt
 
 auto swp1
@@ -960,6 +982,8 @@ iface mgmt
 
 auto eth0
 iface eth0 inet dhcp
+    ip-forward off
+    ip6-forward off
     vrf mgmt
 
 auto swp1
@@ -990,7 +1014,7 @@ cumulus@border01:~$ cat /etc/network/interfaces
 auto lo
 iface lo inet loopback
     address 10.10.10.63/32
-    clagd-vxlan-anycast-ip 10.0.1.254
+    clagd-vxlan-anycast-ip 10.0.1.255
     vxlan-local-tunnelip 10.10.10.63
 
 auto mgmt
@@ -1001,12 +1025,13 @@ iface mgmt
 
 auto eth0
 iface eth0 inet dhcp
+    ip-forward off
+    ip6-forward off
     vrf mgmt
 
-auto bridge
-iface bridge
-    bridge-ports peerlink
-    bridge-ports bond3
+auto br_default
+iface br_default
+    bridge-ports peerlink, bond3
     bridge-ports vni10 vni20
     bridge-vids 10 20  
     bridge-vlan-aware yes
@@ -1025,17 +1050,13 @@ iface vni20
 
 auto vlan10
 iface vlan10
-    vlan-raw-device bridge
+    vlan-raw-device br_default
     vlan-id 10
-    ip-forward off
-    ip6-forward off
 
 auto vlan20
 iface vlan20
-    vlan-raw-device bridge
+    vlan-raw-device br_default
     vlan-id 20
-    ip-forward off
-    ip6-forward off
 
 auto swp51
 iface swp51
@@ -1058,6 +1079,8 @@ iface swp50
 auto peerlink
 iface peerlink
     bond-slaves swp49 swp50
+    bond-mode 802.3ad
+    bond-lacp-bypass-allow no
 
 auto peerlink.4094
 iface peerlink.4094
@@ -1076,6 +1099,7 @@ iface bond3
     clag-id 1
     bridge-vids 10 20
     bond-slaves swp3
+    bond-mode 802.3ad
     bond-lacp-bypass-allow yes
 ```
 
@@ -1088,7 +1112,7 @@ cumulus@border02:~$ cat /etc/network/interfaces
 auto lo
 iface lo inet loopback
     address 10.10.10.64/32
-    clagd-vxlan-anycast-ip 10.0.1.254
+    clagd-vxlan-anycast-ip 10.0.1.255
     vxlan-local-tunnelip 10.10.10.64
 
 auto mgmt
@@ -1099,12 +1123,13 @@ iface mgmt
 
 auto eth0
 iface eth0 inet dhcp
+    ip-forward off
+    ip6-forward off
     vrf mgmt
 
-auto bridge
-iface bridge
-    bridge-ports peerlink
-    bridge-ports bond3
+auto peerlink
+iface peerlink
+    bridge-ports peerlink bond3
     bridge-ports vni10 vni20
     bridge-vids 10 20  
     bridge-vlan-aware yes
@@ -1125,15 +1150,11 @@ auto vlan10
 iface vlan10
     vlan-raw-device bridge
     vlan-id 10
-    ip-forward off
-    ip6-forward off
 
 auto vlan20
 iface vlan20
     vlan-raw-device bridge
     vlan-id 20
-    ip-forward off
-    ip6-forward off
 
 auto swp51
 iface swp51
@@ -1149,7 +1170,6 @@ iface swp54
 
 auto swp49
 iface swp49
-    alias peerlink
 
 auto swp50
 iface swp50
@@ -1157,6 +1177,8 @@ iface swp50
 auto peerlink
 iface peerlink
     bond-slaves swp49 swp50
+    bond-mode 802.3ad
+    bond-lacp-bypass-allow no
 
 auto peerlink.4094
 iface peerlink.4094

@@ -8,14 +8,14 @@
 </tr>
 <tr>
 <td>CM-31420</td>
-<td>&lt;p&gt;On a Cumulus Linux switch with high load averages, cl-support might end without creating a tar file  and leave a temporary directory in /var/support undeleted. Subsequent runs of cl-support do not clean up this directory.&lt;/p&gt;</td>
+<td>&lt;p&gt;On a Cumulus Linux switch with high load averages, cl-support might end without creating a tar file  and leave a temporary directory in &lt;tt&gt;/var/support&lt;/tt&gt; undeleted. Subsequent runs of cl-support do not clean up this directory.&lt;/p&gt;</td>
 <td>3.7.13-3.7.14.2</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-28462</td>
-<td>&lt;p&gt;On rare occasions, when you upgrade Cumulus Linux with the apt-get upgrade command, the upgrade fails and reports No space left on device. Checking the disk utilization shows that the disk is not full.&lt;br/&gt;
-To work around this issue, run the apt-get upgrade command again and reboot the device if prompted to complete the upgrade.&lt;/p&gt;</td>
+<td>&lt;p&gt;On rare occasions, when you upgrade Cumulus Linux with the &lt;tt&gt;apt-get upgrade&lt;/tt&gt; command, the upgrade fails and reports &lt;tt&gt;No space left on device&lt;/tt&gt;. Checking the disk utilization shows that the disk is not full.&lt;br/&gt;
+To work around this issue, run the &lt;tt&gt;apt-get upgrade&lt;/tt&gt; command again and reboot the device if prompted to complete the upgrade.&lt;/p&gt;</td>
 <td>3.7.10-3.7.14.2</td>
 <td></td>
 </tr>
@@ -28,15 +28,15 @@ To work around this issue, run the apt-get upgrade command again and reboot the 
 <tr>
 <td>CM-21678</td>
 <td>&lt;p&gt;On a Dell switch with a Maverick ASIC, NetQ might receive false alerts like the following via PagerDuty: &lt;/p&gt;
- 
- 
+ &lt;div class="code panel" style="border-width: 1px;"&gt;&lt;div class="codeContent panelContent"&gt;
+&lt;pre class="code-java"&gt; 
  cumulus@&lt;span class="code-keyword"&gt;switch&lt;/span&gt;:~$ netq show sensors temp changes | grep absent | grep -v psu 
  P2Leaf01 temp9 networking asic die temp sensor absent 43 105 100 5 Unable to find driver path: /cumulu Add 7d:22h:1m:41s 
  P2Leaf01 temp6 networking asic die temp sensor absent 45 105 100 5 Unable to find driver path: /cumulu Add 7d:22h:1m:41s 
  P2Leaf01 temp6 networking asic die temp sensor absent 47 105 100 5 Unable to read temp4_highest Add 9d:23h:26m:6s 
  P2Leaf01 temp6 networking asic die temp sensor absent 45 105 100 5 Unable to read temp4_highest Add 14d:22h:46m:45s 
- 
- 
+ &lt;/pre&gt;
+&lt;/div&gt;&lt;/div&gt; 
 &lt;p&gt; This message might occur as a result of a timeout at the hardware level, or the switch might be reporting a failure to get a response. &lt;/p&gt;
 </td>
 <td>3.5.3-3.7.14.2, 4.0.0-4.3.0</td>
@@ -1718,7 +1718,7 @@ To work around this issue, manually define the routing protocol metric for these
 </tr>
 <tr>
 <td>CM-30832</td>
-<td>&lt;p&gt;The Mellanox SN2700 and SN2410 switch intermittently reports PSU fan state changes with Unable to read from device/fan1_input/pwm1 syslog messages.&lt;/p&gt;</td>
+<td>&lt;p&gt;The Mellanox SN2700 and SN2410 switch intermittently reports PSU fan state changes with &lt;tt&gt;Unable to read from device/fan1_input/pwm1&lt;/tt&gt; syslog messages.&lt;/p&gt;</td>
 <td>3.7.11-3.7.14, 4.1.1-4.2.1</td>
 </tr>
 <tr>
@@ -1785,20 +1785,20 @@ You can see the temperature reading in the output of the {{sensors}} command.</t
 </tr>
 <tr>
 <td>CM-31420</td>
-<td>&lt;p&gt;On a Cumulus Linux switch with high load averages, cl-support might end without creating a tar file  and leave a temporary directory in /var/support undeleted. Subsequent runs of cl-support do not clean up this directory.&lt;/p&gt;</td>
+<td>&lt;p&gt;On a Cumulus Linux switch with high load averages, cl-support might end without creating a tar file  and leave a temporary directory in &lt;tt&gt;/var/support&lt;/tt&gt; undeleted. Subsequent runs of cl-support do not clean up this directory.&lt;/p&gt;</td>
 <td>3.7.13-3.7.14.2</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-30832</td>
-<td>&lt;p&gt;The Mellanox SN2700 and SN2410 switch intermittently reports PSU fan state changes with Unable to read from device/fan1_input/pwm1 syslog messages.&lt;/p&gt;</td>
+<td>&lt;p&gt;The Mellanox SN2700 and SN2410 switch intermittently reports PSU fan state changes with &lt;tt&gt;Unable to read from device/fan1_input/pwm1&lt;/tt&gt; syslog messages.&lt;/p&gt;</td>
 <td>3.7.11-3.7.14, 4.1.1-4.2.1</td>
 <td>3.7.14.2, 4.3.0</td>
 </tr>
 <tr>
 <td>CM-28462</td>
-<td>&lt;p&gt;On rare occasions, when you upgrade Cumulus Linux with the apt-get upgrade command, the upgrade fails and reports No space left on device. Checking the disk utilization shows that the disk is not full.&lt;br/&gt;
-To work around this issue, run the apt-get upgrade command again and reboot the device if prompted to complete the upgrade.&lt;/p&gt;</td>
+<td>&lt;p&gt;On rare occasions, when you upgrade Cumulus Linux with the &lt;tt&gt;apt-get upgrade&lt;/tt&gt; command, the upgrade fails and reports &lt;tt&gt;No space left on device&lt;/tt&gt;. Checking the disk utilization shows that the disk is not full.&lt;br/&gt;
+To work around this issue, run the &lt;tt&gt;apt-get upgrade&lt;/tt&gt; command again and reboot the device if prompted to complete the upgrade.&lt;/p&gt;</td>
 <td>3.7.10-3.7.14.2</td>
 <td></td>
 </tr>
@@ -1811,15 +1811,15 @@ To work around this issue, run the apt-get upgrade command again and reboot the 
 <tr>
 <td>CM-21678</td>
 <td>&lt;p&gt;On a Dell switch with a Maverick ASIC, NetQ might receive false alerts like the following via PagerDuty: &lt;/p&gt;
- 
- 
+ &lt;div class="code panel" style="border-width: 1px;"&gt;&lt;div class="codeContent panelContent"&gt;
+&lt;pre class="code-java"&gt; 
  cumulus@&lt;span class="code-keyword"&gt;switch&lt;/span&gt;:~$ netq show sensors temp changes | grep absent | grep -v psu 
  P2Leaf01 temp9 networking asic die temp sensor absent 43 105 100 5 Unable to find driver path: /cumulu Add 7d:22h:1m:41s 
  P2Leaf01 temp6 networking asic die temp sensor absent 45 105 100 5 Unable to find driver path: /cumulu Add 7d:22h:1m:41s 
  P2Leaf01 temp6 networking asic die temp sensor absent 47 105 100 5 Unable to read temp4_highest Add 9d:23h:26m:6s 
  P2Leaf01 temp6 networking asic die temp sensor absent 45 105 100 5 Unable to read temp4_highest Add 14d:22h:46m:45s 
- 
- 
+ &lt;/pre&gt;
+&lt;/div&gt;&lt;/div&gt; 
 &lt;p&gt; This message might occur as a result of a timeout at the hardware level, or the switch might be reporting a failure to get a response. &lt;/p&gt;
 </td>
 <td>3.5.3-3.7.14.2, 4.0.0-4.3.0</td>
@@ -3917,7 +3917,7 @@ To work around this issue, disable ARP/ND suppression to remove the internal ACL
 </tr>
 <tr>
 <td>2552840</td>
-<td>CVE-2020-14350: In PostgreSQL 9.4, an uncontrolled search path could allow users to run arbitrary SQL functions with elevated priviledges when a superuser runs certain &apos;CREATE EXTENSION’ statements.
+<td>CVE-2020-14350: In PostgreSQL 9.4, an uncontrolled search path could allow users to run arbitrary SQL functions with elevated priviledges when a superuser runs certain &amp;apos;CREATE EXTENSION’ statements.
 Vulnerable: &lt;= 9.4.26-0+deb8u2
 Fixed: 9.4.26-0+deb8u3</td>
 <td>3.7.13</td>
@@ -4244,20 +4244,20 @@ To work around this issue, modify the routing design or policy such that routes 
 </tr>
 <tr>
 <td>CM-31420</td>
-<td>&lt;p&gt;On a Cumulus Linux switch with high load averages, cl-support might end without creating a tar file  and leave a temporary directory in /var/support undeleted. Subsequent runs of cl-support do not clean up this directory.&lt;/p&gt;</td>
+<td>&lt;p&gt;On a Cumulus Linux switch with high load averages, cl-support might end without creating a tar file  and leave a temporary directory in &lt;tt&gt;/var/support&lt;/tt&gt; undeleted. Subsequent runs of cl-support do not clean up this directory.&lt;/p&gt;</td>
 <td>3.7.13-3.7.14.2</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-30832</td>
-<td>&lt;p&gt;The Mellanox SN2700 and SN2410 switch intermittently reports PSU fan state changes with Unable to read from device/fan1_input/pwm1 syslog messages.&lt;/p&gt;</td>
+<td>&lt;p&gt;The Mellanox SN2700 and SN2410 switch intermittently reports PSU fan state changes with &lt;tt&gt;Unable to read from device/fan1_input/pwm1&lt;/tt&gt; syslog messages.&lt;/p&gt;</td>
 <td>3.7.11-3.7.14, 4.1.1-4.2.1</td>
 <td>3.7.14.2, 4.3.0</td>
 </tr>
 <tr>
 <td>CM-28462</td>
-<td>&lt;p&gt;On rare occasions, when you upgrade Cumulus Linux with the apt-get upgrade command, the upgrade fails and reports No space left on device. Checking the disk utilization shows that the disk is not full.&lt;br/&gt;
-To work around this issue, run the apt-get upgrade command again and reboot the device if prompted to complete the upgrade.&lt;/p&gt;</td>
+<td>&lt;p&gt;On rare occasions, when you upgrade Cumulus Linux with the &lt;tt&gt;apt-get upgrade&lt;/tt&gt; command, the upgrade fails and reports &lt;tt&gt;No space left on device&lt;/tt&gt;. Checking the disk utilization shows that the disk is not full.&lt;br/&gt;
+To work around this issue, run the &lt;tt&gt;apt-get upgrade&lt;/tt&gt; command again and reboot the device if prompted to complete the upgrade.&lt;/p&gt;</td>
 <td>3.7.10-3.7.14.2</td>
 <td></td>
 </tr>
@@ -4270,15 +4270,15 @@ To work around this issue, run the apt-get upgrade command again and reboot the 
 <tr>
 <td>CM-21678</td>
 <td>&lt;p&gt;On a Dell switch with a Maverick ASIC, NetQ might receive false alerts like the following via PagerDuty: &lt;/p&gt;
- 
- 
+ &lt;div class="code panel" style="border-width: 1px;"&gt;&lt;div class="codeContent panelContent"&gt;
+&lt;pre class="code-java"&gt; 
  cumulus@&lt;span class="code-keyword"&gt;switch&lt;/span&gt;:~$ netq show sensors temp changes | grep absent | grep -v psu 
  P2Leaf01 temp9 networking asic die temp sensor absent 43 105 100 5 Unable to find driver path: /cumulu Add 7d:22h:1m:41s 
  P2Leaf01 temp6 networking asic die temp sensor absent 45 105 100 5 Unable to find driver path: /cumulu Add 7d:22h:1m:41s 
  P2Leaf01 temp6 networking asic die temp sensor absent 47 105 100 5 Unable to read temp4_highest Add 9d:23h:26m:6s 
  P2Leaf01 temp6 networking asic die temp sensor absent 45 105 100 5 Unable to read temp4_highest Add 14d:22h:46m:45s 
- 
- 
+ &lt;/pre&gt;
+&lt;/div&gt;&lt;/div&gt; 
 &lt;p&gt; This message might occur as a result of a timeout at the hardware level, or the switch might be reporting a failure to get a response. &lt;/p&gt;
 </td>
 <td>3.5.3-3.7.14.2, 4.0.0-4.3.0</td>
@@ -4796,7 +4796,7 @@ To work around this issue, use the {{ethtool -m &lt;interface&gt;}} command.</td
 </tr>
 <tr>
 <td>2552840</td>
-<td>CVE-2020-14350: In PostgreSQL 9.4, an uncontrolled search path could allow users to run arbitrary SQL functions with elevated priviledges when a superuser runs certain &apos;CREATE EXTENSION’ statements.
+<td>CVE-2020-14350: In PostgreSQL 9.4, an uncontrolled search path could allow users to run arbitrary SQL functions with elevated priviledges when a superuser runs certain &amp;apos;CREATE EXTENSION’ statements.
 Vulnerable: &lt;= 9.4.26-0+deb8u2
 Fixed: 9.4.26-0+deb8u3</td>
 <td>3.7.13</td>
@@ -6494,7 +6494,7 @@ Fixed: 5.43-2+deb9u2~deb8u1</td>
 <tr>
 <td>2550693</td>
 <td>The following vulnerabilities have been announced in the {{cups}} package:
-CVE-2019-8842: The &apos;ippReadIO&apos; function may under-read an extension field
+CVE-2019-8842: The &amp;apos;ippReadIO&amp;apos; function may under-read an extension field
 CVE-2020-3898: heap based buffer overflow in libcups's ppdFindOption() in ppd-mark.c
 Vulnerable: &lt;= 1.7.5-11+deb8u7
 Fixed: 1.7.5-11+deb8u8</td>
@@ -6510,7 +6510,7 @@ Fixed: 1.8.22-0+deb8u3</td>
 <tr>
 <td>2550512</td>
 <td>The {{python-httplib2}} package, which is available in the repository for optional installation, has the following vulnerability:
-CVE-2020-11078: In httplib2 before version 0.18.0, an attacker controlling unescaped part of uri for &apos;httplib2.Http.request()&apos; could change request headers and body, send additional hidden requests to same server. This vulnerability impacts software that uses httplib2 with uri constructed by string concatenation, as opposed to proper urllib building with escaping. This has been fixed in 0.18.0.
+CVE-2020-11078: In httplib2 before version 0.18.0, an attacker controlling unescaped part of uri for &amp;apos;httplib2.Http.request()&amp;apos; could change request headers and body, send additional hidden requests to same server. This vulnerability impacts software that uses httplib2 with uri constructed by string concatenation, as opposed to proper urllib building with escaping. This has been fixed in 0.18.0.
 Vulnerable: 0.9+dfsg-2
 Fixed: 0.9+dfsg-2+deb8u1</td>
 <td>3.7.12</td>
@@ -6733,7 +6733,7 @@ CVE-2020-10809: In Twisted Web through 19.10.0, there was an HTTP request splitt
 <td>2548309</td>
 <td>The following security vulnerability affects the {{libvpx1}} library:
 CVE-2020-0034: It was discovered that there was an out-of-bounds buffer read
-vulnerability in {{libvpx}}, a library implementing the VP8 & VP9 video
+vulnerability in {{libvpx}}, a library implementing the VP8 &amp; VP9 video
 codecs.</td>
 <td>3.7.12</td>
 </tr>
@@ -6828,7 +6828,7 @@ CVE-2020-1711: block: iscsi: OOB heap access via an unexpected response of iSCSI
 <td>2547147</td>
 <td>The {{ospfd}} daemon might crash with the following kernel trace: 
 
-2019-11-06T23:00:08.261749+09:00 cumulus ospfd[5339]: Assertion &apos;node' failed in file ospfd/ospf_packet.c, line 671, function ospf_write
+2019-11-06T23:00:08.261749+09:00 cumulus ospfd[5339]: Assertion &amp;apos;node' failed in file ospfd/ospf_packet.c, line 671, function ospf_write
 </td>
 <td>3.7.11-3.7.12, 4.0.0-4.0.1</td>
 </tr>
@@ -6933,14 +6933,14 @@ Typically, the destination MAC address 01:00:5e:xx:xx:xx is used only for PIM/IG
 </tr>
 <tr>
 <td>CM-30832</td>
-<td>&lt;p&gt;The Mellanox SN2700 and SN2410 switch intermittently reports PSU fan state changes with Unable to read from device/fan1_input/pwm1 syslog messages.&lt;/p&gt;</td>
+<td>&lt;p&gt;The Mellanox SN2700 and SN2410 switch intermittently reports PSU fan state changes with &lt;tt&gt;Unable to read from device/fan1_input/pwm1&lt;/tt&gt; syslog messages.&lt;/p&gt;</td>
 <td>3.7.11-3.7.14, 4.1.1-4.2.1</td>
 <td>3.7.14.2, 4.3.0</td>
 </tr>
 <tr>
 <td>CM-28462</td>
-<td>&lt;p&gt;On rare occasions, when you upgrade Cumulus Linux with the apt-get upgrade command, the upgrade fails and reports No space left on device. Checking the disk utilization shows that the disk is not full.&lt;br/&gt;
-To work around this issue, run the apt-get upgrade command again and reboot the device if prompted to complete the upgrade.&lt;/p&gt;</td>
+<td>&lt;p&gt;On rare occasions, when you upgrade Cumulus Linux with the &lt;tt&gt;apt-get upgrade&lt;/tt&gt; command, the upgrade fails and reports &lt;tt&gt;No space left on device&lt;/tt&gt;. Checking the disk utilization shows that the disk is not full.&lt;br/&gt;
+To work around this issue, run the &lt;tt&gt;apt-get upgrade&lt;/tt&gt; command again and reboot the device if prompted to complete the upgrade.&lt;/p&gt;</td>
 <td>3.7.10-3.7.14.2</td>
 <td></td>
 </tr>
@@ -6953,15 +6953,15 @@ To work around this issue, run the apt-get upgrade command again and reboot the 
 <tr>
 <td>CM-21678</td>
 <td>&lt;p&gt;On a Dell switch with a Maverick ASIC, NetQ might receive false alerts like the following via PagerDuty: &lt;/p&gt;
- 
- 
+ &lt;div class="code panel" style="border-width: 1px;"&gt;&lt;div class="codeContent panelContent"&gt;
+&lt;pre class="code-java"&gt; 
  cumulus@&lt;span class="code-keyword"&gt;switch&lt;/span&gt;:~$ netq show sensors temp changes | grep absent | grep -v psu 
  P2Leaf01 temp9 networking asic die temp sensor absent 43 105 100 5 Unable to find driver path: /cumulu Add 7d:22h:1m:41s 
  P2Leaf01 temp6 networking asic die temp sensor absent 45 105 100 5 Unable to find driver path: /cumulu Add 7d:22h:1m:41s 
  P2Leaf01 temp6 networking asic die temp sensor absent 47 105 100 5 Unable to read temp4_highest Add 9d:23h:26m:6s 
  P2Leaf01 temp6 networking asic die temp sensor absent 45 105 100 5 Unable to read temp4_highest Add 14d:22h:46m:45s 
- 
- 
+ &lt;/pre&gt;
+&lt;/div&gt;&lt;/div&gt; 
 &lt;p&gt; This message might occur as a result of a timeout at the hardware level, or the switch might be reporting a failure to get a response. &lt;/p&gt;
 </td>
 <td>3.5.3-3.7.14.2, 4.0.0-4.3.0</td>
@@ -7515,7 +7515,7 @@ Fixed: 5.43-2+deb9u2~deb8u1</td>
 <tr>
 <td>2550693</td>
 <td>The following vulnerabilities have been announced in the {{cups}} package:
-CVE-2019-8842: The &apos;ippReadIO&apos; function may under-read an extension field
+CVE-2019-8842: The &amp;apos;ippReadIO&amp;apos; function may under-read an extension field
 CVE-2020-3898: heap based buffer overflow in libcups's ppdFindOption() in ppd-mark.c
 Vulnerable: &lt;= 1.7.5-11+deb8u7
 Fixed: 1.7.5-11+deb8u8</td>
@@ -7539,7 +7539,7 @@ Fixed: 1.8.22-0+deb8u3</td>
 <tr>
 <td>2550512</td>
 <td>The {{python-httplib2}} package, which is available in the repository for optional installation, has the following vulnerability:
-CVE-2020-11078: In httplib2 before version 0.18.0, an attacker controlling unescaped part of uri for &apos;httplib2.Http.request()&apos; could change request headers and body, send additional hidden requests to same server. This vulnerability impacts software that uses httplib2 with uri constructed by string concatenation, as opposed to proper urllib building with escaping. This has been fixed in 0.18.0.
+CVE-2020-11078: In httplib2 before version 0.18.0, an attacker controlling unescaped part of uri for &amp;apos;httplib2.Http.request()&amp;apos; could change request headers and body, send additional hidden requests to same server. This vulnerability impacts software that uses httplib2 with uri constructed by string concatenation, as opposed to proper urllib building with escaping. This has been fixed in 0.18.0.
 Vulnerable: 0.9+dfsg-2
 Fixed: 0.9+dfsg-2+deb8u1</td>
 <td>3.7.12</td>
@@ -8061,7 +8061,7 @@ To work around this issue, do not make bash or bash scripts {{setuid}}.</td>
 <td>2548309</td>
 <td>The following security vulnerability affects the {{libvpx1}} library:
 CVE-2020-0034: It was discovered that there was an out-of-bounds buffer read
-vulnerability in {{libvpx}}, a library implementing the VP8 & VP9 video
+vulnerability in {{libvpx}}, a library implementing the VP8 &amp; VP9 video
 codecs.</td>
 <td>3.7.12</td>
 <td>3.7.13-3.7.14.2</td>
@@ -8289,7 +8289,7 @@ RTM_NEWNEIGH with unconfigured vlan XXXX on port peerlink
 <td>2547147</td>
 <td>The {{ospfd}} daemon might crash with the following kernel trace: 
 
-2019-11-06T23:00:08.261749+09:00 cumulus ospfd[5339]: Assertion &apos;node' failed in file ospfd/ospf_packet.c, line 671, function ospf_write
+2019-11-06T23:00:08.261749+09:00 cumulus ospfd[5339]: Assertion &amp;apos;node' failed in file ospfd/ospf_packet.c, line 671, function ospf_write
 </td>
 <td>3.7.11-3.7.12, 4.0.0-4.0.1</td>
 <td>3.7.13-3.7.14, 4.1.0-4.3.0</td>
@@ -9479,14 +9479,14 @@ net.ipv6.ip6frag_high_thresh = 262144
 </tr>
 <tr>
 <td>CM-30832</td>
-<td>&lt;p&gt;The Mellanox SN2700 and SN2410 switch intermittently reports PSU fan state changes with Unable to read from device/fan1_input/pwm1 syslog messages.&lt;/p&gt;</td>
+<td>&lt;p&gt;The Mellanox SN2700 and SN2410 switch intermittently reports PSU fan state changes with &lt;tt&gt;Unable to read from device/fan1_input/pwm1&lt;/tt&gt; syslog messages.&lt;/p&gt;</td>
 <td>3.7.11-3.7.14, 4.1.1-4.2.1</td>
 <td>3.7.14.2, 4.3.0</td>
 </tr>
 <tr>
 <td>CM-28462</td>
-<td>&lt;p&gt;On rare occasions, when you upgrade Cumulus Linux with the apt-get upgrade command, the upgrade fails and reports No space left on device. Checking the disk utilization shows that the disk is not full.&lt;br/&gt;
-To work around this issue, run the apt-get upgrade command again and reboot the device if prompted to complete the upgrade.&lt;/p&gt;</td>
+<td>&lt;p&gt;On rare occasions, when you upgrade Cumulus Linux with the &lt;tt&gt;apt-get upgrade&lt;/tt&gt; command, the upgrade fails and reports &lt;tt&gt;No space left on device&lt;/tt&gt;. Checking the disk utilization shows that the disk is not full.&lt;br/&gt;
+To work around this issue, run the &lt;tt&gt;apt-get upgrade&lt;/tt&gt; command again and reboot the device if prompted to complete the upgrade.&lt;/p&gt;</td>
 <td>3.7.10-3.7.14.2</td>
 <td></td>
 </tr>
@@ -9499,15 +9499,15 @@ To work around this issue, run the apt-get upgrade command again and reboot the 
 <tr>
 <td>CM-21678</td>
 <td>&lt;p&gt;On a Dell switch with a Maverick ASIC, NetQ might receive false alerts like the following via PagerDuty: &lt;/p&gt;
- 
- 
+ &lt;div class="code panel" style="border-width: 1px;"&gt;&lt;div class="codeContent panelContent"&gt;
+&lt;pre class="code-java"&gt; 
  cumulus@&lt;span class="code-keyword"&gt;switch&lt;/span&gt;:~$ netq show sensors temp changes | grep absent | grep -v psu 
  P2Leaf01 temp9 networking asic die temp sensor absent 43 105 100 5 Unable to find driver path: /cumulu Add 7d:22h:1m:41s 
  P2Leaf01 temp6 networking asic die temp sensor absent 45 105 100 5 Unable to find driver path: /cumulu Add 7d:22h:1m:41s 
  P2Leaf01 temp6 networking asic die temp sensor absent 47 105 100 5 Unable to read temp4_highest Add 9d:23h:26m:6s 
  P2Leaf01 temp6 networking asic die temp sensor absent 45 105 100 5 Unable to read temp4_highest Add 14d:22h:46m:45s 
- 
- 
+ &lt;/pre&gt;
+&lt;/div&gt;&lt;/div&gt; 
 &lt;p&gt; This message might occur as a result of a timeout at the hardware level, or the switch might be reporting a failure to get a response. &lt;/p&gt;
 </td>
 <td>3.5.3-3.7.14.2, 4.0.0-4.3.0</td>
@@ -10049,7 +10049,7 @@ Fixed: 0.9.3.13</td>
 <td>2547147</td>
 <td>The {{ospfd}} daemon might crash with the following kernel trace: 
 
-2019-11-06T23:00:08.261749+09:00 cumulus ospfd[5339]: Assertion &apos;node' failed in file ospfd/ospf_packet.c, line 671, function ospf_write
+2019-11-06T23:00:08.261749+09:00 cumulus ospfd[5339]: Assertion &amp;apos;node' failed in file ospfd/ospf_packet.c, line 671, function ospf_write
 </td>
 <td>3.7.11-3.7.12, 4.0.0-4.0.1</td>
 <td>3.7.13-3.7.14, 4.1.0-4.3.0</td>
@@ -11266,7 +11266,7 @@ https://security-tracker.debian.org/tracker/linux</td>
 <td>2545405</td>
 <td>The {{ospfd}} daemon might crash with the following kernel trace: 
 
-2019-11-06T23:00:08.261749+09:00 cumulus ospfd[5339]: Assertion &apos;node' failed in file ospfd/ospf_packet.c, line 671, function ospf_write
+2019-11-06T23:00:08.261749+09:00 cumulus ospfd[5339]: Assertion &amp;apos;node' failed in file ospfd/ospf_packet.c, line 671, function ospf_write
 </td>
 <td>3.7.6-3.7.10</td>
 </tr>
@@ -11728,23 +11728,23 @@ To work around this issue, use {{net show interface}} command for LLDP output wh
 </tr>
 <tr>
 <td>CM-28462</td>
-<td>&lt;p&gt;On rare occasions, when you upgrade Cumulus Linux with the apt-get upgrade command, the upgrade fails and reports No space left on device. Checking the disk utilization shows that the disk is not full.&lt;br/&gt;
-To work around this issue, run the apt-get upgrade command again and reboot the device if prompted to complete the upgrade.&lt;/p&gt;</td>
+<td>&lt;p&gt;On rare occasions, when you upgrade Cumulus Linux with the &lt;tt&gt;apt-get upgrade&lt;/tt&gt; command, the upgrade fails and reports &lt;tt&gt;No space left on device&lt;/tt&gt;. Checking the disk utilization shows that the disk is not full.&lt;br/&gt;
+To work around this issue, run the &lt;tt&gt;apt-get upgrade&lt;/tt&gt; command again and reboot the device if prompted to complete the upgrade.&lt;/p&gt;</td>
 <td>3.7.10-3.7.14.2</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-21678</td>
 <td>&lt;p&gt;On a Dell switch with a Maverick ASIC, NetQ might receive false alerts like the following via PagerDuty: &lt;/p&gt;
- 
- 
+ &lt;div class="code panel" style="border-width: 1px;"&gt;&lt;div class="codeContent panelContent"&gt;
+&lt;pre class="code-java"&gt; 
  cumulus@&lt;span class="code-keyword"&gt;switch&lt;/span&gt;:~$ netq show sensors temp changes | grep absent | grep -v psu 
  P2Leaf01 temp9 networking asic die temp sensor absent 43 105 100 5 Unable to find driver path: /cumulu Add 7d:22h:1m:41s 
  P2Leaf01 temp6 networking asic die temp sensor absent 45 105 100 5 Unable to find driver path: /cumulu Add 7d:22h:1m:41s 
  P2Leaf01 temp6 networking asic die temp sensor absent 47 105 100 5 Unable to read temp4_highest Add 9d:23h:26m:6s 
  P2Leaf01 temp6 networking asic die temp sensor absent 45 105 100 5 Unable to read temp4_highest Add 14d:22h:46m:45s 
- 
- 
+ &lt;/pre&gt;
+&lt;/div&gt;&lt;/div&gt; 
 &lt;p&gt; This message might occur as a result of a timeout at the hardware level, or the switch might be reporting a failure to get a response. &lt;/p&gt;
 </td>
 <td>3.5.3-3.7.14.2, 4.0.0-4.3.0</td>
@@ -12223,7 +12223,7 @@ To work around this issue, reboot the switch, then remove the static routes or s
 <td>2545405</td>
 <td>The {{ospfd}} daemon might crash with the following kernel trace: 
 
-2019-11-06T23:00:08.261749+09:00 cumulus ospfd[5339]: Assertion &apos;node' failed in file ospfd/ospf_packet.c, line 671, function ospf_write
+2019-11-06T23:00:08.261749+09:00 cumulus ospfd[5339]: Assertion &amp;apos;node' failed in file ospfd/ospf_packet.c, line 671, function ospf_write
 </td>
 <td>3.7.6-3.7.10</td>
 <td>3.7.11-3.7.14.2</td>
@@ -13416,15 +13416,15 @@ To work around this issue, manually define the routing protocol metric for these
 <tr>
 <td>CM-21678</td>
 <td>&lt;p&gt;On a Dell switch with a Maverick ASIC, NetQ might receive false alerts like the following via PagerDuty: &lt;/p&gt;
- 
- 
+ &lt;div class="code panel" style="border-width: 1px;"&gt;&lt;div class="codeContent panelContent"&gt;
+&lt;pre class="code-java"&gt; 
  cumulus@&lt;span class="code-keyword"&gt;switch&lt;/span&gt;:~$ netq show sensors temp changes | grep absent | grep -v psu 
  P2Leaf01 temp9 networking asic die temp sensor absent 43 105 100 5 Unable to find driver path: /cumulu Add 7d:22h:1m:41s 
  P2Leaf01 temp6 networking asic die temp sensor absent 45 105 100 5 Unable to find driver path: /cumulu Add 7d:22h:1m:41s 
  P2Leaf01 temp6 networking asic die temp sensor absent 47 105 100 5 Unable to read temp4_highest Add 9d:23h:26m:6s 
  P2Leaf01 temp6 networking asic die temp sensor absent 45 105 100 5 Unable to read temp4_highest Add 14d:22h:46m:45s 
- 
- 
+ &lt;/pre&gt;
+&lt;/div&gt;&lt;/div&gt; 
 &lt;p&gt; This message might occur as a result of a timeout at the hardware level, or the switch might be reporting a failure to get a response. &lt;/p&gt;
 </td>
 <td>3.5.3-3.7.14.2, 4.0.0-4.3.0</td>
@@ -13666,7 +13666,7 @@ To work around this issue, reboot the switch, then remove the static routes or s
 <td>2545405</td>
 <td>The {{ospfd}} daemon might crash with the following kernel trace: 
 
-2019-11-06T23:00:08.261749+09:00 cumulus ospfd[5339]: Assertion &apos;node' failed in file ospfd/ospf_packet.c, line 671, function ospf_write
+2019-11-06T23:00:08.261749+09:00 cumulus ospfd[5339]: Assertion &amp;apos;node' failed in file ospfd/ospf_packet.c, line 671, function ospf_write
 </td>
 <td>3.7.6-3.7.10</td>
 <td>3.7.11-3.7.14.2</td>
@@ -15136,7 +15136,7 @@ Note: qemu is not installed by default, but is available in the repository for o
 <td>2541604</td>
 <td>The {{snmpd}} service exits with a message similar to the following: 
   
- Error in &apos;/usr/sbin/snmpd': double free or corruption (fasttop): 0x00000000018a4e50 *** 
+ Error in &amp;apos;/usr/sbin/snmpd': double free or corruption (fasttop): 0x00000000018a4e50 *** 
   
  This problem might occur during or after network convergence events. For example, when {{bgpd}} needs to process a high number of updates and the CPU cannot keep up, {{bgpd}} is disconnected and {{agentx}} generates a core dump in {{snmpd}} due to a memory allocation problem. 
  To work around this issue, disable {{agentx}} by commenting out the following lines in the {{/etc/snmp/snmpd.conf}} file. Then, restart the {{snmpd}} service with the {{systemctl restart snmpd}} command. 
@@ -15422,15 +15422,15 @@ To work around this issue, run the {{sudo ethtool -S swp1}} command to collect i
 <tr>
 <td>CM-21678</td>
 <td>&lt;p&gt;On a Dell switch with a Maverick ASIC, NetQ might receive false alerts like the following via PagerDuty: &lt;/p&gt;
- 
- 
+ &lt;div class="code panel" style="border-width: 1px;"&gt;&lt;div class="codeContent panelContent"&gt;
+&lt;pre class="code-java"&gt; 
  cumulus@&lt;span class="code-keyword"&gt;switch&lt;/span&gt;:~$ netq show sensors temp changes | grep absent | grep -v psu 
  P2Leaf01 temp9 networking asic die temp sensor absent 43 105 100 5 Unable to find driver path: /cumulu Add 7d:22h:1m:41s 
  P2Leaf01 temp6 networking asic die temp sensor absent 45 105 100 5 Unable to find driver path: /cumulu Add 7d:22h:1m:41s 
  P2Leaf01 temp6 networking asic die temp sensor absent 47 105 100 5 Unable to read temp4_highest Add 9d:23h:26m:6s 
  P2Leaf01 temp6 networking asic die temp sensor absent 45 105 100 5 Unable to read temp4_highest Add 14d:22h:46m:45s 
- 
- 
+ &lt;/pre&gt;
+&lt;/div&gt;&lt;/div&gt; 
 &lt;p&gt; This message might occur as a result of a timeout at the hardware level, or the switch might be reporting a failure to get a response. &lt;/p&gt;
 </td>
 <td>3.5.3-3.7.14.2, 4.0.0-4.3.0</td>
@@ -15606,7 +15606,7 @@ To work around this issue, run the {{cl-support -M}} command to disable timeouts
 <td>2545405</td>
 <td>The {{ospfd}} daemon might crash with the following kernel trace: 
 
-2019-11-06T23:00:08.261749+09:00 cumulus ospfd[5339]: Assertion &apos;node' failed in file ospfd/ospf_packet.c, line 671, function ospf_write
+2019-11-06T23:00:08.261749+09:00 cumulus ospfd[5339]: Assertion &amp;apos;node' failed in file ospfd/ospf_packet.c, line 671, function ospf_write
 </td>
 <td>3.7.6-3.7.10</td>
 <td>3.7.11-3.7.14.2</td>
@@ -16305,7 +16305,7 @@ route-map peerlink-add-asn permit 20
 <td>2541604</td>
 <td>The {{snmpd}} service exits with a message similar to the following: 
   
- Error in &apos;/usr/sbin/snmpd': double free or corruption (fasttop): 0x00000000018a4e50 *** 
+ Error in &amp;apos;/usr/sbin/snmpd': double free or corruption (fasttop): 0x00000000018a4e50 *** 
   
  This problem might occur during or after network convergence events. For example, when {{bgpd}} needs to process a high number of updates and the CPU cannot keep up, {{bgpd}} is disconnected and {{agentx}} generates a core dump in {{snmpd}} due to a memory allocation problem. 
  To work around this issue, disable {{agentx}} by commenting out the following lines in the {{/etc/snmp/snmpd.conf}} file. Then, restart the {{snmpd}} service with the {{systemctl restart snmpd}} command. 
@@ -16879,15 +16879,15 @@ To work around this issue, manually define the routing protocol metric for these
 <tr>
 <td>CM-21678</td>
 <td>&lt;p&gt;On a Dell switch with a Maverick ASIC, NetQ might receive false alerts like the following via PagerDuty: &lt;/p&gt;
- 
- 
+ &lt;div class="code panel" style="border-width: 1px;"&gt;&lt;div class="codeContent panelContent"&gt;
+&lt;pre class="code-java"&gt; 
  cumulus@&lt;span class="code-keyword"&gt;switch&lt;/span&gt;:~$ netq show sensors temp changes | grep absent | grep -v psu 
  P2Leaf01 temp9 networking asic die temp sensor absent 43 105 100 5 Unable to find driver path: /cumulu Add 7d:22h:1m:41s 
  P2Leaf01 temp6 networking asic die temp sensor absent 45 105 100 5 Unable to find driver path: /cumulu Add 7d:22h:1m:41s 
  P2Leaf01 temp6 networking asic die temp sensor absent 47 105 100 5 Unable to read temp4_highest Add 9d:23h:26m:6s 
  P2Leaf01 temp6 networking asic die temp sensor absent 45 105 100 5 Unable to read temp4_highest Add 14d:22h:46m:45s 
- 
- 
+ &lt;/pre&gt;
+&lt;/div&gt;&lt;/div&gt; 
 &lt;p&gt; This message might occur as a result of a timeout at the hardware level, or the switch might be reporting a failure to get a response. &lt;/p&gt;
 </td>
 <td>3.5.3-3.7.14.2, 4.0.0-4.3.0</td>
@@ -17045,7 +17045,7 @@ To work around this issue, run the {{cl-support -M}} command to disable timeouts
 <td>2545405</td>
 <td>The {{ospfd}} daemon might crash with the following kernel trace: 
 
-2019-11-06T23:00:08.261749+09:00 cumulus ospfd[5339]: Assertion &apos;node' failed in file ospfd/ospf_packet.c, line 671, function ospf_write
+2019-11-06T23:00:08.261749+09:00 cumulus ospfd[5339]: Assertion &amp;apos;node' failed in file ospfd/ospf_packet.c, line 671, function ospf_write
 </td>
 <td>3.7.6-3.7.10</td>
 <td>3.7.11-3.7.14.2</td>
@@ -17655,7 +17655,7 @@ route-map peerlink-add-asn permit 20
 <td>2541604</td>
 <td>The {{snmpd}} service exits with a message similar to the following: 
   
- Error in &apos;/usr/sbin/snmpd': double free or corruption (fasttop): 0x00000000018a4e50 *** 
+ Error in &amp;apos;/usr/sbin/snmpd': double free or corruption (fasttop): 0x00000000018a4e50 *** 
   
  This problem might occur during or after network convergence events. For example, when {{bgpd}} needs to process a high number of updates and the CPU cannot keep up, {{bgpd}} is disconnected and {{agentx}} generates a core dump in {{snmpd}} due to a memory allocation problem. 
  To work around this issue, disable {{agentx}} by commenting out the following lines in the {{/etc/snmp/snmpd.conf}} file. Then, restart the {{snmpd}} service with the {{systemctl restart snmpd}} command. 
@@ -18666,15 +18666,15 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <tr>
 <td>CM-21678</td>
 <td>&lt;p&gt;On a Dell switch with a Maverick ASIC, NetQ might receive false alerts like the following via PagerDuty: &lt;/p&gt;
- 
- 
+ &lt;div class="code panel" style="border-width: 1px;"&gt;&lt;div class="codeContent panelContent"&gt;
+&lt;pre class="code-java"&gt; 
  cumulus@&lt;span class="code-keyword"&gt;switch&lt;/span&gt;:~$ netq show sensors temp changes | grep absent | grep -v psu 
  P2Leaf01 temp9 networking asic die temp sensor absent 43 105 100 5 Unable to find driver path: /cumulu Add 7d:22h:1m:41s 
  P2Leaf01 temp6 networking asic die temp sensor absent 45 105 100 5 Unable to find driver path: /cumulu Add 7d:22h:1m:41s 
  P2Leaf01 temp6 networking asic die temp sensor absent 47 105 100 5 Unable to read temp4_highest Add 9d:23h:26m:6s 
  P2Leaf01 temp6 networking asic die temp sensor absent 45 105 100 5 Unable to read temp4_highest Add 14d:22h:46m:45s 
- 
- 
+ &lt;/pre&gt;
+&lt;/div&gt;&lt;/div&gt; 
 &lt;p&gt; This message might occur as a result of a timeout at the hardware level, or the switch might be reporting a failure to get a response. &lt;/p&gt;
 </td>
 <td>3.5.3-3.7.14.2, 4.0.0-4.3.0</td>
@@ -18800,7 +18800,7 @@ To work around this issue, run the {{cl-support -M}} command to disable timeouts
 <td>2545405</td>
 <td>The {{ospfd}} daemon might crash with the following kernel trace: 
 
-2019-11-06T23:00:08.261749+09:00 cumulus ospfd[5339]: Assertion &apos;node' failed in file ospfd/ospf_packet.c, line 671, function ospf_write
+2019-11-06T23:00:08.261749+09:00 cumulus ospfd[5339]: Assertion &amp;apos;node' failed in file ospfd/ospf_packet.c, line 671, function ospf_write
 </td>
 <td>3.7.6-3.7.10</td>
 <td>3.7.11-3.7.14.2</td>
@@ -19341,7 +19341,7 @@ route-map peerlink-add-asn permit 20
 <td>2541604</td>
 <td>The {{snmpd}} service exits with a message similar to the following: 
   
- Error in &apos;/usr/sbin/snmpd': double free or corruption (fasttop): 0x00000000018a4e50 *** 
+ Error in &amp;apos;/usr/sbin/snmpd': double free or corruption (fasttop): 0x00000000018a4e50 *** 
   
  This problem might occur during or after network convergence events. For example, when {{bgpd}} needs to process a high number of updates and the CPU cannot keep up, {{bgpd}} is disconnected and {{agentx}} generates a core dump in {{snmpd}} due to a memory allocation problem. 
  To work around this issue, disable {{agentx}} by commenting out the following lines in the {{/etc/snmp/snmpd.conf}} file. Then, restart the {{snmpd}} service with the {{systemctl restart snmpd}} command. 
@@ -20197,15 +20197,15 @@ This issue was discovered on the Helix4 switch but applies to all switches.
 <tr>
 <td>CM-21678</td>
 <td>&lt;p&gt;On a Dell switch with a Maverick ASIC, NetQ might receive false alerts like the following via PagerDuty: &lt;/p&gt;
- 
- 
+ &lt;div class="code panel" style="border-width: 1px;"&gt;&lt;div class="codeContent panelContent"&gt;
+&lt;pre class="code-java"&gt; 
  cumulus@&lt;span class="code-keyword"&gt;switch&lt;/span&gt;:~$ netq show sensors temp changes | grep absent | grep -v psu 
  P2Leaf01 temp9 networking asic die temp sensor absent 43 105 100 5 Unable to find driver path: /cumulu Add 7d:22h:1m:41s 
  P2Leaf01 temp6 networking asic die temp sensor absent 45 105 100 5 Unable to find driver path: /cumulu Add 7d:22h:1m:41s 
  P2Leaf01 temp6 networking asic die temp sensor absent 47 105 100 5 Unable to read temp4_highest Add 9d:23h:26m:6s 
  P2Leaf01 temp6 networking asic die temp sensor absent 45 105 100 5 Unable to read temp4_highest Add 14d:22h:46m:45s 
- 
- 
+ &lt;/pre&gt;
+&lt;/div&gt;&lt;/div&gt; 
 &lt;p&gt; This message might occur as a result of a timeout at the hardware level, or the switch might be reporting a failure to get a response. &lt;/p&gt;
 </td>
 <td>3.5.3-3.7.14.2, 4.0.0-4.3.0</td>
@@ -20505,7 +20505,7 @@ To work around this issue, either:
 <td>2541604</td>
 <td>The {{snmpd}} service exits with a message similar to the following: 
   
- Error in &apos;/usr/sbin/snmpd': double free or corruption (fasttop): 0x00000000018a4e50 *** 
+ Error in &amp;apos;/usr/sbin/snmpd': double free or corruption (fasttop): 0x00000000018a4e50 *** 
   
  This problem might occur during or after network convergence events. For example, when {{bgpd}} needs to process a high number of updates and the CPU cannot keep up, {{bgpd}} is disconnected and {{agentx}} generates a core dump in {{snmpd}} due to a memory allocation problem. 
  To work around this issue, disable {{agentx}} by commenting out the following lines in the {{/etc/snmp/snmpd.conf}} file. Then, restart the {{snmpd}} service with the {{systemctl restart snmpd}} command. 
@@ -21300,7 +21300,7 @@ The NetQ agent has been removed from Cumulus VX 3.7.7. The NetQ agent will be bu
 <td>2540520</td>
 <td>When IGMP snooping is enabled on a Broadcom switch, after multiple PIM join and leave messages are sent, {{switchd}} crashes and reports log messages similar to the following: 
   
- var/log/switchd.log:2019-04-05T03:03:35.563891-05:00 SWITCH1 switchd[1067]: *** Error in &apos;/usr/sbin/switchd': free(): invalid next size (fast): 0x000000000191e4d0 *** 
+ var/log/switchd.log:2019-04-05T03:03:35.563891-05:00 SWITCH1 switchd[1067]: *** Error in &amp;apos;/usr/sbin/switchd': free(): invalid next size (fast): 0x000000000191e4d0 *** 
  var/log/switchd.log-2019-04-05T03:03:35.564456-05:00 SWITCH1 switchd[1067]: linux-user-bde:new probed device unit 0 dev_no 0 _ndevices 1 
  var/log/switchd.log-2019-04-05T03:03:35.564855-05:00 SWITCH1 switchd[1067]: DMA pool size: 67108864 
  var/log/syslog:2019-04-05T03:03:36.046102-05:00 SWITCH1 systemd[1]: heartbeat-failed@switchd.service.service: main process exited, code=exited, status=1/FAILURE 
@@ -21367,15 +21367,15 @@ The NetQ agent has been removed from Cumulus VX 3.7.7. The NetQ agent will be bu
 <tr>
 <td>CM-21678</td>
 <td>&lt;p&gt;On a Dell switch with a Maverick ASIC, NetQ might receive false alerts like the following via PagerDuty: &lt;/p&gt;
- 
- 
+ &lt;div class="code panel" style="border-width: 1px;"&gt;&lt;div class="codeContent panelContent"&gt;
+&lt;pre class="code-java"&gt; 
  cumulus@&lt;span class="code-keyword"&gt;switch&lt;/span&gt;:~$ netq show sensors temp changes | grep absent | grep -v psu 
  P2Leaf01 temp9 networking asic die temp sensor absent 43 105 100 5 Unable to find driver path: /cumulu Add 7d:22h:1m:41s 
  P2Leaf01 temp6 networking asic die temp sensor absent 45 105 100 5 Unable to find driver path: /cumulu Add 7d:22h:1m:41s 
  P2Leaf01 temp6 networking asic die temp sensor absent 47 105 100 5 Unable to read temp4_highest Add 9d:23h:26m:6s 
  P2Leaf01 temp6 networking asic die temp sensor absent 45 105 100 5 Unable to read temp4_highest Add 14d:22h:46m:45s 
- 
- 
+ &lt;/pre&gt;
+&lt;/div&gt;&lt;/div&gt; 
 &lt;p&gt; This message might occur as a result of a timeout at the hardware level, or the switch might be reporting a failure to get a response. &lt;/p&gt;
 </td>
 <td>3.5.3-3.7.14.2, 4.0.0-4.3.0</td>
@@ -21590,7 +21590,7 @@ You can prevent EVPN next hops from not being removed when the contributing peer
 <td>2541604</td>
 <td>The {{snmpd}} service exits with a message similar to the following: 
   
- Error in &apos;/usr/sbin/snmpd': double free or corruption (fasttop): 0x00000000018a4e50 *** 
+ Error in &amp;apos;/usr/sbin/snmpd': double free or corruption (fasttop): 0x00000000018a4e50 *** 
   
  This problem might occur during or after network convergence events. For example, when {{bgpd}} needs to process a high number of updates and the CPU cannot keep up, {{bgpd}} is disconnected and {{agentx}} generates a core dump in {{snmpd}} due to a memory allocation problem. 
  To work around this issue, disable {{agentx}} by commenting out the following lines in the {{/etc/snmp/snmpd.conf}} file. Then, restart the {{snmpd}} service with the {{systemctl restart snmpd}} command. 
@@ -21704,7 +21704,7 @@ To work around this issue, restart {{switchd}}.</td>
 <td>2540520</td>
 <td>When IGMP snooping is enabled on a Broadcom switch, after multiple PIM join and leave messages are sent, {{switchd}} crashes and reports log messages similar to the following: 
   
- var/log/switchd.log:2019-04-05T03:03:35.563891-05:00 SWITCH1 switchd[1067]: *** Error in &apos;/usr/sbin/switchd': free(): invalid next size (fast): 0x000000000191e4d0 *** 
+ var/log/switchd.log:2019-04-05T03:03:35.563891-05:00 SWITCH1 switchd[1067]: *** Error in &amp;apos;/usr/sbin/switchd': free(): invalid next size (fast): 0x000000000191e4d0 *** 
  var/log/switchd.log-2019-04-05T03:03:35.564456-05:00 SWITCH1 switchd[1067]: linux-user-bde:new probed device unit 0 dev_no 0 _ndevices 1 
  var/log/switchd.log-2019-04-05T03:03:35.564855-05:00 SWITCH1 switchd[1067]: DMA pool size: 67108864 
  var/log/syslog:2019-04-05T03:03:36.046102-05:00 SWITCH1 systemd[1]: heartbeat-failed@switchd.service.service: main process exited, code=exited, status=1/FAILURE 
@@ -22564,15 +22564,15 @@ The NetQ agent has been removed from Cumulus VX 3.7.7. The NetQ agent will be bu
 <tr>
 <td>CM-21678</td>
 <td>&lt;p&gt;On a Dell switch with a Maverick ASIC, NetQ might receive false alerts like the following via PagerDuty: &lt;/p&gt;
- 
- 
+ &lt;div class="code panel" style="border-width: 1px;"&gt;&lt;div class="codeContent panelContent"&gt;
+&lt;pre class="code-java"&gt; 
  cumulus@&lt;span class="code-keyword"&gt;switch&lt;/span&gt;:~$ netq show sensors temp changes | grep absent | grep -v psu 
  P2Leaf01 temp9 networking asic die temp sensor absent 43 105 100 5 Unable to find driver path: /cumulu Add 7d:22h:1m:41s 
  P2Leaf01 temp6 networking asic die temp sensor absent 45 105 100 5 Unable to find driver path: /cumulu Add 7d:22h:1m:41s 
  P2Leaf01 temp6 networking asic die temp sensor absent 47 105 100 5 Unable to read temp4_highest Add 9d:23h:26m:6s 
  P2Leaf01 temp6 networking asic die temp sensor absent 45 105 100 5 Unable to read temp4_highest Add 14d:22h:46m:45s 
- 
- 
+ &lt;/pre&gt;
+&lt;/div&gt;&lt;/div&gt; 
 &lt;p&gt; This message might occur as a result of a timeout at the hardware level, or the switch might be reporting a failure to get a response. &lt;/p&gt;
 </td>
 <td>3.5.3-3.7.14.2, 4.0.0-4.3.0</td>
@@ -22775,7 +22775,7 @@ You can prevent EVPN next hops from not being removed when the contributing peer
 <td>2541604</td>
 <td>The {{snmpd}} service exits with a message similar to the following: 
   
- Error in &apos;/usr/sbin/snmpd': double free or corruption (fasttop): 0x00000000018a4e50 *** 
+ Error in &amp;apos;/usr/sbin/snmpd': double free or corruption (fasttop): 0x00000000018a4e50 *** 
   
  This problem might occur during or after network convergence events. For example, when {{bgpd}} needs to process a high number of updates and the CPU cannot keep up, {{bgpd}} is disconnected and {{agentx}} generates a core dump in {{snmpd}} due to a memory allocation problem. 
  To work around this issue, disable {{agentx}} by commenting out the following lines in the {{/etc/snmp/snmpd.conf}} file. Then, restart the {{snmpd}} service with the {{systemctl restart snmpd}} command. 
@@ -23862,15 +23862,15 @@ The NetQ agent has been removed from Cumulus VX 3.7.7. The NetQ agent will be bu
 <tr>
 <td>CM-21678</td>
 <td>&lt;p&gt;On a Dell switch with a Maverick ASIC, NetQ might receive false alerts like the following via PagerDuty: &lt;/p&gt;
- 
- 
+ &lt;div class="code panel" style="border-width: 1px;"&gt;&lt;div class="codeContent panelContent"&gt;
+&lt;pre class="code-java"&gt; 
  cumulus@&lt;span class="code-keyword"&gt;switch&lt;/span&gt;:~$ netq show sensors temp changes | grep absent | grep -v psu 
  P2Leaf01 temp9 networking asic die temp sensor absent 43 105 100 5 Unable to find driver path: /cumulu Add 7d:22h:1m:41s 
  P2Leaf01 temp6 networking asic die temp sensor absent 45 105 100 5 Unable to find driver path: /cumulu Add 7d:22h:1m:41s 
  P2Leaf01 temp6 networking asic die temp sensor absent 47 105 100 5 Unable to read temp4_highest Add 9d:23h:26m:6s 
  P2Leaf01 temp6 networking asic die temp sensor absent 45 105 100 5 Unable to read temp4_highest Add 14d:22h:46m:45s 
- 
- 
+ &lt;/pre&gt;
+&lt;/div&gt;&lt;/div&gt; 
 &lt;p&gt; This message might occur as a result of a timeout at the hardware level, or the switch might be reporting a failure to get a response. &lt;/p&gt;
 </td>
 <td>3.5.3-3.7.14.2, 4.0.0-4.3.0</td>
@@ -24014,7 +24014,7 @@ You can prevent EVPN next hops from not being removed when the contributing peer
 <td>2541604</td>
 <td>The {{snmpd}} service exits with a message similar to the following: 
   
- Error in &apos;/usr/sbin/snmpd': double free or corruption (fasttop): 0x00000000018a4e50 *** 
+ Error in &amp;apos;/usr/sbin/snmpd': double free or corruption (fasttop): 0x00000000018a4e50 *** 
   
  This problem might occur during or after network convergence events. For example, when {{bgpd}} needs to process a high number of updates and the CPU cannot keep up, {{bgpd}} is disconnected and {{agentx}} generates a core dump in {{snmpd}} due to a memory allocation problem. 
  To work around this issue, disable {{agentx}} by commenting out the following lines in the {{/etc/snmp/snmpd.conf}} file. Then, restart the {{snmpd}} service with the {{systemctl restart snmpd}} command. 
@@ -24830,7 +24830,7 @@ The NetQ agent has been removed from Cumulus VX 3.7.7. The NetQ agent will be bu
  ... 
  
  Chipset: 
- Port Config: 48 x 25G-SFP28 & 4 x 100G-QSFP28 & 2 x 200G-QSFP-DD 
+ Port Config: 48 x 25G-SFP28 &amp; 4 x 100G-QSFP28 &amp; 2 x 200G-QSFP-DD 
  CPU: 
  Uptime: 0:37:19.280000 
   </td>
@@ -25190,15 +25190,15 @@ Permanent MAC address sync between MLAG peers is now supported.</td>
 <tr>
 <td>CM-21678</td>
 <td>&lt;p&gt;On a Dell switch with a Maverick ASIC, NetQ might receive false alerts like the following via PagerDuty: &lt;/p&gt;
- 
- 
+ &lt;div class="code panel" style="border-width: 1px;"&gt;&lt;div class="codeContent panelContent"&gt;
+&lt;pre class="code-java"&gt; 
  cumulus@&lt;span class="code-keyword"&gt;switch&lt;/span&gt;:~$ netq show sensors temp changes | grep absent | grep -v psu 
  P2Leaf01 temp9 networking asic die temp sensor absent 43 105 100 5 Unable to find driver path: /cumulu Add 7d:22h:1m:41s 
  P2Leaf01 temp6 networking asic die temp sensor absent 45 105 100 5 Unable to find driver path: /cumulu Add 7d:22h:1m:41s 
  P2Leaf01 temp6 networking asic die temp sensor absent 47 105 100 5 Unable to read temp4_highest Add 9d:23h:26m:6s 
  P2Leaf01 temp6 networking asic die temp sensor absent 45 105 100 5 Unable to read temp4_highest Add 14d:22h:46m:45s 
- 
- 
+ &lt;/pre&gt;
+&lt;/div&gt;&lt;/div&gt; 
 &lt;p&gt; This message might occur as a result of a timeout at the hardware level, or the switch might be reporting a failure to get a response. &lt;/p&gt;
 </td>
 <td>3.5.3-3.7.14.2, 4.0.0-4.3.0</td>
@@ -25515,7 +25515,7 @@ This issue does not affect a pure distributed routing (symmetric or asymmetric) 
  ... 
  
  Chipset: 
- Port Config: 48 x 25G-SFP28 & 4 x 100G-QSFP28 & 2 x 200G-QSFP-DD 
+ Port Config: 48 x 25G-SFP28 &amp; 4 x 100G-QSFP28 &amp; 2 x 200G-QSFP-DD 
  CPU: 
  Uptime: 0:37:19.280000 
   </td>
@@ -25823,15 +25823,15 @@ To work around this issue, remove the matching {{network}} statement. </td>
 <tr>
 <td>CM-21678</td>
 <td>&lt;p&gt;On a Dell switch with a Maverick ASIC, NetQ might receive false alerts like the following via PagerDuty: &lt;/p&gt;
- 
- 
+ &lt;div class="code panel" style="border-width: 1px;"&gt;&lt;div class="codeContent panelContent"&gt;
+&lt;pre class="code-java"&gt; 
  cumulus@&lt;span class="code-keyword"&gt;switch&lt;/span&gt;:~$ netq show sensors temp changes | grep absent | grep -v psu 
  P2Leaf01 temp9 networking asic die temp sensor absent 43 105 100 5 Unable to find driver path: /cumulu Add 7d:22h:1m:41s 
  P2Leaf01 temp6 networking asic die temp sensor absent 45 105 100 5 Unable to find driver path: /cumulu Add 7d:22h:1m:41s 
  P2Leaf01 temp6 networking asic die temp sensor absent 47 105 100 5 Unable to read temp4_highest Add 9d:23h:26m:6s 
  P2Leaf01 temp6 networking asic die temp sensor absent 45 105 100 5 Unable to read temp4_highest Add 14d:22h:46m:45s 
- 
- 
+ &lt;/pre&gt;
+&lt;/div&gt;&lt;/div&gt; 
 &lt;p&gt; This message might occur as a result of a timeout at the hardware level, or the switch might be reporting a failure to get a response. &lt;/p&gt;
 </td>
 <td>3.5.3-3.7.14.2, 4.0.0-4.3.0</td>
@@ -26060,7 +26060,7 @@ This issue does not affect a pure distributed routing (symmetric or asymmetric) 
  ... 
  
  Chipset: 
- Port Config: 48 x 25G-SFP28 & 4 x 100G-QSFP28 & 2 x 200G-QSFP-DD 
+ Port Config: 48 x 25G-SFP28 &amp; 4 x 100G-QSFP28 &amp; 2 x 200G-QSFP-DD 
  CPU: 
  Uptime: 0:37:19.280000 
   </td>

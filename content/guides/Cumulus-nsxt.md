@@ -7,35 +7,29 @@ product: NVIDIA Networking Guides
 VMware NSX-T provides an agile software-defined infrastructure to build cloud-native application environments. It aims to provide automation, simplicity in operations, networking and security.
 NSX-T supports various type of environments like multi-hypervisor, bare-metal worloads, hybrid/public clouds and more. It serves as the control-plane, data-plane and management-plane for virtualized overlay solutions.
 
-VMware virtualized enviorment requires all virtual and physical elements such as ESXi hypervisors, NSX Edges, etc. to communicate to each other over an underaly IP fabric. NVIDIA Mellanox Spectrum switches provides best-in-class undealy hardware leveraging Spectrum® ASIC capabilities over 1-400Gbps port speeds and various densities. With Cumulus Linux OS on top, underlying fabric configuration can be easially done to ensure VMware NSX-T proper operations.
+VMware virtualized enviorment requires all virtual and physical elements such as ESXi hypervisors and NSX Edges to communicate to each other over an underlay IP fabric. NVIDIA Spectrum switches provides best-in-class underlay hardware leveraging the Spectrum ASIC providing speeds of 1 to 400Gbps. With NVIDIA Cumulus Linux OS software the underlying fabric configuration can be easially provisioned to ensure VMware NSX-T proper operations.
 
-This configuration guide examines a few of the most common use-cases of VMware NSX-T deployments, and shows the required underlay switches configurations of Cumulus Linux OS.</br>
-In the following scenarions, the underaly IP fabric configured with [Multi-Chassis Link Aggregation - MLAG](https://docs.cumulusnetworks.com/cumulus-linux/Layer-2/Multi-Chassis-Link-Aggregation-MLAG/) for active/active phisical layer 2 connectivity, [Virtual Router Redundancy - VRR and VRRP](https://docs.cumulusnetworks.com/cumulus-linux-43/Layer-2/Virtual-Router-Redundancy-VRR-and-VRRP/) for active/active and redundant layer 3 gateways, and [Border Gateway Protocol - BGP](https://docs.cumulusnetworks.com/cumulus-linux-43/Layer-3/Border-Gateway-Protocol-BGP/) to provide underlay IP fabric connectivity between all physical and logical elemets. Our best-practice is using [eBGP](https://docs.cumulusnetworks.com/cumulus-linux-43/Layer-3/Border-Gateway-Protocol-BGP/#ebgp-and-ibgp) for all Leaf-Spine underlay peerings. 
-
-{{%notice note%}}
-
-NSX-T configuration will not be covered in this guide, for more information regarding VMware NSX-T design, installation and configuiration check - [VMware® NSX-T Reference Design](https://communities.vmware.com/t5/VMware-NSX-Documents/VMware-NSX-T-Reference-Design/ta-p/2778093), [NSX-T Data Center Installation Guide](https://docs.vmware.com/en/VMware-NSX-T-Data-Center/3.1/installation/GUID-3E0C4CEC-D593-4395-84C4-150CD6285963.html), and [NSX-T Data Center Administration Guide](https://docs.vmware.com/en/VMware-NSX-T-Data-Center/3.1/administration/GUID-FBFD577B-745C-4658-B713-A3016D18CB9A.html).
-
-{{%/notice %}}
+This configuration guide examines a few of the most common use-cases of VMware NSX-T deployments, and shows the required underlay switches configurations of Cumulus Linux.</br>
+In the following scenarions, the underlay IP fabric configured with [Multi-Chassis Link Aggregation - MLAG](https://docs.cumulusnetworks.com/cumulus-linux/Layer-2/Multi-Chassis-Link-Aggregation-MLAG/) for active/active phisical layer 2 connectivity, [Virtual Router Redundancy - VRR and VRRP](https://docs.cumulusnetworks.com/cumulus-linux-43/Layer-2/Virtual-Router-Redundancy-VRR-and-VRRP/) for active/active and redundant layer 3 gateways, and [Border Gateway Protocol - BGP](https://docs.cumulusnetworks.com/cumulus-linux-43/Layer-3/Border-Gateway-Protocol-BGP/) to provide underlay IP fabric connectivity between all physical and logical elemets. Our best-practice is using [eBGP](https://docs.cumulusnetworks.com/cumulus-linux-43/Layer-3/Border-Gateway-Protocol-BGP/#ebgp-and-ibgp) for all Leaf-Spine underlay peerings.
 
 {{%notice note%}}
 
-The configuration outputs taken from our cloud virtual simulation envioemnt called [NVIDIA Cumulus AIR](https://air.cumulusnetworks.com/). Thus, all switches' interfaces speed are 1G. In real enviorments, using NVIDIA Mellanox Spectrum switches, interfaces speed could be between 1-400Gbps.
+NSX-T configuration will not be covered in this guide, for more information regarding VMware NSX-T design, installation and configuration check - [VMware NSX-T Reference Design](https://communities.vmware.com/t5/VMware-NSX-Documents/VMware-NSX-T-Reference-Design/ta-p/2778093), [NSX-T Data Center Installation Guide](https://docs.vmware.com/en/VMware-NSX-T-Data-Center/3.1/installation/GUID-3E0C4CEC-D593-4395-84C4-150CD6285963.html), and [NSX-T Data Center Administration Guide](https://docs.vmware.com/en/VMware-NSX-T-Data-Center/3.1/administration/GUID-FBFD577B-745C-4658-B713-A3016D18CB9A.html).
 
 {{%/notice %}}
 
 # Pure Virtualized Environment
 
-This use-case covers the basic VMware environment where its all vertualized and based on pure IP fabric underaly (e.g. greenfield deployment). It means all the communucation is between Virtual Machines (VMs) located on ESXi hypervisors. 
+This use-case covers the basic VMware environment where its all virtualized and based on pure IP fabric underlay (e.g. greenfield deployment). It means all the communucation is between Virtual Machines (VMs) located on ESXi hypervisors.
 
-NSX-T uses Generic Networking Virtualization Encapsulation (Geneve) as the overlay protocol to transmit virtualized traffic over layer 2 tunnels on top of the layer 3 underalying fabric. Geneve protocol is similar to the well-known VXLAN encapsulation, but it has extended header with more options. Each NSX-T "prepered host" (ESXi added to NSX-T manager) gets installed with kernel modules to act as Tunnel Endpoint (TEP) device. TEP devices are responsible for encapsulating and decapsulating traffic between Virtual Machicnes inside the virtualized world.
+NSX-T uses Generic Networking Virtualization Encapsulation (Geneve) as the overlay protocol to transmit virtualized traffic over layer 2 tunnels on top of the layer 3 underlay fabric. The Geneve protocol is similar to the well-known VXLAN encapsulation, but it has an extended header with more options. Each NSX-T "prepared host" (ESXi added to NSX-T manager) is installed with kernel modules to act as a Tunnel Endpoint (TEP) device. TEP devices are responsible for encapsulating and decapsulating traffic between virtual machicnes inside the virtualized network.
 
 The below underlay IP fabric configuration based on the this example topology diagram and physical connectivity
 
 {{<figure src="/images/guides/cumulus-nsxt/pure_L2.JPG">}}
 
-**Rack 1** – Two NVIDIA Mellanox Switches in MLAG + One ESXi hypervisor connected in active/active bonding</br>
-**Rack 2** – Two NVIDIA Mellanox Switches in MLAG + One ESXi hypervisor connected in active/active bonding
+**Rack 1** – Two NVIDIA Switches in MLAG + One ESXi hypervisor connected in active/active bonding</br>
+**Rack 2** – Two NVIDIA Switches in MLAG + One ESXi hypervisor connected in active/active bonding
 
 ## Physical Connectivity
 
@@ -132,9 +126,9 @@ swp4       1G     Default  leaf04           swp52
 
 ## MTU Configuration
 
-VMware recommendation is to set Jumbo MTU (9k) configuration on all virtual and phyical netowrk elements end-to-end. On VMkernel ports, Virtual swithces (VDS), VDS Port-Groups, N-VDS and the underlay physycal network - switches and routers, etc. Geneve encapsulation, requires a minumum MTU of `1600B` (`1700B` for extended options). But, it is better to use 9k MTU for the entire netowork path. This improves the throughput of storage, vSAN, vMotion, NFS and vSpehre Replication, etc. 
+The VMware recommendation is to configure Jumbo MTU (9000) on all virtual and phyical netowrk elements end-to-end. On VMkernel ports, Virtual swithces (VDS), VDS Port-Groups, N-VDS and the underlay physical network. Geneve encapsulation, requires a minumum MTU of `1600B` (`1700B` is required for extended options). It is recommended to use 9000 byte MTU for the entire netowork path. This improves the throughput of storage, vSAN, vMotion, NFS and vSphere Replication.
 
-Using the below commands, you can examine switches' physical interfaces MTU settings. By default, all interfaces on Cumulus Linux have Jumbo 9k MTU.
+Using the below commands, you can examine switches' physical interfaces MTU settings. By default, all interfaces on Cumulus Linux have MTU 9216 configured.
 
 {{< tabs "4tt16 ">}}
 
@@ -240,24 +234,26 @@ UP     mgmt  N/A  65536  VRF                                IP: 127.0.0.1/8
 {{< /tab >}}
 {{< /tabs >}}
 
-In any case the default MTU configuration was modified, it's possible to re-apply it using one of these commands:
+To manually define the MTU use the `net add interface` command.
 ```
 cumulus@switch:~$ net add interface swp1 mtu 9216
 ```
+
+To restore the MTU to the default value of 9216 use `net del interface mtu`.
 ```
 cumulus@switch:~$ net del interface swp1 mtu
 ```
 
 ## MLAG and VRR Configuration
 
-In our example topology, VMs are located on two different physical ESXi hypervisors, and share the same application. They are in the same IP subnet and connected to the same VMware Logical Switch aka Segment (which for us, is like VLAN on our physical switches). But, as they are divided by a layer 3 underaly network, we must ensure the Geneve layer 2 overaly traffic to pass over it. 
+In the example topology, VMs are located on two different physical ESXi hypervisors, and share the same application. They are in the same IP subnet and connected to the same VMware Logical Switch or Segment (similar to a VLAN in a physical network). But, as they are divided by a layer 3 underlay network, we must ensure the Geneve layer 2 overaly traffic to pass over it.
 
-The ESXi hypervosors connected using active/active LAG to the leaf switches for redunrancy and more throughput. For that, we create active/active, redundent layer 2 and layer 3 connectivity using MLAG protocol with VRR on top. The below Cumulus Linux switches configuration demostrates how to configure MLAG and VRR.</br> 
+The ESXi hypervisors connected using active/active LAG to the leaf switches for redunrancy and additional throughput. For that, we create active/active, redundent layer 2 and layer 3 connectivity using MLAG protocol with VRR on top. The below Cumulus Linux switches configuration demostrates how to configure MLAG and VRR.</br> 
 Make sure to set MLAG+VRR regardless the N-VDS uplink profile (active/active or active/standby), unless of course, only one ToR (leaf) or a single link is used to connect the hypervisor.
 
-### MLAG General Configuration 
+### MLAG General Configuration
 
-Cumulus Linux MLAG configuration is done by a single command. It automatically creates the ISL (Inter Switch Link) bond, and configure all MLAG realted configuiration (bridge, sys-mac, peer-priority, etc.)
+Cumulus Linux MLAG configuration is done by a single command. It automatically creates the peerlink bond, and configures all MLAG related configuration.
 
 {{< tabs "TABtgbID123013 ">}}
 {{< tab "leaf01 ">}}
@@ -288,13 +284,13 @@ cumulus@leaf04:mgmt:~$ net commit
 
 ### MLAG Interfaces Configuration - Active/Active LACP LAG N-VDS Uplink Profile
 
-If the recommended active/active LAG (LACP) N-VDS uplink profile is used, switch downlink interfaces for ESXi must be bonded into MLAG ports (LACP bonds).</br> 
+If the recommended active/active LAG (LACP) N-VDS uplink profile is used, switch downlink interfaces for ESXi must be bonded into MLAG ports (LACP bonds).  
 This action also automatically adds the MLAG interfaces into the bridge and sets them as trunk ports (VLAN tagging) with all VLANs allowed.
 
 {{%notice note%}}
 
-For active/standby enviornment, don't configure MLAG interfaces and move to the [Switch Ports Configuration - Non-LAG N-VDS Uplink Profile](http://localhost:1313/guides/nsx-t-deployment/Cumulus-nsxt/#esxi-downlink-ports-configuration---activestandby-n-vds-uplink).</br> 
-Make sure not to use active/active LACP LAG uplink profile for the Overlay Transport Zone on N-VDS.
+For active/standby environments, do not configure MLAG. Follow the instructions under the [Switch Ports Configuration - Non-LAG N-VDS Uplink Profile](http://localhost:1313/guides/nsx-t-deployment/Cumulus-nsxt/#esxi-downlink-ports-configuration---activestandby-n-vds-uplink) section.  
+Do not use active/active LACP LAG uplink profile for the Overlay Transport Zone on N-VDS.
 
 {{%/notice %}}
 
@@ -325,11 +321,11 @@ cumulus@leaf04:mgmt:~$ net commit
 {{< /tab >}}
 {{< /tabs >}}
 
-VLAN allowance on trunk ports can be changed per need. Check [VLAN Tagging](https://docs.cumulusnetworks.com/cumulus-linux-43/Layer-2/Ethernet-Bridging-VLANs/VLAN-Tagging/) page for more information and commands.
+For information on how to assign VLANs to trunk ports reference the [VLAN Tagging](https://docs.cumulusnetworks.com/cumulus-linux-43/Layer-2/Ethernet-Bridging-VLANs/VLAN-Tagging/) page for more information and commands.
 
 ### Switch Ports Configuration - Non-LAG N-VDS Uplink Profile
 
-if active/standby or active/active non-LAG N-VDS uplink profiles used, switch dowlink interfaces for ESXi must be left regular ports and not use any MLAG ports configuration. They has to be added into the bridge as trunk ports.
+If active/standby or active/active, non-LAG N-VDS uplink profiles used, the switch downlink interfaces for ESXi must be left as regular ports and not use any MLAG port configurations. They must be added to the bridge as trunk ports.
 
 {{< tabs "TABID0112213 ">}}
 {{< tab "leaf01 ">}}
@@ -360,7 +356,7 @@ cumulus@leaf04:mgmt:~$ net commit
 
 ### MLAG Configuration Verification
 
-Our guide based on active/active LACP LAG upilnk profile, so all below MLAG show outputs presents MLAG interfaces `esxi01` and `esxi03`
+To verify configurations the command `net show clag` can be used. In this example `esxi01` and `esxi03` are the MLAG interfaces connected to ESXi hosts.
 
 {{< tabs "TABID012 ">}}
 {{< tab "leaf01 ">}}
@@ -431,23 +427,22 @@ Our Interface      Peer Interface     CLAG Id   Conflicts              Proto-Dow
 
 {{%notice note%}}
 
-In case of non-LAG N-VDS uplink profle, no **MLAG ports** will be seen MLAG show output. The lack of MLAG ports doesn't mean that MLAG is not functional. MLAG is mandatory for using VRR, which is enhanced VRRP and is needed also for the non-LAG uplink profiles.
+In the case of a non-LAG N-VDS uplink profle, no **MLAG ports** will be seen in the MLAG show output. The lack of MLAG ports doesn't mean that MLAG is not functional. MLAG is mandatory for using VRR, which is enhanced VRRP and is needed also for the non-LAG uplink profiles.
 
 {{%/notice %}}
 
 ### VRR Configuration
 
-ESXi uses active/active uplinks to spread Geneve encapsulated traffic to both ToR leaf switches. For that, TEP device has to send the traffic to it's default-gateway. As each TEP device has its own VLAN on the underlying fabric switch, layer 3 gateways (VRR) need to be created for it.</br> 
-ESXi TEP IP addresses can be on a same or different subnets. VMware best-practice configuration for TEP IP pool is to assign different subnet (e.g /24) per physical rack. Each hypervisor (ESXi) must have at least one physical NIC connected to its Top-of-Rack (ToR/Leaf) switch.
+ESXi uses active/active uplinks to spread Geneve encapsulated traffic to both ToR leaf switches. Each TEP device sends traffic to it's default-gateway. As each TEP device has its own VLAN on the underlying fabric switch, layer 3 gateways (VRR) need to be created for it.  
+ESXi TEP IP addresses can be on a same or different subnets. VMware best-practice configuration for TEP IP pool is to assign different subnets per physical rack.
 
 {{%notice note%}}
 
-VMware requires VLAN per each type of traffic (storage, vSAN, vMorion, Overlay (TEP), etc.). Our use-case's focus is only on the overlay VM-VM traffic and switches configuireation for it.
+VMware requires a VLAN per each type of traffic, for example, storage, vSAN, vMorion, or Overlay (TEP) traffic. This use case focus is only on the overlay VM to VM traffic and switches configurations.
 
 {{%/notice %}}
 
-Create VLAN, SVI and Virtual IP for the VRR. </br> 
-VLAN ID is a local parameter and not shared between the hypervisors. So for deployment simplicty, same VLAN ID for all TEP devices used in both racks.
+The VLAN ID is a local parameter and not shared between the hypervisors. For deployment simplicty, use the same VLAN ID for all TEP devices used in both racks.
 
 {{< tabs "101231231210 ">}}
 {{< tab " leaf01 ">}}
@@ -597,16 +592,16 @@ UP     vlan100-v0     N/A  9216   Interface/L3                                IP
 
 ## BGP Configuration
 
-As mentioned earlier, all underlay IP fabric BGP peerings in this guide are based on eBGP. To ease the configuration deployement to minumum efforts, Cumulus Linux [Auto BGP](https://docs.cumulusnetworks.com/cumulus-linux-43/Layer-3/Border-Gateway-Protocol-BGP/#auto-bgp) and [BGP Unnumbered](https://docs.cumulusnetworks.com/cumulus-linux-43/Layer-3/Border-Gateway-Protocol-BGP/#bgp-unnumbered) configuration is used.
+All underlay IP fabric BGP peerings in this guide are based on eBGP. Cumulus Linux [Auto BGP](https://docs.cumulusnetworks.com/cumulus-linux-43/Layer-3/Border-Gateway-Protocol-BGP/#auto-bgp) and [BGP Unnumbered](https://docs.cumulusnetworks.com/cumulus-linux-43/Layer-3/Border-Gateway-Protocol-BGP/#bgp-unnumbered) configurations are used.
 
 {{%notice note%}}
 
-Auto BGP configuration is only avalible using NCLU. If you want to use `vtysh` configuration, BPG ASN must be configured.</br>
-To configure BGP using `vtysh`, make sure to enable `bgpd` deamon as described in [Configure FRRouting](https://docs.cumulusnetworks.com/cumulus-linux-43/Layer-3/FRRouting/Configure-FRRouting/#) page.
+Auto BGP configuration is only available using NCLU. If you want to use `vtysh` configuration, a BGP ASN must be configured.  
+For additional details refer to the [Configuring FRRouting](https://docs.cumulusnetworks.com/cumulus-linux-43/Layer-3/FRRouting/Configure-FRRouting/#) documentation.
 
 {{%/notice %}}
 
-### BGP Peetings Establishment 
+### BGP Peerings Establishment
 
 {{< tabs "10 ">}}
 {{< tab "NCLU Commands ">}}
@@ -658,7 +653,7 @@ cumulus@spine01:mgmt:~$ net add bgp neighbor swp1 remote-as external
 cumulus@spine01:mgmt:~$ net add bgp neighbor swp2 remote-as external
 cumulus@spine01:mgmt:~$ net add bgp neighbor swp3 remote-as external
 cumulus@spine01:mgmt:~$ net add bgp neighbor swp4 remote-as external
-cumulus@spine01:mgmt:~$ net add bgp bestpath as-path multipath-relax   ### consider all leaf paths as equal regardless the ASN
+cumulus@spine01:mgmt:~$ net add bgp bestpath as-path multipath-relax   
 cumulus@spine01:mgmt:~$ net add bgp router-id 11.11.11.11
 cumulus@spine01:mgmt:~$ net commit
 ```
@@ -670,7 +665,7 @@ cumulus@spine02:mgmt:~$ net add bgp neighbor swp1 remote-as external
 cumulus@spine02:mgmt:~$ net add bgp neighbor swp2 remote-as external
 cumulus@spine02:mgmt:~$ net add bgp neighbor swp3 remote-as external
 cumulus@spine02:mgmt:~$ net add bgp neighbor swp4 remote-as external
-cumulus@spine02:mgmt:~$ net add bgp bestpath as-path multipath-relax   ### consider all leaf paths as equal regardless the ASN
+cumulus@spine02:mgmt:~$ net add bgp bestpath as-path multipath-relax   
 cumulus@spine02:mgmt:~$ net add bgp router-id 22.22.22.22
 cumulus@spine02:mgmt:~$ net commit
 ```
@@ -745,7 +740,7 @@ spine01(config-router)# neighbor swp1 remote-as external
 spine01(config-router)# neighbor swp2 remote-as external
 spine01(config-router)# neighbor swp3 remote-as external
 spine01(config-router)# neighbor swp4 remote-as external
-spine01(config-router)# bgp bestpath as-path multipath-relax    ### consider all leaf paths as equal regardless the ASN
+spine01(config-router)# bgp bestpath as-path multipath-relax
 spine01(config-router)# end
 spine01# write memory
 spine01# exit
@@ -761,7 +756,7 @@ spine02(config-router)# neighbor swp1 remote-as external
 spine02(config-router)# neighbor swp2 remote-as external
 spine02(config-router)# neighbor swp3 remote-as external
 spine02(config-router)# neighbor swp4 remote-as external
-spine02(config-router)# bgp bestpath as-path multipath-relax    ### consider all leaf paths as equal regardless the ASN
+spine02(config-router)# bgp bestpath as-path multipath-relax
 spine02(config-router)# end
 spine02# write memory
 spine02# exit
@@ -771,13 +766,12 @@ spine02# exit
 {{< /tabs >}}
 {{< /tabs >}}
 
-### TEP VLAN Subnets Advertisement into BGP 
+### TEP VLAN Subnets Advertisement into BGP
 
-As we already know, ESXi hypervisors builds layer 2 oaverlay tunnels to send Geneve encapsulated traffic over the layer 3 underlay. For that, the undelaying IP fabric must be aware about how to reach each TEP device in the network. This is done by advertising the local Overlay TEP VLAN (TEP subnet) we created earlier into BGP.
+ESXi hypervisors build layer 2 oaverlay tunnels to send Geneve encapsulated traffic over the layer 3 underlay. The undelaying IP fabric must be aware of each TEP device in the network. This is done by advertising the local Overlay TEP VLAN (TEP subnet) we created earlier into BGP.
 
-There are two ways to advertise netowrks into BGP, by `network` command to advertise specificly, or by `redistribute` command to inject subnets into BGP from a non-BGP protocol. 
-In our case we use the `redistribute connected` command to inject the directly-connected routes into BGP.</br> 
-This command can be used also with filtering to avoid unwanted/unnecesary subnets get into BGP. For more information and commands. check [Route Filtering and Redistributio](https://docs.cumulusnetworks.com/cumulus-linux-43/Layer-3/Routing/Route-Filtering-and-Redistribution/) page.
+Use the `redistribute connected` command to inject the directly-connected routes into BGP.  
+This command can be used also with filtering to avoid unwanted/unnecesary subnets get into BGP. For more information and commands. check [Route Filtering and Redistribution](https://docs.cumulusnetworks.com/cumulus-linux-43/Layer-3/Routing/Route-Filtering-and-Redistribution/) page.
 
 {{< tabs "101rr0 ">}}
 {{< tab "NCLU Commands ">}}
@@ -1094,28 +1088,28 @@ B>* 10.2.2.0/24 [20/0] via fe80::4638:39ff:fe00:14, swp3, weight 1, 00:09:24
 
 ## Traffic Flow
 
-Now, as a result of the configuration above, ESXi hypervisors can reach each other's TEP addresses, and build Geneve tunnels for the layer 2 virtualized traffic of the VMs. 
+ESXi hypervisors can reach each other's TEP addresses, and build Geneve tunnels for the overlay VM traffic.
 
-Let's examine two scenarios based on the initial example physical toplogy.
+Two traffic flow examples are described below.
 
 ### Layer 2 Virtualized Traffic
 
-Both VMs are assigned to the same VMware logical segment (logical switch), which means they are in the same subnet. Each segment has its own unique Virtual Network Identifier (VNI) assigned by NSX-T. This VNI is added into the Geneve packet header on the source TEP (encapsulation), so the destination TEP could identify which segment the traffic belongs to (decapsulation). All segments that share the same Overlay Transport Zone, uses the same TEP addresses to establish the tunnels. It is possible to have more than one Overlay TZ on the N-VDS, but for this case, more VLANs needs to be configured and advertised on the underlay switches. Our scenario, uses only one Overlay TZ (one TEP VLAN).
+Both VMs are assigned to the same VMware logical segment (logical switch), which means they are in the same subnet. Each segment has its own unique Virtual Network Identifier (VNI) assigned by NSX-T. This VNI is added into the Geneve packet header on the source TEP. The destination TEP identifies which segment the traffic belongs to based on this VNI. All segments that share the same Overlay Transport Zone, uses the same TEP addresses to establish the tunnels. It is possible to have more than one Overlay TZ on the N-VDS, but for this case, more VLANs needs to be configured and advertised on the underlay switches. This scenario, uses only one Overlay TZ (one TEP VLAN).
 
 {{<figure src="/images/guides/cumulus-nsxt/Pure_L2_VNI.JPG">}}
 
 VM1 `172.16.0.1` on ESXi01 sends traffic to VM3 `172.16.0.3` on ESXi03: 
 1. The packet reaches the local hypervisor's TEP device `10.1.1.1`.
-2. Local TEP device encapsulates it into a new Geneve packet (UDP+IP) and inserts the assigned to segment VNI `65510`.</br> 
-The encapsulated packet's source IP address is the local TEP IP `10.1.1.1`, and the destination IP address is the remote TEP device `10.2.2.1`.
-3. The encapsulated packet sent to remote TEP device over the Geneve overlay tunnel based on the underlay IP fabric BGP routing.
-4. Remote TEP device (ESXi03) recieves and decapsulates the Geneve encapsulated packet.
+2. The local TEP device encapsulates it into a new Geneve packet and inserts the assigned to segment VNI `65510`.  
+The new encapsulated packet's source IP address is the local TEP IP `10.1.1.1`, and the destination IP address is the remote TEP device `10.2.2.1`.
+3. The encapsulated packet is routed to the remote TEP device through the underlay network.
+4. The remote TEP device (ESXi03) recieves and decapsulates the Geneve encapsulated packet.
 5. The traffic forwarded to the destination VM3 based on the VNI inside the Geneve header.
 
 ### Layer 3 Virtualized Traffic
 
 This scenario examines two segments (logical switches) with two VMs assigned to each. As different segments means different subnets, a unique VNI assigned to each.  
-For different subnets to communucate, traffic needs to be routed. In a regular physical world, the switches could route between the subnets using directly connected routing, or by any other routing protocol (e.g. BGP, OSPF). But as all the traffic is between virtual machines, it's all inside the virtual world, so none of the underalying switches are aware of it.
+For different subnets to communucate, traffic needs to be routed. In a regular physical world, the switches could route between the subnets using directly connected routing, or by any other routing protocol (e.g. BGP, OSPF). But as all the traffic is between virtual machines, it's all inside the virtual world, so none of the underlaying switches are aware of it.
 
 To route between logical segments within the virtualized world, or as VMware calls it "east-west traffic" traffic, Teir 1 Gateway (aka T1 Router) can be used. T1 Router is a logical distributed router which "lives" in each ESXi hypervisors and has virtual downlinks to the logical segments. It acts as segment's (VLAN) default-gateway, and using its routing table sends traffic between deifferent segments. it works like a regular router just within the virtual world.
 
@@ -1138,7 +1132,7 @@ It is possible to use many T1 Routers and assign different segments to different
 
 {{%/notice %}}
 
-From the undealy IP fabric perspective, routing between logical segments means absolutly nothing. As both segments share the same Overlay TZ, they still use the same TEP IP addresses (TEP VLAN) to establish overlay Geneve tunnel between hypervisors, so no additional configuration is needed on the switches.
+From the underlay IP fabric perspective, routing between logical segments means absolutly nothing. As both segments share the same Overlay TZ, they still use the same TEP IP addresses (TEP VLAN) to establish overlay Geneve tunnel between hypervisors, so no additional configuration is needed on the switches.
 
 VM1 `172.16.0.1` on ESXi01 sends traffic to VM4 `172.16.1.4` on ESXi03: 
 1. The packet reaches the T1 Router as its destination IP address in different subnet (T1 is logical router so the packet is still in ESXi01). 
@@ -1157,9 +1151,9 @@ VM1 `172.16.0.1` on ESXi01 sends traffic to VM4 `172.16.1.4` on ESXi03:
 
 # Virtualized and Bare-Metal Server Environment
 
-This use-case covers VMware vertualized environment with the need to connect to a Bare-Metal (BM) server. This could the when the virtualized environment deployed as part of an alreay existing fabric (brownfield) and VMs need to communicate with a legacy or any other server which doesn't run VMs (not part of the virtualized world).</br> 
+This use-case covers VMware virtualized environment with the need to connect to a Bare-Metal (BM) server. This could the when the virtualized environment deployed as part of an alreay existing fabric (brownfield) and VMs need to communicate with a legacy or any other server which doesn't run VMs (not part of the virtualized world).</br> 
 
-As we already know from the [Pure Virtualized Environment](http://localhost:1313/guides/nsx-t-deployment/Cumulus-nsxt/#pure-virtualized-environment), for VMs to communicate to each other, NSX-T uses Geneve encapsulation in layer 2 overlay tunnels over layer 3 fabric. But, in cases where VM needs to communicate with BM servers, Geneve tunnels not the answer. So, for traffic to be sent between the virtualized and the physical worlds, it has to be sent Geneve encapsulated, decapsulated, and sent as regular IP packet in the underlay network. This is handeled by NSX-T componenet called [NSX Edge](https://docs.vmware.com/en/VMware-NSX-T-Data-Center/3.0/installation/GUID-5EF2998C-4867-4DA6-B1C6-8A6F8EBCC411.html). In a nuthshell, NSX Edge is a gateway between the vritualized and the outside physical worlds. It acts as TEP devic0 and as underaly router, it establishes BGP/OSPF peeting with the underlay fabric to route traffic in/out the virtualized environment.
+As we already know from the [Pure Virtualized Environment](http://localhost:1313/guides/nsx-t-deployment/Cumulus-nsxt/#pure-virtualized-environment), for VMs to communicate to each other, NSX-T uses Geneve encapsulation in layer 2 overlay tunnels over layer 3 fabric. But, in cases where VM needs to communicate with BM servers, Geneve tunnels not the answer. So, for traffic to be sent between the virtualized and the physical worlds, it has to be sent Geneve encapsulated, decapsulated, and sent as regular IP packet in the underlay network. This is handeled by NSX-T componenet called [NSX Edge](https://docs.vmware.com/en/VMware-NSX-T-Data-Center/3.0/installation/GUID-5EF2998C-4867-4DA6-B1C6-8A6F8EBCC411.html). In a nuthshell, NSX Edge is a gateway between the vritualized and the outside physical worlds. It acts as TEP devic0 and as underlay router, it establishes BGP/OSPF peeting with the underlay fabric to route traffic in/out the virtualized environment.
 
 {{%notice note%}}
 
@@ -1389,14 +1383,14 @@ cumulus@switch:~$ net del interface swp1 mtu
 ```
 ## MLAG and VRR Configuration
 
-In our example topology, VM will be located on one physical ESXi01 hypervisor and Edge VM on the other ESXI03. As Edge VM responsible for virtualized traffic to be sent out-of-the virtual world, both VM and Edge have to share the same Overlay TZ (VLAN) to communicate. But, as they are divided by a layer 3 underaly network, we must ensure the Geneve layer 2 overaly traffic to pass over it. In addition, the BM server is also part of the network and located in the physical world. So Edge will have to know how to reach it as well. 
+In our example topology, VM will be located on one physical ESXi01 hypervisor and Edge VM on the other ESXI03. As Edge VM responsible for virtualized traffic to be sent out-of-the virtual world, both VM and Edge have to share the same Overlay TZ (VLAN) to communicate. But, as they are divided by a layer 3 underlay network, we must ensure the Geneve layer 2 overaly traffic to pass over it. In addition, the BM server is also part of the network and located in the physical world. So Edge will have to know how to reach it as well. 
 
-The ESXi hypervosors and the BM server connected using active/active LAG to the leaf switches for redunrancy and more throughput. For that, we create active/active, redundent layer 2 and layer 3 connectivity using MLAG protocol with VRR on top. The below Cumulus Linux switches configuration demostrates how to configure MLAG and VRR.
+The ESXi hypervisors and the BM server connected using active/active LAG to the leaf switches for redunrancy and more throughput. For that, we create active/active, redundent layer 2 and layer 3 connectivity using MLAG protocol with VRR on top. The below Cumulus Linux switches configuration demostrates how to configure MLAG and VRR.
 Make sure to set MLAG+VRR regardless the N-VDS uplink profile (active/active or active/standby), unless of course, only one ToR (leaf) or a single link is used to connect the hypervisor.
 
 ### MLAG General Configuration 
 
-Cumulus Linux MLAG configuration is done by a single command. It automatically creates the ISL (Inter Switch Link) bond, and configure all MLAG realted configuiration (bridge, sys-mac, peer-priority, etc.)
+Cumulus Linux MLAG configuration is done by a single command. It automatically creates the ISL (Inter Switch Link) bond, and configure all MLAG related configuration (bridge, sys-mac, peer-priority, etc.)
 
 {{< tabs "TABIDd013 ">}}
 {{< tab "leaf01 ">}}
@@ -1432,7 +1426,7 @@ This action also automatically adds the MLAG interfaces into the bridge and sets
 
 {{%notice note%}}
 
-For active/standby enviornment, don’t configure MLAG interfaces and move to the [Switch Ports Configuration - non-LAG Bare-Metal and N-VDS Uplink Profile ](http://localhost:1313/guides/nsx-t-deployment/Cumulus-nsxt/#switch-ports-configuration---non-lag-bare-metal-and-n-vds-uplink-profile).
+For active/standby environment, don’t configure MLAG interfaces and move to the [Switch Ports Configuration - non-LAG Bare-Metal and N-VDS Uplink Profile ](http://localhost:1313/guides/nsx-t-deployment/Cumulus-nsxt/#switch-ports-configuration---non-lag-bare-metal-and-n-vds-uplink-profile).
 Make sure not to use active/active LACP LAG uplink profile for the Overlay Transport Zone on N-VDS nor LACP bond on BM server.
 
 {{%/notice %}}
@@ -1585,7 +1579,7 @@ ESXi TEP IP addresses can be on a same or different subnets. VMware best-practic
 
 {{%notice note%}}
 
-VMware requires VLAN per each type of traffic (storage, vSAN, vMorion, Overlay (TEP), etc.). Our use-case's focus is only on the overlay VM - underlay BM traffic and switches configuireation for it.
+VMware requires VLAN per each type of traffic (storage, vSAN, vMorion, Overlay (TEP), etc.). Our use-case's focus is only on the overlay VM - underlay BM traffic and switches configuration for it.
 
 {{%/notice %}}
 
@@ -1770,12 +1764,12 @@ The subinterfaces on `leaf03` and `leaf04` to peer with Edge uplinks have IPv4 a
 
 {{%notice note%}}
 
-Auto BGP configuration is only avalible using NCLU. If you want to use `vtysh` configuration, BPG ASN must be configured.</br>
+Auto BGP configuration is only available using NCLU. If you want to use `vtysh` configuration, BGP ASN must be configured.</br>
 To configure BGP using `vtysh`, first enable `bgpd` deamon as described in [Configure FRRouting](https://docs.cumulusnetworks.com/cumulus-linux-43/Layer-3/FRRouting/Configure-FRRouting/#) page.
 
 {{%/notice %}}
 
-### BGP Peetings Establishment 
+### BGP Peerings Establishment 
 
 {{< tabs "112dfff30 ">}}
 {{< tab "NCLU Commands ">}}
@@ -1946,11 +1940,11 @@ spine02# exit
 
 ### TEP VLAN, Edge Virtual Uplinks and Bare-Metal Subnets Advertisement into BGP 
 
-As we already know, ESXi hypervisors builds layer 2 oaverlay tunnels to send Geneve encapsulated traffic over the layer 3 underlay. For that, the undelaying IP fabric must be aware about how to reach each TEP, Edge upilnk and BM server in the network. In addition, NSX edge must know the underaly subnets (BM). This is done by advertising the local Overlay TEP VLANs, Edge uplinks and BM sbunets we created earlier into BGP.
+As we already know, ESXi hypervisors builds layer 2 oaverlay tunnels to send Geneve encapsulated traffic over the layer 3 underlay. For that, the undelaying IP fabric must be aware about how to reach each TEP, Edge upilnk and BM server in the network. In addition, NSX edge must know the underlay subnets (BM). This is done by advertising the local Overlay TEP VLANs, Edge uplinks and BM sbunets we created earlier into BGP.
 
-There are two ways to advertise netowrks into BGP, by `network` command to advertise specificly, or by `redistribute` command to inject subnets into BGP from a non-BGP protocol. In our case we use the `redistribute connected` command to inject the directly-connected routes into BGP.
+There are two ways to advertise networks into BGP, by `network` command to advertise specificly, or by `redistribute` command to inject subnets into BGP from a non-BGP protocol. In our case we use the `redistribute connected` command to inject the directly-connected routes into BGP.
 
-There are two ways to advertise netowrks into BGP, by network command to advertise specificly, or by redistribute command to inject subnets into BGP from a non-BGP protocol. In our case we use the redistribute connected command to inject the directly-connected routes into BGP.
+There are two ways to advertise networks into BGP, by network command to advertise specificly, or by redistribute command to inject subnets into BGP from a non-BGP protocol. In our case we use the redistribute connected command to inject the directly-connected routes into BGP.
 This command can be used also with filtering to avoid unwanted/unnecesary subnets get into BGP. For more information and commands check out the [Route Filtering and Redistribution](https://docs.cumulusnetworks.com/cumulus-linux-43/Layer-3/Routing/Route-Filtering-and-Redistribution/) page.
 
 
@@ -2309,9 +2303,9 @@ B>* 192.168.0.0/24 [20/0] via fe80::4638:39ff:fe00:14, swp3, weight 1, 00:33:48
 
 ## Traffic Flow
 
-This scenario examines a VM which assigned to a logical segment `VLAN100` in the vritualized world, BM server in `VLAN200` on the underlay network (physical world), and NSX Edge VM located on ESXi03 host. Edge VM is the gateway between the logical and the physical worlds ("north-south" traffic) and uses two logical uplinks in VLANs `30` and `31` which has BGP peering to the underaly leaf switches to route VM-BM traffic.
+This scenario examines a VM which assigned to a logical segment `VLAN100` in the vritualized world, BM server in `VLAN200` on the underlay network (physical world), and NSX Edge VM located on ESXi03 host. Edge VM is the gateway between the logical and the physical worlds ("north-south" traffic) and uses two logical uplinks in VLANs `30` and `31` which has BGP peering to the underlay leaf switches to route VM-BM traffic.
 
-In this diagram we also have Teir 1 and Teir 0 gateways which are part of the NSX Edge. T1 router has logical downlink into the virtual segment, and a logical uplink to the T0 router. T0 router has logical downlink to T1, and two logical uplinks to the leaf switches in the physical world - `VLAN30`, `VLAN31`. T0 router has the BGP peering with the leaf swtiches, and by that it advertises the logical segments to the underalying fabric, and recieves the physical subnets.
+In this diagram we also have Teir 1 and Teir 0 gateways which are part of the NSX Edge. T1 router has logical downlink into the virtual segment, and a logical uplink to the T0 router. T0 router has logical downlink to T1, and two logical uplinks to the leaf switches in the physical world - `VLAN30`, `VLAN31`. T0 router has the BGP peering with the leaf swtiches, and by that it advertises the logical segments to the underlaying fabric, and recieves the physical subnets.
 
 {{<figure src="/images/guides/cumulus-nsxt/edge.jpg">}}
 
@@ -2335,18 +2329,18 @@ VM1 `172.16.0.1` on ESXi01 sends traffic to the BM server `192.168.0.1`:
 4. Local TEP encapsulates the packet into Geneve using VNI `65010` of `VLAN100` segment. As the destination is T0 router which is on the Edge, the packet sent to it with source-destination IPs of the TEP devices `10.1.1.1`-`10.2.2.1`.
 5. Edge TEP, which is part of the Overlay TZ will (and `VLAN100`) decapsulate the packet and forwards it to the T0 router. 
 6. T0 router which is part of the undelary VLAN TZ, will examines its routing table to determine the packet's destiatnion.
-7. As packet's destination is the BM server in the underaly network (basd on BGP advertisements), a regular IP traffic will be sent over the virtual uplinks to `leaf03` and `leaf04` (ECMP) to reach thier directly connected BM subnet `192.168.0.0/24`
+7. As packet's destination is the BM server in the underlay network (basd on BGP advertisements), a regular IP traffic will be sent over the virtual uplinks to `leaf03` and `leaf04` (ECMP) to reach thier directly connected BM subnet `192.168.0.0/24`
 
 
 
 
 # Virtualized Environment Over EVPN Fabric
 
-## EVPN Underaly Fabric
+## EVPN underlay Fabric
 
-Not alwyas the vritualized environment deployed over a pure IP undrlay (e.g. brownfeild). There are cases when VMware environment added to an underlay fabric which uses [Network Virtualization](https://docs.cumulusnetworks.com/cumulus-linux-43/Network-Virtualization/) with [Ethernet Virtual Private Network - EVPN](https://docs.cumulusnetworks.com/cumulus-linux-43/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN/). Even though, it still needs to work separately from the underalying fabric - VM traffic sent only within the virtual world. In that case, the underalying IP fabric has also VXLAN and EVPN configuration.
+Not alwyas the vritualized environment deployed over a pure IP undrlay (e.g. brownfeild). There are cases when VMware environment added to an underlay fabric which uses [Network Virtualization](https://docs.cumulusnetworks.com/cumulus-linux-43/Network-Virtualization/) with [Ethernet Virtual Private Network - EVPN](https://docs.cumulusnetworks.com/cumulus-linux-43/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN/). Even though, it still needs to work separately from the underlaying fabric - VM traffic sent only within the virtual world. In that case, the underlaying IP fabric has also VXLAN and EVPN configuration.
 
-From NSX-T virtualized fabric perspective, there is no real differance. When using VXLAN/EVPN underaly fabric, the Geneve packets encapsulated into VXLAN packets on the leaf switches and transmitted over the IP fabric. In other words, the overlay packet is double-encapsulated. Forthemore, when using such deployment, we can set all TEP addresses into same subnet and leverage VXLAN layer 2 stretch over the layer 3 fabric as well. 
+From NSX-T virtualized fabric perspective, there is no real differance. When using VXLAN/EVPN underlay fabric, the Geneve packets encapsulated into VXLAN packets on the leaf switches and transmitted over the IP fabric. In other words, the overlay packet is double-encapsulated. Forthemore, when using such deployment, we can set all TEP addresses into same subnet and leverage VXLAN layer 2 stretch over the layer 3 fabric as well. 
 
 {{%notice note%}}
 
@@ -2360,7 +2354,7 @@ Switches configuration below based on layer 2 bridging with [VXLAN Active-active
 
 ### TEP VLAN Configuration
 
-As mentioned aboce, our use-case covers layer 2 VXLAN/EVPN underaly fabric. Therefore, ESXi TEP IPs for all racks are in the same subnet, which means, it is strethced by VXLAN over layer 3 underaly fabrci. In that case, TEP VLAN default-gateway is not needed (no SVI nor VRR) as no routing is done on the underaly. Instead, VXLAN intefaces must be configured to map the TEP VLAN to VXLAN VNI. 
+As mentioned aboce, our use-case covers layer 2 VXLAN/EVPN underlay fabric. Therefore, ESXi TEP IPs for all racks are in the same subnet, which means, it is strethced by VXLAN over layer 3 underlay fabrci. In that case, TEP VLAN default-gateway is not needed (no SVI nor VRR) as no routing is done on the underlay. Instead, VXLAN intefaces must be configured to map the TEP VLAN to VXLAN VNI. 
 
 VXLAN Tunnel Endpoints (VTEPs) uses local loopback IP address as the tunnel source and destintaion. For that, loopback interfaces need be configured on all leaf switches and then advertised via BGP. In VXLAN active/active mode (MLAG), `clag vxlan-anycast-ip` has to be configured, so the two MLAG peers will have the same virtual tunnel IP address which is used as VXLAN tunnel source. VTEPs are the underlay leaf switches, so spine switches doesn't need any VXLAN configuration.
 
@@ -2370,7 +2364,7 @@ VXLAN Tunnel Endpoints (VTEPs) uses local loopback IP address as the tunnel sour
 
 As we saw in all above use-cases, to create active/active and redundent layer 2 connectivity for the ESXi hypervisors, we use our MLAG protocol. The below Cumulus Linux switches configuration required for for any N-VDS uplink profile (active/active or active/standby). 
 
-Cumulus Linux MLAG configuration is done by a single command. It automatically creates the ISL (Inter Switch Link) bond, and configure all MLAG realted configuiration (bridge, sys-mac, peer-priority, etc.)
+Cumulus Linux MLAG configuration is done by a single command. It automatically creates the ISL (Inter Switch Link) bond, and configure all MLAG related configuration (bridge, sys-mac, peer-priority, etc.)
 
 {{< tabs "TABID123013 ">}}
 {{< tab "leaf01 ">}}
@@ -2681,9 +2675,9 @@ Our Interface      Peer Interface     CLAG Id   Conflicts              Proto-Dow
 
 ## BGP Configuration
 
-### BGP IPv4 and EVPN Peetings Establishement 
+### BGP IPv4 and EVPN Peerings Establishement 
 
-In addition to the regular underaly IP connectivity based on eBGP, EVPN control-plane has to be set to advertise layer 2 subnets over the layer 3 fabric. For that, BGP-EVPN nieghbors set by activating the IPv4 neighbors in EVPN address-family 
+In addition to the regular underlay IP connectivity based on eBGP, EVPN control-plane has to be set to advertise layer 2 subnets over the layer 3 fabric. For that, BGP-EVPN nieghbors set by activating the IPv4 neighbors in EVPN address-family 
 
 {{< tabs "101ad3d ">}}
 {{< tab "NCLU Commands ">}}
@@ -2926,7 +2920,7 @@ For the EVPN control-plane to know which VXLAN VNI belongs to which VTEP, the VN
 
 As stated, as VTEPs are the leaf switches, both above actions needed only on them. Spine switches are only serves as the EVPN control-plane transit path. 
 
-There are two ways to advertise netowrks into BGP, by `network` command to advertise specificly, or by `redistribute` command to inject subnets into BGP from a non-BGP protocol. In our case we use the redistribute connected command to inject the directly-connected routes into BGP. 
+There are two ways to advertise networks into BGP, by `network` command to advertise specificly, or by `redistribute` command to inject subnets into BGP from a non-BGP protocol. In our case we use the redistribute connected command to inject the directly-connected routes into BGP. 
 This command can be used also with filtering to avoid unwanted/unnecesary subnets get into BGP. For more information and commands. check [Route Filtering and Redistributio](https://docs.cumulusnetworks.com/cumulus-linux-43/Layer-3/Routing/Route-Filtering-and-Redistribution/) page.  
 
 {{< tabs "101rrgss0 ">}}
@@ -3386,7 +3380,7 @@ B>* 10.10.10.11/32 [20/0] via fe80::4638:39ff:fe00:14, swp3, weight 1, 00:53:57
 
 ### EVPN Routes and MAC Addresses Population
 
-After EVPN control-plane converged, all TEP IP and MAC addresses should be populated by EVPN across the underaly fabric. That way, all virtualized traffic from ESXi TEPs which is Geneve  encapsulated, sent as layer 2 over layer 3 underlay fabric but with additional VXLAN encapsulation (tunnel in a tunnel). 
+After EVPN control-plane converged, all TEP IP and MAC addresses should be populated by EVPN across the underlay fabric. That way, all virtualized traffic from ESXi TEPs which is Geneve  encapsulated, sent as layer 2 over layer 3 underlay fabric but with additional VXLAN encapsulation (tunnel in a tunnel). 
 
 {{< tabs "TGTT123 ">}}
 {{< tab "leaf01 ">}}
@@ -3665,7 +3659,7 @@ Virtualized traffic in same or diffenet logical segments will be sent as in [Lay
 
 There are cases when virtualized traffic is destined to external networks (as we saw in BM scenario), but outside of the EVPN domain. To asnwer that need, NSX Edge can act as VXLAN-VTEP with BGP-EVPN control-plane. By that, it recieves EVPN Type-5 external routs which are used for external traffic routing in EVPN fabrics. 
 
-As mentioned, Edge VM establishes IPv4 BGP peerings with its ToR switches. On top of that, EVPN peerings are set and EVPN control-plane is built. In the above diagram, Edge VM located on ESXi03 hypervisor. It establishes BGP-EVPN peerings with his local `leaf03` and `leaf04` switches. Those leaf switches, which are called "Border Leafs" (EVPN fabric gateway to external networks), are part of the underaly EVPN fabric, and have EVPN type-5 route to the external server. This route is then puopulated also to the Edge VM.
+As mentioned, Edge VM establishes IPv4 BGP peerings with its ToR switches. On top of that, EVPN peerings are set and EVPN control-plane is built. In the above diagram, Edge VM located on ESXi03 hypervisor. It establishes BGP-EVPN peerings with his local `leaf03` and `leaf04` switches. Those leaf switches, which are called "Border Leafs" (EVPN fabric gateway to external networks), are part of the underlay EVPN fabric, and have EVPN type-5 route to the external server. This route is then puopulated also to the Edge VM.
 
 Edge VM also acts as VXLAN-VTEP, and for that it uses its own loopback interface (which also must be advertised into BGP) as VXLAN tunnel source. By that, it acts the same as the physical switches in VXLAN/EVPN enviorment. 
 

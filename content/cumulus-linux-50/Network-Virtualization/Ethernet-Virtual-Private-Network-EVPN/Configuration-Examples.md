@@ -1908,8 +1908,8 @@ auto eth0
 iface eth0 inet dhcp
     vrf mgmt
 
-auto bridge
-iface bridge
+auto br_default
+iface br_default
     bridge-ports peerlink bond1 bond2 vni10 vni20
     bridge-vids 10 20  
     bridge-vlan-aware yes
@@ -1928,14 +1928,14 @@ iface vni20
 
 auto vlan10
 iface vlan10
-    vlan-raw-device bridge
+    vlan-raw-device br_default
     vlan-id 10
     ip-forward off
     ip6-forward off
 
 auto vlan20
 iface vlan20
-    vlan-raw-device bridge
+    vlan-raw-device br_default
     vlan-id 20
     ip-forward off
     ip6-forward off
@@ -1968,6 +1968,7 @@ iface peerlink.4094
     clagd-peer-ip linklocal
     clagd-priority 1000
     clagd-sys-mac 44:38:39:BE:EF:AA
+    clagd-args --initDelay 10
 
 auto swp1
 iface swp1
@@ -2016,8 +2017,8 @@ auto eth0
 iface eth0 inet dhcp
     vrf mgmt
 
-auto bridge
-iface bridge
+auto br_default
+iface br_default
     bridge-ports peerlink bond1 bond2 vni10 vni20
     bridge-vids 10 20  
     bridge-vlan-aware yes
@@ -2036,14 +2037,14 @@ iface vni20
 
 auto vlan10
 iface vlan10
-    vlan-raw-device bridge
+    vlan-raw-device br_default
     vlan-id 10
     ip-forward off
     ip6-forward off
 
 auto vlan20
 iface vlan20
-    vlan-raw-device bridge
+    vlan-raw-device br_default
     vlan-id 20
     ip-forward off
     ip6-forward off
@@ -2076,6 +2077,7 @@ iface peerlink.4094
     clagd-peer-ip linklocal
     clagd-priority 32768
     clagd-sys-mac 44:38:39:BE:EF:AA
+    clagd-args --initDelay 10
 
 auto swp1
 iface swp1
@@ -2124,8 +2126,8 @@ auto eth0
 iface eth0 inet dhcp
     vrf mgmt
 
-auto bridge
-iface bridge
+auto br_default
+iface br_default
     bridge-ports peerlink bond1 bond2 vni10 vni20
     bridge-vids 10 20  
     bridge-vlan-aware yes
@@ -2144,14 +2146,14 @@ iface vni20
 
 auto vlan10
 iface vlan10
-    vlan-raw-device bridge
+    vlan-raw-device br_default
     vlan-id 10
     ip-forward off
     ip6-forward off
 
 auto vlan20
 iface vlan20
-    vlan-raw-device bridge
+    vlan-raw-device br_default
     vlan-id 20
     ip-forward off
     ip6-forward off
@@ -2184,6 +2186,7 @@ iface peerlink.4094
     clagd-peer-ip linklocal
     clagd-priority 1000
     clagd-sys-mac 44:38:39:BE:EF:BB
+    clagd-args --initDelay 10
 
 auto swp1
 iface swp1
@@ -2232,8 +2235,8 @@ auto eth0
 iface eth0 inet dhcp
     vrf mgmt
 
-auto bridge
-iface bridge
+auto br_default
+iface br_default
     bridge-ports peerlink bond1 bond2 vni10 vni20
     bridge-vids 10 20  
     bridge-vlan-aware yes
@@ -2252,14 +2255,14 @@ iface vni20
 
 auto vlan10
 iface vlan10
-    vlan-raw-device bridge
+    vlan-raw-device br_default
     vlan-id 10
     ip-forward off
     ip6-forward off
 
 auto vlan20
 iface vlan20
-    vlan-raw-device bridge
+    vlan-raw-device br_default
     vlan-id 20
     ip-forward off
     ip6-forward off
@@ -2292,6 +2295,7 @@ iface peerlink.4094
     clagd-peer-ip linklocal
     clagd-priority 32768
     clagd-sys-mac 44:38:39:BE:EF:BB
+    clagd-args --initDelay 10
 
 auto swp1
 iface swp1
@@ -2496,8 +2500,8 @@ auto eth0
 iface eth0 inet dhcp
     vrf mgmt
 
-auto bridge
-iface bridge
+auto br_default
+iface br_default
     bridge-ports peerlink bond3 vni10 vni20
     bridge-vids 10 20
     bridge-vlan-aware yes
@@ -2518,14 +2522,14 @@ auto vlan10
 iface vlan10
     address 10.1.10.2/24
     address-virtual 00:00:00:00:00:10 10.1.10.1/24
-    vlan-raw-device bridge
+    vlan-raw-device br_default
     vlan-id 10
 
 auto vlan20
 iface vlan20
     address 10.1.20.2/24
     address-virtual 00:00:00:00:00:20 10.1.20.1/24
-    vlan-raw-device bridge
+    vlan-raw-device br_default
     vlan-id 20
 
 auto swp51
@@ -2594,8 +2598,8 @@ auto eth0
 iface eth0 inet dhcp
     vrf mgmt
 
-auto bridge
-iface bridge
+auto br_default
+iface br_default
     bridge-ports peerlink bond3 vni10 vni20
     bridge-vids 10 20
     bridge-vlan-aware yes
@@ -2616,14 +2620,14 @@ auto vlan10
 iface vlan10
     address 10.1.10.1/24
     address-virtual 00:00:00:00:00:10 10.1.10.1/24
-    vlan-raw-device bridge
+    vlan-raw-device br_default
     vlan-id 10
 
 auto vlan20
 iface vlan20
     address 10.1.20.1/24
     address-virtual 00:00:00:00:00:20 10.1.20.1/24
-    vlan-raw-device bridge
+    vlan-raw-device br_default
     vlan-id 20
 
 auto swp51
@@ -2656,6 +2660,7 @@ iface peerlink.4094
     clagd-peer-ip linklocal
     clagd-priority 32768
     clagd-sys-mac 44:38:39:BE:EF:FF
+    clagd-args --initDelay 10
 
 auto swp3
 iface swp3
@@ -3481,8 +3486,8 @@ auto BLUE
 iface BLUE
   vrf-table auto
 
-auto bridge
-iface bridge
+auto br_default
+iface br_default
     bridge-ports peerlink bond1 bond2 bond3 vni10 vni20 vni30 vniRED vniBLUE
     bridge-vids 10 20 30 4001 4002  
     bridge-vlan-aware yes
@@ -3522,7 +3527,7 @@ iface vlan10
     address 10.1.10.2/24
     address-virtual 00:00:00:00:00:1a 10.1.10.1/24
     vrf RED
-    vlan-raw-device bridge
+    vlan-raw-device br_default
     vlan-id 10
 
 auto vlan20
@@ -3530,7 +3535,7 @@ iface vlan20
     address 10.1.20.2/24
     address-virtual 00:00:00:00:00:1a 10.1.20.1/24
     vrf RED
-    vlan-raw-device bridge
+    vlan-raw-device br_default
     vlan-id 20
 
 auto vlan30
@@ -3538,21 +3543,21 @@ iface vlan30
     address 10.1.30.2/24
     address-virtual 00:00:00:00:00:1a 10.1.30.1/24
     vrf BLUE
-    vlan-raw-device bridge
+    vlan-raw-device br_default
     vlan-id 30
 
 auto vlan4001
 iface vlan4001
     address-virtual 44:38:39:BE:EF:AA
     vrf RED
-    vlan-raw-device bridge
+    vlan-raw-device br_default
     vlan-id 4001
 
 auto vlan4002
 iface vlan4002
     address-virtual 44:38:39:BE:EF:AA
     vrf BLUE
-    vlan-raw-device bridge
+    vlan-raw-device br_default
     vlan-id 4002
 
 auto swp51
@@ -3651,8 +3656,8 @@ auto BLUE
 iface BLUE
   vrf-table auto
 
-auto bridge
-iface bridge
+auto br_default
+iface br_default
     bridge-ports peerlink bond1 bond2 bond3 vni10 vni20 vni30 vniRED vniBLUE
     bridge-vids 10 20 30 4001 4002  
     bridge-vlan-aware yes
@@ -3692,7 +3697,7 @@ iface vlan10
     address 10.1.10.3/24
     address-virtual 00:00:00:00:00:1a 10.1.10.1/24
     vrf RED
-    vlan-raw-device bridge
+    vlan-raw-device br_default
     vlan-id 10
 
 auto vlan20
@@ -3700,7 +3705,7 @@ iface vlan20
     address 10.1.20.3/24
     address-virtual 00:00:00:00:00:1a 10.1.20.1/24
     vrf RED
-    vlan-raw-device bridge
+    vlan-raw-device br_default
     vlan-id 20
 
 auto vlan30
@@ -3708,21 +3713,21 @@ iface vlan30
     address 10.1.30.3/24
     address-virtual 00:00:00:00:00:1a 10.1.30.1/24
     vrf BLUE
-    vlan-raw-device bridge
+    vlan-raw-device br_default
     vlan-id 30
 
 auto vlan4001
 iface vlan4001
     address-virtual 44:38:39:BE:EF:AA
     vrf RED
-    vlan-raw-device bridge
+    vlan-raw-device br_default
     vlan-id 4001
 
 auto vlan4002
 iface vlan4002
     address-virtual 44:38:39:BE:EF:AA
     vrf BLUE
-    vlan-raw-device bridge
+    vlan-raw-device br_default
     vlan-id 4002
 
 auto swp51
@@ -3821,8 +3826,8 @@ auto BLUE
 iface BLUE
   vrf-table auto
 
-auto bridge
-iface bridge
+auto br_default
+iface br_default
     bridge-ports peerlink bond1 bond2 bond3 vni10 vni20 vni30 vniRED vniBLUE
     bridge-vids 10 20 30 4001 4002  
     bridge-vlan-aware yes
@@ -3862,7 +3867,7 @@ iface vlan10
     address 10.1.10.2/24
     address-virtual 00:00:00:00:00:1a 10.1.10.1/24
     vrf RED
-    vlan-raw-device bridge
+    vlan-raw-device  br_default
     vlan-id 10
 
 auto vlan20
@@ -3870,7 +3875,7 @@ iface vlan20
     address 10.1.20.2/24
     address-virtual 00:00:00:00:00:1a 10.1.20.1/24
     vrf RED
-    vlan-raw-device bridge
+    vlan-raw-device br_default
     vlan-id 20
 
 auto vlan30
@@ -3878,21 +3883,21 @@ iface vlan30
     address 10.1.30.2/24
     address-virtual 00:00:00:00:00:1a 10.1.30.1/24
     vrf BLUE
-    vlan-raw-device bridge
+    vlan-raw-device br_default
     vlan-id 30
 
 auto vlan4001
 iface vlan4001
     address-virtual 44:38:39:BE:EF:BB
     vrf RED
-    vlan-raw-device bridge
+    vlan-raw-device br_default
     vlan-id 4001
 
 auto vlan4002
 iface vlan4002
     address-virtual 44:38:39:BE:EF:BB
     vrf BLUE
-    vlan-raw-device bridge
+    vlan-raw-device br_default
     vlan-id 4002
 
 auto swp51
@@ -3991,8 +3996,8 @@ auto BLUE
 iface BLUE
     vrf-table auto
 
-auto bridge
-iface bridge
+auto br_default
+iface br_default
     bridge-ports peerlink bond1 bond2 bond3 vni10 vni20 vni30 vniRED vniBLUE
     bridge-vids 10 20 30 4001 4002  
     bridge-vlan-aware yes
@@ -4032,7 +4037,7 @@ iface vlan10
     address 10.1.10.3/24
     address-virtual 00:00:00:00:00:1a 10.1.10.1/24
     vrf RED
-    vlan-raw-device bridge
+    vlan-raw-device br_default
     vlan-id 10
 
 auto vlan20
@@ -4040,7 +4045,7 @@ iface vlan20
     address 10.1.20.3/24
     address-virtual 00:00:00:00:00:1a 10.1.20.1/24
     vrf RED
-    vlan-raw-device bridge
+    vlan-raw-device br_default
     vlan-id 20
 
 auto vlan30
@@ -4048,21 +4053,21 @@ iface vlan30
     address 10.1.30.3/24
     address-virtual 00:00:00:00:00:1a 10.1.30.1/24
     vrf BLUE
-    vlan-raw-device bridge
+    vlan-raw-device br_default
     vlan-id 30
 
 auto vlan4001
 iface vlan4001
     address-virtual 44:38:39:BE:EF:BB
     vrf RED
-    vlan-raw-device bridge
+    vlan-raw-device br_default
     vlan-id 4001
 
 auto vlan4002
 iface vlan4002
     address-virtual 44:38:39:BE:EF:BB
     vrf BLUE
-    vlan-raw-device bridge
+    vlan-raw-device br_default
     vlan-id 4002
 
 auto swp51
@@ -4317,8 +4322,8 @@ auto BLUE
 iface BLUE
   vrf-table auto
 
-auto bridge
-iface bridge
+auto br_default
+iface br_default
     bridge-ports peerlink bond3 vniRED vniBLUE
     bridge-vids 4001 4002  
     bridge-vlan-aware yes
@@ -4339,14 +4344,14 @@ auto vlan4001
 iface vlan4001
     address-virtual 44:38:39:BE:EF:FF
     vrf RED
-    vlan-raw-device bridge
+    vlan-raw-device br_default
     vlan-id 4001
 
 auto vlan4002
 iface vlan4002
     address-virtual 44:38:39:BE:EF:FF
     vrf BLUE
-    vlan-raw-device bridge
+    vlan-raw-device br_default
     vlan-id 4002
 
 auto swp51
@@ -4421,8 +4426,8 @@ auto BLUE
 iface BLUE
   vrf-table auto
 
-auto bridge
-iface bridge
+auto br_default
+iface br_default
     bridge-ports peerlink bond3 vniRED vniBLUE
     bridge-vids 4001 4002  
     bridge-vlan-aware yes
@@ -4443,14 +4448,14 @@ auto vlan4001
 iface vlan4001
     address-virtual 44:38:39:BE:EF:FF
     vrf RED
-    vlan-raw-device bridge
+    vlan-raw-device br_default
     vlan-id 4001
 
 auto vlan4002
 iface vlan4002
     address-virtual 44:38:39:BE:EF:FF
     vrf BLUE
-    vlan-raw-device bridge
+    vlan-raw-device br_default
     vlan-id 4002
 
 auto swp51

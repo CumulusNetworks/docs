@@ -218,6 +218,11 @@ def sanatize_rn_for_xls(string):
     output_string = string.replace("<br />", "\015")
 
     output_string = output_string.replace("`", "&apos;")
+    output_string = output_string.replace("&", "&amp;")
+    output_string = output_string.replace("\\<", "&lt;")
+    output_string = output_string.replace("\\>", "&gt;")
+    output_string = output_string.replace("<", "&lt;")
+    output_string = output_string.replace(">", "&gt;")
 
     output_string = output_string.replace("<tt>", "")
     output_string = output_string.replace("</tt>", "")
@@ -234,10 +239,7 @@ def sanatize_rn_for_xls(string):
     output_string = output_string.replace("<ipaddr>", "[ipaddr]")
 
     output_string = output_string.replace("{noformat}", "")
-    output_string = output_string.replace("\\<", "&lt;")
-    output_string = output_string.replace("\\>", "&gt;")
-    output_string = output_string.replace("<", "&lt;")
-    output_string = output_string.replace(">", "&gt;")
+
     return output_string
 
 def build_rn_markdown(json_file, version, file_type):

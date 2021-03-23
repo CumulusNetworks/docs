@@ -1961,6 +1961,8 @@ iface swp50
 auto peerlink
 iface peerlink
     bond-slaves swp49 swp50
+    bond-mode 802.3ad
+    bond-lacp-bypass-allow no
 
 auto peerlink.4094
 iface peerlink.4094
@@ -2070,6 +2072,8 @@ iface swp50
 auto peerlink
 iface peerlink
     bond-slaves swp49 swp50
+    bond-mode 802.3ad
+    bond-lacp-bypass-allow no
 
 auto peerlink.4094
 iface peerlink.4094
@@ -2179,6 +2183,8 @@ iface swp50
 auto peerlink
 iface peerlink
     bond-slaves swp49 swp50
+    bond-mode 802.3ad
+    bond-lacp-bypass-allow no
 
 auto peerlink.4094
 iface peerlink.4094
@@ -2288,6 +2294,8 @@ iface swp50
 auto peerlink
 iface peerlink
     bond-slaves swp49 swp50
+    bond-mode 802.3ad
+    bond-lacp-bypass-allow no
 
 auto peerlink.4094
 iface peerlink.4094
@@ -2516,7 +2524,7 @@ auto vni20
 iface vni20
     bridge-access 20
     vxlan-id 20
-    bridge-arp-nd-suppress on
+    bridge-learning off
 
 auto vlan10
 iface vlan10
@@ -2553,6 +2561,8 @@ iface swp50
 auto peerlink
 iface peerlink
     bond-slaves swp49 swp50
+    bond-mode 802.3ad
+    bond-lacp-bypass-allow no
 
 auto peerlink.4094
 iface peerlink.4094

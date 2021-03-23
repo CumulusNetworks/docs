@@ -236,7 +236,8 @@ def sanatize_rn_for_xls(string):
     output_string = output_string.replace("{noformat}", "")
     output_string = output_string.replace("\\<", "&lt;")
     output_string = output_string.replace("\\>", "&gt;")
-
+    output_string = output_string.replace("<", "&lt;")
+    output_string = output_string.replace(">", "&gt;")
     return output_string
 
 def build_rn_markdown(json_file, version, file_type):
@@ -383,13 +384,11 @@ def write_rns(output, file_type, product, version):
 
     else:
         output_file = rn_location(product, version)
-    try:
-        with open(output_file, "w+") as out_file:
-            for line in output:
-                out_file.write(line)
-    except:
-        print("woah")
-        exit(1)
+
+    with open(output_file, "w+") as out_file:
+        for line in output:
+            out_file.write(line)
+
 
 def build_rn_markdown_files(product, version_list):
     '''

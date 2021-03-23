@@ -383,10 +383,13 @@ def write_rns(output, file_type, product, version):
 
     else:
         output_file = rn_location(product, version)
-
-    with open(output_file, "w+") as out_file:
-        for line in output:
-            out_file.write(line)
+    try:
+        with open(output_file, "w+") as out_file:
+            for line in output:
+                out_file.write(line)
+    except:
+        print("woah")
+        exit(1)
 
 def build_rn_markdown_files(product, version_list):
     '''
@@ -428,7 +431,7 @@ def build_rn_markdown_files(product, version_list):
             version_output.extend(build_markdown_header(product_string(product), major))
         hugo_dir = get_hugo_folder(product, major)
         link = "<a href=\"/{}/rn.xls\">".format(hugo_dir)
-        version_output.append("{}<img src={{\"images/xls_icon.png\" | absURL}} height=\"20px\" width=\"20px\" alt=\"Download {} Release Notes xls\" /></a>&nbsp;&nbsp;&nbsp;&nbsp;{}Download all {} release notes as .xls</a>\n".format(link, major, link, major))
+        version_output.append("{}<img src={{{{\"images/xls_icon.png\" | absURL}}}} height=\"20px\" width=\"20px\" alt=\"Download {} Release Notes xls\" /></a>&nbsp;&nbsp;&nbsp;&nbsp;{}Download all {} release notes as .xls</a>\n".format(link, major, link, major))
 
 
         # Loop over all the maintenance releases.

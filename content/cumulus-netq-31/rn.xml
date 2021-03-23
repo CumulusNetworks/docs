@@ -20,7 +20,7 @@
 </tr>
 <tr>
 <td>2551790</td>
-<td>CLI: Upgrade to NetQ 3.1.0 using the CLI fails due to an authentication issue. To work around this issue, run the {{netq bootstrap master upgrade}} command as usual, then use the Admin UI to complete the upgrade at _https://\&lt;netq-appl-vm-hostname-or-ipaddr\&gt;:8443_.</td>
+<td>CLI: Upgrade to NetQ 3.1.0 using the CLI fails due to an authentication issue. To work around this issue, run the {{netq bootstrap master upgrade}} command as usual, then use the Admin UI to complete the upgrade at _https://\<netq-appl-vm-hostname-or-ipaddr\>:8443_.</td>
 <td>3.1.0-3.1.1</td>
 <td>3.2.0-3.3.1</td>
 </tr>
@@ -38,7 +38,7 @@
 </tr>
 <tr>
 <td>2551545</td>
-<td>Infra: Rarely, after a node is restarted, Kubernetes pods do not synchronize properly and the output of {{netq show opta-health}} shows failures. Node operation is not functionally impacted. You can safely remove the failures by running {{kubectl get pods | grep MatchNodeSelector | cut \-f1 \-d' ' | xargs kubectl delete pod}}. To work around the issue, do not label nodes using the API. Instead label nodes through local configuration using {{kubelet flag &quot;--node-labels&quot;}}.</td>
+<td>Infra: Rarely, after a node is restarted, Kubernetes pods do not synchronize properly and the output of {{netq show opta-health}} shows failures. Node operation is not functionally impacted. You can safely remove the failures by running {{kubectl get pods | grep MatchNodeSelector | cut \-f1 \-d' ' | xargs kubectl delete pod}}. To work around the issue, do not label nodes using the API. Instead label nodes through local configuration using {{kubelet flag "--node-labels"}}.</td>
 <td>3.1.0-3.3.1</td>
 <td></td>
 </tr>
@@ -93,10 +93,10 @@
 <td>2549721</td>
 <td>When installing NetQ on switches running in Cumulus Linux 3.7.x  with management VRF configured, the CLI and Agent server are configured as follows:
 {noformat}
-netq config add cli server &lt;ipaddr&gt; vrf mgmt
+netq config add cli server <ipaddr> vrf mgmt
 netq config restart cli
 
-netq config add agent server &lt;ipaddr&gt; vrf mgmt
+netq config add agent server <ipaddr> vrf mgmt
 netq config restart agent
 {noformat}
 This results in {{netqd}} running in both default and management VRF and the NetQ Agent running in default VRF. In this scenario, the NetQ Agent status is not reported correctly to the management VRF. To workaround this issue: 

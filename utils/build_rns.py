@@ -230,10 +230,10 @@ def sanatize_rn_for_xls(string):
     output_string = output_string.replace('<div class=\"preformatted\" style=\"border-width: 1px;\"><div class=\"preformattedContent panelContent\">', "")
     output_string = output_string.replace("</div>", "")
 
-    output_string = output_string.replace("&", "&amp;")
-    output_string = output_string.replace("\"", "&quot;")
-    output_string = output_string.replace("<", "&lt;")
-    output_string = output_string.replace(">", "&gt;")
+    # output_string = output_string.replace("&", "&amp;")
+    # output_string = output_string.replace("\"", "&quot;")
+    # output_string = output_string.replace("<", "&lt;")
+    # output_string = output_string.replace(">", "&gt;")
 
     return output_string
 

@@ -131,7 +131,7 @@
           </div>
           <div class="col-12 col-sm-6 col-lg-4 mb-5 mb-lg-0">
             {{ range where .Site.Menus.subnav "Title" "NVIDIA Cumulus Linux" }}
-              <a href="{{.URL}}"><img src="/home-products-cumulus-linux.jpg" alt="NVIDIA Cumulus Linux" class="mb-6"></a>
+              <a href="{{.URL}}"><img src={{"/home-products-cumulus-linux.jpg" | absURL }} alt="NVIDIA Cumulus Linux" class="mb-6"></a>
               <h3>NVIDIA Cumulus Linux</h3>
               <p class="small">An open network operating system designed for efficiency, automation and scale</p>
               <ul>
@@ -144,7 +144,7 @@
           </div>
           <div class="col-12 col-sm-6 col-lg-4 mb-5 mb-lg-0">
             {{ range where .Site.Menus.subnav "Title" "NVIDIA NetQ" }}
-              <a href="{{.URL}}"><img src="/home-products-netq.jpg" alt="NVIDIA NetQ" class="mb-6"> </a>
+              <a href="{{.URL}}"><img src={{"/home-products-netq.jpg" | absURL }} alt="NVIDIA NetQ" class="mb-6"> </a>
               <h3>NVIDIA NetQ</h3>
               <p class="small">A highly-scalable, modern network operations tool set that provides visibility into your network</p>
               <ul>
@@ -382,7 +382,7 @@
 </div>
 
   {{ template "_internal/google_analytics_async.html" . }}
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script> 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
   <script type="text/javascript">
     (function() {
       var didInit = false;

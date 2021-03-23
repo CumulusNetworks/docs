@@ -317,10 +317,10 @@ cumulus@leaf01:~$ cl config apply
 
 ```
 cumulus@leaf01:~$ cl set interface lo ip address 10.10.10.63/32
-cumulus@leaf01:~$ cl set interface swp1-3,swp49-54
+cumulus@leaf01:~$ cl set interface swp3,swp49-54
 cumulus@leaf01:~$ cl set interface swp3 link mtu 9000
 cumulus@leaf01:~$ cl set interface bond3 bond member swp3
-cumulus@leaf01:~$ cl set interface bond3 bond mlag id 3
+cumulus@leaf01:~$ cl set interface bond3 bond mlag id 1
 cumulus@leaf01:~$ cl set interface bond3 bond lacp-bypass on
 cumulus@leaf01:~$ cl set interface bond3 link mtu 9000
 cumulus@leaf01:~$ cl set interface bond3 bridge domain br_default
@@ -334,6 +334,7 @@ cumulus@leaf01:~$ cl set interface vlan10
 cumulus@leaf01:~$ cl set interface vlan20
 cumulus@leaf01:~$ cl set bridge domain br_default vlan 10 vni 10
 cumulus@leaf01:~$ cl set bridge domain br_default vlan 20 vni 20
+cumulus@leaf01:~$ cl set interface bond3 bridge domain br_default vlan 10,20
 cumulus@leaf01:~$ cl set nve vxlan mlag shared-address 10.0.1.255
 cumulus@leaf01:~$ cl set nve vxlan source address 10.10.10.63
 cumulus@leaf01:~$ cl set nve vxlan arp-nd-suppress on
@@ -357,10 +358,10 @@ cumulus@leaf01:~$ cl config apply
 
 ```
 cumulus@leaf01:~$ cl set interface lo ip address 10.10.10.64/32
-cumulus@leaf01:~$ cl set interface swp1-3,swp49-54
+cumulus@leaf01:~$ cl set interface swp3,swp49-54
 cumulus@leaf01:~$ cl set interface swp3 link mtu 9000
 cumulus@leaf01:~$ cl set interface bond3 bond member swp3
-cumulus@leaf01:~$ cl set interface bond3 bond mlag id 3
+cumulus@leaf01:~$ cl set interface bond3 bond mlag id 1
 cumulus@leaf01:~$ cl set interface bond3 bond lacp-bypass on
 cumulus@leaf01:~$ cl set interface bond3 link mtu 9000
 cumulus@leaf01:~$ cl set interface bond3 bridge domain br_default
@@ -374,6 +375,7 @@ cumulus@leaf01:~$ cl set interface vlan10
 cumulus@leaf01:~$ cl set interface vlan20
 cumulus@leaf01:~$ cl set bridge domain br_default vlan 10 vni 10
 cumulus@leaf01:~$ cl set bridge domain br_default vlan 20 vni 20
+cumulus@leaf01:~$ cl set interface bond3 bridge domain br_default vlan 10,20
 cumulus@leaf01:~$ cl set nve vxlan mlag shared-address 10.0.1.255
 cumulus@leaf01:~$ cl set nve vxlan source address 10.10.10.64
 cumulus@leaf01:~$ cl set nve vxlan arp-nd-suppress on
@@ -1031,8 +1033,7 @@ iface eth0 inet dhcp
 
 auto br_default
 iface br_default
-    bridge-ports peerlink, bond3
-    bridge-ports vni10 vni20
+    bridge-ports peerlink, bond3 vni10 vni20
     bridge-vids 10 20  
     bridge-vlan-aware yes
 
@@ -1129,8 +1130,7 @@ iface eth0 inet dhcp
 
 auto peerlink
 iface peerlink
-    bridge-ports peerlink bond3
-    bridge-ports vni10 vni20
+    bridge-ports peerlink bond3 vni10 vni20
     bridge-vids 10 20  
     bridge-vlan-aware yes
 

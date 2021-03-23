@@ -117,10 +117,10 @@ Fixed: 1.3.8+dfsg-3+deb10u2</td>
 <tr>
 <td>2556772</td>
 <td>The {{net show clag verify-vlans}} command fails with the following log: 
-{noformat}
+
 WARNING: '/usr/bin/clagctl verifyvlans' failed due to:
 Command '['/usr/bin/clagctl', 'verifyvlans']' returned non-zero exit status 1
-{noformat}
+
 To work around this issue, run the {{/usr/bin/clagctl verifyvlans}} command or the {{net show clag verbose}} command.</td>
 <td>4.2.1-4.3.0</td>
 <td></td>
@@ -176,10 +176,10 @@ Fixed: 1.3.8+dfsg-3+deb10u1</td>
 <tr>
 <td>2556556</td>
 <td>The {{ethtool -m <interface>}} command does not show Mellanox 100G transceiver MMA1L30-CM information and produces the following error:
-{noformat}
+
 root@spine01:mgmt:~# ethtool -m swp51
 Cannot get Module EEPROM data: Invalid argument
-{noformat}
+
 To work around this issue, run the {{mlxlink -d /dev/mst/mt53104_pciconf0 -c -m -e --show_fec --show_serdes_tx --show_device -p 51}} command to show the transceiver information.</td>
 <td>4.3.0</td>
 <td></td>
@@ -200,12 +200,12 @@ To work around this issue, run the {{ip link set <virtual-interface> up}} comman
 <tr>
 <td>2556463</td>
 <td>On the on the Mellanox SN2410 switch, when you restart {{switchd}} or reboot the system, you see the following error messages:
-{noformat}
+
 [ 1446.599850] switch 2-0048: HW semaphore is not released
 [ 1446.605828] switch 2-0048: Cmd exec failed (opcode=40(ACCESS_REG),opcode_mod=0,in_mod=0,status=30(BAD_PKT))
 [ 1446.616378] switch 2-0048: Reg cmd access failed (reg_id=9002(mfsc),type=write)
 [ 1446.624365] switch 2-0048: Failed to write PWM duty
-{noformat}
+
 This is a cosmetic issue and does not affect operation of the switch.</td>
 <td>4.3.0</td>
 <td></td>
@@ -247,10 +247,10 @@ To work around this issue, disable OSPF debugs from global configuration mode (c
 <tr>
 <td>2556082</td>
 <td>The NCLU {{net del vrf}} command does not delete a numbered VRF. For example:
-{noformat}
+
 cumulus@leaf01:~$ net del vrf 55
 ERROR: Command not found
-{noformat}</td>
+</td>
 <td>4.2.1-4.3.0</td>
 <td></td>
 </tr>
@@ -293,10 +293,10 @@ ERROR: Command not found
 <tr>
 <td>2555763</td>
 <td>The NCLU {{net del bgp neighbor}} command does not delete the neighbor and displays an error similar to the following:
-{noformat}
+
 ERROR: --- /run/nclu/frr/frr.conf.scratchpad.baseline   2021-01-04 17:23:59.250463331 +0000
 +++ /run/nclu/frr/frr.conf.scratchpad    2021-01-04 17:25:59.213673980 +0000
-{noformat}
+
 To work around this issue, use the FRR command to delete a neighbor.</td>
 <td>4.3.0</td>
 <td></td>
@@ -304,10 +304,10 @@ To work around this issue, use the FRR command to delete a neighbor.</td>
 <tr>
 <td>2555613</td>
 <td>The {{net show configuration commands}} command incorrectly displays the NCLU syntax to disable IPv6 forwarding on interfaces. For example:
-{noformat}
+
 # net show configuration commands
 net add vlan 1 ip6-forward off 
-{noformat}
+
 The correct NCLU command to disable IPv6 forwarding is {{net add vlan 1 ipv6 forward off}} (without the hyphen).</td>
 <td>4.2.1-4.3.0</td>
 <td></td>
@@ -315,9 +315,9 @@ The correct NCLU command to disable IPv6 forwarding is {{net add vlan 1 ipv6 for
 <tr>
 <td>2555318</td>
 <td>If you try to enable BGP graceful restart when it is already enabled, you see an error similar to the following in the {{frr.log}} file:
-{noformat}
+
 2020-12-07T19:20:26.004333+00:00 cumulus bgpd[4954]: VRF default: Handle GR command GLOBAL_GR_CMD, current GR state GLOBAL_GR, new GR state GLOBAL_INVALID
-{noformat}
+
 This error has no functional impact.</td>
 <td>4.3.0</td>
 <td></td>
@@ -331,14 +331,14 @@ This error has no functional impact.</td>
 <tr>
 <td>2555205</td>
 <td>If the FRR and MSTP processes go down, an SNMP TRAP is not generated even with the following configuration in the {{/etc/snmp/snmpd.conf}} file. 
-{noformat}
+
 proc watchfrr
 proc mstpd
 monitor -I -r 1 -o prNames.5 -o prErrMessage.5 “Process FRRis down!!!” PrErrorFlag.5 != 0
 monitor -I -r 1 -o prNames.5 -o prErrMessage.5 “Process FRR is up!!!” PrErrorFlag.5 = 0
 monitor -I -r 1  -o prNames.3 -o prErrMessage.3  "Process mstpd is down!!!!" prErrorFlag.3 != 0
 monitor -I -r 1  -o prNames.3 -o prErrMessage.3  "Process mstpd is up!!!!" prErrorFlag.3 = 0
-{noformat}
+
 </td>
 <td>3.7.12-3.7.14.2, 4.0.0-4.3.0</td>
 <td></td>
@@ -424,13 +424,13 @@ To work around this issue, configure a static route in FRR.
 <tr>
 <td>2554231</td>
 <td>On the Mellanox SN3700C switch, {{hwmon}} fails to collect information and show errors similar to the following:
-{noformat}
+
 2020-10-01T17:48:09.558200+09:00 [sn3700c1][kernel][err] [25666.121068] mlxsw_minimal 2-0048: Could not acquire lock
 2020-10-01T17:48:09.558200+09:00 [sn3700c1][kernel][err] [25666.127069] mlxsw_minimal 2-0048: Reg cmd access failed (reg_id=900a(mtmp),type=query)
 2020-10-01T17:48:10.554707+09:00 [sn3700c2][kernel][err] [25160.069404] mlxsw_minimal 2-0048: Could not acquire lock
 2020-10-01T17:48:10.554707+09:00 [sn3700c2][kernel][err] [25160.075393] mlxsw_minimal 2-0048: Reg cmd access failed (reg_id=900f(mtbr),type=query)
 2020-10-01T17:48:10.554707+09:00 [sn3700c2][kernel][err] [25160.084265] hwmon hwmon7: Failed to query module temperature sensor
-{noformat}</td>
+</td>
 <td>4.2.1-4.3.0</td>
 <td></td>
 </tr>
@@ -438,7 +438,7 @@ To work around this issue, configure a static route in FRR.
 <td>2554222</td>
 <td>The NCLU command to enable bridge learning fails.
 As a work around, enable bridge learning in the {{/etc/network/interface}} file. For example:
-{noformat}
+
 auto vni-30
 iface vni-30
     vxlan-id 30
@@ -449,7 +449,7 @@ iface vni-30
     mstpctl-bpduguard yes
     mstpctl-portbpdufilter yes
     mtu 9166
-{noformat}</td>
+</td>
 <td>4.2.1-4.3.0</td>
 <td></td>
 </tr>
@@ -468,9 +468,9 @@ iface vni-30
 <tr>
 <td>2553887</td>
 <td>When using TACACS+ configured with a DEFAULT user providing privilege level lower than 16, TACACS+ configured users with privilege level 16 access might not be able to run privilege level 16 NCLU commands, such as {{net add}} and {{net del}} and see an error similar to the following:
-{noformat}
+
 ERROR: You do not have permission to execute that command.
-{noformat}
+
 To work around this issue, remove the DEFAULT user from the TACACS+ server.</td>
 <td>3.7.7-3.7.14.2, 4.0.0-4.3.0</td>
 <td></td>
@@ -478,7 +478,7 @@ To work around this issue, remove the DEFAULT user from the TACACS+ server.</td>
 <tr>
 <td>2553677</td>
 <td>When you configure an SNMPv3 user with the {{net-snmp-config}} configuration command from the {{libsnmp-dev}} package, you get an error message similar to the one below:
-{noformat}
+
 cumulus@switch:mgmt-vrf:~$ sudo net-snmp-config --create-snmpv3-user -a shaauthpass -x aesprivpass -A SHA -X AES userSHAwithAES
 adding the following line to /var/lib/snmp/snmpd.conf:           
    createUser userSHAwithAES SHA "shaauthpass" AES "aesprivpass"       
@@ -486,11 +486,11 @@ adding the following line to /snmp/snmpd.conf:
    rwuser userSHAwithAES                                           
 touch: cannot touch ‘/snmp/snmpd.conf’: No such file or directory
 /usr/bin/net-snmp-create-v3-user: 144: /usr/bin/net-snmp-create-v3-user: cannot create /snmp/snmpd.conf: Directory nonexistent
-{noformat}
+
 To work around this issue, use the NCLU command to configure SNMPv3 user parameters; for example:
-{noformat}
+
 cumulus@switch:mgmt-vrf:~$ net add snmp-server username user999 auth-md5 user999password encrypt-des user999encryption
-{noformat}
+
 Alternatively, directly edit the {{/etc/snmp/snmpd.conf}} file as described in the documentation.</td>
 <td>3.7.13-3.7.14.2, 4.0.0-4.3.0</td>
 <td></td>
@@ -593,9 +593,9 @@ To disable scp completely, use {{/bin/chmod 0 /usr/bin/scp}} .</td>
 <tr>
 <td>2551666</td>
 <td>If you modify an interface name, then reuse the previous interface name for a different VLAN, the {{ifreload -a}} command generates an error similar to the following:
-{noformat}
+
 warning: <interface-name>: interface not recognized - please check interface configuration
-{noformat}
+
 </td>
 <td>4.1.0-4.3.0</td>
 <td></td>
@@ -708,9 +708,9 @@ To work around this issue, look for your string in the output of the {{net show 
 <td>2550243</td>
 <td>When you use {{nginx}} and {{restserver}} in management VRF to provide a REST API for the switch, {{nginx}} starts but {{restserver}} fails to start.
 To work around this issue, comment out the {{Requires=}} line in the {{/lib/systemd/system/restserver.service}}. For example:
-{noformat}
+
 #Requires=nginx.service restserver.socket
-{noformat}</td>
+</td>
 <td>3.7.12-3.7.14.2, 4.0.0-4.3.0</td>
 <td></td>
 </tr>
@@ -724,20 +724,20 @@ To work around this issue, run the {{systemctl restart switchd}} command.</td>
 <tr>
 <td>2550056</td>
 <td>The ACCTON-DIAG option under the Cumulus Linux GRUB menu does not work. When you select this option, you see the following error:
-{noformat}
+
 error: invalid signature.
 Press any key to continue...
-{noformat}</td>
+</td>
 <td>3.7.12-3.7.14.2, 4.1.1-4.3.0</td>
 <td></td>
 </tr>
 <tr>
 <td>2549925</td>
 <td>When you run an Ansible script to replace the {{/etc/network/interfaces}} file, then run the {{ifreload -a}} command, you see errors similar to the following:
-{noformat}
+
 error: swp1s1.2: netlink: cannot set link swp1s1.2 up: operation failed with 'Network is down' (100)
 warning: cmd '/bin/ip addr del 10.0.0.1/24 dev eth0' failed: returned 2 (RTNETLINK answers: Cannot assign requested address
-{noformat}
+
 To work around this issue,  run the {{ifreload -a}} command a second time.</td>
 <td>3.7.12-3.7.14.2, 4.0.0-4.3.0</td>
 <td></td>
@@ -757,10 +757,10 @@ To work around this issue,  run the {{ifreload -a}} command a second time.</td>
 <tr>
 <td>2549731</td>
 <td>When you create SPAN or ERSPAN rules in ebtables, the action fails to install if it is not in lowercase. Make sure that the SPAN or ERSPAN action is all lowercase; for example:
-{noformat}
+
 [ebtables]
 -A FORWARD --in-interface swp10 -j span --dport swp1
-{noformat}</td>
+</td>
 <td>3.7.12-3.7.14.2, 4.1.1-4.3.0</td>
 <td></td>
 </tr>
@@ -891,9 +891,9 @@ To work around this issue, restart FRR.</td>
 <tr>
 <td>2547405</td>
 <td>When you restart the {{hsflowd}} service, you see a {{systemd}} warning message similar to the following:
-{noformat}
+
 Warning: The unit file, source configuration file or drop-ins of hsflowd@mgmt.service changed on disk. Run 'systemctl daemon-reload'.
-{noformat}</td>
+</td>
 <td>4.0.0-4.3.0</td>
 <td></td>
 </tr>
@@ -907,9 +907,9 @@ To work around this issue, execute the {{vtysh -f <file>}} command in the automa
 <tr>
 <td>2546895</td>
 <td>If you have configured a higher number of ports and VLANs (ports x VLANs) or the switch is a lower-powered (CPU) platform, the {{switchd}} service might fail to send a {{systemd keepalive}} within the watchdog timeout value (2 minutes by default) and you see an error similar to the following:
-{noformat}
+
 bq. systemd[1]: switchd.service watchdog timeout (limit 2min)!
-{noformat}
+
 To workaround this issue, either reduce the number of configured interfaces and, or VLANs, or increase the {{systemd}} timeout for {{switchd.service}}.
 To increase the {{systemd}} timeout:
 # Edit the {{/etc/systemd/system/switchd.service.d/override.conf}} file and increase the {{WatchdogSec}} parameter.
@@ -988,13 +988,13 @@ To work around this issue, run the {{net add time ntp server <server> iburst}} c
 <tr>
 <td>2544968</td>
 <td>FRR configuration commands for an SVI interface might have the {{\n}} misplaced in the output.  For example:
-{noformat}
+
 sudo sh -c "printf 'interface 50\nvrf TEST description L3 routing interface\n' >> /etc/frr/frr.conf"
-{noformat}
+
 should be:
-{noformat}
+
 sudo sh -c "printf 'interface 50 vrf TEST\ndescription L3 routing interface\n' >> /etc/frr/frr.conf"
-{noformat}
+
 To work around this issue, configure the interface manually in the {{/etc/frr/frr.conf}} file.</td>
 <td>3.7.9-3.7.14.2, 4.0.0-4.3.0</td>
 <td></td>
@@ -1088,27 +1088,27 @@ To work around this issue, remove the interface alias description from {{iproute
 <tr>
 <td>2543781</td>
 <td>NCLU does not allow you to configure OSPF NSSAs. For example: 
-{noformat}
+
 cumulus@switch:~$ net add ospf area 0.0.0.1 nssa 
 ERROR: Command not found. 
 net add ospf area 0.0.0.1 nssa
-{noformat}
+
 To work around this issue, use FRR instead. For example: 
-{noformat}
+
 switch# configure terminal 
 switch(config)# router ospf 
 switch(config-router)# area 0.0.0.1 nssa 
-{noformat}</td>
+</td>
 <td>3.7.7-3.7.10, 4.0.0-4.3.0</td>
 <td>3.7.11-3.7.14</td>
 </tr>
 <tr>
 <td>2543724</td>
 <td>If a hostname contains utf-8 characters, the NCLU {{net show lldp}} command outputs the following error: 
-{noformat}
+
 ERROR: 'ascii' codec can't encode character u'\xe9' in position 3: ordinal not in range(128) 
 See /var/log/netd.log for more details.  
-{noformat}</td>
+</td>
 <td>3.7.7-3.7.10, 4.0.0-4.3.0</td>
 <td>3.7.11-3.7.14</td>
 </tr>
@@ -1143,9 +1143,9 @@ To work around this issue, change the MTU on all SVIs and the bridge manually in
 <td>2542945</td>
 <td>On the Broadcom Maverick switch with a QinQ configuration, the packets coming into the CPU might be tagged incorrectly; for example, 802.1ad + 802.1q tags are expected in the packets but the packets have 802.1q + 802.1q tags. 
 To work around this issue, configure the bridge with {{bridge-vlan-protocol 802.1ad}}: 
-{noformat}
+
 cumulus@switch:~$ net add bridge mybridge vlan-protocol 802.1ad 
-{noformat} </td>
+ </td>
 <td>3.7.6-3.7.14.2, 4.0.0-4.3.0</td>
 <td></td>
 </tr>
@@ -1199,10 +1199,10 @@ This issue does not affect a pure distributed routing (symmetric or asymmetric) 
 <tr>
 <td>2540753</td>
 <td>If the interface alias contains a single or double quotation mark, or an apostrophe, the {{net show configuration}} commands fail with the following error: 
- {noformat} 
+  
  ERROR: No closing quotation 
  See /var/log/netd.log for more details. 
- {noformat} 
+  
  </td>
 <td>3.7.5-3.7.14.2, 4.0.0-4.3.0</td>
 <td></td>
@@ -1218,14 +1218,14 @@ This issue does not affect a pure distributed routing (symmetric or asymmetric) 
 <td>2540352</td>
 <td>When you use NCLU to configure a route map, the parser allows for glob matching of interfaces for a _match interface_ condition when there can only be a single interface matched. The proper syntax is to use multiple route map clauses, each matching a single interface, instead of a single clause matching multiple interfaces. 
  For example, this command is incorrect: 
- {noformat} 
+  
  net add routing route-map Proxy-ARP permit 25 match interface swp9-10 
- {noformat} 
+  
  These commands are correct: 
- {noformat} 
+  
  net add routing route-map Proxy-ARP permit 25 match interface swp9 
  net add routing route-map Proxy-ARP permit 30 match interface swp10 
- {noformat} 
+  
  </td>
 <td>3.7.2-3.7.14.2, 4.0.0-4.3.0</td>
 <td></td>
@@ -1233,10 +1233,10 @@ This issue does not affect a pure distributed routing (symmetric or asymmetric) 
 <tr>
 <td>2540340</td>
 <td>NCLU allows for the configuration of addresses on VRF interfaces, but tab completion for the {{net add vrf <name>}} command just displays <ENTER>. For example: 
- {noformat} 
+  
  cumulus@switch:~$ net add vrf mgmt 
  <ENTER> 
- {noformat} 
+  
  Tab completion for the {{net add vrf <name> ip address <address>}} command works correctly. </td>
 <td>3.7.4-3.7.14.2, 4.0.0-4.3.0</td>
 <td></td>
@@ -1271,7 +1271,7 @@ To work around this issue, use the {{net add bridge bridge mcsnoop no}} command 
 <td>2540042</td>
 <td>When you try to configure the VRRP priority and advertisement-interval with NCLU on a traditional mode bridge, the {{net commit}} command fails. 
  To work around this issue, use the vtysh command (inside FRR) to change the VRRP priority or advertisement-interval on traditional bridges. For example: 
- {noformat} 
+  
  cumulus@switch:~$ sudo vtysh 
  switch# configure terminal 
  switch(config)# interface br0.100 
@@ -1281,7 +1281,7 @@ To work around this issue, use the {{net add bridge bridge mcsnoop no}} command 
  switch# write memory 
  switch# exit 
  cumulus@switch:~ 
- {noformat} 
+  
  </td>
 <td>3.7.4-3.7.14.2, 4.0.0-4.3.0</td>
 <td></td>
@@ -1290,7 +1290,7 @@ To work around this issue, use the {{net add bridge bridge mcsnoop no}} command 
 <td>2540041</td>
 <td>On SVIs in a VLAN-aware bridge, you cannot change the VRRP priority with NCLU. 
  To work around this issue, run the vtysh command inside FRR to change the default priority. For example: 
- {noformat} 
+  
  cumulus@switch:~$ sudo vtysh 
  switch# configure terminal 
  switch(config)# interface vlan100 
@@ -1299,7 +1299,7 @@ To work around this issue, use the {{net add bridge bridge mcsnoop no}} command 
  switch# write memory 
  switch# exit 
  cumulus@switch:~ 
- {noformat} 
+  
  </td>
 <td>3.7.4-3.7.14.2, 4.0.0-4.3.0</td>
 <td></td>
@@ -1308,7 +1308,7 @@ To work around this issue, use the {{net add bridge bridge mcsnoop no}} command 
 <td>2540040</td>
 <td>Cumulus Linux uses VRRPv3 as the default version, and enables both preempt and accept mode by default. You cannot change these default values with NCLU. 
 To work around this issue, run the vtysh commands (inside FRR) to change the default values. For example: 
- {noformat} 
+  
  cumulus@switch:~$ sudo vtysh 
  switch# configure terminal 
  switch(config)# interface swp4 
@@ -1318,7 +1318,7 @@ To work around this issue, run the vtysh commands (inside FRR) to change the def
  switch# write memory 
  switch# exit 
  cumulus@switch:~ 
- {noformat} 
+  
  </td>
 <td>3.7.4-3.7.14.2, 4.0.0-4.3.0</td>
 <td></td>
@@ -1333,10 +1333,10 @@ To work around this issue, run the vtysh commands (inside FRR) to change the def
 <tr>
 <td>2539994</td>
 <td>When you try to remove a BGP peer group configuration with NCLU, the command fails but no warning message is shown. For example: 
-{noformat} 
+ 
 cumulus@switch:~$ net del bgp neighbor fabric peer-group
 'router bgp 65001' configuration does not have 'neighbor fabric peer-group' 
-{noformat} 
+ 
  </td>
 <td>3.7.2-3.7.14.2, 4.0.0-4.3.0</td>
 <td></td>
@@ -1422,10 +1422,10 @@ To work around this issue, disable ARP suppression on the centralized gateway.</
 <tr>
 <td>2537699</td>
 <td>There is a limitation on the number of SVI interfaces you can specify as DHCP relay interfaces in the {{/etc/default/isc-dhcp-relay}} file. For example, 1500 SVI interfaces causes the {{dhcrelay}} service to exit without a core file and logs similar to the following are generated for the interfaces: 
- {noformat} 
+  
  2018-11-10T23:35:30.992370-08:00 Dev dhcrelay: Listening on LPF/vlan.101/a0:00:00:00:00:51 
  2018-11-10T23:35:30.993472-08:00 Dev dhcrelay: Sending on LPF/vlan.101/a0:00:00:00:00:51 
- {noformat} 
+  
  Eventually the {{dhcrelay}} service stops. 
  </td>
 <td>3.7.1-3.7.14.2, 4.0.0-4.3.0</td>
@@ -1448,10 +1448,10 @@ To work around this issue, disable ARP suppression on the centralized gateway.</
 <tr>
 <td>2536256</td>
 <td>For an unresolved address, the IPROUTER default policer rule has been modified to _not_ match on packets exiting a TUNNEL and headed to the CPU to resolve the address via ARP. As a result, the following default rule no longer matches TUNNEL ingress packets. 
- {noformat} 
+  
  A $INGRESS_CHAIN --in-interface $INGRESS_INTF -m addrtype --dst-type 
  IPROUTER -j POLICE --set-mode pkt --set-rate 400 --set-burst 100 
- {noformat} 
+  
  These packets are now policed by catch all rules. 
  To work around this issue, the VPORT value on a TRIDENT switch must be changed from binary 011 to 100. 
  </td>
@@ -1711,12 +1711,12 @@ Fixed: 4.11.4+57-g41a822c392-1</td>
 <tr>
 <td>2555223</td>
 <td>An EVPN route map filter matching a VNI on egress on the originating router might not set a large-community correctly:
-{noformat}
+
 route-map TEST-TAG permit 10
   match evpn vni 109001
   set large-community 20:20:333
 !
-{noformat}
+
 To work around this issue, remove the VNI match to allow the tag to be applied on egress.
 The VNI match works if applied at some other non-originating router either in the ingress or egress direction.</td>
 <td>4.2.1</td>
@@ -1762,7 +1762,7 @@ To work around this issue, use Mellanox ethernet modules with the Mellanox SN342
 <tr>
 <td>2554785</td>
 <td>After you reboot a Broadcom switch, {{switchd}} might fail to restart and you see logs in {{switchd.log}} similar to the following:
-{noformat}
+
 ...
 Nov 12 12:20:05.063876 leaf01 switchd[9867]:
 Nov 12 12:20:05.064310 leaf01 switchd[9867]: hal_bcm_console.c:294 0:system_init:
@@ -1779,7 +1779,7 @@ Nov 12 12:20:05.099798 leaf01 switchd[9867]:
 Nov 12 12:20:05.099871 leaf01 switchd[9867]: hal_bcm_console.c:294 ERROR loading rc script on unit 0
 Nov 12 12:20:05.099892 leaf01 switchd[9867]:
 Nov 12 12:20:05.099943 leaf01 switchd[9867]: hal_bcm_console.c:299 CRIT loading of rc script failed, aborting!
-{noformat}</td>
+</td>
 <td>3.7.11-4.2.1</td>
 </tr>
 <tr>
@@ -1801,13 +1801,13 @@ Nov 12 12:20:05.099943 leaf01 switchd[9867]: hal_bcm_console.c:299 CRIT loading 
 <td>2554588</td>
 <td>If you try reconfigure a DHCP server after you delete the switch configuration with the {{net del all}} command, the {{dhcpd}} service fails because a duplicate process is running.
 To work around this issue, edit the {{/usr/lib/python2.7/dist-packages/nclu/plugins/dhcp.py}} file to change:
-{noformat}
+
 DHCPD_PID="-pf {0}" 
-{noformat}
+
 to:
-{noformat}
+
 DHCPD_PID="-pf {1}"
-{noformat}</td>
+</td>
 <td>3.7.13-4.2.1</td>
 </tr>
 <tr>
@@ -2049,16 +2049,16 @@ To work around this issue, delete the community list sequence before trying to a
 <td>When the dynamic or static flag on a bridge fdb (MAC) entry is changed to the opposite state, the new flag is not set appropriately in hardware. This can allow a static fdb entry to be unexpectedly learned dynamically on a different interface, or can prevent a dynamic entry from being updated or learned elsewhere.
 This condition can occur during a manual replacement of a local MAC address or when EVPN updates a dynamic MAC address to add or remove the Sticky Mac flag. Either situation results in the MAC address keeping the original flag in hardware.
 To work around this issue, delete or withdraw the fdb entry, then add the static MAC address directly. For example:
-{noformat}
+
 bridge fdb del 50:6b:4b:ee:ee:ee dev swp31 vlan 24 master
 bridge fdb add 50:6b:4b:ee:ee:ee dev swp31 vlan 24 master [ static | dynamic ]
-{noformat}
+
 If you are unable to delete an EVPN-learned remote MAC address, you can replace the dynamic MAC address with a local static one, then delete the static MAC address. For example:
-{noformat}
+
 bridge fdb replace 50:6b:4b:ee:ee:ee dev swp31 vlan 24 master static
 bridge fdb del 50:6b:4b:ee:ee:ee dev swp31 vlan 24 master
 bridge fdb add 50:6b:4b:ee:ee:ee dev swp31 vlan 24 master [ static | dynamic ]
-{noformat}</td>
+</td>
 <td>4.0.0-4.2.1</td>
 </tr>
 <tr>
@@ -2113,19 +2113,19 @@ All the information from {{lldpctl}} is correct. Only the entries after the entr
 <td>In vtysh, if you configure, then remove a layer 3 VNI for a VRF, the VNI is removed from zebra even if the VNI interface still exists in the kernel.
 If you configure a layer 2 VNI as a layer 3 VNI by mistake, removing the layer 3 VNI binding removes it from zebra but EVPN-learned MACs and neighbors are not installed into the kernel.
 To work around this issue, delete, then re-add the missing VNI. For example:
-{noformat}
+
 cumulus@switch:~$ sudo ifdown vni10100
 cumulus@switch:~$ sudo ifup vni10100
-{noformat}
+
 If you flap the link with the {{ip link set vni10100 down; ip link set vni10100 up}} commands, zebra does not re-add the VNI.</td>
 <td>3.7.12-4.2.1</td>
 </tr>
 <tr>
 <td>2549784</td>
 <td>On Mellanox switches, when the networking service and {{switchd}} starts up, a rare condition might occur where {{switchd}} crashes and the following log message is generated:
-{noformat}
+
 {{CRIT backend/mlx/hal_mlx_nexthop.c:294: hal_mlx_ecmp_data_reinit: Assertion &apos;(num_next_hops)' failed.}}
-{noformat}</td>
+</td>
 <td>4.1.0-4.2.1</td>
 </tr>
 <tr>
@@ -2153,29 +2153,29 @@ To work around this issue, remove the unnecessary eBGP IPv4 peering.</td>
 <td>2548485</td>
 <td>If you configure {{aggregate-address <address> summary-only}} before a component of the same aggregate is injected into the BGP table with the {{network}} or {{redistribute}} command, when you remove the {{aggregate-address}} configuration, the component stays suppressed; it is not advertised to peers. For example:
 Existing configuration:
-{noformat}
+
 router bgp 1
  address-family ipv4 unicast
   aggregate-address 50.0.0.0/8 summary-only
  exit-address-family
-{noformat}
+
 If you add {{network 50.0.0.1/32}}, you see the following (expected) BGP table entries:
-{noformat}
+
 Status codes: s suppressed, d damped, h history, * valid, > best, = multipath,
               i internal, r RIB-failure, S Stale, R Removed
 Origin codes: i - IGP, e - EGP, ? - incomplete
    Network          Next Hop            Metric LocPrf Weight Path
 *> 50.0.0.0         0.0.0.0                            32768 i
 s> 50.0.0.1/32      0.0.0.0                  0         32768 i
-{noformat}
+
 Removing {{aggregate-address 50.0.0.0/8 summary-only}} at this point results in the following (unexpected) BGP table entry:
-{noformat}
+
 Status codes: s suppressed, d damped, h history, * valid, > best, = multipath,
               i internal, r RIB-failure, S Stale, R Removed
 Origin codes: i - IGP, e - EGP, ? - incomplete
    Network          Next Hop            Metric LocPrf Weight Path
 s> 50.0.0.1/32      0.0.0.0                  0         32768 i
-{noformat}
+
 To work around this issue, remove, then re-add the component prefix routes.</td>
 <td>3.7.12-4.2.1</td>
 </tr>
@@ -2187,9 +2187,9 @@ To work around this issue, remove, then re-add the component prefix routes.</td>
 <tr>
 <td>2543647</td>
 <td>ERSPAN in ebtables does not work for VNIs. For example, the following rule does not work:
-{noformat}
+
 -A FORWARD -i vni10 -j erspan --src-ip 100.1.1.2 --dst-ip 100.1.1.1 --ttl 64
-{noformat}</td>
+</td>
 <td>3.7.6-4.2.1</td>
 </tr>
 <tr>

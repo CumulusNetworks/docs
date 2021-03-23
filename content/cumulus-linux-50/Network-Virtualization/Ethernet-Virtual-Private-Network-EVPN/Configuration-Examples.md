@@ -37,7 +37,8 @@ The following images shows traffic flow between tenants. The spines and other de
 
 ```
 cumulus@leaf01:~$ cl set interface lo ip address 10.10.10.1/32
-cumulus@leaf01:~$ cl set interface swp1-3,swp49-54
+cumulus@leaf01:~$ cl set interface swp1-2,swp49-54
+cumulus@leaf01:~$ cl set interface swp2 link mtu 9000
 cumulus@leaf01:~$ cl set interface bond1 bond member swp1
 cumulus@leaf01:~$ cl set interface bond2 bond member swp2
 cumulus@leaf01:~$ cl set interface bond1 bond mlag id 1
@@ -56,6 +57,8 @@ cumulus@leaf01:~$ cl set mlag backup 10.10.10.2
 cumulus@leaf01:~$ cl set mlag peer-ip linklocal
 cumulus@leaf01:~$ cl set mlag priority 1000
 cumulus@leaf01:~$ cl set mlag init-delay 10
+cumulus@leaf01:~$ cl set interface vlan10
+cumulus@leaf01:~$ cl set interface vlan20
 cumulus@leaf01:~$ cl set bridge domain br_default vlan 10 vni 10
 cumulus@leaf01:~$ cl set bridge domain br_default vlan 20 vni 20
 cumulus@leaf01:~$ cl set nve vxlan mlag shared-address 10.0.1.12
@@ -82,6 +85,7 @@ cumulus@leaf01:~$ cl config apply
 ```
 cumulus@leaf01:~$ cl set interface lo ip address 10.10.10.2/32
 cumulus@leaf01:~$ cl set interface swp1-2,swp49-54
+cumulus@leaf01:~$ cl set interface swp2 link mtu 9000
 cumulus@leaf01:~$ cl set interface bond1 bond member swp1
 cumulus@leaf01:~$ cl set interface bond2 bond member swp2
 cumulus@leaf01:~$ cl set interface bond1 bond mlag id 1
@@ -100,6 +104,8 @@ cumulus@leaf01:~$ cl set mlag backup 10.10.10.1
 cumulus@leaf01:~$ cl set mlag peer-ip linklocal
 cumulus@leaf01:~$ cl set mlag priority 32768
 cumulus@leaf01:~$ cl set mlag init-delay 10
+cumulus@leaf01:~$ cl set interface vlan10
+cumulus@leaf01:~$ cl set interface vlan20
 cumulus@leaf01:~$ cl set bridge domain br_default vlan 10 vni 10
 cumulus@leaf01:~$ cl set bridge domain br_default vlan 20 vni 20
 cumulus@leaf01:~$ cl set nve vxlan mlag shared-address 10.0.1.12
@@ -126,6 +132,7 @@ cumulus@leaf01:~$ cl config apply
 ```
 cumulus@leaf01:~$ cl set interface lo ip address 10.10.10.3/32
 cumulus@leaf01:~$ cl set interface swp1-2,swp49-54
+cumulus@leaf01:~$ cl set interface swp2 link mtu 9000
 cumulus@leaf01:~$ cl set interface bond1 bond member swp1
 cumulus@leaf01:~$ cl set interface bond2 bond member swp2
 cumulus@leaf01:~$ cl set interface bond1 bond mlag id 1
@@ -144,6 +151,8 @@ cumulus@leaf01:~$ cl set mlag backup 10.10.10.3
 cumulus@leaf01:~$ cl set mlag peer-ip linklocal
 cumulus@leaf01:~$ cl set mlag priority 1000
 cumulus@leaf01:~$ cl set mlag init-delay 10
+cumulus@leaf01:~$ cl set interface vlan10
+cumulus@leaf01:~$ cl set interface vlan20
 cumulus@leaf01:~$ cl set bridge domain br_default vlan 10 vni 10
 cumulus@leaf01:~$ cl set bridge domain br_default vlan 20 vni 20
 cumulus@leaf01:~$ cl set nve vxlan mlag shared-address 10.0.1.34
@@ -170,6 +179,7 @@ cumulus@leaf01:~$ cl config apply
 ```
 cumulus@leaf01:~$ cl set interface lo ip address 10.10.10.4/32
 cumulus@leaf01:~$ cl set interface swp1-2,swp49-54
+cumulus@leaf01:~$ cl set interface swp2 link mtu 9000
 cumulus@leaf01:~$ cl set interface bond1 bond member swp1
 cumulus@leaf01:~$ cl set interface bond2 bond member swp2
 cumulus@leaf01:~$ cl set interface bond1 bond mlag id 1
@@ -188,6 +198,8 @@ cumulus@leaf01:~$ cl set mlag backup 10.10.10.3
 cumulus@leaf01:~$ cl set mlag peer-ip linklocal
 cumulus@leaf01:~$ cl set mlag priority 32768
 cumulus@leaf01:~$ cl set mlag init-delay 10
+cumulus@leaf01:~$ cl set interface vlan10
+cumulus@leaf01:~$ cl set interface vlan20
 cumulus@leaf01:~$ cl set bridge domain br_default vlan 10 vni 10
 cumulus@leaf01:~$ cl set bridge domain br_default vlan 20 vni 20
 cumulus@leaf01:~$ cl set nve vxlan mlag shared-address 10.0.1.34
@@ -314,6 +326,10 @@ cumulus@leaf01:~$ cl set mlag backup 10.10.10.64
 cumulus@leaf01:~$ cl set mlag peer-ip linklocal
 cumulus@leaf01:~$ cl set mlag priority 1000
 cumulus@leaf01:~$ cl set mlag init-delay 10
+cumulus@leaf01:~$ cl set interface vlan10
+cumulus@leaf01:~$ cl set interface vlan20
+cumulus@leaf01:~$ cl set bridge domain br_default vlan 10 vni 10
+cumulus@leaf01:~$ cl set bridge domain br_default vlan 20 vni 20
 cumulus@leaf01:~$ cl set nve vxlan mlag shared-address 10.0.1.254
 cumulus@leaf01:~$ cl set nve vxlan source address 10.10.10.63
 cumulus@leaf01:~$ cl set nve vxlan arp-nd-suppress on
@@ -350,6 +366,10 @@ cumulus@leaf01:~$ cl set mlag backup 10.10.10.63
 cumulus@leaf01:~$ cl set mlag peer-ip linklocal
 cumulus@leaf01:~$ cl set mlag priority 32768
 cumulus@leaf01:~$ cl set mlag init-delay 10
+cumulus@leaf01:~$ cl set interface vlan10
+cumulus@leaf01:~$ cl set interface vlan20
+cumulus@leaf01:~$ cl set bridge domain br_default vlan 10 vni 10
+cumulus@leaf01:~$ cl set bridge domain br_default vlan 20 vni 20
 cumulus@leaf01:~$ cl set nve vxlan mlag shared-address 10.0.1.254
 cumulus@leaf01:~$ cl set nve vxlan source address 10.10.10.64
 cumulus@leaf01:~$ cl set nve vxlan arp-nd-suppress on
@@ -1655,6 +1675,8 @@ The following images shows traffic flow between tenants. The spines and other de
 ```
 cumulus@leaf01:~$ cl set interface lo ip address 10.10.10.1/32
 cumulus@leaf01:~$ cl set interface swp1-3,swp49-54
+cumulus@leaf01:~$ cl set interface swp1 link mtu 9000
+cumulus@leaf01:~$ cl set interface swp2 link mtu 9000
 cumulus@leaf01:~$ cl set interface bond1 bond member swp1
 cumulus@leaf01:~$ cl set interface bond2 bond member swp2
 cumulus@leaf01:~$ cl set interface bond1 bond mlag id 1
@@ -1673,6 +1695,8 @@ cumulus@leaf01:~$ cl set mlag backup 10.10.10.2
 cumulus@leaf01:~$ cl set mlag peer-ip linklocal
 cumulus@leaf01:~$ cl set mlag priority 1000
 cumulus@leaf01:~$ cl set mlag init-delay 10
+cumulus@leaf01:~$ cl set interface vlan10
+cumulus@leaf01:~$ cl set interface vlan20
 cumulus@leaf01:~$ cl set bridge domain br_default vlan 10 vni 10
 cumulus@leaf01:~$ cl set bridge domain br_default vlan 20 vni 20
 cumulus@leaf01:~$ cl set nve vxlan mlag shared-address 10.0.1.12
@@ -1699,6 +1723,8 @@ cumulus@leaf01:~$ cl config apply
 ```
 cumulus@leaf01:~$ cl set interface lo ip address 10.10.10.2/32
 cumulus@leaf01:~$ cl set interface swp1-2,swp49-54
+cumulus@leaf01:~$ cl set interface swp1 link mtu 9000
+cumulus@leaf01:~$ cl set interface swp2 link mtu 9000
 cumulus@leaf01:~$ cl set interface bond1 bond member swp1
 cumulus@leaf01:~$ cl set interface bond2 bond member swp2
 cumulus@leaf01:~$ cl set interface bond1 bond mlag id 1
@@ -1716,6 +1742,8 @@ cumulus@leaf01:~$ cl set mlag backup 10.10.10.1
 cumulus@leaf01:~$ cl set mlag peer-ip linklocal
 cumulus@leaf01:~$ cl set mlag priority 32768
 cumulus@leaf01:~$ cl set mlag init-delay 10
+cumulus@leaf01:~$ cl set interface vlan10
+cumulus@leaf01:~$ cl set interface vlan20
 cumulus@leaf01:~$ cl set bridge domain br_default vlan 10 vni 10
 cumulus@leaf01:~$ cl set bridge domain br_default vlan 20 vni 20
 cumulus@leaf01:~$ cl set nve vxlan mlag shared-address 10.0.1.12
@@ -1742,6 +1770,8 @@ cumulus@leaf01:~$ cl config apply
 ```
 cumulus@leaf01:~$ cl set interface lo ip address 10.10.10.3/32
 cumulus@leaf01:~$ cl set interface swp1-2,swp49-54
+cumulus@leaf01:~$ cl set interface swp1 link mtu 9000
+cumulus@leaf01:~$ cl set interface swp2 link mtu 9000
 cumulus@leaf01:~$ cl set interface bond1 bond member swp1
 cumulus@leaf01:~$ cl set interface bond2 bond member swp2
 cumulus@leaf01:~$ cl set interface bond1 bond mlag id 1
@@ -1760,6 +1790,8 @@ cumulus@leaf01:~$ cl set mlag backup 10.10.10.3
 cumulus@leaf01:~$ cl set mlag peer-ip linklocal
 cumulus@leaf01:~$ cl set mlag priority 1000
 cumulus@leaf01:~$ cl set mlag init-delay 10
+cumulus@leaf01:~$ cl set interface vlan10
+cumulus@leaf01:~$ cl set interface vlan20
 cumulus@leaf01:~$ cl set bridge domain br_default vlan 10 vni 10
 cumulus@leaf01:~$ cl set bridge domain br_default vlan 20 vni 20
 cumulus@leaf01:~$ cl set nve vxlan mlag shared-address 10.0.1.34
@@ -1786,6 +1818,8 @@ cumulus@leaf01:~$ cl config apply
 ```
 cumulus@leaf01:~$ cl set interface lo ip address 10.10.10.4/32
 cumulus@leaf01:~$ cl set interface swp1-2,swp49-54
+cumulus@leaf01:~$ cl set interface swp1 link mtu 9000
+cumulus@leaf01:~$ cl set interface swp2 link mtu 9000
 cumulus@leaf01:~$ cl set interface bond1 bond member swp1
 cumulus@leaf01:~$ cl set interface bond2 bond member swp2
 cumulus@leaf01:~$ cl set interface bond1 bond mlag id 1
@@ -1804,6 +1838,8 @@ cumulus@leaf01:~$ cl set mlag backup 10.10.10.3
 cumulus@leaf01:~$ cl set mlag peer-ip linklocal
 cumulus@leaf01:~$ cl set mlag priority 32768
 cumulus@leaf01:~$ cl set mlag init-delay 10
+cumulus@leaf01:~$ cl set interface vlan10
+cumulus@leaf01:~$ cl set interface vlan20
 cumulus@leaf01:~$ cl set bridge domain br_default vlan 10 vni 10
 cumulus@leaf01:~$ cl set bridge domain br_default vlan 20 vni 20
 cumulus@leaf01:~$ cl set nve vxlan mlag shared-address 10.0.1.34
@@ -1930,6 +1966,14 @@ cumulus@leaf01:~$ cl set mlag backup 10.10.10.64
 cumulus@leaf01:~$ cl set mlag peer-ip linklocal
 cumulus@leaf01:~$ cl set mlag priority 1000
 cumulus@leaf01:~$ cl set mlag init-delay 10
+cumulus@leaf01:~$ cl set interface vlan10 ip address 10.1.10.2/24
+cumulus@leaf01:~$ cl set interface vlan10 ip vrr address 10.1.10.1/24
+cumulus@leaf01:~$ cl set interface vlan10 ip vrr mac-address 00:00:00:00:00:10
+cumulus@leaf01:~$ cl set interface vlan20 ip address 10.1.10.2/24
+cumulus@leaf01:~$ cl set interface vlan20 ip vrr address 10.1.20.2/24
+cumulus@leaf01:~$ cl set interface vlan20 ip vrr mac-address 00:00:00:00:00:20
+cumulus@leaf01:~$ cl set bridge domain br_default vlan 10 vni 10
+cumulus@leaf01:~$ cl set bridge domain br_default vlan 20 vni 20
 cumulus@leaf01:~$ cl set nve vxlan mlag shared-address 10.0.1.254
 cumulus@leaf01:~$ cl set nve vxlan source address 10.10.10.63
 cumulus@leaf01:~$ cl set nve vxlan arp-nd-suppress on
@@ -1966,6 +2010,14 @@ cumulus@leaf01:~$ cl set mlag backup 10.10.10.63
 cumulus@leaf01:~$ cl set mlag peer-ip linklocal
 cumulus@leaf01:~$ cl set mlag priority 32768
 cumulus@leaf01:~$ cl set mlag init-delay 10
+cumulus@leaf01:~$ cl set interface vlan10 ip address 10.1.10.1/24
+cumulus@leaf01:~$ cl set interface vlan10 ip vrr address 10.1.10.1/24
+cumulus@leaf01:~$ cl set interface vlan10 ip vrr mac-address 00:00:00:00:00:10
+cumulus@leaf01:~$ cl set interface vlan20 ip address 10.1.20.1/24
+cumulus@leaf01:~$ cl set interface vlan20 ip vrr address 10.1.20.1/24
+cumulus@leaf01:~$ cl set interface vlan20 ip vrr mac-address 00:00:00:00:00:20
+cumulus@leaf01:~$ cl set bridge domain br_default vlan 10 vni 10
+cumulus@leaf01:~$ cl set bridge domain br_default vlan 20 vni 20
 cumulus@leaf01:~$ cl set nve vxlan mlag shared-address 10.0.1.254
 cumulus@leaf01:~$ cl set nve vxlan source address 10.10.10.64
 cumulus@leaf01:~$ cl set nve vxlan arp-nd-suppress on

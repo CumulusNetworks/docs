@@ -8,7 +8,7 @@
 </tr>
 <tr>
 <td>2555854</td>
-<td>If a NetQ Agent is downgraded to the 3.0.0 version from any higher release, the default commands file present in the _/etc/netq/commands/_ also needs to be updated to prevent the NetQ Agent from becoming rotten.</td>
+<td>NetQ Agent: If a NetQ Agent is downgraded to the 3.0.0 version from any higher release, the default commands file present in the _/etc/netq/commands/_ also needs to be updated to prevent the NetQ Agent from becoming rotten.</td>
 <td>3.0.0-3.3.1</td>
 <td></td>
 </tr>
@@ -44,7 +44,7 @@
 </tr>
 <tr>
 <td>2549649</td>
-<td>UI: Warnings might appear during the post-upgrade phase for a Cumulus Linux switch upgrade job. They are caused by services that have not yet been restored by the time the job is complete. Cumulus Networks recommend waiting five minutes, creating a network snapshot, then comparing that to the pre-upgrade snapshot. If the comparison shows no differences for the services, the warnings can be ignored. If there are differences, then troubleshooting the relevant service(s) is recommended.</td>
+<td>NetQ UI: Warnings might appear during the post-upgrade phase for a Cumulus Linux switch upgrade job. They are caused by services that have not yet been restored by the time the job is complete. Cumulus Networks recommend waiting five minutes, creating a network snapshot, then comparing that to the pre-upgrade snapshot. If the comparison shows no differences for the services, the warnings can be ignored. If there are differences, then troubleshooting the relevant service(s) is recommended.</td>
 <td>3.0.0-3.3.1</td>
 <td></td>
 </tr>
@@ -56,19 +56,19 @@
 </tr>
 <tr>
 <td>2549319</td>
-<td>UI: The legend and segment colors on Switches and Upgrade History card graphs sometimes do not match. These cards appear on the lifecycle management dashboard (Manage Switch Assets view). Hover over graph to view the correct values.</td>
+<td>NetQ UI: The legend and segment colors on Switches and Upgrade History card graphs sometimes do not match. These cards appear on the lifecycle management dashboard (Manage Switch Assets view). Hover over graph to view the correct values.</td>
 <td>3.0.0-3.3.1</td>
 <td></td>
 </tr>
 <tr>
 <td>2549246</td>
-<td>UI: Snapshot comparison cards may not render correctly after navigating away from a workbench and then returning to it. If you are viewing the Snapshot comparison card(s) on a custom workbench, refresh the page to reload the data. If you are viewing it on the Cumulus Default workbench, after refreshing the page you must recreate the comparison(s).</td>
+<td>NetQ UI: Snapshot comparison cards may not render correctly after navigating away from a workbench and then returning to it. If you are viewing the Snapshot comparison card(s) on a custom workbench, refresh the page to reload the data. If you are viewing it on the Cumulus Default workbench, after refreshing the page you must recreate the comparison(s).</td>
 <td>2.4.0-3.2.1</td>
 <td>3.3.0-3.3.1</td>
 </tr>
 <tr>
 <td>2543867</td>
-<td>UI: If either the peer_hostname or the peer_asn is invalid, the full screen BGP Service card does not provide the ability to open cards for a selected BGP session.</td>
+<td>NetQ UI: If either the peer_hostname or the peer_asn is invalid, the full screen BGP Service card does not provide the ability to open cards for a selected BGP session.</td>
 <td>2.3.0-2.4.1, 3.0.0-3.3.1</td>
 <td></td>
 </tr>

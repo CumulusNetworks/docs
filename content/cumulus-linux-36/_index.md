@@ -34,4 +34,4 @@ You can find the most up-to-date hardware compatibility list (HCL) [here](https:
 
 ## Download the User Guide
 
-You can download a PDF of the user guide for versions {{<exlink url="https://drive.google.com/file/d/1chNu0VUt97IYjam4ZJ9R-MMzNtvjTj7J/view?usp=sharing" text="3.6.0">}}, {{<exlink url="https://drive.google.com/file/d/1pt3c1lq6phTP-jTvyb47LQSW8oSyNuk4/view?usp=sharing" text="3.6.1">}} and {{<exlink url="https://drive.google.com/file/d/1SXI0d1MKkP14O2Jk5INkJLmkPBi13Toe/view?usp=sharing" text="3.6.2">}}.
+You can download a PDF of the user guide for versions {{<exlink url="https://drive.google.com/file/d/1mEF27U26h-QaUwo88aAZev7cL6fZh0-n/view?usp=sharing" text="3.6.0">}}, {{<exlink url="https://drive.google.com/file/d/1j-bZo6hX7Q_xF2ik0tP-rUQU38vc01I_/view?usp=sharing" text="3.6.1">}} and {{<exlink url="https://drive.google.com/file/d/1NOlOo7csQ_UVCyPbgo9dkb7f_u_cfxQw/view?usp=sharing" text="3.6.2">}}.

@@ -564,3 +564,98 @@
 {{ end }}
 
 {{ end }}
+
+
+{{- if  eq (.Get "version") "3.3.1" -}}
+
+{{- if  eq (.Get "server") "single" -}}
+
+{{- if  eq (.Get "platform") "vm" -}}
+
+    <pre>cumulus@<hostname>:~$ netq bootstrap master interface eth0 tarball /mnt/installables/netq-bootstrap-3.3.1.tgz</pre>
+
+    <p>Allow about five to ten minutes for this to complete,  and only then continue to the next step.</p>
+
+{{- if  eq (.Get "deployment") "onprem" -}}
+
+    <div class="notices tip"><p>If this step fails for any reason, you can run <code>netq bootstrap reset [purge-db|keep-db]</code> and then try again.</p></div>
+
+    <div class="notices note"><p>If you have changed the IP address or hostname of the NetQ On-premises VM <em>after</em> this step, you need to re-register this address with NetQ as follows:</p>
+
+    <p>Reset the VM, indicating whether you want to purge any NetQ DB data or keep it.</p>
+    <pre>cumulus@hostname:~$ netq bootstrap reset [purge-db|keep-db]</pre>
+
+{{ end }}
+    
+{{- if  eq (.Get "deployment") "cloud" -}}
+
+    <div class="notices tip"><p>If this step fails for any reason, you can run <code>netq bootstrap reset</code> and then try again.</p></div>
+
+    <div class="notices note"><p>If you have changed the IP address or hostname of the NetQ Cloud VM <em>after</em> this step, you need to re-register this address with NetQ as follows:</p>
+
+    <p>Reset the VM.</p>
+    <pre>cumulus@hostname:~$ netq bootstrap reset</pre>
+
+{{ end }}
+    
+<p>Re-run the Bootstrap CLI. This example uses interface <em>eth0</em>. Replace this with your updated IP address, hostname or interface using the <code>interface</code> or <code>ip-addr</code> option.</p>
+<pre>cumulus@<hostname>:~$ netq bootstrap master interface eth0 tarball /mnt/installables/netq-bootstrap-3.3.0.tgz</pre></div>
+
+{{ end}}
+
+{{- if  eq (.Get "platform") "appliance" -}}
+
+    <pre>cumulus@<hostname>:~$ netq bootstrap master interface eno1 tarball /mnt/installables/netq-bootstrap-3.3.1.tgz</pre>
+
+    <p>Allow about five to ten minutes for this to complete,  and only then continue to the next step.</p>
+
+{{- if  eq (.Get "deployment") "onprem" -}}
+
+    <div class="notices tip"><p>If this step fails for any reason, you can run <code>netq bootstrap reset [purge-db|keep-db]</code> and then try again.</p></div>
+    
+    <div class="notices note"><p>If you have changed the IP address or hostname of the NetQ On-premises Appliance <em>after</em> this step, you need to re-register this address with NetQ as follows:</p>
+    
+    <p>Reset the appliance, indicating whether you want to purge any NetQ DB data or keep it.</p>
+    <pre>cumulus@hostname:~$ netq bootstrap reset [purge-db|keep-db]</pre>
+
+{{ end }}
+
+{{- if  eq (.Get "deployment") "cloud" -}}
+
+    <div class="notices tip"><p>If this step fails for any reason, you can run <code>netq bootstrap reset</code> and then try again.</p></div>
+    
+    <div class="notices note"><p>If you have changed the IP address or hostname of the NetQ Cloud Appliance <em>after</em> this step, you need to re-register this address with NetQ as follows:</p>
+    
+    <p>Reset the appliance.</p>
+    <pre>cumulus@hostname:~$ netq bootstrap reset</pre>
+
+{{ end }}
+
+    <p>Re-run the Bootstrap CLI on the appliance. This example uses interface <em>eno1</em>. Replace this with your updated IP address, hostname or interface using the <code>interface</code> or <code>ip-addr</code> option.</p>
+    <pre>cumulus@<hostname>:~$ netq bootstrap master interface eno1 tarball /mnt/installables/netq-bootstrap-3.3.1.tgz</pre>
+
+{{ end }}
+
+{{ end }}
+
+{{- if  eq (.Get "server") "cluster" -}}
+
+    <pre>cumulus@<hostname>:~$ netq bootstrap worker tarball /mnt/installables/netq-bootstrap-3.3.1.tgz master-ip &lt;master-ip></pre>
+
+    <p>Provide a password using the <code>password</code> option if required. Allow about five to ten minutes for this to complete, and only then continue to the next step.</p>
+
+{{- if  eq (.Get "deployment") "onprem" -}}
+
+    <div class="notices tip"><p>If this step fails for any reason, you can run <code>netq bootstrap reset [purge-db|keep-db]</code> on the new worker node and then try again.</p></div>
+
+{{ end }}
+
+{{- if  eq (.Get "deployment") "cloud" -}}
+
+    <div class="notices tip"><p>If this step fails for any reason, you can run <code>netq bootstrap reset</code> on the new worker node and then try again.</p></div>
+
+{{ end }}
+
+{{ end }}
+
+{{ end }}

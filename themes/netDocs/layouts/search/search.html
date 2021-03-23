@@ -223,8 +223,6 @@
     </div>
 </div>
 
-  {{ template "_internal/google_analytics_async.html" . }}
-
   <script>
     function buildResult(url, htmlUrl, title, digest) {
       var html = "";
@@ -262,7 +260,7 @@
 
     function searchResults() {
       var searchParams = new URLSearchParams(window.location.search);
-      var query = sanatizeHTML(searchParams.get('q'));      
+      var query = sanatizeHTML(searchParams.get('q'));
       var params = {
         q: query,
         cx: "002929300794741444210:sy0sz3qlwdc",
@@ -311,7 +309,7 @@
   {{ $jsAnnouncementBar := resources.Get "js/announcement-bar.js" }}
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
   <script src = "{{ $jsAnnouncementBar.Permalink }}"> </script>
-  
+
 </body>
 
 </html>

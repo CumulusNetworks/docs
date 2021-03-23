@@ -6,11 +6,11 @@ toc: 3
 ---
 To take advantage of the numerous event messages generated and processed by NetQ, you must integrate with third-party event notification applications. You can integrate NetQ with Syslog, PagerDuty, Slack, and Email. You may integrate with one or more of these applications simultaneously.
 
-In an on-premises deployment, the NetQ On-premises Appliance or VM receives the raw data stream from the NetQ Agents, processes the data and delivers events to the Notification function. Notification then stores, filters and sends messages to any configured notification applications. In a cloud deployment, the NetQ Cloud Appliance or VM passes the raw data stream on to the NetQ Cloud service for processing and delivery.
+In an on-premises deployment, the NetQ On-premises Appliance or VM receives the raw data stream from the NetQ Agents, processes the data, stores, and delivers events to the Notification function. Notification then filters and sends messages to any configured notification applications. In a cloud deployment, the NetQ Cloud Appliance or VM passes the raw data stream on to the NetQ Cloud service for processing and delivery.
 
-{{<figure src="/images/netq/event-notif-arch-onprem-320.png">}}
+{{<figure src="/images/netq/event-notif-arch-onprem-330.png">}}
 
-{{<figure src="/images/netq/event-notif-arch-cloud-320.png">}}
+{{<figure src="/images/netq/event-notif-arch-cloud-330.png">}}
 
 {{<notice note>}}
 
@@ -1565,7 +1565,7 @@ newFEC          7          info             slk-netq-events  fecSupport
 
 ### Suppress Events
 
-Cumulus NetQ can generate many network events. You can configure whether to suppress any events from appearing in NetQ output. By default, all events are delivered.
+NetQ can generate many network events. You can configure whether to suppress any events from appearing in NetQ output. By default, all events are delivered.
 
 You can suppress an event until a certain period of time; otherwise, the event is suppressed for 2 years. Providing an end time eliminates the generation of messages for a short period of time, which is useful when you are testing a new network configuration and the switch may be generating many messages.
 
@@ -2156,13 +2156,13 @@ For example:
 
 ## Manage NetQ Event Notification Integrations
 
-You might need to modify event notification configurations at some point in the lifecycle of your deployment. You can add and remove channels, rules, filters, and a proxy at any time.
+You might need to modify event notification configurations at some point in the lifecycle of your deployment. You can add channels, rules, filters, and a proxy at any time. You can remove channels, rules, and filters if they are not part of an existing notification configuration.
 
 For integrations with threshold-based event notifications, refer to {{<link title="#Manage Threshold-based Event Notifications">}}.
 
 ### Remove an Event Notification Channel
 
-If you retire selected channels from a given notification appliacation, you might want to remove them from NetQ as well. You can remove channels using the NetQ UI or the NetQ CLI.
+If you retire selected channels from a given notification application, you might want to remove them from NetQ as well. You can remove channels if they are not part of an existing notification configuration using the NetQ UI or the NetQ CLI.
 
 {{< tabs "TabID1908" >}}
 
@@ -2214,7 +2214,7 @@ pd-netq-events  pagerduty        info             integration-key: 1234567
 
 ### Delete an Event Notification Rule
 
-You may find after some experience with a given rule that you want to edit or remove the rule to better meet your needs. You can remove rules using the NetQ CLI.
+You may find after some experience with a given rule that you want to edit or remove the rule to better meet your needs. You can remove rules if they are not part of an existing notification configuration using the NetQ CLI.
 
 To remove notification rules, run:
 
@@ -2242,7 +2242,7 @@ sysconf         configdiff       updated
 
 ### Delete an Event Notification Filter
 
-You may find after some experience with a given filter that you want to edit or remove the filter to better meet your current needs. You can remove filters using the NetQ CLI.
+You may find after some experience with a given filter that you want to edit or remove the filter to better meet your current needs. You can remove filters if they are not part of an existing notification configuration using the NetQ CLI.
 
 To remove notification filters, run:
 

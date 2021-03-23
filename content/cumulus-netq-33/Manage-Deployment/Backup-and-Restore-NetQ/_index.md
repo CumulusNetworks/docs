@@ -23,14 +23,7 @@ If the rollback option is selected during the lifecycle management upgrade proce
 
 To manually create a backup:
 
-1. If you are backing up data from NetQ 2.4.0 or earlier, or you upgraded from NetQ 2.4.0 to 2.4.1, obtain an updated backuprestore script. If you installed NetQ 2.4.1 as a fresh install, you can skip this step. Replace \<version\> in these commands with *2.4.1* or later release version.
-
-   ```
-   cumulus@switch:~$ tar -xvzf  /mnt/installables/NetQ-<version>.tgz  -C /tmp/ ./netq-deploy-<version>.tgz
-   cumulus@switch:~$ tar -xvzf /tmp/netq-deploy-<version>.tgz   -C /usr/sbin/ --strip-components 1 --wildcards backuprestore/*.sh
-   ```
-
-2. Run the backup script to create a backup file in `/opt/<backup-directory>` being sure to replace the `backup-directory` option with the name of the directory you want to use for the backup file.
+1. Run the backup script to create a backup file in `/opt/<backup-directory>` being sure to replace the `backup-directory` option with the name of the directory you want to use for the backup file.
 
    ```
    cumulus@switch:~$ ./backuprestore.sh --backup --localdir /opt/<backup-directory>
@@ -59,7 +52,7 @@ You can abbreviate the <code>backup</code> and <code>localdir</code> options of 
    [Fri 26 Jul 2019 02:35:48 PM UTC] - Backup finished successfully!
    ```
 
-3. Verify the backup file has been created.
+2. Verify the backup file has been created.
 
    ```
    cumulus@switch:~$ cd /opt/<backup-directory>
@@ -75,47 +68,40 @@ You can restore NetQ data using the backup file you created above in {{<link tit
 
 To restore NetQ on the same hardware where the backup file resides:
 
-1. If you are restoring data from NetQ 2.4.0 or earlier, or you upgraded from NetQ 2.4.0 to 2.4.1, obtain an updated backuprestore script. If you installed NetQ 2.4.1 as a fresh install, you can skip this step. Replace \<version\> in these commands with *2.4.1* or later release version.
+Run the restore script being sure to replace the `backup-directory` option with the name of the directory where the backup file resides.
+
+```
+cumulus@switch:~$ ./backuprestore.sh --restore --localdir /opt/<backup-directory>
+```
+
+{{<notice tip>}}
+You can abbreviate the <code>restore</code> and <code>localdir</code> options of this command to <code>-r</code> and <code>-l</code> to reduce typing.
+{{</notice>}}
+
+This is a sample of what you see while the script is running:
+
+```
+[Fri 26 Jul 2019 02:37:49 PM UTC] - Received Inputs for restore ...
+WARNING: Restore procedure wipes out the existing contents of Database.
+   Once the Database is restored you loose the old data and cannot be recovered.
+"Do you like to continue with Database restore:[Y(yes)/N(no)]. (Default:N)"
+```
+
+   You must answer the above question to continue the restoration. After entering **Y** or **yes**, the output continues as follows:
 
    ```
-   cumulus@switch:~$ tar -xvzf  /mnt/installables/NetQ-<version>.tgz  -C /tmp/ ./netq-deploy-<version>.tgz
-   cumulus@switch:~$ tar -xvzf /tmp/netq-deploy-<version>.tgz   -C /usr/sbin/ --strip-components 1 --wildcards backuprestore/*.sh
+   [Fri 26 Jul 2019 02:37:50 PM UTC] - Able to find cassandra pod: cassandra-0
+   [Fri 26 Jul 2019 02:37:50 PM UTC] - Continuing with the procedure ...
+   [Fri 26 Jul 2019 02:37:50 PM UTC] - Backup local directory:/tmp/backuprestore/ exists....
+   [Fri 26 Jul 2019 02:37:50 PM UTC] - Removing any stale restore directories ...
+   Copying the file for restore to cassandra pod ....
+   [Fri 26 Jul 2019 02:37:50 PM UTC] - Able to copy the local directory contents to cassandra pod in /tmp/backuprestore/.
+   [Fri 26 Jul 2019 02:37:50 PM UTC] - copying the script to cassandra pod in dir:/tmp/backuprestore/....
+   Executing the Script for restoring the backup ...
+   /tmp/backuprestore//createbackup.sh: line 1: cript: command not found
+   [Fri 26 Jul 2019 02:40:12 PM UTC] - Able to exeute /tmp/backuprestore//createbackup.sh script on cassandra pod
+   [Fri 26 Jul 2019 02:40:12 PM UTC] - Restore finished successfully!
    ```
-
-2. Run the restore script being sure to replace the `backup-directory` option with the name of the directory where the backup file resides.
-
-   ```
-   cumulus@switch:~$ ./backuprestore.sh --restore --localdir /opt/<backup-directory>
-   ```
-
-   {{<notice tip>}}
-   You can abbreviate the <code>restore</code> and <code>localdir</code> options of this command to <code>-r</code> and <code>-l</code> to reduce typing.
-   {{</notice>}}
-
-   This is a sample of what you see while the script is running:
-
-   ```
-   [Fri 26 Jul 2019 02:37:49 PM UTC] - Received Inputs for restore ...
-   WARNING: Restore procedure wipes out the existing contents of Database.
-     Once the Database is restored you loose the old data and cannot be recovered.
-   "Do you like to continue with Database restore:[Y(yes)/N(no)]. (Default:N)"
-   ```
-
-      You must answer the above question to continue the restoration. After entering **Y** or **yes**, the output continues as follows:
-
-      ```
-      [Fri 26 Jul 2019 02:37:50 PM UTC] - Able to find cassandra pod: cassandra-0
-      [Fri 26 Jul 2019 02:37:50 PM UTC] - Continuing with the procedure ...
-      [Fri 26 Jul 2019 02:37:50 PM UTC] - Backup local directory:/tmp/backuprestore/ exists....
-      [Fri 26 Jul 2019 02:37:50 PM UTC] - Removing any stale restore directories ...
-      Copying the file for restore to cassandra pod ....
-      [Fri 26 Jul 2019 02:37:50 PM UTC] - Able to copy the local directory contents to cassandra pod in /tmp/backuprestore/.
-      [Fri 26 Jul 2019 02:37:50 PM UTC] - copying the script to cassandra pod in dir:/tmp/backuprestore/....
-      Executing the Script for restoring the backup ...
-      /tmp/backuprestore//createbackup.sh: line 1: cript: command not found
-      [Fri 26 Jul 2019 02:40:12 PM UTC] - Able to exeute /tmp/backuprestore//createbackup.sh script on cassandra pod
-      [Fri 26 Jul 2019 02:40:12 PM UTC] - Restore finished successfully!
-      ```
 
 To restore NetQ on new hardware:
 

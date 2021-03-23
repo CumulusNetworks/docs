@@ -1584,7 +1584,7 @@ A release is included if there were changes to the command, otherwise it is not 
 
 | Release | Description |
 | ---- | ---- |
-| xxx | Introduced |
+| 2.2.1 | Introduced |
 | 2.2.0 | Early access |
 
 ### Sample Usage
@@ -3246,7 +3246,7 @@ A release is included if there were changes to the command, otherwise it is not 
 
 | Release | Description |
 | ---- | ---- |
-| xxx | Added `proxy` keyword |
+| 2.2.x | Added `proxy` keyword |
 | 2.1.2 | Introduced. Replaced the `netq config ts add notifier` command. |
 
 ### Sample Usage
@@ -3372,7 +3372,7 @@ A release is included if there were changes to the command, otherwise it is not 
 
 | Release | Description |
 | ---- | ---- |
-| x.y.z | xxx |
+| 1.x | Introduced |
 
 ### Sample Usage
 
@@ -3873,7 +3873,8 @@ A release is included if there were changes to the command, otherwise it is not 
 
 | Release | Description |
 | ---- | ---- |
-| x.y.z | xxx |
+| 2.1.2 | Removed `changes` option. Use `netq show events` command instead. |
+| 1.x | Introduced |
 
 ### Sample Usage
 
@@ -4099,7 +4100,7 @@ border01          ptmd                 9796  default         yes     yes    no  
 
 ### Related Commands
 
-- netq show ???
+None
 
 - - -
 
@@ -4345,7 +4346,7 @@ A release is included if there were changes to the command, otherwise it is not 
 | Release | Description |
 | ---- | ---- |
 | 2.4.1 | Swapped the order of the `unit-tests` keyword and the protocol or service name |
-| ??? | Introduced |
+| 2.3.1 | Introduced |
 
 ### Sample Usage
 

@@ -247,18 +247,18 @@ When you bring down an interface for a bridge member, the MTU for the interface 
 For example:
 
 ```
-sudo ifdown swp3
-sudo ip link set dev swp3 mtu 9192
+sudo ifdown swp1
+sudo ip link set dev swp1 mtu 9192
 ```
 
 As an alternative, you can add a `post-down` command in the `/etc/network/interfaces` file to reset the MTU of the interface. For example:
 
 ```
-auto swp3
-iface swp3
+auto swp1
+iface swp1
     bridge-vids 106 109 119 141 150-151
     mtu 9192
-    post-down /sbin/ip link set dev swp3 mtu 9192
+    post-down /sbin/ip link set dev swp1 mtu 9192
 ```
 
 ## FEC
@@ -485,8 +485,8 @@ displays *None*, which is not valid.
 To display the FEC mode currently enabled on a given switch port, run
 the following command:
 
-    cumulus@switch:~$ sudo ethtool --show-fec swp23
-    FEC parameters for swp23:
+    cumulus@switch:~$ sudo ethtool --show-fec swp1
+    FEC parameters for swp1:
     FEC encodings : None
 
 ### Enable or Disable FEC
@@ -494,25 +494,25 @@ the following command:
 To enable **Reed Solomon (RS) FEC** on a link, run the following NCLU
 commands:
 
-    cumulus@switch:~$ sudo net add interface swp23 link fec rs
+    cumulus@switch:~$ sudo net add interface swp1 link fec rs
     cumulus@switch:~$ sudo net commit
 
 To review the FEC setting on the link, run the following command:
 
-    cumulus@switch:~$ sudo ethtool --show-fec swp23
-    FEC parameters for swp23:
+    cumulus@switch:~$ sudo ethtool --show-fec swp1
+    FEC parameters for swp1:
     FEC encodings : RS
 
 To enable **Base-R/FireCode FEC** on a link, run the following NCLU
 commands:
 
-    cumulus@switch:~$ sudo net add interface swp23 link fec baser
+    cumulus@switch:~$ sudo net add interface swp1 link fec baser
     cumulus@switch:~$ sudo net commit
 
 To review the FEC setting on the link, run the following command:
 
-    cumulus@switch:~$ sudo ethtool --show-fec swp23
-    FEC parameters for swp23:
+    cumulus@switch:~$ sudo ethtool --show-fec swp1
+    FEC parameters for swp1:
     FEC encodings : BaseR
 
 {{%notice note%}}
@@ -523,13 +523,13 @@ FEC with auto-negotiation is supported on DACs only.
 
 To enable FEC with auto-negotiation, run the following NCLU commands:
 
-    cumulus@switch:~$ sudo net add interface swp12 link autoneg on
+    cumulus@switch:~$ sudo net add interface swp1 link autoneg on
     cumulus@switch:~$ sudo net commit
 
 To view the FEC and auto-negotiation settings, run the following
 command:
 
-    cumulus@switch:~$ sudo ethtool swp12 | egrep 'FEC|auto'
+    cumulus@switch:~$ sudo ethtool swp1 | egrep 'FEC|auto'
     Supports auto-negotiation: Yes
     Supported FEC modes: RS
     Advertised auto-negotiation: Yes
@@ -537,20 +537,20 @@ command:
     Link partner advertised auto-negotiation: Yes
     Link partner advertised FEC modes: Not reported
 
-    cumulus@switch:~$ sudo ethtool --show-fec swp12
-    FEC parameters for swp12:
+    cumulus@switch:~$ sudo ethtool --show-fec swp1
+    FEC parameters for swp1:
     FEC encodings : RS
 
 To disable FEC on a link, run the
 following NCLU commands:
 
-    cumulus@switch:~$ sudo net add interface swp23 link fec off
+    cumulus@switch:~$ sudo net add interface swp1 link fec off
     cumulus@switch:~$ sudo net commit
 
 To review the FEC setting on the link, run the following command:
 
-    cumulus@switch:~$ sudo ethtool --show-fec swp23
-    FEC parameters for swp23:
+    cumulus@switch:~$ sudo ethtool --show-fec swp1
+    FEC parameters for swp1:
     FEC encodings : None
 
 ## Interface Configuration Recommendations for Broadcom Platforms
@@ -919,10 +919,10 @@ To configure a breakout port:
 
 {{< tab "NCLU Commands ">}}
 
-This example command breaks out the 100G port on swp3 into four 25G ports:
+This example command breaks out the 100G port on swp1 into four 25G ports:
 
 ```
-cumulus@switch:~$ net add interface swp3 breakout 4x25G
+cumulus@switch:~$ net add interface swp1 breakout 4x25G
 cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
@@ -933,32 +933,32 @@ In Cumulus Linux 3.12 and later, the NCLU command to break out a port into **fou
 
 {{%/notice%}}
 
-To break out swp3 into four 10G ports, run the `net add interface swp3 breakout 4x10G` command.
+To break out swp1 into four 10G ports, run the `net add interface swp1 breakout 4x10G` command.
 
-On Mellanox switches with the Spectrum ASIC and 64-port Broadcom switches, you need to disable the next port. The following example command disables swp4.
+On Mellanox switches with the Spectrum ASIC and 64-port Broadcom switches, you need to disable the next port. The following example command disables swp2.
 
 ```
-cumulus@switch:~$ net add interface swp4 breakout disabled
+cumulus@switch:~$ net add interface swp2 breakout disabled
 cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-These commands break out swp3 into four 25G interfaces in the `/etc/cumulus/ports.conf` file and create four interfaces in the `/etc/network/interfaces` file:
+These commands break out swp1 into four 25G interfaces in the `/etc/cumulus/ports.conf` file and create four interfaces in the `/etc/network/interfaces` file:
 
 ```
 cumulus@switch:~$ cat /etc/network/interfaces
 ...
-auto swp3s0
-iface swp3s0
+auto swp1s0
+iface swp1s0
 
-auto swp3s1
-iface swp3s1
+auto swp1s1
+iface swp1s1
 
-auto swp3s2
-iface swp3s2
+auto swp1s2
+iface swp1s2
 
-auto swp3s3
-iface swp3s3
+auto swp1s3
+iface swp1s3
 ...
 ```
 
@@ -972,36 +972,36 @@ When you commit your change, `switchd` restarts to apply the changes. The restar
 
 {{< tab "Linux Commands ">}}
 
-1. Edit the `/etc/cumulus/ports.conf` file to configure the port breakout. The following example breaks out the 100G port on swp3 into four 25G ports. To break out swp3 into four 10G ports, use 3=4x10G. On Mellanox switches with the Spectrum ASIC and 64-port Broadcom switches with the Tomahawk2 ASIC, you need to disable the next port. The example also disables swp4.
+1. Edit the `/etc/cumulus/ports.conf` file to configure the port breakout. The following example breaks out the 100G port on swp1 into four 25G ports. To break out swp1 into four 10G ports, use 1=4x10G. On Mellanox switches with the Spectrum ASIC and 64-port Broadcom switches with the Tomahawk2 ASIC, you need to disable the next port. The example also disables swp2.
 
    ```
    cumulus@switch:~$ sudo cat /etc/cumulus/ports.conf
    ...
-   1=100G
-   2=100G
-   3=4x25G
-   4=disabled
+   1=4x25G
+   2=disabled
+   3=100G
+   4=100G
    ...
    ```
 
    The `/etc/cumulus/ports.conf` file varies across different hardware platforms. Check the current list of supported platforms in {{<exlink url="https://www.cumulusnetworks.com/hcl" text="the hardware compatibility list">}}.
 
-2. Configure the breakout ports in the `/etc/network/interfaces` file. The following example shows the swp3 breakout ports (swp1s0, swp1s1, swp1s2, and swp1s3).
+2. Configure the breakout ports in the `/etc/network/interfaces` file. The following example shows the swp1 breakout ports (swp1s0, swp1s1, swp1s2, and swp1s3).
 
 ```
 cumulus@switch:~$ sudo cat /etc/network/interfaces
 ...
-auto swp3s0
+auto swp1s0
 iface swp1s0
 
-auto swp3s1
-iface swp3s1
+auto swp1s1
+iface swp1s1
 
-auto swp3s2
-iface swp3s2
+auto swp1s2
+iface swp1s2
 
-auto swp3s3
-iface swp310s3
+auto swp1s3
+iface swp1s3
 ...
 ```
 
@@ -1024,10 +1024,10 @@ To remove a breakout port:
 1. Run the `net del interface <interface>` command. For example:
 
     ```
-    cumulus@switch:~$ net del interface swp3s0
-    cumulus@switch:~$ net del interface swp3s1
-    cumulus@switch:~$ net del interface swp3s2
-    cumulus@switch:~$ net del interface swp3s3
+    cumulus@switch:~$ net del interface swp1s0
+    cumulus@switch:~$ net del interface swp1s1
+    cumulus@switch:~$ net del interface swp1s2
+    cumulus@switch:~$ net del interface swp1s3
     cumulus@switch:~$ net pending
     cumulus@switch:~$ net commit
     ```
@@ -1271,9 +1271,9 @@ Low-level interface statistics are available with `ethtool`:
 ### Query SFP Port Information
 
 You can verify SFP settings using `{{<link url="Monitoring-Interfaces-and-Transceivers-Using-ethtool" text="ethtool -m">}}`.
-The following example shows the vendor, type and power output for the swp4 interface.
+The following example shows the vendor, type and power output for the swp1 interface.
 
-    cumulus@switch:~$ sudo ethtool -m swp4 | egrep 'Vendor|type|power\s+:'
+    cumulus@switch:~$ sudo ethtool -m swp1 | egrep 'Vendor|type|power\s+:'
             Transceiver type                          : 10G Ethernet: 10G Base-LR
             Vendor name                               : FINISAR CORP.
             Vendor OUI                                : 00:90:65

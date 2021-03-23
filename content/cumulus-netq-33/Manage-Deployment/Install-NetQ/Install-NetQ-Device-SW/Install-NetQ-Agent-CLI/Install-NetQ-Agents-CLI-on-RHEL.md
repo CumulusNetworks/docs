@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 390
 toc: 5
 ---
-After installing your NetQ software, you can install the NetQ 3.2.1 Agent and CLI on each server you want to monitor. These can be installed on servers running:
+After installing your NetQ software, you can install the NetQ {{<version>}} Agent and CLI on each server you want to monitor. These can be installed on servers running:
 
 - Red Hat RHEL 7.1
 - CentOS 7
@@ -102,14 +102,14 @@ To obtain the NetQ packages:
     ```
     root@rhel7:~# vi /etc/yum.repos.d/cumulus-host-el.repo
     ...
-    [cumulus-arch-netq-3.2]
+    [cumulus-arch-netq-3.3]
     name=Cumulus netq packages
-    baseurl=https://apps3.cumulusnetworks.com/repos/rpm/el/7/netq-3.2/$basearch
+    baseurl=https://apps3.cumulusnetworks.com/repos/rpm/el/7/netq-3.3/$basearch
     gpgcheck=1
     enabled=1
-    [cumulus-noarch-netq-3.2]
+    [cumulus-noarch-netq-3.3]
     name=Cumulus netq architecture-independent packages
-    baseurl=https://apps3.cumulusnetworks.com/repos/rpm/el/7/netq-3.2/noarch
+    baseurl=https://apps3.cumulusnetworks.com/repos/rpm/el/7/netq-3.3/noarch
     gpgcheck=1
     enabled=1
     ...
@@ -134,13 +134,13 @@ To install the NetQ software:
     root@rhel7:~# rpm -q -netq-agent
     ```
 
-    {{<netq-install/agent-version version="3.2.1" opsys="rh">}}
+    {{<netq-install/agent-version version="3.3.1" opsys="rh">}}
 
     ```
     root@rhel7:~# rpm -q -netq-apps
     ```
 
-    {{<netq-install/cli-version version="3.2.1" opsys="rh">}}
+    {{<netq-install/cli-version version="3.3.1" opsys="rh">}}
 
 3. Restart `rsyslog` so log files are sent to the correct destination.
 

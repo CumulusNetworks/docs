@@ -237,7 +237,7 @@
     <li>Select <strong>3.3.0</strong> from the <strong>NetQ Version</strong> dropdown.</li>
     <li>Select <strong>VMware</strong> from the <strong>Hypervisor</strong> dropdown.</li>
     <li>Click <strong>Show Download</strong>.<br>
-        <img src="/images/netq/mymellanox-netq-download-vmware-321.png" width="500"></li>
+        <img src="/images/netq/mymellanox-netq-download-vmware-330.png" width="500"></li>
     <li>Verify this is the correct image, then click <strong>Download</strong>.</li>
 </ol>
 
@@ -269,7 +269,78 @@
     <li>Select <strong>3.3.0</strong> from the <strong>NetQ Version</strong> dropdown.</li>
     <li>Select <strong>VMware (cloud)</strong> from the <strong>Hypervisor</strong> dropdown.</li>
     <li>Click <strong>Show Download</strong>.<br>
-        <img src="/images/netq/mymellanox-netq-download-vmware-cld-321.png" width="500"></li>
+        <img src="/images/netq/mymellanox-netq-download-vmware-cld-330.png" width="500"></li>
+    <li>Verify this is the correct image, then click <strong>Download</strong>.</li>
+</ol>
+
+<div class="notices note"><p>Ignore the Firmware, Documentation, and More files options as these do not apply to NetQ.</p></div>
+
+{{ end }}
+
+{{ end }}
+
+
+{{- if eq (.Get "version") "3.3.1" -}}
+
+<p>Access to the software downloads depends on whether you were an existing customer before September 1, 2020 or whether you are a new customer. Please follow the instructions accordingly.</p>
+
+{{- if eq (.Get "deployment") "onprem" -}}
+
+<strong>Existing customer</strong> who has downloaded NVIDIA Cumulus Networks software before September 1, 2020:
+<ol>
+    <li>On the <a href="https://cumulusnetworks.com/downloads/">Downloads</a> page, select <em>NetQ</em> from the <strong>Product</strong> list.</li>
+    <li>Click <em>3.3</em> from the <strong>Version</strong> list, and then select <em>3.3.1</em> from the submenu.</li><li>Select <em>VMware</em> from the <strong>HyperVisor/Platform</strong> list.
+    <p><img src="/images/netq/netq-331-download-vmware.png" width="500"></p></li>
+    <li>Scroll down to view the image, and click <strong>Download</strong>. This downloads the  NetQ-3.3.1.tgz installation package.
+    <p><img src="/images/netq/netq-vm-dwnld-vmware-331.png" width="200"></p></li>
+</ol>
+
+<strong>New customer</strong> downloading Cumulus Networks software on or after September 1, 2020:
+<ol> 
+    <li>On the <a href="http://support.mellanox.com/s/">My Mellanox support</a> page, log in to your account. If needed create a new account and then log in.<br>
+        <img src="/images/netq/mymellanox-login-320.png" width="500"><br>
+        Your username is based on your Email address. For example, user1@domain.com.mlnx.</li>
+    <li>Open the <strong>Downloads</strong> menu.</li>
+    <li>Click <strong>Software</strong>.</li>
+    <li>Open the <strong>Cumulus Software</strong> option.<br>
+        <img src="/images/netq/mymellanox-cumulus-software-download-320.png" width="500"></li>
+    <li>Click <strong>All downloads</strong> next to <strong>Cumulus NetQ</strong>.</li>
+    <li>Select <strong>3.3.1</strong> from the <strong>NetQ Version</strong> dropdown.</li>
+    <li>Select <strong>VMware</strong> from the <strong>Hypervisor</strong> dropdown.</li>
+    <li>Click <strong>Show Download</strong>.<br>
+        <img src="/images/netq/mymellanox-netq-download-vmware-330.png" width="500"></li>
+    <li>Verify this is the correct image, then click <strong>Download</strong>.</li>
+</ol>
+
+<div class="notices note"><p>Ignore the Firmware, Documentation, and More files options as these do not apply to NetQ.</p></div>
+
+{{ end }}
+
+{{- if eq (.Get "deployment") "cloud" -}}
+
+<strong>Existing customer</strong> who has downloaded Cumulus Networks software before September 1, 2020:
+<ol>
+    <li>On the <a href="https://cumulusnetworks.com/downloads/">Cumulus Downloads</a> page, select <em>NetQ</em> from the <strong>Product</strong> list.</li>
+    <li>Click <em>3.3</em> from the <strong>Version</strong> list, and then select <em>3.3.1</em> from the submenu.</li><li>Select <em>VMware (Cloud)</em> from the <strong>HyperVisor/Platform</strong> list.
+    <p><img src="/images/netq/netq-331-download-vmware-cld.png" width="500"></p></li>
+    <li>Scroll down to view the image, and click <strong>Download</strong>. This downloads the  NetQ-3.3.1-opta.tgz installation package.
+    <p><img src="/images/netq/netq-vm-dwnld-vmwarecld-331.png" width="200"></p></li>
+</ol>
+
+<strong>New customer</strong> downloading Cumulus Networks software on or after September 1, 2020:
+<ol>
+    <li>On the <a href="http://support.mellanox.com/s/">My Mellanox support</a> page, log in to your account. If needed create a new account and then log in.<br>
+        <img src="/images/netq/mymellanox-login-320.png" width="500"><br>
+        Your username is based on your Email address. For example, user1@domain.com.mlnx.</li>
+    <li>Open the <strong>Downloads</strong> menu.</li>
+    <li>Click <strong>Software</strong>.</li>
+    <li>Open the <strong>Cumulus Software</strong> option.<br>
+        <img src="/images/netq/mymellanox-cumulus-software-download-320.png" width="500"></li>
+    <li>Click <strong>All downloads</strong> next to <strong>Cumulus NetQ</strong>.</li>
+    <li>Select <strong>3.3.1</strong> from the <strong>NetQ Version</strong> dropdown.</li>
+    <li>Select <strong>VMware (cloud)</strong> from the <strong>Hypervisor</strong> dropdown.</li>
+    <li>Click <strong>Show Download</strong>.<br>
+        <img src="/images/netq/mymellanox-netq-download-vmware-cld-330.png" width="500"></li>
     <li>Verify this is the correct image, then click <strong>Download</strong>.</li>
 </ol>
 

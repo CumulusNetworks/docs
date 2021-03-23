@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 310
 toc: 5
 ---
-After installing your NetQ software, you should install the NetQ 3.2.1 Agents on each server you want to monitor. NetQ Agents can be installed on servers running:
+After installing your NetQ software, you should install the NetQ {{<version>}} Agents on each server you want to monitor. NetQ Agents can be installed on servers running:
 
 - Red Hat RHEL 7.1
 - CentOS 7
@@ -134,7 +134,7 @@ To install the NetQ Agent:
     root@rhel7:~# rpm -q -netq-agent
     ```
 
-    {{<netq-install/agent-version version="3.2.1" opsys="rh">}}
+    {{<netq-install/agent-version version="3.3.1" opsys="rh">}}
 
 3. Restart `rsyslog` so log files are sent to the correct destination.
 

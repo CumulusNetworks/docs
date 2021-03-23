@@ -32,7 +32,7 @@ cumulus@switch:~$ sudo nano /etc/default/lldpd
 
 # Add "-x" to DAEMON_ARGS to start SNMP subagent
 # Enable CDP by default
-DAEMON_ARGS="-c -I *, !swp43"
+DAEMON_ARGS="-c -I *,!swp43"
 ```
 
 `lldpd` has two timers defined by the `tx-interval` setting that affect each switch port:

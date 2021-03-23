@@ -253,7 +253,7 @@ netq-cli:
 </tr>
 <tr>
 <td>2551790</td>
-<td>CLI: Upgrade to NetQ 3.1.0 using the CLI fails due to an authentication issue. To work around this issue, run the {{netq bootstrap master upgrade}} command as usual, then use the Admin UI to complete the upgrade at _https://\<netq-appl-vm-hostname-or-ipaddr\>:8443_.</td>
+<td>CLI: Upgrade to NetQ 3.1.0 using the CLI fails due to an authentication issue. To work around this issue, run the {{netq bootstrap master upgrade}} command as usual, then use the Admin UI to complete the upgrade at _https://&lt;netq-appl-vm-hostname-or-ipaddr&gt;:8443_.</td>
 <td>3.1.0-3.1.1</td>
 </tr>
 <tr>

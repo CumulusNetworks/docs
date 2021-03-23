@@ -8,11 +8,11 @@ After you unbox the appliance:
 </ol>
 
 {{- if eq (.Get "deployment") "onprem" -}}
-    <p><img src="/images/netq/netq-appliance-port-connections-300.png" width="700" caption="NetQ Appliance connections"></p>
+    <p><img src={{"images/netq/netq-appliance-port-connections-300.png" | absURL }} width="700" caption="NetQ Appliance connections"></p>
 {{ end }}
 
 {{- if eq (.Get "deployment") "cloud" -}}
-    <p><img src="/images/netq/netq-cloud-appl-port-connections-300.png" width="700" caption="NetQ Appliance connections"></p>
+    <p><img src={{"images/netq/netq-cloud-appl-port-connections-300.png" | absURL }} width="700" caption="NetQ Appliance connections"></p>
 {{ end }}
 
 <p>If your network runs DHCP, you can configure Cumulus NetQ over the network. If DHCP is not enabled, then you configure the appliance using the console cable provided.</p>

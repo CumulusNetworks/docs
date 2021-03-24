@@ -57,6 +57,10 @@ cumulus@leaf01:~$
 
 {{< /tab >}}
 
+{{< tab "Try It " >}}
+    {{< simulation id="1753eadd-362e-44d8-8c95-84c42dee3873" >}}
+{{< /tab >}}
+
 {{< /tabs >}}
 
 The commands save the static route configuration in the `/etc/frr/frr.conf` file. For example:

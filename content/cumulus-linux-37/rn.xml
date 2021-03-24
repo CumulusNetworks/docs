@@ -43,6 +43,18 @@ To work around this issue, run the &lt;tt&gt;apt-get upgrade&lt;/tt&gt; command 
 <td></td>
 </tr>
 <tr>
+<td>2595889</td>
+<td>In a traditional bridge configuration with {{ip-forward off}}, neighbors are synchronized to hardware with a {{switchd}} restart but are cleared when you flap the bridge interface.</td>
+<td>3.7.10-4.2.1</td>
+<td>4.3.0</td>
+</tr>
+<tr>
+<td>2595816</td>
+<td>Tenant VRF BGP peers appear in the EVPN RMAC and nexthop tables, which causes the kernel RMAC to point at invalid IP address.</td>
+<td>3.7.12-4.2.1</td>
+<td>4.3.0</td>
+</tr>
+<tr>
 <td>2589747</td>
 <td>If {{switchd}} successfully signals {{clagd}} that it is going down, {{clagd}} stops responding to keepalive echo requests from the peer instead of sending a good bye to the peer over both the peerlink and the backup switch. Eventually, the keepalive timer expires and the secondary switch becomes the primary, and brings the bonds and VNIs back up. However, if {{switchd}} does not successfully signal it is going down, (in the event of a crash), the primary switch continues to respond to keepalives, and the bonds and VNIs are down on both peers. </td>
 <td>3.7.12-4.2.1</td>
@@ -530,12 +542,6 @@ To work around this issue, use the {{ethtool -m &lt;interface&gt;}} command.</td
 <td>4.3.0</td>
 </tr>
 <tr>
-<td>2552853</td>
-<td>Tenant VRF BGP peers appear in the EVPN RMAC and nexthop tables, which causes the kernel RMAC to point at invalid IP address.</td>
-<td>3.7.12-4.2.1</td>
-<td>4.3.0</td>
-</tr>
-<tr>
 <td>2552742</td>
 <td>On the Mellanox SN2410 switch, you see {{switchd}} core and {{GBIN_MALLOC}} errors.
 To work around this issue, restart {{switchd}}.</td>
@@ -547,12 +553,6 @@ To work around this issue, restart {{switchd}}.</td>
 <td>Counters for IPROUTER rules do not increase when traffic is forwarded to the CPU because there is no IP neighbor.</td>
 <td>3.7.2-3.7.14.2</td>
 <td></td>
-</tr>
-<tr>
-<td>2552704</td>
-<td>In a traditional bridge configuration with {{ip-forward off}}, neighbors are synchronized to hardware with a {{switchd}} restart but are cleared when you flap the bridge interface.</td>
-<td>3.7.10-4.2.1</td>
-<td>4.3.0</td>
 </tr>
 <tr>
 <td>2552632</td>
@@ -1788,6 +1788,18 @@ To work around this issue, run the &lt;tt&gt;apt-get upgrade&lt;/tt&gt; command 
 <td></td>
 </tr>
 <tr>
+<td>2595889</td>
+<td>In a traditional bridge configuration with {{ip-forward off}}, neighbors are synchronized to hardware with a {{switchd}} restart but are cleared when you flap the bridge interface.</td>
+<td>3.7.10-4.2.1</td>
+<td>4.3.0</td>
+</tr>
+<tr>
+<td>2595816</td>
+<td>Tenant VRF BGP peers appear in the EVPN RMAC and nexthop tables, which causes the kernel RMAC to point at invalid IP address.</td>
+<td>3.7.12-4.2.1</td>
+<td>4.3.0</td>
+</tr>
+<tr>
 <td>2589747</td>
 <td>If {{switchd}} successfully signals {{clagd}} that it is going down, {{clagd}} stops responding to keepalive echo requests from the peer instead of sending a good bye to the peer over both the peerlink and the backup switch. Eventually, the keepalive timer expires and the secondary switch becomes the primary, and brings the bonds and VNIs back up. However, if {{switchd}} does not successfully signal it is going down, (in the event of a crash), the primary switch continues to respond to keepalives, and the bonds and VNIs are down on both peers. </td>
 <td>3.7.12-4.2.1</td>
@@ -2337,12 +2349,6 @@ To work around this issue, use the {{ethtool -m &lt;interface&gt;}} command.</td
 <td>4.3.0</td>
 </tr>
 <tr>
-<td>2552853</td>
-<td>Tenant VRF BGP peers appear in the EVPN RMAC and nexthop tables, which causes the kernel RMAC to point at invalid IP address.</td>
-<td>3.7.12-4.2.1</td>
-<td>4.3.0</td>
-</tr>
-<tr>
 <td>2552742</td>
 <td>On the Mellanox SN2410 switch, you see {{switchd}} core and {{GBIN_MALLOC}} errors.
 To work around this issue, restart {{switchd}}.</td>
@@ -2354,12 +2360,6 @@ To work around this issue, restart {{switchd}}.</td>
 <td>Counters for IPROUTER rules do not increase when traffic is forwarded to the CPU because there is no IP neighbor.</td>
 <td>3.7.2-3.7.14.2</td>
 <td></td>
-</tr>
-<tr>
-<td>2552704</td>
-<td>In a traditional bridge configuration with {{ip-forward off}}, neighbors are synchronized to hardware with a {{switchd}} restart but are cleared when you flap the bridge interface.</td>
-<td>3.7.10-4.2.1</td>
-<td>4.3.0</td>
 </tr>
 <tr>
 <td>2552632</td>
@@ -4209,6 +4209,18 @@ To work around this issue, run the &lt;tt&gt;apt-get upgrade&lt;/tt&gt; command 
 <td></td>
 </tr>
 <tr>
+<td>2595889</td>
+<td>In a traditional bridge configuration with {{ip-forward off}}, neighbors are synchronized to hardware with a {{switchd}} restart but are cleared when you flap the bridge interface.</td>
+<td>3.7.10-4.2.1</td>
+<td>4.3.0</td>
+</tr>
+<tr>
+<td>2595816</td>
+<td>Tenant VRF BGP peers appear in the EVPN RMAC and nexthop tables, which causes the kernel RMAC to point at invalid IP address.</td>
+<td>3.7.12-4.2.1</td>
+<td>4.3.0</td>
+</tr>
+<tr>
 <td>2589747</td>
 <td>If {{switchd}} successfully signals {{clagd}} that it is going down, {{clagd}} stops responding to keepalive echo requests from the peer instead of sending a good bye to the peer over both the peerlink and the backup switch. Eventually, the keepalive timer expires and the secondary switch becomes the primary, and brings the bonds and VNIs back up. However, if {{switchd}} does not successfully signal it is going down, (in the event of a crash), the primary switch continues to respond to keepalives, and the bonds and VNIs are down on both peers. </td>
 <td>3.7.12-4.2.1</td>
@@ -4713,12 +4725,6 @@ To work around this issue, use the {{ethtool -m &lt;interface&gt;}} command.</td
 <td>3.7.14-3.7.14.2</td>
 </tr>
 <tr>
-<td>2552853</td>
-<td>Tenant VRF BGP peers appear in the EVPN RMAC and nexthop tables, which causes the kernel RMAC to point at invalid IP address.</td>
-<td>3.7.12-4.2.1</td>
-<td>4.3.0</td>
-</tr>
-<tr>
 <td>2552840</td>
 <td>CVE-2020-14350: In PostgreSQL 9.4, an uncontrolled search path could allow users to run arbitrary SQL functions with elevated priviledges when a superuser runs certain &amp;apos;CREATE EXTENSION’ statements.
 Vulnerable: &lt;= 9.4.26-0+deb8u2
@@ -4765,12 +4771,6 @@ Vulnerable: &lt;= 4.8.6+git64-g5dc8b2b+dfsg-3+deb8u2
 Fixed: 4.8.6+git64-g5dc8b2b+dfsg-3+deb8u3</td>
 <td>3.7.13</td>
 <td>3.7.14-3.7.14.2</td>
-</tr>
-<tr>
-<td>2552704</td>
-<td>In a traditional bridge configuration with {{ip-forward off}}, neighbors are synchronized to hardware with a {{switchd}} restart but are cleared when you flap the bridge interface.</td>
-<td>3.7.10-4.2.1</td>
-<td>4.3.0</td>
 </tr>
 <tr>
 <td>2552647</td>
@@ -6854,6 +6854,18 @@ To work around this issue, run the &lt;tt&gt;apt-get upgrade&lt;/tt&gt; command 
 <td></td>
 </tr>
 <tr>
+<td>2595889</td>
+<td>In a traditional bridge configuration with {{ip-forward off}}, neighbors are synchronized to hardware with a {{switchd}} restart but are cleared when you flap the bridge interface.</td>
+<td>3.7.10-4.2.1</td>
+<td>4.3.0</td>
+</tr>
+<tr>
+<td>2595816</td>
+<td>Tenant VRF BGP peers appear in the EVPN RMAC and nexthop tables, which causes the kernel RMAC to point at invalid IP address.</td>
+<td>3.7.12-4.2.1</td>
+<td>4.3.0</td>
+</tr>
+<tr>
 <td>2589747</td>
 <td>If {{switchd}} successfully signals {{clagd}} that it is going down, {{clagd}} stops responding to keepalive echo requests from the peer instead of sending a good bye to the peer over both the peerlink and the backup switch. Eventually, the keepalive timer expires and the secondary switch becomes the primary, and brings the bonds and VNIs back up. However, if {{switchd}} does not successfully signal it is going down, (in the event of a crash), the primary switch continues to respond to keepalives, and the bonds and VNIs are down on both peers. </td>
 <td>3.7.12-4.2.1</td>
@@ -7055,12 +7067,6 @@ These messages and the light are cosmetic issues only and do not otherwise impac
 <td>3.7.14-3.7.14.2</td>
 </tr>
 <tr>
-<td>2552853</td>
-<td>Tenant VRF BGP peers appear in the EVPN RMAC and nexthop tables, which causes the kernel RMAC to point at invalid IP address.</td>
-<td>3.7.12-4.2.1</td>
-<td>4.3.0</td>
-</tr>
-<tr>
 <td>2552742</td>
 <td>On the Mellanox SN2410 switch, you see {{switchd}} core and {{GBIN_MALLOC}} errors.
 To work around this issue, restart {{switchd}}.</td>
@@ -7072,12 +7078,6 @@ To work around this issue, restart {{switchd}}.</td>
 <td>Counters for IPROUTER rules do not increase when traffic is forwarded to the CPU because there is no IP neighbor.</td>
 <td>3.7.2-3.7.14.2</td>
 <td></td>
-</tr>
-<tr>
-<td>2552704</td>
-<td>In a traditional bridge configuration with {{ip-forward off}}, neighbors are synchronized to hardware with a {{switchd}} restart but are cleared when you flap the bridge interface.</td>
-<td>3.7.10-4.2.1</td>
-<td>4.3.0</td>
 </tr>
 <tr>
 <td>2552647</td>
@@ -9362,6 +9362,12 @@ To work around this issue, run the &lt;tt&gt;apt-get upgrade&lt;/tt&gt; command 
 <td></td>
 </tr>
 <tr>
+<td>2595889</td>
+<td>In a traditional bridge configuration with {{ip-forward off}}, neighbors are synchronized to hardware with a {{switchd}} restart but are cleared when you flap the bridge interface.</td>
+<td>3.7.10-4.2.1</td>
+<td>4.3.0</td>
+</tr>
+<tr>
 <td>2562511</td>
 <td>{{hostapd} does not fail over to secondary RADIUS servers for 802.1x authentication when the primary radius is reachable but not responding to Access-Requests.
 If the primary RADIUS server is having a problem servicing requests, you can remove it from the configuration temporarily to force requests to be sent to alternate servers.</td>
@@ -9442,12 +9448,6 @@ To work around this issue, restart FRR with the {{sudo systemctl restart frr.ser
 <td>Counters for IPROUTER rules do not increase when traffic is forwarded to the CPU because there is no IP neighbor.</td>
 <td>3.7.2-3.7.14.2</td>
 <td></td>
-</tr>
-<tr>
-<td>2552704</td>
-<td>In a traditional bridge configuration with {{ip-forward off}}, neighbors are synchronized to hardware with a {{switchd}} restart but are cleared when you flap the bridge interface.</td>
-<td>3.7.10-4.2.1</td>
-<td>4.3.0</td>
 </tr>
 <tr>
 <td>2552647</td>
@@ -11573,6 +11573,12 @@ To work around this issue, run the &lt;tt&gt;apt-get upgrade&lt;/tt&gt; command 
 <td></td>
 </tr>
 <tr>
+<td>2595889</td>
+<td>In a traditional bridge configuration with {{ip-forward off}}, neighbors are synchronized to hardware with a {{switchd}} restart but are cleared when you flap the bridge interface.</td>
+<td>3.7.10-4.2.1</td>
+<td>4.3.0</td>
+</tr>
+<tr>
 <td>2562511</td>
 <td>{{hostapd} does not fail over to secondary RADIUS servers for 802.1x authentication when the primary radius is reachable but not responding to Access-Requests.
 If the primary RADIUS server is having a problem servicing requests, you can remove it from the configuration temporarily to force requests to be sent to alternate servers.</td>
@@ -11617,12 +11623,6 @@ To work around this issue, restart FRR with the {{sudo systemctl restart frr.ser
 <td>Counters for IPROUTER rules do not increase when traffic is forwarded to the CPU because there is no IP neighbor.</td>
 <td>3.7.2-3.7.14.2</td>
 <td></td>
-</tr>
-<tr>
-<td>2552704</td>
-<td>In a traditional bridge configuration with {{ip-forward off}}, neighbors are synchronized to hardware with a {{switchd}} restart but are cleared when you flap the bridge interface.</td>
-<td>3.7.10-4.2.1</td>
-<td>4.3.0</td>
 </tr>
 <tr>
 <td>2552647</td>

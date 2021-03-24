@@ -36,6 +36,18 @@
 <td></td>
 </tr>
 <tr>
+<td>2595889</td>
+<td>In a traditional bridge configuration with {{ip-forward off}}, neighbors are synchronized to hardware with a {{switchd}} restart but are cleared when you flap the bridge interface.</td>
+<td>3.7.10-4.2.1</td>
+<td>4.3.0</td>
+</tr>
+<tr>
+<td>2595816</td>
+<td>Tenant VRF BGP peers appear in the EVPN RMAC and nexthop tables, which causes the kernel RMAC to point at invalid IP address.</td>
+<td>3.7.12-4.2.1</td>
+<td>4.3.0</td>
+</tr>
+<tr>
 <td>2589747</td>
 <td>If {{switchd}} successfully signals {{clagd}} that it is going down, {{clagd}} stops responding to keepalive echo requests from the peer instead of sending a good bye to the peer over both the peerlink and the backup switch. Eventually, the keepalive timer expires and the secondary switch becomes the primary, and brings the bonds and VNIs back up. However, if {{switchd}} does not successfully signal it is going down, (in the event of a crash), the primary switch continues to respond to keepalives, and the bonds and VNIs are down on both peers. </td>
 <td>3.7.12-4.2.1</td>
@@ -901,12 +913,6 @@ To work around this issue, use the {{ethtool -m &lt;interface&gt;}} command.</td
 <td>4.3.0</td>
 </tr>
 <tr>
-<td>2552853</td>
-<td>Tenant VRF BGP peers appear in the EVPN RMAC and nexthop tables, which causes the kernel RMAC to point at invalid IP address.</td>
-<td>3.7.12-4.2.1</td>
-<td>4.3.0</td>
-</tr>
-<tr>
 <td>2552742</td>
 <td>On the Mellanox SN2410 switch, you see {{switchd}} core and {{GBIN_MALLOC}} errors.
 To work around this issue, restart {{switchd}}.</td>
@@ -917,12 +923,6 @@ To work around this issue, restart {{switchd}}.</td>
 <td>2552710</td>
 <td>The MLAG bonds on a secondary switch do not change to a unique MAC address on the peerlink. As a result, a backup double failure can occur where both peers go down.</td>
 <td>4.2.0-4.2.1</td>
-<td>4.3.0</td>
-</tr>
-<tr>
-<td>2552704</td>
-<td>In a traditional bridge configuration with {{ip-forward off}}, neighbors are synchronized to hardware with a {{switchd}} restart but are cleared when you flap the bridge interface.</td>
-<td>3.7.10-4.2.1</td>
 <td>4.3.0</td>
 </tr>
 <tr>
@@ -2527,6 +2527,18 @@ asic-monitor[7389]: File "/usr/lib/python2.7/dist-packages/cumulus/asic_monitor.
 <td></td>
 </tr>
 <tr>
+<td>2595889</td>
+<td>In a traditional bridge configuration with {{ip-forward off}}, neighbors are synchronized to hardware with a {{switchd}} restart but are cleared when you flap the bridge interface.</td>
+<td>3.7.10-4.2.1</td>
+<td>4.3.0</td>
+</tr>
+<tr>
+<td>2595816</td>
+<td>Tenant VRF BGP peers appear in the EVPN RMAC and nexthop tables, which causes the kernel RMAC to point at invalid IP address.</td>
+<td>3.7.12-4.2.1</td>
+<td>4.3.0</td>
+</tr>
+<tr>
 <td>2589747</td>
 <td>If {{switchd}} successfully signals {{clagd}} that it is going down, {{clagd}} stops responding to keepalive echo requests from the peer instead of sending a good bye to the peer over both the peerlink and the backup switch. Eventually, the keepalive timer expires and the secondary switch becomes the primary, and brings the bonds and VNIs back up. However, if {{switchd}} does not successfully signal it is going down, (in the event of a crash), the primary switch continues to respond to keepalives, and the bonds and VNIs are down on both peers. </td>
 <td>3.7.12-4.2.1</td>
@@ -3166,12 +3178,6 @@ Fixed: 9.11.5.P4+dfsg-5.1+deb10u2</td>
 <td>4.2.1-4.3.0</td>
 </tr>
 <tr>
-<td>2552853</td>
-<td>Tenant VRF BGP peers appear in the EVPN RMAC and nexthop tables, which causes the kernel RMAC to point at invalid IP address.</td>
-<td>3.7.12-4.2.1</td>
-<td>4.3.0</td>
-</tr>
-<tr>
 <td>2552817</td>
 <td>CVE-2020-11724: An issue was discovered in OpenResty before 1.15.8.4. ngx_http_lua_subrequest.c allows HTTP request smuggling, as demonstrated by the ngx.location.capture API.
 Vulnerable: &lt;= 1.14.2-2+deb10u2
@@ -3199,12 +3205,6 @@ To work around this issue, restart {{switchd}}.</td>
 <td>2552710</td>
 <td>The MLAG bonds on a secondary switch do not change to a unique MAC address on the peerlink. As a result, a backup double failure can occur where both peers go down.</td>
 <td>4.2.0-4.2.1</td>
-<td>4.3.0</td>
-</tr>
-<tr>
-<td>2552704</td>
-<td>In a traditional bridge configuration with {{ip-forward off}}, neighbors are synchronized to hardware with a {{switchd}} restart but are cleared when you flap the bridge interface.</td>
-<td>3.7.10-4.2.1</td>
 <td>4.3.0</td>
 </tr>
 <tr>

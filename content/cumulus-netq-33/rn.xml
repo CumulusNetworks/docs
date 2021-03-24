@@ -44,7 +44,7 @@
 </tr>
 <tr>
 <td>2543867</td>
-<td>NetQ UI: If either the peer_hostname or the peer_asn is invalid, the full screen BGP Service card does not provide the ability to open cards for a selected BGP session.</td>
+<td>NetQ UI: If either the hostname or the ASN of a BGP peer is invalid, the full screen BGP Service card does not provide the ability to open cards for a selected BGP session.</td>
 <td>2.3.0-2.4.1, 3.0.0-3.3.1</td>
 <td></td>
 </tr>
@@ -57,11 +57,11 @@
 </tr>
 <tr>
 <td>2556545</td>
-<td>NetQ Agent: When upgrading to NetQ 3.3.0, sometimes the NetQ Agent fails to complete the upgrade on Broadcom-based swtiches. To work around this issue, update the following file on the switch where the NetQ Agent is running:
+<td>NetQ Agent: When upgrading to NetQ 3.3.0, sometimes the NetQ Agent fails to complete the upgrade on Broadcom-based swtiches. To work around this issue, update the following file on the switch where the NetQ Agent is running:&lt;br&gt;
 
-1. Open the _armel-netq-commands.yml_ file in the _/etc/netq/commands/_ directory for editing.
+Open the _armel-netq-commands.yml_ file in the _/etc/netq/commands/_ directory for editing.&lt;br&gt;
 
-2. Copy and append the following to the file:
+Copy and append the following to the file:
 &lt;pre&gt; 
 - service: "inventory"
     commands:
@@ -94,13 +94,11 @@
         isactive: true
         parser: "local"
 &lt;/pre&gt;
-
-3. Remove the existing generated command file.
+Remove the existing generated command file.
 &lt;pre&gt;
 cumulus@switch:~$ rm /var/run/netq/netq-commands.yml
 &lt;/pre&gt;
-
-4. Restart the NetQ Agent.
+Restart the NetQ Agent.
 &lt;pre&gt;
 cumulus@switch:~$ netq config restart agent
 &lt;/pre&gt;</td>
@@ -123,7 +121,7 @@ cumulus@switch:~$ netq config restart agent
 </tr>
 <tr>
 <td>2556227</td>
-<td>Admin UI: For cloud deployments, clicking the _Open NetQ_ link at the bottom of the Admin UI NetQ Health page returns an error _default backend - 404_ as it attempts to open the NetQ UI on the on-site NetQ Cloud Appliance or VM running the NetQ Collector software. In cloud deployments, the NetQ UI is run in the Cloud rather than locally, thus causing the error. To open the NetQ UI and view your data, enter [https://netq.cumulusnetworks.com/] into the address bar of your browser.</td>
+<td>Admin UI: For cloud deployments, clicking the _Open NetQ_ link at the bottom of the Admin UI NetQ Health page returns an error _default backend - 404_ as it attempts to open the NetQ UI on the on-site NetQ Cloud Appliance or VM running the NetQ Collector software. In cloud deployments, the NetQ UI is run in the Cloud rather than locally, thus causing the error. To open the NetQ UI and view your data, enter _https://netq.cumulusnetworks.com/_ into the address bar of your browser.</td>
 <td>3.3.0</td>
 </tr>
 <tr>
@@ -133,17 +131,17 @@ cumulus@switch:~$ netq config restart agent
 </tr>
 <tr>
 <td>2556192</td>
-<td>NetQ UI: In multi-site on-premises deployments, when a new premises (created using the Premises card) is selected from the dropdown in the application header, the NetQ UI becomes unresponsive for many navigation tabs. To work around this issue, manually update the database as follows:
-# In a terminal window, open the database shell (cqlsh).
-{code}
+<td>NetQ UI: In multi-site on-premises deployments, when a new premises (created using the Premises card) is selected from the dropdown in the application header, the NetQ UI becomes unresponsive for many navigation tabs. To work around this issue, manually update the database as follows:&lt;br&gt;
+In a terminal window, open the database shell (cqlsh).
+&lt;pre&gt;
 $ CASSANDRA_POD=&amp;apos;kubectl get pods | grep cassandra | cut -f1 -d" "&amp;apos; ; kubectl exec -it $CASSANDRA_POD -- cqlsh
-{code}
-# Display the premises table.
-{code}
+&lt;/pre&gt;
+Display the premises table.
+&lt;pre&gt;
 cqlsh&gt; select opid,name,namespace from master.premises ;
-{code}
+&lt;/pre&gt;
 The resulting output would be similar to this, with new premises having an empty namespace:
-{code}
+&lt;pre&gt;
  opid  | name  | namespace
 -------+-------+-----------
  20001 | site1 |      null
@@ -152,13 +150,13 @@ The resulting output would be similar to this, with new premises having an empty
  20000 | site0 |      null
  20003 | site3 |          
 (5 rows)
-{code}
-# For each new premises, insert a _null_ value into the database to resolve the issue. For example the new premises _site3_ has an empty namespace value, run following query against its opid _20003_ to change the value.
-{code}
+&lt;/pre&gt;
+For each new premises, insert a _null_ value into the database to resolve the issue. For example the new premises _site3_ has an empty namespace value, run following query against its opid _20003_ to change the value.
+&lt;pre&gt;
 cqlsh&gt; insert into master.premises (opid,namespace) values (20003,null);
-{code}
-# Verify the new premises now have null values in the database.
-{code}
+&lt;/pre&gt;
+Verify the new premises now have null values in the database.
+&lt;pre&gt;
 cqlsh&gt; select opid,name,namespace from master.premises ;
  opid  | name  | namespace
 -------+-------+-----------
@@ -168,21 +166,27 @@ cqlsh&gt; select opid,name,namespace from master.premises ;
  20000 | site0 |      null
  20003 | site3 |      null
 (5 rows)
-{code}</td>
+&lt;/pre&gt;</td>
 <td>3.3.0</td>
 </tr>
 <tr>
 <td>2556117</td>
-<td>NetQ Infra: The NetQ Agent fails to start when switch is running Cumulus Linux version 4.1.1 or 4.2.0. To work around this issue, run the following on each switch:
+<td>NetQ Infra: The NetQ Agent fails to start when switch is running Cumulus Linux version 4.1.1 or 4.2.0. To work around this issue, run the following on each switch:&lt;br&gt;
 
 For CL 4.1.1, rename the WJH types file to the 4.3.3260 version:
 &lt;pre&gt;
-cumulus@switch:~$ sudo mv /usr/lib/cumulus/wjh/wjh_types_4.4.3260.py /usr/lib/cumulus/wjh/wjh_types_4.3.3260.py
+cumulus@switch:~$ sudo mv /usr/lib/cumulus/wjh/wjh_types_4.4.3260.py /usr/lib/cumulus/wjh/wjh_types_4.3.3260.py 
+&lt;/pre&gt;
+Then restart the NetQ Agent:
+&lt;pre&gt;
 cumulus@switch:~$ netq config restart agent
 &lt;/pre&gt;
 For CL 4.2.0, edit the following line in the /usr/sbin/netq-agent-prestart script to change the version from 4.4.095 to 4.4.0952:
 &lt;pre&gt;
-elif [ $sx_sdk_ver == “4.4.0952” ] || [  $sx_sdk_ver == “4.4.1624” ] || [ $sx_sdk_ver == “4.3.3260” ]; then
+elif [ $sx_sdk_ver == “4.4.0952” ] || [  $sx_sdk_ver == “4.4.1624” ] || [ $sx_sdk_ver == “4.3.3260” ]; 
+&lt;/pre&gt;
+Then restart the NetQ Agent:
+&lt;pre&gt;
 cumulus@switch:~$ netq config restart agent
 &lt;/pre&gt;</td>
 <td>3.3.0</td>
@@ -194,11 +198,11 @@ cumulus@switch:~$ netq config restart agent
 Fetch errorundefined https://api.prod2.netq.cumulusnetworks.com/netq/telemetry/v1/api-docs/events/swagger.json
 &lt;/pre&gt;
 To correct this presentation issue:
-# Open the netqui YAML file for editing.
+Open the netqui YAML file for editing.
 &lt;pre&gt;
 kubectl edit netquis netqui
 &lt;/pre&gt;
-# Locate the _misc_ section. For example:
+Locate the _misc_ section. For example:
 &lt;pre&gt;
 misc:
   cassandraReconnectLogOnly: "true"
@@ -208,7 +212,7 @@ misc:
   smtpSSL: "true"
   tlsEnabled: "true"
 &lt;/pre&gt;
-# Add the {{document_namespace}} parameter below the {{tlsEnabled}} parameter.
+Add the {{document_namespace}} parameter below the {{tlsEnabled}} parameter.
 &lt;pre&gt;
 misc:
   cassandraReconnectLogOnly: "true"
@@ -219,7 +223,7 @@ misc:
   tlsEnabled: "true"
   document_namespace: "default"
 &lt;/pre&gt;
-# Save the file.</td>
+Save the file.</td>
 <td>3.3.0</td>
 </tr>
 <tr>
@@ -247,11 +251,11 @@ misc:
 </tr>
 <tr>
 <td>2556545</td>
-<td>NetQ Agent: When upgrading to NetQ 3.3.0, sometimes the NetQ Agent fails to complete the upgrade on Broadcom-based swtiches. To work around this issue, update the following file on the switch where the NetQ Agent is running:
+<td>NetQ Agent: When upgrading to NetQ 3.3.0, sometimes the NetQ Agent fails to complete the upgrade on Broadcom-based swtiches. To work around this issue, update the following file on the switch where the NetQ Agent is running:&lt;br&gt;
 
-1. Open the _armel-netq-commands.yml_ file in the _/etc/netq/commands/_ directory for editing.
+Open the _armel-netq-commands.yml_ file in the _/etc/netq/commands/_ directory for editing.&lt;br&gt;
 
-2. Copy and append the following to the file:
+Copy and append the following to the file:
 &lt;pre&gt; 
 - service: "inventory"
     commands:
@@ -284,13 +288,11 @@ misc:
         isactive: true
         parser: "local"
 &lt;/pre&gt;
-
-3. Remove the existing generated command file.
+Remove the existing generated command file.
 &lt;pre&gt;
 cumulus@switch:~$ rm /var/run/netq/netq-commands.yml
 &lt;/pre&gt;
-
-4. Restart the NetQ Agent.
+Restart the NetQ Agent.
 &lt;pre&gt;
 cumulus@switch:~$ netq config restart agent
 &lt;/pre&gt;</td>
@@ -317,7 +319,7 @@ cumulus@switch:~$ netq config restart agent
 </tr>
 <tr>
 <td>2556227</td>
-<td>Admin UI: For cloud deployments, clicking the _Open NetQ_ link at the bottom of the Admin UI NetQ Health page returns an error _default backend - 404_ as it attempts to open the NetQ UI on the on-site NetQ Cloud Appliance or VM running the NetQ Collector software. In cloud deployments, the NetQ UI is run in the Cloud rather than locally, thus causing the error. To open the NetQ UI and view your data, enter [https://netq.cumulusnetworks.com/] into the address bar of your browser.</td>
+<td>Admin UI: For cloud deployments, clicking the _Open NetQ_ link at the bottom of the Admin UI NetQ Health page returns an error _default backend - 404_ as it attempts to open the NetQ UI on the on-site NetQ Cloud Appliance or VM running the NetQ Collector software. In cloud deployments, the NetQ UI is run in the Cloud rather than locally, thus causing the error. To open the NetQ UI and view your data, enter _https://netq.cumulusnetworks.com/_ into the address bar of your browser.</td>
 <td>3.3.0</td>
 <td>3.3.1</td>
 </tr>
@@ -329,17 +331,17 @@ cumulus@switch:~$ netq config restart agent
 </tr>
 <tr>
 <td>2556192</td>
-<td>NetQ UI: In multi-site on-premises deployments, when a new premises (created using the Premises card) is selected from the dropdown in the application header, the NetQ UI becomes unresponsive for many navigation tabs. To work around this issue, manually update the database as follows:
-# In a terminal window, open the database shell (cqlsh).
-{code}
+<td>NetQ UI: In multi-site on-premises deployments, when a new premises (created using the Premises card) is selected from the dropdown in the application header, the NetQ UI becomes unresponsive for many navigation tabs. To work around this issue, manually update the database as follows:&lt;br&gt;
+In a terminal window, open the database shell (cqlsh).
+&lt;pre&gt;
 $ CASSANDRA_POD=&amp;apos;kubectl get pods | grep cassandra | cut -f1 -d" "&amp;apos; ; kubectl exec -it $CASSANDRA_POD -- cqlsh
-{code}
-# Display the premises table.
-{code}
+&lt;/pre&gt;
+Display the premises table.
+&lt;pre&gt;
 cqlsh&gt; select opid,name,namespace from master.premises ;
-{code}
+&lt;/pre&gt;
 The resulting output would be similar to this, with new premises having an empty namespace:
-{code}
+&lt;pre&gt;
  opid  | name  | namespace
 -------+-------+-----------
  20001 | site1 |      null
@@ -348,13 +350,13 @@ The resulting output would be similar to this, with new premises having an empty
  20000 | site0 |      null
  20003 | site3 |          
 (5 rows)
-{code}
-# For each new premises, insert a _null_ value into the database to resolve the issue. For example the new premises _site3_ has an empty namespace value, run following query against its opid _20003_ to change the value.
-{code}
+&lt;/pre&gt;
+For each new premises, insert a _null_ value into the database to resolve the issue. For example the new premises _site3_ has an empty namespace value, run following query against its opid _20003_ to change the value.
+&lt;pre&gt;
 cqlsh&gt; insert into master.premises (opid,namespace) values (20003,null);
-{code}
-# Verify the new premises now have null values in the database.
-{code}
+&lt;/pre&gt;
+Verify the new premises now have null values in the database.
+&lt;pre&gt;
 cqlsh&gt; select opid,name,namespace from master.premises ;
  opid  | name  | namespace
 -------+-------+-----------
@@ -364,22 +366,28 @@ cqlsh&gt; select opid,name,namespace from master.premises ;
  20000 | site0 |      null
  20003 | site3 |      null
 (5 rows)
-{code}</td>
+&lt;/pre&gt;</td>
 <td>3.3.0</td>
 <td>3.3.1</td>
 </tr>
 <tr>
 <td>2556117</td>
-<td>NetQ Infra: The NetQ Agent fails to start when switch is running Cumulus Linux version 4.1.1 or 4.2.0. To work around this issue, run the following on each switch:
+<td>NetQ Infra: The NetQ Agent fails to start when switch is running Cumulus Linux version 4.1.1 or 4.2.0. To work around this issue, run the following on each switch:&lt;br&gt;
 
 For CL 4.1.1, rename the WJH types file to the 4.3.3260 version:
 &lt;pre&gt;
-cumulus@switch:~$ sudo mv /usr/lib/cumulus/wjh/wjh_types_4.4.3260.py /usr/lib/cumulus/wjh/wjh_types_4.3.3260.py
+cumulus@switch:~$ sudo mv /usr/lib/cumulus/wjh/wjh_types_4.4.3260.py /usr/lib/cumulus/wjh/wjh_types_4.3.3260.py 
+&lt;/pre&gt;
+Then restart the NetQ Agent:
+&lt;pre&gt;
 cumulus@switch:~$ netq config restart agent
 &lt;/pre&gt;
 For CL 4.2.0, edit the following line in the /usr/sbin/netq-agent-prestart script to change the version from 4.4.095 to 4.4.0952:
 &lt;pre&gt;
-elif [ $sx_sdk_ver == “4.4.0952” ] || [  $sx_sdk_ver == “4.4.1624” ] || [ $sx_sdk_ver == “4.3.3260” ]; then
+elif [ $sx_sdk_ver == “4.4.0952” ] || [  $sx_sdk_ver == “4.4.1624” ] || [ $sx_sdk_ver == “4.3.3260” ]; 
+&lt;/pre&gt;
+Then restart the NetQ Agent:
+&lt;pre&gt;
 cumulus@switch:~$ netq config restart agent
 &lt;/pre&gt;</td>
 <td>3.3.0</td>
@@ -398,11 +406,11 @@ cumulus@switch:~$ netq config restart agent
 Fetch errorundefined https://api.prod2.netq.cumulusnetworks.com/netq/telemetry/v1/api-docs/events/swagger.json
 &lt;/pre&gt;
 To correct this presentation issue:
-# Open the netqui YAML file for editing.
+Open the netqui YAML file for editing.
 &lt;pre&gt;
 kubectl edit netquis netqui
 &lt;/pre&gt;
-# Locate the _misc_ section. For example:
+Locate the _misc_ section. For example:
 &lt;pre&gt;
 misc:
   cassandraReconnectLogOnly: "true"
@@ -412,7 +420,7 @@ misc:
   smtpSSL: "true"
   tlsEnabled: "true"
 &lt;/pre&gt;
-# Add the {{document_namespace}} parameter below the {{tlsEnabled}} parameter.
+Add the {{document_namespace}} parameter below the {{tlsEnabled}} parameter.
 &lt;pre&gt;
 misc:
   cassandraReconnectLogOnly: "true"
@@ -423,7 +431,7 @@ misc:
   tlsEnabled: "true"
   document_namespace: "default"
 &lt;/pre&gt;
-# Save the file.</td>
+Save the file.</td>
 <td>3.3.0</td>
 <td>3.3.1</td>
 </tr>
@@ -483,7 +491,7 @@ misc:
 </tr>
 <tr>
 <td>2543867</td>
-<td>NetQ UI: If either the peer_hostname or the peer_asn is invalid, the full screen BGP Service card does not provide the ability to open cards for a selected BGP session.</td>
+<td>NetQ UI: If either the hostname or the ASN of a BGP peer is invalid, the full screen BGP Service card does not provide the ability to open cards for a selected BGP session.</td>
 <td>2.3.0-2.4.1, 3.0.0-3.3.1</td>
 <td></td>
 </tr>

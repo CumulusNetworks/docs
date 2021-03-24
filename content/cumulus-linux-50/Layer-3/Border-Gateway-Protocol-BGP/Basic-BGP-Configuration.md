@@ -106,7 +106,7 @@ To configure BGP numbered on a BGP node, you need to:
 3. Specify the BGP neighbor to which you want to distribute routing information.
 
     ```
-    cumulus@spine01:~$ cl set vrf default router bgp peer remote-as external
+    cumulus@spine01:~$ cl set vrf default router bgp peer 10.0.1.0 remote-as external
     ```
 
     For BGP to advertise IPv6 prefixes, you need to run an additional command to activate the BGP neighbor under the IPv6 address family. The IPv4 address family is enabled by default and the `activate` command is not required for IPv4 route exchange.

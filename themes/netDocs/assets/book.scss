@@ -6,6 +6,14 @@
 @import "notices";
 @import "shortcodes";
 
+// Hugo only supports dynamic hugo variables in the main .scss file
+// This will not work if they are placed into the _variables.scss file
+$baseline-expand_more: '{{"icons/baseline-expand_more.svg" | absURL}}';
+$alert-triangle: '{{"icons/alert-triangle.png" | absURL}}';
+$remove-circle: '{{"icons/remove-circle.png" | absURL}}';
+$info-circle: '{{"icons/info-circle.png" | absURL}}';
+$check-circle: '{{"icons/check-circle.png" | absURL}}';
+
 html {
   font-size: $font-size-base;
   letter-spacing: 0.31px;

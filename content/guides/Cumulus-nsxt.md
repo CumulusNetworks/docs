@@ -612,7 +612,7 @@ cumulus@leaf01:mgmt:~$ net add bgp autonomous-system leaf
 cumulus@leaf01:mgmt:~$ net add bgp neighbor peerlink.4094 remote-as external
 cumulus@leaf01:mgmt:~$ net add bgp neighbor swp51 remote-as external
 cumulus@leaf01:mgmt:~$ net add bgp neighbor swp52 remote-as external
-cumulus@leaf01:mgmt:~$ net add bgp router-id 1.1.1.1
+cumulus@leaf01:mgmt:~$ net add bgp router-id 10.10.10.1
 cumulus@leaf01:mgmt:~$ net commit
 ```
 {{< /tab >}}
@@ -622,7 +622,7 @@ cumulus@leaf02:mgmt:~$ net add bgp autonomous-system leaf
 cumulus@leaf02:mgmt:~$ net add bgp neighbor peerlink.4094 remote-as external
 cumulus@leaf02:mgmt:~$ net add bgp neighbor swp51 remote-as external
 cumulus@leaf02:mgmt:~$ net add bgp neighbor swp52 remote-as external
-cumulus@leaf02:mgmt:~$ net add bgp router-id 2.2.2.2
+cumulus@leaf02:mgmt:~$ net add bgp router-id 10.10.10.2
 cumulus@leaf02:mgmt:~$ net commit
 ```
 {{< /tab >}}
@@ -632,7 +632,7 @@ cumulus@leaf03:mgmt:~$ net add bgp autonomous-system leaf
 cumulus@leaf03:mgmt:~$ net add bgp neighbor peerlink.4094 remote-as external
 cumulus@leaf03:mgmt:~$ net add bgp neighbor swp51 remote-as external
 cumulus@leaf03:mgmt:~$ net add bgp neighbor swp52 remote-as external
-cumulus@leaf03:mgmt:~$ net add bgp router-id 3.3.3.3
+cumulus@leaf03:mgmt:~$ net add bgp router-id 10.10.10.3
 cumulus@leaf03:mgmt:~$ net commit
 ```
 {{< /tab >}}
@@ -642,7 +642,7 @@ cumulus@leaf04:mgmt:~$ net add bgp autonomous-system leaf
 cumulus@leaf04:mgmt:~$ net add bgp neighbor peerlink.4094 remote-as external
 cumulus@leaf04:mgmt:~$ net add bgp neighbor swp51 remote-as external
 cumulus@leaf04:mgmt:~$ net add bgp neighbor swp52 remote-as external
-cumulus@leaf04:mgmt:~$ net add bgp router-id 4.4.4.4
+cumulus@leaf04:mgmt:~$ net add bgp router-id 10.10.10.4
 cumulus@leaf04:mgmt:~$ net commit
 ```
 {{< /tab >}}
@@ -654,7 +654,7 @@ cumulus@spine01:mgmt:~$ net add bgp neighbor swp2 remote-as external
 cumulus@spine01:mgmt:~$ net add bgp neighbor swp3 remote-as external
 cumulus@spine01:mgmt:~$ net add bgp neighbor swp4 remote-as external
 cumulus@spine01:mgmt:~$ net add bgp bestpath as-path multipath-relax   
-cumulus@spine01:mgmt:~$ net add bgp router-id 11.11.11.11
+cumulus@spine01:mgmt:~$ net add bgp router-id 10.10.10.101
 cumulus@spine01:mgmt:~$ net commit
 ```
 {{< /tab >}}
@@ -666,7 +666,7 @@ cumulus@spine02:mgmt:~$ net add bgp neighbor swp2 remote-as external
 cumulus@spine02:mgmt:~$ net add bgp neighbor swp3 remote-as external
 cumulus@spine02:mgmt:~$ net add bgp neighbor swp4 remote-as external
 cumulus@spine02:mgmt:~$ net add bgp bestpath as-path multipath-relax   
-cumulus@spine02:mgmt:~$ net add bgp router-id 22.22.22.22
+cumulus@spine02:mgmt:~$ net add bgp router-id 10.10.10.102
 cumulus@spine02:mgmt:~$ net commit
 ```
 {{< /tab >}}
@@ -679,7 +679,7 @@ cumulus@spine02:mgmt:~$ net commit
 cumulus@leaf01:~$ sudo vtysh
 leaf01# configure terminal
 leaf01(config)# router bgp 65101
-leaf01(config-router)# bgp router-id 1.1.1.1
+leaf01(config-router)# bgp router-id 10.10.10.1
 leaf01(config-router)# neighbor peerlink.4094 interface remote-as external
 leaf01(config-router)# neighbor swp51 remote-as external
 leaf01(config-router)# neighbor swp52 remote-as external
@@ -693,7 +693,7 @@ leaf01# exit
 cumulus@leaf03:~$ sudo vtysh
 leaf02# configure terminal
 leaf02(config)# router bgp 65102
-leaf02(config-router)# bgp router-id 2.2.2.2
+leaf02(config-router)# bgp router-id 10.10.10.2
 leaf02(config-router)# neighbor peerlink.4094 interface remote-as external
 leaf02(config-router)# neighbor swp51 remote-as external
 leaf02(config-router)# neighbor swp52 remote-as external
@@ -707,7 +707,7 @@ leaf02# exit
 cumulus@leaf03:~$ sudo vtysh
 leaf03# configure terminal
 leaf03(config)# router bgp 65103
-leaf03(config-router)# bgp router-id 3.3.3.3
+leaf03(config-router)# bgp router-id 10.10.10.3
 leaf03(config-router)# neighbor peerlink.4094 interface remote-as external
 leaf03(config-router)# neighbor swp51 remote-as external
 leaf03(config-router)# neighbor swp52 remote-as external
@@ -721,7 +721,7 @@ leaf03# exit
 cumulus@leaf04:~$ sudo vtysh
 leaf04# configure terminal
 leaf04(config)# router bgp 65104
-leaf04(config-router)# bgp router-id 4.4.4.4
+leaf04(config-router)# bgp router-id 10.10.10.4
 leaf04(config-router)# neighbor peerlink.4094 interface remote-as external
 leaf04(config-router)# neighbor swp51 remote-as external
 leaf04(config-router)# neighbor swp52 remote-as external
@@ -735,7 +735,7 @@ leaf04# exit
 cumulus@spine01:~$ sudo vtysh
 spine01# configure terminal
 spine01(config)# router bgp 65199
-spine01(config-router)# bgp router-id 11.11.11.11
+spine01(config-router)# bgp router-id 10.10.10.101
 spine01(config-router)# neighbor swp1 remote-as external
 spine01(config-router)# neighbor swp2 remote-as external
 spine01(config-router)# neighbor swp3 remote-as external
@@ -751,7 +751,7 @@ spine01# exit
 cumulus@spine02:~$ sudo vtysh
 spine02# configure terminal
 spine02(config)# router bgp 65199
-spine02(config-router)# bgp router-id 22.22.22.22
+spine02(config-router)# bgp router-id 10.10.10.102
 spine02(config-router)# neighbor swp1 remote-as external
 spine02(config-router)# neighbor swp2 remote-as external
 spine02(config-router)# neighbor swp3 remote-as external
@@ -866,7 +866,7 @@ To verify all BGP peerings established correctly, use the `net show bgp summary`
 cumulus@leaf01:mgmt:~$ net show bgp summary
 show bgp ipv4 unicast summary
 =============================
-BGP router identifier 1.1.1.1, local AS number 4259632651 vrf-id 0
+BGP router identifier 10.10.10.1, local AS number 4259632651 vrf-id 0
 BGP table version 2
 RIB entries 3, using 576 bytes of memory
 Peers 3, using 64 KiB of memory
@@ -884,7 +884,7 @@ Total number of neighbors 3
 cumulus@leaf02:mgmt:~$ net show bgp summary
 show bgp ipv4 unicast summary
 =============================
-BGP router identifier 2.2.2.2, local AS number 4259632649 vrf-id 0
+BGP router identifier 10.10.10.2, local AS number 4259632649 vrf-id 0
 BGP table version 3
 RIB entries 3, using 576 bytes of memory
 Peers 3, using 64 KiB of memory
@@ -902,7 +902,7 @@ Total number of neighbors 3
 cumulus@leaf03:mgmt:~$ net show bgp summary
 show bgp ipv4 unicast summary
 =============================
-BGP router identifier 3.3.3.3, local AS number 4259632661 vrf-id 0
+BGP router identifier 10.10.10.3, local AS number 4259632661 vrf-id 0
 BGP table version 2
 RIB entries 3, using 576 bytes of memory
 Peers 3, using 64 KiB of memory
@@ -920,7 +920,7 @@ Total number of neighbors 3
 cumulus@leaf04:mgmt:~$ net show bgp summary
 show bgp ipv4 unicast summary
 =============================
-BGP router identifier 4.4.4.4, local AS number 4259632667 vrf-id 0
+BGP router identifier 10.10.10.4, local AS number 4259632667 vrf-id 0
 BGP table version 3
 RIB entries 3, using 576 bytes of memory
 Peers 3, using 64 KiB of memory
@@ -938,7 +938,7 @@ Total number of neighbors 3
 cumulus@spine01:mgmt:~$ net show bgp summary
 show bgp ipv4 unicast summary
 =============================
-BGP router identifier 11.11.11.11, local AS number 4200000000 vrf-id 0
+BGP router identifier 10.10.10.101, local AS number 4200000000 vrf-id 0
 BGP table version 27
 RIB entries 3, using 576 bytes of memory
 Peers 4, using 85 KiB of memory
@@ -957,7 +957,7 @@ Total number of neighbors 4
 cumulus@spine02:mgmt:~$ net show bgp summary
 show bgp ipv4 unicast summary
 =============================
-BGP router identifier 22.22.22.22, local AS number 4200000000 vrf-id 0
+BGP router identifier 10.10.10.102, local AS number 4200000000 vrf-id 0
 BGP table version 21
 RIB entries 3, using 576 bytes of memory
 Peers 4, using 85 KiB of memory
@@ -1165,8 +1165,8 @@ The below underlay IP fabric configuration based on the this example topology di
 
 {{<figure src="/images/guides/cumulus-nsxt/virt_bare_metal.JPG">}}
 
-**Rack 1** – Two NVIDIA Mellanox Switches in MLAG + One ESXi hypervisor connected in active/active bonding</br>
-**Rack 2** – Two NVIDIA Mellanox Switches in MLAG + One ESXi hypervisor and One Bare-Metal server, both connected in active/active bonding 
+**Rack 1** – Two NVIDIA Switches in MLAG + One ESXi hypervisor connected in active/active bonding</br>
+**Rack 2** – Two NVIDIA Switches in MLAG + One ESXi hypervisor and One Bare-Metal server, both connected in active/active bonding 
 
 ## Physical Connectivity
 
@@ -1374,13 +1374,16 @@ UP     mgmt  N/A  65536  VRF                                IP: 127.0.0.1/8
 {{< /tab >}}
 {{< /tabs >}}
 
-In any case the default MTU configuration was modified, it’s possible to re-apply it using one of these commands:
+To manually define the MTU use the `net add interface` command.
 ```
 cumulus@switch:~$ net add interface swp1 mtu 9216
 ```
+
+To restore the MTU to the default value of 9216 use `net del interface mtu`.
 ```
 cumulus@switch:~$ net del interface swp1 mtu
 ```
+
 ## MLAG and VRR Configuration
 
 In our example topology, VM will be located on one physical ESXi01 hypervisor and Edge VM on the other ESXI03. As Edge VM responsible for virtualized traffic to be sent out-of-the virtual world, both VM and Edge have to share the same Overlay TZ (VLAN) to communicate. But, as they are divided by a layer 3 underlay network, we must ensure the Geneve layer 2 overaly traffic to pass over it. In addition, the BM server is also part of the network and located in the physical world. So Edge will have to know how to reach it as well. 
@@ -1390,7 +1393,7 @@ Make sure to set MLAG+VRR regardless the N-VDS uplink profile (active/active or 
 
 ### MLAG General Configuration 
 
-Cumulus Linux MLAG configuration is done by a single command. It automatically creates the ISL (Inter Switch Link) bond, and configure all MLAG related configuration (bridge, sys-mac, peer-priority, etc.)
+Cumulus Linux MLAG configuration is done by a single command. It automatically creates the peerlink bond, and configures all MLAG related configuration.
 
 {{< tabs "TABIDd013 ">}}
 {{< tab "leaf01 ">}}
@@ -1426,8 +1429,8 @@ This action also automatically adds the MLAG interfaces into the bridge and sets
 
 {{%notice note%}}
 
-For active/standby environment, don’t configure MLAG interfaces and move to the [Switch Ports Configuration - non-LAG Bare-Metal and N-VDS Uplink Profile ](http://localhost:1313/guides/nsx-t-deployment/Cumulus-nsxt/#switch-ports-configuration---non-lag-bare-metal-and-n-vds-uplink-profile).
-Make sure not to use active/active LACP LAG uplink profile for the Overlay Transport Zone on N-VDS nor LACP bond on BM server.
+For active/standby environments, do not configure MLAG. Follow the instructions under the [Switch Ports Configuration - non-LAG Bare-Metal and N-VDS Uplink Profile ](http://localhost:1313/guides/nsx-t-deployment/Cumulus-nsxt/#switch-ports-configuration---non-lag-bare-metal-and-n-vds-uplink-profile) section.
+Do not use active/active LACP LAG uplink profile for the Overlay Transport Zone on N-VDS nor LACP bond on BM server.
 
 {{%/notice %}}
 
@@ -1495,7 +1498,7 @@ cumulus@leaf04:mgmt:~$ net commit
 
 ### MLAG Configuration Verification
 
-Our guide based on active/active LACP LAG N-VDS upilnk profile and LACP LAG on BM server, so all below MLAG show outputs presents MLAG interfaces `esxi01`, `esxi03`, and `server01`  
+To verify configurations the command `net show clag` can be used. In this example `esxi01` and `esxi03` are the MLAG interfaces connected to ESXi hosts. `server01` is MLAG interfaces connected to the BM server.  
 
 {{< tabs "TABID2dd2012 ">}}
 {{< tab "leaf01 ">}}
@@ -1568,7 +1571,7 @@ Our Interface      Peer Interface     CLAG Id   Conflicts              Proto-Dow
 
 {{%notice note%}}
 
-In case of non-LAG N-VDS uplink profle, or no LACP LAG on BM server used, no **MLAG ports** will be seen MLAG show output. The lack of MLAG ports doesn’t mean that MLAG is not functional. MLAG is mandatory for using VRR, which is enhanced VRRP and is needed also for the non-LAG connections.
+In the case of a non-LAG N-VDS uplink profle, no **MLAG ports** will be seen in the MLAG show output. The lack of MLAG ports doesn't mean that MLAG is not functional. MLAG is mandatory for using VRR, which is enhanced VRRP and is needed also for the non-LAG uplink profiles.
 
 {{%/notice %}}
 
@@ -1579,7 +1582,7 @@ ESXi TEP IP addresses can be on a same or different subnets. VMware best-practic
 
 {{%notice note%}}
 
-VMware requires VLAN per each type of traffic (storage, vSAN, vMorion, Overlay (TEP), etc.). Our use-case's focus is only on the overlay VM - underlay BM traffic and switches configuration for it.
+VMware requires a VLAN per each type of traffic, for example, storage, vSAN, vMorion, or Overlay (TEP) traffic. This use case focus is only on the overlay VM to VM traffic and switches configurations.
 
 {{%/notice %}}
 
@@ -1588,7 +1591,7 @@ NSX Edge uses two additional virtual uplinks to communicate with the physical wo
 To establish BGP peering with the underlay switches, they have to be configured with additional VLANs and SVIs. In our case, we use [Subinterfaces](https://docs.cumulusnetworks.com/cumulus-linux-43/Layer-1-and-Switch-Ports/Interface-Configuration-and-Management/#subinterfaces) configuration instaed. But, of course, VLANs and SVIs could serve for that as well.
 
 Create VLAN, SVI, Virtual IP (VRR), and the subinterfraces for the Edge uplinks.</br> 
-VLAN ID is a local parameter and not shared between the hypervisors. So for deployment simplicty, same VLAN ID for all TEP devices used in both racks.
+The VLAN ID is a local parameter and not shared between the hypervisors. For deployment simplicty, use the same VLAN ID for all TEP devices used in both racks.
 
 {{< tabs "10D ">}}
 {{< tab " leaf01 ">}}
@@ -1780,7 +1783,7 @@ cumulus@leaf01:mgmt:~$ net add bgp autonomous-system leaf
 cumulus@leaf01:mgmt:~$ net add bgp neighbor peerlink.4094 remote-as external
 cumulus@leaf01:mgmt:~$ net add bgp neighbor swp51 remote-as external
 cumulus@leaf01:mgmt:~$ net add bgp neighbor swp52 remote-as external
-cumulus@leaf01:mgmt:~$ net add bgp router-id 1.1.1.1
+cumulus@leaf01:mgmt:~$ net add bgp router-id 10.10.10.1
 cumulus@leaf01:mgmt:~$ net commit
 ```
 {{< /tab >}}
@@ -1790,7 +1793,7 @@ cumulus@leaf02:mgmt:~$ net add bgp autonomous-system leaf
 cumulus@leaf02:mgmt:~$ net add bgp neighbor peerlink.4094 remote-as external
 cumulus@leaf02:mgmt:~$ net add bgp neighbor swp51 remote-as external
 cumulus@leaf02:mgmt:~$ net add bgp neighbor swp52 remote-as external
-cumulus@leaf02:mgmt:~$ net add bgp router-id 2.2.2.2
+cumulus@leaf02:mgmt:~$ net add bgp router-id 10.10.10.2
 cumulus@leaf02:mgmt:~$ net commit
 ```
 {{< /tab >}}
@@ -1801,7 +1804,7 @@ cumulus@leaf03:mgmt:~$ net add bgp neighbor peerlink.4094 remote-as external
 cumulus@leaf03:mgmt:~$ net add bgp neighbor swp51 remote-as external
 cumulus@leaf03:mgmt:~$ net add bgp neighbor swp52 remote-as external
 cumulus@leaf03:mgmt:~$ net add bgp neighbor 30.0.0.1 remote-as 65555            ### BGP to Edge VM in ASN 65555
-cumulus@leaf03:mgmt:~$ net add bgp router-id 3.3.3.3
+cumulus@leaf03:mgmt:~$ net add bgp router-id 10.10.10.3
 cumulus@leaf03:mgmt:~$ net commit
 ```
 {{< /tab >}}
@@ -1812,7 +1815,7 @@ cumulus@leaf04:mgmt:~$ net add bgp neighbor peerlink.4094 remote-as external
 cumulus@leaf04:mgmt:~$ net add bgp neighbor swp51 remote-as external
 cumulus@leaf04:mgmt:~$ net add bgp neighbor swp52 remote-as external
 cumulus@leaf04:mgmt:~$ net add bgp neighbor 31.0.0.1 remote-as 65555            ### BGP to Edge VM in ASN 65555
-cumulus@leaf04:mgmt:~$ net add bgp router-id 4.4.4.4
+cumulus@leaf04:mgmt:~$ net add bgp router-id 10.10.10.4
 cumulus@leaf04:mgmt:~$ net commit
 ```
 {{< /tab >}}
@@ -1823,8 +1826,8 @@ cumulus@spine01:mgmt:~$ net add bgp neighbor swp1 remote-as external
 cumulus@spine01:mgmt:~$ net add bgp neighbor swp2 remote-as external
 cumulus@spine01:mgmt:~$ net add bgp neighbor swp3 remote-as external
 cumulus@spine01:mgmt:~$ net add bgp neighbor swp4 remote-as external
-cumulus@spine01:mgmt:~$ net add bgp bestpath as-path multipath-relax   ### consider all leaf paths as equal regardless the ASN
-cumulus@spine01:mgmt:~$ net add bgp router-id 11.11.11.11
+cumulus@spine01:mgmt:~$ net add bgp bestpath as-path multipath-relax
+cumulus@spine01:mgmt:~$ net add bgp router-id 10.10.10.101
 cumulus@spine01:mgmt:~$ net commit
 ```
 {{< /tab >}}
@@ -1835,8 +1838,8 @@ cumulus@spine02:mgmt:~$ net add bgp neighbor swp1 remote-as external
 cumulus@spine02:mgmt:~$ net add bgp neighbor swp2 remote-as external
 cumulus@spine02:mgmt:~$ net add bgp neighbor swp3 remote-as external
 cumulus@spine02:mgmt:~$ net add bgp neighbor swp4 remote-as external
-cumulus@spine02:mgmt:~$ net add bgp bestpath as-path multipath-relax   ### consider all leaf paths as equal regardless the ASN
-cumulus@spine02:mgmt:~$ net add bgp router-id 22.22.22.22
+cumulus@spine02:mgmt:~$ net add bgp bestpath as-path multipath-relax
+cumulus@spine02:mgmt:~$ net add bgp router-id 10.10.10.102
 cumulus@spine02:mgmt:~$ net commit
 ```
 {{< /tab >}}
@@ -1849,7 +1852,7 @@ cumulus@spine02:mgmt:~$ net commit
 cumulus@leaf01:~$ sudo vtysh
 leaf01# configure terminal
 leaf01(config)# router bgp 65101
-leaf01(config-router)# bgp router-id 1.1.1.1
+leaf01(config-router)# bgp router-id 10.10.10.1
 leaf01(config-router)# neighbor peerlink.4094 interface remote-as external
 leaf01(config-router)# neighbor swp51 remote-as external
 leaf01(config-router)# neighbor swp52 remote-as external
@@ -1863,7 +1866,7 @@ leaf01# exit
 cumulus@leaf03:~$ sudo vtysh
 leaf02# configure terminal
 leaf02(config)# router bgp 65102
-leaf02(config-router)# bgp router-id 2.2.2.2
+leaf02(config-router)# bgp router-id 10.10.10.2
 leaf02(config-router)# neighbor peerlink.4094 interface remote-as external
 leaf02(config-router)# neighbor swp51 remote-as external
 leaf02(config-router)# neighbor swp52 remote-as external
@@ -1877,7 +1880,7 @@ leaf02# exit
 cumulus@leaf03:~$ sudo vtysh
 leaf03# configure terminal
 leaf03(config)# router bgp 65103
-leaf03(config-router)# bgp router-id 3.3.3.3
+leaf03(config-router)# bgp router-id 10.10.10.3
 leaf03(config-router)# neighbor peerlink.4094 interface remote-as external
 leaf03(config-router)# neighbor swp51 remote-as external
 leaf03(config-router)# neighbor swp52 remote-as external
@@ -1892,7 +1895,7 @@ leaf03# exit
 cumulus@leaf04:~$ sudo vtysh
 leaf04# configure terminal
 leaf04(config)# router bgp 65101
-leaf04(config-router)# bgp router-id 4.4.4.4
+leaf04(config-router)# bgp router-id 10.10.10.4
 leaf04(config-router)# neighbor peerlink.4094 interface remote-as external
 leaf04(config-router)# neighbor swp51 remote-as external
 leaf04(config-router)# neighbor swp52 remote-as external
@@ -1907,7 +1910,7 @@ leaf04# exit
 cumulus@spine01:~$ sudo vtysh
 spine01# configure terminal
 spine01(config)# router bgp 65199
-spine01(config-router)# bgp router-id 11.11.11.11
+spine01(config-router)# bgp router-id 10.10.10.101
 spine01(config-router)# neighbor swp1 remote-as external
 spine01(config-router)# neighbor swp2 remote-as external
 spine01(config-router)# neighbor swp3 remote-as external
@@ -1923,7 +1926,7 @@ spine01# exit
 cumulus@spine02:~$ sudo vtysh
 spine02# configure terminal
 spine02(config)# router bgp 65199
-spine02(config-router)# bgp router-id 22.22.22.22
+spine02(config-router)# bgp router-id 10.10.10.102
 spine02(config-router)# neighbor swp1 remote-as external
 spine02(config-router)# neighbor swp2 remote-as external
 spine02(config-router)# neighbor swp3 remote-as external
@@ -2041,7 +2044,7 @@ To verify all BGP peerings established correctly, use the `net show bgp summary`
 cumulus@leaf01:mgmt:~$ net show bgp summary
 show bgp ipv4 unicast summary
 =============================
-BGP router identifier 1.1.1.1, local AS number 4259632651 vrf-id 0
+BGP router identifier 10.10.10.1, local AS number 4259632651 vrf-id 0
 BGP table version 2
 RIB entries 3, using 576 bytes of memory
 Peers 3, using 64 KiB of memory
@@ -2059,7 +2062,7 @@ Total number of neighbors 3
 cumulus@leaf02:mgmt:~$ net show bgp summary
 show bgp ipv4 unicast summary
 =============================
-BGP router identifier 2.2.2.2, local AS number 4259632649 vrf-id 0
+BGP router identifier 10.10.10.2, local AS number 4259632649 vrf-id 0
 BGP table version 3
 RIB entries 3, using 576 bytes of memory
 Peers 3, using 64 KiB of memory
@@ -2077,7 +2080,7 @@ Total number of neighbors 3
 cumulus@leaf03:mgmt:~$ net show bgp summary
 show bgp ipv4 unicast summary
 =============================
-BGP router identifier 3.3.3.3, local AS number 4259632661 vrf-id 0
+BGP router identifier 10.10.10.3, local AS number 4259632661 vrf-id 0
 BGP table version 2
 RIB entries 3, using 576 bytes of memory
 Peers 3, using 64 KiB of memory
@@ -2096,7 +2099,7 @@ Total number of neighbors 3
 cumulus@leaf04:mgmt:~$ net show bgp summary
 show bgp ipv4 unicast summary
 =============================
-BGP router identifier 4.4.4.4, local AS number 4259632667 vrf-id 0
+BGP router identifier 10.10.10.4, local AS number 4259632667 vrf-id 0
 BGP table version 3
 RIB entries 3, using 576 bytes of memory
 Peers 3, using 64 KiB of memory
@@ -2115,7 +2118,7 @@ Total number of neighbors 3
 cumulus@spine01:mgmt:~$ net show bgp summary
 show bgp ipv4 unicast summary
 =============================
-BGP router identifier 11.11.11.11, local AS number 4200000000 vrf-id 0
+BGP router identifier 10.10.10.101, local AS number 4200000000 vrf-id 0
 BGP table version 27
 RIB entries 3, using 576 bytes of memory
 Peers 4, using 85 KiB of memory
@@ -2134,7 +2137,7 @@ Total number of neighbors 4
 cumulus@spine02:mgmt:~$ net show bgp summary
 show bgp ipv4 unicast summary
 =============================
-BGP router identifier 22.22.22.22, local AS number 4200000000 vrf-id 0
+BGP router identifier 10.10.10.102, local AS number 4200000000 vrf-id 0
 BGP table version 21
 RIB entries 3, using 576 bytes of memory
 Peers 4, using 85 KiB of memory
@@ -2411,7 +2414,7 @@ cumulus@leaf01:mgmt:~$ net add clag port bond esxi01 interface swp1 clag-id 1
 ```
 ```
 cumulus@leaf01:mgmt:~$ net add loopback lo ip address 10.10.10.1/32
-cumulus@leaf01:mgmt:~$ net add loopback lo clag vxlan-anycast-ip 10.10.10.10
+cumulus@leaf01:mgmt:~$ net add loopback lo clag vxlan-anycast-ip 10.0.1.1
 ```
 ```
 cumulus@leaf01:mgmt:~$ net add vxlan vxlan100 vxlan id 100100
@@ -2429,7 +2432,7 @@ cumulus@leaf02:mgmt:~$ net add clag port bond esxi01 interface swp1 clag-id 1
 ```
 ```
 cumulus@leaf02:mgmt:~$ net add loopback lo ip address 10.10.10.2/32
-cumulus@leaf02:mgmt:~$ net add loopback lo clag vxlan-anycast-ip 10.10.10.10
+cumulus@leaf02:mgmt:~$ net add loopback lo clag vxlan-anycast-ip 10.0.1.1
 ```
 ```
 cumulus@leaf02:mgmt:~$ net add vxlan vxlan100 vxlan id 100100
@@ -2447,7 +2450,7 @@ cumulus@leaf03:mgmt:~$ net add clag port bond esxi03 interface swp1 clag-id 1
 ```
 ```
 cumulus@leaf03:mgmt:~$ net add loopback lo ip address 10.10.10.3/32
-cumulus@leaf03:mgmt:~$ net add loopback lo clag vxlan-anycast-ip 10.10.10.11
+cumulus@leaf03:mgmt:~$ net add loopback lo clag vxlan-anycast-ip 10.0.1.2
 ```
 ```
 cumulus@leaf03:mgmt:~$ net add vxlan vxlan100 vxlan id 100100
@@ -2465,7 +2468,7 @@ cumulus@leaf04:mgmt:~$ net add clag port bond esxi03 interface swp1 clag-id 1
 ```
 ```
 cumulus@leaf04:mgmt:~$ net add loopback lo ip address 10.10.10.4/32
-cumulus@leaf04:mgmt:~$ net add loopback lo clag vxlan-anycast-ip 10.10.10.11
+cumulus@leaf04:mgmt:~$ net add loopback lo clag vxlan-anycast-ip 10.0.1.2
 ```
 ```
 cumulus@leaf04:mgmt:~$ net add vxlan vxlan100 vxlan id 100100
@@ -2492,7 +2495,7 @@ State  Name           Spd  MTU    Mode           LLDP                          S
 -----  -------------  ---  -----  -------------  ----------------------------  ---------------------------
 UP     lo             N/A  65536  Loopback                                     IP: 127.0.0.1/8
        lo                                                                      IP: 10.10.10.1/32
-       lo                                                                      IP: 10.10.10.10/32
+       lo                                                                      IP: 10.0.1.1/32
        lo                                                                      IP: ::1/128
 UP     eth0           1G   1500   Mgmt           oob-mgmt-switch (swp10)       Master: mgmt(UP)
        eth0                                                                    IP: 192.168.200.11/24(DHCP)
@@ -2519,7 +2522,7 @@ State  Name           Spd  MTU    Mode           LLDP                          S
 -----  -------------  ---  -----  -------------  ----------------------------  ---------------------------
 UP     lo             N/A  65536  Loopback                                     IP: 127.0.0.1/8
        lo                                                                      IP: 10.10.10.2/32
-       lo                                                                      IP: 10.10.10.10/32
+       lo                                                                      IP: 10.0.1.1/32
        lo                                                                      IP: ::1/128
 UP     eth0           1G   1500   Mgmt           oob-mgmt-switch (swp11)       Master: mgmt(UP)
        eth0                                                                    IP: 192.168.200.12/24(DHCP)
@@ -2546,7 +2549,7 @@ State  Name           Spd  MTU    Mode           LLDP                          S
 -----  -------------  ---  -----  -------------  ----------------------------  ---------------------------
 UP     lo             N/A  65536  Loopback                                     IP: 127.0.0.1/8
        lo                                                                      IP: 10.10.10.3/32
-       lo                                                                      IP: 10.10.10.11/32
+       lo                                                                      IP: 10.0.1.2/32
        lo                                                                      IP: ::1/128
 UP     eth0           1G   1500   Mgmt           oob-mgmt-switch (swp12)       Master: mgmt(UP)
        eth0                                                                    IP: 192.168.200.13/24(DHCP)
@@ -2573,6 +2576,7 @@ State  Name           Spd  MTU    Mode           LLDP                          S
 -----  -------------  ---  -----  -------------  ----------------------------  ---------------------------
 UP     lo             N/A  65536  Loopback                                     IP: 127.0.0.1/8
        lo                                                                      IP: 10.10.10.4/32
+       lo                                                                      IP: 10.0.1.2/32       
        lo                                                                      IP: ::1/128
 UP     eth0           1G   1500   Mgmt           oob-mgmt-switch (swp13)       Master: mgmt(UP)
        eth0                                                                    IP: 192.168.200.14/24(DHCP)
@@ -2606,7 +2610,7 @@ The peer is alive
      Our Priority, ID, and Role: 1000 44:38:39:00:00:59 primary
     Peer Priority, ID, and Role: 2000 44:38:39:00:00:5a secondary
           Peer Interface and IP: peerlink.4094 fe80::4638:39ff:fe00:5a (linklocal)
-               VxLAN Anycast IP: 10.10.10.10
+               VxLAN Anycast IP: 10.0.1.1
                       Backup IP: 192.168.200.12 vrf mgmt (active)
                      System MAC: 44:38:39:ff:00:01
 
@@ -2624,7 +2628,7 @@ The peer is alive
      Our Priority, ID, and Role: 2000 44:38:39:00:00:5a secondary
     Peer Priority, ID, and Role: 1000 44:38:39:00:00:59 primary
           Peer Interface and IP: peerlink.4094 fe80::4638:39ff:fe00:59 (linklocal)
-               VxLAN Anycast IP: 10.10.10.10
+               VxLAN Anycast IP: 10.0.1.1
                       Backup IP: 192.168.200.11 vrf mgmt (active)
                      System MAC: 44:38:39:ff:00:01
 
@@ -2642,7 +2646,7 @@ The peer is alive
      Our Priority, ID, and Role: 1000 44:38:39:00:00:5d primary
     Peer Priority, ID, and Role: 2000 44:38:39:00:00:5e secondary
           Peer Interface and IP: peerlink.4094 fe80::4638:39ff:fe00:5e (linklocal)
-               VxLAN Anycast IP: 10.10.10.11
+               VxLAN Anycast IP: 10.0.1.2
                       Backup IP: 192.168.200.14 vrf mgmt (active)
                      System MAC: 44:38:39:ff:00:02
 
@@ -2660,7 +2664,7 @@ The peer is alive
      Our Priority, ID, and Role: 2000 44:38:39:00:00:5e secondary
     Peer Priority, ID, and Role: 1000 44:38:39:00:00:5d primary
           Peer Interface and IP: peerlink.4094 fe80::4638:39ff:fe00:5d (linklocal)
-               VxLAN Anycast IP: 10.10.10.11
+               VxLAN Anycast IP: 10.0.1.2
                       Backup IP: 192.168.200.13 vrf mgmt (active)
                      System MAC: 44:38:39:ff:00:02
 
@@ -2688,7 +2692,6 @@ cumulus@leaf01:mgmt:~$ net add bgp autonomous-system leaf
 cumulus@leaf01:mgmt:~$ net add bgp neighbor peerlink.4094 remote-as external
 cumulus@leaf01:mgmt:~$ net add bgp neighbor swp51 remote-as external
 cumulus@leaf01:mgmt:~$ net add bgp neighbor swp52 remote-as external
-cumulus@leaf01:mgmt:~$ net add bgp router-id 1.1.1.1
 ```
 ```
 cumulus@leaf01:mgmt:~$ net add bgp evpn neighbor peerlink.4094 activate
@@ -2703,7 +2706,6 @@ cumulus@leaf02:mgmt:~$ net add bgp autonomous-system leaf
 cumulus@leaf02:mgmt:~$ net add bgp neighbor peerlink.4094 remote-as external
 cumulus@leaf02:mgmt:~$ net add bgp neighbor swp51 remote-as external
 cumulus@leaf02:mgmt:~$ net add bgp neighbor swp52 remote-as external
-cumulus@leaf02:mgmt:~$ net add bgp router-id 2.2.2.2
 ```
 ```
 cumulus@leaf02:mgmt:~$ net add bgp evpn neighbor peerlink.4094 activate
@@ -2718,7 +2720,6 @@ cumulus@leaf03:mgmt:~$ net add bgp autonomous-system leaf
 cumulus@leaf03:mgmt:~$ net add bgp neighbor peerlink.4094 remote-as external
 cumulus@leaf03:mgmt:~$ net add bgp neighbor swp51 remote-as external
 cumulus@leaf03:mgmt:~$ net add bgp neighbor swp52 remote-as external
-cumulus@leaf03:mgmt:~$ net add bgp router-id 3.3.3.3
 ```
 ```
 cumulus@leaf03:mgmt:~$ net add bgp evpn neighbor peerlink.4094 activate
@@ -2733,7 +2734,6 @@ cumulus@leaf04:mgmt:~$ net add bgp autonomous-system leaf
 cumulus@leaf04:mgmt:~$ net add bgp neighbor peerlink.4094 remote-as external
 cumulus@leaf04:mgmt:~$ net add bgp neighbor swp51 remote-as external
 cumulus@leaf04:mgmt:~$ net add bgp neighbor swp52 remote-as external
-cumulus@leaf04:mgmt:~$ net add bgp router-id 4.4.4.4
 ```
 ```
 cumulus@leaf01:mgmt:~$ net add bgp evpn neighbor peerlink.4094 activate
@@ -2749,8 +2749,8 @@ cumulus@spine01:mgmt:~$ net add bgp neighbor swp1 remote-as external
 cumulus@spine01:mgmt:~$ net add bgp neighbor swp2 remote-as external
 cumulus@spine01:mgmt:~$ net add bgp neighbor swp3 remote-as external
 cumulus@spine01:mgmt:~$ net add bgp neighbor swp4 remote-as external
-cumulus@spine01:mgmt:~$ net add bgp bestpath as-path multipath-relax   ### consider all leaf paths as equal regardless the ASN
-cumulus@spine01:mgmt:~$ net add bgp router-id 11.11.11.11
+cumulus@spine01:mgmt:~$ net add bgp bestpath as-path multipath-relax
+cumulus@spine01:mgmt:~$ net add bgp router-id 10.10.10.101
 ```
 ```
 cumulus@spine01:mgmt:~$ net add bgp evpn neighbor swp1 activate
@@ -2767,8 +2767,8 @@ cumulus@spine02:mgmt:~$ net add bgp neighbor swp1 remote-as external
 cumulus@spine02:mgmt:~$ net add bgp neighbor swp2 remote-as external
 cumulus@spine02:mgmt:~$ net add bgp neighbor swp3 remote-as external
 cumulus@spine02:mgmt:~$ net add bgp neighbor swp4 remote-as external
-cumulus@spine02:mgmt:~$ net add bgp bestpath as-path multipath-relax   ### consider all leaf paths as equal regardless the ASN
-cumulus@spine02:mgmt:~$ net add bgp router-id 22.22.22.22
+cumulus@spine02:mgmt:~$ net add bgp bestpath as-path multipath-relax
+cumulus@spine02:mgmt:~$ net add bgp router-id 10.10.10.102
 ```
 ```
 cumulus@spine02:mgmt:~$ net add bgp evpn neighbor swp1 activate
@@ -2787,7 +2787,6 @@ cumulus@spine02:mgmt:~$ net commit
 cumulus@leaf01:~$ sudo vtysh
 leaf01# configure terminal
 leaf01(config)# router bgp 65101
-leaf01(config-router)# bgp router-id 1.1.1.1
 leaf01(config-router)# neighbor peerlink.4094 interface remote-as external
 leaf01(config-router)# neighbor swp51 remote-as external
 leaf01(config-router)# neighbor swp52 remote-as external
@@ -2807,7 +2806,6 @@ leaf01# exit
 cumulus@leaf03:~$ sudo vtysh
 leaf02# configure terminal
 leaf02(config)# router bgp 65102
-leaf02(config-router)# bgp router-id 2.2.2.2
 leaf02(config-router)# neighbor peerlink.4094 interface remote-as external
 leaf02(config-router)# neighbor swp51 remote-as external
 leaf02(config-router)# neighbor swp52 remote-as external
@@ -2827,7 +2825,6 @@ leaf02# exit
 cumulus@leaf03:~$ sudo vtysh
 leaf03# configure terminal
 leaf03(config)# router bgp 65103
-leaf03(config-router)# bgp router-id 3.3.3.3
 leaf03(config-router)# neighbor peerlink.4094 interface remote-as external
 leaf03(config-router)# neighbor swp51 remote-as external
 leaf03(config-router)# neighbor swp52 remote-as external
@@ -2847,7 +2844,6 @@ leaf03# exit
 cumulus@leaf04:~$ sudo vtysh
 leaf04# configure terminal
 leaf04(config)# router bgp 65101
-leaf04(config-router)# bgp router-id 4.4.4.4
 leaf04(config-router)# neighbor peerlink.4094 interface remote-as external
 leaf04(config-router)# neighbor swp51 remote-as external
 leaf04(config-router)# neighbor swp52 remote-as external
@@ -2867,7 +2863,7 @@ leaf04# exit
 cumulus@spine01:~$ sudo vtysh
 spine01# configure terminal
 spine01(config)# router bgp 65199
-spine01(config-router)# bgp router-id 11.11.11.11
+spine01(config-router)# bgp router-id 10.10.10.101
 spine01(config-router)# neighbor swp1 remote-as external
 spine01(config-router)# neighbor swp2 remote-as external
 spine01(config-router)# neighbor swp3 remote-as external
@@ -2890,7 +2886,7 @@ spine01# exit
 cumulus@spine02:~$ sudo vtysh
 spine02# configure terminal
 spine02(config)# router bgp 65199
-spine02(config-router)# bgp router-id 22.22.22.22
+spine02(config-router)# bgp router-id 10.10.10.102
 spine02(config-router)# neighbor swp1 remote-as external
 spine02(config-router)# neighbor swp2 remote-as external
 spine02(config-router)# neighbor swp3 remote-as external
@@ -3044,7 +3040,7 @@ To verify all BGP IPv4 and EVPN peerings established correctly, use the `net sho
 cumulus@leaf01:mgmt:~$ net show bgp summary
 show bgp ipv4 unicast summary
 =============================
-BGP router identifier 1.1.1.1, local AS number 4259632651 vrf-id 0
+BGP router identifier 10.10.10.1, local AS number 4259632651 vrf-id 0
 BGP table version 96
 RIB entries 11, using 2112 bytes of memory
 Peers 3, using 64 KiB of memory
@@ -3058,7 +3054,7 @@ Total number of neighbors 3
 
 show bgp l2vpn evpn summary
 ===========================
-BGP router identifier 1.1.1.1, local AS number 4259632651 vrf-id 0
+BGP router identifier 10.10.10.1, local AS number 4259632651 vrf-id 0
 BGP table version 0
 RIB entries 7, using 1344 bytes of memory
 Peers 3, using 64 KiB of memory
@@ -3076,7 +3072,7 @@ Total number of neighbors 3
 cumulus@leaf02:mgmt:~$ net show bgp summary
 show bgp ipv4 unicast summary
 =============================
-BGP router identifier 2.2.2.2, local AS number 4259632649 vrf-id 0
+BGP router identifier 10.10.10.2, local AS number 4259632649 vrf-id 0
 BGP table version 89
 RIB entries 11, using 2112 bytes of memory
 Peers 3, using 64 KiB of memory
@@ -3090,7 +3086,7 @@ Total number of neighbors 3
 
 show bgp l2vpn evpn summary
 ===========================
-BGP router identifier 2.2.2.2, local AS number 4259632649 vrf-id 0
+BGP router identifier 10.10.10.2, local AS number 4259632649 vrf-id 0
 BGP table version 0
 RIB entries 7, using 1344 bytes of memory
 Peers 3, using 64 KiB of memory
@@ -3108,7 +3104,7 @@ Total number of neighbors 3
 cumulus@leaf03:mgmt:~$ net show bgp summary
 show bgp ipv4 unicast summary
 =============================
-BGP router identifier 3.3.3.3, local AS number 4259632661 vrf-id 0
+BGP router identifier 10.10.10.3, local AS number 4259632661 vrf-id 0
 BGP table version 85
 RIB entries 11, using 2112 bytes of memory
 Peers 3, using 64 KiB of memory
@@ -3122,7 +3118,7 @@ Total number of neighbors 3
 
 show bgp l2vpn evpn summary
 ===========================
-BGP router identifier 3.3.3.3, local AS number 4259632661 vrf-id 0
+BGP router identifier 10.10.10.3, local AS number 4259632661 vrf-id 0
 BGP table version 0
 RIB entries 7, using 1344 bytes of memory
 Peers 3, using 64 KiB of memory
@@ -3140,7 +3136,7 @@ Total number of neighbors 3
 cumulus@leaf04:mgmt:~$ net show bgp summary
 show bgp ipv4 unicast summary
 =============================
-BGP router identifier 4.4.4.4, local AS number 4259632667 vrf-id 0
+BGP router identifier 10.10.10.4, local AS number 4259632667 vrf-id 0
 BGP table version 74
 RIB entries 11, using 2112 bytes of memory
 Peers 3, using 64 KiB of memory
@@ -3154,7 +3150,7 @@ Total number of neighbors 3
 
 show bgp l2vpn evpn summary
 ===========================
-BGP router identifier 4.4.4.4, local AS number 4259632667 vrf-id 0
+BGP router identifier 10.10.10.4, local AS number 4259632667 vrf-id 0
 BGP table version 0
 RIB entries 7, using 1344 bytes of memory
 Peers 3, using 64 KiB of memory
@@ -3172,7 +3168,7 @@ Total number of neighbors 3
 cumulus@spine01:mgmt:~$ net show bgp summary
 show bgp ipv4 unicast summary
 =============================
-BGP router identifier 11.11.11.11, local AS number 4200000000 vrf-id 0
+BGP router identifier 10.10.10.101, local AS number 4200000000 vrf-id 0
 BGP table version 165
 RIB entries 11, using 2112 bytes of memory
 Peers 4, using 85 KiB of memory
@@ -3187,7 +3183,7 @@ Total number of neighbors 4
 
 show bgp l2vpn evpn summary
 ===========================
-BGP router identifier 11.11.11.11, local AS number 4200000000 vrf-id 0
+BGP router identifier 10.10.10.101, local AS number 4200000000 vrf-id 0
 BGP table version 0
 RIB entries 7, using 1344 bytes of memory
 Peers 4, using 85 KiB of memory
@@ -3206,7 +3202,7 @@ Total number of neighbors 4
 cumulus@spine02:mgmt:~$ net show bgp summary
 show bgp ipv4 unicast summary
 =============================
-BGP router identifier 22.22.22.22, local AS number 4200000000 vrf-id 0
+BGP router identifier 10.10.10.102, local AS number 4200000000 vrf-id 0
 BGP table version 112
 RIB entries 11, using 2112 bytes of memory
 Peers 4, using 85 KiB of memory
@@ -3221,7 +3217,7 @@ Total number of neighbors 4
 
 show bgp l2vpn evpn summary
 ===========================
-BGP router identifier 22.22.22.22, local AS number 4200000000 vrf-id 0
+BGP router identifier 10.10.10.102, local AS number 4200000000 vrf-id 0
 BGP table version 0
 RIB entries 7, using 1344 bytes of memory
 Peers 4, using 85 KiB of memory
@@ -3241,7 +3237,7 @@ Once all BGP IPV4 peerings established, all the redistributed loopback and anyca
 
 {{< tabs "TAB22sIGTD1631 ">}}
 {{< tab "leaf01 ">}}
-Leaf01 has two ECMP routes (via both spine switches) to other leafs' loopbacks and anycast-IPs recieved by BGP - `10.10.10.11/32`
+Leaf01 has two ECMP routes (via both spine switches) to other leafs' loopbacks and anycast-IPs recieved by BGP - `10.0.1.2/32`
 ```
 cumulus@leaf01:mgmt:~$ net show route
 show ip route
@@ -3258,13 +3254,13 @@ B>* 10.10.10.3/32 [20/0] via fe80::4638:39ff:fe00:1, swp51, weight 1, 01:06:14
   *                      via fe80::4638:39ff:fe00:3, swp52, weight 1, 01:06:14
 B>* 10.10.10.4/32 [20/0] via fe80::4638:39ff:fe00:1, swp51, weight 1, 01:06:13
   *                      via fe80::4638:39ff:fe00:3, swp52, weight 1, 01:06:13
-C>* 10.10.10.10/32 is directly connected, lo, 02:12:49
-B>* 10.10.10.11/32 [20/0] via fe80::4638:39ff:fe00:1, swp51, weight 1, 01:06:14
-  *                       via fe80::4638:39ff:fe00:3, swp52, weight 1, 01:06:14
+C>* 10.0.1.1/32 is directly connected, lo, 02:12:49
+B>* 10.0.1.2/32 [20/0] via fe80::4638:39ff:fe00:1, swp51, weight 1, 01:06:14
+  *                    via fe80::4638:39ff:fe00:3, swp52, weight 1, 01:06:14
 ```
 {{< /tab >}}
 {{< tab "leaf02 ">}}
-Leaf02 has two ECMP routes (via both spine switches) to other leafs' loopbacks and anycast-IPs recieved by BGP - `10.10.10.11/32`
+Leaf02 has two ECMP routes (via both spine switches) to other leafs' loopbacks and anycast-IPs recieved by BGP - `10.0.1.2/32`
 ```
 cumulus@leaf02:mgmt:~$ net show route
 show ip route
@@ -3281,13 +3277,13 @@ B>* 10.10.10.3/32 [20/0] via fe80::4638:39ff:fe00:9, swp51, weight 1, 01:05:51
   *                      via fe80::4638:39ff:fe00:b, swp52, weight 1, 01:05:51
 B>* 10.10.10.4/32 [20/0] via fe80::4638:39ff:fe00:9, swp51, weight 1, 01:05:50
   *                      via fe80::4638:39ff:fe00:b, swp52, weight 1, 01:05:50
-C>* 10.10.10.10/32 is directly connected, lo, 01:41:37
-B>* 10.10.10.11/32 [20/0] via fe80::4638:39ff:fe00:9, swp51, weight 1, 01:05:51
-  *                       via fe80::4638:39ff:fe00:b, swp52, weight 1, 01:05:51
+C>* 10.0.1.1/32 is directly connected, lo, 01:41:37
+B>* 10.0.1.2/32 [20/0] via fe80::4638:39ff:fe00:9, swp51, weight 1, 01:05:51
+  *                    via fe80::4638:39ff:fe00:b, swp52, weight 1, 01:05:51
 ```
 {{< /tab >}}
 {{< tab "leaf03 ">}}
-Leaf03 has two ECMP routes (via both spine switches) to other leafs' loopbacks and anycast-IPs recieved by BGP - `10.10.10.10/32`
+Leaf03 has two ECMP routes (via both spine switches) to other leafs' loopbacks and anycast-IPs recieved by BGP - `10.0.1.1/32`
 ```
 cumulus@leaf03:mgmt:~$ net show route
 show ip route
@@ -3304,13 +3300,13 @@ B>* 10.10.10.2/32 [20/0] via fe80::4638:39ff:fe00:11, swp51, weight 1, 01:04:41
   *                      via fe80::4638:39ff:fe00:13, swp52, weight 1, 01:04:41
 C>* 10.10.10.3/32 is directly connected, lo, 02:03:38
 B>* 10.10.10.4/32 [20/0] via fe80::4638:39ff:fe00:5e, peerlink.4094, weight 1, 01:07:02
-B>* 10.10.10.10/32 [20/0] via fe80::4638:39ff:fe00:11, swp51, weight 1, 01:04:41
-  *                       via fe80::4638:39ff:fe00:13, swp52, weight 1, 01:04:41
-C>* 10.10.10.11/32 is directly connected, lo, 02:03:38
+B>* 10.0.1.1/32 [20/0] via fe80::4638:39ff:fe00:11, swp51, weight 1, 01:04:41
+  *                    via fe80::4638:39ff:fe00:13, swp52, weight 1, 01:04:41
+C>* 10.0.1.2/32 is directly connected, lo, 02:03:38
 ```
 {{< /tab >}}
 {{< tab "leaf04 ">}}
-Leaf04 has two ECMP routes (via both spine switches) to other leafs' loopbacks and anycast-IPs recieved by BGP - `10.10.10.10/32`
+Leaf04 has two ECMP routes (via both spine switches) to other leafs' loopbacks and anycast-IPs recieved by BGP - `10.0.1.1/32`
 ```
 cumulus@leaf04:mgmt:~$ net show route
 show ip route
@@ -3327,9 +3323,9 @@ B>* 10.10.10.2/32 [20/0] via fe80::4638:39ff:fe00:19, swp51, weight 1, 00:54:36
   *                      via fe80::4638:39ff:fe00:1b, swp52, weight 1, 00:54:36
 B>* 10.10.10.3/32 [20/0] via fe80::4638:39ff:fe00:5d, peerlink.4094, weight 1, 00:56:57
 C>* 10.10.10.4/32 is directly connected, lo, 01:53:17
-B>* 10.10.10.10/32 [20/0] via fe80::4638:39ff:fe00:19, swp51, weight 1, 00:54:36
-  *                       via fe80::4638:39ff:fe00:1b, swp52, weight 1, 00:54:36
-C>* 10.10.10.11/32 is directly connected, lo, 01:40:22
+B>* 10.0.1.1/32 [20/0] via fe80::4638:39ff:fe00:19, swp51, weight 1, 00:54:36
+  *                    via fe80::4638:39ff:fe00:1b, swp52, weight 1, 00:54:36
+C>* 10.0.1.2/32 is directly connected, lo, 01:40:22
 ```
 {{< /tab >}}
 {{< tab "spine01 ">}}
@@ -3348,10 +3344,10 @@ B>* 10.10.10.1/32 [20/0] via fe80::4638:39ff:fe00:4, swp1, weight 1, 00:50:51
 B>* 10.10.10.2/32 [20/0] via fe80::4638:39ff:fe00:c, swp2, weight 1, 00:50:51
 B>* 10.10.10.3/32 [20/0] via fe80::4638:39ff:fe00:14, swp3, weight 1, 00:50:51
 B>* 10.10.10.4/32 [20/0] via fe80::4638:39ff:fe00:1c, swp4, weight 1, 00:50:50
-B>* 10.10.10.10/32 [20/0] via fe80::4638:39ff:fe00:4, swp1, weight 1, 00:50:51
-  *                       via fe80::4638:39ff:fe00:c, swp2, weight 1, 00:50:51
-B>* 10.10.10.11/32 [20/0] via fe80::4638:39ff:fe00:14, swp3, weight 1, 00:50:50
-  *                       via fe80::4638:39ff:fe00:1c, swp4, weight 1, 00:50:50
+B>* 10.0.1.1/32 [20/0] via fe80::4638:39ff:fe00:4, swp1, weight 1, 00:50:51
+  *                    via fe80::4638:39ff:fe00:c, swp2, weight 1, 00:50:51
+B>* 10.0.1.2/32 [20/0] via fe80::4638:39ff:fe00:14, swp3, weight 1, 00:50:50
+  *                    via fe80::4638:39ff:fe00:1c, swp4, weight 1, 00:50:50
 ```
 {{< /tab >}}
 {{< tab "spine02 ">}}
@@ -3370,10 +3366,10 @@ B>* 10.10.10.1/32 [20/0] via fe80::4638:39ff:fe00:4, swp1, weight 1, 00:53:58
 B>* 10.10.10.2/32 [20/0] via fe80::4638:39ff:fe00:c, swp2, weight 1, 00:53:58
 B>* 10.10.10.3/32 [20/0] via fe80::4638:39ff:fe00:14, swp3, weight 1, 00:53:58
 B>* 10.10.10.4/32 [20/0] via fe80::4638:39ff:fe00:1c, swp4, weight 1, 00:53:57
-B>* 10.10.10.10/32 [20/0] via fe80::4638:39ff:fe00:4, swp1, weight 1, 00:53:58
-  *                       via fe80::4638:39ff:fe00:c, swp2, weight 1, 00:53:58
-B>* 10.10.10.11/32 [20/0] via fe80::4638:39ff:fe00:14, swp3, weight 1, 00:53:57
-  *                       via fe80::4638:39ff:fe00:1c, swp4, weight 1, 00:53:57
+B>* 10.0.1.1/32 [20/0] via fe80::4638:39ff:fe00:4, swp1, weight 1, 00:53:58
+  *                    via fe80::4638:39ff:fe00:c, swp2, weight 1, 00:53:58
+B>* 10.0.1.2/32 [20/0] via fe80::4638:39ff:fe00:14, swp3, weight 1, 00:53:57
+  *                    via fe80::4638:39ff:fe00:1c, swp4, weight 1, 00:53:57
 ```
 {{< /tab >}}
 {{< /tabs >}}
@@ -3393,15 +3389,15 @@ VLAN      Master  Interface  MAC                TunnelDest   State      Flags   
 1         bridge  esxi01     46:38:39:00:00:38                                              00:00:57
 100       bridge  esxi01     44:38:39:00:00:38                                              00:01:03
 100       bridge  vxlan100   44:38:39:00:00:44                          extern_learn        00:03:19
-untagged          vxlan100   00:00:00:00:00:00  10.10.10.11  permanent  self                00:04:17
-untagged          vxlan100   44:38:39:00:00:44  10.10.10.11             self, extern_learn  00:03:19
+untagged          vxlan100   00:00:00:00:00:00  10.0.1.2     permanent  self                00:04:17
+untagged          vxlan100   44:38:39:00:00:44  10.0.1.2                self, extern_learn  00:03:19
 untagged  bridge  esxi01     44:38:39:00:00:31               permanent                      00:04:50
 untagged  bridge  peerlink   44:38:39:00:00:59               permanent                      00:04:50
 untagged  bridge  vxlan100   22:0c:97:fd:30:e2               permanent                      00:04:50
 ```
 ```
 cumulus@leaf01:mgmt:~$ net show bgp evpn route
-BGP table version is 2, local router ID is 1.1.1.1
+BGP table version is 2, local router ID is 10.10.10.1
 Status codes: s suppressed, d damped, h history, * valid, > best, i - internal
 Origin codes: i - IGP, e - EGP, ? - incomplete
 EVPN type-1 prefix: [1]:[ESI]:[EthTag]:[IPlen]:[VTEP-IP]
@@ -3412,38 +3408,38 @@ EVPN type-5 prefix: [5]:[EthTag]:[IPlen]:[IP]
 
    Network          Next Hop            Metric LocPrf Weight Path
                     Extended Community
-Route Distinguisher: 1.1.1.1:2
+Route Distinguisher: 10.10.10.1:2
 *> [2]:[0]:[48]:[44:38:39:00:00:38]
-                    10.10.10.10                        32768 i
+                    10.0.1.1                           32768 i
                     ET:8 RT:54795:100100
-*> [3]:[0]:[32]:[10.10.10.10]
-                    10.10.10.10                        32768 i
+*> [3]:[0]:[32]:[10.0.1.1]
+                    10.0.1.1                           32768 i
                     ET:8 RT:54795:100100
-Route Distinguisher: 3.3.3.3:2
+Route Distinguisher: 10.10.10.3:2
 *  [2]:[0]:[48]:[44:38:39:00:00:44]
-                    10.10.10.11                            0 4259632649 4200000000 4259632661 i
+                    10.0.1.2                               0 4259632649 4200000000 4259632661 i
                     RT:54805:100100 ET:8
 *> [2]:[0]:[48]:[44:38:39:00:00:44]
-                    10.10.10.11                            0 4200000000 4259632661 i
+                    10.0.1.2                               0 4200000000 4259632661 i
                     RT:54805:100100 ET:8
-*  [3]:[0]:[32]:[10.10.10.11]
-                    10.10.10.11                            0 4259632649 4200000000 4259632661 i
+*  [3]:[0]:[32]:[10.0.1.2]
+                    10.0.1.2                               0 4259632649 4200000000 4259632661 i
                     RT:54805:100100 ET:8
-*> [3]:[0]:[32]:[10.10.10.11]
-                    10.10.10.11                            0 4200000000 4259632661 i
+*> [3]:[0]:[32]:[10.0.1.2]
+                    10.0.1.2                               0 4200000000 4259632661 i
                     RT:54805:100100 ET:8
-Route Distinguisher: 4.4.4.4:2
+Route Distinguisher: 10.10.10.4:2
 *  [2]:[0]:[48]:[44:38:39:00:00:44]
-                    10.10.10.11                            0 4259632649 4200000000 4259632667 i
+                    10.0.1.2                               0 4259632649 4200000000 4259632667 i
                     RT:54811:100100 ET:8
 *> [2]:[0]:[48]:[44:38:39:00:00:44]
-                    10.10.10.11                            0 4200000000 4259632667 i
+                    10.0.1.2                               0 4200000000 4259632667 i
                     RT:54811:100100 ET:8
-*  [3]:[0]:[32]:[10.10.10.11]
-                    10.10.10.11                            0 4259632649 4200000000 4259632667 i
+*  [3]:[0]:[32]:[10.0.1.2]
+                    10.0.1.2                               0 4259632649 4200000000 4259632667 i
                     RT:54811:100100 ET:8
-*> [3]:[0]:[32]:[10.10.10.11]
-                    10.10.10.11                            0 4200000000 4259632667 i
+*> [3]:[0]:[32]:[10.0.1.2]
+                    10.0.1.2                               0 4200000000 4259632667 i
                     RT:54811:100100 ET:8
 
 Displayed 6 prefixes (10 paths)
@@ -3459,15 +3455,15 @@ VLAN      Master  Interface  MAC                TunnelDest   State      Flags   
 1         bridge  esxi01     46:38:39:00:00:38                                              00:00:02
 100       bridge  esxi01     44:38:39:00:00:38                                              00:01:21
 100       bridge  vxlan100   44:38:39:00:00:44                          extern_learn        00:04:35
-untagged          vxlan100   00:00:00:00:00:00  10.10.10.11  permanent  self                00:05:32
-untagged          vxlan100   44:38:39:00:00:44  10.10.10.11             self, extern_learn  00:04:35
+untagged          vxlan100   00:00:00:00:00:00  10.0.1.2     permanent  self                00:05:32
+untagged          vxlan100   44:38:39:00:00:44  10.0.1.2                self, extern_learn  00:04:35
 untagged  bridge  esxi01     44:38:39:00:00:37               permanent                      00:06:00
 untagged  bridge  peerlink   44:38:39:00:00:5a               permanent                      00:06:00
 untagged  bridge  vxlan100   6a:f5:8a:e5:2d:61               permanent                      00:06:00
 ```
 ```
 cumulus@leaf02:mgmt:~$ net show bgp evpn route
-BGP table version is 2, local router ID is 2.2.2.2
+BGP table version is 2, local router ID is 10.10.10.2
 Status codes: s suppressed, d damped, h history, * valid, > best, i - internal
 Origin codes: i - IGP, e - EGP, ? - incomplete
 EVPN type-1 prefix: [1]:[ESI]:[EthTag]:[IPlen]:[VTEP-IP]
@@ -3478,38 +3474,38 @@ EVPN type-5 prefix: [5]:[EthTag]:[IPlen]:[IP]
 
    Network          Next Hop            Metric LocPrf Weight Path
                     Extended Community
-Route Distinguisher: 2.2.2.2:2
+Route Distinguisher: 10.10.10.2:2
 *> [2]:[0]:[48]:[44:38:39:00:00:38]
-                    10.10.10.10                        32768 i
+                    10.0.1.1                           32768 i
                     ET:8 RT:54793:100100
-*> [3]:[0]:[32]:[10.10.10.10]
-                    10.10.10.10                        32768 i
+*> [3]:[0]:[32]:[10.0.1.1]
+                    10.0.1.1                           32768 i
                     ET:8 RT:54793:100100
-Route Distinguisher: 3.3.3.3:2
+Route Distinguisher: 10.10.10.3:2
 *  [2]:[0]:[48]:[44:38:39:00:00:44]
-                    10.10.10.11                            0 4259632651 4200000000 4259632661 i
+                    10.0.1.2                               0 4259632651 4200000000 4259632661 i
                     RT:54805:100100 ET:8
 *> [2]:[0]:[48]:[44:38:39:00:00:44]
-                    10.10.10.11                            0 4200000000 4259632661 i
+                    10.0.1.2                               0 4200000000 4259632661 i
                     RT:54805:100100 ET:8
-*  [3]:[0]:[32]:[10.10.10.11]
-                    10.10.10.11                            0 4259632651 4200000000 4259632661 i
+*  [3]:[0]:[32]:[10.0.1.2]
+                    10.0.1.2                               0 4259632651 4200000000 4259632661 i
                     RT:54805:100100 ET:8
-*> [3]:[0]:[32]:[10.10.10.11]
-                    10.10.10.11                            0 4200000000 4259632661 i
+*> [3]:[0]:[32]:[10.0.1.2]
+                    10.0.1.2                               0 4200000000 4259632661 i
                     RT:54805:100100 ET:8
-Route Distinguisher: 4.4.4.4:2
+Route Distinguisher: 10.10.10.4:2
 *  [2]:[0]:[48]:[44:38:39:00:00:44]
-                    10.10.10.11                            0 4259632651 4200000000 4259632667 i
+                    10.0.1.2                               0 4259632651 4200000000 4259632667 i
                     RT:54811:100100 ET:8
 *> [2]:[0]:[48]:[44:38:39:00:00:44]
-                    10.10.10.11                            0 4200000000 4259632667 i
+                    10.0.1.2                               0 4200000000 4259632667 i
                     RT:54811:100100 ET:8
-*  [3]:[0]:[32]:[10.10.10.11]
-                    10.10.10.11                            0 4259632651 4200000000 4259632667 i
+*  [3]:[0]:[32]:[10.0.1.2]
+                    10.0.1.2                               0 4259632651 4200000000 4259632667 i
                     RT:54811:100100 ET:8
-*> [3]:[0]:[32]:[10.10.10.11]
-                    10.10.10.11                            0 4200000000 4259632667 i
+*> [3]:[0]:[32]:[10.0.1.2]
+                    10.0.1.2                               0 4200000000 4259632667 i
                     RT:54811:100100 ET:8
 
 Displayed 6 prefixes (10 paths)
@@ -3525,15 +3521,15 @@ VLAN      Master  Interface  MAC                TunnelDest   State      Flags   
 1         bridge  esxi03     46:38:39:00:00:44                                              00:03:00
 100       bridge  esxi03     44:38:39:00:00:44                                              00:05:33
 100       bridge  vxlan100   44:38:39:00:00:38                          extern_learn        00:03:17
-untagged          vxlan100   00:00:00:00:00:00  10.10.10.10  permanent  self                00:06:31
-untagged          vxlan100   44:38:39:00:00:38  10.10.10.10             self, extern_learn  00:03:17
+untagged          vxlan100   00:00:00:00:00:00  10.0.1.1     permanent  self                00:06:31
+untagged          vxlan100   44:38:39:00:00:38  10.0.1.1                self, extern_learn  00:03:17
 untagged  bridge  esxi03     44:38:39:00:00:3d               permanent                      00:06:55
 untagged  bridge  peerlink   44:38:39:00:00:5d               permanent                      00:06:55
 untagged  bridge  vxlan100   22:fc:c1:e6:5f:c7               permanent                      00:06:55
 ```
 ```
 cumulus@leaf03:mgmt:~$ net show bgp evpn route
-BGP table version is 3, local router ID is 3.3.3.3
+BGP table version is 3, local router ID is 10.10.10.3
 Status codes: s suppressed, d damped, h history, * valid, > best, i - internal
 Origin codes: i - IGP, e - EGP, ? - incomplete
 EVPN type-1 prefix: [1]:[ESI]:[EthTag]:[IPlen]:[VTEP-IP]
@@ -3544,38 +3540,38 @@ EVPN type-5 prefix: [5]:[EthTag]:[IPlen]:[IP]
 
    Network          Next Hop            Metric LocPrf Weight Path
                     Extended Community
-Route Distinguisher: 1.1.1.1:2
+Route Distinguisher: 10.10.10.1:2
 *  [2]:[0]:[48]:[44:38:39:00:00:38]
-                    10.10.10.10                            0 4259632667 4200000000 4259632651 i
+                    10.0.1.1                               0 4259632667 4200000000 4259632651 i
                     RT:54795:100100 ET:8
 *> [2]:[0]:[48]:[44:38:39:00:00:38]
-                    10.10.10.10                            0 4200000000 4259632651 i
+                    10.0.1.1                               0 4200000000 4259632651 i
                     RT:54795:100100 ET:8
-*> [3]:[0]:[32]:[10.10.10.10]
-                    10.10.10.10                            0 4200000000 4259632651 i
+*> [3]:[0]:[32]:[10.0.1.1]
+                    10.0.1.1                               0 4200000000 4259632651 i
                     RT:54795:100100 ET:8
-*  [3]:[0]:[32]:[10.10.10.10]
-                    10.10.10.10                            0 4259632667 4200000000 4259632651 i
+*  [3]:[0]:[32]:[10.0.1.1]
+                    10.0.1.1                               0 4259632667 4200000000 4259632651 i
                     RT:54795:100100 ET:8
-Route Distinguisher: 2.2.2.2:2
+Route Distinguisher: 10.10.10.2:2
 *  [2]:[0]:[48]:[44:38:39:00:00:38]
-                    10.10.10.10                            0 4259632667 4200000000 4259632649 i
+                    10.0.1.1                               0 4259632667 4200000000 4259632649 i
                     RT:54793:100100 ET:8
 *> [2]:[0]:[48]:[44:38:39:00:00:38]
-                    10.10.10.10                            0 4200000000 4259632649 i
+                    10.0.1.1                               0 4200000000 4259632649 i
                     RT:54793:100100 ET:8
-*> [3]:[0]:[32]:[10.10.10.10]
-                    10.10.10.10                            0 4200000000 4259632649 i
+*> [3]:[0]:[32]:[10.0.1.1]
+                    10.0.1.1                               0 4200000000 4259632649 i
                     RT:54793:100100 ET:8
-*  [3]:[0]:[32]:[10.10.10.10]
-                    10.10.10.10                            0 4259632667 4200000000 4259632649 i
+*  [3]:[0]:[32]:[10.0.1.1]
+                    10.0.1.1                               0 4259632667 4200000000 4259632649 i
                     RT:54793:100100 ET:8
-Route Distinguisher: 3.3.3.3:2
+Route Distinguisher: 10.10.10.3:2
 *> [2]:[0]:[48]:[44:38:39:00:00:44]
-                    10.10.10.11                        32768 i
+                    10.0.1.2                           32768 i
                     ET:8 RT:54805:100100
-*> [3]:[0]:[32]:[10.10.10.11]
-                    10.10.10.11                        32768 i
+*> [3]:[0]:[32]:[10.0.1.2]
+                    10.0.1.2                           32768 i
                     ET:8 RT:54805:100100
 
 Displayed 6 prefixes (10 paths)
@@ -3591,15 +3587,15 @@ VLAN      Master  Interface  MAC                TunnelDest   State      Flags   
 1         bridge  esxi03     46:38:39:00:00:44                                              00:00:01
 100       bridge  esxi03     44:38:39:00:00:44                                              00:02:16
 100       bridge  vxlan100   44:38:39:00:00:38                          extern_learn        00:04:17
-untagged          vxlan100   00:00:00:00:00:00  10.10.10.10  permanent  self                00:07:33
-untagged          vxlan100   44:38:39:00:00:38  10.10.10.10             self, extern_learn  00:04:17
+untagged          vxlan100   00:00:00:00:00:00  10.0.1.1     permanent  self                00:07:33
+untagged          vxlan100   44:38:39:00:00:38  10.0.1.1                self, extern_learn  00:04:17
 untagged  bridge  esxi03     44:38:39:00:00:43               permanent                      00:07:49
 untagged  bridge  peerlink   44:38:39:00:00:5e               permanent                      00:07:49
 untagged  bridge  vxlan100   4e:3e:3a:d1:77:0e               permanent                      00:07:49
 ```
 ```
 cumulus@leaf04:mgmt:~$ net show bgp evpn route
-BGP table version is 2, local router ID is 4.4.4.4
+BGP table version is 2, local router ID is 10.10.10.4
 Status codes: s suppressed, d damped, h history, * valid, > best, i - internal
 Origin codes: i - IGP, e - EGP, ? - incomplete
 EVPN type-1 prefix: [1]:[ESI]:[EthTag]:[IPlen]:[VTEP-IP]
@@ -3610,38 +3606,38 @@ EVPN type-5 prefix: [5]:[EthTag]:[IPlen]:[IP]
 
    Network          Next Hop            Metric LocPrf Weight Path
                     Extended Community
-Route Distinguisher: 1.1.1.1:2
+Route Distinguisher: 10.10.10.1:2
 *  [2]:[0]:[48]:[44:38:39:00:00:38]
-                    10.10.10.10                            0 4259632661 4200000000 4259632651 i
+                    10.0.1.1                               0 4259632661 4200000000 4259632651 i
                     RT:54795:100100 ET:8
 *> [2]:[0]:[48]:[44:38:39:00:00:38]
-                    10.10.10.10                            0 4200000000 4259632651 i
+                    10.0.1.1                               0 4200000000 4259632651 i
                     RT:54795:100100 ET:8
-*  [3]:[0]:[32]:[10.10.10.10]
-                    10.10.10.10                            0 4259632661 4200000000 4259632651 i
+*  [3]:[0]:[32]:[10.0.1.1]
+                    10.0.1.1                               0 4259632661 4200000000 4259632651 i
                     RT:54795:100100 ET:8
-*> [3]:[0]:[32]:[10.10.10.10]
-                    10.10.10.10                            0 4200000000 4259632651 i
+*> [3]:[0]:[32]:[10.0.1.1]
+                    10.0.1.1                               0 4200000000 4259632651 i
                     RT:54795:100100 ET:8
-Route Distinguisher: 2.2.2.2:2
+Route Distinguisher: 10.10.10.2:2
 *  [2]:[0]:[48]:[44:38:39:00:00:38]
-                    10.10.10.10                            0 4259632661 4200000000 4259632649 i
+                    10.0.1.1                               0 4259632661 4200000000 4259632649 i
                     RT:54793:100100 ET:8
 *> [2]:[0]:[48]:[44:38:39:00:00:38]
-                    10.10.10.10                            0 4200000000 4259632649 i
+                    10.0.1.1                               0 4200000000 4259632649 i
                     RT:54793:100100 ET:8
-*  [3]:[0]:[32]:[10.10.10.10]
-                    10.10.10.10                            0 4259632661 4200000000 4259632649 i
+*  [3]:[0]:[32]:[10.0.1.1]
+                    10.0.1.1                               0 4259632661 4200000000 4259632649 i
                     RT:54793:100100 ET:8
-*> [3]:[0]:[32]:[10.10.10.10]
-                    10.10.10.10                            0 4200000000 4259632649 i
+*> [3]:[0]:[32]:[10.0.1.1]
+                    10.0.1.1                               0 4200000000 4259632649 i
                     RT:54793:100100 ET:8
-Route Distinguisher: 4.4.4.4:2
+Route Distinguisher: 10.10.10.4:2
 *> [2]:[0]:[48]:[44:38:39:00:00:44]
-                    10.10.10.11                        32768 i
+                    10.0.1.2                           32768 i
                     ET:8 RT:54811:100100
-*> [3]:[0]:[32]:[10.10.10.11]
-                    10.10.10.11                        32768 i
+*> [3]:[0]:[32]:[10.0.1.2]
+                    10.0.1.2                           32768 i
                     ET:8 RT:54811:100100
 
 Displayed 6 prefixes (10 paths)
@@ -3651,7 +3647,7 @@ Displayed 6 prefixes (10 paths)
 
 ### Traffic Flow
 
-Virtualized traffic in same or diffenet logical segments will be sent as in [Layer 2](http://localhost:1313/guides/nsx-t-deployment/Cumulus-nsxt/#layer-2-virtualized-environment) or [Layer 3](http://localhost:1313/guides/nsx-t-deployment/Cumulus-nsxt/#layer-3-virtualized-environment) pure virtualized environments scenarios (if all segments belong to same Overlay TZ with the same TEPs). The only differnace in our case, is the EVPN underlay fabric. Here, Genve encaplsuted traffic from ESXi TEP is encapbuslated again into VXLAN pcakets on the ToR switches (VTEP). Then it trasmitted as layer 2 VXLAN over the layer 3 fabric. Once the VXLAN encapsualted packet reaches its destiantion VTEP (leaf), it is decapsualted and sent as Geneve to the ESXI hypervisor. The ESXi as we know, decapsulates the Geneve header and forwards the packet to the VM.
+Virtualized traffic in same or diffenet logical segments will be sent as in [Layer 2](http://localhost:1313/guides/nsx-t-deployment/Cumulus-nsxt/#layer-2-virtualized-environment) or [Layer 3](http://localhost:1313/guides/nsx-t-deployment/Cumulus-nsxt/#layer-3-virtualized-environment) pure virtualized environments scenarios (if all segments belong to same Overlay TZ with the same TEPs). The only differnace in our case, is the EVPN underlay fabric. Here, Genve encaplsuted traffic from ESXi TEP is encapbuslated again into VXLAN pcakets on the ToR switches (VTEP) using the `clag vxlan-anycast-ip` addresses as the tunnel sources/destination. Then it trasmitted as layer 2 VXLAN over the layer 3 fabric. Once the VXLAN encapsualted packet reaches its destiantion VTEP (leaf), it is decapsualted and sent as Geneve to the ESXI hypervisor. The ESXi as we know, decapsulates the Geneve header and forwards the packet to the VM.
 
 ## EVPN Underlay Fabric with External Network (Type-5)
 

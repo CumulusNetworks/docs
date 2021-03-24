@@ -180,7 +180,7 @@ The use of <code>netq-latest</code> in this example means that a <code>get</code
 
     8. Click **Show Download**.
 
-        {{<figure src="/images/netq/mymellanox-netq-download-kvm-321.png" width="500">}}
+        {{<figure src="/images/netq/mymellanox-netq-download-kvm-331.png" width="500">}}
 
     9. Verify this is the correct image, then click **Download**.
 

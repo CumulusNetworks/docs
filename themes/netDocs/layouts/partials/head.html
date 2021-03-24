@@ -32,4 +32,6 @@
     {{ $jsCodeCopy := resources.Get "js/codecopy.js"}}
     <script src = "{{ $jsCodeCopy.Permalink }}"> </script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    {{ $jsAir := resources.Get "js/air.js" }}
+    <script type="application/javascript" src="{{ $jsAir.Permalink }}"></script>
 {{ end }}

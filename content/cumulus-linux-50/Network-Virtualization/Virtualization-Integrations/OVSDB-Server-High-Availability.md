@@ -5,17 +5,13 @@ weight: 700
 toc: 4
 ---
 {{%notice warning%}}
-
 OVSDB server high availability is an {{<exlink url="https://docs.cumulusnetworks.com/knowledge-base/Support/Support-Offerings/Early-Access-Features-Defined/" text="early access feature">}}.
-
 {{%/notice%}}
 
 Cumulus Linux supports integration with VMware NSX in both *standalonemode* and *OVSDB server high availability mode* (where the data plane is running in active-active mode). For information about VMware NSX in standalone mode and for a description of the components that work together to integrate VMware NSX and Cumulus Linux, see {{<link url="Integrating-Hardware-VTEPs-with-VMware-NSX-V">}}.
 
 {{%notice note%}}
-
 Cumulus Linux supports OVSDB service node replication only.
-
 {{%/notice%}}
 
 With OVSDB server high availability mode, you use two peer Cumulus Linux switches in an MLAG configuration. Both the MLAG primary and MLAG secondary switch contain OVSDB server and VTEPd. The OVSDB servers synchronize their databases with each other and always maintain the replicated state unless failover occurs; for example, the peer link bond breaks, a switch fails, or the OVSDB server goes down. Both of the VTEPd components talk to the active OVSDB server to read the configuration and then push the configuration to the kernel. Only the active OVSDB server communicates with the NSX controller, unless failover occurs and then the standby OVSDB server takes over automatically. Although the Cumulus switches are configured as an MLAG pair, the NSX controller sees them as a single system (the NSX controller is not aware that multiple switches exist).
@@ -35,9 +31,7 @@ the NSX controller.
 When the OVSDB server on the MLAG primary switch starts responding again, it resynchronizes its database, becomes the active OVSDB server, and connects to the controller. At the same time, the OVSDB server on the MLAG secondary switch stops communicating with the NSX controller, synchronizes with the now active OVSDB server, and takes the standby role again.
 
 {{%notice note%}}
-
 When you upgrade Cumulus Linux, both the `/usr/share/openvswitch/scripts/ovs-ctl-vtep` file and the database file `conf.db` are overwritten. Be sure to back up both files before upgrading.
-
 {{%/notice%}}
 
 ## Getting Started
@@ -98,9 +92,7 @@ To configure OVSDB server high availability, you need to:
 - Verify the VXLAN Configuration.
 
 {{%notice note%}}
-
 The OVSDB server cannot select the loopback interface as the source IP address, causing top of rack registration to the controller to fail. To work around this issue, run the `net add bgp redistribute connected` command followed by the `net commit` command.
-
 {{%/notice%}}
 
 ## Configure the NSX Integration on the Switch
@@ -184,9 +176,7 @@ Run the configuration script provided with Cumulus Linux:
 3. From the switch running the active OVSDB server, copy the certificate files (`hostname-cert.pem` and `hostname-privkey.pem`) to the same location on the switch with the standby OVSDB server.
 
     {{%notice note%}}
-
 The certificate and key pairs for authenticating with the NSX controller are generated automatically when you run the configuration script and are stored in the `/home/cumulus` directory. The same certificate must be used for both switches.
-
     {{%/notice%}}
 
 4. On the switch running the *active* OVSDB server and then the switch running the *standby* OVSDB server, run the following commands in the order shown to complete the configuration process:
@@ -287,9 +277,7 @@ vxln0  54.0.0.3  Up     36.0.0.1  singlehop  N/A   N/A
 ```
 
 {{%notice note%}}
-
 When `switchd` and networking services are restarted, the BFD sessions might be interrupted. If you notice that the sessions are down, restart the `openvswitch-vtep`.service.
-
 {{%/notice%}}
 
 If you encounter interface or VXLAN bridge configuration issues after adding the hardware bindings, run the `ifreload -a` command to reload all network interfaces.

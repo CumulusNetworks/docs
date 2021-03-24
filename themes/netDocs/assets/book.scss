@@ -1,11 +1,3 @@
-@import "normalize";
-@import "variables";
-@import "markdown";
-@import "utils";
-@import "syntax";
-@import "notices";
-@import "shortcodes";
-
 // Hugo only supports dynamic hugo variables in the main .scss file
 // This will not work if they are placed into the _variables.scss file
 $baseline-expand_more: '{{"icons/baseline-expand_more.svg" | absURL}}';
@@ -13,6 +5,17 @@ $alert-triangle: '{{"icons/alert-triangle.png" | absURL}}';
 $remove-circle: '{{"icons/remove-circle.png" | absURL}}';
 $info-circle: '{{"icons/info-circle.png" | absURL}}';
 $check-circle: '{{"icons/check-circle.png" | absURL}}';
+$remove-circle-20x20: '{{"icons/remove-circle_20x20.png" | absURL}}';
+$info-circle-20x20: '{{"icons/info-circle_20x20.png" | absURL}}';
+$alert-triangle-20x20: '{{"icons/alert-triangle_20x20.png" | absURL}}';
+
+@import "normalize";
+@import "variables";
+@import "markdown";
+@import "utils";
+@import "syntax";
+@import "notices";
+@import "shortcodes";
 
 html {
   font-size: $font-size-base;

@@ -38,6 +38,7 @@ The following images shows traffic flow between tenants. The spines and other de
 ```
 cumulus@leaf01:~$ cl set interface lo ip address 10.10.10.1/32
 cumulus@leaf01:~$ cl set interface swp1-2,swp49-54
+cumulus@leaf01:~$ cl set interface swp1 link mtu 9000
 cumulus@leaf01:~$ cl set interface swp2 link mtu 9000
 cumulus@leaf01:~$ cl set interface bond1 bond member swp1
 cumulus@leaf01:~$ cl set interface bond2 bond member swp2
@@ -83,309 +84,314 @@ cumulus@leaf01:~$ cl config apply
 {{< tab "leaf02 ">}}
 
 ```
-cumulus@leaf01:~$ cl set interface lo ip address 10.10.10.2/32
-cumulus@leaf01:~$ cl set interface swp1-2,swp49-54
-cumulus@leaf01:~$ cl set interface swp2 link mtu 9000
-cumulus@leaf01:~$ cl set interface bond1 bond member swp1
-cumulus@leaf01:~$ cl set interface bond2 bond member swp2
-cumulus@leaf01:~$ cl set interface bond1 bond mlag id 1
-cumulus@leaf01:~$ cl set interface bond2 bond mlag id 2
-cumulus@leaf01:~$ cl set interface bond1 bond lacp-bypass on
-cumulus@leaf01:~$ cl set interface bond2 bond lacp-bypass on
-cumulus@leaf01:~$ cl set interface bond1 link mtu 9000
-cumulus@leaf01:~$ cl set interface bond2 link mtu 9000
-cumulus@leaf01:~$ cl set interface bond1-2 bridge domain br_default
-cumulus@leaf01:~$ cl set interface bond1 bridge domain br_default access 10
-cumulus@leaf01:~$ cl set interface bond2 bridge domain br_default access 20
-cumulus@leaf01:~$ cl set bridge domain br_default vlan 10,20
-cumulus@leaf01:~$ cl set interface peerlink bond member swp49-50
-cumulus@leaf01:~$ cl set mlag mac-address 44:38:39:BE:EF:AA
-cumulus@leaf01:~$ cl set mlag backup 10.10.10.1
-cumulus@leaf01:~$ cl set mlag peer-ip linklocal
-cumulus@leaf01:~$ cl set mlag priority 32768
-cumulus@leaf01:~$ cl set mlag init-delay 10
-cumulus@leaf01:~$ cl set interface vlan10
-cumulus@leaf01:~$ cl set interface vlan20
-cumulus@leaf01:~$ cl set bridge domain br_default vlan 10 vni 10
-cumulus@leaf01:~$ cl set bridge domain br_default vlan 20 vni 20
-cumulus@leaf01:~$ cl set nve vxlan mlag shared-address 10.0.1.12
-cumulus@leaf01:~$ cl set nve vxlan source address 10.10.10.2
-cumulus@leaf01:~$ cl set nve vxlan arp-nd-suppress on 
-cumulus@leaf01:~$ cl set evpn enable on
-cumulus@leaf01:~$ cl set router bgp autonomous-system 65102
-cumulus@leaf01:~$ cl set router bgp router-id 10.10.10.2
-cumulus@leaf01:~$ cl set vrf default router bgp peer-group underlay remote-as external
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp51 peer-group underlay
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp52 peer-group underlay
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp53 peer-group underlay
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp54 peer-group underlay
-cumulus@leaf01:~$ cl set vrf default router bgp path-selection multipath aspath-ignore on
-cumulus@leaf01:~$ cl set vrf default router bgp peer-group underlay address-family l2vpn-evpn enable on
-cumulus@leaf01:~$ cl set vrf default router bgp peer peerlink.4094 remote-as internal
-cumulus@leaf01:~$ cl set vrf default router bgp address-family ipv4-unicast route-redistribution connected
-cumulus@leaf01:~$ cl config apply
+cumulus@leaf02:~$ cl set interface lo ip address 10.10.10.2/32
+cumulus@leaf02:~$ cl set interface swp1-2,swp49-54
+cumulus@leaf02:~$ cl set interface swp1 link mtu 9000
+cumulus@leaf02:~$ cl set interface swp2 link mtu 9000
+cumulus@leaf02:~$ cl set interface bond1 bond member swp1
+cumulus@leaf02:~$ cl set interface bond2 bond member swp2
+cumulus@leaf02:~$ cl set interface bond1 bond mlag id 1
+cumulus@leaf02:~$ cl set interface bond2 bond mlag id 2
+cumulus@leaf02:~$ cl set interface bond1 bond lacp-bypass on
+cumulus@leaf02:~$ cl set interface bond2 bond lacp-bypass on
+cumulus@leaf02:~$ cl set interface bond1 link mtu 9000
+cumulus@leaf02:~$ cl set interface bond2 link mtu 9000
+cumulus@leaf02:~$ cl set interface bond1-2 bridge domain br_default
+cumulus@leaf02:~$ cl set interface bond1 bridge domain br_default access 10
+cumulus@leaf02:~$ cl set interface bond2 bridge domain br_default access 20
+cumulus@leaf02:~$ cl set bridge domain br_default vlan 10,20
+cumulus@leaf02:~$ cl set interface peerlink bond member swp49-50
+cumulus@leaf02:~$ cl set mlag mac-address 44:38:39:BE:EF:AA
+cumulus@leaf02:~$ cl set mlag backup 10.10.10.1
+cumulus@leaf02:~$ cl set mlag peer-ip linklocal
+cumulus@leaf02:~$ cl set mlag priority 32768
+cumulus@leaf02:~$ cl set mlag init-delay 10
+cumulus@leaf02:~$ cl set interface vlan10
+cumulus@leaf02:~$ cl set interface vlan20
+cumulus@leaf02:~$ cl set bridge domain br_default vlan 10 vni 10
+cumulus@leaf02:~$ cl set bridge domain br_default vlan 20 vni 20
+cumulus@leaf02:~$ cl set nve vxlan mlag shared-address 10.0.1.12
+cumulus@leaf02:~$ cl set nve vxlan source address 10.10.10.2
+cumulus@leaf02:~$ cl set nve vxlan arp-nd-suppress on 
+cumulus@leaf02:~$ cl set evpn enable on
+cumulus@leaf02:~$ cl set router bgp autonomous-system 65102
+cumulus@leaf02:~$ cl set router bgp router-id 10.10.10.2
+cumulus@leaf02:~$ cl set vrf default router bgp peer-group underlay remote-as external
+cumulus@leaf02:~$ cl set vrf default router bgp peer swp51 peer-group underlay
+cumulus@leaf02:~$ cl set vrf default router bgp peer swp52 peer-group underlay
+cumulus@leaf02:~$ cl set vrf default router bgp peer swp53 peer-group underlay
+cumulus@leaf02:~$ cl set vrf default router bgp peer swp54 peer-group underlay
+cumulus@leaf02:~$ cl set vrf default router bgp path-selection multipath aspath-ignore on
+cumulus@leaf02:~$ cl set vrf default router bgp peer-group underlay address-family l2vpn-evpn enable on
+cumulus@leaf02:~$ cl set vrf default router bgp peer peerlink.4094 remote-as internal
+cumulus@leaf02:~$ cl set vrf default router bgp address-family ipv4-unicast route-redistribution connected
+cumulus@leaf02:~$ cl config apply
 ```
 
 {{< /tab >}}
 {{< tab "leaf03 ">}}
 
 ```
-cumulus@leaf01:~$ cl set interface lo ip address 10.10.10.3/32
-cumulus@leaf01:~$ cl set interface swp1-2,swp49-54
-cumulus@leaf01:~$ cl set interface swp2 link mtu 9000
-cumulus@leaf01:~$ cl set interface bond1 bond member swp1
-cumulus@leaf01:~$ cl set interface bond2 bond member swp2
-cumulus@leaf01:~$ cl set interface bond1 bond mlag id 1
-cumulus@leaf01:~$ cl set interface bond2 bond mlag id 2
-cumulus@leaf01:~$ cl set interface bond1 bond lacp-bypass on
-cumulus@leaf01:~$ cl set interface bond2 bond lacp-bypass on
-cumulus@leaf01:~$ cl set interface bond1 link mtu 9000
-cumulus@leaf01:~$ cl set interface bond2 link mtu 9000
-cumulus@leaf01:~$ cl set interface bond1-2 bridge domain br_default
-cumulus@leaf01:~$ cl set interface bond1 bridge domain br_default access 10
-cumulus@leaf01:~$ cl set interface bond2 bridge domain br_default access 20
-cumulus@leaf01:~$ cl set bridge domain br_default vlan 10,20
-cumulus@leaf01:~$ cl set interface peerlink bond member swp49-50
-cumulus@leaf01:~$ cl set mlag mac-address 44:38:39:BE:EF:BB
-cumulus@leaf01:~$ cl set mlag backup 10.10.10.3
-cumulus@leaf01:~$ cl set mlag peer-ip linklocal
-cumulus@leaf01:~$ cl set mlag priority 1000
-cumulus@leaf01:~$ cl set mlag init-delay 10
-cumulus@leaf01:~$ cl set interface vlan10
-cumulus@leaf01:~$ cl set interface vlan20
-cumulus@leaf01:~$ cl set bridge domain br_default vlan 10 vni 10
-cumulus@leaf01:~$ cl set bridge domain br_default vlan 20 vni 20
-cumulus@leaf01:~$ cl set nve vxlan mlag shared-address 10.0.1.34
-cumulus@leaf01:~$ cl set nve vxlan source address 10.10.10.3
-cumulus@leaf01:~$ cl set nve vxlan arp-nd-suppress on 
-cumulus@leaf01:~$ cl set evpn enable on
-cumulus@leaf01:~$ cl set router bgp autonomous-system 65103
-cumulus@leaf01:~$ cl set router bgp router-id 10.10.10.3
-cumulus@leaf01:~$ cl set vrf default router bgp peer-group underlay remote-as external
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp51 peer-group underlay
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp52 peer-group underlay
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp53 peer-group underlay
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp54 peer-group underlay
-cumulus@leaf01:~$ cl set vrf default router bgp path-selection multipath aspath-ignore on
-cumulus@leaf01:~$ cl set vrf default router bgp peer-group underlay address-family l2vpn-evpn enable on
-cumulus@leaf01:~$ cl set vrf default router bgp peer peerlink.4094 remote-as internal
-cumulus@leaf01:~$ cl set vrf default router bgp address-family ipv4-unicast route-redistribution connected
-cumulus@leaf01:~$ cl config apply
+cumulus@leaf03:~$ cl set interface lo ip address 10.10.10.3/32
+cumulus@leaf03:~$ cl set interface swp1-2,swp49-54
+cumulus@leaf03:~$ cl set interface swp1 link mtu 9000
+cumulus@leaf03:~$ cl set interface swp2 link mtu 9000
+cumulus@leaf03:~$ cl set interface bond1 bond member swp1
+cumulus@leaf03:~$ cl set interface bond2 bond member swp2
+cumulus@leaf03:~$ cl set interface bond1 bond mlag id 1
+cumulus@leaf03:~$ cl set interface bond2 bond mlag id 2
+cumulus@leaf03:~$ cl set interface bond1 bond lacp-bypass on
+cumulus@leaf03:~$ cl set interface bond2 bond lacp-bypass on
+cumulus@leaf03:~$ cl set interface bond1 link mtu 9000
+cumulus@leaf03:~$ cl set interface bond2 link mtu 9000
+cumulus@leaf03:~$ cl set interface bond1-2 bridge domain br_default
+cumulus@leaf03:~$ cl set interface bond1 bridge domain br_default access 10
+cumulus@leaf03:~$ cl set interface bond2 bridge domain br_default access 20
+cumulus@leaf03:~$ cl set bridge domain br_default vlan 10,20
+cumulus@leaf03:~$ cl set interface peerlink bond member swp49-50
+cumulus@leaf03:~$ cl set mlag mac-address 44:38:39:BE:EF:BB
+cumulus@leaf03:~$ cl set mlag backup 10.10.10.3
+cumulus@leaf03:~$ cl set mlag peer-ip linklocal
+cumulus@leaf03:~$ cl set mlag priority 1000
+cumulus@leaf03:~$ cl set mlag init-delay 10
+cumulus@leaf03:~$ cl set interface vlan10
+cumulus@leaf03:~$ cl set interface vlan20
+cumulus@leaf03:~$ cl set bridge domain br_default vlan 10 vni 10
+cumulus@leaf03:~$ cl set bridge domain br_default vlan 20 vni 20
+cumulus@leaf03:~$ cl set nve vxlan mlag shared-address 10.0.1.34
+cumulus@leaf03:~$ cl set nve vxlan source address 10.10.10.3
+cumulus@leaf03:~$ cl set nve vxlan arp-nd-suppress on 
+cumulus@leaf03:~$ cl set evpn enable on
+cumulus@leaf03:~$ cl set router bgp autonomous-system 65103
+cumulus@leaf03:~$ cl set router bgp router-id 10.10.10.3
+cumulus@leaf03:~$ cl set vrf default router bgp peer-group underlay remote-as external
+cumulus@leaf03:~$ cl set vrf default router bgp peer swp51 peer-group underlay
+cumulus@leaf03:~$ cl set vrf default router bgp peer swp52 peer-group underlay
+cumulus@leaf03:~$ cl set vrf default router bgp peer swp53 peer-group underlay
+cumulus@leaf03:~$ cl set vrf default router bgp peer swp54 peer-group underlay
+cumulus@leaf03:~$ cl set vrf default router bgp path-selection multipath aspath-ignore on
+cumulus@leaf03:~$ cl set vrf default router bgp peer-group underlay address-family l2vpn-evpn enable on
+cumulus@leaf03:~$ cl set vrf default router bgp peer peerlink.4094 remote-as internal
+cumulus@leaf03:~$ cl set vrf default router bgp address-family ipv4-unicast route-redistribution connected
+cumulus@leaf03:~$ cl config apply
 ```
 
 {{< /tab >}}
 {{< tab "leaf04 ">}}
 
 ```
-cumulus@leaf01:~$ cl set interface lo ip address 10.10.10.4/32
-cumulus@leaf01:~$ cl set interface swp1-2,swp49-54
-cumulus@leaf01:~$ cl set interface swp2 link mtu 9000
-cumulus@leaf01:~$ cl set interface bond1 bond member swp1
-cumulus@leaf01:~$ cl set interface bond2 bond member swp2
-cumulus@leaf01:~$ cl set interface bond1 bond mlag id 1
-cumulus@leaf01:~$ cl set interface bond2 bond mlag id 2
-cumulus@leaf01:~$ cl set interface bond1 bond lacp-bypass on
-cumulus@leaf01:~$ cl set interface bond2 bond lacp-bypass on
-cumulus@leaf01:~$ cl set interface bond1 link mtu 9000
-cumulus@leaf01:~$ cl set interface bond2 link mtu 9000
-cumulus@leaf01:~$ cl set interface bond1-2 bridge domain br_default
-cumulus@leaf01:~$ cl set interface bond1 bridge domain br_default access 10
-cumulus@leaf01:~$ cl set interface bond2 bridge domain br_default access 20
-cumulus@leaf01:~$ cl set bridge domain br_default vlan 10,20
-cumulus@leaf01:~$ cl set interface peerlink bond member swp49-50
-cumulus@leaf01:~$ cl set mlag mac-address 44:38:39:BE:EF:BB
-cumulus@leaf01:~$ cl set mlag backup 10.10.10.3
-cumulus@leaf01:~$ cl set mlag peer-ip linklocal
-cumulus@leaf01:~$ cl set mlag priority 32768
-cumulus@leaf01:~$ cl set mlag init-delay 10
-cumulus@leaf01:~$ cl set interface vlan10
-cumulus@leaf01:~$ cl set interface vlan20
-cumulus@leaf01:~$ cl set bridge domain br_default vlan 10 vni 10
-cumulus@leaf01:~$ cl set bridge domain br_default vlan 20 vni 20
-cumulus@leaf01:~$ cl set nve vxlan mlag shared-address 10.0.1.34
-cumulus@leaf01:~$ cl set nve vxlan source address 10.10.10.4
-cumulus@leaf01:~$ cl set nve vxlan arp-nd-suppress on 
-cumulus@leaf01:~$ cl set evpn enable on
-cumulus@leaf01:~$ cl set router bgp autonomous-system 65104
-cumulus@leaf01:~$ cl set router bgp router-id 10.10.10.4
-cumulus@leaf01:~$ cl set vrf default router bgp peer-group underlay remote-as external
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp51 peer-group underlay
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp52 peer-group underlay
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp53 peer-group underlay
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp54 peer-group underlay
-cumulus@leaf01:~$ cl set vrf default router bgp path-selection multipath aspath-ignore on
-cumulus@leaf01:~$ cl set vrf default router bgp peer-group underlay address-family l2vpn-evpn enable on
-cumulus@leaf01:~$ cl set vrf default router bgp peer peerlink.4094 remote-as internal
-cumulus@leaf01:~$ cl set vrf default router bgp address-family ipv4-unicast route-redistribution connected
-cumulus@leaf01:~$ cl config apply
+cumulus@leaf04:~$ cl set interface lo ip address 10.10.10.4/32
+cumulus@leaf04:~$ cl set interface swp1-2,swp49-54
+cumulus@leaf04:~$ cl set interface swp1 link mtu 9000
+cumulus@leaf04:~$ cl set interface swp2 link mtu 9000
+cumulus@leaf04:~$ cl set interface bond1 bond member swp1
+cumulus@leaf04:~$ cl set interface bond2 bond member swp2
+cumulus@leaf04:~$ cl set interface bond1 bond mlag id 1
+cumulus@leaf04:~$ cl set interface bond2 bond mlag id 2
+cumulus@leaf04:~$ cl set interface bond1 bond lacp-bypass on
+cumulus@leaf04:~$ cl set interface bond2 bond lacp-bypass on
+cumulus@leaf04:~$ cl set interface bond1 link mtu 9000
+cumulus@leaf04:~$ cl set interface bond2 link mtu 9000
+cumulus@leaf04:~$ cl set interface bond1-2 bridge domain br_default
+cumulus@leaf04:~$ cl set interface bond1 bridge domain br_default access 10
+cumulus@leaf04:~$ cl set interface bond2 bridge domain br_default access 20
+cumulus@leaf04:~$ cl set bridge domain br_default vlan 10,20
+cumulus@leaf04:~$ cl set interface peerlink bond member swp49-50
+cumulus@leaf04:~$ cl set mlag mac-address 44:38:39:BE:EF:BB
+cumulus@leaf04:~$ cl set mlag backup 10.10.10.3
+cumulus@leaf04:~$ cl set mlag peer-ip linklocal
+cumulus@leaf04:~$ cl set mlag priority 32768
+cumulus@leaf04:~$ cl set mlag init-delay 10
+cumulus@leaf04:~$ cl set interface vlan10
+cumulus@leaf04:~$ cl set interface vlan20
+cumulus@leaf04:~$ cl set bridge domain br_default vlan 10 vni 10
+cumulus@leaf04:~$ cl set bridge domain br_default vlan 20 vni 20
+cumulus@leaf04:~$ cl set nve vxlan mlag shared-address 10.0.1.34
+cumulus@leaf04:~$ cl set nve vxlan source address 10.10.10.4
+cumulus@leaf04:~$ cl set nve vxlan arp-nd-suppress on 
+cumulus@leaf04:~$ cl set evpn enable on
+cumulus@leaf04:~$ cl set router bgp autonomous-system 65104
+cumulus@leaf04:~$ cl set router bgp router-id 10.10.10.4
+cumulus@leaf04:~$ cl set vrf default router bgp peer-group underlay remote-as external
+cumulus@leaf04:~$ cl set vrf default router bgp peer swp51 peer-group underlay
+cumulus@leaf04:~$ cl set vrf default router bgp peer swp52 peer-group underlay
+cumulus@leaf04:~$ cl set vrf default router bgp peer swp53 peer-group underlay
+cumulus@leaf04:~$ cl set vrf default router bgp peer swp54 peer-group underlay
+cumulus@leaf04:~$ cl set vrf default router bgp path-selection multipath aspath-ignore on
+cumulus@leaf04:~$ cl set vrf default router bgp peer-group underlay address-family l2vpn-evpn enable on
+cumulus@leaf04:~$ cl set vrf default router bgp peer peerlink.4094 remote-as internal
+cumulus@leaf04:~$ cl set vrf default router bgp address-family ipv4-unicast route-redistribution connected
+cumulus@leaf04:~$ cl config apply
 ```
 
 {{< /tab >}}
 {{< tab "spine01 ">}}
 
 ```
-cumulus@leaf01:~$ cl set interface lo ip address 10.10.10.101/32
-cumulus@leaf01:~$ cl set interface swp1-6
-cumulus@leaf01:~$ cl set router bgp autonomous-system 651000
-cumulus@leaf01:~$ cl set router bgp router-id 10.10.10.101
-cumulus@leaf01:~$ cl set vrf default router bgp peer-group underlay remote-as external
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp1 peer-group underlay
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp2 peer-group underlay
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp3 peer-group underlay
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp4 peer-group underlay
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp5 peer-group underlay
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp6 peer-group underlay
-cumulus@leaf01:~$ cl set vrf default router bgp path-selection multipath aspath-ignore on
-cumulus@leaf01:~$ cl set vrf default router bgp address-family l2vpn-evpn enable on
-cumulus@leaf01:~$ cl set vrf default router bgp peer-group underlay address-family l2vpn-evpn enable on
-cumulus@leaf01:~$ cl set vrf default router bgp address-family ipv4-unicast route-redistribution connected
-cumulus@leaf01:~$ cl config apply
+cumulus@spine01:~$ cl set interface lo ip address 10.10.10.101/32
+cumulus@spine01:~$ cl set interface swp1-6
+cumulus@spine01:~$ cl set router bgp autonomous-system 651000
+cumulus@spine01:~$ cl set router bgp router-id 10.10.10.101
+cumulus@spine01:~$ cl set vrf default router bgp peer-group underlay remote-as external
+cumulus@spine01:~$ cl set vrf default router bgp peer swp1 peer-group underlay
+cumulus@spine01:~$ cl set vrf default router bgp peer swp2 peer-group underlay
+cumulus@spine01:~$ cl set vrf default router bgp peer swp3 peer-group underlay
+cumulus@spine01:~$ cl set vrf default router bgp peer swp4 peer-group underlay
+cumulus@spine01:~$ cl set vrf default router bgp peer swp5 peer-group underlay
+cumulus@spine01:~$ cl set vrf default router bgp peer swp6 peer-group underlay
+cumulus@spine01:~$ cl set vrf default router bgp path-selection multipath aspath-ignore on
+cumulus@spine01:~$ cl set vrf default router bgp address-family l2vpn-evpn enable on
+cumulus@spine01:~$ cl set vrf default router bgp peer-group underlay address-family l2vpn-evpn enable on
+cumulus@spine01:~$ cl set vrf default router bgp address-family ipv4-unicast route-redistribution connected
+cumulus@spine01:~$ cl config apply
 ```
 
 {{< /tab >}}
 {{< tab "spine02 ">}}
 
 ```
-cumulus@leaf01:~$ cl set interface lo ip address 10.10.10.102/32
-cumulus@leaf01:~$ cl set interface swp1-6
-cumulus@leaf01:~$ cl set router bgp autonomous-system 651000
-cumulus@leaf01:~$ cl set router bgp router-id 10.10.10.102
-cumulus@leaf01:~$ cl set vrf default router bgp peer-group underlay remote-as external
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp1 peer-group underlay
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp2 peer-group underlay
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp3 peer-group underlay
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp4 peer-group underlay
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp5 peer-group underlay
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp6 peer-group underlay
-cumulus@leaf01:~$ cl set vrf default router bgp path-selection multipath aspath-ignore on
-cumulus@leaf01:~$ cl set vrf default router bgp address-family l2vpn-evpn enable on
-cumulus@leaf01:~$ cl set vrf default router bgp peer-group underlay address-family l2vpn-evpn enable on
-cumulus@leaf01:~$ cl set vrf default router bgp address-family ipv4-unicast route-redistribution connected
-cumulus@leaf01:~$ cl config apply
+cumulus@spine02:~$ cl set interface lo ip address 10.10.10.102/32
+cumulus@spine02:~$ cl set interface swp1-6
+cumulus@spine02:~$ cl set router bgp autonomous-system 651000
+cumulus@spine02:~$ cl set router bgp router-id 10.10.10.102
+cumulus@spine02:~$ cl set vrf default router bgp peer-group underlay remote-as external
+cumulus@spine02:~$ cl set vrf default router bgp peer swp1 peer-group underlay
+cumulus@spine02:~$ cl set vrf default router bgp peer swp2 peer-group underlay
+cumulus@spine02:~$ cl set vrf default router bgp peer swp3 peer-group underlay
+cumulus@spine02:~$ cl set vrf default router bgp peer swp4 peer-group underlay
+cumulus@spine02:~$ cl set vrf default router bgp peer swp5 peer-group underlay
+cumulus@spine02:~$ cl set vrf default router bgp peer swp6 peer-group underlay
+cumulus@spine02:~$ cl set vrf default router bgp path-selection multipath aspath-ignore on
+cumulus@spine02:~$ cl set vrf default router bgp address-family l2vpn-evpn enable on
+cumulus@spine02:~$ cl set vrf default router bgp peer-group underlay address-family l2vpn-evpn enable on
+cumulus@spine02:~$ cl set vrf default router bgp address-family ipv4-unicast route-redistribution connected
+cumulus@spine02:~$ cl config apply
 ```
 
 {{< /tab >}}
 {{< tab "spine03 ">}}
 
 ```
-cumulus@leaf01:~$ cl set interface lo ip address 10.10.10.103/32
-cumulus@leaf01:~$ cl set interface swp1-6
-cumulus@leaf01:~$ cl set router bgp autonomous-system 651000
-cumulus@leaf01:~$ cl set router bgp router-id 10.10.10.103
-cumulus@leaf01:~$ cl set vrf default router bgp peer-group underlay remote-as external
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp1 peer-group underlay
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp2 peer-group underlay
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp3 peer-group underlay
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp4 peer-group underlay
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp5 peer-group underlay
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp6 peer-group underlay
-cumulus@leaf01:~$ cl set vrf default router bgp path-selection multipath aspath-ignore on
-cumulus@leaf01:~$ cl set vrf default router bgp address-family l2vpn-evpn enable on
-cumulus@leaf01:~$ cl set vrf default router bgp peer-group underlay address-family l2vpn-evpn enable on
-cumulus@leaf01:~$ cl set vrf default router bgp address-family ipv4-unicast route-redistribution connected
-cumulus@leaf01:~$ cl config apply
+cumulus@spine03:~$ cl set interface lo ip address 10.10.10.103/32
+cumulus@spine03:~$ cl set interface swp1-6
+cumulus@spine03:~$ cl set router bgp autonomous-system 651000
+cumulus@spine03:~$ cl set router bgp router-id 10.10.10.103
+cumulus@spine03:~$ cl set vrf default router bgp peer-group underlay remote-as external
+cumulus@spine03:~$ cl set vrf default router bgp peer swp1 peer-group underlay
+cumulus@spine03:~$ cl set vrf default router bgp peer swp2 peer-group underlay
+cumulus@spine03:~$ cl set vrf default router bgp peer swp3 peer-group underlay
+cumulus@spine03:~$ cl set vrf default router bgp peer swp4 peer-group underlay
+cumulus@spine03:~$ cl set vrf default router bgp peer swp5 peer-group underlay
+cumulus@spine03:~$ cl set vrf default router bgp peer swp6 peer-group underlay
+cumulus@spine03:~$ cl set vrf default router bgp path-selection multipath aspath-ignore on
+cumulus@spine03:~$ cl set vrf default router bgp address-family l2vpn-evpn enable on
+cumulus@spine03:~$ cl set vrf default router bgp peer-group underlay address-family l2vpn-evpn enable on
+cumulus@spine03:~$ cl set vrf default router bgp address-family ipv4-unicast route-redistribution connected
+cumulus@spine03:~$ cl config apply
 ```
 
 {{< /tab >}}
 {{< tab "spine04 ">}}
 
 ```
-cumulus@leaf01:~$ cl set interface lo ip address 10.10.10.104/32
-cumulus@leaf01:~$ cl set interface swp1-6
-cumulus@leaf01:~$ cl set router bgp autonomous-system 651000
-cumulus@leaf01:~$ cl set router bgp router-id 10.10.10.104
-cumulus@leaf01:~$ cl set vrf default router bgp peer-group underlay remote-as external
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp1 peer-group underlay
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp2 peer-group underlay
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp3 peer-group underlay
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp4 peer-group underlay
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp5 peer-group underlay
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp6 peer-group underlay
-cumulus@leaf01:~$ cl set vrf default router bgp path-selection multipath aspath-ignore on
-cumulus@leaf01:~$ cl set vrf default router bgp address-family l2vpn-evpn enable on
-cumulus@leaf01:~$ cl set vrf default router bgp peer-group underlay address-family l2vpn-evpn enable on
-cumulus@leaf01:~$ cl set vrf default router bgp address-family ipv4-unicast route-redistribution connected
-cumulus@leaf01:~$ cl config apply
+cumulus@spine04:~$ cl set interface lo ip address 10.10.10.104/32
+cumulus@spine04:~$ cl set interface swp1-6
+cumulus@spine04:~$ cl set router bgp autonomous-system 651000
+cumulus@spine04:~$ cl set router bgp router-id 10.10.10.104
+cumulus@spine04:~$ cl set vrf default router bgp peer-group underlay remote-as external
+cumulus@spine04:~$ cl set vrf default router bgp peer swp1 peer-group underlay
+cumulus@spine04:~$ cl set vrf default router bgp peer swp2 peer-group underlay
+cumulus@spine04:~$ cl set vrf default router bgp peer swp3 peer-group underlay
+cumulus@spine04:~$ cl set vrf default router bgp peer swp4 peer-group underlay
+cumulus@spine04:~$ cl set vrf default router bgp peer swp5 peer-group underlay
+cumulus@spine04:~$ cl set vrf default router bgp peer swp6 peer-group underlay
+cumulus@spine04:~$ cl set vrf default router bgp path-selection multipath aspath-ignore on
+cumulus@spine04:~$ cl set vrf default router bgp address-family l2vpn-evpn enable on
+cumulus@spine04:~$ cl set vrf default router bgp peer-group underlay address-family l2vpn-evpn enable on
+cumulus@spine04:~$ cl set vrf default router bgp address-family ipv4-unicast route-redistribution connected
+cumulus@spine04:~$ cl config apply
 ```
 
 {{< /tab >}}
 {{< tab "border01 ">}}
 
 ```
-cumulus@leaf01:~$ cl set interface lo ip address 10.10.10.63/32
-cumulus@leaf01:~$ cl set interface swp1-3,swp49-54
-cumulus@leaf01:~$ cl set interface swp3 link mtu 9000
-cumulus@leaf01:~$ cl set interface bond3 bond member swp3
-cumulus@leaf01:~$ cl set interface bond3 bond mlag id 3
-cumulus@leaf01:~$ cl set interface bond3 bond lacp-bypass on
-cumulus@leaf01:~$ cl set interface bond3 link mtu 9000
-cumulus@leaf01:~$ cl set interface bond3 bridge domain br_default
-cumulus@leaf01:~$ cl set interface peerlink bond member swp49-50
-cumulus@leaf01:~$ cl set mlag mac-address 44:38:39:BE:EF:FF
-cumulus@leaf01:~$ cl set mlag backup 10.10.10.64
-cumulus@leaf01:~$ cl set mlag peer-ip linklocal
-cumulus@leaf01:~$ cl set mlag priority 1000
-cumulus@leaf01:~$ cl set mlag init-delay 10
-cumulus@leaf01:~$ cl set interface vlan10
-cumulus@leaf01:~$ cl set interface vlan20
-cumulus@leaf01:~$ cl set bridge domain br_default vlan 10 vni 10
-cumulus@leaf01:~$ cl set bridge domain br_default vlan 20 vni 20
-cumulus@leaf01:~$ cl set nve vxlan mlag shared-address 10.0.1.254
-cumulus@leaf01:~$ cl set nve vxlan source address 10.10.10.63
-cumulus@leaf01:~$ cl set nve vxlan arp-nd-suppress on
-cumulus@leaf01:~$ cl set evpn enable on
-cumulus@leaf01:~$ cl set router bgp autonomous-system 651063
-cumulus@leaf01:~$ cl set router bgp router-id 10.10.10.63
-cumulus@leaf01:~$ cl set vrf default router bgp peer-group underlay remote-as external
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp51 peer-group underlay
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp52 peer-group underlay
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp53 peer-group underlay
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp54 peer-group underlay
-cumulus@leaf01:~$ cl set vrf default router bgp path-selection multipath aspath-ignore on
-cumulus@leaf01:~$ cl set vrf default router bgp peer-group underlay address-family l2vpn-evpn enable on
-cumulus@leaf01:~$ cl set vrf default router bgp peer peerlink.4094 remote-as internal
-cumulus@leaf01:~$ cl set vrf default router bgp address-family ipv4-unicast route-redistribution connected
-cumulus@leaf01:~$ cl config apply
+cumulus@border01:~$ cl set interface lo ip address 10.10.10.63/32
+cumulus@border01:~$ cl set interface swp3,swp49-54
+cumulus@border01:~$ cl set interface swp3 link mtu 9000
+cumulus@border01:~$ cl set interface bond3 bond member swp3
+cumulus@border01:~$ cl set interface bond3 bond mlag id 1
+cumulus@border01:~$ cl set interface bond3 bond lacp-bypass on
+cumulus@border01:~$ cl set interface bond3 link mtu 9000
+cumulus@border01:~$ cl set interface bond3 bridge domain br_default
+cumulus@border01:~$ cl set interface peerlink bond member swp49-50
+cumulus@border01:~$ cl set mlag mac-address 44:38:39:BE:EF:FF
+cumulus@border01:~$ cl set mlag backup 10.10.10.64
+cumulus@border01:~$ cl set mlag peer-ip linklocal
+cumulus@border01:~$ cl set mlag priority 1000
+cumulus@border01:~$ cl set mlag init-delay 10
+cumulus@border01:~$ cl set interface vlan10
+cumulus@border01:~$ cl set interface vlan20
+cumulus@border01:~$ cl set bridge domain br_default vlan 10 vni 10
+cumulus@border01:~$ cl set bridge domain br_default vlan 20 vni 20
+cumulus@border01:~$ cl set interface bond3 bridge domain br_default vlan 10,20
+cumulus@border01:~$ cl set nve vxlan mlag shared-address 10.0.1.255
+cumulus@border01:~$ cl set nve vxlan source address 10.10.10.63
+cumulus@border01:~$ cl set nve vxlan arp-nd-suppress on
+cumulus@border01:~$ cl set evpn enable on
+cumulus@border01:~$ cl set router bgp autonomous-system 651063
+cumulus@border01:~$ cl set router bgp router-id 10.10.10.63
+cumulus@border01:~$ cl set vrf default router bgp peer-group underlay remote-as external
+cumulus@border01:~$ cl set vrf default router bgp peer swp51 peer-group underlay
+cumulus@border01:~$ cl set vrf default router bgp peer swp52 peer-group underlay
+cumulus@border01:~$ cl set vrf default router bgp peer swp53 peer-group underlay
+cumulus@border01:~$ cl set vrf default router bgp peer swp54 peer-group underlay
+cumulus@border01:~$ cl set vrf default router bgp path-selection multipath aspath-ignore on
+cumulus@border01:~$ cl set vrf default router bgp peer-group underlay address-family l2vpn-evpn enable on
+cumulus@border01:~$ cl set vrf default router bgp peer peerlink.4094 remote-as internal
+cumulus@border01:~$ cl set vrf default router bgp address-family ipv4-unicast route-redistribution connected
+cumulus@border01:~$ cl config apply
 ```
 
 {{< /tab >}}
 {{< tab "border02 ">}}
 
 ```
-cumulus@leaf01:~$ cl set interface lo ip address 10.10.10.64/32
-cumulus@leaf01:~$ cl set interface swp1-3,swp49-54
-cumulus@leaf01:~$ cl set interface swp3 link mtu 9000
-cumulus@leaf01:~$ cl set interface bond3 bond member swp3
-cumulus@leaf01:~$ cl set interface bond3 bond mlag id 3
-cumulus@leaf01:~$ cl set interface bond3 bond lacp-bypass on
-cumulus@leaf01:~$ cl set interface bond3 link mtu 9000
-cumulus@leaf01:~$ cl set interface bond3 bridge domain br_default
-cumulus@leaf01:~$ cl set interface peerlink bond member swp49-50
-cumulus@leaf01:~$ cl set mlag mac-address 44:38:39:BE:EF:FF
-cumulus@leaf01:~$ cl set mlag backup 10.10.10.63
-cumulus@leaf01:~$ cl set mlag peer-ip linklocal
-cumulus@leaf01:~$ cl set mlag priority 32768
-cumulus@leaf01:~$ cl set mlag init-delay 10
-cumulus@leaf01:~$ cl set interface vlan10
-cumulus@leaf01:~$ cl set interface vlan20
-cumulus@leaf01:~$ cl set bridge domain br_default vlan 10 vni 10
-cumulus@leaf01:~$ cl set bridge domain br_default vlan 20 vni 20
-cumulus@leaf01:~$ cl set nve vxlan mlag shared-address 10.0.1.254
-cumulus@leaf01:~$ cl set nve vxlan source address 10.10.10.64
-cumulus@leaf01:~$ cl set nve vxlan arp-nd-suppress on
-cumulus@leaf01:~$ cl set evpn enable on
-cumulus@leaf01:~$ cl set router bgp autonomous-system 651064
-cumulus@leaf01:~$ cl set router bgp router-id 10.10.10.64
-cumulus@leaf01:~$ cl set vrf default router bgp peer-group underlay remote-as external
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp51 peer-group underlay
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp52 peer-group underlay
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp53 peer-group underlay
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp54 peer-group underlay
-cumulus@leaf01:~$ cl set vrf default router bgp path-selection multipath aspath-ignore on
-cumulus@leaf01:~$ cl set vrf default router bgp peer-group underlay address-family l2vpn-evpn enable on
-cumulus@leaf01:~$ cl set vrf default router bgp peer peerlink.4094 remote-as internal
-cumulus@leaf01:~$ cl set vrf default router bgp address-family ipv4-unicast route-redistribution connected
-cumulus@leaf01:~$ cl config apply
+cumulus@border02:~$ cl set interface lo ip address 10.10.10.64/32
+cumulus@border02:~$ cl set interface swp3,swp49-54
+cumulus@border02:~$ cl set interface swp3 link mtu 9000
+cumulus@border02:~$ cl set interface bond3 bond member swp3
+cumulus@border02:~$ cl set interface bond3 bond mlag id 1
+cumulus@border02:~$ cl set interface bond3 bond lacp-bypass on
+cumulus@border02:~$ cl set interface bond3 link mtu 9000
+cumulus@border02:~$ cl set interface bond3 bridge domain br_default
+cumulus@border02:~$ cl set interface peerlink bond member swp49-50
+cumulus@border02:~$ cl set mlag mac-address 44:38:39:BE:EF:FF
+cumulus@border02:~$ cl set mlag backup 10.10.10.63
+cumulus@border02:~$ cl set mlag peer-ip linklocal
+cumulus@border02:~$ cl set mlag priority 32768
+cumulus@border02:~$ cl set mlag init-delay 10
+cumulus@border02:~$ cl set interface vlan10
+cumulus@border02:~$ cl set interface vlan20
+cumulus@border02:~$ cl set bridge domain br_default vlan 10 vni 10
+cumulus@border02:~$ cl set bridge domain br_default vlan 20 vni 20
+cumulus@border02:~$ cl set interface bond3 bridge domain br_default vlan 10,20
+cumulus@border02:~$ cl set nve vxlan mlag shared-address 10.0.1.255
+cumulus@border02:~$ cl set nve vxlan source address 10.10.10.64
+cumulus@border02:~$ cl set nve vxlan arp-nd-suppress on
+cumulus@border02:~$ cl set evpn enable on
+cumulus@border02:~$ cl set router bgp autonomous-system 651064
+cumulus@border02:~$ cl set router bgp router-id 10.10.10.64
+cumulus@border02:~$ cl set vrf default router bgp peer-group underlay remote-as external
+cumulus@border02:~$ cl set vrf default router bgp peer swp51 peer-group underlay
+cumulus@border02:~$ cl set vrf default router bgp peer swp52 peer-group underlay
+cumulus@border02:~$ cl set vrf default router bgp peer swp53 peer-group underlay
+cumulus@border02:~$ cl set vrf default router bgp peer swp54 peer-group underlay
+cumulus@border02:~$ cl set vrf default router bgp path-selection multipath aspath-ignore on
+cumulus@border02:~$ cl set vrf default router bgp peer-group underlay address-family l2vpn-evpn enable on
+cumulus@border02:~$ cl set vrf default router bgp peer peerlink.4094 remote-as internal
+cumulus@border02:~$ cl set vrf default router bgp address-family ipv4-unicast route-redistribution connected
+cumulus@border02:~$ cl config apply
 ```
 
 {{< /tab >}}
@@ -402,7 +408,7 @@ cumulus@leaf01:~$ cat /etc/network/interfaces
 auto lo
 iface lo inet loopback
     address 10.10.10.1/32
-    clagd-vxlan-anycast-ip 10.0.1.1
+    clagd-vxlan-anycast-ip 10.0.1.12
     vxlan-local-tunnelip 10.10.10.1
 
 auto mgmt
@@ -413,12 +419,15 @@ iface mgmt
 
 auto eth0
 iface eth0 inet dhcp
+    ip-forward off
+    ip6-forward off
     vrf mgmt
 
-auto bridge
-iface bridge
+auto br_default
+iface br_default
     bridge-ports peerlink bond1 bond2 vni10 vni20
-    bridge-vids 10 20  
+    bridge-vids 10 20
+    bridge-pvid 1  
     bridge-vlan-aware yes
 
 auto vni10
@@ -435,17 +444,13 @@ iface vni20
 
 auto vlan10
 iface vlan10
-    vlan-raw-device bridge
+    vlan-raw-device br_default
     vlan-id 10
-    ip-forward off
-    ip6-forward off
 
 auto vlan20
 iface vlan20
-    vlan-raw-device bridge
+    vlan-raw-device br_default
     vlan-id 20
-    ip-forward off
-    ip6-forward off
 
 auto swp51
 iface swp51
@@ -468,6 +473,8 @@ iface swp50
 auto peerlink
 iface peerlink
     bond-slaves swp49 swp50
+    bond-mode 802.3ad
+    bond-lacp-bypass-allow no
 
 auto peerlink.4094
 iface peerlink.4094
@@ -486,6 +493,7 @@ iface bond1
     clag-id 1
     bridge-access 10
     bond-slaves swp1
+    bond-mode 802.3ad
     bond-lacp-bypass-allow yes
 
 auto swp2
@@ -498,6 +506,7 @@ iface bond2
     clag-id 2
     bridge-access 20
     bond-slaves swp2
+    bond-mode 802.3ad
     bond-lacp-bypass-allow yes
 ```
 
@@ -510,7 +519,7 @@ cumulus@leaf02:~$ cat /etc/network/interfaces
 auto lo
 iface lo inet loopback
     address 10.10.10.2/32
-    clagd-vxlan-anycast-ip 10.0.1.1
+    clagd-vxlan-anycast-ip 10.0.1.12
     vxlan-local-tunnelip 10.10.10.2
 
 auto mgmt
@@ -521,12 +530,15 @@ iface mgmt
 
 auto eth0
 iface eth0 inet dhcp
+    ip-forward off
+    ip6-forward off
     vrf mgmt
 
-auto bridge
-iface bridge
+auto br_default
+iface br_default
     bridge-ports peerlink bond1 bond2 vni10 vni20
-    bridge-vids 10 20  
+    bridge-vids 10 20
+    bridge-pvid 1 
     bridge-vlan-aware yes
 
 auto vni10
@@ -543,17 +555,13 @@ iface vni20
 
 auto vlan10
 iface vlan10
-    vlan-raw-device bridge
+    vlan-raw-device br_default
     vlan-id 10
-    ip-forward off
-    ip6-forward off
 
 auto vlan20
 iface vlan20
-    vlan-raw-device bridge
+    vlan-raw-device br_default
     vlan-id 20
-    ip-forward off
-    ip6-forward off
 
 auto swp51
 iface swp51
@@ -576,6 +584,8 @@ iface swp50
 auto peerlink
 iface peerlink
     bond-slaves swp49 swp50
+    bond-mode 802.3ad
+    bond-lacp-bypass-allow no
 
 auto peerlink.4094
 iface peerlink.4094
@@ -594,6 +604,7 @@ iface bond1
     clag-id 1
     bridge-access 10
     bond-slaves swp1
+    bond-mode 802.3ad
     bond-lacp-bypass-allow yes
 
 auto swp2
@@ -606,6 +617,7 @@ iface bond2
     clag-id 2
     bridge-access 20
     bond-slaves swp2
+    bond-mode 802.3ad
     bond-lacp-bypass-allow yes
 ```
 
@@ -618,7 +630,7 @@ cumulus@leaf03:~$ cat /etc/network/interfaces
 auto lo
 iface lo inet loopback
     address 10.10.10.3/32
-    clagd-vxlan-anycast-ip 10.0.1.2
+    clagd-vxlan-anycast-ip 10.0.1.34
     vxlan-local-tunnelip 10.10.10.3
 
 auto mgmt
@@ -629,12 +641,15 @@ iface mgmt
 
 auto eth0
 iface eth0 inet dhcp
+    ip-forward off
+    ip6-forward off
     vrf mgmt
 
-auto bridge
-iface bridge
+auto br_default
+iface br_default
     bridge-ports peerlink bond1 bond2 vni10 vni20
-    bridge-vids 10 20  
+    bridge-vids 10 20
+    bridge-pvid 1  
     bridge-vlan-aware yes
 
 auto vni10
@@ -651,17 +666,13 @@ iface vni20
 
 auto vlan10
 iface vlan10
-    vlan-raw-device bridge
+    vlan-raw-device br_default
     vlan-id 10
-    ip-forward off
-    ip6-forward off
 
 auto vlan20
 iface vlan20
-    vlan-raw-device bridge
+    vlan-raw-device br_default
     vlan-id 20
-    ip-forward off
-    ip6-forward off
 
 auto swp51
 iface swp51
@@ -684,6 +695,8 @@ iface swp50
 auto peerlink
 iface peerlink
     bond-slaves swp49 swp50
+    bond-mode 802.3ad
+    bond-lacp-bypass-allow no
 
 auto peerlink.4094
 iface peerlink.4094
@@ -702,6 +715,7 @@ iface bond1
     clag-id 1
     bridge-access 10
     bond-slaves swp1
+    bond-mode 802.3ad
     bond-lacp-bypass-allow yes
 
 auto swp2
@@ -714,6 +728,7 @@ iface bond2
     clag-id 2
     bridge-access 20
     bond-slaves swp2
+    bond-mode 802.3ad
     bond-lacp-bypass-allow yes
 ```
 
@@ -726,7 +741,7 @@ cumulus@leaf04:~$ cat /etc/network/interfaces
 auto lo
 iface lo inet loopback
     address 10.10.10.4/32
-    clagd-vxlan-anycast-ip 10.0.1.2
+    clagd-vxlan-anycast-ip 10.0.1.34
     vxlan-local-tunnelip 10.10.10.4
 
 auto mgmt
@@ -737,12 +752,15 @@ iface mgmt
 
 auto eth0
 iface eth0 inet dhcp
+    ip-forward off
+    ip6-forward off
     vrf mgmt
 
-auto bridge
-iface bridge
+auto peerlink
+iface peerlink
     bridge-ports peerlink bond1 bond2 vni10 vni20
-    bridge-vids 10 20  
+    bridge-vids 10 20
+    bridge-pvid 1  
     bridge-vlan-aware yes
 
 auto vni10
@@ -759,17 +777,13 @@ iface vni20
 
 auto vlan10
 iface vlan10
-    vlan-raw-device bridge
+    vlan-raw-device br_default
     vlan-id 10
-    ip-forward off
-    ip6-forward off
 
 auto vlan20
 iface vlan20
-    vlan-raw-device bridge
+    vlan-raw-device br_default
     vlan-id 20
-    ip-forward off
-    ip6-forward off
 
 auto swp51
 iface swp51
@@ -792,6 +806,8 @@ iface swp50
 auto peerlink
 iface peerlink
     bond-slaves swp49 swp50
+    bond-mode 802.3ad
+    bond-lacp-bypass-allow no
 
 auto peerlink.4094
 iface peerlink.4094
@@ -810,6 +826,7 @@ iface bond1
     clag-id 1
     bridge-access 10
     bond-slaves swp1
+    bond-mode 802.3ad
     bond-lacp-bypass-allow yes
 
 auto swp2
@@ -822,6 +839,7 @@ iface bond2
     clag-id 2
     bridge-access 20
     bond-slaves swp2
+    bond-mode 802.3ad
     bond-lacp-bypass-allow yes
 ```
 
@@ -843,6 +861,8 @@ iface mgmt
 
 auto eth0
 iface eth0 inet dhcp
+    ip-forward off
+    ip6-forward off
     vrf mgmt
 
 auto swp1
@@ -882,6 +902,8 @@ iface mgmt
 
 auto eth0
 iface eth0 inet dhcp
+    ip-forward off
+    ip6-forward off
     vrf mgmt
 
 auto swp1
@@ -921,6 +943,8 @@ iface mgmt
 
 auto eth0
 iface eth0 inet dhcp
+    ip-forward off
+    ip6-forward off
     vrf mgmt
 
 auto swp1
@@ -960,6 +984,8 @@ iface mgmt
 
 auto eth0
 iface eth0 inet dhcp
+    ip-forward off
+    ip6-forward off
     vrf mgmt
 
 auto swp1
@@ -990,7 +1016,7 @@ cumulus@border01:~$ cat /etc/network/interfaces
 auto lo
 iface lo inet loopback
     address 10.10.10.63/32
-    clagd-vxlan-anycast-ip 10.0.1.254
+    clagd-vxlan-anycast-ip 10.0.1.255
     vxlan-local-tunnelip 10.10.10.63
 
 auto mgmt
@@ -1001,13 +1027,13 @@ iface mgmt
 
 auto eth0
 iface eth0 inet dhcp
+    ip-forward off
+    ip6-forward off
     vrf mgmt
 
-auto bridge
-iface bridge
-    bridge-ports peerlink
-    bridge-ports bond3
-    bridge-ports vni10 vni20
+auto br_default
+iface br_default
+    bridge-ports peerlink, bond3 vni10 vni20
     bridge-vids 10 20  
     bridge-vlan-aware yes
 
@@ -1025,17 +1051,13 @@ iface vni20
 
 auto vlan10
 iface vlan10
-    vlan-raw-device bridge
+    vlan-raw-device br_default
     vlan-id 10
-    ip-forward off
-    ip6-forward off
 
 auto vlan20
 iface vlan20
-    vlan-raw-device bridge
+    vlan-raw-device br_default
     vlan-id 20
-    ip-forward off
-    ip6-forward off
 
 auto swp51
 iface swp51
@@ -1058,6 +1080,8 @@ iface swp50
 auto peerlink
 iface peerlink
     bond-slaves swp49 swp50
+    bond-mode 802.3ad
+    bond-lacp-bypass-allow no
 
 auto peerlink.4094
 iface peerlink.4094
@@ -1065,6 +1089,7 @@ iface peerlink.4094
     clagd-peer-ip linklocal
     clagd-priority 1000
     clagd-sys-mac 44:38:39:BE:EF:FF
+    clagd-args --initDelay 10
 
 auto swp3
 iface swp3
@@ -1076,6 +1101,7 @@ iface bond3
     clag-id 1
     bridge-vids 10 20
     bond-slaves swp3
+    bond-mode 802.3ad
     bond-lacp-bypass-allow yes
 ```
 
@@ -1088,7 +1114,7 @@ cumulus@border02:~$ cat /etc/network/interfaces
 auto lo
 iface lo inet loopback
     address 10.10.10.64/32
-    clagd-vxlan-anycast-ip 10.0.1.254
+    clagd-vxlan-anycast-ip 10.0.1.255
     vxlan-local-tunnelip 10.10.10.64
 
 auto mgmt
@@ -1099,13 +1125,13 @@ iface mgmt
 
 auto eth0
 iface eth0 inet dhcp
+    ip-forward off
+    ip6-forward off
     vrf mgmt
 
-auto bridge
-iface bridge
-    bridge-ports peerlink
-    bridge-ports bond3
-    bridge-ports vni10 vni20
+auto br_default
+iface br_default
+    bridge-ports peerlink bond3 vni10 vni20
     bridge-vids 10 20  
     bridge-vlan-aware yes
 
@@ -1125,15 +1151,11 @@ auto vlan10
 iface vlan10
     vlan-raw-device bridge
     vlan-id 10
-    ip-forward off
-    ip6-forward off
 
 auto vlan20
 iface vlan20
     vlan-raw-device bridge
     vlan-id 20
-    ip-forward off
-    ip6-forward off
 
 auto swp51
 iface swp51
@@ -1149,7 +1171,6 @@ iface swp54
 
 auto swp49
 iface swp49
-    alias peerlink
 
 auto swp50
 iface swp50
@@ -1157,6 +1178,8 @@ iface swp50
 auto peerlink
 iface peerlink
     bond-slaves swp49 swp50
+    bond-mode 802.3ad
+    bond-lacp-bypass-allow no
 
 auto peerlink.4094
 iface peerlink.4094
@@ -1164,6 +1187,7 @@ iface peerlink.4094
     clagd-peer-ip linklocal
     clagd-priority 1000
     clagd-sys-mac 44:38:39:BE:EF:FF
+    clagd-args --initDelay 10
 
 auto swp3
 iface swp3
@@ -1534,327 +1558,327 @@ cumulus@leaf01:~$ cl config apply
 {{< tab "leaf02 ">}}
 
 ```
-cumulus@leaf01:~$ cl set interface lo ip address 10.10.10.2/32
-cumulus@leaf01:~$ cl set interface swp1-2,swp49-54
-cumulus@leaf01:~$ cl set interface swp1 link mtu 9000
-cumulus@leaf01:~$ cl set interface swp2 link mtu 9000
-cumulus@leaf01:~$ cl set interface bond1 bond member swp1
-cumulus@leaf01:~$ cl set interface bond2 bond member swp2
-cumulus@leaf01:~$ cl set interface bond1 bond mlag id 1
-cumulus@leaf01:~$ cl set interface bond2 bond mlag id 2
-cumulus@leaf01:~$ cl set interface bond1 bond lacp-bypass on
-cumulus@leaf01:~$ cl set interface bond2 bond lacp-bypass on
-cumulus@leaf01:~$ cl set interface bond1 link mtu 9000
-cumulus@leaf01:~$ cl set interface bond2 link mtu 9000
-cumulus@leaf01:~$ cl set interface bond1-2 bridge domain br_default
-cumulus@leaf01:~$ cl set interface bond1 bridge domain br_default access 10
-cumulus@leaf01:~$ cl set interface bond2 bridge domain br_default access 20
-cumulus@leaf01:~$ cl set interface peerlink bond member swp49-50
-cumulus@leaf01:~$ cl set mlag mac-address 44:38:39:BE:EF:AA
-cumulus@leaf01:~$ cl set mlag backup 10.10.10.1
-cumulus@leaf01:~$ cl set mlag peer-ip linklocal
-cumulus@leaf01:~$ cl set mlag priority 32768
-cumulus@leaf01:~$ cl set mlag init-delay 10
-cumulus@leaf01:~$ cl set interface vlan10
-cumulus@leaf01:~$ cl set interface vlan20
-cumulus@leaf01:~$ cl set bridge domain br_default vlan 10 vni 10
-cumulus@leaf01:~$ cl set bridge domain br_default vlan 20 vni 20
-cumulus@leaf01:~$ cl set nve vxlan mlag shared-address 10.0.1.12
-cumulus@leaf01:~$ cl set nve vxlan source address 10.10.10.2
-cumulus@leaf01:~$ cl set nve vxlan arp-nd-suppress on 
-cumulus@leaf01:~$ cl set evpn enable on
-cumulus@leaf01:~$ cl set router bgp autonomous-system 65102
-cumulus@leaf01:~$ cl set router bgp router-id 10.10.10.2
-cumulus@leaf01:~$ cl set vrf default router bgp peer-group underlay remote-as external
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp51 peer-group underlay
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp52 peer-group underlay
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp53 peer-group underlay
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp54 peer-group underlay
-cumulus@leaf01:~$ cl set vrf default router bgp path-selection multipath aspath-ignore on
-cumulus@leaf01:~$ cl set vrf default router bgp peer-group underlay address-family l2vpn-evpn enable on
-cumulus@leaf01:~$ cl set vrf default router bgp peer peerlink.4094 remote-as internal
-cumulus@leaf01:~$ cl set vrf default router bgp address-family ipv4-unicast route-redistribution connected
-cumulus@leaf01:~$ cl config apply
+cumulus@leaf02:~$ cl set interface lo ip address 10.10.10.2/32
+cumulus@leaf02:~$ cl set interface swp1-2,swp49-54
+cumulus@leaf02:~$ cl set interface swp1 link mtu 9000
+cumulus@leaf02:~$ cl set interface swp2 link mtu 9000
+cumulus@leaf02:~$ cl set interface bond1 bond member swp1
+cumulus@leaf02:~$ cl set interface bond2 bond member swp2
+cumulus@leaf02:~$ cl set interface bond1 bond mlag id 1
+cumulus@leaf02:~$ cl set interface bond2 bond mlag id 2
+cumulus@leaf02:~$ cl set interface bond1 bond lacp-bypass on
+cumulus@leaf02:~$ cl set interface bond2 bond lacp-bypass on
+cumulus@leaf02:~$ cl set interface bond1 link mtu 9000
+cumulus@leaf02:~$ cl set interface bond2 link mtu 9000
+cumulus@leaf02:~$ cl set interface bond1-2 bridge domain br_default
+cumulus@leaf02:~$ cl set interface bond1 bridge domain br_default access 10
+cumulus@leaf02:~$ cl set interface bond2 bridge domain br_default access 20
+cumulus@leaf02:~$ cl set interface peerlink bond member swp49-50
+cumulus@leaf02:~$ cl set mlag mac-address 44:38:39:BE:EF:AA
+cumulus@leaf02:~$ cl set mlag backup 10.10.10.1
+cumulus@leaf02:~$ cl set mlag peer-ip linklocal
+cumulus@leaf02:~$ cl set mlag priority 32768
+cumulus@leaf02:~$ cl set mlag init-delay 10
+cumulus@leaf02:~$ cl set interface vlan10
+cumulus@leaf02:~$ cl set interface vlan20
+cumulus@leaf02:~$ cl set bridge domain br_default vlan 10 vni 10
+cumulus@leaf02:~$ cl set bridge domain br_default vlan 20 vni 20
+cumulus@leaf02:~$ cl set nve vxlan mlag shared-address 10.0.1.12
+cumulus@leaf02:~$ cl set nve vxlan source address 10.10.10.2
+cumulus@leaf02:~$ cl set nve vxlan arp-nd-suppress on 
+cumulus@leaf02:~$ cl set evpn enable on
+cumulus@leaf02:~$ cl set router bgp autonomous-system 65102
+cumulus@leaf02:~$ cl set router bgp router-id 10.10.10.2
+cumulus@leaf02:~$ cl set vrf default router bgp peer-group underlay remote-as external
+cumulus@leaf02:~$ cl set vrf default router bgp peer swp51 peer-group underlay
+cumulus@leaf02:~$ cl set vrf default router bgp peer swp52 peer-group underlay
+cumulus@leaf02:~$ cl set vrf default router bgp peer swp53 peer-group underlay
+cumulus@leaf02:~$ cl set vrf default router bgp peer swp54 peer-group underlay
+cumulus@leaf02:~$ cl set vrf default router bgp path-selection multipath aspath-ignore on
+cumulus@leaf02:~$ cl set vrf default router bgp peer-group underlay address-family l2vpn-evpn enable on
+cumulus@leaf02:~$ cl set vrf default router bgp peer peerlink.4094 remote-as internal
+cumulus@leaf02:~$ cl set vrf default router bgp address-family ipv4-unicast route-redistribution connected
+cumulus@leaf02:~$ cl config apply
 ```
 
 {{< /tab >}}
 {{< tab "leaf03 ">}}
 
 ```
-cumulus@leaf01:~$ cl set interface lo ip address 10.10.10.3/32
-cumulus@leaf01:~$ cl set interface swp1-2,swp49-54
-cumulus@leaf01:~$ cl set interface swp1 link mtu 9000
-cumulus@leaf01:~$ cl set interface swp2 link mtu 9000
-cumulus@leaf01:~$ cl set interface bond1 bond member swp1
-cumulus@leaf01:~$ cl set interface bond2 bond member swp2
-cumulus@leaf01:~$ cl set interface bond1 bond mlag id 1
-cumulus@leaf01:~$ cl set interface bond2 bond mlag id 2
-cumulus@leaf01:~$ cl set interface bond1 bond lacp-bypass on
-cumulus@leaf01:~$ cl set interface bond2 bond lacp-bypass on
-cumulus@leaf01:~$ cl set interface bond1 link mtu 9000
-cumulus@leaf01:~$ cl set interface bond2 link mtu 9000
-cumulus@leaf01:~$ cl set interface bond1-2 bridge domain br_default
-cumulus@leaf01:~$ cl set interface bond1 bridge domain br_default access 10
-cumulus@leaf01:~$ cl set interface bond2 bridge domain br_default access 20
-cumulus@leaf01:~$ cl set bridge domain br_default vlan 10,20
-cumulus@leaf01:~$ cl set interface peerlink bond member swp49-50
-cumulus@leaf01:~$ cl set mlag mac-address 44:38:39:BE:EF:BB
-cumulus@leaf01:~$ cl set mlag backup 10.10.10.3
-cumulus@leaf01:~$ cl set mlag peer-ip linklocal
-cumulus@leaf01:~$ cl set mlag priority 1000
-cumulus@leaf01:~$ cl set mlag init-delay 10
-cumulus@leaf01:~$ cl set interface vlan10
-cumulus@leaf01:~$ cl set interface vlan20
-cumulus@leaf01:~$ cl set bridge domain br_default vlan 10 vni 10
-cumulus@leaf01:~$ cl set bridge domain br_default vlan 20 vni 20
-cumulus@leaf01:~$ cl set nve vxlan mlag shared-address 10.0.1.34
-cumulus@leaf01:~$ cl set nve vxlan source address 10.10.10.3
-cumulus@leaf01:~$ cl set nve vxlan arp-nd-suppress on 
-cumulus@leaf01:~$ cl set evpn enable on
-cumulus@leaf01:~$ cl set router bgp autonomous-system 65103
-cumulus@leaf01:~$ cl set router bgp router-id 10.10.10.3
-cumulus@leaf01:~$ cl set vrf default router bgp peer-group underlay remote-as external
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp51 peer-group underlay
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp52 peer-group underlay
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp53 peer-group underlay
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp54 peer-group underlay
-cumulus@leaf01:~$ cl set vrf default router bgp path-selection multipath aspath-ignore on
-cumulus@leaf01:~$ cl set vrf default router bgp peer-group underlay address-family l2vpn-evpn enable on
-cumulus@leaf01:~$ cl set vrf default router bgp peer peerlink.4094 remote-as internal
-cumulus@leaf01:~$ cl set vrf default router bgp address-family ipv4-unicast route-redistribution connected
-cumulus@leaf01:~$ cl config apply
+cumulus@leaf03:~$ cl set interface lo ip address 10.10.10.3/32
+cumulus@leaf03:~$ cl set interface swp1-2,swp49-54
+cumulus@leaf03:~$ cl set interface swp1 link mtu 9000
+cumulus@leaf03:~$ cl set interface swp2 link mtu 9000
+cumulus@leaf03:~$ cl set interface bond1 bond member swp1
+cumulus@leaf03:~$ cl set interface bond2 bond member swp2
+cumulus@leaf03:~$ cl set interface bond1 bond mlag id 1
+cumulus@leaf03:~$ cl set interface bond2 bond mlag id 2
+cumulus@leaf03:~$ cl set interface bond1 bond lacp-bypass on
+cumulus@leaf03:~$ cl set interface bond2 bond lacp-bypass on
+cumulus@leaf03:~$ cl set interface bond1 link mtu 9000
+cumulus@leaf03:~$ cl set interface bond2 link mtu 9000
+cumulus@leaf03:~$ cl set interface bond1-2 bridge domain br_default
+cumulus@leaf03:~$ cl set interface bond1 bridge domain br_default access 10
+cumulus@leaf03:~$ cl set interface bond2 bridge domain br_default access 20
+cumulus@leaf03:~$ cl set bridge domain br_default vlan 10,20
+cumulus@leaf03:~$ cl set interface peerlink bond member swp49-50
+cumulus@leaf03:~$ cl set mlag mac-address 44:38:39:BE:EF:BB
+cumulus@leaf03:~$ cl set mlag backup 10.10.10.3
+cumulus@leaf03:~$ cl set mlag peer-ip linklocal
+cumulus@leaf03:~$ cl set mlag priority 1000
+cumulus@leaf03:~$ cl set mlag init-delay 10
+cumulus@leaf03:~$ cl set interface vlan10
+cumulus@leaf03:~$ cl set interface vlan20
+cumulus@leaf03:~$ cl set bridge domain br_default vlan 10 vni 10
+cumulus@leaf03:~$ cl set bridge domain br_default vlan 20 vni 20
+cumulus@leaf03:~$ cl set nve vxlan mlag shared-address 10.0.1.34
+cumulus@leaf03:~$ cl set nve vxlan source address 10.10.10.3
+cumulus@leaf03:~$ cl set nve vxlan arp-nd-suppress on 
+cumulus@leaf03:~$ cl set evpn enable on
+cumulus@leaf03:~$ cl set router bgp autonomous-system 65103
+cumulus@leaf03:~$ cl set router bgp router-id 10.10.10.3
+cumulus@leaf03:~$ cl set vrf default router bgp peer-group underlay remote-as external
+cumulus@leaf03:~$ cl set vrf default router bgp peer swp51 peer-group underlay
+cumulus@leaf03:~$ cl set vrf default router bgp peer swp52 peer-group underlay
+cumulus@leaf03:~$ cl set vrf default router bgp peer swp53 peer-group underlay
+cumulus@leaf03:~$ cl set vrf default router bgp peer swp54 peer-group underlay
+cumulus@leaf03:~$ cl set vrf default router bgp path-selection multipath aspath-ignore on
+cumulus@leaf03:~$ cl set vrf default router bgp peer-group underlay address-family l2vpn-evpn enable on
+cumulus@leaf03:~$ cl set vrf default router bgp peer peerlink.4094 remote-as internal
+cumulus@leaf03:~$ cl set vrf default router bgp address-family ipv4-unicast route-redistribution connected
+cumulus@leaf03:~$ cl config apply
 ```
 
 {{< /tab >}}
 {{< tab "leaf04 ">}}
 
 ```
-cumulus@leaf01:~$ cl set interface lo ip address 10.10.10.4/32
-cumulus@leaf01:~$ cl set interface swp1-2,swp49-54
-cumulus@leaf01:~$ cl set interface swp1 link mtu 9000
-cumulus@leaf01:~$ cl set interface swp2 link mtu 9000
-cumulus@leaf01:~$ cl set interface bond1 bond member swp1
-cumulus@leaf01:~$ cl set interface bond2 bond member swp2
-cumulus@leaf01:~$ cl set interface bond1 bond mlag id 1
-cumulus@leaf01:~$ cl set interface bond2 bond mlag id 2
-cumulus@leaf01:~$ cl set interface bond1 bond lacp-bypass on
-cumulus@leaf01:~$ cl set interface bond2 bond lacp-bypass on
-cumulus@leaf01:~$ cl set interface bond1 link mtu 9000
-cumulus@leaf01:~$ cl set interface bond2 link mtu 9000
-cumulus@leaf01:~$ cl set interface bond1-2 bridge domain br_default
-cumulus@leaf01:~$ cl set interface bond1 bridge domain br_default access 10
-cumulus@leaf01:~$ cl set interface bond2 bridge domain br_default access 20
-cumulus@leaf01:~$ cl set bridge domain br_default vlan 10,20
-cumulus@leaf01:~$ cl set interface peerlink bond member swp49-50
-cumulus@leaf01:~$ cl set mlag mac-address 44:38:39:BE:EF:BB
-cumulus@leaf01:~$ cl set mlag backup 10.10.10.3
-cumulus@leaf01:~$ cl set mlag peer-ip linklocal
-cumulus@leaf01:~$ cl set mlag priority 32768
-cumulus@leaf01:~$ cl set mlag init-delay 10
-cumulus@leaf01:~$ cl set interface vlan10
-cumulus@leaf01:~$ cl set interface vlan20
-cumulus@leaf01:~$ cl set bridge domain br_default vlan 10 vni 10
-cumulus@leaf01:~$ cl set bridge domain br_default vlan 20 vni 20
-cumulus@leaf01:~$ cl set nve vxlan mlag shared-address 10.0.1.34
-cumulus@leaf01:~$ cl set nve vxlan source address 10.10.10.4
-cumulus@leaf01:~$ cl set nve vxlan arp-nd-suppress on 
-cumulus@leaf01:~$ cl set evpn enable on
-cumulus@leaf01:~$ cl set router bgp autonomous-system 65104
-cumulus@leaf01:~$ cl set router bgp router-id 10.10.10.4
-cumulus@leaf01:~$ cl set vrf default router bgp peer-group underlay remote-as external
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp51 peer-group underlay
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp52 peer-group underlay
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp53 peer-group underlay
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp54 peer-group underlay
-cumulus@leaf01:~$ cl set vrf default router bgp path-selection multipath aspath-ignore on
-cumulus@leaf01:~$ cl set vrf default router bgp peer-group underlay address-family l2vpn-evpn enable on
-cumulus@leaf01:~$ cl set vrf default router bgp peer peerlink.4094 remote-as internal
-cumulus@leaf01:~$ cl set vrf default router bgp address-family ipv4-unicast route-redistribution connected
-cumulus@leaf01:~$ cl config apply
+cumulus@leaf04:~$ cl set interface lo ip address 10.10.10.4/32
+cumulus@leaf04:~$ cl set interface swp1-2,swp49-54
+cumulus@leaf04:~$ cl set interface swp1 link mtu 9000
+cumulus@leaf04:~$ cl set interface swp2 link mtu 9000
+cumulus@leaf04:~$ cl set interface bond1 bond member swp1
+cumulus@leaf04:~$ cl set interface bond2 bond member swp2
+cumulus@leaf04:~$ cl set interface bond1 bond mlag id 1
+cumulus@leaf04:~$ cl set interface bond2 bond mlag id 2
+cumulus@leaf04:~$ cl set interface bond1 bond lacp-bypass on
+cumulus@leaf04:~$ cl set interface bond2 bond lacp-bypass on
+cumulus@leaf04:~$ cl set interface bond1 link mtu 9000
+cumulus@leaf04:~$ cl set interface bond2 link mtu 9000
+cumulus@leaf04:~$ cl set interface bond1-2 bridge domain br_default
+cumulus@leaf04:~$ cl set interface bond1 bridge domain br_default access 10
+cumulus@leaf04:~$ cl set interface bond2 bridge domain br_default access 20
+cumulus@leaf04:~$ cl set bridge domain br_default vlan 10,20
+cumulus@leaf04:~$ cl set interface peerlink bond member swp49-50
+cumulus@leaf04:~$ cl set mlag mac-address 44:38:39:BE:EF:BB
+cumulus@leaf04:~$ cl set mlag backup 10.10.10.3
+cumulus@leaf04:~$ cl set mlag peer-ip linklocal
+cumulus@leaf04:~$ cl set mlag priority 32768
+cumulus@leaf04:~$ cl set mlag init-delay 10
+cumulus@leaf04:~$ cl set interface vlan10
+cumulus@leaf04:~$ cl set interface vlan20
+cumulus@leaf04:~$ cl set bridge domain br_default vlan 10 vni 10
+cumulus@leaf04:~$ cl set bridge domain br_default vlan 20 vni 20
+cumulus@leaf04:~$ cl set nve vxlan mlag shared-address 10.0.1.34
+cumulus@leaf04:~$ cl set nve vxlan source address 10.10.10.4
+cumulus@leaf04:~$ cl set nve vxlan arp-nd-suppress on 
+cumulus@leaf04:~$ cl set evpn enable on
+cumulus@leaf04:~$ cl set router bgp autonomous-system 65104
+cumulus@leaf04:~$ cl set router bgp router-id 10.10.10.4
+cumulus@leaf04:~$ cl set vrf default router bgp peer-group underlay remote-as external
+cumulus@leaf04:~$ cl set vrf default router bgp peer swp51 peer-group underlay
+cumulus@leaf04:~$ cl set vrf default router bgp peer swp52 peer-group underlay
+cumulus@leaf04:~$ cl set vrf default router bgp peer swp53 peer-group underlay
+cumulus@leaf04:~$ cl set vrf default router bgp peer swp54 peer-group underlay
+cumulus@leaf04:~$ cl set vrf default router bgp path-selection multipath aspath-ignore on
+cumulus@leaf04:~$ cl set vrf default router bgp peer-group underlay address-family l2vpn-evpn enable on
+cumulus@leaf04:~$ cl set vrf default router bgp peer peerlink.4094 remote-as internal
+cumulus@leaf04:~$ cl set vrf default router bgp address-family ipv4-unicast route-redistribution connected
+cumulus@leaf04:~$ cl config apply
 ```
 
 {{< /tab >}}
 {{< tab "spine01 ">}}
 
 ```
-cumulus@leaf01:~$ cl set interface lo ip address 10.10.10.101/32
-cumulus@leaf01:~$ cl set interface swp1-6
-cumulus@leaf01:~$ cl set router bgp autonomous-system 651000
-cumulus@leaf01:~$ cl set router bgp router-id 10.10.10.101
-cumulus@leaf01:~$ cl set vrf default router bgp peer-group underlay remote-as external
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp1 peer-group underlay
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp2 peer-group underlay
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp3 peer-group underlay
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp4 peer-group underlay
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp5 peer-group underlay
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp6 peer-group underlay
-cumulus@leaf01:~$ cl set vrf default router bgp path-selection multipath aspath-ignore on
-cumulus@leaf01:~$ cl set vrf default router bgp address-family l2vpn-evpn enable on
-cumulus@leaf01:~$ cl set vrf default router bgp peer-group underlay address-family l2vpn-evpn enable on
-cumulus@leaf01:~$ cl set vrf default router bgp address-family ipv4-unicast route-redistribution connected
-cumulus@leaf01:~$ cl config apply
+cumulus@spine01:~$ cl set interface lo ip address 10.10.10.101/32
+cumulus@spine01:~$ cl set interface swp1-6
+cumulus@spine01:~$ cl set router bgp autonomous-system 651000
+cumulus@spine01:~$ cl set router bgp router-id 10.10.10.101
+cumulus@spine01:~$ cl set vrf default router bgp peer-group underlay remote-as external
+cumulus@spine01:~$ cl set vrf default router bgp peer swp1 peer-group underlay
+cumulus@spine01:~$ cl set vrf default router bgp peer swp2 peer-group underlay
+cumulus@spine01:~$ cl set vrf default router bgp peer swp3 peer-group underlay
+cumulus@spine01:~$ cl set vrf default router bgp peer swp4 peer-group underlay
+cumulus@spine01:~$ cl set vrf default router bgp peer swp5 peer-group underlay
+cumulus@spine01:~$ cl set vrf default router bgp peer swp6 peer-group underlay
+cumulus@spine01:~$ cl set vrf default router bgp path-selection multipath aspath-ignore on
+cumulus@spine01:~$ cl set vrf default router bgp address-family l2vpn-evpn enable on
+cumulus@spine01:~$ cl set vrf default router bgp peer-group underlay address-family l2vpn-evpn enable on
+cumulus@spine01:~$ cl set vrf default router bgp address-family ipv4-unicast route-redistribution connected
+cumulus@spine01:~$ cl config apply
 ```
 
 {{< /tab >}}
 {{< tab "spine02 ">}}
 
 ```
-cumulus@leaf01:~$ cl set interface lo ip address 10.10.10.102/32
-cumulus@leaf01:~$ cl set interface swp1-6
-cumulus@leaf01:~$ cl set router bgp autonomous-system 651000
-cumulus@leaf01:~$ cl set router bgp router-id 10.10.10.102
-cumulus@leaf01:~$ cl set vrf default router bgp peer-group underlay remote-as external
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp1 peer-group underlay
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp2 peer-group underlay
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp3 peer-group underlay
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp4 peer-group underlay
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp5 peer-group underlay
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp6 peer-group underlay
-cumulus@leaf01:~$ cl set vrf default router bgp path-selection multipath aspath-ignore on
-cumulus@leaf01:~$ cl set vrf default router bgp address-family l2vpn-evpn enable on
-cumulus@leaf01:~$ cl set vrf default router bgp peer-group underlay address-family l2vpn-evpn enable on
-cumulus@leaf01:~$ cl set vrf default router bgp address-family ipv4-unicast route-redistribution connected
-cumulus@leaf01:~$ cl config apply
+cumulus@spine02:~$ cl set interface lo ip address 10.10.10.102/32
+cumulus@spine02:~$ cl set interface swp1-6
+cumulus@spine02:~$ cl set router bgp autonomous-system 651000
+cumulus@spine02:~$ cl set router bgp router-id 10.10.10.102
+cumulus@spine02:~$ cl set vrf default router bgp peer-group underlay remote-as external
+cumulus@spine02:~$ cl set vrf default router bgp peer swp1 peer-group underlay
+cumulus@spine02:~$ cl set vrf default router bgp peer swp2 peer-group underlay
+cumulus@spine02:~$ cl set vrf default router bgp peer swp3 peer-group underlay
+cumulus@spine02:~$ cl set vrf default router bgp peer swp4 peer-group underlay
+cumulus@spine02:~$ cl set vrf default router bgp peer swp5 peer-group underlay
+cumulus@spine02:~$ cl set vrf default router bgp peer swp6 peer-group underlay
+cumulus@spine02:~$ cl set vrf default router bgp path-selection multipath aspath-ignore on
+cumulus@spine02:~$ cl set vrf default router bgp address-family l2vpn-evpn enable on
+cumulus@spine02:~$ cl set vrf default router bgp peer-group underlay address-family l2vpn-evpn enable on
+cumulus@spine02:~$ cl set vrf default router bgp address-family ipv4-unicast route-redistribution connected
+cumulus@spine02:~$ cl config apply
 ```
 
 {{< /tab >}}
 {{< tab "spine03 ">}}
 
 ```
-cumulus@leaf01:~$ cl set interface lo ip address 10.10.10.103/32
-cumulus@leaf01:~$ cl set interface swp1-6
-cumulus@leaf01:~$ cl set router bgp autonomous-system 651000
-cumulus@leaf01:~$ cl set router bgp router-id 10.10.10.103
-cumulus@leaf01:~$ cl set vrf default router bgp peer-group underlay remote-as external
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp1 peer-group underlay
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp2 peer-group underlay
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp3 peer-group underlay
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp4 peer-group underlay
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp5 peer-group underlay
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp6 peer-group underlay
-cumulus@leaf01:~$ cl set vrf default router bgp path-selection multipath aspath-ignore on
-cumulus@leaf01:~$ cl set vrf default router bgp address-family l2vpn-evpn enable on
-cumulus@leaf01:~$ cl set vrf default router bgp peer-group underlay address-family l2vpn-evpn enable on
-cumulus@leaf01:~$ cl set vrf default router bgp address-family ipv4-unicast route-redistribution connected
-cumulus@leaf01:~$ cl config apply
+cumulus@spine03:~$ cl set interface lo ip address 10.10.10.103/32
+cumulus@spine03:~$ cl set interface swp1-6
+cumulus@spine03:~$ cl set router bgp autonomous-system 651000
+cumulus@spine03:~$ cl set router bgp router-id 10.10.10.103
+cumulus@spine03:~$ cl set vrf default router bgp peer-group underlay remote-as external
+cumulus@spine03:~$ cl set vrf default router bgp peer swp1 peer-group underlay
+cumulus@spine03:~$ cl set vrf default router bgp peer swp2 peer-group underlay
+cumulus@spine03:~$ cl set vrf default router bgp peer swp3 peer-group underlay
+cumulus@spine03:~$ cl set vrf default router bgp peer swp4 peer-group underlay
+cumulus@spine03:~$ cl set vrf default router bgp peer swp5 peer-group underlay
+cumulus@spine03:~$ cl set vrf default router bgp peer swp6 peer-group underlay
+cumulus@spine03:~$ cl set vrf default router bgp path-selection multipath aspath-ignore on
+cumulus@spine03:~$ cl set vrf default router bgp address-family l2vpn-evpn enable on
+cumulus@spine03:~$ cl set vrf default router bgp peer-group underlay address-family l2vpn-evpn enable on
+cumulus@spine03:~$ cl set vrf default router bgp address-family ipv4-unicast route-redistribution connected
+cumulus@spine03:~$ cl config apply
 ```
 
 {{< /tab >}}
 {{< tab "spine04 ">}}
 
 ```
-cumulus@leaf01:~$ cl set interface lo ip address 10.10.10.104/32
-cumulus@leaf01:~$ cl set interface swp1-6
-cumulus@leaf01:~$ cl set router bgp autonomous-system 651000
-cumulus@leaf01:~$ cl set router bgp router-id 10.10.10.104
-cumulus@leaf01:~$ cl set vrf default router bgp peer-group underlay remote-as external
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp1 peer-group underlay
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp2 peer-group underlay
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp3 peer-group underlay
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp4 peer-group underlay
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp5 peer-group underlay
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp6 peer-group underlay
-cumulus@leaf01:~$ cl set vrf default router bgp path-selection multipath aspath-ignore on
-cumulus@leaf01:~$ cl set vrf default router bgp address-family l2vpn-evpn enable on
-cumulus@leaf01:~$ cl set vrf default router bgp peer-group underlay address-family l2vpn-evpn enable on
-cumulus@leaf01:~$ cl set vrf default router bgp address-family ipv4-unicast route-redistribution connected
-cumulus@leaf01:~$ cl config apply
+cumulus@spine04:~$ cl set interface lo ip address 10.10.10.104/32
+cumulus@spine04:~$ cl set interface swp1-6
+cumulus@spine04:~$ cl set router bgp autonomous-system 651000
+cumulus@spine04:~$ cl set router bgp router-id 10.10.10.104
+cumulus@spine04:~$ cl set vrf default router bgp peer-group underlay remote-as external
+cumulus@spine04:~$ cl set vrf default router bgp peer swp1 peer-group underlay
+cumulus@spine04:~$ cl set vrf default router bgp peer swp2 peer-group underlay
+cumulus@spine04:~$ cl set vrf default router bgp peer swp3 peer-group underlay
+cumulus@spine04:~$ cl set vrf default router bgp peer swp4 peer-group underlay
+cumulus@spine04:~$ cl set vrf default router bgp peer swp5 peer-group underlay
+cumulus@spine04:~$ cl set vrf default router bgp peer swp6 peer-group underlay
+cumulus@spine04:~$ cl set vrf default router bgp path-selection multipath aspath-ignore on
+cumulus@spine04:~$ cl set vrf default router bgp address-family l2vpn-evpn enable on
+cumulus@spine04:~$ cl set vrf default router bgp peer-group underlay address-family l2vpn-evpn enable on
+cumulus@spine04:~$ cl set vrf default router bgp address-family ipv4-unicast route-redistribution connected
+cumulus@spine04:~$ cl config apply
 ```
 
 {{< /tab >}}
 {{< tab "border01 ">}}
 
 ```
-cumulus@leaf01:~$ cl set interface lo ip address 10.10.10.63/32
-cumulus@leaf01:~$ cl set interface swp1-4,swp49-54
-cumulus@leaf01:~$ cl set interface swp3 link mtu 9000
-cumulus@leaf01:~$ cl set interface bond3 bond member swp3
-cumulus@leaf01:~$ cl set interface bond3 bond mlag id 1
-cumulus@leaf01:~$ cl set interface bond3 bond lacp-bypass on
-cumulus@leaf01:~$ cl set interface bond3 link mtu 9000
-cumulus@leaf01:~$ cl set interface bond3 bridge domain br_default
-cumulus@leaf01:~$ cl set interface peerlink bond member swp49-50
-cumulus@leaf01:~$ cl set mlag mac-address 44:38:39:BE:EF:FF
-cumulus@leaf01:~$ cl set mlag backup 10.10.10.64
-cumulus@leaf01:~$ cl set mlag peer-ip linklocal
-cumulus@leaf01:~$ cl set mlag priority 1000
-cumulus@leaf01:~$ cl set mlag init-delay 10
-cumulus@leaf01:~$ cl set interface vlan10 ip address 10.1.10.2/24
-cumulus@leaf01:~$ cl set interface vlan10 ip vrr address 10.1.10.1/24
-cumulus@leaf01:~$ cl set interface vlan10 ip vrr mac-address 00:00:00:00:00:10
-cumulus@leaf01:~$ cl set interface vlan10 ip vrr state up
-cumulus@leaf01:~$ cl set interface vlan20 ip address 10.1.10.2/24
-cumulus@leaf01:~$ cl set interface vlan20 ip vrr address 10.1.20.2/24
-cumulus@leaf01:~$ cl set interface vlan20 ip vrr mac-address 00:00:00:00:00:20
-cumulus@leaf01:~$ cl set interface vlan20 ip vrr state up
-cumulus@leaf01:~$ cl set bridge domain br_default vlan 10 vni 10
-cumulus@leaf01:~$ cl set bridge domain br_default vlan 20 vni 20
-cumulus@leaf01:~$ cl set interface bond3 bridge domain br_default vlan 10,20
-cumulus@leaf01:~$ cl set nve vxlan mlag shared-address 10.0.1.255
-cumulus@leaf01:~$ cl set nve vxlan source address 10.10.10.63
-cumulus@leaf01:~$ cl set nve vxlan arp-nd-suppress on
-cumulus@leaf01:~$ cl set evpn enable on
-cumulus@leaf01:~$ cl set router bgp autonomous-system 651063
-cumulus@leaf01:~$ cl set router bgp router-id 10.10.10.63
-cumulus@leaf01:~$ cl set vrf default router bgp peer-group underlay remote-as external
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp51 peer-group underlay
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp52 peer-group underlay
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp53 peer-group underlay
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp54 peer-group underlay
-cumulus@leaf01:~$ cl set vrf default router bgp path-selection multipath aspath-ignore on
-cumulus@leaf01:~$ cl set vrf default router bgp peer-group underlay address-family l2vpn-evpn enable on
-cumulus@leaf01:~$ cl set vrf default router bgp peer peerlink.4094 remote-as internal
-cumulus@leaf01:~$ cl set vrf default router bgp address-family ipv4-unicast route-redistribution connected
-cumulus@leaf01:~$ cl set evpn route-advertise default-gateway on
-cumulus@leaf01:~$ cl config apply
+cumulus@border01:~$ cl set interface lo ip address 10.10.10.63/32
+cumulus@border01:~$ cl set interface swp1-4,swp49-54
+cumulus@border01:~$ cl set interface swp3 link mtu 9000
+cumulus@border01:~$ cl set interface bond3 bond member swp3
+cumulus@border01:~$ cl set interface bond3 bond mlag id 1
+cumulus@border01:~$ cl set interface bond3 bond lacp-bypass on
+cumulus@border01:~$ cl set interface bond3 link mtu 9000
+cumulus@border01:~$ cl set interface bond3 bridge domain br_default
+cumulus@border01:~$ cl set interface peerlink bond member swp49-50
+cumulus@border01:~$ cl set mlag mac-address 44:38:39:BE:EF:FF
+cumulus@border01:~$ cl set mlag backup 10.10.10.64
+cumulus@border01:~$ cl set mlag peer-ip linklocal
+cumulus@border01:~$ cl set mlag priority 1000
+cumulus@border01:~$ cl set mlag init-delay 10
+cumulus@border01:~$ cl set interface vlan10 ip address 10.1.10.2/24
+cumulus@border01:~$ cl set interface vlan10 ip vrr address 10.1.10.1/24
+cumulus@border01:~$ cl set interface vlan10 ip vrr mac-address 00:00:00:00:00:10
+cumulus@border01:~$ cl set interface vlan10 ip vrr state up
+cumulus@border01:~$ cl set interface vlan20 ip address 10.1.10.2/24
+cumulus@border01:~$ cl set interface vlan20 ip vrr address 10.1.20.2/24
+cumulus@border01:~$ cl set interface vlan20 ip vrr mac-address 00:00:00:00:00:20
+cumulus@border01:~$ cl set interface vlan20 ip vrr state up
+cumulus@border01:~$ cl set bridge domain br_default vlan 10 vni 10
+cumulus@border01:~$ cl set bridge domain br_default vlan 20 vni 20
+cumulus@border01:~$ cl set interface bond3 bridge domain br_default vlan 10,20
+cumulus@border01:~$ cl set nve vxlan mlag shared-address 10.0.1.255
+cumulus@border01:~$ cl set nve vxlan source address 10.10.10.63
+cumulus@border01:~$ cl set nve vxlan arp-nd-suppress on
+cumulus@border01:~$ cl set evpn enable on
+cumulus@border01:~$ cl set router bgp autonomous-system 651063
+cumulus@border01:~$ cl set router bgp router-id 10.10.10.63
+cumulus@border01:~$ cl set vrf default router bgp peer-group underlay remote-as external
+cumulus@border01:~$ cl set vrf default router bgp peer swp51 peer-group underlay
+cumulus@border01:~$ cl set vrf default router bgp peer swp52 peer-group underlay
+cumulus@border01:~$ cl set vrf default router bgp peer swp53 peer-group underlay
+cumulus@border01:~$ cl set vrf default router bgp peer swp54 peer-group underlay
+cumulus@border01:~$ cl set vrf default router bgp path-selection multipath aspath-ignore on
+cumulus@border01:~$ cl set vrf default router bgp peer-group underlay address-family l2vpn-evpn enable on
+cumulus@border01:~$ cl set vrf default router bgp peer peerlink.4094 remote-as internal
+cumulus@border01:~$ cl set vrf default router bgp address-family ipv4-unicast route-redistribution connected
+cumulus@border01:~$ cl set evpn route-advertise default-gateway on
+cumulus@border01:~$ cl config apply
 ```
 
 {{< /tab >}}
 {{< tab "border02 ">}}
 
 ```
-cumulus@leaf01:~$ cl set interface lo ip address 10.10.10.64/32
-cumulus@leaf01:~$ cl set interface swp1-4,swp49-54
-cumulus@leaf01:~$ cl set interface swp3 link mtu 9000
-cumulus@leaf01:~$ cl set interface bond3 bond member swp3
-cumulus@leaf01:~$ cl set interface bond3 bond mlag id 1
-cumulus@leaf01:~$ cl set interface bond3 bond lacp-bypass on
-cumulus@leaf01:~$ cl set interface bond3 link mtu 9000
-cumulus@leaf01:~$ cl set interface bond3 bridge domain br_default
-cumulus@leaf01:~$ cl set interface peerlink bond member swp49-50
-cumulus@leaf01:~$ cl set mlag mac-address 44:38:39:BE:EF:FF
-cumulus@leaf01:~$ cl set mlag backup 10.10.10.63
-cumulus@leaf01:~$ cl set mlag peer-ip linklocal
-cumulus@leaf01:~$ cl set mlag priority 32768
-cumulus@leaf01:~$ cl set mlag init-delay 10
-cumulus@leaf01:~$ cl set interface vlan10 ip address 10.1.10.1/24
-cumulus@leaf01:~$ cl set interface vlan10 ip vrr address 10.1.10.1/24
-cumulus@leaf01:~$ cl set interface vlan10 ip vrr mac-address 00:00:00:00:00:10
-cumulus@leaf01:~$ cl set interface vlan10 ip vrr state up
-cumulus@leaf01:~$ cl set interface vlan20 ip address 10.1.20.1/24
-cumulus@leaf01:~$ cl set interface vlan20 ip vrr address 10.1.20.1/24
-cumulus@leaf01:~$ cl set interface vlan20 ip vrr mac-address 00:00:00:00:00:20
-cumulus@leaf01:~$ cl set interface vlan20 ip vrr state up
-cumulus@leaf01:~$ cl set bridge domain br_default vlan 10 vni 10
-cumulus@leaf01:~$ cl set bridge domain br_default vlan 20 vni 20
-cumulus@leaf01:~$ cl set interface bond3 bridge domain br_default vlan 10,20
-cumulus@leaf01:~$ cl set nve vxlan mlag shared-address 10.0.1.255
-cumulus@leaf01:~$ cl set nve vxlan source address 10.10.10.64
-cumulus@leaf01:~$ cl set nve vxlan arp-nd-suppress on
-cumulus@leaf01:~$ cl set evpn enable on
-cumulus@leaf01:~$ cl set router bgp autonomous-system 651064
-cumulus@leaf01:~$ cl set router bgp router-id 10.10.10.64
-cumulus@leaf01:~$ cl set vrf default router bgp peer-group underlay remote-as external
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp51 peer-group underlay
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp52 peer-group underlay
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp53 peer-group underlay
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp54 peer-group underlay
-cumulus@leaf01:~$ cl set vrf default router bgp path-selection multipath aspath-ignore on
-cumulus@leaf01:~$ cl set vrf default router bgp peer-group underlay address-family l2vpn-evpn enable on
-cumulus@leaf01:~$ cl set vrf default router bgp peer peerlink.4094 remote-as internal
-cumulus@leaf01:~$ cl set vrf default router bgp address-family ipv4-unicast route-redistribution connected
-cumulus@leaf01:~$ cl set evpn route-advertise default-gateway on
-cumulus@leaf01:~$ cl config apply
+cumulus@border02:~$ cl set interface lo ip address 10.10.10.64/32
+cumulus@border02:~$ cl set interface swp1-4,swp49-54
+cumulus@border02:~$ cl set interface swp3 link mtu 9000
+cumulus@border02:~$ cl set interface bond3 bond member swp3
+cumulus@border02:~$ cl set interface bond3 bond mlag id 1
+cumulus@border02:~$ cl set interface bond3 bond lacp-bypass on
+cumulus@border02:~$ cl set interface bond3 link mtu 9000
+cumulus@border02:~$ cl set interface bond3 bridge domain br_default
+cumulus@border02:~$ cl set interface peerlink bond member swp49-50
+cumulus@border02:~$ cl set mlag mac-address 44:38:39:BE:EF:FF
+cumulus@border02:~$ cl set mlag backup 10.10.10.63
+cumulus@border02:~$ cl set mlag peer-ip linklocal
+cumulus@border02:~$ cl set mlag priority 32768
+cumulus@border02:~$ cl set mlag init-delay 10
+cumulus@border02:~$ cl set interface vlan10 ip address 10.1.10.1/24
+cumulus@border02:~$ cl set interface vlan10 ip vrr address 10.1.10.1/24
+cumulus@border02:~$ cl set interface vlan10 ip vrr mac-address 00:00:00:00:00:10
+cumulus@border02:~$ cl set interface vlan10 ip vrr state up
+cumulus@border02:~$ cl set interface vlan20 ip address 10.1.20.1/24
+cumulus@border02:~$ cl set interface vlan20 ip vrr address 10.1.20.1/24
+cumulus@border02:~$ cl set interface vlan20 ip vrr mac-address 00:00:00:00:00:20
+cumulus@border02:~$ cl set interface vlan20 ip vrr state up
+cumulus@border02:~$ cl set bridge domain br_default vlan 10 vni 10
+cumulus@border02:~$ cl set bridge domain br_default vlan 20 vni 20
+cumulus@border02:~$ cl set interface bond3 bridge domain br_default vlan 10,20
+cumulus@border02:~$ cl set nve vxlan mlag shared-address 10.0.1.255
+cumulus@border02:~$ cl set nve vxlan source address 10.10.10.64
+cumulus@border02:~$ cl set nve vxlan arp-nd-suppress on
+cumulus@border02:~$ cl set evpn enable on
+cumulus@border02:~$ cl set router bgp autonomous-system 651064
+cumulus@border02:~$ cl set router bgp router-id 10.10.10.64
+cumulus@border02:~$ cl set vrf default router bgp peer-group underlay remote-as external
+cumulus@border02:~$ cl set vrf default router bgp peer swp51 peer-group underlay
+cumulus@border02:~$ cl set vrf default router bgp peer swp52 peer-group underlay
+cumulus@border02:~$ cl set vrf default router bgp peer swp53 peer-group underlay
+cumulus@border02:~$ cl set vrf default router bgp peer swp54 peer-group underlay
+cumulus@border02:~$ cl set vrf default router bgp path-selection multipath aspath-ignore on
+cumulus@border02:~$ cl set vrf default router bgp peer-group underlay address-family l2vpn-evpn enable on
+cumulus@border02:~$ cl set vrf default router bgp peer peerlink.4094 remote-as internal
+cumulus@border02:~$ cl set vrf default router bgp address-family ipv4-unicast route-redistribution connected
+cumulus@border02:~$ cl set evpn route-advertise default-gateway on
+cumulus@border02:~$ cl config apply
 ```
 
 {{< /tab >}}
@@ -1871,7 +1895,7 @@ cumulus@leaf01:~$ cat /etc/network/interfaces
 auto lo
 iface lo inet loopback
     address 10.10.10.1/32
-    clagd-vxlan-anycast-ip 10.0.1.1
+    clagd-vxlan-anycast-ip 10.0.1.12
     vxlan-local-tunnelip 10.10.10.1
 
 auto mgmt
@@ -1884,8 +1908,8 @@ auto eth0
 iface eth0 inet dhcp
     vrf mgmt
 
-auto bridge
-iface bridge
+auto br_default
+iface br_default
     bridge-ports peerlink bond1 bond2 vni10 vni20
     bridge-vids 10 20  
     bridge-vlan-aware yes
@@ -1904,14 +1928,14 @@ iface vni20
 
 auto vlan10
 iface vlan10
-    vlan-raw-device bridge
+    vlan-raw-device br_default
     vlan-id 10
     ip-forward off
     ip6-forward off
 
 auto vlan20
 iface vlan20
-    vlan-raw-device bridge
+    vlan-raw-device br_default
     vlan-id 20
     ip-forward off
     ip6-forward off
@@ -1937,6 +1961,8 @@ iface swp50
 auto peerlink
 iface peerlink
     bond-slaves swp49 swp50
+    bond-mode 802.3ad
+    bond-lacp-bypass-allow no
 
 auto peerlink.4094
 iface peerlink.4094
@@ -1944,6 +1970,7 @@ iface peerlink.4094
     clagd-peer-ip linklocal
     clagd-priority 1000
     clagd-sys-mac 44:38:39:BE:EF:AA
+    clagd-args --initDelay 10
 
 auto swp1
 iface swp1
@@ -1979,7 +2006,7 @@ cumulus@leaf02:~$ cat /etc/network/interfaces
 auto lo
 iface lo inet loopback
     address 10.10.10.2/32
-    clagd-vxlan-anycast-ip 10.0.1.1
+    clagd-vxlan-anycast-ip 10.0.1.12
     vxlan-local-tunnelip 10.10.10.2
 
 auto mgmt
@@ -1992,8 +2019,8 @@ auto eth0
 iface eth0 inet dhcp
     vrf mgmt
 
-auto bridge
-iface bridge
+auto br_default
+iface br_default
     bridge-ports peerlink bond1 bond2 vni10 vni20
     bridge-vids 10 20  
     bridge-vlan-aware yes
@@ -2012,14 +2039,14 @@ iface vni20
 
 auto vlan10
 iface vlan10
-    vlan-raw-device bridge
+    vlan-raw-device br_default
     vlan-id 10
     ip-forward off
     ip6-forward off
 
 auto vlan20
 iface vlan20
-    vlan-raw-device bridge
+    vlan-raw-device br_default
     vlan-id 20
     ip-forward off
     ip6-forward off
@@ -2045,6 +2072,8 @@ iface swp50
 auto peerlink
 iface peerlink
     bond-slaves swp49 swp50
+    bond-mode 802.3ad
+    bond-lacp-bypass-allow no
 
 auto peerlink.4094
 iface peerlink.4094
@@ -2052,6 +2081,7 @@ iface peerlink.4094
     clagd-peer-ip linklocal
     clagd-priority 32768
     clagd-sys-mac 44:38:39:BE:EF:AA
+    clagd-args --initDelay 10
 
 auto swp1
 iface swp1
@@ -2100,8 +2130,8 @@ auto eth0
 iface eth0 inet dhcp
     vrf mgmt
 
-auto bridge
-iface bridge
+auto br_default
+iface br_default
     bridge-ports peerlink bond1 bond2 vni10 vni20
     bridge-vids 10 20  
     bridge-vlan-aware yes
@@ -2120,14 +2150,14 @@ iface vni20
 
 auto vlan10
 iface vlan10
-    vlan-raw-device bridge
+    vlan-raw-device br_default
     vlan-id 10
     ip-forward off
     ip6-forward off
 
 auto vlan20
 iface vlan20
-    vlan-raw-device bridge
+    vlan-raw-device br_default
     vlan-id 20
     ip-forward off
     ip6-forward off
@@ -2153,6 +2183,8 @@ iface swp50
 auto peerlink
 iface peerlink
     bond-slaves swp49 swp50
+    bond-mode 802.3ad
+    bond-lacp-bypass-allow no
 
 auto peerlink.4094
 iface peerlink.4094
@@ -2160,6 +2192,7 @@ iface peerlink.4094
     clagd-peer-ip linklocal
     clagd-priority 1000
     clagd-sys-mac 44:38:39:BE:EF:BB
+    clagd-args --initDelay 10
 
 auto swp1
 iface swp1
@@ -2208,8 +2241,8 @@ auto eth0
 iface eth0 inet dhcp
     vrf mgmt
 
-auto bridge
-iface bridge
+auto br_default
+iface br_default
     bridge-ports peerlink bond1 bond2 vni10 vni20
     bridge-vids 10 20  
     bridge-vlan-aware yes
@@ -2228,14 +2261,14 @@ iface vni20
 
 auto vlan10
 iface vlan10
-    vlan-raw-device bridge
+    vlan-raw-device br_default
     vlan-id 10
     ip-forward off
     ip6-forward off
 
 auto vlan20
 iface vlan20
-    vlan-raw-device bridge
+    vlan-raw-device br_default
     vlan-id 20
     ip-forward off
     ip6-forward off
@@ -2261,6 +2294,8 @@ iface swp50
 auto peerlink
 iface peerlink
     bond-slaves swp49 swp50
+    bond-mode 802.3ad
+    bond-lacp-bypass-allow no
 
 auto peerlink.4094
 iface peerlink.4094
@@ -2268,6 +2303,7 @@ iface peerlink.4094
     clagd-peer-ip linklocal
     clagd-priority 32768
     clagd-sys-mac 44:38:39:BE:EF:BB
+    clagd-args --initDelay 10
 
 auto swp1
 iface swp1
@@ -2472,8 +2508,8 @@ auto eth0
 iface eth0 inet dhcp
     vrf mgmt
 
-auto bridge
-iface bridge
+auto br_default
+iface br_default
     bridge-ports peerlink bond3 vni10 vni20
     bridge-vids 10 20
     bridge-vlan-aware yes
@@ -2488,20 +2524,20 @@ auto vni20
 iface vni20
     bridge-access 20
     vxlan-id 20
-    bridge-arp-nd-suppress on
+    bridge-learning off
 
 auto vlan10
 iface vlan10
     address 10.1.10.2/24
     address-virtual 00:00:00:00:00:10 10.1.10.1/24
-    vlan-raw-device bridge
+    vlan-raw-device br_default
     vlan-id 10
 
 auto vlan20
 iface vlan20
     address 10.1.20.2/24
     address-virtual 00:00:00:00:00:20 10.1.20.1/24
-    vlan-raw-device bridge
+    vlan-raw-device br_default
     vlan-id 20
 
 auto swp51
@@ -2525,6 +2561,8 @@ iface swp50
 auto peerlink
 iface peerlink
     bond-slaves swp49 swp50
+    bond-mode 802.3ad
+    bond-lacp-bypass-allow no
 
 auto peerlink.4094
 iface peerlink.4094
@@ -2570,8 +2608,8 @@ auto eth0
 iface eth0 inet dhcp
     vrf mgmt
 
-auto bridge
-iface bridge
+auto br_default
+iface br_default
     bridge-ports peerlink bond3 vni10 vni20
     bridge-vids 10 20
     bridge-vlan-aware yes
@@ -2592,14 +2630,14 @@ auto vlan10
 iface vlan10
     address 10.1.10.1/24
     address-virtual 00:00:00:00:00:10 10.1.10.1/24
-    vlan-raw-device bridge
+    vlan-raw-device br_default
     vlan-id 10
 
 auto vlan20
 iface vlan20
     address 10.1.20.1/24
     address-virtual 00:00:00:00:00:20 10.1.20.1/24
-    vlan-raw-device bridge
+    vlan-raw-device br_default
     vlan-id 20
 
 auto swp51
@@ -2632,6 +2670,7 @@ iface peerlink.4094
     clagd-peer-ip linklocal
     clagd-priority 32768
     clagd-sys-mac 44:38:39:BE:EF:FF
+    clagd-args --initDelay 10
 
 auto swp3
 iface swp3
@@ -3032,394 +3071,394 @@ cumulus@leaf01:~$ cl config apply
 {{< tab "leaf02 ">}}
 
 ```
-cumulus@leaf01:~$ cl set interface lo ip address 10.10.10.2/32
-cumulus@leaf01:~$ cl set interface swp1-3,swp49-54
-cumulus@leaf01:~$ cl set interface bond1 bond member swp1
-cumulus@leaf01:~$ cl set interface bond2 bond member swp2
-cumulus@leaf01:~$ cl set interface bond3 bond member swp3
-cumulus@leaf01:~$ cl set interface bond1 bond mlag id 1
-cumulus@leaf01:~$ cl set interface bond2 bond mlag id 2
-cumulus@leaf01:~$ cl set interface bond3 bond mlag id 3
-cumulus@leaf01:~$ cl set interface bond1 bond lacp-bypass on
-cumulus@leaf01:~$ cl set interface bond2 bond lacp-bypass on
-cumulus@leaf01:~$ cl set interface bond3 bond lacp-bypass on
-cumulus@leaf01:~$ cl set interface bond1 link mtu 9000
-cumulus@leaf01:~$ cl set interface bond2 link mtu 9000
-cumulus@leaf01:~$ cl set interface bond3 link mtu 9000
-cumulus@leaf01:~$ cl set interface bond1-3 bridge domain br_default
-cumulus@leaf01:~$ cl set interface bond1 bridge domain br_default access 10
-cumulus@leaf01:~$ cl set interface bond2 bridge domain br_default access 20
-cumulus@leaf01:~$ cl set interface bond3 bridge domain br_default access 30
-cumulus@leaf01:~$ cl set bridge domain br_default vlan 10,20,30
-cumulus@leaf01:~$ cl set interface peerlink bond member swp49-50
-cumulus@leaf01:~$ cl set mlag mac-address 44:38:39:BE:EF:AA
-cumulus@leaf01:~$ cl set mlag backup 10.10.10.1
-cumulus@leaf01:~$ cl set mlag peer-ip linklocal
-cumulus@leaf01:~$ cl set mlag priority 32768
-cumulus@leaf01:~$ cl set mlag init-delay 10
-cumulus@leaf01:~$ cl set interface vlan10 ip address 10.1.10.3/24
-cumulus@leaf01:~$ cl set interface vlan10 ip vrr address 10.1.10.1/24
-cumulus@leaf01:~$ cl set interface vlan10 ip vrr mac-address 00:00:00:00:00:10
-cumulus@leaf01:~$ cl set interface vlan10 ip vrr state up
-cumulus@leaf01:~$ cl set interface vlan20 ip address 10.1.20.3/24
-cumulus@leaf01:~$ cl set interface vlan20 ip vrr address 10.1.20.1/24
-cumulus@leaf01:~$ cl set interface vlan20 ip vrr mac-address 00:00:00:00:00:20
-cumulus@leaf01:~$ cl set interface vlan20 ip vrr state up
-cumulus@leaf01:~$ cl set interface vlan30 ip address 10.1.30.3/24
-cumulus@leaf01:~$ cl set interface vlan30 ip vrr address 10.1.30.1/24
-cumulus@leaf01:~$ cl set interface vlan30 ip vrr mac-address 00:00:00:00:00:30
-cumulus@leaf01:~$ cl set interface vlan30 ip vrr state up
-cumulus@leaf01:~$ cl set vrf RED
-cumulus@leaf01:~$ cl set vrf BLUE
-cumulus@leaf01:~$ cl set bridge domain br_default vlan 10 vni 10
-cumulus@leaf01:~$ cl set bridge domain br_default vlan 20 vni 20
-cumulus@leaf01:~$ cl set bridge domain br_default vlan 30 vni 30
-cumulus@leaf01:~$ cl set interface vlan10 ip vrf RED
-cumulus@leaf01:~$ cl set interface vlan20 ip vrf RED
-cumulus@leaf01:~$ cl set interface vlan30 ip vrf BLUE
-cumulus@leaf01:~$ cl set nve vxlan mlag shared-address 10.0.1.12
-cumulus@leaf01:~$ cl set nve vxlan source address 10.10.10.2
-cumulus@leaf01:~$ cl set nve vxlan arp-nd-suppress on 
-cumulus@leaf01:~$ cl set vrf RED evpn vni 4001
-cumulus@leaf01:~$ cl set vrf BLUE evpn vni 4002
-cumulus@leaf01:~$ cl set bridge domain br_default vlan 4001,4002
-cumulus@leaf01:~$ cl set evpn enable on
-cumulus@leaf01:~$ cl set router bgp autonomous-system 65102
-cumulus@leaf01:~$ cl set router bgp router-id 10.10.10.2
-cumulus@leaf01:~$ cl set vrf default router bgp peer-group underlay remote-as external
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp51 peer-group underlay
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp52 peer-group underlay
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp53 peer-group underlay
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp54 peer-group underlay
-cumulus@leaf01:~$ cl set vrf default router bgp path-selection multipath aspath-ignore on
-cumulus@leaf01:~$ cl set vrf default router bgp peer-group underlay address-family l2vpn-evpn enable on
-cumulus@leaf01:~$ cl set vrf default router bgp peer peerlink.4094 remote-as internal
-cumulus@leaf01:~$ cl set vrf default router bgp address-family ipv4-unicast route-redistribution connected
-cumulus@leaf01:~$ cl config apply
+cumulus@leaf02:~$ cl set interface lo ip address 10.10.10.2/32
+cumulus@leaf02:~$ cl set interface swp1-3,swp49-54
+cumulus@leaf02:~$ cl set interface bond1 bond member swp1
+cumulus@leaf02:~$ cl set interface bond2 bond member swp2
+cumulus@leaf02:~$ cl set interface bond3 bond member swp3
+cumulus@leaf02:~$ cl set interface bond1 bond mlag id 1
+cumulus@leaf02:~$ cl set interface bond2 bond mlag id 2
+cumulus@leaf02:~$ cl set interface bond3 bond mlag id 3
+cumulus@leaf02:~$ cl set interface bond1 bond lacp-bypass on
+cumulus@leaf02:~$ cl set interface bond2 bond lacp-bypass on
+cumulus@leaf02:~$ cl set interface bond3 bond lacp-bypass on
+cumulus@leaf02:~$ cl set interface bond1 link mtu 9000
+cumulus@leaf02:~$ cl set interface bond2 link mtu 9000
+cumulus@leaf02:~$ cl set interface bond3 link mtu 9000
+cumulus@leaf02:~$ cl set interface bond1-3 bridge domain br_default
+cumulus@leaf02:~$ cl set interface bond1 bridge domain br_default access 10
+cumulus@leaf02:~$ cl set interface bond2 bridge domain br_default access 20
+cumulus@leaf02:~$ cl set interface bond3 bridge domain br_default access 30
+cumulus@leaf02:~$ cl set bridge domain br_default vlan 10,20,30
+cumulus@leaf02:~$ cl set interface peerlink bond member swp49-50
+cumulus@leaf02:~$ cl set mlag mac-address 44:38:39:BE:EF:AA
+cumulus@leaf02:~$ cl set mlag backup 10.10.10.1
+cumulus@leaf02:~$ cl set mlag peer-ip linklocal
+cumulus@leaf02:~$ cl set mlag priority 32768
+cumulus@leaf02:~$ cl set mlag init-delay 10
+cumulus@leaf02:~$ cl set interface vlan10 ip address 10.1.10.3/24
+cumulus@leaf02:~$ cl set interface vlan10 ip vrr address 10.1.10.1/24
+cumulus@leaf02:~$ cl set interface vlan10 ip vrr mac-address 00:00:00:00:00:10
+cumulus@leaf02:~$ cl set interface vlan10 ip vrr state up
+cumulus@leaf02:~$ cl set interface vlan20 ip address 10.1.20.3/24
+cumulus@leaf02:~$ cl set interface vlan20 ip vrr address 10.1.20.1/24
+cumulus@leaf02:~$ cl set interface vlan20 ip vrr mac-address 00:00:00:00:00:20
+cumulus@leaf02:~$ cl set interface vlan20 ip vrr state up
+cumulus@leaf02:~$ cl set interface vlan30 ip address 10.1.30.3/24
+cumulus@leaf02:~$ cl set interface vlan30 ip vrr address 10.1.30.1/24
+cumulus@leaf02:~$ cl set interface vlan30 ip vrr mac-address 00:00:00:00:00:30
+cumulus@leaf02:~$ cl set interface vlan30 ip vrr state up
+cumulus@leaf02:~$ cl set vrf RED
+cumulus@leaf02:~$ cl set vrf BLUE
+cumulus@leaf02:~$ cl set bridge domain br_default vlan 10 vni 10
+cumulus@leaf02:~$ cl set bridge domain br_default vlan 20 vni 20
+cumulus@leaf02:~$ cl set bridge domain br_default vlan 30 vni 30
+cumulus@leaf02:~$ cl set interface vlan10 ip vrf RED
+cumulus@leaf02:~$ cl set interface vlan20 ip vrf RED
+cumulus@leaf02:~$ cl set interface vlan30 ip vrf BLUE
+cumulus@leaf02:~$ cl set nve vxlan mlag shared-address 10.0.1.12
+cumulus@leaf02:~$ cl set nve vxlan source address 10.10.10.2
+cumulus@leaf02:~$ cl set nve vxlan arp-nd-suppress on 
+cumulus@leaf02:~$ cl set vrf RED evpn vni 4001
+cumulus@leaf02:~$ cl set vrf BLUE evpn vni 4002
+cumulus@leaf02:~$ cl set bridge domain br_default vlan 4001,4002
+cumulus@leaf02:~$ cl set evpn enable on
+cumulus@leaf02:~$ cl set router bgp autonomous-system 65102
+cumulus@leaf02:~$ cl set router bgp router-id 10.10.10.2
+cumulus@leaf02:~$ cl set vrf default router bgp peer-group underlay remote-as external
+cumulus@leaf02:~$ cl set vrf default router bgp peer swp51 peer-group underlay
+cumulus@leaf02:~$ cl set vrf default router bgp peer swp52 peer-group underlay
+cumulus@leaf02:~$ cl set vrf default router bgp peer swp53 peer-group underlay
+cumulus@leaf02:~$ cl set vrf default router bgp peer swp54 peer-group underlay
+cumulus@leaf02:~$ cl set vrf default router bgp path-selection multipath aspath-ignore on
+cumulus@leaf02:~$ cl set vrf default router bgp peer-group underlay address-family l2vpn-evpn enable on
+cumulus@leaf02:~$ cl set vrf default router bgp peer peerlink.4094 remote-as internal
+cumulus@leaf02:~$ cl set vrf default router bgp address-family ipv4-unicast route-redistribution connected
+cumulus@leaf02:~$ cl config apply
 ```
 
 {{< /tab >}}
 {{< tab "leaf03 ">}}
 
 ```
-cumulus@leaf01:~$ cl set interface lo ip address 10.10.10.3/32
-cumulus@leaf01:~$ cl set interface swp1-3,swp49-54
-cumulus@leaf01:~$ cl set interface bond1 bond member swp1
-cumulus@leaf01:~$ cl set interface bond2 bond member swp2
-cumulus@leaf01:~$ cl set interface bond3 bond member swp3
-cumulus@leaf01:~$ cl set interface bond1 bond mlag id 1
-cumulus@leaf01:~$ cl set interface bond2 bond mlag id 2
-cumulus@leaf01:~$ cl set interface bond3 bond mlag id 3
-cumulus@leaf01:~$ cl set interface bond1 bond lacp-bypass on
-cumulus@leaf01:~$ cl set interface bond2 bond lacp-bypass on
-cumulus@leaf01:~$ cl set interface bond3 bond lacp-bypass on
-cumulus@leaf01:~$ cl set interface bond1 link mtu 9000
-cumulus@leaf01:~$ cl set interface bond2 link mtu 9000
-cumulus@leaf01:~$ cl set interface bond3 link mtu 9000
-cumulus@leaf01:~$ cl set interface bond1-3 bridge domain br_default
-cumulus@leaf01:~$ cl set interface bond1 bridge domain br_default access 10
-cumulus@leaf01:~$ cl set interface bond2 bridge domain br_default access 20
-cumulus@leaf01:~$ cl set interface bond3 bridge domain br_default access 30
-cumulus@leaf01:~$ cl set bridge domain br_default vlan 10,20,30
-cumulus@leaf01:~$ cl set interface peerlink bond member swp49-50
-cumulus@leaf01:~$ cl set mlag mac-address 44:38:39:BE:EF:BB
-cumulus@leaf01:~$ cl set mlag backup 10.10.10.3
-cumulus@leaf01:~$ cl set mlag peer-ip linklocal
-cumulus@leaf01:~$ cl set mlag priority 1000
-cumulus@leaf01:~$ cl set mlag init-delay 10
-cumulus@leaf01:~$ cl set interface vlan10 ip address 10.1.10.4/24
-cumulus@leaf01:~$ cl set interface vlan10 ip vrr address 10.1.10.1/24
-cumulus@leaf01:~$ cl set interface vlan10 ip vrr mac-address 00:00:00:00:00:10
-cumulus@leaf01:~$ cl set interface vlan10 ip vrr state up
-cumulus@leaf01:~$ cl set interface vlan20 ip address 10.1.20.4/24
-cumulus@leaf01:~$ cl set interface vlan20 ip vrr address 10.1.20.1/24
-cumulus@leaf01:~$ cl set interface vlan20 ip vrr mac-address 00:00:00:00:00:20
-cumulus@leaf01:~$ cl set interface vlan20 ip vrr state up
-cumulus@leaf01:~$ cl set interface vlan30 ip address 10.1.30.4/24
-cumulus@leaf01:~$ cl set interface vlan30 ip vrr address 10.1.30.1/24
-cumulus@leaf01:~$ cl set interface vlan30 ip vrr mac-address 00:00:00:00:00:30
-cumulus@leaf01:~$ cl set interface vlan30 ip vrr state up
-cumulus@leaf01:~$ cl set vrf RED
-cumulus@leaf01:~$ cl set vrf BLUE
-cumulus@leaf01:~$ cl set bridge domain br_default vlan 10 vni 10
-cumulus@leaf01:~$ cl set bridge domain br_default vlan 20 vni 20
-cumulus@leaf01:~$ cl set bridge domain br_default vlan 30 vni 30
-cumulus@leaf01:~$ cl set interface vlan10 ip vrf RED
-cumulus@leaf01:~$ cl set interface vlan20 ip vrf RED
-cumulus@leaf01:~$ cl set interface vlan30 ip vrf BLUE
-cumulus@leaf01:~$ cl set nve vxlan mlag shared-address 10.0.1.34
-cumulus@leaf01:~$ cl set nve vxlan source address 10.10.10.3
-cumulus@leaf01:~$ cl set nve vxlan arp-nd-suppress on 
-cumulus@leaf01:~$ cl set vrf RED evpn vni 4001
-cumulus@leaf01:~$ cl set vrf BLUE evpn vni 4002
-cumulus@leaf01:~$ cl set bridge domain br_default vlan 4001,4002
-cumulus@leaf01:~$ cl set evpn enable on
-cumulus@leaf01:~$ cl set router bgp autonomous-system 65103
-cumulus@leaf01:~$ cl set router bgp router-id 10.10.10.3
-cumulus@leaf01:~$ cl set vrf default router bgp peer-group underlay remote-as external
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp51 peer-group underlay
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp52 peer-group underlay
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp53 peer-group underlay
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp54 peer-group underlay
-cumulus@leaf01:~$ cl set vrf default router bgp path-selection multipath aspath-ignore on
-cumulus@leaf01:~$ cl set vrf default router bgp peer-group underlay address-family l2vpn-evpn enable on
-cumulus@leaf01:~$ cl set vrf default router bgp peer peerlink.4094 remote-as internal
-cumulus@leaf01:~$ cl set vrf default router bgp address-family ipv4-unicast route-redistribution connected
-cumulus@leaf01:~$ cl config apply
+cumulus@leaf03:~$ cl set interface lo ip address 10.10.10.3/32
+cumulus@leaf03:~$ cl set interface swp1-3,swp49-54
+cumulus@leaf03:~$ cl set interface bond1 bond member swp1
+cumulus@leaf03:~$ cl set interface bond2 bond member swp2
+cumulus@leaf03:~$ cl set interface bond3 bond member swp3
+cumulus@leaf03:~$ cl set interface bond1 bond mlag id 1
+cumulus@leaf03:~$ cl set interface bond2 bond mlag id 2
+cumulus@leaf03:~$ cl set interface bond3 bond mlag id 3
+cumulus@leaf03:~$ cl set interface bond1 bond lacp-bypass on
+cumulus@leaf03:~$ cl set interface bond2 bond lacp-bypass on
+cumulus@leaf03:~$ cl set interface bond3 bond lacp-bypass on
+cumulus@leaf03:~$ cl set interface bond1 link mtu 9000
+cumulus@leaf03:~$ cl set interface bond2 link mtu 9000
+cumulus@leaf03:~$ cl set interface bond3 link mtu 9000
+cumulus@leaf03:~$ cl set interface bond1-3 bridge domain br_default
+cumulus@leaf03:~$ cl set interface bond1 bridge domain br_default access 10
+cumulus@leaf03:~$ cl set interface bond2 bridge domain br_default access 20
+cumulus@leaf03:~$ cl set interface bond3 bridge domain br_default access 30
+cumulus@leaf03:~$ cl set bridge domain br_default vlan 10,20,30
+cumulus@leaf03:~$ cl set interface peerlink bond member swp49-50
+cumulus@leaf03:~$ cl set mlag mac-address 44:38:39:BE:EF:BB
+cumulus@leaf03:~$ cl set mlag backup 10.10.10.3
+cumulus@leaf03:~$ cl set mlag peer-ip linklocal
+cumulus@leaf03:~$ cl set mlag priority 1000
+cumulus@leaf03:~$ cl set mlag init-delay 10
+cumulus@leaf03:~$ cl set interface vlan10 ip address 10.1.10.4/24
+cumulus@leaf03:~$ cl set interface vlan10 ip vrr address 10.1.10.1/24
+cumulus@leaf03:~$ cl set interface vlan10 ip vrr mac-address 00:00:00:00:00:10
+cumulus@leaf03:~$ cl set interface vlan10 ip vrr state up
+cumulus@leaf03:~$ cl set interface vlan20 ip address 10.1.20.4/24
+cumulus@leaf03:~$ cl set interface vlan20 ip vrr address 10.1.20.1/24
+cumulus@leaf03:~$ cl set interface vlan20 ip vrr mac-address 00:00:00:00:00:20
+cumulus@leaf03:~$ cl set interface vlan20 ip vrr state up
+cumulus@leaf03:~$ cl set interface vlan30 ip address 10.1.30.4/24
+cumulus@leaf03:~$ cl set interface vlan30 ip vrr address 10.1.30.1/24
+cumulus@leaf03:~$ cl set interface vlan30 ip vrr mac-address 00:00:00:00:00:30
+cumulus@leaf03:~$ cl set interface vlan30 ip vrr state up
+cumulus@leaf03:~$ cl set vrf RED
+cumulus@leaf03:~$ cl set vrf BLUE
+cumulus@leaf03:~$ cl set bridge domain br_default vlan 10 vni 10
+cumulus@leaf03:~$ cl set bridge domain br_default vlan 20 vni 20
+cumulus@leaf03:~$ cl set bridge domain br_default vlan 30 vni 30
+cumulus@leaf03:~$ cl set interface vlan10 ip vrf RED
+cumulus@leaf03:~$ cl set interface vlan20 ip vrf RED
+cumulus@leaf03:~$ cl set interface vlan30 ip vrf BLUE
+cumulus@leaf03:~$ cl set nve vxlan mlag shared-address 10.0.1.34
+cumulus@leaf03:~$ cl set nve vxlan source address 10.10.10.3
+cumulus@leaf03:~$ cl set nve vxlan arp-nd-suppress on 
+cumulus@leaf03:~$ cl set vrf RED evpn vni 4001
+cumulus@leaf03:~$ cl set vrf BLUE evpn vni 4002
+cumulus@leaf03:~$ cl set bridge domain br_default vlan 4001,4002
+cumulus@leaf03:~$ cl set evpn enable on
+cumulus@leaf03:~$ cl set router bgp autonomous-system 65103
+cumulus@leaf03:~$ cl set router bgp router-id 10.10.10.3
+cumulus@leaf03:~$ cl set vrf default router bgp peer-group underlay remote-as external
+cumulus@leaf03:~$ cl set vrf default router bgp peer swp51 peer-group underlay
+cumulus@leaf03:~$ cl set vrf default router bgp peer swp52 peer-group underlay
+cumulus@leaf03:~$ cl set vrf default router bgp peer swp53 peer-group underlay
+cumulus@leaf03:~$ cl set vrf default router bgp peer swp54 peer-group underlay
+cumulus@leaf03:~$ cl set vrf default router bgp path-selection multipath aspath-ignore on
+cumulus@leaf03:~$ cl set vrf default router bgp peer-group underlay address-family l2vpn-evpn enable on
+cumulus@leaf03:~$ cl set vrf default router bgp peer peerlink.4094 remote-as internal
+cumulus@leaf03:~$ cl set vrf default router bgp address-family ipv4-unicast route-redistribution connected
+cumulus@leaf03:~$ cl config apply
 ```
 
 {{< /tab >}}
 {{< tab "leaf04 ">}}
 
 ```
-cumulus@leaf01:~$ cl set interface lo ip address 10.10.10.4/32
-cumulus@leaf01:~$ cl set interface swp1-3,swp49-54
-cumulus@leaf01:~$ cl set interface bond1 bond member swp1
-cumulus@leaf01:~$ cl set interface bond2 bond member swp2
-cumulus@leaf01:~$ cl set interface bond3 bond member swp3
-cumulus@leaf01:~$ cl set interface bond1 bond mlag id 1
-cumulus@leaf01:~$ cl set interface bond2 bond mlag id 2
-cumulus@leaf01:~$ cl set interface bond3 bond mlag id 3
-cumulus@leaf01:~$ cl set interface bond1 bond lacp-bypass on
-cumulus@leaf01:~$ cl set interface bond2 bond lacp-bypass on
-cumulus@leaf01:~$ cl set interface bond3 bond lacp-bypass on
-cumulus@leaf01:~$ cl set interface bond1 link mtu 9000
-cumulus@leaf01:~$ cl set interface bond2 link mtu 9000
-cumulus@leaf01:~$ cl set interface bond3 link mtu 9000
-cumulus@leaf01:~$ cl set interface bond1-3 bridge domain br_default
-cumulus@leaf01:~$ cl set interface bond1 bridge domain br_default access 10
-cumulus@leaf01:~$ cl set interface bond2 bridge domain br_default access 20
-cumulus@leaf01:~$ cl set interface bond3 bridge domain br_default access 30
-cumulus@leaf01:~$ cl set bridge domain br_default vlan 10,20,30
-cumulus@leaf01:~$ cl set interface peerlink bond member swp49-50
-cumulus@leaf01:~$ cl set mlag mac-address 44:38:39:BE:EF:BB
-cumulus@leaf01:~$ cl set mlag backup 10.10.10.3
-cumulus@leaf01:~$ cl set mlag peer-ip linklocal
-cumulus@leaf01:~$ cl set mlag priority 32768
-cumulus@leaf01:~$ cl set mlag init-delay 10
-cumulus@leaf01:~$ cl set interface vlan10 ip address 10.1.10.5/24
-cumulus@leaf01:~$ cl set interface vlan10 ip vrr address 10.1.10.1/24
-cumulus@leaf01:~$ cl set interface vlan10 ip vrr mac-address 00:00:00:00:00:10
-cumulus@leaf01:~$ cl set interface vlan10 ip vrr state up
-cumulus@leaf01:~$ cl set interface vlan20 ip address 10.1.20.5/24
-cumulus@leaf01:~$ cl set interface vlan20 ip vrr address 10.1.20.1/24
-cumulus@leaf01:~$ cl set interface vlan20 ip vrr mac-address 00:00:00:00:00:20
-cumulus@leaf01:~$ cl set interface vlan20 ip vrr state up
-cumulus@leaf01:~$ cl set interface vlan30 ip address 10.1.30.5/24
-cumulus@leaf01:~$ cl set interface vlan30 ip vrr address 10.1.30.1/24
-cumulus@leaf01:~$ cl set interface vlan30 ip vrr mac-address 00:00:00:00:00:30cl set 
-cumulus@leaf01:~$ cl set interface vlan30 ip vrr state up
-cumulus@leaf01:~$ cl set vrf RED
-cumulus@leaf01:~$ cl set vrf BLUE
-cumulus@leaf01:~$ cl set bridge domain br_default vlan 10 vni 10
-cumulus@leaf01:~$ cl set bridge domain br_default vlan 20 vni 20
-cumulus@leaf01:~$ cl set bridge domain br_default vlan 30 vni 30
-cumulus@leaf01:~$ cl set interface vlan10 ip vrf RED
-cumulus@leaf01:~$ cl set interface vlan20 ip vrf RED
-cumulus@leaf01:~$ cl set interface vlan30 ip vrf BLUE
-cumulus@leaf01:~$ cl set nve vxlan mlag shared-address 10.0.1.34
-cumulus@leaf01:~$ cl set nve vxlan source address 10.10.10.4
-cumulus@leaf01:~$ cl set nve vxlan arp-nd-suppress on 
-cumulus@leaf01:~$ cl set vrf RED evpn vni 4001
-cumulus@leaf01:~$ cl set vrf BLUE evpn vni 4002
-cumulus@leaf01:~$ cl set bridge domain br_default vlan 4001,4002
-cumulus@leaf01:~$ cl set evpn enable on
-cumulus@leaf01:~$ cl set router bgp autonomous-system 65104
-cumulus@leaf01:~$ cl set router bgp router-id 10.10.10.4
-cumulus@leaf01:~$ cl set vrf default router bgp peer-group underlay remote-as external
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp51 peer-group underlay
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp52 peer-group underlay
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp53 peer-group underlay
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp54 peer-group underlay
-cumulus@leaf01:~$ cl set vrf default router bgp path-selection multipath aspath-ignore on
-cumulus@leaf01:~$ cl set vrf default router bgp peer-group underlay address-family l2vpn-evpn enable on
-cumulus@leaf01:~$ cl set vrf default router bgp peer peerlink.4094 remote-as internal
-cumulus@leaf01:~$ cl set vrf default router bgp address-family ipv4-unicast route-redistribution connected
-cumulus@leaf01:~$ cl config apply
+cumulus@leaf04:~$ cl set interface lo ip address 10.10.10.4/32
+cumulus@leaf04:~$ cl set interface swp1-3,swp49-54
+cumulus@leaf04:~$ cl set interface bond1 bond member swp1
+cumulus@leaf04:~$ cl set interface bond2 bond member swp2
+cumulus@leaf04:~$ cl set interface bond3 bond member swp3
+cumulus@leaf04:~$ cl set interface bond1 bond mlag id 1
+cumulus@leaf04:~$ cl set interface bond2 bond mlag id 2
+cumulus@leaf04:~$ cl set interface bond3 bond mlag id 3
+cumulus@leaf04:~$ cl set interface bond1 bond lacp-bypass on
+cumulus@leaf04:~$ cl set interface bond2 bond lacp-bypass on
+cumulus@leaf04:~$ cl set interface bond3 bond lacp-bypass on
+cumulus@leaf04:~$ cl set interface bond1 link mtu 9000
+cumulus@leaf04:~$ cl set interface bond2 link mtu 9000
+cumulus@leaf04:~$ cl set interface bond3 link mtu 9000
+cumulus@leaf04:~$ cl set interface bond1-3 bridge domain br_default
+cumulus@leaf04:~$ cl set interface bond1 bridge domain br_default access 10
+cumulus@leaf04:~$ cl set interface bond2 bridge domain br_default access 20
+cumulus@leaf04:~$ cl set interface bond3 bridge domain br_default access 30
+cumulus@leaf04:~$ cl set bridge domain br_default vlan 10,20,30
+cumulus@leaf04:~$ cl set interface peerlink bond member swp49-50
+cumulus@leaf04:~$ cl set mlag mac-address 44:38:39:BE:EF:BB
+cumulus@leaf04:~$ cl set mlag backup 10.10.10.3
+cumulus@leaf04:~$ cl set mlag peer-ip linklocal
+cumulus@leaf04:~$ cl set mlag priority 32768
+cumulus@leaf04:~$ cl set mlag init-delay 10
+cumulus@leaf04:~$ cl set interface vlan10 ip address 10.1.10.5/24
+cumulus@leaf04:~$ cl set interface vlan10 ip vrr address 10.1.10.1/24
+cumulus@leaf04:~$ cl set interface vlan10 ip vrr mac-address 00:00:00:00:00:10
+cumulus@leaf04:~$ cl set interface vlan10 ip vrr state up
+cumulus@leaf04:~$ cl set interface vlan20 ip address 10.1.20.5/24
+cumulus@leaf04:~$ cl set interface vlan20 ip vrr address 10.1.20.1/24
+cumulus@leaf04:~$ cl set interface vlan20 ip vrr mac-address 00:00:00:00:00:20
+cumulus@leaf04:~$ cl set interface vlan20 ip vrr state up
+cumulus@leaf04:~$ cl set interface vlan30 ip address 10.1.30.5/24
+cumulus@leaf04:~$ cl set interface vlan30 ip vrr address 10.1.30.1/24
+cumulus@leaf04:~$ cl set interface vlan30 ip vrr mac-address 00:00:00:00:00:30cl set 
+cumulus@leaf04:~$ cl set interface vlan30 ip vrr state up
+cumulus@leaf04:~$ cl set vrf RED
+cumulus@leaf04:~$ cl set vrf BLUE
+cumulus@leaf04:~$ cl set bridge domain br_default vlan 10 vni 10
+cumulus@leaf04:~$ cl set bridge domain br_default vlan 20 vni 20
+cumulus@leaf04:~$ cl set bridge domain br_default vlan 30 vni 30
+cumulus@leaf04:~$ cl set interface vlan10 ip vrf RED
+cumulus@leaf04:~$ cl set interface vlan20 ip vrf RED
+cumulus@leaf04:~$ cl set interface vlan30 ip vrf BLUE
+cumulus@leaf04:~$ cl set nve vxlan mlag shared-address 10.0.1.34
+cumulus@leaf04:~$ cl set nve vxlan source address 10.10.10.4
+cumulus@leaf04:~$ cl set nve vxlan arp-nd-suppress on 
+cumulus@leaf04:~$ cl set vrf RED evpn vni 4001
+cumulus@leaf04:~$ cl set vrf BLUE evpn vni 4002
+cumulus@leaf04:~$ cl set bridge domain br_default vlan 4001,4002
+cumulus@leaf04:~$ cl set evpn enable on
+cumulus@leaf04:~$ cl set router bgp autonomous-system 65104
+cumulus@leaf04:~$ cl set router bgp router-id 10.10.10.4
+cumulus@leaf04:~$ cl set vrf default router bgp peer-group underlay remote-as external
+cumulus@leaf04:~$ cl set vrf default router bgp peer swp51 peer-group underlay
+cumulus@leaf04:~$ cl set vrf default router bgp peer swp52 peer-group underlay
+cumulus@leaf04:~$ cl set vrf default router bgp peer swp53 peer-group underlay
+cumulus@leaf04:~$ cl set vrf default router bgp peer swp54 peer-group underlay
+cumulus@leaf04:~$ cl set vrf default router bgp path-selection multipath aspath-ignore on
+cumulus@leaf04:~$ cl set vrf default router bgp peer-group underlay address-family l2vpn-evpn enable on
+cumulus@leaf04:~$ cl set vrf default router bgp peer peerlink.4094 remote-as internal
+cumulus@leaf04:~$ cl set vrf default router bgp address-family ipv4-unicast route-redistribution connected
+cumulus@leaf04:~$ cl config apply
 ```
 
 {{< /tab >}}
 {{< tab "spine01 ">}}
 
 ```
-cumulus@leaf01:~$ cl set interface lo ip address 10.10.10.101/32
-cumulus@leaf01:~$ cl set interface swp1-6
-cumulus@leaf01:~$ cl set router bgp autonomous-system 651000
-cumulus@leaf01:~$ cl set router bgp router-id 10.10.10.101
-cumulus@leaf01:~$ cl set vrf default router bgp peer-group underlay remote-as external
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp1 peer-group underlay
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp2 peer-group underlay
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp3 peer-group underlay
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp4 peer-group underlay
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp5 peer-group underlay
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp6 peer-group underlay
-cumulus@leaf01:~$ cl set vrf default router bgp path-selection multipath aspath-ignore on
-cumulus@leaf01:~$ cl set vrf default router bgp address-family l2vpn-evpn enable on
-cumulus@leaf01:~$ cl set vrf default router bgp peer-group underlay address-family l2vpn-evpn enable on
-cumulus@leaf01:~$ cl set vrf default router bgp address-family ipv4-unicast route-redistribution connected
-cumulus@leaf01:~$ cl config apply
+cumulus@spine01:~$ cl set interface lo ip address 10.10.10.101/32
+cumulus@spine01:~$ cl set interface swp1-6
+cumulus@spine01:~$ cl set router bgp autonomous-system 651000
+cumulus@spine01:~$ cl set router bgp router-id 10.10.10.101
+cumulus@spine01:~$ cl set vrf default router bgp peer-group underlay remote-as external
+cumulus@spine01:~$ cl set vrf default router bgp peer swp1 peer-group underlay
+cumulus@spine01:~$ cl set vrf default router bgp peer swp2 peer-group underlay
+cumulus@spine01:~$ cl set vrf default router bgp peer swp3 peer-group underlay
+cumulus@spine01:~$ cl set vrf default router bgp peer swp4 peer-group underlay
+cumulus@spine01:~$ cl set vrf default router bgp peer swp5 peer-group underlay
+cumulus@spine01:~$ cl set vrf default router bgp peer swp6 peer-group underlay
+cumulus@spine01:~$ cl set vrf default router bgp path-selection multipath aspath-ignore on
+cumulus@spine01:~$ cl set vrf default router bgp address-family l2vpn-evpn enable on
+cumulus@spine01:~$ cl set vrf default router bgp peer-group underlay address-family l2vpn-evpn enable on
+cumulus@spine01:~$ cl set vrf default router bgp address-family ipv4-unicast route-redistribution connected
+cumulus@spine01:~$ cl config apply
 ```
 
 {{< /tab >}}
 {{< tab "spine02 ">}}
 
 ```
-cumulus@leaf01:~$ cl set interface lo ip address 10.10.10.102/32
-cumulus@leaf01:~$ cl set interface swp1-6
-cumulus@leaf01:~$ cl set router bgp autonomous-system 651000
-cumulus@leaf01:~$ cl set router bgp router-id 10.10.10.102
-cumulus@leaf01:~$ cl set vrf default router bgp peer-group underlay remote-as external
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp1 peer-group underlay
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp2 peer-group underlay
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp3 peer-group underlay
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp4 peer-group underlay
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp5 peer-group underlay
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp6 peer-group underlay
-cumulus@leaf01:~$ cl set vrf default router bgp path-selection multipath aspath-ignore on
-cumulus@leaf01:~$ cl set vrf default router bgp address-family l2vpn-evpn enable on
-cumulus@leaf01:~$ cl set vrf default router bgp peer-group underlay address-family l2vpn-evpn enable on
-cumulus@leaf01:~$ cl set vrf default router bgp address-family ipv4-unicast route-redistribution connected
-cumulus@leaf01:~$ cl config apply
+cumulus@spine02:~$ cl set interface lo ip address 10.10.10.102/32
+cumulus@spine02:~$ cl set interface swp1-6
+cumulus@spine02:~$ cl set router bgp autonomous-system 651000
+cumulus@spine02:~$ cl set router bgp router-id 10.10.10.102
+cumulus@spine02:~$ cl set vrf default router bgp peer-group underlay remote-as external
+cumulus@spine02:~$ cl set vrf default router bgp peer swp1 peer-group underlay
+cumulus@spine02:~$ cl set vrf default router bgp peer swp2 peer-group underlay
+cumulus@spine02:~$ cl set vrf default router bgp peer swp3 peer-group underlay
+cumulus@spine02:~$ cl set vrf default router bgp peer swp4 peer-group underlay
+cumulus@spine02:~$ cl set vrf default router bgp peer swp5 peer-group underlay
+cumulus@spine02:~$ cl set vrf default router bgp peer swp6 peer-group underlay
+cumulus@spine02:~$ cl set vrf default router bgp path-selection multipath aspath-ignore on
+cumulus@spine02:~$ cl set vrf default router bgp address-family l2vpn-evpn enable on
+cumulus@spine02:~$ cl set vrf default router bgp peer-group underlay address-family l2vpn-evpn enable on
+cumulus@spine02:~$ cl set vrf default router bgp address-family ipv4-unicast route-redistribution connected
+cumulus@spine02:~$ cl config apply
 ```
 
 {{< /tab >}}
 {{< tab "spine03 ">}}
 
 ```
-cumulus@leaf01:~$ cl set interface lo ip address 10.10.10.103/32
-cumulus@leaf01:~$ cl set interface swp1-6
-cumulus@leaf01:~$ cl set router bgp autonomous-system 651000
-cumulus@leaf01:~$ cl set router bgp router-id 10.10.10.103
-cumulus@leaf01:~$ cl set vrf default router bgp peer-group underlay remote-as external
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp1 peer-group underlay
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp2 peer-group underlay
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp3 peer-group underlay
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp4 peer-group underlay
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp5 peer-group underlay
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp6 peer-group underlay
-cumulus@leaf01:~$ cl set vrf default router bgp path-selection multipath aspath-ignore on
-cumulus@leaf01:~$ cl set vrf default router bgp address-family l2vpn-evpn enable on
-cumulus@leaf01:~$ cl set vrf default router bgp peer-group underlay address-family l2vpn-evpn enable on
-cumulus@leaf01:~$ cl set vrf default router bgp address-family ipv4-unicast route-redistribution connected
-cumulus@leaf01:~$ cl config apply
+cumulus@spine03:~$ cl set interface lo ip address 10.10.10.103/32
+cumulus@spine03:~$ cl set interface swp1-6
+cumulus@spine03:~$ cl set router bgp autonomous-system 651000
+cumulus@spine03:~$ cl set router bgp router-id 10.10.10.103
+cumulus@spine03:~$ cl set vrf default router bgp peer-group underlay remote-as external
+cumulus@spine03:~$ cl set vrf default router bgp peer swp1 peer-group underlay
+cumulus@spine03:~$ cl set vrf default router bgp peer swp2 peer-group underlay
+cumulus@spine03:~$ cl set vrf default router bgp peer swp3 peer-group underlay
+cumulus@spine03:~$ cl set vrf default router bgp peer swp4 peer-group underlay
+cumulus@spine03:~$ cl set vrf default router bgp peer swp5 peer-group underlay
+cumulus@spine03:~$ cl set vrf default router bgp peer swp6 peer-group underlay
+cumulus@spine03:~$ cl set vrf default router bgp path-selection multipath aspath-ignore on
+cumulus@spine03:~$ cl set vrf default router bgp address-family l2vpn-evpn enable on
+cumulus@spine03:~$ cl set vrf default router bgp peer-group underlay address-family l2vpn-evpn enable on
+cumulus@spine03:~$ cl set vrf default router bgp address-family ipv4-unicast route-redistribution connected
+cumulus@spine03:~$ cl config apply
 ```
 
 {{< /tab >}}
 {{< tab "spine04 ">}}
 
 ```
-cumulus@leaf01:~$ cl set interface lo ip address 10.10.10.104/32
-cumulus@leaf01:~$ cl set interface swp1-6
-cumulus@leaf01:~$ cl set router bgp autonomous-system 651000
-cumulus@leaf01:~$ cl set router bgp router-id 10.10.10.104
-cumulus@leaf01:~$ cl set vrf default router bgp peer-group underlay remote-as external
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp1 peer-group underlay
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp2 peer-group underlay
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp3 peer-group underlay
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp4 peer-group underlay
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp5 peer-group underlay
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp6 peer-group underlay
-cumulus@leaf01:~$ cl set vrf default router bgp path-selection multipath aspath-ignore on
-cumulus@leaf01:~$ cl set vrf default router bgp address-family l2vpn-evpn enable on
-cumulus@leaf01:~$ cl set vrf default router bgp peer-group underlay address-family l2vpn-evpn enable on
-cumulus@leaf01:~$ cl set vrf default router bgp address-family ipv4-unicast route-redistribution connected
-cumulus@leaf01:~$ cl config apply
+cumulus@spine04:~$ cl set interface lo ip address 10.10.10.104/32
+cumulus@spine04:~$ cl set interface swp1-6
+cumulus@spine04:~$ cl set router bgp autonomous-system 651000
+cumulus@spine04:~$ cl set router bgp router-id 10.10.10.104
+cumulus@spine04:~$ cl set vrf default router bgp peer-group underlay remote-as external
+cumulus@spine04:~$ cl set vrf default router bgp peer swp1 peer-group underlay
+cumulus@spine04:~$ cl set vrf default router bgp peer swp2 peer-group underlay
+cumulus@spine04:~$ cl set vrf default router bgp peer swp3 peer-group underlay
+cumulus@spine04:~$ cl set vrf default router bgp peer swp4 peer-group underlay
+cumulus@spine04:~$ cl set vrf default router bgp peer swp5 peer-group underlay
+cumulus@spine04:~$ cl set vrf default router bgp peer swp6 peer-group underlay
+cumulus@spine04:~$ cl set vrf default router bgp path-selection multipath aspath-ignore on
+cumulus@spine04:~$ cl set vrf default router bgp address-family l2vpn-evpn enable on
+cumulus@spine04:~$ cl set vrf default router bgp peer-group underlay address-family l2vpn-evpn enable on
+cumulus@spine04:~$ cl set vrf default router bgp address-family ipv4-unicast route-redistribution connected
+cumulus@spine04:~$ cl config apply
 ```
 
 {{< /tab >}}
 {{< tab "border01 ">}}
 
 ```
-cumulus@leaf01:~$ cl set interface lo ip address 10.10.10.63/32
-cumulus@leaf01:~$ cl set interface swp1-4,swp49-54
-cumulus@leaf01:~$ cl set interface swp3 link mtu 9000
-cumulus@leaf01:~$ cl set interface bond3 bond member swp3
-cumulus@leaf01:~$ cl set interface bond3 bond mlag id 3
-cumulus@leaf01:~$ cl set interface bond3 bond lacp-bypass on
-cumulus@leaf01:~$ cl set interface bond3 link mtu 9000
-cumulus@leaf01:~$ cl set interface bond3 bridge domain br_default
-cumulus@leaf01:~$ cl set interface peerlink bond member swp49-50
-cumulus@leaf01:~$ cl set mlag mac-address 44:38:39:BE:EF:FF
-cumulus@leaf01:~$ cl set mlag backup 10.10.10.64
-cumulus@leaf01:~$ cl set mlag peer-ip linklocal
-cumulus@leaf01:~$ cl set mlag priority 1000
-cumulus@leaf01:~$ cl set mlag init-delay 10
-cumulus@leaf01:~$ cl set vrf RED
-cumulus@leaf01:~$ cl set vrf BLUE
-cumulus@leaf01:~$ cl set nve vxlan mlag shared-address 10.0.1.254
-cumulus@leaf01:~$ cl set nve vxlan source address 10.10.10.63
-cumulus@leaf01:~$ cl set nve vxlan arp-nd-suppress on
-cumulus@leaf01:~$ cl set vrf RED evpn vni 4001
-cumulus@leaf01:~$ cl set vrf BLUE evpn vni 4002
-cumulus@leaf01:~$ cl set bridge domain br_default vlan 4001,4002
-cumulus@leaf01:~$ cl set system global anycast-mac 44:38:39:BE:EF:FF
-cumulus@leaf01:~$ cl set evpn enable on
-cumulus@leaf01:~$ cl set router bgp autonomous-system 65132
-cumulus@leaf01:~$ cl set router bgp router-id 10.10.10.63
-cumulus@leaf01:~$ cl set vrf default router bgp peer-group underlay remote-as external
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp51 peer-group underlay
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp52 peer-group underlay
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp53 peer-group underlay
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp54 peer-group underlay
-cumulus@leaf01:~$ cl set vrf default router bgp path-selection multipath aspath-ignore on
-cumulus@leaf01:~$ cl set vrf RED router bgp autonomous-system 651063
-cumulus@leaf01:~$ cl set vrf RED router bgp router-id 10.10.10.63
-cumulus@leaf01:~$ cl set vrf RED router bgp path-selection multipath aspath-ignore on
-cumulus@leaf01:~$ cl set vrf BLUE router bgp autonomous-system 65132
-cumulus@leaf01:~$ cl set vrf BLUE router bgp router-id 10.10.10.63
-cumulus@leaf01:~$ cl set vrf BLUE router bgp path-selection multipath aspath-ignore on
-cumulus@leaf01:~$ cl set vrf default router bgp peer-group underlay address-family l2vpn-evpn enable on
-cumulus@leaf01:~$ cl set vrf default router bgp peer peerlink.4094 remote-as internal
-cumulus@leaf01:~$ cl set vrf default router bgp address-family ipv4-unicast route-redistribution connected
-cumulus@leaf01:~$ cl config apply
+cumulus@border01:~$ cl set interface lo ip address 10.10.10.63/32
+cumulus@border01:~$ cl set interface swp1-4,swp49-54
+cumulus@border01:~$ cl set interface swp3 link mtu 9000
+cumulus@border01:~$ cl set interface bond3 bond member swp3
+cumulus@border01:~$ cl set interface bond3 bond mlag id 3
+cumulus@border01:~$ cl set interface bond3 bond lacp-bypass on
+cumulus@border01:~$ cl set interface bond3 link mtu 9000
+cumulus@border01:~$ cl set interface bond3 bridge domain br_default
+cumulus@border01:~$ cl set interface peerlink bond member swp49-50
+cumulus@border01:~$ cl set mlag mac-address 44:38:39:BE:EF:FF
+cumulus@border01:~$ cl set mlag backup 10.10.10.64
+cumulus@border01:~$ cl set mlag peer-ip linklocal
+cumulus@border01:~$ cl set mlag priority 1000
+cumulus@border01:~$ cl set mlag init-delay 10
+cumulus@border01:~$ cl set vrf RED
+cumulus@border01:~$ cl set vrf BLUE
+cumulus@border01:~$ cl set nve vxlan mlag shared-address 10.0.1.254
+cumulus@border01:~$ cl set nve vxlan source address 10.10.10.63
+cumulus@border01:~$ cl set nve vxlan arp-nd-suppress on
+cumulus@border01:~$ cl set vrf RED evpn vni 4001
+cumulus@border01:~$ cl set vrf BLUE evpn vni 4002
+cumulus@border01:~$ cl set bridge domain br_default vlan 4001,4002
+cumulus@border01:~$ cl set system global anycast-mac 44:38:39:BE:EF:FF
+cumulus@border01:~$ cl set evpn enable on
+cumulus@border01:~$ cl set router bgp autonomous-system 65132
+cumulus@border01:~$ cl set router bgp router-id 10.10.10.63
+cumulus@border01:~$ cl set vrf default router bgp peer-group underlay remote-as external
+cumulus@border01:~$ cl set vrf default router bgp peer swp51 peer-group underlay
+cumulus@border01:~$ cl set vrf default router bgp peer swp52 peer-group underlay
+cumulus@border01:~$ cl set vrf default router bgp peer swp53 peer-group underlay
+cumulus@border01:~$ cl set vrf default router bgp peer swp54 peer-group underlay
+cumulus@border01:~$ cl set vrf default router bgp path-selection multipath aspath-ignore on
+cumulus@border01:~$ cl set vrf RED router bgp autonomous-system 651063
+cumulus@border01:~$ cl set vrf RED router bgp router-id 10.10.10.63
+cumulus@border01:~$ cl set vrf RED router bgp path-selection multipath aspath-ignore on
+cumulus@border01:~$ cl set vrf BLUE router bgp autonomous-system 65132
+cumulus@border01:~$ cl set vrf BLUE router bgp router-id 10.10.10.63
+cumulus@border01:~$ cl set vrf BLUE router bgp path-selection multipath aspath-ignore on
+cumulus@border01:~$ cl set vrf default router bgp peer-group underlay address-family l2vpn-evpn enable on
+cumulus@border01:~$ cl set vrf default router bgp peer peerlink.4094 remote-as internal
+cumulus@border01:~$ cl set vrf default router bgp address-family ipv4-unicast route-redistribution connected
+cumulus@border01:~$ cl config apply
 ```
 
 {{< /tab >}}
 {{< tab "border02 ">}}
 
 ```
-cumulus@leaf01:~$ cl set interface lo ip address 10.10.10.64/32
-cumulus@leaf01:~$ cl set interface swp1-4,swp49-54
-cumulus@leaf01:~$ cl set interface swp3 link mtu 9000
-cumulus@leaf01:~$ cl set interface bond3 bond member swp3
-cumulus@leaf01:~$ cl set interface bond3 bond mlag id 3
-cumulus@leaf01:~$ cl set interface bond3 bond lacp-bypass on
-cumulus@leaf01:~$ cl set interface bond3 link mtu 9000
-cumulus@leaf01:~$ cl set interface bond3 bridge domain br_default
-cumulus@leaf01:~$ cl set interface peerlink bond member swp49-50
-cumulus@leaf01:~$ cl set mlag mac-address 44:38:39:BE:EF:FF
-cumulus@leaf01:~$ cl set mlag backup 10.10.10.63
-cumulus@leaf01:~$ cl set mlag peer-ip linklocal
-cumulus@leaf01:~$ cl set mlag priority 32768
-cumulus@leaf01:~$ cl set mlag init-delay 10
-cumulus@leaf01:~$ cl set vrf RED
-cumulus@leaf01:~$ cl set vrf BLUE
-cumulus@leaf01:~$ cl set nve vxlan mlag shared-address 10.0.1.254
-cumulus@leaf01:~$ cl set nve vxlan source address 10.10.10.64
-cumulus@leaf01:~$ cl set nve vxlan arp-nd-suppress on
-cumulus@leaf01:~$ cl set vrf RED evpn vni 4001
-cumulus@leaf01:~$ cl set vrf BLUE evpn vni 4002
-cumulus@leaf01:~$ cl set bridge domain br_default vlan 4001,4002
-cumulus@leaf01:~$ cl set system global anycast-mac 44:38:39:BE:EF:FF
-cumulus@leaf01:~$ cl set evpn enable on
-cumulus@leaf01:~$ cl set router bgp autonomous-system 651064
-cumulus@leaf01:~$ cl set router bgp router-id 10.10.10.64
-cumulus@leaf01:~$ cl set vrf default router bgp peer-group underlay remote-as external
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp51 peer-group underlay
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp52 peer-group underlay
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp53 peer-group underlay
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp54 peer-group underlay
-cumulus@leaf01:~$ cl set vrf default router bgp path-selection multipath aspath-ignore on
-cumulus@leaf01:~$ cl set vrf RED router bgp autonomous-system 65132
-cumulus@leaf01:~$ cl set vrf RED router bgp router-id 10.10.10.63
-cumulus@leaf01:~$ cl set vrf RED router bgp path-selection multipath aspath-ignore on
-cumulus@leaf01:~$ cl set vrf BLUE router bgp autonomous-system 65132
-cumulus@leaf01:~$ cl set vrf BLUE router bgp router-id 10.10.10.63
-cumulus@leaf01:~$ cl set vrf BLUE router bgp path-selection multipath aspath-ignore on
-cumulus@leaf01:~$ cl set vrf default router bgp peer-group underlay address-family l2vpn-evpn enable on
-cumulus@leaf01:~$ cl set vrf default router bgp peer peerlink.4094 remote-as internal
-cumulus@leaf01:~$ cl set vrf default router bgp address-family ipv4-unicast route-redistribution connected
-cumulus@leaf01:~$ cl config apply
+cumulus@border02:~$ cl set interface lo ip address 10.10.10.64/32
+cumulus@border02:~$ cl set interface swp1-4,swp49-54
+cumulus@border02:~$ cl set interface swp3 link mtu 9000
+cumulus@border02:~$ cl set interface bond3 bond member swp3
+cumulus@border02:~$ cl set interface bond3 bond mlag id 3
+cumulus@border02:~$ cl set interface bond3 bond lacp-bypass on
+cumulus@border02:~$ cl set interface bond3 link mtu 9000
+cumulus@border02:~$ cl set interface bond3 bridge domain br_default
+cumulus@border02:~$ cl set interface peerlink bond member swp49-50
+cumulus@border02:~$ cl set mlag mac-address 44:38:39:BE:EF:FF
+cumulus@border02:~$ cl set mlag backup 10.10.10.63
+cumulus@border02:~$ cl set mlag peer-ip linklocal
+cumulus@border02:~$ cl set mlag priority 32768
+cumulus@border02:~$ cl set mlag init-delay 10
+cumulus@border02:~$ cl set vrf RED
+cumulus@border02:~$ cl set vrf BLUE
+cumulus@border02:~$ cl set nve vxlan mlag shared-address 10.0.1.254
+cumulus@border02:~$ cl set nve vxlan source address 10.10.10.64
+cumulus@border02:~$ cl set nve vxlan arp-nd-suppress on
+cumulus@border02:~$ cl set vrf RED evpn vni 4001
+cumulus@border02:~$ cl set vrf BLUE evpn vni 4002
+cumulus@border02:~$ cl set bridge domain br_default vlan 4001,4002
+cumulus@border02:~$ cl set system global anycast-mac 44:38:39:BE:EF:FF
+cumulus@border02:~$ cl set evpn enable on
+cumulus@border02:~$ cl set router bgp autonomous-system 651064
+cumulus@border02:~$ cl set router bgp router-id 10.10.10.64
+cumulus@border02:~$ cl set vrf default router bgp peer-group underlay remote-as external
+cumulus@border02:~$ cl set vrf default router bgp peer swp51 peer-group underlay
+cumulus@border02:~$ cl set vrf default router bgp peer swp52 peer-group underlay
+cumulus@border02:~$ cl set vrf default router bgp peer swp53 peer-group underlay
+cumulus@border02:~$ cl set vrf default router bgp peer swp54 peer-group underlay
+cumulus@border02:~$ cl set vrf default router bgp path-selection multipath aspath-ignore on
+cumulus@border02:~$ cl set vrf RED router bgp autonomous-system 65132
+cumulus@border02:~$ cl set vrf RED router bgp router-id 10.10.10.63
+cumulus@border02:~$ cl set vrf RED router bgp path-selection multipath aspath-ignore on
+cumulus@border02:~$ cl set vrf BLUE router bgp autonomous-system 65132
+cumulus@border02:~$ cl set vrf BLUE router bgp router-id 10.10.10.63
+cumulus@border02:~$ cl set vrf BLUE router bgp path-selection multipath aspath-ignore on
+cumulus@border02:~$ cl set vrf default router bgp peer-group underlay address-family l2vpn-evpn enable on
+cumulus@border02:~$ cl set vrf default router bgp peer peerlink.4094 remote-as internal
+cumulus@border02:~$ cl set vrf default router bgp address-family ipv4-unicast route-redistribution connected
+cumulus@border02:~$ cl config apply
 ```
 
 {{< /tab >}}
@@ -3457,8 +3496,8 @@ auto BLUE
 iface BLUE
   vrf-table auto
 
-auto bridge
-iface bridge
+auto br_default
+iface br_default
     bridge-ports peerlink bond1 bond2 bond3 vni10 vni20 vni30 vniRED vniBLUE
     bridge-vids 10 20 30 4001 4002  
     bridge-vlan-aware yes
@@ -3498,7 +3537,7 @@ iface vlan10
     address 10.1.10.2/24
     address-virtual 00:00:00:00:00:1a 10.1.10.1/24
     vrf RED
-    vlan-raw-device bridge
+    vlan-raw-device br_default
     vlan-id 10
 
 auto vlan20
@@ -3506,7 +3545,7 @@ iface vlan20
     address 10.1.20.2/24
     address-virtual 00:00:00:00:00:1a 10.1.20.1/24
     vrf RED
-    vlan-raw-device bridge
+    vlan-raw-device br_default
     vlan-id 20
 
 auto vlan30
@@ -3514,21 +3553,21 @@ iface vlan30
     address 10.1.30.2/24
     address-virtual 00:00:00:00:00:1a 10.1.30.1/24
     vrf BLUE
-    vlan-raw-device bridge
+    vlan-raw-device br_default
     vlan-id 30
 
 auto vlan4001
 iface vlan4001
     address-virtual 44:38:39:BE:EF:AA
     vrf RED
-    vlan-raw-device bridge
+    vlan-raw-device br_default
     vlan-id 4001
 
 auto vlan4002
 iface vlan4002
     address-virtual 44:38:39:BE:EF:AA
     vrf BLUE
-    vlan-raw-device bridge
+    vlan-raw-device br_default
     vlan-id 4002
 
 auto swp51
@@ -3627,8 +3666,8 @@ auto BLUE
 iface BLUE
   vrf-table auto
 
-auto bridge
-iface bridge
+auto br_default
+iface br_default
     bridge-ports peerlink bond1 bond2 bond3 vni10 vni20 vni30 vniRED vniBLUE
     bridge-vids 10 20 30 4001 4002  
     bridge-vlan-aware yes
@@ -3668,7 +3707,7 @@ iface vlan10
     address 10.1.10.3/24
     address-virtual 00:00:00:00:00:1a 10.1.10.1/24
     vrf RED
-    vlan-raw-device bridge
+    vlan-raw-device br_default
     vlan-id 10
 
 auto vlan20
@@ -3676,7 +3715,7 @@ iface vlan20
     address 10.1.20.3/24
     address-virtual 00:00:00:00:00:1a 10.1.20.1/24
     vrf RED
-    vlan-raw-device bridge
+    vlan-raw-device br_default
     vlan-id 20
 
 auto vlan30
@@ -3684,21 +3723,21 @@ iface vlan30
     address 10.1.30.3/24
     address-virtual 00:00:00:00:00:1a 10.1.30.1/24
     vrf BLUE
-    vlan-raw-device bridge
+    vlan-raw-device br_default
     vlan-id 30
 
 auto vlan4001
 iface vlan4001
     address-virtual 44:38:39:BE:EF:AA
     vrf RED
-    vlan-raw-device bridge
+    vlan-raw-device br_default
     vlan-id 4001
 
 auto vlan4002
 iface vlan4002
     address-virtual 44:38:39:BE:EF:AA
     vrf BLUE
-    vlan-raw-device bridge
+    vlan-raw-device br_default
     vlan-id 4002
 
 auto swp51
@@ -3797,8 +3836,8 @@ auto BLUE
 iface BLUE
   vrf-table auto
 
-auto bridge
-iface bridge
+auto br_default
+iface br_default
     bridge-ports peerlink bond1 bond2 bond3 vni10 vni20 vni30 vniRED vniBLUE
     bridge-vids 10 20 30 4001 4002  
     bridge-vlan-aware yes
@@ -3838,7 +3877,7 @@ iface vlan10
     address 10.1.10.2/24
     address-virtual 00:00:00:00:00:1a 10.1.10.1/24
     vrf RED
-    vlan-raw-device bridge
+    vlan-raw-device  br_default
     vlan-id 10
 
 auto vlan20
@@ -3846,7 +3885,7 @@ iface vlan20
     address 10.1.20.2/24
     address-virtual 00:00:00:00:00:1a 10.1.20.1/24
     vrf RED
-    vlan-raw-device bridge
+    vlan-raw-device br_default
     vlan-id 20
 
 auto vlan30
@@ -3854,21 +3893,21 @@ iface vlan30
     address 10.1.30.2/24
     address-virtual 00:00:00:00:00:1a 10.1.30.1/24
     vrf BLUE
-    vlan-raw-device bridge
+    vlan-raw-device br_default
     vlan-id 30
 
 auto vlan4001
 iface vlan4001
     address-virtual 44:38:39:BE:EF:BB
     vrf RED
-    vlan-raw-device bridge
+    vlan-raw-device br_default
     vlan-id 4001
 
 auto vlan4002
 iface vlan4002
     address-virtual 44:38:39:BE:EF:BB
     vrf BLUE
-    vlan-raw-device bridge
+    vlan-raw-device br_default
     vlan-id 4002
 
 auto swp51
@@ -3967,8 +4006,8 @@ auto BLUE
 iface BLUE
     vrf-table auto
 
-auto bridge
-iface bridge
+auto br_default
+iface br_default
     bridge-ports peerlink bond1 bond2 bond3 vni10 vni20 vni30 vniRED vniBLUE
     bridge-vids 10 20 30 4001 4002  
     bridge-vlan-aware yes
@@ -4008,7 +4047,7 @@ iface vlan10
     address 10.1.10.3/24
     address-virtual 00:00:00:00:00:1a 10.1.10.1/24
     vrf RED
-    vlan-raw-device bridge
+    vlan-raw-device br_default
     vlan-id 10
 
 auto vlan20
@@ -4016,7 +4055,7 @@ iface vlan20
     address 10.1.20.3/24
     address-virtual 00:00:00:00:00:1a 10.1.20.1/24
     vrf RED
-    vlan-raw-device bridge
+    vlan-raw-device br_default
     vlan-id 20
 
 auto vlan30
@@ -4024,21 +4063,21 @@ iface vlan30
     address 10.1.30.3/24
     address-virtual 00:00:00:00:00:1a 10.1.30.1/24
     vrf BLUE
-    vlan-raw-device bridge
+    vlan-raw-device br_default
     vlan-id 30
 
 auto vlan4001
 iface vlan4001
     address-virtual 44:38:39:BE:EF:BB
     vrf RED
-    vlan-raw-device bridge
+    vlan-raw-device br_default
     vlan-id 4001
 
 auto vlan4002
 iface vlan4002
     address-virtual 44:38:39:BE:EF:BB
     vrf BLUE
-    vlan-raw-device bridge
+    vlan-raw-device br_default
     vlan-id 4002
 
 auto swp51
@@ -4293,8 +4332,8 @@ auto BLUE
 iface BLUE
   vrf-table auto
 
-auto bridge
-iface bridge
+auto br_default
+iface br_default
     bridge-ports peerlink bond3 vniRED vniBLUE
     bridge-vids 4001 4002  
     bridge-vlan-aware yes
@@ -4315,14 +4354,14 @@ auto vlan4001
 iface vlan4001
     address-virtual 44:38:39:BE:EF:FF
     vrf RED
-    vlan-raw-device bridge
+    vlan-raw-device br_default
     vlan-id 4001
 
 auto vlan4002
 iface vlan4002
     address-virtual 44:38:39:BE:EF:FF
     vrf BLUE
-    vlan-raw-device bridge
+    vlan-raw-device br_default
     vlan-id 4002
 
 auto swp51
@@ -4397,8 +4436,8 @@ auto BLUE
 iface BLUE
   vrf-table auto
 
-auto bridge
-iface bridge
+auto br_default
+iface br_default
     bridge-ports peerlink bond3 vniRED vniBLUE
     bridge-vids 4001 4002  
     bridge-vlan-aware yes
@@ -4419,14 +4458,14 @@ auto vlan4001
 iface vlan4001
     address-virtual 44:38:39:BE:EF:FF
     vrf RED
-    vlan-raw-device bridge
+    vlan-raw-device br_default
     vlan-id 4001
 
 auto vlan4002
 iface vlan4002
     address-virtual 44:38:39:BE:EF:FF
     vrf BLUE
-    vlan-raw-device bridge
+    vlan-raw-device br_default
     vlan-id 4002
 
 auto swp51

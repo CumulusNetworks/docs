@@ -13,6 +13,12 @@
 <td></td>
 </tr>
 <tr>
+<td>CM-32055</td>
+<td>&lt;p&gt;During a graceful restart of a peer router, if the link between the local system (Helper) and the restarting router flaps, the stale routes announced by the restarting router are no longer used for forwarding by the Helper router even though they remain in the BGP RIB.&lt;/p&gt;</td>
+<td>4.3.0</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-28080</td>
 <td>&lt;p&gt;TACACS+ through ClearPass is not currently supported. Cumulus Linux sends authorization before authentication, but ClearPass does not accept an authorization before the user is authenticated.&lt;/p&gt;</td>
 <td>3.7.11-3.7.14.2, 4.0.0-4.3.0</td>
@@ -394,12 +400,6 @@ This is an information leak in algorithm negotiation that can allow man-in-the-m
 To work around this issue, configure a static route in FRR.
 </td>
 <td>4.2.1-4.3.0</td>
-<td></td>
-</tr>
-<tr>
-<td>2554449</td>
-<td>During a graceful restart of a peer router, if the link between the local system (Helper) and the restarting router flaps, the stale routes announced by the restarting router are no longer used for forwarding by the Helper router even though they remain in the BGP RIB.</td>
-<td>4.3.0</td>
 <td></td>
 </tr>
 <tr>
@@ -1910,11 +1910,6 @@ To work around this issue, use the {{ethtool -m &lt;interface&gt;}} command.</td
 <td>3.7.13-4.2.1</td>
 </tr>
 <tr>
-<td>2552853</td>
-<td>Tenant VRF BGP peers appear in the EVPN RMAC and nexthop tables, which causes the kernel RMAC to point at invalid IP address.</td>
-<td>3.7.12-4.2.1</td>
-</tr>
-<tr>
 <td>2552742</td>
 <td>On the Mellanox SN2410 switch, you see {{switchd}} core and {{GBIN_MALLOC}} errors.
 To work around this issue, restart {{switchd}}.</td>
@@ -1924,11 +1919,6 @@ To work around this issue, restart {{switchd}}.</td>
 <td>2552710</td>
 <td>The MLAG bonds on a secondary switch do not change to a unique MAC address on the peerlink. As a result, a backup double failure can occur where both peers go down.</td>
 <td>4.2.0-4.2.1</td>
-</tr>
-<tr>
-<td>2552704</td>
-<td>In a traditional bridge configuration with {{ip-forward off}}, neighbors are synchronized to hardware with a {{switchd}} restart but are cleared when you flap the bridge interface.</td>
-<td>3.7.10-4.2.1</td>
 </tr>
 <tr>
 <td>2552687</td>

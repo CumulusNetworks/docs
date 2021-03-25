@@ -8,7 +8,7 @@ toc: 1
 type: rn
 pdfhidden: True
 ---
-<a href="/cumulus-netq-32/rn.xls"><img src={{"images/xls_icon.png" | absURL}} height="20px" width="20px" alt="Download 3.2 Release Notes xls" /></a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="/cumulus-netq-32/rn.xls">Download all 3.2 release notes as .xls</a>
+<a href="/cumulus-netq-32/rn.xls"> {{<rn_icon alt="Download 3.2 Release Notes xls" >}}</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="/cumulus-netq-32/rn.xls">Download all 3.2 release notes as .xls</a>
 ## 3.2.1 Release Notes
 ### Open issues in 3.2.1
 

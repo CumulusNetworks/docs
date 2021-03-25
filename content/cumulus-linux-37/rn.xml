@@ -1086,12 +1086,6 @@ To work around this issue, remove the empty Bond interfaces from the {{/etc/netw
 <td></td>
 </tr>
 <tr>
-<td>2545576</td>
-<td>When ECMP routes have both VXLAN (symmetric routing) and non-VXLAN paths, the non-VXLAN path is incorrectly installed in the RIB and FIB to point across VXLAN. The non-VXLAN next-hop will be installed as an offload entry in the neighbor table ({{ip neigh show}}) with a mac address of 00:00:00:00:00:00.</td>
-<td>3.7.3-3.7.14.2</td>
-<td></td>
-</tr>
-<tr>
 <td>2545566</td>
 <td>The Dell Z9100-ON switch incorrectly reports many sensors as ABSENT.</td>
 <td>3.7.12-4.0.1</td>
@@ -2919,12 +2913,6 @@ This workaround only works when an out-of-band network is present.</td>
 <td>The NCLU command {{net show interface}} produces an error if bonds with no members exist.
 To work around this issue, remove the empty Bond interfaces from the {{/etc/network/interfaces}} file and run {{sudo ifreload -a}}.</td>
 <td>3.7.10-3.7.14.2</td>
-<td></td>
-</tr>
-<tr>
-<td>2545576</td>
-<td>When ECMP routes have both VXLAN (symmetric routing) and non-VXLAN paths, the non-VXLAN path is incorrectly installed in the RIB and FIB to point across VXLAN. The non-VXLAN next-hop will be installed as an offload entry in the neighbor table ({{ip neigh show}}) with a mac address of 00:00:00:00:00:00.</td>
-<td>3.7.3-3.7.14.2</td>
 <td></td>
 </tr>
 <tr>
@@ -5590,12 +5578,6 @@ To work around this issue, disable BFD to alleviate some of the CPU load.</td>
 <td>On the Celestica Pebble switch, if you use IPv6 routes with mask /65 to /127,  the {{switchd}} log fills with errors.</td>
 <td>3.7.10-3.7.13</td>
 <td>3.7.14-3.7.14.2, 4.1.0-4.3.0</td>
-</tr>
-<tr>
-<td>2545576</td>
-<td>When ECMP routes have both VXLAN (symmetric routing) and non-VXLAN paths, the non-VXLAN path is incorrectly installed in the RIB and FIB to point across VXLAN. The non-VXLAN next-hop will be installed as an offload entry in the neighbor table ({{ip neigh show}}) with a mac address of 00:00:00:00:00:00.</td>
-<td>3.7.3-3.7.14.2</td>
-<td></td>
 </tr>
 <tr>
 <td>2545566</td>
@@ -8387,12 +8369,6 @@ To work around this issue, remove the empty Bond interfaces from the {{/etc/netw
 <td>3.7.14-3.7.14.2, 4.1.0-4.3.0</td>
 </tr>
 <tr>
-<td>2545576</td>
-<td>When ECMP routes have both VXLAN (symmetric routing) and non-VXLAN paths, the non-VXLAN path is incorrectly installed in the RIB and FIB to point across VXLAN. The non-VXLAN next-hop will be installed as an offload entry in the neighbor table ({{ip neigh show}}) with a mac address of 00:00:00:00:00:00.</td>
-<td>3.7.3-3.7.14.2</td>
-<td></td>
-</tr>
-<tr>
 <td>2545566</td>
 <td>The Dell Z9100-ON switch incorrectly reports many sensors as ABSENT.</td>
 <td>3.7.12-4.0.1</td>
@@ -10277,12 +10253,6 @@ To work around this issue, run the {{net add time ntp server &lt;server&gt; ibur
 <td>3.7.12-3.7.14, 4.1.0-4.3.0</td>
 </tr>
 <tr>
-<td>2545576</td>
-<td>When ECMP routes have both VXLAN (symmetric routing) and non-VXLAN paths, the non-VXLAN path is incorrectly installed in the RIB and FIB to point across VXLAN. The non-VXLAN next-hop will be installed as an offload entry in the neighbor table ({{ip neigh show}}) with a mac address of 00:00:00:00:00:00.</td>
-<td>3.7.3-3.7.14.2</td>
-<td></td>
-</tr>
-<tr>
 <td>2545446</td>
 <td>If you use NCLU commands to add a non-MLAG bond, then add an MLAG configuration, the {{net commit}} command fails. However, a subsequent {{net commit}} command succeeds.</td>
 <td>3.7.10-3.7.14.2</td>
@@ -12041,12 +12011,6 @@ To work around this issue, reboot the switch, then remove the static routes or s
 <td>3.7.12-3.7.14, 4.1.0-4.3.0</td>
 </tr>
 <tr>
-<td>2545576</td>
-<td>When ECMP routes have both VXLAN (symmetric routing) and non-VXLAN paths, the non-VXLAN path is incorrectly installed in the RIB and FIB to point across VXLAN. The non-VXLAN next-hop will be installed as an offload entry in the neighbor table ({{ip neigh show}}) with a mac address of 00:00:00:00:00:00.</td>
-<td>3.7.3-3.7.14.2</td>
-<td></td>
-</tr>
-<tr>
 <td>2545520</td>
 <td>The length of the netlink message is not set properly for non-bridge family type messages. The same length is used for both bridge and non-bridge even though the bridge family type message has an extra attribute. This causes extra bytes to be left over in non-bridge family type netlink messages.</td>
 <td>3.7.10, 4.0.0-4.3.0</td>
@@ -13480,12 +13444,6 @@ To work around this issue, reboot the switch, then remove the static routes or s
 </td>
 <td>3.7.2-3.7.11, 4.0.0-4.0.1</td>
 <td>3.7.12-3.7.14, 4.1.0-4.3.0</td>
-</tr>
-<tr>
-<td>2545576</td>
-<td>When ECMP routes have both VXLAN (symmetric routing) and non-VXLAN paths, the non-VXLAN path is incorrectly installed in the RIB and FIB to point across VXLAN. The non-VXLAN next-hop will be installed as an offload entry in the neighbor table ({{ip neigh show}}) with a mac address of 00:00:00:00:00:00.</td>
-<td>3.7.3-3.7.14.2</td>
-<td></td>
 </tr>
 <tr>
 <td>2545505</td>
@@ -15415,12 +15373,6 @@ To work around this issue, run the {{cl-support -M}} command to disable timeouts
 <td>3.7.12-3.7.14, 4.1.0-4.3.0</td>
 </tr>
 <tr>
-<td>2545576</td>
-<td>When ECMP routes have both VXLAN (symmetric routing) and non-VXLAN paths, the non-VXLAN path is incorrectly installed in the RIB and FIB to point across VXLAN. The non-VXLAN next-hop will be installed as an offload entry in the neighbor table ({{ip neigh show}}) with a mac address of 00:00:00:00:00:00.</td>
-<td>3.7.3-3.7.14.2</td>
-<td></td>
-</tr>
-<tr>
 <td>2545405</td>
 <td>The {{ospfd}} daemon might crash with the following kernel trace: 
 
@@ -16839,12 +16791,6 @@ To work around this issue, run the {{cl-support -M}} command to disable timeouts
 </td>
 <td>3.7.2-3.7.11, 4.0.0-4.0.1</td>
 <td>3.7.12-3.7.14, 4.1.0-4.3.0</td>
-</tr>
-<tr>
-<td>2545576</td>
-<td>When ECMP routes have both VXLAN (symmetric routing) and non-VXLAN paths, the non-VXLAN path is incorrectly installed in the RIB and FIB to point across VXLAN. The non-VXLAN next-hop will be installed as an offload entry in the neighbor table ({{ip neigh show}}) with a mac address of 00:00:00:00:00:00.</td>
-<td>3.7.3-3.7.14.2</td>
-<td></td>
 </tr>
 <tr>
 <td>2545405</td>
@@ -18583,12 +18529,6 @@ To work around this issue, run the {{cl-support -M}} command to disable timeouts
 <td>3.7.12-3.7.14, 4.1.0-4.3.0</td>
 </tr>
 <tr>
-<td>2545576</td>
-<td>When ECMP routes have both VXLAN (symmetric routing) and non-VXLAN paths, the non-VXLAN path is incorrectly installed in the RIB and FIB to point across VXLAN. The non-VXLAN next-hop will be installed as an offload entry in the neighbor table ({{ip neigh show}}) with a mac address of 00:00:00:00:00:00.</td>
-<td>3.7.3-3.7.14.2</td>
-<td></td>
-</tr>
-<tr>
 <td>2545405</td>
 <td>The {{ospfd}} daemon might crash with the following kernel trace: 
 
@@ -20079,12 +20019,6 @@ To work around this issue, run the {{cl-support -M}} command to disable timeouts
 <td>3.7.12-3.7.14, 4.1.0-4.3.0</td>
 </tr>
 <tr>
-<td>2545576</td>
-<td>When ECMP routes have both VXLAN (symmetric routing) and non-VXLAN paths, the non-VXLAN path is incorrectly installed in the RIB and FIB to point across VXLAN. The non-VXLAN next-hop will be installed as an offload entry in the neighbor table ({{ip neigh show}}) with a mac address of 00:00:00:00:00:00.</td>
-<td>3.7.3-3.7.14.2</td>
-<td></td>
-</tr>
-<tr>
 <td>2545236</td>
 <td>On the Edgecore AS6812 switch, you might see rare I2C errors.</td>
 <td>3.7.2-3.7.10, 4.0.0-4.0.1</td>
@@ -21235,12 +21169,6 @@ To work around this issue, run the {{cl-support -M}} command to disable timeouts
 </td>
 <td>3.7.2-3.7.11, 4.0.0-4.0.1</td>
 <td>3.7.12-3.7.14, 4.1.0-4.3.0</td>
-</tr>
-<tr>
-<td>2545576</td>
-<td>When ECMP routes have both VXLAN (symmetric routing) and non-VXLAN paths, the non-VXLAN path is incorrectly installed in the RIB and FIB to point across VXLAN. The non-VXLAN next-hop will be installed as an offload entry in the neighbor table ({{ip neigh show}}) with a mac address of 00:00:00:00:00:00.</td>
-<td>3.7.3-3.7.14.2</td>
-<td></td>
 </tr>
 <tr>
 <td>2545236</td>
@@ -22426,12 +22354,6 @@ To work around this issue, run the {{cl-support -M}} command to disable timeouts
 </td>
 <td>3.7.2-3.7.11, 4.0.0-4.0.1</td>
 <td>3.7.12-3.7.14, 4.1.0-4.3.0</td>
-</tr>
-<tr>
-<td>2545576</td>
-<td>When ECMP routes have both VXLAN (symmetric routing) and non-VXLAN paths, the non-VXLAN path is incorrectly installed in the RIB and FIB to point across VXLAN. The non-VXLAN next-hop will be installed as an offload entry in the neighbor table ({{ip neigh show}}) with a mac address of 00:00:00:00:00:00.</td>
-<td>3.7.3-3.7.14.2</td>
-<td></td>
 </tr>
 <tr>
 <td>2545236</td>

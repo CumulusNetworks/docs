@@ -237,6 +237,12 @@ ARP suppression with EVPN allows a VTEP to suppress ARP flooding over VXLAN tunn
 
 ARP/ND suppression is enabled by default on all VNIs in Cumulus Linux to reduce flooding of ARP/ND packets over VXLAN tunnels.
 
+{{%notice note%}}
+
+ARP/ND suppression will only suppress the flooding of known hosts. ARP/ND requests for unknown hosts will still be flooded. To disable all flooding refer to the {{<link title="#Disable BUM Flooding" text="Disable BUM Flooding" >}} section.
+
+{{%/notice%}}
+
 In a centralized routing deployment, you must configure layer 3 interfaces even if the switch is configured only for layer 2 (you are not using VXLAN routing). To avoid unnecessary layer 3 information from being installed, configure the `ip forward off` or `ip6 forward off` options as appropriate on the VLANs. See the example configuration below.
 
 The following examples show a configuration using two VXLANs (10100 and 10200) and two VLANs (100 and 200).

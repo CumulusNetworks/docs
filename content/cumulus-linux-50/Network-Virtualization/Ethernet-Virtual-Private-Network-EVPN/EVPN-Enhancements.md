@@ -436,24 +436,20 @@ ARP suppression with EVPN allows a VTEP to suppress ARP flooding over VXLAN tunn
 
 ARP/ND suppression is enabled by default on all VNIs in Cumulus Linux to reduce flooding of ARP/ND packets over VXLAN tunnels.
 
-In a centralized routing deployment, you must configure layer 3 interfaces even if the switch is configured only for layer 2 (you are not using VXLAN routing). To avoid unnecessary layer 3 information from being installed, configure the `ip forward off` or `ip6 forward off` options as appropriate on the VLANs. See the example configuration below.
+{{%notice note%}}
 
-The following examples show a configuration using two VXLANs (10 and 20) and two VLANs (10 and 20).
+ARP/ND suppression will only suppress the flooding of known hosts. ARP/ND requests for unknown hosts will still be flooded. To disable all flooding refer to the {{<link title="#Disable BUM Flooding" text="Disable BUM Flooding" >}} section.
+
+{{%/notice%}}
+
+In a centralized routing deployment, you must configure layer 3 interfaces even if the switch is configured only for layer 2 (you are not using VXLAN routing). To avoid unnecessary layer 3 information from being installed, you can turn off IP forwarding.
+
+The following example commands turn off IPv4 and IPv6 forwarding on VLAN 10 and VLAN 20.
 
 {{< tabs "TabID367 ">}}
 {{< tab "CUE Commands ">}}
 
-NEED HELP HERE - INCORRECT COMMANDS
-
 ```
-cumulus@leaf01:~$ cl set interface VNI10,VNI20 bridge domain br_default
-cumulus@leaf01:~$ cl set bridge domain br_default vlan 10,20
-cumulus@leaf01:~$ cl set vrf default evpn vni 10
-cumulus@leaf01:~$ cl set vrf default evpn vni 20
-cumulus@leaf01:~$ cl set interface vni10 bridge domain br_default access 10
-cumulus@leaf01:~$ cl set interface vni20 bridge domain br_default access 20
-cumulus@leaf01:~$ cl set vrf default evpn vni 10 NEED COMMAND for local-tunnelip
-cumulus@leaf01:~$ cl set vrf default evpn vni 20 NEED COMMAND for local-tunnelip
 cumulus@leaf01:~$ cl set interface vlan10 ip ipv4 forward off
 cumulus@leaf01:~$ cl set interface vlan10 ip ipv6 forward off
 cumulus@leaf01:~$ cl set interface vlan20 ip ipv4 forward off
@@ -465,14 +461,6 @@ cumulus@leaf01:~$ cl config apply
 {{< tab "NCLU Commands ">}}
 
 ```
-cumulus@leaf01:~$ net add bridge bridge ports vni10,vni20
-cumulus@leaf01:~$ net add bridge bridge vids 10,20
-cumulus@leaf01:~$ net add vxlan vni10 vxlan id 10
-cumulus@leaf01:~$ net add vxlan vni20 vxlan id 20
-cumulus@leaf01:~$ net add vxlan vni10 bridge access 10
-cumulus@leaf01:~$ net add vxlan vni20 bridge access 20
-cumulus@leaf01:~$ net add vxlan vni10 vxlan local-tunnelip 10.10.10.1
-cumulus@leaf01:~$ net add vxlan vni20 vxlan local-tunnelip 10.10.10.1
 cumulus@leaf01:~$ net add vlan 10 ip forward off
 cumulus@leaf01:~$ net add vlan 10 ipv6 forward off
 cumulus@leaf01:~$ net add vlan 20 ip forward off
@@ -489,13 +477,6 @@ Edit the `/etc/network/interfaces` file.
 ```
 cumulus@leaf01:~$ sudo nano /etc/network/interfaces
 ...
-auto bridge
-iface bridge
-    bridge-ports vni10 vni20
-    bridge-stp on
-    bridge-vids 10 20
-    bridge-vlan-aware yes
-
 auto vlan10
 iface vlan10
     ip6-forward off
@@ -514,13 +495,13 @@ auto vni10
 iface vni10
     bridge-access 10
     vxlan-id 10
-    vxlan-local-tunnelip 10.10.10.1
+    bridge-learning off
 
 auto vni20
 iface vni20
       bridge-access 20
       vxlan-id 20
-      vxlan-local-tunnelip 10.10.10.1
+      bridge-learning off
 ...
 ```
 
@@ -705,13 +686,11 @@ cumulus@leaf01:~$
 
 ## Advertise SVI IP Addresses
 
-In a typical EVPN deployment, you *reuse* SVI IP addresses on VTEPs across multiple racks. However, if you use *unique* SVI IP addresses across multiple racks and you want the local SVI IP address to be reachable via remote VTEPs, you can enable the `advertise-svi-ip` option. This option advertises the SVI IP/MAC address as a type-2 route and eliminates the need for any flooding over VXLAN to reach the IP from a remote VTEP/rack.
+In a typical EVPN deployment, you *reuse* SVI IP addresses on VTEPs across multiple racks. However, if you use *unique* SVI IP addresses across multiple racks and you want the local SVI IP address to be reachable via remote VTEPs, you can enable the advertise SVI IP/MAC address option. This option advertises the SVI IP/MAC address as a type-2 route and eliminates the need for any flooding over VXLAN to reach the IP address from a remote VTEP or rack.
 
 {{%notice note%}}
-
-- When you enable the `advertise-svi-ip` option, the anycast IP/MAC address pair is not advertised. Be sure **not** to enable both the `advertise-svi-ip` option and the `advertise-default-gw` option at the same time. (The `advertise-default-gw` option configures the gateway VTEPs to advertise their IP/MAC address. See {{<link url="Inter-subnet-Routing#centralized-routing" text="Advertising the Default Gateway">}}.
+- When you enable the advertise SVI IP/MAC address option, the anycast IP/MAC address pair is not advertised. Be sure **not** to enable both the `advertise-svi-ip` option and the `advertise-default-gw` option at the same time. (The `advertise-default-gw` option configures the gateway VTEPs to advertise their IP/MAC address. See {{<link url="Inter-subnet-Routing#centralized-routing" text="Advertising the Default Gateway">}}.
 - If your switch is in an MLAG configuration, refer to {{<link url="Inter-subnet-Routing#advertise-primary-ip-address" text="Advertise Primary IP Address">}}.
-
 {{%/notice%}}
 
 To advertise *all* SVI IP/MAC addresses on the switch, run these commands:
@@ -976,6 +955,8 @@ cumulus@switch:~$ cl config apply
 
 ```
 cumulus@switch:~$ net add bgp l2vpn evpn dup-addr-detection max-moves 10 time 1200
+cumulus@leaf01:~$ net pending
+cumulus@leaf01:~$ net commit
 ```
 
 {{< /tab >}}
@@ -1049,6 +1030,8 @@ cumulus@switch:~$ cl config apply
 
 ```
 cumulus@switch:~$ net add bgp l2vpn evpn dup-addr-detection freeze 1000
+cumulus@leaf01:~$ net pending
+cumulus@leaf01:~$ net commit
 ```
 
 {{< /tab >}}
@@ -1089,6 +1072,8 @@ cumulus@switch:~$ cl config apply
 
 ```
 cumulus@switch:~$ net add bgp l2vpn evpn dup-addr-detection freeze permanent
+cumulus@leaf01:~$ net pending
+cumulus@leaf01:~$ net commit
 ```
 
 {{< /tab >}}
@@ -1127,6 +1112,8 @@ cumulus@switch:~$ cl config apply
 
 ```
 cumulus@switch:~$ net clear evpn dup-addr vni 101 ip 10.0.0.9
+cumulus@leaf01:~$ net pending
+cumulus@leaf01:~$ net commit
 ```
 
 {{< /tab >}}
@@ -1158,6 +1145,8 @@ cumulus@switch:~$ cl config apply
 
 ```
 cumulus@switch:~$ net clear evpn dup-addr vni all
+cumulus@leaf01:~$ net pending
+cumulus@leaf01:~$ net commit
 ```
 
 {{< /tab >}}
@@ -1175,11 +1164,8 @@ cumulus@switch:~$
 {{< /tabs >}}
 
 {{%notice note%}}
-In an MLAG configuration, you need to run the clear command on both the MLAG primary and secondary switch.
-{{%/notice%}}
-
-{{%notice note%}}
-When you clear a duplicate MAC address, all its associated IP addresses are also cleared. However, you cannot clear an associated IP address if its MAC address is still in a duplicate state.
+- In an MLAG configuration, you need to run the clear command on both the MLAG primary and secondary switch.
+- When you clear a duplicate MAC address, all its associated IP addresses are also cleared. However, you cannot clear an associated IP address if its MAC address is still in a duplicate state.
 {{%/notice%}}
 
 ### Disable Duplicate Address Detection
@@ -1199,6 +1185,8 @@ cumulus@switch:~$ cl config apply
 
 ```
 cumulus@switch:~$ net del bgp l2vpn evpn dup-addr-detection
+cumulus@switch:~$ net pending 
+cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}

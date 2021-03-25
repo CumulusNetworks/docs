@@ -13,7 +13,6 @@ To run Docker containers on the Cumulus Linux switch:
 1. Check if the Docker package is already installed on the switch with the `dpkg-query -l cumulus-docker-setup` command.
 
 {{< tabs "TabID16 ">}}
-
 {{< tab "Docker is installed    ">}}
 
 The following command output shows that the Docker package is installed. No further action is required. Go to the next step to enable the Docker service.
@@ -29,7 +28,6 @@ The following command output shows that the Docker package is installed. No furt
    ```
 
 {{< /tab >}}
-
 {{< tab "Docker is not installed ">}}
 
 The following command output shows that the Docker package is *not* installed:
@@ -62,7 +60,6 @@ Do you want to continue? [Y/n]
 ```
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 2. In the managment VRF, enable the Docker service. Docker pulls container images from the internet, which requires internet access through the management VRF.

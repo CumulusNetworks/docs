@@ -23,7 +23,6 @@ This chapter discusses the various architectures and strategies available from t
 **Example Configuration**
 
 {{< tabs "TabID27 ">}}
-
 {{< tab "leaf01 ">}}
 
 ```
@@ -49,7 +48,6 @@ iface swp1
 ```
 
 {{< /tab >}}
-
 {{< tab "Ubuntu host ">}}
 
 ```
@@ -75,7 +73,6 @@ iface br-20 inet manual
 ```
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 ## Layer 2 - MLAG
@@ -95,7 +92,6 @@ iface br-20 inet manual
 **Example Configuration**
 
 {{< tabs "TabID99 ">}}
-
 {{< tab "leaf01 ">}}
 
 ```
@@ -130,7 +126,6 @@ iface host-01
 ```
 
 {{< /tab >}}
-
 {{< tab "Ubuntu host ">}}
 
 ```
@@ -148,7 +143,6 @@ iface vm-br10 inet manual
 ```
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 ## Layer 3 - Single-attached Hosts
@@ -168,7 +162,6 @@ iface vm-br10 inet manual
 **Example Configuration**
 
 {{< tabs "TabID172 ">}}
-
 {{< tab "leaf01 ">}}
 
 `/etc/network/interfaces` file
@@ -189,7 +182,6 @@ interface swp1
 ```
 
 {{< /tab >}}
-
 {{< tab "leaf02 ">}}
 
 `/etc/network/interfaces` file
@@ -210,7 +202,6 @@ interface swp1
 ```
 
 {{< /tab >}}
-
 {{< tab "Ubuntu host1 ">}}
 
 ```
@@ -232,7 +223,6 @@ iface eth1 inet static
 ```
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 ## Layer 3 - Redistribute Neighbor
@@ -308,7 +298,6 @@ iface eth1 inet static
 **Example Configuration**
 
 {{< tabs "TabID312 ">}}
-
 {{< tab "leaf01 ">}}
 
 `/etc/network/interfaces file`
@@ -329,7 +318,6 @@ interface swp1
 ```
 
 {{< /tab >}}
-
 {{< tab "leaf02 ">}}
 
 `/etc/network/interfaces` file
@@ -350,7 +338,6 @@ interface swp1
 ```
 
 {{< /tab >}}
-
 {{< tab "Ubuntu host ">}}
 
 ```
@@ -372,7 +359,6 @@ iface eth2 inet static
 ```
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 ## Layer 3 - EVPN with Symmetric VXLAN Routing
@@ -394,7 +380,6 @@ Each server is configured on a VLAN, with a total of two VLANs for the setup. ML
 **Example /etc/network/interfaces File Configuration**
 
 {{< tabs "TabID398 ">}}
-
 {{< tab "leaf01 ">}}
 
 ```
@@ -556,7 +541,6 @@ iface vlan4001
 ```
 
 {{< /tab >}}
-
 {{< tab "Leaf02 ">}}
 
 ```
@@ -717,7 +701,6 @@ iface vlan4001
 ```
 
 {{< /tab >}}
-
 {{< tab "Server01 ">}}
 
 ```
@@ -754,7 +737,6 @@ iface uplink inet static
 ```
 
 {{< /tab >}}
-
 {{< tab "Server02 ">}}
 
 ```
@@ -791,5 +773,4 @@ iface uplink inet static
 ```
 
 {{< /tab >}}
-
 {{< /tabs >}}

@@ -3389,12 +3389,13 @@ cumulus@border01:~$ cl set mlag priority 1000
 cumulus@border01:~$ cl set mlag init-delay 10
 cumulus@border01:~$ cl set vrf RED
 cumulus@border01:~$ cl set vrf BLUE
-cumulus@border01:~$ cl set nve vxlan mlag shared-address 10.0.1.254
+cumulus@border01:~$ cl set nve vxlan mlag shared-address 10.0.1.255
 cumulus@border01:~$ cl set nve vxlan source address 10.10.10.63
 cumulus@border01:~$ cl set nve vxlan arp-nd-suppress on
 cumulus@border01:~$ cl set vrf RED evpn vni 4001
 cumulus@border01:~$ cl set vrf BLUE evpn vni 4002
 cumulus@border01:~$ cl set bridge domain br_default vlan 4001,4002
+cumulus@border01:~$ cl set interface bond3 bridge domain br_default vlan 10,20
 cumulus@border01:~$ cl set system global anycast-mac 44:38:39:BE:EF:FF
 cumulus@border01:~$ cl set evpn enable on
 cumulus@border01:~$ cl set router bgp autonomous-system 65132
@@ -3437,12 +3438,13 @@ cumulus@border02:~$ cl set mlag priority 32768
 cumulus@border02:~$ cl set mlag init-delay 10
 cumulus@border02:~$ cl set vrf RED
 cumulus@border02:~$ cl set vrf BLUE
-cumulus@border02:~$ cl set nve vxlan mlag shared-address 10.0.1.254
+cumulus@border02:~$ cl set nve vxlan mlag shared-address 10.0.1.255
 cumulus@border02:~$ cl set nve vxlan source address 10.10.10.64
 cumulus@border02:~$ cl set nve vxlan arp-nd-suppress on
 cumulus@border02:~$ cl set vrf RED evpn vni 4001
 cumulus@border02:~$ cl set vrf BLUE evpn vni 4002
 cumulus@border02:~$ cl set bridge domain br_default vlan 4001,4002
+cumulus@border01:~$ cl set interface bond3 bridge domain br_default vlan 10,20
 cumulus@border02:~$ cl set system global anycast-mac 44:38:39:BE:EF:FF
 cumulus@border02:~$ cl set evpn enable on
 cumulus@border02:~$ cl set router bgp autonomous-system 651064

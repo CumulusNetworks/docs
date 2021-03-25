@@ -7,9 +7,7 @@ toc: 3
 RDMA over Converged Ethernet ({{<exlink url="https://en.wikipedia.org/wiki/RDMA_over_Converged_Ethernet" text="RoCE">}}) enables you to write to compute or storage elements using remote direct memory access (RDMA) over an Ethernet network instead of using host CPUs. RoCE relies on congestion control and lossless Ethernet to operate. Cumulus Linux supports features that can enable lossless Ethernet for RoCE environments.
 
 {{%notice note%}}
-
 While Cumulus Linux can support RoCE environments, the hosts send and receive the RoCE packets.
-
 {{%/notice%}}
 
 RoCE helps you obtain a *converged network*, where all services run over the Ethernet infrastructure, including Infiniband apps.
@@ -32,9 +30,7 @@ cumulus@switch:~$ net commit
 ```
 
 {{%notice note%}}
-
 {{<link url="Buffer-and-Queue-Management#link-pause" text="Link pause">}} is another way to provide lossless ethernet; however, PFC is the preferred method. PFC allows more granular control by pausing the traffic flow for a given CoS group instead of the entire link.
-
 {{%/notice%}}
 
 ## Enable RDMA over Converged Ethernet lossy (with ECN)

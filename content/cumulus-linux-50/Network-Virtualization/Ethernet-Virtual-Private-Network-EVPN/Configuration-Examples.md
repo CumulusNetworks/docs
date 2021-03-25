@@ -3374,7 +3374,7 @@ cumulus@spine04:~$ cl config apply
 
 ```
 cumulus@border01:~$ cl set interface lo ip address 10.10.10.63/32
-cumulus@border01:~$ cl set interface swp1-4,swp49-54
+cumulus@border01:~$ cl set interface swp3,swp49-54
 cumulus@border01:~$ cl set interface swp3 link mtu 9000
 cumulus@border01:~$ cl set interface bond3 bond member swp3
 cumulus@border01:~$ cl set interface bond3 bond mlag id 3
@@ -3395,7 +3395,6 @@ cumulus@border01:~$ cl set nve vxlan arp-nd-suppress on
 cumulus@border01:~$ cl set vrf RED evpn vni 4001
 cumulus@border01:~$ cl set vrf BLUE evpn vni 4002
 cumulus@border01:~$ cl set bridge domain br_default vlan 4001,4002
-cumulus@border01:~$ cl set interface bond3 bridge domain br_default vlan 10,20
 cumulus@border01:~$ cl set system global anycast-mac 44:38:39:BE:EF:FF
 cumulus@border01:~$ cl set evpn enable on
 cumulus@border01:~$ cl set router bgp autonomous-system 65132
@@ -3423,7 +3422,7 @@ cumulus@border01:~$ cl config apply
 
 ```
 cumulus@border02:~$ cl set interface lo ip address 10.10.10.64/32
-cumulus@border02:~$ cl set interface swp1-4,swp49-54
+cumulus@border02:~$ cl set interface swp3,swp49-54
 cumulus@border02:~$ cl set interface swp3 link mtu 9000
 cumulus@border02:~$ cl set interface bond3 bond member swp3
 cumulus@border02:~$ cl set interface bond3 bond mlag id 3
@@ -3444,7 +3443,6 @@ cumulus@border02:~$ cl set nve vxlan arp-nd-suppress on
 cumulus@border02:~$ cl set vrf RED evpn vni 4001
 cumulus@border02:~$ cl set vrf BLUE evpn vni 4002
 cumulus@border02:~$ cl set bridge domain br_default vlan 4001,4002
-cumulus@border01:~$ cl set interface bond3 bridge domain br_default vlan 10,20
 cumulus@border02:~$ cl set system global anycast-mac 44:38:39:BE:EF:FF
 cumulus@border02:~$ cl set evpn enable on
 cumulus@border02:~$ cl set router bgp autonomous-system 651064
@@ -4338,7 +4336,7 @@ cumulus@border01:~$ cat /etc/network/interfaces
 auto lo
 iface lo inet loopback
     address 10.10.10.63/32
-    clagd-vxlan-anycast-ip 10.0.1.254
+    clagd-vxlan-anycast-ip 10.0.1.255
     vxlan-local-tunnelip 10.10.10.63
 
 auto mgmt
@@ -4359,37 +4357,15 @@ auto BLUE
 iface BLUE
   vrf-table auto
 
-auto br_default
-iface br_default
-    bridge-ports peerlink bond3 vniRED vniBLUE
-    bridge-vids 4001 4002  
-    bridge-vlan-aware yes
+auto swp3
+iface swp3
+    mtu 9000
 
-auto vniRED
-iface vniRED
-    bridge-access 4001
-    vxlan-id 4001
-    bridge-learning off
+auto swp49
+iface swp49
 
-auto vniBLUE
-iface vniBLUE
-    bridge-access 4002
-    vxlan-id 4002
-    bridge-learning off
-
-auto vlan4001
-iface vlan4001
-    address-virtual 44:38:39:BE:EF:FF
-    vrf RED
-    vlan-raw-device br_default
-    vlan-id 4001
-
-auto vlan4002
-iface vlan4002
-    address-virtual 44:38:39:BE:EF:FF
-    vrf BLUE
-    vlan-raw-device br_default
-    vlan-id 4002
+auto swp50
+iface swp50
 
 auto swp51
 iface swp51
@@ -4403,34 +4379,59 @@ iface swp53
 auto swp54
 iface swp54
 
-auto swp49
-iface swp49
-
-auto swp50
-iface swp50
+auto bond3
+iface bond3
+    mtu 9000
+    clag-id 3
+    bond-slaves swp3
+    bond-lacp-bypass-allow yes
 
 auto peerlink
 iface peerlink
     bond-slaves swp49 swp50
+    bond-mode 802.3ad
+    bond-lacp-bypass-allow no
 
 auto peerlink.4094
 iface peerlink.4094
-    clagd-backup-ip 10.10.10.64
     clagd-peer-ip linklocal
     clagd-priority 1000
+    clagd-backup-ip 10.10.10.64
     clagd-sys-mac 44:38:39:BE:EF:FF
+    clagd-args --initDelay 10
 
-auto swp3
-iface swp3
-    mtu 9000
+auto vni4001
+iface vni4001
+    bridge-access 4024
+    bridge-learning off
+    vxlan-id 4001
 
-auto bond3
-iface bond3
-    mtu 9000
-    clag-id 1
-    bridge-vids 10 20 30
-    bond-slaves swp3
-    bond-lacp-bypass-allow yes
+auto vlan4024
+iface vlan4024
+    vrf RED
+    vlan-raw-device br_default
+    address-virtual 44:38:39:BE:EF:FF
+    vlan-id 4024
+
+auto vni4002
+iface vni4002
+    bridge-access 4036
+    bridge-learning off
+    vxlan-id 4002
+
+auto vlan4036
+iface vlan4036
+    vrf BLUE
+    vlan-raw-device br_default
+    address-virtual 44:38:39:BE:EF:FF
+    vlan-id 4036
+
+auto br_default
+iface br_default
+    bridge-ports peerlink bond3 vni4001 vni4002
+    bridge-vlan-aware yes
+    bridge-vids 4001 4002 
+    bridge-pvid 1
 ```
 
 {{< /tab >}}
@@ -4442,7 +4443,7 @@ cumulus@border02:~$ cat /etc/network/interfaces
 auto lo
 iface lo inet loopback
     address 10.10.10.64/32
-    clagd-vxlan-anycast-ip 10.0.1.254
+    clagd-vxlan-anycast-ip 10.0.1.255
     vxlan-local-tunnelip 10.10.10.64
 
 auto mgmt
@@ -4463,11 +4464,45 @@ auto BLUE
 iface BLUE
   vrf-table auto
 
-auto br_default
-iface br_default
-    bridge-ports peerlink bond3 vniRED vniBLUE
-    bridge-vids 4001 4002  
-    bridge-vlan-aware yes
+auto swp3
+iface swp3
+    mtu 9000
+
+auto swp49
+iface swp49
+
+auto swp50
+iface swp50
+
+auto swp51
+iface swp51
+
+auto swp52
+iface swp52
+
+auto swp53
+iface swp53
+
+auto swp54
+iface swp54
+
+auto bond3
+iface bond3
+    mtu 9000
+    clag-id 3
+    bond-slaves swp3
+    bond-lacp-bypass-allow yes
+
+auto peerlink
+iface peerlink
+    bond-slaves swp49 swp50
+
+auto peerlink.4094
+iface peerlink.4094
+    clagd-peer-ip linklocal
+    clagd-priority 32768
+    clagd-backup-ip 10.10.10.63
+    clagd-args --initDelay 10
 
 auto vniRED
 iface vniRED
@@ -4495,46 +4530,12 @@ iface vlan4002
     vlan-raw-device br_default
     vlan-id 4002
 
-auto swp51
-iface swp51
-
-auto swp52
-iface swp52
-
-auto swp53
-iface swp53
-
-auto swp54
-iface swp54
-
-auto swp49
-iface swp49
-
-auto swp50
-iface swp50
-
-auto peerlink
-iface peerlink
-    bond-slaves swp49 swp50
-
-auto peerlink.4094
-iface peerlink.4094
-    clagd-backup-ip 10.10.10.63
-    clagd-peer-ip linklocal
-    clagd-priority 32768
-    clagd-sys-mac 44:38:39:BE:EF:FF
-
-auto swp3
-iface swp3
-    mtu 9000
-
-auto bond3
-iface bond3
-    mtu 9000
-    clag-id 1
-    bridge-vids 10 20 30
-    bond-slaves swp3
-    bond-lacp-bypass-allow yes
+auto br_default
+iface br_default
+    bridge-ports peerlink bond3 vni4001 vni4002
+    bridge-vlan-aware yes
+    bridge-vids 4001 4002 
+    bridge-pvid 1
 ```
 
 {{< /tab >}}

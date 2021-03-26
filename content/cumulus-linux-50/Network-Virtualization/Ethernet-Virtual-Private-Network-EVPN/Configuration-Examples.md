@@ -793,7 +793,6 @@ iface peerlink
 auto peerlink.4094
 iface peerlink.4094
     clagd-peer-ip linklocal
-    clagd-priority 1000
     clagd-backup-ip 10.10.10.3
     clagd-sys-mac 44:38:39:BE:EF:BB
     clagd-args --initDelay 10
@@ -1153,7 +1152,6 @@ iface peerlink
 auto peerlink.4094
 iface peerlink.4094
     clagd-peer-ip linklocal
-    clagd-priority 32768
     clagd-backup-ip 10.10.10.63
     clagd-sys-mac 44:38:39:BE:EF:FF
     clagd-args --initDelay 10

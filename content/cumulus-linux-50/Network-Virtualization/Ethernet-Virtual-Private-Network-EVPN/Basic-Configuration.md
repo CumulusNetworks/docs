@@ -4,11 +4,11 @@ author: NVIDIA
 weight: 550
 toc: 4
 ---
-The following sections provide the basic configuration needed to use EVPN as the control plane for VXLAN. For additional EVPN configuration, see {{<link url="EVPN-Enhancements" text="EVPN Enhancements">}} and {{<link url="Inter-subnet-Routing" text="Inter subnet Routing">}}.
+The following sections provide the basic configuration needed to use EVPN as the control plane for VXLAN in a BGP-EVPN-based layer 2 extension deployment. For layer 3 multi-tenancy configuration, see {{<link url="Inter-subnet-Routing" text="Inter subnet Routing">}}. For addtional EVPN configuration, see {{<link url="EVPN-Enhancements" text="EVPN Enhancements">}}.
 
 ## Basic EVPN Configuration Commands
 
-Basic EVPN configuration requires you to:
+Basic configuration in a BGP-EVPN-based layer 2 extension deployment requires you to:
 - Configure BGP
 - Configure VXLAN interfaces
 - Activate the EVPN address family and enable EVPN between BGP neighbors
@@ -16,8 +16,8 @@ Basic EVPN configuration requires you to:
 Follow these steps:
 
 1. Configure BGP.
-   
-   The following example commands assign ASN 65101 and router ID 10.10.10.1 to leaf01, specify swp51 as the interface between the two BGP peers, and originates the prefix 10.10.10.1/32. For complete information on how to configure BGP, see {{<link url="Border-Gateway-Protocol-BGP" text="Border Gateway Protocol - BGP">}}.
+
+   The following example commands assign an ASN and router ID to leaf01 and spine01, and specify the interfaces between the two BGP peers and the prefixes to originate. For complete information on how to configure BGP, see {{<link url="Border-Gateway-Protocol-BGP" text="Border Gateway Protocol - BGP">}}.
 
    {{< tabs "TabID12 ">}}
 {{< tab "CUE Commands ">}}
@@ -73,7 +73,7 @@ cumulus@leaf01:~$
 
    The following example commands:
    - Create the VXLAN interface vni10, attach it to a bridge, and map VLAN 10 to the VNI
-   - Sets the VXLAN local tunnel IP address to 10.10.10.10
+   - Set the VXLAN local tunnel IP address to 10.10.10.10
 
    {{< tabs "TabID78 ">}}
 {{< tab "CUE Commands ">}}

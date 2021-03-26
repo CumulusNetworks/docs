@@ -38,8 +38,6 @@ The following images shows traffic flow between tenants. The spines and other de
 ```
 cumulus@leaf01:~$ cl set interface lo ip address 10.10.10.1/32
 cumulus@leaf01:~$ cl set interface swp1-2,swp49-54
-cumulus@leaf01:~$ cl set interface swp1 link mtu 9000
-cumulus@leaf01:~$ cl set interface swp2 link mtu 9000
 cumulus@leaf01:~$ cl set interface bond1 bond member swp1
 cumulus@leaf01:~$ cl set interface bond2 bond member swp2
 cumulus@leaf01:~$ cl set interface bond1 bond mlag id 1
@@ -86,8 +84,6 @@ cumulus@leaf01:~$ cl config apply
 ```
 cumulus@leaf02:~$ cl set interface lo ip address 10.10.10.2/32
 cumulus@leaf02:~$ cl set interface swp1-2,swp49-54
-cumulus@leaf02:~$ cl set interface swp1 link mtu 9000
-cumulus@leaf02:~$ cl set interface swp2 link mtu 9000
 cumulus@leaf02:~$ cl set interface bond1 bond member swp1
 cumulus@leaf02:~$ cl set interface bond2 bond member swp2
 cumulus@leaf02:~$ cl set interface bond1 bond mlag id 1
@@ -134,8 +130,6 @@ cumulus@leaf02:~$ cl config apply
 ```
 cumulus@leaf03:~$ cl set interface lo ip address 10.10.10.3/32
 cumulus@leaf03:~$ cl set interface swp1-2,swp49-54
-cumulus@leaf03:~$ cl set interface swp1 link mtu 9000
-cumulus@leaf03:~$ cl set interface swp2 link mtu 9000
 cumulus@leaf03:~$ cl set interface bond1 bond member swp1
 cumulus@leaf03:~$ cl set interface bond2 bond member swp2
 cumulus@leaf03:~$ cl set interface bond1 bond mlag id 1
@@ -182,8 +176,6 @@ cumulus@leaf03:~$ cl config apply
 ```
 cumulus@leaf04:~$ cl set interface lo ip address 10.10.10.4/32
 cumulus@leaf04:~$ cl set interface swp1-2,swp49-54
-cumulus@leaf04:~$ cl set interface swp1 link mtu 9000
-cumulus@leaf04:~$ cl set interface swp2 link mtu 9000
 cumulus@leaf04:~$ cl set interface bond1 bond member swp1
 cumulus@leaf04:~$ cl set interface bond2 bond member swp2
 cumulus@leaf04:~$ cl set interface bond1 bond mlag id 1
@@ -318,7 +310,6 @@ cumulus@spine04:~$ cl config apply
 ```
 cumulus@border01:~$ cl set interface lo ip address 10.10.10.63/32
 cumulus@border01:~$ cl set interface swp3,swp49-54
-cumulus@border01:~$ cl set interface swp3 link mtu 9000
 cumulus@border01:~$ cl set interface bond3 bond member swp3
 cumulus@border01:~$ cl set interface bond3 bond mlag id 1
 cumulus@border01:~$ cl set interface bond3 bond lacp-bypass on
@@ -359,7 +350,6 @@ cumulus@border01:~$ cl config apply
 ```
 cumulus@border02:~$ cl set interface lo ip address 10.10.10.64/32
 cumulus@border02:~$ cl set interface swp3,swp49-54
-cumulus@border02:~$ cl set interface swp3 link mtu 9000
 cumulus@border02:~$ cl set interface bond3 bond member swp3
 cumulus@border02:~$ cl set interface bond3 bond mlag id 1
 cumulus@border02:~$ cl set interface bond3 bond lacp-bypass on
@@ -413,9 +403,9 @@ iface lo inet loopback
 
 auto mgmt
 iface mgmt
-    vrf-table auto
     address 127.0.0.1/8
     address ::1/128
+    vrf-table auto
 
 auto eth0
 iface eth0 inet dhcp
@@ -423,34 +413,17 @@ iface eth0 inet dhcp
     ip6-forward off
     vrf mgmt
 
-auto br_default
-iface br_default
-    bridge-ports peerlink bond1 bond2 vni10 vni20
-    bridge-vids 10 20
-    bridge-pvid 1  
-    bridge-vlan-aware yes
+auto swp1
+iface swp1
 
-auto vni10
-iface vni10
-    bridge-access 10
-    vxlan-id 10
-    bridge-learning off
+auto swp2
+iface swp2
 
-auto vni20
-iface vni20
-    bridge-access 20
-    vxlan-id 20
-    bridge-learning off
+auto swp49
+iface swp49
 
-auto vlan10
-iface vlan10
-    vlan-raw-device br_default
-    vlan-id 10
-
-auto vlan20
-iface vlan20
-    vlan-raw-device br_default
-    vlan-id 20
+auto swp50
+iface swp50
 
 auto swp51
 iface swp51
@@ -464,11 +437,23 @@ iface swp53
 auto swp54
 iface swp54
 
-auto swp49
-iface swp49
+auto bond1
+iface bond1
+    mtu 9000
+    bond-slaves swp1
+    bond-mode 802.3ad
+    bond-lacp-bypass-allow yes
+    clag-id 1
+    bridge-access 10
 
-auto swp50
-iface swp50
+auto bond2
+iface bond2
+    mtu 9000
+    bond-slaves swp2
+    bond-mode 802.3ad
+    bond-lacp-bypass-allow yes
+    clag-id 2
+    bridge-access 20
 
 auto peerlink
 iface peerlink
@@ -478,36 +463,40 @@ iface peerlink
 
 auto peerlink.4094
 iface peerlink.4094
-    clagd-backup-ip 10.10.10.2
     clagd-peer-ip linklocal
     clagd-priority 1000
+    clagd-backup-ip 10.10.10.2
     clagd-sys-mac 44:38:39:BE:EF:AA
+    clagd-args --initDelay 10
 
-auto swp1
-iface swp1
-    mtu 9000
+auto vlan10
+iface vlan10
+    vlan-raw-device br_default
+    vlan-id 10
 
-auto bond1
-iface bond1
-    mtu 9000
-    clag-id 1
+auto vlan20
+iface vlan20
+    vlan-raw-device br_default
+    vlan-id 20
+
+auto vni10
+iface vni10
     bridge-access 10
-    bond-slaves swp1
-    bond-mode 802.3ad
-    bond-lacp-bypass-allow yes
+    bridge-learning off
+    vxlan-id 10
 
-auto swp2
-iface swp2
-    mtu 9000
-
-auto bond2
-iface bond2
-    mtu 9000
-    clag-id 2
+auto vni20
+iface vni20
     bridge-access 20
-    bond-slaves swp2
-    bond-mode 802.3ad
-    bond-lacp-bypass-allow yes
+    bridge-learning off
+    vxlan-id 20
+
+auto br_default
+iface br_default
+    bridge-ports peerlink bond1 bond2 vni10 vni20
+    bridge-vlan-aware yes
+    bridge-vids 10 20
+    bridge-pvid 1
 ```
 
 {{< /tab >}}
@@ -524,9 +513,9 @@ iface lo inet loopback
 
 auto mgmt
 iface mgmt
-    vrf-table auto
     address 127.0.0.1/8
     address ::1/128
+    vrf-table auto
 
 auto eth0
 iface eth0 inet dhcp
@@ -534,34 +523,17 @@ iface eth0 inet dhcp
     ip6-forward off
     vrf mgmt
 
-auto br_default
-iface br_default
-    bridge-ports peerlink bond1 bond2 vni10 vni20
-    bridge-vids 10 20
-    bridge-pvid 1 
-    bridge-vlan-aware yes
+auto swp1
+iface swp1
 
-auto vni10
-iface vni10
-    bridge-access 10
-    vxlan-id 10
-    bridge-learning off
+auto swp2
+iface swp2
 
-auto vni20
-iface vni20
-    bridge-access 20
-    vxlan-id 20
-    bridge-learning off
+auto swp49
+iface swp49
 
-auto vlan10
-iface vlan10
-    vlan-raw-device br_default
-    vlan-id 10
-
-auto vlan20
-iface vlan20
-    vlan-raw-device br_default
-    vlan-id 20
+auto swp50
+iface swp50
 
 auto swp51
 iface swp51
@@ -575,11 +547,23 @@ iface swp53
 auto swp54
 iface swp54
 
-auto swp49
-iface swp49
+auto bond1
+iface bond1
+    mtu 9000
+    bond-slaves swp1
+    bond-mode 802.3ad
+    bond-lacp-bypass-allow yes
+    clag-id 1
+    bridge-access 10
 
-auto swp50
-iface swp50
+auto bond2
+iface bond2
+    mtu 9000
+    bond-slaves swp2
+    bond-mode 802.3ad
+    bond-lacp-bypass-allow yes
+    clag-id 2
+    bridge-access 20
 
 auto peerlink
 iface peerlink
@@ -589,36 +573,39 @@ iface peerlink
 
 auto peerlink.4094
 iface peerlink.4094
-    clagd-backup-ip 10.10.10.1
     clagd-peer-ip linklocal
-    clagd-priority 1000
+    clagd-backup-ip 10.10.10.1
     clagd-sys-mac 44:38:39:BE:EF:AA
+    clagd-args --initDelay 10
 
-auto swp1
-iface swp1
-    mtu 9000
+auto vlan10
+iface vlan10
+    vlan-raw-device br_default
+    vlan-id 10
 
-auto bond1
-iface bond1
-    mtu 9000
-    clag-id 1
+auto vlan20
+iface vlan20
+    vlan-raw-device br_default
+    vlan-id 20
+
+auto vni10
+iface vni10
     bridge-access 10
-    bond-slaves swp1
-    bond-mode 802.3ad
-    bond-lacp-bypass-allow yes
+    bridge-learning off
+    vxlan-id 10
 
-auto swp2
-iface swp2
-    mtu 9000
-
-auto bond2
-iface bond2
-    mtu 9000
-    clag-id 2
+auto vni20
+iface vni20
     bridge-access 20
-    bond-slaves swp2
-    bond-mode 802.3ad
-    bond-lacp-bypass-allow yes
+    bridge-learning off
+    vxlan-id 20
+
+auto br_default
+iface br_default
+    bridge-ports peerlink bond1 bond2 vni10 vni20
+    bridge-vlan-aware yes
+    bridge-vids 10 20
+    bridge-pvid 1
 ```
 
 {{< /tab >}}
@@ -645,34 +632,17 @@ iface eth0 inet dhcp
     ip6-forward off
     vrf mgmt
 
-auto br_default
-iface br_default
-    bridge-ports peerlink bond1 bond2 vni10 vni20
-    bridge-vids 10 20
-    bridge-pvid 1  
-    bridge-vlan-aware yes
+auto swp1
+iface swp1
 
-auto vni10
-iface vni10
-    bridge-access 10
-    vxlan-id 10
-    bridge-learning off
+auto swp2
+iface swp2
 
-auto vni20
-iface vni20
-    bridge-access 20
-    vxlan-id 20
-    bridge-learning off
+auto swp49
+iface swp49
 
-auto vlan10
-iface vlan10
-    vlan-raw-device br_default
-    vlan-id 10
-
-auto vlan20
-iface vlan20
-    vlan-raw-device br_default
-    vlan-id 20
+auto swp50
+iface swp50
 
 auto swp51
 iface swp51
@@ -686,11 +656,23 @@ iface swp53
 auto swp54
 iface swp54
 
-auto swp49
-iface swp49
+auto bond1
+iface bond1
+    mtu 9000
+    bond-slaves swp1
+    bond-mode 802.3ad
+    bond-lacp-bypass-allow yes
+    clag-id 1
+    bridge-access 10
 
-auto swp50
-iface swp50
+auto bond2
+iface bond2
+    mtu 9000
+    bond-slaves swp2
+    bond-mode 802.3ad
+    bond-lacp-bypass-allow yes
+    clag-id 2
+    bridge-access 20
 
 auto peerlink
 iface peerlink
@@ -700,36 +682,40 @@ iface peerlink
 
 auto peerlink.4094
 iface peerlink.4094
-    clagd-backup-ip 10.10.10.4
     clagd-peer-ip linklocal
     clagd-priority 1000
+    clagd-backup-ip 10.10.10.4
     clagd-sys-mac 44:38:39:BE:EF:BB
+    clagd-args --initDelay 10
 
-auto swp1
-iface swp1
-    mtu 9000
+auto vlan10
+iface vlan10
+    vlan-raw-device br_default
+    vlan-id 10
 
-auto bond1
-iface bond1
-    mtu 9000
-    clag-id 1
+auto vlan20
+iface vlan20
+    vlan-raw-device br_default
+    vlan-id 20
+
+auto vni10
+iface vni10
     bridge-access 10
-    bond-slaves swp1
-    bond-mode 802.3ad
-    bond-lacp-bypass-allow yes
+    bridge-learning off
+    vxlan-id 10
 
-auto swp2
-iface swp2
-    mtu 9000
-
-auto bond2
-iface bond2
-    mtu 9000
-    clag-id 2
+auto vni20
+iface vni20
     bridge-access 20
-    bond-slaves swp2
-    bond-mode 802.3ad
-    bond-lacp-bypass-allow yes
+    bridge-learning off
+    vxlan-id 20
+
+auto br_default
+iface br_default
+    bridge-ports peerlink bond1 bond2 vni10 vni20
+    bridge-vlan-aware yes
+    bridge-vids 10 20
+    bridge-pvid 1  
 ```
 
 {{< /tab >}}
@@ -756,34 +742,17 @@ iface eth0 inet dhcp
     ip6-forward off
     vrf mgmt
 
-auto peerlink
-iface peerlink
-    bridge-ports peerlink bond1 bond2 vni10 vni20
-    bridge-vids 10 20
-    bridge-pvid 1  
-    bridge-vlan-aware yes
+auto swp1
+iface swp1
 
-auto vni10
-iface vni10
-    bridge-access 10
-    vxlan-id 10
-    bridge-learning off
+auto swp2
+iface swp2
 
-auto vni20
-iface vni20
-    bridge-access 20
-    vxlan-id 20
-    bridge-learning off
+auto swp49
+iface swp49
 
-auto vlan10
-iface vlan10
-    vlan-raw-device br_default
-    vlan-id 10
-
-auto vlan20
-iface vlan20
-    vlan-raw-device br_default
-    vlan-id 20
+auto swp50
+iface swp50
 
 auto swp51
 iface swp51
@@ -797,11 +766,23 @@ iface swp53
 auto swp54
 iface swp54
 
-auto swp49
-iface swp49
+auto bond1
+iface bond1
+    mtu 9000
+    bond-slaves swp1
+    bond-mode 802.3ad
+    bond-lacp-bypass-allow yes
+    clag-id 1
+    bridge-access 10
 
-auto swp50
-iface swp50
+auto bond2
+iface bond2
+    mtu 9000
+    bond-slaves swp2
+    bond-mode 802.3ad
+    bond-lacp-bypass-allow yes
+    clag-id 2
+    bridge-access 20
 
 auto peerlink
 iface peerlink
@@ -811,36 +792,40 @@ iface peerlink
 
 auto peerlink.4094
 iface peerlink.4094
-    clagd-backup-ip 10.10.10.3
     clagd-peer-ip linklocal
     clagd-priority 1000
+    clagd-backup-ip 10.10.10.3
     clagd-sys-mac 44:38:39:BE:EF:BB
+    clagd-args --initDelay 10
 
-auto swp1
-iface swp1
-    mtu 9000
+auto vlan10
+iface vlan10
+    vlan-raw-device br_default
+    vlan-id 10
 
-auto bond1
-iface bond1
-    mtu 9000
-    clag-id 1
+auto vlan20
+iface vlan20
+    vlan-raw-device br_default
+    vlan-id 20
+
+auto vni10
+iface vni10
     bridge-access 10
-    bond-slaves swp1
-    bond-mode 802.3ad
-    bond-lacp-bypass-allow yes
+    bridge-learning off
+    vxlan-id 10
 
-auto swp2
-iface swp2
-    mtu 9000
-
-auto bond2
-iface bond2
-    mtu 9000
-    clag-id 2
+auto vni20
+iface vni20
     bridge-access 20
-    bond-slaves swp2
-    bond-mode 802.3ad
-    bond-lacp-bypass-allow yes
+    bridge-learning off
+    vxlan-id 20
+
+auto br_default
+iface br_default
+    bridge-ports peerlink bond1 bond2 vni10 vni20
+    bridge-vlan-aware yes
+    bridge-vids 10 20
+    bridge-pvid 1
 ```
 
 {{< /tab >}}
@@ -1021,9 +1006,9 @@ iface lo inet loopback
 
 auto mgmt
 iface mgmt
-    vrf-table auto
     address 127.0.0.1/8
     address ::1/128
+    vrf-table auto
 
 auto eth0
 iface eth0 inet dhcp
@@ -1031,33 +1016,14 @@ iface eth0 inet dhcp
     ip6-forward off
     vrf mgmt
 
-auto br_default
-iface br_default
-    bridge-ports peerlink, bond3 vni10 vni20
-    bridge-vids 10 20  
-    bridge-vlan-aware yes
+auto swp3
+iface swp3
 
-auto vni10
-iface vni10
-    bridge-access 10
-    vxlan-id 10
-    bridge-learning off
+auto swp49
+iface swp49
 
-auto vni20
-iface vni20
-    bridge-access 20
-    vxlan-id 20
-    bridge-learning off
-
-auto vlan10
-iface vlan10
-    vlan-raw-device br_default
-    vlan-id 10
-
-auto vlan20
-iface vlan20
-    vlan-raw-device br_default
-    vlan-id 20
+auto swp50
+iface swp50
 
 auto swp51
 iface swp51
@@ -1071,11 +1037,14 @@ iface swp53
 auto swp54
 iface swp54
 
-auto swp49
-iface swp49
-
-auto swp50
-iface swp50
+auto bond3
+iface bond3
+    mtu 9000
+    bond-slaves swp3
+    bond-mode 802.3ad
+    bond-lacp-bypass-allow yes
+    clag-id 1
+    bridge-vids 10 20
 
 auto peerlink
 iface peerlink
@@ -1085,24 +1054,40 @@ iface peerlink
 
 auto peerlink.4094
 iface peerlink.4094
-    clagd-backup-ip 10.10.10.64
     clagd-peer-ip linklocal
     clagd-priority 1000
+    clagd-backup-ip 10.10.10.64
     clagd-sys-mac 44:38:39:BE:EF:FF
     clagd-args --initDelay 10
 
-auto swp3
-iface swp3
-    mtu 9000
+auto vlan10
+iface vlan10
+    vlan-raw-device br_default
+    vlan-id 10
 
-auto bond3
-iface bond3
-    mtu 9000
-    clag-id 1
+auto vlan20
+iface vlan20
+    vlan-raw-device br_default
+    vlan-id 20
+
+auto vni10
+iface vni10
+    bridge-access 10
+    bridge-learning off
+    vxlan-id 10
+
+auto vni20
+iface vni20
+    bridge-access 20
+    bridge-learning off
+    vxlan-id 20
+
+auto br_default
+iface br_default
+    bridge-ports peerlink bond3 vni10 vni20
+    bridge-vlan-aware yes
     bridge-vids 10 20
-    bond-slaves swp3
-    bond-mode 802.3ad
-    bond-lacp-bypass-allow yes
+    bridge-pvid 1
 ```
 
 {{< /tab >}}
@@ -1129,33 +1114,14 @@ iface eth0 inet dhcp
     ip6-forward off
     vrf mgmt
 
-auto br_default
-iface br_default
-    bridge-ports peerlink bond3 vni10 vni20
-    bridge-vids 10 20  
-    bridge-vlan-aware yes
+auto swp3
+iface swp3
 
-auto vni10
-iface vni10
-    bridge-access 10
-    vxlan-id 10
-    bridge-learning off
+auto swp49
+iface swp49
 
-auto vni20
-iface vni20
-    bridge-access 20
-    vxlan-id 20
-    bridge-learning off
-
-auto vlan10
-iface vlan10
-    vlan-raw-device bridge
-    vlan-id 10
-
-auto vlan20
-iface vlan20
-    vlan-raw-device bridge
-    vlan-id 20
+auto swp50
+iface swp50
 
 auto swp51
 iface swp51
@@ -1169,11 +1135,14 @@ iface swp53
 auto swp54
 iface swp54
 
-auto swp49
-iface swp49
-
-auto swp50
-iface swp50
+auto bond3
+iface bond3
+    mtu 9000
+    bond-slaves swp3
+    bond-mode 802.3ad
+    bond-lacp-bypass-allow yes
+    clag-id 1
+    bridge-vids 10 20
 
 auto peerlink
 iface peerlink
@@ -1183,23 +1152,39 @@ iface peerlink
 
 auto peerlink.4094
 iface peerlink.4094
-    clagd-backup-ip 10.10.10.63
     clagd-peer-ip linklocal
     clagd-priority 1000
+    clagd-backup-ip 10.10.10.63
     clagd-sys-mac 44:38:39:BE:EF:FF
     clagd-args --initDelay 10
 
-auto swp3
-iface swp3
-    mtu 9000
+auto vlan10
+iface vlan10
+    vlan-raw-device bridge
+    vlan-id 10
 
-auto bond3
-iface bond3
-    mtu 9000
-    clag-id 1
-    bridge-vids 10 20
-    bond-slaves swp3
-    bond-lacp-bypass-allow yes
+auto vlan20
+iface vlan20
+    vlan-raw-device bridge
+    vlan-id 20
+
+auto vni10
+iface vni10
+    bridge-access 10
+    vxlan-id 10
+    bridge-learning off
+
+auto vni20
+iface vni20
+    bridge-access 20
+    vxlan-id 20
+    bridge-learning off
+
+auto br_default
+iface br_default
+    bridge-ports peerlink bond3 vni10 vni20
+    bridge-vids 10 20  
+    bridge-vlan-aware yes
 ```
 
 {{< /tab >}}

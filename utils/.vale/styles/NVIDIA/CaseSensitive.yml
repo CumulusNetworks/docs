@@ -1,13 +1,15 @@
 ---
-# Error: NVIDIA.WordStyles
+# Warning: NVIDIA.CaseSensitive
 #
-# Use proper house styles for known words
+# Use proper case per house style guide
 #
 extends: substitution
-message: The word '%s' is case sensitive. Use '%s' instead.
+message: The word or phrase '%s' is case sensitive. Use '%s' instead.
 level: warning
 swap:
   tx: TX
   Tx: TX
   rx: RX
   Rx: RX
+  what just happened: What Just Happened
+  What just happened: What Just Happened

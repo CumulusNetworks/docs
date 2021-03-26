@@ -1,53 +1,54 @@
 ---
-# Error: NVIDIA.WordStyles
+# Warning: NVIDIA.WordStyles
 #
-# Use proper house styles for known words
+# Check for improper use of selected words.
 #
 extends: substitution
-message: "'%s' is the house style of '%s'"
+message: "Use '%s' instead of '%s'."
 link: https://wikinox.mellanox.com/display/BUS/House+Style+Guide#HouseStyleGuide-TerminologyandCommonly-usedWords
 level: warning
 ignorecase: true
 swap:
   autonegotation: auto-negotation
   bare-metal: bare metal
-  bi-weekly: bi-weekly
+  binary image: disk image
   bootcamp: boot camp
   box: switch
   'check box': checkbox
   'check mark': checkmark
   'click on': click
   datacenter: data center
-  de-select: deselect
   'dialog box': dialog
   'double click': double-click
   'doubleclick': double-click
   'drop down': dropdown
   'e-mail': email
+  host: server
   'host name': hostname
   L1: 'layer 1'
   L2: 'layer 2'
   L3: 'layer 3'
   L4: 'layer 4'
   leaves: leafs
+  'link local': linklocal
   logon: 'login or log in'
   'login to': 'log in to'
   'log in and password': 'login and password'
-  'next-hop': 'next hop'
+  may: might
   nexthop: 'next hop'
   once: after
+  peerlink: peer link
   'right click': right-click
   'setup the': 'set up the'
   since: because
+  subcommand: argument
   '(?:synched|synced|synch)': sync
   '(?:syncing|synching)': synchronizing
   'time stamp': timestamp
   'task bar': taskbar
-  'timezone': time zone
+  timezone: time zone
   'USB stick': USB drive
-  'flash drive': usb drive
-  'thumb drive': usb drive
+  'flash drive': USB drive
+  'thumb drive': USB drive
   'user name': username
-  subcommand: argument
-  'link local': linklocal
-  'link-local': linklocal
+  wish: want

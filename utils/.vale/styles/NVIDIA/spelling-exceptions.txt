@@ -2,9 +2,7 @@ addbr
 addr
 addrtype
 adjacencies
-Ansible
 anycast
-Arctica
 args
 audisp
 auid
@@ -15,7 +13,6 @@ bitrate
 bootpc
 bps
 brctl
-Broadcom
 cbl status
 chipset
 chipsets
@@ -28,7 +25,6 @@ deluser
 dev
 dport
 ebtables
-Edgecore
 ethtool
 failover
 giaddr
@@ -36,7 +32,6 @@ Graphviz
 Gunicorn
 hashlimit
 homedir
-http://
 HTTPie
 iburst
 iface
@@ -53,9 +48,7 @@ ip6tables
 iptables
 ipv6
 kbps
-LDAP
 ledmgrd
-Lenovo
 link url
 linklocal
 lipam
@@ -81,11 +74,7 @@ netshow
 noc
 nscld.conf
 nslcd
-ntp
-NVIDIA
-OSPF
 passwd
-peerlink
 poed
 policers
 portwd
@@ -107,13 +96,11 @@ rsyslog
 sbin
 sdk
 smond
-smond
 subinterface
 subnet
 subport
 sudo
 sudoers
-Supermicro
 switchd
 switchport
 swp
@@ -123,7 +110,6 @@ sysmonitor
 sysmonitor
 systemctl
 systemd
-TACACS
 tacadmin
 tacplus
 tclass
@@ -138,12 +124,7 @@ uplinks
 userspace
 usr
 vids
-VNI
-VRR
-VRRP
-VTEP
 vtysh
-VXLAN
 wpasupplicant
 xls
 xoff

@@ -1,6 +1,10 @@
+# Warning: NVIDIA.Acronyms
+#
+# Checks for a definition for the first instance of an acronym.
+#
 extends: conditional
 message: "Write out '%s' the first time, if it is unfamiliar to the intended reader."
-level: suggestion
+level: warning
 ignorecase: false
 # Ensures that the existence of 'first' implies the existence of 'second'.
 first: '\b([A-Z]{3,5})\b'

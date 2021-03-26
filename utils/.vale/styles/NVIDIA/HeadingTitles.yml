@@ -1,7 +1,7 @@
 ---
 # Warning: NVIDIA.HeadingTitles
 #
-# Check for errors in titles not related to capitalization: gerunds, version numbers, and punctuation
+# Checks for errors in titles not related to capitalization: gerunds, version numbers, and punctuation. Use active, declarative verb for titles of procedural topics. For conceptual topics, a verb may not be needed iin the title.
 #
 extends: existence
 message: "'%s' should not use gerund form, version number, or punctuation."
@@ -15,6 +15,7 @@ tokens:
   - Monitoring
   - Troubleshooting
   - Setting
+  - Updating
   - Using
 # Avoid version numbers
   - "[0-9]\\.[0-9]"

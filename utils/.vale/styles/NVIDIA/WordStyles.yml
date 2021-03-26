@@ -1,7 +1,7 @@
 ---
 # Warning: NVIDIA.WordStyles
 #
-# Check for improper use of selected words.
+# Check for improper use of selected words. These cover NVIDIA preferences for selected words.
 #
 extends: substitution
 message: "Use '%s' instead of '%s'."
@@ -14,41 +14,41 @@ swap:
   binary image: disk image
   bootcamp: boot camp
   box: switch
-  'check box': checkbox
-  'check mark': checkmark
-  'click on': click
+  check box: checkbox
+  check mark: checkmark
+  click on: click
   datacenter: data center
-  'dialog box': dialog
-  'double click': double-click
-  'doubleclick': double-click
-  'drop down': dropdown
-  'e-mail': email
+  dialog box: dialog
+  double click: double-click
+  doubleclick: double-click
+  drop down: dropdown
+  e-mail: email
   host: server
-  'host name': hostname
+  host name: hostname
   L1: 'layer 1'
   L2: 'layer 2'
   L3: 'layer 3'
   L4: 'layer 4'
   leaves: leafs
-  'link local': linklocal
+  link local: linklocal
   logon: 'login or log in'
-  'login to': 'log in to'
-  'log in and password': 'login and password'
+  login to: 'log in to'
+  log in and password: 'login and password'
   may: might
   nexthop: 'next hop'
   once: after
   peerlink: peer link
-  'right click': right-click
-  'setup the': 'set up the'
+  right click: right-click
+  setup the: 'set up the'
   since: because
   subcommand: argument
   '(?:synched|synced|synch)': sync
   '(?:syncing|synching)': synchronizing
-  'time stamp': timestamp
-  'task bar': taskbar
+  time stamp: timestamp
+  task bar: taskbar
   timezone: time zone
-  'USB stick': USB drive
-  'flash drive': USB drive
-  'thumb drive': USB drive
-  'user name': username
+  USB stick: USB drive
+  flash drive: USB drive
+  thumb drive: USB drive
+  user name: username
   wish: want

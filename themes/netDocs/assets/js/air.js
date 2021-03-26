@@ -4,12 +4,12 @@ class Air {
   }
 
   async _get(uri) {
-    const res = await fetch(`${this.api_url}${uri}`, { method: 'GET' });
+    const res = await fetch(`${this.api_url}${uri}`, { method: 'GET', credentials: 'include' });
     return res.json();
   };
 
   async _post(uri) {
-    const res = await fetch(`${this.api_url}${uri}`, { method: 'POST' });
+    const res = await fetch(`${this.api_url}${uri}`, { method: 'POST', credentials: 'include' });
     return res.json();
   };
 

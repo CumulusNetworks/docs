@@ -21,8 +21,9 @@ To log in to the UI:
 
     Default usernames and passwords for UI access:  
     - NetQ On-premises: *admin, admin*
-    - NetQ Cloud: Use credentials provided by Cumulus Networks via email titled *Welcome to Cumulus NetQ\!*
-
+<!-- vale off -->
+    - NetQ Cloud: Use credentials provided by NVIDIA via email titled *Welcome to Cumulus NetQ\!*
+<!-- vale on -->
 {{< tabs "TabID24" >}}
 
 {{< tab "First Time Log In" >}}

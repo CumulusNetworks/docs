@@ -805,9 +805,11 @@ For an example configuration with MLAG and BGP, see the {{<link title="Configura
 ```
 cumulus@leaf01:~$ cl set interface bond1 bond member swp1
 cumulus@leaf01:~$ cl set interface bond2 bond member swp2
+cumulus@leaf01:~$ cl set interface bond3 bond member swp3
 cumulus@leaf01:~$ cl set interface bond1 bond mlag id 1
 cumulus@leaf01:~$ cl set interface bond2 bond mlag id 2
-cumulus@switch:~$ cl set interface bond1-2 bridge domain br_default 
+cumulus@leaf01:~$ cl set interface bond3 bond mlag id 3
+cumulus@switch:~$ cl set interface bond1-3 bridge domain br_default 
 cumulus@leaf01:~$ cl set interface peerlink bond member swp49-50
 cumulus@leaf01:~$ cl set mlag mac-address 44:38:39:BE:EF:AA
 cumulus@leaf01:~$ cl set mlag backup 10.10.10.2
@@ -821,9 +823,11 @@ cumulus@leaf01:~$ cl config apply
 ```
 cumulus@leaf02:~$ cl set interface bond1 bond member swp1
 cumulus@leaf02:~$ cl set interface bond2 bond member swp2
+cumulus@leaf01:~$ cl set interface bond3 bond member swp3
 cumulus@leaf02:~$ cl set interface bond1 bond mlag id 1
 cumulus@leaf02:~$ cl set interface bond2 bond mlag id 2
-cumulus@switc2:~$ cl set interface bond1-2 bridge domain br_default
+cumulus@leaf01:~$ cl set interface bond3 bond mlag id 3
+cumulus@switc2:~$ cl set interface bond1-3 bridge domain br_default
 cumulus@leaf02:~$ cl set interface peerlink bond member swp49-50
 cumulus@leaf02:~$ cl set mlag mac-address 44:38:39:BE:EF:AA
 cumulus@leaf02:~$ cl set mlag backup 10.10.10.1
@@ -854,8 +858,6 @@ iface mgmt
 
 auto eth0
 iface eth0 inet dhcp
-    ip-forward off
-    ip6-forward off
     vrf mgmt
 
 auto bond1
@@ -953,8 +955,6 @@ iface mgmt
 
 auto eth0
 iface eth0 inet dhcp
-    ip-forward off
-    ip6-forward off
     vrf mgmt
 
 auto bond1
@@ -1052,8 +1052,6 @@ iface mgmt
 
 auto eth0
 iface eth0 inet dhcp
-    ip-forward off
-    ip6-forward off
     vrf mgmt
 
 auto swp1

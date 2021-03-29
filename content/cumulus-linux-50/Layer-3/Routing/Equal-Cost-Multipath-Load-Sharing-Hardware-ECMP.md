@@ -25,9 +25,7 @@ For routes to be considered equal they must:
 - Have equal cost. If two routes from the same protocol are unequal, only the best route is installed in the routing table.
 
 {{%notice info%}}
-
 In Cumulus Linux, the BGP `maximum-paths` setting is enabled, so multiple routes are installed by default. See the {{<link url="Optional-BGP-Configuration#ecmp" text="ECMP section">}} of the BGP chapter for more information.
-
 {{%/notice%}}
 
 ## ECMP Hashing
@@ -127,7 +125,14 @@ The hash seed is set by the `ecmp_hash_seed` parameter in the `/etc/cumulus/data
 For example, to set the hash seed to *50*, run the following commands:
 
 {{< tabs "TabID138 ">}}
+{{< tab "CUE Commands ">}}
 
+```
+cumulus@switch:~$ NEED COMMAND
+cumulus@switch:~$ cl config apply
+```
+
+{{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
 ```
@@ -137,7 +142,6 @@ cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
-
 {{< tab "Linux Commands ">}}
 
 Edit `/etc/cumulus/datapath/traffic.conf` file, then restart `switchd`. For example:
@@ -153,7 +157,6 @@ ecmp_hash_seed = 50
 {{<cl/restart-switchd>}}
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 ### ECMP Custom Hashing
@@ -221,16 +224,14 @@ hash_config.inner_ip6_label = false
 ```
 
 {{%notice note%}}
-
 Symmetric hashing is enabled by default. Make sure that the settings for the source IP (`hash_config.sip`) and destination IP (`hash_config.dip`) fields match, and that the settings for the source port (`hash_config.sport`) and destination port (`hash_config.dport`) fields match; otherwise symmetric hashing is disabled automatically. You can disable symmetric hashing manually in the `/etc/cumulus/datapath/traffic.conf` file by setting `symmetric_hash_enable = FALSE`.
-
 {{%/notice%}}
 
 ## Resilient Hashing
 
 In Cumulus Linux, when a next hop fails or is removed from an ECMP pool, the hashing or hash bucket assignment can change. For deployments where there is a need for flows to always use the same next hop, like TCP anycast deployments, this can create session failures.
 
-*Resilient hashing* is an alternate mechanism for managing ECMP groups. The ECMP hash performed with resilient hashing is exactly the same as the default hashing mode. Only the method in which next hops are assigned to hash buckets differs &mdash; they're assigned to buckets by hashing their header fields and using the resulting hash to index into the table of 2^n hash buckets. Since all packets in a given flow have the same header hash value, they all use the same flow bucket.
+*Resilient hashing* is an alternate mechanism for managing ECMP groups. The ECMP hash performed with resilient hashing is exactly the same as the default hashing mode. Only the method in which next hops are assigned to hash buckets differs &mdash; they're assigned to buckets by hashing their header fields and using the resulting hash to index into the table of 2^n hash buckets. Because all packets in a given flow have the same header hash value, they all use the same flow bucket.
 
 {{%notice note%}}
 - Resilient hashing supports both IPv4 and IPv6 routes.
@@ -286,7 +287,6 @@ As a result, some flows might hash to new next hops, which can impact anycast de
 Resilient hashing is *not* enabled by default. When resilient hashing is enabled, 65,536 buckets are created to be shared among all ECMP groups. An ECMP group is a list of unique next hops that are referenced by multiple ECMP routes.
 
 {{%notice info%}}
-
 An ECMP route counts as a single route with multiple next hops. The following example is considered to be a single ECMP route:
 
 ```
@@ -295,7 +295,6 @@ cumulus@switch:~$ ip route show 10.1.1.0/24
   nexthop via 192.168.1.1 dev swp1 weight 1 onlink
   nexthop via 192.168.2.1 dev swp2 weight 1 onlink
 ```
-
 {{%/notice%}}
 
 All ECMP routes must use the same number of buckets (the number of buckets cannot be configured per ECMP route).
@@ -311,9 +310,7 @@ The number of buckets can be configured as 64, 512, or 1024; the default is 64:
 A larger number of ECMP buckets reduces the impact on adding new next hops to an ECMP route. However, the system supports fewer ECMP routes. If the maximum number of ECMP routes have been installed, new ECMP routes log an error and are not installed.
 
 {{%notice note%}}
-
 Two custom options are provided to allocate route and  MAC address hardware resources depending on ECMP bucket size changes. See {{%link title="Routing#Mellanox Spectrum Switches" text="Mellanox Spectrum routing resources" %}}.
-
 {{%/notice%}}
 
 To enable resilient hashing, edit `/etc/cumulus/datapath/traffic.conf`:
@@ -346,9 +343,7 @@ When the next hop information for an IPv6 prefix changes (for example, when ECMP
 To work around this issue, you can enable the IPv6 route replacement option.
 
 {{%notice info%}}
-
 For certain configurations, the IPv6 route replacement option can lead to incorrect forwarding decisions and lost traffic. For example, it is possible for a destination to have next hops with a gateway value with the outbound interface or just the outbound interface itself, without a gateway address defined. If both types of next hops for the same destination exist, route replacement does not operate correctly; Cumulus Linux adds an additional route entry and next hop but does not delete the previous route entry and next hop.
-
 {{%/notice%}}
 
 To enable the IPv6 route replacement option:

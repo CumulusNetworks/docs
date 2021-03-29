@@ -542,7 +542,7 @@ To ease the consistent configuration of your switches, NetQ enables you to creat
 You can view, create, and modify switch configuration profiles and their assignments at any time using the Switch Configurations card.
 
 {{<notice info>}}
-New switch configuration features introduced with release 3.3.0 are Early Access features and are provided in advance of general availability to enable customers to try them out and provide feedback. These features are bundled into the `netq-apps` package so there is no need to install a separate software package. The features are enabled by default and marked in the documentation here as Early Access.
+New switch configuration features introduced with release 3.3.0 are Early Access features and are provided in advance of general availability to enable customers to try them out and provide feedback. These features are bundled into the <code>netq-apps</code> package so there is no need to install a separate software package. The features are enabled by default and marked in the documentation here as Early Access.
 {{</notice>}}
 
 ### View Switch Configuration Profiles

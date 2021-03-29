@@ -91,7 +91,7 @@ cumulus@switch:~$ net commit
 
 {{%notice tip%}}
 
-If you configure the listening address on the loopback interface, since it is not a change from the default, a message appears in the console stating that the configuration has not changed.
+If you configure the listening address on the loopback interface, because it is not a change from the default, a message appears in the console stating that the configuration has not changed.
 
 ```
 cumulus@switch:~$ net add snmp-server listening-address localhost
@@ -191,7 +191,7 @@ agentAddress udp:66.66.66.66:161,udp:77.77.77.77:161,udp6:[2001::1]:161
 
 ### Configure the SNMPv3 Username
 
-As mentioned above, Cumulus Networks recommends you use an SNMPv3 username and password instead of the read-only community string as the more secure way to use SNMP, since SNMPv3 does not expose the password in the `GetRequest` and `GetResponse` packets and can also encrypt packet contents. You can configure multiple usernames for different user roles with different levels of access to various MIBs.
+NVIDIA recommends you use an SNMPv3 username and password instead of the read-only community string as the more secure way to use SNMP because SNMPv3 does not expose the password in the `GetRequest` and `GetResponse` packets and can also encrypt packet contents. You can configure multiple usernames for different user roles with different levels of access to various MIBs.
 
 SNMPv3 usernames are added to the `/etc/snmp/snmpd.conf` file, along with plaintext authentication and encryption pass phrases.
 
@@ -558,12 +558,6 @@ SNMP supports routing MIBs in {{<link url="FRRouting" text="FRRouting">}}. To en
 The default `/etc/snmp/snmpd.conf` configuration already enables AgentX and sets the correct permissions.
 
 Enabling FRR includes support for BGP. However, if you plan on using the BGP4 MIB, be sure to provide access to the MIB tree 1.3.6.1.2.1.15.
-
-{{%notice note%}}
-
-At this time, SNMP does not support monitoring BGP unnumbered neighbors.
-
-{{%/notice%}}
 
 {{%notice tip%}}
 

@@ -3,29 +3,33 @@ title: What Just Happened
 author: Cumulus Networks
 weight: 620
 product: SONiC
-version: 201911_MUR5
+version: 202012
 siteSlug: sonic
 ---
 
-What-Just-Happened feature is distributed as a Debian package that can be installed on SONiC system on the fly. Please contact Mellanox Support to get a Debian package to be installed on your SONiC switch. 
+*What Just Happened* (WJH) is a troubleshooting feature that streams detailed and contextual telemetry data for analysis. It provides real-time visibility into problems in the network, such as hardware packet drops due to buffer congestion, incorrect routing, and ACL or layer 1 problems.
+
+**WJH available on Mellanox switches only.** It distributed as a Debian package that you can install on a SONiC switch. Please contact Mellanox Support to get the WJH Debian package.
+
+## Install WJH
 
 {{%notice info%}}
 
-Before the installation make sure you do not have configuration changes in running config that you do not want to persist after reboot.
+Before you install, make sure you do not have changes in the running configuration that you want to persist after reboot.
 
 {{%/notice%}}
 
 To install WJH:
 
-1. Download the package on running SONiC system. Contact Mellanox Support to receive the package. 
+1. Download the Debian package you received from Mellanox Support onto the SONiC switch.
 
-       admin@sonic:~$ sudo curl http://arc-build-server/sonic/what-just-happened_1.0.1_amd64.deb -o what-just-happened_1.0.1_amd64.deb
+       admin@switch:~$ sudo curl http://&lt;Mellanox-file-server>/sonic/what-just-happened_1.0.1_amd64.deb -o what-just-happened_1.0.1_amd64.deb
        % Total % Received % Xferd Average Speed Time Time Time Current
        Dload Upload Total Spent Left Speed
        100 91.2M 100 91.2M 0 0 109M 0 --:--:-- --:--:-- --:--:-- 109M
-2. Install the downloaded package using dpkg utility:
+2. Install the downloaded package using `dpkg`:
 
-       admin@sonic:~$ sudo dpkg -i what-just-happened_1.0.1_amd64.deb 
+       admin@switch:~$ sudo dpkg -i what-just-happened_1.0.1_amd64.deb 
        Selecting previously unselected package what-just-happened.
        (Reading database ... 27045 files and directories currently installed.)
        Preparing to unpack what-just-happened_1.0.1_amd64.deb ...
@@ -41,17 +45,17 @@ To install WJH:
        Reloading systemd configuration...
        Done!!!
 
-Once this is done, you will see a new docker image installed on the SONiC system, you can verify it by running show version SONiC command:
+When the installation finishes, a new Docker image appears as installed on the switch. You can verify it by running `show version`:
 
 ```
-admin@sonic:~$ show version
+admin@switch:~$ show version
  
 SONiC Software Version: SONiC.201911.105-a693f023
 Distribution: Debian 9.12
 Kernel: 4.9.0-11-2-amd64
 Build commit: a693f023
 Build date: Tue Jun  2 04:34:50 UTC 2020
-Built by: johnar@jenkins-worker-8
+Built by: user@jenkins-worker-8
  
 Platform: x86_64-mlnx_msn2700-r0
 HwSKU: ACS-MSN2700
@@ -95,16 +99,16 @@ docker-sonic-telemetry        latest                63aee702a3ed        349MB
 
 {{%notice info%}}
 
-During the installation, a default configuration required for What Just Happened to run will be pushed to CONFIG DB following a config save operation. No changes to the existing configuration will be made, only the new configuration will be inserted.
+During the installation, a default configuration required for What Just Happened to run is pushed to CONFIG_DB after you run `config save`. This does not change the existing configuration, it only applies the new one.
 
 {{%/notice%}}
 
-## Integrating What Just Happened with SONiC
+## What Just Happened Interoperability with SONiC
 
-Once installed, a new docker image will be treated as another SONiC optional feature, thus any feature operation can be applied to What Just Happened as well. You can run the following command to verify it:
+After you install WJH, SONiC treats the new WJH Docker image as any other optional SONiC feature, so SONiC `feature` commands can be applied to WJH like it can for any other SONiC container. You can verify SONiC was installed by running the following command:
 
 ```
-admin@sonic:~$ show feature status
+admin@switch:~$ show feature status
 Feature             State     AutoRestart
 ------------------  --------  -------------
 bgp                 enabled   enabled
@@ -124,30 +128,30 @@ telemetry           enabled   enabled
 what-just-happened  enabled   disabled 
 ```
 
-After installation, What Just Happened is in disabled state by default.
+Notice that WJH is in the *disabled* state by default after installation. To enable WJH, run:
 
-To enable WJH:
-1. Run:
+    admin@switch:~$ sudo config feature state what-just-happened enabled
 
-       sudo config feature state what-just-happened enabled
-2. Save the configuration to make changes persistent across reboots.
+Then save the configuration to make the change persistent across reboots.
 
-   If further configuration changes are required, follow the instruction in this link: https://github.com/Azure/SONiC/blob/2ac24d2e216ee1187ed68f13a7b6c2e198c71a80/doc/database/multi_database_instances.md.
+    admin@switch:~$ sudo config save -y
 
-Any user configuration to CONTAINER_FEATURE table is also applied to the What Just Happened container.  Thus, you can configure an auto restart of the container or a high memory alert in the same way as it is done for any other SONiC docker container. The output below shows the defaults:
+If you need to make further configuration changes, follow the steps in the {{<exlink url="https://github.com/Azure/SONiC/blob/master/doc/database/multi_database_instances.md" text="SONiC documentation">}} on GitHub.
+
+Any configuration changes made to the `CONTAINER_FEATURE` table are also applied to the What Just Happened container. Thus, you can configure an auto restart of the container or a high memory alert in the same way you can for any other SONiC Docker container. The output below shows the defaults:
 
 ```
-admin@sonic:~$ redis-cli -n 4 hgetall "CONTAINER_FEATURE|what-just-happened"
+admin@switch:~$ redis-cli -n 4 hgetall "CONTAINER_FEATURE|what-just-happened"
 1) "auto_restart"
 2) "disabled"
 3) "high_mem_alert"
 4) "disabled"
 ```
 
-Once enabled, you can see a new docker container running in the system:
+After you enable WJH, you can see its Docker container running in the system:
 
 ```
-admin@sonic:~$ docker ps 
+admin@switch:~$ docker ps 
 CONTAINER ID        IMAGE                             COMMAND                  CREATED              STATUS              PORTS               NAMES
 f3484abb2d69        docker-wjh:latest                 "/usr/bin/supervisord"   About a minute ago   Up About a minute                       what-just-happened
 a45fb0c5b4b9        docker-snmp-sv2:latest            "/usr/bin/supervisord"   13 hours ago         Up 12 hours                             snmp
@@ -165,12 +169,12 @@ ac887f2319b5        docker-platform-monitor:latest    "/usr/bin/docker_ini…"  
 b2d1e2ea041a        docker-database:latest            "/usr/local/bin/dock…"   13 hours ago         Up 12 hours                             database
 ```
 
-### Integrating "What Just Happened" with SONiC systemd
+### How What Just Happened Interoperates with SONiC systemd
 
-What Just Happened container is managed by systemd in the same way as any other component in SONiC, thus any systemctl command can be applied to What Just Happened. To see the status of the service after What Just Happened is enabled:
+`systemd` manages the What Just Happened container just like any other SONiC component, so you can run any `systemctl` command on What Just Happened. To see the status of the service after you enable What Just Happened:
 
 ```
-admin@sonic:~$ sudo systemctl status what-just-happened.service 
+admin@switch:~$ sudo systemctl status what-just-happened.service 
 what-just-happened.service - Service providing "What-Just-Happened" feature functionality
    Loaded: loaded (/etc/systemd/system/what-just-happened.service; static; vendor preset: enabled)
    Active: active (running) since Wed 2020-06-03 10:48:49 UTC; 15s ago
@@ -190,24 +194,64 @@ Jun 03 10:48:49 r-boxer-sw01 what-just-happened.sh[31918]: what-just-happened
 Jun 03 10:48:49 r-boxer-sw01 systemd[1]: Started Service providing "What-Just-Happened" feature functionality.
 ```
 
-### Integrating "What Just Happened" with SONiC CLI
+### What Just Happened CLI Commands
 
-After installation, a new subcommand in show CLI group named what-just-happened will be available. This command is a root subcommand for any What Just Happened specific operation.
+After you install WJH, the `what-just-happened` command appears under the `show` command. The `show what-just-happened` commands are outlined in the table below.
 
-### Upgrading SONiC-to-SONiC
+|  show what-just-happened Command | Description |
+| ---- | ------------ |
+| show what-just-happened | Top level WJH command. |
+| Options | -?, -h, \--help: Show this message and exit. |
+| Commands | configuration: show what-just-happened configuration<br />poll*: Polls the WJH user channel.<br />dump: Dumps what-just-happened debug information. |
+| Example | <pre>admin@switch:~$ show what-just-happened \--help<br />Usage: show what-just-happened [OPTIONS] COMMAND [ARGS]...<br /><br />"show what-just-happened" command group<br /><br />Options:<br />  -?, -h, \--help  Show this message and exit.<br /><br />Commands:<br />  poll*          Poll what-just-happened user channel<br />  configuration  show what-just-happened configuration<br />  dump           Dump what-just-happened debug information |
 
-Currently What Just Happened package does not support SONiC-to-SONiC upgrade scenario. After SONiC-to-SONiC upgrade procedure, installed What Just Happened feature will be lost.
+| show what-just-happened configuration Command | Description |
+| ---- | ------------ |
+| show what-just-happened configuration | Shows what-just-happened configuration [OPTIONS] COMMAND [ARGS]... |
+| Options | -?, -h, \--help: Show this message and exit. |
+| Commands | channels: Shows the WJH channel configuration.<br />global: Shows the global WJH configuration. |
+| Basic Example | <pre>admin@switch:~$ show what-just-happened configuration<br />Usage: show what-just-happened configuration [OPTIONS] COMMAND [ARGS]...<br /><br />  show what-just-happened configuration<br /><br />Options: -?, -h, \--help  Show this message and exit.<br /><br />Commands:<br />  channels  show what-just-happened channel configuration<br />  global    show global what-just-happened configuration</pre> |
+| Global Example | <pre>admin@switch:~$ show what-just-happened configuration global<br />Mode      PCI Bandwidth (%)    Nice Level<br />\-\-\-\-\-\-  \-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-  \-\-\-\-\-\-\-\-\-\-\-\-<br />debug                    50             1</pre>
+| Channels Example | <pre>admin@switch:~$ show what-just-happened configuration channels<br />Channel     Type                Polling Interval (s)    Drop Groups<br />\-\-\-\-\-\-\-\-\-\-  \-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-  \-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-  \-\-\-\-\-\-\-\-\-\-\-\-\-<br />forwarding  raw_and_aggregated  N/A                     L2,L3,Tunnel</pre><p><strong>Note:</strong> Use this command only for a channel that has a type of <em>raw</em> or <em>raw_and_aggregated</em>.</p><p>A <em>raw</em> or <em>raw_and_aggregated</em> channel has a circular buffer for storing dropped packets. The default capacity of the buffer is 1024 packets; you cannot change this value, so the maximum number of packets displayed per channel is 1024. If a new packet gets dropped, the oldest drop is discarded.</p><p>For further information, refer to {{<link url="#configure-a-channel" text="Configure a Channel">}} below.</p> |
 
-#### Upgrading the WJH Package
+| show what-just-happened poll Command | Description |
+| ---- | ------------ |
+| show what-just-happened poll | Shows results from WJH channel polls. |
+| Options | \--aggregate: Dumps aggregated counters.<br />\--export: Saves dropped packets into a PCAP file.<br />-?, -h, \--help: Show this message and exit. |
+| Example | <pre>admin@switch:~$ show what-just-happened poll \--help<br />Usage: show what-just-happened poll [OPTIONS] [CHANNELS]...<br /><br />Poll what-just-happened user channel<br /><br />Options:<br />  \--aggregate     Dump aggregated counters<br />  \--export        Save dropped packets into pcap file.<br />  -?, -h, \--help  Show this message and exit.</pre> |
+| Notes | To poll the channel, you can use either <code>show what-just-happened poll [OPTIONS] [CHANNELS]</code> or just use the base command directly: <code>show what-just-happened [OPTIONS] [CHANNELS]</code>. |
+| Aggregate example | <pre>admin@switch:~$ show what-just-happened poll \--aggregate</pre> |
+| Export example | <pre>admin@switch:~$ show what-just-happened poll \--export</pre> |
 
-To upgrade to another version of the WJH package, user the installation command:
+| show what-just-happened forwarding Command | Description |
+| ---- | ------------ |
+| show what-just-happened forwarding | Displays dropped packets. |
+| Options | \--aggregate: Displays aggregated counters.<br/>\--export: Saves dropped packets into a PCAP file. |
+| Basic Example | <pre>admin@switch:~$ show what-just-happened forwarding<br />#  Timestamp              sPort      dPort  VLAN  sMAC               dMAC               EthType  Src IP:Port  Dst IP:Port  IP Proto  Drop   Severity  Drop reason - Recommended action<br />Group<br />\-\- \-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\- \-\-\-\-\-\-\-\-\-\- \-\-\-\-\-\- \-\-\-\-\- \-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\- \-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\- \-\-\-\-\-\-\-\- \-\-\-\-\-\-\-\-\-\-\-\- \-\-\-\-\-\-\-\-\-\-\-\- \-\-\-\-\-\-\-\-\- \-\-\-\-\-\- \-\-\-\-\-\-\-\-\- -\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-<br />1  20/06/03 10:51:29.892  Ethernet0  N/A    N/A   e4:1d:2d:a5:f1:4a  33:33:00:00:00:16  IPv6     ::           ff02::16     ip        L3     Error     Source IP is unspecified - Bad packet was received<br />from the peer<br />2  20/06/03 10:51:29.892  Ethernet0  N/A    N/A   e4:1d:2d:a5:f1:4a  33:33:00:00:00:16  IPv6     ::           ff02::16     ip        L3     Error     Source IP is unspecified - Bad packet was received<br />from the peer</pre><p><strong>Note:</strong> This command can be used only for a channel that has a type of raw or raw_and_aggregated.</p><p>A raw or raw_and_aggregated channel has a circular buffer for storing dropped packets, the default capacity of the buffer is 1024 and cannot be changed by the user, thus the maximum number of packets displayed per channel is 1024. If the new packet gets dropped the oldest drop is discarded.</p><p>After drops are read from the channel, they are gone and will not be displayed by subsequent executions of show what-just-happened. To save information you have few options. In case of raw or aggregated or raw_and_aggregated channel you can save the CLI output to a file, in case of raw or raw_and_aggregated channel you can use <code>--export</code> option described below to save dropped packets into PCAP persistently.</p><p>The user must remove any unused saved pcap file to prevent storage consumption.</p> |
+| Aggregate Example | <pre>admin@switch:~$ show what-just-happened forwarding --aggregate<br />#  sPort      VLAN  sMAC               dMAC               EthType  Src IP:Port  Dst IP:Port  IP Proto  Count  Severity  Drop reason - Recommended action<br />\-\- \-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\- \-\-\-\-\-\-\-\-\-\- \-\-\-\-\-\- \-\-\-\-\- \-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\- \-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\- \-\-\-\-\-\-\-\- \-\-\-\-\-\-\-\-\-\-\-\- \-\-\-\-\-\-\-\-\-\-\-\- \-\-\-\-\-\-\-\-\- \-\-\-\-\-\- \-\-\-\-\-\-\-\-\- -\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-<br />1  Ethernet4  N/A   00:00:00:00:00:00  ff:ff:ff:ff:ff:ff  IPv4     127.0.0.1:0  127.0.0.1:0  ip        100    Error     Unicast destination IP but multicast destination<br />MAC - Bad packet was received from the peer</pre><p><strong>Note:</strong> This command can be used only for a channel that has a type of <em>aggregated</em> or <em>raw_and_aggregated</em>.</p>An <em>aggregated</em> or <em>raw_and_aggregated</em> channel has a buffer for storing dropped packets, the default capacity of the buffer is 1024 and cannot be changed by the user, thus the maximum number of unique tuples of source, destination MAC, source destination IP and port, ingress port, vlan, protocol and drop reason is 1024, thus the maximum number of rows in aggregated table view per channel is 1024.</p><p>Since aggregation currently is done in software, on high drop rates the Count column may not reflect the actual number of dropped packets.</p> |
+| Export Example | <pre>admin@switch:~$ show what-just-happened forwarding --export<br /><br />PCAP file path : /var/log/mellanox/wjh/wjh_user_2020_06_03_10_55_34.pcap<br /><br />#   Timestamp              sPort      dPort  VLAN  sMAC               dMAC               EthType  Src IP:Port  Dst IP:Port  IP Proto  Drop   Severity  Drop reason - Recommended action<br />Group<br />\-\-\- \-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\- \-\-\-\-\-\-\-\-\-\- \-\-\-\-\-\- \-\-\-\-\- \-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\- \-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\- \-\-\-\-\-\-\-\- \-\-\-\-\-\-\-\-\-\-\-\- \-\-\-\-\-\-\-\-\-\-\-\- \-\-\-\-\-\-\-\-\- \-\-\-\-\-\- \-\-\-\-\-\-\-\-\- \-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-<br />1   20/06/03 10:55:32.249  Ethernet4  N/A    N/A   00:00:00:00:00:00  ff:ff:ff:ff:ff:ff  IPv4     127.0.0.1    127.0.0.1    ip        L3     Error     Unicast destination IP but multicast destination<br />MAC - Bad packet was received from the peer<br />2   20/06/03 10:55:32.249  Ethernet4  N/A    N/A   00:00:00:00:00:00  ff:ff:ff:ff:ff:ff  IPv4     127.0.0.1    127.0.0.1    ip        L3     Error     Unicast destination IP but multicast destination<br />MAC - Bad packet was received from the peer</pre> |
+| Notes | This command can be used only for a channel that has a type of raw or raw_and_aggregated.<br /><br />PCAP files are saved into /var/log/mellanox/wjh/ folder and named in the following format: <code>wjh_user_YYYY_MM_DD_hh_mm_ss.pcap</code>. Those files are not rotated or automatically cleaned. The user is required to manage the content of /var/log/mellanox/wjh/ and make sure created files will not take all space on the drive. After SONiC-to-SONiC upgrade, /var/log/mellanox/wjh/ will still contain dumps created by the user. As in case of raw table view, the maximum number of packets stored in PCAP file per channel is 1024.<br /><br />If type of the channel is raw_and_aggregated the user can view aggregated information and store packets into PCAP file at the same time.<br /><pre>admin@switch:~$ show what-just-happened --aggregate --export<br /><br />PCAP file path : <code>/var/log/mellanox/wjh/wjh_user_2020_06_03_10_58_31.pcap</code><br /><br />#  sPort      VLAN  sMAC               dMAC               EthType  Src IP:Port  Dst IP:Port  IP Proto  Count  Severity  Drop reason - Recommended action<br />\-\- \-\-\-\-\-\-\-\-\-\- \-\-\-\-\- \-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\- \-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\- \-\-\-\-\-\-\-\- \-\-\-\-\-\-\-\-\-\-\-\- \-\-\-\-\-\-\-\-\-\-\-\- \-\-\-\-\-\-\-\-\- \-\-\-\-\-\- \-\-\-\-\-\-\-\-\- \-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-<br />1  Ethernet4  N/A   00:00:00:00:00:00  ff:ff:ff:ff:ff:ff  IPv4     127.0.0.1:0  127.0.0.1:0  ip        20     Error     Unicast destination IP but multicast destination<br />MAC - Bad packet was received from the peer</pre> |
 
-Please make sure the new WJH Debian has the proper SDK version integrated into the image.  If the version is not the latest, remove the WJH Debian image BEFORE rebooting to the next image. 
+| Docker Exec WJH | Description |
+| --------------- | ----------- |
+| docker exec -it what-just-happened supervisorctl status all | Checks whether the WJH service is running inside the Docker container. |
+| Example | <pre>admin@switch:~$ docker exec -it what-just-happened supervisorctl status all<br />rsyslogd                         RUNNING   pid 14, uptime 0:00:15<br />start.sh                         EXITED    Jun 03 10:57 AM<br />supervisor-proc-exit-listener    RUNNING   pid 8, uptime 0:00:16<br />wjhd                             RUNNING   pid 19, uptime 0:00:14</pre> |
 
-For the latest SDK version, refer to the SONiC Release Notes.
+| Show WJH Dump | Description |
+| ------------- | ----------- |
+| show what-just-happened dump | Dumps the WJH library to <code>stdout</code>. |
+| Example | <pre>admin@switch:~$ show what-just-happened dump<br />######## Init params #########<br />force           : 1<br />max_bw_percent  : 50<br />conf_xml_path   : (null)<br />dbg_file_path   : (null)<br />ingress_info_type       : if_index<br />######## User Channel #########<br />channel id[0], channel type[3].</pre> |
+
+### Upgrade the WJH Package
+
+To upgrade to another version of the WJH package, use the `dpkg` command.
+
+Make sure the new WJH Debian has the proper SDK version integrated into the image. If the version is not the latest, remove the WJH Debian image **before** rebooting to the new image.
+
+For the latest SDK version, refer to the {{<link url="Release-Notes" text="SONiC Release Notes">}}.
 
 ```
-admin@sonic:~$ sudo dpkg -i what-just-happened-201911_1.2.0_amd64.deb 
+admin@switch:~$ sudo dpkg -i what-just-happened-201911_1.2.0_amd64.deb 
 (Reading database ... 28024 files and directories currently installed.)
 Preparing to unpack what-just-happened-201911_1.2.0_amd64.deb ...
 Stopping what-just-happened service...
@@ -245,11 +289,30 @@ Reloading systemd configuration...
 Done!!!
 ```
 
-## Configuring What Just Happened
+{{%notice info%}}
+
+If you upgrade the SONiC OS on the switch, WJH gets removed. You need to reinstall the WJH package again.
+
+{{%/notice%}}
+
+## Configure What Just Happened
+
+The configurations for global settings and channel types are stored in the `/etc/sonic/config_db.json` file.
 
 ### Global Configuration
 
+WJH has these global settings:
+
+| Setting | Description |
+| ------- | ----------- |
+| mode | Defines the operation mode for What Just Happened. The mode can be either *debug* or *streaming*, but only debug is available at this time. In debug mode, you can view packets locally on the system using the SONiC CLI. In streaming mode, the CLI is available to you and dropped packets are streamed to a remote collector. |
+| nice_level | This setting represents how many CPU resources the What Just Happened process uses relative to other processes running on the switch. You can adjust this setting to control how "nice" the What Just Happened process is to other processes in terms of CPU usage. In order to give more CPU resources to other running processes, you may increase this value. The valid range is from -20 to 19. You can change `nice_level` at runtime while the What Just Happened container is running. |
+| pci_bandwidth | <p>Controls what percent of the PCI What Just Happened is allowed to use. Valid range is from 0 to 100. If you change this setting, you must restart the What Just Happened service.</p><pre>admin@switch:~$ sudo systemctl restart what-just-happened.service</pre> |
+
+NVIDIA recommends you keep the default values for the global configuration. However, if you need to change one or more of them, edit the the `/etc/sonic/config_db.json` file. The settings are in the WJH table:
+
 ```
+admin@switch:~$ vi /etc/sonic/config_db.json
 "WJH": {
     "global": {
         "mode": "debug", 
@@ -259,17 +322,12 @@ Done!!!
 }
 ```
 
-- **mode** - defines the operation mode for What Just Happened. Can be either debug or streaming, currently only debug is available. In debug mode user is able to view packets locally on the system using CLI command, while in streaming mode the CLI is available to the user and dropped packets are streamed to a remote collector.
-- **nice_level** - a nice value of the What Just Happened application process in Linux. User may tweak this parameter to control how "nice" the What Just Happened application will be to other processes in terms of CPU usage. In order to give more CPU resources to other running processes, you may increase this value. A valid range is from -20 to 19. nice_level can be changed in runtime while What Just Happened container is running.
-- **pci_bandwidth** - controls how much of the PCI What Just Happened is allowed to use in percents. Valid range is from 0 to 100. Changing this value will require What Just Happened service restart.
+### Channel Types
 
-We recommend keep the default values for Global configuration.
-
-### Channels Configuration
-
-A channel is an entity from which dropped packets are read. Same as a trap group that has a list of traps, a channel has a list of drop categories:
+A channel is an entity from which dropped packets are read. Just as a trap group that has a list of traps, a channel has a list of drop categories:
 
 ```
+admin@switch:~$ vi /etc/sonic/config_db.json
 "WJH_CHANNEL": {
      "forwarding": {
         "drop_category_list": "L2,L3,Tunnel", 
@@ -280,15 +338,17 @@ A channel is an entity from which dropped packets are read. Same as a trap group
 
 The type defines a type of data returned by What Just Happened, one of:
 
-- **raw** - provides raw packets as well as metadata about the dropped packet, such as timestamp, drop reason, drop category and recommended action.
-- **aggregated** - provides aggregated counter which shows how many packets of a flow has been dropped as well as metadata about the dropped packets. Aggregation is done based on tuple of Source and Destination MAC addresses, Source and Destination IP addresses and Ports, ingress port, VLAN, protocol and drop reason.
-- **raw_and_aggregated** - combined type, provides both raw and aggregated information.
+| Type | Description |
+| ---- | ----------- |
+| raw | Provides the raw packets and metadata about the dropped packet, such as timestamp, drop reason, drop category and recommended action. |
+| aggregated | Provides an aggregated counter, which shows how many packets of a flow have been dropped as well as metadata about the dropped packets. Aggregation is done based on tuple of source and destination MAC addresses, source and destination IP addresses and ports, ingress port, VLAN, protocol and drop reason. |
+| raw_and_aggregated | Combined type, which provides both raw and aggregated information. |
 
-This configuration is default and in current What Just Happened release it cannot be changed by the user.
+You cannot change this configuration at this time.
 
-#### Changing Drop Reason and Recommended Action Messages
+### Change the Drop Reason and Recommended Action Messages
 
-What Just Happened uses an XML formatted file for configuring messages displayed in the CLI, as shown in the example below:
+What Just Happened uses an XML formatted file for configuring messages displayed in the CLI, as shown in this example:
 
 ```
 <reason-info>
@@ -299,72 +359,8 @@ What Just Happened uses an XML formatted file for configuring messages displayed
 </reason-info>
 ```
 
-User can modify the severity, reason and description fields. Upon start, What Just-Happened will try to load /etc/sonic/wjh/wjh.xml file that can be provided by the user. If this file does not exist, a default provided by What Just-Happened SDK library will be used. You can use the file inside What Just-Happened container as a reference for creating your own:
+You can modify the **severity**, **reason** and **description** fields. When the `what-just-happened` service starts, WJH tries to load `/etc/sonic/wjh/wjh.xml` file that can be provided by the user. If this file does not exist, a default provided by the WJH SDK library is used. You can use the file inside What Just-Happened container as a reference for creating your own:
 
-    admin@sonic:~$ docker exec -it what-just-happened less /usr/etc/wjh_lib_conf.xml
+    admin@switch:~$ docker exec -it what-just-happened less /usr/etc/wjh_lib_conf.xml
 
-Once custom /etc/sonic/wjh/wjh.xml file is created, What Just-Happened service needs to be restarted to load the new XML file.
-
-## Command Line User Interface
-
-What Just Happened provides a new CLI subcommand in show utility.
-
-|  Show WJH Help | Description |
-| ---- | ------------ |
-| show what-just-happened --help | Shows what-just-happened [OPTIONS] COMMAND [ARGS]... |
-| Options | -?, -h, --help: Show this message and exit. |
-| Commands | poll*: Poll what-just-happened user channel<br />configuration: show what-just-happened configuration<br />dump: Dump what-just-happened debug information |
-| Example | <pre>admin@sonic:~$ show what-just-happened --help<br />Usage: show what-just-happened [OPTIONS] COMMAND [ARGS]...<br /><br />"show what-just-happened" command group<br /><br />Options:<br />  -?, -h, --help  Show this message and exit.<br /><br />Commands:<br />  poll*          Poll what-just-happened user channel<br />  configuration  show what-just-happened configuration<br />  dump           Dump what-just-happened debug information |
-
-| Show WJH Config | Description |
-| ---- | ------------ |
-| show what-just-happened configuration | Shows what-just-happened configuration [OPTIONS] COMMAND [ARGS]... |
-| Options | -?, -h, --help: Show this message and exit. |
-| Commands | channels: show what-just-happened channel configuration<br />global: show global what-just-happened configuration |
-| Example | <pre>admin@sonic:~$ show what-just-happened configuration<br />Usage: show what-just-happened configuration [OPTIONS] COMMAND [ARGS]...<br /><br />  show what-just-happened configuration<br /><br />Options: -?, -h, --help  Show this message and exit.<br /><br />Commands:<br />  channels  show what-just-happened channel configuration<br />  global    show global what-just-happened configuration</pre> |
-
-| Show WJH Config Global | Description |
-| ---- | ------------ |
-| show what-just-happened configuration global | Shows what-just-happened global configuration. |
-| Example | <pre>admin@sonic:~$ show what-just-happened configuration global<br />Mode      PCI Bandwidth (%)    Nice Level<br />------  -------------------  ------------<br />debug                    50             1</pre>
-
-| Show WJH Config Channels | Description |
-| ---- | ------------ |
-| show what-just-happened configuration channels | Shows what-just-happened channel configuration. |
-| Example | <pre>admin@sonic:~$ show what-just-happened configuration channels<br />Channel     Type                Polling Interval (s)    Drop Groups<br />----------  ------------------  ----------------------  -------------<br />forwarding  raw_and_aggregated  N/A                     L2,L3,Tunnel</pre>
-| Notes | This command can be used only for a channel that has a type of raw or raw_and_aggregated.<br /><br />A raw or raw_and_aggregated channel has a circular buffer for storing dropped packets, the default capacity of the buffer is 1024 and cannot be changed by the user, thus the maximum number of packets displayed per channel is 1024. If the new packet gets dropped the oldest drop is discarded.<br /><br />For further information, refer to Channels Configuration. |
-
-| Show WJH Poll | Description |
-| ---- | ------------ |
-| show what-just-happened poll --help | Shows what-just-happened poll [OPTIONS] [CHANNELS]... |
-| Options | --aggregate: Dump aggregated counters<br />--export: Save dropped packets into pcap file<br />-?, -h, --help: Show this message and exit. |
-| Example | <pre>admin@sonic:~$ show what-just-happened poll --help<br />Usage: show what-just-happened poll [OPTIONS] [CHANNELS]...<br /><br />Poll what-just-happened user channel<br /><br />Options:<br />  --aggregate     Dump aggregated counters<br />  --export        Save droped packets into pcap file<br />  -?, -h, --help  Show this message and exit.</pre> |
-| Notes | To poll the channel, you can use either "show what-just-happened poll [OPTIONS] [CHANNELS]" or just use a root subcommand directly "show what-just-happened [OPTIONS] [CHANNELS]" |
-
-| Show WJH Forwarding | Description |
-| ---- | ------------ |
-| show what-just-happened forwarding | Displays dropped packets. |
-| Example | <pre>admin@sonic:~$ show what-just-happened forwarding<br />#  Timestamp              sPort      dPort  VLAN  sMAC               dMAC               EthType  Src IP:Port  Dst IP:Port  IP Proto  Drop   Severity  Drop reason - Recommended action<br />                                                                                        Group<br />-- ---------------------- ---------- ------ ----- ------------------ ------------------ -------- ------------ ------------ --------- ------ --------- ---------------------------------------------------<br />1  20/06/03 10:51:29.892  Ethernet0  N/A    N/A   e4:1d:2d:a5:f1:4a  33:33:00:00:00:16  IPv6     ::           ff02::16     ip        L3     Error     Source IP is unspecified - Bad packet was received<br />                                                                                                                                                      from the peer<br />2  20/06/03 10:51:29.892  Ethernet0  N/A    N/A   e4:1d:2d:a5:f1:4a  33:33:00:00:00:16  IPv6     ::           ff02::16     ip        L3     Error     Source IP is unspecified - Bad packet was received<br />                                                                                                                                                      from the peer</pre> |
-| Notes | This command can be used only for a channel that has a type of raw or raw_and_aggregated.<br /><br />A raw or raw_and_aggregated channel has a circular buffer for storing dropped packets, the default capacity of the buffer is 1024 and cannot be changed by the user, thus the maximum number of packets displayed per channel is 1024. If the new packet gets dropped the oldest drop is discarded.<br /><br />Once drops are read from the channel, they are gone and will not be displayed by subsequent executions of show what-just-happened. To save information you have few options. In case of raw or aggregated or raw_and_aggregated channel you can save the CLI output to a file, in case of raw or raw_and_aggregated channel you can use --export option described below to save dropped packets into PCAP persistently.<br /><br />The user must remove any unused saved pcap file to prevent storage consumption. |
-
-| Show WJH Forwarding Aggregate | Description |
-| ---- | ------------ |
-| show what-just-happened forwarding --aggregate | Displays aggregated counters. |
-| Example | <pre>admin@sonic:~$ show what-just-happened forwarding --aggregate<br />#  sPort      VLAN  sMAC               dMAC               EthType  Src IP:Port  Dst IP:Port  IP Proto  Count  Severity  Drop reason - Recommended action<br />-- ---------- ----- ------------------ ------------------ -------- ------------ ------------ --------- ------ --------- -------------------------------------------------<br />1  Ethernet4  N/A   00:00:00:00:00:00  ff:ff:ff:ff:ff:ff  IPv4     127.0.0.1:0  127.0.0.1:0  ip        100    Error     Unicast destination IP but multicast destination<br />                                                                                                                        MAC - Bad packet was received from the peer</pre> |
-| Notes | This command can be used only for a channel that has a type of aggregated or raw_and_aggregated.<br /><br />An aggregated or raw_and_aggregated channel has a buffer for storing dropped packets, the default capacity of the buffer is 1024 and cannot be changed by the user, thus the maximum number of unique tuples of source, destination MAC, source destination IP and port, ingress port, vlan, protocol and drop reason is 1024, thus the maximum number of rows in aggregated table view per channel is 1024.<br /><br />Since, aggregation currently is done in software, on high drop rates the Count column may not reflect the actual number of dropped packets. |
-
-| Show WJH Forwarding Export | Description |
-| ---- | ------------ |
-| show what-just-happened forwarding --export | Saves dropped packets into PCAP. |
-| Example | <pre>admin@sonic:~$ show what-just-happened forwarding --export<br /><br />PCAP file path : /var/log/mellanox/wjh/wjh_user_2020_06_03_10_55_34.pcap<br /><br />#   Timestamp              sPort      dPort  VLAN  sMAC               dMAC               EthType  Src IP:Port  Dst IP:Port  IP Proto  Drop   Severity  Drop reason - Recommended action<br />                                                                                                                                      Group<br />--- ---------------------- ---------- ------ ----- ------------------ ------------------ -------- ------------ ------------ --------- ------ --------- -------------------------------------------------<br />1   20/06/03 10:55:32.249  Ethernet4  N/A    N/A   00:00:00:00:00:00  ff:ff:ff:ff:ff:ff  IPv4     127.0.0.1    127.0.0.1    ip        L3     Error     Unicast destination IP but multicast destination<br />                                                                                                                                                       MAC - Bad packet was received from the peer<br />2   20/06/03 10:55:32.249  Ethernet4  N/A    N/A   00:00:00:00:00:00  ff:ff:ff:ff:ff:ff  IPv4     127.0.0.1    127.0.0.1    ip        L3     Error     Unicast destination IP but multicast destination<br />                                                                                                                                                       MAC - Bad packet was received from the peer</pre> |
-| Notes | This command can be used only for a channel that has a type of raw or raw_and_aggregated.<br /><br />PCAP files are saved into /var/log/mellanox/wjh/ folder and named in the following format: wjh_user_YYYY_MM_DD_hh_mm_ss.pcap. Those files are not rotated or automatically cleaned. The user is required to manage the content of /var/log/mellanox/wjh/ and make sure created files will not take all space on the drive. After SONiC-to-SONiC upgrade, /var/log/mellanox/wjh/ will still contain dumps created by the user. As in case of raw table view, the maximum number of packets stored in PCAP file per channel is 1024.<br /><br />If type of the channel is raw_and_aggregated the user can view aggregated information and store packets into PCAP file at the same time.<br /><pre>admin@sonic:~$ show what-just-happened --aggregate --export<br /><br />PCAP file path : /var/log/mellanox/wjh/wjh_user_2020_06_03_10_58_31.pcap<br /><br />#  sPort      VLAN  sMAC               dMAC               EthType  Src IP:Port  Dst IP:Port  IP Proto  Count  Severity  Drop reason - Recommended action<br />-- ---------- ----- ------------------ ------------------ -------- ------------ ------------ --------- ------ --------- -------------------------------------------------<br />1  Ethernet4  N/A   00:00:00:00:00:00  ff:ff:ff:ff:ff:ff  IPv4     127.0.0.1:0  127.0.0.1:0  ip        20     Error     Unicast destination IP but multicast destination<br />                                                                                                                        MAC - Bad packet was received from the peer</pre> |
-
-| Docker Exec WJH | Description |
-| --------------- | ----------- |
-| docker exec -it what-just-happened supervisorctl status all | Checks whether or not services are running inside docker container. |
-| Example | <pre>admin@sonic:~$ docker exec -it what-just-happened supervisorctl status all<br />rsyslogd                         RUNNING   pid 14, uptime 0:00:15<br />start.sh                         EXITED    Jun 03 10:57 AM<br />supervisor-proc-exit-listener    RUNNING   pid 8, uptime 0:00:16<br />wjhd                             RUNNING   pid 19, uptime 0:00:14</pre> |
-
-| Show WJH Dump | Description |
-| ------------- | ----------- |
-| show what-just-happened dump | Dumps What Just-Happened library to stdout. |
-| Example | <pre>admin@sonic:~$ show what-just-happened dump<br />######## Init params #########<br />force           : 1<br />max_bw_percent  : 50<br />conf_xml_path   : (null)<br />dbg_file_path   : (null)<br />ingress_info_type       : if_index<br />######## User Channel #########<br />channel id[0], channel type[3].</pre> |
+Once custom `/etc/sonic/wjh/wjh.xml` file is created, the `what-just-happened` service needs to be restarted to load the new XML file.

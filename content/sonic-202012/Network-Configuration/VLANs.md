@@ -3,7 +3,7 @@ title: VLANs
 author: Cumulus Networks
 weight: 420
 product: SONiC
-version: 201911_MUR5
+version: 202012
 siteSlug: sonic
 ---
 
@@ -104,7 +104,6 @@ Save your changes to the configuration:
 
     admin@switch:~$ sudo config save -y
 
-
 ## Configure SVIs
 
 A *switch virtual interface* is a layer 3 interface that serves to route traffic from a switch on one VLAN to another switch on another VLAN.
@@ -142,7 +141,6 @@ admin@switch:~$ sudo vi /etc/sonic/config_db.json
 Save your changes to the configuration:
 
     admin@switch:~$ sudo config save -y
-
 
 <!-- 
 {{<tabs "TITLE">}}

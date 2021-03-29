@@ -3,11 +3,11 @@ title: Warm Reboot
 author: Cumulus Networks
 weight: 52
 product: SONiC
-version: 201911_MUR5
+version: 202012
 siteSlug: sonic
 ---
 
-Warn reboot enables the user to restart and upgrade SONiC software without impacting the data plane. If using SONiC 201811 versions, sub second traffic loss may occur during the warm reboot. In SONiC 201911 versions, due to the advantages provided by the NVIDIA Mellanox Spectrum ASICs, warm reboot solution can achieve 0 packet loss during SONiC OS (including SDK/FW) upgrade and warm reboot.
+Warm reboot enables the user to restart and upgrade SONiC software without impacting the data plane. If using SONiC 201811 versions, sub second traffic loss may occur during the warm reboot. In SONiC 201911 versions, due to the advantages provided by the NVIDIA Mellanox Spectrum ASICs, warm reboot solution can achieve 0 packet loss during SONiC OS (including SDK/FW) upgrade and warm reboot.
 
 Control plane downtime requirements as well as scaling requirements are the same as in Fast-Reboot.
 

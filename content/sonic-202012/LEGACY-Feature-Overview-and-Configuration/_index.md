@@ -3,7 +3,7 @@ title: SONiC Feature Overview and Configuration
 author: Cumulus Networks
 weight: 9000
 product: SONiC
-version: 201911_MUR5
+version: 202012
 siteSlug: sonic
 ---
 

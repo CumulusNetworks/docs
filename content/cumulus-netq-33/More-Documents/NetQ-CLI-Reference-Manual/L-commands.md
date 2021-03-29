@@ -62,7 +62,7 @@ cumulus@switch:~$ netq lcm add cl-image /path/to/download/cumulus-linux-4.2.0-ml
 Configures the access credentials for all switches that you plan to manage with the NetQ lifecycle management feature. One set of credentials can be defined. Choose between basic SSH authentication using a username and password or SSH public/private key authentication. You must have sudoer permission to properly configure switches when using the SSH Key method.
 
 {{<notice tip>}}
-The default credentials for Cumulus Linux have changed from cumulus/CumulusLinux! to cumulus/cumulus for releases 4.2 and later. For details, read <a href="https://docs.cumulusnetworks.com/cumulus-linux/System-Configuration/Authentication-Authorization-and-Accounting/User-Accounts/">Cumulus Linux User Accounts</a>.
+The default credentials for Cumulus Linux have changed from <!-- vale off -->cumulus/CumulusLinux!<!-- vale on --> to cumulus/cumulus for releases 4.2 and later. For details, read <a href="https://docs.cumulusnetworks.com/cumulus-linux/System-Configuration/Authentication-Authorization-and-Accounting/User-Accounts/">Cumulus Linux User Accounts</a>.
 {{</notice>}}
 
 ### Syntax
@@ -115,7 +115,7 @@ Configures or changes the Cumulus Linux or NetQ version to use automatically dur
 
 ### Syntax
 
-There are two forms of this command; one for Cumulus Linux and the other for NetQ.
+Two forms of this command are available; one for Cumulus Linux and the other for NetQ.
 
 ```
 netq lcm add 
@@ -595,7 +595,7 @@ Displays the default Cumulus Linux or NetQ version specified for upgrades.
 
 ### Syntax
 
-There are two forms of this command depending on whether you want to view the default version for Cumulus Linux or for NetQ.
+Two forms of this command are available depending on whether you want to view the default version for Cumulus Linux or for NetQ.
 
 ```
 netq lcm show default-version 
@@ -871,7 +871,7 @@ Displays status of Cumulus Linux or NetQ image upgrade jobs.
 
 ### Syntax
 
-There are two forms of this command; one to display Cumulus Linux job status and one to display NetQ job status. Use the `netq lcm show upgrade-jobs` to obtain the job identifier.
+Two forms of this command are available; one to display Cumulus Linux job status and one to display NetQ job status. Use the `netq lcm show upgrade-jobs` to obtain the job identifier.
 
 ```
 netq lcm show status
@@ -1096,11 +1096,11 @@ None
 
 ## netq lcm show upgrade-jobs
 
-Displays a history of all Cumulus Linux or NetQ upgrade jobs, including the job identifier and name, Cumulus Linux or NetQ version, pre-check status, warnings and errors, and start the job started.  The NetQ upgrade jobs also show the overall status.
+Displays a history of all Cumulus Linux or NetQ upgrade jobs, including the job identifier and name, Cumulus Linux or NetQ version, pre-check status, warnings and errors, and start the job started. The NetQ upgrade jobs also show the overall status.
 
 ### Syntax
 
-There are two forms of this command; one for Cumulus Linux and one for NetQ.
+Two forms of this command are available; one for Cumulus Linux and one for NetQ.
 
 ```
 netq lcm show upgrade-jobs

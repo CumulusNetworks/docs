@@ -106,11 +106,11 @@ NetQ provides a number of commands and cards for diagnosing past events.
 
 NetQ records network events and stores them in its database. You can:
 
-- View the events through a third-party notification application (Syslog, PagerDuty, Slack, or email)
+- View the events through a third-party notification application (syslog, PagerDuty, Slack, or email)
 - View the events using the Events|Alarms and Events|Info cards in the NetQ UI, then use the Trace Request card to track the connection between nodes
 - Use `netq show events` command to look for any changes made to the runtime configuration that may have triggered the alert, then use `netq trace` to track the connection between the nodes
 
-The `netq trace` command traces the route of an IP or MAC address from one endpoint to another. It works across bridged, routed and VXLAN connections, computing the path using available data instead of sending real traffic &mdash; this way, it can be run from anywhere. It performs MTU and VLAN consistency checks for every link along the path.
+The `netq trace` command traces the route of an IP or MAC address from one endpoint to another. It works across bridged, routed and VXLAN connections, computing the path using available data instead of sending real traffic&mdash;this way, it can be run from anywhere. It performs MTU and VLAN consistency checks for every link along the path.
 
 Refer to {{<link title="Manage Events and Notifications">}} and {{<link title="Verify Network Connectivity">}} for more information.
 
@@ -188,7 +188,7 @@ Refer to {{<link title="Verify Network Connectivity/#create-a-layer-3-on-demand-
 
 ## Generate a Support File
 
-The `opta-support` command generates an archive of useful information for troubleshooting issues with NetQ. It is an extension of the `cl-support` command in Cumulus Linux. It provides information about the NetQ Platform configuration and runtime statistics as well as output from the `docker ps` command. The Cumulus Networks support team may request the output of this command when assisting with any issues that you could not solve with your own troubleshooting. Run the following command:
+The `opta-support` command generates an archive of useful information for troubleshooting issues with NetQ. It is an extension of the `cl-support` command in Cumulus Linux. It provides information about the NetQ Platform configuration and runtime statistics as well as output from the `docker ps` command. The NVIDIA support team may request the output of this command when assisting with any issues that you could not solve with your own troubleshooting. Run the following command:
 
 ```
 cumulus@switch:~$ opta-support

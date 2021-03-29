@@ -247,7 +247,7 @@ There are two unique options for configuring resilient hashing, both of which yo
 When you configure these options, a new next hop might not get populated for a long time.
 {{%/notice%}}
 
-The Mellanox Spectrum ASIC assigns packets to hash buckets and assigns hash buckets to next hops as follows. It also runs a background thread that monitors and can migrate buckets between next hops to rebalance the load.
+The NVIDIA Spectrum ASIC assigns packets to hash buckets and assigns hash buckets to next hops as follows. It also runs a background thread that monitors and can migrate buckets between next hops to rebalance the load.
 
 - When a next hop is removed, the assigned buckets are distributed to the remaining next hops.
 - When a next hop is added, **no** buckets are assigned to the new next hop until the background thread rebalances the load.
@@ -310,7 +310,7 @@ The number of buckets can be configured as 64, 512, or 1024; the default is 64:
 A larger number of ECMP buckets reduces the impact on adding new next hops to an ECMP route. However, the system supports fewer ECMP routes. If the maximum number of ECMP routes have been installed, new ECMP routes log an error and are not installed.
 
 {{%notice note%}}
-Two custom options are provided to allocate route and  MAC address hardware resources depending on ECMP bucket size changes. See {{%link title="Routing#Mellanox Spectrum Switches" text="Mellanox Spectrum routing resources" %}}.
+Two custom options are provided to allocate route and  MAC address hardware resources depending on ECMP bucket size changes. See {{%link title="Routing#NVIDIA Spectrum Switches" text="NVIDIA Spectrum routing resources" %}}.
 {{%/notice%}}
 
 To enable resilient hashing, edit `/etc/cumulus/datapath/traffic.conf`:

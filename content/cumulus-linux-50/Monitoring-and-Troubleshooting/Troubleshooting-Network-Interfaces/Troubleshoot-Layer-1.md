@@ -114,7 +114,7 @@ The first part of the compliance code gives the full line rate speed of the tech
 
 An active module with a passive module compliance code or a passive module with an active module compliance code causes the port to be set up incorrectly and may affect signal integrity.
 
-Some modules have vendor specific coding, are older, or use a proprietary vendor technology that is not listed in the standards. As a result, they are not recognized by default and need to be overridden to the correct compliance code. On Mellanox switches, the port firmware automatically overrides certain supported modules to the correct compliance code.
+Some modules have vendor specific coding, are older, or use a proprietary vendor technology that is not listed in the standards. As a result, they are not recognized by default and need to be overridden to the correct compliance code. On NVIDIA switches, the port firmware automatically overrides certain supported modules to the correct compliance code.
 
 ### Digital Diagnostic Monitoring/Digital Optical Monitoring (DDM/DOM)
 
@@ -154,7 +154,7 @@ The next three subsections provide guidance on when and how to enable autonegoti
 
 1000BASE-T and 10GBASE-T fixed copper ports require autonegotiation for 1G and 10G speeds. This is the default setting and cannot be disabled for 1G speeds. Disabling autoneg on these ports requires setting the speed to 100Mbps or 10Mbps and the correct {{<link url="Switch-Port-Attributes/#port-speed-and-duplex-mode" text="duplex">}} setting.
 
-1000BASE-T SFPs have an onboard PHY that does the autonegotiation automatically on the RJ45 side without involving the port. Do not change the default autoneg setting on these ports; on Mellanox switches, autoneg is *ON*.
+1000BASE-T SFPs have an onboard PHY that does the autonegotiation automatically on the RJ45 side without involving the port. Do not change the default autoneg setting on these ports; on NVIDIA switches, autoneg is *ON*.
 
 For 1000BASE-X, autonegotiation is highly recommended on 1G optical links to detect unidirectional link failures.
 
@@ -167,7 +167,7 @@ For DAC cables on speeds higher than 25G, autonegotiation is unnecessary, but is
 #### General Autonegotiation Guidance
 
 - When autoneg is supported on an Ethernet type, both sides of the link must be configured with the same autoneg setting.
-- Cumulus Linux sets a default for autoneg and/or speed, duplex and FEC for each port based on the ASIC and port speed. On Mellanox platforms running Cumulus Linux, autoneg defaults to *ON*.
+- Cumulus Linux sets a default for autoneg and/or speed, duplex and FEC for each port based on the ASIC and port speed. On NVIDIA platforms running Cumulus Linux, autoneg defaults to *ON*.
 - If autoneg is *OFF* &mdash; which is called force mode &mdash; then speed, duplex and FEC must also be specified if a non-default value for the port is desired. If autoneg is *ON*, then speed, duplex and FEC should not be specified. The only exception to this is for 1000BASE-X optical interfaces, where speed is *1000* and autoneg is *ON* in order to get unidirectional link detection.
 - If autoneg is enabled on a link type that does not support autoneg, the port enters *autodetect* mode (see the {{<link url="#autodetect" text="next section">}}) to try and determine the most likely speed and FEC settings to bring the link up. This feature is usually successful, but if the link does not come up, it may be necessary to disable autoneg and set these link settings manually.
 - There is no concept of autoneg of MTU. To change the MTU from the default setting, {{<link url="Switch-Port-Attributes/#mtu" text="configure it explicitly">}}.
@@ -179,7 +179,7 @@ As a result of the confusion about when autoneg applies to a link type, many Eth
 
 When autonegotiation is enabled on a port, the behavior is as follows:
 
-- On Mellanox platforms, when autoneg is *ON*, the port is always in autodetect mode. The port steps through a list of possible autoneg, speed and FEC settings for the port and module combination until the link comes up. The default configuration is autoneg *ON*, which essentially means *autodetect on* for Mellanox switches.
+- When autoneg is *ON*, the port is always in autodetect mode. The port steps through a list of possible autoneg, speed and FEC settings for the port and module combination until the link comes up. The default configuration is autoneg *ON*.
 
 Autodetect is a local feature. The neighbor is assumed to either be configured with autoneg off and speed, duplex and FEC set manually, or using some equivalent algorithm to determine the correct speed, duplex and FEC settings.
 
@@ -209,7 +209,7 @@ Both sides of a link must have the same FEC encoding algorithm enabled for the l
 - The Reed-Solomon RS-FEC(544,514) algorithm adds 30 bits of overhead to correct 14+ bit errors per 514 bits. FEC RS is required on 50G (PAM4) lanes, hence, all 200G, 400G, 100G-CR2 and 50G-CR interfaces.
 - Base-R (also known as FireCode/FC) FEC adds 32 bits per 32 blocks of 64B/66B to correct 11 bits per 2048 bits. It replaces one bit per block, so it uses the same amount of overhead as 64B/66B encoding. It is used in 25G interfaces only. The algorithm executes faster than the RS-FEC algorithm, so latency is reduced. Both RS-FEC and Base-R FEC are implemented in hardware.
 - None/Off: FEC is optional and is often useful on 25G lanes, which includes 100G-SR4/CR4 and 50G-CR2 links. If the cable quality is good enough to achieve a BER of 10<sup>-12</sup> without FEC, then there is no reason to enable it.  10G/40G links should never require FEC. If a 10G/40G link has errors, replace the cable or module that is causing the error.
-- Auto: FEC can be autonegotiated between 2 devices. When autoneg is *ON*, the default FEC setting is *auto* to enable FEC capability information to be sent and received with the neighbor. The port FEC active/operational setting is set to the result of the negotiation. *Auto* is the default setting on Mellanox switches (autoneg *ON* is the default setting).
+- Auto: FEC can be autonegotiated between 2 devices. When autoneg is *ON*, the default FEC setting is *auto* to enable FEC capability information to be sent and received with the neighbor. The port FEC active/operational setting is set to the result of the negotiation. *Auto* is the default setting on NVIDIA switches (autoneg *ON* is the default setting).
 - If auto-negotiation is disabled on 100G and 25G interfaces, you must set FEC to *OFF**, RS, or BaseR to match the neighbor. The FEC default setting of *auto* does not link up when auto-negotiation is disabled.
 
 In some cases, the configured value may be different than the operational value. In such cases, the `l1-show` command displays both values. For example:
@@ -245,7 +245,7 @@ Eyes are not measured on fixed copper ports, nor are they measured when a link i
 
 Each hardware vendor implements some quantitative measurement of eyes and some kind of qualitative measurement.
 
-On a Mellanox switch, the eyes are assigned a height in mV and a grade. As a rule of thumb for speeds below 100G (NRZ encoding), when the grade goes below 4000, the error rate or stability of the link may be negatively impacted.  
+On an NVIDIA switch, the eyes are assigned a height in mV and a grade. As a rule of thumb for speeds below 100G (NRZ encoding), when the grade goes below 4000, the error rate or stability of the link may be negatively impacted.  
 
 Note that these rules of thumb are only an indicator when troubleshooting a problem link. A link may have no stability problems with a measurement below these values, and FEC may correct all errors presented on such a link. For some interface types, FEC is required for the very reason to remove errors up to BER levels that are expected on the media.
 
@@ -261,7 +261,7 @@ The command must be run as root. The syntax for the command is:
 cumulus@switch:~$ sudo l1-show PORTLIST
 ```
 
-Here is the output from the Mellanox 2410 switch on the other side of the same link:
+Here is the output from the NVIDIA SN2410 switch on the other side of the same link:
 
 ```
 cumulus@2410-switch:~$ sudo l1-show swp43
@@ -353,7 +353,7 @@ The operational state shows the current state of the link in the kernel and in t
 
 The port hardware state shows additional low level port information. Because different hardware vendors have different approaches on how the port information is organized, the output varies between vendors.
 
-Here is the output on Mellanox platforms:
+Here is the output on NVIDIA platforms:
 
 ```
   Port Hardware State:
@@ -364,7 +364,7 @@ Here is the output on Mellanox platforms:
       Troubleshooting Info: No issue was observed.
 ```
 
-The Mellanox port firmware automatically troubleshoots link problems and displays items of concern in the *Troubleshooting Info* section of this output.
+The NVIDIA port firmware automatically troubleshoots link problems and displays items of concern in the *Troubleshooting Info* section of this output.
 
 See the discussions in the {{<link url="#fec" text="FEC">}}, {{<link url="#autonegotiation" text="Autonegotiation">}} and {{<link url="#signal-integrity" text="Signal Integrity">}} sections above for more details about each value.
 
@@ -528,7 +528,7 @@ Operational State
 
 ### Examine Port Hardware State
 
-The following values come from the Mellanox port firmware:
+The following values come from the NVIDIA port firmware:
 
 ```
 Port Hardware State:
@@ -540,7 +540,7 @@ Port Hardware State:
 ```
 
 - Compliance Code:
-  - Does the interface type recognized by the firmware match the type of module installed? That is, does the Mellanox firmware correctly recognize the module type?
+  - Does the interface type recognized by the firmware match the type of module installed? That is, does the firmware correctly recognize the module type?
 - Cable type: Does the cable type recognized by the firmware match the type installed?
 - Speed:
   - Does the speed match the expected speed?
@@ -638,7 +638,7 @@ See the discussions in {{<link url="#fec" text="FEC">}} and {{<link url="#troubl
 
 Error counters for a port can be seen by running the `ethtool -S <swp> | grep Errors` command. If FEC is enabled, then these counters only count errors that were not corrected by FEC.
 
-On Mellanox switches, counts of bit errors that are corrected by FEC on a link can be seen when you run the `sudo l1-show <swp> --pcs-errors` command.
+On NVIDIA switches, counts of bit errors that are corrected by FEC on a link can be seen when you run the `sudo l1-show <swp> --pcs-errors` command.
 
 Because errors can occur during link up/down transitions, it is best to check error counters over a period of time to ensure they are incrementing regularly rather than displaying stale counts from when the link last transitioned up or down. The `/var/log/linkstate` log files show historical link up/down transitions on a switch.
 
@@ -654,7 +654,7 @@ Signal integrity issues are often a root cause of different types of symptoms:
 
 Error counters for a port can be seen when you run the `ethtool -S <swp> | grep Errors` command. If FEC is enabled, then these counters only count errors that were not corrected by FEC.
 
-On Mellanox switches, counts of bit errors that are corrected by FEC on a link can be seen when you run the `sudo l1-show <swp> --pcs-errors` command.
+On NVIDIA switches, counts of bit errors that are corrected by FEC on a link can be seen when you run the `sudo l1-show <swp> --pcs-errors` command.
 
 Signal integrity issues are physical issues and some hardware component in the link usually must be replaced to fix the link. Follow the steps in {{<link url="#isolate-faulty-hardware" text="Isolate Faulty Hardware">}} to isolate and replace the failed hardware component.
 
@@ -710,7 +710,7 @@ Some modules require *high power modes* for driving long distance lasers. Power 
 
 To determine if a switch support higher power modes, consult the {{<exlink url="https://cumulusnetworks.com/hcl" text="Cumulus Linux HCL">}} and the hardware manufacturer specifications for power limitations for a switch in question.
 
-Mellanox switches vary in their support of high power modules. For example, on some Mellanox Spectrum 1 switches, only the first and last two QSFP ports support up to QSFP power class 6 (4.5W) and only the first and last two SFP ports support SFP power class 3 (2.0W) modules. Other Spectrum 1 switches do not support high power ports at all. Consult the {{<exlink url="https://cumulusnetworks.com/hcl" text="Cumulus Linux HCL">}} and the hardware manufacturer specifications for exact details of which ports support high power modules.
+NVIDIA switches vary in their support of high power modules. For example, on some NVIDIA Spectrum 1 switches, only the first and last two QSFP ports support up to QSFP power class 6 (4.5W) and only the first and last two SFP ports support SFP power class 3 (2.0W) modules. Other Spectrum 1 switches do not support high power ports at all. Consult the {{<exlink url="https://cumulusnetworks.com/hcl" text="Cumulus Linux HCL">}} and the hardware manufacturer specifications for exact details of which ports support high power modules.
 
 The total bus power rating is the default power rating per port type (SFP: 1.5W, QSFP: 3.5W) multiplied by the number of ports of each type present on the bus.
 

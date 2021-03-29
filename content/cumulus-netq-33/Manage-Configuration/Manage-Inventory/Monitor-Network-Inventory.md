@@ -308,16 +308,16 @@ st1-s1            Broadcom             Trident2                       BCM56850  
 st1-s2            Broadcom             Trident2                       BCM56850                  960G           32 x 40G-QSFP+
 ```
 
-You can filter the results of the command to view devices with a particular vendor, model, or modelID. This example shows ASIC information for all devices with a vendor of *Mellanox*.
+You can filter the results of the command to view devices with a particular vendor, model, or modelID. This example shows ASIC information for all devices with a vendor of *NVIDIA*.
 
 ```
-cumulus@switch:~$ netq show inventory asic vendor Mellanox
+cumulus@switch:~$ netq show inventory asic vendor NVIDIA
 Matching inventory records:
 Hostname          Vendor               Model                          Model ID                  Core BW        Ports
 ----------------- -------------------- ------------------------------ ------------------------- -------------- -----------------------------------
-mlx-2100-05       Mellanox             Spectrum                       MT52132                   N/A            16 x 100G-QSFP28
-mlx-2410a1-05     Mellanox             Spectrum                       MT52132                   N/A            48 x 25G-SFP28 & 8 x 100G-QSFP28
-mlx-2700-11       Mellanox             Spectrum                       MT52132                   N/A            32 x 100G-QSFP28
+mlx-2100-05       NVIDIA               Spectrum                       MT52132                   N/A            16 x 100G-QSFP28
+mlx-2410a1-05     NVIDIA               Spectrum                       MT52132                   N/A            48 x 25G-SFP28 & 8 x 100G-QSFP28
+mlx-2700-11       NVIDIA               Spectrum                       MT52132                   N/A            32 x 100G-QSFP28
 ```
 
 {{< /tab >}}

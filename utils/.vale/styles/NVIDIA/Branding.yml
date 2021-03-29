@@ -14,5 +14,7 @@ ignorecase: false
 swap:
   Cumulus Networks: NVIDIA
   Cumulus NetQ: NetQ
+  Cumulus Networks repository: NVIDIA networking repository
+  Cumulus Networks repo: NVIDIA networking repo
   Mellanox: NVIDIA
   Mellanox Spectrum: NVIDIA Spectrum

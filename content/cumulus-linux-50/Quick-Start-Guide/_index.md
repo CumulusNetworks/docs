@@ -121,7 +121,7 @@ To change the hostname:
 The following example sets the hostname to leaf01:
 
 ```
-cumulus@switch:~$ cl set platform hostname leaf01
+cumulus@switch:~$ cl set system hostname leaf01
 cumulus@switch:~$ cl config apply
 ```
 

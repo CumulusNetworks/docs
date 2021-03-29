@@ -222,7 +222,7 @@ cumulus@leaf04:~$ cl config apply
 ```
 cumulus@spine01:~$ cl set interface lo ip address 10.10.10.101/32
 cumulus@spine01:~$ cl set interface swp1-6
-cumulus@spine01:~$ cl set router bgp autonomous-system 651000
+cumulus@spine01:~$ cl set router bgp autonomous-system 65199
 cumulus@spine01:~$ cl set router bgp router-id 10.10.10.101
 cumulus@spine01:~$ cl set vrf default router bgp peer-group underlay remote-as external
 cumulus@spine01:~$ cl set vrf default router bgp peer swp1 peer-group underlay
@@ -244,7 +244,7 @@ cumulus@spine01:~$ cl config apply
 ```
 cumulus@spine02:~$ cl set interface lo ip address 10.10.10.102/32
 cumulus@spine02:~$ cl set interface swp1-6
-cumulus@spine02:~$ cl set router bgp autonomous-system 651000
+cumulus@spine02:~$ cl set router bgp autonomous-system 65199
 cumulus@spine02:~$ cl set router bgp router-id 10.10.10.102
 cumulus@spine02:~$ cl set vrf default router bgp peer-group underlay remote-as external
 cumulus@spine02:~$ cl set vrf default router bgp peer swp1 peer-group underlay
@@ -266,7 +266,7 @@ cumulus@spine02:~$ cl config apply
 ```
 cumulus@spine03:~$ cl set interface lo ip address 10.10.10.103/32
 cumulus@spine03:~$ cl set interface swp1-6
-cumulus@spine03:~$ cl set router bgp autonomous-system 651000
+cumulus@spine03:~$ cl set router bgp autonomous-system 65199
 cumulus@spine03:~$ cl set router bgp router-id 10.10.10.103
 cumulus@spine03:~$ cl set vrf default router bgp peer-group underlay remote-as external
 cumulus@spine03:~$ cl set vrf default router bgp peer swp1 peer-group underlay
@@ -288,7 +288,7 @@ cumulus@spine03:~$ cl config apply
 ```
 cumulus@spine04:~$ cl set interface lo ip address 10.10.10.104/32
 cumulus@spine04:~$ cl set interface swp1-6
-cumulus@spine04:~$ cl set router bgp autonomous-system 651000
+cumulus@spine04:~$ cl set router bgp autonomous-system 65199
 cumulus@spine04:~$ cl set router bgp router-id 10.10.10.104
 cumulus@spine04:~$ cl set vrf default router bgp peer-group underlay remote-as external
 cumulus@spine04:~$ cl set vrf default router bgp peer swp1 peer-group underlay
@@ -330,7 +330,7 @@ cumulus@border01:~$ cl set nve vxlan mlag shared-address 10.0.1.255
 cumulus@border01:~$ cl set nve vxlan source address 10.10.10.63
 cumulus@border01:~$ cl set nve vxlan arp-nd-suppress on
 cumulus@border01:~$ cl set evpn enable on
-cumulus@border01:~$ cl set router bgp autonomous-system 651063
+cumulus@border01:~$ cl set router bgp autonomous-system 65253
 cumulus@border01:~$ cl set router bgp router-id 10.10.10.63
 cumulus@border01:~$ cl set vrf default router bgp peer-group underlay remote-as external
 cumulus@border01:~$ cl set vrf default router bgp peer swp51 peer-group underlay
@@ -370,7 +370,7 @@ cumulus@border02:~$ cl set nve vxlan mlag shared-address 10.0.1.255
 cumulus@border02:~$ cl set nve vxlan source address 10.10.10.64
 cumulus@border02:~$ cl set nve vxlan arp-nd-suppress on
 cumulus@border02:~$ cl set evpn enable on
-cumulus@border02:~$ cl set router bgp autonomous-system 651064
+cumulus@border02:~$ cl set router bgp autonomous-system 65254
 cumulus@border02:~$ cl set router bgp router-id 10.10.10.64
 cumulus@border02:~$ cl set vrf default router bgp peer-group underlay remote-as external
 cumulus@border02:~$ cl set vrf default router bgp peer swp51 peer-group underlay
@@ -1308,7 +1308,7 @@ router bgp 65104
 ```
 cumulus@spine01:~$ cat /etc/frr/frr.conf
 ...
-router bgp 651000
+router bgp 65199
  bgp router-id 10.10.10.101
  bgp bestpath as-path multipath-relax
  neighbor underlay peer-group
@@ -1336,7 +1336,7 @@ router bgp 651000
 ```
 cumulus@spine02:~$ cat /etc/frr/frr.conf
 ...
-router bgp 651000
+router bgp 65199
  bgp router-id 10.10.10.102
  bgp bestpath as-path multipath-relax
  neighbor underlay peer-group
@@ -1364,7 +1364,7 @@ router bgp 651000
 ```
 cumulus@spine03:~$ cat /etc/frr/frr.conf
 ...
-router bgp 651000
+router bgp 65199
  bgp router-id 10.10.10.103
  bgp bestpath as-path multipath-relax
  neighbor underlay peer-group
@@ -1392,7 +1392,7 @@ router bgp 651000
 ```
 cumulus@spine04:~$ cat /etc/frr/frr.conf
 ...
-router bgp 651000
+router bgp 65199
  bgp router-id 10.10.10.104
  bgp bestpath as-path multipath-relax
  neighbor underlay peer-group
@@ -1420,7 +1420,7 @@ router bgp 651000
 ```
 cumulus@border01:~$ cat /etc/frr/frr.conf
 ...
-router bgp 651063
+router bgp 65253
  bgp router-id 10.10.10.63
  bgp bestpath as-path multipath-relax
  neighbor underlay peer-group
@@ -1448,7 +1448,7 @@ router bgp 651063
 ```
 cumulus@border02:~$ cat /etc/frr/frr.conf
 ...
-router bgp 651064
+router bgp 65254
  bgp router-id 10.10.10.64
  bgp bestpath as-path multipath-relax
  neighbor underlay peer-group
@@ -1678,7 +1678,7 @@ cumulus@leaf04:~$ cl config apply
 ```
 cumulus@spine01:~$ cl set interface lo ip address 10.10.10.101/32
 cumulus@spine01:~$ cl set interface swp1-6
-cumulus@spine01:~$ cl set router bgp autonomous-system 651000
+cumulus@spine01:~$ cl set router bgp autonomous-system 65199
 cumulus@spine01:~$ cl set router bgp router-id 10.10.10.101
 cumulus@spine01:~$ cl set vrf default router bgp peer-group underlay remote-as external
 cumulus@spine01:~$ cl set vrf default router bgp peer swp1 peer-group underlay
@@ -1700,7 +1700,7 @@ cumulus@spine01:~$ cl config apply
 ```
 cumulus@spine02:~$ cl set interface lo ip address 10.10.10.102/32
 cumulus@spine02:~$ cl set interface swp1-6
-cumulus@spine02:~$ cl set router bgp autonomous-system 651000
+cumulus@spine02:~$ cl set router bgp autonomous-system 65199
 cumulus@spine02:~$ cl set router bgp router-id 10.10.10.102
 cumulus@spine02:~$ cl set vrf default router bgp peer-group underlay remote-as external
 cumulus@spine02:~$ cl set vrf default router bgp peer swp1 peer-group underlay
@@ -1722,7 +1722,7 @@ cumulus@spine02:~$ cl config apply
 ```
 cumulus@spine03:~$ cl set interface lo ip address 10.10.10.103/32
 cumulus@spine03:~$ cl set interface swp1-6
-cumulus@spine03:~$ cl set router bgp autonomous-system 651000
+cumulus@spine03:~$ cl set router bgp autonomous-system 65199
 cumulus@spine03:~$ cl set router bgp router-id 10.10.10.103
 cumulus@spine03:~$ cl set vrf default router bgp peer-group underlay remote-as external
 cumulus@spine03:~$ cl set vrf default router bgp peer swp1 peer-group underlay
@@ -1744,7 +1744,7 @@ cumulus@spine03:~$ cl config apply
 ```
 cumulus@spine04:~$ cl set interface lo ip address 10.10.10.104/32
 cumulus@spine04:~$ cl set interface swp1-6
-cumulus@spine04:~$ cl set router bgp autonomous-system 651000
+cumulus@spine04:~$ cl set router bgp autonomous-system 65199
 cumulus@spine04:~$ cl set router bgp router-id 10.10.10.104
 cumulus@spine04:~$ cl set vrf default router bgp peer-group underlay remote-as external
 cumulus@spine04:~$ cl set vrf default router bgp peer swp1 peer-group underlay
@@ -1792,7 +1792,7 @@ cumulus@border01:~$ cl set nve vxlan mlag shared-address 10.0.1.255
 cumulus@border01:~$ cl set nve vxlan source address 10.10.10.63
 cumulus@border01:~$ cl set nve vxlan arp-nd-suppress on
 cumulus@border01:~$ cl set evpn enable on
-cumulus@border01:~$ cl set router bgp autonomous-system 651063
+cumulus@border01:~$ cl set router bgp autonomous-system 65253
 cumulus@border01:~$ cl set router bgp router-id 10.10.10.63
 cumulus@border01:~$ cl set vrf default router bgp peer-group underlay remote-as external
 cumulus@border01:~$ cl set vrf default router bgp peer swp51 peer-group underlay
@@ -1839,7 +1839,7 @@ cumulus@border02:~$ cl set nve vxlan mlag shared-address 10.0.1.255
 cumulus@border02:~$ cl set nve vxlan source address 10.10.10.64
 cumulus@border02:~$ cl set nve vxlan arp-nd-suppress on
 cumulus@border02:~$ cl set evpn enable on
-cumulus@border02:~$ cl set router bgp autonomous-system 651064
+cumulus@border02:~$ cl set router bgp autonomous-system 65254
 cumulus@border02:~$ cl set router bgp router-id 10.10.10.64
 cumulus@border02:~$ cl set vrf default router bgp peer-group underlay remote-as external
 cumulus@border02:~$ cl set vrf default router bgp peer swp51 peer-group underlay
@@ -2789,7 +2789,7 @@ router bgp 65104
 ```
 cumulus@spine01:~$ cat /etc/frr/frr.conf
 ...
-router bgp 651000
+router bgp 65199
  bgp router-id 10.10.10.101
  bgp bestpath as-path multipath-relax
  neighbor underlay peer-group
@@ -2817,7 +2817,7 @@ router bgp 651000
 ```
 cumulus@spine02:~$ cat /etc/frr/frr.conf
 ...
-router bgp 651000
+router bgp 65199
  bgp router-id 10.10.10.102
  bgp bestpath as-path multipath-relax
  neighbor underlay peer-group
@@ -2845,7 +2845,7 @@ router bgp 651000
 ```
 cumulus@spine03:~$ cat /etc/frr/frr.conf
 ...
-router bgp 651000
+router bgp 65199
  bgp router-id 10.10.10.103
  bgp bestpath as-path multipath-relax
  neighbor underlay peer-group
@@ -2873,7 +2873,7 @@ router bgp 651000
 ```
 cumulus@spine04:~$ cat /etc/frr/frr.conf
 ...
-router bgp 651000
+router bgp 65199
  bgp router-id 10.10.10.104
  bgp bestpath as-path multipath-relax
  neighbor underlay peer-group
@@ -2901,7 +2901,7 @@ router bgp 651000
 ```
 cumulus@border01:~$ cat /etc/frr/frr.conf
 ...
-router bgp 651063
+router bgp 65253
  bgp router-id 10.10.10.63
  bgp bestpath as-path multipath-relax
  neighbor underlay peer-group
@@ -2930,7 +2930,7 @@ router bgp 651063
 ```
 cumulus@border02:~$ cat /etc/frr/frr.conf
 ...
-router bgp 651064
+router bgp 65254
  bgp router-id 10.10.10.64
  bgp bestpath as-path multipath-relax
  neighbor underlay peer-group
@@ -3269,7 +3269,7 @@ cumulus@leaf04:~$ cl config apply
 ```
 cumulus@spine01:~$ cl set interface lo ip address 10.10.10.101/32
 cumulus@spine01:~$ cl set interface swp1-6
-cumulus@spine01:~$ cl set router bgp autonomous-system 651000
+cumulus@spine01:~$ cl set router bgp autonomous-system 65199
 cumulus@spine01:~$ cl set router bgp router-id 10.10.10.101
 cumulus@spine01:~$ cl set vrf default router bgp peer-group underlay remote-as external
 cumulus@spine01:~$ cl set vrf default router bgp peer swp1 peer-group underlay
@@ -3291,7 +3291,7 @@ cumulus@spine01:~$ cl config apply
 ```
 cumulus@spine02:~$ cl set interface lo ip address 10.10.10.102/32
 cumulus@spine02:~$ cl set interface swp1-6
-cumulus@spine02:~$ cl set router bgp autonomous-system 651000
+cumulus@spine02:~$ cl set router bgp autonomous-system 65199
 cumulus@spine02:~$ cl set router bgp router-id 10.10.10.102
 cumulus@spine02:~$ cl set vrf default router bgp peer-group underlay remote-as external
 cumulus@spine02:~$ cl set vrf default router bgp peer swp1 peer-group underlay
@@ -3313,7 +3313,7 @@ cumulus@spine02:~$ cl config apply
 ```
 cumulus@spine03:~$ cl set interface lo ip address 10.10.10.103/32
 cumulus@spine03:~$ cl set interface swp1-6
-cumulus@spine03:~$ cl set router bgp autonomous-system 651000
+cumulus@spine03:~$ cl set router bgp autonomous-system 65199
 cumulus@spine03:~$ cl set router bgp router-id 10.10.10.103
 cumulus@spine03:~$ cl set vrf default router bgp peer-group underlay remote-as external
 cumulus@spine03:~$ cl set vrf default router bgp peer swp1 peer-group underlay
@@ -3335,7 +3335,7 @@ cumulus@spine03:~$ cl config apply
 ```
 cumulus@spine04:~$ cl set interface lo ip address 10.10.10.104/32
 cumulus@spine04:~$ cl set interface swp1-6
-cumulus@spine04:~$ cl set router bgp autonomous-system 651000
+cumulus@spine04:~$ cl set router bgp autonomous-system 65199
 cumulus@spine04:~$ cl set router bgp router-id 10.10.10.104
 cumulus@spine04:~$ cl set vrf default router bgp peer-group underlay remote-as external
 cumulus@spine04:~$ cl set vrf default router bgp peer swp1 peer-group underlay
@@ -3390,7 +3390,7 @@ cumulus@border01:~$ cl set vrf BLUE evpn vni 4002
 cumulus@border01:~$ cl set bridge domain br_default vlan 4001,4002
 cumulus@border01:~$ cl set system global anycast-mac 44:38:39:BE:EF:FF
 cumulus@border01:~$ cl set evpn enable on
-cumulus@border01:~$ cl set router bgp autonomous-system 65132
+cumulus@border01:~$ cl set router bgp autonomous-system 65253
 cumulus@border01:~$ cl set router bgp router-id 10.10.10.63
 cumulus@border01:~$ cl set vrf default router bgp peer-group underlay remote-as external
 cumulus@border01:~$ cl set vrf default router bgp peer swp51 peer-group underlay
@@ -3449,7 +3449,7 @@ cumulus@border02:~$ cl set vrf BLUE evpn vni 4002
 cumulus@border02:~$ cl set bridge domain br_default vlan 4001,4002
 cumulus@border02:~$ cl set system global anycast-mac 44:38:39:BE:EF:FF
 cumulus@border02:~$ cl set evpn enable on
-cumulus@border02:~$ cl set router bgp autonomous-system 651064
+cumulus@border02:~$ cl set router bgp autonomous-system 65254
 cumulus@border02:~$ cl set router bgp router-id 10.10.10.64
 cumulus@border02:~$ cl set vrf default router bgp peer-group underlay remote-as external
 cumulus@border02:~$ cl set vrf default router bgp peer swp51 peer-group underlay
@@ -4722,7 +4722,7 @@ router bgp 65104
 ```
 cumulus@spine01:~$ cat /etc/frr/frr.conf
 ...
-router bgp 651000
+router bgp 65199
  bgp router-id 10.10.10.101
  bgp bestpath as-path multipath-relax
  neighbor underlay peer-group
@@ -4750,7 +4750,7 @@ router bgp 651000
 ```
 cumulus@spine02:~$ cat /etc/frr/frr.conf
 ...
-router bgp 651000
+router bgp 65199
  bgp router-id 10.10.10.102
  bgp bestpath as-path multipath-relax
  neighbor underlay peer-group
@@ -4778,7 +4778,7 @@ router bgp 651000
 ```
 cumulus@spine03:~$ cat /etc/frr/frr.conf
 ...
-router bgp 651000
+router bgp 65199
  bgp router-id 10.10.10.103
  bgp bestpath as-path multipath-relax
  neighbor underlay peer-group
@@ -4806,7 +4806,7 @@ router bgp 651000
 ```
 cumulus@spine04:~$ cat /etc/frr/frr.conf
 ...
-router bgp 651000
+router bgp 65199
  bgp router-id 10.10.10.104
  bgp bestpath as-path multipath-relax
  neighbor underlay peer-group
@@ -4838,7 +4838,7 @@ vrf RED
 vrf BLUE
   vni 4002
 !
-router bgp 651063
+router bgp 65253
  bgp router-id 10.10.10.63
  bgp bestpath as-path multipath-relax
  neighbor underlay peer-group
@@ -4895,7 +4895,7 @@ vrf RED
 vrf BLUE
   vni 4002
 !
-router bgp 651064
+router bgp 65254
  bgp router-id 10.10.10.64
  bgp bestpath as-path multipath-relax
  neighbor underlay peer-group

@@ -447,7 +447,7 @@ iface peerlink
   mtu 9000
   bond-slaves swp49 swp50
 
-# MLAG Peerlink L2 interface.
+# MLAG Peerlink layer 2 interface.
 # This creates VLAN 4094 that only lives on the peerlink bond
 # No other interface will be aware of VLAN 4094
 auto peerlink.4094
@@ -608,7 +608,7 @@ iface peerlink
   mtu 9000
   bond-slaves swp49 swp50
 
-# MLAG Peerlink L2 interface.
+# MLAG Peerlink layer 2 interface.
 # This creates VLAN 4094 that only lives on the peerlink bond
 # No other interface will be aware of VLAN 4094
 auto peerlink.4094

@@ -503,7 +503,7 @@ Operational State
   - In a link flapping issue, one or both of these values may change every second or less, so the output of this field may not represent the value in the next moment in time.
 - Speed (Kernel and Hardware): Does the operational speed match the configured speed?
   - When the link is up, the kernel and hardware operational values should be in sync with each other and the configured speed.
-  - When the link is down and autoneg is enabled, the kernel value is *Unknown!* because the hardware has not synced to a speed.
+  - When the link is down and autoneg is enabled, the kernel value is *Unknown!* because the hardware has not synchronized to a speed.
   - When the link is down and autoneg is disabled, the kernel speed displays the configured value. The *Hardware* field may show various values, depending on implementation of the particular hardware interface.
 - Autoneg/Autodetect: Normally the operational value matches the configured value. This is informational only, but it is useful to know if autodetect is enabled. See the detailed sections on {{<link url="#autonegotiation" text="autonegotiation">}} and {{<link url="#autodetect" text="autodetect">}} for more information.
 - FEC: This field is only useful for informational purposes. It displays the actual FEC only when the link is up.

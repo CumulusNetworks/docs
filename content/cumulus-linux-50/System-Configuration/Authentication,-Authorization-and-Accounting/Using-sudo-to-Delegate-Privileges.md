@@ -62,8 +62,8 @@ When executed by an unprivileged user, the example commands below must be prefix
 | Package management | Upgrading | apt-get upgrade | %noc ALL=(ALL) NOPASSWD:/usr/bin/apt-get upgrade |
 | Netfilter | Install ACL policies | cl-acltool -i | %noc ALL=(ALL) NOPASSWD:/usr/cumulus/bin/cl-acltool |
 | Netfilter | List iptables rules | iptables -L | %noc ALL=(ALL) NOPASSWD:/sbin/iptables |
-| L1 + 2 features|Any LLDP command | lldpcli show neighbors / configure | %noc ALL=(ALL) NOPASSWD:/usr/sbin/lldpcli |
-| L1 + 2 features | Just show neighbors | lldpcli show neighbors | %noc ALL=(ALL) NOPASSWD:/usr/sbin/lldpcli show neighbors* |
+| Layer 1 and 2 |Any LLDP command | lldpcli show neighbors / configure | %noc ALL=(ALL) NOPASSWD:/usr/sbin/lldpcli |
+| Layer 1 and 2 | Just show neighbors | lldpcli show neighbors | %noc ALL=(ALL) NOPASSWD:/usr/sbin/lldpcli show neighbors* |
 | Interfaces | Modify any interface | ip link set dev swp1 {up|down} | %noc ALL=(ALL) NOPASSWD:/sbin/ip link set * |
 | Interfaces | Up any interface | ifup swp1 | %noc ALL=(ALL) NOPASSWD:/sbin/ifup |
 | Interfaces | Down any interface | ifdown swp1 | %noc ALL=(ALL) NOPASSWD:/sbin/ifdown |
@@ -76,11 +76,11 @@ When executed by an unprivileged user, the example commands below must be prefix
 | Troubleshooting | Restart switchd | systemctl restart switchd.service | %noc ALL=(ALL) NOPASSWD:/usr/sbin/service switchd * |
 | Troubleshooting | Restart any service | systemctl cron switchd.service | %noc ALL=(ALL) NOPASSWD:/usr/sbin/service |
 | Troubleshooting | Packet capture | tcpdump | %noc ALL=(ALL) NOPASSWD:/usr/sbin/tcpdump |
-| L3| Add static routes | ip route add 10.2.0.0/16 via 10.0.0.1 | %noc ALL=(ALL) NOPASSWD:/bin/ip route add * |
-| L3| Delete static routes | ip route del 10.2.0.0/16 via 10.0.0.1 | %noc ALL=(ALL) NOPASSWD:/bin/ip route del * |
-| L3| Any static route change | ip route *|%noc ALL=(ALL) NOPASSWD:/bin/ip route * |
-| L3| Any iproute command | ip * | %noc ALL=(ALL) NOPASSWD:/bin/ip |
-| L3| Non-modal OSPF | cl-ospf area 0.0.0.1 range 10.0.0.0/24 | %noc ALL=(ALL) NOPASSWD:/usr/bin/cl-ospf |
+| Layer 3| Add static routes | ip route add 10.2.0.0/16 via 10.0.0.1 | %noc ALL=(ALL) NOPASSWD:/bin/ip route add * |
+| Layer 3| Delete static routes | ip route del 10.2.0.0/16 via 10.0.0.1 | %noc ALL=(ALL) NOPASSWD:/bin/ip route del * |
+| Layer 3| Any static route change | ip route *|%noc ALL=(ALL) NOPASSWD:/bin/ip route * |
+| Layer 3| Any iproute command | ip * | %noc ALL=(ALL) NOPASSWD:/bin/ip |
+| Layer 3| Non-modal OSPF | cl-ospf area 0.0.0.1 range 10.0.0.0/24 | %noc ALL=(ALL) NOPASSWD:/usr/bin/cl-ospf |
 
 ## Related Information
 

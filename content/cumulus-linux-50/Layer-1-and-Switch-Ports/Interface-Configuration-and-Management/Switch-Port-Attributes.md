@@ -591,11 +591,11 @@ Cumulus Linux lets you:
 
 - If you break out a port, then reload the `switchd` service on a switch running in *nonatomic* ACL mode, temporary disruption to traffic occurs while the ACLs are reinstalled.
 - Port ganging is not supported.
-- Mellanox switches with the Spectrum 1 ASIC have a limit of 64 logical ports. If you want to break ports out to 4x25G or 4x10G:
+- Switches with the Spectrum 1 ASIC have a limit of 64 logical ports. If you want to break ports out to 4x25G or 4x10G:
   - You can only break out odd-numbered ports into four logical ports.
   - You must disable the next even-numbered port. For example, if you break out port 11 into four logical ports, you must disable port 12.
-  These restrictions do *not* apply to a 2x50G breakout configuration or to the Mellanox SN2100 and SN2010 switches.
-- Mellanox switches with the Spectrum 2 and Spectrum 3 ASIC have a limit of 128 logical ports. To ensure that the number of total logical interfaces does not exceed the limit, if you split ports into four interfaces on Spectrum 2 and Spectrum 3 switches with 64 interfaces, you must disable the adjacent port. For example, when splitting port 1 into four 25G interfaces, you must disable port 2 in the `/etc/cumulus/ports.conf` file:
+  These restrictions do *not* apply to a 2x50G breakout configuration or to the NVIDIA SN2100 and SN2010 switches.
+- Switches with the Spectrum 2 and Spectrum 3 ASIC have a limit of 128 logical ports. To ensure that the number of total logical interfaces does not exceed the limit, if you split ports into four interfaces on Spectrum 2 and Spectrum 3 switches with 64 interfaces, you must disable the adjacent port. For example, when splitting port 1 into four 25G interfaces, you must disable port 2 in the `/etc/cumulus/ports.conf` file:
 
     ```
     1=4x25G
@@ -890,12 +890,12 @@ If you change the port speed in the `/etc/cumulus/ports.conf` file but the speed
 
 1000BASE-T SFP modules are supported on the following 25G platforms:
 
-- Mellanox SN2410
-- Mellanox SN2010
+- NVIDIA SN2410
+- NVIDIA SN2010
 
 1000BASE-T SFP modules are not supported on any 100G or faster platforms.
 
-### Mellanox SN2100 Switch and eth0 Link Speed
+### NVIDIA SN2100 Switch and eth0 Link Speed
 
 After rebooting the Melllanox SN2100 switch, eth0 always has a speed of 100Mb/s. If you bring the interface down and then back up again, the interface negotiates 1000Mb. This only occurs the first time the interface comes up.
 
@@ -911,9 +911,9 @@ modprobe igb
 
 When you remove two transceivers simultaneously from a switch, both interfaces show the `carrier down` status immediately. However, it takes one second for the second interface to show the `operational down` status. In addition, the services on this interface also take an extra second to come down.
 
-### Mellanox Spectrum-2 Switches and FEC Mode
+### NVIDIA Spectrum-2 Switches and FEC Mode
 
-The Mellanox Spectrum-2 (25G) switch only supports RS FEC.
+The NVIDIA Spectrum-2 (25G) switch only supports RS FEC.
 
 ## Related Information
 

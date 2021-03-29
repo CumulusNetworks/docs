@@ -52,7 +52,7 @@ switch# write memory</li><li><p>NVIDIA Cumulus Networks recommends you <b>not</b
 
 ### PIM Neighbors
 
-When PIM is configured on an interface, `PIM Hello` messages are sent to the link local multicast group 224.0.0.13. Any other router configured with PIM on the segment that hears the PIM Hello messages builds a PIM neighbor with the sending device.
+When PIM is configured on an interface, `PIM Hello` messages are sent to the linklocal multicast group 224.0.0.13. Any other router configured with PIM on the segment that hears the PIM Hello messages builds a PIM neighbor with the sending device.
 
 {{%notice note%}}
 
@@ -474,7 +474,7 @@ PIM joins sent towards the source can be ECMP load shared by upstream PIM neighb
 
 #### Multicast Receiver
 
-A dual-attached multicast receiver sends an IGMP join on the attached VLAN. The specific interface that is used is determined based on the host. The IGMP join is received on one of the MLAG switches, and the IGMP join is added to the IGMP Join table and layer 2 MDB table. The layer 2 MDB table, like the unicast MAC address table, is synced via MLAG control messages over the peerlink. This allows both MLAG switches to program IGMP and MDB table forwarding information.
+A dual-attached multicast receiver sends an IGMP join on the attached VLAN. The specific interface that is used is determined based on the host. The IGMP join is received on one of the MLAG switches, and the IGMP join is added to the IGMP Join table and layer 2 MDB table. The layer 2 MDB table, like the unicast MAC address table, is synchronized via MLAG control messages over the peerlink. This allows both MLAG switches to program IGMP and MDB table forwarding information.
 
 Both switches send *,G PIM Join messages towards the RP. If the source is already sending, both MLAG switches receive the multicast stream.
 
@@ -572,7 +572,7 @@ PIM uses the RPF procedure to choose an upstream interface to build a forwarding
 
 {{< tab "NCLU Commands ">}}
 
-Run the `net add pim ecmp` command to enable PIM to use all the available nexthops for the installation of mroutes. For example, if you have four-way ECMP, PIM spreads the S,G and \*,G mroutes across the four different paths.
+Run the `net add pim ecmp` command to enable PIM to use all the available next hops for the installation of mroutes. For example, if you have four-way ECMP, PIM spreads the S,G and \*,G mroutes across the four different paths.
 
 ```
 cumulus@switch:~$ net add pim ecmp
@@ -598,7 +598,7 @@ The rebalance command might cause some packet loss.
 
 {{< tab "vtysh Commands ">}}
 
-Run the `ip pim ecmp` command to enable PIM to use all the available nexthops for the installation of mroutes. For example, if you have four-way ECMP, PIM spreads the S,G and \*,G mroutes across the four different paths.
+Run the `ip pim ecmp` command to enable PIM to use all the available next hops for the installation of mroutes. For example, if you have four-way ECMP, PIM spreads the S,G and \*,G mroutes across the four different paths.
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -633,7 +633,7 @@ The rebalance command might cause some packet loss.
 
 {{< /tabs >}}
 
-To show which nexthop is selected for a specific source/group, run the `show ip pim nexthop` command from the `vtysh` shell:
+To show which next hop is selected for a specific source/group, run the `show ip pim nexthop` command from the `vtysh` shell:
 
 ```
 cumulus@switch:~$ sudo vtysh

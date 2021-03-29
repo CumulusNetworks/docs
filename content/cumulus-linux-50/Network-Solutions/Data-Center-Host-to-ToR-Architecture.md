@@ -447,7 +447,7 @@ iface peerlink
   mtu 9000
   bond-slaves swp49 swp50
 
-# MLAG Peerlink L2 interface.
+# MLAG Peerlink layer 2 interface.
 # This creates VLAN 4094 that only lives on the peerlink bond
 # No other interface will be aware of VLAN 4094
 auto peerlink.4094
@@ -531,7 +531,7 @@ iface vlan24
     vlan-raw-device bridge
     vrf vrf1
 
-#L3 VLAN interface per tenant (for L3 VNI)
+#Layer 3 VLAN interface per tenant (for layer 3 VNI)
 auto vlan4001
 iface vlan4001
     hwaddress 44:39:39:FF:40:94
@@ -608,7 +608,7 @@ iface peerlink
   mtu 9000
   bond-slaves swp49 swp50
 
-# MLAG Peerlink L2 interface.
+# MLAG Peerlink layer 2 interface.
 # This creates VLAN 4094 that only lives on the peerlink bond
 # No other interface will be aware of VLAN 4094
 auto peerlink.4094
@@ -691,7 +691,7 @@ iface vlan24
     vlan-raw-device bridge
     vrf vrf1
 
-#L3 VLAN interface per tenant (for L3 VNI)
+#Layer 3 VLAN interface per tenant (for layer 3 VNI)
 auto vlan4001
 iface vlan4001
     hwaddress 44:39:39:FF:40:94

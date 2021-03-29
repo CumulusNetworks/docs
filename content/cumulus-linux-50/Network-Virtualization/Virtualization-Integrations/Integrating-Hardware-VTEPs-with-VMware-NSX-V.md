@@ -187,7 +187,7 @@ After you create a certificate, connect to NSX Manager in a browser to configure
     {{< img src = "/images/cumulus-linux/virtualization-integrations-nsxv-hw-devs.png" >}}
 
 2. In the **Name** field, provide a name for the HW VTEP gateway.
-3. Enable the BFD service to the service nodes. Select the **Enable BFD** check box.
+3. Enable the BFD service to the service nodes. Select the **Enable BFD** checkbox.
 4. From the terminal session connected to the switch where you generated the certificate, copy the certificate and paste it into the **Certificate** text field. Copy only the bottom portion, including the `BEGIN CERTIFICATE` and `END CERTIFICATE` lines. For example, copy all the highlighted text in the terminal terminal and paste it into NSX Manager:
 
     ```
@@ -256,7 +256,7 @@ To define the logical switch:
 
 2. In the **Name** field, enter a name for the logical switch.
 3. In the **Transport Zone** field, add the transport zone that you created earlier.
-4. In the **Replication Mode** field, select **Unicast** for replication by the service node. Then check the **Enable IP Discovery** check box.
+4. In the **Replication Mode** field, select **Unicast** for replication by the service node. Then check the **Enable IP Discovery** checkbox.
 5. Click **OK**.  
 
     {{< img src = "/images/cumulus-linux/virtualization-integrations-nsxv-logical-switch.png" >}}

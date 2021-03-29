@@ -20,7 +20,7 @@ This translates to about 314 routes with ECMP nexthops, if every route has the m
 
 To monitor the routes in Cumulus Linux hardware, use the `cl-resource-query` command.
 
-The example below shows `cl-resource-query` results for a Mellanox Spectrum-2 switch:
+The example below shows `cl-resource-query` results for a NVIDIA Spectrum-2 switch:
 
 ```
 cumulus@switch:~$ sudo cl-resource-query

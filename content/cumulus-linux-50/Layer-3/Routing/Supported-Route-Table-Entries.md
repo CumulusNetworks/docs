@@ -35,7 +35,7 @@ After you specify a different profile, {{%link url="Configuring-switchd#restart-
 
 ## Supported Route Entries
 
-The following tables list the number of MAC addresses, layer 3 neighbors, and LPM routes validated for each forwarding table profile for Mellanox switches. If you do not specify any profiles as described above, the switch uses the *default* values.
+The following tables list the number of MAC addresses, layer 3 neighbors, and LPM routes validated for each forwarding table profile. If you do not specify any profiles as described above, the switch uses the *default* values.
 
 {{%notice tip%}}
 

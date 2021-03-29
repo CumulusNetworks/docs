@@ -10,10 +10,9 @@
   <!-- Fonts for the theme -->
   <link href="https://fonts.googleapis.com/css?family=Oxygen|Oxygen+Mono:300,400,700" rel="stylesheet">
 
-  <!-- Theme stylesheet, you can customize scss by creatig `assets/custom.scss` in your website -->
-  {{ $styles := resources.Get "book.scss" | resources.ToCSS | resources.Minify | resources.Fingerprint }}
+  {{ $styles := resources.Get "book.scss" | resources.ExecuteAsTemplate "book.scss" . | toCSS | minify | fingerprint }}
+  <link rel="stylesheet" href="{{ $styles.Permalink }}">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-  <link rel="stylesheet" href="{{ $styles.RelPermalink }}">
 
   <!-- Favicon -->
   <link rel="icon" href="{{ "icons/favicon.png" | relURL }}" type="image/x-icon">
@@ -96,7 +95,7 @@
         </div>
       </div>
     </div> -->
-    <header class="home-banner" style="background-image: url(/docs-home-bg.jpg);">
+    <header class="home-banner" style="background-image: url({{"docs-home-bg.jpg" | absURL}});">
       <div class="container">
         <div class="row">
           <div class="col-12">
@@ -179,7 +178,7 @@
             <div class="card-deck four-across">
               <div class="card">
                 <a href="https://cumulusnetworks.com/hcl/"></a>
-                <div class="card__background" style="background-image: url('/Tech-Doc-01-HCL.jpg')"></div>
+                <div class="card__background" style="background-image: url('{{"Tech-Doc-01-HCL.jpg" | absURL}}')"></div>
                 <div class="card__content">
                   <h3>Hardware Compatibility List</h3>
                   <p>See all the platforms that Cumulus Linux and Cumulus RMP support.</p>
@@ -188,7 +187,7 @@
               </div>
               <div class="card">
                 <a href="/guides/"></a>
-                <div class="card__background" style="background-image: url('/Tech-Doc-02-Support.jpg')"></div>
+                <div class="card__background" style="background-image: url('{{"Tech-Doc-02-Support.jpg" | absURL}}')"></div>
                 <div class="card__content">
                   <h3>Technical Guides</h3>
                   <p>Read long form technical guides that provide deep dives into various features.</p>
@@ -197,7 +196,7 @@
               </div>
               <div class="card">
                 <a href="/knowledge-base/"></a>
-                <div class="card__background" style="background-image: url('/Tech-Doc-03-release-notes.jpg')"></div>
+                <div class="card__background" style="background-image: url('{{"Tech-Doc-03-release-notes.jpg" | absURL}}')"></div>
                 <div class="card__content">
                   <h3>Knowledge Base</h3>
                   <p>Learn many troubleshooting tips and peruse various technical articles.</p>
@@ -206,7 +205,7 @@
               </div>
               <div class="card">
                 <a href="/contributor-guide/"></a>
-                <div class="card__background" style="background-image: url('/Tech-Doc-04-Contribute.png')"></div>
+                <div class="card__background" style="background-image: url('{{"Tech-Doc-04-Contribute.png" | absURL}}')"></div>
                 <div class="card__content">
                   <h3>Contribute</h3>
                   <p>Discover how to add or update content in the Cumulus Networks technical documentation.</p>

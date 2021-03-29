@@ -30,7 +30,7 @@ The chains and their uses are:
 
 - **PREROUTING** touches packets before they are routed
 - **INPUT** touches packets after they are determined to be destined for the local system but before they are received by the control plane software
-- **FORWARD** touches transit traffic as it moves through the box
+- **FORWARD** touches transit traffic as it moves through the switch
 - **OUTPUT** touches packets that are sourced by the control plane software before they are put on the wire
 - **POSTROUTING** touches packets immediately before they are put on the wire but after the routing decision has been made
 

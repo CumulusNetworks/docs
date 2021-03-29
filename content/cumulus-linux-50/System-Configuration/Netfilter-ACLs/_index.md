@@ -216,7 +216,7 @@ pkts bytes target prot opt in out source destination
 0 0 DROP icmp -- any any anywhere anywhere icmp echo-request
 ```
 
-However, the rule is not synced to hardware when applied in this way and running `cl-acltool -i` or `reboot` removes the rule without replacing it. To ensure all rules that can be in hardware are hardware accelerated, place them in `/etc/cumulus/acl/policy.conf` and install them by running `cl-acltool -i`.
+However, the rule is not synchronized to hardware when applied in this way and running `cl-acltool -i` or `reboot` removes the rule without replacing it. To ensure all rules that can be in hardware are hardware accelerated, place them in `/etc/cumulus/acl/policy.conf` and install them by running `cl-acltool -i`.
 
 ### Estimate the Number of Rules
 
@@ -339,7 +339,7 @@ This deletes all rules from the `50_nclu_acl.rules` file with that name. It also
 
 ## Install and Manage ACL Rules with cl-acltool
 
-You can manage Cumulus Linux ACLs with `cl-acltool`. Rules are first written to the `iptables` chains, as described above, and then synced to hardware via `switchd`.
+You can manage Cumulus Linux ACLs with `cl-acltool`. Rules are first written to the `iptables` chains, as described above, and then synchronized to hardware via `switchd`.
 
 {{%notice note%}}
 Use `iptables`/`ip6tables`/`ebtables` and `cl-acltool` to manage rules in the default files, `00control_plane.rules` and `99control_plane_catch_all.rules`; they are not aware of rules created using NCLU.

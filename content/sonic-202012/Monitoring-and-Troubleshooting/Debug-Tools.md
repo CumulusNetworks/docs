@@ -1,19 +1,21 @@
 ---
-title: SONiC Debug Tools
+title: Mellanox Debug Tools for SONiC
 author: Cumulus Networks
 weight: 610
 product: SONiC
-version: 201911_MUR5
+version: 202012
 siteSlug: sonic
 ---
 
+There are a number of tools you can use to debug SONiC on your switch. Some of the tools described below are available only on Mellanox switches.
+
 ## SDK Utilities
 
-Each SDK API has a correlated python script which allows calling the SDK API from the SONiC shell. It can be found under the /usr/bin folder of the syncd container. It is recommended to use only the "get" options to prevent miss configuration and miss alignment with the SAI who is the only control application.
+Each SDK API has a correlated Python script that can call the SDK API from the SONiC shell. It is located in the `/usr/bin` folder in the `syncd` container. You should only use the `get` options to prevent misconfiguration and misalignment with the SAI, as it is the only control application.
 
-Below you can find a set demonstrating various Switch/Router SDK features usage. The debug utilities do include the "dump" keyword in their names.
+This topic discusses the various switch and router SDK features and their usage. The debug utilities include the *dump* keyword in their names.
 
-A list of some of the provided examples:
+Some default debug scripts include:
 
 - sx_api_bridge_dump.py
 - sx_api_bridge_iter_get.py
@@ -24,9 +26,11 @@ A list of some of the provided examples:
 - sx_api_flex_acl_key_attr_get.py
 - sx_api_host_ifc_counters_get.py
 
+You can get this list when you run this following command:
+
 ```
-root@sonic:/home/admin# docker exec -it syncd bash
-root@sonic:/usr/bin# ls sx_* -l
+admin@switch:/home/admin$ docker exec -it syncd bash
+admin@switch:/usr/bin$ ls sx_* -l
 -rwxr-xr-x 1 root root    3445 Mar 23 16:16 sx_api_bridge_dump.py
 -rwxr-xr-x 1 root root    8632 Mar 23 16:16 sx_api_bridge_iter_get.py
 -rwxr-xr-x 1 root root   20471 Mar 23 16:16 sx_api_bridge_lag_redirect.py
@@ -35,17 +39,16 @@ root@sonic:/usr/bin# ls sx_* -l
 -rwxr-xr-x 1 root root    7939 Mar 23 16:16 sx_api_cos_ets.py
 -rwxr-xr-x 1 root root   18616 Mar 23 16:16 sx_api_cos_port_buff_type.py
 -rwxr-xr-x 1 root root    3794 Mar 23 16:16 sx_api_cos_port_ptp_params.py
-…
-…
+...
 ```
 
-With these python interfaces, you can easily dump the information in SDK to have a view of the SDK data and facilitate you are troubleshooting.
+With these Python interfaces, you can easily dump the information in the SDK to have a view of the SDK data and facilitate your troubleshooting.
 
-An example of such usage can be seen below in the "sx_api_ports_dump.py" ports information dump:
+An example of such usage can be seen below in the `sx_api_ports_dump.py` port information dump:
 
 ```
-root@sonic:/usr/bin# sx_api_ports_dump.py
-=====================================================================================================
+admin@switch:/usr/bin$ sudo sx_api_ports_dump.py
+=================================================================================================================
 |  log_port|local_port|label_port|       mtu| admin_s|  oper_s|       module_s|  pvid|     oper_speed|  fec_mode|
 =================================================================================================================
 |   0x10100|         1|        33|      9238|    DOWN|    DOWN|      UNPLUGGED|     1|            N/A|      None|
@@ -58,84 +61,88 @@ root@sonic:/usr/bin# sx_api_ports_dump.py
 |   0x13e00|        62|         2|      9122|      UP|      UP|        PLUGGED|  1000|        25GB_CR|        FC|
 |   0x13f00|        63|         3|      9122|      UP|      UP|        PLUGGED|  1000|        25GB_CR|        FC|
 |   0x14000|        64|         4|      9122|      UP|      UP|        PLUGGED|  1000|        25GB_CR|        FC|
-=====================================================================================================
+=================================================================================================================
 ```
 
 ### SDK Debug Dump
 
-SDK Debug Dump is the API that can export all the debug information modules to a user defined file name or the console. The internal debug information is exported per module:
+The SDK debug dump is the API that can export all the debug information modules to a user-defined file name or the console. The internal debug information is exported per module:
 
 - Databases dump parsed into tables
 - List of current processes
 - ASIC type and revision
-- MST dump – useful for FW debug
-- dmesg
-- lsmod
-- lspci
-- uname –a
+- `mstdump` – useful for FW debug
+- `dmesg`
+- `lsmod`
+- `lspci`
+- `uname –a`
 - sx_status_t sx_api_dbg_generate_dump (const sx_api_handle_t handle, const char *dump_file_path)
 
-To generate full SDK configuration dump:
+To generate the full SDK configuration dump, run:
 
-    # docker exec –it syncd sx_api_dbg_generate_dump.py
+    admin@switch:~$ sudo docker exec –it syncd sx_api_dbg_generate_dump.py
 
 ## SDK API Sniffer
 
-SDK API Sniffer provides a way to record the RPC calls from the SDK user API library to the sx_sdk in a .pcap file, which can be used to get the exact same state in SDK and firmware to reproduce and investigate issues.
+On Mellanox switches, the SDK API sniffer can record the RPC calls from the SDK user API library to the `sx_sdk` in a PCAP file. You can use this to get the same exact state in both the SDK and firmware in order to reproduce and investigate issues.
 
 {{<img src="/images/sonic/sdk-api-sniffer.png" width="600px">}}
 
-Below are examples for how to enable and disable the sniffer. In the enable command output, you will see the sniffer file name which the sniffer content will be stored.
+To enable the sniffer, run the following command. The command output displays the sniffer file name, which is where the sniffer content is stored.
 
 ```
-admin@sonic:~# sudo config platform mlnx sniffer sdk enable 
+admin@switch:~$ sudo config platform mlnx sniffer sdk enable 
 Swss service will be restarted, continue? [y/N]: y
 Enabling SDK sniffer
 SDK sniffer is Enabled, recording file is /var/log/mellanox/sniffer/sx_sdk_sniffer_20200622072855.pcap.
 Note: the sniffer file may exhaust the space on /var/log, please disable it when you are done with this sniffering.
- 
-admin@sonic:~# sudo config platform mlnx sniffer sdk disable
+```
+
+To disable the sniffer, run:
+
+```
+admin@switch:~$ sudo config platform mlnx sniffer sdk disable
 Swss service will be restarted, continue? [y/N]: y
 Disabling SDK sniffer
 SDK sniffer is Disabled.
 ```
 
-For the CLI configuration, refer: https://github.com/Azure/sonic-utilities/blob/201911/doc/Command-Reference.md.
+More information on these platform-specific commands, read the {{<exlink url="https://github.com/Azure/sonic-utilities/blob/201911/doc/Command-Reference.md#platform-specific-commands" text="Azure SONiC documentation on GitHub">}}.
 
-## NVIDIA® Mellanox® Firmware Tools (MFT)
+## NVIDIA Mellanox Firmware Tools (MFT)
 
-NVIDIA® Mellanox® Firmware Tools (MFT) package is integrated in SONiC and provides a set of firmware management and debug tools.
+On Mellanox switches, the NVIDIA Mellanox Firmware Tools (MFT) package is integrated into SONiC and provides a set of firmware management and debugging tools.
 
-For NVIDIA® Mellanox® devices. MFT can be used for:
+You can use MFT to:
 
-- Generating a standard or customized Mellanox firmware image
-- Querying for firmware information
-- Burning a firmware image to a single Mellanox device
+- Generate a standard or customized Mellanox firmware image
+- Query for firmware information
+- Burn a firmware image to a single Mellanox device
 
-All MFT tools address the target hardware device using an mst device name. This name is assigned by running the command ‘mst start’ for PCI and I2C access (enabled by default). To list the available mst device names on the local machine, run "mst status’.
+Every MFT addresses the target hardware device using an MST (Mellanox Software Tools) device name. This name is assigned by running the `mst start` command for PCI and I2C access (which is enabled by default). To list the available MST device names on the local machine, run `mst status`.
 
 ### mlxcables - Mellanox Cables Tool
 
-The mlxcables tool allows users to access the cables and do the following:
+On Mellanox switches, the `mlxcables` tool allows users to access the cables and do the following:
 
-- Query the cable and get its IDs
-- Read specific addresses in the EEPROM
-- Read a specific register by its name. Supported registers are received by the tool (depends on the cable type)
-- Dump all the cable EEPROM bytes in RAW format
-- Upgrade the FW image on the cable uC (Only on cables that support ISFU)
+- Query the cable and get its IDs.
+- Read specific addresses in the EEPROM.
+- Read a specific register by its name. Supported registers are received by the tool and depend on the cable type.
+- Dump all the cable EEPROM bytes in RAW format.
+- Upgrade the firmware image on the cable uC (only on cables that support ISFU).
 
 To query the cable:
 
-1. Discover the mst cable devices.
+1. Discover the MST cable devices.
 
-       admin@sonic:~$ sudo mst cable add
+       admin@switch:~$ sudo mst cable add
 
        -I- Added 33 cable devices ..
-2. Show the mst devices.
+2. Show the MFT devices.
 
-   Each MFT tool requires specifying the device (-d), and each ASIC has a different device (for example: Mellanox Spectrum - /dev/mst/mt52100_pci_cr0).
+   Each MFT command requires specifying the device (using the `-d` option), and each ASIC has a different device. For example: Mellanox Spectrum c`/dev/mst/mt52100_pci_cr0`.
 
-       admin@sonic:~$ sudo mst status
+       admin@switch:~$ sudo mst status
 
        MST modules:
        ------------
@@ -188,8 +195,7 @@ To query the cable:
 
    mlxcable numbering is from: 0 - (Number of ports-1)
 
-       admin@sonic:~$ sudo mlxcables -d /dev/mst/mt52100_pci_cr0_cable_0
-
+       admin@switch:~$ sudo mlxcables -d /dev/mst/mt52100_pci_cr0_cable_0
        Querying Cables ....
 
        Cable #1:
@@ -199,41 +205,35 @@ To query the cable:
        >> No FW data to show
 
        -------- Cable EEPROM --------
-
        Identifier    : SFP/SFP+/SFP28 (03h)
-
        Technology    : AOC (Active Optical Cable)
-
        Compliance    : Unspecified, 100G AOC or 25GAUI C2M AOC. Providing a worst BER of 10^(-12) or below
-
        OUI           : 0x0002c9
-
        Vendor        : Mellanox
-
        Serial number : MT1834FT03899
-
        Part number   : MFA7A50-C003
-
        Revision      : A3
-
        Temperature   : 40 C
-
        Length        : 3 m
 
-For detailed parameters and instructions, please refer to latest MFT User Manual.
+For detailed parameters and instructions, refer to the latest {{<exlink url="https://docs.mellanox.com/category/mft" text="MFT user manual">}}.
 
 ### mlxlink - Mellanox Link Tool
 
-The mlxlink tool is used to check and debug link status and issues related to them. The tool can be used on different links and cables (passive, active, transceiver and backplane).
+The `mlxlink` tool is used to check and debug link status and issues related to them. The tool can be used on different links and cables (passive, active, transceiver and backplane).
 
-The following operations could be performed using this tool.
+{{%notice note%}}
 
-- In order for mlxlink to function properly, make sure to update the firmware version to the latest version.
-- mlxlink is intended for advanced users with appropriate technical background.
-- Do not use mlxlink to disable the port connecting between the host and the unmanaged switch using (“--port_state dn”) flag.
-- mlxlink errors, warnings and notes are printed on stderr console.
-- Setting the speeds (50GbE and 100GbE) requires specifying the number of lanes for the speed: mlxlink -d <dev> --speeds [50G_2X | 50G_1X | 100G_2X | 100G_4X]
-- mlxlink numbering is from: 1 - (Number of ports)
+- `mlxlink` is intended for advanced users with appropriate technical background.
+- In order for `mlxlink` to function properly, {{<exlink url="https://docs.mellanox.com/display/MFTv4161/Updating+the+Device" text="update the firmware">}} to the latest version.
+- Do not use `mlxlink` to disable the port connecting between the host and the unmanaged switch using the `--port_state dn` flag.
+- `mlxlink` errors, warnings and notes are printed to the `stderr` console.
+- Setting port speeds (50GbE and 100GbE) requires specifying the number of lanes for the speed: `mlxlink -d <dev> --speeds [50G_2X | 50G_1X | 100G_2X | 100G_4X]`
+- `mlxlink` port numbering starts at 1.
+
+{{%/notice%}}
+
+You can perform the following operations with `mlxlink`:
 
 - Queries:
   - Transmitter
@@ -253,7 +253,7 @@ The following operations could be performed using this tool.
 For example:
 
 ```
-admin@sonic:~$ sudo mlxlink -d /dev/mst/mt52100_pci_cr0 -p 0x2
+admin@switch:~$ sudo mlxlink -d /dev/mst/mt52100_pci_cr0 -p 0x2
  
 Operational Info
 ----------------
@@ -277,20 +277,18 @@ Group Opcode                    : N/A
 Recommendation                  : No issue was observed.
 ```
 
-For detailed parameters and instructions, please refer to latest MFT User Manual.
+For detailed parameters and instructions, refer to the latest {{<exlink url="https://docs.mellanox.com/category/mft" text="MFT user manual">}}.
 
 ### mstdump - Mellanox Dump Tool
 
-The mstdump utility dumps device internal configuration registers. The dump file is used by Mellanox Support for hardware troubleshooting purposes. It can be applied on all Mellanox devices.
+On Mellanox switches, the `mstdump` utility dumps device internal configuration registers. The dump file is used by NVIDIA Mellanox Support for hardware troubleshooting purposes. It can be run on all Mellanox switches.
 
-When debugging a link issue, it is recommended to execute the command 3 times with 1 sec interval to help track the state machine changes.
+When debugging a link issue, you should execute the command 3 times at 1 second intervals to help track the state machine changes.
 
-Examples:
-
-Dumps internal registers of a SN2700 device:
+For example, to dump internal registers of an SN2700 switch, run:
 
 ```
-admin@sonic:~$ sudo mstdump /dev/mst/mt52100_pci_cr0
+admin@switch:~$ sudo mstdump /dev/mst/mt52100_pci_cr0
 ...
 0x0015a884 0x40000000
 0x0015a888 0x00000024
@@ -318,68 +316,6 @@ admin@sonic:~$ sudo mstdump /dev/mst/mt52100_pci_cr0
 ...
 ```
 
-mstdump is also executed as part of the ‘show techsupport’.
+`mstdump` is also executed when you run `show techsupport`.
 
-For detailed parameters and instructions, please refer to latest {{<exlink url="https://docs.mellanox.com/category/mft" text="MFT User Manual">}}.
-
-## System Dump
-
-System Dump is used to generate system dump for debugging purposes. Once the command is executed, it compresses all the information into an archive file. Resulting archive file is saved as /var/dump/<DEVICE_HOST_NAME>_YYYYMMDD_HHMMSS.tar.gz
-
-Each issue reported must include system dump. The information can assist in reproducing the issue and having an offline analyse.
-
-To generate system dump:
-
-    #show techsupport \[--since '2 days ago'\]
-
-System dump includes the following info:
-
-- State of /proc FS
-- Platform info (version, name, etc.)
-- Configuration (routes, BGP, etc.)
-- System info (running processes, memory utilization, etc.)
-- Redis DB instances dump
-- SAI attributes dump
-- Log files
-- Core dump files
-- Platform specific files.
-
-*For Mellanox it also includes SDK dump, firmware trace and MST dump.
-
-## Logs
-
-All SONiC logs are available at /var/log/syslog. To change log level, use the swssloglevel utility:
-
-To set orchagent severity level to NOTICE:
-
-    # swssloglevel -l NOTICE -c orchagent
-
-To set SAI_API_SWITCH severity to ERROR:
-
-    # swssloglevel -l SAI_LOG_LEVEL_ERROR -s -c SWITCH
-
-To set all SAI_API_* severity to DEBUG:
-
-    # swssloglevel -l SAI_LOG_LEVEL_DEBUG -s -a
-
-## Docker Status
-
-To verify that all docker containers are running:
-
-    # docker ps
-
-To verify that all processes are running in a container:
-
-    # docker exec -it swss supervisorctl status
-
-Containers are started by systemd, so it is possible to use systemctl to get the status. 
-
-    # systemctl status swss.service
-
-In case some docker containers are not running:
-
-1. Check whether all services are running.
-
-       # systemctl status
-2. Check /var/log/syslog for errors.
-3. Restart SONiC service which failed, for example swss: # systemctl restart swss.
+For detailed parameters and instructions, refer to the latest {{<exlink url="https://docs.mellanox.com/category/mft" text="MFT user manual">}}.

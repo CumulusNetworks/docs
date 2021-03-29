@@ -3,7 +3,7 @@ title: Getting Started
 author: Cumulus Networks
 weight: 100
 product: SONiC
-version: 201911_MUR5
+version: 202012
 siteSlug: sonic
 ---
 

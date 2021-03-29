@@ -3,7 +3,7 @@ title: Platform Firmware Components
 author: Cumulus Networks
 weight: 130
 product: SONiC
-version: 201911_MUR5
+version: 202012
 siteSlug: sonic
 ---
 

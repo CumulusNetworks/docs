@@ -3,7 +3,7 @@ title: Zero Touch Provisioning
 author: Cumulus Networks
 weight: 210
 product: SONiC
-version: 201911_MUR5
+version: 202012
 siteSlug: sonic
 ---
 
@@ -19,6 +19,9 @@ ZTP can execute automatically in one of the following ways, in this order:
 
 
 Example in the blog: https://developer.nvidia.com/blog/building-pure-sonic-image/
+
+https://github.com/Azure/SONiC/blob/master/doc/ztp/ztp.md
+
 
 ## Use a Local File
 

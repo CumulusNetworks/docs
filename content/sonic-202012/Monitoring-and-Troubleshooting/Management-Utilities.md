@@ -3,37 +3,36 @@ title: SONiC Management Utilities
 author: Cumulus Networks
 weight: 630
 product: SONiC
-version: 201911_MUR5
+version: 202012
 siteSlug: sonic
 ---
 
-## MLNX Hardware Management and Sysfs
+NVIDIA switch hardware management interfaces are implemented by using a virtual file system provided by the Linux kernel called `sysfs`. The `sysfs` file system enumerates the devices and buses attached to the system in a file system hierarchy that can be accessed from user space.
 
-Mellanox hardware management interfaces are implemented by using a virtual file system provided by the Linux kernel called sysfs. The sysfs file system enumerates the devices and buses attached to the system in a file system hierarchy that can be accessed from the user space.
-
-The major advantage of working with sysfs is that it makes hardware hierarchy easy to understand and control without having to learn about hardware component location, and the buses through which they are connected. The sysfs attributes are exposed as symbolic links in the /var/run/hw-management folder at system boot time categorized as in below.
-
-This folder contains the next structure:
+The major advantage of working with `sysfs` is that it makes the hardware hierarchy easy to understand and control without having to learn about a hardware component's location, and the buses through which they are connected. The `sysfs` attributes are exposed as symbolic links in the `/var/run/hw-management` directory at system boot time. This directory contains this structure:
 
 | Node Path | Purpose |
 | --------- | ------- |
-| /config | Configuration of related files. It includes information about FAN minimum, maximum allowed speed, some default settings, configured delays for different purposes |
-| /eeprom | EEPROM related symbolic links to System, PSU, FAN, CPU |
-| /environment | Environment (voltage, current, A2D) related symbolic links |
-| /led | LED related symbolic links |
-| /power | Power related symbolic links |
-| /system | System related (health, reset, CPLD version. etc.) related symbolic links |
-| /thermal | Thermal related links, including thermal zones related subfolders. /mlxsw - ASIC ambient temperature thermal zone related symbolic links. /mlxsw-moduleX - QSFP module X temperature thermal zone related symbolic links |
-| /watchdog | Standard watchdog sysfs attributes |
+| /alarm | Critical alarm symbolic links for CPU core temperature readings. |
+| /config | Configuration of related files. It includes information about fan minimum, maximum allowed speed, some default settings, configured delays for different purposes. |
+| /eeprom | EEPROM-related symbolic links to system, PSU, fan and CPU. |
+| /environment | Environment (voltage, current, A2D) related symbolic links. |
+| /led | LED related symbolic links. |
+| /power | Power-related symbolic links. |
+| /sfp | Helper scripts that get the current status of SFP and QSFP modules from `ethtool`. |
+| /system | System-related symbolic links for ASIC health, power settings (reset, power on and down, power cycle), CPLD version. |
+| /thermal | Thermal-related links, including thermal zones. `/mlxsw` contains ASIC ambient temperature and thermal zone symbolic links. The `/mlxsw-moduleX` subdirectories contain QSFP module temperature and thermal zone symbolic links. |
+| /watchdog | Standard watchdog `sysfs` attributes. |
 
 ## Platform API/Plugins
 
 NVIDIA switches support both Platform API v2.0 and legacy platform device plugins. The platform APIs or the plugins provide the interfaces access or operate the peripheral devices.
 
 ### Plugins Supported by NVIDIA Switches
-The plugins have been implemented per peripheral device type. SONiC defines base classes, and we implement these classes in various plugins including sfputil.py, psuutil.py, eeprom.py and fanutil.py.
 
-All Platform-specific plugins live on a disk in the image. The appropriate plugin is loaded at runtime after determining the running platform.
+Plugins are implemented for each peripheral device type. SONiC defines base classes, and NVIDIA implements these classes in various plugins including `sfputil.py`, `psuutil.py`, `eeprom.py` and `fanutil.py`.
+
+All platform-specific plugins live on a disk in the SONiC image. The appropriate plugin is loaded at runtime after determining the running platform.
 
 | Defined class/category | APIs | Supported: Yes/No |
 | ---------------------- | ---- | ----------------- |
@@ -62,64 +61,66 @@ All Platform-specific plugins live on a disk in the image. The appropriate plugi
 
 ### Platform API v2.0
 
-Platform API v2.0 is a standardized, unified API to interface with all combinations of these devices specified below. The APIs are organized in a hierarchy based on the physical connection of the devices. Peripheral control logic is implemented in user-space.
+Platform API v2.0 is a standardized, unified API to interface with all combinations of the devices specified below. The APIs are organized in a hierarchy based on the physical connection of the devices. Peripheral control logic is implemented in user space.
 
-Devices covered by the Platform API v2.0:
+The platform API v2.0 covers these devices:
 
 - Chassis
-- Module component
-- LED (Not supported in SONiC 201911)
-- SSD
-- eeprom
+- EEPROM
 - FAN
+- LED (Not supported in SONiC 201911)
+- Module component
 - PSU
 - SFP
+- SSD
 - Thermal
 - Watchdog
 
 ## ethtool
 
-`ethtool` is used to query and control network device driver and hardware settings, particularly for wired Ethernet devices. ethtool leverages the mlxsw_minimal driver in Linux kernel to provide a more convenient way to read QSFP/SFP module info on NVIDIA switches. Mellanox platform SFP APIs are leveraging the ethtool to get raw data and parse the module related data accordingly.
+`ethtool` is used to query and control network device driver and hardware settings, particularly for wired Ethernet devices. `ethtool` leverages the `mlxsw_minimal` driver in the Linux kernel to provide a more convenient way to read QSFP/SFP module information on NVIDIA switches. NVIDIA platform SFP APIs leverage `ethtool` to get raw data and parse the module related data accordingly.
 
 ```
-switchadmin@sonicadmin@sonic:/#sudoethtool -m sfp1
-        Identifier                                : 0x03 (SFP)
-        Extended identifier                       : 0x04 (GBIC/SFP defined by 2-wire interface ID)
-        Connector                                 : 0x23 (No separable connector)
-        Transceiver codes                         : 0x01 0x00 0x00 0x04 0x00 0x04 0x00 0x00
-        Transceiver type                          : Infiniband: 1X Copper Passive
-        Transceiver type                          : Ethernet: 1000BASE-CX
-        Transceiver type                          : FC: Copper Passive
-        Encoding                                  : 0x06 (64B/66B)
-        BR, Nominal                               : 25500MBd
-        Rate identifier                           : 0x00 (unspecified)
-        Length (SMF,km)                           : 0km
-        Length (SMF)                              : 0m
-        Length (50um)                             : 0m
-        Length (62.5um)                           : 0m
-        Length (Copper)                           : 2m
-        Length (OM3)                              : 0m
-        Passive Cu cmplnce.                       : 0x01 (SFF-8431 appendix E) [SFF-8472 rev10.4 only]
-        Vendor name                               : Mellanox
-        Vendor OUI                                : 00:02:c9
-        Vendor PN                                 : MCP7F00-A002R
-        Vendor rev                                : A1
-        Option values                             : 0x00 0x00
-        BR margin, max                            : 103%
-        BR margin, min                            : 0%
-        Vendor SN                                 : MT1702VS15044
-        Date code                                 : 170109
-        Optical diagnostics support               : No
+admin@switch:~$ sudo ethtool -m sfp1
+	Identifier                                : 0x0d (QSFP+)
+	Extended identifier                       : 0x00
+	Extended identifier description           : 1.5W max. Power consumption
+	Extended identifier description           : No CDR in TX, No CDR in RX
+	Extended identifier description           : High Power Class (> 3.5 W) not enabled
+	Connector                                 : 0x23 (No separable connector)
+	Transceiver codes                         : 0x08 0x00 0x00 0x00 0x00 0x00 0x00 0x00
+	Transceiver type                          : 40G Ethernet: 40G Base-CR4
+	Encoding                                  : 0x05 (64B/66B)
+	BR, Nominal                               : 10300Mbps
+	Rate identifier                           : 0x00
+	Length (SMF,km)                           : 0km
+	Length (OM3 50um)                         : 0m
+	Length (OM2 50um)                         : 0m
+	Length (OM1 62.5um)                       : 0m
+	Length (Copper or Active cable)           : 1m
+	Transmitter technology                    : 0xa0 (Copper cable unequalized)
+	Attenuation at 2.5GHz                     : 0db
+	Attenuation at 5.0GHz                     : 0db
+	Attenuation at 7.0GHz                     : 0db
+	Attenuation at 12.9GHz                    : 0db
+	Vendor name                               : 10Gtek
+	Vendor OUI                                : 00:00:00
+	Vendor PN                                 : CAB-Q10/Q10-P1M
+	Vendor rev                                : 01
+	Vendor SN                                 : WTQ11K10044
+	Revision Compliance                       : Revision not specified
+	Module temperature                        : 0.00 degrees C / 32.00 degrees F
+	Module voltage                            : 0.0000 V
 ```
 
 ## Switch Base MAC Address
 
-NVIDIA® Mellanox® switches are assigned with a set of MAC address and the base MAC address is burned to the syseeprom.
+NVIDIA switches are assigned with a set of MAC address and the base MAC address is burned to the `syseeprom`.
 
-For the first time the switch boots up, the base MAC address is read from the host/machine.conf, which is fed by ONIE and put into configdb, and the MAC address works as the system's MAC address of the switch.
+The first time a switch boots up, the base MAC address is read from the `/host/machine.conf` file, which is fed by ONIE and put into config_DB, and the MAC address works as the system's MAC address of the switch.
 
 {{%notice info%}}
 
-For the Mellanox Spectrum based switches, the lowest 6 bits of the base MAC address must be 0, and for Mellanox Spectrum-2 and above switches, the lowest 7 bits musto be 0. This must be taken into consideration when the base MAC for the switch is customized for any reason.
+For NVIDIA Spectrum 1-based switches, the lowest 6 bits of the base MAC address must be *0*. For NVIDIA Spectrum-2 and later switches, the lowest 7 bits must be *0*. Keep this value in mind if you customize the switch's base MAC address for any reason.
 
 {{%/notice%}}

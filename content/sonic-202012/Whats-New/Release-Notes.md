@@ -3,7 +3,7 @@ title: Release Notes
 author: Cumulus Networks
 weight: 20
 product: SONiC
-version: 201911_MUR5
+version: 202012
 siteSlug: sonic
 ---
 
@@ -25,13 +25,13 @@ This section provides only a list of Changes and New Features in this version. F
 
 | Feature/Change | Description |
 | -------------- | ----------- |
-|  | Rev. SONiC 201911_MUR5 |
+|  | Rev. SONiC 202012 |
 
 ### Customer-Affecting Changes
 
 | Feature/Change | Description |
 | -------------- | ----------- |
-|  | Rev. SONiC 201911_MUR5 |
+|  | Rev. SONiC 202012 |
 
 ## SONiC General Support
 
@@ -70,7 +70,7 @@ Additional bugs reported are handled by both Mellanox and the community as part 
 
 | Item # | RM # | Issue |
 | ------ | ---- | ----- |
-| 1. | | **Description:**<br />**Keywords:**<br />**Discovered in Version:** SONiC 201911_MUR4<br />**Fixed in Version:** SONiC 201911_MUR5 |
+| 1. | | **Description:**<br />**Keywords:**<br />**Discovered in Version:** SONiC 201911_MUR4<br />**Fixed in Version:** SONiC 202012 |
 
 ## Known Issues
 

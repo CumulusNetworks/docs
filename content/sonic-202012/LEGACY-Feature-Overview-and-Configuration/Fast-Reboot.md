@@ -3,46 +3,46 @@ title: Fast Reboot
 author: Cumulus Networks
 weight: 53
 product: SONiC
-version: 201911_MUR5
+version: 202012
 siteSlug: sonic
 ---
 
-Fast-Reboot updates the control plane with a short (<=30 secs) disruption of the data plane.
+Fast reboot updates the control plane while briefly (30 seconds or less) disrupting the data plane.
 
 {{<img src="/images/sonic/fast-reboot.png">}}
 
-## Requirements
-- Data plane disruption not more than 25 seconds for 32 ports platform
-- Control plane disruption not more than 90 seconds:
-  - data plane will use stale RIB/FIB information while control plane reboots
-- Up to 2000 hosts connected to VLAN interfaces
-- Up to 6000 IPv4 or up to 3000 IPv6 /64 BGP routes
+## Features and Requirements
+
+- Data plane disruption lasts no more than 25 seconds for a 32 port platform.
+- Control plane disruption lasts no more than 90 seconds; the data plane uses stale RIB/FIB information while the control plane reboots.
+- Up to 2000 hosts connected to VLAN interfaces.
+- Up to 6000 IPv4 or up to 3000 IPv6 /64 BGP routes.
 - LACP in slow mode:
-  - updates every 30 seconds
-  - timeout in 90 seconds
-- BGP stack supports BGP graceful restart: rfc4724
-- BGP stack supports announcing of preserved Forwarding state 
-- Linux Kernel with kexec enabled which enables loading another Linux kernel without cold reboot of the switch 
+  - Updates every 30 seconds.
+  - Times out in 90 seconds.
+- BGP stack supports BGP graceful restart, as per RFC4724.
+- BGP stack supports announcing of the preserved forwarding state.
+- Linux kernel with `kexec` enabled, which provides for the loading of another Linux kernel without a cold reboot of the switch.
 
-## Fast-Reboot Before Control Plane Reboot
+## Fast Reboot before Control Plane Reboot
 
-Fast-reboot is initiated by running the `/usr/bin/fast-reboot` executable (bash script). This script must be run when a switch is stable. The fast-reboot script does the following:
+Fast reboot is initiated by running the `/usr/bin/fast-reboot` executable, a bash script. This script must be run when a switch is stable. The `fast-reboot` script does the following:
 
-1. Dumps FDB and ARP entries from the ASIC DB tables into the swss container.
-2. Stops (-9) BGPD process to force BGP graceful restart.
-3. Stops teamd process allowing teamd to send last update to its peers.
-4. Stops docker service otherwise the filesystem of the docker containers will be corrupted.
-5. Loads a new kernel from the disk, set fast-reboot argument for the kernel and reboot into the new kernel.
+1. Dumps FDB and ARP entries from the ASIC DB tables into the SWSS container.
+2. Stops (-9) the `bgpd` process to force a BGP graceful restart.
+3. Stops the `teamd` process, allowing `teamd` to send one last update to its peers.
+4. Stops the `docker` service. This prevents the filesystem of the Docker containers from getting corrupted.
+5. Loads a new kernel from the disk, sets the `fast-reboot` argument for the kernel and reboots into the new kernel.
 
-   In this process the data plane is still working
+   The data plane is still working during this process.
 
-## Fast-Reboot After Control Plane Reboot
+## Fast Reboot after Control Plane Reboot
 
-1. SONiC loads in the normal way after kexec (the data plane is still working).
-2. syncd determines SONiC is loaded after fast-reboot and initializes ASIC in fast-reboot mode (initialize ASIC only, not PHY part).
+1. SONiC loads normally after `kexec` executes; the data plane is still working.
+2. `syncd` determines that SONiC is loaded after the fast reboot and initializes the ASIC in fast reboot mode. Only the ASIC is initialized, not the PHY.
 
    At this point, the data plane is disrupted.
-3. SONiC starts in the normal way, but SWSS loads FDB and ARP dumps which were saved before the reboot. It allows us to save ~10 seconds for 500 hosts under VLAN.
-4. After the LAG member interfaces go up, LACP restores LACP LAG interfaces in a second. BGP forms new sessions and exchanges BGP information in 1-6 seconds. 
+3. SONiC starts normally, but the SWSS container loads the FDB and ARP dumps, which were saved before the reboot. It allows SONiC to save around 10 seconds for 500 hosts under a VLAN.
+4. After the LAG member interfaces go up, LACP restores LACP LAG interfaces in 1 second. BGP forms new sessions and exchanges BGP information in 1-6 seconds. 
 
    At this point, the data plane is restored.

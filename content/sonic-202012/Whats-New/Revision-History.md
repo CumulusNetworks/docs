@@ -3,7 +3,7 @@ title: SONiC Document Revision History
 author: Cumulus Networks
 weight: 30
 product: SONiC
-version: 201911_MUR5
+version: 202012
 siteSlug: sonic
 ---
 

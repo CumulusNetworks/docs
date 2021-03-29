@@ -572,7 +572,7 @@ PIM uses the RPF procedure to choose an upstream interface to build a forwarding
 
 {{< tab "NCLU Commands ">}}
 
-Run the `net add pim ecmp` command to enable PIM to use all the available nexthops for the installation of mroutes. For example, if you have four-way ECMP, PIM spreads the S,G and \*,G mroutes across the four different paths.
+Run the `net add pim ecmp` command to enable PIM to use all the available next hops for the installation of mroutes. For example, if you have four-way ECMP, PIM spreads the S,G and \*,G mroutes across the four different paths.
 
 ```
 cumulus@switch:~$ net add pim ecmp
@@ -598,7 +598,7 @@ The rebalance command might cause some packet loss.
 
 {{< tab "vtysh Commands ">}}
 
-Run the `ip pim ecmp` command to enable PIM to use all the available nexthops for the installation of mroutes. For example, if you have four-way ECMP, PIM spreads the S,G and \*,G mroutes across the four different paths.
+Run the `ip pim ecmp` command to enable PIM to use all the available next hops for the installation of mroutes. For example, if you have four-way ECMP, PIM spreads the S,G and \*,G mroutes across the four different paths.
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -633,7 +633,7 @@ The rebalance command might cause some packet loss.
 
 {{< /tabs >}}
 
-To show which nexthop is selected for a specific source/group, run the `show ip pim nexthop` command from the `vtysh` shell:
+To show which next hop is selected for a specific source/group, run the `show ip pim nexthop` command from the `vtysh` shell:
 
 ```
 cumulus@switch:~$ sudo vtysh

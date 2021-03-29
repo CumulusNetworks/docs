@@ -105,9 +105,9 @@ iface eth0
 {{< /tab >}}
 {{< /tabs >}}
 
-### Configure the Hostname and Timezone
+### Configure the Hostname and Time zone
 
-Configure the hostname and timezone for your switch. The hostname identifies the switch; make sure you configure the hostname to be unique and descriptive.
+Configure the hostname and time zone for your switch. The hostname identifies the switch; make sure you configure the hostname to be unique and descriptive.
 
 {{%notice note%}}
 Do not use an underscore (_), apostrophe ('), or non-ASCII character in the hostname.
@@ -158,9 +158,9 @@ cumulus@switch:~$ net commit
 The command prompt in the terminal does not reflect the new hostname until you either log out of the switch or start a new shell.
 {{%/notice%}}
 
-The default timezone on the switch is UTC (Coordinated Universal Time). Change the timezone on your switch to be the timezone for your location.
+The default time zone on the switch is UTC (Coordinated Universal Time). Change the time zone on your switch to be the time zone for your location.
 
-To update the timezone, use NTP interactive mode:
+To update the time zone, use NTP interactive mode:
 
 1. In a terminal, run the following command:
 
@@ -171,7 +171,7 @@ To update the timezone, use NTP interactive mode:
 2. Follow the on screen menu options to select the geographic area and region.
 
 {{%notice note%}}
-Programs that are already running (including log files) and users currently logged in, do not see timezone changes made with interactive mode. To set the timezone for all services and daemons, reboot the switch.
+Programs that are already running (including log files) and users currently logged in, do not see time zone changes made with interactive mode. To set the time zone for all services and daemons, reboot the switch.
 {{%/notice%}}
 
 ### Verify the System Time

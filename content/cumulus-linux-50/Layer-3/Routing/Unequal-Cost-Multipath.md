@@ -48,10 +48,8 @@ The BGP link bandwidth extended community is encoded in bytes-per-second. To con
 Cumulus Linux accepts the bandwidth extended community by default. No additional configuration is required on transit devices where UCMP routes are not being originated.
 
 {{%notice note%}}
-
 - The bandwidth used in the extended community has no impact on or relation to port bandwidth.
 - You can only apply the route weight information on the outbound direction to a peer; you cannot apply route weight information on the inbound direction from peers advertising routes to the switch.
-
 {{%/notice%}}
 
 ### Set the BGP Link Bandwidth Extended Community Against All Prefixes
@@ -59,7 +57,16 @@ Cumulus Linux accepts the bandwidth extended community by default. No additional
 The following command examples show how you can set the BGP link bandwidth extended community against **all** prefixes.
 
 {{< tabs "TabID61 ">}}
+{{< tab "CUE Commands ">}}
 
+```
+cumulus@leaf01:~$ cl set router policy route-map ucmp-route-map rule 10 set ext-community-bw num-multipaths
+cumulus@leaf01:~$ cl set router policy route-map ucmp-route-map rule 10 action permit
+cumulus@leaf01:~$ NEED COMMAND
+cumulus@leaf01:~$ cl config apply
+```
+
+{{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
 ```
@@ -70,7 +77,6 @@ cumulus@leaf01:~$ net commit
 ```
 
 {{< /tab >}}
-
 {{< tab "vtysh Commands ">}}
 
 ```
@@ -89,7 +95,6 @@ cumulus@leaf01:~$
 ```
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 The NCLU and `vtysh` commands save the configuration in the `/etc/frr/frr.conf` file. For example:
@@ -109,7 +114,15 @@ route-map ucmp-route-map permit 10
 The following command examples show how you can set the BGP link bandwidth extended community for anycast servers in the 192.168/16 IP address range.
 
 {{< tabs "TabID111 ">}}
+{{< tab "CUE Commands ">}}
 
+```
+cumulus@leaf01:~$ NEED COMMAND
+cumulus@leaf01:~$ 
+cumulus@leaf01:~$ 
+```
+
+{{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
 ```
@@ -122,7 +135,6 @@ cumulus@leaf01:~$ net commit
 ```
 
 {{< /tab >}}
-
 {{< tab "vtysh Commands ">}}
 
 ```
@@ -142,7 +154,6 @@ cumulus@leaf01:~$
 ```
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 The NCLU and `vtysh` commands save the configuration in the `/etc/frr/frr.conf` file. For example:
@@ -164,7 +175,15 @@ route-map ucmp-route-map permit 10
 For EVPN configuration, make sure that you activate the commands under the EVPN address family. The following shows an example EVPN configuration that sets the BGP link bandwidth extended community against **all** prefixes.
 
 {{< tabs "TabID166 ">}}
+{{< tab "CUE Commands ">}}
 
+```
+cumulus@leaf01:~$ NEED COMMAND
+cumulus@leaf01:~$ 
+cumulus@leaf01:~$ 
+```
+
+{{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
 ```
@@ -175,7 +194,6 @@ cumulus@leaf01:~$ net commit
 ```
 
 {{< /tab >}}
-
 {{< tab "vtysh Commands ">}}
 
 ```
@@ -193,7 +211,6 @@ cumulus@leaf01:~$
 ```
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 The NCLU and `vtysh` commands save the configuration in the `/etc/frr/frr.conf` file. For example:
@@ -233,7 +250,15 @@ Either run the NCLU `net add bestpath bandwidth ignore|skip-missing|default-weig
 The following commands set link bandwidth processing to skip paths without link bandwidth and perform UCMP among the other paths:
 
 {{< tabs "TabID235 ">}}
+{{< tab "CUE Commands ">}}
 
+```
+cumulus@leaf01:~$ NEED COMMAND
+cumulus@leaf01:~$ 
+cumulus@leaf01:~$ 
+```
+
+{{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
 ```
@@ -243,7 +268,6 @@ cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
-
 {{< tab "vtysh Commands ">}}
 
 ```
@@ -258,7 +282,6 @@ cumulus@switch:~$
 ```
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 The NCLU and `vtysh` commands save the configuration in the `/etc/frr/frr.conf` file. For example:
@@ -285,15 +308,21 @@ router bgp 65011
 The BGP link bandwidth extended community is automatically passed on with the prefix to eBGP peers. If you do not want to pass on the BGP link bandwidth extended community outside of a particular domain, you can disable the advertisement of all BGP extended communities on specific peerings.
 
 {{%notice note%}}
-
 You cannot disable just the BGP link bandwidth extended community from being advertised to a neighbor; you either send all BGP extended communities, or none.
-
 {{%/notice%}}
 
 To disable all BGP extended communities on a peer or peer group (per address family), either run the NCLU `net del bgp neighbor <neighbor> send-community extended` command or the `vtysh` `no neighbor <neighbor> send-community extended` command:
 
 {{< tabs "TabID295 ">}}
+{{< tab "CUE Commands ">}}
 
+```
+cumulus@leaf01:~$ NEED COMMAND
+cumulus@leaf01:~$ 
+cumulus@leaf01:~$ 
+```
+
+{{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
 ```
@@ -303,7 +332,6 @@ cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
-
 {{< tab "vtysh Commands ">}}
 
 ```
@@ -318,7 +346,6 @@ cumulus@switch:~$
 ```
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 ## Troubleshooting
@@ -349,9 +376,7 @@ Paths: (2 available, best #2, table default)
 ```
 
 {{%notice note%}}
-
 The bandwidth value used by UCMP is only to determine the percentage of load to a given next hop and has no impact on actual link or flow bandwidth.
-
 {{%/notice%}}
 
 To show EVPN type-5 routes, run the NCLU `net show bgp l2vpn evpn route type prefix` command or the `vtysh` `show bgp l2vpn evpn route type prefix` command.

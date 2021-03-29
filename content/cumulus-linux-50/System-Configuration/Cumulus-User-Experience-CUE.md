@@ -168,7 +168,7 @@ The CUE configuration management commands manage and apply configurations.
 | `cl config replace <cue-file>` | Replaces the pending configuration with the specified YAML configuration file. |
 | `cl config save` | Overwrites the startup configuration with the applied configuration by writing to the `/etc/cue.d/startup.yaml` file. The configuration persists after a reboot. |
 
-## List all CUE Commands
+## List All CUE Commands
 
 To show the full list of CUE commands, run `cl list-commands`. For example:
 
@@ -440,7 +440,7 @@ cumulus@switch:~$ cl set interface lo ip address 10.10.10.1
 cumulus@switch:~$ cl config detach
 ```
 
-### View Differences between Configurations
+### View Differences Between Configurations
 
 To view differences between configurations, run the `cl config diff` command.
 
@@ -478,7 +478,7 @@ The following example patches the pending configuration (runs the set or unset c
 cumulus@switch:~$ cl config patch /deps/cl-02/13/2021.yaml
 ```
 
-## How is CUE Different from NCLU?
+## How Is CUE Different from NCLU?
 
 This section lists some of the differences between CUE and the NCLU command line interface to help you navigate configuration.
 

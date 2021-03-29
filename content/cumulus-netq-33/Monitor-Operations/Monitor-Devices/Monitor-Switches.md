@@ -259,9 +259,7 @@ You can view all MAC address currently used by a switch using the NetQ UI or the
 
 1. Open the full-screen switch card for the switch of interest.
 
-    {{<figure src="/images/netq/dev-switch-fullscr-macaddr-tab-241.png" width="500">}}
-
-<!-- update above image -->
+    {{<figure src="/images/netq/dev-switch-fullscr-macaddr-tab-331.png" width="500">}}
 
 2. Review the addresses.
 
@@ -380,9 +378,7 @@ To view all VLANs on a switch:
 
 1. Open the full-screen Switch card and click **VLANs**.
 
-    {{<figure src="/images/netq/dev-switch-fullscr-alarms-tab-310.png" width="700">}}
-
-    <!-- capture new image -->
+    {{<figure src="/images/netq/dev-switch-fullscr-vlans-tab-331.png" width="700">}}
 
 2. Review the VLANs.
 
@@ -528,9 +524,7 @@ To view all IP neighbors on a switch:
 
 1. Open the full-screen Switch card and click **IP Neighbors**.
 
-    {{<figure src="/images/netq/dev-switch-fullscr-iproutes-tab-320.png" width="700">}}
-
-    <!-- update image and steps below -->
+    {{<figure src="/images/netq/dev-switch-fullscr-ipneigh-tab-331.png" width="700">}}
 
 2. By default all IP routes are listed. Click **IPv6** or **IPv4** to restrict the list to only those routes.
 
@@ -608,9 +602,7 @@ To view all IP addresses on a switch:
 
 1. Open the full-screen Switch card and click **IP Addresses**.
 
-    {{<figure src="/images/netq/dev-switch-fullscr-ipaddr-tab-241.png" width="700">}}
-
-    <!-- update image and steps below -->
+    {{<figure src="/images/netq/dev-switch-fullscr-ipaddr-tab-331.png" width="700">}}
 
 2. By default all IP addresses are listed. Click **IPv6** or **IPv4** to restrict the list to only those addresses.
 

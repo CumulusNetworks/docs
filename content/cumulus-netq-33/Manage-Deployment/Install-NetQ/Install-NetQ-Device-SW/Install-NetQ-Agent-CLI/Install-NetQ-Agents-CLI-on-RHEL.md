@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 390
 toc: 5
 ---
-After installing your NetQ software, you can install the NetQ 3.3.1 Agent and CLI on each server you want to monitor. These can be installed on servers running:
+After installing your NetQ software, you can install the NetQ {{<version>}} Agent and CLI on each server you want to monitor. These can be installed on servers running:
 
 - Red Hat RHEL 7.1
 - CentOS 7

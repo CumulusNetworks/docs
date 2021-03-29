@@ -18,7 +18,15 @@ Prefix lists are access lists for route advertisements that match routes instead
 The following example commands configure a prefix list that permits all prefixes in the range 10.0.0.0/16 with a subnet mask less than or equal to /30. For networks 10.0.0.0/24, 10.10.10.0/24, and 10.0.0.10/32, only 10.0.0.0/24 is matched (10.10.10.0/24 has a different prefix and 10.0.0.10/32 has a greater subnet mask).
 
 {{< tabs "TabID22 ">}}
+{{< tab "CUE Commands ">}}
 
+```
+cumulus@switch:~$ cl set router policy prefix-list prefixlist1 rule 1 match 10.0.0.0/16 max-prefix-len 30
+cumulus@switch:~$ cl set router policy prefix-list prefixlist1 rule 1 action permit
+cumulus@switch:~$ cl config apply
+```
+
+{{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
 ```
@@ -28,7 +36,6 @@ cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
-
 {{< tab "vtysh Commands ">}}
 
 ```
@@ -43,7 +50,6 @@ cumulus@switch:~$
 ```
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 The NCLU and vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
@@ -69,7 +75,15 @@ Route maps are routing policies that are considered before the router examines t
 The following example commands configure a route map that sets the metric to 50 for interface swp51:
 
 {{< tabs "TabID73 ">}}
+{{< tab "CUE Commands ">}}
 
+```
+cumulus@switch:~$ cl set router policy route-map routemap1 rule 10 match interface swp51
+cumulus@switch:~$ cl set router policy route-map routemap1 rule 10 set metric 50
+cumulus@switch:~$ cl set router policy route-map routemap1 rule 10 action permit
+```
+
+{{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
 ```
@@ -80,7 +94,6 @@ cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
-
 {{< tab "vtysh Commands ">}}
 
 ```
@@ -97,7 +110,6 @@ cumulus@switch:~$
 ```
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 The NCLU and vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
@@ -116,12 +128,19 @@ route-map routemap1 permit 10
 
 ### Apply a Route Map
 
-To apply the route map, you specify the routing protocol (bgp, ospf, or static) and the route map name.
+To apply the route map, you specify the routing protocol and the route map name.
 
 The following example filters routes from Zebra into the Linux kernel. The commands apply the route map called routemap1 to BGP:
 
 {{< tabs "TabID152 ">}}
+{{< tab "CUE Commands ">}}
 
+```
+cumulus@switch:~$ cl set vrf default router bgp address-family ipv4-unicast rib-filter routemap1
+cumulus@switch:~$ cl config apply
+```
+
+{{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
 ```
@@ -131,7 +150,6 @@ cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
-
 {{< tab "vtysh Commands ">}}
 
 ```
@@ -146,7 +164,6 @@ cumulus@switch:~$
 ```
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 The NCLU and vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
@@ -170,9 +187,7 @@ cumulus@switch:$ net add bgp table-map routemap2
 ```
 
 {{%notice note%}}
-
 In NCLU, you can only set the community number in a route map. You cannot set other community options such as `no-export`, `no-advertise`, or `additive`.
-
 {{%/notice%}}
 
 ## Route Redistribution
@@ -182,7 +197,14 @@ Route redistribution allows a network to use a routing protocol to route traffic
 To redistribute protocol routes, run the `net add <protocol> redistribute` command. The following example commands redistribute routing information from ospf routes into BGP:
 
 {{< tabs "TabID219 ">}}
+{{< tab "CUE Commands ">}}
 
+```
+cumulus@switch:~$ cl set vrf default router bgp address-family ipv4-unicast route-redistribution ospf
+cumulus@switch:~$ cl config apply
+```
+
+{{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
 ```
@@ -192,7 +214,6 @@ cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
-
 {{< tab "vtysh Commands ">}}
 
 ```
@@ -208,13 +229,19 @@ cumulus@switch:~$
 ```
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 To redistribute all directly connected networks, use the `redistribute connected` command. For example:
 
 {{< tabs "TabID251 ">}}
+{{< tab "CUE Commands ">}}
 
+```
+cumulus@switch:~$ cl set vrf default router bgp address-family ipv4-unicast route-redistribution connected
+cumulus@switch:~$ cl config apply
+```
+
+{{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
 ```
@@ -224,7 +251,6 @@ cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
-
 {{< tab "vtysh Commands ">}}
 
 ```
@@ -240,13 +266,10 @@ cumulus@switch:~$
 ```
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 {{%notice note%}}
-
 For OSPF, redistribution loads the database unnecessarily with type-5 LSAs. Only use this method to generate real external prefixes (type-5 LSAs).
-
 {{%/notice%}}
 
 ## Configuration Examples

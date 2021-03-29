@@ -10,19 +10,17 @@ The fundamental premise behind redistribute neighbor is to announce individual h
 
 The challenge is to accurately compile and update this list of reachable hosts or neighbors. Luckily, existing commonly-deployed protocols are available to solve this problem. Hosts use {{<link title="Address Resolution Protocol - ARP" text="ARP">}} to resolve MAC addresses when sending to an IPv4 address. A host then builds an ARP cache table of known MAC addresses: IPv4 tuples as they receive or respond to ARP requests.
 
-In the case of a leaf switch, where the default gateway is deployed for hosts within the rack, the ARP cache table contains a list of all hosts that have ARP'd for their default gateway. In many scenarios, this table contains all the layer 3 information that is needed. This is where redistribute neighbor comes in, as it is a mechanism of formatting and syncing this table into the routing protocol.
+For a leaf switch, where the default gateway is used for hosts within the rack, the ARP cache table contains a list of all hosts that have ARP'd for their default gateway. In many scenarios, this table contains all the layer 3 information that is needed. Redistribute neighbor formats and synchronizes this table into the routing protocol.
 
 Redistribute neighbor is distributed as `python-rdnbrd`.
 
 {{%notice note%}}
-
 The current implementation of redistribute neighbor:
 
 - Supports IPv4 only.
 - Does not support {{<link url="Virtual-Routing-and-Forwarding-VRF" text="VRFs">}}.
 - Supports a maximum of 1024 interfaces. Using more than 1024 interfaces might crash the `rdnbrd` service.
 - Is not supported with EVPN. Enabling both redistribute neighbor and EVPN leads to unreachable IPv4 ARP and IPv6 neighbor entries.
-
 {{%/notice%}}
 
 ## Target Use Cases and Best Practices
@@ -56,74 +54,17 @@ Redistribute neighbor works as follows:
 
 ## Example Configuration
 
-The following example configuration is based on the {{<exlink url="https://github.com/cumulusnetworks/cldemo-vagrant" text="reference topology">}}. Other configurations are possible, based on the use cases outlined above. Here is a diagram of the topology:
+The following example configuration is based on the following topology.
 
 {{< img src = "/images/cumulus-linux/redistribute-neighbor-example.png" >}}
 
 ### Configure the Leafs
 
-The following steps demonstrate how to configure leaf01, but you can follow the same steps on any of the leafs.
+The following steps demonstrate how to configure leaf01, but you can follow the same steps on any leaf.
 
-{{< tabs "TabID68 ">}}
-
-{{< tab "NCLU Commands ">}}
-
-1. Configure the host facing ports using the same IP address on both host-facing interfaces as well as a /32 prefix. In this case, swp1 and swp2 are configured as they are the ports facing server01 and server02:
-
-    ```
-    cumulus@leaf01:~$ net add loopback lo ip address 10.0.0.11/32
-    cumulus@leaf01:~$ net add interface swp1-2 ip address 10.0.0.11/32
-    cumulus@leaf01:~$ net pending
-    cumulus@leaf01:~$ net commit
-    ```
-
-2. Enable the daemon so it starts at bootup, then start the daemon:
-
-    ```
-    cumulus@leaf01:~$ sudo systemctl enable rdnbrd.service
-    cumulus@leaf01:~$ sudo systemctl restart rdnbrd.service
-    ```
-
-3. Configure routing:
-
-    1. Define a route-map that matches on the host-facing interfaces:
-
-        ```
-        cumulus@leaf01:~$ net add routing route-map REDIST_NEIGHBOR permit 10 match interface swp1
-        cumulus@leaf01:~$ net add routing route-map REDIST_NEIGHBOR permit 20 match interface swp2
-        ```
-
-    2. Import routing table 10 and apply the route-map:
-
-        ```
-        cumulus@leaf01:~$ net add routing import-table 10 route-map REDIST_NEIGHBOR
-        ```
-
-    3. Redistribute the imported *table* routes in into the appropriate routing protocol.
-
-        ****BGP:****
-
-        ```
-        cumulus@leaf01:~$ net add bgp autonomous-system 65001
-        cumulus@leaf01:~$ net add bgp ipv4 unicast redistribute table 10
-        ```
-
-        **OSPF:**
-
-        ```
-        cumulus@leaf01:~$ net add ospf redistribute table 1
-        ```
-
-4. Save the configuration by committing your changes.
-
-    ```
-    cumulus@leaf01:~$ net pending
-    cumulus@leaf01:~$ net commit
-    ```
-
-{{< /tab >}}
-
-{{< tab "vtysh Commands ">}}
+{{%notice note%}}
+CUE commands are currently unsupported.
+{{%/notice%}}
 
 1. Edit the `/etc/network/interfaces` file to configure the host facing ports, using the same IP address on both host-facing interfaces as well as a /32 prefix. In this case, swp1 and swp2 are configured as they are the ports facing server01 and server02:
 
@@ -132,15 +73,15 @@ The following steps demonstrate how to configure leaf01, but you can follow the 
 
     auto lo
     iface lo inet loopback
-        address 10.0.0.11/32
+        address 10.0.0.1/32
 
     auto swp1
     iface swp1
-        address 10.0.0.11/32
+        address 10.0.0.1/32
 
     auto swp2
     iface swp2
-        address 10.0.0.11/32
+        address 10.0.0.1/32
     ...
     ```
 
@@ -205,11 +146,7 @@ The following steps demonstrate how to configure leaf01, but you can follow the 
         cumulus@leaf01:~$
         ```
 
-{{< /tab >}}
-
-{{< /tabs >}}
-
-The NCLU and vtysh commands save the configuration in the `/etc/frr/frr.conf` file. The following example uses OSPF as the routing protocol:
+The vtysh commands save the configuration in the `/etc/frr/frr.conf` file. The following example uses OSPF as the routing protocol:
 
 ```
 frr defaults datacenter
@@ -284,7 +221,7 @@ iface eth2
 
 Install and use `{{<link url="ifplugd">}}`, which modifies the behavior of the Linux routing table when an interface undergoes a link transition (carrier up/down). The Linux kernel by default leaves routes up even when the physical interface is unavailable (NO-CARRIER).
 
-After you install `ifplugd`, edit `/etc/default/ifplugd` as follows, where *eth1* and *eth2* are the interface names that your host uses to connect to the leaves.
+After you install `ifplugd`, edit `/etc/default/ifplugd` as follows, where *eth1* and *eth2* are the interface names that your host uses to connect to the leafs.
 
 ```
 user@server01:$ sudo nano /etc/default/ifplugd

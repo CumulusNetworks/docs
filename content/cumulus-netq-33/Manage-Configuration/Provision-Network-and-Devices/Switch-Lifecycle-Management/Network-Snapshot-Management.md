@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 690
 toc: 4
 ---
-Creating and comparing network snapshots can be useful to validate that the network state has not changed. Snapshots are typically created when you upgrade or change the configuration of your switches in some way.  This section describes the Snapshot card and content, as well as how to create and compare network snapshots at any time. Snapshots can be automatically created during the upgrade process for Cumulus Linux. Refer to {{<link title="Upgrade Cumulus Linux Using LCM#perform-a-cumulus-linux-upgrade" text="Perform a Cumulus Linux Upgrade">}}.
+Creating and comparing network snapshots can be useful to validate that the network state has not changed. Snapshots are typically created when you upgrade or change the configuration of your switches in some way. This section describes the Snapshot card and content, as well as how to create and compare network snapshots at any time. Snapshots can be automatically created during the upgrade process for Cumulus Linux. Refer to {{<link title="Upgrade Cumulus Linux Using LCM#perform-a-cumulus-linux-upgrade" text="Perform a Cumulus Linux Upgrade">}}.
 
 ## Create a Network Snapshot
 

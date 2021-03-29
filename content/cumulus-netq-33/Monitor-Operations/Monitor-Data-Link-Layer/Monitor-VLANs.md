@@ -27,11 +27,11 @@ netq [<hostname>] show events [level info | level error | level warning | level 
 
 When entering a time value, you must include a numeric value *and* the unit of measure:
 
-- **w**: week(s)
-- **d**: day(s)
-- **h**: hour(s)
-- **m**: minute(s)
-- **s**: second(s)
+- **w**: weeks
+- **d**: days
+- **h**: hours
+- **m**: minutes
+- **s**: seconds
 - **now**
 
 When using the `between` option, the start time (`text-time`) and end time (`text-endtime`) values can be entered as most recent first and least recent second, or vice versa. The values do not have to have the same unit of measure.
@@ -42,7 +42,7 @@ When using the `between` option, the start time (`text-time`) and end time (`tex
 
 You can view the configuration information for all VLANs in your network by running the `netq show vlan` command. It lists VLANs by device, and indicates any switch virtual interfaces (SVIs) configured and the last time this configuration was changed.
 
-This example shows the VLANs configured across a network based on the Cumulus Networks reference architecture.
+This example shows the VLANs configured across a network based on the NVIDIA reference architecture.
 
 ```
 cumulus@switch:~$ netq show vlan

@@ -43,7 +43,7 @@ The values in the following tables reflect results from testing, which might dif
 
 {{%/notice%}}
 
-| <div style="width:100px">Profile| MAC Addresses | <div style="width:190px">L3 Neighbors| Longest Prefix Match (LPM)  |
+| <div style="width:100px">Profile| MAC Addresses | <div style="width:190px">Layer 3 Neighbors| Longest Prefix Match (LPM)  |
 | -------------- | ------------- | ------------------------- | ------------------------------ |
 | default        | 40k           | 32k (IPv4) and 16k (IPv6) | 64k (IPv4) and 28k (IPv6-long) |
 | l2-heavy       | 88k           | 48k (IPv4) and 40k (IPv6) | 8k (IPv4) and 8k (IPv6-long)   |

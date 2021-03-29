@@ -140,6 +140,6 @@ The VTEP host-facing port is in access mode, and the PVID is mapped to the VNI.
 Use caution when enabling bridge layer 2 protocol tunneling. Keep the following issues in mind:
 
 - Layer 2 protocol tunneling is not a full-featured pseudo-wire solution; there is no end-to-end link status tracking or feedback.
-- Layer 2 protocols typically run on a link local scope. Running the protocols through a tunnel across a layer 3 fabric incurs significantly higher latency, which might require you to tune protocol timers.
+- Layer 2 protocols typically run on a linklocal scope. Running the protocols through a tunnel across a layer 3 fabric incurs significantly higher latency, which might require you to tune protocol timers.
 - The lack of end to end link/tunnel status feedback and the higher protocol timeout values make for a higher protocol convergence time in case of change.
 - If the remote endpoint is a Cisco endpoint using LACP, you must configure `etherchannel misconfig guard` on the Cisco device.

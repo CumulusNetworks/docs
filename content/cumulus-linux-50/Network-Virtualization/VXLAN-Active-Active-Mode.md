@@ -626,7 +626,7 @@ Our Interface      Peer Interface     CLAG Id   Conflicts      Proto-Down Reason
 
 ## Considerations
 
-### Use VLAN for Peer Link Only Once
+### VLAN for Peer Link Layer 3 Subinterface
 
 Do not reuse the VLAN for the peer link layer 3 subinterface for any other interface in the system. A high VLAN ID value is recommended. For more information on VLAN ID ranges, refer to the {{<link url="VLAN-aware-Bridge-Mode#reserved-vlan-range" text="VLAN-aware bridge chapter">}}.
 

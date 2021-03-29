@@ -52,7 +52,7 @@ After the service starts, you can use SNMP to manage various components on the s
 
 ## Configure SNMP
 
-Cumulus Networks recommends that you use NCLU to configure `snmpd` even though NCLU does not provide functionality to configure every `snmpd` feature. You are not restricted to using NCLU for configuration and can edit the `/etc/snmp/snmpd.conf` file and control `snmpd` with `systemctl` commands.
+Use NCLU to configure `snmpd` even though NCLU does not provide functionality to configure every `snmpd` feature. You are not restricted to using NCLU for configuration and can edit the `/etc/snmp/snmpd.conf` file and control `snmpd` with `systemctl` commands.
 
 {{%notice info%}}
 
@@ -458,7 +458,7 @@ You enable the community string by providing a community string and then setting
 
   {{%notice info%}}
 
-Cumulus Networks strongly recommends you change this password to something else.
+NVIDIA strongly recommends you change this password to something else.
 
 {{%/notice%}}
 
@@ -647,9 +647,9 @@ cumulus@switch:~$ net del snmp-server all
 cumulus@switch:~$ net commit
 ```
 
-## Set up the Custom Cumulus Networks MIBs on the NMS
+## Set up the Custom MIBs on the NMS
 
-No changes are required in the `/etc/snmp/snmpd.conf` file on the switch to support the custom Cumulus Networks MIBs. The following lines are already included by default and provide support for both the Cumulus Counters and the Cumulus Resource Query MIBs.
+No changes are required in the `/etc/snmp/snmpd.conf` file on the switch to support the custom MIBs. The following lines are already included by default and provide support for both the Cumulus Counters and the Cumulus Resource Query MIBs.
 
 ```
 cumulus@switch:~$ cat /etc/snmp/snmpd.conf

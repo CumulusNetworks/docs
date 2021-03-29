@@ -28,7 +28,7 @@ The VXLAN tunnel endpoints cannot share a common subnet; there must be at least 
 
 ### Cut-through Mode and Store and Forward Switching
 
-On switches using Mellanox Spectrum ASICs, Cumulus Linux supports cut-through mode for VXLANs but does **not** support store and forward switching.
+On switches with the NVIDIA Spectrum ASICs, Cumulus Linux supports cut-through mode for VXLANs but does **not** support store and forward switching.
 
 ### MTU Size for Virtual Network Interfaces
 

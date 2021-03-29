@@ -12,7 +12,7 @@ toc: 4
 - Provides a single BGP-EVPN control plane
 - Allows multi-vendor interoperability
 
-EVPN-MH uses {{<link url="#supported-evpn-route-types" text="BGP-EVPN type-1, type-2 and type-4 routes">}} for discovering Ethernet segments (ES) and for forwarding traffic to those Ethernet segments. The MAC and neighbor databases are synced between the Ethernet segment peers via these routes as well. An *{{<exlink url="https://tools.ietf.org/html/rfc7432#section-5" text="Ethernet segment">}}* is a group of switch links that are attached to the same server. Each Ethernet segment has an unique Ethernet segment ID (`es-id`) across the entire PoD.
+EVPN-MH uses {{<link url="#supported-evpn-route-types" text="BGP-EVPN type-1, type-2 and type-4 routes">}} for discovering Ethernet segments (ES) and for forwarding traffic to those Ethernet segments. The MAC and neighbor databases are synchronized between the Ethernet segment peers via these routes as well. An *{{<exlink url="https://tools.ietf.org/html/rfc7432#section-5" text="Ethernet segment">}}* is a group of switch links that are attached to the same server. Each Ethernet segment has an unique Ethernet segment ID (`es-id`) across the entire PoD.
 
 Configuring EVPN-MH involves setting an Ethernet segment system MAC address (`es-sys-mac`) and a local Ethernet segment ID (`local-es-id`) on a static or LACP bond. These two parameters are used to automatically generate the unique MAC-based ESI value ({{<exlink url="https://tools.ietf.org/html/rfc7432#section-5" text="type-3">}}):
 

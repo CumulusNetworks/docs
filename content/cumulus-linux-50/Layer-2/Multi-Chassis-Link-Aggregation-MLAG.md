@@ -198,7 +198,7 @@ iface bridge
 
 5. Create the inter-chassis bond and the peer link VLAN (as a VLAN subinterface). You also need to provide the peer link IP address, the MLAG bond interfaces, the MLAG system MAC address, and the backup interface.
    - By default, the NCLU command configures the inter-chassis bond with the name *peerlink* and the peer link VLAN with the name *peerlink.4094*. Use *peerlink.4094* to ensure that the VLAN is independent of the bridge and spanning tree forwarding decisions.
-   - The peer link IP address is an unrouteable link-local address that provides layer 3 connectivity between the peer switches.
+   - The peer link IP address is an unrouteable linklocal address that provides layer 3 connectivity between the peer switches.
    - NVIDIA provides a reserved range of MAC addresses for MLAG (between 44:38:39:ff:00:00 and 44:38:39:ff:ff:ff). Use a MAC address from this range to prevent conflicts with other interfaces in the same bridged network.
       - Do not to use a multicast MAC address.
       - Do not use the same MAC address for different MLAG pairs; make sure you specify a different MAC address for each MLAG pair in the network.  
@@ -262,7 +262,7 @@ cumulus@leaf02:~$ cl config apply
 
 The NCLU command is a macro command that:
 - Automatically creates the inter-chassis bond (`peerlink`) and the peer link VLAN subinterface (`peerlink.4094`), and adds the `peerlink` bond to the bridge
-- Configures the peer link IP address (`primary` is the link-local address)
+- Configures the peer link IP address (`primary` is the linklocal address)
 - Adds the MLAG system MAC address, the MLAG bond interfaces, and the backup IP address you specify
 
    {{< tabs "TabID270 ">}}
@@ -308,7 +308,7 @@ cumulus@leaf02:~$ net commit
 Edit the `/etc/network/interfaces` file to add the following parameters, then run the `sudo ifreload -a` command.
 - The inter-chasis bond (`peerlink`) with two ports in the bond (swp49 and swp50 in the example command below)
 - The `peerlink` bond to the bridge
-- The peer link VLAN (`peerlink.4094`) with the backup IP address, the peer link IP address (link-local), and the MLAG system MAC address (from the reserved range of addresses).
+- The peer link VLAN (`peerlink.4094`) with the backup IP address, the peer link IP address (linklocal), and the MLAG system MAC address (from the reserved range of addresses).
 
    {{< tabs "TabID315 ">}}
 {{< tab "leaf01 ">}}

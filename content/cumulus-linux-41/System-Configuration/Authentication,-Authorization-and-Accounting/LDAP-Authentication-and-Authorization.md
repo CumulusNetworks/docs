@@ -1,6 +1,6 @@
 ---
 title: LDAP Authentication and Authorization
-author: Cumulus Networks
+author: NVIDIA
 weight: 170
 toc: 4
 ---
@@ -51,7 +51,7 @@ shadow: compat ldap
 
 {{%notice warning%}}
 
-Cumulus Networks recommends that you keep `compat` as the first source in NSS for *passwd*, *group*, and *shadow*. This prevents you from getting locked out of the system.
+Keep `compat` as the first source in NSS for *passwd*, *group*, and *shadow*. This prevents you from getting locked out of the system.
 
 {{%/notice%}}
 
@@ -290,7 +290,7 @@ map    group cn            sAMAccountName
 
 ### nslcd Debug Mode
 
-When setting up LDAP authentication for the first time, Cumulus Networks recommends you turn off the `nslcd` service using the `systemctl stop nslcd.service` command (or the `systemctl stop nslcd@mgmt.service` if you are running the service in a management VRF) and run it in debug mode. Debug mode works whether you are using LDAP over SSL (port 636) or an unencrypted LDAP connection (port 389).
+When setting up LDAP authentication for the first time, turn off the `nslcd` service using the `systemctl stop nslcd.service` command (or the `systemctl stop nslcd@mgmt.service` if you are running the service in a management VRF) and run it in debug mode. Debug mode works whether you are using LDAP over SSL (port 636) or an unencrypted LDAP connection (port 389).
 
 ```
 cumulus@switch:~$ sudo systemctl stop nslcd.service
@@ -519,7 +519,7 @@ ERROR: 'getpwuid(): uid not found: 0922'
 See /var/log/netd.log for more details
 ```
 
-To add the the user to the `netshow` or `netedit` NCLU group in the LDAP database, either edit the `/etc/group` file manually or use the `sudo adduser USERNAME netshow` command, then restart `netd`. For example, to add the user bill to the `netshow` group:
+To add user to the `netshow` or `netedit` NCLU group in the LDAP database, either edit the `/etc/group` file manually or use the `sudo adduser USERNAME netshow` command, then restart `netd`. For example, to add the user bill to the `netshow` group:
 
 ```
 cumulus@switch:~$ sudo adduser hsolo netshow

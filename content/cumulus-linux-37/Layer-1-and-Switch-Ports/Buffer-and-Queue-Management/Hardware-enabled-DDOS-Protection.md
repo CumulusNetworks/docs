@@ -1,6 +1,6 @@
 ---
 title: Hardware-enabled DDOS Protection
-author: Cumulus Networks
+author: NVIDIA
 weight: 323
 pageID: 8363034
 ---

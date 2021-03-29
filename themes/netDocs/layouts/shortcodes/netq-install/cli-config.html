@@ -1,0 +1,53 @@
+<p>By default, the NetQ CLI is not configured during the NetQ installation. The configuration is stored in <code>/etc/netq/netq.yml</code>.</p>
+
+<p>While the CLI is not configured, you can run only <code>netq config</code> commandsand <code>netq help</code> commands, and you must use <code>sudo</code> to run them.</p>
+
+<p>At minimum, you need to configure the NetQ CLI and NetQ Agent to communicate with the telemetry server. To do so, configure the NetQ Agent and the NetQ CLI so that they are running in the VRF where the routing tables are set for connectivity to the telemetry server. Typically this is the management VRF.</p>
+
+<p>To configure the NetQ CLI, run the following command, then restart the NetQ CLI. This example assumes the telemetry server is reachable via the IP address 10.0.1.1 over port 32000 and the management VRF (<em>mgmt</em>).</p>
+
+{{- if eq (.Get "opsys") "cl" -}}
+
+<pre>
+cumulus@switch:~$ sudo netq config add cli server 10.0.1.1 vrf mgmt port 32000
+cumulus@switch:~$ sudo netq config restart cli
+</pre>
+        
+{{ end }}
+
+{{- if eq (.Get "opsys") "ub" -}}
+
+<pre>
+root@host:~# sudo netq config add cli server 10.0.1.1 vrf mgmt port 32000
+root@host:~# sudo netq config restart cli
+</pre>
+    
+{{ end }}
+
+{{- if eq (.Get "opsys") "rh" -}}
+
+<pre>
+root@host:~# sudo netq config add cli server 10.0.1.1 vrf mgmt port 32000
+root@host:~# sudo netq config restart cli
+</pre>
+    
+{{ end }}
+
+
+<p>Restarting the CLI stops the current running instance of <code>netqd</code> and starts <code>netqd</code> in the specified VRF.</p>
+
+<p>To configure the NetQ Agent, read the 
+    
+{{- if eq (.Get "opsys") "cl" -}}
+<a href="/cumulus-netq/Manage-Deployment/Install-NetQ/Install-NetQ-Device-SW/Install-NetQ-Agent-CLI/Install-NetQ-Agents-CLI-on-CL/#configure-advanced-netq-agent-settings-on-a-cumulus-linux-switch"> Configure Advanced NetQ Agent Settings</a>
+{{ end }}    
+    
+{{- if eq (.Get "opsys") "ub" -}}
+<a href="/cumulus-netq/Manage-Deployment/Install-NetQ/Install-NetQ-Device-SW/Install-NetQ-Agent-CLI/Install-NetQ-Agents-CLI-on-Ubuntu/#configure-advanced-netq-agent-settings"> Configure Advanced NetQ Agent Settings</a>
+{{ end }}    
+
+{{- if eq (.Get "opsys") "rh" -}}
+<a href="/cumulus-netq/Manage-Deployment/Install-NetQ/Install-NetQ-Device-SW/Install-NetQ-Agent-CLI/Install-NetQ-Agents-CLI-on-RHEL/#configure-advanced-netq-agent-settings"> Configure Advanced NetQ Agent Settings</a>
+{{ end }}    
+
+topic.</p>

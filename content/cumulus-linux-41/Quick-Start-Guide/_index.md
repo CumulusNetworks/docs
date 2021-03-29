@@ -1,6 +1,6 @@
 ---
 title: Quick Start Guide
-author: Cumulus Networks
+author: NVIDIA
 weight: 10
 toc: 2
 ---
@@ -195,7 +195,7 @@ Warning: Unit file of switchd.service changed on disk, 'systemctl daemon-reload'
 
 Cumulus Linux is licensed on a per-instance basis. Each network system is fully operational, enabling any capability to be utilized on the switch with the exception of forwarding on switch panel ports. Only eth0 and console ports are activated on an unlicensed instance of Cumulus Linux. Enabling front panel ports requires a license.
 
-You receive a license key from Cumulus Networks or an authorized reseller. Here is a sample license key:
+You receive a license key from NVIDIA or an authorized reseller. Here is a sample license key:
 
 ```
 user@company.com|thequickbrownfoxjumpsoverthelazydog312

@@ -1,6 +1,6 @@
 ---
 title: Monitoring Best Practices
-author: Cumulus Networks
+author: NVIDIA
 weight: 233
 pageID: 8362625
 ---
@@ -623,13 +623,12 @@ Prescriptive Topology Manager (PTM) uses LLDP information to compare
 against a `topology.dot` file that describes the network. It has built
 in alerting capabilities, so it is preferable to use PTM on box rather
 than polling LLDP information regularly. The PTM code is available on
-the Cumulus Networks {{<exlink url="https://github.com/CumulusNetworks/ptm" text="GitHub repository">}}. Additional PTM,
+the Cumulus Linux {{<exlink url="https://github.com/CumulusNetworks/ptm" text="GitHub repository">}}. Additional PTM,
 BFD, and associated logs are documented in the code.
 
 {{%notice note%}}
 
-Cumulus Networks recommends that you track peering information through
-PTM. For more information, refer to the {{<link url="Prescriptive-Topology-Manager-PTM" text="Prescriptive Topology Manager documentation">}}.
+Consider tracking peering information through PTM. For more information, refer to the {{<link url="Prescriptive-Topology-Manager-PTM" text="Prescriptive Topology Manager documentation">}}.
 
 {{%/notice%}}
 
@@ -794,13 +793,13 @@ with the number of applications available.
 <tr class="odd">
 <td><p>BGP peer failure</p></td>
 <td><pre><code>cumulus@switch:~$ vtysh -c &quot;show ip bgp summary json&quot;
-cumulus@switch:~$ cl-bgp summary show json</code></pre></td>
+cumulus@switch:~$ net show bgp summary json</code></pre></td>
 <td><p>60 seconds</p></td>
 </tr>
 <tr class="even">
 <td><p>BGP route table</p></td>
 <td><pre><code>cumulus@switch:~$ vtysh -c &quot;show ip bgp json&quot;
-cumulus@switch:~$ cl-bgp route show</code></pre></td>
+cumulus@switch:~$ net show route bgp json</code></pre></td>
 <td><p>600 seconds</p></td>
 </tr>
 </tbody>

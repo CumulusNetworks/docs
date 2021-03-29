@@ -177,7 +177,7 @@ $block-border-radius: 0.15rem;
 
   code {
     color: $nevada-gray;
-    font-size: .882rem;
+    font-size: .823rem;
     //font-family: 'Oxygen Mono', monospace;
 
     padding: 0 0;
@@ -273,6 +273,7 @@ $block-border-radius: 0.15rem;
 
     td { 
       vertical-align: top;
+      // max-width: 781px;
     }
 
     tr:nth-child(2n) {

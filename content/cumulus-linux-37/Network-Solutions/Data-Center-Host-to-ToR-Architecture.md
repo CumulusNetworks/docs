@@ -1,6 +1,6 @@
 ---
 title: Data Center Host to ToR Architecture
-author: Cumulus Networks
+author: NVIDIA
 weight: 249
 pageID: 8362991
 ---
@@ -208,7 +208,7 @@ iface vm-br10 inet manual
 <ul>
 <li><p>Can be done with either the {{<link url="Traditional-Bridge-Mode" text="traditional">}} or {{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware">}} bridge driver depending on overall STP needs</p></li>
 <li><p>There are a few different solutions including Cisco VPC and Arista MLAG, but none of them interoperate and are very vendor specific</p></li>
-<li><p>{{<exlink url="https://cumulusnetworks.com/media/resources/validated-design-guides/Cumulus-Linux-Layer-2-HA-Validated-Design-Guide_v1.0.0.pdf" text="Cumulus Networks Layer 2 HA validated design guide">}}</p></li>
+<li><p>{{<exlink url="https://cumulusnetworks.com/media/resources/validated-design-guides/Cumulus-Linux-Layer-2-HA-Validated-Design-Guide_v1.0.0.pdf" text="Cumulus Linux Layer 2 HA validated design guide">}}</p></li>
 </ul></td>
 </tr>
 </tbody>
@@ -321,7 +321,7 @@ iface eth1 inet static
 <li><p>No redundancy, uses single ToR as gateway.</p></li>
 </ul></td>
 <td><ul>
-<li><p>{{<exlink url="https://cumulusnetworks.com/media/cumulus/pdf/technical/validated-design-guides/Big-Data-Cumulus-Linux-Validated-Design-Guide.pdf" text="Big Data validated design guide">}} uses single attached ToR</p></li>
+<li><p>{{<exlink url="https://cumulusnetworks.com/learn/resources/guides/big-data-cumulus-linux-installation-guide-2" text="Big Data validated design guide">}} uses single attached ToR</p></li>
 </ul></td>
 </tr>
 </tbody>
@@ -348,7 +348,7 @@ iface eth1 inet static
 <td><p><strong>Benefits</strong></p>
 <ul>
 <li><p>Configuration in FRRouting is simple (route-map + redist table)</p></li>
-<li><p>Supported by Cumulus Networks</p></li>
+<li><p>Supported by NVIDIA</p></li>
 </ul>
 <p><strong>Caveats</strong></p>
 <ul>
@@ -370,7 +370,7 @@ iface eth1 inet static
 <li><p>For host/VM/container mobility, use the same default route on all hosts (such as x.x.x.1) but don't distribute or advertise the .1 on the ToR into the fabric. This allows the VM to use the same gateway no matter which pair of leafs it is cabled to.</p></li>
 </ul></td>
 <td><ul>
-<li><p>{{<exlink url="https://cumulusnetworks.com/blog/introducing-rdnbr/" text="Cumulus Networks blog post introducing redistribute neighbor">}}</p></li>
+<li><p>{{<exlink url="https://cumulusnetworks.com/blog/introducing-rdnbr/" text="blog post introducing redistribute neighbor">}}</p></li>
 </ul></td>
 </tr>
 </tbody>
@@ -393,7 +393,7 @@ iface eth1 inet static
 </thead>
 <tbody>
 <tr class="odd">
-<td><p>Routing on the host means there is a routing application (such as {{<link url="FRRouting-Overview" text="FRRouting">}}) either on the bare metal host (no VMs/containers) or the hypervisor (for example, Ubuntu with KVM). This is highly recommended by the Cumulus Networks Professional Services team.</p></td>
+<td><p>Routing on the host means there is a routing application (such as {{<link url="FRRouting-Overview" text="FRRouting">}}) either on the bare metal host (no VMs/containers) or the hypervisor (for example, Ubuntu with KVM). This is highly recommended by our Professional Services team.</p></td>
 <td><p><strong>Benefits</strong></p>
 <ul>
 <li><p>No requirement for MLAG</p></li>

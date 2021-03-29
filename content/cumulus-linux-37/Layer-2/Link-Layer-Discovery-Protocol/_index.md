@@ -1,6 +1,6 @@
 ---
 title: Link Layer Discovery Protocol
-author: Cumulus Networks
+author: NVIDIA
 weight: 117
 pageID: 8362650
 ---

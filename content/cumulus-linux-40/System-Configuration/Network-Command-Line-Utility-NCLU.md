@@ -1,17 +1,12 @@
 ---
 title: Network Command Line Utility - NCLU
-author: Cumulus Networks
+author: NVIDIA
 weight: 110
 toc: 3
 ---
-The Network Command Line Utility (NCLU) is a command line interface for
-Cumulus Networks products that simplifies the networking configuration
-process for all users.
+The Network Command Line Utility (NCLU) is a command line interface for that simplifies the networking configuration process.
 
-NCLU resides in the Linux user space and provides consistent access to
-networking commands directly through bash, making configuration and
-troubleshooting simple and easy; no need to edit files or enter modes
-and sub-modes. NCLU provides these benefits:
+NCLU resides in the Linux user space and provides consistent access to networking commands directly through bash, making configuration and troubleshooting simple and easy; no need to edit files or enter modes and sub-modes. NCLU provides these benefits:
 
 - Embeds help, examples, and automatic command checking with suggestions in case you enter a typo.
 - Runs directly from and integrates with bash, while being interoperable with the regular way of accessing underlying configuration files and automation.
@@ -159,6 +154,39 @@ cumulus@switch:~$ net add int swp7-9,12,15-17,22 mtu 9216
 ```
 
 {{%/notice%}}
+
+### Search for Specific Commands
+
+To search for specific NCLU commands so that you can identify the correct syntax to use, run the `net help verbose | <term>` command. For example, to show only commands that include `clag` (for MLAG):
+
+```
+cumulus@leaf01:mgmt:~$ net help verbose | grep clag
+    net example clag basic-clag
+    net example clag l2-with-server-vlan-trunks
+    net example clag l3-uplinks-virtual-address
+    net add clag peer sys-mac <mac-clag> interface <interface> (primary|secondary) [backup-ip <ipv4>]
+    net add clag peer sys-mac <mac-clag> interface <interface> (primary|secondary) [backup-ip <ipv4> vrf <text>]
+    net del clag peer
+    net add clag port bond <interface> interface <interface> clag-id <0-65535>
+    net del clag port bond <interface>
+    net show clag [our-macs|our-multicast-entries|our-multicast-route|our-multicast-router-ports|peer-macs|peer-multicast-entries|peer-multicast-route|peer-multicast-router-ports|params|backup-ip|id] [verbose] [json]
+    net show clag macs [<mac>] [json]
+    net show clag neighbors [verbose]
+    net show clag peer-lacp-rate
+    net show clag verify-vlans [verbose]
+    net show clag status [verbose] [json]
+    net add bond <interface> clag id <0-65535>
+    net add interface <interface> clag args <wildcard>
+    net add interface <interface> clag backup-ip (<ipv4>|<ipv4> vrf <text>)
+    net add interface <interface> clag enable (yes|no)
+    net add interface <interface> clag peer-ip (<ipv4>|<ipv6>|linklocal)
+    net add interface <interface> clag priority <0-65535>
+    net add interface <interface> clag sys-mac <mac>
+    net add loopback lo clag vxlan-anycast-ip <ipv4>
+    net del bond <interface> clag id [<0-65535>]
+    net del interface <interface> clag args [<wildcard>]
+    ...
+```
 
 ### Add ? (Question Mark) Ability to NCLU
 

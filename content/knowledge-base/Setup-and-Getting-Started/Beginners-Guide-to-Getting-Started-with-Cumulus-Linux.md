@@ -42,8 +42,8 @@ Learn how to use the nano text editor ([cheat sheet --- external link](http://ww
 
 ## ACL/IP Rules
 
-1.  [Allow SSH from specific subnets only](/hc/communities/public/questions/203381337-I-want-to-only-allow-SSH-from-specific-subnets-how-can-I-do-this-)
-2.  [[Cumulus Linux ACL example rules](https://docs.cumulusnetworks.com/cumulus-linux/System-Configuration/Netfilter-ACLs/#example-configuration)
+1.  [Allow SSH from specific subnets only](https://support.cumulusnetworks.com/hc/en-us/community/posts/203381337-I-want-to-only-allow-SSH-from-specific-subnets-how-can-I-do-this-)
+2.  [Cumulus Linux ACL example rules](https://docs.cumulusnetworks.com/cumulus-linux/System-Configuration/Netfilter-ACLs/#example-configuration)
 
 ## Networking with Cumulus Linux
 
@@ -95,7 +95,6 @@ Learn how to use the nano text editor ([cheat sheet --- external link](http://ww
 
 ### Cumulus Networks Validated Design Guides
 
-- [Big Data Validated Design](https://cumulusnetworks.com/media/cumulus/pdf/technical/validated-design-guides/Big-Data-Cumulus-Linux-Validated-Design-Guide.pdf)[\
-    ](https://cumulusnetworks.com/media/cumulus/pdf/technical/validated-design-guides/Big-Data-Cumulus-Linux-Validated-Design-Guide.pdf)
-- [OpenStack Validated Design](https://cumulusnetworks.com/media/cumulus/pdf/technical/validated-design-guides/OpenStack-Cumulus-Linux-Validated-Design-Guide.pdf)
-- [VMware VSphere Validated Design](https://cumulusnetworks.com/media/cumulus/pdf/technical/validated-design-guides/VMware-vSphere-Cumulus-Linux-Validated-Design-Guide.pdf)
+- [Big Data Validated Design](https://cumulusnetworks.com/learn/resources/guides/big-data-cumulus-linux-installation-guide-2)
+- [OpenStack Validated Design](https://cumulusnetworks.com/learn/resources/guides/openstack-and-cumulus-linux-installation-guide-2)
+- [VMware VSphere Validated Design](https://cumulusnetworks.com/learn/resources/guides/vmware-vsphere-cumulus-linux-installation-guide-2)

@@ -1,6 +1,6 @@
 ---
 title: What's New
-author: Cumulus Networks
+author: NVIDIA
 weight: 3
 toc: 2
 ---
@@ -9,6 +9,14 @@ This document supports the Cumulus Linux 3.7 releases, and lists new platforms a
 - For a list of all the platforms supported in a Cumulus Linux 3.7 release, see the {{<exlink url="https://cumulusnetworks.com/products/hardware-compatibility-list/" text="Hardware Compatibility List (HCL)">}}.
 - For a list of open and fixed issues in Cumulus Linux 3.7, see the {{<link url="Cumulus-Linux-3.7-Release-Notes" text="Cumulus Linux 3.7 Release Notes">}}.
 - To upgrade to a Cumulus Linux 3.7 release, follow the steps in {{<link url="Upgrading-Cumulus-Linux">}}.
+
+## What's New in Cumulus Linux 3.7.14.2
+
+Cumulus Linux 3.7.14.2 contains bug fixes and security fixes.
+
+## What's New in Cumulus Linux 3.7.14
+
+Cumulus Linux 3.7.14 contains bug fixes and security fixes.
 
 ## What's New in Cumulus Linux 3.7.13
 
@@ -106,7 +114,7 @@ Cumulus Linux 3.7.5 replaces Cumulus Linux 3.7.4.
 - {{<link url="802.1X-Interfaces/#radius-change-of-authorization-and-disconnect-requests" text="Multiple Dynamic Authorization Server (DAS)">}} support
 - {{<link url="IGMP-and-MLD-Snooping" text="IGMP/MLD snooping">}} is supported over VXLAN bridges on Broadcom switches
 - {{<link url="Switch-Port-Attributes#fec" text="Ability to disable FEC">}} on Mellanox switches
-- {{<link url="Lightweight-Network-Virtualization-Overview" text="Lightweight network virtualization (LNV)">}} has been deprecated. The feature will be removed in Cumulus Linux 4.0. Cumulus Networks recommends you use Ethernet virtual private network (EVPN) for network virtualization.
+- {{<link url="Lightweight-Network-Virtualization-Overview" text="Lightweight network virtualization (LNV)">}} has been deprecated. The feature will be removed in Cumulus Linux 4.0. Use Ethernet virtual private network (EVPN) for network virtualization.
 
 ## What's New in Cumulus Linux 3.7.4
 
@@ -130,8 +138,7 @@ Cumulus Linux 3.7.3 supports new platforms, provides bug fixes, and contains sev
 
 ### New Features and Enhancements
 
-- The {{<link url="Ethernet-Virtual-Private-Network-EVPN#freeze-a-detected-duplicate-address" text="EVPN duplicate address detection freeze option">}} lets you freeze a duplicate address permanently or for a certain amount of time
-- {{<link url="Cumulus-Hyperconverged-Solution-with-Nutanix" text="The Cumulus Hyperconverged Solution (HCS)">}} supports automated integration with the Nutanix Prism Management solution and the Nutanix AHV hypervisor
+- The {{<link url="Ethernet-Virtual-Private-Network-EVPN#freeze-a-detected-duplicate-address" text="EVPN duplicate address detection freeze option">}} lets you freeze a duplicate address permanently or for a certain amount of time.
 
 ## What's New in Cumulus Linux 3.7.2
 

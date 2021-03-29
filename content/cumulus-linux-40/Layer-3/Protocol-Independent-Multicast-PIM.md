@@ -1,6 +1,6 @@
 ---
 title: Protocol Independent Multicast - PIM
-author: Cumulus Networks
+author: NVIDIA
 weight: 890
 toc: 3
 ---

@@ -1,6 +1,6 @@
 ---
 title: Monitoring Best Practices
-author: Cumulus Networks
+author: NVIDIA
 weight: 1100
 toc: 3
 ---
@@ -148,7 +148,7 @@ Prescriptive Topology Manager (PTM) uses LLDP information to compare against a `
 
 {{%notice note%}}
 
-Cumulus Networks recommends that you track peering information through PTM. For more information, refer to the {{<link url="Prescriptive-Topology-Manager-PTM" text="Prescriptive Topology Manager documentation">}}.
+Consider tracking peering information through PTM. For more information, refer to the {{<link url="Prescriptive-Topology-Manager-PTM" text="Prescriptive Topology Manager documentation">}}.
 
 {{%/notice%}}
 
@@ -186,8 +186,8 @@ Monitoring the routing table provides trending on the size of the infrastructure
 
 | BGP Element | Monitoring Commands | Interval Poll |
 |------------ |-------------------- |-------------- |
-| BGP peer failure | <pre>cumulus@switch:~$ vtysh -c "show ip bgp summary json"<br>cumulus@switch:~$ cl-bgp summary show json</pre> | 60 seconds |
-| BGP route table | <pre>cumulus@switch:~$ vtysh -c "show ip bgp json"<br>cumulus@switch:~$ cl-bgp route show</pre> | 600 seconds |
+| BGP peer failure | <pre>cumulus@switch:~$ vtysh -c "show ip bgp summary json"<br>cumulus@switch:~$ net show bgp summary json</pre> | 60 seconds |
+| BGP route table | <pre>cumulus@switch:~$ vtysh -c "show ip bgp json"<br>cumulus@switch:~$ net show route bgp json</pre> | 600 seconds |
 
 | BGP Logs | Log Location | Log Entries |
 |--------- |------------- |------------ |

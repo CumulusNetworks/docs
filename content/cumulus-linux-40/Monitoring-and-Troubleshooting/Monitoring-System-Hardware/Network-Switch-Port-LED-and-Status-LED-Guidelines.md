@@ -1,6 +1,6 @@
 ---
 title: Network Switch Port LED and Status LED Guidelines
-author: Cumulus Networks
+author: NVIDIA
 weight: 950
 toc: 4
 ---

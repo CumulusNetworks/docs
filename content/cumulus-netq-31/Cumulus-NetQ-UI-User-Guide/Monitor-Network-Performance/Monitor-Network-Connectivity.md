@@ -14,7 +14,7 @@ Two types of connectivity checks can be run-an immediate (on-demand) trace and a
 
 The small Trace Request card displays:
 
-{{<figure src="/images/old_doc_images/trace-request-small-card.png" width="200">}}
+{{<figure src="/images/netq/trace-request-small-card.png" width="200">}}
 
 <table>
 <colgroup>

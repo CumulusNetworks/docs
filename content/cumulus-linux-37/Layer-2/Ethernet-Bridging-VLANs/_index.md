@@ -1,6 +1,6 @@
 ---
 title: Ethernet Bridging - VLANs
-author: Cumulus Networks
+author: NVIDIA
 weight: 121
 pageID: 8362655
 ---
@@ -26,11 +26,11 @@ interfaces that traverse an 802.1Q VLAN trunk.
 
 {{%notice tip%}}
 
-Cumulus Networks recommends using *{{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware mode">}}* bridges,
+Use *{{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware mode">}}* bridges,
 rather than *traditional mode* bridges. The bridge driver in Cumulus Linux is
 capable of VLAN filtering, which allows for configurations that are similar to
 incumbent network devices. While Cumulus Linux supports Ethernet bridges in
-traditional mode, Cumulus Networks recommends using VLAN-aware mode.
+traditional mode, it's best to use VLAN-aware mode.
 
 {{%/notice%}}
 
@@ -88,14 +88,7 @@ untagged  bridge    swp1         44:38:39:00:00:04                permanent     
 By default, Cumulus Linux stores MAC addresses in the Ethernet switching
 table for 1800 seconds (30 minutes). You can change this setting using NCLU.
 
-The `bridge-ageing` option is in the
-{{<link url="Network-Command-Line-Utility-NCLU#edit-the-netd-conf-file" text="NCLU blacklist">}},
-as it's not frequently used. To configure this setting, you need to
-remove the `bridge-ageing` keyword from the `ifupdown_blacklist` in `/etc/netd.conf`.
-{{<link url="Network-Command-Line-Utility-NCLU/#restart-the-netd-service" text="Restart the `netd` service">}}
-after you edit the file.
-
-Now you can change the setting using NCLU. For example, to change the setting to 600 seconds, run:
+You can change the setting using NCLU. For example, to change the setting to 600 seconds, run:
 
 ```
 cumulus@switch:~$ net add bridge bridge ageing 600
@@ -113,7 +106,6 @@ cumulus@switch:~$ cat /etc/network/interfaces
 auto bridge
 iface bridge
     bridge-ageing 600
- 
 ...
 ```
 
@@ -371,7 +363,7 @@ Some things you should note about the output:
 - In environments where both VLAN-aware and traditional bridges are in use, if a traditional bridge has a subinterface of a bond that is a normal interface in a VLAN-aware bridge, the bridge is flapped when the traditional bridge's bond subinterface is brought down.
 - You cannot enslave a VLAN raw device to a different master interface (that is, you cannot edit the `vlan-raw-device` setting in the `/etc/network/interfaces` file). You need to delete the VLAN and create it again.
 - Cumulus Linux supports up to 2000 VLANs. This includes the internal interfaces, bridge interfaces, logical interfaces, and so on.
-- In Cumulus Linux, MAC learning is enabled by default on traditional or VLAN-aware bridge interfaces. Cumulus Networks recommends you do not disable MAC learning unless you are using EVPN. See {{<link url="Ethernet-Virtual-Private-Network-EVPN">}}.
+- In Cumulus Linux, MAC learning is enabled by default on traditional or VLAN-aware bridge interfaces. Do not disable MAC learning unless you are using EVPN. See {{<link url="Ethernet-Virtual-Private-Network-EVPN">}}.
 
 ## Related Information
 

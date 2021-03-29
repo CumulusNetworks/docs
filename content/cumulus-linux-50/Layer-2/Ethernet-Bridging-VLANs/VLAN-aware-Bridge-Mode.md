@@ -463,9 +463,9 @@ Now add the dummy interface to your network configuration:
 
 {{< /expand >}}
 
-## IPv6 Link-local Address Generation
+## IPv6 Linklocal Address Generation
 
-By default, Cumulus Linux automatically generates IPv6 {{<exlink url="https://en.wikipedia.org/wiki/Link-local_address" text="link-local addresses">}} on VLAN interfaces. If you want to use a different mechanism to assign link-local addresses, you can disable this feature. You can disable link-local automatic address generation for both regular IPv6 addresses and address-virtual (macvlan) addresses.
+By default, Cumulus Linux automatically generates IPv6 *linklocal* addresses on VLAN interfaces. If you want to use a different mechanism to assign linklocal addresses, you can disable this feature. You can disable linklocal automatic address generation for both regular IPv6 addresses and address-virtual (macvlan) addresses.
 
 To disable automatic address generation for a regular IPv6 address on a VLAN, run the following commands. The following example command disables automatic address generation for a regular IPv6 address on VLAN 10.
 
@@ -509,7 +509,7 @@ cumulus@switch:~$ ifreload -a
 {{< /tab >}}
 {{< /tabs >}}
 
-To re-enable automatic link-local address generation for a VLAN:
+To re-enable automatic linklocal address generation for a VLAN:
 
 {{< tabs "TabID287 ">}}
 {{< tab "CUE Commands ">}}

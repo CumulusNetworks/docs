@@ -52,7 +52,7 @@ switch# write memory</li><li><p>NVIDIA Cumulus Networks recommends you <b>not</b
 
 ### PIM Neighbors
 
-When PIM is configured on an interface, `PIM Hello` messages are sent to the link local multicast group 224.0.0.13. Any other router configured with PIM on the segment that hears the PIM Hello messages builds a PIM neighbor with the sending device.
+When PIM is configured on an interface, `PIM Hello` messages are sent to the linklocal multicast group 224.0.0.13. Any other router configured with PIM on the segment that hears the PIM Hello messages builds a PIM neighbor with the sending device.
 
 {{%notice note%}}
 

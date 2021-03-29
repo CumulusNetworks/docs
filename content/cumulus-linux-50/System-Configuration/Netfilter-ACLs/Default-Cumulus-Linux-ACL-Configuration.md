@@ -194,7 +194,7 @@ Bridge chain: OUTPUT, entries: 0, policy: ACCEPT
 | Set class: 2<br>Police: Rate 100 burst 40<br>Source IP : Any<br>Destination IP: Any | Protocol:<br>ICMP |
 | Set class: 2<br>Police: Rate 100 burst 100<br>Source IP: Any<br>Destination IP: Any | Protocol:<br>UDP/bootpc, bootps |
 | Set class: 0<br>Police: Rate 1000 burst 1000<br>Source IP: Any<br>Destination IP: Any | ADDRTYPE match dst-type LOCAL <br>**Note**: LOCAL is any local address -> Receiving a packet with a destination matching a local IP address on the switch will go to the CPU. |
-| Set class: 0<br>Police: Rate 400 burst 100<br>Source IP: Any<br>Destination IP: Any | ADDRTYPE match dst-type IPROUTER <br>**Note**: IPROUTER is any unresolved address -> On a layer 2 or layer3 boundary receiving a packet from layer 3 and needs to go to CPU in order to ARP for the destination. |
+| Set class: 0<br>Police: Rate 400 burst 100<br>Source IP: Any<br>Destination IP: Any | ADDRTYPE match dst-type IPROUTER <br>**Note**: IPROUTER is any unresolved address -> On a layer 2 or layer3 boundary receiving a packet from layer 3 and needs to go to CPU to ARP for the destination. |
 | Set class 0 | All |
 
 {{%notice note%}}

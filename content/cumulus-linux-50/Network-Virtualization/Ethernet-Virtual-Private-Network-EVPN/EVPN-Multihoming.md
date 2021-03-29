@@ -34,11 +34,11 @@ When using Spectrum 2 or Spectrum 3 switches, an Ethernet segment can span more 
 
 ## Required and Supported Features
 
-This section describes features that must be enabled in order to use EVPN multihoming, other supported features and features that are not supported.
+This section describes features that must be enabled to use EVPN multihoming, other supported features and features that are not supported.
 
 ### Required Features
 
-The following features must be enabled in order to use EVPN-MH:
+The following features must be enabled to use EVPN-MH:
 
 - {{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware bridge mode">}}
 - {{<link url="Basic-Configuration/#arp-and-nd-suppression" text="ARP suppression">}}
@@ -46,7 +46,7 @@ The following features must be enabled in order to use EVPN-MH:
 
 {{%notice warning%}}
 
-In order to use EVPN-MH, you must remove any MLAG configuration on the switch. This entails:
+To use EVPN-MH, you must remove any MLAG configuration on the switch. This entails:
 
 - Removing the `clag-id` from all interfaces in the `/etc/network/interfaces` file.
 - Removing the peerlink interfaces in the `/etc/network/interfaces` file.

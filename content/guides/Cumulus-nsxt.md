@@ -767,10 +767,10 @@ spine02# exit
 
 ### TEP VLAN Subnets Advertisement into BGP
 
-ESXi hypervisors build layer 2 overlay tunnels to send Geneve encapsulated traffic over the layer 3 underlay. The undelaying IP fabric must be aware of each TEP device in the network. This is done by advertising the local Overlay TEP VLAN (TEP subnet) we created earlier into BGP.
+ESXi hypervisors build layer 2 overlay tunnels to send Geneve encapsulated traffic over the layer 3 underlay. The underlying IP fabric must be aware of each TEP device in the network. This is done by advertising the local Overlay TEP VLAN (TEP subnet) we created earlier into BGP.
 
-Use the `redistribute connected` command to inject the directly connected routes into BGP.  
-This command can be used also with filtering to avoid unwanted/unnecessary subnets get into BGP. For more information and commands. check {{<kb_link text="Route Filtering and Redistribution" url="cumulus-linux/Layer-3/Routing/Route-Filtering-and-Redistribution/" >}} page.
+Use the `redistribute connected` command to inject directly connected routes into BGP.  
+This command can be used also with filtering to prevent unwanted routes from being advertised into BGP. For more information see the {{<kb_link text="Route Filtering and Redistribution" url="cumulus-linux/Layer-3/Routing/Route-Filtering-and-Redistribution/" >}} documentation.
 
 {{< tabs "101rr0 ">}}
 {{< tab "NCLU Commands ">}}
@@ -857,7 +857,7 @@ leaf04# exit
 
 ### BGP Peerings and Route Advertisement Verification
 
-To verify all BGP peerings established correctly, use the `net show bgp summary` command in NCLU, or `show ip bgp summary` in `vtysh`
+To verify BGP peerings, use the `net show bgp summary` command in NCLU, or `show ip bgp summary` in `vtysh`
 
 {{< tabs "TABID1431 ">}}
 {{< tab "leaf01 ">}}
@@ -972,7 +972,7 @@ Total number of neighbors 4
 {{< /tab >}}
 {{< /tabs >}}
 
-Once all BGP peerings established, all the redistributed local TEP VLANs (subnets) should appear in the routing table of each switch. Use the `net show route` command in NCLU, or `show ip route` in `vtysh` to check the routing table 
+Once all BGP peerings are established, all of the redistributed local TEP subnets will appear in the routing table of each switch. Use the `net show route` command in NCLU, or `show ip route` in `vtysh` to check the routing table.
 
 {{< tabs "TABID1631 ">}}
 {{< tab "leaf01 ">}}
@@ -1087,13 +1087,13 @@ B>* 10.2.2.0/24 [20/0] via fe80::4638:39ff:fe00:14, swp3, weight 1, 00:09:24
 
 ## Traffic Flow
 
-ESXi hypervisors can reach each other's TEP addresses and build Geneve tunnels for the overlay VM traffic.
+ESXi hypervisors can reach each TEP addresses and build Geneve tunnels for the overlay VM-to-VM traffic.
 
 Two traffic flow examples are described below.
 
 ### Layer 2 Virtualized Traffic
 
-Both VMs are assigned to the same VMware logical segment (logical switch), which means they are in the same subnet. Each segment has its own unique Virtual Network Identifier (VNI) assigned by NSX-T. This VNI is added into the Geneve packet header on the source TEP. The destination TEP identifies which segment the traffic belongs to base on this VNI. All segments that share the same Overlay Transport Zone, uses the same TEP addresses to establish the tunnels. It is possible to have more than one Overlay TZ on the N-VDS, but for this case, more VLANs needs to be configured and advertised on the underlay switches. This scenario uses only one Overlay TZ (one TEP VLAN).
+Both VMs are assigned to the same VMware logical segment, placing them into the same subnet. Each segment has its own unique Virtual Network Identifier (VNI) assigned by NSX-T. This VNI is added into the Geneve packet header on the source TEP. The destination TEP identifies which segment the traffic belongs to based on this VNI. All segments that share the same Overlay Transport Zone, uses the same TEP addresses to establish the tunnels. It is possible to have more than one Overlay TZ on the N-VDS, but for this case, more VLANs needs to be configured and advertised on the underlay switches. This scenario uses only one Overlay TZ (one TEP VLAN).
 
 {{<figure src="/images/guides/cumulus-nsxt/Pure_L2_VNI.JPG">}}
 
@@ -1107,490 +1107,70 @@ The new encapsulated packet's source IP address is the local TEP IP `10.1.1.1`, 
 
 ### Layer 3 Virtualized Traffic
 
-This scenario examines two segments (logical switches) with two VMs assigned to each. As different segments means different subnets, a unique VNI assigned to each.  
-For different subnets to communicate, traffic needs to be routed. In a regular physical world, the switches could route between the subnets using directly connected routing, or by any other routing protocol (e.g. BGP, OSPF). But as all the traffic is between virtual machines, it's all inside the virtual world, so none of the underlaying switches are aware of it.
-
-To route between logical segments within the virtualized world, or as VMware calls it "east-west traffic" traffic, Tier 1 Gateway (aka T1 Router) can be used. T1 Router is a logical distributed router which "lives" in each ESXi hypervisors and has virtual downlinks to the logical segments. It acts as segment's (VLAN) default-gateway and using its routing table sends traffic between different segments. it works like a regular router just within the virtual world.
-
-As T1 router is logically distributed over all the physical devices (ESXI), the packet doesn't even leave the local hypervisor to be routed. Therefore, the routing is done locally on the ESXi and the new segment's (subnet) VNI determined based on the destination VM segment (and T1 routing table).
+This scenario examines two segments (logical switches) with two VMs assigned to each. A unique VNI is assigned to each segment.  
+For communication between segments, or as VMware calls it "east-west traffic" traffic, the traffic must be routed using a Tier 1 Gateway (T1 Router). The T1 Router is a logical distributed router which exists in each ESXi hypervisors and connects to eachof the logical segments. It is the segment's default gateway and routes traffic between different segments.
 
 {{%notice note%}}
 
-Routing in VMware environments always done closest to the source as possible. 
+Routing in VMware environments always done as close to the source as possible.
 
 {{%/notice %}}
 
 {{<figure src="/images/guides/cumulus-nsxt/T1.JPG">}}
 
-VM1 and VM3 are in `VLAN100` `172.16.0.0/24` - VNI `65510`. VM2 and VM4 are in `VLAN200` `172.16.1.0/24` - VNI 65520. Both segments assigned to the same Overlay TZ which uses `10.1.1.0` and `10.2.2.1` as TEP IPs to maintain Geneve tunnel between the physical ESXi01 and ESX03 hypervisors.  
+
+VM1 and VM3 are in `VLAN100` `172.16.0.0/24` - VNI `65510`.  
+VM2 and VM4 are in `VLAN200` `172.16.1.0/24` - VNI `65520`.
+
+Both segments assigned to the same Overlay TZ which uses `10.1.1.0` and `10.2.2.1` as TEP IPs to maintain Geneve tunnel between the physical ESXi01 and ESX03 hypervisors.  
 Traffic within the same segment handled the same way as [Layer 2 Virtualized Traffic](#layer-2-virtualized-environment) scenario.
 
 {{%notice note%}}
 
-It is possible to use many T1 Routers and assign different segments to different routers for load-balancing etc. Then their communication is done by Tier 0 Gateway which will be covered later. In addition, T1 Router doesn't route traffic outside the virtual world, it is done by T0 as well.
+Multiple T1 routers may be used for load balancing across segments. This model is described in the [traffic flows](#traffic-flow-1) section of Virtual and Bare-Metal Server Environments.
 
 {{%/notice %}}
 
-From the underlay IP fabric perspective, routing between logical segments means absolutely nothing. As both segments share the same Overlay TZ, they still use the same TEP IP addresses (TEP VLAN) to establish overlay Geneve tunnel between hypervisors, so no additional configuration is needed on the switches.
+Both segments use the same TEP IP addresses (TEP VLAN) to establish overlay Geneve tunnel between hypervisors. No additional configuration is required on the switches.
 
-VM1 `172.16.0.1` on ESXi01 sends traffic to VM4 `172.16.1.4` on ESXi03: 
-1. The packet reaches the T1 Router as its destination IP address in different subnet (T1 is logical router so the packet is still in ESXi01). 
-2. T1 examines its routing table to determine the destination path. 
-3. As `VLAN200` segment is also attached to the same T1 router, the destination path to VM4 is the remote ESXi hypervisor via the TEP interface.
-4. Local TEP encapsulates the packet into Geneve using VNI `65520` of `VLAN200` segment. Geneve packet's source and destination IP addresses are of the TEP devices `10.1.1.1`-`10.2.2.1)`. As the routing is done internally on the ESXi, between the hypervisors is the same layer 2 tunnel (routing and then bridging).
+VM1 `172.16.0.1` on ESXi01 sends traffic to VM4 `172.16.1.4` on ESXi03:
+
+1. Inside ESXi01 a routed packet arrives at the local T1 router.
+2. The T1 router examines its routing table to determine the destination path.
+3. As `VLAN200` segment is also attached to the same T1 router, the packet is routed into the destination VLAN200 segment.
+4. The local TEP then encapsulates the packet into Geneve using VNI `65520` of `VLAN200` segment. The Geneve packet's source and destination IP addresses are of the TEP devices `10.1.1.1` and `10.2.2.1)`.
 5. The encapsulated packet sent to remote TEP device over the Geneve overlay tunnel based on the underlay IP fabric BGP routing.
 6. Remote TEP device (ESXi03) receives and decapsulates the Geneve encapsulated packet.
 7. The traffic forwarded to the destination VM4 based on the VNI inside the Geneve header.
-
-
-
-
-
-
 
 # Virtualized and Bare-Metal Server Environment
 
 This use-case covers VMware virtualized environment with the need to connect to a Bare-Metal (BM) server. This could the when the virtualized environment deployed as part of an already existing fabric (brownfield) and VMs need to communicate with a legacy or any other server which doesn't run VMs (not part of the virtualized world).
 
-As we already know from the [Pure Virtualized Environment](#pure-virtualized-environment), for VMs to communicate to each other, NSX-T uses Geneve encapsulation in layer 2 overlay tunnels over layer 3 fabric. But, in cases where VM needs to communicate with BM servers, Geneve tunnels not the answer. So, for traffic to be sent between the virtualized and the physical worlds, it must be sent Geneve encapsulated, decapsulated, and sent as regular IP packet in the underlay network. This is handled by NSX-T component called [NSX Edge](https://docs.vmware.com/en/VMware-NSX-T-Data-Center/3.0/installation/GUID-5EF2998C-4867-4DA6-B1C6-8A6F8EBCC411.html). In a nutshell, NSX Edge is a gateway between the virtualized and the outside physical worlds. It acts as TEP devic0 and as underlay router, it establishes BGP/OSPF peering with the underlay fabric to route traffic in/out the virtualized environment.
+In cases where VMs needs to communicate with non-NSX (bare metal) servers an [NSX Edge](https://docs.vmware.com/en/VMware-NSX-T-Data-Center/3.0/installation/GUID-5EF2998C-4867-4DA6-B1C6-8A6F8EBCC411.html) deployment is required. The NSX Edge is a gateway between the virtualized Geneve overlay and the outside physical underlay. It acts as TEP `device0` and as underlay router by establishing BGP (or OSPF) peering with the underlay fabric to route traffic in and out of the virtualized environment.
 
 {{%notice note%}}
 
-There is an option for VM-BM communication using Geneve encapsulation - [NSX Edge on Bare Metal](https://docs.vmware.com/en/VMware-NSX-T-Data-Center/3.1/installation/GUID-21E4C80B-5900-433A-BEA2-EA41FBE690FE.html), but it's out of scope of this guide.
+There is an option for VM-bare metal communication using Geneve encapsulation - [NSX Edge on Bare Metal](https://docs.vmware.com/en/VMware-NSX-T-Data-Center/3.1/installation/GUID-21E4C80B-5900-433A-BEA2-EA41FBE690FE.html). This is beyond the scope of this guide.
 
 {{%/notice %}}
 
-The below underlay IP fabric configuration based on this example topology diagram and physical connectivity
+Configuration to support an NSX Edge node is nearly identical to the existing ESXi configurations described previously.
+
+The example configurations are based on the following topology:
 
 {{<figure src="/images/guides/cumulus-nsxt/virt_bare_metal.JPG">}}
 
 **Rack 1** – Two NVIDIA Switches in MLAG + One ESXi hypervisor connected in active/active bonding  
 **Rack 2** – Two NVIDIA Switches in MLAG + One ESXi hypervisor and One Bare-Metal server, both connected in active/active bonding
 
-## Physical Connectivity
-
-{{< tabs "TABID01022 ">}}
-
-{{< tab "leaf01 ">}}
-```
-cumulus@leaf01:mgmt:~$ net show lldp
-
-LocalPort  Speed  Mode     RemoteHost       RemotePort
----------  -----  -------  ---------------  -----------------
-eth0       1G     Mgmt     oob-mgmt-switch  swp10
-swp1       1G     Default  esxi01           44:38:39:00:00:32
-swp49      1G     Default  leaf02           swp49
-swp50      1G     Default  leaf02           swp50
-swp51      1G     Default  spine01          swp1
-swp52      1G     Default  spine02          swp1
-```
-{{< /tab >}}
-
-{{< tab "leaf02 ">}}
-```
-cumulus@leaf02:mgmt:~$ net show lldp
-
-LocalPort  Speed  Mode     RemoteHost       RemotePort
----------  -----  -------  ---------------  -----------------
-eth0       1G     Mgmt     oob-mgmt-switch  swp11
-swp1       1G     Default  esxi01           44:38:39:00:00:38
-swp49      1G     Default  leaf01           swp49
-swp50      1G     Default  leaf01           swp50
-swp51      1G     Default  spine01          swp2
-swp52      1G     Default  spine02          swp2
-```
-{{< /tab >}}
-
-{{< tab "leaf03 ">}}
-```
-cumulus@leaf03:mgmt:~$ net show lldp
-
-LocalPort  Speed  Mode     RemoteHost       RemotePort
----------  -----  -------  ---------------  -----------------
-eth0       1G     Mgmt     oob-mgmt-switch  swp12
-swp1       1G     Default  esxi03           44:38:39:00:00:3e
-swp2       1G     Default  server01         44:38:39:00:00:40
-swp49      1G     Default  leaf04           swp49
-swp50      1G     Default  leaf04           swp50
-swp51      1G     Default  spine01          swp3
-swp52      1G     Default  spine02          swp3
-```
-{{< /tab >}}
-
-{{< tab "leaf04 ">}}
-```
-cumulus@leaf04:mgmt:~$ net show lldp
-
-LocalPort  Speed  Mode     RemoteHost       RemotePort
----------  -----  -------  ---------------  -----------------
-eth0       1G     Mgmt     oob-mgmt-switch  swp13
-swp1       1G     Default  esxi03           44:38:39:00:00:44
-swp2       1G     Default  server01         44:38:39:00:00:46
-swp49      1G     Default  leaf03           swp49
-swp50      1G     Default  leaf03           swp50
-swp51      1G     Default  spine01          swp4
-swp52      1G     Default  spine02          swp4
-```
-{{< /tab >}}
-
-{{< tab "spine01 ">}}
-```
-cumulus@spine01:mgmt:~$ net show lldp
-
-LocalPort  Speed  Mode     RemoteHost       RemotePort
----------  -----  -------  ---------------  ----------
-eth0       1G     Mgmt     oob-mgmt-switch  swp14
-swp1       1G     Default  leaf01           swp51
-swp2       1G     Default  leaf02           swp51
-swp3       1G     Default  leaf03           swp51
-swp4       1G     Default  leaf04           swp51
-```
-{{< /tab >}}
-{{< tab "spine02 ">}}
-```
-cumulus@spine02:mgmt:~$ net show lldp
-
-LocalPort  Speed  Mode     RemoteHost       RemotePort
----------  -----  -------  ---------------  ----------
-eth0       1G     Mgmt     oob-mgmt-switch  swp15
-swp1       1G     Default  leaf01           swp52
-swp2       1G     Default  leaf02           swp52
-swp3       1G     Default  leaf03           swp52
-swp4       1G     Default  leaf04           swp52
-```
-{{< /tab >}}
-{{< /tabs >}}
-
-## MTU Configuration
-
-VMware recommendation is to use Jumbo MTU (9k) on all virtual and physical network elements end-to-end, including the BM servers as well. Geneve encapsulation, requires a minimum MTU of `1600B` (`1700B` for extended Geneve header options). But it is better to use 9k MTU for the entire network path. This improves the throughput of storage, vSAN, vMotion, NFS and vSphere Replication.
-
-Using the below commands, you can examine switches’ physical interfaces MTU settings. By default, all interfaces on Cumulus Linux have Jumbo 9k MTU.
-
-{{< tabs "455516 ">}}
-
-{{< tab "leaf01 ">}}
-```
-cumulus@leaf01:mgmt:~$ net show interface
-State  Name   Spd  MTU    Mode      LLDP                          Summary
------  -----  ---  -----  --------  ----------------------------  ---------------------------
-UP     lo     N/A  65536  Loopback                                IP: 127.0.0.1/8
-       lo                                                         IP: ::1/128
-UP     eth0   1G   1500   Mgmt      oob-mgmt-switch (swp10)       Master: mgmt(UP)
-       eth0                                                       IP: 192.168.200.11/24(DHCP)
-UP     swp1   1G   9216   Default   esxi01 (44:38:39:00:00:32)
-UP     swp49  1G   9216   Default   leaf02 (swp49)
-UP     swp50  1G   9216   Default   leaf02 (swp50)
-UP     swp51  1G   9216   Default   spine01 (swp1)
-UP     swp52  1G   9216   Default   spine02 (swp1)
-UP     mgmt   N/A  65536  VRF                                     IP: 127.0.0.1/8
-```
-{{< /tab >}}
-{{< tab "leaf02 ">}}
-```
-cumulus@leaf02:mgmt:~$ net show interface
-State  Name   Spd  MTU    Mode      LLDP                          Summary
------  -----  ---  -----  --------  ----------------------------  ---------------------------
-UP     lo     N/A  65536  Loopback                                IP: 127.0.0.1/8
-       lo                                                         IP: ::1/128
-UP     eth0   1G   1500   Mgmt      oob-mgmt-switch (swp11)       Master: mgmt(UP)
-       eth0                                                       IP: 192.168.200.12/24(DHCP)
-UP     swp1   1G   9216   Default   esxi01 (44:38:39:00:00:38)
-UP     swp49  1G   9216   Default   leaf01 (swp49)
-UP     swp50  1G   9216   Default   leaf01 (swp50)
-UP     swp51  1G   9216   Default   spine01 (swp2)
-UP     swp52  1G   9216   Default   spine02 (swp2)
-UP     mgmt   N/A  65536  VRF                                     IP: 127.0.0.1/8
-```
-{{< /tab >}}
-{{< tab "leaf03 ">}}
-```
-cumulus@leaf03:mgmt:~$ net show interface
-State  Name   Spd  MTU    Mode      LLDP                          Summary
------  -----  ---  -----  --------  ----------------------------  ---------------------------
-UP     lo     N/A  65536  Loopback                                IP: 127.0.0.1/8
-       lo                                                         IP: ::1/128
-UP     eth0   1G   1500   Mgmt      oob-mgmt-switch (swp12)       Master: mgmt(UP)
-       eth0                                                       IP: 192.168.200.13/24(DHCP)
-UP     swp1   1G   9216   Default   esxi04 (44:38:39:00:00:3e)
-UP     swp2   1G   9216   Default   server01 (44:38:39:00:00:40)
-UP     swp49  1G   9216   Default   leaf04 (swp49)
-UP     swp50  1G   9216   Default   leaf04 (swp50)
-UP     swp51  1G   9216   Default   spine01 (swp3)
-UP     swp52  1G   9216   Default   spine02 (swp3)
-UP     mgmt   N/A  65536  VRF                                     IP: 127.0.0.1/8
-```
-{{< /tab >}}
-{{< tab "leaf04 ">}}
-```
-cumulus@leaf04:mgmt:~$ net show interface
-State  Name   Spd  MTU    Mode      LLDP                          Summary
------  -----  ---  -----  --------  ----------------------------  ---------------------------
-UP     lo     N/A  65536  Loopback                                IP: 127.0.0.1/8
-       lo                                                         IP: ::1/128
-UP     eth0   1G   1500   Mgmt      oob-mgmt-switch (swp13)       Master: mgmt(UP)
-       eth0                                                       IP: 192.168.200.14/24(DHCP)
-UP     swp1   1G   9216   Default   esxi03 (44:38:39:00:00:44)
-UP     swp2   1G   9216   Default   server01 (44:38:39:00:00:46)
-UP     swp49  1G   9216   Default   leaf03 (swp49)
-UP     swp50  1G   9216   Default   leaf03 (swp50)
-UP     swp51  1G   9216   Default   spine01 (swp4)
-UP     swp52  1G   9216   Default   spine02 (swp4)
-UP     mgmt   N/A  65536  VRF                                     IP: 127.0.0.1/8
-```
-{{< /tab >}}
-{{< tab "spine01 ">}}
-```
-cumulus@spine01:mgmt:~$ net show interface
-State  Name  Spd  MTU    Mode      LLDP                     Summary
------  ----  ---  -----  --------  -----------------------  ---------------------------
-UP     lo    N/A  65536  Loopback                           IP: 127.0.0.1/8
-       lo                                                   IP: ::1/128
-UP     eth0  1G   1500   Mgmt      oob-mgmt-switch (swp14)  Master: mgmt(UP)
-       eth0                                                 IP: 192.168.200.21/24(DHCP)
-UP     swp1  1G   9216   Default   leaf01 (swp51)
-UP     swp2  1G   9216   Default   leaf02 (swp51)
-UP     swp3  1G   9216   Default   leaf03 (swp51)
-UP     swp4  1G   9216   Default   leaf04 (swp51)
-UP     mgmt  N/A  65536  VRF                                IP: 127.0.0.1/8
-```
-{{< /tab >}}
-{{< tab "spine02 ">}}
-```
-cumulus@spine02:mgmt:~$ net show interface
-State  Name  Spd  MTU    Mode      LLDP                     Summary
------  ----  ---  -----  --------  -----------------------  ---------------------------
-UP     lo    N/A  65536  Loopback                           IP: 127.0.0.1/8
-       lo                                                   IP: ::1/128
-UP     eth0  1G   1500   Mgmt      oob-mgmt-switch (swp15)  Master: mgmt(UP)
-       eth0                                                 IP: 192.168.200.22/24(DHCP)
-UP     swp1  1G   9216   Default   leaf01 (swp52)
-UP     swp2  1G   9216   Default   leaf02 (swp52)
-UP     swp3  1G   9216   Default   leaf03 (swp52)
-UP     swp4  1G   9216   Default   leaf04 (swp52)
-UP     mgmt  N/A  65536  VRF                                IP: 127.0.0.1/8
-```
-{{< /tab >}}
-{{< /tabs >}}
-
-To manually define the MTU use the `net add interface` command.
-```
-cumulus@switch:~$ net add interface swp1 mtu 9216
-```
-
-To restore the MTU to the default value of 9216 use `net del interface mtu`.
-```
-cumulus@switch:~$ net del interface swp1 mtu
-```
-
-## MLAG and VRR Configuration
-
-In our example topology, VM will be located on one physical ESXi01 hypervisor and Edge VM on the other ESXI03. As Edge VM responsible for virtualized traffic to be sent out-of-the virtual world, both VM and Edge must share the same Overlay TZ (VLAN) to communicate. But, as they are divided by a layer 3 underlay network, we must ensure the Geneve layer 2 overlay traffic to pass over it. In addition, the BM server is also part of the network and located in the physical world. So, Edge will have to know how to reach it as well. 
-
-The ESXi hypervisors and the BM server connected using active/active LAG to the leaf switches for redundancy and more throughput. For that, we create active/active, redundant layer 2 and layer 3 connectivity using MLAG protocol with VRR on top. The below Cumulus Linux switches configuration demonstrates how to configure MLAG and VRR.
-Make sure to set MLAG+VRR regardless the N-VDS uplink profile (active/active or active/standby), unless of course, only one ToR (leaf) or a single link is used to connect the hypervisor.
-
-### MLAG General Configuration 
-
-Cumulus Linux MLAG configuration is done by a single command. It automatically creates the peerlink bond and configures all MLAG related configuration.
-
-{{< tabs "TABIDd013 ">}}
-{{< tab "leaf01 ">}}
-```
-cumulus@leaf01:mgmt:~$ net add clag peer sys-mac 44:38:39:FF:00:01 interface swp49-50 primary backup-ip 192.168.200.12 vrf mgmt
-cumulus@leaf01:mgmt:~$ net commit
-```
-{{< /tab >}}
-{{< tab "leaf02 ">}}
-```
-cumulus@leaf02:mgmt:~$ net add clag peer sys-mac 44:38:39:FF:00:01 interface swp49-50 secondary backup-ip 192.168.200.11 vrf mgmt
-cumulus@leaf02:mgmt:~$ net commit
-```
-{{< /tab >}}
-{{< tab "leaf03 ">}}
-```
-cumulus@leaf03:mgmt:~$ net add clag peer sys-mac 44:38:39:FF:00:02 interface swp49-50 primary backup-ip 192.168.200.14 vrf mgmt
-cumulus@leaf03:mgmt:~$ net commit
-```
-{{< /tab >}}
-{{< tab "leaf04 ">}}
-```
-cumulus@leaf04:mgmt:~$ net add clag peer sys-mac 44:38:39:FF:00:02 interface swp49-50 secondary backup-ip 192.168.200.13 vrf mgmt
-cumulus@leaf04:mgmt:~$ net commit
-```
-{{< /tab >}}
-{{< /tabs >}}
-
-### MLAG Interfaces Configuration - Active/Active LACP LAG Bare-Metal and N-VDS Uplink Profile
-
-If the recommended active/active LAG (LACP) N-VDS uplink profile is used, switch downlink interfaces for ESXi must be bonded into MLAG ports (LACP bonds).
-This action also automatically adds the MLAG interfaces into the bridge and sets them as trunk ports (VLAN tagging) with all VLANs allowed. The same should be done for the switch downlinks to the BM server
-
-{{%notice note%}}
-
-For active/standby environments, do not configure MLAG. Follow the instructions under the [Switch Ports Configuration - non-LAG Bare-Metal and N-VDS Uplink Profile ](#switch-ports-configuration---non-lag-bare-metal-and-n-vds-uplink-profile) section.
-Do not use active/active LACP LAG uplink profile for the Overlay Transport Zone on N-VDS nor LACP bond on BM server.
-
-{{%/notice %}}
-
-{{< tabs "TABID0dd213 ">}}
-{{< tab "leaf01 ">}}
-```
-cumulus@leaf01:mgmt:~$ net add clag port bond esxi01 interface swp1 clag-id 1
-cumulus@leaf01:mgmt:~$ net commit
-```
-{{< /tab >}}
-{{< tab "leaf02 ">}}
-```
-cumulus@leaf02:mgmt:~$ net add clag port bond esxi01 interface swp1 clag-id 1
-cumulus@leaf02:mgmt:~$ net commit
-```
-{{< /tab >}}
-{{< tab "leaf03 ">}}
-```
-cumulus@leaf03:mgmt:~$ net add clag port bond esxi03 interface swp1 clag-id 1    
-cumulus@leaf03:mgmt:~$ net add clag port bond server01 interface swp2 clag-id 2
-cumulus@leaf03:mgmt:~$ net commit
-```
-{{< /tab >}}
-{{< tab "leaf04 ">}}
-```
-cumulus@leaf04:mgmt:~$ net add clag port bond esxi03 interface swp1 clag-id 1
-cumulus@leaf04:mgmt:~$ net add clag port bond server01 interface swp2 clag-id 2
-cumulus@leaf04:mgmt:~$ net commit
-```
-{{< /tab >}}
-{{< /tabs >}}
-
-### Switch Ports Configuration - non-LAG Bare-Metal and N-VDS Uplink Profile 
-
-if active/standby or active/active non-LAG N-VDS uplink profiles used, switch downlink interfaces for ESXi must be left regular ports and not use any MLAG ports configuration. They must be added into the bridge as trunk ports.
-
-{{< tabs "TABID0dd112213 ">}}
-{{< tab "leaf01 ">}}
-```
-cumulus@leaf01:mgmt:~$ net add interface swp1 bridge trunk
-cumulus@leaf01:mgmt:~$ net commit
-```
-{{< /tab >}}
-{{< tab "leaf02 ">}}
-```
-cumulus@leaf02:mgmt:~$ net add interface swp1 bridge trunk
-cumulus@leaf02:mgmt:~$ net commit
-```
-{{< /tab >}}
-{{< tab "leaf03 ">}}
-```
-cumulus@leaf03:mgmt:~$ net add interface swp1 bridge trunk
-cumulus@leaf03:mgmt:~$ net add interface swp2 bridge trunk
-cumulus@leaf03:mgmt:~$ net commit
-```
-{{< /tab >}}
-{{< tab "leaf04 ">}}
-```
-cumulus@leaf04:mgmt:~$ net add interface swp1 bridge trunk
-cumulus@leaf04:mgmt:~$ net add interface swp2 bridge trunk
-cumulus@leaf04:mgmt:~$ net commit
-```
-{{< /tab >}}
-{{< /tabs >}}
-
-### MLAG Configuration Verification
-
-To verify configurations the command `net show clag` can be used. In this example `esxi01` and `esxi03` are the MLAG interfaces connected to ESXi hosts. `server01` is MLAG interfaces connected to the BM server.  
-
-{{< tabs "TABID2dd2012 ">}}
-{{< tab "leaf01 ">}}
-```
-cumulus@leaf01:mgmt:~$ net show clag
-The peer is alive
-     Our Priority, ID, and Role: 1000 44:38:39:00:00:59 primary
-    Peer Priority, ID, and Role: 2000 44:38:39:00:00:5a secondary
-          Peer Interface and IP: peerlink.4094 fe80::4638:39ff:fe00:5a (linklocal)
-                      Backup IP: 192.168.200.12 vrf mgmt (active)
-                     System MAC: 44:38:39:ff:00:01
-
-CLAG Interfaces
-Our Interface      Peer Interface     CLAG Id   Conflicts              Proto-Down Reason
-----------------   ----------------   -------   --------------------   -----------------
-          esxi01   esxi01             1         -                      -
-```
-{{< /tab >}}
-{{< tab "leaf02 ">}}
-```
-cumulus@leaf02:mgmt:~$ net show clag
-The peer is alive
-     Our Priority, ID, and Role: 2000 44:38:39:00:00:5a secondary
-    Peer Priority, ID, and Role: 1000 44:38:39:00:00:59 primary
-          Peer Interface and IP: peerlink.4094 fe80::4638:39ff:fe00:59 (linklocal)
-                      Backup IP: 192.168.200.11 vrf mgmt (active)
-                     System MAC: 44:38:39:ff:00:01
-
-CLAG Interfaces
-Our Interface      Peer Interface     CLAG Id   Conflicts              Proto-Down Reason
-----------------   ----------------   -------   --------------------   -----------------
-          esxi01   esxi01             1         -                      -
-```
-{{< /tab >}}
-{{< tab "leaf03 ">}}
-```
-cumulus@leaf03:mgmt:~$ net show clag
-The peer is alive
-     Our Priority, ID, and Role: 1000 44:38:39:00:00:5d primary
-    Peer Priority, ID, and Role: 2000 44:38:39:00:00:5e secondary
-          Peer Interface and IP: peerlink.4094 fe80::4638:39ff:fe00:5e (linklocal)
-                      Backup IP: 192.168.200.14 vrf mgmt (active)
-                     System MAC: 44:38:39:ff:00:02
-
-CLAG Interfaces
-Our Interface      Peer Interface     CLAG Id   Conflicts              Proto-Down Reason
-----------------   ----------------   -------   --------------------   -----------------
-          esxi03   esxi03             1         -                      -
-        server01   server01           2         -                      -
-```
-{{< /tab >}}
-{{< tab "leaf04 ">}}
-```
-cumulus@leaf04:mgmt:~$ net show clag
-The peer is alive
-     Our Priority, ID, and Role: 2000 44:38:39:00:00:5e secondary
-    Peer Priority, ID, and Role: 1000 44:38:39:00:00:5d primary
-          Peer Interface and IP: peerlink.4094 fe80::4638:39ff:fe00:5d (linklocal)
-                      Backup IP: 192.168.200.13 vrf mgmt (active)
-                     System MAC: 44:38:39:ff:00:02
-
-CLAG Interfaces
-Our Interface      Peer Interface     CLAG Id   Conflicts              Proto-Down Reason
-----------------   ----------------   -------   --------------------   -----------------
-          esxi03   esxi03             1         -                      -
-        server01   server01           2         -                      -
-```
-{{< /tab >}}
-{{< /tabs >}}
-
-{{%notice note%}}
-
-In the case of a non-LAG N-VDS uplink profile, no **MLAG ports** will be seen in the MLAG show output. The lack of MLAG ports doesn't mean that MLAG is not functional. MLAG is mandatory for using VRR, which is enhanced VRRP and is needed also for the non-LAG uplink profiles.
-
-{{%/notice %}}
-
+Only the required changes to support an NSX Edge device are described below.
 ### VRR Configuration
 
-ESXi hypervisors and the BM server use active/active uplinks to spread traffic to both ToR leaf switches. For that, they must send the traffic to their default-gateways. As all elements in our network have their own IP subnet and VLAN (ESXi01 TEP, Edge TEP on ESXi03, BM server), layer 3 gateways (VRR) need to be created for each.  
-ESXi TEP IP addresses can be on a same or different subnet. VMware best-practice configuration for TEP IP pool is to assign different subnet (e.g., /24) per physical rack. Each hypervisor (ESXi) must have at least one physical NIC connected to its Top-of-Rack (ToR/Leaf) switch.
+<h1> TODO: </h1>
+NSX Edge uses two additional virtual uplinks (VLANs) to communicate with the physical world. One uplink towards the left leaf switch, the second towards the right. Over these virtual uplinks, it establishes BGP peerings to route traffic to the physical world. As Edge VM is part of the Overlay TZ for virtualized traffic, and VLAN TZ for traffic in/out the physical world, both transport-zones use the same ESXi uplinks (trunk port), but as said, in different VLANs. 
 
-{{%notice note%}}
-
-VMware requires a VLAN per each type of traffic, for example, storage, vSAN, vMotion, or Overlay (TEP) traffic. This use case focus is only on the overlay VM to VM traffic and switches configurations.
-
-{{%/notice %}}
-
-NSX Edge uses two additional virtual uplinks to communicate with the physical world, each uplink in different VLAN. One uplink towards the left leaf switch, the second towards the right. Over these virtual uplinks, it establishes BGP peerings to route traffic to the physical world. As Edge VM is part of the Overlay TZ for virtualized traffic, and VLAN TZ for traffic in/out the physical world, both transport-zones use the same ESXi uplinks (trunk port), but as said, in different VLANs. 
-
-To establish BGP peering with the underlay switches, they must be configured with additional VLANs and SVIs. In our case, we use {{<kb_link text="Subinterfaces" url="cumulus-linux/Layer-1-and-Switch-Ports/Interface-Configuration-and-Management/#subinterfaces" >}} configuration instead. But, of course, VLANs and SVIs could serve for that as well.
-
-Create VLAN, SVI, Virtual IP (VRR), and the subinterfaces for the Edge uplinks.  
-The VLAN ID is a local parameter and not shared between the hypervisors. For deployment simplicity, use the same VLAN ID for all TEP devices used in both racks.
+The additional VLANs must be configured on the top of rack switches attached to ESXi nodes.
 
 {{< tabs "10D ">}}
 {{< tab " leaf01 ">}}
@@ -2346,7 +1926,7 @@ From NSX-T virtualized fabric perspective, there is no real difference. When usi
 
 {{%notice note%}}
 
-If different TEP devices subnets used in EVPN underlay deployment, VXLAN routing must be done. This requires more complicated VXLAN configuration and won't be covered in this example. For more information check out EVPN {{<kb_link text="Inter-subnet Routing" url="cumulus-linux/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN/Inter-subnet-Routing/) page.
+If different TEP devices subnets used in EVPN underlay deployment, VXLAN routing must be done. This requires more complicated VXLAN configuration and won't be covered in this example. For more information check out EVPN {{<kb_link text="Inter-subnet Routing" url="cumulus-linux/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN/Inter-subnet-Routing/" >}} page.
 
 {{%/notice %}}
 

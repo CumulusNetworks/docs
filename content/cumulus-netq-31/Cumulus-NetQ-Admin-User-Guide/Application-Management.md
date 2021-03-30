@@ -264,7 +264,7 @@ To export a scheduled validation:
 
 ## Manage Threshold Crossing Rules
 
-NetQ supports a set of events that are triggered by crossing a user-defined threshold. These events allow detection and prevention of network failures for selected interface, utilization,  sensor, forwarding, ACL and digital optics events.
+NetQ supports a set of events that are triggered by crossing a user-defined threshold. These events allow detection and prevention of network failures for selected interface, utilization, sensor, forwarding, ACL and digital optics events.
 
 A notification configuration must contain one rule. Each rule must contain a scope and a threshold.
 
@@ -760,7 +760,7 @@ To disable a rule that is currently suppressed:
 
 #### Delete a Rule
 
-You might find that you no longer want to received event notifications for a particular TCA event. In that case, you can either disable the event if you think you may want to receive them again or delete the rule altogether. Refer to [Disable a Rule](#disable-a-rule) in the first case. Follow the instructions here to remove the rule. The rule can be in any of the three states.
+You might find that you no longer want to receive event notifications for a particular TCA event. In that case, you can either disable the event if you think you may want to receive them again or delete the rule altogether. Refer to [Disable a Rule](#disable-a-rule) in the first case. Follow the instructions here to remove the rule. The rule can be in any of the three states.
 
 To delete a rule:
 
@@ -772,7 +772,7 @@ To delete a rule:
 
 4. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/bin-1.svg" height="18" width="18"/>.
 
-{{<figure src="/images/netq/tca-delete-rule-300.png" width="200">}}
+    {{<figure src="/images/netq/tca-delete-rule-300.png" width="200">}}
 
 #### Resolve Scope Conflicts
 

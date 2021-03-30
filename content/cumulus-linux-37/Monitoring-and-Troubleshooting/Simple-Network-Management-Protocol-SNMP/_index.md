@@ -1,6 +1,6 @@
 ---
 title: Simple Network Management Protocol - SNMP
-author: Cumulus Networks
+author: NVIDIA
 weight: 231
 pageID: 8362608
 ---
@@ -17,7 +17,7 @@ of California. In 1995, this code was also made publicly available as
 the UCD project. After that, `ucd-snmp` was extended by work done at the
 University of Liverpool as well as later in Denmark. In late 2000, the
 project name changed to `net-snmp` and became a fully-fledged
-collaborative open source project. The version used by Cumulus Networks
+collaborative open source project. The version used by Cumulus Linux
 is based on the latest `net-snmp` 5.8 branch with added custom MIBs and
 pass-through and pass-persist scripts ({{<link url="#pass-persist-scripts" text="see below">}}
 for more information on pass persist scripts).
@@ -203,7 +203,7 @@ username passwords and has the option of encrypting the packet contents.
 
 {{%notice note%}}
 
-- Cumulus Networks recommends that you use NCLU to configure `snmpd` even though NCLU does not provide functionality to configure every `snmpd` feature. You are not restricted to using NCLU for configuration and can edit the `/etc/snmp/snmpd.conf` file and control `snmpd` with `systemctl` commands. SNMP configuration with NCLU is supported in Cumulus Linux 3.4 and later.
+- Consider using NCLU to configure `snmpd` even though NCLU does not provide functionality to configure every `snmpd` feature. You are not restricted to using NCLU for configuration and can edit the `/etc/snmp/snmpd.conf` file and control `snmpd` with `systemctl` commands. SNMP configuration with NCLU is supported in Cumulus Linux 3.4 and later.
 - Cumulus Linux 3.6 and later provides VRF listening-address, as well as Trap/Inform support. When management VRF is enabled, the eth0 interface is placed in the management VRF. When you configure the `listening-address` for `snmp-server`, you must run the `net add snmp-server listening-address <address> vrf mgmt` command to enable listening on the eth0 interface. These additional parameters are described in detail below.
 - You must add a default community string for v1 or v2c environments so that the `snmpd` daemon can respond to requests. For security reasons, the default configuration configures `snmpd` to listen to SNMP requests on the loopback interface so access to the switch is restricted to requests originating from the switch itself. The only required commands for `snmpd` to function are a `listening-address` and either a `username` or a `readonly-community` string.
 
@@ -514,8 +514,7 @@ When you configure {{<link url="Management-VRF" text="management VRF">}}, you ne
 interface IP addresses on which SNMP is listening. If you set
 listening-address to all, the `snmpd` daemon responds to incoming
 requests on all interfaces that are in the default VRF. If you prefer to
-listen on a limited number of IP addresses, Cumulus Networks recommends
-that you run only one instance of the `snmpd` daemon and specify the VRF
+listen on a limited number of IP addresses, run only one instance of the `snmpd` daemon and specify the VRF
 name along with the listening-address. You can configure IP addresses in
 different VRFs and a single SNMP daemon listens on multiple IP addresses
 each with its own VRF. Because SNMP has native VRF awareness, using
@@ -555,14 +554,7 @@ VRF functionality, you had to do the following:
 
 **Running Multiple Instances of snmpd**
 
-Prior to Cumulus Linux 3.6, more complex configurations may have been
-needed; for example, you can run more than one `snmpd` daemon (one in
-each VRF designed to receive SNMP polling requests). Cumulus Networks
-does not recommend this for memory and CPU resource reasons. However, if
-this is required, you must use a separate configuration file with each
-instance of the `snmpd` daemon. You can use a copy of the
-`/etc/snmp/snmpd.conf` file. When you use this file, start an `snmpd`
-daemon with the following command:
+Prior to Cumulus Linux 3.6, more complex configurations may have been needed; for example, you can run more than one `snmpd` daemon (one in each VRF designed to receive SNMP polling requests). This is not recommended for memory and CPU resource reasons. However, if this is required, you must use a separate configuration file with each instance of the `snmpd` daemon. You can use a copy of the `/etc/snmp/snmpd.conf` file. When you use this file, start an `snmpd` daemon with the following command:
 
     cumulus@switch:~$ sudo /usr/sbin/snmpd -y -LS 0-4 d -Lf /dev/null -u snmp -g snmp -I -smux -p /run/snmpd.pid -C -c <new snmp config filename> (edited)
 
@@ -608,10 +600,10 @@ shows how to stop `snmpd` and restart it in the management VRF.
     cumulus@switch:mgmt-vrf:~$ ps aux | grep snmpd
     snmp     30880  0.4  0.3  57176 12276 ?        Ss   20:05   0:00 /usr/sbin/snmpd -y -LS 0-4 d -Lf /dev/null -u snmp -g snmp -I -smux -p /run/snmpd.pid -f
 
-### Set up the Custom Cumulus Networks MIBs
+### Set up the Custom MIBs
 
 No changes are required in the `/etc/snmp/snmpd.conf` file on the switch
-to support the custom Cumulus Networks MIBs. The following lines are
+to support the custom MIBs. The following lines are
 already included by default and provide support for both the Cumulus
 Counters and the Cumulus Resource Query MIBs.
 
@@ -663,7 +655,7 @@ To enable read-only querying by a client:
     <td><p>public</p></td>
     <td><p>Plain text password/community string.</p>
     <p>{{%notice warning%}}</p>
-    <p>Cumulus Networks strongly recommends you change this password to something else.</p>
+    <p>Change this password to prevent security issues.</p>
     <p>{{%/notice%}}</p></td>
     </tr>
     <tr>
@@ -772,14 +764,7 @@ plaintext authentication and encryption pass phrases.
 
 {{%notice note%}}
 
-Cumulus Networks recommends that you configure SNMPv3 usernames and
-passwords with NCLU. However, if you prefer to edit the
-`/etc/snmp/snmpd.conf` manually instead, be aware that `snmpd` caches
-SNMPv3 usernames and passwords in the /`var/lib/snmp/snmpd.conf` file.
-Make sure you stop `snmpd` and remove the old entries when making
-changes. Otherwise, Cumulus Linux uses the old usernames and passwords
-in the `/var/lib/snmp/snmpd.conf` file instead of the ones in the
-`/etc/snmp/snmpd.conf` file.
+Configure SNMPv3 usernames and passwords with NCLU. However, if you prefer to edit the `/etc/snmp/snmpd.conf` manually instead, be aware that `snmpd` caches SNMPv3 usernames and passwords in the /`var/lib/snmp/snmpd.conf` file. Make sure you stop `snmpd` and remove the old entries when making changes. Otherwise, Cumulus Linux uses the old usernames and passwords in the `/var/lib/snmp/snmpd.conf` file instead of the ones in the `/etc/snmp/snmpd.conf` file.
 
 {{%/notice%}}
 
@@ -1029,7 +1014,7 @@ bind to this address.
 
 {{%/notice%}}
 
-For more information, read the the `snmp.conf` man page:
+For more information, read `snmp.conf` man page:
 
     clientaddr [<transport-specifier>:]<transport-address>
                   specifies the source address to be used by command-line applica-
@@ -1250,7 +1235,7 @@ for details.
 #### Configure Temperature Notifications
 
 Temperature sensor information for each available sensor is maintained
-in the the lmSensors MIB. Each platform can contain a different number
+in lmSensors MIB. Each platform can contain a different number
 of temperature sensors. The example below generates a trap event when
 any temperature sensor exceeds a threshold of 68 degrees (centigrade).
 It monitors each `lmTempSensorsValue`. When the threshold value is
@@ -1406,7 +1391,7 @@ for them. The overall Cumulus Linux MIB is defined in the
 </tr>
 <tr>
 <td><p><a href="https://cumulusnetworks.com/static/mibs/CUMULUS-POE-MIB.txt">CUMULUS-POE-MIB</a></p></td>
-<td><p>The Cumulus Networks custom {{<link url="Power-over-Ethernet-PoE" text="Power over Ethernet">}} PoE MIB defined in the <code>/usr/share/snmp/mibs/Cumulus-POE-MIB.txt</code> file. For devices that provide PoE, this provides users with the system wide power information in <code>poeSystemValues</code> as well as per interface <code>PoeObjectsEntry</code> values for the <code>poeObjectsTable</code>. Most of this information comes from the <code>poectl</code> command. To enable this MIB, uncomment the following line in <code>/etc/snmp/snmpd.conf</code>:</p>
+<td><p>The custom {{<link url="Power-over-Ethernet-PoE" text="Power over Ethernet">}} PoE MIB defined in the <code>/usr/share/snmp/mibs/Cumulus-POE-MIB.txt</code> file. For devices that provide PoE, this provides users with the system wide power information in <code>poeSystemValues</code> as well as per interface <code>PoeObjectsEntry</code> values for the <code>poeObjectsTable</code>. Most of this information comes from the <code>poectl</code> command. To enable this MIB, uncomment the following line in <code>/etc/snmp/snmpd.conf</code>:</p>
 <pre><code>#pass_persist .1.3.6.1.4.1.40310.3 /usr/share/snmp/cl_poe_pp.py</code></pre></td>
 </tr>
 <tr>

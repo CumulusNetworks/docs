@@ -3,20 +3,22 @@
 
 <head>
   {{ partial "head" . }}
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tablesaw/3.1.2/tablesaw.min.css" integrity="sha512-FW7xwIsGt3iCswNR3o4kcXqkKDvN8Q7obwdxFODRT+L6XkRtScLElfvobA7bjiC2iTgG/sRaBUqdrhqx0RTauw==" crossorigin="anonymous" />
+  {{ partial "google-analytics" . }}
 </head>
 
 
-<body>
+<body class="docs">
 <!-- PDF output does not require standard menus -->
 {{if ne .Page.Type "pdf"}}
   <input type="checkbox" style="display: none" id="menu-control" />
 
   <!-- Green bar header -->
-  {{ partial "top-header" . }} 
+  {{ partial "top-header" . }}
+<div class="docs-wrapper">
+  {{ partial "version-dropdown" . }}
 
-  {{ partial "version-dropdown" . }} 
-
-  {{ partial "mobile-dropdown" . }} 
+  {{ partial "mobile-dropdown" . }}
 
   <main class="container flex">
     <aside class="book-menu">
@@ -32,7 +34,7 @@
 
       <!-- pipes in /assets/js and bundles into $jsMenu-->
       {{ $jsScroll := resources.Get "js/menu.js" }}
-      {{ $jsCollapse := resources.Get "js/collapse.js"}}
+      {{ $jsCollapse := resources.Get "js/collapse.js" | resources.ExecuteAsTemplate (print now.Unix "js/collapse.js") . }}
       {{ $jsCustom := resources.Get "js/custom.js" }}
       {{ $jsMenu := slice $jsScroll $jsCollapse $jsCustom | resources.Concat "js/menuBundle.js"}}
 
@@ -50,6 +52,7 @@
 {{ end }}
 
 </main>
+</div>
 
 {{if ne .Page.Params.layout "pdf"}}
 {{ partialCached "footer" . }}

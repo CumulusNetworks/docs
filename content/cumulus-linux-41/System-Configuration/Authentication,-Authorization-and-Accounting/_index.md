@@ -1,6 +1,6 @@
 ---
 title: 'Authentication, Authorization and Accounting'
-author: Cumulus Networks
+author: NVIDIA
 weight: 130
 toc: 3
 ---

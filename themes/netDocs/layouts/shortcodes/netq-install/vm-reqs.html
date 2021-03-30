@@ -36,7 +36,7 @@ When using a VM, the following system resources must be allocated:
 <td>256 GB (2 TB max) SSD with minimum disk IOPS of 1000 for a standard 4kb block size<br>(<strong>Note</strong>: This <em>must</em> be an SSD; use of other storage options can lead to system instability and are not supported.)</td>
 {{ end }}
 {{- if eq (.Get "deployment") "cloud" -}}
-<td>32 GB (2 TB max)</td>
+<td>For NetQ 3.2.x and later: 64 GB (2 TB max)<br>For NetQ 3.1 and earlier: 32 GB (2 TB max)</td>
 {{ end }}
 </tr>
 <tr class="odd">
@@ -46,7 +46,7 @@ When using a VM, the following system resources must be allocated:
 <tr class="even">
 <td>Hypervisor</td>
 {{- if eq (.Get "hypervisor") "vmware" -}}
-<td>VMware ESXi™ 6.5 or later (OVA image) for servers running Cumulus Linux, CentOS, Ubuntu and RedHat operating systems</td> 
+<td>VMware ESXi™ 6.5 or later (OVA image) for servers running Cumulus Linux, CentOS, Ubuntu and RedHat operating systems</td>
 {{ end }}
 {{- if eq (.Get "hypervisor") "kvm" -}}
 <td>KVM/QCOW (QEMU Copy on Write) image for servers running CentOS, Ubuntu and RedHat operating systems </td>

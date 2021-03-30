@@ -1,6 +1,6 @@
 ---
 title: OVSDB Server High Availability
-author: Cumulus Networks
+author: NVIDIA
 weight: 700
 toc: 4
 ---
@@ -153,7 +153,7 @@ Run the configuration script provided with Cumulus Linux:
              ().
    ```
 
-2. On the switch where you want to run the standby OVSDB server, run the the `vtep-bootstrap` command with the same options as above but replace `db_ha active` with `db_ha standby`:
+2. On the switch where you want to run the standby OVSDB server, run `vtep-bootstrap` command with the same options as above but replace `db_ha active` with `db_ha standby`:
 
    ```
    cumulus@switch:~$ vtep-bootstrap  --db_ha standby  --db_ha_vip 169.254.0.11:9998  --db_ha_repl_sv 169.254.0.9:9999 --controller_ip 192.168.100.17 vtep7 172.16.20.157 192.168.100.157

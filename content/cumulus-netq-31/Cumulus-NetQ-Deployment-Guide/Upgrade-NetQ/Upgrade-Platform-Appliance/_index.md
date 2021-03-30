@@ -27,18 +27,17 @@ To complete the preparation:
 
     3. Select the relevant software from the **HyperVisor/Platform** list:
 
-        {{< figure src="/images/netq/netq-31-download-options-310.png" width="500" >}}
-         
-        | Your Deployment Type | Hypervisor/Platform Selection | Downloaded Filename |
-        | ---- | ---- | ---- |
-        | NetQ On-premises VM | KVM or VMware | NetQ-3.1.0.tgz |
-        | NetQ Cloud VM | KVM (Cloud) or VMware (Cloud) | NetQ-3.1.0-opta.tgz |
-        | NetQ On-premises Appliance | Appliance | NetQ-3.1.0.tgz |
-        | NetQ Cloud Appliance | Appliance (Cloud) | NetQ-3.1.0-opta.tgz |
+        If you are upgrading NetQ Platform software for a NetQ On-premises Appliance or VM, select *Appliance*  to download the NetQ-3.1.0.tgz file. If you are upgrading NetQ Collector software for a NetQ Cloud Appliance or VM, select *Appliance (Cloud)* to download the NetQ-3.1.0-opta.tgz file.
 
-    4. Scroll down and click **Download**. For example: The NetQ Appliance images.
+        {{< figure src="/images/netq/netq-31-download-options-310.png" width="500" >}}
+
+    4. Scroll down and click **Download**.
 
         {{< figure src="/images/netq/netq-31-appliance-onpremcld-dwnld-310.png" width="420" >}}
+
+        {{<notice note>}}
+You can ignore the note on the image card because, unlike during installation, you <em>do not</em> need to download the bootstrap file for an upgrade.
+        {{</notice>}}
 
 3. Copy the file to the */mnt/installables/* directory on your appliance or VM.
 
@@ -49,16 +48,7 @@ To complete the preparation:
     deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb bionic netq-3.1
     ```
 
-5. Update the NetQ debian packages using the following three commands.
-
-    ```
-    cumulus@<hostname>:~$ sudo dpkg --remove --force-remove-reinstreq cumulus-netq netq-apps netq-agent 2>/dev/null
-    [sudo] password for cumulus:
-    (Reading database ... 71621 files and directories currently installed.)
-    Removing netq-apps (2.4.1-ub18.04u24~1577405296.fcf3c28) ...
-    Removing netq-agent (2.4.1-ub18.04u24~1577405296.fcf3c28) ...
-    Processing triggers for man-db (2.8.3-2ubuntu0.1) ...
-    ```
+5. Update the NetQ debian packages using the following commands.
 
     ```
     cumulus@<hostname>:~$ sudo apt-get update
@@ -109,7 +99,7 @@ To upgrade your NetQ software:
 
 ```
 cumulus@<hostname>:~$ netq bootstrap master upgrade /mnt/installables/NetQ-3.1.0.tgz
-2020-04-28 15:39:37.016710: master-node-installer: Extracting tarball /mnt/installables/NetQ-3.0.0.tgz
+2020-04-28 15:39:37.016710: master-node-installer: Extracting tarball /mnt/installables/NetQ-3.1.0.tgz
 2020-04-28 15:44:48.188658: master-node-installer: Upgrading NetQ Admin container
 2020-04-28 15:47:35.667579: master-node-installer: Removing old images
 -----------------------------------------------
@@ -128,7 +118,7 @@ netq bootstrap master upgrade /mnt/installables/NetQ-3.1.0-opta.tgz
 
 {{< /tabs >}}
 
-2. Open the Admin UI by entering *http://\<hostname-or-ipaddress\>:8443* in your browser address field.
+2. Open the Admin UI by entering *https://\<hostname-or-ipaddress\>:8443* in your browser address field.
 
 3. Click **Upgrade**.
 

@@ -10,6 +10,7 @@ This will also write the XML files that are used to generate xls files for the r
 '''
 
 from operator import itemgetter
+import re
 import requests
 
 def get_json(product, version, json_file):
@@ -45,6 +46,24 @@ def product_string(product):
         print("Unknown product {}".format(product))
         exit(1)
 
+def rn_location(product, version):
+    '''
+    Deals with the fact sometimes we move the location of RNs.
+    All the exception cases of what product+version for the rn file location should live here.
+
+    Takes in a product_string() and version_string()
+
+    Returns:
+    string path of rn file location
+    '''
+    directory = get_hugo_folder(product, version)
+
+    # NetQ moved the location of the RN file in 3.2 and later.
+    if product == "netq" and version_string(version) in ["2.4", "3.0", "3.1"]:
+        return "content/{}/More-Documents/rn.md".format(directory)
+    else:
+        return "content/{}/Whats-New/rn.md".format(directory)
+
 def version_string(version):
     '''
     Take in the semver product version and return just the major.minor
@@ -57,7 +76,12 @@ def version_string(version):
     if version.count(".") == 1:
         return version
 
-    return version[:version.rfind(".")]
+    # The rfind here will drop the right most value. This means 3.7.14.2 returns "3.7.14".
+    # But we only want "3.7"
+    while version.count(".") > 1:
+        version = version[:version.rfind(".")]
+
+    return version
 
 def get_hugo_folder(product, version):
     '''
@@ -76,6 +100,39 @@ def get_hugo_folder(product, version):
         print("ERROR: Unknown product {}".format(product))
         exit(1)
 
+def add_code_markdown(input_string, tag_to_replace):
+    '''
+    Replaces a generic tag with a <pre></pre> code block.
+    This should be used for matching tags that do not indicate an open or close.
+
+    For example:
+    {noformat}
+    this is some code
+    {noformat}
+
+    The requirement of a pair prevents a simple string.replace()
+
+    Inputs:
+        input_string - The string to search and replace on
+        tag_to_replace - String representation of what to replace (e.g., "{noformat}")
+    Returns:
+        Updated string with the given tag replaced with open/closing <pre> tags
+    '''
+    matches = re.finditer(tag_to_replace, input_string)
+
+    close_noformat = False
+    for match in matches:
+        if close_noformat:
+            tag = "</pre>"
+            close_noformat = False
+        else:
+            tag = "<pre>"
+            close_noformat = True
+
+        input_string = input_string.replace(tag_to_replace, tag, 1)
+
+    return input_string
+
 def sanatize_rn_for_markdown(string):
     '''
     Strip any special or problematic characters from the a string.
@@ -85,14 +142,19 @@ def sanatize_rn_for_markdown(string):
     '''
 
     # # Remove HTML tags
-    # TAG_RE = re.compile(r'<[^>]+>')
-    # output_string = TAG_RE.sub('', string)
     output_string = string.replace("<p>", "")
     output_string = output_string.replace("</p>", "")
 
     output_string = output_string.replace("`", "'")
 
+    # Fix code blocks
+    output_string = add_code_markdown(output_string, "{noformat}")
+    output_string = add_code_markdown(output_string, "{code}")
+
+    # Replace and clean up line returns
     output_string = output_string.replace("\r\n", "<br />")
+    output_string = output_string.replace("\n ", "<br />")
+    output_string = output_string.replace(".\n", "<br />")
     output_string = output_string.replace("\n", "")
 
     output_string = output_string.replace("&lt;", "<")
@@ -101,28 +163,42 @@ def sanatize_rn_for_markdown(string):
     output_string = output_string.replace("<tt>", "`")
     output_string = output_string.replace("</tt>", "`")
 
-    #CM-21678
-    output_string = output_string.replace('<div class=\"preformatted\" style=\"border-width: 1px;\"><div class=\"preformattedContent panelContent\"><pre>', "<br /><pre>")
-    output_string = output_string.replace("</pre></div></div>", "</pre><br />")
-
-    # Remove line returns and replace them with HTML breaks
-    output_string = output_string.replace("\r", "")
-    #output_string = output_string.replace("\n\n", "<br />")
-    #output_string = output_string.replace("\n", "<br />")
-
-    # Escape pipe characters
-    output_string = output_string.replace("|", "\|")
-
     #Replace @ characters to prevent auto email link creation
     output_string = output_string.replace("@", "&#64;")
     output_string = output_string.replace("[", "&#91;")
     output_string = output_string.replace("]", "&#93;")
 
+    #CM-21678
+    output_string = output_string.replace('<div class=\"preformatted\" style=\"border-width: 1px;\"><div class=\"preformattedContent panelContent\"><pre>', "<br /><pre>")
+    output_string = output_string.replace('<div class=\"code panel\" style=\"border-width: 1px;\"><div class=\"codeContent panelContent\">', '<br /><pre>')
+    output_string = output_string.replace('<pre class=\"code-java\">', "")
+    output_string = output_string.replace('<span class=\"code-keyword\">', "")
+    output_string = output_string.replace("</span>", "")
+    output_string = output_string.replace("</pre>\n</div></div>", "</pre><br />")
+
+    # This is later due to other cleanups needing to run first
+    output_string = output_string.replace("\r", "")
+
+    # Escape pipe characters
+    output_string = output_string.replace("|", "\|")
+
     # NetQ-5774 Fix. The use of "<>" in a string inside a code (<pre>) block disappears
     output_string = output_string.replace("<ipaddr>", "\<ipaddr\>")
 
+    # NETQ-7489 Fix. Similar to above
+    output_string = output_string.replace("<cloud-appliance-IP-address>", "\<cloud-appliance-IP-address\>")
+    output_string = output_string.replace("<default/mgmt>", "\<default/mgmt\>")
+    output_string = output_string.replace("<customer-premise>", "\<customer-premise\>")
+    output_string = output_string.replace("<customer-email-address>", "\<customer-email-address\>")
+    output_string = output_string.replace("<password>", "\<password\>")
+    output_string = output_string.replace("<opid-here>", "\<opid-here\>")
+
     # Special Linux command, CM-29033
     output_string = output_string.replace("&amp;&amp;", "&&")
+
+    # Formatting due to JIRA to Redmine migration
+    output_string = output_string.replace("{{", "<code>")
+    output_string = output_string.replace("}}", "</code>")
 
     return output_string
 
@@ -142,6 +218,11 @@ def sanatize_rn_for_xls(string):
     output_string = string.replace("<br />", "\015")
 
     output_string = output_string.replace("`", "&apos;")
+    output_string = output_string.replace("&", "&amp;")
+    output_string = output_string.replace("\\<", "&lt;")
+    output_string = output_string.replace("\\>", "&gt;")
+    output_string = output_string.replace("<", "&lt;")
+    output_string = output_string.replace(">", "&gt;")
 
     output_string = output_string.replace("<tt>", "")
     output_string = output_string.replace("</tt>", "")
@@ -154,10 +235,10 @@ def sanatize_rn_for_xls(string):
     output_string = output_string.replace('<div class=\"preformatted\" style=\"border-width: 1px;\"><div class=\"preformattedContent panelContent\">', "")
     output_string = output_string.replace("</div>", "")
 
-    # output_string = output_string.replace("&", "&amp;")
-    # output_string = output_string.replace("\"", "&quot;")
-    # output_string = output_string.replace("<", "&lt;")
-    # output_string = output_string.replace(">", "&gt;")
+    # NetQ-5774 Fix. The use of "<>" in a string inside a code (<pre>) block disappears
+    output_string = output_string.replace("<ipaddr>", "[ipaddr]")
+
+    output_string = output_string.replace("{noformat}", "")
 
     return output_string
 
@@ -182,7 +263,7 @@ def build_rn_markdown(json_file, version, file_type):
         output.append("|---	        |---	        |---	    |---	                |")
         output.append("\n")
     else:
-        output.append("### Fixed issues in {}".format(version))
+        output.append("### Fixed Issues in {}".format(version))
         # output.append("<div class=\"table-wrapper\" markdown=\"block\">")
         output.append("\n")
         output.append("|  Issue ID 	|   Description	|   Affects	|")
@@ -190,11 +271,32 @@ def build_rn_markdown(json_file, version, file_type):
         output.append("|---	        |---	        |---	    |")
         output.append("\n")
 
+    '''
+    Generic JSON format is
+    {
+        "ticket": "2556037",
+        "jira_ticket": "CM-33012",
+        "affects_versions": [
+        "3.7.9-4.2.0"
+        ],
+        "release_notes_text": "After you add an interface to the bridge, an OSPF session flap can occur.\r\n\r\n"
+    }
+    '''
     for bug in json_file:
-        if file_type == "affects":
-            output.append("| <a name=\"" + bug["ticket"] + "\"></a> [" + bug["ticket"] + "](#" + bug["ticket"] + ") <a name=\"" + bug["ticket"] + "\"></a> | " + sanatize_rn_for_markdown(bug["release_notes_text"]) + " | " + ", ".join(bug["affects_versions"]) + " | " + ", ".join(bug["fixed_versions"]) + "|")
+        '''
+        With the conversion from Jira to Redmine the JSON file is now inconsistent.
+        "ticket" may be a Jira CM or Redmine issue number.
+        The filed "jira_ticket" is the Jira CM number, but not every issue has a mapped Jira ticket.
+        '''
+        if "jira_ticket" in bug and not bug["jira_ticket"] == "":
+                issue_id_string = "| <a name=\"" + bug["ticket"] + "\"></a> [" + bug["ticket"] + "](#" + bug["ticket"] + ") <a name=\"" + bug["ticket"] + "\"></a> <br />" + bug["jira_ticket"] + " | "
         else:
-            output.append("| <a name=\"" + bug["ticket"] + "\"></a> [" + bug["ticket"] + "](#" + bug["ticket"] + ") | " + sanatize_rn_for_markdown(bug["release_notes_text"]) + " | " + ", ".join(bug["affects_versions"]) + " | " + "|")
+            issue_id_string = "| <a name=\"" + bug["ticket"] + "\"></a> [" + bug["ticket"] + "](#" + bug["ticket"] + ") <a name=\"" + bug["ticket"] + "\"></a> <br /> | "
+
+        if file_type == "affects":
+            output.append(issue_id_string + sanatize_rn_for_markdown(bug["release_notes_text"]) + " | " + ", ".join(bug["affects_versions"]) + " | " + ", ".join(bug["fixed_versions"]) + "|")
+        else:
+            output.append(issue_id_string + sanatize_rn_for_markdown(bug["release_notes_text"]) + " | " + ", ".join(bug["affects_versions"]) + " | " + "|")
 
         output.append("\n")
 
@@ -213,11 +315,11 @@ def build_markdown_header(product, version):
     if product == "Cumulus Linux":
         weight = "-30"
     elif product == "Cumulus NetQ":
-        weight = "635"
+        weight = "30"
     output = []
 
     output.append("---\n")
-    output.append("title: {} {} Release Notes\n".format(product, version))
+    output.append("title: NVIDIA {} {} Release Notes\n".format(product, version))
     output.append("author: Cumulus Networks\n")
     output.append("weight: {}\n".format(weight))
     output.append("product: {}\n".format(product))
@@ -242,12 +344,8 @@ def read_markdown_header(product, version):
 
     Returns a list of strings that are the existing front matter.
     '''
-    directory = get_hugo_folder(product, version)
 
-    if product == "cl":
-        input_file = "content/{}/Whats-New/rn.md".format(directory)
-    elif product == "netq":
-        input_file = "content/{}/More-Documents/rn.md".format(directory)
+    input_file = rn_location(product, version)
 
     look_for_end_of_header = True
     header_lines = []
@@ -286,16 +384,13 @@ def write_rns(output, file_type, product, version):
         # Moving it into the product specific folder makes generating xls much more complicated.
         output_file = "content/{}/rn.{}".format(directory, file_type)
 
+    else:
+        output_file = rn_location(product, version)
 
-    if file_type == "md":
-        if product == "cl":
-            output_file = "content/{}/Whats-New/rn.{}".format(directory, file_type)
-        if product == "netq":
-            output_file = "content/{}/More-Documents/rn.{}".format(directory, file_type)
-
-    with open(output_file, "w") as out_file:
+    with open(output_file, "w+") as out_file:
         for line in output:
             out_file.write(line)
+
 
 def build_rn_markdown_files(product, version_list):
     '''
@@ -331,10 +426,13 @@ def build_rn_markdown_files(product, version_list):
 
         # We only want to generate the frontmatter once per minor
         #version_output.extend(build_markdown_header(product_string(product), major))
-        version_output.extend(read_markdown_header(product, major))
+        try:
+            version_output.extend(read_markdown_header(product, major))
+        except FileNotFoundError:
+            version_output.extend(build_markdown_header(product_string(product), major))
         hugo_dir = get_hugo_folder(product, major)
         link = "<a href=\"/{}/rn.xls\">".format(hugo_dir)
-        version_output.append("{}<img src=\"/images/xls_icon.png\" height=\"20px\" width=\"20px\" alt=\"Download {} Release Notes xls\" /></a>&nbsp;&nbsp;&nbsp;&nbsp;{}Download all {} release notes as .xls</a>\n".format(link, major, link, major))
+        version_output.append("{} {{{{<rn_icon alt=\"Download {} Release Notes xls\" >}}}}</a>&nbsp;&nbsp;&nbsp;&nbsp;{}Download all {} release notes as .xls</a>\n".format(link, major, link, major))
 
 
         # Loop over all the maintenance releases.

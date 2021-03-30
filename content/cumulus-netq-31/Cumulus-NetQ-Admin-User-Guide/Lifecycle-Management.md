@@ -30,7 +30,6 @@ You can access the lifecycle management features from several places in NetQ. Al
      - Click <img src="https://icons.cumulusnetworks.com/03-Computers-Devices-Electronics/09-Hard-Drives/hard-drive-1.svg" height="18" width="18"/> (Switches) in the workbench header, then click **Manage switches**
     - Click <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/06-Servers/server-upload.svg" height="18" width="18"/> (Upgrade) in the workbench header (this option is planned for removal in later releases)
 
-
 The first time you open the Manage Switch Assets view, it provides a summary card for switch inventory, uploaded Cumulus Linux images, uploaded NetQ images, NetQ configuration profiles, and switch access settings. Additional cards appear after that based on your activity.
 
 {{<figure src="/images/netq/lcm-dashboard-310.png" width="700">}}
@@ -311,7 +310,7 @@ You must have sudoer permission to properly configure switch access for the SSH 
 
 3. Copy the SSH *public* key to each switch that you want to upgrade using one of the following methods:
 
-    - Manually copy the the SSH public key to the */home/\<USER\>/.ssh/authorized_keys* file on each switch, or
+    - Manually copy SSH public key to the */home/\<USER\>/.ssh/authorized_keys* file on each switch, or
     - Run `ssh-copy-id USER@<switch_ip>` on the server where the SSH key pair was generated for each switch
 
 4. Copy the SSH *private* key into the text box in the Create Switch Access card.

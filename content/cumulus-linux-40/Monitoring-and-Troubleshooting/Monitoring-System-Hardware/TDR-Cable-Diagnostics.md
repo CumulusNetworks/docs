@@ -1,6 +1,6 @@
 ---
 title: TDR Cable Diagnostics
-author: Cumulus Networks
+author: NVIDIA
 weight: 960
 toc: 4
 ---
@@ -8,7 +8,7 @@ Cumulus Linux provides the Time Domain Reflectometer (TDR) cable diagnostic tool
 
 {{%notice note%}}
 
-TDR is currently supported only on the EdgeCore AS4610 switch. Pluggable modules are not supported.
+TDR is supported only on the EdgeCore AS4610 switch. Pluggable modules are not supported.
 
 {{%/notice%}}
 

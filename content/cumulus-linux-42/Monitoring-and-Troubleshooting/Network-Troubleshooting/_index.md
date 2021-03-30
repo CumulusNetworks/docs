@@ -1,7 +1,7 @@
 ---
 title: Network Troubleshooting
-author: Cumulus Networks
-weight: 1040
+author: NVIDIA
+weight: 1110
 toc: 3
 ---
 Cumulus Linux includes a number of command line and analytical tools to help you troubleshoot issues with your network.

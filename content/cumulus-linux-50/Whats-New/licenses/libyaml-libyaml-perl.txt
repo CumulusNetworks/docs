@@ -1,0 +1,59 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: YAML-LibYAML
+Upstream-Contact: Ingy döt Net <ingy@cpan.org>
+Source: https://metacpan.org/release/YAML-LibYAML
+Files-Excluded:
+ LibYAML/api.c
+ LibYAML/config.h
+ LibYAML/dumper.c
+ LibYAML/emitter.c
+ LibYAML/loader.c
+ LibYAML/parser.c
+ LibYAML/reader.c
+ LibYAML/scanner.c
+ LibYAML/writer.c
+ LibYAML/yaml.h
+ LibYAML/yaml_private.h
+
+Files: *
+Copyright: 2007-2018, Ingy döt Net <ingy@cpan.org>
+License: Artistic or GPL-1+
+
+Files: inc/Spiffy.pm
+Copyright: 2006, Ingy döt Net <ingy@cpan.org>
+ 2004, Brian Ingerson <ingy@cpan.org>
+License: Artistic or GPL-1+
+
+Files: inc/Test/Base.pm inc/Test/Base/*
+Copyright: 2005-2009, Brian Ingerson <ingy@cpan.org>
+License: Artistic or GPL-1+
+
+Files: LibYAML/ppport.h
+Copyright: 2004-2009, Marcus Holland-Moritz <mhx-cpan@gmx.net>
+ 2001, Paul Marquess <pmqs@cpan.org> (Version 2.x)
+ 1999, Kenneth Albanowski <kjahds@kjahds.com> (Version 1.x)
+License: Artistic or GPL-1+
+
+Files: debian/*
+Copyright: 2009, Ryan Niebur <ryan@debian.org>
+ 2010, Jonathan Yu <jawnsy@cpan.org>
+ 2010, Krzysztof Krzyżaniak (eloy) <eloy@debian.org>
+ 2011-2019, gregor herrmann <gregoa@debian.org>
+ 2012, Julián Moreno Patiño <darkjunix@gmail.com>
+License: Artistic or GPL-1+
+
+License: Artistic
+ This program is free software; you can redistribute it and/or modify
+ it under the terms of the Artistic License, which comes with Perl.
+ .
+ On Debian systems, the complete text of the Artistic License can be
+ found in `/usr/share/common-licenses/Artistic'.
+
+License: GPL-1+
+ This program is free software; you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation; either version 1, or (at your option)
+ any later version.
+ .
+ On Debian systems, the complete text of version 1 of the GNU General
+ Public License can be found in `/usr/share/common-licenses/GPL-1'.

@@ -1,6 +1,6 @@
 ---
 title: VXLAN Tunnel DSCP Operations
-author: Cumulus Networks
+author: NVIDIA
 weight: 640
 toc: 3
 ---
@@ -16,7 +16,7 @@ VXLAN Tunnel DSCP operations are supported on Mellanox Spectrum switches only.
 
 ## Configure DSCP Operations
 
-You can set the following DSCP operations by editing the `/etc/cumulus/switchd.conf` file. After you modify the the `/etc/cumulus/switchd.conf` file, you must restart `switchd` for the changes to take effect; run the `cumulus@switch:~$ sudo systemctl restart switchd.service` command.
+You can set the following DSCP operations by editing the `/etc/cumulus/switchd.conf` file. After you modify `/etc/cumulus/switchd.conf` file, you must restart `switchd` for the changes to take effect; run the `cumulus@switch:~$ sudo systemctl restart switchd.service` command.
 
 | Option | Description |
 | ------ | ----------- |

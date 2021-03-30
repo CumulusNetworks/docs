@@ -1,6 +1,6 @@
 ---
 title: What's New
-author: Cumulus Networks
+author: NVIDIA
 weight: 5
 toc: 2
 ---
@@ -12,15 +12,15 @@ This document supports the Cumulus Linux 4.2 release, and lists new platforms an
 
 ## What's New in Cumulus Linux 4.2.1
 
-Cumulus Linux 4.2.1 supports new platforms, provides bug fixes, and contains certain enhancements.
+Cumulus Linux 4.2.1 supports a new platform, provides bug fixes, and contains certain enhancements.
 
 ### New Platforms
 
 - Mellanox SN4700 (Spectrum-3)
-- Mellanox SN3700-V (200G Spectrum-2)
 
 ### Enhancements
 
+- The Mellanox SN3700 Spectrum-2 switch now supports 200G (100G was supported previously)
 - {{<link url="EVPN-Multihoming" text="EVPN multihoming">}} is now generally available on Mellanox switches
 - {{<link url="Virtual-Routing-and-Forwarding-VRF/#vrf-route-leaking" text="Inter-VRF route leaking">}} is now ASIC accelerated by default
 
@@ -47,7 +47,7 @@ Cumulus Linux 4.2.0 supports new platforms, provides bug fixes, and contains sev
 
 ### Unsupported Platforms
 
-Cumulus Networks does not support these platforms in Cumulus Linux 4.2. They are supported in Cumulus Linux 3.7, until that release reaches its end of life.
+These platforms are not supported in Cumulus Linux 4.2. They are supported in Cumulus Linux 3.7, until that release reaches its end of life.
 
 - Cumulus Express CX-10256-S/Edgecore OMP-800 (100G Tomahawk)
 - Dell S6000-ON (40G Trident2)
@@ -55,6 +55,5 @@ Cumulus Networks does not support these platforms in Cumulus Linux 4.2. They are
 - Facebook Backpack (100G Tomahawk)
 - Facebook Voyager (100G Tomahawk)
 - Delta AG7648
-- Edgecore AS4610-54T-B
 - QCT QuantaMesh BMS T3048-LY8
 - QCT QuantaMesh BMS T3048-LY9

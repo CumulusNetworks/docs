@@ -1,6 +1,6 @@
 ---
 title: Border Gateway Protocol - BGP
-author: Cumulus Networks
+author: NVIDIA
 weight: 185
 pageID: 8362926
 ---
@@ -358,7 +358,6 @@ The above rules imply that there are scenarios where a generated update has two 
 
 ### Limitations
 
-- Interface-based peering with separate IPv4 and IPv6 sessions is not supported.
 - In Cumulus Linux 3.7.1 and earlier, ENHE is sent for IPv6 link-local peerings only. In Cumulus Linux 3.7.2 and later, ENHE can also be also sent for IPv6 GUA peerings (see below).
 - BGP unnumbered only works with two switches at a time, as it is meant to work with PTP (point-to-point protocol).
 - If an IPv4 /30 or /31 IP address is assigned to the interface, IPv4 peering is used over IPv6 link-local peering.
@@ -761,10 +760,10 @@ Paths: (3 available, best #3, table Default-IP-Routing-Table)
 
 ## Fast Convergence Design Considerations
 
-Cumulus Networks strongly recommends the following use of addresses in the design of a BGP-based data center network:
+When designing a BGP-based data center network:
 
 - Set up BGP sessions only using interface-scoped addresses. This allows BGP to react quickly to link failures.
-- Use of next hop-self: Every BGP node says that it knows how to forward traffic to the prefixes it is announcing. This reduces the requirement to announce interface-specific addresses and thereby reduces the size of the forwarding table.
+- Use next hop-self: Every BGP node says that it knows how to forward traffic to the prefixes it is announcing. This reduces the requirement to announce interface-specific addresses and thereby reduces the size of the forwarding table.
 
 When you configure BGP for the neighbors of a given interface, you can specify the interface name instead of its IP address. All the other `neighbor` command options remain the same.
 
@@ -797,7 +796,7 @@ cumulus@switch:~$ net add bgp ipv6 unicast neighbor swp1 activate
 
 {{%notice note%}}
 
-By default, Cumulus Linux sends IPv6 neighbor discovery router advertisements. Cumulus Networks recommends you adjust the interval of the router advertisement to a shorter value (`net add interface <interface> ipv6 nd ra-interval <interval>`) to address scenarios when nodes come up and miss router advertisement processing to relay the neighbor's link-local address to BGP. The `interval` is measured in seconds and defaults to 10 seconds.
+By default, Cumulus Linux sends IPv6 neighbor discovery router advertisements. Adjust the interval of the router advertisement to a shorter value (`net add interface <interface> ipv6 nd ra-interval <interval>`) to address scenarios when nodes come up and miss router advertisement processing to relay the neighbor's link-local address to BGP. The `interval` is measured in seconds and defaults to 10 seconds.
 
 {{%/notice%}}
 

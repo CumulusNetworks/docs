@@ -1,6 +1,6 @@
 ---
 title: Port Security
-author: Cumulus Networks
+author: NVIDIA
 weight: 380
 toc: 3
 ---
@@ -29,7 +29,7 @@ The example commands configure swp1 to allow access to MAC address 00:02:00:00:0
 cumulus@switch:~$ net add interface swp1 port-security allowed-mac 00:02:00:00:00:05
 ```
 
-You can specify only one MAC address with the NCLU command. To specify multiple MAC addresses, set the `interface.<port>.port_security.allowed_mac` parameter in the `/etc/cumulus/switchd.d/port_security.conf` file. See {{<link title="#Configure Port Security Manually" text="Configure Port Security Manually">}} below.
+You can specify only one MAC address with the NCLU command. To specify multiple MAC addresses, set the `interface.<port>.port_security.static_mac` parameter in the `/etc/cumulus/switchd.d/port_security.conf` file. See {{<link title="#Configure Port Security Manually" text="Configure Port Security Manually">}} below.
 
 **To enable sticky MAC on a port**, where the first learned MAC address on the port is the only MAC address allowed, run the following commands.
 
@@ -95,12 +95,12 @@ Add the configuration settings you want to use to the `/etc/cumulus/switchd.d/po
 | --------| -----------|
 | `interface.<port>.port_security.enable` | 1 enables security on the port. 0 disables security on the port.|
 | `interface.<port>.port_security.mac_limit` | The maximum number of MAC addresses allowed to access the port. You can specify a number between 0 and 512. The default is 32.|
-| `interface.<port>.port_security.allowed_mac` | The specific MAC addresses allowed to access the port. You can specify multiple MAC addresses. Separate each MAC address with a space.|
+| `interface.<port>.port_security.static_mac` | The specific MAC addresses allowed to access the port. You can specify multiple MAC addresses. Separate each MAC address with a space.|
 | `interface.<port>.port_security.sticky_mac` | 1 enables sticky MAC, where the first learned MAC address on the port is the only MAC address allowed. 0 disables sticky MAC. |
 | `interface.<port>.port_security.sticky_timeout` | The time period after which the first learned MAC address ages out and no longer has access to the port. The default aging timeout value is 1800 seconds. You can specify a value between 0 and 3600 seconds.|
-| `interface.swp1.port_security.sticky_aging` | 1 enables sticky MAC aging. 0 disables sticky MAC aging.|
+| `interface.<port>.port_security.sticky_aging` | 1 enables sticky MAC aging. 0 disables sticky MAC aging.|
 | `interface.<port>.port_security.violation_mode` | The violation mode: 0 (shutdown) puts a port into ADMIN down state. 1 (restrict) drops packets.|
-|`interface.<port>.port_security.violation_timeout` | The number of seconds after which the violation mode times out. You can specify a value between 0 and 3600 seconds. The default value is 1800 seconds.|
+| `interface.<port>.port_security.violation_timeout` | The number of seconds after which the violation mode times out. You can specify a value between 0 and 3600 seconds. The default value is 1800 seconds.|
 
 An example `/etc/cumulus/switchd.d/port_security.conf` configuration file is shown here:
 
@@ -110,7 +110,7 @@ interface.swp1.port_security.enable = 1
 interface.swp1.port_security.mac_limit = 32
 interface.swp1.port_security.static_mac = 00:02:00:00:00:05 00:02:00:00:00:06
 interface.swp1.port_security.sticky_mac = 1
-interface.<port>.port_security.sticky_timeout = 2000
+interface.swp1.port_security.sticky_timeout = 2000
 interface.swp1.port_security.sticky_aging = 1
 interface.swp1.port_security.violation_mode = 0
 interface.swp1.port_security.violation_timeout = 3600

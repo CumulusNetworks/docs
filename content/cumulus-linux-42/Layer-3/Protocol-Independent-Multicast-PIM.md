@@ -1,7 +1,7 @@
 ---
 title: Protocol Independent Multicast - PIM
-author: Cumulus Networks
-weight: 890
+author: NVIDIA
+weight: 960
 toc: 3
 ---
 Protocol Independent Multicast (PIM) is a multicast control plane protocol that advertises multicast sources and receivers over a routed layer 3 network. Layer 3 multicast relies on PIM to advertise information about multicast capable routers, and the location of multicast senders and receivers. For this reason, multicast cannot be sent through a routed network without PIM.
@@ -1449,7 +1449,7 @@ You can also run the NCLU command equivalent:`net show system asic | grep Mcast`
 
 {{%/notice%}}
 
-For Spectrum chipsets, refer to {{<link url="Routing#tcam-resource-profiles-for-spectrum-switches" text="TCAM Resource Profiles for Spectrum Switches">}}.
+For Spectrum chipsets, refer to {{<link url="Supported-Route-Table-Entries#tcam-resource-profiles-for-spectrum-switches" text="TCAM Resource Profiles for Spectrum Switches">}}.
 
 ### Verify MSDP Session State
 

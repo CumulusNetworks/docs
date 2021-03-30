@@ -1,7 +1,7 @@
 ---
 title: Mellanox What Just Happened (WJH)
-author: Cumulus Networks
-weight: 1060
+author: NVIDIA
+weight: 1130
 toc: 4
 ---
 Cumulus Linux supports the *What Just Happened* (WJH) feature for Mellanox switches to stream detailed and contextual telemetry for off-box analysis with tools, such as {{<exlink url="https://docs.cumulusnetworks.com/cumulus-netq/" text="Cumulus NetQ">}}. This advanced streaming telemetry technology provides real time visibility into problems in the network, such as hardware packet drops due to buffer congestion, incorrect routing, ACL or layer 1 problems.

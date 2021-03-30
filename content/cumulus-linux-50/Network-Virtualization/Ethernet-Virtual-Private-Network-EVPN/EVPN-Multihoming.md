@@ -5,7 +5,7 @@ weight: 570
 toc: 4
 ---
 
-*EVPN multihoming* (EVPN-MH) provides support for all-active server redundancy. It is a standards-based replacement for MLAG in data centers deploying Clos topologies. Replacing MLAG:
+*EVPN multihoming* (EVPN-MH) provides support for all-active server redundancy. It is a standards-based replacement for MLAG in data centers deploying Clos topologies. Replacing MLAG provides these benefits:
 
 - Eliminates the need for peerlinks or inter-switch links between the top of rack switches
 - Allows more than two TOR switches to participate in a redundancy group
@@ -37,7 +37,7 @@ This section describes features that you must enable to use EVPN multihoming. Ot
 You must enable the following features to use EVPN-MH:
 
 - {{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware bridge mode">}}
-- {{<link url="Basic-Configuration/#arp-and-nd-suppression" text="ARP suppression">}}
+- {{<link url="EVPN-Enhancements/#arp-and-nd-suppression" text="ARP suppression">}}
 - EVPN BUM traffic handling with {{<link title="EVPN BUM Traffic with PIM-SM" text="EVPN-PIM">}} on multihomed sites via Type-4/ESR routes, which includes split-horizon-filtering and designated forwarder election
 
 {{%notice warning%}}
@@ -80,10 +80,10 @@ The following features are not supported with EVPN-MH:
 
 ## Configure EVPN-MH
 
-To configure EVPN-MH, enable the `evpn.multihoming.enable` variable in `switchd.conf`. Then, specify the following required settings:
-
-- The Ethernet segment ID (`es-id`)
-- The Ethernet segment system MAC address (`es-sys-mac`)
+To configure EVPN-MH:
+1. Enable the `evpn.multihoming.enable` variable in `switchd.conf`. Then, specify the following required settings:
+2. Set the Ethernet segment ID (`es-id`)
+3. Set the Ethernet segment system MAC address (`es-sys-mac`)
 
 These settings are applied to interfaces, typically bonds.
 
@@ -98,7 +98,7 @@ A *designated forwarder* (DF) is elected for each Ethernet segment. The DF is re
 NCLU generates the EVPN-MH configuration and reloads FRR and `ifupdown2`. The configuration appears in both the `/etc/network/interfaces` file and in `/etc/frr/frr.conf` file.
 
 {{%notice note%}}
-When EVPN-MH is enabled, all SVI MAC addresses are advertised as type 2 routes. You no longer need to configure a unique SVI IP address, or configure the BGP EVPN address family with `advertise-svi-ip`.
+When EVPN-MH is enabled, all SVI MAC addresses are advertised as type 2 routes. You do not need to configure a unique SVI IP address or configure the BGP EVPN address family with `advertise-svi-ip`.
 {{%/notice%}}
 
 ### Enable EVPN-MH in switchd
@@ -108,9 +108,7 @@ To enable EVPN-MH in `switchd`, set the `evpn.multihoming.enable` variable in `s
 ```
 cumulus@switch:~$ sudo nano /etc/cumulus/switchd.conf
 ...
-
 evpn.multihoming.enable = TRUE
-
 ...
 
 cumulus@switch:~$ sudo systemctl restart switchd.service
@@ -124,22 +122,29 @@ To configure bond interfaces for EVPN multihoming, run commands similar to the f
 {{<tab "CUE Commands">}}
 
 ```
-cumulus@switch:~$ 
-cumulus@switch:~$
+cumulus@leaf01:~$ cl set interface bond1 bond member swp1
+cumulus@leaf01:~$ cl set interface bond2 bond member swp2
+cumulus@leaf01:~$ cl set interface bond3 bond member swp3
+cumulus@leaf01:~$ cl set interface bond1 bond evpn mh es-id 1
+cumulus@leaf01:~$ cl set interface bond2 bond evpn mh es-id 2
+cumulus@leaf01:~$ cl set interface bond3 bond evpn mh es-id 3
+cumulus@leaf01:~$ cl set interface bond1-3 bond evpn mh es-sys-mac 44:38:39:BE:EF:AA
+cumulus@leaf01:~$ cl set interface bond1-3 bond evpn mh es-df-pref 50000
+cumulus@leaf01:~$ cl config apply
 ```
 
 {{</tab>}}
 {{<tab "NCLU Commands">}}
 
 ```
-cumulus@switch:~$ net add bond hostbond1 bond slaves swp5
-cumulus@switch:~$ net add bond hostbond2 bond slaves swp6
-cumulus@switch:~$ net add bond hostbond3 bond slaves swp7
-cumulus@switch:~$ net add bond hostbond1 evpn mh es-id 1
-cumulus@switch:~$ net add bond hostbond2 evpn mh es-id 2
-cumulus@switch:~$ net add bond hostbond3 evpn mh es-id 3
-cumulus@switch:~$ net add bond hostbond1-3 evpn mh es-sys-mac 44:38:39:ff:ff:01
-cumulus@switch:~$ net add bond hostbond1-3 evpn mh es-df-pref 50000
+cumulus@switch:~$ net add bond bond1 bond slaves swp1
+cumulus@switch:~$ net add bond bond2 bond slaves swp2
+cumulus@switch:~$ net add bond bond3 bond slaves swp3
+cumulus@switch:~$ net add bond bond1 evpn mh es-id 1
+cumulus@switch:~$ net add bond bond2 evpn mh es-id 2
+cumulus@switch:~$ net add bond bond3 evpn mh es-id 3
+cumulus@switch:~$ net add bond bond1-3 evpn mh es-sys-mac 44:38:39:BE:EF:AA
+cumulus@switch:~$ net add bond bond1-3 evpn mh es-df-pref 50000
 cumulus@switch:~$ net commit
 ```
 
@@ -153,20 +158,20 @@ Hello, this is FRRouting (version 7.4+cl4u1).
 Copyright 1996-2005 Kunihiro Ishiguro, et al.
 
 leaf01# configure terminal
-leaf01(config)# interface hostbond1
+leaf01(config)# interface bond1
 leaf01(config-if)# evpn mh es-df-pref 50000
 leaf01(config-if)# evpn mh es-id 1
-leaf01(config-if)# evpn mh es-sys-mac 44:38:39:ff:ff:01
+leaf01(config-if)# evpn mh es-sys-mac 44:38:39:BE:EF:AA
 leaf01(config-if)# exit
-leaf01(config)# interface hostbond2
+leaf01(config)# interface bond2
 leaf01(config-if)# evpn mh es-df-pref 50000
 leaf01(config-if)# evpn mh es-id 2
-leaf01(config-if)# evpn mh es-sys-mac 44:38:39:ff:ff:01
+leaf01(config-if)# evpn mh es-sys-mac 44:38:39:BE:EF:AA
 leaf01(config-if)# exit
-leaf01(config)# interface hostbond3
+leaf01(config)# interface bond3
 leaf01(config-if)# evpn mh es-df-pref 50000
 leaf01(config-if)# evpn mh es-id 3
-leaf01(config-if)# evpn mh es-sys-mac 44:38:39:ff:ff:01
+leaf01(config-if)# evpn mh es-sys-mac 44:38:39:BE:EF:AA
 leaf01(config-if)# exit
 leaf01(config)# write memory
 leaf01(config)# exit
@@ -180,37 +185,41 @@ cumulus@leaf01:~$
 The NCLU commands create the following configuration in the `/etc/network/interfaces` file. If you are editing the `/etc/network/interfaces` file directly, apply a configuration like the following:
 
 ```
-interface hostbond1
-  bond-slaves swp5
-  es-sys-mac 44:38:39:ff:ff:01
+cumulus@switch:~$ sudo cat /etc/network/interfaces
+...
+interface bond1
+  bond-slaves swp1
+  es-sys-mac 44:38:39:BE:EF:AA
 
-interface hostbond2
-  bond-slaves swp6
-  es-sys-mac 44:38:39:ff:ff:01
+interface bond2
+  bond-slaves swp2
+  es-sys-mac 44:38:39:BE:EF:AA
 
-interface hostbond3
-  bond-slaves swp7
-  es-sys-mac 44:38:39:ff:ff:01
+interface bond3
+  bond-slaves swp3
+  es-sys-mac 44:38:39:BE:EF:AA
 ```
 
 These commands also create the following configuration in the `/etc/frr/frr.conf` file.
 
 ```
+cumulus@switch:~$ sudo cat /etc/frr/frr.conf
+...
 !
-interface hostbond1
+interface bond1
  evpn mh es-df-pref 50000
  evpn mh es-id 1
- evpn mh es-sys-mac 44:38:39:ff:ff:01
+ evpn mh es-sys-mac 44:38:39:BE:EF:AA
 !
-interface hostbond2
+interface bond2
  evpn mh es-df-pref 50000
  evpn mh es-id 2
- evpn mh es-sys-mac 44:38:39:ff:ff:01
+ evpn mh es-sys-mac 44:38:39:BE:EF:AA
 !
-interface hostbond3
+interface bond3
  evpn mh es-df-pref 50000
  evpn mh es-id 3
- evpn mh es-sys-mac 44:38:39:ff:ff:01
+ evpn mh es-sys-mac 44:38:39:BE:EF:AA
 !
 ```
 
@@ -229,7 +238,8 @@ To configure a MAC hold time for 1000 seconds, run the following commands:
 {{<tab "CUE Commands">}}
 
 ```
-cumulus@switch:~$ 
+cumulus@switch:~$ cl set evpn mh mac-holdtime 1000??
+cumulus@switch:~$ cl config apply
 ```
 
 {{</tab>}}
@@ -257,6 +267,8 @@ switch# write memory
 This creates the following configuration in the `/etc/frr/frr.conf` file:
 
 ```
+cumulus@switch:~$ sudo cat /etc/frr/frr.conf
+...
 evpn mh mac-holdtime 1200
 ```
 
@@ -266,7 +278,8 @@ To configure a neighbor hold time for 600 seconds, run the following commands:
 {{<tab "CUE Commands">}}
 
 ```
-cumulus@switch:~$ 
+cumulus@switch:~$ cl set evpn mh neigh-holdtime 600??
+cumulus@switch:~$ cl config apply
 ```
 
 {{</tab>}}
@@ -294,6 +307,8 @@ switch# write memory
 This creates the following configuration in the `/etc/frr/frr.conf` file:
 
 ```
+cumulus@switch:~$ sudo cat /etc/frr/frr.conf
+...
 evpn mh neigh-holdtime 600
 ```
 
@@ -303,7 +318,8 @@ To configure a startup delay for 1800 seconds, run the following commands:
 {{<tab "CUE Commands">}}
 
 ```
-cumulus@switch:~$ 
+cumulus@switch:~$ cl set evpn mh startup-delay 1800??
+cumulus@switch:~$ cl config apply
 ```
 
 {{</tab>}}
@@ -331,6 +347,8 @@ switch# write memory
 This creates the following configuration in the `/etc/frr/frr.conf` file:
 
 ```
+cumulus@switch:~$ sudo cat /etc/frr/frr.conf
+...
 evpn mh startup-delay 1800
 ```
 
@@ -342,7 +360,9 @@ When all the uplinks go down, the VTEP loses connectivity to the VXLAN overlay. 
 {{<tab "CUE Commands">}}
 
 ```
-cumulus@switch:~$ 
+cumulus@switch:~$ NEED COMMAND
+cumulus@switch:~$ NEED COMMAND 
+cumulus@switch:~$ cl config apply
 ```
 
 {{</tab>}}
@@ -392,6 +412,7 @@ cumulus@leaf01:~$
 These commands create the following configuration in the `/etc/frr/frr.conf` file:
 
 ```
+cumulus@switch:~$ sudo cat /etc/frr/frr.conf
 ...
 !
 interface swp1
@@ -415,13 +436,14 @@ interface swp4
 
 ### Enable FRR Debugging
 
-You can add debug statements to the `/etc/frr/frr.conf` file to debug the Ethernet segments, routes and routing protocols (via Zebra).
+You can add debug statements to the `/etc/frr/frr.conf` file to debug the Ethernet segments, routes, and routing protocols (via Zebra).
 
 {{<tabs "debug">}}
 {{<tab "CUE Commands">}}
 
 ```
-cumulus@switch:~$
+cumulus@switch:~$ NEED COMMAND
+cumulus@switch:~$ cl config apply
 ```
 
 {{</tab>}}
@@ -471,11 +493,7 @@ These commands create the following configuration in the `/etc/frr/frr.conf` fil
 
 ```
 cumulus@switch:~$ cat /etc/frr/frr.conf
-frr version 7.4+cl4u1
-frr defaults datacenter
-
 ...
-
 !
 debug bgp evpn mh es
 debug bgp evpn mh route
@@ -491,12 +509,12 @@ debug zebra vxlan
 
 ### Fast Failover
 
-When an Ethernet segment link goes down, the attached VTEP notifies all other VTEPs via a single EAD-ES withdraw. This is done by way of an Ethernet segment bond redirect.
+When an Ethernet segment link goes down, the attached VTEP notifies all other VTEPs using a single EAD-ES withdraw. This is done by way of an Ethernet segment bond redirect.
 
-Fast failover is also triggered by:
+Fast failover also triggers:
 
-- Rebooting a leaf switch or VTEP.
-- Uplink failure. When all uplinks are down, the Ethernet segment bonds on the switch are protodowned or error disabled.
+- When you reboot a leaf switch or VTEP.
+- When there is an uplink failure. When all uplinks are down, the Ethernet segment bonds on the switch are protodowned or error disabled.
 
 ### Disable Next Hop Group Sharing in the ASIC
 
@@ -522,9 +540,9 @@ cumulus@switch:~$ sudo systemctl restart switchd.service
 - As EAD-per-ES (Ethernet Auto-discovery per Ethernet segment) routes
 - As EAD-per-EVI (Ethernet Auto-discovery per EVPN instance) routes
 
-Some third party switch vendors don't advertise EAD-per-EVI routes; they only advertise EAD-per-ES routes. To interoperate with these vendors, you need to disable EAD-per-EVI route advertisements.
+Some third party switch vendors do not advertise EAD-per-EVI routes; they only advertise EAD-per-ES routes. To interoperate with these vendors, you need to disable EAD-per-EVI route advertisements.
 
-To remove the dependency on EAD-per-EVI routes and activate the VTEP upon receiving the EAD-per-ES route, run:
+To remove the dependency on EAD-per-EVI routes and activate the VTEP upon receiving the EAD-per-ES route:
 
 ```
 cumulus@switch:~$ net add bgp l2vpn evpn disable-ead-evi-rx
@@ -550,10 +568,10 @@ The `net show evpn es` command displays the Ethernet segments across all VNIs.
 cumulus@switch:~$ net show evpn es
 Type: L local, R remote, N non-DF
 ESI                            Type ES-IF                 VTEPs
-03:44:38:39:ff:ff:01:00:00:01  R    -                     172.0.0.22,172.0.0.23
-03:44:38:39:ff:ff:01:00:00:02  LR   hostbond2             172.0.0.22,172.0.0.23
-03:44:38:39:ff:ff:01:00:00:03  LR   hostbond3             172.0.0.22,172.0.0.23
-03:44:38:39:ff:ff:01:00:00:05  L    hostbond1
+03:44:38:39:BE:EF:AA:00:00:01  R    -                     172.0.0.22,172.0.0.23
+03:44:38:39:BE:EF:AA:00:00:02  LR   bond2             172.0.0.22,172.0.0.23
+03:44:38:39:BE:EF:AA:00:00:03  LR   bond3             172.0.0.22,172.0.0.23
+03:44:38:39:BE:EF:AA:00:00:05  L    bond1
 03:44:38:39:ff:ff:02:00:00:01  R    -                     172.0.0.24,172.0.0.25,172.0.0.26
 03:44:38:39:ff:ff:02:00:00:02  R    -                     172.0.0.24,172.0.0.25,172.0.0.26
 03:44:38:39:ff:ff:02:00:00:03  R    -                     172.0.0.24,172.0.0.25,172.0.0.26
@@ -568,12 +586,12 @@ cumulus@switch:~$ net show evpn es-evi
 Type: L local, R remote
 VNI      ESI                            Type
 ...
-1002     03:44:38:39:ff:ff:01:00:00:02  L
-1002     03:44:38:39:ff:ff:01:00:00:03  L
-1002     03:44:38:39:ff:ff:01:00:00:05  L
-1001     03:44:38:39:ff:ff:01:00:00:02  L
-1001     03:44:38:39:ff:ff:01:00:00:03  L
-1001     03:44:38:39:ff:ff:01:00:00:05  L
+1002     03:44:38:39:BE:EF:AA:00:00:02  L
+1002     03:44:38:39:BE:EF:AA:00:00:03  L
+1002     03:44:38:39:BE:EF:AA:00:00:05  L
+1001     03:44:38:39:BE:EF:AA:00:00:02  L
+1001     03:44:38:39:BE:EF:AA:00:00:03  L
+1001     03:44:38:39:BE:EF:AA:00:00:05  L
 ...
 ```
 
@@ -586,9 +604,9 @@ cumulus@switch:~$ net show bgp l2vpn evpn es
 ES Flags: L local, R remote, I inconsistent
 VTEP Flags: E ESR/Type-4, A active nexthop
 ESI                            Flags RD                    #VNIs    VTEPs
-03:44:38:39:ff:ff:01:00:00:01  LR    172.0.0.9:3            10       172.0.0.10(EA),172.0.0.11(EA)
-03:44:38:39:ff:ff:01:00:00:02  LR    172.0.0.9:4            10       172.0.0.10(EA),172.0.0.11(EA)
-03:44:38:39:ff:ff:01:00:00:03  LR    172.0.0.9:5            10       172.0.0.10(EA),172.0.0.11(EA)
+03:44:38:39:BE:EF:AA:00:00:01  LR    172.0.0.9:3            10       172.0.0.10(EA),172.0.0.11(EA)
+03:44:38:39:BE:EF:AA:00:00:02  LR    172.0.0.9:4            10       172.0.0.10(EA),172.0.0.11(EA)
+03:44:38:39:BE:EF:AA:00:00:03  LR    172.0.0.9:5            10       172.0.0.10(EA),172.0.0.11(EA)
 cumulus@switch:~$
 ```
 
@@ -602,17 +620,17 @@ Flags: L local, R remote, I inconsistent
 VTEP-Flags: E EAD-per-ES, V EAD-per-EVI
 VNI      ESI                            Flags VTEPs
 ...
-1002     03:44:38:39:ff:ff:01:00:00:01  R     172.0.0.22(EV),172.0.0.23(EV)
-1002     03:44:38:39:ff:ff:01:00:00:02  LR    172.0.0.22(EV),172.0.0.23(EV)
-1002     03:44:38:39:ff:ff:01:00:00:03  LR    172.0.0.22(EV),172.0.0.23(EV)
-1002     03:44:38:39:ff:ff:01:00:00:05  L  
+1002     03:44:38:39:BE:EF:AA:00:00:01  R     172.0.0.22(EV),172.0.0.23(EV)
+1002     03:44:38:39:BE:EF:AA:00:00:02  LR    172.0.0.22(EV),172.0.0.23(EV)
+1002     03:44:38:39:BE:EF:AA:00:00:03  LR    172.0.0.22(EV),172.0.0.23(EV)
+1002     03:44:38:39:BE:EF:AA:00:00:05  L  
 1002     03:44:38:39:ff:ff:02:00:00:01  R     172.0.0.24(EV),172.0.0.25(EV),172.0.0.26(EV)
 1002     03:44:38:39:ff:ff:02:00:00:02  R     172.0.0.24(EV),172.0.0.25(EV),172.0.0.26(EV)
 1002     03:44:38:39:ff:ff:02:00:00:03  R     172.0.0.24(EV),172.0.0.25(EV),172.0.0.26(EV)
-1001     03:44:38:39:ff:ff:01:00:00:01  R     172.0.0.22(EV),172.0.0.23(EV)
-1001     03:44:38:39:ff:ff:01:00:00:02  LR    172.0.0.22(EV),172.0.0.23(EV)
-1001     03:44:38:39:ff:ff:01:00:00:03  LR    172.0.0.22(EV),172.0.0.23(EV)
-1001     03:44:38:39:ff:ff:01:00:00:05  L  
+1001     03:44:38:39:BE:EF:AA:00:00:01  R     172.0.0.22(EV),172.0.0.23(EV)
+1001     03:44:38:39:BE:EF:AA:00:00:02  LR    172.0.0.22(EV),172.0.0.23(EV)
+1001     03:44:38:39:BE:EF:AA:00:00:03  LR    172.0.0.22(EV),172.0.0.23(EV)
+1001     03:44:38:39:BE:EF:AA:00:00:05  L  
 1001     03:44:38:39:ff:ff:02:00:00:01  R     172.0.0.24(EV),172.0.0.25(EV),172.0.0.26(EV)
 1001     03:44:38:39:ff:ff:02:00:00:02  R     172.0.0.24(EV),172.0.0.25(EV),172.0.0.26(EV)
 1001     03:44:38:39:ff:ff:02:00:00:03  R     172.0.0.24(EV),172.0.0.25(EV),172.0.0.26(EV)
@@ -638,13 +656,13 @@ EVPN type-5 prefix: [5]:[EthTag]:[IPlen]:[IP]
    Network          Next Hop            Metric LocPrf Weight Path
                     Extended Community
 Route Distinguisher: 172.16.0.21:2
-*> [1]:[0]:[03:44:38:39:ff:ff:01:00:00:01]:[128]:[0.0.0.0]
+*> [1]:[0]:[03:44:38:39:BE:EF:AA:00:00:01]:[128]:[0.0.0.0]
                     172.16.0.21                          32768 i
                     ET:8 RT:5556:1005
-*> [1]:[0]:[03:44:38:39:ff:ff:01:00:00:02]:[128]:[0.0.0.0]
+*> [1]:[0]:[03:44:38:39:BE:EF:AA:00:00:02]:[128]:[0.0.0.0]
                     172.16.0.21                          32768 i
                     ET:8 RT:5556:1005
-*> [1]:[0]:[03:44:38:39:ff:ff:01:00:00:03]:[128]:[0.0.0.0]
+*> [1]:[0]:[03:44:38:39:BE:EF:AA:00:00:03]:[128]:[0.0.0.0]
                     172.16.0.21                          32768 i
                     ET:8 RT:5556:1005
 
@@ -682,13 +700,13 @@ net add time ntp server 3.cumulusnetworks.pool.ntp.org iburst
 net add time ntp source eth0
 net add snmp-server listening-address localhost
 net add bgp autonomous-system 5556
-net add bond hostbond1-3 evpn mh es-df-pref 50000
-net add bond hostbond1-3 evpn mh es-sys-mac 44:38:39:ff:ff:01
+net add bond bond1-3 evpn mh es-df-pref 50000
+net add bond bond1-3 evpn mh es-sys-mac 44:38:39:BE:EF:AA
 net add interface lo,swp1-4 pim
 net add interface swp1-4 evpn mh uplink
-net add bond hostbond1 evpn mh es-id 1
-net add bond hostbond2 evpn mh es-id 2
-net add bond hostbond3 evpn mh es-id 3
+net add bond bond1 evpn mh es-id 1
+net add bond bond2 evpn mh es-id 2
+net add bond bond3 evpn mh es-id 3
 net add interface lo igmp
 net add routing defaults datacenter
 net add routing log file /var/log/frr/bgpd.log
@@ -724,10 +742,10 @@ net add ptp global use-syslog yes
 net add ptp global verbose no
 net add ptp global summary-interval 0
 net add ptp global time-stamping
-net add bond hostbond1 bond slaves swp5
-net add bond hostbond2 bond slaves swp6
-net add bond hostbond3 bond slaves swp7
-net add bond hostbond4 bond slaves swp8
+net add bond bond1 bond slaves swp5
+net add bond bond2 bond slaves swp6
+net add bond bond3 bond slaves swp7
+net add bond bond4 bond slaves swp8
 net add vxlan vx-1000 vxlan id 1000
 net add vxlan vx-1001 vxlan id 1001
 net add vxlan vx-1002 vxlan id 1002
@@ -741,18 +759,18 @@ net add vxlan vx-1009 vxlan id 1009
 net add vxlan vx-4001 vxlan id 4001
 net add vxlan vx-4002 vxlan id 4002
 net add vxlan vx-4003 vxlan id 4003
-net add bond hostbond1 alias Local Node/s leaf01 and Ports swp5 <==> Remote Node/s host01 and Ports swp1
-net add bond hostbond1,4 bridge pvid 1000
-net add bond hostbond1-4 bond mode 802.3ad
-net add bond hostbond2 alias Local Node/s leaf01 and Ports swp6 <==> Remote Node/s host02 and Ports swp1
-net add bond hostbond2 bridge pvid 1001
-net add bond hostbond3 alias Local Node/s leaf01 and Ports swp7 <==> Remote Node/s host03 and Ports swp1
-net add bond hostbond3 bridge pvid 1002
-net add bond hostbond4 alias Local Node/s leaf01 and Ports swp8 <==> Remote Node/s host04 and Ports swp1
+net add bond bond1 alias Local Node/s leaf01 and Ports swp5 <==> Remote Node/s host01 and Ports swp1
+net add bond bond1,4 bridge pvid 1000
+net add bond bond1-4 bond mode 802.3ad
+net add bond bond2 alias Local Node/s leaf01 and Ports swp6 <==> Remote Node/s host02 and Ports swp1
+net add bond bond2 bridge pvid 1001
+net add bond bond3 alias Local Node/s leaf01 and Ports swp7 <==> Remote Node/s host03 and Ports swp1
+net add bond bond3 bridge pvid 1002
+net add bond bond4 alias Local Node/s leaf01 and Ports swp8 <==> Remote Node/s host04 and Ports swp1
 net add evpn mh startup-delay 30
-net add bond hostbond1-4 bond lacp-rate 1
-net add bond hostbond1-3 es-sys-mac 44:38:39:ff:ff:01
-net add bridge bridge ports vx-1000,vx-1001,vx-1002,vx-1003,vx-1004,vx-1005,vx-1006,vx-1007,vx-1008,vx-1009,vx-4001,vx-4002,vx-4003,hostbond4,hostbond1,hostbond2,hostbond3
+net add bond bond1-4 bond lacp-rate 1
+net add bond bond1-3 es-sys-mac 44:38:39:BE:EF:AA
+net add bridge bridge ports vx-1000,vx-1001,vx-1002,vx-1003,vx-1004,vx-1005,vx-1006,vx-1007,vx-1008,vx-1009,vx-4001,vx-4002,vx-4003,bond4,bond1,bond2,bond3
 net add bridge bridge pvid 1
 net add bridge bridge vids 1000-1009
 net add bridge bridge vlan-aware
@@ -921,20 +939,20 @@ leaf01(config-vrf)# exit-vrf
 leaf01(config)# vrf vrf3
 leaf01(config-vrf)# vni 4003
 leaf01(config-vrf)# exit-vrf
-leaf01(config)# interface hostbond1
+leaf01(config)# interface bond1
 leaf01(config-if)# evpn mh es-df-pref 50000
 leaf01(config-if)# evpn mh es-id 1
-leaf01(config-if)# evpn mh es-sys-mac 44:38:39:ff:ff:01
+leaf01(config-if)# evpn mh es-sys-mac 44:38:39:BE:EF:AA
 leaf01(config-if)# exit
-leaf01(config)# interface hostbond2
+leaf01(config)# interface bond2
 leaf01(config-if)# evpn mh es-df-pref 50000
 leaf01(config-if)# evpn mh es-id 2
-leaf01(config-if)# evpn mh es-sys-mac 44:38:39:ff:ff:01
+leaf01(config-if)# evpn mh es-sys-mac 44:38:39:BE:EF:AA
 leaf01(config-if)# exit
-leaf01(config)# interface hostbond3
+leaf01(config)# interface bond3
 leaf01(config-if)# evpn mh es-df-pref 50000
 leaf01(config-if)# evpn mh es-id 3
-leaf01(config-if)# evpn mh es-sys-mac 44:38:39:ff:ff:01
+leaf01(config-if)# evpn mh es-sys-mac 44:38:39:BE:EF:AA
 leaf01(config-if)# exit
 leaf01(config)# interface lo
 leaf01(config-if)# ip pim
@@ -1007,10 +1025,10 @@ net add snmp-server listening-address localhost
 net add bgp autonomous-system 5557
 net add interface swp2-4 evpn mh uplink
 net add interface lo,swp1-4 pim
-net add bond hostbond1-3 evpn mh es-sys-mac 44:38:39:ff:ff:01
-net add bond hostbond1 evpn mh es-id 1
-net add bond hostbond2 evpn mh es-id 2
-net add bond hostbond3 evpn mh es-id 3
+net add bond bond1-3 evpn mh es-sys-mac 44:38:39:BE:EF:AA
+net add bond bond1 evpn mh es-id 1
+net add bond bond2 evpn mh es-id 2
+net add bond bond3 evpn mh es-id 3
 net add interface lo igmp
 net add routing password cn321
 net add routing enable password cn321
@@ -1066,10 +1084,10 @@ net add ptp global use-syslog yes
 net add ptp global verbose no
 net add ptp global summary-interval 0
 net add ptp global time-stamping
-net add bond hostbond1 bond slaves swp5
-net add bond hostbond2 bond slaves swp6
-net add bond hostbond3 bond slaves swp7
-net add bond hostbond4 bond slaves swp8
+net add bond bond1 bond slaves swp5
+net add bond bond2 bond slaves swp6
+net add bond bond3 bond slaves swp7
+net add bond bond4 bond slaves swp8
 net add vxlan vx-1000 vxlan id 1000
 net add vxlan vx-1001 vxlan id 1001
 net add vxlan vx-1002 vxlan id 1002
@@ -1083,16 +1101,16 @@ net add vxlan vx-1009 vxlan id 1009
 net add vxlan vx-4001 vxlan id 4001
 net add vxlan vx-4002 vxlan id 4002
 net add vxlan vx-4003 vxlan id 4003
-net add bond hostbond1 alias Local Node/s leaf02 and Ports swp5 <==> Remote Node/s host01 and Ports swp2
-net add bond hostbond1,4 bridge pvid 1000
-net add bond hostbond1-4 bond mode 802.3ad
-net add bond hostbond2 alias Local Node/s leaf02 and Ports swp6 <==> Remote Node/s host02 and Ports swp2
-net add bond hostbond2 bridge pvid 1001
-net add bond hostbond3 alias Local Node/s leaf02 and Ports swp7 <==> Remote Node/s host03 and Ports swp2
-net add bond hostbond3 bridge pvid 1002
-net add bond hostbond4 alias Local Node/s leaf02 and Ports swp8 <==> Remote Node/s host04 and Ports swp1
-net add bond hostbond1-4 bond lacp-rate 1
-net add bridge bridge ports vx-1000,vx-1001,vx-1002,vx-1003,vx-1004,vx-1005,vx-1006,vx-1007,vx-1008,vx-1009,vx-4001,vx-4002,vx-4003,hostbond4,hostbond1,hostbond2,hostbond3
+net add bond bond1 alias Local Node/s leaf02 and Ports swp5 <==> Remote Node/s host01 and Ports swp2
+net add bond bond1,4 bridge pvid 1000
+net add bond bond1-4 bond mode 802.3ad
+net add bond bond2 alias Local Node/s leaf02 and Ports swp6 <==> Remote Node/s host02 and Ports swp2
+net add bond bond2 bridge pvid 1001
+net add bond bond3 alias Local Node/s leaf02 and Ports swp7 <==> Remote Node/s host03 and Ports swp2
+net add bond bond3 bridge pvid 1002
+net add bond bond4 alias Local Node/s leaf02 and Ports swp8 <==> Remote Node/s host04 and Ports swp1
+net add bond bond1-4 bond lacp-rate 1
+net add bridge bridge ports vx-1000,vx-1001,vx-1002,vx-1003,vx-1004,vx-1005,vx-1006,vx-1007,vx-1008,vx-1009,vx-4001,vx-4002,vx-4003,bond4,bond1,bond2,bond3
 net add bridge bridge pvid 1
 net add bridge bridge vids 1000-1009
 net add bridge bridge vlan-aware
@@ -1290,17 +1308,17 @@ leaf02(config-vrf)# exit-vrf
 leaf02(config)# vrf vrf3
 leaf02(config-vrf)# vni 4003
 leaf02(config-vrf)# exit-vrf
-leaf02(config)# interface hostbond1
+leaf02(config)# interface bond1
 leaf02(config-if)# evpn mh es-id 1
-leaf02(config-if)# evpn mh es-sys-mac 44:38:39:ff:ff:01
+leaf02(config-if)# evpn mh es-sys-mac 44:38:39:BE:EF:AA
 leaf02(config-if)# exit
-leaf02(config)# interface hostbond2
+leaf02(config)# interface bond2
 leaf02(config-if)# evpn mh es-id 2
-leaf02(config-if)# evpn mh es-sys-mac 44:38:39:ff:ff:01
+leaf02(config-if)# evpn mh es-sys-mac 44:38:39:BE:EF:AA
 leaf02(config-if)# exit
-leaf02(config)# interface hostbond3
+leaf02(config)# interface bond3
 leaf02(config-if)# evpn mh es-id 3
-leaf02(config-if)# evpn mh es-sys-mac 44:38:39:ff:ff:01
+leaf02(config-if)# evpn mh es-sys-mac 44:38:39:BE:EF:AA
 leaf02(config-if)# exit
 leaf02(config)# interface lo
 leaf02(config-if)# ip pim
@@ -1373,10 +1391,10 @@ net add snmp-server listening-address localhost
 net add bgp autonomous-system 5558
 net add interface swp2-4 evpn mh uplink
 net add interface lo,swp1-4 pim
-net add bond hostbond1-3 evpn mh es-sys-mac 44:38:39:ff:ff:01
-net add bond hostbond1 evpn mh es-id 1
-net add bond hostbond2 evpn mh es-id 2
-net add bond hostbond3 evpn mh es-id 3
+net add bond bond1-3 evpn mh es-sys-mac 44:38:39:BE:EF:AA
+net add bond bond1 evpn mh es-id 1
+net add bond bond2 evpn mh es-id 2
+net add bond bond3 evpn mh es-id 3
 net add interface lo igmp
 net add routing password cn321
 net add routing enable password cn321
@@ -1432,10 +1450,10 @@ net add ptp global use-syslog yes
 net add ptp global verbose no
 net add ptp global summary-interval 0
 net add ptp global time-stamping
-net add bond hostbond1 bond slaves swp5
-net add bond hostbond2 bond slaves swp6
-net add bond hostbond3 bond slaves swp7
-net add bond hostbond4 bond slaves swp8
+net add bond bond1 bond slaves swp5
+net add bond bond2 bond slaves swp6
+net add bond bond3 bond slaves swp7
+net add bond bond4 bond slaves swp8
 net add vxlan vx-1000 vxlan id 1000
 net add vxlan vx-1001 vxlan id 1001
 net add vxlan vx-1002 vxlan id 1002
@@ -1449,15 +1467,15 @@ net add vxlan vx-1009 vxlan id 1009
 net add vxlan vx-4001 vxlan id 4001
 net add vxlan vx-4002 vxlan id 4002
 net add vxlan vx-4003 vxlan id 4003
-net add bond hostbond1 alias Local Node/s leaf03 and Ports swp5 <==> Remote Node/s host01 and Ports swp3
-net add bond hostbond1,4 bridge pvid 1000
-net add bond hostbond1-4 bond mode 802.3ad
-net add bond hostbond2 alias Local Node/s leaf03 and Ports swp6 <==> Remote Node/s host02 and Ports swp3
-net add bond hostbond2 bridge pvid 1001
-net add bond hostbond3 alias Local Node/s leaf03 and Ports swp7 <==> Remote Node/s host03 and Ports swp3
-net add bond hostbond3 bridge pvid 1002
-net add bond hostbond4 alias Local Node/s leaf03 and Ports swp8 <==> Remote Node/s host04 and Ports swp1
-net add bridge bridge ports vx-1000,vx-1001,vx-1002,vx-1003,vx-1004,vx-1005,vx-1006,vx-1007,vx-1008,vx-1009,vx-4001,vx-4002,vx-4003,hostbond4,hostbond1,hostbond2,hostbond3
+net add bond bond1 alias Local Node/s leaf03 and Ports swp5 <==> Remote Node/s host01 and Ports swp3
+net add bond bond1,4 bridge pvid 1000
+net add bond bond1-4 bond mode 802.3ad
+net add bond bond2 alias Local Node/s leaf03 and Ports swp6 <==> Remote Node/s host02 and Ports swp3
+net add bond bond2 bridge pvid 1001
+net add bond bond3 alias Local Node/s leaf03 and Ports swp7 <==> Remote Node/s host03 and Ports swp3
+net add bond bond3 bridge pvid 1002
+net add bond bond4 alias Local Node/s leaf03 and Ports swp8 <==> Remote Node/s host04 and Ports swp1
+net add bridge bridge ports vx-1000,vx-1001,vx-1002,vx-1003,vx-1004,vx-1005,vx-1006,vx-1007,vx-1008,vx-1009,vx-4001,vx-4002,vx-4003,bond4,bond1,bond2,bond3
 net add bridge bridge pvid 1
 net add bridge bridge vids 1000-1009
 net add bridge bridge vlan-aware
@@ -1656,17 +1674,17 @@ leaf03(config-vrf)# exit-vrf
 leaf03(config)# vrf vrf3
 leaf03(config-vrf)# vni 4003
 leaf03(config-vrf)# exit-vrf
-leaf03(config)# interface hostbond1
+leaf03(config)# interface bond1
 leaf03(config-if)# evpn mh es-id 1
-leaf03(config-if)# evpn mh es-sys-mac 44:38:39:ff:ff:01
+leaf03(config-if)# evpn mh es-sys-mac 44:38:39:BE:EF:AA
 leaf03(config-if)# exit
-leaf03(config)# interface hostbond2
+leaf03(config)# interface bond2
 leaf03(config-if)# evpn mh es-id 2
-leaf03(config-if)# evpn mh es-sys-mac 44:38:39:ff:ff:01
+leaf03(config-if)# evpn mh es-sys-mac 44:38:39:BE:EF:AA
 leaf03(config-if)# exit
-leaf03(config)# interface hostbond3
+leaf03(config)# interface bond3
 leaf03(config-if)# evpn mh es-id 3
-leaf03(config-if)# evpn mh es-sys-mac 44:38:39:ff:ff:01
+leaf03(config-if)# evpn mh es-sys-mac 44:38:39:BE:EF:AA
 leaf03(config-if)# exit
 leaf03(config)# interface lo
 leaf03(config-if)# ip pim
@@ -2240,38 +2258,38 @@ iface swp7
 auto swp8
 iface swp8
 
-auto hostbond1
-iface hostbond1
+auto bond1
+iface bond1
     bond-slaves swp5
     bond-mode 802.3ad
     bond-min-links 1
     bond-lacp-rate 1
     alias Local Node/s leaf01 and Ports swp5 <==> Remote  Node/s host01 and Ports swp1
-    es-sys-mac 44:38:39:ff:ff:01
+    es-sys-mac 44:38:39:BE:EF:AA
     bridge-pvid 1000
 
-auto hostbond2
-iface hostbond2
+auto bond2
+iface bond2
     bond-slaves swp6
     bond-mode 802.3ad
     bond-min-links 1
     bond-lacp-rate 1
     alias Local Node/s leaf01 and Ports swp6 <==> Remote  Node/s host02 and Ports swp1
-    es-sys-mac 44:38:39:ff:ff:01
+    es-sys-mac 44:38:39:BE:EF:AA
     bridge-pvid 1001
 
-auto hostbond3
-iface hostbond3
+auto bond3
+iface bond3
     bond-slaves swp7
     bond-mode 802.3ad
     bond-min-links 1
     bond-lacp-rate 1
     alias Local Node/s leaf01 and Ports swp7 <==> Remote  Node/s host03 and Ports swp1
-    es-sys-mac 44:38:39:ff:ff:01
+    es-sys-mac 44:38:39:BE:EF:AA
     bridge-pvid 1002
 
-auto hostbond4
-iface hostbond4
+auto bond4
+iface bond4
     bond-slaves swp8
     bond-mode 802.3ad
     bond-min-links 1
@@ -2422,7 +2440,7 @@ iface vx-4003
 auto bridge
 iface bridge
     bridge-vlan-aware yes
-    bridge-ports vx-1000 vx-1001 vx-1002 vx-1003 vx-1004 vx-1005 vx-1006 vx-1007 vx-1008 vx-1009 vx-4001 vx-4002 vx-4003 hostbond4 hostbond1 hostbond2 hostbond3
+    bridge-ports vx-1000 vx-1001 vx-1002 vx-1003 vx-1004 vx-1005 vx-1006 vx-1007 vx-1008 vx-1009 vx-4001 vx-4002 vx-4003 bond4 bond1 bond2 bond3
     bridge-stp on
     bridge-vids 1000 1001 1002 1003 1004 1005 1006 1007 1008 1009
     bridge-pvid 1
@@ -2602,38 +2620,38 @@ iface swp7
 auto swp8
 iface swp8
 
-auto hostbond1
-iface hostbond1
+auto bond1
+iface bond1
     bond-slaves swp5
     bond-mode 802.3ad
     bond-min-links 1
     bond-lacp-rate 1
     alias Local Node/s leaf02 and Ports swp5 <==> Remote  Node/s host01 and Ports swp2
-    es-sys-mac 44:38:39:ff:ff:01
+    es-sys-mac 44:38:39:BE:EF:AA
     bridge-pvid 1000
 
-auto hostbond2
-iface hostbond2
+auto bond2
+iface bond2
     bond-slaves swp6
     bond-mode 802.3ad
     bond-min-links 1
     bond-lacp-rate 1
     alias Local Node/s leaf02 and Ports swp6 <==> Remote  Node/s host02 and Ports swp2
-    es-sys-mac 44:38:39:ff:ff:01
+    es-sys-mac 44:38:39:BE:EF:AA
     bridge-pvid 1001
 
-auto hostbond3
-iface hostbond3
+auto bond3
+iface bond3
     bond-slaves swp7
     bond-mode 802.3ad
     bond-min-links 1
     bond-lacp-rate 1
     alias Local Node/s leaf02 and Ports swp7 <==> Remote  Node/s host03 and Ports swp2
-    es-sys-mac 44:38:39:ff:ff:01
+    es-sys-mac 44:38:39:BE:EF:AA
     bridge-pvid 1002
 
-auto hostbond4
-iface hostbond4
+auto bond4
+iface bond4
     bond-slaves swp8
     bond-mode 802.3ad
     bond-min-links 1
@@ -2784,7 +2802,7 @@ iface vx-4003
 auto bridge
 iface bridge
     bridge-vlan-aware yes
-    bridge-ports vx-1000 vx-1001 vx-1002 vx-1003 vx-1004 vx-1005 vx-1006 vx-1007 vx-1008 vx-1009 vx-4001 vx-4002 vx-4003 hostbond4 hostbond1 hostbond2 hostbond3
+    bridge-ports vx-1000 vx-1001 vx-1002 vx-1003 vx-1004 vx-1005 vx-1006 vx-1007 vx-1008 vx-1009 vx-4001 vx-4002 vx-4003 bond4 bond1 bond2 bond3
     bridge-stp on
     bridge-vids 1000 1001 1002 1003 1004 1005 1006 1007 1008 1009
     bridge-pvid 1
@@ -2964,38 +2982,38 @@ iface swp7
 auto swp8
 iface swp8
 
-auto hostbond1
-iface hostbond1
+auto bond1
+iface bond1
     bond-slaves swp5
     bond-mode 802.3ad
     bond-min-links 1
     bond-lacp-rate 1
     alias Local Node/s leaf03 and Ports swp5 <==> Remote  Node/s host01 and Ports swp3
-    es-sys-mac 44:38:39:ff:ff:01
+    es-sys-mac 44:38:39:BE:EF:AA
     bridge-pvid 1000
 
-auto hostbond2
-iface hostbond2
+auto bond2
+iface bond2
     bond-slaves swp6
     bond-mode 802.3ad
     bond-min-links 1
     bond-lacp-rate 1
     alias Local Node/s leaf03 and Ports swp6 <==> Remote  Node/s host02 and Ports swp3
-    es-sys-mac 44:38:39:ff:ff:01
+    es-sys-mac 44:38:39:BE:EF:AA
     bridge-pvid 1001
 
-auto hostbond3
-iface hostbond3
+auto bond3
+iface bond3
     bond-slaves swp7
     bond-mode 802.3ad
     bond-min-links 1
     bond-lacp-rate 1
     alias Local Node/s leaf03 and Ports swp7 <==> Remote  Node/s host03 and Ports swp3
-    es-sys-mac 44:38:39:ff:ff:01
+    es-sys-mac 44:38:39:BE:EF:AA
     bridge-pvid 1002
 
-auto hostbond4
-iface hostbond4
+auto bond4
+iface bond4
     bond-slaves swp8
     bond-mode 802.3ad
     bond-min-links 1
@@ -3146,7 +3164,7 @@ iface vx-4003
 auto bridge
 iface bridge
     bridge-vlan-aware yes
-    bridge-ports vx-1000 vx-1001 vx-1002 vx-1003 vx-1004 vx-1005 vx-1006 vx-1007 vx-1008 vx-1009 vx-4001 vx-4002 vx-4003 hostbond4 hostbond1 hostbond2 hostbond3
+    bridge-ports vx-1000 vx-1001 vx-1002 vx-1003 vx-1004 vx-1005 vx-1006 vx-1007 vx-1008 vx-1009 vx-4001 vx-4002 vx-4003 bond4 bond1 bond2 bond3
     bridge-stp on
     bridge-vids 1000 1001 1002 1003 1004 1005 1006 1007 1008 1009
     bridge-pvid 1
@@ -4095,20 +4113,20 @@ vrf vrf3
  vni 4003
  exit-vrf
 !
-interface hostbond1
+interface bond1
  evpn mh es-df-pref 50000
  evpn mh es-id 1
- evpn mh es-sys-mac 44:38:39:ff:ff:01
+ evpn mh es-sys-mac 44:38:39:BE:EF:AA
 !
-interface hostbond2
+interface bond2
  evpn mh es-df-pref 50000
  evpn mh es-id 2
- evpn mh es-sys-mac 44:38:39:ff:ff:01
+ evpn mh es-sys-mac 44:38:39:BE:EF:AA
 !
-interface hostbond3
+interface bond3
  evpn mh es-df-pref 50000
  evpn mh es-id 3
- evpn mh es-sys-mac 44:38:39:ff:ff:01
+ evpn mh es-sys-mac 44:38:39:BE:EF:AA
 !
 interface lo
  ip pim
@@ -4245,17 +4263,17 @@ interface swp4
 !
 !
 !
-interface hostbond1
+interface bond1
  evpn mh es-id 1
- evpn mh es-sys-mac 44:38:39:ff:ff:01
+ evpn mh es-sys-mac 44:38:39:BE:EF:AA
 !
-interface hostbond2
+interface bond2
  evpn mh es-id 2
- evpn mh es-sys-mac 44:38:39:ff:ff:01
+ evpn mh es-sys-mac 44:38:39:BE:EF:AA
 !
-interface hostbond3
+interface bond3
  evpn mh es-id 3
- evpn mh es-sys-mac 44:38:39:ff:ff:01
+ evpn mh es-sys-mac 44:38:39:BE:EF:AA
 !
 !
 
@@ -4394,17 +4412,17 @@ interface swp4
 !
 !
 !
-interface hostbond1
+interface bond1
  evpn mh es-id 1
- evpn mh es-sys-mac 44:38:39:ff:ff:01
+ evpn mh es-sys-mac 44:38:39:BE:EF:AA
 !
-interface hostbond2
+interface bond2
  evpn mh es-id 2
- evpn mh es-sys-mac 44:38:39:ff:ff:01
+ evpn mh es-sys-mac 44:38:39:BE:EF:AA
 !
-interface hostbond3
+interface bond3
  evpn mh es-id 3
- evpn mh es-sys-mac 44:38:39:ff:ff:01
+ evpn mh es-sys-mac 44:38:39:BE:EF:AA
 !
 log file /var/log/frr/bgpd.log
 !

@@ -1849,7 +1849,7 @@ A release is included if there were changes to the command, otherwise it is not 
 
 | Release | Description |
 | ---- | ---- |
-| 3.2.0 ??? | Introduced |
+| 3.2.0 | Introduced |
 
 ### Sample Usage
 
@@ -2923,7 +2923,7 @@ Color coded output config deleted
 
 ## netq config reload parser
 
-Loads the NetQ configuration file. When/Why ??? Running or other config ???
+Loads the NetQ configuration file.
 
 ### Syntax
 

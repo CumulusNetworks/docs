@@ -4,7 +4,7 @@
 # Check that headings use initial capitalization of all nouns, adjectives and verbs.
 #
 extends: capitalization
-message: "'%s' should use title caps-style capitalization."
+message: "'%s' should use initial letter capitalization for all title words."
 link: https://wikinox.mellanox.com/display/BUS/House+Style+Guide#HouseStyleGuide-TitlesandHeadings
 level: error
 scope: heading
@@ -20,3 +20,5 @@ exceptions:
   - from
   - the
   - to
+  # Ignore capitalization of second or third word in a set of hyphenated words
+  - '\B(\-[a-z]+)*'

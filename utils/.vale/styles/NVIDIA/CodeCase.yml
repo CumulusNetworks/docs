@@ -1,4 +1,3 @@
----
 # Error: NVIDIA.CodeCase
 #
 # Checks for use of capitalization in content tagged as commands.
@@ -9,3 +8,5 @@ level: error
 scope: code
 match: $lower
 exceptions:
+  # Don't check MD file header content
+  - '[\-]{3}.[\-]{3}'

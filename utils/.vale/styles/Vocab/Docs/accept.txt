@@ -36,6 +36,7 @@ PSU
 PTM
 RoCE
 SETQOS
+src
 SSD
 SSM
 Supermicro
@@ -49,5 +50,5 @@ VRR
 VRRP
 VLAN
 VTEP
-VxLAN
+VXLAN
 VMware

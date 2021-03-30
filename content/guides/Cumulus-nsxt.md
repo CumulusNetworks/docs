@@ -437,7 +437,7 @@ VRR is configured to provide redundant default-gateways to the ESXi servers.
 
 {{%notice note%}}
 
-VMware requires a VLAN per each type of traffic, for example, storage, vSAN, vMotion, or Overlay (TEP) traffic. This use case focus is only on the overlay VM to VM traffic and switches configurations.
+VMware requires a VLAN per each type of traffic, for example, storage, vSAN, vMotion, or Overlay (TEP) traffic. This use case focuses only on the overlay VM to VM traffic and switches configurations.
 
 {{%/notice %}}
 
@@ -1151,11 +1151,9 @@ In cases where VMs needs to communicate with non-NSX (bare metal) servers an [NS
 
 {{%notice note%}}
 
-There is an option for VM-bare metal communication using Geneve encapsulation - [NSX Edge on Bare Metal](https://docs.vmware.com/en/VMware-NSX-T-Data-Center/3.1/installation/GUID-21E4C80B-5900-433A-BEA2-EA41FBE690FE.html). This is beyond the scope of this guide.
+There is an option for VM to bare metal communication using Geneve encapsulation that is described in the [NSX Edge on Bare Metal](https://docs.vmware.com/en/VMware-NSX-T-Data-Center/3.1/installation/GUID-21E4C80B-5900-433A-BEA2-EA41FBE690FE.html). This is beyond the scope of this guide.
 
 {{%/notice %}}
-
-Configuration to support an NSX Edge node is nearly identical to the existing ESXi configurations described previously.
 
 The example configurations are based on the following topology:
 
@@ -1164,31 +1162,19 @@ The example configurations are based on the following topology:
 **Rack 1** – Two NVIDIA Switches in MLAG + One ESXi hypervisor connected in active/active bonding  
 **Rack 2** – Two NVIDIA Switches in MLAG + One ESXi hypervisor and One Bare-Metal server, both connected in active/active bonding
 
+The configurations to support an NSX Edge node are nearly identical to the existing ESXi configurations previously described.
 Only the required changes to support an NSX Edge device are described below.
+
 ### VRR Configuration
 
-<h1> TODO: </h1>
-NSX Edge uses two additional virtual uplinks (VLANs) to communicate with the physical world. One uplink towards the left leaf switch, the second towards the right. Over these virtual uplinks, it establishes BGP peerings to route traffic to the physical world. As Edge VM is part of the Overlay TZ for virtualized traffic, and VLAN TZ for traffic in/out the physical world, both transport-zones use the same ESXi uplinks (trunk port), but as said, in different VLANs. 
+NSX Edge uses two additional virtual uplinks (VLANs) to communicate with the physical world. One VLAN is used to provide connectivity to the underlay physical network while the second VLAN connects to the virtual overlay network. NSX Edge nodes do not support LACP bonding. To provide load balancing each VLAN will be configured over a single link to a single top of rack switch.
 
-The additional VLANs must be configured on the top of rack switches attached to ESXi nodes.
+{{% notice note %}}
+The following example utilizes Subinterfaces.  
+VLANs may also also be configured for NSX Edge node connectivity. There is no technical reason to choose VLANs or subinterfaces.
+{{% /notice %}}
 
 {{< tabs "10D ">}}
-{{< tab " leaf01 ">}}
-```
-cumulus@leaf01:mgmt:~$ net add vlan 100                                                       ### TEP VLAN
-cumulus@leaf01:mgmt:~$ net add vlan 100 ip address 10.1.1.252/24                              ### TEP SVI
-cumulus@leaf01:mgmt:~$ net add vlan 100 ip address-virtual 00:00:00:00:01:00 10.1.1.25 4/24   ### TEP VRR (GW)
-cumulus@leaf01:mgmt:~$ net commit                                                             
-```
-{{< /tab >}}
-{{< tab " leaf02 ">}}
-```
-cumulus@leaf02:mgmt:~$ net add vlan 100                                                       ### TEP VLAN    
-cumulus@leaf02:mgmt:~$ net add vlan 100 ip address 10.1.1.253/24                              ### TEP SVI
-cumulus@leaf02:mgmt:~$ net add vlan 100 ip address-virtual 00:00:00:00:01:00 10.1.1.254/24    ### TEP VRR (GW)
-cumulus@leaf02:mgmt:~$ net commit                                                                   
-```
-{{< /tab >}}
 {{< tab " leaf03 ">}}
 ```
 cumulus@leaf03:mgmt:~$ net add vlan 100                                                       ### TEP VLAN
@@ -1220,58 +1206,6 @@ cumulus@leaf04:mgmt:~$ net commit
 SVI and VRR interfaces will be displayed in the `net show interface` output as `vlanXXX` and `vlanXXX-v0`. Subinterfaces will be shown as `swpX.xxx`
 
 {{< tabs "10h1d23f10 ">}}
-{{< tab " leaf01 ">}}
-```
-cumulus@leaf01:mgmt:~$ net show interface
-State  Name           Spd  MTU    Mode          LLDP                          Summary
------  -------------  ---  -----  ------------  ----------------------------  ---------------------------
-UP     lo             N/A  65536  Loopback                                    IP: 127.0.0.1/8
-       lo                                                                     IP: ::1/128
-UP     eth0           1G   1500   Mgmt          oob-mgmt-switch (swp10)       Master: mgmt(UP)
-       eth0                                                                   IP: 192.168.200.11/24(DHCP)
-UP     swp1           1G   9216   BondMember    esxi01 (44:38:39:00:00:32)    Master: esxi01(UP)
-UP     swp49          1G   9216   BondMember    leaf02 (swp49)                Master: peerlink(UP)
-UP     swp50          1G   9216   BondMember    leaf02 (swp50)                Master: peerlink(UP)
-UP     swp51          1G   9216   Default       spine01 (swp1)
-UP     swp52          1G   9216   Default       spine02 (swp1)
-UP     bridge         N/A  9216   Bridge/L2
-UP     esxi01         1G   9216   802.3ad                                     Master: bridge(UP)
-       esxi01                                                                 Bond Members: swp1(UP)
-UP     mgmt           N/A  65536  VRF                                         IP: 127.0.0.1/8
-UP     peerlink       2G   9216   802.3ad                                     Master: bridge(UP)
-       peerlink                                                               Bond Members: swp49(UP)
-       peerlink                                                               Bond Members: swp50(UP)
-UP     peerlink.4094  2G   9216   Default
-UP     vlan100        N/A  9216   Interface/L3                                IP: 10.1.1.252/24
-UP     vlan100-v0     N/A  9216   Interface/L3                                IP: 10.1.1.254/24
-```
-{{< /tab >}}
-{{< tab " leaf02 ">}}
-```
-cumulus@leaf02:mgmt:~$ net show interface
-State  Name           Spd  MTU    Mode          LLDP                          Summary
------  -------------  ---  -----  ------------  ----------------------------  ---------------------------
-UP     lo             N/A  65536  Loopback                                    IP: 127.0.0.1/8
-       lo                                                                     IP: ::1/128
-UP     eth0           1G   1500   Mgmt          oob-mgmt-switch (swp11)       Master: mgmt(UP)
-       eth0                                                                   IP: 192.168.200.12/24(DHCP)
-UP     swp1           1G   9216   BondMember    esxi01 (44:38:39:00:00:38)    Master: esxi01(UP)
-UP     swp49          1G   9216   BondMember    leaf01 (swp49)                Master: peerlink(UP)
-UP     swp50          1G   9216   BondMember    leaf01 (swp50)                Master: peerlink(UP)
-UP     swp51          1G   9216   Default       spine01 (swp2)
-UP     swp52          1G   9216   Default       spine02 (swp2)
-UP     bridge         N/A  9216   Bridge/L2
-UP     esxi01         1G   9216   802.3ad                                     Master: bridge(UP)
-       esxi01                                                                 Bond Members: swp1(UP)
-UP     mgmt           N/A  65536  VRF                                         IP: 127.0.0.1/8
-UP     peerlink       2G   9216   802.3ad                                     Master: bridge(UP)
-       peerlink                                                               Bond Members: swp49(UP)
-       peerlink                                                               Bond Members: swp50(UP)
-UP     peerlink.4094  2G   9216   Default
-UP     vlan100        N/A  9216   Interface/L3                                IP: 10.1.1.253/24
-UP     vlan100-v0     N/A  9216   Interface/L3                                IP: 10.1.1.254/24
-```
-{{< /tab >}}
 {{< tab " leaf03 ">}}
 ```
 cumulus@leaf03:mgmt:~$ net show interface
@@ -1350,32 +1284,13 @@ Auto BGP configuration is only available using NCLU. If you want to use `vtysh` 
 For additional details refer to the {{<kb_link text="Configuring FRRouting" url="cumulus-linux/Layer-3/FRRouting/Configure-FRRouting/" >}} documentation.
 
 {{%/notice %}}
+### BGP Peerings Establishment
 
-### BGP Peerings Establishment 
+The only change from the previous configurations is to add numbered BGP peerings from the leaf notes to the Edge Node server.
 
 {{< tabs "112dfff30 ">}}
 {{< tab "NCLU Commands ">}}
 {{< tabs "13rr3309 ">}}
-{{< tab " leaf01 ">}}
-```
-cumulus@leaf01:mgmt:~$ net add bgp autonomous-system leaf
-cumulus@leaf01:mgmt:~$ net add bgp neighbor peerlink.4094 remote-as external
-cumulus@leaf01:mgmt:~$ net add bgp neighbor swp51 remote-as external
-cumulus@leaf01:mgmt:~$ net add bgp neighbor swp52 remote-as external
-cumulus@leaf01:mgmt:~$ net add bgp router-id 10.10.10.1
-cumulus@leaf01:mgmt:~$ net commit
-```
-{{< /tab >}}
-{{< tab " leaf02 ">}}
-```
-cumulus@leaf02:mgmt:~$ net add bgp autonomous-system leaf
-cumulus@leaf02:mgmt:~$ net add bgp neighbor peerlink.4094 remote-as external
-cumulus@leaf02:mgmt:~$ net add bgp neighbor swp51 remote-as external
-cumulus@leaf02:mgmt:~$ net add bgp neighbor swp52 remote-as external
-cumulus@leaf02:mgmt:~$ net add bgp router-id 10.10.10.2
-cumulus@leaf02:mgmt:~$ net commit
-```
-{{< /tab >}}
 {{< tab " leaf03 ">}}
 ```
 cumulus@leaf03:mgmt:~$ net add bgp autonomous-system leaf
@@ -1398,62 +1313,10 @@ cumulus@leaf04:mgmt:~$ net add bgp router-id 10.10.10.4
 cumulus@leaf04:mgmt:~$ net commit
 ```
 {{< /tab >}}
-{{< tab " spine01 ">}}
-```
-cumulus@spine01:mgmt:~$ net add bgp autonomous-system spine
-cumulus@spine01:mgmt:~$ net add bgp neighbor swp1 remote-as external
-cumulus@spine01:mgmt:~$ net add bgp neighbor swp2 remote-as external
-cumulus@spine01:mgmt:~$ net add bgp neighbor swp3 remote-as external
-cumulus@spine01:mgmt:~$ net add bgp neighbor swp4 remote-as external
-cumulus@spine01:mgmt:~$ net add bgp bestpath as-path multipath-relax
-cumulus@spine01:mgmt:~$ net add bgp router-id 10.10.10.101
-cumulus@spine01:mgmt:~$ net commit
-```
-{{< /tab >}}
-{{< tab " spine02 ">}}
-```
-cumulus@spine02:mgmt:~$ net add bgp autonomous-system spine
-cumulus@spine02:mgmt:~$ net add bgp neighbor swp1 remote-as external
-cumulus@spine02:mgmt:~$ net add bgp neighbor swp2 remote-as external
-cumulus@spine02:mgmt:~$ net add bgp neighbor swp3 remote-as external
-cumulus@spine02:mgmt:~$ net add bgp neighbor swp4 remote-as external
-cumulus@spine02:mgmt:~$ net add bgp bestpath as-path multipath-relax
-cumulus@spine02:mgmt:~$ net add bgp router-id 10.10.10.102
-cumulus@spine02:mgmt:~$ net commit
-```
-{{< /tab >}}
 {{< /tabs >}}
 {{< /tab >}}
 {{< tab "vtysh Commands ">}}
 {{< tabs "203ssr34d5 ">}}
-{{< tab " leaf01 ">}}
-```
-cumulus@leaf01:~$ sudo vtysh
-leaf01# configure terminal
-leaf01(config)# router bgp 65101
-leaf01(config-router)# bgp router-id 10.10.10.1
-leaf01(config-router)# neighbor peerlink.4094 interface remote-as external
-leaf01(config-router)# neighbor swp51 remote-as external
-leaf01(config-router)# neighbor swp52 remote-as external
-leaf01(config-router)# end
-leaf01# write memory
-leaf01# exit
-```
-{{< /tab >}}
-{{< tab " leaf02 ">}}
-```
-cumulus@leaf03:~$ sudo vtysh
-leaf02# configure terminal
-leaf02(config)# router bgp 65102
-leaf02(config-router)# bgp router-id 10.10.10.2
-leaf02(config-router)# neighbor peerlink.4094 interface remote-as external
-leaf02(config-router)# neighbor swp51 remote-as external
-leaf02(config-router)# neighbor swp52 remote-as external
-leaf02(config-router)# end
-leaf02# write memory
-leaf02# exit
-```
-{{< /tab >}}
 {{< tab " leaf03 ">}}
 ```
 cumulus@leaf03:~$ sudo vtysh
@@ -1484,176 +1347,16 @@ leaf04# write memory
 leaf04# exit
 ```
 {{< /tab >}}
-{{< tab " spine01 ">}}
-```
-cumulus@spine01:~$ sudo vtysh
-spine01# configure terminal
-spine01(config)# router bgp 65199
-spine01(config-router)# bgp router-id 10.10.10.101
-spine01(config-router)# neighbor swp1 remote-as external
-spine01(config-router)# neighbor swp2 remote-as external
-spine01(config-router)# neighbor swp3 remote-as external
-spine01(config-router)# neighbor swp4 remote-as external
-spine01(config-router)# bgp bestpath as-path multipath-relax
-spine01(config-router)# end
-spine01# write memory
-spine01# exit
-```
-{{< /tab >}}
-{{< tab " spine02 ">}}
-```
-cumulus@spine02:~$ sudo vtysh
-spine02# configure terminal
-spine02(config)# router bgp 65199
-spine02(config-router)# bgp router-id 10.10.10.102
-spine02(config-router)# neighbor swp1 remote-as external
-spine02(config-router)# neighbor swp2 remote-as external
-spine02(config-router)# neighbor swp3 remote-as external
-spine02(config-router)# neighbor swp4 remote-as external
-spine02(config-router)# bgp bestpath as-path multipath-relax
-spine02(config-router)# end
-spine02# write memory
-spine02# exit
-```
-{{< /tab >}}
 {{< /tab >}}
 {{< /tabs >}}
 {{< /tabs >}}
-
-### TEP VLAN, Edge Virtual Uplinks and Bare-Metal Subnets Advertisement into BGP 
-
-As we already know, ESXi hypervisors builds layer 2 overlay tunnels to send Geneve encapsulated traffic over the layer 3 underlay. For that, the undelaying IP fabric must be aware about how to reach each TEP, Edge uplink and BM server in the network. In addition, NSX edge must know the underlay subnets (BM). This is done by advertising the local Overlay TEP VLANs, Edge uplinks and BM subnets we created earlier into BGP.
-
-There are two ways to advertise networks into BGP, by `network` command to advertise specifically, or by `redistribute` command to inject subnets into BGP from a non-BGP protocol. In our case we use the `redistribute connected` command to inject the directly connected routes into BGP.
-
-There are two ways to advertise networks into BGP, by network command to advertise specifically, or by redistribute command to inject subnets into BGP from a non-BGP protocol. In our case we use the redistribute connected command to inject the directly connected routes into BGP.
-This command can be used also with filtering to avoid unwanted/unnecessary subnets get into BGP. For more information and commands check out the {{<kb_link text="Route Filtering and Redistribution" url="cumulus-linux/Layer-3/Routing/Route-Filtering-and-Redistribution/" >}} page.
-
-
-{{< tabs "10u1rr0 ">}}
-{{< tab "NCLU Commands ">}}
-{{< tabs "109daussd0 ">}}
-{{< tab " leaf01 ">}}
-```
-cumulus@leaf01:mgmt:~$ net add bgp redistribute connected
-cumulus@leaf01:mgmt:~$ net commit
-```
-{{< /tab >}}
-{{< tab " leaf02 ">}}
-```
-cumulus@leaf02:mgmt:~$ net add bgp redistribute connected
-cumulus@leaf02:mgmt:~$ net commit
-```
-{{< /tab >}}
-{{< tab " leaf03 ">}}
-```
-cumulus@leaf03:mgmt:~$ net add bgp redistribute connected
-cumulus@leaf03:mgmt:~$ net commit
-```
-{{< /tab >}}
-{{< tab " leaf04 ">}}
-```
-cumulus@leaf04:mgmt:~$ net add bgp redistribute connected
-cumulus@leaf04:mgmt:~$ net commit
-```
-{{< /tab >}}
-{{< /tabs >}}
-{{< /tab >}}
-{{< tab "vtysh Commands ">}}
-{{< tabs "sssus ">}}
-{{< tab " leaf01 ">}}
-```
-cumulus@leaf01:~$ sudo vtysh
-leaf01# configure terminal
-leaf01(config)# router bgp 
-leaf01(config-router)# address-family ipv4 unicast
-leaf01(config-router-af)# redistribute connected
-leaf01(config-router)# end
-leaf01# write memory
-leaf01# exit
-```
-{{< /tab >}}
-{{< tab " leaf02 ">}}
-```
-cumulus@leaf02:~$ sudo vtysh
-leaf02# configure terminal
-leaf02(config)# router bgp 
-leaf02(config-router)# address-family ipv4 unicast
-leaf02(config-router-af)# redistribute connected
-leaf02(config-router)# end
-leaf02# write memory
-leaf02# exit
-```
-{{< /tab >}}
-{{< tab " leaf03 ">}}
-```
-cumulus@leaf03:~$ sudo vtysh
-leaf03# configure terminal
-leaf03(config)# router bgp 
-leaf03(config-router)# address-family ipv4 unicast
-leaf03(config-router-af)# redistribute connected
-leaf03(config-router)# end
-leaf03# write memory
-leaf03# exit
-```
-{{< /tab >}}
-{{< tab " leaf04 ">}}
-```
-cumulus@leaf04:~$ sudo vtysh
-leaf04# configure terminal
-leaf04(config)# router bgp 
-leaf04(config-router)# address-family ipv4 unicast
-leaf04(config-router-af)# redistribute connected
-leaf04(config-router)# end
-leaf04# write memory
-leaf04# exit
-```
-{{< /tab >}}
-{{< /tab >}}
-{{< /tabs >}}
-{{< /tabs >}}
-
 ### BGP Peerings and Route Advertisement Verification
 
-To verify all BGP peerings established correctly, use the `net show bgp summary` command in NCLU, or `show ip bgp summary` in `vtysh`
+To verify all BGP peerings established correctly, use the `net show bgp summary` command in NCLU, or `show ip bgp summary` in `vtysh`.
+
+The numbered BGP peering to the Edge Node should appear in BGP neighbor list.
 
 {{< tabs "TABID1ufr431 ">}}
-{{< tab "leaf01 ">}}
-```
-cumulus@leaf01:mgmt:~$ net show bgp summary
-show bgp ipv4 unicast summary
-=============================
-BGP router identifier 10.10.10.1, local AS number 4259632651 vrf-id 0
-BGP table version 2
-RIB entries 3, using 576 bytes of memory
-Peers 3, using 64 KiB of memory
-
-Neighbor              V         AS   MsgRcvd   MsgSent   TblVer  InQ OutQ  Up/Down State/PfxRcd   PfxSnt
-leaf02(peerlink.4094) 4 4259632649     25181     25185        0    0    0 00:22:42            6        6
-spine01(swp51)        4 4200000000     25181     25180        0    0    0 00:22:43            6        6
-spine02(swp52)        4 4200000000     25160     25159        0    0    0 00:22:01            6        6
-
-Total number of neighbors 3
-```
-{{< /tab >}}
-{{< tab "leaf02 ">}}
-```
-cumulus@leaf02:mgmt:~$ net show bgp summary
-show bgp ipv4 unicast summary
-=============================
-BGP router identifier 10.10.10.2, local AS number 4259632649 vrf-id 0
-BGP table version 3
-RIB entries 3, using 576 bytes of memory
-Peers 3, using 64 KiB of memory
-
-Neighbor              V         AS   MsgRcvd   MsgSent   TblVer  InQ OutQ  Up/Down State/PfxRcd   PfxSnt
-leaf01(peerlink.4094) 4 4259632651     25188     25188        0    0    0 00:22:59            6        6
-spine01(swp51)        4 4200000000     25195     25188        0    0    0 00:23:02            5        6
-spine02(swp52)        4 4200000000     25173     25164        0    0    0 00:22:20            5        6
-
-Total number of neighbors 3
-```
-{{< /tab >}}
 {{< tab "leaf03 ">}}
 ```
 cumulus@leaf03:mgmt:~$ net show bgp summary
@@ -1692,208 +1395,19 @@ spine02(swp52)        4 4200000000     25233     25228        0    0    0 00:25:
 Total number of neighbors 3
 ```
 {{< /tab >}}
-{{< tab "spine01 ">}}
-```
-cumulus@spine01:mgmt:~$ net show bgp summary
-show bgp ipv4 unicast summary
-=============================
-BGP router identifier 10.10.10.101, local AS number 4200000000 vrf-id 0
-BGP table version 27
-RIB entries 3, using 576 bytes of memory
-Peers 4, using 85 KiB of memory
-
-Neighbor        V         AS   MsgRcvd   MsgSent   TblVer  InQ OutQ  Up/Down State/PfxRcd   PfxSnt
-leaf01(swp1)    4 4259632651     70978     71007        0    0    0 00:32:59            2        6
-leaf02(swp2)    4 4259632649     70986     71031        0    0    0 00:33:02            2        6
-leaf03(swp3)    4 4259632661     71046     71078        0    0    0 00:32:36            5        6
-leaf04(swp4)    4 4259632667     71039     71087        0    0    0 00:32:24            5        6
-
-Total number of neighbors 4
-```
-{{< /tab >}}
-{{< tab "spine02 ">}}
-```
-cumulus@spine02:mgmt:~$ net show bgp summary
-show bgp ipv4 unicast summary
-=============================
-BGP router identifier 10.10.10.102, local AS number 4200000000 vrf-id 0
-BGP table version 21
-RIB entries 3, using 576 bytes of memory
-Peers 4, using 85 KiB of memory
-
-Neighbor        V         AS   MsgRcvd   MsgSent   TblVer  InQ OutQ  Up/Down State/PfxRcd   PfxSnt
-leaf01(swp1)    4 4259632651     70954     70970        0    0    0 00:32:46            2        6
-leaf02(swp2)    4 4259632649     70957     70990        0    0    0 00:32:49            2        6
-leaf03(swp3)    4 4259632661     71029     71071        0    0    0 00:32:46            5        6
-leaf04(swp4)    4 4259632667     71019     71061        0    0    0 00:32:49            5        6
-
-Total number of neighbors 4
-```
-{{< /tab >}}
-{{< /tabs >}}
-
-Once  all BGP peerings established, all the redistributed local TEP VLANs, Edge uplinks and BM subnets should appear in the routing table of each switch. Use the `net show route` command in NCLU, or `show ip route` in `vtysh` to check the routing table
-
-{{< tabs "TABuIDgg1631 ">}}
-{{< tab "leaf01 ">}}
-Leaf01 has two ECMP routes (via both spine switches) to ESXi03 TEP, Edge virtual uplinks and the BM subnet received by BGP - `10.2.2.0/24`, `192.168.0.0/24`, `30.0.0.0/24`, `31.0.0.0/24`, `172.16.0.0/24`. There are unnecessary prefixed learned, so consider filtering them as needed
-```
-cumulus@leaf01:mgmt:~$ net show route
-show ip route
-=============
-Codes: K - kernel route, C - connected, S - static, R - RIP,
-       O - OSPF, I - IS-IS, B - BGP, E - EIGRP, N - NHRP,
-       T - Table, v - VNC, V - VNC-Direct, A - Babel, D - SHARP,
-       F - PBR, f - OpenFabric,
-       > - selected route, * - FIB route, q - queued, r - rejected, b - backup
-       t - trapped, o - offload failure
-C * 10.1.1.0/24 [0/1024] is directly connected, vlan100-v0, 00:34:45
-C>* 10.1.1.0/24 is directly connected, vlan100, 00:34:45
-B>* 10.2.2.0/24 [20/0] via fe80::4638:39ff:fe00:1, swp51, weight 1, 00:34:13
-  *                    via fe80::4638:39ff:fe00:3, swp52, weight 1, 00:34:13
-B>* 30.0.0.0/24 [20/0] via fe80::4638:39ff:fe00:1, swp51, weight 1, 00:20:12
-  *                    via fe80::4638:39ff:fe00:3, swp52, weight 1, 00:20:12
-B>* 31.0.0.0/24 [20/0] via fe80::4638:39ff:fe00:1, swp51, weight 1, 00:20:56
-  *                    via fe80::4638:39ff:fe00:3, swp52, weight 1, 00:20:56
-B>* 172.16.0.0/24 [20/0] via fe80::4638:39ff:fe00:1, swp51, weight 1, 00:23:16
-  *                      via fe80::4638:39ff:fe00:3, swp52, weight 1, 00:23:16
-B>* 192.168.0.0/24 [20/0] via fe80::4638:39ff:fe00:1, swp51, weight 1, 00:23:16
-  *                       via fe80::4638:39ff:fe00:3, swp52, weight 1, 00:23:16
-```
-{{< /tab >}}
-{{< tab "leaf02 ">}}
-Leaf02 has two ECMP routes (via both spine switches) to ESXi03 TEP, Edge virtual uplinks and the BM subnet received by BGP - `10.2.2.0/24`, `192.168.0.0/24`, `30.0.0.0/24`, `31.0.0.0/24`, `172.16.0.0/24`. There are unnecessary prefixed learned, so consider filtering them as needed
-```
-cumulus@leaf02:mgmt:~$ net show route
-show ip route
-=============
-Codes: K - kernel route, C - connected, S - static, R - RIP,
-       O - OSPF, I - IS-IS, B - BGP, E - EIGRP, N - NHRP,
-       T - Table, v - VNC, V - VNC-Direct, A - Babel, D - SHARP,
-       F - PBR, f - OpenFabric,
-       > - selected route, * - FIB route, q - queued, r - rejected, b - backup
-       t - trapped, o - offload failure
-C * 10.1.1.0/24 [0/1024] is directly connected, vlan100-v0, 00:37:07
-C>* 10.1.1.0/24 is directly connected, vlan100, 00:37:07
-B>* 10.2.2.0/24 [20/0] via fe80::4638:39ff:fe00:9, swp51, weight 1, 00:36:27
-  *                    via fe80::4638:39ff:fe00:b, swp52, weight 1, 00:36:27
-B>* 30.0.0.0/24 [20/0] via fe80::4638:39ff:fe00:9, swp51, weight 1, 00:22:26
-  *                    via fe80::4638:39ff:fe00:b, swp52, weight 1, 00:22:26
-B>* 31.0.0.0/24 [20/0] via fe80::4638:39ff:fe00:9, swp51, weight 1, 00:23:09
-  *                    via fe80::4638:39ff:fe00:b, swp52, weight 1, 00:23:09
-B>* 172.16.0.0/24 [20/0] via fe80::4638:39ff:fe00:9, swp51, weight 1, 00:25:26
-  *                      via fe80::4638:39ff:fe00:b, swp52, weight 1, 00:25:26
-B>* 192.168.0.0/24 [20/0] via fe80::4638:39ff:fe00:9, swp51, weight 1, 00:25:30
-  *                       via fe80::4638:39ff:fe00:b, swp52, weight 1, 00:25:30
-```
-{{< /tab >}}
-{{< tab "leaf03 ">}}
-Leaf03 has two ECMP routes (via both spine switches) to ESXi01 TEP subnet received by BGP - `10.1.1.0/24`. It has directly connected BM and Edge uplink subnets - `192.168.0.0/24`, `30.0.0.0/24`, and the virtual machines and the peer Edge uplink subnets - `172.16.0.0/24`, `31.0.0.0/24` also received by BGP
-```
-cumulus@leaf03:mgmt:~$ net show route
-show ip route
-=============
-Codes: K - kernel route, C - connected, S - static, R - RIP,
-       O - OSPF, I - IS-IS, B - BGP, E - EIGRP, N - NHRP,
-       T - Table, v - VNC, V - VNC-Direct, A - Babel, D - SHARP,
-       F - PBR, f - OpenFabric,
-       > - selected route, * - FIB route, q - queued, r - rejected, b - backup
-       t - trapped, o - offload failure
-B>* 10.1.1.0/24 [20/0] via fe80::4638:39ff:fe00:11, swp51, weight 1, 00:39:14
-  *                    via fe80::4638:39ff:fe00:13, swp52, weight 1, 00:39:14
-C * 10.2.2.0/24 [0/1024] is directly connected, vlan100-v0, 00:39:25
-C>* 10.2.2.0/24 is directly connected, vlan100, 00:39:25
-C>* 30.0.0.0/24 is directly connected, swp1.300, 00:25:14
-B>* 31.0.0.0/24 [20/0] via fe80::4638:39ff:fe00:5e, peerlink.4094, weight 1, 00:25:57
-B>* 172.16.0.0/24 [20/0] via 30.0.0.1, swp1.300, weight 1, 00:25:57
-C * 192.168.0.0/24 [0/1024] is directly connected, vlan200-v0, 00:28:18
-C>* 192.168.0.0/24 is directly connected, vlan200, 00:28:18
-```
-{{< /tab >}}
-{{< tab "leaf04 ">}}
-Leaf04 has two ECMP routes (via both spine switches) to ESXi01 TEP subnet received by BGP - `10.1.1.0/24`. It has directly connected BM and Edge uplink subnets - `192.168.0.0/24`, `31.0.0.0/24`, and the virtual machine and the peer Edge uplink subnets - `172.16.0.0/24`, `30.0.0.0/24` also received by BGP.
-```
-cumulus@leaf04:mgmt:~$ net show route
-show ip route
-=============
-Codes: K - kernel route, C - connected, S - static, R - RIP,
-       O - OSPF, I - IS-IS, B - BGP, E - EIGRP, N - NHRP,
-       T - Table, v - VNC, V - VNC-Direct, A - Babel, D - SHARP,
-       F - PBR, f - OpenFabric,
-       > - selected route, * - FIB route, q - queued, r - rejected, b - backup
-       t - trapped, o - offload failure
-B>* 10.1.1.0/24 [20/0] via fe80::4638:39ff:fe00:19, swp51, weight 1, 00:41:26
-  *                    via fe80::4638:39ff:fe00:1b, swp52, weight 1, 00:41:26
-C * 10.2.2.0/24 [0/1024] is directly connected, vlan100-v0, 00:41:25
-C>* 10.2.2.0/24 is directly connected, vlan100, 00:41:25
-B>* 30.0.0.0/24 [20/0] via fe80::4638:39ff:fe00:5d, peerlink.4094, weight 1, 00:27:23
-C>* 31.0.0.0/24 is directly connected, swp1.301, 00:28:07
-B>* 172.16.0.0/24 [20/0] via 31.0.0.1, swp1.301, weight 1, 00:28:21
-C * 192.168.0.0/24 [0/1024] is directly connected, vlan200-v0, 00:29:16
-C>* 192.168.0.0/24 is directly connected, vlan200, 00:29:16
-```
-{{< /tab >}}
-{{< tab "spine01 ">}}
-Spine01 has all BGP advertised subnets (unnecessary prefixes can be filtered)
-```
-cumulus@spine01:mgmt:~$ net show route
-show ip route
-=============
-Codes: K - kernel route, C - connected, S - static, R - RIP,
-       O - OSPF, I - IS-IS, B - BGP, E - EIGRP, N - NHRP,
-       T - Table, v - VNC, V - VNC-Direct, A - Babel, D - SHARP,
-       F - PBR, f - OpenFabric,
-       > - selected route, * - FIB route, q - queued, r - rejected, b - backup
-       t - trapped, o - offload failure
-B>* 10.1.1.0/24 [20/0] via fe80::4638:39ff:fe00:2, swp1, weight 1, 00:45:41
-  *                    via fe80::4638:39ff:fe00:a, swp2, weight 1, 00:45:41
-B>* 10.2.2.0/24 [20/0] via fe80::4638:39ff:fe00:12, swp3, weight 1, 00:45:10
-  *                    via fe80::4638:39ff:fe00:1a, swp4, weight 1, 00:45:10
-B>* 30.0.0.0/24 [20/0] via fe80::4638:39ff:fe00:12, swp3, weight 1, 00:31:09
-B>* 31.0.0.0/24 [20/0] via fe80::4638:39ff:fe00:1a, swp4, weight 1, 00:31:52
-B>* 172.16.0.0/24 [20/0] via fe80::4638:39ff:fe00:12, swp3, weight 1, 00:33:00
-  *                      via fe80::4638:39ff:fe00:1a, swp4, weight 1, 00:33:00
-B>* 192.168.0.0/24 [20/0] via fe80::4638:39ff:fe00:12, swp3, weight 1, 00:33:01
-  *                       via fe80::4638:39ff:fe00:1a, swp4, weight 1, 00:33:01
-```
-{{< /tab >}}
-{{< tab "spine02 ">}}
-Spine02 has all BGP advertised subnets (unnecessary prefixes can be filtered)
-```
-cumulus@spine02:mgmt:~$ net show route
-show ip route
-=============
-Codes: K - kernel route, C - connected, S - static, R - RIP,
-       O - OSPF, I - IS-IS, B - BGP, E - EIGRP, N - NHRP,
-       T - Table, v - VNC, V - VNC-Direct, A - Babel, D - SHARP,
-       F - PBR, f - OpenFabric,
-       > - selected route, * - FIB route, q - queued, r - rejected, b - backup
-       t - trapped, o - offload failure
-B>* 10.1.1.0/24 [20/0] via fe80::4638:39ff:fe00:4, swp1, weight 1, 00:45:55
-  *                    via fe80::4638:39ff:fe00:c, swp2, weight 1, 00:45:55
-B>* 10.2.2.0/24 [20/0] via fe80::4638:39ff:fe00:14, swp3, weight 1, 00:45:55
-  *                    via fe80::4638:39ff:fe00:1c, swp4, weight 1, 00:45:55
-B>* 30.0.0.0/24 [20/0] via fe80::4638:39ff:fe00:14, swp3, weight 1, 00:31:55
-B>* 31.0.0.0/24 [20/0] via fe80::4638:39ff:fe00:1c, swp4, weight 1, 00:32:38
-B>* 172.16.0.0/24 [20/0] via fe80::4638:39ff:fe00:14, swp3, weight 1, 00:33:47
-  *                      via fe80::4638:39ff:fe00:1c, swp4, weight 1, 00:33:47
-B>* 192.168.0.0/24 [20/0] via fe80::4638:39ff:fe00:14, swp3, weight 1, 00:33:48
-  *                       via fe80::4638:39ff:fe00:1c, swp4, weight 1, 00:33:48
-```
-{{< /tab >}}
 {{< /tabs >}}
 
 ## Traffic Flow
 
-This scenario examines a VM which assigned to a logical segment `VLAN100` in the virtualized world, BM server in `VLAN200` on the underlay network (physical world), and NSX Edge VM located on ESXi03 host. Edge VM is the gateway between the logical and the physical worlds ("north-south" traffic) and uses two logical uplinks in VLANs `30` and `31` which has BGP peering to the underlay leaf switches to route VM-BM traffic.
+This scenario examines a VM which is assigned to a logical segment, `VLAN100`, in the virtualized network. A bare metal server in `VLAN200`, in the underlay network, and NSX Edge VM located on ESXi03 host. The Edge VM is the gateway between the virtual and the physical networks ("north-south" traffic in VMWare terminology) and uses two logical uplinks in VLANs `30` and `31` which has BGP peering to the underlay leaf switches to route VM to bare metal traffic.
 
-In this diagram we also have Tier 1 and Tier 0 gateways which are part of the NSX Edge. T1 router has logical downlink into the virtual segment, and a logical uplink to the T0 router. T0 router has logical downlink to T1, and two logical uplinks to the leaf switches in the physical world - `VLAN30`, `VLAN31`. T0 router has the BGP peering with the leaf switches, and by that it advertises the logical segments to the underlaying fabric and receives the physical subnets.
-
-{{<figure src="/images/guides/cumulus-nsxt/edge.jpg">}}
+In this diagram we also have both Tier 0 and Tier 1 routers. The T0 router BGP peers with the leaf switches and advertises the Overlay network routes. The T1 router is the gateway for virtual hosts.  
+T0 router has logical downlink to T1, and two logical uplinks to the leaf switches in the physical world through `VLAN30` and `VLAN31`.
+The T1 router has a logical downlink into the virtual segment, and a logical uplink to the T0 router.
 
 {{%notice note%}}
 
-Links between T1-T0 routers are created automatically by NSX-T/Edge and should be advertised into BGP. Then the undelay fabric will be aware of the virtualized subnets and vice versa.
+Links between T1-T0 routers are created automatically by NSX and must be advertised into the underlay BGP network by the T0 router.
 
 {{%/notice %}}
 
@@ -1903,18 +1417,18 @@ NSX Edge VM has virtual NICs (vNICs) in each of the Overlay and VLAN Transport Z
 
 {{%/notice %}}
 
-VM1 `172.16.0.1` on ESXi01 sends traffic to the BM server `192.168.0.1`:
+{{<figure src="/images/guides/cumulus-nsxt/edge.jpg">}}
 
-1. The packet reaches the T1 Router as its destination IP address located in different subnet (T1 is logical so the packet is still in ESXi01).
-2. T1 examines its routing table to determine the destination path.
-3. As BM subnet is `192.168.0.0` received from T0 router, it will be the destination nexthop
-4. Local TEP encapsulates the packet into Geneve using VNI `65010` of `VLAN100` segment. As the destination is T0 router, which is on the Edge, the packet sent to it with source-destination IPs of the TEP devices `10.1.1.1`-`10.2.2.1`.
-5. Edge TEP, which is part of the Overlay TZ will (and `VLAN100`) decapsulate the packet and forwards it to the T0 router. 
-6. T0 router which is part of the underlay VLAN TZ, will examines its routing table to determine the packet's destination.
-7. As packet's destination is the BM server in the underlay network (based on BGP advertisements), a regular IP traffic will be sent over the virtual uplinks to `leaf03` and `leaf04` (ECMP) to reach their directly connected BM subnet `192.168.0.0/24`
+As an example traffic flow, VM1 at `172.16.0.1` on ESXi01 sends traffic to the bare metal server `192.168.0.1`:
 
-
-
+1. The packet from VM1 arrives at the local T1 Router, VM1's default gateway.
+2. The T1 router examines its routing table to determine the destination path.
+3. The bare metal subnet of `192.168.0.0/24` was received from the T0 router, and becomes the next hop via a Geneve tunnel.
+4. Local TEP on ESXi01 encapsulates the packet into Geneve using VNI `65010` for the `VLAN100` segment. The destination is the T0 router on the Edge, ESXi03.
+5. The packet is sent to ESXi03 with source and destination IPs of the TEP devices `10.1.1.1` and `10.2.2.1`.
+6. The Edge TEP decapsulates the packet and forwards it to the T0 router also located inside host ESXi03.
+7. The T0 router receives an IP packet with destination address `192.168.0.1` and has a next hop via the BGP peer on leaf03.
+8. The packet is sent to leaf03 in VLAN30, where it is routed to VLAN200 and delivered to the bare metal server.
 
 # Virtualized Environment Over EVPN Fabric
 
@@ -2489,7 +2003,7 @@ spine02# exit
 
 ### VXLAN VTEP IP Advertisement into BGP and VNI Into EVPN
 
-As VXLAN tunnels created using local loopback addresses (and `clag vxlan-anycast-ip` with MLAG), all the VTEP IPs must be reachable over the undelaying IP fabric. For that, BGP must advertise the local loopbacks and anycast-ip addresses into BGP IPv4 (default) address-family.
+As VXLAN tunnels created using local loopback addresses (and `clag vxlan-anycast-ip` with MLAG), all the VTEP IPs must be reachable over the underlaying IP fabric. For that, BGP must advertise the local loopbacks and anycast-ip addresses into BGP IPv4 (default) address-family.
 
 For the EVPN control-plane to know which VXLAN VNI belongs to which VTEP, the VNIs previously mapped to VXLAN interfaces (interfaces which also mapped to a VLAN) must be advertised in EVPN address-family. This is done using `advertise-all-vni` command under EVPN.
 

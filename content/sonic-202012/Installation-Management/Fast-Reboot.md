@@ -1,15 +1,13 @@
 ---
 title: Fast Reboot
 author: Cumulus Networks
-weight: 53
+weight: 230
 product: SONiC
 version: 202012
 siteSlug: sonic
 ---
 
-Fast reboot updates the control plane while briefly (30 seconds or less) disrupting the data plane.
-
-{{<img src="/images/sonic/fast-reboot.png">}}
+Fast reboot updates the control plane while briefly disrupting the data plane (30 seconds or less).
 
 ## Features and Requirements
 
@@ -24,17 +22,17 @@ Fast reboot updates the control plane while briefly (30 seconds or less) disrupt
 - BGP stack supports announcing of the preserved forwarding state.
 - Linux kernel with `kexec` enabled, which provides for the loading of another Linux kernel without a cold reboot of the switch.
 
+{{<img src="/images/sonic/fast-reboot.png">}}
+
 ## Fast Reboot before Control Plane Reboot
 
 Fast reboot is initiated by running the `/usr/bin/fast-reboot` executable, a bash script. This script must be run when a switch is stable. The `fast-reboot` script does the following:
 
-1. Dumps FDB and ARP entries from the ASIC DB tables into the SWSS container.
-2. Stops (-9) the `bgpd` process to force a BGP graceful restart.
-3. Stops the `teamd` process, allowing `teamd` to send one last update to its peers.
-4. Stops the `docker` service. This prevents the filesystem of the Docker containers from getting corrupted.
-5. Loads a new kernel from the disk, sets the `fast-reboot` argument for the kernel and reboots into the new kernel.
-
-   The data plane is still working during this process.
+- Dumps FDB and ARP entries from the ASIC DB tables into the SWSS container.
+- Stops (-9) the `bgpd` process to force a BGP graceful restart.
+- Stops the `teamd` process, allowing `teamd` to send one last update to its peers.
+- Stops the `docker` service. This prevents the filesystem of the Docker containers from getting corrupted.
+- Loads a new kernel from the disk, sets the `fast-reboot` argument for the kernel and reboots into the new kernel. The data plane is still working during this process.
 
 ## Fast Reboot after Control Plane Reboot
 

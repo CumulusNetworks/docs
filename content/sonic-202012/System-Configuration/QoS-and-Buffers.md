@@ -498,29 +498,72 @@ admin@sonic:~$
 
 ## ECN and WRED
 
-*Explicit Congestion Notification* (ECN) is defined by {{<exlink url="https://tools.ietf.org/html/rfc3168" text="RFC 3168">}}. ECN enables the SONiC switch to mark a packet to signal impending congestion instead of dropping the packet, which is how TCP typically behaves when ECN is not enabled.
+*Weighted Random Early Detection* (WRED) and Random Early Detection (RED) are mechanisms that improve TCP flow behavior when congestion occurs in the network by dropping packets before the buffer becomes full, causing packets to drop. The basis of these mechanisms is to enable random packets to drop upon congestion in the switch. WRED is an extension of the RED mechanism, and enables a different configuration of RED for different traffic profiles.
 
-ECN is a layer 3 end-to-end congestion notification mechanism only. Packets can be marked as ECN-capable transport (ECT) by the sending server. If congestion is observed by any switch while the packet is getting forwarded, the ECT-enabled packet can be marked by the switch to indicate the congestion. The end receiver can respond to the ECN-marked packets by signaling the sending server to slow down transmission. The sending server marks a packet ECT by setting the least two significant bits in an IP header `DiffServ` (ToS) field to *01* or *10*. A packet that has the least two significant bits set to *00* indicates a non-ECT-enabled packet.
+By using WRED minimum and maximum thresholds, a maximum probability can be configured for each color. The probability at which the traffic is dropped depends on the length of the queue:
 
-The ECN mechanism on a switch only marks packets to notify the end receiver. It does not take any other action or change packet handling in any way, nor does it respond to packets that have already been marked ECN by an upstream switch.
+- If it is less than the minimum threshold, there is no drop.
+- If it is between the minimum and maximum threshold, the drop probability is calculated as: maximum_probability * (queue_length – minimum_threshold) / (maximum_threshold – minimum_threshold).
+- If it is greater than the maximum threshold, the drop probability is 100%.
 
-###	CONFIG_DB Tables
+*Explicit Congestion Notification* (ECN) is defined by {{<exlink url="https://tools.ietf.org/html/rfc3168" text="RFC 3168">}}. It is used for congestion control protocols (TCP and RoCE CC – DCQCN) to handle congestion before packets are dropped. When congestion is identified, a switch may send a forward notification by marking its packet at the layer 3 header. Further actions may be taken by the destination in order to let the source know about it, and in its turn to handle the congestion. The decision whether to mark packets with ECN is like the drop decision of the WRED.
 
-| Tables | Description |
+On SONiC, you configure the WRED and ECN on a per-queue basis.
+
+### Configure the WRED Profile
+
+The WRED_PROFILE table includes the following fields:
+
+- `green_max_threshold`, `yellow_max_threshold` and `red_max_threshold`: These fields represent the maximum threshold for traffic marked as green, yellow or red, respectively. If the number of bytes accumulated in the queue exceeds the threshold, 100% of the traffic is lost.
+- `green_min_threshold`, `yellow_min_threshold` and `red_min_threshold`: These fields represent the minimum threshold for traffic marked as green, yellow or red, respectively. If the number of bytes accumulated in the queue exceeds the threshold, the traffic starts to be lost.
+- `green_drop_probability`, `yellow_drop_probability` and `red_drop_probability`: These fields represent the maximum drop priority for the traffic marked as that color.
+- `ecn`: ECN works on any color. It can be any color or any composition of the colors, like: ecn_all, ecn_none, ecn_red, ecn_yellow_red, etc.
+
+The available options are listed below:
+
+| Option | Description |
 | ------ | ----------- |
-| WRED_PROFILE | Defines the WRED profiles. The following fields are included:<br />- green_max_threshold, yellow_max_threshold and red_max_threshold, representing the max threshold for traffic marked as green, yellow or red respectively. If the number of bytes accumulated in the queue exceeds the threshold, the traffic will be 100% lost.<br />- green_min_threshold, yellow_min and red_min_threshold, representing the min threshold for traffic marked as yellow, green and red respectively. If the number of bytes accumulated in the queue exceeds the threshold, the traffic will start to be lost.<br />- green_drop_probability, yellow_drop_probability and red_drop_probability, representing the maximum drop priority for the traffic marked as that color.<br />Referenced by QUEUE table |
-| QUEUE | Reference WRED_PROFILE table by field "wred_profile" |
+| -gmin GREEN_MIN, --green-min GREEN_MIN | Sets the minimum threshold for packets marked *green*. |
+| -gmax GREEN_MAX, --green-max GREEN_MAX | Sets the maximum threshold for packets marked *green*. |
+| -ymin YELLOW_MIN, --yellow-min YELLOW_MIN | Sets the minimum threshold for packets marked *yellow*. |
+| -ymax YELLOW_MAX, --yellow-max YELLOW_MAX | Sets the maximum threshold for packets marked *yellow*. |
+| -rmin RED_MIN, --red-min RED_MIN | Sets the minimum threshold for packets marked *red*. |
+| -rmax RED_MAX, --red-max RED_MAX | Sets the maximum threshold for packets marked *red*. |
+| -gdrop GREEN_DROP_PROB, --green-drop-prob GREEN_DROP_PROB | Sets the maximum drop/mark probability for packets marked *green*. |
+| -ydrop YELLOW_DROP_PROB, --yellow-drop-prob YELLOW_DROP_PROB | Sets the maximum drop/mark probability for packets marked *yellow*. |
+| -rdrop RED_DROP_PROB, --red-drop-prob RED_DROP_PROB | Sets the maximum drop/mark probability for packets marked *red*. |
+| -p PROFILE | The name of the profile. This field is required. |
 
-## Configure WRED
+Once a WRED profile has been added to the system, it can also be updated by using the `ecnconfig` command:
 
-To update WRED_PROFILE table:
+```
+admin@sonic:~$ ecnconfig -l
 
-1. Compose a json file (qos_wred_test.json) which contains the profile info.
+Profile: AZURE_LOSSLESS
+-----------------------  -------
+red_max_threshold        2097152
+red_drop_probability     5
+yellow_max_threshold     2097152
+ecn                      ecn_all
+green_min_threshold      1048576
+red_min_threshold        1048576
+wred_yellow_enable       true
+yellow_min_threshold     1048576
+green_max_threshold      2097152
+green_drop_probability   5
+wred_green_enable        true
+yellow_drop_probability  5
+wred_red_enable          true
+-----------------------  -------
+```
 
+To configure the WRED_PROFILE table:
+
+1. Create a JSON file called `qos_wred_test.json` that contains the profile information.
+
+       admin@switch:~$ sudo vi qos_wred_test.json
        {
-
           "WRED_PROFILE": {
-
                "NEW_PROFILE": {
                    "ecn": "ecn_all",
                    "green_drop_probability": "5",
@@ -538,29 +581,19 @@ To update WRED_PROFILE table:
                }
            }
        }
-2. Load the json file to the config database.
+2. Load the JSON file into the config database.
 
-       sonic-cfggen -j qos_wred_test.json --write-to-db
+       admin@switch:~$ sudo sonic-cfggen -j qos_wred_test.json --write-to-db
 
-WRED profiles can also be configured using the CLI command “ecnconfig”. The available options are listed below:
+### Configure the Queue
 
-| Option | Description |
-| ------ | ----------- |
-| -gmin GREEN_MIN, --green-min GREEN_MIN | set min threshold for packets marked 'green' |
-| -gmax GREEN_MAX, --green-max GREEN_MAX | set max threshold for packets marked 'green' |
-| -ymin YELLOW_MIN, --yellow-min YELLOW_MIN | set min threshold for packets marked 'yellow' |
-| -ymax YELLOW_MAX, --yellow-max YELLOW_MAX | set max threshold for packets marked 'yellow' |
-| -rmin RED_MIN, --red-min RED_MIN | set min threshold for packets marked 'red' |
-| -rmax RED_MAX, --red-max RED_MAX | set max threshold for packets marked 'red' |
-| -gdrop GREEN_DROP_PROB, --green-drop-prob GREEN_DROP_PROB | set max drop/mark probability for packets marked 'green' |
-| -ydrop YELLOW_DROP_PROB, --yellow-drop-prob YELLOW_DROP_PROB | set max drop/mark probability for packets marked 'yellow' |
-| -rdrop RED_DROP_PROB, --red-drop-prob RED_DROP_PROB | set max drop/mark probability for packets marked 'red' |
-| -p PROFILE | The name of the profile. It must exist. | 
+Configuring a queue involves referencing the WRED_PROFILE table in the `wred_profile` field.
 
-To update the QUEUE table:
+To configure the QUEUE table:
 
-1. Compose a json file which contains the queue and new WRED profile info. 
+1. Create a JSON file called `qos_queue_test.json` that contains the queue and new WRED profile information.
 
+       admin@switch:~$ sudo vi qos_queue_test.json
        {
           "QUEUE": {
                "Ethernet0|3": {
@@ -568,53 +601,213 @@ To update the QUEUE table:
                }
            }
        }
-2. Load the json file into the config database.
+2. Load the JSON file into the config database.
+
+       admin@switch:~$ sudo sonic-cfggen -j qos_queue_test.json --write-to-db
 
 ## Priority Flow Control - PFC
 
-*Priority flow control* (PFC) oversees:
+*Priority flow control* (PFC) provides an enhancement to the existing pause mechanism in Ethernet. The current Ethernet pause option stops all traffic on a link. PFC creates eight separate virtual links on the physical link and allows any of these links to be paused and restarted independently, enabling the network to create a lossless class of service for an individual virtual link.
 
-- Mapping of an incoming packet to a priority according to its DSCP value or IEEE priority
-- Mapping of the priority to an egress queue
-- Sending a PFC frame for lossless priority if it runs out of headroom
+PFC oversees:
+
+- Mapping of an incoming packet to a priority according to its DSCP value or IEEE priority.
+- Mapping of the priority to an egress queue.
+- Sending a PFC frame for lossless priority if it runs out of headroom.
 - Ceasing the egress queue on receiving a PFC frame.
 
 These operations depend on the mappings among queue, priorities and DSCP, which are defined below.
 
 ### CONFIG_DB Tables
 
-| Tables | Description |
-| ------ | ----------- |
+PFC uses the following tables in CONFIG_DB:
+
+| Table | Description |
+| ----- | ----------- |
 | TC_TO_QUEUE_MAP | In the egress direction, maps the traffic class to an egress queue. |
-| DSCP_TO_TC_MAP | In the ingress direction, maps the DSCP field in an IP packet into a traffic class. |
-| MAP_PFC_PRIORITY_TO_QUEUE | Maps the priority in the received PFC frames to an egress queue so that the switch knows which egress to resume/pause. |
-| PFC_PRIORITY_TO_PRIORITY_GROUP_MAP | Maps PFC priority to priority group. |
-| TC_TO_PRIORITY_GROUP_MAP | Allows the switch to set the PFC priority in xon/xoff frames in order to resume/pause corresponding egress queue at the link peer. |
-| PORT_QOS_MAP | Defines the mappings adopted by a port, including:<br />- tc_to_queue_map, default value is TC_TO_QUEUE_MAP\|AZURE<br />- dscp_to_tc_map, default value is DSCP_TO_TC_MAP\|AZURE<br />- pfc_to_queue_map, default value is MAP_PFC_PRIORITY_TO_QUEUE\|AZURE<br />- pfc_to_pg_map, default value is PFC_PRIORITY_TO_PRIORITY_GROUP_MAP\|AZURE<br />- tc_to_pg_map, default value is TC_TO_PRIORITY_GROUP_MAP|AZURE<br />- pfc_enable, on which priorities is pfc enabled |
+| DSCP_TO_TC_MAP | In the ingress direction, maps the DSCP field in an IP packet into a traffic class. By utilizing this table and the TC_TO_QUEUE_MAP table, a packet can be mapped from its DSCP field to the egress queue. In case there is a congestion in the egress queue, the back-pressure mechanism is triggered, and the PFC frame can be sent. The priority in the PFC frame is determined by TC to priority group mapping table. |
+| MAP_PFC_PRIORITY_TO_QUEUE | Maps the priority in the received PFC frames to an egress queue so that the switch knows which egress to resume or pause. |
+| PFC_PRIORITY_TO_PRIORITY_GROUP_MAP | Maps PFC priority to a priority group. |
+| TC_TO_PRIORITY_GROUP_MAP | Maps the PFC priority to a priority group and enables the switch to set the PFC priority in xon/xoff frames in order to resume/pause corresponding egress queue at the link peer. |
+| PORT_QOS_MAP | Defines the mappings adopted by a port, including:<br />- `tc_to_queue_map`, default value is TC_TO_QUEUE_MAP\|AZURE<br />- `dscp_to_tc_map`, default value is DSCP_TO_TC_MAP\|AZURE<br />- `pfc_to_queue_map`, default value is MAP_PFC_PRIORITY_TO_QUEUE\|AZURE<br />- `pfc_to_pg_map`, default value is PFC_PRIORITY_TO_PRIORITY_GROUP_MAP\|AZURE<br />- `tc_to_pg_map`, default value is TC_TO_PRIORITY_GROUP_MAP|AZURE<br />- `pfc_enable`, on which priorities are PFC enabled. |
 
 ### Configure PFC
 
 All the mapping tables are simple integer-to-integer mappings.
 
 To update the mappings:
-1. Compose a temporary json file containing the new config.
-2. Deploy by using "sonic-cfggen -j new_cfg.json -w".
+
+1. Create a temporary JSON file containing the new port mapping configuration.
+
+   ```
+   admin@switch:~$ sudo vi new_cfg.json
+   { 
+     "DSCP_TO_TC_MAP": { 
+        "AZURE": { 
+            "0": "1",  
+            "1": "1",  
+            "2": "1",  
+            "3": "3",  
+            "4": "4",  
+            "5": "2",  
+            "6": "1",  
+            "7": "1",  
+            "8": "0",  
+            "9": "1",  
+            "10": "1",  
+            "11": "1",
+            "12": "1",  
+            "13": "1",  
+            "14": "1",  
+            "15": "1",  
+            "16": "1",
+            "17": "1",  
+            "18": "1",  
+            "19": "1",  
+            "20": "1",  
+            "21": "1",  
+            "22": "1",  
+            "23": "1",  
+            "24": "1",  
+            "25": "1", 
+            "26": "1",  
+            "27": "1",  
+            "28": "1",  
+            "29": "1",  
+            "30": "1",  
+            "31": "1",  
+            "32": "1",  
+            "33": "1",  
+            "34": "1",  
+            "35": "1",  
+            "36": "1",  
+            "37": "1",  
+            "38": "1",  
+            "39": "1",  
+            "40": "1",  
+            "41": "1",  
+            "42": "1",  
+            "43": "1",  
+            "44": "1",  
+            "45": "1", 
+            "46": "5",  
+            "47": "1",  
+            "48": "6",  
+            "49": "1",  
+            "50": "1",  
+            "51": "1",  
+            "52": "1",  
+            "53": "1",  
+            "54": "1",  
+            "55": "1",  
+            "56": "1",  
+            "57": "1",  
+            "58": "1",  
+            "59": "1",  
+            "60": "1",  
+            "61": "1",  
+            "62": "1",  
+            "63": "1" 
+        } 
+      },  
+
+      "MAP_PFC_PRIORITY_TO_QUEUE": { 
+        "AZURE": { 
+            "0": "0",  
+            "1": "1",  
+            "2": "2",  
+            "3": "3",  
+            "4": "4",  
+            "5": "5",  
+            "6": "6",  
+            "7": "7" 
+        } 
+      },  
+
+      "PFC_PRIORITY_TO_PRIORITY_GROUP_MAP": { 
+        "AZURE": { 
+            "3": "3",  
+            "4": "4" 
+        } 
+      },  
+
+      "PORT_QOS_MAP": { 
+        "Ethernet0": { 
+            "dscp_to_tc_map": "[DSCP_TO_TC_MAP|AZURE]",  
+            "pfc_enable": "3,4",  
+            "pfc_to_pg_map": "[PFC_PRIORITY_TO_PRIORITY_GROUP_MAP|AZURE]",  
+            "pfc_to_queue_map": "[MAP_PFC_PRIORITY_TO_QUEUE|AZURE]",  
+            "tc_to_pg_map": "[TC_TO_PRIORITY_GROUP_MAP|AZURE]",  
+            "tc_to_queue_map": "[TC_TO_QUEUE_MAP|AZURE]" 
+        } 
+      },  
+
+      "SCHEDULER": { 
+        "scheduler.0": { 
+            "type": "DWRR",  
+            "weight": "14" 
+        },  
+        "scheduler.1": { 
+            "type": "DWRR",  
+            "weight": "15" 
+        } 
+      },  
+
+      "TC_TO_PRIORITY_GROUP_MAP": { 
+        "AZURE": { 
+            "0": "0",  
+            "1": "0",  
+            "2": "0",  
+            "3": "3",  
+            "4": "4",  
+            "5": "0",  
+            "6": "0",  
+            "7": "7" 
+        } 
+      },  
+
+      "TC_TO_QUEUE_MAP": { 
+        "AZURE": { 
+            "0": "0",  
+            "1": "1",  
+            "2": "2",  
+            "3": "3",  
+            "4": "4",  
+            "5": "5",  
+            "6": "6", 
+            "7": "7" 
+        } 
+      }
+    }
+    ```
+2. Deploy the new configuration:
+
+       admin@switch:~$ sudo sonic-cfggen -j new_cfg.json -w
 
 ## Update Buffers and QoS Configuration Using Templates
 
 Buffers and QoS configuration can be rendered from templates. If you are going to update the configuration of the entire switch in batch mode, follow the steps below:
 
 1. Modify the templates:
-   1. For buffer configuration, modify the /usr/share/sonic/templates/buffers_config.j2
-   1. For QoS configuration, modify the /usr/share/sonic/templates/qos_config.j2
-2. Reload qos config by executing "config qos reload"
+
+   1. For buffer configuration, modify the `/usr/share/sonic/templates/buffers_config.j2` file.
+   1. For QoS configuration, modify the `/usr/share/sonic/templates/qos_config.j2` file.
+1. Reload the QoS configuration:
+
+       admin@switch:~$ sudo config qos reload -y
 
 {{%notice info%}}
 
-Due to a limitation, the "config qos reload" command fails. to solve the issue, follow the steps below:
+Due to a limitation, the `config qos reload` command fails. To solve the issue, follow these steps:
 
-1. Execute "config qos reload"
-2. Execute "config save"
-3. Execute "config reload"
+1. Reload the QoS configuration:
+
+       admin@switch:~$ sudo config qos reload -y
+2. Save the configuration:
+
+       admin@switch:~$ sudo config save -y
+3. Reload the SONiC configuration:
+
+       admin@switch:~$ sudo config reload -y
 
 {{%/notice%}}

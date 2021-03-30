@@ -5,6 +5,7 @@ weight: 9000
 product: SONiC
 version: 202012
 siteSlug: sonic
+draft: true
 ---
 
 Once you have logged into the switch and installed SONiC, you can perform various modifications to your setup to make it suitable for your system’s requirements.

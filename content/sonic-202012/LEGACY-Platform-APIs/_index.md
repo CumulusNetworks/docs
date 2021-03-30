@@ -5,6 +5,7 @@ weight: 8000
 product: SONiC
 version: 202012
 siteSlug: sonic
+draft: true
 ---
 
 | Modules | APIs |

@@ -196,3 +196,11 @@ If no interfaces are showing, it might indicate one of the following:
 - The `/etc/sonic/config_db.json` file is missing or was misconfigured.
 - There is an issue with the `syncd` container.
 - There was an error processing a configuration file such as `port_config.ini` or `config_db.json`.
+
+## Default Credentials
+
+All SONiC switches support both serial console-based login and SSH-based login by default. The default credentials to log in (if you did not modify when you built the SONiC image) is *admin*/*YourPaSsWoRd*.
+
+For SSH login, you can log in to the management interface (eth0) IP address after configuring the it using the serial console. Refer the next section for configuring the IP address for management interface.
+
+You can add new users with the Linux `useradd` command. You manage passwords with the Linux `passwd` command.

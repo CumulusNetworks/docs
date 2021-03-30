@@ -5,6 +5,7 @@ weight: 51
 product: SONiC
 version: 202012
 siteSlug: sonic
+draft: true
 ---
 
 ASIC's internal resources are limited and are shared between several hardware procedures. Due to this, a partitioning scheme for such resource  is expected in order to perform fine tuning for the applications. Such requirement can be done by configuring the ASIC's table size.

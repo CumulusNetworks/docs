@@ -42,7 +42,7 @@ The containers are:
   - `syncd`: The process that executes the synchronization logic. At compilation time, `syncd` links with the ASIC SDK library and injects state gathered from the interfaces into the ASIC. `syncd` subscribes to `ASIC_DB` to receive state from `swss` actors, and also pushes state coming from the hardware back to `ASIC_DB`.
   - SAI API: The {{<exlink url="https://github.com/opencomputeproject/SAI" text="Switch Abstraction Interface">}} (SAI) defines the API to provide a vendor-independent way of controlling forwarding elements, such as a switching ASIC, an NPU or a software switch in a uniform manner.
   - ASIC SDK: An SAI-compatible implementation of the SDK required to drive the ASIC. The SDK hooks into `syncd`, which is responsible for driving its execution.
-- **teamd**: The {{<link url="Bonds-Link-Aggregation-LAG" text="link aggregation">}} (LAG) container, which provides the functionality for configuring bonds on SONiC switches. The `teamd` service is a Linux-based open source implementation of the LAG protocol. The `teamsyncd` service manages the interaction between `teamd` and southbound subsystems.
+- **teamd**: The {{<link url="Port-Channels-Link-Aggregation-LAG" text="link aggregation">}} (LAG) container, which provides the functionality for configuring bonds on SONiC switches. The `teamd` service is a Linux-based open source implementation of the LAG protocol. The `teamsyncd` service manages the interaction between `teamd` and southbound subsystems.
 - **telemetry**:  <!-- NEED SOMETHING HERE -->
 - **what-just-happened**: The container for the {{<link url="What-Just-Happened" text="Mellanox What Just Happened">}} functionality. This container is not installed in SONiC by default; you must add it manually.
 

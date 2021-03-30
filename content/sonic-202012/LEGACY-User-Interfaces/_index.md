@@ -5,6 +5,7 @@ weight: 9900
 product: SONiC
 version: 202012
 siteSlug: sonic
+draft: true
 ---
 
 ## LED Indicators

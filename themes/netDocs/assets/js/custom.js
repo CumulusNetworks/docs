@@ -190,6 +190,8 @@ $(document).ready(function() {
       document.querySelectorAll('.book-toc nav a').forEach(anc => {
         anc.onclick = function(e) { 
 					var elem = document.getElementById(anc.hash.replace('#',''));
+					var url = window.location.protocol + "//" + window.location.host + window.location.pathname + anc.getAttribute("href");    
+					window.history.pushState({ path: url }, '', url);
 					$('html,body').animate({scrollTop: elem.offsetTop + 120},100)
 					e.preventDefault()
         };

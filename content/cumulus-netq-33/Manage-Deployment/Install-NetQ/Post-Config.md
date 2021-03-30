@@ -17,8 +17,8 @@ The following items are needed to perform the certificate installation:
 - A private key file for the certificate
 - A DNS record name configured to access the NetQ UI
 
-    The FQDN should match the common name of the certificate. If you use a wild card in the common name &mdash; for example, if the common name of the certificate is _*.example.com_ &mdash; then the NetQ telemetry server should reside on a subdomain of that domain, accessible via a URL like _netq.example.com_.
-- Cumulus NetQ must be installed and running
+    The FQDN should match the common name of the certificate. If you use a wild card in the common name&mdash;for example, if the common name of the certificate is _*.example.com_&mdash;then the NetQ telemetry server should reside on a subdomain of that domain, accessible via a URL like _netq.example.com_.
+- NetQ must be installed and running
 
     You can verify this by running the `netq show opta-health` command.
 
@@ -119,9 +119,9 @@ Your custom certificate should now be working. Verify this by opening the NetQ U
 
 ## Update Your Cloud Activation Key
 
-The cloud activation key is the one used to access the Cloud services, not the authorization keys used for configuring the CLI. It is provided by Cumulus Networks when your premises is set up. It is called the *config-key*.
+The cloud activation key is the one used to access the Cloud services, not the authorization keys used for configuring the CLI. It is provided by NVIDIA when your premises is set up. It is called the *config-key*.
 
-There are occasions where you might want to update your cloud service activation key. For example, if you mistyped the key during installation and now your existing key does not work, or you received a new key for your premises from Cumulus Networks.
+On occasion, you might want to update your cloud service activation key. For example, if you mistyped the key during installation and now your existing key does not work, or you received a new key for your premises from NVIDIA.
 
 Update the activation key using the Admin UI or NetQ CLI:
 

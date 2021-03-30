@@ -180,9 +180,9 @@ You can view all system  and TCA events of a given type on a networkwide basis u
 2. Click **Events** under the **Network** column.
 
 3. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/15-Filter/filter-1.svg" width="18" height="18">}}.
-
-4. Enter the name of network protocol or service (agent, bgp, link, tca_dom, and so on) in the **Message Type** field.
-
+<!-- vale off -->
+4. Enter the name of network protocol or service (*agent*, *bgp*, *link*, *tca_dom*, and so on) in the **Message Type** field.
+<!-- vale on -->
 <div style="padding-left: 18px;">{{<notice tip>}}
 You can enter additional filters for severity and time range to further narrow the output.
 {{</notice>}}</div>

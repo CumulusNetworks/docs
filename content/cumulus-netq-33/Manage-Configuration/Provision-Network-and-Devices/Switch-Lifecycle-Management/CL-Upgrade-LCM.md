@@ -10,7 +10,7 @@ Upgrades can be performed between Cumulus Linux 3.x releases, between Cumulus Li
 
 ## Workflows for Cumulus Linux Upgrades Using LCM
 
-There are three methods available through LCM for upgrading Cumulus Linux on your switches based on whether the NetQ Agent is already installed on the switch or not, and whether you want to use the NetQ UI or the NetQ CLI:
+Three methods are available through LCM for upgrading Cumulus Linux on your switches based on whether the NetQ Agent is already installed on the switch or not, and whether you want to use the NetQ UI or the NetQ CLI:
 
 - Use NetQ UI or NetQ CLI for switches with NetQ 2.4.x or later Agent already installed
 - Use NetQ UI for switches without NetQ Agent installed
@@ -252,7 +252,7 @@ Expand the following dropdown to view common failures, their causes and correcti
 </tr>
 <tr>
 <td></td>
-<td>Image not uploaded for the combination: CL Version - &lt;x.y.z&gt;, Asic Vendor - &lt;Mellanox | Broadcom&gt;, CPU Arch - &lt;x86 | ARM &gt;</td>
+<td>Image not uploaded for the combination: CL Version - &lt;x.y.z&gt;, Asic Vendor - &lt;NVIDIA | Broadcom&gt;, CPU Arch - &lt;x86 | ARM &gt;</td>
 <td>Error</td>
 <td>The specified Cumulus Linux image is not available in the LCM repository</td>
 <td>Upload missing image. Refer to {{<link title="#Upload Images" text="Upload Images">}}.</td>
@@ -575,11 +575,11 @@ Some of the common reasons for upgrade failures and the errors they present:
 
 | Reason | Error Message |
 | --- | --- |
-| Switch is not reachable via SSH | Data could not be sent to remote host "192.168.0.15". Make sure this host can be reached over ssh: ssh: connect to host 192.168.0.15 port 22: No route to host |
+| Switch is not reachable via SSH | Data could not be sent to remote host "192.168.0.15." Make sure this host can be reached over ssh: ssh: connect to host 192.168.0.15 port 22: No route to host |
 | Switch is reachable, but user-provided credentials are invalid | Invalid/incorrect username/password. Skipping remaining 2 retries to prevent account lockout: Warning: Permanently added '\<hostname-ipaddr\>' to the list of known hosts. Permission denied, please try again. |
-| Switch is reachable, but a valid Cumulus Linux license is not installed | 1587866683.880463 2020-04-26 02:04:43 license.c:336 CRIT No license file. No license installed! |
+| Switch is reachable, but a valid Cumulus Linux license is not installed | <!-- vale off -->1587866683.880463 2020-04-26 02:04:43 license.c:336 CRIT No license file. No license installed! <!-- vale on -->|
 | Upgrade task could not be run | Failure message depends on the why the task could not be run. For example: /etc/network/interfaces: No such file or directory |
-| Upgrade task failed | Failed at- \<task that failed\>. For example: Failed at- MLAG check for the peerLink interface status |
+| Upgrade task failed | Failed at- \<task that failed\>. <!-- vale off -->For example: Failed at- MLAG check for the peerLink interface status <!-- vale on -->|
 | Retry failed after five attempts | FAILED In all retries to process the LCM Job |
 
 ## Upgrade Cumulus Linux on Switches Without NetQ Agent Installed

@@ -12,7 +12,7 @@ This topic includes all commands that begin with `netq c*`, including all `netq 
 
 **About Validation Commands**
 
-There are three sets of validation commands, all for verifying the health and performance of network protocols and services:
+Three sets of validation commands are available, all for verifying the health and performance of network protocols and services:
 
 - The original on-demand validation commands. These commands all begin with `netq check`. They are used to validate various elements in your network fabric at the current time or a time in the past. They allow filtering by hostname, can include or exclude selected tests, and some have additional options. The results are presented in the NetQ CLI immediately.
 - The newer set of validation commands are used to create on-demand or scheduled validations with the results being displayed in the NetQ UI Validation Result cards. These commands begin with `netq add validation`. They are used to validate various elements in your network fabric currently or on a regular basis. No filtering on results is available within the commands as that is accomplished through the NetQ UI.
@@ -127,9 +127,9 @@ Agent Health Test   : passed
 - netq config agent
 
 - - -
-
+<!-- vale off -->
 ## netq check bgp
-
+<!-- vale on -->
 Validates that all configured route peering is established in your network fabric by looking for consistency across BGP sessions; in particular, whether duplicate router IDs exist and if any sessions are in the unestablished state. If you have nodes that implement virtual routing and forwarding (VRF), you can request status based on the relevant routing table. VRF is commonly configured in multi-tenancy deployments to maintain separate domains for each tenant.
 
 The output displays the status (passed/failed/skipped) of all tests and a summary including:
@@ -204,12 +204,12 @@ Router ID Test               : passed
 ```
 
 ### Related Commands
-
+<!-- vale off -->
 - netq show bgp
 - netq show unit-tests bgp
 - netq add validation
 - netq add validation name
-
+<!-- vale on -->
 - - -
 
 ## netq check cl-version
@@ -458,9 +458,9 @@ SVI Test                 : passed
 - netq add validation name
 
 - - -
-
+<!-- vale off -->
 ## netq check evpn
-
+<!-- vale on -->
 Verifies communication status for all nodes (leafs, spines, and hosts) running instances of Ethernet VPN (EVPN) in your network fabric. In particular, it looks for such items as:
 
 - BGP and EVPN session establishment
@@ -549,12 +549,12 @@ L3 VNI RMAC Test                 : skipped
 ```
 
 ### Related Commands
-
+<!-- vale off -->
 - netq show evpn
 - netq show unit-tests evpn
 - netq add validation
 - netq add validation name
-
+<!-- vale on -->
 - - -
 
 ## netq check interfaces
@@ -1122,9 +1122,9 @@ fw2               no       2020-11-18 19:50:46
 - netq add validation name
 
 - - -
-
+<!-- vale off -->
 ## netq check ospf
-
+<!-- vale on -->
 Validates that all configured route peering is established in your network fabric by looking for consistency across OSPF sessions; in particular, whether duplicate router IDs exist and if any sessions are in the unestablished state.
 
 The output displays the status (passed/failed/skipped) of all tests and a summary including:
@@ -1215,12 +1215,12 @@ tor-2             uplink-2                  0.0.0.20                  27.0.0.20 
 ```
 
 ### Related Commands
-
+<!-- vale off -->
 - netq show ospf
 - netq show unit-tests ospf
 - netq add validation
 - netq add validation name
-
+<!-- vale on -->
 - - -
 
 ## netq check sensors
@@ -1410,9 +1410,9 @@ border02          bond3                     10,20,30                  -         
 - netq add validation name
 
 - - -
-
+<!-- vale off -->
 ## netq check vxlan
-
+<!-- vale on -->
 Verifies consistency of the virtual extensible local area network (VXLAN) nodes and interfaces across all links in your network fabric. In particular, it looks for consistent VXLAN configuration and BUM replication errors.
 
 The output displays the status (passed/failed/skipped) of all tests and a summary including:
@@ -1478,12 +1478,12 @@ BUM replication Test    : passed
 ```
 
 ### Related Commands
-
+<!-- vale off -->
 - netq show vxlan
 - netq show unit-tests vxlan
 - netq add validation
 - netq add validation name
-
+<!-- vale on -->
 - - -
 
 ## netq config add agent cluster-servers
@@ -2179,9 +2179,9 @@ cumulus@switch:~$ sudo netq config add agent wjh-threshold congestion 4 swp1 200
 - netq config restart agent
 
 - - -
-
+<!-- vale off -->
 ## netq config add cli server
-
+<!-- vale on -->
 Configures the NetQ CLI on the switch or host where this command is run. The `access-key` and `secret-key` options or the `cli-keys-file` option are required for cloud deployments, as well as the `premises` option.
 
 When the NetQ CLI is not configured, you can run only `netq config` and `netq help` commands, and you must use `sudo` to run them.
@@ -2206,7 +2206,7 @@ netq config add cli server
 | access-key | \<text-access-key\> | Access key obtained from NetQ UI for cloud/remote deployments |
 | secret-key | \<text-secret-key\> | Secret key obtained from NetQ UI for cloud/remote deployments |
 | premises | \<text-premises-name\> | Name of the premises with the data you want to monitor. When you have multiple premises, you must run this command again to view data from another premises. |
-| cli-keys-file | \<text-key-file\> | Use the access and secret keys contained in this file for cloud/remote deployments, rather than providing keys individually. Value must include entire path to the file. |
+| <!-- vale off -->cli-keys-file<!-- vale on --> | \<text-key-file\> | Use the access and secret keys contained in this file for cloud/remote deployments, rather than providing keys individually. Value must include entire path to the file. |
 
 ### Options
 
@@ -2244,16 +2244,16 @@ cumulus@switch:~# sudo netq config restart cli
 ```
 
 ### Related Commands
-
+<!-- vale off -->
 - netq config show cli
 - netq config del cli server
 - netq config restart cli
-
+<!-- vale on -->
 - - -
 
 ## netq config add color
 
-Configures command output to presents results in color for many commands.  Results with errors are shown in <span style="color: #ff0000;">red</span>, and warnings are shown in <span style="color: #ffcc00;">yellow</span>. Results without errors or warnings are shown in either black or <span style="color: #00ff00;">green</span>. VTEPs are shown in <span style="color: #0000ff;">blue</span>. A node in the *pretty* output of a trace command is shown in **bold**, and a router interface is wrapped in angle brackets (\< \>). Outputs are shown with color cues as soon as you run the command.
+Configures command output to presents results in color for many commands. Results with errors are shown in <span style="color: #ff0000;">red</span>, and warnings are shown in <span style="color: #ffcc00;">yellow</span>. Results without errors or warnings are shown in either black or <span style="color: #00ff00;">green</span>. VTEPs are shown in <span style="color: #0000ff;">blue</span>. A node in the *pretty* output of a trace command is shown in **bold**, and a router interface is wrapped in angle brackets (\< \>). Outputs are shown with color cues as soon as you run the command.
 
 ### Syntax
 
@@ -2837,9 +2837,9 @@ cumulus@switch:~$ netq config del agent wjh-threshold congestion 4
 - netq config restart agent
 
 - - -
-
+<!-- vale off -->
 ## netq config del cli server
-
+<!-- vale on -->
 Removes the NetQ CLI configuration from a switch.
 
 ### Syntax
@@ -2852,7 +2852,7 @@ netq config del cli server
 
 | Argument | Value | Description |
 | ---- | ---- | ---- |
-| cli server | NA | Delete the current NetQ CLI configuration |
+| <!-- vale off -->cli server<!-- vale on --> | NA | Delete the current NetQ CLI configuration |
 
 ### Options
 
@@ -2873,11 +2873,11 @@ cumulus@switch:~$ netq config del cli server
 ```
 
 ### Related Commands
-
+<!-- vale off -->
 - netq config add cli server
 - netq config show cli
 - netq config restart agent
-
+<!-- vale on -->
 - - -
 
 ## netq config del color
@@ -2977,7 +2977,7 @@ netq config restart cli
 | Argument | Value | Description |
 | ---- | ---- | ---- |
 | agent | NA | Restart the NetQ Agent daemon (`netq-agent`) |
-| cli | NA | Restart the NetQ CLI daemon (`netq-cli`) |
+| <!-- vale off -->cli <!-- vale on -->| NA | Restart the NetQ CLI daemon (`netq-cli`) |
 
 ### Options
 
@@ -3006,9 +3006,9 @@ Restarting NetQ CLI... Success!
 - netq config (start|stop) agent
 
 - - -
-
+<!-- vale off -->
 ## netq config select cli premise
-
+<!-- vale on -->
 In a multi-premises deployment, this command configures the NetQ CLI to view data from the given premises.
 
 ### Syntax
@@ -3129,12 +3129,12 @@ cumulus@switch:~$ netq config show agent json
 ```
 
 ### Related Commands
-
+<!-- vale off -->
 - netq config show all
 - netq config show cli
 - netq config add agent
 - netq config del agent
-
+<!-- vale on -->
 - - -
 
 ## netq config show agent commands
@@ -3701,14 +3701,14 @@ api-logging  False            False
 ```
 
 ### Related Commands
-
+<!-- vale off -->
 - netq config show agent
 - netq config show cli
-
+<!-- vale on -->
 - - -
-
+<!-- vale off -->
 ## netq config show cli
-
+<!-- vale on -->
 Displays the configuration of the NetQ CLI on a switch.
 
 ### Syntax
@@ -3844,9 +3844,9 @@ netq-agent...stopped
 - netq config restart agent
 
 - - -
-
+<!-- vale off -->
 ## netq config status cli
-
+<!-- vale on -->
 Displays the operational status of the NetQ CLI on a switch.
 
 ### Syntax
@@ -3880,10 +3880,10 @@ NetQ CLI... Running
 ```
 
 ### Related Commands
-
+<!-- vale off -->
 - netq config show cli
 - netq config restart cli
-
+<!-- vale on -->
 - - -
 
 ## netq config stop agent

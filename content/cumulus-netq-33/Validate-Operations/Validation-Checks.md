@@ -32,8 +32,8 @@ The CLAG validation tests look for misconfigurations, peering status, and bond e
 | :---------: | --------- | ----------- |
 | 0 | Peering | Checks if: <ul><li>CLAG peerlink is up</li><li>CLAG peerlink bond slaves are down (not in full capacity and redundancy)</li><li>Peering is established between two nodes in a CLAG pair</li></ul> |
 | 1 | Backup IP | Checks if: <ul><li>CLAG backup IP configuration is missing on a CLAG node</li><li>CLAG backup IP is correctly pointing to the CLAG peer and its connectivity is available</li></ul> |
-| 2 | Clag Sysmac | Checks if: <ul><li>CLAG Sysmac is consistently configured on both nodes in a CLAG pair</li><li>There is any duplication of a CLAG sysmac within a bridge domain </li></ul> |
-| 3 | VXLAN Anycast IP | Checks if the VXLAN anycast IP address is consistently configured on both nodes in a CLAG pair |
+| 2 | Clag Sysmac | Checks if: <ul><li>CLAG Sysmac is consistently configured on both nodes in a CLAG pair</li><li>Any duplication of a CLAG sysmac exists within a bridge domain </li></ul> |
+| 3 | VXLAN <!-- vale off -->Anycast IP<!-- vale on --> | Checks if the VXLAN anycast IP address is consistently configured on both nodes in a CLAG pair |
 | 4 | Bridge Membership | Checks if the CLAG peerlink is part of bridge |
 | 5 | Spanning Tree | Checks if: <ul><li>STP is enabled and running on the CLAG nodes</li><li>CLAG peerlink role is correct from STP perspective</li><li>The bridge ID is consistent between two nodes of a CLAG pair</li><li>The VNI in the bridge has BPDU guard and BPDU filter enabled</li></ul> |
 | 6 | Dual Home | Checks for: <ul><li>CLAG bonds that are not in dually connected state</li><li>Dually connected bonds have consistent VLAN and MTU configuration on both sides</li><li>STP has consistent view of bonds' dual connectedness</li></ul> |
@@ -101,8 +101,8 @@ The MLAG validation tests look for misconfigurations, peering status, and bond e
 | :---------: | --------- | ----------- |
 | 0 | Peering | Checks if: <ul><li>MLAG peerlink is up</li><li>MLAG peerlink bond slaves are down (not in full capacity and redundancy)</li><li>Peering is established between two nodes in a MLAG pair</li></ul> |
 | 1 | Backup IP | Checks if: <ul><li>MLAG backup IP configuration is missing on a MLAG node</li><li>MLAG backup IP is correctly pointing to the MLAG peer and its connectivity is available</li></ul> |
-| 2 | Clag Sysmac | Checks if: <ul><li>MLAG Sysmac is consistently configured on both nodes in a MLAG pair</li><li>There is any duplication of a MLAG sysmac within a bridge domain </li></ul> |
-| 3 | VXLAN Anycast IP | Checks if the VXLAN anycast IP address is consistently configured on both nodes in an MLAG pair |
+| 2 | Clag Sysmac | Checks if: <ul><li>MLAG Sysmac is consistently configured on both nodes in a MLAG pair</li><li>Any duplication of a MLAG sysmac exists within a bridge domain </li></ul> |
+| 3 | VXLAN <!-- vale off -->Anycast IP<!-- vale on --> | Checks if the VXLAN anycast IP address is consistently configured on both nodes in an MLAG pair |
 | 4 | Bridge Membership | Checks if the MLAG peerlink is part of bridge |
 | 5 | Spanning Tree | Checks if: <ul><li>STP is enabled and running on the MLAG nodes</li><li>MLAG peerlink role is correct from STP perspective</li><li>The bridge ID is consistent between two nodes of a MLAG pair</li><li>The VNI in the bridge has BPDU guard and BPDU filter enabled</li></ul> |
 | 6 | Dual Home | Checks for: <ul><li>MLAG bonds that are not in dually connected state</li><li>Dually connected bonds have consistent VLAN and MTU configuration on both sides</li><li>STP has consistent view of bonds' dual connectedness</li></ul> |

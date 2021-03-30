@@ -30,11 +30,11 @@ With NetQ, you can monitor BGP performance across the network:
 {{<notice note>}}
 When entering a time value in the <code>netq show evpn</code> command, you must include a numeric value <em>and</em> the unit of measure:
 <ul>
-<li><strong>w</strong>: week(s)</li>
-<li><strong>d</strong>: day(s)</li>
-<li><strong>h</strong>: hour(s)</li>
-<li><strong>m</strong>: minute(s)</li>
-<li><strong>s</strong>: second(s)</li>
+<li><strong>w</strong>: weeks</li>
+<li><strong>d</strong>: days</li>
+<li><strong>h</strong>: hours</li>
+<li><strong>m</strong>: minutes</li>
+<li><strong>s</strong>: seconds</li>
 <li><strong>now</strong>
 </ul>
 
@@ -562,7 +562,7 @@ To view all BGP alarms, run:
 netq show events [level info | level error | level warning | level critical | level debug] type bgp [between <text-time> and <text-endtime>] [json]
 ```
 
-Use the `level` option to set the severity of the events to show.  Use the `between` option to show events within a given time range.
+Use the `level` option to set the severity of the events to show. Use the `between` option to show events within a given time range.
 
 This example shows informational BGP events in the past five days.
 

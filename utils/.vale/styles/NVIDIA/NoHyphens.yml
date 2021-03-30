@@ -1,0 +1,22 @@
+# Warning: NVIDIA.NoHyphens
+#
+# Check for words that do not need to be hyphenated.
+#
+extends: existence
+message: "'%s' does not need a hyphen. Write as a single word."
+level: warning
+ignorecase: false
+nonword: true
+tokens:
+  - bi-weekly
+  - check-box
+  - check-list
+  - check-mark
+  - de-select
+  - drop-down
+  - home-page
+  - hyper-converged
+  - link-local
+  - next-hop
+  - peer-link
+  - sub-interface

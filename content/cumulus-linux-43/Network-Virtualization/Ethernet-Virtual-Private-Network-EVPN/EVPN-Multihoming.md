@@ -5,6 +5,12 @@ weight: 570
 toc: 4
 ---
 
+{{%notice note%}}
+
+- The EVPN multihoming (EVPN-MH) is supported on Spectrum 1, 2 and 3 ASICs only.
+
+{{%/notice%}}
+
 *EVPN multihoming* (EVPN-MH) provides support for all-active server redundancy. It is a standards-based replacement for MLAG in data centers deploying Clos topologies. Replacing MLAG:
 
 - Eliminates the need for peerlinks or inter-switch links between the top of rack switches

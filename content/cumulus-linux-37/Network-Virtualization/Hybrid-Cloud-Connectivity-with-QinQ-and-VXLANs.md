@@ -1,6 +1,6 @@
 ---
 title: Hybrid Cloud Connectivity with QinQ and VXLANs
-author: Cumulus Networks
+author: NVIDIA
 weight: 153
 pageID: 8362784
 ---
@@ -28,7 +28,7 @@ QinQ is available on the following switches:
 
 - Broadcom Tomahawk 2, Tomahawk+, Tomahawk, Trident3, Trident II+ and
   Trident II switches.
-- {{<exlink url="https://cumulusnetworks.com/products/hardware-compatibility-list/?asic%5B0%5D=Mellanox%20Spectrum&asic%5B1%5D=Mellanox%20Spectrum_A1" text="Spectrum switches">}}, only with {{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware bridges">}} with 802.1ad and only with single tag translation.
+- {{<exlink url="https://cumulusnetworks.com/products/hardware-compatibility-list/?asic%5B0%5D=Mellanox%20Spectrum&asic%5B1%5D=Mellanox%20Spectrum_A1" text="Spectrum 1 switches">}}, only with {{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware bridges">}} with 802.1ad and only with single tag translation.
 
 ## Remove the Early Access QinQ Metapackage
 

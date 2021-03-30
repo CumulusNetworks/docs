@@ -1,6 +1,6 @@
 ---
 title: System Configuration
-author: Cumulus Networks
+author: NVIDIA
 weight: 100
 toc: 2
 ---

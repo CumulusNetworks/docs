@@ -1,6 +1,6 @@
 ---
 title: Installing a New Cumulus Linux Image
-author: Cumulus Networks
+author: NVIDIA
 weight: 40
 toc: 3
 ---
@@ -19,7 +19,7 @@ Before you install Cumulus Linux, the switch can be in two different states:
 
 The sections below describe some of the different ways you can install the Cumulus Linux image, such as using a DHCP/web server, FTP, a local file, or a USB drive. Steps are provided for both installing directly from ONIE (if no image is installed on the switch) and from Cumulus Linux (if the image is already installed on the switch), where applicable. For additional methods to find and install the Cumulus Linux image, see the {{<exlink url="http://opencomputeproject.github.io/onie/design-spec/discovery.html" text="ONIE Design Specification">}}.
 
-You can download a Cumulus Linux image from the {{<exlink url="http://cumulusnetworks.com/downloads/" text="Cumulus Networks Downloads">}} page.
+You can download a Cumulus Linux image from the {{<exlink url="http://cumulusnetworks.com/downloads/" text="Cumulus Linux Downloads">}} page.
 
 {{%notice warning%}}
 
@@ -280,14 +280,13 @@ Follow the steps below to install the Cumulus Linux image using a USB drive. Ins
 
 {{%notice tip%}}
 
-- Installing Cumulus Linux using a USB drive is fine for a single switch here and there but is not scalable. DHCP can scale to hundreds of switch installs with zero manual input unlike USB installs.
-- Cumulus Networks also provides *Cumulus on a Stick*, which packages Cumulus Linux images with your license. You can download your personalized ZIP file, transfer it to a USB drive, insert the drive into your switch, apply power, and you are ready to go. See {{<exlink url="https://cumulusnetworks.com/cumulus-on-a-stick/" text="Cumulus on a Stick">}} for information.
+Installing Cumulus Linux using a USB drive is fine for a single switch here and there but is not scalable. DHCP can scale to hundreds of switch installs with zero manual input unlike USB installs.
 
 {{%/notice%}}
 
 ### Prepare for USB Installation
 
-1. From the {{<exlink url="http://cumulusnetworks.com/downloads/" text="Cumulus Networks Downloads page">}}, download the appropriate Cumulus Linux image for your x86 or ARM platform.
+1. From the {{<exlink url="http://cumulusnetworks.com/downloads/" text="Cumulus Linux Downloads page">}}, download the appropriate Cumulus Linux image for your x86 or ARM platform.
 2.  From a computer, prepare your USB drive by formatting it using one of the supported formats: FAT32, vFAT or EXT2.
 
     {{< expand "Optional: Prepare a USB Drive inside Cumulus Linux"  >}}
@@ -576,14 +575,7 @@ The Cumulus Linux disk image file contains a BASH script that includes a set of 
 The Cumulus Linux disk image file is a self-extracting executable. The executable part of the file is a BASH script and is located at the beginning of the file. Towards the beginning of this BASH script are a set of variables set to an empty string:
 
 ```
-#!/bin/sh
-#
-# Cumulus Self-extracting Binary Image
-#
-# Copyright 2015 Cumulus Networks, Inc.
-# All rights reserved.
-#
-
+...
 CL_INSTALLER_PASSWORD=''
 CL_INSTALLER_HASHED_PASSWORD=''
 CL_INSTALLER_LICENSE=''
@@ -637,14 +629,7 @@ cat cumulus-linux-4.2.0-bcm-amd64.bin.1 cumulus-linux-4.2.0-bcm-amd64.bin.2 > cu
 This is an example of a modified image file:
 
 ```
-#!/bin/sh
-#
-# Cumulus Self-extracting Binary Image
-#
-# Copyright 2015 Cumulus Networks, Inc.
-# All rights reserved.
-#
-
+...
 CL_INSTALLER_PASSWORD='MyP4$$word'
 CL_INSTALLER_HASHED_PASSWORD=''
 CL_INSTALLER_LICENSE='customer@datacenter.com|4C3YMCACDiK0D/EnrxlXpj71FBBNAg4Yrq+brza4ZtJFCInvalid'
@@ -688,6 +673,6 @@ If you install the modified installation image and specify installer command lin
 ## Related Information
 
 - {{<exlink url="http://opencomputeproject.github.io/onie/design-spec/" text="ONIE Design Specification">}}
-- {{<exlink url="http://cumulusnetworks.com/downloads/" text="Cumulus Networks Downloads page">}}
+- {{<exlink url="http://cumulusnetworks.com/downloads/" text="Cumulus Linux Downloads page">}}
 - {{<exlink url="https://cumulusnetworks.com/cumulus-on-a-stick/" text="Cumulus on a Stick">}}
 - {{<link url="Managing-Cumulus-Linux-Disk-Images" text="Managing Cumulus Linux Disk Images">}}

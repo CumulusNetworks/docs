@@ -22,6 +22,19 @@ The following table summarizes the new commands available with this release. The
 | netq [&lt;hostname>] show dom type (laser_rx_power\|laser_output_power\|laser_bias_current) [interface &lt;text-dom-port-anchor>] [channel_id &lt;text-channel-id>] [around &lt;text-time>] [json] | Displays digital optical monitoring information for laser bias current, laser output power and received signal average optical power. | 3.1.0 |
 | netq [&lt;hostname>] show dom type (module_temperature\|module_voltage) [interface &lt;text-dom-port-anchor>] [around &lt;text-time>] [json] | Displays digital optical monitoring information for module temperature and voltage. | 3.1.0 |
 | netq trace (&lt;mac> vlan &lt;1-4096>) from &lt;mac-src> [around &lt;text-time>] [json\|detail\|pretty] | Ability to run a trace from a source MAC address. | 3.1.0 |
+| netq add trace &lt;mac> [vlan &lt;1-4096>] from (&lt;src-hostname> \| &lt;ip-src>) [vrf &lt;vrf>] [alert-on-failure] | Adds a layer 2 on-demand trace for a MAC address from a hostname or IP address. The trace results appear in the NetQ UI only, not the terminal. | 3.1.0 |
+| netq add trace name &lt;text-new-trace-name> &lt;mac> [vlan &lt;1-4096>] from (&lt;src-hostname> \| &lt;ip-src>) [vrf &lt;vrf>] interval &lt;text-time-min> [alert-on-failure] | Adds a layer 2 scheduled trace to be run at a given interval for a MAC address from a hostname or IP address. The trace results appear in the NetQ UI only, not the terminal. | 3.1.0 |
+| netq add trace &lt;ip> from (&lt;src-hostname> \| &lt;ip-src>) [vrf &lt;vrf>] [alert-on-failure] | Adds a layer 3 on-demand trace for an IP address from a hostname or IP address. The trace results appear in the NetQ UI only, not the terminal. | 3.1.0 |
+| netq add trace name &lt;text-new-trace-name> &lt;ip> from (&lt;src-hostname> \| &lt;ip-src>) [vrf &lt;vrf>] interval &lt;text-time-min> [alert-on-failure] | Adds a layer 3 scheduled trace to be run at a given interval for an IP address from a hostname or IP address. The trace results appear in the NetQ UI only, not the terminal. | 3.1.0 |
+| netq del trace &lt;text-trace-name> | Deletes a scheduled trace. | 3.1.0 |
+| netq show trace settings [name &lt;text-trace-name>] [json] | Displays the settings for all scheduled traces or a specified scheduled trace. | 3.1.0 |
+| netq show trace summary [name &lt;text-trace-name>] [around &lt;text-time-hr>] [json] | Displays summary information for all scheduled traces or a specified scheduled trace. | 3.1.0 |
+| netq show trace results &lt;text-job-id> [json] | Displays the results for the specified trace. | 3.1.0 |
+| netq add validation type (ntp \| interfaces \| license \| sensors \| evpn \| vxlan \| agents \| mlag \| vlan \| bgp \| mtu \| ospf) [alert-on-failure] | Adds a new on-demand validation. | 3.1.0 |
+| netq add validation name &lt;text-new-validation-name> type (ntp \| interfaces \| license \| sensors \| evpn \| vxlan \| agents \| mlag \| vlan \| bgp \| mtu \| ospf) interval &lt;text-time-min> [alert-on-failure] | Adds a new scheduled validation to be run at a given interval. | 3.1.0 |
+| netq del validation &lt;text-validation-name> | Removes a validation. | 3.1.0 |
+| netq show validation settings [name &lt;text-validation-name>] [type ntp \| type interfaces \| type license \| type sensors \| type evpn \| type vxlan \| type agents \| type mlag \| type vlan \| type bgp \| type mtu \| type ospf] [json] | Displays the settings for all scheduled validations or the specified scheduled validation. | 3.1.0 |
+| netq show validation summary [name &lt;text-validation-name>] type (ntp \| interfaces \| license \| sensors \| evpn \| vxlan \| agents \| mlag \| vlan \| bgp \| mtu \| ospf) [around &lt;text-time-hr>] [json] | Displays summary information for all scheduled validations or the specified scheduled validation. | 3.1.0 |
 
 ## Modified Commands
 

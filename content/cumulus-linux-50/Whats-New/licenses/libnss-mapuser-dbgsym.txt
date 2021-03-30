@@ -1,0 +1,1 @@
+libnss-mapuser-dbgsym has no copyright file

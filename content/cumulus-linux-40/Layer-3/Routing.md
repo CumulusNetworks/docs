@@ -1,6 +1,6 @@
 ---
 title: Routing
-author: Cumulus Networks
+author: NVIDIA
 weight: 720
 toc: 3
 ---
@@ -225,14 +225,6 @@ iface swp3
 ...
 ```
 
-{{%notice note%}}
-
-If an IPv6 address is assigned to a DOWN interface, the associated route is still installed into the routing table. The type of IPv6 address does not matter: link local, site local, and global all exhibit the same problem.
-
-If the interface is bounced up and down, then the routes are no longer in the route table.
-
-{{%/notice%}}
-
 The `ip route` command allows you to manipulate the kernel routing table directly from the Linux shell. See `man ip(8)` for details. FRRouting monitors the kernel routing table changes and updates its own routing table accordingly.
 
 To display the routing table:
@@ -301,7 +293,7 @@ ip protocol static route-map myroutemap
 
 ## Configure a Gateway or Default Route
 
-Cumulus Networks recommends that on each switch, you create a *gateway* or *default route* for traffic destined outside the switch's subnet or local network. All such traffic passes through the gateway, which is a host on the same network that routes packets to their destination beyond the local network.
+Consider creating a *gateway* or *default route* on each switch for traffic destined outside the switch's subnet or local network. All such traffic passes through the gateway, which is a host on the same network that routes packets to their destination beyond the local network.
 
 In the following example, you create a default route in the routing table 0.0.0.0/0, which indicates any IP address can be sent to the gateway, which is another switch with the IP address 10.1.0.1.
 
@@ -395,7 +387,7 @@ The following tables list the number of MAC addresses, layer 3 neighbors, and LP
 
 {{%notice tip%}}
 
-The values in the following tables reflect results from testing on the different platforms that Cumulus Networks supports, which might differ from published manufacturer specifications.
+The values in the following tables reflect results from testing on the different platforms that support Cumulus Linux, which might differ from published manufacturer specifications.
 
 {{%/notice%}}
 
@@ -482,11 +474,11 @@ On Broadcom switches with Cumulus Linux 4.0 and later, when there is a /32 IPv4 
 
 ### Do Not Delete Routes through Linux Shell
 
-Cumulus Networks recommends that you **do not** use the Linux shell to delete static routes added via FRRouting (with `vtysh` commands). Delete the routes with the `vtysh` commands; otherwise FRRouting might not be able to clean up its internal state completely, which can result in incorrect routing.
+**Do not** use the Linux shell to delete static routes added via FRRouting (with `vtysh` commands). Delete the routes with the `vtysh` commands; otherwise FRRouting might not be able to clean up its internal state completely, which can result in incorrect routing.
 
 ### Using NCLU Commands to Delete Routing Configuration
 
-When you use NCLU commands to delete routing (FRR) configuration, such as static routes or route map rules  (multiples of which can exist in a configuration), Cumulus Networks recommends that you commit ten or fewer delete commands at a time to avoid commit failures.
+When you use NCLU commands to delete routing (FRR) configuration, such as static routes or route map rules  (multiples of which can exist in a configuration), commit ten or fewer delete commands at a time to avoid commit failures.
 
 ### Add IPv6 Default Route with src Address on eth0 Fails without Adding Delay
 

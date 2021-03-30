@@ -1,5 +1,5 @@
 document.querySelectorAll('.cn-book-section-container').forEach(node => {
- 
+
   if(node.querySelector('.active') == null){
     node.setAttribute('class', '.cn-book-section-container collapse')
   }
@@ -10,10 +10,12 @@ document.querySelectorAll('.cn-book-section-container').forEach(node => {
     node.setAttribute('class', '.cn-book-section-container expand')
   }
 
+  expand_more = '{{"icons/baseline-expand_more.svg" | absURL}}'
   eleToggler = document.createElement('input')
   eleToggler.setAttribute('type', 'image')
   eleToggler.setAttribute('class', 'menuControl')
-  eleToggler.setAttribute('src', "/icons/baseline-expand_more.svg")
+  //$baseline-expand_more: '{{"icons/baseline-expand_more.svg" | absURL}}'
+  eleToggler.setAttribute('src', expand_more)
 
 
   let par = node.parentNode

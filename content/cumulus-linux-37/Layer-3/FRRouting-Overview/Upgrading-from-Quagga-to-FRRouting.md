@@ -1,6 +1,6 @@
 ---
 title: Upgrading from Quagga to FRRouting
-author: Cumulus Networks
+author: NVIDIA
 weight: 407
 pageID: 8362918
 ---
@@ -157,7 +157,7 @@ This step deletes all Quagga configuration files. Please ensure you back up your
 
     {{%notice warning%}}
 
-Cumulus Networks does not recommend reinstalling the `quagga` and `quagga-compat` packages once they have been removed. While they can be reinstalled to continue migration iterations, limited testing has taken place, and configuration issues may occur.
+Do not reinstall the `quagga` and `quagga-compat` packages once they have been removed. While they can be reinstalled to continue migration iterations, limited testing has taken place, and configuration issues may occur.
 
 {{%/notice%}}
 

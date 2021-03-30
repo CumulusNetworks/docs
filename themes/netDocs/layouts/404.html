@@ -9,9 +9,8 @@
   <!-- Fonts for the theme -->
   <link href="https://fonts.googleapis.com/css?family=Oxygen|Oxygen+Mono:300,400,700" rel="stylesheet">
 
-  <!-- Theme stylesheet, you can customize scss by creatig `assets/custom.scss` in your website -->
-  {{ $styles := resources.Get "book.scss" | resources.ToCSS | resources.Minify | resources.Fingerprint }}
-  <link rel="stylesheet" href="{{ $styles.RelPermalink }}">
+  {{ $styles := resources.Get "book.scss" | resources.ExecuteAsTemplate "book.scss" . | toCSS | minify | fingerprint }}
+  <link rel="stylesheet" href="{{ $styles.Permalink }}">
 
   <!-- Favicon -->
   <link rel="icon" href="{{ "favicon.png" | relURL }}" type="image/x-icon">
@@ -33,9 +32,6 @@
   <main class="flex justify-center">
       <h1>404 Not Found</h1>
   </main>
-
-
-  {{ template "_internal/google_analytics_async.html" . }}
 </body>
 
 </html>

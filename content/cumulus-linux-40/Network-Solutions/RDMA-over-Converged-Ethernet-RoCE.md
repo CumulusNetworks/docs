@@ -1,6 +1,6 @@
 ---
 title: RDMA over Converged Ethernet - RoCE
-author: Cumulus Networks
+author: NVIDIA
 weight: 1200
 toc: 3
 ---
@@ -17,7 +17,7 @@ RoCE helps you obtain a *converged network*, where all services run over the Eth
 There are two versions of RoCE, which run at separate layers of the stack:
 
 - RoCEv1, which runs at the link layer and cannot be run over a routed network. Therefore, it requires the link layer {{<link url="Buffer-and-Queue-Management#priority-flow-control" text="priority flow control">}} (PFC) to be enabled.
-- RoCEv2, which runs over layer 3. Because it is a routed solution, Cumulus Networks recommends you use {{<link url="Buffer-and-Queue-Management#congestion-notification" text="explicit congestion notification">}} (ECN) with RoCEv2 as ECN bits are communicated end-to-end across a routed network.
+- RoCEv2, which runs over layer 3. Use {{<link url="Buffer-and-Queue-Management#congestion-notification" text="explicit congestion notification">}} (ECN) with RoCEv2 as ECN bits are communicated end-to-end across a routed network.
 
 ## Enable RDMA over Converged Ethernet with PFC
 
@@ -59,7 +59,8 @@ ecn_red.ROCE_ECN.probability = 100
 
 {{%notice note%}}
 
-While {{<link url="Buffer-and-Queue-Management#link-pause" text="link pause">}} is another way to provide lossless ethernet, PFC is the preferred method. PFC allows more granular control by pausing the traffic flow for a given CoS group, rather than the entire link.
+- While {{<link url="Buffer-and-Queue-Management#link-pause" text="link pause">}} is another way to provide lossless ethernet, PFC is the preferred method. PFC allows more granular control by pausing the traffic flow for a given CoS group, rather than the entire link.
+- RoCEv1 depends on 802.1p fields for traffic classification; therefore it is not supported with access ports. Use trunk ports with RoCEv1.
 
 {{%/notice%}}
 

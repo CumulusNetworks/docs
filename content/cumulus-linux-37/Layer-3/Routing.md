@@ -1,6 +1,6 @@
 ---
 title: Routing
-author: Cumulus Networks
+author: NVIDIA
 weight: 169
 pageID: 8362912
 ---
@@ -100,14 +100,6 @@ iface swp3
     address 198.51.100.1/24
     post-up ip route add 203.0.113.0/24 via 198.51.100.2
 ```
-
-{{%notice note%}}
-
-If an IPv6 address is assigned to a DOWN interface, the associated route is still installed into the routing table. The type of IPv6 address doesn't matter: link local, site local and global all exhibit the same problem.
-
-If the interface is bounced up and down, then the routes are no longer in the route table.
-
-{{%/notice%}}
 
 The `ip route` command allows manipulating the kernel routing table directly from the Linux shell. See `man ip(8)` for details. FRRouting monitors the kernel routing table changes and updates its own routing table accordingly.
 
@@ -295,7 +287,7 @@ Static routes added via FRRouting can be deleted via Linux shell. This operation
 
 ### Using NCLU Commands to Delete Routing Configuration
 
-When you use NCLU commands to delete routing (FRR) configuration, such as static routes or route map rules  (multiples of which can exist in a configuration), Cumulus Networks recommends that you commit ten or fewer delete commands at a time to avoid commit failures.
+When you use NCLU commands to delete routing (FRR) configuration, such as static routes or route map rules  (multiples of which can exist in a configuration), commit ten or fewer delete commands at a time to avoid commit failures.
 
 ### Add IPv6 Default Route with src Address on eth0 Fails without Adding Delay
 

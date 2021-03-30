@@ -1,6 +1,6 @@
 ---
 title: Address Resolution Protocol - ARP
-author: Cumulus Networks
+author: NVIDIA
 weight: 179
 pageID: 8362976
 ---
@@ -24,7 +24,7 @@ In a standard Debian installation, all of these ARP parameters are set to *0*, l
 
 ## ARP Tunable Parameter Settings in Cumulus Linux
 
-The ARP tunable parameters are set to the following values by default in Cumulus Linux. Each parameter is described in detail, including why Cumulus Networks chose the value used.
+The ARP tunable parameters are set to the following values by default in Cumulus Linux.
 
 <table>
 <colgroup>
@@ -121,7 +121,7 @@ The *all* and *default* locations sound similar, with the exception of which int
 | `arp_ignore`  | MAX       |
 | `arp_notify`  | MAX       |
 
-For example, if the `/proc/sys/net/conf/all/arp_ignore` value is set to *1* and the `/proc/sys/net/conf/swp1/arp_ignore` value is set to *0*, to try to disable it on a per-port basis, interface swp1 still uses the value of *1* in its operation. While it may appear that the port-specific setting should override the global *all* setting, it does not actually work that way. Instead, the MAX value between the *all* value and port-specific value defines the actual behavior. This lack of simplicity has led Cumulus Networks to implement the ARP parameter changes using the *default* location instead.
+For example, if the `/proc/sys/net/conf/all/arp_ignore` value is set to *1* and the `/proc/sys/net/conf/swp1/arp_ignore` value is set to *0*, to try to disable it on a per-port basis, interface swp1 still uses the value of *1* in its operation. While it may appear that the port-specific setting should override the global *all* setting, it does not actually work that way. Instead, the MAX value between the *all* value and port-specific value defines the actual behavior.
 
 The *default* location `/proc/sys/net/ipv4/conf/default/arp*` defines the values for all future IP interfaces. Changing the *default* setting of an ARP parameter does not impact interfaces that already contain an IP address. If changes are being made to a running system that already has IP addresses assigned to it, port-specific settings should be used instead.
 
@@ -238,7 +238,7 @@ cumulus@switch:~$ net commit
 
 ## Duplicate Address Detection (Windows Hosts)
 
-In centralized VXLAN environments, where ARP/ND suppression is enabled and SVIs exist on the leaf switches but are not assigned an address within the subnet, problems with the Duplicate Address Detection process on Microsoft Windows hosts can occur. For example, in a pure layer 2 scenario or with SVIs that have the `ip-forward` option set to off, the IP address is not assigned to the SVI. The `neighmgrd` service selects a source IP address for an ARP probe based on the subnet match on the neighbor IP address. Because the SVI on which this neighbor is learned does not contiain an IP address, the subnet match fails. This results in `neighmgrd` using UNSPEC (0.0.0.0 for IPv4) as the source IP address in the ARP probe.
+In centralized VXLAN environments, where ARP/ND suppression is enabled and SVIs exist on the leaf switches but are not assigned an address within the subnet, problems with the Duplicate Address Detection process on Microsoft Windows hosts can occur. For example, in a pure layer 2 scenario or with SVIs that have the `ip-forward` option set to off, the IP address is not assigned to the SVI. The `neighmgrd` service selects a source IP address for an ARP probe based on the subnet match on the neighbor IP address. Because the SVI on which this neighbor is learned does not contain an IP address, the subnet match fails. This results in `neighmgrd` using UNSPEC (0.0.0.0 for IPv4) as the source IP address in the ARP probe.
 
 To work around this issue, run the `neighmgrctl setsrcipv4 <ipaddress>` command to specify a non-0.0.0.0 address for the source; for example:
 

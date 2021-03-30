@@ -1,6 +1,6 @@
 ---
 title: DHCP Relays
-author: Cumulus Networks
+author: NVIDIA
 weight: 340
 toc: 3
 ---
@@ -108,7 +108,7 @@ NCLU commands are not currently available for this feature. Use the following Li
 
 {{%/notice%}}
 
-- To configure the DHCP relay to inject the ingress *SVI interface* against which the relayed DHCP discover packet is processed, edit the the `/etc/default/isc-dhcp-relay` file and add `-a` to the `OPTIONS` line. For example:
+- To configure the DHCP relay to inject the ingress *SVI interface* against which the relayed DHCP discover packet is processed, edit `/etc/default/isc-dhcp-relay` file and add `-a` to the `OPTIONS` line. For example:
 
    ```
    cumulus@switch:~$ sudo nano /etc/default/isc-dhcp-relay
@@ -126,7 +126,7 @@ NCLU commands are not currently available for this feature. Use the following Li
    OPTIONS="-a --use-pif-circuit-id" 
    ```
 
-- To customize the Remote ID sub-option, edit the the `/etc/default/isc-dhcp-relay` file and add `-a -r` to the `OPTIONS` line followed by a custom string (up to 255 characters that is used for the Remote ID. For example:
+- To customize the Remote ID sub-option, edit `/etc/default/isc-dhcp-relay` file and add `-a -r` to the `OPTIONS` line followed by a custom string (up to 255 characters that is used for the Remote ID. For example:
 
    ```
    cumulus@switch:~$ sudo nano /etc/default/isc-dhcp-relay
@@ -180,7 +180,7 @@ To enable RFC 3527 support and control the giaddr, run the following commands.
 
    {{%notice note%}}
 
-   The first IP address on the loopback interface is typically the 127.0.0.1 address; Cumulus Networks recommends that you use more specific syntax, as shown in the next example.
+   The first IP address on the loopback interface is typically the 127.0.0.1 address. Use more specific syntax, as shown in the next example.
 
    {{%/notice%}}
 
@@ -244,7 +244,7 @@ To enable RFC 3527 support and control the giaddr, run the following commands.
 
    {{%notice note%}}
 
-The first IP address on the loopback interface is typically the 127.0.0.1 address; Cumulus Networks recommends that you use more specific syntax, as shown in the next example.
+The first IP address on the loopback interface is typically the 127.0.0.1 address. Use more specific syntax, as shown in the next example.
 
    {{%/notice%}}
 
@@ -374,14 +374,7 @@ Cumulus Linux supports multiple DHCP relay daemons on a switch to enable relayin
 
 To configure multiple DHCP relay daemons on a switch:
 
-1. As the sudo user, open the `/etc/vrf/systemd.conf` file in a text editor and remove `dhcrelay`.
-2. Run the following command to reload the `systemd` files:
-
-   ```
-   cumulus@switch:~$ sudo systemctl daemon-reload
-   ```
-
-3. Create a configuration file in the `/etc/default` directory for each DHCP relay daemon. Use the naming scheme `isc-dhcp-relay-<dhcp-name>` for IPv4 or `isc-dhcp-relay6-<dhcp-name>` for IPv6. An example configuration file for IPv4 is shown below:
+1. Create a configuration file in the `/etc/default` directory for each DHCP relay daemon. Use the naming scheme `isc-dhcp-relay-<dhcp-name>` for IPv4 or `isc-dhcp-relay6-<dhcp-name>` for IPv6. An example configuration file for IPv4 is shown below:
 
    ```
    # Defaults for isc-dhcp-relay initscript
@@ -424,7 +417,7 @@ To configure multiple DHCP relay daemons on a switch:
    OPTIONS=""
    ```
 
-4. Run the following command to start a `dhcrelay` instance, where `<``dhcp-name>` is the instance name or number.
+2. Run the following command to start a `dhcrelay` instance, where `<dhcp-name>` is the instance name or number.
 
    ```
    cumulus@switch:~$ sudo systemctl start dhcrelay@<dhcp-name>

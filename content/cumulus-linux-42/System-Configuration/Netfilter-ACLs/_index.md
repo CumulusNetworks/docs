@@ -1,6 +1,6 @@
 ---
 title: Netfilter - ACLs
-author: Cumulus Networks
+author: NVIDIA
 weight: 200
 toc: 3
 ---
@@ -699,7 +699,7 @@ Due to a hardware limitation on Trident3 switches, certain broadcast packets tha
 
 ### Mellanox Spectrum Limits
 
-The Mellanox Spectrum ASIC has one common {{<exlink url="https://en.wikipedia.org/wiki/Content-addressable_memory#Ternary_CAMs" text="TCAM">}} for both ingress and egress, which can be used for other non-ACL-related resources. However, the number of supported rules varies with the {{<link url="Routing#tcam-resource-profiles-for-spectrum-switches" text="TCAM profile">}} specified for the switch.
+The Mellanox Spectrum ASIC has one common {{<exlink url="https://en.wikipedia.org/wiki/Content-addressable_memory#Ternary_CAMs" text="TCAM">}} for both ingress and egress, which can be used for other non-ACL-related resources. However, the number of supported rules varies with the {{<link url="Supported-Route-Table-Entries#tcam-resource-profiles-for-spectrum-switches" text="TCAM profile">}} specified for the switch.
 
 |Profile |Atomic Mode IPv4 Rules |Atomic Mode IPv6 Rules |Nonatomic Mode IPv4 Rules |Nonatomic Mode IPv6 Rules |
 |------------|-------------------|-------------------|-------------------|-------------------------|
@@ -711,7 +711,7 @@ The Mellanox Spectrum ASIC has one common {{<exlink url="https://en.wikipedia.or
 
 {{%notice note%}}
 
-Even though the table above specifies that zero IPv6 rules are supported with the ip-acl-heavy profile, Cumulus Networks does not prevent you from configuring IPv6 rules. However, there is no guarantee that IPv6 rules work under the ip-acl-heavy profile.
+Even though the table above specifies that zero IPv6 rules are supported with the ip-acl-heavy profile, nothing prevents you from configuring IPv6 rules. However, there is no guarantee that IPv6 rules work under the ip-acl-heavy profile.
 
 {{%/notice%}}
 

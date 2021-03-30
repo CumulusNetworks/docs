@@ -1,0 +1,98 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: sbc
+Source: http://www.bluez.org/
+
+Files: *
+Copyright: 2004-2010 Marcel Holtmann <marcel@holtmann.org>
+License: GPL-2+
+
+Files: sbc/sbc.c sbc/sbc_math.h
+Copyright: 2005-2008 Brad Midgley <bmidgley@xmission.com>
+		   2004-2005 Henryk Ploetz <henryk@ploetzli.ch>
+		   2008-2010 Nokia Corporation
+		   2004-2010 Marcel Holtmann <marcel@holtmann.org>
+License: LGPL-2+
+
+Files: sbc/sbc_tables.h sbc/sbc.h sbc/sbc_primitives.c
+		sbc/sbc_primitives_mmx.h sbc/sbc_primitives.h
+		sbc/sbc_primitives_neon.c sbc/sbc_primitives_mmx.c
+		sbc/sbc_primitives_neon.h sbc/sbc_primitives_armv6.h
+Copyright: 2004-2005 Henryk Ploetz <henryk@ploetzli.ch>
+		   2008-2010 Nokia Corporation
+		   2004-2010 Marcel Holtmann <marcel@holtmann.org>
+		   2005-2006 Brad Midgley <bmidgley@xmission.com>
+License: LGPL-2+
+
+Files: sbc/sbc_private.h
+Copyright: 2008-2010 Nokia Corporation
+		   2004-2010 Marcel Holtmann <marcel@holtmann.org>
+License: LGPL-2+
+
+Files: sbc/sbc_primitives_armv6.c
+Copyright: 2004-2005 Henryk Ploetz <henryk@ploetzli.ch>
+		   2008-2010 Nokia Corporation
+		   2004-2010 Marcel Holtmann <marcel@holtmann.org>
+		   2005-2006 Brad Midgley <bmidgley@xmission.com>
+License: LGPL-2+
+
+Files: sbc/sbc_primitives_iwmmxt.c sbc/sbc_primitives_iwmmxt.h
+Copyright: 2004-2005 Henryk Ploetz <henryk@ploetzli.ch>
+		   2008-2010 Nokia Corporation
+		   2004-2010 Marcel Holtmann <marcel@holtmann.org>
+		   2005-2006 Brad Midgley <bmidgley@xmission.com>
+		   2010 Keith Mok <ek9852@gmail.com>
+License: LGPL-2+
+
+Files: src/sbcinfo.c src/sbcenc.c src/sbcdec.c
+Copyright: 2008-2010 Nokia Corporation
+		   2004-2010 Marcel Holtmann <marcel@holtmann.org>
+License: GPL-2+
+
+Files: src/sbctester.c
+Copyright: 2007-2010 Marcel Holtmann <marcel@holtmann.org>
+		   2008-2010 Nokia Corporation
+		   2007-2008 Frederic Dalleau <fdalleau@free.fr>
+License: GPL-2+
+
+Files: src/formats.h
+Copyright: 2004-2010 Marcel Holtmann <marcel@holtmann.org>
+License: GPL-2+
+
+Files: debian/*
+Copyright: 2012 - 2018 Nobuhiro Iwamatsu <iwamatsu@nigauri.org>
+License: GPL-2+
+
+Files: debian/sbcinfo.1
+Copyright: 2007 Krzysztof Burghardt <krzysztof@burghardt.pl>
+License: GPL-2+
+
+License: LGPL-2+
+ This library is free software; you can redistribute it and/or modify
+ it under the terms of the GNU Lesser General Public License as
+ published by the Free Software Foundation; either version 2 of the
+ License, or (at your option) any later version.
+ .
+ This library is distributed in the hope that it will be useful, but
+ WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ Lesser General Public License for more details.
+ .
+ On Debian systems, the complete text of the GNU Lesser General Public
+ License version 2 can be found in `/usr/share/common-licenses/LGPL-2'.
+
+License: GPL-2+
+ This package is free software; you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation; either version 2 of the License, or
+ (at your option) any later version.
+ .
+ This package is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ .
+ You should have received a copy of the GNU General Public License
+ along with this program. If not, see <http://www.gnu.org/licenses/>
+ .
+ On Debian systems, the complete text of the GNU General
+ Public License version 2 can be found in "/usr/share/common-licenses/GPL-2".

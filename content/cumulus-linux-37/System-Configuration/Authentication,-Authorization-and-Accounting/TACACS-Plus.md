@@ -1,6 +1,6 @@
 ---
 title: TACACS Plus
-author: Cumulus Networks
+author: NVIDIA
 weight: 281
 pageID: 8362558
 ---
@@ -253,12 +253,7 @@ When you install or upgrade TACACS+ packages, mapped user accounts are
 created automatically. All *tacacs0* through *tacacs15* users are added
 to the *netshow* group.
 
-In order for any TACACS+ users to execute `net add`, `net del`, and `net
-commit` commands and to restart services with NCLU, you need to add
-those users to the `users_with_edit` variable in the `/etc/netd.conf`
-file. Cumulus Networks recommends you add the *tacacs15* user and,
-depending upon your policies, other users (*tacacs1* through *tacacs14*)
-to this variable.
+For any TACACS+ users to execute `net add`, `net del`, and `net commit` commands and to restart services with NCLU, you need to add those users to the `users_with_edit` variable in the `/etc/netd.conf` file. Add the *tacacs15* user and, depending upon your policies, other users (*tacacs1* through *tacacs14*) to this variable.
 
 To give a TACACS+ user access to the show commands, add the *tacacs*
 group to the `groups_with_show` variable.
@@ -464,8 +459,8 @@ The table below describes the configuration options available:
 <td><p>exclude_users=user1,user2,...</p></td>
 <td><p>A comma-separated list of usernames that are never looked up by the NSS plugin, set in the <code>tacplus_nss.conf</code> file. You cannot use * (asterisk) as a wild card in the list. While it's not a legal username, bash may lookup this as a user name during pathname completion, so it is included in this list as a username string.</p>
 <p>{{%notice warning%}}</p>
-<p>Cumulus Networks strongly recommends that you do <strong>not</strong> remove the <em>cumulus</em> user from the <code>exclude_users</code> list, because doing so can make it impossible to log in as the cumulus user, which is the primary administrative account in Cumulus Linux.</p>
-<p>If you do remove the cumulus user, Cumulus Networks recommends you add some other local fallback user that does not rely on TACACS but is a member of sudo and netedit groups, so that these accounts can run <code>sudo</code> and NCLU commands.</p>
+<p>Do <strong>not</strong> remove the <em>cumulus</em> user from the <code>exclude_users</code> list, because doing so can make it impossible to log in as the cumulus user, which is the primary administrative account in Cumulus Linux.</p>
+<p>If you do remove the cumulus user, add some other local fallback user that does not rely on TACACS but is a member of sudo and netedit groups, so that these accounts can run <code>sudo</code> and NCLU commands.</p>
 <p>{{%/notice%}}</p></td>
 </tr>
 <tr>

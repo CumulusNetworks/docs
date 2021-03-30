@@ -1,0 +1,38 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: libburn
+Upstream-Contact: libburn-hackers@pykix.org
+Source: http://files.libburnia-project.org/releases/
+
+Files: *
+Copyright: 2002-2006 Derek Foreman <derek@signalmarketing.com>
+           2002-2006 Ben Jansens <xor@orodu.net>
+           2006-2008 Mario Danic <mario.danic@gmail.com>
+           2006-2016 Thomas Schmitt <scdbackup@gmx.net>
+License: GPL-2+
+
+Files: debian/*
+Copyright: 2006      Ante Karamatic <ivoks@ubuntu.com>
+           2006-2008 Simon Huggins <huggie@earth.li>
+           2008-2009 Matthew Rosewarne
+           2008      Mario Danic <mario.danic@gmail.com>
+           2011      Mats Erik Andersson <mats.andersson@gisladisker.se>
+           2008-2012 George Danchev <danchev@spnet.net>
+           2015-2016 Thomas Schmitt <scdbackup@gmx.net>
+License: GPL-2
+
+License: GPL-2
+ This program is free software; you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation; version 2 dated June, 1991.
+ .
+ On Debian systems, the complete text of version 2 of the GNU General
+ Public License can be found in '/usr/share/common-licenses/GPL-2'.
+
+License: GPL-2+
+ This program is free software; you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation; version 2 dated June, 1991, or (at
+ your option) any later version.
+ .
+ On Debian systems, the complete text of version 2 of the GNU General
+ Public License can be found in '/usr/share/common-licenses/GPL-2'.

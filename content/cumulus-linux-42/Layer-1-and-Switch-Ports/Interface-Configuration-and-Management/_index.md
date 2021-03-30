@@ -1,6 +1,6 @@
 ---
 title: Interface Configuration and Management
-author: Cumulus Networks
+author: NVIDIA
 weight: 290
 toc: 3
 ---
@@ -30,7 +30,7 @@ cumulus@switch:~$ sudo ifdown swp1
 
 The `ifdown` command always deletes logical interfaces after bringing them down. When you bring down the physical connection to an interface, it is brought back up automatically after any future reboots or configuration changes with `ifreload -a`.
 
-To administratively bring the interface up or down; for example, to bring down a port, bridge, or bond but not the physical connection for a port, bridge, or bond, you can use the the `--admin-state` option. Alternatively, you can use NCLU commands.
+To administratively bring the interface up or down; for example, to bring down a port, bridge, or bond but not the physical connection for a port, bridge, or bond, you can use the `--admin-state` option. Alternatively, you can use NCLU commands.
 
 When you put an interface into an admin down state, the interface *remains down* after any future reboots or configuration changes with `ifreload -a`.
 
@@ -346,7 +346,7 @@ iface bridge
     bridge-ports swp1 swp2
     bridge-vids 1-100
     bridge-pvid 1
-    bridge-stp on</code></pre></td>
+    bridge-stp on
 ```
 
 In the following example, swp1.100 and swp2.100 do not need an entry in the `interfaces` file. The following stanzas defined in `/etc/network/interfaces` provide the exact same configuration:
@@ -541,7 +541,7 @@ With `skip_upperifaces=1`, you have to explicitly execute `ifup` on the upper in
 
 {{%notice note%}}
 
-Although specifying a subinterface like swp1.100 and then running `ifup swp1.100` results in the automatic creation of the swp1 interface in the kernel, Cumulus Networks recommends you specify the parent interface swp1 as well. A parent interface is one where any physical layer configuration can reside, such as `link-speed 1000` or `link-duplex full`. If you only create swp1.100 and not swp1, then you cannot run `ifup swp1` because you did not specify it.
+Although specifying a subinterface like swp1.100 and then running `ifup swp1.100` results in the automatic creation of the swp1 interface in the kernel, consider also specifying the parent interface swp1. A parent interface is one where any physical layer configuration can reside, such as `link-speed 1000` or `link-duplex full`. If you only create swp1.100 and not swp1, then you cannot run `ifup swp1` because you did not specify it.
 
 {{%/notice%}}
 
@@ -1151,7 +1151,7 @@ Interface descriptions also appear in the {{<link url="Simple-Network-Management
 
 ## Considerations
 
-Even though `ifupdown2` supports the inclusion of multiple `iface` stanzas for the same interface, Cumulus Networks recommends that you use a single `iface` stanza for each interface. If you must specify more than one `iface` stanza; for example, if the configuration for a single interface comes from many places, like a template or a sourced file, make sure the stanzas do not specify the same interface attributes. Otherwise, unexpected behavior can result.
+Even though `ifupdown2` supports the inclusion of multiple `iface` stanzas for the same interface, consider using a single `iface` stanza for each interface. If you must specify more than one `iface` stanza; for example, if the configuration for a single interface comes from many places, like a template or a sourced file, make sure the stanzas do not specify the same interface attributes. Otherwise, unexpected behavior can result.
 
 In the following example, swp1 is configured in two places: the `/etc/network/interfaces` file and the `/etc/network/interfaces.d/speed_settings` file. `ifupdown2` correctly parses this configuration because the same attributes are not specified in multiple `iface` stanzas.
 

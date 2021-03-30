@@ -9,7 +9,7 @@ This topic describes how to prepare your single, NetQ Cloud Appliance for instal
 
 Inside the box that was shipped to you, you'll find:
 
-- Your Cumulus NetQ Cloud Appliance (a Supermicro SuperServer E300-9D)
+- Your NVIDIA Cumulus NetQ Cloud Appliance (a Supermicro SuperServer E300-9D)
 - Hardware accessories, such as power cables and rack mounting gear (note that network cables and optics ship separately)
 - Information regarding your order
 
@@ -107,7 +107,7 @@ Now that the appliance is up and running, verify that the software is available 
 
     {{<netq-install/container version="3.3.1">}}
 
-The final step is to install and activate the NetQ software.  You can do this using the Admin UI or the NetQ CLI.
+The final step is to install and activate the NetQ software. You can do this using the Admin UI or the NetQ CLI.
 
 Click the installation and activation method you want to use to complete installation:
 

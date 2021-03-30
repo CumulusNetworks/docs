@@ -72,7 +72,7 @@ The following table lists all system event messages organized by type. These mes
 </table>
 
 ## BGP Events
-
+<!-- vale off -->
 <table>
 <colgroup>
 <col style="width: 15%" />
@@ -121,7 +121,7 @@ The following table lists all system event messages organized by type. These mes
 </tr>
 </body>
 </table>
-
+<!-- vale on -->
 ## BTRFS Events
 
 <table>
@@ -205,7 +205,7 @@ The following table lists all system event messages organized by type. These mes
 <td>The vendor of a given transceiver changed</td>
 <td>Info</td>
 <td>@ifname vendor name changed from @old_vendor_name to @new_vendor_name</td>
-<td>swp23 vendor name changed from Broadcom to Mellanox</td>
+<td>swp23 vendor name changed from Broadcom to NVIDIA</td>
 </tr>
 <tr>
 <td>cable</td>
@@ -556,42 +556,42 @@ The following table lists all system event messages organized by type. These mes
 </tr>
 <tr>
 <td>lcm</td>
-<td>Installation of a Cumulus NetQ image has started for a switch or host</td>
+<td>Installation of a NetQ image has started for a switch or host</td>
 <td>Info</td>
 <td>NetQ Image version @netq_version installation started for hostname @hostname</td>
 <td>NetQ Image version 3.2.0 installation started for hostname spine02</td>
 </tr>
 <tr>
 <td>lcm</td>
-<td>Installation of a Cumulus NetQ image has completed successfully for a switch or host</td>
+<td>Installation of a NetQ image has completed successfully for a switch or host</td>
 <td>Info</td>
 <td>NetQ Image version @netq_version installation completed for hostname @hostname</td>
 <td>NetQ Image version 3.2.0 installation completed for hostname spine02</td>
 </tr>
 <tr>
 <td>lcm</td>
-<td>Installation of a Cumulus NetQ image has failed for a switch or host</td>
+<td>Installation of a NetQ image has failed for a switch or host</td>
 <td>Critical</td>
 <td>NetQ Image version @netq_version installation failed for hostname @hostname</td>
 <td>NetQ Image version 3.2.0 installation failed for hostname spine02</td>
 </tr>
 <tr>
 <td>lcm</td>
-<td>Upgrade of a Cumulus NetQ image has started for a switch or host</td>
+<td>Upgrade of a NetQ image has started for a switch or host</td>
 <td>Info</td>
 <td>NetQ Image upgrade from version @old_netq_version to version @netq_version started for hostname @hostname</td>
 <td>NetQ Image upgrade from version 3.1.0 to version 3.2.0 started for hostname spine02</td>
 </tr>
 <tr>
 <td>lcm</td>
-<td>Upgrade of a Cumulus NetQ image has completed successfully for a switch or host</td>
+<td>Upgrade of a NetQ image has completed successfully for a switch or host</td>
 <td>Info</td>
 <td>NetQ Image upgrade from version @old_netq_version to version @netq_version completed for hostname @hostname</td>
 <td>NetQ Image upgrade from version 3.1.0 to version 3.2.0 completed for hostname spine02</td>
 </tr>
 <tr>
 <td>lcm</td>
-<td>Upgrade of a Cumulus NetQ image has failed for a switch or host</td>
+<td>Upgrade of a NetQ image has failed for a switch or host</td>
 <td>Critical</td>
 <td>NetQ Image upgrade from version @old_netq_version to version @netq_version failed for hostname @hostname</td>
 <td>NetQ Image upgrade from version 3.1.0 to version 3.2.0 failed for hostname spine02</td>
@@ -1197,7 +1197,9 @@ The following table lists all system event messages organized by type. These mes
 <td>Replication list is contains an inconsistent set of nodes<></td>
 <td>Critical<></td>
 <td>VNI @vni replication list inconsistent with @conflicts diff:@diff<></td>
+<!-- vale off -->
 <td>VNI 14 replication list inconsistent with ["leaf03","leaf04"] diff:+:["leaf03","leaf04"] -:["leaf07","leaf08"]</td>
+<!-- vale on -->
 </tr>
 </tbody>
 </table>

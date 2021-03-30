@@ -19,19 +19,19 @@ For servers running Ubuntu OS, you need to:
 - Obtain NetQ software packages
 
 {{<notice note>}}
-If your network uses a proxy server for external connections, you should first {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux/System-Configuration/Configuring-a-Global-Proxy/" text="configure a global proxy">}} so <code>apt-get</code> can access the software package in the Cumulus Networks repository.
+If your network uses a proxy server for external connections, you should first {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux/System-Configuration/Configuring-a-Global-Proxy/" text="configure a global proxy">}} so <code>apt-get</code> can access the software package in the NVIDIA networking repository.
 {{</notice>}}
 
 ### Verify Service Package Versions
 
 Before you install the NetQ Agent on an Ubuntu server, make sure the
 following packages are installed and running these minimum versions:
-
+<!-- vale off -->
 - iproute 1:4.3.0-1ubuntu3.16.04.1 all
 - iproute2 4.3.0-1ubuntu3 amd64
 - lldpd 0.7.19-1 amd64
 - ntp 1:4.2.8p4+dfsg-3ubuntu5.6 amd64
-
+<!-- vale on -->
 ### Verify the Server is Running lldpd
 
 Make sure you are running lldp**d**, not lldp**ad**. Ubuntu does not include `lldpd` by default, which is required for the installation.
@@ -176,7 +176,7 @@ If you are running NTP in your out-of-band management network with VRF, specify 
 
 ### Obtain NetQ CLI Software Package
 
-To install the NetQ Agent you need to install `netq-apps` on each server. This is available from the Cumulus Networks repository.
+To install the NetQ Agent you need to install `netq-apps` on each server. This is available from the NVIDIA networking repository.
 
 To obtain the NetQ CLI package:
 
@@ -238,9 +238,9 @@ A simple process installs the NetQ CLI on an Ubuntu server.
     ```
     root@ubuntu:~# dpkg-query -W -f '${Package}\t${Version}\n' netq-apps
     ```
-
+<!-- vale off -->
     {{<netq-install/cli-version version="3.3.1" opsys="ub">}}
-
+<!-- vale on -->
 3. Continue with NetQ CLI configuration in the next section.
 
 ## Configure the NetQ CLI on an Ubuntu Server
@@ -249,9 +249,9 @@ Two methods are available for configuring the NetQ CLI on a switch:
 
 - Run NetQ CLI commands on the switch; refer to the next section
 - Edit the configuration file on the switch; refer to {{<link url="#configure-netq-cli-using-configuration-file" text="Configure CLI Using File">}}
-
+<!-- vale off -->
 {{<netq-install/cli-config opsys="ub">}}
-
+<!-- vale on -->
 ### Configure NetQ CLI Using the CLI
 
 The steps to configure the CLI are different depending on whether the NetQ software has been installed for an on-premises or cloud deployment. Follow the instruction for your deployment type.
@@ -282,7 +282,7 @@ If you have a server cluster deployed, use the IP address of the master server.
 
 {{< tab "Cloud Deployments" >}}
 
-To access and configure the CLI on your NetQ Platform or NetQ Cloud Appliance, you must have your username and password to access the NetQ UI to generate AuthKeys. These keys provide authorized access (access key) and user authentication (secret key). Your credentials and NetQ Cloud addresses were provided by Cumulus Networks via an email titled *Welcome to Cumulus NetQ!*
+To access and configure the CLI on your NetQ Platform or NetQ Cloud Appliance, you must have your username and password to access the NetQ UI to generate AuthKeys. These keys provide authorized access (access key) and user authentication (secret key). Your credentials and NetQ Cloud addresses were provided by NVIDIA via an email titled <!-- vale off -->*Welcome to Cumulus NetQ!*<!-- vale on -->
 
 To generate AuthKeys:
 
@@ -366,9 +366,9 @@ You can configure the NetQ CLI in the `netq.yml` configuration file contained in
     ```
     root@ubuntu:~# sudo nano /etc/netq/netq.yml
     ```
-
+<!-- vale off -->
 2. Locate the *netq-cli* section, or add it.
-
+<!-- vale on -->
 3. Set the parameters for the CLI.
 
     {{< tabs "TabID1" >}}

@@ -21,7 +21,7 @@ The following table summarizes the new commands available with this release.
 | netq lcm show default-version cl-images [json] | Displays the default disk image for NVIDIA Cumulus Linux on the NetQ appliance. | 3.3.0 |
 | netq lcm show default-version netq-images [json] | Displays the default disk images for the NVIDIA NetQ agent and CLI on the NetQ appliance. | 3.3.0 |
 | netq lcm show discovery-job &lt;text-discovery-job-id> [json] | Displays the results of a switch discovery job, including a summary of the job itself and information about any switches discovered, including hostname, IP address, MAC address, CPU, Cumulus Linux and NetQ versions, configuration profile, discovery status and upgrade status. | 3.3.0 |
-| netq lcm upgrade netq-image name &lt;text-job-name> [netq-version &lt;text-netq-version>] [upgrade-cli True \| upgrade-cli False] hostnames &lt;text-switch-hostnames> [config_profile &lt;text-config-profile>] | Upgrades NetQ. | 3.3.0 |
+| netq lcm upgrade netq-image name &lt;text-job-name> [netq-version &lt;text-netq-version>] <!-- vale off -->[upgrade-cli True \| upgrade-cli False] <!-- vale on -->hostnames &lt;text-switch-hostnames> [config_profile &lt;text-config-profile>] | Upgrades NetQ. | 3.3.0 |
 | netq lcm show netq-config [json] | Displays the NetQ LCM configuration profiles. | 3.3.0 |
 
 ## Modified Commands

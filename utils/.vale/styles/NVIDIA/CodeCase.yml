@@ -7,7 +7,3 @@ message: '"%s" inside a command should be lowercase.'
 level: error
 scope: code
 match: $lower
-exceptions:
-  # Don't check MD file header content
-  - '[\-]{3}.[\-]{3}'
-  

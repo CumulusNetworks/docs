@@ -1849,7 +1849,7 @@ A release is included if there were changes to the command, otherwise it is not 
 
 | Release | Description |
 | ---- | ---- |
-| 3.2.0 ??? | Introduced |
+| 3.2.0 | Introduced |
 
 ### Sample Usage
 
@@ -2139,7 +2139,7 @@ netq config add agent wjh-threshold
 | wjh-threshold | NA | Collect and send WJH latency or congestion events triggered by the specified high and low thresholds |
 | latency | NA | Collect and send WJH latency events |
 | congestion | NA | Collect and send WJH congestion events |
-| NA | \<text-tc-list\> | Only send events for these traffic classes. When more than one traffic class is desired, this value should be formatted as a comma-separated list, without spaces. Valid classes include xxx. |
+| NA | \<text-tc-list\> | Only send events for these traffic classes. When more than one traffic class is desired, this value should be formatted as a comma-separated list, without spaces. |
 | NA | \<text-port-list\> | Only send events occurring on these ports. When more than one port is desired, this value should be formatted as a comma-separated list, without spaces. For example *swp1,swp2,swp3,swp4*. |
 | NA | \<text-th-hi\> | Trigger an event when the latency is greater than this amount of time, or when buffer occupancy is greater than this percentage. |
 | NA | \<text-th-lo\> | Trigger an event when the latency is less than this amount of time, or when buffer occupancy is less than this percentage. |
@@ -2806,7 +2806,7 @@ netq config add agent wjh-threshold
 | wjh-threshold | NA | Remove latency or congestion events triggered by thresholds |
 | latency | NA | Remove latency event thresholds |
 | congestion | NA | Remove congestion event thresholds |
-| NA | \<text-tc-list\> | Remove latency or congestion events for these traffic classes. When more than one traffic class is desired, this value should be formatted as a comma-separated list, without spaces. Valid classes include xxx. |
+| NA | \<text-tc-list\> | Remove latency or congestion events for these traffic classes. When more than one traffic class is desired, this value should be formatted as a comma-separated list, without spaces. |
 
 ### Options
 
@@ -2923,7 +2923,7 @@ Color coded output config deleted
 
 ## netq config reload parser
 
-Loads the NetQ configuration file. When/Why ??? Running or other config ???
+Loads the NetQ configuration file.
 
 ### Syntax
 
@@ -3586,7 +3586,6 @@ A release is included if there were changes to the command, otherwise it is not 
 
 ```
 cumulus@chassis:~$ netq config show agent wjh
-xxx
 ```
 
 ### Related Commands
@@ -3632,7 +3631,6 @@ A release is included if there were changes to the command, otherwise it is not 
 
 ```
 cumulus@switch:~$ netq config show agent wjh-threshold
-xxx
 ```
 
 ### Related Commands

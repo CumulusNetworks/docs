@@ -210,7 +210,7 @@ A release is included if there were changes to the command, otherwise it is not 
 
 ### Sample Usage
 
-<!-- Add output/results??? -->
+<!-- Add output/results -->
 ```
 cumulus@<hostname>:~$ netq upgrade bundle /mnt/installables/NetQ-3.3.0.tgz
 ```

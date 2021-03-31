@@ -128,10 +128,10 @@ netq add notification channel syslog
 
 | Option | Value | Description |
 | ---- | ---- | ---- |
-| smtpserver | \<<text-email-hostname\> | Send notifications to the SMTP server with this hostname (or IP address???) |
+| smtpserver | \<<text-email-hostname\> | Send notifications to the SMTP server with this hostname |
 | smtpport | \<<text-email-port\> | Send notifications to this port on the SMTP server |
-| login | \<text-email-id\> | Email address for authentication ??? |
-| password | \<text-email-password\> | Password for authentication ??? |
+| login | \<text-email-id\> | Email address for authentication |
+| password | \<text-email-password\> | Password for authentication |
 | severity | info, warning, error, debug | Only send notifications with this severity. Default severity is info. |
 | tag | \<text-slack-tag\> | Short text appended to a Slack notification to highlight particular channels or people. The tag value must be preceded by the @ sign. For example, @netq-info or @net-admin. |
 

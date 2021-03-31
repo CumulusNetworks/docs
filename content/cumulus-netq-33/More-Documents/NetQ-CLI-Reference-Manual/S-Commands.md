@@ -2349,12 +2349,13 @@ A release is included if there were changes to the command, otherwise it is not 
 Show job status
 
 ```
-cumulus@switch:~$ netq show job-status xxx
+cumulus@switch:~$ netq show job-status 192.168.200.250
 ```
 
 ### Related Commands
 
-- netq xxx
+None
+
 - - -
 
 ## netq show kubernetes
@@ -2497,7 +2498,7 @@ netq [<hostname>] show kubernetes service
 | ---- | ---- | ---- |
 | NA | \<hostname\> | Only display results for the switch or host with this name |
 | name | \<kube-cluster-name\>, \<kube-node-name\>, \<kube-ds-name\>, \<kube-deployment-name\>, \<kube-pod-name\>, \<kube-rc-name\>, \<kube-rs-name\>, \<kube-service-name\> | Only display results for the Kubernetes component with this name |
-| components | NA | ??? |
+| components | NA | TBD |
 | cluster | \<kube-cluster-name>\ | Only display results for the cluster with this name |
 | label | \<kube-node-label\>, \<kube-ds-label\>, \<kube-deployment-label\>, \<kube-pod-label\>, \<kube-rc-label\>, \<kube-rs-label\>, \<kube-service-label\> | Only display results for components with this label |
 | namespace | \<namespace\> | Only display results for clusters and nodes within this namespace |

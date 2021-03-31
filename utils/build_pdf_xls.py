@@ -184,6 +184,4 @@ try:
 
 except docraptor.rest.ApiException as error:
     print(error)
-    print(error.message)
-    print(error.code)
     exit(1)

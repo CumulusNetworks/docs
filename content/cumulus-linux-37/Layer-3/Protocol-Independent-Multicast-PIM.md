@@ -1,6 +1,6 @@
 ---
 title: Protocol Independent Multicast - PIM
-author: Cumulus Networks
+author: NVIDIA
 weight: 201
 pageID: 8362899
 ---
@@ -688,7 +688,7 @@ hello source by setting the source:
 
 ## Verify PIM
 
-The following outputs are based on the {{<exlink url="https://github.com/CumulusNetworks/cldemo-vagrant" text="Cumulus Networks reference topology">}} with `cldemo-pim`.
+The following outputs are based on the {{<exlink url="https://github.com/CumulusNetworks/cldemo-vagrant" text="Cumulus Linux reference topology">}} with `cldemo-pim`.
 
 ### Source Starts First
 

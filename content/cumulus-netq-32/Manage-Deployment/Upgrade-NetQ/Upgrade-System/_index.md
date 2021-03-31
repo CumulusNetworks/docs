@@ -4,7 +4,7 @@ author: Cumulus Networks
 weight: 410
 toc: 4
 ---
-The first step in upgrading your NetQ 2.4.x or 3.x installation to NetQ 3.2.0 is to upgrade your NetQ appliance(s) or VM(s). This topic describes how to upgrade this for both on-premises and cloud deployments.
+The first step in upgrading your NetQ 2.4.1 - 3.2.0 installation to NetQ 3.2.1 is to upgrade your NetQ appliance(s) or VM(s). This topic describes how to upgrade this for both on-premises and cloud deployments.
 
 ## Prepare for Upgrade
 
@@ -24,17 +24,17 @@ To complete the preparation:
 
     1. Go to the {{<exlink url="https://cumulusnetworks.com/downloads/" text="Cumulus Downloads">}} page, and select *NetQ* from the **Product** list.
 
-    2. Select *3.2* from the **Version** list, and then click *3.2.0* in the submenu.
+    2. Select *3.2* from the **Version** list, and then click *3.2.1* in the submenu.
 
     3. Select the relevant software from the **HyperVisor/Platform** list:
 
-        If you are upgrading NetQ Platform software for a NetQ On-premises Appliance or VM, select *Appliance*  to download the NetQ-3.2.0.tgz file. If you are upgrading NetQ Collector software for a NetQ Cloud Appliance or VM, select *Appliance (Cloud)* to download the NetQ-3.2.0-opta.tgz file.
+        If you are upgrading NetQ Platform software for a NetQ On-premises Appliance or VM, select *Appliance*  to download the NetQ-3.2.1.tgz file. If you are upgrading NetQ Collector software for a NetQ Cloud Appliance or VM, select *Appliance (Cloud)* to download the NetQ-3.2.1-opta.tgz file.
 
-        {{< figure src="/images/netq/netq-32-download-options-320.png" width="500" >}}
+        {{<figure src="/images/netq/netq-32-download-options-321.png" width="500">}}
 
     4. Scroll down and click **Download** on the on-premises or cloud NetQ Appliance image.
 
-        {{< figure src="/images/netq/netq-32-appliance-onpremcld-dwnld-320.png" width="420" >}}
+        {{< figure src="/images/netq/netq-32-appliance-onpremcld-dwnld-321.png" width="420" >}}
 
         {{<notice note>}}
 You can ignore the note on the image card because, unlike during installation, you <em>do not</em> need to download the bootstrap file for an upgrade.
@@ -75,11 +75,11 @@ You can ignore the note on the image card because, unlike during installation, y
     ...
     Fetched 39.8 MB in 3s (13.5 MB/s)
     ...
-    Unpacking netq-agent (3.2.0-ub18.04u30~1601400975.104fb9e) ...
+    Unpacking netq-agent (3.2.1-ub18.04u31~1603789872.6f62fad) ...
     ...
-    Unpacking netq-apps (3.2.0-ub18.04u30~1601400975.104fb9e) ...
-    Setting up netq-apps (3.2.0-ub18.04u30~1601400975.104fb9e) ...
-    Setting up netq-agent (3.2.0-ub18.04u30~1601400975.104fb9e) ...
+    Unpacking netq-apps (3.2.1-ub18.04u31~1603789872.6f62fad) ...
+    Setting up netq-apps (3.2.1-ub18.04u31~1603789872.6f62fad) ...
+    Setting up netq-agent (3.2.1-ub18.04u31~1603789872.6f62fad) ...
     Processing triggers for rsyslog (8.32.0-1ubuntu4) ...
     Processing triggers for man-db (2.8.3-2ubuntu0.1) ...
     ``````
@@ -149,7 +149,7 @@ You can ignore the note on the image card because, unlike during installation, y
 
 2. Shutdown the VM.
 
-2. Check the size of the existing disk on the server hosting the VM to confirm it is 32 GB. In this example, the size is shown in the **virtual size** field.
+3. Check the size of the existing disk on the server hosting the VM to confirm it is 32 GB. In this example, the size is shown in the **virtual size** field.
 
     ```
     root@server:/var/lib/libvirt/images# qemu-img info netq-3.1.0-ubuntu-18.04-tscloud-qemu.qcow2
@@ -188,9 +188,9 @@ You can ignore the note on the image card because, unlike during installation, y
         corrupt: false
     ```
 
-5. Start the VM and log back in.
+6. Start the VM and log back in.
 
-6. From step 1 we know the name of the root disk is */dev/vda 1*. Use that to run the following commands on the partition.
+7. From step 1 we know the name of the root disk is */dev/vda 1*. Use that to run the following commands on the partition.
 
     ```
     cumulus@netq-310-cloud:~$ sudo growpart /dev/vda 1
@@ -203,7 +203,7 @@ You can ignore the note on the image card because, unlike during installation, y
     The filesystem on /dev/vda1 is now 16748795 (4k) blocks long.
     ```
 
-7. Verify the disk is now configured with 64 GB. In this example, the number of 1 MB blocks is now 63341, or 64 GB.
+8. Verify the disk is now configured with 64 GB. In this example, the number of 1 MB blocks is now 63341, or 64 GB.
 
 ```
 cumulus@netq-310-cloud:~$ df -hm /
@@ -230,8 +230,8 @@ To upgrade your NetQ software:
 {{< tab "On-premises Deployments" >}}
 
 ```
-cumulus@<hostname>:~$ netq bootstrap master upgrade /mnt/installables/NetQ-3.2.0.tgz
-2020-04-28 15:39:37.016710: master-node-installer: Extracting tarball /mnt/installables/NetQ-3.2.0.tgz
+cumulus@<hostname>:~$ netq bootstrap master upgrade /mnt/installables/NetQ-3.2.1.tgz
+2020-04-28 15:39:37.016710: master-node-installer: Extracting tarball /mnt/installables/NetQ-3.2.1.tgz
 2020-04-28 15:44:48.188658: master-node-installer: Upgrading NetQ Admin container
 2020-04-28 15:47:35.667579: master-node-installer: Removing old images
 -----------------------------------------------
@@ -243,7 +243,7 @@ Successfully bootstrap-upgraded the master node
 {{< tab "Cloud Deployments" >}}
 
 ```
-netq bootstrap master upgrade /mnt/installables/NetQ-3.2.0-opta.tgz
+netq bootstrap master upgrade /mnt/installables/NetQ-3.2.1-opta.tgz
 ```
 
 {{< /tab >}}
@@ -260,7 +260,7 @@ netq bootstrap master upgrade /mnt/installables/NetQ-3.2.0-opta.tgz
 
 4. Click **Upgrade**.
 
-5. Enter *NetQ-3.2.0.tgz* or *NetQ-3.2.0-opta.tgz* and click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/50-Navigate/navigation-right-circle-1_1.svg" height="18" width="18"/>.
+5. Enter *NetQ-3.2.1.tgz* or *NetQ-3.2.1-opta.tgz* and click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/50-Navigate/navigation-right-circle-1_1.svg" height="18" width="18"/>.
 
     {{<figure src="/images/netq/adminui-upgrade-enter-tar-300.png" width="700">}}
 
@@ -289,7 +289,7 @@ To upgrade:
 {{< tab "On-premises Deployments" >}}
 
 ```
-netq upgrade bundle /mnt/installables/NetQ-3.2.0.tgz
+netq upgrade bundle /mnt/installables/NetQ-3.2.1.tgz
 ```
 
 {{< /tab >}}
@@ -297,7 +297,7 @@ netq upgrade bundle /mnt/installables/NetQ-3.2.0.tgz
 {{< tab "Cloud Deployments" >}}
 
 ```
-netq upgrade bundle /mnt/installables/NetQ-3.2.0-opta.tgz
+netq upgrade bundle /mnt/installables/NetQ-3.2.1-opta.tgz
 ```
 
 {{< /tab >}}
@@ -308,7 +308,7 @@ netq upgrade bundle /mnt/installables/NetQ-3.2.0-opta.tgz
 
     ```
     cumulus@<hostname>:~$ cat /etc/app-release
-    BOOTSTRAP_VERSION=3.2.0
-    APPLIANCE_MANIFEST_HASH=944369dcab
-    APPLIANCE_VERSION=3.2.0
+    BOOTSTRAP_VERSION=3.2.1
+    APPLIANCE_MANIFEST_HASH=74ac3017d5
+    APPLIANCE_VERSION=3.2.1
     ```

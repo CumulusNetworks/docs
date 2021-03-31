@@ -1,6 +1,6 @@
 ---
 title: Integrating Hardware VTEPs with VMware NSX-MH
-author: Cumulus Networks
+author: NVIDIA
 weight: 690
 toc: 4
 ---
@@ -22,9 +22,33 @@ To integrate a VXLAN with NSX-MH, you need to:
 
 {{%notice note%}}
 
-Cumulus Linux supports security protocol version TLSv1.2 for SSL connections between the OVSDB server and the NSX controller.
+Cumulus Linux supports security protocol version TLSv1.2 for SSL connections between the OVSDB server and the NSX controller. NSX-MH does not work with TLSv1.2. This has the following impacts:
 
-The OVSDB server cannot select the loopback interface as the source IP address, causing top of rack registration to the controller to fail. To work around this issue, run the `net add bgp redistribute connected` command followed by the `net commit` command.
+- In order for NSX-MH to work with Cumulus Linux 4.x or later, you must remove the minimum TLS enforcement of version 1.2. But you must understand that there are implications to the security of your network, possibly exposing the network to vulnerabilities.
+
+  To remove the TLSv1.2 requirement, edit `/etc/ssl/openssl.conf`.
+
+  ```
+  cumulus@switch:~$ sudo nano /etc/ssl/openssl.conf
+  ```
+
+  Change the following lines:
+
+  ```
+  [system_default_sect]
+  MinProtocol = TLSv1.2
+  CipherString = DEFAULT@SECLEVEL=2
+  ```
+
+  To this:
+  
+  ```
+  [system_default_sect]
+  MinProtocol = None
+  CipherString = DEFAULT
+  ```
+
+- The OVSDB server cannot select the loopback interface as the source IP address, causing top of rack registration to the controller to fail. To work around this issue, run the `net add bgp redistribute connected` command followed by the `net commit` command.
 
 {{%/notice%}}
 

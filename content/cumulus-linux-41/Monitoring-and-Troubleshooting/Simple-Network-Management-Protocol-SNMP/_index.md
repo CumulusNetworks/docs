@@ -1,6 +1,6 @@
 ---
 title: Simple Network Management Protocol - SNMP
-author: Cumulus Networks
+author: NVIDIA
 weight: 1080
 toc: 3
 ---
@@ -8,7 +8,7 @@ Cumulus Linux uses the open source Net-SNMP agent `snmpd` version 5.8, which pro
 
 ## History
 
-SNMP is an IETF standards-based network management architecture and protocol that traces its roots back to Carnegie-Mellon University in 1982. Since then, it has been modified by programmers at the University of California. In 1995, this code was also made publicly available as the UCD project. After that, `ucd-snmp` was extended by work done at the University of Liverpool as well as later in Denmark. In late 2000, the project name changed to `net-snmp` and became a fully-fledged collaborative open source project. The version used by Cumulus Networks is based on the latest `net-snmp` 5.8 branch with added custom MIBs and pass-through and pass-persist scripts ({{<link url="#pass-persist-scripts" text="see below">}} for more information on pass persist scripts).
+SNMP is an IETF standards-based network management architecture and protocol that traces its roots back to Carnegie-Mellon University in 1982. Since then, it has been modified by programmers at the University of California. In 1995, this code was also made publicly available as the UCD project. After that, `ucd-snmp` was extended by work done at the University of Liverpool as well as later in Denmark. In late 2000, the project name changed to `net-snmp` and became a fully-fledged collaborative open source project. The version used by NVIDIA is based on the latest `net-snmp` 5.8 branch with added custom MIBs and pass-through and pass-persist scripts ({{<link url="#pass-persist-scripts" text="see below">}} for more information on pass persist scripts).
 
 ## Introduction to Simple Network Management Protocol
 
@@ -24,7 +24,7 @@ The SNMP agents (`snmpd`) running on the switches do the bulk of the work and ar
 
 ### Management Information Base (MIB)
 
-The MIB is a database that is implemented on the daemon (or agent) and follows IETF RFC standards to which the manager and agents adhere. It is a hierarchical structure that, in many areas, is globally standardized, but also flexible enough to allow vendor-specific additions. Cumulus Networks implements a number of custom enterprise MIB tables and these are defined in text files located on the switch and in files named `/usr/share/snmp/mibs/Cumulus*`. The MIB structure is best understood as a top-down hierarchical tree. Each branch that forks off is labeled with both an identifying number (starting with 1) and an identifying string that is unique for that level of the hierarchy. These strings and numbers can be used interchangeably. A specific node of the tree can be traced from the unnamed root of the tree to the node in question. The parent IDs (numbers or strings) are strung together, starting with the most general to form an address for the MIB Object. Each junction in the hierarchy is represented by a dot in this notation so that the address ends up being a series of ID strings or numbers separated by dots. This entire address is known as an object identifier (OID).
+The MIB is a database that is implemented on the daemon (or agent) and follows IETF RFC standards to which the manager and agents adhere. It is a hierarchical structure that, in many areas, is globally standardized, but also flexible enough to allow vendor-specific additions. Cumulus Linux implements a number of custom enterprise MIB tables and these are defined in text files located on the switch and in files named `/usr/share/snmp/mibs/Cumulus*`. The MIB structure is best understood as a top-down hierarchical tree. Each branch that forks off is labeled with both an identifying number (starting with 1) and an identifying string that is unique for that level of the hierarchy. These strings and numbers can be used interchangeably. A specific node of the tree can be traced from the unnamed root of the tree to the node in question. The parent IDs (numbers or strings) are strung together, starting with the most general to form an address for the MIB Object. Each junction in the hierarchy is represented by a dot in this notation so that the address ends up being a series of ID strings or numbers separated by dots. This entire address is known as an object identifier (OID).
 
 Hardware vendors that embed SNMP agents in their devices sometimes implement custom branches with their own fields and data points. However, there are standard MIB branches that are well defined and can be used by any device. The standard branches discussed here are all under the same parent branch structure. This branch defines information that adheres to the MIB-2 specification, which is a revised standard for compliant devices. You can use various online and command-line tools to translate between numbers and string and to also provide definitions for the various MIB Objects. For example, you can view the `sysLocation` object in the system table with either a string of numbers **1.3.6.1.2.1.1.6** or the string representation **iso.org.dod.internet.mgmt.mib-2.system.sysLocation.** You can view the definition with the snmptranslate (1) command (found in the `snmp` Debian package).
 
@@ -105,7 +105,7 @@ For external SNMP NMS systems to poll Cumulus Linux switches and routers, you mu
 
 {{%notice note%}}
 
-- Cumulus Networks recommends that you use NCLU to configure `snmpd` even though NCLU does not provide functionality to configure every `snmpd` feature. You are not restricted to using NCLU for configuration and can edit the `/etc/snmp/snmpd.conf` file and control `snmpd` with `systemctl` commands.
+- Use NCLU to configure `snmpd` even though NCLU does not provide functionality to configure every `snmpd` feature. You are not restricted to using NCLU for configuration and can edit the `/etc/snmp/snmpd.conf` file and control `snmpd` with `systemctl` commands.
 - Cumulus Linux provides VRF listening-address, as well as Trap/Inform support. When management VRF is enabled, the eth0 interface is placed in the management VRF. When you configure the `listening-address` for `snmp-server`, you must run the `net add snmp-server listening-address <address> vrf mgmt` command to enable listening on the eth0 interface. These additional parameters are described in detail below.
 - You must add a default community string for v1 or v2c environments so that the `snmpd` daemon can respond to requests. For security reasons, the default configuration configures `snmpd` to listen to SNMP requests on the loopback interface so access to the switch is restricted to requests originating from the switch itself. The only required commands for `snmpd` to function are a `listening-address` and either a `username` or a `readonly-community` string.
 
@@ -208,9 +208,9 @@ To start the SNMP daemon:
 
 After the service starts, you can use SNMP to manage various components on the switch.
 
-### Set up the Custom Cumulus Networks MIBs
+### Set up the Custom MIBs
 
-No changes are required in the `/etc/snmp/snmpd.conf` file on the switch to support the custom Cumulus Networks MIBs. The following lines are already included by default and provide support for both the Cumulus Counters and the Cumulus Resource Query MIBs.
+No changes are required in the `/etc/snmp/snmpd.conf` file on the switch to support the custom MIBs. The following lines are already included by default and provide support for both the Cumulus Counters and the Cumulus Resource Query MIBs.
 
 ```
 sysObjectID 1.3.6.1.4.1.40310
@@ -237,7 +237,7 @@ The `snmpd` authentication for versions 1 and 2 is disabled by default in Cumulu
    | Keyword| Meaning|
    |------- |------- |
    | `rocommunity` | Read-only community; `rwcommunity` is for read-write access. |
-   | `public` | Plain text password/community string.<br><br>**Note**: Cumulus Networks strongly recommends you change this password to something else. |
+   | `public` | Plain text password/community string.<br><br>**Note**: Change this password to prevent security issues. |
    | `default` | The default keyword allows connections from any system. The localhost keyword allows requests only from the local host. A restricted source can either be a specific hostname (or address), or a subnet, represented as IP/MASK (like 10.10.10.0/255.255.255.0), or IP/BITS (like 10.10.10.0/24), or the IPv6 equivalents. |
    |`systemonly`| The name of this particular SNMP view. This is a user-defined value. |
 
@@ -318,7 +318,7 @@ SNMPv3 is often used to enable authentication and encryption, as community strin
 
 {{%notice note%}}
 
-Cumulus Networks recommends that you configure SNMPv3 usernames and passwords with NCLU. However, if you prefer to edit the `/etc/snmp/snmpd.conf` manually instead, be aware that `snmpd` caches SNMPv3 usernames and passwords in the /`var/lib/snmp/snmpd.conf` file. Make sure you stop `snmpd` and remove the old entries when making changes. Otherwise, Cumulus Linux uses the old usernames and passwords in the `/var/lib/snmp/snmpd.conf` file instead of the ones in the `/etc/snmp/snmpd.conf` file.
+Configure SNMPv3 usernames and passwords with NCLU. However, if you prefer to edit the `/etc/snmp/snmpd.conf` manually instead, be aware that `snmpd` caches SNMPv3 usernames and passwords in the /`var/lib/snmp/snmpd.conf` file. Make sure you stop `snmpd` and remove the old entries when making changes. Otherwise, Cumulus Linux uses the old usernames and passwords in the `/var/lib/snmp/snmpd.conf` file instead of the ones in the `/etc/snmp/snmpd.conf` file.
 
 {{%/notice%}}
 
@@ -859,7 +859,7 @@ Below are the MIBs supported by Cumulus Linux, as well as suggested uses for the
 |-------- |-------------- |
 | {{<exlink url="https://cumulusnetworks.com/static/mibs/BGP4-MIB.txt" text="BGP4-MIB">}}<br>{{<exlink url="https://cumulusnetworks.com/static/mibs/OSPFv2-MIB.txt" text="OSPFv2-MIB">}}<br>{{<exlink url="https://cumulusnetworks.com/static/mibs/OSPFv3-MIB.txt" text="OSPFv3-MIB">}}<br>{{<exlink url="https://cumulusnetworks.com/static/mibs/RIPv2-MIB.txt" text="RIPv2-MIB">}} | You can enable FRRouting SNMP support to provide support for OSPF-MIB (RFC-1850), OSPFV3-MIB (RFC-5643), and BGP4-MIB (RFC-1657). See the FRRouting section above. |
 | {{<exlink url="https://cumulusnetworks.com/static/mibs/CUMULUS-COUNTERS-MIB.txt" text="CUMULUS-COUNTERS-MIB">}} | Discard counters: Cumulus Linux also includes its own counters MIB, defined in `/usr/share/snmp/mibs/Cumulus-Counters-MIB.txt`. It has the OID `.1.3.6.1.4.1.40310.2` |
-| {{<exlink url="https://cumulusnetworks.com/static/mibs/CUMULUS-POE-MIB.txt" text="CUMULUS-POE-MIB">}} | The Cumulus Networks custom {{<link url="Power-over-Ethernet-PoE" text="Power over Ethernet PoE MIB">}} defined in the `/usr/share/snmp/mibs/Cumulus-POE-MIB.txt` file. For devices that provide PoE, this provides users with the system wide power information in `poeSystemValues` as well as per interface `PoeObjectsEntry` values for the `poeObjectsTable`. Most of this information comes from the `poectl` command. To enable this MIB, uncomment the following line in `/etc/snmp/snmpd.conf`<pre>#pass_persist .1.3.6.1.4.1.40310.3 /usr/share/snmp/cl_poe_pp.py</pre> |
+| {{<exlink url="https://cumulusnetworks.com/static/mibs/CUMULUS-POE-MIB.txt" text="CUMULUS-POE-MIB">}} | The custom {{<link url="Power-over-Ethernet-PoE" text="Power over Ethernet PoE MIB">}} defined in the `/usr/share/snmp/mibs/Cumulus-POE-MIB.txt` file. For devices that provide PoE, this provides users with the system wide power information in `poeSystemValues` as well as per interface `PoeObjectsEntry` values for the `poeObjectsTable`. Most of this information comes from the `poectl` command. To enable this MIB, uncomment the following line in `/etc/snmp/snmpd.conf`<pre>#pass_persist .1.3.6.1.4.1.40310.3 /usr/share/snmp/cl_poe_pp.py</pre> |
 | {{<exlink url="https://cumulusnetworks.com/static/mibs/CUMULUS-RESOURCE-QUERY-MIB.txt" text="CUMULUS-RESOURCE-QUERY-MIB">}} | Cumulus Linux includes its own resource utilization MIB, which is similar to using `cl-resource-query`. This MIB monitors layer 3 entries by host, route, nexthops, ECMP groups, and layer 2 MAC/BDPU entries. The MIB is defined in `/usr/share/snmp/mibs/Cumulus-Resource-Query-MIB.txt` and has the OID `.1.3.6.1.4.1.40310.1.` |
 | {{<exlink url="https://cumulusnetworks.com/static/mibs/CUMULUS-SNMP-MIB.txt" text="CUMULUS-SNMP-MIB">}} | SNMP counters. For information on exposing CPU and memory information with SNMP, see this {{<exlink url="https://docs.cumulusnetworks.com/knowledge-base/Configuration-and-Usage/Monitoring/Expose-CPU-and-Memory-Information-via-SNMP/" text="knowledge base article">}}. |
 | {{<exlink url="https://cumulusnetworks.com/static/mibs/DISMAN-EVENT-MIB.txt" text="DISMAN-EVENT-MIB">}} | Trap monitoring |

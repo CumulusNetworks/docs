@@ -1,7 +1,7 @@
 ---
 title: Monitoring System Hardware
-author: Cumulus Networks
-weight: 940
+author: NVIDIA
+weight: 1020
 toc: 3
 ---
 You monitor system hardware using the following commands and utilities:
@@ -180,7 +180,8 @@ fan2:        13560 RPM
 
 {{%notice note%}}
 
-Output from the `sensors` command varies depending upon the switch hardware you use, as each platform ships with a different type and number of sensors.
+- Output from the `sensors` command varies depending upon the switch hardware you use, as each platform ships with a different type and number of sensors.
+- On a Mellanox switch, if only one PSU is plugged in, the fan is at maximum speed.
 
 {{%/notice%}}
 

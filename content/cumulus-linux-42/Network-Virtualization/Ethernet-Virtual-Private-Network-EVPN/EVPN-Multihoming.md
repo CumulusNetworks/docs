@@ -1,7 +1,7 @@
 ---
 title: EVPN Multihoming
-author: Cumulus Networks
-weight: 555
+author: NVIDIA
+weight: 570
 toc: 4
 ---
 
@@ -33,11 +33,14 @@ However, when using Spectrum A1 switches, a maximum of two switches can particip
 
   {{%notice warning%}}
 
-Head-end replication is not supported with multihoming, so you must use EVPN-PIM for BUM traffic handling.
+Head-end replication is not supported with multihoming, so you must use {{<link title="EVPN BUM Traffic with PIM-SM" text="EVPN-PIM">}} for BUM traffic handling.
 
 {{%/notice%}}
 
 - {{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware bridge mode">}} only.
+- {{<link url="LACP-Bypass">}} is supported.
+  - When an EVPN-MH bond enters LACP bypass state, BGP stops advertising EVPN type-1 and type-4 routes for that bond. Split-horizon and designated forwarder filters are disabled.
+  - When an EVPN-MH bond exits the LACP bypass state, BGP starts advertising EVPN type-1 and type-4 routes for that bond. Split-horizon and designated forwarder filters are enabled.
 - {{<link url="Inter-subnet-Routing/#symmetric-routing" text="Distributed symmetric routing">}}.
 - {{<link url="Basic-Configuration/#arp-and-nd-suppression" text="ARP suppression">}} must be enabled.
 - EVI (*EVPN virtual instance*). Cumulus Linux supports VLAN-based service only, so the EVI is just a layer 2 VNI.
@@ -954,7 +957,7 @@ net add time ntp source eth0
 net add snmp-server listening-address localhost
 net add bgp autonomous-system 5557
 net add interface swp2-4 evpn mh uplink
-net add interface lo,swp1-4 pim sm
+net add interface lo,swp1-4 pim
 net add bond hostbond1-3 evpn mh es-sys-mac 44:38:39:ff:ff:01
 net add bond hostbond1 evpn mh es-id 1
 net add bond hostbond2 evpn mh es-id 2
@@ -1253,23 +1256,23 @@ leaf02(config-if)# evpn mh es-sys-mac 44:38:39:ff:ff:01
 leaf02(config-if)# exit
 leaf02(config)# interface lo
 leaf02(config-if)# ip igmp
-leaf02(config-if)# ip pim sm
+leaf02(config-if)# ip pim
 leaf02(config-if)# exit
 leaf02(config)# interface swp1
 leaf02(config-if)# evpn mh uplink
-leaf02(config-if)# ip pim sm
+leaf02(config-if)# ip pim
 leaf02(config-if)# exit
 leaf02(config)# interface swp2
 leaf02(config-if)# evpn mh uplink
-leaf02(config-if)# ip pim sm
+leaf02(config-if)# ip pim
 leaf02(config-if)# exit
 leaf02(config)# interface swp3
 leaf02(config-if)# evpn mh uplink
-leaf02(config-if)# ip pim sm
+leaf02(config-if)# ip pim
 leaf02(config-if)# exit
 leaf02(config)# interface swp4
 leaf02(config-if)# evpn mh uplink
-leaf02(config-if)# ip pim sm
+leaf02(config-if)# ip pim
 leaf02(config-if)# exit
 leaf02(config)# router bgp 5557
 leaf02(config-router)# bgp router-id 172.16.0.22
@@ -1324,7 +1327,7 @@ net add time ntp source eth0
 net add snmp-server listening-address localhost
 net add bgp autonomous-system 5558
 net add interface swp2-4 evpn mh uplink
-net add interface lo,swp1-4 pim sm
+net add interface lo,swp1-4 pim
 net add bond hostbond1-3 evpn mh es-sys-mac 44:38:39:ff:ff:01
 net add bond hostbond1 evpn mh es-id 1
 net add bond hostbond2 evpn mh es-id 2
@@ -1623,23 +1626,23 @@ leaf03(config-if)# evpn mh es-sys-mac 44:38:39:ff:ff:01
 leaf03(config-if)# exit
 leaf03(config)# interface lo
 leaf03(config-if)# ip igmp
-leaf03(config-if)# ip pim sm
+leaf03(config-if)# ip pim
 leaf03(config-if)# exit
 leaf03(config)# interface swp1
 leaf03(config-if)# evpn mh uplink
-leaf03(config-if)# ip pim sm
+leaf03(config-if)# ip pim
 leaf03(config-if)# exit
 leaf03(config)# interface swp2
 leaf03(config-if)# evpn mh uplink
-leaf03(config-if)# ip pim sm
+leaf03(config-if)# ip pim
 leaf03(config-if)# exit
 leaf03(config)# interface swp3
 leaf03(config-if)# evpn mh uplink
-leaf03(config-if)# ip pim sm
+leaf03(config-if)# ip pim
 leaf03(config-if)# exit
 leaf03(config)# interface swp4
 leaf03(config-if)# evpn mh uplink
-leaf03(config-if)# ip pim sm
+leaf03(config-if)# ip pim
 leaf03(config-if)# exit
 leaf03(config)# router bgp 5557
 leaf03(config-router)# bgp router-id 172.16.0.22
@@ -1694,7 +1697,7 @@ net add time ntp server 3.cumulusnetworks.pool.ntp.org iburst
 net add time ntp source eth0
 net add snmp-server listening-address localhost
 net add bgp autonomous-system 4435
-net add interface lo,swp1-6 pim sm
+net add interface lo,swp1-6 pim
 net add routing password cn321
 net add routing enable password cn321
 net add routing log timestamp precision 6
@@ -1827,25 +1830,25 @@ spine01(config)# vrf vrf3
 spine01(config-vrf)# vni 4003
 spine01(config-vrf)# exit-vrf
 spine01(config)# interface lo
-spine01(config-if)# ip pim sm
+spine01(config-if)# ip pim
 spine01(config-if)# exit
 spine01(config)# interface swp1
-spine01(config-if)# ip pim sm
+spine01(config-if)# ip pim
 spine01(config-if)# exit
 spine01(config)# interface swp2
-spine01(config-if)# ip pim sm
+spine01(config-if)# ip pim
 spine01(config-if)# exit
 spine01(config)# interface swp3
-spine01(config-if)# ip pim sm
+spine01(config-if)# ip pim
 spine01(config-if)# exit
 spine01(config)# interface swp4
-spine01(config-if)# ip pim sm
+spine01(config-if)# ip pim
 spine01(config-if)# exit
 spine01(config)# interface swp5
-spine01(config-if)# ip pim sm
+spine01(config-if)# ip pim
 spine01(config-if)# exit
 spine01(config)# interface swp6
-spine01(config-if)# ip pim sm
+spine01(config-if)# ip pim
 spine01(config-if)# exit
 spine01(config)# router bgp 4435
 spine01(config-router)# bgp router-id 172.16.0.17
@@ -1912,7 +1915,7 @@ net add time ntp server 3.cumulusnetworks.pool.ntp.org iburst
 net add time ntp source eth0
 net add snmp-server listening-address localhost
 net add bgp autonomous-system 4435
-net add interface lo,swp1-6 pim sm
+net add interface lo,swp1-6 pim
 net add routing password cn321
 net add routing enable password cn321
 net add routing log timestamp precision 6
@@ -2045,25 +2048,25 @@ spine02(config)# vrf vrf3
 spine02(config-vrf)# vni 4003
 spine02(config-vrf)# exit-vrf
 spine02(config)# interface lo
-spine02(config-if)# ip pim sm
+spine02(config-if)# ip pim
 spine02(config-if)# exit
 spine02(config)# interface swp1
-spine02(config-if)# ip pim sm
+spine02(config-if)# ip pim
 spine02(config-if)# exit
 spine02(config)# interface swp2
-spine02(config-if)# ip pim sm
+spine02(config-if)# ip pim
 spine02(config-if)# exit
 spine02(config)# interface swp3
-spine02(config-if)# ip pim sm
+spine02(config-if)# ip pim
 spine02(config-if)# exit
 spine02(config)# interface swp4
-spine02(config-if)# ip pim sm
+spine02(config-if)# ip pim
 spine02(config-if)# exit
 spine02(config)# interface swp5
-spine02(config-if)# ip pim sm
+spine02(config-if)# ip pim
 spine02(config-if)# exit
 spine02(config)# interface swp6
-spine02(config-if)# ip pim sm
+spine02(config-if)# ip pim
 spine02(config-if)# exit
 spine02(config)# router bgp 4435
 spine02(config-router)# bgp router-id 172.16.0.18
@@ -4245,23 +4248,23 @@ router bgp 5557
 !
 !
 interface swp1
- ip pim sm
+ ip pim
 !
 !
 interface swp2
- ip pim sm
+ ip pim
 !
 !
 interface swp3
- ip pim sm
+ ip pim
 !
 !
 interface swp4
- ip pim sm
+ ip pim
 !
 !
 interface lo
- ip pim sm
+ ip pim
  ip igmp
 !
 line vty
@@ -4397,23 +4400,23 @@ router bgp 5558
 
 !
 interface swp1
- ip pim sm
+ ip pim
 !
 !
 interface swp2
- ip pim sm
+ ip pim
 !
 !
 interface swp3
- ip pim sm
+ ip pim
 !
 !
 interface swp4
- ip pim sm
+ ip pim
 !
 !
 interface lo
- ip pim sm
+ ip pim
  ip igmp
 !
 line vty
@@ -4547,71 +4550,71 @@ router bgp 4435
 !
 !
 interface swp1
- ip pim sm
+ ip pim
 !
 !
 interface swp2
- ip pim sm
+ ip pim
 !
 !
 interface swp3
- ip pim sm
+ ip pim
 !
 !
 interface swp4
- ip pim sm
+ ip pim
 !
 !
 interface swp5
- ip pim sm
+ ip pim
 !
 !
 interface swp6
- ip pim sm
+ ip pim
 !
 !
 interface swp7
- ip pim sm
+ ip pim
 !
 !
 interface swp8
- ip pim sm
+ ip pim
 !
 !
 interface swp9
- ip pim sm
+ ip pim
 !
 !
 interface swp10
- ip pim sm
+ ip pim
 !
 !
 interface swp11
- ip pim sm
+ ip pim
 !
 !
 interface swp12
- ip pim sm
+ ip pim
 !
 !
 interface swp13
- ip pim sm
+ ip pim
 !
 !
 interface swp14
- ip pim sm
+ ip pim
 !
 !
 interface swp15
- ip pim sm
+ ip pim
 !
 !
 interface swp16
- ip pim sm
+ ip pim
 !
 !
 interface lo
- ip pim sm
+ ip pim
 !
 line vty
  exec-timeout 0 0
@@ -4745,71 +4748,71 @@ router bgp 4435
 !
 !
 interface swp1
- ip pim sm
+ ip pim
 !
 !
 interface swp2
- ip pim sm
+ ip pim
 !
 !
 interface swp3
- ip pim sm
+ ip pim
 !
 !
 interface swp4
- ip pim sm
+ ip pim
 !
 !
 interface swp5
- ip pim sm
+ ip pim
 !
 !
 interface swp6
- ip pim sm
+ ip pim
 !
 !
 interface swp7
- ip pim sm
+ ip pim
 !
 !
 interface swp8
- ip pim sm
+ ip pim
 !
 !
 interface swp9
- ip pim sm
+ ip pim
 !
 !
 interface swp10
- ip pim sm
+ ip pim
 !
 !
 interface swp11
- ip pim sm
+ ip pim
 !
 !
 interface swp12
- ip pim sm
+ ip pim
 !
 !
 interface swp13
- ip pim sm
+ ip pim
 !
 !
 interface swp14
- ip pim sm
+ ip pim
 !
 !
 interface swp15
- ip pim sm
+ ip pim
 !
 !
 interface swp16
- ip pim sm
+ ip pim
 !
 !
 interface lo
- ip pim sm
+ ip pim
 !
 line vty
  exec-timeout 0 0

@@ -4,14 +4,9 @@ author: Cumulus Networks
 weight: 202
 toc: 3
 ---
-Switches collect statistics about the performance of their interfaces.
-The NetQ Agent on each switch collects these statistics every 15 seconds and then sends them to your NetQ
-Server or Appliance.
+Switches collect statistics about the performance of their interfaces. The NetQ Agent on each switch collects these statistics every 15 seconds and then sends them to your NetQ Server or Appliance.
 
-NetQ only collects statistics for physical interfaces; it does not
-collect statistics for virtual (non-physical) interfaces, such as bonds, bridges,
-and VXLANs. Specifically, the NetQ Agent collects the following
-interface statistics:
+NetQ only collects statistics for physical interfaces; it does not collect statistics for virtual (non-physical) interfaces, such as bonds, bridges, and VXLANs. Specifically, the NetQ Agent collects the following interface statistics:
 
   - **Transmit**: tx\_bytes, tx\_carrier, tx\_colls, tx\_drop, tx\_errs,
     tx\_packets
@@ -19,63 +14,55 @@ interface statistics:
   - **Receive**: rx\_bytes, rx\_drop, rx\_errs, rx\_frame,
     rx\_multicast, rx\_packets
 
-You can use {{<exlink url="https://grafana.com/" text="Grafana">}}, an open source analytics and monitoring tool, to view the interface statistics collected by the NetQ Agents. The fastest way to achieve this is by installing Grafana on an application server or locally per user, and then importing the prepared NetQ dashboard.
+You can use Grafana version 6.x, an open source analytics and monitoring tool, to view these statistics. The fastest way to achieve this is by installing Grafana on an application server or locally per user, and then installing the NetQ plug-in. 
+
+{{%notice note%}}
+
+If you do not have Grafana installed already, refer to {{<exlink url="https://grafana.com/" text="grafana.com">}} for instructions on installing and configuring the Grafana tool.
+
+{{%/notice%}}
 
 ## Install NetQ Plug-in for Grafana
 
-The first step is to install the NetQ plug-in on your NetQ server or appliance. There are three ways to install the plug-in:
+Use the Grafana CLI to install the NetQ plug-in. For more detail about this command, refer to the {{<exlink url="https://grafana.com/docs/grafana/latest/administration/cli/" text="Grafana CLI documentation">}}.
 
-- **Docker File**: Add the following to your existing Dockerfile
-    ```
-    # grafana docker file
-    FROM grafana/grafana:6.2.2
-    RUN grafana-cli --pluginUrl https://netq-grafana-dsrc.s3-us-west-2.amazonaws.com/dist.zip plugins install netq-dashboard
-    ```
-- **Grafana Docker Image**: Download and run the plug-in in your Grafana Docker container
-    ```
-    $ docker run -d -p 3000:3000 --name=grafana -e "GF_INSTALL_PLUGINS=https://netq-grafana-dsrc.s3-us-west-2.amazonaws.com/dist.zip;netq-dashboard" grafana/grafana
-    ```
-- **Grafana CLI**: Download and install the Grafana plug-in using Grafana CLI
-    ```
-    brew update
-    brew install grafana
-    brew services start grafana
-    grafana-cli --pluginUrl https://netq-grafana-dsrc.s3-us-west-2.amazonaws.com/dist.zip plugins install netq-dashboard
-    brew services restart grafana
-    ```
-    Then restart Grafana.
+```
+grafana-cli --pluginUrl https://netq-grafana-dsrc.s3-us-west-2.amazonaws.com/dist.zip plugins install netq-dashboard
+installing netq-dashboard @ 
+from: https://netq-grafana-dsrc.s3-us-west-2.amazonaws.com/dist.zip
+into: /usr/local/var/lib/grafana/plugins
 
-    {{%notice info%}}
-The Grafana GUI is accessed through port 3000 by default. If you are
-running Grafana on a simulation server, you may need to modify
-forwarding rules in IPtables to allow access to port 3000.
-    {{%/notice%}}
+✔ Installed netq-dashboard successfully
 
-## Set Up a Dashboard
+Restart grafana after installing plugins . <service grafana-server restart>
+```
 
-The quickest way to view the interface statistics for your Cumulus Linux network is to make use of the pre-configured dashboard installed with the plug-in. Once you are familiar with that dashboard, you can create new dashboards or add new panels to the NetQ dashboard.
+## Set Up the NetQ Data Source
 
-1.  Open the Grafana user interface:
-    - **Remote access**: Enter *\<NetQ-Server-or-Appliance-IPaddr\>:3000* in a web browser address field.
-    - **Local access**:  Enter *localhost:3000* in a web browser address field.
+Now that you have the plug-in installed, you need to configure access to the NetQ data source.
 
-2.  Log in using your application credentials.
-    
+1. Open the Grafana user interface.
+
+2. Log in using your application credentials.
+
     {{<figure src="/images/netq/grafana-login-230.png" width="400">}}
-    
+
     The Home Dashboard appears.
 
     {{<figure src="/images/netq/grafana-home-page-230.png" width="700">}}
 
 3. Click **Add data source** or {{<img src="/images/netq/grafana-config-icon.png" width="24" height="24">}} > *Data Sources*.
 
-    {{<figure src="/images/netq/grafana-add-data-src-230.png" width="500">}}
-
 4. Enter **Net-Q** in the search box or scroll down to the **Other** category, and select *Net-Q* from there.
+
+    {{<figure src="/images/netq/grafana-add-data-src-230.png" width="500">}}
 
 5. Enter *Net-Q* into the **Name** field.
 
-6. Enter the URL used to access the NetQ cloud service; for example *api.netq.cumulusnetworks.com*
+6. Enter the URL used to access the database:
+    - Cloud: *api.netq.cumulusnetworks.com*
+    - On-premises: *\<hostname-or-ipaddr-of-netq-appl-or-vm\>/api*
+    - Cumulus in the Cloud (CITC): *air.netq.cumulusnetworks.com*
 
 7. Enter your credentials (the ones used to login)
 
@@ -88,17 +75,13 @@ The quickest way to view the interface statistics for your Cumulus Linux network
 
 9. Click **Save & Test**
 
-## Create a Dashboard
+    {{<figure src="/images/netq/grafana-netq-dashboard-230.png" width="700">}}
 
-You can either use the dashboard provided with the plug-in, NetQ Interface Statistics, or create your own.
+## Create Your NetQ Dashboard
 
-To use the Cumulus-provided dashboard, select the *NetQ Interface Statistics* from the left panel of the Home Page.
+With the data source configured, you can create a dashboard with the transmit and receive statistics of interest to you.
 
-{{<figure src="/images/netq/grafana-netq-dashboard-230.png" width="700">}}
-
-If you choose this option, you can skip directly to {{<link url="#analyze-the-data" text="analyzing your data">}}.
-
-To create your own dashboard:
+To create your dashboard:
 
 1. Click {{<img src="/images/netq/grafana-create-dashbd-icon.png" width="24" height="24">}} to open a blank dashboard.
 
@@ -144,7 +127,11 @@ To create your own dashboard:
 
 ## Analyze the Data
 
-Once you have your dashboard configured, you can start analyzing the data:
+data.
+
+For reference, this example shows a dashboard with all of the available statistics.
+
+{{<figure src="/images/netq/grafana-netq-dashboard-230.png" width="700">}}
 
 1. Select the hostname from the variable list at the top left of the charts to see the statistics for that switch or host.
 
@@ -159,7 +146,7 @@ Once you have your dashboard configured, you can start analyzing the data:
     - Select a different time period for the data by clicking the forward or back arrows. The default time range is dependent on the width of your browser window.
     - Zoom in on the dashboard by clicking the magnifying glass.
     - Manually refresh the dashboard data, or set an automatic refresh rate for the dashboard from the down arrow.
-    - Add a new variable by clicking the cog wheel, then selecting Variables
+    - Add a new variable by clicking the cog wheel, then selecting **Variables**
     - Add additional panels
     - Click any chart title to edit or remove it from the dashboard
     - Rename the dashboard by clicking the cog wheel and entering the new name

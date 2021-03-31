@@ -17,23 +17,31 @@ Follow these steps to setup and configure your VM for a cloud deployment:
 
 3. Download the NetQ Platform image.
 
-    {{<netq-install/vmw-platform-image deployment="cloud" version="3.2.0">}}
+    {{<netq-install/vmw-platform-image deployment="cloud" version="3.2.1">}}
 
 4. Setup and configure your VM.
 
-    {{<netq-install/vm-setup hypervisor="vmware" deployment="cloud" version="3.2.0">}}
+    {{<netq-install/vm-setup hypervisor="vmware" deployment="cloud" version="3.2.1">}}
 
-5. Verify the platform is ready for installation. Fix any errors indicated before installing the NetQ software.
+5. Log in to the VM and change the password.
+
+    {{<netq-install/change-pswd>}}
+
+6. Verify the platform is ready for installation. Fix any errors indicated before installing the NetQ software.
 
     {{<netq-install/verify-cmd deployment="cloud">}}
 
-6. Run the Bootstrap CLI. Be sure to replace the *eth0* interface used in this example with the interface on the server used to listen for NetQ Agents.
+7. Change the hostname for the VM from the default value.
 
-    {{<netq-install/bootstrap server="single" version="3.2.0" deployment="cloud" platform="vm">}}
+    {{<netq-install/set-hostname>}}
+
+8. Run the Bootstrap CLI. Be sure to replace the *eth0* interface used in this example with the interface on the server used to listen for NetQ Agents.
+
+    {{<netq-install/bootstrap server="single" version="3.2.1" deployment="cloud" platform="vm">}}
 
 ## Considerations for Container Environments
 
-{{<netq-install/container>}}
+{{<netq-install/container version="3.2.1">}}
 
 ## Install and Activate the NetQ Software
 

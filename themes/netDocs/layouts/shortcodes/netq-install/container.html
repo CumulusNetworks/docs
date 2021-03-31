@@ -1,13 +1,29 @@
-<h3>Flannel Virtual Networks</h3>
+<em>Flannel Virtual Networks</em>
 
-<p>If you are using Flannel with a container environment on your network, you may need to change its default IP address ranges if they conflict with other addresses on your network. You do this by running the <code>bootstrap</code> command.</p>
+<p>If you are using Flannel with a container environment on your network, you may need to change its default IP address ranges if they conflict with other addresses on your network. This can only be done one time during the first installation. You do this by running the <code>bootstrap</code> command.</p>
 
 <p>The address range is 10.244.0.0/16. NetQ overrides the original Flannel default, which is 10.1.0.0/16.</p>
 
 <p>To change the default address range, use the bootstrap CLI with the <code>pod-ip-range</code> option. For example:</p>
 
-<pre>cumulus@hostname:~$ netq bootstrap master interface eth0 tarball /mnt/installables/netq-bootstrap-3.2.0-snapshot.tgz pod-ip-range 10.255.0.0/16</pre>
+{{- if eq (.Get "version") "3.2.1" -}}
 
-<h3>Docker Default Bridge Interface</h3>
+<pre>cumulus@hostname:~$ netq bootstrap master interface eth0 tarball /mnt/installables/netq-bootstrap-3.2.0.tgz pod-ip-range 10.255.0.0/16</pre>
 
-<p>The default Docker bridge interface is disabled in NetQ. If you need to re-enable the interface, contact <a href="https://support.mellanox.com/s/" target="_blank">Cumulus support</a>.</p>
+{{ end }}
+
+{{- if eq (.Get "version") "3.3.0" -}}
+
+<pre>cumulus@hostname:~$ netq bootstrap master interface eth0 tarball /mnt/installables/netq-bootstrap-3.3.0.tgz pod-ip-range 10.255.0.0/16</pre>
+
+{{ end }}
+
+{{- if eq (.Get "version") "3.3.1" -}}
+
+<pre>cumulus@hostname:~$ netq bootstrap master interface eth0 tarball /mnt/installables/netq-bootstrap-3.3.1.tgz pod-ip-range 10.255.0.0/16</pre>
+
+{{ end }}
+
+<em>Docker Default Bridge Interface</em>
+
+<p>The default Docker bridge interface is disabled in NetQ. If you need to re-enable the interface, contact <a href="https://support.mellanox.com/s/" target="_blank">support</a>.</p>

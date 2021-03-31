@@ -1,0 +1,26 @@
+This package was debianized by Remco van de Meent remco@debian.org on
+Sat, 6 Feb 1999 15:10:15 +0100.  Earlier versions were debianized by
+Christoph Lameter clameter@debian.org on Tue, 27 Jan 1998 20:37:16 -0800
+and Joel Klecker jk@espy.org took over the package on Thu, 26 Mar 1998.
+Blars Blarson, Colin Watson and Christian Perrier contributed to NMUs
+in 2005 and the package is currently team maintained by Anibal Monsalve
+Salazar, Matt Taggart and Matthew Wilcox.
+
+The package was downloaded from
+ftp://ftp.kernel.org/pub/software/utils/pciutils/
+
+Upstream Author: Martin Mares <mj@ucw.cz>
+
+Copyright:
+
+Copyright (c) 1997--2006 Martin Mares <mj@ucw.cz>
+
+All files in this package can be freely distributed and used according
+to the terms of the GNU General Public License, either version 2 or
+(at your opinion) any newer version. This is the same distribution
+policy as for the Linux kernel itself -- see /usr/src/linux/COPYING
+for details.
+
+
+A full copy of the GNU GPL can be found in /usr/share/common-licenses on
+Debian systems.

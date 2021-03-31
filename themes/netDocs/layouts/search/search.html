@@ -9,10 +9,9 @@
   <!-- Fonts for the theme -->
   <link href="https://fonts.googleapis.com/css?family=Oxygen|Oxygen+Mono:300,400,700" rel="stylesheet">
 
-  <!-- Theme stylesheet, you can customize scss by creatig `assets/custom.scss` in your website -->
-  {{ $styles := resources.Get "book.scss" | resources.ToCSS | resources.Minify | resources.Fingerprint }}
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-  <link rel="stylesheet" href="{{ $styles.RelPermalink }}">
+  {{ $styles := resources.Get "book.scss" | resources.ExecuteAsTemplate "book.scss" . | toCSS | minify | fingerprint }}
+  <link rel="stylesheet" href="{{ $styles.Permalink }}">
 
   <!-- Favicon -->
   <link rel="icon" href="{{ "icons/favicon.png" | relURL }}" type="image/x-icon">
@@ -38,7 +37,7 @@
         <nav>
           <ul class="navRoot">
             <li class="navSection logo">
-              <div class="rootLink"><a href="//docs.cumulusnetworks.com/"><span>Networking Docs</span></a></div>
+              <div class="rootLink"><a href="//cumulusnetworks.com/"><span>Networking Docs</span></a></div>
             </li>
             <li class="navSection primary">
               <a class="rootLink" href="//cumulusnetworks.com/">HOME</a>
@@ -68,7 +67,7 @@
           <li><a href="//slack.cumulusnetworks.com/">COMMUNITY</a></li></ul>
       </div>
     </div>
-    <header class="home-banner" style="background-image: url(/docs-home-bg.jpg);">
+    <header class="home-banner" style="background-image: url('{{"docs-home-bg.jpg" | absURL}}');">
       <div class="container">
         <div class="row">
           <div class="col-12">
@@ -104,7 +103,7 @@
                         <img src="https://static.cumulusnetworks.com/static/images/shared/nvidia-logo-white.5c3d914c5190.svg">
                         <p>© <script type="text/javascript">document.write(new Date().getFullYear());</script> NVIDIA Corporation.<br>
                         Site by <a href="//unomena.com/" target="_blank">Unomena</a>.</p>
-                        <p><a href="/license/"><img src="/images/by-nc-sa.svg" alt="Cumulus Networks CC-by-NC-SA License"></a></p>
+                        <p><a href="/license/"><img src={{"images/by-nc-sa.svg" | absURL }} alt="Cumulus Networks CC-by-NC-SA License"></a></p>
                     </div>
                     <ul class="mb-4">
                         <li><h4 class="text-jade mb-3">Products</h4></li>
@@ -223,8 +222,6 @@
     </div>
 </div>
 
-  {{ template "_internal/google_analytics_async.html" . }}
-
   <script>
     function buildResult(url, htmlUrl, title, digest) {
       var html = "";
@@ -262,7 +259,7 @@
 
     function searchResults() {
       var searchParams = new URLSearchParams(window.location.search);
-      var query = sanatizeHTML(searchParams.get('q'));      
+      var query = sanatizeHTML(searchParams.get('q'));
       var params = {
         q: query,
         cx: "002929300794741444210:sy0sz3qlwdc",
@@ -311,7 +308,7 @@
   {{ $jsAnnouncementBar := resources.Get "js/announcement-bar.js" }}
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
   <script src = "{{ $jsAnnouncementBar.Permalink }}"> </script>
-  
+
 </body>
 
 </html>

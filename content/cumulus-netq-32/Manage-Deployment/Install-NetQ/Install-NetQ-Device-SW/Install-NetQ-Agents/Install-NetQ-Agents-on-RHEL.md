@@ -4,7 +4,7 @@ author: Cumulus Networks
 weight: 310
 toc: 5
 ---
-After installing your Cumulus NetQ software, you should install the NetQ 3.0.0 Agents on each server you want to monitor. NetQ Agents can be installed on servers running:
+After installing your Cumulus NetQ software, you should install the NetQ 3.2.1 Agents on each server you want to monitor. NetQ Agents can be installed on servers running:
 
 - Red Hat RHEL 7.1
 - CentOS 7
@@ -102,14 +102,14 @@ To obtain the NetQ Agent package:
     ```
     root@rhel7:~# vi /etc/yum.repos.d/cumulus-host-el.repo
     ...
-    [cumulus-arch-netq-3.0]
+    [cumulus-arch-netq-3.2]
     name=Cumulus netq packages
-    baseurl=https://apps3.cumulusnetworks.com/repos/rpm/el/7/netq-3.0/$basearch
+    baseurl=https://apps3.cumulusnetworks.com/repos/rpm/el/7/netq-3.2/$basearch
     gpgcheck=1
     enabled=1
-    [cumulus-noarch-netq-3.0]
+    [cumulus-noarch-netq-3.2]
     name=Cumulus netq architecture-independent packages
-    baseurl=https://apps3.cumulusnetworks.com/repos/rpm/el/7/netq-3.0/noarch
+    baseurl=https://apps3.cumulusnetworks.com/repos/rpm/el/7/netq-3.2/noarch
     gpgcheck=1
     enabled=1
     ...
@@ -134,7 +134,7 @@ To install the NetQ Agent:
     root@rhel7:~# rpm -q -netq-agent
     ```
 
-    {{<netq-install/agent-version version="3.0.0" opsys="rh">}}
+    {{<netq-install/agent-version version="3.2.1" opsys="rh">}}
 
 3. Restart `rsyslog` so log files are sent to the correct destination.
 
@@ -146,7 +146,13 @@ To install the NetQ Agent:
 
 ## Configure the NetQ Agent on a RHEL or CentOS Server
 
-After the NetQ Agents have been installed on the servers you want to monitor, the NetQ Agents must be configured to obtain useful and relevant data. Two methods are available for configuring a NetQ Agent:
+After the NetQ Agent and CLI have been installed on the servers you want to monitor, the NetQ Agents must be configured to obtain useful and relevant data.
+
+{{%notice note%}}
+The NetQ Agent is aware of and communicates through the designated VRF. If you do not specify one, the default VRF (named *default*) is used. If you later change the VRF configured for the NetQ Agent (using a lifecycle management configuration profile, for example), you might cause the NetQ Agent to lose communication.
+{{%/notice%}}
+
+Two methods are available for configuring a NetQ Agent:
 
 - Edit the configuration file on the device, or
 - Use the NetQ CLI.

@@ -1,0 +1,11 @@
+# Warning: NVIDIA.FutureTense
+#
+# Checks for the use of future tense, which is strongly discouraged
+#
+extends: existence
+message: "Possible future tense ??"
+ignorecase: true
+level: warning
+tokens:
+  - will
+  

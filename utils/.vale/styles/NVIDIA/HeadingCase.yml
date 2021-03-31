@@ -1,22 +1,19 @@
 ---
 # Error: NVIDIA.HeadingCase
 #
-# Check that headings use initial capitalization of all nouns, adjectives and verbs.
+# Check that proper title caps are used for headings
 #
 extends: capitalization
 message: "'%s' should use title caps-style capitalization."
 link: https://wikinox.mellanox.com/display/BUS/House+Style+Guide#HouseStyleGuide-TitlesandHeadings
-level: error
+level: warning
 scope: heading
 match: $title
 exceptions:
-  - a
-  - above
-  - an
-  - and
-  - between
-  - but
-  - for
-  - from
-  - the
-  - to
+  - FHR
+  - mroute
+  - SSM
+  - PIM
+  - MLAG
+  - TCP
+  - UDP

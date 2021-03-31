@@ -21,9 +21,9 @@ Cumulus Linux 5.0 supports new platforms, provides bug fixes, and contains sever
 
 ### New Features and Enhancements
 
-- {{<link url="Cumulus-User-Experience-CUE" text="Cumulus User Experience (CUE)">}} is a new object-oriented, schema driven model of a complete Cumulus Linux system (hardware and software) that allows multiple interfaces to both view and configure any element within the system.
+- {{<link url="Cumulus-User-Experience-CUE" text="Cumulus User Experience (CUE)">}} is a new object-oriented, schema driven model of a complete Cumulus Linux system (hardware and software) with a robust API that allows multiple interfaces to both view and configure any element within the system.
   {{%notice note%}}
-  CUE replaces the NCLU command line interface, which is no longer supported. In Cumulus Linux 5.0, not all NCLU commands have a CUE equivalent.
+  CUE replaces the NCLU command line interface, which is no longer supported. In Cumulus Linux 5.0, not all NCLU commands have a CUE equivalent; however you can features without CUE commands using Linux commands and FRR.
   {{%/notice%}}
 - Support for {{<link url="VLAN-aware-Bridge-Mode/" text="multiple VLAN aware bridges">}}
 - VNI scaling enhancements

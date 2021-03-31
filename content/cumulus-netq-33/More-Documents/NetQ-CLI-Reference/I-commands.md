@@ -5,7 +5,6 @@ weight: 1104
 toc: 3
 right_toc_levels: 1
 pdfhidden: true
-draft: true
 ---
 
 This topic includes all commands that begin with `netq i*`, `netq j*`, and `netq k*`.
@@ -384,7 +383,7 @@ Obtain the software release bundle from the {{<exlink url="https://cumulusnetwor
 
 Obtain the config-key as follows:
 - Cloud: Locate and retrieve key from email titled *A new site has been added to your Cumulus NetQ account* (sent to your NetQ administrator)
-- Remote: Follow the instructions in {{<link title="Manage-NetQ-UI/#configure-multiple-premises" text="Configure Multiple Premises">}}
+- Remote: Follow the instructions in {{<link title="Manage the NetQ UI/#configure-multiple-premises" text="Configure Multiple Premises">}}
 
 ### Syntax
 

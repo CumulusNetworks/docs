@@ -1181,9 +1181,9 @@ cumulus@leaf03:mgmt:~$ net add vlan 100                                         
 cumulus@leaf03:mgmt:~$ net add vlan 100 ip address 10.2.2.252/24                              ### TEP SVI
 cumulus@leaf03:mgmt:~$ net add vlan 100 ip address-virtual 00:00:00:01:00:00 10.2.2.254/24    ### TEP VRR (GW)
 cumulus@leaf03:mgmt:~$ net add vlan 200                                                       ### BM VLAN
-cumulus@leaf03:mgmt:~$ net add vlan 200 ip address 20.2.2.252/24                              ### BM SVI
-cumulus@leaf03:mgmt:~$ net add vlan 200 ip address-virtual 00:00:00:02:00:00 20.2.2.254/24    ### BM VRR (GW)
-cumulus@leaf03:mgmt:~$ net add interface swp1.300 ip address 30.0.0.254/24                    ### Edge VLAN300 subinterface
+cumulus@leaf03:mgmt:~$ net add vlan 200 ip address 192.168.0.252/24                           ### BM SVI
+cumulus@leaf03:mgmt:~$ net add vlan 200 ip address-virtual 00:00:00:19:21:68 192.168.0.254/24 ### BM VRR (GW)
+cumulus@leaf03:mgmt:~$ net add interface swp1.30 ip address 10.30.0.254/24                    ### Edge VLAN30 subinterface
 cumulus@leaf03:mgmt:~$ net commit
 ```
 {{< /tab >}}
@@ -1193,9 +1193,9 @@ cumulus@leaf04:mgmt:~$ net add vlan 100                                         
 cumulus@leaf04:mgmt:~$ net add vlan 100 ip address 10.2.2.253/24                              ### TEP SVI                              
 cumulus@leaf04:mgmt:~$ net add vlan 100 ip address-virtual 00:00:00:01:00:00 10.2.2.254/24    ### TEP VRR (GW)     
 cumulus@leaf04:mgmt:~$ net add vlan 200                                                       ### BM VLAN                                                     
-cumulus@leaf04:mgmt:~$ net add vlan 200 ip address 20.2.2.253/24                              ### BM SVI    
-cumulus@leaf04:mgmt:~$ net add vlan 200 ip address-virtual 00:00:00:02:00:00 20.2.2.254/24    ### BM VRR (GW)        
-cumulus@leaf04:mgmt:~$ net add interface swp1.301 ip address 31.0.0.254/24                    ### Edge VLAN301 subinterface                              
+cumulus@leaf04:mgmt:~$ net add vlan 200 ip address 192.168.0.253/24                           ### BM SVI    
+cumulus@leaf04:mgmt:~$ net add vlan 200 ip address-virtual 00:00:00:19:21:68 192.168.0.254/24 ### BM VRR (GW)        
+cumulus@leaf04:mgmt:~$ net add interface swp1.31 ip address 10.31.0.254/24                    ### Edge VLAN31 subinterface                              
 cumulus@leaf04:mgmt:~$ net commit                                                                     
 ```
 {{< /tab >}}
@@ -1216,7 +1216,7 @@ UP     lo             N/A  65536  Loopback                                    IP
 UP     eth0           1G   1500   Mgmt          oob-mgmt-switch (swp12)       Master: mgmt(UP)
        eth0                                                                   IP: 192.168.200.13/24(DHCP)
 UP     swp1           1G   9216   BondMember    esxi03 (44:38:39:00:00:3e)    Master: esxi03(UP)
-UP     swp1.300       1G   9216   SubInt/L3                                   IP: 30.0.0.254/24
+UP     swp1.30        1G   9216   SubInt/L3                                   IP: 10.30.0.254/24
 UP     swp2           1G   9216   BondMember    server01 (44:38:39:00:00:40)  Master: server01(UP)
 UP     swp49          1G   9216   BondMember    leaf04 (swp49)                Master: peerlink(UP)
 UP     swp50          1G   9216   BondMember    leaf04 (swp50)                Master: peerlink(UP)
@@ -1234,8 +1234,8 @@ UP     server01       1G   9216   802.3ad                                     Ma
        server01                                                               Bond Members: swp2(UP)
 UP     vlan100        N/A  9216   Interface/L3                                IP: 10.2.2.252/24
 UP     vlan100-v0     N/A  9216   Interface/L3                                IP: 10.2.2.254/24
-UP     vlan200        N/A  9216   Interface/L3                                IP: 20.2.2.252/24
-UP     vlan200-v0     N/A  9216   Interface/L3                                IP: 20.2.2.254/24
+UP     vlan200        N/A  9216   Interface/L3                                IP: 192.168.0.252/24
+UP     vlan200-v0     N/A  9216   Interface/L3                                IP: 192.168.0.254/24
 ```
 {{< /tab >}}
 {{< tab " leaf04 ">}}
@@ -1248,7 +1248,7 @@ UP     lo             N/A  65536  Loopback                                    IP
 UP     eth0           1G   1500   Mgmt          oob-mgmt-switch (swp13)       Master: mgmt(UP)
        eth0                                                                   IP: 192.168.200.14/24(DHCP)
 UP     swp1           1G   9216   BondMember    esxi03 (44:38:39:00:00:44)    Master: esxi03(UP)
-UP     swp1.301       1G   9216   SubInt/L3                                   IP: 31.0.0.254/24
+UP     swp1.31        1G   9216   SubInt/L3                                   IP: 10.31.0.254/24
 UP     swp2           1G   9216   BondMember    server01 (44:38:39:00:00:46)  Master: server01(UP)
 UP     swp49          1G   9216   BondMember    leaf03 (swp49)                Master: peerlink(UP)
 UP     swp50          1G   9216   BondMember    leaf03 (swp50)                Master: peerlink(UP)
@@ -1266,8 +1266,8 @@ UP     server01       1G   9216   802.3ad                                     Ma
        server01                                                               Bond Members: swp2(UP)
 UP     vlan100        N/A  9216   Interface/L3                                IP: 10.2.2.253/24
 UP     vlan100-v0     N/A  9216   Interface/L3                                IP: 10.2.2.254/24
-UP     vlan200        N/A  9216   Interface/L3                                IP: 20.2.2.253/24
-UP     vlan200-v0     N/A  9216   Interface/L3                                IP: 20.2.2.254/24
+UP     vlan200        N/A  9216   Interface/L3                                IP: 192.168.0.253/24
+UP     vlan200-v0     N/A  9216   Interface/L3                                IP: 192.168.0.254/24
 ```
 {{< /tab >}}
 {{< /tabs >}}
@@ -1297,7 +1297,7 @@ cumulus@leaf03:mgmt:~$ net add bgp autonomous-system leaf
 cumulus@leaf03:mgmt:~$ net add bgp neighbor peerlink.4094 remote-as external
 cumulus@leaf03:mgmt:~$ net add bgp neighbor swp51 remote-as external
 cumulus@leaf03:mgmt:~$ net add bgp neighbor swp52 remote-as external
-cumulus@leaf03:mgmt:~$ net add bgp neighbor 30.0.0.1 remote-as 65555            ### BGP to Edge VM in ASN 65555
+cumulus@leaf03:mgmt:~$ net add bgp neighbor 10.30.0.1 remote-as 65555            ### BGP to Edge VM in ASN 65555
 cumulus@leaf03:mgmt:~$ net add bgp router-id 10.10.10.3
 cumulus@leaf03:mgmt:~$ net commit
 ```
@@ -1308,7 +1308,7 @@ cumulus@leaf04:mgmt:~$ net add bgp autonomous-system leaf
 cumulus@leaf04:mgmt:~$ net add bgp neighbor peerlink.4094 remote-as external
 cumulus@leaf04:mgmt:~$ net add bgp neighbor swp51 remote-as external
 cumulus@leaf04:mgmt:~$ net add bgp neighbor swp52 remote-as external
-cumulus@leaf04:mgmt:~$ net add bgp neighbor 31.0.0.1 remote-as 65555            ### BGP to Edge VM in ASN 65555
+cumulus@leaf04:mgmt:~$ net add bgp neighbor 10.31.0.1 remote-as 65555            ### BGP to Edge VM in ASN 65555
 cumulus@leaf04:mgmt:~$ net add bgp router-id 10.10.10.4
 cumulus@leaf04:mgmt:~$ net commit
 ```
@@ -1326,7 +1326,7 @@ leaf03(config-router)# bgp router-id 10.10.10.3
 leaf03(config-router)# neighbor peerlink.4094 interface remote-as external
 leaf03(config-router)# neighbor swp51 remote-as external
 leaf03(config-router)# neighbor swp52 remote-as external
-leaf03(config-router)# neighbor 30.0.0.1 remote-as 65555
+leaf03(config-router)# neighbor 10.30.0.1 remote-as 65555
 leaf03(config-router)# end
 leaf03# write memory
 leaf03# exit
@@ -1341,7 +1341,7 @@ leaf04(config-router)# bgp router-id 10.10.10.4
 leaf04(config-router)# neighbor peerlink.4094 interface remote-as external
 leaf04(config-router)# neighbor swp51 remote-as external
 leaf04(config-router)# neighbor swp52 remote-as external
-leaf04(config-router)# neighbor 31.0.0.1 remote-as 65555
+leaf04(config-router)# neighbor 10.31.0.1 remote-as 65555
 leaf04(config-router)# end
 leaf04# write memory
 leaf04# exit
@@ -1371,7 +1371,7 @@ Neighbor              V         AS   MsgRcvd   MsgSent   TblVer  InQ OutQ  Up/Do
 leaf04(peerlink.4094) 4 4259632667     50465     50468        0    0    0 00:22:41            5        6
 spine01(swp51)        4 4200000000     50480     50503        0    0    0 00:22:54            3        6
 spine02(swp52)        4 4200000000     50466     50491        0    0    0 00:22:35            4        6
-30.0.0.1              4 65555           1023      1035        0    0    0 00:11:23            2        6
+10.30.0.1             4 65555           1023      1035        0    0    0 00:11:23            2        6
 
 Total number of neighbors 3
 ```
@@ -1390,7 +1390,7 @@ Neighbor              V         AS   MsgRcvd   MsgSent   TblVer  InQ OutQ  Up/Do
 leaf03(peerlink.4094) 4 4259632661     25231     25236        0    0    0 00:25:44            5        6
 spine01(swp51)        4 4200000000     25232     25236        0    0    0 00:25:45            5        6
 spine02(swp52)        4 4200000000     25233     25228        0    0    0 00:25:41            4        6
-31.0.0.1              4 65555           1056      1076        0    0    0 00:11:35            2        6
+10.31.0.1             4 65555           1056      1076        0    0    0 00:11:35            2        6
 
 Total number of neighbors 3
 ```

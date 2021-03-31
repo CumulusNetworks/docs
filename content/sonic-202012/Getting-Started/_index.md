@@ -7,15 +7,6 @@ version: 202012
 siteSlug: sonic
 ---
 
+To get started running SONiC on a new bare metal switch, read the {{<link url="Quick-Start-Guide">}}.
 
-
-## Default Credentials
-
-## CLI Configuration
-
-## JSON Configuration
-
-## Startup Configurations
-
-## Running Configuriations
-
+To learn a little about the SONiC architecture, read {{<link url="System-Architecture">}} and {{<link url="Platform-Firmware-Components">}}.

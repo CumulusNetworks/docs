@@ -68,7 +68,7 @@ The platform API v2.0 covers these devices:
 - Chassis
 - EEPROM
 - FAN
-- LED (Not supported in SONiC 201911)
+- LED
 - Module component
 - PSU
 - SFP

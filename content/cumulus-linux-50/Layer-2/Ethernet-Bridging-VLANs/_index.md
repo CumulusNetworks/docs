@@ -19,7 +19,7 @@ The Cumulus Linux bridge driver supports two configuration modes; one that is VL
 NVIDIA recommends that you use *{{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware mode">}}* bridges instead of *traditional mode* bridges. The Cumulus Linux bridge driver is capable of VLAN filtering, which allows for configurations that are similar to incumbent network devices. For a comparison of traditional and VLAN-aware modes, read
 {{<exlink url="https://docs.cumulusnetworks.com/knowledge-base/Configuration-and-Usage/Network-Interfaces/Compare-Traditional-Bridge-Mode-to-VLAN-aware-Bridge-Mode/" text="this knowledge base article">}}.
 
-You can configure both VLAN-aware and traditional mode bridges on the same network in Cumulus Linux; however you cannot have more than one VLAN-aware bridge on a switch.
+You can configure both VLAN-aware and traditional mode bridges on the same network in Cumulus Linux.
 
 - To create a VLAN-aware bridge, see {{<link title="VLAN-aware Bridge Mode">}}.
 - To create a traditional mode bridge, see {{<link title="Traditional Bridge Mode">}}.

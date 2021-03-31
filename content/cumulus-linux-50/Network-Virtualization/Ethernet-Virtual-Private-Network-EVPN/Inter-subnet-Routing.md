@@ -183,9 +183,9 @@ Edit the `/etc/network/interfaces` file. For example:
 ```
 cumulus@leaf01:~$ sudo nano /etc/network/interfaces
 ...
-auto vlan4001
-iface vlan4001
-    vlan-id 4001
+auto vlan10
+iface vlan10
+    vlan-id 10
     vlan-raw-device bridge
     vrf RED
 ...
@@ -195,9 +195,7 @@ iface vlan4001
 {{< /tabs >}}
 
 {{%notice note%}}
-
 When two VTEPs are operating in **VXLAN active-active** mode and performing **symmetric** routing, you need to configure the router MAC corresponding to each layer 3 VNI to ensure both VTEPs use the same MAC address. Specify the `address-virtual` (MAC address) for the SVI corresponding to the layer 3 VNI. Use the same address on both switches in the MLAG pair. Use the MLAG system MAC address. See {{<link url="#advertise-primary-ip-address-vxlan-active-active-mode" text="Advertise Primary IP Address">}}.
-
 {{%/notice%}}
 
 ### Configure the VRF to Layer 3 VNI Mapping
@@ -235,6 +233,28 @@ vrf RED
 
 {{< /tab >}}
 {{< /tabs >}}
+
+{{%notice note%}}
+In CUE, VNIs cannot have custom names. When you run the `cl set vrf RED evpn vni 4001` command, CUE creates a layer 3 VNI called vni4001 but assigns it a VLAN automatically from the reserved VLAN range (for example vlan4024). CUE adds vni4001 to the bridge and assigns vlan4024 to vrf RED.
+
+```
+cumulus@leaf01:~$ sudo cat /etc/network/interfaces
+...
+auto vni4001
+iface vni4001
+    bridge-access 4024
+    bridge-learning off
+    vxlan-id 4001
+
+auto vlan4024
+iface vlan4024
+    vrf RED
+    vlan-raw-device br_default
+    address-virtual 44:38:39:BE:EF:AA
+    vlan-id 4024
+...
+```
+{{%/notice%}}
 
 ### Configure RD and RTs for the Tenant VRF
 

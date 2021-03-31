@@ -5,7 +5,6 @@ weight: 1107
 toc: 3
 right_toc_levels: 1
 pdfhidden: true
-draft: true
 ---
 This topic includes all commands that begin with `netq t*`, `netq u*`, `netq v*`, `netq w*`, `netq x*`, `netq y*`, and `netq z*`.
 

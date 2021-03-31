@@ -67,51 +67,54 @@ cdeb016623c5        docker-fpm-frr:latest             "/usr/bin/supervisord"   8
 To see which Docker images are loaded in SONiC, run `show version`:
 
 ```
-admin@leaf01:~$ show version
+admin@switch:~$ show version
 
-SONiC Software Version: SONiC.201911.202-c453381a
-Distribution: Debian 9.13
-Kernel: 4.9.0-11-2-amd64
-Build commit: c453381a
-Build date: Tue Nov 10 07:40:20 UTC 2020
-Built by: johnar@jenkins-worker-7
+SONiC Software Version: SONiC.202012.15-cb79de1b
+Distribution: Debian 10.7
+Kernel: 4.19.0-9-2-amd64
+Build commit: cb79de1b
+Build date: Sat Jan 30 11:14:42 UTC 2021
+Built by: johnar@jenkins-worker-11
 
-Platform: x86_64-kvm_x86_64-r0
-HwSKU: Force10-S6000
-ASIC: vs
-Serial Number: 000000
-Uptime: 06:40:35 up 1 day,  4:51,  1 user,  load average: 1.54, 2.68, 3.07
+Platform: x86_64-mlnx_msn2700-r0
+HwSKU: ACS-MSN2700
+ASIC: mellanox
+ASIC Count: 1
+Serial Number: MT0000000
+Uptime: 16:16:22 up 15 days, 19:54,  1 user,  load average: 5.80, 5.62, 5.64
 
 Docker images:
-REPOSITORY                    TAG                   IMAGE ID            SIZE
-docker-syncd-vs               201911.202-c453381a   45397cc0e0a1        299MB
-docker-syncd-vs               latest                45397cc0e0a1        299MB
-docker-platform-monitor       201911.202-c453381a   5ff8a63cfa92        358MB
-docker-platform-monitor       latest                5ff8a63cfa92        358MB
-docker-router-advertiser      201911.202-c453381a   4134013e6fba        289MB
-docker-router-advertiser      latest                4134013e6fba        289MB
-docker-fpm-frr                201911.202-c453381a   fa4db4fd55d2        335MB
-docker-fpm-frr                latest                fa4db4fd55d2        335MB
-docker-sflow                  201911.202-c453381a   28b00e75a932        315MB
-docker-sflow                  latest                28b00e75a932        315MB
-docker-lldp-sv2               201911.202-c453381a   1112876a3680        312MB
-docker-lldp-sv2               latest                1112876a3680        312MB
-docker-orchagent              201911.202-c453381a   7a869bd6c138        333MB
-docker-orchagent              latest                7a869bd6c138        333MB
-docker-dhcp-relay             201911.202-c453381a   e47290a3e4d0        299MB
-docker-dhcp-relay             latest                e47290a3e4d0        299MB
-docker-database               201911.202-c453381a   be09cc886d87        289MB
-docker-database               latest                be09cc886d87        289MB
-docker-snmp-sv2               201911.202-c453381a   ff5e78a32d22        348MB
-docker-snmp-sv2               latest                ff5e78a32d22        348MB
-docker-teamd                  201911.202-c453381a   2c84035ce07d        315MB
-docker-teamd                  latest                2c84035ce07d        315MB
-docker-nat                    201911.202-c453381a   d55b5ce7e955        316MB
-docker-nat                    latest                d55b5ce7e955        316MB
-docker-sonic-mgmt-framework   201911.202-c453381a   a299d77074de        431MB
-docker-sonic-mgmt-framework   latest                a299d77074de        431MB
-docker-sonic-telemetry        201911.202-c453381a   1d63ae9d3976        353MB
-docker-sonic-telemetry        latest                1d63ae9d3976        353MB
+REPOSITORY                    TAG                  IMAGE ID            SIZE
+docker-syncd-mlnx             202012.15-cb79de1b   10691c29472b        540MB
+docker-syncd-mlnx             latest               10691c29472b        540MB
+docker-teamd                  202012.15-cb79de1b   15135f94fe07        406MB
+docker-teamd                  latest               15135f94fe07        406MB
+docker-router-advertiser      202012.15-cb79de1b   11e5c3c840a8        395MB
+docker-router-advertiser      latest               11e5c3c840a8        395MB
+docker-nat                    202012.15-cb79de1b   f28128bcecb0        408MB
+docker-nat                    latest               f28128bcecb0        408MB
+docker-platform-monitor       202012.15-cb79de1b   68f6c90b7f0e        687MB
+docker-platform-monitor       latest               68f6c90b7f0e        687MB
+docker-lldp                   202012.15-cb79de1b   ee4cb85cb4bc        435MB
+docker-lldp                   latest               ee4cb85cb4bc        435MB
+docker-database               202012.15-cb79de1b   7a79adaa829c        394MB
+docker-database               latest               7a79adaa829c        394MB
+docker-orchagent              202012.15-cb79de1b   177b5e05d036        423MB
+docker-orchagent              latest               177b5e05d036        423MB
+docker-snmp                   202012.15-cb79de1b   0e1fd1ff2bc3        435MB
+docker-snmp                   latest               0e1fd1ff2bc3        435MB
+docker-dhcp-relay             202012.15-cb79de1b   0ae260811eaf        401MB
+docker-dhcp-relay             latest               0ae260811eaf        401MB
+docker-sonic-telemetry        202012.15-cb79de1b   4fcfc6efdcaa        469MB
+docker-sonic-telemetry        latest               4fcfc6efdcaa        469MB
+docker-sonic-mgmt-framework   202012.15-cb79de1b   b6f7412f2707        612MB
+docker-sonic-mgmt-framework   latest               b6f7412f2707        612MB
+docker-fpm-frr                202012.15-cb79de1b   4e6dfaf61388        423MB
+docker-fpm-frr                latest               4e6dfaf61388        423MB
+docker-sflow                  202012.15-cb79de1b   32b2b32b4bd7        406MB
+docker-sflow                  latest               32b2b32b4bd7        406MB
+
+
 ```
 
 For more details about the architecture, see the {{<exlink url="https://github.com/Azure/SONiC/wiki/Architecture" text="Azure SONiC documentation">}}.

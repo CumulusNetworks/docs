@@ -1,0 +1,11 @@
+# Error: NVIDIA.OxfordComma
+#
+# Check for use of the serial comma in a list in a sentence.
+#
+extends: existence
+message: "Use the Oxford comma in '%s'."
+link: https://docs.microsoft.com/en-us/style-guide/punctuation/commas
+scope: sentence
+level: warning
+tokens:
+  - '(?:[^,]+,){1,}\s\w+\sand'

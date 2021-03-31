@@ -7,16 +7,16 @@ toc: 4
 
 NVIDIA Cumulus NetQ contains the following applications and key components:
 
-  - Telemetry data collection and aggregation
-      - NetQ switch agents
-      - NetQ host agents
-      - Telemetry data aggregation
-      - Database
-  - Data streaming
-  - Network services
-  - User interfaces
+- Telemetry data collection and aggregation
+  - NetQ switch agents
+  - NetQ host agents
+  - Telemetry data aggregation
+  - Database
+- Data streaming
+- Network services
+- User interfaces
 
-While these function apply to both the on-site and in-cloud solutions, where
+While these functions apply to both the on-premises and in-cloud solutions, where
 the functions reside varies, as shown here.
 
 {{< figure src="/images/netq/netq-comps-onpremises-230.png" width="700" >}}

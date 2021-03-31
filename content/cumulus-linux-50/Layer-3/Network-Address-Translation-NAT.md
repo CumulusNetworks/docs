@@ -21,7 +21,7 @@ The following illustration shows a basic NAT configuration.
 
 {{%notice note%}}
 
-- NAT is supported on Mellanox Spectrum-2 and Spectrum-3 switches only.
+- NAT is supported on NVIDIA Spectrum-2 and Spectrum-3 switches only.
 - NAT is supported on physical interfaces and bond interfaces and only in the default VRF.
 - IPv6 to IPv4 translation is not supported.
 - Multicast traffic is not supported.
@@ -64,7 +64,7 @@ For static **NAT**, create a rule that matches a source or destination IP addres
 
 For static **PAT**, create a rule that matches a source or destination IP address together with the layer 4 port and translates the IP address and port to a public IP address and port.
 
-For Mellanox Spectrum-2 switches, you can include the outgoing or incoming interface.
+For NVIDIA Spectrum-2 switches, you can include the outgoing or incoming interface.
 
 To create rules, you can use either NCLU or `cl-acltool`.
 
@@ -91,8 +91,8 @@ Where:
 - `snat` is the source NAT
 - `dnat` is the destination NAT
 - `protocol` is TCP, ICMP, or UDP. The protocol is required.
-- `out-interface` is the outbound interface for `snat` (Mellanox Spectrum-2 switches only)
-- `in-interface` is the inbound interface for `dnat` (Mellanox Spectrum-2 switches only)
+- `out-interface` is the outbound interface for `snat` (NVIDIA Spectrum-2 switches only)
+- `in-interface` is the inbound interface for `dnat` (NVIDIA Spectrum-2 switches only)
 
 **Command Examples**
 
@@ -209,7 +209,7 @@ The `/etc/cumulus/switchd.conf` file includes the following configuration option
 | Option | Description |
 | ------ | ----------- |
 | nat.age_poll_interval | The period of inactivity before `switchd` releases a NAT entry from the translation table.<br>The default value is 5 minutes. The minimum value is 1 minute. The maximum value is 24 hours.|
-| nat.table_size | The maximum number of dynamic `snat` and `dnat` entries in the translation table. The default value is 1024.<br>Mellanox Spectrum-2 switches support a maximum of 8192 entries. |
+| nat.table_size | The maximum number of dynamic `snat` and `dnat` entries in the translation table. The default value is 1024.<br>NVIDIA Spectrum-2 switches support a maximum of 8192 entries. |
 | nat.config_table_size | The maximum number of rules allowed (NCLU or cl-acltool).<br>The default value is 64. The minimum value is 64. The maximum value is 1024. |
 
 After you change any of the dynamic NAT configuration options, restart `switchd`.
@@ -222,7 +222,7 @@ For dynamic **NAT**, create a rule that matches a IP address in CIDR notation an
 
 For dynamic **PAT**, create a rule that matches an IP address in CIDR notation and translates the address to a public IP address and port range or an IP address range and port range. You can also match on an IP address in CIDR notation and port.
 
-For Mellanox Spectrum-2 switches, you can include the outgoing or incoming interface in the rule. See the examples below.
+For NVIDIA Spectrum-2 switches, you can include the outgoing or incoming interface in the rule. See the examples below.
 
 {{< tabs "TabID226 ">}}
 
@@ -247,8 +247,8 @@ Where:
 - `snat` is the source NAT
 - `dnat` is the destination NAT
 - `protocol` is TCP, ICMP, or UDP. The protocol is required.
-- `out-interface` is the outbound interface for `snat` (Mellanox Spectrum-2 switches only)
-- `in-interface` is the inbound interface for `dnat` (Mellanox Spectrum-2 switches only)
+- `out-interface` is the outbound interface for `snat` (NVIDIA Spectrum-2 switches only)
+- `in-interface` is the inbound interface for `dnat` (NVIDIA Spectrum-2 switches only)
 
 **Example Commands**
 

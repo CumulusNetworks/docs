@@ -7,7 +7,6 @@ version: 202012
 siteSlug: sonic
 ---
 
-<<<<<<< HEAD
 This topic discusses buffer configuration, explicit congestion notification with weighted random early detection and priority flow control.
 
 ## Buffers
@@ -27,25 +26,6 @@ There are two buffer calculation models:
 
 - A *traditional model*, which SONiC adopted as the default for releases before the 202012. If the switch is configured with this model, all buffer-related configurations must be configured manually in CONFIG_DB. There are some switches that use this mode by default. <!-- which ones? -->
 - A *dynamic model* is the recommended model, which was introduced in SONiC 202012. It is enabled by default on every switch. If the switch is configured with this model, the buffer profile for lossless traffic gets created automatically and the buffer size for `ingress_lossless_pool`, `ingress_lossy_pool` and `egress_lossy_pool` is calculated dynamically. You don't need to configure them manually. Because they are generated dynamically, they are no longer stored in CONFIG_DB but can be listed when you run the `show buffer information` command.
-=======
-## Buffer Configuration
-
-A buffer configuration includes:
-
-- **Buffer pool size**: The maximum memory a certain kind of traffic can occupy.
-- **Buffer profile**: Typically, most ports can share the same buffer configuration. You can create a buffer profile to attach that configuration to a port.
-- **Buffer PG**: The profile for each ingress priority.
-- **Buffer queue**: The profile for each egress queue.
-
-The buffer configuration is stored in the BUFFER_POOL, BUFFER_PROFILE and BUFFER_PG tables. These tables are described in detail below.
-
-### Buffer Calculation Models
-
-There are two buffer calculation models:
-
--	A *traditional model*, which SONiC adopted as the default for releases before the 202012. If the switch is configured with this model, all buffer-related configurations must be configured manually in CONFIG_DB. There are some switches that use this mode by default. <!-- which ones? -->
--	A *dynamic model* is the recommended model, which was introduced in SONiC 202012. It is enabled by default on every switch. If the switch is configured with this model, the buffer profile for lossless traffic gets created automatically and the buffer size for `ingress_lossless_pool`, `ingress_lossy_pool` and `egress_lossy_pool` is calculated dynamically. You don't need to configure them manually. Because they are generated dynamically, they are no longer stored in CONFIG_DB but can be listed when you run the `show buffer information` command.
->>>>>>> e5c8162bba7f940fa393c5aa7794b98edb193e5f
 
 #### Dynamic Buffer Calculation
 
@@ -213,7 +193,6 @@ This example creates a headroom override profile called *myHOprofile* with the :
 #### Configure a Lossless Buffer Priority Group
 
 {{%notice note%}}
-<<<<<<< HEAD
 
 There is a limitation for the maximum headroom on each port. When a new priority group is configured on a port, SONiC checks whether the currently accumulated headroom size exceeds the maximum headroom on the port. If it does, the new priority group won't be applied to the switch and an error gets generated in `syslog`. You must remove the new priority group with the `config buffer profile remove` command.
 
@@ -317,147 +296,6 @@ For more information about shared headroom, see the {{<exlink url="https://githu
 
 ### Configure a Buffer in the Traditional Model
 
-=======
-
-There is a limitation for the maximum headroom on each port. When a new priority group is configured on a port, SONiC checks whether the currently accumulated headroom size exceeds the maximum headroom on the port. If it does, the new priority group won't be applied to the switch and an error gets generated in `syslog`. You must remove the new priority group with the `config buffer profile remove` command.
-
-{{%/notice%}}
-
-You create a buffer priority group using the `config interface buffer priority-group lossless <add> <set> <remove> <interface> <pg_map> <profile>` command.
-
-The command takes these options:
-
-| Option | Description |
-| ------ | ----------- |
-| add | Creates a new priority group. |
-| set | Modifies an existing priority group. |
-| remove | Removes an existing priority group. |
-| interface | The name of the interface where you are configuring the priority group. |
-| pg_map | The priority group map, like *2* or *3-4*. When adding a new priority group, it should not overlap with any existing priority group. For example, 5 overlaps with 5-6.<br /><br />When setting or removing a priority group, it must be the same group that was already listed in the configuration database. For example, if there is 3-4 configured in configuration database, you can only remove both priorities and to remove 3 or 4 is illegal.<br /><br />If you need to remove one priority from the group, you must remove the entire group and then create a new priority group for the priorities you intend to keep.<br /><br />The `pg_map` is required when you `add` or `set` the group, but is optional when you `remove` a group. If you do not specify the `pg_map` in a remove command means to remove all the lossless priorities on the port. |
-| profile | The name of the buffer profile. This option is not required. If you do not specify a buffer profile, then SONiC adds a priority group with the buffer parameters dynamically calculated and the dynamic_th uses the default value. |
-
-This example creates a lossless buffer priority group on interface Ethernet0 with priority group map *5*:
-
-    admin@sonic:~$ config interface buffer priority-group lossless add Ethernet0 5
-
-### Shared Headroom Pool
-
-*Headroom* is a dedicated area of buffer introduced to guarantee that the traffic is not lost due to insufficient buffer in case of congestion. By default, the headroom is reserved for each lossless priority group, which means it cannot be occupied by other priority groups even if there is no congestion on that priority group. This guarantees that each priority group always has available headroom in case of congestion. However, as all lossless priority groups can hardly suffer congestion at the same time, it can also waste buffer. The shared headroom pool mechanism addresses this downside.
-
-The idea of the shared headroom pool solution is that the headroom should no longer be reserved for one priority group but should be shared among all the lossless priority groups in the system. Thus an over-subscription ratio is introduced, which indicates the proportion of the priority groups that can be under congestion at the same time. The shared headroom pool size should be calculated as accumulative headroom size (*xoff*) of all lossless priority groups in the system divided by the oversubscription ratio. As all the headroom has been moved to the shared headroom pool, the rest of the accumulative headroom size can be released to the shared buffer pool.
-
-Meanwhile, as the headroom is no longer reserved on a per-priority group basis, the buffer profiles for the lossless priority groups should be adjusted accordingly. By default, the size can be equal to *xon* instead of *xon + xoff*.
-
-The existing buffer profiles for lossless priority groups are in the BUFFER_PROFILE table and follow the naming convention of `pg_lossless_<speed>_<cable-length>_profile`. If a new tuple of speed and cable length appears in the system, the buffer manager fetches related data from a file called `pg_profile_lookup.ini` located in the switch's directory.
-
-The size column should also be adjusted.
-
-#### Configure a Shared Headroom Pool
-
-Calculate the shared headroom pool as follows:
-
-1. Defined the oversubscription ratio.
-1. Get the headroom pool size:
-   1. Calculate the accumulated headroom of all lossless priorities in the system.
-   1. Divide the sum by the oversubscription ratio.
-1. Update the BUFFER_POOL and BUFFER_PROFILE tables accordingly.
-   1. The size of shared headroom pool is represented by the `xoff` field in the entry `ingress_lossless_pool` in the BUFFER_POOL table.
-   1. In the profiles of lossless traffic, the `size` should be equal to `xon` by default.
-1. Update the `pg_profile_lookup.ini` file. By default, the `size` column should be the same as the `xon` column.
-
-The following is an example of shared headroom pool.  
-
-```
-{ 
-  "BUFFER_POOL": { 
-    "ingress_lossless_pool": { 
-    "mode": "dynamic", 
-    "size": "7719936", 
-    “xoff”:”1032192”, 
-    "type": "egress" 
-    } 
-  }, 
-  “BUFFER_PROFILE”: { 
-    “pg_lossless_50000_40m_profile”: { 
-      “xon”: “19456”, 
-      “xoff”: “25600”, 
-      “size”: “19456”, 
-      “pool”: “[BUFFER_POOL|ingress_lossless_pool]” 
-    } 
-  } 
-} 
-```
-    config buffer shared-headroom-pool 
-
- 
-	
-
-config buffer shared-headroom-pool <ratio> <size> 
-
- 
-
-Syntax Description 
-	
-
--?, -h, --help 
-	
-
-Show this message and exit. 
-
- 
-	
-
-ratio 
-	
-
-The over-subscribe-ratio. 
-
-It should be in range [0, number of ports]. 
-
- 
-	
-
-size 
-	
-
-The size of the shared headroom pool. 
-
-Default 
-	
-
-N/A 
-
-History 
-	
-
-N/A 
-
-Example 
-	
-
-admin@sonic:~$ config interface cable-length Ethernet0 10m 
-
-Related Commands 
-	
-
- 
-
-Notes 
-	
-
-The shared headroom pool can be configured by providing the over-subscribe-ratio or size. 
-
-If a non-zero size is provided, the shared headroom pool will be enabled and the size will be the configured value. 
-
-If a non-zero over-subscribe-ratio is provided, the shared headroom pool will be enabled and the size will be calcualted by accumulating the xoff of all lossless priorities and dividing the sum by the over-subscribe-ratio. 
-
-If both are provided as non-zero value, the size will take effect. 
-
-If both are zero, the shared headroom pool will be disabled. 
-
-### Configure a Buffer in the Traditional Model
-
->>>>>>> e5c8162bba7f940fa393c5aa7794b98edb193e5f
 The traditional model is no longer the default for SONiC 202012. If you configure a switch with this model, you need to manually configure all buffer-related configurations in CONFIG_DB.
 
 #### Create a New Buffer Pool
@@ -639,7 +477,6 @@ By using WRED minimum and maximum thresholds, a maximum probability can be confi
 On SONiC, you configure the WRED and ECN on a per-queue basis.
 
 ### Configure the WRED Profile
-<<<<<<< HEAD
 
 The WRED_PROFILE table includes the following fields:
 
@@ -650,18 +487,6 @@ The WRED_PROFILE table includes the following fields:
 
 The available options are listed below:
 
-=======
-
-The WRED_PROFILE table includes the following fields:
-
-- `green_max_threshold`, `yellow_max_threshold` and `red_max_threshold`: These fields represent the maximum threshold for traffic marked as green, yellow or red, respectively. If the number of bytes accumulated in the queue exceeds the threshold, 100% of the traffic is lost.
-- `green_min_threshold`, `yellow_min_threshold` and `red_min_threshold`: These fields represent the minimum threshold for traffic marked as green, yellow or red, respectively. If the number of bytes accumulated in the queue exceeds the threshold, the traffic starts to be lost.
-- `green_drop_probability`, `yellow_drop_probability` and `red_drop_probability`: These fields represent the maximum drop priority for the traffic marked as that color.
-- `ecn`: ECN works on any color. It can be any color or any composition of the colors, like: ecn_all, ecn_none, ecn_red, ecn_yellow_red, etc.
-
-The available options are listed below:
-
->>>>>>> e5c8162bba7f940fa393c5aa7794b98edb193e5f
 | Option | Description |
 | ------ | ----------- |
 | -gmin GREEN_MIN, --green-min GREEN_MIN | Sets the minimum threshold for packets marked *green*. |
@@ -745,15 +570,9 @@ To configure the QUEUE table:
 2. Load the JSON file into the config database.
 
        admin@switch:~$ sudo sonic-cfggen -j qos_queue_test.json --write-to-db
-<<<<<<< HEAD
 
 ## Priority Flow Control - PFC
 
-=======
-
-## Priority Flow Control - PFC
-
->>>>>>> e5c8162bba7f940fa393c5aa7794b98edb193e5f
 *Priority flow control* (PFC) provides an enhancement to the existing pause mechanism in Ethernet. The current Ethernet pause option stops all traffic on a link. PFC creates eight separate virtual links on the physical link and allows any of these links to be paused and restarted independently, enabling the network to create a lossless class of service for an individual virtual link.
 
 PFC oversees:

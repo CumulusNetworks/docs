@@ -9,7 +9,7 @@ This topic describes how to prepare your cluster of NetQ Cloud Appliances for in
 
 Inside each box that was shipped to you, you'll find:
 
-- A Cumulus NetQ Cloud Appliance (a Supermicro SuperServer E300-9D)
+- Your NVIDIA Cumulus NetQ Cloud Appliance (a Supermicro SuperServer E300-9D)
 - Hardware accessories, such as power cables and rack mounting gear (note that network cables and optics ship separately)
 - Information regarding your order
 
@@ -139,7 +139,7 @@ Make a note of the private IP addresses you assign to the master and worker node
 
 12. Repeat Steps 5-10 for each additional worker NetQ Cloud Appliance.
 
-The final step is to install and activate the NetQ software on each appliance in your cluster.  You can do this using the Admin UI or the CLI.
+The final step is to install and activate the NetQ software on each appliance in your cluster. You can do this using the Admin UI or the CLI.
 
 Click the installation and activation method you want to use to complete installation:
 

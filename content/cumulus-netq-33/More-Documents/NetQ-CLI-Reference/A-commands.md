@@ -5,7 +5,6 @@ weight: 1101
 toc: 3
 right_toc_levels: 1
 pdfhidden: true
-draft: true
 ---
 
 This topic includes all commands that begin with `netq a*` and `netq b*`.
@@ -41,7 +40,7 @@ None
 | ---- | ---- | ---- |
 | events_config_id | \<text-events-config-id-anchor\> | Identifier for existing configuration; use to edit existing configuration |
 | events_config_name | \<text-events-config-name-anchor\> | User-defined name for the configuration |
-| message_type | \<text-message-type-anchor\> | Type of message to be suppressed. Values include *agent*, *bgp*, *btrfsinfo*, *clag*, *clsupport*, *configdiff*, *evpn*, *link*, *ntp*, *ospf*, *sensor*, *services*, and *ssdutil*. |
+| message_type | \<text-message-type-anchor\> | <!-- vale off -->Type of message to be suppressed. Values include *agent*, *bgp*, *btrfsinfo*, *clag*, *clsupport*, *configdiff*, *evpn*, *link*, *ntp*, *ospf*, *sensor*, *services*, and *ssdutil*. <!-- vale on -->|
 | scope | \<text-events-scope-anchor\> | Rule, in the form of a regular expression, indicating which devices, subset of devices or attributes to suppress |
 | is_active | true, false | Enables or disables configuration |
 | suppress_until | \<text-suppress-until\> | Amount of time, in seconds, to suppress the specified events |
@@ -79,7 +78,7 @@ You must have at least one channel, one rule, and one filter to fully configure 
 
 ### Syntax
 
-There is a form of this command for each channel type.
+A form of this command is available for each channel type.
 
 ```
 netq add notification channel email
@@ -116,7 +115,7 @@ netq add notification channel syslog
 | email | NA | Create an email channel to receive event notifications |
 | pagerduty | NA | Create a PagerDuty channel to receive event notifications |
 | slack | NA | Create a Slack channel to receive event notifications |
-| syslog | NA | Create a Syslog channel to receive event notifications |
+| syslog | NA | Create a <!-- vale off -->Syslog<!-- vale on --> channel to receive event notifications |
 | NA | \<text-channel-name\> | Name of the channel |
 | to | \<text-email-toids\> | Comma-separated list of recipient email addresses; no spaces are allowed |
 | integration-key | \<text-integration-key\> | {{<exlink url="https://support.pagerduty.com/docs/services-and-integrations#create-a-generic-events-api-integration/" text="Service or routing key">}} generated for your PagerDuty Service. Default is an empty string (""). |
@@ -128,10 +127,10 @@ netq add notification channel syslog
 
 | Option | Value | Description |
 | ---- | ---- | ---- |
-| smtpserver | \<<text-email-hostname\> | Send notifications to the SMTP server with this hostname (or IP address???) |
+| smtpserver | \<<text-email-hostname\> | Send notifications to the SMTP server with this hostname |
 | smtpport | \<<text-email-port\> | Send notifications to this port on the SMTP server |
-| login | \<text-email-id\> | Email address for authentication ??? |
-| password | \<text-email-password\> | Password for authentication ??? |
+| login | \<text-email-id\> | Email address for authentication |
+| password | \<text-email-password\> | Password for authentication |
 | severity | info, warning, error, debug | Only send notifications with this severity. Default severity is info. |
 | tag | \<text-slack-tag\> | Short text appended to a Slack notification to highlight particular channels or people. The tag value must be preceded by the @ sign. For example, @netq-info or @net-admin. |
 
@@ -167,7 +166,9 @@ cumulus@switch:~$ netq add notification channel slack slk-netq-events webhook ht
 Successfully added/updated channel slk-netq-events
 ```
 
+<!-- vale off -->
 Create a Syslog channel
+<!-- vale on -->
 
 ```
 cumulus@switch:~$ netq add notification channel syslog syslog-netq-events hostname syslog-server port 514
@@ -373,11 +374,11 @@ Successfully configured notifier proxy proxy4:80
 
 NetQ supports a set of events that are triggered by crossing a user-defined threshold, called TCA events. These events allow detection and prevention of network failures for selected ACL resources, digital optics, forwarding resources, interface errors and statistics, link flaps, resource utilization, and sensor events. A complete list can be found in the {{<link title="TCA Event Messages Reference">}}.
 
-A TCA event notification configuration must contain one rule. Each rule must contain a scope and a threshold. Optionally, you can specify an associated channel.  *Note: If a rule is not associated with a channel, the event information is only reachable from the database.* If you want to deliver events to one or more notification channels (Email, syslog, Slack, or PagerDuty), create them first using {{<link title="/#netq add notification channel">}}.
+A TCA event notification configuration must contain one rule. Each rule must contain a scope and a threshold. Optionally, you can specify an associated channel.  *Note: If a rule is not associated with a channel, the event information is only reachable from the database.* If you want to deliver events to one or more notification channels (Email, syslog, Slack, or PagerDuty), create them first using {{<link title="#netq add notification channel">}}.
 
 ### Syntax
 
-There are two forms of the command; one that uses the `event_id` argument used to create the notification, and one that uses the `tca_id` argument used to modify an existing notification.
+Two forms of the command are available; one that uses the `event_id` argument used to create the notification, and one that uses the `tca_id` argument used to modify an existing notification.
 
 ```
 netq add tca event_id
@@ -440,7 +441,7 @@ cumulus@switch:~$ netq add tca event_id TCA_CPU_UTILIZATION_UPPER scope leaf* th
 Successfully added/updated tca
 ```
 
-Create threshold-based event notification and deliver to an existing Syslog channel
+Create threshold-based event notification and deliver to an existing syslog channel
 
 ```
 cumulus@switch:~$ netq add tca event_id TCA_SENSOR_TEMPERATURE_UPPER scope leaf12,temp1 threshold 32 channel syslog-netq-events
@@ -461,7 +462,7 @@ Create an on-demand trace and see the results in the On-demand Trace Results car
 
 ### Syntax
 
-There are two forms of this command; one for layer2 tracing and one for layer 3 tracing.
+Two forms of this command are available; one for layer 2 tracing and one for layer 3 tracing.
 
 ```
 netq add trace <mac>
@@ -529,7 +530,7 @@ Create a scheduled trace and see the results in the Scheduled Trace Results card
 
 ### Syntax
 
-There are two forms of this command; one for layer2 tracing and one for layer 3 tracing.
+Two forms of this command are available; one for layer 2 tracing and one for layer 3 tracing.
 
 ```
 netq add trace name
@@ -620,7 +621,7 @@ netq add validation
 | Argument | Value | Description |
 | ---- | ---- | ---- |
 | name | user defined | Unique name for the validation |
-| type | agents, bgp, evpn, interfaces, license, mlag, mtu, ntp, sensors, vlan, or vxlan | Protocol or service to be validated |
+| type | <!-- vale off -->agents, bgp, evpn, interfaces, license, mlag, mtu, ntp, sensors, vlan, or vxlan <!-- vale on -->| Protocol or service to be validated |
 | interval | \<text-time-min\> | Frequency to run the validation, in minutes. Value must include time unit of *m*, minutes. Default scheduled validations per type run every 60 minutes. |
 
 ### Options
@@ -773,7 +774,7 @@ cumulus@switch:~$ netq bootstrap worker tarball /mnt/installables/netq-bootstrap
 
 ## netq bootstrap reset
 
-Reset the node to prepare it for loading the installation program. In on-premises deployments with database on site, you can choose whether to save the current data or discard it (default) during the reset process. All data is saved by default in remotely-hosted database deployments.
+Reset the node to prepare it for loading the installation program. In on-premises deployments with database on site, you can choose whether to save the current data or discard it (default) during the reset process. All data is saved by default in remotely hosted database deployments.
 
 ### Syntax
 

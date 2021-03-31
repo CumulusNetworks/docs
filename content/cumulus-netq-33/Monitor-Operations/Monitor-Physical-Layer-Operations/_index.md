@@ -37,11 +37,11 @@ netq [<hostname>] show interfaces physical [<physical-port>] [empty|plugged] [pe
 
 When entering a time value, you must include a numeric value <em>and</em> the unit of measure:
 <ul>
-<li><strong>d</strong>: day(s)</li>
-<li><strong>w</strong>: week(s)</li>
-<li><strong>h</strong>: hour(s)</li>
-<li><strong>m</strong>: minute(s)</li>
-<li><strong>s</strong>: second(s)</li>
+<li><strong>d</strong>: days</li>
+<li><strong>w</strong>: weeks</li>
+<li><strong>h</strong>: hours</li>
+<li><strong>m</strong>: minutes</li>
+<li><strong>s</strong>: seconds</li>
 <li><strong>now</strong></li>
 </ul>
 For the <code>between</code> option, the start (<code>text-time</code>) and end time (<code>text-endtime</code>) values can be entered as most recent first and least recent second, or vice versa. The values do not have to have the same unit of measure.
@@ -282,7 +282,7 @@ Utilization statistics provide a view into the operation of the devices in your 
 
 ### View Compute Resources Utilization
 
-You can quickly determine how many compute resources &mdash; CPU, disk and memory &mdash; are being consumed by the switches on your network.
+You can quickly determine how many compute resources&mdash;CPU, disk and memory&mdash;are being consumed by the switches on your network.
 
 To obtain this information, run the relevant command:
 

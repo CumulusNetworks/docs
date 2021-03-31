@@ -1,0 +1,10 @@
+# Error: NVIDIA.Ellipses
+#
+# Avoid ellipses to indicate a pause in thought
+#
+extends: existence
+message: "In general, don't use an ellipsis. Consider using a comma instead."
+nonword: true
+level: warning
+tokens:
+  - '\.\.\.'

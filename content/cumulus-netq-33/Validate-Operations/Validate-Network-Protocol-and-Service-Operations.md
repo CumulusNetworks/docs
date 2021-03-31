@@ -580,8 +580,8 @@ Using the `include <clag-number-range-list>` and `exclude <clag-number-range-lis
 | :---------: | --------- |
 | 0 | Peering |
 | 1 | Backup IP |
-| 2 | Clag Sysmac |
-| 3 | VXLAN Anycast IP |
+| 2 | <!-- vale off -->Clag<!-- vale on --> Sysmac |
+| 3 | VXLAN <!-- vale off -->Anycast IP<!-- vale on --> |
 | 4 | Bridge Membership |
 | 5 | Spanning Tree |
 | 6 | Dual Home |
@@ -1021,8 +1021,8 @@ Using the `include <mlag-number-range-list>` and `exclude <mlag-number-range-lis
 | :---------: | --------- |
 | 0 | Peering |
 | 1 | Backup IP |
-| 2 | Clag Sysmac |
-| 3 | VXLAN Anycast IP |
+| 2 | <!-- vale off -->Clag<!-- vale on --> Sysmac |
+| 3 | VXLAN <!-- vale off -->Anycast<!-- vale on --> IP |
 | 4 | Bridge Membership |
 | 5 | Spanning Tree |
 | 6 | Dual Home |

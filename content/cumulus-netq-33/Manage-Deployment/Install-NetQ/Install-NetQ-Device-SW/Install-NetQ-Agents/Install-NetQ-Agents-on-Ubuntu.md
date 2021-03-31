@@ -19,19 +19,19 @@ For servers running Ubuntu OS, you need to:
 - Obtain NetQ software packages
 
 {{<notice note>}}
-If your network uses a proxy server for external connections, you should first {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux/System-Configuration/Configuring-a-Global-Proxy/" text="configure a global proxy">}} so <code>apt-get</code> can access the agent package on the Cumulus Networks repository.
+If your network uses a proxy server for external connections, you should first {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux/System-Configuration/Configuring-a-Global-Proxy/" text="configure a global proxy">}} so <code>apt-get</code> can access the agent package on the NVIDIA networking repository.
 {{</notice>}}
 
 ### Verify Service Package Versions
 
 Before you install the NetQ Agent on an Ubuntu server, make sure the
 following packages are installed and running these minimum versions:
-
+<!-- vale off -->
 - iproute 1:4.3.0-1ubuntu3.16.04.1 all
 - iproute2 4.3.0-1ubuntu3 amd64
 - lldpd 0.7.19-1 amd64
 - ntp 1:4.2.8p4+dfsg-3ubuntu5.6 amd64
-
+<!-- vale on -->
 ### Verify the Server is Running lldpd
 
 Make sure you are running lldp**d**, not lldp**ad**. Ubuntu does not include `lldpd` by default, which is required for the installation.
@@ -159,7 +159,7 @@ If you are running NTP in your out-of-band management network with VRF, specify 
 
 ### Obtain NetQ Agent Software Package
 
-To install the NetQ Agent you need to install `netq-agent` on each server. This is available from the Cumulus Networks repository.
+To install the NetQ Agent you need to install `netq-agent` on each server. This is available from the NVIDIA networking repository.
 
 To obtain the NetQ Agent package:
 

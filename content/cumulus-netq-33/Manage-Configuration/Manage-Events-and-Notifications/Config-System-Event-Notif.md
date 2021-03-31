@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 780
 toc: 3
 ---
-To take advantage of the numerous event messages generated and processed by NetQ, you must integrate with third-party event notification applications. You can integrate NetQ with Syslog, PagerDuty, Slack, and Email. You may integrate with one or more of these applications simultaneously.
+To take advantage of the numerous event messages generated and processed by NetQ, you must integrate with third-party event notification applications. You can integrate NetQ with <!-- vale off -->Syslog<!-- vale on -->, PagerDuty, Slack, and Email. You may integrate with one or more of these applications simultaneously.
 
 In an on-premises deployment, the NetQ On-premises Appliance or VM receives the raw data stream from the NetQ Agents, processes the data, stores, and delivers events to the Notification function. Notification then filters and sends messages to any configured notification applications. In a cloud deployment, the NetQ Cloud Appliance or VM passes the raw data stream on to the NetQ Cloud service for processing and delivery.
 
@@ -235,9 +235,9 @@ This example shows the creation of a *pd-netq-events* channel and verifies the c
 {{< /tabs >}}
 
 {{< /tab >}}
-
+<!-- vale off -->
 {{< tab "Syslog" >}}
-
+<!-- vale on -->
 You can use the NetQ UI or the NetQ CLI to create a Slack channel.
 
 {{< tabs "TabID261" >}}
@@ -535,9 +535,9 @@ notify-all-ifs  1          info             slk-netq-events   all-interfaces
 ```
 
 {{< /tab >}}
-
+<!-- vale off -->
 {{< tab "Syslog" >}}
-
+<!-- vale on -->
 ```
 cumulus@switch:~$ netq add notification filter notify-all-ifs rule all-interfaces channel syslog-netq-events
 Successfully added/updated filter notify-all-ifs
@@ -748,9 +748,9 @@ This example shows the creation of a *slk-netq-events* channel and verifies the 
     ```
 
 {{< /tab >}}
-
+<!-- vale off -->
 {{< tab "Syslog" >}}
-
+<!-- vale on -->
 To create and verify the specification of a syslog channel, run:
 
 ```
@@ -914,7 +914,7 @@ This example creates an email channel named *cloud-email* that uses the NetQ SMT
 
 Each rule is comprised of a single key-value pair. The key-value pair indicates what messages to include or drop from event information sent to a notification channel. You can create more than one rule for a single filter. Creating multiple rules for a given filter can provide a very defined filter. For example, you can specify rules around hostnames or interface names, enabling you to filter messages specific to those hosts or interfaces. You should have already defined channels (as described earlier).
 
-There is a fixed set of valid rule keys. Values are entered as regular expressions and *vary according to your deployment*.
+A fixed set of valid rule keys are defined. Values are entered as regular expressions and *vary according to your deployment*.
 
 #### Rule Keys and Values
 
@@ -929,7 +929,7 @@ There is a fixed set of valid rule keys. Values are entered as regular expressio
 <td rowspan="9">BGP</td>
 <td>message_type</td>
 <td>Network protocol or service identifier</td>
-<td>bgp</td>
+<!-- vale off --><td>bgp</td><!-- vale on -->
 </tr>
 <tr>
 <td>hostname</td>
@@ -964,12 +964,12 @@ There is a fixed set of valid rule keys. Values are entered as regular expressio
 <tr>
 <td>old_last_reset_time</td>
 <td>Previous time that BGP service was reset</td>
-<td>Apr3, 2019, 4:17 pm</td>
+<td>Apr3, 2019, 4:17 PM</td>
 </tr>
 <tr>
 <td>new_last_reset_time</td>
 <td>Most recent time that BGP service was reset</td>
-<td>Apr8, 2019, 11:38 am</td>
+<td>Apr8, 2019, 11:38 AM</td>
 </tr>
 <tr>
 <tr>
@@ -1217,7 +1217,7 @@ There is a fixed set of valid rule keys. Values are entered as regular expressio
 <tr>
 <td>old_vendor_name</td>
 <td>Previous vendor name of installed port module</td>
-<td>Amphenol, OEM, Mellanox, Fiberstore, Finisar</td>
+<td>Amphenol, OEM, NVIDIA, Fiberstore, Finisar</td>
 </tr>
 <tr>
 <td>old_serial_number</td>
@@ -1257,7 +1257,7 @@ There is a fixed set of valid rule keys. Values are entered as regular expressio
 <tr>
 <td>new_vendor_name</td>
 <td>Current vendor name of installed port module</td>
-<td>Amphenol, OEM, Mellanox, Fiberstore, Finisar</td>
+<td>Amphenol, OEM, NVIDIA, Fiberstore, Finisar</td>
 </tr>
 <tr>
 <td>new_part_number</td>
@@ -2178,7 +2178,7 @@ To remove notification channels:
 
     {{<figure src="/images/netq/channels-slack-created-300.png" width="700">}}
 
-2. Click the tab for the type of channel you want to remove (Slack, PagerDuty, Syslog, Email).
+2. Click the tab for the type of channel you want to remove (Slack, PagerDuty, <!-- vale off -->Syslog<!-- vale on -->, Email).
 
 3. Select one or more channels.
 

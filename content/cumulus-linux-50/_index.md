@@ -19,9 +19,9 @@ For a list of the new features in this release, see {{<link url="Whats-New" text
 
 ## Open Source Contributions
 
-To implement various Cumulus Linux features, Cumulus Networks has forked various software projects, like CFEngine `Netdev` and some Puppet Labs packages. Some of the forked code resides in the Cumulus Networks {{<exlink url="https://github.com/CumulusNetworks" text="GitHub repository" >}} and some is available as part of the Cumulus Linux repository as Debian source packages.
+To implement various Cumulus Linux features, NVIDIA has forked various software projects, like CFEngine `Netdev` and some Puppet Labs packages. Some of the forked code resides in the NVIDIA Networking {{<exlink url="https://github.com/CumulusNetworks" text="GitHub repository" >}} and some is available as part of the Cumulus Linux repository as Debian source packages.
 
-Cumulus Networks has also developed and released new applications as open source. The list of open source projects is on the {{<link title="Cumulus Linux 5.0 Open Source Packages" text="open source software" >}} page.
+NVIDIA has also developed and released new applications as open source. The list of open source projects is on the {{<link title="Cumulus Linux 5.0 Open Source Packages" text="open source software" >}} page.
 
 ## Hardware Compatibility List
 

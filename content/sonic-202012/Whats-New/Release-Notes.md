@@ -15,6 +15,7 @@ These are the release notes for SONiC software version 202012 on NVIDIA® Mellan
 | -------- | ---- | ----------- |
 | Rev 1.0 | May 1, 2021 | Initial release of these release notes. |
 
+<<<<<<< HEAD
 ## SONiC General Support
 
 ### SONiC Versions
@@ -49,9 +50,44 @@ The following application extension was developed by Mellanox:
 This section provides only a list of bugs fixed only by Mellanox in this version.
 
 Additional bugs reported are handled by both Mellanox and the community as part of the 202012 release. For additional information, please refer to the {{<exlink url="https://github.com/Azure/sonic-buildimage/issues" text="Azure GitHub">}} site.
+=======
+## Overview
+
+SONiC is an open source network operating system based on Linux that runs on switches from multiple vendors and ASICs. SONiC offers a full-suite of network functionality, like BGP and RDMA, that has been production-hardened in the data centers of some of the largest cloud-service providers. It offers teams the flexibility to create the network solutions they need while leveraging the collective strength of a large ecosystem and community.
+
+These are the release notes for SONiC software version 202012 on NVIDIA® Mellanox Spectrum® based switches. However, these release notes are simply an upstream version of the pure SONiC release available on GitHub.
+
+## What's New
+
+This section provides a list of changes and new features in version 202012.
+
+| Feature/Change | Description |
+| -------------- | ----------- |
+| SN3420 modules | Added support for Finisar 1G 10km module (FTLF1318P3BTL) on SN3420 systems. |
+| SN3420 modules | Added support for Finisar 1GBase-T 1G 100m module (FCLF8522P2BTL) on SN3420 systems. |
+| SN3700, SN4700 cables | Added support for the following HDR OPNs on SN3700, SN4700 systems at rates of 200GbE:<br /><ul><li>MCP1650-HxxxEyy (copper cable)</li><li>MCP7H50-HxxxRyy (copper splitter cable)</li><li>MMA1T00-HS (transceiver)</li><li>MFS1S00-HxxxE (AOC)</li><li>MFS1S50-HxxxE (AOC splitter cable)</li></ul> |
+| SN4600C ports | Added support for up to 5W on ports 49 to 64 on SN4600C system. |
+| Policy-based hashing | Added support for Policy Based Hashing static configuration. For further information, see {{<link url="Equal-Cost-Multipathing-ECMP/#policy-based-hashing" text="Policy-based Hashing">}}. |
+| Shared headroom | Added support for Shared Headroom. This capability is enabled for non-default SKUs, however, it can be enabled on any SKU based upon request. For further information, see {{<link url="QoS-and-Buffers/#shared-headroom-pool" text="Shared Headroom Pool">}}. |
+| Warm reboot| {{<link url="Warm-Reboot">}} is now tested with different topology and not just with community T0 configuration. |
+| Fast reboot | {{<link url="Fast-Reboot">}} is now tested with different topologies and not just with the community T0 configuration. |
+| Fast reboot | {{<link url="Fast-Reboot">}} is supported on NVIDIA Spectrum-3 switch platforms. |
+| Bug fixes | See <a href="#issues-fixed-in-this-version">Issues Fixed in this Version</a>. |
+
+### Customer-affecting Changes
+
+| Feature/Change | Description |
+| -------------- | ----------- |
+| What Just Happened | Various What Just Happened (WJH) commands have been changed to contain the `poll` option. For example, `show what-just-happened poll --aggregate`. For further information, see section {{<link url="What-Just-Happened">}}. |
+
+### Supported Port Speeds
+
+#### Mellanox Spectrum®-3 SN4700 Supported Port Speeds
+>>>>>>> e5c8162bba7f940fa393c5aa7794b98edb193e5f
 
 <table>
   <tr>
+<<<<<<< HEAD
    <th valign=top>RM #</th>
    <th valign=top>Issue</th>
   </tr>
@@ -62,15 +98,67 @@ Additional bugs reported are handled by both Mellanox and the community as part 
   <td valign=top>
   <p><b>Description:</b> Removing a VLAN which still has a member
   port results in failure, although no error indication is provided in the CLI.</p>
+=======
+   <td rowspan=2 valign=top>
+   <p><b>Speed [GbE]</b></p>
+   </td>
+   <td rowspan=2 valign=top>
+   <p><b>AutoNeg</b></p>
+   </td>
+   <td colspan=3 valign=top>
+   <p><b>Force</b></p>
+   </td>
+   <td rowspan=2 valign=top>
+   <p><b>Cable / Modules</b></p>
+   </td>
+   <td rowspan=2 valign=top>
+   <p><b>Cable Length [m]</b></p>
+   </td>
+ </tr>
+ <tr>
+   <td valign=top>
+  <p>RS FEC</p>
+  </td>
+  <td valign=top>
+  <p>FC FEC</p>
+  </td>
+  <td valign=top>
+  <p>NO FEC</p>
+>>>>>>> e5c8162bba7f940fa393c5aa7794b98edb193e5f
   </td>
  </tr>
  <tr>
+<<<<<<< HEAD
   <td valign=top>
   <p><b>Keywords:</b> VLAN</p>
+=======
+  <td rowspan=2 valign=top>
+  <p>400</p>
+  </td>
+  <td rowspan=2 valign=top>
+  <p>&#9989;</p>
+  </td>
+  <td rowspan=2 valign=top>
+  <p>&#9989;</p>
+  <p>&nbsp;</p>
+  </td>
+  <td rowspan=2 valign=top>
+  <p>&#10008;</p>
+  </td>
+  <td rowspan=2 valign=top>
+  <p>&#10008;</p>
+  </td>
+  <td valign=top>
+  <p>Optics</p>
+  </td>
+  <td valign=top>
+  <p>Up to 5</p>
+>>>>>>> e5c8162bba7f940fa393c5aa7794b98edb193e5f
   </td>
  </tr>
  <tr>
   <td valign=top>
+<<<<<<< HEAD
   <p><b>Discovered in Version: </b>SONiC 201911</p>
   </td>
  </tr>
@@ -140,10 +228,78 @@ Additional bugs reported are handled by both Mellanox and the community as part 
  <tr>
   <td valign=top>
   <p><b>Keywords:</b>Spectrum-2, SN3800, Tx settings</p>
+=======
+  <p>Copper</p>
+  </td>
+  <td valign=top>
+  <p>Up to 2.5</p>
+  </td>
+ </tr>
+ <tr>
+  <td rowspan=2 valign=top>
+  <p>200/<br>
+  100 2x/<br>
+  50 1x (PAM4)</p>
+  </td>
+  <td rowspan=2 valign=top>
+  <p>&#9989;</p>
+  <p>&nbsp;</p>
+  </td>
+  <td rowspan=2 valign=top>
+  <p>&#9989;</p>
+  <p>&nbsp;</p>
+  </td>
+  <td rowspan=2 valign=top>
+  <p>&#10008;</p>
+  </td>
+  <td rowspan=2 valign=top>
+  <p>&#10008;</p>
+  </td>
+  <td valign=top>
+  <p>Optic</p>
+  </td>
+  <td valign=top>
+  <p>Up to 5</p>
   </td>
  </tr>
  <tr>
   <td valign=top>
+  <p>Copper</p>
+  </td>
+  <td valign=top>
+  <p>Up to 2.5</p>
+  </td>
+ </tr>
+ <tr>
+  <td rowspan=2 valign=top>
+  <p>100 (NRZ)</p>
+  </td>
+  <td rowspan=2 valign=top>
+  <p>&#9989;</p>
+  <p>&nbsp;</p>
+  </td>
+  <td rowspan=2 valign=top>
+  <p>&#9989;</p>
+  <p>&nbsp;</p>
+  </td>
+  <td rowspan=2 valign=top>
+  <p>&#10008;</p>
+  <p>&nbsp;</p>
+  </td>
+  <td rowspan=2 valign=top>
+  <p>&#9989;</p>
+  </td>
+  <td valign=top>
+  <p>Optic</p>
+  </td>
+  <td valign=top>
+  <p>Up to 100</p>
+>>>>>>> e5c8162bba7f940fa393c5aa7794b98edb193e5f
+  </td>
+ </tr>
+ <tr>
+  <td valign=top>
+<<<<<<< HEAD
   <p><b>Discovered in Version:</b> SONiC
   201911_MUR5</p>
   </td>
@@ -290,9 +446,138 @@ Additional bugs reported are handled by both Mellanox and the community as part 
   <td valign=top>
   <p><b>Description:</b> On occasion, when using Dell QSFP28
   copper cable in 40G (4x10G) split mode, the link goes down.</p>
+=======
+  <p>Copper</p>
+  </td>
+  <td valign=top>
+  <p>Up to 5</p>
   </td>
  </tr>
  <tr>
+  <td rowspan=2 valign=top>
+  <p>25/50 (NRZ)</p>
+  </td>
+  <td rowspan=2 valign=top>
+  <p>&#9989;</p>
+  <p>&nbsp;</p>
+  </td>
+  <td rowspan=2 valign=top>
+  <p>&#9989;</p>
+  <p>&nbsp;</p>
+  </td>
+  <td rowspan=2 valign=top>
+  <p>&#9989;</p>
+  </td>
+  <td rowspan=2 valign=top>
+  <p>&#9989;</p>
+  <p>&nbsp;</p>
+  </td>
+  <td valign=top>
+  <p>Optic</p>
+  </td>
+  <td valign=top>
+  <p>Up to 100</p>
+  </td>
+ </tr>
+ <tr>
+  <td valign=top>
+  <p>Copper</p>
+  </td>
+  <td valign=top>
+  <p>Up to 5</p>
+  </td>
+ </tr>
+ <tr>
+  <td rowspan=2 valign=top>
+  <p>10/40</p>
+  </td>
+  <td rowspan=2 valign=top>
+  <p>&#9989;</p>
+  </td>
+  <td rowspan=2 valign=top>
+  <p>&#10008;</p>
+  </td>
+  <td rowspan=2 valign=top>
+  <p>&#9989;</p>
+  </td>
+  <td rowspan=2 valign=top>
+  <p>&#9989;</p>
+  </td>
+  <td valign=top>
+  <p>Optic</p>
+  </td>
+  <td valign=top>
+  <p>Up to 100</p>
+  </td>
+ </tr>
+ <tr>
+  <td valign=top>
+  <p>Copper</p>
+  </td>
+  <td valign=top>
+  <p>Up to 5</p>
+  </td>
+ </tr>
+ <tr>
+  <td valign=top>
+  <p>1</p>
+  </td>
+  <td valign=top>
+  <p>&#9989;</p>
+  </td>
+  <td valign=top>
+  <p>&#10008;</p>
+  </td>
+  <td valign=top>
+  <p>&#10008;</p>
+  </td>
+  <td valign=top>
+  <p>&#9989;</p>
+  </td>
+  <td valign=top>
+  <p>Optic/Copper</p>
+  </td>
+  <td valign=top>
+  <p>Up to 5</p>
+  </td>
+ </tr>
+</table>
+
+#### Mellanox Spectrum®-3 SN4600C Supported Port Speeds
+
+<table border=1 cellspacing=0 cellpadding=0 width="100%"
+ style='width:100.0%;border-collapse:collapse;border:none'>
+  <tr>
+   <td rowspan=2 valign=top>
+   <p><b>Speed [GbE]</b></p>
+   </td>
+   <td rowspan=2 valign=top>
+   <p><b>AutoNeg</b></p>
+   </td>
+   <td colspan=3 valign=top>
+   <p><b>Force</b></p>
+   </td>
+   <td rowspan=2 valign=top>
+   <p><b>Cable / Modules</b></p>
+   </td>
+   <td rowspan=2 valign=top>
+   <p><b>Cable Length [m]</b></p>
+   </td>
+ </tr>
+ <tr>
+   <td valign=top>
+  <p>RS FEC</p>
+  </td>
+  <td valign=top>
+  <p>FC FEC</p>
+  </td>
+  <td valign=top>
+  <p>NO FEC</p>
+>>>>>>> e5c8162bba7f940fa393c5aa7794b98edb193e5f
+  </td>
+ </tr>
+ <tr>
+<<<<<<< HEAD
   <td valign=top>
   <p><b>Keywords:</b> SN4700, Cables, Split</p>
   </td>
@@ -320,10 +605,36 @@ Additional bugs reported are handled by both Mellanox and the community as part 
  <tr>
   <td valign=top>
   <p><b>Keywords:</b> PFCWD</p>
+=======
+  <td rowspan=2 valign=top>
+  <p>100 (NRZ)</p>
+  </td>
+  <td rowspan=2 valign=top>
+  <p>&#9989;</p>
+  <p>&nbsp;</p>
+  </td>
+  <td rowspan=2 valign=top>
+  <p>&#9989;</p>
+  <p>&nbsp;</p>
+  </td>
+  <td rowspan=2 valign=top>
+  <p>&#10008;</p>
+  <p>&nbsp;</p>
+  </td>
+  <td rowspan=2 valign=top>
+  <p>&#9989;</p>
+  </td>
+  <td valign=top>
+  <p>Optic</p>
+  </td>
+  <td valign=top>
+  <p>Up to 100</p>
+>>>>>>> e5c8162bba7f940fa393c5aa7794b98edb193e5f
   </td>
  </tr>
  <tr>
   <td valign=top>
+<<<<<<< HEAD
   <p><b>Discovered in Version:</b> SONiC
   201911_MUR6</p>
   </td>
@@ -366,10 +677,43 @@ Additional bugs reported are handled by both Mellanox and the community as part 
   <td valign=top>
   <p><b>Description:</b> When device is rebooted with locked
   Optical Transceivers in split mode, the firmware may get stuck.</p>
+=======
+  <p>Copper</p>
+  </td>
+  <td valign=top>
+  <p>Up to 3</p>
+  </td>
+ </tr>
+ <tr>
+  <td rowspan=2 valign=top>
+  <p>25/50 (NRZ)</p>
+  </td>
+  <td rowspan=2 valign=top>
+  <p>&#9989;</p>
+  <p>&nbsp;</p>
+  </td>
+  <td rowspan=2 valign=top>
+  <p>&#9989;</p>
+  <p>&nbsp;</p>
+  </td>
+  <td rowspan=2 valign=top>
+  <p>&#9989;</p>
+  </td>
+  <td rowspan=2 valign=top>
+  <p>&#9989;</p>
+  <p>&nbsp;</p>
+  </td>
+  <td valign=top>
+  <p>Optic</p>
+  </td>
+  <td valign=top>
+  <p>Up to 100</p>
+>>>>>>> e5c8162bba7f940fa393c5aa7794b98edb193e5f
   </td>
  </tr>
  <tr>
   <td valign=top>
+<<<<<<< HEAD
   <p><b>Keywords:</b> Optical Transceivers, Split Mode</p>
   </td>
  </tr>
@@ -435,6 +779,1207 @@ Additional bugs reported are handled by both Mellanox and the community as part 
  </tr>
  <tr style='mso-yfti-irow:59'>
   <td valign=top>
+  <p><b>Fixed in Version: </b>SONiC 202012</p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:60'>
+  <td rowspan=4 valign=top>
+  <p>2405266</p>
+  </td>
+  <td valign=top>
+  <p><b>Description:</b> On SN3800 systems, when the port is
+  a member of a LAG, after a warmboot and port toggle on the peer-side, the
+  port remains down. </p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:61'>
+  <td valign=top>
+  <p><b>Keywords:</b> Ethernet;Spectrum-3, DAC</p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:62'>
+  <td valign=top>
+  <p><b>Discovered in Version:</b> SONiC
+  201911_MUR6</p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:63'>
+  <td valign=top>
+  <p><b>Fixed in Version: </b>SONiC 202012</p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:64'>
+  <td rowspan=4 valign=top>
+  <p>2176790</p>
+  </td>
+  <td valign=top>
+  <p><b>Description:</b> On rare occasions packets loss may
+  be experienced on SN3800 due to signal integrity issues.</p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:65'>
+  <td valign=top>
+  <p><b>Keywords:</b> Spectrum-2, SN3800, BER</p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:66'>
+  <td valign=top>
+  <p><b>Discovered in Version:</b> SONiC
+  201911_MUR6</p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:67'>
+  <td valign=top>
+  <p><b>Fixed in Version: </b>SONiC 202012</p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:68'>
+  <td rowspan=4 valign=top>
+  <p>1883103</p>
+  </td>
+  <td valign=top>
+  <p><b>Description:</b> When connecting SN3700 at 200GbE to
+  Ixia K400, Ixia receives CRC errors.</p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:69'>
+  <td valign=top>
+  <p><b>Keywords:</b> Spectrum-2, SN3700, Ixia, CRC</p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:70'>
+  <td valign=top>
+  <p><b>Discovered in Version: </b>SONiC 201911_MUR6</p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:71'>
+  <td valign=top>
+  <p><b>Fixed in Version: </b>SONiC 202012</p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:72'>
+  <td rowspan=4 valign=top>
+  <p>2320854</p>
+  </td>
+  <td valign=top>
+  <p><b>Description:</b> When working in 400GbE, deleting
+  the headroom configuration (changing buffer size to zero) on the fly may cause
+  continual packet drops.</p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:73'>
+  <td valign=top>
+  <p><b>Keywords:</b> Speed, 400GbE</p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:74'>
+  <td valign=top>
+  <p><b>Discovered in Version: </b>SONiC 201911_MUR6</p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:75'>
+  <td valign=top>
+  <p><b>Fixed in Version: </b>SONiC 202012</p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:76'>
+  <td rowspan=4 valign=top>
+  <p>2457801</p>
+  </td>
+  <td valign=top>
+  <p><b>Description:</b> On Spectrum systems, 10GbE/1GbE
+  Transceiver (FTLX8574D3BCV) stopped working after firmware upgrade. </p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:77'>
+  <td valign=top>
+  <p><b>Keywords:</b> Firmware Upgrade, Transceiver</p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:78'>
+  <td valign=top>
+  <p><b>Discovered in Version: </b>SONiC 201911_MUR6</p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:79'>
+  <td valign=top>
+  <p><b>Fixed in Version: </b>SONiC 202012</p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:80'>
+  <td rowspan=4 valign=top>
+  <p>2432630</p>
+  </td>
+  <td valign=top>
+  <p><b>Description:</b> When the hardware-management driver
+  tries to get the ASIC temperature from the firmware during a firmware
+  upgrade, a random value appears outside of the temperature threshold, causing
+  system thermal shutdown.</p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:81'>
+  <td valign=top>
+  <p><b>Keywords:</b> ISSU, Driver, Firmware Upgrade</p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:82'>
+  <td valign=top>
+  <p><b>Discovered in Version: </b>SONiC 201911_MUR6</p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:83'>
+  <td valign=top>
+  <p><b>Fixed in Version: </b>SONiC 202012</p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:84'>
+  <td rowspan=4 valign=top>
+  <p>2116499</p>
+  </td>
+  <td valign=top>
+  <p><b>Description:</b> Everflow functionality does not work
+  after warm reboot.</p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:85'>
+  <td valign=top>
+  <p><b>Keywords:</b> Everflow, warm reboot</p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:86'>
+  <td valign=top>
+  <p><b>Discovered in Version: </b>SONiC 201911</p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:87;mso-yfti-lastrow:yes'>
+  <td valign=top>
+  <p><b>Fixed in Version: </b>SONiC 202012</p>
+=======
+  <p>Copper</p>
+  </td>
+  <td valign=top>
+  <p>Up to 5</p>
+  </td>
+ </tr>
+ <tr>
+  <td rowspan=2 valign=top>
+  <p>10/40</p>
+  </td>
+  <td rowspan=2 valign=top>
+  <p>&#9989;</p>
+  </td>
+  <td rowspan=2 valign=top>
+  <p>&#10008;</p>
+  </td>
+  <td rowspan=2 valign=top>
+  <p>&#9989;</p>
+  </td>
+  <td rowspan=2 valign=top>
+  <p>&#9989;</p>
+  </td>
+  <td valign=top>
+  <p>Optic</p>
+  </td>
+  <td valign=top>
+  <p>Up to 100</p>
+  </td>
+ </tr>
+ <tr>
+  <td valign=top>
+  <p>Copper</p>
+  </td>
+  <td valign=top>
+  <p>Up to 3</p>
+  </td>
+ </tr>
+ <tr>
+  <td valign=top>
+  <p>1</p>
+  </td>
+  <td valign=top>
+  <p>&#9989;</p>
+  </td>
+  <td valign=top>
+  <p>&#10008;</p>
+  </td>
+  <td valign=top>
+  <p>&#10008;</p>
+  </td>
+  <td valign=top>
+  <p>&#9989;</p>
+  </td>
+  <td valign=top>
+  <p>Optic/Copper</p>
+  </td>
+  <td valign=top>
+  <p>Up to 5</p>
+  </td>
+ </tr>
+</table>
+
+#### Mellanox Spectrum®-2 SN3800 Series Supported Port Speeds
+
+<table border=1 cellspacing=0 cellpadding=0 width="100%">
+  <tr>
+   <td rowspan=2 valign=top>
+   <p><b>Speed [GbE]</b></p>
+   </td>
+   <td rowspan=2 valign=top>
+   <p><b>AutoNeg</b></p>
+   </td>
+   <td colspan=3 valign=top>
+   <p><b>Force</b></p>
+   </td>
+   <td rowspan=2 valign=top>
+   <p><b>Cable / Modules</b></p>
+   </td>
+   <td rowspan=2 valign=top>
+   <p><b>Cable Length [m]</b></p>
+   </td>
+   <td rowspan=2 valign=top><b>Comments</b></td>
+ </tr>
+ <tr>
+   <td valign=top>
+  <p>RS FEC</p>
+  </td>
+  <td valign=top>
+  <p>FC FEC</p>
+  </td>
+  <td valign=top>
+  <p>NO FEC</p>
+  </td>
+ </tr>
+ </thead>
+ <tr>
+  <td rowspan=2 valign=top>
+  <p>100 (NRZ)</p>
+  </td>
+  <td rowspan=2 valign=top>
+  <p>&#10008;</p>
+  <p>&nbsp;</p>
+  </td>
+  <td rowspan=2 valign=top>
+  <p>&#9989;</p>
+  <p>&nbsp;</p>
+  </td>
+  <td rowspan=2 valign=top>
+  <p>&#10008;</p>
+  <p>&nbsp;</p>
+  </td>
+  <td rowspan=2 valign=top>
+  <p>&#9989;</p>
+  </td>
+  <td valign=top>
+  <p>Optic</p>
+  </td>
+  <td valign=top>
+  <p>Up to 30</p>
+  </td>
+  <td rowspan=2 valign=top>N/A</td>
+ </tr>
+ <tr>
+  <td valign=top>
+  <p>Copper</p>
+  </td>
+  <td valign=top>
+  <p>Up to 5</p>
+  </td>
+ </tr>
+ <tr>
+  <td rowspan=2 valign=top>
+  <p>25/50 (NRZ)</p>
+  </td>
+  <td rowspan=2 valign=top>
+  <p>&#10008;</p>
+  <p>&nbsp;</p>
+  </td>
+  <td rowspan=2 valign=top>
+  <p>&#9989;</p>
+  <p>&nbsp;</p>
+  </td>
+  <td rowspan=2 valign=top>
+  <p>&#9989;</p>
+  </td>
+  <td rowspan=2 valign=top>
+  <p>&#9989;</p>
+  <p>&nbsp;</p>
+  </td>
+  <td valign=top>
+  <p>Optic</p>
+  </td>
+  <td valign=top>
+  <p>Up to 30</p>
+  </td>
+  <td rowspan=2 valign=top>N/A</td>
+ </tr>
+ <tr>
+  <td valign=top>
+  <p>Copper</p>
+  </td>
+  <td valign=top>
+  <p>Up to 5</p>
+  </td>
+ </tr>
+ <tr>
+  <td rowspan=2 valign=top>
+  <p>10/40</p>
+  </td>
+  <td rowspan=2 valign=top>
+  <p>&#10008;</p>
+  </td>
+  <td rowspan=2 valign=top>
+  <p>&#10008;</p>
+  </td>
+  <td rowspan=2 valign=top>
+  <p>&#10008;</p>
+  </td>
+  <td rowspan=2 valign=top>
+  <p>&#9989;</p>
+  </td>
+  <td valign=top>
+  <p>Optic</p>
+  </td>
+  <td valign=top>
+  <p>Up to 30</p>
+  </td>
+  <td rowspan=2 valign=top>10GBASE-T modules are not supported</td>
+ </tr>
+ <tr>
+  <td valign=top>
+  <p>Copper</p>
+  </td>
+  <td valign=top>
+  <p>Up to 3</p>
+>>>>>>> e5c8162bba7f940fa393c5aa7794b98edb193e5f
+  </td>
+ </tr>
+</table>
+
+<<<<<<< HEAD
+## Known Issues
+
+For the community limitations, please refer to the {{<exlink url="https://github.com/Azure/sonic-buildimage/issues" text="Azure GitHub">}} site.
+
+<table>
+ <thead>
+  <tr>
+   <td valign=top>
+   <p><b>RM #</b></p>
+   </td>
+   <td valign=top >
+   <p align=center style='text-align:center;'><b>Issue</b></p>
+   </td>
+=======
+## SONiC General Support
+
+### SONiC Versions
+
+| Branch| Hash | Location |
+| ----- | ---- | -------- |
+| SONiC 202012 |  | https://github.com/Azure/sonic-buildimage/tree/202012  |
+
+### Package Content
+
+This release is based on the SONiC 202012 sonic-buildimage hash. It contains the following components:
+
+| Switch Components | Version | Additional Information |
+| ----------------- | ------- | ---------------------- |
+| Mellanox Spectrum-3 Firmware | 30.2008.2416 | |
+| Mellanox Spectrum-2 Firmware | 29.2008.2416 | |
+| Mellanox Spectrum Firmware | 13.2008.2416 | |
+| SDK | 4.4.2416 | SDK API can be found at: https://github.com/Mellanox/SwitchRouterSDK-interfaces |
+| SAI | 1.18.1.0 | Mellanox SAI implementation can be found at: https://github.com/Mellanox/SAI-Implementation/tree/sonic2012 based on commit https://github.com/Mellanox/SAI-Implementation/commit/8dc2afd21ff6578cd0736b70aaa6ce5f1135265d |
+| Mellanox Firmware Tools (MFT) | 4.16.0-105 | {{<exlink url="https://docs.mellanox.com/display/MFTv4160/Release+Notes" text="Release Notes">}}<br />{{<exlink url="https://docs.mellanox.com/display/MFTv4160/Introduction" text="User Manual">}} |
+
+### Application Extensions
+
+The following application extension was developed by Mellanox:
+
+| Application Extension | Version | Additional Information |
+| --------------------- | ------- | ---------------------- |
+| What-Just-Happened | TBD | For further information, see {{<link url="What-Just-Happened">}}. |
+
+## Issues Fixed in this Version
+
+This section provides only a list of bugs fixed only by Mellanox in this version.
+
+Additional bugs reported are handled by both Mellanox and the community as part of the 202012 release. For additional information, please refer to the {{<exlink url="https://github.com/Azure/sonic-buildimage/issues" text="Azure GitHub">}} site.
+
+<table>
+  <tr>
+   <th valign=top>RM #</th>
+   <th valign=top>Issue</th>
+>>>>>>> e5c8162bba7f940fa393c5aa7794b98edb193e5f
+  </tr>
+ <tr>
+  <td rowspan=4 valign=top>
+<<<<<<< HEAD
+  <p>2446581</p>
+  </td>
+  <td>
+  <p><strong>Description:</strong> An
+  error is logged when a MAC address that already exists on the FDB is learned
+  from a different port.<b></b></p>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <p><strong>Workaround:</strong> N/A<b
+ ></b></p>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <p><strong>Keywords:</strong> MAC
+  learning, FDB<b></b></p>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <p><strong>Discovered in Version:</strong>
+  SONiC 202012<b></b></p>
+=======
+  <p>2045019</p>
+  </td>
+  <td valign=top>
+  <p><b>Description:</b> Removing a VLAN which still has a member
+  port results in failure, although no error indication is provided in the CLI.</p>
+  </td>
+ </tr>
+ <tr>
+  <td valign=top>
+  <p><b>Keywords:</b> VLAN</p>
+  </td>
+ </tr>
+ <tr>
+  <td valign=top>
+  <p><b>Discovered in Version: </b>SONiC 201911</p>
+  </td>
+ </tr>
+ <tr>
+  <td valign=top>
+  <p><strong>Fixed in Version: </strong>SONiC
+  202012</p>
+>>>>>>> e5c8162bba7f940fa393c5aa7794b98edb193e5f
+  </td>
+ </tr>
+ <tr>
+  <td rowspan=4 valign=top>
+<<<<<<< HEAD
+  <p>2393635</p>
+  </td>
+  <td>
+  <p><strong>Description:</strong> Warm-reboot
+  fails in case of corrupted /host/warm-reboot/issu-bank.txt file and the
+  switch is in an inconsistent state afterwards.<b></b></p>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <p><strong>Workaround:</strong> Follow
+  the instructions printed in <code>/var/log/syslog</code>, or run the CLI command <code>"warm-reboot
+  -v"</code> and then perform a cold reboot.<b
+ ></b></p>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <p><strong>Keywords:</strong> ISSU<b
+ ></b></p>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <p><strong>Discovered in Version:</strong>
+  SONiC 202012<b></b></p>
+=======
+  <p>2071829</p>
+  </td>
+  <td valign=top>
+  <p><b>Description:</b> The validation of the <code>config portchannel member add</code> command is missing when adding a port that has already been a member of another portchannel interface.</p>
+  </td>
+ </tr>
+ <tr>
+  <td valign=top>
+  <p><b>Keywords:</b> portchannel</p>
+  </td>
+ </tr>
+ <tr>
+  <td valign=top>
+  <p><b>Discovered in Version: </b>SONiC 201911</p>
+  </td>
+ </tr>
+ <tr>
+  <td valign=top>
+  <p><strong>Fixed in Version: </strong>SONiC
+  202012</p>
+>>>>>>> e5c8162bba7f940fa393c5aa7794b98edb193e5f
+  </td>
+ </tr>
+ <tr>
+  <td rowspan=4 valign=top>
+<<<<<<< HEAD
+  <p>2571738</p>
+  </td>
+  <td valign=top>
+  <p><b>Description:</b> When configuring seed=0, hash distribution
+  is not optimal.<b></b></p>
+=======
+  <p>2198406</p>
+  </td>
+  <td valign=top>
+  <p><b>Description:</b> In rare cases, high pre-FEC is
+  experienced on MMA1B00-C100D optic cables (post-FEC is clean).</p>
+>>>>>>> e5c8162bba7f940fa393c5aa7794b98edb193e5f
+  </td>
+ </tr>
+ <tr>
+  <td valign=top>
+<<<<<<< HEAD
+  <p><b>Workaround:</b> Avoid seed=0 configuration.<b
+ ></b></p>
+=======
+  <p><b>Keywords:</b> SN4600C, Cables</p>
+>>>>>>> e5c8162bba7f940fa393c5aa7794b98edb193e5f
+  </td>
+ </tr>
+ <tr>
+  <td valign=top>
+<<<<<<< HEAD
+  <p><b>Keywords:</b> LAG, HASH<b></b></p>
+=======
+  <p><b>Discovered in Version: </b>SONiC 201911_MUR3</p>
+>>>>>>> e5c8162bba7f940fa393c5aa7794b98edb193e5f
+  </td>
+ </tr>
+ <tr>
+  <td valign=top>
+<<<<<<< HEAD
+  <p><b>Discovered in Version:</b> SONiC 202012<b
+ ></b></p>
+=======
+  <p><strong>Fixed in Version: </strong>SONiC
+  202012</p>
+>>>>>>> e5c8162bba7f940fa393c5aa7794b98edb193e5f
+  </td>
+ </tr>
+ <tr>
+  <td rowspan=4 valign=top>
+<<<<<<< HEAD
+  <p>-</p>
+  </td>
+  <td valign=top>
+  <p><b>Description:</b> Dynamic port
+  break out is not supported.</p>
+  <p><b>Note:</b> All issues related to this capability are
+  reported on github and are being handled by the community owner.</p>
+  </td>
+ </tr>
+ <tr>
+  <td valign=top>
+  <p><b>Workaround:</b> N/A<b></b></p>
+=======
+  <p>2229399</p>
+  </td>
+  <td valign=top>
+  <p><b>Description:</b> Tx settings of the line card in SN3800 fail eye measurement.</p>
+  </td>
+ </tr>
+ <tr>
+  <td valign=top>
+  <p><b>Keywords:</b>Spectrum-2, SN3800, Tx settings</p>
+>>>>>>> e5c8162bba7f940fa393c5aa7794b98edb193e5f
+  </td>
+ </tr>
+ <tr>
+  <td valign=top>
+<<<<<<< HEAD
+  <p><b>Keywords:</b> port breakout<b></b></p>
+=======
+  <p><b>Discovered in Version:</b> SONiC
+  201911_MUR5</p>
+>>>>>>> e5c8162bba7f940fa393c5aa7794b98edb193e5f
+  </td>
+ </tr>
+ <tr>
+  <td valign=top>
+<<<<<<< HEAD
+  <p><b>Discovered in Version:</b> SONiC 202012<b
+ ></b></p>
+=======
+  <p><strong>Fixed in Version: </strong>SONiC 202012</p>
+>>>>>>> e5c8162bba7f940fa393c5aa7794b98edb193e5f
+  </td>
+ </tr>
+ <tr>
+  <td rowspan=4 valign=top>
+<<<<<<< HEAD
+  <p><o:p> </o:p></p>
+  </td>
+  <td valign=top>
+  <p><b>Description:</b> sFLow is not supported on NVIDIA switches.</p>
+=======
+  <p>2135522</p>
+  </td>
+  <td valign=top>
+  <p><b>Description:</b> When sending a control packet that is larger than the port MTU, the control-sending queue will get stuck.</p>
+>>>>>>> e5c8162bba7f940fa393c5aa7794b98edb193e5f
+  </td>
+ </tr>
+ <tr>
+  <td valign=top>
+<<<<<<< HEAD
+  <p><b>Workaround:</b> N/A<b></b></p>
+=======
+  <p><b>Keywords:</b>Driver, MTU</p>
+>>>>>>> e5c8162bba7f940fa393c5aa7794b98edb193e5f
+  </td>
+ </tr>
+ <tr>
+  <td valign=top>
+<<<<<<< HEAD
+  <p><b>Keywords:</b> sflow<b></b></p>
+=======
+  <p><b>Discovered in Version:</b> SONiC
+  201911_MUR5</p>
+>>>>>>> e5c8162bba7f940fa393c5aa7794b98edb193e5f
+  </td>
+ </tr>
+ <tr>
+  <td valign=top>
+<<<<<<< HEAD
+  <p><b>Discovered in Version:</b> SONiC 202012<b
+ ></b></p>
+  </td>
+ </tr>
+ <tr>
+  <td rowspan=4 valign=top>
+  <p>2413409</p>
+  </td>
+  <td valign=top>
+  <p><b>Description:</b> BER may be experienced when using
+  5m DAC cables between SN4700 and SN2700 in 100GbE speed. </p>
+  </td>
+ </tr>
+ <tr>
+  <td valign=top>
+  <p><b>Workaround:</b> N/A</p>
+  </td>
+ </tr>
+ <tr>
+  <td valign=top>
+  <p><b>Keywords:</b> Ethernet;Spectrum-3, DAC</p>
+  </td>
+ </tr>
+ <tr>
+  <td valign=top>
+  <p><b>Discovered in Version:</b> SONiC
+  201911_MUR6</p>
+  </td>
+ </tr>
+ <tr>
+  <td rowspan=4 valign=top>
+  <p>2404336</p>
+  
+  </td>
+  <td valign=top>
+  <p><b>Description:</b> On very rare occasion, when
+  connecting DR4 PAM4 transceiver to 100GbE DR1 NRZ, low BER may be
+  experienced.</p>
+  </td>
+ </tr>
+ <tr>
+  <td valign=top>
+  <p><b>Workaround:</b> N/A</p>
+  </td>
+ </tr>
+ <tr>
+  <td valign=top>
+  <p><b>Keywords:</b> Ethernet;Spectrum-3, DR4</p>
+  </td>
+ </tr>
+ <tr>
+  <td valign=top>
+  <p><b>Discovered in Version:</b> SONiC
+  201911_MUR6</p>
+  </td>
+ </tr>
+ <tr>
+  <td rowspan=4 valign=top>
+2322812
+  </td>
+  <td valign=top>
+  <p><b>Description:</b> The interface name in unavailable
+  if the port configuration is removed while using split configuration.</p>
+  </td>
+ </tr>
+ <tr>
+  <td valign=top>
+  <p><b>Workaround:</b> N/A</p>
+  </td>
+ </tr>
+ <tr>
+  <td valign=top>
+  <p><b>Keywords:</b> SNMP</p>
+  </td>
+ </tr>
+ <tr>
+  <td valign=top>
+  <p><b>Discovered in Version:</b> SONiC
+  201911_MUR6</p>
+=======
+  <p><strong>Fixed in Version: </strong>SONiC
+  202012</p>
+  </td>
+ </tr>
+ <tr>
+  <td rowspan=4 valign=top >
+  <p>2407901</p>
+  </td>
+  <td>
+  <p><strong>Description:</strong>CLI
+  commands used to enable PFCWD do not work.<b></b></p>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <p><strong>Keywords:</strong> PFCWD,
+  CLI<b></b></p>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <p><strong>Discovered in Version:</strong>
+  SONiC 201911_MUR6<b></b></p>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <p><strong>Fixed in Version: </strong>SONiC
+  202012<b></b></p>
+  </td>
+ </tr>
+ <tr>
+  <td rowspan=4 valign=top >
+  <p>2435816</p>
+  </td>
+  <td>
+  <p><strong>Description:</strong> Interface
+  PortChannel cannot get an assigned IP when 80 PortChannel RIF are defined.<b></b></p>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <p><strong>Keywords:</strong> IP
+  assignment, PortChannel, RIF<b></b></p>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <p><strong>Discovered in Version:</strong>
+  SONiC 201911_MUR6<b></b></p>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <p><strong>Fixed in Version: </strong>SONiC
+  202012<b></b></p>
+  </td>
+ </tr>
+ <tr>
+  <td rowspan=4 valign=top >
+  <p>2447853</p>
+  </td>
+  <tdvalign=top>
+  <p><b>Description:</b> What Just Happened consumes ~100&amp; CPU usage while not reading
+  data.</p>
+  </td>
+ </tr>
+ <tr>
+  <tdvalign=top>
+  <p><b>Keywords:</b> What-Just-Happened</p>
+  </td>
+ </tr>
+ <tr>
+  <tdvalign=top>
+  <p><b>Discovered in Version: </b>SONiC 201911_MUR6</p>
+  </td>
+ </tr>
+ <tr>
+  <tdvalign=top>
+  <p><b>Fixed in Version: </b>SONiC 202012</p>
+>>>>>>> e5c8162bba7f940fa393c5aa7794b98edb193e5f
+  </td>
+ </tr>
+ <tr>
+  <td rowspan=4 valign=top>
+<<<<<<< HEAD
+  <p>2350845</p>
+  </td>
+  <td valign=top>
+  <p><b>Description:</b> Fastboot command may fail if the port-channel
+  is part of the VLAN.</p>
+=======
+  <p>2367239</p>
+  </td>
+  <td valign=top>
+  <p><b>Description:</b> snmpagent allocates (hardcoded)
+  only 4 lanes for each transceiver. Therefore, the SNMP query returns the
+  sensors of only the first 4 lanes of a QSFP-DD (400GbE) cable which has 8
+  lanes. </p>
+>>>>>>> e5c8162bba7f940fa393c5aa7794b98edb193e5f
+  </td>
+ </tr>
+ <tr>
+  <td valign=top>
+<<<<<<< HEAD
+  <p><b>Workaround:</b> N/A</p>
+=======
+  <p><b>Keywords:</b> SNMP MIB</p>
+>>>>>>> e5c8162bba7f940fa393c5aa7794b98edb193e5f
+  </td>
+ </tr>
+ <tr>
+  <td valign=top>
+<<<<<<< HEAD
+  <p><b>Keywords:</b> Fastboot, VLAN</p>
+=======
+  <p><b>Discovered in Version:</b> SONiC
+  201911_MUR6</p>
+>>>>>>> e5c8162bba7f940fa393c5aa7794b98edb193e5f
+  </td>
+ </tr>
+ <tr>
+  <td valign=top>
+<<<<<<< HEAD
+  <p><b>Discovered in Version:</b> SONiC
+  201911_MUR6</p>
+=======
+  <p><b>Fixed in Version: </b>SONiC 202012</p>
+>>>>>>> e5c8162bba7f940fa393c5aa7794b98edb193e5f
+  </td>
+ </tr>
+ <tr>
+  <td rowspan=4 valign=top>
+<<<<<<< HEAD
+  <p>2393983</p>
+  </td>
+  <td valign=top>
+  <p><b>Description:</b> CLI command <code>show priority-group watermark</code> returns zero value even if the headroom is occupied.</p>
+=======
+  <p>2384299</p>
+  </td>
+  <td valign=top>
+  <p><b>Description:</b> On occasion, when using Dell QSFP28
+  copper cable in 40G (4x10G) split mode, the link goes down.</p>
+>>>>>>> e5c8162bba7f940fa393c5aa7794b98edb193e5f
+  </td>
+ </tr>
+ <tr>
+  <td valign=top>
+<<<<<<< HEAD
+  <p><b>Workaround:</b> N/A</p>
+=======
+  <p><b>Keywords:</b> SN4700, Cables, Split</p>
+>>>>>>> e5c8162bba7f940fa393c5aa7794b98edb193e5f
+  </td>
+ </tr>
+ <tr>
+  <td valign=top>
+<<<<<<< HEAD
+  <p><b>Keywords:</b> Headroom, Watermark</p>
+=======
+  <p><b>Discovered in Version:</b> SONiC
+  201911_MUR6</p>
+>>>>>>> e5c8162bba7f940fa393c5aa7794b98edb193e5f
+  </td>
+ </tr>
+ <tr>
+  <td valign=top>
+<<<<<<< HEAD
+  <p><b>Discovered in Version:</b> SONiC
+  201911_MUR6</p>
+=======
+  <p><b>Fixed in Version: </b>SONiC 202012</p>
+>>>>>>> e5c8162bba7f940fa393c5aa7794b98edb193e5f
+  </td>
+ </tr>
+ <tr>
+  <td rowspan=4 valign=top>
+<<<<<<< HEAD
+  <p>2395745</p>
+  </td>
+  <td valign=top>
+  <p><b>Description:</b> COLORZ modules (IN-Q2AY2-41 , IN-Q2AY2-27) link up
+  time increased to 85 seconds.</p>
+  </td>
+ </tr>
+ <tr>
+  <td valign=top>
+  <p><b>Workaround:</b> N/A</p>
+=======
+  <p>2407901</p>
+  </td>
+  <td valign=top>
+  <p><b>Description:</b> The command 'config pfcwd start --action drop
+  ports all detection-time 400 --restoration-time 400' fails due to invalid options: ports and detection-time</p>
+  </td>
+ </tr>
+ <tr>
+  <td valign=top>
+  <p><b>Keywords:</b> PFCWD</p>
+>>>>>>> e5c8162bba7f940fa393c5aa7794b98edb193e5f
+  </td>
+ </tr>
+ <tr>
+  <td valign=top>
+<<<<<<< HEAD
+  <p><b>Keywords:</b> Modules, COLORZ</p>
+=======
+  <p><b>Discovered in Version:</b> SONiC
+  201911_MUR6</p>
+>>>>>>> e5c8162bba7f940fa393c5aa7794b98edb193e5f
+  </td>
+ </tr>
+ <tr>
+  <td valign=top>
+<<<<<<< HEAD
+  <p><b>Discovered in Version:</b> SONiC
+  201911_MUR6</p>
+=======
+  <p><b>Fixed in Version: </b>SONiC 202012</p>
+>>>>>>> e5c8162bba7f940fa393c5aa7794b98edb193e5f
+  </td>
+ </tr>
+ <tr>
+  <td rowspan=4 valign=top>
+<<<<<<< HEAD
+  <p>2373739</p>
+  </td>
+  <td valign=top>
+  <p><b>Description:</b> On SN3800 systems, "Auto
+  negotiation" drop reason is shown as "Other reason -"</p>
+  </td>
+ </tr>
+ <tr>
+  <td valign=top>
+  <p><b>Workaround:</b> N/A</p>
+=======
+  <p>2409755</p>
+  </td>
+  <td valign=top>
+  <p><b>Description:</b> On rare cases, when reading the
+  wrong critical thermal thresholds of a transceiver may lead to software
+  thermal shutdown resulting in system restart. </p>
+  </td>
+ </tr>
+ <tr>
+  <td valign=top>
+  <p><b>Keywords:</b> ISSU</p>
+>>>>>>> e5c8162bba7f940fa393c5aa7794b98edb193e5f
+  </td>
+ </tr>
+ <tr>
+  <td valign=top>
+<<<<<<< HEAD
+  <p><b>Keywords:</b> What Just Happened, Auto
+  negotiation</p>
+=======
+  <p><b>Discovered in Version:</b> SONiC
+  201911_MUR6</p>
+>>>>>>> e5c8162bba7f940fa393c5aa7794b98edb193e5f
+  </td>
+ </tr>
+ <tr>
+  <td valign=top>
+<<<<<<< HEAD
+  <p><b>Discovered in Version:</b> SONiC
+  201911_MUR6</p>
+=======
+  <p><b>Fixed in Version: </b>SONiC 202012</p>
+>>>>>>> e5c8162bba7f940fa393c5aa7794b98edb193e5f
+  </td>
+ </tr>
+ <tr>
+  <td rowspan=4 valign=top>
+<<<<<<< HEAD
+  <p>2373693</p>
+  </td>
+  <td valign=top>
+  <p><b>Description:</b> On SN3800 systems, Layer-1 state
+  change counter currently does not function properly. We do not recommend
+  using it. </p>
+  </td>
+ </tr>
+ <tr>
+  <td valign=top>
+  <p><b>Workaround:</b> N/A</p>
+=======
+  <p>2431486</p>
+  </td>
+  <td valign=top>
+  <p><b>Description:</b> When device is rebooted with locked
+  Optical Transceivers in split mode, the firmware may get stuck.</p>
+  </td>
+ </tr>
+ <tr>
+  <td valign=top>
+  <p><b>Keywords:</b> Optical Transceivers, Split Mode</p>
+>>>>>>> e5c8162bba7f940fa393c5aa7794b98edb193e5f
+  </td>
+ </tr>
+ <tr>
+  <td valign=top>
+<<<<<<< HEAD
+  <p><b>Keywords:</b> What Just Happened, State change
+  counts</p>
+=======
+  <p><b>Discovered in Version:</b> SONiC
+  201911_MUR6</p>
+>>>>>>> e5c8162bba7f940fa393c5aa7794b98edb193e5f
+  </td>
+ </tr>
+ <tr>
+  <td valign=top>
+<<<<<<< HEAD
+  <p><b>Discovered in Version:</b> SONiC
+  201911_MUR6</p>
+=======
+  <p><b>Fixed in Version: </b>SONiC 202012</p>
+>>>>>>> e5c8162bba7f940fa393c5aa7794b98edb193e5f
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:52'>
+  <td rowspan=4 valign=top>
+<<<<<<< HEAD
+  <p>2074787</p>
+  </td>
+  <td valign=top>
+  <p><b>Description:</b> The "show mac" command fails to
+  show learnt MAC if a VLAN member is added in tagged mode.</p>
+=======
+  <p>2355323</p>
+  </td>
+  <td valign=top>
+  <p><b>Description:</b> When moving the port-status of two
+  or more ingress ports up or down, congestion egress events will send events
+  of threshold crossing without real reason, though the congestion histogram
+  remains unaffected.</p>
+>>>>>>> e5c8162bba7f940fa393c5aa7794b98edb193e5f
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:53'>
+  <td valign=top>
+<<<<<<< HEAD
+  <p><b>Workaround:</b> N/A</p>
+=======
+  <p><b>Keywords:</b> Telemetry</p>
+>>>>>>> e5c8162bba7f940fa393c5aa7794b98edb193e5f
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:54'>
+  <td valign=top>
+<<<<<<< HEAD
+  <p><b>Keywords:</b> FDB</p>
+=======
+  <p><b>Discovered in Version:</b> SONiC
+  201911_MUR6</p>
+>>>>>>> e5c8162bba7f940fa393c5aa7794b98edb193e5f
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:55'>
+  <td valign=top>
+<<<<<<< HEAD
+  <p><b>Discovered in Version:</b> SONiC
+  201911_MUR6</p>
+=======
+  <p><b>Fixed in Version: </b>SONiC 202012</p>
+>>>>>>> e5c8162bba7f940fa393c5aa7794b98edb193e5f
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:56'>
+  <td rowspan=4 valign=top>
+<<<<<<< HEAD
+  <p>2099346</p>
+  </td>
+  <td valign=top>
+  <p><b>Description:</b> aclshow utility output does not
+  display counters for Control plane ACLs.</p>
+=======
+  <p>2407915</p>
+  </td>
+  <td valign=top>
+  <p><b>Description:</b> In Spectrum-3 while using Optic
+  cable MFS1S50-H003E in Split 4x1 mode in PAM4, when one port is toggled, all
+  other 3 ports go down.</p>
+>>>>>>> e5c8162bba7f940fa393c5aa7794b98edb193e5f
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:57'>
+  <td valign=top>
+<<<<<<< HEAD
+  <p><b>Workaround:</b> Run: "sudo iptables -L -v -n" to display the counters fields also for the control plane ACLs. </p>
+=======
+  <p><b>Keywords:</b> Ethernet;Spectrum-3, PAM4, Optic
+  Cables</p>
+>>>>>>> e5c8162bba7f940fa393c5aa7794b98edb193e5f
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:58'>
+  <td valign=top>
+<<<<<<< HEAD
+  <p><b>Keywords:</b> aclshow control plane ACLs</p>
+=======
+  <p><b>Discovered in Version:</b> SONiC
+  201911_MUR6</p>
+>>>>>>> e5c8162bba7f940fa393c5aa7794b98edb193e5f
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:59'>
+  <td valign=top>
+<<<<<<< HEAD
+  <p><b>Discovered in Version:</b> SONiC 201911_MUR6</p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:60'>
+  <td rowspan=4 valign=top>
+2382746
+  </td>
+  <td valign=top>
+  <p><b>Description:</b> What Just Happened does not report
+  dropped packet that their dropped reason is:  <i>"Unicast destination IP but multicast destination MAC"</i>.<br>
+  To receive this drop reason, you can use the customer WJH XML configuration
+  file, and set the severity of it from ‘Invalid’ to any other severity.</p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:61'>
+  <td valign=top>
+  <p><b>Workaround:</b> N/A</p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:62'>
+  <td valign=top>
+  <p><b>Keywords:</b> What Just Happened, dropped packets</p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:63'>
+  <td valign=top>
+  <p><b>Discovered in Version:</b> SONiC
+  201911_MUR6</p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:64'>
+  <td rowspan=4 valign=top>
+  <p>2376634</p>
+  </td>
+  <td valign=top>
+  <p><b>Description:</b> Warmboot on NVIDIA Spectrum-3 is
+  not supported if using SONiC 201911_MUR5 <b>(HASH:</b>
+  c453381aecfda14c276dcc7f8d357a034feb84b4) and below to reboot or upgrade
+  to 201911_MUR6.</p>
+  </td>
+ </tr>
+=======
   <p><b>Fixed in Version: </b>SONiC 202012</p>
   </td>
  </tr>
@@ -1055,6 +2600,7 @@ For the community limitations, please refer to the {{<exlink url="https://github
   to 201911_MUR6.</p>
   </td>
  </tr>
+>>>>>>> e5c8162bba7f940fa393c5aa7794b98edb193e5f
  <tr style='mso-yfti-irow:65'>
   <td valign=top>
   <p><b>Workaround:</b> N/A</p>

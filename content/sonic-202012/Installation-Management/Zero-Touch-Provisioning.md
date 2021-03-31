@@ -48,7 +48,14 @@ This command deletes the existing `/etc/sonic/config_db.json` file and starts th
 
 ## Check ZTP
 
+<<<<<<< HEAD
 To check the status of ZTP, run:
+=======
+https://github.com/Azure/SONiC/blob/master/doc/ztp/ztp.md
+
+
+## Use a Local File
+>>>>>>> e5c8162bba7f940fa393c5aa7794b98edb193e5f
 
 ```
 admin@switch:~$ sudo show ztp status

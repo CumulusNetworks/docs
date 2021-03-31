@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 410
 toc: 4
 ---
-The first step in upgrading your NetQ 2.4.1 - 3.3.0 installation to NetQ 3.3.1 is to upgrade your NetQ appliance(s) or VM(s). This topic describes how to upgrade this for both on-premises and remote deployments.
+The first step in upgrading your NetQ installation to NetQ 3.3.1 is to upgrade your NetQ appliances or VMs. This topic describes how to upgrade this for both on-premises and remote deployments.
 
 ## Prepare for Upgrade
 
@@ -203,7 +203,7 @@ You can now upgrade your appliance using the NetQ Admin UI, in the next section.
 
 ## Upgrade Your Platform Using the NetQ Admin UI
 
-After completing the preparation steps, upgrading your NetQ On-premises or Cloud Appliance(s) or VMs is simple using the Admin UI.
+After completing the preparation steps, upgrading your NetQ On-premises or Cloud Appliances or VMs is simple using the Admin UI.
 
 To upgrade your NetQ software:
 

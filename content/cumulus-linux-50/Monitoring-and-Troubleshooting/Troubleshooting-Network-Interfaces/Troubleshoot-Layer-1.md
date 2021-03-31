@@ -162,7 +162,7 @@ For all other optical modules besides 1000BASE-X, there is no autonegotiation st
 
 For 10G DACs, there is no autonegotiation.
 
-For DAC cables on speeds higher than 25G, autonegotiation is unnecessary, but is useful because it can improve signal integrity by link training. It also negotiates speed and FEC, but this is less useful since the neighbor speed and FEC is usually known.
+For DAC cables on speeds higher than 25G, autonegotiation is unnecessary, but is useful because it can improve signal integrity by link training. It also negotiates speed and FEC, but this is less useful because the neighbor speed and FEC is usually known.
 
 #### General Autonegotiation Guidance
 
@@ -351,7 +351,7 @@ The operational state shows the current state of the link in the kernel and in t
 
 ### Port Hardware State
 
-The port hardware state shows additional low level port information. Since different hardware vendors have different approaches to how the port information is organized, the output varies between vendors.
+The port hardware state shows additional low level port information. Because different hardware vendors have different approaches on how the port information is organized, the output varies between vendors.
 
 Here is the output on Mellanox platforms:
 
@@ -386,7 +386,7 @@ To resolve a layer 1 problem, follow these steps:
   - Identify if the issue is likely a configuration issue or a hardware issue. If unclear, start with configuration first.
   - For configuration issues, ensure the configuration on both ends of the link matches the guidance in this guide and in {{<link url="Switch-Port-Attributes" text="Switch Port Attributes">}}.
   - For hardware issue isolate the faulty component by methodically moving and replacing components as described in {{<link url="#isolate-faulty-hardware" text="Isolate Faulty Hardware">}} below.
-- Once the root cause is isolated, make the changes permanent to resolve the problem. For faulty hardware, replace the failed component.
+- After you isolate the root cause, make the changes permanent to resolve the problem. For faulty hardware, replace the failed component.
 
 ### Classify the Layer 1 Problem
 
@@ -503,10 +503,10 @@ Operational State
   - In a link flapping issue, one or both of these values may change every second or less, so the output of this field may not represent the value in the next moment in time.
 - Speed (Kernel and Hardware): Does the operational speed match the configured speed?
   - When the link is up, the kernel and hardware operational values should be in sync with each other and the configured speed.
-  - When the link is down and autoneg is enabled, the kernel value is *Unknown!* since the hardware has not synced to a speed.
+  - When the link is down and autoneg is enabled, the kernel value is *Unknown!* because the hardware has not synced to a speed.
   - When the link is down and autoneg is disabled, the kernel speed displays the configured value. The *Hardware* field may show various values, depending on implementation of the particular hardware interface.
 - Autoneg/Autodetect: Normally the operational value matches the configured value. This is informational only, but it is useful to know if autodetect is enabled. See the detailed sections on {{<link url="#autonegotiation" text="autonegotiation">}} and {{<link url="#autodetect" text="autodetect">}} for more information.
-- FEC: This field is only useful for informational purposes, since it displays the actual FEC only when the link is up.
+- FEC: This field is only useful for informational purposes. It displays the actual FEC only when the link is up.
   - When the link is down, the operational FEC is *None*.
   - When the link is up, this field shows the actual FEC value working on the link.
 - TX/RX Power (optical modules only): If the module supports laser power DDM/DOM, are these values in working ranges?
@@ -570,7 +570,7 @@ Port Hardware State:
 
 ### RX Signal Failure Examples
 
-Here is the output from `l1-show` for an AOC (on swp6) with failed RX on lane 3. Since an AOC is an integrated fiber assembly, the entire assembly must be replaced.
+Here is the output from `l1-show` for an AOC (on swp6) with failed RX on lane 3. Because an AOC is an integrated fiber assembly, the entire assembly must be replaced.
 
 ```
   Port:  swp6
@@ -640,7 +640,7 @@ Error counters for a port can be seen by running the `ethtool -S <swp> | grep Er
 
 On Mellanox switches, counts of bit errors that are corrected by FEC on a link can be seen when you run the `sudo l1-show <swp> --pcs-errors` command.
 
-Since errors can occur during link up/down transitions, it is best to check error counters over a period of time to ensure they are incrementing regularly rather than displaying stale counts from when the link last transitioned up or down. The `/var/log/linkstate` log files show historical link up/down transitions on a switch.
+Because errors can occur during link up/down transitions, it is best to check error counters over a period of time to ensure they are incrementing regularly rather than displaying stale counts from when the link last transitioned up or down. The `/var/log/linkstate` log files show historical link up/down transitions on a switch.
 
 ## Troubleshoot Signal Integrity Issues
 
@@ -755,9 +755,9 @@ Ethernet switches contain multiple I2C buses set up in order for the switch CPU 
 
 On rare occasions, a port module with a defective I2C component or firmware can fail so badly that it locks up one or more I2C buses. Depending on the particular hardware design of a switch and the way in which the failure occurs, different symptoms of this failure are displayed. Often traffic continues to work for a while in this failed condition, but sometimes the failure can cause modules to be incorrectly configured, resulting in link failures or increased error rates on a link. In the worst case, the switch reboots or locks up.
 
-Since I2C issues are in the low speed control circuitry of a module, they are not caused or affected by the high speed traffic rates on the data side of the module. Nor are they caused by software bugs in Cumulus Linux.
+Because I2C issues are in the low speed control circuitry of a module, they are not caused or affected by the high speed traffic rates on the data side of the module. Nor are they caused by software bugs in Cumulus Linux.
 
-When the I2C bus has issues or lockups, installed port modules may no longer show up in the output of `sudo l1-show <swp>` or `sudo ethtool -m <swp>`. A significant number of `smbus` or `i2c` or `EEPROM read` errors may be present in `/var/log/syslog`. Note that once one module has locked up the bus, some or all of the other modules will exhibit problems, making it nearly impossible to tell which module caused the failure.  
+When the I2C bus has issues or lockups, installed port modules may no longer show up in the output of `sudo l1-show <swp>` or `sudo ethtool -m <swp>`. A significant number of `smbus` or `i2c` or `EEPROM read` errors may be present in `/var/log/syslog`. Note that after one module has locked up the bus, some or all of the other modules will exhibit problems, making it nearly impossible to tell which module caused the failure.  
 
 The overwhelming number of I2C lockups are caused by failed I2C components or defective designs in port modules. Most failures are caused by low priced vendor modules, but even high price, high quality modules can fail, only with much lower incidence; that is, they have a higher MTBF rating. If an I2C issue is suspected, the first place to look is at the installed modules that are not on the {{<exlink url="https://cumulusnetworks.com/hcl" text="Cumulus Linux HCL">}}. The Cumulus Linux HCL is populated with modules that are known to work in Cumulus Linux switches, which also have a solid track record in customer networks.
 

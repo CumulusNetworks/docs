@@ -44,7 +44,7 @@ If you are unfamiliar with the configuration of your LDAP server, contact your a
 Two attributes are required to define a user entry in a directory:
 
 - **Base DN**: Location in directory structure where search begins. For example, `dc=mycompany,dc=com`.
-- **User ID**: Type of identifier used to specify an LDAP user. This can vary depending on the authentication service you are using. For example,  user ID (UID) or email address can be used with OpenLDAP, whereas sAMAccountName might be used with Active Directory.
+- **User ID**: Type of identifier used to specify an LDAP user. This can vary depending on the authentication service you are using. For example,  <!-- vale off -->user ID (UID)<!-- vale on --> or email address can be used with OpenLDAP, whereas sAMAccountName might be used with Active Directory.
 
 Optionally, you can specify the first name, last name, and email address of the user.
 

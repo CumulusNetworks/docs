@@ -23,7 +23,7 @@ You can improve the readability of the output using color. Run `netq config add 
 
 ### Syntax
 
-There are three forms of this command; one for layer 3 and two for layer 2 traces.
+Three forms of this command are available; one for layer 3 and two for layer 2 traces.
 
 ```
 netq trace

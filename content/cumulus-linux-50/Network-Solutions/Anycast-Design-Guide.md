@@ -73,7 +73,7 @@ As leaf03 is brought back into service, the hashing function on spine02 changes,
 
 {{< img src = "/images/cumulus-linux/network-solutions-anycast5.png" >}}
 
-Just as the addition of a device can impact unrelated traffic, the removal of a device can also impact unrelated traffic, since again, the modulo of the hash function is changed. You can see this below, where the blue dotted flow goes through leaf01 and the red dashed line goes through leaf04.
+Just as the addition of a device can impact unrelated traffic, the removal of a device can also impact unrelated traffic because the modulo of the hash function is changed. You can see this below, where the blue dotted flow goes through leaf01 and the red dashed line goes through leaf04.
 
 {{< img src = "/images/cumulus-linux/network-solutions-anycast6.png" >}}
 
@@ -81,7 +81,7 @@ Now, leaf02 has failed. As a result, the modulo on spine02 has changed from four
 
 {{< img src = "/images/cumulus-linux/network-solutions-anycast7.png" >}}
 
-To help solve this issue, resilient hashing can prevent traffic flows from shifting on unrelated failure scenarios. With resilient hashing enabled, the failure of leaf02 does not impact both existing flows, since they do not currently flow through leaf02:
+To help solve this issue, resilient hashing can prevent traffic flows from shifting on unrelated failure scenarios. With resilient hashing enabled, the failure of leaf02 does not impact both existing flows because they do not currently flow through leaf02:
 
 {{< img src = "/images/cumulus-linux/network-solutions-anycast8.png" >}}
 

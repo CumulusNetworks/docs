@@ -98,7 +98,7 @@ If any of the applications or services display Status as DOWN after 30 minutes, 
 
 {{< tab "Cloud, Single Server Deployment" >}}
 
-Run the following command on your NetQ Cloud Appliance with the `config-key` sent by Cumulus Networks in an email titled "A new site has been added to your Cumulus NetQ account."
+Run the following command on your NetQ Cloud Appliance with the `config-key` sent by NVIDIA in an email titled <!-- vale off -->"A new site has been added to your Cumulus NetQ account."<!-- vale on -->
 
 ```
 cumulus@<hostname>:~$ netq install opta standalone full interface eth0 bundle /mnt/installables/NetQ-3.3.0-opta.tgz config-key <your-config-key-from-email> proxy-host <proxy-hostname> proxy-port <proxy-port>
@@ -119,7 +119,7 @@ OPTA is healthy
 
 {{< tab "Cloud, Server Cluster Deployment" >}}
 
-Run the following commands on your *master* NetQ Cloud Appliance with the `config-key` sent by Cumulus Networks in an email titled "A new site has been added to your Cumulus NetQ account."
+Run the following commands on your *master* NetQ Cloud Appliance with the `config-key` sent by NVIDIA in an email titled <!-- vale off -->"A new site has been added to your Cumulus NetQ account."<!-- vale on -->
 
 ```
 cumulus@<hostname>:~$ netq install opta cluster full interface eth0 bundle /mnt/installables/NetQ-3.3.1-opta.tgz config-key <your-config-key-from-email> workers <worker-1-ip> <worker-2-ip> proxy-host <proxy-hostname> proxy-port <proxy-port>

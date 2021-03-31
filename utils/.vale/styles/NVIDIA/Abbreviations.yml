@@ -1,14 +1,14 @@
----
-# Error: NVIDIA.Abbrevations
+# Warning: NVIDIA.Abbreviations
 #
-# Expand abbrevations
+# Always expand the following abbreviations
 #
 extends: substitution
-message: Expand abbrevation '%s' to '%s'
+message: Expand abbreviation '%s' to '%s'
 link: https://wikinox.mellanox.com/display/BUS/House+Style+Guide#HouseStyleGuide-TerminologyandCommonly-usedWords
 level: warning
 scope: heading
 ignorecase: true
 swap:
   cert: certificate
-  auto-neg: auto-negotation
+  auto-neg: auto-negotiation
+  mgmt: management

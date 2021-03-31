@@ -294,7 +294,8 @@ body {
 
     &:after {
       content: '';
-      background-image: url(/icons/baseline-expand_more.svg);
+      background-image: url($baseline-expand_more);
+      //background-image: url('/icons/baseline-expand_more.svg');
       display: inline-block;
       margin-left: .255em;
       position: relative;
@@ -348,7 +349,7 @@ body {
     &.dropdown-toggle {
       &:after {
         content: '';
-        background-image: url(/icons/baseline-expand_more.svg);
+        background-image: url($baseline-expand_more);
         display: inline-block;
         margin-left: .255em;
         position: relative;
@@ -425,7 +426,7 @@ body {
     max-width: 1600px;
     padding: 0 30px;
 
-    li { 
+    li {
       a {
         position: relative;
       }
@@ -1121,7 +1122,7 @@ div.notices.info {
 
 div.notices.info>*:first-child:before {
   content: '';
-  background-image: url(/icons/alert-triangle.png);
+  background-image: url($alert-triangle);
   background-repeat: no-repeat;
   width: 20px;
   height: 20px;
@@ -1163,7 +1164,7 @@ div.notices.warning {
 
 div.notices.warning>*:first-child:before {
   content: '';
-  background-image: url(/icons/remove-circle.png);
+  background-image: url($remove-circle);
   background-repeat: no-repeat;
   width: 20px;
   height: 20px;
@@ -1209,7 +1210,7 @@ div.notices.note {
 
 div.notices.note>*:first-child:before {
   content: '';
-  background-image: url(/icons/info-circle.png);
+  background-image: url($info-circle);
   background-repeat: no-repeat;
   width: 20px;
   height: 20px;
@@ -1252,7 +1253,7 @@ div.notices.tip {
 
 div.notices.tip>*:first-child:before {
   content: '';
-  background-image: url(/icons/check-circle.png);
+  background-image: url($check-circle);
   background-repeat: no-repeat;
   width: 20px;
   height: 20px;
@@ -1428,7 +1429,7 @@ footer {
     list-style: none;
     margin: 0;
     padding: 0;
-    
+
     a {
       color: white !important;
       font-size: 14px;
@@ -1479,7 +1480,7 @@ footer {
           margin-right: auto;
         }
       }
-      
+
       svg {
         height: 28px;
         path,
@@ -1597,7 +1598,7 @@ footer {
         max-width: 1140px;
     }
   }
-  
+
   ul {
     margin: 0;
     padding: 0;
@@ -1722,7 +1723,7 @@ footer {
   padding: 0 56px 0 36px;
   position: fixed;
   left: 0;
-  top: 125px; 
+  top: 125px;
   width: 100%;
   z-index: 1021;
   transition: all 0.25s;

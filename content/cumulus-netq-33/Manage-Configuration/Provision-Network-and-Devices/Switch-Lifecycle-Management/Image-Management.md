@@ -8,7 +8,7 @@ You can manage both Cumulus Linux and NetQ images with LCM. They are managed in 
 
 Cumulus Linux binary images can be uploaded to a local LCM repository for upgrade of your switches. NetQ debian packages can be uploaded to the local LCM repository for installation or upgrade. You can upload images from an external drive.
 
-The Linux and NetQ images are available in several variants based on the software version (x.y.z), the CPU architecture (ARM, x86), platform (based on ASIC vendor, Broadcom or Mellanox), SHA Checksum, and so forth. When LCM discovers Cumulus Linux switches running NetQ 2.x or later in your network, it extracts the meta data needed to select the appropriate image for a given switch.  Similarly, LCM discovers and extracts the meta data from NetQ images.
+The Linux and NetQ images are available in several variants based on the software version (x.y.z), the CPU architecture (ARM, x86), platform (based on ASIC vendor, Broadcom or NVIDIA), SHA Checksum, and so forth. When LCM discovers Cumulus Linux switches running NetQ 2.x or later in your network, it extracts the meta data needed to select the appropriate image for a given switch. Similarly, LCM discovers and extracts the meta data from NetQ images.
 
 {{<figure src="/images/netq/lcm-image-naming-conventions-310.png" width="400">}}
 

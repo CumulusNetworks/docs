@@ -19,7 +19,7 @@ For servers running RHEL or CentOS, you need to:
 - Obtain NetQ software packages
 
 {{%notice note%}}
-If your network uses a proxy server for external connections, you should first {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux/System-Configuration/Configuring-a-Global-Proxy/" text="configure a global proxy">}} so `apt-get` can access the software package in the Cumulus Networks repository.
+If your network uses a proxy server for external connections, you should first {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux/System-Configuration/Configuring-a-Global-Proxy/" text="configure a global proxy">}} so `apt-get` can access the software package in the NVIDIA networking repository.
 {{%/notice%}}
 
 ### Verify Service Package Versions
@@ -86,7 +86,7 @@ If you are running NTP in your out-of-band management network with VRF, specify 
 
 ### Obtain NetQ Agent Software Package
 
-To install the NetQ Agent you need to install `netq-agent` on each switch or host. This is available from the Cumulus Networks repository.
+To install the NetQ Agent you need to install `netq-agent` on each switch or host. This is available from the NVIDIA networking repository.
 
 To obtain the NetQ Agent package:
 

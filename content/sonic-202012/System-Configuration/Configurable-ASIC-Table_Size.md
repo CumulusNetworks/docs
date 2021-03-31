@@ -1,7 +1,7 @@
 ---
 title: Configurable ASIC Table Size
 author: Cumulus Networks
-weight: 51
+weight: 399
 product: SONiC
 version: 202012
 siteSlug: sonic

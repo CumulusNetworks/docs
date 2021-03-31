@@ -17,10 +17,10 @@ To get fan information, run `show platform fan`:
 admin@switch:~$ show platform fan
 FAN    Speed      Direction  Presence     Status  Timestamp
 -----  ---------  ---------  -----------  ------  -----------------
-FAN 1  85%        intake     Present      OK      20191112 09:38:16
-FAN 2  60%        intake     Present      OK      20191112 09:38:16
-FAN 3  75%        exhaust    Present      Not OK  20191112 09:38:16
-FAN 4  65%        exhaust    Present      Not OK  20191112 09:38:16
+FAN 1  85%        intake     Present      OK      20201212 09:38:16
+FAN 2  60%        intake     Present      OK      20201212 09:38:16
+FAN 3  75%        exhaust    Present      Not OK  20201212 09:38:16
+FAN 4  65%        exhaust    Present      Not OK  20201212 09:38:16
 ```
 
 To get thermal zone information, run `show platform temperature`:

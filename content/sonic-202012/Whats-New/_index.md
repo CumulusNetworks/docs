@@ -7,7 +7,7 @@ version: 202012
 siteSlug: sonic
 ---
 
-This topic provides a list of changes and new features in SONiC version 202012.
+This topic provides a list of changes and new features in SONiC version 202012, including NVIDIA Spectrum-specific enhancements and fixes.
 
 | Feature/Change | Description |
 | -------------- | ----------- |

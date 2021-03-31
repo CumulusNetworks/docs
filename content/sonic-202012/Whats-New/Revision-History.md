@@ -11,4 +11,4 @@ This page describes changes made to the user guide.
 
 | Revision | Date | Description |
 | -------- | ---- | ----------- |
-| Rev 1.0 | May 1, 2021 | Initial release of this user guide. |
+| Rev 1.0 | April 8, 2021 | Initial release of this user guide. |

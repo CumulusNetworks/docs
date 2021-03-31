@@ -50,51 +50,52 @@ When the installation finishes, a new Docker image appears as installed on the s
 ```
 admin@switch:~$ show version
  
-SONiC Software Version: SONiC.201911.105-a693f023
-Distribution: Debian 9.12
-Kernel: 4.9.0-11-2-amd64
-Build commit: a693f023
-Build date: Tue Jun  2 04:34:50 UTC 2020
-Built by: user@jenkins-worker-8
- 
+SONiC Software Version: SONiC.202012.15-cb79de1b
+Distribution: Debian 10.7
+Kernel: 4.19.0-9-2-amd64
+Build commit: cb79de1b
+Build date: Sat Jan 30 11:14:42 UTC 2021
+Built by: johnar@jenkins-worker-11
+
 Platform: x86_64-mlnx_msn2700-r0
 HwSKU: ACS-MSN2700
 ASIC: mellanox
-Serial Number: MT1749X10061
-Uptime: 11:13:31 up 13 min,  1 user,  load average: 1.23, 1.27, 0.94
+ASIC Count: 1
+Serial Number: MT1552X12041
+Uptime: 19:19:08 up 15 days, 22:56,  1 user,  load average: 6.67, 6.37, 6.05
  
 Docker images:
 REPOSITORY                    TAG                   IMAGE ID            SIZE
 docker-wjh                    latest                98c3552e0656        314MB
 docker-wjh                    master.0-5f20758      98c3552e0656        314MB
-docker-syncd-mlnx             201911.105-a693f023   98fca07c66f8        385MB
-docker-syncd-mlnx             latest                98fca07c66f8        385MB
-docker-router-advertiser      201911.105-a693f023   7cfa270f720e        285MB
-docker-router-advertiser      latest                7cfa270f720e        285MB
-docker-sonic-mgmt-framework   201911.105-a693f023   e4de082a4d57        425MB
-docker-sonic-mgmt-framework   latest                e4de082a4d57        425MB
-docker-platform-monitor       201911.105-a693f023   47225d051c25        631MB
-docker-platform-monitor       latest                47225d051c25        631MB
-docker-fpm-frr                201911.105-a693f023   35f7b0e37293        330MB
-docker-fpm-frr                latest                35f7b0e37293        330MB
-docker-sflow                  201911.105-a693f023   1881f652abc6        310MB
-docker-sflow                  latest                1881f652abc6        310MB
-docker-lldp-sv2               201911.105-a693f023   68b65649a34c        307MB
-docker-lldp-sv2               latest                68b65649a34c        307MB
-docker-dhcp-relay             201911.105-a693f023   9ad2cf038e18        295MB
-docker-dhcp-relay             latest                9ad2cf038e18        295MB
-docker-database               201911.105-a693f023   eb5aa74a87c1        285MB
-docker-database               latest                eb5aa74a87c1        285MB
-docker-teamd                  201911.105-a693f023   1e58c8013eb7        310MB
-docker-teamd                  latest                1e58c8013eb7        310MB
-docker-snmp-sv2               201911.105-a693f023   9be7e0014c74        343MB
-docker-snmp-sv2               latest                9be7e0014c74        343MB
-docker-orchagent              201911.105-a693f023   cfd095aa48d4        328MB
-docker-orchagent              latest                cfd095aa48d4        328MB
-docker-nat                    201911.105-a693f023   b4b59b10cd72        311MB
-docker-nat                    latest                b4b59b10cd72        311MB
-docker-sonic-telemetry        201911.105-a693f023   63aee702a3ed        349MB
-docker-sonic-telemetry        latest                63aee702a3ed        349MB
+docker-syncd-mlnx             202012.15-cb79de1b   10691c29472b        540MB
+docker-syncd-mlnx             latest               10691c29472b        540MB
+docker-teamd                  202012.15-cb79de1b   15135f94fe07        406MB
+docker-teamd                  latest               15135f94fe07        406MB
+docker-router-advertiser      202012.15-cb79de1b   11e5c3c840a8        395MB
+docker-router-advertiser      latest               11e5c3c840a8        395MB
+docker-nat                    202012.15-cb79de1b   f28128bcecb0        408MB
+docker-nat                    latest               f28128bcecb0        408MB
+docker-platform-monitor       202012.15-cb79de1b   68f6c90b7f0e        687MB
+docker-platform-monitor       latest               68f6c90b7f0e        687MB
+docker-lldp                   202012.15-cb79de1b   ee4cb85cb4bc        435MB
+docker-lldp                   latest               ee4cb85cb4bc        435MB
+docker-database               202012.15-cb79de1b   7a79adaa829c        394MB
+docker-database               latest               7a79adaa829c        394MB
+docker-orchagent              202012.15-cb79de1b   177b5e05d036        423MB
+docker-orchagent              latest               177b5e05d036        423MB
+docker-snmp                   202012.15-cb79de1b   0e1fd1ff2bc3        435MB
+docker-snmp                   latest               0e1fd1ff2bc3        435MB
+docker-dhcp-relay             202012.15-cb79de1b   0ae260811eaf        401MB
+docker-dhcp-relay             latest               0ae260811eaf        401MB
+docker-sonic-telemetry        202012.15-cb79de1b   4fcfc6efdcaa        469MB
+docker-sonic-telemetry        latest               4fcfc6efdcaa        469MB
+docker-sonic-mgmt-framework   202012.15-cb79de1b   b6f7412f2707        612MB
+docker-sonic-mgmt-framework   latest               b6f7412f2707        612MB
+docker-fpm-frr                202012.15-cb79de1b   4e6dfaf61388        423MB
+docker-fpm-frr                latest               4e6dfaf61388        423MB
+docker-sflow                  202012.15-cb79de1b   32b2b32b4bd7        406MB
+docker-sflow                  latest               32b2b32b4bd7        406MB
 ```
 
 {{%notice info%}}
@@ -103,7 +104,7 @@ During the installation, a default configuration required for What Just Happened
 
 {{%/notice%}}
 
-## What Just Happened Interoperability with SONiC
+## Enable What Just Happened in SONiC
 
 After you install WJH, SONiC treats the new WJH Docker image as any other optional SONiC feature, so SONiC `feature` commands can be applied to WJH like it can for any other SONiC container. You can verify SONiC was installed by running the following command:
 
@@ -128,7 +129,7 @@ telemetry           enabled   enabled
 what-just-happened  enabled   disabled 
 ```
 
-Notice that WJH is in the *disabled* state by default after installation. To enable WJH, run:
+Notice that WJH is in a *disabled* state by default after installation. To enable WJH, run:
 
     admin@switch:~$ sudo config feature state what-just-happened enabled
 
@@ -251,13 +252,13 @@ Make sure the new WJH Debian has the proper SDK version integrated into the imag
 For the latest SDK version, refer to the {{<link url="Release-Notes" text="SONiC Release Notes">}}.
 
 ```
-admin@switch:~$ sudo dpkg -i what-just-happened-201911_1.2.0_amd64.deb 
+admin@switch:~$ sudo dpkg -i what-just-happened-202012_1.2.0_amd64.deb 
 (Reading database ... 28024 files and directories currently installed.)
-Preparing to unpack what-just-happened-201911_1.2.0_amd64.deb ...
+Preparing to unpack what-just-happened-202012_1.2.0_amd64.deb ...
 Stopping what-just-happened service...
 what-just-happened
 Removing installed docker what-just-happened images...
-Untagged: docker-wjh:201911.master.0-dirty-20200812.172321
+Untagged: docker-wjh:202012.master.0-dirty-20200812.172321
 Untagged: docker-wjh:latest
 Deleted: sha256:1ea0e2cf882b7bbd203834d77c9acd525a13f33bdd1d2c9698e957d2c8bf9b11
 Deleted: sha256:91e7c1eec5f25417c1564f30d5d160755fef7bef37870488f451fe90493c23cb
@@ -278,8 +279,8 @@ Removing what-just-happened configuration tables...
 NOTE: config will be saved.
 Running command: /usr/local/bin/sonic-cfggen -d --print-data > /etc/sonic/config_db.json
 Done!!!
-Unpacking what-just-happened-201911 (1.2.0) over (1.2.0) ...
-Setting up what-just-happened-201911 (1.2.0) ...
+Unpacking what-just-happened-202012 (1.2.0) over (1.2.0) ...
+Setting up what-just-happened-202012 (1.2.0) ...
 Loading what-just-happened docker image...
 Writing default what-just-happened configuration...
 NOTE: config will be saved...

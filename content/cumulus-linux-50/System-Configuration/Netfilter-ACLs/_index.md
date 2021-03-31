@@ -30,7 +30,7 @@ The chains and their uses are:
 
 - **PREROUTING** touches packets before they are routed
 - **INPUT** touches packets after they are determined to be destined for the local system but before they are received by the control plane software
-- **FORWARD** touches transit traffic as it moves through the box
+- **FORWARD** touches transit traffic as it moves through the switch
 - **OUTPUT** touches packets that are sourced by the control plane software before they are put on the wire
 - **POSTROUTING** touches packets immediately before they are put on the wire but after the routing decision has been made
 
@@ -216,7 +216,7 @@ pkts bytes target prot opt in out source destination
 0 0 DROP icmp -- any any anywhere anywhere icmp echo-request
 ```
 
-However, the rule is not synced to hardware when applied in this way and running `cl-acltool -i` or `reboot` removes the rule without replacing it. To ensure all rules that can be in hardware are hardware accelerated, place them in `/etc/cumulus/acl/policy.conf` and install them by running `cl-acltool -i`.
+However, the rule is not synchronized to hardware when applied in this way and running `cl-acltool -i` or `reboot` removes the rule without replacing it. To ensure all rules that can be in hardware are hardware accelerated, place them in `/etc/cumulus/acl/policy.conf` and install them by running `cl-acltool -i`.
 
 ### Estimate the Number of Rules
 
@@ -339,7 +339,7 @@ This deletes all rules from the `50_nclu_acl.rules` file with that name. It also
 
 ## Install and Manage ACL Rules with cl-acltool
 
-You can manage Cumulus Linux ACLs with `cl-acltool`. Rules are first written to the `iptables` chains, as described above, and then synced to hardware via `switchd`.
+You can manage Cumulus Linux ACLs with `cl-acltool`. Rules are first written to the `iptables` chains, as described above, and then synchronized to hardware via `switchd`.
 
 {{%notice note%}}
 Use `iptables`/`ip6tables`/`ebtables` and `cl-acltool` to manage rules in the default files, `00control_plane.rules` and `99control_plane_catch_all.rules`; they are not aware of rules created using NCLU.
@@ -531,9 +531,9 @@ error: hw sync failed (sync_acl hardware installation failed) Rolling back .. fa
 
 In the tables below, the default rules count toward the limits listed. The raw limits below assume only one ingress and one egress table are present.
 
-### Mellanox Spectrum Limits
+### NVIDIA Spectrum Limits
 
-The Mellanox Spectrum ASIC has one common {{<exlink url="https://en.wikipedia.org/wiki/Content-addressable_memory#Ternary_CAMs" text="TCAM">}} for both ingress and egress, which can be used for other non-ACL-related resources. However, the number of supported rules varies with the {{<link url="Supported-Route-Table-Entries#tcam-resource-profiles-for-spectrum-switches" text="TCAM profile">}} specified for the switch.
+The NVIDIA Spectrum ASIC has one common {{<exlink url="https://en.wikipedia.org/wiki/Content-addressable_memory#Ternary_CAMs" text="TCAM">}} for both ingress and egress, which can be used for other non-ACL-related resources. However, the number of supported rules varies with the {{<link url="Supported-Route-Table-Entries#tcam-resource-profiles-for-spectrum-switches" text="TCAM profile">}} specified for the switch.
 
 |Profile |Atomic Mode IPv4 Rules |Atomic Mode IPv6 Rules |Nonatomic Mode IPv4 Rules |Nonatomic Mode IPv6 Rules |
 |------------|-------------------|-------------------|-------------------|-------------------------|
@@ -1028,7 +1028,7 @@ pkts bytes target  prot opt in   out   source    destination
 
 However, running `cl-acltool -i` or `reboot` removes them. To ensure all rules that can be in hardware are hardware accelerated, place them in the `/etc/cumulus/acl/policy.conf` file, then run `cl-acltool -i`.
 
-### Mellanox Spectrum Hardware Limitations
+### NVIDIA Spectrum Hardware Limitations
 
 Due to hardware limitations in the Spectrum ASIC, {{<link url="Bidirectional-Forwarding-Detection-BFD" text="BFD policers">}} are shared between all BFD-related control plane rules. Specifically the following default rules share the same policer in the `00control_plan.rules` file:
 

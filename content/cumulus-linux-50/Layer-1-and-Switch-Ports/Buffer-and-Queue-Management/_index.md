@@ -212,7 +212,7 @@ Always run the {{<link url="#syntax-checker" text="syntax checker">}} syntax che
 
 ## Cut-through Mode and Store and Forward Switching
 
-Mellanox switches support cut-through mode but do **not** support store and forward switching. You cannot disable cut-through mode.
+NVIDIA switches support cut-through mode but do **not** support store and forward switching. You cannot disable cut-through mode.
 
 When cut-though mode is enabled and link pause is asserted, Cumulus Linux generates a TOVR and TUFL ERROR; certain error counters increment on a given physical port.
 

@@ -39,11 +39,11 @@ netq [<hostname>] show events [level info | level error | level warning | level 
 
 When entering a time value, you must include a numeric value *and* the unit of measure:
 
-- **w**: week(s)
-- **d**: day(s)
-- **h**: hour(s)
-- **m**: minute(s)
-- **s**: second(s)
+- **w**: weeks
+- **d**: days
+- **h**: hours
+- **m**: minutes
+- **s**: seconds
 - **now**
 
 When using the `between` option, the start time (`text-time`) and end time (`text-endtime`) values can be entered as most recent first and least recent second, or vice versa. The values do not have to have the same unit of measure.
@@ -585,7 +585,7 @@ You can get more descriptive information about changes to a given MAC address on
 | A MAC address is created, or the MAC address on the interface is changed via the `hwaddress` option in */etc/network/interface* | leaf01 00:00:5e:00:00:03 configured on interface vlan1000-v0 |
 | An interface becomes a slave in, or is removed from, a bond | leaf01 00:00:5e:00:00:03 configured on interface vlan1000-v0|
 | An interface is a bridge and it inherits a different MAC address due to a membership change | leaf01 00:00:5e:00:00:03 configured on interface vlan1000-v0 |
-| A remote MAC address is learned or installed by control plane on a tunnel interface | 44:38:39:00:00:5d learned/installed on vni vni10 pointing to remote dest 10.0.1.34 |
+| A remote MAC address is learned or installed by control plane on a tunnel interface | <!-- vale off -->44:38:39:00:00:5d learned/installed on vni vni10 pointing to remote dest 10.0.1.34 <!-- vale on -->|
 | A remote MAC address is flushed or expires | leaf01 44:38:39:00:00:5d is flushed or expired |
 | A remote MAC address moves from behind one remote switch to another remote switch or becomes a local MAC address | leaf02: 00:08:00:00:aa:13 moved from remote dest 27.0.0.22 to remote dest 27.0.0.34 <br> 00:08:00:00:aa:13 moved from remote dest 27.0.0.22 to local interface hostbond2 |
 | A MAC address is learned at the first-hop switch (or MLAG switch pair) | leaf04 (and MLAG peer leaf05): 44:38:39:00:00:5d learned on first hop switch, pointing to local interface bond4 |

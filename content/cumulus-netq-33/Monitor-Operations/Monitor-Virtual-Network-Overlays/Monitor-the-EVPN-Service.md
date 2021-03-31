@@ -23,11 +23,11 @@ With NetQ, you can monitor EVPN performance across the network:
 
 When entering a time value in the `netq show lldp` command, you must include a numeric value *and* the unit of measure:
 
-- **w**: week(s)
-- **d**: day(s)
-- **h**: hour(s)
-- **m**: minute(s)
-- **s**: second(s)
+- **w**: weeks
+- **d**: days
+- **h**: hours
+- **m**: minutes
+- **s**: seconds
 - **now**
 
 When using the `between` option, the start time (`text-time`) and end time (`text-endtime`) values can be entered as most recent first and least recent second, or vice versa. The values do not have to have the same unit of measure.
@@ -708,7 +708,7 @@ To view all EVPN alarms, run:
 netq show events [level info | level error | level warning | level critical | level debug] type evpn [between <text-time> and <text-endtime>] [json]
 ```
 
-Use the level option to set the severity of the events to show.  Use the between option to show events within a given time range.
+Use the level option to set the severity of the events to show. Use the `between` option to show events within a given time range.
 
 This example shows critical EVPN events in the past three days.
 

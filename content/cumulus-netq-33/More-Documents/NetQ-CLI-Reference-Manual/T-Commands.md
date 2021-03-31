@@ -23,7 +23,7 @@ You can improve the readability of the output using color. Run `netq config add 
 
 ### Syntax
 
-There are three forms of this command; one for layer 3 and two for layer 2 traces.
+Three forms of this command are available; one for layer 3 and two for layer 2 traces.
 
 ```
 netq trace
@@ -210,7 +210,7 @@ A release is included if there were changes to the command, otherwise it is not 
 
 ### Sample Usage
 
-<!-- Add output/results??? -->
+<!-- Add output/results -->
 ```
 cumulus@<hostname>:~$ netq upgrade bundle /mnt/installables/NetQ-3.3.0.tgz
 ```

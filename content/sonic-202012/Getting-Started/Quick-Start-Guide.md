@@ -103,14 +103,14 @@ It is recommended to contact your switch manufacturer's support team to receive 
 
 4. Verify the current image version.
 
-       admin@leaf01:~$ show version
+       admin@switch:~$ show version
 
-       SONiC Software Version: SONiC.201911.202-c453381a
-       Distribution: Debian 9.13
-       Kernel: 4.9.0-11-2-amd64
-       Build commit: c453381a
-       Build date: Tue Nov 10 07:40:20 UTC 2020
-       Built by: johnar@jenkins-worker-7
+       SONiC Software Version: SONiC.202012.15-cb79de1b
+       Distribution: Debian 10.7
+       Kernel: 4.19.0-9-2-amd64
+       Build commit: cb79de1b
+       Build date: Sat Jan 30 11:14:42 UTC 2021
+       Built by: johnar@jenkins-worker-11
 
        Platform: x86_64-mlnx_msn2700-r0
        HWSKU: ACS-MSN2700

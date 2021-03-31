@@ -316,9 +316,9 @@ Some of the common reasons for upgrade failures and the errors they present:
 
 | Reason | Error Message |
 | --- | --- |
-| Switch is not reachable via SSH | Data could not be sent to remote host "192.168.0.15". Make sure this host can be reached over ssh: ssh: connect to host 192.168.0.15 port 22: No route to host |
+| Switch is not reachable via SSH | Data could not be sent to remote host "192.168.0.15." Make sure this host can be reached over ssh: ssh: connect to host 192.168.0.15 port 22: No route to host |
 | Switch is reachable, but user-provided credentials are invalid | Invalid/incorrect username/password. Skipping remaining 2 retries to prevent account lockout: Warning: Permanently added '\<hostname-ipaddr\>' to the list of known hosts. Permission denied, please try again. |
-| Switch is reachable, but a valid Cumulus Linux license is not installed | 1587866683.880463 2020-04-26 02:04:43 license.c:336 CRIT No license file. No license installed! |
+| Switch is reachable, but a valid Cumulus Linux license is not installed | <!-- vale off -->1587866683.880463 2020-04-26 02:04:43 license.c:336 CRIT No license file. No license installed! <!-- vale on -->|
 | Upgrade task could not be run | Failure message depends on the why the task could not be run. For example: /etc/network/interfaces: No such file or directory |
-| Upgrade task failed | Failed at- \<task that failed\>. For example: Failed at- MLAG check for the peerLink interface status |
+| Upgrade task failed | Failed at- \<task that failed\>. <!-- vale off -->For example: Failed at- MLAG check for the peerLink interface status<!-- vale on --> |
 | Retry failed after five attempts | FAILED In all retries to process the LCM Job |

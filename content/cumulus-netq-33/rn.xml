@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2556339</td>
+<td>Multiple CLI commands execution simultaneously fails</td>
+<td>3.3.0-3.3.1</td>
+<td></td>
+</tr>
+<tr>
 <td>2555854</td>
 <td>NetQ Agent: If a NetQ Agent is downgraded to the 3.0.0 version from any higher release, the default commands file present in the _/etc/netq/commands/_ also needs to be updated to prevent the NetQ Agent from becoming rotten.</td>
 <td>3.0.0-3.3.1</td>
@@ -304,6 +310,12 @@ cumulus@switch:~$ netq config restart agent
 <td>NetQ UI: When switches are running NetQ but hosts are not, the topology does not display the spine and leaf layers as separate tiers.</td>
 <td>3.3.0</td>
 <td>3.3.1</td>
+</tr>
+<tr>
+<td>2556339</td>
+<td>Multiple CLI commands execution simultaneously fails</td>
+<td>3.3.0-3.3.1</td>
+<td></td>
 </tr>
 <tr>
 <td>2556275</td>

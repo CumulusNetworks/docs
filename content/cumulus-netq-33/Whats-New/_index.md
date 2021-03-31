@@ -14,7 +14,7 @@ NVIDIA NetQ {{<version>}} eases your customers deployment and maintenance activi
 
 ## What's New in NetQ 3.3.1
 
-NetQ 3.3.1 is a maintenance release that contains bug fixes.
+NetQ 3.3.1 is a maintenance release that contains bug fixes. A new {{<link title="NetQ CLI Reference" text="NetQ CLI Reference">}} manual has also been published.
 
 ## What's New in NetQ 3.3.0
 

@@ -107,7 +107,7 @@ Disabling SDK sniffer
 SDK sniffer is Disabled.
 ```
 
-More information on these platform-specific commands, read the {{<exlink url="https://github.com/Azure/sonic-utilities/blob/201911/doc/Command-Reference.md#platform-specific-commands" text="Azure SONiC documentation on GitHub">}}.
+More information on these platform-specific commands, read the {{<exlink url="https://github.com/Azure/sonic-utilities/blob/master/doc/Command-Reference.md#platform-specific-commands" text="Azure SONiC documentation on GitHub">}}.
 
 ## NVIDIA Mellanox Firmware Tools (MFT)
 

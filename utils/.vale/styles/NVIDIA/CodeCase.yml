@@ -10,3 +10,4 @@ match: $lower
 exceptions:
   # Don't check MD file header content
   - '[\-]{3}.[\-]{3}'
+  

@@ -68,7 +68,7 @@
 </tr>
 <tr>
 <td>2543867</td>
-<td>NetQ UI: If either the peer_hostname or the peer_asn is invalid, the full screen BGP Service card does not provide the ability to open cards for a selected BGP session.</td>
+<td>NetQ UI: If either the hostname or the ASN of a BGP peer is invalid, the full screen BGP Service card does not provide the ability to open cards for a selected BGP session.</td>
 <td>2.3.0-2.4.1, 3.0.0-3.3.1</td>
 <td></td>
 </tr>

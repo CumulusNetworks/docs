@@ -23,7 +23,6 @@ This chapter discusses the various architectures and strategies available from t
 **Example Configuration**
 
 {{< tabs "TabID27 ">}}
-
 {{< tab "leaf01 ">}}
 
 ```
@@ -49,7 +48,6 @@ iface swp1
 ```
 
 {{< /tab >}}
-
 {{< tab "Ubuntu host ">}}
 
 ```
@@ -75,7 +73,6 @@ iface br-20 inet manual
 ```
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 ## Layer 2 - MLAG
@@ -95,7 +92,6 @@ iface br-20 inet manual
 **Example Configuration**
 
 {{< tabs "TabID99 ">}}
-
 {{< tab "leaf01 ">}}
 
 ```
@@ -130,7 +126,6 @@ iface host-01
 ```
 
 {{< /tab >}}
-
 {{< tab "Ubuntu host ">}}
 
 ```
@@ -148,7 +143,6 @@ iface vm-br10 inet manual
 ```
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 ## Layer 3 - Single-attached Hosts
@@ -168,7 +162,6 @@ iface vm-br10 inet manual
 **Example Configuration**
 
 {{< tabs "TabID172 ">}}
-
 {{< tab "leaf01 ">}}
 
 `/etc/network/interfaces` file
@@ -189,7 +182,6 @@ interface swp1
 ```
 
 {{< /tab >}}
-
 {{< tab "leaf02 ">}}
 
 `/etc/network/interfaces` file
@@ -210,7 +202,6 @@ interface swp1
 ```
 
 {{< /tab >}}
-
 {{< tab "Ubuntu host1 ">}}
 
 ```
@@ -232,7 +223,6 @@ iface eth1 inet static
 ```
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 ## Layer 3 - Redistribute Neighbor
@@ -308,7 +298,6 @@ iface eth1 inet static
 **Example Configuration**
 
 {{< tabs "TabID312 ">}}
-
 {{< tab "leaf01 ">}}
 
 `/etc/network/interfaces file`
@@ -329,7 +318,6 @@ interface swp1
 ```
 
 {{< /tab >}}
-
 {{< tab "leaf02 ">}}
 
 `/etc/network/interfaces` file
@@ -350,7 +338,6 @@ interface swp1
 ```
 
 {{< /tab >}}
-
 {{< tab "Ubuntu host ">}}
 
 ```
@@ -372,7 +359,6 @@ iface eth2 inet static
 ```
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 ## Layer 3 - EVPN with Symmetric VXLAN Routing
@@ -394,7 +380,6 @@ Each server is configured on a VLAN, with a total of two VLANs for the setup. ML
 **Example /etc/network/interfaces File Configuration**
 
 {{< tabs "TabID398 ">}}
-
 {{< tab "leaf01 ">}}
 
 ```
@@ -462,7 +447,7 @@ iface peerlink
   mtu 9000
   bond-slaves swp49 swp50
 
-# MLAG Peerlink L2 interface.
+# MLAG Peerlink layer 2 interface.
 # This creates VLAN 4094 that only lives on the peerlink bond
 # No other interface will be aware of VLAN 4094
 auto peerlink.4094
@@ -546,7 +531,7 @@ iface vlan24
     vlan-raw-device bridge
     vrf vrf1
 
-#L3 VLAN interface per tenant (for L3 VNI)
+#Layer 3 VLAN interface per tenant (for layer 3 VNI)
 auto vlan4001
 iface vlan4001
     hwaddress 44:39:39:FF:40:94
@@ -556,7 +541,6 @@ iface vlan4001
 ```
 
 {{< /tab >}}
-
 {{< tab "Leaf02 ">}}
 
 ```
@@ -624,7 +608,7 @@ iface peerlink
   mtu 9000
   bond-slaves swp49 swp50
 
-# MLAG Peerlink L2 interface.
+# MLAG Peerlink layer 2 interface.
 # This creates VLAN 4094 that only lives on the peerlink bond
 # No other interface will be aware of VLAN 4094
 auto peerlink.4094
@@ -707,7 +691,7 @@ iface vlan24
     vlan-raw-device bridge
     vrf vrf1
 
-#L3 VLAN interface per tenant (for L3 VNI)
+#Layer 3 VLAN interface per tenant (for layer 3 VNI)
 auto vlan4001
 iface vlan4001
     hwaddress 44:39:39:FF:40:94
@@ -717,7 +701,6 @@ iface vlan4001
 ```
 
 {{< /tab >}}
-
 {{< tab "Server01 ">}}
 
 ```
@@ -754,7 +737,6 @@ iface uplink inet static
 ```
 
 {{< /tab >}}
-
 {{< tab "Server02 ">}}
 
 ```
@@ -791,5 +773,4 @@ iface uplink inet static
 ```
 
 {{< /tab >}}
-
 {{< /tabs >}}

@@ -1,12 +1,20 @@
 ---
-# Error: NVIDIA.CodeCommands
+# Error: NVIDIA.Branding
 #
-# Checks for use of Latin terms.
+# Checks for Cumulus Networks and Mellanox product terminology
+# Based on trademark and naming for collateral at https://docs.google.com/spreadsheets/d/1ozfv95ZY8uBpU7v8K_NxwBGJawcFOxVVl1NXgZ97xcM/edit#gid=0
 #
-extends: existence
-message: "'%s' should reference NVIDIA Networking or NVIDIA Spectrum"
+# First instances are unique--how to handle these?
+#
+extends: substitution
+message: "Use '%s' instead of '%s'"
 level: error
-tokens:
-  - Cumulus Networks
-  - Mellanox
-  - Cumulus NetQ
+ignorecase: false
+#swap maps tokens in form of bad:good
+swap:
+  Cumulus Networks: NVIDIA
+  Cumulus NetQ: NetQ
+  Cumulus Networks repository: NVIDIA networking repository
+  Cumulus Networks repo: NVIDIA networking repo
+  Mellanox: NVIDIA
+  Mellanox Spectrum: NVIDIA Spectrum

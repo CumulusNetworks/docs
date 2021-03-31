@@ -21,11 +21,9 @@ To integrate a VXLAN with NSX-V, you need to:
 - Verify VXLAN configuration.
 
 {{%notice note%}}
-
 Cumulus Linux supports security protocol version TLSv1.2 for SSL connections between the OVSDB server and the NSX controller.
 
 The OVSDB server cannot select the loopback interface as the source IP address, causing top of rack registration to the controller to fail. To work around this issue, run the `net add bgp redistribute connected` command followed by the `net commit` command.
-
 {{%/notice%}}
 
 ## Configure the Switch for NSX-V Integration
@@ -89,9 +87,7 @@ cumulus@switch:~$ sudo systemctl restart networking.service
 ### Configure the NSX-V Integration Manually
 
 {{%notice note%}}
-
 You can configure the NSX-V integration manually for standalone mode only; manual configuration for OVSDB server high availability is not supported.
-
 {{%/notice%}}
 
 If you do not want to use the configuration script to configure the NSX-V integration on the switch automatically, you can configure the integration manually, which requires you to perform the following steps:
@@ -191,7 +187,7 @@ After you create a certificate, connect to NSX Manager in a browser to configure
     {{< img src = "/images/cumulus-linux/virtualization-integrations-nsxv-hw-devs.png" >}}
 
 2. In the **Name** field, provide a name for the HW VTEP gateway.
-3. Enable the BFD service to the service nodes. Select the **Enable BFD** check box.
+3. Enable the BFD service to the service nodes. Select the **Enable BFD** checkbox.
 4. From the terminal session connected to the switch where you generated the certificate, copy the certificate and paste it into the **Certificate** text field. Copy only the bottom portion, including the `BEGIN CERTIFICATE` and `END CERTIFICATE` lines. For example, copy all the highlighted text in the terminal terminal and paste it into NSX Manager:
 
     ```
@@ -260,7 +256,7 @@ To define the logical switch:
 
 2. In the **Name** field, enter a name for the logical switch.
 3. In the **Transport Zone** field, add the transport zone that you created earlier.
-4. In the **Replication Mode** field, select **Unicast** for replication by the service node. Then check the **Enable IP Discovery** check box.
+4. In the **Replication Mode** field, select **Unicast** for replication by the service node. Then check the **Enable IP Discovery** checkbox.
 5. Click **OK**.  
 
     {{< img src = "/images/cumulus-linux/virtualization-integrations-nsxv-logical-switch.png" >}}

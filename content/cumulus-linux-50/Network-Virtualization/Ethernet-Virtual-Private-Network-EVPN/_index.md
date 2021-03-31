@@ -20,17 +20,15 @@ Cumulus Linux fully supports EVPN as the control plane for VXLAN, including for 
 - Dual-attached hosts via {{<link url="VXLAN-Active-active-Mode" text="VXLAN active-active mode">}}. MAC synchronization between the peer switches is done using {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="MLAG">}}.
 - {{<link url="Basic-Configuration#arp-and-nd-suppression" text="ARP/ND suppression">}}, which enables VTEPs to suppress ARP flooding over VXLAN tunnels is enabled by default on VNIs in Cumulus Linux.
 - Exchange of {{<link url="EVPN-Enhancements#configure-static-mac-addresses" text="static MAC addresses">}} through EVPN.
-- {{<link url="Inter-subnet-Routing" text="Inter-subnet routing">}} for both IPv4 and IPv6 hosts: Distributed symmetric routing between different subnets, distributed asymmetric routing between different subnets, and centralized routing.
+- {{<link url="Inter-subnet-Routing" text="Inter-subnet routing">}} for both IPv4 and IPv6 hosts: Distributed symmetric routing between different subnets and centralized routing.
 - {{<link url="Inter-subnet-Routing#prefix-based-routing-evpn-type-5-routes" text="Prefix-based routing">}} using EVPN type-5 routes (EVPN IP prefix route).
 - Layer 3 multi-tenancy.
 - IPv6 tenant routing.
-- ECMP for overlay networks on Mellanox Spectrum-A1 ASICs. No configuration is needed, ECMP occurs in the overlay when there are multiple next hops.
+- ECMP for overlay networks on NVIDIA Spectrum-A1 ASICs. No configuration is needed, ECMP occurs in the overlay when there are multiple next hops.
 - Head end replication is enabled by default. Cumulus Linux supports up to 128 VTEPs with head end replication.
 
 The EVPN address-family is supported with both eBGP and iBGP peering. If the underlay routing is provisioned using eBGP, you can use the same eBGP session to carry EVPN routes. For example, in a typical 2-tier Clos network topology where the leaf switches are the VTEPs, if eBGP sessions are in use between the leaf and spine switches for the underlay routing, the same sessions can be used to exchange EVPN routes; the spine switches merely act as *route forwarders* and do not install any forwarding state as they are not VTEPs. When EVPN routes are exchanged over iBGP peering, OSPF can be used as the IGP or the next hops can also be resolved using iBGP.
 
 {{%notice note%}}
-
 Data plane MAC learning is disabled by default on VXLAN interfaces. Do *not* enable MAC learning on VXLAN interfaces: EVPN is responsible for installing remote MACs.
-
 {{%/notice%}}

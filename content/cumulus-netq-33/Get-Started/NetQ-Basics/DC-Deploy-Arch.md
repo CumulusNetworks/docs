@@ -5,7 +5,7 @@ weight: 70
 toc: 4
 ---
 
-There are three deployment types that are commonly deployed for network management in the data center:
+Three deployment types are commonly deployed for network management in the data center:
 
 - Out-of-Band Management (recommended)
 - In-band Management
@@ -52,7 +52,7 @@ connected to Exit 01.
 
 The physical *management* hardware includes:
 
-- OOB Mgmt Switch: aggregation switch that connects to all of the network devices through communications with the NetQ Agent on each node
+- OOB Management Switch: aggregation switch that connects to all of the network devices through communications with the NetQ Agent on each node
 - NetQ Platform: hosts the telemetry software, database and user interfaces (refer to description above)
 
 These switches are connected to each of the physical network devices

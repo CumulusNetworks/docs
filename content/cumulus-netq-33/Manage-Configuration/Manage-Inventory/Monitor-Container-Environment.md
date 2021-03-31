@@ -30,7 +30,7 @@ The NetQ Agent supports Kubernetes version 1.9.2 or later.
 
 ### Command Summary
 
-There is a large set of commands available to monitor Kubernetes configurations, including the ability to monitor clusters, nodes, daemon-set, deployment, pods, replication, and services. Run `netq show kubernetes help` to see all the possible commands.
+A large set of commands are available to monitor Kubernetes configurations, including the ability to monitor clusters, nodes, daemon-set, deployment, pods, replication, and services. Run `netq show kubernetes help` to see all the possible commands.
 
     netq [<hostname>] show kubernetes cluster [name <kube-cluster-name>] [around <text-time>] [json]
     netq [<hostname>] show kubernetes node [components] [name <kube-node-name>] [cluster <kube-cluster-name> ] [label <kube-node-label>] [around <text-time>] [json]
@@ -54,7 +54,7 @@ There is a large set of commands available to monitor Kubernetes configurations,
 ## Enable Kubernetes Monitoring
 
 {{<notice note>}}
-For Kubernetes monitoring, the NetQ Agent must be installed, running, and enabled on the host(s) providing the Kubernetes service.
+For Kubernetes monitoring, the NetQ Agent must be installed, running, and enabled on the hosts providing the Kubernetes service.
 {{</notice>}}
 
 To enable NetQ Agent monitoring of the containers using the Kubernetes API, you must configure the following on the Kubernetes master node:
@@ -141,11 +141,11 @@ Optionally, use the `json` option to present the results in JSON format.
 
 If data collection from the NetQ Agents is not occurring as it once was, you can verify that no changes have been made to the Kubernetes cluster configuration using the `around` option. Be sure to include the unit of measure with the around value. Valid units include:
 
-- **w**: week(s)
-- **d**: day(s)
-- **h**: hour(s)
-- **m**: minute(s)
-- **s**: second(s)
+- **w**: weeks
+- **d**: days
+- **h**: hours
+- **m**: minutes
+- **s**: seconds
 - **now**
 
 This example shows changes that have been made to the cluster in the last hour. In this example we see the addition of the two master nodes and the various worker nodes for each cluster.

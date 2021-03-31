@@ -44,7 +44,7 @@ div.notices.warning {
 div.notices.warning > *:first-child:before{
   display: block;
   position: absolute;
-  content: url('/icons/remove-circle_20x20.png');
+  content: url($remove-circle-20x20);
   top: 5px;
   left: 5px;
   right: 10px;
@@ -69,7 +69,7 @@ div.notices.tip {
 }
 div.notices.tip > *:first-child:before{
   display: block;
-  content:url('/icons/check-circle_20x20.png');
+  content:url($remove-circle-20x20);
   position: absolute;
   top: 5px;
   left: 5px;
@@ -101,7 +101,7 @@ div.notices.note {
 
 div.notices.note > *:first-child:before{
   display: block;
-  content:url('/icons/info-circle_20x20.png');
+  content:url($info-circle-20x20);
   position: absolute;
   top: 5px;
   left: 5px;
@@ -127,7 +127,7 @@ div.notices.info {
 
 div.notices.info > *:first-child:before{
   display: block;
-  content:url('/icons/alert-triangle_20x20.png');
+  content:url($alert-triangle-20x20);
   position: absolute;
   top: 5px;
   left: 5px;

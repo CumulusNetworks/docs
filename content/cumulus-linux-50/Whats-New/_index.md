@@ -21,8 +21,11 @@ Cumulus Linux 5.0 supports new platforms, provides bug fixes, and contains sever
 
 ### New Features and Enhancements
 
-- CUE
-- Multiple VLAN aware bridges
+- {{<link url="Cumulus-User-Experience-CUE" text="Cumulus User Experience (CUE)">}} is a new object-oriented, schema driven model of a complete Cumulus Linux system (hardware and software) that allows multiple interfaces to both view and configure any element within the system.
+  {{%notice note%}}
+  CUE replaces the NCLU command line interface, which is no longer supported. In Cumulus Linux 5.0, not all NCLU commands have a CUE equivalent.
+  {{%/notice%}}
+- Support for {{<link url="VLAN-aware-Bridge-Mode/" text="multiple VLAN aware bridges">}}
 - VNI scaling enhancements
 - Support for multiple single VXLAN devices
 - EVPN multihoming support with single VXLAN devices
@@ -33,7 +36,7 @@ Cumulus Linux 5.0 supports new platforms, provides bug fixes, and contains sever
 - Secure boot
 - Debian package signing infrastructure
 - Secure ONIE
-- Warm boot for Smart System Manager
+- Smart System Manager supports {{<link url="Smart-System-Manager" text="warm boot">}}
 - QoS: Dynamic buffer configuration as default
 - EVPN multihoming - support SVI IP reuse across racks
 - EVPN multihoming - Fast Local Protection

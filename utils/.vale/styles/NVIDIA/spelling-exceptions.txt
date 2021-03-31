@@ -75,6 +75,7 @@ noc
 nscld.conf
 nslcd
 passwd
+peer link
 poed
 policers
 portwd
@@ -96,6 +97,7 @@ rsyslog
 sbin
 sdk
 smond
+src
 subinterface
 subnet
 subport
@@ -143,9 +145,7 @@ reprovision
 reprovisioning
 src
 shortcode
-tcp
 ttl
-udp
 uncomment
 unicast
 ztp

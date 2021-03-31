@@ -115,11 +115,3 @@ docker-sonic-telemetry        latest                1d63ae9d3976        353MB
 ```
 
 For more details about the architecture, see the {{<exlink url="https://github.com/Azure/SONiC/wiki/Architecture" text="Azure SONiC documentation">}}.
-
-## Configure with the CLI
-
-https://github.com/Azure/sonic-utilities/blob/201911/doc/Command-Reference.md#lldp
-
-## Configure with JSON
-
-https://github.com/Azure/sonic-swss/blob/master/doc/Configuration.md#configuration

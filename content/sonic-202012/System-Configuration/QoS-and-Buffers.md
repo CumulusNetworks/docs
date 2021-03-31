@@ -7,7 +7,9 @@ version: 202012
 siteSlug: sonic
 ---
 
-## Buffer Configuration
+This topic discusses buffer configuration, explicit congestion notification with weighted random early detection and priority flow control.
+
+## Buffers
 
 A buffer configuration includes:
 
@@ -22,8 +24,8 @@ The buffer configuration is stored in the BUFFER_POOL, BUFFER_PROFILE and BUFFER
 
 There are two buffer calculation models:
 
--	A *traditional model*, which SONiC adopted as the default for releases before the 202012. If the switch is configured with this model, all buffer-related configurations must be configured manually in CONFIG_DB. There are some switches that use this mode by default. <!-- which ones? -->
--	A *dynamic model* is the recommended model, which was introduced in SONiC 202012. It is enabled by default on every switch. If the switch is configured with this model, the buffer profile for lossless traffic gets created automatically and the buffer size for `ingress_lossless_pool`, `ingress_lossy_pool` and `egress_lossy_pool` is calculated dynamically. You don't need to configure them manually. Because they are generated dynamically, they are no longer stored in CONFIG_DB but can be listed when you run the `show buffer information` command.
+- A *traditional model*, which SONiC adopted as the default for releases before the 202012. If the switch is configured with this model, all buffer-related configurations must be configured manually in CONFIG_DB. There are some switches that use this mode by default. <!-- which ones? -->
+- A *dynamic model* is the recommended model, which was introduced in SONiC 202012. It is enabled by default on every switch. If the switch is configured with this model, the buffer profile for lossless traffic gets created automatically and the buffer size for `ingress_lossless_pool`, `ingress_lossy_pool` and `egress_lossy_pool` is calculated dynamically. You don't need to configure them manually. Because they are generated dynamically, they are no longer stored in CONFIG_DB but can be listed when you run the `show buffer information` command.
 
 #### Dynamic Buffer Calculation
 
@@ -211,7 +213,7 @@ The command takes these options:
 
 This example creates a lossless buffer priority group on interface Ethernet0 with priority group map *5*:
 
-    admin@sonic:~$ config interface buffer priority-group lossless add Ethernet0 5
+    admin@switch:~$ config interface buffer priority-group lossless add Ethernet0 5
 
 ### Shared Headroom Pool
 
@@ -229,18 +231,39 @@ The size column should also be adjusted.
 
 Calculate the shared headroom pool as follows:
 
-1. Defined the oversubscription ratio.
+1. Define the oversubscription ratio.
 1. Get the headroom pool size:
    1. Calculate the accumulated headroom of all lossless priorities in the system.
    1. Divide the sum by the oversubscription ratio.
-1. Update the BUFFER_POOL and BUFFER_PROFILE tables accordingly.
+1. Configure the BUFFER_POOL and BUFFER_PROFILE tables accordingly.
    1. The size of shared headroom pool is represented by the `xoff` field in the entry `ingress_lossless_pool` in the BUFFER_POOL table.
    1. In the profiles of lossless traffic, the `size` should be equal to `xon` by default.
 1. Update the `pg_profile_lookup.ini` file. By default, the `size` column should be the same as the `xon` column.
 
-The following is an example of shared headroom pool.  
+{{<tabs "Headroom">}}
+
+{{<tab "SONiC CLI">}}
+
+To configure the shared headroom pool, you specify either the oversubscription ratio or size, or both. Although if you specify both, the size takes precedence.
+
+| Option | Description |
+| ------ | ----------- |
+| ratio | The oversubscription ratio. The ratio should be in this range: [0, number of ports]. Specifying the oversubscription ratio enables the shared headroom pool; the size is calculated by accumulating the xoff of all lossless priorities and dividing the sum by the oversubscription ratio. |
+| size | The size of the shared headroom pool. Specifying the size enables the shared headroom pool, using the size as the configured value. |
+
+    admin@switch:~$ sudo config buffer shared-headroom-pool <ratio> <size>
+
+To disable the shared headroom pool, set both `size` and `ratio` to *0*.
+
+{{</tab>}}
+
+{{<tab "config_db.json">}}
+
+Configure the shared headroom pool in the BUFFER_POOL and BUFFER_PROFILE tables in `/etc/sonic/config_db.json`.
 
 ```
+admin@switch:~$ sudo vi /etc/sonic/config_db.json
+
 { 
   "BUFFER_POOL": { 
     "ingress_lossless_pool": { 
@@ -260,73 +283,16 @@ The following is an example of shared headroom pool. 
   } 
 } 
 ```
-    config buffer shared-headroom-pool 
 
- 
-	
+{{</tab>}}
 
-config buffer shared-headroom-pool <ratio> <size> 
+{{</tabs>}}
 
- 
+Save your changes to the configuration:
 
-Syntax Description 
-	
+    admin@switch:~$ sudo config save -y
 
--?, -h, --help 
-	
-
-Show this message and exit. 
-
- 
-	
-
-ratio 
-	
-
-The over-subscribe-ratio. 
-
-It should be in range [0, number of ports]. 
-
- 
-	
-
-size 
-	
-
-The size of the shared headroom pool. 
-
-Default 
-	
-
-N/A 
-
-History 
-	
-
-N/A 
-
-Example 
-	
-
-admin@sonic:~$ config interface cable-length Ethernet0 10m 
-
-Related Commands 
-	
-
- 
-
-Notes 
-	
-
-The shared headroom pool can be configured by providing the over-subscribe-ratio or size. 
-
-If a non-zero size is provided, the shared headroom pool will be enabled and the size will be the configured value. 
-
-If a non-zero over-subscribe-ratio is provided, the shared headroom pool will be enabled and the size will be calcualted by accumulating the xoff of all lossless priorities and dividing the sum by the over-subscribe-ratio. 
-
-If both are provided as non-zero value, the size will take effect. 
-
-If both are zero, the shared headroom pool will be disabled. 
+For more information about shared headroom, see the {{<exlink url="https://github.com/Azure/SONiC/blob/415f19931bccd900ac528b100aafffa6000e82e9/doc/qos/dynamically-headroom-calculation.md" text="Azure GitHub documentation">}}.
 
 ### Configure a Buffer in the Traditional Model
 

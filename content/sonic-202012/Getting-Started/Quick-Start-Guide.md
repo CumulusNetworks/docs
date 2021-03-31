@@ -204,3 +204,11 @@ All SONiC switches support both serial console-based login and SSH-based login b
 For SSH login, you can log in to the management interface (eth0) IP address after configuring the it using the serial console. Refer the next section for configuring the IP address for management interface.
 
 You can add new users with the Linux `useradd` command. You manage passwords with the Linux `passwd` command.
+
+## Configure Using CLI or JSON
+
+https://github.com/Azure/sonic-utilities/blob/master/doc/Command-Reference.md
+
+https://github.com/Azure/sonic-swss/blob/master/doc/Configuration.md#configuration
+
+## Show the Running Configuration

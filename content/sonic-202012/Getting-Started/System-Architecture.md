@@ -80,7 +80,7 @@ Platform: x86_64-mlnx_msn2700-r0
 HwSKU: ACS-MSN2700
 ASIC: mellanox
 ASIC Count: 1
-Serial Number: NV1552X12041
+Serial Number: MT0000000
 Uptime: 16:16:22 up 15 days, 19:54,  1 user,  load average: 5.80, 5.62, 5.64
 
 Docker images:

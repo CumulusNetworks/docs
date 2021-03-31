@@ -528,7 +528,7 @@ A release is included if there were changes to the command, otherwise it is not 
 
 <!-- Add output/results -->
 ```
-cumulus@<hostname>:~$ netq install patch /mnt/installables/[NetQ-3.3.0.tgz??? standard format for patch files?]
+cumulus@<hostname>:~$ netq install patch /mnt/installables/NetQ-3.3.1-patch.tgz
 ```
 
 ### Related Commands
@@ -645,7 +645,7 @@ cumulus@<hostname>:~$ netq install standalone full interface eth0 bundle /mnt/in
 
 ## netq install standalone infra-job
 
-After initialization, this command configures ??? [other infra stuff?]
+After initialization, this command installs kafka and operators to aid in installation of software.
 
 Alternately, use {{<link title="#netq-install-standalone-full" text="netq install standalone full">}} to perform this and all other steps of a NetQ installation with a single command.
 
@@ -659,7 +659,7 @@ netq install standalone infra-job
 
 | Argument | Value | Description |
 | ---- | ---- | ---- |
-| infra-job | NA | ??? |
+| infra-job | NA | Install helper aids for software installation |
 
 ### Options
 
@@ -787,7 +787,7 @@ cumulus@<hostname>:~$ netq install standalone install-job bundle /mnt/installabl
 
 ## netq install update-settings
 
-Overrides system variables after encountering issues during installation. File a {{<exlink url="https://support.mellanox.com/s/contact-support-page" text="support ticket">}} with the NVIDIA Cumulus Networks Global Support Services team before trying this command.
+Overrides system variables after encountering issues during installation. File a {{<exlink url="https://support.mellanox.com/s/contact-support-page" text="support ticket">}} with the NVIDIA Cumulus Networks Global Support Services team before using this command. They can provide the key/value pair needed to resolve your issue.
 
 ### Syntax
 
@@ -818,9 +818,10 @@ A release is included if there were changes to the command, otherwise it is not 
 
 ### Sample Usage
 
-<!-- Add output/results -->
+Change timeout for tasks
+
 ```
-cumulus@<hostname>:~$ netq install update-settings xxx xxx
+cumulus@<hostname>:~$ netq install update-settings DEFAULT_TASK_TIMEOUT_IN_MILLIS 3000000
 ```
 
 ### Related Commands

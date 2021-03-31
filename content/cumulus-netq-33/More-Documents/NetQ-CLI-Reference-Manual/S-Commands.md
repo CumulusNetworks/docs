@@ -2349,12 +2349,13 @@ A release is included if there were changes to the command, otherwise it is not 
 Show job status
 
 ```
-cumulus@switch:~$ netq show job-status xxx
+cumulus@switch:~$ netq show job-status 192.168.200.250
 ```
 
 ### Related Commands
 
-- netq xxx
+None
+
 - - -
 
 ## netq show kubernetes

@@ -374,7 +374,7 @@ Successfully configured notifier proxy proxy4:80
 
 NetQ supports a set of events that are triggered by crossing a user-defined threshold, called TCA events. These events allow detection and prevention of network failures for selected ACL resources, digital optics, forwarding resources, interface errors and statistics, link flaps, resource utilization, and sensor events. A complete list can be found in the {{<link title="TCA Event Messages Reference">}}.
 
-A TCA event notification configuration must contain one rule. Each rule must contain a scope and a threshold. Optionally, you can specify an associated channel.  *Note: If a rule is not associated with a channel, the event information is only reachable from the database.* If you want to deliver events to one or more notification channels (Email, syslog, Slack, or PagerDuty), create them first using {{<link title="/#netq add notification channel">}}.
+A TCA event notification configuration must contain one rule. Each rule must contain a scope and a threshold. Optionally, you can specify an associated channel.  *Note: If a rule is not associated with a channel, the event information is only reachable from the database.* If you want to deliver events to one or more notification channels (Email, syslog, Slack, or PagerDuty), create them first using {{<link title="#netq add notification channel">}}.
 
 ### Syntax
 

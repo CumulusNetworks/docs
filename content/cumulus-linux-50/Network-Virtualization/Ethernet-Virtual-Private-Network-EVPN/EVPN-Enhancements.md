@@ -1102,10 +1102,7 @@ You can clear a duplicate MAC or IP address (and unfreeze a frozen address). The
 {{< tabs "TabID512 ">}}
 {{< tab "CUE Commands ">}}
 
-```
-cumulus@switch:~$ NEED COMMAND
-cumulus@switch:~$ cl config apply
-```
+CUE command is not curently supported.
 
 {{< /tab >}}
 {{< tab "NCLU Commands ">}}
@@ -1135,10 +1132,7 @@ To clear duplicate addresses for all VNIs, run the following command:
 {{< tabs "TabID538 ">}}
 {{< tab "CUE Commands ">}}
 
-```
-cumulus@switch:~$ NEED COMMAND
-cumulus@switch:~$ cl config apply
-```
+CUE command is not curently supported.
 
 {{< /tab >}}
 {{< tab "NCLU Commands ">}}

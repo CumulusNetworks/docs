@@ -85,6 +85,14 @@ EVPN multihoming supports the following route types.
 
 ### Unsupported Features
 
+{{% notice note %}}
+EVPN MH can not coexist in an EVPN network with Broadcom based switches in an MLAG configuration.
+
+In mixed Broadcom-Spectrum networks EVPN-MH is not supported.
+
+In networks with all Spectrum based switches, EVPN and MLAG may coexist.
+{{% /notice %}}
+
 The following features are not supported with EVPN-MH:
 
 - {{<link url="Traditional-Bridge-Mode" text="Traditional bridge mode">}}

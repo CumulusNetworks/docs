@@ -6,11 +6,7 @@ toc: 4
 ---
 The VLAN-aware mode in Cumulus Linux implements a configuration model for large-scale layer 2 environments, with **one single instance** of {{<link url="Spanning-Tree-and-Rapid-Spanning-Tree-STP" text="spanning tree protocol">}}. Each physical bridge member port is configured with the list of allowed VLANs as well as its port VLAN ID, either primary VLAN Identifier (PVID) or native VLAN. MAC address learning, filtering and forwarding are *VLAN-aware*. This significantly reduces the configuration size, and eliminates the large overhead of managing the port/VLAN instances as subinterfaces, replacing them with lightweight VLAN bitmaps and state updates.
 
-{{%notice note%}}
-
-You cannot have more than one VLAN-aware bridge on a switch.
-
-{{%/notice%}}
+Cumulus Linux supports multiple VLAN aware bridges.
 
 ## Configure a VLAN-aware Bridge
 
@@ -695,6 +691,7 @@ iface br_default
     bridge-pvid 1
     bridge-vids 1-100
     bridge-vlan-aware yes
+
 auto vni-10000
 iface vni-10000
     alias CUSTOMER X VLAN 10

@@ -43,6 +43,12 @@ To work around this issue, run the &lt;tt&gt;apt-get upgrade&lt;/tt&gt; command 
 <td></td>
 </tr>
 <tr>
+<td>CM-20508</td>
+<td>&lt;p&gt;The Cumulus-Resource-Query-MIB defines the ability to gather buffer utilization status but when these objects are polled, they return nothing. &lt;/p&gt;</td>
+<td>3.5.3-3.7.14.2, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-15812</td>
 <td>&lt;p&gt;Multicast forwarding fails for IP addresses whose DMAC overlaps with reserved DIPs.&lt;/p&gt;</td>
 <td>3.2.1-3.7.14.2, 4.0.0-4.3.0</td>
@@ -386,6 +392,12 @@ Fixed: 2.1+dfsg-12+deb8u18</td>
 To work around this issue, either shut down one side of the MLAG bond or prune out VLANS over the bond.</td>
 <td>3.7.13-4.2.1</td>
 <td>4.3.0</td>
+</tr>
+<tr>
+<td>2554804</td>
+<td>On Mellanox SN2010 and SN2100 switches, the maximum fan speed is exceeded by fifteen percent.</td>
+<td>3.7.14-3.7.14.2</td>
+<td></td>
 </tr>
 <tr>
 <td>2554785</td>
@@ -1788,6 +1800,12 @@ To work around this issue, run the &lt;tt&gt;apt-get upgrade&lt;/tt&gt; command 
 <td></td>
 </tr>
 <tr>
+<td>CM-20508</td>
+<td>&lt;p&gt;The Cumulus-Resource-Query-MIB defines the ability to gather buffer utilization status but when these objects are polled, they return nothing. &lt;/p&gt;</td>
+<td>3.5.3-3.7.14.2, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-15812</td>
 <td>&lt;p&gt;Multicast forwarding fails for IP addresses whose DMAC overlaps with reserved DIPs.&lt;/p&gt;</td>
 <td>3.2.1-3.7.14.2, 4.0.0-4.3.0</td>
@@ -2193,6 +2211,12 @@ Fixed: 2.1+dfsg-12+deb8u18</td>
 To work around this issue, either shut down one side of the MLAG bond or prune out VLANS over the bond.</td>
 <td>3.7.13-4.2.1</td>
 <td>4.3.0</td>
+</tr>
+<tr>
+<td>2554804</td>
+<td>On Mellanox SN2010 and SN2100 switches, the maximum fan speed is exceeded by fifteen percent.</td>
+<td>3.7.14-3.7.14.2</td>
+<td></td>
 </tr>
 <tr>
 <td>2554785</td>
@@ -4205,6 +4229,12 @@ To work around this issue, run the &lt;tt&gt;apt-get upgrade&lt;/tt&gt; command 
 &lt;/div&gt;&lt;/div&gt; 
 &lt;p&gt; This message might occur as a result of a timeout at the hardware level, or the switch might be reporting a failure to get a response. &lt;/p&gt;
 </td>
+<td>3.5.3-3.7.14.2, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-20508</td>
+<td>&lt;p&gt;The Cumulus-Resource-Query-MIB defines the ability to gather buffer utilization status but when these objects are polled, they return nothing. &lt;/p&gt;</td>
 <td>3.5.3-3.7.14.2, 4.0.0-4.3.0</td>
 <td></td>
 </tr>
@@ -6854,6 +6884,12 @@ To work around this issue, run the &lt;tt&gt;apt-get upgrade&lt;/tt&gt; command 
 <td></td>
 </tr>
 <tr>
+<td>CM-20508</td>
+<td>&lt;p&gt;The Cumulus-Resource-Query-MIB defines the ability to gather buffer utilization status but when these objects are polled, they return nothing. &lt;/p&gt;</td>
+<td>3.5.3-3.7.14.2, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-15812</td>
 <td>&lt;p&gt;Multicast forwarding fails for IP addresses whose DMAC overlaps with reserved DIPs.&lt;/p&gt;</td>
 <td>3.2.1-3.7.14.2, 4.0.0-4.3.0</td>
@@ -9362,6 +9398,12 @@ To work around this issue, run the &lt;tt&gt;apt-get upgrade&lt;/tt&gt; command 
 <td></td>
 </tr>
 <tr>
+<td>CM-20508</td>
+<td>&lt;p&gt;The Cumulus-Resource-Query-MIB defines the ability to gather buffer utilization status but when these objects are polled, they return nothing. &lt;/p&gt;</td>
+<td>3.5.3-3.7.14.2, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-15812</td>
 <td>&lt;p&gt;Multicast forwarding fails for IP addresses whose DMAC overlaps with reserved DIPs.&lt;/p&gt;</td>
 <td>3.2.1-3.7.14.2, 4.0.0-4.3.0</td>
@@ -11573,6 +11615,12 @@ To work around this issue, run the &lt;tt&gt;apt-get upgrade&lt;/tt&gt; command 
 <td></td>
 </tr>
 <tr>
+<td>CM-20508</td>
+<td>&lt;p&gt;The Cumulus-Resource-Query-MIB defines the ability to gather buffer utilization status but when these objects are polled, they return nothing. &lt;/p&gt;</td>
+<td>3.5.3-3.7.14.2, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-15812</td>
 <td>&lt;p&gt;Multicast forwarding fails for IP addresses whose DMAC overlaps with reserved DIPs.&lt;/p&gt;</td>
 <td>3.2.1-3.7.14.2, 4.0.0-4.3.0</td>
@@ -13223,6 +13271,12 @@ More information at https://security-tracker.debian.org/tracker/CVE-2018-6594 .<
 &lt;/div&gt;&lt;/div&gt; 
 &lt;p&gt; This message might occur as a result of a timeout at the hardware level, or the switch might be reporting a failure to get a response. &lt;/p&gt;
 </td>
+<td>3.5.3-3.7.14.2, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-20508</td>
+<td>&lt;p&gt;The Cumulus-Resource-Query-MIB defines the ability to gather buffer utilization status but when these objects are polled, they return nothing. &lt;/p&gt;</td>
 <td>3.5.3-3.7.14.2, 4.0.0-4.3.0</td>
 <td></td>
 </tr>
@@ -15207,6 +15261,12 @@ To work around this issue, run the {{sudo ethtool -S swp1}} command to collect i
 <td></td>
 </tr>
 <tr>
+<td>CM-20508</td>
+<td>&lt;p&gt;The Cumulus-Resource-Query-MIB defines the ability to gather buffer utilization status but when these objects are polled, they return nothing. &lt;/p&gt;</td>
+<td>3.5.3-3.7.14.2, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-15812</td>
 <td>&lt;p&gt;Multicast forwarding fails for IP addresses whose DMAC overlaps with reserved DIPs.&lt;/p&gt;</td>
 <td>3.2.1-3.7.14.2, 4.0.0-4.3.0</td>
@@ -16641,6 +16701,12 @@ To work around this issue, use {{net show interface}} command for LLDP output wh
 &lt;/div&gt;&lt;/div&gt; 
 &lt;p&gt; This message might occur as a result of a timeout at the hardware level, or the switch might be reporting a failure to get a response. &lt;/p&gt;
 </td>
+<td>3.5.3-3.7.14.2, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-20508</td>
+<td>&lt;p&gt;The Cumulus-Resource-Query-MIB defines the ability to gather buffer utilization status but when these objects are polled, they return nothing. &lt;/p&gt;</td>
 <td>3.5.3-3.7.14.2, 4.0.0-4.3.0</td>
 <td></td>
 </tr>
@@ -18413,6 +18479,12 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <td></td>
 </tr>
 <tr>
+<td>CM-20508</td>
+<td>&lt;p&gt;The Cumulus-Resource-Query-MIB defines the ability to gather buffer utilization status but when these objects are polled, they return nothing. &lt;/p&gt;</td>
+<td>3.5.3-3.7.14.2, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-15812</td>
 <td>&lt;p&gt;Multicast forwarding fails for IP addresses whose DMAC overlaps with reserved DIPs.&lt;/p&gt;</td>
 <td>3.2.1-3.7.14.2, 4.0.0-4.3.0</td>
@@ -19925,6 +19997,12 @@ This issue was discovered on the Helix4 switch but applies to all switches.
 <td></td>
 </tr>
 <tr>
+<td>CM-20508</td>
+<td>&lt;p&gt;The Cumulus-Resource-Query-MIB defines the ability to gather buffer utilization status but when these objects are polled, they return nothing. &lt;/p&gt;</td>
+<td>3.5.3-3.7.14.2, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-15812</td>
 <td>&lt;p&gt;Multicast forwarding fails for IP addresses whose DMAC overlaps with reserved DIPs.&lt;/p&gt;</td>
 <td>3.2.1-3.7.14.2, 4.0.0-4.3.0</td>
@@ -21085,6 +21163,12 @@ The NetQ agent has been removed from Cumulus VX 3.7.7. The NetQ agent will be bu
 &lt;/div&gt;&lt;/div&gt; 
 &lt;p&gt; This message might occur as a result of a timeout at the hardware level, or the switch might be reporting a failure to get a response. &lt;/p&gt;
 </td>
+<td>3.5.3-3.7.14.2, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-20508</td>
+<td>&lt;p&gt;The Cumulus-Resource-Query-MIB defines the ability to gather buffer utilization status but when these objects are polled, they return nothing. &lt;/p&gt;</td>
 <td>3.5.3-3.7.14.2, 4.0.0-4.3.0</td>
 <td></td>
 </tr>
@@ -22276,6 +22360,12 @@ The NetQ agent has been removed from Cumulus VX 3.7.7. The NetQ agent will be bu
 &lt;/div&gt;&lt;/div&gt; 
 &lt;p&gt; This message might occur as a result of a timeout at the hardware level, or the switch might be reporting a failure to get a response. &lt;/p&gt;
 </td>
+<td>3.5.3-3.7.14.2, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-20508</td>
+<td>&lt;p&gt;The Cumulus-Resource-Query-MIB defines the ability to gather buffer utilization status but when these objects are polled, they return nothing. &lt;/p&gt;</td>
 <td>3.5.3-3.7.14.2, 4.0.0-4.3.0</td>
 <td></td>
 </tr>
@@ -23568,6 +23658,12 @@ The NetQ agent has been removed from Cumulus VX 3.7.7. The NetQ agent will be bu
 &lt;/div&gt;&lt;/div&gt; 
 &lt;p&gt; This message might occur as a result of a timeout at the hardware level, or the switch might be reporting a failure to get a response. &lt;/p&gt;
 </td>
+<td>3.5.3-3.7.14.2, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-20508</td>
+<td>&lt;p&gt;The Cumulus-Resource-Query-MIB defines the ability to gather buffer utilization status but when these objects are polled, they return nothing. &lt;/p&gt;</td>
 <td>3.5.3-3.7.14.2, 4.0.0-4.3.0</td>
 <td></td>
 </tr>
@@ -24900,6 +24996,12 @@ Permanent MAC address sync between MLAG peers is now supported.</td>
 <td></td>
 </tr>
 <tr>
+<td>CM-20508</td>
+<td>&lt;p&gt;The Cumulus-Resource-Query-MIB defines the ability to gather buffer utilization status but when these objects are polled, they return nothing. &lt;/p&gt;</td>
+<td>3.5.3-3.7.14.2, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-15812</td>
 <td>&lt;p&gt;Multicast forwarding fails for IP addresses whose DMAC overlaps with reserved DIPs.&lt;/p&gt;</td>
 <td>3.2.1-3.7.14.2, 4.0.0-4.3.0</td>
@@ -25535,6 +25637,12 @@ To work around this issue, remove the matching {{network}} statement. </td>
 &lt;/div&gt;&lt;/div&gt; 
 &lt;p&gt; This message might occur as a result of a timeout at the hardware level, or the switch might be reporting a failure to get a response. &lt;/p&gt;
 </td>
+<td>3.5.3-3.7.14.2, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-20508</td>
+<td>&lt;p&gt;The Cumulus-Resource-Query-MIB defines the ability to gather buffer utilization status but when these objects are polled, they return nothing. &lt;/p&gt;</td>
 <td>3.5.3-3.7.14.2, 4.0.0-4.3.0</td>
 <td></td>
 </tr>

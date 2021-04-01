@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 210
 toc: 5
 ---
-On-premises deployments of NetQ can use a single server or a server cluster. In either case, you can use either the Cumulus NetQ Appliance or your own server running a KVM or VMware Virtual Machine (VM). This topic walks you through the installation for each of these on-premises options.
+On-premises deployments of NetQ can use a single server or a server cluster. In either case, you can use either the NVIDIA Cumulus NetQ Appliance or your own server running a KVM or VMware Virtual Machine (VM). This topic walks you through the installation for each of these on-premises options.
 
 The next installation step is to decide whether you are deploying a single server or a server cluster. Both options provide the same services and features. The biggest difference is in the number of servers to be deployed and in the continued availability of services running on those servers should hardware failures occur.
 

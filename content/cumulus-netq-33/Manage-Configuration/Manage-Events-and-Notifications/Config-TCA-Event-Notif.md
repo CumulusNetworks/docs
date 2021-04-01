@@ -359,9 +359,9 @@ For example, this rule tells NetQ to deliver an event notification to the *tca_s
 ```
 cumulus@switch:~$ netq add tca event_id TCA_CPU_UTILIZATION_UPPER scope '*' channel tca_slack_ifstats threshold 95
 ```
-
+<!-- vale off -->
 This rule tells NetQ to deliver an event notification to the *tca_pd_ifstats* PagerDuty channel when the number of transmit bytes per second (Bps) on the *leaf12* switch exceeds 20,000 Bps on any interface:
-
+<!-- vale on -->
 ```
 cumulus@switch:~$ netq add tca event_id TCA_TXBYTES_UPPER scope leaf12,'*' channel tca_pd_ifstats threshold 20000
 ```

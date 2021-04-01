@@ -4582,6 +4582,28 @@ iface br_default
 {{< /tab >}}
 {{< /tabs >}}
 
+{{%notice note%}}
+In CUE, VNIs cannot have custom names. When you run the `cl set vrf RED evpn vni 4001` command, CUE creates a layer 3 VNI called vni4001 but assigns it a VLAN automatically from the reserved VLAN range (for example vlan4024). CUE adds vni4001 to the bridge and assigns vlan4024 to vrf RED.
+
+```
+cumulus@leaf01:~$ sudo cat /etc/network/interfaces
+...
+auto vni4001
+iface vni4001
+    bridge-access 4024
+    bridge-learning off
+    vxlan-id 4001
+
+auto vlan4024
+iface vlan4024
+    vrf RED
+    vlan-raw-device br_default
+    address-virtual 44:38:39:BE:EF:AA
+    vlan-id 4024
+...
+```
+{{%/notice%}}
+
 ### /etc/frr/frr.conf
 
 {{< tabs "TabID3535 ">}}

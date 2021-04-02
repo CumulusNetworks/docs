@@ -8,7 +8,7 @@ You can back up the current configuration on a switch and restore the configurat
 
 Cumulus Linux automatically creates a backup of the configuration files on the switch after you install the Cumulus Linux image, in case you want to return to the initial switch configuration. NCLU automatically creates a backup of the configuration files when you run the `net commit` command and restores a previous configuration when you run the `net rollback` command.
 
-## Back up Configuration Files
+## Back Up Configuration Files
 
 To back up the current configuration files on the switch, run the `config-backup` command:
 
@@ -39,7 +39,10 @@ The `config-backup` command includes the following options:
 |`-v`|Enables verbose mode to show messages during the backup process.|
 |`-X <pattern>`|Excludes certain files that match a specified pattern. For example, to exclude all backup files ending with a tilde (~), use the `-X .*~$` option.|
 
+<!-- vale off -->
+<!-- title case exception for a command -->
 ### config-backup Command Examples
+<!-- vale on -->
 
 The following command example creates a backup file in debugging mode and provides the description `myconfig`, which shows in the backup archive list.
 
@@ -105,7 +108,10 @@ The `config-restore` command includes the following options:
 | `-T`| Runs the command in test mode; does not restore the configuration but shows what would be restored.|
 | `-v`| Enables verbose mode to display status messages during restore.|
 
+<!-- vale off -->
+<!-- title case exception for a command -->
 ### config-restore Command Examples
+<!-- vale on -->
 
 The following command example lists the backup files available on the switch. The list includes the file number (\#), type, description, and filename. Type is the text specified with the `config-backup -t` option.
 

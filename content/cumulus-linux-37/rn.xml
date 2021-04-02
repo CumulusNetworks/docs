@@ -1524,13 +1524,6 @@ To restore connectivity, remove the VLAN ID from the bridge. </td>
 <td></td>
 </tr>
 <tr>
-<td>2538740</td>
-<td>In an EVPN symmetric routing configuration, when an IP address is frozen, kernel neighbor table information and kernel VRF routing table information about the frozen IP address might be out-of-sync. 
- </td>
-<td>3.7.3-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
 <td>2538590</td>
 <td>When you configure a control plane ACL to define permit and deny rules destined to the local switch, NCLU programs the control plane ACL rules into the FORWARD chain. 
  </td>
@@ -1551,13 +1544,6 @@ Note: The advertised link mode gets set incorrectly if you include 1000baseT/Hal
 <td>{{portwd}} allows an error to change the module type based on the error. For example, a bad write to a module might cause the module type to flap, which causes the link itself to flap. 
  </td>
 <td>3.7.0-3.7.14.2</td>
-<td></td>
-</tr>
-<tr>
-<td>2538295</td>
-<td>For QSFP modules, the {{sudo ifdown}} command does not disable the Tx laser. 
- </td>
-<td>3.7.2-3.7.14.2, 4.0.0-4.3.0</td>
 <td></td>
 </tr>
 <tr>
@@ -3419,13 +3405,6 @@ To restore connectivity, remove the VLAN ID from the bridge. </td>
 <td></td>
 </tr>
 <tr>
-<td>2538740</td>
-<td>In an EVPN symmetric routing configuration, when an IP address is frozen, kernel neighbor table information and kernel VRF routing table information about the frozen IP address might be out-of-sync. 
- </td>
-<td>3.7.3-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
 <td>2538590</td>
 <td>When you configure a control plane ACL to define permit and deny rules destined to the local switch, NCLU programs the control plane ACL rules into the FORWARD chain. 
  </td>
@@ -3446,13 +3425,6 @@ Note: The advertised link mode gets set incorrectly if you include 1000baseT/Hal
 <td>{{portwd}} allows an error to change the module type based on the error. For example, a bad write to a module might cause the module type to flap, which causes the link itself to flap. 
  </td>
 <td>3.7.0-3.7.14.2</td>
-<td></td>
-</tr>
-<tr>
-<td>2538295</td>
-<td>For QSFP modules, the {{sudo ifdown}} command does not disable the Tx laser. 
- </td>
-<td>3.7.2-3.7.14.2, 4.0.0-4.3.0</td>
 <td></td>
 </tr>
 <tr>
@@ -6095,13 +6067,6 @@ To restore connectivity, remove the VLAN ID from the bridge. </td>
 <td></td>
 </tr>
 <tr>
-<td>2538740</td>
-<td>In an EVPN symmetric routing configuration, when an IP address is frozen, kernel neighbor table information and kernel VRF routing table information about the frozen IP address might be out-of-sync. 
- </td>
-<td>3.7.3-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
 <td>2538590</td>
 <td>When you configure a control plane ACL to define permit and deny rules destined to the local switch, NCLU programs the control plane ACL rules into the FORWARD chain. 
  </td>
@@ -6122,13 +6087,6 @@ Note: The advertised link mode gets set incorrectly if you include 1000baseT/Hal
 <td>{{portwd}} allows an error to change the module type based on the error. For example, a bad write to a module might cause the module type to flap, which causes the link itself to flap. 
  </td>
 <td>3.7.0-3.7.14.2</td>
-<td></td>
-</tr>
-<tr>
-<td>2538295</td>
-<td>For QSFP modules, the {{sudo ifdown}} command does not disable the Tx laser. 
- </td>
-<td>3.7.2-3.7.14.2, 4.0.0-4.3.0</td>
 <td></td>
 </tr>
 <tr>
@@ -8926,13 +8884,6 @@ To restore connectivity, remove the VLAN ID from the bridge. </td>
 <td></td>
 </tr>
 <tr>
-<td>2538740</td>
-<td>In an EVPN symmetric routing configuration, when an IP address is frozen, kernel neighbor table information and kernel VRF routing table information about the frozen IP address might be out-of-sync. 
- </td>
-<td>3.7.3-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
 <td>2538590</td>
 <td>When you configure a control plane ACL to define permit and deny rules destined to the local switch, NCLU programs the control plane ACL rules into the FORWARD chain. 
  </td>
@@ -8953,13 +8904,6 @@ Note: The advertised link mode gets set incorrectly if you include 1000baseT/Hal
 <td>{{portwd}} allows an error to change the module type based on the error. For example, a bad write to a module might cause the module type to flap, which causes the link itself to flap. 
  </td>
 <td>3.7.0-3.7.14.2</td>
-<td></td>
-</tr>
-<tr>
-<td>2538295</td>
-<td>For QSFP modules, the {{sudo ifdown}} command does not disable the Tx laser. 
- </td>
-<td>3.7.2-3.7.14.2, 4.0.0-4.3.0</td>
 <td></td>
 </tr>
 <tr>
@@ -10848,13 +10792,6 @@ To restore connectivity, remove the VLAN ID from the bridge. </td>
 <td></td>
 </tr>
 <tr>
-<td>2538740</td>
-<td>In an EVPN symmetric routing configuration, when an IP address is frozen, kernel neighbor table information and kernel VRF routing table information about the frozen IP address might be out-of-sync. 
- </td>
-<td>3.7.3-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
 <td>2538590</td>
 <td>When you configure a control plane ACL to define permit and deny rules destined to the local switch, NCLU programs the control plane ACL rules into the FORWARD chain. 
  </td>
@@ -10875,13 +10812,6 @@ Note: The advertised link mode gets set incorrectly if you include 1000baseT/Hal
 <td>{{portwd}} allows an error to change the module type based on the error. For example, a bad write to a module might cause the module type to flap, which causes the link itself to flap. 
  </td>
 <td>3.7.0-3.7.14.2</td>
-<td></td>
-</tr>
-<tr>
-<td>2538295</td>
-<td>For QSFP modules, the {{sudo ifdown}} command does not disable the Tx laser. 
- </td>
-<td>3.7.2-3.7.14.2, 4.0.0-4.3.0</td>
 <td></td>
 </tr>
 <tr>
@@ -13019,13 +12949,6 @@ To restore connectivity, remove the VLAN ID from the bridge. </td>
 <td></td>
 </tr>
 <tr>
-<td>2538740</td>
-<td>In an EVPN symmetric routing configuration, when an IP address is frozen, kernel neighbor table information and kernel VRF routing table information about the frozen IP address might be out-of-sync. 
- </td>
-<td>3.7.3-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
 <td>2538590</td>
 <td>When you configure a control plane ACL to define permit and deny rules destined to the local switch, NCLU programs the control plane ACL rules into the FORWARD chain. 
  </td>
@@ -13046,13 +12969,6 @@ Note: The advertised link mode gets set incorrectly if you include 1000baseT/Hal
 <td>{{portwd}} allows an error to change the module type based on the error. For example, a bad write to a module might cause the module type to flap, which causes the link itself to flap. 
  </td>
 <td>3.7.0-3.7.14.2</td>
-<td></td>
-</tr>
-<tr>
-<td>2538295</td>
-<td>For QSFP modules, the {{sudo ifdown}} command does not disable the Tx laser. 
- </td>
-<td>3.7.2-3.7.14.2, 4.0.0-4.3.0</td>
 <td></td>
 </tr>
 <tr>
@@ -14375,13 +14291,6 @@ To restore connectivity, remove the VLAN ID from the bridge. </td>
 <td></td>
 </tr>
 <tr>
-<td>2538740</td>
-<td>In an EVPN symmetric routing configuration, when an IP address is frozen, kernel neighbor table information and kernel VRF routing table information about the frozen IP address might be out-of-sync. 
- </td>
-<td>3.7.3-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
 <td>2538590</td>
 <td>When you configure a control plane ACL to define permit and deny rules destined to the local switch, NCLU programs the control plane ACL rules into the FORWARD chain. 
  </td>
@@ -14402,13 +14311,6 @@ Note: The advertised link mode gets set incorrectly if you include 1000baseT/Hal
 <td>{{portwd}} allows an error to change the module type based on the error. For example, a bad write to a module might cause the module type to flap, which causes the link itself to flap. 
  </td>
 <td>3.7.0-3.7.14.2</td>
-<td></td>
-</tr>
-<tr>
-<td>2538295</td>
-<td>For QSFP modules, the {{sudo ifdown}} command does not disable the Tx laser. 
- </td>
-<td>3.7.2-3.7.14.2, 4.0.0-4.3.0</td>
 <td></td>
 </tr>
 <tr>
@@ -16418,13 +16320,6 @@ To work around this issue, use the {{mstpctl}} command to confirm the STP status
 <td>3.7.9-3.7.14.2</td>
 </tr>
 <tr>
-<td>2538740</td>
-<td>In an EVPN symmetric routing configuration, when an IP address is frozen, kernel neighbor table information and kernel VRF routing table information about the frozen IP address might be out-of-sync. 
- </td>
-<td>3.7.3-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
 <td>2538590</td>
 <td>When you configure a control plane ACL to define permit and deny rules destined to the local switch, NCLU programs the control plane ACL rules into the FORWARD chain. 
  </td>
@@ -16451,13 +16346,6 @@ Note: The advertised link mode gets set incorrectly if you include 1000baseT/Hal
 <td>{{portwd}} allows an error to change the module type based on the error. For example, a bad write to a module might cause the module type to flap, which causes the link itself to flap. 
  </td>
 <td>3.7.0-3.7.14.2</td>
-<td></td>
-</tr>
-<tr>
-<td>2538295</td>
-<td>For QSFP modules, the {{sudo ifdown}} command does not disable the Tx laser. 
- </td>
-<td>3.7.2-3.7.14.2, 4.0.0-4.3.0</td>
 <td></td>
 </tr>
 <tr>
@@ -17755,13 +17643,6 @@ To work around this issue, use the {{mstpctl}} command to confirm the STP status
 <td>3.7.9-3.7.14.2</td>
 </tr>
 <tr>
-<td>2538740</td>
-<td>In an EVPN symmetric routing configuration, when an IP address is frozen, kernel neighbor table information and kernel VRF routing table information about the frozen IP address might be out-of-sync. 
- </td>
-<td>3.7.3-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
 <td>2538590</td>
 <td>When you configure a control plane ACL to define permit and deny rules destined to the local switch, NCLU programs the control plane ACL rules into the FORWARD chain. 
  </td>
@@ -17788,13 +17669,6 @@ Note: The advertised link mode gets set incorrectly if you include 1000baseT/Hal
 <td>{{portwd}} allows an error to change the module type based on the error. For example, a bad write to a module might cause the module type to flap, which causes the link itself to flap. 
  </td>
 <td>3.7.0-3.7.14.2</td>
-<td></td>
-</tr>
-<tr>
-<td>2538295</td>
-<td>For QSFP modules, the {{sudo ifdown}} command does not disable the Tx laser. 
- </td>
-<td>3.7.2-3.7.14.2, 4.0.0-4.3.0</td>
 <td></td>
 </tr>
 <tr>
@@ -19600,13 +19474,6 @@ To work around this issue, use the {{mstpctl}} command to confirm the STP status
 <td>3.7.9-3.7.14.2</td>
 </tr>
 <tr>
-<td>2538740</td>
-<td>In an EVPN symmetric routing configuration, when an IP address is frozen, kernel neighbor table information and kernel VRF routing table information about the frozen IP address might be out-of-sync. 
- </td>
-<td>3.7.3-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
 <td>2538590</td>
 <td>When you configure a control plane ACL to define permit and deny rules destined to the local switch, NCLU programs the control plane ACL rules into the FORWARD chain. 
  </td>
@@ -19633,13 +19500,6 @@ Note: The advertised link mode gets set incorrectly if you include 1000baseT/Hal
 <td>{{portwd}} allows an error to change the module type based on the error. For example, a bad write to a module might cause the module type to flap, which causes the link itself to flap. 
  </td>
 <td>3.7.0-3.7.14.2</td>
-<td></td>
-</tr>
-<tr>
-<td>2538295</td>
-<td>For QSFP modules, the {{sudo ifdown}} command does not disable the Tx laser. 
- </td>
-<td>3.7.2-3.7.14.2, 4.0.0-4.3.0</td>
 <td></td>
 </tr>
 <tr>
@@ -20798,13 +20658,6 @@ To work around this issue, use the {{mstpctl}} command to confirm the STP status
 <td>3.7.9-3.7.14.2</td>
 </tr>
 <tr>
-<td>2538740</td>
-<td>In an EVPN symmetric routing configuration, when an IP address is frozen, kernel neighbor table information and kernel VRF routing table information about the frozen IP address might be out-of-sync. 
- </td>
-<td>3.7.3-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
 <td>2538590</td>
 <td>When you configure a control plane ACL to define permit and deny rules destined to the local switch, NCLU programs the control plane ACL rules into the FORWARD chain. 
  </td>
@@ -20831,13 +20684,6 @@ Note: The advertised link mode gets set incorrectly if you include 1000baseT/Hal
 <td>{{portwd}} allows an error to change the module type based on the error. For example, a bad write to a module might cause the module type to flap, which causes the link itself to flap. 
  </td>
 <td>3.7.0-3.7.14.2</td>
-<td></td>
-</tr>
-<tr>
-<td>2538295</td>
-<td>For QSFP modules, the {{sudo ifdown}} command does not disable the Tx laser. 
- </td>
-<td>3.7.2-3.7.14.2, 4.0.0-4.3.0</td>
 <td></td>
 </tr>
 <tr>
@@ -21820,13 +21666,6 @@ To work around this issue, use the {{mstpctl}} command to confirm the STP status
 <td>3.7.9-3.7.14.2</td>
 </tr>
 <tr>
-<td>2538740</td>
-<td>In an EVPN symmetric routing configuration, when an IP address is frozen, kernel neighbor table information and kernel VRF routing table information about the frozen IP address might be out-of-sync. 
- </td>
-<td>3.7.3-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
 <td>2538590</td>
 <td>When you configure a control plane ACL to define permit and deny rules destined to the local switch, NCLU programs the control plane ACL rules into the FORWARD chain. 
  </td>
@@ -21853,13 +21692,6 @@ Note: The advertised link mode gets set incorrectly if you include 1000baseT/Hal
 <td>{{portwd}} allows an error to change the module type based on the error. For example, a bad write to a module might cause the module type to flap, which causes the link itself to flap. 
  </td>
 <td>3.7.0-3.7.14.2</td>
-<td></td>
-</tr>
-<tr>
-<td>2538295</td>
-<td>For QSFP modules, the {{sudo ifdown}} command does not disable the Tx laser. 
- </td>
-<td>3.7.2-3.7.14.2, 4.0.0-4.3.0</td>
 <td></td>
 </tr>
 <tr>
@@ -22965,13 +22797,6 @@ To work around this issue, use the {{mstpctl}} command to confirm the STP status
 <td>3.7.9-3.7.14.2</td>
 </tr>
 <tr>
-<td>2538740</td>
-<td>In an EVPN symmetric routing configuration, when an IP address is frozen, kernel neighbor table information and kernel VRF routing table information about the frozen IP address might be out-of-sync. 
- </td>
-<td>3.7.3-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
 <td>2538686</td>
 <td>On Trident3 switches, not all ping requests match on the ingress ACL rule. </td>
 <td>3.7.3</td>
@@ -23016,13 +22841,6 @@ Note: The advertised link mode gets set incorrectly if you include 1000baseT/Hal
 <td>{{portwd}} allows an error to change the module type based on the error. For example, a bad write to a module might cause the module type to flap, which causes the link itself to flap. 
  </td>
 <td>3.7.0-3.7.14.2</td>
-<td></td>
-</tr>
-<tr>
-<td>2538295</td>
-<td>For QSFP modules, the {{sudo ifdown}} command does not disable the Tx laser. 
- </td>
-<td>3.7.2-3.7.14.2, 4.0.0-4.3.0</td>
 <td></td>
 </tr>
 <tr>
@@ -24126,13 +23944,6 @@ Note: The advertised link mode gets set incorrectly if you include 1000baseT/Hal
 <td>{{portwd}} allows an error to change the module type based on the error. For example, a bad write to a module might cause the module type to flap, which causes the link itself to flap. 
  </td>
 <td>3.7.0-3.7.14.2</td>
-<td></td>
-</tr>
-<tr>
-<td>2538295</td>
-<td>For QSFP modules, the {{sudo ifdown}} command does not disable the Tx laser. 
- </td>
-<td>3.7.2-3.7.14.2, 4.0.0-4.3.0</td>
 <td></td>
 </tr>
 <tr>

@@ -19,3 +19,6 @@ exceptions:
   - MLAG
   - TCP
   - UDP
+  - ztp
+  - cumulus
+  - DHCP

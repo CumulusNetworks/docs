@@ -20,7 +20,7 @@ addr
 addrtype
 adjacencies
 Ansible
-anycast
+[a|A]nycast
 Arctica
 args
 audisp
@@ -29,7 +29,7 @@ autoboot
 autoprovision
 autoprovisioning
 beaconing
-BGP
+[BGP|bgp]
 bitrate
 bootpc
 bps
@@ -48,12 +48,12 @@ delif
 deluser
 dev
 dport
-Dst
+[d|D]st
 ebtables
 Edgecore
-Ethernet
+[Ethernet|ethernet]
 ethtool
-EVPN
+[EVPN|evpn]
 failover
 FHR
 flowspec
@@ -77,14 +77,14 @@ ifup
 ifupdown
 img src
 interframe gap
-IP
+[IP|ip]
 ip addr
 ip6tables
 iptables
 ipv6
 jpg
 JSON
-kbps
+[k|K]bps
 KVM
 LDAP
 ledmgrd
@@ -92,18 +92,18 @@ Lenovo
 link url
 linklocal
 lipam
-LLDP
+[LLDP|lldp]
 lldpd
 localtime
 lookups
-mbps
+[m|M]bps
 mgmt
 mkhomedir
-mroute
+[m|M]route
 mstpctl
 mstpd
 MTU
-multihop
+[m|M]ultihop
 multiport
 mysecret
 myuser
@@ -118,11 +118,11 @@ noc
 nonatomic
 nscld.conf
 nslcd
-NTP
+[NTP|ntp]
 NVIDIA
 Open Networking
 OpEx
-OSPF
+[OSPF|ospf]
 passwd
 PDF
 peer link
@@ -135,11 +135,11 @@ portwd
 ppp
 pps
 preconfigured
-proto
+[p|P]roto
 PSU
 ptmctl
 ptmd
-pvid
+[pvid|PVID]
 pwmd
 raccess
 rbash
@@ -152,7 +152,7 @@ RoCE
 rsa
 rsyslog
 sbin
-sdk
+[sdk|SDK]
 shortcode
 smond
 src
@@ -164,7 +164,7 @@ subport
 sudo
 sudoers
 Supermicro
-switchd
+[s|S]witchd
 switchport
 swp
 sysctl
@@ -180,8 +180,8 @@ tclass
 TCP
 tcpdump
 traceroute
-ttl
-UDP
+[ttl|TTL]
+[UDP|udp:]
 uncomment
 unconfigure
 unencrypted
@@ -190,15 +190,15 @@ uplink
 uplinks
 userspace
 usr
-vids
-virtualized
-VLAN
+[vids|VIDs]
+[v|V]irtualized
+[VLAN|vlan]
 VMware
 VNI
-VRF
+[VRF|vrf]
 VRR
 VRRP
-VTEP
+[VTEP|vtep]
 vtysh
 VXLAN
 wpasupplicant

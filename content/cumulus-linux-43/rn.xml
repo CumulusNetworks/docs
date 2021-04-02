@@ -1478,6 +1478,11 @@ To work around this issue, change the value of {{arp_ignore}} to 2. See [Address
 <td>3.7.11-3.7.14, 4.1.1-4.2.1</td>
 </tr>
 <tr>
+<td>2597962</td>
+<td>Interfaces configured to get an IP address with DHCP try only three times to secure a DHCP lease (instead of retrying indefinitely). If unsuccessful after the third try, the switch stops trying.</td>
+<td>4.2.1</td>
+</tr>
+<tr>
 <td>2595889</td>
 <td>In a traditional bridge configuration with {{ip-forward off}}, neighbors are synchronized to hardware with a {{switchd}} restart but are cleared when you flap the bridge interface.</td>
 <td>3.7.10-4.2.1</td>

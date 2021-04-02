@@ -1,6 +1,6 @@
 ---
 title: SONiC Document Revision History
-author: Cumulus Networks
+author: NVIDIA
 weight: 30
 product: SONiC
 version: 202012

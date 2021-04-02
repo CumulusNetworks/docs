@@ -1,6 +1,6 @@
 ---
 title: Thermal Control
-author: Cumulus Networks
+author: NVIDIA
 weight: 680
 product: SONiC
 version: 202012

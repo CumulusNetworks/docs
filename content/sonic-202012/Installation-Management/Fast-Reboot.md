@@ -1,6 +1,6 @@
 ---
 title: Fast Reboot
-author: Cumulus Networks
+author: NVIDIA
 weight: 230
 product: SONiC
 version: 202012

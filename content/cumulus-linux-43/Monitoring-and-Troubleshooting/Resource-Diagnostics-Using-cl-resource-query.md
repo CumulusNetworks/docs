@@ -96,7 +96,7 @@ On a switch with a {{<exlink url="https://cumulusnetworks.com/products/hardware-
 
 {{%/notice%}}
 
-The example below shows `cl-resource-query` results for a NVIDIA Mellanox Spectrum switch:
+The example below shows `cl-resource-query` results for an NVIDIA Mellanox Spectrum switch:
 ```
 cumulus@switch:~$ sudo cl-resource-query
 IPv4 host entries:                      0,   0% of maximum value  32768

@@ -1,6 +1,6 @@
 ---
 title: Monitoring and Troubleshooting
-author: Cumulus Networks
+author: NVIDIA
 weight: 600
 product: SONiC
 version: 202012
@@ -111,7 +111,7 @@ A system dump includes the following information:
 
 {{%notice tip%}}
 
-On Mellanox switches, the system dump also includes the SDK dump, firmware trace and MST (Mellanox Software Tools) dump.
+On NVIDIA Spectrum switches, the system dump also includes the SDK dump, firmware trace and MST (Mellanox Software Tools) dump.
 
 {{%/notice%}}
 
@@ -128,6 +128,6 @@ Swap:             0           0           0
 
 ## What Just Happened
 
-If you are running SONiC on a Mellanox switch, you can use the {{<link url="What-Just-Happened">}} feature to provide real-time visibility into problems in the network, such as hardware packet drops due to buffer congestion, incorrect routing, and ACL or layer 1 problems.
+If you are running SONiC on an NVIDIA Spectrum switch, you can use the {{<link url="What-Just-Happened">}} feature to provide real-time visibility into problems in the network, such as hardware packet drops due to buffer congestion, incorrect routing, and ACL or layer 1 problems.
 
 There are also some Mellanox platform-specific {{<link title="Mellanox Debug Tools for SONiC" text="debug tools">}}.

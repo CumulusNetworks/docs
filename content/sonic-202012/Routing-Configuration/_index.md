@@ -1,6 +1,6 @@
 ---
 title: Routing Configuration
-author: Cumulus Networks
+author: NVIDIA
 weight: 500
 product: SONiC
 version: 202012

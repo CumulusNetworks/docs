@@ -1,6 +1,6 @@
 ---
 title: Getting Started
-author: Cumulus Networks
+author: NVIDIA
 weight: 100
 product: SONiC
 version: 202012

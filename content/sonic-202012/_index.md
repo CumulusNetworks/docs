@@ -1,6 +1,6 @@
 ---
 title: SONiC Documentation
-author: Cumulus Networks
+author: NVIDIA
 weight: 1
 product: SONiC
 version: 202012

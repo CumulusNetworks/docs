@@ -1,6 +1,6 @@
 ---
 title: SONiC Platform APIs
-author: Cumulus Networks
+author: NVIDIA
 weight: 8000
 product: SONiC
 version: 202012

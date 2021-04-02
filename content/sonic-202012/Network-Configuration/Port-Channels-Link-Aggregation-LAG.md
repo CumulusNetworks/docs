@@ -1,6 +1,6 @@
 ---
 title: Port Channels - Link Aggregation - LAG
-author: Cumulus Networks
+author: NVIDIA
 weight: 410
 product: SONiC
 version: 202012

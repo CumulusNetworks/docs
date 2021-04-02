@@ -1,6 +1,6 @@
 ---
 title: What Just Happened
-author: Cumulus Networks
+author: NVIDIA
 weight: 620
 product: SONiC
 version: 202012
@@ -9,7 +9,7 @@ siteSlug: sonic
 
 *What Just Happened* (WJH) is a troubleshooting feature that streams detailed and contextual telemetry data for analysis. It provides real-time visibility into problems in the network, such as hardware packet drops due to buffer congestion, incorrect routing, and ACL or layer 1 problems.
 
-**WJH available on Mellanox switches only.** It distributed as a Debian package that you can install on a SONiC switch. Please contact Mellanox Support to get the WJH Debian package.
+**WJH available on NVIDIA Spectrum switches only.** It distributed as a Debian package that you can install on a SONiC switch. Please contact Mellanox Support to get the WJH Debian package.
 
 ## Install WJH
 

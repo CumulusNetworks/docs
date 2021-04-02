@@ -1,6 +1,6 @@
 ---
 title: Configurable ASIC Table Size
-author: Cumulus Networks
+author: NVIDIA
 weight: 399
 product: SONiC
 version: 202012

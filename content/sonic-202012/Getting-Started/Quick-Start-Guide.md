@@ -1,6 +1,6 @@
 ---
 title: Quick Start Guide
-author: Cumulus Networks
+author: NVIDIA
 weight: 110
 product: SONiC
 version: 202012
@@ -8,61 +8,6 @@ siteSlug: sonic
 ---
 
 This topic assumes you are configuring SONiC for the first time and have already installed and powered on your switch according to the instructions in the hardware installation guide that shipped with the switch.
-
-## Prepare to Install the SONiC Image
-
-The switch may already have ONIE or another network operating system installed. In order to install SONiC on it, follow the preparatory steps below before you start installing SONiC.
-
-Using a SONiC release earlier than 201811 might require upgrades to the BIOS and ONIE. For instructions, please contact your switch manufacturer.
-
-1. Verify your switch model is {{<exlink url="https://github.com/Azure/SONiC/wiki/Supported-Devices-and-Platforms" text="supported">}}.
-1. Connect to the switch via the serial console.
-1. If the switch has a network operating system installed, uninstall the existing NOS first before installing SONiC. To do so, simply boot into ONIE and select **Uninstall OS**:
-
-       GNU GRUB version 2.02-beta3
-       +-----------------------------------
-       | ONIE: Install OS
-       | ONIE: Rescue
-       | *ONIE: Uninstall OS
-       | ONIE: Update ONIE
-       | ONIE: Embed ONIE
-
-1. Reboot the switch into ONIE and select **Install OS**.
-
-1. A discovery process starts automatically, searching for the OS to install. Stop the ONIE discovery by running:
-
-       onie:$ onie-stop
-1. Verify SMIBIOS parameters by running:
-
-       onie:$ dmidecode -t1 -t2 | grep "Product Name"
-       Product Name: MSN2700
-       Product Name: VMOD0001
-
-### Install Using the RJ-45 Console
-
-1. Connect the host PC to the console (RJ-45) port of the switch system using the supplied cable.
-
-   {{%notice info%}}
-
-Make sure to connect to the console RJ-45 port of the switch and not to the management port.
-
-   {{%/notice%}}
-
-2. Configure a serial terminal with the settings described below.
-
-   The baud rate might be different based on the BIOS or ONIE version.
-
-   | Parameter | Setting |
-   | --------- | ------- |
-   | Baud Rate | 115200 |
-   | Data bits | 8 |
-   | Flow Control | None |
-   | Parity | None |
-   | Stop bits | 1 |
-
-### Install Using the Management IP
-
-DHCP is enabled by default over the management port. Therefore, if you configured your DHCP server and connected an RJ-45 cable to the management port, you can log in using the designated IP address.
 
 ## Install SONiC
 
@@ -76,18 +21,9 @@ DHCP is enabled by default over the management port. Therefore, if you configure
        | ONIE: Update ONIE
        | ONIE: Embed ONIE
 
-2. Download the latest SONiC image from the {{<exlink url="https://sonic-jenkins.westus2.cloudapp.azure.com/job/mellanox/job/buildimage-mlnx-all/lastSuccessfulBuild/artifact/target/sonic-mellanox.bin" text="Last Successful Build">}} page.
+1. Download the SONiC disk image. If you want an NVIDIA Mellanox version of SONiC, download it from the {{<exlink url="https://sonic-jenkins.westus2.cloudapp.azure.com/job/mellanox/job/buildimage-mlnx-all/" text="Azure website">}}.
 
-   {{%notice info%}}
-
-The latest successful build might not be fully tested.
-
-It is recommended to contact your switch manufacturer's support team to receive the latest approved hash for production.
-
-   {{%/notice%}}
-
-   - If you need a different version than the latest, download it from {{<exlink url="https://sonic-jenkins.westus2.cloudapp.azure.com/job/mellanox/job/buildimage-mlnx-all/" text="here">}}.
-   - Decide which installation process to follow from the list described on the {{<exlink url="https://opencomputeproject.github.io/onie/user-guide/index.html" text="ONIE website">}}. For example, copying the image to the switch and running `onie-nos-install <PATH/sonic-mellanox.bin>`.
+1. Decide which installation process to follow from the list described in {{<link url="Installation-Management">}}. For example, copying the image to the switch and running `onie-nos-install <PATH/sonic-mellanox.bin>`.
 
    When the NOS installation completes, the switch reboots into SONiC by default, as shown here:
 
@@ -96,12 +32,12 @@ It is recommended to contact your switch manufacturer's support team to receive 
        |*SONiC-05-HEAD.517-6045235
        |ONIE
 
-3. Log into SONiC. The default login credentials are:
+1. Log into SONiC. The {{<link url="#default-credentials" text="default login credentials">}} are:
 
    - Username: *admin*
    - Password: *YourPaSsWoRd*
 
-4. Verify the current image version.
+1. Verify the current image version.
 
        admin@switch:~$ show version
 
@@ -118,14 +54,14 @@ It is recommended to contact your switch manufacturer's support team to receive 
        Serial Number: 000000
        Uptime: 04:14:22 up 1 day,  2:25,  1 user,  load average: 2.05, 2.96, 3.33
 
-5. Verify the platform type.
+1. Verify the platform type.
 
        switch:~$ show platform summary
        Platform: x86_64-mlnx_msn2700-r0
        HWSKU: ACS-MSN2700
        ASIC: mellanox
 
-6. Verify that all the Docker containers are running.
+1. Verify that all the Docker containers are running.
 
    The list in the example below is the default. More containers can be loaded based on the user system's configuration.
 
@@ -145,7 +81,7 @@ It is recommended to contact your switch manufacturer's support team to receive 
        2f6ac855e3e1        docker-platform-monitor:latest    "/usr/bin/docker_ini…"   7 days ago          Up 26 hours                             pmon
        77917d9efb8a        docker-database:latest            "/usr/local/bin/dock…"   7 days ago          Up 26 hours                             database
 
-7. Verify the status of the interfaces.
+1. Verify the status of the interfaces.
 
        admin@leaf01:~$ show interfaces status
          Interface            Lanes    Speed    MTU    FEC           Alias    Vlan    Oper    Admin    Type    Asym PFC
@@ -207,17 +143,74 @@ You can add new users with the Linux `useradd` command. You manage passwords wit
 
 ## Configure Using CLI or JSON
 
-https://github.com/Azure/sonic-utilities/blob/master/doc/Command-Reference.md
+You configure SONiC in one of two ways:
 
-https://github.com/Azure/sonic-swss/blob/master/doc/Configuration.md#configuration
+- Using the SONiC CLI. SONiC includes a broad range of `config` commands that configure almost every feature in the operating system. Changes made using the CLI are applied to a running configuration that does not persist after you reboot the switch, unless you save the configuration with `config save`. The Azure GitHub documentation contains a {{<exlink url="https://github.com/Azure/sonic-utilities/blob/master/doc/Command-Reference.md" text="command reference">}}, and you can also run `config ?` to list all the configuration commands available:
 
-## Show the Running Configuration
+  {{<expand "config ? Output">}}
+
+  ```
+  admin@ibm-2700-01:~$ sudo config ?
+  Usage: config [OPTIONS] COMMAND [ARGS]...
+
+    SONiC command line - 'config' command
+
+  Options:
+    -?, -h, --help  Show this message and exit.
+
+  Commands:
+    aaa                    AAA command line
+    acl                    ACL-related configuration tasks
+    bgp                    BGP-related configuration tasks
+    buffer                 Configure buffer_profile
+    chassis-modules        Configure chassis-modules options
+    console                Console-related configuration tasks
+    dropcounters           Drop counter related configuration tasks
+    ecn                    ECN-related configuration tasks
+    feature                Configure features
+    hostname               Change device hostname without impacting the...
+    interface              Interface-related configuration tasks
+    interface_naming_mode  Modify interface naming mode for interacting with...
+    kdump                  Configure kdump
+    kubernetes             kubernetes command line
+    load                   Import a previous saved config DB dump file.
+    load_mgmt_config       Reconfigure hostname and mgmt interface based on...
+    load_minigraph         Reconfigure based on minigraph.
+    loopback               Loopback-related configuration tasks
+    mirror_session
+    muxcable               SONiC command line - 'show muxcable' command
+    nat                    NAT-related configuration tasks
+    ntp                    NTP server configuration tasks
+    pfcwd                  Configure pfc watchdog
+    platform               Platform-related configuration tasks
+    portchannel
+    qos                    QoS-related configuration tasks
+    reload                 Clear current configuration and import a previous...
+    route                  route-related configuration tasks
+    save                   Export current config DB to a file on disk.
+    sflow                  sFlow-related configuration tasks
+    snmpagentaddress       SNMP agent listening IP address, port, vrf...
+    snmptrap               SNMP Trap server configuration to send traps
+    synchronous_mode       Enable or disable synchronous mode between...
+    syslog                 Syslog server configuration tasks
+    tacacs                 TACACS+ server configuration
+    vlan                   VLAN-related configuration tasks
+    vrf                    VRF-related configuration tasks
+    vxlan
+    warm_restart           warm_restart-related configuration tasks
+    watermark              Configure watermark
+    ztp                    Configure Zero Touch Provisioning
+  ```
+  {{</expand>}}
+- Editing the SONiC CONFIG_DB JSON configuration file `config_db.json` directly. To apply your changes, reload the configuration with `config reload`.
+
+### Show the Running Configuration
 
 A *running configuration* is a combination of the startup configuration that loads when you boot the switch, plus any updates that are made to the configuration that are not committed to CONFIG_DB (that is, they're not saved to the configuration with `config save`).
 
 The `show runningconfiguration all` command shows the current running state of the `config_db.json` file.
 
-{{<expand "Running Configuration">}}
+{{<expand "Show Running Configuration">}}
 
 ```
 admin@switch:~$ show runningconfiguration all

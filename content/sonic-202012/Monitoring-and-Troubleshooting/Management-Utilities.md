@@ -1,6 +1,6 @@
 ---
 title: SONiC Management Utilities
-author: Cumulus Networks
+author: NVIDIA
 weight: 630
 product: SONiC
 version: 202012

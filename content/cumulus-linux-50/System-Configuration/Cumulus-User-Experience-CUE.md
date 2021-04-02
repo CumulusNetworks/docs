@@ -140,7 +140,7 @@ If there are no pending or applied configuration changes, the `cl show` command 
 | `--rev <revision>` | Shows a detached pending configuration. See the `cl config detach` configuration management command below.  |
 | `--pending`       |  Shows the configuration you `set` and `unset` but have not yet applied or saved.|
 | `--applied`       |  Shows the last set of commands applied with the `cl config apply` command. |
-| `--startup`       |  Shows the set of commands saved with the `cl config save` command. This will be the configuration after the switch boots. |
+| `--startup`       |  Shows the set of commands saved with the `cl config save` command. This is the configuration after the switch boots. |
 | `--running`       |  Shows the running configuration (the actual system state). The running and applied configuration should be the same. If different, inspect the logs. |
 
 The following example shows *pending* BGP graceful restart configuration:
@@ -486,7 +486,7 @@ This section lists some of the differences between CUE and the NCLU command line
 
 When you save network configuration using CUE, the configuration is written to the `/etc/cue.d/startup.yaml` file.
 
-CUE also writes to underlying Linux files when you apply a configuration, such as the `/etc/network/interfaces` and `/etc/frr/frr.conf` files. You can view these configuration files; however Nvidia recommends that you do not manually edit them while using CUE.
+CUE also writes to underlying Linux files when you apply a configuration, such as the `/etc/network/interfaces` and `/etc/frr/frr.conf` files. You can view these configuration files; however NVIDIA recommends that you do not manually edit them while using CUE.
 
 ### Bridge Configuration
 

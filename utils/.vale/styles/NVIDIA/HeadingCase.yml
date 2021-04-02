@@ -3,6 +3,8 @@
 #
 # Check that proper title caps are used for headings
 #
+# Vale issue #253 currently flags all '-' characters in a title. Use vale off to avoid
+#
 extends: capitalization
 message: "'%s' should use title caps-style capitalization."
 link: https://wikinox.mellanox.com/display/BUS/House+Style+Guide#HouseStyleGuide-TitlesandHeadings
@@ -17,3 +19,6 @@ exceptions:
   - MLAG
   - TCP
   - UDP
+  - ztp
+  - cumulus
+  - DHCP

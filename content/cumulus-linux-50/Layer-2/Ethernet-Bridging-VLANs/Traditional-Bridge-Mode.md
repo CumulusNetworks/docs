@@ -21,18 +21,9 @@ To configure spanning tree options for a bridge interface, refer to {{<link titl
 
 The following example commands configure a traditional mode bridge called my_bridge with IP address 10.10.10.10/24. swp1, swp2, swp3, and swp4 are members of the bridge.
 
-{{< tabs "TabID20 ">}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@switch:~$ net add bridge my_bridge ports swp1-4
-cumulus@switch:~$ net add bridge my_bridge ip address 10.10.10.10/24
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-{{< /tab >}}
-{{< tab "Linux Commands ">}}
+{{%notice note%}}
+CUE commands are not supported for bridges in traditional mode.
+{{%/notice%}}
 
 Edit the `/etc/network/interfaces` file, then run the `ifreload -a` command.
 
@@ -62,19 +53,9 @@ iface my_bridge
 cumulus@switch:~$ sudo ifreload -a
 ```
 
-{{< /tab >}}
-{{< /tabs >}}
-
 {{%notice note%}}
-The name of the bridge must be:
-
-- Compliant with Linux interface naming conventions.
-- Unique within the switch.
-- Something other than *bridge*, as Cumulus Linux reserves that name for a single {{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware bridge">}}.
-{{%/notice%}}
-
-{{%notice warning%}}
-Do not try to bridge the management port, eth0, with any switch ports (swp0, swp1, and so on). For example, if you create a bridge with eth0 and swp1, it does **not** work.
+- Do not bridge the management port, eth0, with any switch ports (swp0, swp1, and so on). For example, if you create a bridge with eth0 and swp1, it does **not** work.
+- The name of the bridge must be compliant with Linux interface naming conventions and unique within the switch.
 {{%/notice%}}
 
 ## Configure Multiple Traditional Mode Bridges
@@ -127,22 +108,7 @@ The interaction of tagged and un-tagged frames on the same trunk often leads to 
 
 {{< img src = "/images/cumulus-linux/ethernet-bridging-trunk1.png" >}}
 
-To create the above example:
-
-{{< tabs "TabID136 ">}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@switch:~$ net add bridge br-VLAN10 ports swp1.10,swp2.10
-cumulus@switch:~$ net add bridge br-VLAN20 ports swp1.20,swp2.20
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-{{< /tab >}}
-{{< tab "Linux Commands ">}}
-
-Add the following configuration to the `/etc/network/interfaces` file:
+To create the above example, add the following configuration to the `/etc/network/interfaces` file:
 
 ```
 ...
@@ -156,13 +122,10 @@ iface br-VLAN20
 ...
 ```
 
-{{< /tab >}}
-{{< /tabs >}}
-
 For more examples of VLAN tagging, see {{<link url="VLAN-Tagging" text="VLAN Tagging">}}.
 
 ### Configure ARP Timers
 
-Cumulus Linux does not often interact directly with end systems as much as end systems interact with one another. Therefore, after a successful {{<exlink url="http://linux-ip.net/html/ether-arp.html" text="address resolution protocol">}} (ARP) places a neighbor into a reachable state, Cumulus Linux might not interact with the client again for a long enough period of time for the neighbor to move into a stale state. To keep neighbors in the reachable state, Cumulus Linux includes a background process (`/usr/bin/neighmgrd`). The background process tracks neighbors that move into a stale, delay, or probe state, and attempts to refresh their state before they are removed from the Linux kernel and from hardware forwarding. The `neighmgrd` process only adds a neighbor if the sender's IP in the ARP packet is in one of the SVI's subnets (you can disable this check by setting `subnet_checks` to *0* in the `/etc/cumulus/neighmgr.conf` file).
+Cumulus Linux does not often interact directly with end systems as much as end systems interact with each another. Therefore, after a successful {{<exlink url="http://linux-ip.net/html/ether-arp.html" text="address resolution protocol">}} (ARP) places a neighbor into a reachable state, Cumulus Linux might not interact with the client again for a long enough period of time for the neighbor to move into a stale state. To keep neighbors in the reachable state, Cumulus Linux includes a background process (`/usr/bin/neighmgrd`). The background process tracks neighbors that move into a stale, delay, or probe state, and attempts to refresh their state before they are removed from the Linux kernel and from hardware forwarding. The `neighmgrd` process only adds a neighbor if the sender's IP in the ARP packet is in one of the SVI's subnets (you can disable this check by setting `subnet_checks` to *0* in the `/etc/cumulus/neighmgr.conf` file).
 
 The ARP refresh timer defaults to 1080 seconds (18 minutes). To change this setting, see {{<link url="Address-Resolution-Protocol-ARP">}}.

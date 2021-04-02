@@ -71,7 +71,7 @@ untagged          vni10      c8:7d:bc:96:71:f3  10.0.1.2    static     self, sti
 The following example output for the `net show neighbor` command shows:
 
 - 10.1.10.101 is a locally-attached host server01 on VLAN 10. Interface `vlan10-v0` is the virtual VRR address for VLAN10.
-- 10.1.10.104 is remote-host, server04 on VLAN10. This is indicated by the STATE `zebra` indicating it's an EVPN learned entry. Use `net show bridge macs` to see information about which VTEP the host is behind.
+- 10.1.10.104 is remote-host, server04 on VLAN10. This is indicated by the STATE `zebra` showing that it is an EVPN learned entry. Use `net show bridge macs` to see information about which VTEP the host is behind.
 - 10.1.20.105 is remote-host, server05 on VLAN 20.
 
 ```
@@ -704,7 +704,7 @@ To troubleshoot EVPN, enable FRR debug logs. The relevant debug options are:
 
 ## ICMP echo Replies and the ping Command
 
-When you run the `ping -I ` command and specify an interface, you don't get an ICMP echo reply. However, when you run the `ping` command without the `-I` option, everything works as expected.
+When you run the `ping -I ` command and specify an interface, you do not receive an ICMP echo reply. However, when you run the `ping` command without the `-I` option, everything works as expected.
 
 `ping -I` command example:
 

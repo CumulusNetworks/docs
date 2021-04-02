@@ -453,10 +453,7 @@ You can add debug statements to the `/etc/frr/frr.conf` file to debug the Ethern
 {{<tabs "debug">}}
 {{<tab "CUE Commands">}}
 
-```
-cumulus@switch:~$ NEED COMMAND
-cumulus@switch:~$ cl config apply
-```
+CUE commands are not supported.
 
 {{</tab>}}
 {{<tab "NCLU Commands">}}

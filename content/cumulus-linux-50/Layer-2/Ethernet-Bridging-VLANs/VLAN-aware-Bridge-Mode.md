@@ -27,17 +27,6 @@ cumulus@switch:~$ cl config apply
 ```
 
 {{< /tab >}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@switch:~$ net add bridge bridge ports swp1-2
-cumulus@switch:~$ net add bridge bridge vids 10,20
-cumulus@switch:~$ net add bridge bridge pvid 1
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-{{< /tab >}}
 {{< tab "Linux Commands ">}}
 
 Edit the `/etc/network/interfaces` file and add the bridge. An example configuration is shown below.
@@ -95,7 +84,7 @@ If you specify `bridge-vids` or `bridge-pvid` at the bridge level, these configu
 {{%/notice%}}
 
 {{%notice warning%}}
-Do not try to bridge the management port eth0 with any switch ports (swp0, swp1 and so on). For example, if you create a bridge with eth0 and swp1, it will not work properly and might disrupt access to the management interface.
+Do not try to bridge the management port eth0 with any switch ports (swp0, swp1 and so on). For example, if you create a bridge with eth0 and swp1, it does not work correctly and might disrupt access to the management interface.
 {{%/notice%}}
 
 ## Reserved VLAN Range
@@ -131,20 +120,6 @@ cumulus@switch:~$ cl set bridge domain br_default vlan 10,20
 cumulus@switch:~$ cl set bridge domain br_default untagged 1
 cumulus@switch:~$ cl set interface swp3 bridge domain br_default vlan 20
 cumulus@switch:~$ cl config apply
-```
-
-{{< /tab >}}
-{{< tab "NCLU Commands ">}}
-
-The following example commands configure swp3 to override the bridge VIDs:
-
-```
-cumulus@switch:~$ net add bridge bridge ports swp1-3
-cumulus@switch:~$ net add bridge bridge vids 10,20
-cumulus@switch:~$ net add bridge bridge pvid 1
-cumulus@switch:~$ net add interface swp3 bridge vids 20
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
@@ -194,19 +169,6 @@ cumulus@switch:~$ cl config apply
 ```
 
 {{< /tab >}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@switch:~$ net add bridge bridge ports swp1-2
-cumulus@switch:~$ net add bridge bridge vids 10,20
-cumulus@switch:~$ net add bridge bridge pvid 1
-cumulus@switch:~$ net add interface swp1 bridge access 10
-cumulus@switch:~$ net add interface swp2 bridge access 10
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-{{< /tab >}}
 {{< tab "Linux Commands ">}}
 
 Edit the `/etc/network/interfaces` file, then run the `ifreload -a` command.
@@ -253,27 +215,6 @@ cumulus@switch:~$ cl config apply
 ```
 
 {{< /tab >}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@switch:~$ net add interface swp2 bridge allow-untagged no
-```
-
-When you check VLAN membership for that port, it shows that there is **no** untagged VLAN.
-
-```
-cumulus@switch:~$ net show bridge vlan
-
-Interface      VLAN   Flags
------------  ------   ---------------------
-swp1              1   PVID, Egress Untagged
-                 10
-                 20
-swp2             10
-                 20
-```
-
-{{< /tab >}}
 {{< tab "Linux Commands ">}}
 
 Edit the `/etc/network/interfaces` file to add the `bridge-allow-untagged no` line under the switch port interface stanza, then run the `ifreload -a` command.
@@ -300,6 +241,8 @@ iface br_default
 ```
 cumulus@switch:~$ sudo ifreload -a
 ```
+{{< /tab >}}
+{{< /tabs >}}
 
 When you check VLAN membership for that port, it shows that there is **no** untagged VLAN.
 
@@ -314,9 +257,6 @@ swp2 10 20
 bridge 1
 ```
 
-{{< /tab >}}
-{{< /tabs >}}
-
 ## VLAN Layer 3 Addressing
 
 When configuring the VLAN attributes for the bridge, specify the attributes for each VLAN interface. If you are configuring the switch virtual interface (SVI) for the native VLAN, you must declare the native VLAN and specify its IP address. Specifying the IP address in the bridge stanza itself returns an error.
@@ -330,16 +270,6 @@ The following example commands declare native VLAN 10 with IPv4 address 10.1.10.
 cumulus@switch:~$ cl set interface vlan10 ip address 10.1.10.2/24
 cumulus@switch:~$ cl set interface vlan10 ip address 2001:db8::1/32
 cumulus@switch:~$ cl config apply
-```
-
-{{< /tab >}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@switch:~$ net add vlan 10 ip address 10.1.10.2/24
-cumulus@switch:~$ net add vlan 10 ipv6 address 2001:db8::1/32
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}

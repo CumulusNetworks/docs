@@ -249,7 +249,7 @@ cumulus@switch:~$ sudo -E apt-get update
 cumulus@switch:~$ sudo -E apt-get upgrade
 ```
 
-The packages that will be upgraded are listed and you are prompted to continue.
+The packages that are to be upgraded are listed and you are prompted to continue.
 
 The above commands upgrade all installed versions with their latest versions but do not install any new packages.
 
@@ -288,7 +288,7 @@ cumulus@switch:~$ sudo -E apt-get install <package1> <package2> <package3>
 In some cases, installing a new package might also upgrade additional existing packages due to dependencies. To view these additional packages before you install, run the `apt-get install --dry-run` command.
 {{%/notice%}}
 
-## Add Packages from Another Repository
+## Add Packages From Another Repository
 
 As shipped, Cumulus Linux searches the Cumulus Linux repository for available packages. You can add additional repositories to search by adding them to the list of sources that `apt-get` consults. See `man sources.list` for more information.
 

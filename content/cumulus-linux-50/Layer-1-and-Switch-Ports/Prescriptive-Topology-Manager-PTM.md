@@ -46,8 +46,10 @@ Modify these default scripts as needed.
 
 You can configure `ptmd` parameters in the topology file. The parameters are classified as host-only, global, per-port/node and templates.
 
+<!-- vale off -->
+<!-- Vale issue #253 -->
 ### Host-only Parameters
-
+<!-- vale on -->
 *Host-only parameters* apply to the entire host on which PTM is running. You can include the `hostnametype` host-only parameter, which specifies if PTM uses only the hostname (`hostname`) or the fully-qualified
 domain name (`fqdn`) while looking for the `self-node` in the graph file. For example, in the graph file below PTM ignores the FQDN and only looks for *switch04* because that is the hostname of the switch on which it is running:
 
@@ -91,8 +93,10 @@ graph G {
 }
 ```
 
+<!-- vale off -->
+<!-- Vale issue #253 -->
 ### Per-port Parameters
-
+<!-- vale on -->
 *Per-port parameters* provide finer-grained control at the port level. These parameters override any global or compiled defaults. For example:
 
 ```
@@ -137,9 +141,9 @@ In this template, LLDP1 and LLDP2 are templates for LLDP parameters. BFD1 and BF
 - `requiredMinRx` is the minimum interval between received BFD packets, which defaults to *300ms*, specified in milliseconds.
 - `detectMult` is the detect multiplier, which defaults to *3*, and can be any non-zero value.
 - `afi` is the address family to be supported for the edge. The address family must be one of the following:
-  - *v4*: BFD sessions will be built for only IPv4 connected peer. This is the default value.
-  - *v6*: BFD sessions will be built for only IPv6 connected peer.
-  - *both*: BFD sessions will be built for both IPv4 and IPv6 connected peers.
+  - *v4*: BFD sessions are built for only IPv4 connected peer. This is the default value.
+  - *v6*: BFD sessions are built for only IPv6 connected peer.
+  - *both*: BFD sessions are built for both IPv4 and IPv6 connected peers.
 
 The following is an example of a topology with BFD applied at the port level:
 
@@ -166,7 +170,7 @@ graph G {
 
 {{%notice note%}}
 
-When you specify `match_hostname=fqdn`, `ptmd` will match the entire FQDN, (*cumulus-2.domain.com* in the example below). If you do not specify anything for `match_hostname`, `ptmd` matches based on hostname only, (*cumulus-3* below), and ignores the rest of the URL:
+When you specify `match_hostname=fqdn`, `ptmd` matches the entire FQDN, (*cumulus-2.domain.com* in the example below). If you do not specify anything for `match_hostname`, `ptmd` matches based on hostname only, (*cumulus-3* below), and ignores the rest of the URL:
 
 ```
 graph G {
@@ -181,7 +185,7 @@ graph G {
 
 BFD provides low overhead and rapid detection of failures in the paths between two network devices. It provides a unified mechanism for link detection over all media and protocol layers. Use BFD to detect failures for IPv4 and IPv6 single or multihop paths between any two network devices, including unidirectional path failure detection. For information about configuring BFD using PTM, see {{<link url="Bidirectional-Forwarding-Detection-BFD" text="BFD">}}.
 
-## Check Link State with FRRouting
+## Check Link State With FRRouting
 
 The FRRouting routing suite enables additional checks to ensure that routing adjacencies are formed only on links that have connectivity conformant to the specification, as determined by `ptmd`.
 

@@ -281,7 +281,7 @@ The table below describes the configuration options available:
 | timeout=seconds | TACACS+ server(s) communication timeout.<br>This parameter defaults to 10 seconds in the /etc/tacplus_servers file, but defaults to 5 seconds in the /etc/tacplus_nss.conf file. |
 | include=/file/name | A supplemental configuration file to avoid duplicating configuration information. You can include up to 8 more configuration files. |
 | min_uid=value | The minimum user ID that the NSS plugin looks up. Setting it to 0 means uid 0 (root) is never looked up, which is desirable for performance reasons. The value should not be greater than the local TACACS+ user IDs (0 through 15), to ensure they can be looked up. |
-| exclude_users=user1,user2,... | A comma-separated list of usernames that are never looked up by the NSS plugin, set in the tacplus_nss.conf file. You cannot use * (asterisk) as a wild card in the list. While it's not a legal username, bash may lookup this as a user name during pathname completion, so it is included in this list as a username string.<br>**Note**: Do not remove the cumulus user from the exclude_users list; doing so can make it impossible to log in as the cumulus user, which is the primary administrative account in Cumulus Linux. If you do remove the cumulus user, add some other local fallback user that does not rely on TACACS but is a member of sudo and netedit groups, so that these accounts can run sudo and NCLU commands. |
+| exclude_users=user1,user2,| A comma-separated list of usernames that are never looked up by the NSS plugin, set in the `tacplus_nss.conf` file. You cannot use * (asterisk) as a wild card in the list. While it is not a legal username, bash might lookup this as a user name during pathname completion, so it is included in this list as a username string.<br>**Note**: Do not remove the cumulus user from the exclude_users list; doing so can make it impossible to log in as the cumulus user, which is the primary administrative account in Cumulus Linux. If you do remove the cumulus user, add some other local fallback user that does not rely on TACACS but is a member of sudo and netedit groups, so that these accounts can run sudo and NCLU commands. |
 | login=string | TACACS+ authentication service (pap, chap, or login).<br>The default value is pap.|
 |user_homedir=1|This is not enabled by default. When enabled, a separate home directory for each TACACS+ user is created when the TACACS+ user first logs in. By default, the home directory in the mapping accounts in /etc/passwd (/home/tacacs0 ... /home/tacacs15) is used. If the home directory does not exist, it is created with the mkhomedir_helper program, in the same way as pam_mkhomedir.<br>This option is not honored for accounts with restricted shells when per-command authorization is enabled. |
 | acct_all=1 | Configuration option for audisp_tacplus and pam_tacplus sending accounting records to all supplied servers (1), or the first server to respond (0).<br>The default value is 1. |
@@ -427,9 +427,9 @@ The TACACS+ client is only supported through the management interface on the swi
 
 ### Multiple TACACS+ Users
 
-If two or more TACACS+ users are logged in simultaneously with the same privilege level, while the accounting records are maintained correctly, a lookup on either name will match both users, while a UID lookup will only return the user that logged in first.
+If two or more TACACS+ users are logged in simultaneously with the same privilege level, while the accounting records are maintained correctly, a lookup on either name matches both users, while a UID lookup only returns the user that logged in first.
 
-This means that any processes run by either user will be attributed to both, and all files created by either user will be attributed to the first name matched. This is similar to adding two local users to the password file with the same UID and GID, and is an inherent limitation of using the UID for the base user from the password file.
+This means that any processes run by either user is attributed to both, and all files created by either user are attributed to the first name matched. This is similar to adding two local users to the password file with the same UID and GID, and is an inherent limitation of using the UID for the base user from the password file.
 
 {{%notice note%}}
 
@@ -446,7 +446,7 @@ The Linux `auditd` system does not always generate audit events for processes wh
 
 ### Issues with deluser Command
 
-TACACS+ and other non-local users that run the `deluser` command with the `--remove-home` option will see an error about not finding the user in `/etc/passwd`:
+TACACS+ and other non-local users that run the `deluser` command with the `--remove-home` option see an error about not finding the user in `/etc/passwd`:
 
 ```
 tacuser0@switch: deluser --remove-home USERNAME
@@ -454,7 +454,7 @@ userdel: cannot remove entry 'USERNAME' from /etc/passwd
 /usr/sbin/deluser: `/usr/sbin/userdel USERNAME' returned error code 1. Exiting
 ```
 
-However, the command does remove the home directory. The user can still log in on that account, but will not have a valid home directory. This is a known upstream issue with the `deluser` command for all non-local users.
+However, the command does remove the home directory. The user can still log in on that account, but does not have a valid home directory. This is a known upstream issue with the `deluser` command for all non-local users.
 
 Only use the `--remove-home` option when the `user_homedir=1` configuration command is in use.
 

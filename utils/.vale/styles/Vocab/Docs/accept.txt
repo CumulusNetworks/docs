@@ -1,13 +1,18 @@
 # To ignore all case of a word end the line with /i
 # To ignore single letter case use [a|A]
+# To allow for optional "s" plural ending use "s?". Example: "routers?" matches "router" and "routers"
 [FRR|frr]
 [h|H]ostname
+[l|L]oopback
 [m|M]ulticast
 [MLAG|mlag]
 [PIM|pim]
+[PTM|ptm]
 [r|R]ebalance
 [r|R]eprovision
 [r|R]eprovisioning
+[SETQOS|setqos]
+[tos|ToS]
 [u|U]nicast
 [ztp|ZTP]
 addbr
@@ -91,7 +96,6 @@ LLDP
 lldpd
 localtime
 lookups
-loopback
 mbps
 mgmt
 mkhomedir
@@ -133,7 +137,6 @@ pps
 preconfigured
 proto
 PSU
-PTM
 ptmctl
 ptmd
 pvid
@@ -150,7 +153,6 @@ rsa
 rsyslog
 sbin
 sdk
-SETQOS
 shortcode
 smond
 src
@@ -177,7 +179,6 @@ TCA
 tclass
 TCP
 tcpdump
-tos
 traceroute
 ttl
 UDP

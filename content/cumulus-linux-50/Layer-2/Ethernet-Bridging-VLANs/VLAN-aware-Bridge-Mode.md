@@ -243,8 +243,6 @@ iface br_default
 ```
 cumulus@switch:~$ sudo ifreload -a
 ```
-{{< /tab >}}
-{{< /tabs >}}
 
 {{< /tab >}}
 {{< /tabs >}}

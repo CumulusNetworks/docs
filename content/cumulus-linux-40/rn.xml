@@ -2491,13 +2491,6 @@ Do not enable receiving syslog messages from other hosts by the network (with $U
 <td>4.2.0-4.3.0</td>
 </tr>
 <tr>
-<td>2547831</td>
-<td>NCLU incorrectly allows you to configure port security on bond/MLAG interfaces.
-Port security is not supported on bond/MLAG interfaces.</td>
-<td>4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
 <td>2547799</td>
 <td>An error similar to the following shows in syslog for Mellanox switches:
 
@@ -3155,12 +3148,6 @@ To avoid this issue, wait 15 seconds before insertion and before removal of the 
 <td>On the Trident3 switch, unicast ARP packets received on a VNI and forwarded to the CPU are not policed.</td>
 <td>3.7.10-3.7.13, 4.0.0-4.0.1</td>
 <td>3.7.14, 4.1.0-4.3.0</td>
-</tr>
-<tr>
-<td>2545362</td>
-<td>On the Dell S5248F-ON switch, the CPU core temperature sensors show {{ABSENT}}.</td>
-<td>4.0.0-4.3.0</td>
-<td></td>
 </tr>
 <tr>
 <td>2545352</td>
@@ -3835,13 +3822,6 @@ To restore connectivity, remove the VLAN ID from the bridge. </td>
 <td></td>
 </tr>
 <tr>
-<td>2538740</td>
-<td>In an EVPN symmetric routing configuration, when an IP address is frozen, kernel neighbor table information and kernel VRF routing table information about the frozen IP address might be out-of-sync. 
- </td>
-<td>3.7.3-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
 <td>2538590</td>
 <td>When you configure a control plane ACL to define permit and deny rules destined to the local switch, NCLU programs the control plane ACL rules into the FORWARD chain. 
  </td>
@@ -3854,13 +3834,6 @@ To restore connectivity, remove the VLAN ID from the bridge. </td>
 After you remove the link-speed, {{ethtool}} shows the advertised link modes as not reported and Speed/Duplex as unknown.
 To work around this issue and bring the interface back up, either restart {{switchd}} or use ethtool to configure the speed, advertised, duplex or MDI-X settings. 
 Note: The advertised link mode gets set incorrectly if you include 1000baseT/Half. The port will come up successfully at 1G.</td>
-<td>3.7.2-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
-<td>2538295</td>
-<td>For QSFP modules, the {{sudo ifdown}} command does not disable the Tx laser. 
- </td>
 <td>3.7.2-3.7.14.2, 4.0.0-4.3.0</td>
 <td></td>
 </tr>
@@ -4061,12 +4034,6 @@ To work around this issue, use the {{sudo ifdown &lt;bondname&gt;}} command.</td
 <td>2531273</td>
 <td>In certain cases, a peer device sends an ARP request from a source IP address that is not on the connected subnet and the switch creates a STALE neighbor entry. Eventually, the switch attempts to keep the entry fresh and sends ARP requests to the host. If the host responds, the switch has REACHABLE neighbor entries for hosts that are not on the connected subnet. 
 To work around this issue, change the value of {{arp_ignore}} to 2. See [Address Resolution Protocol in the Cumulus Linux user guide|https://docs.cumulusnetworks.com/cumulus-linux/Layer-3/Address-Resolution-Protocol-ARP/] for more information.</td>
-<td>4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
-<td>2530322</td>
-<td>NCLU cannot manage {{rsyslog}} to addresses routed via a VRF.  In Cumulus Linux 4.0.0 and later, management VRF is enabled by default.   To work around this issue, update the {{/etc/network/interfaces}} file to disable management VRF.</td>
 <td>4.0.0-4.3.0</td>
 <td></td>
 </tr>

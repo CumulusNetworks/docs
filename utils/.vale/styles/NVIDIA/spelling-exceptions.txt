@@ -63,6 +63,8 @@ mstpctl
 mstpd
 multiport
 mysecret
+subinterface
+subinterfaces
 myuser
 mz
 neighmgrd

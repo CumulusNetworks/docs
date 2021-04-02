@@ -141,9 +141,9 @@ In this template, LLDP1 and LLDP2 are templates for LLDP parameters. BFD1 and BF
 - `requiredMinRx` is the minimum interval between received BFD packets, which defaults to *300ms*, specified in milliseconds.
 - `detectMult` is the detect multiplier, which defaults to *3*, and can be any non-zero value.
 - `afi` is the address family to be supported for the edge. The address family must be one of the following:
-  - *v4*: BFD sessions is built for only IPv4 connected peer. This is the default value.
-  - *v6*: BFD sessions is built for only IPv6 connected peer.
-  - *both*: BFD sessions is built for both IPv4 and IPv6 connected peers.
+  - *v4*: BFD sessions are built for only IPv4 connected peer. This is the default value.
+  - *v6*: BFD sessions are built for only IPv6 connected peer.
+  - *both*: BFD sessions are built for both IPv4 and IPv6 connected peers.
 
 The following is an example of a topology with BFD applied at the port level:
 

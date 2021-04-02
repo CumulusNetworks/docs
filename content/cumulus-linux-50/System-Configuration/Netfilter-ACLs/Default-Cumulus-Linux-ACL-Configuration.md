@@ -193,7 +193,7 @@ Bridge chain: OUTPUT, entries: 0, policy: ACCEPT
 | Set Class: 6<br>Police: Rate 300 burst 100<br>Source IP: Any<br>Destination IP: Any | Protocol:<br>IGMP |
 | Set class: 2<br>Police: Rate 100 burst 40<br>Source IP : Any<br>Destination IP: Any | Protocol:<br>ICMP |
 | Set class: 2<br>Police: Rate 100 burst 100<br>Source IP: Any<br>Destination IP: Any | Protocol:<br>UDP/bootpc, bootps |
-| Set class: 0<br>Police: Rate 1000 burst 1000<br>Source IP: Any<br>Destination IP: Any | ADDRTYPE match dst-type LOCAL <br>**Note**: LOCAL is any local address -> Receiving a packet with a destination matching a local IP address on the switch will go to the CPU. |
+| Set class: 0<br>Police: Rate 1000 burst 1000<br>Source IP: Any<br>Destination IP: Any | ADDRTYPE match dst-type LOCAL <br>**Note**: LOCAL is any local address -> Receiving a packet with a destination matching a local IP address on the switch goes to the CPU. |
 | Set class: 0<br>Police: Rate 400 burst 100<br>Source IP: Any<br>Destination IP: Any | ADDRTYPE match dst-type IPROUTER <br>**Note**: IPROUTER is any unresolved address -> On a layer 2 or layer3 boundary receiving a packet from layer 3 and needs to go to CPU to ARP for the destination. |
 | Set class 0 | All |
 
@@ -213,7 +213,7 @@ Set class is internal to the switch - it does not set any precedence bits.
 | Set class: 2<br>Police: Packet rate: 400 burst 400<br>Source IPv6: Any<br>Destination IPv6: Any |Protocol:<br>ipv6-icmp neighbour-solicitation<br>ipv6-icmp neighbour-advertisement |
 | Set class: 2<br>Police: Packet rate: 64 burst: 40<br>Source IPv6: Any<br>Destination IPv6: Any |Protocol:<br>Ipv6 icmp |
 | Set class: 2<br>Police: Packet rate: 100 burst: 100<br>Source IPv6: Any<br>Destination IPv6: Any |Protocol:<br>UDP/dhcpv6-client:dhcpv6-server (Spts & dpts) |
-| Police: Packet rate: 1000 burst 1000<br>Source IPv6: Any<br>Destination IPv6: Any | ADDRTYPE match dst-type LOCAL<br> **Note**: LOCAL is any local address -> Receiving a packet with a destination matching a local IPv6 address on the switch will go to the CPU. |
+| Police: Packet rate: 1000 burst 1000<br>Source IPv6: Any<br>Destination IPv6: Any | ADDRTYPE match dst-type LOCAL<br> **Note**: LOCAL is any local address -> Receiving a packet with a destination matching a local IPv6 address on the switch goes to the CPU. |
 | Set class: 0<br>Police: Packet rate: 400 burst 100 | ADDRTYPE match dst-type IPROUTER<br> **Note:** IPROUTER is an unresolved address -> On a layer 2 or layer 3 boundary receiving a packet from layer 3 and needs to go to CPU to ARP for the destination. |
 | Set class 0 | All |
 

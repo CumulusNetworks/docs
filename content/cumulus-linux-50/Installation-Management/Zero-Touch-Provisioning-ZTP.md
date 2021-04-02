@@ -21,7 +21,7 @@ Each method is discussed in greater detail below.
 
 ## Use a Local File
 
-ZTP only looks once for a ZTP script on the local file system when the switch boots. ZTP searches for an install script that matches an {{<exlink url="http://onie.org" text="ONIE">}}-style waterfall in `/var/lib/cumulus/ztp`, looking for the most specific name first, and ending at the most generic:
+ZTP only looks a single time for a ZTP script on the local file system when the switch boots. ZTP searches for an install script that matches an {{<exlink url="http://onie.org" text="ONIE">}}-style waterfall in `/var/lib/cumulus/ztp`, looking for the most specific name first, and ending at the most generic:
 
 - `'cumulus-ztp-' + architecture + '-' + vendor + '_' + model + '-r' + revision`
 - `'cumulus-ztp-' + architecture + '-' + vendor + '_' + model`
@@ -38,9 +38,10 @@ You can also trigger the ZTP process manually by running the `ztp --run <URL>` c
 This feature has been tested only with *thumb* drives, not an actual external large USB hard drive.
 
 {{%/notice%}}
-
+<!-- vale off -->
+<!-- acceptable use of 'once' -->
 If the `ztp` process does not discover a local script, it tries once to locate an inserted but unmounted USB drive. If it discovers one, it begins the ZTP process.
-
+<!-- vale on -->
 Cumulus Linux supports the use of a FAT32, FAT16, or VFAT-formatted USB drive as an installation source for ZTP scripts. You must plug in the USB drive **before** you power up the switch.
 
 At minimum, the script must:
@@ -61,7 +62,7 @@ The USB drive is mounted to a temporary directory under `/tmp` (for example, `/t
 
 {{%/notice%}}
 
-## ZTP over DHCP
+## ZTP Over DHCP
 
 If the `ztp` process does not discover a local/ONIE script or applicable USB drive, it checks DHCP every ten seconds for up to five minutes for the presence of a ZTP URL specified in `/var/run/ztp.dhcp`. The URL can be any of HTTP, HTTPS, FTP or TFTP.
 
@@ -77,7 +78,7 @@ The ZTP process over DHCP follows these steps:
 6. If provisioning is necessary, the script executes locally on the switch with root privileges.
 7. The return code of the script is examined. If it is 0, the provisioning state is marked as complete in the autoprovisioning configuration file.
 
-### Trigger ZTP over DHCP
+### Trigger ZTP Over DHCP
 
 If provisioning has not already occurred, it is possible to trigger the ZTP process over DHCP when eth0 is set to use DHCP and one of the following events occur:
 
@@ -506,8 +507,9 @@ cumulus@switch:~$ sudo grep -i ztp /var/log/syslog
 
 ## Common ZTP Script Errors
 
+<!-- vale off -->
 ### Could not find referenced script/interpreter in downloaded payload
-
+<!-- vale on -->
 ```
 cumulus@leaf01:~$ sudo cat /var/log/syslog | grep ztp
 2018-04-24T15:06:08.887041+00:00 leaf01 ztp [13404]: Attempting to provision via ZTP Manual from http://192.168.0.254/ztp_oob_windows.sh
@@ -575,7 +577,6 @@ root@oob-mgmt-server:/var/www/html#
 ```
 
 ## Manually Use the ztp Command
-
 To enable ZTP, use the `-e` option:
 
 ```
@@ -584,7 +585,7 @@ cumulus@switch:~$ sudo ztp -e
 
 {{%notice note%}}
 
-Enabling ZTP means that ZTP tries to run the next time the switch boots. However, if ZTP already ran on a previous boot up or if a manual configuration has been found, ZTP will just exit without trying to look for any script.
+Enabling ZTP means that ZTP tries to run the next time the switch boots. However, if ZTP already ran on a previous boot up or if a manual configuration has been found, ZTP exits without trying to look for a script.
 
 ZTP checks for these manual configurations during bootup:
 

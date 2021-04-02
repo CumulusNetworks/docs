@@ -39,9 +39,9 @@ To view a list of all switches known to lifecycle management, run:
 ```
 netq lcm show switches [version <text-cumulus-linux-version>] [json]
 ```
-
+<!-- vale off -->
 Use the `version` option to only show switches with a given Cumulus Linux version, X.Y.Z.
-
+<!-- vale on -->
 This example shows all switches known by lifecycle management.
 
 ```
@@ -184,9 +184,9 @@ To view all switch roles, run:
 ```
 netq lcm show switches [version <text-cumulus-linux-version>] [json]
 ```
-
+<!-- vale off -->
 Use the `version` option to only show switches with a given Cumulus Linux version, X.Y.Z.
-
+<!-- vale on -->
 This example shows the role of all switches in the **Role** column of the listing.
 
 ```

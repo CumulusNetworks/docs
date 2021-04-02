@@ -1,0 +1,18 @@
+---
+# Warning: NVIDIA.Latin
+#
+# Checks for use of Latin terms.
+#
+extends: substitution
+message: 'Use "%s" instead of "%s", but consider rewriting the sentence.'
+level: warning
+nonword: true
+ignorecase: true
+swap:
+  e\.g\.: for example
+  e\. g\.: for example
+  i\.e\.: that is
+  i\. e\.: that is
+  \betc\b: and so on
+  etc\.: and so on
+  et cetera: and so on

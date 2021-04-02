@@ -96,7 +96,7 @@ If you are using certain forms of network virtualization, such as {{<link url="I
 
 {{%notice note%}}
 
-You can check which files have changed since the last Cumulus Linux image install with the following commands. Be sure to back up any changed files:
+The following commands verify which files have changed compared to the previous Cumulus Linux install. Be sure to back up any changed files:
 
 - Run the `sudo dpkg --verify` command to show a list of changed files.
 - Run the `egrep -v '^$|^#|=""$' /etc/default/isc-dhcp-*` command to see if any of the generated `/etc/default/isc-*` files have changed.
@@ -162,9 +162,10 @@ To upgrade the switch:
 6. Reinstall third party applications and associated configurations.
 
 ### Package Upgrade
-
+<!-- vale off -->
+<!-- use of "since" -->
 Cumulus Linux completely embraces the Linux and Debian upgrade workflow, where you use an installer to install a base image, then perform any upgrades within that release train with `sudo -E apt-get update` and `sudo -E apt-get upgrade` commands. Any packages that have been changed since the base install get upgraded in place from the repository. All switch configuration files remain untouched, or in rare cases merged (using the Debian merge function) during the package upgrade.
-
+<!-- vale on -->
 When you use package upgrade to upgrade your switch, configuration data stays in place while the packages are upgraded. If the new release updates a configuration file that you changed previously, you are prompted for the version you want to use or if you want to evaluate the differences.
 
 To upgrade the switch using package upgrade:
@@ -177,7 +178,7 @@ To upgrade the switch using package upgrade:
     cumulus@switch:~$ sudo -E apt-get update
     ```
 
-3. Review potential upgrade issues (in some cases, upgrading new packages might also upgrade additional existing packages due to dependencies). Run the following command to see the additional packages that will be installed or upgraded.
+3. Review potential upgrade issues (in some cases, upgrading new packages might also upgrade additional existing packages due to dependencies). Run the following command to see the additional packages to be installed or upgraded.
 
     ```
     cumulus@switch:~$ sudo -E apt-get upgrade --dry-run

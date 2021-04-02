@@ -25,7 +25,7 @@ To access the CLI from a switch or server:
     <computer>:~<username>$ ssh cumulus@switch
     ```
 
-2. Enter your password to reach the command prompt. The default password is     *CumulusLinux\!* For example:
+2. Enter your password to reach the command prompt. The default password is *CumulusLinux\!* For example:
 
     ```
     Enter passphrase for key '/Users/<username>/.ssh/id_rsa': <enter CumulusLinux! here>
@@ -81,11 +81,11 @@ netq trace <destination> from <source> [options]
 For example, in the `netq check` command:
 
 - \[\<hostname\>\] is an optional parameter with a variable value named *hostname*
-
+<!-- vale off -->
 - \<network-protocol-or-service\> represents a number of possible key words, such as *agents*, *bgp*, *evpn,* and so forth
 
 - \<options\> represents a number of possible conditions for the given object, such as *around*, *vrf,* or *json*
-
+<!-- vale on -->
 Thus some valid commands are:
 
 - `netq leaf02 check agents json`
@@ -95,7 +95,7 @@ Thus some valid commands are:
 
 ### Command Output
 
-The command output presents results in color for many commands.  Results with errors are shown in <span style="color: #ff0000;">red</span>, and warnings are shown in <span style="color: #ffcc00;">yellow</span>. Results without errors or warnings are shown in either black or <span style="color: #00ff00;">green</span>. VTEPs are shown in <span style="color: #0000ff;">blue</span>. A node in the *pretty* output is shown in **bold**, and a router interface is wrapped in angle brackets (\< \>). To view the output with only black text, run the `netq config del color` command. You can view output with colors again by running `netq config add color`.
+The command output presents results in color for many commands. Results with errors are shown in <span style="color: #ff0000;">red</span>, and warnings are shown in <span style="color: #ffcc00;">yellow</span>. Results without errors or warnings are shown in either black or <span style="color: #00ff00;">green</span>. VTEPs are shown in <span style="color: #0000ff;">blue</span>. A node in the *pretty* output is shown in **bold**, and a router interface is wrapped in angle brackets (\< \>). To view the output with only black text, run the `netq config del color` command. You can view output with colors again by running `netq config add color`.
 
 All check and show commands are run with a default time frame of now to one hour ago, unless you specify an approximate time using the `around` keyword or a range using the `between` keyword. For example, running `netq check bgp` shows the status of BGP over the last hour. Running `netq show bgp around 3h` shows the status of BGP three hours ago.
 
@@ -171,7 +171,7 @@ While the CLI has a flat structure, the commands can be conceptually grouped int
 ### Validation Commands
 
 The `netq` `check` commands enable the network administrator to validate the current or historical state of the network by looking for errors and misconfigurations in the network. The commands run fabric-wide validations against various configured protocols and services to determine how well the network is operating. Validation checks can be performed for the following:
-
+<!-- vale off -->
 - **agents**: NetQ Agents operation on all switches and hosts
 - **bgp**: BGP (Border Gateway Protocol) operation across the network
   fabric
@@ -187,7 +187,7 @@ The `netq` `check` commands enable the network administrator to validate the cur
 - **sensors**: Temperature/Fan/PSU sensor operation
 - **vlan**: VLAN (Virtual Local Area Network) operation
 - **vxlan**: VXLAN (Virtual Extensible LAN) data path operation
-
+<!-- vale on -->
 The commands take the form of `netq check <network-protocol-or-service> [options]`, where the options vary according to the protocol or service.
 
 This example shows the output for the `netq check bgp` command, followed by the same command using the `json` option. If there had been any failures, they would be have been listed below the summary results or in the *failedNodes* section, respectively.
@@ -298,7 +298,7 @@ The `netq show` commands enable the network administrator to view
 details about the current or historical configuration and status of the
 various protocols or services. The configuration and status can be shown
 for the following:
-
+<!-- vale off -->
 - **address-history**: Address history info for a IP address / prefix
 - **agents**: NetQ Agents status on switches and hosts
 - **bgp**: BGP status across the network fabric
@@ -343,7 +343,7 @@ for the following:
 - **vlan**: VLAN status
 - **vxlan**: VXLAN data path status
 - **wjh-drop**: dropped packet data from NVIDIA&reg; Mellanox&reg; What Just Happened&reg;
-
+<!-- vale on -->
 The commands take the form of `netq [<hostname>] show <network-protocol-or-service> [options]`, where the options vary according to the protocol or service. The commands can be restricted from showing the information for *all* devices to showing information for a selected device using the `hostname` option.
 
 This example shows the standard and restricted output for the  `netq show agents` command.

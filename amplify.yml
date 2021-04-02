@@ -30,11 +30,6 @@ frontend:
         - if [ "${AWS_BRANCH}" != "master" ]; then hugo -D --baseURL $BASEURL ; fi
         - if [ "${AWS_BRANCH}" = "master" ]; then hugo --minify --baseURL $BASEURL ; fi
         - echo Successfully built docs
-        # If everything else worked, and this is master, then cut a new release.
-        # Note, this always returns 0. We have had issues with the github API rate limiting the amplify IP
-        # cutting a release is a "nice to have" feature but should not break the build.
-        - echo "Creating new Github release"
-        - if [ "${AWS_BRANCH}" = "master" ] && "${CUMULUS}"; then python3 utils/build_release.py $GITHUB_TOKEN  ; fi
   artifacts:
     files:
       - '**/*'

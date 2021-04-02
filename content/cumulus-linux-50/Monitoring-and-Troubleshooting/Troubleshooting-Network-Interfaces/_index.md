@@ -61,7 +61,7 @@ iface bond0
     bond-slaves swp25 swp26
 ```
 
-Use `ifquery --check` to check the current running state of an interface within the `interfaces` file. It will return exit code *0* or *1* if the configuration does not match. The line `bond-xmit-hash-policy layer3+7` below fails because it should read `bond-xmit-hash-policy layer3+4`.
+Use `ifquery --check` to check the current running state of an interface within the `interfaces` file. The command returns exit code *0* or *1* if the configuration does not match. The line `bond-xmit-hash-policy layer3+7` below fails because it should read `bond-xmit-hash-policy layer3+4`.
 
 ```
 cumulus@switch:~$ sudo ifquery --check bond0

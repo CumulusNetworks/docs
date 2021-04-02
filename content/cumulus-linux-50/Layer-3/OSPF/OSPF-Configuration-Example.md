@@ -17,7 +17,6 @@ In the example configuration:
 ## /etc/network/interfaces
 
 {{< tabs "TabID901 ">}}
-
 {{< tab "leaf01 ">}}
 
 ```
@@ -139,7 +138,6 @@ iface bond3
 ```
 
 {{< /tab >}}
-
 {{< tab "leaf02 ">}}
 
 ```
@@ -261,7 +259,6 @@ iface bond3
 ```
 
 {{< /tab >}}
-
 {{< tab "spine01 ">}}
 
 ```
@@ -302,7 +299,6 @@ iface swp6
 ```
 
 {{< /tab >}}
-
 {{< tab "spine02 ">}}
 
 ```
@@ -343,7 +339,6 @@ iface swp6
 ```
 
 {{< /tab >}}
-
 {{< tab "border01 ">}}
 
 ```
@@ -431,7 +426,6 @@ iface bond2
 ```
 
 {{< /tab >}}
-
 {{< tab "border02 ">}}
 
 ```
@@ -533,13 +527,11 @@ iface bond2
 ```
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 ## /etc/frr/frr.conf
 
 {{< tabs "TabID944 ">}}
-
 {{< tab "leaf01 ">}}
 
 ```
@@ -581,7 +573,6 @@ router ospf
 ```
 
 {{< /tab >}}
-
 {{< tab "leaf02 ">}}
 
 ```
@@ -623,7 +614,6 @@ router ospf
 ```
 
 {{< /tab >}}
-
 {{< tab "spine01 ">}}
 
 ```
@@ -665,7 +655,6 @@ router ospf
 ```
 
 {{< /tab >}}
-
 {{< tab "spine02 ">}}
 
 ```
@@ -708,7 +697,6 @@ router ospf
 ```
 
 {{< /tab >}}
-
 {{< tab "border01 ">}}
 
 ```
@@ -744,7 +732,6 @@ router ospf
 ```
 
 {{< /tab >}}
-
 {{< tab "border02 ">}}
 
 ```
@@ -780,5 +767,4 @@ router ospf
 ```
 
 {{< /tab >}}
-
 {{< /tabs >}}

@@ -27,17 +27,6 @@ cumulus@switch:~$ cl config apply
 ```
 
 {{< /tab >}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@switch:~$ net add bridge bridge ports swp1-2
-cumulus@switch:~$ net add bridge bridge vids 10,20
-cumulus@switch:~$ net add bridge bridge pvid 1
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-{{< /tab >}}
 {{< tab "Linux Commands ">}}
 
 Edit the `/etc/network/interfaces` file and add the bridge. An example configuration is shown below.
@@ -136,18 +125,6 @@ cumulus@switch:~$ cl config apply
 ```
 
 {{< /tab >}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@switch:~$ net add bridge bridge ports swp1-3
-cumulus@switch:~$ net add bridge bridge vids 10,20
-cumulus@switch:~$ net add bridge bridge pvid 1
-cumulus@switch:~$ net add interface swp3 bridge vids 20
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-{{< /tab >}}
 {{< tab "Linux Commands ">}}
 
 Edit the `/etc/network/interfaces` file, then run the `ifreload -a` command.
@@ -191,19 +168,6 @@ cumulus@switch:~$ cl set bridge domain br_default untagged 1
 cumulus@switch:~$ cl set interface swp1 bridge domain br_default access 10
 cumulus@switch:~$ cl set interface swp2 bridge domain br_default access 10
 cumulus@switch:~$ cl config apply
-```
-
-{{< /tab >}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@switch:~$ net add bridge bridge ports swp1-2
-cumulus@switch:~$ net add bridge bridge vids 10,20
-cumulus@switch:~$ net add bridge bridge pvid 1
-cumulus@switch:~$ net add interface swp1 bridge access 10
-cumulus@switch:~$ net add interface swp2 bridge access 10
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
@@ -253,13 +217,6 @@ cumulus@switch:~$ cl config apply
 ```
 
 {{< /tab >}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@switch:~$ net add interface swp2 bridge allow-untagged no
-```
-
-{{< /tab >}}
 {{< tab "Linux Commands ">}}
 
 Edit the `/etc/network/interfaces` file to add the `bridge-allow-untagged no` line under the switch port interface stanza, then run the `ifreload -a` command.
@@ -286,6 +243,8 @@ iface br_default
 ```
 cumulus@switch:~$ sudo ifreload -a
 ```
+{{< /tab >}}
+{{< /tabs >}}
 
 {{< /tab >}}
 {{< /tabs >}}
@@ -316,16 +275,6 @@ The following example commands declare native VLAN 10 with IPv4 address 10.1.10.
 cumulus@switch:~$ cl set interface vlan10 ip address 10.1.10.2/24
 cumulus@switch:~$ cl set interface vlan10 ip address 2001:db8::1/32
 cumulus@switch:~$ cl config apply
-```
-
-{{< /tab >}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@switch:~$ net add vlan 10 ip address 10.1.10.2/24
-cumulus@switch:~$ net add vlan 10 ipv6 address 2001:db8::1/32
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}

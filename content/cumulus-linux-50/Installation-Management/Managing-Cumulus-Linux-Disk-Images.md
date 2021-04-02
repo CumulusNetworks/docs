@@ -85,7 +85,7 @@ Cancelling pending uninstall at next reboot...done.
 
 {{%/notice%}}
 
-## Boot into Rescue Mode
+## Boot Into Rescue Mode
 
 If your system becomes unresponsive is some way, you can correct certain issues by booting into ONIE rescue mode. In rescue mode, the file systems are unmounted and you can use various Cumulus Linux utilities to try and resolve a problem.
 

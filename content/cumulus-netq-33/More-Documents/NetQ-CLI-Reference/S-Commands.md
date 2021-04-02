@@ -4739,7 +4739,7 @@ Displays packet drops due to buffer congestion, incorrect routing, tunnel, ACL a
 {{<notice note>}}
 Cumulus Linux 4.0.0 or later and NetQ Agent 2.4.0 or later are required to view this drop information. The NetQ Agent must also be configured to collect this data.
 
-Additionally, using <em>wjh_dump.py</em> on a NVIDIA platform that is running Cumulus Linux 4.0 and the NetQ 2.4.0 Agent causes the NetQ WJH client to stop receiving packet drop call backs. To prevent this issue, run <em>wjh_dump.py</dm> on a different system than the one where the NetQ Agent has WJH enabled, or disable <em>wjh_dump.py</em> and restart the NetQ Agent.
+Additionally, using <em>wjh_dump.py</em> on an NVIDIA platform that is running Cumulus Linux 4.0 and the NetQ 2.4.0 Agent causes the NetQ WJH client to stop receiving packet drop call backs. To prevent this issue, run <em>wjh_dump.py</dm> on a different system than the one where the NetQ Agent has WJH enabled, or disable <em>wjh_dump.py</em> and restart the NetQ Agent.
 {{</notice>}}
 
 ### Syntax

@@ -1,6 +1,6 @@
 ---
 title: Network Configuration
-author: Cumulus Networks
+author: NVIDIA
 weight: 400
 product: SONiC
 version: 202012

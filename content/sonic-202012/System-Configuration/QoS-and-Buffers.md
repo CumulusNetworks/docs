@@ -1,6 +1,6 @@
 ---
 title: QoS and Buffers
-author: Cumulus Networks
+author: NVIDIA
 weight: 350
 product: SONiC
 version: 202012

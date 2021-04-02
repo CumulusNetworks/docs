@@ -1,6 +1,6 @@
 ---
 title: Platform Firmware Components
-author: Cumulus Networks
+author: NVIDIA
 weight: 130
 product: SONiC
 version: 202012
@@ -164,7 +164,7 @@ The default option is `--image=current`.
 
 ## Mellanox Platform Firmware Archive (MPFA)
 
-On Mellanox switches, some platform components require a set of images or tools to complete the firmware update. These images or tools come in a bundle and are distributed as a single file in a special file format known as the *Mellanox Platform Firmware Archive* or MPFA.
+On NVIDIA Spectrum switches, some platform components require a set of images or tools to complete the firmware update. These images or tools come in a bundle and are distributed as a single file in a special file format known as the *Mellanox Platform Firmware Archive* or MPFA.
 
 MPFA is a very flexible format and supports an arbitrary internal file structure. The mandatory element is `metadata.ini`, which contains a description of what firmware files and versions are available.
 

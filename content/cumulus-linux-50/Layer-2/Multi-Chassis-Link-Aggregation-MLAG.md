@@ -5,7 +5,7 @@ weight: 490
 toc: 3
 ---
 {{%notice note%}}
-**MLAG or CLAG**: The Cumulus Linux implementation of MLAG is referred to by other vendors as CLAG, MC-LAG or VPC. You will even see references to CLAG in Cumulus Linux, including the management daemon, named `clagd`, and other options in the code, such as `clag-id`, which exist for historical purposes. The Cumulus Linux implementation is truly a multi-chassis link aggregation protocol, so we call it MLAG.
+**MLAG or CLAG**: The Cumulus Linux implementation of MLAG is referred to by other vendors as CLAG, MC-LAG or VPC. You even see references to CLAG in Cumulus Linux, including the management daemon, named `clagd`, and other options in the code, such as `clag-id`, which exist for historical purposes. The Cumulus Linux implementation is truly a multi-chassis link aggregation protocol, so we call it MLAG.
 {{%/notice%}}
 
 Multi-Chassis Link Aggregation (MLAG) enables a server or switch with a two-port bond, such as a link aggregation group (LAG), EtherChannel, port group or trunk, to connect those ports to different switches and operate as if they are connected to a single, logical switch. This provides greater redundancy and greater system throughput.
@@ -480,7 +480,51 @@ The `clagd` service has a number of timers that you can tune for enhanced perfor
 | `--sendTimeout <seconds>` | The number of seconds `clagd` waits until the sending socket times out. If it takes longer than the `sendTimeout` value to send data to the peer, `clagd` generates an exception. <br>The default is 30 seconds. |
 | `--lacpPoll <seconds>` | The number of seconds `clagd` waits before obtaining local LACP information. <br>The default is 2 seconds.|
 
-To set a timer:
+The following example command sets the delay in bringing up MLAG bonds and anycast IP addresses to 100 seconds:
+
+{{< tabs "TabID485 ">}}
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@leaf01:~$ cl set mlag init-delay 100
+cumulus@leaf01:~$ cl config apply
+```
+
+{{< /tab >}}
+{{< tab "NCLU Commands ">}}
+
+```
+cumulus@leaf01:~$ net add interface peerlink.4094 clag args --initDelay 100
+cumulus@leaf01:~$ net pending
+cumulus@leaf01:~$ net commit
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Edit the `/etc/network/interfaces` file to add the `clagd-args --initDelay 100` line to the peerlink.4094 stanza, then run the `ifreload -a` command.
+
+```
+cumulus@switch:~$ sudo nano /etc/network/interfaces
+...
+auto peerlink.4094
+iface peerlink.4094
+    clagd-args --initDelay 100
+    clagd-peer-ip linklocal
+    clagd-backup-ip 10.10.10.2
+    clagd-sys-mac 44:38:39:BE:EF:AA
+    clagd-priority 2048
+...
+```
+
+```
+cumulus@switch:~$ sudo ifreload -a
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+The following example command sets the peer timeout to 900 seconds:
 
 {{< tabs "TabID363 ">}}
 {{< tab "CUE Commands ">}}
@@ -493,8 +537,6 @@ cumulus@leaf01:~$ cl config apply
 {{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
-Run the `net add interface peerlink.4094 clag args <timer> <value>` command. The following example command sets the peerlink timer to 900 seconds:
-
 ```
 cumulus@leaf01:~$ net add interface peerlink.4094 clag args --peerTimeout 900
 cumulus@leaf01:~$ net pending
@@ -504,7 +546,7 @@ cumulus@leaf01:~$ net commit
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Edit the `/etc/network/interfaces` file to add the `clagd-args <timer> <value>` line to the peerlink.4094 stanza, then run the `ifreload -a` command. The following example sets the peerlink timer to 900 seconds:
+Edit the `/etc/network/interfaces` file to add the `clagd-args <timer> <value>` line to the peerlink.4094 stanza, then run the `ifreload -a` command.
 ```
 cumulus@switch:~$ sudo nano /etc/network/interfaces
 ...

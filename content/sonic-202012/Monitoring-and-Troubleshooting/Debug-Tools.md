@@ -1,13 +1,13 @@
 ---
 title: Mellanox Debug Tools for SONiC
-author: Cumulus Networks
+author: NVIDIA
 weight: 610
 product: SONiC
 version: 202012
 siteSlug: sonic
 ---
 
-There are a number of tools you can use to debug SONiC on your switch. Some of the tools described below are available only on Mellanox switches.
+There are a number of tools you can use to debug SONiC on your switch. Some of the tools described below are available only on NVIDIA Spectrum switches.
 
 ## SDK Utilities
 
@@ -84,7 +84,7 @@ To generate the full SDK configuration dump, run:
 
 ## SDK API Sniffer
 
-On Mellanox switches, the SDK API sniffer can record the RPC calls from the SDK user API library to the `sx_sdk` in a PCAP file. You can use this to get the same exact state in both the SDK and firmware in order to reproduce and investigate issues.
+On NVIDIA Spectrum switches, the SDK API sniffer can record the RPC calls from the SDK user API library to the `sx_sdk` in a PCAP file. You can use this to get the same exact state in both the SDK and firmware in order to reproduce and investigate issues.
 
 {{<img src="/images/sonic/sdk-api-sniffer.png" width="600px">}}
 
@@ -109,21 +109,21 @@ SDK sniffer is Disabled.
 
 More information on these platform-specific commands, read the {{<exlink url="https://github.com/Azure/sonic-utilities/blob/master/doc/Command-Reference.md#platform-specific-commands" text="Azure SONiC documentation on GitHub">}}.
 
-## NVIDIA Mellanox Firmware Tools (MFT)
+## MFT - Mellanox Firmware Tools
 
-On Mellanox switches, the NVIDIA Mellanox Firmware Tools (MFT) package is integrated into SONiC and provides a set of firmware management and debugging tools.
+On NVIDIA Spectrum switches, the Mellanox Firmware Tools (MFT) package is integrated into SONiC and provides a set of firmware management and debugging tools.
 
 You can use MFT to:
 
-- Generate a standard or customized Mellanox firmware image
+- Generate a standard or customized NVIDIA Spectrum firmware image
 - Query for firmware information
-- Burn a firmware image to a single Mellanox device
+- Burn a firmware image to a single NVIDIA Spectrum device
 
 Every MFT addresses the target hardware device using an MST (Mellanox Software Tools) device name. This name is assigned by running the `mst start` command for PCI and I2C access (which is enabled by default). To list the available MST device names on the local machine, run `mst status`.
 
 ### mlxcables - Mellanox Cables Tool
 
-On Mellanox switches, the `mlxcables` tool allows users to access the cables and do the following:
+On NVIDIA Spectrum switches, the `mlxcables` tool allows users to access the cables and do the following:
 
 - Query the cable and get its IDs.
 - Read specific addresses in the EEPROM.
@@ -138,9 +138,9 @@ To query the cable:
        admin@switch:~$ sudo mst cable add
 
        -I- Added 33 cable devices ..
-2. Show the MFT devices.
+2. Show the MST devices.
 
-   Each MFT command requires specifying the device (using the `-d` option), and each ASIC has a different device. For example: Mellanox Spectrum c`/dev/mst/mt52100_pci_cr0`.
+   Each MFT command requires specifying the device (using the `-d` option), and each ASIC has a different device. For example, NVIDIA Spectrum: `/dev/mst/mt52100_pci_cr0`.
 
        admin@switch:~$ sudo mst status
 
@@ -279,9 +279,9 @@ Recommendation                  : No issue was observed.
 
 For detailed parameters and instructions, refer to the latest {{<exlink url="https://docs.mellanox.com/category/mft" text="MFT user manual">}}.
 
-### mstdump - Mellanox Dump Tool
+### mstdump - NVIDIA Spectrum Dump Tool
 
-On Mellanox switches, the `mstdump` utility dumps device internal configuration registers. The dump file is used by NVIDIA Mellanox Support for hardware troubleshooting purposes. It can be run on all Mellanox switches.
+On NVIDIA Spectrum switches, the `mstdump` utility dumps device internal configuration registers. The dump file is used by NVIDIA support for hardware troubleshooting purposes. It can be run on all NVIDIA Spectrum switches.
 
 When debugging a link issue, you should execute the command 3 times at 1 second intervals to help track the state machine changes.
 
@@ -318,4 +318,4 @@ admin@switch:~$ sudo mstdump /dev/mst/mt52100_pci_cr0
 
 `mstdump` is also executed when you run `show techsupport`.
 
-For detailed parameters and instructions, refer to the latest {{<exlink url="https://docs.mellanox.com/category/mft" text="MFT user manual">}}.
+For detailed parameters and instructions, refer to the latest NVIDIA {{<exlink url="https://docs.mellanox.com/category/mft" text="MFT user manual">}}.

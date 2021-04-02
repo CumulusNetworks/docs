@@ -1,6 +1,6 @@
 ---
 title: Zero Touch Provisioning
-author: Cumulus Networks
+author: NVIDIA
 weight: 210
 product: SONiC
 version: 202012

@@ -1,6 +1,6 @@
 ---
 title: System Architecture
-author: Cumulus Networks
+author: NVIDIA
 weight: 120
 product: SONiC
 version: 202012

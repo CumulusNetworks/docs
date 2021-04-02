@@ -1,6 +1,6 @@
 ---
 title: Critical Resource Monitoring
-author: Cumulus Networks
+author: NVIDIA
 weight: 690
 product: SONiC
 version: 202012
@@ -13,13 +13,17 @@ The SONiC Critical Resource Monitoring (CRM) tool is a CLI for monitoring utiliz
 
 You can configure the following settings for CRM:
 
-- ACL table, group counter and group entry thresholds
-- FDB thresholds
-- IPv4 and IPv6 route thresholds
-- IPv4 and IPv6 neighbor thresholds
-- IPv4 and IPv6 nexthop thresholds
-- IPv4 and IPv6 nexthop group thresholds
 - Polling intervals
+- The following thresholds:
+  - ACL table, group counter and group entry thresholds
+  - Destination NAT thresholds
+  - FDB thresholds
+  - IPMC thresholds
+  - IPv4 and IPv6 route thresholds
+  - IPv4 and IPv6 neighbor thresholds
+  - IPv4 and IPv6 nexthop thresholds
+  - IPv4 and IPv6 nexthop group thresholds
+  - Source NAT thresholds
 
 ### Configure the Polling Interval
 
@@ -35,7 +39,70 @@ You can configure the following settings for a threshold:
 - Low threshold value
 - Type of threshold (which can be a percentage or whether the resource is used or free)
 
+To view the default threshold settings, run:
 
+```
+admin@switch:~$ crm show thresholds all
+Resource Name         Threshold Type      Low Threshold    High Threshold
+--------------------  ----------------  ---------------  ----------------
+ipv4_route            percentage                     70                85
+ipv6_route            percentage                     70                85
+ipv4_nexthop          percentage                     70                85
+ipv6_nexthop          percentage                     70                85
+ipv4_neighbor         percentage                     70                85
+ipv6_neighbor         percentage                     70                85
+nexthop_group_member  percentage                     70                85
+nexthop_group         percentage                     70                85
+acl_table             percentage                     70                85
+acl_group             used                           70                85
+acl_entry             percentage                     70                85
+acl_counter           percentage                     70                85
+fdb_entry             percentage                     70                85
+```
+
+The following example shows how to change the high end threshold for an ACL group.
+
+{{<tabs "Threshold">}}
+
+{{<tab "SONiC CLI">}}
+
+    admin@leaf01:~$ crm config thresholds acl group high 95
+
+{{</tab>}}
+
+{{<tab "config_db.json">}}
+
+Configure the ACL group high threshold in the CRM table in `/etc/sonic/config_db.json`.
+
+```
+admin@switch:~$ sudo vi /etc/sonic/config_db.json
+
+    "CRM": {
+        "Config": {
+            ...
+            "acl_group_high_threshold": "95",
+            ...
+        }
+    },
+```
+
+{{</tab>}}
+
+{{</tabs>}}
+
+Save your changes to the configuration:
+
+    admin@switch:~$ sudo config save -y
+
+To verify the new threshold, run:
+
+```
+admin@leaf01:~$ crm show thresholds acl group
+
+Resource Name    Threshold Type      Low Threshold    High Threshold
+---------------  ----------------  ---------------  ----------------
+acl_group        percentage                     70                95
+```
 
 <!--
 ### Configure ACL Thresholds
@@ -128,75 +195,115 @@ high  low   type
 
 The CRM `show` commands can display:
 
-- A summary, which shows the polling interval
-- A view of all resources or thresholds
-- IPv4 and IPv6 route, neighbor and nexthop resources and thresholds
-- Nexthop group member and object resources and thresholds
-- ACL table and group resources and thresholds
-- ACL group entry or counter resources and thresholds
-- FDB resources and thresholds
+- A summary, which shows the polling interval.
+- A view of all resources or thresholds.
+- IPMC resources and thresholds.
+- IPv4 and IPv6 route, neighbor and nexthop resources and thresholds.
+- Next hop group member and object resources and thresholds.
+- ACL table and group resources and thresholds.
+- ACL group entry or counter resources and thresholds.
+- FDB resources and thresholds.
+- Source and destination NAT resources and thresholds.
 
-<!--
 ### Show Resources
 
 ```
 admin@switch:~$ crm show resources
-acl      all      fdb      ipv4     ipv6     nexthop
+acl      all      dnat     fdb      ipmc     ipv4     ipv6     nexthop  snat 
 ```
 
 ```
 admin@switch:~$ crm show resources all
 
-CRM counters are not ready. They would be populated after the polling interval.
+Resource Name           Used Count    Available Count
+--------------------  ------------  -----------------
+ipv4_route                      19              65471
+ipv6_route                      11              77749
+ipv4_nexthop                     0              28287
+ipv6_nexthop                     0              28287
+ipv4_neighbor                    0              65471
+ipv6_neighbor                    0              12278
+nexthop_group_member             0              28287
+nexthop_group                    0              28287
+fdb_entry                        0              65471
 
 
-Resource Name    Used Count    Available Count
----------------  ------------  -----------------
-
-
-
-Stage    Bind Point    Resource Name    Used Count    Available Count
+Stage    Bind Point    Resource Name      Used Count    Available Count
 -------  ------------  ---------------  ------------  -----------------
-
-
+INGRESS  PORT          acl_group                   0                199
+INGRESS  PORT          acl_table                   0                198
+INGRESS  LAG           acl_group                   0                199
+INGRESS  LAG           acl_table                   0                198
+INGRESS  VLAN          acl_group                   0                199
+INGRESS  VLAN          acl_table                   0                198
+INGRESS  RIF           acl_group                   0                199
+INGRESS  RIF           acl_table                   0                198
+INGRESS  SWITCH        acl_group                   0                199
+INGRESS  SWITCH        acl_table                   0                198
+EGRESS   PORT          acl_group                   0                199
+EGRESS   PORT          acl_table                   0                198
+EGRESS   LAG           acl_group                   0                199
+EGRESS   LAG           acl_table                   0                198
+EGRESS   VLAN          acl_group                   0                  0
+EGRESS   VLAN          acl_table                   0                  0
+EGRESS   RIF           acl_group                   0                199
+EGRESS   RIF           acl_table                   0                198
+EGRESS   SWITCH        acl_group                   0                199
+EGRESS   SWITCH        acl_table                   0                198
 
 Table ID    Resource Name    Used Count    Available Count
 ----------  ---------------  ------------  -----------------
 
 ```
 
-#### Show ACL Resources
+You can filter the results to show only resources for:
+
+- `acl`: Show CRM information for ACL table and group resources.
+- `dnat`: Show CRM information for DNAT resources.
+- `fdb`: Show CRM information for fdb resources.
+- `ipmc`: Show CRM information for IPMC resources.
+- `ipv4`: CRM resource IPv4 address family.
+- `ipv6`: CRM resource IPv6 address family.
+- `nexthop`: Show CRM information for nexthop resources.
+- `snat`: Show CRM information for SNAT resources.
+
+For example, to show the resources for ACL groups, run:
 
 ```
-admin@switch:~$ crm show resources acl table
+admin@switch:~$ crm show resources acl group
 
-
-Table ID    Resource Name    Used Count    Available Count
-----------  ---------------  ------------  -----------------
-
-
-```
-
-```
-admin@switch:~$ crm show resources acl group 
-
-
-Stage    Bind Point    Resource Name    Used Count    Available Count
+Stage    Bind Point    Resource Name      Used Count    Available Count
 -------  ------------  ---------------  ------------  -----------------
-
+INGRESS  PORT          acl_group                   0                199
+INGRESS  PORT          acl_table                   0                198
+INGRESS  LAG           acl_group                   0                199
+INGRESS  LAG           acl_table                   0                198
+INGRESS  VLAN          acl_group                   0                199
+INGRESS  VLAN          acl_table                   0                198
+INGRESS  RIF           acl_group                   0                199
+INGRESS  RIF           acl_table                   0                198
+INGRESS  SWITCH        acl_group                   0                199
+INGRESS  SWITCH        acl_table                   0                198
+EGRESS   PORT          acl_group                   0                199
+EGRESS   PORT          acl_table                   0                198
+EGRESS   LAG           acl_group                   0                199
+EGRESS   LAG           acl_table                   0                198
+EGRESS   VLAN          acl_group                   0                  0
+EGRESS   VLAN          acl_table                   0                  0
+EGRESS   RIF           acl_group                   0                199
+EGRESS   RIF           acl_table                   0                198
+EGRESS   SWITCH        acl_group                   0                199
+EGRESS   SWITCH        acl_table                   0                198
 ```
 
-#### Show FDB Resources
+<!-- #### Show FDB Resources
 
 ```
 admin@switch:~$ crm show resources fdb
 
-CRM counters are not ready. They would be populated after the polling interval.
-
-
-Resource Name    Used Count    Available Count
+Resource Name      Used Count    Available Count
 ---------------  ------------  -----------------
-
+fdb_entry                   0              65471
 ```
 
 #### Show IPv4 Resources
@@ -204,34 +311,25 @@ Resource Name    Used Count    Available Count
 ```
 admin@switch:~$ crm show resources ipv4 neighbor
 
-CRM counters are not ready. They would be populated after the polling interval.
-
-
-Resource Name    Used Count    Available Count
+Resource Name      Used Count    Available Count
 ---------------  ------------  -----------------
-
+ipv4_neighbor               0              65471
 ```
 
 ```
 admin@switch:~$ crm show resources ipv4 nexthop
 
-CRM counters are not ready. They would be populated after the polling interval.
-
-
-Resource Name    Used Count    Available Count
+Resource Name      Used Count    Available Count
 ---------------  ------------  -----------------
-
+ipv4_nexthop                0              28287
 ```
 
 ```
 admin@switch:~$ crm show resources ipv4 route
 
-CRM counters are not ready. They would be populated after the polling interval.
-
-
-Resource Name    Used Count    Available Count
+Resource Name      Used Count    Available Count
 ---------------  ------------  -----------------
-
+ipv4_route                 19              65471
 ```
 
 #### Show IPv6 Resources
@@ -239,35 +337,24 @@ Resource Name    Used Count    Available Count
 ```
 admin@switch:~$ crm show resources ipv6 neighbor
 
-CRM counters are not ready. They would be populated after the polling interval.
-
-
-Resource Name    Used Count    Available Count
+Resource Name      Used Count    Available Count
 ---------------  ------------  -----------------
-
+ipv6_neighbor               0              12278
 ```
 
 ```
 admin@switch:~$ crm show resources ipv6 nexthop
 
-CRM counters are not ready. They would be populated after the polling interval.
-
-
-Resource Name    Used Count    Available Count
 ---------------  ------------  -----------------
-
-
+ipv6_nexthop                0              28287
 ```
 
 ```
 admin@switch:~$ crm show resources ipv6 route
 
-CRM counters are not ready. They would be populated after the polling interval.
-
-
-Resource Name    Used Count    Available Count
+Resource Name      Used Count    Available Count
 ---------------  ------------  -----------------
-
+ipv6_route                 11              77749
 ```
 
 #### Show Nexthop Resources
@@ -275,25 +362,17 @@ Resource Name    Used Count    Available Count
 ```
 admin@switch:~$ crm show resources nexthop group member 
 
-CRM counters are not ready. They would be populated after the polling interval.
-
-
-Resource Name    Used Count    Available Count
----------------  ------------  -----------------
-
+Resource Name           Used Count    Available Count
+--------------------  ------------  -----------------
+nexthop_group_member             0              28287
 ```
 
 ```
 admin@switch:~$ crm show resources nexthop group object 
 
-CRM counters are not ready. They would be populated after the polling interval.
-
-
-Resource Name    Used Count    Available Count
 ---------------  ------------  -----------------
-
+nexthop_group               0              28287
 ```
-
 -->
 
 ### Show Polling Interval
@@ -327,3 +406,14 @@ acl_entry             percentage                     70                85
 acl_counter           percentage                     70                85
 fdb_entry             percentage                     70                85
 ```
+
+As with showing resources above, you can filter the results to show only thresholds for:
+
+- `acl`: Show CRM information for acl resource.
+- `dnat`: Show CRM information for DNAT resource.
+- `fdb`: Show CRM information for fdb resource.
+- `ipmc`: Show CRM information for IPMC resource.
+- `ipv4`: CRM resource IPv4 address family.
+- `ipv6`: CRM resource IPv6 address family.
+- `nexthop`: Show CRM information for nexthop resources.
+- `snat`: Show CRM information for SNAT resources.

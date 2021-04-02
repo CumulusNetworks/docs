@@ -34,7 +34,7 @@ In the following procedures:
 - Run the `sudo onie-install -h` command to show the ONIE installer options.
 <!--- After you install the Cumulus Linux image, you need to install the license file. Refer to {{<link url="Quick-Start-Guide#install-the-license" text="Install the License">}}.-->
 
-## Install Using a DHCP/Web Server with DHCP Options
+## Install Using a DHCP/Web Server With DHCP Options
 
 To install Cumulus Linux using a DHCP/web server *with* DHCP options, set up a DHCP/web server on your laptop and connect the eth0 management port of the switch to your laptop. After you connect the cable, the installation proceeds as follows:
 
@@ -100,7 +100,7 @@ Follow the steps below if you can log into the switch on a serial console (ONIE)
 
 {{< /tabs >}}
 
-## Install Using a Web Server with no DHCP
+## Install Using a Web Server With no DHCP
 
 Follow the steps below if you can log into the switch on a serial console (ONIE), or you can log in on the console or with ssh (Install from Cumulus Linux) but *no* DHCP server is available.
 

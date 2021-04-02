@@ -1,6 +1,6 @@
 ---
 title: Interface Configuration
-author: Cumulus Networks
+author: NVIDIA
 weight: 310
 product: SONiC
 version: 202012

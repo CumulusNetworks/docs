@@ -1288,8 +1288,8 @@ The following example commands set the `update-delay` timer to 300 seconds and t
 {{< tab "CUE Commands ">}}
 
 ```
+cumulus@switch:~$ cl set router bgp convergence-wait time 300
 cumulus@switch:~$ cl set router bgp convergence-wait establish-wait-time 200
-cumulus@switch:~$ cl set router bgp convergence-wait NEED COMMAND
 cumulus@switch:~$ cl config apply
 ```
 

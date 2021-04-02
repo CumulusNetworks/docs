@@ -1,6 +1,6 @@
 ---
 title: Equal Cost Multipathing - ECMP
-author: Cumulus Networks
+author: NVIDIA
 weight: 530
 product: SONiC
 version: 202012

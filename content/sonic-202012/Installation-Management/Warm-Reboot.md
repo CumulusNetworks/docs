@@ -1,6 +1,6 @@
 ---
 title: Warm Reboot
-author: Cumulus Networks
+author: NVIDIA
 weight: 240
 product: SONiC
 version: 202012

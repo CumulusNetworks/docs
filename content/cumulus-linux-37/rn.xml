@@ -43,6 +43,12 @@ To work around this issue, run the &lt;tt&gt;apt-get upgrade&lt;/tt&gt; command 
 <td></td>
 </tr>
 <tr>
+<td>CM-20508</td>
+<td>&lt;p&gt;The Cumulus-Resource-Query-MIB defines the ability to gather buffer utilization status but when these objects are polled, they return nothing. &lt;/p&gt;</td>
+<td>3.5.3-3.7.14.2, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-15812</td>
 <td>&lt;p&gt;Multicast forwarding fails for IP addresses whose DMAC overlaps with reserved DIPs.&lt;/p&gt;</td>
 <td>3.2.1-3.7.14.2, 4.0.0-4.3.0</td>
@@ -1518,13 +1524,6 @@ To restore connectivity, remove the VLAN ID from the bridge. </td>
 <td></td>
 </tr>
 <tr>
-<td>2538740</td>
-<td>In an EVPN symmetric routing configuration, when an IP address is frozen, kernel neighbor table information and kernel VRF routing table information about the frozen IP address might be out-of-sync. 
- </td>
-<td>3.7.3-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
 <td>2538590</td>
 <td>When you configure a control plane ACL to define permit and deny rules destined to the local switch, NCLU programs the control plane ACL rules into the FORWARD chain. 
  </td>
@@ -1545,13 +1544,6 @@ Note: The advertised link mode gets set incorrectly if you include 1000baseT/Hal
 <td>{{portwd}} allows an error to change the module type based on the error. For example, a bad write to a module might cause the module type to flap, which causes the link itself to flap. 
  </td>
 <td>3.7.0-3.7.14.2</td>
-<td></td>
-</tr>
-<tr>
-<td>2538295</td>
-<td>For QSFP modules, the {{sudo ifdown}} command does not disable the Tx laser. 
- </td>
-<td>3.7.2-3.7.14.2, 4.0.0-4.3.0</td>
 <td></td>
 </tr>
 <tr>
@@ -1790,6 +1782,12 @@ To work around this issue, run the &lt;tt&gt;apt-get upgrade&lt;/tt&gt; command 
 &lt;/div&gt;&lt;/div&gt; 
 &lt;p&gt; This message might occur as a result of a timeout at the hardware level, or the switch might be reporting a failure to get a response. &lt;/p&gt;
 </td>
+<td>3.5.3-3.7.14.2, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-20508</td>
+<td>&lt;p&gt;The Cumulus-Resource-Query-MIB defines the ability to gather buffer utilization status but when these objects are polled, they return nothing. &lt;/p&gt;</td>
 <td>3.5.3-3.7.14.2, 4.0.0-4.3.0</td>
 <td></td>
 </tr>
@@ -3407,13 +3405,6 @@ To restore connectivity, remove the VLAN ID from the bridge. </td>
 <td></td>
 </tr>
 <tr>
-<td>2538740</td>
-<td>In an EVPN symmetric routing configuration, when an IP address is frozen, kernel neighbor table information and kernel VRF routing table information about the frozen IP address might be out-of-sync. 
- </td>
-<td>3.7.3-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
 <td>2538590</td>
 <td>When you configure a control plane ACL to define permit and deny rules destined to the local switch, NCLU programs the control plane ACL rules into the FORWARD chain. 
  </td>
@@ -3434,13 +3425,6 @@ Note: The advertised link mode gets set incorrectly if you include 1000baseT/Hal
 <td>{{portwd}} allows an error to change the module type based on the error. For example, a bad write to a module might cause the module type to flap, which causes the link itself to flap. 
  </td>
 <td>3.7.0-3.7.14.2</td>
-<td></td>
-</tr>
-<tr>
-<td>2538295</td>
-<td>For QSFP modules, the {{sudo ifdown}} command does not disable the Tx laser. 
- </td>
-<td>3.7.2-3.7.14.2, 4.0.0-4.3.0</td>
 <td></td>
 </tr>
 <tr>
@@ -4217,6 +4201,12 @@ To work around this issue, run the &lt;tt&gt;apt-get upgrade&lt;/tt&gt; command 
 &lt;/div&gt;&lt;/div&gt; 
 &lt;p&gt; This message might occur as a result of a timeout at the hardware level, or the switch might be reporting a failure to get a response. &lt;/p&gt;
 </td>
+<td>3.5.3-3.7.14.2, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-20508</td>
+<td>&lt;p&gt;The Cumulus-Resource-Query-MIB defines the ability to gather buffer utilization status but when these objects are polled, they return nothing. &lt;/p&gt;</td>
 <td>3.5.3-3.7.14.2, 4.0.0-4.3.0</td>
 <td></td>
 </tr>
@@ -6077,13 +6067,6 @@ To restore connectivity, remove the VLAN ID from the bridge. </td>
 <td></td>
 </tr>
 <tr>
-<td>2538740</td>
-<td>In an EVPN symmetric routing configuration, when an IP address is frozen, kernel neighbor table information and kernel VRF routing table information about the frozen IP address might be out-of-sync. 
- </td>
-<td>3.7.3-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
 <td>2538590</td>
 <td>When you configure a control plane ACL to define permit and deny rules destined to the local switch, NCLU programs the control plane ACL rules into the FORWARD chain. 
  </td>
@@ -6104,13 +6087,6 @@ Note: The advertised link mode gets set incorrectly if you include 1000baseT/Hal
 <td>{{portwd}} allows an error to change the module type based on the error. For example, a bad write to a module might cause the module type to flap, which causes the link itself to flap. 
  </td>
 <td>3.7.0-3.7.14.2</td>
-<td></td>
-</tr>
-<tr>
-<td>2538295</td>
-<td>For QSFP modules, the {{sudo ifdown}} command does not disable the Tx laser. 
- </td>
-<td>3.7.2-3.7.14.2, 4.0.0-4.3.0</td>
 <td></td>
 </tr>
 <tr>
@@ -6862,6 +6838,12 @@ To work around this issue, run the &lt;tt&gt;apt-get upgrade&lt;/tt&gt; command 
 &lt;/div&gt;&lt;/div&gt; 
 &lt;p&gt; This message might occur as a result of a timeout at the hardware level, or the switch might be reporting a failure to get a response. &lt;/p&gt;
 </td>
+<td>3.5.3-3.7.14.2, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-20508</td>
+<td>&lt;p&gt;The Cumulus-Resource-Query-MIB defines the ability to gather buffer utilization status but when these objects are polled, they return nothing. &lt;/p&gt;</td>
 <td>3.5.3-3.7.14.2, 4.0.0-4.3.0</td>
 <td></td>
 </tr>
@@ -8902,13 +8884,6 @@ To restore connectivity, remove the VLAN ID from the bridge. </td>
 <td></td>
 </tr>
 <tr>
-<td>2538740</td>
-<td>In an EVPN symmetric routing configuration, when an IP address is frozen, kernel neighbor table information and kernel VRF routing table information about the frozen IP address might be out-of-sync. 
- </td>
-<td>3.7.3-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
 <td>2538590</td>
 <td>When you configure a control plane ACL to define permit and deny rules destined to the local switch, NCLU programs the control plane ACL rules into the FORWARD chain. 
  </td>
@@ -8929,13 +8904,6 @@ Note: The advertised link mode gets set incorrectly if you include 1000baseT/Hal
 <td>{{portwd}} allows an error to change the module type based on the error. For example, a bad write to a module might cause the module type to flap, which causes the link itself to flap. 
  </td>
 <td>3.7.0-3.7.14.2</td>
-<td></td>
-</tr>
-<tr>
-<td>2538295</td>
-<td>For QSFP modules, the {{sudo ifdown}} command does not disable the Tx laser. 
- </td>
-<td>3.7.2-3.7.14.2, 4.0.0-4.3.0</td>
 <td></td>
 </tr>
 <tr>
@@ -9370,6 +9338,12 @@ To work around this issue, run the &lt;tt&gt;apt-get upgrade&lt;/tt&gt; command 
 &lt;/div&gt;&lt;/div&gt; 
 &lt;p&gt; This message might occur as a result of a timeout at the hardware level, or the switch might be reporting a failure to get a response. &lt;/p&gt;
 </td>
+<td>3.5.3-3.7.14.2, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-20508</td>
+<td>&lt;p&gt;The Cumulus-Resource-Query-MIB defines the ability to gather buffer utilization status but when these objects are polled, they return nothing. &lt;/p&gt;</td>
 <td>3.5.3-3.7.14.2, 4.0.0-4.3.0</td>
 <td></td>
 </tr>
@@ -10818,13 +10792,6 @@ To restore connectivity, remove the VLAN ID from the bridge. </td>
 <td></td>
 </tr>
 <tr>
-<td>2538740</td>
-<td>In an EVPN symmetric routing configuration, when an IP address is frozen, kernel neighbor table information and kernel VRF routing table information about the frozen IP address might be out-of-sync. 
- </td>
-<td>3.7.3-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
 <td>2538590</td>
 <td>When you configure a control plane ACL to define permit and deny rules destined to the local switch, NCLU programs the control plane ACL rules into the FORWARD chain. 
  </td>
@@ -10845,13 +10812,6 @@ Note: The advertised link mode gets set incorrectly if you include 1000baseT/Hal
 <td>{{portwd}} allows an error to change the module type based on the error. For example, a bad write to a module might cause the module type to flap, which causes the link itself to flap. 
  </td>
 <td>3.7.0-3.7.14.2</td>
-<td></td>
-</tr>
-<tr>
-<td>2538295</td>
-<td>For QSFP modules, the {{sudo ifdown}} command does not disable the Tx laser. 
- </td>
-<td>3.7.2-3.7.14.2, 4.0.0-4.3.0</td>
 <td></td>
 </tr>
 <tr>
@@ -11581,6 +11541,12 @@ To work around this issue, run the &lt;tt&gt;apt-get upgrade&lt;/tt&gt; command 
 &lt;/div&gt;&lt;/div&gt; 
 &lt;p&gt; This message might occur as a result of a timeout at the hardware level, or the switch might be reporting a failure to get a response. &lt;/p&gt;
 </td>
+<td>3.5.3-3.7.14.2, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-20508</td>
+<td>&lt;p&gt;The Cumulus-Resource-Query-MIB defines the ability to gather buffer utilization status but when these objects are polled, they return nothing. &lt;/p&gt;</td>
 <td>3.5.3-3.7.14.2, 4.0.0-4.3.0</td>
 <td></td>
 </tr>
@@ -12983,13 +12949,6 @@ To restore connectivity, remove the VLAN ID from the bridge. </td>
 <td></td>
 </tr>
 <tr>
-<td>2538740</td>
-<td>In an EVPN symmetric routing configuration, when an IP address is frozen, kernel neighbor table information and kernel VRF routing table information about the frozen IP address might be out-of-sync. 
- </td>
-<td>3.7.3-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
 <td>2538590</td>
 <td>When you configure a control plane ACL to define permit and deny rules destined to the local switch, NCLU programs the control plane ACL rules into the FORWARD chain. 
  </td>
@@ -13010,13 +12969,6 @@ Note: The advertised link mode gets set incorrectly if you include 1000baseT/Hal
 <td>{{portwd}} allows an error to change the module type based on the error. For example, a bad write to a module might cause the module type to flap, which causes the link itself to flap. 
  </td>
 <td>3.7.0-3.7.14.2</td>
-<td></td>
-</tr>
-<tr>
-<td>2538295</td>
-<td>For QSFP modules, the {{sudo ifdown}} command does not disable the Tx laser. 
- </td>
-<td>3.7.2-3.7.14.2, 4.0.0-4.3.0</td>
 <td></td>
 </tr>
 <tr>
@@ -13235,6 +13187,12 @@ More information at https://security-tracker.debian.org/tracker/CVE-2018-6594 .<
 &lt;/div&gt;&lt;/div&gt; 
 &lt;p&gt; This message might occur as a result of a timeout at the hardware level, or the switch might be reporting a failure to get a response. &lt;/p&gt;
 </td>
+<td>3.5.3-3.7.14.2, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-20508</td>
+<td>&lt;p&gt;The Cumulus-Resource-Query-MIB defines the ability to gather buffer utilization status but when these objects are polled, they return nothing. &lt;/p&gt;</td>
 <td>3.5.3-3.7.14.2, 4.0.0-4.3.0</td>
 <td></td>
 </tr>
@@ -14333,13 +14291,6 @@ To restore connectivity, remove the VLAN ID from the bridge. </td>
 <td></td>
 </tr>
 <tr>
-<td>2538740</td>
-<td>In an EVPN symmetric routing configuration, when an IP address is frozen, kernel neighbor table information and kernel VRF routing table information about the frozen IP address might be out-of-sync. 
- </td>
-<td>3.7.3-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
 <td>2538590</td>
 <td>When you configure a control plane ACL to define permit and deny rules destined to the local switch, NCLU programs the control plane ACL rules into the FORWARD chain. 
  </td>
@@ -14360,13 +14311,6 @@ Note: The advertised link mode gets set incorrectly if you include 1000baseT/Hal
 <td>{{portwd}} allows an error to change the module type based on the error. For example, a bad write to a module might cause the module type to flap, which causes the link itself to flap. 
  </td>
 <td>3.7.0-3.7.14.2</td>
-<td></td>
-</tr>
-<tr>
-<td>2538295</td>
-<td>For QSFP modules, the {{sudo ifdown}} command does not disable the Tx laser. 
- </td>
-<td>3.7.2-3.7.14.2, 4.0.0-4.3.0</td>
 <td></td>
 </tr>
 <tr>
@@ -15215,6 +15159,12 @@ To work around this issue, run the {{sudo ethtool -S swp1}} command to collect i
 &lt;/div&gt;&lt;/div&gt; 
 &lt;p&gt; This message might occur as a result of a timeout at the hardware level, or the switch might be reporting a failure to get a response. &lt;/p&gt;
 </td>
+<td>3.5.3-3.7.14.2, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-20508</td>
+<td>&lt;p&gt;The Cumulus-Resource-Query-MIB defines the ability to gather buffer utilization status but when these objects are polled, they return nothing. &lt;/p&gt;</td>
 <td>3.5.3-3.7.14.2, 4.0.0-4.3.0</td>
 <td></td>
 </tr>
@@ -16370,13 +16320,6 @@ To work around this issue, use the {{mstpctl}} command to confirm the STP status
 <td>3.7.9-3.7.14.2</td>
 </tr>
 <tr>
-<td>2538740</td>
-<td>In an EVPN symmetric routing configuration, when an IP address is frozen, kernel neighbor table information and kernel VRF routing table information about the frozen IP address might be out-of-sync. 
- </td>
-<td>3.7.3-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
 <td>2538590</td>
 <td>When you configure a control plane ACL to define permit and deny rules destined to the local switch, NCLU programs the control plane ACL rules into the FORWARD chain. 
  </td>
@@ -16403,13 +16346,6 @@ Note: The advertised link mode gets set incorrectly if you include 1000baseT/Hal
 <td>{{portwd}} allows an error to change the module type based on the error. For example, a bad write to a module might cause the module type to flap, which causes the link itself to flap. 
  </td>
 <td>3.7.0-3.7.14.2</td>
-<td></td>
-</tr>
-<tr>
-<td>2538295</td>
-<td>For QSFP modules, the {{sudo ifdown}} command does not disable the Tx laser. 
- </td>
-<td>3.7.2-3.7.14.2, 4.0.0-4.3.0</td>
 <td></td>
 </tr>
 <tr>
@@ -16653,6 +16589,12 @@ To work around this issue, use {{net show interface}} command for LLDP output wh
 &lt;/div&gt;&lt;/div&gt; 
 &lt;p&gt; This message might occur as a result of a timeout at the hardware level, or the switch might be reporting a failure to get a response. &lt;/p&gt;
 </td>
+<td>3.5.3-3.7.14.2, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-20508</td>
+<td>&lt;p&gt;The Cumulus-Resource-Query-MIB defines the ability to gather buffer utilization status but when these objects are polled, they return nothing. &lt;/p&gt;</td>
 <td>3.5.3-3.7.14.2, 4.0.0-4.3.0</td>
 <td></td>
 </tr>
@@ -17701,13 +17643,6 @@ To work around this issue, use the {{mstpctl}} command to confirm the STP status
 <td>3.7.9-3.7.14.2</td>
 </tr>
 <tr>
-<td>2538740</td>
-<td>In an EVPN symmetric routing configuration, when an IP address is frozen, kernel neighbor table information and kernel VRF routing table information about the frozen IP address might be out-of-sync. 
- </td>
-<td>3.7.3-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
 <td>2538590</td>
 <td>When you configure a control plane ACL to define permit and deny rules destined to the local switch, NCLU programs the control plane ACL rules into the FORWARD chain. 
  </td>
@@ -17734,13 +17669,6 @@ Note: The advertised link mode gets set incorrectly if you include 1000baseT/Hal
 <td>{{portwd}} allows an error to change the module type based on the error. For example, a bad write to a module might cause the module type to flap, which causes the link itself to flap. 
  </td>
 <td>3.7.0-3.7.14.2</td>
-<td></td>
-</tr>
-<tr>
-<td>2538295</td>
-<td>For QSFP modules, the {{sudo ifdown}} command does not disable the Tx laser. 
- </td>
-<td>3.7.2-3.7.14.2, 4.0.0-4.3.0</td>
 <td></td>
 </tr>
 <tr>
@@ -18421,6 +18349,12 @@ If you need link pause or PFC functionality, you must use a switch that does not
 &lt;/div&gt;&lt;/div&gt; 
 &lt;p&gt; This message might occur as a result of a timeout at the hardware level, or the switch might be reporting a failure to get a response. &lt;/p&gt;
 </td>
+<td>3.5.3-3.7.14.2, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-20508</td>
+<td>&lt;p&gt;The Cumulus-Resource-Query-MIB defines the ability to gather buffer utilization status but when these objects are polled, they return nothing. &lt;/p&gt;</td>
 <td>3.5.3-3.7.14.2, 4.0.0-4.3.0</td>
 <td></td>
 </tr>
@@ -19540,13 +19474,6 @@ To work around this issue, use the {{mstpctl}} command to confirm the STP status
 <td>3.7.9-3.7.14.2</td>
 </tr>
 <tr>
-<td>2538740</td>
-<td>In an EVPN symmetric routing configuration, when an IP address is frozen, kernel neighbor table information and kernel VRF routing table information about the frozen IP address might be out-of-sync. 
- </td>
-<td>3.7.3-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
 <td>2538590</td>
 <td>When you configure a control plane ACL to define permit and deny rules destined to the local switch, NCLU programs the control plane ACL rules into the FORWARD chain. 
  </td>
@@ -19573,13 +19500,6 @@ Note: The advertised link mode gets set incorrectly if you include 1000baseT/Hal
 <td>{{portwd}} allows an error to change the module type based on the error. For example, a bad write to a module might cause the module type to flap, which causes the link itself to flap. 
  </td>
 <td>3.7.0-3.7.14.2</td>
-<td></td>
-</tr>
-<tr>
-<td>2538295</td>
-<td>For QSFP modules, the {{sudo ifdown}} command does not disable the Tx laser. 
- </td>
-<td>3.7.2-3.7.14.2, 4.0.0-4.3.0</td>
 <td></td>
 </tr>
 <tr>
@@ -19933,6 +19853,12 @@ This issue was discovered on the Helix4 switch but applies to all switches.
 &lt;/div&gt;&lt;/div&gt; 
 &lt;p&gt; This message might occur as a result of a timeout at the hardware level, or the switch might be reporting a failure to get a response. &lt;/p&gt;
 </td>
+<td>3.5.3-3.7.14.2, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-20508</td>
+<td>&lt;p&gt;The Cumulus-Resource-Query-MIB defines the ability to gather buffer utilization status but when these objects are polled, they return nothing. &lt;/p&gt;</td>
 <td>3.5.3-3.7.14.2, 4.0.0-4.3.0</td>
 <td></td>
 </tr>
@@ -20732,13 +20658,6 @@ To work around this issue, use the {{mstpctl}} command to confirm the STP status
 <td>3.7.9-3.7.14.2</td>
 </tr>
 <tr>
-<td>2538740</td>
-<td>In an EVPN symmetric routing configuration, when an IP address is frozen, kernel neighbor table information and kernel VRF routing table information about the frozen IP address might be out-of-sync. 
- </td>
-<td>3.7.3-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
 <td>2538590</td>
 <td>When you configure a control plane ACL to define permit and deny rules destined to the local switch, NCLU programs the control plane ACL rules into the FORWARD chain. 
  </td>
@@ -20765,13 +20684,6 @@ Note: The advertised link mode gets set incorrectly if you include 1000baseT/Hal
 <td>{{portwd}} allows an error to change the module type based on the error. For example, a bad write to a module might cause the module type to flap, which causes the link itself to flap. 
  </td>
 <td>3.7.0-3.7.14.2</td>
-<td></td>
-</tr>
-<tr>
-<td>2538295</td>
-<td>For QSFP modules, the {{sudo ifdown}} command does not disable the Tx laser. 
- </td>
-<td>3.7.2-3.7.14.2, 4.0.0-4.3.0</td>
 <td></td>
 </tr>
 <tr>
@@ -21097,6 +21009,12 @@ The NetQ agent has been removed from Cumulus VX 3.7.7. The NetQ agent will be bu
 &lt;/div&gt;&lt;/div&gt; 
 &lt;p&gt; This message might occur as a result of a timeout at the hardware level, or the switch might be reporting a failure to get a response. &lt;/p&gt;
 </td>
+<td>3.5.3-3.7.14.2, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-20508</td>
+<td>&lt;p&gt;The Cumulus-Resource-Query-MIB defines the ability to gather buffer utilization status but when these objects are polled, they return nothing. &lt;/p&gt;</td>
 <td>3.5.3-3.7.14.2, 4.0.0-4.3.0</td>
 <td></td>
 </tr>
@@ -21748,13 +21666,6 @@ To work around this issue, use the {{mstpctl}} command to confirm the STP status
 <td>3.7.9-3.7.14.2</td>
 </tr>
 <tr>
-<td>2538740</td>
-<td>In an EVPN symmetric routing configuration, when an IP address is frozen, kernel neighbor table information and kernel VRF routing table information about the frozen IP address might be out-of-sync. 
- </td>
-<td>3.7.3-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
 <td>2538590</td>
 <td>When you configure a control plane ACL to define permit and deny rules destined to the local switch, NCLU programs the control plane ACL rules into the FORWARD chain. 
  </td>
@@ -21781,13 +21692,6 @@ Note: The advertised link mode gets set incorrectly if you include 1000baseT/Hal
 <td>{{portwd}} allows an error to change the module type based on the error. For example, a bad write to a module might cause the module type to flap, which causes the link itself to flap. 
  </td>
 <td>3.7.0-3.7.14.2</td>
-<td></td>
-</tr>
-<tr>
-<td>2538295</td>
-<td>For QSFP modules, the {{sudo ifdown}} command does not disable the Tx laser. 
- </td>
-<td>3.7.2-3.7.14.2, 4.0.0-4.3.0</td>
 <td></td>
 </tr>
 <tr>
@@ -22288,6 +22192,12 @@ The NetQ agent has been removed from Cumulus VX 3.7.7. The NetQ agent will be bu
 &lt;/div&gt;&lt;/div&gt; 
 &lt;p&gt; This message might occur as a result of a timeout at the hardware level, or the switch might be reporting a failure to get a response. &lt;/p&gt;
 </td>
+<td>3.5.3-3.7.14.2, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-20508</td>
+<td>&lt;p&gt;The Cumulus-Resource-Query-MIB defines the ability to gather buffer utilization status but when these objects are polled, they return nothing. &lt;/p&gt;</td>
 <td>3.5.3-3.7.14.2, 4.0.0-4.3.0</td>
 <td></td>
 </tr>
@@ -22887,13 +22797,6 @@ To work around this issue, use the {{mstpctl}} command to confirm the STP status
 <td>3.7.9-3.7.14.2</td>
 </tr>
 <tr>
-<td>2538740</td>
-<td>In an EVPN symmetric routing configuration, when an IP address is frozen, kernel neighbor table information and kernel VRF routing table information about the frozen IP address might be out-of-sync. 
- </td>
-<td>3.7.3-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
 <td>2538686</td>
 <td>On Trident3 switches, not all ping requests match on the ingress ACL rule. </td>
 <td>3.7.3</td>
@@ -22938,13 +22841,6 @@ Note: The advertised link mode gets set incorrectly if you include 1000baseT/Hal
 <td>{{portwd}} allows an error to change the module type based on the error. For example, a bad write to a module might cause the module type to flap, which causes the link itself to flap. 
  </td>
 <td>3.7.0-3.7.14.2</td>
-<td></td>
-</tr>
-<tr>
-<td>2538295</td>
-<td>For QSFP modules, the {{sudo ifdown}} command does not disable the Tx laser. 
- </td>
-<td>3.7.2-3.7.14.2, 4.0.0-4.3.0</td>
 <td></td>
 </tr>
 <tr>
@@ -23584,6 +23480,12 @@ The NetQ agent has been removed from Cumulus VX 3.7.7. The NetQ agent will be bu
 <td></td>
 </tr>
 <tr>
+<td>CM-20508</td>
+<td>&lt;p&gt;The Cumulus-Resource-Query-MIB defines the ability to gather buffer utilization status but when these objects are polled, they return nothing. &lt;/p&gt;</td>
+<td>3.5.3-3.7.14.2, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-15812</td>
 <td>&lt;p&gt;Multicast forwarding fails for IP addresses whose DMAC overlaps with reserved DIPs.&lt;/p&gt;</td>
 <td>3.2.1-3.7.14.2, 4.0.0-4.3.0</td>
@@ -24042,13 +23944,6 @@ Note: The advertised link mode gets set incorrectly if you include 1000baseT/Hal
 <td>{{portwd}} allows an error to change the module type based on the error. For example, a bad write to a module might cause the module type to flap, which causes the link itself to flap. 
  </td>
 <td>3.7.0-3.7.14.2</td>
-<td></td>
-</tr>
-<tr>
-<td>2538295</td>
-<td>For QSFP modules, the {{sudo ifdown}} command does not disable the Tx laser. 
- </td>
-<td>3.7.2-3.7.14.2, 4.0.0-4.3.0</td>
 <td></td>
 </tr>
 <tr>
@@ -24912,6 +24807,12 @@ Permanent MAC address sync between MLAG peers is now supported.</td>
 <td></td>
 </tr>
 <tr>
+<td>CM-20508</td>
+<td>&lt;p&gt;The Cumulus-Resource-Query-MIB defines the ability to gather buffer utilization status but when these objects are polled, they return nothing. &lt;/p&gt;</td>
+<td>3.5.3-3.7.14.2, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-15812</td>
 <td>&lt;p&gt;Multicast forwarding fails for IP addresses whose DMAC overlaps with reserved DIPs.&lt;/p&gt;</td>
 <td>3.2.1-3.7.14.2, 4.0.0-4.3.0</td>
@@ -25547,6 +25448,12 @@ To work around this issue, remove the matching {{network}} statement. </td>
 &lt;/div&gt;&lt;/div&gt; 
 &lt;p&gt; This message might occur as a result of a timeout at the hardware level, or the switch might be reporting a failure to get a response. &lt;/p&gt;
 </td>
+<td>3.5.3-3.7.14.2, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-20508</td>
+<td>&lt;p&gt;The Cumulus-Resource-Query-MIB defines the ability to gather buffer utilization status but when these objects are polled, they return nothing. &lt;/p&gt;</td>
 <td>3.5.3-3.7.14.2, 4.0.0-4.3.0</td>
 <td></td>
 </tr>

@@ -1,6 +1,6 @@
 ---
 title: System Health and LEDs
-author: Cumulus Networks
+author: NVIDIA
 weight: 650
 product: SONiC
 version: 202012

@@ -1,6 +1,6 @@
 ---
 title: VLANs
-author: Cumulus Networks
+author: NVIDIA
 weight: 420
 product: SONiC
 version: 202012

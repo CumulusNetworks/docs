@@ -199,8 +199,10 @@ switch(config)# ip pim rp 192.168.0.2 224.10.2.0/24
 
 {{< /tabs >}}
 
+<!-- vale off -->
+<!-- vale.ai Issue #253 -->
 ## PIM Sparse Mode (PIM-SM)
-
+<!-- vale on -->
 PIM Sparse Mode (PIM-SM) is a *pull* multicast distribution method; multicast traffic is only sent through the network if receivers explicitly ask for it. When a receiver *pulls* multicast traffic, the network must be periodically notified that the receiver wants to continue the multicast stream.
 
 {{%notice note%}}
@@ -223,7 +225,10 @@ Cumulus Linux only supports ASM and SSM. PIM BiDir is not currently supported.
 
 For additional information, see {{<exlink url="https://tools.ietf.org/html/rfc7761" text="RFC 7761 - Protocol Independent Multicast - Sparse Mode">}}.
 
+<!-- vale off -->
+<!-- vale.ai Issue #253 -->
 ### Any-source Multicast Routing (ASM)
+<!-- vale on -->
 
 Multicast routing behaves differently depending on whether the source is sending before receivers request the multicast stream, or if a receiver tries to join a stream before there are any sources.
 
@@ -305,17 +310,20 @@ A multicast sender can send multicast data without any additional IGMP or PIM si
 When the RP receives the PIM register, it builds an (S,G) mroute; however, there is no (\*,G) mroute and no interested receivers.
 
 The RP drops the PIM register message and immediately sends a PIM register stop message to the FHR.
-
+<!-- vale off -->
+<!-- "leaves the FHR" matches house style of leafs -->
 Receiving a PIM register stop without any associated PIM joins leaves the FHR without any outgoing interfaces. The FHR drops this multicast traffic until a PIM join is received.
-
+<!-- vale on -->
 {{%notice note%}}
 
 PIM register messages are sourced from the interface that receives the multicast traffic and are destined to the RP address. The PIM register is not sourced from the interface towards the RP.
 
 {{%/notice%}}
 
+<!-- vale off -->
+<!-- vale.ai Issue #253 -->
 #### PIM Null-Register
-
+<!-- vale on -->
 To notify the RP that multicast traffic is still flowing when the RP has no receiver, or if the RP is not on the SPT tree, the FHR periodically sends PIM null register messages. The FHR sends a PIM register with the Null-Register flag set, but without any data. This special PIM register notifies the RP that a multicast source is still sending, in case any new receivers come online.
 
 After receiving a PIM Null-Register, the RP immediately sends a PIM register stop to acknowledge the reception of the PIM null register message.
@@ -328,7 +336,10 @@ The source-specific multicast method uses prefix lists to configure a receiver t
 
 When a receiver sends an IGMPv3 Join with the source defined the LHR builds an S,G entry and sends a PIM S,G join to the PIM neighbor closest to the source, according to the routing table.
 
+<!-- vale off -->
+<!-- "receiver leaves" matches house style of leafs -->
 The full path between LHR and FHR contains an S,G state, although no multicast traffic is flowing. Periodic IGMPv3 joins between the receiver and LHR, as well as PIM S,G joins between PIM neighbors, maintain this state until the receiver leaves.
+<!-- vale on --> 
 
 When the sender begins, traffic immediately flows over the pre-built SPT from the sender to the receiver.
 
@@ -346,7 +357,10 @@ SSM differs from ASM multicast in the following ways:
 - IGMPv3 is required. ASM allows for receivers to specify only the group they want to join without knowledge of the sender. This can be done in both IGMPv2 and IGMPv3. Only IGMPv3 supports requesting a specific source for a multicast group (the sending an S,G IGMP join).
 - No PIM Register process or SPT Switchover. Without a shared tree or RP, there is no need for the PIM register process. S,G joins are sent directly towards the FHR.
 
+<!-- vale off -->
+<!-- vale.ai Issue #253 -->
 ### PIM Active-Active with MLAG
+<!-- vale on -->
 
 For a multicast sender or receiver to be supported over a dual-attached MLAG bond, you must configure `pim active-active`.
 
@@ -438,7 +452,7 @@ Enabling PIM active-active automatically enables PIM on that interface.
 
 #### Multicast Sender
 
-When a multicast sender is attached to an MLAG bond, the sender hashes the outbound multicast traffic over a single member of the bond. Traffic is received on one of the MLAG enabled switches. Regardless of which switch receives the traffic, it is forwarded over the MLAG peer link to the other MLAG-enabled switch, because the peerlink is always considered a multicast router port and will always receive the multicast stream.
+When a multicast sender is attached to an MLAG bond, the sender hashes the outbound multicast traffic over a single member of the bond. Traffic is received on one of the MLAG enabled switches. Regardless of which switch receives the traffic, it is forwarded over the MLAG peer link to the other MLAG-enabled switch, because the peerlink is always considered a multicast router port and always receives the multicast stream.
 
 {{%notice note%}}
 
@@ -447,7 +461,7 @@ Traffic from multicast sources attached to an MLAG bond is always sent over the 
 
 {{%/notice%}}
 
-The PIM DR for the VLAN where the source resides is responsible for sending the PIM register towards the RP. The PIM DR is the PIM speaker with the highest IP address on the segment. After the PIM register process is complete and traffic is flowing along the Shortest Path Tree (SPT), either MLAG switch will forward traffic towards the receivers.
+The PIM DR for the VLAN where the source resides is responsible for sending the PIM register towards the RP. The PIM DR is the PIM speaker with the highest IP address on the segment. After the PIM register process is complete and traffic is flowing along the Shortest Path Tree (SPT), either MLAG switch forwards traffic towards the receivers.
 
 Examples are provided below that show the flow of traffic between server02 and server03:
 
@@ -488,7 +502,7 @@ To prevent duplicate multicast packets, a Designated Forward (DF) is elected. Th
 
 ## Additional PIM Features
 
-### Custom SSM multicast group ranges
+### Custom SSM Multicast Group Ranges
 
 PIM considers `232.0.0.0/8` the default SSM range. You can change the SSM range by defining a prefix-list and attaching it to the `ssm-range` command. You can change the default SSM group or add additional group ranges to be treated as SSM groups.
 
@@ -693,7 +707,7 @@ When an RP discovers a new source (typically a PIM-SM register message), a sourc
 
 {{%notice note%}}
 
-Cumulus Linux MSDP support is primarily for anycast-RP configuration, rather than multiple multicast domains. You must configure each MSDP peer in a full mesh, as SA messages are not received and reforwarded.
+Cumulus Linux MSDP support is primarily for anycast-RP configuration, rather than multiple multicast domains. You must configure each MSDP peer in a full mesh. Received SA messages are not forwarded.
 
 {{%/notice%}}
 
@@ -1481,7 +1495,7 @@ Source                     Group               RP  Local  SPT    Uptime
 ```
 
 ## Example Configurations
-
+<!-- vale off -->
 {{< expand "Complete Multicast Network Configuration Example"  >}}
 
 ```
@@ -1596,7 +1610,7 @@ line vty
 !
 end
 ```
-
+<!-- vale on --> 
 {{< /expand >}}
 
 ## Considerations

@@ -1,6 +1,6 @@
 ---
 title: Release Notes
-author: Cumulus Networks
+author: NVIDIA
 weight: 20
 product: SONiC
 version: 202012

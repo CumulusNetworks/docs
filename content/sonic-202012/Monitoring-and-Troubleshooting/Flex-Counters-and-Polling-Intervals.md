@@ -1,6 +1,6 @@
 ---
 title: Flex Counters and Polling Intervals
-author: Cumulus Networks
+author: NVIDIA
 weight: 660
 product: SONiC
 version: 202012

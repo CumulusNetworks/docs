@@ -63,7 +63,7 @@ Rules have several different components; the examples below highlight those diff
 - **Table:** The first argument is the *table*. Notice the second example does not specify a table, that is because the filter table is implied if a table is not specified.
 - **Chain:** The second argument is the *chain*. Each table supports several different chains. See Understanding Tables above.
 - **Matches:** The third argument(s) are called the *matches*. You can specify multiple matches in a single rule. However, the more matches you use in a rule, the more memory that rule consumes.
-- **Jump:** The *jump* specifies the target of the rule; that is, what action to take if the packet matches the rule. If this option is omitted in a rule, then matching the rule will have no effect on the packet's fate, but the counters on the rule will be incremented.
+- **Jump:** The *jump* specifies the target of the rule; what action to take if the packet matches the rule. If this option is omitted in a rule, then matching the rule has no effect on the fate of the packet, but the counters on the rule are incremented.
 - **Target(s):** The *target* can be a user-defined chain (other than the one this rule is in), one of the special built-in targets that decides the fate of the packet immediately (like DROP), or an extended target. See the {{<link url="#supported-rule-types" text="Supported Rule Types">}} section below for examples of different targets.
 
 ### How Rules Are Parsed and Applied
@@ -486,10 +486,7 @@ Apply all rules and policies included in `/etc/cumulus/acl/policy.conf`:
 cumulus@switch:~$ sudo cl-acltool -i
 ```
 
-In addition to ensuring that the rules and policies referenced by
-`/etc/cumulus/acl/policy.conf` are installed, this will remove any
-currently active rules and policies that are not contained in the
-files referenced by `/etc/cumulus/acl/policy.conf`.
+In addition to ensuring that the rules and policies referenced by `/etc/cumulus/acl/policy.conf` are installed, this removes any currently active rules and policies that are not contained in the files referenced by `/etc/cumulus/acl/policy.conf`.
 
 ## Specify the Policy Files to Install
 
@@ -623,7 +620,7 @@ Rule 1: `-A FORWARD --out-interface vlan100 -p icmp6 -j ACCEPT`
 
 Rule 2: `-A FORWARD --out-interface vlan101 -p icmp6 -j DROP`
 
-Rule 2 will never be match on ingress. Both rules share the same mark.
+Rule 2 never matches on ingress. Both rules share the same mark.
 
 ## Common Examples
 
@@ -1078,7 +1075,7 @@ On certain platforms, there are limitations on hardware policing of packets in t
 
 ### ACLs Do not Match when the Output Port on the ACL is a Subinterface
 
-Packets don't get matched when a subinterface is configured as the output port. The ACL matches on packets only if the primary port is configured as an output port. If a subinterface is set as an output or egress port, the packets match correctly.
+Packets do not get matched when a subinterface is configured as the output port. The ACL matches on packets only if the primary port is configured as an output port. If a subinterface is set as an output or egress port, the packets match correctly.
 
 For example:
 

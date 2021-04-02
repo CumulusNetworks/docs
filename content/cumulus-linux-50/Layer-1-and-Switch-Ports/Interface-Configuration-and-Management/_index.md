@@ -10,7 +10,7 @@ Cumulus Linux uses `ifupdown2` to manage network interfaces, which is a new impl
 
 ## Basic Commands
 
-### Bring up the Physical Connection to an Interface
+### Bring Up the Physical Connection to an Interface
 
 To bring up the physical connection to an interface or apply changes to an existing interface, run the `sudo ifup <interface>` command. The following example command brings up the physical connection to swp1:
 
@@ -30,7 +30,7 @@ The `ifdown` command always deletes logical interfaces after bringing them down.
 By default, `ifupdown` is quiet. Use the verbose option (`-v`) to show commands as they are executed when bringing an interface down or up.
 {{%/notice%}}
 
-### Bring up an Interface Administratively
+### Bring Up an Interface Administratively
 
 When you bring an interface up or down administratively (admin up or admin down), you bring down a port, bridge, or bond but not the physical connection for the port, bridge, or bond.
 
@@ -291,7 +291,7 @@ iface br-100
 
 ## Interface Dependencies
 
-`ifupdown2` understands interface dependency relationships. When you run `ifup` and `ifdown` with all interfaces, the commands always run with all interfaces in dependency order. When you run `ifup` and `ifdown` with the interface list on the command line, the default behavior is to *not* run with dependents; however, if there are any built-in dependents, they will be brought up or down.
+`ifupdown2` understands interface dependency relationships. When you run `ifup` and `ifdown` with all interfaces, the commands always run with all interfaces in dependency order. When you run `ifup` and `ifdown` with the interface list on the command line, the default behavior is to *not* run with dependents; however, if there are any built-in dependents, they are brought up or down.
 
 To run with dependents when you specify the interface list, use the `--with-depends` option. The `--with-depends` option walks through all dependents in the dependency tree rooted at the interface you specify. Consider the following example configuration:
 
@@ -329,7 +329,7 @@ cumulus@switch:~$ sudo ifdown --with-depends br2001
 `ifdown2` always deletes logical interfaces after bringing them down. Use the `--admin-state` option if you only want to administratively bring the interface up or down. In the above example, `ifdown br2001` deletes `br2001`.
 {{%/notice%}}
 
-To guide you through which interfaces will be brought down and up, use the `--print-dependency` option.
+To guide you through which interfaces are brought down and up, use the `--print-dependency` option.
 
 For example, run `ifquery --print-dependency=list -a` to show the dependency list for all interfaces:
 
@@ -427,7 +427,7 @@ There can be cases where an upper interface (like br100) is not in the right sta
 
 If you want to disable these warnings, set `skip_upperifaces=1` in the `/etc/network/ifupdown2/ifupdown2.conf` file.
 
-With `skip_upperifaces=1`, you have to explicitly execute `ifup` on the upper interfaces. In this case, you will have to run `ifup br100` after an `ifup bond1` to add bond1 back to bridge br100.
+With `skip_upperifaces=1`, you have to explicitly execute `ifup` on the upper interfaces. In this case, you must run `ifup br100` after an `ifup bond1` to add bond1 back to bridge br100.
 
 {{%notice note%}}
 If you specify a subinterface, such as swp1.100, then run `ifup swp1.100`, the swp1 interface is created automatically in the kernel. Consider also specifying the parent interface swp1. A parent interface is one where any physical layer configuration can reside, such as `link-speed 1000` or `link-duplex full`. If you create only swp1.100 and not swp1, you cannot run `ifup swp1`.
@@ -916,12 +916,18 @@ iface swp1
   link-duplex full
 ```
 
+<!-- vale off -->
+<!-- specific commands in title -->
 ### ifupdown2 and sysctl
+<!-- vale on -->
 
 For `sysctl` commands in the `pre-up`, `up`, `post-up`, `pre-down`, `down`, and `post-down` lines that use the
 `$IFACE` variable, if the interface name contains a dot (.), `ifupdown2` does not change the name to work with `sysctl`. For example, the interface name `bridge.1` is not converted to `bridge/1`.
 
+<!-- vale off -->
+<!-- specific commands in title -->
 ### ifupdown2 and the gateway Parameter
+<!-- vale on -->
 
 The default route created by the `gateway` parameter in ifupdown2 is not installed in FRRouting, therefore cannot be redistributed into other routing protocols. Define a static default route instead, which is installed in FRR and redistributed, if needed.
 

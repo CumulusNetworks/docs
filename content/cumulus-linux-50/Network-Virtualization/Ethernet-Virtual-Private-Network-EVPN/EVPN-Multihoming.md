@@ -14,6 +14,10 @@ toc: 4
 
 EVPN-MH uses {{<link url="#supported-evpn-route-types" text="BGP-EVPN type-1, type-2 and type-4 routes">}} to discover Ethernet segments (ES) and to forward traffic to those Ethernet segments. The MAC and neighbor databases are synchronized between the Ethernet segment peers through these routes as well. An *{{<exlink url="https://tools.ietf.org/html/rfc7432#section-5" text="Ethernet segment">}}* is a group of switch links that are attached to the same server. Each Ethernet segment has an unique Ethernet segment ID (`es-id`) across the entire PoD.
 
+{{%notice info%}}
+EVPN-MH is only supported on Spectrum ASIC based switches.
+{{% /notice %}}
+
 To configure EVPN-MH, you set an Ethernet segment system MAC address (`es-sys-mac`) and a local Ethernet segment ID (`local-es-id`) on a static or LACP bond. These two parameters generate the unique MAC-based ESI value ({{<exlink url="https://tools.ietf.org/html/rfc7432#section-5" text="type-3">}}) automatically:
 
 - The `es-sys-mac` is used for the LACP system identifier.
@@ -71,6 +75,14 @@ EVPN multihoming supports the following route types.
 | 5 | IP prefix route | {{<exlink url="https://tools.ietf.org/html/draft-ietf-bess-evpn-prefix-advertisement-04" text="draft-ietf-bess-evpn-prefix-advertisement-04">}} |
 
 ### Unsupported Features
+
+{{% notice note %}}
+EVPN MH can not coexist in an EVPN network with Broadcom based switches in an MLAG configuration.
+
+In mixed Broadcom-Spectrum networks EVPN-MH is not supported.
+
+In networks with all Spectrum based switches, EVPN and MLAG may coexist.
+{{% /notice %}}
 
 The following features are not supported with EVPN-MH:
 

@@ -438,7 +438,7 @@ ARP/ND suppression is enabled by default on all VNIs in Cumulus Linux to reduce 
 
 {{%notice note%}}
 
-ARP/ND suppression will only suppress the flooding of known hosts. ARP/ND requests for unknown hosts will still be flooded. To disable all flooding refer to the {{<link title="#Disable BUM Flooding" text="Disable BUM Flooding" >}} section.
+ARP/ND suppression only suppresses the flooding of known hosts. ARP/ND requests for unknown hosts are still flooded. To disable all flooding refer to the {{<link title="#Disable BUM Flooding" text="Disable BUM Flooding" >}} section.
 
 {{%/notice%}}
 

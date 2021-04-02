@@ -95,7 +95,7 @@ If you specify `bridge-vids` or `bridge-pvid` at the bridge level, these configu
 {{%/notice%}}
 
 {{%notice warning%}}
-Do not try to bridge the management port eth0 with any switch ports (swp0, swp1 and so on). For example, if you create a bridge with eth0 and swp1, it will not work properly and might disrupt access to the management interface.
+Do not try to bridge the management port eth0 with any switch ports (swp0, swp1 and so on). For example, if you create a bridge with eth0 and swp1, it does not work correctly and might disrupt access to the management interface.
 {{%/notice%}}
 
 ## Reserved VLAN Range

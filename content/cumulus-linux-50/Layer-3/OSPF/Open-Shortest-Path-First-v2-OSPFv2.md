@@ -856,7 +856,7 @@ router ospf
 
 External routes are the routes redistributed into OSPF from another protocol. They have an AS-wide flooding scope. In many cases, external link states make up a large percentage of the link-state database (LSDB). Stub *areas* reduce the LSDB size by not flooding AS-external LSAs.
 
-All routers must agree that an area is a stub, otherwise they will not become OSPF neighbors.
+All routers must agree that an area is a stub, otherwise they do not become OSPF neighbors.
 
 To configure a stub area:
 
@@ -1204,7 +1204,7 @@ cumulus@switch:~$
 
 Cumulus Linux provides several OSPF troubleshooting commands:
 
-| To...   | <div style="width:330px">NCLU Command | <div style="width:330px">vtysh Command |
+| To:   | <div style="width:330px">NCLU Command | <div style="width:330px">vtysh Command |
 | --- | ---- | ----- |
 | Show neighbor states | `net show ospf neighbor` | `show ip ospf neighbor` |
 | Verify that the LSDB is synchronized across all routers in the network | `net show ospf database` | `show ip ospf database` |

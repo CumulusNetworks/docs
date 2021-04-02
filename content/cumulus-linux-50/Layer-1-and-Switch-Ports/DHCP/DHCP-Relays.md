@@ -25,8 +25,10 @@ To set up DHCP relay, you need to provide the IP address of the DHCP server and 
 {{< tab "IPv4 ">}}
 
 Specify the IP address of each DHCP server and both interfaces participating in DHCP relay (facing the server and facing the client).
-
+<!-- vale off -->
+<!-- acceptable use of once -->
 In the example commands below, the DHCP server IP address is 172.16.1.102, vlan10 is the SVI for VLAN 10, and the uplinks are swp51 and swp52. As per {{<exlink url="https://tools.ietf.org/html/rfc3046" text="RFC 3046">}}, you can specify as many server IP addresses that can fit in 255 octets. You can specify each address only once.
+<!-- vale on -->
 
 ```
 cumulus@leaf01:~$ cl set service dhcp-relay default interface swp51
@@ -40,8 +42,10 @@ cumulus@leaf01:~$ cl apply
 {{< tab "IPv6 ">}}
 
 Specify the IP address of each DHCP server and both interfaces participating in DHCP relay (facing the server and facing the client).
-
+<!-- vale off -->
+<!-- acceptable use of once -->
 In the example commands below, the DHCP server IP address is 2001:db8:100::2, vlan10 is the SVI for VLAN 10, and the uplinks are swp51 and swp52. As per {{<exlink url="https://tools.ietf.org/html/rfc3046" text="RFC 3046">}}, you can specify as many server IP addresses that can fit in 255 octets. You can specify each address only once.
+<!-- vale on -->
 
 ```
 cumulus@leaf01:~$ cl set service dhcp-relay6 default interface swp51

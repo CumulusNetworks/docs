@@ -1488,6 +1488,11 @@ To work around this issue, change the value of {{arp_ignore}} to 2. See [Address
 <td>3.7.10-4.2.1</td>
 </tr>
 <tr>
+<td>2595816</td>
+<td>Tenant VRF BGP peers appear in the EVPN RMAC and nexthop tables, which causes the kernel RMAC to point at invalid IP address.</td>
+<td>3.7.12-4.2.1</td>
+</tr>
+<tr>
 <td>2589747</td>
 <td>If {{switchd}} successfully signals {{clagd}} that it is going down, {{clagd}} stops responding to keepalive echo requests from the peer instead of sending a good bye to the peer over both the peerlink and the backup switch. Eventually, the keepalive timer expires and the secondary switch becomes the primary, and brings the bonds and VNIs back up. However, if {{switchd}} does not successfully signal it is going down, (in the event of a crash), the primary switch continues to respond to keepalives, and the bonds and VNIs are down on both peers. </td>
 <td>3.7.12-4.2.1</td>

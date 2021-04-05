@@ -11,7 +11,7 @@ The `/etc/network/interfaces` file gets really long and cumbersome. What if mult
 
 ## Solution
 
-{{<exlink url="http://www.makotemplates.org/" text="Mako templates">}} are supported by `ifupdown2` on Cumulus Linux. Template engines are usually used for generating HTML content, but they work great for large network configurations. Mako itself is used in the popular website {{<exlink url="http://reddit.com" text="Reddit">}}, which gets over a billion page views per month, so configuration scalability is not problem. Read the {{<exlink url="http://docs.makotemplates.org/en/latest/" text="Mako documentation">}} for more information.
+{{<exlink url="http://www.makotemplates.org/" text="Mako templates">}} are supported by `ifupdown2` on Cumulus Linux. Template engines are usually used for generating HTML content, but they work great for large network configurations. Read the {{<exlink url="http://docs.makotemplates.org/en/latest/" text="Mako documentation">}} for more information.
 
 ## Examples
 

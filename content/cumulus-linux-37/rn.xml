@@ -87,13 +87,6 @@ Fixed: 0.99.beta19-2+deb8u2</td>
 <td></td>
 </tr>
 <tr>
-<td>2562511</td>
-<td>{{hostapd} does not fail over to secondary RADIUS servers for 802.1x authentication when the primary radius is reachable but not responding to Access-Requests.
-If the primary RADIUS server is having a problem servicing requests, you can remove it from the configuration temporarily to force requests to be sent to alternate servers.</td>
-<td>3.7.10-3.7.14.2</td>
-<td></td>
-</tr>
-<tr>
 <td>2562396</td>
 <td>CVE-2020-27824: Global buffer overflow on irreversible conversion when too many decomposition levels are specified.
 CVE-2020-27841: Crafted input to be processed by the openjpeg encoder could cause an out-of-bounds read.
@@ -1827,13 +1820,6 @@ Fixed: 0.99.beta19-2+deb8u2</td>
 <td>2566880</td>
 <td>CVE-2021-27803: A vulnerability was discovered in how p2p/p2p_pd.c in wpa_supplicant before 2.10 processes P2P (Wi-Fi Direct) provision discovery requests. It could result in denial of service or other impact (potentially execution of arbitrary code), for an attacker within radio range.</td>
 <td>3.7.14-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
-<td>2562511</td>
-<td>{{hostapd} does not fail over to secondary RADIUS servers for 802.1x authentication when the primary radius is reachable but not responding to Access-Requests.
-If the primary RADIUS server is having a problem servicing requests, you can remove it from the configuration temporarily to force requests to be sent to alternate servers.</td>
-<td>3.7.10-3.7.14.2</td>
 <td></td>
 </tr>
 <tr>
@@ -4233,13 +4219,6 @@ To work around this issue, run the &lt;tt&gt;apt-get upgrade&lt;/tt&gt; command 
 <td>If {{switchd}} successfully signals {{clagd}} that it is going down, {{clagd}} stops responding to keepalive echo requests from the peer instead of sending a good bye to the peer over both the peerlink and the backup switch. Eventually, the keepalive timer expires and the secondary switch becomes the primary, and brings the bonds and VNIs back up. However, if {{switchd}} does not successfully signal it is going down, (in the event of a crash), the primary switch continues to respond to keepalives, and the bonds and VNIs are down on both peers. </td>
 <td>3.7.12-4.2.1</td>
 <td>4.3.0</td>
-</tr>
-<tr>
-<td>2562511</td>
-<td>{{hostapd} does not fail over to secondary RADIUS servers for 802.1x authentication when the primary radius is reachable but not responding to Access-Requests.
-If the primary RADIUS server is having a problem servicing requests, you can remove it from the configuration temporarily to force requests to be sent to alternate servers.</td>
-<td>3.7.10-3.7.14.2</td>
-<td></td>
 </tr>
 <tr>
 <td>2558184</td>
@@ -6872,13 +6851,6 @@ To work around this issue, run the &lt;tt&gt;apt-get upgrade&lt;/tt&gt; command 
 <td>4.3.0</td>
 </tr>
 <tr>
-<td>2562511</td>
-<td>{{hostapd} does not fail over to secondary RADIUS servers for 802.1x authentication when the primary radius is reachable but not responding to Access-Requests.
-If the primary RADIUS server is having a problem servicing requests, you can remove it from the configuration temporarily to force requests to be sent to alternate servers.</td>
-<td>3.7.10-3.7.14.2</td>
-<td></td>
-</tr>
-<tr>
 <td>2558184</td>
 <td>The Mellanox SN2700 and SN2410 switch intermittently reports PSU fan state changes with {{Unable to read from device/fan1_input/pwm1}} syslog messages.</td>
 <td>3.7.11-3.7.14.2, 4.1.1-4.3.0</td>
@@ -9360,13 +9332,6 @@ To work around this issue, run the &lt;tt&gt;apt-get upgrade&lt;/tt&gt; command 
 <td>4.3.0</td>
 </tr>
 <tr>
-<td>2562511</td>
-<td>{{hostapd} does not fail over to secondary RADIUS servers for 802.1x authentication when the primary radius is reachable but not responding to Access-Requests.
-If the primary RADIUS server is having a problem servicing requests, you can remove it from the configuration temporarily to force requests to be sent to alternate servers.</td>
-<td>3.7.10-3.7.14.2</td>
-<td></td>
-</tr>
-<tr>
 <td>2558184</td>
 <td>The Mellanox SN2700 and SN2410 switch intermittently reports PSU fan state changes with {{Unable to read from device/fan1_input/pwm1}} syslog messages.</td>
 <td>3.7.11-3.7.14.2, 4.1.1-4.3.0</td>
@@ -11561,13 +11526,6 @@ To work around this issue, run the &lt;tt&gt;apt-get upgrade&lt;/tt&gt; command 
 <td>In a traditional bridge configuration with {{ip-forward off}}, neighbors are synchronized to hardware with a {{switchd}} restart but are cleared when you flap the bridge interface.</td>
 <td>3.7.10-4.2.1</td>
 <td>4.3.0</td>
-</tr>
-<tr>
-<td>2562511</td>
-<td>{{hostapd} does not fail over to secondary RADIUS servers for 802.1x authentication when the primary radius is reachable but not responding to Access-Requests.
-If the primary RADIUS server is having a problem servicing requests, you can remove it from the configuration temporarily to force requests to be sent to alternate servers.</td>
-<td>3.7.10-3.7.14.2</td>
-<td></td>
 </tr>
 <tr>
 <td>2556037</td>

@@ -476,7 +476,7 @@ cumulus@switch:~$ cl set system dhcp-server6 static server1 interface swp1
 To show the current DHCP server settings, run the `cl show system dhcp-server` command:
 
 ```
-umulus@leaf02:mgmt:~$ cl show system dhcp-server
+cumulus@leaf01:mgmt:~$ cl show system dhcp-server
                       running       applied       description
 --------------------  ------------  ------------  ----------------------------------------------
 [domain-name]                                     DHCP domain names

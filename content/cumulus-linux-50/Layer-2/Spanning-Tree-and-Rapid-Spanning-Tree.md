@@ -71,15 +71,6 @@ cumulus@switch:~$ cl config apply
 ```
 
 {{< /tab >}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@switch:~$ net add bridge stp treeprio 8192
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-{{< /tab >}}
 {{< tab "Linux Commands ">}}
 
 Configure the tree priority (`mstpctl-treeprio`) under the *bridge* stanza in the `/etc/network/interfaces` file, then run the `ifreload -a` command.
@@ -131,16 +122,6 @@ The following example commands configure PortAdminEdge and BPDU guard for swp5:
 cumulus@switch:~$ cl set interface swp5 bridge domain br_default stp admin-edge on
 cumulus@switch:~$ cl set interface swp5 bridge domain br_default stp bpdu-guard on
 cumulus@switch:~$ cl config apply
-```
-
-{{< /tab >}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@switch:~$ net add interface swp5 stp bpduguard
-cumulus@switch:~$ net add interface swp5 stp portadminedge
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
@@ -201,15 +182,6 @@ cumulus@switch:~$ cl config apply
 ```
 
 {{< /tab >}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@switch:~$ net add interface swp1 stp portautoedge no
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-{{< /tab >}}
 {{< tab "Linux Commands ">}}
 
 Edit the switch port interface stanza in the `/etc/network/interfaces` file to add the `mstpctl-portautoedge no` line, then run the `ifreload -a` command.
@@ -243,15 +215,6 @@ cumulus@switch:~$ cl config apply
 ```
 
 {{< /tab >}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@switch:~$ net del interface swp1 stp portautoedge no
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-{{< /tab >}}
 {{< tab "Linux Commands ">}}
 
 Edit the switch port interface stanza in the `/etc/network/interfaces` file to remove `mstpctl-portautoedge no`, then run the `ifreload -a` command.
@@ -271,15 +234,6 @@ The following example commands set BPDU guard for swp5:
 ```
 cumulus@switch:~$ cl set interface swp5 bridge domain br_default stp bpdu-guard on
 cumulus@switch:~$ cl config apply
-```
-
-{{< /tab >}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@switch:~$ net add interface swp5 stp bpduguard
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
@@ -316,14 +270,6 @@ To determine whether BPDU guard is configured, or if a BPDU has been received:
 
 ```
 cumulus@switch:~$ cl show bridge domain br_default stp
-```
-
-{{< /tab >}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@switch:~$ net show bridge spanning-tree | grep bpdu
-  bpdu guard port    yes                bpdu guard error     yes
 ```
 
 {{< /tab >}}
@@ -378,15 +324,6 @@ The following example commands enable bridge assurance on swp1:
 ```
 cumulus@switch:~$ cl set interface swp5 bridge domain br_default stp network on
 cumulus@switch:~$ cl config apply
-```
-
-{{< /tab >}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@switch:~$ net add interface swp1 stp portnetwork
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
@@ -446,17 +383,8 @@ The following example commands configure the BPDU filter on swp6:
 {{< tab "CUE Commands ">}}
 
 ```
-cumulus@switch:~$ cl set interface swp5 bridge domain br_default stp bpdu-filter on
+cumulus@switch:~$ cl set interface swp6 bridge domain br_default stp bpdu-filter on
 cumulus@switch:~$ cl config apply
-```
-
-{{< /tab >}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@switch:~$ net add interface swp6 stp portbpdufilter
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
@@ -498,9 +426,9 @@ Spanning tree parameters are defined in the IEEE {{<exlink url="https://standard
 
 The table below describes the STP configuration parameters available in Cumulus Linux. For a comparison of STP parameter configuration between `mstpctl` and other vendors, {{<exlink url="https://docs.cumulusnetworks.com/knowledge-base/Demos-and-Training/Interoperability/Cumulus-Linux-vs-Cisco-IOS-Spanning-Tree-Protocol/" text="read this knowledge base article">}}.
 
-{{%notice note%}}
-Most of these parameters are blacklisted in the `ifupdown_blacklist` section of the `/etc/netd.conf` file. Before you configure these parameters, you must {{<link url="Network-Command-Line-Utility-NCLU#edit-the-netd.conf-file" text="edit the file">}} to remove them from the blacklist.
-{{%/notice%}}
+<!--{{%notice note%}}
+CUE????Most of these parameters are blacklisted in the `ifupdown_blacklist` section of the `/etc/netd.conf` file. Before you configure these parameters, you must edit the `netd.conf` file to remove them from the blacklist.
+{{%/notice%}}-->
 
 | Parameter | <div style="width:250px">NCLU Command</div>| Description |
 |-----------|----------|---------|

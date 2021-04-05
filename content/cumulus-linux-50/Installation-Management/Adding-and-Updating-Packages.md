@@ -52,9 +52,7 @@ Reading package lists... Done
 ```
 
 {{%notice tip%}}
-
 Use the `-E` option with `sudo` whenever you run any `apt-get` command. This option preserves your environment variables (such as HTTP proxies) before you install new packages or upgrade your distribution.
-
 {{%/notice%}}
 
 ## List Available Packages
@@ -147,27 +145,6 @@ acpid                                  Advanced Configuration and Power Interfac
 ```
 
 {{< /tab >}}
-{{< tab "NCLU Commands ">}}
-
-Run the `net show package version` command:
-
-```
-cumulus@switch:~$ net show package version
-Package                            Installed Version(s)
----------------------------------  -----------------------------------------------------------------------
-acpi                               1.7-1.1
-acpi-support-base                  0.142-8
-acpid                              1:2.0.31-1
-adduser                            3.118
-apt                                1.8.2
-arping                             2.19-6
-arptables                          0.0.4+snapshot20181021-4
-atftp                              0.7.git20120829-3.1
-atftpd                             0.7.git20120829-3.1
-...
-```
-
-{{< /tab >}}
 {{< tab "Linux Commands ">}}
 
 Run the `dpkg -l` command:
@@ -210,16 +187,6 @@ cumulus@switch:~$ cl show platform software installed vrf
 description  Linux tools for VRF                    Description
 package      vrf                                    Package
 version      1.0-cl4.2.1+u1                         Version
-```
-
-{{< /tab >}}
-{{< tab "NCLU Commands ">}}
-
-Run the `net show package version <package>` command. The following example command shows which version of the `vrf` package is installed on the system:
-
-```
-cumulus@switch:~$ net show package version vrf
-1.0-cl4u2
 ```
 
 {{< /tab >}}
@@ -364,4 +331,4 @@ You add these packages normally with `apt-get update && apt-get install`, as {{<
 
 ## Considerations
 
-At this time, you cannot directly browse the contents of the apt.cumulusnetworks.com repository using HTTP.
+You cannot directly browse the contents of the apt.cumulusnetworks.com repository using HTTP.

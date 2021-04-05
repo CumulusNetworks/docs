@@ -108,30 +108,6 @@ cumulus@switch:~$ cl config apply
 ```
 
 {{< /tab >}}
-{{< tab "NCLU Commands ">}}
-
-Run the following commands. Include the `iburst` option to increase the sync speed.
-
-```
-cumulus@switch:~$ net add time ntp server 4.cumulusnetworks.pool.ntp.org iburst
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-These commands add the NTP server to the list of servers in the `/etc/ntp.conf` file:
-
-```
-# pool.ntp.org maps to about 1000 low-stratum NTP servers.  Your server will
-# pick a different set every time it starts up.  Please consider joining the
-# pool: <http://www.pool.ntp.org/join.html>
-server 0.cumulusnetworks.pool.ntp.org iburst
-server 1.cumulusnetworks.pool.ntp.org iburst
-server 2.cumulusnetworks.pool.ntp.org iburst
-server 3.cumulusnetworks.pool.ntp.org iburst
-server 4.cumulusnetworks.pool.ntp.org iburst
-```
-
-{{< /tab >}}
 {{< tab "Linux Commands ">}}
 
 Edit the `/etc/ntp.conf` file to add or update NTP server information:
@@ -172,19 +148,6 @@ cumulus@switch:~$ cl show system ntp server
 ```
 
 {{< /tab >}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@switch:~$ net show time ntp servers
-      remote           refid      st t when poll reach   delay   offset  jitter
-==============================================================================
-+minime.fdf.net  58.180.158.150   3 u  140 1024  377   55.659    0.339   1.464
-+69.195.159.158  128.138.140.44   2 u  259 1024  377   41.587    1.011   1.677
-*chl.la          216.218.192.202  2 u  210 1024  377    4.008    1.277   1.628
-+vps3.drown.org  17.253.2.125     2 u  743 1024  377   39.319   -0.316   1.384
-```
-
-{{< /tab >}}
 {{< tab "Linux Commands ">}}
 
 Run the `ntpq -p` command:
@@ -217,20 +180,6 @@ cumulus@switch:~$ cl unset system ntp server 3.cumulusnetworks.pool.ntp.org
 cumulus@switch:~$ cl config apply
 ```
 
-{{< tab "NCLU Commands ">}}
-{{< /tab >}}
-
-Run the `net del time ntp <server>` command. The following example commands remove some of the default NTP servers.
-
-```
-cumulus@switch:~$ net del time ntp server 0.cumulusnetworks.pool.ntp.org
-cumulus@switch:~$ net del time ntp server 1.cumulusnetworks.pool.ntp.org
-cumulus@switch:~$ net del time ntp server 2.cumulusnetworks.pool.ntp.org
-cumulus@switch:~$ net del time ntp server 3.cumulusnetworks.pool.ntp.org
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
@@ -259,26 +208,6 @@ By default, the source interface that NTP uses is eth0. To change the source int
 ```
 cumulus@switch:~$ cl set system ntp listen swp10
 cumulus@switch:~$ cl config apply
-```
-
-{{< /tab >}}
-{{< tab "NCLU Commands ">}}
-
-Run the `net add time ntp source <interface>` command. The following command example changes the NTP source interface to swp10.
-
-```
-cumulus@switch:~$ net add time ntp source swp10
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-These commands create the following configuration snippet in the `ntp.conf` file:
-
-```
-...
-# Specify interfaces
-interface listen swp10
-...
 ```
 
 {{< /tab >}}
@@ -435,11 +364,11 @@ A boundary clock has multiple ports; one or more master ports and one or more sl
 Cumulus Linux includes the `linuxptp` package for PTP, which uses the `phc2sys` daemon to synchronize the PTP clock with the system clock.
 
 {{%notice note%}}
-
 - PTP is supported in boundary clock mode only (the switch provides timing to downstream servers; it is a slave to a higher-level clock and a master to downstream clocks).
 - The switch uses hardware time stamping to capture timestamps from an Ethernet frame at the physical layer. This allows PTP to account for delays in message transfer and greatly improves the accuracy of time synchronization.
 - Only IPv4/UDP PTP packets are supported.
 - Only a single PTP domain per network is supported. A PTP domain is a network or a portion of a network within which all the clocks are synchronized.
+- PTP *is* supported on BGP unnumbered interfaces. It is *not* supported on switched virtual interfaces (SVIs).
 
 {{%/notice%}}
 
@@ -466,14 +395,6 @@ To enable the PTP boundary clock on the switch:
 To configure a boundary clock:
 
 1. Configure the interfaces on the switch that you want to use for PTP. Each interface must be configured as a layer 3 routed interface with an IP address.
-
-    {{%notice note%}}
-
-PTP *is* supported on BGP unnumbered interfaces.
-
-PTP is *not* supported on switched virtual interfaces (SVIs).
-
-{{%/notice%}}
 
     ```
     cumulus@switch:~$ net add interface swp13s0 ip address 10.0.0.9/32

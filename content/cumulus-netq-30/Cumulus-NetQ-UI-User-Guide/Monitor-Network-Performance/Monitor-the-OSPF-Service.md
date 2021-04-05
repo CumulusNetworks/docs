@@ -418,7 +418,7 @@ To view switches with the most OSPF alarms:
 
 1. Open the large OSPF Service card.
 
-2. Hover over the header and click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell.svg" height="18" width="18">}}.
+2. Hover over the header and click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell.svg" height="18" width="18">.
 
 3. Select **Switches with Most Alarms** from the filter above the table.
 
@@ -444,7 +444,7 @@ To view all OSPF events:
 Where to go next depends on what data you see, but a couple of options include:
 
 - Open one of the other full screen tabs in this flow to focus on devices or sessions
-- Export the data for use in another analytics tool, by clicking {{<img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/08-Upload-Download/upload-bottom.svg" height="18" width="18">}} and providing a name for the data file
+- Export the data for use in another analytics tool, by clicking <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/08-Upload-Download/upload-bottom.svg" height="18" width="18"> and providing a name for the data file
 
 ### View Details for All Devices Running OSPF
 
@@ -454,7 +454,7 @@ To view all device details, open the full screen OSPF Service card and click the
 
 {{<figure src="/images/netq/ntwk-svcs-all-ospf-fullscr-allswitches-tab-241.png" width="700">}}
 
-To return to your workbench, click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14">}} in the top right corner.
+To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"> in the top right corner.
 
 ### View Details for All OSPF Sessions
 
@@ -464,7 +464,7 @@ To view all session details, open the full screen OSPF Service card and click th
 
 {{<figure src="/images/netq/ntwk-svcs-all-ospf-fullscr-sessions-tab-222.png" width="700">}}
 
-To return to your workbench, click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14">}} in the top right corner.
+To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"> in the top right corner.
 
 Use the icons above the table to select/deselect, filter, and export items in the list. Refer to {{<link url="Access-Data-with-Cards#table-settings" text="Table Settings">}} for more detail. To return to original display of results, click the associated tab.
 

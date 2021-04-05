@@ -161,6 +161,7 @@ def check_files(directory, skip_list):
         True if errors are found
         False if no errors are found
     '''
+    errors = []
     for md_file in glob.glob(directory, recursive=True):
         if DEBUG:
             print("file: {}".format(md_file))
@@ -198,7 +199,7 @@ def check_files(directory, skip_list):
                     print("{:<10d}{:>20s}".format(line_num, message))
             print("\n")
 
-    return errors
+    return bool(errors)
 
 def main(argv):
     """

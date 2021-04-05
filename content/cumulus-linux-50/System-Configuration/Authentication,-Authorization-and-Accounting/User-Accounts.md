@@ -27,7 +27,7 @@ cumulus@switch:~$ sudo adduser NEWUSERNAME sudo
 
 To access the switch without a password, you need to {{<link url="Single-User-Mode-Password-Recovery" text="boot into a single shell/user mode">}}.
 
-You can add and configure user accounts in Cumulus Linux with read-only or edit permissions for NCLU. For more information, see {{<link url="Network-Command-Line-Utility-NCLU#configure-user-accounts" text="Configure User Accounts">}}.
+<!--WHAT HAPPENS FOR CUE? - You can add and configure user accounts in Cumulus Linux with read-only or edit permissions for NCLU. For more information, see Configure User Accounts.-->
 
 ## Enable Remote Access for the root User
 

@@ -54,25 +54,6 @@ cumulus@switch:~$ cl config apply
 ```
 
 {{< /tab >}}
-{{< tab "NCLU Commands ">}}
-
-To put an interface into an admin *down* state:
-
-```
-cumulus@switch:~$ net add interface swp1 link down
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-To bring the interface back *up*:
-
-```
-cumulus@switch:~$ net del interface swp1 link down
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-{{< /tab >}}
 {{< tab "Linux Commands ">}}
 
 To put an interface into an *admin* *down* state:
@@ -195,16 +176,6 @@ cumulus@switch:~$ cl config apply
 ```
 
 {{< /tab >}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@switch:~$ net add loopback lo ip address 172.16.2.1/24
-cumulus@switch:~$ net add loopback lo ip address 10.10.10.1
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-{{< /tab >}}
 {{< tab "Linux Commands ">}}
 
 Add multiple `address` lines in the `/etc/network/interfaces` file:
@@ -220,7 +191,7 @@ iface lo inet loopback
 {{< /tabs >}}
 
 {{%notice note%}}
-If the IP address is configured without a mask, the IP address automatically becomes a /32. For example, 10.10.10.1 is 10.10.10.1/32.
+If the IP address is configured without a subnet mask, it automatically becomes a /32 IP address. For example, 10.10.10.1 is 10.10.10.1/32.
 {{%/notice%}}
 
 ## Child Interfaces
@@ -451,18 +422,7 @@ cumulus@switch:~$ cl set interface swp1 ip address 2001:DB8::1/126
 cumulus@switch:~$ cl config apply
 ```
 
-{{< /tab >}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@switch:~$ net add interface swp1 ip address 10.0.0.1/30
-cumulus@switch:~$ net add interface swp1 ip address 10.0.0.2/30
-cumulus@switch:~$ net add interface swp1 ipv6 address 2001:DB8::1/126
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-NCLU adds the address method and address family when needed (for example, when you create DHCP or loopback interfaces).
+CUE adds the address method and address family when needed (for example, when you create DHCP or loopback interfaces).
 
 ```
 auto lo
@@ -652,17 +612,6 @@ cumulus@switch:~$ cl config apply
 ```
 
 {{< /tab >}}
-{{< tab "NCLU Commands ">}}
-
-Use commas to separate different port ranges in the command:
-
-```
-cumulus@switch:~$ net add bridge bridge ports swp1-4,6,10-12
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-{{< /tab >}}
 {{< tab "Linux Commands ">}}
 
 Use the `glob` keyword to specify bridge ports and bond slaves:
@@ -683,12 +632,6 @@ iface br1
 ## Mako Templates
 
 `ifupdown2` supports {{<exlink url="http://www.makotemplates.org/" text="Mako-style templates">}}. The Mako template engine is run over the `interfaces` file before parsing.
-
-{{%notice warning%}}
-
-While `ifupdown2` supports Mako templates, NCLU does not understand them. As a result, NCLU cannot read or write to the `/etc/network/interfaces` file.
-
-{{%/notice%}}
 
 Use the template to declare cookie-cutter bridges and to declare addresses in the `interfaces` file:
 
@@ -862,23 +805,6 @@ link
 ```
 
 {{< /tab >}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@switch:~$ net show interface lo
-    Name    MAC                Speed    MTU    Mode
---  ------  -----------------  -------  -----  --------
-UP  lo      00:00:00:00:00:00  N/A      65536  Loopback
-Alias
------
-loopback interface
-IP Details
--------------------------  --------------------
-IP:                        127.0.0.1/8, ::1/128
-IP Neighbor(ARP) Entries:  0
-```
-
-{{< /tab >}}
 {{< tab "Linux Commands ">}}
 
 ```
@@ -1030,9 +956,3 @@ valid_lft forever preferred_lft forever
 - {{<exlink url="http://wiki.debian.org/NetworkConfiguration" text="Debian - Network Configuration">}}
 - {{<exlink url="http://www.linuxfoundation.org/collaborate/workgroups/networking/bonding" text="Linux Foundation - Bonds">}}
 - {{<exlink url="http://www.linuxfoundation.org/collaborate/workgroups/networking/vlan" text="Linux Foundation - VLANs">}}
-- man ifdown(8)
-- man ifquery(8)
-- man ifreload
-- man ifup(8)
-- man ifupdown-addons-interfaces(5)
-- man interfaces(5)

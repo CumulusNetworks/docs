@@ -239,7 +239,7 @@ The following table lists the most important services in Cumulus Linux.
 |switchd|Hardware abstraction daemon. Synchronizes the kernel with the ASIC.|YES|
 |sx\_sdk|Interfaces with the Spectrum ASIC. Only on Spectrum switches.|YES|
 |frr|{{<link url="FRRouting" text="FRRouting">}}. Handles routing protocols. There are separate processes for each routing protocol, such as `bgpd` and `ospfd`.|YES if routing|
-|clag|Cumulus link aggregation daemon. Handles {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="MLAG">}}.|YES if using MLAG|
+|clagd|Cumulus link aggregation daemon. Handles {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="MLAG">}}.|YES if using MLAG|
 |neighmgrd|Synchronizes MAC address information if using MLAG.|YES if using MLAG|
 |mstpd|{{<link url="Spanning-Tree-and-Rapid-Spanning-Tree-STP" text="Spanning tree protocol">}} daemon.|YES if using layer 2|
 |ptmd|{{<link url="Prescriptive-Topology-Manager-PTM" text="Prescriptive Topology Manager">}}. Verifies cabling based on {{<link url="Link-Layer-Discovery-Protocol" text="LLDP">}} output. Also sets up {{<link url="Bidirectional-Forwarding-Detection-BFD" text="BFD">}} sessions.|YES if using BFD|

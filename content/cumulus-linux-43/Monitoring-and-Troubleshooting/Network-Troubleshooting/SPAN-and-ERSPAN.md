@@ -147,7 +147,7 @@ Always place your rule files under `/etc/cumulus/acl/policy.d/`.
 
 Follow the procedure below to set up, install, and verify SPAN rules.
 
-The example commands span (mirror) swp4 input traffic and swp4 output traffic to destination swp19.
+The example commands span (mirror) swp1 input traffic and swp1 output traffic to destination swp2.
 
 1. Create a rules file in `/etc/cumulus/acl/policy.d/`:
 

@@ -830,7 +830,7 @@ You can query the interface description using NCLU:
 Interface descriptions also appear in the
 [SNMP](../../Monitoring-and-Troubleshooting/Simple-Network-Management-Protocol-SNMP/)
 OID
-[IF-MIB::ifAlias](https://cumulusnetworks.com/static/mibs/IF-MIB.txt).
+{{<kb_link text="IF-MIB::ifAlias" url="mibs/IF-MIB.txt" >}}.
 
 {{%notice note%}}
 

@@ -1113,7 +1113,7 @@ The new encapsulated packet's source IP address is the local TEP IP `10.1.1.1`, 
 ### Layer 3 Virtualized Traffic
 
 This scenario examines two segments (logical switches) with two VMs assigned to each. A unique VNI is assigned to each segment.  
-For communication between segments, or as VMware calls it "east-west traffic" traffic, the traffic must be routed using a Tier 1 Gateway (T1 Router). The T1 Router is a logical distributed router which exists in each ESXi hypervisors and connects to eachof the logical segments. It is the segment's default gateway and routes traffic between different segments.
+For communication between segments, or as VMware calls it "east-west traffic" traffic, the traffic must be routed using a Tier 1 Gateway (T1 Router). The T1 Router is a logical distributed router which exists in each ESXi hypervisors and connects to each of the logical segments. It is the segment's default gateway and routes traffic between different segments.
 
 {{%notice note%}}
 
@@ -1127,16 +1127,14 @@ Routing in VMware environments always done as close to the source as possible.
 VM1 and VM3 are in `VLAN100` `172.16.0.0/24` - VNI `65510`.  
 VM2 and VM4 are in `VLAN200` `172.16.1.0/24` - VNI `65520`.
 
-Both segments assigned to the same Overlay TZ which uses `10.1.1.0` and `10.2.2.1` as TEP IPs to maintain Geneve tunnel between the physical ESXi01 and ESX03 hypervisors.  
+Both segments assigned to the same Overlay TZ which uses the same TEP VLAN (with TEP IPs `10.1.1.0` and `10.2.2.1`) to establish overlay Geneve tunnel between the physical ESXi01 and ESX03 hypervisors. No additional configuration is required on the switches.  
 Traffic within the same segment handled the same way as [Layer 2 Virtualized Traffic](#layer-2-virtualized-environment) scenario.
 
 {{%notice note%}}
 
-Multiple T1 routers may be used for load balancing across segments. This model is described in the [traffic flows](#traffic-flow-1) section of Virtual and bare metal Server Environments.
+Multiple T1 routers may be used for load balancing across segments. Then those routers connected using Tier-0 Gateway (T0 Router). T1-to-T0 routers model is described in the [traffic flows](#traffic-flow-1) section of Virtual and bare metal Server Environments.
 
 {{%/notice %}}
-
-Both segments use the same TEP IP addresses (TEP VLAN) to establish overlay Geneve tunnel between hypervisors. No additional configuration is required on the switches.
 
 VM1 `172.16.0.1` on ESXi01 sends traffic to VM4 `172.16.1.4` on ESXi03:
 
@@ -1152,7 +1150,7 @@ VM1 `172.16.0.1` on ESXi01 sends traffic to VM4 `172.16.1.4` on ESXi03:
 
 This use-case covers VMware virtualized environment with the need to connect to a bare metal (BM) server. This could the when the virtualized environment deployed as part of an already existing fabric (brownfield) and VMs need to communicate with a legacy or any other server which doesn't run VMs (not part of the virtualized world).
 
-In cases where VMs needs to communicate with non-NSX (bare metal) servers an [NSX Edge](https://docs.vmware.com/en/VMware-NSX-T-Data-Center/3.0/installation/GUID-5EF2998C-4867-4DA6-B1C6-8A6F8EBCC411.html) deployment is required. The NSX Edge is a gateway between the virtualized Geneve overlay and the outside physical underlay. It acts as TEP `device0` and as underlay router by establishing BGP (or OSPF) peering with the underlay fabric to route traffic in and out of the virtualized environment.
+In cases where VMs needs to communicate with non-NSX (bare metal) servers an [NSX Edge](https://docs.vmware.com/en/VMware-NSX-T-Data-Center/3.0/installation/GUID-5EF2998C-4867-4DA6-B1C6-8A6F8EBCC411.html) deployment is required. The NSX Edge is a gateway between the virtualized Geneve overlay and the outside physical underlay. It acts as TEP device and as underlay router by establishing BGP (or OSPF) peering with the underlay fabric to route traffic in and out of the virtualized environment.
 
 {{%notice note%}}
 
@@ -1194,13 +1192,13 @@ cumulus@leaf03:mgmt:~$ net commit
 {{< /tab >}}
 {{< tab " leaf04 ">}}
 ```
-cumulus@leaf04:mgmt:~$ net add vlan 100                                                       ### TEP VLAN                                               
-cumulus@leaf04:mgmt:~$ net add vlan 100 ip address 10.2.2.253/24                              ### TEP SVI                              
-cumulus@leaf04:mgmt:~$ net add vlan 100 ip address-virtual 00:00:00:01:00:00 10.2.2.254/24    ### TEP VRR (GW)     
-cumulus@leaf04:mgmt:~$ net add vlan 200                                                       ### BM VLAN                                                     
-cumulus@leaf04:mgmt:~$ net add vlan 200 ip address 192.168.0.253/24                           ### BM SVI    
-cumulus@leaf04:mgmt:~$ net add vlan 200 ip address-virtual 00:00:00:19:21:68 192.168.0.254/24 ### BM VRR (GW)        
-cumulus@leaf04:mgmt:~$ net add interface swp1.31 ip address 10.31.0.254/24                    ### Edge VLAN31 subinterface                              
+cumulus@leaf04:mgmt:~$ net add vlan 100                                                       ### TEP VLAN
+cumulus@leaf04:mgmt:~$ net add vlan 100 ip address 10.2.2.253/24                              ### TEP SVI
+cumulus@leaf04:mgmt:~$ net add vlan 100 ip address-virtual 00:00:00:01:00:00 10.2.2.254/24    ### TEP VRR (GW)
+cumulus@leaf04:mgmt:~$ net add vlan 200                                                       ### BM VLAN
+cumulus@leaf04:mgmt:~$ net add vlan 200 ip address 192.168.0.253/24                           ### BM SVI
+cumulus@leaf04:mgmt:~$ net add vlan 200 ip address-virtual 00:00:00:19:21:68 192.168.0.254/24 ### BM VRR (GW)
+cumulus@leaf04:mgmt:~$ net add interface swp1.31 ip address 10.31.0.254/24                    ### Edge VLAN31 subinterface
 cumulus@leaf04:mgmt:~$ net commit                                                                     
 ```
 {{< /tab >}}
@@ -1208,7 +1206,7 @@ cumulus@leaf04:mgmt:~$ net commit
 
 ### VRR and Subinterfaces Configuration Verification
 
-SVI and VRR interfaces are displayed in the `net show interface` output as `vlanXXX` and `vlanXXX-v0`. Subinterfaces are shown as `swpX.xxx`
+SVI and VRR interfaces are displayed in the `net show interface` output as `vlanXXX` and `vlanXXX-v0`. Subinterfaces are shown as `swpX.xx`
 
 {{< tabs "10h1d23f10 ">}}
 {{< tab " leaf03 ">}}
@@ -1786,7 +1784,6 @@ cumulus@leaf02:mgmt:~$ net commit
 cumulus@leaf03:mgmt:~$ net add bgp evpn neighbor peerlink.4094 activate
 cumulus@leaf03:mgmt:~$ net add bgp evpn neighbor swp51 activate
 cumulus@leaf03:mgmt:~$ net add bgp evpn neighbor swp52 activate
-cumulus@leaf01:mgmt:~$ net add bgp evpn advertise-all-vni
 cumulus@leaf03:mgmt:~$ net add bgp evpn advertise-all-vni
 cumulus@leaf03:mgmt:~$ net commit
 ```
@@ -2535,7 +2532,7 @@ Displayed 6 prefixes (10 paths)
 
 {{<figure src="/images/guides/cumulus-nsxt/edge_type5.jpg">}}
 
-The NSX traffic will be unchanged from the scenarios described earlier. Reference the [Layer 2](#layer-2-virtualized-environment) or [Layer 3](#layer-3-virtualized-environment) examples for details. Traffic destined outside of the NSX fabric will follow the same traffic flow as described in the [Virtualized and Bare Metal](#virtualized-and-bare metal-server-environment) section.
+The NSX traffic will be unchanged from the scenarios described earlier. Reference the [Layer 2](#layer-2-virtualized-environment) or [Layer 3](#layer-3-virtualized-environment) examples for details. Traffic destined outside of the NSX fabric will follow the same traffic flow as described in the [Virtualized and Bare Metal](#virtualized-and-bare-metal-server-environment) section.
 
 With VXLAN in the network fabric, Geneve traffic from ESXi TEP is encapsulated again into VXLAN packets on the leaf switch using the local loopback IP addresses as the tunnel sources and the remote VXLAN anycast IP as the destination.  
 When the remote leaf receives the VXLAN packet, it is decapsulated and fowared to the ESXi host where the Geneve packet is decapsulated and forwared to the correct local VM.

@@ -9,92 +9,84 @@ This simple document provides a checklist for users like network administrators,
 
 ## Adding and Managing User Accounts
 
-1.  Learn about [user accounts](https://docs.cumulusnetworks.com/cumulus-linux/System-Configuration/Authentication-Authorization-and-Accounting/User-Accounts/)
-3.  [Use sudo to delegate privileges](https://docs.cumulusnetworks.com/cumulus-linux/System-Configuration/Authentication-Authorization-and-Accounting/Using-sudo-to-Delegate-Privileges/)
-4.  [What is the default password in Cumulus Linux?](https://docs.cumulusnetworks.com/knowledge-base/Setup-and-Getting-Started/Default-User-Name-and-Password-in-Cumulus-Linux/)
+1.  Learn about {{<kb_link url="cumulus-linux-43/System-Configuration/Authentication-Authorization-and-Accounting/User-Accounts/" text="user accounts" >}}
+3.  {{<kb_link url="cumulus-linux-43/System-Configuration/Authentication-Authorization-and-Accounting/Using-sudo-to-Delegate-Privileges/" text="Use sudo to delegate privileges" >}}
+4.  {{<kb_link url="knowledge-base/Setup-and-Getting-Started/Default-User-Name-and-Password-in-Cumulus-Linux/" text="What is the default password in Cumulus Linux?" >}}
 5.  Optional: Configure LDAP for centralized user management
-    - [LDAP authentication and authorization](https://docs.cumulusnetworks.com/cumulus-linux/System-Configuration/Authentication-Authorization-and-Accounting/LDAP-Authentication-and-Authorization/)
-    - [LDAP authentication and authorization with Active Directory](https://docs.cumulusnetworks.com/knowledge-base/Security/Authentication/LDAP-on-Cumulus-Linux-Using-Server-2008-Active-Directory/)
+    - {{<kb_link url="cumulus-linux-43/System-Configuration/Authentication-Authorization-and-Accounting/LDAP-Authentication-and-Authorization/" text="LDAP authentication and authorization" >}}
+    - {{<kb_link url="knowledge-base/Security/Authentication/LDAP-on-Cumulus-Linux-Using-Server-2008-Active-Directory/" text="LDAP authentication and authorization with Active Directory" >}}
 
 ## Editing Files in Linux
 
 Learn how to use the nano text editor ([cheat sheet --- external link](http://www.cheatography.com/hkellaway/cheat-sheets/nano-text-editor/))
 
-- Alternative: Learn how to use [vi for beginners](https://docs.cumulusnetworks.com/knowledge-base/Demos-and-Training/Training/vi-for-Beginners/)
+- Alternative: Learn how to use {{<kb_link url="knowledge-base/Demos-and-Training/Training/vi-for-Beginners/" text="vi for beginners" >}}
 - Alternative: Learn how to use Zile (emacs light) ([external link](http://www.gnu.org/software/zile/))
-- Alternative: Install any other editor by [adding a Debian package](https://docs.cumulusnetworks.com/cumulus-linux/Installation-Management/Adding-and-Updating-Packages/#add-packages-from-another-repository)
+- Alternative: Install any other editor by {{<kb_link url="cumulus-linux-43/Installation-Management/Adding-and-Updating-Packages/#add-packages-from-another-repository" text="adding a Debian package" >}}
 
 ## Customizing the Switch
 
 1.  Initial configuration
-    - [Install the Cumulus Linux license](https://docs.cumulusnetworks.com/cumulus-linux/Quick-Start-Guide/#install-the-license)
-    - [Set the hostname and time zone](https://docs.cumulusnetworks.com/cumulus-linux/Quick-Start-Guide/#configure-the-hostname-and-timezone)
-    - [Define a DNS server](https://docs.cumulusnetworks.com/cumulus-linux/Layer-3/Management-VRF/#management-vrf-and-dns)
+    - {{<kb_link url="cumulus-linux-43/Quick-Start-Guide/#install-the-license" text="Install the Cumulus Linux license" >}}
+    - {{<kb_link url="cumulus-linux-43/Quick-Start-Guide/#configure-the-hostname-and-time-zone" text="Set the hostname and time zone" >}}
+    - {{<kb_link url="cumulus-linux-43/Layer-3/VRFs/Management-VRF/#management-vrf-and-dns" text="Define a DNS server" >}}
     - [Write a message of the day](https://wiki.debian.org/motd)
 
           cumulus@switch:~$ sudo vi /etc/motd
 
-    - [Configure NTP and clock](https://docs.cumulusnetworks.com/cumulus-linux/System-Configuration/Setting-Date-and-Time/)
-    - [Configure the management Interface](https://docs.cumulusnetworks.com/cumulus-linux/Quick-Start-Guide/#wired-ethernet-management)
-    - [Add an IP address to loopback interface](https://docs.cumulusnetworks.com/cumulus-linux/Quick-Start-Guide/#configure-a-loopback-interface)
-    - [Configure a DHCP relay agent](https://docs.cumulusnetworks.com/cumulus-linux-42/Layer-1-and-Switch-Ports/DHCP/DHCP-Relays/)
-2.  Configure [external system logging](https://docs.cumulusnetworks.com/cumulus-linux/Monitoring-and-Troubleshooting/#send-log-files-to-a-syslog-server)
+    - {{<kb_link url="cumulus-linux-43/System-Configuration/Setting-Date-and-Time/" text="Configure NTP and clock" >}}
+    - {{<kb_link url="cumulus-linux-43/Quick-Start-Guide/#wired-ethernet-management" text="Configure the management Interface" >}}
+    - {{<kb_link url="cumulus-linux-43/Quick-Start-Guide/#configure-a-loopback-interface" text="Add an IP address to loopback interface" >}}
+    - {{<kb_link url="cumulus-linux-42/Layer-1-and-Switch-Ports/DHCP/DHCP-Relays/" text="Configure a DHCP relay agent" >}}
+2.  Configure {{<kb_link url="cumulus-linux-43/Monitoring-and-Troubleshooting/#send-log-files-to-a-syslog-server" text="external system logging" >}}
 
 ## ACL/IP Rules
 
-1.  [Allow SSH from specific subnets only](https://support.cumulusnetworks.com/hc/en-us/community/posts/203381337-I-want-to-only-allow-SSH-from-specific-subnets-how-can-I-do-this-)
-2.  [Cumulus Linux ACL example rules](https://docs.cumulusnetworks.com/cumulus-linux/System-Configuration/Netfilter-ACLs/#example-configuration)
+1.  {{<kb_link url="cumulus-linux-43/System-Configuration/Netfilter-ACLs/#example-configuration" text="Cumulus Linux ACL example rules" >}}
 
 ## Networking with Cumulus Linux
 
-1.  [Configuring and managing network interfaces](https://docs.cumulusnetworks.com/cumulus-linux/Layer-1-and-Switch-Ports/Interface-Configuration-and-Management/)
-2.  [VLAN-aware bridge mode for large-scale layer 2 environments](https://docs.cumulusnetworks.com/cumulus-linux/Layer-2/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode/)
-3.  [Configuring switch port attributes](https://docs.cumulusnetworks.com/cumulus-linux/Layer-1-and-Switch-Ports/Interface-Configuration-and-Management/Switch-Port-Attributes/)
-4.  [Network troubleshooting](https://docs.cumulusnetworks.com/cumulus-linux/Monitoring-and-Troubleshooting/Network-Troubleshooting/)
+1.  {{<kb_link url="cumulus-linux-43/Layer-1-and-Switch-Ports/Interface-Configuration-and-Management/" text="Configuring and managing network interfaces" >}}
+2.  {{<kb_link url="cumulus-linux-43/Layer-2/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode/" text="VLAN-aware bridge mode for large-scale layer 2 environments" >}}
+3.  {{<kb_link url="cumulus-linux-43/Layer-1-and-Switch-Ports/Interface-Configuration-and-Management/Switch-Port-Attributes/" text="Configuring switch port attributes" >}}
+4.  {{<kb_link url="cumulus-linux-43/Monitoring-and-Troubleshooting/Network-Troubleshooting/" text="Network troubleshooting" >}}
 
 ## Monitoring the Switch
 
-- [Monitoring interface administrative state and physical state on Cumulus Linux](https://docs.cumulusnetworks.com/knowledge-base/Configuration-and-Usage/Monitoring/Monitor-Interface-Administrative-State-and-Physical-State-on-Cumulus-Linux/)
-- [Monitoring interfaces and transceivers using ethtool](https://docs.cumulusnetworks.com/cumulus-linux/Monitoring-and-Troubleshooting/Troubleshooting-Network-Interfaces/Monitoring-Interfaces-and-Transceivers-Using-ethtool/)
-- [Resource diagnostics using cl-resource-query](https://docs.cumulusnetworks.com/cumulus-linux/Monitoring-and-Troubleshooting/Resource-Diagnostics-Using-cl-resource-query/)
-- [Monitoring system hardware](https://docs.cumulusnetworks.com/cumulus-linux/Monitoring-and-Troubleshooting/Monitoring-System-Hardware/)
-- [Monitoring switch hardware using SNMP](https://docs.cumulusnetworks.com/cumulus-linux/Monitoring-and-Troubleshooting/Simple-Network-Management-Protocol-SNMP/)
-- [Exposing CPU and memory information via SNMP](https://docs.cumulusnetworks.com/knowledge-base/Configuration-and-Usage/Monitoring/Expose-CPU-and-Memory-Information-via-SNMP/)
-- [Relevant log files in Cumulus Linux](https://docs.cumulusnetworks.com/cumulus-linux/Monitoring-and-Troubleshooting/Monitoring-Best-Practices/#logging201787896)
-- [Using the NCLU command line utility as a troubleshooting tool](https://docs.cumulusnetworks.com/cumulus-linux/Monitoring-and-Troubleshooting/Network-Troubleshooting/Using-NCLU-to-Troubleshoot-Your-Network-Configuration/)
+- {{<kb_link url="knowledge-base/Configuration-and-Usage/Monitoring/Monitor-Interface-Administrative-State-and-Physical-State-on-Cumulus-Linux/" text="Monitoring interface administrative state and physical state on Cumulus Linux" >}}
+- {{<kb_link url="cumulus-linux-43/Monitoring-and-Troubleshooting/Troubleshooting-Network-Interfaces/Monitoring-Interfaces-and-Transceivers-Using-ethtool/" text="Monitoring interfaces and transceivers using ethtool" >}}
+- {{<kb_link url="cumulus-linux-43/Monitoring-and-Troubleshooting/Resource-Diagnostics-Using-cl-resource-query/" text="Resource diagnostics using cl-resource-query" >}}
+- {{<kb_link url="cumulus-linux-43/Monitoring-and-Troubleshooting/Monitoring-System-Hardware/" text="Monitoring system hardware" >}}
+- {{<kb_link url="cumulus-linux-43/Monitoring-and-Troubleshooting/Simple-Network-Management-Protocol-SNMP/" text="Monitoring switch hardware using SNMP" >}}
+- {{<kb_link url="knowledge-base/Configuration-and-Usage/Monitoring/Expose-CPU-and-Memory-Information-via-SNMP/" text="Exposing CPU and memory information via SNMP" >}}
+- {{<kb_link url="cumulus-linux-43/Monitoring-and-Troubleshooting/Monitoring-Best-Practices/#logging201787896" text="Relevant log files in Cumulus Linux" >}}
+- {{<kb_link url="cumulus-linux-43/Monitoring-and-Troubleshooting/Network-Troubleshooting/Using-NCLU-to-Troubleshoot-Your-Network-Configuration/" text="Using the NCLU command line utility as a troubleshooting tool" >}}
 
 ## Installers and Upgrades (Cumulus Linux and Packages)
 
-1.  [Adding and updating packages](https://docs.cumulusnetworks.com/cumulus-linux/Installation-Management/Adding-and-Updating-Packages/)
-2.  [Upgrading Cumulus Linux](https://docs.cumulusnetworks.com/cumulus-linux/Installation-Management/Upgrading-Cumulus-Linux/)
-3.  [What files should I back up when updating Cumulus Linux via image install?](https://docs.cumulusnetworks.com/cumulus-linux/Installation-Management/Upgrading-Cumulus-Linux/#before-you-upgrade)
+1.  {{<kb_link url="cumulus-linux-43/Installation-Management/Adding-and-Updating-Packages/" text="Adding and updating packages" >}}
+2.  {{<kb_link url="cumulus-linux-43/Installation-Management/Upgrading-Cumulus-Linux/" text="Upgrading Cumulus Linux" >}}
+3.  {{<kb_link url="cumulus-linux-43/Installation-Management/Upgrading-Cumulus-Linux/#before-you-upgrade" text="What files should I back up when updating Cumulus Linux via image install?" >}}
 
 ## Suggested Further Reading
 
 ### More Networking On Cumulus Linux
 
-1.  [Manually putting all switch ports into a single VLAN](https://docs.cumulusnetworks.com/cumulus-linux/Layer-1-and-Switch-Ports/Interface-Configuration-and-Management/#use-globs-for-port-lists)
-2.  [Reserved MAC address range for use with Cumulus Linux](https://docs.cumulusnetworks.com/cumulus-linux-42/Layer-2/Multi-Chassis-Link-Aggregation-MLAG/#reserved-mac-address-range)
+1.  {{<kb_link url="cumulus-linux-43/Layer-1-and-Switch-Ports/Interface-Configuration-and-Management/#use-globs-for-port-lists" text="Manually putting all switch ports into a single VLAN" >}}
+2.  {{<kb_link url="cumulus-linux-42/Layer-2/Multi-Chassis-Link-Aggregation-MLAG/#reserved-mac-address-range" text="Reserved MAC address range for use with Cumulus Linux" >}}
 
-    - [Reserved range for VRR](https://docs.cumulusnetworks.com/cumulus-linux-42/Layer-2/Virtual-Router-Redundancy-VRR-and-VRRP/#vrr)
+    - {{<kb_link url="cumulus-linux-42/Layer-2/Virtual-Router-Redundancy-VRR-and-VRRP/#vrr" text="Reserved range for VRR" >}}
 
-3.  [Network topology](https://docs.cumulusnetworks.com/cumulus-linux/Layer-3/Network-Topology/)
-4.  [Link Layer Discovery Protocol LLDP](https://docs.cumulusnetworks.com/cumulus-linux/Layer-2/Link-Layer-Discovery-Protocol/)
-5.  [Bonding - Link Aggregation](https://docs.cumulusnetworks.com/cumulus-linux/Layer-2/Bonding-Link-Aggregation/)
-6.  [MLAG](https://docs.cumulusnetworks.com/cumulus-linux/Layer-2/Multi-Chassis-Link-Aggregation-MLAG/)
-7.  [Routing](https://docs.cumulusnetworks.com/cumulus-linux/Layer-3/Routing/)
-8.  [Configuring FRRouting](https://docs.cumulusnetworks.com/cumulus-linux/Layer-3/Configuring-FRRouting/)
+3.  {{<kb_link url="cumulus-linux-43/Layer-2/Link-Layer-Discovery-Protocol/" text="Link Layer Discovery Protocol LLDP" >}}
+4.  {{<kb_link url="cumulus-linux-43/Layer-2/Bonding-Link-Aggregation/" text="Bonding - Link Aggregation" >}}
+5.  {{<kb_link url="cumulus-linux-43/Layer-2/Multi-Chassis-Link-Aggregation-MLAG/" text="MLAG" >}}
+6.  {{<kb_link url="cumulus-linux-43/Layer-3/Routing/" text="Routing" >}}
+7.  {{<kb_link url="cumulus-linux-43/Layer-3/Configuring-FRRouting/" text="Configuring FRRouting" >}}
 
 ### General Useful Links
 
-- [Cumulus Linux technical documentation](https://docs.cumulusnetworks.com/cumulus-linux/)
-- [Quick start guide](https://docs.cumulusnetworks.com/cumulus-linux/Quick-Start-Guide/)
-- [Interoperability and conversion guides](https://docs.cumulusnetworks.com/knowledge-base/Demos-and-Training/Interoperability/)
-- [General license questions](https://docs.cumulusnetworks.com/knowledge-base/Support/Licensing/)
-- [Release notes for the latest Cumulus Linux version](https://docs.cumulusnetworks.com/cumulus-linux/Whats-New/rn/)
-
-### Cumulus Networks Validated Design Guides
-
-- [Big Data Validated Design](https://cumulusnetworks.com/learn/resources/guides/big-data-cumulus-linux-installation-guide-2)
-- [OpenStack Validated Design](https://cumulusnetworks.com/learn/resources/guides/openstack-and-cumulus-linux-installation-guide-2)
-- [VMware VSphere Validated Design](https://cumulusnetworks.com/learn/resources/guides/vmware-vsphere-cumulus-linux-installation-guide-2)
+- {{<kb_link url="cumulus-linux/" text="Cumulus Linux technical documentation" >}}
+- {{<kb_link url="cumulus-linux-43/Quick-Start-Guide/" text="Quick start guide" >}}
+- {{<kb_link url="knowledge-base/Demos-and-Training/Interoperability/" text="Interoperability and conversion guides" >}}
+- {{<kb_link url="knowledge-base/Support/Licensing/" text="General license questions" >}}
+- {{<kb_link url="cumulus-linux/Whats-New/rn/" text="Release notes for the latest Cumulus Linux version" >}}

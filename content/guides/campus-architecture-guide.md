@@ -62,7 +62,7 @@ The Cumulus NetQ agent currently supports:
 - Red Hat Enterprise Linux (RHEL) 7.1
 - CentOS 7
 
-All data from the Cumulus NetQ agent is streamed to the Cumulus NetQ appliance. This appliance is [available](https://cumulusnetworks.com/downloads/#product=NetQ) as either a bare metal appliance from Cumulus Networks or as a virtual appliance for use on nearly any hypervisor.
+All data from the Cumulus NetQ agent is streamed to the Cumulus NetQ appliance. This appliance is [available](https://support.mellanox.com/s/) as either a bare metal appliance from NVIDIA or as a virtual appliance for use on nearly any hypervisor.
 
 ## Campus Networks Overview
 
@@ -252,7 +252,7 @@ Automation tools such as Ansible, Saltstack and Puppet address the need to conso
 
 Over time, switch stacks have become ingrained into legacy campus design. Being a modern network operating system and by following network design philosophies and principles that we believe are best, Cumulus Linux does not support switch stacking. In instances where switch stacks currently exist or are being considered, multiple 1U devices acting as standalone devices can be used to provide the connectivity that a switch stack would offer.
 
-The [recommended designs](#recommended-designs) in the section below illustrate how to build campus networks without needing to configure and group switches using stacking. For a more detailed discussion about stacking, visit our  [blog](https://cumulusnetworks.com/blog/switch-stacking/).
+The [recommended designs](#recommended-designs) in the section below illustrate how to build campus networks without needing to configure and group switches using stacking.
 
 #### Chassis Switches
 

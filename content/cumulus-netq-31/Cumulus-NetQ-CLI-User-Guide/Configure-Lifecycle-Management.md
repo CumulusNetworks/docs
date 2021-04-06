@@ -139,7 +139,7 @@ After installing NetQ, there are no Cumulus Linux images in the LCM repository. 
 
 For more information about Cumulus Linux images and LCM, read {{<link url="Lifecycle-Management/#image-management" text="Image Management">}}.
 
-1. Download the version of Cumulus Linux you plan to use to upgrade the switches from the {{<exlink url="https://cumulusnetworks.com/downloads/#product=Cumulus%20Linux" text="Cumulus Networks web site">}}.
+1. Download the version of Cumulus Linux you plan to use to upgrade the switches from the {{<exlink url="https://support.mellanox.com/s/" text="MyMellanox download">}} site.
 
 1. Upload the image onto an accessible part of your network. The following example uses the Cumulus Linux 3.7.12 disk image, named `cumulus-linux-3.7.12-bcm-amd64.bin`.
 
@@ -151,7 +151,7 @@ After installing NetQ, there are no Cumulus NetQ images in the LCM repository. Y
 
 For more information about Cumulus NetQ images and LCM, read {{<link url="Lifecycle-Management/#image-management" text="Image Management">}}.
 
-1. Download the version of Cumulus NetQ you plan to use to upgrade the switches from the {{<exlink url="https://cumulusnetworks.com/downloads/#product=NetQ" text="Cumulus Networks web site">}}.
+1. Download the version of Cumulus NetQ you plan to use to upgrade the switches from the {{<exlink url="https://support.mellanox.com/s/" text="MyMellanox downloads">}} site.
 
 1. Upload the Cumulus NetQ packages onto an accessible part of your network. The following example uses the Cumulus NetQ 3.1.0 debian packages, named `netq-apps_3.1.0-ub18.04u27~1588242914.9fb5b87_amd64.deb` and `netq-agent_3.1.0-ub18.04u27~1588242914.9fb5b87_amd64.deb`.
 

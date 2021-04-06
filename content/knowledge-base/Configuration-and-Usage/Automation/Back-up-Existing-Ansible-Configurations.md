@@ -20,7 +20,7 @@ This type of model can be beneficial for:
 
 - {{<exlink url="https://cumulusnetworks.com/hcl" text="Cumulus Linux switch">}}
 - Server/laptop for running Ansible
-- {{<exlink url="http://docs.ansible.com/ansible/intro_installation.html" text="Install Ansible on the server/laptop">}}
+- {{<exlink url="https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html" text="Install Ansible on the server/laptop">}}
 
 ## Ansible Modules
 

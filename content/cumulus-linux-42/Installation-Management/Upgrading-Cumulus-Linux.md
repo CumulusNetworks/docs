@@ -263,7 +263,7 @@ You must upgrade both switches in the MLAG pair to the same release of Cumulus L
 {{%notice warning%}}
 
 For networks with MLAG deployments, you can only upgrade to Cumulus Linux 4.2 from version 3.7.10 or later. If you are using a version of Cumulus Linux earlier than 3.7.10, you must upgrade to version 3.7.10 first, then upgrade to version 4.2. Version 3.7.10 is available on the
-{{<exlink url="https://cumulusnetworks.com/downloads/#product=Cumulus%20Linux&version=3.7.10" text="downloads page">}} on our website.
+{{<exlink url="https://support.mellanox.com/s/" text="MyMellanox downloads page">}} on our website.
 
 {{%/notice%}}
 

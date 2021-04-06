@@ -8,7 +8,7 @@ toc: 4
 Cumulus Linux users familiar with Cisco IOS may look for the same level
 of information from commands they have learned and used over time. One
 of the most common commands used in Cisco IOS
-is `{{<exlink url="http://www.cisco.com%20/en/US/docs/ios/fundamentals/command/reference/cf_s4.html#wp1499591" text="show version">}}`,
+is `show version`,
 which displays the currently loaded software along with hardware and
 device information. This same level of information can be found in
 Cumulus Linux using the following commands:

@@ -13,7 +13,7 @@ Before you install Cumulus Linux, the switch can be in two different states:
 
 The sections below describe some of the different ways you can install the Cumulus Linux disk image, such as using a DHCP/web server, FTP, a local file, or a USB drive. Steps are provided for both installing directly from ONIE (if no image is installed on the switch) and from Cumulus Linux (if the image is already installed on the switch), where applicable. For additional methods to find and install the Cumulus Linux image, see the {{<exlink url="http://opencomputeproject.github.io/onie/design-spec/discovery.html" text="ONIE Design Specification">}}.
 
-You can download a Cumulus Linux image from the {{<exlink url="https://cumulusnetworks.com/downloads/" text="Cumulus Linux Downloads page">}}.
+You can download a Cumulus Linux image from the {{<exlink url="https://support.mellanox.com/s/" text="MyMellanox Download Center">}}.
 
 {{%notice note%}}
 
@@ -272,7 +272,7 @@ Installing Cumulus Linux using a USB drive is fine for a single switch here and 
 
 ### Prepare for USB Installation
 
-1. From the {{<exlink url="https://cumulusnetworks.com/downloads/" text="Cumulus Linux Downloads page">}}, download the appropriate Cumulus Linux image for your x86 or ARM platform.
+1. From the {{<exlink url="https://support.mellanox.com/s/" text="MyMellanox Downloads page">}}, download the appropriate Cumulus Linux image for your x86 or ARM platform.
 
 2. From a computer, prepare your USB drive by formatting it using one of the supported formats: FAT32, vFAT or EXT2.
 
@@ -484,6 +484,6 @@ Homepage: http://www.cumulusnetworks.com/
 ## Related Information
 
 - {{<exlink url="http://opencomputeproject.github.io/onie/design-spec/" text="ONIE Design Specification">}}
-- {{<exlink url="https://cumulusnetworks.com/downloads/" text="Cumulus Linux Downloads page">}}
+- {{<exlink url="https://support.mellanox.com/s/" text="MyMellanox Downloads page">}}
 - {{<exlink url="https://cumulusnetworks.com/cumulus-on-a-stick/" text="Cumulus on a Stick">}}
 - {{<link title="Managing Cumulus Linux Disk Images">}}

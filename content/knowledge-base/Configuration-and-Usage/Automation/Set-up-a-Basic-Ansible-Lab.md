@@ -5,7 +5,7 @@ weight: 321
 toc: 4
 ---
 
-This article outlines the process for managing a switch using Ansible in a lab environment. This example is showing off Ansible's {{<exlink url="http://docs.ansible.com/intro_adhoc.html" text="ad-hoc commands">}}. For repeated tasks, use an Ansible playbook; like this {{<link url="Ansible-Simple-Playbook-Example-with-an-FRR-Template" text="easy playbook example">}}.
+This article outlines the process for managing a switch using Ansible in a lab environment. This example is showing off Ansible's {{<exlink url="https://docs.ansible.com/ansible/latest/user_guide/intro_adhoc.html" text="ad-hoc commands">}}. For repeated tasks, use an Ansible playbook; like this {{<link url="Ansible-Simple-Playbook-Example-with-an-FRR-Template" text="easy playbook example">}}.
 
 ## Requirements
 

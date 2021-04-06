@@ -26,16 +26,6 @@ cumulus@leaf01:~$ cl config apply
 ```
 
 {{< /tab >}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@leaf01:~$ net add interface swp51 ip address 10.0.1.1/31
-cumulus@leaf01:~$ net add routing route 10.10.10.101/32 10.0.1.0
-cumulus@leaf01:~$ net pending
-cumulus@leaf01:~$ net commit
-```
-
-{{< /tab >}}
 {{< tab "Linux and vtysh Commands ">}}
 
 Edit the `/etc/network/interfaces` file to configure an IP address for the interface on the switch that sends out traffic. For example:
@@ -62,6 +52,9 @@ leaf01# exit
 cumulus@leaf01:~$
 ```
 
+{{< /tab >}}
+{{< /tabs >}}
+
 The commands save the static route configuration in the `/etc/frr/frr.conf` file. For example:
 
 ```
@@ -71,9 +64,6 @@ ip route 10.10.10.101/32 10.0.1.0
 !
 ...
 ```
-
-{{< /tab >}}
-{{< /tabs >}}
 
 The following example commands configure Cumulus Linux to send traffic with the destination prefix 10.10.10.61/32 out swp3 (10.0.0.32/31) to the next hop 10.0.0.33 in vrf BLUE.
 
@@ -87,17 +77,6 @@ cumulus@border01:~$ cl set interface swp3 ip address 10.0.0.32/31
 cumulus@border01:~$ cl set interface swp3 ip vrf BLUE
 cumulus@border01:~$ cl set vrf BLUE router static 10.10.10.61/32 via 10.0.0.33
 cumulus@border01:~$ cl config apply
-```
-
-{{< /tab >}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@border01:~$ net add interface swp3 ip address 10.0.0.32/31
-cumulus@border01:~$ net add interface swp3 vrf BLUE
-cumulus@border01:~$ net add routing route 10.10.10.61/32 10.0.0.33 vrf BLUE
-cumulus@border01:~$ net pending
-cumulus@border01:~$ net commit
 ```
 
 {{< /tab >}}
@@ -128,6 +107,9 @@ border01# exit
 cumulus@border01:~$
 ```
 
+{{< /tab >}}
+{{< /tabs >}}
+
 The commands save the static route configuration in the `/etc/frr/frr.conf` file. For example:
 
 ```
@@ -136,9 +118,6 @@ vrf BLUE
  ip route 10.10.10.61/32 10.0.0.33
 ...
 ```
-
-{{< /tab >}}
-{{< /tabs >}}
 
 To delete a static route:
 
@@ -149,19 +128,6 @@ To delete a static route:
 cumulus@leaf01:~$ cl unset vrf default router static 10.10.10.101/32 via 10.0.1.0
 cumulus@leaf01:~$ cl config apply
 ```
-
-{{< /tab >}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@leaf01:~$ net del routing route 10.10.10.101/32 10.0.1.0
-cumulus@leaf01:~$ net pending
-cumulus@leaf01:~$ net commit
-```
-
-{{%notice tip%}}
-When you use NCLU commands to delete routing configuration such as static routes, commit ten or fewer delete commands at a time to avoid commit failures.
-{{%/notice%}}
 
 {{< /tab >}}
 {{< tab "vtysh Commands ">}}
@@ -198,6 +164,13 @@ S>* 10.10.10.101/32 [1/0] via 10.0.1.0, swp51, weight 1, 00:02:07
 You can also create a static route by adding the route to a switch port configuration. For example:
 
 {{< tabs "TabID187 ">}}
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@leaf01:~$ NEED COMMAND
+```
+
+{{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
 ```
@@ -247,15 +220,6 @@ Instead of 0.0.0.0/0, you can specify `default` or `default6`.
 {{%/notice%}}
 
 {{< /tab >}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@leaf01:~$ net add routing route 0.0.0.0/0 10.0.1.0
-cumulus@leaf01:~$ net pending
-cumulus@leaf01:~$ net commit
-```
-
-{{< /tab >}}
 {{< tab "vtysh Commands ">}}
 
 ```
@@ -269,7 +233,14 @@ leaf01# exit
 cumulus@leaf01:~$
 ```
 
-The vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+{{%notice note%}}
+The default route created by the `gateway` parameter in ifupdown2 is not installed in FRR and cannot be redistributed into other routing protocols. See {{<link url="Interface-Configuration-and-Management#ifupdown2-and-the-gateway-parameter" text="ifupdown2 and the gateway Parameter" >}} for more information.
+{{%/notice%}}
+
+{{< /tab >}}
+{{< /tabs >}}
+
+The commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
 ```
 ...
@@ -278,13 +249,6 @@ ip route 0.0.0.0/0 10.0.1.0
 !
 ...
 ```
-
-{{%notice note%}}
-The default route created by the `gateway` parameter in ifupdown2 is not installed in FRR and cannot be redistributed into other routing protocols. See {{<link url="Interface-Configuration-and-Management#ifupdown2-and-the-gateway-parameter" text="ifupdown2 and the gateway Parameter" >}} for more information.
-{{%/notice%}}
-
-{{< /tab >}}
-{{< /tabs >}}
 
 ## Considerations
 

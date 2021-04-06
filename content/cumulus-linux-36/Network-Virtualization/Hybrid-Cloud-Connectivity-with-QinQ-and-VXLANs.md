@@ -27,7 +27,7 @@ QinQ is available on the following switches:
 
 ## Removing the Early Access QinQ Metapackage
 
-If you are upgrading Cumulus Linux from a version earlier than 3.4.0 and had installed the early access QinQ metapackage, you need to remove the `cumulus-qinq` metapackage before upgrading to Cumulus Linux 3.4.0 or later. To remove the `cumulus-qinq` metapackage, read the  [early access feature](https://docs.cumulusnetworks.com/knowledge-base/Support/Support-Offerings/Early-Access-Features-Defined/) article.
+If you are upgrading Cumulus Linux from a version earlier than 3.4.0 and had installed the early access QinQ metapackage, you need to remove the `cumulus-qinq` metapackage before upgrading to Cumulus Linux 3.4.0 or later. To remove the `cumulus-qinq` metapackage, read the  {{<kb_link url="knowledge-base/Support/Support-Offerings/Early-Access-Features-Defined/" text="early access feature" >}} article.
 
 ## Configuring Single Tag Translation
 

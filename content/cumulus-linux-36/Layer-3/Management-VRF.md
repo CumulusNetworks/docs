@@ -205,7 +205,7 @@ operation of the switch.
 ### Enabling hsflowd
 
 If you are using
-[sFlow](https://docs.cumulusnetworks.com/display/CL31/Monitoring+System+Statistics+and+Network+Traffic+with+sFlow)
+{{<link url="Monitoring-System-Statistics-and-Network-Traffic-with-sFlow/" text="sFlow" >}}
 to monitor traffic in the management VRF, you need to complete the
 following steps to enable sFlow.
 

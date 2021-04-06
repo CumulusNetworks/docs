@@ -45,7 +45,7 @@ command:
 In this example, swp1 is administratively UP and the physical link is UP
 (LOWER\_UP flag). More information on interface administrative state and
 physical state can be found in 
-[this knowledge base article](https://docs.cumulusnetworks.com/knowledge-base/Configuration-and-Usage/Monitoring/Monitor-Interface-Administrative-State-and-Physical-State-on-Cumulus-Linux/).
+{{<kb_link url="knowledge-base/Configuration-and-Usage/Monitoring/Monitor-Interface-Administrative-State-and-Physical-State-on-Cumulus-Linux/" text="this knowledge base article" >}}.
 
 ### Using NCLU to Set the Admin State of an Interface
 
@@ -260,7 +260,7 @@ iface br-100
 </details>
 
 For more information on the bridge in traditional mode vs the bridge in
-VLAN-aware mode, please read [this knowledge base article](https://docs.cumulusnetworks.com/knowledge-base/Configuration-and-Usage/Network-Interfaces/Compare-Traditional-Bridge-Mode-to-VLAN-aware-Bridge-Mode/).
+VLAN-aware mode, please read {{<kb_link url="knowledge-base/Configuration-and-Usage/Network-Interfaces/Compare-Traditional-Bridge-Mode-to-VLAN-aware-Bridge-Mode/" text="this knowledge base article" >}}.
 
 ## ifupdown2 Interface Dependencies
 
@@ -752,7 +752,7 @@ You can test your template and confirm it evaluates correctly by running
 
 {{%notice tip%}}
 
-For more examples of configuring Mako templates, read this [knowledge base article](https://docs.cumulusnetworks.com/knowledge-base/Configuration-and-Usage/Automation/Configure-the-interfaces-File-with-Mako/).
+For more examples of configuring Mako templates, read this {{<kb_link url="knowledge-base/Configuration-and-Usage/Automation/Configure-the-interfaces-File-with-Mako/" text="knowledge base article" >}}.
 
 {{%/notice%}}
 

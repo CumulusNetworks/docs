@@ -184,7 +184,7 @@ cycle every device in that rack.
 {{%notice tip%}}
 
 However, if an out-of-band network is not available for you to upgrade,
-you can use [the dtach tool](https://docs.cumulusnetworks.com/knowledge-base/Installing-and-Upgrading/Upgrading/Using-dtach-for-In-band-apt-get-Upgrades/)
+you can use {{<kb_link url="knowledge-base/Installing-and-Upgrading/Upgrading/Using-dtach-for-In-band-apt-get-Upgrades/" text="the dtach tool" >}}
 instead to upgrade in band.
 
 {{%/notice%}}
@@ -342,7 +342,7 @@ Cons:
     functions may be intermittently available during the upgrade.
   - Some upgrade operations will terminate SSH sessions on the in-band
     (front panel) ports, leaving the user unable to monitor the upgrade
-    process. As a workaround, use the [dtach tool](https://docs.cumulusnetworks.com/knowledge-base/Installing-and-Upgrading/Upgrading/Using-dtach-for-In-band-apt-get-Upgrades/).
+    process. As a workaround, use the {{<kb_link url="knowledge-base/Installing-and-Upgrading/Upgrading/Using-dtach-for-In-band-apt-get-Upgrades/" text="dtach tool" >}}.
   - Just like the binary install method, you may have to reboot after
     the upgrade, lengthening the downtime.
   - After you upgrade, user names and group names created by packages

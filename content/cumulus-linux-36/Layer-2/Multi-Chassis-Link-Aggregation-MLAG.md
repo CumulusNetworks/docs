@@ -1107,7 +1107,7 @@ link:
       bridge-stp on
 
 For a deeper comparison of traditional versus VLAN-aware bridge modes,
-read this [knowledge base article](https://docs.cumulusnetworks.com/knowledge-base/Configuration-and-Usage/Network-Interfaces/Compare-Traditional-Bridge-Mode-to-VLAN-aware-Bridge-Mode/).
+read this {{<kb_link url="knowledge-base/Configuration-and-Usage/Network-Interfaces/Compare-Traditional-Bridge-Mode-to-VLAN-aware-Bridge-Mode/" text="knowledge base article" >}}.
 
 ## Peer Link Interfaces and the protodown State
 

@@ -9,7 +9,7 @@ This topic describes how to prepare your cluster of NetQ On-premises Appliances 
 
 Inside each box that was shipped to you, you'll find:
 
-- A Cumulus NetQ On-premises Appliance (a Supermicro 6019P-WTR server)
+- Your NVIDIA Cumulus NetQ On-premises Appliance (a Supermicro 6019P-WTR server)
 - Hardware accessories, such as power cables and rack mounting gear (note that network cables and optics ship separately)
 - Information regarding your order
 
@@ -139,7 +139,7 @@ Make a note of the private IP addresses you assign to the master and worker node
 
 12. Repeat Steps 5-10 for each additional worker node (NetQ On-premises Appliance).
 
-The final step is to install and activate the NetQ software on each appliance in your cluster.  You can do this using the Admin UI or the NetQ CLI.
+The final step is to install and activate the NetQ software on each appliance in your cluster. You can do this using the Admin UI or the NetQ CLI.
 
 Click the installation and activation method you want to use to complete installation:
 

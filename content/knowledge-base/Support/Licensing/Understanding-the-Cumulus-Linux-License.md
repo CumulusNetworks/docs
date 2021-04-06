@@ -18,7 +18,7 @@ The license format looks like this:
 
     user@company.com|thequickbrownfoxjumpsoverthelazydog312
 
-You manage your licenses in the Cumulus Networks {{<exlink url="https://customers.cumulusnetworks.com/" text="customer portal">}}.
+You manage your licenses in the MyMellanox {{<exlink url="https://support.mellanox.com/s/login/" text="customer portal">}}.
 
 To verify that your license is installed, run the `cl-license` command.
 

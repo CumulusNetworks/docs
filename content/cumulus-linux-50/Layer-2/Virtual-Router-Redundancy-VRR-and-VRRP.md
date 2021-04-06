@@ -8,7 +8,7 @@ Cumulus Linux provides the option of using Virtual Router Redundancy (VRR) or Vi
 
 - **VRR** enables hosts to communicate with any redundant router without reconfiguration, by running dynamic router protocols or router redundancy protocols. Redundant routers respond to Address Resolution Protocol (ARP) requests from hosts. Routers are configured to respond in an identical manner, but if one fails, the other redundant routers continue to respond, leaving the hosts with the impression that nothing has changed. VRR is typically used in an MLAG configuration.
 
-   Use VRR when you have multiple devices connected to a single logical connection, such as an MLAG bond. A device connected to an MLAG bond believes there is a single device on the other end of the bond and only forwards one copy of the transit frames. If this frame is destined to the virtual MAC address and you are running VRRP, it is possible that the frame is sent to the link connected to the VRRP standby device, which will not forward the frame appropriately. By having the virtual MAC active on both MLAG devices, it ensures either MLAG device handles the frame it receives correctly.
+   Use VRR when you have multiple devices connected to a single logical connection, such as an MLAG bond. A device connected to an MLAG bond believes there is a single device on the other end of the bond and only forwards one copy of the transit frames. If this frame is destined to the virtual MAC address and you are running VRRP, it is possible that the frame is sent to the link connected to the VRRP standby device, which does not forward the frame appropriately. By having the virtual MAC active on both MLAG devices, it ensures either MLAG device handles the frame it receives correctly.
 
 - **VRRP** allows a single virtual default gateway to be shared between two or more network devices in an active/standby configuration. The physical VRRP router that forwards packets at any given time is called the master. If this VRRP router fails, another VRRP standby router automatically takes over as master. VRRP is used in a non-MLAG configuration.
 
@@ -60,21 +60,6 @@ Use the same commands for IPV6 addresses; for example:
 cumulus@switch:~$ cl set interface vlan10 ip vrr address 2001:db8::1/32
 cumulus@switch:~$ cl set interface vlan10 ip vrr mac-address 00:00:5e:00:01:00
 cumulus@switch:~$ cl set interface vlan10 ip vrr state up
-```
-
-{{< /tab >}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@switch:~$ net add vlan 10 ip address-virtual 00:00:5e:00:01:00 10.1.10.1/24
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-For IPv6, use this commands:
-
-```
-cumulus@switch:~$ net add vlan 10 ipv6 address-virtual 00:00:5e:00:01:00 2001:db8::f/32
 ```
 
 {{< /tab >}}
@@ -145,27 +130,6 @@ cumulus@leaf01:~$ cl set interface vlan20 ip vrr address 10.1.20.1/24
 cumulus@leaf01:~$ cl set interface vlan20 ip vrr mac-address 00:00:5e:00:01:00
 cumulus@leaf01:~$ cl set interface vlan20 ip vrr state up
 cumulus@leaf01:~$ cl config apply
-```
-
-{{< /tab >}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@leaf01:~$ net add interface eth0 ip address 192.168.200.11/24
-cumulus@leaf01:~$ net add bond bond1 bond slaves swp1
-cumulus@leaf01:~$ net add bond bond1 alias bond1 on swp1
-cumulus@leaf01:~$ net add bond bond2 bond slaves swp2
-cumulus@leaf01:~$ net add bond bond2 alias bond2 on swp2
-cumulus@leaf01:~$ net add bond bond1 clag id 1
-cumulus@leaf01:~$ net add bond bond2 clag id 2
-cumulus@leaf01:~$ net add bridge bridge ports bond1,bond2
-cumulus@leaf01:~$ net add clag peer sys-mac 44:38:39:BE:EF:AA interface swp49-50 primary backup-ip 10.10.10.2
-cumulus@leaf01:~$ net add vlan 10 ip address 10.0.1.2/24
-cumulus@leaf01:~$ net add vlan 10 ip address-virtual 00:00:5e:00:01:00 10.0.1.1/24
-cumulus@leaf01:~$ net add vlan 20 ip address 10.0.2.2/24
-cumulus@leaf01:~$ net add vlan 20 ip address-virtual 00:00:5e:00:01:00 10.0.2.1/24
-cumulus@leaf01:~$ net pending
-cumulus@leaf01:~$ net commit
 ```
 
 {{< /tab >}}
@@ -270,27 +234,6 @@ cumulus@leaf02:~$ cl set interface vlan20 ip vrr address 10.1.20.1/24
 cumulus@leaf02:~$ cl set interface vlan20 ip vrr mac-address 00:00:5e:00:01:00
 cumulus@leaf02:~$ cl set interface vlan20 ip vrr state up
 cumulus@leaf02:~$ cl config apply
-```
-
-{{< /tab >}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@leaf02:~$ net add interface eth0 ip address 192.168.200.12/24
-cumulus@leaf01:~$ net add bond bond1 bond slaves swp1
-cumulus@leaf01:~$ net add bond bond1 alias bond1 on swp1
-cumulus@leaf01:~$ net add bond bond2 bond slaves swp2
-cumulus@leaf01:~$ net add bond bond2 alias bond2 on swp2
-cumulus@leaf01:~$ net add bond bond1 clag id 1
-cumulus@leaf01:~$ net add bond bond2 clag id 2
-cumulus@leaf01:~$ net add bridge bridge ports bond1,bond2
-cumulus@leaf01:~$ net add clag peer sys-mac 44:38:39:BE:EF:AA interface swp49-50 primary backup-ip 10.10.10.1
-cumulus@leaf02:~$ net add vlan 10 ip address 10.1.10.3/24
-cumulus@leaf02:~$ net add vlan 10 ip address-virtual 00:00:5e:00:01:00 10.1.10.1/24
-cumulus@leaf02:~$ net add vlan 20 ip address 10.1.20.3/24
-cumulus@leaf02:~$ net add vlan 20 ip address-virtual 00:00:5e:00:01:00 10.1.20.1/24
-cumulus@leaf02:~$ net pending
-cumulus@leaf02:~$ net commit
 ```
 
 {{< /tab >}}

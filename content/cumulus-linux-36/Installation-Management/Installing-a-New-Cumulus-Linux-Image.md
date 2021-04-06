@@ -225,8 +225,8 @@ configuration of your switch after the installation completes.
 ### Preparing for USB Installation
 
 1.  Download the appropriate Cumulus Linux image for your x86 or ARM
-    platform from the [Cumulus Networks Downloads
-    page](http://cumulusnetworks.com/downloads/).
+    platform from the [MyMellanox Downloads
+    page](https://support.mellanox.com/s/).
 
 2.  
 

@@ -40,17 +40,6 @@ cumulus@switch:~$ cl config apply
 ```
 
 {{< /tab >}}
-{{< tab "NCLU Commands ">}}
-
-Run the `net add interface <interface> mtu` command. The following example command sets the MTU to 1500 for the swp1 interface.
-
-```
-cumulus@switch:~$ net add interface swp1 mtu 1500
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-{{< /tab >}}
 {{< tab "Linux Commands ">}}
 
 Edit the `/etc/network/interfaces` file, then run the `ifreload -a` command. The following example sets the MTU to 1500 for the swp1 interface.
@@ -123,7 +112,7 @@ VLAN interfaces inherit their MTU settings from their physical devices or their 
 If you are working with {{<link url="Network-Virtualization" text="VXLANs">}}, the MTU for a virtual network interface (VNI must be 50 bytes smaller than the MTU of the physical interfaces on the switch, as those 50 bytes are required for various headers and other data. Also, consider setting the MTU much higher than 1500.
 
 {{%notice note%}}
-The MTU for an SVI interface, such as vlan100, is derived from the bridge. When you use NCLU to change the MTU for an SVI and the MTU setting is higher than it is for the other bridge member interfaces, the MTU for all bridge member interfaces changes to the new setting. If you need to use a mixed MTU configuration for SVIs, (if some SVIs have a higher MTU and some lower), set the MTU for all member interfaces to the maximum value, then set the MTU on the specific SVIs that need to run at a lower MTU.
+The MTU for an SVI interface, such as vlan10, is derived from the bridge. When you use CUE to change the MTU for an SVI and the MTU setting is higher than it is for the other bridge member interfaces, the MTU for all bridge member interfaces changes to the new setting. If you need to use a mixed MTU configuration for SVIs, (if some SVIs have a higher MTU and some lower), set the MTU for all member interfaces to the maximum value, then set the MTU on the specific SVIs that need to run at a lower MTU.
 {{%/notice%}}
 
 To show the MTU setting for an interface:
@@ -133,16 +122,6 @@ To show the MTU setting for an interface:
 
 ```
 cumulus@switch:~$ cl show interface swp1
-```
-
-{{< /tab >}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@switch:~$ net show interface swp1
-    Name    MAC                Speed      MTU  Mode
---  ------  -----------------  -------  -----  ---------
-UP  swp1    44:38:39:00:00:04  1G        9216  Access/L2
 ```
 
 {{< /tab >}}
@@ -159,7 +138,7 @@ cumulus@switch:~$ ip link show dev swp1
 
 ## FEC
 
-{{<exlink url="https://en.wikipedia.org/wiki/Forward_error_correction" text="Forward Error Correction (FEC)">}} is an encoding and decoding layer that enables the switch to detect and correct bit errors introduced over the cable between two interfaces. The target IEEE bit error rate (BER) on high speed ethernet links is 10<sup>-12</sup>. Because 25G transmission speeds can introduce a higher than acceptable BER on a link, FEC is often required to correct errors to achieve the target BER at 25G, 4x25G, 100G, and higher link speeds. The type and grade of a cable or module and the medium of transmission determine which FEC setting is needed.
+{{<exlink url="https://en.wikipedia.org/wiki/Forward_error_correction" text="Forward Error Correction (FEC)">}} is an encoding and decoding layer that enables the switch to detect and correct bit errors introduced over the cable between two interfaces. The target IEEE bit error rate (BER) on high speed Ethernet links is 10<sup>-12</sup>. Because 25G transmission speeds can introduce a higher than acceptable BER on a link, FEC is often required to correct errors to achieve the target BER at 25G, 4x25G, 100G, and higher link speeds. The type and grade of a cable or module and the medium of transmission determine which FEC setting is needed.
 
 For the link to come up, the two interfaces on each end must use the same FEC setting.
 
@@ -173,9 +152,12 @@ There are two FEC types:
 - Base-R (**BaseR**), Fire Code (FC), IEEE 802.3 Clause 74 (CL74). Base-R provides less protection from bit errors than RS FEC but adds less latency.
 
 Cumulus Linux includes additional FEC options:
-
-- *Auto* FEC instructs the hardware to select the best FEC. For copper DAC, FEC can be negotiated with the remote end. However, optical modules do not have auto-negotiation capability; if the device chooses a preferred mode, it might not match the remote end. This is the current default on a Spectrum switch.
+- *Auto* FEC instructs the hardware to select the best FEC. For copper DAC, FEC can be negotiated with the remote end. However, optical modules do not have auto-negotiation capability; if the device chooses a preferred mode, it might not match the remote end. This is the current default on the NVIDIA Spectrum switch.
 - *No* FEC (no error correction is done).
+
+{{%notice info%}}
+While *Auto* FEC is the default setting on the NVIDIA Spectrum switch, do *not* explicitly configure the `fec auto` option on the switch as this leads to a link flap whenever you run `net commit` or `ifreload -a`.
+{{%/notice%}}
 
 For **25G DAC, 4x25G Breakouts DAC and 100G DAC cables**, the IEEE 802.3by specification creates 3 classes:
 
@@ -312,17 +294,6 @@ cumulus@switch:~$ cl config apply
 ```
 
 {{< /tab >}}
-{{< tab "NCLU Commands ">}}
-
-Run the `net add interface <interface> link fec rs` command. For example:
-
-```
-cumulus@switch:~$ sudo net add interface swp1 link fec rs
-cumulus@switch:~$ sudo net pending
-cumulus@switch:~$ sudo net commit
-```
-
-{{< /tab >}}
 {{< tab "Linux Commands ">}}
 
 Edit the `/etc/network/interfaces` file, then run the `ifreload -a` command. The following example enables RS FEC for the swp1 interface (`link-fec rs`):
@@ -366,17 +337,6 @@ Run the `cl set interface <interface> link fec baser` command. For example:
 ```
 cumulus@switch:~$ cl set interface swp1 link fec baser
 cumulus@switch:~$ cl config apply
-```
-
-{{< /tab >}}
-{{< tab "NCLU Commands ">}}
-
-Run the `net add interface <interface> link fec baser` command. For example:
-
-```
-cumulus@switch:~$ sudo net add interface swp1 link fec baser
-cumulus@switch:~$ sudo net pending
-cumulus@switch:~$ sudo net commit
 ```
 
 {{< /tab >}}
@@ -427,17 +387,6 @@ Run the `net add interface <interface> link auto-negotiate on` command. The foll
 ```
 cumulus@switch:~$ cl set interface swp1 link auto-negotiate on
 cumulus@switch:~$ cl config apply
-```
-
-{{< /tab >}}
-{{< tab "NCLU Commands ">}}
-
-Run the `net add interface <interface> link autoneg` `on` command. The following example command enables FEC with auto-negotiation on the swp1 interface:
-
-```
-cumulus@switch:~$ sudo net add interface swp1 link autoneg on
-cumulus@switch:~$ sudo net pending
-cumulus@switch:~$ sudo net commit
 ```
 
 {{< /tab >}}
@@ -497,17 +446,6 @@ cumulus@switch:~$ cl config apply
 ```
 
 To configure FEC to the default value, run the `cl unset interface swp1 link fec` command.
-
-{{< /tab >}}
-{{< tab "NCLU Commands ">}}
-
-Run the `net add interface <interface> link fec off` command. For example:
-
-```
-cumulus@switch:~$ sudo net add interface swp1 link fec off
-cumulus@switch:~$ sudo net pending
-cumulus@switch:~$ sudo net commit
-```
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
@@ -588,14 +526,13 @@ Cumulus Linux lets you:
 - Break out 40G switch ports into four separate 10G ports (4x10G) for use with breakout cables.
 
 {{%notice note%}}
-
 - If you break out a port, then reload the `switchd` service on a switch running in *nonatomic* ACL mode, temporary disruption to traffic occurs while the ACLs are reinstalled.
 - Port ganging is not supported.
-- Mellanox switches with the Spectrum 1 ASIC have a limit of 64 logical ports. If you want to break ports out to 4x25G or 4x10G:
+- Switches with the Spectrum 1 ASIC have a limit of 64 logical ports. If you want to break ports out to 4x25G or 4x10G:
   - You can only break out odd-numbered ports into four logical ports.
   - You must disable the next even-numbered port. For example, if you break out port 11 into four logical ports, you must disable port 12.
-  These restrictions do *not* apply to a 2x50G breakout configuration or to the Mellanox SN2100 and SN2010 switches.
-- Mellanox switches with the Spectrum 2 and Spectrum 3 ASIC have a limit of 128 logical ports. To ensure that the number of total logical interfaces does not exceed the limit, if you split ports into four interfaces on Spectrum 2 and Spectrum 3 switches with 64 interfaces, you must disable the adjacent port. For example, when splitting port 1 into four 25G interfaces, you must disable port 2 in the `/etc/cumulus/ports.conf` file:
+  These restrictions do *not* apply to a 2x50G breakout configuration or to the NVIDIA SN2100 and SN2010 switches.
+- Switches with the Spectrum 2 and Spectrum 3 ASIC have a limit of 128 logical ports. To ensure that the number of total logical interfaces does not exceed the limit, if you split ports into four interfaces on Spectrum 2 and Spectrum 3 switches with 64 interfaces, you must disable the adjacent port. For example, when splitting port 1 into four 25G interfaces, you must disable port 2 in the `/etc/cumulus/ports.conf` file:
 
     ```
     1=4x25G
@@ -605,7 +542,6 @@ Cumulus Linux lets you:
    When you split a port into two interfaces, such as 2x50G, you do **not** have to disable the adjacent port.
 
 Valid port configuration and breakout guidance is provided in the `/etc/cumulus/ports.conf` file.
-
 {{%/notice%}}
 
 ### Configure a Breakout Port
@@ -629,47 +565,6 @@ cumulus@switch:~$ cl set interface swp1 link breakout 4x10G
 cumulus@switch:~$ cl set interface swp2 breakout disabled
 cumulus@switch:~$ cl config apply
 ```
-
-{{< /tab >}}
-{{< tab "NCLU Commands ">}}
-
-This example command breaks out the 100G port on swp1 into four 25G ports:
-
-```
-cumulus@switch:~$ net add interface swp1 breakout 4x25G
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-To break out a port into four 10G ports, you must **also** disable the next port.
-
-```
-cumulus@switch:~$ net add interface swp1 breakout 4x10G
-cumulus@switch:~$ net add interface swp2 breakout disabled
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-These commands break out swp1 into four 25G interfaces in the `/etc/cumulus/ports.conf` file and create four interfaces in the `/etc/network/interfaces` file:
-
-```
-cumulus@switch:~$ cat /etc/network/interfaces
-...
-auto swp1s0
-iface swp1s0
-
-auto swp1s1
-iface swp1s1
-
-auto swp1s2
-iface swp1s2
-
-auto swp1s3
-iface swp1s3
-...
-```
-
-When you commit your change, `switchd` reloads and there is no interruption to network services.
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
@@ -730,39 +625,6 @@ Run the `cl unset interface <interface>` command. For example:
     cumulus@switch:~$ cl unset interface swp1s3
     cumulus@switch:~$ cl config apply
     ```
-
-{{< /tab >}}
-{{< tab "NCLU Commands ">}}
-
-1. Run the `net del interface <interface>` command. For example:
-
-    ```
-    cumulus@switch:~$ net del interface swp1s0
-    cumulus@switch:~$ net del interface swp1s1
-    cumulus@switch:~$ net del interface swp1s2
-    cumulus@switch:~$ net del interface swp1s3
-    cumulus@switch:~$ net pending
-    cumulus@switch:~$ net commit
-    ```
-
-2. Manually edit the `/etc/cumulus/ports.conf` file to configure the interface for the original speed. For example:
-
-    ```
-    cumulus@switch:~$ sudo nano /etc/cumulus/ports.conf
-    ...
-
-    1=100G
-    2=100G
-    3=100G
-    4=100G
-    ...
-    ```
-
-Reload `switchd` with the `sudo systemctl reload switchd.service` command. The reload does **not** interrupt network services.
-
-```
-cumulus@switch:~$ sudo systemctl reload switchd.service
-```
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
@@ -871,31 +733,38 @@ cumulus@switch:~$ sudo ethtool -m swp1 | egrep 'Vendor|type|power\s+:'
 
 ## Considerations
 
+<!-- vale off -->
+<!-- Vale issue #253 -->
 ### Auto-negotiation and FEC
-
+<!-- vale on -->
 If auto-negotiation is disabled on 100G and 25G interfaces, you must set FEC to *OFF*, RS, or BaseR to match the neighbor. The FEC default setting of *auto* does not link up when auto-negotiation is disabled.
 
 ### Port Speed and the ifreload -a Command
 
 When configuring port speed or break outs in the `/etc/cumulus/ports.conf` file, you need to run the `ifreload -a` command to reload the configuration after restarting `switchd` in the following cases:
 
+<!-- vale off -->
+<!-- acceptable use of "since" -->
 - If you configure, or configure then remove the port speed in the `/etc/cumulus/ports.conf` file and you also set or remove the speed on the same physical port or breakouts of that port in the `/etc/network/interfaces` file since the last time you restarted `switchd`.
+<!-- vale on -->
 - If you break out a switch port or remove a break out port and the port speed is set in both the `/etc/cumulus/ports.conf` file and the `/etc/network/interfaces` file.
 
 ### Port Speed Configuration
 
 If you change the port speed in the `/etc/cumulus/ports.conf` file but the speed is also configured for that port in the `/etc/network/interfaces` file, after you edit the `/etc/cumulus/ports.conf` file and restart `switchd`, you must also run the `ifreload -a` command so that the `/etc/network/interfaces` file is also updated with your change.
 
+<!-- vale off -->
+<!-- Vale issue #253 -->
 ### 1000BASE-T SFP Modules Supported Only on Certain 25G Platforms
-
+<!-- vale on -->
 1000BASE-T SFP modules are supported on the following 25G platforms:
 
-- Mellanox SN2410
-- Mellanox SN2010
+- NVIDIA SN2410
+- NVIDIA SN2010
 
 1000BASE-T SFP modules are not supported on any 100G or faster platforms.
 
-### Mellanox SN2100 Switch and eth0 Link Speed
+### NVIDIA SN2100 Switch and eth0 Link Speed
 
 After rebooting the Melllanox SN2100 switch, eth0 always has a speed of 100Mb/s. If you bring the interface down and then back up again, the interface negotiates 1000Mb. This only occurs the first time the interface comes up.
 
@@ -911,9 +780,12 @@ modprobe igb
 
 When you remove two transceivers simultaneously from a switch, both interfaces show the `carrier down` status immediately. However, it takes one second for the second interface to show the `operational down` status. In addition, the services on this interface also take an extra second to come down.
 
-### Mellanox Spectrum-2 Switches and FEC Mode
+<!-- vale off -->
+<!-- Vale issue #253 -->
+### NVIDIA Spectrum-2 Switches and FEC Mode
+<!-- vale on -->
 
-The Mellanox Spectrum-2 (25G) switch only supports RS FEC.
+The NVIDIA Spectrum-2 (25G) switch only supports RS FEC.
 
 ## Related Information
 

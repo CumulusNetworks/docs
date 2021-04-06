@@ -52,9 +52,7 @@ Reading package lists... Done
 ```
 
 {{%notice tip%}}
-
 Use the `-E` option with `sudo` whenever you run any `apt-get` command. This option preserves your environment variables (such as HTTP proxies) before you install new packages or upgrade your distribution.
-
 {{%/notice%}}
 
 ## List Available Packages
@@ -147,27 +145,6 @@ acpid                                  Advanced Configuration and Power Interfac
 ```
 
 {{< /tab >}}
-{{< tab "NCLU Commands ">}}
-
-Run the `net show package version` command:
-
-```
-cumulus@switch:~$ net show package version
-Package                            Installed Version(s)
----------------------------------  -----------------------------------------------------------------------
-acpi                               1.7-1.1
-acpi-support-base                  0.142-8
-acpid                              1:2.0.31-1
-adduser                            3.118
-apt                                1.8.2
-arping                             2.19-6
-arptables                          0.0.4+snapshot20181021-4
-atftp                              0.7.git20120829-3.1
-atftpd                             0.7.git20120829-3.1
-...
-```
-
-{{< /tab >}}
 {{< tab "Linux Commands ">}}
 
 Run the `dpkg -l` command:
@@ -213,16 +190,6 @@ version      1.0-cl4.2.1+u1                         Version
 ```
 
 {{< /tab >}}
-{{< tab "NCLU Commands ">}}
-
-Run the `net show package version <package>` command. The following example command shows which version of the `vrf` package is installed on the system:
-
-```
-cumulus@switch:~$ net show package version vrf
-1.0-cl4u2
-```
-
-{{< /tab >}}
 {{< tab "Linux Commands ">}}
 
 Run the Linux `dpkg -l <package_name>` command. The following example command shows which version of the `vrf` package is installed on the system:
@@ -249,7 +216,7 @@ cumulus@switch:~$ sudo -E apt-get update
 cumulus@switch:~$ sudo -E apt-get upgrade
 ```
 
-The packages that will be upgraded are listed and you are prompted to continue.
+The packages that are to be upgraded are listed and you are prompted to continue.
 
 The above commands upgrade all installed versions with their latest versions but do not install any new packages.
 
@@ -288,7 +255,7 @@ cumulus@switch:~$ sudo -E apt-get install <package1> <package2> <package3>
 In some cases, installing a new package might also upgrade additional existing packages due to dependencies. To view these additional packages before you install, run the `apt-get install --dry-run` command.
 {{%/notice%}}
 
-## Add Packages from Another Repository
+## Add Packages From Another Repository
 
 As shipped, Cumulus Linux searches the Cumulus Linux repository for available packages. You can add additional repositories to search by adding them to the list of sources that `apt-get` consults. See `man sources.list` for more information.
 
@@ -364,4 +331,4 @@ You add these packages normally with `apt-get update && apt-get install`, as {{<
 
 ## Considerations
 
-At this time, you cannot directly browse the contents of the apt.cumulusnetworks.com repository using HTTP.
+You cannot directly browse the contents of the apt.cumulusnetworks.com repository using HTTP.

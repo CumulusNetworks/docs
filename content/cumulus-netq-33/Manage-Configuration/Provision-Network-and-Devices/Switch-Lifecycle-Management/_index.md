@@ -11,7 +11,7 @@ Only administrative users can perform the tasks described in this topic.
 
 {{</notice>}}
 
-As an administrator, you want to manage the deployment of Cumulus Networks product software onto your network devices (servers, appliances, and switches) in the most efficient way and with the most information about the process as possible.
+As an administrator, you want to manage the deployment of NVIDIA product software onto your network devices (servers, appliances, and switches) in the most efficient way and with the most information about the process as possible.
 
 Using the NetQ UI or CLI, lifecycle management enables you to:
 
@@ -28,7 +28,7 @@ Using the NetQ UI or CLI, lifecycle management enables you to:
 
 {{<notice note>}}
 
-This feature is fully enabled for on-premises deployments and fully disabled for cloud deployments. Contact your local Cumulus Networks sales representative or {{<exlink url="https://support.cumulusnetworks.com/hc/en-us" text="submit a support ticket">}} to activate LCM on cloud deployments.
+This feature is fully enabled for on-premises deployments and fully disabled for cloud deployments. Contact your local NVIDIA sales representative or {{<exlink url="https://support.cumulusnetworks.com/hc/en-us" text="submit a support ticket">}} to activate LCM on cloud deployments.
 
 {{</notice>}}
 

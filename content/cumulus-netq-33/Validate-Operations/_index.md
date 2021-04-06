@@ -53,10 +53,10 @@ You can run validations for a time in the past and output the results in JSON fo
 
 | UOM | Command Value | Example|
 | --- | ------------- | -------|
-| day(s) | <#>d | 3d |
-| hour(s) | <#>h | 6h |
-| minute(s) | <#>m | 30m |
-| second(s) | <#>s | 20s |
+| days | <#>d | 3d |
+| hours | <#>h | 6h |
+| minutes | <#>m | 30m |
+| seconds | <#>s | 20s |
 
 {{%notice tip%}}
 If you want to go back in time by months or years, use the equivalent number of days.
@@ -85,7 +85,7 @@ The output indicates whether a given test passed, failed, or was skipped.
 
 ## Validation Check Result Filtering
 
-You can create filters to suppress false alarms or uninteresting errors and warnings that can be a nuisance in CI workflows. For example, certain configurations permit a singly-connected CLAG bond and the standard error that is generated is not useful.
+You can create filters to suppress false alarms or uninteresting errors and warnings that can be a nuisance in CI workflows. For example, certain configurations permit a singly connected CLAG bond and the standard error that is generated is not useful.
 
 {{%notice note%}}
 Filtered errors and warnings related to validation checks do NOT generate notifications and are not counted in the alarm and info event totals. They are counted as part of suppressed notifications instead.

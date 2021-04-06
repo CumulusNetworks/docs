@@ -42,7 +42,7 @@ _sflow._udp TXT (
 )
 ```
 
-The above snippet instructs `hsflowd` to send sFlow data to collector1 on port 6343 and to collector2 on port 6344. `hsflowd` will poll counters every 20 seconds and sample 1 out of every 2048 packets.
+The above snippet instructs `hsflowd` to send sFlow data to collector1 on port 6343 and to collector2 on port 6344. `hsflowd` polls counters every 20 seconds and samples 1 out of every 2048 packets.
 
 {{%notice note%}}
 

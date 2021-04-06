@@ -25,9 +25,7 @@ The hash calculation uses packet header data to choose to which slave to transmi
 - For IP + TCP/UDP traffic, source and destination ports are included in the hash calculation.
 
 {{%notice note%}}
-
 In a failover event, the hash calculation is adjusted to steer traffic over available slaves.
-
 {{%/notice%}}
 
 ### LAG Custom Hashing
@@ -77,9 +75,7 @@ lag_hash_config.ip_prot = true
 ```
 
 {{%notice note%}}
-
 Symmetric hashing is enabled by default. Make sure that the settings for the source IP (`lag_hash_config.sip`) and destination IP (`lag_hash_config.dip`) fields match, and that the settings for  the source port (`lag_hash_config.sport`) and destination port (`lag_hash_config.dport`) fields match; otherwise symmetric hashing is disabled automatically. You can disable symmetric hashing manually in the `/etc/cumulus/datapath/traffic.conf` file by setting `symmetric_hash_enable = FALSE`.
-
 {{%/notice%}}
 
 You can set a unique hash seed for each switch to help avoid hash polarization. See {{<link url="Equal-Cost-Multipath-Load-Sharing-Hardware-ECMP#configure-a-hash-seed-to-avoid-hash-polarization" text="Configure a Hash Seed to Avoid Hash Polarization">}}.
@@ -98,17 +94,6 @@ To create and configure a bond:
 ```
 cumulus@switch:~$ cl set interface bond0 bond member swp1-4
 cumulus@switch:~$ cl config apply
-```
-
-{{< /tab >}}
-{{< tab "NCLU Commands ">}}
-
-Run the `net add bond` command. The example command below creates a bond called `bond0` with slaves swp1, swp2, swp3, and swp4:
-
-```
-cumulus@switch:~$ net add bond bond0 bond slaves swp1-4
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
@@ -133,12 +118,10 @@ cumulus@switch:~$ ifreload -a
 {{< /tabs >}}
 
 {{%notice note%}}
-
 - The bond is configured by default in IEEE 802.3ad link aggregation mode. To configure the bond in balance-xor mode, see {{<link url="#configure-bond-options" text="Configuration Parameters">}} below.
-- If the bond is *not* going to become part of a bridge, you need to specify an IP address.
+- If the bond is *not* going to be part of a bridge, you must specify an IP address.
 - The name of the bond must be compliant with Linux interface naming conventions and unique within the switch.
 - Cumulus Linux does not currently support bond members at 200G or greater.
-
 {{%/notice%}}
 
 When networking is started on the switch, bond0 is created as MASTER and interfaces swp1 thru swp4 come up in SLAVE mode, as seen in the `ip link show` command:
@@ -162,19 +145,17 @@ cumulus@switch:~$ ip link show
 ```
 
 {{%notice note%}}
-
 All slave interfaces within a bond have the same MAC address as the bond. Typically, the first slave added to the bond donates its MAC address as the bond MAC address, whereas the MAC addresses of the other slaves are set to the bond MAC address. The bond MAC address is used as the source MAC address for all traffic leaving the bond and provides a single destination MAC address to address traffic to the bond.
-
 {{%/notice%}}
 
 ## Configure Bond Options
 
-The configuration options for a bond are are described in the table below. To configure a bond:
+The configuration options for a bond are are described in the table below. To configure a bond, run the CUE `cl set interface <bond-name> bond <option>` command or add the parameter to the bond stanza in the `/etc/network/interfaces` file.
+
+The following example sets the bond mode for bond01 to balance-xor (static):
 
 {{< tabs "TabID119 ">}}
 {{< tab "CUE Commands ">}}
-
-The following example sets the bond mode for bond01 to balance-xor (static):
 
 ```
 cumulus@switch:~$ cl set interface bond01 bond mode static 
@@ -182,20 +163,9 @@ cumulus@switch:~$ cl config apply
 ```
 
 {{< /tab >}}
-{{< tab "NCLU Commands ">}}
-
-Run `net add bond <bond-name> bond <option>`. The following example sets the bond mode for bond01 to `balance-xor`:
-
-```
-cumulus@switch:~$ net add bond bond1 bond mode balance-xor
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-{{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Edit the `/etc/network/interfaces` file to add the parameter to the bond stanza, then run the `ifreload -a` command. The following example sets the bond mode for bond01 to `balance-xor`:
+Edit the `/etc/network/interfaces` file to add the `balance-xor` parameter to the bond stanza, then run the `ifreload -a` command:
 
 ```
 cumulus@switch:~$ sudo nano /etc/network/interfaces
@@ -215,20 +185,17 @@ cumulus@switch:~$ ifreload -a
 {{< /tabs >}}
 
 {{%notice note%}}
-
 Each bond configuration option, except for `bond slaves,` is set to the recommended value by default in Cumulus Linux. Only configure an option if a different setting is needed. For more information on configuration values, refer to the {{<link url="#related-information" text="Related Information">}}  section below.
-
 {{%/notice%}}
 
-| Parameter| Description|
-|---------- |---------- |
-| `bond-mode 802.3ad`\|`balance-xor` | Cumulus Linux supports IEEE 802.3ad link aggregation mode (802.3ad) and balance-xor mode.<br>The default mode is 802.3ad.<br><br>**Note:** When you enable balance-xor mode, the bonding of slave interfaces are static and all slave interfaces are active for load balancing and fault tolerance purposes. Packet transmission on the bond is based on the hash policy specified by xmit-hash-policy.<br><br>When using balance-xor mode to dual-connect host-facing bonds in an MLAG environment, you must configure the clag-id parameter on the MLAG bonds and it must be the same on both MLAG switches. Otherwise, the bonds are treated by the MLAG switch pair as single-connected.<br><br>Use balance-xor mode only if you cannot use LACP; LACP can detect mismatched link attributes between bond members and can even detect misconnections. |
-| `bond-slaves <interface-list>` | The list of slaves in the bond. |
-| `bond miimon <value>` |Defines how often the link state of each slave is inspected for failures. You can specify a value between 0 and 255. The default value is 100. |
-| `bond-use-carrier no` | Determines the link state. |
-| `bond-lacp-bypass-allow`| Enables LACP bypass. |
-| `bond-lacp-rate slow` | Sets the rate to ask the link partner to transmit LACP control packets. slow is the only option. |
-| `bond-min-links` | Defines the minimum number of links (between 0 and 255) that must be active before the bond is put into service. The default value is 1.<br><br>A value greater than 1 is useful if higher level services need to ensure a minimum aggregate bandwidth level before activating a bond. Keeping bond-min-links set to 1 indicates the bond must have at least one active member. If the number of active members drops below the bond-min-links setting, the bond appears to upper-level protocols as link-down. When the number of active links returns to greater than or equal to bond-min-links, the bond becomes link-up. |
+| Parameter | CUE Command | Description|
+|---------- |------------ | ---------- |
+| `bond-mode 802.3ad|balance-xor`| `cl set interface <bond-name> bond mode lacp|static` | Cumulus Linux supports IEEE 802.3ad link aggregation mode (802.3ad) and balance-xor mode.<br>The default mode is 802.3ad.<br><br>**Note:** When you enable balance-xor mode, the bonding of slave interfaces are static and all slave interfaces are active for load balancing and fault tolerance purposes. Packet transmission on the bond is based on the hash policy specified by xmit-hash-policy.<br><br>When using balance-xor mode to dual-connect host-facing bonds in an MLAG environment, you must configure the clag-id parameter on the MLAG bonds and it must be the same on both MLAG switches. Otherwise, the bonds are treated by the MLAG switch pair as single-connected.<br><br>Use balance-xor mode only if you cannot use LACP; LACP can detect mismatched link attributes between bond members and can even detect misconnections. |
+| `bond miimon <value>` | N/A |Defines how often the link state of each slave is inspected for failures. You can specify a value between 0 and 255. The default value is 100. |
+| `bond-use-carrier no` | N/A | Determines the link state. |
+| `bond-lacp-bypass-allow`| `cl set interface <bond-name> bond lacp-bypass on|off` | Enables LACP bypass. |
+| `bond-lacp-rate slow` | `cl set interface <bond-name> bond lacp-rate slow|fast` | Sets the rate to ask the link partner to transmit LACP control packets. slow is the only option. |
+| `bond-min-links` |  N/A | Defines the minimum number of links (between 0 and 255) that must be active before the bond is put into service. The default value is 1.<br><br>A value greater than 1 is useful if higher level services need to ensure a minimum aggregate bandwidth level before activating a bond. Keeping bond-min-links set to 1 indicates the bond must have at least one active member. If the number of active members drops below the bond-min-links setting, the bond appears to upper-level protocols as link-down. When the number of active links returns to greater than or equal to bond-min-links, the bond becomes link-up. |
 
 ## Show Bond Information
 
@@ -238,16 +205,7 @@ To show information for a bond:
 {{< tab "CUE Commands ">}}
 
 ```
-cumulus@switch:~$ cl show interface bond0 
-```
-
-{{< /tab >}}
-{{< tab "NCLU Commands ">}}
-
-Run the `net show interface <bond>` command:
-
-```
-cumulus@switch:~$ net show interface bond1
+cumulus@switch:~$ cl legacy show interface bond0 
     Name    MAC                Speed    MTU    Mode
 --  ------  -----------------  -------  -----  ------
 UP  bond1   00:02:00:00:00:12  20G      1500   Bond
@@ -323,7 +281,7 @@ The detailed output in `/proc/net/bonding/<filename>` includes the actor/partner
 - An interface cannot belong to multiple bonds.
 - A bond can have subinterfaces, but subinterfaces cannot have a bond.
 - A bond cannot enslave VLAN subinterfaces.
-- Set all slave ports within a bond to the same speed/duplex and make sure they match the link partner's slave ports.
+- Set all slave ports within a bond to the same speed or duplex and make sure they match the slave ports of the link partner.
 
 ## Related Information
 

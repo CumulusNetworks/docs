@@ -1,0 +1,29 @@
+# Warning: NVIDIA.Contractions
+#
+# Do not use contractions. Use the full word instead.
+#
+extends: substitution
+message: "Use '%s' instead of '%s'."
+link: https://wikinox.mellanox.com/display/BUS/House+Style+Guide#HouseStyleGuide-TerminologyandCommonly-usedWords
+level: warning
+ignorecase: true
+swap:
+  aren't: are not
+  can't: cannot
+  couldn't: could not 
+  didn't: did not
+  don't: do not
+  doesn't: does not
+  hasn't: has not
+  haven't: have not
+  isn't: is not
+  it's: it is
+  shouldn't: should not
+  that's: that is
+  they're: they are
+  wasn't: was not
+  weren't: were not
+  what's: what is
+  when's: when is
+  where's: where is
+  won't: does not

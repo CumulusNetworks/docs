@@ -119,7 +119,7 @@ For additional information about upgrading, see {{<link url="Upgrading-Cumulus-L
 ### New Install or Upgrading from Versions Older than 3.0.0
 
 If you are upgrading from a version older than 3.0.0, or installing
-Cumulus Linux for the first time, download the {{<exlink url="https://cumulusnetworks.com/downloads/" text="Cumulus Linux 3.6.0 installer">}} for Broadcom or Mellanox switches from the Cumulus Networks website, then use {{<exlink url="http://onie.github.io/onie/" text="ONIE">}} to perform a complete install, following the instructions in the {{<link url="Quick-Start-Guide">}}.
+Cumulus Linux for the first time, download the {{<exlink url="https://support.mellanox.com/s/" text="Cumulus Linux 3.6.0 installer">}} for Broadcom or Mellanox switches from the Cumulus Networks website, then use {{<exlink url="http://onie.github.io/onie/" text="ONIE">}} to perform a complete install, following the instructions in the {{<link url="Quick-Start-Guide">}}.
 
 {{%notice note%}}
 

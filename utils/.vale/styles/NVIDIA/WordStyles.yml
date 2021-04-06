@@ -9,6 +9,8 @@ link: https://wikinox.mellanox.com/display/BUS/House+Style+Guide#HouseStyleGuide
 level: warning
 ignorecase: true
 swap:
+  "active/active": active-active
+  "active active": active-active
   autonegotation: auto-negotation
   bare-metal: bare metal
   bi-weekly: bi-weekly

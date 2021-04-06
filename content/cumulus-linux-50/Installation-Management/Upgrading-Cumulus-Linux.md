@@ -5,9 +5,7 @@ weight: 50
 toc: 3
 ---
 {{%notice warning%}}
-
 The default password for the *cumulus* user account is `cumulus`. The first time you log into Cumulus Linux, you are **required** to change this default password. Be sure to update any automation scripts before you upgrade. You can use ONIE command line options to change the default password automatically during the Cumulus Linux image installation process. Refer to {{<link url="Installing-a-New-Cumulus-Linux-Image#onie-installation-options" text="ONIE Installation Options">}}.
-
 {{%/notice%}}
 
 This topic describes how to upgrade Cumulus Linux on your switch.
@@ -17,19 +15,16 @@ Consider deploying, provisioning, configuring, and upgrading switches using auto
 ## Before You Upgrade
 
 {{%notice tip%}}
-
 Be sure to read the knowledge base article
 {{<exlink url="https://docs.cumulusnetworks.com/knowledge-base/Installing-and-Upgrading/Upgrading/Network-Device-and-Linux-Host-Worldview-Comparison/" text="Upgrades: Network Device and Linux Host Worldview Comparison" >}}, which provides a detailed comparison between the network device and Linux host worldview of upgrade and installation.
-
 {{%/notice%}}
 
 Understanding the location of configuration data is required for successful upgrades, migrations, and backup. As with other Linux distributions, the `/etc` directory is the primary location for all configuration data in Cumulus Linux. The following list is a likely set of files that you need to back up and migrate to a new release. Make sure you examine any file that has been changed. Make the following files and directories part of a backup strategy.
 
 {{< tabs "TabID25 ">}}
-
 {{< tab "Network Configuration Files ">}}
 
-| File Name and Location | Explanation| Cumulus Linux Documentation | Debian Documentation |
+| File Name and Location | Description| Cumulus Linux Documentation | Debian Documentation |
 | ---------------------- | ---------- | ----------------------------| -------------------- |
 | `/etc/network/` | Network configuration files, most notably `/etc/network/interfaces` and `/etc/network/interfaces.d/` | {{<link title="Switch Port Attributes">}} | N/A |
 | `/etc/resolv.conf` | DNS resolution| Not unique to Cumulus Linux: {{<exlink url="https://wiki.debian.org/NetworkConfiguration#The_resolv.conf_configuration_file" text="wiki.debian.org/NetworkConfiguration">}} | {{<exlink url="https://www.debian.org/doc/manuals/debian-reference/ch05.en.html">}} |
@@ -41,10 +36,9 @@ Understanding the location of configuration data is required for successful upgr
 | `/etc/cumulus/switchd.conf` | `switchd` configuration | {{<link title="Configuring switchd">}} | N/A; read the guide on `switchd` configuration |
 
 {{< /tab >}}
-
 {{< tab "Commonly-Used Files ">}}
 
-| File Name and Location | Explanation| Cumulus Linux Documentation | Debian Documentation |
+| File Name and Location | Description| Cumulus Linux Documentation | Debian Documentation |
 | ---------------------- | ---------- | --------------------------- | -------------------- |
 | `/etc/motd` | Message of the day | Not unique to Cumulus Linux | {{<exlink url="https://wiki.debian.org/motd#Wheezy" text="wiki.debian.org/motd" >}} |
 | `/etc/passwd` | User account information | Not unique to Cumulus Linux | {{<exlink url="https://www.debian.org/doc/manuals/debian-reference/ch04.en.html">}} |
@@ -56,19 +50,16 @@ Understanding the location of configuration data is required for successful upgr
 |`/etc/ssh/` | SSH configuration files | {{<link title="SSH for Remote Access">}} | {{<exlink url="https://wiki.debian.org/SSH">}} |
 | `/etc/sudoers`, `/etc/sudoers.d` | Best practice is to place changes in `/etc/sudoers.d/` instead of `/etc/sudoers`; changes in the `/etc/sudoers.d/` directory are not lost during upgrade | {{<link title="Using sudo to Delegate Privileges">}} |
 
-{{< /tab >}}
-
 {{%notice note%}}
-
 - If you are using the root user account, consider including `/root/`.
 - If you have custom user accounts, consider including `/home/<username>/`.
 - Run the `net show configuration files | grep -B 1 "==="` command and back up the files listed in the command output.
-
 {{%/notice%}}
 
+{{< /tab >}}
 {{< tab "Never Migrate Files ">}}
 
-| File Name and Location  | Explanation |
+| File Name and Location  | Description |
 | ----------------------- | ----------- |
 | `/etc/mlx/` | Per-platform hardware configuration directory, created on first boot. Do not copy. |
 | `/etc/default/clagd` | Created and managed by `ifupdown2`. Do not copy.|
@@ -89,18 +80,15 @@ Understanding the location of configuration data is required for successful upgr
 | `/home/cumulus/.ansible` | Ansible `tmp` files. Do not copy.|
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 If you are using certain forms of network virtualization, such as {{<link url="Integrating-Hardware-VTEPs-with-VMware-NSX-V" text="VMware NSX-V">}}, you might have updated the `/usr/share/openvswitch/scripts/ovs-ctl-vtep` file. This file is not marked as a configuration file; therefore, if the file contents change in a newer release of Cumulus Linux, they overwrite any changes you made to the file. Be sure to back up this file and the database file `conf.db` before upgrading.
 
 {{%notice note%}}
-
-You can check which files have changed since the last Cumulus Linux image install with the following commands. Be sure to back up any changed files:
+The following commands verify which files have changed compared to the previous Cumulus Linux install. Be sure to back up any changed files:
 
 - Run the `sudo dpkg --verify` command to show a list of changed files.
 - Run the `egrep -v '^$|^#|=""$' /etc/default/isc-dhcp-*` command to see if any of the generated `/etc/default/isc-*` files have changed.
-
 {{%/notice%}}
 
 ## Upgrade Cumulus Linux
@@ -113,12 +101,10 @@ You can upgrade Cumulus Linux in one of two ways:
 Cumulus Linux also provides the Smart System Manager that enables you to upgrade an active switch with minimal disruption to the network. See {{<link url="Smart-System-Manager" text="Smart System Manager">}}.
 
 {{%notice note%}}
-
 Upgrading an MLAG pair requires additional steps. If you are using MLAG to dual connect two Cumulus Linux switches in your environment, follow the steps in [Upgrade Switches in an MLAG Pair](#upgrade-switches-in-an-mlag-pair) below to ensure a smooth upgrade.
-
 {{%/notice%}}
 
-### Should I Install a Cumulus Linux Image or Upgrade Packages?
+### Install a Cumulus Linux Image or Upgrade Packages?
 
 The decision to upgrade Cumulus Linux by either installing a Cumulus Linux image or upgrading packages depends on your environment and your preferences. Here are some recommendations for each upgrade method.
 
@@ -138,7 +124,7 @@ Be aware of the following when installing the Cumulus Linux image:
 
 Be aware of the following when upgrading packages:
 
-- You cannot upgrade the switch to a new release train. For example, you **cannot** upgrade the switch from **4**.2.1 to **5**.0.0.
+- You cannot upgrade the switch to a new release train. For example, you **cannot** upgrade the switch from **4**.3.0 to **5**.0.0.
 - The `sudo -E  apt-get upgrade` command might result in services being restarted or stopped as part of the upgrade process.
 - The `sudo -E apt-get upgrade` command might disrupt core services by changing core service dependency packages.
 - After you upgrade, account UIDs and GIDs created by packages might be different on different switches, depending on the configuration and package installation history.
@@ -163,7 +149,7 @@ To upgrade the switch:
 
 ### Package Upgrade
 
-Cumulus Linux completely embraces the Linux and Debian upgrade workflow, where you use an installer to install a base image, then perform any upgrades within that release train with `sudo -E apt-get update` and `sudo -E apt-get upgrade` commands. Any packages that have been changed since the base install get upgraded in place from the repository. All switch configuration files remain untouched, or in rare cases merged (using the Debian merge function) during the package upgrade.
+Cumulus Linux completely embraces the Linux and Debian upgrade workflow, where you use an installer to install a base image, then perform any upgrades within that release train with `sudo -E apt-get update` and `sudo -E apt-get upgrade` commands. Any packages that have changed after the base install get upgraded in place from the repository. All switch configuration files remain untouched, or in rare cases merged (using the Debian merge function) during the package upgrade.
 
 When you use package upgrade to upgrade your switch, configuration data stays in place while the packages are upgraded. If the new release updates a configuration file that you changed previously, you are prompted for the version you want to use or if you want to evaluate the differences.
 
@@ -177,7 +163,7 @@ To upgrade the switch using package upgrade:
     cumulus@switch:~$ sudo -E apt-get update
     ```
 
-3. Review potential upgrade issues (in some cases, upgrading new packages might also upgrade additional existing packages due to dependencies). Run the following command to see the additional packages that will be installed or upgraded.
+3. Review potential upgrade issues (in some cases, upgrading new packages might also upgrade additional existing packages due to dependencies). Run the following command to see the additional packages to be installed or upgraded.
 
     ```
     cumulus@switch:~$ sudo -E apt-get upgrade --dry-run
@@ -252,15 +238,13 @@ If you are using {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="MLAG">}
 You must upgrade both switches in the MLAG pair to the same release of Cumulus Linux.
 
 {{%notice warning%}}
-
-For networks with MLAG deployments, you can only upgrade to Cumulus Linux 5.0 from version 3.7.10 or later. If you are using a version of Cumulus Linux earlier than 3.7.10, you must upgrade to version 3.7.10 first, then upgrade to version 5.0. Version 3.7.10 is available on the {{<exlink url="https://cumulusnetworks.com/downloads/#product=Cumulus%20Linux&version=3.7.10" text="downloads page">}}.
-
+For networks with MLAG deployments, you can only upgrade to Cumulus Linux 5.0 from version 3.7.10 or later. If you are using a version of Cumulus Linux earlier than 3.7.10, you must upgrade to version 3.7.10 first, then upgrade to version 5.0. Version 3.7.10 is available on the {{<exlink url="https://support.mellanox.com/s/" text="MyMellanox downloads page">}}.
 {{%/notice%}}
 
 {{%notice info%}}
 During upgrade, MLAG bonds stay single-connected while the switches are running different major releases; for example, while leaf01 is running 4.3.0 and leaf02 is running 5.0.0.
 
-This is due to a change in the bonding driver to handle how the *actor port key* is derived, which causes the port key to have a different value for links with the same speed/duplex settings across different major releases. The port key received from the LACP partner must remain consistent between all bond members for all bonds to be synchronized. When each MLAG switch sends LACPDUs with different port keys, only links to one MLAG switch are in sync.
+This is due to a change in the bonding driver to handle how the *actor port key* is derived, which causes the port key to have a different value for links with the same speed or duplex settings across different major releases. The port key received from the LACP partner must remain consistent between all bond members for all bonds to be synchronized. When each MLAG switch sends LACPDUs with different port keys, only links to one MLAG switch are in sync.
 {{%/notice%}}
 
 1. Verify the switch is in the secondary role:

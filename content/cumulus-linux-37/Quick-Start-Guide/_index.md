@@ -45,7 +45,7 @@ The easiest way to install Cumulus Linux with ONIE is with local HTTP discovery:
     running a web server. If the host is IPv4-enabled, make sure it is
     running DHCP in addition to a web server.
 
-2.  {{<exlink url="https://cumulusnetworks.com/downloads/" text="Download">}} the Cumulus Linux
+2.  {{<exlink url="https://support.mellanox.com/s/" text="Download">}} the Cumulus Linux
     installation file to the root directory of the web server. Rename
     this file `onie-installer`.
 

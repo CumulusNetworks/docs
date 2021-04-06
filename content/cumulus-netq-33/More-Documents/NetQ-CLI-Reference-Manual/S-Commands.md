@@ -5,7 +5,6 @@ weight: 1106
 toc: 3
 right_toc_levels: 1
 pdfhidden: true
-draft: true
 ---
 This topic includes all commands that begin with `netq s*`.
 
@@ -55,10 +54,10 @@ netq [<hostname>] show address-history
 {{<notice note>}}
 When entering a time value with the <code>between</code> option, you must include a numeric value <em>and</em> the unit of measure:
 <ul>
-<li><strong>d</strong>: day(s)</li>
-<li><strong>h</strong>: hour(s)</li>
-<li><strong>m</strong>: minute(s)</li>
-<li><strong>s</strong>: second(s)</li>
+<li><strong>d</strong>: days</li>
+<li><strong>h</strong>: hours</li>
+<li><strong>m</strong>: minutes</li>
+<li><strong>s</strong>: seconds</li>
 <li><strong>now</strong>
 </ul>
 
@@ -242,9 +241,9 @@ cumulus@switch:~$ netq show agents rotten json
 - netq config del agent
 
 - - -
-
+<!-- vale off -->
 ## netq show bgp
-
+<!-- vale on -->
 Displays the health of all BGP sessions or a single session on all nodes or a specific node in your network fabric currently or for a time in the past. The output provides:
 
 - The neighbor nodes for a given node
@@ -275,7 +274,7 @@ None
 | Option | Value | Description |
 | ---- | ---- | ---- |
 | NA | \<hostname\> | Only display results for the switch or host with this name |
-| NA | \<bgp-session\> | Only display results for this particular BGP session; for example 5468354 |
+| NA | <!-- vale off -->\<bgp-session\><!-- vale on --> | Only display results for this particular BGP session; for example 5468354 |
 | asn | \<number-asn\> | Only display results for nodes using this ASN; for example 65013 |
 | vrf | \<vrf\> | Only display results for sessions run on this VRF; for example default, mgmt, or vrf10 |
 | around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. The value is written using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
@@ -374,11 +373,11 @@ leaf02            swp51(spine01)               default         65101      65199 
 ```
 
 ### Related Commands
-
+<!-- vale off -->
 - netq show unit-tests bgp
 - netq show events
 - netq check bgp
-
+<!-- vale on -->
 - - -
 
 ## netq show cl-btrfs-info
@@ -800,7 +799,7 @@ The output provides the following information for each device and interface:
 
 ### Syntax
 
-There are two forms of this command: one for laser power and current and one for temperature and voltage.
+Two forms of this command are available: one for laser power and current and one for temperature and voltage.
 
 ```
 netq [<hostname>] show dom type (laser_rx_power|laser_output_power|laser_bias_current)
@@ -819,11 +818,11 @@ netq [<hostname>] show dom type (module_temp|module_voltage)
 
 | Argument | Value | Description |
 | ---- | ---- | ---- |
-| laser_rx_power | NA | Display current value and threshold alarms for transceiver input power (mW) on the DOM(s) |
-| laser_output_power | NA | Display current value and threshold alarms for laser output power (mW) on the DOM(s) |
-| laser_bias_current | NA | Display current value and threshold alarms for laser bias current (mA) on the DM(s) |
-| module_temp | NA | Display current value and threshold alarms for temperature (°C) on the DOM(s) |
-| module_voltage | NA | Display current value and threshold alarms for transceiver voltage (V) on the DOM(s) |
+| laser_rx_power | NA | Display current value and threshold alarms for transceiver input power (mW) on the DOMs |
+| laser_output_power | NA | Display current value and threshold alarms for laser output power (mW) on the DOMs |
+| laser_bias_current | NA | Display current value and threshold alarms for laser bias current (mA) on the DOMs |
+| module_temp | NA | Display current value and threshold alarms for temperature (°C) on the DOMs |
+| module_voltage | NA | Display current value and threshold alarms for transceiver voltage (V) on the DOMs |
 
 ### Options
 
@@ -920,8 +919,8 @@ netq <hostname> show interface-stats
 | Argument | Value | Description |
 | ---- | ---- | ---- |
 | port | \<physical-port\> | Only display results for the port with this name |
-| rx | NA | Only display receive statistics |
-| tx | NA | Only display transmit statistics |
+| <!-- vale off -->rx<!-- vale on --> | NA | Only display receive statistics |
+| <!-- vale off -->tx<!-- vale on --> | NA | Only display transmit statistics |
 
 ### Options
 
@@ -1062,8 +1061,8 @@ None
 | ---- | ---- | ---- |
 | NA | \<hostname\> | Only display results for the switch or host with this name |
 | level | info, error, warning, critical, or debug | Only display events with this severity level |
-| type | agents, bgp, btrfsinfo, clag, clsupport, configdiff, evpn, interfaces, interfaces-physical, lcm, license, lldp, macs, mtu, ntp, os, ospf, sensors, services, trace, vlan, or vxlan | Display events for the type with this name |
-| between | \<text-time\> and \<text-endtime\> | <p>Only display results between these two times. Times must include a numeric value <em>and</em> the unit of measure:<ul><li><strong>w</strong>: week(s)</li><li><strong>d</strong>: day(s)</li><li><strong>h</strong>: hour(s)</li><li><strong>m</strong>: minute(s)</li><li><strong>s</strong>: second(s)</li><li><strong>now</strong></li></ul></p><p>The start time (<code>text-time</code>) and end time (<code>text-endtime</code>) values can be entered as most recent first and least recent second, or vice versa. The values do not have to have the same unit of measure.</p> |
+| type | <!-- vale off -->agents, bgp, btrfsinfo, clag, clsupport, configdiff, evpn, interfaces, interfaces-physical, lcm, license, lldp, macs, mtu, ntp, os, ospf, sensors, services, trace, vlan, or vxlan<!-- vale on --> | Display events for the type with this name |
+| between | \<text-time\> and \<text-endtime\> | <p>Only display results between these two times. Times must include a numeric value <em>and</em> the unit of measure:<ul><li><strong>w</strong>: weeks</li><li><strong>d</strong>: days</li><li><strong>h</strong>: hours</li><li><strong>m</strong>: minutes</li><li><strong>s</strong>: seconds</li><li><strong>now</strong></li></ul></p><p>The start time (<code>text-time</code>) and end time (<code>text-endtime</code>) values can be entered as most recent first and least recent second, or vice versa. The values do not have to have the same unit of measure.</p> |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 
 ### Command History
@@ -1186,7 +1185,7 @@ None
 | ---- | ---- | ---- |
 | events_config_id | \<text-events-config-id-anchor\> | Only display results for the switch or host with this name |
 | show-filter-conditions | NA | Only display results for sessions using the VNI with this name |
-| message_type | \<text-message-type-anchor\> | Only display results for configurations with this type. Values include *agent*, *bgp*, *btrfsinfo*, *clag*, *clsupport*, *configdiff*, *evpn*, *link*, *ntp*, *ospf*, *sensor*, *services*, and *ssdutil*. |
+| message_type | \<text-message-type-anchor\> | Only display results for configurations with this type. Values include <!-- vale off -->*agent*, *bgp*, *btrfsinfo*, *clag*, *clsupport*, *configdiff*, *evpn*, *link*, *ntp*, *ospf*, *sensor*, *services*, and *ssdutil*.<!-- vale on --> |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 
 ### Command History
@@ -1316,9 +1315,9 @@ evpn                     vni                                        3           
 evpn                     severity                                   2                                                    Severity critical/info
 evpn                     hostname                                   1                                                    Target Hostname
 ```
-
+<!-- vale off -->
 ## netq show evpn
-
+<!-- vale on -->
 Displays the health of all EVPN sessions or a single session on all nodes or a specific node in your network fabric currently or for a time in the past. The output provides the following for each session:
 
 - The VNI used
@@ -1347,7 +1346,7 @@ None
 | Option | Value | Description |
 | ---- | ---- | ---- |
 | NA | \<hostname\> | Only display results for the switch or host with this name |
-| vni | \<text-vni\> | Only display results for sessions using the VNI with this name |
+| <!-- vale off -->vni | \<text-vni\><!-- vale on --> | Only display results for sessions using the VNI with this name |
 | around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. The value is written using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 
@@ -1396,11 +1395,11 @@ leaf04            4001       10.0.1.2         L3               Vrf RED        ye
 ```
 
 ### Related Commands
-
+<!-- vale off -->
 - netq show unit-tests evpn
 - netq show events
 - netq check evpn
-
+<!-- vale on -->
 - - -
 
 ## netq show interfaces
@@ -1418,7 +1417,7 @@ The output provides the following for each device:
 
 ### Syntax
 
-There are four forms of the command, based on whether you want to view interface health for all devices or a given device, and whether you want to filter by an interface type.
+Four forms of the command are available, based on whether you want to view interface health for all devices or a given device, and whether you want to filter by an interface type.
 
 ```
 netq show interfaces
@@ -1451,7 +1450,7 @@ netq <hostname> show interfaces type (bond|bridge|eth|loopback|macvlan|swp|vlan|
 | Argument | Value | Description |
 | ---- | ---- | ---- |
 | NA | \<hostname\> | Only display results for the switch or host with this name. This is only required when the `count` option is used. |
-| type | bond, bridge, eth, loopback, macvlan, swp, vlan, vrf, or vxlan | Only display results for the specified interface type |
+| type | <!-- vale off -->bond, bridge, eth, loopback, macvlan, swp, vlan, vrf, or vxlan<!-- vale on --> | Only display results for the specified interface type |
 
 ### Options
 
@@ -1680,8 +1679,8 @@ None
 | ---- | ---- | ---- |
 | NA | \<hostname\> | Only display results for the switch or host with this name |
 | NA | \<text-port\> | Only display results for the port with this name |
-| tx | NA | Only display results for transmit data |
-| rx | NA | Only display results for receive data |
+| <!-- vale off -->tx<!-- vale on --> | NA | Only display results for transmit data |
+| <!-- vale off -->rx<!-- vale on --> | NA | Only display results for receive data |
 | around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. The value is written using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 
@@ -1747,7 +1746,7 @@ Displays information about the hardware and software components deployed on a gi
 
 ### Syntax
 
-There are eight forms of this command based on the inventory component you want to view.
+Eight forms of this command are available based on the inventory component you want to view.
 
 ```
 netq [<hostname>] show inventory brief
@@ -1931,7 +1930,7 @@ Displays the IPv4 or IPv6 addresses configured for a given device or all devices
 
 ### Syntax
 
-There are two sets of IP address commands, one for IPv4 and one for IPv6.
+Two sets of IP address commands are available, one for IPv4 and one for IPv6.
 
 ```
 netq <hostname> show ip addresses
@@ -2062,7 +2061,7 @@ Displays the IPv4 or IPv6 neighbors configured for a given device or all devices
 
 ### Syntax
 
-There are two sets of IP neighbors commands, one for IPv4 and one for IPv6.
+Two sets of IP neighbors commands are available, one for IPv4 and one for IPv6.
 
 ```
 netq show ip neighbors
@@ -2201,7 +2200,7 @@ Displays the IPv4 or IPv6 routes configured for a given device or all devices ne
 
 ### Syntax
 
-There are two sets of IP routes commands, one for IPv4 and one for IPv6.
+Two sets of IP routes commands are available, one for IPv4 and one for IPv6.
 
 ```
 netq <hostname> show ip routes
@@ -2349,12 +2348,13 @@ A release is included if there were changes to the command, otherwise it is not 
 Show job status
 
 ```
-cumulus@switch:~$ netq show job-status xxx
+cumulus@switch:~$ netq show job-status 192.168.200.250
 ```
 
 ### Related Commands
 
-- netq xxx
+None
+
 - - -
 
 ## netq show kubernetes
@@ -2497,7 +2497,7 @@ netq [<hostname>] show kubernetes service
 | ---- | ---- | ---- |
 | NA | \<hostname\> | Only display results for the switch or host with this name |
 | name | \<kube-cluster-name\>, \<kube-node-name\>, \<kube-ds-name\>, \<kube-deployment-name\>, \<kube-pod-name\>, \<kube-rc-name\>, \<kube-rs-name\>, \<kube-service-name\> | Only display results for the Kubernetes component with this name |
-| components | NA | ??? |
+| components | NA | TBD |
 | cluster | \<kube-cluster-name>\ | Only display results for the cluster with this name |
 | label | \<kube-node-label\>, \<kube-ds-label\>, \<kube-deployment-label\>, \<kube-pod-label\>, \<kube-rc-label\>, \<kube-rs-label\>, \<kube-service-label\> | Only display results for components with this label |
 | namespace | \<namespace\> | Only display results for clusters and nodes within this namespace |
@@ -2827,7 +2827,7 @@ netq [<hostname>] show mac-commentary
 | Option | Value | Description |
 | ---- | ---- | ---- |
 | NA | \<hostname\> | Only display results for the switch or host with this name |
-| between | \<text-time\> and \<text-endtime\> | <p>Only display results between these two times. Times must include a numeric value <em>and</em> the unit of measure:<ul><li><strong>w</strong>: week(s)</li><li><strong>d</strong>: day(s)</li><li><strong>h</strong>: hour(s)</li><li><strong>m</strong>: minute(s)</li><li><strong>s</strong>: second(s)</li><li><strong>now</strong></li></ul></p><p>The start time (<code>text-time</code>) and end time (<code>text-endtime</code>) values can be entered as most recent first and least recent second, or vice versa. The values do not have to have the same unit of measure.</p> |
+| between | \<text-time\> and \<text-endtime\> | <p>Only display results between these two times. Times must include a numeric value <em>and</em> the unit of measure:<ul><li><strong>w</strong>: weeks</li><li><strong>d</strong>: days</li><li><strong>h</strong>: hours</li><li><strong>m</strong>: minutes</li><li><strong>s</strong>: seconds</li><li><strong>now</strong></li></ul></p><p>The start time (<code>text-time</code>) and end time (<code>text-endtime</code>) values can be entered as most recent first and least recent second, or vice versa. The values do not have to have the same unit of measure.</p> |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 
 ### Command History
@@ -2892,7 +2892,7 @@ netq [<hostname>] show mac-history
 | NA | \<hostname\> | Only display results for the switch or host with this name |
 | vlan | \<1-4096\> | Only display MAC changes for the VLAN with this ID |
 | diff | NA | Only display the subset of changes that occurred within a time range defined by the `between` option |
-| between | \<text-time\> and \<text-endtime\> | <p>Only display results between these two times. Times must include a numeric value <em>and</em> the unit of measure:<ul><li><strong>w</strong>: week(s)</li><li><strong>d</strong>: day(s)</li><li><strong>h</strong>: hour(s)</li><li><strong>m</strong>: minute(s)</li><li><strong>s</strong>: second(s)</li><li><strong>now</strong></li></ul></p><p>The start time (<code>text-time</code>) and end time (<code>text-endtime</code>) values can be entered as most recent first and least recent second, or vice versa. The values do not have to have the same unit of measure.</p> |
+| between | \<text-time\> and \<text-endtime\> | <p>Only display results between these two times. Times must include a numeric value <em>and</em> the unit of measure:<ul><li><strong>w</strong>: weeks</li><li><strong>d</strong>: days</li><li><strong>h</strong>: hours</li><li><strong>m</strong>: minutes</li><li><strong>s</strong>: seconds</li><li><strong>now</strong></li></ul></p><p>The start time (<code>text-time</code>) and end time (<code>text-endtime</code>) values can be entered as most recent first and least recent second, or vice versa. The values do not have to have the same unit of measure.</p> |
 | listby | \<text-list-by\> | Display output in groups based on the specified output field |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 
@@ -2955,7 +2955,7 @@ This command does not show MAC addresses for hosts.
 
 ### Syntax
 
-There are three forms of this command: the basic command which shows all MAC addresses networkwide, one to  view MAC addresses or a count of addresses for a given switch, and one to view MAC addresses on a given switch and egress port.
+Three forms of this command are available: the basic command which shows all MAC addresses networkwide, one to  view MAC addresses or a count of addresses for a given switch, and one to view MAC addresses on a given switch and egress port.
 
 ```
 netq show macs
@@ -3215,7 +3215,7 @@ Refer to the {{<link title="Monitor Internet Protocol Service/#view-the-neighbor
 
 ## netq show notification
 
-Displays the configuration of notification channels, filters, rules, or the proxy (if configured). Email, PagerDuty, Slack, and Syslog channels are supported. The output varies according to the component you want to view.
+Displays the configuration of notification channels, filters, rules, or the proxy (if configured). Email, PagerDuty, Slack, and syslog channels are supported. The output varies according to the component you want to view.
 
 ### Syntax
 
@@ -3525,9 +3525,9 @@ Version                              Uptime                    Reinitialize Time
 - netq show opta-health
 
 - - -
-
+<!-- vale off -->
 ## netq show ospf
-
+<!-- vale on -->
 Displays the health of all OSPF sessions or a single session on all nodes or a specific node in your network fabric currently or for a time in the past. The output provides:
 
 - The host interface
@@ -3597,11 +3597,11 @@ spine02           swp4                      0.0.0.0      Unnumbered       Full  
 ```
 
 ### Related Commands
-
+<!-- vale off -->
 - netq show events
 - netq check ospf
 - netq show unit-tests ospf
-
+<!-- vale on -->
 - - -
 
 ## netq show recommended-pkg-version
@@ -3678,7 +3678,7 @@ act-5712-09       3.7.2                bcm                  x86_64              
 
 ## netq show resource-util
 
-Displays the utilization of compute resources &mdash; CPU, disk and memory &mdash; consumed by one or all switches and hosts in your network.
+Displays the utilization of compute resources&mdash;CPU, disk and memory&mdash;consumed by one or all switches and hosts in your network.
 
 The output provides the following information for each switch or host:
 
@@ -3691,7 +3691,7 @@ The output provides the following information for each switch or host:
 
 ### Syntax
 
-There are two forms of this command; one for CPU and memory utilization, and one for disk utilization.
+Two forms of this command are available; one for CPU and memory utilization, and one for disk utilization.
 
 ```
 netq [<hostname>] show resource-util
@@ -3716,7 +3716,7 @@ netq [<hostname>] show resource-util
 | Option | Value | Description |
 | ---- | ---- | ---- |
 | NA | \<hostname\> | Only display results for the device with this name |
-| cpu | NA | Display utilization for CPU(s) on one or more devices |
+| cpu | NA | Display utilization for CPUs on one or more devices |
 | memory | NA | Display utilization for memory on one or more devices |
 | around | \<text-time\> | <p>Indicates how far to go back in time for the disk utilization information. The value is written using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
@@ -3826,7 +3826,7 @@ Displays the status of all fan, power supply, and temperature sensors on all nod
 
 ### Syntax
 
-There are four forms of this command based on whether you want to view data for all sensors or only one category of sensors.
+Four forms of this command are available based on whether you want to view data for all sensors or only one category of sensors.
 
 ```
 netq [<hostname>] show sensors
@@ -3932,7 +3932,7 @@ spine04           fan4            fan tray 2, fan 2                   ok        
 ## netq show services
 
 Displays configuration and health of system-level services for one or all switches and hosts, currently or for a time in the past. You can filter the output by switch, service, VRF, and status. Supported services include:
-
+<!-- vale off -->
 - **bgpd**: BGP (Border Gateway Protocol) daemon
 - **clagd**: MLAG (Multi-chassis Link Aggregation) daemon
 - **helpledmgrd**: Switch LED manager daemon
@@ -3952,7 +3952,7 @@ Displays configuration and health of system-level services for one or all switch
 - **syslog**: System event logging service
 - **vrf**: VRF (Virtual Route Forwarding) service
 - **zebra**: GNU Zebra routing daemon
-
+<!-- vale on -->
 The output provides the following information for each switch and host:
 
 - Service name and ID
@@ -3968,7 +3968,7 @@ Using <code>netq config add color</code> is helpful with this command as it show
 
 ### Syntax
 
-There are two forms of this command; one for for all information, and one for a particular status.
+Two forms of this command are available; one for all information, and one for a particular status.
 
 ```
 netq [<hostname>] show services
@@ -4192,7 +4192,7 @@ Displays the configuration settings for a given scheduled trace, summary results
 
 ### Syntax
 
-There are three forms of this command.
+Three forms of this command are available.
 
 ```
 netq show trace results <text-job-id>
@@ -4331,7 +4331,7 @@ netq show unit-tests vxlan [json]
 
 | Argument | Value | Description |
 | ---- | ---- | ---- |
-| agent, bgp, clag, cl-version, evpn, interfaces, license, mlag, mtu, ntp, ospf, sensors, vlan, or vxlan | NA | Display tests run during standard validation for the protocol or service with this name |
+| <!-- vale off -->agent, bgp, clag, cl-version, evpn, interfaces, license, mlag, mtu, ntp, ospf, sensors, vlan, or vxlan<!-- vale on --> | NA | Display tests run during standard validation for the protocol or service with this name |
 
 ### Options
 
@@ -4392,7 +4392,7 @@ None
 | Option | Value | Description |
 | ---- | ---- | ---- |
 | name | \<text-validation-name\> | Filter output to view settings for the scheduled validation with this name |
-| type | agents, bgp, evpn, interfaces, license, mlag, mtu, ntp, ospf, sensors, vlan, or vxlan | Filter output to view settings for only the indicated protocol or service |
+| type | <!-- vale off -->agents, bgp, evpn, interfaces, license, mlag, mtu, ntp, ospf, sensors, vlan, or vxlan<!-- vale on --> | Filter output to view settings for only the indicated protocol or service |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 
 ### Command History
@@ -4467,7 +4467,7 @@ netq show validation summary
 
 | Argument | Value | Description |
 | ---- | ---- | ---- |
-| type | agents, bgp, evpn, interfaces, license, mlag, mtu, ntp, ospf, sensors, vlan, or vxlan | Show validation runs summary for the indicated protocol or service |
+| type | <!-- vale off -->agents, bgp, evpn, interfaces, license, mlag, mtu, ntp, ospf, sensors, vlan, or vxlan<!-- vale on --> | Show validation runs summary for the indicated protocol or service |
 
 ### Options
 
@@ -4629,9 +4629,9 @@ leaf04            20     bond2,vni20                         yes  Tue Nov 24 20:
 - netq show unit-tests vlan
 
 - - -
-
+<!-- vale off -->
 ## netq show vxlan
-
+<!-- vale on -->
 Displays the configuration of all VXLANs on all nodes or a specific node in your network fabric currently or for a time in the past. The output provides:
 
 - The switch or host name
@@ -4659,7 +4659,7 @@ None
 | Option | Value | Description |
 | ---- | ---- | ---- |
 | NA | \<hostname\> | Only display results for the switch or host with this name |
-| vni | \<text-vni\> | Only display results for the VNI with this name |
+| <!-- vale off -->vni | \<text-vni\><!-- vale on --> | Only display results for the VNI with this name |
 | around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. The value is written using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 
@@ -4724,22 +4724,22 @@ leaf04            4001       EVPN   10.0.1.2         4001                       
 ```
 
 ### Related Commands
-
+<!-- vale off -->
 - netq show events
 - netq show interfaces
 - netq check vxlan
 - netq show unit-tests vxlan
-
+<!-- vale on -->
 - - -
 
 ## netq show wjh-drops
 
-Displays packet drops due to buffer congestion, incorrect routing, tunnel, ACL and layer 1 and 2 problems that are captured by the WJH (What just happened) feature on Mellanox switches. You can filter all drops by ingress port and severity. You can filter drops of a particular type by numerous attributes. The output varies according to the type of drop. Refer to the {{<link title="WJH Event Messages Reference">}} for descriptions of the supported drop reasons.
+Displays packet drops due to buffer congestion, incorrect routing, tunnel, ACL and layer 1 and 2 problems that are captured by the WJH (What just happened) feature on NVIDIA switches. You can filter all drops by ingress port and severity. You can filter drops of a particular type by numerous attributes. The output varies according to the type of drop. Refer to the {{<link title="WJH Event Messages Reference">}} for descriptions of the supported drop reasons.
 
 {{<notice note>}}
 Cumulus Linux 4.0.0 or later and NetQ Agent 2.4.0 or later are required to view this drop information. The NetQ Agent must also be configured to collect this data.
 
-Additionally, using <em>wjh_dump.py</em> on a Mellanox platform that is running Cumulus Linux 4.0 and the NetQ 2.4.0 Agent causes the NetQ WJH client to stop receiving packet drop call backs. To prevent this issue, run <em>wjh_dump.py</dm> on a different system than the one where the NetQ Agent has WJH enabled, or disable <em>wjh_dump.py</em> and restart the NetQ Agent.
+Additionally, using <em>wjh_dump.py</em> on a NVIDIA platform that is running Cumulus Linux 4.0 and the NetQ 2.4.0 Agent causes the NetQ WJH client to stop receiving packet drop call backs. To prevent this issue, run <em>wjh_dump.py</dm> on a different system than the one where the NetQ Agent has WJH enabled, or disable <em>wjh_dump.py</em> and restart the NetQ Agent.
 {{</notice>}}
 
 ### Syntax
@@ -4797,7 +4797,7 @@ netq [<hostname>] show wjh-drop <text-drop-type>
 | egress-port | \<text-egress-port\> | Only display drops for the egress port with this name |
 | traffic-class | \<text-traffic-class\> | Only display drops with this traffic class |
 | rule-id-acl | \<text-rule-id-acl\> | Only display ACL drops with this rule ID |
-| between | \<text-time\> and \<text-endtime\> | <p>Only display results between these two times. Times must include a numeric value <em>and</em> the unit of measure:<ul><li><strong>w</strong>: week(s)</li><li><strong>d</strong>: day(s)</li><li><strong>h</strong>: hour(s)</li><li><strong>m</strong>: minute(s)</li><li><strong>s</strong>: second(s)</li><li><strong>now</strong></li></ul></p><p>The start time (<code>text-time</code>) and end time (<code>text-endtime</code>) values can be entered as most recent first and least recent second, or vice versa. The values do not have to have the same unit of measure.</p> |
+| between | \<text-time\> and \<text-endtime\> | <p>Only display results between these two times. Times must include a numeric value <em>and</em> the unit of measure:<ul><li><strong>w</strong>: weeks</li><li><strong>d</strong>: days</li><li><strong>h</strong>: hours</li><li><strong>m</strong>: minutes</li><li><strong>s</strong>: seconds</li><li><strong>now</strong></li></ul></p><p>The start time (<code>text-time</code>) and end time (<code>text-endtime</code>) values can be entered as most recent first and least recent second, or vice versa. The values do not have to have the same unit of measure.</p> |
 | around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. The value is written using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 

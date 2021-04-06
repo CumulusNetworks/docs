@@ -5,7 +5,6 @@ weight: 1107
 toc: 3
 right_toc_levels: 1
 pdfhidden: true
-draft: true
 ---
 This topic includes all commands that begin with `netq t*`, `netq u*`, `netq v*`, `netq w*`, `netq x*`, `netq y*`, and `netq z*`.
 
@@ -23,7 +22,7 @@ You can improve the readability of the output using color. Run `netq config add 
 
 ### Syntax
 
-There are three forms of this command; one for layer 3 and two for layer 2 traces.
+Three forms of this command are available; one for layer 3 and two for layer 2 traces.
 
 ```
 netq trace
@@ -182,7 +181,7 @@ Id  Hop Hostname    InPort          InTun, RtrIf    OutRtrIf, Tun   OutPort
 
 Upgrades NetQ on NetQ On-premises Appliances or VMs.
 
-Obtain the software upgrade bundle from the {{<exlink url="https://cumulusnetworks.com/downloads/#product=NetQ" text="Cumulus Downloads">}} page or {{<exlink url="http://support.mellanox.com/s/" text="My Mellanox support">}} page.
+Obtain the software upgrade bundle from the {{<exlink url="http://support.mellanox.com/s/" text="My Mellanox support">}} page.
 
 ### Syntax
 
@@ -210,7 +209,7 @@ A release is included if there were changes to the command, otherwise it is not 
 
 ### Sample Usage
 
-<!-- Add output/results??? -->
+<!-- Add output/results -->
 ```
 cumulus@<hostname>:~$ netq upgrade bundle /mnt/installables/NetQ-3.3.0.tgz
 ```

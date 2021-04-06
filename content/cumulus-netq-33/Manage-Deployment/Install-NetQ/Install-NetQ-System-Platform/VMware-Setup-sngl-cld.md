@@ -43,7 +43,7 @@ Follow these steps to setup and configure your VM for a remote deployment:
 
     {{<netq-install/container version="3.3.1">}}
 
-The final step is to install and activate the NetQ software.  You can do this using the Admin UI or the CLI.
+The final step is to install and activate the NetQ software. You can do this using the Admin UI or the CLI.
 
 Click the installation and activation method you want to use to complete installation:
 

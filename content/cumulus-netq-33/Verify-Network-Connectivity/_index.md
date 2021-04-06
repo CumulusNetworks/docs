@@ -48,11 +48,11 @@ When creating and running traces using the NetQ CLI, consider the following item
 
 When entering a time value, you must include a numeric value *and* the unit of measure:
 
-- **w**: week(s)
-- **d**: day(s)
-- **h**: hour(s)
-- **m**: minute(s)
-- **s**: second(s)
+- **w**: weeks
+- **d**: days
+- **h**: hours
+- **m**: minutes
+- **s**: seconds
 - **now**
 
 ### Result Display Options

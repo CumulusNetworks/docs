@@ -167,7 +167,7 @@ The PAUSE frame is a flow control mechanism that halts the transmission of the t
 
 Link pause is disabled by default. To enable link pause, you must configure settings in the `/etc/cumulus/datapath traffic.conf` file.
 
-{{< expand "What's the difference between link pause and priority flow control?" >}}
+{{< expand "What is the difference between link pause and priority flow control?" >}}
 - Priority flow control is applied to an individual priority group for a specific ingress port.
 - Link pause (also known as port pause or global pause) is applied to all the traffic for a specific ingress port.
 {{< /expand >}}
@@ -210,9 +210,11 @@ cumulus@switch:~$ echo 1 > /cumulus/switchd/config/traffic/reload
 
 Always run the {{<link url="#syntax-checker" text="syntax checker">}} syntax checker before applying the configuration changes.
 
+<!-- vale off -->
+<!-- Vale issue #253 -->
 ## Cut-through Mode and Store and Forward Switching
-
-Mellanox switches support cut-through mode but do **not** support store and forward switching. You cannot disable cut-through mode.
+<!-- vale on -->
+NVIDIA switches support cut-through mode but do **not** support store and forward switching. You cannot disable cut-through mode.
 
 When cut-though mode is enabled and link pause is asserted, Cumulus Linux generates a TOVR and TUFL ERROR; certain error counters increment on a given physical port.
 
@@ -257,7 +259,7 @@ ECN is a layer 3 end-to-end congestion notification mechanism only. Packets can 
 
 The ECN mechanism on a switch only marks packets to notify the end receiver. It does not take any other action or change packet handling in any way, nor does it respond to packets that have already been marked ECN by an upstream switch.
 
-ECN is implemented on the switch using minimum and maximum threshold values for the egress queue length. When a packet enters the queue and the average queue length is between the minimum and maximum threshold values, a configurable probability value will determine whether the packet is marked. If the average queue length is above the maximum threshold value, the packet is always marked.
+ECN is implemented on the switch using minimum and maximum threshold values for the egress queue length. When a packet enters the queue and the average queue length is between the minimum and maximum threshold values, a configurable probability value determines whether the packet is marked. If the average queue length is above the maximum threshold value, the packet is always marked.
 
 The downstream switches with ECN enabled perform the same actions as the traffic is received. If the ECN bits are set, they remain set. The only way to overwrite ECN bits is to set the ECN bits to *11*.
 
@@ -298,7 +300,7 @@ cumulus@switch:~$ echo 1 > /cumulus/switchd/config/traffic/reload
 
 Always run the {{<link url="#syntax-checker" text="syntax checker">}} syntax checker before applying the configuration changes.
 
-## Scheduling Weights Per Egress Queue
+## Scheduling Weights per Egress Queue
 
 You can set the scheduling weight per egress queue, which determines the amount of bandwidth assigned to the queue. Cumulus Linux supports eight queues per port. You can either use a default profile that each port inherits​ or create separate profiles that map a different set of ports. Each profile, including the default profile, has weights configured for each egress queue (0-7)​​.
 

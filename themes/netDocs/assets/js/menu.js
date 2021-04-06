@@ -32,44 +32,54 @@
   },false);
 
   document.addEventListener('DOMContentLoaded', function () {
-    var heading = document.querySelectorAll(".markdown h1, h2, h3, h4");
-    var headings = {};
-    var i = 0;
+    let markdown = document.querySelector(".markdown");
+    let heading = markdown.querySelectorAll("h1, h2, h3, h4");
+    let headings = {};
+    let tocNav = document.querySelector('.book-toc');
 
-    Array.prototype.forEach.call(heading, function(e) {
-      headings[e.id] = e.offsetTop;
-    });
-    
-    if( document.querySelector('.book-toc') ) {
-      document.querySelector('.book-toc #TableOfContents a:first-of-type').setAttribute('class', 'active');
+    if (tocNav != null && tocNav.length > 0) {
+      tocNav.querySelector('.book-toc nav a:first-of-type').setAttribute('class','active');
     }
+    
+    Array.prototype.forEach.call(heading, function(e) {
+      headings[e.id] = e.offsetTop
+    });
 
     window.onscroll = function() {
-      var scrollPosition = document.documentElement.scrollTop || document.body.scrollTop;
-    
+      let scrollPosition = document.documentElement.scrollTop || document.body.scrollTop;
+      let i = 0;
       for (i in headings) {
-        if (headings[i] <= scrollPosition) {
+        if (headings[i] <= scrollPosition && headings[i] !== 0) {
           // you're at the bottom of the page
           if ((window.innerHeight + scrollPosition) >= document.body.offsetHeight) {
             var group = [];
             var links =  document.querySelectorAll('.book-toc #TableOfContents a');
-
             links.forEach(link => {
               group.push(link);
             })
 
-            document.querySelector('.book-toc #TableOfContents .active').setAttribute('class', ' ');
+            if(document.querySelector('.book-toc #TableOfContents .active')) {
+              document.querySelector('.book-toc #TableOfContents .active').setAttribute('class', ' ');
+            }
+  
             group[group.length - 1].setAttribute('class', 'active')
-           
           }else {
-            document.querySelector('.book-toc #TableOfContents .active').setAttribute('class', ' ');
-            document.querySelector('.book-toc #TableOfContents a[href*="#'+i+'"]').setAttribute('class', 'active')
-          }
+            var links =  document.querySelectorAll('.book-toc #TableOfContents a');
+            links.forEach(link => {
+              var anchorID = $(link);
+              var target = $(anchorID.attr("href"));
 
+              if (target.length > 0) {
+                if (target.position().top + 132 <= $(window).scrollTop()) {
+                  $('.book-toc #TableOfContents a').removeClass("active");
+					        anchorID.addClass("active");
+                }
+              }
+            })
+          }
         }
       }
-    };
-
+    }
   });
 })()
 

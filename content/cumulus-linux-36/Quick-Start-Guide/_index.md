@@ -55,7 +55,7 @@ discovery:
     is running a web server. If the host is IPv4-enabled, make sure it
     is running DHCP as well as a web server.
 
-2.  [Download](http://cumulusnetworks.com/downloads/) the Cumulus Linux
+2.  [Download](https://support.mellanox.com/s/) the Cumulus Linux
     installation file to the root directory of the web server. Rename
     this file `onie-installer`.
 

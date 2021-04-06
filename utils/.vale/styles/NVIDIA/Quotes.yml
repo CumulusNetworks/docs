@@ -1,0 +1,11 @@
+# Error: NVIDIA.Quotes
+#
+# Checks for periods and commas that are outside of quotes.
+#
+extends: existence
+message: 'Punctuation should be inside the quotes.'
+level: error
+nonword: true
+
+tokens:
+  - '["“][^"”“]+["”][.,]'

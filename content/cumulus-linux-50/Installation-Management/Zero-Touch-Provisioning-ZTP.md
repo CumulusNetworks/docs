@@ -4,24 +4,21 @@ author: NVIDIA
 weight: 90
 toc: 3
 ---
-*Zero touch provisioning* (ZTP) enables you to deploy network devices quickly in large-scale environments. On first boot, Cumulus Linux invokes ZTP, which executes the provisioning automation used to deploy the device for its intended role in the network.
+Use *Zero touch provisioning* (ZTP) to deploy network devices quickly in large-scale environments. On first boot, Cumulus Linux invokes ZTP, which executes the provisioning automation used to deploy the device for its intended role in the network.
 
-The provisioning framework allows for a one-time, user-provided script to be executed. You can develop this script using a variety of automation tools and scripting languages, providing ample flexibility
-for you to design the provisioning scheme to meet your needs. You can also use it to add the switch to a configuration management (CM) platform such as {{<exlink url="http://puppet.com/" text="Puppet">}}, {{<exlink url="https://www.chef.io" text="Chef">}}, {{<exlink url="https://cfengine.com" text="CFEngine">}} or possibly a custom, proprietary tool.
+The provisioning framework allows for a one-time, user-provided script to be executed. You can develop this script using a variety of automation tools and scripting languages. You can also use it to add the switch to a configuration management (CM) platform such as {{<exlink url="http://puppet.com/" text="Puppet">}}, {{<exlink url="https://www.chef.io" text="Chef">}}, {{<exlink url="https://cfengine.com" text="CFEngine">}} or a custom, proprietary tool.
 
 While developing and testing the provisioning logic, you can use the `ztp` command in Cumulus Linux to manually invoke your provisioning script on a device.
 
 ZTP in Cumulus Linux can occur automatically in one of the following ways, in this order:
 
 1. Through a local file
-1. Using a USB drive inserted into the switch (ZTP-USB)
-1. Through DHCP
-
-Each method is discussed in greater detail below.
+2. Using a USB drive inserted into the switch (ZTP-USB)
+3. Through DHCP
 
 ## Use a Local File
 
-ZTP only looks once for a ZTP script on the local file system when the switch boots. ZTP searches for an install script that matches an {{<exlink url="http://onie.org" text="ONIE">}}-style waterfall in `/var/lib/cumulus/ztp`, looking for the most specific name first, and ending at the most generic:
+ZTP only looks one time for a ZTP script on the local file system when the switch boots. ZTP searches for an install script that matches an {{<exlink url="http://onie.org" text="ONIE">}}-style waterfall in `/var/lib/cumulus/ztp`, looking for the most specific name first, and ending at the most generic:
 
 - `'cumulus-ztp-' + architecture + '-' + vendor + '_' + model + '-r' + revision`
 - `'cumulus-ztp-' + architecture + '-' + vendor + '_' + model`
@@ -34,36 +31,29 @@ You can also trigger the ZTP process manually by running the `ztp --run <URL>` c
 ## Use a USB Drive
 
 {{%notice note%}}
-
 This feature has been tested only with *thumb* drives, not an actual external large USB hard drive.
-
 {{%/notice%}}
-
-If the `ztp` process does not discover a local script, it tries once to locate an inserted but unmounted USB drive. If it discovers one, it begins the ZTP process.
-
+If the `ztp` process does not discover a local script, it tries one time to locate an inserted but unmounted USB drive. If it discovers one, it begins the ZTP process.
 Cumulus Linux supports the use of a FAT32, FAT16, or VFAT-formatted USB drive as an installation source for ZTP scripts. You must plug in the USB drive **before** you power up the switch.
 
 At minimum, the script must:
-
-- Install the Cumulus Linux operating system<!-- and license-->.
+- Install the Cumulus Linux operating system.
 - Copy over a basic configuration to the switch.
 - Restart the switch or the relevant services to get `switchd` up and running with that configuration.
 
 Follow these steps to perform ZTP using a USB drive:
 
-1. Copy the <!--Cumulus Linux license and -->installation image to the USB drive.
+1. Copy the installation image to the USB drive.
 2. The `ztp` process searches the root filesystem of the newly mounted drive for filenames matching an {{<exlink url="https://opencomputeproject.github.io/onie/user-guide/index.html#directly-connected-scenario" text="ONIE-style waterfall">}} (see the patterns and examples above), looking for the most specific name first, and ending at the most generic.
 3. The contents of the script are parsed to ensure it contains the `CUMULUS-AUTOPROVISIONING` flag (see {{<link url="#write-ztp-scripts" text="example scripts">}}).
 
 {{%notice note%}}
-
 The USB drive is mounted to a temporary directory under `/tmp` (for example, `/tmp/tmpigGgjf/`). To reference files on the USB drive, use the environment variable `ZTP_USB_MOUNTPOINT` to refer to the USB root partition.
-
 {{%/notice%}}
 
-## ZTP over DHCP
+## ZTP Over DHCP
 
-If the `ztp` process does not discover a local/ONIE script or applicable USB drive, it checks DHCP every ten seconds for up to five minutes for the presence of a ZTP URL specified in `/var/run/ztp.dhcp`. The URL can be any of HTTP, HTTPS, FTP or TFTP.
+If the `ztp` process does not discover a local ONIE script or applicable USB drive, it checks DHCP every ten seconds for up to five minutes for the presence of a ZTP URL specified in `/var/run/ztp.dhcp`. The URL can be any of HTTP, HTTPS, FTP or TFTP.
 
 For ZTP using DHCP, provisioning initially takes place over the management network and is initiated through a DHCP hook. A DHCP option is used to specify a configuration script. This script is then requested from the Web server and executed locally on the switch.
 
@@ -77,9 +67,9 @@ The ZTP process over DHCP follows these steps:
 6. If provisioning is necessary, the script executes locally on the switch with root privileges.
 7. The return code of the script is examined. If it is 0, the provisioning state is marked as complete in the autoprovisioning configuration file.
 
-### Trigger ZTP over DHCP
+### Trigger ZTP Over DHCP
 
-If provisioning has not already occurred, it is possible to trigger the ZTP process over DHCP when eth0 is set to use DHCP and one of the following events occur:
+If provisioning has not already occurred, you can trigger the ZTP process over DHCP when eth0 is set to use DHCP and one of the following events occur:
 
 - The switch boots.
 - You plug a cable into or unplug a cable from the eth0 port.
@@ -113,9 +103,7 @@ subnet 192.168.0.0 netmask 255.255.255.0 {
 ```
 
 {{%notice note%}}
-
-Do not use an underscore (\_) in the hostname; underscores are not permitted in hostnames.
-
+Do not use an underscore (_) in the hostname; underscores are not permitted in hostnames.
 {{%/notice%}}
 
 ### Inspect HTTP Headers
@@ -128,7 +116,6 @@ Header                        Value                 Example
 User-Agent                                          CumulusLinux-AutoProvision/0.4
 CUMULUS-ARCH                  CPU architecture      x86_64
 CUMULUS-BUILD                                       5.0.0
-CUMULUS-LICENSE-INSTALLED     Either 0 or 1         1
 CUMULUS-MANUFACTURER                                odm
 CUMULUS-PRODUCTNAME                                 switch_model
 CUMULUS-SERIAL                                      XYZ123004
@@ -142,15 +129,13 @@ CUMULUS-PROV-MAX                                    32
 ## Write ZTP Scripts
 
 {{%notice note%}}
-
-Remember to include the following line in any of the supported scripts that you expect to run using the autoprovisioning framework.
+You must include the following line in any of the supported scripts that you expect to run using the autoprovisioning framework.
 
 ```
 # CUMULUS-AUTOPROVISIONING
 ```
 
 This line is required somewhere in the script file for execution to occur.
-
 {{%/notice%}}
 
 The script must contain the `CUMULUS-AUTOPROVISIONING` flag. You can include this flag in a comment or remark; the flag does not need to be echoed or written to `stdout`.
@@ -164,7 +149,7 @@ You can write the script in any language currently supported by Cumulus Linux, s
 
 The script must return an exit code of 0 upon success, as this triggers the autoprovisioning process to be marked as complete in the autoprovisioning configuration file.
 
-The following script installs Cumulus Linux<!-- and its license--> from a USB drive and applies a configuration:
+The following script installs Cumulus Linux from a USB drive and applies a configuration:
 
 ```
 #!/bin/bash
@@ -192,9 +177,6 @@ cp ${ZTP_USB_MOUNTPOINT}/interfaces /etc/network/interfaces
 #Load port config from usb
 #   (if breakout cables are used for certain interfaces)
 cp ${ZTP_USB_MOUNTPOINT}/ports.conf /etc/cumulus/ports.conf
-
-#Install a License from usb and restart switchd
-/usr/cumulus/bin/cl-license -i ${ZTP_USB_MOUNTPOINT}/license.txt && systemctl restart switchd.service
 
 #Reload interfaces to apply loaded config
 ifreload -a
@@ -248,26 +230,6 @@ If you have an insecure management network, set the password with an encrypted h
    }
    set_password
    ```
-
-<!--### Install a License
-
-Use the following function to include error checking for license file installation.
-
-```
-function install_license(){
-     # Install license
-     echo "$(date) INFO: Installing License..."
-     echo $1 | /usr/cumulus/bin/cl-license -i
-     return_code=$?
-     if [ "$return_code" == "0" ]; then
-         echo "$(date) INFO: License Installed."
-     else
-         echo "$(date) ERROR: License not installed. Return code was: $return_code"
-         /usr/cumulus/bin/cl-license
-         exit 1
-     fi
-}
-```-->
 
 ### Test DNS Name Resolution
 
@@ -332,7 +294,7 @@ After initially configuring a node with ZTP, use {{<exlink url="http://docs.ansi
 
 ### Disable the DHCP Hostname Override Setting
 
-Make sure to disable the DHCP hostname override setting in your script (NCLU does this automatically).
+Make sure to disable the DHCP hostname override setting in your script.
 
 ```
 function set_hostname(){
@@ -340,30 +302,6 @@ function set_hostname(){
     sed s/'SETHOSTNAME="yes"'/'SETHOSTNAME="no"'/g -i /etc/dhcp/dhclient-exit-hooks.d/dhcp-sethostname
     hostnamectl set-hostname $1
 }
-```
-
-### NCLU in ZTP Scripts
-
-{{%notice note%}}
-
-Not all aspects of NCLU are supported when running during ZTP. Use traditional Linux methods of providing configuration to the switch during ZTP.
-
-{{%/notice%}}
-
-When you use NCLU in ZTP scripts, add the following loop to make sure NCLU has time to start up before being called.
-
-```
-# Waiting for NCLU to finish starting up
-last_code=1
-while [ "1" == "$last_code" ]; do
-    net show interface &> /dev/null
-    last_code=$?
-done
-
-net add vrf mgmt
-net add time zone Etc/UTC
-net add time ntp server 192.168.0.254 iburst
-net commit
 ```
 
 ## Test ZTP Scripts
@@ -506,8 +444,9 @@ cumulus@switch:~$ sudo grep -i ztp /var/log/syslog
 
 ## Common ZTP Script Errors
 
+<!-- vale off -->
 ### Could not find referenced script/interpreter in downloaded payload
-
+<!-- vale on -->
 ```
 cumulus@leaf01:~$ sudo cat /var/log/syslog | grep ztp
 2018-04-24T15:06:08.887041+00:00 leaf01 ztp [13404]: Attempting to provision via ZTP Manual from http://192.168.0.254/ztp_oob_windows.sh
@@ -575,7 +514,6 @@ root@oob-mgmt-server:/var/www/html#
 ```
 
 ## Manually Use the ztp Command
-
 To enable ZTP, use the `-e` option:
 
 ```
@@ -583,19 +521,15 @@ cumulus@switch:~$ sudo ztp -e
 ```
 
 {{%notice note%}}
-
-Enabling ZTP means that ZTP tries to run the next time the switch boots. However, if ZTP already ran on a previous boot up or if a manual configuration has been found, ZTP will just exit without trying to look for any script.
+Enabling ZTP means that ZTP tries to run the next time the switch boots. However, if ZTP already ran on a previous boot up or if a manual configuration has been found, ZTP exits without trying to look for a script.
 
 ZTP checks for these manual configurations during bootup:
-
 - Password changes
 - Users and groups changes
 - Packages changes
 - Interfaces changes
-<!--- The presence of an installed license-->
 
 When the switch is booted for the very first time, ZTP records the state of important files that are most likely going to be modified after that the switch is configured. If ZTP is still enabled after a reboot, ZTP compares the recorded state to the current state of these files. If they do not match, ZTP considers that the switch has already been provisioned and exits. These files are only erased after a reset.
-
 {{%/notice%}}
 
 To reset ZTP to its original state, use the `-R` option. This removes the `ztp` directory and ZTP runs the next time the switch reboots.
@@ -628,8 +562,6 @@ Date           Mon May 20 21:51:04 2019 UTC
 Method         Switch manually configured  
 URL            None
 ```
-
-You can run the NCLU `net show system ztp script` or `net show system ztp json` command to see the current `ztp` state.
 
 ## Considerations
 

@@ -37,7 +37,7 @@ To configure BGP numbered on a BGP node, you need to:
     - To use auto BGP to assign an ASN automatically on the leaf:
 
        ```
-       cumulus@leaf01:~$ cl set router bgp autonomous-system NEED COMMAND
+       cumulus@leaf01:~$ cl set router bgp autonomous-system leaf
        ```
 
        The auto BGP `leaf` keyword is only used to configure the ASN. The configuration files and `cl show` commands display the AS number.
@@ -92,7 +92,7 @@ To configure BGP numbered on a BGP node, you need to:
     - To use auto BGP to assign an ASN automatically on the spine:
 
       ```
-      cumulus@spine01:~$ cl set router bgp autonomous-system NEED COMMAND
+      cumulus@spine01:~$ cl set router bgp autonomous-system spine
       ```
 
       The auto BGP `spine` keyword is only used to configure the ASN. The configuration files and `cl show` commands display the AS number.

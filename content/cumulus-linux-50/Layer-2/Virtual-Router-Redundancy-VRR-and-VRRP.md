@@ -109,9 +109,7 @@ The following examples uses a single virtual MAC address for VLANs. You can add 
 ```
 cumulus@leaf01:~$ cl set interface eth0 ip address 192.168.200.11/24
 cumulus@leaf01:~$ cl set interface bond1 bond member swp1
-cumulus@leaf01:~$ cl set NEED COMMAND FOR ALIAS
 cumulus@leaf01:~$ cl set interface bond2 bond member swp2
-cumulus@leaf01:~$ cl set NEED COMMAND FOR ALIAS
 cumulus@leaf01:~$ cl set interface bond1 bond mlag id 1
 cumulus@leaf01:~$ cl set interface bond2 bond mlag id 2
 cumulus@leaf01:~$ cl set interface bond1-2 bridge domain br_default
@@ -213,9 +211,7 @@ iface br_default
 ```
 cumulus@leaf02:~$ cl set interface eth0 ip address 192.168.200.12/24
 cumulus@leaf02:~$ cl set interface bond1 bond member swp1
-cumulus@leaf02:~$ cl set NEED COMMAND FOR ALIAS
 cumulus@leaf02:~$ cl set interface bond2 bond member swp2
-cumulus@leaf02:~$ cl set NEED COMMAND FOR ALIAS
 cumulus@leaf02:~$ cl set interface bond1 bond mlag id 1
 cumulus@leaf02:~$ cl set interface bond2 bond mlag id 2
 cumulus@leaf02:~$ cl set interface bond1-2 bridge domain br_default

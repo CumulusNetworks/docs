@@ -28,13 +28,11 @@ In a two-tier leaf and spine environment, you can use *auto BGP* to generate 32-
 Auto BGP assigns private ASNs in the range 4200000000 through 4294967294. This is the private space defined in {{<exlink url="https://tools.ietf.org/html/rfc6996" text="RFC 6996">}}. Each leaf is assigned a random and unique value in the range 4200000001 through 4294967294. Each spine is assigned 4200000000; the first number in the range. For information about configuring auto BGP, refer to {{<link url="Basic-BGP-Configuration" text="Basic BGP Configuration">}}.
 
 {{%notice note%}}
-
 - Use auto BGP in new deployments to avoid conflicting ASNs in an existing configuration.
 - It is not necessary to use auto BGP across all switches in your configuration. For example, you can use auto BGP to configure one switch but allocate ASNs manually to other switches.
 - Auto BGP is intended for use in two-tier spine and leaf networks. Using auto BGP in three-tier networks with superspines might result in incorrect ASN assignments.
 - The `leaf` keyword generates the ASN based on a hash of the switch MAC address. The ASN assigned might change after a switch replacement.
-- You can configure auto BGP with NCLU only.
-
+- You can configure auto BGP with CUE only.
 {{%/notice%}}
 
 ### eBGP and iBGP
@@ -94,12 +92,10 @@ The next hop address for each prefix is an IPv6 linklocal address, which is assi
 When you use BGP unnumbered, BGP learns the prefixes, calculates the routes and installs them in IPv4 AFI to IPv6 AFI format. ENHE in Cumulus Linux does not install routes into the kernel in IPv4 prefix to IPv6 next hop format. For linklocal peerings enabled by dynamically learning the other end's linklocal address using IPv6 neighbor discovery router advertisements, an IPv6 next hop is converted into an IPv4 linklocal address and a static neighbor entry is installed for this IPv4 linklocal address with the MAC address derived from the linklocal address of the other end.
 
 {{%notice note%}}
-
 - If an IPv4 /30 or /31 IP address is assigned to the interface, IPv4 peering is used over IPv6 linklocal peering.
 - BGP unnumbered only works with two switches at a time, as it is designed to work with point-to-point links.
 - The IPv6 implementation on the peering device uses the MAC address as the interface ID when assigning the IPv6 linklocal address, as suggested by RFC 4291.
 - Every router or end host must have an IPv4 address to complete a `traceroute` of IPv4 addresses. In this case, the IPv4 address used is that of the loopback device. Even if extended next hop encoding (ENHE) is not used in the data center, link addresses are not typically advertised because they take up valuable FIB resources and also expose an additional attack vector for intruders to use to either break in or engage in DDOS attacks. Assigning an IP address to the loopback device is essential.
-
 {{%/notice%}}
 
 ## Related Information

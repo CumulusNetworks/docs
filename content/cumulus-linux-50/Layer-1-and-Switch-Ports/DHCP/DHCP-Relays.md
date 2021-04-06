@@ -59,31 +59,6 @@ cumulus@leaf01:~$ cl apply
 {{< /tabs >}}
 
 {{< /tab >}}
-{{< tab "NCLU Commands ">}}
-
-{{< tabs "TabID60 ">}}
-{{< tab "IPv4 ">}}
-
-In the example commands below, the DHCP server IP address is 172.16.1.102, vlan10 is the SVI for VLAN 10 and the uplinks are swp51 and swp52.
-
-```
-cumulus@leaf01:~$ net add dhcp relay interface swp51
-cumulus@leaf01:~$ net add dhcp relay interface swp52
-cumulus@leaf01:~$ net add dhcp relay interface vlan10
-cumulus@leaf01:~$ net add dhcp relay server 172.16.1.102
-cumulus@leaf01:~$ net pending
-cumulus@leaf01:~$ net commit
-```
-
-{{< /tab >}}
-{{< tab "IPv6 ">}}
-
-NCLU commands are not currently available to configure IPv6 relays. Use the Linux Commands.
-
-{{< /tab >}}
-{{< /tabs >}}
-
-{{< /tab >}}
 {{< tab "Linux Commands ">}}
 
 {{< tabs "TabID85 ">}}
@@ -144,10 +119,6 @@ Cumulus Linux supports DHCP Agent Information Option 82, which allows a DHCP rel
 
 - *Circuit ID* includes information about the circuit on which the request comes in, such as the SVI or physical port. By default, this is the printable name of the interface on which the client request is received.
 - *Remote ID* includes information that identifies the relay agent, such as the MAC address. By default, this is the system MAC address of the device on which DHCP relay is running.
-
-{{%notice note%}}
-NCLU commands are not currently available for this feature. Use Linux commands.
-{{%/notice%}}
 
 To configure DHCP Agent Information Option 82:
 
@@ -232,35 +203,6 @@ cumulus@leaf01:~$ cl set service dhcp-relay default giaddr-interface swp2 10.0.0
 ```
 
 {{< /tab >}}
-{{< tab "NCLU Commands ">}}
-
-Run the `net add dhcp relay giaddr-interface` command with the interface or the interface and IP address you want to use.
-
-This example uses the first IP address on the loopback interface as the giaddr:
-
-```
-cumulus@leaf01:~$ net add dhcp relay giaddr-interface lo
-```
-
-The first IP address on the loopback interface is typically the 127.0.0.1 address. This example uses IP address 10.10.10.1 on the loopback interface as the giaddr:
-
-```
-cumulus@leaf01:~$ net add dhcp relay giaddr-interface lo 10.10.10.1
-```
-
-This example uses the first IP address on swp2 as the giaddr:
-
-```
-cumulus@leaf01:~$ net add dhcp relay giaddr-interface swp2
-```
-
-This example uses IP address 10.0.0.4 on swp2 as the giaddr:
-
-```
-cumulus@leaf01:~$ net add dhcp relay giaddr-interface swp2 10.0.0.4
-```
-
-{{< /tab >}}
 {{< tab "Linux Commands ">}}
 
 1. Edit the `/etc/default/isc-dhcp-relay` file and provide the `-U` option with the interface or IP address you want to use as the giaddr.
@@ -328,17 +270,6 @@ Run the `cl set service dhcp-relay default source-ip giaddress` command:
 ```
 cumulus@leaf01:~$ cl set service dhcp-relay default source-ip giaddress
 cumulus@leaf01:~$ cl config apply
-```
-
-{{< /tab >}}
-{{< tab "NCLU Commands ">}}
-
-Run the `net add dhcp relay use-giaddr-as-src` command:
-
-```
-cumulus@leaf:~$ net add dhcp relay use-giaddr-as-src
-cumulus@leaf:~$ net pending
-cumulus@leaf:~$ net commit
 ```
 
 {{< /tab >}}

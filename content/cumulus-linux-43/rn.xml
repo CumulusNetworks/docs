@@ -60,6 +60,12 @@
 <td></td>
 </tr>
 <tr>
+<td>2583274</td>
+<td>The Mellanox SN2010 switch constantly changes fan speeds when the temperature does not change.</td>
+<td>4.3.0</td>
+<td></td>
+</tr>
+<tr>
 <td>2578872</td>
 <td>CVE-2021-20270: It was discovered that Pygments, a syntax highlighting package written in Python, could be forced into an infinite loop, resulting in denial of service.
 Vulnerable: 2.3.1+dfsg-1

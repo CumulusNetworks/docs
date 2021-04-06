@@ -33,4 +33,4 @@ You need at least one active Software Update and Support contract (paid or trial
 
 ## How can I reset my account password?
 
-You can reset your password {{<exlink url="https://cumulusnetworks.com/secure/accounts/password-reset/" text="here">}}.
+You can reset your password {{<exlink url="https://support.mellanox.com/s/login/" text="here">}}.

@@ -1714,5 +1714,5 @@ cabling or configuration error.
     window, the switch in the secondary role misinterprets the event
     sequence, believing the peer switch is down, so it takes over as the
     primary.
-  - MLAG is disabled on the chassis, including the [Facebook Backpack](https://cumulusnetworks.com/products/cumulus-express/getting-started/backpack/)
+  - MLAG is disabled on the chassis, including the Facebook Backpack
     and EdgeCore OMP-800.

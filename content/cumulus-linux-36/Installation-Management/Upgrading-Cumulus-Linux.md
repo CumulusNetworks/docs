@@ -165,13 +165,6 @@ create a separate *out-of-band* network with a completely separate
 subnet and reachability path to attach to the management ports - that is
 accessible via eth0 and the serial console.
 
-This is a situation where smaller companies should learn from the big
-companies. A separate management network isn't free, but it is
-relatively cheap. With an inexpensive [Cumulus RMP](https://cumulusnetworks.com/products/cumulus-rack-management-platform/) management switch, an inexpensive
-console server, and a separate cable path, up to 48 devices can be
-completely controlled via the out-of-band network in the case of a
-network emergency.
-
 There are many scenarios where in-band networking can fail and leave the
 network admin waiting for someone to drive to the data center or remote
 site to connect directly to the console of a misconfigured or failing

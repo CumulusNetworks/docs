@@ -1,5 +1,7 @@
 {{ if .Parent }}
   {{ $id := .Get "id" }}
+  <iframe name="loading-container-{{ $id }}" class="terminal-iframe loading-container"></iframe>
+  <iframe name="console-container-{{ $id }}" class="terminal-iframe terminal-hidden"></iframe>
   <script type="text/javascript" id="sim-script-{{ $id }}">
     const sim = new Simulation('{{ $id }}');
     sim.initHandler(document.getElementById('sim-script-{{ $id }}').parentElement.previousElementSibling);

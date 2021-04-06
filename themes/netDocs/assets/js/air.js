@@ -1,6 +1,7 @@
 class Air {
   constructor() {
-    this.api_url = 'https://staging.air.nvidia.com/api/v1';
+    this.air_url = 'https://staging.air.nvidia.com';
+    this.api_url = `${this.air_url}/api/v1`;
   }
 
   async _get(uri) {
@@ -23,10 +24,6 @@ class Air {
     }
     return id;
   };
-
-  async getNodes(sim) {
-    return this._get(`/simulation-node/?simulation=${sim.id}`);
-  }
 }
 
 class Simulation {
@@ -34,18 +31,38 @@ class Simulation {
     this.refId = refId;
     this.id = undefined;
     this.air = new Air();
+    this.initLoadingContainers();
+  };
+
+  initLoadingContainers() {
+    document.querySelectorAll('[name*="loading-container"]').forEach(container => {
+      container.setAttribute('src', `${this.air.air_url}/loading?message=Building%20Simulation`);
+    });
   }
 
   async loadConsoles() {
-    const nodes = await this.air.getNodes(this);
-    console.log(nodes);
+    const loadingContainers = document.getElementsByName(`loading-container-${this.refId}`);
+    const containers = document.getElementsByName(`console-container-${this.refId}`);
+    containers.forEach((container, idx) => {
+      container.addEventListener('load', () => {
+        setTimeout(() => {
+          container.classList.remove('terminal-hidden');
+          if (loadingContainers[idx]) {
+            loadingContainers[idx].classList.add('terminal-hidden');
+          }
+        }, 1000); // small delay to avoid flicker when switching between iframes
+      });
+      container.setAttribute('src', `${this.air.air_url}/Terminal?simulation_id=${this.id}`);
+    });
   };
 
   initHandler(el) {
     const self = this;
     el.addEventListener('click', async () => {
-      self.id = await self.air.autoprovision(self);
-      self.loadConsoles();
+      if (!this.id) {
+        self.id = await self.air.autoprovision(self);
+        self.loadConsoles();
+      }
     });
   };
 }

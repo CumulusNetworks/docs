@@ -21,7 +21,7 @@ To install Cumulus Linux, you use {{<exlink url="https://opencomputeproject.gith
 
 1. If your host (laptop or server) is IPv6-enabled, make sure it is running a web server. If the host is IPv4-enabled, make sure it is running DHCP in addition to a web server.
 
-2. {{<exlink url="https://cumulusnetworks.com/downloads/" text="Download">}} the Cumulus Linux installation file to the root directory of the web server. Rename this file `onie-installer`.
+2. {{<exlink url="https://support.mellanox.com/s/" text="Download">}} the Cumulus Linux installation file to the root directory of the web server. Rename this file `onie-installer`.
 
 3. Connect your host using an Ethernet cable to the management Ethernet port of the switch.
 

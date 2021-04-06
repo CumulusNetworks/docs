@@ -158,7 +158,7 @@ The use of <code>netq-latest</code> in this example means that a <code>get</code
 
 8. Download the bootstrap and NetQ installation tarballs.
 
-    Download the software from the {{<exlink url="https://cumulusnetworks.com/downloads/" text="Cumulus Downloads">}} page.
+    Download the software from the {{<exlink url="https://support.mellanox.com/s/" text="MyMellanox downloads page">}} page.
 
     1. Select *NetQ* from the **Product** list.
 

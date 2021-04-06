@@ -13,7 +13,7 @@ This topic includes all commands that begin with `netq l*`, `netq m*`, `netq n*`
 
 Adds a Cumulus Linux image (.bin file) to the lifecycle management repository. Images must match the version, architecture, and ASIC vendor for the switches you want to upgrade.
 
-Obtain the images from the {{<exlink url="https://cumulusnetworks.com/downloads/#product=Cumulus%20Linux" text="Cumulus Downloads">}} page or {{<exlink url="http://support.mellanox.com/s/" text="My Mellanox support">}} page.
+Obtain the images from the {{<exlink url="http://support.mellanox.com/s/" text="My Mellanox support">}} page.
 
 ### Syntax
 
@@ -164,7 +164,7 @@ cumulus@switch:~$ netq lcm add default-version netq-images 3.3.0
 
 Adds a NetQ image (.deb package) to the lifecycle management repository. Images must match the version, architecture, and operating system for the switches you want to upgrade. For each version of NetQ, you must add the `netq-agent` and `netq-apps` packages.
 
-Obtain the images from the {{<exlink url="https://cumulusnetworks.com/downloads/#product=NetQ" text="Cumulus Downloads">}} page or {{<exlink url="http://support.mellanox.com/s/" text="My Mellanox support">}} page.
+Obtain the images from the {{<exlink url="http://support.mellanox.com/s/" text="My Mellanox support">}} page.
 
 ### Syntax
 

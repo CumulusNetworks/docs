@@ -92,7 +92,7 @@ To configure OVSDB server high availability, you need to:
 - Verify the VXLAN Configuration.
 
 {{%notice note%}}
-The OVSDB server cannot select the loopback interface as the source IP address, causing top of rack registration to the controller to fail. To work around this issue, run the `net add bgp redistribute connected` command followed by the `net commit` command.
+The OVSDB server cannot select the loopback interface as the source IP address, causing top of rack registration to the controller to fail. To work around this issue, run the CUE `cl set vrf default router bgp address-family ipv4-unicast route-redistribute connected` command.
 {{%/notice%}}
 
 ## Configure the NSX Integration on the Switch

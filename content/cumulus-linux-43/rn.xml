@@ -296,12 +296,6 @@ ERROR: Command not found
 <td></td>
 </tr>
 <tr>
-<td>2555931</td>
-<td>When the EVPN primary IP address and advertise SVI IP address options are both configured, the SVI ARP is not forwarded between MLAG switches.</td>
-<td>4.2.1-4.3.0</td>
-<td></td>
-</tr>
-<tr>
 <td>2555873</td>
 <td>On Mellanox switches, egress ACLs with VLAN keys do not filter layer 2 multicast or broadcast traffic.</td>
 <td>4.3.0</td>

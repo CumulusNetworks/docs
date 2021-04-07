@@ -241,12 +241,6 @@ ERROR: Command not found
 <td></td>
 </tr>
 <tr>
-<td>2555931</td>
-<td>When the EVPN primary IP address and advertise SVI IP address options are both configured, the SVI ARP is not forwarded between MLAG switches.</td>
-<td>4.2.1-4.3.0</td>
-<td></td>
-</tr>
-<tr>
 <td>2555613</td>
 <td>The {{net show configuration commands}} command incorrectly displays the NCLU syntax to disable IPv6 forwarding on interfaces. For example:
 
@@ -1691,12 +1685,6 @@ ERROR: Command not found
 <tr>
 <td>2555932</td>
 <td>On Mellanox switches, you can't ping the SVI of the MLAG peer over the peer link after the packet is VXLAN decapsulated.</td>
-<td>4.2.1-4.3.0</td>
-<td></td>
-</tr>
-<tr>
-<td>2555931</td>
-<td>When the EVPN primary IP address and advertise SVI IP address options are both configured, the SVI ARP is not forwarded between MLAG switches.</td>
 <td>4.2.1-4.3.0</td>
 <td></td>
 </tr>

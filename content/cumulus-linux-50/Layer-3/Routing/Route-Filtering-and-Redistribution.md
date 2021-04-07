@@ -27,15 +27,6 @@ cumulus@switch:~$ cl config apply
 ```
 
 {{< /tab >}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@switch:~$ net add routing prefix-list ipv4 prefixlist1 permit 10.0.0.0/16 le 30
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-{{< /tab >}}
 {{< tab "vtysh Commands ">}}
 
 ```
@@ -52,7 +43,7 @@ cumulus@switch:~$
 {{< /tab >}}
 {{< /tabs >}}
 
-The NCLU and vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+The commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
 ```
 ...
@@ -84,16 +75,6 @@ cumulus@switch:~$ cl set router policy route-map routemap1 rule 10 action permit
 ```
 
 {{< /tab >}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@switch:~$ net add routing route-map routemap1 permit 10 match interface swp51
-cumulus@switch:~$ net add routing route-map routemap1 permit 10 set metric 50
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-{{< /tab >}}
 {{< tab "vtysh Commands ">}}
 
 ```
@@ -112,7 +93,7 @@ cumulus@switch:~$
 {{< /tab >}}
 {{< /tabs >}}
 
-The NCLU and vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+The commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
 ```
 ...
@@ -141,15 +122,6 @@ cumulus@switch:~$ cl config apply
 ```
 
 {{< /tab >}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@switch:~$ net add routing protocol bgp route-map routemap1
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-{{< /tab >}}
 {{< tab "vtysh Commands ">}}
 
 ```
@@ -166,7 +138,7 @@ cumulus@switch:~$
 {{< /tab >}}
 {{< /tabs >}}
 
-The NCLU and vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+The commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
 ```
 ...
@@ -183,6 +155,7 @@ For BGP, you can also apply a route map on route updates from BGP to Zebra. All 
 To apply a route map to filter route updates from BGP into Zebra, run the following command:
 
 ```
+NEED COMMAND for CUE: 
 cumulus@switch:$ net add bgp table-map routemap2
 ```
 
@@ -194,23 +167,14 @@ In NCLU, you can only set the community number in a route map. You cannot set ot
 
 Route redistribution allows a network to use a routing protocol to route traffic dynamically based on the information learned from a different routing protocol or from static routes. Route redistribution helps increase accessibility within networks.
 
-To redistribute protocol routes, run the `net add <protocol> redistribute` command. The following example commands redistribute routing information from ospf routes into BGP:
+The following example commands redistribute routing information from ospf routes into BGP:
 
 {{< tabs "TabID219 ">}}
 {{< tab "CUE Commands ">}}
 
 ```
-cumulus@switch:~$ cl set vrf default router bgp address-family ipv4-unicast route-redistribution ospf
+cumulus@switch:~$ cl set vrf default router bgp address-family ipv4-unicast route-redistribute ospf
 cumulus@switch:~$ cl config apply
-```
-
-{{< /tab >}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@switch:~$ net add bgp redistribute ospf
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
@@ -237,17 +201,8 @@ To redistribute all directly connected networks, use the `redistribute connected
 {{< tab "CUE Commands ">}}
 
 ```
-cumulus@switch:~$ cl set vrf default router bgp address-family ipv4-unicast route-redistribution connected
+cumulus@switch:~$ cl set vrf default router bgp address-family ipv4-unicast route-redistribute connected
 cumulus@switch:~$ cl config apply
-```
-
-{{< /tab >}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@switch:~$ net add bgp redistribute connected
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}

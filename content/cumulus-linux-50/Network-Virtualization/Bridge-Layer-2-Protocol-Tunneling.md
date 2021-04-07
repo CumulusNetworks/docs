@@ -125,6 +125,8 @@ You must enable layer 2 protocol tunneling on the VXLAN link in addition to the 
 
 Here is another example configuration for {{<link title="Link Layer Discovery Protocol" tetx="LLDP">}}. You can verify the configuration with `lldpcli`.
 
+{{<img src="/images/cumulus-linux/bridgeL2tunnel-LLDP.png">}}
+
 ```
 cumulus@switch:~$ sudo lldpcli show neighbors
 -------------------------------------------------------------------------------
@@ -148,9 +150,9 @@ Interface: swp23, via LLDP, RID: 13, TIme: 0 day, 00:58:20
 ...
 ```
 
-{{<img src="/images/cumulus-linux/bridgeL2tunnel-LLDP.png">}}
-
 ### LACP Example
+
+{{<img src="/images/cumulus-linux/bridgeL2tunnel-LACP.png">}}
 
 ```
 H2 bond0:
@@ -179,8 +181,6 @@ details partner lacp pdu:
     system priority: 65535
     system MAC address: 44:38:39:00:a4:95
 ```
-
-{{<img src="/images/cumulus-linux/bridgeL2tunnel-LACP.png">}}
 
 ### Pseudo-wire Example
 

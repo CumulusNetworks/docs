@@ -7,9 +7,7 @@ toc: 3
 *Bidirectional Forwarding Detection* (BFD) provides low overhead and rapid detection of failures in the paths between two network devices. It provides a unified mechanism for link detection over all media and protocol layers. Use BFD to detect failures for IPv4 and IPv6 single or multihop paths between any two network devices, including unidirectional path failure detection.
 
 {{%notice note%}}
-
 Cumulus Linux does not support demand mode in BFD.
-
 {{%/notice%}}
 
 ## BFD Multihop Routed Paths
@@ -23,7 +21,7 @@ BFD multihop sessions are built over arbitrary paths between two systems, which 
 
 ## Configure BFD
 
-You can configure BFD by either using {{<link url="FRRouting" text="FRRouting">}} (with NCLU or `vtysh` commands) or by specifying the configuration in the {{<link url="Prescriptive-Topology-Manager-PTM" text="PTM `topology.dot` file">}}. However, the topology file has some limitations:
+You can configure BFD by either using {{<link url="FRRouting" text="FRRouting">}} (with CUE or `vtysh` commands) or by specifying the configuration in the {{<link url="Prescriptive-Topology-Manager-PTM" text="PTM `topology.dot` file">}}. However, the topology file has some limitations:
 
 - The topology file supports BFD IPv4 and IPv6 *single* hop sessions only; you *cannot* specify IPv4 or IPv6 *multihop* sessions in the topology file.
 - The topology file supports BFD sessions for only linklocal IPv6 peers; BFD sessions for global IPv6 peers discovered on the link are not created.
@@ -31,15 +29,11 @@ You can configure BFD by either using {{<link url="FRRouting" text="FRRouting">}
 Use FRRouting to register multihop peers with PTM and BFD as well as to monitor the connectivity to the remote BGP multihop peer. FRRouting can dynamically register and unregister both IPv4 and IPv6 peers with BFD when the BFD-enabled peer connectivity is established or de-established. Also, you can configure BFD parameters for each BGP or OSPF peer.
 
 {{%notice note%}}
-
 The BFD parameter configured in the topology file is given higher precedence over the client-configured BFD parameters for a BFD session that has been created by both the topology file and FRRouting.
-
 {{%/notice%}}
 
 {{%notice note%}}
-
 BFD requires an IP address for any interface on which it is configured. The neighbor IP address for a single hop BFD session must be in the ARP table before BFD can start sending control packets.
-
 {{%/notice%}}
 
 When you configure BFD, you can set the following parameters for both IPv4 and IPv6 sessions. If you do not set these parameters, the default values are used.
@@ -55,33 +49,30 @@ When you configure BFD in BGP, neighbors are registered and deregistered with {{
 To configure BFD in BGP, run the following commands.
 
 {{%notice note%}}
-
 You can configure BFD for a peer group or for an individual neighbor.
-
 {{%/notice%}}
 
 {{< tabs "TabID66 ">}}
+{{< tab "CUE Commands ">}}
 
-{{< tab "NCLU Commands ">}}
-
-The following example configures BFD for swp1 and uses the default intervals.
+The following example configures BFD for swp51 and uses the default intervals.
 
 ```
-cumulus@switch:~$ net add bgp neighbor swp1 bfd
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
+cumulus@leaf01:~$ cl set vrf default router bgp peer swp51 bfd enable on
+cumulus@leaf01:~$ cl config apply
 ```
 
 The following example configures BFD for the peer group `fabric` and sets the interval multiplier to 4, the minimum interval between received BFD control packets to 400, and the minimum interval for sending BFD control packets to 400.
 
 ```
-cumulus@switch:~$ net add bgp neighbor fabric bfd 4 400 400
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
+cumulus@leaf01:~$ cl set vrf default router bgp peer fabric bfd enable on
+cumulus@leaf01:~$ cl set vrf default router bgp peer fabric bfd detect-multiplier 4 
+cumulus@leaf01:~$ cl set vrf default router bgp peer fabric bfd min-rx-interval 400 
+cumulus@leaf01:~$ cl set vrf default router bgp peer fabric bfd min-tx-interval 400
+cumulus@leaf01:~$ cl config apply
 ```
 
 {{< /tab >}}
-
 {{< tab "vtysh Commands ">}}
 
 The following example configures BFD for swp1 and uses the default intervals:
@@ -115,14 +106,17 @@ cumulus@switch:~$
 ```
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
-The NCLU and `vtysh` commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+The commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
 ```
 ...
-router bgp 65000
+router bgp 65101 vrf default
+bgp router-id 10.10.10.1
+! Neighbors
+neighbor fabric peer-group
+neighbor fabric remote-as external
 neighbor fabric bfd 4 400 400
 ...
 ```
@@ -130,10 +124,10 @@ neighbor fabric bfd 4 400 400
 To see neighbor information in BGP, including BFD status, run the NCLU `net show bgp neighbor <interface>` command or the `vtysh` `show ip bgp neighbor <interface>` command. For example:
 
 ```
-cumulus@switch:~$ net show bgp neighbor swp1
+cumulus@switch:~$ net show bgp neighbor swp51
 ...
 BFD: Type: single hop
-  Detect Mul: 3, Min Rx interval: 300, Min Tx interval: 300
+  Detect Mul: 4, Min Rx interval: 400, Min Tx interval: 400
   Status: Down, Last update: 0:00:00:08
 ...
 ```
@@ -145,7 +139,13 @@ When you enable or disable BFD in OSPF, neighbors are registered and de-register
 To configure BFD in OSPF, run the following commands.
 
 {{< tabs "TabID150 ">}}
+{{< tab "CUE Commands ">}}
 
+```
+cumulus@switch:~$ NEED COMMAND
+```
+
+{{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
 The following example configures BFD in OSPFv3 for interface swp1 and sets interval multiplier to 4, the minimum interval between *received* BFD control packets to 400, and the minimum interval for *sending* BFD control packets to 400.
@@ -157,7 +157,6 @@ cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
-
 {{< tab "vtysh Commands ">}}
 
 The following example configures BFD in OSPFv3 for interface swp1 and sets interval multiplier to 4, the minimum interval between *received* BFD control packets to 400, and the minimum interval for *sending* BFD control packets to 400.
@@ -176,10 +175,9 @@ cumulus@switch:~$
 ```
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
-The NCLU and `vtysh` commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+The commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
 ```
 ...

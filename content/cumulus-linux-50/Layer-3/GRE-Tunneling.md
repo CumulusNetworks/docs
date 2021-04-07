@@ -5,9 +5,7 @@ weight: 970
 toc: 3
 ---
 {{%notice warning%}}
-
 GRE Tunneling is an {{<exlink url="https://docs.cumulusnetworks.com/knowledge-base/Support/Support-Offerings/Early-Access-Features-Defined/" text="early access feature">}}.
-
 {{%/notice%}}
 
 Generic Routing Encapsulation (GRE) is a tunneling protocol that encapsulates network layer protocols inside virtual point-to-point links over an Internet Protocol network. The two endpoints are identified by the tunnel source and tunnel destination addresses at each endpoint.
@@ -17,10 +15,8 @@ GRE packets travel directly between the two endpoints through a virtual tunnel. 
 GRE uses multiple protocols over a single-protocol backbone and is less demanding than some of the alternative solutions, such as VPN. You can use GRE to transport protocols that the underlying network does not support, work around networks with limited hops, connect non-contiguous subnets, and allow VPNs across wide area networks.
 
 {{%notice note%}}
-
 - Only static routes are supported as a destination for the tunnel interface.
 - IPv6 endpoints are not supported.
-
 {{%/notice%}}
 
 The following example shows two sites that use IPv4 addresses. Using GRE tunneling, the two end points can encapsulate an IPv4 or IPv6 payload inside an IPv4 packet. The packet is routed based on the destination in the outer IPv4 header.
@@ -129,11 +125,9 @@ cumulus@switch:~$ sudo ip tunnel del Tunnel-R2 mode gre remote 10.0.0.2 local 10
 ```
 
 {{%notice note%}}
-
 You can delete a GRE tunnel directly from the `/etc/network/interfaces` file instead of using the `ip tunnel del` command. Make sure you run the `ifreload - a` command after you update the interfaces file.
 
 This action is disruptive as the tunnel is removed, then recreated with the new settings.
-
 {{%/notice%}}
 
 ## Change GRE Tunnel Settings
@@ -145,7 +139,5 @@ cumulus@switch:~$ sudo ip tunnel change Tunnel-R2 mode gre local 10.0.0.2 remote
 ```
 
 {{%notice note%}}
-
 You can make changes to GRE tunnel settings directly in the `/etc/network/interfaces` file instead of using the `ip tunnel change` command. Make sure you run the `ifreload - a` command after you update the interfaces file.
-
 {{%/notice%}}

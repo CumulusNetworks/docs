@@ -54,6 +54,13 @@
 <td></td>
 </tr>
 <tr>
+<td>CM-20033</td>
+<td>&lt;p&gt;The VLAN interface stays up even though the physical link carrying the VLAN is admin or carrier down.&lt;/p&gt;
+</td>
+<td>3.5.2-3.7.14.2, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-15812</td>
 <td>&lt;p&gt;Multicast forwarding fails for IP addresses whose DMAC overlaps with reserved DIPs.&lt;/p&gt;</td>
 <td>3.2.1-3.7.14.2, 4.0.0-4.3.0</td>
@@ -520,13 +527,6 @@ NVIDIA does not recommend running NTP with a source interface other than eth0 as
 <td>When you manually set the link speed or duplex mode with ethtool to an unsupported value, then run a TDR check against the interface, you encounter a {{switchd}} service heartbeat failure.
 To work around this issue, reboot the switch to clear the condition. Avoid setting the interface speed or duplex mode directly with ethtool.</td>
 <td>3.7.12-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
-<td>2553063</td>
-<td>After you manually edit the {{/etc/resolv.conf}} file to change or remove a VRF for a given DNS server, {{ifreload}} does not remove IP rules created for DNS servers in the VRF. 
-To work around this issue, run the {{net add/del dns nameserver vrf &lt;name&gt;}} command to force the DNS configuration.</td>
-<td>3.7.13-3.7.14.2, 4.1.1-4.3.0</td>
 <td></td>
 </tr>
 <tr>
@@ -1427,14 +1427,6 @@ To work around this issue, use {{net show interface}} command for LLDP output wh
 <tr>
 <td>2534734</td>
 <td>Span rules matching the out-interface as a bond do not mirror packets.</td>
-<td>4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
-<td>2533940</td>
-<td>The VLAN interface stays up even though the physical link carrying the VLAN is admin or carrier down.
-
-</td>
 <td>4.0.0-4.3.0</td>
 <td></td>
 </tr>

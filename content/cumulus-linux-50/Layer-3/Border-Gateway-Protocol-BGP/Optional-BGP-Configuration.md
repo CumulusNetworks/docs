@@ -398,10 +398,10 @@ The following example configures VRF RED and VRF BLUE on border01 to use ASN 655
 ```
 cumulus@border01:~$ cl set vrf RED router bgp autonomous-system 65532        
 cumulus@border01:~$ cl set vrf RED router bgp router-id 10.10.10.63
-cumulus@border01:~$ cl set vrf RED router bgp peer swp3 remote-as external NEED COMMAND
+cumulus@border01:~$ cl set vrf RED router bgp peer swp3 remote-as external
 cumulus@border01:~$ cl set vrf BLUE router bgp autonomous-system 65533 
 cumulus@border01:~$ cl set vrf BLUE router bgp router-id 10.10.10.63
-cumulus@border01:~$ cl set vrf BLUE router bgp peer swp4 remote-as external NEED COMMAND
+cumulus@border01:~$ cl set vrf BLUE router bgp peer swp4 remote-as external
 cumulus@border01:~$ cl config apply
 ```
 

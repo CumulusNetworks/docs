@@ -261,4 +261,4 @@ the hardware forwarding.
 
 The ARP refresh timer defaults to 1080 seconds (18 minutes). You can
 change this setting by following the procedures outlined in
-[the ARP chapter](https://docs.cumulusnetworks.com/cumulus-linux-42/Layer-3/Address-Resolution-Protocol-ARP/).
+{{<link url="Address-Resolution-Protocol-ARP" text="the ARP chapter" >}}.

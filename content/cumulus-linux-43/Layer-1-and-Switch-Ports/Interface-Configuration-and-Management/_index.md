@@ -1140,7 +1140,7 @@ cumulus@switch$ ip link show swp1
 
 {{< /tabs >}}
 <!-- vale off -->
-Interface descriptions also appear in the {{<link url="Simple-Network-Management-Protocol-SNMP" text="SNMP">}} OID {{<exlink url="https://cumulusnetworks.com/static/mibs/IF-MIB.txt" text="IF-MIB::ifAlias">}}.
+Interface descriptions also appear in the {{<link url="Simple-Network-Management-Protocol-SNMP" text="SNMP">}} OID {{<kb_link url="mibs/IF-MIB.txt" text="IF-MIB::ifAlias">}}.
 <!-- vale on -->
 {{%notice note%}}
 

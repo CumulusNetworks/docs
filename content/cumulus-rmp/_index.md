@@ -19,9 +19,6 @@ experience with Cumulus Linux. However, the feature set is customized to
 the needs of out-of-band management. For a comparison of the features
 supported in Cumulus RMP, [see below](#cumulus-rmp-features).
 
-You can also find more information about Cumulus RMP
-[here](https://cumulusnetworks.com/products/cumulus-rack-management-platform/).
-
 <img src="/images/old_doc_images/RMP.png" />
 
 ## What's New in Cumulus RMP

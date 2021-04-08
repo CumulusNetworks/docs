@@ -312,18 +312,6 @@ iface eth1 inet static
 <li><p>For additional bandwidth links between host and leaf may be bonded</p></li>
 </ul></td>
 </tr>
-<tr class="even">
-<td><p><strong>FHR (First Hop Redundancy)</strong></p></td>
-<td><p><strong>More Information</strong></p></td>
-</tr>
-<tr class="odd">
-<td><ul>
-<li><p>No redundancy, uses single ToR as gateway.</p></li>
-</ul></td>
-<td><ul>
-<li><p>{{<exlink url="https://cumulusnetworks.com/learn/resources/guides/big-data-cumulus-linux-installation-guide-2" text="Big Data validated design guide">}} uses single attached ToR</p></li>
-</ul></td>
-</tr>
 </tbody>
 </table>
 

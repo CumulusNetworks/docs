@@ -22,7 +22,7 @@ as your command line tool for interacting with Cumulus Linux.
 {{%notice info%}}
 
 If you are a networking engineer but are unfamiliar with Linux concepts,
-refer to [this reference guide](https://docs.cumulusnetworks.com/knowledge-base/Demos-and-Training/Interoperability/Cumulus-Linux-Conversion-Guide-for-NX-OS-or-IOS-Users/)
+refer to {{<kb_link url="knowledge-base/Demos-and-Training/Interoperability/Cumulus-Linux-Conversion-Guide-for-NX-OS-or-IOS-Users/" text="this reference guide" >}}
 to compare the Cumulus Linux CLI and configuration options, and their
 equivalent Cisco Nexus 3000 NX-OS commands and settings. You can also
 [watch a series of short videos](http://cumulusnetworks.com/technical-videos/) introducing you to

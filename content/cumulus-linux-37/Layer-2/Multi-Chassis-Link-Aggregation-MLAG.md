@@ -1359,4 +1359,4 @@ This occurs when you have multiple LACP bonds between the same two LACP endpoint
 ## Caveats and Errata
 
 - If both the backup and peer connectivity are lost within a 30-second window, the switch in the secondary role misinterprets the event sequence, believing the peer switch is down, so it takes over as the primary.
-- MLAG is disabled on the chassis, including the {{<exlink url="https://cumulusnetworks.com/products/cumulus-express/getting-started/backpack/" text="Facebook Backpack">}} and EdgeCore OMP-800.
+- MLAG is disabled on the chassis, including the Facebook Backpack and EdgeCore OMP-800.

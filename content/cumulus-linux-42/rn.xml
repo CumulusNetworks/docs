@@ -42,6 +42,13 @@
 <td></td>
 </tr>
 <tr>
+<td>CM-20033</td>
+<td>&lt;p&gt;The VLAN interface stays up even though the physical link carrying the VLAN is admin or carrier down.&lt;/p&gt;
+</td>
+<td>3.5.2-3.7.14.2, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-15812</td>
 <td>&lt;p&gt;Multicast forwarding fails for IP addresses whose DMAC overlaps with reserved DIPs.&lt;/p&gt;</td>
 <td>3.2.1-3.7.14.2, 4.0.0-4.3.0</td>
@@ -241,12 +248,6 @@ ERROR: Command not found
 <td></td>
 </tr>
 <tr>
-<td>2555931</td>
-<td>When the EVPN primary IP address and advertise SVI IP address options are both configured, the SVI ARP is not forwarded between MLAG switches.</td>
-<td>4.2.1-4.3.0</td>
-<td></td>
-</tr>
-<tr>
 <td>2555613</td>
 <td>The {{net show configuration commands}} command incorrectly displays the NCLU syntax to disable IPv6 forwarding on interfaces. For example:
 
@@ -438,13 +439,6 @@ NVIDIA does not recommend running NTP with a source interface other than eth0 as
 <td>When you manually set the link speed or duplex mode with ethtool to an unsupported value, then run a TDR check against the interface, you encounter a {{switchd}} service heartbeat failure.
 To work around this issue, reboot the switch to clear the condition. Avoid setting the interface speed or duplex mode directly with ethtool.</td>
 <td>3.7.12-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
-<td>2553063</td>
-<td>After you manually edit the {{/etc/resolv.conf}} file to change or remove a VRF for a given DNS server, {{ifreload}} does not remove IP rules created for DNS servers in the VRF. 
-To work around this issue, run the {{net add/del dns nameserver vrf &lt;name&gt;}} command to force the DNS configuration.</td>
-<td>3.7.13-3.7.14.2, 4.1.1-4.3.0</td>
 <td></td>
 </tr>
 <tr>
@@ -1343,14 +1337,6 @@ To work around this issue, use {{net show interface}} command for LLDP output wh
 <td></td>
 </tr>
 <tr>
-<td>2533940</td>
-<td>The VLAN interface stays up even though the physical link carrying the VLAN is admin or carrier down.
-
-</td>
-<td>4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
 <td>2533691</td>
 <td>If you configure a VLAN under a VLAN-aware bridge and create a subinterface of the same VLAN on one of the bridge ports, the bridge and interface compete for the same VLAN and if the interface is flapped, it stops working. Correcting the configuration and running the {{ifreload}} command does not resolve the conflict. 
 To work around this issue, correct the bridge VIDs and restart {{switchd}} or delete the subinterface. </td>
@@ -1441,6 +1427,13 @@ To work around this issue, change the value of {{arp_ignore}} to 2. See [Address
 <td>CM-20508</td>
 <td>&lt;p&gt;The Cumulus-Resource-Query-MIB defines the ability to gather buffer utilization status but when these objects are polled, they return nothing. &lt;/p&gt;</td>
 <td>3.5.3-3.7.14.2, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-20033</td>
+<td>&lt;p&gt;The VLAN interface stays up even though the physical link carrying the VLAN is admin or carrier down.&lt;/p&gt;
+</td>
+<td>3.5.2-3.7.14.2, 4.0.0-4.3.0</td>
 <td></td>
 </tr>
 <tr>
@@ -1691,12 +1684,6 @@ ERROR: Command not found
 <tr>
 <td>2555932</td>
 <td>On Mellanox switches, you can't ping the SVI of the MLAG peer over the peer link after the packet is VXLAN decapsulated.</td>
-<td>4.2.1-4.3.0</td>
-<td></td>
-</tr>
-<tr>
-<td>2555931</td>
-<td>When the EVPN primary IP address and advertise SVI IP address options are both configured, the SVI ARP is not forwarded between MLAG switches.</td>
 <td>4.2.1-4.3.0</td>
 <td></td>
 </tr>
@@ -2297,13 +2284,6 @@ NVIDIA does not recommend running NTP with a source interface other than eth0 as
 <td>When you manually set the link speed or duplex mode with ethtool to an unsupported value, then run a TDR check against the interface, you encounter a {{switchd}} service heartbeat failure.
 To work around this issue, reboot the switch to clear the condition. Avoid setting the interface speed or duplex mode directly with ethtool.</td>
 <td>3.7.12-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
-<td>2553063</td>
-<td>After you manually edit the {{/etc/resolv.conf}} file to change or remove a VRF for a given DNS server, {{ifreload}} does not remove IP rules created for DNS servers in the VRF. 
-To work around this issue, run the {{net add/del dns nameserver vrf &lt;name&gt;}} command to force the DNS configuration.</td>
-<td>3.7.13-3.7.14.2, 4.1.1-4.3.0</td>
 <td></td>
 </tr>
 <tr>
@@ -3501,14 +3481,6 @@ To work around this issue, use {{net show interface}} command for LLDP output wh
 <td></td>
 </tr>
 <tr>
-<td>2533940</td>
-<td>The VLAN interface stays up even though the physical link carrying the VLAN is admin or carrier down.
-
-</td>
-<td>4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
 <td>2533691</td>
 <td>If you configure a VLAN under a VLAN-aware bridge and create a subinterface of the same VLAN on one of the bridge ports, the bridge and interface compete for the same VLAN and if the interface is flapped, it stops working. Correcting the configuration and running the {{ifreload}} command does not resolve the conflict. 
 To work around this issue, correct the bridge VIDs and restart {{switchd}} or delete the subinterface. </td>
@@ -3904,6 +3876,13 @@ asic-monitor[7389]: File "/usr/lib/python2.7/dist-packages/cumulus/asic_monitor.
 <td>CM-20508</td>
 <td>&lt;p&gt;The Cumulus-Resource-Query-MIB defines the ability to gather buffer utilization status but when these objects are polled, they return nothing. &lt;/p&gt;</td>
 <td>3.5.3-3.7.14.2, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-20033</td>
+<td>&lt;p&gt;The VLAN interface stays up even though the physical link carrying the VLAN is admin or carrier down.&lt;/p&gt;
+</td>
+<td>3.5.2-3.7.14.2, 4.0.0-4.3.0</td>
 <td></td>
 </tr>
 <tr>
@@ -4517,13 +4496,6 @@ Fixed: 3.1+dfsg-8+deb10u8</td>
 <td>When you manually set the link speed or duplex mode with ethtool to an unsupported value, then run a TDR check against the interface, you encounter a {{switchd}} service heartbeat failure.
 To work around this issue, reboot the switch to clear the condition. Avoid setting the interface speed or duplex mode directly with ethtool.</td>
 <td>3.7.12-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
-<td>2553063</td>
-<td>After you manually edit the {{/etc/resolv.conf}} file to change or remove a VRF for a given DNS server, {{ifreload}} does not remove IP rules created for DNS servers in the VRF. 
-To work around this issue, run the {{net add/del dns nameserver vrf &lt;name&gt;}} command to force the DNS configuration.</td>
-<td>3.7.13-3.7.14.2, 4.1.1-4.3.0</td>
 <td></td>
 </tr>
 <tr>
@@ -6022,14 +5994,6 @@ To work around this issue, use {{net show interface}} command for LLDP output wh
 <tr>
 <td>2534734</td>
 <td>Span rules matching the out-interface as a bond do not mirror packets.</td>
-<td>4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
-<td>2533940</td>
-<td>The VLAN interface stays up even though the physical link carrying the VLAN is admin or carrier down.
-
-</td>
 <td>4.0.0-4.3.0</td>
 <td></td>
 </tr>

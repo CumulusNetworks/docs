@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 520
 toc: 3
 ---
-IGMP (Internet Group Management Protocol) and MLD (Multicast Listener Discovery) snooping are implemented in the bridge driver in the Cumulus Linux kernel and are enabled by default. IGMP snooping processes IGMP v1/v2/v3 reports received on a bridge port in a bridge to identify the hosts which would like to receive multicast traffic destined to that group.
+IGMP (Internet Group Management Protocol) and MLD (Multicast Listener Discovery) snooping are implemented in the bridge driver in the Cumulus Linux kernel and are enabled by default. IGMP snooping processes IGMP v1, v2, and v3 reports received on a bridge port in a bridge to identify the hosts which would like to receive multicast traffic destined to that group.
 
 {{%notice note%}}
 IGMP and MLD snooping is supported over VXLAN bridges; however, this feature is *not* enabled by default. To enable IGMP and MLD over VXLAN, see {{<link url="#configure-igmpmld-snooping-over-vxlan" text="Configure IGMP/MLD Snooping over VXLAN">}}.
@@ -71,7 +71,7 @@ If no multicast router is sending queries to configure IGMP/MLD querier on the s
 
 For an explanation of the relevant parameters, see the `ifupdown-addons-interfaces` man page.
 
-For a {{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware bridge">}}, use a configuration like the following:
+For a {{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware bridge">}}, use a configuration like the following, where 123.1.1.1 is a typical loopback IP address.
 
 ```
 ...
@@ -88,8 +88,6 @@ iface bridge
   bridge-mcquerier 1
 ...
 ```
-
-For a VLAN-aware bridge, like *bridge* in the above example, to enable querier functionality for VLAN 100 in the bridge, set `bridge-mcquerier` to *1* in the bridge stanza and set `bridge-igmp-querier-src` to *123.1.1.1* in the bridge.100 stanza. 123.1.1.1 is a typical loopback IP address.
 
 You can specify a range of VLANs as well. For example:
 
@@ -117,29 +115,7 @@ iface br0
 
 ## Disable IGMP and MLD Snooping
 
-To disable IGMP and MLD snooping, set the `bridge-mcsnoop` value to *0*.
-
-{{< tabs "TabID142 ">}}
-{{< tab "CUE Commands ">}}
-
-```
-cumulus@switch:~$ NEED COMMAND
-cumulus@switch:~$ cl config apply
-```
-
-{{< /tab >}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@switch:~$ net add bridge bridge mcsnoop no
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-{{< /tab >}}
-{{< tab "Linux Commands ">}}
-
-Edit the `/etc/network/interfaces` file and set `bridge-mcsnoop to 0` in the bridge stanza:
+To disable IGMP and MLD snooping, edit the `/etc/network/interfaces` file and set `bridge-mcsnoop to 0` in the bridge stanza:
 
 ```
 cumulus@switch:~$ sudo nano /etc/network/interfaces
@@ -160,9 +136,6 @@ Run the `ifreload -a` command to reload the configuration:
 ```
 cumulus@switch:~$ sudo ifreload -a
 ```
-
-{{< /tab >}}
-{{< /tabs >}}
 
 ## Troubleshooting
 

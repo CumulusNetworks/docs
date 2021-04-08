@@ -142,8 +142,6 @@ By default, when you issue a `ping` or `traceroute`, the packet is sent to the d
 cumulus@switch:~$ ping -I mgmt <destination-ip>
 ```
 
-Or:
-
 ```
 cumulus@switch:~$ sudo traceroute -i mgmt -s <source-ip> <destination-ip>
 ```
@@ -200,6 +198,7 @@ Using route maps is highly recommended to control the advertised networks redist
 
 ```
 cumulus@switch:~$ NEED COMMAND
+cumulus@switch:~$ NEED COMMAND
 ```
 
 {{< /tab >}}
@@ -229,7 +228,7 @@ cumulus@switch:~$
 {{< /tab >}}
 {{< /tabs >}}
 
-The NCLU and vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+The commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
 ```
 ...

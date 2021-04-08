@@ -36,11 +36,11 @@
 {{- end -}}
 {{ if not (.Scratch.Get "page_found") }}
     <!-- #ERROR -->
-    {{- if and (eq .Page.Params.product "Cumulus Linux") -}}
-        {{-  /* errorf "broken link in %s" .Position  */ -}}
+    {{- if (eq .Page.Params.product "Cumulus Linux") -}}
+        {{- /* errorf "broken link in %s" .Position  */ -}}
     {{- end -}}
-    {{- if and (eq .Page.Params.product "Cumulus NetQ") -}}
-        {{- /* errorf "broken link in %s" .Position */  -}}
+    {{- if (eq .Page.Params.product "Cumulus NetQ") -}}
+        {{- /* errorf "broken link in %s" .Position */ -}}
     {{- end -}}
     <a href="{{(.Scratch.Get "title") | default (.Scratch.Get "url") }}.broken_link">UNABLE TO FIND LINK {{.Get 0}}</a>
 {{- end -}}

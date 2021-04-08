@@ -27,8 +27,9 @@ class Air {
 }
 
 class Simulation {
-  constructor(refId) {
+  constructor(refId, autoLoad) {
     this.refId = refId;
+    this.autoLoad = autoLoad;
     this.id = undefined;
     this.air = new Air();
     this.initLoadingContainers();
@@ -43,6 +44,8 @@ class Simulation {
   async loadConsoles() {
     const loadingContainers = document.getElementsByName(`loading-container-${this.refId}`);
     const containers = document.getElementsByName(`console-container-${this.refId}`);
+    let src = `${this.air.air_url}/Terminal`;
+    src += `?simulation_id=${this.id}&hideOOB=true&autoLoad=${this.autoLoad}`;
     containers.forEach((container, idx) => {
       container.addEventListener('load', () => {
         setTimeout(() => {
@@ -52,7 +55,7 @@ class Simulation {
           }
         }, 1000); // small delay to avoid flicker when switching between iframes
       });
-      container.setAttribute('src', `${this.air.air_url}/Terminal?simulation_id=${this.id}`);
+      container.setAttribute('src', src);
     });
   };
 

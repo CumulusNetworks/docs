@@ -58,7 +58,7 @@ cumulus@leaf01:~$
 {{< /tab >}}
 
 {{< tab "Try It " >}}
-    {{< simulation id="1753eadd-362e-44d8-8c95-84c42dee3873" >}}
+    {{< simulation id="1753eadd-362e-44d8-8c95-84c42dee3873" showNodes="leaf01,spine01" >}}
 {{< /tab >}}
 
 {{< /tabs >}}

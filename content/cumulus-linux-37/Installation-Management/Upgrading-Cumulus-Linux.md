@@ -18,7 +18,7 @@ In Cumulus Linux 3.7.12, the default password for the cumulus user account has c
 
 {{%notice tip%}}
 
-Be sure to read the knowledge base article {{<exlink url="https://docs.cumulusnetworks.com/knowledge-base/Installing-and-Upgrading/Upgrading/Network-Device-and-Linux-Host-Worldview-Comparison/" text="Upgrades: Network Device Worldview and Linux Host Worldview Comparison">}}, which provides a detailed comparison between the network device and Linux host worldview of upgrade and installation.
+Be sure to read the knowledge base article {{<kb_link url="knowledge-base/Installing-and-Upgrading/Upgrading/Network-Device-and-Linux-Host-Worldview-Comparison/" text="Upgrades: Network Device Worldview and Linux Host Worldview Comparison">}}, which provides a detailed comparison between the network device and Linux host worldview of upgrade and installation.
 
 {{%/notice%}}
 
@@ -195,7 +195,7 @@ Be aware of the following when upgrading packages:
 - You cannot upgrade the switch to a new release train. For example, you **cannot** upgrade the switch from **2**.5.6 to **3**.y.z.
 - If you are upgrading Cumulus Linux from a release earlier than 3.6.2, you might encounter certain issues due to package changes and service restarts.
 - You cannot choose the exact release that you want to run. When you upgrade, you upgrade all packages to the latest available release in the Cumulus Linux repository.
-- If you are upgrading from a release earlier than 3.6.2, certain upgrade operations terminate SSH sessions and/or routing on the in-band (front panel) ports, leaving you unable to monitor the upgrade process. (As a workaround, you can use the {{<exlink url="https://docs.cumulusnetworks.com/knowledge-base/Installing-and-Upgrading/Upgrading/Using-dtach-for-In-band-apt-get-Upgrades/" text="dtach tool">}}.)
+- If you are upgrading from a release earlier than 3.6.2, certain upgrade operations terminate SSH sessions and/or routing on the in-band (front panel) ports, leaving you unable to monitor the upgrade process. (As a workaround, you can use the {{<kb_link url="knowledge-base/Installing-and-Upgrading/Upgrading/Using-dtach-for-In-band-apt-get-Upgrades/" text="dtach tool">}}.)
 - The `sudo -E  apt-get upgrade` command might result in services being restarted or stopped as part of the upgrade process.
 - The `sudo -E apt-get install` command might disrupt core services by changing core service dependency packages.
 - After you upgrade, account UIDs and GIDs created by packages might be different on different switches, depending on the configuration and package installation history.
@@ -289,7 +289,7 @@ When the upgrade is complete, you can search for the files with the
 
    {{%notice note%}}
 
-If you see errors for expired GPG keys that prevent you from upgrading packages, follow the steps in {{<exlink url="https://docs.cumulusnetworks.com/knowledge-base/Installing-and-Upgrading/Upgrading/Update-Expired-GPG-Keys/" text="Upgrading Expired GPG Keys">}}.
+If you see errors for expired GPG keys that prevent you from upgrading packages, follow the steps in {{<kb_link url="knowledge-base/Installing-and-Upgrading/Upgrading/Update-Expired-GPG-Keys/" text="Upgrading Expired GPG Keys">}}.
 
 {{%/notice%}}
 
@@ -497,7 +497,7 @@ After you upgrade using a full disk image install, you need to reinstall any thi
 
 ## Related Information
 
-- {{<exlink url="https://docs.cumulusnetworks.com/knowledge-base/Installing-and-Upgrading/Upgrading/Network-Device-and-Linux-Host-Worldview-Comparison/" text="Upgrades: Network Device Worldview and Linux Host Worldview Comparison">}}
+- {{<kb_link url="knowledge-base/Installing-and-Upgrading/Upgrading/Network-Device-and-Linux-Host-Worldview-Comparison/" text="Upgrades: Network Device Worldview and Linux Host Worldview Comparison">}}
 - {{<exlink url="https://cumulusnetworks.com/solutions/automation/" text="Automation Solutions">}}
 - {{<exlink url="http://opencomputeproject.github.io/onie/design-spec/" text="ONIE Design Specification">}}
 - {{<link url="Multi-Chassis-Link-Aggregation-MLAG">}}

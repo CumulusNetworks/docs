@@ -6,7 +6,7 @@ toc: 4
 ---
 {{%notice warning%}}
 
-OVSDB server high availability is an {{<exlink url="https://docs.cumulusnetworks.com/knowledge-base/Support/Support-Offerings/Early-Access-Features-Defined/" text="early access feature">}}.
+OVSDB server high availability is an {{<kb_link url="knowledge-base/Support/Support-Offerings/Early-Access-Features-Defined/" text="early access feature">}}.
 
 {{%/notice%}}
 

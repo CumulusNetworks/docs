@@ -13,7 +13,7 @@ Intermediate-level Linux knowledge is assumed for this guide. You need to be fam
 
 You must have access to a Linux or UNIX shell. If you are running Windows, use a Linux environment like {{<exlink url="http://www.cygwin.com/" text="Cygwin">}} as your command line tool for interacting with Cumulus Linux.
 
-If you are a networking engineer but are unfamiliar with Linux concepts, refer to {{<exlink url="https://docs.cumulusnetworks.com/knowledge-base/Demos-and-Training/Interoperability/Cumulus-Linux-Conversion-Guide-for-NX-OS-or-IOS-Users/" text="this reference guide">}} to compare the Cumulus Linux CLI and configuration options, and their equivalent Cisco Nexus 3000 NX-OS commands and settings. You can also {{<exlink url="http://cumulusnetworks.com/technical-videos/" text="watch a series of short videos">}} introducing you to Linux and Cumulus Linux-specific concepts.
+If you are a networking engineer but are unfamiliar with Linux concepts, refer to {{<kb_link url="knowledge-base/Demos-and-Training/Interoperability/Cumulus-Linux-Conversion-Guide-for-NX-OS-or-IOS-Users/" text="this reference guide">}} to compare the Cumulus Linux CLI and configuration options, and their equivalent Cisco Nexus 3000 NX-OS commands and settings. You can also {{<exlink url="http://cumulusnetworks.com/technical-videos/" text="watch a series of short videos">}} introducing you to Linux and Cumulus Linux-specific concepts.
 
 ## Install Cumulus Linux
 

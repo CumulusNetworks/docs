@@ -59,38 +59,33 @@ To disable IGMP/MLD snooping over VXLAN, run the `net add bridge <bridge> mcsnoo
 
 ## Configure the IGMP and MLD Querier
 
-Typically, a single switch in an IP subnet coordinates multicast traffic flows. This switch is called the Querier or the
-Designated Router. The Querier generates query messages to check group membership, and processes membership reports and leave messages.
+In the absence of a multicast router, a single switch in an IP subnet can coordinate multicast traffic flows. This switch is called the querier or the designated router. The Querier generates query messages to check group membership, and processes membership reports and leave messages.
 
-To configure the Querier for a {{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware bridge">}}, use a configuration like the following, where `bridge-igmp-querier-src` is set to 10.10.10.1 (the loopback address of the switch) and `bridge-mcquerier` is set to 1 (enabled) in the bridge stanza of the `/etc/network/interfaces` file.
+To configure the querier on the switch for a {{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware bridge">}}, edit the `/etc/network/interfaces` file to add `bridge-mcquerier 1` to the bridge stanza (this enables the multicast querier on the bridge) and add `bridge-igmp-querier-src <ip-address>` to the VLAN stanza (the is the source IP address of the queries).
+
+The following configuration example sets `bridge-igmp-querier-src` to 10.10.10.1 (the loopback address of the switch) and `bridge-mcquerier` to 1.
 
 ```
+cumulus@switch:~$ sudo nano /etc/network/interfaces
 ...
-auto bridge.100
-vlan bridge.100
+auto vlan10
+iface vlan10
+  address 10.1.10.2/24
+  vlan-id 10
+  vlan-raw-device bridge
   bridge-igmp-querier-src 10.10.10.1
 
-auto bridge
-iface bridge
+auto br_default
+iface br_default
   bridge-ports swp1 swp2 swp3
   bridge-vlan-aware yes
-  bridge-vids 100 200
+  bridge-vids 10 20
   bridge-pvid 1
   bridge-mcquerier 1
 ...
 ```
 
-You can specify a range of VLANs as well. For example:
-
-```
-...
-auto bridge.[1-200]
-vlan bridge.[1-200]
-  bridge-igmp-querier-src 10.10.10.1
-...
-```
-
-For a bridge in {{<link url="Traditional-Bridge-Mode" text="traditional mode">}}, you can configure the source IP address of the queries to be the bridge IP address by setting `bridge-mcqifaddr`  to 1. 
+To configure the querier on the switch for a bridge in {{<link url="Traditional-Bridge-Mode" text="traditional mode">}}, edit the bridge stanza in the `/etc/network/interfaces` file to add `bridge-mcquerier 1` (this enables the multicast querier on the bridge) and `bridge-mcqifaddr` to 1 (this configures the source IP address of the queries to be the bridge IP address).
 
 ```
 ...

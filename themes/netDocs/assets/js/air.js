@@ -4,13 +4,21 @@ class Air {
     this.api_url = `${this.air_url}/api/v1`;
   }
 
+  async _request(method, uri) {
+    const res = await fetch(`${this.api_url}${uri}`, { method, credentials: 'include' });
+    if (res.status > 399) {
+      throw new Error(res.statusText);
+    }
+    return res;
+  }
+
   async _get(uri) {
-    const res = await fetch(`${this.api_url}${uri}`, { method: 'GET', credentials: 'include' });
+    const res = await this._request('GET', uri);
     return res.json();
   };
 
   async _post(uri) {
-    const res = await fetch(`${this.api_url}${uri}`, { method: 'POST', credentials: 'include' });
+    const res = await this._request('POST', uri);
     return res.json();
   };
 
@@ -39,7 +47,7 @@ class Simulation {
     document.querySelectorAll('[name*="loading-container"]').forEach(container => {
       container.setAttribute('src', `${this.air.air_url}/loading?message=Building%20Simulation`);
     });
-  }
+  };
 
   async loadConsoles() {
     const loadingContainers = document.getElementsByName(`loading-container-${this.refId}`);
@@ -59,12 +67,22 @@ class Simulation {
     });
   };
 
+  showError() {
+    document.getElementsByName(`loading-container-${this.refId}`).forEach(container => {
+      container.parentElement.innerHTML = `<h3 class="air-error">Simulations are currently unavailable. Please login to <a href="${this.air.air_url}" target="_blank">NVIDIA Air</a> or try again later.</h3>`;
+    });
+  };
+
   initHandler(el) {
     const self = this;
     el.addEventListener('click', async () => {
       if (!this.id) {
         self.id = await self.air.autoprovision(self);
-        self.loadConsoles();
+        if (self.id) {
+          self.loadConsoles();
+        } else {
+          self.showError();
+        }
       }
     });
   };

@@ -9,11 +9,11 @@ This simple document provides a checklist for users like network administrators,
 
 ## Adding and Managing User Accounts
 
-1.  Learn about {{<kb_link url="cumulus-linux-43/System-Configuration/Authentication-Authorization-and-Accounting/User-Accounts/" text="user accounts" >}}
-3.  {{<kb_link url="cumulus-linux-43/System-Configuration/Authentication-Authorization-and-Accounting/Using-sudo-to-Delegate-Privileges/" text="Use sudo to delegate privileges" >}}
+1.  Learn about {{<kb_link url="cumulus-linux-43/System-Configuration/Authentication,-Authorization-and-Accounting/User-Accounts/" text="user accounts" >}}
+3.  {{<kb_link url="cumulus-linux-43/System-Configuration/Authentication,-Authorization-and-Accounting/Using-sudo-to-Delegate-Privileges/" text="Use sudo to delegate privileges" >}}
 4.  {{<kb_link url="knowledge-base/Setup-and-Getting-Started/Default-User-Name-and-Password-in-Cumulus-Linux/" text="What is the default password in Cumulus Linux?" >}}
 5.  Optional: Configure LDAP for centralized user management
-    - {{<kb_link url="cumulus-linux-43/System-Configuration/Authentication-Authorization-and-Accounting/LDAP-Authentication-and-Authorization/" text="LDAP authentication and authorization" >}}
+    - {{<kb_link url="cumulus-linux-43/System-Configuration/Authentication,-Authorization-and-Accounting/LDAP-Authentication-and-Authorization/" text="LDAP authentication and authorization" >}}
     - {{<kb_link url="knowledge-base/Security/Authentication/LDAP-on-Cumulus-Linux-Using-Server-2008-Active-Directory/" text="LDAP authentication and authorization with Active Directory" >}}
 
 ## Editing Files in Linux
@@ -73,20 +73,20 @@ Learn how to use the nano text editor ([cheat sheet --- external link](http://ww
 ### More Networking On Cumulus Linux
 
 1.  {{<kb_link url="cumulus-linux-43/Layer-1-and-Switch-Ports/Interface-Configuration-and-Management/#use-globs-for-port-lists" text="Manually putting all switch ports into a single VLAN" >}}
-2.  {{<kb_link url="cumulus-linux-42/Layer-2/Multi-Chassis-Link-Aggregation-MLAG/#reserved-mac-address-range" text="Reserved MAC address range for use with Cumulus Linux" >}}
+2.  {{<kb_link url="cumulus-linux-43/Layer-2/Multi-Chassis-Link-Aggregation-MLAG/#reserved-mac-address-range" text="Reserved MAC address range for use with Cumulus Linux" >}}
 
-    - {{<kb_link url="cumulus-linux-42/Layer-2/Virtual-Router-Redundancy-VRR-and-VRRP/#vrr" text="Reserved range for VRR" >}}
+    - {{<kb_link url="cumulus-linux-43/Layer-2/Virtual-Router-Redundancy-VRR-and-VRRP/#vrr" text="Reserved range for VRR" >}}
 
 3.  {{<kb_link url="cumulus-linux-43/Layer-2/Link-Layer-Discovery-Protocol/" text="Link Layer Discovery Protocol LLDP" >}}
 4.  {{<kb_link url="cumulus-linux-43/Layer-2/Bonding-Link-Aggregation/" text="Bonding - Link Aggregation" >}}
 5.  {{<kb_link url="cumulus-linux-43/Layer-2/Multi-Chassis-Link-Aggregation-MLAG/" text="MLAG" >}}
 6.  {{<kb_link url="cumulus-linux-43/Layer-3/Routing/" text="Routing" >}}
-7.  {{<kb_link url="cumulus-linux-43/Layer-3/Configuring-FRRouting/" text="Configuring FRRouting" >}}
+7.  {{<kb_link url="cumulus-linux-43/Layer-3/FRRouting/Configure-FRRouting" text="Configuring FRRouting" >}}
 
 ### General Useful Links
 
-- {{<kb_link url="cumulus-linux/" text="Cumulus Linux technical documentation" >}}
+- {{<kb_link url="cumulus-linux-43/" text="Cumulus Linux technical documentation" >}}
 - {{<kb_link url="cumulus-linux-43/Quick-Start-Guide/" text="Quick start guide" >}}
 - {{<kb_link url="knowledge-base/Demos-and-Training/Interoperability/" text="Interoperability and conversion guides" >}}
 - {{<kb_link url="knowledge-base/Support/Licensing/" text="General license questions" >}}
-- {{<kb_link url="cumulus-linux/Whats-New/rn/" text="Release notes for the latest Cumulus Linux version" >}}
+- {{<kb_link url="cumulus-linux-43/Whats-New/rn/" text="Release notes for the latest Cumulus Linux version" >}}

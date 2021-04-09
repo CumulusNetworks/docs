@@ -6,10 +6,10 @@ toc: 4
 ---
 
 The Cumulus Linux bridge driver operates in two modes:
-{{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux/Layer-2/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode/" text="VLAN-aware">}} and a {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux/Layer-2/Ethernet-Bridging-VLANs/Traditional-Bridge-Mode/" text="traditional Linux mode">}}. There are many minor syntax differences between the two modes, which are outlined below. However, the following behaviors apply no matter which mode you use for the driver:
+{{<kb_link url="cumulus-linux-43/Layer-2/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode/" text="VLAN-aware">}} and a {{<kb_link url="cumulus-linux-43/Layer-2/Ethernet-Bridging-VLANs/Traditional-Bridge-Mode/" text="traditional Linux mode">}}. There are many minor syntax differences between the two modes, which are outlined below. However, the following behaviors apply no matter which mode you use for the driver:
 
 - Network interfaces are configured under `/etc/network/interfaces`.
-- Both modes support {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux/Layer-2/Spanning-Tree-and-Rapid-Spanning-Tree/" text="Spanning Tree Protocol">}} (see the example below).
+- Both modes support {{<kb_link url="cumulus-linux-43/Layer-2/Spanning-Tree-and-Rapid-Spanning-Tree/" text="Spanning Tree Protocol">}} (see the example below).
 - You manage interfaces configured with both modes with `ifupdown` commands (`ifup bridge`, `ifdown bridge`).
 
 The reasons why you would use VLAN-aware mode for bridges are:

@@ -20,7 +20,7 @@ It helps answer questions such as:
 - Which transceivers are installed?
 - What is the peer for a given port?
 
-NetQ uses {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux/Layer-2/Link-Layer-Discovery-Protocol/" text="LLDP">}} (Link Layer Discovery Protocol) to collect port information. NetQ can also identify peer ports connected to DACs (Direct Attached Cables) and AOCs (Active Optical Cables) without using LLDP, even if the link is not UP.
+NetQ uses {{<kb_link url="cumulus-linux-43/Layer-2/Link-Layer-Discovery-Protocol/" text="LLDP">}} (Link Layer Discovery Protocol) to collect port information. NetQ can also identify peer ports connected to DACs (Direct Attached Cables) and AOCs (Active Optical Cables) without using LLDP, even if the link is not UP.
 
 ## Monitor Physical Layer Inventory
 

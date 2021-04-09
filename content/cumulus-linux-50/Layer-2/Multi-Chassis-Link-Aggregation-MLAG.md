@@ -1165,5 +1165,5 @@ After you make the necessary cable or configuration changes to avoid the protodo
 
 ## Related Information
 
-- {{<exlink url="https://docs.cumulusnetworks.com/knowledge-base/Configuration-and-Usage/Network-Interfaces/MLAG-Redundancy-Scenarios/" text="MLAG Redundancy Scenarios">}}
-- {{<exlink url="https://docs.cumulusnetworks.com/knowledge-base/Configuration-and-Usage/Network-Interfaces/Compare-Traditional-Bridge-Mode-to-VLAN-aware-Bridge-Mode/" text="Compare Traditional Bridge Mode to VLAN-aware Bridge Mode">}}
+- {{<kb_link url="knowledge-base/Configuration-and-Usage/Network-Interfaces/MLAG-Redundancy-Scenarios/" text="MLAG Redundancy Scenarios">}}
+- {{<kb_link url="knowledge-base/Configuration-and-Usage/Network-Interfaces/Compare-Traditional-Bridge-Mode-to-VLAN-aware-Bridge-Mode/" text="Compare Traditional Bridge Mode to VLAN-aware Bridge Mode">}}

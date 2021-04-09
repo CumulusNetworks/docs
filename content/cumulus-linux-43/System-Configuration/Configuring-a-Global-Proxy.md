@@ -70,4 +70,4 @@ The proxy is now configured. The `echo` command can be used to confirm a proxy i
 
 ## Related Information
 
-{{<exlink url="https://docs.cumulusnetworks.com/knowledge-base/Set-up-an-apt-Package-Cache" text="Set up an apt package cache">}}
+{{<kb_link url="knowledge-base/Set-up-an-apt-Package-Cache" text="Set up an apt package cache">}}

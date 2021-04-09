@@ -10,7 +10,7 @@ system into a single layer 2 domain. The bridge is a logical interface
 with a MAC address and an
 {{<link url="Switch-Port-Attributes/#mtu" text="MTU">}}
 (maximum transmission unit). The bridge MTU is the minimum MTU among all
-its members. By default, the {{<exlink url="https://docs.cumulusnetworks.com/knowledge-base/Configuration-and-Usage/Network-Configuration/Cumulus-Linux-Derivation-of-MAC-Address-for-a-Bridge/" text="bridge's MAC address">}}
+its members. By default, the {{<kb_link url="knowledge-base/Configuration-and-Usage/Network-Configuration/Cumulus-Linux-Derivation-of-MAC-Address-for-a-Bridge/" text="bridge's MAC address">}}
 is the MAC address of the first port in the `bridge-ports` list. The
 bridge can also be assigned an IP address, as discussed
 {{<link url="#configure-an-svi-switch-vlan-interface" text="below">}}.
@@ -36,7 +36,7 @@ traditional mode, it's best to use VLAN-aware mode.
 
 {{%notice info%}}
 
-For a comparison of traditional and VLAN-aware modes, read this {{<exlink url="https://docs.cumulusnetworks.com/knowledge-base/Configuration-and-Usage/Network-Interfaces/Compare-Traditional-Bridge-Mode-to-VLAN-aware-Bridge-Mode/" text="knowledge base article">}}.
+For a comparison of traditional and VLAN-aware modes, read this {{<kb_link url="knowledge-base/Configuration-and-Usage/Network-Interfaces/Compare-Traditional-Bridge-Mode-to-VLAN-aware-Bridge-Mode/" text="knowledge base article">}}.
 
 {{%/notice%}}
 
@@ -369,4 +369,4 @@ Some things you should note about the output:
 
 - {{<exlink url="http://www.linuxfoundation.org/collaborate/workgroups/networking/vlan" text="Linux Foundation - VLANs">}}
 - {{<exlink url="http://www.linuxjournal.com/article/8172" text="Linux Journal - Linux as an Ethernet Bridge">}}
-- {{<exlink url="https://docs.cumulusnetworks.com/knowledge-base/Configuration-and-Usage/Network-Interfaces/Compare-Traditional-Bridge-Mode-to-VLAN-aware-Bridge-Mode/" text="Comparing Traditional Bridge Mode to VLAN-aware Bridge Mode">}}
+- {{<kb_link url="knowledge-base/Configuration-and-Usage/Network-Interfaces/Compare-Traditional-Bridge-Mode-to-VLAN-aware-Bridge-Mode/" text="Comparing Traditional Bridge Mode to VLAN-aware Bridge Mode">}}

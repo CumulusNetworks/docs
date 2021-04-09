@@ -7,7 +7,7 @@ toc: 4
 
 While the long term strategy for many data centers is to automate the configuration of Cumulus Networks switches, this is often overkill for smaller environments.
 
-However, manually adding all of the switch ports to the configuration file can be a painfully dreary task. So it's a good thing NCLU supports {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux/Layer-1-and-Switch-Ports/Interface-Configuration-and-Management/#use-globs-for-port-lists" text="globs">}} so you can use one to quickly define a range or ports.
+However, manually adding all of the switch ports to the configuration file can be a painfully dreary task. So it's a good thing NCLU supports {{<kb_link url="cumulus-linux-43/Layer-1-and-Switch-Ports/Interface-Configuration-and-Management/#use-globs-for-port-lists" text="globs">}} so you can use one to quickly define a range or ports.
 
 But if you're old school and want to use the tools available through the native Bash shell, this article shows you how to quickly add the switch ports using a Bash script.
 

@@ -313,7 +313,7 @@ In this configuration, distribution layer switches only route IP packets between
 
 ### Redistribute Neighbor
 
-The Cumulus Linux layer 3 {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux-41/Layer-3/Redistribute-Neighbor/" text="Redistribute Neighbor">}} feature helps modernise your campus network to make it more resilient, maximize utilisation, and eliminate the use of the Spanning Tree Protocol (STP).
+The Cumulus Linux layer 3 {{<kb_link url="cumulus-linux-41/Layer-3/Redistribute-Neighbor/" text="Redistribute Neighbor">}} feature helps modernise your campus network to make it more resilient, maximize utilisation, and eliminate the use of the Spanning Tree Protocol (STP).
 
 Redistribute neighbor provides a way for IP subnets to span racks without forcing the end hosts to run a routing protocol by redistributing the Address Resolution Protocol (ARP) table (Linux IP neighbor table) into a dynamic routing protocol, such as OSPF or BGP. The host routes continue to be advertised into the routing domain as /32 prefix routes. Routing protocols can achieve reachability by routing on the Longest Prefix Match (LPM) based on these /32 host routes.
 
@@ -412,7 +412,7 @@ cumulus@Host_C:~$ 10.1.3.101 show eth1
 
 {{< /tabs >}}
 
-In this design, {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux-41/Layer-3/Address-Resolution-Protocol-ARP/#configure-proxy-arp" text="Proxy ARP ">}} is configured on the VLAN attached to the host so that the switch responds to all ARP requests when a host sends an ARP request to a system on its subnet.
+In this design, {{<kb_link url="cumulus-linux-41/Layer-3/Address-Resolution-Protocol-ARP/#configure-proxy-arp" text="Proxy ARP ">}} is configured on the VLAN attached to the host so that the switch responds to all ARP requests when a host sends an ARP request to a system on its subnet.
 
 If you have many switches and need the VLAN across all the switches, you can specify a unique IP address on all the SVIs in the subnet, or you can use the anycast gateway with VRR. To conserve IP addresses, repeat physical IP addresses on a switch or switch pair (if you use MLAG).
 

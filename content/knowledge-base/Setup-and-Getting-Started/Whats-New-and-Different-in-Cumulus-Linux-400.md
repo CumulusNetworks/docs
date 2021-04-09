@@ -48,7 +48,7 @@ New features and enhancements include:
   - {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux-40/Layer-3/Configuring-FRRouting/" text="Zebra">}}
     is enabled by default in the `daemons` file
   - {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux-40/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN/Basic-Configuration/#arp-and-nd-suppression" text="ARP/ND suppression">}} is enabled by default on all VXLAN interfaces
-  - {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN/Basic-Configuration/" text="MAC learning">}} is disabled by default on all VXLAN bridge ports
+  - {{<kb_link url="cumulus-linux-43/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN/Basic-Configuration/" text="MAC learning">}} is disabled by default on all VXLAN bridge ports
   - On Broadcom switches, the default value for `route_preferred_over_neigh` in `/etc/cumulus/switchd.conf` is now TRUE
 - A {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux-40/Installation-Management/Adding-and-Updating-Packages/#add-packages-from-the-cumulus-linux-local-archive" text="local archive">}} is now embedded in the Cumulus Linux disk image that contains the packages required to install ifplugd, LDAP, RADIUS or TACACS+ without needing a network connection; the archive is called `cumulus-local-apt-archive` and is referenced in the `/etc/apt/cumulus-local-apt-archive-sources.list` file
 - The `apps` repository has been removed

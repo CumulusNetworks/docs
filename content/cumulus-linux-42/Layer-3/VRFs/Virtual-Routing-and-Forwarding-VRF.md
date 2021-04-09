@@ -226,6 +226,8 @@ Protocol="udp")
 
 The most common use case for VRF is to use multiple independent routing and forwarding tables; however, there are situations where destinations in one VRF must be reachable (leaked) from another VRF. For example, to make a service (such as a firewall) available to multiple VRFs or to enable routing to external networks (or the Internet) for multiple VRFs, where the external network itself is reachable through a specific VRF.
 
+Cumulus Linux supports dynamic VRF route leaking. Static route leaking is not supported.
+
 - An interface is always assigned to only one VRF; any packets received on that interface are routed using the associated VRF routing table.
 - Route leaking is not allowed for overlapping addresses.
 - Route leaking is supported for both IPv4 and IPv6 routes.

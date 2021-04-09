@@ -1400,7 +1400,7 @@ for them. The overall Cumulus Linux MIB is defined in the
 </tr>
 <tr>
 <td><p>{{<kb_link url="mibs/CUMULUS-SNMP-MIB.txt" text="CUMULUS-SNMP-MIB" >}}</p></td>
-<td><p>SNMP counters. For information on exposing CPU and memory information with SNMP, see this <a href="https://docs.cumulusnetworks.com/knowledge-base/Configuration-and-Usage/Monitoring/Expose-CPU-and-Memory-Information-via-SNMP/">knowledge base article</a>.</p></td>
+<td><p>SNMP counters. For information on exposing CPU and memory information with SNMP, see this {{<kb_link url="knowledge-base/Configuration-and-Usage/Monitoring/Expose-CPU-and-Memory-Information-via-SNMP/" text="knowledge base article" >}}.</p></td>
 </tr>
 <tr>
 <td><p>{{<kb_link url="mibs/DISMAN-EVENT-MIB.txt" text="DISMAN-EVENT-MIB" >}}</p></td>

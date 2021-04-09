@@ -323,7 +323,7 @@ Using Redistribute neighbor provides the following benefits:
 
 - Eliminates the requirement to stretch a layer 2 domain across the entire campus network or across more than one switch. Limiting your layer 2 domain between the access switch port and the directly-connected host eliminates STP from the entire network. Without a stretched layer 2 domain, BUM traffic is limited to the access switch port, where the host is directly connected.
 - Provides faster convergence, greater resiliency, and packet forwarding intelligence because the multiple uplink ports on the access switch and the rest of the core network become layer 3. In addition, using Equal Cost Multipath (ECMP) on all layer 3 links lets you take advantage of the full available bandwidth. Coupling with features, such as BFD, helps you achieve essential sub-second failover and forwarding reconvergence on the core layer 3 links.
-- Ensures efficiency, IP address conservation, and reduces IP address management by using {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux/Layer-3/Border-Gateway-Protocol-BGP/#bgp-unnumbered-interfaces" text="BGP unnumbered interfaces ">}} for all layer 3 routing protocol links. Using BGP in the core enables you to achieve traffic engineering with route maps and prefix lists to manipulate routing and forwarding paths with the BGP attributes for certain prefixes and hosts.
+- Ensures efficiency, IP address conservation, and reduces IP address management by using {{<kb_link url="cumulus-linux-43/Layer-3/Border-Gateway-Protocol-BGP/#bgp-unnumbered-interfaces" text="BGP unnumbered interfaces ">}} for all layer 3 routing protocol links. Using BGP in the core enables you to achieve traffic engineering with route maps and prefix lists to manipulate routing and forwarding paths with the BGP attributes for certain prefixes and hosts.
 - Optimises performance with the use of subnets. For example, when you have multiple buildings across the campus, you can allocate a /24 IP address block to a building, then another separate IP address block of /24 network addresses to another building, and so on. You can then perform route summarisation at the egress links of the building aggregation switches to summarise the subset /32 network prefixes and networks when advertising to the network core.
 
 #### Example Configuration
@@ -623,8 +623,8 @@ FIB entry for 10.1.3.101
 
 In this deployment, you can perform segmentation in one of two ways:
 
-- Use {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux/Layer-3/Virtual-Routing-and-Forwarding-VRF/" text="VRF ">}} (depending on the scale and design).
-- Use {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux/Layer-1-and-Switch-Ports/802.1X-Interfaces/#dynamic-acls" text="802.1x Dynamic ACL (DACL) ">}} with a NAC. This option is more suitable and scalable in this design. A host joining the network can be authenticated and policies pushed to the access switch through `iptable` rules or an access control list (ACL) to restrict the network resource access of that particular host.
+- Use {{<kb_link url="cumulus-linux-43/Layer-3/VRFs/Virtual-Routing-and-Forwarding-VRF/" text="VRF ">}} (depending on the scale and design).
+- Use {{<kb_link url="cumulus-linux-43/Layer-1-and-Switch-Ports/802.1X-Interfaces/#dynamic-acls" text="802.1x Dynamic ACL (DACL) ">}} with a NAC. This option is more suitable and scalable in this design. A host joining the network can be authenticated and policies pushed to the access switch through `iptable` rules or an access control list (ACL) to restrict the network resource access of that particular host.
 
 ### EVPN VXLAN
 

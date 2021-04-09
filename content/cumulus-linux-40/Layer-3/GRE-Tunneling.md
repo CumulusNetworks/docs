@@ -7,7 +7,7 @@ toc: 3
 
 {{%notice warning%}}
 
-GRE Tunneling is an {{<exlink url="https://docs.cumulusnetworks.com/knowledge-base/Support/Support-Offerings/Early-Access-Features-Defined/" text="early access feature">}}.
+GRE Tunneling is an {{<kb_link url="knowledge-base/Support/Support-Offerings/Early-Access-Features-Defined/" text="early access feature">}}.
 
 {{%/notice%}}
 

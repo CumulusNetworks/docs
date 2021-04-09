@@ -74,7 +74,7 @@ variables, such as HTTP proxies, before you install new packages or
 upgrade your distribution.
 
 1.  Retrieve the new version packages: `cumulus@switch:~$ sudo -E apt-get update`
-2.  If you are using any {{<exlink url="https://docs.cumulusnetworks.com/knowledge-base/Support/Support-Offerings/Early-Access-Features-Defined/" text="early access features">}} from an older release, remove them with: `cumulus@switch:~$ sudo -E apt-get remove EA_PACKAGENAME`
+2.  If you are using any {{<kb_link url="knowledge-base/Support/Support-Offerings/Early-Access-Features-Defined/" text="early access features">}} from an older release, remove them with: `cumulus@switch:~$ sudo -E apt-get remove EA_PACKAGENAME`
 3.  Upgrade the release: `cumulus@switch:~$ sudo -E apt-get upgrade`
 4.  To include additional Cumulus Linux packages not present in your current version, run the command: `cumulus@switch:~$ apt-get install nclu hostapd python-cumulus-restapi linuxptp` 
 
@@ -83,7 +83,7 @@ upgrade your distribution.
 
 {{%notice note%}}
 
-If you see errors for expired GPG keys that prevent you from upgrading packages when upgrading to Cumulus Linux 3.6 from 3.5.1 or earlier, follow the steps in {{<exlink url="https://docs.cumulusnetworks.com/knowledge-base/Installing-and-Upgrading/Upgrading/Update-Expired-GPG-Keys/" text="Upgrading Expired GPG Keys">}}.
+If you see errors for expired GPG keys that prevent you from upgrading packages when upgrading to Cumulus Linux 3.6 from 3.5.1 or earlier, follow the steps in {{<kb_link url="knowledge-base/Installing-and-Upgrading/Upgrading/Update-Expired-GPG-Keys/" text="Upgrading Expired GPG Keys">}}.
 
 {{%/notice%}}
 
@@ -1156,7 +1156,7 @@ sudo systemctl daemon-reload</code></pre>
 RN-1027 (CM-21707)</td>
 <td>On Maverick switches, enabling auto-negotiation on 10G (all) and 1G SFP RJ45 breaks the link</td>
 <td><p>On a Maverick switch, if auto-negotiation is configured on a 10G interface and the installed module does not support auto-negotiation (for example, 10G DAC, 10G Optical, 1G RJ45 SFP), the link breaks.</p>
-<p>To work around this issue, disable auto-negotiation on interfaces where it is not supported. See the <a href="https://docs.cumulusnetworks.com/cumulus-linux-36/Layer-1-and-Switch-Ports/Interface-Configuration-and-Management/Switch-Port-Attributes/#interface-configuration-recommendations" class="external-link">Interface Configuration Recommendations</a> for information about configuring auto-negotiation.</p>
+<p>To work around this issue, disable auto-negotiation on interfaces where it is not supported. See the {{<link url="Switch-Port-Attributes/#interface-configuration-recommendations" text="Interface Configuration Recommendations" >}} for information about configuring auto-negotiation.</p>
 <p>This issue is being investigated at this time.</p></td>
 </tr>
 <tr class="odd">
@@ -1573,7 +1573,7 @@ RN-947 (CM-20992)</td>
 RN-948 (CM-17494)</td>
 <td>The default arp_ignore mode does not prevent reachable neighbor entries for hosts not on the connected subnet</td>
 <td><p>In certain cases, a peer device sends an ARP request from a source IP address that is not on the connected subnet and the switch creates a STALE neighbor entry. Eventually, the switch attempts to keep the entry fresh and sends ARP requests to the host. If the host responds, the switch has REACHABLE neighbor entries for hosts that are not on the connected subnet.</p>
-<p>To work around this issue, change the value of <code>arp_ignore</code> to 2. See <a href="https://docs.cumulusnetworks.com/cumulus-linux-36/Layer-3/Address-Resolution-Protocol-ARP/" class="external-link">Default ARP Settings in Cumulus Linux</a> for more information.</p></td>
+<p>To work around this issue, change the value of <code>arp_ignore</code> to 2. See {{<link url="Address-Resolution-Protocol-ARP/" text="Default ARP Settings in Cumulus Linux" >}} for more information.</p></td>
 </tr>
 <tr class="odd">
 <td><span id="RN951"></span> <a href="#RN951"><img src="/images/knowledge-base/RT-mono.svg" width="32" /></a><br />

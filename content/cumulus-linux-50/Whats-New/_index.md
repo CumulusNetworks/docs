@@ -23,7 +23,7 @@ Cumulus Linux 5.0 supports new platforms, provides bug fixes, and contains sever
 
 - {{<link url="Cumulus-User-Experience-CUE" text="Cumulus User Experience (CUE)">}} is a new object-oriented, schema driven model of a complete Cumulus Linux system (hardware and software) with a robust API that allows multiple interfaces to both view and configure any element within the system.
   {{%notice note%}}
-  CUE replaces the NCLU command line interface, which is no longer supported. In Cumulus Linux 5.0, not all NCLU commands have a CUE equivalent; however you can features without CUE commands using Linux commands and FRR.
+  CUE replaces the NCLU command line interface, which is no longer supported. In Cumulus Linux 5.0, not all NCLU commands have a CUE equivalent. You can configure features without CUE commands using Linux commands and FRR. 
   {{%/notice%}}
 - Support for {{<link url="VLAN-aware-Bridge-Mode/" text="multiple VLAN aware bridges">}}
 - VNI scaling enhancements
@@ -47,7 +47,7 @@ Cumulus Linux 5.0 supports new platforms, provides bug fixes, and contains sever
 - Support QinQ/QinVNI access and trunk ports on the same system
 - cl-support and improvements
 - Removed licensing from Cumulus Linux
-- Ability to modify inner tag in double tagged packets on MLNX/Spectrum
+- On NVIDIA Spectrum switches, you now have the ability to {{<link url="Hybrid-Cloud-Connectivity-with-QinQ-and-VXLANs" text="modify the inner tag in double-tagged packets ">}}
 
 ### Unsupported Platforms
 

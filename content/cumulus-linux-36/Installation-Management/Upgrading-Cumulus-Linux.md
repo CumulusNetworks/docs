@@ -174,13 +174,13 @@ remote-controllable power distribution units (PDUs) in each rack to the
 management network, so you can have complete control to remote power
 cycle every device in that rack.
 
-{{%notice tip%}}
+{{<notice tip>}}
 
 However, if an out-of-band network is not available for you to upgrade,
 you can use {{<kb_link url="knowledge-base/Installing-and-Upgrading/Upgrading/Using-dtach-for-In-band-apt-get-Upgrades/" text="the dtach tool" >}}
 instead to upgrade in band.
 
-{{%/notice%}}
+{{</notice>}}
 
 ### Pre-Deployment Testing of New Releases Is Advised and Enabled 
 

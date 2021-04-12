@@ -81,11 +81,11 @@ upgrade your distribution.
     If you already have the latest version of a package installed, you see messages similar to: `nclu is already the newest version`. You might also see additional packages being installed due to dependencies.
 5.  Reboot the switch: `cumulus@switch:~$ sudo reboot`
 
-{{%notice note%}}
+{{<notice note>}}
 
 If you see errors for expired GPG keys that prevent you from upgrading packages when upgrading to Cumulus Linux 3.6 from 3.5.1 or earlier, follow the steps in {{<kb_link url="knowledge-base/Installing-and-Upgrading/Upgrading/Update-Expired-GPG-Keys/" text="Upgrading Expired GPG Keys">}}.
 
-{{%/notice%}}
+{{</notice>}}
 
 {{%notice note%}}
 

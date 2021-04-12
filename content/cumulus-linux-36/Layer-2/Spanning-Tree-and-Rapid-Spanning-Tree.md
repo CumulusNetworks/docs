@@ -208,7 +208,7 @@ to implement IEEE802.1D 2004 and IEEE802.1Q 2011.
 `mstpd` is started by default when the switch boots. `mstpd` logs and
 errors are located in `/var/log/syslog`.
 
-{{%notice warning%}}
+{{<notice warning>}}
 
 `mstpd` is the preferred utility for interacting with STP on Cumulus
 Linux. `brctl` also provides certain methods for configuring STP;
@@ -216,7 +216,7 @@ however, they are not as complete as the tools offered in `mstpd` and
 {{<kb_link url="knowledge-base/Configuration-and-Usage/Network-Interfaces/brctl-showstp-Shows-Carrier-Down-Ports-as-Blocking/" text="output from brctl can be misleading" >}}
 in some cases.
 
-{{%/notice%}}
+{{</notice>}}
 
 To get the bridge state, use:
 

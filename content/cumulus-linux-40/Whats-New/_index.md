@@ -38,6 +38,11 @@ Cumulus Linux 4.0 supports new platforms, provides bug fixes, and contains sever
     - {{<link url="Basic-Configuration" text="ARP/ND suppression">}} is enabled by default on all VXLAN interfaces
     - {{<link url="Basic-Configuration" text="MAC learning">}} is disabled by default on all VXLAN bridge ports
 
+### Unsupported Features
+
+- Lightweight network virtualization (LNV) is no longer available. See {{<link url="Migrating-from-LNV-to-EVPN" text="Migrating from LNV to EVPN">}}.
+- {{<link url="Virtual-Routing-and-Forwarding-VRF/#vrf-route-leaking" text="Static VRF route leaking">}} is not supported.
+
 ### Unsupported Platforms
 
 These platforms are not supported in Cumulus Linux 4.0. They are supported in Cumulus Linux 3.7 until that release reaches its end of life.

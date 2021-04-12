@@ -59,7 +59,7 @@ To disable IGMP/MLD snooping over VXLAN, run the `net add bridge <bridge> mcsnoo
 
 ## Configure the IGMP and MLD Querier
 
-In the absence of a multicast router, a single switch in an IP subnet can coordinate multicast traffic flows. This switch is called the querier or the designated router. The Querier generates query messages to check group membership, and processes membership reports and leave messages.
+In the absence of a multicast router, a single switch in an IP subnet can coordinate multicast traffic flows. This switch is called the querier or the designated router. The querier generates query messages to check group membership, and processes membership reports and leave messages.
 
 To configure the querier on the switch for a {{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware bridge">}}, edit the `/etc/network/interfaces` file to add `bridge-mcquerier 1` to the bridge stanza (this enables the multicast querier on the bridge) and add `bridge-igmp-querier-src <ip-address>` to the VLAN stanza (the is the source IP address of the queries).
 

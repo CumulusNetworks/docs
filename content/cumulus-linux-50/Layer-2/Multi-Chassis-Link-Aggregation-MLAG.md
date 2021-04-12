@@ -46,6 +46,8 @@ MLAG has these requirements:
 - There must be only two peer switches in one MLAG configuration, but you can have multiple configurations in a network for *switch-to-switch MLAG*.
 - Both switches in the MLAG pair must be running the same release of Cumulus Linux. See {{<link url="Upgrading-Cumulus-Linux#upgrade-switches-in-an-mlag-pair" text="Upgrading Cumulus Linux">}}.
 
+MLAG is *not* supported in a multiple VLAN-aware bridge configuration.
+
 ## Basic Configuration
 
 To configure MLAG, you need to create a bond that uses LACP on the dual-connected devices and configure the interfaces (including bonds, VLANs, bridges, and peer links) on each peer switch.

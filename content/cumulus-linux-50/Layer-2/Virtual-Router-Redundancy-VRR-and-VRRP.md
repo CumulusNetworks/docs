@@ -63,21 +63,6 @@ cumulus@switch:~$ cl set interface vlan10 ip vrr state up
 ```
 
 {{< /tab >}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@switch:~$ net add vlan 10 ip address-virtual 00:00:5e:00:01:00 10.1.10.1/24
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-For IPv6, use this commands:
-
-```
-cumulus@switch:~$ net add vlan 10 ipv6 address-virtual 00:00:5e:00:01:00 2001:db8::f/32
-```
-
-{{< /tab >}}
 {{< tab "Linux Commands ">}}
 
 Edit the `/etc/network/interfaces` file, then run the `ifreload -a` command.
@@ -124,9 +109,7 @@ The following examples uses a single virtual MAC address for VLANs. You can add 
 ```
 cumulus@leaf01:~$ cl set interface eth0 ip address 192.168.200.11/24
 cumulus@leaf01:~$ cl set interface bond1 bond member swp1
-cumulus@leaf01:~$ cl set NEED COMMAND FOR ALIAS
 cumulus@leaf01:~$ cl set interface bond2 bond member swp2
-cumulus@leaf01:~$ cl set NEED COMMAND FOR ALIAS
 cumulus@leaf01:~$ cl set interface bond1 bond mlag id 1
 cumulus@leaf01:~$ cl set interface bond2 bond mlag id 2
 cumulus@leaf01:~$ cl set interface bond1-2 bridge domain br_default
@@ -145,27 +128,6 @@ cumulus@leaf01:~$ cl set interface vlan20 ip vrr address 10.1.20.1/24
 cumulus@leaf01:~$ cl set interface vlan20 ip vrr mac-address 00:00:5e:00:01:00
 cumulus@leaf01:~$ cl set interface vlan20 ip vrr state up
 cumulus@leaf01:~$ cl config apply
-```
-
-{{< /tab >}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@leaf01:~$ net add interface eth0 ip address 192.168.200.11/24
-cumulus@leaf01:~$ net add bond bond1 bond slaves swp1
-cumulus@leaf01:~$ net add bond bond1 alias bond1 on swp1
-cumulus@leaf01:~$ net add bond bond2 bond slaves swp2
-cumulus@leaf01:~$ net add bond bond2 alias bond2 on swp2
-cumulus@leaf01:~$ net add bond bond1 clag id 1
-cumulus@leaf01:~$ net add bond bond2 clag id 2
-cumulus@leaf01:~$ net add bridge bridge ports bond1,bond2
-cumulus@leaf01:~$ net add clag peer sys-mac 44:38:39:BE:EF:AA interface swp49-50 primary backup-ip 10.10.10.2
-cumulus@leaf01:~$ net add vlan 10 ip address 10.0.1.2/24
-cumulus@leaf01:~$ net add vlan 10 ip address-virtual 00:00:5e:00:01:00 10.0.1.1/24
-cumulus@leaf01:~$ net add vlan 20 ip address 10.0.2.2/24
-cumulus@leaf01:~$ net add vlan 20 ip address-virtual 00:00:5e:00:01:00 10.0.2.1/24
-cumulus@leaf01:~$ net pending
-cumulus@leaf01:~$ net commit
 ```
 
 {{< /tab >}}
@@ -249,9 +211,7 @@ iface br_default
 ```
 cumulus@leaf02:~$ cl set interface eth0 ip address 192.168.200.12/24
 cumulus@leaf02:~$ cl set interface bond1 bond member swp1
-cumulus@leaf02:~$ cl set NEED COMMAND FOR ALIAS
 cumulus@leaf02:~$ cl set interface bond2 bond member swp2
-cumulus@leaf02:~$ cl set NEED COMMAND FOR ALIAS
 cumulus@leaf02:~$ cl set interface bond1 bond mlag id 1
 cumulus@leaf02:~$ cl set interface bond2 bond mlag id 2
 cumulus@leaf02:~$ cl set interface bond1-2 bridge domain br_default
@@ -270,27 +230,6 @@ cumulus@leaf02:~$ cl set interface vlan20 ip vrr address 10.1.20.1/24
 cumulus@leaf02:~$ cl set interface vlan20 ip vrr mac-address 00:00:5e:00:01:00
 cumulus@leaf02:~$ cl set interface vlan20 ip vrr state up
 cumulus@leaf02:~$ cl config apply
-```
-
-{{< /tab >}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@leaf02:~$ net add interface eth0 ip address 192.168.200.12/24
-cumulus@leaf01:~$ net add bond bond1 bond slaves swp1
-cumulus@leaf01:~$ net add bond bond1 alias bond1 on swp1
-cumulus@leaf01:~$ net add bond bond2 bond slaves swp2
-cumulus@leaf01:~$ net add bond bond2 alias bond2 on swp2
-cumulus@leaf01:~$ net add bond bond1 clag id 1
-cumulus@leaf01:~$ net add bond bond2 clag id 2
-cumulus@leaf01:~$ net add bridge bridge ports bond1,bond2
-cumulus@leaf01:~$ net add clag peer sys-mac 44:38:39:BE:EF:AA interface swp49-50 primary backup-ip 10.10.10.1
-cumulus@leaf02:~$ net add vlan 10 ip address 10.1.10.3/24
-cumulus@leaf02:~$ net add vlan 10 ip address-virtual 00:00:5e:00:01:00 10.1.10.1/24
-cumulus@leaf02:~$ net add vlan 20 ip address 10.1.20.3/24
-cumulus@leaf02:~$ net add vlan 20 ip address-virtual 00:00:5e:00:01:00 10.1.20.1/24
-cumulus@leaf02:~$ net pending
-cumulus@leaf02:~$ net commit
 ```
 
 {{< /tab >}}

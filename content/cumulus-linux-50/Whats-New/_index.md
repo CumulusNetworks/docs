@@ -29,7 +29,6 @@ Cumulus Linux 5.0 supports new platforms, provides bug fixes, and contains sever
 - VNI scaling enhancements
 - Support for multiple single VXLAN devices
 - EVPN multihoming support with single VXLAN devices
-- Route leaking for EVPN symmetric mode
 - EVPN multihoming HREP support
 - PIM Allow RP
 - BGP conditional route advertisement

@@ -10,8 +10,6 @@ You can customize the `topology.dot` file to control `ptmd` at both the global/n
 
 PTM runs as a daemon, named `ptmd`.
 
-For more information, see `man ptmd(8)`.
-
 ## Supported Features
 
 - Topology verification using LLDP. `ptmd` creates a client connection to the LLDP daemon, `lldpd`, and retrieves the neighbor relationship between the nodes/ports in the network and compares them against the prescribed topology specified in the `topology.dot` file.
@@ -31,9 +29,7 @@ PTM supports {{<exlink url="http://en.wikipedia.org/wiki/DOT_%28graph_descriptio
 At startup, `ptmd` connects to `lldpd`, the LLDP daemon, over a Unix socket and retrieves the neighbor name and port information. It then compares the retrieved port information with the configuration information that it read from the topology file. If there is a match, it is a PASS, else it is a FAIL.
 
 {{%notice note%}}
-
 PTM performs its LLDP neighbor check using the PortID ifname TLV information.
-
 {{%/notice%}}
 
 ## ptmd Scripts
@@ -54,11 +50,8 @@ You can configure `ptmd` parameters in the topology file. The parameters are cla
 domain name (`fqdn`) while looking for the `self-node` in the graph file. For example, in the graph file below PTM ignores the FQDN and only looks for *switch04* because that is the hostname of the switch on which it is running:
 
 {{%notice tip%}}
-
-Always wrap the hostname in double quotes; for example, `"www.example.com"` to prevent `ptmd` from failing.
-
-To avoid errors when starting the `ptmd` process, make sure that `/etc/hosts` and `/etc/hostname` both reflect the hostname you are using in the `topology.dot` file.
-
+- Always wrap the hostname in double quotes; for example, `"www.example.com"` to prevent `ptmd` from failing.
+- To avoid errors when starting the `ptmd` process, make sure that `/etc/hosts` and `/etc/hostname` both reflect the hostname you are using in the `topology.dot` file.
 {{%/notice%}}
 
 ```
@@ -155,7 +148,6 @@ graph G {
 ```
 
 `ptmd` supports the following LLDP parameters:
-
 - `match_type`, which defaults to the interface name (`ifname`), but can accept a port description (`portdescr`) instead if you want `lldpd` to compare the topology against the port description instead of the interface name. You can set this parameter globally or at the per-port level.
 - `match_hostname`, which defaults to the hostname (`hostname`), but enables PTM to match the topology using the fully-qualified domain name (`fqdn`) supplied by LLDP.
 
@@ -169,7 +161,6 @@ graph G {
 ```
 
 {{%notice note%}}
-
 When you specify `match_hostname=fqdn`, `ptmd` matches the entire FQDN, (*cumulus-2.domain.com* in the example below). If you do not specify anything for `match_hostname`, `ptmd` matches based on hostname only, (*cumulus-3* below), and ignores the rest of the URL:
 
 ```
@@ -178,7 +169,6 @@ graph G {
           "cumulus-1":"swp46" -- "cumulus-3":"swp22" [LLDP="match_type=portdescr"]
 }
 ```
-
 {{%/notice%}}
 
 ## Bidirectional Forwarding Detection (BFD)
@@ -190,9 +180,7 @@ BFD provides low overhead and rapid detection of failures in the paths between t
 The FRRouting routing suite enables additional checks to ensure that routing adjacencies are formed only on links that have connectivity conformant to the specification, as determined by `ptmd`.
 
 {{%notice note%}}
-
 You only need to do this to check link state; you do not need to enable PTM to determine BFD status.
-
 {{%/notice%}}
 
 When the global `ptm-enable` option is enabled, every interface has an implied `ptm-enable` line in the configuration stanza in the interfaces file.
@@ -212,26 +200,6 @@ cumulus@switch:~$
 
 To disable the checks, delete the `ptm-enable` parameter from the interface:
 
-{{< tabs "TabID234 ">}}
-{{< tab "CUE Commands ">}}
-
-```
-cumulus@switch:~$ NEED COMMAND 
-cumulus@switch:~$ 
-```
-
-{{< /tab >}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@switch:~$ net del interface swp51 ptm-enable
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-{{< /tab >}}
-{{< tab "vtysh Commands ">}}
-
 ```
 cumulus@switch:~$ sudo vtysh
 switch# conf t
@@ -243,30 +211,7 @@ switch# exit
 cumulus@switch:~$
 ```
 
-{{< /tab >}}
-{{< /tabs >}}
-
 If you need to re-enable PTM for that interface:
-
-{{< tabs "TabID265 ">}}
-{{< tab "CUE Commands ">}}
-
-```
-cumulus@switch:~$ NEED COMMAND 
-cumulus@switch:~$ 
-```
-
-{{< /tab >}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@switch:~$ net add interface swp51 ptm-enable
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-{{< /tab >}}
-{{< tab "vtysh Commands ">}}
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -280,38 +225,10 @@ switch# exit
 cumulus@switch:~$
 ```
 
-{{< /tab >}}
-{{< /tabs >}}
-
-With PTM enabled on an interface, the `zebra` daemon connects to `ptmd` over a Unix socket. Any time there is a change of status for an interface, `ptmd` sends notifications to `zebra`. Zebra maintains a `ptm-status` flag per interface and evaluates routing adjacency based on this flag. To check the per-interface `ptm-status`:
-
-{{< tabs "TabID297 ">}}
-{{< tab "CUE Commands ">}}
+With PTM enabled on an interface, the `zebra` daemon connects to `ptmd` over a Unix socket. Any time there is a change of status for an interface, `ptmd` sends notifications to `zebra`. Zebra maintains a `ptm-status` flag per interface and evaluates routing adjacency based on this flag. To check the per-interface `ptm-status`, run the CUE `cl show interface <interface>` command or the vtysh `show interface <interface>` command.
 
 ```
-cumulus@switch:~$ cl show interface swp1
-```
-
-{{< /tab >}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@switch:~$ net show interface swp1
-
-Interface swp1 is up, line protocol is up
-  Link ups:       0    last: (never)
-  Link downs:     0    last: (never)
-  PTM status: disabled
-  vrf: Default-IP-Routing-Table
-  index 3 metric 0 mtu 1550
-  flags: <UP,BROADCAST,RUNNING,MULTICAST>
-  HWaddr: c4:54:44:bd:01:41
-```
-
-{{< /tab >}}
-{{< tab "vtysh Commands ">}}
-
-```
+cumulus@switch:~$ sudo vtysh
 switch# show interface swp1
 Interface swp1 is up, line protocol is up
   Link ups:       0    last: (never)
@@ -323,9 +240,6 @@ Interface swp1 is up, line protocol is up
   HWaddr: c4:54:44:bd:01:41
 ...
 ```
-
-{{< /tab >}}
-{{< /tabs >}}
 
 ## ptmd Service Commands
 
@@ -485,13 +399,11 @@ get-status  Topology file error [/etc/ptm.d/topology.dot]
 ```
 
 {{%notice tip%}}
-
 If you encounter errors with the `topology.dot` file, you can use `dot` (included in the Graphviz package) to validate the syntax of the topology file.
 
 Open the topology file with Graphviz to ensure that it is readable and that the file format is correct.
 
 If you edit `topology.dot` file from a Windows system, be sure to double check the file formatting; there might be extra characters that keep the graph from working correctly.
-
 {{%/notice%}}
 
 ## Basic Topology Example

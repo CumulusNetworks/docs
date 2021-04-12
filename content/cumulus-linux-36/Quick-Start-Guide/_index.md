@@ -19,16 +19,16 @@ You must have access to a Linux or UNIX shell. If you are running
 Windows, use a Linux environment like [Cygwin](http://www.cygwin.com/)
 as your command line tool for interacting with Cumulus Linux.
 
-{{%notice info%}}
+{{<notice info>}}
 
 If you are a networking engineer but are unfamiliar with Linux concepts,
-refer to [this reference guide](https://docs.cumulusnetworks.com/knowledge-base/Demos-and-Training/Interoperability/Cumulus-Linux-Conversion-Guide-for-NX-OS-or-IOS-Users/)
+refer to {{<kb_link url="knowledge-base/Demos-and-Training/Interoperability/Cumulus-Linux-Conversion-Guide-for-NX-OS-or-IOS-Users/" text="this reference guide" >}}
 to compare the Cumulus Linux CLI and configuration options, and their
 equivalent Cisco Nexus 3000 NX-OS commands and settings. You can also
 [watch a series of short videos](http://cumulusnetworks.com/technical-videos/) introducing you to
 Linux and Cumulus Linux-specific concepts.
 
-{{%/notice%}}
+{{</notice>}}
 
 ### Installation
 
@@ -55,7 +55,7 @@ discovery:
     is running a web server. If the host is IPv4-enabled, make sure it
     is running DHCP as well as a web server.
 
-2.  [Download](http://cumulusnetworks.com/downloads/) the Cumulus Linux
+2.  [Download](https://support.mellanox.com/s/) the Cumulus Linux
     installation file to the root directory of the web server. Rename
     this file `onie-installer`.
 

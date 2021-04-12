@@ -11,12 +11,12 @@ Deploying, provisioning, configuring, and upgrading switches using automation is
 
 ## Before You Upgrade
 
-{{%notice tip%}}
+{{<notice tip>}}
 
 Be sure to read the knowledge base article
-{{<exlink url="https://docs.cumulusnetworks.com/knowledge-base/Installing-and-Upgrading/Upgrading/Network-Device-and-Linux-Host-Worldview-Comparison/" text="Upgrades: Network Device and Linux Host Worldview Comparison" >}}, which provides a detailed comparison between the network device and Linux host worldview of upgrade and installation.
+{{<kb_link url="knowledge-base/Installing-and-Upgrading/Upgrading/Network-Device-and-Linux-Host-Worldview-Comparison/" text="Upgrades: Network Device and Linux Host Worldview Comparison" >}}, which provides a detailed comparison between the network device and Linux host worldview of upgrade and installation.
 
-{{%/notice%}}
+{{</notice>}}
 
 Understanding the location of configuration data is required for successful upgrades, migrations, and backup. As with other Linux distributions, the `/etc` directory is the primary location for all configuration data in Cumulus Linux. The following list is a likely set of files that you need to back up and migrate to a new release. Make sure you examine any file that has been changed. Consider making the following files and directories part of a backup strategy.
 
@@ -225,7 +225,7 @@ To upgrade the switch using package upgrade:
     `sudo find / -mount -type f -name '*.dpkg-*'` command.
     ```
 
-    If you see errors for expired GPG keys that prevent you from upgrading packages, follow the steps in {{<exlink url="https://docs.cumulusnetworks.com/knowledge-base/Installing-and-Upgrading/Upgrading/Update-Expired-GPG-Keys/" text="Upgrading Expired GPG Keys">}}.
+    If you see errors for expired GPG keys that prevent you from upgrading packages, follow the steps in {{<kb_link url="knowledge-base/Installing-and-Upgrading/Upgrading/Update-Expired-GPG-Keys/" text="Upgrading Expired GPG Keys">}}.
 
 5. Reboot the switch if the upgrade messages indicate that a system restart is required.
 
@@ -258,7 +258,7 @@ You must upgrade both switches in the MLAG pair to the same release of Cumulus L
 {{%notice warning%}}
 
 For networks with MLAG deployments, you can only upgrade to Cumulus Linux 4.1 from version 3.7.10 or later. If you are using a version of Cumulus Linux earlier than 3.7.10, you must upgrade to version 3.7.10 first, then upgrade to version 4.1. Version 3.7.10 is available on the
-{{<exlink url="https://cumulusnetworks.com/downloads/#product=Cumulus%20Linux&version=3.7.10" text="downloads page">}} on our website.
+{{<exlink url="https://support.mellanox.com/s/" text="MyMellanox downloads page">}} on our website.
 
 {{%/notice%}}
 
@@ -349,7 +349,7 @@ After you upgrade using a full disk image install, you need to reinstall any thi
 
 ## Related Information
 
-- {{<exlink url="https://docs.cumulusnetworks.com/knowledge-base/Installing-and-Upgrading/Upgrading/Network-Device-and-Linux-Host-Worldview-Comparison/" text="Upgrades: Network Device Worldview and Linux Host Worldview Comparison">}}
+- {{<kb_link url="knowledge-base/Installing-and-Upgrading/Upgrading/Network-Device-and-Linux-Host-Worldview-Comparison/" text="Upgrades: Network Device Worldview and Linux Host Worldview Comparison">}}
 - {{<exlink url="https://cumulusnetworks.com/solutions/automation/" text="Automation Solutions">}}
 - {{<exlink url="http://opencomputeproject.github.io/onie/design-spec/" text="ONIE Design Specification">}}
 - {{<link title="Multi-Chassis Link Aggregation - MLAG">}}

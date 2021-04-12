@@ -46,6 +46,8 @@ MLAG has these requirements:
 - There must be only two peer switches in one MLAG configuration, but you can have multiple configurations in a network for *switch-to-switch MLAG*.
 - Both switches in the MLAG pair must be running the same release of Cumulus Linux. See {{<link url="Upgrading-Cumulus-Linux#upgrade-switches-in-an-mlag-pair" text="Upgrading Cumulus Linux">}}.
 
+MLAG is *not* supported in a multiple VLAN-aware bridge configuration.
+
 ## Basic Configuration
 
 To configure MLAG, you need to create a bond that uses LACP on the dual-connected devices and configure the interfaces (including bonds, VLANs, bridges, and peer links) on each peer switch.
@@ -69,18 +71,6 @@ If you cannot use LACP in your environment, you can configure the bonds in {{<li
 cumulus@leaf01:~$ cl set interface bond1 bond member swp1
 cumulus@leaf01:~$ cl set interface bond2 bond member swp2
 cumulus@leaf01:~$ cl config apply
-```
-
-{{< /tab >}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@leaf01:~$ net add bond bond1 bond slaves swp1
-cumulus@leaf01:~$ net add bond bond1 alias bond1 on swp1
-cumulus@leaf01:~$ net add bond bond2 bond slaves swp2
-cumulus@leaf01:~$ net add bond bond2 alias bond2 on swp2
-cumulus@leaf01:~$ net pending
-cumulus@leaf01:~$ net commit
 ```
 
 {{< /tab >}}
@@ -123,16 +113,6 @@ cumulus@leaf01:~$ cl config apply
 ```
 
 {{< /tab >}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@leaf01:~$ net add bond bond1 clag id 1
-cumulus@leaf01:~$ net add bond bond2 clag id 2
-cumulus@leaf01:~$ net pending
-cumulus@leaf01:~$ net commit
-```
-
-{{< /tab >}}
 {{< tab "Linux Commands ">}}
 
 In the `/etc/network/interfaces` file, add the line `clag-id 1` to the `auto bond1` stanza and `clag-id 2` to `auto bond2` stanza:
@@ -167,15 +147,6 @@ iface bond2
 ```
 cumulus@switch:~$ cl set interface bond1-2 bridge domain br_default 
 cumulus@switch:~$ cl config apply
-```
-
-{{< /tab >}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@leaf01:~$ net add bridge bridge ports bond1,bond2
-cumulus@leaf01:~$ net pending
-cumulus@leaf01:~$ net commit
 ```
 
 {{< /tab >}}
@@ -252,51 +223,6 @@ To configure the backup link to a VRF, include the name of the VRF with the back
 ```
 cumulus@leaf02:~$ cl set mlag backup 10.10.10.1 vrf RED
 cumulus@leaf02:~$ cl config apply
-```
-
-{{< /tab >}}
-{{< /tabs >}}
-
-{{< /tab >}}
-{{< tab "NCLU Commands ">}}
-
-The NCLU command is a macro command that:
-- Automatically creates the inter-chassis bond (`peerlink`) and the peer link VLAN subinterface (`peerlink.4094`), and adds the `peerlink` bond to the bridge
-- Configures the peer link IP address (`primary` is the linklocal address)
-- Adds the MLAG system MAC address, the MLAG bond interfaces, and the backup IP address you specify
-
-   {{< tabs "TabID270 ">}}
-{{< tab "leaf01 ">}}
-
-```
-cumulus@leaf01:~$ net add clag peer sys-mac 44:38:39:BE:EF:AA interface swp49-50 primary backup-ip 10.10.10.2
-cumulus@leaf01:~$ net pending
-cumulus@leaf01:~$ net commit
-```
-
-To configure the backup link to a VRF, include the name of the VRF with the `backup-ip` parameter. The following example configures the backup link to VRF RED:
-
-```
-cumulus@leaf01:~$ net add clag peer sys-mac 44:38:39:BE:EF:AA interface swp49-50 primary backup-ip 10.10.10.2 vrf RED
-cumulus@leaf01:~$ net pending
-cumulus@leaf01:~$ net commit
-```
-
-{{< /tab >}}
-{{< tab "leaf02 ">}}
-
-```
-cumulus@leaf02:~$ net add clag peer sys-mac 44:38:39:BE:EF:AA interface swp49-50 primary backup-ip 10.10.10.1
-cumulus@leaf02:~$ net pending
-cumulus@leaf02:~$ net commit
-```
-
-To configure the backup link to a VRF, include the name of the VRF with the `backup-ip` parameter. The following example configures the backup link to VRF RED:
-
-```
-cumulus@leaf02:~$ net add clag peer sys-mac 44:38:39:BE:EF:AA interface swp49-50 primary backup-ip 10.10.10.1 vrf RED
-cumulus@leaf02:~$ net pending
-cumulus@leaf02:~$ net commit
 ```
 
 {{< /tab >}}
@@ -431,15 +357,6 @@ cumulus@leaf01:~$ cl config apply
 ```
 
 {{< /tab >}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@leaf01:~$ net add interface peerlink.4094 clag priority 2048
-cumulus@leaf01:~$ net pending
-cumulus@leaf01:~$ net commit
-```
-
-{{< /tab >}}
 {{< tab "Linux Commands ">}}
 
 Edit the `/etc/network/interfaces` file and add the `clagd-priority` option, then run the `ifreload -a` command.
@@ -475,34 +392,14 @@ The `clagd` service has a number of timers that you can tune for enhanced perfor
 | <div style="width:250px">Timer | Description |
 | ----- | ----------- |
 | `--reloadTimer <seconds>` | The number of seconds to wait for the peer switch to become active. If the peer switch does not become active after the timer expires, the MLAG bonds leave the initialization ({{<link url="#peer-link-interfaces-and-the-protodown-state" text="protodown">}}) state and become active. This provides `clagd` with sufficient time to determine whether the peer switch is coming up or if it is permanently unreachable. <br>The default is 300 seconds.|
-| `--peerTimeout <seconds>` | The number of seconds `clagd` waits without receiving any messages from the peer switch before it determines that the peer is no longer active. At this point, the switch reverts all configuration changes so that it operates as a standard non-MLAG switch. This includes removing all statically assigned MAC addresses, clearing the egress forwarding mask, and allowing addresses to move from any port to the peer port. After a message is again received from the peer, MLAG operation restarts. If this parameter is not specified, `clagd` uses ten times the local `lacpPoll` value. |
+| `--peerTimeout <seconds>`<br> | The number of seconds `clagd` waits without receiving any messages from the peer switch before it determines that the peer is no longer active. At this point, the switch reverts all configuration changes so that it operates as a standard non-MLAG switch. This includes removing all statically assigned MAC addresses, clearing the egress forwarding mask, and allowing addresses to move from any port to the peer port. After a message is again received from the peer, MLAG operation restarts. If this parameter is not specified, `clagd` uses ten times the local `lacpPoll` value. |
 | `--initDelay <seconds>` | The number of seconds `clagd` delays bringing up MLAG bonds and anycast IP addresses. <br>The default is 180 seconds.<br>This timer is set to 0 automatically under the following conditions:<ul><li>When the peer is not alive and the backup link is not active after a reload timeout</li><li>When the peer sends a goodbye (through the peerlink or the backup link)</li><li>When both MLAG sessions come up at the same time</li></ul>|
 | `--sendTimeout <seconds>` | The number of seconds `clagd` waits until the sending socket times out. If it takes longer than the `sendTimeout` value to send data to the peer, `clagd` generates an exception. <br>The default is 30 seconds. |
 | `--lacpPoll <seconds>` | The number of seconds `clagd` waits before obtaining local LACP information. <br>The default is 2 seconds.|
 
-The following example command sets the delay in bringing up MLAG bonds and anycast IP addresses to 100 seconds:
+To set the the `clagd` timers, edit the `/etc/network/interfaces` file to add the `clagd-args --<timer>` line to the peerlink.4094 stanza, then run the `ifreload -a` command.
 
-{{< tabs "TabID485 ">}}
-{{< tab "CUE Commands ">}}
-
-```
-cumulus@leaf01:~$ cl set mlag init-delay 100
-cumulus@leaf01:~$ cl config apply
-```
-
-{{< /tab >}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@leaf01:~$ net add interface peerlink.4094 clag args --initDelay 100
-cumulus@leaf01:~$ net pending
-cumulus@leaf01:~$ net commit
-```
-
-{{< /tab >}}
-{{< tab "Linux Commands ">}}
-
-Edit the `/etc/network/interfaces` file to add the `clagd-args --initDelay 100` line to the peerlink.4094 stanza, then run the `ifreload -a` command.
+The following example command sets the initial delay timer to 100 seconds:
 
 ```
 cumulus@switch:~$ sudo nano /etc/network/interfaces
@@ -521,32 +418,8 @@ iface peerlink.4094
 cumulus@switch:~$ sudo ifreload -a
 ```
 
-{{< /tab >}}
-{{< /tabs >}}
-
 The following example command sets the peer timeout to 900 seconds:
 
-{{< tabs "TabID363 ">}}
-{{< tab "CUE Commands ">}}
-
-```
-cumulus@leaf01:~$ NEED COMMAND
-cumulus@leaf01:~$ cl config apply
-```
-
-{{< /tab >}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@leaf01:~$ net add interface peerlink.4094 clag args --peerTimeout 900
-cumulus@leaf01:~$ net pending
-cumulus@leaf01:~$ net commit
-```
-
-{{< /tab >}}
-{{< tab "Linux Commands ">}}
-
-Edit the `/etc/network/interfaces` file to add the `clagd-args <timer> <value>` line to the peerlink.4094 stanza, then run the `ifreload -a` command.
 ```
 cumulus@switch:~$ sudo nano /etc/network/interfaces
 ...
@@ -564,8 +437,12 @@ iface peerlink.4094
 cumulus@switch:~$ sudo ifreload -a
 ```
 
-{{< /tab >}}
-{{< /tabs >}}
+Currently, the only timer you can set with CUE is the initial delay timer. The following example CUE command sets the initial delay to 100 seconds:
+
+```
+cumulus@leaf01:~$ cl set mlag init-delay 100
+cumulus@leaf01:~$ cl config apply
+```
 
 ### Configure MLAG with a Traditional Mode Bridge
 
@@ -658,18 +535,6 @@ cumulus@switch:~$ cl config apply
 ```
 
 {{< /tab >}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@switch:~$ net add bond peerlink mtu 1500
-cumulus@switch:~$ net add bond uplink mtu 1500
-cumulus@switch:~$ net add bond bond1 mtu 1500
-cumulus@switch:~$ net add bond bond2 mtu 1500
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-{{< /tab >}}
 {{< tab "Linux Commands ">}}
 
 Edit the `/etc/network/interfaces` file, then run the `ifreload -a` command. For example:
@@ -752,27 +617,6 @@ For BGP, use a configuration like this:
 cumulus@switch:~$ cl set vrf default router bgp peer peerlink remote-as internal
 cumulus@switch:~$ cl config apply
 ```
-
-{{< /tab >}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@switch:~$ net add bgp neighbor peerlink.4094 interface remote-as internal
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-If you are using {{<link url="Ethernet-Virtual-Private-Network-EVPN" text="EVPN">}} and MLAG, you need to enable the EVPN address family across the peerlink.4094 interface as well:
-
-```
-cumulus@switch:~$ net add bgp neighbor peerlink.4094 interface remote-as internal
-cumulus@switch:~$ net add bgp l2vpn evpn neighbor peerlink.4094 activate
-cumulus@switch:~$ net commit
-```
-
-{{%notice note%}}
-The `net add bgp l2vpn evpn neighbor peerlink.4094 activate` command creates a new eBGP neighborship when one is already configured for iBGP. The existing iBGP configuration is still valid.
-{{%/notice%}}
 
 {{< /tab >}}
 {{< tab "vtysh Commands ">}}
@@ -1323,5 +1167,5 @@ After you make the necessary cable or configuration changes to avoid the protodo
 
 ## Related Information
 
-- {{<exlink url="https://docs.cumulusnetworks.com/knowledge-base/Configuration-and-Usage/Network-Interfaces/MLAG-Redundancy-Scenarios/" text="MLAG Redundancy Scenarios">}}
-- {{<exlink url="https://docs.cumulusnetworks.com/knowledge-base/Configuration-and-Usage/Network-Interfaces/Compare-Traditional-Bridge-Mode-to-VLAN-aware-Bridge-Mode/" text="Compare Traditional Bridge Mode to VLAN-aware Bridge Mode">}}
+- {{<kb_link url="knowledge-base/Configuration-and-Usage/Network-Interfaces/MLAG-Redundancy-Scenarios/" text="MLAG Redundancy Scenarios">}}
+- {{<kb_link url="knowledge-base/Configuration-and-Usage/Network-Interfaces/Compare-Traditional-Bridge-Mode-to-VLAN-aware-Bridge-Mode/" text="Compare Traditional Bridge Mode to VLAN-aware Bridge Mode">}}

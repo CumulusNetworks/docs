@@ -1121,6 +1121,13 @@ To work around this issue, change the value of &lt;tt&gt;arp_ignore&lt;/tt&gt; t
 <td></td>
 </tr>
 <tr>
+<td>CM-20033</td>
+<td>&lt;p&gt;The VLAN interface stays up even though the physical link carrying the VLAN is admin or carrier down.&lt;/p&gt;
+</td>
+<td>3.5.2-3.7.14.2, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-15812</td>
 <td>&lt;p&gt;Multicast forwarding fails for IP addresses whose DMAC overlaps with reserved DIPs.&lt;/p&gt;</td>
 <td>3.2.1-3.7.14.2, 4.0.0-4.3.0</td>
@@ -1368,21 +1375,6 @@ Vulnerable: &lt; 4.11.4+57-g41a822c392-1
 Fixed: 4.11.4+57-g41a822c392-1</td>
 <td>4.0.0-4.2.1</td>
 <td>4.3.0</td>
-</tr>
-<tr>
-<td>2555205</td>
-<td>If the FRR and MSTP processes go down, an SNMP TRAP is not generated even with the following configuration in the {{/etc/snmp/snmpd.conf}} file. 
-
-proc watchfrr
-proc mstpd
-monitor -I -r 1 -o prNames.5 -o prErrMessage.5 “Process FRRis down!!!” PrErrorFlag.5 != 0
-monitor -I -r 1 -o prNames.5 -o prErrMessage.5 “Process FRR is up!!!” PrErrorFlag.5 = 0
-monitor -I -r 1  -o prNames.3 -o prErrMessage.3  "Process mstpd is down!!!!" prErrorFlag.3 != 0
-monitor -I -r 1  -o prNames.3 -o prErrMessage.3  "Process mstpd is up!!!!" prErrorFlag.3 = 0
-
-</td>
-<td>3.7.12-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
 </tr>
 <tr>
 <td>2555183</td>
@@ -3993,14 +3985,6 @@ To work around this issue, use {{net show interface}} command for LLDP output wh
 <tr>
 <td>2534734</td>
 <td>Span rules matching the out-interface as a bond do not mirror packets.</td>
-<td>4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
-<td>2533940</td>
-<td>The VLAN interface stays up even though the physical link carrying the VLAN is admin or carrier down.
-
-</td>
 <td>4.0.0-4.3.0</td>
 <td></td>
 </tr>

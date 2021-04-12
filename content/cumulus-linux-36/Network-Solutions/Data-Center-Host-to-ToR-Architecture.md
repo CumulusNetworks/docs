@@ -309,18 +309,6 @@ iface eth1 inet static
 <li><p>For additional bandwidth links between host and leaf may be bonded</p></li>
 </ul></td>
 </tr>
-<tr>
-<td><p><strong>FHR (First Hop Redundancy)</strong></p></td>
-<td><p><strong>More Information</strong></p></td>
-</tr>
-<tr>
-<td><ul>
-<li><p>No redundancy, uses single ToR as gateway.</p></li>
-</ul></td>
-<td><ul>
-<li><p><a href="https://cumulusnetworks.com/learn/resources/guides/big-data-cumulus-linux-installation-guide-2" class="external-link">Big Data validated design guide</a> uses single attached ToR</p></li>
-</ul></td>
-</tr>
 </tbody>
 </table>
 
@@ -341,7 +329,7 @@ iface eth1 inet static
 </thead>
 <tbody>
 <tr>
-<td><p><a href="https://docs.cumulusnetworks.com/cumulus-linux/Layer-3/Redistribute-Neighbor/">Redistribute neighbor</a> daemon grabs ARP entries dynamically, utilizes redistribute table for FRRouting to grab these dynamic entries and redistribute them into the fabric.</p></td>
+<td><p>{{<kb_link url="cumulus-linux-43/Layer-3/Routing/Redistribute-Neighbor" text="Redistribute neighbor" >}} daemon grabs ARP entries dynamically, utilizes redistribute table for FRRouting to grab these dynamic entries and redistribute them into the fabric.</p></td>
 <td><p><strong>Benefits</strong></p>
 <ul>
 <li><p>Configuration in FRRouting is simple (route-map + redist table)</p></li>

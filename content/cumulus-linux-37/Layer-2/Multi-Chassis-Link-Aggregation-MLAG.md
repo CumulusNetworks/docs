@@ -895,7 +895,7 @@ iface br0.100
     bridge-ports peerlink.100 bond1.100
 ```
 
-For a deeper comparison of traditional versus VLAN-aware bridge modes, read this {{<exlink url="https://docs.cumulusnetworks.com/knowledge-base/Configuration-and-Usage/Network-Interfaces/Compare-Traditional-Bridge-Mode-to-VLAN-aware-Bridge-Mode/" text="knowledge base article">}}.
+For a deeper comparison of traditional versus VLAN-aware bridge modes, read this {{<kb_link url="knowledge-base/Configuration-and-Usage/Network-Interfaces/Compare-Traditional-Bridge-Mode-to-VLAN-aware-Bridge-Mode/" text="knowledge base article">}}.
 
 ## Peer Link Interfaces and the protodown State
 
@@ -1098,7 +1098,7 @@ cumulus@switch:~$ net add bgp l2vpn evpn neighbor peerlink.4094 activate
 cumulus@switch:~$ net commit
 ```
 
-Be aware of an existing issue when you use NCLU to create an iBGP peering, it creates an eBGP peering instead. For more information, see {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux-37/Whats-New/rn/#CM-23417" text="this release note">}}.
+Be aware of an existing issue when you use NCLU to create an iBGP peering, it creates an eBGP peering instead. For more information, see {{<link title="Cumulus Linux 3.7 Release Notes#CM-23417" text="this release note">}}.
 
 ## IGMP Snooping with MLAG
 
@@ -1253,7 +1253,7 @@ Scaling this example out to a full rack, when planning for link failures, you ne
 
 ### Failover Redundancy Scenarios
 
-To get a better understanding of how STP and LACP behave in response to various failover redundancy scenarios, read this {{<exlink url="https://docs.cumulusnetworks.com/knowledge-base/Configuration-and-Usage/Network-Interfaces/MLAG-Redundancy-Scenarios/" text="knowledge base article">}}.
+To get a better understanding of how STP and LACP behave in response to various failover redundancy scenarios, read this {{<kb_link url="knowledge-base/Configuration-and-Usage/Network-Interfaces/MLAG-Redundancy-Scenarios/" text="knowledge base article">}}.
 
 ## STP Interoperability with MLAG
 
@@ -1359,4 +1359,4 @@ This occurs when you have multiple LACP bonds between the same two LACP endpoint
 ## Caveats and Errata
 
 - If both the backup and peer connectivity are lost within a 30-second window, the switch in the secondary role misinterprets the event sequence, believing the peer switch is down, so it takes over as the primary.
-- MLAG is disabled on the chassis, including the {{<exlink url="https://cumulusnetworks.com/products/cumulus-express/getting-started/backpack/" text="Facebook Backpack">}} and EdgeCore OMP-800.
+- MLAG is disabled on the chassis, including the Facebook Backpack and EdgeCore OMP-800.

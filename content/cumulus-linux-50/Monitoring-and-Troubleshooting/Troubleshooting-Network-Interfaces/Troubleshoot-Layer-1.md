@@ -783,4 +783,4 @@ If the switch is operational again due to one of the above methods, but the modu
 - Replace any module that has caused problems in the past.
 - Replace all modules in the switch.
 
-If needed, contact the {{<exlink url="https://cumulusnetworks.com/support/" text="NVIDIA Cumulus Global Support Services team">}} for additional help.
+If needed, contact the {{<exlink url="https://support.mellanox.com/s/contact-support-page" text="NVIDIA Cumulus Global Support Services team">}} for additional help.

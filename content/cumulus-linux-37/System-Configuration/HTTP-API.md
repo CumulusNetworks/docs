@@ -12,7 +12,7 @@ switch using an HTTP client, such as cURL, HTTPie or a web browser.
 
 {{%notice note%}}
 
-The HTTP API service is enabled by default on {{<exlink url="https://docs.cumulusnetworks.com/chassis/" text="chassis">}} hardware only.
+The HTTP API service is enabled by default on chassis hardware only.
 However, the associated server is configured to only listen to traffic
 originating from within the chassis.
 

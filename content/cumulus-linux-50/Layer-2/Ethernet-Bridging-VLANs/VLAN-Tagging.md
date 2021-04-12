@@ -242,7 +242,6 @@ Slave queue ID: 0
 ```
 
 {{%notice warning%}}
-
 A single bridge cannot contain multiple subinterfaces of the **same** port as members. Attempting to apply such a configuration results in an error:
 
 ```
@@ -250,7 +249,6 @@ cumulus@switch:~$ sudo brctl addbr another_bridge
 cumulus@switch:~$ sudo brctl addif another_bridge swp9 swp9.100
 bridge cannot contain multiple subinterfaces of the same port: swp9, swp9.100
 ```
-
 {{%/notice%}}
 
 ## VLAN Translation
@@ -260,9 +258,7 @@ By default, Cumulus Linux does not allow VLAN subinterfaces associated with diff
 In some cases, it might be useful to relax this restriction. For example, two servers might be connected to the switch using VLAN trunks, but the VLAN numbering provisioned on the two servers are not consistent. You can choose to just bridge two VLAN subinterfaces of different VLAN IDs from the servers. You do this by enabling the `sysctl net.bridge.bridge-allow-multiple-vlans`. Packets entering a bridge from a member VLAN subinterface egress another member VLAN subinterface with the VLAN ID translated.
 
 {{%notice note%}}
-
 A bridge in {{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware mode">}} cannot have VLAN translation enabled; only bridges configured in {{<link url="Traditional-Bridge-Mode" text="traditional mode">}} can use VLAN translation.
-
 {{%/notice%}}
 
 The following example enables the VLAN translation `sysctl`:

@@ -5,7 +5,7 @@ weight: 374
 toc: 4
 ---
 
-This article introduces you to monitoring and walks you through configuration of several sFlow visualization tools. You need a Linux-based host to install the collectors below. You can read more about setting up sFlow on your Cumulus Linux switch in the {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux/Monitoring-and-Troubleshooting/Network-Troubleshooting/Monitoring-System-Statistics-and-Network-Traffic-with-sFlow/" text="user guide">}}.
+This article introduces you to monitoring and walks you through configuration of several sFlow visualization tools. You need a Linux-based host to install the collectors below. You can read more about setting up sFlow on your Cumulus Linux switch in the {{<kb_link url="cumulus-linux-43/Monitoring-and-Troubleshooting/Network-Troubleshooting/Monitoring-System-Statistics-and-Network-Traffic-with-sFlow/" text="user guide">}}.
 
 ## Understanding Monitoring
 
@@ -16,7 +16,7 @@ There are two important pieces to successfully setting up sFlow:
 - Setting up the hosts
 - Setting up the collectors
 
-We strongly recommend using a separate server for your sFlow collector, as switches running Cumulus Linux are specialized and do not have the storage and CPU to satisfactorily perform as a collector. Setting up your Cumulus Linux switch to be a collector is described in the {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux/Monitoring-and-Troubleshooting/Network-Troubleshooting/Monitoring-System-Statistics-and-Network-Traffic-with-sFlow/" text="user guide">}}. Configuring your server to be an sFlow collector is described in the documentation from your server vendor, and some popular setups are described below.
+We strongly recommend using a separate server for your sFlow collector, as switches running Cumulus Linux are specialized and do not have the storage and CPU to satisfactorily perform as a collector. Setting up your Cumulus Linux switch to be a collector is described in the {{<kb_link url="cumulus-linux-43/Monitoring-and-Troubleshooting/Network-Troubleshooting/Monitoring-System-Statistics-and-Network-Traffic-with-sFlow/" text="user guide">}}. Configuring your server to be an sFlow collector is described in the documentation from your server vendor, and some popular setups are described below.
 
 Once your `hsflow` daemon is sending monitoring traffic to your collections server, you can find out some interesting data such as top talkers, interface status, and top flows.
 
@@ -32,7 +32,7 @@ Many organizations have existing systems to monitor servers. One of these, {{<l
 
 Tools that specialize in network traffic also exist for sFlow. These tools can also ingest netflow data, for compatibility with any network gear which does not yet support sFlow. These tools also will show more network specific information such as flow data. Two popular open source projects are {{<exlink url="http://www.pmacct.net/" text="pmacct">}} and {{<exlink url="http://nfsen.sourceforge.net/" text="NfSen">}} (described in more detail below).
 
-Some popular commercial options are {{<exlink url="http://www.inmon.com/products/trafficsentinel.php" text="Traffic Sentinel">}} (described in more detail below), {{<exlink url="http://www.arbornetworks.com/products/peakflow" text="Arbor Peakflow">}} and {{<exlink url="https://www.solarwinds.com/netflow-traffic-analyzer" text="Solarwinds NetFlow Traffic Analyzer">}}.
+Some popular commercial options are {{<exlink url="http://www.inmon.com/products/trafficsentinel.php" text="Traffic Sentinel">}} (described in more detail below), {{<exlink url="http://www.arbornetworks.com/products/peakflow" text="Arbor Peakflow">}} and Solarwinds NetFlow Traffic Analyzer.
 
 ## NfSen
 

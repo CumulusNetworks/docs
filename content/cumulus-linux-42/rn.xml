@@ -42,6 +42,13 @@
 <td></td>
 </tr>
 <tr>
+<td>CM-20033</td>
+<td>&lt;p&gt;The VLAN interface stays up even though the physical link carrying the VLAN is admin or carrier down.&lt;/p&gt;
+</td>
+<td>3.5.2-3.7.14.2, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-15812</td>
 <td>&lt;p&gt;Multicast forwarding fails for IP addresses whose DMAC overlaps with reserved DIPs.&lt;/p&gt;</td>
 <td>3.2.1-3.7.14.2, 4.0.0-4.3.0</td>
@@ -241,12 +248,6 @@ ERROR: Command not found
 <td></td>
 </tr>
 <tr>
-<td>2555931</td>
-<td>When the EVPN primary IP address and advertise SVI IP address options are both configured, the SVI ARP is not forwarded between MLAG switches.</td>
-<td>4.2.1-4.3.0</td>
-<td></td>
-</tr>
-<tr>
 <td>2555613</td>
 <td>The {{net show configuration commands}} command incorrectly displays the NCLU syntax to disable IPv6 forwarding on interfaces. For example:
 
@@ -255,21 +256,6 @@ net add vlan 1 ip6-forward off
 
 The correct NCLU command to disable IPv6 forwarding is {{net add vlan 1 ipv6 forward off}} (without the hyphen).</td>
 <td>4.2.1-4.3.0</td>
-<td></td>
-</tr>
-<tr>
-<td>2555205</td>
-<td>If the FRR and MSTP processes go down, an SNMP TRAP is not generated even with the following configuration in the {{/etc/snmp/snmpd.conf}} file. 
-
-proc watchfrr
-proc mstpd
-monitor -I -r 1 -o prNames.5 -o prErrMessage.5 “Process FRRis down!!!” PrErrorFlag.5 != 0
-monitor -I -r 1 -o prNames.5 -o prErrMessage.5 “Process FRR is up!!!” PrErrorFlag.5 = 0
-monitor -I -r 1  -o prNames.3 -o prErrMessage.3  "Process mstpd is down!!!!" prErrorFlag.3 != 0
-monitor -I -r 1  -o prNames.3 -o prErrMessage.3  "Process mstpd is up!!!!" prErrorFlag.3 = 0
-
-</td>
-<td>3.7.12-3.7.14.2, 4.0.0-4.3.0</td>
 <td></td>
 </tr>
 <tr>
@@ -342,19 +328,6 @@ To work around this issue, configure a static route in FRR.
 <td>2554299</td>
 <td>In a VRRP configuration, BGP unnumbered sessions for VRFs fail to establish after a networking restart.</td>
 <td>4.2.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
-<td>2554231</td>
-<td>On the Mellanox SN3700C switch, {{hwmon}} fails to collect information and show errors similar to the following:
-
-2020-10-01T17:48:09.558200+09:00 [sn3700c1][kernel][err] [25666.121068] mlxsw_minimal 2-0048: Could not acquire lock
-2020-10-01T17:48:09.558200+09:00 [sn3700c1][kernel][err] [25666.127069] mlxsw_minimal 2-0048: Reg cmd access failed (reg_id=900a(mtmp),type=query)
-2020-10-01T17:48:10.554707+09:00 [sn3700c2][kernel][err] [25160.069404] mlxsw_minimal 2-0048: Could not acquire lock
-2020-10-01T17:48:10.554707+09:00 [sn3700c2][kernel][err] [25160.075393] mlxsw_minimal 2-0048: Reg cmd access failed (reg_id=900f(mtbr),type=query)
-2020-10-01T17:48:10.554707+09:00 [sn3700c2][kernel][err] [25160.084265] hwmon hwmon7: Failed to query module temperature sensor
-</td>
-<td>4.2.1-4.3.0</td>
 <td></td>
 </tr>
 <tr>
@@ -438,13 +411,6 @@ NVIDIA does not recommend running NTP with a source interface other than eth0 as
 <td>When you manually set the link speed or duplex mode with ethtool to an unsupported value, then run a TDR check against the interface, you encounter a {{switchd}} service heartbeat failure.
 To work around this issue, reboot the switch to clear the condition. Avoid setting the interface speed or duplex mode directly with ethtool.</td>
 <td>3.7.12-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
-<td>2553063</td>
-<td>After you manually edit the {{/etc/resolv.conf}} file to change or remove a VRF for a given DNS server, {{ifreload}} does not remove IP rules created for DNS servers in the VRF. 
-To work around this issue, run the {{net add/del dns nameserver vrf &lt;name&gt;}} command to force the DNS configuration.</td>
-<td>3.7.13-3.7.14.2, 4.1.1-4.3.0</td>
 <td></td>
 </tr>
 <tr>
@@ -1343,14 +1309,6 @@ To work around this issue, use {{net show interface}} command for LLDP output wh
 <td></td>
 </tr>
 <tr>
-<td>2533940</td>
-<td>The VLAN interface stays up even though the physical link carrying the VLAN is admin or carrier down.
-
-</td>
-<td>4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
 <td>2533691</td>
 <td>If you configure a VLAN under a VLAN-aware bridge and create a subinterface of the same VLAN on one of the bridge ports, the bridge and interface compete for the same VLAN and if the interface is flapped, it stops working. Correcting the configuration and running the {{ifreload}} command does not resolve the conflict. 
 To work around this issue, correct the bridge VIDs and restart {{switchd}} or delete the subinterface. </td>
@@ -1441,6 +1399,13 @@ To work around this issue, change the value of {{arp_ignore}} to 2. See [Address
 <td>CM-20508</td>
 <td>&lt;p&gt;The Cumulus-Resource-Query-MIB defines the ability to gather buffer utilization status but when these objects are polled, they return nothing. &lt;/p&gt;</td>
 <td>3.5.3-3.7.14.2, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-20033</td>
+<td>&lt;p&gt;The VLAN interface stays up even though the physical link carrying the VLAN is admin or carrier down.&lt;/p&gt;
+</td>
+<td>3.5.2-3.7.14.2, 4.0.0-4.3.0</td>
 <td></td>
 </tr>
 <tr>
@@ -1695,12 +1660,6 @@ ERROR: Command not found
 <td></td>
 </tr>
 <tr>
-<td>2555931</td>
-<td>When the EVPN primary IP address and advertise SVI IP address options are both configured, the SVI ARP is not forwarded between MLAG switches.</td>
-<td>4.2.1-4.3.0</td>
-<td></td>
-</tr>
-<tr>
 <td>2555761</td>
 <td>The following vulnerabilities were announced in the p11-kit (libp11-kit0) packages:
 CVE-2020-29361: Multiple integer overflows have been discovered in the array allocations in the p11-kit library and the p11-kit list command, where overflow checks are missing before calling realloc or calloc.
@@ -1829,21 +1788,6 @@ To work around this issue, remove the VNI match to allow the tag to be applied o
 The VNI match works if applied at some other non-originating router either in the ingress or egress direction.</td>
 <td>4.2.1</td>
 <td>4.3.0</td>
-</tr>
-<tr>
-<td>2555205</td>
-<td>If the FRR and MSTP processes go down, an SNMP TRAP is not generated even with the following configuration in the {{/etc/snmp/snmpd.conf}} file. 
-
-proc watchfrr
-proc mstpd
-monitor -I -r 1 -o prNames.5 -o prErrMessage.5 “Process FRRis down!!!” PrErrorFlag.5 != 0
-monitor -I -r 1 -o prNames.5 -o prErrMessage.5 “Process FRR is up!!!” PrErrorFlag.5 = 0
-monitor -I -r 1  -o prNames.3 -o prErrMessage.3  "Process mstpd is down!!!!" prErrorFlag.3 != 0
-monitor -I -r 1  -o prNames.3 -o prErrMessage.3  "Process mstpd is up!!!!" prErrorFlag.3 = 0
-
-</td>
-<td>3.7.12-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
 </tr>
 <tr>
 <td>2555183</td>
@@ -2091,19 +2035,6 @@ Fixed: 10.3.25-0+deb10u1</td>
 <td>4.3.0</td>
 </tr>
 <tr>
-<td>2554231</td>
-<td>On the Mellanox SN3700C switch, {{hwmon}} fails to collect information and show errors similar to the following:
-
-2020-10-01T17:48:09.558200+09:00 [sn3700c1][kernel][err] [25666.121068] mlxsw_minimal 2-0048: Could not acquire lock
-2020-10-01T17:48:09.558200+09:00 [sn3700c1][kernel][err] [25666.127069] mlxsw_minimal 2-0048: Reg cmd access failed (reg_id=900a(mtmp),type=query)
-2020-10-01T17:48:10.554707+09:00 [sn3700c2][kernel][err] [25160.069404] mlxsw_minimal 2-0048: Could not acquire lock
-2020-10-01T17:48:10.554707+09:00 [sn3700c2][kernel][err] [25160.075393] mlxsw_minimal 2-0048: Reg cmd access failed (reg_id=900f(mtbr),type=query)
-2020-10-01T17:48:10.554707+09:00 [sn3700c2][kernel][err] [25160.084265] hwmon hwmon7: Failed to query module temperature sensor
-</td>
-<td>4.2.1-4.3.0</td>
-<td></td>
-</tr>
-<tr>
 <td>2554222</td>
 <td>The NCLU command to enable bridge learning fails.
 As a work around, enable bridge learning in the {{/etc/network/interface}} file. For example:
@@ -2297,13 +2228,6 @@ NVIDIA does not recommend running NTP with a source interface other than eth0 as
 <td>When you manually set the link speed or duplex mode with ethtool to an unsupported value, then run a TDR check against the interface, you encounter a {{switchd}} service heartbeat failure.
 To work around this issue, reboot the switch to clear the condition. Avoid setting the interface speed or duplex mode directly with ethtool.</td>
 <td>3.7.12-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
-<td>2553063</td>
-<td>After you manually edit the {{/etc/resolv.conf}} file to change or remove a VRF for a given DNS server, {{ifreload}} does not remove IP rules created for DNS servers in the VRF. 
-To work around this issue, run the {{net add/del dns nameserver vrf &lt;name&gt;}} command to force the DNS configuration.</td>
-<td>3.7.13-3.7.14.2, 4.1.1-4.3.0</td>
 <td></td>
 </tr>
 <tr>
@@ -3501,14 +3425,6 @@ To work around this issue, use {{net show interface}} command for LLDP output wh
 <td></td>
 </tr>
 <tr>
-<td>2533940</td>
-<td>The VLAN interface stays up even though the physical link carrying the VLAN is admin or carrier down.
-
-</td>
-<td>4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
 <td>2533691</td>
 <td>If you configure a VLAN under a VLAN-aware bridge and create a subinterface of the same VLAN on one of the bridge ports, the bridge and interface compete for the same VLAN and if the interface is flapped, it stops working. Correcting the configuration and running the {{ifreload}} command does not resolve the conflict. 
 To work around this issue, correct the bridge VIDs and restart {{switchd}} or delete the subinterface. </td>
@@ -3907,6 +3823,13 @@ asic-monitor[7389]: File "/usr/lib/python2.7/dist-packages/cumulus/asic_monitor.
 <td></td>
 </tr>
 <tr>
+<td>CM-20033</td>
+<td>&lt;p&gt;The VLAN interface stays up even though the physical link carrying the VLAN is admin or carrier down.&lt;/p&gt;
+</td>
+<td>3.5.2-3.7.14.2, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-15812</td>
 <td>&lt;p&gt;Multicast forwarding fails for IP addresses whose DMAC overlaps with reserved DIPs.&lt;/p&gt;</td>
 <td>3.2.1-3.7.14.2, 4.0.0-4.3.0</td>
@@ -4185,21 +4108,6 @@ Vulnerable: &lt; 4.11.4+57-g41a822c392-1
 Fixed: 4.11.4+57-g41a822c392-1</td>
 <td>4.0.0-4.2.1</td>
 <td>4.3.0</td>
-</tr>
-<tr>
-<td>2555205</td>
-<td>If the FRR and MSTP processes go down, an SNMP TRAP is not generated even with the following configuration in the {{/etc/snmp/snmpd.conf}} file. 
-
-proc watchfrr
-proc mstpd
-monitor -I -r 1 -o prNames.5 -o prErrMessage.5 “Process FRRis down!!!” PrErrorFlag.5 != 0
-monitor -I -r 1 -o prNames.5 -o prErrMessage.5 “Process FRR is up!!!” PrErrorFlag.5 = 0
-monitor -I -r 1  -o prNames.3 -o prErrMessage.3  "Process mstpd is down!!!!" prErrorFlag.3 != 0
-monitor -I -r 1  -o prNames.3 -o prErrMessage.3  "Process mstpd is up!!!!" prErrorFlag.3 = 0
-
-</td>
-<td>3.7.12-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
 </tr>
 <tr>
 <td>2555183</td>
@@ -4517,13 +4425,6 @@ Fixed: 3.1+dfsg-8+deb10u8</td>
 <td>When you manually set the link speed or duplex mode with ethtool to an unsupported value, then run a TDR check against the interface, you encounter a {{switchd}} service heartbeat failure.
 To work around this issue, reboot the switch to clear the condition. Avoid setting the interface speed or duplex mode directly with ethtool.</td>
 <td>3.7.12-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
-<td>2553063</td>
-<td>After you manually edit the {{/etc/resolv.conf}} file to change or remove a VRF for a given DNS server, {{ifreload}} does not remove IP rules created for DNS servers in the VRF. 
-To work around this issue, run the {{net add/del dns nameserver vrf &lt;name&gt;}} command to force the DNS configuration.</td>
-<td>3.7.13-3.7.14.2, 4.1.1-4.3.0</td>
 <td></td>
 </tr>
 <tr>
@@ -6022,14 +5923,6 @@ To work around this issue, use {{net show interface}} command for LLDP output wh
 <tr>
 <td>2534734</td>
 <td>Span rules matching the out-interface as a bond do not mirror packets.</td>
-<td>4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
-<td>2533940</td>
-<td>The VLAN interface stays up even though the physical link carrying the VLAN is admin or carrier down.
-
-</td>
 <td>4.0.0-4.3.0</td>
 <td></td>
 </tr>

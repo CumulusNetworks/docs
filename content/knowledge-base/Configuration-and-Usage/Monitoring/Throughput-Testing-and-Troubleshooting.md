@@ -379,7 +379,7 @@ output identifier helps to label the results with an *s1* or *s2*:
 
 ### Bandwidth Controller (bwctl)
 
-This tool is a wrapper for iPerf2, iPerf3 and `nuttcp`. The documentation for this wrapper is available {{<exlink url="http://software.internet2.edu/bwctl/bwctl.man.html" text="here">}}.
+This tool is a wrapper for iPerf2, iPerf3 and `nuttcp`. The documentation for this wrapper is available {{<exlink url="https://fasterdata.es.net/performance-testing/network-troubleshooting-tools/nuttcp/" text="here">}}.
 
 The advantage of using `bwctl` is that it is a centralized bandwidth testing tool that utilizes all the tools listed above to provide bandwidth test results. You can read the {{<exlink url="http://docs.perfsonar.net/install_debian" text="installation guide here">}}.
 

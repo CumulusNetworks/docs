@@ -247,8 +247,7 @@ via eth2. You should note:
 
 #### Installing ifplugd
 
-Additionally, install and use
-[ifplugd](/cumulus-linux-36/Layer-2/Virtual-Router-Redundancy-VRR/ifplugd).
+Additionally, install and use {{<link text="ifplugd" url="ifplugd" >}}.
 `ifplugd` modifies the behavior of the Linux routing table when an
 interface undergoes a link transition (carrier up/down). The Linux
 kernel by default leaves routes up even when the physical interface is
@@ -264,7 +263,7 @@ connect to the leaves.
     ARGS="-q -f -u10 -d10 -w -I"
     SUSPEND_ACTION="stop"
 
-For full instructions on installing `ifplugd` on Ubuntu, {{<exlink url="https://docs.cumulusnetworks.com/knowledge-base/Using-ifplugd-on-a-Server-Host" text="follow this guide">}}.
+For full instructions on installing `ifplugd` on Ubuntu, {{<kb_link url="knowledge-base/Configuration-and-Usage/Network-Interfaces/Using-ifplugd-on-a-Server-Host/" text="follow this guide">}}.
 
 ## Known Limitations
 

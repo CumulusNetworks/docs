@@ -5,9 +5,7 @@ weight: 40
 toc: 3
 ---
 {{%notice warning%}}
-
 The default password for the *cumulus* user account is `cumulus`. The first time you log into Cumulus Linux, you are **required** to change this default password. Be sure to update any automation scripts before installing a new image. Cumulus Linux provides command line options to change the default password automatically during the installation process. Refer to [ONIE Installation Options](#onie-installation-options).
-
 {{%/notice%}}
 
 You can install a new Cumulus Linux image using {{<exlink url="http://www.onie.org/" text="ONIE">}}, an open source project (equivalent to PXE on servers) that enables the installation of network operating systems (NOS) on bare metal switches.
@@ -19,12 +17,10 @@ Before you install Cumulus Linux, the switch can be in two different states:
 
 The sections below describe some of the different ways you can install the Cumulus Linux image. Steps are provided for both installing directly from ONIE (if no image is installed on the switch) and from Cumulus Linux (if the image is already installed on the switch). For additional methods to find and install the Cumulus Linux image, see the {{<exlink url="http://opencomputeproject.github.io/onie/design-spec/discovery.html" text="ONIE Design Specification">}}.
 
-You can download a Cumulus Linux image from the {{<exlink url="http://cumulusnetworks.com/downloads/" text="Cumulus Linux Downloads">}} page.
+You can download a Cumulus Linux image from the {{<exlink url="https://support.mellanox.com/s/contact-support-page" text="MyMellanox Downloads">}} page.
 
 {{%notice warning%}}
-
 Installing the Cumulus Linux image is destructive; configuration files on the switch are not saved; copy them to a different server before installing.
-
 {{%/notice%}}
 
 In the following procedures:
@@ -46,9 +42,7 @@ To install Cumulus Linux using a DHCP/web server *with* DHCP options, set up a D
 {{< img src = "/images/cumulus-linux/install-image-onie-dhcp.png" >}}
 
 {{%notice note%}}
-
 The most common method is to send DHCP option 114 with the entire URL to the web server (this can be the same system). However, there are many other ways to use DHCP even if you do not have full control over DHCP. See the ONIE user guide for help with {{<exlink url="https://opencomputeproject.github.io/onie/design-spec/discovery.html#partial-installer-urls" text="partial installer URLs">}} and {{<exlink url="https://opencomputeproject.github.io/onie/user-guide/index.html#advanced-dhcp-2-vivso" text="advanced DHCP options">}}; both articles list more supported DHCP options.
-
 {{%/notice%}}
 
 Here is an example DHCP configuration with an {{<exlink url="http://www.isc.org/downloads/dhcp/" text="ISC DHCP server">}}:
@@ -74,7 +68,6 @@ If you do not have a web server, you can use {{<exlink url="https://www.apachefr
 Follow the steps below if you can log into the switch on a serial console (ONIE), or log in on the console or with ssh (Install from Cumulus Linux).
 
 {{< tabs "TabID75 ">}}
-
 {{< tab "Install from ONIE ">}}
 
 1. Place the Cumulus Linux image in a directory on the web server.
@@ -85,7 +78,6 @@ Follow the steps below if you can log into the switch on a serial console (ONIE)
     ```
 
 {{< /tab >}}
-
 {{< tab "Install from Cumulus Linux ">}}
 
 1. Place the Cumulus Linux image in a directory on the web server.
@@ -97,7 +89,6 @@ Follow the steps below if you can log into the switch on a serial console (ONIE)
     ```
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 ## Install Using a Web Server With no DHCP
@@ -105,13 +96,10 @@ Follow the steps below if you can log into the switch on a serial console (ONIE)
 Follow the steps below if you can log into the switch on a serial console (ONIE), or you can log in on the console or with ssh (Install from Cumulus Linux) but *no* DHCP server is available.
 
 {{%notice note%}}
-
 You need a console connection to access the switch; you cannot perform this procedure remotely.
-
 {{%/notice%}}
 
 {{< tabs "TabID111 ">}}
-
 {{< tab "Install from ONIE ">}}
 
 1. ONIE is in *{{<exlink url="http://opencomputeproject.github.io/onie/design-spec/discovery.html#installer-discovery-methods" text="discovery mode">}}*. You must disable discovery mode with the following command:
@@ -141,7 +129,6 @@ You need a console connection to access the switch; you cannot perform this proc
     ```
 
 {{< /tab >}}
-
 {{< tab "Install from Cumulus Linux ">}}
 
 1. Place the Cumulus Linux image in a directory on your web server.
@@ -153,7 +140,6 @@ You need a console connection to access the switch; you cannot perform this proc
     ```
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 ## Install Using FTP Without a Web Server
@@ -161,7 +147,6 @@ You need a console connection to access the switch; you cannot perform this proc
 Follow the steps below if your laptop is on the same network as the switch eth0 interface but *no* DHCP server is available.
 
 {{< tabs "TabID162 ">}}
-
 {{< tab "Install from ONIE ">}}
 
 1. Set up DHCP or static addressing for eth0. The following example assigns a static address to eth0:
@@ -193,7 +178,6 @@ Follow the steps below if your laptop is on the same network as the switch eth0 
     ```
 
 {{< /tab >}}
-
 {{< tab "Install from Cumulus Linux ">}}
 
 1. Place the Cumulus Linux image into a TFTP or FTP directory.
@@ -208,7 +192,6 @@ Follow the steps below if your laptop is on the same network as the switch eth0 
     ```
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 ## Install Using a Local File
@@ -216,7 +199,6 @@ Follow the steps below if your laptop is on the same network as the switch eth0 
 Follow the steps below to install the Cumulus Linux image referencing a local file.
 
 {{< tabs "TabID217 ">}}
-
 {{< tab "Install from ONIE ">}}
 
 1. Set up DHCP or static addressing for eth0. The following example assigns a static address to eth0:
@@ -246,7 +228,6 @@ Follow the steps below to install the Cumulus Linux image referencing a local fi
     ```
 
 {{< /tab >}}
-
 {{< tab "Install from Cumulus Linux ">}}
 
 1. Copy the Cumulus Linux image to the switch.
@@ -258,21 +239,19 @@ Follow the steps below to install the Cumulus Linux image referencing a local fi
     ```
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 ## Install Using a USB Drive
 
 Follow the steps below to install the Cumulus Linux image using a USB drive.
+
 {{%notice tip%}}
-
 Installing Cumulus Linux using a USB drive is fine for a single switch here and there but is not scalable. DHCP can scale to hundreds of switch installs with zero manual input unlike USB installs.
-
 {{%/notice%}}
 
 ### Prepare for USB Installation
 
-1. From the {{<exlink url="http://cumulusnetworks.com/downloads/" text="Cumulus Linux Downloads page">}}, download the appropriate Cumulus Linux image for your platform.
+1. From the {{<exlink url="https://support.mellanox.com/s/" text="MyMellanox Downloads page">}}, download the appropriate Cumulus Linux image for your platform.
 2.  From a computer, prepare your USB drive by formatting it using one of the supported formats: FAT32, vFAT or EXT2.
 
     {{< expand "Optional: Prepare a USB Drive inside Cumulus Linux"  >}}
@@ -347,7 +326,6 @@ You can run several installer command line options from ONIE to perform basic sw
 - Execute a ZTP script to perform necessary configuration
 
 {{%notice note%}}
-
 The `onie-nos-install` command does *not* allow you specify command line parameters. You must access the switch from the console and transfer a disk image to the switch. You must then make the disk image executable and install the image directly from the ONIE command line with the options you want to use.
 
 The following example commands transfer a disk image to the switch, make the image executable, and install the image with the `--password` option to change the default cumulus user password:
@@ -357,7 +335,6 @@ ONIE:/ # wget http://myserver.datacenter.com/cumulus-linux-5.0.0-mlx-amd64.bin
 ONIE:/ # chmod 755 cumulus-linux-5.0.0-mlx-amd64.bin
 ONIE:/ # ./cumulus-linux-5.0.0-mlx-amd64.bin --password 'MyP4$$word'
 ```
-
 {{%/notice%}}
 
 You can run more than one option in the same command.
@@ -388,9 +365,7 @@ To provide a hashed password instead of a clear text password, use the `--hashed
    ```
 
 {{%notice note%}}
-
 If you specify both the `--password` and `--hashed-password` options, the `--hashed-password` option takes precedence and the `--password` option is ignored.
-
 {{%/notice%}}
 
 <!--### Apply a Cumulus Linux License
@@ -530,6 +505,5 @@ If you install the modified installation image and specify installer command lin
 ## Related Information
 
 - {{<exlink url="http://opencomputeproject.github.io/onie/design-spec/" text="ONIE Design Specification">}}
-- {{<exlink url="http://cumulusnetworks.com/downloads/" text="Cumulus Linux Downloads page">}}
-- {{<exlink url="https://cumulusnetworks.com/cumulus-on-a-stick/" text="Cumulus on a Stick">}}
+- {{<exlink url="https://support.mellanox.com/s/" text="MyMellanox Downloads page">}}
 - {{<link url="Managing-Cumulus-Linux-Disk-Images" text="Managing Cumulus Linux Disk Images">}}

@@ -4,11 +4,11 @@ author: NVIDIA
 weight: 199
 pageID: 8362966
 ---
-{{%notice warning%}}
+{{<notice warning>}}
 
-GRE tunneling is an {{<exlink url="https://docs.cumulusnetworks.com/knowledge-base/Support/Support-Offerings/Early-Access-Features-Defined/" text="early access feature">}}.
+GRE tunneling is an {{<kb_link url="knowledge-base/Support/Support-Offerings/Early-Access-Features-Defined/" text="early access feature">}}.
 
-{{%/notice%}}
+{{</notice>}}
 
 Generic Routing Encapsulation (GRE) is a tunneling protocol that encapsulates network layer protocols inside virtual point-to-point links over an Internet Protocol network. The two endpoints are identified by the tunnel source and tunnel destination addresses at each endpoint.
 

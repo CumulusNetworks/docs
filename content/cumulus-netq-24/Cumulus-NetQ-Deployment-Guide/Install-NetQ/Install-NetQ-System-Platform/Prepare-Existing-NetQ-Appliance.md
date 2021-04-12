@@ -185,7 +185,7 @@ root@ubuntu:~# apt-get install netq-agent netq-apps
 
 <details><summary>Download the bootstrap and NetQ installation tarballs.</summary>
 
-Download the software from the {{<exlink url="https://cumulusnetworks.com/downloads/" text="Cumulus Downloads">}} page.
+Download the software from the {{<exlink url="https://support.mellanox.com/s/" text="MyMellanox downloads page">}} page.
 
 1. Select *NetQ* from the **Product** list.
 

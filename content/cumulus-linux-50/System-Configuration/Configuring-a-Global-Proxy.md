@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 260
 toc: 3
 ---
-You configure {{<exlink url="https://wiki.archlinux.org/index.php/proxy_settings" text="global HTTP and HTTPS proxies">}} in the `/etc/profile.d/` directory of Cumulus Linux. To do so, set the `http_proxy` and `https_proxy` variables, which tells the switch the address of the proxy server to use to fetch URLs on the command line. This is useful for programs such as `apt`/`apt-get`, `curl` and `wget`, which can all use this proxy.
+You configure {{<exlink url="https://wiki.archlinux.org/index.php/proxy_settings" text="global HTTP and HTTPS proxies">}} in the `/etc/profile.d/` directory of Cumulus Linux. Set the `http_proxy` and `https_proxy` variables, which tells the switch the address of the proxy server to use to fetch URLs on the command line. This is useful for programs such as `apt`/`apt-get`, `curl` and `wget`, which can all use this proxy.
 
 1. In a terminal, create a new file in the `/etc/profile.d/` directory. In the code example below, the file is called `proxy.sh`, and is created using the text editor `nano`.
 
@@ -70,4 +70,4 @@ The proxy is now configured. The `echo` command can be used to confirm aproxy is
 
 ## Related Information
 
-{{<exlink url="https://docs.cumulusnetworks.com/knowledge-base/Set-up-an-apt-Package-Cache" text="Set up an apt package cache">}}
+{{<kb_link url="knowledge-base/Set-up-an-apt-Package-Cache" text="Set up an apt package cache">}}

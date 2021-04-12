@@ -10,31 +10,31 @@ This quick start guide provides an end-to-end setup process for
 installing and running Cumulus RMP, as well as a collection of example
 commands for getting started after installation is complete.
 
-{{%notice info%}}
+{{<notice info>}}
 
-**Prerequisites**
-
+<b>Prerequisites</b>
+<br />
 Intermediate Linux knowledge is assumed for this guide. You should be
 familiar with basic text editing, Unix file permissions, and process
-monitoring. A variety of text editors are pre-installed, including `vi`
-and `nano`.
+monitoring. A variety of text editors are pre-installed, including <code>vi</code>
+and <code>nano</code>.
 
 You must have access to a Linux or UNIX shell. If you are running
-Windows, use a Linux environment like [Cygwin](http://www.cygwin.com/)
+Windows, use a Linux environment like <a href="http://www.cygwin.com/">Cygwin</a>
 as your command line tool to interact with Cumulus RMP.
 
-{{%notice tip%}}
+{{<notice tip>}}
 
 If you are a networking engineer but are unfamiliar with Linux concepts,
-refer to [this reference guide](https://docs.cumulusnetworks.com/knowledge-base/Demos-and-Training/Interoperability/Cumulus-Linux-Conversion-Guide-for-NX-OS-or-IOS-Users/)
+refer to {{<kb_link url="knowledge-base/Demos-and-Training/Interoperability/Cumulus-Linux-Conversion-Guide-for-NX-OS-or-IOS-Users/" text="this reference guide" >}}
 for examples of the Cumulus Linux CLI and configuration options, and
 their equivalent Cisco Nexus 3000 NX-OS commands and settings. You can
-also [watch a series of short videos](http://cumulusnetworks.com/technical-videos/) introducing you to
+also <a href="http://cumulusnetworks.com/technical-videos/">watch a series of short videos</a> introducing you to
 Linux and Cumulus Linux-specific concepts.
 
-{{%/notice%}}
+{{</notice>}}
 
-{{%/notice%}}
+{{</notice>}}
 
 ## Setting Up a Cumulus RMP Switch
 

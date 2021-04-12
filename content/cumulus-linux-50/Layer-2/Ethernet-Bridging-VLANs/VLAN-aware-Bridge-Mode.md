@@ -6,7 +6,15 @@ toc: 4
 ---
 The VLAN-aware mode in Cumulus Linux implements a configuration model for large-scale layer 2 environments, with **one single instance** of {{<link url="Spanning-Tree-and-Rapid-Spanning-Tree-STP" text="spanning tree protocol">}}. Each physical bridge member port is configured with the list of allowed VLANs as well as its port VLAN ID, either primary VLAN Identifier (PVID) or native VLAN. MAC address learning, filtering and forwarding are *VLAN-aware*. This significantly reduces the configuration size, and eliminates the large overhead of managing the port and VLAN instances as subinterfaces, replacing them with lightweight VLAN bitmaps and state updates.
 
-Cumulus Linux supports multiple VLAN aware bridges.
+On NVIDIA Spectrum-2 and Spectrum-3 switches, Cumulus Linux supports multiple VLAN aware bridges. However, be aware of the following limitations:
+
+- MLAG is not supported in a multiple VLAN-aware bridge configuration.
+- The same port cannot be part of multiple VLAN-aware bridges.
+- The same VNIs cannot appear in multiple VLAN-aware bridges.
+- VLAN translation is not supported.
+- Double tagged VLAN interfaces are not supported.
+- You cannot associate multiple single virtual devices (SVDs) with a single VLAN-aware bridge.
+- IGMPv3 is not supported.
 
 ## Configure a VLAN-aware Bridge
 
@@ -79,12 +87,27 @@ iface br_default
     bridge-vlan-aware yes
 ```
 
-{{%notice note%}}
-If you specify `bridge-vids` or `bridge-pvid` at the bridge level, these configurations are inherited by all ports in the bridge. However, specifying any of these settings for a specific port overrides the setting in the bridge.
-{{%/notice%}}
+The following example shows a configuration with two VLAN-aware bridges:
 
-{{%notice warning%}}
-Do not try to bridge the management port eth0 with any switch ports (swp0, swp1 and so on). For example, if you create a bridge with eth0 and swp1, it does not work correctly and might disrupt access to the management interface.
+```
+auto bridge1 
+iface bridge1 
+    bridge-vlan-aware yes 
+    bridge-ports swp1 swp2 swp3 vni100100 (pvid 100) vni100101 (pvid 101) ... 
+    bridge-vids 100-200 
+ 
+auto bridge2 
+iface bridge2 
+    bridge-vlan-aware yes 
+    bridge-ports swp4 swp5 swp6 vni200100 (pvid 100) vni200101 (pvid 101) ... 
+    bridge-vids 100-200
+```
+
+In the above example, bridge1 and bridge2 has same set of VLAN IDs but packets coming in on bridge1 ports (swp1, swp2, and swp3) do not get forwarded to the bridge2 interfaces.
+
+{{%notice note%}}
+- If you specify `bridge-vids` or `bridge-pvid` at the bridge level, these configurations are inherited by all ports in the bridge. However, specifying any of these settings for a specific port overrides the setting in the bridge.
+- Do not bridge the management port eth0 with any switch ports. For example, if you create a bridge with eth0 and swp1, the bridge does not work correctly and might disrupt access to the management interface.
 {{%/notice%}}
 
 ## VLAN Range
@@ -594,7 +617,7 @@ iface peerlink.4094
 
 ### VXLANs with VLAN-aware Bridges
 
-Cumulus Linux supports VXLANs with VLAN-aware bridge configurations. This provides improved scalability as multiple VXLANs can be added to a single VLAN-aware bridge. A one to one association is used between the VXLAN VNI and the VLAN, with the bridge access VLAN definition on the VXLAN and the VLAN membership definition on the local bridge member interfaces.
+Cumulus Linux supports using VXLANs with VLAN-aware bridge configurations to provide improved scalability, as multiple VXLANs can be added to a single VLAN-aware bridge. A one to one association is used between the VXLAN VNI and the VLAN, with the bridge access VLAN definition on the VXLAN and the VLAN membership definition on the local bridge member interfaces.
 
 The configuration example below shows the differences between a VXLAN configured for traditional bridge mode and one configured for VLAN-aware mode. The configurations use head end replication (HER) together with the VLAN-aware bridge to map VLANs to VNIs.
 

@@ -11,11 +11,11 @@ Consider deploying, provisioning, configuring, and upgrading switches using auto
 
 ## Before You Upgrade
 
-{{%notice tip%}}
+{{<notice tip>}}
 
 Be sure to read the knowledge base article {{<kb_link url="knowledge-base/Installing-and-Upgrading/Upgrading/Network-Device-and-Linux-Host-Worldview-Comparison/" text="Upgrades: Network Device Worldview and Linux Host Worldview Comparison">}}, which provides a detailed comparison between the network device and Linux host worldview of upgrade and installation.
 
-{{%/notice%}}
+{{</notice>}}
 
 Understanding the location of configuration data is required for successful upgrades, migrations, and backup. As with other Linux distributions, the `/etc` directory is the primary location for all configuration data in Cumulus Linux. The following list is a likely set of files that you need to back up and migrate to a new release. Make sure you examine any file that has been changed. Consider making the following files and directories part of a backup strategy.
 

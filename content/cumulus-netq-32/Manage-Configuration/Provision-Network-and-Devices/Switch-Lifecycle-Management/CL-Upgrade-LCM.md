@@ -347,7 +347,7 @@ Expand the following dropdown to view common failures, their causes and correcti
 <td>hostname:&lt;hostname&gt;,reason:&lt;MLAG error message&gt;</td>
 <td>Error</td>
 <td>An error in an MLAG configuration has been detected. For example: Backup IP 10.10.10.1 does not belong to peer.</td>
-<td>Review the MLAG configuration on the identified switch. Refer to {{<kb_link url="cumulus-linux-43/Layer-2/Multi-Chassis-Link-Aggregation-MLAG/" text="Multi-Chassis Link Aggregation-MLAG">}}. Make any needed changes.</td>
+<td>Review the MLAG configuration on the identified switch. Refer to the MLAG documentation for more information. Make any needed changes.</td>
 </tr>
 <tr>
 <td></td>

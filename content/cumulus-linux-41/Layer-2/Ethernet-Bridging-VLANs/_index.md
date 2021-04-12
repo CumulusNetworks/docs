@@ -14,12 +14,12 @@ Bridge members can be individual physical interfaces, bonds, or logical interfac
 
 {{< img src = "/images/cumulus-linux/ethernet-bridging-example.png" >}}
 
-{{%notice tip%}}
+{{<notice tip>}}
 
 Use *{{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware mode">}}* bridges instead of *traditional mode* bridges. The bridge driver in Cumulus Linux is capable of VLAN filtering, which allows for configurations that are similar to incumbent network devices. For a comparison of traditional and VLAN-aware modes, read
 {{<kb_link url="knowledge-base/Configuration-and-Usage/Network-Interfaces/Compare-Traditional-Bridge-Mode-to-VLAN-aware-Bridge-Mode/" text="this knowledge base article">}}.
 
-{{%/notice%}}
+{{</notice>}}
 
 {{%notice note%}}
 

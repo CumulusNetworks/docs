@@ -138,6 +138,7 @@ auto lo
 iface lo inet loopback
     address 10.10.10.1/32
     clagd-vxlan-anycast-ip 10.0.1.12
+    vxlan-local-tunnelip 10.10.10.1
 
 auto eth0
 iface eth0 inet dhcp
@@ -190,7 +191,6 @@ iface vlan20
 auto vni10
 iface vni10
   vxlan-id 10
-  vxlan-local-tunnelip 10.10.10.1
   bridge-access 10
   mstpctl-bpduguard yes
   mstpctl-portbpdufilter yes
@@ -198,10 +198,10 @@ iface vni10
 auto vni20
 iface vni20
   vxlan-id 20
-  vxlan-local-tunnelip 10.10.10.1
   bridge-access 20
   mstpctl-bpduguard yes
   mstpctl-portbpdufilter yes
+
 
 # uplinks
 auto swp51
@@ -219,7 +219,7 @@ auto lo
 iface lo inet loopback
   address 10.10.10.2/32
   clagd-vxlan-anycast-ip 10.0.1.12
-  
+  vxlan-local-tunnelip 10.10.10.2
 
 auto eth0
 iface eth0 inet dhcp
@@ -272,7 +272,6 @@ iface vlan20
 auto vni10
 iface vni10
   vxlan-id 10
-  vxlan-local-tunnelip 10.10.10.2
   bridge-access 10
   mstpctl-bpduguard yes
   mstpctl-portbpdufilter yes
@@ -301,6 +300,7 @@ auto lo
 iface lo inet loopback
   address 10.10.10.3/32
   clagd-vxlan-anycast-ip 10.0.1.34
+  vxlan-local-tunnelip 10.10.10.3
 
 auto eth0
 iface eth0 inet dhcp
@@ -353,7 +353,6 @@ iface vlan20
 auto vni10
 iface vni10
   vxlan-id 10
-  vxlan-local-tunnelip 10.10.10.3
   bridge-access 10
   mstpctl-bpduguard yes
   mstpctl-portbpdufilter yes
@@ -361,7 +360,6 @@ iface vni10
 auto vni20
 iface vni20
   vxlan-id 20
-  vxlan-local-tunnelip 10.10.10.3
   bridge-access 20
   mstpctl-bpduguard yes
   mstpctl-portbpdufilter yes
@@ -382,6 +380,7 @@ auto lo
 iface lo inet loopback
   address 10.10.10.4/32
   clagd-vxlan-anycast-ip 10.0.1.34
+  vxlan-local-tunnelip 10.10.10.4
 
 auto eth0
 iface eth0 inet dhcp
@@ -434,7 +433,6 @@ iface vlan20
 auto vni10
 iface vni10
   vxlan-id 10
-  vxlan-local-tunnelip 10.10.10.4
   bridge-access 10
   mstpctl-bpduguard yes
   mstpctl-portbpdufilter yes
@@ -442,7 +440,6 @@ iface vni10
 auto vni20
 iface vni20
   vxlan-id 20
-  vxlan-local-tunnelip 10.10.10.4
   bridge-access 20
   mstpctl-bpduguard yes
   mstpctl-portbpdufilter yes

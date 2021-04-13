@@ -25,7 +25,7 @@ class Air {
   async autoprovision(sim) {
     let id;
     try {
-      const res = await this._post(`/simulation/autoprovision/?simulation_id=${sim.refId}`);
+      const res = await this._post(`/simulation/autoprovision/?simulation=${sim.refName}`);
       id = res['simulation']['id'];
     } catch (err) {
       console.error(err);
@@ -35,8 +35,8 @@ class Air {
 }
 
 class Simulation {
-  constructor(refId, autoLoad) {
-    this.refId = refId;
+  constructor(refName, autoLoad) {
+    this.refName = refName;
     this.autoLoad = autoLoad;
     this.id = undefined;
     this.air = new Air();
@@ -50,8 +50,8 @@ class Simulation {
   };
 
   async loadConsoles() {
-    const loadingContainers = document.getElementsByName(`loading-container-${this.refId}`);
-    const containers = document.getElementsByName(`console-container-${this.refId}`);
+    const loadingContainers = document.getElementsByName(`loading-container-${this.refName}`);
+    const containers = document.getElementsByName(`console-container-${this.refName}`);
     let src = `${this.air.air_url}/Terminal`;
     src += `?simulation_id=${this.id}&hideOOB=true&autoLoad=${this.autoLoad}`;
     containers.forEach((container, idx) => {
@@ -68,7 +68,7 @@ class Simulation {
   };
 
   showError() {
-    document.getElementsByName(`loading-container-${this.refId}`).forEach(container => {
+    document.getElementsByName(`loading-container-${this.refName}`).forEach(container => {
       container.parentElement.innerHTML = `<h3 class="air-error">Simulations are currently unavailable. Please login to <a href="${this.air.air_url}" target="_blank">NVIDIA Air</a> or try again later.</h3>`;
     });
   };

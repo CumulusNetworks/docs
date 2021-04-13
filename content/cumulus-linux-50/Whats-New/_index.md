@@ -31,7 +31,7 @@ Cumulus Linux 5.0 supports new platforms, provides bug fixes, and contains sever
 - EVPN multihoming support with single VXLAN devices
 - EVPN multihoming HREP support
 - PIM Allow RP
-- BGP conditional route advertisement
+- {{<link url="Optional-BGP-Configuration/#conditional-advertisement" text="BGP conditional route advertisement">}}
 - Secure boot
 - Debian package signing infrastructure
 - Secure ONIE

@@ -767,17 +767,8 @@ You can configure BGP to wait for a response from the RIB indicating that the ro
 {{< tab "CUE Commands ">}}
 
 ```
-cumulus@switch:~$ cl set vrf default router bgp NEED COMMAND
+cumulus@switch:~$ cl set router bgp wait-for-install on
 cumulus@switch:~$ cl config apply
-```
-
-{{< /tab >}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@switch:~$ net add bgp wait-for-install
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
@@ -879,18 +870,8 @@ The following example commands configure leaf01 to advertise the best path learn
 
 ```
 cumulus@leaf01:~$ cl set vrf default router bgp autonomous-system 65101
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp50 NEED COMMAND
+cumulus@leaf01:~$ cl set vrf default router bgp peer swp50 address-family ipv4-unicast add-path-tx best-per-as
 cumulus@leaf01:~$ cl config apply
-```
-
-{{< /tab >}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@leaf01:~$ net add bgp autonomous-system 65101
-cumulus@leaf01:~$ net add bgp neighbor swp50 addpath-tx-bestpath-per-AS
-cumulus@leaf01:~$ net pending
-cumulus@leaf01:~$ net commit
 ```
 
 {{< /tab >}}
@@ -917,18 +898,8 @@ The following example commands configure leaf01 to advertise all paths learned f
 
 ```
 cumulus@leaf01:~$ cl set vrf default router bgp autonomous-system 65101
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp50 NEED COMMAND
+cumulus@leaf01:~$ cl set vrf default router bgp peer swp50 address-family ipv4-unicast add-path-tx all-paths
 cumulus@leaf01:~$ cl config apply
-```
-
-{{< /tab >}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@leaf01:~$ net add bgp autonomous-system 65101
-cumulus@leaf01:~$ net add bgp neighbor swp50 addpath-tx-all-paths
-cumulus@leaf01:~$ net pending
-cumulus@leaf01:~$ net commit
 ```
 
 {{< /tab >}}
@@ -975,6 +946,41 @@ Paths: (2 available, best #2, table default)
       AddPath ID: RX 3, TX-All 0 TX-Best-Per-AS 0
       Last update: Thu Oct 15 18:31:46 2020
 ```
+
+## Conditional Advertisement
+
+Routes are typically propagated even if a different path exists. The BGP conditional advertisement feature lets you advertise some routes depending on the existence and nonexistence of other routes.
+
+This feature is typically used in multihomed networks where some prefixes are advertised to one of the providers only if information from the other provider is not present. For example, a multihomed router can use conditional advertisement to choose which upstream provider learns about the routes it provides so that it can influence which provider handles traffic destined for the downstream router. This is useful for cost of service (one provider is cheaper than another), latency, or other policy requirements that are not natively accounted for in BGP.
+
+The prefixes to be advertised are defined by a route map called advertise-map. The condition is defined by a route map called non-exist-map for conditions that do not exist or by a route map called exist-map for conditions that do exist.
+
+The following command example configures Cumulus Linux to send a 10.0.0.0/8 summary route only if the 10.0.0.0/24 route exists in the routing table.
+
+{{< tabs "962 ">}}
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@switch:~$ NEED COMMAND 
+cumulus@switch:~$ cl config apply
+```
+
+{{< /tab >}}
+{{< tab "vtysh Commands ">}}
+
+```
+cumulus@leaf01:~$ sudo vtysh
+leaf01# configure terminal
+leaf01(config)# router bgp
+leaf01(config-router)# 
+leaf01(config-router)# end
+leaf01# write memory
+leaf01# exit
+cumulus@leaf01:~$
+```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ## BGP Timers
 

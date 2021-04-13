@@ -3667,7 +3667,7 @@ auto br_default
 iface br_default
     bridge-ports bond1 bond2 bond3 peerlink vni10 vni20 vni30
     bridge-vlan-aware yes
-    bridge-vids 10 20 30 4001 4002
+    bridge-vids 10 20 30
     bridge-pvid 1
 
 auto br_l3vni

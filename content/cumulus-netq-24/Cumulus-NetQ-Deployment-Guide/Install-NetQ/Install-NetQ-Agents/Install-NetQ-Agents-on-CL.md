@@ -16,9 +16,9 @@ For servers running Cumulus Linux, you need to:
 - Install and configure NTP, if needed
 - Obtain NetQ software packages
 
-{{%notice note%}}
+{{<notice note>}}
 If your network uses a proxy server for external connections, you should first {{<kb_link url="cumulus-linux-43/System-Configuration/Configuring-a-Global-Proxy/" text="configure a global proxy">}} so `apt-get` can access the software package in the Cumulus Networks repository.
-{{%/notice%}}
+{{</notice>}}
 
 ### Verify NTP is Installed and Configured
 

@@ -331,19 +331,6 @@ To work around this issue, configure a static route in FRR.
 <td></td>
 </tr>
 <tr>
-<td>2554231</td>
-<td>On the Mellanox SN3700C switch, {{hwmon}} fails to collect information and show errors similar to the following:
-
-2020-10-01T17:48:09.558200+09:00 [sn3700c1][kernel][err] [25666.121068] mlxsw_minimal 2-0048: Could not acquire lock
-2020-10-01T17:48:09.558200+09:00 [sn3700c1][kernel][err] [25666.127069] mlxsw_minimal 2-0048: Reg cmd access failed (reg_id=900a(mtmp),type=query)
-2020-10-01T17:48:10.554707+09:00 [sn3700c2][kernel][err] [25160.069404] mlxsw_minimal 2-0048: Could not acquire lock
-2020-10-01T17:48:10.554707+09:00 [sn3700c2][kernel][err] [25160.075393] mlxsw_minimal 2-0048: Reg cmd access failed (reg_id=900f(mtbr),type=query)
-2020-10-01T17:48:10.554707+09:00 [sn3700c2][kernel][err] [25160.084265] hwmon hwmon7: Failed to query module temperature sensor
-</td>
-<td>4.2.1-4.3.0</td>
-<td></td>
-</tr>
-<tr>
 <td>2554222</td>
 <td>The NCLU command to enable bridge learning fails.
 As a work around, enable bridge learning in the {{/etc/network/interface}} file. For example:
@@ -2046,19 +2033,6 @@ Fixed: 10.3.25-0+deb10u1</td>
 <td>When you back up and restore a configuration using the conf-backup utility, the switch might hang when rebooted.</td>
 <td>4.1.1-4.2.1</td>
 <td>4.3.0</td>
-</tr>
-<tr>
-<td>2554231</td>
-<td>On the Mellanox SN3700C switch, {{hwmon}} fails to collect information and show errors similar to the following:
-
-2020-10-01T17:48:09.558200+09:00 [sn3700c1][kernel][err] [25666.121068] mlxsw_minimal 2-0048: Could not acquire lock
-2020-10-01T17:48:09.558200+09:00 [sn3700c1][kernel][err] [25666.127069] mlxsw_minimal 2-0048: Reg cmd access failed (reg_id=900a(mtmp),type=query)
-2020-10-01T17:48:10.554707+09:00 [sn3700c2][kernel][err] [25160.069404] mlxsw_minimal 2-0048: Could not acquire lock
-2020-10-01T17:48:10.554707+09:00 [sn3700c2][kernel][err] [25160.075393] mlxsw_minimal 2-0048: Reg cmd access failed (reg_id=900f(mtbr),type=query)
-2020-10-01T17:48:10.554707+09:00 [sn3700c2][kernel][err] [25160.084265] hwmon hwmon7: Failed to query module temperature sensor
-</td>
-<td>4.2.1-4.3.0</td>
-<td></td>
 </tr>
 <tr>
 <td>2554222</td>

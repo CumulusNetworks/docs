@@ -750,11 +750,11 @@ You can test your template and confirm it evaluates correctly by running
 
 {{%/notice%}}
 
-{{%notice tip%}}
+{{<notice tip>}}
 
 For more examples of configuring Mako templates, read this {{<kb_link url="knowledge-base/Configuration-and-Usage/Automation/Configure-the-interfaces-File-with-Mako/" text="knowledge base article" >}}.
 
-{{%/notice%}}
+{{</notice>}}
 
 ### Commenting out Mako Templates
 

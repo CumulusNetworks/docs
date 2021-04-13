@@ -109,7 +109,7 @@ For non-customers, Cumulus VX remains a community-supported product, with no for
 
 ## Related Information
 
-- {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux" text="Cumulus Linux documentation">}}
+- {{<kb_link url="cumulus-linux-43" text="Cumulus Linux documentation">}}
 - {{<exlink url="https://cumulusnetworks.com/products/cumulus-vx/download/" text="Cumulus VX downloads">}}
 - {{<exlink url="https://www.vmware.com/support/pubs/" text="VMware documentation">}}
 - {{<exlink url="https://www.virtualbox.org/wiki/Documentation" text="VirtualBox documentation">}}

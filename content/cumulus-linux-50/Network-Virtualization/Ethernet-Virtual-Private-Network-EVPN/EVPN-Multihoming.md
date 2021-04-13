@@ -124,11 +124,11 @@ To configure bond interfaces for EVPN multihoming, run commands similar to the f
 cumulus@leaf01:~$ cl set interface bond1 bond member swp1
 cumulus@leaf01:~$ cl set interface bond2 bond member swp2
 cumulus@leaf01:~$ cl set interface bond3 bond member swp3
-cumulus@leaf01:~$ cl set interface bond1 bond evpn mh es-id 1
-cumulus@leaf01:~$ cl set interface bond2 bond evpn mh es-id 2
-cumulus@leaf01:~$ cl set interface bond3 bond evpn mh es-id 3
-cumulus@leaf01:~$ cl set interface bond1-3 bond evpn mh es-sys-mac 44:38:39:BE:EF:AA
-cumulus@leaf01:~$ cl set interface bond1-3 bond evpn mh es-df-pref 50000
+cumulus@leaf01:~$ cl set interface bond1 evpn multihoming segment identifier 1
+cumulus@leaf01:~$ cl set interface bond2 evpn multihoming segment identifier 2
+cumulus@leaf01:~$ cl set interface bond3 evpn multihoming segment identifier 3
+cumulus@leaf01:~$ cl set interface bond1-3 evpn multihoming mac-address 44:38:39:BE:EF:AA
+cumulus@leaf01:~$ cl set interface bond1-3 evpn multihoming segment df-preference 50000
 cumulus@leaf01:~$ cl config apply
 ```
 
@@ -225,11 +225,10 @@ interface bond3
 ### EVPN MH Global Settings
 
 You can set these global settings for EVPN multihoming:
-
-- `mac-holdtime`: MAC hold time, in seconds. This is the duration for which a switch maintains SYNC MAC entries after the Ethernet segment peer's EVPN type-2 route is deleted. During this time, the switch attempts to independently establish reachability of the MAC on the local Ethernet segment. The hold time can be between 0 and 86400 seconds. The default is 1080 seconds.
-- `neigh-holdtime`:  Neighbor entry hold time, in seconds. The duration for which a switch maintains SYNC neigh entries after the Ethernet segment peer's EVPN type-2 route is deleted. During this time, the switch attempts to independently establish reachability of the host on the local Ethernet segment. The hold time can be between 0 and 86400 seconds. The default is 1080 seconds.
-- `redirect-off`: **Cumulus VX only.** Disables fast failover of traffic destined to the access port via the VXLAN overlay. This knob only applies to Cumulus VX; fast failover is only supported on the ASIC.
-- `startup-delay`:  Startup delay. The duration for which a switch holds the Ethernet segment-bond in a protodown state after a reboot or process restart. This allows the initialization of the VXLAN overlay to complete. The delay can be between 0 and 216000 seconds. The default is 180 seconds.
+- `mac-holdtime` specifies the duration for which a switch maintains SYNC MAC entries after the EVPN type-2 route of the Ethernet segment peer is deleted. During this time, the switch attempts to independently establish reachability of the MAC address on the local Ethernet segment. The hold time can be between 0 and 86400 seconds. The default is 1080 seconds.
+- `neigh-holdtime` specifies the duration for which a switch maintains SYNC neighbor entries after the EVPN type-2 route of the Ethernet segment peer is deleted. During this time, the switch attempts to independently establish reachability of the host on the local Ethernet segment. The hold time can be between 0 and 86400 seconds. The default is 1080 seconds.
+- `redirect-off` disables fast failover of traffic destined to the access port via the VXLAN overlay. This only applies to Cumulus VX (fast failover is only supported on the ASIC).
+- `startup-delay` specifies the duration for which a switch holds the Ethernet segment-bond in a protodown state after a reboot or process restart. This allows the initialization of the VXLAN overlay to complete. The delay can be between 0 and 216000 seconds. The default is 180 seconds.
 
 To configure a MAC hold time for 1000 seconds, run the following commands:
 
@@ -237,16 +236,8 @@ To configure a MAC hold time for 1000 seconds, run the following commands:
 {{<tab "CUE Commands">}}
 
 ```
-cumulus@switch:~$ cl set evpn mh mac-holdtime 1000
+cumulus@switch:~$ cl set evpn multihoming mac-holdtime 1000
 cumulus@switch:~$ cl config apply
-```
-
-{{</tab>}}
-{{<tab "NCLU Commands">}}
-
-```
-cumulus@switch:~$ net add evpn mh mac-holdtime 1000
-cumulus@switch:~$ net commit
 ```
 
 {{</tab>}}
@@ -268,7 +259,7 @@ This creates the following configuration in the `/etc/frr/frr.conf` file:
 ```
 cumulus@switch:~$ sudo cat /etc/frr/frr.conf
 ...
-evpn mh mac-holdtime 1200
+evpn mh mac-holdtime 1000
 ```
 
 To configure a neighbor hold time for 600 seconds, run the following commands:
@@ -277,16 +268,8 @@ To configure a neighbor hold time for 600 seconds, run the following commands:
 {{<tab "CUE Commands">}}
 
 ```
-cumulus@switch:~$ cl set evpn mh neigh-holdtime 600??
+cumulus@switch:~$ cl set evpn multihoming neighbor-holdtime 600
 cumulus@switch:~$ cl config apply
-```
-
-{{</tab>}}
-{{<tab "NCLU Commands">}}
-
-```
-cumulus@switch:~$ net add evpn mh neigh-holdtime 600
-cumulus@switch:~$ net commit
 ```
 
 {{</tab>}}
@@ -317,16 +300,8 @@ To configure a startup delay for 1800 seconds, run the following commands:
 {{<tab "CUE Commands">}}
 
 ```
-cumulus@switch:~$ cl set evpn mh startup-delay 1800??
+cumulus@switch:~$ cl set evpn multihoming startup-delay 1800
 cumulus@switch:~$ cl config apply
-```
-
-{{</tab>}}
-{{<tab "NCLU Commands">}}
-
-```
-cumulus@switch:~$ net add evpn mh startup-delay 1800
-cumulus@switch:~$ net commit
 ```
 
 {{</tab>}}
@@ -359,7 +334,7 @@ When all the uplinks go down, the VTEP loses connectivity to the VXLAN overlay. 
 {{<tab "CUE Commands">}}
 
 ```
-cumulus@switch:~$ NEED COMMAND
+cumulus@switch:~$ cl set interface swp1-3 evpn multihoming uplink on
 cumulus@switch:~$ NEED COMMAND 
 cumulus@switch:~$ cl config apply
 ```
@@ -441,22 +416,6 @@ You can add debug statements to the `/etc/frr/frr.conf` file to debug the Ethern
 {{<tab "CUE Commands">}}
 
 CUE commands are not supported.
-
-{{</tab>}}
-{{<tab "NCLU Commands">}}
-
-To debug Ethernet segments and routes, use the `net add bgp debug evpn mh (es|route)` command. To debug the routing protocols, use `net add evpn mh debug zebra (es|mac|neigh|nh)`.
-
-```
-cumulus@switch:~$ net add bgp debug evpn mh es
-cumulus@switch:~$ net add bgp debug evpn mh route
-cumulus@switch:~$ net add evpn mh debug zebra
-cumulus@switch:~$ net add evpn mh debug zebra es
-cumulus@switch:~$ net add evpn mh debug zebra mac
-cumulus@switch:~$ net add evpn mh debug zebra neigh
-cumulus@switch:~$ net add evpn mh debug zebra nh
-cumulus@switch:~$ net commit
-```
 
 {{</tab>}}
 {{<tab "vtysh Commands">}}

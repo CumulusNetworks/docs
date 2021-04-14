@@ -124,10 +124,10 @@ To configure bond interfaces for EVPN multihoming, run commands similar to the f
 cumulus@leaf01:~$ cl set interface bond1 bond member swp1
 cumulus@leaf01:~$ cl set interface bond2 bond member swp2
 cumulus@leaf01:~$ cl set interface bond3 bond member swp3
-cumulus@leaf01:~$ cl set interface bond1 evpn multihoming segment identifier 1
-cumulus@leaf01:~$ cl set interface bond2 evpn multihoming segment identifier 2
-cumulus@leaf01:~$ cl set interface bond3 evpn multihoming segment identifier 3
-cumulus@leaf01:~$ cl set interface bond1-3 evpn multihoming mac-address 44:38:39:BE:EF:AA
+cumulus@leaf01:~$ cl set interface bond1 evpn multihoming segment local-id 1
+cumulus@leaf01:~$ cl set interface bond2 evpn multihoming segment local-id 2
+cumulus@leaf01:~$ cl set interface bond3 evpn multihoming segment local-id 3
+cumulus@leaf01:~$ cl set interface bond1-3 evpn multihoming segment mac-address 44:38:39:BE:EF:AA
 cumulus@leaf01:~$ cl set interface bond1-3 evpn multihoming segment df-preference 50000
 cumulus@leaf01:~$ cl config apply
 ```

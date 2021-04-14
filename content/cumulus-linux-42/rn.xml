@@ -64,6 +64,62 @@ Fixed: 4.11.4+99-g8bce4698f6-1</td>
 <td></td>
 </tr>
 <tr>
+<td>2616999</td>
+<td>CVE-2021-23358: missing input sanitising in the template() function of the Underscore JavaScript library could result in the execution of arbitrary code.
+Vulnerable: 1.9.1~dfsg-1
+Fixed: 1.9.1~dfsg-1+deb10u1</td>
+<td>4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2616988</td>
+<td>CVE-2020-6851 CVE-2020-8112 CVE-2020-15389 CVE-2020-27814 CVE-2020-27823 CVE-2020-27824 CVE-2020-27841 CVE-2020-27842 CVE-2020-27843 CVE-2020-27845: Multiple vulnerabilities have been discovered in openjpeg2, the open-source JPEG 2000 codec, which could result in denial of service or the execution of arbitrary code when opening a malformed image.
+Vulnerable: &lt;= 2.3.0-2+deb10u1
+Fixed: 2.3.0-2+deb10u2</td>
+<td>4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2616977</td>
+<td>Multiple vulnerabilities were discovered in cURL, an URL transfer library:
+CVE-2020-8169: partial password leak to DNS servers.
+CVE-2020-8177: malicious server could cause curl -J -i to overwrite a local file.
+CVE-2020-8231: libcurl with CURLOPT_CONNECT_ONLY information leak due to wrong connection.
+CVE-2020-8284: PASV response could trick curl into connecting back to an arbitrary IP address and port.
+CVE-2020-8285: libcurl could run out of stack space using FTP wildcard matching (CURLOPT_CHUNK_BGN_FUNCTION).
+CVE-2020-8286: failure to verify that OSCP response matches intended certificate.
+CVE-2021-22876: libcurl did not strip user credentials from URL when populating Referer HTTP request header.
+CVE-2021-22890: libcurl using HTTPS proxy with TLS1.3 could use the wrong session ticket and bypass server TLS certificate check.
+Vulnerable: &lt;= 7.64.0-4+deb10u1
+Fixed: 7.64.0-4+deb10u2</td>
+<td>4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2616968</td>
+<td>CVE-2021-28957: lxml, a Python binding for the libxml2 and libxslt libraries, did not properly sanitize its input. This would allow a malicious user to mount a cross-site scripting attack.
+Vulnerable: &lt;= 4.3.2-1+deb10u2
+Fixed: 4.3.2-1+deb10u3</td>
+<td>4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2616965</td>
+<td>CVE-2021-27291: Pygments, a syntax highlighting package written in Python 3, used regular expressions which could result in denial of service.
+Vulnerable: &lt;= 2.3.1+dfsg-1+deb10u1
+Fixed: 2.3.1+dfsg-1+deb10u2</td>
+<td>4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2616955</td>
+<td>CVE-2021-3449: A NULL pointer dereference was found in the signature_algorithms processing in OpenSSL, a Secure Sockets Layer toolkit, which could result in denial of service.
+Vulnerable: &lt;= 1.1.1d-0+deb10u5
+Fixed: 1.1.1d-0+deb10u6</td>
+<td>4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
 <td>2614016</td>
 <td>The switch firmware incorrectly identifies Lenovo LR4 transceivers (part number 00YD278) and does not set the laser levels properly, which can prevent the link from coming up or might cause the transceiver to be identified as a 1G module.</td>
 <td>4.2.0-4.3.0</td>
@@ -1429,6 +1485,62 @@ To work around this issue, change the value of {{arp_ignore}} to 2. See [Address
 Multiple vulnerabilities have been discovered in the Xen hypervisor, which could result in denial of service, privilege escalation or memory disclosure.
 Vulnerable: &lt; 4.11.4+99-g8bce4698f6-1
 Fixed: 4.11.4+99-g8bce4698f6-1</td>
+<td>4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2616999</td>
+<td>CVE-2021-23358: missing input sanitising in the template() function of the Underscore JavaScript library could result in the execution of arbitrary code.
+Vulnerable: 1.9.1~dfsg-1
+Fixed: 1.9.1~dfsg-1+deb10u1</td>
+<td>4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2616988</td>
+<td>CVE-2020-6851 CVE-2020-8112 CVE-2020-15389 CVE-2020-27814 CVE-2020-27823 CVE-2020-27824 CVE-2020-27841 CVE-2020-27842 CVE-2020-27843 CVE-2020-27845: Multiple vulnerabilities have been discovered in openjpeg2, the open-source JPEG 2000 codec, which could result in denial of service or the execution of arbitrary code when opening a malformed image.
+Vulnerable: &lt;= 2.3.0-2+deb10u1
+Fixed: 2.3.0-2+deb10u2</td>
+<td>4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2616977</td>
+<td>Multiple vulnerabilities were discovered in cURL, an URL transfer library:
+CVE-2020-8169: partial password leak to DNS servers.
+CVE-2020-8177: malicious server could cause curl -J -i to overwrite a local file.
+CVE-2020-8231: libcurl with CURLOPT_CONNECT_ONLY information leak due to wrong connection.
+CVE-2020-8284: PASV response could trick curl into connecting back to an arbitrary IP address and port.
+CVE-2020-8285: libcurl could run out of stack space using FTP wildcard matching (CURLOPT_CHUNK_BGN_FUNCTION).
+CVE-2020-8286: failure to verify that OSCP response matches intended certificate.
+CVE-2021-22876: libcurl did not strip user credentials from URL when populating Referer HTTP request header.
+CVE-2021-22890: libcurl using HTTPS proxy with TLS1.3 could use the wrong session ticket and bypass server TLS certificate check.
+Vulnerable: &lt;= 7.64.0-4+deb10u1
+Fixed: 7.64.0-4+deb10u2</td>
+<td>4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2616968</td>
+<td>CVE-2021-28957: lxml, a Python binding for the libxml2 and libxslt libraries, did not properly sanitize its input. This would allow a malicious user to mount a cross-site scripting attack.
+Vulnerable: &lt;= 4.3.2-1+deb10u2
+Fixed: 4.3.2-1+deb10u3</td>
+<td>4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2616965</td>
+<td>CVE-2021-27291: Pygments, a syntax highlighting package written in Python 3, used regular expressions which could result in denial of service.
+Vulnerable: &lt;= 2.3.1+dfsg-1+deb10u1
+Fixed: 2.3.1+dfsg-1+deb10u2</td>
+<td>4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2616955</td>
+<td>CVE-2021-3449: A NULL pointer dereference was found in the signature_algorithms processing in OpenSSL, a Secure Sockets Layer toolkit, which could result in denial of service.
+Vulnerable: &lt;= 1.1.1d-0+deb10u5
+Fixed: 1.1.1d-0+deb10u6</td>
 <td>4.0.0-4.3.0</td>
 <td></td>
 </tr>
@@ -3882,6 +3994,62 @@ asic-monitor[7389]: File "/usr/lib/python2.7/dist-packages/cumulus/asic_monitor.
 Multiple vulnerabilities have been discovered in the Xen hypervisor, which could result in denial of service, privilege escalation or memory disclosure.
 Vulnerable: &lt; 4.11.4+99-g8bce4698f6-1
 Fixed: 4.11.4+99-g8bce4698f6-1</td>
+<td>4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2616999</td>
+<td>CVE-2021-23358: missing input sanitising in the template() function of the Underscore JavaScript library could result in the execution of arbitrary code.
+Vulnerable: 1.9.1~dfsg-1
+Fixed: 1.9.1~dfsg-1+deb10u1</td>
+<td>4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2616988</td>
+<td>CVE-2020-6851 CVE-2020-8112 CVE-2020-15389 CVE-2020-27814 CVE-2020-27823 CVE-2020-27824 CVE-2020-27841 CVE-2020-27842 CVE-2020-27843 CVE-2020-27845: Multiple vulnerabilities have been discovered in openjpeg2, the open-source JPEG 2000 codec, which could result in denial of service or the execution of arbitrary code when opening a malformed image.
+Vulnerable: &lt;= 2.3.0-2+deb10u1
+Fixed: 2.3.0-2+deb10u2</td>
+<td>4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2616977</td>
+<td>Multiple vulnerabilities were discovered in cURL, an URL transfer library:
+CVE-2020-8169: partial password leak to DNS servers.
+CVE-2020-8177: malicious server could cause curl -J -i to overwrite a local file.
+CVE-2020-8231: libcurl with CURLOPT_CONNECT_ONLY information leak due to wrong connection.
+CVE-2020-8284: PASV response could trick curl into connecting back to an arbitrary IP address and port.
+CVE-2020-8285: libcurl could run out of stack space using FTP wildcard matching (CURLOPT_CHUNK_BGN_FUNCTION).
+CVE-2020-8286: failure to verify that OSCP response matches intended certificate.
+CVE-2021-22876: libcurl did not strip user credentials from URL when populating Referer HTTP request header.
+CVE-2021-22890: libcurl using HTTPS proxy with TLS1.3 could use the wrong session ticket and bypass server TLS certificate check.
+Vulnerable: &lt;= 7.64.0-4+deb10u1
+Fixed: 7.64.0-4+deb10u2</td>
+<td>4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2616968</td>
+<td>CVE-2021-28957: lxml, a Python binding for the libxml2 and libxslt libraries, did not properly sanitize its input. This would allow a malicious user to mount a cross-site scripting attack.
+Vulnerable: &lt;= 4.3.2-1+deb10u2
+Fixed: 4.3.2-1+deb10u3</td>
+<td>4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2616965</td>
+<td>CVE-2021-27291: Pygments, a syntax highlighting package written in Python 3, used regular expressions which could result in denial of service.
+Vulnerable: &lt;= 2.3.1+dfsg-1+deb10u1
+Fixed: 2.3.1+dfsg-1+deb10u2</td>
+<td>4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2616955</td>
+<td>CVE-2021-3449: A NULL pointer dereference was found in the signature_algorithms processing in OpenSSL, a Secure Sockets Layer toolkit, which could result in denial of service.
+Vulnerable: &lt;= 1.1.1d-0+deb10u5
+Fixed: 1.1.1d-0+deb10u6</td>
 <td>4.0.0-4.3.0</td>
 <td></td>
 </tr>

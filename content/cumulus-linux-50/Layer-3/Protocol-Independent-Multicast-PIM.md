@@ -958,7 +958,6 @@ Source          Group           Proto  Input      Output     TTL  Uptime
 You can use {{<link url="Bidirectional-Forwarding-Detection-BFD" text="bidirectional forward detection">}} (BFD) for PIM neighbors to quickly detect link failures. When you configure an interface, include the `pim bfd` option. For example:
 
 {{< tabs "TabID1270 ">}}
-
 {{< tab "NCLU Commands ">}}
 
 ```
@@ -968,7 +967,6 @@ cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
-
 {{< tab "vtysh Commands ">}}
 
 ```
@@ -984,7 +982,66 @@ cumulus@switch:~$
 ```
 
 {{< /tab >}}
+{{< /tabs >}}
 
+### Allow RP
+
+To begin receiving multicast traffic for a group, a receiver expresses its interest in the group by sending an IGMP membership report on its connected LAN. This report specifies the groups in which it is interested. The last hop router (LHR) receives this report and begins to build a multicast routing tree back towards the source. To build this tree, another router known both to the LHR and to the multicast source needs to exist to act as a rendezvous point (RP) for senders and receivers. The LHR looks up the RP for the group specified by the receiver and sends a PIM Join message towards the RP. Per RFC 7761, intermediary routers between the LHR and the RP are required to check that the RP for the group matches the one present in the PIM Join, and if not, to silently drop the Join.
+
+In some configurations, it is desirable to configure the LHR with an RP address that does not match the actual RP address for the group. In this case, you must configure the upstream routers to accept the Join and propagate it towards the appropriate RP for the group, ignoring the mismatched RP address provided in the PIM Join sent by the LHR and replacing it with its own RP for the group.
+
+To can configure the switch to allow joins from all upstream neighbors or you can provide a prefix list so that only joins with an upstream neighbor address in the list are unconditionally accepted.
+
+{{< tabs "TabID997 ">}}
+{{< tab "CUE Commands ">}}
+
+The following example command configures PIM to ignore the RP check for all upstream neighbors:
+
+
+```
+cumulus@switch:~$ cl set interface swp50 pim allow-rp
+cumulus@switch:~$ cl config apply
+```
+
+The following example command configures PIM to only ignore the RP check for upstream neighbors in the prefix list called ALLOW-RP:
+
+```
+cumulus@switch:~$ cl set interface swp50 pim allow-rp rp-list ALLOW-RP
+cumulus@switch:~$ cl config apply
+```
+
+{{< /tab >}}
+{{< tab "vtysh Commands ">}}
+
+The following example command configures PIM to ignore the RP check for all upstream neighbors:
+
+```
+cumulus@switch:~$ sudo vtysh
+
+switch# configure terminal
+switch(config)# interface swp50
+switch(config-if)# ip pim allow-rp
+switch(config-if)# end
+switch# write memory
+switch# exit
+cumulus@switch:~$
+```
+
+The following example command configures PIM to only ignore the RP check for the upstream neighbors in the prefix list called ALLOW-RP:
+
+```
+cumulus@switch:~$ sudo vtysh
+
+switch# configure terminal
+switch(config)# interface swp50
+switch(config-if)# ip pim allow-rp rp-list ALLOW-RP
+switch(config-if)# end
+switch# write memory
+switch# exit
+cumulus@switch:~$
+```
+
+{{< /tab >}}
 {{< /tabs >}}
 
 ## Verify PIM

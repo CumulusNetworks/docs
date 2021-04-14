@@ -949,7 +949,7 @@ Paths: (2 available, best #2, table default)
 
 ## Conditional Advertisement
 
-Routes are typically propagated even if a different path exists. The BGP conditional advertisement feature lets you advertise some routes depending on the existence and nonexistence of other routes.
+Routes are typically propagated even if a different path exists. The BGP conditional advertisement feature lets you advertise certain routes only if other routes exist or don't exist.
 
 This feature is typically used in multihomed networks where some prefixes are advertised to one of the providers only if information from the other provider is not present. For example, a multihomed router can use conditional advertisement to choose which upstream provider learns about the routes it provides so that it can influence which provider handles traffic destined for the downstream router. This is useful for cost of service (one provider is cheaper than another), latency, or other policy requirements that are not natively accounted for in BGP.
 
@@ -961,7 +961,7 @@ The following command example configures Cumulus Linux to send a 10.0.0.0/8 summ
 {{< tab "CUE Commands ">}}
 
 ```
-cumulus@switch:~$ NEED COMMAND 
+cumulus@switch:~$ NEED COMMAND
 cumulus@switch:~$ cl config apply
 ```
 

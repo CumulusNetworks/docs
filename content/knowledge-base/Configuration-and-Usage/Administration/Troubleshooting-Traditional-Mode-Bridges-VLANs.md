@@ -118,6 +118,6 @@ Use the `bridge fdb show` command to see multiple bridges and their associated M
 
 ## See Also
 
-- {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux/Layer-2/Bonding-Link-Aggregation/" text="Bonding and Link Aggregation on Cumulus Linux">}}
-- {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux/Layer-2/Spanning-Tree-and-Rapid-Spanning-Tree/" text="Configuring Spanning-Tree on Cumulus Linux">}}
-- {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux/Layer-2/Ethernet-Bridging-VLANs/" text="Ethernet Bridging and VLANs on Cumulus Linux">}}()
+- {{<kb_link url="cumulus-linux-43/Layer-2/Bonding-Link-Aggregation/" text="Bonding and Link Aggregation on Cumulus Linux">}}
+- {{<kb_link url="cumulus-linux-43/Layer-2/Spanning-Tree-and-Rapid-Spanning-Tree/" text="Configuring Spanning-Tree on Cumulus Linux">}}
+- {{<kb_link url="cumulus-linux-43/Layer-2/Ethernet-Bridging-VLANs/" text="Ethernet Bridging and VLANs on Cumulus Linux">}}()

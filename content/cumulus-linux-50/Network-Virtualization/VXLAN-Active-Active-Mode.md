@@ -666,4 +666,4 @@ iface swp50
   post-up ip link set $IFACE promisc on
 ```
 
-For more information on using Cumulus VX and Vagrant, refer to the {{<exlink url="https://docs.cumulusnetworks.com/cumulus-vx/" text="Cumulus VX documentation">}}.
+For more information on using Cumulus VX and Vagrant, refer to the {{<kb_link url="cumulus-vx" text="Cumulus VX documentation">}}.

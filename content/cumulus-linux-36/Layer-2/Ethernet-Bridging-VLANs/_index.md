@@ -33,12 +33,12 @@ which allows for configurations that are similar to incumbent network devices.
 
 {{%/notice%}}
 
-{{%notice info%}}
+{{<notice info>}}
 
 For a comparison of traditional and VLAN-aware modes, read 
 {{<kb_link url="knowledge-base/Configuration-and-Usage/Network-Interfaces/Compare-Traditional-Bridge-Mode-to-VLAN-aware-Bridge-Mode/" text="this knowledge base article" >}}.
 
-{{%/notice%}}
+{{</notice>}}
 
 {{%notice note%}}
 

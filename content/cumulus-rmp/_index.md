@@ -32,7 +32,7 @@ Starting with Cumulus Linux 4.0.0, the Cumulus RMP uses the same binary image as
 Cumulus RMP 3.7.0 contains several bug fixes and the following new
 features:
 
-- [RADIUS Change of Authorization (CoA) requests](/cumulus-linux-37/Layer-1-and-Switch-Ports/802.1X-Interfaces/#radius-change-of-authorization-and-disconnect-requests)
+- {{<kb_link text="RADIUS Change of Authorization (CoA) requests" url="cumulus-linux-37/Layer-1-and-Switch-Ports/802.1X-Interfaces/#radius-change-of-authorization-and-disconnect-requests" >}}
 - [RADIUS AAA local fallback authentication](/cumulus-linux-37/System-Configuration/Authentication-Authorization-and-Accounting/RADIUS-AAA/#local-fallback-authentication)
 - [TACACS+ local fallback authentication](/cumulus-linux-37/System-Configuration/Authentication-Authorization-and-Accounting/TACACS+/#local-fallback-authentication)
 - New NCLU commands:

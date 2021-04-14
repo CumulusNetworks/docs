@@ -67,9 +67,18 @@
 <td></td>
 </tr>
 <tr>
-<td>2583274</td>
-<td>The Mellanox SN2010 switch constantly changes fan speeds when the temperature does not change.</td>
-<td>4.3.0</td>
+<td>2617001</td>
+<td>CVE-2021-26933 CVE-2021-27379
+Multiple vulnerabilities have been discovered in the Xen hypervisor, which could result in denial of service, privilege escalation or memory disclosure.
+Vulnerable: &lt; 4.11.4+99-g8bce4698f6-1
+Fixed: 4.11.4+99-g8bce4698f6-1</td>
+<td>4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2614016</td>
+<td>The switch firmware incorrectly identifies Lenovo LR4 transceivers (part number 00YD278) and does not set the laser levels properly, which can prevent the link from coming up or might cause the transceiver to be identified as a 1G module.</td>
+<td>4.2.0-4.3.0</td>
 <td></td>
 </tr>
 <tr>
@@ -211,17 +220,6 @@ Fixed: 1.3.8+dfsg-3+deb10u1</td>
 <td></td>
 </tr>
 <tr>
-<td>2556556</td>
-<td>The {{ethtool -m &lt;interface&gt;}} command does not show Mellanox 100G transceiver MMA1L30-CM information and produces the following error:
-
-root@spine01:mgmt:~# ethtool -m swp51
-Cannot get Module EEPROM data: Invalid argument
-
-To work around this issue, run the {{mlxlink -d /dev/mst/mt53104_pciconf0 -c -m -e --show_fec --show_serdes_tx --show_device -p 51}} command to show the transceiver information.</td>
-<td>4.3.0</td>
-<td></td>
-</tr>
-<tr>
 <td>2556500</td>
 <td>Cumulus Linux does not support bond members at 200G or greater.</td>
 <td>4.0.0-4.3.0</td>
@@ -347,21 +345,6 @@ This error has no functional impact.</td>
 <td></td>
 </tr>
 <tr>
-<td>2555205</td>
-<td>If the FRR and MSTP processes go down, an SNMP TRAP is not generated even with the following configuration in the {{/etc/snmp/snmpd.conf}} file. 
-
-proc watchfrr
-proc mstpd
-monitor -I -r 1 -o prNames.5 -o prErrMessage.5 “Process FRRis down!!!” PrErrorFlag.5 != 0
-monitor -I -r 1 -o prNames.5 -o prErrMessage.5 “Process FRR is up!!!” PrErrorFlag.5 = 0
-monitor -I -r 1  -o prNames.3 -o prErrMessage.3  "Process mstpd is down!!!!" prErrorFlag.3 != 0
-monitor -I -r 1  -o prNames.3 -o prErrMessage.3  "Process mstpd is up!!!!" prErrorFlag.3 = 0
-
-</td>
-<td>3.7.12-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
 <td>2555148</td>
 <td>When using NCLU to add new BGP neighbors to existing configurations, the existence of address-family statements are ignored and the neighbors are added at the end of these lines. This might cause a problem if you try to activate these new neighbors in any of the existing address-family configurations.
 To work around this issue, configure the new BGP neighbors with vtysh.</td>
@@ -431,19 +414,6 @@ To work around this issue, configure a static route in FRR.
 <td>2554299</td>
 <td>In a VRRP configuration, BGP unnumbered sessions for VRFs fail to establish after a networking restart.</td>
 <td>4.2.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
-<td>2554231</td>
-<td>On the Mellanox SN3700C switch, {{hwmon}} fails to collect information and show errors similar to the following:
-
-2020-10-01T17:48:09.558200+09:00 [sn3700c1][kernel][err] [25666.121068] mlxsw_minimal 2-0048: Could not acquire lock
-2020-10-01T17:48:09.558200+09:00 [sn3700c1][kernel][err] [25666.127069] mlxsw_minimal 2-0048: Reg cmd access failed (reg_id=900a(mtmp),type=query)
-2020-10-01T17:48:10.554707+09:00 [sn3700c2][kernel][err] [25160.069404] mlxsw_minimal 2-0048: Could not acquire lock
-2020-10-01T17:48:10.554707+09:00 [sn3700c2][kernel][err] [25160.075393] mlxsw_minimal 2-0048: Reg cmd access failed (reg_id=900f(mtbr),type=query)
-2020-10-01T17:48:10.554707+09:00 [sn3700c2][kernel][err] [25160.084265] hwmon hwmon7: Failed to query module temperature sensor
-</td>
-<td>4.2.1-4.3.0</td>
 <td></td>
 </tr>
 <tr>
@@ -924,12 +894,6 @@ To work around this issue, run the {{net add time ntp server &lt;server&gt; ibur
 <td>2545125</td>
 <td>If you configure more than one VRR interface on an SVI interface, deleting one of the VRR addresses does not remove the interface/address. </td>
 <td>3.7.10-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
-<td>2545012</td>
-<td>Port security is not currently supported on VX. The NCLU commands produce errors.</td>
-<td>4.0.0-4.3.0</td>
 <td></td>
 </tr>
 <tr>
@@ -2079,6 +2043,28 @@ To work around this issue, remove, then re-add the component prefix routes.</td>
 <td>2548408</td>
 <td>{{net show configuration commands}} does not show the RoCE {{net add interface &lt;swp&gt; storage-optimized pfc}} configuration.</td>
 <td>4.1.0-4.2.1</td>
+</tr>
+<tr>
+<td>2547068</td>
+<td>Hardware platforms using the Intel D-1500 CPU series might reboot unexpectedly.
+To work around this issue, contact your hardware vendor to inquire if a new version of BIOS with a microcode fix might be available, or manually disable CPU C-states in the kernel as outlined below:
+To permanently disable C-states using a kernel boot parameter:
+1. Edit {{/etc/default/grub}} to add the argument {{processor.max_cstate=0}} to the variable {{GRUB_CMDLINE_LINUX}}
+For example, if {{/etc/default/grub}} file contains the following line:
+{{GRUB_CMDLINE_LINUX="cl_platform=accton_as7726_32x console=tty0 console=ttyS0,115200n8 intel_iommu=off pcie_aspm=off"}}
+change it to
+{{GRUB_CMDLINE_LINUX="cl_platform=accton_as7726_32x console=tty0 console=ttyS0,115200n8 intel_iommu=off pcie_aspm=off processor.max_cstate=0"}}
+2. Run {{sudo update-grub}}
+3. Reboot the system with {{sudo reboot}}
+
+To Disable cstates in realtime on the current system which will not persist through a reboot:
+1. Confirm that the libpci3 package is installed
+Run {{dpkg-query -l libpci3}} and confirm the following line is displayed:
+{{ii  libpci3:amd64      1:3.2.1-3      amd64          Linux PCI Utilities (shared library)}}
+The first field above should read {{ii}}. If not, install the libpci3 package by running {{sudo apt upgrade;sudo apt install libpci3}}
+2. Disable C-states by executing the command {{./cpupower idle-set -d 2}}
+C-states have been disabled by default as of Cumulus Linux 4.3.0</td>
+<td>3.7.9-4.2.1</td>
 </tr>
 <tr>
 <td>2543647</td>

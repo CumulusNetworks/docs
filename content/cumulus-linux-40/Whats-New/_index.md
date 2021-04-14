@@ -6,7 +6,7 @@ toc: 2
 ---
 This document supports the Cumulus Linux 4.0 release, and lists new platforms and features.
 
-- For complete details on the differences between Cumulus Linux 4.0 and Cumulus Linux 3.7, see {{<exlink url="https://docs.cumulusnetworks.com/knowledge-base/Setup-and-Getting-Started/Whats-New-and-Different-in-Cumulus-Linux-400/" text="this article">}}.
+- For complete details on the differences between Cumulus Linux 4.0 and Cumulus Linux 3.7, see {{<kb_link url="knowledge-base/Setup-and-Getting-Started/Whats-New-and-Different-in-Cumulus-Linux-400/" text="this article">}}.
 - For a list of all the platforms supported in Cumulus Linux 4.0, see the {{<exlink url="https://cumulusnetworks.com/products/hardware-compatibility-list/" text="Hardware Compatibility List (HCL)">}}.
 - For a list of open and fixed issues in Cumulus Linux 4.0, see the {{<link url="Cumulus-Linux-4.0-Release-Notes" text="Cumulus Linux 4.0 Release Notes">}}.
 - To upgrade to Cumulus Linux 4.0, follow the steps in {{<link url="Upgrading-Cumulus-Linux">}}.
@@ -37,6 +37,11 @@ Cumulus Linux 4.0 supports new platforms, provides bug fixes, and contains sever
     - {{<link url="Management-VRF" text="Management VRF">}} is enabled by default
     - {{<link url="Basic-Configuration" text="ARP/ND suppression">}} is enabled by default on all VXLAN interfaces
     - {{<link url="Basic-Configuration" text="MAC learning">}} is disabled by default on all VXLAN bridge ports
+
+### Unsupported Features
+
+- Lightweight network virtualization (LNV) is no longer available. See {{<link url="Migrating-from-LNV-to-EVPN" text="Migrating from LNV to EVPN">}}.
+- {{<link url="Virtual-Routing-and-Forwarding-VRF/#vrf-route-leaking" text="Static VRF route leaking">}} is not supported.
 
 ### Unsupported Platforms
 

@@ -44,7 +44,7 @@ part number.
 
 ## Extended Support Release
 
-This version of Cumulus Linux is an Extended Support Release (ESR). Cumulus Linux 3.7 ESR started with Cumulus Linux 3.7.12 and all future releases in the 3.7 product family will all be ESR releases. To learn about ESR, please read {{<exlink url="https://docs.cumulusnetworks.com/knowledge-base/Support/Support-Offerings/Cumulus-Linux-Release-Versioning-and-Support-Policy/" text="this article">}}.
+This version of Cumulus Linux is an Extended Support Release (ESR). Cumulus Linux 3.7 ESR started with Cumulus Linux 3.7.12 and all future releases in the 3.7 product family will all be ESR releases. To learn about ESR, please read {{<kb_link url="knowledge-base/Support/Support-Offerings/Cumulus-Linux-Release-Versioning-and-Support-Policy/" text="this article">}}.
 
 The PDF of the 3.7.12 ESR user guide is available {{% pdf_link "here." %}} PDFs of pre-ESR 3.7 versions are available below.
 

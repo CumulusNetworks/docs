@@ -366,7 +366,7 @@ Cumulus Linux includes the `linuxptp` package for PTP, which uses the `phc2sys` 
 {{%notice note%}}
 - PTP is supported in boundary clock mode only (the switch provides timing to downstream servers; it is a slave to a higher-level clock and a master to downstream clocks).
 - The switch uses hardware time stamping to capture timestamps from an Ethernet frame at the physical layer. This allows PTP to account for delays in message transfer and greatly improves the accuracy of time synchronization.
-- Only IPv4/UDP PTP packets are supported.
+- IPv4 and IPv6 UDP PTP packets are supported.
 - Only a single PTP domain per network is supported. A PTP domain is a network or a portion of a network within which all the clocks are synchronized.
 - PTP *is* supported on BGP unnumbered interfaces. It is *not* supported on switched virtual interfaces (SVIs).
 
@@ -395,6 +395,9 @@ To enable the PTP boundary clock on the switch:
 To configure a boundary clock:
 
 1. Configure the interfaces on the switch that you want to use for PTP. Each interface must be configured as a layer 3 routed interface with an IP address.
+
+cumulus@switch:~$ set interface swp13s0 ip address 10.0.0.9/32
+cumulus@switch:~$ set interface swp13s1 ip address 10.0.0.10/32
 
     ```
     cumulus@switch:~$ net add interface swp13s0 ip address 10.0.0.9/32

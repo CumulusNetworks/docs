@@ -264,7 +264,7 @@ configuration of your switch after the installation completes.
     sudo mkfs.msdos -F 32 /dev/sdb1
     sudo mkfs.vfat /dev/sdb1</code></pre>
     <p>{{%notice note%}}</p>
-    <p>To use <code>mkfs.msdos</code> or <code>mkfs.vfat</code>, you need to install the <code>dosfstools</code> package from the <a href="https://docs.cumulusnetworks.com/cumulus-linux-36/Installation-Management/Adding-and-Updating-Packages/#adding-packages-from-another-repository">Debian software repositories</a> (step 3 here shows you how to add repositories from Debian), as they are not included by default.</p>
+    <p>To use <code>mkfs.msdos</code> or <code>mkfs.vfat</code>, you need to install the <code>dosfstools</code> package from the {{<link url="Adding-and-Updating-Packages/#adding-packages-from-another-repository" text="Debian software repositories" >}} (step 3 here shows you how to add repositories from Debian), as they are not included by default.</p>
     <p>{{%/notice%}}</p></li>
     <li><p>To continue installing Cumulus Linux, mount the USB drive to move files.</p>
     <pre><code>sudo mkdir /mnt/usb

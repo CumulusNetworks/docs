@@ -444,6 +444,10 @@ A primary address is required for the parent interface to use as the source addr
 {{< tab "spine01 ">}}
 
 ```
+cumulus@spine01:~$ cl set interface swp1 ip address 10.0.0.2/24
+cumulus@spine01:~$ cl set interface swp1 ip address 2001:0db8::2/64
+cumulus@switch:~$ NEED COMMAND
+cumulus@switch:~$ NEED COMMAND
 cumulus@switch:~$ NEED COMMAND
 cumulus@switch:~$ cl config apply
 ```
@@ -452,6 +456,10 @@ cumulus@switch:~$ cl config apply
 {{< tab "spine02 ">}}
 
 ```
+cumulus@spine02:~$ cl set interface swp1 ip address 10.0.0.3/24
+cumulus@spine02:~$ cl set interface swp1 address 2001:0db8::3/64
+cumulus@switch:~$ NEED COMMAND
+cumulus@switch:~$ NEED COMMAND
 cumulus@switch:~$ NEED COMMAND
 cumulus@switch:~$ cl config apply
 ```

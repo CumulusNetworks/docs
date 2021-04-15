@@ -14,15 +14,15 @@ toc: 4
 
 EVPN-MH uses {{<link url="#supported-evpn-route-types" text="BGP-EVPN type-1, type-2 and type-4 routes">}} to discover Ethernet segments (ES) and to forward traffic to those Ethernet segments. The MAC and neighbor databases are synchronized between the Ethernet segment peers through these routes as well. An *{{<exlink url="https://tools.ietf.org/html/rfc7432#section-5" text="Ethernet segment">}}* is a group of switch links that are attached to the same server. Each Ethernet segment has an unique Ethernet segment ID (`es-id`) across the entire PoD.
 
-To configure EVPN-MH, you set an Ethernet segment system MAC address (`es-sys-mac`) and a local Ethernet segment ID (`local-es-id`) on a static or LACP bond. These two parameters generate the unique MAC-based ESI value ({{<exlink url="https://tools.ietf.org/html/rfc7432#section-5" text="type-3">}}) automatically:
+To configure EVPN-MH, you set an Ethernet segment system MAC address and a local Ethernet segment ID on a static or LACP bond. These two parameters generate the unique MAC-based ESI value ({{<exlink url="https://tools.ietf.org/html/rfc7432#section-5" text="type-3">}}) automatically:
 
-- The `es-sys-mac` is used for the LACP system identifier.
-- The `es-id` configuration defines a local discriminator to uniquely enumerate each bond that shares the same es-sys-mac.
-- The resulting 10-byte ESI value has the following format, where the MMs denote the 6-byte `es-sys-mac` and the XXs denote the 3-byte `es-id` value:
+- The Ethernet segment system MAC address is used for the LACP system identifier.
+- The local Ethernet segment ID configuration defines a local discriminator to uniquely enumerate each bond that shares the same Ethernet segment system MAC address.
+- The resulting 10-byte ESI value has the following format, where the MMs denote the 6-byte Ethernet segment system MAC address and the XXs denote the 3-byte local Ethernet segment ID value:
 
       03:MM:MM:MM:MM:MM:MM:XX:XX:XX
 
-While you can specify a different `es-sys-mac` on different Ethernet segments attached to the same switch, the `es-sys-mac` must be the same on the downlinks attached to the same server.
+While you can specify a different system MAC address on different Ethernet segments attached to the same switch, the Ethernet segment system MAC address must be the same on the downlinks attached to the same server.
 
 {{%notice info%}}
 When using Spectrum 2 or Spectrum 3 switches, an Ethernet segment can span more than two switches. Each Ethernet segment is a distinct redundancy group. However, when using Spectrum A1 switches, a maximum of two switches can participate in a redundancy group or Ethernet segment.
@@ -80,19 +80,19 @@ The following features are not supported with EVPN-MH:
 ## Configure EVPN-MH
 
 To configure EVPN-MH:
-1. Enable the `evpn.multihoming.enable` variable in `switchd.conf`. Then, specify the following required settings:
-2. Set the Ethernet segment ID (`es-id`)
-3. Set the Ethernet segment system MAC address (`es-sys-mac`)
+1. Enable EVPN multihoming.
+2. Set the Ethernet segment ID
+3. Set the Ethernet segment system MAC address
 
 These settings are applied to interfaces, typically bonds.
 
 An Ethernet segment configuration has these characteristics:
 
-- The `es-id` is a 24-bit integer (1-16777215).
-- Each interface (bond) needs its own `es-id`.
-- Static and LACP bonds can be associated with an `es-id`.
+- The Ethernet segment ID is a 24-bit integer (1-16777215).
+- Each interface (bond) needs its own Ethernet segment ID.
+- Static and LACP bonds can be associated with an Ethernet segment ID.
 
-A *designated forwarder* (DF) is elected for each Ethernet segment. The DF is responsible for forwarding flooded traffic received through the VXLAN overlay to the locally attached Ethernet segment. Specify a preference (using the `es-df-pref` option) on an Ethernet segment for the DF election, as this leads to predictable failure scenarios. The EVPN VTEP with the highest `es-df-pref` setting becomes the DF. The `es-df-pref` setting defaults to _32767_.
+A *designated forwarder* (DF) is elected for each Ethernet segment. The DF is responsible for forwarding flooded traffic received through the VXLAN overlay to the locally attached Ethernet segment. Specify a preference on an Ethernet segment for the DF election, as this leads to predictable failure scenarios. The EVPN VTEP with the highest DF preference setting becomes the DF. The DF preference setting defaults to _32767_.
 
 NCLU generates the EVPN-MH configuration and reloads FRR and `ifupdown2`. The configuration appears in both the `/etc/network/interfaces` file and in `/etc/frr/frr.conf` file.
 
@@ -100,9 +100,20 @@ NCLU generates the EVPN-MH configuration and reloads FRR and `ifupdown2`. The co
 When EVPN-MH is enabled, all SVI MAC addresses are advertised as type 2 routes. You do not need to configure a unique SVI IP address or configure the BGP EVPN address family with `advertise-svi-ip`.
 {{%/notice%}}
 
-### Enable EVPN-MH in switchd
+### Enable EVPN-MH
 
-To enable EVPN-MH in `switchd`, set the `evpn.multihoming.enable` variable in `switchd.conf` to _TRUE_, then restart the `switchd` service. The variable is disabled by default.
+{{< tabs "TabID105 ">}}
+{{<tab "CUE Commands">}}
+
+```
+cumulus@switch:~$ cl set evpn multihoming enable on
+cumulus@switch:~$ cl config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Set the `evpn.multihoming.enable` variable in the `/etc/cumulus/switchd.conf` file to `TRUE`, then restart the `switchd` service. The variable is disabled by default.
 
 ```
 cumulus@switch:~$ sudo nano /etc/cumulus/switchd.conf
@@ -112,6 +123,9 @@ evpn.multihoming.enable = TRUE
 
 cumulus@switch:~$ sudo systemctl restart switchd.service
 ```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ### Configure the EVPN-MH Bonds
 
@@ -124,10 +138,10 @@ To configure bond interfaces for EVPN multihoming, run commands similar to the f
 cumulus@leaf01:~$ cl set interface bond1 bond member swp1
 cumulus@leaf01:~$ cl set interface bond2 bond member swp2
 cumulus@leaf01:~$ cl set interface bond3 bond member swp3
-cumulus@leaf01:~$ cl set interface bond1 evpn multihoming segment identifier 1
-cumulus@leaf01:~$ cl set interface bond2 evpn multihoming segment identifier 2
-cumulus@leaf01:~$ cl set interface bond3 evpn multihoming segment identifier 3
-cumulus@leaf01:~$ cl set interface bond1-3 evpn multihoming mac-address 44:38:39:BE:EF:AA
+cumulus@leaf01:~$ cl set interface bond1 evpn multihoming segment local-id 1
+cumulus@leaf01:~$ cl set interface bond2 evpn multihoming segment local-id 2
+cumulus@leaf01:~$ cl set interface bond3 evpn multihoming segment local-id 3
+cumulus@leaf01:~$ cl set interface bond1-3 evpn multihoming segment mac-address 44:38:39:BE:EF:AA
 cumulus@leaf01:~$ cl set interface bond1-3 evpn multihoming segment df-preference 50000
 cumulus@leaf01:~$ cl config apply
 ```
@@ -499,6 +513,24 @@ Some third party switch vendors do not advertise EAD-per-EVI routes; they only a
 
 To remove the dependency on EAD-per-EVI routes and activate the VTEP upon receiving the EAD-per-ES route:
 
+{{< tabs "TabID516 ">}}
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@switch:~$ cl set evpn multihoming ead-evi-route rx off
+cumulus@switch:~$ cl config apply
+```
+
+To suppress the advertisement of EAD-per-EVI routes, run:
+
+```
+cumulus@switch:~$ cl set evpn multihoming ead-evi-route tx off
+cumulus@switch:~$ cl config apply
+```
+
+{{< /tab >}}
+{{< tab "NCLU Commands ">}}
+
 ```
 cumulus@switch:~$ net add bgp l2vpn evpn disable-ead-evi-rx
 cumulus@switch:~$ net commit
@@ -510,6 +542,12 @@ To suppress the advertisement of EAD-per-EVI routes, run:
 cumulus@switch:~$ net add bgp l2vpn evpn disable-ead-evi-tx
 cumulus@switch:~$ net commit
 ```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ## Troubleshooting
 

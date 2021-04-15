@@ -110,12 +110,6 @@ Fixed: 6.8.9.9-5+deb8u23</td>
 <td></td>
 </tr>
 <tr>
-<td>2607965</td>
-<td>On the EdgeCore AS7726 switch, when you run the NCLU {{net show system}} command, you see the error {{Command not found}}.</td>
-<td>3.7.14.2</td>
-<td></td>
-</tr>
-<tr>
 <td>2595889</td>
 <td>In a traditional bridge configuration with {{ip-forward off}}, neighbors are synchronized to hardware with a {{switchd}} restart but are cleared when you flap the bridge interface.</td>
 <td>3.7.10-4.2.1</td>

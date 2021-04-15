@@ -21,9 +21,7 @@ If you run this command without any options, Cumulus Linux creates a backup of t
 The switch can store up to 30 *non-permanent* backup files (or can allocate a maximum of 25 MB of disc space) in addition to the permanent backup files (see the `-p` option below). When this limit is reached, Cumulus Linux keeps the oldest and the newest backup files, then starts removing the second oldest file up to the second newest file.
 
 {{%notice note%}}
-
 Cumulus Linux recommends you copy the backup file off the switch after backup is complete.
-
 {{%/notice%}}
 
 The `config-backup` command includes the following options:
@@ -81,10 +79,8 @@ After the backup file is restored successfully, you are prompted to restart any 
 Cumulus Linux reports any issues encountered during restore and prompts you to continue or stop.
 
 {{%notice note%}}
-
 - The `config-restore` command *requires* a filename, file number, or the most recent file option (`-N`).
 - You can only run one `config-backup` or `config-restore` command instance at the same time.
-
 {{%/notice%}}
 
 The `config-restore` command includes the following options:

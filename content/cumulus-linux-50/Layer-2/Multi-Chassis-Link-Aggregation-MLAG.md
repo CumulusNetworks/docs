@@ -168,7 +168,7 @@ iface bridge
 {{< /tabs >}}
 
 5. Create the inter-chassis bond and the peer link VLAN (as a VLAN subinterface). You also need to provide the peer link IP address, the MLAG bond interfaces, the MLAG system MAC address, and the backup interface.
-   - By default, the NCLU command configures the inter-chassis bond with the name *peerlink* and the peer link VLAN with the name *peerlink.4094*. Use *peerlink.4094* to ensure that the VLAN is independent of the bridge and spanning tree forwarding decisions.
+   - By default, Cumulus Linux configures the inter-chassis bond with the name *peerlink* and the peer link VLAN with the name *peerlink.4094*. Use *peerlink.4094* to ensure that the VLAN is independent of the bridge and spanning tree forwarding decisions.
    - The peer link IP address is an unrouteable linklocal address that provides layer 3 connectivity between the peer switches.
    - NVIDIA provides a reserved range of MAC addresses for MLAG (between 44:38:39:ff:00:00 and 44:38:39:ff:ff:ff). Use a MAC address from this range to prevent conflicts with other interfaces in the same bridged network.
       - Do not to use a multicast MAC address.
@@ -469,29 +469,7 @@ iface br0.10
 
 ### Configure a Backup UDP Port
 
-By default, Cumulus Linux uses UDP port 5342 with the backup IP address. To change the backup UDP port:
-
-{{< tabs "TabID444 ">}}
-{{< tab "CUE Commands ">}}
-
-```
-cumulus@leaf01:~$ NEED COMMAND
-cumulus@leaf01:~$ 
-```
-
-{{< /tab >}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@leaf01:~$ net add interface peerlink.4094 clag args --backupPort 5400
-cumulus@leaf01:~$ net pending
-cumulus@leaf01:~$ net commit
-```
-
-{{< /tab >}}
-{{< tab "Linux Commands ">}}
-
-Edit the `/etc/network/interfaces` file to add `clagd-args --backupPort <port>` to the `auto peerlink.4094` stanza. For example:
+By default, Cumulus Linux uses UDP port 5342 with the backup IP address. To change the backup UDP port, edit the `/etc/network/interfaces` file to add `clagd-args --backupPort <port>` to the `auto peerlink.4094` stanza. For example:
 
 ```
 ...
@@ -509,9 +487,6 @@ Run the `sudo ifreload -a` command to apply all the configuration changes:
 ```
 cumulus@leaf01:~$ sudo ifreload -a
 ```
-
-{{< /tab >}}
-{{< /tabs >}}
 
 ## Best Practices
 
@@ -953,10 +928,10 @@ Use the following troubleshooting tips to check that MLAG is configured and work
 
 ### Check MLAG Status
 
-To check the status of your MLAG configuration, run the NCLU `net show clag` command or the Linux `clagctl` command. For example:
+To check the status of your MLAG configuration, run the CUE `cl show mlag` command or the Linux `clagctl` command. For example:
 
 ```
-cumulus@switch:~$ net show clag
+cumulus@switch:~$ clagctl
 The peer is alive
     Peer Priority, ID, and Role: 4096 44:38:39:FF:00:01 primary
      Our Priority, ID, and Role: 8192 44:38:39:FF:00:02 secondary

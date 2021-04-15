@@ -189,7 +189,7 @@ Installing the Cumulus Linux image using FTP from ONIE is not supported on the D
     onie# /etc/init.d/discover.sh stop
     ```
 
-3. Place the Cumulus Linux image into an FTP directory.
+3. Place the Cumulus Linux image into a TFTP or FTP directory.
 
 4. If you are not using DHCP options, run one of the following commands (tftp for TFTP or ftp for FTP):
 

@@ -110,12 +110,6 @@ Fixed: 6.8.9.9-5+deb8u23</td>
 <td></td>
 </tr>
 <tr>
-<td>2607965</td>
-<td>On the EdgeCore AS7726 switch, when you run the NCLU {{net show system}} command, you see the error {{Command not found}}.</td>
-<td>3.7.14.2</td>
-<td></td>
-</tr>
-<tr>
 <td>2595889</td>
 <td>In a traditional bridge configuration with {{ip-forward off}}, neighbors are synchronized to hardware with a {{switchd}} restart but are cleared when you flap the bridge interface.</td>
 <td>3.7.10-4.2.1</td>
@@ -181,6 +175,12 @@ CVE-2020-27845: Crafted input can cause out-of-bounds-read.
 Vulnerable: &lt;= 2.1.0-2+deb8u11
 Fixed: 2.1.0-2+deb8u12</td>
 <td>3.7.14-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>2562347</td>
+<td>When you bring VXLAN interfaces up and down physically or administratively, the MTU for the SVIs changes to 1550 (the default value). </td>
+<td>3.7.14.2</td>
 <td></td>
 </tr>
 <tr>

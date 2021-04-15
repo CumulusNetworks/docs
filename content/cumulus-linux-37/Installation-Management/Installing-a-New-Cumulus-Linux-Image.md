@@ -198,7 +198,7 @@ ONIE# onie-nos-install tftp://local-tftp-server/cumulus-install-[PLATFORM].bin
 
 <summary>Install from Cumulus Linux </summary>
 
-1. Place the Cumulus Linux disk image into a TFTP or FTP directory.
+1. Place the Cumulus Linux disk image into a TFTP or FTP directory (TFTP is *not* supported in Cumulus Linux 3.7.9 and later).
 
 2. From the Cumulus Linux command prompt, run one of the following commands (`tftp` for TFTP or `ftp` for FTP), then reboot the switch.
 

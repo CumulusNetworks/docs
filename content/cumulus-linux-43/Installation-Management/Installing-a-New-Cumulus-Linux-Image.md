@@ -203,9 +203,7 @@ Installing the Cumulus Linux image using FTP from ONIE is not supported on the D
 
 {{< tab "Install from Cumulus Linux ">}}
 
-1. Place the Cumulus Linux image into an FTP directory.
-
-   TFTP is not supported in Cumulus Linux.
+1. Place the Cumulus Linux image into an FTP directory (TFTP is *not* supported in Cumulus Linux).
 
 2. From the Cumulus Linux command prompt, run the following command:
 

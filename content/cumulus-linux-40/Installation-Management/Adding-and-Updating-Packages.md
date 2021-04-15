@@ -155,9 +155,6 @@ adduser                            3.118
 apt                                1.8.2
 arping                             2.19-6
 arptables                          0.0.4+snapshot20181021-4
-atftp                              0.7.git20120829-3.1
-atftpd                             0.7.git20120829-3.1
-...
 ```
 
 {{< /tab >}}
@@ -180,8 +177,6 @@ ii  adduser             3.118                     all          add and remove us
 ii  apt                 1.8.2                     amd64        commandline package manager
 ii  arping              2.19-6                    amd64        sends IP and/or ARP pings (to the MAC address)
 ii  arptables           0.0.4+snapshot20181021-4  amd64        ARP table administration
-ii  atftp               0.7.git20120829-3.1       amd64        advanced TFTP client
-ii  atftpd              0.7.git20120829-3.1       amd64        advanced TFTP server
 ...
 ```
 

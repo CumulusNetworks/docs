@@ -53,7 +53,7 @@ The USB drive is mounted to a temporary directory under `/tmp` (for example, `/t
 
 ## ZTP Over DHCP
 
-If the `ztp` process does not discover a local ONIE script or applicable USB drive, it checks DHCP every ten seconds for up to five minutes for the presence of a ZTP URL specified in `/var/run/ztp.dhcp`. The URL can be any of HTTP, HTTPS, or FTP.
+If the `ztp` process does not discover a local ONIE script or applicable USB drive, it checks DHCP every ten seconds for up to five minutes for the presence of a ZTP URL specified in `/var/run/ztp.dhcp`. The URL can be any of HTTP, HTTPS, FTP, or TFTP.
 
 For ZTP using DHCP, provisioning initially takes place over the management network and is initiated through a DHCP hook. A DHCP option is used to specify a configuration script. This script is then requested from the Web server and executed locally on the switch.
 

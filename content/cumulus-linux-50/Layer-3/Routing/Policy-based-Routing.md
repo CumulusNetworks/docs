@@ -58,14 +58,7 @@ To configure a PBR policy:
     cumulus@switch:~$ cl set router pbr map map1 rule 1 match ecn 2
     ```
 
-2. Either apply a *next hop* or a *next hop* group to the policy map. The example command below applies the next hop 192.168.0.31 on the output interface swp2 and VRF `RED` to the `map1` policy map. The next hop must be an IP address. The output interface and VRF are optional, however, you *must* specify the VRF you want to use for resolution if the next hop is *not* in the default VRF.
-
-    ```
-    cumulus@switch:~$ NEED COMMAND
-    net add pbr-map map1 seq 1 set nexthop 192.168.0.31 swp2 nexthop-vrf RED
-    ```
-
-    To apply a next hop group (for ECMP) to the policy map, first create the next hop group, then apply the group to the policy map. The example commands below create a next hop group called `group1` that contains the next hop 192.168.0.21 on output interface swp1 and VRF `RED` and the next hop 192.168.0.22, then applies the next hop group `group1` to the `map1` policy map.
+2. Apply a next hop group to the policy map. First create the next hop group, then apply the group to the policy map. The example commands below create a next hop group called `group1` that contains the next hop 192.168.0.21 on output interface swp1 and VRF `RED` and the next hop 192.168.0.22, then applies the next hop group `group1` to the `map1` policy map.
 
     The output interface and VRF are optional. However, you must specify the VRF if the next hop is not in the default VRF.
 
@@ -86,11 +79,8 @@ To configure a PBR policy:
 
     ```
     cumulus@switch:~$ cl set interface swp51 router pbr map map1
+    cumulus@switch:~$ cl config apply
     ```
-
-{{%notice note%}}
-You can only set one policy per interface.
-{{%/notice%}}
 
 {{< /tab >}}
 {{< tab "vtysh Commands ">}}
@@ -150,15 +140,7 @@ You can only set one policy per interface.
     switch(config-pbr-map)# match ecn 2
     ```
 
-4. Either apply a *next hop* or a *next hop* group to the policy map. The example command below applies the next hop 192.168.0.31 on the output interface swp2 and VRF `RED` to the `map1` policy map. The next hop must be an IP address. The output interface and VRF are optional, however, you *must* specify the VRF you want to use for resolution if the next hop is *not* in the default VRF.
-
-    ```
-    switch(config-pbr-map)# set nexthop 192.168.0.31 swp2 nexthop-vrf RED
-    switch(config-pbr-map)# exit
-    switch(config)#
-    ```
-
-    To apply a next hop group (for ECMP) to the policy map, first create the next hop group, then apply the group to the policy map. The example commands below create a next hop group called `group1` that contains the next hop 192.168.0.21 on output interface swp1 and VRF `RED`, and the next hop 192.168.0.22, then applies the next hop group `group1` to the `map1` policy map.
+4. Apply a *next hop* group to the policy map. First create the next hop group, then apply the group to the policy map. The example commands below create a next hop group called `group1` that contains the next hop 192.168.0.21 on output interface swp1 and VRF `RED`, and the next hop 192.168.0.22, then applies the next hop group `group1` to the `map1` policy map.
 
     The output interface and VRF are optional. However, you must specify the VRF if the next hop is not in the default VRF.
 
@@ -182,6 +164,14 @@ You can only set one policy per interface.
     switch(config)#
     ```
 
+   Instead of a next hop *group*, you can apply a next hop to the policy map. The example command below applies the next hop 192.168.0.31 on the output interface swp2 and VRF `RED` to the `map1` policy map. The next hop must be an IP address. The output interface and VRF are optional, however, you *must* specify the VRF you want to use for resolution if the next hop is *not* in the default VRF.
+
+    ```
+    switch(config-pbr-map)# set nexthop 192.168.0.31 swp2 nexthop-vrf RED
+    switch(config-pbr-map)# exit
+    switch(config)#
+    ```
+
 5. Assign the PBR policy to an ingress interface. The example command below assigns the PBR policy `map1` to interface swp51:
 
     ```
@@ -193,29 +183,26 @@ You can only set one policy per interface.
     cumulus@switch:~$
     ```
 
+{{< /tab >}}
+{{< /tabs >}}
+
 {{%notice note%}}
 You can only set one policy per interface.
 {{%/notice%}}
-
-{{< /tab >}}
-{{< /tabs >}}
 
 The commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
 ```
 ...
-interface swp51
- pbr-policy map1
-...
 nexthop-group group1
- nexthop 192.168.0.21 swp1 nexthop-vrf rocket
- nexthop 192.168.0.22
-...
+nexthop 192.168.0.21 nexthop-vrf RED swp1
+nexthop 192.168.0.22
 pbr-map map1 seq 1
- match dst-ip 10.1.2.0/24
- match src-ip 10.1.4.1/24
- set nexthop nexthop-group group1
- set vrf dmz
+match dst-ip 10.1.2.0/24
+match src-ip 10.1.4.1/24
+set nexthop-group group1
+interface swp51
+pbr-policy map1
 ...
 ```
 
@@ -236,30 +223,30 @@ Seq: 4 rule: 303 Installed: yes Reason: Valid
     Installed: yes Tableid: 10009
 ```
 
-The NCLU commands for the above configuration are:
+The CUE commands for the above configuration are:
 
 ```
-cumulus@switch:~$ net add pbr-map pbr-policy seq 4 match src-ip 10.1.4.1/24
-cumulus@switch:~$ net add pbr-map pbr-policy seq 4 match dst-ip 10.1.2.0/24
-cumulus@switch:~$ net add pbr-map pbr-policy seq 4 set nexthop 192.168.0.21
+cumulus@switch:~$ cl set router pbr map pbr-policy rule 4 match source-ip 10.1.4.1/24
+cumulus@switch:~$ cl set router pbr map pbr-policy rule 4 match destination-ip 10.1.2.0/24
+cumulus@switch:~$ cl set router pbr nexthop-group group1 via 192.168.0.21
+cumulus@switch:~$ cl set router pbr map pbr-policy rule 4 action nexthop-group group1
 ```
 
 To change the source IP match from 10.1.4.**1**/24 to 10.1.4.**2**/24, you must delete the existing sequence by explicitly specifying the match/set condition. For example:
 
 ```
-cumulus@switch:~$ net del pbr-map pbr-policy seq 4 match src-ip 10.1.4.1/24
-cumulus@switch:~$ net del pbr-map pbr-policy seq 4 match dst-ip 10.1.2.0/24
-cumulus@switch:~$ net del pbr-map pbr-policy seq 4 set nexthop 192.168.0.21
-cumulus@switch:~$ net commit
+cumulus@switch:~$ cl unset router pbr map pbr-policy rule 4 match source-ip
+cumulus@switch:~$ cl unset router pbr map pbr-policy rule 4 match destination-ip
+cumulus@switch:~$ cl unset router pbr nexthop-group group1 via 192.168.0.21
 ```
 
 Add the new rule with the following NCLU commands:
 
 ```
-cumulus@switch:~$ net add pbr-map pbr-policy seq 4 match src-ip 10.1.4.2/24
-cumulus@switch:~$ net add pbr-map pbr-policy seq 4 match dst-ip 10.1.2.0/24
-cumulus@switch:~$ net add pbr-map pbr-policy seq 4 set nexthop 192.168.0.21
-cumulus@switch:~$ net commit
+cumulus@switch:~$ cl set router pbr map pbr-policy rule 4 match source-ip 10.1.4.2/24
+cumulus@switch:~$ cl set router pbr map pbr-policy rule 4 match destination-ip 10.1.2.0/24
+cumulus@switch:~$ cl set router pbr nexthop-group group1 via 192.168.0.21
+cumulus@switch:~$ cl config apply
 ```
 
 Run the `net show pbr map` command to verify that the rule has the updated source IP match:
@@ -363,51 +350,39 @@ Use caution when deleting PBR rules and next hop groups, as you might create an 
 {{< tabs "TabID451 ">}}
 {{< tab "CUE Commands ">}}
 
-```
-cumulus@switch:~$ NEED COMMAND
-```
-
-{{< /tab >}}
-{{< tab "NCLU Commands ">}}
-
 The following examples show how to delete a PBR rule match:
 
 ```
-cumulus@switch:~$ net del pbr-map map1 seq 1 match dst-ip 10.1.2.0/24
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
+cumulus@switch:~$ cl unset router pbr map map1 rule 1 match destination-ip
+cumulus@switch:~$ cl config apply
 ```
 
 The following examples show how to delete a next hop from a group:
 
 ```
-cumulus@switch:~$ net del nexthop-group group1 nexthop 192.168.0.32 swp1 nexthop-vrf rocket
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
+cumulus@switch:~$ cl unset router pbr nexthop-group group1 via 192.168.0.22
+cumulus@switch:~$ cl config apply
 ```
 
 The following examples show how to delete a next hop group:
 
 ```
-cumulus@switch:~$ net del nexthop-group group1
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
+cumulus@switch:~$ cl unset router pbr nexthop-group group1
+cumulus@switch:~$ cl config apply
 ```
 
 The following examples show how to delete a PBR policy so that the PBR interface is no longer receiving PBR traffic:
 
 ```
-cumulus@switch:~$ net del interface swp3 pbr-policy map1
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
+cumulus@switch:~$ cl unset interface swp51 router pbr map map1
+cumulus@switch:~$ cl config apply
 ```
 
 The following examples show how to delete a PBR rule:
 
 ```
-cumulus@switch:~$ net del pbr-map map1 seq 1
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
+cumulus@switch:~$ cl unset router pbr map map1
+cumulus@switch:~$ cl config apply
 ```
 
 {{< /tab >}}
@@ -432,7 +407,7 @@ The following examples show how to delete a next hop from a group:
 cumulus@switch:~$ sudo vtysh
 switch# configure terminal
 switch(config)# nexthop-group group1
-switch(config-nh-group)# no nexthop 192.168.0.32 swp1 nexthop-vrf rocket
+switch(config-nh-group)# no nexthop 192.168.0.32 swp1 nexthop-vrf RED
 switch(config-nh-group)# end
 switch# write memory
 switch# exit
@@ -444,7 +419,7 @@ The following examples show how to delete a next hop group:
 ```
 cumulus@switch:~$ sudo vtysh
 switch# configure terminal
-switch(config)# no set nexthop-group group1
+switch(config)# no nexthop-group group1
 switch(config)# end
 switch# write memory
 switch# exit
@@ -479,7 +454,7 @@ cumulus@switch:~$
 {{< /tab >}}
 {{< /tabs >}}
 
-If a PBR rule has multiple conditions (for example, a source IP match and a destination IP match), but you only want to delete one condition, you have to delete all conditions first, then re-add the ones you want to keep.
+<!--NO LONGER TRUE? - If a PBR rule has multiple conditions (for example, a source IP match and a destination IP match), but you only want to delete one condition, you have to delete all conditions first, then re-add the ones you want to keep.
 
 The example below shows an existing configuration that has a source IP match and a destination IP match.
 
@@ -514,7 +489,7 @@ Then, add back the conditions you want to keep:
 cumulus@switch:~$ net add pbr-map pbr-policy seq 6 match src-ip 10.1.4.1/24
 cumulus@switch:~$ net add pbr-map pbr-policy seq 6 set nexthop 192.168.0.21
 cumulus@switch:~$ net commit
-```
+```-->
 
 ## Troubleshooting
 
@@ -522,12 +497,12 @@ To see the policies applied to all interfaces on the switch, run the NCLU `net s
 
 ```
 cumulus@switch:~$ net show pbr interface
-swp55s3(67) with pbr-policy map1
+swp51(53) with pbr-policy map1
 ```
 
 To see the policies applied to a specific interface on the switch, add the interface name at the end of the command; for example, `net show pbr interface swp51` (or `show pbr interface swp51` in `vtysh`).
 
-To see information about all policies, including mapped table and rule numbers, run the NCLU `net show pbr map` command or the `vtysh` `show pbr map` command. If the rule is not set, you see a reason why.
+To see information about all policies, including mapped table and rule numbers, run the NCLU `net show pbr map` command or the vtysh `show pbr map` command. If the rule is not set, you see a reason why.
 
 ```
 cumulus@switch:~$ net show pbr map
@@ -544,7 +519,7 @@ cumulus@switch:~$ net show pbr map
 
 To see information about a specific policy, what it matches, and with which interface it is associated, add the map name at the end of the command; for example, `net show pbr map map1` (or `show pbr map map1` in `vtysh`).
 
-To see information about all next hop groups, run the NCLU `net show pbr nexthop-group` command or the `vtysh` `show pbr nexthop-group` command.
+To see information about all next hop groups, run the NCLU `net show pbr nexthop-group` command or the vtysh `show pbr nexthop-group` command.
 
 ```
 cumulus@switch:~$ net show pbr nexthop-group
@@ -562,7 +537,7 @@ Valid: yes nexthop 192.168.8.2
 Valid: yes nexthop 192.168.8.3
 ```
 
-To see information about a specific next hop group, add the group name at the end of the command; for example, `net show pbr nexthop-group group1` (or `show pbr nexthop-group group1` in `vtysh`).
+To see information about a specific next hop group, add the group name at the end of the command; for example, `net show pbr nexthop-group group1` (or `show pbr nexthop-group group1` in vtysh).
 
 {{%notice note%}}
 A new Linux routing table ID is used for each next hop and next hop group.
@@ -585,17 +560,6 @@ cumulus@leaf01:~$ cl set router pbr nexthop-group group1 via 192.168.0.32
 cumulus@leaf01:~$ cl set router pbr map map1 rule 1 action nexthop-group group1
 cumulus@leaf01:~$ cl set interface swp51 router pbr map map1
 cumulus@leaf01:~$ cl config
-```
-
-{{< /tab >}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@switch:~$ net add pbr-map map1 seq 1 match src-ip 0.0.0.0/0
-cumulus@switch:~$ net add pbr-map map1 seq 1 set nexthop 192.168.0.32
-cumulus@switch:~$ net add interface swp51 pbr-policy map1
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
@@ -623,12 +587,12 @@ cumulus@switch:~$
 The commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
 ```
-...
-interface swp51
- pbr-policy map1
-...
+nexthop-group group1
+nexthop 192.168.0.32
 pbr-map map1 seq 1
- match src-ip 0.0.0.0/0
- set nexthop 192.168.0.32
+match src-ip 0.0.0.0/0
+set nexthop-group group1
+interface swp51
+pbr-policy map1
 ...
 ```

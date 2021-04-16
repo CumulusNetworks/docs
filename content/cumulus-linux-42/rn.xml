@@ -472,12 +472,6 @@ NVIDIA does not recommend running NTP with a source interface other than eth0 as
 <td></td>
 </tr>
 <tr>
-<td>2553231</td>
-<td>On the Mellanox SN4700 switch, 8x50G port breakout is not supported currently.</td>
-<td>4.2.1-4.3.0</td>
-<td></td>
-</tr>
-<tr>
 <td>2553116</td>
 <td>When you manually set the link speed or duplex mode with ethtool to an unsupported value, then run a TDR check against the interface, you encounter a {{switchd}} service heartbeat failure.
 To work around this issue, reboot the switch to clear the condition. Avoid setting the interface speed or duplex mode directly with ethtool.</td>
@@ -2333,12 +2327,6 @@ NVIDIA does not recommend running NTP with a source interface other than eth0 as
 
 </td>
 <td>4.2.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
-<td>2553231</td>
-<td>On the Mellanox SN4700 switch, 8x50G port breakout is not supported currently.</td>
-<td>4.2.1-4.3.0</td>
 <td></td>
 </tr>
 <tr>

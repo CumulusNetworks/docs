@@ -58,20 +58,21 @@ To configure a PBR policy:
     cumulus@switch:~$ cl set router pbr map map1 rule 1 match ecn 2
     ```
 
-2. Either apply a *next hop* or a *next hop* group to the policy map. The example command below applies the next hop 192.168.0.31 on the output interface swp2 and VRF `rocket` to the `map1` policy map. The next hop must be an IP address. The output interface and VRF are optional, however, you *must* specify the VRF you want to use for resolution if the next hop is *not* in the default VRF.
+2. Either apply a *next hop* or a *next hop* group to the policy map. The example command below applies the next hop 192.168.0.31 on the output interface swp2 and VRF `RED` to the `map1` policy map. The next hop must be an IP address. The output interface and VRF are optional, however, you *must* specify the VRF you want to use for resolution if the next hop is *not* in the default VRF.
 
     ```
     cumulus@switch:~$ NEED COMMAND
-    net add pbr-map map1 seq 1 set nexthop 192.168.0.31 swp2 nexthop-vrf rocket
+    net add pbr-map map1 seq 1 set nexthop 192.168.0.31 swp2 nexthop-vrf RED
     ```
 
-    To apply a next hop group (for ECMP) to the policy map, first create the next hop group, then apply the group to the policy map. The example commands below create a next hop group called `group1` that contains the next hop 192.168.0.21 on output interface swp1 and VRF `rocket`, and the next hop 192.168.0.22, then applies the next hop group `group1` to the `map1` policy map.
+    To apply a next hop group (for ECMP) to the policy map, first create the next hop group, then apply the group to the policy map. The example commands below create a next hop group called `group1` that contains the next hop 192.168.0.21 on output interface swp1 and VRF `RED` and the next hop 192.168.0.22, then applies the next hop group `group1` to the `map1` policy map.
 
     The output interface and VRF are optional. However, you must specify the VRF if the next hop is not in the default VRF.
 
     ```
     cumulus@switch:~$ cl set router pbr nexthop-group group1 via 192.168.0.21 interface swp1
-    cumulus@switch:~$ cl set router pbr nexthop-group group1 via 192.168.0.22 vrf RED
+    cumulus@switch:~$ cl set router pbr nexthop-group group1 via 192.168.0.21 vrf RED
+    cumulus@switch:~$ cl set router pbr nexthop-group group1 via 192.168.0.22
     cumulus@switch:~$ cl set router pbr map map1 rule 1 action nexthop-group group1
     ```
 
@@ -149,21 +150,21 @@ You can only set one policy per interface.
     switch(config-pbr-map)# match ecn 2
     ```
 
-4. Either apply a *next hop* or a *next hop* group to the policy map. The example command below applies the next hop 192.168.0.31 on the output interface swp2 and VRF `rocket` to the `map1` policy map. The next hop must be an IP address. The output interface and VRF are optional, however, you *must* specify the VRF you want to use for resolution if the next hop is *not* in the default VRF.
+4. Either apply a *next hop* or a *next hop* group to the policy map. The example command below applies the next hop 192.168.0.31 on the output interface swp2 and VRF `RED` to the `map1` policy map. The next hop must be an IP address. The output interface and VRF are optional, however, you *must* specify the VRF you want to use for resolution if the next hop is *not* in the default VRF.
 
     ```
-    switch(config-pbr-map)# set nexthop 192.168.0.31 swp2 nexthop-vrf rocket
+    switch(config-pbr-map)# set nexthop 192.168.0.31 swp2 nexthop-vrf RED
     switch(config-pbr-map)# exit
     switch(config)#
     ```
 
-    To apply a next hop group (for ECMP) to the policy map, first create the next hop group, then apply the group to the policy map. The example commands below create a next hop group called `group1` that contains the next hop 192.168.0.21 on output interface swp1 and VRF `rocket`, and the next hop 192.168.0.22, then applies the next hop group `group1` to the `map1` policy map.
+    To apply a next hop group (for ECMP) to the policy map, first create the next hop group, then apply the group to the policy map. The example commands below create a next hop group called `group1` that contains the next hop 192.168.0.21 on output interface swp1 and VRF `RED`, and the next hop 192.168.0.22, then applies the next hop group `group1` to the `map1` policy map.
 
     The output interface and VRF are optional. However, you must specify the VRF if the next hop is not in the default VRF.
 
     ```
     switch(config)# nexthop-group group1
-    switch(config-nh-group)# nexthop 192.168.0.21 swp1 nexthop-vrf rocket
+    switch(config-nh-group)# nexthop 192.168.0.21 swp1 nexthop-vrf RED
     switch(config-nh-group)# nexthop 192.168.0.22
     switch(config-nh-group)# exit
     switch(config)# pbr-map map1 seq 1
@@ -579,9 +580,11 @@ The configuration for the example above is:
 {{< tab "CUE Commands ">}}
 
 ```
-cumulus@leaf01:~$ NEED COMMAND
-cumulus@leaf01:~$ 
-cumulus@leaf01:~$ 
+cumulus@leaf01:~$ cl set router pbr map map1 rule 1 match source-ip 0.0.0.0/0
+cumulus@leaf01:~$ cl set router pbr nexthop-group group1 via 192.168.0.32
+cumulus@leaf01:~$ cl set router pbr map map1 rule 1 action nexthop-group group1
+cumulus@leaf01:~$ cl set interface swp51 router pbr map map1
+cumulus@leaf01:~$ cl config
 ```
 
 {{< /tab >}}
@@ -617,7 +620,7 @@ cumulus@switch:~$
 {{< /tab >}}
 {{< /tabs >}}
 
-The NCLU and `vtysh` commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+The commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
 ```
 ...

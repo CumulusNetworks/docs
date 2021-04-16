@@ -5,7 +5,7 @@ weight: 1130
 toc: 4
 ---
 *What Just Happened* (WJH) provides real time visibility into network problems and has two components:
-- The WJH agent is installed and enabled by default on Cumulus Linux so that you can stream detailed and contextual telemetry for off-box analysis with tools, such as {{<kb_link url="cumulus-netq-33/" text="Cumulus NetQ">}}. 
+- The WJH agent is installed and enabled by default on Cumulus Linux so that you can stream detailed and contextual telemetry for off-box analysis with tools, such as {{<kb_link url="cumulus-netq-33/" text="NVIDIA NetQ">}}. 
 - The WJH service is an optional package that you can install and run on Cumulus Linux to help diagnose network problems by looking at dropped packets. Currently, only forwarding (layer 2, layer 3, and tunnel) related issues are shown.
 
 ## Install the WJH Service

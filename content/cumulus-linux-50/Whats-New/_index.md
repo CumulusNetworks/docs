@@ -34,7 +34,6 @@ Cumulus Linux 5.0 supports new platforms, provides bug fixes, and contains sever
 - Enhanced Transmission Selection (ETS): 802.1Qaz
 - Optimized Multicast Flooding (OMF)
 - PTP Boundary Clock
-- Static Double NAT support
 - IPv6 Traffic class-based PBR matching
 - Support for QinQ/QinVNI access and trunk ports on the same system
 - Removed licensing from Cumulus Linux

@@ -314,7 +314,7 @@ This is due to a change in the bonding driver to handle how the *actor port key*
 Even the most well planned and tested upgrades can result in unforeseen problems and sometimes the best solution is to roll back to the previous state. There are three main strategies, all of which require detailed planning and execution:
 
 - Flatten and rebuild. If the OS becomes unusable, you can use orchestration tools to reinstall the previous OS release from scratch and then rebuild the configuration automatically.
-- Backup and restore. Restore to a previous state using a backup captured before the upgrade. See {{<link title="Back up and Restore">}}.
+- Restore to a previous state using a backup configuration captured before the upgrade.
 
 The method you employ is specific to your deployment strategy. Providing detailed steps for each scenario is outside the scope of this document.
 

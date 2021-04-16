@@ -368,98 +368,86 @@ Cumulus Linux includes the `linuxptp` package for PTP, which uses the `phc2sys` 
 - The switch uses hardware time stamping to capture timestamps from an Ethernet frame at the physical layer. This allows PTP to account for delays in message transfer and greatly improves the accuracy of time synchronization.
 - IPv4 and IPv6 UDP PTP packets are supported.
 - Only a single PTP domain per network is supported. A PTP domain is a network or a portion of a network within which all the clocks are synchronized.
-- PTP *is* supported on BGP unnumbered interfaces. It is *not* supported on switched virtual interfaces (SVIs).
-
+- PTP is supported on BGP unnumbered interfaces.
+- You can isolate PTP traffic to a non-default VRF
 {{%/notice%}}
 
 In the following example, boundary clock 2 receives time from Master 1 (the grandmaster) on a PTP slave port, sets its clock and passes the time down from the PTP master port to boundary clock 1. Boundary clock 1 receives the time on a PTP slave port, sets its clock and passes the time down the hierarchy through the PTP master ports to the hosts that receive the time.
 
 {{< img src = "/images/cumulus-linux/date-time-ptp-example.png" >}}
 
-### Enable the PTP Boundary Clock on the Switch
+### Basic Configuration
 
-To enable the PTP boundary clock on the switch:
+To configure the PTP boundary clock:
 
-1. Open the `/etc/cumulus/switchd.conf` file in a text editor and add the following line:
+1. Enable PTP on the switch to start the `ptp4l` and `phc2sys` processes:
 
-    ```
-    ptp.timestamping = TRUE
-    ```
+   ```
+   cumulus@switch:~$ cl set service ptp 1 enable on
+   ```
 
-2. Restart `switchd`:
+2. Configure the interfaces on the switch that you want to use for PTP. Each interface must be configured as a layer 3 routed interface with an IP address.
 
-    {{<cl/restart-switchd>}}
+   ```
+   cumulus@switch:~$ cl set interface swp13s0 ip address 10.0.0.9/32
+   cumulus@switch:~$ cl set interface swp13s0 ip address 10.0.0.10/32
+   ```
 
-### Configure the PTP Boundary Clock
+3. Configure PTP options on the switch:
 
-To configure a boundary clock:
-
-1. Configure the interfaces on the switch that you want to use for PTP. Each interface must be configured as a layer 3 routed interface with an IP address.
-
-cumulus@switch:~$ set interface swp13s0 ip address 10.0.0.9/32
-cumulus@switch:~$ set interface swp13s1 ip address 10.0.0.10/32
-
-    ```
-    cumulus@switch:~$ net add interface swp13s0 ip address 10.0.0.9/32
-    cumulus@switch:~$ net add interface swp13s1 ip address 10.0.0.10/32
-    ```
-
-2. Configure PTP options on the switch:
-
-    - Set the `gm-capable` option to `no` to configure the switch to be a boundary clock.
+    - Set the clock mode to configure the switch to be a boundary clock.
     - Set the priority, which selects the best master clock. You can set priority 1 or 2. For each priority, you can use a number between 0 and 255. The default priority is 255. For the boundary clock, use a number above 128. The lower priority is applied first.
-    - Add the `time-stamping` parameter. The switch automatically enables hardware time-stamping to capture timestamps from an Ethernet frame at the physical layer. If you are testing PTP in a virtual environment, hardware time-stamping is not available; however the `time-stamping` parameter is still required.
     - Add the PTP master and slave interfaces. You do not specify which is a master interface and which is a slave interface; this is determined by the PTP packet received. The following commands provide an example configuration:
 
       ```
-      cumulus@switch:~$ net add ptp global gm-capable no
-      cumulus@switch:~$ net add ptp global priority2 254
-      cumulus@switch:~$ net add ptp global priority1 254
-      cumulus@switch:~$ net add ptp global time-stamping
-      cumulus@switch:~$ net add ptp interface swp13s0
-      cumulus@switch:~$ net add ptp interface swp13s1
-      cumulus@switch:~$ net pending
-      cumulus@switch:~$ net commit
+      cumulus@switch:~$ cl set service ptp 1 clock-mode boundary
+      cumulus@switch:~$ cl set service ptp 1 priority2 254
+      cumulus@switch:~$ cl set service ptp 1 priority1 254
+      cumulus@switch:~$ cl set interface swp13s0 service ptp enable on
+      cumulus@switch:~$ cl set interface swp13s1 service ptp enable on
+      cumulus@switch:~$ cl config apply
       ```
 
-    The `ptp4l` man page describes all the configuration parameters.
+The configuration is saved in the `/etc/ptp4l.conf` file.
 
-3. Restart the `ptp4l` and `phc2sys` daemons:
+### Optional Configuration
 
-    ```
-    cumulus@switch:~$ sudo systemctl restart ptp4l.service phc2sys.service
-    ```
+#### One-step and Two-step Mode
 
-    The configuration is saved in the `/etc/ptp4l.conf` file.
+If the device is capable of time stamping the PTP packet as it egresses out on a port and inserting it on to the packet, then the device supports what is called Hardware Time Stamping of packets. This enables the device to operate on two modes: 
 
-4. Enable the services to start at boot time:
+One-step: Sync packets are time stamped as it goes out and there is no need for a follow-up packet.
 
-    ```
-    cumulus@switch:~$ sudo systemctl enable ptp4l.service phc2sys.service
-    ```
+Two-step: If the device is not hardware timestamp capable, then it would operate in two-step mode. In this mode the time is noted when the sync packet is sent out and that is sent in a separate message (follow-up). 
 
-### Example Configuration
+Mellanox ASICs support Hardware timestamping so the first release will have support for both one-step and two-step, and it will be a configuration option.
 
-In the following example, the boundary clock on the switch receives time from Master 1 (the grandmaster) on PTP slave port swp3s0, sets its clock and passes the time down through PTP master ports swp3s1, swp3s2, and swp3s3 to the hosts that receive the time.
+#### Acceptable Master Table
 
-{{< img src = "/images/cumulus-linux/date-time-ptp-config.png" >}}
 
-The configuration for the above example is shown below. The example assumes that you have already configured the layer 3 routed interfaces (`swp3s0`, `swp3s1`, `swp3s2`, and `swp3s3`) you want to use for PTP.
+
+#### Forced Master
+
+By default, the ports that are configured for PTP are in auto mode, where the state of the port is determined by the BMC Algorithm.
+
+Forced Master - This is a configuration option. When enabled, the BMC Algorithm is not run for this port and is always on Master state. Announce messages received on this port are ignored.
+
+#### Message Modes
+
+#### DSCP and TTL
+
+### Delete PTP Boundary Clock Configuration
+
+To delete PTP configuration, delete the PTP master and slave interfaces. The following example commands delete the PTP interfaces `swp3s0`, `swp3s1`, and `swp3s2`.
 
 ```
-cumulus@switch:~$ net add ptp global gm-capable no
-cumulus@switch:~$ net add ptp global priority2 254
-cumulus@switch:~$ net add ptp global priority1 254
-cumulus@switch:~$ net add ptp global time-stamping
-cumulus@switch:~$ net add ptp interface swp3s0
-cumulus@switch:~$ net add ptp interface swp3s1
-cumulus@switch:~$ net add ptp interface swp3s2
-cumulus@switch:~$ net add ptp interface swp3s3
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
+cumulus@switch:~$ cl unset interface swp13s1 service ptp
+cumulus@switch:~$ cl unset interface swp13s2 service ptp
+cumulus@switch:~$ cl unset interface swp13s3 service ptp
+cumulus@switch:~$ cl config apply
 ```
 
-### Verify PTP Boundary Clock Configuration
+### Troubleshooting
 
 To view a summary of the PTP configuration on the switch, run the `net show configuration ptp` command:
 
@@ -560,16 +548,23 @@ sending: GET TIME_STATUS_NP
         gmIdentity                 000200.fffe.000005
 ```
 
-### Delete PTP Boundary Clock Configuration
+### Example Configuration
 
-To delete PTP configuration, delete the PTP master and slave interfaces. The following example commands delete the PTP interfaces `swp3s0`, `swp3s1`, and `swp3s2`.
+In the following example, the boundary clock on the switch receives time from Master 1 (the grandmaster) on PTP slave port swp3s0, sets its clock and passes the time down through PTP master ports swp3s1, swp3s2, and swp3s3 to the hosts that receive the time.
+
+{{< img src = "/images/cumulus-linux/date-time-ptp-config.png" >}}
+
+The configuration for the above example is shown below. The example assumes that you have already configured the layer 3 routed interfaces (`swp3s0`, `swp3s1`, `swp3s2`, and `swp3s3`) you want to use for PTP.
 
 ```
-cumulus@switch:~$ net del ptp interface swp3s0
-cumulus@switch:~$ net del ptp interface swp3s1
-cumulus@switch:~$ net del ptp interface swp3s2
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
+cumulus@switch:~$ cl set service ptp 1 clock-mode boundary
+cumulus@switch:~$ cl set service ptp 1 priority2 254
+cumulus@switch:~$ cl set service ptp 1 priority1 254
+cumulus@switch:~$ cl set interface swp13s0 service ptp enable on
+cumulus@switch:~$ cl set interface swp13s1 service ptp enable on
+cumulus@switch:~$ cl set interface swp13s2 service ptp enable on
+cumulus@switch:~$ cl set interface swp13s3 service ptp enable on
+cumulus@switch:~$ cl config apply
 ```
 
 ## Related Information

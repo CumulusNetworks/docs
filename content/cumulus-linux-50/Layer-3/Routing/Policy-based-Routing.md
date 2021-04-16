@@ -579,9 +579,11 @@ The configuration for the example above is:
 {{< tab "CUE Commands ">}}
 
 ```
-cumulus@leaf01:~$ NEED COMMAND
-cumulus@leaf01:~$ 
-cumulus@leaf01:~$ 
+cumulus@leaf01:~$ cl set router pbr map map1 rule 1 match source-ip 0.0.0.0/0
+cumulus@leaf01:~$ cl set router pbr nexthop-group group1 via 192.168.0.32
+cumulus@leaf01:~$ cl set router pbr map map1 rule 1 action nexthop-group group1
+cumulus@leaf01:~$ cl set interface swp51 router pbr map map1
+cumulus@leaf01:~$ cl config
 ```
 
 {{< /tab >}}
@@ -617,7 +619,7 @@ cumulus@switch:~$
 {{< /tab >}}
 {{< /tabs >}}
 
-The NCLU and `vtysh` commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+The commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
 ```
 ...

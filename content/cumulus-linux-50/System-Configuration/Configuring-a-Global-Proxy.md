@@ -4,9 +4,9 @@ author: NVIDIA
 weight: 260
 toc: 3
 ---
-You configure {{<exlink url="https://wiki.archlinux.org/index.php/proxy_settings" text="global HTTP and HTTPS proxies">}} in the `/etc/profile.d/` directory of Cumulus Linux. Set the `http_proxy` and `https_proxy` variables, which tells the switch the address of the proxy server to use to fetch URLs on the command line. This is useful for programs such as `apt`/`apt-get`, `curl` and `wget`, which can all use this proxy.
+You configure {{<exlink url="https://wiki.archlinux.org/index.php/proxy_settings" text="global HTTP and HTTPS proxies">}} in the `/etc/profile.d/` directory of Cumulus Linux. Set the `http_proxy` and `https_proxy` variables to configure the switch with the address of the proxy server you want to use to get URLs on the command line. This is useful for programs such as `apt`, `apt-get`, `curl` and `wget`, which can all use this proxy.
 
-1. In a terminal, create a new file in the `/etc/profile.d/` directory. In the code example below, the file is called `proxy.sh`, and is created using the text editor `nano`.
+1. In a terminal, create a new file in the `/etc/profile.d/` directory. In the example below, the file is called `proxy.sh`, and is created using the text editor `nano`.
 
     ```
     cumulus@switch:~$ sudo nano /etc/profile.d/proxy.sh
@@ -28,7 +28,7 @@ You configure {{<exlink url="https://wiki.archlinux.org/index.php/proxy_settings
         export https_proxy
         ```
 
-3. Create a file in the `/etc/apt/apt.conf.d` directory and add the following lines to the file for acquiring the HTTP and HTTPS proxies; the example below uses `http_proxy` as the file name:
+3. Create a file in the `/etc/apt/apt.conf.d` directory and add the following lines to the file to get the HTTP and HTTPS proxies. The example below uses `http_proxy` as the file name:
 
     ```
     cumulus@switch:~$ sudo nano /etc/apt/apt.conf.d/http_proxy
@@ -36,7 +36,7 @@ You configure {{<exlink url="https://wiki.archlinux.org/index.php/proxy_settings
     Acquire::https::Proxy "https://myproxy.domain.com:8080";
     ```
 
-4. Add the proxy addresses to `/etc/wgetrc`; you may have to uncomment the `http_proxy` and `https_proxy` lines:
+4. Add the proxy addresses to the `/etc/wgetrc` file. Uncomment the `http_proxy` and `https_proxy` lines, if necessary:
 
     ```
     cumulus@switch:~$ sudo nano /etc/wgetrc
@@ -46,13 +46,13 @@ You configure {{<exlink url="https://wiki.archlinux.org/index.php/proxy_settings
     ...
     ```
 
-5. Run the `source` command, to execute the file in the current environment:
+5. To execute the `/etc/profile.d/proxy.sh` file in the current environment, run the `source` command:
 
     ```
     cumulus@switch:~$ source /etc/profile.d/proxy.sh
     ```
 
-The proxy is now configured. The `echo` command can be used to confirm aproxy is set up correctly:
+The proxy is now configured. You can use the `echo` command to confirm a proxy is set up correctly:
 
 - HTTP proxy:
 

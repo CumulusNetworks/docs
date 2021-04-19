@@ -1448,8 +1448,6 @@ Unique subnets can be used across TEP devices in an EVPN network, however, VXLAN
 
 {{%/notice %}}
 
-{{<figure src="/images/guides/cumulus-nsxt/T1_vxlan.JPG">}}
-
 Switches configuration below based on layer 2 bridging with {{<kb_link text="VXLAN Active-active Mode" url="cumulus-linux-43/Network-Virtualization/VXLAN-Active-Active-Mode/" >}} over BGP-EVPN underlay.
 
 ### TEP VLAN Configuration
@@ -2529,6 +2527,8 @@ Displayed 6 prefixes (10 paths)
 {{< /tabs >}}
 
 ### Traffic Flow
+
+{{<figure src="/images/guides/cumulus-nsxt/T1_vxlan.JPG">}}
 
 The NSX traffic will be unchanged from the scenarios described earlier. Reference the [Layer 2](#layer-2-virtualized-environment) or [Layer 3](#layer-3-virtualized-environment) examples for details. Traffic destined outside of the NSX fabric will follow the same traffic flow as described in the [Virtualized and Bare Metal](#virtualized-and-bare-metal-server-environment) section.
 

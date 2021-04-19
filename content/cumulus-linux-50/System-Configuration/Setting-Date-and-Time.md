@@ -412,6 +412,16 @@ The configuration is saved in the `/etc/ptp4l.conf` file.
 
 ### Optional Configuration
 
+#### Transport Mode
+
+PTP messages can be encapsulated in one of the following frames: 
+
+UDP/IPV4 frame - This is the default 
+
+UDP/IPV6 - This transport mode is one of the configuration option 
+
+IEEE 802.3 - Not supported for first release 
+
 #### One-step and Two-step Mode
 
 If the device is capable of time stamping the PTP packet as it egresses out on a port and inserting it on to the packet, then the device supports what is called Hardware Time Stamping of packets. This enables the device to operate on two modes: 
@@ -424,7 +434,9 @@ Mellanox ASICs support Hardware timestamping so the first release will have supp
 
 #### Acceptable Master Table
 
+This is a security feature to prevent a rogue player pretending to be Master and take over the PTP network. The Clock-IDs of known Master are configured in the Acceptable Master table. The PTP ports have Acceptable Master Table enable configuration. If enabled, the BMC algorithm checks if the Master received on the Announce Message is in this table and only then it proceeds with the Master selection. Default for ports is disabled.
 
+There is also an option to configure an AlternatePriority1 for the Masters. When configured (greater than zero), the priority1 value on the Announce message is replaced with the configured AlternatePriority1 value to be used in the BMC algorithm.
 
 #### Forced Master
 
@@ -434,7 +446,17 @@ Forced Master - This is a configuration option. When enabled, the BMC Algorithm 
 
 #### Message Modes
 
+PTP messages can use multicast messages, unicast messages or mixed multicast and unicast messages (hybrid). Multicast is the basic requirement for PTP to function.  
+
+In Multicast message mode the ports need to subscribe to two multicast addresses, one for event messages that are timestamped and the other for general messages that are not timestamped. The SYNC message sent by the master is a multicast message and is received by all slave ports. This is critical and is required, since the slaves need the master's time. The slave ports in turn generate Delay Request to the master. This is a multicast message and is received not only by the Master which the message is intended for,  but is also received by other slave ports. The master's Delay Response also is similarly received by all Slave ports in addition to the intended Slave port. The slave ports receiving the unintended Delay Requests and Responses need to drop them. This is unnecessary wastage of network bandwidth. It becomes worse when there are hundreds of slave ports.
+
+In Unicast message mode, the master can have one on one conversation with multiple slaves and the slaves would know exactly which master it can talk to. The slave can also request for different message rate from the master and the master determines if it can honor the request. This message mode is not supported in the initial release.  
+
+In the Mixed or Hybrid mode, the SYNC and Announce messages are sent as multicast messages but the Delay Request and Response messages are sent as unicast. This avoids the issue seen in the pure multicast message mode where every slave port sees every other slave port's Delay Requests and Responses. This message mode is supported in the initial release.
+
 #### DSCP and TTL
+
+In multimedia network, the ability to DSCP for the PTP messages is an important requirement. A config option is provided for setting the DSCP value. Similarly, TTL is also important, because it restricts the number of hops a PTP message can travel. This helps mitigate packet loop issues by limiting the number of times they get looped. A config option for TTL is also provided.
 
 ### Delete PTP Boundary Clock Configuration
 

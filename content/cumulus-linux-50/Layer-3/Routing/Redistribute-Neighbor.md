@@ -305,10 +305,10 @@ For more information, refer to {{<exlink url="http://linux-ip.net/html/routing-t
 
 ### Check /32 Redistribute Neighbor Advertised Routes
 
-For BGP, run the NCLU `net show bgp neighbor <interface> advertise-routes` command or the vtysh `show ip bgp neighbor swp51 advertised-routes` command. For example:
+For BGP, run the vtysh `show ip bgp neighbor <interface> advertised-routes` command. For example:
 
 ```
-cumulus@leaf01:~$ net show bgp neighbor swp51 advertise-routes
+cumulus@leaf01:~$ show ip bgp neighbor swp51 advertise-routes
 BGP table version is 5, local router ID is 10.0.0.11
 Status codes: s suppressed, d damped, h history, * valid, > best, = multipath,
               i internal, r RIB-failure, S Stale, R Removed

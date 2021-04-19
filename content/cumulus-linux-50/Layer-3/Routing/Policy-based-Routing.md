@@ -525,10 +525,10 @@ cumulus@switch:~$ net show pbr map
 
 To see information about a specific policy, what it matches, and with which interface it is associated, add the map name at the end of the command; for example, `net show pbr map map1` (or `show pbr map map1` in `vtysh`).
 
-To see information about all next hop groups, run the NCLU `net show pbr nexthop-group` command or the vtysh `show pbr nexthop-group` command.
+To see information about all next hop groups, run the CUE `cl show router pbr nexthop-group` command or the vtysh `show pbr nexthop-group` command.
 
 ```
-cumulus@switch:~$ net show pbr nexthop-group
+cumulus@switch:~$ show pbr nexthop-group
 Nexthop-Group: map1701 Table: 10004 Valid: yes Installed: yes
 Valid: yes nexthop 10.1.1.2
 Nexthop-Group: map1700 Table: 10003 Valid: yes Installed: yes
@@ -543,7 +543,7 @@ Valid: yes nexthop 192.168.8.2
 Valid: yes nexthop 192.168.8.3
 ```
 
-To see information about a specific next hop group, add the group name at the end of the command; for example, `net show pbr nexthop-group group1` (or `show pbr nexthop-group group1` in vtysh).
+To see information about a specific next hop group, add the group name at the end of the command; for example, `cl show router pbr nexthop-group group1` (or `show pbr nexthop-group group1` in vtysh).
 
 {{%notice note%}}
 A new Linux routing table ID is used for each next hop and next hop group.

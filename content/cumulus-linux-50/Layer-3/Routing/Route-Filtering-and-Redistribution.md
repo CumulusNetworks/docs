@@ -33,7 +33,7 @@ cumulus@switch:~$ cl config apply
 cumulus@switch:~$ sudo vtysh
 
 switch# configure terminal
-switch(config)# ip prefix-list prefixlist1 permit 10.0.0.0/16 le 30
+switch(config)# ip prefix-list prefixlist1 seq 1 permit 10.0.0.0/16 le 30
 switch(config)# exit
 switch# write memory
 switch# exit
@@ -52,7 +52,7 @@ router ospf
  timers throttle spf 80 100 6000
  passive-interface vlan10
  passive-interface vlan20
-ip prefix-list prefixlist1 permit 10.0.0.0/16 le 30
+ip prefix-list prefixlist1 seq 1 permit 10.0.0.0/16 le 30
 ```
 
 To use this prefix list in a route map, see {{<link url="#configuration-examples" text="Configuration-Examples">}} below.
@@ -97,11 +97,6 @@ The commands save the configuration in the `/etc/frr/frr.conf` file. For example
 
 ```
 ...
-router ospf
- ospf router-id 10.10.10.1
- timers throttle spf 80 100 6000
- passive-interface vlan10
- passive-interface vlan20
 route-map routemap1 permit 10
  match interface swp51
  set metric 50
@@ -142,11 +137,6 @@ The commands save the configuration in the `/etc/frr/frr.conf` file. For example
 
 ```
 ...
-router ospf
- ospf router-id 10.10.10.1
- timers throttle spf 80 100 6000
- passive-interface vlan10
- passive-interface vlan20
 ip protocol bgp route-map routemap1
 ```
 

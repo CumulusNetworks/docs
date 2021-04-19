@@ -598,12 +598,12 @@ UP     vlan100-v0     N/A  9216   Interface/L3                                IP
 
 All underlay IP fabric BGP peerings in this guide are based on eBGP. Cumulus Linux {{<kb_link text="Auto BGP" url="cumulus-linux-43/Layer-3/Border-Gateway-Protocol-BGP/#auto-bgp" >}} and {{<kb_link text="BGP Unnumbered" url="cumulus-linux-43/Layer-3/Border-Gateway-Protocol-BGP/#bgp-unnumbered" >}} configurations are used.
 
-{{%notice note%}}
+{{<notice note>}}
 
 Auto BGP configuration is only available using NCLU. If you want to use `vtysh` configuration, a BGP ASN must be configured.  
 For additional details refer to the {{<kb_link text="Configuring FRRouting" url="cumulus-linux-43/Layer-3/FRRouting/Configure-FRRouting/" >}} documentation.
 
-{{%/notice %}}
+{{</notice >}}
 
 ### BGP Peerings Establishment
 
@@ -1441,14 +1441,12 @@ The previous examples discussed deploying NSX on a pure IP fabric. Modern datace
 
 When using an EVPN underlay fabric, the NSX generated Geneve packets are encapsulated into VXLAN packets on the leaf switches and transmitted over the network. When using an EVPN deployment, the simplies deployment option is to configure all TEP addresses in the same subnet and use VXLAN layer 2 extension to provide TEP to TEP connectivity.
 
-{{%notice note%}}
+{{<notice note>}}
 
 Unique subnets can be used across TEP devices in an EVPN network, however, VXLAN routing must be configured in the underlay network. This deployment model is beyond the scope of this guide. For more information reference the EVPN {{<kb_link text="Inter-subnet Routing" url="cumulus-linux-43/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN/Inter-subnet-Routing/" >}} documentation.
 
 
-{{%/notice %}}
-
-{{<figure src="/images/guides/cumulus-nsxt/T1_vxlan.JPG">}}
+{{</notice >}}
 
 Switches configuration below based on layer 2 bridging with {{<kb_link text="VXLAN Active-active Mode" url="cumulus-linux-43/Network-Virtualization/VXLAN-Active-Active-Mode/" >}} over BGP-EVPN underlay.
 
@@ -2530,7 +2528,7 @@ Displayed 6 prefixes (10 paths)
 
 ### Traffic Flow
 
-{{<figure src="/images/guides/cumulus-nsxt/edge_type5.jpg">}}
+{{<figure src="/images/guides/cumulus-nsxt/T1_vxlan.JPG">}}
 
 The NSX traffic will be unchanged from the scenarios described earlier. Reference the [Layer 2](#layer-2-virtualized-environment) or [Layer 3](#layer-3-virtualized-environment) examples for details. Traffic destined outside of the NSX fabric will follow the same traffic flow as described in the [Virtualized and Bare Metal](#virtualized-and-bare-metal-server-environment) section.
 
@@ -2538,6 +2536,8 @@ With VXLAN in the network fabric, Geneve traffic from ESXi TEP is encapsulated a
 When the remote leaf receives the VXLAN packet, it is decapsulated and fowared to the ESXi host where the Geneve packet is decapsulated and forwared to the correct local VM.
 <!--
 ## EVPN Underlay Fabric With an External Network (EVPN Type-5 Routes)
+
+{{<figure src="/images/guides/cumulus-nsxt/edge_type5.jpg">}}
 
 There are cases when virtualized traffic is destined to external networks (as we saw in BM scenario), but outside of the EVPN domain. To answer that need, NSX Edge can act as VXLAN-VTEP with BGP-EVPN control-plane. By that, it receives EVPN Type-5 external routs which are used for external traffic routing in EVPN fabrics. 
 

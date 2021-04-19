@@ -1439,13 +1439,6 @@ This issue only affects QinQ configurations.
 <td></td>
 </tr>
 <tr>
-<td>2540808</td>
-<td>In an EVPN environment, the centralized MAC address is not installed on the MLAG pair because Cumulus Linux does not perform an SVI MAC check per VLAN. 
-This issue does not affect a pure distributed routing (symmetric or asymmetric) environment or a pure centralized routing environment.</td>
-<td>3.7.0-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
 <td>2540753</td>
 <td>If the interface alias contains a single or double quotation mark, or an apostrophe, the {{net show configuration}} commands fail with the following error: 
   
@@ -3401,13 +3394,6 @@ This issue only affects QinQ configurations.
  </td>
 <td>3.7.3-3.7.14</td>
 <td>4.0.0-4.3.0</td>
-</tr>
-<tr>
-<td>2540808</td>
-<td>In an EVPN environment, the centralized MAC address is not installed on the MLAG pair because Cumulus Linux does not perform an SVI MAC check per VLAN. 
-This issue does not affect a pure distributed routing (symmetric or asymmetric) environment or a pure centralized routing environment.</td>
-<td>3.7.0-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
 </tr>
 <tr>
 <td>2540753</td>
@@ -6146,13 +6132,6 @@ This issue only affects QinQ configurations.
  </td>
 <td>3.7.3-3.7.14</td>
 <td>4.0.0-4.3.0</td>
-</tr>
-<tr>
-<td>2540808</td>
-<td>In an EVPN environment, the centralized MAC address is not installed on the MLAG pair because Cumulus Linux does not perform an SVI MAC check per VLAN. 
-This issue does not affect a pure distributed routing (symmetric or asymmetric) environment or a pure centralized routing environment.</td>
-<td>3.7.0-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
 </tr>
 <tr>
 <td>2540753</td>
@@ -9055,13 +9034,6 @@ This issue only affects QinQ configurations.
 <td>4.0.0-4.3.0</td>
 </tr>
 <tr>
-<td>2540808</td>
-<td>In an EVPN environment, the centralized MAC address is not installed on the MLAG pair because Cumulus Linux does not perform an SVI MAC check per VLAN. 
-This issue does not affect a pure distributed routing (symmetric or asymmetric) environment or a pure centralized routing environment.</td>
-<td>3.7.0-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
 <td>2540753</td>
 <td>If the interface alias contains a single or double quotation mark, or an apostrophe, the {{net show configuration}} commands fail with the following error: 
   
@@ -11066,13 +11038,6 @@ This issue only affects QinQ configurations.
  </td>
 <td>3.7.3-3.7.14</td>
 <td>4.0.0-4.3.0</td>
-</tr>
-<tr>
-<td>2540808</td>
-<td>In an EVPN environment, the centralized MAC address is not installed on the MLAG pair because Cumulus Linux does not perform an SVI MAC check per VLAN. 
-This issue does not affect a pure distributed routing (symmetric or asymmetric) environment or a pure centralized routing environment.</td>
-<td>3.7.0-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
 </tr>
 <tr>
 <td>2540753</td>
@@ -13330,13 +13295,6 @@ This issue only affects QinQ configurations.
 <td>4.0.0-4.3.0</td>
 </tr>
 <tr>
-<td>2540808</td>
-<td>In an EVPN environment, the centralized MAC address is not installed on the MLAG pair because Cumulus Linux does not perform an SVI MAC check per VLAN. 
-This issue does not affect a pure distributed routing (symmetric or asymmetric) environment or a pure centralized routing environment.</td>
-<td>3.7.0-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
 <td>2540753</td>
 <td>If the interface alias contains a single or double quotation mark, or an apostrophe, the {{net show configuration}} commands fail with the following error: 
   
@@ -14775,13 +14733,6 @@ This issue only affects QinQ configurations.
  </td>
 <td>3.7.3-3.7.14</td>
 <td>4.0.0-4.3.0</td>
-</tr>
-<tr>
-<td>2540808</td>
-<td>In an EVPN environment, the centralized MAC address is not installed on the MLAG pair because Cumulus Linux does not perform an SVI MAC check per VLAN. 
-This issue does not affect a pure distributed routing (symmetric or asymmetric) environment or a pure centralized routing environment.</td>
-<td>3.7.0-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
 </tr>
 <tr>
 <td>2540753</td>
@@ -16846,13 +16797,6 @@ This issue only affects QinQ configurations.
 <td>4.0.0-4.3.0</td>
 </tr>
 <tr>
-<td>2540808</td>
-<td>In an EVPN environment, the centralized MAC address is not installed on the MLAG pair because Cumulus Linux does not perform an SVI MAC check per VLAN. 
-This issue does not affect a pure distributed routing (symmetric or asymmetric) environment or a pure centralized routing environment.</td>
-<td>3.7.0-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
 <td>2540753</td>
 <td>If the interface alias contains a single or double quotation mark, or an apostrophe, the {{net show configuration}} commands fail with the following error: 
   
@@ -18233,13 +18177,6 @@ This issue only affects QinQ configurations.
  </td>
 <td>3.7.3-3.7.14</td>
 <td>4.0.0-4.3.0</td>
-</tr>
-<tr>
-<td>2540808</td>
-<td>In an EVPN environment, the centralized MAC address is not installed on the MLAG pair because Cumulus Linux does not perform an SVI MAC check per VLAN. 
-This issue does not affect a pure distributed routing (symmetric or asymmetric) environment or a pure centralized routing environment.</td>
-<td>3.7.0-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
 </tr>
 <tr>
 <td>2540753</td>
@@ -20021,13 +19958,6 @@ This issue only affects QinQ configurations.
 <td>3.7.7-3.7.14.2</td>
 </tr>
 <tr>
-<td>2540808</td>
-<td>In an EVPN environment, the centralized MAC address is not installed on the MLAG pair because Cumulus Linux does not perform an SVI MAC check per VLAN. 
-This issue does not affect a pure distributed routing (symmetric or asymmetric) environment or a pure centralized routing environment.</td>
-<td>3.7.0-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
 <td>2540753</td>
 <td>If the interface alias contains a single or double quotation mark, or an apostrophe, the {{net show configuration}} commands fail with the following error: 
   
@@ -21229,13 +21159,6 @@ This issue only affects QinQ configurations.
 <td>3.7.7-3.7.14.2</td>
 </tr>
 <tr>
-<td>2540808</td>
-<td>In an EVPN environment, the centralized MAC address is not installed on the MLAG pair because Cumulus Linux does not perform an SVI MAC check per VLAN. 
-This issue does not affect a pure distributed routing (symmetric or asymmetric) environment or a pure centralized routing environment.</td>
-<td>3.7.0-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
 <td>2540798</td>
 <td>The EdgeCore 7326-54X switch reports a platform hardware initialization error similar to the following: 
   
@@ -22310,13 +22233,6 @@ To work around this issue, remove the {{--nl}} flag from the dhcrelay service. <
 <td>The platform json file for the Dell S5048-ON switch is improperly populated. This creates an issue when trying to poll the inventory statistics with NetQ. </td>
 <td>3.7.3-3.7.5</td>
 <td>3.7.6-3.7.14.2</td>
-</tr>
-<tr>
-<td>2540808</td>
-<td>In an EVPN environment, the centralized MAC address is not installed on the MLAG pair because Cumulus Linux does not perform an SVI MAC check per VLAN. 
-This issue does not affect a pure distributed routing (symmetric or asymmetric) environment or a pure centralized routing environment.</td>
-<td>3.7.0-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
 </tr>
 <tr>
 <td>2540738</td>
@@ -23529,13 +23445,6 @@ To work around this issue, remove the {{--nl}} flag from the dhcrelay service. <
 <td>The platform json file for the Dell S5048-ON switch is improperly populated. This creates an issue when trying to poll the inventory statistics with NetQ. </td>
 <td>3.7.3-3.7.5</td>
 <td>3.7.6-3.7.14.2</td>
-</tr>
-<tr>
-<td>2540808</td>
-<td>In an EVPN environment, the centralized MAC address is not installed on the MLAG pair because Cumulus Linux does not perform an SVI MAC check per VLAN. 
-This issue does not affect a pure distributed routing (symmetric or asymmetric) environment or a pure centralized routing environment.</td>
-<td>3.7.0-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
 </tr>
 <tr>
 <td>2540738</td>
@@ -24793,13 +24702,6 @@ You can prevent EVPN next hops from not being removed when the contributing peer
 <td>On the Dell Z9100-ON switch, {{smond}} reports various sensors going from OK to BAD or OK to ABSENT; then the sensors recover. </td>
 <td>3.7.1-3.7.5</td>
 <td>3.7.6-3.7.14.2</td>
-</tr>
-<tr>
-<td>2540808</td>
-<td>In an EVPN environment, the centralized MAC address is not installed on the MLAG pair because Cumulus Linux does not perform an SVI MAC check per VLAN. 
-This issue does not affect a pure distributed routing (symmetric or asymmetric) environment or a pure centralized routing environment.</td>
-<td>3.7.0-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
 </tr>
 <tr>
 <td>2540738</td>
@@ -26116,13 +26018,6 @@ https://security-tracker.debian.org/tracker/ghostscript</td>
 <td>3.7.6-3.7.14.2</td>
 </tr>
 <tr>
-<td>2540808</td>
-<td>In an EVPN environment, the centralized MAC address is not installed on the MLAG pair because Cumulus Linux does not perform an SVI MAC check per VLAN. 
-This issue does not affect a pure distributed routing (symmetric or asymmetric) environment or a pure centralized routing environment.</td>
-<td>3.7.0-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
 <td>2540558</td>
 <td>On Trident3 switches, transit packets larger than 1500 bytes(DF) routed between SVIs is unexpectedly forwarded to the CPU even when the MTU is greater than 9000. This severely limits throughput for routed jumbo frames as packets arriving at a high interval are dropped to the CPU. </td>
 <td>3.7.0-3.7.6</td>
@@ -26817,13 +26712,6 @@ https://security-tracker.debian.org/tracker/ghostscript</td>
 <td>2543211</td>
 <td>In some cases, the {{switchd}} service might warn of excessive MAC moves from one switch port to itself (for example, from swp18 to swp18).
 </td>
-<td>3.7.0-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
-<td>2540808</td>
-<td>In an EVPN environment, the centralized MAC address is not installed on the MLAG pair because Cumulus Linux does not perform an SVI MAC check per VLAN. 
-This issue does not affect a pure distributed routing (symmetric or asymmetric) environment or a pure centralized routing environment.</td>
 <td>3.7.0-3.7.14.2, 4.0.0-4.3.0</td>
 <td></td>
 </tr>

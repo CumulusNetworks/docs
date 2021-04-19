@@ -2385,13 +2385,6 @@ This issue only affects QinQ configurations.
 <td>4.2.0-4.3.0</td>
 </tr>
 <tr>
-<td>2540808</td>
-<td>In an EVPN environment, the centralized MAC address is not installed on the MLAG pair because Cumulus Linux does not perform an SVI MAC check per VLAN. 
-This issue does not affect a pure distributed routing (symmetric or asymmetric) environment or a pure centralized routing environment.</td>
-<td>3.7.0-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
 <td>2540753</td>
 <td>If the interface alias contains a single or double quotation mark, or an apostrophe, the {{net show configuration}} commands fail with the following error: 
   
@@ -5014,13 +5007,6 @@ This issue only affects QinQ configurations.
  </td>
 <td>3.7.3-4.1.1</td>
 <td>4.2.0-4.3.0</td>
-</tr>
-<tr>
-<td>2540808</td>
-<td>In an EVPN environment, the centralized MAC address is not installed on the MLAG pair because Cumulus Linux does not perform an SVI MAC check per VLAN. 
-This issue does not affect a pure distributed routing (symmetric or asymmetric) environment or a pure centralized routing environment.</td>
-<td>3.7.0-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
 </tr>
 <tr>
 <td>2540753</td>

@@ -2530,14 +2530,14 @@ Displayed 6 prefixes (10 paths)
 
 ### Traffic Flow
 
-{{<figure src="/images/guides/cumulus-nsxt/edge_type5.jpg">}}
-
 The NSX traffic will be unchanged from the scenarios described earlier. Reference the [Layer 2](#layer-2-virtualized-environment) or [Layer 3](#layer-3-virtualized-environment) examples for details. Traffic destined outside of the NSX fabric will follow the same traffic flow as described in the [Virtualized and Bare Metal](#virtualized-and-bare-metal-server-environment) section.
 
 With VXLAN in the network fabric, Geneve traffic from ESXi TEP is encapsulated again into VXLAN packets on the leaf switch using the local loopback IP addresses as the tunnel sources and the remote VXLAN anycast IP as the destination.  
 When the remote leaf receives the VXLAN packet, it is decapsulated and fowared to the ESXi host where the Geneve packet is decapsulated and forwared to the correct local VM.
 <!--
 ## EVPN Underlay Fabric With an External Network (EVPN Type-5 Routes)
+
+{{<figure src="/images/guides/cumulus-nsxt/edge_type5.jpg">}}
 
 There are cases when virtualized traffic is destined to external networks (as we saw in BM scenario), but outside of the EVPN domain. To answer that need, NSX Edge can act as VXLAN-VTEP with BGP-EVPN control-plane. By that, it receives EVPN Type-5 external routs which are used for external traffic routing in EVPN fabrics. 
 

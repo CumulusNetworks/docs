@@ -36,7 +36,7 @@ Use the following command to apply the new time zone immediately.
 cumulus@switch:~$ sudo dpkg-reconfigure --frontend noninteractive tzdata
 ```
 
-Use the following command to change the /etc/localtime to reflect your current time zone. Use the same value as the previous step.
+Use the following command to change `/etc/localtime` to reflect your current time zone. Use the same value as the previous step.
 
 ```
 sudo ln -sf /usr/share/zoneinfo/US/Eastern /etc/localtime
@@ -44,7 +44,7 @@ sudo ln -sf /usr/share/zoneinfo/US/Eastern /etc/localtime
 
 ### Follow the Guided Wizard
 
-To set the time zone using the guided wizard, run `dpkg-reconfigure tzdata` as root:
+To set the time zone using the guided wizard, run the following command:
 
 ```
 cumulus@switch:~$ sudo dpkg-reconfigure tzdata
@@ -70,13 +70,13 @@ cumulus@switch:~$ date +%Z
 If you need to reconfigure the current time zone, refer to the instructions above.
 {{%/notice%}}
 
-To set the system clock according to the configured time zone:
+To set the software clock according to the configured time zone:
 
 ```
 cumulus@switch:~$ sudo date -s "Tue Jan 26 00:37:13 2021"
 ```
 
-You can write the current value of the system (software) clock to the hardware clock using the `hwclock` command:
+You can write the current value of the software clock to the hardware clock using the `hwclock` command:
 
 ```
 cumulus@switch:~$ sudo hwclock -w

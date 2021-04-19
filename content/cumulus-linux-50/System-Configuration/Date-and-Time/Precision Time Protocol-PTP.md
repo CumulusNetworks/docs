@@ -14,9 +14,11 @@ Cumulus Linux includes the `linuxptp` package for PTP, which uses the `phc2sys` 
 - PTP is supported in boundary clock mode only (the switch provides timing to downstream servers; it is a slave to a higher-level clock and a master to downstream clocks).
 - The switch uses hardware time stamping to capture timestamps from an Ethernet frame at the physical layer. This allows PTP to account for delays in message transfer and greatly improves the accuracy of time synchronization.
 - IPv4 and IPv6 UDP PTP packets are supported.
+- Only multicast message mode is supported.
 - Only a single PTP domain per network is supported. A PTP domain is a network or a portion of a network within which all the clocks are synchronized.
 - PTP is supported on BGP unnumbered interfaces.
-- You can isolate PTP traffic to a non-default VRF
+- You can isolate PTP traffic to a non-default VRF.
+- You can not run both PTP and NTP on the switch.
 {{%/notice%}}
 
 In the following example, boundary clock 2 receives time from Master 1 (the grandmaster) on a PTP slave port, sets its clock and passes the time down from the PTP master port to boundary clock 1. Boundary clock 1 receives the time on a PTP slave port, sets its clock and passes the time down the hierarchy through the PTP master ports to the hosts that receive the time.
@@ -42,7 +44,7 @@ To configure the PTP boundary clock:
 
 3. Configure PTP options on the switch:
 
-    - Set the clock mode to configure the switch to be a boundary clock.
+    - Set the clock mode to configure the switch to be a boundary clock. This is the only option at this time.
     - Set the priority, which selects the best master clock. You can set priority 1 or 2. For each priority, you can use a number between 0 and 255. The default priority is 255. For the boundary clock, use a number above 128. The lower priority is applied first.
     - Add the PTP master and slave interfaces. You do not specify which is a master interface and which is a slave interface; this is determined by the PTP packet received. The following commands provide an example configuration:
 
@@ -61,58 +63,87 @@ The configuration is saved in the `/etc/ptp4l.conf` file.
 
 ### Transport Mode
 
-PTP messages can be encapsulated in one of the following frames: 
+By default, PTP messages are encapsulated in UDP/IPV4 frames. To configure PTP messages to be encapsulated in UDP/IPV6 frames:
 
-UDP/IPV4 frame - This is the default 
+```
+cumulus@switch:~$ cl set interface swp6 service ptp transport ipv6
+cumulus@switch:~$ cl config apply
+```
 
-UDP/IPV6 - This transport mode is one of the configuration option 
+## Message Modes
 
-IEEE 802.3 - Not supported for first release 
+Cumulus Linux supports the following PTP message modes:
+- Multicast, where the ports subscribe to two multicast addresses, one for event messages that are timestamped and the other for general messages that are not timestamped. The SYNC message sent by the master is a multicast message and is received by all slave ports. This is critical and is required, since the slaves need the master's time. The slave ports in turn generate a Delay Request to the master. This is a multicast message and is received not only by the Master for which the message is intended, but also by other slave ports. Similarly, the master's Delay Response is also received by all slave ports in addition to the intended slave port. The slave ports receiving the unintended Delay Requests and Responses need to drop them. This is unnecessary wastage of network bandwidth. It becomes worse when there are hundreds of slave ports. 
+- Mixed, where the SYNC and Announce messages are sent as multicast messages but the Delay Request and Response messages are sent as unicast. This avoids the issue seen in pure multicast message mode where every slave port sees Delay Requests and Responses from every other slave port.
+
+Multicast mode is the default setting. To set mthe message mode to *mixed*:
+
+```
+cumulus@switch:~$ cl set service ptp 1 message-mode mixed
+cumulus@switch:~$ cl config apply
+```
 
 ### One-step and Two-step Mode
 
-If the device is capable of time stamping the PTP packet as it egresses out on a port and inserting it on to the packet, then the device supports what is called Hardware Time Stamping of packets. This enables the device to operate on two modes: 
+The Cumulus Linux switch supports hardware packet time stamping and provides two modes:
+- In *one-step* mode, the PTP packet is time stamped as it egresses the port and there is no need for a follow-up packet.
+- In *two-step* mode, the time is noted when the PTP packet egresses the port and is sent in a separate (follow-up) message.
 
-One-step: Sync packets are time stamped as it goes out and there is no need for a follow-up packet.
+One-step mode is the default configuration. To configure the switch to use two-step mode:
 
-Two-step: If the device is not hardware timestamp capable, then it would operate in two-step mode. In this mode the time is noted when the sync packet is sent out and that is sent in a separate message (follow-up). 
-
-Mellanox ASICs support Hardware timestamping so the first release will have support for both one-step and two-step, and it will be a configuration option.
+```
+cumulus@switch:~$ cl set service ptp 1 two-step on
+cumulus@switch:~$ cl config apply
+```
 
 ### Acceptable Master Table
 
-This is a security feature to prevent a rogue player pretending to be Master and take over the PTP network. The Clock-IDs of known Master are configured in the Acceptable Master table. The PTP ports have Acceptable Master Table enable configuration. If enabled, the BMC algorithm checks if the Master received on the Announce Message is in this table and only then it proceeds with the Master selection. Default for ports is disabled.
+The acceptable master table option is a security feature that prevents a rogue player pretending to be Master from taking over the PTP network. The clock IDs of known masters are configured in the Acceptable Master table. If you configure a PTP port on the switch with the acceptable master table option, the BMC algorithm checks if the master received on the Announce message is in this table and only then it proceeds with the Master selection. Thi option is disabled by default on PTP ports.
 
 There is also an option to configure an AlternatePriority1 for the Masters. When configured (greater than zero), the priority1 value on the Announce message is replaced with the configured AlternatePriority1 value to be used in the BMC algorithm.
 
+The following example commands enable the PTP acceptable master table option for swp6:
+
+```
+cumulus@switch:~$ cl set interface swp6 service ptp acceptable-master on
+cumulus@switch:~$ cl config apply
+```
+
 ### Forced Master
 
-By default, the ports that are configured for PTP are in auto mode, where the state of the port is determined by the BMC Algorithm.
+By default, ports configured for PTP are in auto mode, where the state of the port is determined by the BMC algorithm.
 
-Forced Master - This is a configuration option. When enabled, the BMC Algorithm is not run for this port and is always on Master state. Announce messages received on this port are ignored.
+You can configure *Forced Master* mode on a PTP port so that it is always in a master state and the BMC algorithm is not run for this port. Any announce messages received on this port are ignored.
 
-### Message Modes
-
-PTP messages can use multicast messages, unicast messages or mixed multicast and unicast messages (hybrid). Multicast is the basic requirement for PTP to function.  
-
-In Multicast message mode the ports need to subscribe to two multicast addresses, one for event messages that are timestamped and the other for general messages that are not timestamped. The SYNC message sent by the master is a multicast message and is received by all slave ports. This is critical and is required, since the slaves need the master's time. The slave ports in turn generate Delay Request to the master. This is a multicast message and is received not only by the Master which the message is intended for,  but is also received by other slave ports. The master's Delay Response also is similarly received by all Slave ports in addition to the intended Slave port. The slave ports receiving the unintended Delay Requests and Responses need to drop them. This is unnecessary wastage of network bandwidth. It becomes worse when there are hundreds of slave ports.
-
-In Unicast message mode, the master can have one on one conversation with multiple slaves and the slaves would know exactly which master it can talk to. The slave can also request for different message rate from the master and the master determines if it can honor the request. This message mode is not supported in the initial release.  
-
-In the Mixed or Hybrid mode, the SYNC and Announce messages are sent as multicast messages but the Delay Request and Response messages are sent as unicast. This avoids the issue seen in the pure multicast message mode where every slave port sees every other slave port's Delay Requests and Responses. This message mode is supported in the initial release.
+```
+cumulus@switch:~$ cl set interface swp6 service ptp forced-master on
+cumulus@switch:~$ cl config apply
+```
 
 ### DSCP and TTL
 
-In multimedia network, the ability to DSCP for the PTP messages is an important requirement. A config option is provided for setting the DSCP value. Similarly, TTL is also important, because it restricts the number of hops a PTP message can travel. This helps mitigate packet loop issues by limiting the number of times they get looped. A config option for TTL is also provided.
+You can configure the DiffServ code point (DSCP) value for all PTP IPv4 packets originated locally. You can set a value between 0 and 63.
+
+```
+cumulus@switch:~$ cl set interface swp6 service ptp forced-master on
+cumulus@switch:~$ cl config apply
+```
+
+To restrict the number of hops a PTP message can travel, set the TTL on the PTP interface. You can set a value between 1 and 255.
+
+```
+cumulus@switch:~$ cl set interface swp6 service ptp ttl 20
+cumulus@switch:~$ cl config apply
+```
 
 ## Delete PTP Boundary Clock Configuration
 
-To delete PTP configuration, delete the PTP master and slave interfaces. The following example commands delete the PTP interfaces `swp3s0`, `swp3s1`, and `swp3s2`.
+To delete PTP configuration, delete the PTP master and slave interfaces. The following example commands delete the PTP interfaces `swp6`, `swp7`, and `swp8`.
 
 ```
-cumulus@switch:~$ cl unset interface swp13s1 service ptp
-cumulus@switch:~$ cl unset interface swp13s2 service ptp
-cumulus@switch:~$ cl unset interface swp13s3 service ptp
+cumulus@switch:~$ cl unset interface swp6 service ptp
+cumulus@switch:~$ cl unset interface swp7 service ptp
+cumulus@switch:~$ cl unset interface swp8 service ptp
 cumulus@switch:~$ cl config apply
 ```
 

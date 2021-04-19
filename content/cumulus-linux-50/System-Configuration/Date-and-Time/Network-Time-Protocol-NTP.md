@@ -7,7 +7,7 @@ toc: 3
 The `ntpd` daemon running on the switch implements the NTP protocol. It synchronizes the system time with time servers listed in the `/etc/ntp.conf` file. The `ntpd` daemon is started at boot by default.
 
 {{%notice note%}}
-If you intend to run this service within a {{<link url="Virtual-Routing-and-Forwarding-VRF" text="VRF">}}, including the {{<link url="Management-VRF" text="management VRF">}}, follow {{<link url="Management-VRF#run-services-within-the-management-vrf" text="these steps">}} for configuring the service.
+If you intend to run this service within a {{<link url="Virtual-Routing-and-Forwarding-VRF" text="VRF">}}, including the {{<link url="Management-VRF" text="management VRF">}}, follow {{<link url="Management-VRF#run-services-within-the-management-vrf" text="these steps">}} to configure the service.
 {{%/notice%}}
 
 ## Configure NTP Servers
@@ -19,7 +19,7 @@ The default NTP configuration includes the following servers, which are listed i
 - server 2.cumulusnetworks.pool.ntp.org iburst
 - server 3.cumulusnetworks.pool.ntp.org iburst
 
-To add the NTP server or servers you want to use:
+To add the NTP servers you want to use:
 
 {{< tabs "TabID106 ">}}
 {{< tab "CUE Commands ">}}
@@ -89,12 +89,10 @@ cumulus@switch:~$ ntpq -p
 {{< /tab >}}
 {{< /tabs >}}
 
-To remove one or more NTP servers:
+The following example commands remove some of the default NTP servers:
 
 {{< tabs "TabID204 ">}}
 {{< tab "CUE Commands ">}}
-
-The following example commands remove some of the default NTP servers.
 
 ```
 cumulus@switch:~$ cl unset system ntp server 0.cumulusnetworks.pool.ntp.org
@@ -107,7 +105,7 @@ cumulus@switch:~$ cl config apply
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Edit the `/etc/ntp.conf` file to delete the NTP servers.
+Edit the `/etc/ntp.conf` file to delete NTP servers.
 
 ```
 cumulus@switch:~$ sudo nano /etc/ntp.conf
@@ -124,7 +122,7 @@ server 4.cumulusnetworks.pool.ntp.org iburst
 
 ## Specify the NTP Source Interface
 
-By default, the source interface that NTP uses is eth0. To change the source interface:
+By default, the source interface that NTP uses is eth0. The following example command configures the NTP source interface to be swp10.
 
 {{< tabs "TabID243 ">}}
 {{< tab "CUE Commands ">}}
@@ -137,8 +135,7 @@ cumulus@switch:~$ cl config apply
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Edit the `/etc/ntp.conf` file and modify the entry under the **\# Specify interfaces** comment. The following example shows that the NTP source interface is swp10.
-
+Edit the `/etc/ntp.conf` file and modify the entry under the **\# Specify interfaces** comment.
 ```
 cumulus@switch:~$ sudo nano /etc/ntp.conf
 ...
@@ -174,7 +171,7 @@ cumulus@switch:~$ sudo systemctl restart ntp
 cumulus@switch:~$ sudo systemctl status -n0 ntp.service
 ```
 
-If the state is not *Active*, or the alternate configuration file does not appear in the `ntp` command line, it is likely that you made a configuration mistake. In this case, correct the mistake and rerun the three commands above to verify.
+If the state is not *Active*, or the alternate configuration file does not appear in the `ntp` command line, it is likely that you made a configuration mistake. In this case, correct the mistake and rerun the commands above to verify.
 
 ## Configure NTP with Authorization Keys
 

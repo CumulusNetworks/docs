@@ -95,7 +95,7 @@ cumulus@switch:~$ cl set service ptp 1 profile-type default-1588
 cumulus@switch:~$ cl config apply
 ```
 
-## PTP Clock Domains
+### PTP Clock Domains
 
 PTP domains allow different independent timing systems to be present in the same network without confusing each other.
 Every PTP message contains a domain number. A PTP instance is configured to work in only one domain and ignores messages that contain a different domain number.
@@ -109,11 +109,11 @@ cumulus@switch:~$ cl set service ptp 1 domain 3.
 cumulus@switch:~$ cl config apply
 ```
 
-## Boundary Clock Mode
+### Boundary Clock Mode
 
 Cumulus Linux supports PTP boundary clock mode only. The switch provides timing to downstream servers; it is a slave to a higher-level clock and a master to downstream clocks.
 
-## PTP Priority
+### PTP Priority
 
 Use the PTP priority to select the best master clock. You can set priority 1 and 2:
 - Priority 1 overrides the clock class and quality selection criteria to select the best master clock.
@@ -242,48 +242,26 @@ cumulus@switch:~$ cl config apply
 
 ## Troubleshooting
 
-To view a summary of the PTP configuration on the switch, run the `net show configuration ptp` command:
+To view a summary of the PTP configuration on the switch, run the `cl show service ptp <instance>` command:
 
 ```
-cumulus@switch:~$ net show configuration ptp
+cumulus@switch:~$ cl show service ptp 1
 
-ptp
-  global
-
-    slaveOnly
-      0
-
-    priority1
-      255
-
-    priority2
-      255
-
-    domainNumber
-      0
-
-    logging_level
-      5
-
-    path_trace_enabled
-      0
-
-    use_syslog
-      1
-
-    verbose
-      0
-
-    summary_interval
-      0
-
-    time_stamping
-      hardware
-
-    gmCapable
-      0
-  swp15s0
-  swp15s1
+                       operational  applied   description
+----------------------  -----------  --------  ----------------------------------------------------------------------
+enable                  off          on        Turn the feature 'on' or 'off'.  The default is 'off'.
+clock-mode                           boundary  Clock mode
+domain                               3         Domain number of the current syntonization
+ipv4-dscp                            43        Sets the Diffserv code point for all PTP packets originated locally.
+message-mode                         mixed     Mode in which PTP delay message is transmitted.
+priority1                            254       Priority1 attribute of the local clock
+priority2                            254       Priority2 attribute of the local clock
+profile-type                         aes67     Profile provides various PTP configuration parameters optimized for...
+two-step                             off       Determines if the Clock is a 2 step clock
+monitor
+  max-offset-threshold               200       Maximum offset threshold in nano seconds
+  min-offset-threshold               -200      Minimum offset threshold in nano seconds
+  path-delay-threshold               1         Path delay threshold in nano seconds
 ...
 ```
 
@@ -349,13 +327,107 @@ In the following example, the boundary clock on the switch receives time from Ma
 
 The configuration for the above example is shown below. The example assumes that you have already configured the layer 3 routed interfaces (`swp3s0`, `swp3s1`, `swp3s2`, and `swp3s3`) you want to use for PTP.
 
+{{< tabs "352 ">}}
+{{< tab "CUE Commands ">}}
+
 ```
-cumulus@switch:~$ cl set service ptp 1 clock-mode boundary
+cumulus@switch:~$ cl set service ptp 1 enable on
 cumulus@switch:~$ cl set service ptp 1 priority2 254
 cumulus@switch:~$ cl set service ptp 1 priority1 254
 cumulus@switch:~$ cl set interface swp13s0 service ptp enable on
 cumulus@switch:~$ cl set interface swp13s1 service ptp enable on
 cumulus@switch:~$ cl set interface swp13s2 service ptp enable on
 cumulus@switch:~$ cl set interface swp13s3 service ptp enable on
+cumulus@switch:~$ cl set service ptp 1 message-mode mixed
+cumulus@switch:~$ cl set service ptp 1 profile-type aes67
+cumulus@switch:~$ cl set service ptp 1 domain 3
 cumulus@switch:~$ cl config apply
 ```
+
+{{< /tab >}}
+{{< tab "/etc/ptp4l.conf file ">}}
+
+```
+cumulus@leaf02:mgmt:~$ sudo cat /etc/ptp4l.conf
+...
+[global]
+#
+# Default Data Set
+#
+slaveOnly               0
+priority1               254
+priority2               254
+domainNumber            3
+
+clock_type              BC
+
+twoStepFlag             0
+dscp_event              43
+dscp_general            43
+
+offset_from_master_min_threshold   -200
+offset_from_master_max_threshold   200
+mean_path_delay_threshold          1
+
+#
+# Run time options
+#
+logging_level           6
+path_trace_enabled      0
+use_syslog              1
+verbose                 0
+summary_interval        0
+
+#
+# Default interface options
+#
+time_stamping           software
+
+# Interfaces in which ptp should be enabled
+# these interfaces should be routed ports
+# if an interface does not have an ip address
+# the ptp4l will not work as expected.
+
+[swp13s0]
+logAnnounceInterval     0
+logSyncInterval         -3
+logMinDelayReqInterval  -3
+announceReceiptTimeout  3
+udp_ttl                 1
+masterOnly              0
+delay_mechanism         E2E
+network_transport       UDPv4
+
+[swp13s1]
+logAnnounceInterval     0
+logSyncInterval         -3
+logMinDelayReqInterval  -3
+announceReceiptTimeout  3
+udp_ttl                 1
+masterOnly              0
+delay_mechanism         E2E
+network_transport       UDPv4
+
+[swp13s2]
+logAnnounceInterval     0
+logSyncInterval         -3
+logMinDelayReqInterval  -3
+announceReceiptTimeout  3
+udp_ttl                 1
+masterOnly              0
+delay_mechanism         E2E
+network_transport       UDPv4
+
+[swp13s3]
+logAnnounceInterval     0
+logSyncInterval         -3
+logMinDelayReqInterval  -3
+announceReceiptTimeout  3
+udp_ttl                 1
+masterOnly              0
+delay_mechanism         E2E
+network_transport       UDPv4
+```
+
+{{< /tab >}}
+{{< /tabs >}}

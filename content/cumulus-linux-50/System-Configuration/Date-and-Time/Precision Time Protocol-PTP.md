@@ -27,39 +27,35 @@ In the following example, boundary clock 2 receives time from Master 1 (the gran
 
 ## Basic Configuration
 
-The following procedure shows you the basic configuration required to configure the switch to use PTP with the default profile and the default settings. To use a different profile and to configure optional settings, see {{<link title="#optional-configuration" text="Optional Configuration">}}.
+Basic PTP configuration requires you:
 
-To configure the PTP boundary clock:
+- Enable PTP on the switch to start the `ptp4l` and `phc2sys` processes.
+- Configure the interfaces on the switch that you want to use for PTP. Each interface must be configured as a layer 3 routed interface with an IP address.
+- Add the PTP master and slave interfaces. You do not specify which is a master interface and which is a slave interface; this is determined by the PTP packet received.
 
-1. Enable PTP on the switch to start the `ptp4l` and `phc2sys` processes:
-
-   ```
-   cumulus@switch:~$ cl set service ptp 1 enable on
-   ```
-
-2. Configure the interfaces on the switch that you want to use for PTP. Each interface must be configured as a layer 3 routed interface with an IP address.
-
-   ```
-   cumulus@switch:~$ cl set interface swp6s0 ip address 10.0.0.9/32
-   cumulus@switch:~$ cl set interface swp6s1 ip address 10.0.0.10/32
-   ```
-
-3. Configure PTP on the switch:
-
-    - Set the clock mode to configure the switch to be a boundary clock. This is the only option at this time.
-    - Set the priority, which selects the best master clock. You can set priority 1 or 2. For each priority, you can use a number between 0 and 255. The default priority is 255. For the boundary clock, use a number above 128. The lower priority is applied first.
-    - Add the PTP master and slave interfaces. You do not specify which is a master interface and which is a slave interface; this is determined by the PTP packet received. The following commands provide an example configuration:
-
-      ```
-      cumulus@switch:~$ cl set service ptp 1 clock-mode boundary
-      cumulus@switch:~$ cl set service ptp 1 priority2 254
-      cumulus@switch:~$ cl set service ptp 1 priority1 254
-      cumulus@switch:~$ cl set interface swp6s0 service ptp enable on
-      cumulus@switch:~$ cl set interface swp6s1 service ptp enable on
-      cumulus@switch:~$ cl config apply
-      ```
+```
+cumulus@switch:~$ cl set service ptp 1 enable on
+cumulus@switch:~$ cl set interface swp6s0 ip address 10.0.0.9/32
+cumulus@switch:~$ cl set interface swp6s1 ip address 10.0.0.10/32
+cumulus@switch:~$ cl set interface swp6s0 service ptp enable on
+cumulus@switch:~$ cl set interface swp6s1 service ptp enable on
+cumulus@switch:~$ cl config apply
+```
 
 The configuration is saved in the `/etc/ptp4l.conf` file.
+
+The basic configuration uses the {{<link url="#ptp-profiles" text="default profile">}} and these default settings:
+- {{<link url="#boundary-lock-mode" text="Boundary Clock mode">}}
+- Priority1 and Priority2 are set to 128
+- {{<link url="#transport-mode" text="Transport mode">}} is IPv4
+- {{<link url="#message-mode" text="Message Mode">}} is multicast
+- {{<link url="#one-step-and-two-step-mode" text="Hardware timestamping mode is one-step ">}}
+- {{<link url="#ptp-timers" text="Sync and Delay Request messages">}} are sent out at the rate of 1 message per second
+- {{<link url="#ptp-timers" text="Announce messages">}} are sent out once every two seconds
+- {{<link url="#ptp-timers" text="Announce timeout">}} is three seconds
+- {{<link url="#acceptable-master-table" text="Announce messages from any master are accepted">}}
+
+To use a different profile and to configure optional settings, see Optional Configuration, below.
 
 ## Optional Configuration
 
@@ -103,6 +99,14 @@ cumulus@switch:~$ cl set service ptp 1 profile-type default-1588
 cumulus@switch:~$ cl config apply
 ```
 
+## Boundary Clock Mode
+
+Cumulus Linux supports PTP boundary clock mode only. The switch provides timing to downstream servers; it is a slave to a higher-level clock and a master to downstream clocks.
+
+## PTP Priority
+
+Use the PTP priority to select the best master clock. You can set priority 1 or 2. For each priority, you can use a number between 0 and 255. The default priority is 128. For the boundary clock, use a number above 128. The lower priority is applied first.
+
 ### Transport Mode
 
 By default, PTP messages are encapsulated in UDP/IPV4 frames. To configure PTP messages to be encapsulated in UDP/IPV6 frames:
@@ -118,7 +122,7 @@ Cumulus Linux supports the following PTP message modes:
 - Multicast, where the ports subscribe to two multicast addresses, one for event messages that are timestamped and the other for general messages that are not timestamped. The SYNC message sent by the master is a multicast message and is received by all slave ports. This is critical and is required, since the slaves need the master's time. The slave ports in turn generate a Delay Request to the master. This is a multicast message and is received not only by the Master for which the message is intended, but also by other slave ports. Similarly, the master's Delay Response is also received by all slave ports in addition to the intended slave port. The slave ports receiving the unintended Delay Requests and Responses need to drop them. This is unnecessary wastage of network bandwidth. It becomes worse when there are hundreds of slave ports. 
 - Mixed, where the SYNC and Announce messages are sent as multicast messages but the Delay Request and Response messages are sent as unicast. This avoids the issue seen in pure multicast message mode where every slave port sees Delay Requests and Responses from every other slave port.
 
-Multicast mode is the default setting. To set mthe message mode to *mixed*:
+Multicast mode is the default setting. To set the message mode to *mixed*:
 
 ```
 cumulus@switch:~$ cl set service ptp 1 message-mode mixed
@@ -183,7 +187,7 @@ cumulus@switch:~$ cl config apply
 You can set the following timers for PTP messages.
 
 | Timer | Description |
-| ----- | ----------- | |
+| ----- | ----------- |
 | announce-interval | The average interval between successive Announce messages. Specify the value as a power of two in seconds. |
 | announce-timeout | The number of announce intervals that have to occur without receipt of an Announce message before a timeout occurs. |
 | delay-req-interval | The minimum average time interval allowed between successive Delay Required messages. |

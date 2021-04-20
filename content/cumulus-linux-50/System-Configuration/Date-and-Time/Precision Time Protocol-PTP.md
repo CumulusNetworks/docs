@@ -15,7 +15,7 @@ Cumulus Linux includes the `linuxptp` package for PTP, which uses the `phc2sys` 
 - The switch uses hardware time stamping to capture timestamps from an Ethernet frame at the physical layer. This allows PTP to account for delays in message transfer and greatly improves the accuracy of time synchronization.
 - IPv4 and IPv6 UDP PTP packets are supported.
 - Multicast and mixed message mode is supported; unicast only message mode is *not* supported.
-- Only a single PTP domain per network is supported. A PTP domain is a network or a portion of a network within which all the clocks are synchronized.
+- Only a single PTP domain per network is supported.
 - PTP is supported on BGP unnumbered interfaces.
 - You can isolate PTP traffic to a non-default VRF.
 - You can not run both PTP and NTP on the switch.
@@ -31,7 +31,7 @@ Basic PTP configuration requires you:
 
 - Enable PTP on the switch to start the `ptp4l` and `phc2sys` processes. The `cl set service PTP` commands require an instance number (1 in the example commands below). This number is used for management purposes.
 - Configure the interfaces on the switch that you want to use for PTP. Each interface must be configured as a layer 3 routed interface with an IP address.
-- Add the PTP master and slave interfaces. You do not specify which is a master interface and which is a slave interface; this is determined by the PTP packet received.
+- Add the PTP master and slave interfaces. You do not need to specify which is a master interface and which is a slave interface; this is determined by the PTP packet received.
 
 ```
 cumulus@switch:~$ cl set service ptp 1 enable on
@@ -45,24 +45,24 @@ cumulus@switch:~$ cl config apply
 The configuration is saved in the `/etc/ptp4l.conf` file.
 
 The basic configuration uses the {{<link url="#ptp-profiles" text="default profile">}} and these default settings:
-- {{<link url="#boundary-clock-mode" text="Boundary Clock mode">}}
+- Boundary Clock mode - this is the only clock mode supported, where the switch provides timing to downstream servers; it is a slave to a higher-level clock and a master to downstream clocks
 - {{<link url="#transport-mode" text="Transport mode">}} is IPv4
 - {{<link url="#message-mode" text="Message Mode">}} is multicast
 - {{<link url="#one-step-and-two-step-mode" text="One-step hardware timestamping mode">}}
 - {{<link url="#acceptable-master-table" text="Announce messages from any master are accepted">}}
 
-To use a different profile and to configure optional settings, see Optional Configuration, below.
+To use a different profile and to configure optional settings, see optional configuration below.
 
 ## Optional Configuration
 
 ### PTP Profiles
 
-PTP rofiles are a standardized set of configurations and rules intended to meet the requirements of a specific application. Profiles define required, allowed, and restricted PTP options, network restrictions, and performance requirements.
+PTP profiles are a standardized set of configurations and rules intended to meet the requirements of a specific application. Profiles define required, allowed, and restricted PTP options, network restrictions, and performance requirements.
 
 Cumulus Linux supports the following profiles:
-- *Default* is the profile specified in IEEE 1588 standard. If you do not choose a profile or perform any optional configuration, the PTP software is initialized with default values in the standard. The default profile addresses some common applications, such as Industrial Automation. It does not have any network restrictions and is used as the first profile to be tested in qualification of equipment.
+- *Default* is the profile specified in the IEEE 1588 standard. If you do not choose a profile or perform any optional configuration, the PTP software is initialized with default values in the standard. The default profile addresses some common applications, such as Industrial Automation. It does not have any network restrictions and is used as the first profile to be tested in qualification of equipment.
 - *AES67* is a standard developed by the Audio Engineering Society to support Audio Over IP and Audio Over Ethernet. The standard uses IPV4 multicast and IGMP. DiffServ and DSCP are used for setting priorities. This PTP profile allows you to combine audio streams at the receiver end and allows synchronization of multiple streams.
-- *SMPTE ST-2059-2* is a standard developed by the Society of Motion Pictures and Television Engineers. The standard was developed specifically to synchronize video equipment in a professional broadcast environment. Strict timing is required to switch between video streams at the frame level in the nano second range. For example, an NFL broadcast typically has multiple cameras sending video streams and these streams are sent to the headend. The clocks in these cameras need to be synchronized to the nano second level. This allows switching from one camera angle to another by switching at the frame level without viewers noticing a blank frame.
+- *SMPTE ST-2059-2* is a standard developed by the Society of Motion Pictures and Television Engineers. The standard was developed specifically to synchronize video equipment in a professional broadcast environment. Strict timing is required to switch between video streams at the frame level in the nano second range. For example, an NFL broadcast typically has multiple cameras sending video streams . The clocks in these cameras need to be synchronized to the nano second level. This allows switching from one camera angle to another by switching at the frame level without viewers noticing a blank frame.
 
 AES67 and SMPTE ST-2059-2 are PTP Multimedia profiles. These profiles support video and audio applications used in professional broadcast environments and synchronization of multiple video and audio streams across multiple devices.
 
@@ -97,8 +97,7 @@ cumulus@switch:~$ cl config apply
 
 ### PTP Clock Domains
 
-PTP domains allow different independent timing systems to be present in the same network without confusing each other.
-Every PTP message contains a domain number. A PTP instance is configured to work in only one domain and ignores messages that contain a different domain number.
+PTP domains allow different independent timing systems to be present in the same network without confusing each other. A PTP domain is a network or a portion of a network within which all the clocks are synchronized. Every PTP message contains a domain number. A PTP instance is configured to work in only one domain and ignores messages that contain a different domain number.
 
 You can specify multiple PTP clock domains. Each domain is completely isolated from other domains so that it is seen as a different PTP network. You can specify a number between 0 and 127.
 
@@ -108,10 +107,6 @@ The following examle commands configure domain 3:
 cumulus@switch:~$ cl set service ptp 1 domain 3.
 cumulus@switch:~$ cl config apply
 ```
-
-### Boundary Clock Mode
-
-Cumulus Linux supports PTP boundary clock mode only. The switch provides timing to downstream servers; it is a slave to a higher-level clock and a master to downstream clocks.
 
 ### PTP Priority
 
@@ -141,7 +136,7 @@ cumulus@switch:~$ cl config apply
 ### Message Mode
 
 Cumulus Linux supports the following PTP message modes:
-- *Multicast*, where the ports subscribe to two multicast addresses, one for event messages that are timestamped and the other for general messages that are not timestamped. The Sync message sent by the master is a multicast message and is received by all slave ports. This is required because the slaves need the master's time. The slave ports in turn generate a Delay Request to the master. This is a multicast message and is received not only by the Master for which the message is intended, but also by other slave ports. Similarly, the master's Delay Response is also received by all slave ports in addition to the intended slave port. The slave ports receiving the unintended Delay Requests and Responses need to drop the packets. This can affect network bandwidth, especially if there are hundreds of slave ports.
+- *Multicast*, where the ports subscribe to two multicast addresses, one for event messages that are timestamped and the other for general messages that are not timestamped. The Sync message sent by the master is a multicast message and is received by all slave ports. This is required because the slaves need the master's time. The slave ports in turn generate a Delay Request to the master. This is a multicast message and is received not only by the master for which the message is intended, but also by other slave ports. Similarly, the master's Delay Response is also received by all slave ports in addition to the intended slave port. The slave ports receiving the unintended Delay Requests and Responses need to drop the packets. This can affect network bandwidth, especially if there are hundreds of slave ports.
 - *Mixed*, where Sync and Announce messages are sent as multicast messages but Delay Request and Response messages are sent as unicast. This avoids the issue seen in multicast message mode where every slave port sees Delay Requests and Responses from every other slave port.
 
 Multicast mode is the default setting. To set the message mode to *mixed*:
@@ -161,17 +156,6 @@ One-step mode is the default configuration. To configure the switch to use two-s
 
 ```
 cumulus@switch:~$ cl set service ptp 1 two-step on
-cumulus@switch:~$ cl config apply
-```
-
-### Acceptable Master Table
-
-The acceptable master table option is a security feature that prevents a rogue player pretending to be Master from taking over the PTP network. The clock IDs of known masters are configured in the Acceptable Master table. If you configure a PTP port on the switch with the acceptable master table option, the BMC algorithm checks if the master received on the Announce message is in this table and only then it proceeds with the Master selection. This option is disabled by default on PTP ports.
-
-The following example commands enable the PTP acceptable master table option for swp6:
-
-```
-cumulus@switch:~$ cl set interface swp6 service ptp acceptable-master on
 cumulus@switch:~$ cl config apply
 ```
 
@@ -199,6 +183,30 @@ To restrict the number of hops a PTP message can travel, set the TTL on the PTP 
 
 ```
 cumulus@switch:~$ cl set interface swp6 service ptp ttl 20
+cumulus@switch:~$ cl config apply
+```
+
+### Acceptable Master Table
+
+The acceptable master table option is a security feature that prevents a rogue player from pretending to be the Grandmaster to take over the PTP network. To use this feature, you configure the clock IDs of known Grandmasters in the Acceptable Master table and set the acceptable master table option on a PTP port. The BMC algorithm checks if the Grandmaster received on the Announce message is in this table before proceeding with the master selection. This option is disabled by default on PTP ports.
+
+The following example command adds the Grandmaster clock ID 000200.fffe.000001 to the Acceptable Master table.
+
+```
+cumulus@switch:~$ cl set service ptp 1 acceptable-master 000200.fffe.000001
+cumulus@switch:~$ cl config apply
+```
+
+You can also configure an alternate priority 1 value for the Grandmaster:
+
+```
+cumulus@switch:~$ cl set service ptp 1 acceptable-master 000200.fffe.000001 alt-priority 260
+```
+
+The following example commands enable the PTP acceptable master table option for swp6:
+
+```
+cumulus@switch:~$ cl set interface swp6 service ptp acceptable-master on
 cumulus@switch:~$ cl config apply
 ```
 
@@ -237,6 +245,13 @@ To delete PTP configuration, delete the PTP master and slave interfaces. The fol
 cumulus@switch:~$ cl unset interface swp6 service ptp
 cumulus@switch:~$ cl unset interface swp7 service ptp
 cumulus@switch:~$ cl unset interface swp8 service ptp
+cumulus@switch:~$ cl config apply
+```
+
+To disable PTP on the switch, and stop the `ptp4l` and `phc2sys` processes:
+
+```
+cumulus@switch:~$ cl set service ptp 1 enable off
 cumulus@switch:~$ cl config apply
 ```
 
@@ -319,13 +334,36 @@ sending: GET TIME_STATUS_NP
         gmIdentity                 000200.fffe.000005
 ```
 
+### CUE Show Commands
+
+| Command | Description |
+| --------| ----------- |
+| `cl show interface <interface-id> service ptp` | |
+| `cl show interface <interface-id> service ptp timers` | |
+| `cl show interface <interface-id> service ptp counters` | |
+| `cl show service ptp` | |
+| `cl show service ptp <instance-id>` | |
+| `cl show service ptp <instance-id> acceptable-master` | |
+| `cl show service ptp <instance-id> acceptable-master <clock-id>` | |
+| `cl show service ptp <instance-id> monitor` | |
+| `cl show service ptp <instance-id> monitor violations` | |
+| `cl show service ptp <instance-id> monitor violations forced-master` | |
+| `cl show service ptp <instance-id> monitor violations forced-master <clock-id>` | |
+| `cl show service ptp <instance-id> monitor violations acceptable-master` | |
+| `cl show service ptp <instance-id> monitor violations acceptable-master <clock-id>` | |
+| `cl show service ptp <instance-id> current` | |
+| `cl show service ptp <instance-id> clock-quality` | |
+| `cl show service ptp <instance-id> parent` | |
+| `cl show service ptp <instance-id> parent grandmaster-clock-quality` |  |
+| `cl show service ptp <instance-id> time` | |
+
 ## Example Configuration
 
 In the following example, the boundary clock on the switch receives time from Master 1 (the grandmaster) on PTP slave port swp3s0, sets its clock and passes the time down through PTP master ports swp3s1, swp3s2, and swp3s3 to the hosts that receive the time.
 
 {{< img src = "/images/cumulus-linux/date-time-ptp-config.png" >}}
 
-The configuration for the above example is shown below. The example assumes that you have already configured the layer 3 routed interfaces (`swp3s0`, `swp3s1`, `swp3s2`, and `swp3s3`) you want to use for PTP.
+This is the configuration for the above example. The example assumes that you have already configured the layer 3 routed interfaces (`swp3s0`, `swp3s1`, `swp3s2`, and `swp3s3`) you want to use for PTP.
 
 {{< tabs "352 ">}}
 {{< tab "CUE Commands ">}}

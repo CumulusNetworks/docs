@@ -16,12 +16,12 @@ Consider deploying, provisioning, configuring, and upgrading switches using auto
 
 ## Before You Upgrade
 
-{{%notice tip%}}
+{{<notice tip>}}
 
 Be sure to read the knowledge base article
-{{<exlink url="https://docs.cumulusnetworks.com/knowledge-base/Installing-and-Upgrading/Upgrading/Network-Device-and-Linux-Host-Worldview-Comparison/" text="Upgrades: Network Device and Linux Host Worldview Comparison" >}}, which provides a detailed comparison between the network device and Linux host worldview of upgrade and installation.
+{{<kb_link url="knowledge-base/Installing-and-Upgrading/Upgrading/Network-Device-and-Linux-Host-Worldview-Comparison/" text="Upgrades: Network Device and Linux Host Worldview Comparison" >}}, which provides a detailed comparison between the network device and Linux host worldview of upgrade and installation.
 
-{{%/notice%}}
+{{</notice>}}
 
 Understanding the location of configuration data is required for successful upgrades, migrations, and backup. As with other Linux distributions, the `/etc` directory is the primary location for all configuration data in Cumulus Linux. The following list is a likely set of files that you need to back up and migrate to a new release. Make sure you examine any file that has been changed. Make the following files and directories part of a backup strategy.
 
@@ -158,7 +158,7 @@ To upgrade the switch:
 
 1. Back up the configurations off the switch.
 2. Download the Cumulus Linux image.
-3. Install the Cumulus Linux image with the `onie-install -a -i <image-location>` command, which boots the switch into ONIE. The following example command installs the image from a web server, then reboots the switch. There are additional ways to install the Cumulus Linux image, such as using FTP, a local file, or a USB drive. For more information, see {{<link title="Installing a New Cumulus Linux Image">}}.
+3. Install the Cumulus Linux image with the `onie-install -a -i <image-location>` command, which boots the switch into ONIE. The following example command installs the image from a web server, then reboots the switch. There are additional ways to install the Cumulus Linux image, such as using FTP, TFTP, a local file, or a USB drive. For more information, see {{<link title="Installing a New Cumulus Linux Image">}}.
 
     ```
     cumulus@switch:~$ sudo onie-install -a -i http://10.0.1.251/cumulus-linux-4.1.0-mlx-amd64.bin && sudo reboot
@@ -232,7 +232,7 @@ To upgrade the switch using package upgrade:
     `sudo find / -mount -type f -name '*.dpkg-*'` command.
     ```
 
-    If you see errors for expired GPG keys that prevent you from upgrading packages, follow the steps in {{<exlink url="https://docs.cumulusnetworks.com/knowledge-base/Installing-and-Upgrading/Upgrading/Update-Expired-GPG-Keys/" text="Upgrading Expired GPG Keys">}}.
+    If you see errors for expired GPG keys that prevent you from upgrading packages, follow the steps in {{<kb_link url="knowledge-base/Installing-and-Upgrading/Upgrading/Update-Expired-GPG-Keys/" text="Upgrading Expired GPG Keys">}}.
 
 5. Reboot the switch if the upgrade messages indicate that a system restart is required.
 
@@ -265,7 +265,7 @@ You must upgrade both switches in the MLAG pair to the same release of Cumulus L
 {{%notice warning%}}
 
 For networks with MLAG deployments, you can only upgrade to Cumulus Linux 4.3 from version 3.7.10 or later. If you are using a version of Cumulus Linux earlier than 3.7.10, you must upgrade to version 3.7.10 first, then upgrade to version 4.3. Version 3.7.10 is available on the
-{{<exlink url="https://cumulusnetworks.com/downloads/#product=Cumulus%20Linux&version=3.7.10" text="downloads page">}} on our website.
+{{<exlink url="https://support.mellanox.com/s/" text="MyMellanox downloads page">}}.
 
 {{%/notice%}}
 
@@ -356,7 +356,7 @@ After you upgrade using a full Cumulus Linux image install, you need to reinstal
 
 ## Related Information
 
-- {{<exlink url="https://docs.cumulusnetworks.com/knowledge-base/Installing-and-Upgrading/Upgrading/Network-Device-and-Linux-Host-Worldview-Comparison/" text="Upgrades: Network Device Worldview and Linux Host Worldview Comparison">}}
+- {{<kb_link url="knowledge-base/Installing-and-Upgrading/Upgrading/Network-Device-and-Linux-Host-Worldview-Comparison/" text="Upgrades: Network Device Worldview and Linux Host Worldview Comparison">}}
 - {{<exlink url="https://cumulusnetworks.com/solutions/automation/" text="Automation Solutions">}}
 - {{<exlink url="http://opencomputeproject.github.io/onie/design-spec/" text="ONIE Design Specification">}}
 - {{<link title="Multi-Chassis Link Aggregation - MLAG">}}

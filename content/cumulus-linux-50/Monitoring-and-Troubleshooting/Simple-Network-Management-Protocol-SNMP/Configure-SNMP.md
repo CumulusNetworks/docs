@@ -681,10 +681,7 @@ The pass persist scripts in Cumulus Linux use the {{<exlink url="http://net-snmp
 - `snmpifAlias_pp.py`
 - `sysDescr_pass.py`
 
-All the scripts are enabled by default in Cumulus Linux, except for:
-
-- `bgp4_pp.py`, which is handled by {{<link url="FRRouting" text="FRRouting">}}.
-- `cl_poe_pp.py`, which is disabled by default as only certain platforms that Cumulus Linux supports are capable of doing {{<link url="Power-over-Ethernet-PoE" text="Power over Ethernet">}}.
+All the scripts are enabled by default in Cumulus Linux, except for `bgp4_pp.py`, which is handled by {{<link url="FRRouting" text="FRRouting">}}.
 
 ## Example Configuration
 
@@ -694,7 +691,7 @@ The following example configuration:
 - Sets the trap destination host IP address.
 - Creates four types of SNMP traps.
 
-You can find a working example configuration on the {{<exlink url="https://gitlab.com/nvidia-networking/systems-engineering/poc-support/snmp-and-cl" text="NVIDIA Networking GitLab project">}}, which you can try for free with {{<exlink url="https://air.cumulusnetworks.com" text="Cumulus AIR">}}.
+You can find a working example configuration on the {{<exlink url="https://gitlab.com/nvidia-networking/systems-engineering/poc-support/snmp-and-cl" text="NVIDIA Networking GitLab project">}}, which you can try for free with {{<exlink url="https://air.nvidia.com" text="NVIDIA AIR Simulation Platform">}}.
 
 {{< tabs "example-config" >}}
 

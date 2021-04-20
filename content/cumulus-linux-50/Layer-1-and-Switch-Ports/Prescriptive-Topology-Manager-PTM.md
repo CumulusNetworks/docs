@@ -200,26 +200,6 @@ cumulus@switch:~$
 
 To disable the checks, delete the `ptm-enable` parameter from the interface:
 
-{{< tabs "TabID234 ">}}
-{{< tab "CUE Commands ">}}
-
-```
-cumulus@switch:~$ NEED COMMAND 
-cumulus@switch:~$ 
-```
-
-{{< /tab >}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@switch:~$ net del interface swp51 ptm-enable
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-{{< /tab >}}
-{{< tab "vtysh Commands ">}}
-
 ```
 cumulus@switch:~$ sudo vtysh
 switch# conf t
@@ -231,30 +211,7 @@ switch# exit
 cumulus@switch:~$
 ```
 
-{{< /tab >}}
-{{< /tabs >}}
-
 If you need to re-enable PTM for that interface:
-
-{{< tabs "TabID265 ">}}
-{{< tab "CUE Commands ">}}
-
-```
-cumulus@switch:~$ NEED COMMAND 
-cumulus@switch:~$ 
-```
-
-{{< /tab >}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@switch:~$ net add interface swp51 ptm-enable
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-{{< /tab >}}
-{{< tab "vtysh Commands ">}}
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -268,22 +225,10 @@ switch# exit
 cumulus@switch:~$
 ```
 
-{{< /tab >}}
-{{< /tabs >}}
-
-With PTM enabled on an interface, the `zebra` daemon connects to `ptmd` over a Unix socket. Any time there is a change of status for an interface, `ptmd` sends notifications to `zebra`. Zebra maintains a `ptm-status` flag per interface and evaluates routing adjacency based on this flag. To check the per-interface `ptm-status`:
-
-{{< tabs "TabID297 ">}}
-{{< tab "CUE Commands ">}}
+With PTM enabled on an interface, the `zebra` daemon connects to `ptmd` over a Unix socket. Any time there is a change of status for an interface, `ptmd` sends notifications to `zebra`. Zebra maintains a `ptm-status` flag per interface and evaluates routing adjacency based on this flag. To check the per-interface `ptm-status`, run the CUE `cl show interface <interface>` command or the vtysh `show interface <interface>` command.
 
 ```
-cumulus@switch:~$ cl show interface swp1
-```
-
-{{< /tab >}}
-{{< tab "vtysh Commands ">}}
-
-```
+cumulus@switch:~$ sudo vtysh
 switch# show interface swp1
 Interface swp1 is up, line protocol is up
   Link ups:       0    last: (never)
@@ -295,9 +240,6 @@ Interface swp1 is up, line protocol is up
   HWaddr: c4:54:44:bd:01:41
 ...
 ```
-
-{{< /tab >}}
-{{< /tabs >}}
 
 ## ptmd Service Commands
 

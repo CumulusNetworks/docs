@@ -13,13 +13,13 @@ This article describes a very simple Ansible example. Use it to learn Ansible; *
 
 The following is always required to run a playbook:
 
-- {{<exlink url="http://docs.ansible.com/intro_installation.html#installation" text="Installing Ansible">}}
-- {{<exlink url="http://docs.ansible.com/intro_inventory.html" text="An inventory file">}}
-- {{<exlink url="http://docs.ansible.com/playbooks.html" text="A playbook `.yml` file">}}
+- {{<exlink url="https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html" text="Installing Ansible">}}
+- {{<exlink url="https://docs.ansible.com/ansible/latest/user_guide/intro_inventory.html#intro-inventory" text="An inventory file">}}
+- {{<exlink url="https://docs.ansible.com/ansible/latest/user_guide/playbooks_intro.html#about-playbooks" text="A playbook `.yml` file">}}
 
 Optional files used in this example:
 
-- {{<exlink url="http://docs.ansible.com/playbooks_variables.html#variables" text="Jinja2 template file">}}
+- {{<exlink url="https://docs.ansible.com/ansible/latest/user_guide/playbooks_templating.html#playbooks-templating" text="Jinja2 template file">}}
 
 ## Install Ansible
 
@@ -29,7 +29,7 @@ The following was performed on Ubuntu:
     cumulus@wbench:~$ sudo apt-get install ansible
 
 If you don't have Ubuntu, you can install Ansible on Red Hat, Debian,
-CentOS, MacOS, any BSD distro, and so on. {{<exlink url="http://docs.ansible.com/intro_installation.html" text="See this page on ansible.com">}}.
+CentOS, MacOS, any BSD distro, and so on. {{<exlink url="https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html" text="See this page on ansible.com">}}.
 
 ## Configure the Necessary Files
 
@@ -44,7 +44,7 @@ inside.
     cumulus@wbench:~$ cat host
     leaf1
 
-Again, this is a very simple example. Please {{<exlink url="http://docs.ansible.com/intro_inventory.html" text="read more about creating inventory files on ansible.com">}}.
+Again, this is a very simple example. Please {{<exlink url="https://docs.ansible.com/ansible/latest/user_guide/intro_inventory.html#intro-inventory" text="read more about creating inventory files on ansible.com">}}.
 
 ### Playbook .yml File
 

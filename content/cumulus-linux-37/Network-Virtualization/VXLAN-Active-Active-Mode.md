@@ -952,7 +952,7 @@ topologies only, and is not needed on real hardware.
       post-up ip link set $IFACE promisc on
 
 For more information on using Cumulus VX and Vagrant, refer to the
-{{<exlink url="https://docs.cumulusnetworks.com/cumulus-vx/" text="Cumulus VX documentation">}}.
+{{<kb_link url="cumulus-vx/" text="Cumulus VX documentation">}}.
 
 ### With LNV, Unique Node ID Required for vxrd in Cumulus VX
 

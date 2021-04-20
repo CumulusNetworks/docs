@@ -128,7 +128,6 @@ portion of the disk is in use.
 
 ## References
 
-- A {{<exlink url="http://marc.merlins.org/perso/btrfs/post_2014-05-04_Fixing-Btrfs-Filesystem-Full-Problems.html" text="blog post">}} by Marc Merlin
 - BTRFS wiki on {{<exlink url="https://btrfs.wiki.kernel.org/index.php/FAQ#Help.21_I_ran_out_of_disk_space.21" text="out of disk space">}} issues
 - BTRFS wiki on {{<exlink url="https://btrfs.wiki.kernel.org/index.php/Balance_Filters" text="balance filters">}}
 - BTRFS  {{<exlink url="https://btrfs.wiki.kernel.org/index.php/Glossary" text="glossary">}}

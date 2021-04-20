@@ -13,7 +13,7 @@ In Cumulus Linux, you map QinQ packets to VXLANs through:
 - *Single tag translation*, where you map a customer to a VNI and preserve the service as an inner VLAN inside a VXLAN packet.
 - *Double tag translation*, where you map a customer and service to a VNI.
 
-QinQ is available only on {{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware bridges">}} with 802.1ad and only with single tag translation.
+<!--QinQ is available only on {{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware bridges">}} with 802.1ad.-->
 
 ## Configure Single Tag Translation
 
@@ -28,9 +28,7 @@ An example configuration in VLAN-aware bridge mode looks like this:
 You configure two switches: one at the service provider edge that faces the customer (the switch on the left above), and one on the public cloud handoff edge (the switch on the right above).
 
 {{%notice note%}}
-
 To correctly interoperate, all edges must support QinQ with VXLANs.
-
 {{%/notice%}}
 
 ### Configure the Public Cloud-facing Switch
@@ -44,7 +42,16 @@ For the switch facing the public cloud:
 To configure the public cloud-facing switch:
 
 {{< tabs "TabID51 ">}}
+{{< tab "CUE Commands ">}}
 
+```
+cumulus@switch:~$ NEED COMMAND
+cumulus@switch:~$ 
+cumulus@switch:~$ cl set
+cumulus@switch:~$ 
+```
+
+{{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
 ```
@@ -61,7 +68,6 @@ cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
-
 {{< tab "Linux Commands ">}}
 
 Edit the `/etc/network/interfaces` file to add the following configuration:
@@ -97,7 +103,6 @@ cumulus@switch:~$ ifreload -a
 ```
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 ### Configure the Customer-facing Edge Switch
@@ -111,7 +116,13 @@ For the switch facing the customer:
 To configure the customer-facing switch:
 
 {{< tabs "TabID118 ">}}
+{{< tab "CUE Commands ">}}
 
+```
+cumulus@switch:~$ NEED COMMAND
+```
+
+{{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
 ```
@@ -130,7 +141,6 @@ cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
-
 {{< tab "Linux Commands ">}}
 
 Edit the `/etc/network/interfaces` file to add the following configuration:
@@ -166,6 +176,9 @@ iface bridge
     bridge-vlan-protocol 802.1ad
 ...
 ```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ### View the Configuration
 
@@ -206,10 +219,6 @@ cumulus@switch:~$ sudo ip -d link show bridge
     bridge forward_delay 1500 hello_time 200 max_age 2000 ageing_time 30000 stp_state 2 priority 32768 vlan_filtering 1 vlan_protocol 802.1ad bridge_id 8000.6:a2:ae:de:e3:43 designated_root 8000.6:a2:ae:de:e3:43 root_port 0 root_path_cost 0 topology_change 0 topology_change_detected 0 hello_timer    0.00 tcn_timer    0.00 topology_change_timer    0.00 gc_timer   64.29 vlan_default_pvid 1 vlan_stats_enabled 1 group_fwd_mask 0 group_address 01:80:c2:00:00:08 mcast_snooping 0 mcast_router 1 mcast_query_use_ifaddr 0 mcast_querier 0 mcast_hash_elasticity 4096 mcast_hash_max 4096 mcast_last_member_count 2 mcast_startup_query_count 2 mcast_last_member_interval 100 mcast_membership_interval 26000 mcast_querier_interval 25500 mcast_query_interval 12500 mcast_query_response_interval 1000 mcast_startup_query_interval 3125 mcast_stats_enabled 1 mcast_igmp_version 2 mcast_mld_version 1 nf_call_iptables 0 nf_call_ip6tables 0 nf_call_arptables 0 addrgenmode eui64
 ```
 
-{{< /tab >}}
-
-{{< /tabs >}}
-
 ### Example Configuration in Traditional Bridge Mode
 
 An example configuration for single tag translation in traditional bridge mode on a leaf switch is shown below.
@@ -240,9 +249,7 @@ Double tag translation involves a bridge with double-tagged member interfaces, w
 The double tag is always a cloud connection. The customer-facing edge is either single-tagged or untagged. At the public cloud handoff point, the VNI maps to double VLAN tags, with the S-tag indicating the customer and the C-tag indicating the service.
 
 {{%notice note%}}
-
 The configuration in Cumulus Linux uses the outer tag for the customer and the inner tag for the service.
-
 {{%/notice%}}
 
 You configure a double-tagged interface by stacking the VLANs in the following manner: `<port>.<outer tag>.<inner tag>`. For example, consider swp1.100.10: the outer tag is VLAN 100, which represents the customer, and the inner tag is VLAN 10, which represents the service.
@@ -250,10 +257,8 @@ You configure a double-tagged interface by stacking the VLANs in the following m
 The outer tag or *TPID* (tagged protocol identifier) needs the `vlan_protocol` to be specified. It can be either *802.1Q* or *802.1ad*. If 802.1ad is used, it must be specified on the lower VLAN device, such as swp3.100 in the example below.
 
 {{%notice note%}}
-
-Double tag translation only works with bridges in {{<link url="Traditional-Bridge-Mode" text="traditional mode">}} (not VLAN-aware mode).
-
-{{%/notice%}}
+<!--Double tag translation only works with bridges in {{<link url="Traditional-Bridge-Mode" text="traditional mode">}} (not VLAN-aware mode).
+{{%/notice%}}-->
 
 An example configuration:
 

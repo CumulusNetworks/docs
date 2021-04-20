@@ -26,7 +26,6 @@ For a list of the new features in this release, see {{<link url="Whats-New">}}. 
 
 To implement various Cumulus Linux features, Cumulus Networks has forked various software projects, like CFEngine, `Netdev` and some Puppet Labs packages. The forked code resides in the Cumulus Networks [GitHub repository](https://github.com/CumulusNetworks).
 
-Cumulus Networks has also developed and released new applications as open source. The list of open source projects is on the [open source software](http://oss.cumulusnetworks.com/) page.
 
 ## Hardware Compatibility List
 

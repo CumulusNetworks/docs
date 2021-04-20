@@ -48,9 +48,81 @@
 <td></td>
 </tr>
 <tr>
+<td>CM-20033</td>
+<td>&lt;p&gt;The VLAN interface stays up even though the physical link carrying the VLAN is admin or carrier down.&lt;/p&gt;
+</td>
+<td>3.5.2-3.7.14.2, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-15812</td>
 <td>&lt;p&gt;Multicast forwarding fails for IP addresses whose DMAC overlaps with reserved DIPs.&lt;/p&gt;</td>
 <td>3.2.1-3.7.14.2, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2617001</td>
+<td>CVE-2021-26933 CVE-2021-27379
+Multiple vulnerabilities have been discovered in the Xen hypervisor, which could result in denial of service, privilege escalation or memory disclosure.
+Vulnerable: &lt; 4.11.4+99-g8bce4698f6-1
+Fixed: 4.11.4+99-g8bce4698f6-1</td>
+<td>4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2616999</td>
+<td>CVE-2021-23358: missing input sanitising in the template() function of the Underscore JavaScript library could result in the execution of arbitrary code.
+Vulnerable: 1.9.1~dfsg-1
+Fixed: 1.9.1~dfsg-1+deb10u1</td>
+<td>4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2616988</td>
+<td>CVE-2020-6851 CVE-2020-8112 CVE-2020-15389 CVE-2020-27814 CVE-2020-27823 CVE-2020-27824 CVE-2020-27841 CVE-2020-27842 CVE-2020-27843 CVE-2020-27845: Multiple vulnerabilities have been discovered in openjpeg2, the open-source JPEG 2000 codec, which could result in denial of service or the execution of arbitrary code when opening a malformed image.
+Vulnerable: &lt;= 2.3.0-2+deb10u1
+Fixed: 2.3.0-2+deb10u2</td>
+<td>4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2616977</td>
+<td>Multiple vulnerabilities were discovered in cURL, an URL transfer library:
+CVE-2020-8169: partial password leak to DNS servers.
+CVE-2020-8177: malicious server could cause curl -J -i to overwrite a local file.
+CVE-2020-8231: libcurl with CURLOPT_CONNECT_ONLY information leak due to wrong connection.
+CVE-2020-8284: PASV response could trick curl into connecting back to an arbitrary IP address and port.
+CVE-2020-8285: libcurl could run out of stack space using FTP wildcard matching (CURLOPT_CHUNK_BGN_FUNCTION).
+CVE-2020-8286: failure to verify that OSCP response matches intended certificate.
+CVE-2021-22876: libcurl did not strip user credentials from URL when populating Referer HTTP request header.
+CVE-2021-22890: libcurl using HTTPS proxy with TLS1.3 could use the wrong session ticket and bypass server TLS certificate check.
+Vulnerable: &lt;= 7.64.0-4+deb10u1
+Fixed: 7.64.0-4+deb10u2</td>
+<td>4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2616968</td>
+<td>CVE-2021-28957: lxml, a Python binding for the libxml2 and libxslt libraries, did not properly sanitize its input. This would allow a malicious user to mount a cross-site scripting attack.
+Vulnerable: &lt;= 4.3.2-1+deb10u2
+Fixed: 4.3.2-1+deb10u3</td>
+<td>4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2616965</td>
+<td>CVE-2021-27291: Pygments, a syntax highlighting package written in Python 3, used regular expressions which could result in denial of service.
+Vulnerable: &lt;= 2.3.1+dfsg-1+deb10u1
+Fixed: 2.3.1+dfsg-1+deb10u2</td>
+<td>4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2616955</td>
+<td>CVE-2021-3449: A NULL pointer dereference was found in the signature_algorithms processing in OpenSSL, a Secure Sockets Layer toolkit, which could result in denial of service.
+Vulnerable: &lt;= 1.1.1d-0+deb10u5
+Fixed: 1.1.1d-0+deb10u6</td>
+<td>4.0.0-4.3.0</td>
 <td></td>
 </tr>
 <tr>
@@ -316,21 +388,6 @@ Fixed: 4.11.4+57-g41a822c392-1</td>
 <td>4.3.0</td>
 </tr>
 <tr>
-<td>2555205</td>
-<td>If the FRR and MSTP processes go down, an SNMP TRAP is not generated even with the following configuration in the {{/etc/snmp/snmpd.conf}} file. 
-
-proc watchfrr
-proc mstpd
-monitor -I -r 1 -o prNames.5 -o prErrMessage.5 “Process FRRis down!!!” PrErrorFlag.5 != 0
-monitor -I -r 1 -o prNames.5 -o prErrMessage.5 “Process FRR is up!!!” PrErrorFlag.5 = 0
-monitor -I -r 1  -o prNames.3 -o prErrMessage.3  "Process mstpd is down!!!!" prErrorFlag.3 != 0
-monitor -I -r 1  -o prNames.3 -o prErrMessage.3  "Process mstpd is up!!!!" prErrorFlag.3 = 0
-
-</td>
-<td>3.7.12-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
 <td>2555183</td>
 <td>CVE-2020-8927: A buffer overflow exists in the Brotli library versions prior to 1.0.8 where an attacker controlling the input length of a "one-shot" decompression request to a script can trigger a crash, which happens when copying over chunks of data larger than 2 GiB.  If one cannot update to a fixed version, we recommend to use the "streaming" API as opposed to the "one-shot" API, and impose chunk size limits.
 Vulnerable: 1.0.7-2
@@ -573,13 +630,6 @@ Fixed: 3.1+dfsg-8+deb10u8</td>
 <td>When you manually set the link speed or duplex mode with ethtool to an unsupported value, then run a TDR check against the interface, you encounter a {{switchd}} service heartbeat failure.
 To work around this issue, reboot the switch to clear the condition. Avoid setting the interface speed or duplex mode directly with ethtool.</td>
 <td>3.7.12-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
-<td>2553063</td>
-<td>After you manually edit the {{/etc/resolv.conf}} file to change or remove a VRF for a given DNS server, {{ifreload}} does not remove IP rules created for DNS servers in the VRF. 
-To work around this issue, run the {{net add/del dns nameserver vrf &lt;name&gt;}} command to force the DNS configuration.</td>
-<td>3.7.13-3.7.14.2, 4.1.1-4.3.0</td>
 <td></td>
 </tr>
 <tr>
@@ -1836,6 +1886,45 @@ RTM_NEWNEIGH with unconfigured vlan XXXX on port peerlink
 <td>4.2.0-4.3.0</td>
 </tr>
 <tr>
+<td>2547068</td>
+<td>Hardware platforms using the Intel D-1500 CPU series might reboot unexpectedly.
+
+To work around this issue, contact your hardware vendor to inquire if a new version of BIOS with a microcode fix might be available, or manually disable CPU C-states in the kernel as outlined below.
+
+To permanently disable C-states using a kernel boot parameter:
+
+1. Edit {{/etc/default/grub}} to add the argument {{processor.max_cstate=0}} to the variable {{GRUB_CMDLINE_LINUX}}
+
+For example, if {{/etc/default/grub}} file contains the following line:
+
+{{GRUB_CMDLINE_LINUX="cl_platform=accton_as7726_32x console=tty0 console=ttyS0,115200n8 intel_iommu=off pcie_aspm=off"}}
+
+change it to
+
+{{GRUB_CMDLINE_LINUX="cl_platform=accton_as7726_32x console=tty0 console=ttyS0,115200n8 intel_iommu=off pcie_aspm=off processor.max_cstate=0"}}
+
+2. Run {{sudo update-grub}}
+
+3. Reboot the system with {{sudo reboot}}
+
+
+To Disable cstates in realtime on the current system which will not persist through a reboot:
+
+1. Confirm that the libpci3 package is installed
+
+Run {{dpkg-query -l libpci3}} and confirm the following line is displayed:
+
+{{ii  libpci3:amd64      1:3.2.1-3      amd64          Linux PCI Utilities (shared library)}}
+
+The first field above should read {{ii}}. If not, install the libpci3 package by running {{sudo apt upgrade;sudo apt install libpci3}}
+
+2. Disable C-states by executing the command {{./cpupower idle-set -d 2}}
+
+C-states have been disabled by default as of Cumulus Linux 4.3.0</td>
+<td>3.7.9-4.2.1</td>
+<td>4.3.0</td>
+</tr>
+<tr>
 <td>2546991</td>
 <td>The FRR service does not provide a way for automation to know if the configuration applied properly.
 To work around this issue, execute the {{vtysh -f &lt;file&gt;}} command in the automation file before starting the FRR service to validate the functional configuration and return an error code.</td>
@@ -1997,12 +2086,6 @@ To work around this issue and bring the interfaces up, perform the following con
 <td>2545125</td>
 <td>If you configure more than one VRR interface on an SVI interface, deleting one of the VRR addresses does not remove the interface/address. </td>
 <td>3.7.10-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
-<td>2545012</td>
-<td>Port security is not currently supported on VX. The NCLU commands produce errors.</td>
-<td>4.0.0-4.3.0</td>
 <td></td>
 </tr>
 <tr>
@@ -2300,13 +2383,6 @@ This issue only affects QinQ configurations.
  </td>
 <td>3.7.3-4.1.1</td>
 <td>4.2.0-4.3.0</td>
-</tr>
-<tr>
-<td>2540808</td>
-<td>In an EVPN environment, the centralized MAC address is not installed on the MLAG pair because Cumulus Linux does not perform an SVI MAC check per VLAN. 
-This issue does not affect a pure distributed routing (symmetric or asymmetric) environment or a pure centralized routing environment.</td>
-<td>3.7.0-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
 </tr>
 <tr>
 <td>2540753</td>
@@ -2614,14 +2690,6 @@ To work around this issue, use {{net show interface}} command for LLDP output wh
 <td></td>
 </tr>
 <tr>
-<td>2533940</td>
-<td>The VLAN interface stays up even though the physical link carrying the VLAN is admin or carrier down.
-
-</td>
-<td>4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
 <td>2533691</td>
 <td>If you configure a VLAN under a VLAN-aware bridge and create a subinterface of the same VLAN on one of the bridge ports, the bridge and interface compete for the same VLAN and if the interface is flapped, it stops working. Correcting the configuration and running the {{ifreload}} command does not resolve the conflict. 
 To work around this issue, correct the bridge VIDs and restart {{switchd}} or delete the subinterface. </td>
@@ -2760,9 +2828,81 @@ CVE-2020-10531: An issue was discovered in International Components for Unicode 
 <td></td>
 </tr>
 <tr>
+<td>CM-20033</td>
+<td>&lt;p&gt;The VLAN interface stays up even though the physical link carrying the VLAN is admin or carrier down.&lt;/p&gt;
+</td>
+<td>3.5.2-3.7.14.2, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-15812</td>
 <td>&lt;p&gt;Multicast forwarding fails for IP addresses whose DMAC overlaps with reserved DIPs.&lt;/p&gt;</td>
 <td>3.2.1-3.7.14.2, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2617001</td>
+<td>CVE-2021-26933 CVE-2021-27379
+Multiple vulnerabilities have been discovered in the Xen hypervisor, which could result in denial of service, privilege escalation or memory disclosure.
+Vulnerable: &lt; 4.11.4+99-g8bce4698f6-1
+Fixed: 4.11.4+99-g8bce4698f6-1</td>
+<td>4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2616999</td>
+<td>CVE-2021-23358: missing input sanitising in the template() function of the Underscore JavaScript library could result in the execution of arbitrary code.
+Vulnerable: 1.9.1~dfsg-1
+Fixed: 1.9.1~dfsg-1+deb10u1</td>
+<td>4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2616988</td>
+<td>CVE-2020-6851 CVE-2020-8112 CVE-2020-15389 CVE-2020-27814 CVE-2020-27823 CVE-2020-27824 CVE-2020-27841 CVE-2020-27842 CVE-2020-27843 CVE-2020-27845: Multiple vulnerabilities have been discovered in openjpeg2, the open-source JPEG 2000 codec, which could result in denial of service or the execution of arbitrary code when opening a malformed image.
+Vulnerable: &lt;= 2.3.0-2+deb10u1
+Fixed: 2.3.0-2+deb10u2</td>
+<td>4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2616977</td>
+<td>Multiple vulnerabilities were discovered in cURL, an URL transfer library:
+CVE-2020-8169: partial password leak to DNS servers.
+CVE-2020-8177: malicious server could cause curl -J -i to overwrite a local file.
+CVE-2020-8231: libcurl with CURLOPT_CONNECT_ONLY information leak due to wrong connection.
+CVE-2020-8284: PASV response could trick curl into connecting back to an arbitrary IP address and port.
+CVE-2020-8285: libcurl could run out of stack space using FTP wildcard matching (CURLOPT_CHUNK_BGN_FUNCTION).
+CVE-2020-8286: failure to verify that OSCP response matches intended certificate.
+CVE-2021-22876: libcurl did not strip user credentials from URL when populating Referer HTTP request header.
+CVE-2021-22890: libcurl using HTTPS proxy with TLS1.3 could use the wrong session ticket and bypass server TLS certificate check.
+Vulnerable: &lt;= 7.64.0-4+deb10u1
+Fixed: 7.64.0-4+deb10u2</td>
+<td>4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2616968</td>
+<td>CVE-2021-28957: lxml, a Python binding for the libxml2 and libxslt libraries, did not properly sanitize its input. This would allow a malicious user to mount a cross-site scripting attack.
+Vulnerable: &lt;= 4.3.2-1+deb10u2
+Fixed: 4.3.2-1+deb10u3</td>
+<td>4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2616965</td>
+<td>CVE-2021-27291: Pygments, a syntax highlighting package written in Python 3, used regular expressions which could result in denial of service.
+Vulnerable: &lt;= 2.3.1+dfsg-1+deb10u1
+Fixed: 2.3.1+dfsg-1+deb10u2</td>
+<td>4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2616955</td>
+<td>CVE-2021-3449: A NULL pointer dereference was found in the signature_algorithms processing in OpenSSL, a Secure Sockets Layer toolkit, which could result in denial of service.
+Vulnerable: &lt;= 1.1.1d-0+deb10u5
+Fixed: 1.1.1d-0+deb10u6</td>
+<td>4.0.0-4.3.0</td>
 <td></td>
 </tr>
 <tr>
@@ -3007,21 +3147,6 @@ Vulnerable: &lt; 4.11.4+57-g41a822c392-1
 Fixed: 4.11.4+57-g41a822c392-1</td>
 <td>4.0.0-4.2.1</td>
 <td>4.3.0</td>
-</tr>
-<tr>
-<td>2555205</td>
-<td>If the FRR and MSTP processes go down, an SNMP TRAP is not generated even with the following configuration in the {{/etc/snmp/snmpd.conf}} file. 
-
-proc watchfrr
-proc mstpd
-monitor -I -r 1 -o prNames.5 -o prErrMessage.5 “Process FRRis down!!!” PrErrorFlag.5 != 0
-monitor -I -r 1 -o prNames.5 -o prErrMessage.5 “Process FRR is up!!!” PrErrorFlag.5 = 0
-monitor -I -r 1  -o prNames.3 -o prErrMessage.3  "Process mstpd is down!!!!" prErrorFlag.3 != 0
-monitor -I -r 1  -o prNames.3 -o prErrMessage.3  "Process mstpd is up!!!!" prErrorFlag.3 = 0
-
-</td>
-<td>3.7.12-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
 </tr>
 <tr>
 <td>2555183</td>
@@ -4385,6 +4510,45 @@ RTM_NEWNEIGH with unconfigured vlan XXXX on port peerlink
 <td>4.2.0-4.3.0</td>
 </tr>
 <tr>
+<td>2547068</td>
+<td>Hardware platforms using the Intel D-1500 CPU series might reboot unexpectedly.
+
+To work around this issue, contact your hardware vendor to inquire if a new version of BIOS with a microcode fix might be available, or manually disable CPU C-states in the kernel as outlined below.
+
+To permanently disable C-states using a kernel boot parameter:
+
+1. Edit {{/etc/default/grub}} to add the argument {{processor.max_cstate=0}} to the variable {{GRUB_CMDLINE_LINUX}}
+
+For example, if {{/etc/default/grub}} file contains the following line:
+
+{{GRUB_CMDLINE_LINUX="cl_platform=accton_as7726_32x console=tty0 console=ttyS0,115200n8 intel_iommu=off pcie_aspm=off"}}
+
+change it to
+
+{{GRUB_CMDLINE_LINUX="cl_platform=accton_as7726_32x console=tty0 console=ttyS0,115200n8 intel_iommu=off pcie_aspm=off processor.max_cstate=0"}}
+
+2. Run {{sudo update-grub}}
+
+3. Reboot the system with {{sudo reboot}}
+
+
+To Disable cstates in realtime on the current system which will not persist through a reboot:
+
+1. Confirm that the libpci3 package is installed
+
+Run {{dpkg-query -l libpci3}} and confirm the following line is displayed:
+
+{{ii  libpci3:amd64      1:3.2.1-3      amd64          Linux PCI Utilities (shared library)}}
+
+The first field above should read {{ii}}. If not, install the libpci3 package by running {{sudo apt upgrade;sudo apt install libpci3}}
+
+2. Disable C-states by executing the command {{./cpupower idle-set -d 2}}
+
+C-states have been disabled by default as of Cumulus Linux 4.3.0</td>
+<td>3.7.9-4.2.1</td>
+<td>4.3.0</td>
+</tr>
+<tr>
 <td>2546991</td>
 <td>The FRR service does not provide a way for automation to know if the configuration applied properly.
 To work around this issue, execute the {{vtysh -f &lt;file&gt;}} command in the automation file before starting the FRR service to validate the functional configuration and return an error code.</td>
@@ -4546,12 +4710,6 @@ To work around this issue and bring the interfaces up, perform the following con
 <td>2545125</td>
 <td>If you configure more than one VRR interface on an SVI interface, deleting one of the VRR addresses does not remove the interface/address. </td>
 <td>3.7.10-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
-<td>2545012</td>
-<td>Port security is not currently supported on VX. The NCLU commands produce errors.</td>
-<td>4.0.0-4.3.0</td>
 <td></td>
 </tr>
 <tr>
@@ -4849,13 +5007,6 @@ This issue only affects QinQ configurations.
  </td>
 <td>3.7.3-4.1.1</td>
 <td>4.2.0-4.3.0</td>
-</tr>
-<tr>
-<td>2540808</td>
-<td>In an EVPN environment, the centralized MAC address is not installed on the MLAG pair because Cumulus Linux does not perform an SVI MAC check per VLAN. 
-This issue does not affect a pure distributed routing (symmetric or asymmetric) environment or a pure centralized routing environment.</td>
-<td>3.7.0-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
 </tr>
 <tr>
 <td>2540753</td>
@@ -5159,14 +5310,6 @@ To work around this issue, use {{net show interface}} command for LLDP output wh
 <tr>
 <td>2534734</td>
 <td>Span rules matching the out-interface as a bond do not mirror packets.</td>
-<td>4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
-<td>2533940</td>
-<td>The VLAN interface stays up even though the physical link carrying the VLAN is admin or carrier down.
-
-</td>
 <td>4.0.0-4.3.0</td>
 <td></td>
 </tr>

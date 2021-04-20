@@ -52,7 +52,7 @@ Configure the root bridge within the MST domain by changing the priority on the 
 
 More than one spanning tree instance enables switches to load balance and use different links for different VLANs. With RSTP, there is only one instance of spanning tree. To better utilize the links, you can configure MLAG on the switches connected to the MST or PVST domain and set up these interfaces as an MLAG port. The PVST or MST domain thinks it is connected to a single switch and utilizes all the links connected to it. Load balancing is based on the port channel hashing mechanism instead of different spanning tree instances and uses all the links between the RSTP to the PVST or MST domains. For information about configuring MLAG, see {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="Multi-Chassis Link Aggregation - MLAG">}}.
 
-## Optional Configuration
+## Configure STP
 
 There are a number of ways to customize STP in Cumulus Linux. Exercise caution when changing the settings below to prevent malfunctions in STP loop avoidance.
 
@@ -103,9 +103,7 @@ Cumulus Linux supports MSTI 0 only. It does not support MSTI 1 through 15.
 
 ### PortAdminEdge (PortFast Mode)
 
-*PortAdminEdge* is equivalent to the PortFast feature offered by other vendors. It enables or disables the *initial edge state* of a port in a bridge.
-
-All ports configured with PortAdminEdge bypass the listening and learning states to move immediately to forwarding.
+*PortAdminEdge* is equivalent to the PortFast feature offered by other vendors. It enables or disables the *initial edge state* of a port in a bridge. All ports configured with PortAdminEdge bypass the listening and learning states to move immediately to forwarding.
 
 {{%notice warning%}}
 PortAdminEdge mode might cause loops if it is not used with the {{<link url="#bpdu-guard" text="BPDU guard">}} feature.
@@ -420,37 +418,60 @@ cumulus@switch:~$ sudo mstpctl setportbpdufilter br100 swp1.100=yes swp2.100=yes
 {{< /tab >}}
 {{< /tabs >}}
 
-### Parameter List
+### Root Role
 
-Spanning tree parameters are defined in the IEEE {{<exlink url="https://standards.ieee.org/standard/802_1D-2004.html" text="802.1D">}} and {{<exlink url="https://standards.ieee.org/standard/802_1Q-2018.html" text="802.1Q">}} specifications.
+To enable the interface in the bridge to take the root role:
 
-The table below describes the STP configuration parameters available in Cumulus Linux. For a comparison of STP parameter configuration between `mstpctl` and other vendors, {{<exlink url="https://docs.cumulusnetworks.com/knowledge-base/Demos-and-Training/Interoperability/Cumulus-Linux-vs-Cisco-IOS-Spanning-Tree-Protocol/" text="read this knowledge base article">}}.
+{{< tabs "TabID427 ">}}
+{{< tab "CUE Commands ">}}
 
-<!--{{%notice note%}}
-CUE????Most of these parameters are blacklisted in the `ifupdown_blacklist` section of the `/etc/netd.conf` file. Before you configure these parameters, you must edit the `netd.conf` file to remove them from the blacklist.
-{{%/notice%}}-->
+```
+cumulus@switch:~$ cl set interface swp1 bridge domain br_default stp restrrole on
+cumulus@switch:~$ cl config apply
+```
 
-| Parameter | <div style="width:250px">NCLU Command</div>| Description |
-|-----------|----------|---------|
-| `mstpctl-maxage` | `net add bridge stp maxage <seconds>`| Sets the maximum age of the bridge in seconds. The default is 20. The maximum age must meet the condition 2 * (Bridge Forward Delay - 1 second) >= Bridge Max Age. |
-| `mstpctl-ageing` | `net add bridge stp ageing <seconds>` | Sets the Ethernet (MAC) address ageing time for the bridge in seconds when the running version is STP, but not RSTP/MSTP. The default is 1800. |
-| `mstpctl-fdelay` | `net add bridge stp fdelay <seconds>` | Sets the bridge forward delay time in seconds. The default value is 15. The bridge forward delay must meet the condition 2 * (Bridge Forward Delay - 1 second) >= Bridge Max Age. |
-| `mstpctl-maxhops` | `net add bridge stp maxhops <max-hops>` | Sets the maximum hops for the bridge. The default is 20. |
-| `mstpctl-txholdcount` |`net add bridge stp txholdcount <hold-count>` | Sets the bridge transmit hold count. The default value is 6. |
-| `mstpctl-forcevers` | `net add bridge stp forcevers RSTP`\|`STP` | Sets the force STP version of the bridge to either RSTP/STP. The default is RSTP. |
-| `mstpctl-treeprio` | `net add bridge stp treeprio <priority>` | Sets the tree priority of the bridge for an MSTI (multiple spanning tree instance). The priority value is a number between 0 and 61440 and must be a multiple of 4096. The bridge with the lowest priority is elected the root bridge. The default is 32768. See {{<link url="#spanning-tree-priority" text="Spanning Tree Priority">}} above.<br>**Note**: Cumulus Linux supports MSTI 0 only. It does not support MSTI 1 through 15. |
-| `mstpctl-hello` | `net add bridge stp hello <seconds>` | Sets the bridge hello time in seconds. The default is 2. |
-| `mstpctl-portpathcost` | `net add interface <interface> stp portpathcost <cost>` | Sets the port cost of the interface. The default is 0.<br>`mstpd` supports only long mode; 32 bits for the path cost. |
-|`mstpctl-treeportprio` | `net add interface <interface> stp treeportprio <priority>`| Sets the priority of the interface for the MSTI. The priority value is a number between 0 and 240 and must be a multiple of 16. The default is 128.<br>**Note**: Cumulus Linux supports MSTI 0 only. It does not support MSTI 1 through 15.|
-| `mstpctl-portadminedge` | `net add interface <interface> stp portadminedge` | Enables or disables the initial edge state of the interface in the bridge. The default is no.<br>In NCLU, to use a setting other than the default, you must specify this attribute without setting an option. See {{<link url="#portadminedge-(portfast-mode)" text="PortAdminEdge">}} above.|
-| `mstpctl-portautoedge` | `net add interface <interface> stp portautoedge` | Enables or disables the auto transition to and from the edge state of the interface in the bridge. PortAutoEdge is enabled by default. See {{<link url="#portautoedge" text="PortAutoEdge">}} above.|
-| `mstpctl-portp2p` | `net add interface <interface> stp portp2p yes`\|`no` | Enables or disables the point-to-point detection mode of the interface in the bridge. |
-| `mstpctl-portrestrrole` | `net add interface <interface> stp portrestrrole` | Enables or disables the ability of the interface in the bridge to take the root role. The default is no.<br>To enable this feature with the NCLU command, you specify this attribute without an option (`portrestrrole`). To enable this feature by editing the `/etc/network/interfaces` file, you specify `mstpctl-portrestrrole yes`. |
-| `mstpctl-portrestrtcn` | `net add interface <interface> stp portrestrtcn` | Enables or disables the ability of the interface in the bridge to propagate received topology change notifications. The default is no. |
-| `mstpctl-portnetwork` | `net add interface <interface> stp portnetwork` | Enables or disables the bridge assurance capability for a network interface. The default is no. See {{<link url="#bridge-assurance" text="Bridge Assurance">}} above.|
-| `mstpctl-bpduguard` | `net add interface <interface> stp bpduguard` | Enables or disables the BPDU guard configuration of the interface in the bridge. The default is no. See {{<link url="#bpdu-guard" text="BPDU Guard">}} above. |
-| `mstpctl-portbpdufilter` | `net add interface <interface> stp portbpdufilter`| Enables or disables the BPDU filter functionality for an interface in the bridge. The default is no. See {{<link url="#bpdu-filter" text="BPDU Filter">}} above.|
-| `mstpctl-treeportcost` | `net add interface <interface> stp treeportcost <port-cost>` | Sets the spanning tree port cost to a value from 0 to 255. The default is 0. |
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Edit the switch port interface stanza in the `/etc/network/interfaces` file to add the `mstpctl-portrestrrole yes` line, then run the `ifreload -a` command.
+
+```
+cumulus@switch:~$ sudo nano /etc/network/interfaces
+...
+auto swp6
+iface swp6
+    mstpctl-portrestrrole yes
+...
+```
+
+```
+cumulus@switch:~$ sudo ifreload -a
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+## Additional STP Parameters
+
+The table below describes additional STP configuration parameters available in Cumulus Linux. You can set these optional parameters manually by editing the `/etc/network/interfaces` file. CUE commands are not supported.
+
+Spanning tree parameters are defined in the IEEE {{<exlink url="https://standards.ieee.org/standard/802_1D-2004.html" text="802.1D">}} and {{<exlink url="https://standards.ieee.org/standard/802_1Q-2018.html" text="802.1Q">}} specifications. For a comparison of STP parameter configuration between `mstpctl` and other vendors, {{<kb_link url="knowledge-base/Demos-and-Training/Interoperability/Cumulus-Linux-vs-Cisco-IOS-Spanning-Tree-Protocol/" text="read this knowledge base article">}}.
+
+| Parameter | Description |
+|-----------|----------|
+| `mstpctl-maxage` | Sets the maximum age of the bridge in seconds. The default is 20. The maximum age must meet the condition 2 * (Bridge Forward Delay - 1 second) >= Bridge Max Age.<br>Add this parameter to the bridge stanza of the `/etc/network/interfaces` file. |
+| `mstpctl-ageing` | Sets the MAC address ageing time for the bridge in seconds when the running version is STP, but not RSTP or MSTP. The default is 1800.<br>Add this parameter to the bridge stanza of the `/etc/network/interfaces` file.  |
+| `mstpctl-fdelay` | Sets the bridge forward delay time in seconds. The default value is 15. The bridge forward delay must meet the condition 2 * (Bridge Forward Delay - 1 second) >= Bridge Max Age.<br>Add this parameter to the bridge stanza of the `/etc/network/interfaces` file. |
+| `mstpctl-maxhops` | Sets the maximum hops for the bridge. The default is 20.<br>Add this parameter to the bridge stanza of the `/etc/network/interfaces` file.  |
+| `mstpctl-txholdcount` | Sets the bridge transmit hold count. The default value is 6 seconds.<br>Add this parameter to the bridge stanza of the `/etc/network/interfaces` file.  |
+| `mstpctl-forcevers` | Sets the force STP version of the bridge to either RSTP/STP. The default is RSTP.<br>Add this parameter to the bridge stanza of the `/etc/network/interfaces` file. |
+| `mstpctl-hello` | Sets the bridge hello time in seconds. The default is 2.<br>Add this parameter to the bridge stanza of the `/etc/network/interfaces` file. |
+| `mstpctl-portpathcost` | Sets the port cost of the interface in the bridge. The default is 0.<br>`mstpd` supports only long mode; 32 bits for the path cost.<br>Add this parameter to the interface stanza of the `/etc/network/interfaces` file. |
+| `mstpctl-portp2p` | Enables or disables point-to-point detection mode of the interface in the bridge.<br>Add this parameter to the interface stanza of the `/etc/network/interfaces` file.|
+| `mstpctl-portrestrtcn` | Enables or disables the interface in the bridge to propagate received topology change notifications. The default is no.<br>Add this parameter to the interface stanza of the `/etc/network/interfaces` file.|
+| `mstpctl-treeportcost` | Sets the spanning tree port cost to a value from 0 to 255. The default is 0.<br>Add this parameter to the interface stanza of the `/etc/network/interfaces` file.|
+
+Be sure to run the `sudo ifreload -a` command after you set the STP parameter in the `/etc/network/interfaces` file.
 
 ## Troubleshooting
 

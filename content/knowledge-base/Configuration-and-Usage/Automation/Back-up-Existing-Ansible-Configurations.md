@@ -20,7 +20,7 @@ This type of model can be beneficial for:
 
 - {{<exlink url="https://cumulusnetworks.com/hcl" text="Cumulus Linux switch">}}
 - Server/laptop for running Ansible
-- {{<exlink url="http://docs.ansible.com/ansible/intro_installation.html" text="Install Ansible on the server/laptop">}}
+- {{<exlink url="https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html" text="Install Ansible on the server/laptop">}}
 
 ## Ansible Modules
 
@@ -89,7 +89,7 @@ The playbook copies these four commonly used Cumulus Linux files to the server:
 | /etc/frr/daemons        | Daemons configuration file for FRR |
 | /etc/frr/frr.conf       | FRR Configuration file             |
 
-For more information on which files to back up and what Cumulus Linux uses, please refer to {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux/Installation-Management/Upgrading-Cumulus-Linux/#before-you-upgrade" text="Upgrading Cumulus Linux">}}.
+For more information on which files to back up and what Cumulus Linux uses, please refer to {{<kb_link url="cumulus-linux-43/Installation-Management/Upgrading-Cumulus-Linux/#before-you-upgrade" text="Upgrading Cumulus Linux">}}.
 
 The playbook copies the files to a directory called `save`:
 

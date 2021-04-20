@@ -62,7 +62,7 @@ The Cumulus NetQ agent currently supports:
 - Red Hat Enterprise Linux (RHEL) 7.1
 - CentOS 7
 
-All data from the Cumulus NetQ agent is streamed to the Cumulus NetQ appliance. This appliance is [available](https://cumulusnetworks.com/downloads/#product=NetQ) as either a bare metal appliance from Cumulus Networks or as a virtual appliance for use on nearly any hypervisor.
+All data from the Cumulus NetQ agent is streamed to the Cumulus NetQ appliance. This appliance is [available](https://support.mellanox.com/s/) as either a bare metal appliance from NVIDIA or as a virtual appliance for use on nearly any hypervisor.
 
 ## Campus Networks Overview
 
@@ -252,7 +252,7 @@ Automation tools such as Ansible, Saltstack and Puppet address the need to conso
 
 Over time, switch stacks have become ingrained into legacy campus design. Being a modern network operating system and by following network design philosophies and principles that we believe are best, Cumulus Linux does not support switch stacking. In instances where switch stacks currently exist or are being considered, multiple 1U devices acting as standalone devices can be used to provide the connectivity that a switch stack would offer.
 
-The [recommended designs](#recommended-designs) in the section below illustrate how to build campus networks without needing to configure and group switches using stacking. For a more detailed discussion about stacking, visit our  [blog](https://cumulusnetworks.com/blog/switch-stacking/).
+The [recommended designs](#recommended-designs) in the section below illustrate how to build campus networks without needing to configure and group switches using stacking.
 
 #### Chassis Switches
 
@@ -313,7 +313,7 @@ In this configuration, distribution layer switches only route IP packets between
 
 ### Redistribute Neighbor
 
-The Cumulus Linux layer 3 {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux-41/Layer-3/Redistribute-Neighbor/" text="Redistribute Neighbor">}} feature helps modernise your campus network to make it more resilient, maximize utilisation, and eliminate the use of the Spanning Tree Protocol (STP).
+The Cumulus Linux layer 3 {{<kb_link url="cumulus-linux-41/Layer-3/Redistribute-Neighbor/" text="Redistribute Neighbor">}} feature helps modernise your campus network to make it more resilient, maximize utilisation, and eliminate the use of the Spanning Tree Protocol (STP).
 
 Redistribute neighbor provides a way for IP subnets to span racks without forcing the end hosts to run a routing protocol by redistributing the Address Resolution Protocol (ARP) table (Linux IP neighbor table) into a dynamic routing protocol, such as OSPF or BGP. The host routes continue to be advertised into the routing domain as /32 prefix routes. Routing protocols can achieve reachability by routing on the Longest Prefix Match (LPM) based on these /32 host routes.
 
@@ -323,7 +323,7 @@ Using Redistribute neighbor provides the following benefits:
 
 - Eliminates the requirement to stretch a layer 2 domain across the entire campus network or across more than one switch. Limiting your layer 2 domain between the access switch port and the directly-connected host eliminates STP from the entire network. Without a stretched layer 2 domain, BUM traffic is limited to the access switch port, where the host is directly connected.
 - Provides faster convergence, greater resiliency, and packet forwarding intelligence because the multiple uplink ports on the access switch and the rest of the core network become layer 3. In addition, using Equal Cost Multipath (ECMP) on all layer 3 links lets you take advantage of the full available bandwidth. Coupling with features, such as BFD, helps you achieve essential sub-second failover and forwarding reconvergence on the core layer 3 links.
-- Ensures efficiency, IP address conservation, and reduces IP address management by using {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux/Layer-3/Border-Gateway-Protocol-BGP/#bgp-unnumbered-interfaces" text="BGP unnumbered interfaces ">}} for all layer 3 routing protocol links. Using BGP in the core enables you to achieve traffic engineering with route maps and prefix lists to manipulate routing and forwarding paths with the BGP attributes for certain prefixes and hosts.
+- Ensures efficiency, IP address conservation, and reduces IP address management by using {{<kb_link url="cumulus-linux-43/Layer-3/Border-Gateway-Protocol-BGP/#bgp-unnumbered-interfaces" text="BGP unnumbered interfaces ">}} for all layer 3 routing protocol links. Using BGP in the core enables you to achieve traffic engineering with route maps and prefix lists to manipulate routing and forwarding paths with the BGP attributes for certain prefixes and hosts.
 - Optimises performance with the use of subnets. For example, when you have multiple buildings across the campus, you can allocate a /24 IP address block to a building, then another separate IP address block of /24 network addresses to another building, and so on. You can then perform route summarisation at the egress links of the building aggregation switches to summarise the subset /32 network prefixes and networks when advertising to the network core.
 
 #### Example Configuration
@@ -412,7 +412,7 @@ cumulus@Host_C:~$ 10.1.3.101 show eth1
 
 {{< /tabs >}}
 
-In this design, {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux-41/Layer-3/Address-Resolution-Protocol-ARP/#configure-proxy-arp" text="Proxy ARP ">}} is configured on the VLAN attached to the host so that the switch responds to all ARP requests when a host sends an ARP request to a system on its subnet.
+In this design, {{<kb_link url="cumulus-linux-41/Layer-3/Address-Resolution-Protocol-ARP/#configure-proxy-arp" text="Proxy ARP ">}} is configured on the VLAN attached to the host so that the switch responds to all ARP requests when a host sends an ARP request to a system on its subnet.
 
 If you have many switches and need the VLAN across all the switches, you can specify a unique IP address on all the SVIs in the subnet, or you can use the anycast gateway with VRR. To conserve IP addresses, repeat physical IP addresses on a switch or switch pair (if you use MLAG).
 
@@ -623,8 +623,8 @@ FIB entry for 10.1.3.101
 
 In this deployment, you can perform segmentation in one of two ways:
 
-- Use {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux/Layer-3/Virtual-Routing-and-Forwarding-VRF/" text="VRF ">}} (depending on the scale and design).
-- Use {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux/Layer-1-and-Switch-Ports/802.1X-Interfaces/#dynamic-acls" text="802.1x Dynamic ACL (DACL) ">}} with a NAC. This option is more suitable and scalable in this design. A host joining the network can be authenticated and policies pushed to the access switch through `iptable` rules or an access control list (ACL) to restrict the network resource access of that particular host.
+- Use {{<kb_link url="cumulus-linux-43/Layer-3/VRFs/Virtual-Routing-and-Forwarding-VRF/" text="VRF ">}} (depending on the scale and design).
+- Use {{<kb_link url="cumulus-linux-43/Layer-1-and-Switch-Ports/802.1X-Interfaces/#dynamic-acls" text="802.1x Dynamic ACL (DACL) ">}} with a NAC. This option is more suitable and scalable in this design. A host joining the network can be authenticated and policies pushed to the access switch through `iptable` rules or an access control list (ACL) to restrict the network resource access of that particular host.
 
 ### EVPN VXLAN
 

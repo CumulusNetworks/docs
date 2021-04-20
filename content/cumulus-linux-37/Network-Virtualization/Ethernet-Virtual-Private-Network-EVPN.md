@@ -2202,7 +2202,7 @@ The following caveats apply to EVPN in this version of Cumulus Linux:
 
    This is expected behavior with Cumulus Linux; when you send an ICMP echo request to an IP address that is not in the same subnet using the `ping -I` command, Cumulus Linux creates a failed ARP entry for the destination IP address.
 
-   For more information, refer to {{<exlink url="https://docs.cumulusnetworks.com/knowledge-base/ICMP-Ping-Doesn-t-Work-when-Specifying-I-Option" text="this article">}}.
+   For more information, refer to {{<kb_link url="knowledge-base/ICMP-Ping-Doesn-t-Work-when-Specifying-I-Option" text="this article">}}.
 
 - On Broadcom Trident II+ and Maverick-based switches,
   when a lookup is done after VXLAN decapsulation on the

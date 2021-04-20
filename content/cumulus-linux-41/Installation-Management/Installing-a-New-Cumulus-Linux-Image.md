@@ -12,9 +12,9 @@ Before you install Cumulus Linux, the switch can be in two different states:
 - No image is installed on the switch (the switch is only running ONIE).
 - Cumulus Linux is already installed on the switch but you want to use ONIE to reinstall Cumulus Linux or upgrade to a newer version.
 
-The sections below describe some of the different ways you can install the Cumulus Linux disk image, such as using a DHCP/web server, FTP, a local file, or a USB drive. Steps are provided for both installing directly from ONIE (if no image is installed on the switch) and from Cumulus Linux (if the image is already installed on the switch), where applicable. For additional methods to find and install the Cumulus Linux image, see the {{<exlink url="http://opencomputeproject.github.io/onie/design-spec/discovery.html" text="ONIE Design Specification">}}.
+The sections below describe some of the different ways you can install the Cumulus Linux disk image, such as using a DHCP/web server, FTP, T, a local file, or a USB drive. Steps are provided for both installing directly from ONIE (if no image is installed on the switch) and from Cumulus Linux (if the image is already installed on the switch), where applicable. For additional methods to find and install the Cumulus Linux image, see the {{<exlink url="http://opencomputeproject.github.io/onie/design-spec/discovery.html" text="ONIE Design Specification">}}.
 
-You can download a Cumulus Linux image from the {{<exlink url="http://cumulusnetworks.com/downloads/" text="Cumulus Linux Downloads">}} page.
+You can download a Cumulus Linux image from the {{<exlink url="https://support.mellanox.com/s/contact-support-page" text="MyMellanox Downloads">}} page.
 
 {{%notice warning%}}
 
@@ -180,7 +180,7 @@ Follow the steps below if your laptop is on the same network as the switch eth0 
 
 3. Place the Cumulus Linux disk image into a TFTP or FTP directory.
 
-4. If you are not using DHCP options, run one of the following commands (`tftp` for TFTP or `ftp` for FTP):
+4. If you are not using DHCP options, run one of the following commands (tftp for TFTP or ftp for FTP):
 
     ```
     ONIE# onie-nos-install ftp://local-ftp-server/cumulus-install-[PLATFORM].bin
@@ -192,15 +192,12 @@ Follow the steps below if your laptop is on the same network as the switch eth0 
 
 {{< tab "Install from Cumulus Linux ">}}
 
-1. Place the Cumulus Linux disk image into a TFTP or FTP directory.
+1. Place the Cumulus Linux disk image into an FTP directory (TFTP is *not* supported in Cumulus Linux).
 
-2. From the Cumulus Linux command prompt, run one of the following
-    commands (`tftp` for TFTP or `ftp` for FTP), then reboot the switch.
+2. From the Cumulus Linux command prompt, run the following command, then reboot the switch.
 
     ```
     cumulus@switch:~$ sudo onie-install -a -i ftp://local-ftp-server/cumulus-install-[PLATFORM].bin
-
-    cumulus@switch:~$ sudo onie-install -a -i tftp://local-ftp-server/cumulus-install-[PLATFORM].bin
     ```
 
 {{< /tab >}}
@@ -269,7 +266,7 @@ Installing Cumulus Linux using a USB drive is fine for a single switch here and 
 
 ### Prepare for USB Installation
 
-1. From the {{<exlink url="http://cumulusnetworks.com/downloads/" text="Cumulus Linux Downloads page">}}, download the appropriate Cumulus Linux image for your x86 or ARM platform.
+1. From the {{<exlink url="https://support.mellanox.com/s/" text="MyMellanox Downloads page">}}, download the appropriate Cumulus Linux image for your x86 or ARM platform.
 2.  From a computer, prepare your USB drive by formatting it using one of the supported formats: FAT32, vFAT or EXT2.
 
     {{< expand "Optional: Prepare a USB Drive inside Cumulus Linux"  >}}
@@ -466,5 +463,5 @@ sudo mount /dev/sdb1 /mnt/usb
 ## Related Information
 
 - {{<exlink url="http://opencomputeproject.github.io/onie/design-spec/" text="ONIE Design Specification">}}
-- {{<exlink url="http://cumulusnetworks.com/downloads/" text="Cumulus Linux Downloads page">}}
+- {{<exlink url="https://support.mellanox.com/s/" text="MyMellanox Downloads page">}}
 - {{<link url="Managing-Cumulus-Linux-Disk-Images" text="Managing Cumulus Linux Disk Images">}}

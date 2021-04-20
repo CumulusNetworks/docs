@@ -181,7 +181,7 @@ Id  Hop Hostname    InPort          InTun, RtrIf    OutRtrIf, Tun   OutPort
 
 Upgrades NetQ on NetQ On-premises Appliances or VMs.
 
-Obtain the software upgrade bundle from the {{<exlink url="https://cumulusnetworks.com/downloads/#product=NetQ" text="Cumulus Downloads">}} page or {{<exlink url="http://support.mellanox.com/s/" text="My Mellanox support">}} page.
+Obtain the software upgrade bundle from the {{<exlink url="http://support.mellanox.com/s/" text="My Mellanox support">}} page.
 
 ### Syntax
 

@@ -49,9 +49,70 @@ To work around this issue, run the &lt;tt&gt;apt-get upgrade&lt;/tt&gt; command 
 <td></td>
 </tr>
 <tr>
+<td>CM-20033</td>
+<td>&lt;p&gt;The VLAN interface stays up even though the physical link carrying the VLAN is admin or carrier down.&lt;/p&gt;
+</td>
+<td>3.5.2-3.7.14.2, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-15812</td>
 <td>&lt;p&gt;Multicast forwarding fails for IP addresses whose DMAC overlaps with reserved DIPs.&lt;/p&gt;</td>
 <td>3.2.1-3.7.14.2, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2617009</td>
+<td>CVE-2021-23358: missing input sanitising in the template() function of the Underscore JavaScript library could result in the execution of arbitrary code.
+Vulnerable: 1.7.0~dfsg-1
+Fixed: 1.7.0~dfsg-1+deb8u1</td>
+<td>3.7.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>2617008</td>
+<td>CVE-2021-28831: The gunzip decompressor of Busybox, tiny utilities for small and embedded systems, mishandled the error bit on the huft_build result pointer, with a resultant invalid free or segmentation fault, via malformed gzip data.
+Vulnerable: &lt;= 1.22.0-9+deb8u4
+Fixed: 1.22.0-9+deb8u5</td>
+<td>3.7.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>2617007</td>
+<td>CVE-2021-3443 CVE-2021-3467: Two issues have been found in jasper, a JPEG-2000 runtime library. Both issues are related to jpeg 2000 decoding, where a null pointer dereference and a missing check of valid component numbers referenced by CDEF box, could be exploited.
+Vulnerable: &lt;= 1.900.1-debian1-2.4+deb8u9
+Fixed: 1.900.1-debian1-2.4+deb8u10</td>
+<td>3.7.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>2617006</td>
+<td>CVE-2021-28957: An issue has been found in lxml, a pythonic binding for the libxml2 and libxslt libraries. Due to missing input sanitization, XSS is possible for the HTML5 formaction attribute.
+Vulnerable: &lt;= 3.4.0-1+deb8u3
+Fixed: 3.4.0-1+deb8u4</td>
+<td>3.7.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>2617005</td>
+<td>CVE-2020-25681 CVE-2020-25682 CVE-2020-25683 CVE-2020-25684 CVE-2020-25687: several vulnerabilities in dnsmasq, a small caching DNS proxy and DHCP/TFTP server that could result in denial of service, cache poisoning or the execution of arbitrary code.
+Vulnerable: &lt;= 2.72-3+deb8u5
+Fixed: 2.72-3+deb8u6</td>
+<td>3.7.14-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>2617002</td>
+<td>CVE-2020-25666 CVE-2020-25675 CVE-2020-25676 CVE-2020-27754 CVE-2020-27757 CVE-2020-27758 CVE-2020-27759 CVE-2020-27761 CVE-2020-27762 CVE-2020-27764 CVE-2020-27766 CVE-2020-27767 CVE-2020-27768 CVE-2020-27769 CVE-2020-27770 CVE-2020-27771 CVE-2020-27772 CVE-2020-27774 CVE-2020-27775 CVE-2021-20176 CVE-2021-20241 CVE-2021-20244 CVE-2021-20246: Multiple security vulnerabilities were fixed in Imagemagick. Missing or incomplete input sanitising may lead to undefined behavior which can result in denial of service (application crash) or other unspecified impact.
+Vulnerable: 6.8.9.9-5+deb8u22
+Fixed: 6.8.9.9-5+deb8u23</td>
+<td>3.7.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>2607965</td>
+<td>On the EdgeCore AS7726 switch, when you run the NCLU {{net show system}} command, you see the error {{Command not found}}.</td>
+<td>3.7.14.2</td>
 <td></td>
 </tr>
 <tr>
@@ -73,6 +134,25 @@ To work around this issue, run the &lt;tt&gt;apt-get upgrade&lt;/tt&gt; command 
 <td>4.3.0</td>
 </tr>
 <tr>
+<td>2589570</td>
+<td>The following denial-of-service vulnerability has been announced in Pygments, a syntax highlighting library for Python:
+CVE-2021-27291: A number of regular expressions had exponential or cubic worst-case complexity which could cause a remote denial of service (DoS) when provided with malicious input.
+Vulnerable: &lt;= 2.0.1+dfsg-1.1+deb8u2
+Fixed: 2.0.1+dfsg-1.1+deb8u3</td>
+<td>3.7.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>2589567</td>
+<td>The following vulnerabilities have been announced in Pillow, a Python imaging library, which can be used to cause a denial-of-service attack with crafted image files:
+CVE-2020-35653: PcxDecode has a buffer over-read when decoding a crafted PCX file because the user-supplied stride value is trusted for buffer calculations.
+CVE-2021-25290: In TiffDecode.c, there is a negative-offset memcpy with an invalid size.
+Vulnerable: &lt;= 2.6.1-2+deb8u5
+FIxed: 2.6.1-2+deb8u6</td>
+<td>3.7.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
 <td>2574294</td>
 <td>CVE-2021-3410: A buffer overflow issue in caca_resize function in libcaca/caca/canvas.c may lead to local execution of arbitrary code in the user context.
 Vulnerable: &lt;= 0.99.beta19-2+deb8u1
@@ -87,6 +167,13 @@ Fixed: 0.99.beta19-2+deb8u2</td>
 <td></td>
 </tr>
 <tr>
+<td>2562511</td>
+<td>{{hostapd} does not fail over to secondary RADIUS servers for 802.1x authentication when the primary radius is reachable but not responding to Access-Requests.
+If the primary RADIUS server is having a problem servicing requests, you can remove it from the configuration temporarily to force requests to be sent to alternate servers.</td>
+<td>3.7.10-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
 <td>2562396</td>
 <td>CVE-2020-27824: Global buffer overflow on irreversible conversion when too many decomposition levels are specified.
 CVE-2020-27841: Crafted input to be processed by the openjpeg encoder could cause an out-of-bounds read.
@@ -94,6 +181,12 @@ CVE-2020-27845: Crafted input can cause out-of-bounds-read.
 Vulnerable: &lt;= 2.1.0-2+deb8u11
 Fixed: 2.1.0-2+deb8u12</td>
 <td>3.7.14-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>2562347</td>
+<td>When you bring VXLAN interfaces up and down physically or administratively, the MTU for the SVIs changes to 1550 (the default value). </td>
+<td>3.7.14.2</td>
 <td></td>
 </tr>
 <tr>
@@ -341,21 +434,6 @@ This operation is not supported in the kernel without recreating the SVI. To app
 <td>4.3.0</td>
 </tr>
 <tr>
-<td>2555205</td>
-<td>If the FRR and MSTP processes go down, an SNMP TRAP is not generated even with the following configuration in the {{/etc/snmp/snmpd.conf}} file. 
-
-proc watchfrr
-proc mstpd
-monitor -I -r 1 -o prNames.5 -o prErrMessage.5 “Process FRRis down!!!” PrErrorFlag.5 != 0
-monitor -I -r 1 -o prNames.5 -o prErrMessage.5 “Process FRR is up!!!” PrErrorFlag.5 = 0
-monitor -I -r 1  -o prNames.3 -o prErrMessage.3  "Process mstpd is down!!!!" prErrorFlag.3 != 0
-monitor -I -r 1  -o prNames.3 -o prErrMessage.3  "Process mstpd is up!!!!" prErrorFlag.3 = 0
-
-</td>
-<td>3.7.12-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
 <td>2555196</td>
 <td>CVE-2018-19787, CVE-2020-27783: The clean_html() function of lxml, a Python library for HTML and XML processing, performed insufficient sanitisation for embedded Javascript code. This could lead to cross-site scripting or possibly the execution of arbitrary code.
 Vulnerable: &lt;= 3.4.0-1+deb8u1
@@ -510,13 +588,6 @@ Alternatively, directly edit the {{/etc/snmp/snmpd.conf}} file as described in t
 <td>When you manually set the link speed or duplex mode with ethtool to an unsupported value, then run a TDR check against the interface, you encounter a {{switchd}} service heartbeat failure.
 To work around this issue, reboot the switch to clear the condition. Avoid setting the interface speed or duplex mode directly with ethtool.</td>
 <td>3.7.12-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
-<td>2553063</td>
-<td>After you manually edit the {{/etc/resolv.conf}} file to change or remove a VRF for a given DNS server, {{ifreload}} does not remove IP rules created for DNS servers in the VRF. 
-To work around this issue, run the {{net add/del dns nameserver vrf &lt;name&gt;}} command to force the DNS configuration.</td>
-<td>3.7.13-3.7.14.2, 4.1.1-4.3.0</td>
 <td></td>
 </tr>
 <tr>
@@ -974,6 +1045,45 @@ To work around this issue, reboot the switch.</td>
 <td>4.2.0-4.3.0</td>
 </tr>
 <tr>
+<td>2547068</td>
+<td>Hardware platforms using the Intel D-1500 CPU series might reboot unexpectedly.
+
+To work around this issue, contact your hardware vendor to inquire if a new version of BIOS with a microcode fix might be available, or manually disable CPU C-states in the kernel as outlined below.
+
+To permanently disable C-states using a kernel boot parameter:
+
+1. Edit {{/etc/default/grub}} to add the argument {{processor.max_cstate=0}} to the variable {{GRUB_CMDLINE_LINUX}}
+
+For example, if {{/etc/default/grub}} file contains the following line:
+
+{{GRUB_CMDLINE_LINUX="cl_platform=accton_as7726_32x console=tty0 console=ttyS0,115200n8 intel_iommu=off pcie_aspm=off"}}
+
+change it to
+
+{{GRUB_CMDLINE_LINUX="cl_platform=accton_as7726_32x console=tty0 console=ttyS0,115200n8 intel_iommu=off pcie_aspm=off processor.max_cstate=0"}}
+
+2. Run {{sudo update-grub}}
+
+3. Reboot the system with {{sudo reboot}}
+
+
+To Disable cstates in realtime on the current system which will not persist through a reboot:
+
+1. Confirm that the libpci3 package is installed
+
+Run {{dpkg-query -l libpci3}} and confirm the following line is displayed:
+
+{{ii  libpci3:amd64      1:3.2.1-3      amd64          Linux PCI Utilities (shared library)}}
+
+The first field above should read {{ii}}. If not, install the libpci3 package by running {{sudo apt upgrade;sudo apt install libpci3}}
+
+2. Disable C-states by executing the command {{./cpupower idle-set -d 2}}
+
+C-states have been disabled by default as of Cumulus Linux 4.3.0</td>
+<td>3.7.9-4.2.1</td>
+<td>4.3.0</td>
+</tr>
+<tr>
 <td>2546992</td>
 <td>The wireshark packages (libwireshark5, libwireshark-data, wireshark, wireshark-common) available for optional installation on Cumulus Linux 3 are vulnerable to CVE-2018-12086: Buffer overflow in OPC UA applications allows remote attackers to trigger a stack overflow with carefully structured requests.  More information at https://www.wireshark.org/security/wnpa-sec-2018-50.html and https://security-tracker.debian.org/tracker/CVE-2018-12086 .</td>
 <td>3.7.11-3.7.14.2</td>
@@ -1326,13 +1436,6 @@ This issue only affects QinQ configurations.
 <td>2540885</td>
 <td>The Dell N3048EP-ON switch does not support 1G Base-T modules in the SFP ports.</td>
 <td>3.7.7-3.7.14.2</td>
-<td></td>
-</tr>
-<tr>
-<td>2540808</td>
-<td>In an EVPN environment, the centralized MAC address is not installed on the MLAG pair because Cumulus Linux does not perform an SVI MAC check per VLAN. 
-This issue does not affect a pure distributed routing (symmetric or asymmetric) environment or a pure centralized routing environment.</td>
-<td>3.7.0-3.7.14.2, 4.0.0-4.3.0</td>
 <td></td>
 </tr>
 <tr>
@@ -1785,9 +1888,64 @@ To work around this issue, run the &lt;tt&gt;apt-get upgrade&lt;/tt&gt; command 
 <td></td>
 </tr>
 <tr>
+<td>CM-20033</td>
+<td>&lt;p&gt;The VLAN interface stays up even though the physical link carrying the VLAN is admin or carrier down.&lt;/p&gt;
+</td>
+<td>3.5.2-3.7.14.2, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-15812</td>
 <td>&lt;p&gt;Multicast forwarding fails for IP addresses whose DMAC overlaps with reserved DIPs.&lt;/p&gt;</td>
 <td>3.2.1-3.7.14.2, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2617009</td>
+<td>CVE-2021-23358: missing input sanitising in the template() function of the Underscore JavaScript library could result in the execution of arbitrary code.
+Vulnerable: 1.7.0~dfsg-1
+Fixed: 1.7.0~dfsg-1+deb8u1</td>
+<td>3.7.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>2617008</td>
+<td>CVE-2021-28831: The gunzip decompressor of Busybox, tiny utilities for small and embedded systems, mishandled the error bit on the huft_build result pointer, with a resultant invalid free or segmentation fault, via malformed gzip data.
+Vulnerable: &lt;= 1.22.0-9+deb8u4
+Fixed: 1.22.0-9+deb8u5</td>
+<td>3.7.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>2617007</td>
+<td>CVE-2021-3443 CVE-2021-3467: Two issues have been found in jasper, a JPEG-2000 runtime library. Both issues are related to jpeg 2000 decoding, where a null pointer dereference and a missing check of valid component numbers referenced by CDEF box, could be exploited.
+Vulnerable: &lt;= 1.900.1-debian1-2.4+deb8u9
+Fixed: 1.900.1-debian1-2.4+deb8u10</td>
+<td>3.7.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>2617006</td>
+<td>CVE-2021-28957: An issue has been found in lxml, a pythonic binding for the libxml2 and libxslt libraries. Due to missing input sanitization, XSS is possible for the HTML5 formaction attribute.
+Vulnerable: &lt;= 3.4.0-1+deb8u3
+Fixed: 3.4.0-1+deb8u4</td>
+<td>3.7.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>2617005</td>
+<td>CVE-2020-25681 CVE-2020-25682 CVE-2020-25683 CVE-2020-25684 CVE-2020-25687: several vulnerabilities in dnsmasq, a small caching DNS proxy and DHCP/TFTP server that could result in denial of service, cache poisoning or the execution of arbitrary code.
+Vulnerable: &lt;= 2.72-3+deb8u5
+Fixed: 2.72-3+deb8u6</td>
+<td>3.7.14-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>2617002</td>
+<td>CVE-2020-25666 CVE-2020-25675 CVE-2020-25676 CVE-2020-27754 CVE-2020-27757 CVE-2020-27758 CVE-2020-27759 CVE-2020-27761 CVE-2020-27762 CVE-2020-27764 CVE-2020-27766 CVE-2020-27767 CVE-2020-27768 CVE-2020-27769 CVE-2020-27770 CVE-2020-27771 CVE-2020-27772 CVE-2020-27774 CVE-2020-27775 CVE-2021-20176 CVE-2021-20241 CVE-2021-20244 CVE-2021-20246: Multiple security vulnerabilities were fixed in Imagemagick. Missing or incomplete input sanitising may lead to undefined behavior which can result in denial of service (application crash) or other unspecified impact.
+Vulnerable: 6.8.9.9-5+deb8u22
+Fixed: 6.8.9.9-5+deb8u23</td>
+<td>3.7.0-3.7.14.2</td>
 <td></td>
 </tr>
 <tr>
@@ -1809,6 +1967,25 @@ To work around this issue, run the &lt;tt&gt;apt-get upgrade&lt;/tt&gt; command 
 <td>4.3.0</td>
 </tr>
 <tr>
+<td>2589570</td>
+<td>The following denial-of-service vulnerability has been announced in Pygments, a syntax highlighting library for Python:
+CVE-2021-27291: A number of regular expressions had exponential or cubic worst-case complexity which could cause a remote denial of service (DoS) when provided with malicious input.
+Vulnerable: &lt;= 2.0.1+dfsg-1.1+deb8u2
+Fixed: 2.0.1+dfsg-1.1+deb8u3</td>
+<td>3.7.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>2589567</td>
+<td>The following vulnerabilities have been announced in Pillow, a Python imaging library, which can be used to cause a denial-of-service attack with crafted image files:
+CVE-2020-35653: PcxDecode has a buffer over-read when decoding a crafted PCX file because the user-supplied stride value is trusted for buffer calculations.
+CVE-2021-25290: In TiffDecode.c, there is a negative-offset memcpy with an invalid size.
+Vulnerable: &lt;= 2.6.1-2+deb8u5
+FIxed: 2.6.1-2+deb8u6</td>
+<td>3.7.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
 <td>2574294</td>
 <td>CVE-2021-3410: A buffer overflow issue in caca_resize function in libcaca/caca/canvas.c may lead to local execution of arbitrary code in the user context.
 Vulnerable: &lt;= 0.99.beta19-2+deb8u1
@@ -1820,6 +1997,13 @@ Fixed: 0.99.beta19-2+deb8u2</td>
 <td>2566880</td>
 <td>CVE-2021-27803: A vulnerability was discovered in how p2p/p2p_pd.c in wpa_supplicant before 2.10 processes P2P (Wi-Fi Direct) provision discovery requests. It could result in denial of service or other impact (potentially execution of arbitrary code), for an attacker within radio range.</td>
 <td>3.7.14-3.7.14.2, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2562511</td>
+<td>{{hostapd} does not fail over to secondary RADIUS servers for 802.1x authentication when the primary radius is reachable but not responding to Access-Requests.
+If the primary RADIUS server is having a problem servicing requests, you can remove it from the configuration temporarily to force requests to be sent to alternate servers.</td>
+<td>3.7.10-3.7.14.2</td>
 <td></td>
 </tr>
 <tr>
@@ -2132,21 +2316,6 @@ Fixed: 2.4.40+dfsg-1+deb8u8</td>
 <td>4.0.0-4.3.0</td>
 </tr>
 <tr>
-<td>2555205</td>
-<td>If the FRR and MSTP processes go down, an SNMP TRAP is not generated even with the following configuration in the {{/etc/snmp/snmpd.conf}} file. 
-
-proc watchfrr
-proc mstpd
-monitor -I -r 1 -o prNames.5 -o prErrMessage.5 “Process FRRis down!!!” PrErrorFlag.5 != 0
-monitor -I -r 1 -o prNames.5 -o prErrMessage.5 “Process FRR is up!!!” PrErrorFlag.5 = 0
-monitor -I -r 1  -o prNames.3 -o prErrMessage.3  "Process mstpd is down!!!!" prErrorFlag.3 != 0
-monitor -I -r 1  -o prNames.3 -o prErrMessage.3  "Process mstpd is up!!!!" prErrorFlag.3 = 0
-
-</td>
-<td>3.7.12-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
 <td>2555196</td>
 <td>CVE-2018-19787, CVE-2020-27783: The clean_html() function of lxml, a Python library for HTML and XML processing, performed insufficient sanitisation for embedded Javascript code. This could lead to cross-site scripting or possibly the execution of arbitrary code.
 Vulnerable: &lt;= 3.4.0-1+deb8u1
@@ -2308,13 +2477,6 @@ Alternatively, directly edit the {{/etc/snmp/snmpd.conf}} file as described in t
 <td>When you manually set the link speed or duplex mode with ethtool to an unsupported value, then run a TDR check against the interface, you encounter a {{switchd}} service heartbeat failure.
 To work around this issue, reboot the switch to clear the condition. Avoid setting the interface speed or duplex mode directly with ethtool.</td>
 <td>3.7.12-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
-<td>2553063</td>
-<td>After you manually edit the {{/etc/resolv.conf}} file to change or remove a VRF for a given DNS server, {{ifreload}} does not remove IP rules created for DNS servers in the VRF. 
-To work around this issue, run the {{net add/del dns nameserver vrf &lt;name&gt;}} command to force the DNS configuration.</td>
-<td>3.7.13-3.7.14.2, 4.1.1-4.3.0</td>
 <td></td>
 </tr>
 <tr>
@@ -2795,6 +2957,45 @@ Dec 20 08:43:27 netflow-nms sfcapd[3991]: SFLOW: readFlowSample_header() undefin
 <td>4.2.0-4.3.0</td>
 </tr>
 <tr>
+<td>2547068</td>
+<td>Hardware platforms using the Intel D-1500 CPU series might reboot unexpectedly.
+
+To work around this issue, contact your hardware vendor to inquire if a new version of BIOS with a microcode fix might be available, or manually disable CPU C-states in the kernel as outlined below.
+
+To permanently disable C-states using a kernel boot parameter:
+
+1. Edit {{/etc/default/grub}} to add the argument {{processor.max_cstate=0}} to the variable {{GRUB_CMDLINE_LINUX}}
+
+For example, if {{/etc/default/grub}} file contains the following line:
+
+{{GRUB_CMDLINE_LINUX="cl_platform=accton_as7726_32x console=tty0 console=ttyS0,115200n8 intel_iommu=off pcie_aspm=off"}}
+
+change it to
+
+{{GRUB_CMDLINE_LINUX="cl_platform=accton_as7726_32x console=tty0 console=ttyS0,115200n8 intel_iommu=off pcie_aspm=off processor.max_cstate=0"}}
+
+2. Run {{sudo update-grub}}
+
+3. Reboot the system with {{sudo reboot}}
+
+
+To Disable cstates in realtime on the current system which will not persist through a reboot:
+
+1. Confirm that the libpci3 package is installed
+
+Run {{dpkg-query -l libpci3}} and confirm the following line is displayed:
+
+{{ii  libpci3:amd64      1:3.2.1-3      amd64          Linux PCI Utilities (shared library)}}
+
+The first field above should read {{ii}}. If not, install the libpci3 package by running {{sudo apt upgrade;sudo apt install libpci3}}
+
+2. Disable C-states by executing the command {{./cpupower idle-set -d 2}}
+
+C-states have been disabled by default as of Cumulus Linux 4.3.0</td>
+<td>3.7.9-4.2.1</td>
+<td>4.3.0</td>
+</tr>
+<tr>
 <td>2546992</td>
 <td>The wireshark packages (libwireshark5, libwireshark-data, wireshark, wireshark-common) available for optional installation on Cumulus Linux 3 are vulnerable to CVE-2018-12086: Buffer overflow in OPC UA applications allows remote attackers to trigger a stack overflow with carefully structured requests.  More information at https://www.wireshark.org/security/wnpa-sec-2018-50.html and https://security-tracker.debian.org/tracker/CVE-2018-12086 .</td>
 <td>3.7.11-3.7.14.2</td>
@@ -3193,13 +3394,6 @@ This issue only affects QinQ configurations.
  </td>
 <td>3.7.3-3.7.14</td>
 <td>4.0.0-4.3.0</td>
-</tr>
-<tr>
-<td>2540808</td>
-<td>In an EVPN environment, the centralized MAC address is not installed on the MLAG pair because Cumulus Linux does not perform an SVI MAC check per VLAN. 
-This issue does not affect a pure distributed routing (symmetric or asymmetric) environment or a pure centralized routing environment.</td>
-<td>3.7.0-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
 </tr>
 <tr>
 <td>2540753</td>
@@ -4197,9 +4391,56 @@ To work around this issue, run the &lt;tt&gt;apt-get upgrade&lt;/tt&gt; command 
 <td></td>
 </tr>
 <tr>
+<td>CM-20033</td>
+<td>&lt;p&gt;The VLAN interface stays up even though the physical link carrying the VLAN is admin or carrier down.&lt;/p&gt;
+</td>
+<td>3.5.2-3.7.14.2, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-15812</td>
 <td>&lt;p&gt;Multicast forwarding fails for IP addresses whose DMAC overlaps with reserved DIPs.&lt;/p&gt;</td>
 <td>3.2.1-3.7.14.2, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2617009</td>
+<td>CVE-2021-23358: missing input sanitising in the template() function of the Underscore JavaScript library could result in the execution of arbitrary code.
+Vulnerable: 1.7.0~dfsg-1
+Fixed: 1.7.0~dfsg-1+deb8u1</td>
+<td>3.7.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>2617008</td>
+<td>CVE-2021-28831: The gunzip decompressor of Busybox, tiny utilities for small and embedded systems, mishandled the error bit on the huft_build result pointer, with a resultant invalid free or segmentation fault, via malformed gzip data.
+Vulnerable: &lt;= 1.22.0-9+deb8u4
+Fixed: 1.22.0-9+deb8u5</td>
+<td>3.7.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>2617007</td>
+<td>CVE-2021-3443 CVE-2021-3467: Two issues have been found in jasper, a JPEG-2000 runtime library. Both issues are related to jpeg 2000 decoding, where a null pointer dereference and a missing check of valid component numbers referenced by CDEF box, could be exploited.
+Vulnerable: &lt;= 1.900.1-debian1-2.4+deb8u9
+Fixed: 1.900.1-debian1-2.4+deb8u10</td>
+<td>3.7.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>2617006</td>
+<td>CVE-2021-28957: An issue has been found in lxml, a pythonic binding for the libxml2 and libxslt libraries. Due to missing input sanitization, XSS is possible for the HTML5 formaction attribute.
+Vulnerable: &lt;= 3.4.0-1+deb8u3
+Fixed: 3.4.0-1+deb8u4</td>
+<td>3.7.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>2617002</td>
+<td>CVE-2020-25666 CVE-2020-25675 CVE-2020-25676 CVE-2020-27754 CVE-2020-27757 CVE-2020-27758 CVE-2020-27759 CVE-2020-27761 CVE-2020-27762 CVE-2020-27764 CVE-2020-27766 CVE-2020-27767 CVE-2020-27768 CVE-2020-27769 CVE-2020-27770 CVE-2020-27771 CVE-2020-27772 CVE-2020-27774 CVE-2020-27775 CVE-2021-20176 CVE-2021-20241 CVE-2021-20244 CVE-2021-20246: Multiple security vulnerabilities were fixed in Imagemagick. Missing or incomplete input sanitising may lead to undefined behavior which can result in denial of service (application crash) or other unspecified impact.
+Vulnerable: 6.8.9.9-5+deb8u22
+Fixed: 6.8.9.9-5+deb8u23</td>
+<td>3.7.0-3.7.14.2</td>
 <td></td>
 </tr>
 <tr>
@@ -4219,6 +4460,32 @@ To work around this issue, run the &lt;tt&gt;apt-get upgrade&lt;/tt&gt; command 
 <td>If {{switchd}} successfully signals {{clagd}} that it is going down, {{clagd}} stops responding to keepalive echo requests from the peer instead of sending a good bye to the peer over both the peerlink and the backup switch. Eventually, the keepalive timer expires and the secondary switch becomes the primary, and brings the bonds and VNIs back up. However, if {{switchd}} does not successfully signal it is going down, (in the event of a crash), the primary switch continues to respond to keepalives, and the bonds and VNIs are down on both peers. </td>
 <td>3.7.12-4.2.1</td>
 <td>4.3.0</td>
+</tr>
+<tr>
+<td>2589570</td>
+<td>The following denial-of-service vulnerability has been announced in Pygments, a syntax highlighting library for Python:
+CVE-2021-27291: A number of regular expressions had exponential or cubic worst-case complexity which could cause a remote denial of service (DoS) when provided with malicious input.
+Vulnerable: &lt;= 2.0.1+dfsg-1.1+deb8u2
+Fixed: 2.0.1+dfsg-1.1+deb8u3</td>
+<td>3.7.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>2589567</td>
+<td>The following vulnerabilities have been announced in Pillow, a Python imaging library, which can be used to cause a denial-of-service attack with crafted image files:
+CVE-2020-35653: PcxDecode has a buffer over-read when decoding a crafted PCX file because the user-supplied stride value is trusted for buffer calculations.
+CVE-2021-25290: In TiffDecode.c, there is a negative-offset memcpy with an invalid size.
+Vulnerable: &lt;= 2.6.1-2+deb8u5
+FIxed: 2.6.1-2+deb8u6</td>
+<td>3.7.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>2562511</td>
+<td>{{hostapd} does not fail over to secondary RADIUS servers for 802.1x authentication when the primary radius is reachable but not responding to Access-Requests.
+If the primary RADIUS server is having a problem servicing requests, you can remove it from the configuration temporarily to force requests to be sent to alternate servers.</td>
+<td>3.7.10-3.7.14.2</td>
+<td></td>
 </tr>
 <tr>
 <td>2558184</td>
@@ -4252,21 +4519,6 @@ This operation is not supported in the kernel without recreating the SVI. To app
 <td>When you change the anycast address for the MLAG pair (clagd-vxlan-anycast-ip), high peak traffic occurs on the peer link interface of all MLAG switches.</td>
 <td>3.7.13-3.7.14</td>
 <td>4.0.0-4.3.0</td>
-</tr>
-<tr>
-<td>2555205</td>
-<td>If the FRR and MSTP processes go down, an SNMP TRAP is not generated even with the following configuration in the {{/etc/snmp/snmpd.conf}} file. 
-
-proc watchfrr
-proc mstpd
-monitor -I -r 1 -o prNames.5 -o prErrMessage.5 “Process FRRis down!!!” PrErrorFlag.5 != 0
-monitor -I -r 1 -o prNames.5 -o prErrMessage.5 “Process FRR is up!!!” PrErrorFlag.5 = 0
-monitor -I -r 1  -o prNames.3 -o prErrMessage.3  "Process mstpd is down!!!!" prErrorFlag.3 != 0
-monitor -I -r 1  -o prNames.3 -o prErrMessage.3  "Process mstpd is up!!!!" prErrorFlag.3 = 0
-
-</td>
-<td>3.7.12-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
 </tr>
 <tr>
 <td>2554992</td>
@@ -4595,13 +4847,6 @@ Fixed: 1.3.1-12+deb8u3</td>
 <td>When you manually set the link speed or duplex mode with ethtool to an unsupported value, then run a TDR check against the interface, you encounter a {{switchd}} service heartbeat failure.
 To work around this issue, reboot the switch to clear the condition. Avoid setting the interface speed or duplex mode directly with ethtool.</td>
 <td>3.7.12-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
-<td>2553063</td>
-<td>After you manually edit the {{/etc/resolv.conf}} file to change or remove a VRF for a given DNS server, {{ifreload}} does not remove IP rules created for DNS servers in the VRF. 
-To work around this issue, run the {{net add/del dns nameserver vrf &lt;name&gt;}} command to force the DNS configuration.</td>
-<td>3.7.13-3.7.14.2, 4.1.1-4.3.0</td>
 <td></td>
 </tr>
 <tr>
@@ -5425,6 +5670,45 @@ RTM_NEWNEIGH with unconfigured vlan XXXX on port peerlink
 <td>4.2.0-4.3.0</td>
 </tr>
 <tr>
+<td>2547068</td>
+<td>Hardware platforms using the Intel D-1500 CPU series might reboot unexpectedly.
+
+To work around this issue, contact your hardware vendor to inquire if a new version of BIOS with a microcode fix might be available, or manually disable CPU C-states in the kernel as outlined below.
+
+To permanently disable C-states using a kernel boot parameter:
+
+1. Edit {{/etc/default/grub}} to add the argument {{processor.max_cstate=0}} to the variable {{GRUB_CMDLINE_LINUX}}
+
+For example, if {{/etc/default/grub}} file contains the following line:
+
+{{GRUB_CMDLINE_LINUX="cl_platform=accton_as7726_32x console=tty0 console=ttyS0,115200n8 intel_iommu=off pcie_aspm=off"}}
+
+change it to
+
+{{GRUB_CMDLINE_LINUX="cl_platform=accton_as7726_32x console=tty0 console=ttyS0,115200n8 intel_iommu=off pcie_aspm=off processor.max_cstate=0"}}
+
+2. Run {{sudo update-grub}}
+
+3. Reboot the system with {{sudo reboot}}
+
+
+To Disable cstates in realtime on the current system which will not persist through a reboot:
+
+1. Confirm that the libpci3 package is installed
+
+Run {{dpkg-query -l libpci3}} and confirm the following line is displayed:
+
+{{ii  libpci3:amd64      1:3.2.1-3      amd64          Linux PCI Utilities (shared library)}}
+
+The first field above should read {{ii}}. If not, install the libpci3 package by running {{sudo apt upgrade;sudo apt install libpci3}}
+
+2. Disable C-states by executing the command {{./cpupower idle-set -d 2}}
+
+C-states have been disabled by default as of Cumulus Linux 4.3.0</td>
+<td>3.7.9-4.2.1</td>
+<td>4.3.0</td>
+</tr>
+<tr>
 <td>2546992</td>
 <td>The wireshark packages (libwireshark5, libwireshark-data, wireshark, wireshark-common) available for optional installation on Cumulus Linux 3 are vulnerable to CVE-2018-12086: Buffer overflow in OPC UA applications allows remote attackers to trigger a stack overflow with carefully structured requests.  More information at https://www.wireshark.org/security/wnpa-sec-2018-50.html and https://security-tracker.debian.org/tracker/CVE-2018-12086 .</td>
 <td>3.7.11-3.7.14.2</td>
@@ -5848,13 +6132,6 @@ This issue only affects QinQ configurations.
  </td>
 <td>3.7.3-3.7.14</td>
 <td>4.0.0-4.3.0</td>
-</tr>
-<tr>
-<td>2540808</td>
-<td>In an EVPN environment, the centralized MAC address is not installed on the MLAG pair because Cumulus Linux does not perform an SVI MAC check per VLAN. 
-This issue does not affect a pure distributed routing (symmetric or asymmetric) environment or a pure centralized routing environment.</td>
-<td>3.7.0-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
 </tr>
 <tr>
 <td>2540753</td>
@@ -6827,9 +7104,56 @@ To work around this issue, run the &lt;tt&gt;apt-get upgrade&lt;/tt&gt; command 
 <td></td>
 </tr>
 <tr>
+<td>CM-20033</td>
+<td>&lt;p&gt;The VLAN interface stays up even though the physical link carrying the VLAN is admin or carrier down.&lt;/p&gt;
+</td>
+<td>3.5.2-3.7.14.2, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-15812</td>
 <td>&lt;p&gt;Multicast forwarding fails for IP addresses whose DMAC overlaps with reserved DIPs.&lt;/p&gt;</td>
 <td>3.2.1-3.7.14.2, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2617009</td>
+<td>CVE-2021-23358: missing input sanitising in the template() function of the Underscore JavaScript library could result in the execution of arbitrary code.
+Vulnerable: 1.7.0~dfsg-1
+Fixed: 1.7.0~dfsg-1+deb8u1</td>
+<td>3.7.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>2617008</td>
+<td>CVE-2021-28831: The gunzip decompressor of Busybox, tiny utilities for small and embedded systems, mishandled the error bit on the huft_build result pointer, with a resultant invalid free or segmentation fault, via malformed gzip data.
+Vulnerable: &lt;= 1.22.0-9+deb8u4
+Fixed: 1.22.0-9+deb8u5</td>
+<td>3.7.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>2617007</td>
+<td>CVE-2021-3443 CVE-2021-3467: Two issues have been found in jasper, a JPEG-2000 runtime library. Both issues are related to jpeg 2000 decoding, where a null pointer dereference and a missing check of valid component numbers referenced by CDEF box, could be exploited.
+Vulnerable: &lt;= 1.900.1-debian1-2.4+deb8u9
+Fixed: 1.900.1-debian1-2.4+deb8u10</td>
+<td>3.7.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>2617006</td>
+<td>CVE-2021-28957: An issue has been found in lxml, a pythonic binding for the libxml2 and libxslt libraries. Due to missing input sanitization, XSS is possible for the HTML5 formaction attribute.
+Vulnerable: &lt;= 3.4.0-1+deb8u3
+Fixed: 3.4.0-1+deb8u4</td>
+<td>3.7.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>2617002</td>
+<td>CVE-2020-25666 CVE-2020-25675 CVE-2020-25676 CVE-2020-27754 CVE-2020-27757 CVE-2020-27758 CVE-2020-27759 CVE-2020-27761 CVE-2020-27762 CVE-2020-27764 CVE-2020-27766 CVE-2020-27767 CVE-2020-27768 CVE-2020-27769 CVE-2020-27770 CVE-2020-27771 CVE-2020-27772 CVE-2020-27774 CVE-2020-27775 CVE-2021-20176 CVE-2021-20241 CVE-2021-20244 CVE-2021-20246: Multiple security vulnerabilities were fixed in Imagemagick. Missing or incomplete input sanitising may lead to undefined behavior which can result in denial of service (application crash) or other unspecified impact.
+Vulnerable: 6.8.9.9-5+deb8u22
+Fixed: 6.8.9.9-5+deb8u23</td>
+<td>3.7.0-3.7.14.2</td>
 <td></td>
 </tr>
 <tr>
@@ -6851,6 +7175,32 @@ To work around this issue, run the &lt;tt&gt;apt-get upgrade&lt;/tt&gt; command 
 <td>4.3.0</td>
 </tr>
 <tr>
+<td>2589570</td>
+<td>The following denial-of-service vulnerability has been announced in Pygments, a syntax highlighting library for Python:
+CVE-2021-27291: A number of regular expressions had exponential or cubic worst-case complexity which could cause a remote denial of service (DoS) when provided with malicious input.
+Vulnerable: &lt;= 2.0.1+dfsg-1.1+deb8u2
+Fixed: 2.0.1+dfsg-1.1+deb8u3</td>
+<td>3.7.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>2589567</td>
+<td>The following vulnerabilities have been announced in Pillow, a Python imaging library, which can be used to cause a denial-of-service attack with crafted image files:
+CVE-2020-35653: PcxDecode has a buffer over-read when decoding a crafted PCX file because the user-supplied stride value is trusted for buffer calculations.
+CVE-2021-25290: In TiffDecode.c, there is a negative-offset memcpy with an invalid size.
+Vulnerable: &lt;= 2.6.1-2+deb8u5
+FIxed: 2.6.1-2+deb8u6</td>
+<td>3.7.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>2562511</td>
+<td>{{hostapd} does not fail over to secondary RADIUS servers for 802.1x authentication when the primary radius is reachable but not responding to Access-Requests.
+If the primary RADIUS server is having a problem servicing requests, you can remove it from the configuration temporarily to force requests to be sent to alternate servers.</td>
+<td>3.7.10-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
 <td>2558184</td>
 <td>The Mellanox SN2700 and SN2410 switch intermittently reports PSU fan state changes with {{Unable to read from device/fan1_input/pwm1}} syslog messages.</td>
 <td>3.7.11-3.7.14.2, 4.1.1-4.3.0</td>
@@ -6869,21 +7219,6 @@ To work around this issue, run the &lt;tt&gt;apt-get upgrade&lt;/tt&gt; command 
 </td>
 <td>3.7.9-4.2.0</td>
 <td>4.2.1-4.3.0</td>
-</tr>
-<tr>
-<td>2555205</td>
-<td>If the FRR and MSTP processes go down, an SNMP TRAP is not generated even with the following configuration in the {{/etc/snmp/snmpd.conf}} file. 
-
-proc watchfrr
-proc mstpd
-monitor -I -r 1 -o prNames.5 -o prErrMessage.5 “Process FRRis down!!!” PrErrorFlag.5 != 0
-monitor -I -r 1 -o prNames.5 -o prErrMessage.5 “Process FRR is up!!!” PrErrorFlag.5 = 0
-monitor -I -r 1  -o prNames.3 -o prErrMessage.3  "Process mstpd is down!!!!" prErrorFlag.3 != 0
-monitor -I -r 1  -o prNames.3 -o prErrMessage.3  "Process mstpd is up!!!!" prErrorFlag.3 = 0
-
-</td>
-<td>3.7.12-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
 </tr>
 <tr>
 <td>2554785</td>
@@ -8152,6 +8487,45 @@ RTM_NEWNEIGH with unconfigured vlan XXXX on port peerlink
 <td>4.2.0-4.3.0</td>
 </tr>
 <tr>
+<td>2547068</td>
+<td>Hardware platforms using the Intel D-1500 CPU series might reboot unexpectedly.
+
+To work around this issue, contact your hardware vendor to inquire if a new version of BIOS with a microcode fix might be available, or manually disable CPU C-states in the kernel as outlined below.
+
+To permanently disable C-states using a kernel boot parameter:
+
+1. Edit {{/etc/default/grub}} to add the argument {{processor.max_cstate=0}} to the variable {{GRUB_CMDLINE_LINUX}}
+
+For example, if {{/etc/default/grub}} file contains the following line:
+
+{{GRUB_CMDLINE_LINUX="cl_platform=accton_as7726_32x console=tty0 console=ttyS0,115200n8 intel_iommu=off pcie_aspm=off"}}
+
+change it to
+
+{{GRUB_CMDLINE_LINUX="cl_platform=accton_as7726_32x console=tty0 console=ttyS0,115200n8 intel_iommu=off pcie_aspm=off processor.max_cstate=0"}}
+
+2. Run {{sudo update-grub}}
+
+3. Reboot the system with {{sudo reboot}}
+
+
+To Disable cstates in realtime on the current system which will not persist through a reboot:
+
+1. Confirm that the libpci3 package is installed
+
+Run {{dpkg-query -l libpci3}} and confirm the following line is displayed:
+
+{{ii  libpci3:amd64      1:3.2.1-3      amd64          Linux PCI Utilities (shared library)}}
+
+The first field above should read {{ii}}. If not, install the libpci3 package by running {{sudo apt upgrade;sudo apt install libpci3}}
+
+2. Disable C-states by executing the command {{./cpupower idle-set -d 2}}
+
+C-states have been disabled by default as of Cumulus Linux 4.3.0</td>
+<td>3.7.9-4.2.1</td>
+<td>4.3.0</td>
+</tr>
+<tr>
 <td>2546992</td>
 <td>The wireshark packages (libwireshark5, libwireshark-data, wireshark, wireshark-common) available for optional installation on Cumulus Linux 3 are vulnerable to CVE-2018-12086: Buffer overflow in OPC UA applications allows remote attackers to trigger a stack overflow with carefully structured requests.  More information at https://www.wireshark.org/security/wnpa-sec-2018-50.html and https://security-tracker.debian.org/tracker/CVE-2018-12086 .</td>
 <td>3.7.11-3.7.14.2</td>
@@ -8658,13 +9032,6 @@ This issue only affects QinQ configurations.
  </td>
 <td>3.7.3-3.7.14</td>
 <td>4.0.0-4.3.0</td>
-</tr>
-<tr>
-<td>2540808</td>
-<td>In an EVPN environment, the centralized MAC address is not installed on the MLAG pair because Cumulus Linux does not perform an SVI MAC check per VLAN. 
-This issue does not affect a pure distributed routing (symmetric or asymmetric) environment or a pure centralized routing environment.</td>
-<td>3.7.0-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
 </tr>
 <tr>
 <td>2540753</td>
@@ -9320,9 +9687,56 @@ To work around this issue, run the &lt;tt&gt;apt-get upgrade&lt;/tt&gt; command 
 <td></td>
 </tr>
 <tr>
+<td>CM-20033</td>
+<td>&lt;p&gt;The VLAN interface stays up even though the physical link carrying the VLAN is admin or carrier down.&lt;/p&gt;
+</td>
+<td>3.5.2-3.7.14.2, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-15812</td>
 <td>&lt;p&gt;Multicast forwarding fails for IP addresses whose DMAC overlaps with reserved DIPs.&lt;/p&gt;</td>
 <td>3.2.1-3.7.14.2, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2617009</td>
+<td>CVE-2021-23358: missing input sanitising in the template() function of the Underscore JavaScript library could result in the execution of arbitrary code.
+Vulnerable: 1.7.0~dfsg-1
+Fixed: 1.7.0~dfsg-1+deb8u1</td>
+<td>3.7.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>2617008</td>
+<td>CVE-2021-28831: The gunzip decompressor of Busybox, tiny utilities for small and embedded systems, mishandled the error bit on the huft_build result pointer, with a resultant invalid free or segmentation fault, via malformed gzip data.
+Vulnerable: &lt;= 1.22.0-9+deb8u4
+Fixed: 1.22.0-9+deb8u5</td>
+<td>3.7.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>2617007</td>
+<td>CVE-2021-3443 CVE-2021-3467: Two issues have been found in jasper, a JPEG-2000 runtime library. Both issues are related to jpeg 2000 decoding, where a null pointer dereference and a missing check of valid component numbers referenced by CDEF box, could be exploited.
+Vulnerable: &lt;= 1.900.1-debian1-2.4+deb8u9
+Fixed: 1.900.1-debian1-2.4+deb8u10</td>
+<td>3.7.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>2617006</td>
+<td>CVE-2021-28957: An issue has been found in lxml, a pythonic binding for the libxml2 and libxslt libraries. Due to missing input sanitization, XSS is possible for the HTML5 formaction attribute.
+Vulnerable: &lt;= 3.4.0-1+deb8u3
+Fixed: 3.4.0-1+deb8u4</td>
+<td>3.7.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>2617002</td>
+<td>CVE-2020-25666 CVE-2020-25675 CVE-2020-25676 CVE-2020-27754 CVE-2020-27757 CVE-2020-27758 CVE-2020-27759 CVE-2020-27761 CVE-2020-27762 CVE-2020-27764 CVE-2020-27766 CVE-2020-27767 CVE-2020-27768 CVE-2020-27769 CVE-2020-27770 CVE-2020-27771 CVE-2020-27772 CVE-2020-27774 CVE-2020-27775 CVE-2021-20176 CVE-2021-20241 CVE-2021-20244 CVE-2021-20246: Multiple security vulnerabilities were fixed in Imagemagick. Missing or incomplete input sanitising may lead to undefined behavior which can result in denial of service (application crash) or other unspecified impact.
+Vulnerable: 6.8.9.9-5+deb8u22
+Fixed: 6.8.9.9-5+deb8u23</td>
+<td>3.7.0-3.7.14.2</td>
 <td></td>
 </tr>
 <tr>
@@ -9330,6 +9744,32 @@ To work around this issue, run the &lt;tt&gt;apt-get upgrade&lt;/tt&gt; command 
 <td>In a traditional bridge configuration with {{ip-forward off}}, neighbors are synchronized to hardware with a {{switchd}} restart but are cleared when you flap the bridge interface.</td>
 <td>3.7.10-4.2.1</td>
 <td>4.3.0</td>
+</tr>
+<tr>
+<td>2589570</td>
+<td>The following denial-of-service vulnerability has been announced in Pygments, a syntax highlighting library for Python:
+CVE-2021-27291: A number of regular expressions had exponential or cubic worst-case complexity which could cause a remote denial of service (DoS) when provided with malicious input.
+Vulnerable: &lt;= 2.0.1+dfsg-1.1+deb8u2
+Fixed: 2.0.1+dfsg-1.1+deb8u3</td>
+<td>3.7.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>2589567</td>
+<td>The following vulnerabilities have been announced in Pillow, a Python imaging library, which can be used to cause a denial-of-service attack with crafted image files:
+CVE-2020-35653: PcxDecode has a buffer over-read when decoding a crafted PCX file because the user-supplied stride value is trusted for buffer calculations.
+CVE-2021-25290: In TiffDecode.c, there is a negative-offset memcpy with an invalid size.
+Vulnerable: &lt;= 2.6.1-2+deb8u5
+FIxed: 2.6.1-2+deb8u6</td>
+<td>3.7.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>2562511</td>
+<td>{{hostapd} does not fail over to secondary RADIUS servers for 802.1x authentication when the primary radius is reachable but not responding to Access-Requests.
+If the primary RADIUS server is having a problem servicing requests, you can remove it from the configuration temporarily to force requests to be sent to alternate servers.</td>
+<td>3.7.10-3.7.14.2</td>
+<td></td>
 </tr>
 <tr>
 <td>2558184</td>
@@ -9888,6 +10328,45 @@ To work around this issue, power cycle the switch. A software reboot does not re
 <td>On the Lenovo NE2580 switch, the fan speeds are higher than expected within normal operating conditions.</td>
 <td>3.7.11, 4.0.0-4.0.1</td>
 <td>3.7.12-3.7.14, 4.1.0-4.3.0</td>
+</tr>
+<tr>
+<td>2547068</td>
+<td>Hardware platforms using the Intel D-1500 CPU series might reboot unexpectedly.
+
+To work around this issue, contact your hardware vendor to inquire if a new version of BIOS with a microcode fix might be available, or manually disable CPU C-states in the kernel as outlined below.
+
+To permanently disable C-states using a kernel boot parameter:
+
+1. Edit {{/etc/default/grub}} to add the argument {{processor.max_cstate=0}} to the variable {{GRUB_CMDLINE_LINUX}}
+
+For example, if {{/etc/default/grub}} file contains the following line:
+
+{{GRUB_CMDLINE_LINUX="cl_platform=accton_as7726_32x console=tty0 console=ttyS0,115200n8 intel_iommu=off pcie_aspm=off"}}
+
+change it to
+
+{{GRUB_CMDLINE_LINUX="cl_platform=accton_as7726_32x console=tty0 console=ttyS0,115200n8 intel_iommu=off pcie_aspm=off processor.max_cstate=0"}}
+
+2. Run {{sudo update-grub}}
+
+3. Reboot the system with {{sudo reboot}}
+
+
+To Disable cstates in realtime on the current system which will not persist through a reboot:
+
+1. Confirm that the libpci3 package is installed
+
+Run {{dpkg-query -l libpci3}} and confirm the following line is displayed:
+
+{{ii  libpci3:amd64      1:3.2.1-3      amd64          Linux PCI Utilities (shared library)}}
+
+The first field above should read {{ii}}. If not, install the libpci3 package by running {{sudo apt upgrade;sudo apt install libpci3}}
+
+2. Disable C-states by executing the command {{./cpupower idle-set -d 2}}
+
+C-states have been disabled by default as of Cumulus Linux 4.3.0</td>
+<td>3.7.9-4.2.1</td>
+<td>4.3.0</td>
 </tr>
 <tr>
 <td>2547043</td>
@@ -10559,13 +11038,6 @@ This issue only affects QinQ configurations.
  </td>
 <td>3.7.3-3.7.14</td>
 <td>4.0.0-4.3.0</td>
-</tr>
-<tr>
-<td>2540808</td>
-<td>In an EVPN environment, the centralized MAC address is not installed on the MLAG pair because Cumulus Linux does not perform an SVI MAC check per VLAN. 
-This issue does not affect a pure distributed routing (symmetric or asymmetric) environment or a pure centralized routing environment.</td>
-<td>3.7.0-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
 </tr>
 <tr>
 <td>2540753</td>
@@ -11516,9 +11988,56 @@ To work around this issue, run the &lt;tt&gt;apt-get upgrade&lt;/tt&gt; command 
 <td></td>
 </tr>
 <tr>
+<td>CM-20033</td>
+<td>&lt;p&gt;The VLAN interface stays up even though the physical link carrying the VLAN is admin or carrier down.&lt;/p&gt;
+</td>
+<td>3.5.2-3.7.14.2, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-15812</td>
 <td>&lt;p&gt;Multicast forwarding fails for IP addresses whose DMAC overlaps with reserved DIPs.&lt;/p&gt;</td>
 <td>3.2.1-3.7.14.2, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2617009</td>
+<td>CVE-2021-23358: missing input sanitising in the template() function of the Underscore JavaScript library could result in the execution of arbitrary code.
+Vulnerable: 1.7.0~dfsg-1
+Fixed: 1.7.0~dfsg-1+deb8u1</td>
+<td>3.7.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>2617008</td>
+<td>CVE-2021-28831: The gunzip decompressor of Busybox, tiny utilities for small and embedded systems, mishandled the error bit on the huft_build result pointer, with a resultant invalid free or segmentation fault, via malformed gzip data.
+Vulnerable: &lt;= 1.22.0-9+deb8u4
+Fixed: 1.22.0-9+deb8u5</td>
+<td>3.7.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>2617007</td>
+<td>CVE-2021-3443 CVE-2021-3467: Two issues have been found in jasper, a JPEG-2000 runtime library. Both issues are related to jpeg 2000 decoding, where a null pointer dereference and a missing check of valid component numbers referenced by CDEF box, could be exploited.
+Vulnerable: &lt;= 1.900.1-debian1-2.4+deb8u9
+Fixed: 1.900.1-debian1-2.4+deb8u10</td>
+<td>3.7.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>2617006</td>
+<td>CVE-2021-28957: An issue has been found in lxml, a pythonic binding for the libxml2 and libxslt libraries. Due to missing input sanitization, XSS is possible for the HTML5 formaction attribute.
+Vulnerable: &lt;= 3.4.0-1+deb8u3
+Fixed: 3.4.0-1+deb8u4</td>
+<td>3.7.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>2617002</td>
+<td>CVE-2020-25666 CVE-2020-25675 CVE-2020-25676 CVE-2020-27754 CVE-2020-27757 CVE-2020-27758 CVE-2020-27759 CVE-2020-27761 CVE-2020-27762 CVE-2020-27764 CVE-2020-27766 CVE-2020-27767 CVE-2020-27768 CVE-2020-27769 CVE-2020-27770 CVE-2020-27771 CVE-2020-27772 CVE-2020-27774 CVE-2020-27775 CVE-2021-20176 CVE-2021-20241 CVE-2021-20244 CVE-2021-20246: Multiple security vulnerabilities were fixed in Imagemagick. Missing or incomplete input sanitising may lead to undefined behavior which can result in denial of service (application crash) or other unspecified impact.
+Vulnerable: 6.8.9.9-5+deb8u22
+Fixed: 6.8.9.9-5+deb8u23</td>
+<td>3.7.0-3.7.14.2</td>
 <td></td>
 </tr>
 <tr>
@@ -11526,6 +12045,32 @@ To work around this issue, run the &lt;tt&gt;apt-get upgrade&lt;/tt&gt; command 
 <td>In a traditional bridge configuration with {{ip-forward off}}, neighbors are synchronized to hardware with a {{switchd}} restart but are cleared when you flap the bridge interface.</td>
 <td>3.7.10-4.2.1</td>
 <td>4.3.0</td>
+</tr>
+<tr>
+<td>2589570</td>
+<td>The following denial-of-service vulnerability has been announced in Pygments, a syntax highlighting library for Python:
+CVE-2021-27291: A number of regular expressions had exponential or cubic worst-case complexity which could cause a remote denial of service (DoS) when provided with malicious input.
+Vulnerable: &lt;= 2.0.1+dfsg-1.1+deb8u2
+Fixed: 2.0.1+dfsg-1.1+deb8u3</td>
+<td>3.7.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>2589567</td>
+<td>The following vulnerabilities have been announced in Pillow, a Python imaging library, which can be used to cause a denial-of-service attack with crafted image files:
+CVE-2020-35653: PcxDecode has a buffer over-read when decoding a crafted PCX file because the user-supplied stride value is trusted for buffer calculations.
+CVE-2021-25290: In TiffDecode.c, there is a negative-offset memcpy with an invalid size.
+Vulnerable: &lt;= 2.6.1-2+deb8u5
+FIxed: 2.6.1-2+deb8u6</td>
+<td>3.7.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>2562511</td>
+<td>{{hostapd} does not fail over to secondary RADIUS servers for 802.1x authentication when the primary radius is reachable but not responding to Access-Requests.
+If the primary RADIUS server is having a problem servicing requests, you can remove it from the configuration temporarily to force requests to be sent to alternate servers.</td>
+<td>3.7.10-3.7.14.2</td>
+<td></td>
 </tr>
 <tr>
 <td>2556037</td>
@@ -11760,6 +12305,45 @@ Vulnerable: 4.0.10-4
 Fixed: 4.1.0+git191117-2~deb10u1</td>
 <td>3.7.10, 4.0.0-4.0.1</td>
 <td>3.7.11-3.7.14, 4.1.0-4.3.0</td>
+</tr>
+<tr>
+<td>2547068</td>
+<td>Hardware platforms using the Intel D-1500 CPU series might reboot unexpectedly.
+
+To work around this issue, contact your hardware vendor to inquire if a new version of BIOS with a microcode fix might be available, or manually disable CPU C-states in the kernel as outlined below.
+
+To permanently disable C-states using a kernel boot parameter:
+
+1. Edit {{/etc/default/grub}} to add the argument {{processor.max_cstate=0}} to the variable {{GRUB_CMDLINE_LINUX}}
+
+For example, if {{/etc/default/grub}} file contains the following line:
+
+{{GRUB_CMDLINE_LINUX="cl_platform=accton_as7726_32x console=tty0 console=ttyS0,115200n8 intel_iommu=off pcie_aspm=off"}}
+
+change it to
+
+{{GRUB_CMDLINE_LINUX="cl_platform=accton_as7726_32x console=tty0 console=ttyS0,115200n8 intel_iommu=off pcie_aspm=off processor.max_cstate=0"}}
+
+2. Run {{sudo update-grub}}
+
+3. Reboot the system with {{sudo reboot}}
+
+
+To Disable cstates in realtime on the current system which will not persist through a reboot:
+
+1. Confirm that the libpci3 package is installed
+
+Run {{dpkg-query -l libpci3}} and confirm the following line is displayed:
+
+{{ii  libpci3:amd64      1:3.2.1-3      amd64          Linux PCI Utilities (shared library)}}
+
+The first field above should read {{ii}}. If not, install the libpci3 package by running {{sudo apt upgrade;sudo apt install libpci3}}
+
+2. Disable C-states by executing the command {{./cpupower idle-set -d 2}}
+
+C-states have been disabled by default as of Cumulus Linux 4.3.0</td>
+<td>3.7.9-4.2.1</td>
+<td>4.3.0</td>
 </tr>
 <tr>
 <td>2547013</td>
@@ -12711,13 +13295,6 @@ This issue only affects QinQ configurations.
 <td>4.0.0-4.3.0</td>
 </tr>
 <tr>
-<td>2540808</td>
-<td>In an EVPN environment, the centralized MAC address is not installed on the MLAG pair because Cumulus Linux does not perform an SVI MAC check per VLAN. 
-This issue does not affect a pure distributed routing (symmetric or asymmetric) environment or a pure centralized routing environment.</td>
-<td>3.7.0-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
 <td>2540753</td>
 <td>If the interface alias contains a single or double quotation mark, or an apostrophe, the {{net show configuration}} commands fail with the following error: 
   
@@ -13155,9 +13732,75 @@ More information at https://security-tracker.debian.org/tracker/CVE-2018-6594 .<
 <td></td>
 </tr>
 <tr>
+<td>CM-20033</td>
+<td>&lt;p&gt;The VLAN interface stays up even though the physical link carrying the VLAN is admin or carrier down.&lt;/p&gt;
+</td>
+<td>3.5.2-3.7.14.2, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-15812</td>
 <td>&lt;p&gt;Multicast forwarding fails for IP addresses whose DMAC overlaps with reserved DIPs.&lt;/p&gt;</td>
 <td>3.2.1-3.7.14.2, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2617009</td>
+<td>CVE-2021-23358: missing input sanitising in the template() function of the Underscore JavaScript library could result in the execution of arbitrary code.
+Vulnerable: 1.7.0~dfsg-1
+Fixed: 1.7.0~dfsg-1+deb8u1</td>
+<td>3.7.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>2617008</td>
+<td>CVE-2021-28831: The gunzip decompressor of Busybox, tiny utilities for small and embedded systems, mishandled the error bit on the huft_build result pointer, with a resultant invalid free or segmentation fault, via malformed gzip data.
+Vulnerable: &lt;= 1.22.0-9+deb8u4
+Fixed: 1.22.0-9+deb8u5</td>
+<td>3.7.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>2617007</td>
+<td>CVE-2021-3443 CVE-2021-3467: Two issues have been found in jasper, a JPEG-2000 runtime library. Both issues are related to jpeg 2000 decoding, where a null pointer dereference and a missing check of valid component numbers referenced by CDEF box, could be exploited.
+Vulnerable: &lt;= 1.900.1-debian1-2.4+deb8u9
+Fixed: 1.900.1-debian1-2.4+deb8u10</td>
+<td>3.7.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>2617006</td>
+<td>CVE-2021-28957: An issue has been found in lxml, a pythonic binding for the libxml2 and libxslt libraries. Due to missing input sanitization, XSS is possible for the HTML5 formaction attribute.
+Vulnerable: &lt;= 3.4.0-1+deb8u3
+Fixed: 3.4.0-1+deb8u4</td>
+<td>3.7.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>2617002</td>
+<td>CVE-2020-25666 CVE-2020-25675 CVE-2020-25676 CVE-2020-27754 CVE-2020-27757 CVE-2020-27758 CVE-2020-27759 CVE-2020-27761 CVE-2020-27762 CVE-2020-27764 CVE-2020-27766 CVE-2020-27767 CVE-2020-27768 CVE-2020-27769 CVE-2020-27770 CVE-2020-27771 CVE-2020-27772 CVE-2020-27774 CVE-2020-27775 CVE-2021-20176 CVE-2021-20241 CVE-2021-20244 CVE-2021-20246: Multiple security vulnerabilities were fixed in Imagemagick. Missing or incomplete input sanitising may lead to undefined behavior which can result in denial of service (application crash) or other unspecified impact.
+Vulnerable: 6.8.9.9-5+deb8u22
+Fixed: 6.8.9.9-5+deb8u23</td>
+<td>3.7.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>2589570</td>
+<td>The following denial-of-service vulnerability has been announced in Pygments, a syntax highlighting library for Python:
+CVE-2021-27291: A number of regular expressions had exponential or cubic worst-case complexity which could cause a remote denial of service (DoS) when provided with malicious input.
+Vulnerable: &lt;= 2.0.1+dfsg-1.1+deb8u2
+Fixed: 2.0.1+dfsg-1.1+deb8u3</td>
+<td>3.7.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>2589567</td>
+<td>The following vulnerabilities have been announced in Pillow, a Python imaging library, which can be used to cause a denial-of-service attack with crafted image files:
+CVE-2020-35653: PcxDecode has a buffer over-read when decoding a crafted PCX file because the user-supplied stride value is trusted for buffer calculations.
+CVE-2021-25290: In TiffDecode.c, there is a negative-offset memcpy with an invalid size.
+Vulnerable: &lt;= 2.6.1-2+deb8u5
+FIxed: 2.6.1-2+deb8u6</td>
+<td>3.7.0-3.7.14.2</td>
 <td></td>
 </tr>
 <tr>
@@ -13299,6 +13942,45 @@ To work around this issue, reboot the leaf switch or restart {{switchd}}.</td>
 <td>On the Broadcom Trident3 switch with DHCP relay, where the DHCP server is reachable through the EVPN overlay, DHCP discover packets forwarded to the CPU might appear corrupt and might not get forwarded.</td>
 <td>3.7.9-3.7.12, 4.0.0-4.0.1</td>
 <td>3.7.13-3.7.14, 4.1.0-4.3.0</td>
+</tr>
+<tr>
+<td>2547068</td>
+<td>Hardware platforms using the Intel D-1500 CPU series might reboot unexpectedly.
+
+To work around this issue, contact your hardware vendor to inquire if a new version of BIOS with a microcode fix might be available, or manually disable CPU C-states in the kernel as outlined below.
+
+To permanently disable C-states using a kernel boot parameter:
+
+1. Edit {{/etc/default/grub}} to add the argument {{processor.max_cstate=0}} to the variable {{GRUB_CMDLINE_LINUX}}
+
+For example, if {{/etc/default/grub}} file contains the following line:
+
+{{GRUB_CMDLINE_LINUX="cl_platform=accton_as7726_32x console=tty0 console=ttyS0,115200n8 intel_iommu=off pcie_aspm=off"}}
+
+change it to
+
+{{GRUB_CMDLINE_LINUX="cl_platform=accton_as7726_32x console=tty0 console=ttyS0,115200n8 intel_iommu=off pcie_aspm=off processor.max_cstate=0"}}
+
+2. Run {{sudo update-grub}}
+
+3. Reboot the system with {{sudo reboot}}
+
+
+To Disable cstates in realtime on the current system which will not persist through a reboot:
+
+1. Confirm that the libpci3 package is installed
+
+Run {{dpkg-query -l libpci3}} and confirm the following line is displayed:
+
+{{ii  libpci3:amd64      1:3.2.1-3      amd64          Linux PCI Utilities (shared library)}}
+
+The first field above should read {{ii}}. If not, install the libpci3 package by running {{sudo apt upgrade;sudo apt install libpci3}}
+
+2. Disable C-states by executing the command {{./cpupower idle-set -d 2}}
+
+C-states have been disabled by default as of Cumulus Linux 4.3.0</td>
+<td>3.7.9-4.2.1</td>
+<td>4.3.0</td>
 </tr>
 <tr>
 <td>2547013</td>
@@ -14051,13 +14733,6 @@ This issue only affects QinQ configurations.
  </td>
 <td>3.7.3-3.7.14</td>
 <td>4.0.0-4.3.0</td>
-</tr>
-<tr>
-<td>2540808</td>
-<td>In an EVPN environment, the centralized MAC address is not installed on the MLAG pair because Cumulus Linux does not perform an SVI MAC check per VLAN. 
-This issue does not affect a pure distributed routing (symmetric or asymmetric) environment or a pure centralized routing environment.</td>
-<td>3.7.0-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
 </tr>
 <tr>
 <td>2540753</td>
@@ -15127,9 +15802,75 @@ To work around this issue, run the {{sudo ethtool -S swp1}} command to collect i
 <td></td>
 </tr>
 <tr>
+<td>CM-20033</td>
+<td>&lt;p&gt;The VLAN interface stays up even though the physical link carrying the VLAN is admin or carrier down.&lt;/p&gt;
+</td>
+<td>3.5.2-3.7.14.2, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-15812</td>
 <td>&lt;p&gt;Multicast forwarding fails for IP addresses whose DMAC overlaps with reserved DIPs.&lt;/p&gt;</td>
 <td>3.2.1-3.7.14.2, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2617009</td>
+<td>CVE-2021-23358: missing input sanitising in the template() function of the Underscore JavaScript library could result in the execution of arbitrary code.
+Vulnerable: 1.7.0~dfsg-1
+Fixed: 1.7.0~dfsg-1+deb8u1</td>
+<td>3.7.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>2617008</td>
+<td>CVE-2021-28831: The gunzip decompressor of Busybox, tiny utilities for small and embedded systems, mishandled the error bit on the huft_build result pointer, with a resultant invalid free or segmentation fault, via malformed gzip data.
+Vulnerable: &lt;= 1.22.0-9+deb8u4
+Fixed: 1.22.0-9+deb8u5</td>
+<td>3.7.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>2617007</td>
+<td>CVE-2021-3443 CVE-2021-3467: Two issues have been found in jasper, a JPEG-2000 runtime library. Both issues are related to jpeg 2000 decoding, where a null pointer dereference and a missing check of valid component numbers referenced by CDEF box, could be exploited.
+Vulnerable: &lt;= 1.900.1-debian1-2.4+deb8u9
+Fixed: 1.900.1-debian1-2.4+deb8u10</td>
+<td>3.7.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>2617006</td>
+<td>CVE-2021-28957: An issue has been found in lxml, a pythonic binding for the libxml2 and libxslt libraries. Due to missing input sanitization, XSS is possible for the HTML5 formaction attribute.
+Vulnerable: &lt;= 3.4.0-1+deb8u3
+Fixed: 3.4.0-1+deb8u4</td>
+<td>3.7.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>2617002</td>
+<td>CVE-2020-25666 CVE-2020-25675 CVE-2020-25676 CVE-2020-27754 CVE-2020-27757 CVE-2020-27758 CVE-2020-27759 CVE-2020-27761 CVE-2020-27762 CVE-2020-27764 CVE-2020-27766 CVE-2020-27767 CVE-2020-27768 CVE-2020-27769 CVE-2020-27770 CVE-2020-27771 CVE-2020-27772 CVE-2020-27774 CVE-2020-27775 CVE-2021-20176 CVE-2021-20241 CVE-2021-20244 CVE-2021-20246: Multiple security vulnerabilities were fixed in Imagemagick. Missing or incomplete input sanitising may lead to undefined behavior which can result in denial of service (application crash) or other unspecified impact.
+Vulnerable: 6.8.9.9-5+deb8u22
+Fixed: 6.8.9.9-5+deb8u23</td>
+<td>3.7.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>2589570</td>
+<td>The following denial-of-service vulnerability has been announced in Pygments, a syntax highlighting library for Python:
+CVE-2021-27291: A number of regular expressions had exponential or cubic worst-case complexity which could cause a remote denial of service (DoS) when provided with malicious input.
+Vulnerable: &lt;= 2.0.1+dfsg-1.1+deb8u2
+Fixed: 2.0.1+dfsg-1.1+deb8u3</td>
+<td>3.7.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>2589567</td>
+<td>The following vulnerabilities have been announced in Pillow, a Python imaging library, which can be used to cause a denial-of-service attack with crafted image files:
+CVE-2020-35653: PcxDecode has a buffer over-read when decoding a crafted PCX file because the user-supplied stride value is trusted for buffer calculations.
+CVE-2021-25290: In TiffDecode.c, there is a negative-offset memcpy with an invalid size.
+Vulnerable: &lt;= 2.6.1-2+deb8u5
+FIxed: 2.6.1-2+deb8u6</td>
+<td>3.7.0-3.7.14.2</td>
 <td></td>
 </tr>
 <tr>
@@ -16056,13 +16797,6 @@ This issue only affects QinQ configurations.
 <td>4.0.0-4.3.0</td>
 </tr>
 <tr>
-<td>2540808</td>
-<td>In an EVPN environment, the centralized MAC address is not installed on the MLAG pair because Cumulus Linux does not perform an SVI MAC check per VLAN. 
-This issue does not affect a pure distributed routing (symmetric or asymmetric) environment or a pure centralized routing environment.</td>
-<td>3.7.0-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
 <td>2540753</td>
 <td>If the interface alias contains a single or double quotation mark, or an apostrophe, the {{net show configuration}} commands fail with the following error: 
   
@@ -16557,9 +17291,75 @@ To work around this issue, use {{net show interface}} command for LLDP output wh
 <td></td>
 </tr>
 <tr>
+<td>CM-20033</td>
+<td>&lt;p&gt;The VLAN interface stays up even though the physical link carrying the VLAN is admin or carrier down.&lt;/p&gt;
+</td>
+<td>3.5.2-3.7.14.2, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-15812</td>
 <td>&lt;p&gt;Multicast forwarding fails for IP addresses whose DMAC overlaps with reserved DIPs.&lt;/p&gt;</td>
 <td>3.2.1-3.7.14.2, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2617009</td>
+<td>CVE-2021-23358: missing input sanitising in the template() function of the Underscore JavaScript library could result in the execution of arbitrary code.
+Vulnerable: 1.7.0~dfsg-1
+Fixed: 1.7.0~dfsg-1+deb8u1</td>
+<td>3.7.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>2617008</td>
+<td>CVE-2021-28831: The gunzip decompressor of Busybox, tiny utilities for small and embedded systems, mishandled the error bit on the huft_build result pointer, with a resultant invalid free or segmentation fault, via malformed gzip data.
+Vulnerable: &lt;= 1.22.0-9+deb8u4
+Fixed: 1.22.0-9+deb8u5</td>
+<td>3.7.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>2617007</td>
+<td>CVE-2021-3443 CVE-2021-3467: Two issues have been found in jasper, a JPEG-2000 runtime library. Both issues are related to jpeg 2000 decoding, where a null pointer dereference and a missing check of valid component numbers referenced by CDEF box, could be exploited.
+Vulnerable: &lt;= 1.900.1-debian1-2.4+deb8u9
+Fixed: 1.900.1-debian1-2.4+deb8u10</td>
+<td>3.7.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>2617006</td>
+<td>CVE-2021-28957: An issue has been found in lxml, a pythonic binding for the libxml2 and libxslt libraries. Due to missing input sanitization, XSS is possible for the HTML5 formaction attribute.
+Vulnerable: &lt;= 3.4.0-1+deb8u3
+Fixed: 3.4.0-1+deb8u4</td>
+<td>3.7.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>2617002</td>
+<td>CVE-2020-25666 CVE-2020-25675 CVE-2020-25676 CVE-2020-27754 CVE-2020-27757 CVE-2020-27758 CVE-2020-27759 CVE-2020-27761 CVE-2020-27762 CVE-2020-27764 CVE-2020-27766 CVE-2020-27767 CVE-2020-27768 CVE-2020-27769 CVE-2020-27770 CVE-2020-27771 CVE-2020-27772 CVE-2020-27774 CVE-2020-27775 CVE-2021-20176 CVE-2021-20241 CVE-2021-20244 CVE-2021-20246: Multiple security vulnerabilities were fixed in Imagemagick. Missing or incomplete input sanitising may lead to undefined behavior which can result in denial of service (application crash) or other unspecified impact.
+Vulnerable: 6.8.9.9-5+deb8u22
+Fixed: 6.8.9.9-5+deb8u23</td>
+<td>3.7.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>2589570</td>
+<td>The following denial-of-service vulnerability has been announced in Pygments, a syntax highlighting library for Python:
+CVE-2021-27291: A number of regular expressions had exponential or cubic worst-case complexity which could cause a remote denial of service (DoS) when provided with malicious input.
+Vulnerable: &lt;= 2.0.1+dfsg-1.1+deb8u2
+Fixed: 2.0.1+dfsg-1.1+deb8u3</td>
+<td>3.7.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>2589567</td>
+<td>The following vulnerabilities have been announced in Pillow, a Python imaging library, which can be used to cause a denial-of-service attack with crafted image files:
+CVE-2020-35653: PcxDecode has a buffer over-read when decoding a crafted PCX file because the user-supplied stride value is trusted for buffer calculations.
+CVE-2021-25290: In TiffDecode.c, there is a negative-offset memcpy with an invalid size.
+Vulnerable: &lt;= 2.6.1-2+deb8u5
+FIxed: 2.6.1-2+deb8u6</td>
+<td>3.7.0-3.7.14.2</td>
 <td></td>
 </tr>
 <tr>
@@ -17377,13 +18177,6 @@ This issue only affects QinQ configurations.
  </td>
 <td>3.7.3-3.7.14</td>
 <td>4.0.0-4.3.0</td>
-</tr>
-<tr>
-<td>2540808</td>
-<td>In an EVPN environment, the centralized MAC address is not installed on the MLAG pair because Cumulus Linux does not perform an SVI MAC check per VLAN. 
-This issue does not affect a pure distributed routing (symmetric or asymmetric) environment or a pure centralized routing environment.</td>
-<td>3.7.0-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
 </tr>
 <tr>
 <td>2540753</td>
@@ -18317,9 +19110,75 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <td></td>
 </tr>
 <tr>
+<td>CM-20033</td>
+<td>&lt;p&gt;The VLAN interface stays up even though the physical link carrying the VLAN is admin or carrier down.&lt;/p&gt;
+</td>
+<td>3.5.2-3.7.14.2, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-15812</td>
 <td>&lt;p&gt;Multicast forwarding fails for IP addresses whose DMAC overlaps with reserved DIPs.&lt;/p&gt;</td>
 <td>3.2.1-3.7.14.2, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2617009</td>
+<td>CVE-2021-23358: missing input sanitising in the template() function of the Underscore JavaScript library could result in the execution of arbitrary code.
+Vulnerable: 1.7.0~dfsg-1
+Fixed: 1.7.0~dfsg-1+deb8u1</td>
+<td>3.7.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>2617008</td>
+<td>CVE-2021-28831: The gunzip decompressor of Busybox, tiny utilities for small and embedded systems, mishandled the error bit on the huft_build result pointer, with a resultant invalid free or segmentation fault, via malformed gzip data.
+Vulnerable: &lt;= 1.22.0-9+deb8u4
+Fixed: 1.22.0-9+deb8u5</td>
+<td>3.7.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>2617007</td>
+<td>CVE-2021-3443 CVE-2021-3467: Two issues have been found in jasper, a JPEG-2000 runtime library. Both issues are related to jpeg 2000 decoding, where a null pointer dereference and a missing check of valid component numbers referenced by CDEF box, could be exploited.
+Vulnerable: &lt;= 1.900.1-debian1-2.4+deb8u9
+Fixed: 1.900.1-debian1-2.4+deb8u10</td>
+<td>3.7.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>2617006</td>
+<td>CVE-2021-28957: An issue has been found in lxml, a pythonic binding for the libxml2 and libxslt libraries. Due to missing input sanitization, XSS is possible for the HTML5 formaction attribute.
+Vulnerable: &lt;= 3.4.0-1+deb8u3
+Fixed: 3.4.0-1+deb8u4</td>
+<td>3.7.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>2617002</td>
+<td>CVE-2020-25666 CVE-2020-25675 CVE-2020-25676 CVE-2020-27754 CVE-2020-27757 CVE-2020-27758 CVE-2020-27759 CVE-2020-27761 CVE-2020-27762 CVE-2020-27764 CVE-2020-27766 CVE-2020-27767 CVE-2020-27768 CVE-2020-27769 CVE-2020-27770 CVE-2020-27771 CVE-2020-27772 CVE-2020-27774 CVE-2020-27775 CVE-2021-20176 CVE-2021-20241 CVE-2021-20244 CVE-2021-20246: Multiple security vulnerabilities were fixed in Imagemagick. Missing or incomplete input sanitising may lead to undefined behavior which can result in denial of service (application crash) or other unspecified impact.
+Vulnerable: 6.8.9.9-5+deb8u22
+Fixed: 6.8.9.9-5+deb8u23</td>
+<td>3.7.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>2589570</td>
+<td>The following denial-of-service vulnerability has been announced in Pygments, a syntax highlighting library for Python:
+CVE-2021-27291: A number of regular expressions had exponential or cubic worst-case complexity which could cause a remote denial of service (DoS) when provided with malicious input.
+Vulnerable: &lt;= 2.0.1+dfsg-1.1+deb8u2
+Fixed: 2.0.1+dfsg-1.1+deb8u3</td>
+<td>3.7.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>2589567</td>
+<td>The following vulnerabilities have been announced in Pillow, a Python imaging library, which can be used to cause a denial-of-service attack with crafted image files:
+CVE-2020-35653: PcxDecode has a buffer over-read when decoding a crafted PCX file because the user-supplied stride value is trusted for buffer calculations.
+CVE-2021-25290: In TiffDecode.c, there is a negative-offset memcpy with an invalid size.
+Vulnerable: &lt;= 2.6.1-2+deb8u5
+FIxed: 2.6.1-2+deb8u6</td>
+<td>3.7.0-3.7.14.2</td>
 <td></td>
 </tr>
 <tr>
@@ -19099,13 +19958,6 @@ This issue only affects QinQ configurations.
 <td>3.7.7-3.7.14.2</td>
 </tr>
 <tr>
-<td>2540808</td>
-<td>In an EVPN environment, the centralized MAC address is not installed on the MLAG pair because Cumulus Linux does not perform an SVI MAC check per VLAN. 
-This issue does not affect a pure distributed routing (symmetric or asymmetric) environment or a pure centralized routing environment.</td>
-<td>3.7.0-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
 <td>2540753</td>
 <td>If the interface alias contains a single or double quotation mark, or an apostrophe, the {{net show configuration}} commands fail with the following error: 
   
@@ -19821,9 +20673,75 @@ This issue was discovered on the Helix4 switch but applies to all switches.
 <td></td>
 </tr>
 <tr>
+<td>CM-20033</td>
+<td>&lt;p&gt;The VLAN interface stays up even though the physical link carrying the VLAN is admin or carrier down.&lt;/p&gt;
+</td>
+<td>3.5.2-3.7.14.2, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-15812</td>
 <td>&lt;p&gt;Multicast forwarding fails for IP addresses whose DMAC overlaps with reserved DIPs.&lt;/p&gt;</td>
 <td>3.2.1-3.7.14.2, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2617009</td>
+<td>CVE-2021-23358: missing input sanitising in the template() function of the Underscore JavaScript library could result in the execution of arbitrary code.
+Vulnerable: 1.7.0~dfsg-1
+Fixed: 1.7.0~dfsg-1+deb8u1</td>
+<td>3.7.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>2617008</td>
+<td>CVE-2021-28831: The gunzip decompressor of Busybox, tiny utilities for small and embedded systems, mishandled the error bit on the huft_build result pointer, with a resultant invalid free or segmentation fault, via malformed gzip data.
+Vulnerable: &lt;= 1.22.0-9+deb8u4
+Fixed: 1.22.0-9+deb8u5</td>
+<td>3.7.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>2617007</td>
+<td>CVE-2021-3443 CVE-2021-3467: Two issues have been found in jasper, a JPEG-2000 runtime library. Both issues are related to jpeg 2000 decoding, where a null pointer dereference and a missing check of valid component numbers referenced by CDEF box, could be exploited.
+Vulnerable: &lt;= 1.900.1-debian1-2.4+deb8u9
+Fixed: 1.900.1-debian1-2.4+deb8u10</td>
+<td>3.7.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>2617006</td>
+<td>CVE-2021-28957: An issue has been found in lxml, a pythonic binding for the libxml2 and libxslt libraries. Due to missing input sanitization, XSS is possible for the HTML5 formaction attribute.
+Vulnerable: &lt;= 3.4.0-1+deb8u3
+Fixed: 3.4.0-1+deb8u4</td>
+<td>3.7.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>2617002</td>
+<td>CVE-2020-25666 CVE-2020-25675 CVE-2020-25676 CVE-2020-27754 CVE-2020-27757 CVE-2020-27758 CVE-2020-27759 CVE-2020-27761 CVE-2020-27762 CVE-2020-27764 CVE-2020-27766 CVE-2020-27767 CVE-2020-27768 CVE-2020-27769 CVE-2020-27770 CVE-2020-27771 CVE-2020-27772 CVE-2020-27774 CVE-2020-27775 CVE-2021-20176 CVE-2021-20241 CVE-2021-20244 CVE-2021-20246: Multiple security vulnerabilities were fixed in Imagemagick. Missing or incomplete input sanitising may lead to undefined behavior which can result in denial of service (application crash) or other unspecified impact.
+Vulnerable: 6.8.9.9-5+deb8u22
+Fixed: 6.8.9.9-5+deb8u23</td>
+<td>3.7.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>2589570</td>
+<td>The following denial-of-service vulnerability has been announced in Pygments, a syntax highlighting library for Python:
+CVE-2021-27291: A number of regular expressions had exponential or cubic worst-case complexity which could cause a remote denial of service (DoS) when provided with malicious input.
+Vulnerable: &lt;= 2.0.1+dfsg-1.1+deb8u2
+Fixed: 2.0.1+dfsg-1.1+deb8u3</td>
+<td>3.7.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>2589567</td>
+<td>The following vulnerabilities have been announced in Pillow, a Python imaging library, which can be used to cause a denial-of-service attack with crafted image files:
+CVE-2020-35653: PcxDecode has a buffer over-read when decoding a crafted PCX file because the user-supplied stride value is trusted for buffer calculations.
+CVE-2021-25290: In TiffDecode.c, there is a negative-offset memcpy with an invalid size.
+Vulnerable: &lt;= 2.6.1-2+deb8u5
+FIxed: 2.6.1-2+deb8u6</td>
+<td>3.7.0-3.7.14.2</td>
 <td></td>
 </tr>
 <tr>
@@ -20239,13 +21157,6 @@ This issue only affects QinQ configurations.
 <td>On the EdgeCore 7326-54X switch, {{switchd}} does not start on initial install because the {{decode-syseeprom}} command fails. However in ONIE, {{onie-syseeprom}} has no issues. </td>
 <td>3.7.5-3.7.6</td>
 <td>3.7.7-3.7.14.2</td>
-</tr>
-<tr>
-<td>2540808</td>
-<td>In an EVPN environment, the centralized MAC address is not installed on the MLAG pair because Cumulus Linux does not perform an SVI MAC check per VLAN. 
-This issue does not affect a pure distributed routing (symmetric or asymmetric) environment or a pure centralized routing environment.</td>
-<td>3.7.0-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
 </tr>
 <tr>
 <td>2540798</td>
@@ -20977,9 +21888,75 @@ The NetQ agent has been removed from Cumulus VX 3.7.7. The NetQ agent will be bu
 <td></td>
 </tr>
 <tr>
+<td>CM-20033</td>
+<td>&lt;p&gt;The VLAN interface stays up even though the physical link carrying the VLAN is admin or carrier down.&lt;/p&gt;
+</td>
+<td>3.5.2-3.7.14.2, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-15812</td>
 <td>&lt;p&gt;Multicast forwarding fails for IP addresses whose DMAC overlaps with reserved DIPs.&lt;/p&gt;</td>
 <td>3.2.1-3.7.14.2, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2617009</td>
+<td>CVE-2021-23358: missing input sanitising in the template() function of the Underscore JavaScript library could result in the execution of arbitrary code.
+Vulnerable: 1.7.0~dfsg-1
+Fixed: 1.7.0~dfsg-1+deb8u1</td>
+<td>3.7.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>2617008</td>
+<td>CVE-2021-28831: The gunzip decompressor of Busybox, tiny utilities for small and embedded systems, mishandled the error bit on the huft_build result pointer, with a resultant invalid free or segmentation fault, via malformed gzip data.
+Vulnerable: &lt;= 1.22.0-9+deb8u4
+Fixed: 1.22.0-9+deb8u5</td>
+<td>3.7.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>2617007</td>
+<td>CVE-2021-3443 CVE-2021-3467: Two issues have been found in jasper, a JPEG-2000 runtime library. Both issues are related to jpeg 2000 decoding, where a null pointer dereference and a missing check of valid component numbers referenced by CDEF box, could be exploited.
+Vulnerable: &lt;= 1.900.1-debian1-2.4+deb8u9
+Fixed: 1.900.1-debian1-2.4+deb8u10</td>
+<td>3.7.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>2617006</td>
+<td>CVE-2021-28957: An issue has been found in lxml, a pythonic binding for the libxml2 and libxslt libraries. Due to missing input sanitization, XSS is possible for the HTML5 formaction attribute.
+Vulnerable: &lt;= 3.4.0-1+deb8u3
+Fixed: 3.4.0-1+deb8u4</td>
+<td>3.7.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>2617002</td>
+<td>CVE-2020-25666 CVE-2020-25675 CVE-2020-25676 CVE-2020-27754 CVE-2020-27757 CVE-2020-27758 CVE-2020-27759 CVE-2020-27761 CVE-2020-27762 CVE-2020-27764 CVE-2020-27766 CVE-2020-27767 CVE-2020-27768 CVE-2020-27769 CVE-2020-27770 CVE-2020-27771 CVE-2020-27772 CVE-2020-27774 CVE-2020-27775 CVE-2021-20176 CVE-2021-20241 CVE-2021-20244 CVE-2021-20246: Multiple security vulnerabilities were fixed in Imagemagick. Missing or incomplete input sanitising may lead to undefined behavior which can result in denial of service (application crash) or other unspecified impact.
+Vulnerable: 6.8.9.9-5+deb8u22
+Fixed: 6.8.9.9-5+deb8u23</td>
+<td>3.7.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>2589570</td>
+<td>The following denial-of-service vulnerability has been announced in Pygments, a syntax highlighting library for Python:
+CVE-2021-27291: A number of regular expressions had exponential or cubic worst-case complexity which could cause a remote denial of service (DoS) when provided with malicious input.
+Vulnerable: &lt;= 2.0.1+dfsg-1.1+deb8u2
+Fixed: 2.0.1+dfsg-1.1+deb8u3</td>
+<td>3.7.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>2589567</td>
+<td>The following vulnerabilities have been announced in Pillow, a Python imaging library, which can be used to cause a denial-of-service attack with crafted image files:
+CVE-2020-35653: PcxDecode has a buffer over-read when decoding a crafted PCX file because the user-supplied stride value is trusted for buffer calculations.
+CVE-2021-25290: In TiffDecode.c, there is a negative-offset memcpy with an invalid size.
+Vulnerable: &lt;= 2.6.1-2+deb8u5
+FIxed: 2.6.1-2+deb8u6</td>
+<td>3.7.0-3.7.14.2</td>
 <td></td>
 </tr>
 <tr>
@@ -21256,13 +22233,6 @@ To work around this issue, remove the {{--nl}} flag from the dhcrelay service. <
 <td>The platform json file for the Dell S5048-ON switch is improperly populated. This creates an issue when trying to poll the inventory statistics with NetQ. </td>
 <td>3.7.3-3.7.5</td>
 <td>3.7.6-3.7.14.2</td>
-</tr>
-<tr>
-<td>2540808</td>
-<td>In an EVPN environment, the centralized MAC address is not installed on the MLAG pair because Cumulus Linux does not perform an SVI MAC check per VLAN. 
-This issue does not affect a pure distributed routing (symmetric or asymmetric) environment or a pure centralized routing environment.</td>
-<td>3.7.0-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
 </tr>
 <tr>
 <td>2540738</td>
@@ -22160,9 +23130,75 @@ The NetQ agent has been removed from Cumulus VX 3.7.7. The NetQ agent will be bu
 <td></td>
 </tr>
 <tr>
+<td>CM-20033</td>
+<td>&lt;p&gt;The VLAN interface stays up even though the physical link carrying the VLAN is admin or carrier down.&lt;/p&gt;
+</td>
+<td>3.5.2-3.7.14.2, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-15812</td>
 <td>&lt;p&gt;Multicast forwarding fails for IP addresses whose DMAC overlaps with reserved DIPs.&lt;/p&gt;</td>
 <td>3.2.1-3.7.14.2, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2617009</td>
+<td>CVE-2021-23358: missing input sanitising in the template() function of the Underscore JavaScript library could result in the execution of arbitrary code.
+Vulnerable: 1.7.0~dfsg-1
+Fixed: 1.7.0~dfsg-1+deb8u1</td>
+<td>3.7.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>2617008</td>
+<td>CVE-2021-28831: The gunzip decompressor of Busybox, tiny utilities for small and embedded systems, mishandled the error bit on the huft_build result pointer, with a resultant invalid free or segmentation fault, via malformed gzip data.
+Vulnerable: &lt;= 1.22.0-9+deb8u4
+Fixed: 1.22.0-9+deb8u5</td>
+<td>3.7.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>2617007</td>
+<td>CVE-2021-3443 CVE-2021-3467: Two issues have been found in jasper, a JPEG-2000 runtime library. Both issues are related to jpeg 2000 decoding, where a null pointer dereference and a missing check of valid component numbers referenced by CDEF box, could be exploited.
+Vulnerable: &lt;= 1.900.1-debian1-2.4+deb8u9
+Fixed: 1.900.1-debian1-2.4+deb8u10</td>
+<td>3.7.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>2617006</td>
+<td>CVE-2021-28957: An issue has been found in lxml, a pythonic binding for the libxml2 and libxslt libraries. Due to missing input sanitization, XSS is possible for the HTML5 formaction attribute.
+Vulnerable: &lt;= 3.4.0-1+deb8u3
+Fixed: 3.4.0-1+deb8u4</td>
+<td>3.7.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>2617002</td>
+<td>CVE-2020-25666 CVE-2020-25675 CVE-2020-25676 CVE-2020-27754 CVE-2020-27757 CVE-2020-27758 CVE-2020-27759 CVE-2020-27761 CVE-2020-27762 CVE-2020-27764 CVE-2020-27766 CVE-2020-27767 CVE-2020-27768 CVE-2020-27769 CVE-2020-27770 CVE-2020-27771 CVE-2020-27772 CVE-2020-27774 CVE-2020-27775 CVE-2021-20176 CVE-2021-20241 CVE-2021-20244 CVE-2021-20246: Multiple security vulnerabilities were fixed in Imagemagick. Missing or incomplete input sanitising may lead to undefined behavior which can result in denial of service (application crash) or other unspecified impact.
+Vulnerable: 6.8.9.9-5+deb8u22
+Fixed: 6.8.9.9-5+deb8u23</td>
+<td>3.7.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>2589570</td>
+<td>The following denial-of-service vulnerability has been announced in Pygments, a syntax highlighting library for Python:
+CVE-2021-27291: A number of regular expressions had exponential or cubic worst-case complexity which could cause a remote denial of service (DoS) when provided with malicious input.
+Vulnerable: &lt;= 2.0.1+dfsg-1.1+deb8u2
+Fixed: 2.0.1+dfsg-1.1+deb8u3</td>
+<td>3.7.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>2589567</td>
+<td>The following vulnerabilities have been announced in Pillow, a Python imaging library, which can be used to cause a denial-of-service attack with crafted image files:
+CVE-2020-35653: PcxDecode has a buffer over-read when decoding a crafted PCX file because the user-supplied stride value is trusted for buffer calculations.
+CVE-2021-25290: In TiffDecode.c, there is a negative-offset memcpy with an invalid size.
+Vulnerable: &lt;= 2.6.1-2+deb8u5
+FIxed: 2.6.1-2+deb8u6</td>
+<td>3.7.0-3.7.14.2</td>
 <td></td>
 </tr>
 <tr>
@@ -22409,13 +23445,6 @@ To work around this issue, remove the {{--nl}} flag from the dhcrelay service. <
 <td>The platform json file for the Dell S5048-ON switch is improperly populated. This creates an issue when trying to poll the inventory statistics with NetQ. </td>
 <td>3.7.3-3.7.5</td>
 <td>3.7.6-3.7.14.2</td>
-</tr>
-<tr>
-<td>2540808</td>
-<td>In an EVPN environment, the centralized MAC address is not installed on the MLAG pair because Cumulus Linux does not perform an SVI MAC check per VLAN. 
-This issue does not affect a pure distributed routing (symmetric or asymmetric) environment or a pure centralized routing environment.</td>
-<td>3.7.0-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
 </tr>
 <tr>
 <td>2540738</td>
@@ -23444,9 +24473,75 @@ The NetQ agent has been removed from Cumulus VX 3.7.7. The NetQ agent will be bu
 <td></td>
 </tr>
 <tr>
+<td>CM-20033</td>
+<td>&lt;p&gt;The VLAN interface stays up even though the physical link carrying the VLAN is admin or carrier down.&lt;/p&gt;
+</td>
+<td>3.5.2-3.7.14.2, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-15812</td>
 <td>&lt;p&gt;Multicast forwarding fails for IP addresses whose DMAC overlaps with reserved DIPs.&lt;/p&gt;</td>
 <td>3.2.1-3.7.14.2, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2617009</td>
+<td>CVE-2021-23358: missing input sanitising in the template() function of the Underscore JavaScript library could result in the execution of arbitrary code.
+Vulnerable: 1.7.0~dfsg-1
+Fixed: 1.7.0~dfsg-1+deb8u1</td>
+<td>3.7.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>2617008</td>
+<td>CVE-2021-28831: The gunzip decompressor of Busybox, tiny utilities for small and embedded systems, mishandled the error bit on the huft_build result pointer, with a resultant invalid free or segmentation fault, via malformed gzip data.
+Vulnerable: &lt;= 1.22.0-9+deb8u4
+Fixed: 1.22.0-9+deb8u5</td>
+<td>3.7.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>2617007</td>
+<td>CVE-2021-3443 CVE-2021-3467: Two issues have been found in jasper, a JPEG-2000 runtime library. Both issues are related to jpeg 2000 decoding, where a null pointer dereference and a missing check of valid component numbers referenced by CDEF box, could be exploited.
+Vulnerable: &lt;= 1.900.1-debian1-2.4+deb8u9
+Fixed: 1.900.1-debian1-2.4+deb8u10</td>
+<td>3.7.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>2617006</td>
+<td>CVE-2021-28957: An issue has been found in lxml, a pythonic binding for the libxml2 and libxslt libraries. Due to missing input sanitization, XSS is possible for the HTML5 formaction attribute.
+Vulnerable: &lt;= 3.4.0-1+deb8u3
+Fixed: 3.4.0-1+deb8u4</td>
+<td>3.7.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>2617002</td>
+<td>CVE-2020-25666 CVE-2020-25675 CVE-2020-25676 CVE-2020-27754 CVE-2020-27757 CVE-2020-27758 CVE-2020-27759 CVE-2020-27761 CVE-2020-27762 CVE-2020-27764 CVE-2020-27766 CVE-2020-27767 CVE-2020-27768 CVE-2020-27769 CVE-2020-27770 CVE-2020-27771 CVE-2020-27772 CVE-2020-27774 CVE-2020-27775 CVE-2021-20176 CVE-2021-20241 CVE-2021-20244 CVE-2021-20246: Multiple security vulnerabilities were fixed in Imagemagick. Missing or incomplete input sanitising may lead to undefined behavior which can result in denial of service (application crash) or other unspecified impact.
+Vulnerable: 6.8.9.9-5+deb8u22
+Fixed: 6.8.9.9-5+deb8u23</td>
+<td>3.7.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>2589570</td>
+<td>The following denial-of-service vulnerability has been announced in Pygments, a syntax highlighting library for Python:
+CVE-2021-27291: A number of regular expressions had exponential or cubic worst-case complexity which could cause a remote denial of service (DoS) when provided with malicious input.
+Vulnerable: &lt;= 2.0.1+dfsg-1.1+deb8u2
+Fixed: 2.0.1+dfsg-1.1+deb8u3</td>
+<td>3.7.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>2589567</td>
+<td>The following vulnerabilities have been announced in Pillow, a Python imaging library, which can be used to cause a denial-of-service attack with crafted image files:
+CVE-2020-35653: PcxDecode has a buffer over-read when decoding a crafted PCX file because the user-supplied stride value is trusted for buffer calculations.
+CVE-2021-25290: In TiffDecode.c, there is a negative-offset memcpy with an invalid size.
+Vulnerable: &lt;= 2.6.1-2+deb8u5
+FIxed: 2.6.1-2+deb8u6</td>
+<td>3.7.0-3.7.14.2</td>
 <td></td>
 </tr>
 <tr>
@@ -23607,13 +24702,6 @@ You can prevent EVPN next hops from not being removed when the contributing peer
 <td>On the Dell Z9100-ON switch, {{smond}} reports various sensors going from OK to BAD or OK to ABSENT; then the sensors recover. </td>
 <td>3.7.1-3.7.5</td>
 <td>3.7.6-3.7.14.2</td>
-</tr>
-<tr>
-<td>2540808</td>
-<td>In an EVPN environment, the centralized MAC address is not installed on the MLAG pair because Cumulus Linux does not perform an SVI MAC check per VLAN. 
-This issue does not affect a pure distributed routing (symmetric or asymmetric) environment or a pure centralized routing environment.</td>
-<td>3.7.0-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
 </tr>
 <tr>
 <td>2540738</td>
@@ -24771,9 +25859,75 @@ Permanent MAC address sync between MLAG peers is now supported.</td>
 <td></td>
 </tr>
 <tr>
+<td>CM-20033</td>
+<td>&lt;p&gt;The VLAN interface stays up even though the physical link carrying the VLAN is admin or carrier down.&lt;/p&gt;
+</td>
+<td>3.5.2-3.7.14.2, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-15812</td>
 <td>&lt;p&gt;Multicast forwarding fails for IP addresses whose DMAC overlaps with reserved DIPs.&lt;/p&gt;</td>
 <td>3.2.1-3.7.14.2, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2617009</td>
+<td>CVE-2021-23358: missing input sanitising in the template() function of the Underscore JavaScript library could result in the execution of arbitrary code.
+Vulnerable: 1.7.0~dfsg-1
+Fixed: 1.7.0~dfsg-1+deb8u1</td>
+<td>3.7.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>2617008</td>
+<td>CVE-2021-28831: The gunzip decompressor of Busybox, tiny utilities for small and embedded systems, mishandled the error bit on the huft_build result pointer, with a resultant invalid free or segmentation fault, via malformed gzip data.
+Vulnerable: &lt;= 1.22.0-9+deb8u4
+Fixed: 1.22.0-9+deb8u5</td>
+<td>3.7.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>2617007</td>
+<td>CVE-2021-3443 CVE-2021-3467: Two issues have been found in jasper, a JPEG-2000 runtime library. Both issues are related to jpeg 2000 decoding, where a null pointer dereference and a missing check of valid component numbers referenced by CDEF box, could be exploited.
+Vulnerable: &lt;= 1.900.1-debian1-2.4+deb8u9
+Fixed: 1.900.1-debian1-2.4+deb8u10</td>
+<td>3.7.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>2617006</td>
+<td>CVE-2021-28957: An issue has been found in lxml, a pythonic binding for the libxml2 and libxslt libraries. Due to missing input sanitization, XSS is possible for the HTML5 formaction attribute.
+Vulnerable: &lt;= 3.4.0-1+deb8u3
+Fixed: 3.4.0-1+deb8u4</td>
+<td>3.7.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>2617002</td>
+<td>CVE-2020-25666 CVE-2020-25675 CVE-2020-25676 CVE-2020-27754 CVE-2020-27757 CVE-2020-27758 CVE-2020-27759 CVE-2020-27761 CVE-2020-27762 CVE-2020-27764 CVE-2020-27766 CVE-2020-27767 CVE-2020-27768 CVE-2020-27769 CVE-2020-27770 CVE-2020-27771 CVE-2020-27772 CVE-2020-27774 CVE-2020-27775 CVE-2021-20176 CVE-2021-20241 CVE-2021-20244 CVE-2021-20246: Multiple security vulnerabilities were fixed in Imagemagick. Missing or incomplete input sanitising may lead to undefined behavior which can result in denial of service (application crash) or other unspecified impact.
+Vulnerable: 6.8.9.9-5+deb8u22
+Fixed: 6.8.9.9-5+deb8u23</td>
+<td>3.7.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>2589570</td>
+<td>The following denial-of-service vulnerability has been announced in Pygments, a syntax highlighting library for Python:
+CVE-2021-27291: A number of regular expressions had exponential or cubic worst-case complexity which could cause a remote denial of service (DoS) when provided with malicious input.
+Vulnerable: &lt;= 2.0.1+dfsg-1.1+deb8u2
+Fixed: 2.0.1+dfsg-1.1+deb8u3</td>
+<td>3.7.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>2589567</td>
+<td>The following vulnerabilities have been announced in Pillow, a Python imaging library, which can be used to cause a denial-of-service attack with crafted image files:
+CVE-2020-35653: PcxDecode has a buffer over-read when decoding a crafted PCX file because the user-supplied stride value is trusted for buffer calculations.
+CVE-2021-25290: In TiffDecode.c, there is a negative-offset memcpy with an invalid size.
+Vulnerable: &lt;= 2.6.1-2+deb8u5
+FIxed: 2.6.1-2+deb8u6</td>
+<td>3.7.0-3.7.14.2</td>
 <td></td>
 </tr>
 <tr>
@@ -24862,13 +26016,6 @@ https://security-tracker.debian.org/tracker/ghostscript</td>
 <td>On the Dell Z9100-ON switch, {{smond}} reports various sensors going from OK to BAD or OK to ABSENT; then the sensors recover. </td>
 <td>3.7.1-3.7.5</td>
 <td>3.7.6-3.7.14.2</td>
-</tr>
-<tr>
-<td>2540808</td>
-<td>In an EVPN environment, the centralized MAC address is not installed on the MLAG pair because Cumulus Linux does not perform an SVI MAC check per VLAN. 
-This issue does not affect a pure distributed routing (symmetric or asymmetric) environment or a pure centralized routing environment.</td>
-<td>3.7.0-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
 </tr>
 <tr>
 <td>2540558</td>
@@ -25416,9 +26563,75 @@ To work around this issue, remove the matching {{network}} statement. </td>
 <td></td>
 </tr>
 <tr>
+<td>CM-20033</td>
+<td>&lt;p&gt;The VLAN interface stays up even though the physical link carrying the VLAN is admin or carrier down.&lt;/p&gt;
+</td>
+<td>3.5.2-3.7.14.2, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-15812</td>
 <td>&lt;p&gt;Multicast forwarding fails for IP addresses whose DMAC overlaps with reserved DIPs.&lt;/p&gt;</td>
 <td>3.2.1-3.7.14.2, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2617009</td>
+<td>CVE-2021-23358: missing input sanitising in the template() function of the Underscore JavaScript library could result in the execution of arbitrary code.
+Vulnerable: 1.7.0~dfsg-1
+Fixed: 1.7.0~dfsg-1+deb8u1</td>
+<td>3.7.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>2617008</td>
+<td>CVE-2021-28831: The gunzip decompressor of Busybox, tiny utilities for small and embedded systems, mishandled the error bit on the huft_build result pointer, with a resultant invalid free or segmentation fault, via malformed gzip data.
+Vulnerable: &lt;= 1.22.0-9+deb8u4
+Fixed: 1.22.0-9+deb8u5</td>
+<td>3.7.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>2617007</td>
+<td>CVE-2021-3443 CVE-2021-3467: Two issues have been found in jasper, a JPEG-2000 runtime library. Both issues are related to jpeg 2000 decoding, where a null pointer dereference and a missing check of valid component numbers referenced by CDEF box, could be exploited.
+Vulnerable: &lt;= 1.900.1-debian1-2.4+deb8u9
+Fixed: 1.900.1-debian1-2.4+deb8u10</td>
+<td>3.7.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>2617006</td>
+<td>CVE-2021-28957: An issue has been found in lxml, a pythonic binding for the libxml2 and libxslt libraries. Due to missing input sanitization, XSS is possible for the HTML5 formaction attribute.
+Vulnerable: &lt;= 3.4.0-1+deb8u3
+Fixed: 3.4.0-1+deb8u4</td>
+<td>3.7.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>2617002</td>
+<td>CVE-2020-25666 CVE-2020-25675 CVE-2020-25676 CVE-2020-27754 CVE-2020-27757 CVE-2020-27758 CVE-2020-27759 CVE-2020-27761 CVE-2020-27762 CVE-2020-27764 CVE-2020-27766 CVE-2020-27767 CVE-2020-27768 CVE-2020-27769 CVE-2020-27770 CVE-2020-27771 CVE-2020-27772 CVE-2020-27774 CVE-2020-27775 CVE-2021-20176 CVE-2021-20241 CVE-2021-20244 CVE-2021-20246: Multiple security vulnerabilities were fixed in Imagemagick. Missing or incomplete input sanitising may lead to undefined behavior which can result in denial of service (application crash) or other unspecified impact.
+Vulnerable: 6.8.9.9-5+deb8u22
+Fixed: 6.8.9.9-5+deb8u23</td>
+<td>3.7.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>2589570</td>
+<td>The following denial-of-service vulnerability has been announced in Pygments, a syntax highlighting library for Python:
+CVE-2021-27291: A number of regular expressions had exponential or cubic worst-case complexity which could cause a remote denial of service (DoS) when provided with malicious input.
+Vulnerable: &lt;= 2.0.1+dfsg-1.1+deb8u2
+Fixed: 2.0.1+dfsg-1.1+deb8u3</td>
+<td>3.7.0-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>2589567</td>
+<td>The following vulnerabilities have been announced in Pillow, a Python imaging library, which can be used to cause a denial-of-service attack with crafted image files:
+CVE-2020-35653: PcxDecode has a buffer over-read when decoding a crafted PCX file because the user-supplied stride value is trusted for buffer calculations.
+CVE-2021-25290: In TiffDecode.c, there is a negative-offset memcpy with an invalid size.
+Vulnerable: &lt;= 2.6.1-2+deb8u5
+FIxed: 2.6.1-2+deb8u6</td>
+<td>3.7.0-3.7.14.2</td>
 <td></td>
 </tr>
 <tr>
@@ -25499,13 +26712,6 @@ https://security-tracker.debian.org/tracker/ghostscript</td>
 <td>2543211</td>
 <td>In some cases, the {{switchd}} service might warn of excessive MAC moves from one switch port to itself (for example, from swp18 to swp18).
 </td>
-<td>3.7.0-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
-<td>2540808</td>
-<td>In an EVPN environment, the centralized MAC address is not installed on the MLAG pair because Cumulus Linux does not perform an SVI MAC check per VLAN. 
-This issue does not affect a pure distributed routing (symmetric or asymmetric) environment or a pure centralized routing environment.</td>
 <td>3.7.0-3.7.14.2, 4.0.0-4.3.0</td>
 <td></td>
 </tr>

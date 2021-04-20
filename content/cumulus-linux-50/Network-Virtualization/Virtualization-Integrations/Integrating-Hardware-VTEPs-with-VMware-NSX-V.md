@@ -23,7 +23,7 @@ To integrate a VXLAN with NSX-V, you need to:
 {{%notice note%}}
 Cumulus Linux supports security protocol version TLSv1.2 for SSL connections between the OVSDB server and the NSX controller.
 
-The OVSDB server cannot select the loopback interface as the source IP address, causing top of rack registration to the controller to fail. To work around this issue, run the `net add bgp redistribute connected` command followed by the `net commit` command.
+The OVSDB server cannot select the loopback interface as the source IP address, causing top of rack registration to the controller to fail. To work around this issue, run the CUE `cl set vrf default router bgp address-family ipv4-unicast route-redistribute connected` command.
 {{%/notice%}}
 
 ## Configure the Switch for NSX-V Integration

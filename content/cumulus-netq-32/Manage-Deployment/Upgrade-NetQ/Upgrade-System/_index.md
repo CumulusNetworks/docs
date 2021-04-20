@@ -22,7 +22,7 @@ To complete the preparation:
 
 2. Download the relevant software.
 
-    1. Go to the {{<exlink url="https://cumulusnetworks.com/downloads/" text="Cumulus Downloads">}} page, and select *NetQ* from the **Product** list.
+    1. Go to the {{<exlink url="https://support.mellanox.com/s/" text="MyMellanox downloads page">}} page, and select *NetQ* from the **Product** list.
 
     2. Select *3.2* from the **Version** list, and then click *3.2.1* in the submenu.
 

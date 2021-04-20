@@ -81,6 +81,12 @@
 <td></td>
 </tr>
 <tr>
+<td>2621372</td>
+<td>on the Dell S5248F-ON switch, traffic is not routed through the peerlink when the uplink fails.</td>
+<td>4.1.1-4.3.0</td>
+<td></td>
+</tr>
+<tr>
 <td>2617001</td>
 <td>CVE-2021-26933 CVE-2021-27379
 Multiple vulnerabilities have been discovered in the Xen hypervisor, which could result in denial of service, privilege escalation or memory disclosure.

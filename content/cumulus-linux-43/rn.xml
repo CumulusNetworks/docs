@@ -7,6 +7,20 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-33240</td>
+<td>&lt;p&gt;On the on the Mellanox SN2410 switch, when you restart &lt;tt&gt;switchd&lt;/tt&gt; or reboot the system, you see the following error messages:&lt;/p&gt;
+&lt;div class="preformatted" style="border-width: 1px;"&gt;&lt;div class="preformattedContent panelContent"&gt;
+&lt;pre&gt;[ 1446.599850] switch 2-0048: HW semaphore is not released
+[ 1446.605828] switch 2-0048: Cmd exec failed (opcode=40(ACCESS_REG),opcode_mod=0,in_mod=0,status=30(BAD_PKT))
+[ 1446.616378] switch 2-0048: Reg cmd access failed (reg_id=9002(mfsc),type=write)
+[ 1446.624365] switch 2-0048: Failed to write PWM duty
+&lt;/pre&gt;
+&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;This is a cosmetic issue and does not affect operation of the switch.&lt;/p&gt;</td>
+<td>4.3.0</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-33167</td>
 <td>&lt;p&gt;On the Mellanox SN4700 switch, if you use the CREDO CABLE with a 4x100 configuration, the system experiences issues accessing the ASIC Thermal sensors.&lt;/p&gt;</td>
 <td>4.3.0</td>
@@ -279,19 +293,6 @@ Fixed: 1.3.8+dfsg-3+deb10u1</td>
 <td>2556500</td>
 <td>Cumulus Linux does not support bond members at 200G or greater.</td>
 <td>4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
-<td>2556463</td>
-<td>On the on the Mellanox SN2410 switch, when you restart {{switchd}} or reboot the system, you see the following error messages:
-
-[ 1446.599850] switch 2-0048: HW semaphore is not released
-[ 1446.605828] switch 2-0048: Cmd exec failed (opcode=40(ACCESS_REG),opcode_mod=0,in_mod=0,status=30(BAD_PKT))
-[ 1446.616378] switch 2-0048: Reg cmd access failed (reg_id=9002(mfsc),type=write)
-[ 1446.624365] switch 2-0048: Failed to write PWM duty
-
-This is a cosmetic issue and does not affect operation of the switch.</td>
-<td>4.3.0</td>
 <td></td>
 </tr>
 <tr>

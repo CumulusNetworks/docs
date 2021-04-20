@@ -14,7 +14,7 @@ Cumulus Linux includes the `linuxptp` package for PTP, which uses the `phc2sys` 
 - PTP is supported in boundary clock mode only (the switch provides timing to downstream servers; it is a slave to a higher-level clock and a master to downstream clocks).
 - The switch uses hardware time stamping to capture timestamps from an Ethernet frame at the physical layer. This allows PTP to account for delays in message transfer and greatly improves the accuracy of time synchronization.
 - IPv4 and IPv6 UDP PTP packets are supported.
-- Only multicast message mode is supported.
+- Multicast and mixed message mode is supported; unicast only message mode is *not* supported.
 - Only a single PTP domain per network is supported. A PTP domain is a network or a portion of a network within which all the clocks are synchronized.
 - PTP is supported on BGP unnumbered interfaces.
 - You can isolate PTP traffic to a non-default VRF.
@@ -27,39 +27,85 @@ In the following example, boundary clock 2 receives time from Master 1 (the gran
 
 ## Basic Configuration
 
-To configure the PTP boundary clock:
+Basic PTP configuration requires you:
 
-1. Enable PTP on the switch to start the `ptp4l` and `phc2sys` processes:
+- Enable PTP on the switch to start the `ptp4l` and `phc2sys` processes.
+- Configure the interfaces on the switch that you want to use for PTP. Each interface must be configured as a layer 3 routed interface with an IP address.
+- Add the PTP master and slave interfaces. You do not specify which is a master interface and which is a slave interface; this is determined by the PTP packet received.
 
-   ```
-   cumulus@switch:~$ cl set service ptp 1 enable on
-   ```
-
-2. Configure the interfaces on the switch that you want to use for PTP. Each interface must be configured as a layer 3 routed interface with an IP address.
-
-   ```
-   cumulus@switch:~$ cl set interface swp13s0 ip address 10.0.0.9/32
-   cumulus@switch:~$ cl set interface swp13s0 ip address 10.0.0.10/32
-   ```
-
-3. Configure PTP options on the switch:
-
-    - Set the clock mode to configure the switch to be a boundary clock. This is the only option at this time.
-    - Set the priority, which selects the best master clock. You can set priority 1 or 2. For each priority, you can use a number between 0 and 255. The default priority is 255. For the boundary clock, use a number above 128. The lower priority is applied first.
-    - Add the PTP master and slave interfaces. You do not specify which is a master interface and which is a slave interface; this is determined by the PTP packet received. The following commands provide an example configuration:
-
-      ```
-      cumulus@switch:~$ cl set service ptp 1 clock-mode boundary
-      cumulus@switch:~$ cl set service ptp 1 priority2 254
-      cumulus@switch:~$ cl set service ptp 1 priority1 254
-      cumulus@switch:~$ cl set interface swp13s0 service ptp enable on
-      cumulus@switch:~$ cl set interface swp13s1 service ptp enable on
-      cumulus@switch:~$ cl config apply
-      ```
+```
+cumulus@switch:~$ cl set service ptp 1 enable on
+cumulus@switch:~$ cl set interface swp6s0 ip address 10.0.0.9/32
+cumulus@switch:~$ cl set interface swp6s1 ip address 10.0.0.10/32
+cumulus@switch:~$ cl set interface swp6s0 service ptp enable on
+cumulus@switch:~$ cl set interface swp6s1 service ptp enable on
+cumulus@switch:~$ cl config apply
+```
 
 The configuration is saved in the `/etc/ptp4l.conf` file.
 
+The basic configuration uses the {{<link url="#ptp-profiles" text="default profile">}} and these default settings:
+- {{<link url="#boundary-clock-mode" text="Boundary Clock mode">}}
+- Priority1 and Priority2 are set to 128
+- {{<link url="#transport-mode" text="Transport mode">}} is IPv4
+- {{<link url="#message-mode" text="Message Mode">}} is multicast
+- {{<link url="#one-step-and-two-step-mode" text="Hardware timestamping mode is one-step ">}}
+- {{<link url="#ptp-timers" text="Sync and Delay Request messages">}} are sent out at the rate of 1 message per second
+- {{<link url="#ptp-timers" text="Announce messages">}} are sent out once every two seconds
+- {{<link url="#ptp-timers" text="Announce timeout">}} is three seconds
+- {{<link url="#acceptable-master-table" text="Announce messages from any master are accepted">}}
+
+To use a different profile and to configure optional settings, see Optional Configuration, below.
+
 ## Optional Configuration
+
+### PTP Profiles
+
+PTP rofiles are a standardized set of configurations and rules intended to meet the requirements of a specific application. Profiles define required, allowed, and restricted PTP options, network restrictions, and performance requirements.
+
+Cumulus Linux supports the following profiles:
+- *Default* is the profile specified in IEEE 1588 standard. If you do not choose a profile or perform any optional configuration, the PTP software is initialized with default values in the standard. The default profile addresses some common applications, such as Industrial Automation. It does not have any network restrictions and is used as the first profile to be tested in qualification of equipment.
+- *AES67* is a standard developed by the Audio Engineering Society to support Audio Over IP and Audio Over Ethernet. The standard uses IPV4 multicast and IGMP. DiffServ and DSCP are used for setting priorities. This PTP profile allows you to combine audio streams at the receiver end and allows synchronization of multiple streams.
+- *SMPTE ST-2059-2* is a standard developed by the Society of Motion Pictures and Television Engineers. The standard was developed specifically to synchronize video equipment in a professional broadcast environment. Strict timing is required to switch between video streams at the frame level in the nano second range. For example, an NFL broadcast typically has multiple cameras sending video streams and these streams are sent to the headend. The clocks in these cameras need to be synchronized to the nano second level. This allows switching from one camera angle to another by switching at the frame level without viewers noticing a blank frame.
+
+AES67 and SMPTE ST-2059-2 are PTP Multimedia profiles. These profiles support video and audio applications used in professional broadcast environments and synchronization of multiple video and audio streams across multiple devices.
+
+The following table shows the default settings for each profile.
+
+| Profile | Domain| Priority1| Priority2 | Announce | Announce Timeout| Sync     | Delay Request |
+| ------- | ------| -------- | --------- | -------- | --------------- | -------- | ------------- |
+| Default | Default: 0<br>Range: 0 to 127   | Default: 128<br>Range: 0 to 255 | Default: 128<br>Range: 0 to 255 | Default: 1 (1 per 2 s)<br>Range: 0 to 4 | Default: 3<br>Range: 2 to 10 | Default:0 (1/s)<br>Range: -1 to 1 | Default:0<br>Range: 0 to 5 |
+| AES67   | Default: 0<br>Range: 0 to 127   | Default: 128<br>Range: 0 to 255 | Default: 128<br>Range: 0 to 255 | Default: 0 (1/s)<br>Range: 0 to 4 | Default: 3<br>Range: 2 to 10 | Default:-2 250 ms (4/s)<br>Range: -4 to 1 | Default: -2 250ms (4/s)<br>Range: -4 to 1 |
+| SMPTE   | Default: 127<br>Range: 0 to 127 | Default: 128<br>Range: 0 to 255 | Default: 128<br>Range: 0 to 255 | Default: -2 250ms (4/s)<br>Range: -3 to 1 |Default: 3<br>Range: 2 to 10 | Default: -3 125ms (8/s)<br>Range: -7 to -1 |Default: -3 125ms (8/s)<br>Range: -7 to -1 |
+
+To configure the switch to use the AES67 profile:
+
+```
+cumulus@switch:~$ cl set service ptp 1 profile-type aes67
+cumulus@switch:~$ cl config apply
+```
+
+To configure the switch to use the SMPTE ST-2059-2 profile:
+
+```
+cumulus@switch:~$ cl set service ptp 1 profile-type smpte
+cumulus@switch:~$ cl config apply
+```
+
+To set the profile back to the default:
+
+```
+cumulus@switch:~$ cl set service ptp 1 profile-type default-1588
+cumulus@switch:~$ cl config apply
+```
+
+## Boundary Clock Mode
+
+Cumulus Linux supports PTP boundary clock mode only. The switch provides timing to downstream servers; it is a slave to a higher-level clock and a master to downstream clocks.
+
+## PTP Priority
+
+Use the PTP priority to select the best master clock. You can set priority 1 or 2. For each priority, you can use a number between 0 and 255. The default priority is 128. For the boundary clock, use a number above 128. The lower priority is applied first.
 
 ### Transport Mode
 
@@ -70,13 +116,13 @@ cumulus@switch:~$ cl set interface swp6 service ptp transport ipv6
 cumulus@switch:~$ cl config apply
 ```
 
-## Message Modes
+### Message Mode
 
 Cumulus Linux supports the following PTP message modes:
 - Multicast, where the ports subscribe to two multicast addresses, one for event messages that are timestamped and the other for general messages that are not timestamped. The SYNC message sent by the master is a multicast message and is received by all slave ports. This is critical and is required, since the slaves need the master's time. The slave ports in turn generate a Delay Request to the master. This is a multicast message and is received not only by the Master for which the message is intended, but also by other slave ports. Similarly, the master's Delay Response is also received by all slave ports in addition to the intended slave port. The slave ports receiving the unintended Delay Requests and Responses need to drop them. This is unnecessary wastage of network bandwidth. It becomes worse when there are hundreds of slave ports. 
 - Mixed, where the SYNC and Announce messages are sent as multicast messages but the Delay Request and Response messages are sent as unicast. This avoids the issue seen in pure multicast message mode where every slave port sees Delay Requests and Responses from every other slave port.
 
-Multicast mode is the default setting. To set mthe message mode to *mixed*:
+Multicast mode is the default setting. To set the message mode to *mixed*:
 
 ```
 cumulus@switch:~$ cl set service ptp 1 message-mode mixed
@@ -133,6 +179,33 @@ To restrict the number of hops a PTP message can travel, set the TTL on the PTP 
 
 ```
 cumulus@switch:~$ cl set interface swp6 service ptp ttl 20
+cumulus@switch:~$ cl config apply
+```
+
+### PTP Timers
+
+You can set the following timers for PTP messages.
+
+| Timer | Description |
+| ----- | ----------- |
+| announce-interval | The average interval between successive Announce messages. Specify the value as a power of two in seconds. |
+| announce-timeout | The number of announce intervals that have to occur without receipt of an Announce message before a timeout occurs. |
+| delay-req-interval | The minimum average time interval allowed between successive Delay Required messages. |
+| sync-interval | The interval between PTP synchronization messages on an interface. Specify the value as a power of two in seconds. |
+
+To set the timers, run the `cl set interface <interface> service ptp timers <timer> <value>` command.
+
+The following example sets the announce interval between successive Announce messages on swp6 to -1.
+
+```
+cumulus@switch:~$ cl set interface swp6 service ptp timers announce-interval -1
+cumulus@switch:~$ cl config apply
+```
+
+The following example sets the mean sync-interval for multicast messages on swp6 to -5.
+
+```
+cumulus@switch:~$ cl set interface swp6 service ptp timers sync-interval -5
 cumulus@switch:~$ cl config apply
 ```
 

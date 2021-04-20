@@ -45,7 +45,7 @@ cumulus@switch:~$ cl config apply
 The configuration is saved in the `/etc/ptp4l.conf` file.
 
 The basic configuration uses the {{<link url="#ptp-profiles" text="default profile">}} and these default settings:
-- {{<link url="#boundary-lock-mode" text="Boundary Clock mode">}}
+- {{<link url="#boundary-clock-mode" text="Boundary Clock mode">}}
 - Priority1 and Priority2 are set to 128
 - {{<link url="#transport-mode" text="Transport mode">}} is IPv4
 - {{<link url="#message-mode" text="Message Mode">}} is multicast

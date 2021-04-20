@@ -6,7 +6,7 @@ toc: 3
 ---
 With the growth of low latency and high performance applications, precision timing has become increasingly important. Precision Time Protocol (PTP) is used to synchronize clocks in a network and is capable of sub-microsecond accuracy. The clocks are organized in a master-slave hierarchy. The slaves are synchronized to their masters, which can be slaves to their own masters. The hierarchy is created and updated automatically by the best master clock (BMC) algorithm, which runs on every clock. The grandmaster clock is the top-level master and is typically synchronized by using a Global Positioning System (GPS) time source to provide a high-degree of accuracy.
 
-A boundary clock has multiple ports; one or more master ports and one or more slave ports. The master ports provide time (the time can originate from other masters further up the hierarchy) and the slave ports receive time. The boundary clock absorbs sync messages in the slave port, uses that port to set its clock, then generates new sync messages from this clock out of all of its master ports.
+A boundary clock has multiple ports; one or more master ports and one or more slave ports. The master ports provide time (the time can originate from other masters further up the hierarchy) and the slave ports receive time. The boundary clock absorbs Sync messages in the slave port, uses that port to set its clock, then generates new Sync messages from this clock out of all of its master ports.
 
 Cumulus Linux includes the `linuxptp` package for PTP, which uses the `phc2sys` daemon to synchronize the PTP clock with the system clock.
 
@@ -29,7 +29,7 @@ In the following example, boundary clock 2 receives time from Master 1 (the gran
 
 Basic PTP configuration requires you:
 
-- Enable PTP on the switch to start the `ptp4l` and `phc2sys` processes.
+- Enable PTP on the switch to start the `ptp4l` and `phc2sys` processes. The `cl set service PTP` commands require an instance number (1 in the example commands below). This number is used for management purposes.
 - Configure the interfaces on the switch that you want to use for PTP. Each interface must be configured as a layer 3 routed interface with an IP address.
 - Add the PTP master and slave interfaces. You do not specify which is a master interface and which is a slave interface; this is determined by the PTP packet received.
 
@@ -46,13 +46,9 @@ The configuration is saved in the `/etc/ptp4l.conf` file.
 
 The basic configuration uses the {{<link url="#ptp-profiles" text="default profile">}} and these default settings:
 - {{<link url="#boundary-clock-mode" text="Boundary Clock mode">}}
-- Priority1 and Priority2 are set to 128
 - {{<link url="#transport-mode" text="Transport mode">}} is IPv4
 - {{<link url="#message-mode" text="Message Mode">}} is multicast
-- {{<link url="#one-step-and-two-step-mode" text="Hardware timestamping mode is one-step ">}}
-- {{<link url="#ptp-timers" text="Sync and Delay Request messages">}} are sent out at the rate of 1 message per second
-- {{<link url="#ptp-timers" text="Announce messages">}} are sent out once every two seconds
-- {{<link url="#ptp-timers" text="Announce timeout">}} is three seconds
+- {{<link url="#one-step-and-two-step-mode" text="One-step hardware timestamping mode">}}
 - {{<link url="#acceptable-master-table" text="Announce messages from any master are accepted">}}
 
 To use a different profile and to configure optional settings, see Optional Configuration, below.
@@ -99,13 +95,39 @@ cumulus@switch:~$ cl set service ptp 1 profile-type default-1588
 cumulus@switch:~$ cl config apply
 ```
 
+## PTP Clock Domains
+
+PTP domains allow different independent timing systems to be present in the same network without confusing each other.
+Every PTP message contains a domain number. A PTP instance is configured to work in only one domain and ignores messages that contain a different domain number.
+
+You can specify multiple PTP clock domains. Each domain is completely isolated from other domains so that it is seen as a different PTP network. You can specify a number between 0 and 127.
+
+The following examle commands configure domain 3:
+
+```
+cumulus@switch:~$ cl set service ptp 1 domain 3.
+cumulus@switch:~$ cl config apply
+```
+
 ## Boundary Clock Mode
 
 Cumulus Linux supports PTP boundary clock mode only. The switch provides timing to downstream servers; it is a slave to a higher-level clock and a master to downstream clocks.
 
 ## PTP Priority
 
-Use the PTP priority to select the best master clock. You can set priority 1 or 2. For each priority, you can use a number between 0 and 255. The default priority is 128. For the boundary clock, use a number above 128. The lower priority is applied first.
+Use the PTP priority to select the best master clock. You can set priority 1 and 2:
+- Priority 1 overrides the clock class and quality selection criteria to select the best master clock.
+- Priority 2 is used to identify primary and backup clocks among identical redundant Grandmasters.
+
+The range for both priority1 and priority2 is between 0 and 255. The default priority for all profiles is 128. For the boundary clock, use a number above 128. The lower priority is applied first.
+
+The following example commands set priority 1 and priority 2 to 200:
+
+```
+cumulus@switch:~$ cl set service ptp 1 priority1 200
+cumulus@switch:~$ cl set service ptp 1 priority2 200
+cumulus@switch:~$ cl config apply
+```
 
 ### Transport Mode
 
@@ -119,8 +141,8 @@ cumulus@switch:~$ cl config apply
 ### Message Mode
 
 Cumulus Linux supports the following PTP message modes:
-- Multicast, where the ports subscribe to two multicast addresses, one for event messages that are timestamped and the other for general messages that are not timestamped. The SYNC message sent by the master is a multicast message and is received by all slave ports. This is critical and is required, since the slaves need the master's time. The slave ports in turn generate a Delay Request to the master. This is a multicast message and is received not only by the Master for which the message is intended, but also by other slave ports. Similarly, the master's Delay Response is also received by all slave ports in addition to the intended slave port. The slave ports receiving the unintended Delay Requests and Responses need to drop them. This is unnecessary wastage of network bandwidth. It becomes worse when there are hundreds of slave ports. 
-- Mixed, where the SYNC and Announce messages are sent as multicast messages but the Delay Request and Response messages are sent as unicast. This avoids the issue seen in pure multicast message mode where every slave port sees Delay Requests and Responses from every other slave port.
+- *Multicast*, where the ports subscribe to two multicast addresses, one for event messages that are timestamped and the other for general messages that are not timestamped. The Sync message sent by the master is a multicast message and is received by all slave ports. This is required because the slaves need the master's time. The slave ports in turn generate a Delay Request to the master. This is a multicast message and is received not only by the Master for which the message is intended, but also by other slave ports. Similarly, the master's Delay Response is also received by all slave ports in addition to the intended slave port. The slave ports receiving the unintended Delay Requests and Responses need to drop the packets. This can affect network bandwidth, especially if there are hundreds of slave ports.
+- *Mixed*, where Sync and Announce messages are sent as multicast messages but Delay Request and Response messages are sent as unicast. This avoids the issue seen in multicast message mode where every slave port sees Delay Requests and Responses from every other slave port.
 
 Multicast mode is the default setting. To set the message mode to *mixed*:
 
@@ -144,9 +166,7 @@ cumulus@switch:~$ cl config apply
 
 ### Acceptable Master Table
 
-The acceptable master table option is a security feature that prevents a rogue player pretending to be Master from taking over the PTP network. The clock IDs of known masters are configured in the Acceptable Master table. If you configure a PTP port on the switch with the acceptable master table option, the BMC algorithm checks if the master received on the Announce message is in this table and only then it proceeds with the Master selection. Thi option is disabled by default on PTP ports.
-
-There is also an option to configure an AlternatePriority1 for the Masters. When configured (greater than zero), the priority1 value on the Announce message is replaced with the configured AlternatePriority1 value to be used in the BMC algorithm.
+The acceptable master table option is a security feature that prevents a rogue player pretending to be Master from taking over the PTP network. The clock IDs of known masters are configured in the Acceptable Master table. If you configure a PTP port on the switch with the acceptable master table option, the BMC algorithm checks if the master received on the Announce message is in this table and only then it proceeds with the Master selection. This option is disabled by default on PTP ports.
 
 The following example commands enable the PTP acceptable master table option for swp6:
 
@@ -159,7 +179,7 @@ cumulus@switch:~$ cl config apply
 
 By default, ports configured for PTP are in auto mode, where the state of the port is determined by the BMC algorithm.
 
-You can configure *Forced Master* mode on a PTP port so that it is always in a master state and the BMC algorithm is not run for this port. Any announce messages received on this port are ignored.
+You can configure *Forced Master* mode on a PTP port so that it is always in a master state and the BMC algorithm is not run for this port. Any Announce messages received on this port are ignored.
 
 ```
 cumulus@switch:~$ cl set interface swp6 service ptp forced-master on
@@ -184,12 +204,12 @@ cumulus@switch:~$ cl config apply
 
 ### PTP Timers
 
-You can set the following timers for PTP messages.
+You can set the following timers for PTP messages. The default values for the supported profiles are listed in {{<link url="#ptp-profiles" text="PTP Profiles">}}.
 
 | Timer | Description |
 | ----- | ----------- |
 | announce-interval | The average interval between successive Announce messages. Specify the value as a power of two in seconds. |
-| announce-timeout | The number of announce intervals that have to occur without receipt of an Announce message before a timeout occurs. |
+| announce-timeout | The number of announce intervals that have to occur without receipt of an Announce message before a timeout occurs. <br>Make sure that this value is longer than the announce-interval in your network.|
 | delay-req-interval | The minimum average time interval allowed between successive Delay Required messages. |
 | sync-interval | The interval between PTP synchronization messages on an interface. Specify the value as a power of two in seconds. |
 

@@ -6,15 +6,15 @@ toc: 4
 ---
 The VLAN-aware mode in Cumulus Linux implements a configuration model for large-scale layer 2 environments, with **one single instance** of {{<link url="Spanning-Tree-and-Rapid-Spanning-Tree-STP" text="spanning tree protocol">}}. Each physical bridge member port is configured with the list of allowed VLANs as well as its port VLAN ID, either primary VLAN Identifier (PVID) or native VLAN. MAC address learning, filtering and forwarding are *VLAN-aware*. This significantly reduces the configuration size, and eliminates the large overhead of managing the port and VLAN instances as subinterfaces, replacing them with lightweight VLAN bitmaps and state updates.
 
-On NVIDIA Spectrum-2 and Spectrum-3 switches, Cumulus Linux supports multiple VLAN aware bridges. However, be aware of the following limitations:
+On NVIDIA Spectrum-2 and Spectrum-3 switches, Cumulus Linux supports multiple VLAN aware bridges but with the following limitations:
 
-- MLAG is not supported in a multiple VLAN-aware bridge configuration.
-- The same port cannot be part of multiple VLAN-aware bridges.
-- The same VNIs cannot appear in multiple VLAN-aware bridges.
-- VLAN translation is not supported.
-- Double tagged VLAN interfaces are not supported.
-- You cannot associate multiple single virtual devices (SVDs) with a single VLAN-aware bridge.
-- IGMPv3 is not supported.
+- MLAG is not supported with multiple VLAN-aware bridges
+- The same port cannot be part of multiple VLAN-aware bridges
+- The same VNIs cannot appear in multiple VLAN-aware bridges
+- VLAN translation is not supported with multiple VLAN-aware bridges
+- Double tagged VLAN interfaces are not supported with multiple VLAN-aware bridges
+- You cannot associate multiple single virtual devices (SVDs) with a single VLAN-aware bridge
+- IGMPv3 is not supported
 
 ## Configure a VLAN-aware Bridge
 
@@ -22,7 +22,7 @@ The example below shows the commands required to create a VLAN-aware bridge that
 
 {{< img src = "/images/cumulus-linux/ethernet-bridging-basic-trunking1.png" >}}
 
-{{< tabs "TabID27 ">}}
+{{< tabs "TabID25 ">}}
 {{< tab "CUE Commands ">}}
 
 With CUE, there is a default bridge called `br_default`, which has no ports assigned to it. The example below configures this default bridge.
@@ -87,28 +87,65 @@ iface br_default
     bridge-vlan-aware yes
 ```
 
-The following example shows a configuration with two VLAN-aware bridges:
-
-```
-auto bridge1 
-iface bridge1 
-    bridge-vlan-aware yes 
-    bridge-ports swp1 swp2 swp3 vni100100 (pvid 100) vni100101 (pvid 101) ... 
-    bridge-vids 100-200 
- 
-auto bridge2 
-iface bridge2 
-    bridge-vlan-aware yes 
-    bridge-ports swp4 swp5 swp6 vni200100 (pvid 100) vni200101 (pvid 101) ... 
-    bridge-vids 100-200
-```
-
-In the above example, bridge1 and bridge2 has same set of VLAN IDs but packets coming in on bridge1 ports (swp1, swp2, and swp3) do not get forwarded to the bridge2 interfaces.
-
 {{%notice note%}}
 - If you specify `bridge-vids` or `bridge-pvid` at the bridge level, these configurations are inherited by all ports in the bridge. However, specifying any of these settings for a specific port overrides the setting in the bridge.
 - Do not bridge the management port eth0 with any switch ports. For example, if you create a bridge with eth0 and swp1, the bridge does not work correctly and might disrupt access to the management interface.
 {{%/notice%}}
+
+## Configure Multiple VLAN-aware Bridges
+
+This example shows the commands required to create two VLAN-aware bridges on the switch:
+- bridge1 bridges swp1 and swp2, and includes 2 VLANs; vlan 10 and vlan 20
+- bridge2 bridges swp3 and contains one VLAN; vlan 10
+
+Bridges are independent so you can reuse VLANs between bridges. Each VLAN-aware bridge maintains its own MAC address and VLAN tag table; MAC and VLAN tags in one bridge are not visibile to the other table.
+
+{{< img src = "/images/cumulus-linux/ethernet-bridging-vmvab.png" >}}
+
+{{< tabs "TabID103 ">}}
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@switch:~$ cl set interface swp1-2 bridge domain bridge1
+cumulus@switch:~$ cl set bridge domain bridge1 vlan 10,20
+cumulus@switch:~$ cl set bridge domain bridge1 untagged 1
+cumulus@switch:~$ cl set interface swp3 bridge domain bridge2
+cumulus@switch:~$ cl set bridge domain bridge2 vlan 10
+cumulus@switch:~$ cl config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Edit the `/etc/network/interfaces` file and add the bridge. An example configuration is shown below.
+
+```
+cumulus@switch:~$ sudo nano /etc/network/interfaces
+...
+auto bridge1
+iface bridge1
+    bridge-ports swp1 swp2
+    bridge-vlan-aware yes
+    bridge-vids 10 20
+    bridge-pvid 1
+
+auto bridge2
+iface bridge2
+    bridge-ports swp3
+    bridge-vlan-aware yes
+    bridge-vids 10
+    bridge-pvid 1
+...
+```
+
+Run the `ifreload -a` command to load the new configuration:
+
+```
+cumulus@switch:~$ ifreload -a
+```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ## VLAN Range
 

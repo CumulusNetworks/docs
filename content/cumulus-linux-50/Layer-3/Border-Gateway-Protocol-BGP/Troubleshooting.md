@@ -38,9 +38,7 @@ show bgp ipv6 unicast summary
 ```
 
 {{%notice tip%}}
-
 To determine if the sessions above are iBGP or eBGP sessions, look at the ASNs.
-
 {{%/notice%}}
 
 To view the routing table as defined by BGP, run the NCLU `net show bgp ipv4 unicast` command or the vtysh `show ip bgp` command. For example:

@@ -147,6 +147,10 @@ cumulus@switch:~$ ifreload -a
 {{< /tab >}}
 {{< /tabs >}}
 
+{{%notice note%}}
+NVIDIA Spectrum switches currently support a maximum of 6000 VLAN elements. The total number of VLAN elements is calculated as the number of VLANS * the number of bridges configured. For example, 6 bridges, each containing 1000 VLANS totals 6000 VLAN elements.
+{{%/notice%}}
+
 ## VLAN Range
 
 For hardware data plane internal operations, the switching silicon requires VLANs for every physical port, Linux bridge, and layer 3 subinterface. Cumulus Linux supports the full range of VLANs from 1 to 4096.

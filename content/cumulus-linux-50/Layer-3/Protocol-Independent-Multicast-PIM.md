@@ -990,13 +990,12 @@ To begin receiving multicast traffic for a group, a receiver expresses its inter
 
 In some configurations, it is desirable to configure the LHR with an RP address that does not match the actual RP address for the group. In this case, you must configure the upstream routers to accept the Join and propagate it towards the appropriate RP for the group, ignoring the mismatched RP address provided in the PIM Join sent by the LHR and replacing it with its own RP for the group.
 
-To can configure the switch to allow joins from all upstream neighbors or you can provide a prefix list so that only joins with an upstream neighbor address in the list are unconditionally accepted.
+To can configure the switch to allow joins from all upstream neighbors or to provide a prefix list so that only joins with an upstream neighbor address in the list are accepted unconditionally:
 
 {{< tabs "TabID997 ">}}
 {{< tab "CUE Commands ">}}
 
 The following example command configures PIM to ignore the RP check for all upstream neighbors:
-
 
 ```
 cumulus@switch:~$ cl set interface swp50 pim allow-rp

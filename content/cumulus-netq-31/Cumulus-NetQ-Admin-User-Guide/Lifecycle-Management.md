@@ -513,7 +513,7 @@ To create a profile:
 
     {{<figure src="/images/netq/lcm-netq-config-profile-log-level-310.png" width="450">}}
 
-8. Optionally set a CPU usage limit for the NetQ Agent. Click **Enable** and drag the dot to the desired limit. Refer to this {{<exlink url="https://docs.cumulusnetworks.com/knowledge-base/Configuration-and-Usage/Cumulus-NetQ/NetQ-Agent-CPU-Utilization-on-Cumulus-Linux-Switches/" text="knowledge base article">}} for information about this feature.
+8. Optionally set a CPU usage limit for the NetQ Agent. Click **Enable** and drag the dot to the desired limit. Refer to this {{<kb_link url="knowledge-base/Configuration-and-Usage/Cumulus-NetQ/NetQ-Agent-CPU-Utilization-on-Cumulus-Linux-Switches/" text="knowledge base article">}} for information about this feature.
 
 9. Click **Add** to complete the configuration or **Close** to discard the configuration.
 
@@ -915,7 +915,7 @@ To upgrade switches:
 
     If one or more of the pre-checks fail, resolve the related issue and start the upgrade again. Expand the following dropdown to view common failures, their causes and corrective actions.
 
-    {{< expand "Pre-check Failure Messages"  >}}
+{{< expand "Pre-check Failure Messages"  >}}
 
 <table>
 <colgroup>
@@ -1045,7 +1045,7 @@ To upgrade switches:
 <td>hostname:&lt;hostname&gt;,reason:&lt;MLAG error message&gt;</td>
 <td>Error</td>
 <td>An error in an MLAG configuration has been detected. For example: Backup IP 10.10.10.1 does not belong to peer.</td>
-<td>Review the MLAG configuration on the identified switch. Refer to {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux-41/Layer-2/Multi-Chassis-Link-Aggregation-MLAG/" text="Multi-Chassis Link Aggregation-MLAG">}}. Make any needed changes.</td>
+<td>Review the MLAG configuration on the identified switch. Refer to the MLAG documentation for more information. Make any needed changes.</td>
 </tr>
 <tr>
 <td></td>
@@ -1115,7 +1115,7 @@ Several viewing options are available for monitoring the upgrade job.
 
     {{<figure src="/images/netq/lcm-upgrade-switches-job-upgrading-2-310.png" width="700" caption="Multiple roles and some without roles">}}
 
-    Each switch goes through a number of steps. To view these steps, click {{<img src="https://icons.cumulusnetworks.com/52-arrows-diagrams/01-arrows/arrow-down-1.svg" height="18" width="18">}} and scroll down as needed. Click {{<img src="https://icons.cumulusnetworks.com/52-arrows-diagrams/01-arrows/arrow-up-1.svg" height="18" width="18">}} to close the detail.
+    Each switch goes through a number of steps. To view these steps, click {{<img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-down-1.svg" height="18" width="18">}} and scroll down as needed. Click {{<img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-up-1.svg" height="18" width="18">}} to close the detail.
 
 - Monitor the job with summary information only in the CL Upgrade History page. Open this view by clicking {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14">}} in the full details view:
 

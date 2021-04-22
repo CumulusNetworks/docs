@@ -20,13 +20,11 @@ The following illustration shows a basic NAT configuration.
 {{< img src = "/images/cumulus-linux/nat-example.png" >}}
 
 {{%notice note%}}
-
 - NAT is supported on NVIDIA Spectrum-2 and Spectrum-3 switches only.
 - NAT is supported on physical interfaces and bond interfaces and only in the default VRF.
 - IPv6 to IPv4 translation is not supported.
 - Multicast traffic is not supported.
 - NAT is *not* supported in an EVPN configuration.
-
 {{%/notice%}}
 
 ## Static NAT
@@ -53,9 +51,7 @@ Then restart `switchd`.
 {{<cl/restart-switchd>}}
 
 {{%notice note%}}
-
 Other options in the NAT configuration section of the `switchd.conf` file, such as `nat.age_poll_interval` and `nat.table_size` are dynamic NAT configuration options and are not supported with static NAT.
-
 {{%/notice%}}
 
 ### Configure Static NAT
@@ -69,7 +65,6 @@ For NVIDIA Spectrum-2 switches, you can include the outgoing or incoming interfa
 To create rules, you can use either NCLU or `cl-acltool`.
 
 {{< tabs "TabID68 ">}}
-
 {{< tab "NCLU Commands ">}}
 
 Use the following NCLU commands:
@@ -137,7 +132,6 @@ cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
-
 {{< tab "cl-acltool Commands ">}}
 
 To add NAT rules using `cl-acltool`, either edit an existing file in the `/etc/cumulus/acl/policy.d` directory and add rules under `[iptables]` or create a new file in the `/etc/cumulus/acl/policy.d` directory and add rules under an `[iptables]` section. For example:
@@ -178,7 +172,6 @@ The following rule matches UDP packets with destination IP address 172.30.58.80 
 To delete a static NAT rule, remove the rule from the policy file in the  `/etc/cumulus/acl/policy.d` directory, then run the `sudo cl-acltool -i command`.
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 ## Dynamic NAT
@@ -225,7 +218,6 @@ For dynamic **PAT**, create a rule that matches an IP address in CIDR notation a
 For NVIDIA Spectrum-2 switches, you can include the outgoing or incoming interface in the rule. See the examples below.
 
 {{< tabs "TabID226 ">}}
-
 {{< tab "NCLU Commands ">}}
 
 Use the following NCLU commands:
@@ -301,7 +293,6 @@ cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
-
 {{< tab "cl-acltool Commands ">}}
 
 To add NAT rules using `cl-acltool`, either edit an existing file in the `/etc/cumulus/acl/policy.d` directory and add rules under `[iptables]` or create a new file in the `/etc/cumulus/acl/policy.d` directory and add rules under an `[iptables]` section. For example:
@@ -348,7 +339,6 @@ The following rule matches ICMP packets with source IP address in the range 10.0
 To delete a dynamic NAT rule, remove the rule from the policy file in the  `/etc/cumulus/acl/policy.d` directory, then run the `sudo cl-acltool -i` command.
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 ## Show Configured NAT Rules

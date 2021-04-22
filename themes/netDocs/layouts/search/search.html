@@ -31,18 +31,18 @@
       <div class="container-lg">
         <nav class="navTopWrapper">
           <ul class="navTop">
-            <li><a href="https://www.nvidia.com/" target="_blank"><img src="https://static.cumulusnetworks.com/static/images/shared/nvidia-logo.a71d2cb969b2.svg" alt="Nvidia Corporation"></a></li>
+            <li><a href="https://www.nvidia.com/" target="_blank"><img src={{"images/nvidia-logo.svg" | absURL }} /></a></li>
           </ul>
         </nav>
         <nav>
           <ul class="navRoot">
             <li class="navSection logo">
-              <div class="rootLink"><a href="//cumulusnetworks.com/"><span>Networking Docs</span></a></div>
+              <div class="rootLink"><a href={{.Site.Params.BaseURL}}><span>Networking Docs</span></a></div>
             </li>
             <li class="navSection primary">
               <a class="rootLink" href="//cumulusnetworks.com/">HOME</a>
               <a class="rootLink" href="https://support.mellanox.com/s/contact-support-page">SUPPORT</a>
-              <a class="rootLink" href="//docs.cumulusnetworks.com/">DOCS</a>
+              <a class="rootLink" href={{.Site.Params.BaseURL}}>DOCS</a>
               <a class="rootLink" href="//education.cumulusnetworks.com/">EDUCATION</a>
               <a class="rootLink" href="//cumulusnetworks.com/blog/">BLOG</a>
               <a class="rootLink" href="//slack.cumulusnetworks.com/">COMMUNITY</a>
@@ -61,7 +61,7 @@
         <ul>
           <li><a href="//cumulusnetworks.com/">HOME</a></li>
           <li><a href="https://support.mellanox.com/s/contact-support-page">SUPPORT</a></li>
-          <li><a href="//docs.cumulusnetworks.com/">DOCS</a></li>
+          <li><a href={{.Site.Params.BaseURL}}>DOCS</a></li>
           <li><a href="//education.cumulusnetworks.com/">EDUCATION</a></li>
           <li><a href="//cumulusnetworks.com/blog/">BLOG</a></li>
           <li><a href="//slack.cumulusnetworks.com/">COMMUNITY</a></li></ul>
@@ -100,7 +100,7 @@
             <div class="col-12">
                 <div class="footer-content">
                     <div class="mb-4">
-                        <img src="https://static.cumulusnetworks.com/static/images/shared/nvidia-logo-white.5c3d914c5190.svg">
+                        <img src={{"images/nvidia-logo-white.svg" | absURL }} />
                         <p>© <script type="text/javascript">document.write(new Date().getFullYear());</script> NVIDIA Corporation.<br>
                         Site by <a href="//unomena.com/" target="_blank">Unomena</a>.</p>
                         <p><a href="/license/"><img src={{"images/by-nc-sa.svg" | absURL }} alt="Cumulus Networks CC-by-NC-SA License"></a></p>

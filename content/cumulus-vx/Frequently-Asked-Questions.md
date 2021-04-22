@@ -31,7 +31,7 @@ Try {{<exlink url="https://cumulusnetworks.com/products/cumulus-in-the-cloud/" t
 - For Cumulus VX 4.1.1 and earlier, log into each switch with the `cumulus` account and default password `CumulusLinux!`. You are **not** prompted to change the default password.
 - For Cumulus VX 4.2 and later, log into each switch with the `cumulus` account and default password `cumulus`. When you log in for the first time, you are prompted to change the default password.
 
-For more information on the required password change, see the {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux/Quick-Start-Guide/#login-credentials" text="Cumulus Linux documentation">}}.
+For more information on the required password change, see the {{<kb_link url="cumulus-linux-43/Quick-Start-Guide/#login-credentials" text="Cumulus Linux documentation">}}.
 
 ### Why do I see the failure: Unable to find storage device for file system with label 'ONIE-BOOT'?
 

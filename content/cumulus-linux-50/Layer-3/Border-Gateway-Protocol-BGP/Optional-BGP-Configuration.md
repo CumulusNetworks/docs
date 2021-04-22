@@ -68,7 +68,7 @@ leaf01(config-router)# neighbor swp51 interface peer-group SPINE
 
 ## BGP Dynamic Neighbors
 
-*BGP dynamic neighbor* provides BGP peering to a group of remote neighbors within a specified range of IPv4 or IPv6 addresses for a BGP peer group. You can configure each range as a subnet IP address.
+*BGP dynamic neighbors* provides BGP peering to a group of remote neighbors within a specified range of IPv4 or IPv6 addresses for a BGP peer group. You can configure each range as a subnet IP address.
 
 You configure dynamic neighbors using the `bgp listen range <ip-address> peer-group <group>` command. After you configure the dynamic neighbors, a BGP speaker can listen for, and form peer relationships with, any neighbor that is in the IP address range and is mapped to a peer group.
 
@@ -77,17 +77,16 @@ The following example commands create the peer group SPINE and configure BGP pee
 {{< tabs "100 ">}}
 {{< tab "CUE Commands ">}}
 
-```
+CUE commands are not supported.
+
+<!--```
 cumulus@leaf01:~$ cl set vrf default router bgp peer-group SPINE
 cumulus@leaf01:~$ cl set vrf default router bgp peer-group SPINE remote-as external
 cumulus@leaf01:~$ NEED COMMAND
 cumulus@leaf01:~$ NEED COMMAND
 cumulus@leaf01:~$ cl config apply
 ```
-
-{{< /tab >}}
-{{< tab "NCLU Commands ">}}
-
+NCLU FOR REFERENCE
 ```
 cumulus@leaf01:~$ net add bgp neighbor SPINE peer-group
 cumulus@leaf01:~$ net add bgp neighbor SPINE remote-as external
@@ -98,7 +97,7 @@ cumulus@leaf01:~$ net commit
 ```
 
 The `net add bgp listen limit` command limits the number of dynamic peers. The default value is *100*.
-
+-->
 {{< /tab >}}
 {{< tab "vtysh Commands ">}}
 
@@ -357,28 +356,40 @@ The following example command removes private ASNs from routes sent to the neigh
 {{< tab "CUE Commands ">}}
 
 ```
-cumulus@leaf01:~$ NEED COMMAND
+cumulus@leaf01:~$ cl set vrf default router bgp peer swp51 address-family ipv4-unicast aspath private-as remove
 cumulus@leaf01:~$ cl config apply
 ```
 
 You can replace the private ASNs with your public ASN with the following command:
 
 ```
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp51 local-as replace on
+cumulus@leaf01:~$ cl set vrf default router bgp peer swp51 address-family ipv4-unicast aspath replace-peer-as on
 cumulus@leaf01:~$ cl config apply
 ```
 
 {{< /tab >}}
-{{< tab "NCLU Commands ">}}
+{{< tab "Linux Commands ">}}
+
+Add the line `neighbor swp51 remove-private-AS` to the address-family ipv4 unicast stanza:
 
 ```
-cumulus@switch:~$ net add bgp neighbor swp51 remove-private-AS
-```
-
-You can replace the private ASNs with your public ASN with the following command:
-
-```
-cumulus@switch:~$ net add bgp neighbor swp51 remove-private-AS replace-AS
+cumulus@switch:~$ sudo nano /etc/frr/frr.conf
+...
+router bgp 65101
+ bgp router-id 10.10.10.1
+ neighbor underlay peer-group
+ neighbor underlay remote-as external
+ neighbor swp51 interface peer-group underlay
+ neighbor swp52 interface peer-group underlay
+ neighbor swp53 interface peer-group underlay
+ neighbor swp54 interface peer-group underlay
+ !
+ address-family ipv4 unicast
+  redistribute connected
+  neighbor swp51 remove-private-AS
+ exit-address-family
+ !
+...
 ```
 
 {{< /tab >}}
@@ -398,10 +409,10 @@ The following example configures VRF RED and VRF BLUE on border01 to use ASN 655
 ```
 cumulus@border01:~$ cl set vrf RED router bgp autonomous-system 65532        
 cumulus@border01:~$ cl set vrf RED router bgp router-id 10.10.10.63
-cumulus@border01:~$ cl set vrf RED router bgp peer swp3 remote-as external NEED COMMAND
+cumulus@border01:~$ cl set vrf RED router bgp peer swp3 remote-as external
 cumulus@border01:~$ cl set vrf BLUE router bgp autonomous-system 65533 
 cumulus@border01:~$ cl set vrf BLUE router bgp router-id 10.10.10.63
-cumulus@border01:~$ cl set vrf BLUE router bgp peer swp4 remote-as external NEED COMMAND
+cumulus@border01:~$ cl set vrf BLUE router bgp peer swp4 remote-as external
 cumulus@border01:~$ cl config apply
 ```
 
@@ -570,23 +581,14 @@ exit-address-family
 ...
 ```
 
-When *BGP multipath* is enabled, only BGP routes from the same AS are load balanced. If the routes go across several different AS neighbors, even if the AS path length is the same, they are not load balanced. To be able to load balance between multiple paths received from different AS neighbors, you need to set the `bestpath as-path multipath-relax` option.
+When *BGP multipath* is enabled, only BGP routes from the same AS are load balanced. If the routes go across several different AS neighbors, even if the AS path length is the same, they are not load balanced. To be able to load balance between multiple paths received from different AS neighbors:.
 
 {{< tabs "601 ">}}
 {{< tab "CUE Commands ">}}
 
 ```
-cumulus@switch:~$ NEED COMMAND
+cumulus@switch:~$ cl set vrf default router bgp path-selection multipath aspath-ignore on
 cumulus@border01:~$ cl config apply
-```
-
-{{< /tab >}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@switch:~$ net add bgp bestpath as-path multipath-relax
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
@@ -767,17 +769,8 @@ You can configure BGP to wait for a response from the RIB indicating that the ro
 {{< tab "CUE Commands ">}}
 
 ```
-cumulus@switch:~$ cl set vrf default router bgp NEED COMMAND
+cumulus@switch:~$ cl set router bgp wait-for-install on
 cumulus@switch:~$ cl config apply
-```
-
-{{< /tab >}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@switch:~$ net add bgp wait-for-install
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
@@ -879,18 +872,8 @@ The following example commands configure leaf01 to advertise the best path learn
 
 ```
 cumulus@leaf01:~$ cl set vrf default router bgp autonomous-system 65101
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp50 NEED COMMAND
+cumulus@leaf01:~$ cl set vrf default router bgp peer swp50 address-family ipv4-unicast add-path-tx best-per-as
 cumulus@leaf01:~$ cl config apply
-```
-
-{{< /tab >}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@leaf01:~$ net add bgp autonomous-system 65101
-cumulus@leaf01:~$ net add bgp neighbor swp50 addpath-tx-bestpath-per-AS
-cumulus@leaf01:~$ net pending
-cumulus@leaf01:~$ net commit
 ```
 
 {{< /tab >}}
@@ -917,18 +900,8 @@ The following example commands configure leaf01 to advertise all paths learned f
 
 ```
 cumulus@leaf01:~$ cl set vrf default router bgp autonomous-system 65101
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp50 NEED COMMAND
+cumulus@leaf01:~$ cl set vrf default router bgp peer swp50 address-family ipv4-unicast add-path-tx all-paths
 cumulus@leaf01:~$ cl config apply
-```
-
-{{< /tab >}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@leaf01:~$ net add bgp autonomous-system 65101
-cumulus@leaf01:~$ net add bgp neighbor swp50 addpath-tx-all-paths
-cumulus@leaf01:~$ net pending
-cumulus@leaf01:~$ net commit
 ```
 
 {{< /tab >}}
@@ -975,6 +948,42 @@ Paths: (2 available, best #2, table default)
       AddPath ID: RX 3, TX-All 0 TX-Best-Per-AS 0
       Last update: Thu Oct 15 18:31:46 2020
 ```
+
+## Conditional Advertisement
+
+Routes are typically propagated even if a different path exists. The BGP conditional advertisement feature lets you advertise certain routes only if other routes either do or do not exist.
+
+This feature is typically used in multihomed networks where some prefixes are advertised to one of the providers only if information from the other provider is not present. For example, a multihomed router can use conditional advertisement to choose which upstream provider learns about the routes it provides so that it can influence which provider handles traffic destined for the downstream router. This is useful for cost of service (one provider is cheaper than another), latency, or other policy requirements that are not natively accounted for in BGP.
+
+The prefixes to be advertised are defined by a route map called advertise-map. The condition is defined by a route map called non-exist-map for conditions that do not exist or by a route map called exist-map for conditions that do exist.
+
+The following example commands configure Cumulus Linux to send a 10.0.0.0/8 summary route only if the 10.0.0.0/24 route exists in the routing table.
+
+{{< tabs "962 ">}}
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@switch:~$ NEED COMMAND
+cumulus@switch:~$ cl config apply
+```
+
+{{< /tab >}}
+{{< tab "vtysh Commands ">}}
+
+```
+cumulus@leaf01:~$ sudo vtysh
+leaf01# configure terminal
+leaf01(config)# router bgp
+leaf01(config-router)# neighbor swp51 
+leaf01(config-router)# 
+leaf01(config-router)# end
+leaf01# write memory
+leaf01# exit
+cumulus@leaf01:~$
+```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ## BGP Timers
 

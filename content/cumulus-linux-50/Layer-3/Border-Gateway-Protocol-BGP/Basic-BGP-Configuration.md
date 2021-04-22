@@ -37,7 +37,7 @@ To configure BGP numbered on a BGP node, you need to:
     - To use auto BGP to assign an ASN automatically on the leaf:
 
        ```
-       cumulus@leaf01:~$ cl set router bgp autonomous-system NEED COMMAND
+       cumulus@leaf01:~$ cl set router bgp autonomous-system leaf
        ```
 
        The auto BGP `leaf` keyword is only used to configure the ASN. The configuration files and `cl show` commands display the AS number.
@@ -92,7 +92,7 @@ To configure BGP numbered on a BGP node, you need to:
     - To use auto BGP to assign an ASN automatically on the spine:
 
       ```
-      cumulus@spine01:~$ cl set router bgp autonomous-system NEED COMMAND
+      cumulus@spine01:~$ cl set router bgp autonomous-system spine
       ```
 
       The auto BGP `spine` keyword is only used to configure the ASN. The configuration files and `cl show` commands display the AS number.
@@ -301,6 +301,7 @@ The only difference between a BGP unnumbered configuration and the BGP numbered 
 cumulus@leaf01:~$ cl set router bgp autonomous-system 65101
 cumulus@leaf01:~$ cl set router bgp router-id 10.10.10.1
 cumulus@leaf01:~$ cl set vrf default router bgp peer swp51 remote-as external
+cumulus@leaf01:~$ cl set vrf default router bgp peer swp51 type unnumbered
 cumulus@leaf01:~$ cl set vrf default router bgp address-family ipv4-unicast static-network 10.10.10.1/32
 cumulus@leaf01:~$ cl set vrf default router bgp address-family ipv4-unicast static-network 10.1.10.0/24
 cumulus@leaf01:~$ cl config apply
@@ -312,6 +313,7 @@ For BGP to advertise IPv6 prefixes, you need to run an additional command to act
 cumulus@leaf01:~$ cl set router bgp autonomous-system 65101
 cumulus@leaf01:~$ cl set router bgp router-id 10.10.10.1
 cumulus@leaf01:~$ cl set vrf default router bgp peer swp51 remote-as external
+cumulus@leaf01:~$ cl set vrf default router bgp peer swp51 type unnumbered
 cumulus@leaf01:~$ cl set vrf default router bgp address-family ipv6-unicast enable on
 cumulus@leaf01:~$ cl set vrf default router bgp address-family ipv6-unicast static-network 2001:db8::1/128
 cumulus@leaf01:~$ cl config apply
@@ -324,6 +326,7 @@ cumulus@leaf01:~$ cl config apply
 cumulus@spine01:~$ cl set router bgp autonomous-system 65199
 cumulus@spine01:~$ cl set router bgp router-id 10.10.10.101
 cumulus@spine01:~$ cl set vrf default router bgp peer swp1 remote-as external
+cumulus@spine01:~$ cl set vrf default router bgp peer swp1 type unnumbered
 cumulus@spine01:~$ cl set vrf default router bgp address-family ipv4-unicast static-network 10.10.10.101/32
 cumulus@spine01:~$ cl config apply
 ```
@@ -331,9 +334,10 @@ cumulus@spine01:~$ cl config apply
 For BGP to advertise IPv6 prefixes, you need to run an additional command to activate the BGP neighbor under the IPv6 address family. The IPv4 address family is enabled by default and the `enable` command is not required for IPv4 route exchange.
 
 ```
-cumulus@spine01:~$ cl set router bgp autonomous-system 65101
-cumulus@spine01:~$ cl set router bgp router-id 10.10.10.1
-cumulus@spine01:~$ cl set vrf default router bgp peer swp51 remote-as external
+cumulus@spine01:~$ cl set router bgp autonomous-system 65199
+cumulus@spine01:~$ cl set router bgp router-id 10.10.10.101
+cumulus@spine01:~$ cl set vrf default router bgp peer swp1 remote-as external
+cumulus@spine01:~$ cl set vrf default router bgp peer swp1 type unnumbered
 cumulus@spine01:~$ cl set vrf default router bgp address-family ipv6-unicast enable on
 cumulus@spine01:~$ cl set vrf default router bgp address-family ipv6-unicast static-network 2001:db8::101/128
 cumulus@spine01:~$ cl config apply

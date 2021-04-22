@@ -29,8 +29,8 @@ As you enter commands, you can get help with the valid keywords or options using
 
 ```
 cumulus@switch:~$ cl set <<press Tab>>
-bridge     interface  nve        router     vrf
-evpn       mlag       platform   system
+bridge    interface  nve        qos        service    vrf
+evpn      mlag       platform   router     system
 
 cumulus@switch:~$ cl set
 ```
@@ -79,15 +79,16 @@ The `cl set` and `cl unset` commands are grouped into the following categories. 
 | <div style="width:300px">Command Group | Description |
 | ------- | ----------- |
 | `cl set router`<br>`cl unset router` | Configures router policies, such as prefix list rules and route maps, and global BGP options. This is where you enable and disable BGP, set the ASN and the router ID, and configure BGP graceful restart and shutdown. |
-| `cl set platform`<br>`cl unset platform` | Set how configuration apply operations are performed (such as which files to ignore and which files to overwrite). |
+| `cl set platform`<br>`cl unset platform` | Configures the hostname of the switch and sets how configuration apply operations are performed (such as which files to ignore and which files to overwrite). |
 | `cl set bridge`<br>`cl unset bridge` | Configures a bridge domain. This is where you configure the bridge type (such as VLAN-aware), 802.1Q encapsulation, the STP state and priority, and the VLANs in the bridge domain. |
 | `cl set mlag`<br>`cl unset mlag` | Configures MLAG. This is where you configure the backup IP address or interface, MLAG system MAC address, peer IP address, MLAG priority, and the delay before bonds are brought up. |
 | `cl set evpn`<br>`cl unset evpn` | Configures EVPN. This is where you enable and disable the EVPN control plane, and set EVPN route advertise options, default gateway configuration for centralized routing, and duplicate address detection options. |
 | `cl set interface <interface-id>`<br>`cl unset interface <interface-id>` | Configures the switch interfaces. Use this command to configure bond interfaces, bridge interfaces, interface IP addresses, VLAN IDs, and links (MTU, FEC, speed, duplex, and so on).|
-| `cl set system`<br>`cl unset system` | Configures global system settings, such as the static hostname for the switch, NTP, DHCP servers, DNS, LLDP, and syslog. |
+| `cl set system`<br>`cl unset system` | Configures global system settings, such as the anycast ID, the system MAC address, and the anycast MAC address. This is also where you configure the DNS server IP address. |
 | `cl set vrf  <vrf-id>`<br>`cl unset vrf <vrf-id>` | Configures VRFs. This is where you configure VRF-level router configuration such as BGP, including BGP for the default VRF. |
-| `cl set service`<br>`cl unset service` | Configures DHCP relays. This is where you configure the DHCP relay server IP address, the set of interfaces on which to handle DHCP relay traffic, the DHCP relay gateway IP address on the interfaces, and the source IP address to use on the relayed packet. |
+| `cl set service`<br>`cl unset service` | Configures DHCP relays and servers, NTP, LLDP, and syslog. |
 | `cl set nve`<br>`cl unset nve` | Configures network virtualization (VXLAN) settings. This is where you configure the UDP port for VXLAN frames, control dynamic MAC learning over VXLAN tunnels, and configure how Cumulus Linux handles BUM traffic in the overlay.|
+| `cl set qos`<br>`cl unset qos` | Configures QoS RoCE. |
 
 ### Monitoring Commands
 
@@ -101,10 +102,11 @@ The CUE monitoring commands show various parts of the network configuration. For
 | `cl show mlag` | Shows MLAG configuration. |
 | `cl show evpn` |Shows EVPN configuration. |
 | `cl show interface` |Shows interface configuration. |
-| `cl show system` | Shows global system settings, such as NTP, DHCP server, DNS, syslog and LLDP. |
-| `cl show service` | Shows DHCP relay configuration, such as the DHCP relay server IP address, the set of interfaces on which DHCP relay traffic is handled, and the DHCP relay gateway IP address on the interfaces. |
+| `cl show system` | Shows global system settings, such as the anycast ID, the system MAC address, and the anycast MAC address. |
+| `cl show service` | Shows DHCP relays and server, NTP, LLDP, and syslog configuration. |
 | `cl show vrf` | Shows VRF configuration.|
 | `cl show nve` | Shows network virtualization configuration, such as VXLAN-specfic MLAG configuration and VXLAN flooding.|
+| `cl show qos` | Shows QoS RoCE configuration.|
 
 The following example shows the `cl show router` commands after pressing the TAB key, then shows the output of the `cl show router bgp` command.
 
@@ -353,8 +355,6 @@ cumulus@switch:~$ cl show platform software
 [installed]  apt
 [installed]  arping
 [installed]  arptables
-[installed]  atftp
-[installed]  atftpd
 [installed]  auditd
 [installed]  base-files
 [installed]  base-passwd

@@ -71,7 +71,7 @@ cumulus@switch:~$ sudo ifup swp1 --admin-state
 {{< /tab >}}
 {{< /tabs >}}
 
-For additional information on interface administrative state and physical state, refer to {{<exlink url="https://docs.cumulusnetworks.com/knowledge-base/Configuration-and-Usage/Monitoring/Monitor-Interface-Administrative-State-and-Physical-State-on-Cumulus-Linux/" text="this knowledge base article">}}.
+For additional information on interface administrative state and physical state, refer to {{<kb_link url="knowledge-base/Configuration-and-Usage/Monitoring/Monitor-Interface-Administrative-State-and-Physical-State-on-Cumulus-Linux/" text="this knowledge base article">}}.
 
 ## Interface Classes
 
@@ -470,7 +470,7 @@ cumulus@switch:~$ sudo ip addr del 2001:DB8::1/126 dev swp1
 
 You can add a description (alias) to an interface.
 
-Interface descriptions also appear in the {{<link url="Simple-Network-Management-Protocol-SNMP" text="SNMP">}} OID {{<exlink url="https://cumulusnetworks.com/static/mibs/IF-MIB.txt" text="IF-MIB::ifAlias">}}.
+Interface descriptions also appear in the {{<link url="Simple-Network-Management-Protocol-SNMP" text="SNMP">}} OID {{<kb_link url="mibs/IF-MIB.txt" text="IF-MIB::ifAlias">}}.
 
 {{%notice note%}}
 - Interface descriptions are limited to 256 characters.
@@ -657,7 +657,7 @@ To comment out content in Mako templates, use double hash marks (##). For exampl
 ##
 ```
 
-For more Mako template examples, refer to this {{<exlink url="https://docs.cumulusnetworks.com/knowledge-base/Configuration-and-Usage/Automation/Configure-the-interfaces-File-with-Mako/" text="knowledge base article">}}.
+For more Mako template examples, refer to this {{<kb_link url="knowledge-base/Configuration-and-Usage/Automation/Configure-the-interfaces-File-with-Mako/" text="knowledge base article">}}.
 
 ## ifupdown Scripts
 

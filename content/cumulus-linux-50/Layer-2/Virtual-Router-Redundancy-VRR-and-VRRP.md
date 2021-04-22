@@ -109,9 +109,7 @@ The following examples uses a single virtual MAC address for VLANs. You can add 
 ```
 cumulus@leaf01:~$ cl set interface eth0 ip address 192.168.200.11/24
 cumulus@leaf01:~$ cl set interface bond1 bond member swp1
-cumulus@leaf01:~$ cl set NEED COMMAND FOR ALIAS
 cumulus@leaf01:~$ cl set interface bond2 bond member swp2
-cumulus@leaf01:~$ cl set NEED COMMAND FOR ALIAS
 cumulus@leaf01:~$ cl set interface bond1 bond mlag id 1
 cumulus@leaf01:~$ cl set interface bond2 bond mlag id 2
 cumulus@leaf01:~$ cl set interface bond1-2 bridge domain br_default
@@ -213,9 +211,7 @@ iface br_default
 ```
 cumulus@leaf02:~$ cl set interface eth0 ip address 192.168.200.12/24
 cumulus@leaf02:~$ cl set interface bond1 bond member swp1
-cumulus@leaf02:~$ cl set NEED COMMAND FOR ALIAS
 cumulus@leaf02:~$ cl set interface bond2 bond member swp2
-cumulus@leaf02:~$ cl set NEED COMMAND FOR ALIAS
 cumulus@leaf02:~$ cl set interface bond1 bond mlag id 1
 cumulus@leaf02:~$ cl set interface bond2 bond mlag id 2
 cumulus@leaf02:~$ cl set interface bond1-2 bridge domain br_default
@@ -448,6 +444,10 @@ A primary address is required for the parent interface to use as the source addr
 {{< tab "spine01 ">}}
 
 ```
+cumulus@spine01:~$ cl set interface swp1 ip address 10.0.0.2/24
+cumulus@spine01:~$ cl set interface swp1 ip address 2001:0db8::2/64
+cumulus@switch:~$ NEED COMMAND
+cumulus@switch:~$ NEED COMMAND
 cumulus@switch:~$ NEED COMMAND
 cumulus@switch:~$ cl config apply
 ```
@@ -456,6 +456,10 @@ cumulus@switch:~$ cl config apply
 {{< tab "spine02 ">}}
 
 ```
+cumulus@spine02:~$ cl set interface swp1 ip address 10.0.0.3/24
+cumulus@spine02:~$ cl set interface swp1 address 2001:0db8::3/64
+cumulus@switch:~$ NEED COMMAND
+cumulus@switch:~$ NEED COMMAND
 cumulus@switch:~$ NEED COMMAND
 cumulus@switch:~$ cl config apply
 ```

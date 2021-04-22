@@ -11,29 +11,85 @@ A VXLAN connects layer 2 domains across a layer 3 fabric; however, layer 2 proto
 
 To configure bridge layer 2 protocol tunneling for all protocols:
 
+{{< tabs "TabID14 ">}}
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@switch:~$ NEED COMMAND
+```
+
+{{< /tab >}}
+{{< tab "NCLU Commands ">}}
+
 ```
 cumulus@switch:~$ net add interface swp1 bridge l2protocol-tunnel all
-cumulus@switch:~$ net add interface vni13 bridge l2protocol-tunnel all
+cumulus@switch:~$ net add interface vni10 bridge l2protocol-tunnel all
 cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Add `bridge-l2protocol-tunnel all` to the interface stanza and the VNI stanza of the `/etc/network/interfaces` file:
+
+```
+cumulus@switch:~$ sudo nano /etc/network/interfaces
+...
+auto swp1
+iface swp1
+    bridge-access 10
+    bridge-l2protocol-tunnel all
+
+auto swp2
+iface swp2
+
+auto swp3
+iface swp3
+
+auto swp4
+iface swp4
+...
+interface vni10
+    bridge-access 10
+    bridge-l2protocol-tunnel all
+    bridge-learning off
+    mstpctl-bpduguard yes
+    mstpctl-portbpdufilter yes
+    vxlan-id 10
+    vxlan-local-tunnelip 10.10.10.1
+```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 To configure bridge layer 2 protocol tunneling for a **specific** protocol, such as LACP:
 
+{{< tabs "TabID68 ">}}
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@switch:~$ NEED COMMAND
+```
+
+{{< /tab >}}
+{{< tab "NCLU Commands ">}}
+
 ```
 cumulus@switch:~$ net add interface swp1 bridge l2protocol-tunnel lacp
-cumulus@switch:~$ net add interface vni13 bridge l2protocol-tunnel lacp
+cumulus@switch:~$ net add interface vni10 bridge l2protocol-tunnel lacp
 cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-{{%notice note%}}
-You must enable layer 2 protocol tunneling on the VXLAN link also so that the packets get bridged and correctly forwarded.
-{{%/notice%}}
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
 
-The above commands create the following configuration in the `/etc/network/interfaces` file:
+Add `bridge-l2protocol-tunnel <protocol>` to the interface stanza and the VNI stanza of the `/etc/network/interfaces` file:
 
 ```
+cumulus@switch:~$ sudo nano /etc/network/interfaces
+...
 auto swp1
 iface swp1
     bridge-access 10
@@ -47,22 +103,29 @@ iface swp3
 
 auto swp4
 iface swp4
-
 ...
-
-interface vni13
-    bridge-access 13
-    bridge-l2protocol-tunnel all
+interface vni10
+    bridge-access 10
+    bridge-l2protocol-tunnel lacp
     bridge-learning off
     mstpctl-bpduguard yes
     mstpctl-portbpdufilter yes
-    vxlan-id 13
-    vxlan-local-tunnelip 10.0.0.4
+    vxlan-id 10
+    vxlan-local-tunnelip 10.10.10.1
 ```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+{{%notice note%}}
+You must enable layer 2 protocol tunneling on the VXLAN link in addition to the interface so that the packets get bridged and forwarded correctly.
+{{%/notice%}}
 
 ### LLDP Example
 
 Here is another example configuration for {{<link title="Link Layer Discovery Protocol" tetx="LLDP">}}. You can verify the configuration with `lldpcli`.
+
+{{<img src="/images/cumulus-linux/bridgeL2tunnel-LLDP.png">}}
 
 ```
 cumulus@switch:~$ sudo lldpcli show neighbors
@@ -87,9 +150,9 @@ Interface: swp23, via LLDP, RID: 13, TIme: 0 day, 00:58:20
 ...
 ```
 
-{{<img src="/images/cumulus-linux/bridgeL2tunnel-LLDP.png">}}
-
 ### LACP Example
+
+{{<img src="/images/cumulus-linux/bridgeL2tunnel-LACP.png">}}
 
 ```
 H2 bond0:
@@ -119,27 +182,21 @@ details partner lacp pdu:
     system MAC address: 44:38:39:00:a4:95
 ```
 
-{{<img src="/images/cumulus-linux/bridgeL2tunnel-LACP.png">}}
-
 ### Pseudo-wire Example
 
-In this example, there are only 2 VTEPs in the VXLAN. VTEP1 and VTEP2 point to each other as the only remote VTEP.
-
-The bridge on each VTEP is configured in 802.1ad mode.
-
-The host interface is an 802.1Q VLAN trunk.
-
-The `bridge-l2protocol-tunnel` is set to `all`.
-
-The VTEP host-facing port is in access mode, and the PVID is mapped to the VNI.
+In this example:
+- There are only two VTEPs in the VXLAN. VTEP1 and VTEP2 point to each other as the only remote VTEP.
+- The bridge on each VTEP is configured in 802.1ad mode.
+- The host interface is an 802.1Q VLAN trunk.
+- The `bridge-l2protocol-tunnel` is set to `all`.
+- The VTEP host-facing port is in access mode and the PVID is mapped to the VNI.
 
 {{<img src="/images/cumulus-linux/pseudoWire.png">}}
 
 ## Considerations
 
-Use caution when enabling bridge layer 2 protocol tunneling. Keep the following issues in mind:
-
+Use caution when enabling bridge layer 2 protocol tunneling:
 - Layer 2 protocol tunneling is not a full-featured pseudo-wire solution; there is no end-to-end link status tracking or feedback.
 - Layer 2 protocols typically run on a linklocal scope. Running the protocols through a tunnel across a layer 3 fabric incurs significantly higher latency, which might require you to tune protocol timers.
-- The lack of end to end link/tunnel status feedback and the higher protocol timeout values make for a higher protocol convergence time in case of change.
+- The lack of end to end link or tunnel status feedback and the higher protocol timeout values make for a higher protocol convergence time when there are changes.
 - If the remote endpoint is a Cisco endpoint using LACP, you must configure `etherchannel misconfig guard` on the Cisco device.

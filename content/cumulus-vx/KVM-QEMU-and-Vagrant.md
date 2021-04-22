@@ -80,6 +80,7 @@ Install Vagrant **after** you install libvirt so that Vagrant can detect all the
 {{%notice note%}}
 - The following is a complete Vagrantfile for the two leaf and one spine example topology. For more information on writing a Vagrantfile, reference the {{% exlink text="Hashicorp Vagrant" url="https://www.vagrantup.com/docs/vagrantfile" %}} documentation.
 - This Vagrantfile defines CPU, memory, and disk requirements for Cumulus VX, which requires at least 768MB of RAM and 6GB of disk space.
+- For CumulusVX versions 4.3 and later requires 2 vCPUs.
 {{%/notice%}}
 
 {{< expand "Vagrantfile" >}}
@@ -136,7 +137,7 @@ Install Vagrant **after** you install libvirt so that Vagrant can detect all the
 
        device.vm.provider :libvirt do |v|
          v.memory = 768
-
+         v.cpus = 2
        end
        #   see note here: https://github.com/pradels/vagrant-libvirt#synced-folders
        device.vm.synced_folder ".", "/vagrant", disabled: true
@@ -197,7 +198,7 @@ Install Vagrant **after** you install libvirt so that Vagrant can detect all the
 
        device.vm.provider :libvirt do |v|
          v.memory = 768
-
+         v.cpus = 2
        end
        #   see note here: https://github.com/pradels/vagrant-libvirt#synced-folders
        device.vm.synced_folder ".", "/vagrant", disabled: true
@@ -274,7 +275,7 @@ Install Vagrant **after** you install libvirt so that Vagrant can detect all the
 
        device.vm.provider :libvirt do |v|
          v.memory = 768
-
+         v.cpus = 2
        end
        #   see note here: https://github.com/pradels/vagrant-libvirt#synced-folders
        device.vm.synced_folder ".", "/vagrant", disabled: true

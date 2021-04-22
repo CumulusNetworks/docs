@@ -65,7 +65,13 @@ PIM neighbors are stateless. No confirmation of neighbor relationship is exchang
 To configure PIM, run the following commands:
 
 {{< tabs "TabID67 ">}}
+{{< tab "CUE Commands ">}}
 
+```
+cumulus@switch:~$ NEED COMMAND
+```
+
+{{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
 1. Configure the PIM interfaces:
@@ -75,16 +81,8 @@ To configure PIM, run the following commands:
    ```
 
    {{%notice note%}}
-
 You must enable PIM on all interfaces facing multicast sources or multicast receivers, as well as on the interface where the RP address is configured.
-
-   {{%/notice%}}
-
-   {{%notice note%}}
-
-In Cumulus Linux 4.0 and later the *sm* keyword is no longer required. In Cumulus Linux releases 3.7 and earlier, the correct command is `net add interface swp1 pim sm`.
-
-   {{%/notice%}}
+{{%/notice%}}
 
 2. Enable IGMP on all interfaces with hosts attached. IGMP version 3 is the default. Only specify the version if you exclusively want to use IGMP version 2. SSM requires the use of IGMP version 3.
 
@@ -93,10 +91,8 @@ In Cumulus Linux 4.0 and later the *sm* keyword is no longer required. In Cumulu
    ```
 
    {{%notice note%}}
-
 You must configure IGMP on all interfaces where multicast receivers exist.
-
-   {{%/notice%}}
+{{%/notice%}}
 
 3. **For ASM**, configure a group mapping for a static RP:
 
@@ -106,21 +102,16 @@ You must configure IGMP on all interfaces where multicast receivers exist.
    cumulus@switch:~$ net commit
    ```
 
-   {{%notice note%}}
+   Each PIM enabled device must configure a static RP to a group mapping and all PIM-SM enabled devices must have the same RP to group mapping configuration.
 
-Each PIM enabled device must configure a static RP to a group mapping and all PIM-SM enabled devices must have the same RP to group mapping configuration.
+   IP PIM RP group ranges can overlap. Cumulus Linux performs a longest prefix match (LPM) to determine the RP. In the following example, if the group is in 224.10.2.5, RP 192.168.0.2 is selected. If the group is in 224.10.15, RP 192.168.0.1 is selected:
 
-IP PIM RP group ranges can overlap. Cumulus Linux performs a longest prefix match (LPM) to determine the RP. In the following example, if the group is in 224.10.2.5, RP 192.168.0.2 is selected. If the group is in 224.10.15, RP 192.168.0.1 is selected:
-
-```
-cumulus@switch:~$ net add pim rp 192.168.0.1 224.10.0.0/16
-cumulus@switch:~$ net add pim rp 192.168.0.2 224.10.2.0/24
-```
-
-   {{%/notice%}}
+   ```
+   cumulus@switch:~$ net add pim rp 192.168.0.1 224.10.0.0/16
+   cumulus@switch:~$ net add pim rp 192.168.0.2 224.10.2.0/24
+   ```
 
 {{< /tab >}}
-
 {{< tab "vtysh Commands ">}}
 
 PIM is included in the FRRouting package. For proper PIM operation, PIM depends on Zebra. PIM also relies on unicast routing to be configured and operational for RPF operations. You must configure a routing protocol or static routes.
@@ -147,16 +138,8 @@ PIM is included in the FRRouting package. For proper PIM operation, PIM depends 
    ```
 
    {{%notice note%}}
-
 PIM must be enabled on all interfaces facing multicast sources or multicast receivers, as well as on the interface where the RP address is configured.
-
-   {{%/notice%}}
-
-   {{%notice note%}}
-
-In Cumulus Linux 4.0 and later, the *sm* keyword is no longer required.
-
-   {{%/notice%}}
+{{%/notice%}}
 
 4. Enable IGMP on all interfaces with hosts attached. IGMP version 3 is the default. Only specify the version if you exclusively want to use IGMP version 2.
 
@@ -167,10 +150,8 @@ In Cumulus Linux 4.0 and later, the *sm* keyword is no longer required.
    ```
 
    {{%notice note%}}
-
 You must configure IGMP on all interfaces where multicast receivers exist.
-
-   {{%/notice%}}
+{{%/notice%}}
 
 5. **For ASM**, configure a group mapping for a static RP:
 
@@ -182,21 +163,16 @@ You must configure IGMP on all interfaces where multicast receivers exist.
    cumulus@switch:~$
    ```
 
-   {{%notice note%}}
+   Each PIM enabled device must configure a static RP to a group mapping and all PIM-SM enabled devices must have the same RP to group mapping configuration.
 
-Each PIM enabled device must configure a static RP to a group mapping and all PIM-SM enabled devices must have the same RP to group mapping configuration.
+   IP PIM RP group ranges can overlap. Cumulus Linux performs a longest prefix match (LPM) to determine the RP. In the following example, if the group is in 224.10.2.5, RP 192.168.0.2 is selected. If the group is in 224.10.15, RP 192.168.0.1 is selected:
 
-IP PIM RP group ranges can overlap. Cumulus Linux performs a longest prefix match (LPM) to determine the RP. In the following example, if the group is in 224.10.2.5, RP 192.168.0.2 is selected. If the group is in 224.10.15, RP 192.168.0.1 is selected:
-
-```
-switch(config)# ip pim rp 192.168.0.1 224.10.0.0/16
-switch(config)# ip pim rp 192.168.0.2 224.10.2.0/24
-```
-
-   {{%/notice%}}
+   ```
+   switch(config)# ip pim rp 192.168.0.1 224.10.0.0/16
+   switch(config)# ip pim rp 192.168.0.2 224.10.2.0/24
+   ```
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 <!-- vale off -->
@@ -206,9 +182,7 @@ switch(config)# ip pim rp 192.168.0.2 224.10.2.0/24
 PIM Sparse Mode (PIM-SM) is a *pull* multicast distribution method; multicast traffic is only sent through the network if receivers explicitly ask for it. When a receiver *pulls* multicast traffic, the network must be periodically notified that the receiver wants to continue the multicast stream.
 
 {{%notice note%}}
-
 This behavior is in contrast to PIM Dense Mode (PIM-DM), where traffic is flooded, and the network must be periodically notified that the receiver wants to stop receiving the multicast stream.
-
 {{%/notice%}}
 
 PIM-SM has three configuration options:
@@ -218,9 +192,7 @@ PIM-SM has three configuration options:
 - Source Specific Multicast (SSM) requires multicast receivers to know exactly from which source they want to receive multicast traffic instead of relying on multicast rendezvous points. SSM requires the use of IGMPv3 on the multicast clients.
 
 {{%notice note%}}
-
 Cumulus Linux only supports ASM and SSM. PIM BiDir is not currently supported.
-
 {{%/notice%}}
 
 For additional information, see {{<exlink url="https://tools.ietf.org/html/rfc7761" text="RFC 7761 - Protocol Independent Multicast - Sparse Mode">}}.
@@ -247,15 +219,8 @@ The LHR generates a PIM (\*,G) join message and sends it from the interface towa
 {{< img src = "/images/cumulus-linux/pim-join.png" >}}
 
 {{%notice note%}}
-
-When the RP receives the (\*,G) Join message, it does not send any additional PIM join messages. The RP maintains a (\*,G) state as long as the receiver wants to receive the multicast group.
-
-{{%/notice%}}
-
-{{%notice note%}}
-
-Unlike multicast receivers, multicast sources do not send IGMP (or PIM) messages to the FHR. A multicast source begins sending, and the FHR receives the traffic and builds both a (\*,G) and an (S,G) mroute. The FHR then begins the PIM register process.
-
+- When the RP receives the (\*,G) Join message, it does not send any additional PIM join messages. The RP maintains a (\*,G) state as long as the receiver wants to receive the multicast group.
+- Unlike multicast receivers, multicast sources do not send IGMP (or PIM) messages to the FHR. A multicast source begins sending, and the FHR receives the traffic and builds both a (\*,G) and an (S,G) mroute. The FHR then begins the PIM register process.
 {{%/notice%}}
 
 ##### PIM Register Process
@@ -315,9 +280,7 @@ The RP drops the PIM register message and immediately sends a PIM register stop 
 Receiving a PIM register stop without any associated PIM joins leaves the FHR without any outgoing interfaces. The FHR drops this multicast traffic until a PIM join is received.
 <!-- vale on -->
 {{%notice note%}}
-
 PIM register messages are sourced from the interface that receives the multicast traffic and are destined to the RP address. The PIM register is not sourced from the interface towards the RP.
-
 {{%/notice%}}
 
 <!-- vale off -->
@@ -367,7 +330,13 @@ For a multicast sender or receiver to be supported over a dual-attached MLAG bon
 To configure PIM active-active with MLAG, run the following commands:
 
 {{< tabs "TabID363 ">}}
+{{< tab "CUE Commands ">}}
 
+```
+cumulus@switch:~$ NEED COMMAND
+```
+
+{{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
 1. On the VLAN interface where multicast sources or receivers exist, configure `pim active-active` and `igmp`. For example:
@@ -380,10 +349,8 @@ To configure PIM active-active with MLAG, run the following commands:
    ```
 
    {{%notice note%}}
-
 Enabling PIM active-active automatically enables PIM on that interface.
-
-   {{%/notice%}}
+{{%/notice%}}
 
 2. Confirm PIM active-active is configured with the `net show pim mlag summary` command:
 
@@ -406,7 +373,6 @@ Enabling PIM active-active automatically enables PIM on that interface.
    ```
 
 {{< /tab >}}
-
 {{< tab "vtysh Commands ">}}
 
 1. Configure `ip pim active-active` on the VLAN interface where the multicast source or receiver exists along with the required `ip igmp` command.
@@ -421,10 +387,8 @@ Enabling PIM active-active automatically enables PIM on that interface.
    ```
 
    {{%notice note%}}
-
 Enabling PIM active-active automatically enables PIM on that interface.
-
-   {{%/notice%}}
+{{%/notice%}}
 
 2. Confirm that PIM active-active is configured with the `show ip pim mlag summary` command:
 
@@ -447,7 +411,6 @@ Enabling PIM active-active automatically enables PIM on that interface.
    ```
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 #### Multicast Sender
@@ -472,10 +435,10 @@ Examples are provided below that show the flow of traffic between server02 and s
 |--------|--------|
 |{{< figure src = "/images/cumulus-linux/pim-mlag-topology1.png" >}}|{{< figure src = "/images/cumulus-linux/pim-mlag-topology2.png" >}}|
 
-To show the PIM DR, run the NCLU `net show pim interface` command or the `vtysh` `show ip pim interface` command. The following example shows that in Vlan12 the DR is 10.1.2.12.
+To show the PIM DR, run the vtysh `show ip pim interface` command. The following example shows that in Vlan12 the DR is 10.1.2.12.
 
 ```
-cumulus@leaf01:mgmt:~$ net show pim interface
+cumulus@leaf01:mgmt:~$ show ip pim interface
 Interface         State          Address  PIM Nbrs           PIM DR  FHR IfChannels
 lo                   up        10.0.0.11         0            local    0          0
 pimreg               up          0.0.0.0         0            local    0          0
@@ -493,9 +456,7 @@ A dual-attached multicast receiver sends an IGMP join on the attached VLAN. The 
 Both switches send *,G PIM Join messages towards the RP. If the source is already sending, both MLAG switches receive the multicast stream.
 
 {{%notice note%}}
-
 Traditionally, the PIM DR is the only node to send the PIM *,G Join, but to provide resiliency in case of failure, both MLAG switches send PIM *,G Joins towards the RP to receive the multicast stream.
-
 {{%/notice%}}
 
 To prevent duplicate multicast packets, a Designated Forward (DF) is elected. The DF is the `primary` member of the MLAG pair. As a result, the MLAG secondary puts the VLAN in the Outgoing Interface List (OIL), preventing duplicate multicast traffic.
@@ -507,13 +468,17 @@ To prevent duplicate multicast packets, a Designated Forward (DF) is elected. Th
 PIM considers `232.0.0.0/8` the default SSM range. You can change the SSM range by defining a prefix-list and attaching it to the `ssm-range` command. You can change the default SSM group or add additional group ranges to be treated as SSM groups.
 
 {{%notice note%}}
-
 If you use the `ssm-range` command, **all** SSM ranges must be in the prefix-list, including `232.0.0.0/8`.
-
 {{%/notice%}}
 
 {{< tabs "TabID825 ">}}
+{{< tab "CUE Commands ">}}
 
+```
+cumulus@switch:~$ NEED COMMAND
+```
+
+{{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
 Create a prefix-list with the `permit` keyword to match address ranges that should be treated as SSM groups and `deny` keyword for those ranges which should not be treated as SSM enabled ranges.
@@ -542,7 +507,6 @@ PIM: ip prefix-list my-custom-ssm-range: 1 entries
 ```
 
 {{< /tab >}}
-
 {{< tab "vtysh Commands ">}}
 
 Create a prefix-list with the `permit` keyword to match address ranges that you want to treat as SSM groups and the `deny` keyword for the ranges you do not want to treat as SSM-enabled ranges:
@@ -575,7 +539,6 @@ PIM: ip prefix-list my-custom-ssm-range: 1 entries
 ```
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 ### PIM and ECMP
@@ -583,7 +546,13 @@ PIM: ip prefix-list my-custom-ssm-range: 1 entries
 PIM uses the RPF procedure to choose an upstream interface to build a forwarding state. If you configure equal-cost multipaths (ECMP), PIM chooses the RPF based on the ECMP hash algorithm.
 
 {{< tabs "TabID895 ">}}
+{{< tab "CUE Commands ">}}
 
+```
+cumulus@switch:~$ NEED COMMAND
+```
+
+{{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
 Run the `net add pim ecmp` command to enable PIM to use all the available next hops for the installation of mroutes. For example, if you have four-way ECMP, PIM spreads the S,G and \*,G mroutes across the four different paths.
@@ -603,13 +572,10 @@ cumulus@switch:~$ net commit
 ```
 
 {{%notice warning%}}
-
 The rebalance command might cause some packet loss.
-
 {{%/notice%}}
 
 {{< /tab >}}
-
 {{< tab "vtysh Commands ">}}
 
 Run the `ip pim ecmp` command to enable PIM to use all the available next hops for the installation of mroutes. For example, if you have four-way ECMP, PIM spreads the S,G and \*,G mroutes across the four different paths.
@@ -638,13 +604,10 @@ cumulus@switch:~$
 ```
 
 {{%notice warning%}}
-
 The rebalance command might cause some packet loss.
-
 {{%/notice%}}
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 To show which next hop is selected for a specific source/group, run the `show ip pim nexthop` command from the `vtysh` shell:
@@ -671,7 +634,13 @@ With such boundaries in place, any incoming IGMP or PIM joins are dropped or acc
 To configure the boundary, first create a prefix-list as described above, then run the following commands to configure the IP multicast boundary:
 
 {{< tabs "TabID983 ">}}
+{{< tab "CUE Commands ">}}
 
+```
+cumulus@switch:~$ NEED COMMAND
+```
+
+{{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
 ```
@@ -681,7 +650,6 @@ cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
-
 {{< tab "vtysh Commands ">}}
 
 ```
@@ -696,7 +664,6 @@ cumulus@switch:~$
 ```
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 ### Multicast Source Discovery Protocol (MSDP)
@@ -706,21 +673,20 @@ You can use the Multicast Source Discovery Protocol (MSDP) to connect multiple P
 When an RP discovers a new source (typically a PIM-SM register message), a source-active (SA) message is sent to each MSDP peer. The peer then determines if any receivers are interested.
 
 {{%notice note%}}
-
-Cumulus Linux MSDP support is primarily for anycast-RP configuration, rather than multiple multicast domains. You must configure each MSDP peer in a full mesh. Received SA messages are not forwarded.
-
-{{%/notice%}}
-
-{{%notice note%}}
-
-Cumulus Linux currently only supports one MSDP mesh group.
-
+- Cumulus Linux MSDP support is primarily for anycast-RP configuration rather than multiple multicast domains. You must configure each MSDP peer in a full mesh. Received SA messages are not forwarded.
+- Cumulus Linux currently only supports one MSDP mesh group.
 {{%/notice%}}
 
 The following steps demonstrate how to configure a Cumulus switch to use the MSDP:
 
 {{< tabs "TabID1032 ">}}
+{{< tab "CUE Commands ">}}
 
+```
+cumulus@rp01:~$ NEED COMMAND
+```
+
+{{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
 1. Add an anycast IP address to the loopback interface for each RP in the domain:
@@ -741,10 +707,8 @@ The following steps demonstrate how to configure a Cumulus switch to use the MSD
 3. Configure the MSDP mesh group for all active RPs (the following example uses 3 RPs):
 
     {{%notice note%}}
-
 The mesh group must include all RPs in the domain as members, with a unique address as the source. This configuration results in MSDP peerings between all RPs.
-
-   {{%/notice%}}
+{{%/notice%}}
 
    ```
    cumulus@rp01:$ net add msdp mesh-group cumulus member 100.1.1.2
@@ -776,7 +740,6 @@ The mesh group must include all RPs in the domain as members, with a unique addr
    ```
 
 {{< /tab >}}
-
 {{< tab "vtysh Commands ">}}
 
 1. Edit the `/etc/network/interfaces` file to add an anycast IP address to the loopback interface for each RP in the domain. For example:
@@ -808,10 +771,8 @@ The mesh group must include all RPs in the domain as members, with a unique addr
 4. Configure the MSDP mesh group for all active RPs (the following example uses 3 RPs):
 
     {{%notice note%}}
-
 The mesh group must include all RPs in the domain as members, with a unique address as the source. This configuration results in MSDP peerings between all RPs.
-
-   {{%/notice%}}
+{{%/notice%}}
 
    ```
    rp01(config)# ip msdp mesh-group cumulus member 100.1.1.2
@@ -844,7 +805,6 @@ The mesh group must include all RPs in the domain as members, with a unique addr
    ```
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 ### PIM in a VRF
@@ -858,7 +818,13 @@ VRFs on different switches typically connect or are peered over subinterfaces, w
 To configure PIM in a VRF, run the following commands.
 
 {{< tabs "TabID1170 ">}}
+{{< tab "CUE Commands ">}}
 
+```
+cumulus@switch:~$ NEED COMMAND
+```
+
+{{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
 First, add the VRFs and associate them with switch ports:
@@ -886,7 +852,6 @@ cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
-
 {{< tab "vtysh Commands ">}}
 
 First, edit the `/etc/network/interfaces` file and to the VRFs and associate them with switch ports, then run `ifreload -a` to reload the configuration.
@@ -938,7 +903,6 @@ cumulus@switch:~$
 ```
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 To show VRF information, run the NCLU `net show mroute vrf <vrf-name>` command or the `vtysh` `show ip mroute vrf <vrf-name>` command:
@@ -958,7 +922,13 @@ Source          Group           Proto  Input      Output     TTL  Uptime
 You can use {{<link url="Bidirectional-Forwarding-Detection-BFD" text="bidirectional forward detection">}} (BFD) for PIM neighbors to quickly detect link failures. When you configure an interface, include the `pim bfd` option. For example:
 
 {{< tabs "TabID1270 ">}}
+{{< tab "CUE Commands ">}}
 
+```
+cumulus@switch:~$ NEED COMMAND
+```
+
+{{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
 ```
@@ -968,7 +938,6 @@ cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
-
 {{< tab "vtysh Commands ">}}
 
 ```
@@ -984,7 +953,65 @@ cumulus@switch:~$
 ```
 
 {{< /tab >}}
+{{< /tabs >}}
 
+### Allow RP
+
+To begin receiving multicast traffic for a group, a receiver expresses its interest in the group by sending an IGMP membership report on its connected LAN. This report specifies the groups in which it is interested. The LHR receives this report and begins to build a multicast routing tree back towards the source. To build this tree, another router known both to the LHR and to the multicast source needs to exist to act as an RP for senders and receivers. The LHR looks up the RP for the group specified by the receiver and sends a PIM Join message towards the RP. Per RFC 7761, intermediary routers between the LHR and the RP are required to check that the RP for the group matches the one present in the PIM Join, and if not, to silently drop the Join.
+
+In some configurations, it is desirable to configure the LHR with an RP address that does not match the actual RP address for the group. In this case, you must configure the upstream routers to accept the Join and propagate it towards the appropriate RP for the group, ignoring the mismatched RP address provided in the PIM Join sent by the LHR and replacing it with its own RP for the group.
+
+To can configure the switch to allow joins from all upstream neighbors or to provide a prefix list so that only joins with an upstream neighbor address in the list are accepted unconditionally:
+
+{{< tabs "TabID997 ">}}
+{{< tab "CUE Commands ">}}
+
+The following example command configures PIM to ignore the RP check for all upstream neighbors:
+
+```
+cumulus@switch:~$ cl set interface swp50 pim allow-rp
+cumulus@switch:~$ cl config apply
+```
+
+The following example command configures PIM to only ignore the RP check for upstream neighbors in the prefix list called ALLOW-RP:
+
+```
+cumulus@switch:~$ cl set interface swp50 pim allow-rp rp-list ALLOW-RP
+cumulus@switch:~$ cl config apply
+```
+
+{{< /tab >}}
+{{< tab "vtysh Commands ">}}
+
+The following example command configures PIM to ignore the RP check for all upstream neighbors:
+
+```
+cumulus@switch:~$ sudo vtysh
+
+switch# configure terminal
+switch(config)# interface swp50
+switch(config-if)# ip pim allow-rp
+switch(config-if)# end
+switch# write memory
+switch# exit
+cumulus@switch:~$
+```
+
+The following example command configures PIM to only ignore the RP check for the upstream neighbors in the prefix list called ALLOW-RP:
+
+```
+cumulus@switch:~$ sudo vtysh
+
+switch# configure terminal
+switch(config)# interface swp50
+switch(config-if)# ip pim allow-rp rp-list ALLOW-RP
+switch(config-if)# end
+switch# write memory
+switch# exit
+cumulus@switch:~$
+```
+
+{{< /tab >}}
 {{< /tabs >}}
 
 ## Verify PIM
@@ -992,7 +1019,13 @@ cumulus@switch:~$
 The following outputs are based on the {{<exlink url="https://github.com/CumulusNetworks/cldemo-vagrant" text="Cumulus Reference Topology">}} with `cldemo-pim`.
 
 {{< tabs "TabID501 ">}}
+{{< tab "CUE Commands ">}}
 
+```
+cumulus@switch:~$ NEED COMMAND
+```
+
+{{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
 **Source Starts First**
@@ -1300,7 +1333,6 @@ swp1      *               239.2.2.2       no         yes   no         yes       
 ```
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 ## Troubleshooting

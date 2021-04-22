@@ -137,7 +137,7 @@ After installing NetQ 3.0, there are no Cumulus Linux images in the LCM reposito
 
 For more information about Cumulus Linux images and LCM, read {{<link url="Lifecycle-Management/#image-management" text="Image Management">}}.
 
-1. Download the version of Cumulus Linux you plan to use to upgrade the switches from the {{<exlink url="https://cumulusnetworks.com/downloads/#product=Cumulus%20Linux" text="Cumulus Networks web site">}}.
+1. Download the version of Cumulus Linux you plan to use to upgrade the switches from the {{<exlink url="https://support.mellanox.com/s/" text="MyMellanox downloads">}} page.
 
 1. Upload the image onto an accessible part of your network. The following example uses the Cumulus Linux 3.7.12 disk image, named `cumulus-linux-3.7.12-bcm-amd64.bin`.
 
@@ -218,4 +218,4 @@ fw1         3.7.12        COMPLETED        Fri Apr 24 20:38:48 2020  COMPLETED  
 
 ## Back Up and Restore
 
-To back up and restore the switches themselves, use the `config-backup` and `config-restore` commands in Cumulus Linux directly on the switches. For more information, read the {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux/Installation-Management/Back-up-and-Restore/" text="Cumulus Linux user guide">}}.
+To back up and restore the switches themselves, use the `config-backup` and `config-restore` commands in Cumulus Linux directly on the switches. For more information, read the {{<kb_link url="cumulus-linux-43/Installation-Management/Back-up-and-Restore/" text="Cumulus Linux user guide">}}.

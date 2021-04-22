@@ -17,9 +17,9 @@ Before you install Cumulus Linux, the switch can be in two different states:
 - No image is installed on the switch (the switch is only running ONIE).
 - Cumulus Linux is already installed on the switch but you want to use ONIE to reinstall Cumulus Linux or upgrade to a newer version.
 
-The sections below describe some of the different ways you can install the Cumulus Linux image, such as using a DHCP/web server, FTP, a local file, or a USB drive. Steps are provided for both installing directly from ONIE (if no image is installed on the switch) and from Cumulus Linux (if the image is already installed on the switch), where applicable. For additional methods to find and install the Cumulus Linux image, see the {{<exlink url="http://opencomputeproject.github.io/onie/design-spec/discovery.html" text="ONIE Design Specification">}}.
+The sections below describe some of the different ways you can install the Cumulus Linux image, such as using a DHCP/web server, TFTP, FTP, a local file, or a USB drive. Steps are provided for both installing directly from ONIE (if no image is installed on the switch) and from Cumulus Linux (if the image is already installed on the switch), where applicable. For additional methods to find and install the Cumulus Linux image, see the {{<exlink url="http://opencomputeproject.github.io/onie/design-spec/discovery.html" text="ONIE Design Specification">}}.
 
-You can download a Cumulus Linux image from the {{<exlink url="http://cumulusnetworks.com/downloads/" text="Cumulus Linux Downloads">}} page.
+You can download a Cumulus Linux image from the {{<exlink url="https://support.mellanox.com/s/contact-support-page" text="MyMellanox Downloads">}} page.
 
 {{%notice warning%}}
 
@@ -191,7 +191,7 @@ Installing the Cumulus Linux image using FTP from ONIE is not supported on the D
 
 3. Place the Cumulus Linux image into a TFTP or FTP directory.
 
-4. If you are not using DHCP options, run one of the following commands (`tftp` for TFTP or `ftp` for FTP):
+4. If you are not using DHCP options, run one of the following commands (tftp for TFTP or ftp for FTP):
 
     ```
     ONIE# onie-nos-install ftp://local-ftp-server/cumulus-install-[PLATFORM].bin
@@ -203,15 +203,12 @@ Installing the Cumulus Linux image using FTP from ONIE is not supported on the D
 
 {{< tab "Install from Cumulus Linux ">}}
 
-1. Place the Cumulus Linux image into a TFTP or FTP directory.
+1. Place the Cumulus Linux image into an FTP directory (TFTP is *not* supported in Cumulus Linux).
 
-2. From the Cumulus Linux command prompt, run one of the following
-    commands (`tftp` for TFTP or `ftp` for FTP), then reboot the switch.
+2. From the Cumulus Linux command prompt, run the following command:
 
     ```
     cumulus@switch:~$ sudo onie-install -a -i ftp://local-ftp-server/cumulus-install-[PLATFORM].bin
-
-    cumulus@switch:~$ sudo onie-install -a -i tftp://local-ftp-server/cumulus-install-[PLATFORM].bin
     ```
 
 {{< /tab >}}
@@ -286,7 +283,7 @@ Installing Cumulus Linux using a USB drive is fine for a single switch here and 
 
 ### Prepare for USB Installation
 
-1. From the {{<exlink url="http://cumulusnetworks.com/downloads/" text="Cumulus Linux Downloads page">}}, download the appropriate Cumulus Linux image for your x86 or ARM platform.
+1. From the {{<exlink url="https://support.mellanox.com/s/" text="MyMellanox Downloads page">}}, download the appropriate Cumulus Linux image for your x86 or ARM platform.
 2.  From a computer, prepare your USB drive by formatting it using one of the supported formats: FAT32, vFAT or EXT2.
 
     {{< expand "Optional: Prepare a USB Drive inside Cumulus Linux"  >}}
@@ -673,6 +670,6 @@ If you install the modified installation image and specify installer command lin
 ## Related Information
 
 - {{<exlink url="http://opencomputeproject.github.io/onie/design-spec/" text="ONIE Design Specification">}}
-- {{<exlink url="http://cumulusnetworks.com/downloads/" text="Cumulus Linux Downloads page">}}
+- {{<exlink url="https://support.mellanox.com/s/" text="MyMellanox Downloads page">}}
 - {{<exlink url="https://cumulusnetworks.com/cumulus-on-a-stick/" text="Cumulus on a Stick">}}
 - {{<link url="Managing-Cumulus-Linux-Disk-Images" text="Managing Cumulus Linux Disk Images">}}

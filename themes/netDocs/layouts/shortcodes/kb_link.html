@@ -1,0 +1,24 @@
+{{- $.Scratch.Set "page_found" false -}}
+{{- /* "Only files in /static will have extensions" */ -}}
+{{ if ((.Get "url") | path.Ext) }}
+    {{ .Scratch.Set "file_path" (printf "static/%s" (.Get "url")) }}
+    {{ if fileExists (.Scratch.Get "file_path") }}
+        {{- $.Scratch.Set "page_found" true -}}
+    {{ end }}
+{{ else }}
+    {{- /* "Check if it's an md file" */ -}}
+    {{ .Scratch.Set "file_path" (printf "content/%s.md" (path.Dir (.Get "url") | printf "%s")) }}
+    {{ if fileExists (.Scratch.Get "file_path") }}
+        {{- $.Scratch.Set "page_found" true -}}
+    {{ else }}
+        {{ .Scratch.Set "file_path" (printf "content/%s/_index.md" (path.Dir (.Get "url") | printf "%s")) }}
+        {{ if fileExists (.Scratch.Get "file_path") }}
+            {{- $.Scratch.Set "page_found" true -}}
+        {{ end }}
+    {{ end }}
+{{ end }}
+{{ if (.Scratch.Get "page_found") }}
+    <a rel="canonical" href="{{ (.Get "url") | absURL }}" target="_blank">{{- default (.Get "url") (.Get "text") -}}</a>
+{{ else }}
+    {{ errorf "kb_link failed to find a home for %s on %s. Path: %s" (printf "content/%s.md" (path.Dir (.Get "url") | printf "%s"))  .Position (.Scratch.Get "file_path") }}
+{{ end }}

@@ -123,8 +123,8 @@ packets. This is useful with LNV if you have more than 128 VTEPs.
 However, it is not recommended because it forces the spine switches
 running the `vxsnd` (service node daemon) to replicate the packets in
 software instead of in hardware, unlike head end replication. If you are
-not using a controller but have more than 128 VTEPs, contact [Cumulus
-Networks](mailto:support@cumulusnetworks.com).
+not using a controller but have more than 128 VTEPs, contact [NVIDIA
+Networking Support](https://support.mellanox.com/s/contact-support-page).
 
 To enable service node replication:
 

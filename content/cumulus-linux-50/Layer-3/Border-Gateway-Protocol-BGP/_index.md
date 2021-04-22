@@ -8,7 +8,7 @@ BGP is the routing protocol that runs the Internet. It manages how packets get r
 
 BGP is an increasingly popular protocol for use in the data center as it lends itself well to the rich interconnections in a Clos topology. {{<exlink url="https://tools.ietf.org/html/rfc7938" text="RFC 7938">}} provides further details about using BGP in the data center.
 
-## How does BGP Work?
+## How Does BGP Work?
 
 BGP directs packets between autonomous systems (AS), which are a set of routers under a common administration.
 Each router maintains a routing table that controls how packets are forwarded. The BGP process on the router generates information in the routing table based on information coming from other routers and from information in the BGP routing information base (RIB). The RIB is a database that stores routes and continually updates the routing table as changes occur.

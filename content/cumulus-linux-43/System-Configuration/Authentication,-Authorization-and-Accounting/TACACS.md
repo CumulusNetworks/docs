@@ -1,5 +1,5 @@
 ---
-title: TACACS+
+title: TACACS
 author: NVIDIA
 weight: 180
 toc: 4

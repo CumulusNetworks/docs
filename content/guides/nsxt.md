@@ -30,7 +30,7 @@ NSX-T uses Generic Networking Virtualization Encapsulation (Geneve) as the overl
 
 The example configurations are based on the following topology:
 
-{{<figure src="/images/guides/cumulus-nsxt/pure_L2.JPG">}}
+{{<figure src="images/guides/cumulus-nsxt/pure_L2.JPG">}}
 
 **Rack 1** – Two NVIDIA Switches in MLAG + One ESXi hypervisor connected in active-active bonding  
 **Rack 2** – Two NVIDIA Switches in MLAG + One ESXi hypervisor connected in active-active bonding
@@ -1100,7 +1100,7 @@ Two traffic flow examples are described below.
 
 Both VMs are assigned to the same VMware logical segment, placing them into the same subnet. Each segment has its own unique Virtual Network Identifier (VNI) assigned by NSX-T. This VNI is added into the Geneve packet header on the source TEP. The destination TEP identifies which segment the traffic belongs to based on this VNI. All segments that share the same Overlay Transport Zone, uses the same TEP addresses to establish the tunnels. It is possible to have more than one Overlay TZ on the N-VDS, but for this case, more VLANs needs to be configured and advertised on the underlay switches. This scenario uses only one Overlay TZ (one TEP VLAN).
 
-{{<figure src="/images/guides/cumulus-nsxt/Pure_L2_VNI.JPG">}}
+{{<figure src="images/guides/cumulus-nsxt/Pure_L2_VNI.JPG">}}
 
 VM1 `172.16.0.1` on ESXi01 sends traffic to VM3 `172.16.0.3` on ESXi03: 
 1. The packet reaches the local hypervisor's TEP device `10.1.1.1`.
@@ -1121,7 +1121,7 @@ Routing in VMware environments always done as close to the source as possible.
 
 {{%/notice %}}
 
-{{<figure src="/images/guides/cumulus-nsxt/T1.JPG">}}
+{{<figure src="images/guides/cumulus-nsxt/T1.JPG">}}
 
 
 VM1 and VM3 are in `VLAN100` `172.16.0.0/24` - VNI `65510`.  
@@ -1160,7 +1160,7 @@ There is an option for VM to bare metal communication using Geneve encapsulation
 
 The example configurations are based on the following topology:
 
-{{<figure src="/images/guides/cumulus-nsxt/virt_bare_metal.JPG">}}
+{{<figure src="images/guides/cumulus-nsxt/virt_bare_metal.JPG">}}
 
 **Rack 1** – Two NVIDIA Switches in MLAG + One ESXi hypervisor connected in active-active bonding  
 **Rack 2** – Two NVIDIA Switches in MLAG + One ESXi hypervisor and One bare metal server, both connected in active-active bonding
@@ -1420,7 +1420,7 @@ NSX Edge VM has virtual NICs (vNICs) in each of the Overlay and VLAN Transport Z
 
 {{%/notice %}}
 
-{{<figure src="/images/guides/cumulus-nsxt/edge.jpg">}}
+{{<figure src="images/guides/cumulus-nsxt/edge.jpg">}}
 
 As an example traffic flow, VM1 at `172.16.0.1` on ESXi01 sends traffic to the bare metal server `192.168.0.1`:
 
@@ -2528,7 +2528,7 @@ Displayed 6 prefixes (10 paths)
 
 ### Traffic Flow
 
-{{<figure src="/images/guides/cumulus-nsxt/T1_vxlan.JPG">}}
+{{<figure src="images/guides/cumulus-nsxt/T1_vxlan.JPG">}}
 
 The NSX traffic will be unchanged from the scenarios described earlier. Reference the [Layer 2](#layer-2-virtualized-environment) or [Layer 3](#layer-3-virtualized-environment) examples for details. Traffic destined outside of the NSX fabric will follow the same traffic flow as described in the [Virtualized and Bare Metal](#virtualized-and-bare-metal-server-environment) section.
 
@@ -2537,7 +2537,7 @@ When the remote leaf receives the VXLAN packet, it is decapsulated and fowared t
 <!--
 ## EVPN Underlay Fabric With an External Network (EVPN Type-5 Routes)
 
-{{<figure src="/images/guides/cumulus-nsxt/edge_type5.jpg">}}
+{{<figure src="images/guides/cumulus-nsxt/edge_type5.jpg">}}
 
 There are cases when virtualized traffic is destined to external networks (as we saw in BM scenario), but outside of the EVPN domain. To answer that need, NSX Edge can act as VXLAN-VTEP with BGP-EVPN control-plane. By that, it receives EVPN Type-5 external routs which are used for external traffic routing in EVPN fabrics. 
 

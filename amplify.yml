@@ -29,6 +29,7 @@ frontend:
         # Don't minify in non-prod branches to simplify troubleshooting
         - if [ "${AWS_BRANCH}" != "master" ]; then hugo -D --baseURL $BASEURL -d public/networking-ethernet-software/ ; fi
         - if [ "${AWS_BRANCH}" = "master" ]; then hugo --minify --baseURL $BASEURL ; fi
+        - if [ "${AWS_BRANCH}" != "master" ]; then echo "<html><head></head><body><a href=\"networking-ethernet-software\">click here</a></body></html>" > public/index.html
         - echo Successfully built docs
   artifacts:
     files:

@@ -311,91 +311,132 @@ Cumulus supports the following congestion control mechanisms:
 Pause frames are an older congestion control mechnism that causes all traffic on a link between two devices (two switches or a host and switch) to stop transmitting during times of congestion. Pause frames are started and stoped based on how congested the buffer is. The value that determines when pause frames should start is called the `xoff` value (xoff for "transmit off") . When the buffer congestion reaches the `xoff` point the switch sends a pause frame to one or more neighbors.  
 When congestion reduces below the `xon` point (xon for "trasnmit on") an updated pause frame is sent to indicate that the neighbor should resume sending traffic.
 
-Pause frames are configured on a per-interface basis under the `link_pause` section of `qos_features.conf`
+{{% notice note %}}
+Pause frames are not recommended due to the corse nature of flow control. Priority Flow Control (PFC) is recommended over the use of pause frames.
+{{% /notice  %}}
+
+Pause frames are configured on a per-direction, per-interface basis under the `link_pause` section of `qos_features.conf`.  
+Setting `link_pause.pause_port_group.rx_enable = true` supports the reception of pause frames causing the switch to stop transmitting when requested.
+Setting `link_pause.pause_port_group.rx_enable = true` supports the sending of pause frame causing the switch to request neighboring devices to stop transmitting.
+Pause frames may be supported for either receive (`rx`), transmit (`tx`) or both.
 
 {{% notice note %}}
 The `#` in the configuration file is a comment. By default the `link_pause.` lines are commented out.  
 You must uncomment them for them for the configurations to be applied.
 {{% /notice %}}
 
-```
-# link_pause.port_group_list = [pause_port_group]
-# link_pause.pause_port_group.port_set = swp1-swp4,swp6
-# link_pause.pause_port_group.port_buffer_bytes = 25000
-# link_pause.pause_port_group.xoff_size = 10000
-# link_pause.pause_port_group.xon_delta = 2000
-# link_pause.pause_port_group.rx_enable = true
-# link_pause.pause_port_group.tx_enable = true
-```
+By default, if link pause is enabled on one or more ports the following values are automatically derived:
 
+* `link_pause.pause_port_group.port_buffer_bytes`
+* `link_pause.pause_port_group.xoff_size`
+* `link_pause.pause_port_group.xon_delta`
 
-Here is an example configuration that enables TX pause and RX pause for swp1 through swp4 and swp6:
+{{% notice warning %}}
+Pause frame buffer calculation is a complex topic defined in IEEE 802.1Q-2012. This attempts to incorporate the delay between signaling congestion and the reception of the signal by the neighboring device. This calculation includes the delay introduced by the PHY and MAC layers (called the "interface delay") as well as the distance between end points (cable length).  
+Incorrect cable length settings can cause wasted buffer space (triggering congestion too early) or packet drops (congestion occurs before flow control is activated).
 
-``` 
-# to configure pause on a group of ports:
-# -- add or replace port group names in the port group list
-# -- for each port group in the list
-#    -- populate the port set, e.g.
-#       swp1-swp4,swp8,swp50s0-swp50s3
-#    -- set a pause buffer size in bytes for each port
-#    -- set the xoff byte limit (buffer limit that triggers pause frames transmit to start)
-#    -- set the xon byte delta (buffer limit that triggers pause frames transmit to stop)
-#    -- enable pause frame transmit and/or pause frame receive
+Unless directed by NVIDIA engineering, it is not recommended to change these values.
+{{% /notice %}}
 
- link pause
- link_pause.port_group_list = [pause_port_group]
- link_pause.pause_port_group.port_set = swp1-swp4,swp6
- link_pause.pause_port_group.port_buffer_bytes = 25000
- link_pause.pause_port_group.xoff_size = 10000
- link_pause.pause_port_group.xon_delta = 2000
- link_pause.pause_port_group.rx_enable = true
- link_pause.pause_port_group.tx_enable = true
-
-# Specify cable length in mts
- link_pause.pause_port_group.cable_length = 10
-```
-
-{{%notice note%}}
-This `link_pause.pause_port_group.port_buffer_bytes`, `link_pause.pause_port_group.xoff_size`, and `link_pause.pause_port_group.xon_delta` settings are optional. If not provided, the values are derived from the port speed, port MTU, or port cable length.
-{{%/notice%}}
-
-Changes to the settings in the `/etc/cumulus/datapath/traffic.conf` file do *not* require you to restart `switchd`. However, you must run the `echo 1 > /cumulus/switchd/config/traffic/reload` command to apply the settings.
+The following is an explanation of an example `link_pause` configuration.
 
 ```
-cumulus@switch:~$ echo 1 > /cumulus/switchd/config/traffic/reload
+link_pause.port_group_list = [my_pause_ports]
+link_pause.my_pause_ports.port_set = swp1-swp4,swp6
+link_pause.my_pause_ports.port_buffer_bytes = 25000
+link_pause.my_pause_ports.xoff_size = 10000
+link_pause.my_pause_ports.xon_delta = 2000
+link_pause.my_pause_ports.rx_enable = true
+link_pause.my_pause_ports.tx_enable = true
+#
+link_pause.my_pause_ports.cable_length = 5
 ```
 
-Always run the {{<link url="#syntax-checker" text="syntax checker">}} syntax checker before applying the configuration changes.
+| Configuration | Example | Explanation |
+| ------------- | ------- | ----------- |
+| `link_pause.port_group_list` | `link_pause.port_group_list = [my_pause_ports]` | Creates a port_group to be used with pause frame settings. In this example the group is named `my_pause_ports` |
+| `link_pause.my_pause_ports.port_set` | `link_pause.my_pause_ports.port_set = swp1-swp4,swp6` | Define the set of interfaces that pause frame configuration will be applied to. In this example ports swp1, swp2, swp3, swp4 and swp6 will have pause frame configurations applied |
+| `link_pause.my_pause_ports.port_buffer_bytes` | `link_pause.my_pause_ports.port_buffer_bytes = 25000` | The amount of reserved buffer space for the set of ports defined in the port_group_list. This is reserved from the global shared buffer |
+| `link_pause.my_pause_ports.xoff_size` | `link_pause.my_pause_ports.xoff_size = 10000` | Set the amount of reserved buffer that must be consumed before a pause frame will be sent out the set of interfaces defined in the port_group_list, if transmitting pause frames is enabled. In this example after 10000 bytes of reserved buffer is consumed pause frames will be sent.|
+| `link_pause.my_pause_ports.xon_delta` | `link_pause.my_pause_ports.xon_delta = 2000` | The number of bytes below the `xoff` threshold that the buffer consumption must drop below before the sending of pause frame stops, if transmitting pause frames is enabled. In this example the buffer congestion must reduce by 2000 bytes (to 8000 bytes) before pause frame will stop |
+| `link_pause.my_pause_ports.rx_enable` | `link_pause.my_pause_ports.tx_enable = true` | Enable (`true`) or disable (`false`) the sending of pause frames. The default value is `false`. In this example the sending of pause frames is enabled |
+| `link_pause.my_pause_ports.tx_enable` | `link_pause.my_pause_ports.rx_enable = true` | Enable (`true`) or disable (`false`) acting to the reception of a pause frame. The default value is `false`. In this example the reception of pause frames is enabled |
+| `link_pause.my_pause_ports.cable_length` | `link_pause.pause_port_group.cable_length = 5` | The length, in meters, of the cable attached to the port defined in the port_group_list. This value is used internally to determine the latency between generating a pause frame and the reception of the pause frame. The default is `10` meters. In this example the cable attached has been defined as `5` meters.|
 
-### PFC
+### Priority flow control (PFC)
 
-!! PFC buffer calculation is a complex topic defined in IEEE 802.1Q-2012. This attempts to incorporate the delay between signaling congestion and the reception of the signal by the neighboring device. This calculation includes the delay introduced by the PHY and MAC layers (called the "interface delay") as well as the distance between end points (cable length). Incorrect cable length settings can cause wasted buffer space (triggering congestion too early) or packet drops (congestion occurs before flow control is activated).
+Priority flow control extends the capabilities of pause frames by sending pause frames for a specific COS value instead of stopping all traffic on a link. If a switch supports PFC and receives a PFC pause frame for a given COS value the switch will stop transmitting frames from that queue, but will continue transmitting frames for other queues.
+
+PFC pause frames are configured on a per-direction, per-interface basis under the `pfc` section of `qos_features.conf`.  
+Setting `pfc.pfc_port_group.tx_enable = true` supports the reception of PFC pause frames causing the switch to stop transmitting when requested.
+Setting `pfc.pfc_port_group.rx_enable = true` supports the sending of PFC pause frames, for the defined COS values, causing the switch to request neighboring devices to stop transmitting.
+PFC pause frames may be supported for either receive (`rx`), transmit (`tx`) or both.
+
+{{% notice note %}}
+The `#` in the configuration file is a comment. By default the `pfc.` lines are commented out.  
+You must uncomment them for them for the configurations to be applied.
+{{% /notice %}}
+
+By default, if link pause is enabled on one or more ports the following values are automatically derived:
+
+* `pfc.pause_port_group.port_buffer_bytes`
+* `pfc.pause_port_group.xoff_size`
+* `pfc.pause_port_group.xon_delta`
+
+{{% notice note %}}
+PFC buffer calculation is a complex topic defined in IEEE 802.1Q-2012. This attempts to incorporate the delay between signaling congestion and the reception of the signal by the neighboring device. This calculation includes the delay introduced by the PHY and MAC layers (called the "interface delay") as well as the distance between end points (cable length).  
+Incorrect cable length settings can cause wasted buffer space (triggering congestion too early) or packet drops (congestion occurs before flow control is activated).
+
+Unless directed by NVIDIA engineering, it is not recommended to change these values.
+{{% /notice %}}
+
+
+{{% notice note %}}
+The `#` in the configuration file is a comment. By default the `pfc.` lines are commented out.  
+You must uncomment them for them for the configurations to be applied.
+{{% /notice %}}
+
+
+The following is an explanation of an example `pfc` configuration.
+
+```
+pfc.port_group_list = [my_pfc_ports]
+pfc.my_pfc_ports.cos_list = [3,5]
+pfc.my_pfc_ports.port_set = swp1-swp4,swp6
+pfc.my_pfc_ports.port_buffer_bytes = 25000
+pfc.my_pfc_ports.xoff_size = 10000
+pfc.my_pfc_ports.xon_delta = 2000
+pfc.my_pfc_ports.tx_enable = true
+pfc.my_pfc_ports.rx_enable = true
+#
+pfc.my_pfc_ports.cable_length = 10
+```
+
+| Configuration | Example | Explanation |
+| ------------- | ------- | ----------- |
+| `pfc.port_group_list` | `pfc.port_group_list = [my_pfc_ports]` | Creates a port_group to be used with PFC pause frame settings. In this example the group is named `my_pfc_ports` |
+| `pfc.my_pfc_ports.cos_list` | `pfc.my_pfc_ports.cos_list = [3,5]` | Define the COS values that will support sending PFC pause frames, if enabled. In this example COS values 3 and 5 are enabled to send PFC pause frames.|
+| `pfc.my_pfc_ports.port_set` | `pfc.my_pfc_ports.port_set = swp1-swp4,swp6` | Define the set of interfaces that PFC pause frame configuration will be applied to. In this example ports swp1, swp2, swp3, swp4 and swp6 will have pause frame configurations applied |
+| `pfc.my_pfc_ports.port_buffer_bytes` | `pfc.my_pfc_ports.port_buffer_bytes = 25000` | The amount of reserved buffer space for the set of ports defined in the port_group_list. This is reserved from the global shared buffer |
+| `pfc.my_pfc_ports.xoff_size` | `pfc.my_pfc_ports.xoff_size = 10000` | Set the amount of reserved buffer that must be consumed before a PFC pause frame will be sent out the set of interfaces defined in the port_group_list, if transmitting pause frames is enabled. In this example after 10000 bytes of reserved buffer is consumed PFC pause frames will be sent.|
+| `pfc.my_pfc_ports.xon_delta` | `pfc.my_pfc_ports.xon_delta = 2000` | The number of bytes below the `xoff` threshold that the buffer consumption must drop below before the sending of pause frame stops, if transmitting pause frames is enabled. In this example the buffer congestion must reduce by 2000 bytes (to 8000 bytes) before PFC pause frame will stop |
+| `pfc.my_pfc_ports.rx_enable` | `pfc.my_pfc_ports.tx_enable = true` | Enable (`true`) or disable (`false`) the sending of PFC pause frames. The default value is `false`. In this example the sending of pause frames is enabled |
+| `pfc.my_pfc_ports.tx_enable` | `pfc.my_pfc_ports.rx_enable = true` | Enable (`true`) or disable (`false`) acting to the reception of a PFC pause frame. For `rx_enable` the COS values do not need to be defined. Any COS value a PFC pause is received for will be respected. The default value is `false`. In this example the reception of PFC pause frames is enabled |
+| `pfc.my_pfc_ports.cable_length` | `pfc.my_pfc_ports.cable_length = 5` | The length, in meters, of the cable attached to the port defined in the port_group_list. This value is used internally to determine the latency between generating a PFC pause frame and the reception of the PFC pause frame. The default is `10` meters. In this example the cable attached has been defined as `5` meters.|
+
 
 PFC is configured in `qos_features.conf`, the relevant section:
 ```
-# to configure priority flow control on a group of ports:
-# -- assign cos value(s) to the cos list
-# -- add or replace a port group names in the port group list
-# -- for each port group in the list
-#    -- populate the port set, e.g.
-#       swp1-swp4,swp8,swp50s0-swp50s3
-#    -- set a PFC buffer size in bytes for each port in the group
-#    -- set the xoff byte limit (buffer limit that triggers PFC frames transmit to start)
-#    -- set the xon byte delta (buffer limit that triggers PFC frames transmit to stop)
-#    -- enable PFC frame transmit and/or PFC frame receive
-
-# priority flow control
-#pfc.port_group_list = [pfc_port_group]
-#pfc.pfc_port_group.cos_list = []
-#pfc.pfc_port_group.port_set = swp1-swp4,swp6
-#pfc.pfc_port_group.port_buffer_bytes = 25000
-#pfc.pfc_port_group.xoff_size = 10000
-#pfc.pfc_port_group.xon_delta = 2000
-#pfc.pfc_port_group.tx_enable = true
-#pfc.pfc_port_group.rx_enable = true
+pfc.port_group_list = [my_pfc_list]
+pfc.my_pfc_list.cos_list = []
+pfc.my_pfc_list.port_set = swp1-swp4,swp6
+pfc.my_pfc_list.port_buffer_bytes = 25000
+pfc.my_pfc_list.xoff_size = 10000
+pfc.my_pfc_list.xon_delta = 2000
+pfc.my_pfc_list.tx_enable = true
+pfc.my_pfc_list.rx_enable = true
 #
-#Specify cable length in mts
-#pfc.pfc_port_group.cable_length = 10
+pfc.my_pfc_list.cable_length = 10
 ```
 
 | Parameter | Definition | Default |

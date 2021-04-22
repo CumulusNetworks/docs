@@ -43,12 +43,12 @@
         <nav>
           <ul class="navRoot">
             <li class="navSection logo">
-              <div class="rootLink"><a href="//docs.cumulusnetworks.com/"><span>Networking Docs</span></a></div>
+              <div class="rootLink"><a href={{.Site.Params.baseURL}}><span>Networking Docs</span></a></div>
             </li>
             <li class="navSection primary">
               <a class="rootLink" href="//cumulusnetworks.com/">HOME</a>
               <a class="rootLink" href="https://support.mellanox.com/s/contact-support-page">SUPPORT</a>
-              <a class="rootLink" href="//docs.cumulusnetworks.com/">DOCS</a>
+              <a class="rootLink" href={{.Site.Params.baseURL}}>DOCS</a>
               <a class="rootLink" href="//education.cumulusnetworks.com/">EDUCATION</a>
               <a class="rootLink" href="//cumulusnetworks.com/blog/">BLOG</a>
               <a class="rootLink" href="//slack.cumulusnetworks.com/">COMMUNITY</a>
@@ -67,34 +67,12 @@
         <ul>
           <li><a href="//cumulusnetworks.com/">HOME</a></li>
           <li><a href="https://support.mellanox.com/s/contact-support-page">SUPPORT</a></li>
-          <li><a href="//docs.cumulusnetworks.com/">DOCS</a></li>
+          <li><a href={{.Site.Params.baseURL}}>DOCS</a></li>
           <li><a href="//education.cumulusnetworks.com/">EDUCATION</a></li>
           <li><a href="//cumulusnetworks.com/blog/">BLOG</a></li>
           <li><a href="//slack.cumulusnetworks.com/">COMMUNITY</a></li></ul>
       </div>
     </div>
-    <!-- <div id="site-nav">
-      <div class="header-wrapper flex">
-        <a href="/">
-          <img src="/header-logo.png" alt="Cumulus Networks">
-          <img src="/cumulus-networks-rt-white.svg" alt="Cumulus Networks" class="header-mobile">
-        <span>Docs</span>
-        </a>
-        <ul class="flex">
-          <li><a href="//cumulusnetworks.com/">HOME</a></li>
-          <li><a href="https://support.mellanox.com/s/contact-support-page">SUPPORT</a></li>
-          <li><a href="//docs.cumulusnetworks.com/">DOCS</a></li>
-          <li><a href="//education.cumulusnetworks.com/">EDUCATION</a></li>
-          <li><a href="//cumulusnetworks.com/blog/">BLOG</a></li>
-          <li><a href="//slack.cumulusnetworks.com/">COMMUNITY</a></li>
-        </ul>
-        <div class="burger-menu">
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
-      </div>
-    </div> -->
     <header class="home-banner" style="background-image: url({{"docs-home-bg.jpg" | absURL}});">
       <div class="container">
         <div class="row">

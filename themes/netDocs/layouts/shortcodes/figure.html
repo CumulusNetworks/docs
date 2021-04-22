@@ -1,4 +1,4 @@
-{{ $src := (.Get "src") }}
+{{ $src := (trim (.Get "src") "/") }}
 
 {{ if or (fileExists (print "static/" $src)) (in $src "icons.cumulusnetworks.com") }}
 <figure{{ with .Get "class" }} class="{{ . }}"{{ end }}>

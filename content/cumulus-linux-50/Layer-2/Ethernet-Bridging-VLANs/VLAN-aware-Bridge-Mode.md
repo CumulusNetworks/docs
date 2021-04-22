@@ -111,6 +111,7 @@ cumulus@switch:~$ cl set bridge domain bridge1 vlan 10,20
 cumulus@switch:~$ cl set bridge domain bridge1 untagged 1
 cumulus@switch:~$ cl set interface swp3 bridge domain bridge2
 cumulus@switch:~$ cl set bridge domain bridge2 vlan 10
+cumulus@switch:~$ cl set bridge domain bridge2 untagged 1
 cumulus@switch:~$ cl config apply
 ```
 
@@ -148,7 +149,7 @@ cumulus@switch:~$ ifreload -a
 {{< /tabs >}}
 
 {{%notice note%}}
-NVIDIA Spectrum switches currently support a maximum of 6000 VLAN elements. The total number of VLAN elements is calculated as the number of VLANS * the number of bridges configured. For example, 6 bridges, each containing 1000 VLANS totals 6000 VLAN elements.
+NVIDIA Spectrum switches currently support a maximum of 6000 VLAN elements. The total number of VLAN elements is calculated as the number of VLANS times the number of bridges configured. For example, 6 bridges, each containing 1000 VLANS totals 6000 VLAN elements.
 {{%/notice%}}
 
 ## VLAN Range

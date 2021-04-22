@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 128
 toc: 3
 ---
-With the growth of low latency and high performance applications, precision timing has become increasingly important. Precision Time Protocol (PTP) is used to synchronize clocks in a network and is capable of sub-microsecond accuracy. The clocks are organized in a master-slave hierarchy. The slaves are synchronized to their masters, which can be slaves to their own masters. The hierarchy is created and updated automatically by the best master clock (BMC) algorithm, which runs on every clock. The grandmaster clock is the top-level master and is typically synchronized by using a Global Positioning System (GPS) time source to provide a high-degree of accuracy.
+With the growth of low latency and high performance applications, precision timing has become increasingly important. Precision Time Protocol (PTP) is used to synchronize clocks in a network and is capable of sub-microsecond accuracy. The clocks are organized in a master-slave hierarchy. The slaves are synchronized to their masters, which can be slaves to their own masters. The hierarchy is created and updated automatically by the best master clock (BMC) algorithm, which runs on every clock. The grandmaster clock is the top-level master and is typically synchronized using a Global Positioning System (GPS) time source to provide a high-degree of accuracy.
 
 A boundary clock has multiple ports; one or more master ports and one or more slave ports. The master ports provide time (the time can originate from other masters further up the hierarchy) and the slave ports receive time. The boundary clock absorbs Sync messages in the slave port, uses that port to set its clock, then generates new Sync messages from this clock out of all of its master ports.
 
@@ -18,7 +18,7 @@ Cumulus Linux includes the `linuxptp` package for PTP, which uses the `phc2sys` 
 - Only a single PTP domain per network is supported.
 - PTP is supported on BGP unnumbered interfaces.
 - You can isolate PTP traffic to a non-default VRF.
-- You can not run both PTP and NTP on the switch.
+- You cannot run both PTP and NTP on the switch.
 {{%/notice%}}
 
 In the following example, boundary clock 2 receives time from Master 1 (the grandmaster) on a PTP slave port, sets its clock and passes the time down from the PTP master port to boundary clock 1. Boundary clock 1 receives the time on a PTP slave port, sets its clock and passes the time down the hierarchy through the PTP master ports to the hosts that receive the time.
@@ -35,10 +35,10 @@ Basic PTP configuration requires you:
 
 ```
 cumulus@switch:~$ cl set service ptp 1 enable on
-cumulus@switch:~$ cl set interface swp6s0 ip address 10.0.0.9/32
-cumulus@switch:~$ cl set interface swp6s1 ip address 10.0.0.10/32
-cumulus@switch:~$ cl set interface swp6s0 service ptp enable on
-cumulus@switch:~$ cl set interface swp6s1 service ptp enable on
+cumulus@switch:~$ cl set interface swp13s0 ip address 10.0.0.9/32
+cumulus@switch:~$ cl set interface swp13s1 ip address 10.0.0.10/32
+cumulus@switch:~$ cl set interface swp13s0 service ptp enable on
+cumulus@switch:~$ cl set interface swp13s1 service ptp enable on
 cumulus@switch:~$ cl config apply
 ```
 
@@ -129,7 +129,7 @@ cumulus@switch:~$ cl config apply
 By default, PTP messages are encapsulated in UDP/IPV4 frames. To configure PTP messages to be encapsulated in UDP/IPV6 frames:
 
 ```
-cumulus@switch:~$ cl set interface swp6 service ptp transport ipv6
+cumulus@switch:~$ cl set interface swp13s1 service ptp transport ipv6
 cumulus@switch:~$ cl config apply
 ```
 
@@ -166,7 +166,7 @@ By default, ports configured for PTP are in auto mode, where the state of the po
 You can configure *Forced Master* mode on a PTP port so that it is always in a master state and the BMC algorithm is not run for this port. Any Announce messages received on this port are ignored.
 
 ```
-cumulus@switch:~$ cl set interface swp6 service ptp forced-master on
+cumulus@switch:~$ cl set interface swp13s1 service ptp forced-master on
 cumulus@switch:~$ cl config apply
 ```
 
@@ -175,22 +175,22 @@ cumulus@switch:~$ cl config apply
 You can configure the DiffServ code point (DSCP) value for all PTP IPv4 packets originated locally. You can set a value between 0 and 63.
 
 ```
-cumulus@switch:~$ cl set interface swp6 service ptp forced-master on
+cumulus@switch:~$ cl set interface swp13s1 service ptp forced-master on
 cumulus@switch:~$ cl config apply
 ```
 
 To restrict the number of hops a PTP message can travel, set the TTL on the PTP interface. You can set a value between 1 and 255.
 
 ```
-cumulus@switch:~$ cl set interface swp6 service ptp ttl 20
+cumulus@switch:~$ cl set interface swp13s1 service ptp ttl 20
 cumulus@switch:~$ cl config apply
 ```
 
 ### Acceptable Master Table
 
-The acceptable master table option is a security feature that prevents a rogue player from pretending to be the Grandmaster to take over the PTP network. To use this feature, you configure the clock IDs of known Grandmasters in the Acceptable Master table and set the acceptable master table option on a PTP port. The BMC algorithm checks if the Grandmaster received on the Announce message is in this table before proceeding with the master selection. This option is disabled by default on PTP ports.
+The acceptable master table option is a security feature that prevents a rogue player from pretending to be the Grandmaster to take over the PTP network. To use this feature, you configure the clock IDs of known Grandmasters in the acceptable master table and set the acceptable master table option on a PTP port. The BMC algorithm checks if the Grandmaster received on the Announce message is in this table before proceeding with the master selection. This option is disabled by default on PTP ports.
 
-The following example command adds the Grandmaster clock ID 000200.fffe.000001 to the Acceptable Master table.
+The following example command adds the Grandmaster clock ID 000200.fffe.000001 to the acceptable master table.
 
 ```
 cumulus@switch:~$ cl set service ptp 1 acceptable-master 000200.fffe.000001
@@ -203,10 +203,10 @@ You can also configure an alternate priority 1 value for the Grandmaster:
 cumulus@switch:~$ cl set service ptp 1 acceptable-master 000200.fffe.000001 alt-priority 260
 ```
 
-The following example commands enable the PTP acceptable master table option for swp6:
+The following example commands enable the PTP acceptable master table option for swp13s1:
 
 ```
-cumulus@switch:~$ cl set interface swp6 service ptp acceptable-master on
+cumulus@switch:~$ cl set interface swp13s1 service ptp acceptable-master on
 cumulus@switch:~$ cl config apply
 ```
 
@@ -216,35 +216,35 @@ You can set the following timers for PTP messages. The default values for the su
 
 | Timer | Description |
 | ----- | ----------- |
-| announce-interval | The average interval between successive Announce messages. Specify the value as a power of two in seconds. |
-| announce-timeout | The number of announce intervals that have to occur without receipt of an Announce message before a timeout occurs. <br>Make sure that this value is longer than the announce-interval in your network.|
-| delay-req-interval | The minimum average time interval allowed between successive Delay Required messages. |
-| sync-interval | The interval between PTP synchronization messages on an interface. Specify the value as a power of two in seconds. |
+| `announce-interval` | The average interval between successive Announce messages. Specify the value as a power of two in seconds. |
+| `announce-timeout` | The number of announce intervals that have to occur without receipt of an Announce message before a timeout occurs. <br>Make sure that this value is longer than the announce-interval in your network.|
+| `delay-req-interval` | The minimum average time interval allowed between successive Delay Required messages. |
+| `sync-interval` | The interval between PTP synchronization messages on an interface. Specify the value as a power of two in seconds. |
 
 To set the timers, run the `cl set interface <interface> service ptp timers <timer> <value>` command.
 
-The following example sets the announce interval between successive Announce messages on swp6 to -1.
+The following example sets the announce interval between successive Announce messages on swp13s1 to -1.
 
 ```
-cumulus@switch:~$ cl set interface swp6 service ptp timers announce-interval -1
+cumulus@switch:~$ cl set interface swp13s1 service ptp timers announce-interval -1
 cumulus@switch:~$ cl config apply
 ```
 
-The following example sets the mean sync-interval for multicast messages on swp6 to -5.
+The following example sets the mean sync-interval for multicast messages on swp13s1 to -5.
 
 ```
-cumulus@switch:~$ cl set interface swp6 service ptp timers sync-interval -5
+cumulus@switch:~$ cl set interface swp13s1 service ptp timers sync-interval -5
 cumulus@switch:~$ cl config apply
 ```
 
 ## Delete PTP Boundary Clock Configuration
 
-To delete PTP configuration, delete the PTP master and slave interfaces. The following example commands delete the PTP interfaces `swp6`, `swp7`, and `swp8`.
+To delete PTP configuration, delete the PTP master and slave interfaces. The following example commands delete the PTP interfaces `swp13s0`, `swp13s1`, and `swp13s2`.
 
 ```
-cumulus@switch:~$ cl unset interface swp6 service ptp
-cumulus@switch:~$ cl unset interface swp7 service ptp
-cumulus@switch:~$ cl unset interface swp8 service ptp
+cumulus@switch:~$ cl unset interface swp13s0 service ptp
+cumulus@switch:~$ cl unset interface swp13s1 service ptp
+cumulus@switch:~$ cl unset interface swp13s2 service ptp
 cumulus@switch:~$ cl config apply
 ```
 
@@ -257,7 +257,7 @@ cumulus@switch:~$ cl config apply
 
 ## Troubleshooting
 
-To view a summary of the PTP configuration on the switch, run the `cl show service ptp <instance>` command:
+CUE provides several show commands for PTP. You can view the current PTP configuration, monitor violations, and see time attributes of the clock. For example, to show a summary of the PTP configuration on the switch, run the `cl show service ptp <instance>` command:
 
 ```
 cumulus@switch:~$ cl show service ptp 1
@@ -280,27 +280,29 @@ monitor
 ...
 ```
 
-### View PTP Status Information
-
-To view PTP status information, run the `net show ptp parent_data_set` command:
+To see the list of CUE show commands for PTP, run `cl list-commands show service ptp`:
 
 ```
-cumulus@switch:~$ net show ptp parent_data_set
-parent_data_set
-===============
-parentPortIdentity                    000200.fffe.000001-1
-parentStats                           0
-observedParentOffsetScaledLogVariance 0xffff
-observedParentClockPhaseChangeRate    0x7fffffff
-grandmasterPriority1                  127
-gm.ClockClass                         248
-gm.ClockAccuracy                      0xfe
-gm.OffsetScaledLogVariance            0xffff
-grandmasterPriority2                  127
-grandmasterIdentity                   000200.fffe.000001
+cumulus@leaf01:mgmt:~$ cl list-commands service ptp
+cl show service ptp
+cl show service ptp <instance-id>
+cl show service ptp <instance-id> acceptable-master
+cl show service ptp <instance-id> acceptable-master <clock-id>
+cl show service ptp <instance-id> monitor
+cl show service ptp <instance-id> monitor violations
+cl show service ptp <instance-id> monitor violations forced-master
+cl show service ptp <instance-id> monitor violations forced-master <clock-id>
+cl show service ptp <instance-id> monitor violations acceptable-master
+cl show service ptp <instance-id> monitor violations acceptable-master <clock-id>
+cl show service ptp <instance-id> current
+cl show service ptp <instance-id> clock-quality
+cl show service ptp <instance-id> parent
+cl show service ptp <instance-id> parent grandmaster-clock-quality
+cl show service ptp <instance-id> time
+...
 ```
 
-To view the additional PTP status information, including the delta in nanoseconds from the master clock, run the `sudo pmc -u -b 0 'GET TIME_STATUS_NP'` command:
+To view PTP status information, including the delta in nanoseconds from the master clock, run the `sudo pmc -u -b 0 'GET TIME_STATUS_NP'` command:
 
 ```
 cumulus@switch:~$ sudo pmc -u -b 0 'GET TIME_STATUS_NP'
@@ -334,29 +336,6 @@ sending: GET TIME_STATUS_NP
         gmIdentity                 000200.fffe.000005
 ```
 
-### CUE Show Commands
-
-| Command | Description |
-| --------| ----------- |
-| `cl show interface <interface-id> service ptp` | |
-| `cl show interface <interface-id> service ptp timers` | |
-| `cl show interface <interface-id> service ptp counters` | |
-| `cl show service ptp` | |
-| `cl show service ptp <instance-id>` | |
-| `cl show service ptp <instance-id> acceptable-master` | |
-| `cl show service ptp <instance-id> acceptable-master <clock-id>` | |
-| `cl show service ptp <instance-id> monitor` | |
-| `cl show service ptp <instance-id> monitor violations` | |
-| `cl show service ptp <instance-id> monitor violations forced-master` | |
-| `cl show service ptp <instance-id> monitor violations forced-master <clock-id>` | |
-| `cl show service ptp <instance-id> monitor violations acceptable-master` | |
-| `cl show service ptp <instance-id> monitor violations acceptable-master <clock-id>` | |
-| `cl show service ptp <instance-id> current` | |
-| `cl show service ptp <instance-id> clock-quality` | |
-| `cl show service ptp <instance-id> parent` | |
-| `cl show service ptp <instance-id> parent grandmaster-clock-quality` |  |
-| `cl show service ptp <instance-id> time` | |
-
 ## Example Configuration
 
 In the following example, the boundary clock on the switch receives time from Master 1 (the grandmaster) on PTP slave port swp3s0, sets its clock and passes the time down through PTP master ports swp3s1, swp3s2, and swp3s3 to the hosts that receive the time.
@@ -372,13 +351,13 @@ This is the configuration for the above example. The example assumes that you ha
 cumulus@switch:~$ cl set service ptp 1 enable on
 cumulus@switch:~$ cl set service ptp 1 priority2 254
 cumulus@switch:~$ cl set service ptp 1 priority1 254
+cumulus@switch:~$ cl set service ptp 1 message-mode mixed
+cumulus@switch:~$ cl set service ptp 1 profile-type aes67
+cumulus@switch:~$ cl set service ptp 1 domain 3
 cumulus@switch:~$ cl set interface swp13s0 service ptp enable on
 cumulus@switch:~$ cl set interface swp13s1 service ptp enable on
 cumulus@switch:~$ cl set interface swp13s2 service ptp enable on
 cumulus@switch:~$ cl set interface swp13s3 service ptp enable on
-cumulus@switch:~$ cl set service ptp 1 message-mode mixed
-cumulus@switch:~$ cl set service ptp 1 profile-type aes67
-cumulus@switch:~$ cl set service ptp 1 domain 3
 cumulus@switch:~$ cl config apply
 ```
 

@@ -229,7 +229,7 @@ nexthop-group group1
 pbr-map map1 seq 1
  match dst-ip 10.1.2.0/24
  match src-ip 10.1.4.1/24
- set nexthop nexthop-group group1
+ set nexthop-group group1
  set vrf dmz
 ...
 ```

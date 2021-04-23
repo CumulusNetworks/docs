@@ -12,7 +12,7 @@ This feature is only available for on-premises deployments.
 
 ## Access Lifecycle Management Features
 
-To manage the various lifecycle management features, click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18" alt="Main Menu">}} (Main Menu) and select **Upgrade Switches**.
+To manage the various lifecycle management features, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18" alt="Main Menu"> (Main Menu) and select **Upgrade Switches**.
 
 The Manage Switch Assets view provides a summary card for switch inventory, uploaded images, and switch access settings.
 
@@ -54,7 +54,7 @@ To upload missing images:
 
     {{<figure src="/images/netq/lcm-images-missing-list-300.png" width="700">}}
 
-3. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18">}} (Add Image) above the table.
+3. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18"> (Add Image) above the table.
 
     {{<figure src="/images/netq/lcm-import-image-dialog-300.png" width="250">}}
 
@@ -76,7 +76,7 @@ To upload missing images:
 
 8. Repeat Steps 1-7 until all of the missing images are uploaded to the repository. When all of the missing images have been uploaded, the Missing list will be empty.
 
-9. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14">}} to return to the LCM dashboard.
+9. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"> to return to the LCM dashboard.
 
     The Cumulus Linux Images card now shows the number of images you uploaded.
 
@@ -264,7 +264,7 @@ To view a list of all switches known to lifecycle management, click **Manage** o
 
 {{<figure src="/images/netq/lcm-switch-mgmt-list-300.png" width="700">}}
 
-Review the list, filtering as needed (click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/15-Filter/filter-1.svg" height="18" width="18" alt="Filter Switch List">}}) to determine if the switches you want to upgrade are included. 
+Review the list, filtering as needed (click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/15-Filter/filter-1.svg" height="18" width="18" alt="Filter Switch List">) to determine if the switches you want to upgrade are included. 
 
 {{<notice tip>}}
 If you have more than one Cumulus Linux version running on your switches, you can click a version segment on the Switches card graph to open a list of switches pre-filtered by that version.
@@ -272,7 +272,7 @@ If you have more than one Cumulus Linux version running on your switches, you ca
 
 If the switches you are looking to upgrade are not present in the final list, verify the switches have NetQ 2.4 or later Agents on them.
 
-To verify the NetQ Agent version, click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18" alt="Main Menu">}}, then click **Agents** in the **Network** section. Search for the switches of interest and confirm the applied version in the **Version** column. Upgrade any NetQ Agents if needed. Refer to {{<link title="Upgrade NetQ Agents">}} for instructions.
+To verify the NetQ Agent version, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18" alt="Main Menu">, then click **Agents** in the **Network** section. Search for the switches of interest and confirm the applied version in the **Version** column. Upgrade any NetQ Agents if needed. Refer to {{<link title="Upgrade NetQ Agents">}} for instructions.
 
 After all of the switches you want to upgrade are contained in the list, you can assign roles to them.
 
@@ -308,7 +308,7 @@ While role assignment is optional, using roles can prevent switches from becomin
 
 3. Select one switch or multiple switches that should be assigned to the same role.
 
-4. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/58-Tags-Bookmarks/tags.svg" height="18" width="18" alt="Assign Role">}}.
+4. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/58-Tags-Bookmarks/tags.svg" height="18" width="18" alt="Assign Role">.
 
 5. Select the role that applies to the selected switch(es).
 
@@ -336,7 +336,7 @@ To change a switch role:
 
 3. Select the switch with the incorrect role from the list.
 
-4. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/58-Tags-Bookmarks/tags.svg" height="18" width="18" alt="Assign Role">}}.
+4. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/58-Tags-Bookmarks/tags.svg" height="18" width="18" alt="Assign Role">.
 
 5. Select the correct role.
 
@@ -458,8 +458,8 @@ You can view additional details about the changes that have occurred between the
 From this card you can:
 
 - View changes for each of the elements that had added and/or removed items, and various information about each; only elements with changes are presented
-- Filter the added and removed items by clicking {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/15-Filter/filter-1.svg" height="18" width="18">}}
-- Export all differences in JSON file format by clicking {{<img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/08-Upload-Download/upload-bottom.svg" height="18" width="18">}}
+- Filter the added and removed items by clicking <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/15-Filter/filter-1.svg" height="18" width="18">
+- Export all differences in JSON file format by clicking <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/08-Upload-Download/upload-bottom.svg" height="18" width="18">
 
 {{<figure src="/images/netq/snapshot-fullscr-change-details-300.png" width="700">}}
 
@@ -536,7 +536,7 @@ Your LCM dashboard should look similar to this after you have completed these st
 
 To install or upgrade switches:
 
-1. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18" alt="Main Menu">}} (Main Menu) and select **Upgrade Switches**, or click {{<img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/06-Servers/server-upload.svg" height="18" width="18">}} (Upgrade) in a workbench header.
+1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18" alt="Main Menu"> (Main Menu) and select **Upgrade Switches**, or click <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/06-Servers/server-upload.svg" height="18" width="18"> (Upgrade) in a workbench header.
 
 2. Click **Manage** on the Switches card.
 
@@ -546,7 +546,7 @@ To install or upgrade switches:
 
     {{<figure src="/images/netq/lcm-switch-mgmt-list-switches-selected-300.png" width="700">}}
 
-4. Click {{<img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/06-Servers/server-upload.svg" height="18" width="18">}} (Upgrade Switches) above the table.
+4. Click <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/06-Servers/server-upload.svg" height="18" width="18"> (Upgrade Switches) above the table.
 
     From this point forward, the software walks you through the upgrade process, beginning with a review of the switches that you selected for upgrade.
 
@@ -560,8 +560,8 @@ To install or upgrade switches:
 
 6. Verify that the switches you selected are included, and that they have the correct IP address and roles assigned.
 
-    - If you accidentally included a switch that you do NOT want to upgrade, hover over the switch information card and click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/bin-1.svg" height="18" width="18">}} to remove it from the upgrade job.
-    - If the role is incorrect or missing, click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/22-Edit/pencil-1.svg" height="18" width="18">}} to select a role for that switch, then click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/check-circle-1.svg" height="18" width="18">}}. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/delete-2.svg" height="18" width="18">}} to discard a role change.
+    - If you accidentally included a switch that you do NOT want to upgrade, hover over the switch information card and click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/bin-1.svg" height="18" width="18"> to remove it from the upgrade job.
+    - If the role is incorrect or missing, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/22-Edit/pencil-1.svg" height="18" width="18"> to select a role for that switch, then click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/check-circle-1.svg" height="18" width="18">. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/delete-2.svg" height="18" width="18"> to discard a role change.
 
     In this example, some of the selected switches do not have roles assigned.
 
@@ -674,7 +674,7 @@ To install or upgrade switches:
 <td>Switch is not in NetQ inventory: &lt;hostname&gt;</td>
 <td>Error</td>
 <td>LCM cannot upgrade a switch that is not in its inventory.</td>
-<td><p>Verify you have the correct hostname or IP address for the switch. </p> <p>Verify the switch has NetQ Agent 2.4.0 or later installed: click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18" alt="Main Menu">}}, then click <strong>Agents</strong> in the <strong>Network</strong> section, view <strong>Version</strong> column. Upgrade NetQ Agents if needed. Refer to {{<link title="Upgrade NetQ Agents">}}.</p></td>
+<td><p>Verify you have the correct hostname or IP address for the switch. </p> <p>Verify the switch has NetQ Agent 2.4.0 or later installed: click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18" alt="Main Menu">, then click <strong>Agents</strong> in the <strong>Network</strong> section, view <strong>Version</strong> column. Upgrade NetQ Agents if needed. Refer to {{<link title="Upgrade NetQ Agents">}}.</p></td>
 </tr>
 <tr>
 <td></td>
@@ -723,7 +723,7 @@ To install or upgrade switches:
 <td>hostname:&lt;hostname&gt;,reason:&lt;MLAG error message&gt;</td>
 <td>Error</td>
 <td>An error in an MLAG configuration has been detected. For example: Backup IP 10.10.10.1 does not belong to peer.</td>
-<td>Review the MLAG configuration on the identified switch. Refer to {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux-41/Layer-2/Multi-Chassis-Link-Aggregation-MLAG/" text="Multi-Chassis Link Aggregation-MLAG">}}. Make any needed changes.</td>
+<td>Review the MLAG configuration on the identified switch. Refer to the MLAG documentation for more information. Make any needed changes.</td>
 </tr>
 <tr>
 <td></td>
@@ -744,7 +744,7 @@ To install or upgrade switches:
 <td>For switch &lt;hostname&gt;, the MLAG switch with Role: secondary and ClagSysmac: &lt;MAC address&gt; does not exist.</td>
 <td>Error</td>
 <td>Identified switch is the primary in an MLAG pair, but the defined secondary switch is not in NetQ inventory.</td>
-<td>Verify the switch has NetQ Agent 2.4.0 or later installed: click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18" alt="Main Menu">}}, then click <strong>Agents</strong> in the <strong>Network</strong> section, view <strong>Version</strong> column. Upgrade NetQ Agent if needed. Refer to {{<link title="Upgrade NetQ Agents">}}. Add the missing peer switch to NetQ inventory.</td>
+<td>Verify the switch has NetQ Agent 2.4.0 or later installed: click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18" alt="Main Menu">, then click <strong>Agents</strong> in the <strong>Network</strong> section, view <strong>Version</strong> column. Upgrade NetQ Agent if needed. Refer to {{<link title="Upgrade NetQ Agents">}}. Add the missing peer switch to NetQ inventory.</td>
 </tr>
 </tbody>
 </table>
@@ -774,7 +774,7 @@ After starting the upgrade you can monitor the progress from the preview page or
 From the preview page, a green circle with rotating arrows is shown above each step as it is working. Alternately, you can close the detail of the job and see a summary of all current and past upgrade jobs on the Upgrade History page. The job started most recently is shown at the bottom, and the data is refreshed every minute.
 
 {{<notice tip>}}
-If you are disconnected while the job is in progress, it may appear as if nothing is happening. Try closing (click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14">}}) and reopening your view (click {{<img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-right-1.svg" height="18" width="18">}}), or refreshing the page.
+If you are disconnected while the job is in progress, it may appear as if nothing is happening. Try closing (click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14">) and reopening your view (click <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-right-1.svg" height="18" width="18">), or refreshing the page.
 {{</notice>}}
 
 #### Monitoring the Upgrade
@@ -785,15 +785,15 @@ Several viewing options are available for monitoring the upgrade job.
 
     {{<figure src="/images/netq/lcm-upgrade-switches-job-upgrading-300.png" width="700">}}
 
-- Monitor the job with summary information only in the Upgrade History page. Open this view by clicking {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14">}} in the full details view:
+- Monitor the job with summary information only in the Upgrade History page. Open this view by clicking <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"> in the full details view:
 
     {{<figure src="/images/netq/lcm-upgrade-switches-upg-history-upgrading-summary-300.png" width="700">}}
 
-    This view is refreshed automatically. Click {{<img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-down-1.svg" height="18" width="18">}} to view what stage the job is in.
+    This view is refreshed automatically. Click <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-down-1.svg" height="18" width="18"> to view what stage the job is in.
 
     {{<figure src="/images/netq/lcm-upgrade-switches-upg-history-stage-view-300.png" width="700">}}
 
-    Click {{<img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-right-1.svg" height="18" width="18">}} to view the detailed view.
+    Click <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-right-1.svg" height="18" width="18"> to view the detailed view.
 
 After either a successful or failed upgrade attempt has been performed, a new Upgrade History card appears on your LCM dashboard.
 
@@ -819,7 +819,7 @@ On successful completion, you can:
 
 - View the changes on the Switches card of the LCM dashboard.
 
-    Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18" alt="Main Menu">}}, then **Upgrade Switches**.
+    Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18" alt="Main Menu">, then **Upgrade Switches**.
 
     {{<figure src="/images/netq/lcm-switches-card-after-upgrade-300.png" width="200">}}
 
@@ -876,9 +876,9 @@ If an upgrade job fails for any reason, you can view the associated error(s):
 
     {{<figure src="/images/netq/lcm-upgrade-switches-upg-history-fail-summary-300.png" width="700">}}
 
-2. Click {{<img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-down-1.svg" height="18" width="18">}}.
+2. Click <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-down-1.svg" height="18" width="18">.
 
-3. Click {{<img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-right-1.svg" height="18" width="18">}}.
+3. Click <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-right-1.svg" height="18" width="18">.
 
     {{<figure src="/images/netq/lcm-upgrade-switches-upgrade-error-open-300.png" width="700">}}
 

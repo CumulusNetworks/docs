@@ -242,27 +242,23 @@ Slave queue ID: 0
 ```
 
 {{%notice warning%}}
-
-A single bridge cannot contain multiple subinterfaces of the **same** port as members. Attempting to apply such a configuration will result in an error:
+A single bridge cannot contain multiple subinterfaces of the **same** port as members. Attempting to apply such a configuration results in an error:
 
 ```
 cumulus@switch:~$ sudo brctl addbr another_bridge
 cumulus@switch:~$ sudo brctl addif another_bridge swp9 swp9.100
 bridge cannot contain multiple subinterfaces of the same port: swp9, swp9.100
 ```
-
 {{%/notice%}}
 
 ## VLAN Translation
 
 By default, Cumulus Linux does not allow VLAN subinterfaces associated with different VLAN IDs to be part of the same bridge. Base interfaces are not explicitly associated with any VLAN IDs and are exempt from this restriction.
 
-In some cases, it may be useful to relax this restriction. For example, two servers might be connected to the switch using VLAN trunks, but the VLAN numbering provisioned on the two servers are not consistent. You can choose to just bridge two VLAN subinterfaces of different VLAN IDs from the servers. You do this by enabling the `sysctl net.bridge.bridge-allow-multiple-vlans`. Packets entering a bridge from a member VLAN subinterface will egress another member VLAN subinterface with the VLAN ID translated.
+In some cases, it might be useful to relax this restriction. For example, two servers might be connected to the switch using VLAN trunks, but the VLAN numbering provisioned on the two servers are not consistent. You can choose to just bridge two VLAN subinterfaces of different VLAN IDs from the servers. You do this by enabling the `sysctl net.bridge.bridge-allow-multiple-vlans`. Packets entering a bridge from a member VLAN subinterface egress another member VLAN subinterface with the VLAN ID translated.
 
 {{%notice note%}}
-
 A bridge in {{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware mode">}} cannot have VLAN translation enabled; only bridges configured in {{<link url="Traditional-Bridge-Mode" text="traditional mode">}} can use VLAN translation.
-
 {{%/notice%}}
 
 The following example enables the VLAN translation `sysctl`:
@@ -276,7 +272,7 @@ net.bridge.bridge-allow-multiple-vlans = 1
 
 If the `sysctl` is enabled and you want to disable it, run the above example, setting the `sysctl net.bridge.bridge-allow-multiple-vlans` to *0*.
 
-After `sysctl` is enabled, ports with different VLAN IDs can be added to the same bridge. In the following example, packets entering the bridge `br-mix` from swp10.100 will be bridged to swp11.200 with the VLAN ID translated from 100 to 200:
+After `sysctl` is enabled, you can add ports with different VLAN IDs to the same bridge. In the following example, packets entering the bridge `br-mix` from swp10.100 are bridged to swp11.200 with the VLAN ID translated from 100 to 200:
 
 ```
 cumulus@switch:~$ sudo brctl addif br_mix swp10.100 swp11.200

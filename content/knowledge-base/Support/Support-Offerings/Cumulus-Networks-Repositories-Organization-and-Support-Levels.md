@@ -200,9 +200,9 @@ You can select which repositories you want to draw from using apt by uncommentin
 
 ## Accessing the Repository
 
-To access packages from the repository server, you simply follow Debian convention and use `apt-get`. You can find details in the {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux/" text="Cumulus Linux user guide">}}.
+To access packages from the repository server, you simply follow Debian convention and use `apt-get`. You can find details in the {{<kb_link url="cumulus-linux-43/" text="Cumulus Linux user guide">}}.
 
 ## Additional Reading
 
-- {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux/Installation-Management/Adding-and-Updating-Packages/#add-new-packages" text="Cumulus Linux User Guide: How to install packages using apt-get">}}
-- {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux/Installation-Management/Adding-and-Updating-Packages/#add-packages-from-another-repository" text="Cumulus Linux User Guide: How to enable third party repositories">}}
+- {{<kb_link url="cumulus-linux-43/Installation-Management/Adding-and-Updating-Packages/#add-new-packages" text="Cumulus Linux User Guide: How to install packages using apt-get">}}
+- {{<kb_link url="cumulus-linux-43/Installation-Management/Adding-and-Updating-Packages/#add-packages-from-another-repository" text="Cumulus Linux User Guide: How to enable third party repositories">}}

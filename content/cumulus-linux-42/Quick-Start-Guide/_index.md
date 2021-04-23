@@ -13,7 +13,7 @@ Intermediate-level Linux knowledge is assumed for this guide. You need to be fam
 
 You must have access to a Linux or UNIX shell. If you are running Windows, use a Linux environment like {{<exlink url="http://www.cygwin.com/" text="Cygwin">}} as your command line tool for interacting with Cumulus Linux.
 
-If you are a networking engineer but are unfamiliar with Linux concepts, refer to {{<exlink url="https://docs.cumulusnetworks.com/knowledge-base/Demos-and-Training/Interoperability/Cumulus-Linux-Conversion-Guide-for-NX-OS-or-IOS-Users/" text="this reference guide">}} to compare the Cumulus Linux CLI and configuration options, and their equivalent Cisco Nexus 3000 NX-OS commands and settings. You can also {{<exlink url="http://cumulusnetworks.com/technical-videos/" text="watch a series of short videos">}} introducing you to Linux and Cumulus Linux-specific concepts.
+If you are a networking engineer but are unfamiliar with Linux concepts, refer to {{<kb_link url="knowledge-base/Demos-and-Training/Interoperability/Cumulus-Linux-Conversion-Guide-for-NX-OS-or-IOS-Users/" text="this reference guide">}} to compare the Cumulus Linux CLI and configuration options, and their equivalent Cisco Nexus 3000 NX-OS commands and settings. You can also {{<exlink url="http://cumulusnetworks.com/technical-videos/" text="watch a series of short videos">}} introducing you to Linux and Cumulus Linux-specific concepts.
 
 ## Install Cumulus Linux
 
@@ -21,7 +21,7 @@ To install Cumulus Linux, you use {{<exlink url="https://opencomputeproject.gith
 
 1. If your host (laptop or server) is IPv6-enabled, make sure it is running a web server. If the host is IPv4-enabled, make sure it is running DHCP in addition to a web server.
 
-2. {{<exlink url="https://cumulusnetworks.com/downloads/" text="Download">}} the Cumulus Linux installation file to the root directory of the web server. Rename this file `onie-installer`.
+2. {{<exlink url="https://support.mellanox.com/s/" text="Download">}} the Cumulus Linux installation file to the root directory of the web server. Rename this file `onie-installer`.
 
 3. Connect your host using an Ethernet cable to the management Ethernet port of the switch.
 
@@ -35,7 +35,7 @@ You have more options for installing Cumulus Linux with ONIE. Read {{<link url="
 
 - DHCP/web server with and without DHCP options
 - Web server without DHCP
-- FTP or TFTP without a web server
+- FTP without a web server
 - Local file
 - USB
 

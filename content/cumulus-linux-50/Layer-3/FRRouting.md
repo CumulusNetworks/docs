@@ -24,9 +24,7 @@ It is not uncommon to have more than one protocol daemon running at the same tim
 FRRouting does not start by default in Cumulus Linux. Before you run FRRouting, make sure you have enabled the relevant daemons that you intend to use (`bgpd`, `ospfd`, `ospf6d` or `pimd`) in the `/etc/frr/daemons` file.
 
 {{%notice note%}}
-
 NVIDIA has not tested RIP, RIPv6, IS-IS and Babel.
-
 {{%/notice%}}
 
 The `zebra` daemon is enabled by default. You can enable the other daemons according to how you plan to route your network.
@@ -62,14 +60,10 @@ cumulus@switch:~$ sudo systemctl enable frr.service
 cumulus@switch:~$ sudo systemctl start frr.service
 ```
 
-{{%notice tip%}}
-
-All the routing protocol daemons (`bgpd`, `ospfd`, `ospf6d`, `ripd`, `ripngd`, `isisd` and `pimd`) are dependent on `zebra`. When you start FFRouting, `systemd` determines whether zebra is running; if zebra is not running, `systemd` starts `zebra`, then starts the dependent service, such as `bgpd`.
-
-In general, if you restart a service, its dependent services are also restarted. For example, running `systemctl restart frr.service` restarts any of the routing protocol daemons that are enabled and running.
-
-For more information on the `systemctl` command and changing the state of daemons, read {{<link url="Services-and-Daemons-in-Cumulus-Linux" text="Services and Daemons in Cumulus Linux">}}.
-
+{{%notice note%}}
+- All the routing protocol daemons (`bgpd`, `ospfd`, `ospf6d`, `ripd`, `ripngd`, `isisd` and `pimd`) are dependent on `zebra`. When you start FFRouting, `systemd` determines whether zebra is running; if zebra is not running, `systemd` starts `zebra`, then starts the dependent service, such as `bgpd`.
+- In general, if you restart a service, its dependent services are also restarted. For example, running `systemctl restart frr.service` restarts any of the routing protocol daemons that are enabled and running.
+- For more information on the `systemctl` command and changing the state of daemons, see {{<link url="Services-and-Daemons-in-Cumulus-Linux" text="Services and Daemons in Cumulus Linux">}}.
 {{%/notice%}}
 
 ## Integrated Configurations
@@ -104,9 +98,7 @@ cumulus@switch:~$
 ```
 
 {{%notice note%}}
-
 You can use `write file` instead of `write memory`.
-
 {{%/notice%}}
 
 When integrated configuration mode is disabled, the output looks like this:
@@ -435,9 +427,7 @@ end
 {{< /expand >}}
 
 {{%notice note%}}
-
 If you try to configure a routing protocol that has not been started, `vtysh` silently ignores those commands.
-
 {{%/notice%}}
 
 ## Reload the FRRouting Configuration
@@ -445,9 +435,7 @@ If you try to configure a routing protocol that has not been started, `vtysh` si
 If you make a change to your routing configuration, you need to reload FRRouting so your changes take place. *FRRouting reload* enables you to apply only the modifications you make to your FRRouting configuration, synchronizing its running state with the configuration in `/etc/frr/frr.conf`. This is useful for optimizing FRRouting automation in your environment or to apply changes made at runtime.
 
 {{%notice note%}}
-
 FRRouting reload only applies to an integrated service configuration, where your FRRouting configuration is stored in a single `frr.conf` file instead of one configuration file per FRRouting daemon (like `zebra` or `bgpd`).
-
 {{%/notice%}}
 
 To reload your FRRouting configuration after you modify `/etc/frr/frr.conf`, run:
@@ -473,9 +461,7 @@ If the running configuration is not what you expect, {{<exlink url="https://supp
 By default, Cumulus Linux configures FFR with syslog severity level 6 (informational). Log output is written to the `/var/log/frr/frr.log` file.
 
 {{%notice note%}}
-
 To write debug messages to the log file, you must run the `log syslog debug` command to configure FRR with syslog severity 7 (debug); otherwise, when you issue a debug command such as, `debug bgp neighbor-events`, no output is sent to `/var/log/frr/frr.log`. However, when you manually define a log target with the `log file /var/log/frr/debug.log` command, FRR automatically defaults to severity 7 (debug) logging and the output is logged to `/var/log/frr/debug.log`.
-
 {{%/notice%}}
 
 ## Considerations
@@ -499,9 +485,7 @@ hostname Spine01-1
 ```
 
 {{%notice note%}}
-
 Accidentally configuring the same numbered BGP neighbor using both the `neighbor x.x.x.x` and `neighbor swp# interface` commands results in two neighbor entries being present for the same IP address in the configuration. To correct this issue, update the configuration and restart the FRR service.
-
 {{%/notice%}}
 
 ## Related Information

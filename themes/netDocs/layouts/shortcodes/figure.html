@@ -1,11 +1,11 @@
-{{ $src := (.Get "src") }}
+{{ $src := (trim (.Get "src") "/") }}
 
 {{ if or (fileExists (print "static/" $src)) (in $src "icons.cumulusnetworks.com") }}
 <figure{{ with .Get "class" }} class="{{ . }}"{{ end }}>
 {{- if .Get "link" -}}
-<a href="{{ .Get "link" }}"{{ with .Get "target" }} target="{{ . }}"{{ end }}{{ with .Get "rel" }} rel="{{ . }}"{{ end }}>
+<a href="{{ .Get "link" | absURL }}"{{ with .Get "target" }} target="{{ . }}"{{ end }}{{ with .Get "rel" }} rel="{{ . }}"{{ end }}>
 {{- end }}
-<img src="{{ $src }}"
+<img src="{{ $src | absURL }}"
 {{- if or (.Get "alt") (.Get "caption") }}
 alt="{{ with .Get "alt" }}{{ . }}{{ else }}{{ .Get "caption" | markdownify| plainify }}{{ end }}"
 {{- end -}}

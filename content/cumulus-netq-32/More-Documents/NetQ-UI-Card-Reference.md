@@ -1858,7 +1858,7 @@ The full screen BGP Session card provides tabs for all BGP sessions and all even
 </tbody>
 </table>
 
-With NetQ, you can monitor the number of nodes running the EVPN service, view switches with the sessions, total number of VNIs, and alarms triggered by the EVPN service. For an overview and how to configure EVPN in your data center network, refer to {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN/" text="Ethernet Virtual Private Network-EVPN">}}.
+With NetQ, you can monitor the number of nodes running the EVPN service, view switches with the sessions, total number of VNIs, and alarms triggered by the EVPN service. For an overview and how to configure EVPN in your data center network, refer to {{<kb_link url="cumulus-linux-43/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN/" text="Ethernet Virtual Private Network-EVPN">}}.
 
 ### All EVPN Sessions Card
 
@@ -2448,7 +2448,7 @@ The full screen EVPN Session card provides tabs for all EVPN sessions and all ev
 
 This card displays performance and status information for all LLDP sessions across all nodes in your network.
 
-With NetQ, you can monitor the number of nodes running the LLDP service, view nodes with the most LLDP neighbor nodes, those nodes with the least neighbor nodes, and view alarms triggered by the LLDP service. For an overview and how to configure LLDP in your data center network, refer to {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux/Layer-2/Link-Layer-Discovery-Protocol/" text="Link Layer Discovery Protocol">}}.
+With NetQ, you can monitor the number of nodes running the LLDP service, view nodes with the most LLDP neighbor nodes, those nodes with the least neighbor nodes, and view alarms triggered by the LLDP service. For an overview and how to configure LLDP in your data center network, refer to {{<kb_link url="cumulus-linux-43/Layer-2/Link-Layer-Discovery-Protocol/" text="Link Layer Discovery Protocol">}}.
 
 The small LLDP Service card displays:
 
@@ -4833,7 +4833,7 @@ The full screen Switch card provides multiple tabs.
 <li><strong>Hostname</strong>: Hostname of the given device</li>
 <li><strong>Largest Chunk Size</strong>: Largest remaining chunk size on disk</li>
 <li><strong>Last Changed</strong>: Data and time that the storage allocation was last updated</li>
-<li><strong>Rebalance Recommended</strong>: Based on rules described in {{<exlink url="https://support.cumulusnetworks.com/hc/en-us/articles/360037394933-When-to-Rebalance-BTRFS-Partitions" text="When to Rebalance BTRFS Partitions" >}}, a rebalance is suggested</li>
+<li><strong>Rebalance Recommended</strong>: Based on rules described in {{<kb_link url="knowledge-base/Configuration-and-Usage/Storage/When-to-Rebalance-BTRFS-Partitions/" text="When to Rebalance BTRFS Partitions" >}}, a rebalance is suggested</li>
 <li><strong>Unallocated Space</strong>: Amount of space remaining on the disk</li>
 <li><strong>Unused Data Chunks Space</strong>: Amount of available data chunk space</li>
 </ul></td>

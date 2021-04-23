@@ -230,12 +230,16 @@ Protocol="udp")
 
 The most common use case for VRF is to use multiple independent routing and forwarding tables; however, there are situations where destinations in one VRF must be reachable (leaked) from another VRF. For example, to make a service (such as a firewall) available to multiple VRFs or to enable routing to external networks (or the Internet) for multiple VRFs, where the external network itself is reachable through a specific VRF.
 
+Cumulus Linux supports dynamic VRF route leaking. Static route leaking is not supported.
+
+{{%notice note%}}
 - An interface is always assigned to only one VRF; any packets received on that interface are routed using the associated VRF routing table.
 - Route leaking is not allowed for overlapping addresses.
 - Route leaking is supported for both IPv4 and IPv6 routes.
 - Route leaking is supported with EVPN in a symmetric routing configuration only.
 - VRF route leaking is not supported between the tenant VRF and the default VRF with onlink next hops (BGP unnumbered).
 - The NCLU command to configure route leaking fails if the VRF is named `red` (lowercase letters only). This is not a problem if the VRF is named `RED` (uppercase letters) or has a name other than red. To work around this issue, rename the VRF or run the `vtysh` command instead. This is a known limitation in `network-docopt`.
+{{%/notice%}}
 
 ### Configure Route Leaking
 
@@ -453,7 +457,7 @@ You can assign switch ports to each VRF table with an interface-level configurat
 
 Because BGP is VRF-aware, per-VRF neighbors, both iBGP and eBGP, as well as numbered and unnumbered interfaces are supported. Non-interface-based VRF neighbors are bound to the VRF, which is how you can have overlapping address spaces in different VRFs. Each VRF can have its own parameters, such as address families and redistribution. Incoming connections rely on the Linux kernel for VRF-global sockets. BGP neighbors can be tracked using {{<link url="Bidirectional-Forwarding-Detection-BFD" text="BFD">}}, both for single and multiple hops. You can configure multiple BGP instances, associating each with a VRF.
 
-A VRF-aware OSPFv2 configuration also supports numbered and unnumbered interfaces. Supported layer 3 interfaces include SVIs, sub-interfaces and physical interfaces. The VRF supports types 1 through 5 (ABR/ASBR - external LSAs) and types 9 through 11 (opaque LSAs) link state advertisements, redistributing other routing protocols, connected and static routes, and route maps. As with BGP, you can track OSPF neighbors with {{<link url="Bidirectional-Forwarding-Detection-BFD" text="BFD">}}.
+A VRF-aware OSPFv2 configuration also supports numbered and unnumbered interfaces. Supported layer 3 interfaces include SVIs, subinterfaces and physical interfaces. The VRF supports types 1 through 5 (ABR/ASBR - external LSAs) and types 9 through 11 (opaque LSAs) link state advertisements, redistributing other routing protocols, connected and static routes, and route maps. As with BGP, you can track OSPF neighbors with {{<link url="Bidirectional-Forwarding-Detection-BFD" text="BFD">}}.
 
 {{%notice note%}}
 Cumulus Linux does not support multiple VRFs in multi-instance OSPF.
@@ -649,7 +653,7 @@ router ospf vrf vrf1
 
 {{<link url="Border-Gateway-Protocol-BGP#bgp-unnumbered" text="BGP unnumbered interface configurations">}} are supported with VRF. In BGP unnumbered, there are no addresses on any interface. However, debugging tools like `traceroute` need at least a single IP address per node as the node's source IP address. Typically, this address is assigned to the loopback device. With VRF, you need a loopback device for each VRF table because VRF is based on interfaces, not IP addresses. While Linux does not support multiple loopback devices, it does support the concept of a dummy interface, which is used to achieve the same goal.
 
-An IP address can be associated with the VRF device, which will then act as the dummy (loopback-like) interface for that VRF.
+An IP address can be associated with the VRF device, which then acts as the dummy (loopback-like) interface for that VRF.
 
 The BGP unnumbered configuration is the same as for a non-VRF, applied under the VRF context.
 

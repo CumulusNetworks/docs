@@ -702,7 +702,7 @@ To configure monitoring of external premises:
 
 1. Sign in to primary NetQ Appliance or VM.
 
-2. In the NetQ UI, click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18" alt="Main Menu">}}.
+2. In the NetQ UI, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18" alt="Main Menu">.
 
 3. Select *Management* from the **Admin** column.
 
@@ -735,7 +735,7 @@ You can easily view the configuration of the physical server of VM from the NetQ
 
 To view the server information:
 
-1. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18" alt="Main Menu">}}.
+1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18" alt="Main Menu">.
 
 2. Select *Management* from the **Admin** column.
 

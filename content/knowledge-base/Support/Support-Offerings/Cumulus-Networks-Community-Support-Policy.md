@@ -11,13 +11,13 @@ Cumulus Networks provides the community spaces with a goal of sustaining a commu
 
 ## Support vs. Community
 
-First and foremost, Cumulus Networks Community should not be used in lieu of formal Cumulus Networks Global Support Services (GSS) engagement for time-sensitive or production-impacting issues. For issues that are time sensitive or impacting production environments, please engage the Cumulus Networks GSS team {{<exlink url="http://cumulusnetworks.com/support/overview/" text="here">}}.
+First and foremost, Cumulus Networks Community should not be used in lieu of formal Cumulus Networks Global Support Services (GSS) engagement for time-sensitive or production-impacting issues. For issues that are time sensitive or impacting production environments, please engage the Cumulus Networks GSS team {{<exlink url="https://support.mellanox.com/s/contact-support-page" text="here">}}.
 
 Issues and questions raised on the Cumulus Networks Community site do not come with any formal SLA or response guarantee. Issues are just as likely to be answered by an interested peer as they are to be answered by a Cumulus Networks employee.  One of the most important characteristics of any vibrant community is that the sponsoring company does not directly drive the community but merely provides the infrastructure and administration.
 
 ## Customer-sensitive Information
 
-Because the nature of a community site is that it is by definition public, please do not share any data or log information that you or your company would consider confidential. If such information is required for the resolution of the issue, please either redact the logs or open a formal support request via  {{<exlink url="http://cumulusnetworks.com/support/overview/" text="the Support Overview page">}}. Cumulus Networks will not be responsible for information shared on the community space. Please let us know immediately if something was posted that should not have been via email to <community@cumulusnetworks.com>.
+Because the nature of a community site is that it is by definition public, please do not share any data or log information that you or your company would consider confidential. If such information is required for the resolution of the issue, please either redact the logs or open a formal support request via  {{<exlink url="https://support.mellanox.com/s/contact-support-page" text="the Support Overview page">}}. Cumulus Networks will not be responsible for information shared on the community space. Please let us know immediately if something was posted that should not have been via email to <community@cumulusnetworks.com>.
 
 ## Help Beyond Cumulus Products
 

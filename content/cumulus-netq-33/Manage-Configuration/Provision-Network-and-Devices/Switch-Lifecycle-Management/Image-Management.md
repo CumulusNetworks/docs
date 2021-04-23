@@ -80,7 +80,7 @@ If you have already specified a default image, you must click <strong>Manage</st
 </div>
    {{<figure src="/images/netq/lcm-disk-space-aid-320.png" width="150">}}
 
-4. Download the Cumulus Linux disk images (*.bin* files) needed for upgrade from the {{<exlink url="https://cumulusnetworks.com/downloads/#product=Cumulus%20Linux" text="Cumulus Downloads page">}}, selecting the appropriate version, CPU, and ASIC. Place them in an accessible part of your local network.
+4. Download the Cumulus Linux disk images (*.bin* files) needed for upgrade from the {{<exlink url="https://support.mellanox.com/s/" text="MyMellanox downloads">}} page, selecting the appropriate version, CPU, and ASIC. Place them in an accessible part of your local network.
 
 5. Back in the UI, click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18">}} (Add Image) above the table.
 
@@ -113,7 +113,7 @@ If you have already specified a default image, you must click <strong>Manage</st
 
 {{< tab "NetQ CLI" >}}
 
-1. Download the Cumulus Linux disk images (*.bin* files) needed for upgrade from the {{<exlink url="https://cumulusnetworks.com/downloads/#product=Cumulus%20Linux" text="Cumulus Downloads page">}}, selecting the appropriate version, CPU, and ASIC. Place them in an accessible part of your local network.
+1. Download the Cumulus Linux disk images (*.bin* files) needed for upgrade from the {{<exlink url="https://support.mellanox.com/s/" text="MyMellanox downloads">}} page, selecting the appropriate version, CPU, and ASIC. Place them in an accessible part of your local network.
 
 2. Upload the images to the LCM repository. This example uses a Cumulus Linux 4.2.0 disk image.
 
@@ -181,7 +181,7 @@ If you have already specified a default image, you must click <strong>Manage</st
 
 {{< tab "NetQ CLI" >}}
 
-1. Download the NetQ debian packages needed for upgrade from the {{<exlink url="https://cumulusnetworks.com/downloads/#product=NetQ" text="Cumulus Downloads page">}}, selecting the appropriate version and hypervisor/platform. Place them in an accessible part of your local network.
+1. Download the NetQ debian packages needed for upgrade from the {{<exlink url="https://support.mellanox.com/s/" text="MyMellanox downloads page">}}, selecting the appropriate version and hypervisor/platform. Place them in an accessible part of your local network.
 
 2. Upload the images to the LCM repository. This example uploads the two packages (`netq-agent` and `netq-apps`) needed for NetQ version 3.3.1 for a NetQ appliance or VM running Ubuntu 18.04 with an x86 architecture.
 
@@ -198,7 +198,7 @@ If you have already specified a default image, you must click <strong>Manage</st
 
 To upload the Cumulus Linux or NetQ images that you want to use for upgrade:
 
-First download the Cumulus Linux disk images (*.bin* files) and NetQ debian packages needed for upgrade from the {{<exlink url="https://cumulusnetworks.com/downloads/" text="Cumulus Downloads page">}} and {{<exlink url="http://apps3.cumulusnetworks.com/repos/deb/pool/netq-3.3/p/python-netq/" text="NetQ repository">}}, respectively. Place them in an accessible part of your local network.
+First download the Cumulus Linux disk images (*.bin* files) and NetQ debian packages needed for upgrade from the {{<exlink url="https://support.mellanox.com/s/" text="MyMellanox downloads">}} and {{<exlink url="http://apps3.cumulusnetworks.com/repos/deb/pool/netq-3.3/p/python-netq/" text="NetQ repository">}}, respectively. Place them in an accessible part of your local network.
 
 If you are upgrading Cumulus Linux on switches with different ASIC vendors or CPU architectures, you will need more than one image. For NetQ, you need both the `netq-apps` and `netq-agent` packages for each variant.
 

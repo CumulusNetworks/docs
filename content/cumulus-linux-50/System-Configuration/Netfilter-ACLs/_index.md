@@ -7,14 +7,7 @@ toc: 3
 {{<exlink url="http://www.netfilter.org/" text="Netfilter">}} is the packet filtering framework in Cumulus Linux as well as most other Linux distributions. There are a number of tools available for configuring ACLs in Cumulus Linux:
 
 - `iptables`, `ip6tables`, and `ebtables` are Linux userspace tools used to administer filtering rules for IPv4 packets, IPv6 packets, and Ethernet frames (layer 2 using MAC addresses).
-- NCLU is a Cumulus Linux-specific userspace tool used to configure custom ACLs.
-- `cl-acltool` is a Cumulus Linux-specific userspace tool used to administer filtering rules and configure default ACLs.
-
-NCLU and `cl-acltool` operate on various configuration files and use `iptables`, `ip6tables`, and `ebtables` to install rules into the kernel. In addition, NCLU and `cl-acltool` program rules in hardware for interfaces involving switch port interfaces, which `iptables`, `ip6tables` and `ebtables` cannot do on their own.
-
-In many instances, you can use NCLU to configure ACLs; however, in some cases, you must use `cl-acltool`. The examples below specify when to use which tool.
-
-If you need help to configure ACLs, run `net example acl` to see a basic configuration.
+- `cl-acltool` is a Cumulus Linux-specific userspace tool used to administer filtering rules and configure default ACLs. `cl-acltool` operates on various configuration files and uses `iptables`, `ip6tables`, and `ebtables` to install rules into the kernel. In addition, `cl-acltool` programs rules in hardware for interfaces involving switch port interfaces, which `iptables`, `ip6tables` and `ebtables` cannot do on their own.
 
 ## Traffic Rules In Cumulus Linux
 
@@ -63,7 +56,7 @@ Rules have several different components; the examples below highlight those diff
 - **Table:** The first argument is the *table*. Notice the second example does not specify a table, that is because the filter table is implied if a table is not specified.
 - **Chain:** The second argument is the *chain*. Each table supports several different chains. See Understanding Tables above.
 - **Matches:** The third argument(s) are called the *matches*. You can specify multiple matches in a single rule. However, the more matches you use in a rule, the more memory that rule consumes.
-- **Jump:** The *jump* specifies the target of the rule; that is, what action to take if the packet matches the rule. If this option is omitted in a rule, then matching the rule will have no effect on the packet's fate, but the counters on the rule will be incremented.
+- **Jump:** The *jump* specifies the target of the rule; what action to take if the packet matches the rule. If this option is omitted in a rule, then matching the rule has no effect on the fate of the packet, but the counters on the rule are incremented.
 - **Target(s):** The *target* can be a user-defined chain (other than the one this rule is in), one of the special built-in targets that decides the fate of the packet immediately (like DROP), or an extended target. See the {{<link url="#supported-rule-types" text="Supported Rule Types">}} section below for examples of different targets.
 
 ### How Rules Are Parsed and Applied
@@ -87,9 +80,7 @@ The Linux packet forwarding construct is an overlay for how the silicon undernea
     ```
 
     {{%notice warning%}}
-
 If multiple contiguous rules with the same match criteria are applied to `--in-interface`, **only** the first rule gets processed and then processing terminates. Do not configure duplicate rules with different actions.
-
     {{%/notice%}}
 
 - When processing traffic, rules affecting the FORWARD chain that specify an ingress interface are performed prior to rules that match on an egress interface. As a workaround, rules that only affect the egress interface can have an ingress interface wildcard (currently, only *swp+* and *bond+* are supported as wildcard names; see below) that matches any interface applied so that you can maintain order of operations with other input interface rules. For example, with the following rules:
@@ -264,7 +255,7 @@ You can match on VLAN IDs on layer 2 interfaces for ingress rules. The following
 -A FORWARD -i swp31 -m mark --mark 0x66 -m dscp --dscp-class CS1 -j SETCLASS --class 2
 ```
 
-## Install and Manage ACL Rules with NCLU
+<!--## Install and Manage ACL Rules with NCLU
 
 NCLU provides an easy way to create custom ACLs in Cumulus Linux. The rules you create live in the `/var/lib/cumulus/nclu/nclu_acl.conf` file, which gets converted to a rules file, `/etc/cumulus/acl/policy.d/50_nclu_acl.rules`. This way, the rules you create with NCLU are independent of the two default files in `/etc/cumulus/acl/policy.d/` `00control_plane.rules` and `99control_plane_catch_all.rules`, as the content in these files might get updated after you upgrade Cumulus Linux.
 
@@ -335,7 +326,7 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-This deletes all rules from the `50_nclu_acl.rules` file with that name. It also deletes the interfaces referenced in the `nclu_acl.conf` file.
+This deletes all rules from the `50_nclu_acl.rules` file with that name. It also deletes the interfaces referenced in the `nclu_acl.conf` file.-->
 
 ## Install and Manage ACL Rules with cl-acltool
 
@@ -486,10 +477,7 @@ Apply all rules and policies included in `/etc/cumulus/acl/policy.conf`:
 cumulus@switch:~$ sudo cl-acltool -i
 ```
 
-In addition to ensuring that the rules and policies referenced by
-`/etc/cumulus/acl/policy.conf` are installed, this will remove any
-currently active rules and policies that are not contained in the
-files referenced by `/etc/cumulus/acl/policy.conf`.
+In addition to ensuring that the rules and policies referenced by `/etc/cumulus/acl/policy.conf` are installed, this removes any currently active rules and policies that are not contained in the files referenced by `/etc/cumulus/acl/policy.conf`.
 
 ## Specify the Policy Files to Install
 
@@ -623,7 +611,7 @@ Rule 1: `-A FORWARD --out-interface vlan100 -p icmp6 -j ACCEPT`
 
 Rule 2: `-A FORWARD --out-interface vlan101 -p icmp6 -j DROP`
 
-Rule 2 will never be match on ingress. Both rules share the same mark.
+Rule 2 never matches on ingress. Both rules share the same mark.
 
 ## Common Examples
 
@@ -826,7 +814,7 @@ The `--syn` flag in the above rule matches packets with the SYN bit set and the 
 -A INPUT,FORWARD --in-interface $INGRESS_INTF -p tcp --tcp-flags SYN,RST,ACK,FIN SYN -j DROP
 ```
 
-### Control Who Can SSH into the Switch
+<!--### Control Who Can SSH into the Switch
 
 Run the following NCLU commands to control who can SSH into the switch.
 In the following example, 10.0.0.11/32 is the interface IP address (or loopback IP address) of the switch and 10.255.4.0/24 can SSH into the switch.
@@ -841,7 +829,7 @@ cumulus@switch:~$ net commit
 
 {{%notice note%}}
 Cumulus Linux does not support the keyword `iprouter` (typically used for traffic sent to the CPU, where the destination MAC address is that of the router but the destination IP address is not the router).
-{{%/notice%}}
+{{%/notice%}}-->
 
 ## Example Configuration
 
@@ -854,7 +842,7 @@ Following are the configurations for the two switches used in these examples. Th
 ### Switch 1 Configuration
 
 ```
-cumulus@switch1:~$ net show configuration files
+cumulus@switch1:~$ sudo cat /etc/network/interfaces
 ...
 /etc/network/interfaces
 =======================
@@ -892,7 +880,7 @@ iface br-tag100
 ### Switch 2 Configuration
 
 ```
-cumulus@switch2:~$ net show configuration files
+cumulus@switch2:~$ sudo cat /etc/network/interfaces
 ...
 /etc/network/interfaces
 =======================
@@ -1078,7 +1066,7 @@ On certain platforms, there are limitations on hardware policing of packets in t
 
 ### ACLs Do not Match when the Output Port on the ACL is a Subinterface
 
-Packets don't get matched when a subinterface is configured as the output port. The ACL matches on packets only if the primary port is configured as an output port. If a subinterface is set as an output or egress port, the packets match correctly.
+Packets do not get matched when a subinterface is configured as the output port. The ACL matches on packets only if the primary port is configured as an output port. If a subinterface is set as an output or egress port, the packets match correctly.
 
 For example:
 

@@ -4,22 +4,21 @@ author: NVIDIA
 weight: 420
 toc: 3
 ---
-Ethernet bridges enable hosts to communicate through layer 2 by connecting all of the physical and logical interfaces in the system into a single layer 2 domain. The bridge is a logical interface with a MAC address and an {{<link url="Switch-Port-Attributes#mtu" text="MTU">}} (maximum transmission unit). The bridge MTU is the minimum MTU among all its members. By default, the {{<exlink url="https://docs.cumulusnetworks.com/knowledge-base/Configuration-and-Usage/Network-Configuration/Cumulus-Linux-Derivation-of-MAC-Address-for-a-Bridge/" text="bridge's MAC address">}} is the MAC address of the first port in the `bridge-ports` list. The bridge can also be assigned an IP address, as discussed {{<link url="#bridge-mac-addresses" text="below">}}.
+Ethernet bridges enable hosts to communicate through layer 2 by connecting all of the physical and logical interfaces in the system into a single layer 2 domain. The bridge is a logical interface with a MAC address and an {{<link url="Switch-Port-Attributes#mtu" text="MTU">}} (maximum transmission unit). The bridge MTU is the minimum MTU among all its members. By default, the {{<kb_link url="knowledge-base/Configuration-and-Usage/Network-Configuration/Cumulus-Linux-Derivation-of-MAC-Address-for-a-Bridge/" text="bridge's MAC address">}} is the MAC address of the first port in the `bridge-ports` list. The bridge can also be assigned an IP address, as discussed {{<link url="#bridge-mac-addresses" text="below">}}.
 
 {{%notice note%}}
-Bridge members can be individual physical interfaces, bonds, or logical interfaces that traverse an 802.1Q VLAN trunk.
-
-Cumulus Linux does not put all ports into a bridge by default.
+- Bridge members can be individual physical interfaces, bonds, or logical interfaces that traverse an 802.1Q VLAN trunk.
+- Cumulus Linux does not put all ports into a bridge by default.
 {{%/notice%}}
 
 ## Ethernet Bridge Types
 
 The Cumulus Linux bridge driver supports two configuration modes; one that is VLAN-aware and one that follows a more traditional Linux bridge model.
 
-NVIDIA recommends that you use *{{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware mode">}}* bridges instead of *traditional mode* bridges. The Cumulus Linux bridge driver is capable of VLAN filtering, which allows for configurations that are similar to incumbent network devices. For a comparison of traditional and VLAN-aware modes, read
-{{<exlink url="https://docs.cumulusnetworks.com/knowledge-base/Configuration-and-Usage/Network-Interfaces/Compare-Traditional-Bridge-Mode-to-VLAN-aware-Bridge-Mode/" text="this knowledge base article">}}.
+NVIDIA recommends that you use *{{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware mode">}}* bridges instead of *traditional mode* bridges. The Cumulus Linux bridge driver is capable of VLAN filtering, which allows for configurations that are similar to incumbent network devices. For a comparison of traditional and VLAN-aware modes, see
+{{<kb_link url="knowledge-base/Configuration-and-Usage/Network-Interfaces/Compare-Traditional-Bridge-Mode-to-VLAN-aware-Bridge-Mode/" text="this knowledge base article">}}.
 
-You can configure both VLAN-aware and traditional mode bridges on the same network in Cumulus Linux; however you cannot have more than one VLAN-aware bridge on a switch.
+You can configure both VLAN-aware and traditional mode bridges on the same network in Cumulus Linux.
 
 - To create a VLAN-aware bridge, see {{<link title="VLAN-aware Bridge Mode">}}.
 - To create a traditional mode bridge, see {{<link title="Traditional Bridge Mode">}}.
@@ -80,4 +79,4 @@ cumulus@switch:~$ bridge fdb show | grep 02:02:00:00:00:08
 
 - {{<exlink url="http://www.linuxfoundation.org/collaborate/workgroups/networking/vlan" text="Linux Foundation - VLANs">}}
 - {{<exlink url="http://www.linuxjournal.com/article/8172" text="Linux Journal - Linux as an Ethernet Bridge">}}
-- {{<exlink url="https://docs.cumulusnetworks.com/knowledge-base/Configuration-and-Usage/Network-Interfaces/Compare-Traditional-Bridge-Mode-to-VLAN-aware-Bridge-Mode/" text="Comparing Traditional Bridge Mode to VLAN-aware Bridge Mode">}}
+- {{<kb_link url="knowledge-base/Configuration-and-Usage/Network-Interfaces/Compare-Traditional-Bridge-Mode-to-VLAN-aware-Bridge-Mode/" text="Comparing Traditional Bridge Mode to VLAN-aware Bridge Mode">}}

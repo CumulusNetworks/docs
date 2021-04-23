@@ -10,7 +10,7 @@ This section provides an overview of Cumulus VX and lists supported hypervisors.
 
 ## Cumulus VX
 
-Cumulus VX is a virtual appliance that helps you become familiar with Cumulus Networks technology, and provides a platform for you to prototype network operations and develop custom applications before you deploy into a production environment. Without the need for a bare metal switch or specialized hardware, Cumulus VX runs on all popular hypervisors, making traditional networking protocols such as BGP and MLAG, Cumulus Networks-specific technologies such as ONIE, and Prescriptive Topology Manager (PTM) available for testing and configuration.
+Cumulus VX is a virtual appliance that helps you become familiar with NVIDIA networking technology, and provides a platform for you to prototype network operations and develop custom applications before you deploy into a production environment. Without the need for a bare metal switch or specialized hardware, Cumulus VX runs on all popular hypervisors, making traditional networking protocols such as BGP and MLAG, NVIDIA-specific technologies such as ONIE, and Prescriptive Topology Manager (PTM) available for testing and configuration.
 
 Cumulus VX is a virtual machine (VM) on a standard x86 environment. The VM is the same Cumulus Linux operating system supported on NVIDIA ethernet switches and contains the same software features but in a VM format. Cumulus VX provides full data plane functionality through the Linux kernel, as well as layer 2 VLAN, VXLAN bridging, and VXLAN routing capabilities.
 
@@ -23,7 +23,7 @@ Cumulus VX is designed for testing and not data plane performance. Cumulus VX is
 ## Cumulus in the Cloud
 
 As an alternative to Cumulus VX, which requires a hypervisor (or hypervisor and orchestrator), you can use
-{{<exlink url="https://cumulusnetworks.com/products/cumulus-in-the-cloud/" text="Cumulus in the Cloud">}}, which is a free, personal, virtual data center network that provides a low-effort way to see Cumulus Networks technology in action. Your virtual data center consists of two racks with two dual-homed servers connected with a leaf-spine network. This is a good way to try out Cumulus Linux if you have platform or disk limitations.
+{{<exlink url="https://cumulusnetworks.com/products/cumulus-in-the-cloud/" text="Cumulus in the Cloud">}}, which is a free, personal, virtual data center network that provides a low-effort way to see NVIDIA networking technology in action. Your virtual data center consists of two racks with two dual-homed servers connected with a leaf-spine network. This is a good way to try out Cumulus Linux if you have platform or disk limitations.
 
 ## Supported Hypervisors
 
@@ -98,18 +98,18 @@ As a Cumulus Linux customer, you can receive formal GSS support for Cumulus VX t
 - Analyze, troubleshoot, and correct issues with configurations and software bugs in Cumulus VX that might also apply to Cumulus Linux running on physical devices.
 - Analyze, troubleshoot, and correct issues with Cumulus VX if behaving differently than physical devices. This does not apply in scenarios where it is not possible to emulate physical hardware with virtualization.
 
-Cumulus Networks does *not* provide support for:
+NVIDIA does *not* provide support for:
 
 - Cumulus VX used in a production environment.
 - Virtualization environments, including installation, setup, and configuration.
 - Automation tool playbooks, including creation and troubleshooting.
 - Performance or scalability issues related to network traffic running through Cumulus VX instances.
 
-For non-customers, Cumulus VX remains a community-supported product, with no formal support obligations from Cumulus Networks. You can submit questions to the {{<exlink url="https://slack.cumulusnetworks.com/" text="community Slack channel">}} to engage with the wider community.
+For non-customers, Cumulus VX remains a community-supported product, with no formal support obligations from NVIDIA.
 
 ## Related Information
 
-- {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux" text="Cumulus Linux documentation">}}
+- {{<kb_link url="cumulus-linux-43" text="Cumulus Linux documentation">}}
 - {{<exlink url="https://cumulusnetworks.com/products/cumulus-vx/download/" text="Cumulus VX downloads">}}
 - {{<exlink url="https://www.vmware.com/support/pubs/" text="VMware documentation">}}
 - {{<exlink url="https://www.virtualbox.org/wiki/Documentation" text="VirtualBox documentation">}}

@@ -8,7 +8,7 @@ The Cumulus NetQ UI enables operators to view the health of the OSPF service on 
 
 ## Monitor the OSPF Service (All Sessions)
 
-With NetQ, you can monitor the number of nodes running the OSPF service, view switches with the most full and unestablished OSPF sessions, and view alarms triggered by the OSPF service. For an overview and how to configure OSPF to run in your data center network, refer to {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux/Layer-3/Open-Shortest-Path-First-OSPF/" text="Open Shortest Path First - OSPF">}} or {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux/Layer-3/Open-Shortest-Path-First-v3-OSPFv3/" text="Open Shortest Path First v3 - OSPFv3">}}.
+With NetQ, you can monitor the number of nodes running the OSPF service, view switches with the most full and unestablished OSPF sessions, and view alarms triggered by the OSPF service. For an overview and how to configure OSPF to run in your data center network, refer to {{<kb_link url="cumulus-linux-43/Layer-3/OSPF/" text="Open Shortest Path First - OSPF">}} or {{<kb_link url="cumulus-linux-43/Layer-3/OSPF/Open-Shortest-Path-First-v3-OSPFv3/" text="Open Shortest Path First v3 - OSPFv3">}}.
 
 ### OSPF Service Card Workflow
 
@@ -418,7 +418,7 @@ To view switches with the most OSPF alarms:
 
 1. Open the large OSPF Service card.
 
-2. Hover over the header and click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell.svg" height="18" width="18">}}.
+2. Hover over the header and click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell.svg" height="18" width="18">.
 
 3. Select **Switches with Most Alarms** from the filter above the table.
 
@@ -444,7 +444,7 @@ To view all OSPF events:
 Where to go next depends on what data you see, but a couple of options include:
 
 - Open one of the other full screen tabs in this flow to focus on devices or sessions
-- Export the data for use in another analytics tool, by clicking {{<img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/08-Upload-Download/upload-bottom.svg" height="18" width="18">}} and providing a name for the data file
+- Export the data for use in another analytics tool, by clicking <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/08-Upload-Download/upload-bottom.svg" height="18" width="18"> and providing a name for the data file
 
 ### View Details for All Devices Running OSPF
 
@@ -454,7 +454,7 @@ To view all device details, open the full screen OSPF Service card and click the
 
 {{<figure src="/images/netq/ntwk-svcs-all-ospf-fullscr-allswitches-tab-241.png" width="700">}}
 
-To return to your workbench, click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14">}} in the top right corner.
+To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"> in the top right corner.
 
 ### View Details for All OSPF Sessions
 
@@ -464,13 +464,13 @@ To view all session details, open the full screen OSPF Service card and click th
 
 {{<figure src="/images/netq/ntwk-svcs-all-ospf-fullscr-sessions-tab-222.png" width="700">}}
 
-To return to your workbench, click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14">}} in the top right corner.
+To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"> in the top right corner.
 
 Use the icons above the table to select/deselect, filter, and export items in the list. Refer to {{<link url="Access-Data-with-Cards#table-settings" text="Table Settings">}} for more detail. To return to original display of results, click the associated tab.
 
 ## Monitor a Single OSPF Session
 
-With NetQ, you can monitor a single session of the OSPF service, view session state changes, and compare with alarms occurring at the same time, as well as monitor the running OSPF configuration and changes to the configuration file. For an overview and how to configure OSPF to run in your data center network, refer to {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux/Layer-3/Open-Shortest-Path-First-OSPF/" text="Open Shortest Path First - OSPF">}} or {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux/Layer-3/Open-Shortest-Path-First-v3-OSPFv3/" text="Open Shortest Path First v3 - OSPFv3">}}.
+With NetQ, you can monitor a single session of the OSPF service, view session state changes, and compare with alarms occurring at the same time, as well as monitor the running OSPF configuration and changes to the configuration file. For an overview and how to configure OSPF to run in your data center network, refer to {{<kb_link url="cumulus-linux-43/Layer-3/OSPF/" text="Open Shortest Path First - OSPF">}} or {{<kb_link url="cumulus-linux-43/Layer-3/OSPF/Open-Shortest-Path-First-v3-OSPFv3/" text="Open Shortest Path First v3 - OSPFv3">}}.
 
 {{<notice note>}}
 To access the single session cards, you must open the full screen OSPF Service, click the <strong>All Sessions</strong> tab, select the desired session, then click <img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> (Open Cards).

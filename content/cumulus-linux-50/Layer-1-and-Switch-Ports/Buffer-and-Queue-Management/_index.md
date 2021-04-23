@@ -167,7 +167,7 @@ The PAUSE frame is a flow control mechanism that halts the transmission of the t
 
 Link pause is disabled by default. To enable link pause, you must configure settings in the `/etc/cumulus/datapath traffic.conf` file.
 
-{{< expand "What's the difference between link pause and priority flow control?" >}}
+{{< expand "What is the difference between link pause and priority flow control?" >}}
 - Priority flow control is applied to an individual priority group for a specific ingress port.
 - Link pause (also known as port pause or global pause) is applied to all the traffic for a specific ingress port.
 {{< /expand >}}
@@ -210,8 +210,10 @@ cumulus@switch:~$ echo 1 > /cumulus/switchd/config/traffic/reload
 
 Always run the {{<link url="#syntax-checker" text="syntax checker">}} syntax checker before applying the configuration changes.
 
+<!-- vale off -->
+<!-- Vale issue #253 -->
 ## Cut-through Mode and Store and Forward Switching
-
+<!-- vale on -->
 NVIDIA switches support cut-through mode but do **not** support store and forward switching. You cannot disable cut-through mode.
 
 When cut-though mode is enabled and link pause is asserted, Cumulus Linux generates a TOVR and TUFL ERROR; certain error counters increment on a given physical port.
@@ -257,7 +259,7 @@ ECN is a layer 3 end-to-end congestion notification mechanism only. Packets can 
 
 The ECN mechanism on a switch only marks packets to notify the end receiver. It does not take any other action or change packet handling in any way, nor does it respond to packets that have already been marked ECN by an upstream switch.
 
-ECN is implemented on the switch using minimum and maximum threshold values for the egress queue length. When a packet enters the queue and the average queue length is between the minimum and maximum threshold values, a configurable probability value will determine whether the packet is marked. If the average queue length is above the maximum threshold value, the packet is always marked.
+ECN is implemented on the switch using minimum and maximum threshold values for the egress queue length. When a packet enters the queue and the average queue length is between the minimum and maximum threshold values, a configurable probability value determines whether the packet is marked. If the average queue length is above the maximum threshold value, the packet is always marked.
 
 The downstream switches with ECN enabled perform the same actions as the traffic is received. If the ECN bits are set, they remain set. The only way to overwrite ECN bits is to set the ECN bits to *11*.
 
@@ -298,82 +300,15 @@ cumulus@switch:~$ echo 1 > /cumulus/switchd/config/traffic/reload
 
 Always run the {{<link url="#syntax-checker" text="syntax checker">}} syntax checker before applying the configuration changes.
 
-## Scheduling Weights Per Egress Queue
+## Scheduling Weights per Egress Queue
 
 You can set the scheduling weight per egress queue, which determines the amount of bandwidth assigned to the queue. Cumulus Linux supports eight queues per port. You can either use a default profile that each port inherits​ or create separate profiles that map a different set of ports. Each profile, including the default profile, has weights configured for each egress queue (0-7)​​.
 
 You set the weights per egress queue as a percentage. The total weight percentages for all egress queues cannot be greater than 100. If you do not define a weight for an egress queue, no scheduling is done for packets on this queue if congestion occurs. If you want to configure strict scheduling on an egress queue (always send every single packet in the queue) set the value to 0.
 
-You can configure per queue egress scheduling with NCLU commands or manually by editing the `/etc/cumulus/datapath/traffic.conf` file.
+To configure per queue egress scheduling, edit the `default egress scheduling weight per egress queue` section  of the `/etc/cumulus/datapath/traffic.conf` file.
 
 Cumulus Linux provides a default profile. You can either enable the default profile or configure a non-default profile.
-
-{{< tabs "TabID432 ">}}
-{{< tab "CUE Commands ">}}
-
-The following example commands enable the default profile:
-
-```
-cumulus@switch:~$ NEED COMMAND
-cumulus@switch:~$ cl config apply
-```
-
-{{< /tab >}}
-{{< tab "NCLU Commands ">}}
-
-The following example commands enable the default profile:
-
-```
-cumulus@switch:~$ net add qos egress-sched default_profile
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-In the default profile, the egress queue weights are set as follows. You cannot modify these values with NCLU.
-
-```
-...
-default_egress_sched.egr_queue_0.bw_percent = 12
-default_egress_sched.egr_queue_1.bw_percent = 12
-default_egress_sched.egr_queue_2.bw_percent = 24
-default_egress_sched.egr_queue_3.bw_percent = 12
-default_egress_sched.egr_queue_4.bw_percent = 12
-default_egress_sched.egr_queue_5.bw_percent = 12
-default_egress_sched.egr_queue_6.bw_percent = 12
-default_egress_sched.egr_queue_7.bw_percent = 0
-```
-
-The following commands create a non-default profile for port group `port_group1` for swp2 and swp3, set the weight to 30 percent on egress queue 2 and strict scheduling on egress queue 3:
-
-```
-cumulus@switch:~$ net add qos egress-sched profile port_set swp2-swp3
-cumulus@switch:~$ net add qos egress_sched profile sched_port_group1 queue 2 dwrr bw_percent 30​
-cumulus@switch:~$ net add qos egress_sched profile sched_port_group1 queue 3 strict
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-The NCLU commands save the configuration in the `/etc/cumulus/datapath/traffic.conf` file. For example:
-
-```
-...
-egress_sched.port_group_list = [sched_port_group1]
-egress_sched.sched_port_group1.port_set = swp2-swp3
-egress_sched.sched_port_group1.egr_queue_2.bw_percent = 30
-egress_sched.sched_port_group1.egr_queue_3.bw_percent = 0
-...
-```
-
-{{%notice note%}}
-- To configure a non-default profile with NCLU, you must configure the port set for the profile before you configure the bandwidth percent for the egress queues.
-- The total bandwidth percent for all egress queues cannot be greater than 100.
-- If you delete the port set for a non-default profile, the bandwidth percent for all the queues in that profile are deleted.
-{{%/notice%}}
-
-{{< /tab >}}
-{{< tab "Edit the traffic.conf File ">}}
-
-To configure per queue egress scheduling manually in the `/etc/cumulus/datapath/traffic.conf` file, update and uncomment the settings in the `default egress scheduling weight per egress queue` section of the `/etc/cumulus/datapath/traffic.conf` file.
 
 The following example enables the default profile, and sets the weight to 30 percent for egress queue 2 and 10 percent for the remaining egress queues. The settings are applied to all ports.
 
@@ -416,9 +351,6 @@ cumulus@switch:~$ echo 1 > /cumulus/switchd/config/traffic/reload
 ```
 
 Always run the {{<link url="#syntax-checker" text="syntax checker">}} syntax checker before applying the configuration changes.
-
-{{< /tab >}}
-{{< /tabs >}}
 
 ## Traffic Shaping
 

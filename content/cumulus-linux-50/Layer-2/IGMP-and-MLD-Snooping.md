@@ -4,19 +4,9 @@ author: NVIDIA
 weight: 520
 toc: 3
 ---
-IGMP (Internet Group Management Protocol) and MLD (Multicast Listener Discovery) snooping are implemented in the bridge driver in the Cumulus Linux kernel and are enabled by default. IGMP snooping processes IGMP v1/v2/v3 reports received on a bridge port in a bridge to identify the hosts which would like to receive multicast traffic destined to that group.
+Internet Group Management Protocol (IGMP) snooping and Multicast Listener Discovery (MLD) snooping prevent hosts on a local network from receiving traffic for a multicast group they have not explicitly joined. IGMP snooping is used for IPv4 environments and MLD snooping is used for IPv6 environments.
 
-{{%notice note%}}
-
-IGMP and MLD snooping is supported over VXLAN bridges; however, this feature is *not* enabled by default. To enable IGMP and MLD over VXLAN, see {{<link url="#configure-igmpmld-snooping-over-vxlan" text="Configure IGMP/MLD Snooping over VXLAN">}}.
-
-{{%/notice%}}
-
-When an IGMPv2 leave message is received, a group specific query is sent to identify if there are any other hosts interested in that group, before the group is deleted.
-
-An IGMP query message received on a port is used to identify the port that is connected to a router and is interested in receiving multicast traffic.
-
-MLD snooping processes MLD v1/v2 reports, queries and v1 done messages for IPv6 groups. If IGMP or MLD snooping is disabled, multicast traffic gets flooded to all the bridge ports in the bridge. Similarly, in the absence of receivers in a VLAN, multicast traffic is flooded to all ports in the VLAN. The multicast group IP address is mapped to a multicast MAC address and a forwarding entry is created with a list of ports interested in receiving multicast traffic destined to that group.
+IGMP and MLD snooping are implemented in the bridge driver in the Cumulus Linux kernel and are enabled by default. If you disable IGMP or MLD snooping, multicast traffic is flooded to all the bridge ports in the bridge. Similarly, in the absence of receivers in a VLAN, multicast traffic is flooded to all ports in the VLAN.
 
 {{< img src = "/images/cumulus-linux/igmp_snoop_diagram.png" >}}
 
@@ -67,49 +57,41 @@ Consider also configuring IGMP/MLD querier. See {{<link url="#configure-igmpmld-
 
 To disable IGMP/MLD snooping over VXLAN, run the `net add bridge <bridge> mcsnoop no` command.-->
 
-## Configure IGMP/MLD Querier
+## Configure the IGMP and MLD Querier
 
-If no multicast router is sending queries to configure IGMP/MLD querier on the switch, you can add a configuration similar to the following in the `/etc/network/interfaces` file. To enable IGMP and MLD snooping for a bridge, set `bridge-mcquerier` to *1* in the bridge stanza. By default, the source IP address of IGMP queries is 0.0.0.0.
+In the absence of a multicast router, a single switch in an IP subnet can coordinate multicast traffic flows. This switch is called the querier or the designated router. The querier generates query messages to check group membership, and processes membership reports and leave messages.
 
-For an explanation of the relevant parameters, see the `ifupdown-addons-interfaces` man page.
+To configure the querier on the switch for a {{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware bridge">}}, edit the `/etc/network/interfaces` file to add `bridge-mcquerier 1` to the bridge stanza (this enables the multicast querier on the bridge) and add `bridge-igmp-querier-src <ip-address>` to the VLAN stanza (the is the source IP address of the queries).
 
-For a {{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware bridge">}}, use a configuration like the following:
+The following configuration example sets `bridge-igmp-querier-src` to 10.10.10.1 (the loopback address of the switch) and `bridge-mcquerier` to 1.
 
 ```
+cumulus@switch:~$ sudo nano /etc/network/interfaces
 ...
-auto bridge.100
-vlan bridge.100
-  bridge-igmp-querier-src 123.1.1.1
+auto vlan10
+iface vlan10
+  address 10.1.10.2/24
+  vlan-id 10
+  vlan-raw-device bridge
+  bridge-igmp-querier-src 10.10.10.1
 
-auto bridge
-iface bridge
+auto br_default
+iface br_default
   bridge-ports swp1 swp2 swp3
   bridge-vlan-aware yes
-  bridge-vids 100 200
+  bridge-vids 10 20
   bridge-pvid 1
   bridge-mcquerier 1
 ...
 ```
 
-For a VLAN-aware bridge, like *bridge* in the above example, to enable querier functionality for VLAN 100 in the bridge, set `bridge-mcquerier` to *1* in the bridge stanza and set `bridge-igmp-querier-src` to *123.1.1.1* in the bridge.100 stanza. 123.1.1.1 is a typical loopback IP address.
-
-You can specify a range of VLANs as well. For example:
-
-```
-...
-auto bridge.[1-200]
-vlan bridge.[1-200]
-  bridge-igmp-querier-src 123.1.1.1
-...
-```
-
-For a bridge in {{<link url="Traditional-Bridge-Mode" text="traditional mode">}}, you can set the source IP address of the queries to be the bridge IP address &mdash; configure `bridge-mcqifaddr 1`. Use a configuration like the following:
+To configure the querier on the switch for a bridge in {{<link url="Traditional-Bridge-Mode" text="traditional mode">}}, edit the bridge stanza in the `/etc/network/interfaces` file to add `bridge-mcquerier 1` (this enables the multicast querier on the bridge) and `bridge-mcqifaddr` to 1 (this configures the source IP address of the queries to be the bridge IP address).
 
 ```
 ...
 auto br0
 iface br0
-  address 192.0.2.10/24
+  address 10.10.10.10/24
   bridge-ports swp1 swp2 swp3
   bridge-vlan-aware no
   bridge-mcquerier 1
@@ -119,23 +101,16 @@ iface br0
 
 ## Disable IGMP and MLD Snooping
 
-To disable IGMP and MLD snooping, set the `bridge-mcsnoop` value to *0*.
+if you do not use mirroring functions or other types of multicast traffic, you can disable IGMP and MLD Snooping.
 
-{{< tabs "TabID142 ">}}
+To disable IGMP and MLD snooping:
+
+{{< tabs "TabID114 ">}}
 {{< tab "CUE Commands ">}}
 
 ```
 cumulus@switch:~$ NEED COMMAND
-cumulus@switch:~$ cl config apply
-```
-
-{{< /tab >}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@switch:~$ net add bridge bridge mcsnoop no
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
+cumulus@switch:~$ cl set bridge domain br_default mcsnoop enable no???
 ```
 
 {{< /tab >}}
@@ -219,7 +194,7 @@ swp3 (3)
   flags
 ```
 
-To show the groups and bridge port state, run the NCLU `net show bridge mdb` command or the Linux `bridge mdb show` command. To show detailed router ports and group information, run the `bridge -d -s mdb show` command:
+To show the groups and bridge port state, run the Linux `bridge mdb show` command. To show detailed router ports and group information, run the `bridge -d -s mdb show` command:
 
 ```
 cumulus@switch:~$ sudo bridge -d -s mdb show

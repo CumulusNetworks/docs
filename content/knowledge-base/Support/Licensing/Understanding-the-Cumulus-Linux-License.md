@@ -18,7 +18,7 @@ The license format looks like this:
 
     user@company.com|thequickbrownfoxjumpsoverthelazydog312
 
-You manage your licenses in the Cumulus Networks {{<exlink url="https://customers.cumulusnetworks.com/" text="customer portal">}}.
+You manage your licenses in the MyMellanox {{<exlink url="https://support.mellanox.com/s/login/" text="customer portal">}}.
 
 To verify that your license is installed, run the `cl-license` command.
 
@@ -26,6 +26,6 @@ To verify that your license is installed, run the `cl-license` command.
     user@example.com|$ampleL1cen$et3xt
 
 For more information on the use of `cl-license`, please refer to the
-{{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux/Quick-Start-Guide/" text="Quick Start Guide">}}.
+{{<kb_link url="cumulus-linux-43/Quick-Start-Guide/" text="Quick Start Guide">}}.
 
 To check the version of Cumulus Linux you are running, {{<link url="Verify-Software-and-Hardware-Version-Information" text="read this article">}}.

@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 920
 toc: 4
 ---
-Multi-Chassis Link Aggregation (MLAG) is used to enable a server or switch with a two-port bond (such as a link aggregation group/LAG, EtherChannel, port group or trunk) to connect those ports to different switches and operate as if they are connected to a single, logical switch. This provides greater redundancy and greater system throughput. Dual-connected devices can create LACP bonds that contain links to each physical switch. Therefore, active-active links from the dual-connected devices are supported even though they are connected to two different physical switches. For an overview and how to configure MLAG in your network, refer to {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux/Layer-2/Multi-Chassis-Link-Aggregation-MLAG/" text="Multi-Chassis Link Aggregation - MLAG">}}.
+Multi-Chassis Link Aggregation (MLAG) is used to enable a server or switch with a two-port bond (such as a link aggregation group/LAG, EtherChannel, port group or trunk) to connect those ports to different switches and operate as if they are connected to a single, logical switch. This provides greater redundancy and greater system throughput. Dual-connected devices can create LACP bonds that contain links to each physical switch. Therefore, active-active links from the dual-connected devices are supported even though they are connected to two different physical switches. For an overview and how to configure MLAG in your network, refer to {{<kb_link url="cumulus-linux-43/Layer-2/Multi-Chassis-Link-Aggregation-MLAG/" text="Multi-Chassis Link Aggregation - MLAG">}}.
 
 {{%notice note%}}
 
@@ -265,7 +265,7 @@ To view these sessions:
 
 3. Click the **All Sessions** tab.
 
-4. Scroll to the right to view the **Conflicted Bonds** column. Based on the value/s in that field, reconfigure MLAG accordingly, using the `net add bond` NCLU command or edit the `/etc/network/interfaces` file. Refer to {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux-42/Layer-2/Multi-Chassis-Link-Aggregation-MLAG/#basic-configuration" text="Basic Configuration">}} in the Cumulus Linux MLAG topic.
+4. Scroll to the right to view the **Conflicted Bonds** column. Based on the value/s in that field, reconfigure MLAG accordingly, using the `net add bond` NCLU command or edit the `/etc/network/interfaces` file. Refer to {{<kb_link url="cumulus-linux-43/Layer-2/Multi-Chassis-Link-Aggregation-MLAG/" text="Basic Configuration">}} in the Cumulus Linux MLAG topic.
 
 ### View Devices with the Most MLAG Sessions
 
@@ -570,7 +570,7 @@ leaf04            leaf03(P)         44:38:39:be:ef:bb  up         up     8     8
 
 ## Monitor a Single MLAG Session
 
-With NetQ, you can monitor the number of nodes running the MLAG service, view switches with the most peers alive and not alive, and view alarms triggered by the MLAG service. For an overview and how to configure MLAG in your data center network, refer to {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux/Layer-2/Multi-Chassis-Link-Aggregation-MLAG/" text="Multi-Chassis Link Aggregation - MLAG">}}.
+With NetQ, you can monitor the number of nodes running the MLAG service, view switches with the most peers alive and not alive, and view alarms triggered by the MLAG service. For an overview and how to configure MLAG in your data center network, refer to {{<kb_link url="cumulus-linux-43/Layer-2/Multi-Chassis-Link-Aggregation-MLAG/" text="Multi-Chassis Link Aggregation - MLAG">}}.
 
 {{%notice note%}}
 

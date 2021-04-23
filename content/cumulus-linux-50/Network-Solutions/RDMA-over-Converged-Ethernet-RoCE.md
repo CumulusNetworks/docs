@@ -21,12 +21,11 @@ There are two versions of RoCE, which run at separate layers of the stack:
 
 RoCEv1 uses the Infiniband (IB) Protocol over converged Ethernet. The IB global route header rides directly on top of the Ethernet header. The lossless Ethernet layer handles congestion hop by hop.
 
-On switches with {{<exlink url="https://cumulusnetworks.com/products/hardware-compatibility-list/?asic%5B0%5D=Mellanox%20Spectrum&asic%5B1%5D=Mellanox%20Spectrum_A1" text="Spectrum ASICs">}}, use NCLU to configure RoCE with PFC and ECN:
+To configure RoCE with PFC and ECN:
 
 ```
-cumulus@switch:~$ net add roce lossless
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
+cumulus@switch:~$ cl set qos roce mode lossless
+cumulus@switch:~$ cl config apply
 ```
 
 {{%notice note%}}
@@ -39,49 +38,12 @@ RoCEv2 requires flow control for lossless Ethernet. RoCEv2 uses the Infiniband (
 
 RoCEv2 congestion management uses RFC 3168 to signal congestion experienced to the receiver. The receiver generates an RoCEv2 congestion notification packet directed to the source of the packet.
 
-On switches with {{<exlink url="https://cumulusnetworks.com/products/hardware-compatibility-list/?asic%5B0%5D=Mellanox%20Spectrum&asic%5B1%5D=Mellanox%20Spectrum_A1" text="Spectrum ASICs">}}, use NCLU to configure RoCE with ECN:
+To configure RoCE with ECN:
 
 ```
-cumulus@switch:~$ net add roce lossy
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
+cumulus@switch:~$ cl set qos roce mode lossy
+cumulus@switch:~$ cl config apply
 ```
-
-## Considerations
-
-### RoCE Command and net commit
-
-- Do not include any other NCLU commands with `net add roce lossless` or `net add roce lossy` when you commit the configuration with `net commit`.
-- Make sure there is no pending configuration when you commit the RoCE configuration.
-
-### net add interface <interface> storage-optimized Command
-
-The `net add interface <interface> storage-optimized` and `net add interface <interface> storage-optimized pfc` commands configure RoCE on a specific interface. These commands will be deprecated in a future release. If you configured RoCE on a specific interface in an earlier Cumulus Linux release, you need to migrate to the new RoCE commands (`net add roce lossy` and `net add roce lossless`).
-
-Follow this recommended procedure for port breakout configuration:
-
-1. Delete the RoCE configuration with the `net del roce` command:
-
-   ```
-   cumulus@switch:~$ net del roce
-   cumulus@switch:~$ net commit
-   ```
-
-2. Apply the breakout configuration with the `net add interface <interface> breakout <configuration>` command. For example:
-
-   ```
-   cumulus@switch:~$ net add interface swp5 breakout 4x
-   cumulus@switch:~$ net commit
-   ```
-
-3. Enable RoCE with the `net add roce lossless` or `net add roce lossy` command. For example:
-
-   ```
-   cumulus@switch:~$ net add roce lossless
-   cumulus@switch:~$ net commit
-   ```
-
-If you prefer *not* to migrate to the new RoCE commands, you can run `net add storage-optimized correct-legacy-qos-config` to correct storage-optimized issues. This command does *not* perform any migration; it only enables you to correct legacy configurations.
 
 ## Related Information
 

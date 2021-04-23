@@ -474,7 +474,7 @@ Configured State
 
 - Admin: Is the link *Admin Up*? Is the link configured and enabled?
 - Speed: Is the configured speed correct? Does it match the configured speed on the remote side?
-- MTU: Does the MTU match on both sides? Note that an MTU mismatch will not prevent the link from coming up, but it does affect traffic forwarding.
+- MTU: Does the MTU match on both sides? Note that an MTU mismatch does not prevent the link from coming up, but it does affect traffic forwarding.
 - Autoneg: Does this setting match what is configured and expected? See {{<link url="#auto-negotiation" text="Auto-negotiation">}}.
 - FEC: Is the FEC setting correctly configured? See {{<link url="#fec" text="FEC">}}.
 
@@ -751,7 +751,7 @@ On rare occasions, a port module with a defective I2C component or firmware can 
 
 Because I2C issues are in the low speed control circuitry of a module, they are not caused or affected by the high speed traffic rates on the data side of the module. They are not caused by software bugs in Cumulus Linux.
 
-When the I2C bus has issues or lockups, installed port modules might no longer show up in the output of `sudo l1-show <swp>` or `sudo ethtool -m <swp>`. A significant number of `smbus` or `i2c` or `EEPROM read` errors might be present in `/var/log/syslog`. After one module has locked up the bus, some or all of the other modules will exhibit problems, making it nearly impossible to tell which module is causing the failure.  
+When the I2C bus has issues or lockups, installed port modules might no longer show up in the output of `sudo l1-show <swp>` or `sudo ethtool -m <swp>`. A significant number of `smbus` or `i2c` or `EEPROM read` errors might be present in `/var/log/syslog`. After one module has locked up the bus, some or all of the other modules then exhibit problems, making it nearly impossible to tell which module is causing the failure.  
 
 The overwhelming number of I2C lockups are caused by failed I2C components or defective designs in port modules. Most failures are caused by low priced vendor modules, but even high price, high quality modules can fail, only with much lower incidence; they have a higher MTBF rating. If an I2C issue is suspected, the first place to look is at the installed modules that are not on the {{<exlink url="https://cumulusnetworks.com/hcl" text="Cumulus Linux HCL">}}. The Cumulus Linux HCL is populated with modules that are known to work in Cumulus Linux switches, which also have a solid track record in customer networks.
 
@@ -783,4 +783,4 @@ If the switch is operational again due to one of the above methods, but the modu
 - Replace any module that has caused problems in the past.
 - Replace all modules in the switch.
 
-If needed, contact the {{<exlink url="https://cumulusnetworks.com/support/" text="NVIDIA Cumulus Global Support Services team">}} for additional help.
+If needed, contact the {{<exlink url="https://support.mellanox.com/s/contact-support-page" text="NVIDIA Cumulus Global Support Services team">}} for additional help.

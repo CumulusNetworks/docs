@@ -147,7 +147,7 @@ Always place your rule files under `/etc/cumulus/acl/policy.d/`.
 
 Follow the procedure below to set up, install, and verify SPAN rules.
 
-The example commands span (mirror) swp4 input traffic and swp4 output traffic to destination swp19.
+The example commands span (mirror) swp1 input traffic and swp1 output traffic to destination swp2.
 
 1. Create a rules file in `/etc/cumulus/acl/policy.d/`:
 
@@ -395,7 +395,7 @@ Cut-through mode **is** supported for ERSPAN in Cumulus Linux on switches using 
 
 The `src-ip` option can be any IP address, even if it does not exist in the routing table. The `dst-ip` option must be an IP address reachable through the routing table. The destination IP address must be reachable from a front-panel port; not the management port. Use `ping` or `ip route get <ip>` to verify that the destination IP address is reachable. Setting the `--ttl` option is recommended.
 
-If a SPAN destination IP address is not available, or if the interface type prevents using a laptop as a SPAN destination, refer to {{<exlink url="https://docs.cumulusnetworks.com/knowledge-base/Configuration-and-Usage/Administration/Configure-ERSPAN-to-a-Cumulus-Linux-Switch/360040711774" text="knowledge base article">}}.
+If a SPAN destination IP address is not available, or if the interface type prevents using a laptop as a SPAN destination, refer to {{<kb_link url="knowledge-base/Configuration-and-Usage/Administration/Configure-ERSPAN-to-a-Cumulus-Linux-Switch/360040711774" text="knowledge base article">}}.
 
 {{%notice note%}}
 

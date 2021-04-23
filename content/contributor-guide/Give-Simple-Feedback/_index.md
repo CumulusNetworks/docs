@@ -20,7 +20,7 @@ You must have a GitHub account to submit your suggestion. If you do not have a G
 
 To submit your feedback with this method:
 
-1. Open the document in the [Cumulus Docs site](https://docs.cumulusnetworks.com).
+1. Open the document in the {{<kb_link url="" text="Cumulus Docs site" >}}.
 
 2. Confirm you are displaying the document using one of the layouts with the right navigation column visible. If needed, select an appropriate layout.
 

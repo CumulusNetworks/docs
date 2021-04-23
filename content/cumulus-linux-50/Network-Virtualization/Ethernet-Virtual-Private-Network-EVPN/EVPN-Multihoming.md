@@ -741,8 +741,6 @@ cumulus@leaf01:~$ cl set router bgp router-id 10.10.10.1
 cumulus@leaf01:~$ cl set vrf default router bgp peer-group underlay remote-as external
 cumulus@leaf01:~$ cl set vrf default router bgp peer swp51 peer-group underlay
 cumulus@leaf01:~$ cl set vrf default router bgp peer swp52 peer-group underlay
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp53 peer-group underlay
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp54 peer-group underlay
 cumulus@leaf01:~$ cl set vrf default router bgp path-selection multipath aspath-ignore on
 cumulus@leaf01:~$ cl set vrf default router bgp peer-group underlay address-family l2vpn-evpn enable on
 cumulus@leaf01:~$ cl set vrf default router bgp address-family ipv4-unicast redistribute connected
@@ -2069,8 +2067,6 @@ neighbor underlay activate
 exit-address-family
 address-family l2vpn evpn
 advertise-all-vni
-disable-ead-evi-rx
-disable-ead-evi-tx
 neighbor swp51 activate
 neighbor swp52 activate
 neighbor underlay activate
@@ -2148,8 +2144,6 @@ neighbor underlay activate
 exit-address-family
 address-family l2vpn evpn
 advertise-all-vni
-disable-ead-evi-rx
-disable-ead-evi-tx
 neighbor swp51 activate
 neighbor swp52 activate
 neighbor underlay activate
@@ -3546,8 +3540,6 @@ neighbor underlay activate
 exit-address-family
 address-family l2vpn evpn
 advertise-all-vni
-disable-ead-evi-rx
-disable-ead-evi-tx
 neighbor swp51 activate
 neighbor swp52 activate
 neighbor underlay activate
@@ -3631,8 +3623,6 @@ neighbor underlay activate
 exit-address-family
 address-family l2vpn evpn
 advertise-all-vni
-disable-ead-evi-rx
-disable-ead-evi-tx
 neighbor swp51 activate
 neighbor swp52 activate
 neighbor underlay activate
@@ -3715,8 +3705,6 @@ neighbor underlay activate
 exit-address-family
 address-family l2vpn evpn
 advertise-all-vni
-disable-ead-evi-rx
-disable-ead-evi-tx
 neighbor swp51 activate
 neighbor swp52 activate
 neighbor underlay activate
@@ -3790,7 +3778,6 @@ ip pim
 vrf mgmt
 ip route 0.0.0.0/0 192.168.200.1
 exit-vrf
-!
 !
 router bgp 65100
 bgp router-id 10.10.10.102

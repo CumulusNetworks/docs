@@ -1738,16 +1738,9 @@ Here is an example of a standard community list filter:
 {{< tab "CUE Commands ">}}
 
 ```
-cumulus@switch:~$ NEED COMMAND
-```
-
-{{< /tab >}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@switch:~$ net add routing community-list standard COMMUNITY1 permit 100:100
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
+cumulus@switch:~$ cl set router policy community-list COMMUNITY1 rule 10 action permit
+cumulus@switch:~$ cl set router policy community-list COMMUNITY1 rule 10 community 100:100
+cumulus@switch:~$ cl config apply
 ```
 
 {{< /tab >}}
@@ -1772,16 +1765,8 @@ You can apply the community list to a route map to define the routing policy:
 {{< tab "CUE Commands ">}}
 
 ```
-cumulus@switch:~$ NEED COMMAND
-```
-
-{{< /tab >}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@switch:~$ net add bgp table-map ROUTE-MAP1
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
+cumulus@switch:~$ cl set router policy route-map ROUTEMAP1 rule 10 match community-list COMMUNITY1
+cumulus@switch:~$ cl config apply
 ```
 
 {{< /tab >}}
@@ -1791,7 +1776,7 @@ cumulus@switch:~$ net commit
 cumulus@switch:~$ sudo vtysh
 switch# configure terminal
 switch(config)# router bgp 65101
-switch(config-router)# table-map ROUTE-MAP1
+switch(config-router)# table-map ROUTEMAP1
 switch(config-router)# end
 switch# write memory
 switch# exit

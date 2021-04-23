@@ -26,7 +26,7 @@ In the following procedures:
 - You can name your Cumulus Linux installer disk image using any of the {{<exlink url="http://opencomputeproject.github.io/onie/design-spec/discovery.html#default-file-name-search-order" text="ONIE naming schemes mentioned here">}}.
 - In the example commands, `[PLATFORM]` can be any supported Cumulus Linux platform, such as *x86\_64*, or *arm*.
 - Run the `sudo onie-install -h` command to show the ONIE installer options.
-- After you install the Cumulus Linux disk image, you need to install the license file. Refer to {{<link url="Quick-Start-Guide#install-the-license" text="Install the License">}}.
+- After you install the Cumulus Linux disk image, you need to install the license file. Refer to 
 
 ## Install Using a DHCP/Web Server with DHCP Options
 

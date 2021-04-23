@@ -1134,6 +1134,17 @@ To work around this issue, change the value of &lt;tt&gt;arp_ignore&lt;/tt&gt; t
 <td></td>
 </tr>
 <tr>
+<td>2625818</td>
+<td>The following CVEs were announced that affect the libssh package:
+CVE-2019-14889 has been announced in the libssh library, where unsanitized user-provided scp command lines could allow an attacker to execute arbitrary commands on the server.
+The libssh library is not installed on Cumulus Linux by default, but is available in the Cumulus Linux 4 repository for optional installation. Note that libssh is distinct from libssh2 and openssh, which are present on the switches and in the repositories.
+See the following for more information:
+https://www.libssh.org/security/advisories/CVE-2019-14889.txt
+https://security-tracker.debian.org/tracker/CVE-2019-14889</td>
+<td>4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
 <td>2617001</td>
 <td>CVE-2021-26933 CVE-2021-27379
 Multiple vulnerabilities have been discovered in the Xen hypervisor, which could result in denial of service, privilege escalation or memory disclosure.
@@ -2795,22 +2806,38 @@ Fixed: 4.1.0+git191117-2~deb10u1</td>
 <tr>
 <td>2547068</td>
 <td>Hardware platforms using the Intel D-1500 CPU series might reboot unexpectedly.
-To work around this issue, contact your hardware vendor to inquire if a new version of BIOS with a microcode fix might be available, or manually disable CPU C-states in the kernel as outlined below:
+
+To work around this issue, contact your hardware vendor to inquire if a new version of BIOS with a microcode fix might be available, or manually disable CPU C-states in the kernel as outlined below.
+
 To permanently disable C-states using a kernel boot parameter:
+
 1. Edit {{/etc/default/grub}} to add the argument {{processor.max_cstate=0}} to the variable {{GRUB_CMDLINE_LINUX}}
+
 For example, if {{/etc/default/grub}} file contains the following line:
+
 {{GRUB_CMDLINE_LINUX="cl_platform=accton_as7726_32x console=tty0 console=ttyS0,115200n8 intel_iommu=off pcie_aspm=off"}}
+
 change it to
+
 {{GRUB_CMDLINE_LINUX="cl_platform=accton_as7726_32x console=tty0 console=ttyS0,115200n8 intel_iommu=off pcie_aspm=off processor.max_cstate=0"}}
+
 2. Run {{sudo update-grub}}
+
 3. Reboot the system with {{sudo reboot}}
 
+
 To Disable cstates in realtime on the current system which will not persist through a reboot:
+
 1. Confirm that the libpci3 package is installed
+
 Run {{dpkg-query -l libpci3}} and confirm the following line is displayed:
+
 {{ii  libpci3:amd64      1:3.2.1-3      amd64          Linux PCI Utilities (shared library)}}
+
 The first field above should read {{ii}}. If not, install the libpci3 package by running {{sudo apt upgrade;sudo apt install libpci3}}
+
 2. Disable C-states by executing the command {{./cpupower idle-set -d 2}}
+
 C-states have been disabled by default as of Cumulus Linux 4.3.0</td>
 <td>3.7.9-4.2.1</td>
 <td>4.3.0</td>
@@ -3022,17 +3049,6 @@ Fixed: 2.20.1-2+deb10u1</td>
 To work around this issue, restart the networking service after {{ifreload -a}} with the {{systemctl restart networking}} command.</td>
 <td>3.7.10-3.7.11, 4.0.0-4.0.1</td>
 <td>3.7.12-3.7.14, 4.1.0-4.3.0</td>
-</tr>
-<tr>
-<td>2546261</td>
-<td>The following CVEs were announced that affect the libssh package:
-CVE-2019-14889 has been announced in the libssh library, where unsanitized user-provided scp command lines could allow an attacker to execute arbitrary commands on the server.
-The libssh library is not installed on Cumulus Linux by default, but is available in the Cumulus Linux 4 repository for optional installation. Note that libssh is distinct from libssh2 and openssh, which are present on the switches and in the repositories.
-See the following for more information:
-https://www.libssh.org/security/advisories/CVE-2019-14889.txt
-https://security-tracker.debian.org/tracker/CVE-2019-14889</td>
-<td>4.0.0-4.3.0</td>
-<td></td>
 </tr>
 <tr>
 <td>2546255</td>
@@ -3713,13 +3729,6 @@ This issue only affects QinQ configurations.
  </td>
 <td>3.7.3-4.1.1</td>
 <td>4.2.0-4.3.0</td>
-</tr>
-<tr>
-<td>2540808</td>
-<td>In an EVPN environment, the centralized MAC address is not installed on the MLAG pair because Cumulus Linux does not perform an SVI MAC check per VLAN. 
-This issue does not affect a pure distributed routing (symmetric or asymmetric) environment or a pure centralized routing environment.</td>
-<td>3.7.0-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
 </tr>
 <tr>
 <td>2540753</td>

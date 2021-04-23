@@ -330,7 +330,7 @@ To install a new package, complete the following steps:
 
 ## Add Packages from the Cumulus Linux Local Archive
 
-Cumulus Linux contains a local archive embedded in the Cumulus Linux image. This archive contains the packages needed to install `{{<link title="ifplugd" text="ifplugd">}}`, {{<link url="LDAP-Authentication-and-Authorization" text="LDAP">}}, {{<link url="RADIUS-AAA" text="RADIUS">}} or  {{<link url="TACACS+" text="TACACS+">}} without needing a network connection.
+Cumulus Linux contains a local archive embedded in the Cumulus Linux image. This archive contains the packages needed to install `{{<link title="ifplugd" text="ifplugd">}}`, {{<link url="LDAP-Authentication-and-Authorization" text="LDAP">}}, {{<link url="RADIUS-AAA" text="RADIUS">}} or  {{<link url="TACACS" text="TACACS+">}} without needing a network connection.
 
 The archive is called `cumulus-local-apt-archive` and is referenced in the  `/etc/apt/cumulus-local-apt-archive-sources.list` file. It contains the following packages:
 

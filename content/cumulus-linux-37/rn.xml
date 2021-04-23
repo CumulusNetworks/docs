@@ -110,6 +110,12 @@ Fixed: 6.8.9.9-5+deb8u23</td>
 <td></td>
 </tr>
 <tr>
+<td>2607965</td>
+<td>On the EdgeCore AS7726 switch, when you run the NCLU {{net show system}} command, you see the error {{Command not found}}.</td>
+<td>3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
 <td>2595889</td>
 <td>In a traditional bridge configuration with {{ip-forward off}}, neighbors are synchronized to hardware with a {{switchd}} restart but are cleared when you flap the bridge interface.</td>
 <td>3.7.10-4.2.1</td>
@@ -1041,22 +1047,38 @@ To work around this issue, reboot the switch.</td>
 <tr>
 <td>2547068</td>
 <td>Hardware platforms using the Intel D-1500 CPU series might reboot unexpectedly.
-To work around this issue, contact your hardware vendor to inquire if a new version of BIOS with a microcode fix might be available, or manually disable CPU C-states in the kernel as outlined below:
+
+To work around this issue, contact your hardware vendor to inquire if a new version of BIOS with a microcode fix might be available, or manually disable CPU C-states in the kernel as outlined below.
+
 To permanently disable C-states using a kernel boot parameter:
+
 1. Edit {{/etc/default/grub}} to add the argument {{processor.max_cstate=0}} to the variable {{GRUB_CMDLINE_LINUX}}
+
 For example, if {{/etc/default/grub}} file contains the following line:
+
 {{GRUB_CMDLINE_LINUX="cl_platform=accton_as7726_32x console=tty0 console=ttyS0,115200n8 intel_iommu=off pcie_aspm=off"}}
+
 change it to
+
 {{GRUB_CMDLINE_LINUX="cl_platform=accton_as7726_32x console=tty0 console=ttyS0,115200n8 intel_iommu=off pcie_aspm=off processor.max_cstate=0"}}
+
 2. Run {{sudo update-grub}}
+
 3. Reboot the system with {{sudo reboot}}
 
+
 To Disable cstates in realtime on the current system which will not persist through a reboot:
+
 1. Confirm that the libpci3 package is installed
+
 Run {{dpkg-query -l libpci3}} and confirm the following line is displayed:
+
 {{ii  libpci3:amd64      1:3.2.1-3      amd64          Linux PCI Utilities (shared library)}}
+
 The first field above should read {{ii}}. If not, install the libpci3 package by running {{sudo apt upgrade;sudo apt install libpci3}}
+
 2. Disable C-states by executing the command {{./cpupower idle-set -d 2}}
+
 C-states have been disabled by default as of Cumulus Linux 4.3.0</td>
 <td>3.7.9-4.2.1</td>
 <td>4.3.0</td>
@@ -1414,13 +1436,6 @@ This issue only affects QinQ configurations.
 <td>2540885</td>
 <td>The Dell N3048EP-ON switch does not support 1G Base-T modules in the SFP ports.</td>
 <td>3.7.7-3.7.14.2</td>
-<td></td>
-</tr>
-<tr>
-<td>2540808</td>
-<td>In an EVPN environment, the centralized MAC address is not installed on the MLAG pair because Cumulus Linux does not perform an SVI MAC check per VLAN. 
-This issue does not affect a pure distributed routing (symmetric or asymmetric) environment or a pure centralized routing environment.</td>
-<td>3.7.0-3.7.14.2, 4.0.0-4.3.0</td>
 <td></td>
 </tr>
 <tr>
@@ -2944,22 +2959,38 @@ Dec 20 08:43:27 netflow-nms sfcapd[3991]: SFLOW: readFlowSample_header() undefin
 <tr>
 <td>2547068</td>
 <td>Hardware platforms using the Intel D-1500 CPU series might reboot unexpectedly.
-To work around this issue, contact your hardware vendor to inquire if a new version of BIOS with a microcode fix might be available, or manually disable CPU C-states in the kernel as outlined below:
+
+To work around this issue, contact your hardware vendor to inquire if a new version of BIOS with a microcode fix might be available, or manually disable CPU C-states in the kernel as outlined below.
+
 To permanently disable C-states using a kernel boot parameter:
+
 1. Edit {{/etc/default/grub}} to add the argument {{processor.max_cstate=0}} to the variable {{GRUB_CMDLINE_LINUX}}
+
 For example, if {{/etc/default/grub}} file contains the following line:
+
 {{GRUB_CMDLINE_LINUX="cl_platform=accton_as7726_32x console=tty0 console=ttyS0,115200n8 intel_iommu=off pcie_aspm=off"}}
+
 change it to
+
 {{GRUB_CMDLINE_LINUX="cl_platform=accton_as7726_32x console=tty0 console=ttyS0,115200n8 intel_iommu=off pcie_aspm=off processor.max_cstate=0"}}
+
 2. Run {{sudo update-grub}}
+
 3. Reboot the system with {{sudo reboot}}
 
+
 To Disable cstates in realtime on the current system which will not persist through a reboot:
+
 1. Confirm that the libpci3 package is installed
+
 Run {{dpkg-query -l libpci3}} and confirm the following line is displayed:
+
 {{ii  libpci3:amd64      1:3.2.1-3      amd64          Linux PCI Utilities (shared library)}}
+
 The first field above should read {{ii}}. If not, install the libpci3 package by running {{sudo apt upgrade;sudo apt install libpci3}}
+
 2. Disable C-states by executing the command {{./cpupower idle-set -d 2}}
+
 C-states have been disabled by default as of Cumulus Linux 4.3.0</td>
 <td>3.7.9-4.2.1</td>
 <td>4.3.0</td>
@@ -3363,13 +3394,6 @@ This issue only affects QinQ configurations.
  </td>
 <td>3.7.3-3.7.14</td>
 <td>4.0.0-4.3.0</td>
-</tr>
-<tr>
-<td>2540808</td>
-<td>In an EVPN environment, the centralized MAC address is not installed on the MLAG pair because Cumulus Linux does not perform an SVI MAC check per VLAN. 
-This issue does not affect a pure distributed routing (symmetric or asymmetric) environment or a pure centralized routing environment.</td>
-<td>3.7.0-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
 </tr>
 <tr>
 <td>2540753</td>
@@ -5648,22 +5672,38 @@ RTM_NEWNEIGH with unconfigured vlan XXXX on port peerlink
 <tr>
 <td>2547068</td>
 <td>Hardware platforms using the Intel D-1500 CPU series might reboot unexpectedly.
-To work around this issue, contact your hardware vendor to inquire if a new version of BIOS with a microcode fix might be available, or manually disable CPU C-states in the kernel as outlined below:
+
+To work around this issue, contact your hardware vendor to inquire if a new version of BIOS with a microcode fix might be available, or manually disable CPU C-states in the kernel as outlined below.
+
 To permanently disable C-states using a kernel boot parameter:
+
 1. Edit {{/etc/default/grub}} to add the argument {{processor.max_cstate=0}} to the variable {{GRUB_CMDLINE_LINUX}}
+
 For example, if {{/etc/default/grub}} file contains the following line:
+
 {{GRUB_CMDLINE_LINUX="cl_platform=accton_as7726_32x console=tty0 console=ttyS0,115200n8 intel_iommu=off pcie_aspm=off"}}
+
 change it to
+
 {{GRUB_CMDLINE_LINUX="cl_platform=accton_as7726_32x console=tty0 console=ttyS0,115200n8 intel_iommu=off pcie_aspm=off processor.max_cstate=0"}}
+
 2. Run {{sudo update-grub}}
+
 3. Reboot the system with {{sudo reboot}}
 
+
 To Disable cstates in realtime on the current system which will not persist through a reboot:
+
 1. Confirm that the libpci3 package is installed
+
 Run {{dpkg-query -l libpci3}} and confirm the following line is displayed:
+
 {{ii  libpci3:amd64      1:3.2.1-3      amd64          Linux PCI Utilities (shared library)}}
+
 The first field above should read {{ii}}. If not, install the libpci3 package by running {{sudo apt upgrade;sudo apt install libpci3}}
+
 2. Disable C-states by executing the command {{./cpupower idle-set -d 2}}
+
 C-states have been disabled by default as of Cumulus Linux 4.3.0</td>
 <td>3.7.9-4.2.1</td>
 <td>4.3.0</td>
@@ -6092,13 +6132,6 @@ This issue only affects QinQ configurations.
  </td>
 <td>3.7.3-3.7.14</td>
 <td>4.0.0-4.3.0</td>
-</tr>
-<tr>
-<td>2540808</td>
-<td>In an EVPN environment, the centralized MAC address is not installed on the MLAG pair because Cumulus Linux does not perform an SVI MAC check per VLAN. 
-This issue does not affect a pure distributed routing (symmetric or asymmetric) environment or a pure centralized routing environment.</td>
-<td>3.7.0-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
 </tr>
 <tr>
 <td>2540753</td>
@@ -8456,22 +8489,38 @@ RTM_NEWNEIGH with unconfigured vlan XXXX on port peerlink
 <tr>
 <td>2547068</td>
 <td>Hardware platforms using the Intel D-1500 CPU series might reboot unexpectedly.
-To work around this issue, contact your hardware vendor to inquire if a new version of BIOS with a microcode fix might be available, or manually disable CPU C-states in the kernel as outlined below:
+
+To work around this issue, contact your hardware vendor to inquire if a new version of BIOS with a microcode fix might be available, or manually disable CPU C-states in the kernel as outlined below.
+
 To permanently disable C-states using a kernel boot parameter:
+
 1. Edit {{/etc/default/grub}} to add the argument {{processor.max_cstate=0}} to the variable {{GRUB_CMDLINE_LINUX}}
+
 For example, if {{/etc/default/grub}} file contains the following line:
+
 {{GRUB_CMDLINE_LINUX="cl_platform=accton_as7726_32x console=tty0 console=ttyS0,115200n8 intel_iommu=off pcie_aspm=off"}}
+
 change it to
+
 {{GRUB_CMDLINE_LINUX="cl_platform=accton_as7726_32x console=tty0 console=ttyS0,115200n8 intel_iommu=off pcie_aspm=off processor.max_cstate=0"}}
+
 2. Run {{sudo update-grub}}
+
 3. Reboot the system with {{sudo reboot}}
 
+
 To Disable cstates in realtime on the current system which will not persist through a reboot:
+
 1. Confirm that the libpci3 package is installed
+
 Run {{dpkg-query -l libpci3}} and confirm the following line is displayed:
+
 {{ii  libpci3:amd64      1:3.2.1-3      amd64          Linux PCI Utilities (shared library)}}
+
 The first field above should read {{ii}}. If not, install the libpci3 package by running {{sudo apt upgrade;sudo apt install libpci3}}
+
 2. Disable C-states by executing the command {{./cpupower idle-set -d 2}}
+
 C-states have been disabled by default as of Cumulus Linux 4.3.0</td>
 <td>3.7.9-4.2.1</td>
 <td>4.3.0</td>
@@ -8983,13 +9032,6 @@ This issue only affects QinQ configurations.
  </td>
 <td>3.7.3-3.7.14</td>
 <td>4.0.0-4.3.0</td>
-</tr>
-<tr>
-<td>2540808</td>
-<td>In an EVPN environment, the centralized MAC address is not installed on the MLAG pair because Cumulus Linux does not perform an SVI MAC check per VLAN. 
-This issue does not affect a pure distributed routing (symmetric or asymmetric) environment or a pure centralized routing environment.</td>
-<td>3.7.0-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
 </tr>
 <tr>
 <td>2540753</td>
@@ -10290,22 +10332,38 @@ To work around this issue, power cycle the switch. A software reboot does not re
 <tr>
 <td>2547068</td>
 <td>Hardware platforms using the Intel D-1500 CPU series might reboot unexpectedly.
-To work around this issue, contact your hardware vendor to inquire if a new version of BIOS with a microcode fix might be available, or manually disable CPU C-states in the kernel as outlined below:
+
+To work around this issue, contact your hardware vendor to inquire if a new version of BIOS with a microcode fix might be available, or manually disable CPU C-states in the kernel as outlined below.
+
 To permanently disable C-states using a kernel boot parameter:
+
 1. Edit {{/etc/default/grub}} to add the argument {{processor.max_cstate=0}} to the variable {{GRUB_CMDLINE_LINUX}}
+
 For example, if {{/etc/default/grub}} file contains the following line:
+
 {{GRUB_CMDLINE_LINUX="cl_platform=accton_as7726_32x console=tty0 console=ttyS0,115200n8 intel_iommu=off pcie_aspm=off"}}
+
 change it to
+
 {{GRUB_CMDLINE_LINUX="cl_platform=accton_as7726_32x console=tty0 console=ttyS0,115200n8 intel_iommu=off pcie_aspm=off processor.max_cstate=0"}}
+
 2. Run {{sudo update-grub}}
+
 3. Reboot the system with {{sudo reboot}}
 
+
 To Disable cstates in realtime on the current system which will not persist through a reboot:
+
 1. Confirm that the libpci3 package is installed
+
 Run {{dpkg-query -l libpci3}} and confirm the following line is displayed:
+
 {{ii  libpci3:amd64      1:3.2.1-3      amd64          Linux PCI Utilities (shared library)}}
+
 The first field above should read {{ii}}. If not, install the libpci3 package by running {{sudo apt upgrade;sudo apt install libpci3}}
+
 2. Disable C-states by executing the command {{./cpupower idle-set -d 2}}
+
 C-states have been disabled by default as of Cumulus Linux 4.3.0</td>
 <td>3.7.9-4.2.1</td>
 <td>4.3.0</td>
@@ -10980,13 +11038,6 @@ This issue only affects QinQ configurations.
  </td>
 <td>3.7.3-3.7.14</td>
 <td>4.0.0-4.3.0</td>
-</tr>
-<tr>
-<td>2540808</td>
-<td>In an EVPN environment, the centralized MAC address is not installed on the MLAG pair because Cumulus Linux does not perform an SVI MAC check per VLAN. 
-This issue does not affect a pure distributed routing (symmetric or asymmetric) environment or a pure centralized routing environment.</td>
-<td>3.7.0-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
 </tr>
 <tr>
 <td>2540753</td>
@@ -12258,22 +12309,38 @@ Fixed: 4.1.0+git191117-2~deb10u1</td>
 <tr>
 <td>2547068</td>
 <td>Hardware platforms using the Intel D-1500 CPU series might reboot unexpectedly.
-To work around this issue, contact your hardware vendor to inquire if a new version of BIOS with a microcode fix might be available, or manually disable CPU C-states in the kernel as outlined below:
+
+To work around this issue, contact your hardware vendor to inquire if a new version of BIOS with a microcode fix might be available, or manually disable CPU C-states in the kernel as outlined below.
+
 To permanently disable C-states using a kernel boot parameter:
+
 1. Edit {{/etc/default/grub}} to add the argument {{processor.max_cstate=0}} to the variable {{GRUB_CMDLINE_LINUX}}
+
 For example, if {{/etc/default/grub}} file contains the following line:
+
 {{GRUB_CMDLINE_LINUX="cl_platform=accton_as7726_32x console=tty0 console=ttyS0,115200n8 intel_iommu=off pcie_aspm=off"}}
+
 change it to
+
 {{GRUB_CMDLINE_LINUX="cl_platform=accton_as7726_32x console=tty0 console=ttyS0,115200n8 intel_iommu=off pcie_aspm=off processor.max_cstate=0"}}
+
 2. Run {{sudo update-grub}}
+
 3. Reboot the system with {{sudo reboot}}
 
+
 To Disable cstates in realtime on the current system which will not persist through a reboot:
+
 1. Confirm that the libpci3 package is installed
+
 Run {{dpkg-query -l libpci3}} and confirm the following line is displayed:
+
 {{ii  libpci3:amd64      1:3.2.1-3      amd64          Linux PCI Utilities (shared library)}}
+
 The first field above should read {{ii}}. If not, install the libpci3 package by running {{sudo apt upgrade;sudo apt install libpci3}}
+
 2. Disable C-states by executing the command {{./cpupower idle-set -d 2}}
+
 C-states have been disabled by default as of Cumulus Linux 4.3.0</td>
 <td>3.7.9-4.2.1</td>
 <td>4.3.0</td>
@@ -13228,13 +13295,6 @@ This issue only affects QinQ configurations.
 <td>4.0.0-4.3.0</td>
 </tr>
 <tr>
-<td>2540808</td>
-<td>In an EVPN environment, the centralized MAC address is not installed on the MLAG pair because Cumulus Linux does not perform an SVI MAC check per VLAN. 
-This issue does not affect a pure distributed routing (symmetric or asymmetric) environment or a pure centralized routing environment.</td>
-<td>3.7.0-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
 <td>2540753</td>
 <td>If the interface alias contains a single or double quotation mark, or an apostrophe, the {{net show configuration}} commands fail with the following error: 
   
@@ -13886,22 +13946,38 @@ To work around this issue, reboot the leaf switch or restart {{switchd}}.</td>
 <tr>
 <td>2547068</td>
 <td>Hardware platforms using the Intel D-1500 CPU series might reboot unexpectedly.
-To work around this issue, contact your hardware vendor to inquire if a new version of BIOS with a microcode fix might be available, or manually disable CPU C-states in the kernel as outlined below:
+
+To work around this issue, contact your hardware vendor to inquire if a new version of BIOS with a microcode fix might be available, or manually disable CPU C-states in the kernel as outlined below.
+
 To permanently disable C-states using a kernel boot parameter:
+
 1. Edit {{/etc/default/grub}} to add the argument {{processor.max_cstate=0}} to the variable {{GRUB_CMDLINE_LINUX}}
+
 For example, if {{/etc/default/grub}} file contains the following line:
+
 {{GRUB_CMDLINE_LINUX="cl_platform=accton_as7726_32x console=tty0 console=ttyS0,115200n8 intel_iommu=off pcie_aspm=off"}}
+
 change it to
+
 {{GRUB_CMDLINE_LINUX="cl_platform=accton_as7726_32x console=tty0 console=ttyS0,115200n8 intel_iommu=off pcie_aspm=off processor.max_cstate=0"}}
+
 2. Run {{sudo update-grub}}
+
 3. Reboot the system with {{sudo reboot}}
 
+
 To Disable cstates in realtime on the current system which will not persist through a reboot:
+
 1. Confirm that the libpci3 package is installed
+
 Run {{dpkg-query -l libpci3}} and confirm the following line is displayed:
+
 {{ii  libpci3:amd64      1:3.2.1-3      amd64          Linux PCI Utilities (shared library)}}
+
 The first field above should read {{ii}}. If not, install the libpci3 package by running {{sudo apt upgrade;sudo apt install libpci3}}
+
 2. Disable C-states by executing the command {{./cpupower idle-set -d 2}}
+
 C-states have been disabled by default as of Cumulus Linux 4.3.0</td>
 <td>3.7.9-4.2.1</td>
 <td>4.3.0</td>
@@ -14657,13 +14733,6 @@ This issue only affects QinQ configurations.
  </td>
 <td>3.7.3-3.7.14</td>
 <td>4.0.0-4.3.0</td>
-</tr>
-<tr>
-<td>2540808</td>
-<td>In an EVPN environment, the centralized MAC address is not installed on the MLAG pair because Cumulus Linux does not perform an SVI MAC check per VLAN. 
-This issue does not affect a pure distributed routing (symmetric or asymmetric) environment or a pure centralized routing environment.</td>
-<td>3.7.0-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
 </tr>
 <tr>
 <td>2540753</td>
@@ -16728,13 +16797,6 @@ This issue only affects QinQ configurations.
 <td>4.0.0-4.3.0</td>
 </tr>
 <tr>
-<td>2540808</td>
-<td>In an EVPN environment, the centralized MAC address is not installed on the MLAG pair because Cumulus Linux does not perform an SVI MAC check per VLAN. 
-This issue does not affect a pure distributed routing (symmetric or asymmetric) environment or a pure centralized routing environment.</td>
-<td>3.7.0-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
 <td>2540753</td>
 <td>If the interface alias contains a single or double quotation mark, or an apostrophe, the {{net show configuration}} commands fail with the following error: 
   
@@ -18115,13 +18177,6 @@ This issue only affects QinQ configurations.
  </td>
 <td>3.7.3-3.7.14</td>
 <td>4.0.0-4.3.0</td>
-</tr>
-<tr>
-<td>2540808</td>
-<td>In an EVPN environment, the centralized MAC address is not installed on the MLAG pair because Cumulus Linux does not perform an SVI MAC check per VLAN. 
-This issue does not affect a pure distributed routing (symmetric or asymmetric) environment or a pure centralized routing environment.</td>
-<td>3.7.0-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
 </tr>
 <tr>
 <td>2540753</td>
@@ -19903,13 +19958,6 @@ This issue only affects QinQ configurations.
 <td>3.7.7-3.7.14.2</td>
 </tr>
 <tr>
-<td>2540808</td>
-<td>In an EVPN environment, the centralized MAC address is not installed on the MLAG pair because Cumulus Linux does not perform an SVI MAC check per VLAN. 
-This issue does not affect a pure distributed routing (symmetric or asymmetric) environment or a pure centralized routing environment.</td>
-<td>3.7.0-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
 <td>2540753</td>
 <td>If the interface alias contains a single or double quotation mark, or an apostrophe, the {{net show configuration}} commands fail with the following error: 
   
@@ -21111,13 +21159,6 @@ This issue only affects QinQ configurations.
 <td>3.7.7-3.7.14.2</td>
 </tr>
 <tr>
-<td>2540808</td>
-<td>In an EVPN environment, the centralized MAC address is not installed on the MLAG pair because Cumulus Linux does not perform an SVI MAC check per VLAN. 
-This issue does not affect a pure distributed routing (symmetric or asymmetric) environment or a pure centralized routing environment.</td>
-<td>3.7.0-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
 <td>2540798</td>
 <td>The EdgeCore 7326-54X switch reports a platform hardware initialization error similar to the following: 
   
@@ -22192,13 +22233,6 @@ To work around this issue, remove the {{--nl}} flag from the dhcrelay service. <
 <td>The platform json file for the Dell S5048-ON switch is improperly populated. This creates an issue when trying to poll the inventory statistics with NetQ. </td>
 <td>3.7.3-3.7.5</td>
 <td>3.7.6-3.7.14.2</td>
-</tr>
-<tr>
-<td>2540808</td>
-<td>In an EVPN environment, the centralized MAC address is not installed on the MLAG pair because Cumulus Linux does not perform an SVI MAC check per VLAN. 
-This issue does not affect a pure distributed routing (symmetric or asymmetric) environment or a pure centralized routing environment.</td>
-<td>3.7.0-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
 </tr>
 <tr>
 <td>2540738</td>
@@ -23411,13 +23445,6 @@ To work around this issue, remove the {{--nl}} flag from the dhcrelay service. <
 <td>The platform json file for the Dell S5048-ON switch is improperly populated. This creates an issue when trying to poll the inventory statistics with NetQ. </td>
 <td>3.7.3-3.7.5</td>
 <td>3.7.6-3.7.14.2</td>
-</tr>
-<tr>
-<td>2540808</td>
-<td>In an EVPN environment, the centralized MAC address is not installed on the MLAG pair because Cumulus Linux does not perform an SVI MAC check per VLAN. 
-This issue does not affect a pure distributed routing (symmetric or asymmetric) environment or a pure centralized routing environment.</td>
-<td>3.7.0-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
 </tr>
 <tr>
 <td>2540738</td>
@@ -24675,13 +24702,6 @@ You can prevent EVPN next hops from not being removed when the contributing peer
 <td>On the Dell Z9100-ON switch, {{smond}} reports various sensors going from OK to BAD or OK to ABSENT; then the sensors recover. </td>
 <td>3.7.1-3.7.5</td>
 <td>3.7.6-3.7.14.2</td>
-</tr>
-<tr>
-<td>2540808</td>
-<td>In an EVPN environment, the centralized MAC address is not installed on the MLAG pair because Cumulus Linux does not perform an SVI MAC check per VLAN. 
-This issue does not affect a pure distributed routing (symmetric or asymmetric) environment or a pure centralized routing environment.</td>
-<td>3.7.0-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
 </tr>
 <tr>
 <td>2540738</td>
@@ -25998,13 +26018,6 @@ https://security-tracker.debian.org/tracker/ghostscript</td>
 <td>3.7.6-3.7.14.2</td>
 </tr>
 <tr>
-<td>2540808</td>
-<td>In an EVPN environment, the centralized MAC address is not installed on the MLAG pair because Cumulus Linux does not perform an SVI MAC check per VLAN. 
-This issue does not affect a pure distributed routing (symmetric or asymmetric) environment or a pure centralized routing environment.</td>
-<td>3.7.0-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
 <td>2540558</td>
 <td>On Trident3 switches, transit packets larger than 1500 bytes(DF) routed between SVIs is unexpectedly forwarded to the CPU even when the MTU is greater than 9000. This severely limits throughput for routed jumbo frames as packets arriving at a high interval are dropped to the CPU. </td>
 <td>3.7.0-3.7.6</td>
@@ -26699,13 +26712,6 @@ https://security-tracker.debian.org/tracker/ghostscript</td>
 <td>2543211</td>
 <td>In some cases, the {{switchd}} service might warn of excessive MAC moves from one switch port to itself (for example, from swp18 to swp18).
 </td>
-<td>3.7.0-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
-<td>2540808</td>
-<td>In an EVPN environment, the centralized MAC address is not installed on the MLAG pair because Cumulus Linux does not perform an SVI MAC check per VLAN. 
-This issue does not affect a pure distributed routing (symmetric or asymmetric) environment or a pure centralized routing environment.</td>
 <td>3.7.0-3.7.14.2, 4.0.0-4.3.0</td>
 <td></td>
 </tr>

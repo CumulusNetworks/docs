@@ -741,19 +741,17 @@ cumulus@leaf01:~$ cl set router bgp router-id 10.10.10.1
 cumulus@leaf01:~$ cl set vrf default router bgp peer-group underlay remote-as external
 cumulus@leaf01:~$ cl set vrf default router bgp peer swp51 peer-group underlay
 cumulus@leaf01:~$ cl set vrf default router bgp peer swp52 peer-group underlay
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp53 peer-group underlay
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp54 peer-group underlay
 cumulus@leaf01:~$ cl set vrf default router bgp path-selection multipath aspath-ignore on
 cumulus@leaf01:~$ cl set vrf default router bgp peer-group underlay address-family l2vpn-evpn enable on
 cumulus@leaf01:~$ cl set vrf default router bgp address-family ipv4-unicast redistribute connected
 cumulus@leaf01:~$ cl set evpn multihoming enable on
+cumulus@leaf01:~$ cl set nve vxlan flooding head-end-replication evpn
 cumulus@leaf01:~$ cl set interface bond1 evpn multihoming segment local-id 1
 cumulus@leaf01:~$ cl set interface bond2 evpn multihoming segment local-id 2
 cumulus@leaf01:~$ cl set interface bond3 evpn multihoming segment local-id 3
 cumulus@leaf01:~$ cl set interface bond1-3 evpn multihoming segment mac-address 44:38:39:BE:EF:AA
 cumulus@leaf01:~$ cl set interface bond1-3 evpn multihoming segment df-preference 50000
 cumulus@leaf01:~$ cl set interface swp51-52 evpn multihoming uplink on
-cumulus@leaf01:~$ cl set nve vxlan flooding head-end-replication evpn
 cumulus@leaf01:~$ cl config apply
 ```
 
@@ -812,13 +810,13 @@ cumulus@leaf02:~$ cl set vrf default router bgp path-selection multipath aspath-
 cumulus@leaf02:~$ cl set vrf default router bgp peer-group underlay address-family l2vpn-evpn enable on
 cumulus@leaf02:~$ cl set vrf default router bgp address-family ipv4-unicast redistribute connected
 cumulus@leaf02:~$ cl set evpn multihoming enable on
+cumulus@leaf02:~$ cl set nve vxlan flooding head-end-replication evpn
 cumulus@leaf02:~$ cl set interface bond1 evpn multihoming segment local-id 1
 cumulus@leaf02:~$ cl set interface bond2 evpn multihoming segment local-id 2
 cumulus@leaf02:~$ cl set interface bond3 evpn multihoming segment local-id 3
 cumulus@leaf02:~$ cl set interface bond1-3 evpn multihoming segment mac-address 44:38:39:BE:EF:AA
 cumulus@leaf02:~$ cl set interface bond1-3 evpn multihoming segment df-preference 50000
 cumulus@leaf02:~$ cl set interface swp51-52 evpn multihoming uplink on
-cumulus@leaf02:~$ cl set nve vxlan flooding head-end-replication evpn
 cumulus@leaf02:~$ cl config apply
 ```
 
@@ -877,13 +875,13 @@ cumulus@leaf03:~$ cl set vrf default router bgp path-selection multipath aspath-
 cumulus@leaf03:~$ cl set vrf default router bgp peer-group underlay address-family l2vpn-evpn enable on
 cumulus@leaf03:~$ cl set vrf default router bgp address-family ipv4-unicast redistribute connected
 cumulus@leaf03:~$ cl set evpn multihoming enable on
+cumulus@leaf03:~$ cl set nve vxlan flooding head-end-replication evpn
 cumulus@leaf03:~$ cl set interface bond1 evpn multihoming segment local-id 1
 cumulus@leaf03:~$ cl set interface bond2 evpn multihoming segment local-id 2
 cumulus@leaf03:~$ cl set interface bond3 evpn multihoming segment local-id 3
 cumulus@leaf03:~$ cl set interface bond1-3 evpn multihoming segment mac-address 44:38:39:BE:EF:AA
 cumulus@leaf03:~$ cl set interface bond1-3 evpn multihoming segment df-preference 50000
 cumulus@leaf03:~$ cl set interface swp51-52 evpn multihoming uplink on
-cumulus@leaf03:~$ cl set nve vxlan flooding head-end-replication evpn
 cumulus@leaf03:~$ cl config apply
 ```
 
@@ -942,13 +940,13 @@ cumulus@leaf04:~$ cl set vrf default router bgp path-selection multipath aspath-
 cumulus@leaf04:~$ cl set vrf default router bgp peer-group underlay address-family l2vpn-evpn enable on
 cumulus@leaf04:~$ cl set vrf default router bgp address-family ipv4-unicast redistribute connected
 cumulus@leaf04:~$ cl set evpn multihoming enable on
+cumulus@leaf04:~$ cl set nve vxlan flooding head-end-replication evpn
 cumulus@leaf04:~$ cl set interface bond1 evpn multihoming segment local-id 1
 cumulus@leaf04:~$ cl set interface bond2 evpn multihoming segment local-id 2
 cumulus@leaf04:~$ cl set interface bond3 evpn multihoming segment local-id 3
 cumulus@leaf04:~$ cl set interface bond1-3 evpn multihoming segment mac-address 44:38:39:BE:EF:AA
 cumulus@leaf04:~$ cl set interface bond1-3 evpn multihoming segment df-preference 50000
 cumulus@leaf04:~$ cl set interface swp51-52 evpn multihoming uplink on
-cumulus@leaf04:~$ cl set nve vxlan flooding head-end-replication evpn
 cumulus@leaf04:~$ cl config apply
 ```
 
@@ -2069,8 +2067,6 @@ neighbor underlay activate
 exit-address-family
 address-family l2vpn evpn
 advertise-all-vni
-disable-ead-evi-rx
-disable-ead-evi-tx
 neighbor swp51 activate
 neighbor swp52 activate
 neighbor underlay activate
@@ -2148,8 +2144,6 @@ neighbor underlay activate
 exit-address-family
 address-family l2vpn evpn
 advertise-all-vni
-disable-ead-evi-rx
-disable-ead-evi-tx
 neighbor swp51 activate
 neighbor swp52 activate
 neighbor underlay activate
@@ -3546,8 +3540,6 @@ neighbor underlay activate
 exit-address-family
 address-family l2vpn evpn
 advertise-all-vni
-disable-ead-evi-rx
-disable-ead-evi-tx
 neighbor swp51 activate
 neighbor swp52 activate
 neighbor underlay activate
@@ -3631,8 +3623,6 @@ neighbor underlay activate
 exit-address-family
 address-family l2vpn evpn
 advertise-all-vni
-disable-ead-evi-rx
-disable-ead-evi-tx
 neighbor swp51 activate
 neighbor swp52 activate
 neighbor underlay activate
@@ -3715,8 +3705,6 @@ neighbor underlay activate
 exit-address-family
 address-family l2vpn evpn
 advertise-all-vni
-disable-ead-evi-rx
-disable-ead-evi-tx
 neighbor swp51 activate
 neighbor swp52 activate
 neighbor underlay activate
@@ -3790,7 +3778,6 @@ ip pim
 vrf mgmt
 ip route 0.0.0.0/0 192.168.200.1
 exit-vrf
-!
 !
 router bgp 65100
 bgp router-id 10.10.10.102

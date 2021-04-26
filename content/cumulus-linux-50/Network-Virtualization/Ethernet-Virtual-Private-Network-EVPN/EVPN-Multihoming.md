@@ -682,7 +682,7 @@ cumulus@switch:~$
 
 ## Example Configurations
 
-The following configuration examples use the topology illustrated below, where .
+The following configuration examples use the topology illustrated below.
 
 {{<img src="/images/cumulus-linux/EVPN-MH-example-config-citc.png">}}
 
@@ -2236,9 +2236,6 @@ cumulus@leaf01:~$ cl set interface bond1 bridge domain br_default access 10
 cumulus@leaf01:~$ cl set interface bond2 bridge domain br_default access 20
 cumulus@leaf01:~$ cl set interface bond3 bridge domain br_default access 30
 cumulus@leaf01:~$ cl set bridge domain br_default vlan 10,20,30
-cumulus@leaf01:~$ cl set interface lo pim
-cumulus@leaf01:~$ cl set interface swp1-3 pim
-cumulus@leaf01:~$ cl set pim rp 10.10.100.100 224.0.0.0/4
 cumulus@leaf01:~$ cl set interface vlan10 ip address 10.1.10.2/24
 cumulus@leaf01:~$ cl set interface vlan10 ip vrr address 10.1.10.1/24
 cumulus@leaf01:~$ cl set interface vlan10 ip vrr mac-address 00:00:00:00:00:10
@@ -2303,9 +2300,6 @@ cumulus@leaf02:~$ cl set interface bond1 bridge domain br_default access 10
 cumulus@leaf02:~$ cl set interface bond2 bridge domain br_default access 20
 cumulus@leaf02:~$ cl set interface bond3 bridge domain br_default access 30
 cumulus@leaf02:~$ cl set bridge domain br_default vlan 10,20,30
-cumulus@leaf02:~$ cl set interface lo pim
-cumulus@leaf02:~$ cl set interface swp1-3 pim
-cumulus@leaf02:~$ cl set pim rp 10.10.100.100 224.0.0.0/4
 cumulus@leaf02:~$ cl set interface vlan10 ip address 10.1.10.2/24
 cumulus@leaf02:~$ cl set interface vlan10 ip vrr address 10.1.10.1/24
 cumulus@leaf02:~$ cl set interface vlan10 ip vrr mac-address 00:00:00:00:00:10
@@ -2370,9 +2364,6 @@ cumulus@leaf03:~$ cl set interface bond1 bridge domain br_default access 10
 cumulus@leaf03:~$ cl set interface bond2 bridge domain br_default access 20
 cumulus@leaf03:~$ cl set interface bond3 bridge domain br_default access 30
 cumulus@leaf03:~$ cl set bridge domain br_default vlan 10,20,30
-cumulus@leaf03:~$ cl set interface lo pim
-cumulus@leaf03:~$ cl set interface swp1-3 pim
-cumulus@leaf03:~$ cl set pim rp 10.10.100.100 224.0.0.0/4
 cumulus@leaf03:~$ cl set interface vlan10 ip address 10.1.10.2/24
 cumulus@leaf03:~$ cl set interface vlan10 ip vrr address 10.1.10.1/24
 cumulus@leaf03:~$ cl set interface vlan10 ip vrr mac-address 00:00:00:00:00:10
@@ -2437,9 +2428,6 @@ cumulus@leaf04:~$ cl set interface bond1 bridge domain br_default access 10
 cumulus@leaf04:~$ cl set interface bond2 bridge domain br_default access 20
 cumulus@leaf04:~$ cl set interface bond3 bridge domain br_default access 30
 cumulus@leaf04:~$ cl set bridge domain br_default vlan 10,20,30
-cumulus@leaf04:~$ cl set interface lo pim
-cumulus@leaf04:~$ cl set interface swp1-3 pim
-cumulus@leaf04:~$ cl set pim rp 10.10.100.100 224.0.0.0/4
 cumulus@leaf04:~$ cl set interface vlan10 ip address 10.1.10.2/24
 cumulus@leaf04:~$ cl set interface vlan10 ip vrr address 10.1.10.1/24
 cumulus@leaf04:~$ cl set interface vlan10 ip vrr mac-address 00:00:00:00:00:10

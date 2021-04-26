@@ -34,7 +34,7 @@ To configure static VXLAN tunnels, do the following on each leaf:
 - Specify an IP address for the loopback.
 - Create a VXLAN interface using the loopback address for the local tunnel IP address.
 - Enable bridge learning on the VNI.
-- Create the tunnels by configuring the remote IP address to each other leaf switch's loopback address.
+- Create the tunnels by configuring the remote IP address to be the loopback address of the other leafs.
 
 For example, to configure static VXLAN tunnels on the four leafs in the topology shown above:
 
@@ -99,76 +99,6 @@ cumulus@leaf01:~$ cl set bridge domain br_default vlan 10 vni 10 flooding head-e
 cumulus@leaf01:~$ cl set bridge domain br_default vlan 10 vni 10 flooding head-end-replication 10.10.10.3
 cumulus@leaf01:~$ cl set interface swp1 bridge domain br_default access 10
 cumulus@leaf01:~$ cl config apply
-```
-
-{{< /tab >}}
-{{< /tabs >}}
-
-{{< /tab >}}
-{{< tab "NCLU Commands ">}}
-
-{{< tabs "TabID62 ">}}
-{{< tab "leaf01 ">}}
-
-```
-cumulus@leaf01:~$ net add loopback lo ip address 10.10.10.1/32
-cumulus@leaf01:~$ net add vxlan vni-10 vxlan id 10
-cumulus@leaf01:~$ net add vxlan vni-10 bridge learning on
-cumulus@leaf01:~$ net add vxlan vni-10 vxlan local-tunnelip 10.10.10.1
-cumulus@leaf01:~$ net add vxlan vni-10 vxlan remoteip 10.10.10.2
-cumulus@leaf01:~$ net add vxlan vni-10 vxlan remoteip 10.10.10.3
-cumulus@leaf01:~$ net add vxlan vni-10 vxlan remoteip 10.10.10.4
-cumulus@leaf01:~$ net add vxlan vni-10 bridge access 10
-cumulus@leaf01:~$ net pending
-cumulus@leaf01:~$ net commit
-```
-
-{{< /tab >}}
-{{< tab "leaf02 ">}}
-
-```
-cumulus@leaf02:~$ net add loopback lo ip address 10.10.10.2/32
-cumulus@leaf02:~$ net add vxlan vni-10 vxlan id 10
-cumulus@leaf02:~$ net add vxlan vni-10 bridge learning on
-cumulus@leaf02:~$ net add vxlan vni-10 vxlan local-tunnelip 10.10.10.2
-cumulus@leaf02:~$ net add vxlan vni-10 vxlan remoteip 10.10.10.1
-cumulus@leaf02:~$ net add vxlan vni-10 vxlan remoteip 10.10.10.3
-cumulus@leaf02:~$ net add vxlan vni-10 vxlan remoteip 10.10.10.4
-cumulus@leaf02:~$ net add vxlan vni-10 bridge access 10
-cumulus@leaf02:~$ net pending
-cumulus@leaf02:~$ net commit
-```
-
-{{< /tab >}}
-{{< tab "leaf03 ">}}
-
-```
-cumulus@leaf03:~$ net add loopback lo ip address 10.10.10.3/32
-cumulus@leaf03:~$ net add vxlan vni-10 vxlan id 10
-cumulus@leaf03:~$ net add vxlan vni-10 bridge learning on
-cumulus@leaf03:~$ net add vxlan vni-10 vxlan local-tunnelip 10.10.10.3
-cumulus@leaf03:~$ net add vxlan vni-10 vxlan remoteip 10.10.10.1
-cumulus@leaf03:~$ net add vxlan vni-10 vxlan remoteip 10.10.10.2
-cumulus@leaf03:~$ net add vxlan vni-10 vxlan remoteip 10.10.10.4
-cumulus@leaf03:~$ net add vxlan vni-10 bridge access 10
-cumulus@leaf03:~$ net pending
-cumulus@leaf03:~$ net commit
-```
-
-{{< /tab >}}
-{{< tab "leaf04 ">}}
-
-```
-cumulus@leaf04:~$ net add loopback lo ip address 10.10.10.4/32
-cumulus@leaf04:~$ net add vxlan vni-10 vxlan id 10
-cumulus@leaf04:~$ net add vxlan vni-10 bridge learning on
-cumulus@leaf04:~$ net add vxlan vni-10 vxlan local-tunnelip 10.10.10.4
-cumulus@leaf04:~$ net add vxlan vni-10 vxlan remoteip 10.10.10.1
-cumulus@leaf04:~$ net add vxlan vni-10 vxlan remoteip 10.10.10.2
-cumulus@leaf04:~$ net add vxlan vni-10 vxlan remoteip 10.10.10.3
-cumulus@leaf04:~$ net add vxlan vni-10 bridge access 10
-cumulus@leaf04:~$ net pending
-cumulus@leaf04:~$ net commit
 ```
 
 {{< /tab >}}

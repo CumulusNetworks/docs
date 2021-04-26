@@ -103,7 +103,7 @@ An Ethernet segment configuration has these characteristics:
 
 A *designated forwarder* (DF) is elected for each Ethernet segment. The DF is responsible for forwarding flooded traffic received through the VXLAN overlay to the locally attached Ethernet segment. Specify a preference on an Ethernet segment for the DF election, as this leads to predictable failure scenarios. The EVPN VTEP with the highest DF preference setting becomes the DF. The DF preference setting defaults to _32767_.
 
-NCLU generates the EVPN-MH configuration and reloads FRR and `ifupdown2`. The configuration appears in both the `/etc/network/interfaces` file and in `/etc/frr/frr.conf` file.
+CUE generates the EVPN-MH configuration and reloads FRR and `ifupdown2`. The configuration appears in both the `/etc/network/interfaces` file and in `/etc/frr/frr.conf` file.
 
 {{%notice note%}}
 When EVPN-MH is enabled, all SVI MAC addresses are advertised as type 2 routes. You do not need to configure a unique SVI IP address or configure the BGP EVPN address family with `advertise-svi-ip`.
@@ -153,21 +153,6 @@ cumulus@leaf01:~$ cl set interface bond3 evpn multihoming segment local-id 3
 cumulus@leaf01:~$ cl set interface bond1-3 evpn multihoming segment mac-address 44:38:39:BE:EF:AA
 cumulus@leaf01:~$ cl set interface bond1-3 evpn multihoming segment df-preference 50000
 cumulus@leaf01:~$ cl config apply
-```
-
-{{</tab>}}
-{{<tab "NCLU Commands">}}
-
-```
-cumulus@switch:~$ net add bond bond1 bond slaves swp1
-cumulus@switch:~$ net add bond bond2 bond slaves swp2
-cumulus@switch:~$ net add bond bond3 bond slaves swp3
-cumulus@switch:~$ net add bond bond1 evpn mh es-id 1
-cumulus@switch:~$ net add bond bond2 evpn mh es-id 2
-cumulus@switch:~$ net add bond bond3 evpn mh es-id 3
-cumulus@switch:~$ net add bond bond1-3 evpn mh es-sys-mac 44:38:39:BE:EF:AA
-cumulus@switch:~$ net add bond bond1-3 evpn mh es-df-pref 50000
-cumulus@switch:~$ net commit
 ```
 
 {{</tab>}}

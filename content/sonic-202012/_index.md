@@ -11,7 +11,7 @@ _SONiC_ (Software for Open Networking in the Cloud) is an open source network op
 
 This documentation is for SONiC version {{<version>}}.
 
-To learn about new features and review the list of issues fixed and still open in version {{<version>}}, read the {{<link url="Release-Notes" text="release notes">}}. Then, when you are ready, {{<link url="Getting-Started" text="get started">}}.
+To learn about new features and review the list of issues fixed and still open in version {{<version>}}, read the {{<link url="Release-Notes" text="release notes">}}. Then, when you are ready, {{<link url="Getting-Started" text="get started">}} .
 
 ## Supported Platforms
 

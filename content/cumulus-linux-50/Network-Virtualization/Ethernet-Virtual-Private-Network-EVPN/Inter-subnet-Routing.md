@@ -31,17 +31,6 @@ cumulus@leaf01:~$ cl config apply
 ```
 
 {{< /tab >}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@leaf01:~$ net add bgp autonomous-system 65101
-cumulus@leaf01:~$ net add bgp l2vpn evpn advertise-default-gw
-cumulus@leaf01:~$ net pending
-cumulus@leaf01:~$ net commit
-```
-
-{{< /tab >}}
-
 {{< tab "vtysh Commands ">}}
 
 ```
@@ -58,7 +47,6 @@ cumulus@leaf01:~$
 ```
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 These commands create the following configuration snippet in the `/etc/frr/frr.conf` file.
@@ -120,18 +108,6 @@ cumulus@leaf01:~$ cl config apply
 ```
 
 {{< /tab >}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@leaf01:~$ net add vxlan vni10 vxlan id 10
-cumulus@leaf01:~$ net add vxlan vni10 bridge access 10
-cumulus@leaf01:~$ net add vxlan vni10 vxlan local-tunnelip 10.10.10.1
-cumulus@leaf01:~$ net add bridge bridge ports vni10
-cumulus@leaf01:~$ net pending
-cumulus@leaf01:~$ net commit
-```
-
-{{< /tab >}}
 {{< tab "Linux Commands ">}}
 
 Edit the `/etc/network/interfaces` file. For example:
@@ -164,15 +140,6 @@ auto bridge
 cumulus@leaf01:~$ cl set vrf RED
 cumulus@leaf01:~$ cl set interface vlan10 ip vrf RED
 cumulus@leaf01:~$ cl config apply
-```
-
-{{< /tab >}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@leaf01:~$ net add vlan 4001 vrf RED
-cumulus@leaf01:~$ net pending
-cumulus@leaf01:~$ net commit
 ```
 
 {{< /tab >}}
@@ -209,15 +176,6 @@ cumulus@leaf01:~$ cl config apply
 ```
 
 {{< /tab >}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@leaf01:~$ net add vrf RED vni 4001
-cumulus@leaf01:~$ net pending
-cumulus@leaf01:~$ net commit
-```
-
-{{< /tab >}}
 {{< tab "Linux Commands ">}}
 
 Edit the `/etc/frr/frr.conf` file. For example:
@@ -235,23 +193,28 @@ vrf RED
 {{< /tabs >}}
 
 {{%notice note%}}
-In CUE, VNIs cannot have custom names. When you run the `cl set vrf RED evpn vni 4001` command, CUE creates a layer 3 VNI called vni4001 but assigns it a VLAN automatically from the reserved VLAN range (for example vlan4024). CUE adds vni4001 to the bridge and assigns vlan4024 to vrf RED.
+When you run the `cl set vrf RED evpn vni 4001` command, CUE:
+- Creates a layer 3 VNI called vni4001
+- Assigns the vni4001 a VLAN automatically from the reserved VLAN range and adds `_l3` (layer 3) at the end (for example vlan220_l3)
+- Creates a layer 3 bridge called br_l3vni
+- Adds vni4001 to the br_l3vni bridge
+- Assigns vlan4024 to vrf RED
 
 ```
 cumulus@leaf01:~$ sudo cat /etc/network/interfaces
 ...
 auto vni4001
 iface vni4001
-    bridge-access 4024
+    bridge-access 220
     bridge-learning off
     vxlan-id 4001
 
-auto vlan4024
-iface vlan4024
+auto vlan220_l3
+iface vlan220_l3
     vrf RED
-    vlan-raw-device br_default
+    vlan-raw-device br_l3vni
     address-virtual 44:38:39:BE:EF:AA
-    vlan-id 4024
+    vlan-id 220
 ...
 ```
 {{%/notice%}}
@@ -261,7 +224,13 @@ iface vlan4024
 If you do not want the RD and RTs (layer 3 RTs) for the tenant VRF to be derived automatically, you can configure them manually by specifying them under the `l2vpn evpn` address family for that specific VRF.
 
 {{< tabs "TabID226 ">}}
+{{< tab "CUE Commands ">}}
 
+```
+cumulus@leaf01:~$ NEED COMMAND
+```
+
+{{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
 ```
@@ -272,7 +241,6 @@ cumulus@leaf01:~$ net commit
 ```
 
 {{< /tab >}}
-
 {{< tab "vtysh Commands ">}}
 
 ```
@@ -290,7 +258,6 @@ cumulus@leaf01:~$
 ```
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 These commands create the following configuration snippet in the `/etc/frr/frr.conf` file:
@@ -305,9 +272,7 @@ router bgp 65101 vrf RED
 ```
 
 {{%notice note%}}
-
 The tenant VRF RD and RTs are different from the RD and RTs for the layer 2 VNI. See {{<link url="EVPN-Enhancements#define-rds-and-rts" text="Define RDs and RTs">}}.
-
 {{%/notice%}}
 
 ### Advertise Locally-attached Subnets
@@ -320,9 +285,7 @@ To advertise locally attached subnets:
 2. Ensure that the routes corresponding to the connected subnets are known in the BGP VRF routing table by injecting them using the `network` command or redistributing them using the `redistribute connected` command.
 
 {{%notice note%}}
-
 This configuration is recommended only if the deployment is known to have silent hosts. It is also recommended that you enable on only one VTEP per subnet, or two for redundancy.
-
 {{%/notice%}}
 
 ## Prefix-based Routing
@@ -351,17 +314,8 @@ The following configuration is required in the tenant VRF to announce IP prefixe
 {{< tab "CUE Commands ">}}
 
 ```
-cumulus@leaf01:~$ NEED Command
+cumulus@leaf01:~$ cl set vrf RED router bgp address-family ipv4-unicast route-export to-evpn enable on
 cumulus@leaf01:~$ cl config apply
-```
-
-{{< /tab >}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@leaf01:~$ net add bgp vrf RED l2vpn evpn advertise ipv4 unicast
-cumulus@leaf01:~$ net pending
-cumulus@leaf01:~$ net commit
 ```
 
 {{< /tab >}}
@@ -444,17 +398,13 @@ By default, when announcing IP prefixes in the BGP RIB as EVPN type-5 routes, al
 The following commands add a route map filter to IPv4 EVPN type-5 route advertisement:
 
 {{< tabs "TabID408 ">}}
-
-{{< tab "NCLU Commands ">}}
+{{< tab "CUE Commands ">}}
 
 ```
-cumulus@leaf01:~$ net add bgp vrf RED l2vpn evpn advertise ipv4 unicast route-map map1
-cumulus@leaf01:~$ net pending
-cumulus@leaf01:~$ net commit
+cumulus@leaf01:~$ cl set vrf RED router bgp address-family ipv4-unicast route-export to-evpn route-map map1
 ```
 
 {{< /tab >}}
-
 {{< tab "vtysh Commands ">}}
 
 ```
@@ -471,7 +421,6 @@ cumulus@leaf01:~$
 ```
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 ### Originate Default EVPN Type-5 Routes
@@ -508,7 +457,13 @@ See {{<link url="Basic-Configuration#evpn-and-vxlan-active-active-mode" text="EV
 Run the `address-virtual <anycast-mac>` command under the SVI, where `<anycast-mac>` is the MLAG system MAC address ({{<link url="Multi-Chassis-Link-Aggregation-MLAG#reserved-mac-address-range" text="clagd-sys-mac">}}). Run these commands on both switches in the MLAG pair.
 
 {{< tabs "TabID472 ">}}
+{{< tab "CUE Commands ">}}
 
+```
+cumulus@leaf01:~$ NEED COMMAND
+```
+
+{{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
 Run the `net add vlan <vlan> ip address-virtual <anycast-mac>` command. For example:
@@ -520,7 +475,6 @@ cumulus@leaf01:~$ net commit
 ```
 
 {{< /tab >}}
-
 {{< tab "Linux Commands ">}}
 
 Edit the `/etc/network/interfaces` file and add `address-virtual <anycast-mac>` under the SVI. For example:
@@ -538,7 +492,6 @@ iface vlan4001
 ```
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 {{%notice note%}}
@@ -557,7 +510,13 @@ The system MAC address must be the layer 3 SVI MAC address (not the `clad-sys-ma
 The following example commands add the system IP address 10.10.10.1 and the system MAC address 44:38:39:be:ef:aa:
 
 {{< tabs "TabID520 ">}}
+{{< tab "CUE Commands ">}}
 
+```
+cumulus@leaf01:~$ NEED COMMAND
+```
+
+{{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
 ```
@@ -568,7 +527,6 @@ cumulus@leaf01:~$ net commit
 ```
 
 {{< /tab >}}
-
 {{< tab "vtysh Commands ">}}
 
 ```
@@ -585,7 +543,6 @@ cumulus@leaf01:~$
 ```
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 The system IP address and system MAC address you provide take precedence over the addresses that Cumulus Linux derives automatically.
@@ -597,7 +554,13 @@ Each switch in the MLAG pair advertises type-5 routes with its own system IP, wh
 To disable Advertise Primary IP Address under each tenant VRF BGP instance:
 
 {{< tabs "TabID560 ">}}
+{{< tab "CUE Commands ">}}
 
+```
+cumulus@leaf01:~$ NEED COMMAND
+```
+
+{{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
 ```
@@ -607,7 +570,6 @@ cumulus@leaf01:~$ net commit
 ```
 
 {{< /tab >}}
-
 {{< tab "vtysh Commands ">}}
 
 ```
@@ -623,7 +585,6 @@ cumulus@leaf01:~$
 ```
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 #### Show Advertise Primary IP Address Information

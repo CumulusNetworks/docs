@@ -150,21 +150,6 @@ cumulus@spine01:~$ cl config apply
 The above commands automatically provision all locally configured VNIs to be advertised by the BGP control plane.
 
 {{< /tab >}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@leaf01:~$ net add bgp neighbor swp51 interface remote-as external
-cumulus@leaf01:~$ net add bgp l2vpn evpn neighbor swp51 activate
-cumulus@leaf01:~$ net add bgp l2vpn evpn advertise-all-vni
-cumulus@leaf01:~$ net pending
-cumulus@leaf01:~$ net commit
-```
-
-{{%notice note%}}
-The `advertise-all-vni` option is only needed on leaf switches that are VTEPs. EVPN routes received from a BGP peer are accepted, even without this explicit EVPN configuration. These routes are maintained in the global EVPN routing table. However, they only become effective (imported into the per-VNI routing table and appropriate entries installed in the kernel) when the VNI corresponding to the received route is locally known.
-{{%/notice%}}
-
-{{< /tab >}}
 {{< tab "vtysh Commands ">}}
 
 ```

@@ -43,36 +43,6 @@ cumulus@leaf03:~$ cl config apply
 {{< /tabs >}}
 
 {{< /tab >}}
-{{< tab "NCLU Commands ">}}
-
-{{< tabs "TabID37 ">}}
-{{< tab "leaf01 ">}}
-
-```
-cumulus@leaf01:~$ net add bgp l2vpn evpn vni 10 rd 10.10.10.1:20
-cumulus@leaf01:~$ net add bgp l2vpn evpn vni 10 route-target export 65101:10
-cumulus@leaf01:~$ net add bgp l2vpn evpn vni 10 route-target import 65102:10
-cumulus@leaf01:~$ net add bgp l2vpn evpn advertise-all-vni
-cumulus@leaf01:~$ net pending
-cumulus@leaf01:~$ net commit
-```
-
-{{< /tab >}}
-{{< tab "leaf03 ">}}
-
-```
-cumulus@leaf03:~$ net add bgp l2vpn evpn vni 10 rd 10.10.10.3:20
-cumulus@leaf03:~$ net add bgp l2vpn evpn vni 10 route-target export 65102:10
-cumulus@leaf03:~$ net add bgp l2vpn evpn vni 10 route-target import 65101:10
-cumulus@leaf03:~$ net add bgp l2vpn evpn advertise-all-vni
-cumulus@leaf03:~$ net pending
-cumulus@leaf03:~$ net commit
-```
-
-{{< /tab >}}
-{{< /tabs >}}
-
-{{< /tab >}}
 {{< tab "vtysh Commands ">}}
 
 {{< tabs "TabID50 ">}}
@@ -182,34 +152,6 @@ cumulus@leaf03:~$ cl set evpn evi 10 route-target import 65101:10
 cumulus@leaf03:~$ cl set evpn evi 10 route-target import 65101:20
 cumulus@leaf03:~$ cl set evpn evi 20 route-target both 65102:10
 cumulus@leaf03:~$ cl config apply
-```
-
-{{< /tab >}}
-{{< /tabs >}}
-
-{{< /tab >}}
-{{< tab "NCLU Commands ">}}
-
-{{< tabs "TabID110 ">}}
-{{< tab "leaf01 ">}}
-
-```
-cumulus@leaf01:~$ net add bgp l2vpn evpn vni 10 route-target import 65102:10
-cumulus@leaf01:~$ net add bgp l2vpn evpn vni 10 route-target import 65102:20
-cumulus@leaf01:~$ net add bgp l2vpn evpn vni 20 route-target both 65101:10
-cumulus@leaf01:~$ net pending
-cumulus@leaf01:~$ net commit
-```
-
-{{< /tab >}}
-{{< tab "leaf03 ">}}
-
-```
-cumulus@leaf03:~$ net add bgp l2vpn evpn vni 10 route-target import 65101:10
-cumulus@leaf03:~$ net add bgp l2vpn evpn vni 10 route-target import 65101:20
-cumulus@leaf03:~$ net add bgp l2vpn evpn vni 20 route-target both 65102:10
-cumulus@leaf03:~$ net pending
-cumulus@leaf03:~$ net commit
 ```
 
 {{< /tab >}}
@@ -458,18 +400,6 @@ cumulus@leaf01:~$ cl config apply
 ```
 
 {{< /tab >}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@leaf01:~$ net add vlan 10 ip forward off
-cumulus@leaf01:~$ net add vlan 10 ipv6 forward off
-cumulus@leaf01:~$ net add vlan 20 ip forward off
-cumulus@leaf01:~$ net add vlan 20 ipv6 forward off
-cumulus@leaf01:~$ net pending
-cumulus@leaf01:~$ net commit
-```
-
-{{< /tab >}}
 {{< tab "Linux Commands ">}}
 
 Edit the `/etc/network/interfaces` file.
@@ -545,16 +475,6 @@ Keep ARP and ND suppression enabled to reduce flooding of ARP/ND packets over VX
 ```
 cumulus@leaf01:~$ cl set nve vxlan arp-nd-suppress off
 cumulus@leaf01:~$ cl config apply
-```
-
-{{< /tab >}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@leaf01:~$ net del vxlan vni10 bridge arp-nd-suppress
-cumulus@leaf01:~$ net del vxlan vni20 bridge arp-nd-suppress
-cumulus@leaf01:~$ net pending
-cumulus@leaf01:~$ net commit
 ```
 
 {{< /tab >}}
@@ -651,17 +571,6 @@ cumulus@leaf01:~$ cl set router policy route-map map1 rule 10 action permit
 cumulus@leaf01:~$ cl set vrf default router bgp address-family ipv4-unicast route-export to-evpn route-map map1
 ```
 
-{{< /tab >}}
-{{< tab "NCLU Commands ">}}
-
-Use the `net add routing route-map <route_map_name> (deny|permit) <1-65535> match evpn default-route` command or the `net add routing route-map <route_map_name> (deny|permit) <1-65535> match evpn route-type (macip|prefix|multicast)` command.
-
-```
-cumulus@leaf01:~$ net add routing route-map map1 permit 1 match evpn route-type prefix
-cumulus@leaf01:~$ net pending
-cumulus@leaf01:~$ net commit
-```
-
 {{%notice note%}}
 You must apply the route map for the configuration to take effect. See {{<link url="Route-Filtering-and-Redistribution/#route-maps" text="Route Maps">}} for more information.
 {{%/notice%}}
@@ -704,15 +613,6 @@ cumulus@leaf01:~$ cl config apply
 ```
 
 {{< /tab >}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@leaf01:~$ net add bgp l2vpn evpn advertise-svi-ip
-cumulus@leaf01:~$ net pending
-cumulus@leaf01:~$ net commit
-```
-
-{{< /tab >}}
 {{< tab "vtysh Commands ">}}
 
 ```
@@ -742,15 +642,6 @@ cumulus@leaf01:~$ cl config apply
 ```
 
 {{< /tab >}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@leaf01:~$ net add bgp l2vpn evpn vni 10 advertise-svi-ip
-cumulus@leaf01:~$ net pending
-cumulus@leaf01:~$ net commit
-```
-
-{{< /tab >}}
 {{< tab "vtysh Commands ">}}
 
 ```
@@ -770,7 +661,7 @@ cumulus@leaf01:~$
 {{< /tab >}}
 {{< /tabs >}}
 
-The NCLU and vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+The commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
 ```
 cumulus@leaf01:~$ sudo cat /etc/frr/frr.conf
@@ -807,17 +698,6 @@ cumulus@leaf01:~$ cl config apply
 ```
 
 To renable BUM flodding, run the `cl set nve vxlan enable on` command.
-
-{{< /tab >}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@leaf01:~$ net add bgp l2vpn evpn disable-flooding
-cumulus@leaf01:~$ net pending
-cumulus@leaf01:~$ net commit
-```
-
-The `net del bgp l2vpn evpn disable-flooding` command renables BUM flooding.
 
 {{< /tab >}}
 {{< tab "vtysh Commands ">}}
@@ -951,15 +831,6 @@ cumulus@switch:~$ cl config apply
 ```
 
 {{< /tab >}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@switch:~$ net add bgp l2vpn evpn dup-addr-detection max-moves 10 time 1200
-cumulus@leaf01:~$ net pending
-cumulus@leaf01:~$ net commit
-```
-
-{{< /tab >}}
 {{< tab "vtysh Commands ">}}
 
 ```
@@ -1026,15 +897,6 @@ cumulus@switch:~$ cl config apply
 ```
 
 {{< /tab >}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@switch:~$ net add bgp l2vpn evpn dup-addr-detection freeze 1000
-cumulus@leaf01:~$ net pending
-cumulus@leaf01:~$ net commit
-```
-
-{{< /tab >}}
 {{< tab "vtysh Commands ">}}
 
 ```
@@ -1068,15 +930,6 @@ cumulus@switch:~$ cl config apply
 ```
 
 {{< /tab >}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@switch:~$ net add bgp l2vpn evpn dup-addr-detection freeze permanent
-cumulus@leaf01:~$ net pending
-cumulus@leaf01:~$ net commit
-```
-
-{{< /tab >}}
 {{< tab "vtysh Commands ">}}
 
 ```
@@ -1105,15 +958,6 @@ You can clear a duplicate MAC or IP address (and unfreeze a frozen address). The
 CUE command is not curently supported.
 
 {{< /tab >}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@switch:~$ net clear evpn dup-addr vni 101 ip 10.0.0.9
-cumulus@leaf01:~$ net pending
-cumulus@leaf01:~$ net commit
-```
-
-{{< /tab >}}
 {{< tab "vtysh Commands ">}}
 
 ```
@@ -1133,15 +977,6 @@ To clear duplicate addresses for all VNIs, run the following command:
 {{< tab "CUE Commands ">}}
 
 CUE command is not curently supported.
-
-{{< /tab >}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@switch:~$ net clear evpn dup-addr vni all
-cumulus@leaf01:~$ net pending
-cumulus@leaf01:~$ net commit
-```
 
 {{< /tab >}}
 {{< tab "vtysh Commands ">}}
@@ -1172,15 +1007,6 @@ By default, duplicate address detection is enabled and a syslog error is generat
 ```
 cumulus@switch:~$ cl set evpn dad enable on
 cumulus@switch:~$ cl config apply
-```
-
-{{< /tab >}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@switch:~$ net del bgp l2vpn evpn dup-addr-detection
-cumulus@switch:~$ net pending 
-cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}

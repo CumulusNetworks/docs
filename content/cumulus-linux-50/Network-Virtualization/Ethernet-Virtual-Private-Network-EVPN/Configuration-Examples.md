@@ -3467,12 +3467,12 @@ cumulus@border02:~$ cl config apply
 {{< /tabs >}}
 
 {{%notice note%}}
-In CUE, VNIs cannot have custom names. When you run the `cl set vrf RED evpn vni 4001` command, CUE:
-- creates a layer 3 VNI called vni4001
-- assigns the vni4001 a VLAN automatically from the reserved VLAN range and adds `_l3` (layer 3) at the end (for example vlan220_l3)
-- creates a layer 3 bridge called br_l3vni
-- adds vni4001 to the br_l3vni bridge
-- assigns vlan4024 to vrf RED
+When you run the `cl set vrf RED evpn vni 4001` command, CUE:
+- Creates a layer 3 VNI called vni4001
+- Assigns the vni4001 a VLAN automatically from the reserved VLAN range and adds `_l3` (layer 3) at the end (for example vlan220_l3)
+- Creates a layer 3 bridge called br_l3vni
+- Adds vni4001 to the br_l3vni bridge
+- Assigns vlan4024 to vrf RED
 
 ```
 cumulus@leaf01:~$ sudo cat /etc/network/interfaces

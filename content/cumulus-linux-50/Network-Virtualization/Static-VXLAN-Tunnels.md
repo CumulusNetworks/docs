@@ -25,17 +25,17 @@ The following topology is used in the configuration examples. Each IP address co
 ### Single VXLAN Device
 
 The following single VXLAN device example configuration:
-- Sets the loopback address on each switch
+- Sets the loopback address on each leaf
 - Creates a single VXLAN device (vxlan0)
 - Configures the local tunnel IP address to be the loopback address of the switch
 - Enables bridge learning on the single VXLAN device
 - Creates the static VXLAN tunnels by specifying the loopback addresses of the other leafs
 - Adds the VXLAN device to the default bridge br_default
 
-{{< tabs "TabID359 ">}}
+{{< tabs "TabID35 ">}}
 {{< tab "CUE Commands ">}}
 
-{{< tabs "TabID44 ">}}
+{{< tabs "TabID38 ">}}
 {{< tab "leaf01 ">}}
 
 ```
@@ -75,7 +75,7 @@ cumulus@leaf04:~$ cl config apply
 
 Editing the `/etc/network/interfaces` file as follows:
 
-{{< tabs "TabID134 ">}}
+{{< tabs "TabID78 ">}}
 {{< tab "leaf01 ">}}
 
 ```
@@ -112,17 +112,17 @@ Editing the `/etc/network/interfaces` file as follows:
 ### Traditional VXLAN Device
 
 The following example traditional VXLAN device configuration:
-- Sets the loopback address
+- Sets the loopback address on each leaf
 - Creates two unique VXLAN devices (vni10 and vni20)
 - Configures the local tunnel IP address to be the loopback address of the switch
-- Enables bridge learning on the single each VXLAN device
+- Enables bridge learning on the each VXLAN device
 - Creates the tunnels on each VXLAN device by specifying the loopback addresses of the other leafs
 - Adds both VXLAN devices (vni10 and vni20) to the default bridge br_default
 
-{{< tabs "TabID41 ">}}
+{{< tabs "TabID122 ">}}
 {{< tab "CUE Commands ">}}
 
-{{< tabs "TabID44 ">}}
+{{< tabs "TabID125 ">}}
 {{< tab "leaf01 ">}}
 
 ```
@@ -214,7 +214,7 @@ cumulus@leaf04:~$ cl config apply
 
 Editing the `/etc/network/interfaces` file as follows:
 
-{{< tabs "TabID134 ">}}
+{{< tabs "TabID217 ">}}
 {{< tab "leaf01 ">}}
 
 ```

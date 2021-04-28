@@ -11,7 +11,7 @@
   <link href="https://fonts.googleapis.com/css?family=Oxygen|Oxygen+Mono:300,400,700" rel="stylesheet">
 
   {{ $styles := resources.Get "book.scss" | resources.ExecuteAsTemplate "book.scss" . | toCSS | minify | fingerprint }}
-  <link rel="stylesheet" href="{{ $styles.Permalink }}">
+  <link rel="stylesheet" href="{{ $styles.Permalink | absURL }}">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
   <!-- Favicon -->
@@ -43,12 +43,12 @@
         <nav>
           <ul class="navRoot">
             <li class="navSection logo">
-              <div class="rootLink"><a href="//docs.cumulusnetworks.com/"><span>Networking Docs</span></a></div>
+              <div class="rootLink"><a href={{.Site.Params.baseURL}}><span>Networking Docs</span></a></div>
             </li>
             <li class="navSection primary">
               <a class="rootLink" href="//cumulusnetworks.com/">HOME</a>
               <a class="rootLink" href="https://support.mellanox.com/s/contact-support-page">SUPPORT</a>
-              <a class="rootLink" href="//docs.cumulusnetworks.com/">DOCS</a>
+              <a class="rootLink" href={{.Site.Params.baseURL}}>DOCS</a>
               <a class="rootLink" href="//education.cumulusnetworks.com/">EDUCATION</a>
               <a class="rootLink" href="//cumulusnetworks.com/blog/">BLOG</a>
               <a class="rootLink" href="//slack.cumulusnetworks.com/">COMMUNITY</a>
@@ -67,34 +67,12 @@
         <ul>
           <li><a href="//cumulusnetworks.com/">HOME</a></li>
           <li><a href="https://support.mellanox.com/s/contact-support-page">SUPPORT</a></li>
-          <li><a href="//docs.cumulusnetworks.com/">DOCS</a></li>
+          <li><a href={{.Site.Params.baseURL}}>DOCS</a></li>
           <li><a href="//education.cumulusnetworks.com/">EDUCATION</a></li>
           <li><a href="//cumulusnetworks.com/blog/">BLOG</a></li>
           <li><a href="//slack.cumulusnetworks.com/">COMMUNITY</a></li></ul>
       </div>
     </div>
-    <!-- <div id="site-nav">
-      <div class="header-wrapper flex">
-        <a href="/">
-          <img src="/header-logo.png" alt="Cumulus Networks">
-          <img src="/cumulus-networks-rt-white.svg" alt="Cumulus Networks" class="header-mobile">
-        <span>Docs</span>
-        </a>
-        <ul class="flex">
-          <li><a href="//cumulusnetworks.com/">HOME</a></li>
-          <li><a href="https://support.mellanox.com/s/contact-support-page">SUPPORT</a></li>
-          <li><a href="//docs.cumulusnetworks.com/">DOCS</a></li>
-          <li><a href="//education.cumulusnetworks.com/">EDUCATION</a></li>
-          <li><a href="//cumulusnetworks.com/blog/">BLOG</a></li>
-          <li><a href="//slack.cumulusnetworks.com/">COMMUNITY</a></li>
-        </ul>
-        <div class="burger-menu">
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
-      </div>
-    </div> -->
     <header class="home-banner" style="background-image: url({{"docs-home-bg.jpg" | absURL}});">
       <div class="container">
         <div class="row">
@@ -154,13 +132,13 @@
             {{ end }}
           </div>
           <div class="col-12 col-sm-6 col-lg-4 mb-5 mb-lg-0">
-            <a href="/cumulus-vx/"><img src={{"home-products-cumulus-express.jpg" | absURL }} alt="Cumulus VX" class="mb-6"></a>
+            <a href={{ "cumulus-vx" | absURL }}><img src={{"home-products-cumulus-express.jpg" | absURL }} alt="Cumulus VX" class="mb-6"></a>
             <h3>NVIDIA Cumulus VX</h3>
             <p class="small">A free virtual appliance &mdash; download and build a virtual data center using any popular hypervisor</p>
             <ul>
-              <li><a href="/cumulus-vx/">What is Cumulus VX?</a></li>
-              <li><a href="/cumulus-vx/Overview/#supported-hypervisors/">Supported Hypervisors</a></li>
-              <li><a href="/cumulus-vx/Frequently-Asked-Questions/">Frequently Asked Questions</a></li>
+              <li><a href={{ "cumulus-vx" | absURL }}>What is Cumulus VX?</a></li>
+              <li><a href={{ printf "%s#supported-hypervisors" ("cumulus-vx/Overview" | absURL) }}>Supported Hypervisors</a></li>
+              <li><a href={{"cumulus-vx/Frequently-Asked-Questions" | absURL }}>Frequently Asked Questions</a></li>
             </ul>
           </div>
         </div>
@@ -186,7 +164,7 @@
                 </div>
               </div>
               <div class="card">
-                <a href="/guides/"></a>
+                <a href={{"guides" | absURL }}></a>
                 <div class="card__background" style="background-image: url('{{"Tech-Doc-02-Support.jpg" | absURL}}')"></div>
                 <div class="card__content">
                   <h3>Technical Guides</h3>
@@ -195,7 +173,7 @@
                 </div>
               </div>
               <div class="card">
-                <a href="/knowledge-base/"></a>
+                <a href={{"knowledge-base" | absURL }}></a>
                 <div class="card__background" style="background-image: url('{{"Tech-Doc-03-release-notes.jpg" | absURL}}')"></div>
                 <div class="card__content">
                   <h3>Knowledge Base</h3>
@@ -204,7 +182,7 @@
                 </div>
               </div>
               <div class="card">
-                <a href="/contributor-guide/"></a>
+                <a href={{"contributor-guide" | absURL }}></a>
                 <div class="card__background" style="background-image: url('{{"Tech-Doc-04-Contribute.png" | absURL}}')"></div>
                 <div class="card__content">
                   <h3>Contribute</h3>
@@ -228,23 +206,23 @@
             <div class="col-sm-12 col-md-6 col-lg-4">
               <h3>Cumulus RMP</h3>
               <ul>
-                <li><a href="/cumulus-rmp/">Overview</a></li>
-                <li><a href="/cumulus-rmp/Quick-Start-Guide/">Quick start guide</a></li>
+                <li><a href={{"cumulus-rmp" | absURL }}>Overview</a></li>
+                <li><a href={{"cumulus-rmp/Quick-Start-Guide" | absURL }}>Quick start guide</a></li>
               </ul>
             </div>
             <div class="col-sm-12 col-md-6 col-lg-4">
               <h3>SONiC</h3>
               <ul>
-                <li><a href="/sonic-202012/">SONiC documentation</a></li>
-                <li><a href="/sonic-202012/Whats-New/Release-Notes/">Release notes</a>
+                <li><a href={{"sonic-202012" | absURL }}>SONiC documentation</a></li>
+                <li><a href={{"sonic-202012/Whats-New/Release-Notes" | absURL }}>Release notes</a>
               </ul>
           </div>
           <div class="col-sm-12 col-md-6 col-lg-4">
             <h3>Cumulus Networks PDF Archive</h3>
             <ul>
-              <li><a href="/pdfs/#cumulus-linux-pdf-archive">Cumulus Linux PDFs</a></li>
-              <li><a href="/pdfs/#cumulus-chassis-pdf-archive">Cumulus Chassis PDF</a></li>
-              <li><a href="/pdfs/#cumulus-netq-pdf-archive">Cumulus NetQ PDFs</a></li>
+              <li><a href={{"pdfs/#cumulus-linux-pdf-archive" | absURL }}>Cumulus Linux PDFs</a></li>
+              <li><a href={{"pdfs/#cumulus-chassis-pdf-archive" | absURL }}>Cumulus Chassis PDF</a></li>
+              <li><a href={{"pdfs/#cumulus-netq-pdf-archive" | absURL }}>Cumulus NetQ PDFs</a></li>
             </ul>
         </div>
         </div>
@@ -264,7 +242,7 @@
                       <img src={{"images/nvidia-logo-white.svg" | absURL }} />
                         <p>© <script type="text/javascript">document.write(new Date().getFullYear());</script>  NVIDIA Corporation.<br>
                         Site by <a href="//unomena.com/" target="_blank">Unomena</a>.</p>
-                        <p><a href="/license/"><img src={{"images/by-nc-sa.svg" | absURL }} alt="Cumulus Networks CC-by-NC-SA License"></a></p>
+                        <p><a href={{"license" | absURL }}><img src={{"images/by-nc-sa.svg" | absURL }} alt="Cumulus Networks CC-by-NC-SA License"></a></p>
                     </div>
                     <ul class="mb-4">
                         <li><h4 class="text-jade mb-3">Products</h4></li>

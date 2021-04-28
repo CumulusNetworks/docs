@@ -132,20 +132,7 @@ To enable proxy ARP:
 {{< tabs "TabID137 ">}}
 {{< tab "CUE Commands ">}}
 
-```
-cumulus@switch:~$ NEED COMMAND
-```
-
-{{< /tab >}}
-{{< tab "NCLU Commands ">}}
-
-The following example commands enable proxy ARP on swp1.
-
-```
-cumulus@switch:~$ net add interface swp1 post-up "echo 1 > /proc/sys/net/ipv4/conf/swp1/proxy_arp"
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
+CUE commands are not supported.
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
@@ -173,20 +160,7 @@ If you are running two interfaces in the same broadcast domain (typically seen w
 {{< tabs "TabID174 ">}}
 {{< tab "CUE Commands ">}}
 
-```
-cumulus@switch:~$ NEED COMMAND
-```
-
-{{< /tab >}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@switch:~$ net add interface swp1 post-up "echo 2 > /proc/sys/net/ipv4/conf/swp1/medium_id"
-cumulus@switch:~$ net add interface swp1-v0 post-up "echo 1 > /proc/sys/net/ipv4/conf/swp1-v0/proxy_arp"
-cumulus@switch:~$ net add interface swp1-v0 post-up "echo 2 > /proc/sys/net/ipv4/conf/swp1-v0/medium_id"
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
+CUE commands are not supported.
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
@@ -220,21 +194,7 @@ If you are running proxy ARP on a VRR interface, add a post-up line to the VRR i
 {{< tabs "TabID217 ">}}
 {{< tab "CUE Commands ">}}
 
-```
-NEED COMMAND
-```
-
-{{< /tab >}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@switch:~$ net add vlan 100 post-up "echo 1 > /proc/sys/net/ipv4/conf/swp1/proxy_arp"
-cumulus@switch:~$ net add vlan 100 post-up "echo 1 > /proc/sys/net/ipv4/conf/swp1-v0/proxy_arp"
-cumulus@switch:~$ net add vlan 100 post-up "echo 2 > /proc/sys/net/ipv4/conf/swp1/medium_id"
-cumulus@switch:~$ net add vlan 100 post-up "echo 2 > /proc/sys/net/ipv4/conf/swp1-v0/medium_id"
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
+CUE commands are not supported.
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}

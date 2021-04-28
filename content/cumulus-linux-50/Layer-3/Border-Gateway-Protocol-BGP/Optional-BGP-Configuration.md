@@ -68,7 +68,7 @@ leaf01(config-router)# neighbor swp51 interface peer-group SPINE
 
 ## BGP Dynamic Neighbors
 
-*BGP dynamic neighbor* provides BGP peering to a group of remote neighbors within a specified range of IPv4 or IPv6 addresses for a BGP peer group. You can configure each range as a subnet IP address.
+*BGP dynamic neighbors* provides BGP peering to a group of remote neighbors within a specified range of IPv4 or IPv6 addresses for a BGP peer group. You can configure each range as a subnet IP address.
 
 You configure dynamic neighbors using the `bgp listen range <ip-address> peer-group <group>` command. After you configure the dynamic neighbors, a BGP speaker can listen for, and form peer relationships with, any neighbor that is in the IP address range and is mapped to a peer group.
 
@@ -77,17 +77,16 @@ The following example commands create the peer group SPINE and configure BGP pee
 {{< tabs "100 ">}}
 {{< tab "CUE Commands ">}}
 
-```
+CUE commands are not supported.
+
+<!--```
 cumulus@leaf01:~$ cl set vrf default router bgp peer-group SPINE
 cumulus@leaf01:~$ cl set vrf default router bgp peer-group SPINE remote-as external
 cumulus@leaf01:~$ NEED COMMAND
 cumulus@leaf01:~$ NEED COMMAND
 cumulus@leaf01:~$ cl config apply
 ```
-
-{{< /tab >}}
-{{< tab "NCLU Commands ">}}
-
+NCLU FOR REFERENCE
 ```
 cumulus@leaf01:~$ net add bgp neighbor SPINE peer-group
 cumulus@leaf01:~$ net add bgp neighbor SPINE remote-as external
@@ -98,7 +97,7 @@ cumulus@leaf01:~$ net commit
 ```
 
 The `net add bgp listen limit` command limits the number of dynamic peers. The default value is *100*.
-
+-->
 {{< /tab >}}
 {{< tab "vtysh Commands ">}}
 
@@ -357,28 +356,40 @@ The following example command removes private ASNs from routes sent to the neigh
 {{< tab "CUE Commands ">}}
 
 ```
-cumulus@leaf01:~$ NEED COMMAND
+cumulus@leaf01:~$ cl set vrf default router bgp peer swp51 address-family ipv4-unicast aspath private-as remove
 cumulus@leaf01:~$ cl config apply
 ```
 
 You can replace the private ASNs with your public ASN with the following command:
 
 ```
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp51 local-as replace on
+cumulus@leaf01:~$ cl set vrf default router bgp peer swp51 address-family ipv4-unicast aspath replace-peer-as on
 cumulus@leaf01:~$ cl config apply
 ```
 
 {{< /tab >}}
-{{< tab "NCLU Commands ">}}
+{{< tab "Linux Commands ">}}
+
+Add the line `neighbor swp51 remove-private-AS` to the address-family ipv4 unicast stanza:
 
 ```
-cumulus@switch:~$ net add bgp neighbor swp51 remove-private-AS
-```
-
-You can replace the private ASNs with your public ASN with the following command:
-
-```
-cumulus@switch:~$ net add bgp neighbor swp51 remove-private-AS replace-AS
+cumulus@switch:~$ sudo nano /etc/frr/frr.conf
+...
+router bgp 65101
+ bgp router-id 10.10.10.1
+ neighbor underlay peer-group
+ neighbor underlay remote-as external
+ neighbor swp51 interface peer-group underlay
+ neighbor swp52 interface peer-group underlay
+ neighbor swp53 interface peer-group underlay
+ neighbor swp54 interface peer-group underlay
+ !
+ address-family ipv4 unicast
+  redistribute connected
+  neighbor swp51 remove-private-AS
+ exit-address-family
+ !
+...
 ```
 
 {{< /tab >}}
@@ -570,23 +581,14 @@ exit-address-family
 ...
 ```
 
-When *BGP multipath* is enabled, only BGP routes from the same AS are load balanced. If the routes go across several different AS neighbors, even if the AS path length is the same, they are not load balanced. To be able to load balance between multiple paths received from different AS neighbors, you need to set the `bestpath as-path multipath-relax` option.
+When *BGP multipath* is enabled, only BGP routes from the same AS are load balanced. If the routes go across several different AS neighbors, even if the AS path length is the same, they are not load balanced. To be able to load balance between multiple paths received from different AS neighbors:.
 
 {{< tabs "601 ">}}
 {{< tab "CUE Commands ">}}
 
 ```
-cumulus@switch:~$ NEED COMMAND
+cumulus@switch:~$ cl set vrf default router bgp path-selection multipath aspath-ignore on
 cumulus@border01:~$ cl config apply
-```
-
-{{< /tab >}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@switch:~$ net add bgp bestpath as-path multipath-relax
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
@@ -949,19 +951,23 @@ Paths: (2 available, best #2, table default)
 
 ## Conditional Advertisement
 
-Routes are typically propagated even if a different path exists. The BGP conditional advertisement feature lets you advertise certain routes only if other routes exist or don't exist.
+Routes are typically propagated even if a different path exists. The BGP conditional advertisement feature lets you advertise certain routes only if other routes either do or do not exist.
 
 This feature is typically used in multihomed networks where some prefixes are advertised to one of the providers only if information from the other provider is not present. For example, a multihomed router can use conditional advertisement to choose which upstream provider learns about the routes it provides so that it can influence which provider handles traffic destined for the downstream router. This is useful for cost of service (one provider is cheaper than another), latency, or other policy requirements that are not natively accounted for in BGP.
 
 The prefixes to be advertised are defined by a route map called advertise-map. The condition is defined by a route map called non-exist-map for conditions that do not exist or by a route map called exist-map for conditions that do exist.
 
-The following command example configures Cumulus Linux to send a 10.0.0.0/8 summary route only if the 10.0.0.0/24 route exists in the routing table.
+The following example commands configure Cumulus Linux to send a 10.0.0.0/8 summary route only if the 10.0.0.0/24 route exists in the routing table.
 
 {{< tabs "962 ">}}
 {{< tab "CUE Commands ">}}
 
 ```
+cumulus@switch:~$ cl set vrf default router bgp peer swp51 address-family ipv4-unicast conditional-advertise enable on 
 cumulus@switch:~$ NEED COMMAND
+cumulus@switch:~$ NEED COMMAND
+cumulus@switch:~$ cl set vrf default router bgp peer swp51 address-family ipv4-unicast conditional-advertise advertise-map ADVERTISE
+cumulus@switch:~$ cl set vrf default router bgp peer swp51 address-family ipv4-unicast conditional-advertise exist-map EXIST
 cumulus@switch:~$ cl config apply
 ```
 
@@ -972,6 +978,7 @@ cumulus@switch:~$ cl config apply
 cumulus@leaf01:~$ sudo vtysh
 leaf01# configure terminal
 leaf01(config)# router bgp
+leaf01(config-router)# neighbor swp51 
 leaf01(config-router)# 
 leaf01(config-router)# end
 leaf01# write memory
@@ -1109,85 +1116,6 @@ router bgp 65101
   neighbor swp51 advertisement-interval 5
 ...
 ```
-
-### Wait for Convergence
-
-BGP *wait for convergence* lets you delay the initial best path calculation after you reboot the switch, restart FRR, or run the vtysh `clear ip bgp *` command. This allows peers to become established and converge before BGP installs the resulting routes in zebra or sends updates to peers.
-
-To enable BGP wait for convergence, you configure the following BGP timers globally:
-
-| <div style="width:200px">Timer | Description |
-| ----- | ----------- |
-| `update-delay` | The longest BGP waits for all eligible peers to converge. A peer is considered converged if it reaches the established state and sends an explicit or implicit EoR. |
-| `establish-wait`| Optional. The time by which peers must reach the established state to be considered for convergence. This guards against extremely slow peers or peers that are configured but not reachable.<br><br>Peers that are locally shutdown are not considered for the convergence event.|
-
-BGP *wait for convergence* is run automatically by the {{<link url="Smart-System-Manager" text="Smart System Manager">}} to upgrade or troubleshoot an active switch with minimal disruption to the network.
-
-{{%notice note%}}
-- The `update-delay` and `establish-wait` timers are used by all VRFs, including the default VRF and any VRFs that you add later.
-- You can set the `update-delay` timer per VRF. However, you cannot set the timer *both* globally and per VRF. If a VRF (including the default VRF) is configured with the `update-delay` timer, you must delete it before configuring the timer globally.
-{{%/notice%}}
-
-The following example commands set the `update-delay` timer to 300 seconds and the `establish-wait` timer to 200 seconds:
-
-{{< tabs "TabID1139 ">}}
-{{< tab "CUE Commands ">}}
-
-```
-cumulus@switch:~$ cl set router bgp convergence-wait time 300
-cumulus@switch:~$ cl set router bgp convergence-wait establish-wait-time 200
-cumulus@switch:~$ cl config apply
-```
-
-{{< /tab >}}
-{{< tab "vtysh Commands ">}}
-
-```
-cumulus@switch:~$ sudo vtysh
-switch# configure terminal
-switch(config)# router bgp 65101
-switch(config-router)# update-delay 300 200
-switch(config-router)# end
-switch# write memory
-switch# exit
-cumulus@switch:~$
-```
-
-{{< /tab >}}
-{{< /tabs >}}
-
-The commands save the configuration in the `/etc/frr/frr.conf` file. For example:
-
-```
-...
-router bgp 65199
- bgp router-id 10.10.10.101
- neighbor swp51 remote-as external
- bgp update-delay 300 200
-...
-```
-
-To show the configured timers and information about the transitions when a convergence event occurs, run the NCLU `net show bgp summary` command or the vtysh `show ip bgp summary` command.
-
-```
-cumulus@leaf01:mgmt:~$ net show bgp summary
-show bgp ipv4 unicast summary
-=============================
-BGP router identifier 10.10.10.1, local AS number 65101 vrf-id 0
-Read-only mode update-delay limit: 300 seconds
-                   Establish wait: 200 seconds
-BGP table version 0
-RIB entries 3, using 576 bytes of memory
-Peers 1, using 21 KiB of memory
-
-Neighbor        V         AS   MsgRcvd   MsgSent   TblVer  InQ OutQ  Up/Down State/PfxRcd   PfxSnt
-spine01(swp51)  4      65199     30798     30802        0    0    0 1d01h09m            0        0
-
-Total number of neighbors 1
-...
-```
-
-The last convergence event is retained in the output of the NCLU `net show bgp summary json` command or the vtysh `show ip bgp summary json` command.
 
 ## Route Reflectors
 
@@ -1669,30 +1597,15 @@ Enable read-only mode to reduce CPU and network usage when restarting the BGP pr
 While in read-only mode, BGP does not run best-path or generate any updates to its peers.
 {{%/notice%}}
 
-To enable read-only mode, you set the `max-delay` timer and, optionally, the `establish-wait` timer. Read-only mode begins as soon as the first peer reaches its established state and the `max-delay` timer starts, and continues until either of the following two conditions are met:
-
-- All the configured peers (except the shutdown peers) have sent an explicit EOR or an implicit EOR. The first keep-alive after BGP reaches the established state is considered an implicit EOR.  If you specify the `establish-wait` option, BGP only considers peers that have reached the established state from the moment the `max-delay` timer starts until the `establish-wait` period ends. The minimum set of established peers for which EOR is expected are the peers that are established during the `establish-wait` window, not necessarily all the configured neighbors.
-
-- The timer reaches the configured `max-delay`.
-
-The default value for `max-delay` is 0, which disables read-only mode. The `update delay` and `establish wait` can be any value between 0 and 3600 seconds. The `establish-wait` setting is optional; however, if specified, it must be shorter than the `max-delay`.
-
-The following example commands enable read-only mode by setting the `max-delay` timer to 300 seconds and the `establish-wait` timer to 90 seconds.
+The following example commands enable read-only mode:
 
 {{< tabs "1723 ">}}
 {{< tab "CUE Commands ">}}
 
 ```
-cumulus@switch:~$ NEED COMMAND
-```
-
-{{< /tab >}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@switch:~$ net add bgp update-delay 300 90
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
+cumulus@switch:~$ cl set router bgp convergence-wait time 300
+cumulus@switch:~$ cl set router bgp convergence-wait establish-wait-time 200
+cumulus@switch:~$ cl config apply
 ```
 
 {{< /tab >}}
@@ -1712,7 +1625,38 @@ cumulus@switch:~$
 {{< /tab >}}
 {{< /tabs >}}
 
-To show information about the state of the update delay, run the NCLU command `net show bgp summary` or the `vtysh` command `show ip bgp summary`.
+The commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+
+```
+...
+router bgp 65199
+ bgp router-id 10.10.10.101
+ neighbor swp51 remote-as external
+ bgp update-delay 300 200
+...
+```
+
+To show the configured timers and information about the transitions when a convergence event occurs, run the NCLU `net show bgp summary` command or the vtysh `show ip bgp summary` command.
+
+```
+cumulus@leaf01:mgmt:~$ net show bgp summary
+show bgp ipv4 unicast summary
+=============================
+BGP router identifier 10.10.10.1, local AS number 65101 vrf-id 0
+Read-only mode update-delay limit: 300 seconds
+                   Establish wait: 200 seconds
+BGP table version 0
+RIB entries 3, using 576 bytes of memory
+Peers 1, using 21 KiB of memory
+
+Neighbor        V         AS   MsgRcvd   MsgSent   TblVer  InQ OutQ  Up/Down State/PfxRcd   PfxSnt
+spine01(swp51)  4      65199     30798     30802        0    0    0 1d01h09m            0        0
+
+Total number of neighbors 1
+...
+```
+
+The last convergence event is retained in the output of the NCLU `net show bgp summary json` command or the vtysh `show ip bgp summary json` command.
 
 ## BGP Community Lists
 
@@ -1735,16 +1679,9 @@ Here is an example of a standard community list filter:
 {{< tab "CUE Commands ">}}
 
 ```
-cumulus@switch:~$ NEED COMMAND
-```
-
-{{< /tab >}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@switch:~$ net add routing community-list standard COMMUNITY1 permit 100:100
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
+cumulus@switch:~$ cl set router policy community-list COMMUNITY1 rule 10 action permit
+cumulus@switch:~$ cl set router policy community-list COMMUNITY1 rule 10 community 100:100
+cumulus@switch:~$ cl config apply
 ```
 
 {{< /tab >}}
@@ -1769,16 +1706,8 @@ You can apply the community list to a route map to define the routing policy:
 {{< tab "CUE Commands ">}}
 
 ```
-cumulus@switch:~$ NEED COMMAND
-```
-
-{{< /tab >}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@switch:~$ net add bgp table-map ROUTE-MAP1
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
+cumulus@switch:~$ cl set router policy route-map ROUTEMAP1 rule 10 match community-list COMMUNITY1
+cumulus@switch:~$ cl config apply
 ```
 
 {{< /tab >}}
@@ -1788,7 +1717,7 @@ cumulus@switch:~$ net commit
 cumulus@switch:~$ sudo vtysh
 switch# configure terminal
 switch(config)# router bgp 65101
-switch(config-router)# table-map ROUTE-MAP1
+switch(config-router)# table-map ROUTEMAP1
 switch(config-router)# end
 switch# write memory
 switch# exit

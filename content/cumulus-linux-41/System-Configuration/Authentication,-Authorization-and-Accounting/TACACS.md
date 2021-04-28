@@ -1,5 +1,5 @@
 ---
-title: TACACS+
+title: TACACS
 author: NVIDIA
 weight: 180
 toc: 4
@@ -116,7 +116,7 @@ To configure local fallback authentication:
 
 The first `adduser` command prompts for information and a password. You can skip most of the requested information by pressing ENTER.
 
-    {{%/notice%}}
+{{%/notice%}}
 
     ```
     cumulus@switch:~$ sudo adduser --ingroup tacacs tacadmin
@@ -281,7 +281,7 @@ The table below describes the configuration options available:
 | timeout=seconds | TACACS+ server(s) communication timeout.<br>This parameter defaults to 10 seconds in the /etc/tacplus_servers file, but defaults to 5 seconds in the /etc/tacplus_nss.conf file. |
 | include=/file/name | A supplemental configuration file to avoid duplicating configuration information. You can include up to 8 more configuration files. |
 | min_uid=value | The minimum user ID that the NSS plugin looks up. Setting it to 0 means uid 0 (root) is never looked up, which is desirable for performance reasons. The value should not be greater than the local TACACS+ user IDs (0 through 15), to ensure they can be looked up. |
-| exclude_users=user1,user2,... | A comma-separated list of usernames that are never looked up by the NSS plugin, set in the tacplus_nss.conf file. You cannot use * (asterisk) as a wild card in the list. While it's not a legal username, bash may lookup this as a user name during pathname completion, so it is included in this list as a username string.<br>**Note**: Do not remove the cumulus user from the exclude_users list, because doing so can make it impossible to log in as the cumulus user, which is the primary administrative account in Cumulus Linux. If you do remove the cumulus user, add some other local fallback user that does not rely on TACACS but is a member of sudo and netedit groups, so that these accounts can run sudo and NCLU commands. |
+| exclude_users=user1,user2,... | A comma-separated list of usernames that are never looked up by the NSS plugin, set in the tacplus_nss.conf file. You cannot use * (asterisk) as a wild card in the list. While it's not a legal username, bash may lookup this as a user name during pathname completion, so it is included in this list as a username string.<br>**Note**: Do not remove the cumulus user from the exclude_users list; doing so can make it impossible to log in as the cumulus user, which is the primary administrative account in Cumulus Linux. If you do remove the cumulus user, add some other local fallback user that does not rely on TACACS but is a member of sudo and netedit groups, so that these accounts can run sudo and NCLU commands. |
 | login=string | TACACS+ authentication service (pap, chap, or login).<br>The default value is pap.|
 |user_homedir=1|This is not enabled by default. When enabled, a separate home directory for each TACACS+ user is created when the TACACS+ user first logs in. By default, the home directory in the mapping accounts in /etc/passwd (/home/tacacs0 ... /home/tacacs15) is used. If the home directory does not exist, it is created with the mkhomedir_helper program, in the same way as pam_mkhomedir.<br>This option is not honored for accounts with restricted shells when per-command authorization is enabled. |
 | acct_all=1 | Configuration option for audisp_tacplus and pam_tacplus sending accounting records to all supplied servers (1), or the first server to respond (0).<br>The default value is 1. |
@@ -380,8 +380,8 @@ tacplus-auth: error connecting to 10.0.3.195:49 to request authorization for net
 tacplus-auth: 192.168.3.189:49 authorized command net
 tacplus-auth: net authorized, executing
 DISTRIB_ID="Cumulus Linux"
-DISTRIB_RELEASE=4.0.0
-DISTRIB_DESCRIPTION="Cumulus Linux 4.0.0"
+DISTRIB_RELEASE=4.1.0
+DISTRIB_DESCRIPTION="Cumulus Linux 4.1.0"
 ```
 
 To disable debugging:

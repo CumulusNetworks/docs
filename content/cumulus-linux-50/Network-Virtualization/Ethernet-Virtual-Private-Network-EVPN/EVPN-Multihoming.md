@@ -38,7 +38,8 @@ You must enable the following features to use EVPN-MH:
 
 - {{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware bridge mode">}}
 - {{<link url="EVPN-Enhancements/#arp-and-nd-suppression" text="ARP suppression">}}
-- Either Head End Replication or EVPN BUM traffic handling with {{<link title="EVPN BUM Traffic with PIM-SM" text="EVPN-PIM">}} on multihomed sites via Type-4/ESR routes, which includes split-horizon-filtering and designated forwarder election
+
+Head End Replication is enabled by default with EVPN multihoming. If you prefer to use EVPN BUM traffic handling with EVPN-PIM on multihomed sites via Type-4/ESR routes, configure EVPN-PIM as described in {{<link title="EVPN BUM Traffic with PIM-SM" text="EVPN BUM Traffic with PIM-SM">}}.
 
 {{%notice warning%}}
 To use EVPN-MH, you must remove any MLAG configuration on the switch:
@@ -78,15 +79,6 @@ The following features are not supported with EVPN-MH:
 - {{<link url="Inter-subnet-Routing/#asymmetric-routing" text="Distributed asymmetric routing">}}
 
 ## Basic Configuration
-
-Before you configure EVPN-MH, *either*:
-- Configure {{<link title="EVPN BUM Traffic with PIM-SM" text="EVPN-PIM">}} on multihomed sites via Type-4/ESR routes.
-- Enable Head End Replication with this CUE command:
-
-  ```
-  cumulus@switch:~$ cl set nve vxlan flooding head-end-replication evpn
-  cumulus@switch:~$ cl config apply
-  ```
 
 To configure EVPN-MH:
 1. Enable EVPN multihoming.
@@ -344,12 +336,7 @@ cumulus@switch:~$ cl set interface swp51-54 evpn multihoming uplink on
 cumulus@switch:~$ cl config apply
 ```
 
-If you are configuring EVPN multihoming with EVPN-PIM, run the following command:
-
-```
-cumulus@switch:~$ NEED COMMAND (net add interface swp51-54 pim)
-cumulus@switch:~$ cl config apply
-```
+If you are configuring EVPN multihoming with EVPN-PIM, be sure to configure PIM on the interfaces.
 
 {{</tab>}}
 {{<tab "vtysh Commands">}}
@@ -363,19 +350,15 @@ Copyright 1996-2005 Kunihiro Ishiguro, et al.
 leaf01# configure terminal
 leaf01(config)# interface swp51
 leaf01(config-if)# evpn mh uplink
-leaf01(config-if)# ip pim
 leaf01(config-if)# exit
 leaf01(config)# interface swp52
 leaf01(config-if)# evpn mh uplink
-leaf01(config-if)# ip pim
 leaf01(config-if)# exit
 leaf01(config)# interface swp53
 leaf01(config-if)# evpn mh uplink
-leaf01(config-if)# ip pim
 leaf01(config-if)# exit
 leaf01(config)# interface swp54
 leaf01(config-if)# evpn mh uplink
-leaf01(config-if)# ip pim
 leaf01(config-if)# exit
 leaf01(config)# write memory
 leaf01(config)# exit
@@ -394,19 +377,15 @@ cumulus@switch:~$ sudo cat /etc/frr/frr.conf
 !
 interface swp1
  evpn mh uplink
- ip pim
 !
 interface swp2
  evpn mh uplink
- ip pim
 !
 interface swp3
  evpn mh uplink
- ip pim
 !
 interface swp4
  evpn mh uplink
- ip pim
 !
 ...
 ```
@@ -730,7 +709,6 @@ cumulus@leaf01:~$ cl set vrf default router bgp path-selection multipath aspath-
 cumulus@leaf01:~$ cl set vrf default router bgp peer-group underlay address-family l2vpn-evpn enable on
 cumulus@leaf01:~$ cl set vrf default router bgp address-family ipv4-unicast redistribute connected
 cumulus@leaf01:~$ cl set evpn multihoming enable on
-cumulus@leaf01:~$ cl set nve vxlan flooding head-end-replication evpn
 cumulus@leaf01:~$ cl set interface bond1 evpn multihoming segment local-id 1
 cumulus@leaf01:~$ cl set interface bond2 evpn multihoming segment local-id 2
 cumulus@leaf01:~$ cl set interface bond3 evpn multihoming segment local-id 3
@@ -795,7 +773,6 @@ cumulus@leaf02:~$ cl set vrf default router bgp path-selection multipath aspath-
 cumulus@leaf02:~$ cl set vrf default router bgp peer-group underlay address-family l2vpn-evpn enable on
 cumulus@leaf02:~$ cl set vrf default router bgp address-family ipv4-unicast redistribute connected
 cumulus@leaf02:~$ cl set evpn multihoming enable on
-cumulus@leaf02:~$ cl set nve vxlan flooding head-end-replication evpn
 cumulus@leaf02:~$ cl set interface bond1 evpn multihoming segment local-id 1
 cumulus@leaf02:~$ cl set interface bond2 evpn multihoming segment local-id 2
 cumulus@leaf02:~$ cl set interface bond3 evpn multihoming segment local-id 3
@@ -860,7 +837,6 @@ cumulus@leaf03:~$ cl set vrf default router bgp path-selection multipath aspath-
 cumulus@leaf03:~$ cl set vrf default router bgp peer-group underlay address-family l2vpn-evpn enable on
 cumulus@leaf03:~$ cl set vrf default router bgp address-family ipv4-unicast redistribute connected
 cumulus@leaf03:~$ cl set evpn multihoming enable on
-cumulus@leaf03:~$ cl set nve vxlan flooding head-end-replication evpn
 cumulus@leaf03:~$ cl set interface bond1 evpn multihoming segment local-id 1
 cumulus@leaf03:~$ cl set interface bond2 evpn multihoming segment local-id 2
 cumulus@leaf03:~$ cl set interface bond3 evpn multihoming segment local-id 3
@@ -925,7 +901,6 @@ cumulus@leaf04:~$ cl set vrf default router bgp path-selection multipath aspath-
 cumulus@leaf04:~$ cl set vrf default router bgp peer-group underlay address-family l2vpn-evpn enable on
 cumulus@leaf04:~$ cl set vrf default router bgp address-family ipv4-unicast redistribute connected
 cumulus@leaf04:~$ cl set evpn multihoming enable on
-cumulus@leaf04:~$ cl set nve vxlan flooding head-end-replication evpn
 cumulus@leaf04:~$ cl set interface bond1 evpn multihoming segment local-id 1
 cumulus@leaf04:~$ cl set interface bond2 evpn multihoming segment local-id 2
 cumulus@leaf04:~$ cl set interface bond3 evpn multihoming segment local-id 3
@@ -2187,7 +2162,7 @@ exit-address-family
 
 ### EVPN-MH with EVPN-PIM
 
-The example CUE commands do not include PIM confifguration. To configure PIM, see {{<link url="Protocol-Independent-Multicast-PIM" text="Protocol Independent Multicast - PIM">}}.
+The following example CUE commands do not include PIM confifguration. To configure PIM, see {{<link url="Protocol-Independent-Multicast-PIM" text="Protocol Independent Multicast - PIM">}}.
 
 #### CUE Commands
 

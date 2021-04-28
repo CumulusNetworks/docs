@@ -17,9 +17,10 @@ jobs:
       run: sed -i 's/#ERROR/\<{{ errorf "broken link in %s" .Position }}\>/g' themes/netDocs/layouts/shortcodes/link.html
     - name: Run Hugo
       run: hugo
-    # - name: Grep for bad links
-    #   run: echo "GREP_OUTPUT=$(grep -ro --exclude='*/pdf/index.html' --include='*.html' 'bgp' public/)" >> $GITHUB_ENV
-    # - name: Print any bad kb_links
-    #   run: echo $GREP_OUTPUT
-    # - name: Exit based on Grep result
-    #   run: (exit $(echo $GREP_OUTPUT | wc -l))
+    - name: Grep for bad links
+      run: |
+          echo "GREP_OUTPUT<<$$" >> $GITHUB_ENV
+          grep -ro --exclude='*/pdf/index.html' --include='*.html' 'bgp' public/ >> $GITHUB_ENV
+          echo "$$" >> $GITHUB_ENV
+    - name: Exit based on Grep result
+      run: (exit $(echo $GREP_OUTPUT | wc -l))

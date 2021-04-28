@@ -1082,21 +1082,18 @@ iface vni10
     bridge-access 10
     bridge-learning off
     vxlan-id 10
-    vxlan-mcastgrp 224.0.0.10
 
 auto vni20
 iface vni20
     bridge-access 20
     bridge-learning off
     vxlan-id 20
-    vxlan-mcastgrp 224.0.0.20
 
 auto vni30
 iface vni30
     bridge-access 30
     bridge-learning off
     vxlan-id 30
-    vxlan-mcastgrp 224.0.0.30
 
 auto vni4001
 iface vni4001
@@ -1236,21 +1233,18 @@ iface vni10
     bridge-access 10
     bridge-learning off
     vxlan-id 10
-    vxlan-mcastgrp 224.0.0.10
 
 auto vni20
 iface vni20
     bridge-access 20
     bridge-learning off
     vxlan-id 20
-    vxlan-mcastgrp 224.0.0.20
 
 auto vni30
 iface vni30
     bridge-access 30
     bridge-learning off
     vxlan-id 30
-    vxlan-mcastgrp 224.0.0.30
 
 auto vni4001
 iface vni4001
@@ -1391,21 +1385,18 @@ iface vni10
     bridge-access 10
     bridge-learning off
     vxlan-id 10
-    vxlan-mcastgrp 224.0.0.10
 
 auto vni20
 iface vni20
     bridge-access 20
     bridge-learning off
     vxlan-id 20
-    vxlan-mcastgrp 224.0.0.20
 
 auto vni30
 iface vni30
     bridge-access 30
     bridge-learning off
     vxlan-id 30
-    vxlan-mcastgrp 224.0.0.30
 
 auto vni4001
 iface vni4001
@@ -1546,21 +1537,18 @@ iface vni10
     bridge-access 10
     bridge-learning off
     vxlan-id 10
-    vxlan-mcastgrp 224.0.0.10
 
 auto vni20
 iface vni20
     bridge-access 20
     bridge-learning off
     vxlan-id 20
-    vxlan-mcastgrp 224.0.0.20
 
 auto vni30
 iface vni30
     bridge-access 30
     bridge-learning off
     vxlan-id 30
-    vxlan-mcastgrp 224.0.0.30
 
 auto vni4001
 iface vni4001
@@ -2198,6 +2186,8 @@ exit-address-family
 {{</tabs>}}
 
 ### EVPN-MH with EVPN-PIM
+
+The example CUE commands do not include PIM confifguration. To configure PIM, see {{<link url="Protocol-Independent-Multicast-PIM" text="Protocol Independent Multicast - PIM">}}.
 
 #### CUE Commands
 

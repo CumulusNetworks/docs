@@ -964,7 +964,7 @@ The following example commands configure Cumulus Linux to send a 10.0.0.0/8 summ
 
 ```
 cumulus@switch:~$ cl set vrf default router bgp peer swp51 address-family ipv4-unicast conditional-advertise enable on 
-cumulus@switch:~$ NEED COMMAND
+cumulus@switch:~$ NEED COMMAND 
 cumulus@switch:~$ NEED COMMAND
 cumulus@switch:~$ cl set vrf default router bgp peer swp51 address-family ipv4-unicast conditional-advertise advertise-map ADVERTISE
 cumulus@switch:~$ cl set vrf default router bgp peer swp51 address-family ipv4-unicast conditional-advertise exist-map EXIST

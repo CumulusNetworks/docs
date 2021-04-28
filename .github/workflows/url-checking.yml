@@ -17,5 +17,9 @@ jobs:
       run: sed -i 's/#ERROR/\<{{ errorf "broken link in %s" .Position }}\>/g' themes/netDocs/layouts/shortcodes/link.html
     - name: Run Hugo
       run: hugo
-    - name: Check for bad kb_links
-      run: output=$(grep -ro --exclude="*/pdf/index.html" --include="*.html" "<code>&lt;a rel=&quot;canonical&quot; href=&quot;" public/) ; echo $output; (exit $(echo $output | wc -l))
+    - name: Grep for bad links
+      run: grep -ro --exclude="*/pdf/index.html" --include="*.html" "<code>&lt;a rel=&quot;canonical&quot; href=&quot;" public/ >> $GREP_OUTPUT
+    - name: Print any bad kb_links
+      run: echo $GREP_OUTPUT
+    - name: Exit based on Grep result
+      run: (exit $(echo $GREP_OUTPUT | wc -l))

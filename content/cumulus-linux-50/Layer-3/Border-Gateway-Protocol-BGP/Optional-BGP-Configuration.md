@@ -955,18 +955,30 @@ Routes are typically propagated even if a different path exists. The BGP conditi
 
 This feature is typically used in multihomed networks where some prefixes are advertised to one of the providers only if information from the other provider is not present. For example, a multihomed router can use conditional advertisement to choose which upstream provider learns about the routes it provides so that it can influence which provider handles traffic destined for the downstream router. This is useful for cost of service (one provider is cheaper than another), latency, or other policy requirements that are not natively accounted for in BGP.
 
-The prefixes to be advertised are defined by a route map called advertise-map. The condition is defined by a route map called non-exist-map for conditions that do not exist or by a route map called exist-map for conditions that do exist.
-
 The following example commands configure Cumulus Linux to send a 10.0.0.0/8 summary route only if the 10.0.0.0/24 route exists in the routing table.
+
+The commands:
+- Enable the conditional advertisement option.
+- Create a prefix list called EXIST with the route 10.0.0.0/24.
+- Create a route map called EXISTMAP that uses the prefix list EXIST.
+- Create a prefix list called ADVERTISE with the route to advertise (10.0.0.0/8).
+- Create a route map called ADVERTISEMAP that uses the prefix list ADVERTISE.
+- Configure BGP neighbor swp51 to use the route maps.
 
 {{< tabs "962 ">}}
 {{< tab "CUE Commands ">}}
 
 ```
 cumulus@switch:~$ cl set vrf default router bgp peer swp51 address-family ipv4-unicast conditional-advertise enable on 
-cumulus@switch:~$ NEED COMMAND 
-cumulus@switch:~$ NEED COMMAND
-cumulus@switch:~$ cl set vrf default router bgp peer swp51 address-family ipv4-unicast conditional-advertise advertise-map ADVERTISE
+cumulus@switch:~$ cl set router policy prefix-list EXIST rule 10 match 10.0.0.0/24
+cumulus@switch:~$ cl set router policy prefix-list EXIST rule 10 action permit 
+cumulus@switch:~$ cl set router policy route-map EXISTMAP rule 10 action permit
+cumulus@switch:~$ cl set router policy route-map EXISTMAP rule 10 match ip-prefix-list EXIST
+cumulus@switch:~$ cl set router policy prefix-list ADVERTISE rule 10 action permit
+cumulus@switch:~$ cl set router policy prefix-list ADVERTISE rule 10 match 10.0.0.0/8
+cumulus@switch:~$ cl set router policy route-map ADVERTISEMAP rule 10 action permit
+cumulus@switch:~$ cl set router policy route-map ADVERTISEMAP rule 10 match ip-prefix-list ADVERTISE
+cumulus@switch:~$ cl set vrf default router bgp peer swp51 address-family ipv4-unicast conditional-advertise advertise-map ADVERTISEMAP
 cumulus@switch:~$ cl set vrf default router bgp peer swp51 address-family ipv4-unicast conditional-advertise exist-map EXIST
 cumulus@switch:~$ cl config apply
 ```
@@ -988,6 +1000,19 @@ cumulus@leaf01:~$
 
 {{< /tab >}}
 {{< /tabs >}}
+
+The commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+
+```
+cumulus@leaf01:~$ sudo nano /etc/frr/frr.conf
+...
+ip prefix-list ADVERTISE seq 10 permit 10.0.0.0/8
+ip prefix-list EXIST seq 10 permit 10.0.0.0/24
+route-map ADVERTISEMAP permit 10
+match ip address prefix-list ADVERTISE
+route-map EXISTMAP permit 10
+match ip address prefix-list EXIST
+```
 
 ## BGP Timers
 

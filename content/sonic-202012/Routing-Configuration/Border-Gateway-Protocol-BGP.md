@@ -55,7 +55,7 @@ The order of the BGP algorithm process is as follows:
 - **Shortest Route Reflector Cluster List**: If a route passes through multiple route reflectors, prefer the route with the shortest route reflector cluster list.
 - **Highest Peer IP Address**: Preference is given to the route received from the peer with the highest IP address.
 
-SONiC provides the reason it selects one path over another in `vtysh` `show ip bgp` command output for a specific prefix.
+SONiC provides the reason it selects one path over another in the `show ip bgp network` command output for a specific prefix.
 
 When BGP multipath is in use, if multiple paths are equal, BGP still selects a single best path to advertise to peers. This path is indicated as best with the reason, although multiple paths might be installed into the routing table.
 
@@ -72,7 +72,82 @@ To configure BGP on a BGP node, at minimum, you need to:
 
 This example configuration here is based on the {{<exlink url="https://air.nvidia.com/" text="SONiC Virtual Test Drive">}}. It uses a 2 leaf, 1 spine configuration, named leaf01, leaf02 and spine01 respectively.
 
-1. On spine01, configure a loopback interface:
+Configure spine01:
+
+{{<tabs "BGPspine01">}}
+
+{{<tab "config_db.json">}}
+
+Configure BGP in `/etc/sonic/config_db.json`.
+
+1. Configure a loopback interface:
+
+   ```
+   admin@switch:~$ sudo vi /etc/sonic/config_db.json
+
+    "LOOPBACK_INTERFACE": {
+        "Loopback0|10.10.10.101/32": {}
+    },
+    ...
+   }
+   ```
+
+1. Configure a point-to-point link to leaf01:
+
+   ```
+   "INTERFACE": {
+       ...
+       "Ethernet0|10.0.0.0/31": {},
+       ...
+   }
+   ```
+
+1. Configure a point-to-point link to leaf02:
+
+   ```
+   "INTERFACE": {
+       ...
+       "Ethernet4|10.0.1.2/31": {},
+       ...
+   }
+   ```
+
+1. Configure BGP:
+
+   ```
+   "BGP_NEIGHBOR": {
+       "10.0.1.1": {
+           "asn": "65101",
+           "name": "leaf01",
+       },
+       "10.0.1.3": {
+           "asn": "65102",
+           "name": "leaf02",
+       },
+   ...
+   ```
+
+   ```
+   "DEVICE_METADATA": {
+       "localhost": {
+           "bgp_asn": "65199",
+           "default_bgp_status": "up",
+           ...
+       }
+   },
+   ```
+
+1. Reload the configuration:
+
+       admin@spine01:~$ sudo config reload -y
+
+{{</tab>}}
+
+{{<tab "SONiC and vtysh CLI">}}
+
+Connect to spine01 and configure the interfaces and BGP:
+
+1. Configure a loopback interface:
 
        admin@spine01:~$ sudo config interface ip add Loopback0 10.10.10.101/32
 1. Configure a point-to-point link to leaf01:
@@ -106,7 +181,7 @@ This example configuration here is based on the {{<exlink url="https://air.nvidi
 
 Connect to leaf01 and configure the interfaces and BGP:
 
-1. Configure a loopback interface
+1. Configure a loopback interface:
 
        admin@leaf01:~$ sudo config interface ip add Loopback0 10.10.10.1/32
 1. Configure a point-to-point link to spine01:
@@ -162,42 +237,9 @@ Connect to leaf02 and configure the interfaces and BGP:
        leaf02# exit
        admin@leaf02:~$
 
-
-<!-- 
-{{<tabs "BGP">}}
-{{<tab "config_db.json">}}
-
-Configure the route reflector in the BGP_NEIGHBOR table in `/etc/sonic/config_db.json`. To set the port to always be administratively up, set the `admin_status` to `up`:
-
-```
-admin@switch:~$ sudo vi /etc/sonic/config_db.json
-
-"PORT": {
-    "Ethernet4": {
-        ...
-        "admin_status": "up",
-        ...
-    },
-    ...
-}
-```
-
-{{</tab>}}
-
-{{<tab "vtysh CLI">}}
-
-admin@spine01:~$ sudo vtysh
-leaf01# configure terminal
-leaf01(config)# router bgp 65100
-leaf01(config-router)# bgp router-id 10.1.0.1
-leaf01(config-router)# neighbor 10.0.0.1
-
-
 {{</tab>}}
 
 {{</tabs>}}
-
-
 
 ## Route Reflectors
 
@@ -218,10 +260,10 @@ Configure the route reflector in the PORT table in `/etc/sonic/config_db.json`. 
 ```
 admin@switch:~$ sudo vi /etc/sonic/config_db.json
 
-"PORT": {
-    "Ethernet4": {
+"BGP_NEIGHBOR": {
+    "Ethernet0": {
         ...
-        "admin_status": "up",
+        "rrclient": "0",
         ...
     },
     ...
@@ -237,38 +279,31 @@ admin@switch:~$ sudo vtysh
 switch# configure terminal
 switch(config)# router bgp 65199
 switch(config-router)# address-family ipv4
-switch(config-router-af)# neighbor swp1 route-reflector-client
+switch(config-router-af)# neighbor Ethernet0 route-reflector-client
 switch(config-router-af)# end
 switch# write memory
 switch# exit
 admin@switch:~$
 ```
 
-The vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+The `vtysh` commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
 ```
 ...
 router bgp 65199
  bgp router-id 10.10.10.101
- neighbor swp51 remote-as external
+ neighbor Ethernet0 remote-as external
  !
  address-family ipv4 unicast
   network 10.10.10.101/32
-  neighbor swp51 route-reflector-client
+  neighbor Ethernet0 route-reflector-client
  exit-address-family
 ...
 ```
 
 {{</tab >}}
+
 {{</tabs >}}
-
-{{%notice info%}}
-
-When configuring BGP for IPv6, you must run the `route-reflector-client` command **after** the `activate` command; otherwise, the `route-reflector-client` command is ignored.
-
-{{%/notice%}}
-
--->
 
 ## ECMP
 

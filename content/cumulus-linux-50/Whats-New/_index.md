@@ -26,7 +26,7 @@ Cumulus Linux 5.0 supports new platforms, provides bug fixes, and contains sever
   CUE replaces the NCLU command line interface, which is no longer supported. In Cumulus Linux 5.0, not all NCLU commands have a CUE equivalent. You can configure features without CUE commands using Linux commands and FRR. 
   {{%/notice%}}
 - Support for {{<link url="VLAN-aware-Bridge-Mode/" text="multiple VLAN aware bridges">}}
-- EVPN multihoming HREP support
+- {{<link url="EVPN-Multihoming" text="EVPN multihoming Head End Replication support">}}
 - {{<link url="Precision-Time-Protocol-PTP" text="PTP Boundary Clock">}} enhancements
 - {{<link url="Protocol-Independent-Multicast-PIM/#allow-rp" text="PIM Allow RP">}}
 - {{<link url="Optional-BGP-Configuration/#conditional-advertisement" text="BGP conditional route advertisement">}}

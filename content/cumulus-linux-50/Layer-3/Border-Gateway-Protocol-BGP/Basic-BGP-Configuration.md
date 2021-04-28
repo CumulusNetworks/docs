@@ -331,9 +331,9 @@ cumulus@spine01:~$ cl config apply
 For BGP to advertise IPv6 prefixes, you need to run an additional command to activate the BGP neighbor under the IPv6 address family. The IPv4 address family is enabled by default and the `enable` command is not required for IPv4 route exchange.
 
 ```
-cumulus@spine01:~$ cl set router bgp autonomous-system 65101
-cumulus@spine01:~$ cl set router bgp router-id 10.10.10.1
-cumulus@spine01:~$ cl set vrf default router bgp peer swp51 remote-as external
+cumulus@spine01:~$ cl set router bgp autonomous-system 65199
+cumulus@spine01:~$ cl set router bgp router-id 10.10.10.101
+cumulus@spine01:~$ cl set vrf default router bgp peer swp1 remote-as external
 cumulus@spine01:~$ cl set vrf default router bgp address-family ipv6-unicast enable on
 cumulus@spine01:~$ cl set vrf default router bgp address-family ipv6-unicast static-network 2001:db8::101/128
 cumulus@spine01:~$ cl config apply

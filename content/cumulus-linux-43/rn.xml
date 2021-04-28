@@ -7,6 +7,20 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-33240</td>
+<td>&lt;p&gt;On the on the Mellanox SN2410 switch, when you restart &lt;tt&gt;switchd&lt;/tt&gt; or reboot the system, you see the following error messages:&lt;/p&gt;
+&lt;div class="preformatted" style="border-width: 1px;"&gt;&lt;div class="preformattedContent panelContent"&gt;
+&lt;pre&gt;[ 1446.599850] switch 2-0048: HW semaphore is not released
+[ 1446.605828] switch 2-0048: Cmd exec failed (opcode=40(ACCESS_REG),opcode_mod=0,in_mod=0,status=30(BAD_PKT))
+[ 1446.616378] switch 2-0048: Reg cmd access failed (reg_id=9002(mfsc),type=write)
+[ 1446.624365] switch 2-0048: Failed to write PWM duty
+&lt;/pre&gt;
+&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;This is a cosmetic issue and does not affect operation of the switch.&lt;/p&gt;</td>
+<td>4.3.0</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-33167</td>
 <td>&lt;p&gt;On the Mellanox SN4700 switch, if you use the CREDO CABLE with a 4x100 configuration, the system experiences issues accessing the ASIC Thermal sensors.&lt;/p&gt;</td>
 <td>4.3.0</td>
@@ -64,6 +78,23 @@
 <td>CM-15812</td>
 <td>&lt;p&gt;Multicast forwarding fails for IP addresses whose DMAC overlaps with reserved DIPs.&lt;/p&gt;</td>
 <td>3.2.1-3.7.14.2, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2625818</td>
+<td>The following CVEs were announced that affect the libssh package:
+CVE-2019-14889 has been announced in the libssh library, where unsanitized user-provided scp command lines could allow an attacker to execute arbitrary commands on the server.
+The libssh library is not installed on Cumulus Linux by default, but is available in the Cumulus Linux 4 repository for optional installation. Note that libssh is distinct from libssh2 and openssh, which are present on the switches and in the repositories.
+See the following for more information:
+https://www.libssh.org/security/advisories/CVE-2019-14889.txt
+https://security-tracker.debian.org/tracker/CVE-2019-14889</td>
+<td>4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2621372</td>
+<td>on the Dell S5248F-ON switch, traffic is not routed through the peerlink when the uplink fails.</td>
+<td>4.1.1-4.3.0</td>
 <td></td>
 </tr>
 <tr>
@@ -282,19 +313,6 @@ Fixed: 1.3.8+dfsg-3+deb10u1</td>
 <td></td>
 </tr>
 <tr>
-<td>2556463</td>
-<td>On the on the Mellanox SN2410 switch, when you restart {{switchd}} or reboot the system, you see the following error messages:
-
-[ 1446.599850] switch 2-0048: HW semaphore is not released
-[ 1446.605828] switch 2-0048: Cmd exec failed (opcode=40(ACCESS_REG),opcode_mod=0,in_mod=0,status=30(BAD_PKT))
-[ 1446.616378] switch 2-0048: Reg cmd access failed (reg_id=9002(mfsc),type=write)
-[ 1446.624365] switch 2-0048: Failed to write PWM duty
-
-This is a cosmetic issue and does not affect operation of the switch.</td>
-<td>4.3.0</td>
-<td></td>
-</tr>
-<tr>
 <td>2556456</td>
 <td>CVE-2020-36221, CVE-2020-36222, CVE-2020-36223, CVE-2020-36224, CVE-2020-36225, CVE-2020-36226, CVE-2020-36227, CVE-2020-36228, CVE-2020-36229, CVE-2020-36230:  Several vulnerabilities were discovered in OpenLDAP, a free implementation of the Lightweight Directory Access Protocol. An unauthenticated remote attacker can take advantage of these flaws to cause a denial of service (slapd daemon crash, infinite loops) via specially crafted packets.
 Vulnerable: &lt;= 2.4.47+dfsg-3+deb10u4
@@ -391,12 +409,6 @@ The correct NCLU command to disable IPv6 forwarding is {{net add vlan 1 ipv6 for
 2020-12-07T19:20:26.004333+00:00 cumulus bgpd[4954]: VRF default: Handle GR command GLOBAL_GR_CMD, current GR state GLOBAL_GR, new GR state GLOBAL_INVALID
 
 This error has no functional impact.</td>
-<td>4.3.0</td>
-<td></td>
-</tr>
-<tr>
-<td>2555265</td>
-<td>On the Mellanox SN2700 and SN2410 switch, the MTEF-PSF-AC-I and MTEF-PSR-AC-I PSUs incorrectly show 460W instead of the correct 550W. This is a cosmetic issue that does not affect the actual wattage or throughput of the power supplies.</td>
 <td>4.3.0</td>
 <td></td>
 </tr>
@@ -543,12 +555,6 @@ NVIDIA does not recommend running NTP with a source interface other than eth0 as
 <td></td>
 </tr>
 <tr>
-<td>2553231</td>
-<td>On the Mellanox SN4700 switch, 8x50G port breakout is not supported currently.</td>
-<td>4.2.1-4.3.0</td>
-<td></td>
-</tr>
-<tr>
 <td>2553116</td>
 <td>When you manually set the link speed or duplex mode with ethtool to an unsupported value, then run a TDR check against the interface, you encounter a {{switchd}} service heartbeat failure.
 To work around this issue, reboot the switch to clear the condition. Avoid setting the interface speed or duplex mode directly with ethtool.</td>
@@ -681,12 +687,6 @@ To work around this issue, remove, then add the VRRP configuration with NCLU com
 <td>2550793</td>
 <td>The NCLU {{net show bridge spanning-tree}} command displays the aging timer incorrectly. </td>
 <td>3.7.12-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
-<td>2550771</td>
-<td>Cumulus Linux supports a maximum of 300 ACLs for use with 802.1X interfaces. This limit encompasses the default ACLs, pre-auth ACLs and dynamic ACLs. Exceeding this limit can affect the performance of the switch.</td>
-<td>4.1.0-4.3.0</td>
 <td></td>
 </tr>
 <tr>
@@ -907,17 +907,6 @@ To increase the {{systemd}} timeout:
 <tr>
 <td>2546874</td>
 <td>On the Dell S5232F, S5248F, S5296F, and S3048 switch, using the {{poweroff}} or {{halt}} commands does not fully power off the switch.</td>
-<td>4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
-<td>2546261</td>
-<td>The following CVEs were announced that affect the libssh package:
-CVE-2019-14889 has been announced in the libssh library, where unsanitized user-provided scp command lines could allow an attacker to execute arbitrary commands on the server.
-The libssh library is not installed on Cumulus Linux by default, but is available in the Cumulus Linux 4 repository for optional installation. Note that libssh is distinct from libssh2 and openssh, which are present on the switches and in the repositories.
-See the following for more information:
-https://www.libssh.org/security/advisories/CVE-2019-14889.txt
-https://security-tracker.debian.org/tracker/CVE-2019-14889</td>
 <td>4.0.0-4.3.0</td>
 <td></td>
 </tr>
@@ -1154,13 +1143,6 @@ cumulus@switch:~$ net add bridge mybridge vlan-protocol 802.1ad
 This issue only affects QinQ configurations. 
  </td>
 <td>3.7.5-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
-<td>2540808</td>
-<td>In an EVPN environment, the centralized MAC address is not installed on the MLAG pair because Cumulus Linux does not perform an SVI MAC check per VLAN. 
-This issue does not affect a pure distributed routing (symmetric or asymmetric) environment or a pure centralized routing environment.</td>
-<td>3.7.0-3.7.14.2, 4.0.0-4.3.0</td>
 <td></td>
 </tr>
 <tr>
@@ -2103,22 +2085,38 @@ To work around this issue, remove, then re-add the component prefix routes.</td>
 <tr>
 <td>2547068</td>
 <td>Hardware platforms using the Intel D-1500 CPU series might reboot unexpectedly.
-To work around this issue, contact your hardware vendor to inquire if a new version of BIOS with a microcode fix might be available, or manually disable CPU C-states in the kernel as outlined below:
+
+To work around this issue, contact your hardware vendor to inquire if a new version of BIOS with a microcode fix might be available, or manually disable CPU C-states in the kernel as outlined below.
+
 To permanently disable C-states using a kernel boot parameter:
+
 1. Edit {{/etc/default/grub}} to add the argument {{processor.max_cstate=0}} to the variable {{GRUB_CMDLINE_LINUX}}
+
 For example, if {{/etc/default/grub}} file contains the following line:
+
 {{GRUB_CMDLINE_LINUX="cl_platform=accton_as7726_32x console=tty0 console=ttyS0,115200n8 intel_iommu=off pcie_aspm=off"}}
+
 change it to
+
 {{GRUB_CMDLINE_LINUX="cl_platform=accton_as7726_32x console=tty0 console=ttyS0,115200n8 intel_iommu=off pcie_aspm=off processor.max_cstate=0"}}
+
 2. Run {{sudo update-grub}}
+
 3. Reboot the system with {{sudo reboot}}
 
+
 To Disable cstates in realtime on the current system which will not persist through a reboot:
+
 1. Confirm that the libpci3 package is installed
+
 Run {{dpkg-query -l libpci3}} and confirm the following line is displayed:
+
 {{ii  libpci3:amd64      1:3.2.1-3      amd64          Linux PCI Utilities (shared library)}}
+
 The first field above should read {{ii}}. If not, install the libpci3 package by running {{sudo apt upgrade;sudo apt install libpci3}}
+
 2. Disable C-states by executing the command {{./cpupower idle-set -d 2}}
+
 C-states have been disabled by default as of Cumulus Linux 4.3.0</td>
 <td>3.7.9-4.2.1</td>
 </tr>

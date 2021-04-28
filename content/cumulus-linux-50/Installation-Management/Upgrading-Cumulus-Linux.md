@@ -46,7 +46,7 @@ Understanding the location of configuration data is required for successful upgr
 | `/etc/group` | Defines user groups on the switch| Not unique to Cumulus Linux | {{<exlink url="https://www.debian.org/doc/manuals/debian-reference/ch04.en.html">}} |
 | `/etc/lldpd.conf` | Link Layer Discover Protocol (LLDP) daemon configuration | {{<link title="Link Layer Discovery Protocol">}} | {{<exlink url="https://packages.debian.org/buster/lldpd">}} |
 | `/etc/lldpd.d/` | Configuration directory for lldpd | {{<link title="Link Layer Discovery Protocol">}} | {{<exlink url="https://packages.debian.org/buster/lldpd">}} |
-| `/etc/nsswitch.conf` | Name Service Switch (NSS) configuration file | {{<link title="TACACS+">}} | N/A |
+| `/etc/nsswitch.conf` | Name Service Switch (NSS) configuration file | {{<link title="TACACS">}} | N/A |
 |`/etc/ssh/` | SSH configuration files | {{<link title="SSH for Remote Access">}} | {{<exlink url="https://wiki.debian.org/SSH">}} |
 | `/etc/sudoers`, `/etc/sudoers.d` | Best practice is to place changes in `/etc/sudoers.d/` instead of `/etc/sudoers`; changes in the `/etc/sudoers.d/` directory are not lost during upgrade | {{<link title="Using sudo to Delegate Privileges">}} |
 
@@ -314,7 +314,7 @@ This is due to a change in the bonding driver to handle how the *actor port key*
 Even the most well planned and tested upgrades can result in unforeseen problems and sometimes the best solution is to roll back to the previous state. There are three main strategies, all of which require detailed planning and execution:
 
 - Flatten and rebuild. If the OS becomes unusable, you can use orchestration tools to reinstall the previous OS release from scratch and then rebuild the configuration automatically.
-- Backup and restore. Restore to a previous state using a backup captured before the upgrade. See {{<link title="Back up and Restore">}}.
+- Restore to a previous state using a backup configuration captured before the upgrade.
 
 The method you employ is specific to your deployment strategy. Providing detailed steps for each scenario is outside the scope of this document.
 

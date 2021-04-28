@@ -39,13 +39,17 @@ disableKinds = ["RSS"]
     url = "/cumulus-vx/"
     weight = 30
 
+  [[menu.subnav]]
+    identifier = "sonic-202012"
+    title = "SONiC"
+    url = "/sonic-202012/"
+    weight = 40
+
   [[menu.dropnav]]
     identifier = "cumulus-rmp"
     title = "Cumulus RMP"
     url = "/cumulus-rmp/"
     weight = 10
-
-
 
 [Params]
 #Syntax Highlighting

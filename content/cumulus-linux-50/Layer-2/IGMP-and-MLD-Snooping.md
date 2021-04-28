@@ -110,7 +110,7 @@ To disable IGMP and MLD snooping:
 
 ```
 cumulus@switch:~$ NEED COMMAND
-cumulus@switch:~$ cl set bridge domain br_default mcsnoop enable no???
+cumulus@switch:~$ cl config apply
 ```
 
 {{< /tab >}}
@@ -194,7 +194,7 @@ swp3 (3)
   flags
 ```
 
-To show the groups and bridge port state, run the NCLU `net show bridge mdb` command or the Linux `bridge mdb show` command. To show detailed router ports and group information, run the `bridge -d -s mdb show` command:
+To show the groups and bridge port state, run the Linux `bridge mdb show` command. To show detailed router ports and group information, run the `bridge -d -s mdb show` command:
 
 ```
 cumulus@switch:~$ sudo bridge -d -s mdb show

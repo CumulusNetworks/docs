@@ -350,7 +350,7 @@ Done
 
 {{%notice note%}}
 
-You can use the `adduser` command for local user accounts only. You can use the `addgroup` command for both local and remote user accounts. For a remote user account, you must use the mapping username, such as `tacacs3` or `radius_user`, not the {{<link url="TACACS+" text="TACACS">}} or {{<link url="RADIUS-AAA" text="RADIUS">}} account name.
+You can use the `adduser` command for local user accounts only. You can use the `addgroup` command for both local and remote user accounts. For a remote user account, you must use the mapping username, such as `tacacs3` or `radius_user`, not the {{<link url="TACACS" text="TACACS">}} or {{<link url="RADIUS-AAA" text="RADIUS">}} account name.
 
 {{%/notice%}}
 
@@ -387,7 +387,7 @@ To configure a new user group to use NCLU, add that group to the `groups_with_ed
 
 {{%notice warning%}}
 
-Use caution giving edit permissions to groups. For example, do not give edit permissions to the {{<link url="TACACS+" text="*tacacs* group">}}.
+Use caution giving edit permissions to groups. For example, do not give edit permissions to the {{<link url="TACACS" text="*tacacs* group">}}.
 
 {{%/notice%}}
 

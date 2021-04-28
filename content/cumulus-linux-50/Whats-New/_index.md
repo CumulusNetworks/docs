@@ -27,14 +27,13 @@ Cumulus Linux 5.0 supports new platforms, provides bug fixes, and contains sever
   {{%/notice%}}
 - Support for {{<link url="VLAN-aware-Bridge-Mode/" text="multiple VLAN aware bridges">}}
 - EVPN multihoming HREP support
+- {{<link url="Precision-Time-Protocol-PTP" text="PTP Boundary Clock">}} enhancements
 - {{<link url="Protocol-Independent-Multicast-PIM/#allow-rp" text="PIM Allow RP">}}
 - {{<link url="Optional-BGP-Configuration/#conditional-advertisement" text="BGP conditional route advertisement">}}
 - Smart System Manager supports {{<link url="Smart-System-Manager" text="warm boot">}}
 - QoS: Dynamic buffer configuration as default
 - Enhanced Transmission Selection (ETS): 802.1Qaz
 - Optimized Multicast Flooding (OMF)
-- PTP Boundary Clock
-- Static Double NAT support
 - IPv6 Traffic class-based PBR matching
 - Support for QinQ/QinVNI access and trunk ports on the same system
 - Removed licensing from Cumulus Linux

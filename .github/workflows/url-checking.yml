@@ -11,7 +11,7 @@ jobs:
     - name: Download and install Hugo
       uses: peaceiris/actions-hugo@v2
       with:
-        hugo-version: "0.65.3"
+        hugo-version: "0.82.0"
         extended: true
     - name: Update link shortcode to error on broken links
       run: sed -i 's/#ERROR/\<{{ errorf "broken link in %s" .Position }}\>/g' themes/netDocs/layouts/shortcodes/link.html

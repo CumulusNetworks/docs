@@ -416,8 +416,6 @@ cumulus@switch:~$ cl show platform software
 [installed]  apt
 [installed]  arping
 [installed]  arptables
-[installed]  atftp
-[installed]  atftpd
 [installed]  auditd
 [installed]  base-files
 [installed]  base-passwd

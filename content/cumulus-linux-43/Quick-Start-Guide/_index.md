@@ -35,7 +35,7 @@ You have more options for installing Cumulus Linux with ONIE. Read {{<link url="
 
 - DHCP/web server with and without DHCP options
 - Web server without DHCP
-- FTP or TFTP without a web server
+- FTP without a web server
 - Local file
 - USB
 

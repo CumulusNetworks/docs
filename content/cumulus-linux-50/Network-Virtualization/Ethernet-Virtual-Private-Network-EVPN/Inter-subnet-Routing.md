@@ -227,7 +227,8 @@ If you do not want the RD and RTs (layer 3 RTs) for the tenant VRF to be derived
 {{< tab "CUE Commands ">}}
 
 ```
-cumulus@leaf01:~$ NEED COMMAND
+cumulus@leaf01:~$ cl set vrf RED router bgp rd 10.1.20.2:5
+cumulus@leaf01:~$ cl set vrf RED router bgp route-import from-evpn route-target 65102:4001
 ```
 
 {{< /tab >}}
@@ -454,24 +455,14 @@ See {{<link url="Basic-Configuration#evpn-and-vxlan-active-active-mode" text="EV
 
 #### Configure Advertise Primary IP Address
 
-Run the `address-virtual <anycast-mac>` command under the SVI, where `<anycast-mac>` is the MLAG system MAC address ({{<link url="Multi-Chassis-Link-Aggregation-MLAG#reserved-mac-address-range" text="clagd-sys-mac">}}). Run these commands on both switches in the MLAG pair.
+Set the MLAG system MAC address on both switches in the MLAG pair.
 
 {{< tabs "TabID472 ">}}
 {{< tab "CUE Commands ">}}
 
 ```
-cumulus@leaf01:~$ NEED COMMAND
-```
-
-{{< /tab >}}
-{{< tab "NCLU Commands ">}}
-
-Run the `net add vlan <vlan> ip address-virtual <anycast-mac>` command. For example:
-
-```
-cumulus@leaf01:~$ net add vlan 4001 ip address-virtual 44:38:39:BE:EF:AA
-cumulus@leaf01:~$ net pending
-cumulus@leaf01:~$ net commit
+cumulus@leaf01:~$ cl set system global anycast-mac 44:38:39:BE:EF:AA
+cumulus@leaf01:~$ cl config apply
 ```
 
 {{< /tab >}}
@@ -491,39 +482,24 @@ iface vlan4001
 ...
 ```
 
+{{%notice note%}}
+- In Cumulus Linux 3.7 and earlier, the `hwaddress` command is used instead of the `address-virtual` command. If you upgrade from Cumulus Linux 3.7 to 4.0 or later and have a previous symmetric routing with VXLAN active-active configuration, you must change `hwaddress` to `address-virtual`. Either run the NCLU `address-virtual <anycast-mac>` command or edit the `/etc/network/interfaces` file.
+- When configuring third party networking devices using MLAG and EVPN for interoperability, you must configure and announce a single shared router MAC value per advertised next hop IP address.
+{{%/notice%}}
+
 {{< /tab >}}
 {{< /tabs >}}
 
-{{%notice note%}}
-
-- In Cumulus Linux 3.7 and earlier, the `hwaddress` command is used instead of the `address-virtual` command. If you upgrade from Cumulus Linux 3.7 to 4.0 or later and have a previous symmetric routing with VXLAN active-active configuration, you must change `hwaddress` to `address-virtual`. Either run the NCLU `address-virtual <anycast-mac>` command or edit the `/etc/network/interfaces` file.
-- When configuring third party networking devices using MLAG and EVPN for interoperability, you must configure and announce a single shared router MAC value per advertised next hop IP address.
-
-{{%/notice%}}
-
 #### Optional Configuration
 
-If you do not want Cumulus Linux to derive the system IP address automatically, you can provide the system IP address and system MAC address under each BGP VRF instance.
-
-The system MAC address must be the layer 3 SVI MAC address (not the `clad-sys-mac`).
-
-The following example commands add the system IP address 10.10.10.1 and the system MAC address 44:38:39:be:ef:aa:
+To advertise type-5 routes and host type-2 routes using the system IP address and system MAC address:
 
 {{< tabs "TabID520 ">}}
 {{< tab "CUE Commands ">}}
 
 ```
-cumulus@leaf01:~$ NEED COMMAND
-```
-
-{{< /tab >}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@leaf01:~$ net add vlan 4001 hwaddress 44:38:39:ff:00:00
-cumulus@leaf01:~$ net add bgp vrf vrf1 l2vpn evpn advertise-pip ip 10.10.10.1 mac 44:38:39:be:ef:aa
-cumulus@leaf01:~$ net pending
-cumulus@leaf01:~$ net commit
+cumulus@leaf01:~$ cl set evpn route-advertise nexthop-setting system-ip-mac
+cumulus@leaf01:~$ cl config apply
 ```
 
 {{< /tab >}}
@@ -545,28 +521,18 @@ cumulus@leaf01:~$
 {{< /tab >}}
 {{< /tabs >}}
 
-The system IP address and system MAC address you provide take precedence over the addresses that Cumulus Linux derives automatically.
-
 #### Disable Advertise Primary IP Address
 
 Each switch in the MLAG pair advertises type-5 routes with its own system IP, which creates an additional next hop at the remote VTEPs. In a large multi-tenancy EVPN deployment, where additional resources are a concern, you might prefer to disable this feature.
 
-To disable Advertise Primary IP Address under each tenant VRF BGP instance:
+To disable Advertise Primary IP Address:
 
 {{< tabs "TabID560 ">}}
 {{< tab "CUE Commands ">}}
 
 ```
-cumulus@leaf01:~$ NEED COMMAND
-```
-
-{{< /tab >}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@leaf01:~$ net del bgp vrf RED l2vpn evpn advertise-pip
-cumulus@leaf01:~$ net pending
-cumulus@leaf01:~$ net commit
+cumulus@leaf01:~$ cl set evpn route-advertise nexthop-setting shared-ip-mac
+cumulus@leaf01:~$ cl config apply
 ```
 
 {{< /tab >}}

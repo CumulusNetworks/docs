@@ -279,7 +279,6 @@ iface vni10
 auto vni20
 iface vni20
   vxlan-id 20
-  vxlan-local-tunnelip 10.10.10.2
   bridge-access 20
   mstpctl-bpduguard yes
   mstpctl-portbpdufilter yes

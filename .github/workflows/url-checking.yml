@@ -18,7 +18,7 @@ jobs:
     - name: Run Hugo
       run: hugo
     - name: Grep for bad links
-      run: grep -ro --exclude="*/pdf/index.html" --include="*.html" "<code>&lt;a rel=&quot;canonical&quot; href=&quot;" public/ >> $GREP_OUTPUT
+      run: echo "$GREP_OUTPUT=$(grep -ro --exclude='*/pdf/index.html' --include='*.html' '<code>&lt;a rel=&quot;canonical&quot; href=&quot;' public/)" >> $GITHUB_ENV
     - name: Print any bad kb_links
       run: echo $GREP_OUTPUT
     - name: Exit based on Grep result

@@ -955,9 +955,9 @@ Routes are typically propagated even if a different path exists. The BGP conditi
 
 This feature is typically used in multihomed networks where some prefixes are advertised to one of the providers only if information from the other provider is not present. For example, a multihomed router can use conditional advertisement to choose which upstream provider learns about the routes it provides so that it can influence which provider handles traffic destined for the downstream router. This is useful for cost of service (one provider is cheaper than another), latency, or other policy requirements that are not natively accounted for in BGP.
 
-The following example commands configure Cumulus Linux to send a 10.0.0.0/8 summary route only if the 10.0.0.0/24 route exists in the routing table.
+Conditional advertisement uses the `non-exist-map` or the `exist-map` and the `advertise-map` keywords to track routes by the route prefix.
 
-The commands:
+The following example commands configure Cumulus Linux to send a 10.0.0.0/8 summary route only if the 10.0.0.0/24 route exists in the routing table. The commands perform the following configuration:
 - Enable the conditional advertisement option.
 - Create a prefix list called EXIST with the route 10.0.0.0/24.
 - Create a route map called EXISTMAP that uses the prefix list EXIST.
@@ -989,9 +989,16 @@ cumulus@switch:~$ cl config apply
 ```
 cumulus@leaf01:~$ sudo vtysh
 leaf01# configure terminal
+leaf01(config)# ip prefix-list EXIST seq 10 permit 10.0.0.0/24
+leaf01(config)# route-map EXISTMAP permit 10
+leaf01(config-route-map)# match ip address prefix-list EXIST
+leaf01(config-route-map)# exit
+leaf01(config)# ip prefix-list ADVERTISE seq 10 permit 10.0.0.0/8
+leaf01(config)# route-map ADVERTISEMAP permit 10
+leaf01(config-route-map)# match ip address prefix-list ADVERTISE
+leaf01(config-route-map)# exit
 leaf01(config)# router bgp
-leaf01(config-router)# neighbor swp51 
-leaf01(config-router)# 
+leaf01(config-router)# neighbor swp51 advertise-map ADVERTISEMAP exist-map EXISTMAP
 leaf01(config-router)# end
 leaf01# write memory
 leaf01# exit
@@ -1005,6 +1012,9 @@ The commands save the configuration in the `/etc/frr/frr.conf` file. For example
 
 ```
 cumulus@leaf01:~$ sudo nano /etc/frr/frr.conf
+...
+neighbor swp51 activate
+neighbor swp51 advertise-map ADVERTISEMAP exist-map EXIST
 ...
 ip prefix-list ADVERTISE seq 10 permit 10.0.0.0/8
 ip prefix-list EXIST seq 10 permit 10.0.0.0/24

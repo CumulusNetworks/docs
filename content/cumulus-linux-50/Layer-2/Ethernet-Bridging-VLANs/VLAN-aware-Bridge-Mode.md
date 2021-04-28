@@ -169,6 +169,7 @@ resv_vlan_range
 ```
 
 {{<cl/restart-switchd>}}
+
 ## VLAN Pruning
 
 By default, the bridge port inherits the bridge VIDs. To configure a port to override the bridge VIDs:
@@ -458,19 +459,7 @@ To disable automatic address generation for a regular IPv6 address on a VLAN, ru
 {{< tabs "TabID248 ">}}
 {{< tab "CUE Commands ">}}
 
-```
-cumulus@switch:~$ NEED COMMAND
-cumulus@switch:~$ cl config apply
-```
-
-{{< /tab >}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@switch:~$ net add vlan 10 ipv6-addrgen off
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
+CUE commands are not supported.
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
@@ -500,21 +489,7 @@ To re-enable automatic linklocal address generation for a VLAN:
 {{< tabs "TabID287 ">}}
 {{< tab "CUE Commands ">}}
 
-```
-cumulus@switch:~$ NEED COMMAND
-cumulus@switch:~$ cl config apply
-```
-
-{{< /tab >}}
-{{< tab "NCLU Commands ">}}
-
-Run the `net del vlan <vlan> ipv6-addrgen off` command.
-
-```
-cumulus@switch:~$ net del vlan 10 ipv6-addrgen off
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
+CUE commands are not supported.
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
@@ -667,28 +642,27 @@ iface peerlink.4094
 
 Cumulus Linux supports using VXLANs with VLAN-aware bridge configurations to provide improved scalability, as multiple VXLANs can be added to a single VLAN-aware bridge. A one to one association is used between the VXLAN VNI and the VLAN, with the bridge access VLAN definition on the VXLAN and the VLAN membership definition on the local bridge member interfaces.
 
-The configuration example below shows the differences between a VXLAN configured for traditional bridge mode and one configured for VLAN-aware mode. The configurations use head end replication (HER) together with the VLAN-aware bridge to map VLANs to VNIs.
+The configuration example below shows a VXLAN configured for a bridge in VLAN-aware mode. The configurations use head end replication (HER) together with the VLAN-aware bridge to map VLANs to VNIs.
 
 ```
 ...
 auto lo
 iface lo inet loopback
-    address 10.35.0.10/32
+    address 10.10.10.1/32
+    vxlan-local-tunnelip 10.10.10.1
 
 auto br_default
 iface br_default
-    bridge-ports uplink
+    bridge-ports swp1 vni10
     bridge-pvid 1
-    bridge-vids 1-100
+    bridge-vids 10
     bridge-vlan-aware yes
 
-auto vni-10000
-iface vni-10000
-    alias CUSTOMER X VLAN 10
+auto vni10
+iface vni10
     bridge-access 10
-    vxlan-id 10000
-    vxlan-local-tunnelip 10.35.0.10
-    vxlan-remoteip 10.35.0.34
+    vxlan-id 10
+    vxlan-remoteip 10.10.10.34
 ...
 ```
 

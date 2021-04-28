@@ -111,7 +111,7 @@ Editing the `/etc/network/interfaces` file as follows:
 
 ### Traditional VXLAN Device
 
-The following example traditional VXLAN device configuration:
+The following traditional VXLAN device configuration:
 - Sets the loopback address on each leaf
 - Creates two unique VXLAN devices (vni10 and vni20)
 - Configures the local tunnel IP address to be the loopback address of the switch

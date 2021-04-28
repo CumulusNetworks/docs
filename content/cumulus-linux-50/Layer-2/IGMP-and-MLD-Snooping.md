@@ -110,7 +110,7 @@ To disable IGMP and MLD snooping:
 
 ```
 cumulus@switch:~$ NEED COMMAND
-cumulus@switch:~$ cl set bridge domain br_default mcsnoop enable no???
+cumulus@switch:~$ cl config apply
 ```
 
 {{< /tab >}}

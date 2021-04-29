@@ -47,16 +47,6 @@ cumulus@switch:~$ cl config apply
 ```
 
 {{< /tab >}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@switch:~$ net add vrf BLUE vrf-table auto
-cumulus@switch:~$ net add interface swp1 vrf BLUE
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-{{< /tab >}}
 {{< tab "Linux Commands ">}}
 
 Edit the `/etc/network/interfaces` file to add the VRF with a table ID that is automatically assigned:
@@ -92,15 +82,6 @@ Instead of having Cumulus Linux assign a table ID for the VRF table, you can spe
 ```
 cumulus@switch:~$ cl set vrf BLUE table 1016
 cumulus@switch:~$ cl config apply
-```
-
-{{< /tab >}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@switch:~$ net add vrf BLUE vrf-table 1016
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}

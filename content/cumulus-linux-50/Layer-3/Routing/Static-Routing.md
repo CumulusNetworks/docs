@@ -167,6 +167,7 @@ You can also create a static route by adding the route to a switch port configur
 {{< tab "CUE Commands ">}}
 
 ```
+cumulus@leaf01:~$ cl set interface swp51 ip address 10.0.1.1/31
 cumulus@leaf01:~$ NEED COMMAND
 ```
 

@@ -8,7 +8,7 @@ version: '4.x'
 
 ### From where do I download Cumulus VX images?
 
-Cumulus VX is available as a free download on the {{<exlink url="https://cumulusnetworks.com/products/cumulus-vx/download/" text="Cumulus Networks website">}}. You must create an account and log in to download a Cumulus VX image. Images are available for all supported hypervisors.
+Cumulus VX is available as a free download on the {{<exlink url="https://www.nvidia.com/en-us/networking/ethernet-switching/cumulus-vx/" text="Cumulus Networks website">}}. You must create an account and log in to download a Cumulus VX image. Images are available for all supported hypervisors.
 
 ### Which Hypervisors does Cumulus VX support?
 
@@ -24,7 +24,7 @@ Cumulus VX is intended for simulation, testing, and training. Cumulus Linux is t
 
 ### I have platform and disk limitations for Cumulus VX, how do I try Cumulus Linux?
 
-Try {{<exlink url="https://cumulusnetworks.com/products/cumulus-in-the-cloud/" text="Cumulus in the Cloud">}}, which is a free, personal, virtual data center network that provides a low-effort way to see Cumulus Networks technology in action. This is a good way to try out Cumulus Linux if you have platform or disk limitations.
+Try {{<exlink url="https://www.nvidia.com/en-us/networking/network-simulation/" text="Cumulus in the Cloud">}}, which is a free, personal, virtual data center network that provides a low-effort way to see Cumulus Networks technology in action. This is a good way to try out Cumulus Linux if you have platform or disk limitations.
 
 ### How do I log into the Cumulus VX switches?
 

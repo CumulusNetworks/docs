@@ -2162,7 +2162,7 @@ exit-address-family
 
 ### EVPN-MH with EVPN-PIM
 
-The following example CUE commands do not include PIM confifguration. To configure PIM, see {{<link url="Protocol-Independent-Multicast-PIM" text="Protocol Independent Multicast - PIM">}}.
+The following example CUE commands do not include PIM configuration. To configure PIM, see {{<link url="Protocol-Independent-Multicast-PIM" text="Protocol Independent Multicast - PIM">}}. The `/etc/frr/frr.conf` file examples do include PIM configuration for completeness.
 
 #### CUE Commands
 

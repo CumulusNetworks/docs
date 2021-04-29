@@ -6,11 +6,6 @@ weight: 7
 
 These release notes support Cumulus Linux 3.6.0, 3.6.1, and 3.6.2 and describe currently available features and known issues.
 
-## Stay up to Date
-
-- Subscribe to our {{<exlink url="https://lists.cumulusnetworks.com/listinfo/cumulus-product-bulletin" text="product bulletin">}} mailing list to receive important announcements and updates about issues that arise in our products.
-- Subscribe to our {{<exlink url="https://lists.cumulusnetworks.com/listinfo/cumulus-security-announce" text="security announcement">}} mailing list to receive alerts whenever we update our software for security issues.
-
 ## What's New in Cumulus Linux 3.6.2
 
 Cumulus Linux 3.6.2 contains the following new features, platforms, and improvements:

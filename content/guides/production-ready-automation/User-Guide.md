@@ -195,7 +195,7 @@ This method is the easiest way to experience the final product of the Cumulus go
 
 If you are interested in taking a closer look at the automation and deployment processes, and see the actual examples of the infrastructure as code, you need to clone the demo project and manually run the automation playbook to render the configuration as code into the network devices. This automated process clones your selected demo repository and runs the Ansible deployment playbook for you with a few easy and convenient clicks from Cumulus in the Cloud UI.
 
-1. Go to {{<exlink url="https://www.cumulusnetworks.com/citc" text="Cumulus in the Cloud">}} to request a demo or to reach your existing simulation.
+1. Go to {{<exlink url="https://www.nvidia.com/en-us/networking/network-simulation/" text="Cumulus in the Cloud">}} to request a demo or to reach your existing simulation.
 2. After you reach your simulation console, choose a demo from the dropdown menu on the left panel.
 
     {{<img src="/images/guides/citc-interface-demo.png" >}}
@@ -205,7 +205,7 @@ If you are interested in taking a closer look at the automation and deployment p
 
 ## Manually Run the Automation Demo from Cumulus in the Cloud
 
-{{<exlink url="https://www.cumulusnetworks.com/citc" text="Cumulus in the Cloud">}} provides the fastest way to enjoy the experience of provisioning a full data center using best practice Ansible automation and see a working example of infrastructure as code. By removing the complexity of the simulation hardware and software dependencies, you can be in the driver’s seat of a fully provisioned data center to test the automation experience and any of the demo solution architectures in minutes. Cumulus in the Cloud also includes a free temporary NetQ Cloud account to showcase the NetQ features with live data from your simulation.
+{{<exlink url="https://www.nvidia.com/en-us/networking/network-simulation/" text="Cumulus in the Cloud">}} provides the fastest way to enjoy the experience of provisioning a full data center using best practice Ansible automation and see a working example of infrastructure as code. By removing the complexity of the simulation hardware and software dependencies, you can be in the driver’s seat of a fully provisioned data center to test the automation experience and any of the demo solution architectures in minutes. Cumulus in the Cloud also includes a free temporary NetQ Cloud account to showcase the NetQ features with live data from your simulation.
 
 1. Start from the `oob-mgmt-server` in your Cumulus in the Cloud simulation. For the best experience, use an SSH client to connect. Find the SSH client connection information from the **Services** window in the UI.
 
@@ -264,8 +264,8 @@ To use the included NetQ Cloud server, the following is required:
 
 - An active NetQ Cloud account with {{<exlink url="https://netq.cumulusnetworks.com" text="netq.cumulusnetworks.com" >}}.
 - An additional site that is set up and provisioned, and dedicated for virtualization use (a unique NetQ configuration key for your simulation environment). Do not mix a simulation topology with an existing site or use an existing and in-use NetQ premises configuration key.
-- The NetQ bootstrap tarball downloaded from {{<exlink url="https://cumulusnetworks.com/" text="cumulusnetworks.com" >}}.
-- The NetQ OPTA install tarball downloaded from {{<exlink url="https://cumulusnetworks.com/" text="cumulusnetworks.com" >}}.
+- The NetQ bootstrap tarball downloaded from {{<exlink url="https://support.mellanox.com/s/" text="cumulusnetworks.com" >}}.
+- The NetQ OPTA install tarball downloaded from {{<exlink url="https://support.mellanox.com/s/" text="cumulusnetworks.com" >}}.
 
 {{%notice info%}}
 

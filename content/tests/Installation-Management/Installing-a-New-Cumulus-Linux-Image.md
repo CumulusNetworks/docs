@@ -260,7 +260,6 @@ Follow the steps below to install the Cumulus Linux disk image using a USB drive
 {{%notice tip%}}
 
 - Installing Cumulus Linux using a USB drive is fine for a single switch here and there but is not scalable. DHCP can scale to hundreds of switch installs with zero manual input unlike USB installs.
-- Cumulus Networks also provides *Cumulus on a Stick*, which packages Cumulus Linux images with your license. You can download your personalized ZIP file, transfer it to a USB drive, insert the drive into your switch, apply power, and you are ready to go. See {{<exlink url="https://cumulusnetworks.com/cumulus-on-a-stick/" text="Cumulus on a Stick">}} for information.
 
 {{%/notice%}}
 
@@ -478,5 +477,4 @@ Homepage: http://www.cumulusnetworks.com/
 
 - {{<exlink url="http://opencomputeproject.github.io/onie/design-spec/" text="ONIE Design Specification">}}
 - {{<exlink url="https://support.mellanox.com/s/" text="Cumulus Networks Downloads page">}}
-- {{<exlink url="https://cumulusnetworks.com/cumulus-on-a-stick/" text="Cumulus on a Stick">}}
 - {{<link title="Managing Cumulus Linux Disk Images">}}

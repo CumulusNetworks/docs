@@ -216,7 +216,7 @@ throughout this chapter.
 {{%notice tip%}}
 
 Want to try out configuring LNV and do not have a Cumulus Linux switch?
-Check out [Cumulus VX](https://cumulusnetworks.com/cumulus-vx/).
+Check out [Cumulus VX](https://www.nvidia.com/en-us/networking/network-simulation/).
 
 {{%/notice%}}
 

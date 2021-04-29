@@ -13,7 +13,7 @@ toc: 3
 | VTEP| The virtual tunnel endpoint. This is an encapsulation and decapsulation point for VXLANs.|
 | active-active VTEP | A pair of switches acting as a single VTEP. |
 | ToR | The top of rack switch; also referred to as a leaf or access switch. |
-| spine | The aggregation switch for multiple leafs. Specifically used when a data center is using a {{<exlink url="https://en.wikipedia.org/wiki/Clos_network" text="Clos network architecture">}}. Read more about spine-leaf architecture in this {{<exlink url="https://cumulusnetworks.com/learn/resources/whitepapers/building-scalable-data-center-networks" text="white paper">}}. |
+| spine | The aggregation switch for multiple leafs. Specifically used when a data center is using a {{<exlink url="https://en.wikipedia.org/wiki/Clos_network" text="Clos network architecture">}}. Read more about spine-leaf architecture in this {{<exlink url="https://resource.nvidia.com/en-us-scalability/building-scalable-data-center-networks?xs=257738" text="white paper">}}. |
 | exit leaf | A switch dedicated to peering the Clos network to an outside network; also referred to as a border leaf, service leaf, or edge leaf. |
 | anycast | An IP address that is advertised from multiple locations. Anycast enables multiple devices to share the same IP address and effectively load balance traffic across them. With VXLAN, anycast is used to share a VTEP IP address between a pair of MLAG switches. |
 | VXLAN routing | The industry standard term for the ability to route in and out of a VXLAN. |

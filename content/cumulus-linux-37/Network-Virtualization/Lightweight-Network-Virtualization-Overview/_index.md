@@ -174,7 +174,7 @@ throughout this chapter.
 {{%notice tip%}}
 
 Want to try out configuring LNV and do not have a Cumulus Linux switch?
-Check out {{<exlink url="https://cumulusnetworks.com/cumulus-vx/" text="Cumulus VX">}}.
+Check out {{<exlink url="https://www.nvidia.com/en-us/networking/ethernet-switching/cumulus-vx/" text="Cumulus VX">}}.
 
 {{%/notice%}}
 

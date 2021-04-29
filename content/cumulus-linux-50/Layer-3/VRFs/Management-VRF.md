@@ -373,19 +373,10 @@ For example, to specify DNS servers and associate some of them with the manageme
 {{< tab "CUE Commands ">}}
 
 ```
-cumulus@switch:~$ NEED COMMAND
+cumulus@switch:~$ cl set service dns server 192.0.2.1
+cumulus@switch:~$ cl set service dns mgmt server 198.51.100.31
+cumulus@switch:~$ cl set service dns mgmt server 203.0.113.13
 cumulus@switch:~$ cl config apply
-```
-
-{{< /tab >}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@switch:~$ net add dns nameserver ipv4 192.0.2.1
-cumulus@switch:~$ net add dns nameserver ipv4 198.51.100.31 vrf mgmt
-cumulus@switch:~$ net add dns nameserver ipv4 203.0.113.13 vrf mgmt
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}

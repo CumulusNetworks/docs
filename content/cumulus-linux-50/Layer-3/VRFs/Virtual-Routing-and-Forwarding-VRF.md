@@ -240,23 +240,14 @@ When you use route leaking:
 - Do not use the default VRF as a shared service VRF. Create another VRF for shared services.
 - An EVPN symmetric routing configuration has certain limitations when leaking routes between the default VRF and non-default VRFs. The default VRF has underlay routes (routes to VTEP addresses) that cannot be leaked to any tenant VRFs. If you need to leak routes between the default VRF and a non-default VRF, you must filter out routes to the VTEP addresses to prevent leaking these routes. Use caution with such a configuration. Run common services in a separate VRF (service VRF) instead of the default VRF to simplify configuration and avoid using route-maps for filtering.
 
-In the following example commands, routes in the BGP routing table of VRF `rocket` are dynamically leaked into VRF `turtle`.
+In the following example commands, routes in the BGP routing table of VRF `BLUE` are dynamically leaked into VRF `RED`.
 
 {{< tabs "TabID266 ">}}
 {{< tab "CUE Commands ">}}
 
 ```
-cumulus@switch:~$ NEED COMMAND
-cumulus@switch:~$
-```
-
-{{< /tab >}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@switch:~$ net add bgp vrf turtle ipv4 unicast import vrf rocket
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
+cumulus@switch:~$ cl set vrf RED router bgp address-family ipv4-unicast route-import from-vrf list BLUE
+cumulus@switch:~$ cl config apply
 ```
 
 {{< /tab >}}
@@ -266,9 +257,9 @@ cumulus@switch:~$ net commit
 cumulus@switch:~$ sudo vtysh
 
 switch# configure terminal
-switch(config)# router bgp 65001 vrf turtle
+switch(config)# router bgp 65001 vrf RED
 switch(config-router)# address-family ipv4 unicast
-switch(config-router-af)# import vrf rocket
+switch(config-router-af)# import vrf BLUE
 switch(config-router-af)# end
 switch# write memory
 switch# exit
@@ -282,10 +273,10 @@ The NCLU and `vtysh` commands save the configuration in the `/etc/frr/frr.conf` 
 
 ```
 ...
-router bgp 65001 vrf turtle
+router bgp 65001 vrf RED
  !
  address-family ipv4 unicast
-  import vrf rocket
+  import vrf BLUE
 ...
 ```
 
@@ -293,27 +284,18 @@ router bgp 65001 vrf turtle
 
 You can exclude certain prefixes from being imported. The prefixes must be configured in a route map.
 
-The following example configures a route map to match the source protocol BGP and imports the routes from VRF turtle to VRF rocket. For the imported routes, the community is set to 11:11 in VRF rocket.
+The following example configures a route map to match the source protocol BGP and imports the routes from VRF BLUE to VRF RED. For the imported routes, the community is set to 11:11 in VRF RED.
 
 {{< tabs "TabID313 ">}}
 {{< tab "CUE Commands ">}}
 
 ```
-cumulus@switch:~$ NEED COMMAND
-cumulus@switch:~$ 
-```
-
-{{< /tab >}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@switch:~$ net add bgp vrf rocket ipv4 unicast import vrf turtle
-cumulus@switch:~$ net add routing route-map turtle-to-rocket-IPV4 permit 10
-cumulus@switch:~$ net add routing route-map turtle-to-rocket-IPV4 permit 10 match source-protocol bgp
-cumulus@switch:~$ net add routing route-map turtle-to-rocket-IPV4 permit 10 set community 11:11
-cumulus@switch:~$ net add bgp vrf rocket ipv4 unicast import vrf route-map turtle-to-rocket-IPV4
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
+cumulus@switch:~$ cl set vrf RED router bgp address-family ipv4-unicast route-import from-vrf list BLUE
+cumulus@switch:~$ cl set router policy route-map BLUEtoRED rule 10 match source-protocol bgp 
+cumulus@switch:~$ cl set router policy route-map BLUEtoRED rule 10 action permit
+cumulus@switch:~$ cl set router policy route-map BLUEtoRED rule 10 set community 11:11
+cumulus@switch:~$ cl set vrf RED router bgp address-family ipv4-unicast route-import from-vrf route-map BLUEtoRED
+cumulus@switch:~$ cl config
 ```
 
 {{< /tab >}}
@@ -323,16 +305,16 @@ cumulus@switch:~$ net commit
 cumulus@switch:~$ sudo vtysh
 
 switch# configure terminal
-switch(config)# router bgp 65001 vrf rocket
+switch(config)# router bgp 65001 vrf RED
 switch(config-router)# address-family ipv4 unicast
-switch(config-router-af)# import vrf turtle
-switch(config-router-af)# route-map turtle-to-rocket-IPV4 permit 10
+switch(config-router-af)# import vrf BLUE
+switch(config-router-af)# route-map BLUEtoRED permit 10
 switch(config-route-map)# match source-protocol bgp
 switch(config-route-map)# set community 11:11
 switch(config-route-map)# exit
-switch(config)# router bgp 65001 vrf rocket
+switch(config)# router bgp 65001 vrf RED
 switch(config-router)# address-family ipv4 unicast
-switch(config-router-af)# import vrf route-map turtle-to-rocket-IPv4
+switch(config-router-af)# import vrf route-map BLUEtoRED
 switch(config-router-af)# end
 switch# write memory
 switch# exit
@@ -347,12 +329,12 @@ cumulus@switch:~$
 To check the status of VRF route leaking, run the NCLU `net show bgp vrf <vrf-name> ipv4|ipv6 unicast route-leak` command or the `vtysh` `show ip bgp vrf <vrf-name> ipv4|ipv6 unicast route-leak` command. For example:
 
 ```
-cumulus@switch:~$ net show bgp vrf turtle ipv4 unicast route-leak
+cumulus@switch:~$ net show bgp vrf RED ipv4 unicast route-leak
 This VRF is importing IPv4 Unicast routes from the following VRFs:
-  rocket
+  BLUE
 Import RT(s): 0.0.0.0:3
 This VRF is exporting IPv4 Unicast routes to the following VRFs:
-  rocket
+  RED
 RD: 10.1.1.1:2
 Export RT: 10.1.1.1:2
 ```
@@ -360,17 +342,17 @@ Export RT: 10.1.1.1:2
 - To view the BGP routing table, run the NCLU `net show bgp vrf <vrf-name> ipv4|ipv6 unicast` command or the `vtysh` `show ip bgp vrf <vrf-name> ipv4|ipv6 unicast` command.
 - To view the FRRouting IP routing table, use the NCLU `net show route vrf <vrf-name>` command or the `vtysh` `show ip route vrf <vrf-name>` command. These commands show all routes, including routes leaked from other VRFs.
 
-The following example commands show all routes in VRF `turtle`, including routes leaked from VRF `rocket`:
+The following example commands show all routes in VRF `RED`, including routes leaked from VRF `BLUE`:
 
 ```
-cumulus@switch:~$ net show route vrf turtle
+cumulus@switch:~$ net show route vrf RED
 Codes: K - kernel route, C - connected, S - static, R - RIP,
        O - OSPF, I - IS-IS, B - BGP, P - PIM, E - EIGRP, N - NHRP,
        T - Table, v - VNC, V - VNC-Direct, A - Babel, D - SHARP,
        F - PBR,
        > - selected route, * - FIB route
 
-VRF turtle:
+VRF RED:
 K * 0.0.0.0/0 [255/8192] unreachable (ICMP unreachable), 6d07h01m
 C>* 10.1.1.1/32 is directly connected, turtle, 6d07h01m
 B>* 10.0.100.1/32 [200/0] is directly connected, rocket(vrf rocket), 6d05h10m
@@ -386,23 +368,14 @@ B>* 10.20.2.0/30 [200/0] is directly connected, swp1.21(vrf rocket), 6d05h10m
 
 To remove route leaking configuration, run the following commands. These commands ensure that all leaked routes are removed and routes are no longer leaked from the specified source VRF.
 
-The following example commands delete leaked routes from VRF `rocket` to VRF `turtle`:
+The following example commands delete leaked routes from VRF `BLUE` to VRF `RED`:
 
 {{< tabs "TabID407 ">}}
 {{< tab "CUE Commands ">}}
 
 ```
-cumulus@switch:~$ NEED COMMAND
-cumulus@switch:~$ 
-```
-
-{{< /tab >}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@switch:~$ net del bgp vrf turtle ipv4 unicast import vrf rocket
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
+cumulus@switch:~$ cl unset vrf RED router bgp address-family ipv4-unicast route-import from-vrf list BLUE
+cumulus@switch:~$ cl config apply
 ```
 
 {{< /tab >}}
@@ -412,9 +385,9 @@ cumulus@switch:~$ net commit
 cumulus@switch:~$ sudo vtysh
 
 switch# configure terminal
-switch(config)# router bgp 65001 vrf turtle
+switch(config)# router bgp 65001 vrf RED
 switch(config-router)# address-family ipv4 unicast
-switch(config-router-af)# no import vrf rocket
+switch(config-router-af)# no import vrf BLUE
 switch(config-router-af)# end
 switch# write memory
 switch# exit
@@ -458,7 +431,6 @@ VRFs are provisioned using NCLU. VRFs can be pre-provisioned in FRRouting too, b
 
 ```
 cumulus@switch:~$ NEED COMMAND
-cumulus@switch:~$ 
 ```
 
 {{< /tab >}}

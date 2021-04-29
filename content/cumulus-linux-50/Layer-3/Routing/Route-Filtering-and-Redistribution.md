@@ -108,6 +108,7 @@ The following example commands configure a route map that sets the metric to 50 
 cumulus@switch:~$ cl set router policy route-map routemap1 rule 10 match interface swp51
 cumulus@switch:~$ cl set router policy route-map routemap1 rule 10 set metric 50
 cumulus@switch:~$ cl set router policy route-map routemap1 rule 10 action permit
+cumulus@switch:~$ cl config apply
 ```
 
 {{< /tab >}}
@@ -181,8 +182,8 @@ For BGP, you can also apply a route map on route updates from BGP to Zebra. All 
 To apply a route map to filter route updates from BGP into Zebra, run the following command:
 
 ```
-NEED COMMAND for CUE: 
-cumulus@switch:$ net add bgp table-map routemap2
+cumulus@switch:$ cl set vrf default router bgp address-family ipv4-unicast rib-filter routemap1
+cumulus@switch:$ cl config apply
 ```
 
 {{%notice note%}}

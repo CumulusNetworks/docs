@@ -198,7 +198,7 @@ Using route maps is highly recommended to control the advertised networks redist
 
 ```
 cumulus@switch:~$ cl set router policy route-map REDISTRIBUTE rule 10 match interface eth0
-cumulus@switch:~$ cl set router policy route-map REDISTRIBUTE rule 10 action deny
+cumulus@switch:~$ cl set router policy route-map REDISTRIBUTE rule 100 action deny
 cumulus@switch:~$ cl set vrf default router bgp address-family ipv4-unicast redistribute connected route-map REDISTRIBUTE
 cumulus@switch:~$ cl config apply
 ```
@@ -210,9 +210,9 @@ cumulus@switch:~$ cl config apply
 cumulus@switch:$ sudo vtysh
 
 switch# configure terminal
-switch(config)# route-map REDISTRIBUTE-CONNECTED deny 100 
+switch(config)# route-map REDISTRIBUTE-CONNECTED deny 10 
 switch(config-route-map)# match interface eth0
-switch(config)# route-map REDISTRIBUTE-CONNECTED permit 1000
+switch(config)# route-map REDISTRIBUTE-CONNECTED permit 100
 switch(config-route-map)# exit
 switch(config)# router bgp
 switch(config-router)# address-family ipv4 unicast
@@ -249,10 +249,10 @@ router bgp 65101
   maximum-paths ibgp 64
  exit-address-family
 !
-route-map REDISTRIBUTE-CONNECTED deny 100
+route-map REDISTRIBUTE-CONNECTED deny 10
 match interface eth0
 !
-route-map REDISTRIBUTE-CONNECTED permit 1000
+route-map REDISTRIBUTE-CONNECTED permit 100
 ...
 ```
 

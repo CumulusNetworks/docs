@@ -81,6 +81,23 @@
 <td></td>
 </tr>
 <tr>
+<td>2633062</td>
+<td>The following vulnerability affects the libgstreamer-plugins-base1.0-0 package.  There is no CVE yet; the Debian advisory number is DSA-4903-1.
+Multiple vulnerabilities were discovered in plugins for the GStreamer media framework, which may result in denial of service or potentially the execution of arbitrary code if a malformed media file is opened.
+Vulnerable: 1.14.4-2
+Fixed: 1.14.4-2+deb10u1</td>
+<td>4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2628514</td>
+<td>CVE-2020-12695: hostapd does not properly handle UPnP subscribe messages under certain conditions, allowing an attacker to cause a denial of service.
+Vulnerable: &lt;= 2.8.0-cl4.3.1u1
+Fixed: 2.8.0-cl4.3.1u2</td>
+<td>3.7.14-3.7.14.2, 4.3.0</td>
+<td></td>
+</tr>
+<tr>
 <td>2625818</td>
 <td>The following CVEs were announced that affect the libssh package:
 CVE-2019-14889 has been announced in the libssh library, where unsanitized user-provided scp command lines could allow an attacker to execute arbitrary commands on the server.

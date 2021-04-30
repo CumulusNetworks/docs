@@ -22,11 +22,9 @@ jobs:
     - name: Grep for bad kb_links
       run: |
           echo "GREP_OUTPUT<<EOF" >> $GITHUB_ENV
-          grep -ro --exclude='*/pdf/index.html' --include='*.html' 'banana' public/ | head -20 >> $GITHUB_ENV
+          grep -ro --exclude='*/pdf/index.html' --include='*.html' '<title>SONiC Documentation | SONiC 202012</title>' public/ | head -20 >> $GITHUB_ENV
           echo "EOF" >> $GITHUB_ENV
     - name: Print bad kb_links
       run: echo $GREP_OUTPUT
-    - name: Test wc
-      run: echo $GREP_OUTPUT | wc -m
     - name: Exit != 0 if there was grep output
-      run: (exit $(echo $GREP_OUTPUT | wc -m))
+      run: echo -n $GREP_OUTPUT | wc -m

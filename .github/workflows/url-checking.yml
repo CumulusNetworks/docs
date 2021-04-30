@@ -20,7 +20,7 @@ jobs:
     - name: Grep for bad kb_links
       run: |
           echo "GREP_OUTPUT<<$$" >> $GITHUB_ENV
-          grep -ro -m 20 --exclude='*/pdf/index.html' --include='*.html' 'bgp' public/ | head -20 >> $GITHUB_ENV
+          grep -ro --exclude='*/pdf/index.html' --include='*.html' 'bgp' public/ | head -20 >> $GITHUB_ENV
           echo "$$" >> $GITHUB_ENV
     - name: Print bad kb_links
       run: echo $GREP_OUTPUT

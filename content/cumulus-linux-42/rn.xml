@@ -62,6 +62,18 @@ This is an information leak in algorithm negotiation that can allow man-in-the-m
 <td></td>
 </tr>
 <tr>
+<td>2637554</td>
+<td>The {{cl-acltool}} takes a significant amount of time to run, which can slow down automation scripts.</td>
+<td>4.2.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2634464</td>
+<td>In an EVPN multihoming configuration, when you bring down a local bond on the switch, MAC address from the bond still point to a local interface and is advertised to EVPN.</td>
+<td>4.2.1-4.3.0</td>
+<td></td>
+</tr>
+<tr>
 <td>2633062</td>
 <td>The following vulnerability affects the libgstreamer-plugins-base1.0-0 package.  There is no CVE yet; the Debian advisory number is DSA-4903-1.
 Multiple vulnerabilities were discovered in plugins for the GStreamer media framework, which may result in denial of service or potentially the execution of arbitrary code if a malformed media file is opened.
@@ -1480,6 +1492,18 @@ To work around this issue, change the value of {{arp_ignore}} to 2. See [Address
 <td>OpenSSH is vulnerable to CVE-2020-14145, as described in https://www.fzi.de/fileadmin/user_upload/2020-06-26-FSA-2020-2.pdf.  
 This is an information leak in algorithm negotiation that can allow man-in-the-middle attacks on initial connection attempts without a previously stored server host key on the client. If desired, mitigation using UpdateHostKeys and HostKeyAlgorithms is also given in that paper.</td>
 <td>3.7.14-3.7.14.2, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2637554</td>
+<td>The {{cl-acltool}} takes a significant amount of time to run, which can slow down automation scripts.</td>
+<td>4.2.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2634464</td>
+<td>In an EVPN multihoming configuration, when you bring down a local bond on the switch, MAC address from the bond still point to a local interface and is advertised to EVPN.</td>
+<td>4.2.1-4.3.0</td>
 <td></td>
 </tr>
 <tr>
@@ -4001,6 +4025,12 @@ asic-monitor[7389]: File "/usr/lib/python2.7/dist-packages/cumulus/asic_monitor.
 <td>OpenSSH is vulnerable to CVE-2020-14145, as described in https://www.fzi.de/fileadmin/user_upload/2020-06-26-FSA-2020-2.pdf.  
 This is an information leak in algorithm negotiation that can allow man-in-the-middle attacks on initial connection attempts without a previously stored server host key on the client. If desired, mitigation using UpdateHostKeys and HostKeyAlgorithms is also given in that paper.</td>
 <td>3.7.14-3.7.14.2, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2637554</td>
+<td>The {{cl-acltool}} takes a significant amount of time to run, which can slow down automation scripts.</td>
+<td>4.2.0-4.3.0</td>
 <td></td>
 </tr>
 <tr>

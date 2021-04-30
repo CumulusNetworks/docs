@@ -1,5 +1,5 @@
 ---
-title: Setting the Time Zone and Software Clock 
+title: Setting the Date and Time 
 author: NVIDIA
 weight: 124
 toc: 3

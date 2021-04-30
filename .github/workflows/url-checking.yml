@@ -25,6 +25,6 @@ jobs:
           grep -ro --exclude='*/pdf/index.html' --include='*.html' 'banana' public/ | head -20 >> $GITHUB_ENV
           echo "$$" >> $GITHUB_ENV
     - name: Print bad kb_links
-      run: printf $GREP_OUTPUT
+      run: echo $GREP_OUTPUT
     - name: Exit != 0 if there was grep output
-      run: printf $GREP_OUTPUT | wc -l
+      run: echo -n $GREP_OUTPUT | wc -l

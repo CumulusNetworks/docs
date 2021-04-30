@@ -224,6 +224,9 @@ Using route maps is highly recommended to control the advertised networks redist
 ```
 cumulus@switch:~$ net add routing route-map REDISTRIBUTE-CONNECTED deny 100 match interface eth0
 cumulus@switch:~$ net add routing route-map REDISTRIBUTE-CONNECTED permit 1000
+cumulus@switch:~$ net add bgp redistribute connected route-map REDISTRIBUTE-CONNECTED
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
@@ -231,13 +234,16 @@ cumulus@switch:~$ net add routing route-map REDISTRIBUTE-CONNECTED permit 1000
 {{< tab "vtysh Commands ">}}
 
 ```
-cumulus@switch:$ sudo vtysh
-
+cumulus@switch:~$ sudo vtysh
 switch# configure terminal
-switch(config)# route-map REDISTRIBUTE-CONNECTED deny 100 match interface eth0
+switch(config)# route-map REDISTRIBUTE-CONNECTED deny 100 
+switch(config-route-map)# match interface eth0
 switch(config)# route-map REDISTRIBUTE-CONNECTED permit 1000
-switch(config)# redistribute connected route-map REDISTRIBUTE-CONNECTED
-switch(config)# exit
+switch(config-route-map)# exit
+switch(config)# router bgp
+switch(config-router)# address-family ipv4 unicast
+switch((config-router-af)# redistribute connected route-map REDISTRIBUTE-CONNECTED
+switch(config)# end
 switch# write memory
 switch# exit
 cumulus@switch:~$
@@ -251,9 +257,19 @@ The NCLU and vtysh commands save the configuration in the `/etc/frr/frr.conf` fi
 
 ```
 ...
-<routing-protocol>
-redistribute connected route-map REDISTRIBUTE-CONNECTED
-
+router bgp 65101
+ bgp router-id 10.10.10.1
+ neighbor swp51 interface remote-as external
+ neighbor swp52 interface remote-as external
+ !
+ address-family ipv4 unicast
+  network 10.1.10.0/24
+  network 10.10.10.1/32
+  redistribute connected route-map REDISTRIBUTE-CONNECTED
+  maximum-paths 64
+  maximum-paths ibgp 64
+ exit-address-family
+!
 route-map REDISTRIBUTE-CONNECTED deny 100
 match interface eth0
 !

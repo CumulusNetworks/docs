@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout git repo
-      uses: actions/checkout@v2
+      uses: actions/checkout@v2.3.4
     - name: Download and install Hugo
       uses: peaceiris/actions-hugo@v2
       with:
@@ -17,10 +17,14 @@ jobs:
       run: sed -i 's/#ERROR/\<{{ errorf "broken link in %s" .Position }}\>/g' themes/netDocs/layouts/shortcodes/link.html
     - name: Run Hugo
       run: hugo
+    # There is a bug in the checkout module. If the output of this is too long (without head) it will cause the checkout "cleanup"
+    # step to fail. This will cause the action to declare a build failure.
     - name: Grep for bad kb_links
       run: |
           echo "GREP_OUTPUT<<$$" >> $GITHUB_ENV
-          grep -ro -m 20 --exclude='*/pdf/index.html' --include='*.html' 'bgp' public/ >> $GITHUB_ENV
+          grep -ro --exclude='*/pdf/index.html' --include='*.html' 'banana' public/ | head -20 >> $GITHUB_ENV
           echo "$$" >> $GITHUB_ENV
     - name: Print bad kb_links
-      run: echo $GREP_OUTPUT
+      run: printf $GREP_OUTPUT
+    - name: Exit != 0 if there was grep output
+      run: printf $GREP_OUTPUT | wc -l

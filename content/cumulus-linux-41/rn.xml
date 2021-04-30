@@ -61,6 +61,22 @@
 <td></td>
 </tr>
 <tr>
+<td>2638043</td>
+<td>OpenSSH is vulnerable to CVE-2020-14145, as described in https://www.fzi.de/fileadmin/user_upload/2020-06-26-FSA-2020-2.pdf.  
+This is an information leak in algorithm negotiation that can allow man-in-the-middle attacks on initial connection attempts without a previously stored server host key on the client. If desired, mitigation using UpdateHostKeys and HostKeyAlgorithms is also given in that paper.</td>
+<td>3.7.14-3.7.14.2, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2633062</td>
+<td>The following vulnerability affects the libgstreamer-plugins-base1.0-0 package.  There is no CVE yet; the Debian advisory number is DSA-4903-1.
+Multiple vulnerabilities were discovered in plugins for the GStreamer media framework, which may result in denial of service or potentially the execution of arbitrary code if a malformed media file is opened.
+Vulnerable: 1.14.4-2
+Fixed: 1.14.4-2+deb10u1</td>
+<td>4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
 <td>2625818</td>
 <td>The following CVEs were announced that affect the libssh package:
 CVE-2019-14889 has been announced in the libssh library, where unsanitized user-provided scp command lines could allow an attacker to execute arbitrary commands on the server.
@@ -464,13 +480,6 @@ Nov 12 12:20:05.099943 leaf01 switchd[9867]: hal_bcm_console.c:299 CRIT loading 
 <td>On the Dell S5048F-ON switch, optical transceivers do not come up and the modules are in reset mode.</td>
 <td>4.0.0-4.2.1</td>
 <td>4.3.0</td>
-</tr>
-<tr>
-<td>2554617</td>
-<td>OpenSSH is vulnerable to CVE-2020-14145, as described in https://www.fzi.de/fileadmin/user_upload/2020-06-26-FSA-2020-2.pdf.  
-This is an information leak in algorithm negotiation that can allow man-in-the-middle attacks on initial connection attempts without a previously stored server host key on the client. If desired, mitigation using UpdateHostKeys and HostKeyAlgorithms is also given in that paper.</td>
-<td>3.7.14-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
 </tr>
 <tr>
 <td>2554588</td>
@@ -2841,6 +2850,22 @@ CVE-2020-10531: An issue was discovered in International Components for Unicode 
 <td></td>
 </tr>
 <tr>
+<td>2638043</td>
+<td>OpenSSH is vulnerable to CVE-2020-14145, as described in https://www.fzi.de/fileadmin/user_upload/2020-06-26-FSA-2020-2.pdf.  
+This is an information leak in algorithm negotiation that can allow man-in-the-middle attacks on initial connection attempts without a previously stored server host key on the client. If desired, mitigation using UpdateHostKeys and HostKeyAlgorithms is also given in that paper.</td>
+<td>3.7.14-3.7.14.2, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2633062</td>
+<td>The following vulnerability affects the libgstreamer-plugins-base1.0-0 package.  There is no CVE yet; the Debian advisory number is DSA-4903-1.
+Multiple vulnerabilities were discovered in plugins for the GStreamer media framework, which may result in denial of service or potentially the execution of arbitrary code if a malformed media file is opened.
+Vulnerable: 1.14.4-2
+Fixed: 1.14.4-2+deb10u1</td>
+<td>4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
 <td>2625818</td>
 <td>The following CVEs were announced that affect the libssh package:
 CVE-2019-14889 has been announced in the libssh library, where unsanitized user-provided scp command lines could allow an attacker to execute arbitrary commands on the server.
@@ -3219,13 +3244,6 @@ Nov 12 12:20:05.099943 leaf01 switchd[9867]: hal_bcm_console.c:299 CRIT loading 
 <td>On the Dell S5048F-ON switch, optical transceivers do not come up and the modules are in reset mode.</td>
 <td>4.0.0-4.2.1</td>
 <td>4.3.0</td>
-</tr>
-<tr>
-<td>2554617</td>
-<td>OpenSSH is vulnerable to CVE-2020-14145, as described in https://www.fzi.de/fileadmin/user_upload/2020-06-26-FSA-2020-2.pdf.  
-This is an information leak in algorithm negotiation that can allow man-in-the-middle attacks on initial connection attempts without a previously stored server host key on the client. If desired, mitigation using UpdateHostKeys and HostKeyAlgorithms is also given in that paper.</td>
-<td>3.7.14-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
 </tr>
 <tr>
 <td>2554588</td>

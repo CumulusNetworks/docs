@@ -198,7 +198,7 @@ Using route maps is highly recommended to control the advertised networks redist
 
 ```
 cumulus@switch:~$ cl set router policy route-map REDISTRIBUTE rule 10 match interface eth0
-cumulus@switch:~$ cl set router policy route-map REDISTRIBUTE rule 10 action deny
+cumulus@switch:~$ cl set router policy route-map REDISTRIBUTE rule 100 action deny
 cumulus@switch:~$ cl set vrf default router bgp address-family ipv4-unicast redistribute connected route-map REDISTRIBUTE
 cumulus@switch:~$ cl config apply
 ```
@@ -210,9 +210,9 @@ cumulus@switch:~$ cl config apply
 cumulus@switch:$ sudo vtysh
 
 switch# configure terminal
-switch(config)# route-map REDISTRIBUTE-CONNECTED deny 100 
+switch(config)# route-map REDISTRIBUTE-CONNECTED deny 10 
 switch(config-route-map)# match interface eth0
-switch(config)# route-map REDISTRIBUTE-CONNECTED permit 1000
+switch(config)# route-map REDISTRIBUTE-CONNECTED permit 100
 switch(config-route-map)# exit
 switch(config)# router bgp
 switch(config-router)# address-family ipv4 unicast
@@ -249,10 +249,10 @@ router bgp 65101
   maximum-paths ibgp 64
  exit-address-family
 !
-route-map REDISTRIBUTE-CONNECTED deny 100
+route-map REDISTRIBUTE-CONNECTED deny 10
 match interface eth0
 !
-route-map REDISTRIBUTE-CONNECTED permit 1000
+route-map REDISTRIBUTE-CONNECTED permit 100
 ...
 ```
 
@@ -373,19 +373,10 @@ For example, to specify DNS servers and associate some of them with the manageme
 {{< tab "CUE Commands ">}}
 
 ```
-cumulus@switch:~$ NEED COMMAND
+cumulus@switch:~$ cl set service dns server 192.0.2.1
+cumulus@switch:~$ cl set service dns mgmt server 198.51.100.31
+cumulus@switch:~$ cl set service dns mgmt server 203.0.113.13
 cumulus@switch:~$ cl config apply
-```
-
-{{< /tab >}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@switch:~$ net add dns nameserver ipv4 192.0.2.1
-cumulus@switch:~$ net add dns nameserver ipv4 198.51.100.31 vrf mgmt
-cumulus@switch:~$ net add dns nameserver ipv4 203.0.113.13 vrf mgmt
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}

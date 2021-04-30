@@ -24,3 +24,5 @@ jobs:
           echo "$$" >> $GITHUB_ENV
     - name: Print bad kb_links
       run: echo $GREP_OUTPUT
+    - name: Exit != 0 if there was grep output
+      run: (exit $(echo $output | wc -l))

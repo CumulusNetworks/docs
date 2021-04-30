@@ -27,4 +27,4 @@ jobs:
     - name: Print bad kb_links
       run: echo $GREP_OUTPUT
     - name: Exit != 0 if there was grep output
-      run: echo $GREP_OUTPUT | wc -l
+      run: echo "TEST TEST " $GREP_OUTPUT | wc -l

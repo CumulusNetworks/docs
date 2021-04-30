@@ -21,9 +21,9 @@ jobs:
     # step to fail. This will cause the action to declare a build failure.
     - name: Grep for bad kb_links
       run: |
-          echo "GREP_OUTPUT<<$$" >> $GITHUB_ENV
+          echo "GREP_OUTPUT<<EOF" >> $GITHUB_ENV
           grep -ro --exclude='*/pdf/index.html' --include='*.html' 'banana' public/ | head -20 >> $GITHUB_ENV
-          echo "$$" >> $GITHUB_ENV
+          echo "EOF" >> $GITHUB_ENV
     - name: Print bad kb_links
       run: echo $GREP_OUTPUT
     - name: Test wc

@@ -969,14 +969,14 @@ To can configure the switch to allow joins from all upstream neighbors or to pro
 The following example command configures PIM to ignore the RP check for all upstream neighbors:
 
 ```
-cumulus@switch:~$ cl set interface swp50 pim allow-rp
+cumulus@switch:~$ NEED COMMAND
 cumulus@switch:~$ cl config apply
 ```
 
 The following example command configures PIM to only ignore the RP check for upstream neighbors in the prefix list called ALLOW-RP:
 
 ```
-cumulus@switch:~$ cl set interface swp50 pim allow-rp rp-list ALLOW-RP
+cumulus@switch:~$ NEED COMMAND
 cumulus@switch:~$ cl config apply
 ```
 

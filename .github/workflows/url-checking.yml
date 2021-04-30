@@ -22,7 +22,7 @@ jobs:
     - name: Grep for bad kb_links
       run: |
           echo "GREP_OUTPUT<<$$" >> $GITHUB_ENV
-          grep -ro --exclude='*/pdf/index.html' --include='*.html' '<title>SONiC Documentation | SONiC 202012</title>' public/ | head -20 >> $GITHUB_ENV
+          grep -ro --exclude='*/pdf/index.html' --include='*.html' 'banana' public/ | head -20 >> $GITHUB_ENV
           echo "$$" >> $GITHUB_ENV
     - name: Print bad kb_links
       run: printf $GREP_OUTPUT

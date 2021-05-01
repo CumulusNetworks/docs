@@ -4,7 +4,8 @@ author: NVIDIA
 weight: 470
 toc: 4
 ---
-While it is not required to upgrade the NetQ CLI on your monitored switches and hosts when you upgrade to NetQ 4.0.0, doing so gives you access to new features and important bug fixes. Refer to the {{<link title="NVIDIA NetQ 4.0 Release Notes" text="release notes">}} for details.
+
+While it is not required to upgrade the NetQ CLI on your monitored switches and hosts when you upgrade to NetQ {{<version>}}, doing so gives you access to new features and important bug fixes. Refer to the {{<link title="NVIDIA NetQ 4.0 Release Notes" text="release notes">}} for details.
 
 To upgrade the NetQ CLI:
 
@@ -40,8 +41,4 @@ sudo yum install netq-apps
     netq config restart cli
     ```
 
-To complete the upgrade, refer to the relevant configuration topic:
-
-- {{<link title= "Install and Configure the NetQ CLI on Cumulus Linux Switches" text="Configure the NetQ CLI on a Cumulus Linux Switch">}}
-- {{<link title="Install and Configure the NetQ CLI on Ubuntu Servers" text="Configure the NetQ CLI on an Ubuntu Server">}}
-- {{<link title="Install and Configure the NetQ CLI on RHEL and CentOS Servers" text="Configure the NetQ CLI on a RHEL or CentOS Server">}}
+To complete the upgrade, refer to {{<link url="Install-NetQ-CLI/#configure-the-netq-cli" text="Configure the NetQ CLI">}}.

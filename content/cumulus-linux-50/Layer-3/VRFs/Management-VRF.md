@@ -198,7 +198,10 @@ Using route maps is highly recommended to control the advertised networks redist
 
 ```
 cumulus@switch:~$ NEED COMMAND
-cumulus@switch:~$ NEED COMMAND
+cumulus@switch:~$ cl set router policy route-map REDISTRIBUTE rule 10 match interface eth0
+cumulus@switch:~$ cl set router policy route-map REDISTRIBUTE rule 10 action permit
+cumulus@switch:~$ cl set vrf default router bgp address-family ipv4-unicast redistribute connected route-map REDISTRIBUTE
+cumulus@switch:~$ cl config apply
 ```
 
 {{< /tab >}}

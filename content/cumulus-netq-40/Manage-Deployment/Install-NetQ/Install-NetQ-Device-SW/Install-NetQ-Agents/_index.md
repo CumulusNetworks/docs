@@ -1,0 +1,585 @@
+---
+title: Install NetQ Agents
+author: NVIDIA
+weight: 280
+toc: 4
+---
+
+After installing your {{<link url="Install-NetQ" text="NetQ software">}}, you should install the NetQ {{<version>}} Agents on each switch you want to monitor. NetQ Agents can be installed on switches and servers running:
+
+- Cumulus Linux versions 3.3.2-3.7.x
+- Cumulus Linux versions 4.0.0 and later
+- CentOS 7
+- RHEL 7.1
+- Ubuntu 16.04
+- Ubuntu 18.04
+
+## Prepare for NetQ Agent Installation
+
+For switches running Cumulus Linux, you need to:
+
+- Install and configure NTP, if needed
+- Obtain NetQ software packages
+
+For servers running RHEL, CentOS, or Ubuntu, you need to:
+
+- Verify the minimum package versions are installed
+- Verify the server is running `lldpd`
+- Install and configure NTP, if needed
+- Obtain NetQ software packages
+
+{{<notice note>}}
+If your network uses a proxy server for external connections, you should first {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux/System-Configuration/Configuring-a-Global-Proxy/" text="configure a global proxy">}} so <code>apt-get</code> can access the software package in the NVIDIA networking repository.
+{{</notice>}}
+
+{{<tabs "Prepare Agent Install">}}
+
+{{<tab "Cumulus Linux">}}
+
+### Verify NTP is Installed and Configured
+
+Verify that {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux/System-Configuration/Setting-Date-and-Time/" text="NTP">}} is running on the switch. The switch must be in time synchronization with the NetQ Platform or NetQ Appliance to enable useful statistical analysis.
+
+```
+cumulus@switch:~$ sudo systemctl status ntp
+[sudo] password for cumulus:
+● ntp.service - LSB: Start NTP daemon
+        Loaded: loaded (/etc/init.d/ntp; bad; vendor preset: enabled)
+        Active: active (running) since Fri 2018-06-01 13:49:11 EDT; 2 weeks 6 days ago
+          Docs: man:systemd-sysv-generator(8)
+        CGroup: /system.slice/ntp.service
+                └─2873 /usr/sbin/ntpd -p /var/run/ntpd.pid -g -c /var/lib/ntp/ntp.conf.dhcp -u 109:114
+```
+
+If NTP is not installed, install and configure it before continuing.  
+
+If NTP is not running:
+
+- Verify the IP address or hostname of the NTP server in the `/etc/ntp.conf` file, and then
+- Re-enable and start the NTP service using the `systemctl [enable|start] ntp` commands
+
+{{<notice tip>}}
+If you are running NTP in your out-of-band management network with VRF, specify the VRF (<code>ntp@&lt;vrf-name&gt;</code> versus just <code>ntp</code>) in the above commands.
+{{</notice>}}
+
+### Obtain NetQ Agent Software Package
+
+To install the NetQ Agent you need to install `netq-agent` on each switch or host. This is available from the NVIDIA networking repository.
+
+To obtain the NetQ Agent package:
+
+Edit the `/etc/apt/sources.list` file to add the repository for NetQ.
+
+*Note that NetQ has a separate repository from Cumulus Linux.*
+
+{{<tabs "Get Agent Package" >}}
+
+{{<tab "Cumulus Linux 3.x" >}}
+
+```
+cumulus@switch:~$ sudo nano /etc/apt/sources.list
+...
+deb http://apps3.cumulusnetworks.com/repos/deb CumulusLinux-3 netq-{{<version>}}
+...
+```
+
+{{<notice tip>}}
+The repository <code>deb http://apps3.cumulusnetworks.com/repos/deb CumulusLinux-3 netq-latest</code> can be used if you want to always retrieve the latest posted version of NetQ.
+{{</notice>}}
+
+{{</tab>}}
+
+{{< tab "Cumulus Linux 4.x" >}}
+
+Add the repository:
+
+```
+cumulus@switch:~$ sudo nano /etc/apt/sources.list
+...
+deb http://apps3.cumulusnetworks.com/repos/deb CumulusLinux-4 netq-{{<version>}}
+...
+```
+
+{{<notice tip>}}
+The repository <code>deb http://apps3.cumulusnetworks.com/repos/deb CumulusLinux-4 netq-latest</code> can be used if you want to always retrieve the latest posted version of NetQ.
+{{</notice>}}
+
+Add the `apps3.cumulusnetworks.com` authentication key to Cumulus Linux:
+
+```
+cumulus@switch:~$ wget -qO - https://apps3.cumulusnetworks.com/setup/cumulus-apps-deb.pubkey | sudo apt-key add -
+```
+
+{{</tab>}}
+
+{{</tabs>}}
+
+{{</tab>}}
+
+{{<tab "RHEL 7or CentOS">}}
+
+### Verify Service Package Versions
+
+Before you install the NetQ Agent on a Red Hat or CentOS server, make sure the following packages are installed and running these minimum versions:
+
+- iproute-3.10.0-54.el7\_2.1.x86\_64
+- lldpd-0.9.7-5.el7.x86\_64
+- ntp-4.2.6p5-25.el7.centos.2.x86\_64
+- ntpdate-4.2.6p5-25.el7.centos.2.x86\_64
+
+### Verify the Server is Running lldpd and wget
+
+Make sure you are running lldp**d**, not lldp**ad**. CentOS does not include `lldpd` by default, nor does it include `wget`, which is required for the installation.
+
+To install this package, run the following commands:
+
+```
+root@rhel7:~# sudo yum -y install epel-release
+root@rhel7:~# sudo yum -y install lldpd
+root@rhel7:~# sudo systemctl enable lldpd.service
+root@rhel7:~# sudo systemctl start lldpd.service
+root@rhel7:~# sudo yum install wget
+```
+
+### Install and Configure NTP
+
+If NTP is not already installed and configured, follow these steps:
+
+1. Install {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux/System-Configuration/Setting-Date-and-Time/" text="NTP">}} on the server. Servers must be in time synchronization with the NetQ Platform or NetQ Appliance to enable useful statistical analysis.
+
+    ```
+    root@rhel7:~# sudo yum install ntp
+    ```
+
+2. Configure the NTP server.
+
+    1.  Open the `/etc/ntp.conf` file in your text editor of choice.
+
+    2.  Under the *Server* section, specify the NTP server IP address or hostname.
+
+3. Enable and start the NTP service.
+
+    ```
+    root@rhel7:~# sudo systemctl enable ntp
+    root@rhel7:~# sudo systemctl start ntp
+    ```
+
+   {{%notice tip%}}
+If you are running NTP in your out-of-band management network with VRF, specify the VRF (`ntp@<vrf-name>` versus just `ntp`) in the above commands.
+   {{%/notice%}}
+
+4.  Verify NTP is operating correctly. Look for an asterisk (\*) or a plus sign (+) that indicates the clock is synchronized.
+
+    ```
+    root@rhel7:~# ntpq -pn
+    remote           refid            st t when poll reach   delay   offset  jitter
+    ==============================================================================
+    +173.255.206.154 132.163.96.3     2 u   86  128  377   41.354    2.834   0.602
+    +12.167.151.2    198.148.79.209   3 u  103  128  377   13.395   -4.025   0.198
+    2a00:7600::41    .STEP.          16 u    - 1024    0    0.000    0.000   0.000
+    \*129.250.35.250 249.224.99.213   2 u  101  128  377   14.588   -0.299   0.243
+    ```
+
+### Obtain NetQ Agent Software Package
+
+To install the NetQ Agent you need to install `netq-agent` on each switch or host. This is available from the NVIDIA networking repository.
+
+To obtain the NetQ Agent package:
+
+1.  Reference and update the local `yum` repository.
+
+    ```
+    root@rhel7:~# sudo rpm --import https://apps3.cumulusnetworks.com/setup/cumulus-apps-rpm.pubkey
+    root@rhel7:~# sudo wget -O- https://apps3.cumulusnetworks.com/setup/cumulus-apps-rpm-el7.repo > /etc/yum.repos.d/cumulus-host-el.repo
+    ```
+
+2.  Edit `/etc/yum.repos.d/cumulus-host-el.repo` to set the `enabled=1` flag for the two NetQ repositories.
+
+    ```
+    root@rhel7:~# vi /etc/yum.repos.d/cumulus-host-el.repo
+    ...
+    [cumulus-arch-netq-3.2]
+    name=Cumulus netq packages
+    baseurl=https://apps3.cumulusnetworks.com/repos/rpm/el/7/netq-3.2/$basearch
+    gpgcheck=1
+    enabled=1
+    [cumulus-noarch-netq-3.2]
+    name=Cumulus netq architecture-independent packages
+    baseurl=https://apps3.cumulusnetworks.com/repos/rpm/el/7/netq-3.2/noarch
+    gpgcheck=1
+    enabled=1
+    ...
+    ```
+
+{{</tab>}}
+
+{{<tab "Ubuntu">}}
+
+### Verify Service Package Versions
+
+Before you install the NetQ Agent on an Ubuntu server, make sure the
+following packages are installed and running these minimum versions:
+<!-- vale off -->
+- iproute 1:4.3.0-1ubuntu3.16.04.1 all
+- iproute2 4.3.0-1ubuntu3 amd64
+- lldpd 0.7.19-1 amd64
+- ntp 1:4.2.8p4+dfsg-3ubuntu5.6 amd64
+<!-- vale on -->
+
+### Verify the Server is Running lldpd
+
+Make sure you are running lldp**d**, not lldp**ad**. Ubuntu does not include `lldpd` by default, which is required for the installation.
+
+To install this package, run the following commands:
+
+```
+root@ubuntu:~# sudo apt-get update
+root@ubuntu:~# sudo apt-get install lldpd
+root@ubuntu:~# sudo systemctl enable lldpd.service
+root@ubuntu:~# sudo systemctl start lldpd.service
+```
+
+### Install and Configure Network Time Server
+
+If NTP is not already installed and configured, follow these steps:
+
+1. Install {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux/System-Configuration/Setting-Date-and-Time/" text="NTP">}} on the server, if not already installed. Servers must be in time synchronization with the NetQ Platform or NetQ Appliance to enable useful statistical analysis.
+
+    ```
+    root@ubuntu:~# sudo apt-get install ntp
+    ```
+
+2. Configure the network time server.
+
+   {{< tabs "TabID0" >}}
+
+{{<tab "Use NTP Configuration File" >}}
+
+   1. Open the `/etc/ntp.conf` file in your text editor of choice.
+
+   2. Under the *Server* section, specify the NTP server IP address or hostname.
+
+   3. Enable and start the NTP service.
+
+          root@ubuntu:~# sudo systemctl enable ntp
+          root@ubuntu:~# sudo systemctl start ntp
+
+   {{<notice tip>}}
+If you are running NTP in your out-of-band management network with VRF, specify the VRF (<code>ntp@&lt;vrf-name&gt;</code> versus just <code>ntp</code>) in the above commands.
+   {{</notice>}}
+
+   4. Verify NTP is operating correctly. Look for an asterisk (\*) or a plus sign (+) that indicates the clock is synchronized.
+
+          root@ubuntu:~# ntpq -pn
+          remote           refid            st t when poll reach   delay   offset  jitter
+          ==============================================================================
+          +173.255.206.154 132.163.96.3     2 u   86  128  377   41.354    2.834   0.602
+          +12.167.151.2    198.148.79.209   3 u  103  128  377   13.395   -4.025   0.198
+          2a00:7600::41    .STEP.          16 u    - 1024    0    0.000    0.000   0.000
+          \*129.250.35.250 249.224.99.213   2 u  101  128  377   14.588   -0.299   0.243
+
+   {{< /tab >}}
+
+   {{< tab "Use Chrony (Ubuntu 18.04 only)" >}}
+
+   1. Install chrony if needed.
+
+          root@ubuntu:~# sudo apt install chrony
+
+   2. Start the chrony service.
+
+          root@ubuntu:~# sudo /usr/local/sbin/chronyd
+
+   3. Verify it installed successfully.
+
+          root@ubuntu:~# chronyc activity
+          200 OK
+          8 sources online
+          0 sources offline
+          0 sources doing burst (return to online)
+          0 sources doing burst (return to offline)
+          0 sources with unknown address
+
+   4. View the time servers chrony is using.
+
+          root@ubuntu:~# chronyc sources
+          210 Number of sources = 8
+
+          MS Name/IP address         Stratum Poll Reach LastRx Last sample
+          ===============================================================================
+          ^+ golem.canonical.com           2   6   377    39  -1135us[-1135us] +/-   98ms
+          ^* clock.xmission.com            2   6   377    41  -4641ns[ +144us] +/-   41ms
+          ^+ ntp.ubuntu.net              2   7   377   106   -746us[ -573us] +/-   41ms
+          ...
+
+      Open the *chrony.conf* configuration file (by default at */etc/chrony/*) and edit if needed.
+
+      Example with individual servers specified:
+
+          server golem.canonical.com iburst
+          server clock.xmission.com iburst
+          server ntp.ubuntu.com iburst
+          driftfile /var/lib/chrony/drift
+          makestep 1.0 3
+          rtcsync
+
+      Example when using a pool of servers:
+
+          pool pool.ntp.org iburst
+          driftfile /var/lib/chrony/drift
+          makestep 1.0 3
+          rtcsync
+
+   5. View the server chrony is currently tracking.
+
+          root@ubuntu:~# chronyc tracking
+          Reference ID    : 5BBD59C7 (golem.canonical.com)
+          Stratum         : 3
+          Ref time (UTC)  : Mon Feb 10 14:35:18 2020
+          System time     : 0.0000046340 seconds slow of NTP time
+          Last offset     : -0.000123459 seconds
+          RMS offset      : 0.007654410 seconds
+          Frequency       : 8.342 ppm slow
+          Residual freq   : -0.000 ppm
+          Skew            : 26.846 ppm
+          Root delay      : 0.031207654 seconds
+          Root dispersion : 0.001234590 seconds
+          Update interval : 115.2 seconds
+          Leap status     : Normal
+
+{{</tab >}}
+
+{{</tabs >}}
+
+### Obtain NetQ Agent Software Package
+
+To install the NetQ Agent you need to install `netq-agent` on each server. This is available from the NVIDIA networking repository.
+
+To obtain the NetQ Agent package:
+
+1. Reference and update the local `apt` repository.
+
+```
+root@ubuntu:~# sudo wget -O- https://apps3.cumulusnetworks.com/setup/cumulus-apps-deb.pubkey | apt-key add -
+```
+
+2. Add the Ubuntu repository:
+
+    {{< tabs "TabID2" >}}
+{{< tab "Ubuntu 16.04" >}}
+
+Create the file `/etc/apt/sources.list.d/cumulus-host-ubuntu-xenial.list` and add the following line:
+
+```
+root@ubuntu:~# vi /etc/apt/sources.list.d/cumulus-apps-deb-xenial.list
+...
+deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb xenial netq-latest
+...
+```
+
+{{</tab >}}
+
+{{<tab "Ubuntu 18.04" >}}
+
+Create the file `/etc/apt/sources.list.d/cumulus-host-ubuntu-bionic.list` and add the following line:
+
+```
+root@ubuntu:~# vi /etc/apt/sources.list.d/cumulus-apps-deb-bionic.list
+...
+deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb bionic netq-latest
+...
+```
+
+{{</tab >}}
+
+{{</tabs >}}
+
+    {{<notice note>}}
+The use of <code>netq-latest</code> in these examples means that a <code>get</code> to the repository always retrieves the latest version of NetQ, even in the case where a major version update has been made. If you want to keep the repository on a specific version - such as <code>netq-3.1</code> - use that instead.
+    {{</notice>}}
+
+{{</tab>}}
+
+{{</tabs>}}
+
+## Install NetQ Agent
+
+After completing the preparation steps, you can successfully install the agent onto your switch or host.
+
+{{<tabs "Install NetQ Agent">}}
+
+{{<tab "Cumulus Linux">}}
+
+To install the NetQ Agent:
+
+1. Update the local `apt` repository, then install the NetQ software on the switch.
+
+    ```
+    cumulus@switch:~$ sudo apt-get update
+    cumulus@switch:~$ sudo apt-get install netq-agent
+    ```
+
+2. Verify you have the correct version of the Agent.
+
+    ```
+    cumulus@switch:~$ dpkg-query -W -f '${Package}\t${Version}\n' netq-agent
+    ```
+
+    {{<netq-install/agent-version version="3.3.1" opsys="cl">}}
+
+3. Restart `rsyslog` so log files are sent to the correct destination.
+
+    ```
+    cumulus@switch:~$ sudo systemctl restart rsyslog.service
+    ```
+
+4. Continue with NetQ Agent configuration in the next section.
+
+{{</tab>}}
+
+{{<tab "RHEL7 or CentOS">}}
+
+To install the NetQ Agent:
+
+1.  Install the Bash completion and NetQ packages on the server.
+
+    ```
+    root@rhel7:~# sudo yum -y install bash-completion
+    root@rhel7:~# sudo yum install netq-agent
+    ```
+
+2. Verify you have the correct version of the Agent.
+
+    ```
+    root@rhel7:~# rpm -q -netq-agent
+    ```
+
+    {{<netq-install/agent-version version="3.3.1" opsys="rh">}}
+
+3. Restart `rsyslog` so log files are sent to the correct destination.
+
+    ```
+    root@rhel7:~# sudo systemctl restart rsyslog
+    ```
+
+4.  Continue with NetQ Agent Configuration in the next section.
+
+{{</tab>}}
+
+{{<tab "Ubuntu">}}
+
+To install the NetQ Agent:
+
+1.  Install the software packages on the server.
+
+    ```
+    root@ubuntu:~# sudo apt-get update
+    root@ubuntu:~# sudo apt-get install netq-agent
+    ```
+
+2. Verify you have the correct version of the Agent.
+
+    ```
+    root@ubuntu:~# dpkg-query -W -f '${Package}\t${Version}\n' netq-agent
+    ```
+
+    {{<netq-install/agent-version version="3.3.1" opsys="ub">}}
+
+3. Restart `rsyslog` so log files are sent to the correct destination.
+
+```
+root@ubuntu:~# sudo systemctl restart rsyslog.service
+```
+
+4.  Continue with NetQ Agent Configuration in the next section.
+
+{{</tab>}}
+
+{{</tabs>}}
+
+## Configure NetQ Agent
+
+After the NetQ Agents have been installed on the switches you want to monitor, the NetQ Agents must be configured to obtain useful and relevant data.
+
+{{%notice note%}}
+The NetQ Agent is aware of and communicates through the designated VRF. If you do not specify one, the default VRF (named *default*) is used. If you later change the VRF configured for the NetQ Agent (using a lifecycle management configuration profile, for example), you might cause the NetQ Agent to lose communication.
+{{%/notice%}}
+
+Two methods are available for configuring a NetQ Agent:
+
+- Edit the configuration file on the switch, or
+- Use the NetQ CLI
+
+### Configure NetQ Agents Using a Configuration File
+
+You can configure the NetQ Agent in the `netq.yml` configuration file contained in the `/etc/netq/` directory.
+
+1. Open the `netq.yml` file using your text editor of choice. For example:
+
+    ```
+    sudo nano /etc/netq/netq.yml
+    ```
+
+2. Locate the *netq-agent* section, or add it.
+
+3. Set the parameters for the agent as follows:
+    - port: 31980 (default configuration)
+    - server: IP address of the NetQ Appliance or VM where the agent should send its collected data
+    - vrf: default (or one that you specify)
+
+    Your configuration should be similar to this:
+
+    ```
+    netq-agent:
+        port: 31980
+        server: 127.0.0.1
+        vrf: mgmt
+    ```
+
+### Configure NetQ Agents Using the NetQ CLI
+
+If the CLI is configured, you can use it to configure the NetQ Agent to send telemetry data to the NetQ Appliance or VM. To configure the NetQ CLI, refer to {{<link title="Install NetQ CLI">}}.
+
+{{<notice info>}}
+If you intend to use a VRF for agent communication (recommended), refer to {{<link url="#configure-the-agent-to-use-a-vrf" text="Configure the Agent to Use VRF">}}. If you intend to specify a port for communication, refer to {{<link url="#configure-the-agent-to-communicate-over-a-specific-port" text="Configure the Agent to Communicate over a Specific Port">}}.
+{{</notice>}}
+
+Use the following command to configure the NetQ Agent:
+
+```
+netq config add agent server <text-opta-ip> [port <text-opta-port>] [vrf <text-vrf-name>]
+```
+
+This example uses an IP address of *192.168.1.254* and the default port and VRF for the NetQ Appliance or VM.
+
+```
+sudo netq config add agent server 192.168.1.254
+Updated agent server 192.168.1.254 vrf default. Please restart netq-agent (netq config restart agent).
+sudo netq config restart agent
+```
+
+## Configure Advanced NetQ Agent Settings
+
+A couple of additional options are available for configuring the NetQ Agent. If you are using VRFs, you can configure the agent to communicate over a specific VRF. You can also configure the agent to use a particular port.
+
+### Configure the Agent to Use a VRF
+
+By default, NetQ uses the *default* VRF for communication between the NetQ Appliance or VM and NetQ Agents. While optional, Cumulus strongly recommends that you configure NetQ Agents to communicate with the NetQ Appliance or VM only via a {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux/Layer-3/Virtual-Routing-and-Forwarding-VRF/" text="VRF">}}, including a {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux/Layer-3/Management-VRF/" text="management VRF">}}. To do so, you need to specify the VRF name when configuring the NetQ Agent. For example, if the management VRF is configured and you want the agent to communicate with the NetQ Appliance or VM over it, configure the agent like this:
+
+```
+sudo netq config add agent server 192.168.1.254 vrf mgmt
+sudo netq config restart agent
+```
+
+{{%notice info%}}
+If you later change the VRF configured for the NetQ Agent (using a lifecycle management configuration profile, for example), you might cause the NetQ Agent to lose communication.
+{{%/notice%}}
+
+### Configure the Agent to Communicate over a Specific Port
+
+By default, NetQ uses port 31980 for communication between the NetQ Appliance or VM and NetQ Agents. If you want the NetQ Agent to communicate with the NetQ Appliance or VM via a different port, you need to specify the port number when configuring the NetQ Agent, like this:
+
+```
+sudo netq config add agent server 192.168.1.254 port 7379
+sudo netq config restart agent
+```

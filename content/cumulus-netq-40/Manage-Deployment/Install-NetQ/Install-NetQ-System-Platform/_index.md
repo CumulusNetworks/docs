@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 200
 toc: 4
 ---
-This topic walks you through the NetQ System installation decisions and then provides installation steps based on those choices. If you are already comfortable with your installation choices, you may use the matrix in {{<link title="Install NetQ Quick Start">}} to go directly to the installation steps.
+This topic walks you through the NetQ System installation decisions and then provides installation steps based on those choices. If you are already comfortable with your installation choices, you can use the matrix in {{<link title="Install NetQ Quick Start">}} to go directly to the installation steps.
 
 To install NetQ {{<version>}}, you must first decide whether you want to install the NetQ System in an on-premises or remote deployment. Both deployment options provide secure access to data and features useful for monitoring and troubleshooting your network, and each has its benefits.
 
@@ -14,5 +14,5 @@ If, however, you find that you want to host a multi-site on-premises deployment 
 
 Click the deployment model you want to use to continue with installation:
 
-- {{<link title="Install NetQ as an On-premises Deployment" text="Use an On-premises Deployment">}}
-- {{<link title="Install NetQ as a Remote Deployment" text="Use a Remote Deployment">}}
+- {{<link title="Install NetQ as an On-premises Deployment" text="On-premises deployment">}}
+- {{<link title="Install NetQ as a Remote Deployment" text="Remote deployment">}}

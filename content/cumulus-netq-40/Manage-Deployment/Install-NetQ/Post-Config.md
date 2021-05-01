@@ -5,34 +5,34 @@ weight: 395
 toc: 3
 ---
 
-This topic describes how to configure deployment options that can only be performed after installation or upgrade of NetQ is complete.
+This topic describes how to configure deployment options that can only be performed after you finish installing or upgrading NetQ.
 
 ## Install a Custom Signed Certificate
 
-The NetQ UI version 3.0.x and later ships with a self-signed certificate which is sufficient for non-production environments or cloud deployments. For on-premises deployments, however, you receive a warning from your browser that this default certificate is not trusted when you first log in to the NetQ UI. You can avoid this by installing your own signed certificate.
+The NetQ UI ships with a self-signed certificate that is sufficient for non-production environments or cloud deployments. For on-premises deployments, however, you receive a warning from your browser that this default certificate is not trusted when you first log in to the NetQ UI. You can avoid this by installing your own signed certificate.
 
 The following items are needed to perform the certificate installation:
 
-- A valid X509 certificate
-- A private key file for the certificate
-- A DNS record name configured to access the NetQ UI
+- A valid X509 certificate.
+- A private key file for the certificate.
+- A DNS record name configured to access the NetQ UI.
 
-    The FQDN should match the common name of the certificate. If you use a wild card in the common name&mdash;for example, if the common name of the certificate is _*.example.com_&mdash;then the NetQ telemetry server should reside on a subdomain of that domain, accessible via a URL like _netq.example.com_.
-- NetQ must be installed and running
+  The FQDN should match the common name of the certificate. If you use a wild card in the common name &mdash; for example, if the common name of the certificate is _*.example.com_ &mdash; then the NetQ telemetry server should reside on a subdomain of that domain, accessible via a URL like _netq.example.com_.
+- NetQ must be installed and running.
 
-    You can verify this by running the `netq show opta-health` command.
+  You can verify this by running the `netq show opta-health` command.
 
 You can install a certificate using the Admin UI or the NetQ CLI.
 
-{{< tabs "TabID27" >}}
+{{<tabs "Install Cert">}}
 
-{{< tab "NetQ UI" >}}
+{{<tab "NetQ UI">}}
 
 1. Enter *https://\<hostname-or-ipaddr-of-netq-appliance-or-vm\>:8443* in your broswer address bar to open the Admin UI.
 
 2. From the Health page, click **Settings**.
 
-    {{<figure src="/images/netq/adminui-settings-tab-cert-330.png" width="500">}}
+    {{<figure src="/images/netq/adminui-settings-tab-cert-400.png" width="600">}}
 
 3. Click **Edit**.
 
@@ -40,9 +40,9 @@ You can install a certificate using the Admin UI or the NetQ CLI.
 
 5. Click **Lock**.
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "NetQ CLI" >}}
+{{<tab "NetQ CLI">}}
 
 1. Log in to the NetQ On-premises Appliance or VM via SSH and copy your certificate and key file there.
 
@@ -111,23 +111,23 @@ You can install a certificate using the Admin UI or the NetQ CLI.
     
     A message like the one here is shown if your ingress rule is successfully configured.
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}
 
 Your custom certificate should now be working. Verify this by opening the NetQ UI at `https://<your-hostname-or-ipaddr>` in your browser.
 
 ## Update Your Cloud Activation Key
 
-The cloud activation key is the one used to access the Cloud services, not the authorization keys used for configuring the CLI. It is provided by NVIDIA when your premises is set up. It is called the *config-key*.
+The cloud activation key is the one used to access the cloud services, not the authorization keys used for configuring the CLI. It is provided by NVIDIA when your premises is set up. It is called the *config-key*.
 
 On occasion, you might want to update your cloud service activation key. For example, if you mistyped the key during installation and now your existing key does not work, or you received a new key for your premises from NVIDIA.
 
 Update the activation key using the Admin UI or NetQ CLI:
 
-{{< tabs "TabID50" >}}
+{{<tabs "Cloud Key">}}
 
-{{< tab "Admin UI" >}}
+{{<tab "Admin UI">}}
 
 1. Open the Admin UI by entering *https://\<master-hostname-or-ipaddress\>:8443* in your browser address field.
 
@@ -143,7 +143,7 @@ Update the activation key using the Admin UI or NetQ CLI:
 
 {{< /tab >}}
 
-{{< tab "NetQ CLI" >}}
+{{<tab "NetQ CLI">}}
 
 Run the following command on your standalone or master NetQ Cloud Appliance or VM replacing `text-opta-key` with your new key.
 
@@ -151,9 +151,9 @@ Run the following command on your standalone or master NetQ Cloud Appliance or V
 cumulus@<hostname>:~$ netq install standalone activate-job config-key <text-opta-key>
 ```
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}
 
 ## Add More Nodes to Your Server Cluster
 
@@ -173,7 +173,7 @@ To add more worker nodes:
 
 3. Click **Cluster** to view your current configuration.
 
-    {{<figure src="/images/netq/adminui-cluster-tab-241.png" width="700" caption="On-premises deployment">}}
+    {{<figure src="/images/netq/adminui-cluster-tab-400.png" width="700" caption="On-premises deployment">}}
 
     This opens the Cluster dashboard, with the details about each node in the cluster.
 

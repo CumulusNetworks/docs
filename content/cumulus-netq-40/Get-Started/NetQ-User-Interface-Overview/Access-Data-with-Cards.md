@@ -8,33 +8,7 @@ Cards present information about your network for monitoring and troubleshooting.
 
 ## Card Sizes
 
-The various sizes of cards enables you to view your content at just the right level. For each aspect that you are monitoring there is typically a single card, that presents increasing amounts of data over its four sizes. For example, a snapshot of your total inventory may be sufficient, but to monitor the distribution of hardware vendors may requires a bit more space.
-
-### Small Cards
-
-Small cards are most effective at providing a quick view of the performance or statistical value of a given aspect of your network. They are commonly comprised of an icon to identify the aspect being monitored, summary performance or statistics in the form of a graph and/or counts, and often an indication of any related events. Other content items may be present. Some examples include a Devices Inventory card, a Switch Inventory card, an Alarm Events card, an Info Events card, and a Network Health card, as shown here:
-
-{{<figure src="/images/netq/access-data-small-group-230.png" width="700">}}
-
-### Medium Cards
-
-Medium cards are most effective at providing the key measurements for a given aspect of your network. They are commonly comprised of an icon to identify the aspect being monitored, one or more key measurements that make up the overall performance. Often additional information is also included, such as related events or components. Some examples include a Devices Inventory card, a Switch Inventory card, an Alarm Events card, an Info Events card, and a Network Health card, as shown here. Compare these with their related small- and large-sized cards.
-
-{{<figure src="/images/netq/access-data-medium-group-230.png" width="700">}}
-
-### Large Cards
-
-Large cards are most effective at providing the detailed information for monitoring specific components or functions of a given aspect of your network. These can aid in isolating and resolving existing issues or preventing potential issues. They are commonly comprised of detailed statistics and graphics. Some large cards also have tabs for additional detail about a given statistic or other related information. Some examples include a Devices Inventory card, an Alarm Events card, and a Network Health card, as shown here. Compare these with their related small- and medium-sized cards.
-
-{{<figure src="/images/netq/access-data-large-group-300.png" width="500">}}
-
-### Full-Screen Cards
-
-Full-screen cards are most effective for viewing all available data about an aspect of your network all in one place. When you cannot find what you need in the small, medium, or large cards, it is likely on the full-screen card. Most full-screen cards display data in a grid, or table; however, some contain visualizations. Some examples include All Events card and All Switches card, as shown here.
-
-{{<figure src="/images/netq/events-alarms-fullscr-allevents-tab.png" width="700">}}
-
-{{<figure src="/images/netq/inventory-devices-fullscr-allswitches-tab-230.png" width="700">}}
+The various sizes of cards enable you to view your content at just the right level. For each aspect that you are monitoring there is typically a single card that presents increasing amounts of data over its four sizes. For example, a snapshot of your total inventory may be sufficient, but to monitor the distribution of hardware vendors may require a bit more space.
 
 ### Card Size Summary
 
@@ -79,9 +53,39 @@ Full-screen cards are most effective for viewing all available data about an asp
 </tbody>
 </table>
 
+### Small Cards
+
+Small cards are most effective at providing a quick view of the performance or statistical value of a given aspect of your network. They are commonly comprised of an icon to identify the aspect being monitored, summary performance or statistics in the form of a graph and/or counts, and often an indication of any related events. Other content items may be present. Some examples include a Devices Inventory card, a Switch Inventory card, an Alarm Events card, an Info Events card, and a Network Health card, as shown here:
+
+{{<figure src="/images/netq/access-data-small-group-230.png" width="700">}}
+
+### Medium Cards
+
+Medium cards are most effective at providing the key measurements for a given aspect of your network. They are commonly comprised of an icon to identify the aspect being monitored, one or more key measurements that make up the overall performance. Often additional information is also included, such as related events or components. Some examples include a Devices Inventory card, a Switch Inventory card, an Alarm Events card, an Info Events card, and a Network Health card, as shown here. Compare these with their related small- and large-sized cards.
+
+{{<figure src="/images/netq/access-data-medium-group-230.png" width="700">}}
+
+### Large Cards
+
+Large cards are most effective at providing the detailed information for monitoring specific components or functions of a given aspect of your network. These can aid in isolating and resolving existing issues or preventing potential issues. They are commonly comprised of detailed statistics and graphics. Some large cards also have tabs for additional detail about a given statistic or other related information. Some examples include a Devices Inventory card, an Alarm Events card, and a Network Health card, as shown here. Compare these with their related small- and medium-sized cards.
+
+{{<figure src="/images/netq/card-inventory-switches-lg-400.png" width="600">}}
+
+{{<figure src="/images/netq/card-alarm-events-lg-400.png" width="600">}}
+
+{{<figure src="/images/netq/card-network-health-lg-400.png" width="600">}}
+
+### Full-Screen Cards
+
+Full-screen cards are most effective for viewing all available data about an aspect of your network all in one place. When you cannot find what you need in the small, medium, or large cards, it is likely on the full-screen card. Most full-screen cards display data in a grid, or table; however, some contain visualizations. Some examples include All Events card and All Switches card, as shown here.
+
+{{<figure src="/images/netq/card-all-events-fs-400.png" width="700">}}
+
+{{<figure src="/images/netq/card-inventory-switch-fs-400.png" width="700">}}
+
 ## Card Workflows
 
-The UI provides a number of card workflows. Card workflows focus on a particular aspect of your network and are a linked set of each size card-a small card, a medium card, one or more large cards, and one or more full screen cards. The following card workflows are available:
+The UI provides a number of card workflows. Card workflows focus on a particular aspect of your network and are a linked set of each size card &mdash; a small card, a medium card, one or more large cards, and one or more full screen cards. The following card workflows are available:
 
 - **Network Health**: networkwide view of network health
 - **Devices|Switches**: health of a given switch
@@ -113,7 +117,7 @@ To open the card workflow through an existing workbench:
 
 2. Select the relevant workbench.
 
-    {{< figure src="/images/netq/workbench-selection-from-wb-hdr-300.png" width="200" >}}
+    {{<figure src="/images/netq/wb-select-from-hdr-400.png" width="200">}}
 
     The workbench opens, hiding your previous workbench.
 
@@ -186,18 +190,18 @@ You can add switch cards to a workbench at any time. For all other cards, follow
 
 To add a switch card using the icon:
 
-1.  Click <img src="https://icons.cumulusnetworks.com/03-Computers-Devices-Electronics/09-Hard-Drives/hard-drive-1.svg" height="18" width="18"/> to open the Add Switch Card modal.
+1.  Click <img src="https://icons.cumulusnetworks.com/03-Computers-Devices-Electronics/09-Hard-Drives/hard-drive-1.svg" height="18" width="18"/>, then select **Open a switch card** to open the Open Switch Card modal.
 
-    {{<figure src="/images/netq/add-switch-card-modal-222.png" width="250">}}
+    {{<figure src="/images/netq/open-switch-card-400.png" width="250">}}
 
 2. Begin entering the hostname of the switch you want to monitor.
 
 3. Select the device from the suggestions that appear.
 
-      {{<figure src="/images/netq/add-switch-card-auto-suggest-222.png" width="250">}}
+      {{<figure src="/images/netq/open-switch-card-suggest-400.png" width="250">}}
 
       {{<notice tip>}}
-If you attempt to enter a hostname that is unknown to NetQ, a pink border appears around the entry field and you are unable to select <strong>Add</strong>. Try checking for spelling errors. If you feel your entry is valid, but not an available choice, consult with your network administrator.
+If you attempt to enter a hostname that is unknown to NetQ, a red border appears around the entry field and you are unable to select <strong>Add</strong>. Try checking for spelling errors. If you feel your entry is valid, but not an available choice, consult with your network administrator.
       {{</notice>}}
 
 4. Optionally select the small or large size to display instead of the medium size.
@@ -224,7 +228,7 @@ To remove a card:
 2. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu-horizontal.svg" height="18" width="18"/> (*More Actions* menu).
 3. Click **Remove**.
 
-    {{< figure src="/images/netq/remove-card-222.png" width="100" >}}
+    {{<figure src="/images/netq/remove-card-222.png" width="100">}}
 
 The card is removed from the workbench, but not from the application.
 
@@ -257,30 +261,23 @@ To change the card size:
 
     {{< figure src="/images/netq/card-size-picker-222.png" width="200" >}}
 
-    Single width opens a small card. Double width opens a medium card. Triple width opens large cards. Full width opens full-screen cards.
+    One-quarter width opens a small card. One-half width opens a medium card. Three-quarters width opens a large card. Full width opens a full-screen card.
 
-3. Click the Picker.  
-    The card changes to the selected size, and may move its location on the workbench.
+3. Click the Picker. The card changes to the selected size, and may move its location on the workbench.
 
 ### View a Description of the Card Content
 
-When you hover over a medium or large card, the bottom right corner turns up and is highlighted. Clicking the corner turns the card over where a description of the card and any relevant tabs are described. Hover and click again to turn it back to the front side.
+When you hover over a medium or large card, the bottom right corner turns up and is highlighted. Clicking the corner turns the card over where a description of the card and any relevant tabs are described. Hover and click the corner again to turn it back to the front side.
 
-{{< figure src="/images/netq/card-desc-on-back-222.png" width="400" >}}
+{{<figure src="/images/netq/card-desc-on-back-222.png" width="400">}}
 
 ### Reposition a Card on Your Workbench
 
-You can also move cards around on the workbench, using a simple drag and drop method.
+You can move cards around on the workbench.
 
-To move a card:
+1. Click and drag the card to the left, right, above, or below another card, to where you want to place the card.
 
-1. Simply click and drag the card to left or right of another card, next to where you want to place the card.
-
-2. Release your hold on the card when the other card becomes highlighted with a dotted line. In this example, we are moving the medium Network Health card to the left of the medium Devices Inventory card.  
-
-   {{< figure src="/images/netq/move-card-click-drag-222.png" width="700" >}}
-
-   {{< figure src="/images/netq/move-card-release-222.png" width="700" >}}
+1. Release your hold on the card when the other card becomes highlighted with a dotted line.
 
 ### Table Settings
 
@@ -337,9 +334,7 @@ For example, this IP Addresses table is sorted by hostname in a descending order
 
 The filter option associated with tables on full-screen cards can be used to filter the data by any parameter (column name). The parameters available vary according to the table you are viewing. Some tables offer the ability to filter on more than one parameter.
 
-*Tables that Support a Single Filter*
-
-Tables that allow a single filter to be applied let you select the parameter and set the value. You can use partial values.
+Some tables only allow a single filter to be applied; you select the parameter and set the value. You can use partial values.
 
 For example, to set the filter to show only BGP sessions using a particular VRF:
 
@@ -367,9 +362,9 @@ For example, to set the filter to show only BGP sessions using a particular VRF:
 
 9. Close the **Filters** dialog by clicking <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/>.
 
-*Tables that Support Multiple Filters*
+#### Filter Table Data with Multiple Filters
 
-For tables that offer filtering by multiple parameters, the Filter dialog is slightly different. For example, to filter the list of IP Addresses in your system by hostname and interface:
+Some tables offer filtering by multiple parameters. In such cases, the Filter dialog is slightly different. For example, to filter the list of IP addresses in your system by hostname and interface:
 
 1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/>.
 

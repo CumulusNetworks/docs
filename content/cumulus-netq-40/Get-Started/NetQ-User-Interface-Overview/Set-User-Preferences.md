@@ -8,7 +8,7 @@ Each user can customize the NetQ application display, change his account passwor
 
 ## Configure Display Settings
 
-The Display card contains the options for setting the application theme, language, time zone, and date formats. Two themes are available: a Light theme and a Dark theme (default). The screen captures in this document are all displayed with the Dark theme. English is the only language available for this release. You can choose to view data in the time zone where you or your data center resides. You can also select the date and time format, choosing words or number format and a 12- or 24-hour clock. All changes take effect immediately.
+The Display card contains the options for setting the application theme, language, time zone, and date formats. Two themes are available: a *light* theme and a *dark* theme, which is the default. The screen captures in this user guide are all displayed with the dark theme. English is the only language available for this release. You can choose to view data in the time zone where you or your data center resides. You can also select the date and time format, choosing words or number format and a 12- or 24-hour clock. All changes take effect immediately.
 
 To configure the display settings:
 
@@ -23,12 +23,16 @@ To configure the display settings:
 
 4. In the **Theme** field, click <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-down-2.svg" height="14" width="14"/> to select your choice of theme. This figure shows the light theme. Switch back and forth as desired.
 
-    {{<figure src="/images/netq/user-settings-profile-prefs-light-theme-320.png" width="700">}}
+    {{<figure src="/images/netq/user-settings-profile-prefs-light-theme-400.png" width="700">}}
 
 5. In the **Time Zone** field, click <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-down-2.svg" height="14" width="14"/> to change the time zone from the default.  
     By default, the time zone is set to the user's local time zone. If a time zone has not been selected, NetQ defaults to the current local time zone where NetQ is installed. All time values are based on this setting. This is displayed in the application header, and is based on Greenwich Mean Time (GMT).  
 
-    **Tip**: You can also change the time zone from the header display.
+    {{%notice tip%}}
+
+You can also change the time zone from the header display.
+
+    {{%/notice%}}
 
     {{<figure src="/images/netq/app-hdr-time-zone-222.png" width="75">}}
 
@@ -71,8 +75,6 @@ To configure the display settings:
 
     The four options include the date displayed in words or abbreviated with numbers, and either a 12- or 24-hour time representation. The default is the third option.
 
-7. Return to your workbench by clicking <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> and selecting a workbench from the NetQ list.
-
 ## Change Your Password
 
 You can change your account password at any time should you suspect someone has hacked your account or your administrator requests you to do so.
@@ -94,15 +96,13 @@ To change your password:
 
     {{<figure src="/images/netq/change-passwd-modal-222.png" width="200">}}
 
-7. Click **Save** to change to the new password, or click **Cancel** to
-    discard your changes.
-8. Return to your workbench by clicking <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> and selecting a workbench from the NetQ list.
+7. Click **Save** to change to the new password.
 
 ## Manage Your Workbenches
 
 You can view all of your workbenches in a list form, making it possible to manage various aspects of them. There are public and private workbenches. Public workbenches are visible by all users. Private workbenches are visible only by the user who created the workbench. From the Workbenches card, you can:
 
-- **Specify a home workbench**: This tells NetQ to open with that workbench when you log in instead of the default Cumulus Workbench.
+- **Specify a home workbench**: This tells NetQ to open with that workbench when you log in instead of the default NetQ Workbench.
 - **Search for a workbench**: If you have a large number of workbenches, you can search for a particular workbench by name, or sort workbenches by their access type or cards that reside on them.
 - **Delete a workbench:** Perhaps there is one that you no longer use. You can remove workbenches that you have created (private workbenches). An administrative role is required to remove workbenches that are common to all users (public workbenches).
 
@@ -121,4 +121,3 @@ To manage your workbenches:
 5. To search the workbench list by name, access type, and cards present on the workbench, click the relevant header and begin typing your search criteria.
 6. To sort the workbench list, click the relevant header and click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/35-Text-Options/arrange-letter.svg" height="18" width="18"/>.
 7. To delete a workbench, hover over the workbench name to view the **Delete** button. As an administrator, you can delete both private and public workbenches.
-8. Return to your workbench by clicking <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> and selecting a workbench from the NetQ list.

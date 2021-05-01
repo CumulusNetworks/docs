@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 670
 toc: 4
 ---
-The lifecycle management (LCM) feature enables you to upgrade to NetQ 3.3.0 on switches with an existing NetQ Agent 2.4.x-3.2.1 release using the NetQ UI. You can upgrade only the NetQ Agent or upgrade both the NetQ Agent and the NetQ CLI at the same time. Up to five jobs can be run simultaneously; however, a given switch can only be contained in one running job at a time.
+The lifecycle management (LCM) feature enables you to upgrade to NetQ 4.0.0 on switches with an existing NetQ Agent 2.4.x-3.2.1 release using the NetQ UI. You can upgrade only the NetQ Agent or upgrade both the NetQ Agent and the NetQ CLI at the same time. Up to five jobs can be run simultaneously; however, a given switch can only be contained in one running job at a time.
 
 The upgrade workflow includes the following steps:
 
@@ -150,10 +150,10 @@ To upgrade the NetQ Agent on one or more switches, run:
 netq-image name <text-job-name> [netq-version <text-netq-version>] [upgrade-cli True | upgrade-cli False] hostnames <text-switch-hostnames> [config_profile <text-config-profile>]
 ```
 
-This example creates a NetQ Agent upgrade job called *upgrade-cl430-nq330*. It upgrades the *spine01* and *spine02* switches with NetQ Agents version 3.3.0.
+This example creates a NetQ Agent upgrade job called *upgrade-cl430-nq330*. It upgrades the *spine01* and *spine02* switches with NetQ Agents version 4.0.0.
 
 ```
-cumulus@switch:~$ netq lcm upgrade name upgrade-cl430-nq330 netq-version 3.3.0 hostnames spine01,spine02
+cumulus@switch:~$ netq lcm upgrade name upgrade-cl430-nq330 netq-version 4.0.0 hostnames spine01,spine02
 ```
 
 <!-- You can assign an order for which switches to upgrade based on the switch roles defined above. For example, to upgrade the spines before the leafs, add the `order ROLE1,ROLE2` option to the command:
@@ -233,7 +233,7 @@ cumulus@switch:~$ netq lcm show upgrade-jobs netq-image json
     {
         "jobId": "job_netq_install_7152a03a8c63c906631c3fb340d8f51e70c3ab508d69f3fdf5032eebad118cc7",
         "name": "Leaf01-02 to NetQ330",
-        "netqVersion": "3.3.0",
+        "netqVersion": "4.0.0",
         "overallStatus": "FAILED",
         "pre-checkStatus": "COMPLETED",
         "warnings": [],
@@ -250,7 +250,7 @@ Upgrade Summary
 Start Time: 2021-01-28 19:48:10.557000
 End Time: 2021-01-28 19:48:17.972000
 Upgrade CLI: True
-NetQ Version: 3.3.0
+NetQ Version: 4.0.0
 Pre Check Status COMPLETED
 Precheck Task switch_precheck COMPLETED
 	Warnings: []
@@ -266,7 +266,7 @@ Precheck Task config_precheck COMPLETED
 Hostname          CL Version  NetQ Version  Prev NetQ Ver Config Profile               Status           Warnings         Errors       Start Time
                                             sion
 ----------------- ----------- ------------- ------------- ---------------------------- ---------------- ---------------- ------------ --------------------------
-leaf01            4.2.1       3.3.0         3.2.1         ['NetQ default config']      FAILED           []               ["Unreachabl Thu Jan 28 19:48:10 2021
+leaf01            4.2.1       4.0.0         3.2.1         ['NetQ default config']      FAILED           []               ["Unreachabl Thu Jan 28 19:48:10 2021
                                                                                                                          e at Invalid
                                                                                                                          /incorrect u
                                                                                                                          sername/pass
@@ -286,7 +286,7 @@ leaf01            4.2.1       3.3.0         3.2.1         ['NetQ default config'
                                                                                                                          denied,
                                                                                                                          please try a
                                                                                                                          gain."]
-leaf02            4.2.1       3.3.0         3.2.1         ['NetQ default config']      FAILED           []               ["Unreachabl Thu Jan 28 19:48:10 2021
+leaf02            4.2.1       4.0.0         3.2.1         ['NetQ default config']      FAILED           []               ["Unreachabl Thu Jan 28 19:48:10 2021
                                                                                                                          e at Invalid
                                                                                                                          /incorrect u
                                                                                                                          sername/pass

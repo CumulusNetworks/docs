@@ -7,7 +7,13 @@ toc: 3
 
 NetQ supports a set of events that are triggered by crossing a user-defined threshold, called TCA events. These events allow detection and prevention of network failures for selected ACL resources, digital optics, forwarding resources, interface errors and statistics, link flaps, resource utilization, and sensor events. A complete list can be found in the {{<link title="TCA Event Messages Reference">}}.
 
-A notification configuration must contain one rule. Each rule must contain a scope and a threshold. Optionally, you can specify an associated channel.  *Note: If a rule is not associated with a channel, the event information is only reachable from the database.* If you want to deliver events to one or more notification channels (Email, syslog, Slack, or PagerDuty), create them by following the instructions in {{<link title="Configure System Event Notifications#create-a-channel" text="Create a Channel">}}, and then return here to define your rule.
+A notification configuration must contain one rule. Each rule must contain a scope and a threshold. Optionally, you can specify an associated channel. If you want to deliver events to one or more notification channels (email, syslog, Slack, or PagerDuty), create them by following the instructions in {{<link title="Configure System Event Notifications#create-a-channel" text="Create a Channel">}}, and then return here to define your rule.
+
+{{%notice note%}}
+
+If a rule is not associated with a channel, the event information is only reachable from the database.
+
+{{%/notice%}}
 
 ## Define a Scope
 
@@ -260,7 +266,7 @@ The hostname, reason/port down reason, ingress port, and drop type scope paramet
 
 Now that you know which events are supported and how to set the scope, you can create a basic rule to deliver one of the TCA events to a notification channel. This can be done using either the NetQ UI or the NetQ CLI.
 
-{{< tabs "TabID2294" >}}
+{{< tabs "TCA Rule" >}}
 
 {{< tab "NetQ UI" >}}
 

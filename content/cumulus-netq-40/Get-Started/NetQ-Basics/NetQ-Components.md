@@ -1,11 +1,11 @@
 ---
-title: Cumulus NetQ Components
+title: NetQ Components
 author: NVIDIA
 weight: 60
 toc: 4
 ---
 
-NVIDIA Cumulus NetQ contains the following applications and key components:
+NVIDIA NetQ contains the following applications and key components:
 
 - Telemetry data collection and aggregation
   - NetQ switch agents

@@ -9,13 +9,13 @@ This reference describes the cards available with the NetQ {{<version>}} graphic
 - Search for the card by name in the Global Search box in the application header
 - Click {{<img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18">}}. Select a card category or scroll down. Click on the desired card. Click **Open Cards**.
 
-Cards opened on the default Cumulus Workbench are not saved. Create a new workbench and open cards there to save and view the cards at a later time.
+Cards opened on the default NetQ Workbench are not saved. Create a new workbench and open cards there to save and view the cards at a later time.
 
 Cards are listed in alphabetical order by name.
 
 ## Event Cards
 
-The event cards are located on the default Cumulus workbench. They can also be added to user-created workbenches.
+The event cards are located on the default NetQ Workbench. They can also be added to user-created workbenches.
 
 ### Events|Alarms Card
 
@@ -404,7 +404,7 @@ The full screen Info card provides tabs for all events.
 
 ## Inventory Cards
 
-The inventory cards are located on the default Cumulus workbench. They can also be added to user-created workbenches.
+The inventory cards are located on the default NetQ Workbench. They can also be added to user-created workbenches.
 
 ### Inventory|Devices Card
 
@@ -834,7 +834,7 @@ The full screen Switch Inventory card provides tabs for all components, ASIC, pl
 
 As with any network, one of the challenges is keeping track of all of the moving parts. With the NetQ GUI, you can view the overall health of your network at a glance and then delve deeper for periodic checks or as conditions arise that require attention. For a general understanding of how well your network is operating, the Network Health card workflow is the best place to start as it contains the highest view and performance roll-ups.
 
-The Network Health card is located on the default Cumulus workbench. It can also be added to user-created workbenches.
+The Network Health card is located on the default NetQ Workbench. It can also be added to user-created workbenches.
 
 The small Network Health card displays:
 

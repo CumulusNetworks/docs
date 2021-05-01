@@ -58,7 +58,7 @@ This section describes the core structure and behavior of the NetQ CLI. It inclu
 
 ### Command Line Structure
 
-The NetQ command line has a flat structure as opposed to a modal structure. This means that all commands can be run from the primary prompt instead of only in a specific mode. For example, some command lines require the administrator to switch between a configuration mode and an operation mode. Configuration commands can only be run in the configuration mode and operational commands can only be run in operation mode. This structure requires the administrator to switch between modes to run commands which can be tedious and time consuming. NetQ command line enables the administrator to run all of its commands at the same level.
+The NetQ command line has a flat structure as opposed to a modal structure. Thus, all commands can be run from the standard command prompt instead of only in a specific mode, at the same level.
 
 ### Command Syntax
 
@@ -140,7 +140,8 @@ As you enter commands, you can get help with command syntax by entering `help` a
 ```
 cumulus@switch:~$ netq check bgp help
 Commands:
-    netq check bgp [label <text-label-name> | hostnames <text-list-hostnames>] [vrf <vrf>] [include <bgp-number-range-list> | exclude <bgp-number-range-list>] [around <text-time>] [json | summary]
+    netq check bgp [label <text-label-name> | hostnames <text-list-hostnames>] [vrf <vrf>] [check_filter_id <text-check-filter-id>] [include <bgp-number-range-list> | exclude <bgp-number-range-list>] [around <text-time>] [streaming] [json | summary]
+   netq show unit-tests bgp [check_filter_id <text-check-filter-id>] [json]
 ```
 
 To see an exhaustive list of commands, run:
@@ -161,7 +162,7 @@ The CLI stores commands issued within a session, which enables you to review and
 
 ## Command Categories
 
-While the CLI has a flat structure, the commands can be conceptually grouped into four functional categories:
+While the CLI has a flat structure, the commands can be conceptually grouped into these functional categories:
 
 - {{<link url="#validation-commands" text="Validation Commands">}}
 - {{<link url="#monitoring-commands" text="Monitoring Commands">}}
@@ -175,12 +176,12 @@ The `netq` `check` commands enable the network administrator to validate the cur
 - **agents**: NetQ Agents operation on all switches and hosts
 - **bgp**: BGP (Border Gateway Protocol) operation across the network
   fabric
-- **clag**: Cumulus Multi-chassis LAG (link aggregation) operation
+- **clag**: Cumulus Linux MLAG (multi-chassis LAG/link aggregation) operation
 - **cl-version**: Cumulus Linux version
 - **evpn**: EVPN (Ethernet Virtual Private Network) operation
 - **interfaces**: network interface port operation
 - **license**: License status
-- **mlag**: Cumulus Multi-chassis LAG (link aggregation) operation
+- **mlag**: Cumulus MLAG (multi-chassis LAG/link aggregation) operation
 - **mtu**: Link MTU (maximum transmission unit) consistency across paths
 - **ntp**: NTP (Network Time Protocol) operation
 - **ospf**: OSPF (Open Shortest Path First) operation
@@ -334,6 +335,8 @@ for the following:
 - **ospf**: OSPF status
 - **recommended-pkg-version**: Current host information to be considered
 - **resource-util**: Display usage of memory, CPU and disk resources
+- **roce-config**: Display RoCE configuration
+- **roce-counters**: Displays RDMA over Converged Ethernet counters for a given switch
 - **sensors**: Temperature/Fan/PSU sensor status
 - **services**: System services status
 - **tca**: Threshold crossing alerts
@@ -346,7 +349,7 @@ for the following:
 <!-- vale on -->
 The commands take the form of `netq [<hostname>] show <network-protocol-or-service> [options]`, where the options vary according to the protocol or service. The commands can be restricted from showing the information for *all* devices to showing information for a selected device using the `hostname` option.
 
-This example shows the standard and restricted output for the  `netq show agents` command.
+The following examples show the standard and filtered output for the  `netq show agents` command.
 
 ```
 cumulus@switch:~$ netq show agents
@@ -375,224 +378,6 @@ spine02           Fresh            yes      3.2.0-cl4u30~1601410518.104fb9ed    
 spine03           Fresh            yes      3.2.0-cl4u30~1601410518.104fb9ed     Mon Sep 21 17:03:34 2020  Tue Sep 29 21:25:07 2020  Tue Sep 29 21:25:07 2020   Thu Oct  1 16:07:20 2020
 spine04           Fresh            yes      3.2.0-cl4u30~1601410518.104fb9ed     Mon Sep 21 17:03:32 2020  Tue Sep 29 21:25:07 2020  Tue Sep 29 21:25:07 2020   Thu Oct  1 16:07:33 2020
 ```
-```
-cumulus@switch:~$ netq show agents json
-{
-    "agents":[
-        {
-            "hostname":"border01",
-            "status":"Fresh",
-            "ntpSync":"yes",
-            "version":"3.2.0-cl4u30~1601410518.104fb9ed",
-            "sysUptime":1600707894.0,
-            "agentUptime":1601414698.0,
-            "reinitializeTime":1601414698.0,
-            "lastChanged":1601568519.0
-        },
-        {
-            "hostname":"border02",
-            "status":"Fresh",
-            "ntpSync":"yes",
-            "version":"3.2.0-cl4u30~1601410518.104fb9ed",
-            "sysUptime":1600707897.0,
-            "agentUptime":1601414698.0,
-            "reinitializeTime":1601414698.0,
-            "lastChanged":1601568515.0
-        },
-        {
-            "hostname":"fw1",
-            "status":"Fresh",
-            "ntpSync":"yes",
-            "version":"3.2.0-cl4u30~1601410518.104fb9ed",
-            "sysUptime":1600707884.0,
-            "agentUptime":1601414688.0,
-            "reinitializeTime":1601414688.0,
-            "lastChanged":1601568506.0
-        },
-        {
-            "hostname":"fw2",
-            "status":"Fresh",
-            "ntpSync":"yes",
-            "version":"3.2.0-cl4u30~1601410518.104fb9ed",
-            "sysUptime":1600707882.0,
-            "agentUptime":1601414688.0,
-            "reinitializeTime":1601414688.0,
-            "lastChanged":1601568503.0
-        },
-        {
-            "hostname":"leaf01",
-            "status":"Fresh",
-            "ntpSync":"yes",
-            "version":"3.2.0-cl4u30~1601410518.104fb9ed",
-            "sysUptime":1600706944.0,
-            "agentUptime":1601414689.0,
-            "reinitializeTime":1601414689.0,
-            "lastChanged":1601568522.0
-        },
-        {
-            "hostname":"leaf02",
-            "status":"Fresh",
-            "ntpSync":"yes",
-            "version":"3.2.0-cl4u30~1601410518.104fb9ed",
-            "sysUptime":1600707794.0,
-            "agentUptime":1601414689.0,
-            "reinitializeTime":1601414689.0,
-            "lastChanged":1601568512.0
-        },
-        {
-            "hostname":"leaf03",
-            "status":"Fresh",
-            "ntpSync":"yes",
-            "version":"3.2.0-cl4u30~1601410518.104fb9ed",
-            "sysUptime":1600707817.0,
-            "agentUptime":1601414689.0,
-            "reinitializeTime":1601414689.0,
-            "lastChanged":1601568505.0
-        },
-        {
-            "hostname":"leaf04",
-            "status":"Fresh",
-            "ntpSync":"yes",
-            "version":"3.2.0-cl4u30~1601410518.104fb9ed",
-            "sysUptime":1600707815.0,
-            "agentUptime":1601414698.0,
-            "reinitializeTime":1601414698.0,
-            "lastChanged":1601568525.0
-        },
-        {
-            "hostname":"oob-mgmt-server",
-            "status":"Fresh",
-            "ntpSync":"yes",
-            "version":"3.1.1-ub18.04u29~1599111022.78b9e43",
-            "sysUptime":1600706638.0,
-            "agentUptime":1600710900.0,
-            "reinitializeTime":1600710900.0,
-            "lastChanged":1601568511.0
-        },
-        {
-            "hostname":"server01",
-            "status":"Fresh",
-            "ntpSync":"yes",
-            "version":"3.2.0-ub18.04u30~1601393774.104fb9e",
-            "sysUptime":1600708797.0,
-            "agentUptime":1601413987.0,
-            "reinitializeTime":1601413987.0,
-            "lastChanged":1601568527.0
-        },
-        {
-            "hostname":"server02",
-            "status":"Fresh",
-            "ntpSync":"yes",
-            "version":"3.2.0-ub18.04u30~1601393774.104fb9e",
-            "sysUptime":1600708797.0,
-            "agentUptime":1601413987.0,
-            "reinitializeTime":1601413987.0,
-            "lastChanged":1601568504.0
-        },
-        {
-            "hostname":"server03",
-            "status":"Fresh",
-            "ntpSync":"yes",
-            "version":"3.2.0-ub18.04u30~1601393774.104fb9e",
-            "sysUptime":1600708796.0,
-            "agentUptime":1601413987.0,
-            "reinitializeTime":1601413987.0,
-            "lastChanged":1601568522.0
-        },
-        {
-            "hostname":"server04",
-            "status":"Fresh",
-            "ntpSync":"yes",
-            "version":"3.2.0-ub18.04u30~1601393774.104fb9e",
-            "sysUptime":1600708797.0,
-            "agentUptime":1601413987.0,
-            "reinitializeTime":1601413987.0,
-            "lastChanged":1601568497.0
-        },
-        {
-            "hostname":"server05",
-            "status":"Fresh",
-            "ntpSync":"yes",
-            "version":"3.2.0-ub18.04u30~1601393774.104fb9e",
-            "sysUptime":1600708797.0,
-            "agentUptime":1601413990.0,
-            "reinitializeTime":1601413990.0,
-            "lastChanged":1601568506.0
-        },
-        {
-            "hostname":"server06",
-            "status":"Fresh",
-            "ntpSync":"yes",
-            "version":"3.2.0-ub18.04u30~1601393774.104fb9e",
-            "sysUptime":1600708797.0,
-            "agentUptime":1601413990.0,
-            "reinitializeTime":1601413990.0,
-            "lastChanged":1601568501.0
-        },
-        {
-            "hostname":"server07",
-            "status":"Fresh",
-            "ntpSync":"yes",
-            "version":"3.2.0-ub18.04u30~1601393774.104fb9e",
-            "sysUptime":1600708008.0,
-            "agentUptime":1601413990.0,
-            "reinitializeTime":1601413990.0,
-            "lastChanged":1601568508.0
-        },
-        {
-            "hostname":"server08",
-            "status":"Fresh",
-            "ntpSync":"yes",
-            "version":"3.2.0-ub18.04u30~1601393774.104fb9e",
-            "sysUptime":1600708005.0,
-            "agentUptime":1601413990.0,
-            "reinitializeTime":1601413990.0,
-            "lastChanged":1601568511.0
-        },
-        {
-            "hostname":"spine01",
-            "status":"Fresh",
-            "ntpSync":"yes",
-            "version":"3.2.0-cl4u30~1601410518.104fb9ed",
-            "sysUptime":1600707814.0,
-            "agentUptime":1601414698.0,
-            "reinitializeTime":1601414698.0,
-            "lastChanged":1601568502.0
-        },
-        {
-            "hostname":"spine02",
-            "status":"Fresh",
-            "ntpSync":"yes",
-            "version":"3.2.0-cl4u30~1601410518.104fb9ed",
-            "sysUptime":1600707813.0,
-            "agentUptime":1601414698.0,
-            "reinitializeTime":1601414698.0,
-            "lastChanged":1601568497.0
-        },
-        {
-            "hostname":"spine03",
-            "status":"Fresh",
-            "ntpSync":"yes",
-            "version":"3.2.0-cl4u30~1601410518.104fb9ed",
-            "sysUptime":1600707814.0,
-            "agentUptime":1601414707.0,
-            "reinitializeTime":1601414707.0,
-            "lastChanged":1601568501.0
-        },
-        {
-            "hostname":"spine04",
-            "status":"Fresh",
-            "ntpSync":"yes",
-            "version":"3.2.0-cl4u30~1601410518.104fb9ed",
-            "sysUptime":1600707812.0,
-            "agentUptime":1601414707.0,
-            "reinitializeTime":1601414707.0,
-            "lastChanged":1601568514.0
-	}
-    ],
-    "truncatedResult":false
-}
-```
 
 ```
 cumulus@switch:~$ netq leaf01 show agents
@@ -604,11 +389,11 @@ leaf01            Fresh            yes      3.2.0-cl4u30~1601410518.104fb9ed    
 
 ### Configuration Commands
 
-The `netq config` and `netq notification` commands enable the network administrator to manage NetQ Agent and CLI server configuration, set up container monitoring, and event notification.
+Various commands, including `netq config`, `netq notification`, and `netq install` enable the network administrator to manage NetQ Agent and CLI server configuration, configure lifecycle management, set up container monitoring, and manage notifications.
 
 #### NetQ Agent Configuration
 
-The agent commands enable the network administrator to configure individual NetQ Agents. Refer to {{<link title="Cumulus NetQ Components">}} for a description of NetQ Agents, to {{<link url="Manage-NetQ-Agents">}}, or to {{<link url="Install-NetQ-Agents">}} for more detailed usage examples.
+The agent commands enable the network administrator to configure individual NetQ Agents. Refer to {{<link url="NetQ-Components/#netq-agents">}} for a description of NetQ Agents, to {{<link url="Manage-NetQ-Agents">}}, or to {{<link url="Install-NetQ-Agents">}} for more detailed usage examples.
 
 The agent configuration commands enable you to add and remove agents from switches and hosts, start and stop agent operations, debug the agent, specify default commands, and enable or disable a variety of monitoring features (including Kubernetes, sensors, FRR (FRRouting), CPU usage limit, and What Just Happened).
 
@@ -623,19 +408,19 @@ netq config (add|del|show) agent
 netq config (start|stop|status|restart) agent
 ```
 
-This example shows how to configure the agent to send sensor data.
+This example shows how to configure the agent to send sensor data:
 
 ```
 cumulus@switch~:$ netq config add agent sensors
 ```
 
-This example shows how to start monitoring with Kubernetes.
+This example shows how to start monitoring with Kubernetes:
 
 ```
 cumulus@switch:~$ netq config add agent kubernetes-monitor poll-period 15
 ```
 
-This example shows how to view the NetQ Agent configuration.
+This example shows how to view the NetQ Agent configuration:
 
 ```
 cumulus@switch:~$ netq config show agent
@@ -657,7 +442,7 @@ After making configuration changes to your agents, you must restart the agent fo
 
 #### CLI Configuration
 
-The CLI commands enable the network administrator to configure and manage the CLI component. These commands enable you to add or remove CLI (essentially enabling/disabling the service), start and restart it, and view the configuration of the service.
+The `netq config cli` commands enable the network administrator to configure and manage the CLI component. These commands enable you to add or remove CLI (essentially enabling/disabling the service), start and restart it, and view the configuration of the service.
 
 {{<notice note>}}
 Commands apply to one device at a time, and are run from the switch or host where the CLI is run.
@@ -671,25 +456,47 @@ netq config del cli server
 netq config show cli premises [json]
 netq config show (cli|all) [json]
 netq config (status|restart) cli
+netq config select cli premise
 ```
 
-This example shows how to restart the CLI instance.
+This example shows how to restart the CLI instance:
 
 ```
 cumulus@switch~:$ netq config restart cli
 ```
 
-This example shows how to enable the CLI on a NetQ On-premises Appliance or Virtual Machine (VM).
+This example shows how to enable the CLI on a NetQ On-premises appliance or virtual machine (VM):
 
 ```
 cumulus@switch~:$ netq config add cli server 10.1.3.101
 ```
 
-This example shows how to enable the CLI on a NetQ Cloud Appliance or VM for the Chicago premises and the default port.
+This example shows how to enable the CLI on a NetQ Cloud Appliance or VM for the Chicago premises and the default port:
 
 ```
 netq config add cli server api.netq.cumulusnetworks.com access-key <user-access-key> secret-key <user-secret-key> premises chicago port 443
 ```
+
+#### NetQ System Configuration Commands
+
+A number of commands are provided for managing the NetQ system itself. These include:
+
+- **bootstrap**: Loads the installation program onto the network switches and hosts in either a single server or server cluster arrangement.
+- **decommission**: Decommissions a switch or host.
+- **install**: Installs NetQ in standalone or cluster deployments; also used to install patch software.
+- **upgrade bundle**: Upgrades NetQ on NetQ On-premises Appliances or VMs.
+
+This example shows how to bootstrap a single server or master server in a server cluster:
+
+```
+cumulus@switch:~$ netq bootstrap master interface eth0 tarball /mnt/installables/netq-bootstrap-4.0.0.tgz
+```
+
+This example shows how to decommission a switch named leaf01:
+
+    cumulus@netq-appliance:~$ netq decommission leaf01
+
+For information and examples on installing and upgrading the NetQ system, see {{<link url="Install-NetQ">}} and {{<link url="Upgrade-NetQ">}}.
 
 #### Event Notification Commands
 
@@ -710,6 +517,44 @@ Successfully added/updated channel pd-netq-events
 ```
 
 Refer to {{<link title="Configure System Event Notifications">}} for details about using these commands and additional examples.
+
+#### Threshold-based Event Notification Commands
+
+NetQ supports a set of events that are triggered by crossing a user-defined threshold, called {{<link title="Configure Threshold-Based Event Notifications" text="TCA events">}}. You configure and manage TCA events using the following commands:
+
+```
+netq add tca [event_id <text-event-id-anchor>] [tca_id <text-tca-id-anchor>] [scope <text-scope-anchor>] [severity info | severity critical] [is_active true | is_active false] [suppress_until <text-suppress-ts>] [threshold_type user_set | threshold_type vendor_set] [ threshold <text-threshold-value> ] [channel <text-channel-name-anchor> | channel drop <text-drop-channel-name>]
+netq del tca tca_id <text-tca-id-anchor>
+netq show tca [tca_id <text-tca-id-anchor>] [json]
+```
+
+#### Lifecycle Management Commands
+
+The `netq lcm` ({{<link title="Manage Switches through Their Lifecycle" text="lifecycle management">}}) commands enable you to manage the deployment of NVIDIA product software onto your network devices (servers, appliances, and switches) in the most efficient way and with the most information about the process as possible. The LCM commands provide for:
+
+- Managing Cumulus Linux and NetQ images in a local repository
+- Configuring switch access credentials for installations and upgrades
+- Managing Cumulus Linux switch inventory and roles
+- Upgrade NetQ (Agents and CLI) on Cumulus Linux switches with NetQ Agents
+- Install or upgrade NetQ Agents and CLI on Cumulus Linux switches with or without NetQ Agents all in a single job
+- Upgrade Cumulus Linux on switches with NetQ Agents
+- View a result history of upgrade attempts
+
+This example shows the NetQ configuration profiles:
+
+```
+cumulus@switch:~$ netq lcm show netq-config
+ID                        Name            Default Profile                VRF             WJH       CPU Limit Log Level Last Changed
+------------------------- --------------- ------------------------------ --------------- --------- --------- --------- -------------------------
+config_profile_3289efda36 NetQ default co Yes                            mgmt            Disable   Disable   info      Tue Apr 27 22:42:05 2021
+db4065d56f91ebbd34a523b45 nfig
+944fbfd10c5d75f9134d42023
+eb2b
+```
+
+This example shows how to add a Cumulus Linux installation image to the NetQ repository on the switch:
+
+    netq lcm add cl-image /path/to/download/cumulus-linux-4.2.0-mlnx-amd64.bin
 
 ### Trace Commands
 

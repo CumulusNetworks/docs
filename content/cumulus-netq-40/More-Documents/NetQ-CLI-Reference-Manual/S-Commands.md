@@ -118,7 +118,7 @@ Displays basic configuration, health, and connectivity status for all nodes or a
 The output provides:
 
 - Whether each node has been heard recently (last 90 seconds)
-- If each node is in time synchronization with the NetQ appliance or Virtual Machine
+- If each node is in time synchronization with the NetQ appliance or virtual machine
 - The NetQ Agent software version currently running on the node
 - How long the node has been operationally up
 - How long the NetQ Agent has been operationally up
@@ -3416,7 +3416,7 @@ spine04           yes      oob-mgmt-server   3       ntpq
 
 ## netq show opta-health
 
-Displays the status of the various applications and services running on the NetQ On-premises Appliance or the Virtual Machine. For the NetQ Cloud Appliance or VM, this command displays a simple statement indicating overall health.
+Displays the status of the various applications and services running on the NetQ On-premises Appliance or the virtual machine. For the NetQ Cloud Appliance or VM, this command displays a simple statement indicating overall health.
 
 Note that when running this command as part of an installation, it takes between 5 and 10 minutes for the applications and services to become fully operational.
 

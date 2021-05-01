@@ -15,7 +15,7 @@ To log in to the UI:
     - NetQ On-premises Appliance or VM: *https://\<hostname-or-ipaddress\>:443*  
     - NetQ Cloud Appliance or VM: *https://netq.cumulusnetworks.com*
 
-    {{< figure src="/images/netq/access-ui-login-screen-310.png" width="700" >}}
+    {{< figure src="/images/netq/access-ui-login-screen-400.png" width="700" >}}
 
 3. Sign in.
 
@@ -23,7 +23,7 @@ To log in to the UI:
     - NetQ On-premises: *admin, admin*
     - NetQ Cloud: Use credentials provided by NVIDIA via email titled *Welcome to Cumulus NetQ\!*
 
-{{< tabs "TabID24" >}}
+{{< tabs "login" >}}
 
 {{< tab "First Time Log In" >}}
 
@@ -37,9 +37,9 @@ To log in to the UI:
 
 5. Click **Update and Accept** after reading the Terms of Use.
 
-    The default Cumulus Workbench opens, with your username shown in the upper right corner of the application.
+    The default NetQ Workbench opens, with your username shown in the upper right corner of the application.
 
-    {{< figure src="/images/netq/access-ui-cumulus-wb-320.png" width="700" >}}
+    {{<figure src="/images/netq/access-ui-cumulus-wb-400.png" width="700">}}
 
 {{< /tab >}}
 
@@ -67,7 +67,7 @@ To reset a password:
 
 1. Enter *https://netq.cumulusnetworks.com* in your browser to open the login page.
 
-    {{<figure src="/images/netq/access-ui-cld-login-320.png" width="250">}}
+    {{<figure src="/images/netq/access-ui-cld-login-320.png" width="250">}} <!-- UPDATE ME! -->
 
 2. Click **Forgot Password?**
 

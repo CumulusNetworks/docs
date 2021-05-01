@@ -18,7 +18,7 @@ To monitor networkwide inventory, refer to {{<link title="Monitor Networkwide In
 
 ## Access Switch Inventory Data
 
-The NetQ UI provides the Inventory | Switches card for monitoring the hardware and software component inventory on switches running NetQ in your network. Access this card from the Cumulus Workbench, or add it to your own workbench by clicking <img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> (Add card) > **Inventory**  > Inventory|Switches card > **Open Cards**.
+The NetQ UI provides the Inventory | Switches card for monitoring the hardware and software component inventory on switches running NetQ in your network. Access this card from the NetQ Workbench, or add it to your own workbench by clicking <img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> (Add card) > **Inventory**  > Inventory|Switches card > **Open Cards**.
 
 {{<figure src="/images/netq/inventory-switch-medium-320.png" width="200">}}
 

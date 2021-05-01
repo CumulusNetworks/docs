@@ -6,22 +6,18 @@ toc: 4
 ---
 The NetQ UI contains two main areas:
 
-- **Application Header** (1): Contains the main menu, recent actions history, search capabilities, NetQ version, quick health status chart, local time zone, premises list, and user account information.
+- **Application Header** (1): Contains the main menu, NetQ version, recent actions history, search capabilities, quick health status chart, local time zone, premises list, and user account information.
 - **Workbench** (2): Contains a task bar and content cards (with status and configuration information about your network and its various components).
 
-{{<figure src="/images/netq/app-layout-cumulus-wb-areas-highlighted-320.png" width="700" >}}
+{{<figure src="/images/netq/app-layout-cumulus-wb-areas-highlighted-400.png">}}
 
 ## Main Menu
 
 Found in the application header, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> to open the main menu which provides navigation to:
 
-- **Favorites**: contains link to the user-defined favorite workbenches; *Home* points to the Cumulus Workbench until reset by a user
-- **NetQ**: contains links to all workbenches
-- **Network**: contains links to tabular data about various network elements and the What Just Happened feature
-- **Admin**: contains links to application management and lifecycle management features (only visible to users with Admin access role)
-- **Notifications**: contains link to threshold-based event rules and notification channel specifications
-
-{{<figure src="/images/netq/main-menu-admin-300.png" width="600" >}}
+| Header | Menu |
+| ------ | ---- |
+| <ul><li><strong>Search</strong>: a search bar to quickly find an item on the main menu</li><li><strong>Favorites</strong>: contains link to the user-defined favorite workbenches; <em>Home</em> points to the NetQ Workbench until reset by a user</li><li><strong>Workbenches</strong>: contains links to all workbenches</li><li><strong>Network</strong>: contains links to tabular data about various network elements and the What Just Happened feature</li><li><strong>Notifications</strong>: contains link to threshold-based event rules and notification channel specifications</li><li><strong>Admin</strong>: contains links to application management and lifecycle management features (only visible to users with Admin access role)</li></ul> | {{<figure src="/images/netq/main-menu-admin-400.png" width="300">}} |
 
 ## Recent Actions
 
@@ -29,21 +25,21 @@ Found in the header, Recent Actions keeps track of every action you take on your
 
 To open Recent Actions, click <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/01-Worldwide-Web/network-clock.svg" height="18" width="18"/>. Click on any of the actions to perform that action again.
 
-{{<figure src="/images/netq/recent-actions-222.png" width="250" >}}
+{{<figure src="/images/netq/recent-actions-400.png" width="250" >}}
 
 ## Search
 
 The Global Search field in the UI header enables you to search for devices and cards. It behaves like most searches and can help you quickly find device information. For more detail on creating and running searches, refer to {{<link title="Create and Run Searches">}}.
 
-## Cumulus Networks Logo
+## NVIDIA Logo
 
-Clicking on the Cumulus logo takes you to your favorite workbench. For details about specifying your favorite workbench, refer to {{<link title="Set User Preferences">}}.
+Clicking the NVIDIA logo takes you to your favorite workbench. For details about specifying your favorite workbench, refer to {{<link title="Set User Preferences">}}.
 
 ## Quick Network Health View
 
 Found in the header, the graph and performance rating provide a view into the health of your network at a glance.
 
-{{< figure src="/images/netq/quick-ntwk-health-header-222.png" width="200" >}}
+{{< figure src="/images/netq/quick-ntwk-health-header-400.png" width="200" >}}
 
 {{<notice note>}}
 On initial start up of the application, it may take up to an hour to reach an accurate health indication as some processes only run every 30 minutes.
@@ -51,7 +47,7 @@ On initial start up of the application, it may take up to an hour to reach an ac
 
 ## Workbenches
 
-A workbench is comprised of a given set of cards. A pre-configured default workbench, Cumulus Workbench, is available to get you started. It contains Device Inventory, Switch Inventory, Alarm and Info Events, and Network Health cards. On initial login, this workbench is opened. You can create your own workbenches and add or remove cards to meet your particular needs. For more detail about managing your data using workbenches, refer to {{<link title="Focus Your Monitoring Using Workbenches">}}.
+A workbench is comprised of a given set of cards. A pre-configured default workbench, NetQ Workbench, is available to get you started. It contains Device Inventory, Switch Inventory, Alarm and Info Events, and Network Health cards. On initial login, this workbench opens. You can create your own workbenches and add or remove cards to meet your particular needs. For more detail about managing your data using workbenches, refer to {{<link title="Focus Your Monitoring Using Workbenches">}}.
 
 ## Cards
 
@@ -59,7 +55,7 @@ Cards present information about your network for monitoring and troubleshooting.
 
 ## User Settings
 
-Each user can customize the NetQ application display, change their account password, and manage their workbenches. This is all performed from User Settings <img src="https://icons.cumulusnetworks.com/17-Users/19-Natural-Close%20Up-Single%20User-Man/single-man-circle.svg" height="18" width="18"/> > Profile & Preferences. For details, refer to {{<link title="Set User Preferences">}}.
+Each user can customize the NetQ application display, time zone and date format; change their account password; and manage their workbenches. This is all performed from User Settings <img src="https://icons.cumulusnetworks.com/17-Users/19-Natural-Close%20Up-Single%20User-Man/single-man-circle.svg" height="18" width="18"/> > **Profile & Preferences**. For details, refer to {{<link title="Set User Preferences">}}.
 
 ## Format Cues
 
@@ -67,11 +63,11 @@ Color is used to indicate links, options, and status within the UI.
 
 | Item | Color |
 | ----- | ------ |
-| Hover on item | Blue |
+| Hover on item | Green, gray or blue |
 | Clickable item  | Black |
 | Selected item | Green |
-| Highlighted item | Blue |
-| Link | Blue |
+| Highlighted item | Green |
+| Link | Green or white |
 | Good/Successful results | Green |
 | Result with critical severity event | Pink |
 | Result with high severity event | Red |

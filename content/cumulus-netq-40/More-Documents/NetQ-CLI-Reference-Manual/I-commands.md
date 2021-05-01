@@ -119,7 +119,7 @@ A release is included if there were changes to the command, otherwise it is not 
 
 <!-- Add output/results -->
 ```
-cumulus@<hostname>:~$ netq install cluster full interface eth0 bundle /mnt/installables/NetQ-3.3.1.tgz workers 10.20.10.25 10.20.10.45
+cumulus@<hostname>:~$ netq install cluster full interface eth0 bundle /mnt/installables/NetQ-4.0.0.tgz workers 10.20.10.25 10.20.10.45
 ```
 
 ### Related Commands
@@ -429,7 +429,7 @@ A release is included if there were changes to the command, otherwise it is not 
 
 <!-- Add output/results -->
 ```
-cumulus@<hostname>:~$ netq install opta cluster full interface en01 bundle /mnt/installables/NetQ-3.3.1.tgz config-key CI39fo5CZ3cucHJvZDEubmV0cS5jdW11bHVzbmVp6z8ma3MuY29tGLsD workers 10.20.10.25 10.20.10.45
+cumulus@<hostname>:~$ netq install opta cluster full interface en01 bundle /mnt/installables/NetQ-4.0.0.tgz config-key CI39fo5CZ3cucHJvZDEubmV0cS5jdW11bHVzbmVp6z8ma3MuY29tGLsD workers 10.20.10.25 10.20.10.45
 ```
 
 ### Related Commands
@@ -485,7 +485,7 @@ A release is included if there were changes to the command, otherwise it is not 
 
 <!-- Add output/results -->
 ```
-cumulus@<hostname>:~$ netq install opta standalone full interface en01 bundle /mnt/installables/NetQ-3.3.1.tgz config-key CI39fo5CZ3cucHJvZDEubmV0cS5jdW11bHVzbmVp6z8ma3MuY29tGLsD
+cumulus@<hostname>:~$ netq install opta standalone full interface en01 bundle /mnt/installables/NetQ-4.0.0.tgz config-key CI39fo5CZ3cucHJvZDEubmV0cS5jdW11bHVzbmVp6z8ma3MuY29tGLsD
 ```
 
 ### Related Commands
@@ -527,7 +527,7 @@ A release is included if there were changes to the command, otherwise it is not 
 
 <!-- Add output/results -->
 ```
-cumulus@<hostname>:~$ netq install patch /mnt/installables/NetQ-3.3.1-patch.tgz
+cumulus@<hostname>:~$ netq install patch /mnt/installables/NetQ-4.0.0-patch.tgz
 ```
 
 ### Related Commands
@@ -630,7 +630,7 @@ A release is included if there were changes to the command, otherwise it is not 
 
 <!-- Add output/results -->
 ```
-cumulus@<hostname>:~$ netq install standalone full interface eth0 bundle /mnt/installables/NetQ-3.3.1.tgz
+cumulus@<hostname>:~$ netq install standalone full interface eth0 bundle /mnt/installables/NetQ-4.0.0.tgz
 ```
 
 ### Related Commands
@@ -772,7 +772,7 @@ A release is included if there were changes to the command, otherwise it is not 
 
 <!-- Add output/results -->
 ```
-cumulus@<hostname>:~$ netq install standalone install-job bundle /mnt/installables/NetQ-3.3.0.tgz
+cumulus@<hostname>:~$ netq install standalone install-job bundle /mnt/installables/NetQ-4.0.0.tgz
 ```
 
 ### Related Commands

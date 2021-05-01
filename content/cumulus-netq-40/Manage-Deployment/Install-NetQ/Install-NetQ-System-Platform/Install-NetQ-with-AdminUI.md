@@ -6,9 +6,9 @@ toc: 5
 ---
 You can now install the NetQ software using the Admin UI using the default basic installation or an advanced installation.
 
-{{<notice info>}}
+{{%notice info%}}
 This is the final set of steps for installing NetQ. If you have not already performed the installation preparation steps, go to {{<link title="Install the NetQ System">}} before continuing here.
-{{</notice>}}
+{{%/notice%}}
 
 ## Install NetQ
 
@@ -54,7 +54,7 @@ To install NetQ:
 
 {{< tab "Self-hosted DB" >}}
 
-- Enter or upload the NetQ 3.3.0 tarball.
+- Enter or upload the NetQ 4.0.0 tarball.
 
     {{<figure src="/images/netq/adminui-install-onprem-basic-330.png" width="600">}}
 
@@ -66,7 +66,7 @@ To install NetQ:
 
 {{< tab "Remote-hosted DB" >}}
 
-- Enter or upload the NetQ 3.3.0 tarball.
+- Enter or upload the NetQ 4.0.0 tarball.
 
 - Enter your configuration key.
 
@@ -189,7 +189,7 @@ Refer to {{<link title="Post Installation Configuration Options/#add-more-nodes-
 
 6. Install the NetQ software.
 
-    You install the NetQ software using the installation files (`NetQ-3.3.0-tgz` for on-premises deployments or `NetQ-3.3.0-opta.tgz` for cloud deployments) that you downloaded and stored previously.
+    You install the NetQ software using the installation files (`NetQ-4.0.0-tgz` for on-premises deployments or `NetQ-4.0.0-opta.tgz` for cloud deployments) that you downloaded and stored previously.
 
     *For on-premises*: Accept the path and filename suggested, or modify these to reflect where you stored your installation file, then click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/50-Navigate/navigation-right-circle-1_1.svg" height="18" width="18"/>. Alternately, upload the file.
 

@@ -40,4 +40,4 @@ sudo yum install netq-agent
     netq config restart agent
     ```
 
-Refer to {{<link title="Install and Configure the NetQ Agent on Cumulus Linux Switches">}} to complete the upgrade.
+Refer to {{<link title="Install NetQ Agents">}} to complete the upgrade.

@@ -29,4 +29,4 @@ root@rhel7:~# netq config restart agent
 root@rhel7:~# netq config restart cli
 ```
 
-Refer to {{<link title="Install and Configure the NetQ Agent on RHEL and CentOS Servers">}} to complete the upgrade.
+Refer to {{<link title="Install NetQ Agents">}} to complete the upgrade.

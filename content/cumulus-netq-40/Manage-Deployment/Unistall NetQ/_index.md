@@ -125,7 +125,7 @@ First remove the data collected to free up used disk space. Then remove the soft
   dpkg-query: no packages found matching netq-apps
   ```
 
-5. Delete the Virtual Machine according to the usual VMware or KVM practice.
+5. Delete the virtual machine according to the usual VMware or KVM practice.
 
   {{< tabs "TabID130" >}}
 

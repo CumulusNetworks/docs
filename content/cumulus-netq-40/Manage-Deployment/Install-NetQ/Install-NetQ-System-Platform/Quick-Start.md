@@ -6,7 +6,7 @@ toc: 5
 ---
 If you know how you would answer the key installation questions, you can go directly to the instructions for those choices using the table here.
 
-{{<notice info>}}
+{{<notice warning>}}
 Do not skip the normal installation flow until you have performed this process multiple times and are fully familiar with it.
 {{</notice>}}
 

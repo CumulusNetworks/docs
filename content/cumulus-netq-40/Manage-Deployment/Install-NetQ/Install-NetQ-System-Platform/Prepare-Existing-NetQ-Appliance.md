@@ -174,7 +174,7 @@ The use of <code>netq-latest</code> in this example means that a <code>get</code
 
     5. Click **All downloads** next to **Cumulus NetQ**.
 
-    6. Select *3.3.1* from the **NetQ Version** dropdown.
+    6. Select *4.0.0* from the **NetQ Version** dropdown.
 
     7. Select *KVM* from the **Hypervisor** dropdown.
 
@@ -184,18 +184,18 @@ The use of <code>netq-latest</code> in this example means that a <code>get</code
 
     9. Verify this is the correct image, then click **Download**.
 
-    10. Copy these two files, *netq-bootstrap-3.3.1.tgz* and either *NetQ-3.3.1.tgz* (on-premises) or *NetQ-3.3.1-opta.tgz* (cloud), to the */mnt/installables/* directory on the appliance.
+    10. Copy these two files, *netq-bootstrap-4.0.0.tgz* and either *NetQ-4.0.0.tgz* (on-premises) or *NetQ-4.0.0-opta.tgz* (cloud), to the */mnt/installables/* directory on the appliance.
 
-    11. Verify that the needed files are present and of the correct release. This example shows on-premises files. The only difference for cloud files is that it should list *NetQ-3.3.1-opta.tgz* instead of *NetQ-3.3.1.tgz*.
+    11. Verify that the needed files are present and of the correct release. This example shows on-premises files. The only difference for cloud files is that it should list *NetQ-4.0.0-opta.tgz* instead of *NetQ-4.0.0.tgz*.
 
         ```
         cumulus@<hostname>:~$ dpkg -l | grep netq
-        ii  netq-agent   3.3.1-ub18.04u33~1614767175.886b337_amd64   Cumulus NetQ Telemetry Agent for Ubuntu
-        ii  netq-apps    3.3.1-ub18.04u33~1614767175.886b337_amd64   Cumulus NetQ Fabric Validation Application for Ubuntu
+        ii  netq-agent   4.0.0-ub18.04u33~1614767175.886b337_amd64   Cumulus NetQ Telemetry Agent for Ubuntu
+        ii  netq-apps    4.0.0-ub18.04u33~1614767175.886b337_amd64   Cumulus NetQ Fabric Validation Application for Ubuntu
 
         cumulus@<hostname>:~$ cd /mnt/installables/
         cumulus@<hostname>:/mnt/installables$ ls
-        NetQ-3.3.1.tgz  netq-bootstrap-3.3.1.tgz
+        NetQ-4.0.0.tgz  netq-bootstrap-4.0.0.tgz
         ```
 
     12. Run the following commands.

@@ -183,11 +183,11 @@ If you have already specified a default image, you must click <strong>Manage</st
 
 1. Download the NetQ debian packages needed for upgrade from the {{<exlink url="https://cumulusnetworks.com/downloads/#product=NetQ" text="Cumulus Downloads page">}}, selecting the appropriate version and hypervisor/platform. Place them in an accessible part of your local network.
 
-2. Upload the images to the LCM repository. This example uploads the two packages (`netq-agent` and `netq-apps`) needed for NetQ version 3.3.1 for a NetQ appliance or VM running Ubuntu 18.04 with an x86 architecture.
+2. Upload the images to the LCM repository. This example uploads the two packages (`netq-agent` and `netq-apps`) needed for NetQ version 4.0.0 for a NetQ appliance or VM running Ubuntu 18.04 with an x86 architecture.
 
     ```
-    cumulus@switch:~$ netq lcm add netq-image /path/to/download/netq-agent_3.3.1-ub18.04u33~1614767175.886b337_amd64.deb
-    cumulus@switch:~$ netq lcm add netq-image /path/to/download/netq-apps_3.3.1-ub18.04u33~1614767175.886b337_amd64.deb
+    cumulus@switch:~$ netq lcm add netq-image /path/to/download/netq-agent_4.0.0-ub18.04u33~1614767175.886b337_amd64.deb
+    cumulus@switch:~$ netq lcm add netq-image /path/to/download/netq-apps_4.0.0-ub18.04u33~1614767175.886b337_amd64.deb
     ```
 
 {{< /tab >}}
@@ -243,8 +243,8 @@ cumulus@switch:~$ netq lcm add image /path/to/download/cumulus-linux-4.2.0-mlx-a
 NetQ images:
 
 ```
-cumulus@switch:~$ netq lcm add image /path/to/download/	netq-agent_3.3.1-ub18.04u33~1614767175.886b337_amd64.deb
-cumulus@switch:~$ netq lcm add image /path/to/download/netq-apps_3.3.1-ub18.04u33~1614767175.886b337_amd64.deb
+cumulus@switch:~$ netq lcm add image /path/to/download/	netq-agent_4.0.0-ub18.04u33~1614767175.886b337_amd64.deb
+cumulus@switch:~$ netq lcm add image /path/to/download/netq-apps_4.0.0-ub18.04u33~1614767175.886b337_amd64.deb
 ```
 
 {{< /tab >}}
@@ -347,11 +347,11 @@ To see which version of NetQ has been configured as the default, run `netq lcm s
 cumulus@switch:~$ netq lcm show default-version netq-images 
 ID                        Name            NetQ Version  CL Version  CPU      Image Type           Last Changed
 ------------------------- --------------- ------------- ----------- -------- -------------------- -------------------------
-image_d23a9e006641c675ed9 netq-agent_3.3. 3.3.0         cl4u32      x86_64   NETQ_AGENT           Tue Jan  5 22:23:50 2021
+image_d23a9e006641c675ed9 netq-agent_4.0. 4.0.0         cl4u32      x86_64   NETQ_AGENT           Tue Jan  5 22:23:50 2021
 e152948a9d1589404e8b83958 0-cl4u32_160939
 d53eb0ce7698512e7001      1187.7df4e1d2_a
                           md64.deb
-image_68db386683c796d8642 netq-apps_3.3.0 3.3.0         cl4u32      x86_64   NETQ_CLI             Tue Jan  5 22:23:54 2021
+image_68db386683c796d8642 netq-apps_4.0.0 4.0.0         cl4u32      x86_64   NETQ_CLI             Tue Jan  5 22:23:54 2021
 2f2172c103494fef7a820d003 -cl4u32_1609391
 de71647315c5d774f834      187.7df4e1d2_am
                           d64.deb
@@ -512,8 +512,8 @@ netq lcm del netq-image <text-image-id>
     [
         {
             "id": "image_d23a9e006641c675ed9e152948a9d1589404e8b83958d53eb0ce7698512e7001",
-            "name": "netq-agent_3.3.0-cl4u32_1609391187.7df4e1d2_amd64.deb",
-            "netqVersion": "3.3.0",
+            "name": "netq-agent_4.0.0-cl4u32_1609391187.7df4e1d2_amd64.deb",
+            "netqVersion": "4.0.0",
             "clVersion": "cl4u32",
             "cpu": "x86_64",
             "imageType": "NETQ_AGENT",
@@ -521,8 +521,8 @@ netq lcm del netq-image <text-image-id>
         }, 
         {
             "id": "image_68db386683c796d86422f2172c103494fef7a820d003de71647315c5d774f834",
-            "name": "netq-apps_3.3.0-cl4u32_1609391187.7df4e1d2_amd64.deb",
-            "netqVersion": "3.3.0",
+            "name": "netq-apps_4.0.0-cl4u32_1609391187.7df4e1d2_amd64.deb",
+            "netqVersion": "4.0.0",
             "clVersion": "cl4u32",
             "cpu": "x86_64",
             "imageType": "NETQ_CLI",
@@ -544,8 +544,8 @@ netq lcm del netq-image <text-image-id>
     [
         {
             "id": "image_d23a9e006641c675ed9e152948a9d1589404e8b83958d53eb0ce7698512e7001",
-            "name": "netq-agent_3.3.0-cl4u32_1609391187.7df4e1d2_amd64.deb",
-            "netqVersion": "3.3.0",
+            "name": "netq-agent_4.0.0-cl4u32_1609391187.7df4e1d2_amd64.deb",
+            "netqVersion": "4.0.0",
             "clVersion": "cl4u32",
             "cpu": "x86_64",
             "imageType": "NETQ_AGENT",

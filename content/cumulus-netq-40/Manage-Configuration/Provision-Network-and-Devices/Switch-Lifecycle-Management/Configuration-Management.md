@@ -507,7 +507,7 @@ To create a profile:
 
     If you choose to enable WJH for this profile, you can use the default configuration which collects all statistics, or you can select **Customize** to select which categories and drop reasons you want collected. *This is an Early Access capability.* Click on each category and drop reason you do not want collected, then click **Done**. You can discard your changes (return to all categories and drop reasons) by clicking **Cancel**.
 
-    {{<figure src="/images/netq/lcm-netq-config-profile-create-wjh-custom-330.png" width="700">}}
+    {{<figure src="/images/netq/lcm-netq-config-profile-create-wjh-custom-330.png" width="400">}}
 
 8. To set a logging level, click **Advanced**, then choose the desired level.
 

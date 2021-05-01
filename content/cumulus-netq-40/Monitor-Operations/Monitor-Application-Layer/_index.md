@@ -6,7 +6,7 @@ toc: 3
 ---
 The only application layer protocol monitored by NetQ is NTP, the Network Time Protocol.
 
-It is important that the switches and hosts remain in time synchronization with the NetQ appliance or Virtual Machine to ensure collected data is properly captured and processed. You can use the `netq show ntp` command to view the time synchronization status for all devices or filter for devices that are either in synchronization or out of synchronization, currently or at a time in the past.
+It is important that the switches and hosts remain in time synchronization with the NetQ appliance or virtual machine to ensure collected data is properly captured and processed. You can use the `netq show ntp` command to view the time synchronization status for all devices or filter for devices that are either in synchronization or out of synchronization, currently or at a time in the past.
 
 The syntax for the show commands is:
 

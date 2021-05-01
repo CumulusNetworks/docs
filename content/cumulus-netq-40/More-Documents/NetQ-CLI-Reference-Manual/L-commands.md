@@ -151,7 +151,7 @@ A release is included if there were changes to the command, otherwise it is not 
 ```
 cumulus@switch:~$ netq lcm add default-version cl-images 4.2.0
 
-cumulus@switch:~$ netq lcm add default-version netq-images 3.3.0
+cumulus@switch:~$ netq lcm add default-version netq-images 4.0.0
 ```
 
 ### Related Commands
@@ -195,8 +195,8 @@ A release is included if there were changes to the command, otherwise it is not 
 ### Sample Usage
 
 ```
-cumulus@switch:~$ netq lcm add netq-image /path/to/download/netq-agent_3.3.1-ub18.04u33~1614767175.886b337_amd64.deb
-cumulus@switch:~$ netq lcm add netq-image /path/to/download/netq-apps_3.3.1-ub18.04u33~1614767175.886b337_amd64.deb
+cumulus@switch:~$ netq lcm add netq-image /path/to/download/netq-agent_4.0.0-ub18.04u33~1614767175.886b337_amd64.deb
+cumulus@switch:~$ netq lcm add netq-image /path/to/download/netq-apps_4.0.0-ub18.04u33~1614767175.886b337_amd64.deb
 ```
 
 ### Related Commands
@@ -387,8 +387,8 @@ cumulus@switch:~$ netq lcm show netq-images json
 [
     {
         "id": "image_d23a9e006641c675ed9e152948a9d1589404e8b83958d53eb0ce7698512e7001",
-        "name": "netq-agent_3.3.0-cl4u32_1609391187.7df4e1d2_amd64.deb",
-        "netqVersion": "3.3.0",
+        "name": "netq-agent_4.0.0-cl4u32_1609391187.7df4e1d2_amd64.deb",
+        "netqVersion": "4.0.0",
         "clVersion": "cl4u32",
         "cpu": "x86_64",
         "imageType": "NETQ_AGENT",
@@ -642,11 +642,11 @@ b67fd82fea79f05734cd0a32f .2.1-vx-amd64.b
 cumulus@switch:~$ netq lcm show default-version netq-images
 ID                        Name            NetQ Version  CL Version  CPU      Image Type           Last Changed
 ------------------------- --------------- ------------- ----------- -------- -------------------- -------------------------
-image_d23a9e006641c675ed9 netq-agent_3.3. 3.3.0         cl4u32      x86_64   NETQ_AGENT           Tue Jan  5 22:23:50 2021
+image_d23a9e006641c675ed9 netq-agent_4.0. 4.0.0         cl4u32      x86_64   NETQ_AGENT           Tue Jan  5 22:23:50 2021
 e152948a9d1589404e8b83958 0-cl4u32_160939
 d53eb0ce7698512e7001      1187.7df4e1d2_a
                           md64.deb
-image_68db386683c796d8642 netq-apps_3.3.0 3.3.0         cl4u32      x86_64   NETQ_CLI             Tue Jan  5 22:23:54 2021
+image_68db386683c796d8642 netq-apps_4.0.0 4.0.0         cl4u32      x86_64   NETQ_CLI             Tue Jan  5 22:23:54 2021
 2f2172c103494fef7a820d003 -cl4u32_1609391
 de71647315c5d774f834      187.7df4e1d2_am
                           d64.deb
@@ -717,7 +717,7 @@ Not Discovered: 0
 
 Hostname          IP Address                MAC Address        CPU      CL Version  NetQ Version  Config Profile               Discovery Status Upgrade Status
 ----------------- ------------------------- ------------------ -------- ----------- ------------- ---------------------------- ---------------- --------------
-fw2               192.168.200.62            44:38:39:00:01:8E  x86_64   4.2.0       3.3.0         []                           WITH_NETQ        NOT_UPGRADING
+fw2               192.168.200.62            44:38:39:00:01:8E  x86_64   4.2.0       4.0.0         []                           WITH_NETQ        NOT_UPGRADING
 ```
 
 ### Related Commands
@@ -823,11 +823,11 @@ A release is included if there were changes to the command, otherwise it is not 
 cumulus@switch:~$ netq lcm show netq-images 
 ID                        Name            NetQ Version  CL Version  CPU      Image Type           Last Changed
 ------------------------- --------------- ------------- ----------- -------- -------------------- -------------------------
-image_d23a9e006641c675ed9 netq-agent_3.3. 3.3.0         cl4u32      x86_64   NETQ_AGENT           Tue Jan  5 22:23:50 2021
+image_d23a9e006641c675ed9 netq-agent_4.0. 4.0.0         cl4u32      x86_64   NETQ_AGENT           Tue Jan  5 22:23:50 2021
 e152948a9d1589404e8b83958 0-cl4u32_160939
 d53eb0ce7698512e7001      1187.7df4e1d2_a
                           md64.deb
-image_68db386683c796d8642 netq-apps_3.3.0 3.3.0         cl4u32      x86_64   NETQ_CLI             Tue Jan  5 22:23:54 2021
+image_68db386683c796d8642 netq-apps_4.0.0 4.0.0         cl4u32      x86_64   NETQ_CLI             Tue Jan  5 22:23:54 2021
 2f2172c103494fef7a820d003 -cl4u32_1609391
 de71647315c5d774f834      187.7df4e1d2_am
                           d64.deb
@@ -838,8 +838,8 @@ cumulus@switch:~$ netq lcm show netq-images json
 [
     {
         "id": "image_d23a9e006641c675ed9e152948a9d1589404e8b83958d53eb0ce7698512e7001",
-        "name": "netq-agent_3.3.0-cl4u32_1609391187.7df4e1d2_amd64.deb",
-        "netqVersion": "3.3.0",
+        "name": "netq-agent_4.0.0-cl4u32_1609391187.7df4e1d2_amd64.deb",
+        "netqVersion": "4.0.0",
         "clVersion": "cl4u32",
         "cpu": "x86_64",
         "imageType": "NETQ_AGENT",
@@ -847,8 +847,8 @@ cumulus@switch:~$ netq lcm show netq-images json
     },
     {
         "id": "image_68db386683c796d86422f2172c103494fef7a820d003de71647315c5d774f834",
-        "name": "netq-apps_3.3.0-cl4u32_1609391187.7df4e1d2_amd64.deb",
-        "netqVersion": "3.3.0",
+        "name": "netq-apps_4.0.0-cl4u32_1609391187.7df4e1d2_amd64.deb",
+        "netqVersion": "4.0.0",
         "clVersion": "cl4u32",
         "cpu": "x86_64",
         "imageType": "NETQ_CLI",
@@ -940,7 +940,7 @@ cumulus@switch:~$ netq lcm show upgrade-jobs netq-image json
     {
         "jobId": "job_netq_install_7152a03a8c63c906631c3fb340d8f51e70c3ab508d69f3fdf5032eebad118cc7",
         "name": "Leaf01-02 to NetQ330",
-        "netqVersion": "3.3.0",
+        "netqVersion": "4.0.0",
         "overallStatus": "FAILED",
         "pre-checkStatus": "COMPLETED",
         "warnings": [],
@@ -957,7 +957,7 @@ Upgrade Summary
 Start Time: 2021-01-28 19:48:10.557000
 End Time: 2021-01-28 19:48:17.972000
 Upgrade CLI: True
-NetQ Version: 3.3.0
+NetQ Version: 4.0.0
 Pre Check Status COMPLETED
 Precheck Task switch_precheck COMPLETED
 	Warnings: []
@@ -973,7 +973,7 @@ Precheck Task config_precheck COMPLETED
 Hostname          CL Version  NetQ Version  Prev NetQ Ver Config Profile               Status           Warnings         Errors       Start Time
                                             sion
 ----------------- ----------- ------------- ------------- ---------------------------- ---------------- ---------------- ------------ --------------------------
-leaf01            4.2.1       3.3.0         3.2.1         ['NetQ default config']      FAILED           []               ["Unreachabl Thu Jan 28 19:48:10 2021
+leaf01            4.2.1       4.0.0         3.2.1         ['NetQ default config']      FAILED           []               ["Unreachabl Thu Jan 28 19:48:10 2021
                                                                                                                          e at Invalid
                                                                                                                          /incorrect u
                                                                                                                          sername/pass
@@ -993,7 +993,7 @@ leaf01            4.2.1       3.3.0         3.2.1         ['NetQ default config'
                                                                                                                          denied,
                                                                                                                          please try a
                                                                                                                          gain."]
-leaf02            4.2.1       3.3.0         3.2.1         ['NetQ default config']      FAILED           []               ["Unreachabl Thu Jan 28 19:48:10 2021
+leaf02            4.2.1       4.0.0         3.2.1         ['NetQ default config']      FAILED           []               ["Unreachabl Thu Jan 28 19:48:10 2021
                                                                                                                          e at Invalid
                                                                                                                          /incorrect u
                                                                                                                          sername/pass
@@ -1063,16 +1063,16 @@ A release is included if there were changes to the command, otherwise it is not 
 cumulus@switch:~$ netq lcm show switches
 Hostname          Role       IP Address                MAC Address        CPU      CL Version  NetQ Version  Config Profile               Last Changed
 ----------------- ---------- ------------------------- ------------------ -------- ----------- ------------- ---------------------------- -------------------------
-fw2                          192.168.200.62            44:38:39:00:01:8E  x86_64   4.2.0       3.3.0-cl4u32~ []                           Thu Jan 21 16:56:01 2021
+fw2                          192.168.200.62            44:38:39:00:01:8E  x86_64   4.2.0       4.0.0-cl4u32~ []                           Thu Jan 21 16:56:01 2021
                                                                                                1610528867.2e
                                                                                                518733
-border02                     192.168.200.64            44:38:39:00:01:7C  x86_64   4.2.0       3.3.0-cl4u32~ []                           Thu Feb 18 16:42:52 2021
+border02                     192.168.200.64            44:38:39:00:01:7C  x86_64   4.2.0       4.0.0-cl4u32~ []                           Thu Feb 18 16:42:52 2021
                                                                                                1610528867.2e
                                                                                                518733
-leaf03                       192.168.200.13            44:38:39:00:01:84  x86_64   4.2.0       3.3.0-cl4u32~ []                           Thu Feb 18 16:42:28 2021
+leaf03                       192.168.200.13            44:38:39:00:01:84  x86_64   4.2.0       4.0.0-cl4u32~ []                           Thu Feb 18 16:42:28 2021
                                                                                                1610528867.2e
                                                                                                518733
-spine03                      192.168.200.23            44:38:39:00:01:70  x86_64   4.2.0       3.3.0-cl4u32~ []                           Wed Jan 20 16:41:50 2021
+spine03                      192.168.200.23            44:38:39:00:01:70  x86_64   4.2.0       4.0.0-cl4u32~ []                           Wed Jan 20 16:41:50 2021
                                                                                                1610528867.2e
                                                                                                518733
 ...
@@ -1082,7 +1082,7 @@ spine03                      192.168.200.23            44:38:39:00:01:70  x86_64
 cumulus@switch:~$ netq lcm show switches cl-version 4.2.1
 Hostname          Role       IP Address                MAC Address        CPU      CL Version  NetQ Version  Config Profile               Last Changed
 ----------------- ---------- ------------------------- ------------------ -------- ----------- ------------- ---------------------------- -------------------------
-leaf02                       192.168.200.12            44:38:39:00:01:78  x86_64   4.2.1       3.3.0-cl4u32~ []                           Thu Feb 18 21:33:37 2021
+leaf02                       192.168.200.12            44:38:39:00:01:78  x86_64   4.2.1       4.0.0-cl4u32~ []                           Thu Feb 18 21:33:37 2021
                                                                                                1609391187.7d
                                                                                                f4e1d2
 ```
@@ -1182,7 +1182,7 @@ cumulus@switch:~$ netq lcm show upgrade-jobs cl-image json
 cumulus@switch:~$ netq lcm show upgrade-jobs netq-image 
 Job ID       Name            NetQ Version  Overall Status   Pre-Check Status Warnings         Errors       Start Time
 ------------ --------------- ------------- ---------------- ---------------- ---------------- ------------ --------------------------
-job_netq_ins Leaf01-02 to Ne 3.3.0         FAILED           COMPLETED        []               []           Thu Jan 28 19:48:10 2021
+job_netq_ins Leaf01-02 to Ne 4.0.0         FAILED           COMPLETED        []               []           Thu Jan 28 19:48:10 2021
 tall_7152a03 tQ330
 a8c63c906631
 c3fb340d8f51
@@ -1195,7 +1195,7 @@ cumulus@switch:~$ netq lcm show upgrade-jobs netq-image json
     {
         "jobId": "job_netq_install_7152a03a8c63c906631c3fb340d8f51e70c3ab508d69f3fdf5032eebad118cc7",
         "name": "Leaf01-02 to NetQ330",
-        "netqVersion": "3.3.0",
+        "netqVersion": "4.0.0",
         "overallStatus": "FAILED",
         "pre-checkStatus": "COMPLETED",
         "warnings": [],

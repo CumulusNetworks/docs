@@ -22,8 +22,7 @@ You might need to decommission a switch when you:
 ### Syntax
 
 ```
-netq decommission
-    <hostname-to-decommission>
+netq decommission <hostname-to-decommission>
 ```
 
 ### Required Arguments
@@ -227,7 +226,7 @@ sysconf         configdiff       updated
 
 - - -
 
-- - - 
+- - -
 
 ## netq del tca
 

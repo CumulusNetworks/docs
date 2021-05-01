@@ -7,8 +7,7 @@ toc: 3
 You can decommission a switch or host at any time. You might need to do this when you:
 
 - Change the hostname of the switch or host being monitored
-- Move the switch or host being monitored from one data center to
-another
+- Move the switch or host being monitored from one data center to another
 - RMA the switch or host being monitored
 
 {{<notice note>}}
@@ -29,7 +28,7 @@ To decommission a switch or host:
 2. On the NetQ On-premises or Cloud Appliance or VM, decommission the switch or host.
 
     ```
-    cumulus@netq-appliance:~$ netq decommission <hostname>
+    cumulus@netq-appliance:~$ netq decommission <hostname-to-decommission>
     ```
 
 ## Related Information

@@ -176,7 +176,7 @@ Upgrade Cumulus Linux on switches through either the NetQ UI or NetQ CLI:
 Perform the upgrade using the `netq lcm upgrade cl-image` command, providing a name for the upgrade job, the Cumulus Linux and NetQ version, and a comma-separated list of the hostname(s) to be upgraded:
 
 ```
-cumulus@switch:~$ netq lcm upgrade cl-image name upgrade-cl430 cl-version 4.3.0 netq-version 3.3.0 hostnames spine01,spine02
+cumulus@switch:~$ netq lcm upgrade cl-image name upgrade-cl430 cl-version 4.3.0 netq-version 4.0.0 hostnames spine01,spine02
 ```
 
 <!-- #### Upgrade Order
@@ -195,7 +195,7 @@ If the switches have not been assigned a role, then do not use the `order` optio
 You can also generate a Network Snapshot before and after the upgrade by adding the `run-before-after` option to the command:
 
 ```
-cumulus@switch:~$ netq lcm upgrade cl-image name upgrade-430 cl-version 4.3.0 netq-version 3.3.0 hostnames spine01,spine02,leaf01,leaf02 order spine,leaf run-before-after
+cumulus@switch:~$ netq lcm upgrade cl-image name upgrade-430 cl-version 4.3.0 netq-version 4.0.0 hostnames spine01,spine02,leaf01,leaf02 order spine,leaf run-before-after
 ```
 
 #### Restore on an Upgrade Failure
@@ -203,7 +203,7 @@ cumulus@switch:~$ netq lcm upgrade cl-image name upgrade-430 cl-version 4.3.0 ne
 You can have LCM restore the previous version of Cumulus Linux if the upgrade job fails by adding the `run-restore-on-failure` option to the command. This is highly recommended.
 
 ```
-cumulus@switch:~$ netq lcm upgrade cl-image name upgrade-430 cl-version 4.3.0 netq-version 3.3.0 hostnames spine01,spine02,leaf01,leaf02 order spine,leaf run-restore-on-failure
+cumulus@switch:~$ netq lcm upgrade cl-image name upgrade-430 cl-version 4.3.0 netq-version 4.0.0 hostnames spine01,spine02,leaf01,leaf02 order spine,leaf run-restore-on-failure
 ```
 
 {{< /tab >}}

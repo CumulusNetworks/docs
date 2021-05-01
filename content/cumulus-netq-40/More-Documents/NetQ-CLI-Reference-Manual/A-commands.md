@@ -730,7 +730,7 @@ netq bootstrap worker
 | interface | \<text-opta-ifname\> | Name of the interface on the NetQ appliance or VM where the server listens for NetQ Agents |
 | ip-addr | \<text-ip-addr\> | IP address of the interface on the NetQ appliance or VM where the server listens for NetQ Agents |
 | worker | NA | Load the installation program onto worker nodes in a NetQ server cluster |
-| tarball | \<text-tarball-name\> | Full path of the installation file; for example, */mnt/installables/netq-bootstrap-3.3.0.tgz* |
+| tarball | \<text-tarball-name\> | Full path of the installation file; for example, */mnt/installables/netq-bootstrap-4.0.0.tgz* |
 | master-ip | \<text-master-ip\> | IP address fo the master server in a NetQ server cluster |
 
 ### Options
@@ -756,13 +756,13 @@ A release is included if there were changes to the command, otherwise it is not 
 Bootstrap single server or master server in a server cluster
 
 ```
-cumulus@switch:~$ netq bootstrap master interface eth0 tarball /mnt/installables/netq-bootstrap-3.3.0.tgz
+cumulus@switch:~$ netq bootstrap master interface eth0 tarball /mnt/installables/netq-bootstrap-4.0.0.tgz
 ```
 
 Bootstrap worker node in server cluster
 
 ```
-cumulus@switch:~$ netq bootstrap worker tarball /mnt/installables/netq-bootstrap-3.3.0.tgz  master-ip 192.168.10.20
+cumulus@switch:~$ netq bootstrap worker tarball /mnt/installables/netq-bootstrap-4.0.0.tgz  master-ip 192.168.10.20
 ```
 
 ### Related Commands
@@ -839,7 +839,7 @@ netq bootstrap master upgrade
 
 | Argument | Value | Description |
 | ---- | ---- | ---- |
-| NA | \<text-tarball-name\> | Full path of the installation file; for example, */mnt/installables/netq-bootstrap-3.3.0.tgz*  |
+| NA | \<text-tarball-name\> | Full path of the installation file; for example, */mnt/installables/netq-bootstrap-4.0.0.tgz*  |
 
 ### Options
 
@@ -858,7 +858,7 @@ A release is included if there were changes to the command, otherwise it is not 
 Basic bootstrap
 
 ```
-cumulus@switch:~$ netq bootstrap master upgrade mnt/installables/netq-bootstrap-3.3.0.tgz
+cumulus@switch:~$ netq bootstrap master upgrade mnt/installables/netq-bootstrap-4.0.0.tgz
 ```
 
 ### Related Commands

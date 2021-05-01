@@ -19,10 +19,10 @@ To create a new search:
     {{< figure src="/images/netq/search-create-auto-suggest-222.png" width="300" >}}
 
     {{<notice note>}}
-If you have more matches than fit in the window, click the <strong>See All \# Results</strong> link to view all found matches. The count represents the number of devices found. It does not include cards found.
+If you have more matches than fit in the window, click the <strong>See All # Results</strong> link to view all found matches. The count represents the number of devices found. It does not include cards found.
     {{</notice>}}
 
-## Run a Recent Search
+<!-- ## Run a Recent Search
 
 You can re-run a recent search, saving time if you are comparing data from two or more devices.
 
@@ -35,5 +35,5 @@ To re-run a recent search:
     {{< figure src="/images/netq/search-rerun-222.png" width="300" >}}
 
     {{<notice note>}}
-You may need to click <strong>See All \# Results</strong> to find the desired     search. If you do not find it in the list, you may still be able to find it in the <strong>Recent Actions</strong> list.
-    {{</notice>}}
+You may need to click <strong>See All # Results</strong> to find the desired search. If you do not find it in the list, you may still be able to find it in the <strong>Recent Actions</strong> list.
+    {{</notice>}} -->

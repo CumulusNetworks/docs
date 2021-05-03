@@ -31,7 +31,6 @@ cumulus@switch:~$ cl config apply
 
 ```
 cumulus@switch:~$ sudo vtysh
-
 switch# configure terminal
 switch(config)# ip prefix-list prefixlist1 seq 1 permit 10.0.0.0/16 le 30
 switch(config)# exit
@@ -46,6 +45,7 @@ cumulus@switch:~$
 The commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
 ```
+cumulus@switch:~$ sudo cat /etc/frr/frr.conf
 ...
 router ospf
  ospf router-id 10.10.10.1
@@ -55,7 +55,43 @@ router ospf
 ip prefix-list prefixlist1 seq 1 permit 10.0.0.0/16 le 30
 ```
 
-To use this prefix list in a route map, see {{<link url="#configuration-examples" text="Configuration-Examples">}} below.
+To use this prefix list in a route map called MAP1:
+
+{{< tabs "TabID60 ">}}
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@switch:~$ cl set router policy route-map MAP1 rule 10 action permit
+cumulus@switch:~$ cl set router policy route-map MAP1 rule 10 match ip-prefix-list prefixlist1
+cumulus@switch:~$ cl config apply
+```
+
+{{< /tab >}}
+{{< tab "vtysh Commands ">}}
+
+```
+cumulus@switch:~$ sudo vtysh
+switch# configure terminal
+switch(config)# route-map MAP1 permit 10
+switch(config-route-map)# match ip address prefix-list prefixlist1
+switch(config-route-map)# exit
+switch# write memory
+switch# exit
+cumulus@switch:~$
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+The commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+
+```
+cumulus@switch:~$ sudo cat /etc/frr/frr.conf
+...
+ip prefix-list prefixlist1 seq 1 permit 10.0.0.0/16 le 30
+route-map MAP1 permit 10
+match ip address prefix-list prefixlist1
+```
 
 ## Route Maps
 
@@ -72,6 +108,7 @@ The following example commands configure a route map that sets the metric to 50 
 cumulus@switch:~$ cl set router policy route-map routemap1 rule 10 match interface swp51
 cumulus@switch:~$ cl set router policy route-map routemap1 rule 10 set metric 50
 cumulus@switch:~$ cl set router policy route-map routemap1 rule 10 action permit
+cumulus@switch:~$ cl config apply
 ```
 
 {{< /tab >}}
@@ -79,7 +116,6 @@ cumulus@switch:~$ cl set router policy route-map routemap1 rule 10 action permit
 
 ```
 cumulus@switch:~$ sudo vtysh
-
 switch# configure terminal
 switch(config)# route-map routemap1 permit 10
 switch(config-route-map)# match interface swp51
@@ -96,6 +132,7 @@ cumulus@switch:~$
 The commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
 ```
+cumulus@switch:~$ sudo cat /etc/frr/frr.conf
 ...
 route-map routemap1 permit 10
  match interface swp51
@@ -121,7 +158,6 @@ cumulus@switch:~$ cl config apply
 
 ```
 cumulus@switch:~$ sudo vtysh
-
 switch# configure terminal
 switch(config)# ip protocol bgp route-map routemap1
 switch(config)# exit
@@ -136,6 +172,7 @@ cumulus@switch:~$
 The commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
 ```
+cumulus@switch:~$ sudo cat /etc/frr/frr.conf
 ...
 ip protocol bgp route-map routemap1
 ```
@@ -145,8 +182,8 @@ For BGP, you can also apply a route map on route updates from BGP to Zebra. All 
 To apply a route map to filter route updates from BGP into Zebra, run the following command:
 
 ```
-NEED COMMAND for CUE: 
-cumulus@switch:$ net add bgp table-map routemap2
+cumulus@switch:$ cl set vrf default router bgp address-family ipv4-unicast rib-filter routemap1
+cumulus@switch:$ cl config apply
 ```
 
 {{%notice note%}}
@@ -172,7 +209,6 @@ cumulus@switch:~$ cl config apply
 
 ```
 cumulus@switch:~$ sudo vtysh
-
 switch# configure terminal
 switch(config)# router bgp
 switch(config-router)# redistribute ospf
@@ -200,7 +236,6 @@ cumulus@switch:~$ cl config apply
 
 ```
 cumulus@switch:~$ sudo vtysh
-
 switch# configure terminal
 switch(config)# router bgp
 switch(config-router)# redistribute connected

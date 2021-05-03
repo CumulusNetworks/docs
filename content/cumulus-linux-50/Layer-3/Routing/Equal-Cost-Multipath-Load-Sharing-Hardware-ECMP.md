@@ -122,29 +122,7 @@ It is useful to have a unique hash seed for each switch. This helps avoid *hash 
 
 The hash seed is set by the `ecmp_hash_seed` parameter in the `/etc/cumulus/datapath/traffic.conf` file. It is an integer with a value from 0 to 4294967295. If you do not specify a value, `switchd` creates a randomly generated seed instead.
 
-For example, to set the hash seed to *50*, run the following commands:
-
-{{< tabs "TabID138 ">}}
-{{< tab "CUE Commands ">}}
-
-```
-cumulus@switch:~$ NEED COMMAND
-cumulus@switch:~$ cl config apply
-```
-
-{{< /tab >}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@switch:~$ net add forwarding ecmp hash-seed 50
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-{{< /tab >}}
-{{< tab "Linux Commands ">}}
-
-Edit `/etc/cumulus/datapath/traffic.conf` file, then restart `switchd`. For example:
+For example, to set the hash seed to *50*, edit `/etc/cumulus/datapath/traffic.conf` file as shown below, then restart `switchd`.
 
 ```
 cumulus@switch:~$ sudo nano /etc/cumulus/datapath/traffic.conf
@@ -155,9 +133,6 @@ ecmp_hash_seed = 50
 ```
 
 {{<cl/restart-switchd>}}
-
-{{< /tab >}}
-{{< /tabs >}}
 
 ### ECMP Custom Hashing
 

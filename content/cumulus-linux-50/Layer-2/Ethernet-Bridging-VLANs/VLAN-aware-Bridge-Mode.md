@@ -152,9 +152,23 @@ cumulus@switch:~$ ifreload -a
 NVIDIA Spectrum switches currently support a maximum of 6000 VLAN elements. The total number of VLAN elements is calculated as the number of VLANS times the number of bridges configured. For example, 6 bridges, each containing 1000 VLANS totals 6000 VLAN elements.
 {{%/notice%}}
 
-## VLAN Range
+## Reserved VLAN Range
 
-For hardware data plane internal operations, the switching silicon requires VLANs for every physical port, Linux bridge, and layer 3 subinterface. Cumulus Linux supports the full range of VLANs from 1 to 4096.
+For hardware data plane internal operations, the switching silicon requires VLANs for every physical port, Linux bridge, and layer 3 subinterface. Cumulus Linux reserves a range of VLANs by default; the reserved range is 3800-3999.
+
+{{%notice tip%}}
+You can modify the reserved range if it conflicts with any user-defined VLANs, as long the new range is a contiguous set of VLANs with IDs anywhere between 2 and 4094, and the minimum size of the range is 150 VLANs.
+{{%/notice%}}
+
+To configure the reserved range, edit the `/etc/cumulus/switchd.conf` file to uncomment the `resv_vlan_range` line and specify a new range, then restart `switchd`:
+
+```
+cumulus@switch:~$ sudo nano /etc/cumulus/switchd.conf
+...
+resv_vlan_range
+```
+
+{{<cl/restart-switchd>}}
 
 ## VLAN Pruning
 
@@ -445,19 +459,7 @@ To disable automatic address generation for a regular IPv6 address on a VLAN, ru
 {{< tabs "TabID248 ">}}
 {{< tab "CUE Commands ">}}
 
-```
-cumulus@switch:~$ NEED COMMAND
-cumulus@switch:~$ cl config apply
-```
-
-{{< /tab >}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@switch:~$ net add vlan 10 ipv6-addrgen off
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
+CUE commands are not supported.
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
@@ -487,21 +489,7 @@ To re-enable automatic linklocal address generation for a VLAN:
 {{< tabs "TabID287 ">}}
 {{< tab "CUE Commands ">}}
 
-```
-cumulus@switch:~$ NEED COMMAND
-cumulus@switch:~$ cl config apply
-```
-
-{{< /tab >}}
-{{< tab "NCLU Commands ">}}
-
-Run the `net del vlan <vlan> ipv6-addrgen off` command.
-
-```
-cumulus@switch:~$ net del vlan 10 ipv6-addrgen off
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
+CUE commands are not supported.
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
@@ -654,28 +642,27 @@ iface peerlink.4094
 
 Cumulus Linux supports using VXLANs with VLAN-aware bridge configurations to provide improved scalability, as multiple VXLANs can be added to a single VLAN-aware bridge. A one to one association is used between the VXLAN VNI and the VLAN, with the bridge access VLAN definition on the VXLAN and the VLAN membership definition on the local bridge member interfaces.
 
-The configuration example below shows the differences between a VXLAN configured for traditional bridge mode and one configured for VLAN-aware mode. The configurations use head end replication (HER) together with the VLAN-aware bridge to map VLANs to VNIs.
+The configuration example below shows a VXLAN configured for a bridge in VLAN-aware mode. The configurations use head end replication (HER) together with the VLAN-aware bridge to map VLANs to VNIs.
 
 ```
 ...
 auto lo
 iface lo inet loopback
-    address 10.35.0.10/32
+    address 10.10.10.1/32
+    vxlan-local-tunnelip 10.10.10.1
 
 auto br_default
 iface br_default
-    bridge-ports uplink
+    bridge-ports swp1 vni10
     bridge-pvid 1
-    bridge-vids 1-100
+    bridge-vids 10
     bridge-vlan-aware yes
 
-auto vni-10000
-iface vni-10000
-    alias CUSTOMER X VLAN 10
+auto vni10
+iface vni10
     bridge-access 10
-    vxlan-id 10000
-    vxlan-local-tunnelip 10.35.0.10
-    vxlan-remoteip 10.35.0.34
+    vxlan-id 10
+    vxlan-remoteip 10.10.10.34
 ...
 ```
 

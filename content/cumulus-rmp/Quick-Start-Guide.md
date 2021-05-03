@@ -29,7 +29,7 @@ If you are a networking engineer but are unfamiliar with Linux concepts,
 refer to {{<kb_link url="knowledge-base/Demos-and-Training/Interoperability/Cumulus-Linux-Conversion-Guide-for-NX-OS-or-IOS-Users/" text="this reference guide" >}}
 for examples of the Cumulus Linux CLI and configuration options, and
 their equivalent Cisco Nexus 3000 NX-OS commands and settings. You can
-also <a href="http://cumulusnetworks.com/technical-videos/">watch a series of short videos</a> introducing you to
+also <a href="https://academy.mellanox.com/en/training-by-topic/?training_by_topic=58">watch a series of short videos</a> introducing you to
 Linux and Cumulus Linux-specific concepts.
 
 {{</notice>}}

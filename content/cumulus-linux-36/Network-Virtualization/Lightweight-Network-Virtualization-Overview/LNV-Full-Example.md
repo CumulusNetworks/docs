@@ -16,7 +16,7 @@ balance the service nodes.
 {{%notice note%}}
 
 LNV is a lightweight controller option. 
-[Contact Cumulus Networks](http://cumulusnetworks.com/cumulus-linux/overview/#cl-howtoBuy)
+Contact Cumulus Networks
 with your scale requirements so we can make sure this is the right fit
 for you. There are also other controller options that can work on
 Cumulus Linux.
@@ -45,7 +45,7 @@ The following images illustrate the configuration:
 {{%notice tip%}}
 
 Want to try out configuring LNV and do not have a Cumulus Linux switch?
-Check out [Cumulus VX](https://cumulusnetworks.com/cumulus-vx/) .
+Check out [Cumulus VX](https://www.nvidia.com/en-us/networking/network-simulation/) .
 
 {{%/notice%}}
 
@@ -53,7 +53,7 @@ Check out [Cumulus VX](https://cumulusnetworks.com/cumulus-vx/) .
 
 {{< img src="/images/old_doc_images/turtle_training.png" width="40">}} 
 
-Feeling overwhelmed? Come join a [Cumulus Boot Camp](https://education.cumulusnetworks.com/series/bootcamps/) and get instructor-led training\!
+Feeling overwhelmed? Come join a [Cumulus Boot Camp](https://academy.mellanox.com/en/training-by-topic/?training_by_topic=58) and get instructor-led training\!
 
 {{%/notice%}}
 
@@ -510,5 +510,5 @@ svcnode_peers = 10.2.1.3 10.2.1.4
   - [tools.ietf.org/html/rfc7348](https://tools.ietf.org/html/rfc7348)
   - [en.wikipedia.org/wiki/Anycast](http://en.wikipedia.org/wiki/Anycast)
   - [Detailed LNV Configuration Guide](/cumulus-linux-36/Network-Virtualization/Lightweight-Network-Virtualization-Overview/)
-  - [Cumulus Networks Training](http://cumulusnetworks.com/education/instructor-led-training/)
+  - [Cumulus Networks Training](https://academy.mellanox.com/en/training-by-topic/?training_by_topic=58)
   - [Network virtualization chapter, Cumulus Linux user guide](/cumulus-linux-36/Network-Virtualization/)

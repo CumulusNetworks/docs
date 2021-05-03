@@ -1281,12 +1281,12 @@ All underlay IP fabric BGP peerings in this guide are based on eBGP. Cumulus Lin
 
 The subinterfaces on `leaf03` and `leaf04` must be configured with unique IPv4 addresses. NSX Edge nodes to not support BGP unnumbered.
 
-{{%notice note%}}
+{{<notice note>}}
 
 Auto BGP configuration is only available using NCLU. If you want to use `vtysh` configuration, a BGP ASN must be configured.  
 For additional details refer to the {{<kb_link text="Configuring FRRouting" url="cumulus-linux-43/Layer-3/FRRouting/Configure-FRRouting/" >}} documentation.
 
-{{%/notice %}}
+{{</notice >}}
 ### BGP Peerings Establishment
 
 The only change from the previous configurations is to add numbered BGP peerings from the leaf notes to the Edge Node server.

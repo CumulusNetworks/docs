@@ -62,6 +62,27 @@ To work around this issue, run the &lt;tt&gt;apt-get upgrade&lt;/tt&gt; command 
 <td></td>
 </tr>
 <tr>
+<td>2638137</td>
+<td>When you delete a static route using NCLU, the configuration is not deleted from running configuration or from the {{/etc/frr/frr.conf}} file. </td>
+<td>3.7.13-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>2638043</td>
+<td>OpenSSH is vulnerable to CVE-2020-14145, as described in https://www.fzi.de/fileadmin/user_upload/2020-06-26-FSA-2020-2.pdf.  
+This is an information leak in algorithm negotiation that can allow man-in-the-middle attacks on initial connection attempts without a previously stored server host key on the client. If desired, mitigation using UpdateHostKeys and HostKeyAlgorithms is also given in that paper.</td>
+<td>3.7.14-3.7.14.2, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2628514</td>
+<td>CVE-2020-12695: hostapd does not properly handle UPnP subscribe messages under certain conditions, allowing an attacker to cause a denial of service.
+Vulnerable: &lt;= 2.8.0-cl4.3.1u1
+Fixed: 2.8.0-cl4.3.1u2</td>
+<td>3.7.14-3.7.14.2, 4.3.0</td>
+<td></td>
+</tr>
+<tr>
 <td>2617009</td>
 <td>CVE-2021-23358: missing input sanitising in the template() function of the Underscore JavaScript library could result in the execution of arbitrary code.
 Vulnerable: 1.7.0~dfsg-1
@@ -168,7 +189,7 @@ Fixed: 0.99.beta19-2+deb8u2</td>
 </tr>
 <tr>
 <td>2562511</td>
-<td>{{hostapd} does not fail over to secondary RADIUS servers for 802.1x authentication when the primary radius is reachable but not responding to Access-Requests.
+<td>{{hostapd}} does not fail over to secondary RADIUS servers for 802.1x authentication when the primary radius is reachable but not responding to Access-Requests.
 If the primary RADIUS server is having a problem servicing requests, you can remove it from the configuration temporarily to force requests to be sent to alternate servers.</td>
 <td>3.7.10-3.7.14.2</td>
 <td></td>
@@ -509,13 +530,6 @@ To work around this issue, configure {{ip pim use-source}} on each unnumbered in
 <td></td>
 </tr>
 <tr>
-<td>2554617</td>
-<td>OpenSSH is vulnerable to CVE-2020-14145, as described in https://www.fzi.de/fileadmin/user_upload/2020-06-26-FSA-2020-2.pdf.  
-This is an information leak in algorithm negotiation that can allow man-in-the-middle attacks on initial connection attempts without a previously stored server host key on the client. If desired, mitigation using UpdateHostKeys and HostKeyAlgorithms is also given in that paper.</td>
-<td>3.7.14-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
 <td>2554588</td>
 <td>If you try reconfigure a DHCP server after you delete the switch configuration with the {{net del all}} command, the {{dhcpd}} service fails because a duplicate process is running.
 To work around this issue, edit the {{/usr/lib/python2.7/dist-packages/nclu/plugins/dhcp.py}} file to change:
@@ -608,13 +622,6 @@ To work around this issue, avoid polling IP-FORWARD-MIB objects.</td>
 <td>RX_DRP on a bond interface increases without any data traffic while the slave port does not increase.</td>
 <td>3.7.12-4.2.1</td>
 <td>4.3.0</td>
-</tr>
-<tr>
-<td>2552870</td>
-<td>On the  Dell N3048EP switch, the module information from SFP ports is not displayed in the {{l1-show}} command.
-To work around this issue, use the {{ethtool -m &lt;interface&gt;}} command.</td>
-<td>3.7.13-3.7.14.2</td>
-<td></td>
 </tr>
 <tr>
 <td>2552869</td>
@@ -1901,6 +1908,27 @@ To work around this issue, run the &lt;tt&gt;apt-get upgrade&lt;/tt&gt; command 
 <td></td>
 </tr>
 <tr>
+<td>2638137</td>
+<td>When you delete a static route using NCLU, the configuration is not deleted from running configuration or from the {{/etc/frr/frr.conf}} file. </td>
+<td>3.7.13-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>2638043</td>
+<td>OpenSSH is vulnerable to CVE-2020-14145, as described in https://www.fzi.de/fileadmin/user_upload/2020-06-26-FSA-2020-2.pdf.  
+This is an information leak in algorithm negotiation that can allow man-in-the-middle attacks on initial connection attempts without a previously stored server host key on the client. If desired, mitigation using UpdateHostKeys and HostKeyAlgorithms is also given in that paper.</td>
+<td>3.7.14-3.7.14.2, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2628514</td>
+<td>CVE-2020-12695: hostapd does not properly handle UPnP subscribe messages under certain conditions, allowing an attacker to cause a denial of service.
+Vulnerable: &lt;= 2.8.0-cl4.3.1u1
+Fixed: 2.8.0-cl4.3.1u2</td>
+<td>3.7.14-3.7.14.2, 4.3.0</td>
+<td></td>
+</tr>
+<tr>
 <td>2617009</td>
 <td>CVE-2021-23358: missing input sanitising in the template() function of the Underscore JavaScript library could result in the execution of arbitrary code.
 Vulnerable: 1.7.0~dfsg-1
@@ -2001,7 +2029,7 @@ Fixed: 0.99.beta19-2+deb8u2</td>
 </tr>
 <tr>
 <td>2562511</td>
-<td>{{hostapd} does not fail over to secondary RADIUS servers for 802.1x authentication when the primary radius is reachable but not responding to Access-Requests.
+<td>{{hostapd}} does not fail over to secondary RADIUS servers for 802.1x authentication when the primary radius is reachable but not responding to Access-Requests.
 If the primary RADIUS server is having a problem servicing requests, you can remove it from the configuration temporarily to force requests to be sent to alternate servers.</td>
 <td>3.7.10-3.7.14.2</td>
 <td></td>
@@ -2398,13 +2426,6 @@ To work around this issue, configure {{ip pim use-source}} on each unnumbered in
 <td></td>
 </tr>
 <tr>
-<td>2554617</td>
-<td>OpenSSH is vulnerable to CVE-2020-14145, as described in https://www.fzi.de/fileadmin/user_upload/2020-06-26-FSA-2020-2.pdf.  
-This is an information leak in algorithm negotiation that can allow man-in-the-middle attacks on initial connection attempts without a previously stored server host key on the client. If desired, mitigation using UpdateHostKeys and HostKeyAlgorithms is also given in that paper.</td>
-<td>3.7.14-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
 <td>2554588</td>
 <td>If you try reconfigure a DHCP server after you delete the switch configuration with the {{net del all}} command, the {{dhcpd}} service fails because a duplicate process is running.
 To work around this issue, edit the {{/usr/lib/python2.7/dist-packages/nclu/plugins/dhcp.py}} file to change:
@@ -2497,13 +2518,6 @@ To work around this issue, avoid polling IP-FORWARD-MIB objects.</td>
 <td>RX_DRP on a bond interface increases without any data traffic while the slave port does not increase.</td>
 <td>3.7.12-4.2.1</td>
 <td>4.3.0</td>
-</tr>
-<tr>
-<td>2552870</td>
-<td>On the  Dell N3048EP switch, the module information from SFP ports is not displayed in the {{l1-show}} command.
-To work around this issue, use the {{ethtool -m &lt;interface&gt;}} command.</td>
-<td>3.7.13-3.7.14.2</td>
-<td></td>
 </tr>
 <tr>
 <td>2552869</td>
@@ -4404,6 +4418,12 @@ To work around this issue, run the &lt;tt&gt;apt-get upgrade&lt;/tt&gt; command 
 <td></td>
 </tr>
 <tr>
+<td>2638137</td>
+<td>When you delete a static route using NCLU, the configuration is not deleted from running configuration or from the {{/etc/frr/frr.conf}} file. </td>
+<td>3.7.13-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
 <td>2617009</td>
 <td>CVE-2021-23358: missing input sanitising in the template() function of the Underscore JavaScript library could result in the execution of arbitrary code.
 Vulnerable: 1.7.0~dfsg-1
@@ -4482,7 +4502,7 @@ FIxed: 2.6.1-2+deb8u6</td>
 </tr>
 <tr>
 <td>2562511</td>
-<td>{{hostapd} does not fail over to secondary RADIUS servers for 802.1x authentication when the primary radius is reachable but not responding to Access-Requests.
+<td>{{hostapd}} does not fail over to secondary RADIUS servers for 802.1x authentication when the primary radius is reachable but not responding to Access-Requests.
 If the primary RADIUS server is having a problem servicing requests, you can remove it from the configuration temporarily to force requests to be sent to alternate servers.</td>
 <td>3.7.10-3.7.14.2</td>
 <td></td>
@@ -4931,13 +4951,6 @@ These messages and the light are cosmetic issues only and do not otherwise impac
 To work around this issue, disable ARP/ND suppression to remove the internal ACL rule that affects the ports.</td>
 <td>3.7.13, 4.2.1</td>
 <td>3.7.14, 4.3.0</td>
-</tr>
-<tr>
-<td>2552870</td>
-<td>On the  Dell N3048EP switch, the module information from SFP ports is not displayed in the {{l1-show}} command.
-To work around this issue, use the {{ethtool -m &lt;interface&gt;}} command.</td>
-<td>3.7.13-3.7.14.2</td>
-<td></td>
 </tr>
 <tr>
 <td>2552869</td>
@@ -7195,7 +7208,7 @@ FIxed: 2.6.1-2+deb8u6</td>
 </tr>
 <tr>
 <td>2562511</td>
-<td>{{hostapd} does not fail over to secondary RADIUS servers for 802.1x authentication when the primary radius is reachable but not responding to Access-Requests.
+<td>{{hostapd}} does not fail over to secondary RADIUS servers for 802.1x authentication when the primary radius is reachable but not responding to Access-Requests.
 If the primary RADIUS server is having a problem servicing requests, you can remove it from the configuration temporarily to force requests to be sent to alternate servers.</td>
 <td>3.7.10-3.7.14.2</td>
 <td></td>
@@ -9766,7 +9779,7 @@ FIxed: 2.6.1-2+deb8u6</td>
 </tr>
 <tr>
 <td>2562511</td>
-<td>{{hostapd} does not fail over to secondary RADIUS servers for 802.1x authentication when the primary radius is reachable but not responding to Access-Requests.
+<td>{{hostapd}} does not fail over to secondary RADIUS servers for 802.1x authentication when the primary radius is reachable but not responding to Access-Requests.
 If the primary RADIUS server is having a problem servicing requests, you can remove it from the configuration temporarily to force requests to be sent to alternate servers.</td>
 <td>3.7.10-3.7.14.2</td>
 <td></td>
@@ -12067,7 +12080,7 @@ FIxed: 2.6.1-2+deb8u6</td>
 </tr>
 <tr>
 <td>2562511</td>
-<td>{{hostapd} does not fail over to secondary RADIUS servers for 802.1x authentication when the primary radius is reachable but not responding to Access-Requests.
+<td>{{hostapd}} does not fail over to secondary RADIUS servers for 802.1x authentication when the primary radius is reachable but not responding to Access-Requests.
 If the primary RADIUS server is having a problem servicing requests, you can remove it from the configuration temporarily to force requests to be sent to alternate servers.</td>
 <td>3.7.10-3.7.14.2</td>
 <td></td>

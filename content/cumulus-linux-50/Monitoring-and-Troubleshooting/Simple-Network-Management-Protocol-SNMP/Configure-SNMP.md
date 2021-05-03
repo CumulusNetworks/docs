@@ -19,9 +19,7 @@ The SNMPv3 username is the recommended option instead of the read-only community
 Before you can use SNMP, you need to enable and start the `snmpd` service.
 
 {{%notice note%}}
-
 If you intend to run this service within a {{<link url="Virtual-Routing-and-Forwarding-VRF" text="VRF">}}, including the {{<link url="Management-VRF" text="management VRF">}}, follow {{<link url="Management-VRF#run-services-as-a-non-root-user" text="these steps">}} for configuring the service.
-
 {{%/notice%}}
 
 To start the SNMP daemon:
@@ -55,7 +53,6 @@ After the service starts, you can use SNMP to manage various components on the s
 Use NCLU to configure `snmpd` even though NCLU does not provide functionality to configure every `snmpd` feature. You are not restricted to using NCLU for configuration and can edit the `/etc/snmp/snmpd.conf` file and control `snmpd` with `systemctl` commands.
 
 {{%notice info%}}
-
 If you need to manually edit the SNMP configuration &mdash; for example, if the necessary option has not been implemented in NCLU &mdash; you need to edit the configuration directly in the `/etc/snmp/snmpd.conf` file.
 
 Use caution when editing this file. Be aware that `snmpd` caches SNMPv3 usernames and passwords in the /`var/lib/snmp/snmpd.conf` file. Make sure you stop `snmpd` and remove the old entries when making changes. Otherwise, Cumulus Linux uses the old usernames and passwords in the `/var/lib/snmp/snmpd.conf` file instead of the ones in the `/etc/snmp/snmpd.conf` file.
@@ -65,7 +62,6 @@ The next time you use NCLU to update your SNMP configuration, if NCLU is unable 
 Make sure you do not delete the `snmpd.conf` file; this can cause issues with the package manager the next time you update Cumulus Linux.
 
 The `snmpd` daemon uses the `/etc/snmp/snmpd.conf` configuration file for most of its configuration. The syntax of the most important keywords are defined in the following table.
-
 {{%/notice%}}
 
 ### Configure the Listening IP Addresses
@@ -77,7 +73,13 @@ The IP address must exist on an interface that has link UP on the switch where `
 You can configure multiple IP addresses and bind to a particular IP address within a particular VRF table.
 
 {{< tabs "Listening IP" >}}
+{{< tab "CUE Commands" >}}
 
+```
+cumulus@switch:~$ NEED COMMAND
+```
+
+{{< /tab >}}
 {{< tab "NCLU Commands" >}}
 
 To configure the `snmpd` daemon to listen on the localhost IPv4 and IPv6 interfaces, run:
@@ -90,7 +92,6 @@ cumulus@switch:~$ net commit
 ```
 
 {{%notice tip%}}
-
 If you configure the listening address on the loopback interface, because it is not a change from the default, a message appears in the console stating that the configuration has not changed.
 
 ```
@@ -127,7 +128,6 @@ cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
-
 {{< tab "Linux Commands" >}}
 
 Edit the `/etc/snmp/snmpd.conf` file and add the IP address, protocol and port for `snmpd` to listen for incoming requests. An example configuration is shown below.
@@ -143,7 +143,6 @@ agentAddress udp:66.66.66.66:161,udp:77.77.77.77:161,udp6:[2001::1]:161
 ```
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 #### SNMP and VRFs
@@ -151,7 +150,13 @@ agentAddress udp:66.66.66.66:161,udp:77.77.77.77:161,udp6:[2001::1]:161
 Cumulus Linux provides a listening address for VRFs along with trap and inform support. You can configure `snmpd` to listen to a specific IPv4 or IPv6 address on an interface within a particular VRF. With VRFs, identical IP addresses can exist in different VRF tables. This command restricts listening to a particular IP address within a particular VRF. If the VRF name is not given, the default VRF is used.
 
 {{< tabs "SNMP and VRFs" >}}
+{{< tab "CUE Commands" >}}
 
+```
+cumulus@switch:~$ NEED COMMAND
+```
+
+{{< /tab >}}
 {{< tab "NCLU Commands" >}}
 
 The following command configures `snmpd` to listen to IP address 10.10.10.10 on eth0, the management interface in the management VRF:
@@ -172,7 +177,6 @@ cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
-
 {{< tab "Linux Commands" >}}
 
 To bind to a particular IP address within a particular VRF table, edit the `/etc/snmp/snmpd.conf` file and append an *@* and the name of the VRF table to the IP address (for example, *192.168.200.11@mgmt*).
@@ -186,7 +190,6 @@ agentAddress udp:66.66.66.66:161,udp:77.77.77.77:161,udp6:[2001::1]:161
 ```
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 ### Configure the SNMPv3 Username
@@ -196,9 +199,7 @@ NVIDIA recommends you use an SNMPv3 username and password instead of the read-on
 SNMPv3 usernames are added to the `/etc/snmp/snmpd.conf` file, along with plaintext authentication and encryption pass phrases.
 
 {{%notice note%}}
-
 The default `snmpd.conf` file contains a default user, *_snmptrapusernameX*. This username cannot be used for authentication, but is required for SNMP traps.
-
 {{%/notice%}}
 
 You have three choices for authenticating the user:
@@ -208,7 +209,13 @@ You have three choices for authenticating the user:
 - SHA password
 
 {{< tabs "username" >}}
+{{< tab "CUE Commands" >}}
 
+```
+cumulus@switch:~$ NEED COMMAND
+```
+
+{{< /tab >}}
 {{< tab "NCLU Commands" >}}
 
 For no authentication, run:
@@ -276,7 +283,6 @@ cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
-
 {{< tab "Linux Commands" >}}
 
 There are three directives that define an internal SNMPv3 username that are required for `snmpd` to retrieve information and send built-in traps or for those configured with the `monitor` command (see {{<link url="#configure-snmp-trap-and-inform-messages" text="below">}}):
@@ -329,7 +335,6 @@ rwuser user999
 ```
 
 {{%notice tip%}}
-
 The following example shows a more advanced but slightly more secure method of configuring SNMPv3 users without creating cleartext passwords:
 
 1. Install the `net-snmp-config` script that is in `libsnmp-dev` package:
@@ -350,7 +355,6 @@ The following example shows a more advanced but slightly more secure method of c
     {{%notice note%}}
 
 The minimum password length is eight characters and the arguments `-a` and `-x` have different meanings in `net-snmp-config` than `snmpwalk`.
-
 {{%/notice%}}
 
    ```
@@ -366,7 +370,6 @@ The `snmpd` daemon reads the information from the `/var/lib/snmp/snpmd.conf` fil
 {{%/notice%}}
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 ### Configure an SNMP View Definition
@@ -378,7 +381,13 @@ You can define a specific view multiple times and fine tune to provide or restri
 By default, the `snmpd.conf` file contains numerous views within the *systemonly* view.
 
 {{< tabs "viewname" >}}
+{{< tab "CUE Commands" >}}
 
+```
+cumulus@switch:~$ NEED COMMAND
+```
+
+{{< /tab >}}
 {{< tab "NCLU Commands" >}}
 
 ```
@@ -392,7 +401,6 @@ cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
-
 {{< tab "Linux Commands" >}}
 
 Edit the `/etc/snmp/snmpd.conf` file and add the `view` command.
@@ -409,7 +417,6 @@ view systemonly included .1.3.6.1.2.1.3
 ```
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 ### Configure the Community String
@@ -423,7 +430,13 @@ You can specify a source IP address token to restrict access to only that host o
 You can also specify a view to restrict the subset of the OID tree.
 
 {{< tabs "community-string" >}}
+{{< tab "CUE Commands" >}}
 
+```
+cumulus@switch:~$ NEED COMMAND
+```
+
+{{< /tab >}}
 {{< tab "NCLU Commands" >}}
 
 The following example configuration:
@@ -448,7 +461,6 @@ cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
-
 {{< tab "Linux Commands" >}}
 
 You enable the community string by providing a community string and then setting **rocommunity** (for read-only access) or **rwcommunity** (for read-write access). Other options you can specify are described below.
@@ -457,9 +469,7 @@ You enable the community string by providing a community string and then setting
 - `public`: The plaintext password/community string.
 
   {{%notice info%}}
-
 NVIDIA strongly recommends you change this password to something else.
-
 {{%/notice%}}
 
 - `default`: Allows connections from any system.
@@ -485,7 +495,6 @@ cumulus@switch:~$ systemctl restart snmpd.service
 ```
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 ### Configure System Settings
@@ -497,7 +506,13 @@ You can configure system settings for the SNMPv2 MIB. The example commands here 
 - An administratively-assigned name for the managed node (the `sysname`).
 
 {{< tabs "sys-settings" >}}
+{{< tab "CUE Commands" >}}
 
+```
+cumulus@switch:~$ NEED COMMAND
+```
+
+{{< /tab >}}
 {{< tab "NCLU Commands" >}}
 
 For example, to set the system physical location for the node in the SNMPv2-MIB system table, run:
@@ -533,7 +548,6 @@ sysname CumulusBox number 1,543,567
 ```
 
 {{< /tab >}}
-
 {{< tab "Linux Commands" >}}
 
 Edit the `/etc/snmp/snmpd.conf` file and add the following configuration:
@@ -548,7 +562,6 @@ sysname CumulusBox number 1,543,567
 ```
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 ## Enable SNMP Support for FRRouting
@@ -560,9 +573,7 @@ The default `/etc/snmp/snmpd.conf` configuration already enables AgentX and sets
 Enabling FRR includes support for BGP. However, if you plan on using the BGP4 MIB, be sure to provide access to the MIB tree 1.3.6.1.2.1.15.
 
 {{%notice tip%}}
-
 If you plan on using the OSPFv2 MIB, provide access to 1.3.6.1.2.1.14 and to 1.3.6.1.2.1.191 for the OSPv3 MIB.
-
 {{%/notice%}}
 
 To enable SNMP support for FRR:
@@ -631,9 +642,7 @@ Some MIBs, including storage information, are not included by default in `snmpd.
 - Parts of the BRIDGE-MIB and Q-BRIDGE-MIBs
 
 {{%notice warning%}}
-
 This configuration grants access to a large number of MIBs, including all SNMPv2-MIB, which might reveal more data than expected. In addition to being a security vulnerability, it might consume more CPU resources.
-
 {{%/notice%}}
 
 To enable the .1.3.6.1.2.1 range, make sure the view commands include the required MIB objects.
@@ -641,6 +650,8 @@ To enable the .1.3.6.1.2.1 range, make sure the view commands include the requir
 ## Restore the Default SNMP Configuration
 
 The following command removes all custom entries in the `/etc/snmp/snmpd.conf` file and replaces them with defaults, including for all SNMPv3 usernames and readonly-communities. A `listening-address` for the localhost is configured in its place.
+
+NEED COMMAND for CUE
 
 ```
 cumulus@switch:~$ net del snmp-server all
@@ -694,7 +705,13 @@ The following example configuration:
 You can find a working example configuration on the {{<exlink url="https://gitlab.com/nvidia-networking/systems-engineering/poc-support/snmp-and-cl" text="NVIDIA Networking GitLab project">}}, which you can try for free with {{<exlink url="https://air.nvidia.com" text="NVIDIA AIR Simulation Platform">}}.
 
 {{< tabs "example-config" >}}
+{{< tab "CUE Commands" >}}
 
+```
+cumulus@switch:~$ NEED COMMAND
+```
+
+{{< /tab >}}
 {{< tab "NCLU Commands" >}}
 
 ```
@@ -743,7 +760,6 @@ trap2sink 1.1.1.1 mypass
 ```
 
 {{< /tab >}}
-
 {{< tab "Linux Commands" >}}
 
 Edit the `/etc/snmp/snmpd.conf` file and apply the following configuration (add every line starting with a +):
@@ -780,5 +796,4 @@ sysservices 72
 ```
 
 {{< /tab >}}
-
 {{< /tabs >}}

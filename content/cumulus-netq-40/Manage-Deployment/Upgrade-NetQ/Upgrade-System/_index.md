@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 410
 toc: 4
 ---
-The first step in upgrading your NetQ installation to NetQ 4.0.0 is to upgrade your NetQ appliances or VMs. This topic describes how to upgrade this for both on-premises and remote deployments.
+The first step in upgrading your NetQ installation to NetQ {{<version>}} is to upgrade your NetQ appliances or VMs. This topic describes how to upgrade this for both on-premises and remote deployments.
 
 ## Prepare for Upgrade
 
@@ -22,15 +22,15 @@ To complete the preparation:
 
 2. Download the relevant software.
 
-    {{<netq-install/upgrade-image version="3.3.1">}}
+    {{<netq-install/upgrade-image version="3.3.1">}} <!-- UPDATE ME! -->
 
 3. Copy the file to the `/mnt/installables/` directory on your appliance or VM.
 
-4. Update `/etc/apt/sources.list.d/cumulus-netq.list` to netq-3.3 as follows:
+4. Update `/etc/apt/sources.list.d/cumulus-netq.list` to netq-4.0 as follows:
 
     ```
     cat /etc/apt/sources.list.d/cumulus-netq.list
-    deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb bionic netq-3.3
+    deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb bionic netq-4.0
     ```
 
 5. Update the NetQ `debian` packages.

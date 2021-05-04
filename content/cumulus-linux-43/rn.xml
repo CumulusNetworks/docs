@@ -94,12 +94,6 @@ This is an information leak in algorithm negotiation that can allow man-in-the-m
 <td></td>
 </tr>
 <tr>
-<td>2634464</td>
-<td>In an EVPN multihoming configuration, when you bring down a local bond on the switch, MAC address from the bond still point to a local interface and is advertised to EVPN.</td>
-<td>4.2.1-4.3.0</td>
-<td></td>
-</tr>
-<tr>
 <td>2633062</td>
 <td>The following vulnerability affects the libgstreamer-plugins-base1.0-0 package.  There is no CVE yet; the Debian advisory number is DSA-4903-1.
 Multiple vulnerabilities were discovered in plugins for the GStreamer media framework, which may result in denial of service or potentially the execution of arbitrary code if a malformed media file is opened.

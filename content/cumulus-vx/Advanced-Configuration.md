@@ -33,7 +33,7 @@ The Cumulus Linux on demand labs use the following topology:
 To be able to follow the labs, you need to convert the two leaf and one spine topology we use in this documentation to the topology used in the labs.
 
 {{%notice tip%}}
-As an alternative to using Cumulus VX with the Cumulus Linux on demand labs, you can use {{<exlink url="https://cumulusnetworks.com/products/cumulus-in-the-cloud/" text="Cumulus in the Cloud">}}, which is a free, personal, virtual data center network that provides a low-effort way to see Cumulus Networks technology in action. Your virtual data center consists of two racks with two dual-homed servers connected with a leaf-spine network.
+As an alternative to using Cumulus VX with the Cumulus Linux on demand labs, you can use {{<exlink url="https://www.nvidia.com/en-us/networking/network-simulation/" text="Cumulus in the Cloud">}}, which is a free, personal, virtual data center network that provides a low-effort way to see Cumulus Networks technology in action. Your virtual data center consists of two racks with two dual-homed servers connected with a leaf-spine network.
 {{%/notice%}}
 
 To convert the topology, you need to:

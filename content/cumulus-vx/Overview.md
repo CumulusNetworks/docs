@@ -23,7 +23,7 @@ Cumulus VX is designed for testing and not data plane performance. Cumulus VX is
 ## Cumulus in the Cloud
 
 As an alternative to Cumulus VX, which requires a hypervisor (or hypervisor and orchestrator), you can use
-{{<exlink url="https://cumulusnetworks.com/products/cumulus-in-the-cloud/" text="Cumulus in the Cloud">}}, which is a free, personal, virtual data center network that provides a low-effort way to see NVIDIA networking technology in action. Your virtual data center consists of two racks with two dual-homed servers connected with a leaf-spine network. This is a good way to try out Cumulus Linux if you have platform or disk limitations.
+{{<exlink url="https://www.nvidia.com/en-us/networking/network-simulation/" text="Cumulus in the Cloud">}}, which is a free, personal, virtual data center network that provides a low-effort way to see NVIDIA networking technology in action. Your virtual data center consists of two racks with two dual-homed servers connected with a leaf-spine network. This is a good way to try out Cumulus Linux if you have platform or disk limitations.
 
 ## Supported Hypervisors
 
@@ -110,11 +110,11 @@ For non-customers, Cumulus VX remains a community-supported product, with no for
 ## Related Information
 
 - {{<kb_link url="cumulus-linux-43" text="Cumulus Linux documentation">}}
-- {{<exlink url="https://cumulusnetworks.com/products/cumulus-vx/download/" text="Cumulus VX downloads">}}
+- {{<exlink url="https://www.nvidia.com/en-us/networking/ethernet-switching/cumulus-vx/" text="Cumulus VX downloads">}}
 - {{<exlink url="https://www.vmware.com/support/pubs/" text="VMware documentation">}}
 - {{<exlink url="https://www.virtualbox.org/wiki/Documentation" text="VirtualBox documentation">}}
 - {{<exlink url="http://www.linux-kvm.org/page/Documents" text="KVM documentation">}}
 - {{<exlink url="https://docs.vagrantup.com/v2/" text="Vagrant documentation">}}
 - {{<exlink url="https://www.gns3.com/software" text="GNS3 documentation">}}
-- {{<exlink url="https://cumulusnetworks.com/products/cumulus-in-the-cloud/" text="Cumulus in the Cloud">}}
-- {{<exlink url="https://cumulusnetworks.com/lp/cumulus-linux-on-demand" text="Cumulus Linux on demand">}}
+- {{<exlink url="https://www.nvidia.com/en-us/networking/network-simulation/" text="Cumulus in the Cloud">}}
+- {{<exlink url="https://www.nvidia.com/en-us/networking/linux-on-demand/" text="Cumulus Linux on demand">}}

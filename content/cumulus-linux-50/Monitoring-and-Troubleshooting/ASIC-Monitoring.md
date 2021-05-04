@@ -19,9 +19,7 @@ You can collect the following type of statistics with the ASIC monitoring tool:
 - Buffer congestion occupancy per port, priority and buffer pool, and at input and output ports
 
 {{%notice note%}}
-
 ASIC monitoring is currently supported on switches with {{<exlink url="https://cumulusnetworks.com/products/hardware-compatibility-list/?asic%5B0%5D=Mellanox%20Spectrum&asic%5B1%5D=Mellanox%20Spectrum_A1" text="Spectrum ASICs">}} only.
-
 {{%/notice%}}
 
 ## Collecting Queue Lengths in Histograms
@@ -287,9 +285,7 @@ monitor.discards_pg.snapshot.file_count               = 16
 ```
 
 {{%notice note%}}
-
 Certain actions require additional settings. For example, if the `snapshot` action is specified, a snapshot file is also required. If the `log` action is specified, a log threshold is also required. See {{<link url="#asic-monitoring-settings" text="action\_list">}} for additional settings required for each *action*.
-
 {{%/notice%}}
 
 ## Example Snapshot File

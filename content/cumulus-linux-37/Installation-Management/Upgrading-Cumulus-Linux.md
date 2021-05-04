@@ -498,7 +498,7 @@ After you upgrade using a full disk image install, you need to reinstall any thi
 ## Related Information
 
 - {{<kb_link url="knowledge-base/Installing-and-Upgrading/Upgrading/Network-Device-and-Linux-Host-Worldview-Comparison/" text="Upgrades: Network Device Worldview and Linux Host Worldview Comparison">}}
-- {{<exlink url="https://cumulusnetworks.com/solutions/automation/" text="Automation Solutions">}}
+- {{<exlink url="https://www.nvidia.com/en-us/networking/network-automation/" text="Automation Solutions">}}
 - {{<exlink url="http://opencomputeproject.github.io/onie/design-spec/" text="ONIE Design Specification">}}
 - {{<link url="Multi-Chassis-Link-Aggregation-MLAG">}}
 - {{<link url="Zero-Touch-Provisioning-ZTP">}}

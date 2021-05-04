@@ -81,7 +81,7 @@ aside nav ul {
   .expand{
     display: block;
     visibility: visible;
-    border-left: solid $jade;
+    border-left: solid $nvidia-green;
     border-width: 1px;
     li>a{
       padding-left: 12px;
@@ -101,7 +101,7 @@ aside nav ul {
 
   }
   a:active{
-    color: $jade
+    color: $nvidia-green
   }
   a:hover {
     opacity: .5;
@@ -135,7 +135,7 @@ ul.pagination {
 
 .book-menu {
   flex: 0 0 15.53rem;
-  font-size: $font-size-14;
+  font-size: .9rem;
   overflow-y: scroll;
 
   @media #{$xl-up} {
@@ -156,6 +156,7 @@ ul.pagination {
 
     a{
       display: block;
+      letter-spacing: 0;
     }
     .expand {
       .menuControl {
@@ -221,7 +222,7 @@ ul.pagination {
     }
 
     >ul>li>a:first-of-type{
-      color: $jade;
+      color: $nvidia-green;
       font-weight: 600;
     }
   }

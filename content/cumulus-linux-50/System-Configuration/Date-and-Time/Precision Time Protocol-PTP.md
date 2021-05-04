@@ -280,7 +280,7 @@ monitor
 ...
 ```
 
-To see the list of CUE show commands for PTP, run `cl list-commands show service ptp`:
+To see the list of CUE show commands for PTP, run `cl list-commands service ptp`:
 
 ```
 cumulus@leaf01:mgmt:~$ cl list-commands service ptp

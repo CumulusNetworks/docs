@@ -13,7 +13,7 @@ You can monitor system hardware with the following commands and utilities:
 
 ## decode-syseeprom Command
 
-The `decode-syseeprom` command enables you to retrieve information about the switch EEPROM. If the EEPROM is writable, you can set values on the EEPROM.
+Use the `decode-syseeprom` command to retrieve information about the switch EEPROM. If the EEPROM is writable, you can set values on the EEPROM.
 
 The following is example `decode-syseeprom` command output. The output is different on different switches:
 
@@ -40,14 +40,14 @@ CRC-32               0xFE   4 0x11D0954D
 (checksum valid)
 ```
 
-The `decode-syseeprom` command has the following options:
+The `decode-syseeprom` command includes the following options:
 
 | Option<img width="200" />| Description |
 |---------------------- |--------------------------- |
 | `-h`, `-help` | Displays the help message and exits. |
 | `-a` | Prints the base MAC address for switch interfaces. |
 | `-r` | Prints the number of MAC addresses allocated for the switch interfaces. |
-| `-s` | Sets the EEPROM content (if the EEPROM is writable). You can provide arguments in the command line in a comma separated list in the form `<field>=<value>`. <ul><li>`.` `,` and `=` are not allowed in field names and values.</li><li>Fields that are not specified default to their current values.</li></ul> |
+| `-s` | Sets the EEPROM content (if the EEPROM is writable). You can provide arguments in the command line in a comma separated list in the form `<field>=<value>`. <ul><li>`.` `,` and `=` are not allowed in field names and values.</li><li>Any field not specified defaults to the current value.</li></ul> |
 | `-j`, `--json` | Displays JSON output. |
 | `-t <target>` | Prints the target EEPROM information (board, psu2, psu1). |
 | `--serial`, `-e` | Prints the device serial number. |
@@ -56,11 +56,11 @@ The `decode-syseeprom` command has the following options:
 
 Run the `dmidecode` command to retrieve hardware configuration information populated in the BIOS.
 
-Use `apt-get` to install the `lshw` program on the switch, which also retrieves hardware configuration information.
+Run `apt-get` to install the `lshw` program on the switch, which also retrieves hardware configuration information.
 
 ## smond Daemon
 
-The `smond` daemon monitors system units like power supply and fan, updates their corresponding LEDs, and logs the change in the state. Changes in system unit state are detected by the `cpld` registers. `smond` utilizes these registers to read all sources, which determines the health of the unit and updates the system LEDs.
+The `smond` daemon monitors system units like power supply and fan, updates the corresponding LEDs, and logs the change in state. Changes in system unit state are detected by the `cpld` registers. `smond` utilizes these registers to read all sources, which determines the health of the unit and updates the system LEDs.
 
 Run the  `sudo smonctl` command to display sensor information for the various system units:
 
@@ -83,12 +83,10 @@ Temp9     (Right side of the board               ):  OK
 ```
 
 {{%notice note%}}
-
 When the switch is not powered on, `smonctl` shows the PSU status as *BAD* instead of *POWERED OFF* or *NOT DETECTED*. This is a known limitation.
-
 {{%/notice%}}
 
-The `smonctl` command has the following options:
+The `smonctl` command includes the following options:
 
 | Option <img width="200" /> | Description |
 | --------| ----------- |
@@ -97,17 +95,15 @@ The `smonctl` command has the following options:
 
 For more information, read `man smond` and `man smonctl`.
 
-You can also run these NCLU commands to show sensor information: `net show system sensors`, `net show system sensors detail`, and `net show system sensors json`.
+<!--You can also run these NCLU commands to show sensor information: `net show system sensors`, `net show system sensors detail`, and `net show system sensors json`.-->
 
 ## sensors Command
 
-Use the `sensors` command to monitor the health of your switch hardware, such as power, temperature and fan speeds. This command executes `{{<exlink url="https://en.wikipedia.org/wiki/Lm_sensors" text="lm-sensors">}}`.
+Run the `sensors` command to monitor the health of your switch hardware, such as power, temperature and fan speeds. This command executes `{{<exlink url="https://en.wikipedia.org/wiki/Lm_sensors" text="lm-sensors">}}`.
 
 {{%notice note%}}
-
 Even though you can use the `sensors` command to monitor the health of your switch hardware, the `smond` daemon is the recommended method for monitoring hardware health. See {{<link url="#smond-daemon" text="smond Daemon">}}
 above.
-
 {{%/notice%}}
 
 For example:
@@ -136,10 +132,8 @@ fan2:        13560 RPM
 ```
 
 {{%notice note%}}
-
 - Output from the `sensors` command varies depending upon the switch.
 - If only one PSU is plugged in, the fan is at maximum speed.
-
 {{%/notice%}}
 
 The following table shows the `sensors` command options.
@@ -147,14 +141,14 @@ The following table shows the `sensors` command options.
 | Option<img width="200" /> | Description |
 | ----------- | ----------- |
 | `-c`, `--config-file` | Specify a configuration file; use `-` after `-c` to read the configuration file from `stdin`; by default, `sensors` references the configuration file in `/etc/sensors.d/`. |
-| `-s`, `--set` | Execute set statements in the configuration file (root only); `sensors -s` is run once at boot time and applies all the settings to the boot drivers. |
+| `-s`, `--set` | Execute set statements in the configuration file (root only); `sensors -s` runs once at boot time and applies all the settings to the boot drivers. |
 | `-f`, `--fahrenheit`  | Show temperatures in degrees Fahrenheit. |
 | `-A`, `--no-adapter`  | Do not show the adapter for each chip.|
 | `--bus-list`| Generate bus statements for `sensors.conf`. |
 
 ## Hardware Watchdog
 
-Cumulus Linux includes a simplified version of the `wd_keepalive(8)` daemon than the one provided in the standard `watchdog` Debian package. `wd_keepalive` writes to a file called `/dev/watchdog` periodically (at least once per minute) to keep the switch from resetting. Each write delays the reboot time by another minute. After one minute of inactivity, where `wd_keepalive` does not write to `/dev/watchdog`, the switch resets itself.
+Cumulus Linux includes a simplified version of the `wd_keepalive(8)` daemon than the one provided in the standard `watchdog` Debian package. `wd_keepalive` writes to a file called `/dev/watchdog` periodically (at least once per minute) to prevent the switch from resetting. Each write delays the reboot time by another minute. After one minute of inactivity, where `wd_keepalive` does not write to `/dev/watchdog`, the switch resets itself.
 
 The watchdog is enabled by default on all supported switches and starts when you boot the switch (before `switchd` starts).
 

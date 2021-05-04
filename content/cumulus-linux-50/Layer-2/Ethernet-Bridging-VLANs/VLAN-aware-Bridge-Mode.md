@@ -6,7 +6,7 @@ toc: 4
 ---
 The VLAN-aware mode in Cumulus Linux implements a configuration model for large-scale layer 2 environments, with **one single instance** of {{<link url="Spanning-Tree-and-Rapid-Spanning-Tree-STP" text="spanning tree protocol">}}. Each physical bridge member port is configured with the list of allowed VLANs as well as its port VLAN ID, either primary VLAN Identifier (PVID) or native VLAN. MAC address learning, filtering and forwarding are *VLAN-aware*. This significantly reduces the configuration size, and eliminates the large overhead of managing the port and VLAN instances as subinterfaces, replacing them with lightweight VLAN bitmaps and state updates.
 
-On NVIDIA Spectrum-2 and Spectrum-3 switches, Cumulus Linux supports multiple VLAN aware bridges but with the following limitations:
+On NVIDIA Spectrum-2 and Spectrum-3 switches, Cumulus Linux supports multiple VLAN-aware bridges but with the following limitations:
 
 - MLAG is not supported with multiple VLAN-aware bridges
 - The same port cannot be part of multiple VLAN-aware bridges
@@ -566,7 +566,7 @@ The configuration below shows a VLAN-aware bridge with a large set of bonds. The
 # vlan-aware bridge with bonds example
 #
 # uplink1, peerlink and downlink are bond interfaces.
-# 'bridge' is a vlan aware bridge with ports uplink1, peerlink
+# 'bridge' is a vlan-aware bridge with ports uplink1, peerlink
 # and downlink (swp2-20).
 #
 # native vlan is by default 1

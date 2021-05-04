@@ -12,16 +12,16 @@
     <div class="menu-container">
         <!-- generates subnav memu from config.toml -->
         {{ $currentProduct := $.Page.Params.product}}
-        <ul>
+        <!-- <ul>
             {{ range .Site.Menus.subnav}}
                 <li {{ with eq $currentProduct .Title }} class = "active" {{ end }}><a href = {{.URL}} >{{.Title}} </a> </li>
             {{ end }}
-        </ul>
+        </ul> -->
         <div class="productMenu-dropdown">
             <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="siteMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <!-- <button class="btn btn-secondary dropdown-toggle" type="button" id="siteMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Cumulus Linux
-                </button>
+                </button> -->
                 <ul class="dropdown-menu" aria-lablledby="siteMenuButton">
                     {{ range .Site.Menus.subnav}}
                         <li class="dropdown-item"><a href={{.URL}}>{{.Title}} </a> </li>

@@ -37,11 +37,6 @@ your switch model is supported by Cumulus Linux. The HCL is updated
 regularly, listing products by port configuration, manufacturer, and SKU
 part number.
 
-## Stay up to Date
-
-- Subscribe to our {{<exlink url="https://lists.cumulusnetworks.com/listinfo/cumulus-product-bulletin" text="product bulletin" >}} mailing list to receive important announcements and updates about issues that arise in our products.
-- Subscribe to our {{<exlink url="https://lists.cumulusnetworks.com/listinfo/cumulus-security-announce" text="security announcement" >}} mailing list to receive alerts whenever we update our software for security issues.
-
 ## Extended Support Release
 
 This version of Cumulus Linux is an Extended Support Release (ESR). Cumulus Linux 3.7 ESR started with Cumulus Linux 3.7.12 and all future releases in the 3.7 product family will all be ESR releases. To learn about ESR, please read {{<kb_link url="knowledge-base/Support/Support-Offerings/Cumulus-Linux-Release-Versioning-and-Support-Policy/" text="this article">}}.

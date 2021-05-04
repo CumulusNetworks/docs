@@ -40,7 +40,7 @@ Refer to the [hardware compatibility list](https://cumulusnetworks.com/hcl) for 
 
 ## Cumulus NetQ Streaming Telemetry Platform
 
-Built using the same open, modern, web-scale principals that inspires Cumulus Linux, [Cumulus NetQ](https://cumulusnetworks.com/products/netq/) is a highly-scalable, modern network operations toolset that provides unprecedented visibility to your network operations in real time. Cumulus NetQ is designed from the ground up to process large amounts of data to deliver real-time insights and perform complex network-wide troubleshooting and validation tasks at nearly any scale.
+Built using the same open, modern, web-scale principals that inspires Cumulus Linux, [Cumulus NetQ](https:https://www.nvidia.com/en-us/networking/ethernet-switching/netq/) is a highly-scalable, modern network operations toolset that provides unprecedented visibility to your network operations in real time. Cumulus NetQ is designed from the ground up to process large amounts of data to deliver real-time insights and perform complex network-wide troubleshooting and validation tasks at nearly any scale.
 
 Adding Cumulus NetQ to a network powered by Cumulus Linux heightens visibility, eases troubleshooting, and enriches existing monitoring and operational strategies with an all-in-one tool that provides information such as:
 
@@ -210,7 +210,7 @@ Another important component, [RFC5549](https://tools.ietf.org/html/rfc5549), pro
 
 Because of this, BGP is much simpler to configure. Instead of requiring a peer address for each BGP neighbor, we can refer to the physical interface identifier and only need to specify if it is an internal (iBGP) neighbor or an external (eBGP) neighbor. This makes building and configuring a layer 3 routed network nearly plug and play.
 
-For more information on BGP Unnumbered and eBGP inside the network, download the free ebook here: [https://cumulusnetworks.com/lp/bgp-ebook/](https://cumulusnetworks.com/lp/bgp-ebook/)
+For more information on BGP Unnumbered and eBGP inside the network, download the free ebook here: [https://www.nvidia.com/en-us/networking/border-gateway-protocol/](https://www.nvidia.com/en-us/networking/border-gateway-protocol/)
 
 #### EVPN and VXLAN
 
@@ -688,7 +688,7 @@ This design increases platform flexibility and choice on access switches as they
 
 Symmetric mode with distributed anycast gateways provides for devices to move between access switches and always perform routing at the local switch. All routing for access VLANs occurs in the context of a tenant (VRF). The global routing table is used to carry and advertise routing information for the network endpoints (such as VTEP addresses and loopbacks). All IP subnets for access VLANs exist as a member of a VRF. More information about VRFs in this design is discussed below.
 
-Data center network segments that implement VXLAN and EVPN can also be folded into the broader EVPN VXLAN-enabled campus. This provides opportunities to consolidate and centralize server and compute resources that had been traditionally co-located in the access or distribution layer. For more information about using EVPN and VXLAN in a data center network, visit our [EVPN solution page](https://cumulusnetworks.com/lp/evpn-control-plane-solution-vxlan-tunnels/).
+Data center network segments that implement VXLAN and EVPN can also be folded into the broader EVPN VXLAN-enabled campus. This provides opportunities to consolidate and centralize server and compute resources that had been traditionally co-located in the access or distribution layer. For more information about using EVPN and VXLAN in a data center network, visit our [EVPN solution page](https://www.nvidia.com/en-us/networking/evpn-ebook/).
 
 Distribution layer or border switches serve as VTEPs; thus, they carry the most stringent platform requirements. Distribution layer switches must be able to support VXLAN encapsulation/decapsulation and also routing in and out of VXLAN tunnels (RIOT). Core switches do not serve as VTEPs and only perform IP routing to more closely adhere to [core layer design principles](#core-tier).
 

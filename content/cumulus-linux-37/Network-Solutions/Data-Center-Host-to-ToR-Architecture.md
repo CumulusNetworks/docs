@@ -208,7 +208,7 @@ iface vm-br10 inet manual
 <ul>
 <li><p>Can be done with either the {{<link url="Traditional-Bridge-Mode" text="traditional">}} or {{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware">}} bridge driver depending on overall STP needs</p></li>
 <li><p>There are a few different solutions including Cisco VPC and Arista MLAG, but none of them interoperate and are very vendor specific</p></li>
-<li><p>{{<exlink url="https://cumulusnetworks.com/media/resources/validated-design-guides/Cumulus-Linux-Layer-2-HA-Validated-Design-Guide_v1.0.0.pdf" text="Cumulus Linux Layer 2 HA validated design guide">}}</p></li>
+<li><p>{{<exlink url="https://resource.nvidia.com/en-us-ethernet-switching/bgp-evpn-for-vxlan-techincal-overview" text="Cumulus Linux Layer 2 HA validated design guide">}}</p></li>
 </ul></td>
 </tr>
 </tbody>

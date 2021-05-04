@@ -682,5 +682,5 @@ deployed Cumulus Linux 2.5.z switches. This is a quick start on the road
 to setting up automated configuration and control for your deployment.
 For more details on integrating automation into your Cumulus Linux
 deployment, see the 
-[Automation Solutions section](https://cumulusnetworks.com/solutions/automation/) 
+[Automation Solutions section](https://www.nvidia.com/en-us/networking/network-automation/) 
 on cumulusnetworks.com.

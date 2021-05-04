@@ -2276,7 +2276,8 @@ Fixed: 4.11.4+37-g3263f257ca-1</td>
 </tr>
 <tr>
 <td>2553748</td>
-<td>On switches with the Spectrum ASIC, the IPv6 default route is present in the kernel but missing in hardware.</td>
+<td>On switches with the Spectrum ASIC, the IPv6 default route might be present in the kernel but missing in 
+hardware when IPv6 RAs are received on SVIs configured with {{ip-forward off}}.</td>
 <td>3.7.11-4.2.1</td>
 <td>4.3.0</td>
 </tr>
@@ -4579,7 +4580,8 @@ Fixed: 4.11.4+37-g3263f257ca-1</td>
 </tr>
 <tr>
 <td>2553748</td>
-<td>On switches with the Spectrum ASIC, the IPv6 default route is present in the kernel but missing in hardware.</td>
+<td>On switches with the Spectrum ASIC, the IPv6 default route might be present in the kernel but missing in 
+hardware when IPv6 RAs are received on SVIs configured with {{ip-forward off}}.</td>
 <td>3.7.11-4.2.1</td>
 <td>4.3.0</td>
 </tr>

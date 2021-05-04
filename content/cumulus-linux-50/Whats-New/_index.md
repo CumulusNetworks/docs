@@ -21,6 +21,7 @@ Cumulus Linux 5.0 supports provides bug fixes, and contains several new features
   {{%notice note%}}
   CUE is created from the ground up and does not inherit any previous functionality from NCLU. Certain features are not yet supported by CUE. If you are an NCLU user, confirm that your features are fully supported in CUE before upgrading to 5.0. If you use a feature that is not yet supported by CUE, you can either remain on your current 4.x release or migrate to Linux-based configuration.
   {{%/notice%}}
+
 - Support for {{<link url="VLAN-aware-Bridge-Mode/" text="multiple VLAN-aware bridges">}}
 - {{<link url="EVPN-Multihoming" text="EVPN multihoming Head End Replication support">}}
 - {{<link url="Precision-Time-Protocol-PTP" text="PTP Boundary Clock">}} enhancements

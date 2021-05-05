@@ -28,16 +28,55 @@ The following example commands configure OSPF numbered on leaf01 and spine01.
 
 {{%notice note%}}
 
-The configuration below uses the `network` command to configure the IP subnet prefix with an area address per network (`net add ospf network 10.0.1.0/31 area 0`). Alternatively, you can configure OSPF per interface with the `net add interface` command (`net add interface swp1 ospf area 0`). However, you *cannot* use both methods in the same configuration.
+The configuration below uses the `network` command to configure the IP subnet prefix with an area address per network. Alternatively, you can configure OSPF per interface. However, you *cannot* use both methods in the same configuration.
 
 {{%/notice%}}
 
 {{< tabs "TabID29 ">}}
 {{< tab "CUE Commands ">}}
 
+{{< tabs "TabID38 ">}}
+{{< tab "leaf01 ">}}
+
 ```
-cumulus@leaf01:~$ NEED COMMAND
+cumulus@leaf01:~$ cl set interface lo ip address 10.10.10.1/32
+cumulus@leaf01:~$ cl set interface swp51 ip address 10.0.1.0/31
+cumulus@leaf01:~$ cl set vrf default router ospf router-id 10.10.10.1
+cumulus@leaf01:~$ cl set vrf default router ospf area 0 network 10.10.10.1/32
+cumulus@leaf01:~$ cl set vrf default router ospf area 0 network 10.0.1.0/31
+cumulus@leaf01:~$ cl set vrf default router ospf passive-interface swp1
+cumulus@leaf01:~$ cl set vrf default router ospf passive-interface swp2
+cumulus@leaf01:~$ cl config apply
 ```
+
+You can use the `cl set vrf default router ospf passive-interface default` command to set all interfaces as *passive* and the `cl unset vrf default router ospf passive-interface <interface>` command to selectively bring up protocol adjacency only on certain interfaces:
+
+```
+cumulus@leaf01:~$ cl set vrf default router ospf passive-interface default
+cumulus@leaf01:~$ cl unset vrf default router ospf passive-interface swp51
+```
+
+{{< /tab >}}
+{{< tab "spine01 ">}}
+
+```
+cumulus@spine01:~$ cl set interface lo ip address 10.10.10.101/32
+cumulus@spine01:~$ cl set interface swp1 ip address 10.0.1.1/31
+cumulus@spine01:~$ cl set vrf default router ospf router-id 10.10.10.101
+cumulus@spine01:~$ cl set vrf default router ospf area 0 network 10.10.10.101/32
+cumulus@spine01:~$ cl set vrf default router ospf area 0 network 10.0.1.1/31
+cumulus@spine01:~$ cl config apply
+```
+
+You can use the `cl set vrf default router ospf passive-interface default` command to set all interfaces as *passive* and the `cl unset vrf default router ospf passive-interface <interface>` command to selectively bring up protocol adjacency only on certain interfaces:
+
+```
+cumulus@spine01:~$ cl set vrf default router ospf passive-interface default
+cumulus@spine01:~$ cl unset vrf default router ospf passive-interface swp1
+```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 {{< /tab >}}
 {{< tab "NCLU Commands ">}}
@@ -247,12 +286,79 @@ The following example commands configure OSPF unnumbered on leaf01 and spine01.
 | ------ | ------- |
 | <ul><li>The loopback address is 10.10.10.1/32</li><li>The IP address of the unnumbered interface (swp51) is 10.10.10.1/32</li><li>The router ID is 10.10.10.1</li><li>OSPF is enabled on the loopback interface and on swp51 in area 0</li><li>swp1 and swp2 are passive interfaces</li><li>swp51 is a point-to-point interface (point-to-point is required for unnumbered interfaces)</li><ul>|<ul><li>The loopback address is 10.10.10.101/32</li><li>The IP address of the unnumbered interface (swp1) is 10.10.10.101/32</li><li>The router ID is 10.10.10.101</li><li>OSPF is enabled on the loopback interface and on swp1 in area 0</li><li>swp1 is a point-to-point interface (point-to-point is required for unnumbered interfaces)</li><ul> |
 
-{{< tabs "TabID260 ">}}
+{{< tabs "TabID289 ">}}
 {{< tab "CUE Commands ">}}
 
+{{< tabs "TabID292 ">}}
+{{< tab "leaf01 ">}}
+
+Configure the unnumbered interface:
+
 ```
-cumulus@switch:~$ NEED COMMAND
+cumulus@leaf01:~$ cl set interface lo ip address 10.10.10.1/32
+cumulus@leaf01:~$ cl set interface swp51 ip address 10.10.10.1/32
+cumulus@leaf01:~$ cl config apply
 ```
+
+Configure OSPF:
+
+```
+cumulus@spine01:~$ cl set vrf default router ospf router-id 10.10.10.1
+cumulus@spine01:~$ NEED COMMAND
+cumulus@spine01:~$ NEED COMMAND
+cumulus@leaf01:~$ cl set vrf default router ospf passive-interface swp1
+cumulus@leaf01:~$ cl set vrf default router ospf passive-interface swp2
+cumulus@leaf01:~$ NEED COMMAND
+cumulus@leaf01:~$ cl config apply
+
+
+cumulus@leaf01:~$ net add ospf router-id 10.10.10.1
+cumulus@leaf01:~$ net add loopback lo ospf area 0
+cumulus@leaf01:~$ net add interface swp51 ospf area 0
+cumulus@leaf01:~$ net add ospf passive-interface swp1
+cumulus@leaf01:~$ net add ospf passive-interface swp2
+cumulus@leaf01:~$ net add interface swp51 ospf network point-to-point
+cumulus@leaf01:~$ net pending
+cumulus@leaf01:~$ net commit
+```
+
+You can use the `cl set vrf default router ospf passive-interface default` command to set all interfaces as *passive* and the `cl unset vrf default router ospf passive-interface <interface>` command to selectively bring up protocol adjacency only on certain interfaces:
+
+```
+cumulus@leaf01:~$ cl set vrf default router ospf passive-interface default
+cumulus@leaf01:~$ cl unset vrf default router ospf passive-interface swp51
+```
+
+{{< /tab >}}
+{{< tab "spine01 ">}}
+
+Configure the unnumbered interface:
+
+```
+cumulus@spine01:~$ cl set interface lo ip address 10.10.10.101/32
+cumulus@spine01:~$ cl set interface swp1 ip address 10.10.10.101/32
+cumulus@spine01:~$ cl config apply
+```
+
+Configure OSPF:
+
+```
+cumulus@spine01:~$ cl set vrf default router ospf router-id 10.10.10.101
+cumulus@spine01:~$ NEED COMMAND
+cumulus@spine01:~$ NEED COMMAND
+cumulus@spine01:~$ NEED COMMAND
+cumulus@spine01:~$ cl config apply
+```
+
+You can use the `cl set vrf default router ospf passive-interface default` command to set all interfaces as *passive* and the `cl unset vrf default router ospf passive-interface <interface>` command to selectively bring up protocol adjacency only on certain interfaces:
+
+```
+cumulus@spine01:~$ cl set vrf default router ospf passive-interface default
+cumulus@spine01:~$ cl unset vrf default router ospf passive-interface swp1
+```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 {{< /tab >}}
 {{< tab "NCLU Commands ">}}
@@ -500,6 +606,7 @@ The following command example sets the network type to point-to-point.
 
 ```
 cumulus@switch:~$ NEED COMMAND
+cumulus@switch:~$ cl config apply
 ```
 
 {{< /tab >}}

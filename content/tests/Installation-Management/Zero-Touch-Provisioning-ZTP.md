@@ -6,7 +6,7 @@ pageID: 8362632
 ---
 *Zero touch provisioning* (ZTP) enables you to deploy network devices quickly in large-scale environments. On first boot, Cumulus Linux invokes ZTP, which executes the provisioning automation used to deploy the device for its intended role in the network.
 
-The provisioning framework allows for a one-time, user-provided script to be executed. You can develop this script using a variety of automation tools and scripting languages, providing ample flexibility for you to design the provisioning scheme to meet your needs. You can also use it to add the switch to a configuration management (CM) platform such as {{<exlink url="http://puppetlabs.com/puppet/what-is-puppet" text="Puppet">}}, {{<exlink url="http://www.opscode.com" text="Chef">}}, {{<exlink url="https://cfengine.com" text="CFEngine">}} or possibly a custom, proprietary tool.
+The provisioning framework allows for a one-time, user-provided script to be executed. You can develop this script using a variety of automation tools and scripting languages, providing ample flexibility for you to design the provisioning scheme to meet your needs. You can also use it to add the switch to a configuration management (CM) platform such as {{<exlink url="https://puppet.com/docs/puppet/7.6/puppet_overview.html" text="Puppet">}}, {{<exlink url="http://www.opscode.com" text="Chef">}}, {{<exlink url="https://cfengine.com" text="CFEngine">}} or possibly a custom, proprietary tool.
 
 While developing and testing the provisioning logic, you can use the `ztp` command in Cumulus Linux to manually invoke your provisioning script on a device.
 

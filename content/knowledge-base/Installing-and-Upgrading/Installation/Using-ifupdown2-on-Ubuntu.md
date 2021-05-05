@@ -5,7 +5,7 @@ weight: 255
 toc: 4
 ---
 
-Cumulus Networks developed {{<exlink url="https://cumulusnetworks.com/blog/ifupdown2/" text="ifupdown2">}} to improve network configuration for standard Debian and Ubuntu instances, and has been the standard interface configuration tool for Cumulus Linux since version 2.1. This article describes how to install `ifupdown2` on Ubuntu hosts.
+Cumulus Networks developed ifupdown2" to improve network configuration for standard Debian and Ubuntu instances, and has been the standard interface configuration tool for Cumulus Linux since version 2.1. This article describes how to install `ifupdown2` on Ubuntu hosts.
 
 ## Verify Ubuntu Version
 
@@ -275,6 +275,5 @@ Use the `brctl` command to look at the bridge STP state:
 
 ## Further Reading
 
-- {{<exlink url="https://cumulusnetworks.com/blog/ifupdown2/" text="ifupdown2 blog post">}}
 - {{<link title="Compare ifupdown2 Commands with ifupdown Commands" text="Comparing ifupdown2 Commands with ifupdown Commands">}}
 - {{<exlink url="https://packages.debian.org/sid/ifupdown2" text="ifupdown2 on Debian">}}

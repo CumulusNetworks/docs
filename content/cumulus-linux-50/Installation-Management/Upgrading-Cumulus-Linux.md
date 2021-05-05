@@ -339,7 +339,7 @@ After you upgrade using a full Cumulus Linux image install, you need to reinstal
 ## Related Information
 
 - {{<kb_link url="knowledge-base/Installing-and-Upgrading/Upgrading/Network-Device-and-Linux-Host-Worldview-Comparison/" text="Upgrades: Network Device Worldview and Linux Host Worldview Comparison">}}
-- {{<exlink url="https://cumulusnetworks.com/solutions/automation/" text="Automation Solutions">}}
+- {{<exlink url="https://www.nvidia.com/en-us/networking/network-automation/" text="Automation Solutions">}}
 - {{<exlink url="http://opencomputeproject.github.io/onie/design-spec/" text="ONIE Design Specification">}}
 - {{<link title="Multi-Chassis Link Aggregation - MLAG">}}
 - {{<link title="Zero Touch Provisioning - ZTP">}}

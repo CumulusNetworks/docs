@@ -106,7 +106,7 @@ ports (swp). Virtual interfaces like bridges, bonds, and subinterfaces
 are not supported.
 
 `cl-ecmpcalc` is supported only on switches with the 
-[Mellanox Spectrum and the Broadcom Maverick, Tomahawk, Trident II+ and Trident II](http://cumulusnetworks.com/hcl/)a chipsets.
+[Mellanox Spectrum and the Broadcom Maverick, Tomahawk, Trident II+ and Trident II](https://www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/)a chipsets.
 
 ### ECMP Hash Buckets
 
@@ -208,7 +208,7 @@ It does not prevent disruption when next hops are added.
 {{%notice note%}}
 
 Resilient hashing is supported only on switches with the 
-[Broadcom Tomahawk, Trident II+ and Trident II as well as Mellanox Spectrum](http://cumulusnetworks.com/hcl/) chipsets. You can run 
+[Broadcom Tomahawk, Trident II+ and Trident II as well as Mellanox Spectrum](https://www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/) chipsets. You can run 
 `net show system` to determine the chipset.
 
 {{%/notice%}}

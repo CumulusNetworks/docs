@@ -61,10 +61,10 @@ $(document).ready(function() {
     script.onload = function() {
         addCopyLink(clipboard);
     };
-
+  
     document.body.appendChild(script);
   }
-
+	
 	// set local storage value to cache default layout on load
 	if(window.localStorage.layout) {
 		var mainTag = document.querySelector('main');
@@ -95,7 +95,7 @@ $(document).ready(function() {
 		window.localStorage.setItem("layout", "default");
 		mainTag.classList.add(window.localStorage.layout)
 	}
-
+	
 
   // find all the svg elements under the div with class screen-layout and add the Click Event Listener to them
   // PS: do not add the EventListener to the a tag, since it causes the div to get the class of 'active'
@@ -103,7 +103,7 @@ $(document).ready(function() {
   	// so when the svg element is clicked
   	// 1. get all the a tags under screen-layout
   	// 2. if the a tag contains the 'active' class, remove it
-  	// 3. set the class of the event target (svg element) parentnode (a tag) to 'active' if it does not already have it
+  	// 3. set the class of the event target (svg element) parentnode (a tag) to 'active' if it does not already have it 
   	//														(i.e. when selecting the same layout)
   	node.addEventListener('click', function(e) {
       document.querySelectorAll('.screen-layout a').forEach(anchor => {
@@ -112,7 +112,7 @@ $(document).ready(function() {
         }
       });
   		if (!e.target.parentNode.classList.contains('active')){
-  			e.target.parentNode.classList.add('active');
+  			e.target.parentNode.classList.add('active'); 			
   		}
   		var sbStatusClasses = ['default', 'hide-left', 'hide-right', 'hide-both'];
   		var mainTag = document.querySelector('main');
@@ -139,14 +139,14 @@ $(document).ready(function() {
   			mainTag.classList.add('default');
   		}
 			e.preventDefault();
-
+			
 			if($("h3[id^='open-issues-in-'] + table").length) {
 				resizeTable()
 			}
   	});
   });
 
-	document.querySelectorAll('#m-doc-search-box a').forEach(node => {
+	document.querySelectorAll('#m-doc-search-box a').forEach(node => {	
 		node.addEventListener('click', function(e) {
 	  	e.preventDefault();
 		document.getElementById('m-doc-search-box').classList.toggle('searchOpen');
@@ -155,7 +155,7 @@ $(document).ready(function() {
 
 	document.addEventListener('keypress', function(e) {
 	    if(e.which == 13 && $(".m-doc-search-input").is(":focus") && $(".m-doc-search-input").val().length ) {
-			window.location.href = {{printf "?q=" ("search/" | absURL) }}+$(".m-doc-search-input").val().trim();
+	    	window.location.href = "/search/?q="+$(".m-doc-search-input").val().trim();
 	    }
 	});
 
@@ -171,7 +171,7 @@ $(document).ready(function() {
   var getClickedLink = function () {
     if (viewportWidth < 576) {
       document.querySelectorAll('.book-toc nav a').forEach(anc => {
-        anc.onclick = function() {
+        anc.onclick = function() { 
           var sbStatusClasses = ['default', 'hide-left', 'hide-right', 'hide-both'];
           var mainTag = document.querySelector('main');
           sbStatusClasses.forEach(function(classname) {
@@ -185,12 +185,12 @@ $(document).ready(function() {
           elem.scrollIntoView();
 
         };
-      });
+      });      
     } else {
       document.querySelectorAll('.book-toc nav a').forEach(anc => {
-        anc.onclick = function(e) {
+        anc.onclick = function(e) { 
 					var elem = document.getElementById(anc.hash.replace('#',''));
-					var url = window.location.protocol + "//" + window.location.host + window.location.pathname + anc.getAttribute("href");
+					var url = window.location.protocol + "//" + window.location.host + window.location.pathname + anc.getAttribute("href");    
 					window.history.pushState({ path: url }, '', url);
 					$('html,body').animate({scrollTop: elem.offsetTop + 120},100)
 					e.preventDefault()
@@ -213,7 +213,7 @@ $(document).ready(function() {
 		var containerWidth = $('.markdown').width();
 		var table = $("h3[id^='open-issues-in-'] + table");
 		$("h3[id^='open-issues-in-'] + table").width(containerWidth)
-
+	
 		$("h3[id^='open-issues-in-'] + table tbody>tr").each(function () {
 			$(this).find('td').eq(0).css({maxWidth: containerWidth * 0.12 + 'px'})
 			$(this).find('td').eq(1).css({maxWidth: containerWidth * 0.6 + 'px'})
@@ -229,7 +229,7 @@ $(document).ready(function() {
 		if($("h3[id^='open-issues-in-'] + table").length) {
 			resizeTable()
 		}
-	})
+	}) 
 });
 
 function checkHash() {

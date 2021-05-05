@@ -86,7 +86,7 @@
         <div class="row">
           <div class="col-12">
             <script async src="https://cse.google.com/cse.js?cx=002929300794741444210:sy0sz3qlwdc"></script>
-            <div class="gcse-searchbox-only" enableAutoComplete="true" data-resultsUrl={{"search" | absURL }}></div>
+            <div class="gcse-searchbox-only" enableAutoComplete="true" data-resultsUrl="/search/"></div>
 
             <p class="search-hint">
               <b>Hint:</b> For better results, include your version number in your query.
@@ -278,12 +278,12 @@
 
             if (data.queries && data.queries.previousPage) {
               var prev = data.queries.previousPage[0].startIndex;
-              html += '<a href="{{printf "?q=" ("search/" | absURL) }}' +query+ '&start=' +prev+ '">Previous</a> | '
+              html += '<a href="/search/?q=' +query+ '&start=' +prev+ '">Previous</a> | '
             }
 
             if (data.queries && data.queries.nextPage) {
               var next = data.queries.nextPage[0].startIndex;
-              html += '<a href="{{printf "?q=" ("search/" | absURL) }}' +query+ '&start=' +next+ '">Next</a>'
+              html += '<a href="/search/?q=' +query+ '&start=' +next+ '">Next</a>'
             }
           } else {
             html += '<h4>No results were found for "' +data.queries.request[0].searchTerms+ '"<h4>';

@@ -360,7 +360,7 @@ Example rules for a traditional mode bridge:
 
 ### Match on VLAN IDs on Layer 2 Interfaces
 
-On switches with {{<exlink url="https://cumulusnetworks.com/products/hardware-compatibility-list/?asic%5B0%5D=Mellanox%20Spectrum&asic%5B1%5D=Mellanox%20Spectrum_A1" text="Spectrum ASICs">}}, you can match on VLAN IDs on layer 2 interfaces for ingress rules.
+On switches with {{<exlink url="www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="Spectrum ASICs">}}, you can match on VLAN IDs on layer 2 interfaces for ingress rules.
 
 The following example matches on a VLAN and DSCP class, and sets the internal class of the packet. This can be combined with ingress iptable rules to get extended matching on IP fields.
 
@@ -632,7 +632,7 @@ include /etc/cumulus/acl/policy.d/01_new.datapathacl
 
 The maximum number of rules that can be handled in hardware is a function of the following factors:
 
-- The platform type (switch silicon, like Tomahawk or Spectrum - see the {{<exlink url="https://cumulusnetworks.com/support/hcl" text="HCL">}} to determine which platform type applies to a particular switch).
+- The platform type (switch silicon, like Tomahawk or Spectrum - see the {{<exlink url="www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list" text="HCL">}} to determine which platform type applies to a particular switch).
 - The mix of IPv4 and IPv6 rules; Cumulus Linux does not support the maximum number of rules for both IPv4 and IPv6 simultaneously.
 - The number of default rules provided by Cumulus Linux.
 - Whether the rules are applied on ingress or egress.

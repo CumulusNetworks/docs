@@ -100,7 +100,7 @@ When you use BGP unnumbered, BGP learns the prefixes, calculates the routes and 
 
 ## Related Information
 
-- {{<exlink url="https://cumulusnetworks.com/lp/bgp-ebook/" text="BGP in the Data Center by Dinesh G. Dutt">}} - a complete guide to Border Gateway Protocol for the modern data center
+- {{<exlink url="https://www.nvidia.com/en-us/networking/border-gateway-protocol/" text="BGP in the Data Center by Dinesh G. Dutt">}} - a complete guide to Border Gateway Protocol for the modern data center
 - {{<link url="Bidirectional-Forwarding-Detection-BFD" text="Bidirectional forwarding detection">}} (BFD) and BGP
 - {{<exlink url="http://en.wikipedia.org/wiki/Border_Gateway_Protocol" text="Wikipedia entry for BGP">}} (includes list of useful RFCs)
 - {{<exlink url="http://docs.frrouting.org/en/latest/bgp.html" text="FRR BGP documentation">}}

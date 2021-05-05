@@ -357,9 +357,6 @@ iface eth1 inet static
 <li><p>Equal cost route installed on server/host/hypervisor to both ToRs to load balance evenly.</p></li>
 <li><p>For host/VM/container mobility, use the same default route on all hosts (such as x.x.x.1) but don't distribute or advertise the .1 on the ToR into the fabric. This allows the VM to use the same gateway no matter which pair of leafs it is cabled to.</p></li>
 </ul></td>
-<td><ul>
-<li><p>{{<exlink url="https://cumulusnetworks.com/blog/introducing-rdnbr/" text="blog post introducing redistribute neighbor">}}</p></li>
-</ul></td>
 </tr>
 </tbody>
 </table>

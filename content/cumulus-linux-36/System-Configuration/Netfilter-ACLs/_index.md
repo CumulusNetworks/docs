@@ -783,7 +783,7 @@ The maximum number of rules that can be handled in hardware is a
 function of the following factors:
 
   - The platform type (switch silicon, like Tomahawk or Spectrum - see
-    the [HCL](https://cumulusnetworks.com/support/hcl) to determine which
+    the [HCL](https://www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/) to determine which
     platform type applies to a particular switch).
   - The mix of IPv4 and IPv6 rules; Cumulus Linux does not support the
     maximum number of rules for both IPv4 and IPv6 simultaneously.

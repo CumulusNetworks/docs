@@ -14,7 +14,7 @@ cascade:
 
 ## Introducing Cumulus Linux
 
-Cumulus Linux is the first full-featured Linux operating system for the networking industry. The [Debian Jessie](https://www.debian.org/releases/jessie/)-based, networking-focused distribution runs on hardware produced by a [broad partner ecosystem](http://cumulusnetworks.com/hcl/), ensuring unmatched customer choice regarding silicon, optics, cables, and systems.
+Cumulus Linux is the first full-featured Linux operating system for the networking industry. The [Debian Jessie](https://www.debian.org/releases/jessie/)-based, networking-focused distribution runs on hardware produced by a [broad partner ecosystem](https://www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/), ensuring unmatched customer choice regarding silicon, optics, cables, and systems.
 
 This user guide provides in-depth documentation on the Cumulus Linux installation process, system configuration and management, network solutions, and monitoring and troubleshooting recommendations. In addition, the quick start guide provides an end-to-end setup process to get you started.
 
@@ -29,7 +29,7 @@ To implement various Cumulus Linux features, Cumulus Networks has forked various
 
 ## Hardware Compatibility List
 
-You can find the most up-to-date hardware compatibility list (HCL) [here](https://cumulusnetworks.com/hcl/). Use the HCL to confirm that your switch model is supported by Cumulus Networks. The HCL is updated regularly, listing products by port configuration, manufacturer, and SKU part number.
+You can find the most up-to-date hardware compatibility list (HCL) [here](https://www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list//). Use the HCL to confirm that your switch model is supported by Cumulus Networks. The HCL is updated regularly, listing products by port configuration, manufacturer, and SKU part number.
 
 ## Download the User Guide
 

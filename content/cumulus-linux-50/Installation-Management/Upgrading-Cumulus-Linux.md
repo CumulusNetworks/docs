@@ -19,6 +19,8 @@ Be sure to read the knowledge base article
 {{<kb_link url="knowledge-base/Installing-and-Upgrading/Upgrading/Network-Device-and-Linux-Host-Worldview-Comparison/" text="Upgrades: Network Device and Linux Host Worldview Comparison" >}}, which provides a detailed comparison between the network device and Linux host worldview of upgrade and installation.
 {{</notice>}}
 
+### Back up Configuration Files
+
 Understanding the location of configuration data is required for successful upgrades, migrations, and backup. As with other Linux distributions, the `/etc` directory is the primary location for all configuration data in Cumulus Linux. The following list is a likely set of files that you need to back up and migrate to a new release. Make sure you examine any file that has been changed. Make the following files and directories part of a backup strategy.
 
 {{< tabs "TabID25 ">}}
@@ -89,6 +91,14 @@ The following commands verify which files have changed compared to the previous 
 
 - Run the `sudo dpkg --verify` command to show a list of changed files.
 - Run the `egrep -v '^$|^#|=""$' /etc/default/isc-dhcp-*` command to see if any of the generated `/etc/default/isc-*` files have changed.
+{{%/notice%}}
+
+### CUE replaces NCLU
+
+{{<link url="Cumulus-User-Experience-CUE" text="Cumulus User Experience (CUE)">}} is a new object-oriented, schema driven model of a complete Cumulus Linux system (hardware and software) with a robust API that allows multiple interfaces to both view and configure any element within the system. CUE replaces the NCLU command line interface.
+
+{{%notice info%}}
+CUE is created from the ground up and does not inherit any previous functionality from NCLU. Certain features are not yet supported by CUE. If you are an NCLU user, confirm that your features are fully supported in CUE before upgrading to Cumulus Linux 5.0. If you use a feature that is not yet supported, you can either remain on your current Cumulus Linux 4.x release or migrate to Linux-based configuration.
 {{%/notice%}}
 
 ## Upgrade Cumulus Linux

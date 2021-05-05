@@ -94,13 +94,14 @@ iface br_default
 
 ## Configure Multiple VLAN-aware Bridges
 
-This example shows the commands required to create two VLAN-aware bridges on the switch:
+This example shows the commands required to create two VLAN-aware bridges on the switch.
+
+{{< img src = "/images/cumulus-linux/ethernet-bridging-vmvab.png" >}}
+
 - bridge1 bridges swp1 and swp2, and includes 2 VLANs; vlan 10 and vlan 20
 - bridge2 bridges swp3 and contains one VLAN; vlan 10
 
 Bridges are independent so you can reuse VLANs between bridges. Each VLAN-aware bridge maintains its own MAC address and VLAN tag table; MAC and VLAN tags in one bridge are not visibile to the other table.
-
-{{< img src = "/images/cumulus-linux/ethernet-bridging-vmvab.png" >}}
 
 {{< tabs "TabID103 ">}}
 {{< tab "CUE Commands ">}}
@@ -149,7 +150,7 @@ cumulus@switch:~$ ifreload -a
 {{< /tabs >}}
 
 {{%notice note%}}
-NVIDIA Spectrum switches currently support a maximum of 6000 VLAN elements. The total number of VLAN elements is calculated as the number of VLANS times the number of bridges configured. For example, 6 bridges, each containing 1000 VLANS totals 6000 VLAN elements.
+NVIDIA Spectrum switches currently support a maximum of 6000 VLAN elements. The total number of VLAN elements is calculated as the number of VLANs times the number of bridges configured. For example, 6 bridges, each containing 1000 VLANS totals 6000 VLAN elements.
 {{%/notice%}}
 
 ## Reserved VLAN Range

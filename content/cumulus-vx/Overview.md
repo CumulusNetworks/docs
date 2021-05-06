@@ -114,7 +114,7 @@ For non-customers, Cumulus VX remains a community-supported product, with no for
 - {{<exlink url="https://www.vmware.com/support/pubs/" text="VMware documentation">}}
 - {{<exlink url="https://www.virtualbox.org/wiki/Documentation" text="VirtualBox documentation">}}
 - {{<exlink url="http://www.linux-kvm.org/page/Documents" text="KVM documentation">}}
-- {{<exlink url="https://docs.vagrantup.com/v2/" text="Vagrant documentation">}}
+- {{<exlink url="https://www.vagrantup.com/docs" text="Vagrant documentation">}}
 - {{<exlink url="https://www.gns3.com/software" text="GNS3 documentation">}}
 - {{<exlink url="https://www.nvidia.com/en-us/networking/network-simulation/" text="Cumulus in the Cloud">}}
 - {{<exlink url="https://www.nvidia.com/en-us/networking/linux-on-demand/" text="Cumulus Linux on demand">}}

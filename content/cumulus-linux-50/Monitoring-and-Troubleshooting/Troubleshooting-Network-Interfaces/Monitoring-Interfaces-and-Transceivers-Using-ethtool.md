@@ -8,9 +8,7 @@ toc: 4
 The `ethtool` command enables you to query or control the network driver and hardware settings. It takes the device name (like swp1) as an argument. When the device name is the only argument to `ethtool`, it prints the current settings of the network device. See `man ethtool(8)` for details. Not all options are currently supported on switch port interfaces.
 
 {{%notice tip%}}
-
 The `l1-show` command is the preferred tool for monitoring Ethernet data. See the {{<link url="Troubleshoot-Layer-1">}} guide for details.
-
 {{%/notice%}}
 
 ## Monitor Interface Status Using ethtool
@@ -40,9 +38,7 @@ Link detected: yes
 ```
 
 {{%notice note%}}
-
 The switch hardware contains the {{<link url="Switch-Port-Attributes" text="active port settings">}}. The output of `ethtool swpXX` shows the port settings stored in the kernel. The `switchd` process keeps the hardware and kernel in sync for the important port settings (speed, auto-negotiation, and link detected) when they change. However, many of the fields in `ethtool`, such as Supported Link Modes and Advertised Link Modes, are not updated based on the actual module inserted in the port and therefore can be incorrect or misleading.
-
 {{%/notice%}}
 
 To query interface statistics:

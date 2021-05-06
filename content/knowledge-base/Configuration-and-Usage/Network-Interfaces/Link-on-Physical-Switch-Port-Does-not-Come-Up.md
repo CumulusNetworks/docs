@@ -19,7 +19,7 @@ Here is a list of things to check:
 
 ### Use Suggested Optics, Cables, Transceivers
 
-Please read the pluggables section of the {{<exlink url="https://cumulusnetworks.com/hcl" text="HCL">}} for recommendations on which optics, cables and transceivers to use with your platform.
+Please read the pluggables section of the {{<exlink url="https://www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="HCL">}} for recommendations on which optics, cables and transceivers to use with your platform.
 
 ### Ensure Your Cumulus Linux License Is Valid
 

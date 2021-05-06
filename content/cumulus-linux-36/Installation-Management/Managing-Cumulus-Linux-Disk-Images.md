@@ -43,7 +43,7 @@ While on an ARM platform, `uname -m` outputs *armv7l*:
      armv7l
 
 You can also visit the HCL ([hardware compatibility
-list](http://cumulusnetworks.com/support/linux-hardware-compatibility-list/))
+list](https://www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/))
 to look at your hardware to determine the processor type.
 
 ## Reprovisioning the System (Restart Installer)

@@ -42,7 +42,7 @@ essentially the reference topology built out inside Vagrant with VirtualBox or K
 
 #### Hardware
 
-Any switch from the {{<exlink url="https://cumulusnetworks.com/hcl" text="hardware compatibility list">}} is compatible with the topology as long as you follow the interface count from the table above. Of course, in your own production environment, you don't have to use exactly the same devices and cabling as outlined above.
+Any switch from the {{<exlink url="https://www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="hardware compatibility list">}} is compatible with the topology as long as you follow the interface count from the table above. Of course, in your own production environment, you don't have to use exactly the same devices and cabling as outlined above.
 
 ### Demos
 

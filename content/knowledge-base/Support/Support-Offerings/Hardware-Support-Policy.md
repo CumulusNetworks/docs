@@ -5,7 +5,7 @@ weight: 706
 toc: 4
 ---
 
-Cumulus Linux is only supported when running on hardware listed on the Cumulus Linux {{<exlink url="https://cumulusnetworks.com/support/hcl/" text="hardware compatibility list (HCL)">}}. The HCL is the definitive source for supported platforms. Hardware platforms do get added to the HCL over time.
+Cumulus Linux is only supported when running on hardware listed on the Cumulus Linux {{<exlink url="www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="hardware compatibility list (HCL)">}}. The HCL is the definitive source for supported platforms. Hardware platforms do get added to the HCL over time.
 
 In the event that a hardware platform is removed from the HCL, it will be supported until the end of the {{<link url="Cumulus-NetQ-Release-Versioning-and-Support-Policy" text="extended support release (ESR)">}} cycle for the version when the switch was removed. For example, if we remove a switch from the HCL when Cumulus Linux 3.3.1 is the current version, Cumulus will support that switch until the end of the 3.y ESR cycle.
 

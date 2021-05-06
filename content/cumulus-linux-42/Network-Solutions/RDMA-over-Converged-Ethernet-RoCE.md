@@ -25,7 +25,7 @@ RoCEv1 uses the Infiniband (IB) Protocol over converged Ethernet. The IB global 
 
 To learn the Cumulus Linux settings you need to configure support for RoCEv1; see the example configuration in the {{<link url="Buffer-and-Queue-Management#priority-flow-control" text="PFC">}} section of the {{<link url="Buffer-and-Queue-Management">}} chapter.
 
-On switches with {{<exlink url="https://cumulusnetworks.com/products/hardware-compatibility-list/?asic%5B0%5D=Mellanox%20Spectrum&asic%5B1%5D=Mellanox%20Spectrum_A1" text="Spectrum ASICs">}}, you can use NCLU to configure RoCE with PFC:
+On switches with {{<exlink url="www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="Spectrum ASICs">}}, you can use NCLU to configure RoCE with PFC:
 
 ```
 cumulus@switch:~$ net add interface swp1 storage-optimized pfc
@@ -72,7 +72,7 @@ RoCEv2 congestion management uses RFC 3168 to signal congestion experienced to t
 
 To learn the Cumulus Linux settings, you need to configure support for RoCEv2; see the example configuration in the {{<link url="Buffer-and-Queue-Management#congestion-notification" text="ECN">}} section of the {{<link url="Buffer-and-Queue-Management">}} chapter.
 
-On switches with {{<exlink url="https://cumulusnetworks.com/products/hardware-compatibility-list/?asic%5B0%5D=Mellanox%20Spectrum&asic%5B1%5D=Mellanox%20Spectrum_A1" text="Spectrum ASICs">}}, you can use NCLU to configure RoCE with ECN:
+On switches with {{<exlink url="www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="Spectrum ASICs">}}, you can use NCLU to configure RoCE with ECN:
 
 ```
 cumulus@switch:~$ net add interface swp1 storage-optimized

@@ -295,7 +295,7 @@ ARGS="-q -f -u10 -d10 -w -I"
 SUSPEND_ACTION="stop"
 ```
 
-For full instructions on installing `ifplugd` on Ubuntu, {{<kb_link url="knowledge-base/Using-ifplugd-on-a-Server-Host" text="follow this guide">}}.
+For full instructions on installing `ifplugd` on Ubuntu, {{<kb_link url="knowledge-base/Configuration-and-Usage/Network-Interfaces/Using-ifplugd-on-a-Server-Host" text="follow this guide">}}.
 
 ## Troubleshooting
 
@@ -423,7 +423,7 @@ Use the following workflow to verify that the kernel routing table isbeing popul
 
 ### TCAM Route Scale
 
-This feature adds each ARP entry as a /32 host route into the routing table of all switches within a summarization domain. Take care to keep the number of hosts minus fabric routes under the TCAM size of the switch. Review the {{<exlink url="https://cumulusnetworks.com/hcl/" text="Cumulus Networks datasheets">}} for up to date scalability limits of your chosen hardware platforms. If in doubt, contact support representative.
+This feature adds each ARP entry as a /32 host route into the routing table of all switches within a summarization domain. Take care to keep the number of hosts minus fabric routes under the TCAM size of the switch. Review the {{<exlink url="https://www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list//" text="Cumulus Networks datasheets">}} for up to date scalability limits of your chosen hardware platforms. If in doubt, contact support representative.
 
 ### Possible Uneven Traffic Distribution
 

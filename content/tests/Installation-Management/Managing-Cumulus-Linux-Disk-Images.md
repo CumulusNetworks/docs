@@ -26,7 +26,7 @@ cumulus@ARMswitch$ uname -m
  armv7l
 ```
 
-You can also visit the HCL ({{<exlink url="https://cumulusnetworks.com/hcl" text="hardware compatibility list">}}) to look at your hardware and determine the processor type.
+You can also visit the HCL ({{<exlink url="https://www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="hardware compatibility list">}}) to look at your hardware and determine the processor type.
 
 ## Reprovision the System (Restart the Installer)
 

@@ -6,10 +6,10 @@ relURLs = true
 googleAnalytics = "G-HTM5Y02305"
 #Book configuration
 disablePathToLower = true
-enableGitInfo= false
+enableGitInfo= true
 noChmod = true
 enableRobotsTXT = true
-disableKinds = ["RSS"]
+disableKinds = ["RSS", "taxonomy", "term"]
 
 [markup]
   [markup.tableOfContents]
@@ -94,11 +94,3 @@ showVisitedLinks = true
   # - In blog posts
   BookDateFormat= "Jan 2, 2006"
 
-[taxonomies]
-  tag = "tags"
-  category = "categories"
-  publication_type = "publication_types"
-  author = "authors"
-
-[frontmatter]
-  lastmod = ["lastmod", ":defaut"]

@@ -103,10 +103,10 @@ Fixed: 1.14.4-2+deb10u1</td>
 <td></td>
 </tr>
 <tr>
-<td>2628514</td>
+<td>2628515</td>
 <td>CVE-2020-12695: hostapd does not properly handle UPnP subscribe messages under certain conditions, allowing an attacker to cause a denial of service.
-Vulnerable: &lt;= 2.8.0-cl4.3.1u1
-Fixed: 2.8.0-cl4.3.1u2</td>
+Vulnerable: &lt;= 2.8.0-cl3.7.15u2
+Fixed: 2.8.0-cl3.7.15u3</td>
 <td>3.7.14-3.7.14.2, 4.3.0</td>
 <td></td>
 </tr>
@@ -1826,7 +1826,8 @@ Fixed: 4.11.4+37-g3263f257ca-1</td>
 </tr>
 <tr>
 <td>2553748</td>
-<td>On switches with the Spectrum ASIC, the IPv6 default route is present in the kernel but missing in hardware.</td>
+<td>On switches with the Spectrum ASIC, the IPv6 default route might be present in the kernel but missing in 
+hardware when IPv6 RAs are received on SVIs configured with {{ip-forward off}}.</td>
 <td>3.7.11-4.2.1</td>
 </tr>
 <tr>

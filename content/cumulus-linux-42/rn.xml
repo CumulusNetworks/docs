@@ -340,12 +340,6 @@ ERROR: Command not found
 <td></td>
 </tr>
 <tr>
-<td>2556064</td>
-<td>EAP-TLS fail on wired connections when the reachability to the RADIUS server does not use the eth0 (mgmt) VRF interface.</td>
-<td>4.2.1-4.3.0</td>
-<td></td>
-</tr>
-<tr>
 <td>2556061</td>
 <td>On Edgecore AS4610 switches, the historic CPU usage displayed in {{/run/sysmonitor/history}} is sometimes shown as a negative value. </td>
 <td>3.7.12-3.7.14.2, 4.2.1-4.3.0</td>
@@ -1810,12 +1804,6 @@ ERROR: Command not found
 <td>2556081</td>
 <td>You cannot set the time zone can with NCLU commands.</td>
 <td>4.1.1-4.3.0</td>
-<td></td>
-</tr>
-<tr>
-<td>2556064</td>
-<td>EAP-TLS fail on wired connections when the reachability to the RADIUS server does not use the eth0 (mgmt) VRF interface.</td>
-<td>4.2.1-4.3.0</td>
 <td></td>
 </tr>
 <tr>

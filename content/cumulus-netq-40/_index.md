@@ -6,7 +6,7 @@ subsection: true
 toc: 1
 cascade:
     product: Cumulus NetQ
-    version: "4.0.0"
+    version: "4.0"
     imgData: cumulus-netq
     siteSlug: cumulus-netq
 ---

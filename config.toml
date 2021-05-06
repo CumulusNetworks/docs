@@ -6,7 +6,7 @@ relURLs = true
 googleAnalytics = "G-HTM5Y02305"
 #Book configuration
 disablePathToLower = true
-enableGitInfo= false
+enableGitInfo= true
 noChmod = true
 enableRobotsTXT = true
 disableKinds = ["RSS"]

@@ -19,19 +19,19 @@ When WJH capabilities are combined with NetQ, you have the ability to hone in on
 - View any current or historic drop information, including the reason for the drop
 - Identify problematic flows or endpoints, and pin-point exactly where communication is failing in the network
 
-{{<notice info>}}
+{{%notice info%}}
 
 By default, Cumulus Linux 4.0.0 provides the NetQ 2.3.1 Agent and CLI. If you installed Cumulus Linux 4.0.0 on your NVIDIA switch, you need to upgrade the NetQ Agent and optionally the CLI to release 2.4.0 or later (preferably the latest release).
 
-<pre>
+```
 cumulus@<hostname>:~$ sudo apt-get update
 cumulus@<hostname>:~$ sudo apt-get install -y netq-agent
 cumulus@<hostname>:~$ sudo netq config restart agent
 cumulus@<hostname>:~$ sudo apt-get install -y netq-apps
 cumulus@<hostname>:~$ sudo netq config restart cli
-</pre>
+```
 
-{{</notice>}}
+{{%/notice%}}
 
 ## Configure the WJH Feature
 
@@ -89,9 +89,9 @@ You can filter the WJH events at the NetQ Agent before it is processed by the Ne
 
 For a complete list of drop types and reasons, refer to the {{<link title="WJH Event Messages Reference">}}.
 
-{{< tabs "WJH Filters" >}}
+{{<tabs "WJH Filters">}}
 
-{{< tab "NetQ UI" >}}
+{{<tab "NetQ UI">}}
 
 To configure the NetQ Agent to filter WJH drops:
 
@@ -111,9 +111,9 @@ To configure the NetQ Agent to filter WJH drops:
 
 1. Click **Add** to save the configuration profile, or click **Close** to discard it.
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "NetQ CLI" >}}
+{{<tab "NetQ CLI">}}
 
 To configure the NetQ Agent to filter WJH drops, run:
 
@@ -153,17 +153,17 @@ This example configures the NetQ Agent to drop only router drops when the source
 cumulus@netq-ts:~$ netq config add agent wjh-drop-filter drop-type router drop-reasons SRC_IP_IS_IN_CLASS_E
 ```
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}
 
 ## View What Just Happened Metrics
 
 You can view the WJH metrics from the NetQ UI or the NetQ CLI.
 
-{{< tabs "TabID88" >}}
+{{<tabs "WJH metrics">}}
 
-{{< tab "NetQ UI" >}}
+{{<tab "NetQ UI">}}
 
 1. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} (main menu).
 
@@ -175,9 +175,9 @@ You can view the WJH metrics from the NetQ UI or the NetQ CLI.
 
 3. By default the layer 1 drops are shown. Click one of the other drop categories to view those drops for all devices.
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "NetQ CLI" >}}
+{{<tab "NetQ CLI">}}
 
 Run one of the following commands:
 
@@ -249,6 +249,181 @@ Hostname          Ingress Port             Reason                               
 leaf01            swp1                     Blackhole route                               Notice           36                 46.0.1.2         47.0.2.3         6      1235             43523            00:01:02:03:04:05  00:06:07:08:09:0a  Tue Oct  6 15:29:13 2020       Tue Oct  6 15:29:47 2020
 ```
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}
+
+## Collect WJH Data Using gNMI
+
+You can use *gNMI*, the {{<exlink url="https://github.com/openconfig/gnmi" text="gRPC network management interface">}}, to collect What Just Happened data from the NetQ Agent via the gNMI agent. This provides the ability to export NetQ data to other applications and services that support gNMI.
+
+In this release, the gNMI agent only supports *capabilities* and *subscribe* requests for WJH events.
+
+### Configure the gNMI Agent
+
+To configure the gNMI agent, you need to enable it on every switch you want to use with gNMI. Optionally, you can update these default settings:
+
+- **Log level**: The log level is set to *info*. You can change the default setting to *debug*, *warning*, or *error*.
+- **Default gNMI port**: The gNMI agent listens over port 9339 by default. You can change this setting in case you use that port in another application.
+
+The configuration is written to `/etc/netq/netq.yml`.
+
+To configure the gNMI agent on a Cumulus Linux switch:
+
+1. Enable the gNMI agent:
+
+       cumulus@switch:~$ netq config add agent gnmi-enable true
+1. If you want to change the default log level to something other than *info* (choose from *debug*, *warning*, or *error*), run:
+
+       cumulus@switch:~$ netq config add agent gnmi-log-level [debug|warning|error]
+
+1. If you want to change the default port over which the gNMI agent listens, run:
+
+       cumulus@switch:~$ netq config add agent gnmi-port <gnmi_port>
+1. Restart the NetQ Agent:
+
+       cumulus@switch:~$ netq config restart agent
+
+### Use the gNMI Client
+
+You use the gNMI client on a host server to request capabilities and data the agent is subscribed to.
+
+To make a subscribe request, run:
+
+```
+[root@host ~]# /path/to/gnmi_client/gnmi_client -gnmi_address 10.209.37.84 -request subscribe
+2021/05/06 18:33:10.142160 host gnmi_client[24847]: INFO: 10.209.37.84:9339: ready for streaming
+2021/05/06 18:33:10.220814 host gnmi_client[24847]: INFO: sync response received: sync_response:true
+2021/05/06 18:33:16.813000 host gnmi_client[24847]: INFO: update received [interfaces interface swp8 wjh aggregate l2 reason 209 error]: {"Drop":[{"AggCount":1,"Dip":"1.2.0.0","Dmac":"00:bb:cc:11:22:32","Dport":0,"DropType":"L2","EgressPort":"","EndTimestamp":1620326044,"FirstTimestamp":1620326044,"IngressLag":"","IngressPort":"swp8","Proto":0,"Reason":"Source MAC is multicast","Severity":"Error","Sip":"10.213.1.242","Smac":"ff:ff:ff:ff:ff:ff","Sport":0}],"Id":209,"Severity":"Error"}
+2021/05/06 18:33:16.815068 host gnmi_client[24847]: INFO: update received [interfaces interface swp8 wjh aggregate l2 reason 209 error]: {"Drop":[{"AggCount":1,"Dip":"1.2.0.0","Dmac":"00:bb:cc:11:22:32","Dport":0,"DropType":"L2","EgressPort":"","EndTimestamp":1620326044,"FirstTimestamp":1620326044,"IngressLag":"","IngressPort":"swp8","Proto":0,"Reason":"Source MAC is multicast","Severity":"Error","Sip":"10.213.2.242","Smac":"ff:ff:ff:ff:ff:ff","Sport":0}],"Id":209,"Severity":"Error"}
+2021/05/06 18:33:16.818896 host gnmi_client[24847]: INFO: update received [interfaces interface swp8 wjh aggregate l2 reason 209 error]: {"Drop":[{"AggCount":1,"Dip":"1.2.0.0","Dmac":"00:bb:cc:11:22:32","Dport":0,"DropType":"L2","EgressPort":"","EndTimestamp":1620326044,"FirstTimestamp":1620326044,"IngressLag":"","IngressPort":"swp8","Proto":0,"Reason":"Source MAC is multicast","Severity":"Error","Sip":"10.213.3.242","Smac":"ff:ff:ff:ff:ff:ff","Sport":0}],"Id":209,"Severity":"Error"}
+2021/05/06 18:33:16.823091 host gnmi_client[24847]: INFO: update received [interfaces interface swp8 wjh aggregate l2 reason 209 error]: {"Drop":[{"AggCount":1,"Dip":"1.2.0.0","Dmac":"00:bb:cc:11:22:32","Dport":0,"DropType":"L2","EgressPort":"","EndTimestamp":1620326044,"FirstTimestamp":1620326044,"IngressLag":"","IngressPort":"swp8","Proto":0,"Reason":"Source MAC is multicast","Severity":"Error","Sip":"10.213.4.242","Smac":"ff:ff:ff:ff:ff:ff","Sport":0}],"Id":209,"Severity":"Error"}
+...
+```
+
+To request the capabilities, run:
+
+```
+[root@host ~]# /mtrsysgwork/aviranj/netq/netq-ng-agent/src/nvidia/netq-ng-agent/test/gnmi_client/gnmi_client -gnmi_address 10.209.37.84 -request capabilities
+2021/05/06 18:36:31.285648 host gnmi_client[25023]: INFO: 10.209.37.84:9339: ready for streaming
+2021/05/06 18:36:31.355944 host gnmi_client[25023]: INFO: capability response: supported_models:{name:"WjhDropAggregate"  organization:"NVIDIA"  version:"0.1"}  supported_encodings:JSON  supported_encodings:JSON_IETF
+```
+
+### Use Only the gNMI Agent
+
+It is possible (although it is not recommended) to collect data using only the gNMI agent, and not the NetQ Agent. However, this sends data only to gNMI and not to NetQ.
+
+To use only gNMI for data collection, disable the NetQ Agent, which is always enabled by default:
+
+    cumulus@switch:~$ netq config add agent opta-enable false
+
+{{%notice info%}}
+
+You cannot disable both the NetQ Agent and the gNMI agent.
+
+{{%/notice%}}
+
+### WJH Drop Reasons
+
+The data NetQ sends to the gNMI agent is in the form of WJH drop reasons. The reasons are generated by the SDK and are stored in the `/usr/etc/wjh_lib_conf.xml` file on the switch and. Use this file as a guide to filter for specific reason types (L1, ACL, and so forth), reason IDs, and/or event severities.
+
+#### L1 Drop Reasons
+
+| Reason ID | Reason | Description |
+| --------- | ------ | ----------- |
+| 10021 | Port admin down | Validate port configuration |
+| 10022 | Auto-negotiation failure | Set port speed manually, disable auto-negotiation |
+| 10023 | Logical mismatch with peer link | Check cable/transceiver |
+| 10024 | Link training failure | Check cable/transceiver |
+| 10025 | Peer is sending remote faults | Replace cable/transceiver |
+| 10026 | Bad signal integrity | Replace cable/transceiver |
+| 10027 | Cable/transceiver is not supported | Use supported cable/transceiver |
+| 10028 | Cable/transceiver is unplugged | Plug cable/transceiver |
+| 10029 | Calibration failure | Check cable/transceiver |
+| 10030 | Cable/transceiver bad status | Check cable/transceiver |
+| 10031 | Other reason | Other L1 drop reason|
+
+#### L2 Drop Reasons
+
+| Reason ID | Reason | Severity | Description |
+| --------- | ------ | -------- | ----------- |
+| 201 | MLAG port isolation | Notice | Expected behavior |
+| 202 | Destination MAC is reserved (DMAC=01-80-C2-00-00-0x) | Error | Bad packet was received from the peer |
+| 203 | VLAN tagging mismatch | Error | Validate the VLAN tag configuration on both ends of the link |
+| 204 | Ingress VLAN filtering | Error | Validate the VLAN membership configuration on both ends of the link |
+| 205 | Ingress spanning tree filter | Notice | Expected behavior |
+| 206 | Unicast MAC table action discard | Error | Validate MAC table for this destination MAC |
+| 207 | Multicast egress port list is empty | Warning | Validate why IGMP join or multicast router port does not exist |
+| 208 | Port loopback filter | Error | Validate MAC table for this destination MAC |
+| 209 | Source MAC is multicast | Error | Bad packet was received from peer |
+| 210 | Source MAC equals destination MAC | Error | Bad packet was received from peer |
+
+#### Router Drop Reasons
+
+| Reason ID | Reason | Severity | Description |
+| --------- | ------ | -------- | ----------- |
+| 301 | Non-routable packet | Notice | Expected behavior |
+| 302 | Blackhole route | Warning | Validate routing table for this destination IP |
+| 303 | Unresolved neighbor/next-hop | Warning | Validate ARP table for the neighbor/next hop |
+| 304 | Blackhole ARP/neighbor | Warning | Validate ARP table for the next hop |
+| 305 | IPv6 destination in multicast scope FFx0:/16 | Notice | Expected behavior - packet is not routable |
+| 306 | IPv6 destination in multicast scope FFx1:/16 | Notice | Expected behavior - packet is not routable |
+| 307 | Non IP packet | Notice | Destination MAC is the router, packet is not routable |
+| 308 | Unicast destination IP but multicast destination MAC | Error | Bad packet was received from the peer |
+| 309 | Destination IP is loopback address | Error | Bad packet was received from the peer |
+| 310 | Source IP is multicast | Error | Bad packet was received from the peer |
+| 311 | Source IP is in class E | Error | Bad packet was received from the peer |
+| 312 | Source IP is loopback address | Error | Bad packet was received from the peer |
+| 313 | Source IP is unspecified | Error | Bad packet was received from the peer |
+| 314 | Checksum or IPver or IPv4 IHL too short | Error | Bad cable or bad packet was received from the peer |
+| 315 | Multicast MAC mismatch | Error | Bad packet was received from the peer |
+| 316 | Source IP equals destination IP | Error | Bad packet was received from the peer |
+| 317 | IPv4 source IP is limited broadcast | Error | Bad packet was received from the peer |
+| 318 | IPv4 destination IP is local network (destination=0.0.0.0/8) | Error | Bad packet was received from the peer || 319 | IPv4 destination IP is link local | Error | Bad packet was received from the peer |
+| 320 | Ingress router interface is disabled | Warning | Validate your configuration |
+| 321 | Egress router interface is disabled | Warning | Validate your configuration |
+| 323 | IPv4 routing table (LPM) unicast miss | Warning | Validate routing table for this destination IP |
+| 324 | IPv6 routing table (LPM) unicast miss | Warning | Validate routing table for this destination IP |
+| 325 | Router interface loopback | Warning | Validate the interface configuration |
+| 326 | Packet size is larger than router interface MTU | Warning | Validate the router interface MTU configuration |
+| 327 | TTL value is too small | Warning | Actual path is longer than the TTL |
+
+#### Tunnel Drop Reasons
+
+| Reason ID | Reason | Severity | Description |
+| --------- | ------ | -------- | ----------- |
+| 402 | Overlay switch - Source MAC is multicast | Error | Bad packet was received from the peer |
+| 403 | Overlay switch - Source MAC equals destination MAC | Error | Bad packet was received from the peer |
+| 404 | Decapsulation error | Error | Bad packet was received from the peer |
+
+
+#### ACL Drop Reasons
+
+| Reason ID | Reason | Severity | Description |
+| --------- | ------ | -------- | ----------- |
+| 601 | Ingress port ACL | Notice | Validate ACL configuration |
+| 602 | Ingress router ACL | Notice | Validate ACL configuration | 
+| 603 | Egress router ACL | Notice | Validate ACL configuration |
+| 604 | Egress port ACL | Notice | Validate ACL configuration |
+
+
+#### Buffer Drop Reasons
+
+| Reason ID | Reason | Severity | Description |
+| --------- | ------ | -------- | ----------- |
+| 503 | Tail drop | Warning | Monitor network congestion |
+| 504 | WRED | Warning | Monitor network congestion |
+| 505 | Port TC Congestion Threshold Crossed | Notice | Monitor network congestion 506 Packet Latency Threshold Crossed Notice Monitor network congestion |
+
+
+#### RoCE Drop Reasons
+
+| Reason ID | Reason | Severity | Description |
+| --------- | ------ | -------- | ----------- |
+| 701 | RoCE traffic with wrong priority | Notice | Bad packet was received from the peer |
+| 702 | Non RoCE traffic on RoCE priority | Notice | Bad packet was received from the peer |
+| 703 | RoCE flood traffic | Notice | Unresolved IP address |
+
+### Related Information
+
+{{<exlink url="https://datatracker.ietf.org/meeting/101/materials/slides-101-netconf-grpc-network-management-interface-gnmi-00" text="gNMI presentation to IETF">}}

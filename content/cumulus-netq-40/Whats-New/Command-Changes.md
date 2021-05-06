@@ -22,3 +22,8 @@ The following table summarizes the commands that have been changed with this rel
 | Updated Command | Old Command | What Changed | Version |
 | --------------- | ----------- | ------------ | ------- |
 | netq | netq | Added | 4.0.0 |
+
+netq config add agent opta-enable [true|false] – Allow the user to enable/disable OPTA (default true)
+netq config add agent gnmi-enable [true|false] – Allow the user to enable/disable gNMI agent (default false)
+netq config add agent gnmi-log-level [debug|info|warning|error] – Log verbosity for gNMI agent (default info)
+netq config add agent gnmi-port <gnmi_port> - Allow the user to change gNMI port (default 9339)

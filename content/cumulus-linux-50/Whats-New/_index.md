@@ -18,7 +18,9 @@ Cumulus Linux 5.0 supports provides bug fixes, and contains several new features
 
 - {{<link url="Cumulus-User-Experience-CUE" text="Cumulus User Experience (CUE)">}} is a new object-oriented, schema driven model of a complete Cumulus Linux system (hardware and software) with a robust API that allows multiple interfaces to both view and configure any element within the system. CUE replaces the NCLU command line interface.
 
+{{<notice info>}}
 CUE is created from the ground up and does not inherit any previous functionality from NCLU. Certain features are not yet supported by CUE. If you are an NCLU user, confirm that your features are fully supported in CUE before upgrading to Cumulus Linux 5.0. If you use a feature that is not yet supported, you can either remain on your current 4.x release or perform all your switch configuration using Linux and vtysh commands.
+{{</notice>}}
 
 - {{<link url="VLAN-aware-Bridge-Mode/" text="multiple VLAN-aware bridges">}}
 - {{<link url="EVPN-Multihoming" text="EVPN multihoming Head End Replication">}}

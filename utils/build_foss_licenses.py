@@ -102,7 +102,7 @@ def build_foss_license_markdown(csv_file, version):
         if header:
             output.append("| {} | {} | {} |\n".format(split_line[0], split_line[1].strip(), license_string))
         else:
-            output.append("| [{}](/cumulus-linux-{}/Whats-New/licenses/{}.txt) | {} | {} |\n".format(split_line[0], version_string(version).replace(".", ""), split_line[0], split_line[1].strip(), license_string))
+            output.append("| {{{{<foss_file text=\"{}\" url=\"cumulus-linux-{}/Whats-New/licenses/{}.txt\" >}}}} | {} | {} |\n".format(split_line[0], version_string(version).replace(".", ""), split_line[0], split_line[1].strip(), license_string))
         if header:
             output.append("|---	        |---	        |---	    |\n")
             header = False

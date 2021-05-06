@@ -1,94 +1,15 @@
-//Cumulus gotham font import
-@import url("https://cloud.typography.com/7905356/6161172/css/fonts.css");
-
 // Import DIN PRO webfont
-@font-face { 
-  font-family: "DIN-Web-Pro";
-  src: url("https://static.cumulusnetworks.com/static/fonts/DIN-Web-Pro/DIN-Web-Pro-Light.eot"); /* IE9 Compat Modes */
-  src: url("https://static.cumulusnetworks.com/static/fonts/DIN-Web-Pro/DIN-Web-Pro-Light.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */
-       url("https://static.cumulusnetworks.com/static/fonts/DIN-Web-Pro/DIN-Web-Pro-Light.ttf") format("truetype"), /* Safari, Android, iOS */
-       url("https://static.cumulusnetworks.com/static/fonts/DIN-Web-Pro/DIN-Web-Pro-Light.woff") format("woff"), /* Modern Browsers */
-       url("https://static.cumulusnetworks.com/static/fonts/DIN-Web-Pro/DIN-Web-Pro-Light.woff2") format("woff2"); /* Modern Browsers */
-  font-weight: 300; /* Light */
-  font-style: normal;
-}
+@font-face{font-family:"DINPro";src:url("https://images.nvidia.com/etc/designs/nvidiaGDC/clientlibs_base/fonts/DINWebPro.eot");src:url("https://images.nvidia.com/etc/designs/nvidiaGDC/clientlibs_base/fonts/DINWebPro.eot?#iefix") format("embedded-opentype"),url("https://images.nvidia.com/etc/designs/nvidiaGDC/clientlibs_base/fonts/DINWebPro.woff") format("woff");font-style:normal;font-weight:normal;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
 
-@font-face { 
-  font-family: "DIN-Web-Pro";
-  src: url("https://static.cumulusnetworks.com/static/fonts/DIN-Web-Pro/DIN-Web-Pro-Light-Italic.eot"); /* IE9 Compat Modes */
-  src: url("https://static.cumulusnetworks.com/static/fonts/DIN-Web-Pro/DIN-Web-Pro-Light-Italic.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */
-       url("https://static.cumulusnetworks.com/static/fonts/DIN-Web-Pro/DIN-Web-Pro-Light-Italic.ttf") format("truetype"), /* Safari, Android, iOS */
-       url("https://static.cumulusnetworks.com/static/fonts/DIN-Web-Pro/DIN-Web-Pro-Light-Italic.woff") format("woff"), /* Modern Browsers */
-       url("https://static.cumulusnetworks.com/static/fonts/DIN-Web-Pro/DIN-Web-Pro-Light-Italic.woff2") format("woff2"); /* Modern Browsers */
-  font-weight: 300; /* Light */
-  font-style: italic;
-}
+@font-face{font-family:"DINPro";src:url("https://images.nvidia.com/etc/designs/nvidiaGDC/clientlibs_base/fonts/DINWebPro-Bold.eot");src:url("https://images.nvidia.com/etc/designs/nvidiaGDC/clientlibs_base/fonts/DINWebPro-Bold.eot?#iefix") format("embedded-opentype"),url("https://images.nvidia.com/etc/designs/nvidiaGDC/clientlibs_base/fonts/DINWebPro-Bold.woff") format("woff");font-style:normal;font-weight:bold;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
 
-@font-face { 
-  font-family: "DIN-Web-Pro";
-  src: url("https://static.cumulusnetworks.com/static/fonts/DIN-Web-Pro/DIN-Web-Pro-Regular.eot"); /* IE9 Compat Modes */
-  src: url("https://static.cumulusnetworks.com/static/fonts/DIN-Web-Pro/DIN-Web-Pro-Regular.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */
-       url("https://static.cumulusnetworks.com/static/fonts/DIN-Web-Pro/DIN-Web-Pro-Regular.ttf") format("truetype"), /* Safari, Android, iOS */
-       url("https://static.cumulusnetworks.com/static/fonts/DIN-Web-Pro/DIN-Web-Pro-Regular.woff") format("woff"), /* Modern Browsers */
-       url("https://static.cumulusnetworks.com/static/fonts/DIN-Web-Pro/DIN-Web-Pro-Regular.woff2") format("woff2"); /* Modern Browsers */
-  font-weight: 400; /* Regular */
-  font-style: normal;
-}
+@font-face{font-family:"DINPro";src:url("https://images.nvidia.com/etc/designs/nvidiaGDC/clientlibs_base/fonts/DINWebPro-Light.eot");src:url("https://images.nvidia.com/etc/designs/nvidiaGDC/clientlibs_base/fonts/DINWebPro-Light.eot?#iefix") format("embedded-opentype"),url("https://images.nvidia.com/etc/designs/nvidiaGDC/clientlibs_base/fonts/DINWebPro-Light.woff") format("woff");font-style:normal;font-weight:lighter;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
 
-@font-face { 
-  font-family: "DIN-Web-Pro";
-  src: url("https://static.cumulusnetworks.com/static/fonts/DIN-Web-Pro/DIN-Web-Pro-Regular-Italic.eot"); /* IE9 Compat Modes */
-  src: url("https://static.cumulusnetworks.com/static/fonts/DIN-Web-Pro/DIN-Web-Pro-Regular-Italic.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */
-       url("https://static.cumulusnetworks.com/static/fonts/DIN-Web-Pro/DIN-Web-Pro-Regular-Italic.ttf") format("truetype"), /* Safari, Android, iOS */
-       url("https://static.cumulusnetworks.com/static/fonts/DIN-Web-Pro/DIN-Web-Pro-Regular-Italic.woff") format("woff"), /* Modern Browsers */
-       url("https://static.cumulusnetworks.com/static/fonts/DIN-Web-Pro/DIN-Web-Pro-Regular-Italic.woff2") format("woff2"); /* Modern Browsers */
-  font-weight: 400; /* Regular */
-  font-style: italic;
-}
+@font-face{font-family:"DINPro-Regular";src:url("https://images.nvidia.com/etc/designs/nvidiaGDC/clientlibs_base/fonts/DINPro-Regular.eot");src:url("https://images.nvidia.com/etc/designs/nvidiaGDC/clientlibs_base/fonts/DINPro-Regular.eot?#iefix") format("embedded-opentype"),url("https://images.nvidia.com/etc/designs/nvidiaGDC/clientlibs_base/fonts/DINPro-Regular.woff") format("woff"),url("https://images.nvidia.com/etc/designs/nvidiaGDC/clientlibs_base/fonts/DINPro-Regular.ttf") format("truetype");-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
 
-@font-face { 
-  font-family: "DIN-Web-Pro";
-  src: url("https://static.cumulusnetworks.com/static/fonts/DIN-Web-Pro/DIN-Web-Pro-Medium.eot"); /* IE9 Compat Modes */
-  src: url("https://static.cumulusnetworks.com/static/fonts/DIN-Web-Pro/DIN-Web-Pro-Medium.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */
-       url("https://static.cumulusnetworks.com/static/fonts/DIN-Web-Pro/DIN-Web-Pro-Medium.ttf") format("truetype"), /* Safari, Android, iOS */
-       url("https://static.cumulusnetworks.com/static/fonts/DIN-Web-Pro/DIN-Web-Pro-Medium.woff") format("woff"), /* Modern Browsers */
-       url("https://static.cumulusnetworks.com/static/fonts/DIN-Web-Pro/DIN-Web-Pro-Medium.woff2") format("woff2"); /* Modern Browsers */
-  font-weight: 500; /* Medium */
-  font-style: normal;
-}
+@font-face{font-family:"DINPro-Light";src:url("https://images.nvidia.com/etc/designs/nvidiaGDC/clientlibs_base/fonts/DINPro-Light.eot");src:url("https://images.nvidia.com/etc/designs/nvidiaGDC/clientlibs_base/fonts/DINPro-Light.eot?#iefix") format("embedded-opentype"),url("https://images.nvidia.com/etc/designs/nvidiaGDC/clientlibs_base/fonts/DINPro-Light.woff") format("woff"),url("https://images.nvidia.com/etc/designs/nvidiaGDC/clientlibs_base/fonts/DINPro-Light.ttf") format("truetype");-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
 
-@font-face { 
-  font-family: "DIN-Web-Pro";
-  src: url("https://static.cumulusnetworks.com/static/fonts/DIN-Web-Pro/DIN-Web-Pro-Medium-Italic.eot"); /* IE9 Compat Modes */
-  src: url("https://static.cumulusnetworks.com/static/fonts/DIN-Web-Pro/DIN-Web-Pro-Medium-Italic.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */
-       url("https://static.cumulusnetworks.com/static/fonts/DIN-Web-Pro/DIN-Web-Pro-Medium-Italic.ttf") format("truetype"), /* Safari, Android, iOS */
-       url("https://static.cumulusnetworks.com/static/fonts/DIN-Web-Pro/DIN-Web-Pro-Medium-Italic.woff") format("woff"), /* Modern Browsers */
-       url("https://static.cumulusnetworks.com/static/fonts/DIN-Web-Pro/DIN-Web-Pro-Medium-Italic.woff2") format("woff2"); /* Modern Browsers */
-  font-weight: 500; /* Medium */
-  font-style: italic;
-}
-
-@font-face { 
-  font-family: "DIN-Web-Pro";
-  src: url("https://static.cumulusnetworks.com/static/fonts/DIN-Web-Pro/DIN-Web-Pro-Bold.eot"); /* IE9 Compat Modes */
-  src: url("https://static.cumulusnetworks.com/static/fonts/DIN-Web-Pro/DIN-Web-Pro-Bold.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */
-       url("https://static.cumulusnetworks.com/static/fonts/DIN-Web-Pro/DIN-Web-Pro-Bold.ttf") format("truetype"), /* Safari, Android, iOS */
-       url("https://static.cumulusnetworks.com/static/fonts/DIN-Web-Pro/DIN-Web-Pro-Bold.woff") format("woff"), /* Modern Browsers */
-       url("https://static.cumulusnetworks.com/static/fonts/DIN-Web-Pro/DIN-Web-Pro-Bold.woff2") format("woff2"); /* Modern Browsers */
-  font-weight: 700; /* Bold */
-  font-style: normal;
-}
-
-@font-face { 
-  font-family: "DIN-Web-Pro";
-  src: url("https://static.cumulusnetworks.com/static/fonts/DIN-Web-Pro/DIN-Web-Pro-Bold-Italic.eot"); /* IE9 Compat Modes */
-  src: url("https://static.cumulusnetworks.com/static/fonts/DIN-Web-Pro/DIN-Web-Pro-Bold-Italic.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */
-       url("https://static.cumulusnetworks.com/static/fonts/DIN-Web-Pro/DIN-Web-Pro-Bold-Italic.ttf") format("truetype"), /* Safari, Android, iOS */
-       url("https://static.cumulusnetworks.com/static/fonts/DIN-Web-Pro/DIN-Web-Pro-Bold-Italic.woff") format("woff"), /* Modern Browsers */
-       url("https://static.cumulusnetworks.com/static/fonts/DIN-Web-Pro/DIN-Web-Pro-Bold-Italic.woff2") format("woff2"); /* Modern Browsers */
-  font-weight: 700; /* Bold */
-  font-style: italic;
-}
+@font-face{font-family:"DINWebPro-Medium";src:url("https://images.nvidia.com/etc/designs/nvidiaGDC/clientlibs_base/fonts/DINWebPro-Medium.eot");src:url("https://images.nvidia.com/etc/designs/nvidiaGDC/clientlibs_base/fonts/DINWebPro-Medium.eot?#iefix") format("embedded-opentype"),url("https://images.nvidia.com/etc/designs/nvidiaGDC/clientlibs_base/fonts/DINWebPro-Medium.woff") format("woff");-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
 
 
 $padding-1: 1px;
@@ -96,7 +17,7 @@ $padding-4: 0.25rem;
 $padding-8: 0.5rem;
 $padding-16: 1rem;
 
-$cumulus-font-family: "Gotham A", "Gotham B", "Helvetica", sans-serif;
+$cumulus-font-family: "DINPro-Regular", "Helvetica", sans-serif;
 $font-size-base: 17px;
 $font-size-12: 0.70rem;
 $font-size-14: 0.823rem;
@@ -115,6 +36,7 @@ $gray-800: #343a40;
 $gray-900: #212529;
 
 // Primary color palette
+$nvidia-green: #76b900;
 $jade: #00ad69;
 $white: #ffffff;
 $black: #000;
@@ -140,7 +62,7 @@ $wizard-blue: #78cdd1;
 $spruce-gray: #36424a;
 $rolling-stone: #75828c;
 $nevada-gray: #5f6a72;
-$cadet-gray: #b5bdc9;
+$cadet-gray: #6a6e75;
 $athens-gray: #eaedf2;
 $aqua-haze: #f6f8fa;
 $heather-gray: #cbd4e0;
@@ -148,7 +70,7 @@ $gray-chateau: #8c9aa6;
 $mystic: #e0e4ec;
 
 
-$color-link: $jade;
+$color-link: $nvidia-green;
 $color-visited-link: $spruce-gray;
 $color-dark-link: $spruce-gray;
 

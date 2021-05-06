@@ -24,24 +24,6 @@ The BGP validation tests look for indications of the session sanity (status and 
 | 1 | Address Families | Checks if transmit and receive address family advertisement is consistent between peers of a BGP session |
 | 2 | Router ID | Checks for BGP router ID conflict in the network |
 
-## CLAG Validation Tests
-
-The CLAG validation tests look for misconfigurations, peering status, and bond error states. This is accomplished with the following tests:
-
-| Test Number | Test Name | Description |
-| :---------: | --------- | ----------- |
-| 0 | Peering | Checks if: <ul><li>CLAG peerlink is up</li><li>CLAG peerlink bond slaves are down (not in full capacity and redundancy)</li><li>Peering is established between two nodes in a CLAG pair</li></ul> |
-| 1 | Backup IP | Checks if: <ul><li>CLAG backup IP configuration is missing on a CLAG node</li><li>CLAG backup IP is correctly pointing to the CLAG peer and its connectivity is available</li></ul> |
-| 2 | Clag Sysmac | Checks if: <ul><li>CLAG Sysmac is consistently configured on both nodes in a CLAG pair</li><li>Any duplication of a CLAG sysmac exists within a bridge domain </li></ul> |
-| 3 | VXLAN <!-- vale off -->Anycast IP<!-- vale on --> | Checks if the VXLAN anycast IP address is consistently configured on both nodes in a CLAG pair |
-| 4 | Bridge Membership | Checks if the CLAG peerlink is part of bridge |
-| 5 | Spanning Tree | Checks if: <ul><li>STP is enabled and running on the CLAG nodes</li><li>CLAG peerlink role is correct from STP perspective</li><li>The bridge ID is consistent between two nodes of a CLAG pair</li><li>The VNI in the bridge has BPDU guard and BPDU filter enabled</li></ul> |
-| 6 | Dual Home | Checks for: <ul><li>CLAG bonds that are not in dually connected state</li><li>Dually connected bonds have consistent VLAN and MTU configuration on both sides</li><li>STP has consistent view of bonds' dual connectedness</li></ul> |
-| 7 | Single Home | Checks for: <ul><li>Singly connected bonds</li><li>STP has consistent view of bond's single connectedness</li></ul> |
-| 8 | Conflicted Bonds | Checks for bonds in CLAG conflicted state and shows the reason |
-| 9 | ProtoDown Bonds | Checks for bonds in protodown state and shows the reason |
-| 10 | SVI | Checks if: <ul><li>An SVI is configured on both sides of a CLAG pair</li><li>SVI on both sides have consistent MTU setting</li></ul> |
-
 ## Cumulus Linux Version Tests
 
 The Cumulus Linux version tests looks for version consistency. This is accomplished with the following tests:
@@ -57,12 +39,13 @@ The EVPN validation tests look for indications of the session sanity and configu
 | Test Number | Test Name | Description |
 | :---------: | --------- | ----------- |
 | 0 | EVPN BGP Session | Checks if: <ul><li>BGP EVPN sessions are established</li><li>The EVPN address family advertisement is consistent</li></ul> |
-| 1 | EVPN VNI Type Consistency | Because a VNI can be of type L2 or L3, checks that for a given VNI, its type is consistent across the network |
+| 1 | EVPN Session | For each EVPN session, checks if: <ul><li><em>adv_all_vni</em> is enabled</li><li>FDB learning is disabled on tunnel interface</li></ul> |
 | 2 | EVPN Type 2 | Checks for consistency of IP-MAC binding and the location of a given IP-MAC across all VTEPs |
 | 3 | EVPN Type 3 | Checks for consistency of replication group across all VTEPs |
-| 4 | EVPN Session | For each EVPN session, checks if: <ul><li><em>adv_all_vni</em> is enabled</li><li>FDB learning is disabled on tunnel interface</li></ul> |
-| 5 | Vlan Consistency | Checks for consistency of VLAN to VNI mapping across the network |
-| 6 | Vrf Consistency | Checks for consistency of VRF to L3 VNI mapping across the network |
+| 4 | EVPN VNI Type Consistency | Because a VNI can be of type L2 or L3, checks that for a given VNI, its type is consistent across the network |
+| 5 | L3 VNI RMAC | Checks for |
+| 6 | VLAN Consistency | Checks for consistency of VLAN to VNI mapping across the network |
+| 7 | VRF Consistency | Checks for consistency of VRF to L3 VNI mapping across the network |
 
 ## Interface Validation Tests
 
@@ -74,14 +57,6 @@ The interface validation tests look for consistent configuration between two nod
 | 1 | Oper State | Checks for consistency of operational state on two sides of a physical interface |
 | 2 | Speed | Checks for consistency of the speed setting on two sides of a physical interface |
 | 3 | Autoneg | Checks for consistency of the auto-negotiation setting on two sides of a physical interface |
-
-## License Validation Tests
-
-The license validation test looks for a valid Cumulus Linux license on all switches. This is accomplished with the following test:
-
-| Test Number | Test Name | Description |
-| :---------: | --------- | ----------- |
-| 0 | License Validity | Checks for validity of license on all switches |
 
 ## Link MTU Validation Tests
 

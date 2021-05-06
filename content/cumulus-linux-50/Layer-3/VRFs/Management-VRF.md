@@ -197,19 +197,10 @@ Using route maps is highly recommended to control the advertised networks redist
 {{< tab "CUE Commands ">}}
 
 ```
-cumulus@switch:~$ NEED COMMAND
 cumulus@switch:~$ cl set router policy route-map REDISTRIBUTE rule 10 match interface eth0
-cumulus@switch:~$ cl set router policy route-map REDISTRIBUTE rule 10 action permit
+cumulus@switch:~$ cl set router policy route-map REDISTRIBUTE rule 100 action deny
 cumulus@switch:~$ cl set vrf default router bgp address-family ipv4-unicast redistribute connected route-map REDISTRIBUTE
 cumulus@switch:~$ cl config apply
-```
-
-{{< /tab >}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@switch:~$ net add routing route-map REDISTRIBUTE-CONNECTED deny 100 match interface eth0
-cumulus@switch:~$ net add routing route-map REDISTRIBUTE-CONNECTED permit 1000
 ```
 
 {{< /tab >}}
@@ -219,10 +210,14 @@ cumulus@switch:~$ net add routing route-map REDISTRIBUTE-CONNECTED permit 1000
 cumulus@switch:$ sudo vtysh
 
 switch# configure terminal
-switch(config)# route-map REDISTRIBUTE-CONNECTED deny 100 match interface eth0
-switch(config)# route-map REDISTRIBUTE-CONNECTED permit 1000
-switch(config)# redistribute connected route-map REDISTRIBUTE-CONNECTED
-switch(config)# exit
+switch(config)# route-map REDISTRIBUTE-CONNECTED deny 10 
+switch(config-route-map)# match interface eth0
+switch(config)# route-map REDISTRIBUTE-CONNECTED permit 100
+switch(config-route-map)# exit
+switch(config)# router bgp
+switch(config-router)# address-family ipv4 unicast
+switch((config-router-af)# redistribute connected route-map REDISTRIBUTE-CONNECTED
+switch(config)# end
 switch# write memory
 switch# exit
 cumulus@switch:~$
@@ -235,13 +230,29 @@ The commands save the configuration in the `/etc/frr/frr.conf` file. For example
 
 ```
 ...
-<routing-protocol>
-redistribute connected route-map REDISTRIBUTE-CONNECTED
-
-route-map REDISTRIBUTE-CONNECTED deny 100
+router bgp 65101
+ bgp router-id 10.10.10.1
+ neighbor swp51 interface remote-as external
+ neighbor swp51 advertisement-interval 0
+ neighbor swp51 timers 3 9
+ neighbor swp51 timers connect 10
+ neighbor swp52 interface remote-as external
+ neighbor swp52 advertisement-interval 0
+ neighbor swp52 timers 3 9
+ neighbor swp52 timers connect 10
+ !
+ address-family ipv4 unicast
+  network 10.1.10.0/24
+  network 10.10.10.1/32
+  redistribute connected route-map REDISTRIBUTE-CONNECTED
+  maximum-paths 64
+  maximum-paths ibgp 64
+ exit-address-family
+!
+route-map REDISTRIBUTE-CONNECTED deny 10
 match interface eth0
 !
-route-map REDISTRIBUTE-CONNECTED permit 1000
+route-map REDISTRIBUTE-CONNECTED permit 100
 ...
 ```
 
@@ -362,19 +373,10 @@ For example, to specify DNS servers and associate some of them with the manageme
 {{< tab "CUE Commands ">}}
 
 ```
-cumulus@switch:~$ NEED COMMAND
+cumulus@switch:~$ cl set service dns server 192.0.2.1
+cumulus@switch:~$ cl set service dns mgmt server 198.51.100.31
+cumulus@switch:~$ cl set service dns mgmt server 203.0.113.13
 cumulus@switch:~$ cl config apply
-```
-
-{{< /tab >}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@switch:~$ net add dns nameserver ipv4 192.0.2.1
-cumulus@switch:~$ net add dns nameserver ipv4 198.51.100.31 vrf mgmt
-cumulus@switch:~$ net add dns nameserver ipv4 203.0.113.13 vrf mgmt
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}

@@ -7,12 +7,10 @@ toc: 4
 
 After installing your {{<link url="Install-NetQ" text="NetQ software">}}, you should install the NetQ {{<version>}} Agents on each switch you want to monitor. NetQ Agents can be installed on switches and servers running:
 
-- Cumulus Linux versions 3.3.2-3.7.x
-- Cumulus Linux versions 4.0.0 and later
+- Cumulus Linux 3.3.2-3.7.x, 4.0.0 and later
 - CentOS 7
 - RHEL 7.1
-- Ubuntu 16.04
-- Ubuntu 18.04
+- Ubuntu 16.04 and 18.04
 
 ## Prepare for NetQ Agent Installation
 
@@ -425,7 +423,7 @@ To install the NetQ Agent:
     cumulus@switch:~$ dpkg-query -W -f '${Package}\t${Version}\n' netq-agent
     ```
 
-    {{<netq-install/agent-version version="3.3.1" opsys="cl">}}
+    {{<netq-install/agent-version version="4.0.0" opsys="cl">}}
 
 3. Restart `rsyslog` so log files are sent to the correct destination.
 
@@ -454,7 +452,7 @@ To install the NetQ Agent:
     root@rhel7:~# rpm -q -netq-agent
     ```
 
-    {{<netq-install/agent-version version="3.3.1" opsys="rh">}}
+    {{<netq-install/agent-version version="4.0.0" opsys="rh">}}
 
 3. Restart `rsyslog` so log files are sent to the correct destination.
 
@@ -483,7 +481,7 @@ To install the NetQ Agent:
     root@ubuntu:~# dpkg-query -W -f '${Package}\t${Version}\n' netq-agent
     ```
 
-    {{<netq-install/agent-version version="3.3.1" opsys="ub">}}
+    {{<netq-install/agent-version version="4.0.0" opsys="ub">}}
 
 3. Restart `rsyslog` so log files are sent to the correct destination.
 

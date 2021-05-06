@@ -256,9 +256,9 @@ You configure a double-tagged interface by stacking the VLANs in the following m
 
 The outer tag or *TPID* (tagged protocol identifier) needs the `vlan_protocol` to be specified. It can be either *802.1Q* or *802.1ad*. If 802.1ad is used, it must be specified on the lower VLAN device, such as swp3.100 in the example below.
 
-{{%notice note%}}
-<!--Double tag translation only works with bridges in {{<link url="Traditional-Bridge-Mode" text="traditional mode">}} (not VLAN-aware mode).
-{{%/notice%}}-->
+<!--{{%notice note%}}
+Double tag translation only works with bridges in {{<link url="Traditional-Bridge-Mode" text="traditional mode">}} (not VLAN-aware mode).
+{{%/notice%}} -->
 
 An example configuration:
 

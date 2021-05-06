@@ -382,7 +382,7 @@ FEC with auto-negotiation is supported on DACs only.
 {{< tabs "TabID678 ">}}
 {{< tab "CUE Commands ">}}
 
-Run the `net add interface <interface> link auto-negotiate on` command. The following example command enables FEC with auto-negotiation on the swp1 interface:
+The following example command enables FEC with auto-negotiation on the swp1 interface:
 
 ```
 cumulus@switch:~$ cl set interface swp1 link auto-negotiate on

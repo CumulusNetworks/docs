@@ -61,7 +61,7 @@ CUE evaluation is available in Cumulus in the Cloud (CITC); a virtual data cente
 
 To start your CUE similation in CITC:
 
-1. Go to {{<exlink url="https://cumulusnetworks.com/products/cumulus-in-the-cloud/Cumulus" text="CUE" >}} NEED REAL LINK HERE.
+1. Go to {{<exlink url="https://www.nvidia.com/en-us/networking/network-simulation/Cumulus" text="CUE" >}} NEED REAL LINK HERE.
 
 2. On the dashboard, click the CUE simulation link under Simulations.
 

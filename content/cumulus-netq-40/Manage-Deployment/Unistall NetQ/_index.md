@@ -6,7 +6,11 @@ toc: 3
 ---
 You can remove the NetQ software from your system server and switches when necessary.
 
-## Remove the NetQ Agent and CLI from a Cumulus Linux Switch or Ubuntu Host
+## Remove the NetQ Agent and CLI
+
+{{<tabs "Remove NetQ Agent and CLI">}}
+
+{{<tab "Cumulus Linux Switch or Ubuntu Host">}}
 
 Use the `apt-get purge` command to remove the NetQ agent or CLI package from a Cumulus Linux switch or an Ubuntu host.
 
@@ -50,8 +54,9 @@ dpkg-query: no packages found matching netq-agent
 cumulus@switch:~$ dpkg-query -l netq-apps
 dpkg-query: no packages found matching netq-apps
 ```
+{{</tab>}}
 
-## Remove the NetQ Agent and CLI from a RHEL7 or CentOS Host
+{{<tab "RHEL7 or CentOS Host">}}
 
 Use the `yum remove` command to remove the NetQ agent or CLI package from a RHEL7 or CentOS host.
 
@@ -94,6 +99,10 @@ package netq-agent is not installed
 root@rhel7:~# rpm -q netq-apps
 package netq-apps is not installed
 ```
+
+{{</tab>}}
+
+{{</tabs>}}
 
 ## Uninstall NetQ from the System Server
 

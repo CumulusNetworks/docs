@@ -101,7 +101,7 @@ iface br0
 
 ## Disable IGMP and MLD Snooping
 
-if you do not use mirroring functions or other types of multicast traffic, you can disable IGMP and MLD Snooping.
+If you do not use mirroring functions or other types of multicast traffic, you can disable IGMP and MLD Snooping.
 
 To disable IGMP and MLD snooping:
 

@@ -7,7 +7,7 @@ toc: 4
 
 ## How can I evaluate Cumulus Linux?
 
-If you don\'t have a network switch on our {{<exlink url="https://cumulusnetworks.com/hcl" text="hardware compatibility list">}} (HCL) available for testing, reserve a {{<exlink url="https://cumulusnetworks.com/try-for-free/" text="Cumulus in the Cloud">}} and try out a test setup in your browser. {{<exlink url="https://cumulusnetworks.com/products/cumulus-in-the-cloud/autoprovision/" text="Build your simulation here">}} and start your test drive.
+If you don\'t have a network switch on our {{<exlink url="https://cumulusnetworks.com/hcl" text="hardware compatibility list">}} (HCL) available for testing, reserve a {{<exlink url="https://cumulusnetworks.com/try-for-free/" text="Cumulus in the Cloud">}} and try out a test setup in your browser. {{<exlink url="https://www.nvidia.com/en-us/networking/network-simulation/autoprovision/" text="Build your simulation here">}} and start your test drive.
 
 If you already have hardware from our HCL, fill out {{<exlink url="https://cumulusnetworks.com/contact/" text="this form">}} and a Cumulus Networks representative will contact you.
 

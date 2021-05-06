@@ -373,7 +373,7 @@ cumulus@leaf01:~$ cl config apply
 Add the line `neighbor swp51 remove-private-AS` to the address-family ipv4 unicast stanza:
 
 ```
-cumulus@switch:~$ sudo nano /etc/frr/frr.conf
+cumulus@leaf01:~$ sudo nano /etc/frr/frr.conf
 ...
 router bgp 65101
  bgp router-id 10.10.10.1
@@ -547,7 +547,7 @@ The example commands change the maximum number of paths to 120. You can set a va
 
 ```
 cumulus@switch:~$ cl set vrf default router bgp address-family ipv4-unicast multipaths ibgp 120 
-cumulus@border01:~$ cl config apply
+cumulus@switch:~$ cl config apply
 ```
 
 {{< /tab >}}
@@ -721,8 +721,8 @@ The following example commands set the maximum number of prefixes allowed from t
 {{< tab "CUE Commands ">}}
 
 ```
-cumulus@switch:~$ cl set vrf default router bgp peer swp51 address-family ipv4-unicast prefix-limits inbound maximum 3000
-cumulus@switch:~$ cl config apply
+cumulus@leaf01:~$ cl set vrf default router bgp peer swp51 address-family ipv4-unicast prefix-limits inbound maximum 3000
+cumulus@leaf01:~$ cl config apply
 ```
 
 {{< /tab >}}
@@ -750,15 +750,15 @@ To minimize the size of the routing table and save bandwidth, you can aggregate 
 The following example command aggregates a range of addresses, such as 10.1.1.0/24, 10.1.2.0/24, 10.1.3.0/24 into the single prefix 10.1.0.0/16.
 
 ```
-cumulus@switch:~$ cl set vrf default router bgp address-family ipv4-unicast aggregate-route 10.1.0.0/16 
-cumulus@switch:~$ cl config apply
+cumulus@leaf01:~$ cl set vrf default router bgp address-family ipv4-unicast aggregate-route 10.1.0.0/16 
+cumulus@leaf01:~$ cl config apply
 ```
 
 The `summary-only` option ensures that longer-prefixes inside the aggregate address are suppressed before sending BGP updates:
 
 ```
-cumulus@switch:~$ cl set vrf default router bgp address-family ipv4-unicast aggregate-route 10.1.0.0/16 summary-only on
-cumulus@switch:~$ cl config apply
+cumulus@leaf01:~$ cl set vrf default router bgp address-family ipv4-unicast aggregate-route 10.1.0.0/16 summary-only on
+cumulus@leaf01:~$ cl config apply
 ```
 
 ## Suppress Route Advertisement
@@ -769,22 +769,22 @@ You can configure BGP to wait for a response from the RIB indicating that the ro
 {{< tab "CUE Commands ">}}
 
 ```
-cumulus@switch:~$ cl set router bgp wait-for-install on
-cumulus@switch:~$ cl config apply
+cumulus@leaf01:~$ cl set router bgp wait-for-install on
+cumulus@leaf01:~$ cl config apply
 ```
 
 {{< /tab >}}
 {{< tab "vtysh Commands ">}}
 
 ```
-cumulus@switch:~$ sudo vtysh
-switch# configure terminal
-switch(config)# router bgp 65101
-switch(config-router)# bgp suppress-fib-pending
-switch(config-router)# end
-switch# write memory
-switch# exit
-cumulus@switch:~$
+cumulus@leaf01:~$ sudo vtysh
+leaf01# configure terminal
+leaf01(config)# router bgp 65101
+leaf01(config-router)# bgp suppress-fib-pending
+leaf01(config-router)# end
+leaf01# write memory
+leaf01# exit
+cumulus@leaf01:~$
 ```
 
 {{< /tab >}}
@@ -955,20 +955,32 @@ Routes are typically propagated even if a different path exists. The BGP conditi
 
 This feature is typically used in multihomed networks where some prefixes are advertised to one of the providers only if information from the other provider is not present. For example, a multihomed router can use conditional advertisement to choose which upstream provider learns about the routes it provides so that it can influence which provider handles traffic destined for the downstream router. This is useful for cost of service (one provider is cheaper than another), latency, or other policy requirements that are not natively accounted for in BGP.
 
-The prefixes to be advertised are defined by a route map called advertise-map. The condition is defined by a route map called non-exist-map for conditions that do not exist or by a route map called exist-map for conditions that do exist.
+Conditional advertisement uses the `non-exist-map` or the `exist-map` and the `advertise-map` keywords to track routes by the route prefix.
 
-The following example commands configure Cumulus Linux to send a 10.0.0.0/8 summary route only if the 10.0.0.0/24 route exists in the routing table.
+The following example commands configure Cumulus Linux to send a 10.0.0.0/8 summary route only if the 10.0.0.0/24 route exists in the routing table. The commands perform the following configuration:
+- Enable the conditional advertisement option.
+- Create a prefix list called EXIST with the route 10.0.0.0/24.
+- Create a route map called EXISTMAP that uses the prefix list EXIST.
+- Create a prefix list called ADVERTISE with the route to advertise (10.0.0.0/8).
+- Create a route map called ADVERTISEMAP that uses the prefix list ADVERTISE.
+- Configure BGP neighbor swp51 to use the route maps.
 
 {{< tabs "962 ">}}
 {{< tab "CUE Commands ">}}
 
 ```
-cumulus@switch:~$ cl set vrf default router bgp peer swp51 address-family ipv4-unicast conditional-advertise enable on 
-cumulus@switch:~$ NEED COMMAND
-cumulus@switch:~$ NEED COMMAND
-cumulus@switch:~$ cl set vrf default router bgp peer swp51 address-family ipv4-unicast conditional-advertise advertise-map ADVERTISE
-cumulus@switch:~$ cl set vrf default router bgp peer swp51 address-family ipv4-unicast conditional-advertise exist-map EXIST
-cumulus@switch:~$ cl config apply
+cumulus@leaf01:~$ cl set vrf default router bgp peer swp51 address-family ipv4-unicast conditional-advertise enable on 
+cumulus@leaf01:~$ cl set router policy prefix-list EXIST rule 10 match 10.0.0.0/24
+cumulus@leaf01:~$ cl set router policy prefix-list EXIST rule 10 action permit 
+cumulus@leaf01:~$ cl set router policy route-map EXISTMAP rule 10 action permit
+cumulus@leaf01:~$ cl set router policy route-map EXISTMAP rule 10 match ip-prefix-list EXIST
+cumulus@leaf01:~$ cl set router policy prefix-list ADVERTISE rule 10 action permit
+cumulus@leaf01:~$ cl set router policy prefix-list ADVERTISE rule 10 match 10.0.0.0/8
+cumulus@leaf01:~$ cl set router policy route-map ADVERTISEMAP rule 10 action permit
+cumulus@leaf01:~$ cl set router policy route-map ADVERTISEMAP rule 10 match ip-prefix-list ADVERTISE
+cumulus@leaf01:~$ cl set vrf default router bgp peer swp51 address-family ipv4-unicast conditional-advertise advertise-map ADVERTISEMAP
+cumulus@leaf01:~$ cl set vrf default router bgp peer swp51 address-family ipv4-unicast conditional-advertise exist-map EXIST
+cumulus@leaf01:~$ cl config apply
 ```
 
 {{< /tab >}}
@@ -977,9 +989,16 @@ cumulus@switch:~$ cl config apply
 ```
 cumulus@leaf01:~$ sudo vtysh
 leaf01# configure terminal
+leaf01(config)# ip prefix-list EXIST seq 10 permit 10.0.0.0/24
+leaf01(config)# route-map EXISTMAP permit 10
+leaf01(config-route-map)# match ip address prefix-list EXIST
+leaf01(config-route-map)# exit
+leaf01(config)# ip prefix-list ADVERTISE seq 10 permit 10.0.0.0/8
+leaf01(config)# route-map ADVERTISEMAP permit 10
+leaf01(config-route-map)# match ip address prefix-list ADVERTISE
+leaf01(config-route-map)# exit
 leaf01(config)# router bgp
-leaf01(config-router)# neighbor swp51 
-leaf01(config-router)# 
+leaf01(config-router)# neighbor swp51 advertise-map ADVERTISEMAP exist-map EXISTMAP
 leaf01(config-router)# end
 leaf01# write memory
 leaf01# exit
@@ -988,6 +1007,22 @@ cumulus@leaf01:~$
 
 {{< /tab >}}
 {{< /tabs >}}
+
+The commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+
+```
+cumulus@leaf01:~$ sudo nano /etc/frr/frr.conf
+...
+neighbor swp51 activate
+neighbor swp51 advertise-map ADVERTISEMAP exist-map EXIST
+...
+ip prefix-list ADVERTISE seq 10 permit 10.0.0.0/8
+ip prefix-list EXIST seq 10 permit 10.0.0.0/24
+route-map ADVERTISEMAP permit 10
+match ip address prefix-list ADVERTISE
+route-map EXISTMAP permit 10
+match ip address prefix-list EXIST
+```
 
 ## BGP Timers
 
@@ -1272,7 +1307,7 @@ cumulus@leaf01:~$
 When configured, the `graceful-shutdown` community is added to all paths from eBGP peers and the `local-pref` for that route is set to `0`. To see the configuration, run the NCLU command `net show bgp <route>` or the `vtysh` command `show ip bgp <route>`. For example:
 
 ```
-cumulus@switch:~$ net show bgp 10.10.10.0/24
+cumulus@leaf01:~$ net show bgp 10.10.10.0/24
 BGP routing table entry for 10.10.10.0/24
 Paths: (2 available, best #1, table Default-IP-Routing-Table)
   Advertised to non peer-group peers:
@@ -1370,14 +1405,14 @@ cumulus@leaf01:~$ cl config apply
 {{< tab "vtysh Commands ">}}
 
 ```
-cumulus@switch:~$ sudo vtysh
-switch# configure terminal
-switch(config)# router bgp 65101
-switch(config-router)# bgp graceful-restart
-switch(config-router)# end
-switch# write memory
-switch# exit
-cumulus@switch:~$
+cumulus@eaf01:~$ sudo vtysh
+leaf01# configure terminal
+leaf01(config)# router bgp 65101
+leaf01(config-router)# bgp graceful-restart
+leaf01(config-router)# end
+leaf01# write memory
+leaf01# exit
+cumulus@leaf01:~$
 ```
 
 {{< /tab >}}
@@ -1397,14 +1432,14 @@ cumulus@leaf01:~$ cl config apply
 {{< tab "vtysh Commands ">}}
 
 ```
-cumulus@switch:~$ sudo vtysh
-switch# configure terminal
-switch(config)# router bgp 65101
-switch(config-router)# neighbor swp51 graceful-restart
-switch(config-router)# end
-switch# write memory
-switch# exit
-cumulus@switch:~$
+cumulus@leaf01:~$ sudo vtysh
+leaf01# configure terminal
+leaf01(config)# router bgp 65101
+leaf01(config-router)# neighbor swp51 graceful-restart
+leaf01(config-router)# end
+leaf01# write memory
+leaf01# exit
+cumulus@leaf01:~$
 ```
 
 {{< /tab >}}
@@ -1424,14 +1459,14 @@ cumulus@leaf01:~$ cl config apply
 {{< tab "vtysh Commands ">}}
 
 ```
-cumulus@switch:~$ sudo vtysh
-switch# configure terminal
-switch(config)# router bgp 65101
-switch(config-router)# neighbor swp51 graceful-restart-helper
-switch(config-router)# end
-switch# write memory
-switch# exit
-cumulus@switch:~$
+cumulus@leaf01:~$ sudo vtysh
+leaf01# configure terminal
+leaf01(config)# router bgp 65101
+leaf01(config-router)# neighbor swp51 graceful-restart-helper
+leaf01(config-router)# end
+leaf01# write memory
+leaf01# exit
+cumulus@leaf01:~$
 ```
 
 {{< /tab >}}
@@ -1472,16 +1507,16 @@ cumulus@leaf01:~$ cl config apply
 {{< tab "vtysh Commands ">}}
 
 ```
-cumulus@switch:~$ sudo vtysh
-switch# configure terminal
-switch(config)# router bgp 65101
-switch(config-router)# bgp graceful-restart restart-time 400
-switch(config-router)# bgp graceful-restart select-defer-time 300
-switch(config-router)# bgp graceful-restart stalepath-time 400
-switch(config-router)# end
-switch# write memory
-switch# exit
-cumulus@switch:~$ 
+cumulus@leaf01:~$ sudo vtysh
+leaf01# configure terminal
+leaf01(config)# router bgp 65101
+leaf01(config-router)# bgp graceful-restart restart-time 400
+leaf01(config-router)# bgp graceful-restart select-defer-time 300
+leaf01(config-router)# bgp graceful-restart stalepath-time 400
+leaf01(config-router)# end
+leaf01# write memory
+leaf01# exit
+cumulus@leaf01:~$ 
 ```
 
 {{< /tab >}}
@@ -1514,14 +1549,14 @@ cumulus@leaf01:~$ cl config apply$
 {{< tab "vtysh Commands ">}}
 
 ```
-cumulus@switch:~$ sudo vtysh
-switch# configure terminal
-switch(config)# router bgp 65101
-switch(config-router)# bgp graceful-restart-disable
-switch(config-router)# end
-switch# write memory
-switch# exit
-cumulus@switch:~$
+cumulus@leaf01:~$ sudo vtysh
+leaf01# configure terminal
+leaf01(config)# router bgp 65101
+leaf01(config-router)# bgp graceful-restart-disable
+leaf01(config-router)# end
+leaf01# write memory
+leaf01# exit
+cumulus@leaf01:~$
 ```
 
 {{< /tab >}}
@@ -1541,14 +1576,14 @@ cumulus@leaf01:~$ cl config apply
 {{< tab "vtysh Commands ">}}
 
 ```
-cumulus@switch:~$ sudo vtysh
-switch# configure terminal
-switch(config)# router bgp 65101
-switch(config-router)# neighbor swp51 graceful-restart-disable
-switch(config-router)# end
-switch# write memory
-switch# exit
-cumulus@switch:~$
+cumulus@leaf01:~$ sudo vtysh
+leaf01# configure terminal
+leaf01(config)# router bgp 65101
+leaf01(config-router)# neighbor swp51 graceful-restart-disable
+leaf01(config-router)# end
+leaf01# write memory
+leaf01# exit
+cumulus@leaf01:~$
 ```
 
 {{< /tab >}}
@@ -1603,23 +1638,23 @@ The following example commands enable read-only mode:
 {{< tab "CUE Commands ">}}
 
 ```
-cumulus@switch:~$ cl set router bgp convergence-wait time 300
-cumulus@switch:~$ cl set router bgp convergence-wait establish-wait-time 200
-cumulus@switch:~$ cl config apply
+cumulus@leaf01:~$ cl set router bgp convergence-wait time 300
+cumulus@leaf01:~$ cl set router bgp convergence-wait establish-wait-time 200
+cumulus@leaf01:~$ cl config apply
 ```
 
 {{< /tab >}}
 {{< tab "vtysh Commands ">}}
 
 ```
-cumulus@switch:~$ sudo vtysh
-switch# configure terminal
-switch(config)# router bgp
-switch(config-router)# update-delay 300 90
-switch(config-router)# end
-switch# write memory
-switch# switch
-cumulus@switch:~$
+cumulus@leaf01:~$ sudo vtysh
+leaf01# configure terminal
+leaf01(config)# router bgp
+leaf01(config-router)# update-delay 300 90
+leaf01(config-router)# end
+leaf01# write memory
+leaf01# exit
+cumulus@leaf01:~$
 ```
 
 {{< /tab >}}
@@ -1679,22 +1714,22 @@ Here is an example of a standard community list filter:
 {{< tab "CUE Commands ">}}
 
 ```
-cumulus@switch:~$ cl set router policy community-list COMMUNITY1 rule 10 action permit
-cumulus@switch:~$ cl set router policy community-list COMMUNITY1 rule 10 community 100:100
-cumulus@switch:~$ cl config apply
+cumulus@leaf01:~$ cl set router policy community-list COMMUNITY1 rule 10 action permit
+cumulus@leaf01:~$ cl set router policy community-list COMMUNITY1 rule 10 community 100:100
+cumulus@leaf01:~$ cl config apply
 ```
 
 {{< /tab >}}
 {{< tab "vtysh Commands ">}}
 
 ```
-cumulus@switch:~$ sudo vtysh
-switch# configure terminal
-switch(config)# bgp community-list standard COMMUNITY1 permit 100:100
-switch(config)# exit
-switch# write memory
-switch# exit
-cumulus@switch:~$
+cumulus@leaf01:~$ sudo vtysh
+leaf01# configure terminal
+leaf01(config)# bgp community-list standard COMMUNITY1 permit 100:100
+leaf01(config)# exit
+leaf01# write memory
+leaf01# exit
+cumulus@leaf01:~$
 ```
 
 {{< /tab >}}
@@ -1706,22 +1741,22 @@ You can apply the community list to a route map to define the routing policy:
 {{< tab "CUE Commands ">}}
 
 ```
-cumulus@switch:~$ cl set router policy route-map ROUTEMAP1 rule 10 match community-list COMMUNITY1
-cumulus@switch:~$ cl config apply
+cumulus@leaf01:~$ cl set router policy route-map ROUTEMAP1 rule 10 match community-list COMMUNITY1
+cumulus@leaf01:~$ cl config apply
 ```
 
 {{< /tab >}}
 {{< tab "vtysh Commands ">}}
 
 ```
-cumulus@switch:~$ sudo vtysh
-switch# configure terminal
-switch(config)# router bgp 65101
-switch(config-router)# table-map ROUTEMAP1
-switch(config-router)# end
-switch# write memory
-switch# exit
-cumulus@switch:~$
+cumulus@leaf01:~$ sudo vtysh
+leaf01# configure terminal
+leaf01(config)# router bgp 65101
+leaf01(config-router)# table-map ROUTEMAP1
+leaf01(config-router)# end
+leaf01# write memory
+leaf01# exit
+cumulus@leaf01:~$
 ```
 
 {{< /tab >}}

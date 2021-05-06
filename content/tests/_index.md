@@ -47,7 +47,7 @@ This is some text around {{< figure src="/images/cumulus-linux/acl-legend.png" >
 
 ### Figure Link
 
-{{< figure src="/images/cumulus-linux/acl-legend.png" link="http://cumulusnetworks.com" >}}
+{{< figure src="/images/cumulus-linux/acl-legend.png" link="http://nvidia.com" >}}
 
 ### Figure Alt
 

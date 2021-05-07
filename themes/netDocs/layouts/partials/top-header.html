@@ -1,11 +1,3 @@
-{{ range where .Site.Menus.subnav "Title" "NVIDIA Cumulus Linux" }}
-  {{ $.Scratch.Set "cl_url" .URL }}
-{{ end }}
-
-{{ range where .Site.Menus.subnav "Title" "NVIDIA NetQ" }}
-  {{ $.Scratch.Set "netq_url" .URL }}
-{{ end }}
-
 <div id="site-nav" class="globalNav">
     <div class="container-lg">
       <nav class="navTopWrapper">
@@ -19,10 +11,10 @@
             <div class="rootLink"><a href={{.Site.BaseURL}}><span>Networking Docs</span></a></div>
           </li>
           <li class="navSection primary">
-            <a class="rootLink" href={{ .Scratch.Get "cl_url" | absURL }}>NVIDIA Cumulus Linux</a>
-              <a class="rootLink" href={{ .Scratch.Get "netq_url" | absURL }}>NVIDIA NetQ</a>
+            <a class="rootLink" href={{ .Site.Params.cl_latest | absURL }}>NVIDIA Cumulus Linux</a>
+              <a class="rootLink" href={{ .Site.Params.netq_latest | absURL }}>NVIDIA NetQ</a>
               <a class="rootLink" href={{ "cumulus-vx" | absURL }}>NVIDIA Cumulus VX</a>
-              <a class="rootLink" href={{ "sonic-202012" | absURL }}>SONiC</a>
+              <a class="rootLink" href={{ .Site.Params.sonic_latest | absURL }}>SONiC</a>
               <a class="rootLink" href={{ "knowledge-base" | absURL }}>Knowledge Base</a>
           </li>
           <li class="navSection mobile">
@@ -37,10 +29,10 @@
     </div>
     <div class="mobileMenu">
       <ul>
-          <li><a href={{ .Scratch.Get "cl_url" | absURL }}>NVIDIA Cumulus Linux</a></li>
-          <li><a href={{ .Scratch.Get "netq_url" | absURL }}>NVIDIA NetQ</a></li>
+          <li><a href={{ .Site.Params.cl_latest | absURL }}>NVIDIA Cumulus Linux</a></li>
+          <li><a href={{ .Site.Params.netq_latest | absURL }}>NVIDIA NetQ</a></li>
           <li><a href={{ "cumulus-vx" | absURL }}>NVIDIA Cumulus VX</a></li>
-          <li><a href={{ "sonic-202012" | absURL }}>SONiC</a></li>
+          <li><a href={{ .Site.Params.sonic_latest | absURL }}>SONiC</a></li>
           <li><a href={{ "knowledge-base" | absURL }}>Knowledge Base</a></li>
     </div>
 </div>

@@ -1,10 +1,3 @@
-{{ range where .Site.Menus.subnav "Title" "NVIDIA Cumulus Linux" }}
-  {{ $.Scratch.Set "cl_url" .URL }}
-{{ end }}
-
-{{ range where .Site.Menus.subnav "Title" "NVIDIA NetQ" }}
-  {{ $.Scratch.Set "netq_url" .URL }}
-{{ end }}
 <!DOCTYPE html>
 <html lang="{{ .Site.Language.Lang }}">
 
@@ -47,10 +40,10 @@
               <div class="rootLink"><a href={{.Site.BaseURL}}><span>Networking Docs</span></a></div>
             </li>
             <li class="navSection primary">
-              <a class="rootLink" href={{ .Scratch.Get "cl_url" | absURL }}>NVIDIA Cumulus Linux</a>
-              <a class="rootLink" href={{ .Scratch.Get "netq_url" | absURL }}>NVIDIA NetQ</a>
+              <a class="rootLink" href={{ .Site.Params.cl_latest | absURL }}>NVIDIA Cumulus Linux</a>
+              <a class="rootLink" href={{ .Site.Params.netq_latest | absURL }}>NVIDIA NetQ</a>
               <a class="rootLink" href={{ "cumulus-vx" | absURL }}>NVIDIA Cumulus VX</a>
-              <a class="rootLink" href={{ "sonic-202012" | absURL }}>SONiC</a>
+              <a class="rootLink" href={{ .Site.Params.sonic_latest | absURL }}>SONiC</a>
               <a class="rootLink" href={{ "knowledge-base" | absURL }}>Knowledge Base</a>
             </li>
             <li class="navSection mobile">
@@ -65,10 +58,10 @@
       </div>
       <div class="mobileMenu">
         <ul>
-          <li><a href={{ .Scratch.Get "cl_url" | absURL }}>NVIDIA Cumulus Linux</a></li>
-          <li><a href={{ .Scratch.Get "netq_url" | absURL }}>NVIDIA NetQ</a></li>
+          <li><a href={{ .Site.Params.cl_latest | absURL }}>NVIDIA Cumulus Linux</a></li>
+          <li><a href={{ .Site.Params.netq_latest | absURL }}>NVIDIA NetQ</a></li>
           <li><a href={{ "cumulus-vx" | absURL }}>NVIDIA Cumulus VX</a></li>
-          <li><a href={{ "sonic-202012" | absURL }}>SONiC</a></li>
+          <li><a href={{ .Site.Params.sonic_latest | absURL }}>SONiC</a></li>
           <li><a href={{ "knowledge-base" | absURL }}>Knowledge Base</a></li>
       </div>
     </div>
@@ -113,8 +106,8 @@
                     </div>
                     <ul class="mb-4">
                         <li><h4 class="text-jade mb-3">Products</h4></li>
-                        <li><a href={{ .Scratch.Get "cl_url" | absURL }}>Cumulus Linux</a></li>
-                        <li><a href={{ .Scratch.Get "netq_url" | absURL }}>Cumulus NetQ</a></li>
+                        <li><a href={{ .Site.Params.cl_latest | absURL }}>Cumulus Linux</a></li>
+                        <li><a href={{ .Site.Params.netq_latest | absURL }}>Cumulus NetQ</a></li>
                         <li><a href="https://www.nvidia.com/en-us/networking/ethernet-switching/spectrum-sn4000/">Cumulus Express</a></li>
                     </ul>
                     <ul class="mb-4">

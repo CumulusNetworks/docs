@@ -1,6 +1,6 @@
 ---
 title: Test some shortcodes
-author: Cumulus Networks
+author: NVIDIA
 cascade: 
     draft: true
     version: "0.1"

@@ -1,6 +1,6 @@
 ---
 title: Hardware Support Policy
-author: Cumulus Networks
+author: NVIDIA
 weight: 706
 toc: 4
 ---

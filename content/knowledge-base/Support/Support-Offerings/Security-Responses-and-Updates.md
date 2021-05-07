@@ -1,6 +1,6 @@
 ---
 title: Security Responses and Updates
-author: Cumulus Networks
+author: NVIDIA
 weight: 705
 toc: 4
 ---

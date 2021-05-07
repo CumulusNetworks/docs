@@ -1,6 +1,6 @@
 ---
 title: Example Install Scripts
-author: Cumulus Networks
+author: NVIDIA
 weight: 50
 product: Cumulus Networks Guides
 version: "1.0"

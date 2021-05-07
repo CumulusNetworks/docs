@@ -1,6 +1,6 @@
 ---
 title: Monitor Network Elements
-author: Cumulus Networks
+author: NVIDIA
 weight: 450
 ---
 In addition to network performance monitoring, the Cumulus NetQ UI provides a view into the current status and configuration of the network elements in a tabular, network-wide view. These are helpful when you want to see all data for all of a particular element in your network for troubleshooting, or you want to export a list view.

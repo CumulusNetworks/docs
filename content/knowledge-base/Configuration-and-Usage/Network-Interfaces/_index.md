@@ -1,6 +1,6 @@
 ---
 title: Network Interfaces
-author: Cumulus Networks
+author: NVIDIA
 weight: 41
 toc: 3
 ---

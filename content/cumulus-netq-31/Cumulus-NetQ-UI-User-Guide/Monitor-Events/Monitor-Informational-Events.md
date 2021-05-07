@@ -1,6 +1,6 @@
 ---
 title: Monitor Informational Events
-author: Cumulus Networks
+author: NVIDIA
 weight: 325
 toc: 4
 ---

@@ -1,6 +1,6 @@
 ---
 title: Install NetQ as a Cloud Deployment
-author: Cumulus Networks
+author: NVIDIA
 weight: 70
 toc: 5
 ---

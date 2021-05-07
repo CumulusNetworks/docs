@@ -1,6 +1,6 @@
 ---
 title: Cumulus NetQ
-author: Cumulus Networks
+author: NVIDIA
 weight: 34
 toc: 3
 ---

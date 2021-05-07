@@ -1,6 +1,6 @@
 ---
 title: What's New and Different in Cumulus Linux 4.0.0
-author: Cumulus Networks
+author: NVIDIA
 weight: 107
 toc: 3
 ---

@@ -1,6 +1,6 @@
 ---
 title: Cumulus NetQ 3.0
-author: Cumulus Networks
+author: NVIDIA
 weight: -10
 subsection: true
 toc: 1

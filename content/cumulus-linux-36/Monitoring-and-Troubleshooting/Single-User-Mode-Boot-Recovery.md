@@ -1,6 +1,6 @@
 ---
 title: Single User Mode - Boot Recovery
-author: Cumulus Networks
+author: NVIDIA
 weight: 211
 pageID: 8362101
 ---

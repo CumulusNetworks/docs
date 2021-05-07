@@ -1,6 +1,6 @@
 ---
 title: Monitor Switch Software
-author: Cumulus Networks
+author: NVIDIA
 weight: 520
 toc: 3
 ---

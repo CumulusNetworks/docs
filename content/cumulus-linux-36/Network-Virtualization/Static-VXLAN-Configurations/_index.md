@@ -1,6 +1,6 @@
 ---
 title: Static VXLAN Configurations
-author: Cumulus Networks
+author: NVIDIA
 weight: 141
 pageID: 8362280
 ---

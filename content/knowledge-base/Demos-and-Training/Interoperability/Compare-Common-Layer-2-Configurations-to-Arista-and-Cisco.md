@@ -1,6 +1,6 @@
 ---
 title: Comparing Common Layer 2 Configurations to Arista and Cisco
-author: Cumulus Networks
+author: NVIDIA
 weight: 511
 toc: 4
 ---

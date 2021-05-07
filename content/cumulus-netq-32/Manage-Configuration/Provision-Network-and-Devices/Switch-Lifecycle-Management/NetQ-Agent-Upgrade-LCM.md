@@ -1,6 +1,6 @@
 ---
 title: Upgrade Cumulus NetQ Agent Using LCM
-author: Cumulus Networks
+author: NVIDIA
 weight: 670
 toc: 4
 ---

@@ -1,6 +1,6 @@
 ---
 title: Cumulus RMP
-author: Cumulus Networks
+author: NVIDIA
 weight: -37
 product: Cumulus RMP
 version: "3.7"

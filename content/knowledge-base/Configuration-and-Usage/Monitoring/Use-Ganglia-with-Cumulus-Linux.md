@@ -1,6 +1,6 @@
 ---
 title: Use Ganglia with Cumulus Linux
-author: Cumulus Networks
+author: NVIDIA
 weight: 376
 toc: 4
 ---

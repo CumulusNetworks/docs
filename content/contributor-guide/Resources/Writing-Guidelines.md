@@ -1,6 +1,6 @@
 ---
 title: Writing Guidelines
-author: Cumulus Networks
+author: NVIDIA
 weight: 220
 ---
 When we create our user documentation, we strive to provide easy-to-read, concise content with illustrations when useful. When you are editing existing or creating new content for Cumulus Networks technical user documentation, please follow these general guidelines.

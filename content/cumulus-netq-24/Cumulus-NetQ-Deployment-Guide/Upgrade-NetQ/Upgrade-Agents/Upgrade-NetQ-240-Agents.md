@@ -1,6 +1,6 @@
 ---
 title: Update NetQ 2.4.0 Agents
-author: Cumulus Networks
+author: NVIDIA
 weight: 146
 toc: 5
 ---

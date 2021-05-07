@@ -1,6 +1,6 @@
 ---
 title: Cumulus NetQ CLI User Guide
-author: Cumulus Networks
+author: NVIDIA
 weight: 470
 toc: 2
 ---

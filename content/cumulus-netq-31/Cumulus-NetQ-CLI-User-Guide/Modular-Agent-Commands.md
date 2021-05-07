@@ -1,6 +1,6 @@
 ---
 title: Modular NetQ Agent Commands
-author: Cumulus Networks
+author: NVIDIA
 weight: 595
 toc: 3
 ---

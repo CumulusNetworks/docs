@@ -1,6 +1,6 @@
 ---
 title: Quick Start
-author: Cumulus Networks
+author: NVIDIA
 weight: 20
 product: Cumulus Networks Guides
 version: "1.0"

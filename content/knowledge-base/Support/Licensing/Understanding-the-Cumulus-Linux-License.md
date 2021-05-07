@@ -1,6 +1,6 @@
 ---
 title: Understanding the Cumulus Linux License
-author: Cumulus Networks
+author: NVIDIA
 weight: 611
 toc: 4
 ---

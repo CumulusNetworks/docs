@@ -1,6 +1,6 @@
 ---
 title: Cumulus NetQ Integration Guide
-author: Cumulus Networks
+author: NVIDIA
 weight: 180
 toc: 2
 ---

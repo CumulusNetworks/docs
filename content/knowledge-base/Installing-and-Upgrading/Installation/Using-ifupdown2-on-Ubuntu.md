@@ -1,6 +1,6 @@
 ---
 title: Using ifupdown2 on Ubuntu
-author: Cumulus Networks
+author: NVIDIA
 weight: 255
 toc: 4
 ---

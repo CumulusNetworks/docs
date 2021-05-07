@@ -1,6 +1,6 @@
 ---
 title: Install NetQ Quick Start
-author: Cumulus Networks
+author: NVIDIA
 weight: 110
 toc: 5
 ---

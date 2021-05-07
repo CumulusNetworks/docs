@@ -1,6 +1,6 @@
 ---
 title: Integrate NetQ with Your LDAP Server
-author: Cumulus Networks
+author: NVIDIA
 weight: 201
 toc: 3
 ---

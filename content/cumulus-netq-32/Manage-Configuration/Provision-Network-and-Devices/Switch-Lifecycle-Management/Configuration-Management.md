@@ -1,6 +1,6 @@
 ---
 title: Manage Switch Configurations
-author: Cumulus Networks
+author: NVIDIA
 weight: 660
 toc: 4
 ---

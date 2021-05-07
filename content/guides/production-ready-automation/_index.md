@@ -1,6 +1,6 @@
 ---
 title: Production Ready Automation Guide
-author: Cumulus Networks
+author: NVIDIA
 weight: 10
 product: Cumulus Networks Guides
 draft: true

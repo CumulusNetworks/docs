@@ -1,6 +1,6 @@
 ---
 title: Monitor the LLDP Service
-author: Cumulus Networks
+author: NVIDIA
 weight: 890
 toc: 4
 ---

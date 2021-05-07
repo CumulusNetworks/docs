@@ -1,6 +1,6 @@
 ---
 title: Monitor Network Connectivity
-author: Cumulus Networks
+author: NVIDIA
 weight: 420
 toc: 4
 ---

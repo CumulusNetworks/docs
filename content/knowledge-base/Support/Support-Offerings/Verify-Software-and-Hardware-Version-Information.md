@@ -1,6 +1,6 @@
 ---
 title: Verify Software and Hardware Version Information
-author: Cumulus Networks
+author: NVIDIA
 weight: 701
 toc: 4
 ---

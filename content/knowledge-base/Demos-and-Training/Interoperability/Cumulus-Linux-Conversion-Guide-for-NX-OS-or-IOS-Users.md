@@ -1,6 +1,6 @@
 ---
 title: Cumulus Linux Conversion Guide for NX-OS or IOS Users
-author: Cumulus Networks
+author: NVIDIA
 weight: 510
 toc: 4
 ---

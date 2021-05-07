@@ -1,6 +1,6 @@
 ---
 title: RX Error Counters and Slow Throughput Performance
-author: Cumulus Networks
+author: NVIDIA
 weight: 377
 toc: 4
 ---

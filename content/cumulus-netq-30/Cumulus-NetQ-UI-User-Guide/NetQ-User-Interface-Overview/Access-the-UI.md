@@ -1,6 +1,6 @@
 ---
 title: Access the NetQ UI
-author: Cumulus Networks
+author: NVIDIA
 weight: 240
 toc: 4
 ---

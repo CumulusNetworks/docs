@@ -1,6 +1,6 @@
 ---
 title: Manage Configurations
-author: Cumulus Networks
+author: NVIDIA
 weight: 595
 toc: 2
 ---

@@ -1,6 +1,6 @@
 ---
 title: Monitor Critical Events
-author: Cumulus Networks
+author: NVIDIA
 weight: 324
 toc: 4
 ---

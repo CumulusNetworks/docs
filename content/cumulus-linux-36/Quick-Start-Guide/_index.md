@@ -1,6 +1,6 @@
 ---
 title: Quick Start Guide
-author: Cumulus Networks
+author: NVIDIA
 weight: 11
 pageID: 8362037
 ---

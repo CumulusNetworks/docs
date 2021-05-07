@@ -1,6 +1,6 @@
 ---
 title: Lifecycle Management
-author: Cumulus Networks
+author: NVIDIA
 weight: 640
 toc: 4
 ---

@@ -1,6 +1,6 @@
 ---
 title: Zero Touch Provisioning - ZTP
-author: Cumulus Networks
+author: NVIDIA
 weight: 51
 pageID: 8362127
 ---

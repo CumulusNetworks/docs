@@ -1,6 +1,6 @@
 ---
 title: Install and Configure the NetQ Agent on Cumulus Linux Switches
-author: Cumulus Networks
+author: NVIDIA
 weight: 290
 toc: 5
 ---

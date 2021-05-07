@@ -1,6 +1,6 @@
 ---
 title: Install NetQ CLI
-author: Cumulus Networks
+author: NVIDIA
 weight: 124
 toc: 4
 ---

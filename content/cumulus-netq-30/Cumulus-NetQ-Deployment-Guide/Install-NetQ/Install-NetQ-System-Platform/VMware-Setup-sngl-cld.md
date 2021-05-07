@@ -1,6 +1,6 @@
 ---
 title: Set Up Your VMware Virtual Machine for a Single Cloud Server
-author: Cumulus Networks
+author: NVIDIA
 weight: 77
 toc: 5
 bookhidden: true

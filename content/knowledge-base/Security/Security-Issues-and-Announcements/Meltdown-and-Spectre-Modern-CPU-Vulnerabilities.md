@@ -1,6 +1,6 @@
 ---
 title: Meltdown and Spectre - Modern CPU Vulnerabilities
-author: Cumulus Networks
+author: NVIDIA
 weight: 458
 toc: 4
 ---

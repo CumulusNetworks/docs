@@ -1,6 +1,6 @@
 ---
 title: Sample Proof of Concept POC Test Plan
-author: Cumulus Networks
+author: NVIDIA
 weight: 311
 toc: 4
 ---

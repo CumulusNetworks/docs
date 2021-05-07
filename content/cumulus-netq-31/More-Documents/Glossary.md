@@ -1,6 +1,6 @@
 ---
 title: Glossary
-author: Cumulus Networks
+author: NVIDIA
 weight: 654
 ---
 

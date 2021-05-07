@@ -1,6 +1,6 @@
 ---
 title: Monitor Physical Layer Components
-author: Cumulus Networks
+author: NVIDIA
 weight: 530
 toc: 3
 ---

@@ -1,6 +1,6 @@
 ---
 title: Boot into ONIE
-author: Cumulus Networks
+author: NVIDIA
 weight: 271
 toc: 4
 ---

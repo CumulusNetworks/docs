@@ -1,6 +1,6 @@
 ---
 title: Cumulus Networks Technical Guides
-author: Cumulus Networks
+author: NVIDIA
 weight: 1
 product: Cumulus Networks Guides
 imgData: guides

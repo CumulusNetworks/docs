@@ -1,6 +1,6 @@
 ---
 title: Cumulus Linux Release Versioning and Support Policy
-author: Cumulus Networks
+author: NVIDIA
 weight: 702
 toc: 4
 ---

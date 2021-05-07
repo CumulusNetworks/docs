@@ -1,6 +1,6 @@
 ---
 title: Manage the NetQ UI
-author: Cumulus Networks
+author: NVIDIA
 weight: 600
 toc: 2
 ---

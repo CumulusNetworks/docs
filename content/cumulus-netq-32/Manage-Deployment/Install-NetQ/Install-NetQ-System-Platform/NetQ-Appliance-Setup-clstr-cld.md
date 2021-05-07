@@ -1,6 +1,6 @@
 ---
 title: Install a NetQ Cloud Appliance Cluster
-author: Cumulus Networks
+author: NVIDIA
 weight: 232
 toc: 5
 bookhidden: true

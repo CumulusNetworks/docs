@@ -1,6 +1,6 @@
 ---
 title: Cumulus NetQ 2.4
-author: Cumulus Networks
+author: NVIDIA
 weight: 1
 subsection: true
 toc: 1

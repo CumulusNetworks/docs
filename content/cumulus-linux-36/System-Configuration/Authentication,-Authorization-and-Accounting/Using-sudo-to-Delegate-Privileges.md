@@ -1,6 +1,6 @@
 ---
 title: Using sudo to Delegate Privileges
-author: Cumulus Networks
+author: NVIDIA
 weight: 283
 pageID: 8362049
 ---

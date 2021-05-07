@@ -1,6 +1,6 @@
 ---
 title: Install and Configure the NetQ Agent on RHEL and CentOS Servers
-author: Cumulus Networks
+author: NVIDIA
 weight: 310
 toc: 5
 ---

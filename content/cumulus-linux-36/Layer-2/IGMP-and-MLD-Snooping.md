@@ -1,6 +1,6 @@
 ---
 title: IGMP and MLD Snooping
-author: Cumulus Networks
+author: NVIDIA
 weight: 129
 pageID: 8362188
 ---

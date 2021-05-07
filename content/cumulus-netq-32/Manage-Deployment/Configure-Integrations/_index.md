@@ -1,6 +1,6 @@
 ---
 title: Configure Integrations
-author: Cumulus Networks
+author: NVIDIA
 weight: 530
 toc: 2
 ---

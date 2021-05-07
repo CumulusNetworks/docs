@@ -1,6 +1,6 @@
 ---
 title: Installation
-author: Cumulus Networks
+author: NVIDIA
 weight: 25
 toc: 3
 ---

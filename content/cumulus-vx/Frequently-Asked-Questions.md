@@ -1,6 +1,6 @@
 ---
 title: Frequently Asked Questions
-author: Cumulus Networks
+author: NVIDIA
 weight: 50
 product: Cumulus VX
 version: '4.x'

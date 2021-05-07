@@ -1,6 +1,6 @@
 ---
 title: What the NetQ Validation System Checks
-author: Cumulus Networks
+author: NVIDIA
 weight: 342
 toc: 4
 ---

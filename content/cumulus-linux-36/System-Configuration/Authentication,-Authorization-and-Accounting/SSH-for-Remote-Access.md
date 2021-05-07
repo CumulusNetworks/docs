@@ -1,6 +1,6 @@
 ---
 title: SSH for Remote Access
-author: Cumulus Networks
+author: NVIDIA
 weight: 279
 pageID: 8362046
 ---

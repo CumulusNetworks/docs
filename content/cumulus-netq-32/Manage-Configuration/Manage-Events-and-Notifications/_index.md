@@ -1,6 +1,6 @@
 ---
 title: Manage Events and Notifications
-author: Cumulus Networks
+author: NVIDIA
 weight: 770
 toc: 3
 ---

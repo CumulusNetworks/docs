@@ -1,6 +1,6 @@
 ---
 title: Cumulus Linux Derivation of MAC Address for a Bridge
-author: Cumulus Networks
+author: NVIDIA
 weight: 392
 toc: 4
 ---

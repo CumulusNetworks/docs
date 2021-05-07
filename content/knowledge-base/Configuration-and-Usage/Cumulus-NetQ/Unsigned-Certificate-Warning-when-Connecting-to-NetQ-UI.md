@@ -1,6 +1,6 @@
 ---
 title: Unsigned Certificate Warning when Connecting to NetQ UI
-author: Cumulus Networks
+author: NVIDIA
 weight: 344
 toc: 4
 ---

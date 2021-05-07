@@ -1,6 +1,6 @@
 ---
 title: Compare ifupdown2 Commands with ifupdown Commands
-author: Cumulus Networks
+author: NVIDIA
 weight: 415
 toc: 4
 ---

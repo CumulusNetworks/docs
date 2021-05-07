@@ -1,6 +1,6 @@
 ---
 title: Set Up Your KVM Virtual Machine for a Cloud Server Cluster
-author: Cumulus Networks
+author: NVIDIA
 weight: 75
 toc: 5
 bookhidden: true

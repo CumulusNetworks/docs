@@ -1,6 +1,6 @@
 ---
 title: Virtual Router Redundancy - VRR
-author: Cumulus Networks
+author: NVIDIA
 weight: 127
 pageID: 8362183
 ---

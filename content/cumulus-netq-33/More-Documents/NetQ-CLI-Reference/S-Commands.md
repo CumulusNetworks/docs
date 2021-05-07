@@ -1,6 +1,6 @@
 ---
 title: S Commands
-author: Cumulus Networks
+author: NVIDIA
 weight: 1106
 toc: 3
 right_toc_levels: 1

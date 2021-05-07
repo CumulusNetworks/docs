@@ -1,6 +1,6 @@
 ---
 title: Cumulus NetQ 3.0 Release Notes
-author: Cumulus Networks
+author: NVIDIA
 weight: 652
 product: Cumulus NetQ
 version: "3.0"

@@ -1,6 +1,6 @@
 ---
 title: Install NetQ Agents
-author: NVIDIA
+author: Cumulus Networks
 weight: 280
 toc: 4
 ---

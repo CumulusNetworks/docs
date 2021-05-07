@@ -1,6 +1,6 @@
 ---
 title: Layer 1 and Switch Ports
-author: NVIDIA
+author: Cumulus Networks
 weight: 17
 pageID: 8362485
 ---

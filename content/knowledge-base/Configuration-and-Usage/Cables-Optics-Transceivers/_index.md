@@ -1,6 +1,6 @@
 ---
 title: Cables, Optics and Transceivers
-author: NVIDIA
+author: Cumulus Networks
 weight: 33
 toc: 3
 ---

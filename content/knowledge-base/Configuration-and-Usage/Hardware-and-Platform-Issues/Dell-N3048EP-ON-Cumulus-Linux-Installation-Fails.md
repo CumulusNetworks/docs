@@ -1,6 +1,6 @@
 ---
 title: Dell N3048EP-ON - Cumulus Linux Installation Fails
-author: NVIDIA
+author: Cumulus Networks
 weight: 351
 toc: 3
 ---

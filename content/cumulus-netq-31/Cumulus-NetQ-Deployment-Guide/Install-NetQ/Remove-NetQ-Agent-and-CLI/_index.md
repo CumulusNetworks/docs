@@ -1,6 +1,6 @@
 ---
 title: Remove the NetQ Agent and CLI
-author: NVIDIA
+author: Cumulus Networks
 weight: 135
 toc: 3
 ---

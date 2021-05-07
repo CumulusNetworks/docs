@@ -1,6 +1,6 @@
 ---
 title: Bidirectional Forwarding Detection - BFD
-author: NVIDIA
+author: Cumulus Networks
 weight: 185
 pageID: 8362408
 ---

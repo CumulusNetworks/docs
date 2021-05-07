@@ -1,6 +1,6 @@
 ---
 title: Integrate NetQ with Notification Applications
-author: NVIDIA
+author: Cumulus Networks
 weight: 200
 toc: 3
 ---

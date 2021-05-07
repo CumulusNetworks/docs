@@ -1,6 +1,6 @@
 ---
 title: NetQ CLI Reference
-author: NVIDIA
+author: Cumulus Networks
 weight: 1100
 bookhidden: true
 pdfhidden: true

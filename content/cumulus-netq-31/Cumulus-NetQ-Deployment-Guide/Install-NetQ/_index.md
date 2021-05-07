@@ -1,6 +1,6 @@
 ---
 title: Install NetQ
-author: NVIDIA
+author: Cumulus Networks
 weight: 60
 toc: 3
 ---

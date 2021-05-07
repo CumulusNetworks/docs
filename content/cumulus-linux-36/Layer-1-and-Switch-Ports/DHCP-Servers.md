@@ -1,6 +1,6 @@
 ---
 title: DHCP Servers
-author: NVIDIA
+author: Cumulus Networks
 weight: 97
 pageID: 8362508
 ---

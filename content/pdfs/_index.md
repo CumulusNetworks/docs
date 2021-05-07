@@ -1,6 +1,6 @@
 ---
 title: Cumulus Networks PDF Archive
-author: NVIDIA
+author: Cumulus Networks
 weight: 1
 product: Cumulus Networks PDFs
 imgData: pdfs

@@ -1,6 +1,6 @@
 ---
 title: Upgrade NetQ Agents and CLI
-author: NVIDIA
+author: Cumulus Networks
 weight: 480
 toc: 4
 bookhidden: true

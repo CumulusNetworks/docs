@@ -1,6 +1,6 @@
 ---
 title: Upgrade NetQ CLI
-author: NVIDIA
+author: Cumulus Networks
 weight: 147
 toc: 4
 ---

@@ -1,6 +1,6 @@
 ---
 title: Uninstall NetQ
-author: NVIDIA
+author: Cumulus Networks
 weight: 560
 toc: 3
 ---

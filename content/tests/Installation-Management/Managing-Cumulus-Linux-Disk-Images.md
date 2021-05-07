@@ -1,6 +1,6 @@
 ---
 title: Managing Cumulus Linux Disk Images
-author: NVIDIA
+author: Cumulus Networks
 weight: 41
 pageID: 8362634
 ---

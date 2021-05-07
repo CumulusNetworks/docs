@@ -1,6 +1,6 @@
 ---
 title: Multi-Chassis Link Aggregation - MLAG
-author: NVIDIA
+author: Cumulus Networks
 weight: 123
 pageID: 8362169
 ---

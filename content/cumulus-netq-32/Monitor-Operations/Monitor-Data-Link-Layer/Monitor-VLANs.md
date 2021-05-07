@@ -1,6 +1,6 @@
 ---
 title: Monitor Virtual LANs
-author: NVIDIA
+author: Cumulus Networks
 weight: 910
 toc: 3
 ---

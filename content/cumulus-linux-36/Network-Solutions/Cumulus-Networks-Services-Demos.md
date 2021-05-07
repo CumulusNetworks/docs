@@ -1,6 +1,6 @@
 ---
 title: Cumulus Networks Services Demos
-author: NVIDIA
+author: Cumulus Networks
 weight: 247
 pageID: 8362453
 ---

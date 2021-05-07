@@ -1,6 +1,6 @@
 ---
 title: Restore Your NetQ Data
-author: NVIDIA
+author: Cumulus Networks
 weight: 170
 toc: 4
 ---

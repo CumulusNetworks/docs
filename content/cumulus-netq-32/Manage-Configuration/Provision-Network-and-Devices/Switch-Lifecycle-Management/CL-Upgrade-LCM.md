@@ -1,6 +1,6 @@
 ---
 title: Upgrade Cumulus Linux Using LCM
-author: NVIDIA
+author: Cumulus Networks
 weight: 680
 toc: 4
 ---

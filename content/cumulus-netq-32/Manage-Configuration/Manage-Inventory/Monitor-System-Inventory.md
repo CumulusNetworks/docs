@@ -1,6 +1,6 @@
 ---
 title: Monitor System Inventory
-author: NVIDIA
+author: Cumulus Networks
 weight: 750
 ---
 In addition to network and switch inventory, the Cumulus NetQ UI provides a view into the current status and configuration of the software network constructs in a tabular, networkwide view. These are helpful when you want to see all data for all of a particular element in your network for troubleshooting, or you want to export a list view.

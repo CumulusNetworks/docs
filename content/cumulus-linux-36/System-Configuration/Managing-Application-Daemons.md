@@ -1,6 +1,6 @@
 ---
 title: Managing Application Daemons
-author: NVIDIA
+author: Cumulus Networks
 weight: 71
 pageID: 8362073
 ---

@@ -1,6 +1,6 @@
 ---
 title: Accessing the Switch through the Console
-author: NVIDIA
+author: Cumulus Networks
 weight: 101
 toc: 3
 ---

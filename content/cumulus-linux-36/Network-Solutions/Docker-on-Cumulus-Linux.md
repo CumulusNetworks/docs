@@ -1,6 +1,6 @@
 ---
 title: Docker on Cumulus Linux
-author: NVIDIA
+author: Cumulus Networks
 weight: 249
 pageID: 8362446
 ---

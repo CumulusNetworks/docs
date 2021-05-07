@@ -1,6 +1,6 @@
 ---
 title: Install and Configure the NetQ CLI on Ubuntu Servers
-author: NVIDIA
+author: Cumulus Networks
 weight: 128
 toc: 5
 ---

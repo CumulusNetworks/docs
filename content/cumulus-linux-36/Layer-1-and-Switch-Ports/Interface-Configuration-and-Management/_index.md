@@ -1,6 +1,6 @@
 ---
 title: Interface Configuration and Management
-author: NVIDIA
+author: Cumulus Networks
 weight: 91
 pageID: 8362489
 ---

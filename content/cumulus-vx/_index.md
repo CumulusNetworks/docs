@@ -1,6 +1,6 @@
 ---
 title: Cumulus VX
-author: NVIDIA
+author: Cumulus Networks
 weight: -34
 subsection: true
 cascade:

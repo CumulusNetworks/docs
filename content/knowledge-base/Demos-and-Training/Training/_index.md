@@ -1,6 +1,6 @@
 ---
 title: Training
-author: NVIDIA
+author: Cumulus Networks
 weight: 55
 toc: 3
 ---

@@ -1,6 +1,6 @@
 ---
 title: LDAP Authentication and Authorization
-author: NVIDIA
+author: Cumulus Networks
 weight: 285
 pageID: 8362051
 ---

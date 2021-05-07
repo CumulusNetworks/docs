@@ -1,6 +1,6 @@
 ---
 title: Default User Name and Password in Cumulus Linux
-author: NVIDIA
+author: Cumulus Networks
 weight: 105
 toc: 3
 ---

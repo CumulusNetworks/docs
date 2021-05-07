@@ -1,6 +1,6 @@
 ---
 title: Cumulus NetQ UI User Guide
-author: NVIDIA
+author: Cumulus Networks
 weight: 220
 toc: 2
 ---

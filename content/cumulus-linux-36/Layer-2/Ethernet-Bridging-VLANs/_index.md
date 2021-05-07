@@ -1,6 +1,6 @@
 ---
 title: Ethernet Bridging - VLANs
-author: NVIDIA
+author: Cumulus Networks
 weight: 121
 pageID: 8362150
 ---

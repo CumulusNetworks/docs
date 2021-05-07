@@ -1,6 +1,6 @@
 ---
 title: Manage Switch Credentials
-author: NVIDIA
+author: Cumulus Networks
 weight: 640
 toc: 4
 ---

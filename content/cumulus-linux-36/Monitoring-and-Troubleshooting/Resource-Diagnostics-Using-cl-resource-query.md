@@ -1,6 +1,6 @@
 ---
 title: Resource Diagnostics Using cl-resource-query
-author: NVIDIA
+author: Cumulus Networks
 weight: 213
 pageID: 8362088
 ---

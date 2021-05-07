@@ -1,6 +1,6 @@
 ---
 title: Adding and Updating Packages
-author: NVIDIA
+author: Cumulus Networks
 weight: 49
 pageID: 8362631
 ---

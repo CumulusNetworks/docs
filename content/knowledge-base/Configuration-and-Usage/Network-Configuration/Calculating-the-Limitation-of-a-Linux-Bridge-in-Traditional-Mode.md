@@ -1,6 +1,6 @@
 ---
 title: Calculating the Limitation of a Linux Bridge in Traditional Mode
-author: NVIDIA
+author: Cumulus Networks
 weight: 391
 toc: 4
 ---

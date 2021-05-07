@@ -1,6 +1,6 @@
 ---
 title: Post Installation Configuration Options
-author: NVIDIA
+author: Cumulus Networks
 weight: 710
 toc: 3
 ---

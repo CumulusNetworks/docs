@@ -1,6 +1,6 @@
 ---
 title: Cumulus Linux Security Announcements
-author: NVIDIA
+author: Cumulus Networks
 weight: 450
 toc: 4
 ---

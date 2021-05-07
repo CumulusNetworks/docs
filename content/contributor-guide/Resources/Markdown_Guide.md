@@ -1,6 +1,6 @@
 ---
 title: Markdown Guide
-author: NVIDIA
+author: Cumulus Networks
 weight: 210
 ---
 This topic provides additional Markdown usage guidelines and more detail about selected Markdown editing capabilities already covered in the {{< link title="Make a Larger Contribution" >}} topic.

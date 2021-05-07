@@ -1,6 +1,6 @@
 ---
 title: Transceiver and Cable Self-qualification with Cumulus Linux
-author: NVIDIA
+author: Cumulus Networks
 weight: 331
 toc: 4
 ---

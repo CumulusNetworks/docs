@@ -1,6 +1,6 @@
 ---
 title: Monitor Devices
-author: NVIDIA
+author: Cumulus Networks
 weight: 820
 toc: 3
 ---

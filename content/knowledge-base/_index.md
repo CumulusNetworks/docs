@@ -1,11 +1,11 @@
 ---
-title: Knowledge Base
-author: NVIDIA
+title: Cumulus Networks Knowledge Base
+author: Cumulus Networks
 weight: 1
 subsection: true
 cascade:
     version: 0
-    product: Knowledge Base
+    product: Cumulus Networks Knowledge Base
 toc: 1
 ---
 

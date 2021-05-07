@@ -1,6 +1,6 @@
 ---
 title: Monitor Events
-author: NVIDIA
+author: Cumulus Networks
 weight: 322
 toc: 3
 ---

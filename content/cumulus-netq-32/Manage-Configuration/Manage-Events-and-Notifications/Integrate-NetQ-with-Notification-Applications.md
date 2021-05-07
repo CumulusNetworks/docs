@@ -1,6 +1,6 @@
 ---
 title: Configure Notifications
-author: NVIDIA
+author: Cumulus Networks
 weight: 780
 toc: 3
 ---

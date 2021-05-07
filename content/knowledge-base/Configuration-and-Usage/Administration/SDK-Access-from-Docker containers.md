@@ -1,6 +1,6 @@
 ---
 title: SDK Access from Docker Containers
-author: NVIDIA
+author: Cumulus Networks
 weight: 320
 toc: 4
 ---

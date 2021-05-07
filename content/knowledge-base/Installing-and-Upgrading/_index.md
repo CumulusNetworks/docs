@@ -1,6 +1,6 @@
 ---
 title: Installing and Upgrading
-author: NVIDIA
+author: Cumulus Networks
 weight: 20
 toc: 2
 ---

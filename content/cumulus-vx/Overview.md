@@ -1,6 +1,6 @@
 ---
 title: Overview
-author: NVIDIA
+author: Cumulus Networks
 weight: 5
 product: Cumulus VX
 product: Cumulus VX

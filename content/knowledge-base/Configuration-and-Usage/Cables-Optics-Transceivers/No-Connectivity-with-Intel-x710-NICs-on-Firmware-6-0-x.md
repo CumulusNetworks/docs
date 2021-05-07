@@ -1,6 +1,6 @@
 ---
 title: No Connectivity with Intel x710 NICs on Firmware 6.0.x
-author: NVIDIA
+author: Cumulus Networks
 weight: 334
 toc: 4
 ---

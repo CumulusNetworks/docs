@@ -1,6 +1,6 @@
 ---
 title: Troubleshooting Network Interfaces
-author: NVIDIA
+author: Cumulus Networks
 weight: 223
 pageID: 8362098
 ---

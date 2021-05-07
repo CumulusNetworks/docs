@@ -1,6 +1,6 @@
 ---
 title: Bridging an Air Gap to Collect Support Information
-author: NVIDIA
+author: Cumulus Networks
 weight: 715
 toc: 4
 ---

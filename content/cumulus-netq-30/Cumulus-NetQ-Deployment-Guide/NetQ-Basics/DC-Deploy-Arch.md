@@ -1,6 +1,6 @@
 ---
 title: Data Center Network Deployments
-author: NVIDIA
+author: Cumulus Networks
 weight: 40
 toc: 4
 ---

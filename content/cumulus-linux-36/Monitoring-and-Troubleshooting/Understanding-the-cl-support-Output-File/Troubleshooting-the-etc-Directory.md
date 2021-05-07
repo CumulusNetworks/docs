@@ -1,6 +1,6 @@
 ---
 title: Troubleshooting the etc Directory
-author: NVIDIA
+author: Cumulus Networks
 weight: 463
 pageID: 8362096
 ---

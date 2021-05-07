@@ -1,6 +1,6 @@
 ---
 title: NetQ Agent CPU Utilization on Cumulus Linux Switches
-author: NVIDIA
+author: Cumulus Networks
 weight: 341
 toc: 4
 ---

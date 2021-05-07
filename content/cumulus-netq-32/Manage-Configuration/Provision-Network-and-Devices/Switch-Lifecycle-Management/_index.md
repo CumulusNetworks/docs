@@ -1,6 +1,6 @@
 ---
 title: Manage Switches through Their Lifecycle
-author: NVIDIA
+author: Cumulus Networks
 weight: 620
 subsection: true
 toc: 1

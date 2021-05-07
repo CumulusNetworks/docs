@@ -1,6 +1,6 @@
 ---
 title: Ethernet Virtual Private Network - EVPN
-author: NVIDIA
+author: Cumulus Networks
 weight: 145
 pageID: 8362224
 ---

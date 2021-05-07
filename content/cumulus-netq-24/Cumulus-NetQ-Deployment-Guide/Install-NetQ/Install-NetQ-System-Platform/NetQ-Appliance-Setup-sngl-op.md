@@ -1,6 +1,6 @@
 ---
 title: Install the NetQ Appliance
-author: NVIDIA
+author: Cumulus Networks
 weight: 80
 toc: 5
 bookhidden: true

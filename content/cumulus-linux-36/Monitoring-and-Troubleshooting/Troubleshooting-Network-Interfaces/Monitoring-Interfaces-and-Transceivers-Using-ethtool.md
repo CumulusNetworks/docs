@@ -1,6 +1,6 @@
 ---
 title: Monitoring Interfaces and Transceivers Using ethtool
-author: NVIDIA
+author: Cumulus Networks
 weight: 475
 pageID: 8362099
 ---

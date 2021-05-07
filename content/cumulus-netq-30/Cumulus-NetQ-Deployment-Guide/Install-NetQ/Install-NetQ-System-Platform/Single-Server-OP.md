@@ -1,6 +1,6 @@
 ---
 title: Choose an On-premises System Platform
-author: NVIDIA
+author: Cumulus Networks
 toc: 5
 bookhidden: true
 pdfhidden: true

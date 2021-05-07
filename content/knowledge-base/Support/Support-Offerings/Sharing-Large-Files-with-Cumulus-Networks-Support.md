@@ -1,6 +1,6 @@
 ---
 title: Sharing Large Files with Cumulus Networks Support
-author: NVIDIA
+author: Cumulus Networks
 weight: 708
 toc: 4
 ---

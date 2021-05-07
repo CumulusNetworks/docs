@@ -1,6 +1,6 @@
 ---
 title: NetQ CLI Changes
-author: NVIDIA
+author: Cumulus Networks
 weight: 20
 toc: 4
 ---

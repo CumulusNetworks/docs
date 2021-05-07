@@ -1,6 +1,6 @@
 ---
 title: Monitor the BGP Service
-author: NVIDIA
+author: Cumulus Networks
 weight: 370
 toc: 4
 ---

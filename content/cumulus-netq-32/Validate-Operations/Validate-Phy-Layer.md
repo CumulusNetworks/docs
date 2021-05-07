@@ -1,6 +1,6 @@
 ---
 title: Validate Physical Layer Configuration
-author: NVIDIA
+author: Cumulus Networks
 weight: 0
 toc: 3
 ---

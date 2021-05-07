@@ -1,6 +1,6 @@
 ---
 title: Switch Port Attributes
-author: NVIDIA
+author: Cumulus Networks
 weight: 315
 pageID: 8362492
 ---

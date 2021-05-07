@@ -1,6 +1,6 @@
 ---
 title: Cumulus Linux Support File
-author: NVIDIA
+author: Cumulus Networks
 weight: 707
 toc: 4
 ---

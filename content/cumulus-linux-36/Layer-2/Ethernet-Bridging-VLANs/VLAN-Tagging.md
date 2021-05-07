@@ -1,6 +1,6 @@
 ---
 title: VLAN Tagging
-author: NVIDIA
+author: Cumulus Networks
 weight: 355
 pageID: 8362159
 ---

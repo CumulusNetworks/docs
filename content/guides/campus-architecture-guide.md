@@ -1,6 +1,6 @@
 ---
 title: Campus Architecture Solution Guide
-author: NVIDIA
+author: Cumulus Networks
 product: Cumulus Networks Guides
 ---
 

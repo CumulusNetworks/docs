@@ -1,6 +1,6 @@
 ---
 title: brctl showstp Shows Carrier Down Ports as Blocking
-author: NVIDIA
+author: Cumulus Networks
 weight: 410
 toc: 4
 ---

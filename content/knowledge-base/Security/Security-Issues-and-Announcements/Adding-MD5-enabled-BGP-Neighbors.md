@@ -1,6 +1,6 @@
 ---
 title: Adding MD5-enabled BGP Neighbors
-author: NVIDIA
+author: Cumulus Networks
 weight: 453
 toc: 4
 ---

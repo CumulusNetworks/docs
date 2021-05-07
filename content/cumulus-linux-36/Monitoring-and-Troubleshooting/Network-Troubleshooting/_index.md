@@ -1,6 +1,6 @@
 ---
 title: Network Troubleshooting
-author: NVIDIA
+author: Cumulus Networks
 weight: 225
 pageID: 8362091
 ---

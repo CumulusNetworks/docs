@@ -1,6 +1,6 @@
 ---
 title: Install NetQ Using the Admin UI
-author: NVIDIA
+author: Cumulus Networks
 weight: 240
 toc: 5
 ---

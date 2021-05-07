@@ -1,6 +1,6 @@
 ---
 title: NetQ Command Line Overview
-author: NVIDIA
+author: Cumulus Networks
 weight: 480
 toc: 3
 ---

@@ -1,6 +1,6 @@
 ---
 title: Upgrade NetQ Agents on Cumulus Linux Switches
-author: NVIDIA
+author: Cumulus Networks
 weight: 143
 toc: 5
 ---

@@ -1,6 +1,6 @@
 ---
 title: Set Up Your VMware Virtual Machine for a Cloud Server Cluster
-author: NVIDIA
+author: Cumulus Networks
 weight: 224
 toc: 5
 bookhidden: true

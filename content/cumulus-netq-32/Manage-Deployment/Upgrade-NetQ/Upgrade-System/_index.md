@@ -1,6 +1,6 @@
 ---
 title: Upgrade NetQ Appliances and Virtual Machines
-author: NVIDIA
+author: Cumulus Networks
 weight: 410
 toc: 4
 ---

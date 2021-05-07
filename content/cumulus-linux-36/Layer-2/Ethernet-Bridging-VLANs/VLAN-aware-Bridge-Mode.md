@@ -1,6 +1,6 @@
 ---
 title: VLAN-aware Bridge Mode
-author: NVIDIA
+author: Cumulus Networks
 weight: 351
 pageID: 8362164
 ---

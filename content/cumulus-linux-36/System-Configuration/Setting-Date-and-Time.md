@@ -1,6 +1,6 @@
 ---
 title: Setting Date and Time
-author: NVIDIA
+author: Cumulus Networks
 weight: 65
 pageID: 8362040
 ---

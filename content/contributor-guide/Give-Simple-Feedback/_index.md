@@ -1,6 +1,6 @@
 ---
 title: Give Simple Feedback
-author: NVIDIA
+author: Cumulus Networks
 weight: 10
 ---
 You can provide feedback about errors that are easy to fix, such as typographical errors, broken links, or simple grammar mistakes, using one of the following methods:

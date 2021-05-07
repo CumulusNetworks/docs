@@ -1,6 +1,6 @@
 ---
 title: Back Up Your NetQ Data
-author: NVIDIA
+author: Cumulus Networks
 weight: 160
 toc: 4
 ---

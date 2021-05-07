@@ -1,6 +1,6 @@
 ---
 title: Integrate NetQ with Grafana
-author: NVIDIA
+author: Cumulus Networks
 weight: 550
 toc: 3
 ---

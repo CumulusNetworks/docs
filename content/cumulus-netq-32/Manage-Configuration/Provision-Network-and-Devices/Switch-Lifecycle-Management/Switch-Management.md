@@ -1,6 +1,6 @@
 ---
 title: Manage Switch Inventory and Roles
-author: NVIDIA
+author: Cumulus Networks
 weight: 650
 toc: 4
 ---

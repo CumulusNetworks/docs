@@ -1,6 +1,6 @@
 ---
 title: Using dtach for In-band apt-get Upgrades
-author: NVIDIA
+author: Cumulus Networks
 weight: 293
 toc: 4
 ---

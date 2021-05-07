@@ -1,6 +1,6 @@
 ---
 title: Run Production Ready Automation
-author: NVIDIA
+author: Cumulus Networks
 weight: 30
 product: Cumulus Networks Guides
 version: "1.0"

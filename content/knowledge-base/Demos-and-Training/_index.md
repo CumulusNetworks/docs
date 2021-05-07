@@ -1,6 +1,6 @@
 ---
 title: Demos and Training
-author: NVIDIA
+author: Cumulus Networks
 weight: 50
 toc: 2
 ---

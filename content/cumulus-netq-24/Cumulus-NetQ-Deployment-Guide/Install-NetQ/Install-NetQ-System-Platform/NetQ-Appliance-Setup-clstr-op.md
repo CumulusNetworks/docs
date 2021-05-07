@@ -1,6 +1,6 @@
 ---
 title: Install the NetQ Appliance Cluster
-author: NVIDIA
+author: Cumulus Networks
 weight: 82
 toc: 5
 bookhidden: true

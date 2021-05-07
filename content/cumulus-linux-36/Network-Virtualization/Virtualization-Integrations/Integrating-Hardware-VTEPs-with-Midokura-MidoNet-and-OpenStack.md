@@ -1,6 +1,6 @@
 ---
 title: Integrating Hardware VTEPs with Midokura MidoNet and OpenStack
-author: NVIDIA
+author: Cumulus Networks
 weight: 409
 pageID: 8362304
 ---

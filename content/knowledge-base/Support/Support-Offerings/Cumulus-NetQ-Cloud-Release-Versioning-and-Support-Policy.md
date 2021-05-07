@@ -1,6 +1,6 @@
 ---
 title: Cumulus NetQ Cloud Release Versioning and Support Policy
-author: NVIDIA
+author: Cumulus Networks
 weight: 704
 toc: 4
 ---

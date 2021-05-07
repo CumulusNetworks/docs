@@ -1,6 +1,6 @@
 ---
 title: Choose a Cloud System Platform for Your Cluster
-author: NVIDIA
+author: Cumulus Networks
 toc: 5
 bookhidden: true
 pdfhidden: true

@@ -1,6 +1,6 @@
 ---
 title: Default Cumulus Linux ACL Configuration
-author: NVIDIA
+author: Cumulus Networks
 weight: 301
 pageID: 8362069
 ---

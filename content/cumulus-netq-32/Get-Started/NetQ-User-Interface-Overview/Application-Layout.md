@@ -1,6 +1,6 @@
 ---
 title: Application Layout
-author: NVIDIA
+author: Cumulus Networks
 weight: 110
 toc: 4
 ---

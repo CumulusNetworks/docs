@@ -1,6 +1,6 @@
 ---
 title: Document Format Conventions
-author: NVIDIA
+author: Cumulus Networks
 weight: 653
 ---
 

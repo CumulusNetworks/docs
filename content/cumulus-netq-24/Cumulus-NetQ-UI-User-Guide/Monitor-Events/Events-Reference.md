@@ -1,6 +1,6 @@
 ---
 title: Events Reference
-author: NVIDIA
+author: Cumulus Networks
 weight: 328
 toc: 4
 ---

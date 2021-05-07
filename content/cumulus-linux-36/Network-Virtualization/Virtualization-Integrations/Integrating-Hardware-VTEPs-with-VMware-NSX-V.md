@@ -1,6 +1,6 @@
 ---
 title: Integrating Hardware VTEPs with VMware NSX-V
-author: NVIDIA
+author: Cumulus Networks
 weight: 411
 pageID: 8362315
 ---

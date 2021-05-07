@@ -1,6 +1,6 @@
 ---
 title: RADIUS AAA
-author: NVIDIA
+author: Cumulus Networks
 weight: 289
 pageID: 8362054
 ---

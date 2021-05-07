@@ -1,6 +1,6 @@
 ---
 title: Physical Ports Missing from ip link show Output - switchd Failure
-author: NVIDIA
+author: Cumulus Networks
 weight: 416
 toc: 4
 ---

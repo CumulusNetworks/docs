@@ -1,6 +1,6 @@
 ---
 title: Cumulus Linux 3.6 Release Notes
-author: NVIDIA
+author: Cumulus Networks
 weight: 7
 ---
 

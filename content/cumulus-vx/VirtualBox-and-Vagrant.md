@@ -1,6 +1,6 @@
 ---
 title: VirtualBox and Vagrant
-author: NVIDIA
+author: Cumulus Networks
 weight: 35
 product: Cumulus VX
 version: '4.x'

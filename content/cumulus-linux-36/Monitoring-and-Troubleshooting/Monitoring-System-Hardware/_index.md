@@ -1,6 +1,6 @@
 ---
 title: Monitoring System Hardware
-author: NVIDIA
+author: Cumulus Networks
 weight: 215
 pageID: 8362089
 ---

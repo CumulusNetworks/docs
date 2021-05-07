@@ -1,6 +1,6 @@
 ---
 title: Cumulus NetQ API User Guide
-author: NVIDIA
+author: Cumulus Networks
 weight: 205
 toc: 3
 ---

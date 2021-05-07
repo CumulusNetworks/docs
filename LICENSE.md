@@ -1,5 +1,5 @@
 ---
-title: "NVIDIA Ethernet Software Documentation License"
+title: "Cumulus Networks Documentation License"
 author: creative commons
 ---
 

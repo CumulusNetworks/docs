@@ -1,6 +1,6 @@
 ---
 title: Upgrade NetQ Agents and CLI on Ubuntu Servers
-author: NVIDIA
+author: Cumulus Networks
 weight: 500
 toc: 5
 ---

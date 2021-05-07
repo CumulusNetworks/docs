@@ -1,6 +1,6 @@
 ---
 title: ICMP Ping Doesn't Work when Specifying the -I Option
-author: NVIDIA
+author: Cumulus Networks
 weight: 419
 toc: 4
 ---

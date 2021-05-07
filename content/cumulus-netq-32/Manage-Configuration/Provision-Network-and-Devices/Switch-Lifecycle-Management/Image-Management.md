@@ -1,6 +1,6 @@
 ---
 title: Manage Cumulus Linux and NetQ Images
-author: NVIDIA
+author: Cumulus Networks
 weight: 630
 toc: 4
 ---

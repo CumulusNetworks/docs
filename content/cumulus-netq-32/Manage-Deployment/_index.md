@@ -1,6 +1,6 @@
 ---
 title: Manage Deployment
-author: NVIDIA
+author: Cumulus Networks
 weight: 170
 toc: 2
 ---

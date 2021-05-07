@@ -1,6 +1,6 @@
 ---
 title: Monitor Spanning Tree Protocol
-author: NVIDIA
+author: Cumulus Networks
 weight: 900
 toc: 3
 ---

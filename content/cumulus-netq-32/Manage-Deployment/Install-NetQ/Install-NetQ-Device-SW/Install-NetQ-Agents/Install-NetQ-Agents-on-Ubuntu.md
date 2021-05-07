@@ -1,6 +1,6 @@
 ---
 title: Install and Configure the NetQ Agent on Ubuntu Servers
-author: NVIDIA
+author: Cumulus Networks
 weight: 300
 toc: 5
 ---

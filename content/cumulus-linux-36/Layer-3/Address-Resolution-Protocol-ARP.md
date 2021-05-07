@@ -1,6 +1,6 @@
 ---
 title: Address Resolution Protocol - ARP
-author: NVIDIA
+author: Cumulus Networks
 weight: 175
 pageID: 8362442
 ---

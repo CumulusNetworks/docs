@@ -1,6 +1,6 @@
 ---
 title: Resources
-author: NVIDIA
+author: Cumulus Networks
 weight: 30
 ---
 The resources include here describe:

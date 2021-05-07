@@ -1,6 +1,6 @@
 ---
 title: Open Shortest Path First - OSPF - Protocol
-author: NVIDIA
+author: Cumulus Networks
 weight: 177
 pageID: 8362392
 ---

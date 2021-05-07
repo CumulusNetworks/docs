@@ -1,6 +1,6 @@
 ---
 title: Hybrid Cloud Connectivity with QinQ and VXLANs
-author: NVIDIA
+author: Cumulus Networks
 weight: 153
 pageID: 8362276
 ---

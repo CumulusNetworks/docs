@@ -1,6 +1,6 @@
 ---
 title: Intel Atom Boot Issue
-author: NVIDIA
+author: Cumulus Networks
 weight: 432
 toc: 4
 ---

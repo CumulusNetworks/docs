@@ -1,6 +1,6 @@
 ---
 title: switchd Log Message Reference
-author: NVIDIA
+author: Cumulus Networks
 weight: 231
 pageID: 8362124
 pdfhidden: true

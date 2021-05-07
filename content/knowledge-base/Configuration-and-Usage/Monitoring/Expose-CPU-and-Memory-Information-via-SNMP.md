@@ -1,6 +1,6 @@
 ---
 title: Expose CPU and Memory Information via SNMP
-author: NVIDIA
+author: Cumulus Networks
 weight: 372
 toc: 4
 ---

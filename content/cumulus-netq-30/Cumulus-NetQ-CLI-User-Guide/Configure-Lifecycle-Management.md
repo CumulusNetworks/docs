@@ -1,6 +1,6 @@
 ---
 title: Configure Lifecycle Management
-author: NVIDIA
+author: Cumulus Networks
 weight: 495
 toc: 3
 ---

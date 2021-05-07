@@ -1,6 +1,6 @@
 ---
 title: Gathering Ansible Facts on Cumulus Linux
-author: NVIDIA
+author: Cumulus Networks
 weight: 322
 toc: 4
 ---

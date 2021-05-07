@@ -1,6 +1,6 @@
 ---
 title: Provision Your Devices and Network
-author: NVIDIA
+author: Cumulus Networks
 weight: 610
 toc: 3
 ---

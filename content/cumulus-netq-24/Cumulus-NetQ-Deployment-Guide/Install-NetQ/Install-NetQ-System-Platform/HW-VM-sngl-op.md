@@ -1,6 +1,6 @@
 ---
 title: Choose a Virtual Machine for a Single On-premises Server
-author: NVIDIA
+author: Cumulus Networks
 toc: 5
 bookhidden: true
 pdfhidden: true

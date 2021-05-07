@@ -1,6 +1,6 @@
 ---
 title: Setup and Getting Started
-author: NVIDIA
+author: Cumulus Networks
 weight: 10
 toc: 2
 ---

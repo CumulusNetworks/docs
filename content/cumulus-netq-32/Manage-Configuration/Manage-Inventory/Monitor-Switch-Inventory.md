@@ -1,6 +1,6 @@
 ---
 title: Monitor Switch Inventory
-author: NVIDIA
+author: Cumulus Networks
 weight: 740
 toc: 4
 ---

@@ -1,6 +1,6 @@
 ---
 title: Decommission Switches
-author: NVIDIA
+author: Cumulus Networks
 weight: 695
 toc: 3
 ---

@@ -1,6 +1,6 @@
 ---
 title: Layer 2
-author: NVIDIA
+author: Cumulus Networks
 weight: 19
 pageID: 8362144
 ---

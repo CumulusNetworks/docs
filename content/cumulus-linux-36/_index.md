@@ -1,6 +1,6 @@
 ---
 title: Cumulus Linux 3.6 User Guide
-author: NVIDIA
+author: Cumulus Networks
 weight: -36
 pageID: 8362022
 subsection: true

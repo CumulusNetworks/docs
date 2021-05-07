@@ -1,6 +1,6 @@
 ---
 title: Monitor Networkwide Inventory
-author: NVIDIA
+author: Cumulus Networks
 weight: 730
 toc: 4
 ---

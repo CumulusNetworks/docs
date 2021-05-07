@@ -1,6 +1,6 @@
 ---
 title: Spanning Tree and Rapid Spanning Tree
-author: NVIDIA
+author: Cumulus Networks
 weight: 115
 pageID: 8362181
 ---

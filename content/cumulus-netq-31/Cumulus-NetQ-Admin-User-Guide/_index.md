@@ -1,6 +1,6 @@
 ---
 title: Cumulus NetQ Administrator User Guide
-author: NVIDIA
+author: Cumulus Networks
 weight: 620
 toc: 3
 ---

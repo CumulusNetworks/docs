@@ -1,6 +1,6 @@
 ---
 title: Cumulus NetQ Deployment Guide
-author: NVIDIA
+author: Cumulus Networks
 weight: 10
 toc: 2
 ---

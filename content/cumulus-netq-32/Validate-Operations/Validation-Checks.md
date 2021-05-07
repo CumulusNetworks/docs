@@ -1,6 +1,6 @@
 ---
 title: Validation Checks
-author: NVIDIA
+author: Cumulus Networks
 weight: 1005
 toc: 3
 ---

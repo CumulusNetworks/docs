@@ -1,6 +1,6 @@
 ---
 title: What's New
-author: NVIDIA
+author: Cumulus Networks
 weight: 630
 ---
 

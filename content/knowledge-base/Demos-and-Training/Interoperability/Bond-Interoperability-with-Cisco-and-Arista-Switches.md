@@ -1,6 +1,6 @@
 ---
 title: Bond Interoperability with Cisco and Arista Switches
-author: NVIDIA
+author: Cumulus Networks
 weight: 512
 toc: 4
 ---

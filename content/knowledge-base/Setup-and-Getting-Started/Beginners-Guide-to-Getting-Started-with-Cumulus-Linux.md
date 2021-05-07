@@ -1,6 +1,6 @@
 ---
 title: Beginners Guide to Getting Started with Cumulus Linux
-author: NVIDIA
+author: Cumulus Networks
 weight: 103
 toc: 3
 ---

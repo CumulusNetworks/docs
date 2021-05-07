@@ -1,6 +1,6 @@
 ---
 title: MLAG Redundancy Scenarios
-author: NVIDIA
+author: Cumulus Networks
 weight: 416
 toc: 4
 ---

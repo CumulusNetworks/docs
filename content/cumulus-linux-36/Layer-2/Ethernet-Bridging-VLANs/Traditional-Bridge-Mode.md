@@ -1,6 +1,6 @@
 ---
 title: Traditional Bridge Mode
-author: NVIDIA
+author: Cumulus Networks
 weight: 353
 pageID: 8362161
 ---

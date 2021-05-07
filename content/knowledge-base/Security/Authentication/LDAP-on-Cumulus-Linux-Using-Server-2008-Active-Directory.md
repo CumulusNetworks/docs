@@ -1,6 +1,6 @@
 ---
 title: LDAP on Cumulus Linux Using Server 2008 Active Directory
-author: NVIDIA
+author: Cumulus Networks
 weight: 411
 toc: 3
 ---

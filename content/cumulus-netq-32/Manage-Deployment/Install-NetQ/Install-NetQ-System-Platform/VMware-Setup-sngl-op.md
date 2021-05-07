@@ -1,6 +1,6 @@
 ---
 title: Set Up Your VMware Virtual Machine for a Single On-premises Server
-author: NVIDIA
+author: Cumulus Networks
 weight: 221
 toc: 5
 bookhidden: true

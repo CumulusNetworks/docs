@@ -1,6 +1,6 @@
 ---
 title: Redistribute Neighbor
-author: NVIDIA
+author: Cumulus Networks
 weight: 189
 pageID: 8362425
 ---

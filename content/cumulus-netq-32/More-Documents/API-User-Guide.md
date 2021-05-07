@@ -1,6 +1,6 @@
 ---
 title: Integrate NetQ API with Your Applications
-author: NVIDIA
+author: Cumulus Networks
 weight: 1110
 toc: 3
 ---

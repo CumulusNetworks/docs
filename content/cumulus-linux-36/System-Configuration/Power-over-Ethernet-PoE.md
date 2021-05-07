@@ -1,6 +1,6 @@
 ---
 title: Power over Ethernet - PoE
-author: NVIDIA
+author: Cumulus Networks
 weight: 75
 pageID: 8362071
 ---

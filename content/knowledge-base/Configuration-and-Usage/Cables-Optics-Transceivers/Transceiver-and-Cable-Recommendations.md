@@ -1,6 +1,6 @@
 ---
 title: Transceiver and Cable Recommendations
-author: NVIDIA
+author: Cumulus Networks
 weight: 332
 toc: 4
 ---

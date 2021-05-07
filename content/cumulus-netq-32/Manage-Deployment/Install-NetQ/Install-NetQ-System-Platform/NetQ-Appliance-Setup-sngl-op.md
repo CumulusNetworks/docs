@@ -1,6 +1,6 @@
 ---
 title: Install the NetQ On-premises Appliance
-author: NVIDIA
+author: Cumulus Networks
 weight: 229
 toc: 5
 bookhidden: true

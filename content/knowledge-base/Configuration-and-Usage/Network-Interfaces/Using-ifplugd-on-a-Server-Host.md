@@ -1,6 +1,6 @@
 ---
 title: Using ifplugd on a Server Host
-author: NVIDIA
+author: Cumulus Networks
 weight: 418
 toc: 4
 ---

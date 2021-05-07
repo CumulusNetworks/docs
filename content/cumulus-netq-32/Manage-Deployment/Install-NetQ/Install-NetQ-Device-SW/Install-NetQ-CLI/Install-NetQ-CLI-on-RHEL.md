@@ -1,6 +1,6 @@
 ---
 title: Install and Configure the NetQ CLI on RHEL and CentOS Servers
-author: NVIDIA
+author: Cumulus Networks
 weight: 350
 toc: 5
 ---

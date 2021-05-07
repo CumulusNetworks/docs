@@ -1,6 +1,6 @@
 ---
 title: NetQ Management
-author: NVIDIA
+author: Cumulus Networks
 weight: 300
 toc: 3
 ---

@@ -1,6 +1,6 @@
 ---
 title: Using Snapshots
-author: NVIDIA
+author: Cumulus Networks
 weight: 47
 pageID: 8362648
 ---

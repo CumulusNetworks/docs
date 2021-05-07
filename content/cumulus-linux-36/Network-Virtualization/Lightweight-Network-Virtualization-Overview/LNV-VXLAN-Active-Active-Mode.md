@@ -1,6 +1,6 @@
 ---
 title: LNV VXLAN Active-Active Mode
-author: NVIDIA
+author: Cumulus Networks
 weight: 395
 pageID: 8362217
 ---

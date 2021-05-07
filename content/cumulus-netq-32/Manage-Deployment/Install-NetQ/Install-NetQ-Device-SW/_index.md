@@ -1,6 +1,6 @@
 ---
 title: Install NetQ Switch and Host Software
-author: NVIDIA
+author: Cumulus Networks
 weight: 270
 toc: 2
 ---

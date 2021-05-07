@@ -1,6 +1,6 @@
 ---
 title: Advanced Configuration
-author: NVIDIA
+author: Cumulus Networks
 weight: 46
 product: Cumulus VX
 version: '4.x'

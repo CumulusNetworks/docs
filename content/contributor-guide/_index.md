@@ -1,12 +1,12 @@
 ---
 title: Contributor Guide
-author: NVIDIA
+author: Cumulus Networks
 weight: 1
 cascade:
   siteSlug: contributor-guide
   product: Documentation Contributor Guide
 ---
-Welcome to the NVIDIA Ethernet Software documentation Contributor Guide!
+Welcome to the Cumulus Networks documentation Contributor Guide!
 All of the technical user documentation for [Cumulus Linux](/cumulus-linux/),
 [Cumulus NetQ](/cumulus-netq/), [Cumulus VX](/cumulus-vx/) and our other products are now included in a public-facing [GitHub repository](https://github.com/CumulusNetworks/docs). This enables you to provide suggestions for improvements and new content using a GitHub workflow.
 

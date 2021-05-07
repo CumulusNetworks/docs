@@ -1,6 +1,6 @@
 ---
 title: Install NetQ System Platform
-author: NVIDIA
+author: Cumulus Networks
 weight: 65
 toc: 4
 ---

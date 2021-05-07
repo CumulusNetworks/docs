@@ -1,6 +1,6 @@
 ---
 title: Configuring Hardware-enabled DDOS Protection
-author: NVIDIA
+author: Cumulus Networks
 weight: 327
 pageID: 8362500
 ---

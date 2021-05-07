@@ -1,6 +1,6 @@
 ---
 title: Manage Inventory
-author: NVIDIA
+author: Cumulus Networks
 weight: 720
 toc: 3
 ---

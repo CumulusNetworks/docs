@@ -1,6 +1,6 @@
 ---
 title: Hugo Constructs
-author: NVIDIA
+author: Cumulus Networks
 weight: 200
 ---
 Cumulus Networks uses Hugo to create a static web site for our user documentation. This topic describes some of the features of Hugo that impact how our documentation is created and presented.

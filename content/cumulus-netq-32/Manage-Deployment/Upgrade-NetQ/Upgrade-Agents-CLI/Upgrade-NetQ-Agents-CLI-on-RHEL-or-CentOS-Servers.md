@@ -1,6 +1,6 @@
 ---
 title: Upgrade NetQ Agents and CLI on RHEL or CentOS Servers
-author: NVIDIA
+author: Cumulus Networks
 weight: 510
 toc: 5
 ---

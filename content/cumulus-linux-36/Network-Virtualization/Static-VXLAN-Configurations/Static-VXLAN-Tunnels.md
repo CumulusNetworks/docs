@@ -1,6 +1,6 @@
 ---
 title: Static VXLAN Tunnels
-author: NVIDIA
+author: Cumulus Networks
 weight: 381
 pageID: 8362285
 ---

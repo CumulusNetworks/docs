@@ -1,6 +1,6 @@
 ---
 title: Install the NetQ Cloud Appliance
-author: NVIDIA
+author: Cumulus Networks
 weight: 230
 toc: 5
 bookhidden: true

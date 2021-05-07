@@ -1,6 +1,6 @@
 ---
 title: Configuration Updates
-author: NVIDIA
+author: Cumulus Networks
 weight: 172
 toc: 3
 ---

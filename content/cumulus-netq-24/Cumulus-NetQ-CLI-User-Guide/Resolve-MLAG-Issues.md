@@ -1,6 +1,6 @@
 ---
 title: Resolve MLAG Issues
-author: NVIDIA
+author: Cumulus Networks
 weight: 610
 toc: 3
 ---

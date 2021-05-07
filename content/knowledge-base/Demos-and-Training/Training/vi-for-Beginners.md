@@ -1,6 +1,6 @@
 ---
 title: vi for Beginners
-author: NVIDIA
+author: Cumulus Networks
 weight: 551
 toc: 4
 ---

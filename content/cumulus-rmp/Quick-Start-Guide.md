@@ -1,6 +1,6 @@
 ---
 title: Quick Start Guide
-author: NVIDIA
+author: Cumulus Networks
 weight: 11
 product: Cumulus RMP
 version: "3.7"

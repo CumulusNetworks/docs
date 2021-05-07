@@ -1,6 +1,6 @@
 ---
 title: Set User Preferences
-author: NVIDIA
+author: Cumulus Networks
 weight: 150
 toc: 4
 ---

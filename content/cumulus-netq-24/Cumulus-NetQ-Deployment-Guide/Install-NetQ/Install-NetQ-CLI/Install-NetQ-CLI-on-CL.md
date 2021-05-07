@@ -1,6 +1,6 @@
 ---
 title: Install and Configure the NetQ CLI on Cumulus Linux Switches
-author: NVIDIA
+author: Cumulus Networks
 weight: 126
 toc: 5
 ---

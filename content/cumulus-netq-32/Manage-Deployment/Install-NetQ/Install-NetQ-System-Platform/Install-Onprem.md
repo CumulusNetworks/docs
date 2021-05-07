@@ -1,6 +1,6 @@
 ---
 title: Install NetQ as an On-premises Deployment
-author: NVIDIA
+author: Cumulus Networks
 weight: 210
 toc: 5
 ---

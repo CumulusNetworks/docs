@@ -1,6 +1,6 @@
 ---
 title: Configure NTP for On-premises Appliances
-author: NVIDIA
+author: Cumulus Networks
 weight: 346
 toc: 4
 ---

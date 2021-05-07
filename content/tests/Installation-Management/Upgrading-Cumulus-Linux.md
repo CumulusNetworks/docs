@@ -1,6 +1,6 @@
 ---
 title: Upgrading Cumulus Linux
-author: NVIDIA
+author: Cumulus Networks
 weight: 45
 pageID: 8362647
 ---

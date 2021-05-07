@@ -1,6 +1,6 @@
 ---
 title: Simple Network Management Protocol (SNMP) Monitoring
-author: NVIDIA
+author: Cumulus Networks
 weight: 227
 pageID: 8362103
 ---

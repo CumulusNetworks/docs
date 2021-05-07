@@ -1,6 +1,6 @@
 ---
 title: Create an ACL to Block New TCP Sessions Using TCP Flags
-author: NVIDIA
+author: Cumulus Networks
 weight: 313
 toc: 4
 ---

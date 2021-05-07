@@ -1,6 +1,6 @@
 ---
 title: Cumulus Linux vs Cisco IOS - Spanning Tree Protocol
-author: NVIDIA
+author: Cumulus Networks
 weight: 514
 toc: 4
 ---

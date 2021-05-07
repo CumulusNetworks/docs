@@ -1,6 +1,6 @@
 ---
 title: Understanding CPU Usage on Cumulus Linux
-author: NVIDIA
+author: Cumulus Networks
 weight: 375
 toc: 4
 ---

@@ -24,7 +24,7 @@ NSX-T configuration is not covered in this guide. For more information regarding
 
 # Pure Virtualized Environment
 
-This use-case covers a basic VMware environment 100% virtualization and is based on a pure IP fabric underlay. All communications are between Virtual Machines (VMs) located on ESXi hypervisors.
+This use-case covers a basic VMware environment 100% virtualization and is based on a pure IP fabric underlay. All communications are between virtual machines (VMs) located on ESXi hypervisors.
 
 NSX-T uses Generic Networking Virtualization Encapsulation (Geneve) as the overlay protocol to transmit virtualized traffic over layer 2 tunnels on top of the layer 3 underlay fabric. The Geneve protocol is like the well-known VXLAN encapsulation, but it has an extended header with more options. Each NSX-T "prepared host" (ESXi added to the NSX-T manager) is installed with kernel modules to act as a Tunnel Endpoint (TEP) device. TEP devices are responsible for encapsulating and decapsulating traffic between virtual machines inside the virtualized network.
 

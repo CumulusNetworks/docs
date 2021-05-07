@@ -6,9 +6,9 @@ toc: 3
 ---
 Cumulus Linux includes a number of command line and analytical tools to help you troubleshoot issues with your network.
 
-## Check Reachability Using ping
+## Check Reachability with ping
 
-Use `ping` to check reachability of a host. `ping` also calculates the time it takes for packets to travel the round trip. See `man ping` for details.
+Use `ping` to check reachability of a host. `ping` also calculates the time it takes for packets to travel round trip. See `man ping` for details.
 
 To test the connection to an IPv4 host:
 
@@ -31,7 +31,7 @@ PING 2001::db8:ff:fe00:2(2001::db8:ff:fe00:2) from 2001::db8:ff:fe00:1 swp1: 56 
 
 When troubleshooting intermittent connectivity issues, it is helpful to send continuous pings to a host.
 
-## Print Route Trace Using traceroute
+## Print Route Trace with traceroute
 
 `traceroute` tracks the route that packets take from an IP network on their way to a given host. See `man traceroute` for details.
 
@@ -58,13 +58,13 @@ The full syntax is `ip vrf exec <vrf-name> <command> <arguments>`. For example:
 cumulus@switch:~$ sudo ip vrf exec Tenant1 nslookup google.com - 8.8.8.8
 ```
 
-By default, `ping`/`ping6` and `traceroute`/`traceroute6` all use the default VRF. This is done using a mechanism that checks the VRF context of the current shell - which can be seen when you run `ip vrf id` - at the time one of these commands is run. If the shell's VRF context is *mgmt*, then these commands are run in the default VRF context.
+By default, `ping` and `ping6`, and `traceroute` and `traceroute6` all use the default VRF and use a mechanism that checks the VRF context of the current shell, which you can see when you run `ip vrf id` - at the time one of these commands is run. If the shell's VRF context is *mgmt*, then these commands are run in the default VRF context.
 
-`ping` and `traceroute` have additional arguments that you can use to specify an egress interface and/or a source address. In the default VRF, the source interface flag (`ping -I` or `traceroute -i`) specifies the egress interface for the `ping`/`traceroute` operation. However, you can use the source interface flag instead to specify a non-default VRF to use for the command. Doing so causes the routing lookup for the destination address to occur in that VRF.
+`ping` and `traceroute` have additional arguments that you can use to specify an egress interface or a source address. In the default VRF, the source interface flag (`ping -I` or `traceroute -i`) specifies the egress interface for the `ping` or `traceroute` operation. However, you can use the source interface flag instead to specify a non-default VRF to use for the command. Doing so causes the routing lookup for the destination address to occur in that VRF.
 
-With `ping -I`, you can specify the source interface or the source IP address, but you cannot use the flag more than once. Thus, you can choose either an egress interface/VRF or a source IP address. For `traceroute`, you can use `traceroute -s` to specify the source IP address.
+With `ping -I`, you can specify the source interface or the source IP address, but you cannot use the flag more than once. Either choose an egress interface/VRF or a source IP address. For `traceroute`, you can use `traceroute -s` to specify the source IP address.
 
-You gain some additional flexibility if you run `ip vrf exec` in combination with `ping`/`ping6`  or `traceroute`/`traceroute6`, as the VRF context is specified outside of the `ping` and `traceroute` commands. This allows for the most granular control of `ping` and `traceroute`, as you can specify both the VRF and the source interface flag.
+You gain additional flexibility if you run `ip vrf exec` in combination with `ping`/`ping6`  or `traceroute`/`traceroute6`, as the VRF context is specified outside of the `ping` and `traceroute` commands. This allows for the most granular control of `ping` and `traceroute`, as you can specify both the VRF and the source interface flag.
 
 For `ping`, use the following syntax:
 
@@ -94,7 +94,7 @@ cumulus@switch:~$ sudo ip vrf exec Tenant1 traceroute -i swp1 -s 192.0.1.1 8.8.8
 cumulus@switch:~$ sudo ip vrf exec Tenant1 traceroute6 -i swp1 -s 2001:db8::1 2001:4860:4860::8888
 ```
 
-Because the VRF context for `ping` and `traceroute` commands is automatically shifted to the default VRF context, you must use the source interface flag to specify the management VRF. Typically, this is not an issue because there is only a single interface in the management VRF - eth0 - and in most situations only a single IPv4 address or IPv6 global unicast address is assigned to it. You cannot specify both a source interface and a source IP address with `ping -I`.
+The VRF context for `ping` and `traceroute` commands is shifted automatically to the default VRF context, therefore, you must use the source interface flag to specify the management VRF. Typically, there is only a single interface in the management VRF (eth0) and only a single IPv4 address or IPv6 global unicast address assigned to it. You cannot specify both a source interface and a source IP address with `ping -I`.
 
 ## Manipulate the System ARP Cache
 
@@ -137,7 +137,7 @@ cumulus@switch:~$ ip link set arp off dev INTERFACE
 
 ## Generate Traffic Using mz
 
-`{{<exlink url="http://www.netsniff-ng.org" text="mz">}}` (or `mausezahn`) is a fast traffic generator. It can generate a large variety of packet types at high speed. See `man mz` for details.
+`{{<exlink url="http://www.netsniff-ng.org" text="mz">}}` (or `mausezahn`) is a fast traffic generator that can generate a large variety of packet types at high speed. See `man mz` for details.
 
 For example, to send two sets of packets to TCP port 23 and 24, with source IP address 11.0.0.1 and destination IP address 11.0.0.2:
 
@@ -177,9 +177,7 @@ Mausezahn will send 4 frames...
 In Linux, all ACL rules are always counted. To create an ACL rule for counting purposes only, set the rule action to ACCEPT. See the {{<link url="Netfilter-ACLs" text="Netfilter">}} chapter for details on how to use `cl-acltool` to set up iptables-/ip6tables-/ebtables-based ACLs.
 
 {{%notice note%}}
-
-Always place your rules files under `/etc/cumulus/acl/policy.d/`.
-
+Always place your rule files under `/etc/cumulus/acl/policy.d/`.
 {{%/notice%}}
 
 To count all packets going to a Web server:
@@ -209,14 +207,12 @@ cumulus@switch:~$ cat sample_count.rules
 ```
 
 {{%notice warning%}}
-
 The `-p` option clears out all other rules. The `-i` option reinstalls all the rules.
-
 {{%/notice%}}
 
 ### Monitor Control Plane Traffic with tcpdump
 
-You can use `tcpdump` to monitor control plane traffic - traffic sent to and coming from the switch CPUs. `tcpdump` does **not** monitor data plane traffic; use `cl-acltool` instead (see above).
+You can use `tcpdump` to monitor control plane traffic (traffic sent to and coming from the switch CPUs). `tcpdump` does **not** monitor data plane traffic; use `cl-acltool` instead (see above).
 
 For more information on `tcpdump`, read the {{<exlink url="http://www.tcpdump.org/#documentation" text="documentation">}} and the {{<exlink url="http://www.tcpdump.org/manpages/tcpdump.1.html" text="man page">}}.
 

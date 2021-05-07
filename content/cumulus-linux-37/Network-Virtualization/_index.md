@@ -16,7 +16,7 @@ Cumulus Linux can initiate and terminate VTEPs in hardware and supports wire-rat
 
 Cumulus Linux includes the native Linux VXLAN kernel support and integrates with controller-based overlay solutions like {{<link url="Integrating-Hardware-VTEPs-with-VMware-NSX-MH" text="VMware NSX">}} and {{<link url="Integrating-Hardware-VTEPs-with-Midokura-MidoNet-and-OpenStack" text="Midokura MidoNet">}}.
 
-VXLAN is supported only on switches in the {{<exlink url="https://cumulusnetworks.com/hcl/" text="Cumulus Linux HCL">}} using the Broadcom Tomahawk, Trident II, Trident II+ and Trident3 chipsets, as well as the Mellanox Spectrum chipset.
+VXLAN is supported only on switches in the {{<exlink url="https://www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list//" text="Cumulus Linux HCL">}} using the Broadcom Tomahawk, Trident II, Trident II+ and Trident3 chipsets, as well as the Mellanox Spectrum chipset.
 
 {{%notice note%}}
 

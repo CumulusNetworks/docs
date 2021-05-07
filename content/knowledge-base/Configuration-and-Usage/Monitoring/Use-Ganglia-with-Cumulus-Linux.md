@@ -11,7 +11,7 @@ Since Cumulus Linux is Linux, Ganglia also works great to monitor switches as we
 
 ## Requirements
 
-- A {{<exlink url="https://cumulusnetworks.com/hcl" text="Cumulus Linux switch">}}
+- A {{<exlink url="https://www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="Cumulus Linux switch">}}
 - A host running {{<exlink url="http://httpd.apache.org/" text="apache">}} on the same network. For the example shown we used Debian wheezy.
 - Access to the {{<exlink url="http://repo3.cumulusnetworks.com/repo/pool/" text="Cumulus Linux repo">}} from the network where the host and switch reside.
 

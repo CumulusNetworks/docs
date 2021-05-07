@@ -94,12 +94,6 @@ This is an information leak in algorithm negotiation that can allow man-in-the-m
 <td></td>
 </tr>
 <tr>
-<td>2634464</td>
-<td>In an EVPN multihoming configuration, when you bring down a local bond on the switch, MAC address from the bond still point to a local interface and is advertised to EVPN.</td>
-<td>4.2.1-4.3.0</td>
-<td></td>
-</tr>
-<tr>
 <td>2633062</td>
 <td>The following vulnerability affects the libgstreamer-plugins-base1.0-0 package.  There is no CVE yet; the Debian advisory number is DSA-4903-1.
 Multiple vulnerabilities were discovered in plugins for the GStreamer media framework, which may result in denial of service or potentially the execution of arbitrary code if a malformed media file is opened.
@@ -109,10 +103,10 @@ Fixed: 1.14.4-2+deb10u1</td>
 <td></td>
 </tr>
 <tr>
-<td>2628514</td>
+<td>2628515</td>
 <td>CVE-2020-12695: hostapd does not properly handle UPnP subscribe messages under certain conditions, allowing an attacker to cause a denial of service.
-Vulnerable: &lt;= 2.8.0-cl4.3.1u1
-Fixed: 2.8.0-cl4.3.1u2</td>
+Vulnerable: &lt;= 2.8.0-cl3.7.15u2
+Fixed: 2.8.0-cl3.7.15u3</td>
 <td>3.7.14-3.7.14.2, 4.3.0</td>
 <td></td>
 </tr>
@@ -390,12 +384,6 @@ ERROR: Command not found
 <td>2556081</td>
 <td>You cannot set the time zone can with NCLU commands.</td>
 <td>4.1.1-4.3.0</td>
-<td></td>
-</tr>
-<tr>
-<td>2556064</td>
-<td>EAP-TLS fail on wired connections when the reachability to the RADIUS server does not use the eth0 (mgmt) VRF interface.</td>
-<td>4.2.1-4.3.0</td>
 <td></td>
 </tr>
 <tr>
@@ -1832,7 +1820,8 @@ Fixed: 4.11.4+37-g3263f257ca-1</td>
 </tr>
 <tr>
 <td>2553748</td>
-<td>On switches with the Spectrum ASIC, the IPv6 default route is present in the kernel but missing in hardware.</td>
+<td>On switches with the Spectrum ASIC, the IPv6 default route might be present in the kernel but missing in 
+hardware when IPv6 RAs are received on SVIs configured with {{ip-forward off}}.</td>
 <td>3.7.11-4.2.1</td>
 </tr>
 <tr>

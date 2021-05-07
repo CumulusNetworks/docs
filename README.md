@@ -1,6 +1,6 @@
 # NVIDIA Networking Documentation
 
-NVIDIA This the source repository for the Cumulus Networks Documentation, hosted at docs.cumulusnetworks.com.
+NVIDIA This the source repository for the NVIDIA Ethernet Software Documentation, hosted at docs.nvidia.com/networking-ethernet-software.
 This site uses the static site generator [Hugo](https://gohugo.io/documentation/).
 
 ## Installing the Documentation and Running the Local Server
@@ -26,7 +26,7 @@ Hugo Static Site Generator v0.65.3/extended darwin/amd64 BuildDate: unknown
 
 ## Contributing to the Documentation
 
-This repository contains the documentation hosted at docs.cumulusnetworks.com. 
+This repository contains the documentation hosted at docs.nvidia.com/networking-ethernet-software. 
 
 If you would like to contribute to the site, please fork and submit a pull request. Commit your changes to the `stage` branch.
 
@@ -56,7 +56,7 @@ The site uses the Hugo Book theme, built by [alex-shpak](https://github.com/alex
 
 
 ## Resources
-  - [Cumulus Networks Documentation](https://docs.cumulusnetworks.com)
+  - [NVIDIA Ethernet Software Documentation](https://docs.nvidia.com/networking-ethernet-software/)
   - [Content Organization with Hugo](https://gohugo.io/content-management/organization/)
   - [hugo-theme-book](https://github.com/alex-shpak/hugo-book)
   - [hugo-theme-dockdock](https://github.com/vjeantet/hugo-theme-docdock)<!-- vale off -->

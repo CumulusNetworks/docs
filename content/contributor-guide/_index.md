@@ -87,4 +87,4 @@ For answers to common questions about this code of conduct, read the
 
 ## Documentation License
 
-The Cumulus Networks user documentation is [licensed](/license/) under the Creative Commons [Attribution-NonCommercial-ShareAlike 4.0 International](http://github.com/idleberg/Creative-Commons-Markdown/blob/master/4.0/by-nc-sa.markdown) license.
+The Cumulus Networks user documentation is {{<kb_link text="licensed" url="license" >}} under the Creative Commons [Attribution-NonCommercial-ShareAlike 4.0 International](http://github.com/idleberg/Creative-Commons-Markdown/blob/master/4.0/by-nc-sa.markdown) license.

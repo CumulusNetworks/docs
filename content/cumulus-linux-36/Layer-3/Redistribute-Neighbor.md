@@ -273,7 +273,7 @@ This feature adds each ARP entry as a /32 host route into the routing
 table of all switches within a summarization domain. Take care to keep
 the number of hosts minus fabric routes under the TCAM size of the
 switch. Review the [Cumulus Networks
-datasheets](http://cumulusnetworks.com/hcl/) for up to date scalability
+datasheets](https://www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/) for up to date scalability
 limits of your chosen hardware platforms. If in doubt, contact Cumulus
 Networks support or your Cumulus Networks CSE; they will be happy to
 help.

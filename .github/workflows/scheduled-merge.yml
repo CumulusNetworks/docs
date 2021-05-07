@@ -19,8 +19,8 @@ jobs:
       with:
         source_branch: 'stage'
         target_branch: 'master'
-        user_name: Cumulus Docs Auto Merge 
-        user_email: docs@cumulusnetworks.com 
+        user_name: Cumulus Docs Auto Merge
+        user_email: ethernet.docs@nvidia.com
 
       env:
         GITHUB_TOKEN: ${{ secrets.PLUMBIS_GITHUB_TOKEN }}

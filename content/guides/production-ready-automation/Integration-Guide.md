@@ -384,6 +384,3 @@ The following steps provide a high level overview of how to implement and enable
 8. Populate the CI `scripts` folder in your project with the scripts called by the `.gitlab-ci.yml` file jobs (in the `script:` block).
 9. Resume GitLab Runner on the project and start testing your CI pipeline by making commits and pushing to your project.
 
-## Additional Information
-
-Read this [blog post](https://cumulusnetworks.com/blog/production-ready-automation/).

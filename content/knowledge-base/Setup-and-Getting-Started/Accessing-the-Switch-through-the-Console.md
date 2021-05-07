@@ -5,7 +5,7 @@ weight: 101
 toc: 3
 ---
 
-Any switch on the Cumulus Networks {{<exlink url="https://cumulusnetworks.com/support/hcl/" text="HCL">}} can be accessed via the console. The standard command to use for console access depends on your host operating system.
+Any switch on the Cumulus Networks {{<exlink url="www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="HCL">}} can be accessed via the console. The standard command to use for console access depends on your host operating system.
 
 For MacOS:
 

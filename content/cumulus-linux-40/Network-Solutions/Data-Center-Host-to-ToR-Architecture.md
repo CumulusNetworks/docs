@@ -247,7 +247,7 @@ iface eth1 inet static
 
 | FHR (First Hop Redundancy) | More Information |
 | ---------------------------|------------------|
-|<ul><li>Equal cost route installed on server, host, or hypervisor to both ToRs to load balance evenly.</li><li>For host/VM/container mobility, use the same default route on all hosts (such as x.x.x.1) but do not distribute or advertise the .1 on the ToR into the fabric. This allows the VM to use the same gateway no matter to which pair of leafs it is cabled.| {{<exlink url="https://cumulusnetworks.com/blog/introducing-rdnbr" text="Cumulus Networks blog post introducing redistribute neighbor">}}|
+|<ul><li>Equal cost route installed on server, host, or hypervisor to both ToRs to load balance evenly.</li><li>For host/VM/container mobility, use the same default route on all hosts (such as x.x.x.1) but do not distribute or advertise the .1 on the ToR into the fabric. This allows the VM to use the same gateway no matter to which pair of leafs it is cabled.| |
 
 ## Layer 3 - Routing on the Host
 

@@ -19,12 +19,7 @@
 <!-- Fonts for the theme -->
 <link href="https://fonts.googleapis.com/css?family=Oxygen|Oxygen+Mono:300,400,700" rel="stylesheet">
 
-<<<<<<< HEAD
-{{ $styles := resources.Get "book.scss" | resources.ExecuteAsTemplate "book.scss" . | toCSS }}
-
-=======
 {{ $styles := resources.Get "book.scss" | resources.ExecuteAsTemplate "book.scss" . | toCSS | minify | fingerprint }}
->>>>>>> origin/stage
 <link rel="stylesheet" href="{{ $styles.Permalink }}">
 
 <!-- The PDF page has a custom CSS sheet to control PDF output formatting -->
@@ -34,11 +29,6 @@
 
 <!-- Favicon -->
 <link rel="icon" href="{{ "icons/favicon.png" | absURL }}" type="image/x-icon">
-
-<!-- RSS -->
-{{ with .OutputFormats.Get "rss" -}}
-    {{ printf `<link rel="%s" type="%s" href="%s" title="%s" />` .Rel .MediaType.Type .Permalink $.Site.Title | safeHTML }}
-{{ end -}}
 
 {{ "<!--" | safeHTML }}
     Made with Book Theme

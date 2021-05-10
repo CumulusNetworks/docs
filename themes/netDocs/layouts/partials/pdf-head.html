@@ -67,6 +67,7 @@
 
             elems[i]["href"] = "#" + last_section;
         }
+        urls_finished = true;
     }
 
     function expand_tabs() {
@@ -89,7 +90,7 @@
         tabs_finished = true;
     }
 
-    function docraptorJavaScriptFinished(){
+    docraptorJavaScriptFinished = function(){
         return tabs_finished && urls_finished;
     }
 

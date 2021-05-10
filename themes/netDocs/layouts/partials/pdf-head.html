@@ -22,8 +22,14 @@
 
             path_parts = path.split("/");
 
+            if(path_parts[3] == "networking-ethernet-software"){
+                section_spot = 4;
+            } else {
+                section_spot = 3;
+            }
+
             // Does the URL have our same product (i.e., /cumulus-linux-43/)? If not, skip this link.
-            if(path_parts[3] != "{{.Section}}"){
+            if(path_parts[section_spot] != "{{.Section}}"){
                 if(debug){
                     console.log(path + " is not part of {{.Section}}");
                 }

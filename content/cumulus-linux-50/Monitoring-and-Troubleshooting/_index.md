@@ -17,9 +17,7 @@ The default serial console baud rate is 115200, which is the baud rate {{<exlink
 On x86 switches, you configure serial console baud rate by editing `grub`.
 
 {{%notice warning%}}
-
 Incorrect configuration settings in `grub` can cause the switch to be inaccessible via the console. Review `grub` changes carefully before you implement them.
-
 {{%/notice%}}
 
 The valid values for the baud rate are:
@@ -152,12 +150,6 @@ cumulus@switch:~$ cat /etc/rsyslog.d/11-remotesyslog.conf
 *.*   @192.168.0.254:514   # UDP
 ```
 
-{{%notice note%}}
-
-NCLU cannot configure a remote syslog if management VRF is enabled on the switch. Refer to {{<link url="#write-to-syslog-with-management-vrf-enabled">}} below.
-
-{{%/notice%}}
-
 ### Log Technical Details
 
 Logging on Cumulus Linux is done with {{<exlink url="http://www.rsyslog.com/" text="rsyslog">}}. `rsyslog` provides both local logging to the `syslog` file as well as the ability to export logs to an external `syslog` server. High precision timestamps are enabled for all `rsyslog` log files; for example:
@@ -169,9 +161,7 @@ Logging on Cumulus Linux is done with {{<exlink url="http://www.rsyslog.com/" te
 There are applications in Cumulus Linux that can write directly to a log file without going through `rsyslog`. These files are typically located in `/var/log/`.
 
 {{%notice note%}}
-
 All Cumulus Linux rules are stored in separate files in `/etc/rsyslog.d/`, which are called at the end of the `GLOBAL DIRECTIVES` section of `/etc/rsyslog.conf`. As a result, the `RULES` section at the end of `rsyslog.conf` is ignored because the messages have to be processed by the rules in `/etc/rsyslog.d` and then dropped by the last line in `/etc/rsyslog.d/99-syslog.conf`.
-
 {{%/notice%}}
 
 ### Local Logging
@@ -208,14 +198,11 @@ By default, not all log messages are sent to a remote server. To send other log 
    This configuration sends log messages to a remote `syslog` server for the following processes: `clagd`, `switchd`, `ptmd`, `rdnbrd`, `netd` and `syslog`. It follows the same syntax as the `/var/log/syslog` file, where *@* indicates UDP, *192.168.12* is the IP address of the `syslog` server, and *514* is the UDP port.
 
    {{%notice note%}}
-
 - For TCP-based syslog, use two @@ before the IP address *@@192.168.1.2:514*.
 - Running `syslog` over TCP places a burden on the switch to queue packets in the `syslog` buffer. This may cause detrimental effects if the remote `syslog` server becomes unavailable.
 - The numbering of the files in `/etc/rsyslog.d/` dictates how the rules are installed into `rsyslog.d`. Lower numbered rules are processed first, and `rsyslog` processing *terminates* with the `stop` keyword. For example, the `rsyslog` configuration for FRR is stored in the `45-frr.conf` file with an explicit `stop` at the bottom of the file. FRR messages are logged to the `/var/log/frr/frr.log` file on the local disk only (these messages are not sent to a remote server using the default configuration). To log FRR messages remotely in addition to writing FRR messages to the local disk, rename the `99-syslog.conf` file to `11-remotesyslog.conf`. FRR messages are first processed by the `11-remotesyslog.conf` rule (transmit to remote server), then continue to be processed by the `45-frr.conf` file (write to local disk in the `/var/log/frr/frr.log` file).
-
 - Do not use the `imfile` module with any file written by `rsyslogd`.
-
-   {{%/notice%}}
+{{%/notice%}}
 
 2. Restart `rsyslog`.
 

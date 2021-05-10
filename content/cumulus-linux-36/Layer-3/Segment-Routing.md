@@ -21,7 +21,7 @@ for tenant isolation.
 {{%notice note%}}
 
 Segment routing is an early access feature in Cumulus Linux and is supported only on 
-[Mellanox switches](https://cumulusnetworks.com/products/hardware-compatibility-list/?Brand=mellanox).
+[Mellanox switches](https://www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/).
 
 {{%/notice%}}
 

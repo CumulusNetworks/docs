@@ -19,9 +19,7 @@ ExecStart=/sbin/ifup -av
 ```
 
 {{%notice note%}}
-
 When you run the `systemctl edit` command, you do *not* need to run `systemctl daemon-reload`.
-
 {{%/notice%}}
 
 To disable logging, either:
@@ -73,9 +71,7 @@ iface bond0
 ```
 
 {{%notice note%}}
-
 `ifquery --check` is an experimental feature.
-
 {{%/notice%}}
 
 Use `ifquery --running` to print the running state of interfaces in the `interfaces` file format:

@@ -175,7 +175,7 @@ cumulus@switch:~$ cl config apply
 You can configure the DiffServ code point (DSCP) value for all PTP IPv4 packets originated locally. You can set a value between 0 and 63.
 
 ```
-cumulus@switch:~$ NEED COMMAND
+cumulus@switch:~$ cl set service ptp 1 ipv4-dscp 22
 cumulus@switch:~$ cl config apply
 ```
 
@@ -280,7 +280,7 @@ monitor
 ...
 ```
 
-To see the list of CUE show commands for PTP, run `cl list-commands show service ptp`:
+To see the list of CUE show commands for PTP, run `cl list-commands service ptp`:
 
 ```
 cumulus@leaf01:mgmt:~$ cl list-commands service ptp

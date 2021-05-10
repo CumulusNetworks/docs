@@ -8,13 +8,14 @@
       <nav>
         <ul class="navRoot">
           <li class="navSection logo">
-            <div class="rootLink"><a href={{.Site.Params.BaseURL}}><span>Networking Docs</span></a></div>
+            <div class="rootLink"><a href={{.Site.BaseURL}}><span>Networking Docs</span></a></div>
           </li>
           <li class="navSection primary">
-            <a class="rootLink" href="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/">NVIDIA Cumulus Linux</a>
-            <a class="rootLink" href="https://docs.nvidia.com/networking-ethernet-software/cumulus-netq/">NVIDIA NetQ</a>
-            <a class="rootLink" href="https://docs.nvidia.com/networking-ethernet-software/cumulus-vx/">NVIDIA Cumulus VX</a>
-            <a class="rootLink" href="https://docs.nvidia.com/networking-ethernet-software/sonic-202012/">SONiC</a>
+            <a class="rootLink" href={{ .Site.Params.cl_latest | absURL }}>NVIDIA Cumulus Linux</a>
+              <a class="rootLink" href={{ .Site.Params.netq_latest | absURL }}>NVIDIA NetQ</a>
+              <a class="rootLink" href={{ "cumulus-vx" | absURL }}>NVIDIA Cumulus VX</a>
+              <a class="rootLink" href={{ .Site.Params.sonic_latest | absURL }}>SONiC</a>
+              <a class="rootLink" href={{ "knowledge-base" | absURL }}>Knowledge Base</a>
           </li>
           <li class="navSection mobile">
             <div class="burger-menu">
@@ -28,9 +29,10 @@
     </div>
     <div class="mobileMenu">
       <ul>
-        <li><a href="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/">NVIDIA Cumulus Linux</a></li>
-        <li><a href="https://docs.nvidia.com/networking-ethernet-software/cumulus-netq/">NVIDIA Cumulus NetQ</a></li>
-        <li><a href="https://docs.nvidia.com/networking-ethernet-software/cumulus-vx/">NVIDIA Cumulus VX</a></li>
-        <li><a href="https://docs.nvidia.com/networking-ethernet-software/sonic-202012/">SONiC</a></li>
+          <li><a href={{ .Site.Params.cl_latest | absURL }}>NVIDIA Cumulus Linux</a></li>
+          <li><a href={{ .Site.Params.netq_latest | absURL }}>NVIDIA NetQ</a></li>
+          <li><a href={{ "cumulus-vx" | absURL }}>NVIDIA Cumulus VX</a></li>
+          <li><a href={{ .Site.Params.sonic_latest | absURL }}>SONiC</a></li>
+          <li><a href={{ "knowledge-base" | absURL }}>Knowledge Base</a></li>
     </div>
 </div>

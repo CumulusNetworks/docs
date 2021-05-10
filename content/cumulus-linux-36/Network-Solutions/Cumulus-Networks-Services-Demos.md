@@ -57,7 +57,7 @@ up the entire reference topology on a laptop or server are on the
 
 #### Hardware
 
-Any switch from the [hardware compatibility list](https://cumulusnetworks.com/hcl)
+Any switch from the [hardware compatibility list](https://www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/)
 is compatible with the topology as long as you follow the interface
 count from the table above. Of course, in your own production
 environment, you don't have to use exactly the same devices and cabling

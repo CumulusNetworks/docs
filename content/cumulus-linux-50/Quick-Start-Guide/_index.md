@@ -109,7 +109,7 @@ To change the hostname:
 The following example sets the hostname to leaf01:
 
 ```
-cumulus@switch:~$ cl set system hostname leaf01
+cumulus@switch:~$ cl set platform hostname value leaf01
 cumulus@switch:~$ cl config apply
 ```
 
@@ -324,10 +324,10 @@ cumulus@switch:~$ cl set interface swp1 bridge domain br_default
 cumulus@switch:~$ cl config apply
 ```
 
-You can add a range of ports in one command. For example, to add swp1 through swp10, swp12, and swp14 through swp20 to the bridge:
+You can add a range of ports in one command. For example, to add swp1 through swp3, swp10, and swp14 through swp20 to the bridge:
 
 ```
-cumulus@switch:~$ cl set interface swp1-10,swp12,swp14-20 bridge domain br_default
+cumulus@switch:~$ cl set interface swp1-3,swp6,swp14-20 bridge domain br_default
 cumulus@switch:~$ cl config apply
 ```
 

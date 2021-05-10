@@ -5,9 +5,9 @@ weight: 332
 toc: 4
 ---
 
-The Cumulus Networks {{<exlink url="https://cumulusnetworks.com/hcl" text="Cumulus Linux Hardware Compatibility List">}} (HCL) provides a list of pluggables that are recommended for use with systems running Cumulus Linux. The list includes:
+The Cumulus Networks {{<exlink url="https://www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="Cumulus Linux Hardware Compatibility List">}} (HCL) provides a list of pluggables that are recommended for use with systems running Cumulus Linux. The list includes:
 
-- All {{<exlink url="https:https://www.nvidia.com/en-us/networking/ethernet-switching/spectrum-sn4000/" text="Cumulus Express">}} components
+- All {{<exlink url="https://www.nvidia.com/en-us/networking/ethernet-switching/spectrum-sn4000/" text="Cumulus Express">}} components
 - Pluggables qualified by Cumulus Networks Engineering
 
 The HCL provides a list of recommended pluggables for each platform. That list identifies the Cumulus Linux versions that support each recommended pluggable. The HCL includes pluggables qualified by Cumulus Networks Engineering.

@@ -42,7 +42,13 @@ You may need to install the `snmptrapd` Debian package before you can configure 
 The following configuration defines the trap receiver IP address where SNMPv1 and SNMPv2c traps are sent. For SNMP versions 1 and 2c, you must set at least one SNMP trap destination IP address; multiple destinations can exist. Removing all settings disables SNMP traps. The default version is 2c, unless otherwise configured. You must include a VRF name with the IP address to force traps to be sent in a non-default VRF table.
 
 {{< tabs "trap-destination" >}}
+{{< tab "CUE Commands" >}}
 
+```
+cumulus@switch:~$ NEED COMMAND
+```
+
+{{< /tab >}}
 {{< tab "NCLU Commands" >}}
 
 ```
@@ -63,7 +69,6 @@ trapsink 127.0.0.1@rocket mymanagementvrfpassword
 ```
 
 {{< /tab >}}
-
 {{< tab "Linux Commands" >}}
 
 To define the IP address of the notification (or trap) receiver for either SNMPv1 traps or SNMPv2 traps, use the `trapsink` (for SNMPv1) `trap2sink` (for SNMPv2c). Specifying more than one sink directive generates multiple copies of each notification (in the appropriate formats). You must configure a trap server to receive and decode these trap messages (for example, `snmptrapd`). You can configure the address of the trap receiver with a different protocol and port but this is most often left out. The defaults are to use the well-known UDP packets and port 162. For example to use the localhost as the trap receiver:
@@ -88,7 +93,6 @@ cumulus@switch:~$ sudo systemctl restart snmpd.service
 ```
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 ### SNMPv3 Trap and Inform Messages
@@ -96,7 +100,13 @@ cumulus@switch:~$ sudo systemctl restart snmpd.service
 The SNMP trap receiving daemon must have usernames, authentication passwords, and encryption passwords created with its own EngineID. You must configure this trap server EngineID in the switch `snmpd` daemon sending the trap and inform messages. You specify the level of authentication and encryption for SNMPv3 trap and inform messages with `-l` (`NoauthNoPriv, authNoPriv,` or `authPriv`).
 
 {{< tabs "traps-informs" >}}
+{{< tab "CUE Commands" >}}
 
+```
+cumulus@switch:~$ NEED COMMAND
+```
+
+{{< /tab >}}
 {{< tab "NCLU Commands" >}}
 
 For inform messages, the engine ID/username creates the username on the receiving trap daemon server. The trap receiver sends the response for the trap message using its own engine ID/username. In practice, the trap daemon generates the usernames with its own engine ID and after these are created, the SNMP server (or agent) needs to use these engine ID/usernames when configuring the inform messages so that they are correctly authenticated and the correct response is sent to the `snmpd` agent that sent it.
@@ -109,7 +119,6 @@ cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
-
 {{< tab "Linux Commands" >}}
 
 You can configure SNMPv3 trap and inform messages with the `trapsess` configuration command. Inform messages are traps that are acknowledged by the receiving trap daemon. You configure inform messages with the `-Ci` parameter. You must specify the EngineID of the receiving trap server with the `-e` field.
@@ -123,9 +132,7 @@ trapsess -Ci -e 0x80001f888070939b14a514da5a00000000 -v3 -l authPriv -u myv3user
 ```
 
 {{%notice note%}}
-
 You can define multiple trap receivers and use the domain name instead of an IP address in the `trap2sink` directive.
-
 {{%/notice%}}
 
 Restart the `snmpd` service to apply the changes:
@@ -135,7 +142,6 @@ cumulus@switch:~$ sudo systemctl restart snmpd.service
 ```
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 ### Source Traps from a Different Source IP Address
@@ -145,15 +151,7 @@ When client SNMP programs (such as `snmpget`, `snmpwalk`, or `snmptrap`) are run
 For more information about `clientaddr`, read the `snmpd.conf` {{<exlink url="http://www.net-snmp.org/docs/man/snmpd.conf.html" text="man page">}}.
 
 {{%notice note%}}
-
 `snmptrap`, `snmpget`, `snmpwalk` and `snmpd` itself must be able to bind to this address.
-
-{{%/notice%}}
-
-{{%notice note%}}
-
-There is no NCLU command for this configuration.
-
 {{%/notice%}}
 
 Edit the `/etc/snmp/snmpd.conf` file and add the `clientaddr` option. In the following example, spine01 is used as the client (IP address 192.168.200.21).
@@ -203,10 +201,8 @@ monitor  -r 10  -o entPhysicalName  "Sensor Status Failure"  entPhySensorOperSta
 ```
 
    {{%notice note%}}
-
 The `entPhySensorOperStatus` integer can be found by walking the `entPhysicalName` table.
-
-   {{%/notice%}}
+{{%/notice%}}
 
 To get all sensor information, run `snmpwalk` on the `entPhysicalName` table. For example:
 
@@ -238,15 +234,7 @@ cumulus@switch:~$ sudo systemctl restart snmpd.service
 ```
 
 {{%notice note%}}
-
-There is no NCLU command for monitoring hardware.
-
-{{%/notice%}}
-
-{{%notice note%}}
-
-In earlier versions of Cumulus Linux, you could use the LM-SENSORS MIB to monitor temperature, but that MIB has been deprecated.
-
+The LM-SENSORS MIB to monitor temperature has been deprecated.
 {{%/notice%}}
 
 ### Configure Link Up/Down Notifications
@@ -254,13 +242,17 @@ In earlier versions of Cumulus Linux, you could use the LM-SENSORS MIB to monito
 The `linkUpDownNotifications` directive is used to configure link up/down notifications when the operational status of the link changes.
 
 {{%notice note%}}
-
 The default frequency for checking link up/down is 60 seconds. You can change the default frequency using the   directly instead of the `linkUpDownNotifications` directive. See `man snmpd.conf` for details.
-
 {{%/notice%}}
 
 {{< tabs "traps-linkupdown" >}}
+{{< tab "CUE Commands" >}}
 
+```
+cumulus@switch:~$ NEED COMMAND
+```
+
+{{< /tab >}}
 {{< tab "NCLU Commands" >}}
 
 To enable notifications for interface link-up events to be sent to SNMP trap destinations every 15 seconds, run:
@@ -280,7 +272,6 @@ cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
-
 {{< tab "Linux Commands" >}}
 
 Edit the `/etc/snmp/snmpd.conf` file and configure the trap settings.
@@ -306,7 +297,6 @@ cumulus@switch:~$ sudo systemctl restart snmpd.service
 ```
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 ### Configure Free Memory Notifications
@@ -326,18 +316,18 @@ Restart the `snmpd` service to apply the changes.
 cumulus@switch:~$ sudo systemctl restart snmpd.service
 ```
 
-{{%notice note%}}
-
-There is no NCLU command for monitoring free memory.
-
-{{%/notice%}}
-
 ### Configure Processor Load Notifications
 
 To enable a trap when the CPU load average exceeds a configured threshold, run the following commands. You can only use integers or floating point numbers.
 
 {{< tabs "traps-cpuload" >}}
+{{< tab "CUE Commands" >}}
 
+```
+cumulus@switch:~$ NEED COMMAND
+```
+
+{{< /tab >}}
 {{< tab "NCLU Commands" >}}
 
 ```
@@ -347,7 +337,6 @@ cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
-
 {{< tab "Linux Commands" >}}
 
 Edit the `/etc/snmp/snmpd.conf` file and configure the CPU load settings.
@@ -368,7 +357,6 @@ cumulus@switch:~$ sudo systemctl restart snmpd.service
 ```
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 ### Configure Disk Utilization Notifications
@@ -389,18 +377,18 @@ Restart the `snmpd` service to apply the changes.
 cumulus@switch:~$ sudo systemctl restart snmpd.service
 ```
 
-{{%notice note%}}
-
-There is no NCLU command for monitoring disk utilization.
-
-{{%/notice%}}
-
 ### Configure Authentication Notifications
 
 To enable SNMP trap notifications to be sent for every SNMP authentication failure, run the following commands.
 
 {{< tabs "traps-authfailurre" >}}
+{{< tab "CUE Commands" >}}
 
+```
+cumulus@switch:~$ NEED COMMAND
+```
+
+{{< /tab >}}
 {{< tab "NCLU Commands" >}}
 
 ```
@@ -410,7 +398,6 @@ cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
-
 {{< tab "Linux Commands" >}}
 
 To generate authentication failure traps, use the `authtrapenable` directive:
@@ -429,7 +416,6 @@ cumulus@switch:~$ sudo systemctl restart snmpd.service
 ```
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 ### Monitor UCD-SNMP-MIB Tables
@@ -517,10 +503,10 @@ Typically, you configure all three &mdash; *log,execute,net* &mdash; to cover an
 `authCommunity TYPES COMMUNITY [SOURCE [OID | -v VIEW ]]` authorizes traps and SNMPv2c INFORM requests with the specified community to trigger the types of processing listed. By default, this allows any notification using this community to be processed. You can use the SOURCE field to specify that the configuration only applies to notifications received from particular sources. For more information about specific configuration options within the file, look at the {{<exlink url="http://www.net-snmp.org/docs/man/snmptrapd.conf.html" text="snmptrapd.conf(5) man page">}} with the `man 5 snmptrapd.conf` command.
 
 {{%notice note%}}
+You might need to install the `snmptrapd` Debian package before you can configure incoming traps:
 
-You may need to install the `snmptrapd` Debian package before you can configure incoming traps.
-
-    cumulus@switch:~$ sudo apt-get install snmptrapd
+```
+cumulus@switch:~$ sudo apt-get install snmptrapd
+```
 
 {{%/notice%}}
-

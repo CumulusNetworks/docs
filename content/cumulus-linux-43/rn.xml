@@ -81,6 +81,12 @@
 <td></td>
 </tr>
 <tr>
+<td>2648587</td>
+<td>The received PVST BPDU for a VLAN is flooded even though the ingress port doesn't have the VLAN tagged.</td>
+<td>3.7.8-3.7.14.2, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
 <td>2638043</td>
 <td>OpenSSH is vulnerable to CVE-2020-14145, as described in https://www.fzi.de/fileadmin/user_upload/2020-06-26-FSA-2020-2.pdf.  
 This is an information leak in algorithm negotiation that can allow man-in-the-middle attacks on initial connection attempts without a previously stored server host key on the client. If desired, mitigation using UpdateHostKeys and HostKeyAlgorithms is also given in that paper.</td>
@@ -103,10 +109,10 @@ Fixed: 1.14.4-2+deb10u1</td>
 <td></td>
 </tr>
 <tr>
-<td>2628514</td>
+<td>2628515</td>
 <td>CVE-2020-12695: hostapd does not properly handle UPnP subscribe messages under certain conditions, allowing an attacker to cause a denial of service.
-Vulnerable: &lt;= 2.8.0-cl4.3.1u1
-Fixed: 2.8.0-cl4.3.1u2</td>
+Vulnerable: &lt;= 2.8.0-cl3.7.15u2
+Fixed: 2.8.0-cl3.7.15u3</td>
 <td>3.7.14-3.7.14.2, 4.3.0</td>
 <td></td>
 </tr>
@@ -384,12 +390,6 @@ ERROR: Command not found
 <td>2556081</td>
 <td>You cannot set the time zone can with NCLU commands.</td>
 <td>4.1.1-4.3.0</td>
-<td></td>
-</tr>
-<tr>
-<td>2556064</td>
-<td>EAP-TLS fail on wired connections when the reachability to the RADIUS server does not use the eth0 (mgmt) VRF interface.</td>
-<td>4.2.1-4.3.0</td>
 <td></td>
 </tr>
 <tr>
@@ -723,12 +723,6 @@ To work around this issue, do not enslave the subinterface of a VXLAN layer 3 up
 <td>2550704</td>
 <td>On the Mellanox SN3420 switch, 25G SR optics only link up in force mode.</td>
 <td>4.3.0</td>
-<td></td>
-</tr>
-<tr>
-<td>2550601</td>
-<td>The received PVST BPDU for a VLAN is flooded even though the ingress port doesn't have the VLAN tagged.</td>
-<td>3.7.8-3.7.14.2, 4.0.0-4.3.0</td>
 <td></td>
 </tr>
 <tr>
@@ -1826,7 +1820,8 @@ Fixed: 4.11.4+37-g3263f257ca-1</td>
 </tr>
 <tr>
 <td>2553748</td>
-<td>On switches with the Spectrum ASIC, the IPv6 default route is present in the kernel but missing in hardware.</td>
+<td>On switches with the Spectrum ASIC, the IPv6 default route might be present in the kernel but missing in 
+hardware when IPv6 RAs are received on SVIs configured with {{ip-forward off}}.</td>
 <td>3.7.11-4.2.1</td>
 </tr>
 <tr>

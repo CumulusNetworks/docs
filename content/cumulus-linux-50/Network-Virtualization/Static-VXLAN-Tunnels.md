@@ -15,7 +15,7 @@ Cumulus Linux supports *more* than one VXLAN ID per VLAN-aware bridge. However, 
 ## Configure Static VXLAN Tunnels
 
 To configure static VXLAN tunnels, you create VXLAN devices. Cumulus Linux supports:
-- *Single VXLAN devices*, where all VXLAN tunnels with the same settings (local tunnel IP address and VXLAN remote IP addresses) can share the same VXLAN device and you only need to add the single VXLAN device to the bridge.
+- *Single VXLAN devices*, where all VXLAN tunnels with the same settings (local tunnel IP address and VXLAN remote IP addresses) can share the same VXLAN device and you only need to add the single VXLAN device to the bridge. This is the default setting.
 - *Traditional VXLAN devices*, where you configure unique VXLAN devices and add each device to the bridge.
 
 The following topology is used in the configuration examples. Each IP address corresponds to the loopback address of the switch.
@@ -39,7 +39,14 @@ The following single VXLAN device example configuration:
 {{< tab "leaf01 ">}}
 
 ```
-cumulus@leaf01:~$ NEED COMMAND
+cumulus@leaf01:~$ cl set interface lo ip address 10.10.10.1/32
+cumulus@leaf01:~$ cl set bridge domain br_default vlan 10 vni 10
+cumulus@leaf01:~$ cl set bridge domain br_default vlan 20 vni 20
+cumulus@leaf01:~$ cl set nve vxlan mac-learning on
+cumulus@leaf01:~$ cl set nve vxlan source address 10.10.10.1
+cumulus@leaf01:~$ cl set nve vxlan flooding head-end-replication 10.10.10.2,10.10.10.3,10.10.10.4,
+cumulus@leaf04:~$ cl set interface swp1 bridge domain br_default access 10
+cumulus@leaf04:~$ cl set interface swp2 bridge domain br_default access 20
 cumulus@leaf01:~$ cl config apply
 ```
 
@@ -47,7 +54,14 @@ cumulus@leaf01:~$ cl config apply
 {{< tab "leaf02 ">}}
 
 ```
-cumulus@leaf02:~$ NEED COMMAND
+cumulus@leaf02:~$ cl set interface lo ip address 10.10.10.2/32
+cumulus@leaf02:~$ cl set bridge domain br_default vlan 10 vni 10
+cumulus@leaf02:~$ cl set bridge domain br_default vlan 20 vni 20
+cumulus@leaf01:~$ cl set nve vxlan mac-learning on
+cumulus@leaf02:~$ cl set nve vxlan source address 10.10.10.2
+cumulus@leaf01:~$ cl set nve vxlan flooding head-end-replication 10.10.10.1,10.10.10.3,10.10.10.4,
+cumulus@leaf04:~$ cl set interface swp1 bridge domain br_default access 10
+cumulus@leaf04:~$ cl set interface swp2 bridge domain br_default access 20
 cumulus@leaf02:~$ cl config apply
 ```
 
@@ -55,7 +69,14 @@ cumulus@leaf02:~$ cl config apply
 {{< tab "leaf03 ">}}
 
 ```
-cumulus@leaf03:~$ NEED COMMAND
+cumulus@leaf03:~$ cl set interface lo ip address 10.10.10.3/32
+cumulus@leaf03:~$ cl set bridge domain br_default vlan 10 vni 10
+cumulus@leaf03:~$ cl set bridge domain br_default vlan 20 vni 20
+cumulus@leaf01:~$ cl set nve vxlan mac-learning on
+cumulus@leaf03:~$ cl set nve vxlan source address 10.10.10.3
+cumulus@leaf03:~$ cl set nve vxlan flooding head-end-replication 10.10.10.1,10.10.10.2,10.10.10.4,
+cumulus@leaf04:~$ cl set interface swp1 bridge domain br_default access 10
+cumulus@leaf04:~$ cl set interface swp2 bridge domain br_default access 20
 cumulus@leaf03:~$ cl config apply
 ```
 
@@ -63,7 +84,14 @@ cumulus@leaf03:~$ cl config apply
 {{< tab "leaf04 ">}}
 
 ```
-cumulus@leaf04:~$ NEED COMMAND
+cumulus@leaf04:~$ cl set interface lo ip address 10.10.10.4/32
+cumulus@leaf04:~$ cl set bridge domain br_default vlan 10 vni 10
+cumulus@leaf04:~$ cl set bridge domain br_default vlan 20 vni 20
+cumulus@leaf01:~$ cl set nve vxlan mac-learning on
+cumulus@leaf04:~$ cl set nve vxlan source address 10.10.10.4
+cumulus@leaf04:~$ cl set nve vxlan flooding head-end-replication 10.10.10.1,10.10.10.2,10.10.10.3,
+cumulus@leaf04:~$ cl set interface swp1 bridge domain br_default access 10
+cumulus@leaf04:~$ cl set interface swp2 bridge domain br_default access 20
 cumulus@leaf04:~$ cl config apply
 ```
 

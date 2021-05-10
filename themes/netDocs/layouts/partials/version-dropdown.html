@@ -3,6 +3,12 @@
     {{  $.Scratch.SetInMap "version_page_map" (string .Params.version) .Page.RelPermalink }}
 {{ end }}
 
+<!-- The RN page names include the release version so they never match -->
+<!-- This will look for page type "rn" and map it to the version, which only matches the RN page -->
+{{ range where (where .Site.Pages "Params.type" "rn") ".Page.Params.product" .Page.Params.product  }}
+    {{  $.Scratch.SetInMap "version_page_map" (string .Params.version) .Page.RelPermalink }}
+{{ end }}
+
 <!-- Now check to see if this page exists for a version and update the map -->
 {{ range where (where .Site.Pages "Params.title" .Page.Title) ".Page.Params.product" .Page.Params.product  }}
     {{  $.Scratch.SetInMap "version_page_map" (string .Params.version) .Page.RelPermalink }}
@@ -35,7 +41,6 @@
                 <!-- Sort our list of versions so it's high to low -->
                 {{ range sort (where .Site.Sections "Params.product" .Page.Params.product) ".Page.Params.version" "desc"}}
                     <!-- The version is the key in version_links. Get the Permalink of the page stored as a value  -->
-                    {{ $ver := "" }}
                     {{ if not ($.Scratch.Get "version_page_map") }}
                         <a class="dropdown-item" href="{{ .Page.RelPermalink }}">v{{.Page.Params.version}} </a>
                     {{ else }}

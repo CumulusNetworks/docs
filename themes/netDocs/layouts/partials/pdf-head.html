@@ -2,26 +2,35 @@
 
 
 <script>
+    var tabs_finished = false;
+    var urls_finished = false;
+
     function replace_url() {
         var elems = document.getElementsByTagName("a");
-        for (var i = 0; i < elems.length; i++) {
+        for (var i = 0; i < 10; i++) {
             path = elems[i]["href"];
             path_parts = path.split("/");
+            // Does the URL have our same product (i.e., /cumulus-linux-43/)? If not, skip this link.
             if(path_parts[3] != "{{.Section}}"){
-                continue
-            }
-            if(path_parts[path_parts.length - 1] == ""){
-                elems[i]["href"] = "#" + path_parts[path_parts.length - 2];
-            }
-            else {
-                if(path_parts[path_parts.length - 1].charAt(0) == "#"){
-                    elems[i]["href"] = path_parts[path_parts.length - 1]
-                }
-                else{
-                    elems[i]["href"] = "#" + path_parts[path_parts.length - 1]
-                }
+                continue;
+                console.log(path + " is not part of {{.Section}}")
             }
 
+            last_section = path_parts[path_parts.length - 1];
+            console.log("working with " + last_section)
+
+            // If it's a normal URL that ends in a #, ignore it (i.e., "http://localhost:1313/cumulus-linux-43/Layer-3/FRRouting/#")
+            if(last_section == "#" && last_section.lenght == 1){
+                last_section = path_parts[path_parts.length - 2];
+            }
+
+            // If it's a local anchor then we can skip it.
+            // (i.e., http://localhost:1313/cumulus-linux-43/pdf/#upgrade-switches-in-an-mlag-pair")
+            if(last_section.charAt(0) == "#"){
+                continue;
+            }
+
+            elems[i]["href"] = "#" + last_section;
         }
     }
 
@@ -42,6 +51,11 @@
             $(this).find('.book-tabs-content').show();
             $(this).find('input[type="radio"]').attr('name', Math.floor(Math.random() * 100000000000000));
         });
+        tabs_finished = true;
+    }
+
+    function docraptorJavaScriptFinished(){
+        return tabs_finished && urls_finished;
     }
 
     window.onload = function() {
@@ -49,7 +63,8 @@
         expand_tabs();
 
         // Auto expand all of the code folding "<details>" tags.
-        $( "details" ).attr("open", "true");
+        //$( "details" ).attr("open", "true");
+
     }
 </script>
 <meta name="author" content="Cumulus Networks" />

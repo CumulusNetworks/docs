@@ -91,13 +91,8 @@
             </h3>
           </div>
           <div class="col-12 text-center pb-5">
-          <!--  <div class="resources-search"> -->
-          <!-- <input type="text" class="resources-search-input" placeholder="Search the documentation" value="">
-          <button type="submit">Search</button> -->
-
           <script async src="https://cse.google.com/cse.js?cx=002929300794741444210:sy0sz3qlwdc"></script>
           <div class="gcse-searchbox-only" enableAutoComplete="true" data-resultsUrl={{"search" | absURL}}></div>
-          <!-- </div> -->
         </div>
       </div>
         <div class="row">
@@ -343,46 +338,6 @@
     </div>
 </div>
 
-  {{ template "_internal/google_analytics_async.html" . }}
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
-  <script type="text/javascript">
-    (function() {
-      var didInit = false;
-      function initMunchkin() {
-        if(didInit === false) {
-          didInit = true;
-          Munchkin.init('628-LMQ-951');
-        }
-      }
-      var s = document.createElement('script');
-      s.type = 'text/javascript';
-      s.async = true;
-      s.src = '//munchkin.marketo.net/munchkin.js';
-      s.onreadystatechange = function() {
-        if (this.readyState == 'complete' || this.readyState == 'loaded') {
-          initMunchkin();
-        }
-      };
-      s.onload = initMunchkin;
-      document.getElementsByTagName('head')[0].appendChild(s);
-    })();
-  </script>
-  <script>
-       window._6si = window._6si || [];
-       window._6si.push(['enableEventTracking', true]);
-       window._6si.push(['setToken', '520947e1dc042c7896ad79e98cc7702e']);
-       window._6si.push(['setEndpoint', 'b.6sc.co']);
-
-       (function() {
-           var gd = document.createElement('script');
-           gd.type = 'text/javascript';
-           gd.async = true;
-           gd.src = '//j.6sc.co/6si.min.js';
-           var s = document.getElementsByTagName('script')[0];
-           s.parentNode.insertBefore(gd, s);
-       })();
-   </script>
-
    <script>
       var siteNav = document.getElementById('site-nav');
       var burgerMenu = document.querySelector('.burger-menu');
@@ -397,8 +352,6 @@
       document.getElementById('gsc-i-id1').placeholder = 'Search the docs. For better results, include your version number in your query.';
     };
    </script>
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
 
 </body>
 

@@ -6,7 +6,7 @@ toc: 2
 ---
 This document supports the Cumulus Linux 3.7 releases, and lists new platforms and features.
 
-- For a list of all the platforms supported in a Cumulus Linux 3.7 release, see the {{<exlink url="https://cumulusnetworks.com/products/hardware-compatibility-list/" text="Hardware Compatibility List (HCL)">}}.
+- For a list of all the platforms supported in a Cumulus Linux 3.7 release, see the {{<exlink url="www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="Hardware Compatibility List (HCL)">}}.
 - For a list of open and fixed issues in Cumulus Linux 3.7, see the {{<link url="Cumulus-Linux-3.7-Release-Notes" text="Cumulus Linux 3.7 Release Notes">}}.
 - To upgrade to a Cumulus Linux 3.7 release, follow the steps in {{<link url="Upgrading-Cumulus-Linux">}}.
 
@@ -84,7 +84,7 @@ Cumulus Linux 3.7.9 supports new platforms, provides bug fixes, and contains sev
 
 ## What's New in Cumulus Linux 3.7.8
 
-Cumulus Linux 3.7.8 contains bug fixes and the following new {{<exlink url="https://cumulusnetworks.com/products/hardware-compatibility-list/#pluggables" text="transceivers">}}.
+Cumulus Linux 3.7.8 contains bug fixes and the following new {{<exlink url="www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="transceivers">}}.
 
 - Mellanox 100G-PSM4 (MMS1C10-CM)
 - Wave Splitter WST-QS28-CM4C-D (100G-CWDM4-OCP) and WST-QS28-CM4-C (100G CWDM4)

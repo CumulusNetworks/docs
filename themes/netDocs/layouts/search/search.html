@@ -37,13 +37,14 @@
         <nav>
           <ul class="navRoot">
             <li class="navSection logo">
-              <div class="rootLink"><a href={{.Site.Params.BaseURL}}><span>Networking Docs</span></a></div>
+              <div class="rootLink"><a href={{.Site.BaseURL}}><span>Networking Docs</span></a></div>
             </li>
             <li class="navSection primary">
-              <a class="rootLink" href="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/">NVIDIA Cumulus Linux</a>
-              <a class="rootLink" href="https://docs.nvidia.com/networking-ethernet-software/cumulus-netq/">NVIDIA NetQ</a>
-              <a class="rootLink" href="https://docs.nvidia.com/networking-ethernet-software/cumulus-vx/">NVIDIA Cumulus VX</a>
-              <a class="rootLink" href="https://docs.nvidia.com/networking-ethernet-software/sonic-202012/">SONiC</a>
+              <a class="rootLink" href={{ .Site.Params.cl_latest | absURL }}>NVIDIA Cumulus Linux</a>
+              <a class="rootLink" href={{ .Site.Params.netq_latest | absURL }}>NVIDIA NetQ</a>
+              <a class="rootLink" href={{ "cumulus-vx" | absURL }}>NVIDIA Cumulus VX</a>
+              <a class="rootLink" href={{ .Site.Params.sonic_latest | absURL }}>SONiC</a>
+              <a class="rootLink" href={{ "knowledge-base" | absURL }}>Knowledge Base</a>
             </li>
             <li class="navSection mobile">
               <div class="burger-menu">
@@ -57,10 +58,11 @@
       </div>
       <div class="mobileMenu">
         <ul>
-          <li><a href="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/">NVIDIA Cumulus Linux</a></li>
-          <li><a href="https://docs.nvidia.com/networking-ethernet-software/cumulus-netq/">NVIDIA Cumulus NetQ</a></li>
-          <li><a href="https://docs.nvidia.com/networking-ethernet-software/cumulus-vx/">NVIDIA Cumulus VX</a></li>
-          <li><a href="https://docs.nvidia.com/networking-ethernet-software/sonic-202012/">SONiC</a></li>
+          <li><a href={{ .Site.Params.cl_latest | absURL }}>NVIDIA Cumulus Linux</a></li>
+          <li><a href={{ .Site.Params.netq_latest | absURL }}>NVIDIA NetQ</a></li>
+          <li><a href={{ "cumulus-vx" | absURL }}>NVIDIA Cumulus VX</a></li>
+          <li><a href={{ .Site.Params.sonic_latest | absURL }}>SONiC</a></li>
+          <li><a href={{ "knowledge-base" | absURL }}>Knowledge Base</a></li>
       </div>
     </div>
     <header class="home-banner" style="background-color: #76b900">
@@ -77,10 +79,11 @@
         <div class="row">
           <div class="col-12">
             <script async src="https://cse.google.com/cse.js?cx=002929300794741444210:sy0sz3qlwdc"></script>
-            <div class="gcse-searchbox-only" enableAutoComplete="true" data-resultsUrl="/search/"></div>
+            <div class="gcse-searchbox-only" enableAutoComplete="true" data-resultsUrl={{"search" | absURL}}></div>
 
             <p class="search-hint">
-              <b>Hint:</b> For better results, include your version number in your query.
+              <!--<b>Hint:</b> For better results, include your version number in your query.-->
+              Search is currently disabled and will return soon.
             </p>
 
             <div id="search-results"></div>
@@ -103,8 +106,8 @@
                     </div>
                     <ul class="mb-4">
                         <li><h4 class="text-jade mb-3">Products</h4></li>
-                        <li><a href="https://www.nvidia.com/en-us/networking/ethernet-switching/cumulus-linux/">Cumulus Linux</a></li>
-                        <li><a href="https://www.nvidia.com/en-us/networking/ethernet-switching/netq/">Cumulus NetQ</a></li>
+                        <li><a href={{ .Site.Params.cl_latest | absURL }}>Cumulus Linux</a></li>
+                        <li><a href={{ .Site.Params.netq_latest | absURL }}>Cumulus NetQ</a></li>
                         <li><a href="https://www.nvidia.com/en-us/networking/ethernet-switching/spectrum-sn4000/">Cumulus Express</a></li>
                     </ul>
                     <ul class="mb-4">
@@ -269,12 +272,12 @@
 
             if (data.queries && data.queries.previousPage) {
               var prev = data.queries.previousPage[0].startIndex;
-              html += '<a href="/search/?q=' +query+ '&start=' +prev+ '">Previous</a> | '
+              html += '<a href="{{printf "?q=" ("search/" | absURL) }}' +query+ '&start=' +prev+ '">Previous</a> | '
             }
 
             if (data.queries && data.queries.nextPage) {
               var next = data.queries.nextPage[0].startIndex;
-              html += '<a href="/search/?q=' +query+ '&start=' +next+ '">Next</a>'
+              html += '<a href="{{printf "?q=" ("search/" | absURL) }}' +query+ '&start=' +next+ '">Next</a>'
             }
           } else {
             html += '<h4>No results were found for "' +data.queries.request[0].searchTerms+ '"<h4>';

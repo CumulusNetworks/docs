@@ -7,9 +7,9 @@ toc: 4
 
 ## How can I evaluate Cumulus Linux?
 
-If you don\'t have a network switch on our {{<exlink url="https://cumulusnetworks.com/hcl" text="hardware compatibility list">}} (HCL) available for testing, reserve a {{<exlink url="https://cumulusnetworks.com/try-for-free/" text="Cumulus in the Cloud">}} and try out a test setup in your browser. {{<exlink url="https://www.nvidia.com/en-us/networking/network-simulation/autoprovision/" text="Build your simulation here">}} and start your test drive.
+If you don\'t have a network switch on our {{<exlink url="https://www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="hardware compatibility list">}} (HCL) available for testing, reserve a {{<exlink url="https://www.nvidia.com/en-us/networking/cumulus-linux-free-trial/" text="Cumulus in the Cloud">}} and try out a test setup in your browser. {{<exlink url="https://www.nvidia.com/en-us/networking/network-simulation/autoprovision/" text="Build your simulation here">}} and start your test drive.
 
-If you already have hardware from our HCL, fill out {{<exlink url="https://cumulusnetworks.com/contact/" text="this form">}} and a Cumulus Networks representative will contact you.
+If you already have hardware from our HCL, fill out {{<exlink url="https://www.nvidia.com/en-us/contact/sales/" text="this form">}} and a Cumulus Networks representative will contact you.
 
 ## How Is Cumulus Linux licensed?
 
@@ -36,9 +36,9 @@ Contact our {{<exlink url="mailto:sales@cumulusnetworks.com" text="sales team">}
 
 ## How can I order a Cumulus Linux license?
 
-Cumulus Networks partners with approved resellers and distributors to facilitate your license procurement. Sign up on {{<exlink url="https://cumulusnetworks.com/contact/" text="our website">}} for assistance and information on our approved resellers.
+Cumulus Networks partners with approved resellers and distributors to facilitate your license procurement. Sign up on {{<exlink url="https://www.nvidia.com/en-us/contact/sales/" text="our website">}} for assistance and information on our approved resellers.
 
-Cumulus Networks does not sell any hardware; our resellers often do. Check our {{<exlink url="https://cumulusnetworks.com/hcl" text="HCL">}} for the list of our supported hardware.
+Cumulus Networks does not sell any hardware; our resellers often do. Check our {{<exlink url="https://www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="HCL">}} for the list of our supported hardware.
 
 ## On how many switches can I run Cumulus Linux?
 
@@ -61,7 +61,7 @@ Upon purchase of a Cumulus Linux license you will be granted access to the {{<ex
 
 ## How can I get a copy of the Cumulus Networks EULA (end-user license agreement)?
 
-Please click the following link to view {{<exlink url="http://cumulusnetworks.com/downloads/eula/latest/view/" text="our EULA">}}.
+Please click the following link to view {{<exlink url="https://docs.nvidia.com/cuda/archive/9.1/pdf/EULA.pdf" text="our EULA">}}.
 
 ## When does my Software Updates and Support contract start?
 

@@ -516,7 +516,7 @@ Cumulus Linux 3.7.9 and later enables you to match on VLAN IDs on layer 2 interf
 {{%notice note%}}
 
 Matching VLAN IDs on layer 2 interfaces is supported on switches with
-{{<exlink url="https://cumulusnetworks.com/products/hardware-compatibility-list/?asic%5B0%5D=Mellanox%20Spectrum&asic%5B1%5D=Mellanox%20Spectrum_A1" text="Spectrum ASICs">}} only.
+{{<exlink url="www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="Spectrum ASICs">}} only.
 
 {{%/notice%}}
 
@@ -819,7 +819,7 @@ The maximum number of rules that can be handled in hardware is a
 function of the following factors:
 
   - The platform type (switch silicon, like Tomahawk or Spectrum - see
-    the {{<exlink url="https://cumulusnetworks.com/hcl" text="HCL">}} to determine which
+    the {{<exlink url="https://www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="HCL">}} to determine which
     platform type applies to a particular switch).
   - The mix of IPv4 and IPv6 rules; Cumulus Linux does not support the
     maximum number of rules for both IPv4 and IPv6 simultaneously.

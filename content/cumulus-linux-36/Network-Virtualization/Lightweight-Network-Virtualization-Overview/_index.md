@@ -164,7 +164,7 @@ To enable service node replication:
     or Mellanox switches with the Spectrum ASIC running Cumulus Linux
     2.5.4 or later. Please refer to the Cumulus Networks [hardware
     compatibility
-    list](http://cumulusnetworks.com/support/linux-hardware-compatibility-list/)
+    list](https://www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/)
     for a list of supported switch models.
 
 ### Configuration Requirements

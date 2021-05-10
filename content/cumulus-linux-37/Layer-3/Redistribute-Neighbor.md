@@ -210,7 +210,7 @@ For full instructions on installing `ifplugd` on Ubuntu, {{<kb_link url="knowled
 
 ### TCAM Route Scale
 
-This feature adds each ARP entry as a /32 host route into the routing table of all switches within a summarization domain. Take care to keep the number of hosts minus fabric routes under the TCAM size of the switch. Review the datasheets {{<exlink url="http://cumulusnetworks.com/hcl/" text="on the HCL">}} for up to date scalability limits of your chosen hardware platforms. If in doubt, contact your support representative.
+This feature adds each ARP entry as a /32 host route into the routing table of all switches within a summarization domain. Take care to keep the number of hosts minus fabric routes under the TCAM size of the switch. Review the datasheets {{<exlink url="www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list" text="on the HCL">}} for up to date scalability limits of your chosen hardware platforms. If in doubt, contact your support representative.
 
 ### Possible Uneven Traffic Distribution
 

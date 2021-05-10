@@ -12,6 +12,7 @@ frontend:
     build:
       commands:
         # Embed the git commit ID into the PDF for future troubleshooting
+        #- bash utils/pdf_rewrite.sh
         #- sed -i "s/COMMIT_INFO/$AWS_COMMIT_ID/g" themes/netDocs/layouts/partials/pdf-head.html
         # Add the Google API key at build time
         - sed -i "s/SEARCH_KEY/$HUGO_GOOGLE_API_KEY/g" themes/netDocs/layouts/search/search.html

@@ -4,30 +4,59 @@
 <script>
     var tabs_finished = false;
     var urls_finished = false;
+    var debug = false;
 
     function replace_url() {
         var elems = document.getElementsByTagName("a");
-        for (var i = 0; i < 10; i++) {
+        for (var i = 0; i < elems.length; i++) {
             path = elems[i]["href"];
+
+            // skip <a> elements without a href link to read
+            if(path == ""){
+                continue;
+            }
+
+            if(debug){
+                console.log("Index " + i + ": " + path);
+            }
+
             path_parts = path.split("/");
+
             // Does the URL have our same product (i.e., /cumulus-linux-43/)? If not, skip this link.
             if(path_parts[3] != "{{.Section}}"){
+                if(debug){
+                    console.log(path + " is not part of {{.Section}}");
+                }
                 continue;
-                console.log(path + " is not part of {{.Section}}")
             }
 
             last_section = path_parts[path_parts.length - 1];
-            console.log("working with " + last_section)
 
-            // If it's a normal URL that ends in a #, ignore it (i.e., "http://localhost:1313/cumulus-linux-43/Layer-3/FRRouting/#")
-            if(last_section == "#" && last_section.lenght == 1){
-                last_section = path_parts[path_parts.length - 2];
+            if(debug){
+                console.log("working with " + last_section);
             }
 
-            // If it's a local anchor then we can skip it.
-            // (i.e., http://localhost:1313/cumulus-linux-43/pdf/#upgrade-switches-in-an-mlag-pair")
+            // If it's a normal URL that ends in a #, ignore it (i.e., "http://localhost:1313/cumulus-linux-43/Layer-3/FRRouting/#")
+            if(last_section == "#" && last_section.length == 1){
+                last_section = path_parts[path_parts.length - 2];
+                if(debug){
+                    console.log("ignoring ending #");
+                }
+            }
+
+            // Deal with links with anchors by leaving just the anchor
+            // (i.e.,http://localhost:1313/cumulus-linux-43/Layer-3/Border-Gateway-Protocol-BGP/Optional-BGP-Configuration/#graceful-bgp-restart")
             if(last_section.charAt(0) == "#"){
+                if(debug){
+                    console.log("Processing Existing anchor");
+                }
+
+                elems[i]["href"] = last_section;
                 continue;
+            }
+
+            if(debug){
+                console.log("rewriting to #" + last_section);
             }
 
             elems[i]["href"] = "#" + last_section;
@@ -61,10 +90,8 @@
     window.onload = function() {
         replace_url();
         expand_tabs();
-
         // Auto expand all of the code folding "<details>" tags.
         //$( "details" ).attr("open", "true");
-
     }
 </script>
 <meta name="author" content="Cumulus Networks" />

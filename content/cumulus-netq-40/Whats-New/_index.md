@@ -12,7 +12,7 @@ NVIDIA NetQ {{<version>}} eases your customers deployment and maintenance activi
 
 NetQ 4.0.0 includes the following new features and improvements:
 
-- NetQ now monitors the SONiC operating system.
+- NetQ now monitors the SONiC operating system. This is an early access feature and the NetQ CLI is not supported on SONiC switches in this release.
 - RoCE in Cumulus Linux now monitored.
 - Licenses removed from network health.
 

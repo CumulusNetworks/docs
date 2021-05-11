@@ -1114,7 +1114,7 @@ depending upon the manufacturer; these include:
 
 - Mellanox SN2700, SN2700B, SN2410 and SN2410B switches
 - Switches with Broadcom Tomahawk, Trident II, Trident II+ and Trident3
-  chipsets (check the {{<exlink url="https://www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list//" text="HCL">}})
+  chipsets (check the {{<exlink url="https://www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="HCL">}})
 
 You *cannot* have more than 128 total logical ports on a Broadcom
 switch.

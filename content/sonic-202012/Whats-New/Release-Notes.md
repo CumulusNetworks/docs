@@ -5,6 +5,7 @@ weight: 20
 product: SONiC
 version: 202012
 siteSlug: sonic
+type: rn
 ---
 
 These are the release notes for SONiC software version 202012 on NVIDIA® Mellanox Spectrum®-based switches. However, these release notes are simply an upstream version of the pure SONiC release available on GitHub.

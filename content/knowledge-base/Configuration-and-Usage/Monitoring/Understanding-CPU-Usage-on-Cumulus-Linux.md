@@ -47,7 +47,7 @@ handling control plane activities, not data plane switching.
 For the control plane, the primary concerns, as mentioned above, are
 *routing and switching table sizes* and *stability under stress*.
 
-The *routing and switching table sizes* are limited by the amount of memory in the switching ASICs. For Cumulus Linux boxes, these numbers are shown in the Cumulus Networks hardware guides, which you can find on the {{<exlink url="https://www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list//" text="hardware compatibility list">}}.
+The *routing and switching table sizes* are limited by the amount of memory in the switching ASICs. For Cumulus Linux boxes, these numbers are shown in the Cumulus Networks hardware guides, which you can find on the {{<exlink url="https://www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="hardware compatibility list">}}.
 
 *Stability under stress*: The amount of network churn that a box is
 capable of handling well depends much more on your particular network

@@ -34,9 +34,9 @@ The Swagger interface displays both public and internal APIs. Public APIs do not
 
 You can access the API gateway and execute requests from the Swagger UI or a terminal interface.
 
-{{< tabs "TabID31" >}}
+{{<tabs "Access API Gateway">}}
 
-{{< tab "Swagger UI" >}}
+{{<tab "Swagger UI">}}
 
 The API is embedded in the NetQ software, making it easy to access from the Swagger UI application.
 
@@ -46,9 +46,9 @@ The API is embedded in the NetQ software, making it easy to access from the Swag
 
 3. Open a new browser tab or window, and enter one of the following in the address bar:
 
-    - Cloud deployments:  https://swagger-ui.prod1.netq.cumulusnetworks.com
+    - Cloud deployments:  https://api.prod1.netq.cumulusnetworks.com
     - On-premises deployments: https://\<hostname-or-ipaddr\>/swagger/
-    - Cumulus in the Cloud (CITC): https://swagger-ui.air.netq.cumulusnetworks.com
+    - Cumulus in the Cloud (CITC): https://api.air.netq.cumulusnetworks.com
 
     This opens the Swagger interface.
 
@@ -56,25 +56,25 @@ The API is embedded in the NetQ software, making it easy to access from the Swag
 
     {{<figure src="/images/netq/api-swagger-onopen-320.png" width="700">}}
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "Terminal Window" >}}
+{{<tab "Terminal Window">}}
 
 1. Open a terminal window.
 
 2. Continue to Log In instructions.
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}
 
 ### Log In
 
 While you can view the API endpoints without authorization, you can only execute the API endpoints if you have been authorized.
 
-{{< tabs "TabID65" >}}
+{{<tabs "Log In">}}
 
-{{< tab "Swagger UI" >}}
+{{<tab "Swagger UI">}}
 
 You must first obtain an access key and then use that key to authorize your access to the API.
 
@@ -104,9 +104,9 @@ You must first obtain an access key and then use that key to authorize your acce
 
 8. Click **Close**.
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "Terminal Window" >}}
+{{<tab "Terminal Window">}}
 
 To log in and obtain authorization:
 
@@ -130,9 +130,9 @@ To log in and obtain authorization:
 
 3. Copy the access token to a text file for use in making API data requests.
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}
 
 You are now able to create and execute API requests against the endpoints.
 
@@ -170,9 +170,9 @@ API requests are easy to execute in the Swagger UI. Simply select the endpoint o
 
 5. Click **Execute**.
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "Terminal Window" >}}
+{{<tab "Terminal Window">}}
 
 In a terminal window, use bash plus curl to execute requests. Each request contains an API method (GET, POST, etc.), the address and API endpoint object to query, a variety of headers, and sometimes a body. For example, in the log in step above:
 
@@ -181,9 +181,9 @@ In a terminal window, use bash plus curl to execute requests. Each request conta
 - Headers = -H "accept: application/json" and -H "Content-Type: application/json"
 - Body = -d "{ \"username\": \"admin\", \"password\": \"admin\", \"access_key\": \"string\"}"
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}
 
 ### API Responses
 
@@ -206,13 +206,13 @@ The following HTTP status codes might be presented in the API responses:
 
 Some command requests and their responses are shown here, but feel free to run your own requests. To run a request, you will need your authorization token. When using the curl commands, the responses have been piped through a python tool to make them more readable. You may chose to do so as well.
 
-### Validate networkwide Status of the BGP Service
+### Validate Networkwide Status of the BGP Service
 
-Make your request to the *bgp* endpoint to obtain validate the operation of the BGP service  all nodes running the service.
+Make your request to the *bgp* endpoint to obtain validate the operation of the BGP service on all nodes running the service.
 
-{{< tabs "TabID203" >}}
+{{<tabs "Validate BGP Service">}}
 
-{{< tab "Swagger UI" >}}
+{{<tab "Swagger UI">}}
 
 1. Open the check endpoint.
 
@@ -232,15 +232,16 @@ Make your request to the *bgp* endpoint to obtain validate the operation of the 
 
     {{<figure src="/images/netq/api-swagger-ex-bgp-200-response-320.png" width="700">}}
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "Terminal Window" >}}
+{{<tab "Terminal Window">}}
 
-Run the following curl command, entering values for the various parameters. In this example, time=1597256560, duration=24 (hours), by=scheduled, and proto=bgp.
+Run the following `curl` command, entering values for the various parameters. In this example, *time=1597256560*, *duration=24* (hours), *by=scheduled*, and *proto=bgp*.
 
 ```
 curl -X GET "<https://<netq.domain>:<port>/netq/telemetry/v1/object/check?time=1597256560&duration=24&by=scheduled&proto=bgp" -H "accept: application/json" -H  "Authorization: <auth-token> " | python -m json.tool
 ```
+
 ```
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed
@@ -269,21 +270,21 @@ curl -X GET "<https://<netq.domain>:<port>/netq/telemetry/v1/object/check?time=1
 ...
 ```
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}
 
 ### Get Status of EVPN on a Specific Switch
 
 Make your request to the *evpn/hostname* endpoint to view the status of all EVPN sessions running on that node.
 
-{{< tabs "TabID270" >}}
+{{<tabs "EVPN Status">}}
 
-{{< tab "Swagger UI" >}}
+{{<tab "Swagger UI">}}
 
 This example uses the *server01* switch.
 
-1. Open the evpn endpoint.
+1. Open the EVPN endpoint.
 
     {{<figure src="/images/netq/api-swagger-evpn-endpoint-selection-320.png" width="400">}}
 
@@ -301,9 +302,9 @@ This example uses the *server01* switch.
 
     {{<figure src="/images/netq/api-swagger-ex-bgp-200-response-320.png" width="700">}}
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "Terminal Window" >}}
+{{<tab "Terminal Window">}}
 
 This example uses the *server01* switch in an on-premises network deployment.
 
@@ -369,16 +370,13 @@ curl -X GET "https://<netq.domain>:32708/netq/telemetry/v1/object/evpn/hostname/
 ...
 ```
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}
 
 ### Get Status on All Interfaces at a Given Time
 
-Make your request to the *interfaces* endpoint to view the status of all
-interfaces. By specifying the *eq-timestamp* option and entering a date
-and time in epoch format, you indicate the data for that time (versus in
-the last hour by default), as follows:
+Make your request to the *interfaces* endpoint to view the status of all interfaces. By specifying the *eq-timestamp* option and entering a date and time in epoch format, you indicate the data for that time (versus in the last hour by default), as follows:
 
     curl -X GET "https://<netq.domain>:32708/netq/telemetry/v1/object/interface?eq_timestamp=1556046250" -H "Content-Type: application/json" -H "Authorization: <auth-token>" | python -m json.tool
      
@@ -431,8 +429,7 @@ the last hour by default), as follows:
 
 ### Get a List of All Devices Being Monitored
 
-Make your request to the *inventory* endpoint to get a listing of all
-monitored nodes and their configuration information, as follows:
+Make your request to the *inventory* endpoint to get a listing of all monitored nodes and their configuration information, as follows:
 
     curl -X GET "https://<netq.domain>:32708/netq/telemetry/v1/object/inventory" -H "Content-Type: application/json" -H "Authorization: <auth-token>" | python -m json.tool
      

@@ -25,7 +25,7 @@ NVIDIA has also developed and released new applications as open source. The list
 
 ## Hardware Compatibility List
 
-You can find the most up-to-date hardware compatibility list (HCL) {{<exlink url="https://www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list//" text="here" >}}. Use the HCL to confirm that your switch model is supported with Cumulus Linux. The HCL is updated regularly, listing products by port configuration, manufacturer and SKU part number.
+You can find the most up-to-date hardware compatibility list (HCL) {{<exlink url="https://www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="here" >}}. Use the HCL to confirm that your switch model is supported with Cumulus Linux. The HCL is updated regularly, listing products by port configuration, manufacturer and SKU part number.
 
 ## Download the User Guide
 You can download a PDF version of the complete Cumulus Linux {{% version %}} user guide {{% pdf_link "here." %}}

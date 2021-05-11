@@ -29,7 +29,7 @@ To implement various Cumulus Linux features, Cumulus Networks has forked various
 
 ## Hardware Compatibility List
 
-You can find the most up-to-date hardware compatibility list (HCL) [here](https://www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list//). Use the HCL to confirm that your switch model is supported by Cumulus Networks. The HCL is updated regularly, listing products by port configuration, manufacturer, and SKU part number.
+You can find the most up-to-date hardware compatibility list (HCL) [here](https://www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/). Use the HCL to confirm that your switch model is supported by Cumulus Networks. The HCL is updated regularly, listing products by port configuration, manufacturer, and SKU part number.
 
 ## Download the User Guide
 

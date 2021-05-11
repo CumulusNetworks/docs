@@ -16,7 +16,7 @@ frontend:
         # Add the Google API key at build time
         - echo Building PDFs...
         # Install docraptor and requests libraries
-        - if [ "${AWS_BRANCH}" = "plumbis-stage" ]; then pip3 install --upgrade docraptor requests ; fi
+        #- if [ "${AWS_BRANCH}" = "plumbis-stage" ]; then pip3 install --upgrade docraptor requests ; fi
         # Tell docraptor to build PDFs and XLS and wait for a response
         # This is specifically the stage branch because we need to generate the files from what's already published,
         # Meaning we can't generate it from the results of /this/ build.
@@ -26,10 +26,11 @@ frontend:
         #- if [ "${AWS_BRANCH}" = "plumbis-stage" ]; then python3 utils/build_pdf_xls.py $DOCRAPTOR_KEY https://plumbis-stage.dxpqhdvalo8nj.amplifyapp.com/networking-ethernet-software/ ; fi
         - echo Building docs ...
         # Don't minify in non-prod branches to simplify troubleshooting
+        - if [ "${AWS_BRANCH}" == "plumbis-stage" ]; then pip3 install beautifulsoup4 ; fi
         - if [ "${AWS_BRANCH}" != "master" ]; then hugo -D --baseURL $BASEURL -d public/networking-ethernet-software/ ; fi
         - if [ "${AWS_BRANCH}" = "master" ]; then hugo --minify --baseURL $BASEURL ; fi
         - if [ "${AWS_BRANCH}" != "master" ]; then echo "<html><head></head><body><a href='networking-ethernet-software/''>click here</a></body></html>" > public/index.html ; fi
-        - if [ "${AWS_BRANCH}" == "plumbis-stage" ]; then bash utils/pdf_rewrite.sh ; fi
+        - if [ "${AWS_BRANCH}" == "plumbis-stage" ]; then python3 utils/pdf_page_editor.py
         - echo Successfully built docs
   artifacts:
     files:

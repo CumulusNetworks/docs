@@ -1,8 +1,7 @@
 #!/usr/bin/env python3
 from bs4 import BeautifulSoup
 
-#pdf_file = "public/networking-ethernet-software/cumulus-linux-43/pdf/index.html"
-pdf_file = "/Users/plumbis/Desktop/links.html"
+pdf_file = "public/networking-ethernet-software/cumulus-linux-43/pdf/index.html"
 
 def rewrite_urls(soup):
     for link in soup.find_all("a"):

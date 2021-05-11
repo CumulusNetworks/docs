@@ -244,7 +244,7 @@ netq bootstrap master upgrade /mnt/installables/NetQ-4.0.0-opta.tgz
 
     {{<figure src="/images/netq/adminui-health-tab-cloud-330.png" width="700" caption="Remote (cloud) deployment">}}
 
-4. Click **Upgrade**.
+4. Click **Upgrade** in the upper right corner.
 
 5. Enter *NetQ-4.0.0.tgz* or *NetQ-4.0.0-opta.tgz* and click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/50-Navigate/navigation-right-circle-1_1.svg" height="18" width="18"/>.
 
@@ -270,25 +270,25 @@ To upgrade:
 
 1. Run the appropriate `netq upgrade` command.
 
-{{< tabs "TabID155" >}}
+{{<tabs "CLI Upgrade">}}
 
-{{< tab "On-premises Deployments" >}}
+{{<tab "On-premises Deployments">}}
 
 ```
 netq upgrade bundle /mnt/installables/NetQ-4.0.0.tgz
 ```
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "Cloud Deployments" >}}
+{{<tab "Cloud Deployments">}}
 
 ```
 netq upgrade bundle /mnt/installables/NetQ-4.0.0-opta.tgz
 ```
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}
 
 2. After the upgrade completes, confirm the upgrade was successful.
 

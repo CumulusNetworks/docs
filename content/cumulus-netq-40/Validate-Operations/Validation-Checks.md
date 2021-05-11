@@ -6,6 +6,8 @@ toc: 3
 ---
 NetQ provides the information you need to validate the health of your network fabric, devices, and interfaces. Whether you use the NetQ UI or the NetQ CLI to create and run validations, the underlying checks are the same. The number of checks and the type of checks are tailored to the particular protocol or element being validated.
 
+The Test Number column in the tables below is used with the NetQ CLI when you want to include or exclude specific tests with the `netq check` command. You can get the test numbers when you run the `netq show unit-tests` command.
+
 ## NetQ Agent Validation Tests
 
 NetQ Agent validation looks for an agent status of Rotten for each node in the network. A *Fresh* status indicates the Agent is running as expected. The Agent sends a heartbeat every 30 seconds, and if three consecutive heartbeats are missed, its status changes to *Rotten*. This is accomplished with the following test:
@@ -39,13 +41,13 @@ The EVPN validation tests look for indications of the session sanity and configu
 | Test Number | Test Name | Description |
 | :---------: | --------- | ----------- |
 | 0 | EVPN BGP Session | Checks if: <ul><li>BGP EVPN sessions are established</li><li>The EVPN address family advertisement is consistent</li></ul> |
-| 1 | EVPN Session | For each EVPN session, checks if: <ul><li><em>adv_all_vni</em> is enabled</li><li>FDB learning is disabled on tunnel interface</li></ul> |
+| 1 | EVPN VNI Type Consistency | Because a VNI can be of type L2 or L3, checks that for a given VNI, its type is consistent across the network |
 | 2 | EVPN Type 2 | Checks for consistency of IP-MAC binding and the location of a given IP-MAC across all VTEPs |
 | 3 | EVPN Type 3 | Checks for consistency of replication group across all VTEPs |
-| 4 | EVPN VNI Type Consistency | Because a VNI can be of type L2 or L3, checks that for a given VNI, its type is consistent across the network |
-| 5 | L3 VNI RMAC | Checks for |
-| 6 | VLAN Consistency | Checks for consistency of VLAN to VNI mapping across the network |
-| 7 | VRF Consistency | Checks for consistency of VRF to L3 VNI mapping across the network |
+| 4 | EVPN Session | For each EVPN session, checks if: <ul><li><em>adv_all_vni</em> is enabled</li><li>FDB learning is disabled on tunnel interface</li></ul> |
+| 5 | VLAN Consistency | Checks for consistency of VLAN to VNI mapping across the network |
+| 6 | VRF Consistency | Checks for consistency of VRF to L3 VNI mapping across the network |
+| 7 | L3 VNI RMAC | Checks L3 VNI router MAC and SVI |
 
 ## Interface Validation Tests
 

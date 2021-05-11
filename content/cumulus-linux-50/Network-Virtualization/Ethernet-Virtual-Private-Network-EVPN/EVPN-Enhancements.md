@@ -29,6 +29,12 @@ cumulus@leaf01:~$ cl set evpn evi 10 route-target import 65102:10
 cumulus@leaf01:~$ cl config apply
 ```
 
+The CUE commands create the following configuration snippet in the `/etc/cue.d/startup.yaml` file:
+
+```
+cumulus@leaf01:~$ sudo cat /etc/cue.d/startup.yaml
+```
+
 {{< /tab >}}
 {{< tab "leaf03 ">}}
 
@@ -37,6 +43,12 @@ cumulus@leaf03:~$ cl set evpn evi 10 route-target 10.10.10.3:20
 cumulus@leaf03:~$ cl set evpn evi 10 route-target export 65102:10
 cumulus@leaf03:~$ cl set evpn evi 10 route-target import 65101:10
 cumulus@leaf03:~$ cl config apply
+```
+
+The CUE commands create the following configuration snippet in the `/etc/cue.d/startup.yaml` file:
+
+```
+cumulus@leaf03:~$ sudo cat /etc/cue.d/startup.yaml
 ```
 
 {{< /tab >}}
@@ -66,6 +78,19 @@ leaf01)# exit
 cumulus@leaf01:~$
 ```
 
+These commands create the following configuration snippet in the `/etc/frr/frr.conf` file.
+
+```
+...
+address-family l2vpn evpn
+  advertise-all-vni
+  vni 10
+   rd 10.10.10.1:20
+   route-target export 65101:10
+   route-target import 65102:10
+...
+```
+
 {{< /tab >}}
 {{< tab "leaf03 ">}}
 
@@ -87,30 +112,7 @@ leaf03)# exit
 cumulus@leaf03:~$
 ```
 
-{{< /tab >}}
-{{< /tabs >}}
-
-{{< /tab >}}
-{{< /tabs >}}
-
-These commands create the following configuration snippet in the `/etc/frr/frr.conf` file.
-
-{{< tabs "TabID73 ">}}
-{{< tab "leaf01 ">}}
-
-```
-...
-address-family l2vpn evpn
-  advertise-all-vni
-  vni 10
-   rd 10.10.10.1:20
-   route-target export 65101:10
-   route-target import 65102:10
-...
-```
-
-{{< /tab >}}
-{{< tab "leaf03 ">}}
+These commands create the following configuration snippet in the `/etc/frr/frr.conf` file:
 
 ```
 ...
@@ -121,6 +123,9 @@ address-family l2vpn evpn
    route-target export 65102:10
    route-target import 65101:10
 ```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 {{< /tab >}}
 {{< /tabs >}}
@@ -144,6 +149,12 @@ cumulus@leaf01:~$ cl set evpn evi 20 route-target both 65101:10
 cumulus@leaf01:~$ cl config apply
 ```
 
+The CUE commands create the following configuration snippet in the `/etc/cue.d/startup.yaml` file:
+
+```
+cumulus@leaf01:~$ sudo cat /etc/cue.d/startup.yaml
+```
+
 {{< /tab >}}
 {{< tab "leaf03 ">}}
 
@@ -152,6 +163,12 @@ cumulus@leaf03:~$ cl set evpn evi 10 route-target import 65101:10
 cumulus@leaf03:~$ cl set evpn evi 10 route-target import 65101:20
 cumulus@leaf03:~$ cl set evpn evi 20 route-target both 65102:10
 cumulus@leaf03:~$ cl config apply
+```
+
+The CUE commands create the following configuration snippet in the `/etc/cue.d/startup.yaml` file:
+
+```
+cumulus@leaf03:~$ sudo cat /etc/cue.d/startup.yaml
 ```
 
 {{< /tab >}}
@@ -181,6 +198,20 @@ leaf01)# exit
 cumulus@leaf01:~$
 ```
 
+The vtysh commands create the following configuration snippet in the `/etc/frr/frr.conf` file:
+
+```
+...
+address-family l2vpn evpn
+  vni 10
+    route-target import 65102:10
+    route-target import 65102:20
+  vni 20
+    route-target import 65101:10
+    route-target export 65101:10
+...
+```
+
 {{< /tab >}}
 {{< tab "leaf03 ">}}
 
@@ -202,31 +233,7 @@ leaf03)# exit
 cumulus@leaf03:~$
 ```
 
-{{< /tab >}}
-{{< /tabs >}}
-
-{{< /tab >}}
-{{< /tabs >}}
-
-The above commands create the following configuration snippet in the `/etc/frr/frr.conf` file:
-
-{{< tabs "TabID189 ">}}
-{{< tab "leaf01 ">}}
-
-```
-...
-address-family l2vpn evpn
-  vni 10
-    route-target import 65102:10
-    route-target import 65102:20
-  vni 20
-    route-target import 65101:10
-    route-target export 65101:10
-...
-```
-
-{{< /tab >}}
-{{< tab "leaf03 ">}}
+The vtysh commands create the following configuration snippet in the `/etc/frr/frr.conf` file:
 
 ```
 ...
@@ -243,6 +250,9 @@ address-family l2vpn evpn
 {{< /tab >}}
 {{< /tabs >}}
 
+{{< /tab >}}
+{{< /tabs >}}
+
 ## Enable EVPN in an iBGP Environment with an OSPF Underlay
 
 You can use EVPN with an {{<link url="Open-Shortest-Path-First-OSPF" text="OSPF">}} or static route underlay. This is a more complex configuration than using eBGP. In this case, iBGP advertises EVPN routes directly between VTEPs and the spines are unaware of EVPN or BGP.
@@ -254,6 +264,12 @@ The leaf switches peer with each other in a full mesh within the EVPN address fa
 
 ```
 cumulus@leaf01:~$ NEED COMMANDS
+```
+
+The CUE commands create the following configuration snippet in the `/etc/cue.d/startup.yaml` file:
+
+```
+cumulus@leaf01:~$ sudo cat /etc/cue.d/startup.yaml
 ```
 
 {{< /tab >}}
@@ -328,10 +344,7 @@ leaf01)# exit
 cumulus@leaf01:~$
 ```
 
-{{< /tab >}}
-{{< /tabs >}}
-
-These commands create the following configuration snippet in the `/etc/frr/frr.conf` file.
+The vtysh commands create the following configuration snippet in the `/etc/frr/frr.conf` file.
 
 ```
 ...
@@ -371,6 +384,9 @@ Router ospf
   Passive-interface lo
 ...
 ```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ## ARP and ND Suppression
 
@@ -641,6 +657,12 @@ cumulus@leaf01:~$ cl set evpn evi 10 route-advertise svi-ip on
 cumulus@leaf01:~$ cl config apply
 ```
 
+The CUE commands create the following configuration snippet in the `/etc/cue.d/startup.yaml` file:
+
+```
+cumulus@leaf01:~$ sudo cat /etc/cue.d/startup.yaml
+```
+
 {{< /tab >}}
 {{< tab "vtysh Commands ">}}
 
@@ -658,9 +680,6 @@ leaf01)# exit
 cumulus@leaf01:~$
 ```
 
-{{< /tab >}}
-{{< /tabs >}}
-
 The commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
 ```
@@ -672,6 +691,9 @@ address-family l2vpn evpn
 exit-address-family
 ...
 ```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ## Disable BUM Flooding
 
@@ -697,6 +719,12 @@ cumulus@leaf01:~$ cl set nve vxlan flooding enable off
 cumulus@leaf01:~$ cl config apply
 ```
 
+The CUE commands create the following configuration snippet in the `/etc/cue.d/startup.yaml` file:
+
+```
+cumulus@leaf01:~$ sudo cat /etc/cue.d/startup.yaml
+```
+
 To renable BUM flodding, run the `cl set nve vxlan enable on` command.
 
 {{< /tab >}}
@@ -712,6 +740,18 @@ leaf01(config-router-af)# end
 leaf01)# write memory
 leaf01)# exit
 cumulus@leaf01:~$
+```
+
+The commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+
+```
+...
+router bgp 65101
+ !
+ address-family l2vpn evpn
+  flooding disable
+ exit-address-family
+...
 ```
 
 To renable BUM flodding:
@@ -730,18 +770,6 @@ cumulus@leaf01:~$
 
 {{< /tab >}}
 {{< /tabs >}}
-
-The commands save the configuration in the `/etc/frr/frr.conf` file. For example:
-
-```
-...
-router bgp 65101
- !
- address-family l2vpn evpn
-  flooding disable
- exit-address-family
-...
-```
 
 To show that BUM flooding is disabled, run the NCLU `net show bgp l2vpn evpn vni` command or the vtysh `show bgp l2vpn evpn vni` command. For example:
 

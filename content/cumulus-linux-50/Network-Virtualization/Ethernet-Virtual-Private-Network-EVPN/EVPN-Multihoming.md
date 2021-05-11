@@ -121,7 +121,9 @@ cumulus@switch:~$ sudo nano /etc/cumulus/switchd.conf
 ...
 evpn.multihoming.enable = TRUE
 ...
+```
 
+```
 cumulus@switch:~$ sudo systemctl restart switchd.service
 ```
 
@@ -145,6 +147,13 @@ cumulus@leaf01:~$ cl set interface bond3 evpn multihoming segment local-id 3
 cumulus@leaf01:~$ cl set interface bond1-3 evpn multihoming segment mac-address 44:38:39:BE:EF:AA
 cumulus@leaf01:~$ cl set interface bond1-3 evpn multihoming segment df-preference 50000
 cumulus@leaf01:~$ cl config apply
+```
+
+The CUE commands create the following configuration snippet in the `/etc/cue.d/startup.yaml` file:
+
+```
+cumulus@leaf01:~$ sudo cat /etc/cue.d/startup.yaml
+
 ```
 
 {{</tab>}}
@@ -174,13 +183,10 @@ leaf01# exit
 cumulus@leaf01:~$
 ```
 
-{{</tab>}}
-{{</tabs>}}
-
 The commands create the following configuration in the `/etc/network/interfaces` file.
 
 ```
-cumulus@switch:~$ sudo cat /etc/network/interfaces
+cumulus@leaf01:~$ sudo cat /etc/network/interfaces
 ...
 interface bond1
   bond-slaves swp1
@@ -198,7 +204,7 @@ interface bond3
 The commands also create the following configuration in the `/etc/frr/frr.conf` file.
 
 ```
-cumulus@switch:~$ sudo cat /etc/frr/frr.conf
+cumulus@leaf01:~$ sudo cat /etc/frr/frr.conf
 ...
 !
 interface bond1
@@ -218,6 +224,9 @@ interface bond3
 !
 ```
 
+{{</tab>}}
+{{</tabs>}}
+
 ## Optional EVPN MH Configuration
 
 ### Global Settings
@@ -234,31 +243,37 @@ To configure a MAC hold time for 1000 seconds, run the following commands:
 {{<tab "CUE Commands">}}
 
 ```
-cumulus@switch:~$ cl set evpn multihoming mac-holdtime 1000
-cumulus@switch:~$ cl config apply
+cumulus@leaf01:~$ cl set evpn multihoming mac-holdtime 1000
+cumulus@leaf01:~$ cl config apply
+```
+
+The CUE commands create the following configuration snippet in the `/etc/cue.d/startup.yaml` file:
+
+```
+cumulus@leaf01:~$ sudo cat /etc/cue.d/startup.yaml
 ```
 
 {{</tab>}}
 {{<tab "vtysh Commands">}}
 
 ```
-cumulus@switch:~$ sudo vtysh
-switch# configure terminal
-switch(config)# evpn mh mac-holdtime 1000
-switch(config)# exit
-switch# write memory
+cumulus@leaf01:~$ sudo vtysh
+leaf01# configure terminal
+leaf01(config)# evpn mh mac-holdtime 1000
+leaf01(config)# exit
+leaf01# write memory
+```
+
+The vtysh commands create the following configuration in the `/etc/frr/frr.conf` file:
+
+```
+cumulus@leaf01:~$ sudo cat /etc/frr/frr.conf
+...
+evpn mh mac-holdtime 1000
 ```
 
 {{</tab>}}
 {{</tabs>}}
-
-The commands create the following configuration in the `/etc/frr/frr.conf` file:
-
-```
-cumulus@switch:~$ sudo cat /etc/frr/frr.conf
-...
-evpn mh mac-holdtime 1000
-```
 
 To configure a neighbor hold time for 600 seconds, run the following commands:
 
@@ -266,31 +281,37 @@ To configure a neighbor hold time for 600 seconds, run the following commands:
 {{<tab "CUE Commands">}}
 
 ```
-cumulus@switch:~$ cl set evpn multihoming neighbor-holdtime 600
-cumulus@switch:~$ cl config apply
+cumulus@leaf01:~$ cl set evpn multihoming neighbor-holdtime 600
+cumulus@leaf01:~$ cl config apply
+```
+
+The CUE commands create the following configuration snippet in the `/etc/cue.d/startup.yaml` file:
+
+```
+cumulus@leaf01:~$ sudo cat /etc/cue.d/startup.yaml
 ```
 
 {{</tab>}}
 {{<tab "vtysh Commands">}}
 
 ```
-cumulus@switch:~$ sudo vtysh
-switch# configure terminal
-switch(config)# evpn mh neigh-holdtime 600
-switch(config)# exit
-switch# write memory
+cumulus@leaf01:~$ sudo vtysh
+leaf01# configure terminal
+leaf01(config)# evpn mh neigh-holdtime 600
+leaf01(config)# exit
+leaf01# write memory
+```
+
+The vtysh commands create the following configuration in the `/etc/frr/frr.conf` file:
+
+```
+cumulus@leaf01:~$ sudo cat /etc/frr/frr.conf
+...
+evpn mh neigh-holdtime 600
 ```
 
 {{</tab>}}
 {{</tabs>}}
-
-The commands create the following configuration in the `/etc/frr/frr.conf` file:
-
-```
-cumulus@switch:~$ sudo cat /etc/frr/frr.conf
-...
-evpn mh neigh-holdtime 600
-```
 
 To configure a startup delay for 1800 seconds, run the following commands:
 
@@ -298,31 +319,37 @@ To configure a startup delay for 1800 seconds, run the following commands:
 {{<tab "CUE Commands">}}
 
 ```
-cumulus@switch:~$ cl set evpn multihoming startup-delay 1800
-cumulus@switch:~$ cl config apply
+cumulus@leaf01:~$ cl set evpn multihoming startup-delay 1800
+cumulus@leaf01:~$ cl config apply
+```
+
+The CUE commands create the following configuration snippet in the `/etc/cue.d/startup.yaml` file:
+
+```
+cumulus@leaf01:~$ sudo cat /etc/cue.d/startup.yaml
 ```
 
 {{</tab>}}
 {{<tab "vtysh Commands">}}
 
 ```
-cumulus@switch:~$ sudo vtysh
-switch# configure terminal
-switch(config)# evpn mh startup-delay 1800
-switch(config)# exit
-switch# write memory
+cumulus@leaf01:~$ sudo vtysh
+leaf01# configure terminal
+leaf01(config)# evpn mh startup-delay 1800
+leaf01(config)# exit
+leaf01# write memory
+```
+
+The vtysh commands create the following configuration in the `/etc/frr/frr.conf` file:
+
+```
+cumulus@leaf01:~$ sudo cat /etc/frr/frr.conf
+...
+evpn mh startup-delay 1800
 ```
 
 {{</tab>}}
 {{</tabs>}}
-
-The commands create the following configuration in the `/etc/frr/frr.conf` file:
-
-```
-cumulus@switch:~$ sudo cat /etc/frr/frr.conf
-...
-evpn mh startup-delay 1800
-```
 
 ### Enable Uplink Tracking
 
@@ -332,11 +359,17 @@ When all the uplinks go down, the VTEP loses connectivity to the VXLAN overlay. 
 {{<tab "CUE Commands">}}
 
 ```
-cumulus@switch:~$ cl set interface swp51-54 evpn multihoming uplink on
-cumulus@switch:~$ cl config apply
+cumulus@leaf01:~$ cl set interface swp51-54 evpn multihoming uplink on
+cumulus@leaf01:~$ cl config apply
 ```
 
 If you are configuring EVPN multihoming with EVPN-PIM, be sure to configure PIM on the interfaces.
+
+The CUE commands create the following configuration snippet in the `/etc/cue.d/startup.yaml` file:
+
+```
+cumulus@leaf01:~$ sudo cat /etc/cue.d/startup.yaml
+```
 
 {{</tab>}}
 {{<tab "vtysh Commands">}}
@@ -366,13 +399,10 @@ leaf01# exit
 cumulus@leaf01:~$
 ```
 
-{{</tab>}}
-{{</tabs>}}
-
-These commands create the following configuration in the `/etc/frr/frr.conf` file:
+The vtysh commands create the following configuration in the `/etc/frr/frr.conf` file:
 
 ```
-cumulus@switch:~$ sudo cat /etc/frr/frr.conf
+cumulus@leaf01:~$ sudo cat /etc/frr/frr.conf
 ...
 !
 interface swp1
@@ -389,6 +419,9 @@ interface swp4
 !
 ...
 ```
+
+{{</tab>}}
+{{</tabs>}}
 
 ### Enable FRR Debugging
 
@@ -423,13 +456,10 @@ leaf01# exit
 cumulus@leaf01:~$
 ```
 
-{{</tab>}}
-{{</tabs>}}
-
-These commands create the following configuration in the `/etc/frr/frr.conf` file:
+The vtysh commands create the following configuration in the `/etc/frr/frr.conf` file:
 
 ```
-cumulus@switch:~$ sudo cat /etc/frr/frr.conf
+cumulus@leaf01:~$ sudo cat /etc/frr/frr.conf
 ...
 !
 debug bgp evpn mh es
@@ -443,6 +473,9 @@ debug zebra vxlan
 !
 ...
 ```
+
+{{</tab>}}
+{{</tabs>}}
 
 ### Fast Failover
 
@@ -503,9 +536,9 @@ cumulus@switch:~$ cl config apply
 cumulus@switch:~$ sudo vtysh
 switch# configure terminal
 switch(config)# router bgp
-cumulus(config-router)# address-family l2vpn evpn 
-cumulus(config-router-af)# disable-ead-evi-rx
-cumulus(config-router-af)# end
+switch(config-router)# address-family l2vpn evpn 
+switch(config-router-af)# disable-ead-evi-rx
+switch(config-router-af)# end
 switch# write memory
 switch# exit
 cumulus@switch:~$
@@ -517,9 +550,9 @@ To suppress the advertisement of EAD-per-EVI routes, run:
 cumulus@switch:~$ sudo vtysh
 switch# configure terminal
 switch(config)# router bgp
-cumulus(config-router)# address-family l2vpn evpn 
-cumulus(config-router-af)# disable-ead-evi-tx
-cumulus(config-router-af)# end
+switch(config-router)# address-family l2vpn evpn 
+switch(config-router-af)# disable-ead-evi-tx
+switch(config-router-af)# end
 switch# write memory
 switch# exit
 cumulus@switch:~$

@@ -37,7 +37,7 @@ def expand_details(soup):
     return soup
 
 def write_soup(soup):
-    with open("public/cumulus-linux-43/pdf/index.html", "w") as in_file:
+    with open("public/networking-ethernet-software/cumulus-linux-43/pdf/index.html", "w") as in_file:
         in_file.write(str(soup))
 
 # def generate_name():
@@ -104,7 +104,7 @@ def main():
     Pass in a list of directories to check as command line arguments.
     """
 
-    with open("public/cumulus-linux-43/pdf/index.html", "r") as in_file:
+    with open("public/networking-ethernet-software/cumulus-linux-43/pdf/index.html", "r") as in_file:
         soup = BeautifulSoup(in_file, 'html.parser')
 
     # soup = fix_tabs(soup)

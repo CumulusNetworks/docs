@@ -1,6 +1,9 @@
 #!/usr/bin/env python3
 from bs4 import BeautifulSoup
 
+#pdf_file = "public/networking-ethernet-software/cumulus-linux-43/pdf/index.html"
+pdf_file = "/Users/plumbis/Desktop/links.html"
+
 def rewrite_urls(soup):
     for link in soup.find_all("a"):
         href = link.get("href")
@@ -13,7 +16,9 @@ def rewrite_urls(soup):
         if len(path_parts) < 2:
             continue
 
-        if path_parts[1] != "cumulus-linux-43":
+        product = "cumulus-linux-43"
+
+        if product not in path_parts:
             continue
 
         if path_parts[len(path_parts) - 1] == "#":
@@ -32,7 +37,7 @@ def expand_details(soup):
     return soup
 
 def write_soup(soup):
-    with open("public/networking-ethernet-software/cumulus-linux-43/pdf/index.html", "w") as in_file:
+    with open(pdf_file, "w") as in_file:
         in_file.write(str(soup))
 
 def main():
@@ -42,10 +47,12 @@ def main():
     Pass in a list of directories to check as command line arguments.
     """
 
-    with open("public/networking-ethernet-software/cumulus-linux-43/pdf/index.html", "r") as in_file:
+    with open(pdf_file, "r") as in_file:
         soup = BeautifulSoup(in_file, 'html.parser')
 
+    print("Rewriting URLs")
     soup = rewrite_urls(soup)
+    print("Expanding Details")
     soup = expand_details(soup)
     write_soup(soup)
 

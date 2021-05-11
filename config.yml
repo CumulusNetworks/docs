@@ -59,10 +59,10 @@ Params:
   BookDateFormat: "Jan 2, 2006"
 
 markup:
-  markup.tableOfContents:
+  tableOfContents:
     endLevel: 4
     ordered: False
     startLevel: 1
-  markup.goldmark:
-    markup.goldmark.renderer:
+  goldmark:
+    renderer:
       unsafe: True

@@ -255,9 +255,290 @@ leaf01            swp1                     Blackhole route                      
 
 ## Collect WJH Data Using gNMI
 
-You can use *gNMI*, the {{<exlink url="https://github.com/openconfig/gnmi" text="gRPC network management interface">}}, to collect What Just Happened data from the NetQ Agent via the gNMI agent. This provides the ability to export NetQ data to other applications and services that support gNMI.
+You can use *gNMI*, the {{<exlink url="https://github.com/openconfig/gnmi" text="gRPC network management interface">}}, to collect What Just Happened data from the NetQ Agent and export it to your own gNMI client.
 
-In this release, the gNMI agent only supports *capabilities* and *subscribe* requests for WJH events.
+The client should use the following YANG model as a reference:
+
+{{<expand "YANG Model">}}
+
+```
+module WjhDropAggregate {
+    // Entrypoint container interfaces.
+    // Path --> interfaces/interface[name]/wjh/aggregate/[acl, l2, router, tunnel, buffer]/reasons/reason[id, severity]/drop[]
+    // Path for L1 --> interfaces/interface[name]/wjh/aggregate/l1/drop[]
+
+    namespace "http://nvidia.com/yang/what-just-happened-config";
+    prefix "wjh_drop_aggregate";
+
+    container interfaces {
+        config false;
+        list interface {
+            key "name";
+            leaf name {
+                type string;
+                mandatory "true";
+                description "Interface name";
+            }
+            uses wjh_aggregate;
+        }
+    }
+
+    grouping wjh_aggregate {
+    description "Top-level grouping for What-just happened data.";
+        container wjh {
+            container aggregate {
+                container l1 {
+                    uses l1-drops;
+                }
+                container l2 {
+                    list reason {
+                        key "id severity";
+                        uses reason-key;
+                        uses l2-drops;
+                    }
+                }
+                container router {
+                    list reason {
+                        key "id severity";
+                        uses reason-key;
+                        uses router-drops;
+                    }
+                }
+                container tunnel {
+                    list reason {
+                        key "id severity";
+                        uses reason-key;
+                        uses tunnel-drops;
+                    }
+                }
+                container acl {
+                    list reason {
+                        key "id severity";
+                        uses reason-key;
+                        uses acl-drops;
+                    }
+                }
+                container buffer {
+                    list reason {
+                        key "id severity";
+                        uses reason-key;
+                        uses buffer-drops;
+                    }
+                }
+            }
+        }
+    }
+
+    grouping reason-key {
+        leaf id {
+            type uint32;
+            mandatory "true";
+            description "reason ID";
+        }
+        leaf severity {
+            type string;
+            mandatory "true";
+            description "Severity";
+        }
+    }
+
+    grouping reason_info {
+        leaf reason {
+                type string;
+                mandatory "true";
+                description "Reason name";
+        }
+        leaf drop_type {
+            type string;
+            mandatory "true";
+            description "reason drop type";
+        }
+        leaf ingress_port {
+            type string;
+            mandatory "true";
+            description "Ingress port name";
+        }
+        leaf ingress_lag {
+            type string;
+            description "Ingress LAG name";
+        }
+        leaf egress_port {
+            type string;
+            description "Egress port name";
+        }
+        leaf agg_count {
+            type uint64;
+            description "Aggregation count";
+        }
+        leaf severity {
+            type string;
+            description "Severity";
+        }
+        leaf first_timestamp {
+            type uint64;
+            description "First timestamp";
+        }
+        leaf end_timestamp {
+            type uint64;
+            description "End timestamp";
+        }
+    }
+
+    grouping packet_info {
+        leaf smac {
+            type string;
+            description "Source MAC";
+        }
+        leaf dmac {
+            type string;
+            description "Destination MAC";
+        }
+        leaf sip {
+            type string;
+            description "Source IP";
+        }
+        leaf dip {
+            type string;
+            description "Destination IP";
+        }
+        leaf proto {
+            type uint32;
+            description "Protocol";
+        }
+        leaf sport {
+            type uint32;
+            description "Source port";
+        }
+        leaf dport {
+            type uint32;
+            description "Destination port";
+        }
+    }
+
+    grouping l1-drops {
+        description "What-just happened drops.";
+        list drop {
+            leaf ingress_port {
+                type string;
+                description "Ingress port";
+            }
+            leaf is_port_up {
+                type boolean;
+                description "Is port up";
+            }
+            leaf port_down_reason {
+                type string;
+                description "Port down reason";
+            }
+            leaf description {
+                type string;
+                description "Description";
+            }
+            leaf state_change_count {
+                type uint64;
+                description "State change count";
+            }
+            leaf symbol_error_count {
+                type uint64;
+                description "Symbol error count";
+            }
+            leaf crc_error_count {
+                type uint64;
+                description "CRC error count";
+            }
+            leaf first_timestamp {
+                type uint64;
+                description "First timestamp";
+            }
+            leaf end_timestamp {
+                type uint64;
+                description "End timestamp";
+            }
+            leaf timestamp {
+                type uint64;
+                description "Timestamp";
+            }
+        }
+    }
+    grouping l2-drops {
+        description "What-just happened drops.";
+        list drop {
+            uses reason_info;
+            uses packet_info;
+        }
+    }
+
+    grouping router-drops {
+        description "What-just happened drops.";
+        list drop {
+            uses reason_info;
+            uses packet_info;
+        }
+    }
+
+    grouping tunnel-drops {
+        description "What-just happened drops.";
+        list drop {
+            uses reason_info;
+            uses packet_info;
+        }
+    }
+
+    grouping acl-drops {
+        description "What-just happened drops.";
+        list drop {
+            uses reason_info;
+            uses packet_info;
+            leaf acl_rule_id {
+                type uint64;
+                description "ACL rule ID";
+            }
+            leaf acl_bind_point {
+                type uint32;
+                description "ACL bind point";
+            }
+            leaf acl_name {
+                type string;
+                description "ACL name";
+            }
+            leaf acl_rule {
+                type string;
+                description "ACL rule";
+            }
+        }
+    }
+
+    grouping buffer-drops {
+        description "What-just happened drops.";
+        list drop {
+            uses reason_info;
+            uses packet_info;
+            leaf traffic_class {
+                type uint32;
+                description "Traffic Class";
+            }
+            leaf original_occupancy {
+                type uint32;
+                description "Original occupancy";
+            }
+            leaf original_latency {
+                type uint64;
+                description "Original latency";
+            }
+        }
+    }
+}
+```
+
+{{</expand>}}
+
+### Supported Features and Limitations
+
+In this release, the gNMI agent has these features and limitations: 
+
+- The agent only supports *capability* and *subscribe* requests for WJH events.
+  - Only *stream* subscribe requests are supported. *Pull* and *once* requests are not supported.
+- gNMI GET and SET requests are **not** supported.
 
 ### Configure the gNMI Agent
 
@@ -284,14 +565,14 @@ To configure the gNMI agent on a Cumulus Linux switch:
 
        cumulus@switch:~$ netq config restart agent
 
-### Use the gNMI Client
+### gNMI Client Requests
 
-You use the gNMI client on a host server to request capabilities and data the agent is subscribed to.
+You use your gNMI client on a host server to request capabilities and data the agent is subscribed to.
 
 To make a subscribe request, run:
 
 ```
-[root@host ~]# /path/to/gnmi_client/gnmi_client -gnmi_address 10.209.37.84 -request subscribe
+[root@host ~]# /path/to/your/gnmi_client/gnmi_client -gnmi_address 10.209.37.84 -request subscribe
 2021/05/06 18:33:10.142160 host gnmi_client[24847]: INFO: 10.209.37.84:9339: ready for streaming
 2021/05/06 18:33:10.220814 host gnmi_client[24847]: INFO: sync response received: sync_response:true
 2021/05/06 18:33:16.813000 host gnmi_client[24847]: INFO: update received [interfaces interface swp8 wjh aggregate l2 reason 209 error]: {"Drop":[{"AggCount":1,"Dip":"1.2.0.0","Dmac":"00:bb:cc:11:22:32","Dport":0,"DropType":"L2","EgressPort":"","EndTimestamp":1620326044,"FirstTimestamp":1620326044,"IngressLag":"","IngressPort":"swp8","Proto":0,"Reason":"Source MAC is multicast","Severity":"Error","Sip":"10.213.1.242","Smac":"ff:ff:ff:ff:ff:ff","Sport":0}],"Id":209,"Severity":"Error"}
@@ -304,7 +585,7 @@ To make a subscribe request, run:
 To request the capabilities, run:
 
 ```
-[root@host ~]# /mtrsysgwork/aviranj/netq/netq-ng-agent/src/nvidia/netq-ng-agent/test/gnmi_client/gnmi_client -gnmi_address 10.209.37.84 -request capabilities
+[root@host ~]# /path/to/your/gnmi_client/gnmi_client/gnmi_client -gnmi_address 10.209.37.84 -request capabilities
 2021/05/06 18:36:31.285648 host gnmi_client[25023]: INFO: 10.209.37.84:9339: ready for streaming
 2021/05/06 18:36:31.355944 host gnmi_client[25023]: INFO: capability response: supported_models:{name:"WjhDropAggregate"  organization:"NVIDIA"  version:"0.1"}  supported_encodings:JSON  supported_encodings:JSON_IETF
 ```

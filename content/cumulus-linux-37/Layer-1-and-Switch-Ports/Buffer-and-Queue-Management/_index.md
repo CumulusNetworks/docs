@@ -59,7 +59,7 @@ If you modify the configuration in the `/etc/cumulus/datapath/traffic.conf` file
 The following example `/etc/cumulus/datapath/traffic.conf` datapath
 configuration file applies to 10G, 40G, and 100G switches on Broadcom
 Tomahawk, Trident II, Trident II+, or Trident3 and Mellanox Spectrum
-{{<exlink url="https://www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list//" text="platforms">}} only. However, see the note
+{{<exlink url="https://www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="platforms">}} only. However, see the note
 above for all the supported ASICs.
 
 Keep in mind the following about the configuration:

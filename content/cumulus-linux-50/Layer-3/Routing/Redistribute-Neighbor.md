@@ -359,7 +359,7 @@ Use the following workflow to verify that the kernel routing table isbeing popul
 
 ### TCAM Route Scale
 
-This feature adds each ARP entry as a /32 host route into the routing table of all switches within a summarization domain. Make sure the number of hosts minus fabric routes is under the TCAM size of the switch. Review the {{<exlink url="https://www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list//" text="Cumulus Networks datasheets">}} for up to date scalability limits of your hardware platform. If in doubt, contact your support representative.
+This feature adds each ARP entry as a /32 host route into the routing table of all switches within a summarization domain. Make sure the number of hosts minus fabric routes is under the TCAM size of the switch. Review the {{<exlink url="https://www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="Cumulus Networks datasheets">}} for up to date scalability limits of your hardware platform. If in doubt, contact your support representative.
 
 ### Uneven Traffic Distribution
 

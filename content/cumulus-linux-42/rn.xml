@@ -55,6 +55,12 @@
 <td></td>
 </tr>
 <tr>
+<td>2648587</td>
+<td>The received PVST BPDU for a VLAN is flooded even though the ingress port doesn't have the VLAN tagged.</td>
+<td>3.7.8-3.7.14.2, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
 <td>2638043</td>
 <td>OpenSSH is vulnerable to CVE-2020-14145, as described in https://www.fzi.de/fileadmin/user_upload/2020-06-26-FSA-2020-2.pdf.  
 This is an information leak in algorithm negotiation that can allow man-in-the-middle attacks on initial connection attempts without a previously stored server host key on the client. If desired, mitigation using UpdateHostKeys and HostKeyAlgorithms is also given in that paper.</td>
@@ -637,12 +643,6 @@ To work around this issue, remove, then add the VRRP configuration with NCLU com
 <td>Configuring the subinterface of a VXLAN uplink under another traditional bridge, which also has the VXLAN VNI enslaved, causes {{switchd}} to use high CPU due to very frequent VXLAN tunnel sync events.
 To work around this issue, do not enslave the subinterface of a VXLAN layer 3 uplink under a traditional bridge in a VXLAN configuration.</td>
 <td>4.1.1-4.3.0</td>
-<td></td>
-</tr>
-<tr>
-<td>2550601</td>
-<td>The received PVST BPDU for a VLAN is flooded even though the ingress port doesn't have the VLAN tagged.</td>
-<td>3.7.8-3.7.14.2, 4.0.0-4.3.0</td>
 <td></td>
 </tr>
 <tr>
@@ -1473,6 +1473,12 @@ To work around this issue, change the value of {{arp_ignore}} to 2. See [Address
 <td>CM-15812</td>
 <td>&lt;p&gt;Multicast forwarding fails for IP addresses whose DMAC overlaps with reserved DIPs.&lt;/p&gt;</td>
 <td>3.2.1-3.7.14.2, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2648587</td>
+<td>The received PVST BPDU for a VLAN is flooded even though the ingress port doesn't have the VLAN tagged.</td>
+<td>3.7.8-3.7.14.2, 4.0.0-4.3.0</td>
 <td></td>
 </tr>
 <tr>
@@ -2671,12 +2677,6 @@ To work around this issue, do not enslave the subinterface of a VXLAN layer 3 up
 <td>ACLs with SPAN target and in-interface as bond member are not supported on Spectrum-based switches </td>
 <td>4.2.0-4.2.1</td>
 <td>4.3.0</td>
-</tr>
-<tr>
-<td>2550601</td>
-<td>The received PVST BPDU for a VLAN is flooded even though the ingress port doesn't have the VLAN tagged.</td>
-<td>3.7.8-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
 </tr>
 <tr>
 <td>2550466</td>
@@ -3998,6 +3998,12 @@ asic-monitor[7389]: File "/usr/lib/python2.7/dist-packages/cumulus/asic_monitor.
 <td></td>
 </tr>
 <tr>
+<td>2648587</td>
+<td>The received PVST BPDU for a VLAN is flooded even though the ingress port doesn't have the VLAN tagged.</td>
+<td>3.7.8-3.7.14.2, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
 <td>2638043</td>
 <td>OpenSSH is vulnerable to CVE-2020-14145, as described in https://www.fzi.de/fileadmin/user_upload/2020-06-26-FSA-2020-2.pdf.  
 This is an information leak in algorithm negotiation that can allow man-in-the-middle attacks on initial connection attempts without a previously stored server host key on the client. If desired, mitigation using UpdateHostKeys and HostKeyAlgorithms is also given in that paper.</td>
@@ -5243,12 +5249,6 @@ To work around this issue, do not enslave the subinterface of a VXLAN layer 3 up
 <td>A VRRP role change over the EVPN network causes excessive BGP updates and connectivity issues to VIP for about one minute.</td>
 <td>4.1.1-4.2.0</td>
 <td>3.7.14, 4.2.1-4.3.0</td>
-</tr>
-<tr>
-<td>2550601</td>
-<td>The received PVST BPDU for a VLAN is flooded even though the ingress port doesn't have the VLAN tagged.</td>
-<td>3.7.8-3.7.14.2, 4.0.0-4.3.0</td>
-<td></td>
 </tr>
 <tr>
 <td>2550479</td>

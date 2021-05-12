@@ -1,6 +1,6 @@
 title: VXLAN Devices
 author: NVIDIA
-weight: 602
+weight: 622
 toc: 3
 ---
 Cumulus Linux supports both single and traditional VXLAN devices. Single VXLAN device is enabled by default.
@@ -46,8 +46,6 @@ cumulus@spine01:~$ sudo cat /etc/cue.d/startup.yaml
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
-
-Edit the `/etc/network/interfaces` file as follows:
 
 ```
 cumulus@leaf01:~$ sudo nano /etc/network/interfaces

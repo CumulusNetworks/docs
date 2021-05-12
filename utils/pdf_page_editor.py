@@ -1,9 +1,20 @@
 #!/usr/bin/env python3
+'''
+Edits html NVIDIA doc pdf HTML files to enable a more user-friendly experience.
+'''
 from bs4 import BeautifulSoup
+import os
+from os import path
 
-pdf_file = "public/networking-ethernet-software/cumulus-linux-43/pdf/index.html"
+def rewrite_urls(soup, product):
+    '''
+    Modifies all links on a page to become local anchors
 
-def rewrite_urls(soup):
+    soup - BeautifulSoup object to modify
+    product - The product string of the PDF being modified. Must match the content directory name, e.g., cumulus-linux-42
+
+    Returns a modified BeautifulSoup object
+    '''
     for link in soup.find_all("a"):
         href = link.get("href")
 
@@ -30,30 +41,62 @@ def rewrite_urls(soup):
     return soup
 
 def expand_details(soup):
+    '''
+    Expands all "summary" sections of an HTML page
+
+    soup - BeautifulSoup object to modify
+
+    Returns BeautifulSoup object
+    '''
     for div in soup.find_all("div", {"class": "expand-content"}):
         div["style"] = ""
 
     return soup
 
-def write_soup(soup):
-    with open(pdf_file, "w") as in_file:
-        in_file.write(str(soup))
+def get_folder_list():
+    '''
+    Get a list of generated Hugo folders that have a pdf file to modify.
+    Assumes that Hugo docs are built into public/networking-ethernet-software
+
+    Returns a list of paths rooted at the repo url
+    '''
+    path_list = []
+    base_dir = "public/networking-ethernet-software"
+    for folder in os.listdir(base_dir):
+        if path.exists(base_dir + "/" + folder + "/pdf/index.html"):
+            path_list.append(base_dir + "/" + folder + "/pdf/index.html")
+
+    return path_list
+
+def get_product(path):
+    '''
+    Determine the product component of a path to a PDF HTML page.
+
+    path - the string path to the PDF file.
+
+    Returns a string of just the component.
+    '''
+    start_index = len("public/networking-ethernet-software/")
+    path = path[start_index:path.find("/pdf")]
+
+    return path
 
 def main():
     """
-    Main function.
-
-    Pass in a list of directories to check as command line arguments.
+    Main function to modify static HTML files
     """
 
-    with open(pdf_file, "r") as in_file:
-        soup = BeautifulSoup(in_file, 'html.parser')
+    for path in get_folder_list():
+        with open(path, "r") as in_file:
+            soup = BeautifulSoup(in_file, 'html.parser')
 
-    print("Rewriting URLs")
-    soup = rewrite_urls(soup)
-    print("Expanding Details")
-    soup = expand_details(soup)
-    write_soup(soup)
+        print("Modifying " + path)
+        product = get_product(path)
+        soup = rewrite_urls(soup, product)
+        soup = expand_details(soup)
+
+        with open(path, "w") as in_file:
+            in_file.write(str(soup))
 
 if __name__ == "__main__":
     main()

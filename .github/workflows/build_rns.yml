@@ -1,6 +1,12 @@
 name: 'Release Note Publisher'
 
-on: [push, pull_request]
+on:
+  push:
+    branches:
+      - stage
+  pull_request:
+    branches:
+      - stage
 
 jobs:
   release-notes:

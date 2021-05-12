@@ -15,7 +15,7 @@ jobs:
           git config --global user.email "ethernet.docs@nvidia.com"
           git config --global user.name "Cumulus Docs CI"
           git add *
-          git commit -m "Auto commit of release note update [skip ci]"
+          git diff-index --quiet HEAD || git commit -m "Auto commit of release note update [skip ci]"
           git push
 
     env:

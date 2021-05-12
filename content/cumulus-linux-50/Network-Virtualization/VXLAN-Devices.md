@@ -1,6 +1,6 @@
 title: VXLAN Devices
 author: NVIDIA
-weight: 602
+weight: 622
 toc: 3
 ---
 Cumulus Linux supports both single and traditional VXLAN devices. Single VXLAN device is enabled by default.

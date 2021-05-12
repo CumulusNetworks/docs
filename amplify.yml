@@ -26,7 +26,7 @@ frontend:
         - if [ "${AWS_BRANCH}" != "master" ]; then echo "<html><head></head><body><a href='networking-ethernet-software/''>click here</a></body></html>" > public/index.html ; fi
         # Modify the PDF pages
         # Pass the /public root directory for master
-        - if [ "${AWS_BRANCH}" = "master" ]; then python3 utils/pdf_page_editor.py pubilic/ ; fi
+        - if [ "${AWS_BRANCH}" = "master" ]; then python3 utils/pdf_page_editor.py public/ ; fi
         # Default is /public/networking-ethernet-software
         - if [ "${AWS_BRANCH}" != "master" ]; then python3 utils/pdf_page_editor.py ; fi
   artifacts:

@@ -7,8 +7,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout and build
-      - uses: actions/checkout@v2
-      - run: |
+        uses: actions/checkout@v2
+        run: |
           python3 utils/build_rns.py
           python3 utils/build_foss_licenses.py
           git config --global user.email "ethernet.docs@nvidia.com"

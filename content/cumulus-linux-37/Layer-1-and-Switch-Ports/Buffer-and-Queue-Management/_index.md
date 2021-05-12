@@ -13,7 +13,7 @@ scheduling in hardware. There are two configuration input files:
 
     {{%notice note%}}
 
-While it is possible to change the buffer limits in the `datapath.conf` file, it's best to {{<exlink url="https://support.mellanox.com/s/contact-support-page" text="work with a Cumulus support engineer">}} to do so.
+The default thresholds defined in the `datapath.conf` file are intended for data center environments, but certain workloads may require additional tuning. It is best to make small, incremental changes to validate the changes with your application performance. Be sure to backup the original file before making changes.
 
     {{%/notice%}}
 

@@ -3,6 +3,7 @@
 Edits html NVIDIA doc pdf HTML files to enable a more user-friendly experience.
 '''
 from bs4 import BeautifulSoup
+import sys
 import os
 from os import path
 
@@ -51,7 +52,11 @@ def expand_details(soup):
 
     return soup
 
+<<<<<<< HEAD
 def get_folder_list():
+=======
+def get_folder_list(hugo_dir):
+>>>>>>> origin/stage
     '''
     Get a list of generated Hugo folders that have a pdf file to modify.
     Assumes that Hugo docs are built into public/networking-ethernet-software
@@ -59,10 +64,16 @@ def get_folder_list():
     Returns a list of paths rooted at the repo url
     '''
     path_list = []
+<<<<<<< HEAD
     base_dir = "public/networking-ethernet-software"
     for folder in os.listdir(base_dir):
         if path.exists(base_dir + "/" + folder + "/pdf/index.html"):
             path_list.append(base_dir + "/" + folder + "/pdf/index.html")
+=======
+    for folder in os.listdir(hugo_dir):
+        if path.exists(hugo_dir + folder + "/pdf/index.html"):
+            path_list.append(hugo_dir + folder + "/pdf/index.html")
+>>>>>>> origin/stage
 
     return path_list
 
@@ -74,7 +85,11 @@ def get_product(path):
 
     Returns a string of just the component.
     '''
+<<<<<<< HEAD
     start_index = len("public/networking-ethernet-software/")
+=======
+    start_index = len(path)
+>>>>>>> origin/stage
     path = path[start_index:path.find("/pdf")]
 
     return path
@@ -84,7 +99,24 @@ def main():
     Main function to modify static HTML files
     """
 
+<<<<<<< HEAD
     for path in get_folder_list():
+=======
+    if len(sys.argv) < 2:
+        hugo_dir = "public/networking-ethernet-software/"
+    else:
+        # Deal with the user not adding an ending "/"
+        if sys.argv[1].endswith("/"):
+            hugo_dir = sys.argv[1]
+        else:
+            hugo_dir = sys.argv[1] + "/"
+
+    if not os.path.exists(hugo_dir):
+        print("Unable to locate local directory " + hugo_dir)
+        exit(1)
+
+    for path in get_folder_list(hugo_dir):
+>>>>>>> origin/stage
         with open(path, "r") as in_file:
             soup = BeautifulSoup(in_file, 'html.parser')
 

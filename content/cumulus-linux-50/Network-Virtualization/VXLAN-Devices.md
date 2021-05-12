@@ -47,8 +47,6 @@ cumulus@spine01:~$ sudo cat /etc/cue.d/startup.yaml
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Edit the `/etc/network/interfaces` file as follows:
-
 ```
 cumulus@leaf01:~$ sudo nano /etc/network/interfaces
 ...

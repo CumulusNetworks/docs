@@ -1,0 +1,28 @@
+name: 'Release Note Publisher'
+
+on:
+  push:
+    branches:
+      - stage
+  pull_request:
+    branches:
+      - stage
+
+jobs:
+  release-notes:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the repo
+        uses: actions/checkout@v2
+      - name: Run the RN and FOSS scripts
+        run: |
+          python3 utils/build_rns.py
+          python3 utils/build_foss_licenses.py
+          git config --global user.email "ethernet.docs@nvidia.com"
+          git config --global user.name "Cumulus Docs CI"
+          git add *
+          git diff-index --quiet HEAD || git commit -m "Auto commit of release note update [skip ci]"
+          git push
+
+    env:
+      GITHUB_TOKEN: ${{ secrets.PLUMBIS_GITHUB_TOKEN }}

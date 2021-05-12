@@ -2,6 +2,7 @@
 title: Cumulus Linux 3.6 Release Notes
 author: Cumulus Networks
 weight: 7
+type: rn
 ---
 
 These release notes support Cumulus Linux 3.6.0, 3.6.1, and 3.6.2 and describe currently available features and known issues.

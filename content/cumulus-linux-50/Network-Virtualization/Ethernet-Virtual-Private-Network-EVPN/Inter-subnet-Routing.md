@@ -30,6 +30,12 @@ cumulus@leaf01:~$ cl set evpn route-advertise default-gateway on
 cumulus@leaf01:~$ cl config apply
 ```
 
+The CUE commands create the following configuration snippet in the `/etc/cue.d/startup.yaml` file:
+
+```
+cumulus@leaf01:~$ sudo cat /etc/cue.d/startup.yaml
+```
+
 {{< /tab >}}
 {{< tab "vtysh Commands ">}}
 
@@ -46,10 +52,7 @@ leaf01)# exit
 cumulus@leaf01:~$
 ```
 
-{{< /tab >}}
-{{< /tabs >}}
-
-These commands create the following configuration snippet in the `/etc/frr/frr.conf` file.
+The vtysh commands create the following configuration snippet in the `/etc/frr/frr.conf` file.
 
 ```
 ...
@@ -60,6 +63,9 @@ router bgp 65101
   exit-address-family
 ...
 ```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 {{%notice note%}}
 You can deploy centralized routing at the VNI level, where you can configure the `advertise-default-gw` command per VNI so that centralized routing is used for certain VNIs while distributed symmetric routing (described below) is used for other VNIs. This type of configuration is not recommended.
@@ -231,14 +237,11 @@ cumulus@leaf01:~$ cl set vrf RED router bgp rd 10.1.20.2:5
 cumulus@leaf01:~$ cl set vrf RED router bgp route-import from-evpn route-target 65102:4001
 ```
 
-{{< /tab >}}
-{{< tab "NCLU Commands ">}}
+The CUE commands create the following configuration snippet in the `/etc/cue.d/startup.yaml` file:
 
 ```
-cumulus@leaf01:~$ net add bgp vrf RED l2vpn evpn rd 10.1.20.2:5
-cumulus@leaf01:~$ net add bgp vrf RED l2vpn evpn route-target import 65102:4001
-cumulus@leaf01:~$ net pending
-cumulus@leaf01:~$ net commit
+cumulus@leaf01:~$ sudo cat /etc/cue.d/startup.yaml
+
 ```
 
 {{< /tab >}}
@@ -258,10 +261,7 @@ leaf01# exit
 cumulus@leaf01:~$
 ```
 
-{{< /tab >}}
-{{< /tabs >}}
-
-These commands create the following configuration snippet in the `/etc/frr/frr.conf` file:
+The vtysh commands create the following configuration snippet in the `/etc/frr/frr.conf` file:
 
 ```
 ...
@@ -271,6 +271,9 @@ router bgp 65101 vrf RED
   route-target import 65102:4001
 ...
 ```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 {{%notice note%}}
 The tenant VRF RD and RTs are different from the RD and RTs for the layer 2 VNI. See {{<link url="EVPN-Enhancements#define-rds-and-rts" text="Define RDs and RTs">}}.
@@ -319,6 +322,13 @@ cumulus@leaf01:~$ cl set vrf RED router bgp address-family ipv4-unicast route-ex
 cumulus@leaf01:~$ cl config apply
 ```
 
+The CUE commands create the following configuration snippet in the `/etc/cue.d/startup.yaml` file:
+
+```
+cumulus@leaf01:~$ sudo cat /etc/cue.d/startup.yaml
+
+```
+
 {{< /tab >}}
 {{< tab "vtysh Commands ">}}
 
@@ -335,10 +345,7 @@ leaf01# exit
 cumulus@leaf01:~$
 ```
 
-{{< /tab >}}
-{{< /tabs >}}
-
-These commands create the following snippet in the `/etc/frr/frr.conf` file:
+The vtysh commands create the following snippet in the `/etc/frr/frr.conf` file:
 
 ```
 ...
@@ -349,6 +356,9 @@ router bgp 65101 vrf RED
 end
 ...
 ```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 <!--### EVPN Type-5 Routing in Asymmetric Mode
 

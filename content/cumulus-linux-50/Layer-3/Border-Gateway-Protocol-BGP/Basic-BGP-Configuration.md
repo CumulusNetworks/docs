@@ -78,6 +78,12 @@ To configure BGP numbered on a BGP node, you need to:
    cumulus@leaf01:~$ cl config apply
    ```
 
+The CUE commands create the following configuration snippet in the `/etc/cue.d/startup.yaml` file:
+
+```
+cumulus@leaf01:~$ sudo cat /etc/cue.d/startup.yaml
+```
+
 {{< /tab >}}
 {{< tab "spine01 ">}}
 
@@ -132,6 +138,12 @@ To configure BGP numbered on a BGP node, you need to:
    cumulus@spine01:~$ cl set vrf default router bgp address-family ipv6-unicast static-network 2001:db8::101/128
    cumulus@spine01:~$ cl config apply
    ```
+
+The CUE commands create the following configuration snippet in the `/etc/cue.d/startup.yaml` file:
+
+```
+cumulus@spine01:~$ sudo cat /etc/cue.d/startup.yaml
+```
 
 {{< /tab >}}
 {{< /tabs >}}
@@ -317,6 +329,12 @@ cumulus@leaf01:~$ cl set vrf default router bgp address-family ipv6-unicast stat
 cumulus@leaf01:~$ cl config apply
 ```
 
+The CUE commands create the following configuration snippet in the `/etc/cue.d/startup.yaml` file:
+
+```
+cumulus@leaf01:~$ sudo cat /etc/cue.d/startup.yaml
+```
+
 {{< /tab >}}
 {{< tab "spine01 ">}}
 
@@ -337,6 +355,12 @@ cumulus@spine01:~$ cl set vrf default router bgp peer swp1 remote-as external
 cumulus@spine01:~$ cl set vrf default router bgp address-family ipv6-unicast enable on
 cumulus@spine01:~$ cl set vrf default router bgp address-family ipv6-unicast static-network 2001:db8::101/128
 cumulus@spine01:~$ cl config apply
+```
+
+The CUE commands create the following configuration snippet in the `/etc/cue.d/startup.yaml` file:
+
+```
+cumulus@spine01:~$ sudo cat /etc/cue.d/startup.yaml
 ```
 
 {{< /tab >}}

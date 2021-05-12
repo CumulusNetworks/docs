@@ -213,7 +213,7 @@ The set commands (priority, enable, disable) either succeed silently or display 
 
 The `poectl` command takes the following arguments:
 
-|<div style="width:200px">Argument|Description<img width=500/>|
+|<div style="width:200px">Argument|Description|
 |-----------------|--------|
 |`-h`, `--help`|Show this help message and exit|
 |`-i`, `--port-info`<br>`<port-list>`|Returns detailed information for the specified ports. You can specify a range of ports. For example: `-i swp1-swp5,swp10`.<br>**Note**: On an Edge-Core AS4610-54P switch, the voltage reported by the poectl -i command and measured through a power meter connected to the device varies by 5V. The current and power readings are correct and no difference is seen for them.|

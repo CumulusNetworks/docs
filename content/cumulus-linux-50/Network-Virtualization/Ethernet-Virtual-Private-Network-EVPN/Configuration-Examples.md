@@ -28,7 +28,7 @@ The following images shows traffic flow between tenants. The spines and other de
 
 |   Traffic Flow between server01 and server04  |     |
 | --- | --- |
-| <img width=1000/> {{< img src="/images/cumulus-linux/evpn-layer2-diagram.png" >}} | server01 and server04 are in the same VLAN but are located across different leafs.<br><ol><li>server01 makes a LACP hash decision and forwards traffic to leaf01.</li><li>leaf01 does a layer 2 lookup, has the MAC address for server04, and forwards the packet out VNI10, towards leaf04.</li><li>The VXLAN encapsulated frame arrives on leaf04, which does a layer 2 lookup and has the MAC address for server04 in VLAN10.</li></ul>|
+|  {{< img src="/images/cumulus-linux/evpn-layer2-diagram.png" >}} | server01 and server04 are in the same VLAN but are located across different leafs.<br><ol><li>server01 makes a LACP hash decision and forwards traffic to leaf01.</li><li>leaf01 does a layer 2 lookup, has the MAC address for server04, and forwards the packet out VNI10, towards leaf04.</li><li>The VXLAN encapsulated frame arrives on leaf04, which does a layer 2 lookup and has the MAC address for server04 in VLAN10.</li></ul>|
 
 ### CUE Commands
 
@@ -1485,7 +1485,7 @@ The following images shows traffic flow between tenants. The spines and other de
 
 |   Traffic Flow between server01 and server05  |     |
 | --- | --- |
-| <img width=1000/> {{< img src="/images/cumulus-linux/evpn-central-diagram.png" >}} | server01 and server05 are in a different VLAN and are located across different leafs.<br><ol><li>server01 makes a LACP hash decision and forwards traffic to leaf01.</li><li>leaf01 does a layer 2 lookup and forwards traffic to server01's default gateway (border01) out VNI10.</li><li>border01 does a layer 3 lookup and routes the packet out VNI20 towards leaf04.</li><li>The VXLAN encapsulated frame arrives on leaf04, which does a layer 2 lookup and has the MAC address for server05 in VLAN20.</li></ul>|
+|  {{< img src="/images/cumulus-linux/evpn-central-diagram.png" >}} | server01 and server05 are in a different VLAN and are located across different leafs.<br><ol><li>server01 makes a LACP hash decision and forwards traffic to leaf01.</li><li>leaf01 does a layer 2 lookup and forwards traffic to server01's default gateway (border01) out VNI10.</li><li>border01 does a layer 3 lookup and routes the packet out VNI20 towards leaf04.</li><li>The VXLAN encapsulated frame arrives on leaf04, which does a layer 2 lookup and has the MAC address for server05 in VLAN20.</li></ul>|
 
 ### CUE Commands
 
@@ -2967,15 +2967,15 @@ The following images shows traffic flow between tenants. The spines and other de
 
 |   Traffic Flow between server01 and server04  |     |
 | --- | --- |
-| <img width=1000/> {{< img src="/images/cumulus-linux/EVPN-same-VLAN.png" >}} | server01 and server04 are in the same VRF and the same VLAN but are located across different leafs.<br><ol><li>server01 makes a LACP hash decision and forwards traffic to leaf01.</li><li>leaf01 does a layer 2 lookup and has the MAC address for server04, it then forwards the packet out VNI10, through leaf04.</li><li>The VXLAN encapsulated frame arrives on leaf04, which does a layer 2 lookup and has the MAC address for server04 in VLAN10.</li></ul>|
+|  {{< img src="/images/cumulus-linux/EVPN-same-VLAN.png" >}} | server01 and server04 are in the same VRF and the same VLAN but are located across different leafs.<br><ol><li>server01 makes a LACP hash decision and forwards traffic to leaf01.</li><li>leaf01 does a layer 2 lookup and has the MAC address for server04, it then forwards the packet out VNI10, through leaf04.</li><li>The VXLAN encapsulated frame arrives on leaf04, which does a layer 2 lookup and has the MAC address for server04 in VLAN10.</li></ul>|
 
 |  Traffic Flow between server01 and server05   |     |
 | --- | --- |
-| <img width=1150/> {{< img src="/images/cumulus-linux/EVPN-different-VLAN.png"  >}} | server01 and server05 are in the same VRF, different VLANs, and are located across different leafs.<br><ol><li>server01 makes an LACP hash decision to reach the default gateway and forwards traffic to leaf01.</li><li>leaf01 does a layer 3 lookup in VRF RED and has a route out VNIRED through leaf04.</li><li>The VXLAN encapsulated packet arrives on leaf04, which does a layer 3 lookup in VRF RED and has a route through VLAN20 to server05.</li></ul> |
+|  {{< img src="/images/cumulus-linux/EVPN-different-VLAN.png"  >}} | server01 and server05 are in the same VRF, different VLANs, and are located across different leafs.<br><ol><li>server01 makes an LACP hash decision to reach the default gateway and forwards traffic to leaf01.</li><li>leaf01 does a layer 3 lookup in VRF RED and has a route out VNIRED through leaf04.</li><li>The VXLAN encapsulated packet arrives on leaf04, which does a layer 3 lookup in VRF RED and has a route through VLAN20 to server05.</li></ul> |
 
 |   Traffic Flow between server01 and server06  |     |
 | --- | --- |
-| <img width=1300/> {{< img src="/images/cumulus-linux/EVPN-different-VRF.png"  >}} | server01 and server06 are in different VRFs, different VLANs, and are located across different leafs.<br><ol><li>server01 makes an LACP hash decision to reach the default gateway and forwards traffic to leaf01.</li><li>leaf01 does a layer 3 lookup in VRF RED and has a route out VNIRED through border01.</li><li>The VXLAN encapsulated packet arrives on border01, which does a layer 3 lookup in VRF RED and has a route through VLAN101 to fw01 (the policy device).</li><li>fw01 does a layer 3 lookup (without any VRFs) and has a route in VLAN40, through border02.</li><li>border02 does a layer 3 lookup in VRF BLUE and has a route out VNIBLUE, through leaf04.</li><li>The VXLAN encapsulated packet arrives on leaf04, which does a layer 3 lookup in VRF BLUE and has a route in VLAN30 to server06.</ul>|
+|  {{< img src="/images/cumulus-linux/EVPN-different-VRF.png"  >}} | server01 and server06 are in different VRFs, different VLANs, and are located across different leafs.<br><ol><li>server01 makes an LACP hash decision to reach the default gateway and forwards traffic to leaf01.</li><li>leaf01 does a layer 3 lookup in VRF RED and has a route out VNIRED through border01.</li><li>The VXLAN encapsulated packet arrives on border01, which does a layer 3 lookup in VRF RED and has a route through VLAN101 to fw01 (the policy device).</li><li>fw01 does a layer 3 lookup (without any VRFs) and has a route in VLAN40, through border02.</li><li>border02 does a layer 3 lookup in VRF BLUE and has a route out VNIBLUE, through leaf04.</li><li>The VXLAN encapsulated packet arrives on leaf04, which does a layer 3 lookup in VRF BLUE and has a route in VLAN30 to server06.</ul>|
 
 ### CUE Commands
 

@@ -57,7 +57,7 @@ swp39 current results @ 2019-08-05 09:37:53 EDT
 
 The `cl-tdr` command includes several options, described below:
 
-| Option<img width=300/> | Description <img width=600/>|
+| Option | Description |
 |------------------------|-----------------------------|
 | `-h` | Displays this list of command options. |
 | `-d <delay>` | The delay in seconds between diagnostics on different ports when you run the command on multiple ports. You can specify 0 through 30 seconds. The default is 2 seconds. |

@@ -425,7 +425,7 @@ cumulus@switch:~$ sudo nano /etc/netd.conf
 cumulus@switch:~$ sudo systemctl restart netd.service
 ```
 
-| Configuration Variable <img width=150/>| Default Setting <img width=250/>|Description <img width=200/>|
+| Configuration Variable | Default Setting |Description |
 |-------------------------------------- |------------------------------- |--------------------------- |
 | show_linux_command | False | When true, displays the Linux command running in the background. |
 | color_diffs | True | When true, the diffs shown in net pending and net commit use colors. |

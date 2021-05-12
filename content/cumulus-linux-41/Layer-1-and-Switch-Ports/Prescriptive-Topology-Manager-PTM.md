@@ -364,7 +364,7 @@ cumulus@switch:~$ sudo systemctl status ptmd.service
 
 The examples below contain the following keywords in the output of the `cbl status` column:
 
-| cbl status Keyword<img width=200/> | Definition<img width=400/> |
+| cbl status Keyword | Definition |
 |-------- |-------- |
 | pass | The interface is defined in the topology file, LLDP information is received on the interface, and the LLDP information for the interface matches the information in the topology file. |
 | fail | The interface is defined in the topology file, LLDP information is received on the interface, and the LLDP information for the interface does not match the information in the topology file. |

@@ -94,7 +94,7 @@ cumulus@switch:~$ sudo cl-netstat -c
 Cleared counters
 ```
 
-| Option<img width=300/> | Description<img width=600/> |
+| Option | Description |
 |----------------------- |---------------------------- |
 | `-c` | Copies and clears statistics. It does not clear counters in the kernel or hardware.<br><br>**Note**: The -c argument is applied per user ID by default. You can override it by using the `-t` argument to save statistics to a different directory. |
 | `-d` | Deletes saved statistics, either the uid or the specified tag.<br><br>**Note**: The `-d` argument is applied per user ID by default. You can override it by using the `-t` argument to save statistics to a different directory. |

@@ -186,7 +186,7 @@ Bridge chain: OUTPUT, entries: 0, policy: ACCEPT
 
 ## IP Tables
 
-|Action/Value |Protocol/IP Address|
+|Action/Value <img width=250/>|Protocol/IP Address<img width=450/>|
 |---------------------------- |---------------------------------- |
 | Drop<br>Destination IP: Any | Source IPv4:<br>240.0.0.0/5<br>loopback/8<br>224.0.0.0/4<br>255.255.255.255|
 | Set class: 7<br>Police: Packet rate 2000 burst 2000<br>Source IP: Any<br>Destination IP: Any | Protocol:<br>UDP/BFD Echo<br>UDP/BFD Control<br>UDP BFD Multihop Control<br>OSPF<br>TCP/BGP (spt dpt 179)<br>TCP/MLAG (spt dpt 5342)|
@@ -205,7 +205,7 @@ Set class is internal to the switch - it does not set any precedence bits.
 
 ## IPv6 Tables
 
-| Action/Value  | Protocol/IP Address  |
+| Action/Value <img width=300/> | Protocol/IP Address <img width=400/> |
 |------------------------------ |------------------------------------- |
 | Drop | Source IPv6:<br>ff00::/8<br>::<br>::ffff:0.0.0.0/96<br>localhost |
 | Set class: 7<br>Police: Packet rate 2000 burst 2000<br>Source IPv6: Any<br>Destination IPv6: Any |Protocol:<br>UDP/BFD Echo<br>UDP/BFD Control<br>UDP BFD Multihop Control<br>OSPF<br>TCP/BGP (spt dpt 179) |
@@ -227,7 +227,7 @@ Set class is internal to the switch - it does not set any precedence bits.
 
 ## EB Tables
 
-| Action/Value | Protocol/MAC Address |
+| Action/Value<img width=300/> | Protocol/MAC Address<img width=400/> |
 |----------------------------- |------------------------------------- |
 | Set Class: 7<br>Police: packet rate: 2000 burst rate:2000<br>Any switchport input interface |BDPU<br>LACP=<br>Cisco PVST |
 | Set Class: 6<br>Police: packet rate: 200 burst rate: 200<br>Any switchport input inteface | LLDP<br>CDP |

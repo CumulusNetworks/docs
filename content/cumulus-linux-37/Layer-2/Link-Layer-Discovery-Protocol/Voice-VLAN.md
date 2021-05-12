@@ -17,7 +17,7 @@ Data traffic is always {{<link url="VLAN-Tagging" text="untagged">}}.
 
 |      |      |
 | ---- | ---- |
-|  {{< img src = "/images/cumulus-linux/voice-vlan-example.png" >}} | <br><br><br><br>In this example configuration:<ul><li>swp1 data traffic traverses the native VLAN of the bridge and the voice traffic traverses VLAN 200</li><li>swp2 data traffic traverses VLAN 100 and the voice traffic traverses VLAN 200</li><li>swp3 data traffic traverses VLAN 100 and voice traffic traverses VLAN 300</li></ul> |
+| <img width=300/> {{< img src = "/images/cumulus-linux/voice-vlan-example.png" >}} | <br><br><br><br>In this example configuration:<ul><li>swp1 data traffic traverses the native VLAN of the bridge and the voice traffic traverses VLAN 200</li><li>swp2 data traffic traverses VLAN 100 and the voice traffic traverses VLAN 200</li><li>swp3 data traffic traverses VLAN 100 and voice traffic traverses VLAN 300</li></ul> |
 
 To configure the topology shown above:
 

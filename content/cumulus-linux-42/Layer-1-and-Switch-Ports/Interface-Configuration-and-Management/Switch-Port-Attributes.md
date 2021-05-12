@@ -762,7 +762,7 @@ Spectrum switches automatically configure these settings following a predefined 
 
 {{%/notice%}}
 
-| Speed| Auto-negotiation|FEC Setting|Manual Configuration Examples| Notes|
+| Speed<img width=100/>| Auto-negotiation|FEC Setting|Manual Configuration Examples<img width=300/>| Notes|
 |--- |--- |--- |--- |--- |
 | 100BASE-T (RJ-45 SFP adapter)| Off|N/A |**NCLU commands**<pre>$ net add interface swp1 link speed 100<br>$ net add interface swp1 link autoneg off</pre>**Configuration in /etc/network/interfaces**<pre>auto swp1<br>iface swp1<br>&nbsp; &nbsp;link-autoneg off<br>&nbsp; &nbsp;link-speed 100</pre> | The module has two sets of electronics: the port side, which communicates with the switch ASIC and the RJ-45 adapter side.<br><br>Auto-negotiation is always used on the RJ-45 adapter side of the link by the PHY built into the module. This is independent of the switch setting. Set auto-negotiation to off.<br><br>Auto-negotiation must be enabled on the server side in this scenario. |
 | 100BASE-T on a 1G fixed copper port | On | N/A | **NCLU commands**<pre>$ net add interface swp1 link speed 100<br>$net add interface swp1 link autoneg on</pre>**Configuration in /etc/network/interfaces**<pre>auto swp1<br>iface swp1<br>&nbsp; &nbsp;ink-autoneg on<br>&nbsp; &nbsp;link-speed 100</pre> | 10M or 100M speeds are possible with auto-negotiation off on both sides.<br><br>Testing on an Edgecore AS4610-54P showed the ASIC reporting auto-negotiation as on.<br><br>Power over Ethernet might require auto-negotiation to be on. |

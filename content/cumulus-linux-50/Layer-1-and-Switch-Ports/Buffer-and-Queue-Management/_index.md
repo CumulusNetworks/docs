@@ -44,7 +44,7 @@ For `ebtables`, the setqos keyword must be in lowercase, as in:
 
 You can specify one of the following targets for SETQOS/setqos:
 
-| Option| Description|
+| Option<img width=400/>| Description<img width=400/>|
 |----------------|---------------|
 | `--set-cos INT` | Sets the datapath resource/queuing class value. Values are defined in {{<exlink url="http://en.wikipedia.org/wiki/IEEE_P802.1p" text="IEEE P802.1p">}}.|
 | `--set-dscp value`| Sets the DSCP field in packet header to a value, which can be either a decimal or hex value.|

@@ -26,8 +26,6 @@ def rewrite_urls(soup, product):
         if len(path_parts) < 2:
             continue
 
-        product = "cumulus-linux-43"
-
         if product not in path_parts:
             continue
 
@@ -90,8 +88,8 @@ def main():
         with open(path, "r") as in_file:
             soup = BeautifulSoup(in_file, 'html.parser')
 
-        print("Modifying " + path)
         product = get_product(path)
+        print("Modifying " + path)
         soup = rewrite_urls(soup, product)
         soup = expand_details(soup)
 

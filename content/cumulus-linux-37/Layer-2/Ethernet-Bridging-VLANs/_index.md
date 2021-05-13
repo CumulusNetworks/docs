@@ -34,11 +34,11 @@ traditional mode, it's best to use VLAN-aware mode.
 
 {{%/notice%}}
 
-{{<notice info>}}
+{{%notice info%}}
 
 For a comparison of traditional and VLAN-aware modes, read this [knowledge base article]({{<ref "/knowledge-base/Configuration-and-Usage/Network-Interfaces/Compare-Traditional-Bridge-Mode-to-VLAN-aware-Bridge-Mode" >}}).
 
-{{</notice>}}
+{{%/notice%}}
 
 {{%notice note%}}
 

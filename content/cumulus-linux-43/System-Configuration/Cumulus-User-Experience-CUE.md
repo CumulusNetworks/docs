@@ -4,11 +4,11 @@ author: NVIDIA
 weight: 115
 toc: 3
 ---
-{{<notice warning>}}
+{{%notice warning%}}
 Cumulus User Experience (CUE) is an [early access feature]({{<ref "/knowledge-base/Support/Support-Offerings/Early-Access-Features-Defined" >}}) currently in ALPHA and open to customer feedback.
 
 CUE is not currently intended to run in production and is not supported through NVIDIA networking support.
-{{</notice>}}
+{{%/notice%}}
 <!-- vale off -->
 Your evaluation is welcome and appreciated as we start to roll out this new Cumulus Linux CLI. You can provide feedback by sending an email to net-cl-cue-ea-feedback@nvidia.com.
 <!-- vale on -->

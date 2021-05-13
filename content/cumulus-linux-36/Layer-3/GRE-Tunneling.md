@@ -5,13 +5,13 @@ weight: 195
 pageID: 8362432
 ---
 
-{{<notice warning>}}
+{{%notice warning%}}
 
 **Early Access Feature**
 
 GRE Tunneling is an {{<kb_link url="knowledge-base/Support/Support-Offerings/Early-Access-Features-Defined/" text="early access feature" >}} in Cumulus Linux 3.6.
 
-{{</notice>}}
+{{%/notice%}}
 
 Generic Routing Encapsulation (GRE) is a tunneling protocol that
 encapsulates network layer protocols inside virtual point-to-point links

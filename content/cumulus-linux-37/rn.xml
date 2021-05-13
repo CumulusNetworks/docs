@@ -62,6 +62,18 @@ To work around this issue, run the &lt;tt&gt;apt-get upgrade&lt;/tt&gt; command 
 <td></td>
 </tr>
 <tr>
+<td>2656291</td>
+<td>The following CVEs affect the linux kernel package:
+CVE-2019-14821 CVE-2019-14835 CVE-2019-15117 CVE-2019-15118 CVE-2019-15902
+Several vulnerabilities have been discovered in the Linux kernel that
+may lead to a privilege escalation, denial of service or information
+leaks.
+For the detailed security status of linux,  refer to its security tracker page at:
+https://security-tracker.debian.org/tracker/linux</td>
+<td>3.7.12-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2654684</td>
 <td>CVE-2021-3517 CVE-2021-3518 CVE-2021-3537: Several vulnerabilities were discovered in libxml2, a library providing support to read, modify and write XML and HTML files, which could cause denial of service via application crash when parsing specially crafted files.
 Vulnerable: &lt;= 2.9.1+dfsg1-5+deb8u9
@@ -103,7 +115,7 @@ Fixed: 6.8.9.9-5+deb8u24</td>
 <td></td>
 </tr>
 <tr>
-<td>2644072</td>
+<td>2638400</td>
 <td>When you stop {{clagd}} on the MLAG primary switch (for example, when you reboot the switch), in rare conditions the MLAG secondary switch might fail to properly assert itself as the MLAG primary switch. To work around this issue, change the primary designation by configuring the {{clagd}} priorities to ensure that you only reboot a switch that is in the MLAG secondary role.</td>
 <td>3.7.15</td>
 <td></td>
@@ -141,13 +153,13 @@ This is an information leak in algorithm negotiation that can allow man-in-the-m
 </tr>
 <tr>
 <td>2556061</td>
-<td>On Edgecore AS4610 switches, the historic CPU usage displayed in {{/run/sysmonitor/history}} is sometimes shown as a negative value. </td>
+<td>On Edgecore AS4610 switches, the historic CPU usage displayed in {{/run/sysmonitor/history}} sometimes shows as a negative value. </td>
 <td>3.7.12-3.7.15, 4.2.1-4.3.0</td>
 <td></td>
 </tr>
 <tr>
 <td>2556037</td>
-<td>After you add an interface to the bridge, an OSPF session flap can occur.
+<td>After you add an interface to the bridge, an OSPF session flap might occur.
 
 </td>
 <td>3.7.9-4.2.0</td>
@@ -207,7 +219,7 @@ To work around this issue, configure {{ip pim use-source}} on each unnumbered in
 </tr>
 <tr>
 <td>2554588</td>
-<td>If you try reconfigure a DHCP server after you delete the switch configuration with the {{net del all}} command, the {{dhcpd}} service fails because a duplicate process is running.
+<td>If you try to reconfigure a DHCP server after you delete the switch configuration with the {{net del all}} command, the {{dhcpd}} service fails because a duplicate process is running.
 To work around this issue, edit the {{/usr/lib/python2.7/dist-packages/nclu/plugins/dhcp.py}} file to change:
 
 DHCPD_PID="-pf {0}" 
@@ -547,7 +559,7 @@ If you flap the link with the {{ip link set vni10100 down; ip link set vni10100 
 </tr>
 <tr>
 <td>2548930</td>
-<td>On MLX switches that contain an OSPF IP unnumbered neighborship with a high scale of prefixes being learned, a link flap might cause the neighbor entry to not be programmed in hardware.</td>
+<td>On Mellanox Spectrum switches that contain an OSPF IP unnumbered neighborship with a high scale of prefixes being learned, a link flap might cause the neighbor entry to not be programmed in hardware.</td>
 <td>3.7.11-4.2.1</td>
 <td>4.3.0</td>
 </tr>
@@ -585,7 +597,7 @@ To work around this issue, reenter the {{redistribute &lt;connected|static&gt; r
 </tr>
 <tr>
 <td>2548485</td>
-<td>If you configure {{aggregate-address &lt;address&gt; summary-only}} before a component of the same aggregate is injected into the BGP table with the {{network}} or {{redistribute}} command, when you remove the {{aggregate-address}} configuration, the component stays suppressed; it is not advertised to peers. For example:
+<td>If you configure the aggregate-address &lt;address&gt; summary-only option before injecting a component of the same aggregate into the BGP table with the {{network}} or {{redistribute}} command, when you remove the {{aggregate-address}} configuration, the component stays suppressed; it is not advertised to peers. For example:
 Existing configuration:
 
 router bgp 1
@@ -717,39 +729,17 @@ Dec 20 08:43:27 netflow-nms sfcapd[3991]: SFLOW: readFlowSample_header() undefin
 <tr>
 <td>2547068</td>
 <td>Hardware platforms using the Intel D-1500 CPU series might reboot unexpectedly.
-
-To work around this issue, contact your hardware vendor to inquire if a new version of BIOS with a microcode fix might be available, or manually disable CPU C-states in the kernel as outlined below.
-
+To work around this issue, contact your hardware vendor to inquire if a new version of BIOS with a microcode fix is available or manually disable CPU C-states in the kernel as outlined below.
 To permanently disable C-states using a kernel boot parameter:
-
-1. Edit {{/etc/default/grub}} to add the argument {{processor.max_cstate=0}} to the variable {{GRUB_CMDLINE_LINUX}}
-
-For example, if {{/etc/default/grub}} file contains the following line:
-
-{{GRUB_CMDLINE_LINUX="cl_platform=accton_as7726_32x console=tty0 console=ttyS0,115200n8 intel_iommu=off pcie_aspm=off"}}
-
-change it to
-
-{{GRUB_CMDLINE_LINUX="cl_platform=accton_as7726_32x console=tty0 console=ttyS0,115200n8 intel_iommu=off pcie_aspm=off processor.max_cstate=0"}}
-
-2. Run {{sudo update-grub}}
-
-3. Reboot the system with {{sudo reboot}}
-
-
-To Disable cstates in realtime on the current system which will not persist through a reboot:
-
-1. Confirm that the libpci3 package is installed
-
-Run {{dpkg-query -l libpci3}} and confirm the following line is displayed:
-
+1. Edit {{/etc/default/grub}} to add the argument {{processor.max_cstate=0}} to the variable {{GRUB_CMDLINE_LINUX}}. For example, if {{/etc/default/grub}} file contains the line {{GRUB_CMDLINE_LINUX="cl_platform=accton_as7726_32x console=tty0 console=ttyS0,115200n8 intel_iommu=off pcie_aspm=off"}}, change it to {{GRUB_CMDLINE_LINUX="cl_platform=accton_as7726_32x console=tty0 console=ttyS0,115200n8 intel_iommu=off pcie_aspm=off processor.max_cstate=0"}}
+2. Run {{sudo update-grub}}.
+3. Reboot the system with {{sudo reboot}}.
+To disable cstates in realtime on the current system, which does not persist through a reboot:
+1. Confirm that the libpci3 package is installed. Run {{dpkg-query -l libpci3}} and confirm the following line is displayed:
 {{ii  libpci3:amd64      1:3.2.1-3      amd64          Linux PCI Utilities (shared library)}}
-
-The first field above should read {{ii}}. If not, install the libpci3 package by running {{sudo apt upgrade;sudo apt install libpci3}}
-
-2. Disable C-states by executing the command {{./cpupower idle-set -d 2}}
-
-C-states have been disabled by default as of Cumulus Linux 4.3.0</td>
+The first field above should read {{ii}}. If not, install the libpci3 package by running {{sudo apt upgrade;sudo apt install libpci3}}.
+2. Disable C-states by running the command {{./cpupower idle-set -d 2}}.
+C-states are disabled by default in Cumulus Linux 4.3.0 and later.</td>
 <td>3.7.9-4.2.1</td>
 <td>4.3.0</td>
 </tr>
@@ -798,10 +788,9 @@ bq. systemd[1]: switchd.service watchdog timeout (limit 2min)!
 
 To workaround this issue, either reduce the number of configured interfaces and, or VLANs, or increase the {{systemd}} timeout for {{switchd.service}}.
 To increase the {{systemd}} timeout:
-# Edit the {{/etc/systemd/system/switchd.service.d/override.conf}} file and increase the {{WatchdogSec}} parameter.
-# Restart the {{switchd}} service with the {{sudo systemctl restart switchd.service}} command.
-{{systemd}} will attempt to restart the {{switchd}} service automatically (after the watchdog timeout). If the restart fails multiple times in a short time period, run the {{sudo systemctl reset-failed}} command followed by the {{sudo systemctl restart switchd}} command.
-</td>
+1. Edit the {{/etc/systemd/system/switchd.service.d/override.conf}} file and increase the {{WatchdogSec}} parameter.
+2. Restart the {{switchd}} service with the {{sudo systemctl restart switchd.service}} command.
+{{systemd}} attempts to restart the {{switchd}} service automatically (after the watchdog timeout). If the restart fails multiple times in a short time period, run the {{sudo systemctl reset-failed}} command followed by the {{sudo systemctl restart switchd}} command.</td>
 <td>3.7.11-3.7.15, 4.0.0-4.3.0</td>
 <td></td>
 </tr>
@@ -1515,6 +1504,11 @@ To work around this issue, correct the bridge VIDs and restart {{switchd}} or de
 <td>3.7.11-3.7.14, 4.1.1-4.2.1</td>
 </tr>
 <tr>
+<td>2648587</td>
+<td>The received PVST BPDU for a VLAN is flooded even though the ingress port doesn't have the VLAN tagged.</td>
+<td>3.7.8-3.7.14.2, 4.0.0-4.3.0</td>
+</tr>
+<tr>
 <td>2635951</td>
 <td>The following vulnerability has been announced for the libgstreamer-plugins-base1.0-0 package.  There is no CVE number yet; the Debian advisory number is ELA-412-1.
 Multiple vulnerabilities were discovered in plugins for the GStreamer media framework, which may result in denial of service or potentially the execution of arbitrary code if a malformed media file is opened.
@@ -2009,6 +2003,18 @@ To work around this issue, run the &lt;tt&gt;apt-get upgrade&lt;/tt&gt; command 
 <td></td>
 </tr>
 <tr>
+<td>2656291</td>
+<td>The following CVEs affect the linux kernel package:
+CVE-2019-14821 CVE-2019-14835 CVE-2019-15117 CVE-2019-15118 CVE-2019-15902
+Several vulnerabilities have been discovered in the Linux kernel that
+may lead to a privilege escalation, denial of service or information
+leaks.
+For the detailed security status of linux,  refer to its security tracker page at:
+https://security-tracker.debian.org/tracker/linux</td>
+<td>3.7.12-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2654684</td>
 <td>CVE-2021-3517 CVE-2021-3518 CVE-2021-3537: Several vulnerabilities were discovered in libxml2, a library providing support to read, modify and write XML and HTML files, which could cause denial of service via application crash when parsing specially crafted files.
 Vulnerable: &lt;= 2.9.1+dfsg1-5+deb8u9
@@ -2384,13 +2390,13 @@ Fixed: 1.0.4-0-cl4.3.0u2</td>
 </tr>
 <tr>
 <td>2556061</td>
-<td>On Edgecore AS4610 switches, the historic CPU usage displayed in {{/run/sysmonitor/history}} is sometimes shown as a negative value. </td>
+<td>On Edgecore AS4610 switches, the historic CPU usage displayed in {{/run/sysmonitor/history}} sometimes shows as a negative value. </td>
 <td>3.7.12-3.7.15, 4.2.1-4.3.0</td>
 <td></td>
 </tr>
 <tr>
 <td>2556037</td>
-<td>After you add an interface to the bridge, an OSPF session flap can occur.
+<td>After you add an interface to the bridge, an OSPF session flap might occur.
 
 </td>
 <td>3.7.9-4.2.0</td>
@@ -2566,7 +2572,7 @@ To work around this issue, configure {{ip pim use-source}} on each unnumbered in
 </tr>
 <tr>
 <td>2554588</td>
-<td>If you try reconfigure a DHCP server after you delete the switch configuration with the {{net del all}} command, the {{dhcpd}} service fails because a duplicate process is running.
+<td>If you try to reconfigure a DHCP server after you delete the switch configuration with the {{net del all}} command, the {{dhcpd}} service fails because a duplicate process is running.
 To work around this issue, edit the {{/usr/lib/python2.7/dist-packages/nclu/plugins/dhcp.py}} file to change:
 
 DHCPD_PID="-pf {0}" 
@@ -2930,7 +2936,7 @@ These messages are harmless and can be ignored.</td>
 </tr>
 <tr>
 <td>2548930</td>
-<td>On MLX switches that contain an OSPF IP unnumbered neighborship with a high scale of prefixes being learned, a link flap might cause the neighbor entry to not be programmed in hardware.</td>
+<td>On Mellanox Spectrum switches that contain an OSPF IP unnumbered neighborship with a high scale of prefixes being learned, a link flap might cause the neighbor entry to not be programmed in hardware.</td>
 <td>3.7.11-4.2.1</td>
 <td>4.3.0</td>
 </tr>
@@ -2968,7 +2974,7 @@ To work around this issue, reenter the {{redistribute &lt;connected|static&gt; r
 </tr>
 <tr>
 <td>2548485</td>
-<td>If you configure {{aggregate-address &lt;address&gt; summary-only}} before a component of the same aggregate is injected into the BGP table with the {{network}} or {{redistribute}} command, when you remove the {{aggregate-address}} configuration, the component stays suppressed; it is not advertised to peers. For example:
+<td>If you configure the aggregate-address &lt;address&gt; summary-only option before injecting a component of the same aggregate into the BGP table with the {{network}} or {{redistribute}} command, when you remove the {{aggregate-address}} configuration, the component stays suppressed; it is not advertised to peers. For example:
 Existing configuration:
 
 router bgp 1
@@ -3100,39 +3106,17 @@ Dec 20 08:43:27 netflow-nms sfcapd[3991]: SFLOW: readFlowSample_header() undefin
 <tr>
 <td>2547068</td>
 <td>Hardware platforms using the Intel D-1500 CPU series might reboot unexpectedly.
-
-To work around this issue, contact your hardware vendor to inquire if a new version of BIOS with a microcode fix might be available, or manually disable CPU C-states in the kernel as outlined below.
-
+To work around this issue, contact your hardware vendor to inquire if a new version of BIOS with a microcode fix is available or manually disable CPU C-states in the kernel as outlined below.
 To permanently disable C-states using a kernel boot parameter:
-
-1. Edit {{/etc/default/grub}} to add the argument {{processor.max_cstate=0}} to the variable {{GRUB_CMDLINE_LINUX}}
-
-For example, if {{/etc/default/grub}} file contains the following line:
-
-{{GRUB_CMDLINE_LINUX="cl_platform=accton_as7726_32x console=tty0 console=ttyS0,115200n8 intel_iommu=off pcie_aspm=off"}}
-
-change it to
-
-{{GRUB_CMDLINE_LINUX="cl_platform=accton_as7726_32x console=tty0 console=ttyS0,115200n8 intel_iommu=off pcie_aspm=off processor.max_cstate=0"}}
-
-2. Run {{sudo update-grub}}
-
-3. Reboot the system with {{sudo reboot}}
-
-
-To Disable cstates in realtime on the current system which will not persist through a reboot:
-
-1. Confirm that the libpci3 package is installed
-
-Run {{dpkg-query -l libpci3}} and confirm the following line is displayed:
-
+1. Edit {{/etc/default/grub}} to add the argument {{processor.max_cstate=0}} to the variable {{GRUB_CMDLINE_LINUX}}. For example, if {{/etc/default/grub}} file contains the line {{GRUB_CMDLINE_LINUX="cl_platform=accton_as7726_32x console=tty0 console=ttyS0,115200n8 intel_iommu=off pcie_aspm=off"}}, change it to {{GRUB_CMDLINE_LINUX="cl_platform=accton_as7726_32x console=tty0 console=ttyS0,115200n8 intel_iommu=off pcie_aspm=off processor.max_cstate=0"}}
+2. Run {{sudo update-grub}}.
+3. Reboot the system with {{sudo reboot}}.
+To disable cstates in realtime on the current system, which does not persist through a reboot:
+1. Confirm that the libpci3 package is installed. Run {{dpkg-query -l libpci3}} and confirm the following line is displayed:
 {{ii  libpci3:amd64      1:3.2.1-3      amd64          Linux PCI Utilities (shared library)}}
-
-The first field above should read {{ii}}. If not, install the libpci3 package by running {{sudo apt upgrade;sudo apt install libpci3}}
-
-2. Disable C-states by executing the command {{./cpupower idle-set -d 2}}
-
-C-states have been disabled by default as of Cumulus Linux 4.3.0</td>
+The first field above should read {{ii}}. If not, install the libpci3 package by running {{sudo apt upgrade;sudo apt install libpci3}}.
+2. Disable C-states by running the command {{./cpupower idle-set -d 2}}.
+C-states are disabled by default in Cumulus Linux 4.3.0 and later.</td>
 <td>3.7.9-4.2.1</td>
 <td>4.3.0</td>
 </tr>
@@ -3181,10 +3165,9 @@ bq. systemd[1]: switchd.service watchdog timeout (limit 2min)!
 
 To workaround this issue, either reduce the number of configured interfaces and, or VLANs, or increase the {{systemd}} timeout for {{switchd.service}}.
 To increase the {{systemd}} timeout:
-# Edit the {{/etc/systemd/system/switchd.service.d/override.conf}} file and increase the {{WatchdogSec}} parameter.
-# Restart the {{switchd}} service with the {{sudo systemctl restart switchd.service}} command.
-{{systemd}} will attempt to restart the {{switchd}} service automatically (after the watchdog timeout). If the restart fails multiple times in a short time period, run the {{sudo systemctl reset-failed}} command followed by the {{sudo systemctl restart switchd}} command.
-</td>
+1. Edit the {{/etc/systemd/system/switchd.service.d/override.conf}} file and increase the {{WatchdogSec}} parameter.
+2. Restart the {{switchd}} service with the {{sudo systemctl restart switchd.service}} command.
+{{systemd}} attempts to restart the {{switchd}} service automatically (after the watchdog timeout). If the restart fails multiple times in a short time period, run the {{sudo systemctl reset-failed}} command followed by the {{sudo systemctl restart switchd}} command.</td>
 <td>3.7.11-3.7.15, 4.0.0-4.3.0</td>
 <td></td>
 </tr>
@@ -4021,6 +4004,18 @@ To work around this issue, run the &lt;tt&gt;apt-get upgrade&lt;/tt&gt; command 
 <td></td>
 </tr>
 <tr>
+<td>2656291</td>
+<td>The following CVEs affect the linux kernel package:
+CVE-2019-14821 CVE-2019-14835 CVE-2019-15117 CVE-2019-15118 CVE-2019-15902
+Several vulnerabilities have been discovered in the Linux kernel that
+may lead to a privilege escalation, denial of service or information
+leaks.
+For the detailed security status of linux,  refer to its security tracker page at:
+https://security-tracker.debian.org/tracker/linux</td>
+<td>3.7.12-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2654684</td>
 <td>CVE-2021-3517 CVE-2021-3518 CVE-2021-3537: Several vulnerabilities were discovered in libxml2, a library providing support to read, modify and write XML and HTML files, which could cause denial of service via application crash when parsing specially crafted files.
 Vulnerable: &lt;= 2.9.1+dfsg1-5+deb8u9
@@ -4393,13 +4388,13 @@ Fixed: 1.0.4-0-cl4.3.0u2</td>
 </tr>
 <tr>
 <td>2556061</td>
-<td>On Edgecore AS4610 switches, the historic CPU usage displayed in {{/run/sysmonitor/history}} is sometimes shown as a negative value. </td>
+<td>On Edgecore AS4610 switches, the historic CPU usage displayed in {{/run/sysmonitor/history}} sometimes shows as a negative value. </td>
 <td>3.7.12-3.7.15, 4.2.1-4.3.0</td>
 <td></td>
 </tr>
 <tr>
 <td>2556037</td>
-<td>After you add an interface to the bridge, an OSPF session flap can occur.
+<td>After you add an interface to the bridge, an OSPF session flap might occur.
 
 </td>
 <td>3.7.9-4.2.0</td>
@@ -4622,7 +4617,7 @@ To work around this issue, configure {{ip pim use-source}} on each unnumbered in
 </tr>
 <tr>
 <td>2554588</td>
-<td>If you try reconfigure a DHCP server after you delete the switch configuration with the {{net del all}} command, the {{dhcpd}} service fails because a duplicate process is running.
+<td>If you try to reconfigure a DHCP server after you delete the switch configuration with the {{net del all}} command, the {{dhcpd}} service fails because a duplicate process is running.
 To work around this issue, edit the {{/usr/lib/python2.7/dist-packages/nclu/plugins/dhcp.py}} file to change:
 
 DHCPD_PID="-pf {0}" 
@@ -4992,7 +4987,7 @@ These messages are harmless and can be ignored.</td>
 </tr>
 <tr>
 <td>2548930</td>
-<td>On MLX switches that contain an OSPF IP unnumbered neighborship with a high scale of prefixes being learned, a link flap might cause the neighbor entry to not be programmed in hardware.</td>
+<td>On Mellanox Spectrum switches that contain an OSPF IP unnumbered neighborship with a high scale of prefixes being learned, a link flap might cause the neighbor entry to not be programmed in hardware.</td>
 <td>3.7.11-4.2.1</td>
 <td>4.3.0</td>
 </tr>
@@ -5030,7 +5025,7 @@ To work around this issue, reenter the {{redistribute &lt;connected|static&gt; r
 </tr>
 <tr>
 <td>2548485</td>
-<td>If you configure {{aggregate-address &lt;address&gt; summary-only}} before a component of the same aggregate is injected into the BGP table with the {{network}} or {{redistribute}} command, when you remove the {{aggregate-address}} configuration, the component stays suppressed; it is not advertised to peers. For example:
+<td>If you configure the aggregate-address &lt;address&gt; summary-only option before injecting a component of the same aggregate into the BGP table with the {{network}} or {{redistribute}} command, when you remove the {{aggregate-address}} configuration, the component stays suppressed; it is not advertised to peers. For example:
 Existing configuration:
 
 router bgp 1
@@ -5162,39 +5157,17 @@ Dec 20 08:43:27 netflow-nms sfcapd[3991]: SFLOW: readFlowSample_header() undefin
 <tr>
 <td>2547068</td>
 <td>Hardware platforms using the Intel D-1500 CPU series might reboot unexpectedly.
-
-To work around this issue, contact your hardware vendor to inquire if a new version of BIOS with a microcode fix might be available, or manually disable CPU C-states in the kernel as outlined below.
-
+To work around this issue, contact your hardware vendor to inquire if a new version of BIOS with a microcode fix is available or manually disable CPU C-states in the kernel as outlined below.
 To permanently disable C-states using a kernel boot parameter:
-
-1. Edit {{/etc/default/grub}} to add the argument {{processor.max_cstate=0}} to the variable {{GRUB_CMDLINE_LINUX}}
-
-For example, if {{/etc/default/grub}} file contains the following line:
-
-{{GRUB_CMDLINE_LINUX="cl_platform=accton_as7726_32x console=tty0 console=ttyS0,115200n8 intel_iommu=off pcie_aspm=off"}}
-
-change it to
-
-{{GRUB_CMDLINE_LINUX="cl_platform=accton_as7726_32x console=tty0 console=ttyS0,115200n8 intel_iommu=off pcie_aspm=off processor.max_cstate=0"}}
-
-2. Run {{sudo update-grub}}
-
-3. Reboot the system with {{sudo reboot}}
-
-
-To Disable cstates in realtime on the current system which will not persist through a reboot:
-
-1. Confirm that the libpci3 package is installed
-
-Run {{dpkg-query -l libpci3}} and confirm the following line is displayed:
-
+1. Edit {{/etc/default/grub}} to add the argument {{processor.max_cstate=0}} to the variable {{GRUB_CMDLINE_LINUX}}. For example, if {{/etc/default/grub}} file contains the line {{GRUB_CMDLINE_LINUX="cl_platform=accton_as7726_32x console=tty0 console=ttyS0,115200n8 intel_iommu=off pcie_aspm=off"}}, change it to {{GRUB_CMDLINE_LINUX="cl_platform=accton_as7726_32x console=tty0 console=ttyS0,115200n8 intel_iommu=off pcie_aspm=off processor.max_cstate=0"}}
+2. Run {{sudo update-grub}}.
+3. Reboot the system with {{sudo reboot}}.
+To disable cstates in realtime on the current system, which does not persist through a reboot:
+1. Confirm that the libpci3 package is installed. Run {{dpkg-query -l libpci3}} and confirm the following line is displayed:
 {{ii  libpci3:amd64      1:3.2.1-3      amd64          Linux PCI Utilities (shared library)}}
-
-The first field above should read {{ii}}. If not, install the libpci3 package by running {{sudo apt upgrade;sudo apt install libpci3}}
-
-2. Disable C-states by executing the command {{./cpupower idle-set -d 2}}
-
-C-states have been disabled by default as of Cumulus Linux 4.3.0</td>
+The first field above should read {{ii}}. If not, install the libpci3 package by running {{sudo apt upgrade;sudo apt install libpci3}}.
+2. Disable C-states by running the command {{./cpupower idle-set -d 2}}.
+C-states are disabled by default in Cumulus Linux 4.3.0 and later.</td>
 <td>3.7.9-4.2.1</td>
 <td>4.3.0</td>
 </tr>
@@ -5243,10 +5216,9 @@ bq. systemd[1]: switchd.service watchdog timeout (limit 2min)!
 
 To workaround this issue, either reduce the number of configured interfaces and, or VLANs, or increase the {{systemd}} timeout for {{switchd.service}}.
 To increase the {{systemd}} timeout:
-# Edit the {{/etc/systemd/system/switchd.service.d/override.conf}} file and increase the {{WatchdogSec}} parameter.
-# Restart the {{switchd}} service with the {{sudo systemctl restart switchd.service}} command.
-{{systemd}} will attempt to restart the {{switchd}} service automatically (after the watchdog timeout). If the restart fails multiple times in a short time period, run the {{sudo systemctl reset-failed}} command followed by the {{sudo systemctl restart switchd}} command.
-</td>
+1. Edit the {{/etc/systemd/system/switchd.service.d/override.conf}} file and increase the {{WatchdogSec}} parameter.
+2. Restart the {{switchd}} service with the {{sudo systemctl restart switchd.service}} command.
+{{systemd}} attempts to restart the {{switchd}} service automatically (after the watchdog timeout). If the restart fails multiple times in a short time period, run the {{sudo systemctl reset-failed}} command followed by the {{sudo systemctl restart switchd}} command.</td>
 <td>3.7.11-3.7.15, 4.0.0-4.3.0</td>
 <td></td>
 </tr>
@@ -6607,6 +6579,18 @@ To work around this issue, run the &lt;tt&gt;apt-get upgrade&lt;/tt&gt; command 
 <td></td>
 </tr>
 <tr>
+<td>2656291</td>
+<td>The following CVEs affect the linux kernel package:
+CVE-2019-14821 CVE-2019-14835 CVE-2019-15117 CVE-2019-15118 CVE-2019-15902
+Several vulnerabilities have been discovered in the Linux kernel that
+may lead to a privilege escalation, denial of service or information
+leaks.
+For the detailed security status of linux,  refer to its security tracker page at:
+https://security-tracker.debian.org/tracker/linux</td>
+<td>3.7.12-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2654684</td>
 <td>CVE-2021-3517 CVE-2021-3518 CVE-2021-3537: Several vulnerabilities were discovered in libxml2, a library providing support to read, modify and write XML and HTML files, which could cause denial of service via application crash when parsing specially crafted files.
 Vulnerable: &lt;= 2.9.1+dfsg1-5+deb8u9
@@ -6779,13 +6763,13 @@ If the primary RADIUS server is having a problem servicing requests, you can rem
 </tr>
 <tr>
 <td>2556061</td>
-<td>On Edgecore AS4610 switches, the historic CPU usage displayed in {{/run/sysmonitor/history}} is sometimes shown as a negative value. </td>
+<td>On Edgecore AS4610 switches, the historic CPU usage displayed in {{/run/sysmonitor/history}} sometimes shows as a negative value. </td>
 <td>3.7.12-3.7.15, 4.2.1-4.3.0</td>
 <td></td>
 </tr>
 <tr>
 <td>2556037</td>
-<td>After you add an interface to the bridge, an OSPF session flap can occur.
+<td>After you add an interface to the bridge, an OSPF session flap might occur.
 
 </td>
 <td>3.7.9-4.2.0</td>
@@ -6876,7 +6860,7 @@ Fixed: 2.4.40+dfsg-1+deb8u7</td>
 </tr>
 <tr>
 <td>2554588</td>
-<td>If you try reconfigure a DHCP server after you delete the switch configuration with the {{net del all}} command, the {{dhcpd}} service fails because a duplicate process is running.
+<td>If you try to reconfigure a DHCP server after you delete the switch configuration with the {{net del all}} command, the {{dhcpd}} service fails because a duplicate process is running.
 To work around this issue, edit the {{/usr/lib/python2.7/dist-packages/nclu/plugins/dhcp.py}} file to change:
 
 DHCPD_PID="-pf {0}" 
@@ -7718,7 +7702,7 @@ These messages are harmless and can be ignored.</td>
 </tr>
 <tr>
 <td>2548930</td>
-<td>On MLX switches that contain an OSPF IP unnumbered neighborship with a high scale of prefixes being learned, a link flap might cause the neighbor entry to not be programmed in hardware.</td>
+<td>On Mellanox Spectrum switches that contain an OSPF IP unnumbered neighborship with a high scale of prefixes being learned, a link flap might cause the neighbor entry to not be programmed in hardware.</td>
 <td>3.7.11-4.2.1</td>
 <td>4.3.0</td>
 </tr>
@@ -7756,7 +7740,7 @@ To work around this issue, reenter the {{redistribute &lt;connected|static&gt; r
 </tr>
 <tr>
 <td>2548485</td>
-<td>If you configure {{aggregate-address &lt;address&gt; summary-only}} before a component of the same aggregate is injected into the BGP table with the {{network}} or {{redistribute}} command, when you remove the {{aggregate-address}} configuration, the component stays suppressed; it is not advertised to peers. For example:
+<td>If you configure the aggregate-address &lt;address&gt; summary-only option before injecting a component of the same aggregate into the BGP table with the {{network}} or {{redistribute}} command, when you remove the {{aggregate-address}} configuration, the component stays suppressed; it is not advertised to peers. For example:
 Existing configuration:
 
 router bgp 1
@@ -7943,39 +7927,17 @@ RTM_NEWNEIGH with unconfigured vlan XXXX on port peerlink
 <tr>
 <td>2547068</td>
 <td>Hardware platforms using the Intel D-1500 CPU series might reboot unexpectedly.
-
-To work around this issue, contact your hardware vendor to inquire if a new version of BIOS with a microcode fix might be available, or manually disable CPU C-states in the kernel as outlined below.
-
+To work around this issue, contact your hardware vendor to inquire if a new version of BIOS with a microcode fix is available or manually disable CPU C-states in the kernel as outlined below.
 To permanently disable C-states using a kernel boot parameter:
-
-1. Edit {{/etc/default/grub}} to add the argument {{processor.max_cstate=0}} to the variable {{GRUB_CMDLINE_LINUX}}
-
-For example, if {{/etc/default/grub}} file contains the following line:
-
-{{GRUB_CMDLINE_LINUX="cl_platform=accton_as7726_32x console=tty0 console=ttyS0,115200n8 intel_iommu=off pcie_aspm=off"}}
-
-change it to
-
-{{GRUB_CMDLINE_LINUX="cl_platform=accton_as7726_32x console=tty0 console=ttyS0,115200n8 intel_iommu=off pcie_aspm=off processor.max_cstate=0"}}
-
-2. Run {{sudo update-grub}}
-
-3. Reboot the system with {{sudo reboot}}
-
-
-To Disable cstates in realtime on the current system which will not persist through a reboot:
-
-1. Confirm that the libpci3 package is installed
-
-Run {{dpkg-query -l libpci3}} and confirm the following line is displayed:
-
+1. Edit {{/etc/default/grub}} to add the argument {{processor.max_cstate=0}} to the variable {{GRUB_CMDLINE_LINUX}}. For example, if {{/etc/default/grub}} file contains the line {{GRUB_CMDLINE_LINUX="cl_platform=accton_as7726_32x console=tty0 console=ttyS0,115200n8 intel_iommu=off pcie_aspm=off"}}, change it to {{GRUB_CMDLINE_LINUX="cl_platform=accton_as7726_32x console=tty0 console=ttyS0,115200n8 intel_iommu=off pcie_aspm=off processor.max_cstate=0"}}
+2. Run {{sudo update-grub}}.
+3. Reboot the system with {{sudo reboot}}.
+To disable cstates in realtime on the current system, which does not persist through a reboot:
+1. Confirm that the libpci3 package is installed. Run {{dpkg-query -l libpci3}} and confirm the following line is displayed:
 {{ii  libpci3:amd64      1:3.2.1-3      amd64          Linux PCI Utilities (shared library)}}
-
-The first field above should read {{ii}}. If not, install the libpci3 package by running {{sudo apt upgrade;sudo apt install libpci3}}
-
-2. Disable C-states by executing the command {{./cpupower idle-set -d 2}}
-
-C-states have been disabled by default as of Cumulus Linux 4.3.0</td>
+The first field above should read {{ii}}. If not, install the libpci3 package by running {{sudo apt upgrade;sudo apt install libpci3}}.
+2. Disable C-states by running the command {{./cpupower idle-set -d 2}}.
+C-states are disabled by default in Cumulus Linux 4.3.0 and later.</td>
 <td>3.7.9-4.2.1</td>
 <td>4.3.0</td>
 </tr>
@@ -8024,10 +7986,9 @@ bq. systemd[1]: switchd.service watchdog timeout (limit 2min)!
 
 To workaround this issue, either reduce the number of configured interfaces and, or VLANs, or increase the {{systemd}} timeout for {{switchd.service}}.
 To increase the {{systemd}} timeout:
-# Edit the {{/etc/systemd/system/switchd.service.d/override.conf}} file and increase the {{WatchdogSec}} parameter.
-# Restart the {{switchd}} service with the {{sudo systemctl restart switchd.service}} command.
-{{systemd}} will attempt to restart the {{switchd}} service automatically (after the watchdog timeout). If the restart fails multiple times in a short time period, run the {{sudo systemctl reset-failed}} command followed by the {{sudo systemctl restart switchd}} command.
-</td>
+1. Edit the {{/etc/systemd/system/switchd.service.d/override.conf}} file and increase the {{WatchdogSec}} parameter.
+2. Restart the {{switchd}} service with the {{sudo systemctl restart switchd.service}} command.
+{{systemd}} attempts to restart the {{switchd}} service automatically (after the watchdog timeout). If the restart fails multiple times in a short time period, run the {{sudo systemctl reset-failed}} command followed by the {{sudo systemctl restart switchd}} command.</td>
 <td>3.7.11-3.7.15, 4.0.0-4.3.0</td>
 <td></td>
 </tr>
@@ -9388,6 +9349,18 @@ To work around this issue, run the &lt;tt&gt;apt-get upgrade&lt;/tt&gt; command 
 <td></td>
 </tr>
 <tr>
+<td>2656291</td>
+<td>The following CVEs affect the linux kernel package:
+CVE-2019-14821 CVE-2019-14835 CVE-2019-15117 CVE-2019-15118 CVE-2019-15902
+Several vulnerabilities have been discovered in the Linux kernel that
+may lead to a privilege escalation, denial of service or information
+leaks.
+For the detailed security status of linux,  refer to its security tracker page at:
+https://security-tracker.debian.org/tracker/linux</td>
+<td>3.7.12-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2654684</td>
 <td>CVE-2021-3517 CVE-2021-3518 CVE-2021-3537: Several vulnerabilities were discovered in libxml2, a library providing support to read, modify and write XML and HTML files, which could cause denial of service via application crash when parsing specially crafted files.
 Vulnerable: &lt;= 2.9.1+dfsg1-5+deb8u9
@@ -9548,13 +9521,13 @@ If the primary RADIUS server is having a problem servicing requests, you can rem
 </tr>
 <tr>
 <td>2556061</td>
-<td>On Edgecore AS4610 switches, the historic CPU usage displayed in {{/run/sysmonitor/history}} is sometimes shown as a negative value. </td>
+<td>On Edgecore AS4610 switches, the historic CPU usage displayed in {{/run/sysmonitor/history}} sometimes shows as a negative value. </td>
 <td>3.7.12-3.7.15, 4.2.1-4.3.0</td>
 <td></td>
 </tr>
 <tr>
 <td>2556037</td>
-<td>After you add an interface to the bridge, an OSPF session flap can occur.
+<td>After you add an interface to the bridge, an OSPF session flap might occur.
 
 </td>
 <td>3.7.9-4.2.0</td>
@@ -10423,7 +10396,7 @@ Fixed: 0.80.7-2+deb8u4</td>
 </tr>
 <tr>
 <td>2548930</td>
-<td>On MLX switches that contain an OSPF IP unnumbered neighborship with a high scale of prefixes being learned, a link flap might cause the neighbor entry to not be programmed in hardware.</td>
+<td>On Mellanox Spectrum switches that contain an OSPF IP unnumbered neighborship with a high scale of prefixes being learned, a link flap might cause the neighbor entry to not be programmed in hardware.</td>
 <td>3.7.11-4.2.1</td>
 <td>4.3.0</td>
 </tr>
@@ -10528,7 +10501,7 @@ To work around this issue, reenter the {{redistribute &lt;connected|static&gt; r
 </tr>
 <tr>
 <td>2548485</td>
-<td>If you configure {{aggregate-address &lt;address&gt; summary-only}} before a component of the same aggregate is injected into the BGP table with the {{network}} or {{redistribute}} command, when you remove the {{aggregate-address}} configuration, the component stays suppressed; it is not advertised to peers. For example:
+<td>If you configure the aggregate-address &lt;address&gt; summary-only option before injecting a component of the same aggregate into the BGP table with the {{network}} or {{redistribute}} command, when you remove the {{aggregate-address}} configuration, the component stays suppressed; it is not advertised to peers. For example:
 Existing configuration:
 
 router bgp 1
@@ -10824,39 +10797,17 @@ RTM_NEWNEIGH with unconfigured vlan XXXX on port peerlink
 <tr>
 <td>2547068</td>
 <td>Hardware platforms using the Intel D-1500 CPU series might reboot unexpectedly.
-
-To work around this issue, contact your hardware vendor to inquire if a new version of BIOS with a microcode fix might be available, or manually disable CPU C-states in the kernel as outlined below.
-
+To work around this issue, contact your hardware vendor to inquire if a new version of BIOS with a microcode fix is available or manually disable CPU C-states in the kernel as outlined below.
 To permanently disable C-states using a kernel boot parameter:
-
-1. Edit {{/etc/default/grub}} to add the argument {{processor.max_cstate=0}} to the variable {{GRUB_CMDLINE_LINUX}}
-
-For example, if {{/etc/default/grub}} file contains the following line:
-
-{{GRUB_CMDLINE_LINUX="cl_platform=accton_as7726_32x console=tty0 console=ttyS0,115200n8 intel_iommu=off pcie_aspm=off"}}
-
-change it to
-
-{{GRUB_CMDLINE_LINUX="cl_platform=accton_as7726_32x console=tty0 console=ttyS0,115200n8 intel_iommu=off pcie_aspm=off processor.max_cstate=0"}}
-
-2. Run {{sudo update-grub}}
-
-3. Reboot the system with {{sudo reboot}}
-
-
-To Disable cstates in realtime on the current system which will not persist through a reboot:
-
-1. Confirm that the libpci3 package is installed
-
-Run {{dpkg-query -l libpci3}} and confirm the following line is displayed:
-
+1. Edit {{/etc/default/grub}} to add the argument {{processor.max_cstate=0}} to the variable {{GRUB_CMDLINE_LINUX}}. For example, if {{/etc/default/grub}} file contains the line {{GRUB_CMDLINE_LINUX="cl_platform=accton_as7726_32x console=tty0 console=ttyS0,115200n8 intel_iommu=off pcie_aspm=off"}}, change it to {{GRUB_CMDLINE_LINUX="cl_platform=accton_as7726_32x console=tty0 console=ttyS0,115200n8 intel_iommu=off pcie_aspm=off processor.max_cstate=0"}}
+2. Run {{sudo update-grub}}.
+3. Reboot the system with {{sudo reboot}}.
+To disable cstates in realtime on the current system, which does not persist through a reboot:
+1. Confirm that the libpci3 package is installed. Run {{dpkg-query -l libpci3}} and confirm the following line is displayed:
 {{ii  libpci3:amd64      1:3.2.1-3      amd64          Linux PCI Utilities (shared library)}}
-
-The first field above should read {{ii}}. If not, install the libpci3 package by running {{sudo apt upgrade;sudo apt install libpci3}}
-
-2. Disable C-states by executing the command {{./cpupower idle-set -d 2}}
-
-C-states have been disabled by default as of Cumulus Linux 4.3.0</td>
+The first field above should read {{ii}}. If not, install the libpci3 package by running {{sudo apt upgrade;sudo apt install libpci3}}.
+2. Disable C-states by running the command {{./cpupower idle-set -d 2}}.
+C-states are disabled by default in Cumulus Linux 4.3.0 and later.</td>
 <td>3.7.9-4.2.1</td>
 <td>4.3.0</td>
 </tr>
@@ -10924,10 +10875,9 @@ bq. systemd[1]: switchd.service watchdog timeout (limit 2min)!
 
 To workaround this issue, either reduce the number of configured interfaces and, or VLANs, or increase the {{systemd}} timeout for {{switchd.service}}.
 To increase the {{systemd}} timeout:
-# Edit the {{/etc/systemd/system/switchd.service.d/override.conf}} file and increase the {{WatchdogSec}} parameter.
-# Restart the {{switchd}} service with the {{sudo systemctl restart switchd.service}} command.
-{{systemd}} will attempt to restart the {{switchd}} service automatically (after the watchdog timeout). If the restart fails multiple times in a short time period, run the {{sudo systemctl reset-failed}} command followed by the {{sudo systemctl restart switchd}} command.
-</td>
+1. Edit the {{/etc/systemd/system/switchd.service.d/override.conf}} file and increase the {{WatchdogSec}} parameter.
+2. Restart the {{switchd}} service with the {{sudo systemctl restart switchd.service}} command.
+{{systemd}} attempts to restart the {{switchd}} service automatically (after the watchdog timeout). If the restart fails multiple times in a short time period, run the {{sudo systemctl reset-failed}} command followed by the {{sudo systemctl restart switchd}} command.</td>
 <td>3.7.11-3.7.15, 4.0.0-4.3.0</td>
 <td></td>
 </tr>
@@ -12177,7 +12127,7 @@ If the primary RADIUS server is having a problem servicing requests, you can rem
 </tr>
 <tr>
 <td>2556037</td>
-<td>After you add an interface to the bridge, an OSPF session flap can occur.
+<td>After you add an interface to the bridge, an OSPF session flap might occur.
 
 </td>
 <td>3.7.9-4.2.0</td>
@@ -12398,7 +12348,7 @@ To work around this issue, revert the configuration change.</td>
 </tr>
 <tr>
 <td>2548930</td>
-<td>On MLX switches that contain an OSPF IP unnumbered neighborship with a high scale of prefixes being learned, a link flap might cause the neighbor entry to not be programmed in hardware.</td>
+<td>On Mellanox Spectrum switches that contain an OSPF IP unnumbered neighborship with a high scale of prefixes being learned, a link flap might cause the neighbor entry to not be programmed in hardware.</td>
 <td>3.7.11-4.2.1</td>
 <td>4.3.0</td>
 </tr>
@@ -12725,39 +12675,17 @@ To work around this issue, power cycle the switch. A software reboot does not re
 <tr>
 <td>2547068</td>
 <td>Hardware platforms using the Intel D-1500 CPU series might reboot unexpectedly.
-
-To work around this issue, contact your hardware vendor to inquire if a new version of BIOS with a microcode fix might be available, or manually disable CPU C-states in the kernel as outlined below.
-
+To work around this issue, contact your hardware vendor to inquire if a new version of BIOS with a microcode fix is available or manually disable CPU C-states in the kernel as outlined below.
 To permanently disable C-states using a kernel boot parameter:
-
-1. Edit {{/etc/default/grub}} to add the argument {{processor.max_cstate=0}} to the variable {{GRUB_CMDLINE_LINUX}}
-
-For example, if {{/etc/default/grub}} file contains the following line:
-
-{{GRUB_CMDLINE_LINUX="cl_platform=accton_as7726_32x console=tty0 console=ttyS0,115200n8 intel_iommu=off pcie_aspm=off"}}
-
-change it to
-
-{{GRUB_CMDLINE_LINUX="cl_platform=accton_as7726_32x console=tty0 console=ttyS0,115200n8 intel_iommu=off pcie_aspm=off processor.max_cstate=0"}}
-
-2. Run {{sudo update-grub}}
-
-3. Reboot the system with {{sudo reboot}}
-
-
-To Disable cstates in realtime on the current system which will not persist through a reboot:
-
-1. Confirm that the libpci3 package is installed
-
-Run {{dpkg-query -l libpci3}} and confirm the following line is displayed:
-
+1. Edit {{/etc/default/grub}} to add the argument {{processor.max_cstate=0}} to the variable {{GRUB_CMDLINE_LINUX}}. For example, if {{/etc/default/grub}} file contains the line {{GRUB_CMDLINE_LINUX="cl_platform=accton_as7726_32x console=tty0 console=ttyS0,115200n8 intel_iommu=off pcie_aspm=off"}}, change it to {{GRUB_CMDLINE_LINUX="cl_platform=accton_as7726_32x console=tty0 console=ttyS0,115200n8 intel_iommu=off pcie_aspm=off processor.max_cstate=0"}}
+2. Run {{sudo update-grub}}.
+3. Reboot the system with {{sudo reboot}}.
+To disable cstates in realtime on the current system, which does not persist through a reboot:
+1. Confirm that the libpci3 package is installed. Run {{dpkg-query -l libpci3}} and confirm the following line is displayed:
 {{ii  libpci3:amd64      1:3.2.1-3      amd64          Linux PCI Utilities (shared library)}}
-
-The first field above should read {{ii}}. If not, install the libpci3 package by running {{sudo apt upgrade;sudo apt install libpci3}}
-
-2. Disable C-states by executing the command {{./cpupower idle-set -d 2}}
-
-C-states have been disabled by default as of Cumulus Linux 4.3.0</td>
+The first field above should read {{ii}}. If not, install the libpci3 package by running {{sudo apt upgrade;sudo apt install libpci3}}.
+2. Disable C-states by running the command {{./cpupower idle-set -d 2}}.
+C-states are disabled by default in Cumulus Linux 4.3.0 and later.</td>
 <td>3.7.9-4.2.1</td>
 <td>4.3.0</td>
 </tr>
@@ -12844,10 +12772,9 @@ bq. systemd[1]: switchd.service watchdog timeout (limit 2min)!
 
 To workaround this issue, either reduce the number of configured interfaces and, or VLANs, or increase the {{systemd}} timeout for {{switchd.service}}.
 To increase the {{systemd}} timeout:
-# Edit the {{/etc/systemd/system/switchd.service.d/override.conf}} file and increase the {{WatchdogSec}} parameter.
-# Restart the {{switchd}} service with the {{sudo systemctl restart switchd.service}} command.
-{{systemd}} will attempt to restart the {{switchd}} service automatically (after the watchdog timeout). If the restart fails multiple times in a short time period, run the {{sudo systemctl reset-failed}} command followed by the {{sudo systemctl restart switchd}} command.
-</td>
+1. Edit the {{/etc/systemd/system/switchd.service.d/override.conf}} file and increase the {{WatchdogSec}} parameter.
+2. Restart the {{switchd}} service with the {{sudo systemctl restart switchd.service}} command.
+{{systemd}} attempts to restart the {{switchd}} service automatically (after the watchdog timeout). If the restart fails multiple times in a short time period, run the {{sudo systemctl reset-failed}} command followed by the {{sudo systemctl restart switchd}} command.</td>
 <td>3.7.11-3.7.15, 4.0.0-4.3.0</td>
 <td></td>
 </tr>
@@ -14530,7 +14457,7 @@ If the primary RADIUS server is having a problem servicing requests, you can rem
 </tr>
 <tr>
 <td>2556037</td>
-<td>After you add an interface to the bridge, an OSPF session flap can occur.
+<td>After you add an interface to the bridge, an OSPF session flap might occur.
 
 </td>
 <td>3.7.9-4.2.0</td>
@@ -14759,39 +14686,17 @@ Fixed: 4.1.0+git191117-2~deb10u1</td>
 <tr>
 <td>2547068</td>
 <td>Hardware platforms using the Intel D-1500 CPU series might reboot unexpectedly.
-
-To work around this issue, contact your hardware vendor to inquire if a new version of BIOS with a microcode fix might be available, or manually disable CPU C-states in the kernel as outlined below.
-
+To work around this issue, contact your hardware vendor to inquire if a new version of BIOS with a microcode fix is available or manually disable CPU C-states in the kernel as outlined below.
 To permanently disable C-states using a kernel boot parameter:
-
-1. Edit {{/etc/default/grub}} to add the argument {{processor.max_cstate=0}} to the variable {{GRUB_CMDLINE_LINUX}}
-
-For example, if {{/etc/default/grub}} file contains the following line:
-
-{{GRUB_CMDLINE_LINUX="cl_platform=accton_as7726_32x console=tty0 console=ttyS0,115200n8 intel_iommu=off pcie_aspm=off"}}
-
-change it to
-
-{{GRUB_CMDLINE_LINUX="cl_platform=accton_as7726_32x console=tty0 console=ttyS0,115200n8 intel_iommu=off pcie_aspm=off processor.max_cstate=0"}}
-
-2. Run {{sudo update-grub}}
-
-3. Reboot the system with {{sudo reboot}}
-
-
-To Disable cstates in realtime on the current system which will not persist through a reboot:
-
-1. Confirm that the libpci3 package is installed
-
-Run {{dpkg-query -l libpci3}} and confirm the following line is displayed:
-
+1. Edit {{/etc/default/grub}} to add the argument {{processor.max_cstate=0}} to the variable {{GRUB_CMDLINE_LINUX}}. For example, if {{/etc/default/grub}} file contains the line {{GRUB_CMDLINE_LINUX="cl_platform=accton_as7726_32x console=tty0 console=ttyS0,115200n8 intel_iommu=off pcie_aspm=off"}}, change it to {{GRUB_CMDLINE_LINUX="cl_platform=accton_as7726_32x console=tty0 console=ttyS0,115200n8 intel_iommu=off pcie_aspm=off processor.max_cstate=0"}}
+2. Run {{sudo update-grub}}.
+3. Reboot the system with {{sudo reboot}}.
+To disable cstates in realtime on the current system, which does not persist through a reboot:
+1. Confirm that the libpci3 package is installed. Run {{dpkg-query -l libpci3}} and confirm the following line is displayed:
 {{ii  libpci3:amd64      1:3.2.1-3      amd64          Linux PCI Utilities (shared library)}}
-
-The first field above should read {{ii}}. If not, install the libpci3 package by running {{sudo apt upgrade;sudo apt install libpci3}}
-
-2. Disable C-states by executing the command {{./cpupower idle-set -d 2}}
-
-C-states have been disabled by default as of Cumulus Linux 4.3.0</td>
+The first field above should read {{ii}}. If not, install the libpci3 package by running {{sudo apt upgrade;sudo apt install libpci3}}.
+2. Disable C-states by running the command {{./cpupower idle-set -d 2}}.
+C-states are disabled by default in Cumulus Linux 4.3.0 and later.</td>
 <td>3.7.9-4.2.1</td>
 <td>4.3.0</td>
 </tr>
@@ -16312,7 +16217,7 @@ FIxed: 2.6.1-2+deb8u6</td>
 </tr>
 <tr>
 <td>2556037</td>
-<td>After you add an interface to the bridge, an OSPF session flap can occur.
+<td>After you add an interface to the bridge, an OSPF session flap might occur.
 
 </td>
 <td>3.7.9-4.2.0</td>
@@ -16447,39 +16352,17 @@ To work around this issue, reboot the leaf switch or restart {{switchd}}.</td>
 <tr>
 <td>2547068</td>
 <td>Hardware platforms using the Intel D-1500 CPU series might reboot unexpectedly.
-
-To work around this issue, contact your hardware vendor to inquire if a new version of BIOS with a microcode fix might be available, or manually disable CPU C-states in the kernel as outlined below.
-
+To work around this issue, contact your hardware vendor to inquire if a new version of BIOS with a microcode fix is available or manually disable CPU C-states in the kernel as outlined below.
 To permanently disable C-states using a kernel boot parameter:
-
-1. Edit {{/etc/default/grub}} to add the argument {{processor.max_cstate=0}} to the variable {{GRUB_CMDLINE_LINUX}}
-
-For example, if {{/etc/default/grub}} file contains the following line:
-
-{{GRUB_CMDLINE_LINUX="cl_platform=accton_as7726_32x console=tty0 console=ttyS0,115200n8 intel_iommu=off pcie_aspm=off"}}
-
-change it to
-
-{{GRUB_CMDLINE_LINUX="cl_platform=accton_as7726_32x console=tty0 console=ttyS0,115200n8 intel_iommu=off pcie_aspm=off processor.max_cstate=0"}}
-
-2. Run {{sudo update-grub}}
-
-3. Reboot the system with {{sudo reboot}}
-
-
-To Disable cstates in realtime on the current system which will not persist through a reboot:
-
-1. Confirm that the libpci3 package is installed
-
-Run {{dpkg-query -l libpci3}} and confirm the following line is displayed:
-
+1. Edit {{/etc/default/grub}} to add the argument {{processor.max_cstate=0}} to the variable {{GRUB_CMDLINE_LINUX}}. For example, if {{/etc/default/grub}} file contains the line {{GRUB_CMDLINE_LINUX="cl_platform=accton_as7726_32x console=tty0 console=ttyS0,115200n8 intel_iommu=off pcie_aspm=off"}}, change it to {{GRUB_CMDLINE_LINUX="cl_platform=accton_as7726_32x console=tty0 console=ttyS0,115200n8 intel_iommu=off pcie_aspm=off processor.max_cstate=0"}}
+2. Run {{sudo update-grub}}.
+3. Reboot the system with {{sudo reboot}}.
+To disable cstates in realtime on the current system, which does not persist through a reboot:
+1. Confirm that the libpci3 package is installed. Run {{dpkg-query -l libpci3}} and confirm the following line is displayed:
 {{ii  libpci3:amd64      1:3.2.1-3      amd64          Linux PCI Utilities (shared library)}}
-
-The first field above should read {{ii}}. If not, install the libpci3 package by running {{sudo apt upgrade;sudo apt install libpci3}}
-
-2. Disable C-states by executing the command {{./cpupower idle-set -d 2}}
-
-C-states have been disabled by default as of Cumulus Linux 4.3.0</td>
+The first field above should read {{ii}}. If not, install the libpci3 package by running {{sudo apt upgrade;sudo apt install libpci3}}.
+2. Disable C-states by running the command {{./cpupower idle-set -d 2}}.
+C-states are disabled by default in Cumulus Linux 4.3.0 and later.</td>
 <td>3.7.9-4.2.1</td>
 <td>4.3.0</td>
 </tr>

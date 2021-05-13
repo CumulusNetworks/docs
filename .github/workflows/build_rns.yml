@@ -18,11 +18,9 @@ jobs:
         run: |
           python3 utils/build_rns.py
           python3 utils/build_foss_licenses.py
-          git config --global user.email "ethernet.docs@nvidia.com"
-          git config --global user.name "Cumulus Docs CI"
-          git add *
-          git diff-index --quiet HEAD || git commit -m "Auto commit of release note update [skip ci]"
-          git push
+      - name: Create PR
+        uses: peter-evans/create-pull-request@v3
+        commit-message: "Automated release note commit"
 
     env:
       GITHUB_TOKEN: ${{ secrets.PLUMBIS_GITHUB_TOKEN }}

@@ -181,6 +181,19 @@ leaf01(config-router)# passive-interface default
 leaf01(config-router)# no passive-interface swp51
 ```
 
+The vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+
+```
+...
+router ospf
+ ospf router-id 10.10.10.1
+ network 10.10.10.1/32 area 0
+ network 10.0.1.0/31 area 0
+ passive-interface swp1
+ passive-interface swp2
+...
+```
+
 {{< /tab >}}
 {{< tab "spine01 ">}}
 
@@ -231,30 +244,7 @@ spine01(config-router)# passive-interface default
 spine01(config-router)# no passive-interface swp1
 ```
 
-{{< /tab >}}
-{{< /tabs >}}
-
-{{< /tab >}}
-{{< /tabs >}}
-
-The commands save the configuration in the `/etc/frr/frr.conf` file. For example:
-
-{{< tabs "TabID208 ">}}
-{{< tab "leaf01 ">}}
-
-```
-...
-router ospf
- ospf router-id 10.10.10.1
- network 10.10.10.1/32 area 0
- network 10.0.1.0/31 area 0
- passive-interface swp1
- passive-interface swp2
-...
-```
-
-{{< /tab >}}
-{{< tab "spine01 ">}}
+The vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
 ```
 ...
@@ -264,6 +254,9 @@ router ospf
  network 10.0.1.1/31 area 0
 ...
 ```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 {{< /tab >}}
 {{< /tabs >}}
@@ -487,6 +480,21 @@ cumulus@spine01:~$ net del ospf passive-interface swp1
    leaf01(config-router)# no passive-interface swp51
    ```
 
+The vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+
+```
+...
+interface lo
+ ip ospf area 0
+interface swp51
+ ip ospf area 0
+ ip ospf network point-to-point
+router ospf
+ ospf router-id 10.10.10.1
+ passive-interface swp1,swp2
+...
+```
+
 {{< /tab >}}
 {{< tab "spine01 ">}}
 
@@ -541,32 +549,7 @@ cumulus@spine01:~$ net del ospf passive-interface swp1
    spine01(config-router)# no passive-interface swp1
    ```
 
-{{< /tab >}}
-{{< /tabs >}}
-
-{{< /tab >}}
-{{< /tabs >}}
-
-The commands save the configuration in the `/etc/frr/frr.conf` file. For example:
-
-{{< tabs "TabID452 ">}}
-{{< tab "leaf01 ">}}
-
-```
-...
-interface lo
- ip ospf area 0
-interface swp51
- ip ospf area 0
- ip ospf network point-to-point
-router ospf
- ospf router-id 10.10.10.1
- passive-interface swp1,swp2
-...
-```
-
-{{< /tab >}}
-{{< tab "spine01 ">}}
+The vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
 ```
 ...
@@ -579,6 +562,9 @@ router ospf
  ospf router-id 10.10.10.101
 ...
 ```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 {{< /tab >}}
 {{< /tabs >}}
@@ -633,10 +619,7 @@ switch# exit
 cumulus@switch:~$
 ```
 
-{{< /tab >}}
-{{< /tabs >}}
-
-The commands save the configuration in the `/etc/frr/frr.conf` file. For example
+The vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example
 
 ```
 ...
@@ -644,6 +627,9 @@ interface swp51
  ip ospf network point-to-point
 ...
 ```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 The following command example sets the hello interval to 5 seconds and the dead interval to 60 seconds. The hello interval and dead inteval can be any value between 1 and 65535 seconds.
 
@@ -680,10 +666,7 @@ switch# exit
 cumulus@switch:~$
 ```
 
-{{< /tab >}}
-{{< /tabs >}}
-
-The commands save the configuration in the `/etc/frr/frr.conf` file. For example
+The vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example
 
 ```
 ...
@@ -692,6 +675,9 @@ interface swp51
  ip ospf dead-interval 60
 ...
 ```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 The following command example sets the priority to 5 for swp51. The priority can be any value between 0 to 255 (0 configures the interface to never become the OSPF Designated Router (DR) on a broadcast interface).
 
@@ -726,10 +712,7 @@ switch# exit
 cumulus@switch:~$
 ```
 
-{{< /tab >}}
-{{< /tabs >}}
-
-The commands save the configuration in the `/etc/frr/frr.conf` file. For example
+The vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example
 
 ```
 ...
@@ -737,6 +720,9 @@ interface swp51
  ip ospf priority 5
 ...
 ```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 To see the currently configured OSPF interface parameter values, run the vtysh `show ip ospf interface` command.
 
@@ -781,10 +767,7 @@ switch# exit
 cumulus@switch:~$
 ```
 
-{{< /tab >}}
-{{< /tabs >}}
-
-The commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+The vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
 ```
 ...
@@ -796,6 +779,9 @@ router ospf
  timers throttle spf 80 100 6000
 ...
 ```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 To see the configured SPF timer values, run the CUE `cl legacy show ospf` command or the vtysh `show ip ospf` command.
 
@@ -857,6 +843,16 @@ leaf01# exit
 cumulus@leaf01:~$
 ```
 
+The vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+
+```
+...
+interface swp51
+ ip ospf authentication message-digest
+ ip ospf message-digest-key 1 md5 thisisthekey
+ ...
+```
+
 {{< /tab >}}
 {{< tab " spine01">}}
 
@@ -873,27 +869,7 @@ spine01# exit
 cumulus@spine01:~$
 ```
 
-{{< /tab >}}
-{{< /tabs >}}
-
-{{< /tab >}}
-{{< /tabs >}}
-
-The commands save the configuration in the `/etc/frr/frr.conf` file. For example:
-
-{{< tabs "TabID747 ">}}
-{{< tab "leaf01 ">}}
-
-```
-...
-interface swp51
- ip ospf authentication message-digest
- ip ospf message-digest-key 1 md5 thisisthekey
- ...
-```
-
-{{< /tab >}}
-{{< tab " spine01">}}
+The vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
 ```
 ...
@@ -902,6 +878,9 @@ interface swp1
  ip ospf message-digest-key 1 md5 thisisthekey
  ...
 ```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 {{< /tab >}}
 {{< /tabs >}}
@@ -995,10 +974,7 @@ switch# exit
 cumulus@switch:~$
 ```
 
-{{< /tab >}}
-{{< /tabs >}}
-
-The commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+The vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
 ```
 ...
@@ -1007,6 +983,9 @@ router ospf
  area 1 stub
 ...
 ```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 Stub areas still receive information about networks that belong to other areas of the same OSPF domain. If summarization is not configured (or is not comprehensive), the information can be overwhelming for the nodes. *Totally stubby areas* address this issue. Routers in totally stubby areas keep information about routing within their area in their LSDB.
 
@@ -1043,10 +1022,7 @@ switch# exit
 cumulus@switch:~$
 ```
 
-{{< /tab >}}
-{{< /tabs >}}
-
-The commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+The vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
 ```
 ...
@@ -1055,6 +1031,9 @@ router ospf
  area 1 stub no-summary
 ...
 ```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 Here is a brief summary of the area type differences:
 
@@ -1105,10 +1084,7 @@ switch# exit
 cumulus@switch:~$
 ```
 
-{{< /tab >}}
-{{< /tabs >}}
-
-The commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+The vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
 ```
 ...
@@ -1117,6 +1093,9 @@ router ospf
  auto-cost reference-bandwidth 90000
 ...
 ```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ### Administrative Distance
 
@@ -1265,10 +1244,7 @@ switch# exit
 cumulus@switch:~$
 ```
 
-{{< /tab >}}
-{{< /tabs >}}
-
-The commands save the configuration to the `/etc/frr/frr.conf` file. For example:
+The vtysh commands save the configuration to the `/etc/frr/frr.conf` file. For example:
 
 ```
 ...
@@ -1277,6 +1253,9 @@ router ospf
   distance ospf intra-area 150 inter-area 150 external 220
 ...
 ```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ### Topology Changes and OSPF Reconvergence
 

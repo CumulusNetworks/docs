@@ -39,10 +39,7 @@ switch# exit
 cumulus@switch:~$
 ```
 
-{{< /tab >}}
-{{< /tabs >}}
-
-The commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+The vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
 ```
 cumulus@switch:~$ sudo cat /etc/frr/frr.conf
@@ -54,6 +51,9 @@ router ospf
  passive-interface vlan20
 ip prefix-list prefixlist1 seq 1 permit 10.0.0.0/16 le 30
 ```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 To use this prefix list in a route map called MAP1:
 
@@ -80,10 +80,7 @@ switch# exit
 cumulus@switch:~$
 ```
 
-{{< /tab >}}
-{{< /tabs >}}
-
-The commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+The vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
 ```
 cumulus@switch:~$ sudo cat /etc/frr/frr.conf
@@ -92,6 +89,9 @@ ip prefix-list prefixlist1 seq 1 permit 10.0.0.0/16 le 30
 route-map MAP1 permit 10
 match ip address prefix-list prefixlist1
 ```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ## Route Maps
 
@@ -126,10 +126,7 @@ switch# exit
 cumulus@switch:~$
 ```
 
-{{< /tab >}}
-{{< /tabs >}}
-
-The commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+The vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
 ```
 cumulus@switch:~$ sudo cat /etc/frr/frr.conf
@@ -138,6 +135,9 @@ route-map routemap1 permit 10
  match interface swp51
  set metric 50
 ```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ### Apply a Route Map
 
@@ -166,16 +166,16 @@ switch# exit
 cumulus@switch:~$
 ```
 
-{{< /tab >}}
-{{< /tabs >}}
-
-The commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+The vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
 ```
 cumulus@switch:~$ sudo cat /etc/frr/frr.conf
 ...
 ip protocol bgp route-map routemap1
 ```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 For BGP, you can also apply a route map on route updates from BGP to Zebra. All the applicable match operations are allowed, such as match on prefix, next hop, communities, and so on. Set operations for this attach-point are limited to metric and next hop only. Any operation of this feature does not affect BGPs internal RIB. Both IPv4 and IPv6 address families are supported. Route maps work on multi-paths; however, the metric setting is based on the best path only.
 

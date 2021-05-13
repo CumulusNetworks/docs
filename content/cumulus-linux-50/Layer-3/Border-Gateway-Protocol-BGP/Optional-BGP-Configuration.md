@@ -115,10 +115,7 @@ cumulus@leaf01:~$
 
 The `bgp listen limit` command limits the number of dynamic peers. The default value is *100*.
 
-{{< /tab >}}
-{{< /tabs >}}
-
-The commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+The vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
 ```
 router bgp 65101
@@ -127,6 +124,9 @@ router bgp 65101
   bgp listen limit 5
   bgp listen range 10.0.1.0/24 peer-group SPINE
 ```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ## eBGP Multihop
 
@@ -148,7 +148,6 @@ cumulus@leaf01:~$ cl config apply
 
 ```
 cumulus@leaf01:~$ sudo vtysh
-
 leaf01# configure terminal
 leaf01(config)# router bgp 65101
 leaf01(config-router)# neighbor 10.10.10.101 remote-as external
@@ -195,15 +194,7 @@ leaf01# exit
 cumulus@leaf01:~$
 ```
 
-{{%notice note%}}
-- When you configure `ttl-security hops` on a peer group instead of a specific neighbor, FRR does not add it to either the running configuration or to the `/etc/frr/frr.conf` file. To work around this issue, add `ttl-security hops` to individual neighbors instead of the peer group.
-- Enabling `ttl-security hops` does not program the hardware with relevant information. Frames are forwarded to the CPU and are dropped. Use the CUE command to explicitly add the relevant entry to hardware. For more information about ACLs, see {{<link title="Netfilter - ACLs">}}.
-{{%/notice%}}
-
-{{< /tab >}}
-{{< /tabs >}}
-
-The commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+The vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
 ```
 ...
@@ -212,6 +203,14 @@ router bgp 65101
   neighbor swp51 ttl-security hops 200
 ...
 ```
+
+{{%notice note%}}
+- When you configure `ttl-security hops` on a peer group instead of a specific neighbor, FRR does not add it to either the running configuration or to the `/etc/frr/frr.conf` file. To work around this issue, add `ttl-security hops` to individual neighbors instead of the peer group.
+- Enabling `ttl-security hops` does not program the hardware with relevant information. Frames are forwarded to the CPU and are dropped. Use the CUE command to explicitly add the relevant entry to hardware. For more information about ACLs, see {{<link title="Netfilter - ACLs">}}.
+{{%/notice%}}
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ## MD5-enabled BGP Neighbors
 
@@ -251,7 +250,6 @@ cumulus@spine01:~$ cl config apply
 
 ```
 cumulus@leaf01:~$ sudo vtysh
-
 leaf01# configure terminal
 leaf01(config)# router bgp 65101
 leaf01(config-router)# neighbor swp51 password mypassword
@@ -266,7 +264,6 @@ cumulus@leaf01:~$
 
 ```
 cumulus@spine01:~$ sudo vtysh
-
 spine01# configure terminal
 spine01(config)# router bgp 65199
 spine01(config-router)# neighbor swp1 password mypassword
@@ -435,10 +432,7 @@ border01# exit
 cumulus@border01:~$
 ```
 
-{{< /tab >}}
-{{< /tabs >}}
-
-The commands save the configuration in the `/etc/frr/frr.conf` file:
+The vtysh commands save the configuration in the `/etc/frr/frr.conf` file:
 
 ```
 cumulus@border01:~$ cat /etc/frr/frr.conf
@@ -496,6 +490,9 @@ router bgp 65533 vrf BLUE
 !
 line vty
 ```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 With the above configuration, the `net show bgp vrf RED summary` command shows the local ASN as 65532.
 
@@ -565,14 +562,10 @@ switch# exit
 cumulus@switch:~$
 ```
 
-{{< /tab >}}
-{{< /tabs >}}
-
-The commands save the configuration in the `address-family` stanza of the `/etc/frr/frr.conf` file. For example:
+The vtysh commands save the configuration in the `address-family` stanza of the `/etc/frr/frr.conf` file. For example:
 
 ```
 ...
-!
 address-family ipv4 unicast
  network 10.1.10.0/24
  network 10.10.10.1/32
@@ -580,6 +573,9 @@ address-family ipv4 unicast
 exit-address-family
 ...
 ```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 When *BGP multipath* is enabled, only BGP routes from the same AS are load balanced. If the routes go across several different AS neighbors, even if the AS path length is the same, they are not load balanced. To be able to load balance between multiple paths received from different AS neighbors:.
 
@@ -605,10 +601,7 @@ switch# exit
 cumulus@switch:~$
 ```
 
-{{< /tab >}}
-{{< /tabs >}}
-
-The commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+The vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
 ```
 ...
@@ -617,6 +610,9 @@ router bgp 65101
   bgp bestpath as-path multipath-relax
 ...
 ```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 {{%notice note%}}
 When you disable the *bestpath as-path multipath-relax* option, EVPN type-5 routes do not use the updated configuration. Type-5 routes continue to use all available ECMP paths in the underlay fabric, regardless of ASN.
@@ -652,10 +648,7 @@ switch# exit
 cumulus@switch:~$
 ```
 
-{{< /tab >}}
-{{< /tabs >}}
-
-The commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+The vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
 ```
 ...
@@ -664,6 +657,9 @@ router bgp 65101
   neighbor 2001:db8:0002::0a00:0002 capability extended-nexthop
 ...
 ```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 Ensure that the IPv6 peers are activated under the IPv4 unicast address family; otherwise, all peers are activated in the IPv4 unicast address family by default. If `no bgp default ipv4-unicast` is configured, you need to explicitly activate the IPv6 neighbor under the IPv4 unicast address family as shown below:
 
@@ -692,10 +688,7 @@ switch# exit
 cumulus@switch:~$
 ```
 
-{{< /tab >}}
-{{< /tabs >}}
-
-The commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+The vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
 ```
 ...
@@ -710,6 +703,9 @@ address-family ipv4 unicast
 exit-address-family
 ...
 ```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ## Neighbor Maximum Prefixes
 
@@ -730,7 +726,6 @@ cumulus@leaf01:~$ cl config apply
 
 ```
 cumulus@leaf01:~$ sudo vtysh
-
 leaf01# configure terminal
 leaf01(config)# router bgp 65001
 leaf01(config-router)# neighbor swp51 maximum-prefix 3000
@@ -787,10 +782,7 @@ leaf01# exit
 cumulus@leaf01:~$
 ```
 
-{{< /tab >}}
-{{< /tabs >}}
-
-The commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+The vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
 ```
 ...
@@ -800,6 +792,9 @@ router bgp 65199
  bgp suppress-fib-pending
 ...
 ```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 The {{<link url="Smart-System-Manager" text="Smart System Manager">}} suppresses route advertisement automatically when upgrading or troubleshooting an active switch so that there is minimal disruption to the network.
 
@@ -1005,10 +1000,7 @@ leaf01# exit
 cumulus@leaf01:~$
 ```
 
-{{< /tab >}}
-{{< /tabs >}}
-
-The commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+The vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
 ```
 cumulus@leaf01:~$ sudo nano /etc/frr/frr.conf
@@ -1023,6 +1015,9 @@ match ip address prefix-list ADVERTISE
 route-map EXISTMAP permit 10
 match ip address prefix-list EXIST
 ```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ## BGP Timers
 
@@ -1057,10 +1052,7 @@ leaf01# exit
 cumulus@leaf01:~$
 ```
 
-{{< /tab >}}
-{{< /tabs >}}
-
-The commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+The vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
 ```
 ...
@@ -1069,6 +1061,9 @@ router bgp 65101
   neighbor swp51 timers 10 30
 ...
 ```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ### Reconnect Interval
 
@@ -1098,10 +1093,7 @@ leaf01# exit
 cumulus@leaf01:~$
 ```
 
-{{< /tab >}}
-{{< /tabs >}}
-
-The commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+The vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
 ```
 ...
@@ -1110,6 +1102,9 @@ router bgp 65101
   neighbor swp51 timers connect 30
 ...
 ```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ### Advertisement Interval
 
@@ -1139,10 +1134,7 @@ leaf01# exit
 cumulus@leaf01:~$
 ```
 
-{{< /tab >}}
-{{< /tabs >}}
-
-The commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+The vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
 ```
 ...
@@ -1151,6 +1143,9 @@ router bgp 65101
   neighbor swp51 advertisement-interval 5
 ...
 ```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ## Route Reflectors
 
@@ -1185,10 +1180,7 @@ spine01# exit
 cumulus@spine01:~$
 ```
 
-{{< /tab >}}
-{{< /tabs >}}
-
-The commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+The vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
 ```
 ...
@@ -1202,6 +1194,9 @@ router bgp 65199
  exit-address-family
 ...
 ```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 {{%notice info%}}
 When configuring BGP for IPv6, you must run the `route-reflector-client` command **after** the `activate` command; otherwise, the `route-reflector-client` command is ignored.
@@ -1227,7 +1222,6 @@ cumulus@spine01:~$ cl config apply
 
 ```
 cumulus@spine01:~$ sudo vtysh
-
 spine01# configure terminal
 spine01(config)# router bgp 65101
 spine01(config-router)# distance bgp 150 110
@@ -1469,10 +1463,7 @@ leaf01# exit
 cumulus@leaf01:~$
 ```
 
-{{< /tab >}}
-{{< /tabs >}}
-
-The commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+The vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
 ```
 ...
@@ -1482,6 +1473,9 @@ router bgp 65199
  neighbor swp51 graceful-restart
 ...
 ```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 You can configure the following graceful restart timers, which are set globally.
 
@@ -1519,10 +1513,7 @@ leaf01# exit
 cumulus@leaf01:~$ 
 ```
 
-{{< /tab >}}
-{{< /tabs >}}
-
-The commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+The vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
 ```
 ...
@@ -1534,6 +1525,9 @@ router bgp 65199
  bgp graceful-restart stalepath-time 400
 ...
 ```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 The following example commands disable global graceful restart:
 
@@ -1657,10 +1651,7 @@ leaf01# exit
 cumulus@leaf01:~$
 ```
 
-{{< /tab >}}
-{{< /tabs >}}
-
-The commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+The vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
 ```
 ...
@@ -1670,6 +1661,9 @@ router bgp 65199
  bgp update-delay 300 200
 ...
 ```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 To show the configured timers and information about the transitions when a convergence event occurs, run the NCLU `net show bgp summary` command or the vtysh `show ip bgp summary` command.
 

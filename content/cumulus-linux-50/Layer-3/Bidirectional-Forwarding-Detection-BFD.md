@@ -105,10 +105,7 @@ switch# exit
 cumulus@switch:~$
 ```
 
-{{< /tab >}}
-{{< /tabs >}}
-
-The commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+The vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
 ```
 ...
@@ -120,6 +117,9 @@ neighbor fabric remote-as external
 neighbor fabric bfd 4 400 400
 ...
 ```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 To see neighbor information in BGP, including BFD status, run the NCLU `net show bgp neighbor <interface>` command or the `vtysh` `show ip bgp neighbor <interface>` command. For example:
 
@@ -174,10 +174,7 @@ switch# exit
 cumulus@switch:~$
 ```
 
-{{< /tab >}}
-{{< /tabs >}}
-
-The commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+The vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
 ```
 ...
@@ -185,6 +182,9 @@ interface swp1
   ipv6 ospf6 bfd 4 400 400
   ...
 ```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 You can run different commands to show neighbor information in OSPF, including BFD status.
 

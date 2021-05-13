@@ -97,7 +97,8 @@ The rest of the values were not touched for this demonstration. They
 
 7.  Open the **Hardware** option from the **Home** dropdown menu:
 
-    {{% imgOld 4 %}}
+    {{% img src="images/old_doc_images/Screen-Shot-2016-01-05-at-11.58.00-AM-1.png" %}}
+
 
 8.  Click the **Table** button.
 

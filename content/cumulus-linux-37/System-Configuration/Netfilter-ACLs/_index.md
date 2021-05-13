@@ -120,7 +120,7 @@ The rules created by these programs inspect or operate on packets at
 several points in the life of the packet through the system. These five
 points are known as *chains* and are shown here:
 
-{{% imgOld 0 %}}
+{{% img src="images/old_doc_images/Linux-Traffic-Inspection-Points-Chains.png" %}}
 
 The chains and their uses are:
 
@@ -161,7 +161,7 @@ green are supported by Cumulus Linux, those in red are not supported
 
 {{% imgOld 2 %}}
 
-{{% imgOld 3 %}}
+{{% img src="images/old_doc_images/Legend-1.png" %}}
 
 ### Rules
 

@@ -182,7 +182,7 @@ In cases where the network is contained to a single floor or even with multiple 
 
 Similarly, it may be possible in some instances such as a very small building or sparse connectivity needs to combine the access and distribution layers into a single switch or pair of switches and route directly into a core layer.
 
-{{<figure src="/images/guides/campus-collapseddistro-access example.jpg" caption="A large campus network with collapsed distribution and access segments that route directly into the layer 3 core">}}
+{{<figure src="/images/guides/campus-collapseddistro-access-example.jpg" caption="A large campus network with collapsed distribution and access segments that route directly into the layer 3 core">}}
 
 #### Layer 2 vs Layer 3 ECMP Device Connections
 

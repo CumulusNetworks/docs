@@ -20,7 +20,8 @@ jobs:
           python3 utils/build_foss_licenses.py
       - name: Create PR
         uses: peter-evans/create-pull-request@v3
-        commit-message: "Automated release note commit"
+        with:
+          commit-message: "Automated release note commit"
 
     env:
       GITHUB_TOKEN: ${{ secrets.PLUMBIS_GITHUB_TOKEN }}

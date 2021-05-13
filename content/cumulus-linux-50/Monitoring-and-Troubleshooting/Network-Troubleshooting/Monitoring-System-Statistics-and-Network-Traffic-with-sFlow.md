@@ -106,7 +106,7 @@ cumulus@switch:~$ grep agentIP /etc/hsflowd.auto
 
 ## Configure sFlow Visualization Tools
 
-For information on configuring various sFlow visualization tools, read this {{<kb_link url="knowledge-base/Configuration-and-Usage/Monitoring/Configure-and-Use-sFlow-Visualization-Tools/" text="knowledge base article">}}.
+For information on configuring various sFlow visualization tools, read this [knowledge base article]({{<ref "/knowledge-base/Configuration-and-Usage/Monitoring/Configure-and-Use-sFlow-Visualization-Tools" >}}).
 
 ## Related Information
 

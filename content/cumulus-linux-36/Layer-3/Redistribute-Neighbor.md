@@ -263,7 +263,7 @@ connect to the leaves.
     ARGS="-q -f -u10 -d10 -w -I"
     SUSPEND_ACTION="stop"
 
-For full instructions on installing `ifplugd` on Ubuntu, {{<kb_link url="knowledge-base/Configuration-and-Usage/Network-Interfaces/Using-ifplugd-on-a-Server-Host/" text="follow this guide">}}.
+For full instructions on installing `ifplugd` on Ubuntu, [follow this guide]({{<ref "/knowledge-base/Configuration-and-Usage/Network-Interfaces/Using-ifplugd-on-a-Server-Host" >}}).
 
 ## Known Limitations
 

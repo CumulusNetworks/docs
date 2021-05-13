@@ -895,7 +895,7 @@ iface br0.100
     bridge-ports peerlink.100 bond1.100
 ```
 
-For a deeper comparison of traditional versus VLAN-aware bridge modes, read this {{<kb_link url="knowledge-base/Configuration-and-Usage/Network-Interfaces/Compare-Traditional-Bridge-Mode-to-VLAN-aware-Bridge-Mode/" text="knowledge base article">}}.
+For a deeper comparison of traditional versus VLAN-aware bridge modes, read this [knowledge base article]({{<ref "/knowledge-base/Configuration-and-Usage/Network-Interfaces/Compare-Traditional-Bridge-Mode-to-VLAN-aware-Bridge-Mode" >}}).
 
 ## Peer Link Interfaces and the protodown State
 
@@ -1253,7 +1253,7 @@ Scaling this example out to a full rack, when planning for link failures, you ne
 
 ### Failover Redundancy Scenarios
 
-To get a better understanding of how STP and LACP behave in response to various failover redundancy scenarios, read this {{<kb_link url="knowledge-base/Configuration-and-Usage/Network-Interfaces/MLAG-Redundancy-Scenarios/" text="knowledge base article">}}.
+To get a better understanding of how STP and LACP behave in response to various failover redundancy scenarios, read this [knowledge base article]({{<ref "/knowledge-base/Configuration-and-Usage/Network-Interfaces/MLAG-Redundancy-Scenarios" >}}).
 
 ## STP Interoperability with MLAG
 

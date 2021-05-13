@@ -70,4 +70,4 @@ The proxy is now configured. The `echo` command can be used to confirm a proxy i
 
 ## Related Information
 
-{{<kb_link url="knowledge-base/Installing-and-Upgrading/Installation/Set-up-an-apt-Package-Cache" text="Set up an apt package cache">}}
+[Set up an apt package cache]({{<ref "/knowledge-base/Installing-and-Upgrading/Installation/Set-up-an-apt-Package-Cache" >}})

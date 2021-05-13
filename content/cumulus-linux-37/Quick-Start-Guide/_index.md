@@ -6,7 +6,7 @@ pageID: 8362542
 ---
 This quick start guide provides an end-to-end setup process for installing and running Cumulus Linux, as well as a collection of example commands for getting started after installation is complete.
 
-{{<notice info>}}
+{{%notice info%}}
 
 Intermediate-level Linux knowledge is assumed for this guide. You should be familiar with basic text editing, Unix file permissions, and process monitoring. A variety of text editors are pre-installed, including `vi` and `nano`.
 
@@ -15,13 +15,13 @@ Windows, use a Linux environment like {{<exlink url="http://www.cygwin.com/" tex
 as your command line tool for interacting with Cumulus Linux.
 
 If you are a networking engineer but are unfamiliar with Linux concepts,
-refer to {{<kb_link url="knowledge-base/Demos-and-Training/Interoperability/Cumulus-Linux-Conversion-Guide-for-NX-OS-or-IOS-Users/" text="this reference guide">}}
+refer to [this reference guide]({{<ref "/knowledge-base/Demos-and-Training/Interoperability/Cumulus-Linux-Conversion-Guide-for-NX-OS-or-IOS-Users" >}})
 to compare the Cumulus Linux CLI and configuration options, and their
 equivalent Cisco Nexus 3000 NX-OS commands and settings. You can also
 {{<exlink url="https://academy.mellanox.com/en/training-by-topic/?training_by_topic=58" text="watch a series of short videos">}} introducing you to
 Linux and Cumulus Linux-specific concepts.
 
-{{</notice>}}
+{{%/notice%}}
 
 ## Install Cumulus Linux
 

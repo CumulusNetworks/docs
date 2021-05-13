@@ -6,7 +6,7 @@
 {{$curPG := index $ste $pgid}}
 {{$cur := index $curPG $ind}}
 
-<img class = "{{$cur.class}}" src = "{{$cur.src | absURL }}" alt = "{{$cur.alt}}"
+<img class = "{{$cur.class}}" src = "{{$cur.src }}" alt = "{{$cur.alt}}"
 {{with $cur.height}}
 height = {{int . }}
 {{end}}

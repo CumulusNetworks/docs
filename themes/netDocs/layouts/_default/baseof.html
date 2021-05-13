@@ -11,8 +11,6 @@
 <body class="docs">
 <!-- PDF output does not require standard menus -->
 {{if ne .Page.Type "pdf"}}
-  <input type="checkbox" style="display: none" id="menu-control" />
-
   <!-- Green bar header -->
   {{ partial "top-header" . }}
 <div class="docs-wrapper">
@@ -54,18 +52,9 @@
 </main>
 </div>
 
-{{if ne .Page.Params.layout "pdf"}}
-{{ partialCached "footer" . }}
 
-<!-- Announcement bars -->
-<!-- {{ $jsAnnouncementBar := resources.Get "js/announcement-bar.js" }}
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
-<script src = "{{ $jsAnnouncementBar.Permalink }}"> </script> -->
+  {{ partialCached "footer" . }}
 
-<!-- The following Javascript does not play well with PDF output tools -->
-
-  {{ partialCached "footer-javascript" . }}
-{{ end }}
 
 </body>
 </html>

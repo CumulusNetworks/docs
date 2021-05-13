@@ -360,6 +360,7 @@ cumulus@leaf01:~$ cl config apply
 {{< tab "Linux Commands ">}}
 
 Edit the `/etc/network/interfaces` file and add the `clagd-priority` option, then run the `ifreload -a` command.
+
 ```
 cumulus@switch:~$ sudo nano /etc/network/interfaces
 ...
@@ -1142,5 +1143,5 @@ After you make the necessary cable or configuration changes to avoid the protodo
 
 ## Related Information
 
-- {{<kb_link url="knowledge-base/Configuration-and-Usage/Network-Interfaces/MLAG-Redundancy-Scenarios/" text="MLAG Redundancy Scenarios">}}
-- {{<kb_link url="knowledge-base/Configuration-and-Usage/Network-Interfaces/Compare-Traditional-Bridge-Mode-to-VLAN-aware-Bridge-Mode/" text="Compare Traditional Bridge Mode to VLAN-aware Bridge Mode">}}
+- [MLAG Redundancy Scenarios]({{<ref "/knowledge-base/Configuration-and-Usage/Network-Interfaces/MLAG-Redundancy-Scenarios" >}})
+- [Compare Traditional Bridge Mode to VLAN-aware Bridge Mode]({{<ref "/knowledge-base/Configuration-and-Usage/Network-Interfaces/Compare-Traditional-Bridge-Mode-to-VLAN-aware-Bridge-Mode" >}})

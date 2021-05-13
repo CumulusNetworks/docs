@@ -132,7 +132,7 @@ You can check to see which agent IP was selected using:
 ## Configure sFlow Visualization Tools
 
 For information on configuring various sFlow visualization tools, read this
-{{<kb_link url="knowledge-base/Configuration-and-Usage/Monitoring/Configure-and-Use-sFlow-Visualization-Tools/" text="knowledge base article">}}.
+[knowledge base article]({{<ref "/knowledge-base/Configuration-and-Usage/Monitoring/Configure-and-Use-sFlow-Visualization-Tools" >}}).
 
 ## Caveats and Errata
 

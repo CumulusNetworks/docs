@@ -49,7 +49,7 @@
             </li>
             <li class="navSection primary">
               <a class="rootLink" href={{ .Site.Params.cl_latest | absURL }}>NVIDIA Cumulus Linux</a>
-              <a class="rootLink" href={{ .Site.Params.netq_latest | absURL }}>NVIDIA NetQ</a>
+              <a class="rootLink" href={{ .Site.Params.netq_latest | absURL }}>NVIDIA Cumulus NetQ</a>
               <a class="rootLink" href={{ "cumulus-vx" | absURL }}>NVIDIA Cumulus VX</a>
               <a class="rootLink" href={{ .Site.Params.sonic_latest | absURL }}>SONiC</a>
               <a class="rootLink" href={{ "knowledge-base" | absURL }}>Knowledge Base</a>
@@ -67,7 +67,7 @@
       <div class="mobileMenu">
         <ul>
           <li><a href={{ .Site.Params.cl_latest | absURL }}>NVIDIA Cumulus Linux</a></li>
-          <li><a href={{ .Site.Params.netq_latest | absURL }}>NVIDIA NetQ</a></li>
+          <li><a href={{ .Site.Params.netq_latest | absURL }}>NVIDIA Cumulus NetQ</a></li>
           <li><a href={{ "cumulus-vx" | absURL }}>NVIDIA Cumulus VX</a></li>
           <li><a href={{ .Site.Params.sonic_latest | absURL }}>SONiC</a></li>
           <li><a href={{ "knowledge-base" | absURL }}>Knowledge Base</a></li>
@@ -91,13 +91,8 @@
             </h3>
           </div>
           <div class="col-12 text-center pb-5">
-          <!--  <div class="resources-search"> -->
-          <!-- <input type="text" class="resources-search-input" placeholder="Search the documentation" value="">
-          <button type="submit">Search</button> -->
-
           <script async src="https://cse.google.com/cse.js?cx=002929300794741444210:sy0sz3qlwdc"></script>
           <div class="gcse-searchbox-only" enableAutoComplete="true" data-resultsUrl={{"search" | absURL}}></div>
-          <!-- </div> -->
         </div>
       </div>
         <div class="row">
@@ -118,8 +113,8 @@
               </ul>
           </div>
           <div class="col-12 col-sm-6 col-lg-4 mb-5 mb-lg-0">
-              <a href="{{ .Site.Params.netq_latest | absURL }}"><img src={{"home-products-netq.jpg" | absURL }} alt="NVIDIA NetQ" class="mb-6"> </a>
-              <h3>NVIDIA NetQ</h3>
+              <a href="{{ .Site.Params.netq_latest | absURL }}"><img src={{"home-products-netq.jpg" | absURL }} alt="NVIDIA Cumulus NetQ" class="mb-6"> </a>
+              <h3>NVIDIA Cumulus NetQ</h3>
               <p class="small">A highly-scalable, modern network operations tool set that provides visibility into your network</p>
               <ul>
                   <li><a href={{ .Site.Params.netq_latest | absURL }}>User guide</a></li>
@@ -241,9 +236,8 @@
                     </div>
                     <ul class="mb-4">
                         <li><h4 class="text-jade mb-3">Products</h4></li>
-                        <li><a href={{ .Site.Params.cl_latest | absURL }}>Cumulus Linux</a></li>
-                        <li><a href={{ .Site.Params.netq_latest | absURL }}>Cumulus NetQ</a></li>
-                        <li><a href="https://www.nvidia.com/en-us/networking/ethernet-switching/spectrum-sn4000/">Cumulus Express</a></li>
+                        <li><a href={{ .Site.Params.cl_latest | absURL }}>NVIDIA Cumulus Linux</a></li>
+                        <li><a href={{ .Site.Params.netq_latest | absURL }}>NVIDIA Cumulus NetQ</a></li>
                     </ul>
                     <ul class="mb-4">
                       <li><h4 class="text-jade mb-3">Solutions</h4></li>
@@ -343,46 +337,6 @@
     </div>
 </div>
 
-  {{ template "_internal/google_analytics_async.html" . }}
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
-  <script type="text/javascript">
-    (function() {
-      var didInit = false;
-      function initMunchkin() {
-        if(didInit === false) {
-          didInit = true;
-          Munchkin.init('628-LMQ-951');
-        }
-      }
-      var s = document.createElement('script');
-      s.type = 'text/javascript';
-      s.async = true;
-      s.src = '//munchkin.marketo.net/munchkin.js';
-      s.onreadystatechange = function() {
-        if (this.readyState == 'complete' || this.readyState == 'loaded') {
-          initMunchkin();
-        }
-      };
-      s.onload = initMunchkin;
-      document.getElementsByTagName('head')[0].appendChild(s);
-    })();
-  </script>
-  <script>
-       window._6si = window._6si || [];
-       window._6si.push(['enableEventTracking', true]);
-       window._6si.push(['setToken', '520947e1dc042c7896ad79e98cc7702e']);
-       window._6si.push(['setEndpoint', 'b.6sc.co']);
-
-       (function() {
-           var gd = document.createElement('script');
-           gd.type = 'text/javascript';
-           gd.async = true;
-           gd.src = '//j.6sc.co/6si.min.js';
-           var s = document.getElementsByTagName('script')[0];
-           s.parentNode.insertBefore(gd, s);
-       })();
-   </script>
-
    <script>
       var siteNav = document.getElementById('site-nav');
       var burgerMenu = document.querySelector('.burger-menu');
@@ -397,8 +351,6 @@
       document.getElementById('gsc-i-id1').placeholder = 'Search the docs. For better results, include your version number in your query.';
     };
    </script>
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
 
 </body>
 

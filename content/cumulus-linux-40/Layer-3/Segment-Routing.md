@@ -5,11 +5,11 @@ weight: 900
 toc: 3
 ---
 
-{{<notice warning>}}
+{{%notice warning%}}
 
-Segment routing is an {{<kb_link url="knowledge-base/Support/Support-Offerings/Early-Access-Features-Defined/" text="early access feature">}} in Cumulus Linux and is supported only on switches with {{<exlink url="www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="Spectrum ASICs">}}.
+Segment routing is an [early access feature]({{<ref "/knowledge-base/Support/Support-Offerings/Early-Access-Features-Defined" >}}) in Cumulus Linux and is supported only on switches with {{<exlink url="www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="Spectrum ASICs">}}.
 
-{{</notice>}}
+{{%/notice%}}
 
 Cumulus Linux supports *segment routing,* also known as source routing, where a source node can specify the path a packet should take (traffic engineering). In some more advanced cases, you can use segment routing to have offline multiprotocol label switching (MPLS) controllers program labels into the network for traffic engineering.
 

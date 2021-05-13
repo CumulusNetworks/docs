@@ -189,14 +189,7 @@ To configure a PBR policy:
     cumulus@switch:~$
     ```
 
-{{< /tab >}}
-{{< /tabs >}}
-
-{{%notice note%}}
-You can only set one policy per interface.
-{{%/notice%}}
-
-The commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+The vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
 ```
 ...
@@ -211,6 +204,13 @@ interface swp51
 pbr-policy map1
 ...
 ```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+{{%notice note%}}
+You can only set one policy per interface.
+{{%/notice%}}
 
 ## Modify PBR Rules
 
@@ -587,10 +587,7 @@ switch# exit
 cumulus@switch:~$
 ```
 
-{{< /tab >}}
-{{< /tabs >}}
-
-The commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+The vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
 ```
 nexthop-group group1
@@ -602,3 +599,6 @@ interface swp51
 pbr-policy map1
 ...
 ```
+
+{{< /tab >}}
+{{< /tabs >}}

@@ -60,7 +60,7 @@ become available, for the period of the subscription.
 
 The following diagram illustrates the release version and support relationship.
 
-{{<img src="/images/knowledge-base/NQ rel vers and sup pol.png" width="700">}}
+{{<img src="/images/knowledge-base/NQ-rel-vers-and-sup-pol.png" width="700">}}
 
 Customers running NetQ 1.4.x and earlier, can continue to use their
 current license until their support expires.  These customers have the

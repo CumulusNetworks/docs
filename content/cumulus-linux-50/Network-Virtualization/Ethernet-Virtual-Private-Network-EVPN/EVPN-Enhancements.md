@@ -680,7 +680,7 @@ leaf01)# exit
 cumulus@leaf01:~$
 ```
 
-The commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+The vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
 ```
 cumulus@leaf01:~$ sudo cat /etc/frr/frr.conf
@@ -742,7 +742,7 @@ leaf01)# exit
 cumulus@leaf01:~$
 ```
 
-The commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+The vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
 ```
 ...

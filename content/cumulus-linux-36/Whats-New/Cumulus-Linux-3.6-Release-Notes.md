@@ -70,18 +70,18 @@ variables, such as HTTP proxies, before you install new packages or
 upgrade your distribution.
 
 1.  Retrieve the new version packages: `cumulus@switch:~$ sudo -E apt-get update`
-2.  If you are using any {{<kb_link url="knowledge-base/Support/Support-Offerings/Early-Access-Features-Defined/" text="early access features">}} from an older release, remove them with: `cumulus@switch:~$ sudo -E apt-get remove EA_PACKAGENAME`
+2.  If you are using any [early access features]({{<ref "/knowledge-base/Support/Support-Offerings/Early-Access-Features-Defined" >}}) from an older release, remove them with: `cumulus@switch:~$ sudo -E apt-get remove EA_PACKAGENAME`
 3.  Upgrade the release: `cumulus@switch:~$ sudo -E apt-get upgrade`
 4.  To include additional Cumulus Linux packages not present in your current version, run the command: `cumulus@switch:~$ apt-get install nclu hostapd python-cumulus-restapi linuxptp` 
 
     If you already have the latest version of a package installed, you see messages similar to: `nclu is already the newest version`. You might also see additional packages being installed due to dependencies.
 5.  Reboot the switch: `cumulus@switch:~$ sudo reboot`
 
-{{<notice note>}}
+{{%notice note%}}
 
-If you see errors for expired GPG keys that prevent you from upgrading packages when upgrading to Cumulus Linux 3.6 from 3.5.1 or earlier, follow the steps in {{<kb_link url="knowledge-base/Installing-and-Upgrading/Upgrading/Update-Expired-GPG-Keys/" text="Upgrading Expired GPG Keys">}}.
+If you see errors for expired GPG keys that prevent you from upgrading packages when upgrading to Cumulus Linux 3.6 from 3.5.1 or earlier, follow the steps in [Upgrading Expired GPG Keys]({{<ref "/knowledge-base/Installing-and-Upgrading/Upgrading/Update-Expired-GPG-Keys" >}}).
 
-{{</notice>}}
+{{%/notice%}}
 
 {{%notice note%}}
 

@@ -6,7 +6,7 @@ pageID: 8362966
 ---
 {{<notice warning>}}
 
-GRE tunneling is an {{<kb_link url="knowledge-base/Support/Support-Offerings/Early-Access-Features-Defined/" text="early access feature">}}.
+GRE tunneling is an [early access feature]({{<ref "/knowledge-base/Support/Support-Offerings/Early-Access-Features-Defined" >}}).
 
 {{</notice>}}
 

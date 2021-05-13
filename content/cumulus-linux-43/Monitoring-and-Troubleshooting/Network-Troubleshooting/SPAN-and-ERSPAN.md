@@ -395,7 +395,7 @@ Cut-through mode **is** supported for ERSPAN in Cumulus Linux on switches using 
 
 The `src-ip` option can be any IP address, even if it does not exist in the routing table. The `dst-ip` option must be an IP address reachable through the routing table. The destination IP address must be reachable from a front-panel port; not the management port. Use `ping` or `ip route get <ip>` to verify that the destination IP address is reachable. Setting the `--ttl` option is recommended.
 
-If a SPAN destination IP address is not available, or if the interface type prevents using a laptop as a SPAN destination, refer to {{<kb_link url="knowledge-base/Configuration-and-Usage/Administration/Configure-ERSPAN-to-a-Cumulus-Linux-Switch" text="knowledge base article">}}.
+If a SPAN destination IP address is not available, or if the interface type prevents using a laptop as a SPAN destination, refer to [knowledge base article]({{<ref "/knowledge-base/Configuration-and-Usage/Administration/Configure-ERSPAN-to-a-Cumulus-Linux-Switch" >}}).
 
 {{%notice note%}}
 

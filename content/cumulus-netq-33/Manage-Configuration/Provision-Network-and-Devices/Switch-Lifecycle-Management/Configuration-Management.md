@@ -515,7 +515,7 @@ To create a profile:
 
 9. Optionally set a CPU usage limit for the NetQ Agent. Click **Enable** and drag the dot to the desired limit.
 
-    Refer to this {{<kb_link url="knowledge-base/Configuration-and-Usage/Cumulus-NetQ/NetQ-Agent-CPU-Utilization-on-Cumulus-Linux-Switches/" text="Knowledge Base article">}} for information about this feature.
+    Refer to this [Knowledge Base article]({{<ref "/knowledge-base/Configuration-and-Usage/Cumulus-NetQ/NetQ-Agent-CPU-Utilization-on-Cumulus-Linux-Switches" >}}) for information about this feature.
 
 10. Click **Add** to complete the configuration or **Close** to discard the configuration.
 

@@ -22,7 +22,7 @@ You can configure EVPN with CUE commands or with Linux and vtysh commands.
 {{< tabs "TabID78 ">}}
 {{< tab "CUE Commands ">}}
 
-1. Configure VXLAN Interfaces. The following example creates two VXLAN interfaces (vni10 and vni20), maps VLAN 10 to vni10 and VLAN 20 to vni20, configures the bridge, and sets the VXLAN local tunnel IP address to 10.10.10.10.
+1. Configure VXLAN Interfaces. The following example creates a single VXLAN interface (vxlan0), maps VLAN 10 to vni10 and VLAN 20 to vni20, adds the VXLAN device to the default bridge `br_default`, and sets the VXLAN local tunnel IP address to 10.10.10.10.
 
    ```
    cumulus@leaf01:~$ cl set bridge domain br_default vlan 10 vni 10
@@ -30,6 +30,8 @@ You can configure EVPN with CUE commands or with Linux and vtysh commands.
    cumulus@leaf01:~$ cl set nve vxlan source address 10.10.10.10
    cumulus@leaf01:~$ cl config apply
    ```
+
+   To create a traditional VXLAN device, where each VNI is represented as a separate device instead of  a set of VNIs in a single device model, see {{<link url="VXLAN-Devices" text="VXLAN-Devices">}}.
 
 2. Configure BGP. The following example commands assign an ASN and router ID to leaf01 and spine01, specify the interfaces between the two BGP peers, and the prefixes to originate. For complete information on how to configure BGP, see {{<link url="Border-Gateway-Protocol-BGP" text="Border Gateway Protocol - BGP">}}.
 

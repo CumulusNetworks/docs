@@ -12,6 +12,6 @@ Cumulus Networks recommends that you deploy, provision, configure, and upgrade s
 
 {{<notice tip>}}
 
-Be sure to read the knowledge base article {{<kb_link url="knowledge-base/Installing-and-Upgrading/Upgrading/Network-Device-and-Linux-Host-Worldview-Comparison/" text="Upgrades: Network Device and Linux Host Worldview Comparison">}}, which provides a detailed comparison between the network device and Linux host worldview of upgrade and installation.
+Be sure to read the knowledge base article [Upgrades: Network Device and Linux Host Worldview Comparison]({{<ref "/knowledge-base/Installing-and-Upgrading/Upgrading/Network-Device-and-Linux-Host-Worldview-Comparison" >}}), which provides a detailed comparison between the network device and Linux host worldview of upgrade and installation.
 
 {{</notice>}}

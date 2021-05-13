@@ -217,7 +217,7 @@ To upgrade the switch using package upgrade:
     
     When the upgrade is complete, you can search for the files with the `sudo find / -mount -type f -name '*.dpkg-*'` command.
 
-    If you see errors for expired GPG keys that prevent you from upgrading packages, follow the steps in {{<kb_link url="knowledge-base/Installing-and-Upgrading/Upgrading/Update-Expired-GPG-Keys/" text="Upgrading Expired GPG Keys">}}.
+    If you see errors for expired GPG keys that prevent you from upgrading packages, follow the steps in [Upgrading Expired GPG Keys]({{<ref "/knowledge-base/Installing-and-Upgrading/Upgrading/Update-Expired-GPG-Keys" >}}).
 
 5. Reboot the switch if the upgrade messages indicate that a system restart is required.
 
@@ -338,7 +338,7 @@ After you upgrade using a full Cumulus Linux image install, you need to reinstal
 
 ## Related Information
 
-- {{<kb_link url="knowledge-base/Installing-and-Upgrading/Upgrading/Network-Device-and-Linux-Host-Worldview-Comparison/" text="Upgrades: Network Device Worldview and Linux Host Worldview Comparison">}}
+- [Upgrades: Network Device Worldview and Linux Host Worldview Comparison]({{<ref "/knowledge-base/Installing-and-Upgrading/Upgrading/Network-Device-and-Linux-Host-Worldview-Comparison" >}})
 - {{<exlink url="https://www.nvidia.com/en-us/networking/network-automation/" text="Automation Solutions">}}
 - {{<exlink url="http://opencomputeproject.github.io/onie/design-spec/" text="ONIE Design Specification">}}
 - {{<link title="Multi-Chassis Link Aggregation - MLAG">}}

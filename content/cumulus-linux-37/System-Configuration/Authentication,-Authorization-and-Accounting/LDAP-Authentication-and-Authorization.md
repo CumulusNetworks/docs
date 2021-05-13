@@ -428,7 +428,7 @@ and each version of AD is a little different in how it works with
 Linux-based LDAP clients. Some more advanced configuration examples,
 from testing LDAP clients on Cumulus Linux with Active Directory
 (AD/LDAP), are available in the Cumulus
-{{<kb_link url="knowledge-base/Security/Authentication/LDAP-on-Cumulus-Linux-Using-Server-2008-Active-Directory/" text="knowledge base">}}.
+[knowledge base]({{<ref "/knowledge-base/Security/Authentication/LDAP-on-Cumulus-Linux-Using-Server-2008-Active-Directory" >}}).
 
 ## LDAP Verification Tools
 

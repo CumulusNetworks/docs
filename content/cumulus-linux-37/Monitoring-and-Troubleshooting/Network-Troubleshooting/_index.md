@@ -504,7 +504,7 @@ switches using Spectrum ASICs.
 
 {{<notice tip>}}
 
-If a SPAN destination IP address is not available, or if the interface type or types prevent using a laptop as a SPAN destination, read this {{<kb_link url="knowledge-base/Configuration-and-Usage/Administration/Configure-ERSPAN-to-a-Cumulus-Linux-Switch/" text="knowledge base article">}} for a workaround.
+If a SPAN destination IP address is not available, or if the interface type or types prevent using a laptop as a SPAN destination, read this [knowledge base article]({{<ref "/knowledge-base/Configuration-and-Usage/Administration/Configure-ERSPAN-to-a-Cumulus-Linux-Switch" >}}) for a workaround.
 
 {{</notice>}}
 

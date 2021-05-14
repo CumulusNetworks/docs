@@ -88,7 +88,7 @@ iface bridge-B
 
 ## Trunks in Traditional Bridge Mode
 
-The {{<exlink url="http://www.ieee802.org/1/pages/802.1Q.html" text=" standard">}} for trunking is 802.1Q. The 802.1Q specification adds a 4 byte header within the Ethernet frame that identifies the VLAN of which the frame is a member.
+The {{<exlink url="http://www.ieee802.org/1/pages/802.1Q.html" text=" standard">}} for trunking is 802.1Q. The 802.1Q specification adds a four byte header within the Ethernet frame that identifies the VLAN of which the frame is a member.
 
 802.1Q also identifies an *untagged* frame as belonging to the *native* VLAN (most network devices default their native VLAN to 1). In Cumulus Linux:
 
@@ -103,8 +103,6 @@ A bridge in traditional mode has no concept of trunks, just tagged or untagged f
 {{%notice note%}}
 The interaction of tagged and un-tagged frames on the same trunk often leads to undesired and unexpected behavior. A switch that uses VLAN 1 for the native VLAN might send frames to a switch that uses VLAN 2 for the native VLAN, merging those two VLANs and their spanning tree state.
 {{%/notice%}}
-
-The following example shows a trunk in traditional bridge mode:
 
 {{< img src = "/images/cumulus-linux/ethernet-bridging-trunk1.png" >}}
 
@@ -123,9 +121,3 @@ iface br-VLAN20
 ```
 
 For more examples of VLAN tagging, see {{<link url="VLAN-Tagging" text="VLAN Tagging">}}.
-
-### Configure ARP Timers
-
-Cumulus Linux does not often interact directly with end systems as much as end systems interact with each another. Therefore, after a successful {{<exlink url="http://linux-ip.net/html/ether-arp.html" text="address resolution protocol">}} (ARP) places a neighbor into a reachable state, Cumulus Linux might not interact with the client again for a long enough period of time for the neighbor to move into a stale state. To keep neighbors in the reachable state, Cumulus Linux includes a background process (`/usr/bin/neighmgrd`). The background process tracks neighbors that move into a stale, delay, or probe state, and attempts to refresh their state before they are removed from the Linux kernel and from hardware forwarding. The `neighmgrd` process only adds a neighbor if the sender's IP in the ARP packet is in one of the SVI's subnets (you can disable this check by setting `subnet_checks` to *0* in the `/etc/cumulus/neighmgr.conf` file).
-
-The ARP refresh timer defaults to 1080 seconds (18 minutes). To change this setting, see {{<link url="Address-Resolution-Protocol-ARP">}}.

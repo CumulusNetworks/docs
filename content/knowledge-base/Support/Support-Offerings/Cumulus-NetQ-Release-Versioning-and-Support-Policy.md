@@ -77,4 +77,4 @@ Currently, there are no end of life plans for Cumulus NetQ 1.x or 2.x.
 ## Upgrade Process
 
 For information regarding upgrading from previous Cumulus NetQ releases,
-refer to the {{<kb_link url="cumulus-netq-33/Manage-Deployment" text="Cumulus NetQ Deployment Guide">}}.
+refer to the [Cumulus NetQ Deployment Guide]({{<ref "/cumulus-netq-33/Manage-Deployment" >}}.

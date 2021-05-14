@@ -12,7 +12,7 @@ BGP is the routing protocol that runs the Internet. It is an increasingly popula
 - Has many robust vendor implementations.
 - Is very mature as a protocol and comes with many years of operational experience.
 
-{{<exlink url="https://tools.ietf.org/html/rfc7938" text="RFC 7938">}} provides further details of the use of BGP within the data center. For an overview and how to configure BGP to run in your data center network, refer to {{<kb_link url="cumulus-linux-43/Layer-3/Border-Gateway-Protocol-BGP/" text="Border Gateway Protocol - BGP">}}.
+{{<exlink url="https://tools.ietf.org/html/rfc7938" text="RFC 7938">}} provides further details of the use of BGP within the data center. For an overview and how to configure BGP to run in your data center network, refer to [Border Gateway Protocol - BGP]({{<ref "/cumulus-linux-43/Layer-3/Border-Gateway-Protocol-BGP" >}}.
 
 NetQ enables operators to view the health of the BGP service on a networkwide or per session basis, giving greater insight into all aspects of the service. This is accomplished in the NetQ UI through two card workflows, one for the service and one for the session and in the NetQ CLI with the `netq show bgp` command.
 
@@ -706,7 +706,7 @@ spine04           swp4(leaf04)                 default         65199      65102 
 
 ## Monitor a Single BGP Session
 
-With NetQ, you can monitor a single session of the BGP service, view session state changes, and compare with alarms occurring at the same time, as well as monitor the running BGP configuration and changes to the configuration file. For an overview and how to configure BGP to run in your data center network, refer to {{<kb_link url="cumulus-linux-43/Layer-3/Border-Gateway-Protocol-BGP/" text="Border Gateway Protocol - BGP">}}.
+With NetQ, you can monitor a single session of the BGP service, view session state changes, and compare with alarms occurring at the same time, as well as monitor the running BGP configuration and changes to the configuration file. For an overview and how to configure BGP to run in your data center network, refer to [Border Gateway Protocol - BGP]({{<ref "/cumulus-linux-43/Layer-3/Border-Gateway-Protocol-BGP" >}}.
 
 {{<notice note>}}
 To access the single session cards, you must open the full-screen Network Services|All BGP Sessions card, click the <strong>All Sessions</strong> tab, select the desired session, then click <img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg"  height="18" width="18"/> (Open Card).

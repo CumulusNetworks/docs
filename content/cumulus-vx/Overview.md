@@ -109,7 +109,7 @@ For non-customers, Cumulus VX remains a community-supported product, with no for
 
 ## Related Information
 
-- {{<kb_link url="cumulus-linux-43" text="Cumulus Linux documentation">}}
+- [Cumulus Linux documentation]({{<ref "/cumulus-linux-43" >}}
 - {{<exlink url="https://www.nvidia.com/en-us/networking/ethernet-switching/cumulus-vx/" text="Cumulus VX downloads">}}
 - {{<exlink url="https://www.vmware.com/support/pubs/" text="VMware documentation">}}
 - {{<exlink url="https://www.virtualbox.org/wiki/Documentation" text="VirtualBox documentation">}}

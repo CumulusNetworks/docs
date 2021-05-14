@@ -218,4 +218,4 @@ fw1         3.7.12        COMPLETED        Fri Apr 24 20:38:48 2020  COMPLETED  
 
 ## Back Up and Restore
 
-To back up and restore the switches themselves, use the `config-backup` and `config-restore` commands in Cumulus Linux directly on the switches. For more information, read the {{<kb_link url="cumulus-linux-43/Installation-Management/Back-up-and-Restore/" text="Cumulus Linux user guide">}}.
+To back up and restore the switches themselves, use the `config-backup` and `config-restore` commands in Cumulus Linux directly on the switches. For more information, read the [Cumulus Linux user guide]({{<ref "/cumulus-linux-43/Installation-Management/Back-up-and-Restore" >}}.

@@ -88,7 +88,7 @@ Attributes are displayed as the default tab on the large Switch card. You can vi
 
 {{<figure src="/images/netq/dev-switch-large-attributes-tab-230.png" width="500">}}
 
-From a performance perspective, this example shows that five interfaces are down, the NetQ Agent is communicating with the NetQ appliance or VM, and it is missing the Cumulus Linux license. It is important the license is valid, so you would want to fix this first (refer to {{<kb_link url="cumulus-linux-42/Quick-Start-Guide/#install-the-license" text="Install the Cumulus Linux License">}}). Secondly, you would want to look more closely at the interfaces (refer to {{<link title="#view-interface-statistics-and-utilization" text="interface statistics">}}).
+From a performance perspective, this example shows that five interfaces are down, the NetQ Agent is communicating with the NetQ appliance or VM, and it is missing the Cumulus Linux license. It is important the license is valid, so you would want to fix this first (refer to [Install the Cumulus Linux License]({{<ref "/cumulus-linux-42/Quick-Start-Guide/#install-the-license" >}}). Secondly, you would want to look more closely at the interfaces (refer to {{<link title="#view-interface-statistics-and-utilization" text="interface statistics">}}).
 
 ## System Configuration
 

@@ -78,10 +78,31 @@ To configure BGP numbered on a BGP node, you need to:
    cumulus@leaf01:~$ cl config apply
    ```
 
-The CUE commands create the following configuration snippet in the `/etc/cue.d/startup.yaml` file:
+The CUE commands create the following configuration snippet in the `/etc/cue.d/startup.yaml` file after you run `cl config save`. For example:
 
 ```
 cumulus@leaf01:~$ sudo cat /etc/cue.d/startup.yaml
+...
+router:
+      bgp:
+        autonomous-system: 65101
+        enable: on
+        router-id: 10.10.10.1
+    vrf:
+      default:
+        router:
+          bgp:
+            peer:
+              10.0.1.0:
+                remote-as: external
+                type: numbered
+            enable: on
+            address-family:
+              ipv4-unicast:
+                static-network:
+                  10.10.10.1/32: {}
+                  10.1.10.0/24: {}
+                enable: on
 ```
 
 {{< /tab >}}
@@ -139,10 +160,30 @@ cumulus@leaf01:~$ sudo cat /etc/cue.d/startup.yaml
    cumulus@spine01:~$ cl config apply
    ```
 
-The CUE commands create the following configuration snippet in the `/etc/cue.d/startup.yaml` file:
+The CUE commands create the following configuration snippet in the `/etc/cue.d/startup.yaml` file after you run `cl config save`. For example:
 
 ```
 cumulus@spine01:~$ sudo cat /etc/cue.d/startup.yaml
+...
+router:
+      bgp:
+        autonomous-system: 65199
+        enable: on
+        router-id: 10.10.10.101
+vrf:
+      default:
+        router:
+          bgp:
+            peer:
+              10.0.1.0:
+                remote-as: external
+                type: numbered
+            enable: on
+            address-family:
+              ipv4-unicast:
+                static-network:
+                  10.10.10.101/32: {}
+                enable: on
 ```
 
 {{< /tab >}}
@@ -329,10 +370,31 @@ cumulus@leaf01:~$ cl set vrf default router bgp address-family ipv6-unicast stat
 cumulus@leaf01:~$ cl config apply
 ```
 
-The CUE commands create the following configuration snippet in the `/etc/cue.d/startup.yaml` file:
+The CUE commands create the following configuration snippet in the `/etc/cue.d/startup.yaml` file. For example:
 
 ```
 cumulus@leaf01:~$ sudo cat /etc/cue.d/startup.yaml
+...
+router:
+      bgp:
+        autonomous-system: 65101
+        enable: on
+        router-id: 10.10.10.1
+    vrf:
+      default:
+        router:
+          bgp:
+            peer:
+              swp51:
+                remote-as: external
+                type: unnumbered
+            enable: on
+            address-family:
+              ipv4-unicast:
+                static-network:
+                  10.10.10.1/32: {}
+                  10.1.10.0/24: {}
+                enable: on
 ```
 
 {{< /tab >}}
@@ -357,10 +419,30 @@ cumulus@spine01:~$ cl set vrf default router bgp address-family ipv6-unicast sta
 cumulus@spine01:~$ cl config apply
 ```
 
-The CUE commands create the following configuration snippet in the `/etc/cue.d/startup.yaml` file:
+The CUE commands create the following configuration snippet in the `/etc/cue.d/startup.yaml` file. For example:
 
 ```
 cumulus@spine01:~$ sudo cat /etc/cue.d/startup.yaml
+...
+router:
+      bgp:
+        autonomous-system: 65199
+        enable: on
+        router-id: 10.10.10.101
+vrf:
+      default:
+        router:
+          bgp:
+            peer:
+              swp1:
+                remote-as: external
+                type: unnumbered
+            enable: on
+            address-family:
+              ipv4-unicast:
+                static-network:
+                  10.10.10.101/32: {}
+                enable: on
 ```
 
 {{< /tab >}}

@@ -18,9 +18,9 @@ For servers running RHEL or CentOS, you need to:
 - Install and configure NTP, if needed
 - Obtain NetQ software packages
 
-{{<notice note>}}
-If your network uses a proxy server for external connections, you should first {{<kb_link url="cumulus-linux-43/System-Configuration/Configuring-a-Global-Proxy/" text="configure a global proxy">}} so `apt-get` can access the software package in the Cumulus Networks repository.
-{{</notice>}}
+{{%notice note%}}
+If your network uses a proxy server for external connections, you should first [configure a global proxy]({{<ref "/cumulus-linux-43/System-Configuration/Configuring-a-Global-Proxy" >}} so `apt-get` can access the software package in the Cumulus Networks repository.
+{{%/notice%}}
 
 ### Verify Service Package Versions
 
@@ -49,7 +49,7 @@ root@rhel7:~# sudo yum install wget
 
 If NTP is not already installed and configured, follow these steps:
 
-1. Install {{<kb_link url="cumulus-linux-43/System-Configuration/Setting-Date-and-Time/" text="NTP">}} on the server. Servers must be in time synchronization with the NetQ Platform or NetQ Appliance to enable useful statistical analysis.
+1. Install [NTP]({{<ref "/cumulus-linux-43/System-Configuration/Setting-Date-and-Time" >}} on the server. Servers must be in time synchronization with the NetQ Platform or NetQ Appliance to enable useful statistical analysis.
 
     ```
     root@rhel7:~# sudo yum install ntp
@@ -212,7 +212,7 @@ A couple of additional options are available for configuring the NetQ Agent. If 
 
 ### Configure the NetQ Agent to Use a VRF
 
-While optional, Cumulus strongly recommends that you configure NetQ Agents to communicate with the NetQ Platform only via a {{<kb_link url="cumulus-linux-43/Layer-3/VRFs/Virtual-Routing-and-Forwarding-VRF/" text="VRF">}}, including a {{<kb_link url="cumulus-linux-43/Layer-3/VRFs/Management-VRF/" text="management VRF">}}. To do so, you need to specify the VRF name when configuring the NetQ Agent. For example, if the management VRF is configured and you want the agent to communicate with the NetQ Platform over it, configure the agent like this:
+While optional, Cumulus strongly recommends that you configure NetQ Agents to communicate with the NetQ Platform only via a [VRF]({{<ref "/cumulus-linux-43/Layer-3/VRFs/Virtual-Routing-and-Forwarding-VRF" >}}, including a [management VRF]({{<ref "/cumulus-linux-43/Layer-3/VRFs/Management-VRF" >}}. To do so, you need to specify the VRF name when configuring the NetQ Agent. For example, if the management VRF is configured and you want the agent to communicate with the NetQ Platform over it, configure the agent like this:
 
 ```
 root@rhel7:~# sudo netq config add agent server 192.168.1.254 vrf mgmt

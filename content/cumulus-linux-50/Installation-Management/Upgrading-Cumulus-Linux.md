@@ -14,10 +14,10 @@ Consider deploying, provisioning, configuring, and upgrading switches using auto
 
 ## Before You Upgrade
 
-{{<notice tip>}}
+{{%notice tip%}}
 Be sure to read the knowledge base article
-{{<kb_link url="knowledge-base/Installing-and-Upgrading/Upgrading/Network-Device-and-Linux-Host-Worldview-Comparison/" text="Upgrades: Network Device and Linux Host Worldview Comparison" >}}, which provides a detailed comparison between the network device and Linux host worldview of upgrade and installation.
-{{</notice>}}
+[Upgrades: Network Device and Linux Host Worldview Comparison]({{<ref "/knowledge-base/Installing-and-Upgrading/Upgrading/Network-Device-and-Linux-Host-Worldview-Comparison" >}}, which provides a detailed comparison between the network device and Linux host worldview of upgrade and installation.
+{{%/notice%}}
 
 ### Back up Configuration Files
 

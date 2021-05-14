@@ -9,7 +9,7 @@ toc: 4
 
 User already knows Cisco IOS format and wants translation to `mstpd` (the spanning tree protocol daemon for Linux).
 
-Please refer to the {{<kb_link url="cumulus-linux-43/Layer-2/Spanning-Tree-and-Rapid-Spanning-Tree/#spanning-tree-parameter-list" text="">}} for more information.
+Please refer to the []({{<ref "/cumulus-linux-43/Layer-2/Spanning-Tree-and-Rapid-Spanning-Tree#spanning-tree-parameter-list" >}} for more information.
 
 You can find the Cisco Configuration Guide used to interpret their commands {{<exlink url="http://www.cisco.com/c/en/us/td/docs/switches/lan/catalyst3750x_3560x/software/release/12-2_55_se/configuration/guide/3750xscg/swstp.html" text="here">}}.
 

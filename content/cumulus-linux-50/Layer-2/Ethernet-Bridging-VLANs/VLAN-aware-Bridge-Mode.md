@@ -646,7 +646,7 @@ iface peerlink.4094
 ...
 ```
 
-### VXLANs with VLAN-aware Bridges
+<!--### VXLANs with VLAN-aware Bridges
 
 Cumulus Linux supports using VXLANs with VLAN-aware bridge configurations to provide improved scalability, as multiple VXLANs can be added to a single VLAN-aware bridge. A one to one association is used between the VXLAN VNI and the VLAN, with the bridge access VLAN definition on the VXLAN and the VLAN membership definition on the local bridge member interfaces.
 
@@ -673,10 +673,10 @@ iface vni10
     vxlan-remoteip 10.10.10.34
 ...
 ```
-
+-->
 ### Static MAC Address Entries
 
-You can add a static MAC address entry to the layer 2 table for an interface in a VLAN-aware bridge by running a command similar to the following:
+The following configuration adds a static MAC address entry to the layer 2 table for an interface within the VLAN-aware bridge by running a command similar to the following:
 
 ```
 cumulus@switch:~$ sudo bridge fdb add 12:34:56:12:34:56 dev swp1 vlan 10 master static

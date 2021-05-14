@@ -15,9 +15,9 @@ A simple process installs the NetQ CLI on a Cumulus Linux switch.
 
 To install the NetQ CLI you need to install `netq-apps` on each switch. This is available from the NVIDIA networking repository.
 
-{{<notice note>}}
-If your network uses a proxy server for external connections, you should first {{<kb_link url="cumulus-linux-43/System-Configuration/Configuring-a-Global-Proxy/" text="configure a global proxy">}} so <code>apt-get</code> can access the software package in the NVIDIA networking repository.
-{{</notice>}}
+{{%notice note%}}
+If your network uses a proxy server for external connections, you should first [configure a global proxy]({{<ref "/cumulus-linux-43/System-Configuration/Configuring-a-Global-Proxy" >}} so <code>apt-get</code> can access the software package in the NVIDIA networking repository.
+{{%/notice%}}
 
 To obtain the NetQ Agent package:
 

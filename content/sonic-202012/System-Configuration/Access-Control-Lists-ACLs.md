@@ -9,7 +9,7 @@ siteSlug: sonic
 
 {{<exlink url="http://www.netfilter.org/" text="Netfilter">}} is the packet filtering framework in SONiC as well as most other Linux distributions. There are a number of tools available for configuring *access control lists* (ACLs) in SONiC.
 
-For an in depth discussion of ACLs, read the {{<kb_link url="cumulus-linux-43/System-Configuration/Netfilter-ACLs/" text="Cumulus Linux">}} user guide.
+For an in depth discussion of ACLs, read the [Cumulus Linux]({{<ref "/cumulus-linux-43/System-Configuration/Netfilter-ACLs" >}} user guide.
 
  <!--   iptables, ip6tables, and ebtables are Linux userspace tools used to administer filtering rules for IPv4 packets, IPv6 packets, and Ethernet frames (layer 2 using MAC addresses).-->
 

@@ -147,6 +147,6 @@ is doing in the situation (such as IP rules or containers).
 
 ## See Also
 
-- {{<kb_link url="cumulus-linux-43/Layer-3/Routing/" text="Routing on Cumulus Linux">}}
-- {{<kb_link url="cumulus-linux-43/Monitoring-and-Troubleshooting/Network-Troubleshooting/" text="Network Troubleshooting">}}
+- [Routing on Cumulus Linux]({{<ref "/cumulus-linux-43/Layer-3/Routing" >}}
+- [Network Troubleshooting]({{<ref "/cumulus-linux-43/Monitoring-and-Troubleshooting/Network-Troubleshooting" >}}
 - {{<exlink url="https://www.kernel.org/doc/Documentation/networking/ip-sysctl.txt" text="ip-sysctl on kernel.org">}}, which covers `arp_announce`

@@ -89,7 +89,7 @@ The playbook copies these four commonly used Cumulus Linux files to the server:
 | /etc/frr/daemons        | Daemons configuration file for FRR |
 | /etc/frr/frr.conf       | FRR Configuration file             |
 
-For more information on which files to back up and what Cumulus Linux uses, please refer to {{<kb_link url="cumulus-linux-43/Installation-Management/Upgrading-Cumulus-Linux/#before-you-upgrade" text="Upgrading Cumulus Linux">}}.
+For more information on which files to back up and what Cumulus Linux uses, please refer to [Upgrading Cumulus Linux]({{<ref "/cumulus-linux-43/Installation-Management/Upgrading-Cumulus-Linux#before-you-upgrade" >}}.
 
 The playbook copies the files to a directory called `save`:
 

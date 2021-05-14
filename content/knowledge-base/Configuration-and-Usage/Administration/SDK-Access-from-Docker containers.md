@@ -6,7 +6,7 @@ toc: 4
 ---
 Because Cumulus Linux is Linux, you can install and run containers on the system with full access to popular container management ecosystems. As long as system memory, storage, and CPU capacities are proportional to the application needs, there are no limitations. To protect the primary functions of the system (such as network control and dataplane) from resource contention with other applications, you can define resource caps.
 
-To install the Docker engine, refer to {{<kb_link url="cumulus-linux-43/Network-Solutions/Docker-on-Cumulus-Linux/" text="Docker on Cumulus Linux">}}.
+To install the Docker engine, refer to [Docker on Cumulus Linux]({{<ref "/cumulus-linux-43/Network-Solutions/Docker-on-Cumulus-Linux" >}}.
 
 {{%notice note%}}
 The Docker engine installation procedure depends on the Cumulus Linux release you are running. For an NVIDIA Spectrum switch running Cumulus Linux 4.3.0 and later, a Docker package is installed as part of the installation or upgrade process. The Docker package includes Docker Engine, and dependencies and configuration files required to run the Docker service.

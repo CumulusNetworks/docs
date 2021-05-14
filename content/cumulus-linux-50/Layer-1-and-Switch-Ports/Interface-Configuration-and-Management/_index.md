@@ -470,7 +470,7 @@ cumulus@switch:~$ sudo ip addr del 2001:DB8::1/126 dev swp1
 
 You can add a description (alias) to an interface.
 
-Interface descriptions also appear in the {{<link url="Simple-Network-Management-Protocol-SNMP" text="SNMP">}} OID {{<kb_link url="mibs/IF-MIB.txt" text="IF-MIB::ifAlias">}}.
+Interface descriptions also appear in the {{<link url="Simple-Network-Management-Protocol-SNMP" text="SNMP">}} OID <kb_link url="mibs/IF-MIB.txt IF-MIB::ifAlias">}}.
 
 {{%notice note%}}
 - Interface descriptions are limited to 256 characters.

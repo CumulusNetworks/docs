@@ -1379,58 +1379,58 @@ for them. The overall Cumulus Linux MIB is defined in the
 </thead>
 <tbody>
 <tr>
-<td><p>{{<kb_link url="mibs/BGP4-MIB.txt" text="BGP4-MIB" >}},</p>
-<p>{{<kb_link url="mibs/OSPFv2-MIB.txt" text="OSPFv2-MIB" >}},</p>
-<p>{{<kb_link url="mibs/OSPFv3-MIB.txt" text="OSPFv3-MIB" >}},</p>
-<p>{{<kb_link url="mibs/RIPv2-MIB.txt" text="RIPv2-MIB" >}}</p></td>
+<td><p><kb_link url="mibs/BGP4-MIB.txt BGP4-MIB" >}},</p>
+<p><kb_link url="mibs/OSPFv2-MIB.txt OSPFv2-MIB" >}},</p>
+<p><kb_link url="mibs/OSPFv3-MIB.txt OSPFv3-MIB" >}},</p>
+<p><kb_link url="mibs/RIPv2-MIB.txt RIPv2-MIB" >}}</p></td>
 <td><p>You can enable FRRouting SNMP support to provide support for OSPF-MIB (RFC-1850), OSPFV3-MIB (RFC-5643), and BGP4-MIB (RFC-1657). See the {{<link url="#enable-snmp-support-for-frrouting" text="FRRouting section">}} above.</p></td>
 </tr>
 <tr>
-<td><p>{{<kb_link url="mibs/CUMULUS-COUNTERS-MIB.txt" text="CUMULUS-COUNTERS-MIB" >}}</a></p></td>
+<td><p><kb_link url="mibs/CUMULUS-COUNTERS-MIB.txt CUMULUS-COUNTERS-MIB" >}}</a></p></td>
 <td><p>Discard counters: Cumulus Linux also includes its own counters MIB, defined in <code>/usr/share/snmp/mibs/Cumulus-Counters-MIB.txt</code>. It has the OID <code>.1.3.6.1.4.1.40310.2</code></p></td>
 </tr>
 <tr>
-<td><p>{{<kb_link url="mibs/CUMULUS-POE-MIB.txt" text="CUMULUS-POE-MIB" >}}</a></p></td>
+<td><p><kb_link url="mibs/CUMULUS-POE-MIB.txt CUMULUS-POE-MIB" >}}</a></p></td>
 <td><p>The custom {{<link url="Power-over-Ethernet-PoE" text="Power over Ethernet">}} PoE MIB defined in the <code>/usr/share/snmp/mibs/Cumulus-POE-MIB.txt</code> file. For devices that provide PoE, this provides users with the system wide power information in <code>poeSystemValues</code> as well as per interface <code>PoeObjectsEntry</code> values for the <code>poeObjectsTable</code>. Most of this information comes from the <code>poectl</code> command. To enable this MIB, uncomment the following line in <code>/etc/snmp/snmpd.conf</code>:</p>
 <pre><code>#pass_persist .1.3.6.1.4.1.40310.3 /usr/share/snmp/cl_poe_pp.py</code></pre></td>
 </tr>
 <tr>
-<td><p>{{<kb_link url="mibs/CUMULUS-RESOURCE-QUERY-MIB.txt" text="CUMULUS-RESOURCE-QUERY-MIB" >}}</p></td>
+<td><p><kb_link url="mibs/CUMULUS-RESOURCE-QUERY-MIB.txt CUMULUS-RESOURCE-QUERY-MIB" >}}</p></td>
 <td><p>Cumulus Linux includes its own resource utilization MIB, which is similar to using<code> cl-resource-query</code>. This MIB monitors layer 3 entries by host, route, nexthops, ECMP groups, and layer 2 MAC/BDPU entries.The MIB is defined in <code>/usr/share/snmp/mibs/Cumulus-Resource-Query-MIB.txt</code> and has the OID <code>.1.3.6.1.4.1.40310.1.</code></p></td>
 </tr>
 <tr>
-<td><p>{{<kb_link url="mibs/CUMULUS-SNMP-MIB.txt" text="CUMULUS-SNMP-MIB" >}}</p></td>
-<td><p>SNMP counters. For information on exposing CPU and memory information with SNMP, see this {{<kb_link url="knowledge-base/Configuration-and-Usage/Monitoring/Expose-CPU-and-Memory-Information-via-SNMP/" text="knowledge base article" >}}.</p></td>
+<td><p><kb_link url="mibs/CUMULUS-SNMP-MIB.txt CUMULUS-SNMP-MIB" >}}</p></td>
+<td><p>SNMP counters. For information on exposing CPU and memory information with SNMP, see this [knowledge base article]({{<ref "/knowledge-base/Configuration-and-Usage/Monitoring/Expose-CPU-and-Memory-Information-via-SNMP" >}}.</p></td>
 </tr>
 <tr>
-<td><p>{{<kb_link url="mibs/DISMAN-EVENT-MIB.txt" text="DISMAN-EVENT-MIB" >}}</p></td>
+<td><p><kb_link url="mibs/DISMAN-EVENT-MIB.txt DISMAN-EVENT-MIB" >}}</p></td>
 <td><p>Trap monitoring</p></td>
 </tr>
 <tr>
-<td><p>{{<kb_link url="mibs/ENTITY-MIB.txt" text="ENTITY-MIB" >}}</p></td>
+<td><p><kb_link url="mibs/ENTITY-MIB.txt ENTITY-MIB" >}}</p></td>
 <td><p>From RFC 4133, the temperature sensors, fan sensors, power sensors, and ports are covered.</p></td>
 </tr>
 <tr>
-<td><p>{{<kb_link url="mibs/ENTITY-SENSOR-MIB.txt" text="ENTITY-SENSOR-MIB" >}}</p></td>
+<td><p><kb_link url="mibs/ENTITY-SENSOR-MIB.txt ENTITY-SENSOR-MIB" >}}</p></td>
 <td><p>Physical sensor information (temperature, fan, and power supply) from RFC 3433.</p></td>
 </tr>
 <tr>
-<td><p>{{<kb_link url="mibs/HOST-RESOURCES-MIB.txt" text="HOST-RESOURCES-MIB" >}}</p></td>
+<td><p><kb_link url="mibs/HOST-RESOURCES-MIB.txt HOST-RESOURCES-MIB" >}}</p></td>
 <td><p>Users, storage, interfaces, process info, run parameters</p></td>
 </tr>
 <tr>
-<td><p>{{<kb_link url="mibs/BRIDGE-MIB.txt" text="BRIDGE-MIB" >}}</p>
-<p>{{<kb_link url="mibs/Q-BRIDGE-MIB.txt" text="Q-BRIDGE-MIB" >}}</p></td>
+<td><p><kb_link url="mibs/BRIDGE-MIB.txt BRIDGE-MIB" >}}</p>
+<p><kb_link url="mibs/Q-BRIDGE-MIB.txt Q-BRIDGE-MIB" >}}</p></td>
 <td><p>The <code>dot1dBasePortEntry</code> and <code>dot1dBasePortIfIndex</code> tables in the BRIDGE-MIB and <code>dot1qBase</code>, <code>dot1qFdbEntry</code>, <code>dot1qTpFdbEntry</code>, <code>dot1qTpFdbStatus</code>, and <code>dot1qVlanStaticName</code> tables in the Q-BRIDGE-MIB tables. You must uncomment the <code>bridge_pp.py pass_persist</code> script in <code>/etc/snmp/snmpd.conf</code>.</p></td>
 </tr>
 <tr>
-<td><p>{{<kb_link url="mibs/IEEE8023-LAG-MIB.txt" text="IEEE8023-LAG-MIB" >}}</p></td>
+<td><p><kb_link url="mibs/IEEE8023-LAG-MIB.txt IEEE8023-LAG-MIB" >}}</p></td>
 <td><p>Implementation of the IEEE 8023-LAG-MIB includes the <code>dot3adAggTable</code> and <code>dot3adAggPortListTable</code> tables. To enable this, edit <code>/etc/snmp/snmpd.conf</code> and uncomment or add the following lines:</p>
 <pre><code>view systemonly included .1.2.840.10006.300.43
 pass_persist .1.2.840.10006.300.43 /usr/share/snmp/ieee8023_lag_pp.py</code></pre></td>
 </tr>
 <tr>
-<td><p>{{<kb_link url="mibs/IF-MIB.txt" text="IF-MIB" >}}</p></td>
+<td><p><kb_link url="mibs/IF-MIB.txt IF-MIB" >}}</p></td>
 <td><p>Interface description, type, MTU, speed, MAC, admin, operation status, counters.</p>
 <p>By default, IF-MIB can handle a maximum of 500 interfaces. You can change this setting by editing the value for the <code>ifmib_max_num_ifaces</code> setting in the default SNMP configuration file, <code>/etc/snmp/snmpd.conf</code>.
 </p>
@@ -1442,67 +1442,67 @@ SNMPDOPTS=&#39;-y -LS 0-4 d -Lf /dev/null -u snmp -g snmp -I -smux -p /run/snmpd
 <p>{{%/notice%}}</p></td>
 </tr>
 <tr>
-<td><p>{{<kb_link url="mibs/IP-FORWARD-MIB.txt" text="IP-FORWARD-MIB" >}}</p></td>
+<td><p><kb_link url="mibs/IP-FORWARD-MIB.txt IP-FORWARD-MIB" >}}</p></td>
 <td><p>IP routing table</p></td>
 </tr>
 <tr>
-<td><p>{{<kb_link url="mibs/IP-MIB.txt" text="IP-MIB (includes ICMP)" >}}</p></td>
+<td><p><kb_link url="mibs/IP-MIB.txt IP-MIB (includes ICMP)" >}}</p></td>
 <td><p>IPv4, IPv4 addresses, counters, netmasks</p></td>
 </tr>
 <tr>
-<td><p>{{<kb_link url="mibs/IPV6-MIB.txt" text="IPv6-MIB" >}}</p></td>
+<td><p><kb_link url="mibs/IPV6-MIB.txt IPv6-MIB" >}}</p></td>
 <td><p>IPv6 counters</p></td>
 </tr>
 <tr>
-<td><p>{{<kb_link url="mibs/LLDP-MIB.txt" text="LLDP-MIB" >}}</p></td>
+<td><p><kb_link url="mibs/LLDP-MIB.txt LLDP-MIB" >}}</p></td>
 <td><p>Layer 2 neighbor information from <code>lldpd</code> (you need to {{<link url="Link-Layer-Discovery-Protocol#enable-the-snmp-subagent-in-lldp" text="enable the SNMP subagent">}} in LLDP). You need to start <code>lldpd</code> with the <code>-x</code> option to enable connectivity to <code>snmpd</code> (AgentX).</p></td>
 </tr>
 <tr>
-<td><p>{{<kb_link url="mibs/LM-SENSORS-MIB.txt" text="LM-SENSORS MIB" >}}</p></td>
+<td><p><kb_link url="mibs/LM-SENSORS-MIB.txt LM-SENSORS MIB" >}}</p></td>
 <td><p>Fan speed, temperature sensor values, voltages. This is deprecated since the ENTITY-SENSOR MIB has been added.</p></td>
 </tr>
 <tr>
-<td><p>{{<kb_link url="mibs/NET-SNMP-AGENT-MIB.txt" text="NET-SNMP-AGENT-MIB" >}}</p></td>
+<td><p><kb_link url="mibs/NET-SNMP-AGENT-MIB.txt NET-SNMP-AGENT-MIB" >}}</p></td>
 <td><p>Agent timers, user, group config</p></td>
 </tr>
 <tr>
-<td><p>{{<kb_link url="mibs/NET-SNMP-VACM-MIB.txt" text="NET-SNMP-VACM-MIB" >}}</p></td>
+<td><p><kb_link url="mibs/NET-SNMP-VACM-MIB.txt NET-SNMP-VACM-MIB" >}}</p></td>
 <td><p>Agent timers, user, group config</p></td>
 </tr>
 <tr>
-<td><p>{{<kb_link url="mibs/NOTIFICATION-LOG-MIB.txt" text="NOTIFICATION-LOG-MIB" >}}</p></td>
+<td><p><kb_link url="mibs/NOTIFICATION-LOG-MIB.txt NOTIFICATION-LOG-MIB" >}}</p></td>
 <td><p>Local logging</p></td>
 </tr>
 <tr>
-<td><p>{{<kb_link url="mibs/SNMP-FRAMEWORK-MIB.txt" text="SNMP-FRAMEWORK-MIB" >}}</p></td>
+<td><p><kb_link url="mibs/SNMP-FRAMEWORK-MIB.txt SNMP-FRAMEWORK-MIB" >}}</p></td>
 <td><p>Users, access</p></td>
 </tr>
 <tr>
-<td><p>{{<kb_link url="mibs/SNMP-MPD.txt" text="SNMP-MPD-MIB" >}}</p></td>
+<td><p><kb_link url="mibs/SNMP-MPD.txt SNMP-MPD-MIB" >}}</p></td>
 <td><p>Users, access</p></td>
 </tr>
 <tr>
-<td><p>{{<kb_link url="mibs/SNMP-TARGET.txt" text="SNMP-TARGET-MIB" >}}</p></td>
+<td><p><kb_link url="mibs/SNMP-TARGET.txt SNMP-TARGET-MIB" >}}</p></td>
 <td><p> </p></td>
 </tr>
 <tr>
-<td><p>{{<kb_link url="mibs/SNMP-USER-BASED-SM.txt" text="SNMP-USER-BASED-SM-MIB" >}}</p></td>
+<td><p><kb_link url="mibs/SNMP-USER-BASED-SM.txt SNMP-USER-BASED-SM-MIB" >}}</p></td>
 <td><p>Users, access</p></td>
 </tr>
 <tr>
-<td><p>{{<kb_link url="mibs/SNMP-VIEW-BASED-ACM.txt" text="SNMP-VIEW-BASED-ACM-MIB" >}}</p></td>
+<td><p><kb_link url="mibs/SNMP-VIEW-BASED-ACM.txt SNMP-VIEW-BASED-ACM-MIB" >}}</p></td>
 <td><p>Users, access</p></td>
 </tr>
 <tr>
-<td><p>{{<kb_link url="mibs/TCP-MIB.txt" text="TCP-MIB" >}}</p></td>
+<td><p><kb_link url="mibs/TCP-MIB.txt TCP-MIB" >}}</p></td>
 <td><p>TCP-related information</p></td>
 </tr>
 <tr>
-<td><p>{{<kb_link url="mibs/UCD-SNMP-MIB.txt" text="UCD-SNMP-MIB" >}}</p></td>
+<td><p><kb_link url="mibs/UCD-SNMP-MIB.txt UCD-SNMP-MIB" >}}</p></td>
 <td><p>System memory, load, CPU, disk IO</p></td>
 </tr>
 <tr>
-<td><p>{{<kb_link url="mibs/UDP-MIB.txt" text="UDP-MIB" >}}</p></td>
+<td><p><kb_link url="mibs/UDP-MIB.txt UDP-MIB" >}}</p></td>
 <td><p>UDP-related information</p></td>
 </tr>
 </tbody>

@@ -24,7 +24,7 @@ This data has to be processed by the control plane, which impacts the CPU of the
 
 ## Resolution
 
-Normal ERSPAN setup rules apply; see the {{<kb_link url="cumulus-linux-43/Monitoring-and-Troubleshooting/Network-Troubleshooting/#configure-erspan" text="Network Troubleshooting chapter">}} for details.
+Normal ERSPAN setup rules apply; see the [Network Troubleshooting chapter]({{<ref "/cumulus-linux-43/Monitoring-and-Troubleshooting/Network-Troubleshooting/#configure-erspan" >}} for details.
 
 1.  Create rules for SPAN source; for example:  
 

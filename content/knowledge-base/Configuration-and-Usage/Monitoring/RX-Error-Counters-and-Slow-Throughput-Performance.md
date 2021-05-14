@@ -35,7 +35,7 @@ RX error counters can be seen in the output of `cl-netstat` as \"RX\_ERR\", as s
 *\<Output is truncated\>*
 
 For additional information on how to use the `cl-netstat` command,
-please read {{<kb_link url="cumulus-linux-43/Monitoring-and-Troubleshooting/Troubleshooting-Network-Interfaces/Monitoring-Interfaces-and-Transceivers-Using-ethtool/" text="the user guide">}}.
+please read [the user guide]({{<ref "/cumulus-linux-43/Monitoring-and-Troubleshooting/Troubleshooting-Network-Interfaces/Monitoring-Interfaces-and-Transceivers-Using-ethtool" >}}.
 
 ### ip -s link show Shows RX errors
 

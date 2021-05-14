@@ -17,4 +17,4 @@ My switch boots partially, but not far enough for me to log in. How do I gain ac
 
 ## Resolution
 
-To resolve this issue, {{<kb_link url="cumulus-linux-43/Monitoring-and-Troubleshooting/Single-User-Mode-Password-Recovery/" text="boot into single user mode">}} for password recovery.
+To resolve this issue, [boot into single user mode]({{<ref "/cumulus-linux-43/Monitoring-and-Troubleshooting/Single-User-Mode-Password-Recovery" >}} for password recovery.

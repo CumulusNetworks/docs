@@ -7,7 +7,7 @@ pageID: 8362432
 
 {{%notice warning%}}
 
-GRE Tunneling is an [eary access feature]({{<ref "knowledge-base/Support/Support-Offerings/Early-Access-Features-Defined">}}) in Cumulus Linux 3.6.
+GRE Tunneling is an [eary access feature]({{<ref "/knowledge-base/Support/Support-Offerings/Early-Access-Features-Defined">}}) in Cumulus Linux 3.6.
 
 {{%/notice%}}
 

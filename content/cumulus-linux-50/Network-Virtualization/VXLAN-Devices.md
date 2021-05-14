@@ -28,14 +28,11 @@ The following example configuration:
 ```
 cumulus@leaf01:~$ cl set bridge domain br_default vlan 10 vni 10
 cumulus@leaf01:~$ cl set bridge domain br_default vlan 20 vni 20
-cumulus@leaf01:~$ cl set bridge domain br_default vlan 30 vni 30
 cumulus@leaf01:~$ cl set nve vxlan source address 10.10.10.1
 cumulus@leaf01:~$ cl set bridge domain br_default vlan 10 vni 10 flooding multicast-group 239.1.1.110
 cumulus@leaf01:~$ cl set bridge domain br_default vlan 20 vni 20 flooding multicast-group 239.1.1.110
-cumulus@leaf01:~$ cl set bridge domain br_default vlan 30 vni 30 flooding multicast-group 239.1.1.110
 cumulus@leaf04:~$ cl set interface swp1 bridge domain br_default access 10
 cumulus@leaf04:~$ cl set interface swp2 bridge domain br_default access 20
-cumulus@leaf04:~$ cl set interface swp2 bridge domain br_default access 30
 cumulus@leaf01:~$ cl config apply
 ```
 
@@ -73,8 +70,8 @@ iface vxlan0
 You can configure multiple single VXLAN devices in case you use different multicast groups for replication.
 
 The following example configures:
-- VXLAN device (vxlan0), which maps VLAN 10 to VNI 10, VLAN 20 to VNI 20, and VLAN 30 to VNI 30 and adds the VXLAN device to the bridge `bridge1`
-- VXLAN device (vxlan1), which maps VLAN 40 to VNI 40, VLAN 50 to VNI 50, and VLAN 60 to VNI 60 and adds the VXLAN device to the bridge `bridge2`
+- VXLAN device (vxlan0), which maps VLAN 10 to VNI 10, VLAN 20 to VNI 20, and adds the VXLAN device to the bridge `bridge1`
+- VXLAN device (vxlan1), which maps VLAN 30 to VNI 30 and adds the VXLAN device to the bridge `bridge2`
 
 {{< tabs "TabID74 ">}}
 {{< tab "CUE Commands ">}}
@@ -82,16 +79,10 @@ The following example configures:
 ```
 cumulus@leaf01:~$ cl set bridge domain bridge1 vlan 10 vni 10 flooding multicast-group 239.1.1.110
 cumulus@leaf01:~$ cl set bridge domain bridge1 vlan 20 vni 20 flooding multicast-group 239.1.1.110
-cumulus@leaf01:~$ cl set bridge domain bridge1 vlan 30 vni 30 flooding multicast-group 239.1.1.110
 cumulus@leaf04:~$ cl set interface swp1 bridge domain bridge1 access 10
 cumulus@leaf04:~$ cl set interface swp2 bridge domain bridge1 access 20
-cumulus@leaf04:~$ cl set interface swp3 bridge domain bridge1 access 30
-cumulus@leaf01:~$ cl set bridge domain bridge2 vlan 40 vni 40 flooding multicast-group 239.1.1.112
-cumulus@leaf01:~$ cl set bridge domain bridge2 vlan 50 vni 50 flooding multicast-group 239.1.1.112
-cumulus@leaf01:~$ cl set bridge domain bridge2 vlan 60 vni 60 flooding multicast-group 239.1.1.112
-cumulus@leaf04:~$ cl set interface swp4 bridge domain bridge2 access 40
-cumulus@leaf04:~$ cl set interface swp5 bridge domain bridge2 access 50
-cumulus@leaf04:~$ cl set interface swp6 bridge domain bridge2 access 60
+cumulus@leaf01:~$ cl set bridge domain bridge2 vlan 30 vni 30 flooding multicast-group 239.1.1.112
+cumulus@leaf04:~$ cl set interface swp3 bridge domain bridge2 access 30
 cumulus@leaf01:~$ cl set nve vxlan source address 10.10.10.1
 cumulus@leaf01:~$ cl config apply
 ```
@@ -116,30 +107,27 @@ iface lo inet loopback
 
 auto bridge1
 iface bridge1
-    bridge-ports swp1 swp2 swp3 vxlan0
+    bridge-ports swp1 swp2 vxlan0
     bridge-vids 10 20 30
     bridge-vlan-aware yes
  
 auto vxlan0
 iface vxlan0
-    bridge-vids 10 20 30
+    bridge-vids 10 20
     bridge-vlan-vni-map 10=10
     bridge-vlan-vni-map 20=20
-    bridge-vlan-vni-map 30=30
     vxlan-mcastgrp 239.1.1.110
 
 auto bridge2
 iface bridge2
-    bridge-ports swp4 swp5 swp6 vxlan1
-    bridge-vids 40 50 60
+    bridge-ports swp3 vxlan1
+    bridge-vids 30
     bridge-vlan-aware yes
  
 auto vxlan1
 iface vxlan1
-    bridge-vids 40 50 60
-    bridge-vlan-vni-map 40=10
-    bridge-vlan-vni-map 50=20
-    bridge-vlan-vni-map 60=30
+    bridge-vids 30
+    bridge-vlan-vni-map 30=30
     vxlan-mcastgrp 239.1.1.112
 ```
 

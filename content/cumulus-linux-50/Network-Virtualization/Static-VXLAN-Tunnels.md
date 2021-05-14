@@ -240,7 +240,7 @@ cumulus@leaf04:~$ cl config apply
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Editing the `/etc/network/interfaces` file as follows:
+Edit the `/etc/network/interfaces` file as follows:
 
 {{< tabs "TabID217 ">}}
 {{< tab "leaf01 ">}}

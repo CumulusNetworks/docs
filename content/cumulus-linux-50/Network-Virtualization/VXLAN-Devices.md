@@ -108,7 +108,7 @@ iface lo inet loopback
 auto bridge1
 iface bridge1
     bridge-ports swp1 swp2 vxlan0
-    bridge-vids 10 20 30
+    bridge-vids 10 20
     bridge-vlan-aware yes
  
 auto vxlan0

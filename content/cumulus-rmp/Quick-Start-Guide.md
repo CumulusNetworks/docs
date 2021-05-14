@@ -54,9 +54,9 @@ Cumulus RMP switch up and running after you remove it from the box.
 ## Upgrading Cumulus RMP
 
 If you are running a Cumulus RMP version earlier than 3.0.0, you must
-perform a {{<kb_link text="complete install" url="cumulus-linux-37/Installation-Management/Installing-a-New-Cumulus-Linux-Image/">}} . If you
+perform a [complete install]({{<ref "/cumulus-linux-37/Installation-Management/Installing-a-New-Cumulus-Linux-Image">}}) . If you
 already have Cumulus Linux 3.0.0 or later installed on your switch, read
-{{<kb_link text="Upgrading Cumulus Linux" url="cumulus-linux-37/Installation-Management/Upgrading-Cumulus-Linux">}} for
+[Upgrading Cumulus Linux]({{<ref "/cumulus-linux-37/Installation-Management/Upgrading-Cumulus-Linux">}}) for
 considerations before you start the process.
 
 ## Getting Started

@@ -801,7 +801,7 @@ You can query the interface description using NCLU:
     hypervisor_port_1
 
 Interface descriptions also appear in the SNMP OID
-<kb_link url="mibs/IF-MIB.txt IF-MIB::ifAlias">}}.
+{{<kb_link text="IF-MIB::ifAlias" url="mibs/IF-MIB.txt" >}}.
 
 {{%notice note%}}
 

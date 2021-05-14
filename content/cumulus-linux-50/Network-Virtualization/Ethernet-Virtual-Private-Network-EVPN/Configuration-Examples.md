@@ -387,7 +387,7 @@ cumulus@border02:~$ cl config apply
 {{< /tab >}}
 {{< /tabs >}}
 
-## /etc/cue.d/startup.yaml
+### /etc/cue.d/startup.yaml
 
 {{< tabs "TabID392 ">}}
 {{< tab "leaf01 ">}}
@@ -2974,6 +2974,91 @@ cumulus@border02:~$ cl config apply
 {{< /tab >}}
 {{< /tabs >}}
 
+### /etc/cue.d/startup.yaml
+
+{{< tabs "TabID392 ">}}
+{{< tab "leaf01 ">}}
+
+```
+cumulus@leaf01:mgmt:~$ sudo cat /etc/cue.d/startup.yaml 
+
+```
+
+{{< /tab >}}
+{{< tab "leaf02 ">}}
+
+```
+cumulus@leaf02:mgmt:~$ sudo cat /etc/cue.d/startup.yaml 
+
+```
+
+{{< /tab >}}
+{{< tab "leaf03 ">}}
+
+```
+cumulus@leaf03:mgmt:~$ sudo cat /etc/cue.d/startup.yaml 
+
+```
+
+{{< /tab >}}
+{{< tab "leaf04 ">}}
+
+```
+cumulus@leaf04:mgmt:~$ sudo cat /etc/cue.d/startup.yaml 
+
+```
+
+{{< /tab >}}
+{{< tab "spine01 ">}}
+
+```
+cumulus@spine01:mgmt:~$ sudo cat /etc/cue.d/startup.yaml 
+
+```
+
+{{< /tab >}}
+{{< tab "spine02 ">}}
+
+```
+cumulus@spine02:mgmt:~$ sudo cat /etc/cue.d/startup.yaml 
+
+```
+
+{{< /tab >}}
+{{< tab "spine03 ">}}
+
+```
+cumulus@spine03:mgmt:~$ sudo cat /etc/cue.d/startup.yaml 
+
+```
+
+{{< /tab >}}
+{{< tab "spine04 ">}}
+
+```
+cumulus@spine04:mgmt:~$ sudo cat /etc/cue.d/startup.yaml 
+
+```
+
+{{< /tab >}}
+{{< tab "border01 ">}}
+
+```
+cumulus@border01:mgmt:~$ sudo cat /etc/cue.d/startup.yaml 
+
+```
+
+{{< /tab >}}
+{{< tab "border02 ">}}
+
+```
+cumulus@border02:mgmt:~$ sudo cat /etc/cue.d/startup.yaml
+
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
 ### /etc/network/interfaces
 
 {{< tabs "TabID894 ">}}
@@ -3790,7 +3875,7 @@ iface br_default
 
 ### /etc/frr/frr.conf
 
-{{< tabs "TabID1566 ">}}
+{{< tabs "TabID3878 ">}}
 {{< tab "leaf01 ">}}
 
 ```
@@ -4609,6 +4694,91 @@ iface vlan220_l3
 ...
 ```
 {{%/notice%}}
+
+### /etc/cue.d/startup.yaml
+
+{{< tabs "TabID4700 ">}}
+{{< tab "leaf01 ">}}
+
+```
+cumulus@leaf01:mgmt:~$ sudo cat /etc/cue.d/startup.yaml 
+
+```
+
+{{< /tab >}}
+{{< tab "leaf02 ">}}
+
+```
+cumulus@leaf02:mgmt:~$ sudo cat /etc/cue.d/startup.yaml 
+
+```
+
+{{< /tab >}}
+{{< tab "leaf03 ">}}
+
+```
+cumulus@leaf03:mgmt:~$ sudo cat /etc/cue.d/startup.yaml 
+
+```
+
+{{< /tab >}}
+{{< tab "leaf04 ">}}
+
+```
+cumulus@leaf04:mgmt:~$ sudo cat /etc/cue.d/startup.yaml 
+
+```
+
+{{< /tab >}}
+{{< tab "spine01 ">}}
+
+```
+cumulus@spine01:mgmt:~$ sudo cat /etc/cue.d/startup.yaml 
+
+```
+
+{{< /tab >}}
+{{< tab "spine02 ">}}
+
+```
+cumulus@spine02:mgmt:~$ sudo cat /etc/cue.d/startup.yaml 
+
+```
+
+{{< /tab >}}
+{{< tab "spine03 ">}}
+
+```
+cumulus@spine03:mgmt:~$ sudo cat /etc/cue.d/startup.yaml 
+
+```
+
+{{< /tab >}}
+{{< tab "spine04 ">}}
+
+```
+cumulus@spine04:mgmt:~$ sudo cat /etc/cue.d/startup.yaml 
+
+```
+
+{{< /tab >}}
+{{< tab "border01 ">}}
+
+```
+cumulus@border01:mgmt:~$ sudo cat /etc/cue.d/startup.yaml 
+
+```
+
+{{< /tab >}}
+{{< tab "border02 ">}}
+
+```
+cumulus@border02:mgmt:~$ sudo cat /etc/cue.d/startup.yaml
+
+```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ### /etc/network/interfaces
 

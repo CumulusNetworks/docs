@@ -162,6 +162,526 @@ cumulus@spine02:~$ cl config apply
 {{< /tab >}}
 {{< /tabs >}}
 
+## /etc/cue.d/startup.yaml
+
+The CUE `cl config save` command saves the configuration in the `/etc/cue.d/startup.yaml` file. For example:
+
+{{< tabs "TabID169 ">}}
+{{< tab "leaf01 ">}}
+
+```
+cumulus@leaf01:mgmt:~$ sudo cat /etc/cue.d/startup.yaml 
+- set:
+    interface:
+      lo:
+        ip:
+          address:
+            10.10.10.1/32: {}
+        type: loopback
+      bond1:
+        bond:
+          member:
+            swp1: {}
+          mlag:
+            id: 1
+        type: bond
+        bridge:
+          domain:
+            br_default: {}
+      bond2:
+        bond:
+          member:
+            swp2: {}
+          mlag:
+            id: 2
+        type: bond
+        bridge:
+          domain:
+            br_default: {}
+      bond3:
+        bond:
+          member:
+            swp3: {}
+          mlag:
+            id: 3
+        type: bond
+        bridge:
+          domain:
+            br_default: {}
+      peerlink:
+        bond:
+          member:
+            swp49: {}
+            swp50: {}
+        type: peerlink
+      peerlink.4094:
+        type: sub
+        base-interface: peerlink
+        vlan: 4094
+      vlan10:
+        ip:
+          address:
+            10.1.10.2/24: {}
+        type: svi
+        vlan: 10
+      vlan20:
+        ip:
+          address:
+            10.1.20.2/24: {}
+        type: svi
+        vlan: 20
+      vlan30:
+        ip:
+          address:
+            10.1.30.2/24: {}
+        type: svi
+        vlan: 30
+    mlag:
+      mac-address: 44:38:39:BE:EF:AA
+      backup:
+        10.10.10.2: {}
+      peer-ip: linklocal
+    bridge:
+      domain:
+        br_default:
+          vlan:
+            '10': {}
+            '20': {}
+            '30': {}
+          untagged: 1
+    router:
+      bgp:
+        autonomous-system: 65101
+        enable: on
+        router-id: 10.10.10.1
+    vrf:
+      default:
+        router:
+          bgp:
+            peer:
+              swp51:
+                remote-as: external
+                type: unnumbered
+              swp52:
+                remote-as: external
+                type: unnumbered
+            enable: on
+            address-family:
+              ipv4-unicast:
+                static-network:
+                  10.10.10.1/32: {}
+                  10.1.10.0/24: {}
+                enable: on
+```
+
+{{< /tab >}}
+{{< tab "leaf02 ">}}
+
+```
+cumulus@leaf02:mgmt:~$ sudo cat /etc/cue.d/startup.yaml
+- set:
+    interface:
+      lo:
+        ip:
+          address:
+            10.10.10.2/32: {}
+        type: loopback
+      bond1:
+        bond:
+          member:
+            swp1: {}
+          mlag:
+            id: 1
+        type: bond
+        bridge:
+          domain:
+            br_default: {}
+      bond2:
+        bond:
+          member:
+            swp2: {}
+          mlag:
+            id: 2
+        type: bond
+        bridge:
+          domain:
+            br_default: {}
+      bond3:
+        bond:
+          member:
+            swp3: {}
+          mlag:
+            id: 3
+        type: bond
+        bridge:
+          domain:
+            br_default: {}
+      peerlink:
+        bond:
+          member:
+            swp49: {}
+            swp50: {}
+        type: peerlink
+      peerlink.4094:
+        type: sub
+        base-interface: peerlink
+        vlan: 4094
+      vlan10:
+        ip:
+          address:
+            10.1.10.3/24: {}
+        type: svi
+        vlan: 10
+      vlan20:
+        ip:
+          address:
+            10.1.20.3/24: {}
+        type: svi
+        vlan: 20
+      vlan30:
+        ip:
+          address:
+            10.1.30.3/24: {}
+        type: svi
+        vlan: 30
+    mlag:
+      mac-address: 44:38:39:BE:EF:AA
+      backup:
+        10.10.10.1: {}
+      peer-ip: linklocal
+    bridge:
+      domain:
+        br_default:
+          vlan:
+            '10': {}
+            '20': {}
+            '30': {}
+          untagged: 1
+    router:
+      bgp:
+        autonomous-system: 65102
+        enable: on
+        router-id: 10.10.10.2
+    vrf:
+      default:
+        router:
+          bgp:
+            peer:
+              swp51:
+                remote-as: external
+                type: unnumbered
+              swp52:
+                remote-as: external
+                type: unnumbered
+            enable: on
+            address-family:
+              ipv4-unicast:
+                static-network:
+                  10.10.10.2/32: {}
+                enable: on
+```
+
+{{< /tab >}}
+{{< tab "leaf03 ">}}
+
+```
+cumulus@leaf03:mgmt:~$ sudo cat /etc/cue.d/startup.yaml 
+- set:
+    interface:
+      lo:
+        ip:
+          address:
+            10.10.10.3/32: {}
+        type: loopback
+      bond1:
+        bond:
+          member:
+            swp1: {}
+          mlag:
+            id: 1
+        type: bond
+        bridge:
+          domain:
+            br_default: {}
+      bond2:
+        bond:
+          member:
+            swp2: {}
+          mlag:
+            id: 2
+        type: bond
+        bridge:
+          domain:
+            br_default: {}
+      bond3:
+        bond:
+          member:
+            swp3: {}
+          mlag:
+            id: 3
+        type: bond
+        bridge:
+          domain:
+            br_default: {}
+      peerlink:
+        bond:
+          member:
+            swp49: {}
+            swp50: {}
+        type: peerlink
+      peerlink.4094:
+        type: sub
+        base-interface: peerlink
+        vlan: 4094
+      vlan10:
+        ip:
+          address:
+            10.1.10.4/24: {}
+        type: svi
+        vlan: 10
+      vlan20:
+        ip:
+          address:
+            10.1.20.4/24: {}
+        type: svi
+        vlan: 20
+      vlan30:
+        ip:
+          address:
+            10.1.30.4/24: {}
+        type: svi
+        vlan: 30
+    mlag:
+      mac-address: 44:38:39:BE:EF:AA
+      backup:
+        10.10.10.4: {}
+      peer-ip: linklocal
+    bridge:
+      domain:
+        br_default:
+          vlan:
+            '10': {}
+            '20': {}
+            '30': {}
+          untagged: 1
+    router:
+      bgp:
+        autonomous-system: 65103
+        enable: on
+        router-id: 10.10.10.3
+    vrf:
+      default:
+        router:
+          bgp:
+            peer:
+              swp51:
+                remote-as: external
+                type: unnumbered
+              swp52:
+                remote-as: external
+                type: unnumbered
+            enable: on
+            address-family:
+              ipv4-unicast:
+                static-network:
+                  10.10.10.3/32: {}
+                enable: on
+```
+
+{{< /tab >}}
+{{< tab "leaf04 ">}}
+
+```
+cumulus@leaf04:mgmt:~$ sudo cat /etc/cue.d/startup.yaml 
+- set:
+    interface:
+      lo:
+        ip:
+          address:
+            10.10.10.4/32: {}
+        type: loopback
+      bond1:
+        bond:
+          member:
+            swp1: {}
+          mlag:
+            id: 1
+        type: bond
+        bridge:
+          domain:
+            br_default: {}
+      bond2:
+        bond:
+          member:
+            swp2: {}
+          mlag:
+            id: 2
+        type: bond
+        bridge:
+          domain:
+            br_default: {}
+      bond3:
+        bond:
+          member:
+            swp3: {}
+          mlag:
+            id: 3
+        type: bond
+        bridge:
+          domain:
+            br_default: {}
+      peerlink:
+        bond:
+          member:
+            swp49: {}
+            swp50: {}
+        type: peerlink
+      peerlink.4094:
+        type: sub
+        base-interface: peerlink
+        vlan: 4094
+      vlan10:
+        ip:
+          address:
+            10.1.10.5/24: {}
+        type: svi
+        vlan: 10
+      vlan20:
+        ip:
+          address:
+            10.1.20.5/24: {}
+        type: svi
+        vlan: 20
+      vlan30:
+        ip:
+          address:
+            10.1.30.5/24: {}
+        type: svi
+        vlan: 30
+    mlag:
+      mac-address: 44:38:39:BE:EF:AA
+      backup:
+        10.10.10.3: {}
+      peer-ip: linklocal
+    bridge:
+      domain:
+        br_default:
+          vlan:
+            '10': {}
+            '20': {}
+            '30': {}
+          untagged: 1
+    router:
+      bgp:
+        autonomous-system: 65104
+        enable: on
+        router-id: 10.10.10.4
+    vrf:
+      default:
+        router:
+          bgp:
+            peer:
+              swp51:
+                remote-as: external
+                type: unnumbered
+              swp52:
+                remote-as: external
+                type: unnumbered
+            enable: on
+            address-family:
+              ipv4-unicast:
+                static-network:
+                  10.10.10.4/32: {}
+                enable: on
+```
+
+{{< /tab >}}
+{{< tab "spine01 ">}}
+
+```
+cumulus@spine01:mgmt:~$ sudo cat /etc/cue.d/startup.yaml 
+- set:
+    interface:
+      lo:
+        ip:
+          address:
+            10.10.10.101/32: {}
+        type: loopback
+    router:
+      bgp:
+        autonomous-system: 65199
+        enable: on
+        router-id: 10.10.10.101
+    vrf:
+      default:
+        router:
+          bgp:
+            peer:
+              swp1:
+                remote-as: external
+                type: unnumbered
+              swp2:
+                remote-as: external
+                type: unnumbered
+              swp3:
+                remote-as: external
+                type: unnumbered
+              swp4:
+                remote-as: external
+                type: unnumbered
+            enable: on
+            address-family:
+              ipv4-unicast:
+                static-network:
+                  10.10.10.101/32: {}
+                enable: on
+```
+
+{{< /tab >}}
+{{< tab "spine02 ">}}
+
+```
+cumulus@spine02:mgmt:~$ sudo cat /etc/cue.d/startup.yaml 
+- set:
+    interface:
+      lo:
+        ip:
+          address:
+            10.10.10.102/32: {}
+        type: loopback
+    router:
+      bgp:
+        autonomous-system: 65100
+        enable: on
+        router-id: 10.10.10.102
+    vrf:
+      default:
+        router:
+          bgp:
+            peer:
+              swp1:
+                remote-as: external
+                type: unnumbered
+              swp2:
+                remote-as: external
+                type: unnumbered
+              swp3:
+                remote-as: external
+                type: unnumbered
+              swp4:
+                remote-as: external
+                type: unnumbered
+            enable: on
+            address-family:
+              ipv4-unicast:
+                static-network:
+                  10.10.10.102/32: {}
+                enable: on
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
 ## /etc/network/interfaces
 
 {{< tabs "TabID901 ">}}

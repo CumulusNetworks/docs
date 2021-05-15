@@ -27,7 +27,7 @@ For servers running RHEL, CentOS, or Ubuntu, you need to:
 - Obtain NetQ software packages
 
 {{<notice note>}}
-If your network uses a proxy server for external connections, you should first {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux/System-Configuration/Configuring-a-Global-Proxy/" text="configure a global proxy">}} so <code>apt-get</code> can access the software package in the NVIDIA networking repository.
+If your network uses a proxy server for external connections, you should first {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/System-Configuration/Configuring-a-Global-Proxy/" text="configure a global proxy">}} so <code>apt-get</code> can access the software package in the NVIDIA networking repository.
 {{</notice>}}
 
 {{<tabs "Prepare Agent Install">}}
@@ -36,7 +36,7 @@ If your network uses a proxy server for external connections, you should first {
 
 ### Verify NTP is Installed and Configured
 
-Verify that {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux/System-Configuration/Setting-Date-and-Time/" text="NTP">}} is running on the switch. The switch must be in time synchronization with the NetQ Platform or NetQ Appliance to enable useful statistical analysis.
+Verify that {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/System-Configuration/Setting-Date-and-Time/" text="NTP">}} is running on the switch. The switch must be in time synchronization with the NetQ Platform or NetQ Appliance to enable useful statistical analysis.
 
 ```
 cumulus@switch:~$ sudo systemctl status ntp
@@ -143,7 +143,7 @@ root@rhel7:~# sudo yum install wget
 
 If NTP is not already installed and configured, follow these steps:
 
-1. Install {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux/System-Configuration/Setting-Date-and-Time/" text="NTP">}} on the server. Servers must be in time synchronization with the NetQ Platform or NetQ Appliance to enable useful statistical analysis.
+1. Install {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/System-Configuration/Setting-Date-and-Time/" text="NTP">}} on the server. Servers must be in time synchronization with the NetQ Platform or NetQ Appliance to enable useful statistical analysis.
 
     ```
     root@rhel7:~# sudo yum install ntp
@@ -241,7 +241,7 @@ root@ubuntu:~# sudo systemctl start lldpd.service
 
 If NTP is not already installed and configured, follow these steps:
 
-1. Install {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux/System-Configuration/Setting-Date-and-Time/" text="NTP">}} on the server, if not already installed. Servers must be in time synchronization with the NetQ Platform or NetQ Appliance to enable useful statistical analysis.
+1. Install {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/System-Configuration/Setting-Date-and-Time/" text="NTP">}} on the server, if not already installed. Servers must be in time synchronization with the NetQ Platform or NetQ Appliance to enable useful statistical analysis.
 
     ```
     root@ubuntu:~# sudo apt-get install ntp
@@ -562,7 +562,7 @@ A couple of additional options are available for configuring the NetQ Agent. If 
 
 ### Configure the Agent to Use a VRF
 
-By default, NetQ uses the *default* VRF for communication between the NetQ Appliance or VM and NetQ Agents. While optional, Cumulus strongly recommends that you configure NetQ Agents to communicate with the NetQ Appliance or VM only via a {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux/Layer-3/Virtual-Routing-and-Forwarding-VRF/" text="VRF">}}, including a {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux/Layer-3/Management-VRF/" text="management VRF">}}. To do so, you need to specify the VRF name when configuring the NetQ Agent. For example, if the management VRF is configured and you want the agent to communicate with the NetQ Appliance or VM over it, configure the agent like this:
+By default, NetQ uses the *default* VRF for communication between the NetQ Appliance or VM and NetQ Agents. While optional, Cumulus strongly recommends that you configure NetQ Agents to communicate with the NetQ Appliance or VM only via a {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/Layer-3/Virtual-Routing-and-Forwarding-VRF/" text="VRF">}}, including a {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/Layer-3/Management-VRF/" text="management VRF">}}. To do so, you need to specify the VRF name when configuring the NetQ Agent. For example, if the management VRF is configured and you want the agent to communicate with the NetQ Appliance or VM over it, configure the agent like this:
 
 ```
 sudo netq config add agent server 192.168.1.254 vrf mgmt

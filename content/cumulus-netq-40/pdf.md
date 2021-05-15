@@ -1,10 +1,10 @@
 ---
-title: Cumulus NetQ
+title: NVIDIA Cumulus NetQ
 layout: pdf
-product: Cumulus NetQ
+product: NVIDIA Cumulus NetQ
 type: pdf
 bookhidden: true
-version: "3.3"
+version: "4.0"
 imgData: cumulus-netq
 siteSlug: cumulus-netq
 pdfhidden: true

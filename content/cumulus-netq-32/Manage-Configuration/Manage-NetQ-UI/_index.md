@@ -758,7 +758,7 @@ To remove channels:
 
 ## Configure Multiple Premises
 
-The NetQ Management dashboard provides the ability to configure a single NetQ UI and  CLI for monitoring data from multiple external premises in addition to your local premises.
+The NetQ Management dashboard provides the ability to configure a single NetQ UI and CLI for monitoring data from multiple external premises in addition to your local premises.
 
 A complete NetQ deployment is required at each premises. The NetQ appliance or VM of one of the deployments acts as the primary (similar to a proxy) for the premises in the other deployments. A list of these external premises is stored with the primary deployment. After the multiple premises are configured, you can view this list of external premises, change the name of premises on the list, and delete premises from the list.
 

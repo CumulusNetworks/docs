@@ -5,7 +5,7 @@ weight: 470
 toc: 4
 ---
 
-While it is not required to upgrade the NetQ CLI on your monitored switches and hosts when you upgrade to NetQ {{<version>}}, doing so gives you access to new features and important bug fixes. Refer to the {{<link title="NVIDIA NetQ 4.0 Release Notes" text="release notes">}} for details.
+While it is not required to upgrade the NetQ CLI on your monitored switches and hosts when you upgrade to NetQ {{<version>}}, doing so gives you access to new features and important bug fixes. Refer to the {{<link title="NVIDIA Cumulus NetQ 4.0 Release Notes" text="release notes">}} for details.
 
 To upgrade the NetQ CLI:
 

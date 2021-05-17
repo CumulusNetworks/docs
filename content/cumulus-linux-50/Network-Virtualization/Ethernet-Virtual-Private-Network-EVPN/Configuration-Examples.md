@@ -1506,7 +1506,7 @@ cumulus@border02:mgmt:~$ sudo cat /etc/cue.d/startup.yaml
 
 ### /etc/network/interfaces
 
-{{< tabs "TabID24 ">}}
+{{< tabs "TabID1509 ">}}
 {{< tab "leaf01 ">}}
 
 ```
@@ -2307,7 +2307,7 @@ iface br_default
 
 ### /etc/frr/frr.conf
 
-{{< tabs "TabID240 ">}}
+{{< tabs "TabID2310 ">}}
 {{< tab "leaf01 ">}}
 
 ```
@@ -2606,7 +2606,7 @@ The following images shows traffic flow between tenants. The spines and other de
 
 ### CUE Commands
 
-{{< tabs "TabID1652 ">}}
+{{< tabs "TabID2609 ">}}
 {{< tab "leaf01 ">}}
 
 ```
@@ -2976,12 +2976,146 @@ cumulus@border02:~$ cl config apply
 
 ### /etc/cue.d/startup.yaml
 
-{{< tabs "TabID392 ">}}
+{{< tabs "TabID2979 ">}}
 {{< tab "leaf01 ">}}
 
 ```
 cumulus@leaf01:mgmt:~$ sudo cat /etc/cue.d/startup.yaml 
-
+- set:
+    interface:
+      lo:
+        ip:
+          address:
+            10.10.10.1/32: {}
+        type: loopback
+      swp1:
+        type: swp
+      swp2:
+        type: swp
+      swp49:
+        type: swp
+      swp50:
+        type: swp
+      swp51:
+        type: swp
+      swp52:
+        type: swp
+      swp53:
+        type: swp
+      swp54:
+        type: swp
+      bond1:
+        bond:
+          member:
+            swp1: {}
+          mlag:
+            id: 1
+          lacp-bypass: on
+        type: bond
+        link:
+          mtu: 9000
+        bridge:
+          domain:
+            br_default:
+              access: 10
+      bond2:
+        bond:
+          member:
+            swp2: {}
+          mlag:
+            id: 2
+          lacp-bypass: on
+        type: bond
+        link:
+          mtu: 9000
+        bridge:
+          domain:
+            br_default:
+              access: 20
+      peerlink:
+        bond:
+          member:
+            swp49: {}
+            swp50: {}
+        type: peerlink
+      peerlink.4094:
+        type: sub
+        base-interface: peerlink
+        vlan: 4094
+      vlan10:
+        type: svi
+        vlan: 10
+      vlan20:
+        type: svi
+        vlan: 20
+    bridge:
+      domain:
+        br_default:
+          vlan:
+            '10':
+              vni:
+                '10': {}
+            '20':
+              vni:
+                '20': {}
+    mlag:
+      mac-address: 44:38:39:BE:EF:AA
+      backup:
+        10.10.10.2: {}
+      peer-ip: linklocal
+      priority: 1000
+      init-delay: 10
+    nve:
+      vxlan:
+        enable: on
+        mlag:
+          shared-address: 10.0.1.12
+        source:
+          address: 10.10.10.1
+        arp-nd-suppress: on
+    evpn:
+      enable: on
+    router:
+      bgp:
+        enable: on
+        autonomous-system: 65101
+        router-id: 10.10.10.1
+    vrf:
+      default:
+        router:
+          bgp:
+            peer-group:
+              underlay:
+                remote-as: external
+                address-family:
+                  l2vpn-evpn:
+                    enable: on
+            enable: on
+            peer:
+              swp51:
+                peer-group: underlay
+                type: unnumbered
+              swp52:
+                peer-group: underlay
+                type: unnumbered
+              swp53:
+                peer-group: underlay
+                type: unnumbered
+              swp54:
+                peer-group: underlay
+                type: unnumbered
+              peerlink.4094:
+                remote-as: internal
+                type: unnumbered
+            path-selection:
+              multipath:
+                aspath-ignore: on
+            address-family:
+              ipv4-unicast:
+                redistribute:
+                  connected:
+                    enable: on
+                enable: on
 ```
 
 {{< /tab >}}
@@ -2989,7 +3123,141 @@ cumulus@leaf01:mgmt:~$ sudo cat /etc/cue.d/startup.yaml
 
 ```
 cumulus@leaf02:mgmt:~$ sudo cat /etc/cue.d/startup.yaml 
-
+- set:
+    interface:
+      lo:
+        ip:
+          address:
+            10.10.10.2/32: {}
+        type: loopback
+      swp1:
+        type: swp
+      swp2:
+        type: swp
+      swp49:
+        type: swp
+      swp50:
+        type: swp
+      swp51:
+        type: swp
+      swp52:
+        type: swp
+      swp53:
+        type: swp
+      swp54:
+        type: swp
+      bond1:
+        bond:
+          member:
+            swp1: {}
+          mlag:
+            id: 1
+          lacp-bypass: on
+        type: bond
+        link:
+          mtu: 9000
+        bridge:
+          domain:
+            br_default:
+              access: 10
+      bond2:
+        bond:
+          member:
+            swp2: {}
+          mlag:
+            id: 2
+          lacp-bypass: on
+        type: bond
+        link:
+          mtu: 9000
+        bridge:
+          domain:
+            br_default:
+              access: 20
+      peerlink:
+        bond:
+          member:
+            swp49: {}
+            swp50: {}
+        type: peerlink
+      peerlink.4094:
+        type: sub
+        base-interface: peerlink
+        vlan: 4094
+      vlan10:
+        type: svi
+        vlan: 10
+      vlan20:
+        type: svi
+        vlan: 20
+    mlag:
+      mac-address: 44:38:39:BE:EF:AA
+      backup:
+        10.10.10.1: {}
+      peer-ip: linklocal
+      priority: 32768
+      init-delay: 10
+    bridge:
+      domain:
+        br_default:
+          vlan:
+            '10':
+              vni:
+                '10': {}
+            '20':
+              vni:
+                '20': {}
+    nve:
+      vxlan:
+        enable: on
+        mlag:
+          shared-address: 10.0.1.12
+        source:
+          address: 10.10.10.2
+        arp-nd-suppress: on
+    evpn:
+      enable: on
+    router:
+      bgp:
+        enable: on
+        autonomous-system: 65102
+        router-id: 10.10.10.2
+    vrf:
+      default:
+        router:
+          bgp:
+            peer-group:
+              underlay:
+                remote-as: external
+                address-family:
+                  l2vpn-evpn:
+                    enable: on
+            enable: on
+            peer:
+              swp51:
+                peer-group: underlay
+                type: unnumbered
+              swp52:
+                peer-group: underlay
+                type: unnumbered
+              swp53:
+                peer-group: underlay
+                type: unnumbered
+              swp54:
+                peer-group: underlay
+                type: unnumbered
+              peerlink.4094:
+                remote-as: internal
+                type: unnumbered
+            path-selection:
+              multipath:
+                aspath-ignore: on
+            address-family:
+              ipv4-unicast:
+                redistribute:
+                  connected:
+                    enable: on
+                enable: on
 ```
 
 {{< /tab >}}
@@ -2997,7 +3265,141 @@ cumulus@leaf02:mgmt:~$ sudo cat /etc/cue.d/startup.yaml
 
 ```
 cumulus@leaf03:mgmt:~$ sudo cat /etc/cue.d/startup.yaml 
-
+- set:
+    interface:
+      lo:
+        ip:
+          address:
+            10.10.10.3/32: {}
+        type: loopback
+      swp1:
+        type: swp
+      swp2:
+        type: swp
+      swp49:
+        type: swp
+      swp50:
+        type: swp
+      swp51:
+        type: swp
+      swp52:
+        type: swp
+      swp53:
+        type: swp
+      swp54:
+        type: swp
+      bond1:
+        bond:
+          member:
+            swp1: {}
+          mlag:
+            id: 1
+          lacp-bypass: on
+        type: bond
+        link:
+          mtu: 9000
+        bridge:
+          domain:
+            br_default:
+              access: 10
+      bond2:
+        bond:
+          member:
+            swp2: {}
+          mlag:
+            id: 2
+          lacp-bypass: on
+        type: bond
+        link:
+          mtu: 9000
+        bridge:
+          domain:
+            br_default:
+              access: 20
+      peerlink:
+        bond:
+          member:
+            swp49: {}
+            swp50: {}
+        type: peerlink
+      peerlink.4094:
+        type: sub
+        base-interface: peerlink
+        vlan: 4094
+      vlan10:
+        type: svi
+        vlan: 10
+      vlan20:
+        type: svi
+        vlan: 20
+    bridge:
+      domain:
+        br_default:
+          vlan:
+            '10':
+              vni:
+                '10': {}
+            '20':
+              vni:
+                '20': {}
+    mlag:
+      mac-address: 44:38:39:BE:EF:BB
+      backup:
+        10.10.10.3: {}
+      peer-ip: linklocal
+      priority: 1000
+      init-delay: 10
+    nve:
+      vxlan:
+        enable: on
+        mlag:
+          shared-address: 10.0.1.34
+        source:
+          address: 10.10.10.3
+        arp-nd-suppress: on
+    evpn:
+      enable: on
+    router:
+      bgp:
+        enable: on
+        autonomous-system: 65103
+        router-id: 10.10.10.3
+    vrf:
+      default:
+        router:
+          bgp:
+            peer-group:
+              underlay:
+                remote-as: external
+                address-family:
+                  l2vpn-evpn:
+                    enable: on
+            enable: on
+            peer:
+              swp51:
+                peer-group: underlay
+                type: unnumbered
+              swp52:
+                peer-group: underlay
+                type: unnumbered
+              swp53:
+                peer-group: underlay
+                type: unnumbered
+              swp54:
+                peer-group: underlay
+                type: unnumbered
+              peerlink.4094:
+                remote-as: internal
+                type: unnumbered
+            path-selection:
+              multipath:
+                aspath-ignore: on
+            address-family:
+              ipv4-unicast:
+                redistribute:
+                  connected:
+                    enable: on
+                enable: on
 ```
 
 {{< /tab >}}
@@ -3005,7 +3407,141 @@ cumulus@leaf03:mgmt:~$ sudo cat /etc/cue.d/startup.yaml
 
 ```
 cumulus@leaf04:mgmt:~$ sudo cat /etc/cue.d/startup.yaml 
-
+- set:
+    interface:
+      lo:
+        ip:
+          address:
+            10.10.10.4/32: {}
+        type: loopback
+      swp1:
+        type: swp
+      swp2:
+        type: swp
+      swp49:
+        type: swp
+      swp50:
+        type: swp
+      swp51:
+        type: swp
+      swp52:
+        type: swp
+      swp53:
+        type: swp
+      swp54:
+        type: swp
+      bond1:
+        bond:
+          member:
+            swp1: {}
+          mlag:
+            id: 1
+          lacp-bypass: on
+        type: bond
+        link:
+          mtu: 9000
+        bridge:
+          domain:
+            br_default:
+              access: 10
+      bond2:
+        bond:
+          member:
+            swp2: {}
+          mlag:
+            id: 2
+          lacp-bypass: on
+        type: bond
+        link:
+          mtu: 9000
+        bridge:
+          domain:
+            br_default:
+              access: 20
+      peerlink:
+        bond:
+          member:
+            swp49: {}
+            swp50: {}
+        type: peerlink
+      peerlink.4094:
+        type: sub
+        base-interface: peerlink
+        vlan: 4094
+      vlan10:
+        type: svi
+        vlan: 10
+      vlan20:
+        type: svi
+        vlan: 20
+    bridge:
+      domain:
+        br_default:
+          vlan:
+            '10':
+              vni:
+                '10': {}
+            '20':
+              vni:
+                '20': {}
+    mlag:
+      mac-address: 44:38:39:BE:EF:BB
+      backup:
+        10.10.10.3: {}
+      peer-ip: linklocal
+      priority: 32768
+      init-delay: 10
+    nve:
+      vxlan:
+        enable: on
+        mlag:
+          shared-address: 10.0.1.34
+        source:
+          address: 10.10.10.4
+        arp-nd-suppress: on
+    evpn:
+      enable: on
+    router:
+      bgp:
+        enable: on
+        autonomous-system: 65104
+        router-id: 10.10.10.4
+    vrf:
+      default:
+        router:
+          bgp:
+            peer-group:
+              underlay:
+                remote-as: external
+                address-family:
+                  l2vpn-evpn:
+                    enable: on
+            enable: on
+            peer:
+              swp51:
+                peer-group: underlay
+                type: unnumbered
+              swp52:
+                peer-group: underlay
+                type: unnumbered
+              swp53:
+                peer-group: underlay
+                type: unnumbered
+              swp54:
+                peer-group: underlay
+                type: unnumbered
+              peerlink.4094:
+                remote-as: internal
+                type: unnumbered
+            path-selection:
+              multipath:
+                aspath-ignore: on
+            address-family:
+              ipv4-unicast:
+                redistribute:
+                  connected:
+                    enable: on
+                enable: on
 ```
 
 {{< /tab >}}
@@ -3013,7 +3549,71 @@ cumulus@leaf04:mgmt:~$ sudo cat /etc/cue.d/startup.yaml
 
 ```
 cumulus@spine01:mgmt:~$ sudo cat /etc/cue.d/startup.yaml 
-
+- set:
+    interface:
+      lo:
+        ip:
+          address:
+            10.10.10.101/32: {}
+        type: loopback
+      swp1:
+        type: swp
+      swp2:
+        type: swp
+      swp3:
+        type: swp
+      swp4:
+        type: swp
+      swp5:
+        type: swp
+      swp6:
+        type: swp
+    router:
+      bgp:
+        autonomous-system: 65199
+        enable: on
+        router-id: 10.10.10.101
+    vrf:
+      default:
+        router:
+          bgp:
+            peer-group:
+              underlay:
+                remote-as: external
+                address-family:
+                  l2vpn-evpn:
+                    enable: on
+            enable: on
+            peer:
+              swp1:
+                peer-group: underlay
+                type: unnumbered
+              swp2:
+                peer-group: underlay
+                type: unnumbered
+              swp3:
+                peer-group: underlay
+                type: unnumbered
+              swp4:
+                peer-group: underlay
+                type: unnumbered
+              swp5:
+                peer-group: underlay
+                type: unnumbered
+              swp6:
+                peer-group: underlay
+                type: unnumbered
+            path-selection:
+              multipath:
+                aspath-ignore: on
+            address-family:
+              l2vpn-evpn:
+                enable: on
+              ipv4-unicast:
+                redistribute:
+                  connected:
+                    enable: on
+                enable: on
 ```
 
 {{< /tab >}}
@@ -3021,7 +3621,71 @@ cumulus@spine01:mgmt:~$ sudo cat /etc/cue.d/startup.yaml
 
 ```
 cumulus@spine02:mgmt:~$ sudo cat /etc/cue.d/startup.yaml 
-
+- set:
+    interface:
+      lo:
+        ip:
+          address:
+            10.10.10.102/32: {}
+        type: loopback
+      swp1:
+        type: swp
+      swp2:
+        type: swp
+      swp3:
+        type: swp
+      swp4:
+        type: swp
+      swp5:
+        type: swp
+      swp6:
+        type: swp
+    router:
+      bgp:
+        autonomous-system: 65199
+        enable: on
+        router-id: 10.10.10.102
+    vrf:
+      default:
+        router:
+          bgp:
+            peer-group:
+              underlay:
+                remote-as: external
+                address-family:
+                  l2vpn-evpn:
+                    enable: on
+            enable: on
+            peer:
+              swp1:
+                peer-group: underlay
+                type: unnumbered
+              swp2:
+                peer-group: underlay
+                type: unnumbered
+              swp3:
+                peer-group: underlay
+                type: unnumbered
+              swp4:
+                peer-group: underlay
+                type: unnumbered
+              swp5:
+                peer-group: underlay
+                type: unnumbered
+              swp6:
+                peer-group: underlay
+                type: unnumbered
+            path-selection:
+              multipath:
+                aspath-ignore: on
+            address-family:
+              l2vpn-evpn:
+                enable: on
+              ipv4-unicast:
+                redistribute:
+                  connected:
+                    enable: on
+                enable: on
 ```
 
 {{< /tab >}}
@@ -3029,7 +3693,71 @@ cumulus@spine02:mgmt:~$ sudo cat /etc/cue.d/startup.yaml
 
 ```
 cumulus@spine03:mgmt:~$ sudo cat /etc/cue.d/startup.yaml 
-
+- set:
+    interface:
+      lo:
+        ip:
+          address:
+            10.10.10.103/32: {}
+        type: loopback
+      swp1:
+        type: swp
+      swp2:
+        type: swp
+      swp3:
+        type: swp
+      swp4:
+        type: swp
+      swp5:
+        type: swp
+      swp6:
+        type: swp
+    router:
+      bgp:
+        autonomous-system: 65199
+        enable: on
+        router-id: 10.10.10.103
+    vrf:
+      default:
+        router:
+          bgp:
+            peer-group:
+              underlay:
+                remote-as: external
+                address-family:
+                  l2vpn-evpn:
+                    enable: on
+            enable: on
+            peer:
+              swp1:
+                peer-group: underlay
+                type: unnumbered
+              swp2:
+                peer-group: underlay
+                type: unnumbered
+              swp3:
+                peer-group: underlay
+                type: unnumbered
+              swp4:
+                peer-group: underlay
+                type: unnumbered
+              swp5:
+                peer-group: underlay
+                type: unnumbered
+              swp6:
+                peer-group: underlay
+                type: unnumbered
+            path-selection:
+              multipath:
+                aspath-ignore: on
+            address-family:
+              l2vpn-evpn:
+                enable: on
+              ipv4-unicast:
+                redistribute:
+                  connected:
+                    enable: on
+                enable: on
 ```
 
 {{< /tab >}}
@@ -3037,7 +3765,71 @@ cumulus@spine03:mgmt:~$ sudo cat /etc/cue.d/startup.yaml
 
 ```
 cumulus@spine04:mgmt:~$ sudo cat /etc/cue.d/startup.yaml 
-
+- set:
+    interface:
+      lo:
+        ip:
+          address:
+            10.10.10.104/32: {}
+        type: loopback
+      swp1:
+        type: swp
+      swp2:
+        type: swp
+      swp3:
+        type: swp
+      swp4:
+        type: swp
+      swp5:
+        type: swp
+      swp6:
+        type: swp
+    router:
+      bgp:
+        autonomous-system: 65199
+        enable: on
+        router-id: 10.10.10.104
+    vrf:
+      default:
+        router:
+          bgp:
+            peer-group:
+              underlay:
+                remote-as: external
+                address-family:
+                  l2vpn-evpn:
+                    enable: on
+            enable: on
+            peer:
+              swp1:
+                peer-group: underlay
+                type: unnumbered
+              swp2:
+                peer-group: underlay
+                type: unnumbered
+              swp3:
+                peer-group: underlay
+                type: unnumbered
+              swp4:
+                peer-group: underlay
+                type: unnumbered
+              swp5:
+                peer-group: underlay
+                type: unnumbered
+              swp6:
+                peer-group: underlay
+                type: unnumbered
+            path-selection:
+              multipath:
+                aspath-ignore: on
+            address-family:
+              l2vpn-evpn:
+                enable: on
+              ipv4-unicast:
+                redistribute:
+                  connected:
+                    enable: on
+                enable: on
 ```
 
 {{< /tab >}}
@@ -3045,7 +3837,151 @@ cumulus@spine04:mgmt:~$ sudo cat /etc/cue.d/startup.yaml
 
 ```
 cumulus@border01:mgmt:~$ sudo cat /etc/cue.d/startup.yaml 
-
+- set:
+    interface:
+      lo:
+        ip:
+          address:
+            10.10.10.63/32: {}
+        type: loopback
+      swp1:
+        type: swp
+      swp2:
+        type: swp
+      swp3:
+        type: swp
+      swp49:
+        type: swp
+      swp50:
+        type: swp
+      swp51:
+        type: swp
+      swp52:
+        type: swp
+      swp53:
+        type: swp
+      swp54:
+        type: swp
+      bond3:
+        bond:
+          member:
+            swp3: {}
+          mlag:
+            id: 1
+          lacp-bypass: on
+        type: bond
+        link:
+          mtu: 9000
+        bridge:
+          domain:
+            br_default:
+              vlan:
+                '10': {}
+                '20': {}
+      peerlink:
+        bond:
+          member:
+            swp49: {}
+            swp50: {}
+        type: peerlink
+      peerlink.4094:
+        type: sub
+        base-interface: peerlink
+        vlan: 4094
+      vlan10:
+        ip:
+          address:
+            10.1.10.2/24: {}
+          vrr:
+            address:
+              10.1.10.1/24: {}
+            mac-address: 00:00:00:00:00:10
+            state:
+              up: {}
+        type: svi
+        vlan: 10
+      vlan20:
+        ip:
+          address:
+            10.1.10.2/24: {}
+          vrr:
+            address:
+              10.1.20.2/24: {}
+            mac-address: 00:00:00:00:00:20
+            state:
+              up: {}
+        type: svi
+        vlan: 20
+    mlag:
+      mac-address: 44:38:39:BE:EF:FF
+      backup:
+        10.10.10.64: {}
+      peer-ip: linklocal
+      priority: 1000
+      init-delay: 10
+    bridge:
+      domain:
+        br_default:
+          vlan:
+            '10':
+              vni:
+                '10': {}
+            '20':
+              vni:
+                '20': {}
+    nve:
+      vxlan:
+        enable: on
+        mlag:
+          shared-address: 10.0.1.255
+        source:
+          address: 10.10.10.63
+        arp-nd-suppress: on
+    evpn:
+      enable: on
+      route-advertise:
+        default-gateway: on
+    router:
+      bgp:
+        enable: on
+        autonomous-system: 65253
+        router-id: 10.10.10.63
+    vrf:
+      default:
+        router:
+          bgp:
+            peer-group:
+              underlay:
+                remote-as: external
+                address-family:
+                  l2vpn-evpn:
+                    enable: on
+            enable: on
+            peer:
+              swp51:
+                peer-group: underlay
+                type: unnumbered
+              swp52:
+                peer-group: underlay
+                type: unnumbered
+              swp53:
+                peer-group: underlay
+                type: unnumbered
+              swp54:
+                peer-group: underlay
+                type: unnumbered
+              peerlink.4094:
+                remote-as: internal
+                type: unnumbered
+            path-selection:
+              multipath:
+                aspath-ignore: on
+            address-family:
+              ipv4-unicast:
+                redistribute:
+                  connected:
+                    enable: on
+                enable: on
 ```
 
 {{< /tab >}}
@@ -3053,7 +3989,151 @@ cumulus@border01:mgmt:~$ sudo cat /etc/cue.d/startup.yaml
 
 ```
 cumulus@border02:mgmt:~$ sudo cat /etc/cue.d/startup.yaml
-
+- set:
+    interface:
+      lo:
+        ip:
+          address:
+            10.10.10.64/32: {}
+        type: loopback
+      swp1:
+        type: swp
+      swp2:
+        type: swp
+      swp3:
+        type: swp
+      swp49:
+        type: swp
+      swp50:
+        type: swp
+      swp51:
+        type: swp
+      swp52:
+        type: swp
+      swp53:
+        type: swp
+      swp54:
+        type: swp
+      bond3:
+        bond:
+          member:
+            swp3: {}
+          mlag:
+            id: 1
+          lacp-bypass: on
+        type: bond
+        link:
+          mtu: 9000
+        bridge:
+          domain:
+            br_default:
+              vlan:
+                '10': {}
+                '20': {}
+      peerlink:
+        bond:
+          member:
+            swp49: {}
+            swp50: {}
+        type: peerlink
+      peerlink.4094:
+        type: sub
+        base-interface: peerlink
+        vlan: 4094
+      vlan10:
+        ip:
+          address:
+            10.1.10.1/24: {}
+          vrr:
+            address:
+              10.1.10.1/24: {}
+            mac-address: 00:00:00:00:00:10
+            state:
+              up: {}
+        type: svi
+        vlan: 10
+      vlan20:
+        ip:
+          address:
+            10.1.20.1/24: {}
+          vrr:
+            address:
+              10.1.20.1/24: {}
+            mac-address: 00:00:00:00:00:20
+            state:
+              up: {}
+        type: svi
+        vlan: 20
+    mlag:
+      mac-address: 44:38:39:BE:EF:FF
+      backup:
+        10.10.10.63: {}
+      peer-ip: linklocal
+      priority: 32768
+      init-delay: 10
+    bridge:
+      domain:
+        br_default:
+          vlan:
+            '10':
+              vni:
+                '10': {}
+            '20':
+              vni:
+                '20': {}
+    nve:
+      vxlan:
+        enable: on
+        mlag:
+          shared-address: 10.0.1.255
+        source:
+          address: 10.10.10.64
+        arp-nd-suppress: on
+    evpn:
+      enable: on
+      route-advertise:
+        default-gateway: on
+    router:
+      bgp:
+        enable: on
+        autonomous-system: 65254
+        router-id: 10.10.10.64
+    vrf:
+      default:
+        router:
+          bgp:
+            peer-group:
+              underlay:
+                remote-as: external
+                address-family:
+                  l2vpn-evpn:
+                    enable: on
+            enable: on
+            peer:
+              swp51:
+                peer-group: underlay
+                type: unnumbered
+              swp52:
+                peer-group: underlay
+                type: unnumbered
+              swp53:
+                peer-group: underlay
+                type: unnumbered
+              swp54:
+                peer-group: underlay
+                type: unnumbered
+              peerlink.4094:
+                remote-as: internal
+                type: unnumbered
+            path-selection:
+              multipath:
+                aspath-ignore: on
+            address-family:
+              ipv4-unicast:
+                redistribute:
+                  connected:
+                    enable: on
+                enable: on
 ```
 
 {{< /tab >}}
@@ -3061,7 +4141,7 @@ cumulus@border02:mgmt:~$ sudo cat /etc/cue.d/startup.yaml
 
 ### /etc/network/interfaces
 
-{{< tabs "TabID894 ">}}
+{{< tabs "TabID3064 ">}}
 {{< tab "leaf01 ">}}
 
 ```
@@ -4181,7 +5261,7 @@ The following images shows traffic flow between tenants. The spines and other de
 
 ### CUE Commands
 
-{{< tabs "TabID2588 ">}}
+{{< tabs "TabID4184 ">}}
 {{< tab "leaf01 ">}}
 
 ```
@@ -4782,7 +5862,7 @@ cumulus@border02:mgmt:~$ sudo cat /etc/cue.d/startup.yaml
 
 ### /etc/network/interfaces
 
-{{< tabs "TabID2970 ">}}
+{{< tabs "TabID4785 ">}}
 {{< tab "leaf01 ">}}
 
 ```

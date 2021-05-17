@@ -1946,7 +1946,7 @@ To work around this issue, use the {{ethtool -m &lt;interface&gt;}} command.</td
 <tr>
 <td>2552744</td>
 <td>Several vulnerabilities have been discovered in the Linux kernel that may lead to a privilege escalation, denial of service or information leaks.
-CVE-2020-14351 CVE-2020-29660 CVE-2020-29661 CVE-2020-25704 CVE-2020-28974 CVE-2020-25705 CVE-2020-28915 CVE-2020-25211 CVE-2019-19338 CVE-2020-0305 CVE-2019-18885 CVE-2019-19072 CVE-2020-12652 CVE-2020-24394 CVE-2020-25641 CVE-2019-3874 CVE-2019-5489 CVE-2020-27825 CVE-2020-29369 CVE-2020-29372 CVE-2020-29534
+CVE-2020-14351 CVE-2020-29660 CVE-2020-29661 CVE-2020-25704 CVE-2020-28974 CVE-2020-25705 CVE-2020-28915 CVE-2020-25211 CVE-2019-19338 CVE-2020-0305 CVE-2019-18885 CVE-2019-19072 CVE-2020-12652 CVE-2020-24394 CVE-2020-25641 CVE-2019-3874 CVE-2019-5489. (CVE-2020-27825 CVE-2020-29369 CVE-2020-29372 CVE-2020-29534 are not applicable to Cumulus Linux)
 For the detailed security status of linux,  refer to its security tracker page at: https://security-tracker.debian.org/tracker/linux</td>
 <td>4.2.0-4.2.1</td>
 </tr>

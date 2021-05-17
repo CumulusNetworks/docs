@@ -31,7 +31,7 @@ Try {{<exlink url="https://www.nvidia.com/en-us/networking/network-simulation/" 
 - For Cumulus VX 4.1.1 and earlier, log into each switch with the `cumulus` account and default password `CumulusLinux!`. You are **not** prompted to change the default password.
 - For Cumulus VX 4.2 and later, log into each switch with the `cumulus` account and default password `cumulus`. When you log in for the first time, you are prompted to change the default password.
 
-For more information on the required password change, see the [Cumulus Linux documentation]({{<ref "/cumulus-linux-43/Quick-Start-Guide/#login-credentials" >}}.
+For more information on the required password change, see the [Cumulus Linux documentation]({{<ref "/cumulus-linux-43/Quick-Start-Guide/#login-credentials" >}}).
 
 ### Why do I see the failure: Unable to find storage device for file system with label 'ONIE-BOOT'?
 

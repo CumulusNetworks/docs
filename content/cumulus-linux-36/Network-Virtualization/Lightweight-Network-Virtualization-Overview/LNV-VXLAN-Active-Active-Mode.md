@@ -1020,7 +1020,7 @@ topologies only, and is not needed on real hardware.
       post-up ip link set $IFACE promisc on
 
 For more information on using Cumulus VX and Vagrant, refer to the
-[Cumulus VX documentation]({{<ref "/cumulus-vx" >}}.
+[Cumulus VX documentation]({{<ref "/cumulus-vx" >}}).
 
 ## Troubleshooting with LNV Active-active
 

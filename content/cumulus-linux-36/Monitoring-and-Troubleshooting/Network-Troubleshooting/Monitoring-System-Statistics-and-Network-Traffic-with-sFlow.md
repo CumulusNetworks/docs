@@ -118,7 +118,7 @@ for your collector for more information.
 ## Configuring sFlow Visualization Tools
 
 For information on configuring various sFlow visualization tools, read
-this [knowledge base article]({{<ref "/knowledge-base/Configuration-and-Usage/Monitoring/Configure-and-Use-sFlow-Visualization-Tools" >}}.
+this [knowledge base article]({{<ref "/knowledge-base/Configuration-and-Usage/Monitoring/Configure-and-Use-sFlow-Visualization-Tools" >}}).
 
 ## Related Information
 

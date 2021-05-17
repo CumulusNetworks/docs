@@ -604,7 +604,7 @@ specifications and in the table below.
 
 For a comparison of STP parameter configuration between `mstpctl` and
 other vendors, 
-[read this knowledge base article]({{<ref "/knowledge-base/Demos-and-Training/Interoperability/Cumulus-Linux-vs-Cisco-IOS-Spanning-Tree-Protocol" >}}.
+[read this knowledge base article]({{<ref "/knowledge-base/Demos-and-Training/Interoperability/Cumulus-Linux-vs-Cisco-IOS-Spanning-Tree-Protocol" >}}).
 
 The table below describes the configuration parameters available.
 

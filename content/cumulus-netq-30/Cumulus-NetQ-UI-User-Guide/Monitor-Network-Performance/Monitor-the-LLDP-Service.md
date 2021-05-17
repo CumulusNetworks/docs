@@ -8,7 +8,7 @@ The Cumulus NetQ UI enables operators to view the health of the LLDP service on 
 
 ## Monitor the LLDP Service (All Sessions)
 
-With NetQ, you can monitor the number of nodes running the LLDP service, view nodes with the most LLDP neighbor nodes, those nodes with the least neighbor nodes, and view alarms triggered by the LLDP service. For an overview and how to configure LLDP in your data center network, refer to [Link Layer Discovery Protocol]({{<ref "/cumulus-linux-43/Layer-2/Link-Layer-Discovery-Protocol" >}}.
+With NetQ, you can monitor the number of nodes running the LLDP service, view nodes with the most LLDP neighbor nodes, those nodes with the least neighbor nodes, and view alarms triggered by the LLDP service. For an overview and how to configure LLDP in your data center network, refer to [Link Layer Discovery Protocol]({{<ref "/cumulus-linux-43/Layer-2/Link-Layer-Discovery-Protocol" >}}).
 
 ### LLDP Service Card Workflow Summary
 
@@ -492,7 +492,7 @@ Use the icons above the table to select/deselect, filter, and export items in th
 
 ## Monitor a Single LLDP Session
 
-With NetQ, you can monitor the number of nodes running the LLDP service, view neighbor state changes, and compare with events occurring at the same time, as well as monitor the running LLDP configuration and changes to the configuration file. For an overview and how to configure LLDP in your data center network, refer to [Link Layer Discovery Protocol]({{<ref "/cumulus-linux-43/Layer-2/Link-Layer-Discovery-Protocol" >}}.
+With NetQ, you can monitor the number of nodes running the LLDP service, view neighbor state changes, and compare with events occurring at the same time, as well as monitor the running LLDP configuration and changes to the configuration file. For an overview and how to configure LLDP in your data center network, refer to [Link Layer Discovery Protocol]({{<ref "/cumulus-linux-43/Layer-2/Link-Layer-Discovery-Protocol" >}}).
 
 {{%notice note%}}
 To access the single session cards, you must open the full screen LLDP Service card, click the All Sessions tab, select the desired session, then click <img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg"  height="18" width="18"/> (Open Cards).

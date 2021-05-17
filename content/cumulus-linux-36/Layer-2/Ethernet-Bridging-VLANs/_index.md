@@ -36,7 +36,7 @@ which allows for configurations that are similar to incumbent network devices.
 {{%notice info%}}
 
 For a comparison of traditional and VLAN-aware modes, read 
-[this knowledge base article]({{<ref "/knowledge-base/Configuration-and-Usage/Network-Interfaces/Compare-Traditional-Bridge-Mode-to-VLAN-aware-Bridge-Mode" >}}.
+[this knowledge base article]({{<ref "/knowledge-base/Configuration-and-Usage/Network-Interfaces/Compare-Traditional-Bridge-Mode-to-VLAN-aware-Bridge-Mode" >}}).
 
 {{%/notice%}}
 

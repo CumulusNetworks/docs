@@ -88,7 +88,7 @@ Unlike Cisco IOS, packets will be dropped unless you join the tagged subinterfac
 
 This allows only vlan5 and nothing else. Cumulus Linux does the opposite, where it drops everything unless it allows it in.
 
-You can find more information on configuring VLAN tagging in the [Cumulus Linux user guide]({{<ref "/cumulus-linux-43/Layer-2/Ethernet-Bridging-VLANs" >}}.
+You can find more information on configuring VLAN tagging in the [Cumulus Linux user guide]({{<ref "/cumulus-linux-43/Layer-2/Ethernet-Bridging-VLANs" >}}).
 
 ### Fast vs Slow LACP Rates
 

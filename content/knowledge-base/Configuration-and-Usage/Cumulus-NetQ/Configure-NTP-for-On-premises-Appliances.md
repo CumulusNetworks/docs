@@ -37,4 +37,4 @@ To configure NTP in `chrony`:
 
        cumulus@appliance:~$ sudo systemctl restart chronyd
 
-For more information about NTP, read the [Cumulus Linux user guide]({{<ref "/cumulus-linux-43/System-Configuration/Setting-Date-and-Time#use-ntp" >}}.
+For more information about NTP, read the [Cumulus Linux user guide]({{<ref "/cumulus-linux-43/System-Configuration/Setting-Date-and-Time#use-ntp" >}}).

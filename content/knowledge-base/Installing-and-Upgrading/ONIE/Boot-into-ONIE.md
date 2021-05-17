@@ -17,7 +17,7 @@ You use ONIE (the Open Network Install Environment) to [install Cumulus Linux]({
 
 ## Resolution
 
-1. Log in to your switch via the [console]({{<ref "/cumulus-linux-43/Quick-Start-Guide/#serial-console-management" >}}.
+1. Log in to your switch via the [console]({{<ref "/cumulus-linux-43/Quick-Start-Guide/#serial-console-management" >}}).
 
 1. Reboot the switch:
 

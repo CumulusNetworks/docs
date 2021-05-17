@@ -258,7 +258,7 @@ You now have a deployed and operational golden standard Cumulus Linux architectu
 
 ## Install and Configure the NetQ Cloud Server
 
-The Cumulus Networks reference topology includes an Ubuntu 18.04 server with additional CPU, memory, and disk resources to support a NetQ Cloud Server installation. Vagrant provisions this box with all the required software package dependencies to be able to go immediately to the bootstrap and install steps of the NetQ server setup documented in the [NetQ Deployment Guide]({{<ref "/cumulus-netq-30/Cumulus-NetQ-Deployment-Guide/Install-NetQ/Install-NetQ-System-Platform/Prepare-Existing-NetQ-Appliance" >}}.
+The Cumulus Networks reference topology includes an Ubuntu 18.04 server with additional CPU, memory, and disk resources to support a NetQ Cloud Server installation. Vagrant provisions this box with all the required software package dependencies to be able to go immediately to the bootstrap and install steps of the NetQ server setup documented in the [NetQ Deployment Guide]({{<ref "/cumulus-netq-30/Cumulus-NetQ-Deployment-Guide/Install-NetQ/Install-NetQ-System-Platform/Prepare-Existing-NetQ-Appliance" >}}).
 
 To use the included NetQ Cloud server, the following is required:
 
@@ -348,7 +348,7 @@ This process installs the NetQ Cloud server application to be able to receive an
 - You must stage the bootstrap and install tarball files in either the local filesystem on netq-ts or on a remote HTTP server accessible from netq-ts. See the {{<link text="previous section" title="#Stage the NetQ Installation Tarballs" >}} for instructions.
 - The NetQ configuration key associated with the NetQ site/premises that this simulation will occupy is required. You receive the key from Cumulus Networks by email as part of NetQ Cloud onboarding.
 
-For more complete information about installing NetQ, refer to the [NetQ documentation]({{<ref "/cumulus-netq-30/Cumulus-NetQ-Deployment-Guide/Install-NetQ/Install-NetQ-System-Platform/Prepare-Existing-NetQ-Appliance" >}}. To complete the NetQ Cloud Server installation in the Cumulus demo topology, follow these steps:
+For more complete information about installing NetQ, refer to the [NetQ documentation]({{<ref "/cumulus-netq-30/Cumulus-NetQ-Deployment-Guide/Install-NetQ/Install-NetQ-System-Platform/Prepare-Existing-NetQ-Appliance" >}}). To complete the NetQ Cloud Server installation in the Cumulus demo topology, follow these steps:
 
 1. Perform the NetQ server bootstrap with the bootstrap tarball.
 

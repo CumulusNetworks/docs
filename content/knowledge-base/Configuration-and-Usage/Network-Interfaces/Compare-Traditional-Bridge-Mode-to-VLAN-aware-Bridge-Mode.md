@@ -6,7 +6,7 @@ toc: 4
 ---
 
 The Cumulus Linux bridge driver operates in two modes:
-[VLAN-aware]({{<ref "/cumulus-linux-43/Layer-2/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode" >}} and a [traditional Linux mode]({{<ref "/cumulus-linux-43/Layer-2/Ethernet-Bridging-VLANs/Traditional-Bridge-Mode" >}}. There are many minor syntax differences between the two modes, which are outlined below. However, the following behaviors apply no matter which mode you use for the driver:
+[VLAN-aware]({{<ref "/cumulus-linux-43/Layer-2/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode" >}} and a [traditional Linux mode]({{<ref "/cumulus-linux-43/Layer-2/Ethernet-Bridging-VLANs/Traditional-Bridge-Mode" >}}). There are many minor syntax differences between the two modes, which are outlined below. However, the following behaviors apply no matter which mode you use for the driver:
 
 - Network interfaces are configured under `/etc/network/interfaces`.
 - Both modes support [Spanning Tree Protocol]({{<ref "/cumulus-linux-43/Layer-2/Spanning-Tree-and-Rapid-Spanning-Tree" >}} (see the example below).

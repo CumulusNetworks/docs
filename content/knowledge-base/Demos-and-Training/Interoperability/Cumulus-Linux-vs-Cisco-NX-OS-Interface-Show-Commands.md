@@ -18,7 +18,7 @@ Cumulus Linux includes a number of interface show commands to troubleshoot your
 
 ## Show IP Address Information
 
-IP addresses information for interfaces can be seen a variety of ways in Cumulus Linux. The best way is to use [NCLU]({{<ref "/cumulus-linux-43/System-Configuration/Network-Command-Line-Utility-NCLU" >}}.
+IP addresses information for interfaces can be seen a variety of ways in Cumulus Linux. The best way is to use [NCLU]({{<ref "/cumulus-linux-43/System-Configuration/Network-Command-Line-Utility-NCLU" >}}).
 
 | Network OS                    | Output                        |
 | ----------------------------- | ----------------------------- |

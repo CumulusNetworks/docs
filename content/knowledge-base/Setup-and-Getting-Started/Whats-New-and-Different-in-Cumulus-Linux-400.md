@@ -9,7 +9,7 @@ Cumulus Linux 4.0.0 is the biggest update to the operating system in years\! We'
 
 As always, please read the [release notes]({{<ref "/cumulus-linux-40/Whats-New/rn" >}} to learn about all the open and fixed issues in this release.
 
-**For more recent releases, you can always get the latest Cumulus Linux information [here]({{<ref "/cumulus-linux-40/Whats-New" >}}.**
+**For more recent releases, you can always get the latest Cumulus Linux information [here]({{<ref "/cumulus-linux-40/Whats-New" >}}).**
 
 ## What's New and Different in Cumulus Linux 4.0.0?
 

@@ -91,7 +91,7 @@ cumulus@switch:~$ net commit
 
 ### Customize Control Plane Policies
 
-Cumulus Linux comes out of the box with a default control plane security policy that is located in the `/etc/cumulus/acl/policy.d/` directory. You can see a full list of the default rules [here]({{<ref "/cumulus-linux-43/System-Configuration/Netfilter-ACLs/Default-Cumulus-Linux-ACL-Configuration" >}}.
+Cumulus Linux comes out of the box with a default control plane security policy that is located in the `/etc/cumulus/acl/policy.d/` directory. You can see a full list of the default rules [here]({{<ref "/cumulus-linux-43/System-Configuration/Netfilter-ACLs/Default-Cumulus-Linux-ACL-Configuration" >}}).
 
 Best practices dictate that:
 
@@ -151,7 +151,7 @@ cumulus@switch:~$ net add vrf mgmt
 cumulus@switch:~$ net commit
 ```
 
-For more information about working with a management VRF, such as [running services]({{<ref "/cumulus-linux-43/Layer-3/VRFs/Management-VRF" >}} in a specific VRF, refer to the [Management VRF documentation" >}}.
+For more information about working with a management VRF, such as [running services]({{<ref "/cumulus-linux-43/Layer-3/VRFs/Management-VRF" >}} in a specific VRF, refer to the [Management VRF documentation" >}}).
 
 Be sure to enable all the network services inside each VRF, including:
 

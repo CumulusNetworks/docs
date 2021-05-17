@@ -105,8 +105,7 @@ configuration with the following commands:
     
     {{%notice note%}}
     
-    This command does not remove [management
-    VRF](/cumulus-linux-36/Layer-3/Management-VRF)
+    This command does not remove [management VRF](/cumulus-linux-36/Layer-3/Management-VRF)
     configurations, as NCLU does not interact with eth0 interfaces and
     management VRF.
     

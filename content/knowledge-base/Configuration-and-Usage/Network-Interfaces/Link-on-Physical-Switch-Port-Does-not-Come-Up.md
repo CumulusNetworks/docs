@@ -97,7 +97,7 @@ Note that if the interface name starts with swp and ends with \_sX, where X is a
     port_init_autoneg_xe34=0
     serdes_if_type_xe34=9
 
-Please [Switch Port Attributes]({{<ref "/cumulus-linux-43/Layer-1-and-Switch-Ports/Interface-Configuration-and-Management/Switch-Port-Attributes" >}}
+Please [Switch Port Attributes]({{<ref "/cumulus-linux-43/Layer-1-and-Switch-Ports/Interface-Configuration-and-Management/Switch-Port-Attributes" >}})
  for more details on how to configure the physical switch port attributes.
 
 ### Validate Hardware Settings with ethtool

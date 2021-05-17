@@ -29,10 +29,10 @@ New features and enhancements include:
   - In this kernel, {{<link url="Spectre-and-Meltdown-Vulnerability-Fixes" text="Meltdown/Spectre fixes">}} are all fully up to date
 - Capability to `apt-get upgrade` to a specific 4.y.z release, not just the latest version (for use in future Cumulus 4.0.z releases)
 - [EVPN BUM traffic handling]({{<ref "/cumulus-linux-40/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN/EVPN-PIM" >}}) using PIM-SM on  Broadcom switches
-- [PIM active-active with MLAG]({{<ref "/cumulus-linux-40/Layer-3/Protocol-Independent-Multicast-PIM#pim-active-active-with-mlag" >}}
+- [PIM active-active with MLAG]({{<ref "/cumulus-linux-40/Layer-3/Protocol-Independent-Multicast-PIM#pim-active-active-with-mlag" >}})
 - [Port security]({{<ref "/cumulus-linux-40/Layer-1-and-Switch-Ports/Port-Security" >}}) on Broadcom switches
 - [What Just Happened]({{<ref "/cumulus-linux-40/Monitoring-and-Troubleshooting/Network-Troubleshooting/Mellanox-WJH" >}}) (WJH) for Mellanox switches to stream detailed and contextual telemetry for off-box analysis with tools such as Cumulus NetQ
-- A new [backup and restore utility]({{<ref "/cumulus-linux-40/Installation-Management/Back-up-and-Restore" >}}
+- A new [backup and restore utility]({{<ref "/cumulus-linux-40/Installation-Management/Back-up-and-Restore" >}})
 - [Advertise primary IP address type-5 routes]({{<ref "/cumulus-linux-40/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN/Inter-subnet-Routing#advertise-primary-ip-address" >}}) in an EVPN symmetric configuration in VXLAN active-active mode
 - [BGP best path reason]({{<ref "/cumulus-linux-40/Layer-3/Border-Gateway-Protocol-BGP" >}}) shown in command outputs
 - On Mellanox switches, certain [buffer and queue configuration settings]({{<ref "/cumulus-linux-40/Layer-1-and-Switch-Ports/Buffer-and-Queue-Management" >}}) no longer require `switchd` restart
@@ -45,7 +45,7 @@ New features and enhancements include:
 - The following default settings have changed:
   - [Management VRF]({{<ref "/cumulus-linux-40/Layer-3/Management-VRF" >}}) is enabled by default
     - The management VRF must have both an IPv6 address and an IPv4 address to work correctly; the default IP address is ::1/128
-  - [Zebra]({{<ref "/cumulus-linux-40/Layer-3/Configuring-FRRouting" >}}
+  - [Zebra]({{<ref "/cumulus-linux-40/Layer-3/Configuring-FRRouting" >}})
     is enabled by default in the `daemons` file
   - [ARP/ND suppression]({{<ref "/cumulus-linux-40/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN/Basic-Configuration#arp-and-nd-suppression" >}}) is enabled by default on all VXLAN interfaces
   - [MAC learning]({{<ref "/cumulus-linux-43/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN/Basic-Configuration" >}}) is disabled by default on all VXLAN bridge ports

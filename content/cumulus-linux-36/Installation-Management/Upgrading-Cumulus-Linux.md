@@ -177,7 +177,7 @@ cycle every device in that rack.
 {{%notice tip%}}
 
 However, if an out-of-band network is not available for you to upgrade,
-you can use [the dtach tool]({{<ref "/knowledge-base/Installing-and-Upgrading/Upgrading/Using-dtach-for-In-band-apt-get-Upgrades" >}}
+you can use [the dtach tool]({{<ref "/knowledge-base/Installing-and-Upgrading/Upgrading/Using-dtach-for-In-band-apt-get-Upgrades" >}})
 instead to upgrade in band.
 
 {{%/notice%}}

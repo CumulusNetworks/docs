@@ -13,19 +13,17 @@ toc: 3
 
 ### Chains
 
-Netfilter describes the mechanism for which packets are classified and controlled in the Linux kernel. Cumulus Linux uses the Netfilter framework to control the flow of traffic to, from, and across the switch. Netfilter does not require a separate software daemon to run; it is part of the Linux kernel itself. Netfilter asserts policies at layers 2, 3 and 4 of the {{<exlink url="https://en.wikipedia.org/wiki/OSI_model" text="OSI model">}} by inspecting packet and frame headers based on a list of rules. Rules are defined using syntax provided by the `iptables`, `ip6tables` and `ebtables` userspace applications.
+Netfilter describes the way that packets are classified and controlled in the Linux kernel. Cumulus Linux uses the Netfilter framework to control the flow of traffic to, from, and across the switch. Netfilter does not require a separate software daemon to run; it is part of the Linux kernel itself. Netfilter asserts policies at layers 2, 3 and 4 of the {{<exlink url="https://en.wikipedia.org/wiki/OSI_model" text="OSI model">}} by inspecting packet and frame headers based on a list of rules. Rules are defined using syntax provided by the `iptables`, `ip6tables` and `ebtables` userspace applications.
 
-The rules created by these programs inspect or operate on packets at several points in the life of the packet through the system. These five points are known as *chains* and are shown here:
+The rules created by these programs inspect or operate on packets at several points in the life of the packet through the system. These points are known as *chains*:
 
 {{< img src = "/images/cumulus-linux/acl-chains.png" >}}
-
-The chains and their uses are:
 
 - **PREROUTING** touches packets before they are routed
 - **INPUT** touches packets after they are determined to be destined for the local system but before they are received by the control plane software
 - **FORWARD** touches transit traffic as it moves through the switch
 - **OUTPUT** touches packets that are sourced by the control plane software before they are put on the wire
-- **POSTROUTING** touches packets immediately before they are put on the wire but after the routing decision has been made
+- **POSTROUTING** touches packets immediately before they are put on the wire but after the routing decision is made
 
 ### Tables
 
@@ -45,7 +43,7 @@ Each table has a set of default chains that can be used to modify or inspect pac
 
 ### Rules
 
-Rules are the items that actually classify traffic to be acted upon. Rules are applied to chains, which are attached to tables, similar to the graphic below.
+Rules are the items that classify traffic to be acted upon. Rules are applied to chains, which are attached to tables, similar to the graphic below.
 
 {{< img src = "/images/cumulus-linux/acl-tables-chains-rules.png" >}}
 
@@ -53,11 +51,11 @@ Rules have several different components; the examples below highlight those diff
 
 {{< img src = "/images/cumulus-linux/acl-anatomy-rule.png" >}}
 
-- **Table:** The first argument is the *table*. Notice the second example does not specify a table, that is because the filter table is implied if a table is not specified.
-- **Chain:** The second argument is the *chain*. Each table supports several different chains. See Understanding Tables above.
-- **Matches:** The third argument(s) are called the *matches*. You can specify multiple matches in a single rule. However, the more matches you use in a rule, the more memory that rule consumes.
+- **Table:** The first argument is the *table*. The second example does not specify a table; the filter table is implied if a table is not specified.
+- **Chain:** The second argument is the *chain*. Each table supports several different chains. See {{<link url="#tables" text="Tables">}} above.
+- **Matches:** The third argument is the *match*. You can specify multiple matches in a single rule. However, the more matches you use in a rule, the more memory that rule consumes.
 - **Jump:** The *jump* specifies the target of the rule; what action to take if the packet matches the rule. If this option is omitted in a rule, then matching the rule has no effect on the fate of the packet, but the counters on the rule are incremented.
-- **Target(s):** The *target* can be a user-defined chain (other than the one this rule is in), one of the special built-in targets that decides the fate of the packet immediately (like DROP), or an extended target. See the {{<link url="#supported-rule-types" text="Supported Rule Types">}} section below for examples of different targets.
+- **Targets:** The *target* can be a user-defined chain (other than the one this rule is in), one of the special built-in targets that decides the fate of the packet immediately (like DROP), or an extended target. See {{<link url="#supported-rule-types" text="Supported Rule Types">}} below for different target examples.
 
 ### How Rules Are Parsed and Applied
 
@@ -83,7 +81,7 @@ The Linux packet forwarding construct is an overlay for how the silicon undernea
 If multiple contiguous rules with the same match criteria are applied to `--in-interface`, **only** the first rule gets processed and then processing terminates. Do not configure duplicate rules with different actions.
     {{%/notice%}}
 
-- When processing traffic, rules affecting the FORWARD chain that specify an ingress interface are performed prior to rules that match on an egress interface. As a workaround, rules that only affect the egress interface can have an ingress interface wildcard (currently, only *swp+* and *bond+* are supported as wildcard names; see below) that matches any interface applied so that you can maintain order of operations with other input interface rules. For example, with the following rules:
+- When processing traffic, rules affecting the FORWARD chain that specify an ingress interface are performed before rules that match on an egress interface. As a workaround, rules that only affect the egress interface can have an ingress interface wildcard (only *swp+* and *bond+* are supported) that matches any interface applied so that you can maintain order of operations with other input interface rules. For example, with the following rules:
 
     ```
     -A FORWARD -i $PORTA -j ACCEPT
@@ -95,7 +93,7 @@ If multiple contiguous rules with the same match criteria are applied to `--in-i
 
     ```
     -A FORWARD -i $PORTA -j ACCEPT
-    -A FORWARD -i swp+ -o $PORTA -j ACCEPT   <-- These rules are performed in order (because of wildcard match on ingress interface)
+    -A FORWARD -i swp+ -o $PORTA -j ACCEPT   <-- These rules are performed in order (because of wildcard match on the ingress interface)
     -A FORWARD -i $PORTB -j DROP
     ```
 
@@ -135,19 +133,15 @@ In Cumulus Linux, *atomic update mode* is enabled by default. However, this mode
 
 {{< img src = "/images/cumulus-linux/acl-update-operation-atomic.png" >}}
 
-To increase the number of ACL rules that can be configured, configure the switch to operate in *nonatomic mode*.
+To increase the number of configurable ACL rules, configure the switch to operate in *nonatomic mode*.
 
 {{< img src = "/images/cumulus-linux/acl-update-operation-nonatomic.png" >}}
-
-### How the Rules Get Installed
 
 Instead of reserving 50% of your TCAM space for atomic updates, incremental update uses the available free space to write the new TCAM rules and swap over to the new rules after this is complete. Cumulus Linux then deletes the old rules and frees up the original TCAM space. If there is insufficient free space to complete this task, the original nonatomic update is performed, which interrupts traffic.
 
 {{< img src = "/images/cumulus-linux/acl-update-del.png" >}}
 
 {{< img src = "/images/cumulus-linux/acl-update-add.png" >}}
-
-#### Enable Nonatomic Update Mode
 
 You can enable nonatomic updates for `switchd`, which offer better scaling because all TCAM resources are used to actively impact traffic. With atomic updates, half of the hardware resources are on standby and do not actively impact traffic.
 
@@ -187,13 +181,13 @@ During regular *non-incremental nonatomic updates*, traffic is stopped first, th
 
 Using `iptables`, `ip6tables`, `ebtables` directly is not recommended because any rules installed in these cases only are applied to the Linux kernel and are not hardware accelerated using synchronization to the switch silicon. Running `cl-acltool -i` (the installation command) resets all rules and deletes anything that is not stored in `/etc/cumulus/acl/policy.conf`.
 
-For example, performing:
+For example, the following rule appears to work:
 
 ```
 cumulus@switch:~$ sudo iptables -A INPUT -p icmp --icmp-type echo-request -j DROP
 ```
 
-Appears to work, and the rule appears when you run `cl-acltool -L`:
+The rule appears when you run `cl-acltool -L`:
 
 ```
 cumulus@switch:~$ sudo cl-acltool -L ip
@@ -241,7 +235,7 @@ By default, each entry occupies one double wide entry, except if the entry is on
 
    {{%notice note%}}
 Port ranges are only allowed for ingress rules.
-    {{%/notice%}}
+{{%/notice%}}
 
 ### Match on VLAN IDs on Layer 2 Interfaces
 
@@ -331,10 +325,6 @@ This deletes all rules from the `50_nclu_acl.rules` file with that name. It also
 ## Install and Manage ACL Rules with cl-acltool
 
 You can manage Cumulus Linux ACLs with `cl-acltool`. Rules are first written to the `iptables` chains, as described above, and then synchronized to hardware via `switchd`.
-
-{{%notice note%}}
-Use `iptables`/`ip6tables`/`ebtables` and `cl-acltool` to manage rules in the default files, `00control_plane.rules` and `99control_plane_catch_all.rules`; they are not aware of rules created using NCLU.
-{{%/notice%}}
 
 To examine the current state of chains and list all installed rules, run:
 
@@ -517,9 +507,7 @@ If the maximum number of rules for a particular table is exceeded, `cl-acltool -
 error: hw sync failed (sync_acl hardware installation failed) Rolling back .. failed.
 ```
 
-In the tables below, the default rules count toward the limits listed. The raw limits below assume only one ingress and one egress table are present.
-
-### NVIDIA Spectrum Limits
+In the table below, the default rules count toward the limits listed. The raw limits below assume only one ingress and one egress table are present.
 
 The NVIDIA Spectrum ASIC has one common {{<exlink url="https://en.wikipedia.org/wiki/Content-addressable_memory#Ternary_CAMs" text="TCAM">}} for both ingress and egress, which can be used for other non-ACL-related resources. However, the number of supported rules varies with the {{<link url="Supported-Route-Table-Entries#tcam-resource-profiles-for-spectrum-switches" text="TCAM profile">}} specified for the switch.
 

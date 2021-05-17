@@ -61,6 +61,14 @@
 <td></td>
 </tr>
 <tr>
+<td>2656530</td>
+<td>CVE-2020-18032: A buffer overflow was discovered in Graphviz, which could potentially result in the execution of arbitrary code when processing a malformed file.
+Vulnerable: 2.40.1-6
+Fixed: 2.40.1-6+deb10u1</td>
+<td>4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
 <td>2648587</td>
 <td>The received PVST BPDU for a VLAN is flooded even though the ingress port doesn't have the VLAN tagged.</td>
 <td>3.7.8-3.7.14.2, 4.0.0-4.3.0</td>
@@ -2823,6 +2831,14 @@ CVE-2020-10531: An issue was discovered in International Components for Unicode 
 <td>CM-15812</td>
 <td>&lt;p&gt;Multicast forwarding fails for IP addresses whose DMAC overlaps with reserved DIPs.&lt;/p&gt;</td>
 <td>3.2.1-3.7.14.2, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2656530</td>
+<td>CVE-2020-18032: A buffer overflow was discovered in Graphviz, which could potentially result in the execution of arbitrary code when processing a malformed file.
+Vulnerable: 2.40.1-6
+Fixed: 2.40.1-6+deb10u1</td>
+<td>4.0.0-4.3.0</td>
 <td></td>
 </tr>
 <tr>

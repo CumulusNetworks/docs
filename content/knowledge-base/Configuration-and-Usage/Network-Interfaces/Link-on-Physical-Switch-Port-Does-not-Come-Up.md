@@ -108,7 +108,7 @@ The `ethtool` command enables you to query or control the network driver and har
 
     cumulus@switch$ sudo ethtool -m swp1
 
-Please read [Monitoring Interfaces and Transceivers Using ethtool]({{<ref "/cumulus-linux-43/Monitoring-and-Troubleshooting/Troubleshooting-Network-Interfaces/Monitoring-Interfaces-and-Transceivers-Using-ethtool" >}} for more details on `ethtool`.
+Please read [Monitoring Interfaces and Transceivers Using ethtool]({{<ref "/cumulus-linux-43/Monitoring-and-Troubleshooting/Troubleshooting-Network-Interfaces/Monitoring-Interfaces-and-Transceivers-Using-ethtool" >}}) for more details on `ethtool`.
 
 ### Force the Interface Configurations to Be Pushed to Hardware
 

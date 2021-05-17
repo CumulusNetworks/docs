@@ -302,7 +302,7 @@ The `netq-bootstrap` and `netq-opta` image version numbers must match.
 
 #### Stage from the Local Filesystem
 
-For specific steps on how to log into cumulusnetworks.com and download the NetQ files, refer to [Download the bootstrap and NetQ installation tarballs]({{<ref "/cumulus-netq-30/Cumulus-NetQ-Deployment-Guide/Install-NetQ/Install-NetQ-System-Platform/Prepare-Existing-NetQ-Appliance" >}} in the NetQ documentation. Use SCP to copy the files onto the Linux-based simulation host securely.
+For specific steps on how to log into cumulusnetworks.com and download the NetQ files, refer to [Download the bootstrap and NetQ installation tarballs]({{<ref "/cumulus-netq-30/Cumulus-NetQ-Deployment-Guide/Install-NetQ/Install-NetQ-System-Platform/Prepare-Existing-NetQ-Appliance" >}}) in the NetQ documentation. Use SCP to copy the files onto the Linux-based simulation host securely.
 
 The following procedure shows you how to copy the installation tarball files to the `/mnt/installables` directory (any directory that has sufficient read permissions is suitable for staging these files). Repeat the following steps for each file:
 
@@ -331,7 +331,7 @@ The following procedure shows you how to copy the installation tarball files to 
 
 #### Stage from a Remote HTTP Server
 
-For specific steps on how to log into cumulusnetworks.com and download the NetQ files, refer to [Download the bootstrap and NetQ installation tarballs]({{<ref "/cumulus-netq-30/Cumulus-NetQ-Deployment-Guide/Install-NetQ/Install-NetQ-System-Platform/Prepare-Existing-NetQ-Appliance" >}} in the NetQ documentation. Specific steps on how to copy the tarballs onto a remote HTTP server vary depending on the specific HTTP server software. This following example shows you how to set up an HTTP server with Apache on a Debian- or Ubuntu-based Linux system.
+For specific steps on how to log into cumulusnetworks.com and download the NetQ files, refer to [Download the bootstrap and NetQ installation tarballs]({{<ref "/cumulus-netq-30/Cumulus-NetQ-Deployment-Guide/Install-NetQ/Install-NetQ-System-Platform/Prepare-Existing-NetQ-Appliance" >}}) in the NetQ documentation. Specific steps on how to copy the tarballs onto a remote HTTP server vary depending on the specific HTTP server software. This following example shows you how to set up an HTTP server with Apache on a Debian- or Ubuntu-based Linux system.
 
 1. Download these two required installation files from cumulusnetworks.com:
     - Bootstrap
@@ -386,7 +386,7 @@ For more complete information about installing NetQ, refer to the [NetQ document
 
 The NetQ CLI is a separate daemon that is configured independently from the NetQ agent data collection and telemetry streaming daemon. To fully complete the NetQ installation in your demo environment, you must also configure and install the CLI on all devices where you want to run the `netq` CLI commands. In most deployments, this is also configured with every agent so that you can obtain all NetQ data from any device in the network.
 
-You must have a set of authorization keys generated for a NetQ user (access-key and secret-key). Refer to [Configuring the CLI for Cloud Deployments]({{<ref "/cumulus-netq-30/Cumulus-NetQ-Deployment-Guide/Install-NetQ/Install-NetQ-CLI/Install-NetQ-CLI-on-CL" >}} in the NetQ documentation to create the keys.
+You must have a set of authorization keys generated for a NetQ user (access-key and secret-key). Refer to [Configuring the CLI for Cloud Deployments]({{<ref "/cumulus-netq-30/Cumulus-NetQ-Deployment-Guide/Install-NetQ/Install-NetQ-CLI/Install-NetQ-CLI-on-CL" >}}) in the NetQ documentation to create the keys.
 
 To install the CLI:
 

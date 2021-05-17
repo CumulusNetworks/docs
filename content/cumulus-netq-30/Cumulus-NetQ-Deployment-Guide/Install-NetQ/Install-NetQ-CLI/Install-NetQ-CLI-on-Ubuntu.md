@@ -19,7 +19,7 @@ For servers running Ubuntu OS, you need to:
 - Obtain NetQ software packages
 
 {{%notice note%}}
-If your network uses a proxy server for external connections, you should first [configure a global proxy]({{<ref "/cumulus-linux-43/System-Configuration/Configuring-a-Global-Proxy" >}} so <code>apt-get</code> can access the software package in the Cumulus Networks repository.
+If your network uses a proxy server for external connections, you should first [configure a global proxy]({{<ref "/cumulus-linux-43/System-Configuration/Configuring-a-Global-Proxy" >}}) so <code>apt-get</code> can access the software package in the Cumulus Networks repository.
 {{%/notice%}}
 
 ### Verify Service Package Versions
@@ -49,7 +49,7 @@ root@ubuntu:~# sudo systemctl start lldpd.service
 
 If NTP is not already installed and configured, follow these steps:
 
-1.  Install [NTP]({{<ref "/cumulus-linux-43/System-Configuration/Setting-Date-and-Time" >}} on the server, if not already installed. Servers must be in time synchronization with the NetQ Platform or NetQ Appliance to enable useful statistical analysis.
+1.  Install [NTP]({{<ref "/cumulus-linux-43/System-Configuration/Setting-Date-and-Time" >}}) on the server, if not already installed. Servers must be in time synchronization with the NetQ Platform or NetQ Appliance to enable useful statistical analysis.
 
     ```
     root@ubuntu:~# sudo apt-get install ntp

@@ -19,7 +19,7 @@ Consider deploying, provisioning, configuring, and upgrading switches using auto
 {{%notice tip%}}
 
 Be sure to read the knowledge base article
-[Upgrades: Network Device and Linux Host Worldview Comparison]({{<ref "/knowledge-base/Installing-and-Upgrading/Upgrading/Network-Device-and-Linux-Host-Worldview-Comparison" >}}, which provides a detailed comparison between the network device and Linux host worldview of upgrade and installation.
+[Upgrades: Network Device and Linux Host Worldview Comparison]({{<ref "/knowledge-base/Installing-and-Upgrading/Upgrading/Network-Device-and-Linux-Host-Worldview-Comparison" >}}), which provides a detailed comparison between the network device and Linux host worldview of upgrade and installation.
 
 {{%/notice%}}
 

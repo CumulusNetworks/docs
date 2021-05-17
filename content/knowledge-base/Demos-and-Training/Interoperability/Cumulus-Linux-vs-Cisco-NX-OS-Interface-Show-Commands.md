@@ -5,7 +5,7 @@ weight: 513
 toc: 4
 ---
 
-Cumulus Linux includes a number of interface show commands to troubleshoot your switch. While Cumulus Linux *is* Linux, and the same tried and true Linux commands work in the same way, the Cumulus Linux [network command line utility]({{<ref "/cumulus-linux-43/System-Configuration/Network-Command-Line-Utility-NCLU" >}} shows even more relevant information in a single command.
+Cumulus Linux includes a number of interface show commands to troubleshoot your switch. While Cumulus Linux *is* Linux, and the same tried and true Linux commands work in the same way, the Cumulus Linux [network command line utility]({{<ref "/cumulus-linux-43/System-Configuration/Network-Command-Line-Utility-NCLU" >}}) shows even more relevant information in a single command.
 
 ## Show Layer 1 and 2 Interface Status
 

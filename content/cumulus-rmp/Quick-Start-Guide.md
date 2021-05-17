@@ -110,7 +110,7 @@ management ports, the first of which is named *eth0*. These interfaces
 are geared specifically for out-of-band management use. The management
 interface uses DHCPv4 for addressing by default. While it is generally
 recommended to **not** assign an address to eth0, you can set a static
-IP address with the [Network Command Line Utility]({{<ref "/cumulus-linux-37/System-Configuration/Network-Command-Line-Utility-NCLU" >}} (NCLU).
+IP address with the [Network Command Line Utility]({{<ref "/cumulus-linux-37/System-Configuration/Network-Command-Line-Utility-NCLU" >}}) (NCLU).
 
 {{%notice info%}}
 

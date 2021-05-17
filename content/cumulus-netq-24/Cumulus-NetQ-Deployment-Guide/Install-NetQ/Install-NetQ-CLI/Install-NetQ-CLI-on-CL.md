@@ -16,7 +16,7 @@ A simple process installs the NetQ CLI on a Cumulus Linux switch.
 To install the NetQ CLI you need to install `netq-apps` on each switch. This is available from the Cumulus Networks repository.
 
 {{%notice note%}}
-If your network uses a proxy server for external connections, you should first [configure a global proxy]({{<ref "/cumulus-linux-43/System-Configuration/Configuring-a-Global-Proxy" >}} so `apt-get` can access the software package in the Cumulus Networks repository.
+If your network uses a proxy server for external connections, you should first [configure a global proxy]({{<ref "/cumulus-linux-43/System-Configuration/Configuring-a-Global-Proxy" >}}) so `apt-get` can access the software package in the Cumulus Networks repository.
 {{%/notice%}}
 
 To obtain the NetQ Agent package:

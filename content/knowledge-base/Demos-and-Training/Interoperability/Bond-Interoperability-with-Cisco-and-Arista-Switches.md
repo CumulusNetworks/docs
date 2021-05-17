@@ -49,7 +49,7 @@ The three most common problems with EtherChannels are:
 - Fast vs slow LACP rate of LACPDUs
 - Both sides using passive LACP mode instead of active LACP mode
 
-Since Cumulus Linux is Linux, it utilizes the same kernel syntax for bonds that can be found in the {{<exlink url="https://www.kernel.org/doc/Documentation/networking/bonding.txt" text="kernel.org documentation">}}. The [Cumulus Linux bonding documentation]({{<ref "/cumulus-linux-43/Layer-2/Bonding-Link-Aggregation" >}} contains specific examples. The following guide compares the Cisco 3560 to the Quanta LY2 in the diagram and configuration above.
+Since Cumulus Linux is Linux, it utilizes the same kernel syntax for bonds that can be found in the {{<exlink url="https://www.kernel.org/doc/Documentation/networking/bonding.txt" text="kernel.org documentation">}}. The [Cumulus Linux bonding documentation]({{<ref "/cumulus-linux-43/Layer-2/Bonding-Link-Aggregation" >}}) contains specific examples. The following guide compares the Cisco 3560 to the Quanta LY2 in the diagram and configuration above.
 
 ### Bond Parameters
 

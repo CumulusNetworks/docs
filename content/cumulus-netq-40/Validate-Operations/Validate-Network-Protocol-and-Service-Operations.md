@@ -1161,7 +1161,7 @@ You might want to remove this validation once you complete your analysis. Refer 
 
 ### View Scheduled Validation Results
 
-After creating scheduled validations with either the NetQ UI or the NetQ CLI, the results are shown in the Scheduled Validation Result card. When a request has completed processing, you can access the Validation Result card from the full-screen Validate Network card. Each protocol and service has its own validation result card, but the content is similar on each.
+After creating scheduled validations with either the NetQ UI or the NetQ CLI, the results are shown in the Scheduled Validation Result card. When a request has completed processing, you can access the Validation Result card from the full-screen Validations card. Each protocol and service has its own validation result card, but the content is similar on each.
 
 #### Granularity of Data Shown Based on Time Period
 
@@ -1186,15 +1186,13 @@ To access the results:
 
 1. Open the Validate Network card.
 
-   Click {{<img src="/images/netq/validation-icon.svg" height="18" width="18">}} (**Validation**), then click **Run an existing validation**.
+   Click {{<img src="/images/netq/validation-icon.svg" height="18" width="18">}} (**Validation**), then click **Open an existing validation**.
 
-2. Change to the full-screen card using the card size picker to view all scheduled validations.
+2. Select the validation results you want to view, then click **View results**.
 
-    {{<figure src="/images/netq/valid-request-fullscr-300.png" width="700">}}
+    {{<figure src="/images/netq/validations-picker-4.0.0.png" width="500">}}
 
-3. Select the validation results you want to view.
-
-4. Click {{<img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18">}} (Open Card). This opens the medium Scheduled Validation Result card/s for the selected items.
+3. The medium Scheduled Validation Result card(s) for the selected items open.
 
     {{<figure src="/images/netq/sch-valid-result-medium-222.png" width="425">}}
 
@@ -1206,7 +1204,7 @@ To analyze the results:
 
     {{<figure src="/images/netq/sch-valid-result-medium-bgp-popup-222.png" width="200">}}
 
-3. Optionally, click **Open** \<*network service*\> **Card** link to open the medium individual Network Services card. Your current card is not closed.
+3. Optionally, click **Open** \<*network service*\> **Card** link to open the medium individual Network Services card. Your current card does not close.
 
 4. Switch to the large Scheduled Validation card using the card size picker.
 
@@ -1255,7 +1253,7 @@ You can modify any scheduled validation that you created or remove it altogether
 
 #### Modify a Scheduled Validation
 
-At some point you might want to change the schedule or validation types that are specified in a scheduled validation request.
+At some point you might want to change the schedule or validation types that are specified in a scheduled validation request. This creates a new validation request and the original validation has the *(old)* label applied to the name. The old validation can no longer be edited.
 
 {{%notice info%}}
 
@@ -1269,33 +1267,21 @@ To modify a scheduled validation:
 
     Click {{<img src="/images/netq/validation-icon.svg" height="18" width="18">}} (**Validation**), then click **Show all scheduled validations**.
 
-2. Select the validation from the **Validation** dropdown list.
+2. Hover over the validation then click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/22-Edit/pencil-1.svg" height="18" width="18"/> to edit it.
 
-    {{<figure src="/images/netq/valid-request-selection.png" width="250">}}
+    {{<figure src="/images/netq/validations-edit-4.0.0.png" width="250">}}
 
-3. Edit the schedule or validation types.
+3. Select which checks to add or remove from the validation request.
 
-    This example adds EVPN to the validation.
-
-    {{<figure src="/images/netq/valid-request-edit-320.png" width="500">}}
+    {{<figure src="/images/netq/validations-edit-select-4.0.0.png" width="700">}}
 
 4. Click **Update**.
 
-5. Click **Yes** to complete the changes, or change the name of the previous version of this scheduled validation.
+5. Change the schedule for the validation, then click **Update**.
 
-    {{<figure src="/images/netq/sch-valid-update-confirmation-320.png" width="300">}}
+    {{<figure src="/images/netq/validations-edit-schedule-4.0.0.png" width="500">}}
 
-    1. Click the *change name* link.
-
-    2. Edit the name.
-
-        {{<figure src="/images/netq/sch-valid-edit-name-on-update-320.png" width="300">}}
-
-    3. Click **Update**.
-
-    4. Click **Yes** to complete the changes, or repeat these steps until you have the name you want.
-
-    The validation can now be selected from the Validation listing (on the small, medium or large size card) and run immediately using **Run Now**, or you can wait for it to run the first time according to the schedule you specified. Refer to {{<link title="Validate Network Protocol and Service Operations#view-scheduled-validation-results" text="View Scheduled Validation Results">}}.
+    The validation can now be selected from the Validation list (on the small, medium or large size card) and run immediately using **Open an existing validation**, or you can wait for it to run the first time according to the schedule you specified. Refer to {{<link title="Validate Network Protocol and Service Operations#view-scheduled-validation-results" text="View Scheduled Validation Results">}}.
 
 #### Delete a Scheduled Validation
 
@@ -1309,11 +1295,11 @@ You can remove a user-defined scheduled validation at any time using the NetQ UI
 
     Click {{<img src="/images/netq/validation-icon.svg" height="18" width="18">}} (**Validation**), then click **Show all scheduled validations**.
 
-2. Select one or more validations to remove.
+2. Hover over the validation you want to remove.
 
-    {{<figure src="/images/netq/sch-valid-remove-320.png" width="700">}}
+    {{<figure src="/images/netq/sch-valid-remove-4.0.0.png" width="700">}}
 
-3. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/bin-1.svg" height="18" width="18">}}.
+3. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/bin-1.svg" height="18" width="18">}}, then click **Yes** to confirm.
 
 {{</tab>}}
 

@@ -333,7 +333,7 @@ cumulus@<hostname>:~$ netq install cluster install-job bundle /mnt/installables/
 
 ## netq install opta activate-job
 
-Activates the NetQ Collector software after an initial server or server cluster (master and two worker nodes) is configured and installed. Activation requires a configuration key that can be obtained from an email titled <!-- vale off -->*A new site has been added to your Cumulus NetQ account* <!-- vale on -->(sent to your NetQ administrator).
+Activates the NetQ Collector software after an initial server or server cluster (master and two worker nodes) is configured and installed. Activation requires a configuration key that can be obtained from an email titled <!-- vale off -->*A new site has been added to your NVIDIA Cumulus NetQ account* <!-- vale on -->(sent to your NetQ administrator).
 
 ### Syntax
 
@@ -382,7 +382,7 @@ Installs the NetQ Collector software on a master node and two worker nodes. For 
 Obtain the software release bundle from the {{<exlink url="https://cumulusnetworks.com/downloads/#product=NetQ" text="Cumulus Downloads">}} page or {{<exlink url="http://support.mellanox.com/s/" text="My Mellanox support">}} page.
 
 Obtain the config-key as follows:
-- Cloud: Locate and retrieve key from email titled *A new site has been added to your Cumulus NetQ account* (sent to your NetQ administrator)
+- Cloud: Locate and retrieve key from email titled *A new site has been added to your NVIDIA Cumulus NetQ account* (sent to your NetQ administrator)
 - Remote: Follow the instructions in {{<link title="Manage the NetQ UI/#configure-multiple-premises" text="Configure Multiple Premises">}}
 
 ### Syntax
@@ -444,7 +444,7 @@ Installs the NetQ Collector software on a single cloud server (NetQ Cloud Applia
 
 Obtain the software release bundle from the {{<exlink url="https://cumulusnetworks.com/downloads/#product=NetQ" text="Cumulus Downloads">}} page or {{<exlink url="http://support.mellanox.com/s/" text="My Mellanox support">}} page.
 
-Obtain the config-key from the email sent to your NetQ administrator titled <!-- vale off -->*A new site has been added to your Cumulus NetQ account*.<!-- vale on -->
+Obtain the config-key from the email sent to your NetQ administrator titled <!-- vale off -->*A new site has been added to your NVIDIA Cumulus NetQ account*.<!-- vale on -->
 
 ### Syntax
 

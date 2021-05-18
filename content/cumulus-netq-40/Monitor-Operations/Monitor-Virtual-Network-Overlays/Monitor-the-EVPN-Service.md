@@ -4,9 +4,9 @@ author: NVIDIA
 weight: 980
 toc: 4
 ---
-EVPN (Ethernet Virtual Private Network) enables network administrators in the data center to deploy a virtual layer 2 bridge overlay on top of layer 3 IP networks creating access, or tunnel, between two locations. This connects devices in different layer 2 domains or sites running VXLANs and their associated underlays. For an overview and how to configure EVPN in your data center network, refer to {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN/" text="Ethernet Virtual Private Network-EVPN">}}.
+EVPN (Ethernet Virtual Private Network) enables network administrators in the data center to deploy a virtual layer 2 bridge overlay on top of a layer 3 IP network, creating access, or a tunnel, between two locations. This connects devices in different layer 2 domains or sites running VXLANs and their associated underlays. For an overview and how to configure EVPN in your data center network, refer to {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN/" text="Ethernet Virtual Private Network-EVPN">}}.
 
-NetQ enables operators to view the health of the EVPN service on a networkwide and a per session basis, giving greater insight into all aspects of the service. This is accomplished through two card workflows, one for the service and one for the session and in the NetQ CLI with the `netq show evpn` command.
+NetQ enables operators to view the health of the EVPN service on a networkwide and a per session basis, giving greater insight into all aspects of the service. This is accomplished through two card workflows, one for the service and one for the session, and in the NetQ CLI with the `netq show evpn` command.
 
 ## Monitor the EVPN Service Networkwide
 
@@ -21,7 +21,7 @@ With NetQ, you can monitor EVPN performance across the network:
 
 {{%notice note%}}
 
-When entering a time value in the `netq show lldp` command, you must include a numeric value *and* the unit of measure:
+When entering a time value in the `netq show evpn` command, you must include a numeric value *and* the unit of measure:
 
 - **w**: weeks
 - **d**: days
@@ -34,27 +34,23 @@ When using the `between` option, the start time (`text-time`) and end time (`tex
 
 {{%/notice%}}
 
-### View Service Status Summary
+### View the EVPN Service Status
 
-You can view a summary of the EVPN service from the NetQ UI or the NetQ CLI.
+You can view the configuration and status of your EVPN overlay across your network or for a particular device from the NetQ UI or the NetQ CLI. The example below shows the configuration and status for all devices, including the associated VNI, VTEP address, the import and export route (showing the BGP ASN and VNI path), and the last time a change was made for each device running EVPN. Use the `hostname` option to view the configuration and status for a single device.
 
-{{< tabs "TabID26" >}}
+{{<tabs "EVPN summary">}}
 
-{{< tab "NetQ UI" >}}
+{{<tab "NetQ UI">}}
 
 Open the small Network Services|All EVPN Sessions card. In this example, the number of devices running the EVPN service is six (6) and the number and distribution of related critical severity alarms is zero (0).
 
 {{<figure src="/images/netq/ntwk-svcs-all-evpn-small-230.png" width="200" >}}
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "NetQ CLI" >}}
+{{<tab "NetQ CLI">}}
 
-To view EVPN service status, run:
-
-```
-netq show evpn
-```
+To view EVPN service status, run `netq show evpn`.
 
 This example shows the Cumulus reference topology, where EVPN runs on all border and leaf switches. Each session is represented by a single row.
 
@@ -89,9 +85,9 @@ leaf04            10         10.0.1.2         L2               Vlan 10        ye
 leaf04            30         10.0.1.2         L2               Vlan 30        yes       65102:30         65102:30         Wed Oct  7 00:50:09 2020
 ```
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}
 
 ### View the Distribution of Sessions and Alarms
 
@@ -605,7 +601,7 @@ Use the `vni` option with the `netq show evpn` command to filter the result for 
 
 This example only shows the EVPN configuration and status for VNI *4001*.
 
- ```
+```
 cumulus@switch:~$ netq show evpn vni 4001
 Matching evpn records:
 Hostname          VNI        VTEP IP          Type             Mapping        In Kernel Export RT        Import RT        Last Changed
@@ -618,17 +614,17 @@ leaf03            4001       10.0.1.2         L3               Vrf RED        ye
 leaf04            4001       10.0.1.2         L3               Vrf RED        yes       65102:4001       65102:4001       Mon Oct 12 03:47:47 2020
 ```
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}
 
 ### View Devices with the Most EVPN-related Alarms
 
 Switches experiencing a large number of EVPN alarms may indicate a configuration or performance issue that needs further investigation. You can view the switches sorted by the number of EVPN alarms and then use the Switches card workflow or the Events|Alarms card workflow to gather more information about possible causes for the alarms.
 
-{{< tabs "TabID629" >}}
+{{<tabs "View EVPN events">}}
 
-{{< tab "NetQ UI" >}}
+{{<tab "NetQ UI">}}
 
 You can view the switches sorted by the number of EVPN alarms and then use the Switches card workflow or the Events|Alarms card workflow to gather more information about possible causes for the alarms.
 
@@ -650,37 +646,45 @@ Where to go next depends on what data you see, but a few options include:
 - Change the time period for the data to compare with a prior time. If the same switches are consistently indicating the most alarms, you might want to look more carefully at those switches using the Switches card workflow.
 - Click **Show All Sessions** to investigate all EVPN sessions networkwide in the full screen card.
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "NetQ CLI" >}}
+{{<tab "NetQ CLI">}}
 
 To view the switches with the most EVPN alarms and informational events, run the `netq show events` command with the `type` option set to *evpn*, and optionally the `between` option set to display the events within a given time range. Count the events associated with each switch.
 
-In this example, all EVPN events in the last 24 hours are displayed:
+This example shows the events that have occurred in the last 48 hours.
 
 ```
-cumulus@switch:~$ netq show events type evpn
-No matching event records found
+cumulus@switch:/$ netq show events type evpn between now and 48h
+Matching events records:
+Hostname          Message Type Severity Message                             Timestamp
+----------------- ------------ -------- ----------------------------------- -------------------------
+torc-21           evpn         info     VNI 33 state changed from down to u 1d:8h:16m:29s
+                                        p
+torc-12           evpn         info     VNI 41 state changed from down to u 1d:8h:16m:35s
+                                        p
+torc-11           evpn         info     VNI 39 state changed from down to u 1d:8h:16m:41s
+                                        p
+tor-1             evpn         info     VNI 37 state changed from down to u 1d:8h:16m:47s
+                                        p
+tor-2             evpn         info     VNI 42 state changed from down to u 1d:8h:16m:51s
+                                        p
+torc-22           evpn         info     VNI 39 state changed from down to u 1d:8h:17m:40s
+                                        p
+...
 ```
 
-This example shows all EVPN events between now and 30 days ago.
+{{</tab>}}
 
-```
-cumulus@switch:~$ netq show events type evpn between now and 30d
-No matching event records found
-```
-
-{{< /tab >}}
-
-{{< /tabs >}}
+{{</tabs>}}
 
 ### View All EVPN Events
 
 The Network Services|All EVPN Sessions card workflow and the `netq show events type evpn` command enable you to view all of the EVPN events in a designated time period.
 
-{{< tabs "TabID681" >}}
+{{<tabs "View all EVPN events">}}
 
-{{< tab "NetQ UI" >}}
+{{<tab "NetQ UI">}}
 
 To view all EVPN events:
 
@@ -698,9 +702,9 @@ include:
 - Export the data for use in another analytics tool, by selecting all or some of the events and clicking <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/08-Upload-Download/upload-bottom.svg" height="18" width="18"/>.
 - Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> at the top right to return to your workbench.
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "NetQ CLI" >}}
+{{<tab "NetQ CLI">}}
 
 To view all EVPN alarms, run:
 
@@ -716,9 +720,9 @@ This example shows critical EVPN events in the past three days.
 cumulus@switch:~$ netq show events level critical type evpn between now and 3d
 ```
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}
 
 ### View Details for All Devices Running EVPN
 
@@ -734,9 +738,9 @@ To return to your workbench, click <img src="https://icons.cumulusnetworks.com/0
 
 You can view attributes of all EVPN sessions in your network with the NetQ UI or NetQ CLI.
 
-{{< tabs "TabID737" >}}
+{{<tabs "View all EVPN sessions">}}
 
-{{< tab "NetQ UI" >}}
+{{<tab "NetQ UI">}}
 
 To view all session details, open the full screen EVPN Service card, and click the **All Sessions** tab.
 
@@ -746,9 +750,9 @@ To return to your workbench, click <img src="https://icons.cumulusnetworks.com/0
 
 Use the icons above the table to select/deselect, filter, and export items in the list. Refer to {{<link url="Access-Data-with-Cards/#table-settings" text="Table Settings">}} for more detail.
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "NetQ CLI" >}}
+{{<tab "NetQ CLI">}}
 
 To view session details, run `netq show evpn`.
 
@@ -785,9 +789,9 @@ leaf04            10         10.0.1.2         L2               Vlan 10        ye
 leaf04            30         10.0.1.2         L2               Vlan 30        yes       65102:30         65102:30         Wed Oct  7 00:50:09 2020
 ```
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}
 
 ## Monitor a Single EVPN Session
 
@@ -800,7 +804,7 @@ With NetQ, you can monitor the performance of a single EVPN session using the Ne
     - Full-screen: view details of sessions-import/export route, type, origin IP address, VNI, VNI/gateway advertisement, and so forth
 - `netq <hostname> show evpn vni` command: view configuration and status for session (hostname, VNI), VTEP address, import and export route, and last time a change was made
 
-For an overview and how to configure EVPN in your data center network, refer to {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN/" text="Ethernet Virtual Private Network - EVPN">}}.
+For an overview and how to configure EVPN in your data center network, refer to {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN/" text="Ethernet Virtual Private Network - EVPN">}}.
 
 {{<notice note>}}
 To access the single session cards, you must open the full-screen Network Services|All EVPN Sessions card, click the <strong>All Sessions</strong> tab, select the desired session, then click <img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg"  height="18" width="18"/> (Open Card).

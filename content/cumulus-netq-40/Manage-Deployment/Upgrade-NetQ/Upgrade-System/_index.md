@@ -258,7 +258,7 @@ The <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/50-Naviga
 
     The following example is for an on-premises upgrade. The jobs for a cloud upgrade are slightly different.
 
-    {{<figure src="/images/netq/adminui-upgrade-progress-241.png" width="700">}}
+    {{<figure src="/images/netq/adminui-upgrade-progress-4.0.0.png" width="700">}}
 
 7. When it completes, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/50-Navigate/navigation-right-circle-1_1.svg" height="18" width="18"/> to be returned to the Health dashboard.
 

@@ -77,16 +77,10 @@ Address                   Hostname          Interface                 VRF       
 192.168.200.38/24         server08          eth0                      default         Mon Oct 19 22:28:50 2020
 192.168.200.37/24         server07          eth0                      default         Mon Oct 19 22:28:43 2020
 192.168.200.36/24         server06          eth0                      default         Mon Oct 19 22:40:52 2020
-10.1.30.106/24            server06          uplink                    default         Mon Oct 19 22:40:52 2020
-192.168.200.35/24         server05          eth0                      default         Mon Oct 19 22:41:08 2020
 10.1.20.105/24            server05          uplink                    default         Mon Oct 19 22:41:08 2020
 10.1.10.104/24            server04          uplink                    default         Mon Oct 19 22:40:45 2020
-192.168.200.34/24         server04          eth0                      default         Mon Oct 19 22:40:45 2020
-10.1.30.103/24            server03          uplink                    default         Mon Oct 19 22:41:04 2020
 192.168.200.33/24         server03          eth0                      default         Mon Oct 19 22:41:04 2020
 192.168.200.32/24         server02          eth0                      default         Mon Oct 19 22:41:00 2020
-10.1.20.102/24            server02          uplink                    default         Mon Oct 19 22:41:00 2020
-192.168.200.31/24         server01          eth0                      default         Mon Oct 19 22:40:36 2020
 10.1.10.101/24            server01          uplink                    default         Mon Oct 19 22:40:36 2020
 10.255.1.228/24           oob-mgmt-server   vagrant                   default         Mon Oct 19 22:28:20 2020
 192.168.200.1/24          oob-mgmt-server   eth1                      default         Mon Oct 19 22:28:20 2020
@@ -95,47 +89,7 @@ Address                   Hostname          Interface                 VRF       
 192.168.200.14/24         leaf04            eth0                                      Tue Oct 20 15:56:40 2020
 10.10.10.4/32             leaf04            lo                        default         Mon Oct 19 22:28:47 2020
 10.1.20.1/24              leaf04            vlan20-v0                 RED             Mon Oct 19 22:28:47 2020
-10.0.1.2/32               leaf04            lo                        default         Mon Oct 19 22:28:47 2020
-10.1.30.1/24              leaf04            vlan30-v0                 BLUE            Mon Oct 19 22:28:47 2020
-10.1.10.3/24              leaf04            vlan10                    RED             Mon Oct 19 22:28:47 2020
-10.1.30.3/24              leaf04            vlan30                    BLUE            Mon Oct 19 22:28:47 2020
-10.1.20.2/24              leaf03            vlan20                    RED             Mon Oct 19 22:28:18 2020
-10.1.10.1/24              leaf03            vlan10-v0                 RED             Mon Oct 19 22:28:18 2020
-192.168.200.13/24         leaf03            eth0                                      Tue Oct 20 15:40:56 2020
-10.1.20.1/24              leaf03            vlan20-v0                 RED             Mon Oct 19 22:28:18 2020
-10.0.1.2/32               leaf03            lo                        default         Mon Oct 19 22:28:18 2020
-10.1.30.1/24              leaf03            vlan30-v0                 BLUE            Mon Oct 19 22:28:18 2020
-10.1.10.2/24              leaf03            vlan10                    RED             Mon Oct 19 22:28:18 2020
-10.10.10.3/32             leaf03            lo                        default         Mon Oct 19 22:28:18 2020
-10.1.30.2/24              leaf03            vlan30                    BLUE            Mon Oct 19 22:28:18 2020
-10.10.10.2/32             leaf02            lo                        default         Mon Oct 19 22:28:30 2020
-10.1.20.3/24              leaf02            vlan20                    RED             Mon Oct 19 22:28:30 2020
-10.1.10.1/24              leaf02            vlan10-v0                 RED             Mon Oct 19 22:28:30 2020
-10.0.1.1/32               leaf02            lo                        default         Mon Oct 19 22:28:30 2020
-10.1.20.1/24              leaf02            vlan20-v0                 RED             Mon Oct 19 22:28:30 2020
-192.168.200.12/24         leaf02            eth0                                      Tue Oct 20 15:43:24 2020
-10.1.30.1/24              leaf02            vlan30-v0                 BLUE            Mon Oct 19 22:28:30 2020
-10.1.10.3/24              leaf02            vlan10                    RED             Mon Oct 19 22:28:30 2020
-10.1.30.3/24              leaf02            vlan30                    BLUE            Mon Oct 19 22:28:30 2020
-10.1.20.2/24              leaf01            vlan20                    RED             Mon Oct 19 22:28:22 2020
-10.1.10.1/24              leaf01            vlan10-v0                 RED             Mon Oct 19 22:28:22 2020
-10.0.1.1/32               leaf01            lo                        default         Mon Oct 19 22:28:22 2020
-10.1.20.1/24              leaf01            vlan20-v0                 RED             Mon Oct 19 22:28:22 2020
-192.168.200.11/24         leaf01            eth0                                      Tue Oct 20 15:20:04 2020
-10.1.30.1/24              leaf01            vlan30-v0                 BLUE            Mon Oct 19 22:28:22 2020
-10.1.10.2/24              leaf01            vlan10                    RED             Mon Oct 19 22:28:22 2020
-10.1.30.2/24              leaf01            vlan30                    BLUE            Mon Oct 19 22:28:22 2020
-10.10.10.1/32             leaf01            lo                        default         Mon Oct 19 22:28:22 2020
-192.168.200.62/24         fw2               eth0                                      Tue Oct 20 15:31:29 2020
-10.1.10.1/24              fw1               borderBond.10             default         Mon Oct 19 22:28:10 2020
-192.168.200.61/24         fw1               eth0                                      Tue Oct 20 15:56:03 2020
-10.1.20.1/24              fw1               borderBond.20             default         Mon Oct 19 22:28:10 2020
-192.168.200.64/24         border02          eth0                                      Tue Oct 20 15:20:23 2020
-10.10.10.64/32            border02          lo                        default         Mon Oct 19 22:28:38 2020
-10.0.1.254/32             border02          lo                        default         Mon Oct 19 22:28:38 2020
-192.168.200.63/24         border01          eth0                                      Tue Oct 20 15:46:57 2020
-10.0.1.254/32             border01          lo                        default         Mon Oct 19 22:28:34 2020
-10.10.10.63/32            border01          lo                        default         Mon Oct 19 22:28:34 2020
+...
 ```
 
 ### View IPv6 Address information for All Devices
@@ -167,215 +121,7 @@ fe80::4638:39ff:fe00:170/ spine03           eth0                                
 64
 fe80::4638:39ff:fe00:15/6 spine03           swp3                      default         Mon Oct 19 22:29:01 2020
 4
-fe80::4638:39ff:fe00:1d/6 spine03           swp4                      default         Mon Oct 19 22:29:01 2020
-4
-fe80::4638:39ff:fe00:5/64 spine03           swp1                      default         Mon Oct 19 22:29:01 2020
-fe80::4638:39ff:fe00:d/64 spine03           swp2                      default         Mon Oct 19 22:29:01 2020
-fe80::4638:39ff:fe00:2b/6 spine02           swp6                      default         Mon Oct 19 22:28:45 2020
-4
-fe80::4638:39ff:fe00:192/ spine02           eth0                                      Mon Oct 19 22:28:45 2020
-64
-fe80::4638:39ff:fe00:23/6 spine02           swp5                      default         Mon Oct 19 22:28:45 2020
-4
-fe80::4638:39ff:fe00:1b/6 spine02           swp4                      default         Mon Oct 19 22:28:45 2020
-4
-fe80::4638:39ff:fe00:13/6 spine02           swp3                      default         Mon Oct 19 22:28:45 2020
-4
-fe80::4638:39ff:fe00:3/64 spine02           swp1                      default         Mon Oct 19 22:28:45 2020
-fe80::4638:39ff:fe00:b/64 spine02           swp2                      default         Mon Oct 19 22:28:45 2020
-fe80::4638:39ff:fe00:9/64 spine01           swp2                      default         Mon Oct 19 22:28:48 2020
-fe80::4638:39ff:fe00:19/6 spine01           swp4                      default         Mon Oct 19 22:28:48 2020
-4
-fe80::4638:39ff:fe00:29/6 spine01           swp6                      default         Mon Oct 19 22:28:48 2020
-4
-fe80::4638:39ff:fe00:182/ spine01           eth0                                      Mon Oct 19 22:28:48 2020
-64
-fe80::4638:39ff:fe00:1/64 spine01           swp1                      default         Mon Oct 19 22:28:48 2020
-fe80::4638:39ff:fe00:21/6 spine01           swp5                      default         Mon Oct 19 22:28:48 2020
-4
-fe80::4638:39ff:fe00:11/6 spine01           swp3                      default         Mon Oct 19 22:28:48 2020
-4
-fe80::4638:39ff:fe00:172/ server08          eth0                      default         Mon Oct 19 22:28:50 2020
-64
-fe80::4638:39ff:fe00:176/ server07          eth0                      default         Mon Oct 19 22:28:43 2020
-64
-fe80::4638:39ff:fe00:186/ server06          eth0                      default         Mon Oct 19 22:40:52 2020
-64
-fe80::4638:39ff:fe00:42/6 server06          uplink                    default         Mon Oct 19 22:40:52 2020
-4
-fe80::4638:39ff:fe00:40/6 server05          uplink                    default         Mon Oct 19 22:41:08 2020
-4
-fe80::4638:39ff:fe00:188/ server05          eth0                      default         Mon Oct 19 22:41:08 2020
-64
-fe80::4638:39ff:fe00:16a/ server04          eth0                      default         Mon Oct 19 22:40:45 2020
-64
-fe80::4638:39ff:fe00:44/6 server04          uplink                    default         Mon Oct 19 22:40:45 2020
-4
-fe80::4638:39ff:fe00:190/ server03          eth0                      default         Mon Oct 19 22:41:04 2020
-64
-fe80::4638:39ff:fe00:3c/6 server03          uplink                    default         Mon Oct 19 22:41:04 2020
-4
-fe80::4638:39ff:fe00:3a/6 server02          uplink                    default         Mon Oct 19 22:41:00 2020
-4
-fe80::4638:39ff:fe00:16e/ server02          eth0                      default         Mon Oct 19 22:41:00 2020
-64
-fe80::4638:39ff:fe00:32/6 server01          uplink                    default         Mon Oct 19 22:40:36 2020
-4
-fe80::4638:39ff:fe00:17e/ server01          eth0                      default         Mon Oct 19 22:40:36 2020
-64
-fe80::4638:39ff:fe00:6d/6 oob-mgmt-server   eth1                      default         Mon Oct 19 22:28:20 2020
-4
-fe80::4638:39ff:fe00:65/6 oob-mgmt-server   eth0                      default         Mon Oct 19 22:28:20 2020
-4
-fe80::5054:ff:fe25:a7dd/6 oob-mgmt-server   vagrant                   default         Mon Oct 19 22:28:20 2020
-4
-fe80::4638:39ff:febe:efbb leaf04            vlan4002                  BLUE            Mon Oct 19 22:28:47 2020
-/64
-fe80::4638:39ff:fe00:20/6 leaf04            swp54                     default         Mon Oct 19 22:28:47 2020
-4
-fe80::4638:39ff:fe00:5e/6 leaf04            peerlink.4094             default         Mon Oct 19 22:28:47 2020
-4
-fe80::4638:39ff:fe00:1a/6 leaf04            swp51                     default         Mon Oct 19 22:28:47 2020
-4
-fe80::4638:39ff:fe00:5e/6 leaf04            vlan10                    RED             Mon Oct 19 22:28:47 2020
-4
-fe80::4638:39ff:fe00:18a/ leaf04            eth0                                      Mon Oct 19 22:28:47 2020
-64
-fe80::4638:39ff:fe00:5e/6 leaf04            vlan20                    RED             Mon Oct 19 22:28:47 2020
-4
-fe80::4638:39ff:fe00:5e/6 leaf04            vlan30                    BLUE            Mon Oct 19 22:28:47 2020
-4
-fe80::200:ff:fe00:1c/64   leaf04            vlan30-v0                 BLUE            Mon Oct 19 22:28:47 2020
-fe80::200:ff:fe00:1b/64   leaf04            vlan20-v0                 RED             Mon Oct 19 22:28:47 2020
-fe80::200:ff:fe00:1a/64   leaf04            vlan10-v0                 RED             Mon Oct 19 22:28:47 2020
-fe80::4638:39ff:febe:efbb leaf04            vlan4001                  RED             Mon Oct 19 22:28:47 2020
-/64
-fe80::4638:39ff:fe00:1e/6 leaf04            swp53                     default         Mon Oct 19 22:28:47 2020
-4
-fe80::4638:39ff:fe00:1c/6 leaf04            swp52                     default         Mon Oct 19 22:28:47 2020
-4
-fe80::4638:39ff:fe00:5e/6 leaf04            bridge                    default         Mon Oct 19 22:28:47 2020
-4
-fe80::4638:39ff:febe:efbb leaf03            vlan4002                  BLUE            Mon Oct 19 22:28:18 2020
-/64
-fe80::4638:39ff:fe00:5d/6 leaf03            vlan30                    BLUE            Mon Oct 19 22:28:18 2020
-4
-fe80::4638:39ff:fe00:5d/6 leaf03            peerlink.4094             default         Mon Oct 19 22:28:18 2020
-4
-fe80::4638:39ff:fe00:184/ leaf03            eth0                                      Mon Oct 19 22:28:18 2020
-64
-fe80::4638:39ff:fe00:12/6 leaf03            swp51                     default         Mon Oct 19 22:28:18 2020
-4
-fe80::4638:39ff:fe00:14/6 leaf03            swp52                     default         Mon Oct 19 22:28:18 2020
-4
-fe80::4638:39ff:fe00:5d/6 leaf03            vlan10                    RED             Mon Oct 19 22:28:18 2020
-4
-fe80::4638:39ff:fe00:16/6 leaf03            swp53                     default         Mon Oct 19 22:28:18 2020
-4
-fe80::4638:39ff:fe00:5d/6 leaf03            vlan20                    RED             Mon Oct 19 22:28:18 2020
-4
-fe80::200:ff:fe00:1c/64   leaf03            vlan30-v0                 BLUE            Mon Oct 19 22:28:18 2020
-fe80::4638:39ff:febe:efbb leaf03            vlan4001                  RED             Mon Oct 19 22:28:18 2020
-/64
-fe80::4638:39ff:fe00:18/6 leaf03            swp54                     default         Mon Oct 19 22:28:18 2020
-4
-fe80::200:ff:fe00:1b/64   leaf03            vlan20-v0                 RED             Mon Oct 19 22:28:18 2020
-fe80::200:ff:fe00:1a/64   leaf03            vlan10-v0                 RED             Mon Oct 19 22:28:18 2020
-fe80::4638:39ff:fe00:5d/6 leaf03            bridge                    default         Mon Oct 19 22:28:18 2020
-4
-fe80::4638:39ff:febe:efaa leaf02            vlan4002                  BLUE            Mon Oct 19 22:28:30 2020
-/64
-fe80::4638:39ff:fe00:10/6 leaf02            swp54                     default         Mon Oct 19 22:28:30 2020
-4
-fe80::4638:39ff:fe00:37/6 leaf02            vlan10                    RED             Mon Oct 19 22:28:30 2020
-4
-fe80::4638:39ff:fe00:37/6 leaf02            vlan20                    RED             Mon Oct 19 22:28:30 2020
-4
-fe80::4638:39ff:fe00:5a/6 leaf02            peerlink.4094             default         Mon Oct 19 22:28:30 2020
-4
-fe80::4638:39ff:fe00:178/ leaf02            eth0                                      Mon Oct 19 22:28:30 2020
-64
-fe80::4638:39ff:fe00:37/6 leaf02            vlan30                    BLUE            Mon Oct 19 22:28:30 2020
-4
-fe80::4638:39ff:fe00:a/64 leaf02            swp51                     default         Mon Oct 19 22:28:30 2020
-fe80::4638:39ff:febe:efaa leaf02            vlan4001                  RED             Mon Oct 19 22:28:30 2020
-/64
-fe80::200:ff:fe00:1c/64   leaf02            vlan30-v0                 BLUE            Mon Oct 19 22:28:30 2020
-fe80::200:ff:fe00:1b/64   leaf02            vlan20-v0                 RED             Mon Oct 19 22:28:30 2020
-fe80::200:ff:fe00:1a/64   leaf02            vlan10-v0                 RED             Mon Oct 19 22:28:30 2020
-fe80::4638:39ff:fe00:37/6 leaf02            bridge                    default         Mon Oct 19 22:28:30 2020
-4
-fe80::4638:39ff:fe00:e/64 leaf02            swp53                     default         Mon Oct 19 22:28:30 2020
-fe80::4638:39ff:fe00:c/64 leaf02            swp52                     default         Mon Oct 19 22:28:30 2020
-fe80::4638:39ff:febe:efaa leaf01            vlan4002                  BLUE            Mon Oct 19 22:28:22 2020
-/64
-fe80::4638:39ff:fe00:8/64 leaf01            swp54                     default         Mon Oct 19 22:28:22 2020
-fe80::4638:39ff:fe00:59/6 leaf01            vlan10                    RED             Mon Oct 19 22:28:22 2020
-4
-fe80::4638:39ff:fe00:59/6 leaf01            vlan20                    RED             Mon Oct 19 22:28:22 2020
-4
-fe80::4638:39ff:fe00:59/6 leaf01            vlan30                    BLUE            Mon Oct 19 22:28:22 2020
-4
-fe80::4638:39ff:fe00:2/64 leaf01            swp51                     default         Mon Oct 19 22:28:22 2020
-fe80::4638:39ff:fe00:4/64 leaf01            swp52                     default         Mon Oct 19 22:28:22 2020
-fe80::4638:39ff:febe:efaa leaf01            vlan4001                  RED             Mon Oct 19 22:28:22 2020
-/64
-fe80::4638:39ff:fe00:6/64 leaf01            swp53                     default         Mon Oct 19 22:28:22 2020
-fe80::200:ff:fe00:1c/64   leaf01            vlan30-v0                 BLUE            Mon Oct 19 22:28:22 2020
-fe80::200:ff:fe00:1b/64   leaf01            vlan20-v0                 RED             Mon Oct 19 22:28:22 2020
-fe80::200:ff:fe00:1a/64   leaf01            vlan10-v0                 RED             Mon Oct 19 22:28:22 2020
-fe80::4638:39ff:fe00:59/6 leaf01            peerlink.4094             default         Mon Oct 19 22:28:22 2020
-4
-fe80::4638:39ff:fe00:59/6 leaf01            bridge                    default         Mon Oct 19 22:28:22 2020
-4
-fe80::4638:39ff:fe00:17a/ leaf01            eth0                                      Mon Oct 19 22:28:22 2020
-64
-fe80::4638:39ff:fe00:18e/ fw2               eth0                                      Mon Oct 19 22:28:22 2020
-64
-fe80::4638:39ff:fe00:18c/ fw1               eth0                                      Mon Oct 19 22:28:10 2020
-64
-fe80::4638:39ff:fe00:4e/6 fw1               borderBond                default         Mon Oct 19 22:28:10 2020
-4
-fe80::4638:39ff:fe00:4e/6 fw1               borderBond.10             default         Mon Oct 19 22:28:10 2020
-4
-fe80::4638:39ff:fe00:4e/6 fw1               borderBond.20             default         Mon Oct 19 22:28:10 2020
-4
-fe80::4638:39ff:febe:efff border02          vlan4002                  BLUE            Mon Oct 19 22:28:38 2020
-/64
-fe80::4638:39ff:fe00:62/6 border02          peerlink.4094             default         Mon Oct 19 22:28:38 2020
-4
-fe80::4638:39ff:fe00:2a/6 border02          swp51                     default         Mon Oct 19 22:28:38 2020
-4
-fe80::4638:39ff:febe:efff border02          vlan4001                  RED             Mon Oct 19 22:28:38 2020
-/64
-fe80::4638:39ff:fe00:2e/6 border02          swp53                     default         Mon Oct 19 22:28:38 2020
-4
-fe80::4638:39ff:fe00:30/6 border02          swp54                     default         Mon Oct 19 22:28:38 2020
-4
-fe80::4638:39ff:fe00:17c/ border02          eth0                                      Mon Oct 19 22:28:38 2020
-64
-fe80::4638:39ff:fe00:2c/6 border02          swp52                     default         Mon Oct 19 22:28:38 2020
-4
-fe80::4638:39ff:fe00:62/6 border02          bridge                    default         Mon Oct 19 22:28:38 2020
-4
-fe80::4638:39ff:febe:efff border01          vlan4002                  BLUE            Mon Oct 19 22:28:34 2020
-/64
-fe80::4638:39ff:fe00:22/6 border01          swp51                     default         Mon Oct 19 22:28:34 2020
-4
-fe80::4638:39ff:fe00:24/6 border01          swp52                     default         Mon Oct 19 22:28:34 2020
-4
-fe80::4638:39ff:fe00:26/6 border01          swp53                     default         Mon Oct 19 22:28:34 2020
-4
-fe80::4638:39ff:febe:efff border01          vlan4001                  RED             Mon Oct 19 22:28:34 2020
-/64
-fe80::4638:39ff:fe00:28/6 border01          swp54                     default         Mon Oct 19 22:28:34 2020
-4
-fe80::4638:39ff:fe00:61/6 border01          peerlink.4094             default         Mon Oct 19 22:28:34 2020
-4
-fe80::4638:39ff:fe00:174/ border01          eth0                                      Mon Oct 19 22:28:34 2020
-64
-fe80::4638:39ff:fe00:4d/6 border01          bridge                    default         Mon Oct 19 22:28:34 2020
-4
+...
 ```
 
 ### Filter IP Address Information
@@ -536,21 +282,6 @@ IP Address                Hostname          Interface                 MAC Addres
 169.254.0.1               spine02           swp1                      44:38:39:00:00:04  default         no     Mon Oct 19 22:28:46 2020
 169.254.0.1               spine02           swp6                      44:38:39:00:00:2c  default         no     Mon Oct 19 22:28:46 2020
 169.254.0.1               spine02           swp5                      44:38:39:00:00:24  default         no     Mon Oct 19 22:28:46 2020
-192.168.200.1             spine02           eth0                      44:38:39:00:00:6d                  no     Tue Oct 20 17:46:35 2020
-169.254.0.1               spine02           swp4                      44:38:39:00:00:1c  default         no     Mon Oct 19 22:28:46 2020
-169.254.0.1               spine02           swp3                      44:38:39:00:00:14  default         no     Mon Oct 19 22:28:46 2020
-169.254.0.1               spine02           swp2                      44:38:39:00:00:0c  default         no     Mon Oct 19 22:28:46 2020
-192.168.200.250           spine02           eth0                      44:38:39:00:01:80                  no     Mon Oct 19 22:28:46 2020
-169.254.0.1               spine01           swp1                      44:38:39:00:00:02  default         no     Mon Oct 19 22:28:48 2020
-169.254.0.1               spine01           swp6                      44:38:39:00:00:2a  default         no     Mon Oct 19 22:28:48 2020
-169.254.0.1               spine01           swp5                      44:38:39:00:00:22  default         no     Mon Oct 19 22:28:48 2020
-192.168.200.1             spine01           eth0                      44:38:39:00:00:6d                  no     Tue Oct 20 17:47:17 2020
-169.254.0.1               spine01           swp4                      44:38:39:00:00:1a  default         no     Mon Oct 19 22:28:48 2020
-169.254.0.1               spine01           swp3                      44:38:39:00:00:12  default         no     Mon Oct 19 22:28:48 2020
-169.254.0.1               spine01           swp2                      44:38:39:00:00:0a  default         no     Mon Oct 19 22:28:48 2020
-192.168.200.250           spine01           eth0                      44:38:39:00:01:80                  no     Mon Oct 19 22:28:48 2020
-192.168.200.1             server08          eth0                      44:38:39:00:00:6d  default         no     Mon Oct 19 22:28:50 2020
-192.168.200.250           server08          eth0                      44:38:39:00:01:80  default         no     Mon Oct 19 22:28:50 2020
 ...
 ```
 
@@ -586,25 +317,6 @@ fe80::4638:39ff:fe00:3a   leaf02            vlan20                    44:38:39:0
 fe80::4638:39ff:fe00:180  leaf02            eth0                      44:38:39:00:01:80                  no     Mon Oct 19 22:28:30 2020
 fe80::4638:39ff:fe00:40   leaf02            vlan20                    44:38:39:00:00:40  RED             yes    Mon Oct 19 22:28:30 2020
 fe80::4638:39ff:fe00:f    leaf02            swp54                     44:38:39:00:00:0f  default         no     Mon Oct 19 22:28:30 2020
-fe80::4638:39ff:fe00:16a  leaf02            eth0                      44:38:39:00:01:6a                  no     Mon Oct 19 22:28:30 2020
-fe80::4638:39ff:fe00:d    leaf02            swp53                     44:38:39:00:00:0d  default         no     Mon Oct 19 22:28:30 2020
-fe80::4638:39ff:fe00:172  leaf02            eth0                      44:38:39:00:01:72                  no     Mon Oct 19 22:28:30 2020
-fe80::4638:39ff:fe00:b    leaf02            swp52                     44:38:39:00:00:0b  default         no     Mon Oct 19 22:28:30 2020
-ff02::16                  leaf02            vagrant                   33:33:00:00:00:16  default         no     Mon Oct 19 22:28:30 2020
-fe80::4638:39ff:fe00:18e  leaf02            eth0                      44:38:39:00:01:8e                  no     Mon Oct 19 22:28:30 2020
-ff02::1:ff00:178          leaf02            eth0                      33:33:ff:00:01:78                  no     Mon Oct 19 22:28:30 2020
-fe80::4638:39ff:fe00:186  leaf02            eth0                      44:38:39:00:01:86                  no     Mon Oct 19 22:28:30 2020
-fe80::4638:39ff:fe00:17e  leaf02            eth0                      44:38:39:00:01:7e                  no     Mon Oct 19 22:28:30 2020
-fe80::4638:39ff:fe00:176  leaf02            eth0                      44:38:39:00:01:76                  no     Mon Oct 19 22:28:30 2020
-ff02::1                   leaf02            eth0                      33:33:00:00:00:01                  no     Mon Oct 19 22:28:30 2020
-fe80::4638:39ff:fe00:16e  leaf02            eth0                      44:38:39:00:01:6e                  no     Mon Oct 19 22:28:30 2020
-fe80::4638:39ff:fe00:188  leaf02            eth0                      44:38:39:00:01:88                  no     Mon Oct 19 22:28:30 2020
-fe80::4638:39ff:fe00:6e   leaf02            eth0                      44:38:39:00:00:6e                  no     Tue Oct 20 17:52:17 2020
-ff02::2                   leaf02            eth0                      33:33:00:00:00:02                  no     Mon Oct 19 22:28:30 2020
-fe80::4638:39ff:fe00:42   leaf02            vlan30                    44:38:39:00:00:42  BLUE            yes    Mon Oct 19 22:28:30 2020
-fe80::4638:39ff:fe00:6d   leaf02            eth0                      44:38:39:00:00:6d                  no     Mon Oct 19 22:28:30 2020
-fe80::4638:39ff:fe00:59   leaf02            vlan10                    44:38:39:00:00:59  RED             no     Mon Oct 19 22:28:30 2020
-fe80::4638:39ff:febe:efaa leaf02            vlan4002                  44:38:39:be:ef:aa  BLUE            no     Mon Oct 19 22:28:30 2020
 ```
 
 This example shows all *IPv4* neighbors using the *RED* VRF. Note that capitalization is considered for the VRF name.
@@ -685,18 +397,6 @@ no     default         10.10.10.64/32                 spine04           169.254.
                                                                         169.254.0.1: swp6
 no     default         10.10.10.63/32                 spine04           169.254.0.1: swp5,                  Mon Oct 19 22:28:23 2020
                                                                         169.254.0.1: swp6
-no     default         10.0.1.254/32                  spine04           169.254.0.1: swp5,                  Mon Oct 19 22:28:23 2020
-                                                                        169.254.0.1: swp6
-no     default         10.0.1.2/32                    spine03           169.254.0.1: swp3,                  Mon Oct 19 22:29:01 2020
-                                                                        169.254.0.1: swp4
-no     default         10.10.10.4/32                  spine03           169.254.0.1: swp3,                  Mon Oct 19 22:29:01 2020
-                                                                        169.254.0.1: swp4
-no     default         10.10.10.3/32                  spine03           169.254.0.1: swp3,                  Mon Oct 19 22:29:01 2020
-                                                                        169.254.0.1: swp4
-no     default         10.10.10.2/32                  spine03           169.254.0.1: swp1,                  Mon Oct 19 22:29:01 2020
-                                                                        169.254.0.1: swp2
-no     default         10.10.10.1/32                  spine03           169.254.0.1: swp1,                  Mon Oct 19 22:29:01 2020
-                                                                        169.254.0.1: swp2
 ...
 ```
 
@@ -763,18 +463,7 @@ no                     0.0.0.0/0                      leaf03            Blackhol
 no     RED             0.0.0.0/0                      leaf03            Blackhole                           Mon Oct 19 22:28:18 2020
 no     BLUE            0.0.0.0/0                      leaf02            Blackhole                           Mon Oct 19 22:28:30 2020
 no                     0.0.0.0/0                      leaf02            Blackhole                           Mon Oct 19 22:28:30 2020
-no     RED             0.0.0.0/0                      leaf02            Blackhole                           Mon Oct 19 22:28:30 2020
-no     BLUE            0.0.0.0/0                      leaf01            Blackhole                           Mon Oct 19 22:28:22 2020
-no                     0.0.0.0/0                      leaf01            Blackhole                           Mon Oct 19 22:28:22 2020
-no     RED             0.0.0.0/0                      leaf01            Blackhole                           Mon Oct 19 22:28:22 2020
-no                     0.0.0.0/0                      fw2               Blackhole                           Mon Oct 19 22:28:22 2020
-no                     0.0.0.0/0                      fw1               Blackhole                           Mon Oct 19 22:28:10 2020
-no     BLUE            0.0.0.0/0                      border02          Blackhole                           Mon Oct 19 22:28:38 2020
-no                     0.0.0.0/0                      border02          Blackhole                           Mon Oct 19 22:28:38 2020
-no     RED             0.0.0.0/0                      border02          Blackhole                           Mon Oct 19 22:28:38 2020
-no     BLUE            0.0.0.0/0                      border01          Blackhole                           Mon Oct 19 22:28:34 2020
-no                     0.0.0.0/0                      border01          Blackhole                           Mon Oct 19 22:28:34 2020
-no     RED             0.0.0.0/0                      border01          Blackhole                           Mon Oct 19 22:28:34 2020
+...
 ```
 
 This example shows all of the *IPv4* routes owned by *spine01* switch.

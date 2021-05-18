@@ -9,7 +9,7 @@ toc: 3
 - `iptables`, `ip6tables`, and `ebtables` are Linux userspace tools used to administer filtering rules for IPv4 packets, IPv6 packets, and Ethernet frames (layer 2 using MAC addresses).
 - `cl-acltool` is a Cumulus Linux-specific userspace tool used to administer filtering rules and configure default ACLs. `cl-acltool` operates on various configuration files and uses `iptables`, `ip6tables`, and `ebtables` to install rules into the kernel. In addition, `cl-acltool` programs rules in hardware for interfaces involving switch port interfaces, which `iptables`, `ip6tables` and `ebtables` cannot do on their own.
 
-## Traffic Rules In Cumulus Linux
+## Traffic Rules
 
 ### Chains
 
@@ -35,11 +35,7 @@ When building rules to affect the flow of traffic, the individual chains can be 
 
 Each table has a set of default chains that can be used to modify or inspect packets at different points of the path through the switch. Chains contain the individual rules to influence traffic. Each table and the default chains they support are shown below. Tables and chains in green are supported by Cumulus Linux, those in red are not supported (that is, they are not hardware accelerated) at this time.
 
-{{< img src = "/images/cumulus-linux/acl-iptables.png" >}}
-
-{{< img src = "/images/cumulus-linux/acl-etables.png" >}}
-
-{{< img src = "/images/cumulus-linux/acl-legend.png" >}}
+{{< img src = "/images/cumulus-linux/acls-supported.png" >}}
 
 ### Rules
 
@@ -1004,9 +1000,9 @@ pkts bytes target  prot opt in   out   source    destination
 
 However, running `cl-acltool -i` or `reboot` removes them. To ensure all rules that can be in hardware are hardware accelerated, place them in the `/etc/cumulus/acl/policy.conf` file, then run `cl-acltool -i`.
 
-### NVIDIA Spectrum Hardware Limitations
+### Hardware Limitations
 
-Due to hardware limitations in the Spectrum ASIC, {{<link url="Bidirectional-Forwarding-Detection-BFD" text="BFD policers">}} are shared between all BFD-related control plane rules. Specifically the following default rules share the same policer in the `00control_plan.rules` file:
+Due to hardware limitations in the Spectrum ASIC, {{<link url="Bidirectional-Forwarding-Detection-BFD" text="BFD policers">}} are shared between all BFD-related control plane rules. The following default rules share the same policer in the `00control_plan.rules` file:
 
 ```
 [iptables]
@@ -1020,15 +1016,15 @@ Due to hardware limitations in the Spectrum ASIC, {{<link url="Bidirectional-For
 -A $INGRESS_CHAIN --in-interface $INGRESS_INTF -p udp --dport $BFD_MH_PORT -j POLICE --set-mode pkt --set-rate 2000 --set-burst 2000 --set-class 7
 ```
 
-To work around this limitation, set the rate and burst of all 6 of these rules to the same values, using the `--set-rate` and `--set-burst` options.
+To work around this limitation, set the rate and burst of all 6 of these rules to the same values with the `--set-rate` and `--set-burst` options.
 
 ### Where to Assign Rules
 
-- If a switch port is assigned to a bond, any egress rules must be assigned to the bond.
-- When using the OUTPUT chain, rules must be assigned to the source. For example, if a rule is assigned to the switch port in the direction of traffic but the source is a bridge (VLAN), the traffic is not affected by the rule and must be applied to the bridge.
+- If a switch port is assigned to a bond, you must assign any egress rules to the bond.
+- When using the OUTPUT chain, you must assign rules to the source. For example, if a rule is assigned to the switch port in the direction of traffic but the source is a bridge (VLAN), the traffic is not affected by the rule and must be applied to the bridge.
 - If all transit traffic needs to have a rule applied, use the FORWARD chain, not the OUTPUT chain.
 
-### Generic Error Message Displayed after ACL Rule Installation Failure
+### ACL Rule Installation Failure
 
 After an ACL rule installation failure, a generic error message like the following is displayed:
 

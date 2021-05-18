@@ -12,62 +12,7 @@ toc: 3
 
 NCLU and `cl-acltool` operate on various configuration files and use `iptables`, `ip6tables`, and `ebtables` to install rules into the kernel. In addition, NCLU and `cl-acltool` program rules in hardware for interfaces involving switch port interfaces, which `iptables`, `ip6tables` and `ebtables` cannot do on their own.
 
-In many instances, you can use NCLU to configure ACLs; however, in some cases, you must use `cl-acltool`. The examples below specify when to use which tool.
-
-If you need help to configure ACLs, run `net example acl` to see a basic configuration:
-
-{{< expand "Example "  >}}
-
-```
-cumulus@leaf01:~$ net example acl
-
-Scenario
-========
-We would like to use access-lists on 'switch' to
-- Restrict inbound traffic on swp1 to traffic from 10.1.1.0/24 destined for 10.1.2.0/24
-- Restrict outbound traffic on swp2 to http, https, or ssh
-
-         *switch
-            /\
-      swp1 /  \ swp2
-          /    \
-         /      \
-     host-11   host-12
-
-switch net commands
-====================
-
-Create an ACL that accepts traffic from 10.1.1.0/24 destined for 10.1.2.0/24 and drops all other traffic
-
-switch# net add acl ipv4 MYACL accept source-ip 10.1.1.0/24 dest-ip 10.1.2.0/24
-switch# net add acl ipv4 MYACL drop source-ip any dest-ip any
-
-Apply MYACL inbound on swp1
-
-switch# net add interface swp1 acl ipv4 MYACL inbound
-
-Create an ACL that accepts http, https, or ssh traffic and drops all other traffic.
-
-switch# net add acl ipv4 WEB_OR_SSH accept tcp source-ip any source-port any dest-ip any dest-port http
-switch# net add acl ipv4 WEB_OR_SSH accept tcp source-ip any source-port http dest-ip any dest-port any
-switch# net add acl ipv4 WEB_OR_SSH accept tcp source-ip any source-port any dest-ip any dest-port https
-switch# net add acl ipv4 WEB_OR_SSH accept tcp source-ip any source-port https dest-ip any dest-port any
-switch# net add acl ipv4 WEB_OR_SSH accept tcp source-ip any source-port any dest-ip any dest-port ssh
-switch# net add acl ipv4 WEB_OR_SSH accept tcp source-ip any source-port ssh dest-ip any dest-port any
-switch# net add acl ipv4 WEB_OR_SSH drop source-ip any dest-ip any
-
-Apply WEB_OR_SSH outbound on swp2
-switch# net add interface swp2 acl ipv4 WEB_OR_SSH outbound
-
-commit the staged changes
-switch# net commit
-
-Verification
-============
-switch# net show configuration acl
-```
-
-{{< /expand >}}
+In many instances, you can use NCLU to configure ACLs; however, in some cases, you must use `cl-acltool`. In NCLU, you can run the `net example acl` command to see a basic configuration.
 
 ## Traffic Rules In Cumulus Linux
 
@@ -97,11 +42,7 @@ When building rules to affect the flow of traffic, the individual chains can be 
 
 Each table has a set of default chains that can be used to modify or inspect packets at different points of the path through the switch. Chains contain the individual rules to influence traffic. Each table and the default chains they support are shown below. Tables and chains in green are supported by Cumulus Linux, those in red are not supported (that is, they are not hardware accelerated) at this time.
 
-{{< img src = "/images/cumulus-linux/acl-iptables.png" >}}
-
-{{< img src = "/images/cumulus-linux/acl-etables.png" >}}
-
-{{< img src = "/images/cumulus-linux/acl-legend.png" >}}
+{{< img src = "/images/cumulus-linux/acls-supported.png" >}}
 
 ### Rules
 

@@ -207,7 +207,7 @@ When entering a time value, you must include a numeric value *and* the unit of m
 For the `between` option, the start (`<text-time>`) and end time (`text-endtime>`) values can be entered as most recent first and least recent second, or vice versa. The values do not have to have the same unit of measure.
 {{%/notice%}}
 
-For more information about and configuration of EVPN in your data center, refer to the {{<kb_link url="cumulus-linux-43/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN/" text="Cumulus Linux EVPN">}} topic.
+For more information about and configuration of EVPN in your data center, refer to the [Cumulus Linux EVPN]({{<ref "/cumulus-linux-43/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN" >}}) topic.
 
 ### View the Status of EVPN
 

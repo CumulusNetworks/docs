@@ -16,11 +16,11 @@ In Cumulus Linux 3.7.12, the default password for the cumulus user account has c
 
 ## Before You Upgrade Cumulus Linux
 
-{{<notice tip>}}
+{{%notice tip%}}
 
 Be sure to read the knowledge base article [Upgrades: Network Device Worldview and Linux Host Worldview Comparison]({{<ref "/knowledge-base/Installing-and-Upgrading/Upgrading/Network-Device-and-Linux-Host-Worldview-Comparison" >}}), which provides a detailed comparison between the network device and Linux host worldview of upgrade and installation.
 
-{{</notice>}}
+{{%/notice%}}
 
 Understanding the location of configuration data is required for successful upgrades, migrations, and backup. As with other Linux distributions, the `/etc` directory is the primary location for all configuration data in Cumulus Linux. The following list is a likely set of files that you need to back up and migrate to a new release. Make sure you examine any file that has been changed. Consider making the following files and directories part of a backup strategy.
 
@@ -287,11 +287,11 @@ When the upgrade is complete, you can search for the files with the
 `sudo find / -mount -type f -name '*.dpkg-*'` command.
 ```
 
-   {{<notice note>}}
+   {{%notice note%}}
 
 If you see errors for expired GPG keys that prevent you from upgrading packages, follow the steps in [Upgrading Expired GPG Keys]({{<ref "/knowledge-base/Installing-and-Upgrading/Upgrading/Update-Expired-GPG-Keys" >}}).
 
-{{</notice>}}
+{{%/notice%}}
 
 5. Reboot the switch if the upgrade messages indicate that a system restart is required.
 

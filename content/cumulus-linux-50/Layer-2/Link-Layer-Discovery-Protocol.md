@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 400
 toc: 3
 ---
-The `lldpd` daemon implements the IEEE802.1AB (Link Layer Discovery Protocol, or LLDP) standard. LLDP shows you which ports are neighbors of a given port.
+The `lldpd` daemon implements the IEEE802.1AB Link Layer Discovery Protocol  (LLDP) standard. LLDP shows which ports are neighbors of a given port.
 
 By default, `lldpd` runs as a daemon and starts at system boot. `lldpd` command line arguments are in the `/etc/default/lldpd` file. All `lldpd` configuration options are saved in the `/etc/lldpd.conf` file or under `/etc/lldpd.d/`.
 
@@ -102,7 +102,7 @@ DAEMON_ARGS="-c -x -M 4"
 ```
 
 {{%notice note%}}
-`-c` enables backwards compatability with CDP and `-M 4` sends a field in discovery packets to indicate that the switch is a network device.
+The `-c` option enables backwards compatability with CDP and the `-M 4` option sends a field in discovery packets to indicate that the switch is a network device.
 {{%/notice%}}
 
 ## Troubleshooting

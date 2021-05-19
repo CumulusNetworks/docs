@@ -12,9 +12,9 @@ A VMware virtualized environment requires all virtual and physical elements such
 This configuration guide examines a few of the most common use-cases of VMware NSX-T deployments and shows the required underlay switches configurations of Cumulus Linux.  
 
 The following scenarios are described: 
-* {{<kb_link text="Multi-Chassis Link Aggregation - MLAG" url="cumulus-linux-43/Layer-2/Multi-Chassis-Link-Aggregation-MLAG" >}} for active-active physical layer 2 connectivity
-* {{<kb_link text="Virtual Router Redundancy - VRR and VRRP" url="cumulus-linux-43/Layer-2/Virtual-Router-Redundancy-VRR-and-VRRP/" >}} for active-active and redundant layer 3 gateways
-* {{<kb_link text="Border Gateway Protocol - BGP" url="cumulus-linux-43/Layer-3/Border-Gateway-Protocol-BGP/" >}} to provide underlay IP fabric connectivity between all physical and logical elements. This is the preferred best practice.
+* [Multi-Chassis Link Aggregation - MLAG]({{<ref "/cumulus-linux-43/Layer-2/Multi-Chassis-Link-Aggregation-MLAG" >}}) for active-active physical layer 2 connectivity
+* [Virtual Router Redundancy - VRR and VRRP]({{<ref "/cumulus-linux-43/Layer-2/Virtual-Router-Redundancy-VRR-and-VRRP" >}}) for active-active and redundant layer 3 gateways
+* [Border Gateway Protocol - BGP]({{<ref "/cumulus-linux-43/Layer-3/Border-Gateway-Protocol-BGP" >}}) to provide underlay IP fabric connectivity between all physical and logical elements. This is the preferred best practice.
 
 {{%notice note%}}
 
@@ -323,7 +323,7 @@ cumulus@leaf04:mgmt:~$ net commit
 {{< /tab >}}
 {{< /tabs >}}
 
-For information on how to assign VLANs to trunk ports reference the {{<kb_link text="VLAN Tagging" url="cumulus-linux-43/Layer-2/Ethernet-Bridging-VLANs/VLAN-Tagging" >}} page for more information and commands.
+For information on how to assign VLANs to trunk ports reference the [VLAN Tagging]({{<ref "/cumulus-linux-43/Layer-2/Ethernet-Bridging-VLANs/VLAN-Tagging" >}}) page for more information and commands.
 
 <!-- vale off -->
 ### Switch Ports Configuration - Non-LAG N-VDS Uplink Profile
@@ -596,12 +596,12 @@ UP     vlan100-v0     N/A  9216   Interface/L3                                IP
 
 ## BGP Configuration
 
-All underlay IP fabric BGP peerings in this guide are based on eBGP. Cumulus Linux {{<kb_link text="Auto BGP" url="cumulus-linux-43/Layer-3/Border-Gateway-Protocol-BGP/#auto-bgp" >}} and {{<kb_link text="BGP Unnumbered" url="cumulus-linux-43/Layer-3/Border-Gateway-Protocol-BGP/#bgp-unnumbered" >}} configurations are used.
+All underlay IP fabric BGP peerings in this guide are based on eBGP. Cumulus Linux [Auto BGP]({{<ref "/cumulus-linux-43/Layer-3/Border-Gateway-Protocol-BGP/#auto-bgp" >}}) and [BGP Unnumbered]({{<ref "/cumulus-linux-43/Layer-3/Border-Gateway-Protocol-BGP/#bgp-unnumbered" >}}) configurations are used.
 
 {{<notice note>}}
 
 Auto BGP configuration is only available using NCLU. If you want to use `vtysh` configuration, a BGP ASN must be configured.  
-For additional details refer to the {{<kb_link text="Configuring FRRouting" url="cumulus-linux-43/Layer-3/FRRouting/Configure-FRRouting/" >}} documentation.
+For additional details refer to the [Configuring FRRouting]({{<ref "/cumulus-linux-43/Layer-3/FRRouting/Configure-FRRouting" >}}) documentation.
 
 {{</notice >}}
 
@@ -775,7 +775,7 @@ spine02# exit
 ESXi hypervisors build layer 2 overlay tunnels to send Geneve encapsulated traffic over the layer 3 underlay. The underlying IP fabric must be aware of each TEP device in the network. This is done by advertising the local Overlay TEP VLAN (TEP subnet) we created earlier into BGP.
 
 Use the `redistribute connected` command to inject directly connected routes into BGP.  
-This command can be used also with filtering to prevent unwanted routes from being advertised into BGP. For more information see the {{<kb_link text="Route Filtering and Redistribution" url="cumulus-linux-43/Layer-3/Routing/Route-Filtering-and-Redistribution/" >}} documentation.
+This command can be used also with filtering to prevent unwanted routes from being advertised into BGP. For more information see the [Route Filtering and Redistribution]({{<ref "/cumulus-linux-43/Layer-3/Routing/Route-Filtering-and-Redistribution" >}}) documentation.
 
 {{< tabs "101rr0 ">}}
 {{< tab "NCLU Commands ">}}
@@ -1277,16 +1277,16 @@ UP     vlan200-v0     N/A  9216   Interface/L3                                IP
 
 ## BGP Configuration
 
-All underlay IP fabric BGP peerings in this guide are based on eBGP. Cumulus Linux {{<kb_link text="Auto BGP" url="cumulus-linux-43/Layer-3/Border-Gateway-Protocol-BGP/#auto-bgp" >}} and {{<kb_link text="BGP Unnumbered" url="cumulus-linux-43/Layer-3/Border-Gateway-Protocol-BGP/#bgp-unnumbered" >}} configurations are used.
+All underlay IP fabric BGP peerings in this guide are based on eBGP. Cumulus Linux [Auto BGP]({{<ref "/cumulus-linux-43/Layer-3/Border-Gateway-Protocol-BGP/#auto-bgp" >}}) and [BGP Unnumbered]({{<ref "/cumulus-linux-43/Layer-3/Border-Gateway-Protocol-BGP/#bgp-unnumbered" >}}) configurations are used.
 
 The subinterfaces on `leaf03` and `leaf04` must be configured with unique IPv4 addresses. NSX Edge nodes to not support BGP unnumbered.
 
-{{<notice note>}}
+{{%notice note%}}
 
 Auto BGP configuration is only available using NCLU. If you want to use `vtysh` configuration, a BGP ASN must be configured.  
-For additional details refer to the {{<kb_link text="Configuring FRRouting" url="cumulus-linux-43/Layer-3/FRRouting/Configure-FRRouting/" >}} documentation.
+For additional details refer to the [Configuring FRRouting]({{<ref "/cumulus-linux-43/Layer-3/FRRouting/Configure-FRRouting" >}}) documentation.
 
-{{</notice >}}
+{{%/notice %}}
 ### BGP Peerings Establishment
 
 The only change from the previous configurations is to add numbered BGP peerings from the leaf notes to the Edge Node server.
@@ -1437,18 +1437,17 @@ As an example traffic flow, VM1 at `172.16.0.1` on ESXi01 sends traffic to the b
 
 ## EVPN Underlay Fabric
 
-The previous examples discussed deploying NSX on a pure IP fabric. Modern datacenters are often designed using {{<kb_link text="EVPN" url="cumulus-linux-43/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN/" >}} to support multi-tenancy and layer 2 extension without VMware NSX. When NSX is deployed over an EVPN fabric it works in an identical fashion as when it is deployed in a pure IP fabric. NSX operates independently from the EVPN
+The previous examples discussed deploying NSX on a pure IP fabric. Modern datacenters are often designed using [EVPN]({{<ref "/cumulus-linux-43/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN" >}}) to support multi-tenancy and layer 2 extension without VMware NSX. When NSX is deployed over an EVPN fabric it works in an identical fashion as when it is deployed in a pure IP fabric. NSX operates independently from the EVPN
 
 When using an EVPN underlay fabric, the NSX generated Geneve packets are encapsulated into VXLAN packets on the leaf switches and transmitted over the network. When using an EVPN deployment, the simplies deployment option is to configure all TEP addresses in the same subnet and use VXLAN layer 2 extension to provide TEP to TEP connectivity.
 
-{{<notice note>}}
+{{%notice note%}}
 
-Unique subnets can be used across TEP devices in an EVPN network, however, VXLAN routing must be configured in the underlay network. This deployment model is beyond the scope of this guide. For more information reference the EVPN {{<kb_link text="Inter-subnet Routing" url="cumulus-linux-43/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN/Inter-subnet-Routing/" >}} documentation.
+Unique subnets can be used across TEP devices in an EVPN network, however, VXLAN routing must be configured in the underlay network. This deployment model is beyond the scope of this guide. For more information reference the EVPN [Inter-subnet Routing]({{<ref "/cumulus-linux-43/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN/Inter-subnet-Routing" >}}) documentation.
 
+{{%/notice %}}
 
-{{</notice >}}
-
-Switches configuration below based on layer 2 bridging with {{<kb_link text="VXLAN Active-active Mode" url="cumulus-linux-43/Network-Virtualization/VXLAN-Active-Active-Mode/" >}} over BGP-EVPN underlay.
+Switches configuration below based on layer 2 bridging with [VXLAN Active-active Mode]({{<ref "/cumulus-linux-43/Network-Virtualization/VXLAN-Active-Active-Mode" >}}) over BGP-EVPN underlay.
 
 ### TEP VLAN Configuration
 

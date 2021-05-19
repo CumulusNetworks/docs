@@ -6,7 +6,7 @@ pageID: 8362542
 ---
 This quick start guide provides an end-to-end setup process for installing and running Cumulus Linux, as well as a collection of example commands for getting started after installation is complete.
 
-{{<notice info>}}
+{{%notice info%}}
 
 Intermediate-level Linux knowledge is assumed for this guide. You should be familiar with basic text editing, Unix file permissions, and process monitoring. A variety of text editors are pre-installed, including `vi` and `nano`.
 
@@ -21,7 +21,7 @@ equivalent Cisco Nexus 3000 NX-OS commands and settings. You can also
 {{<exlink url="https://academy.mellanox.com/en/training-by-topic/?training_by_topic=58" text="watch a series of short videos">}} introducing you to
 Linux and Cumulus Linux-specific concepts.
 
-{{</notice>}}
+{{%/notice%}}
 
 ## Install Cumulus Linux
 

@@ -1,7 +1,7 @@
 ---
 title: Static VXLAN Tunnels
 author: NVIDIA
-weight: 620
+weight: 610
 toc: 3
 ---
 In VXLAN-based networks, there are a range of complexities and challenges in determining the destination *virtual tunnel endpoints* (VTEPs) for any given VXLAN. At scale, various solutions, including controller-based options, such as VMware NSX and new standards like {{<link url="Ethernet-Virtual-Private-Network-EVPN" text="EVPN">}} try to address these complexities, however, they also have their own complexities.
@@ -240,7 +240,7 @@ cumulus@leaf04:~$ cl config apply
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Editing the `/etc/network/interfaces` file as follows:
+Edit the `/etc/network/interfaces` file as follows:
 
 {{< tabs "TabID217 ">}}
 {{< tab "leaf01 ">}}

@@ -500,12 +500,6 @@ Edit the `/etc/network/interfaces` file to **remove** the line `ipv6-addrgen off
 {{< /tab >}}
 {{< /tabs >}}
 
-## Configure ARP Timers
-
-Cumulus Linux does not often interact directly with end systems as much as end systems interact with each another. After a successful {{<exlink url="http://linux-ip.net/html/ether-arp.html" text="address resolution protocol">}} (ARP) places a neighbor into a reachable state and Cumulus Linux might not interact with the client again for a long enough period of time for the neighbor to move into a stale state. To keep neighbors in the reachable state, Cumulus Linux includes a background process (`/usr/bin/neighmgrd`). The background process tracks neighbors that move into a stale, delay, or probe state and attempts to refresh their state before they are removed from the Linux kernel and from hardware forwarding.
-
-The ARP refresh timer defaults to 1080 seconds (18 minutes). To change this setting, see {{<link url="Address-Resolution-Protocol-ARP">}}.
-
 ## Example Configurations
 
 The following sections provide example VLAN-aware bridge configurations.
@@ -639,7 +633,7 @@ iface peerlink.4094
 ...
 ```
 
-### VXLANs with VLAN-aware Bridges
+<!--### VXLANs with VLAN-aware Bridges
 
 Cumulus Linux supports using VXLANs with VLAN-aware bridge configurations to provide improved scalability, as multiple VXLANs can be added to a single VLAN-aware bridge. A one to one association is used between the VXLAN VNI and the VLAN, with the bridge access VLAN definition on the VXLAN and the VLAN membership definition on the local bridge member interfaces.
 
@@ -666,10 +660,10 @@ iface vni10
     vxlan-remoteip 10.10.10.34
 ...
 ```
+-->
+### Static MAC Address Entries
 
-### Configure a Static MAC Address Entry
-
-You can add a static MAC address entry to the layer 2 table for an interface within the VLAN-aware bridge by running a command similar to the following:
+The following configuration adds a static MAC address entry to the layer 2 table for an interface within the VLAN-aware bridge by running a command similar to the following:
 
 ```
 cumulus@switch:~$ sudo bridge fdb add 12:34:56:12:34:56 dev swp1 vlan 150 master static

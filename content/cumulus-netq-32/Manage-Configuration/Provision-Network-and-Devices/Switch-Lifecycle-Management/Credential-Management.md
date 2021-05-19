@@ -30,11 +30,11 @@ To specify access credentials:
 
 Be sure to use credentials for a user account that has permission to configure switches.
 
-{{<notice tip>}}
+{{%notice tip%}}
 
-The default credentials for Cumulus Linux have changed from *cumulus/CumulusLinux!* to *cumulus/cumulus* for releases 4.2 and later. For details, read {{kb_link url="cumulus-linux-43/System-Configuration/Authentication-Authorization-and-Accounting/User-Accounts/" text="Cumulus Linux User Accounts">}}.
+The default credentials for Cumulus Linux have changed from *cumulus/CumulusLinux!* to *cumulus/cumulus* for releases 4.2 and later. For details, read [Cumulus Linux User Accounts]({{< ref "/cumulus-linux-43/System-Configuration/Authentication,-Authorization-and-Accounting/User-Accounts" >}}).
 
-{{</notice>}}
+{{%/notice%}}
 
 1. Enter a username.
 
@@ -95,7 +95,7 @@ cumulus@switch:~$ netq lcm add credentials username cumulus password cumulus
 
 {{<notice tip>}}
 
-The default credentials for Cumulus Linux have changed from *cumulus/CumulusLinux!* to *cumulus/cumulus* for releases 4.2 and later. For details, read {{kb_link url="cumulus-linux-43/System-Configuration/Authentication-Authorization-and-Accounting/User-Accounts/" text="Cumulus Linux User Accounts">}}.
+The default credentials for Cumulus Linux have changed from *cumulus/CumulusLinux!* to *cumulus/cumulus* for releases 4.2 and later. For details, read [Cumulus Linux User Accounts]({{< ref "/cumulus-linux-43/System-Configuration/Authentication,-Authorization-and-Accounting/User-Accounts" >}}).
 
 {{</notice>}}
 

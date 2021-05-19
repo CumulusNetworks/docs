@@ -11,7 +11,7 @@ The procedure varies with the switch manufacturer, so follow the appropriate ste
 
 ## Accessing the BIOS on a Dell S6000 Switch
 
-You might need to access the BIOS on a Dell S6000 switch because you want to access the BIOS over the {{<kb_link url="cumulus-linux-43/Monitoring-and-Troubleshooting/#configure-the-serial-console-on-x86-switches" text="serial console">}}, and you'll need to adjust the baud rate of the console in the BIOS, since it differs from the Cumulus Linux default baud rate of 115200.
+You might need to access the BIOS on a Dell S6000 switch because you want to access the BIOS over the [serial console]({{<ref "/cumulus-linux-43/Monitoring-and-Troubleshooting/#configure-the-serial-console-on-x86-switches" >}}), and you'll need to adjust the baud rate of the console in the BIOS, since it differs from the Cumulus Linux default baud rate of 115200.
 
 To access the BIOS on a Dell S6000 switch, complete the following steps:
 

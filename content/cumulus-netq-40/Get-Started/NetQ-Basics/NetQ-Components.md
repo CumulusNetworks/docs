@@ -5,7 +5,7 @@ weight: 60
 toc: 4
 ---
 
-NVIDIA NetQ contains the following applications and key components:
+{{<product>}} contains the following applications and key components:
 
 - Telemetry data collection and aggregation
   - NetQ switch agents

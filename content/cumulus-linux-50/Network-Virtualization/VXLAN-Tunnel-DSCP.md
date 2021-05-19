@@ -1,7 +1,7 @@
 ---
 title: VXLAN Tunnel DSCP Operations
 author: NVIDIA
-weight: 640
+weight: 625
 toc: 3
 ---
 Cumulus Linux provides configuration options to control DSCP operations during VXLAN encapsulation and decapsulation, specifically for solutions that require end-to-end quality of service, such as RDMA over Converged Ethernet.

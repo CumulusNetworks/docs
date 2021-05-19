@@ -10,8 +10,8 @@ Cumulus Networks recommends that you deploy, provision, configure, and upgrade s
 
 ## Before You Upgrade Cumulus Linux
 
-{{<notice tip>}}
+{{%notice tip%}}
 
 Be sure to read the knowledge base article [Upgrades: Network Device and Linux Host Worldview Comparison]({{<ref "/knowledge-base/Installing-and-Upgrading/Upgrading/Network-Device-and-Linux-Host-Worldview-Comparison" >}}), which provides a detailed comparison between the network device and Linux host worldview of upgrade and installation.
 
-{{</notice>}}
+{{%/notice%}}

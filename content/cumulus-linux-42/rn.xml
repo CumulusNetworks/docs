@@ -55,6 +55,14 @@
 <td></td>
 </tr>
 <tr>
+<td>2656530</td>
+<td>CVE-2020-18032: A buffer overflow was discovered in Graphviz, which could potentially result in the execution of arbitrary code when processing a malformed file.
+Vulnerable: 2.40.1-6
+Fixed: 2.40.1-6+deb10u1</td>
+<td>4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
 <td>2654715</td>
 <td>The {{cl-acltool}} takes a significant amount of time to run, which can slow down automation scripts.</td>
 <td>4.2.0-4.3.0</td>
@@ -1492,6 +1500,14 @@ To work around this issue, change the value of {{arp_ignore}} to 2. See [Address
 <td></td>
 </tr>
 <tr>
+<td>2656530</td>
+<td>CVE-2020-18032: A buffer overflow was discovered in Graphviz, which could potentially result in the execution of arbitrary code when processing a malformed file.
+Vulnerable: 2.40.1-6
+Fixed: 2.40.1-6+deb10u1</td>
+<td>4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
 <td>2654715</td>
 <td>The {{cl-acltool}} takes a significant amount of time to run, which can slow down automation scripts.</td>
 <td>4.2.0-4.3.0</td>
@@ -2452,7 +2468,7 @@ To work around this issue, use the {{ethtool -m &lt;interface&gt;}} command.</td
 <tr>
 <td>2552744</td>
 <td>Several vulnerabilities have been discovered in the Linux kernel that may lead to a privilege escalation, denial of service or information leaks.
-CVE-2020-14351 CVE-2020-29660 CVE-2020-29661 CVE-2020-25704 CVE-2020-28974 CVE-2020-25705 CVE-2020-28915 CVE-2020-25211 CVE-2019-19338 CVE-2020-0305 CVE-2019-18885 CVE-2019-19072 CVE-2020-12652 CVE-2020-24394 CVE-2020-25641 CVE-2019-3874 CVE-2019-5489 CVE-2020-27825 CVE-2020-29369 CVE-2020-29372 CVE-2020-29534
+CVE-2020-14351 CVE-2020-29660 CVE-2020-29661 CVE-2020-25704 CVE-2020-28974 CVE-2020-25705 CVE-2020-28915 CVE-2020-25211 CVE-2019-19338 CVE-2020-0305 CVE-2019-18885 CVE-2019-19072 CVE-2020-12652 CVE-2020-24394 CVE-2020-25641 CVE-2019-3874 CVE-2019-5489. (CVE-2020-27825 CVE-2020-29369 CVE-2020-29372 CVE-2020-29534 are not applicable to Cumulus Linux)
 For the detailed security status of linux,  refer to its security tracker page at: https://security-tracker.debian.org/tracker/linux</td>
 <td>4.2.0-4.2.1</td>
 <td>4.3.0</td>
@@ -4016,6 +4032,14 @@ asic-monitor[7389]: File "/usr/lib/python2.7/dist-packages/cumulus/asic_monitor.
 <td></td>
 </tr>
 <tr>
+<td>2656530</td>
+<td>CVE-2020-18032: A buffer overflow was discovered in Graphviz, which could potentially result in the execution of arbitrary code when processing a malformed file.
+Vulnerable: 2.40.1-6
+Fixed: 2.40.1-6+deb10u1</td>
+<td>4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
 <td>2654715</td>
 <td>The {{cl-acltool}} takes a significant amount of time to run, which can slow down automation scripts.</td>
 <td>4.2.0-4.3.0</td>
@@ -4772,7 +4796,7 @@ Fixed: 9.27~dfsg-2+deb10u4</td>
 <tr>
 <td>2552744</td>
 <td>Several vulnerabilities have been discovered in the Linux kernel that may lead to a privilege escalation, denial of service or information leaks.
-CVE-2020-14351 CVE-2020-29660 CVE-2020-29661 CVE-2020-25704 CVE-2020-28974 CVE-2020-25705 CVE-2020-28915 CVE-2020-25211 CVE-2019-19338 CVE-2020-0305 CVE-2019-18885 CVE-2019-19072 CVE-2020-12652 CVE-2020-24394 CVE-2020-25641 CVE-2019-3874 CVE-2019-5489 CVE-2020-27825 CVE-2020-29369 CVE-2020-29372 CVE-2020-29534
+CVE-2020-14351 CVE-2020-29660 CVE-2020-29661 CVE-2020-25704 CVE-2020-28974 CVE-2020-25705 CVE-2020-28915 CVE-2020-25211 CVE-2019-19338 CVE-2020-0305 CVE-2019-18885 CVE-2019-19072 CVE-2020-12652 CVE-2020-24394 CVE-2020-25641 CVE-2019-3874 CVE-2019-5489. (CVE-2020-27825 CVE-2020-29369 CVE-2020-29372 CVE-2020-29534 are not applicable to Cumulus Linux)
 For the detailed security status of linux,  refer to its security tracker page at: https://security-tracker.debian.org/tracker/linux</td>
 <td>4.2.0-4.2.1</td>
 <td>4.3.0</td>

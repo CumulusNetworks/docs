@@ -1,7 +1,7 @@
 ---
 title: VXLAN Active-active Mode
 author: NVIDIA
-weight: 600
+weight: 615
 toc: 3
 ---
 *VXLAN active-active mode* enables a pair of {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="MLAG">}} switches to act as a single VTEP, providing active-active VXLAN termination for bare metal as well as virtualized workloads.
@@ -665,4 +665,4 @@ iface swp50
   post-up ip link set $IFACE promisc on
 ```
 
-For more information on using Cumulus VX and Vagrant, refer to the {{<kb_link url="cumulus-vx" text="Cumulus VX documentation">}}.
+For more information on using Cumulus VX and Vagrant, refer to the [Cumulus VX documentation]({{<ref "/cumulus-vx" >}}).

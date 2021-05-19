@@ -33,12 +33,12 @@ which allows for configurations that are similar to incumbent network devices.
 
 {{%/notice%}}
 
-{{<notice info>}}
+{{%notice info%}}
 
 For a comparison of traditional and VLAN-aware modes, read 
-{{<kb_link url="knowledge-base/Configuration-and-Usage/Network-Interfaces/Compare-Traditional-Bridge-Mode-to-VLAN-aware-Bridge-Mode/" text="this knowledge base article" >}}.
+[this knowledge base article]({{<ref "/knowledge-base/Configuration-and-Usage/Network-Interfaces/Compare-Traditional-Bridge-Mode-to-VLAN-aware-Bridge-Mode" >}}).
 
-{{</notice>}}
+{{%/notice%}}
 
 {{%notice note%}}
 
@@ -268,4 +268,4 @@ remain up:
   - [Linux Foundation - Bridges](http://www.linuxfoundation.org/collaborate/workgroups/networking/bridge)
   - [Linux Foundation - VLANs](http://www.linuxfoundation.org/collaborate/workgroups/networking/vlan)
   - [Linux Journal - Linux as an Ethernet Bridge](http://www.linuxjournal.com/article/8172)
-  - {{<kb_link url="knowledge-base/Configuration-and-Usage/Network-Interfaces/Compare-Traditional-Bridge-Mode-to-VLAN-aware-Bridge-Mode/" text="Comparing Traditional Bridge Mode to VLAN-aware Bridge Mode" >}}
+  - [Comparing Traditional Bridge Mode to VLAN-aware Bridge Mode]({{<ref "/knowledge-base/Configuration-and-Usage/Network-Interfaces/Compare-Traditional-Bridge-Mode-to-VLAN-aware-Bridge-Mode" >}})

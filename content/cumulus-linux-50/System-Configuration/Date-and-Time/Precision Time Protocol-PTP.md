@@ -104,7 +104,7 @@ You can specify multiple PTP clock domains. Each domain is completely isolated f
 The following examle commands configure domain 3:
 
 ```
-cumulus@switch:~$ cl set service ptp 1 domain 3.
+cumulus@switch:~$ cl set service ptp 1 domain 3
 cumulus@switch:~$ cl config apply
 ```
 
@@ -133,9 +133,9 @@ cumulus@switch:~$ cl set interface swp13s1 service ptp transport ipv6
 cumulus@switch:~$ cl config apply
 ```
 
-### Message Mode
+<!--### Message Mode
 
-Cumulus Linux supports the following PTP message modes:
+Cumulus Linux currently supports the following PTP message mode:
 - *Multicast*, where the ports subscribe to two multicast addresses, one for event messages that are timestamped and the other for general messages that are not timestamped. The Sync message sent by the master is a multicast message and is received by all slave ports. This is required because the slaves need the master's time. The slave ports in turn generate a Delay Request to the master. This is a multicast message and is received not only by the master for which the message is intended, but also by other slave ports. Similarly, the master's Delay Response is also received by all slave ports in addition to the intended slave port. The slave ports receiving the unintended Delay Requests and Responses need to drop the packets. This can affect network bandwidth, especially if there are hundreds of slave ports.
 - *Mixed*, where Sync and Announce messages are sent as multicast messages but Delay Request and Response messages are sent as unicast. This avoids the issue seen in multicast message mode where every slave port sees Delay Requests and Responses from every other slave port.
 
@@ -144,7 +144,7 @@ Multicast mode is the default setting. To set the message mode to *mixed*:
 ```
 cumulus@switch:~$ cl set service ptp 1 message-mode mixed
 cumulus@switch:~$ cl config apply
-```
+```-->
 
 ### One-step and Two-step Mode
 
@@ -175,7 +175,7 @@ cumulus@switch:~$ cl config apply
 You can configure the DiffServ code point (DSCP) value for all PTP IPv4 packets originated locally. You can set a value between 0 and 63.
 
 ```
-cumulus@switch:~$ cl set service ptp 1 ipv4-dscp 22
+cumulus@switch:~$ cl set service ptp 1 ip-dscp 22
 cumulus@switch:~$ cl config apply
 ```
 
@@ -200,7 +200,7 @@ cumulus@switch:~$ cl config apply
 You can also configure an alternate priority 1 value for the Grandmaster:
 
 ```
-cumulus@switch:~$ cl set service ptp 1 acceptable-master 000200.fffe.000001 alt-priority 260
+cumulus@switch:~$ cl set service ptp 1 acceptable-master 000200.fffe.000001 alt-priority 2
 ```
 
 The following example commands enable the PTP acceptable master table option for swp13s1:
@@ -351,7 +351,6 @@ This is the configuration for the above example. The example assumes that you ha
 cumulus@switch:~$ cl set service ptp 1 enable on
 cumulus@switch:~$ cl set service ptp 1 priority2 254
 cumulus@switch:~$ cl set service ptp 1 priority1 254
-cumulus@switch:~$ cl set service ptp 1 message-mode mixed
 cumulus@switch:~$ cl set service ptp 1 profile-type aes67
 cumulus@switch:~$ cl set service ptp 1 domain 3
 cumulus@switch:~$ cl set interface swp13s0 service ptp enable on
@@ -359,6 +358,47 @@ cumulus@switch:~$ cl set interface swp13s1 service ptp enable on
 cumulus@switch:~$ cl set interface swp13s2 service ptp enable on
 cumulus@switch:~$ cl set interface swp13s3 service ptp enable on
 cumulus@switch:~$ cl config apply
+```
+
+{{< /tab >}}
+{{< tab "/etc/cue.d/startup.yaml file ">}}
+
+```
+- set:
+    interface:
+      lo:
+        ip:
+          address:
+            10.10.10.1/32: {}
+        type: loopback
+      swp13s0:
+        type: swp
+        service:
+          ptp:
+            enable: on
+      swp13s1:
+        type: swp
+        service:
+          ptp:
+            enable: on
+      swp13s2:
+        type: swp
+        service:
+          ptp:
+            enable: on
+      swp13s3:
+        type: swp
+        service:
+          ptp:
+            enable: on
+    service:
+      ptp:
+        '1':
+          enable: on
+          priority1: 254
+          priority2: 254
+          profile-type: aes67
+          domain: 3
 ```
 
 {{< /tab >}}

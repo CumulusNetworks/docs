@@ -5,7 +5,7 @@ weight: 374
 toc: 4
 ---
 
-This article introduces you to monitoring and walks you through configuration of several sFlow visualization tools. You need a Linux-based host to install the collectors below. You can read more about setting up sFlow on your Cumulus Linux switch in the {{<kb_link url="cumulus-linux-43/Monitoring-and-Troubleshooting/Network-Troubleshooting/Monitoring-System-Statistics-and-Network-Traffic-with-sFlow/" text="user guide">}}.
+This article introduces you to monitoring and walks you through configuration of several sFlow visualization tools. You need a Linux-based host to install the collectors below. You can read more about setting up sFlow on your Cumulus Linux switch in the [user guide]({{<ref "/cumulus-linux-43/Monitoring-and-Troubleshooting/Network-Troubleshooting/Monitoring-System-Statistics-and-Network-Traffic-with-sFlow" >}}).
 
 ## Understanding Monitoring
 
@@ -16,7 +16,7 @@ There are two important pieces to successfully setting up sFlow:
 - Setting up the hosts
 - Setting up the collectors
 
-We strongly recommend using a separate server for your sFlow collector, as switches running Cumulus Linux are specialized and do not have the storage and CPU to satisfactorily perform as a collector. Setting up your Cumulus Linux switch to be a collector is described in the {{<kb_link url="cumulus-linux-43/Monitoring-and-Troubleshooting/Network-Troubleshooting/Monitoring-System-Statistics-and-Network-Traffic-with-sFlow/" text="user guide">}}. Configuring your server to be an sFlow collector is described in the documentation from your server vendor, and some popular setups are described below.
+We strongly recommend using a separate server for your sFlow collector, as switches running Cumulus Linux are specialized and do not have the storage and CPU to satisfactorily perform as a collector. Setting up your Cumulus Linux switch to be a collector is described in the [user guide]({{<ref "/cumulus-linux-43/Monitoring-and-Troubleshooting/Network-Troubleshooting/Monitoring-System-Statistics-and-Network-Traffic-with-sFlow" >}}). Configuring your server to be an sFlow collector is described in the documentation from your server vendor, and some popular setups are described below.
 
 Once your `hsflow` daemon is sending monitoring traffic to your collections server, you can find out some interesting data such as top talkers, interface status, and top flows.
 

@@ -3,16 +3,19 @@
     {{  $.Scratch.SetInMap "version_page_map" (string .Params.version) .Page.RelPermalink }}
 {{ end }}
 
-<!-- The RN page names include the release version so they never match -->
-<!-- This will look for page type "rn" and map it to the version, which only matches the RN page -->
-{{ range where (where .Site.Pages "Params.type" "rn") ".Page.Params.product" .Page.Params.product  }}
-    {{  $.Scratch.SetInMap "version_page_map" (string .Params.version) .Page.RelPermalink }}
-{{ end }}
-
 <!-- Now check to see if this page exists for a version and update the map -->
 {{ range where (where .Site.Pages "Params.title" .Page.Title) ".Page.Params.product" .Page.Params.product  }}
     {{  $.Scratch.SetInMap "version_page_map" (string .Params.version) .Page.RelPermalink }}
 {{ end }}
+
+{{if in .Page.Title "Release Notes" }}
+    <!-- The RN page names include the release version so they never match -->
+    <!-- This will look for page type "rn" and map it to the version, which only matches the RN page -->
+    {{ range where (where .Site.Pages "Params.type" "rn") ".Page.Params.product" .Page.Params.product  }}
+        {{  $.Scratch.SetInMap "version_page_map" (string .Params.version) .Page.RelPermalink }}
+    {{ end }}
+  {{ end }}
+
 
 <div id="product-nav" class="flex">
     <div class="search-container">

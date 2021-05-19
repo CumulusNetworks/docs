@@ -245,7 +245,7 @@ The following table lists the most important services in Cumulus Linux.
 |ptmd|{{<link url="Prescriptive-Topology-Manager-PTM" text="Prescriptive Topology Manager">}}. Verifies cabling based on {{<link url="Link-Layer-Discovery-Protocol" text="LLDP">}} output. Also sets up {{<link url="Bidirectional-Forwarding-Detection-BFD" text="BFD">}} sessions.|YES if using BFD|
 |cued| Handles the CUE object model.|NO|
 |rsyslog|Handles logging of syslog messages.|NO|
-|ntp|{{<link url="Setting-Date-and-Time" text="Network time protocol">}}.|NO|
+|ntp|{{<link url="Network-Time-Protocol-NTP" text="Network time protocol">}}.|NO|
 |ledmgrd|{{<link url="Network-Switch-Port-LED-and-Status-LED-Guidelines" text="LED manager">}}. Reads the state of system LEDs.|NO|
 |sysmonitor|Watches and logs critical system load (free memory, disk, CPU).|NO|
 |lldpd|Handles Tx/Rx of {{<link url="Link-Layer-Discovery-Protocol" text="LLDP">}} information.|NO|

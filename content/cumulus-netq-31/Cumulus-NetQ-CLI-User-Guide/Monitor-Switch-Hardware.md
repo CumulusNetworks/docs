@@ -12,7 +12,7 @@ disk, memory, fan and power supply information. You can also monitor temperature
 - How many transmit and receive packets have been dropped?
 - How healthy are the fans and power supply?
 
-NetQ uses {{<kb_link url="cumulus-linux-43/Layer-2/Link-Layer-Discovery-Protocol/" text="LLDP">}} (Link Layer Discovery Protocol) to collect port information. NetQ can also identify peer ports connected to DACs (Direct Attached Cables) and AOCs (Active Optical Cables) without using LLDP, even if the link is not UP.
+NetQ uses [LLDP]({{<ref "/cumulus-linux-43/Layer-2/Link-Layer-Discovery-Protocol" >}}) (Link Layer Discovery Protocol) to collect port information. NetQ can also identify peer ports connected to DACs (Direct Attached Cables) and AOCs (Active Optical Cables) without using LLDP, even if the link is not UP.
 
 The NetQ CLI provides a number of `netq show` commands to monitor switches. The syntax of these commands is:
 

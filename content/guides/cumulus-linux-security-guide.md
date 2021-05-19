@@ -91,7 +91,7 @@ cumulus@switch:~$ net commit
 
 ### Customize Control Plane Policies
 
-Cumulus Linux comes out of the box with a default control plane security policy that is located in the `/etc/cumulus/acl/policy.d/` directory. You can see a full list of the default rules {{<kb_link url="cumulus-linux-43/System-Configuration/Netfilter-ACLs/Default-Cumulus-Linux-ACL-Configuration/" text="here" >}}.
+Cumulus Linux comes out of the box with a default control plane security policy that is located in the `/etc/cumulus/acl/policy.d/` directory. You can see a full list of the default rules [here]({{<ref "/cumulus-linux-43/System-Configuration/Netfilter-ACLs/Default-Cumulus-Linux-ACL-Configuration" >}}).
 
 Best practices dictate that:
 
@@ -115,7 +115,7 @@ cumulus@switch:~$ sudo cl-acltool -L all
 
 ### Disable Insecure SSL and TLS Protocol Versions in NGINX
 
-Cumulus Linux is packaged with NGINX, an open source web server that supports the Cumulus Linux {{<kb_link url="cumulus-linux-43/System-Configuration/HTTP-API/" text="RESTful HTTP API" >}} through HTTPS. By default, NGINX is enabled and listening on localhost (127.0.0.1 port 8080.
+Cumulus Linux is packaged with NGINX, an open source web server that supports the Cumulus Linux [RESTful HTTP API]({{<ref "/cumulus-linux-43/System-Configuration/HTTP-API" >}}) through HTTPS. By default, NGINX is enabled and listening on localhost (127.0.0.1 port 8080.
 
 For backward compatibility, NGINX natively supports the outdated and vulnerable SSLv3 and TLSv1 protocols. To secure against potential exploits using those protocols, you must disable them. Open the `/etc/nginx/nginx.conf` file in a text editor and edit the `ssl_protocols` line to allow only the TLSv1.1 and TLSv1.2 protocols:
 
@@ -151,7 +151,7 @@ cumulus@switch:~$ net add vrf mgmt
 cumulus@switch:~$ net commit
 ```
 
-For more information about working with a management VRF, such as {{<kb_link url="cumulus-linux-43/Layer-3/VRFs/Management-VRF/" text="running services" >}} in a specific VRF, refer to the [Management VRF documentation" >}}.
+For more information about working with a management VRF, such as [running services]({{<ref "/cumulus-linux-43/Layer-3/VRFs/Management-VRF" >}}) in a specific VRF, refer to the [Management VRF documentation" >}}).
 
 Be sure to enable all the network services inside each VRF, including:
 
@@ -406,7 +406,7 @@ cumulus@switch:~$ net add interface swp1 ospf authentication message-digest
 cumulus@switch:~$ net commit
 ```
 
-For more information, read the {{<kb_link url="cumulus-linux-43/Layer-3/OSPF/Open-Shortest-Path-First-v2-OSPFv2/#md5-authentication" text="OSPF chapter" >}} of the Cumulus Linux user guide.
+For more information, read the [OSPF chapter]({{<ref "/cumulus-linux-43/Layer-3/OSPF/Open-Shortest-Path-First-v2-OSPFv2#md5-authentication" >}}) of the Cumulus Linux user guide.
 
 To configure BGP authentication for an existing BGP neighbor, only a single password is required:
 
@@ -415,7 +415,7 @@ cumulus@switch:~$ net add bgp neighbor 1.1.1.1 password BGPPWD
 cumulus@switch:~$ net commit
 ```
 
-For more information, read the {{<kb_link url="cumulus-linux-43/Layer-3/Border-Gateway-Protocol-BGP/Optional-BGP-Configuration/#md5-enabled-bgp-neighbors" text="BGP chapter" >}} of the Cumulus Linux user guide.
+For more information, read the [BGP chapter]({{<ref "/cumulus-linux-43/Layer-3/Border-Gateway-Protocol-BGP/Optional-BGP-Configuration#md5-enabled-bgp-neighbors" >}}) of the Cumulus Linux user guide.
 
 #### Remove File Transfer Services
 
@@ -448,7 +448,7 @@ This section discusses items that have similar impacts to security as well as ma
 
 #### Configure 802.1X
 
-802.1X is a popular technology because it authenticates devices that physically attach to the switch. It can also assign these devices different levels of access to the network after they authenticate. There are many use cases for this technology and each configuration varies widely. For additional details, see the {{<kb_link url="cumulus-linux-43/Layer-1-and-Switch-Ports/802.1X-Interfaces/" text="802.1X Interfaces" >}} chapter in the Cumulus Linux user guide.
+802.1X is a popular technology because it authenticates devices that physically attach to the switch. It can also assign these devices different levels of access to the network after they authenticate. There are many use cases for this technology and each configuration varies widely. For additional details, see the [802.1X Interfaces]({{<ref "/cumulus-linux-43/Layer-1-and-Switch-Ports/802.1X-Interfaces.md" >}}) chapter in the Cumulus Linux user guide.
 
 The following example is a starting point to build on. This is a base 802.1X configuration:
 

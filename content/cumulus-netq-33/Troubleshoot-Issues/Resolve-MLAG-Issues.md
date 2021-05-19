@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 1070
 toc: 4
 ---
-This topic outlines a few scenarios that illustrate how you use NetQ to troubleshoot {{<kb_link url="cumulus-linux-43/Layer-2/Multi-Chassis-Link-Aggregation-MLAG/" text="MLAG">}} on Cumulus Linux switches. Each starts with a log message that indicates the current MLAG state.
+This topic outlines a few scenarios that illustrate how you use NetQ to troubleshoot [MLAG]({{<ref "/cumulus-linux-43/Layer-2/Multi-Chassis-Link-Aggregation-MLAG" >}}) on Cumulus Linux switches. Each starts with a log message that indicates the current MLAG state.
 
 NetQ can monitor many aspects of an MLAG configuration, including:
 

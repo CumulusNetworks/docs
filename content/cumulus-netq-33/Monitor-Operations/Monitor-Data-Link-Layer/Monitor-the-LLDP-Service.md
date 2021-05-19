@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 890
 toc: 4
 ---
-LLDP is used by network devices for advertising their identity, capabilities, and neighbors on a LAN. You can view this information for one or more devices. You can also view the information at an earlier point in time or view changes that have occurred to the information during a specified time period. For an overview and how to configure LLDP in your network, refer to {{<kb_link url="cumulus-linux-43/Layer-2/Link-Layer-Discovery-Protocol/" text="Link Layer Discovery Protocol">}}.
+LLDP is used by network devices for advertising their identity, capabilities, and neighbors on a LAN. You can view this information for one or more devices. You can also view the information at an earlier point in time or view changes that have occurred to the information during a specified time period. For an overview and how to configure LLDP in your network, refer to [Link Layer Discovery Protocol]({{<ref "/cumulus-linux-43/Layer-2/Link-Layer-Discovery-Protocol" >}}).
 
 NetQ enables operators to view the overall health of the LLDP service on a networkwide and a per session basis, giving greater insight into all aspects of the service. This is accomplished in the NetQ UI through two card workflows, one for the service and one for the session and in the NetQ CLI with the `netq show lldp` command.
 
@@ -836,7 +836,7 @@ leaf02            swp3                      server03          mac:44:38:39:00:00
 
 ## Monitor a Single LLDP Session
 
-With NetQ, you can monitor the number of nodes running the LLDP service, view neighbor state changes, and compare with events occurring at the same time, as well as monitor the running LLDP configuration and changes to the configuration file. For an overview and how to configure LLDP in your data center network, refer to {{<kb_link url="cumulus-linux-43/Layer-2/Link-Layer-Discovery-Protocol/" text="Link Layer Discovery Protocol">}}.
+With NetQ, you can monitor the number of nodes running the LLDP service, view neighbor state changes, and compare with events occurring at the same time, as well as monitor the running LLDP configuration and changes to the configuration file. For an overview and how to configure LLDP in your data center network, refer to [Link Layer Discovery Protocol]({{<ref "/cumulus-linux-43/Layer-2/Link-Layer-Discovery-Protocol" >}}).
 
 {{<notice note>}}
 

@@ -223,10 +223,7 @@ switch# exit
 cumulus@switch:~$
 ```
 
-{{< /tab >}}
-{{< /tabs >}}
-
-The commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+The vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
 ```
 ...
@@ -255,6 +252,9 @@ match interface eth0
 route-map REDISTRIBUTE-CONNECTED permit 100
 ...
 ```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ## SSH within a Management VRF Context
 

@@ -360,6 +360,7 @@ cumulus@leaf01:~$ cl config apply
 {{< tab "Linux Commands ">}}
 
 Edit the `/etc/network/interfaces` file and add the `clagd-priority` option, then run the `ifreload -a` command.
+
 ```
 cumulus@switch:~$ sudo nano /etc/network/interfaces
 ...

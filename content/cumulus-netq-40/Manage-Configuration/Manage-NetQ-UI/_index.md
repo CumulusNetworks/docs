@@ -320,11 +320,15 @@ In either case, the Channels view is opened.
 
 Determine the type of channel you want to add and follow the instructions for the selected type in {{<link title="Configure System Event Notifications">}}. Refer to {{<link title="Configure System Event Notifications/#remove-an-event-notification-channel" text="Remove a Channel">}} to remove a channel you no longer need.
 
-## Configure Multiple Premises
+## Manage Premises
+
+Managing premises involves renaming existing premises or creating multiple premises.
+
+### Configure Multiple Premises
 
 The NetQ Management dashboard provides the ability to configure a single NetQ UI and CLI for monitoring data from multiple premises. This eliminates the need to log in to each premises to view the data.
 
-As of NetQ 3.3.0 there are two ways to implement a multi-site on-premises deployment.
+There are two ways to implement a multi-site on-premises deployment.
 
 - Full NetQ deployment at each premises
     - NetQ appliance or VM running NetQ Platform software with a database
@@ -346,97 +350,95 @@ After the multiple premises are configured, you can view this list of premises i
 
 To configure secondary premises so that you can view their data using the primary site NetQ UI, follow the instructions for the relevant deployment type of the *secondary* premises.
 
-{{< tabs "TabID759" >}}
+{{<tabs "Multiple Premises">}}
 
-{{< tab "NetQ Platform" >}}
+{{<tab "NetQ Platform">}}
 
 In this deployment model, each NetQ deployment can be installed separately. The data is stored and can be viewed from the NetQ UI at each premises.
 
 To configure a these premises so that their data can be viewed from one premises:
 
-1. Open the NetQ UI installed on the NetQ Appliance or VM in any of the premises.
+1. On the workbench, under **Premises**, click {{<img src="/images/netq/Down.svg" width="14">}}.
 
-2. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18" alt="Main Menu">}} (Main menu).
+2. Click **Manage Premises**.
 
-3. Select *Management* from the **Admin** column.
-
-4. Locate the Premises card.
-
-    {{<figure src="/images/netq/premises-card-330.png" width="200">}}
-
-5. Click **Manage**.
-
-6. Click **External Premises**.
+3. Click **External Premises**.
 
     {{<figure src="/images/netq/premises-card-external-prems-tab-330.png" width="700">}}
 
-7. Click **Add External Premises**.
+4. Click **Add External Premises**.
 
     {{<figure src="/images/netq/premises-card-add-external-prems-330.png" width="350">}}
 
-8. Enter the IP address for the API gateway on the NetQ appliance or VM for one of the secondary premises.
+5. Enter the IP address for the API gateway on the NetQ appliance or VM for one of the secondary premises.
 
-9. Enter the access credentials for this host.
+6. Enter the access credentials for this host.
 
-10. Click **Next**.
+7. Click **Next**.
 
-11. Select the premises you want to connect.
+8. Select the premises you want to connect.
 
     {{<figure src="/images/netq/premises-card-select-external-prems-330.png" width="350">}}
 
-12. Click **Finish**.
+9. Click **Finish**.
 
-13. Add more secondary premises by clicking {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18">}} and repeating Steps 8-12.
+10. Add more secondary premises by clicking {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18">}} and repeating Steps 8-12.
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "NetQ Collector" >}}
+{{<tab "NetQ Collector">}}
 
 In this deployment model, the data is stored and can be viewed only from the NetQ UI at the primary premises.
 
 <div class="notices note"><p>The primary NetQ premises must be installed before the secondary premises can be added. For the secondary premises, create the premises here, then install them.</p></div>
 
-1. Open the NetQ UI installed on the NetQ Appliance or VM where the database resides (this is your primary premises).
+1. On the workbench, under **Premises**, click {{<img src="/images/netq/Down.svg" width="14">}}.
 
-2. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18" alt="Main Menu">}} (Main menu).
+2. Click **Manage Premises**. Your primary premises (*OPID0*) is shown by default.
 
-3. Select *Management* from the **Admin** column.
+3. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18">}} (Add Premises).
 
-4. Locate the Premises card.
+   {{<figure src="/images/netq/premises-create-prem-330.png" width="300">}}
 
-    {{<figure src="/images/netq/premises-card-330.png" width="200">}}
+4. Enter the name of one of the secondary premises you want to add.
 
-5. Click **Manage**. Your primary premises (*OPID0*) is shown by default.
+5. Click **Done**.
 
-6. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18">}} (Add Premises).
+   {{<figure src="/images/netq/premises-card-premises-tab-list-330.png" width="700">}}
 
-    {{<figure src="/images/netq/premises-create-prem-330.png" width="300">}}
+6. Select the premises you just created.
 
-7. Enter the name of one of the secondary premises you want to add.
+7. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/04-Login-Logout/login-key-1.svg" height="18" width="18">}} to generate a configuration key.
 
-8. Click **Done**.
+   {{<figure src="/images/netq/premises-card-premises-tab-generate-key-330.png" width="400">}}
 
-    {{<figure src="/images/netq/premises-card-premises-tab-list-330.png" width="700">}}
+8. Click **Copy** to save the key to a safe place, or click **e-mail** to send it to yourself or other administrator as appropriate.
 
-9. Select the premises you just created.
+9. Click **Done**.
 
-10. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/04-Login-Logout/login-key-1.svg" height="18" width="18">}} to generate a configuration key.
+10. Repeat steps 6-11 to add more secondary premises.
 
-    {{<figure src="/images/netq/premises-card-premises-tab-generate-key-330.png" width="400">}}
-
-11. Click **Copy** to save the key to a safe place, or click **e-mail** to send it to yourself or other administrator as appropriate.
-
-12. Click **Done**.
-
-13. Repeat steps 6-11 to add more secondary premises.
-
-14. Follow the steps in the {{<link title="Install NetQ Using the Admin UI" text="Admin UI" >}} to install and complete the configuration of these secondary premises, using these keys to activate and connect these premises to the primary NetQ premises.
+11. Follow the steps in the {{<link title="Install NetQ Using the Admin UI" text="Admin UI" >}} to install and complete the configuration of these secondary premises, using these keys to activate and connect these premises to the primary NetQ premises.
 
     {{<figure src="/images/netq/adminui-install-cloud-basic-330.png" width="700">}}
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}
+
+### Rename a Premises
+
+To rename an existing premises:
+
+1. On the workbench, under **Premises**, click {{<img src="/images/netq/Down.svg" width="14">}}, then click **Manage Premises**.
+
+1. To rename an external premises, click **External Premises**.
+
+1. On the right side of the screen, select a premises to rename, then click {{<img src="/images/old_doc_images/pencil-2.png" width="16">}}.
+
+1. Enter the new name for the premises, then click **Done**.
+
+   {{<figure src="/images/netq/premises-rename-4.0.0.png" width="400">}}
 
 ## System Server Information
 

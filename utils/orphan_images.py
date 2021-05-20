@@ -4,7 +4,6 @@ import os
 import pathlib
 import typing
 import glob
-from bs4 import BeautifulSoup
 import mmap
 
 def get_all_images():
@@ -19,8 +18,8 @@ def get_all_images():
 
     for file in raw_file_set:
         path_parts = file.split("/")
-        if "baseline" in path_parts[len(path_parts) - 1].lower():
-            print(file)
+        # if "baseline" in path_parts[len(path_parts) - 1].lower():
+        #     print(file)
         file_map[path_parts[len(path_parts) - 1].lower()] = file
 
     return file_map
@@ -31,23 +30,44 @@ def get_used_images():
     for path in glob.glob("/Volumes/RAMDisk/public/**/*.html", recursive=True):
         if "pdf/index.html" in path:
             continue
-        #with open(path, "r") as in_file:
+
         with open(path, mode="r") as in_file:
             with mmap.mmap(in_file.fileno(), length=0, access=mmap.ACCESS_READ) as mmap_obj:
-                soup = BeautifulSoup(mmap_obj.read(), 'html.parser')
 
-            for image in soup.find_all("img"):
-                src = image.get("src")
-                if not src:
-                    # <img width="xxx" /> is used in some places for table sizing
-                    continue
-                if "icons.cumulusnetworks.com" in src:
-                    continue
-                path = image.get("src").split("/")
-                if "baseline" in path[len(path) - 1].lower():
-                    print(path)
-                image_names.add(path[len(path) - 1].lower())
+                for line in iter(mmap_obj.readline, b""):
+                    file_types_bytes = [b".jpg", b".jpeg", b".png", b".svg", b".gif"]
+                    file_types_str = [".jpg", ".jpeg", ".png", ".svg", ".gif"]
 
+                    # My parsing is bad. Some of the filenames end in extra junk
+                    # It's easier to keep a list of known junk rather than improve the parser
+                    bad_stuff = [");", "&quot;", "')><", ");"]
+
+                    # Does the string contain any of our filetypes (in bytes)?
+                    if any(x in line.lower() for x in file_types_bytes):
+                        # Skip the icons. files
+                        if line.find(b"icons.cumulusnetworks") != -1:
+                            continue
+
+                        # decode the line and split the words
+                        for word in line.decode("utf-8").split():
+
+                            # Does the word contain our filetypes (as string)?
+                            if any(x in word.lower() for x in file_types_str):
+                                # Split the word based on file path
+                                split_word = word.split("/")
+
+                                # Look at each part of the file path
+                                for part in split_word:
+                                    # See if this part of the path has our filetype in it
+                                    if any(x in part for x in file_types_str):
+                                        # Remove quotes
+                                        temp_string = part.replace("\"", "")
+
+                                        # Remove known junk
+                                        for bad_string in bad_stuff:
+                                            temp_string = temp_string.replace(bad_string, "")
+
+                                        image_names.add(temp_string)
     return image_names
 
 def main():
@@ -55,20 +75,24 @@ def main():
     used_images = get_used_images()
     all_image_names = set(all_images.keys())
 
-    print(len(all_images))
+
     print(len(used_images))
+    print(len(all_images))
 
-    for image in used_images:
-        # Confirm that all used_images were found locally
-        if image not in all_images:
-            print("Couldn't find {}".format(image))
+    for k,v in all_images.items():
+        print("{} : {}".format(k, v))
+    # for image in used_images:
+    #     # print(image)
+    #     # Confirm that all used_images were found locally
+    #     if image not in all_images:
+    #         print("Couldn't find {}".format(image))
 
-        all_image_names.remove(image)
+    #     all_image_names.remove(image)
 
-    index = len("/Volumes/RAMDisk/")
-    for image in all_image_names:
-        print("Deleting {}".format(all_images[image]))
-        os.unlink(all_images[image][index:])
+    # index = len("/Volumes/RAMDisk/")
+    # for image in all_image_names:
+    #     print("Deleting {}".format(all_images[image]))
+    #     os.unlink(all_images[image][index:])
 
 
     # used_images = set()

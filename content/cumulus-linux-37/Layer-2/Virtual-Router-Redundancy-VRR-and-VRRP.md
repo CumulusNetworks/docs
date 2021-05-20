@@ -401,7 +401,7 @@ All virtual routers use 00:00:5E:00:01:XX for IPv4 gateways or 00:00:5E:00:02:XX
 
 The following example illustrates a basic VRRP configuration.
 
-{{% imgOld 1 %}}
+{{< img src="/images/cumulus-linux/vrr-active-active.png" width="600" >}}
 
 ### Configure VRRP
 

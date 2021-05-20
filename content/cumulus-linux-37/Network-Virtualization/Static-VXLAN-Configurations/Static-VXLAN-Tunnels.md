@@ -36,7 +36,7 @@ cumulus@switch:~ sudo systemctl stop vxrd.service
 
 This chapter uses the following topology. Each IP address corresponds to the loopback address of the switch.
 
-{{% imgOld 0 %}}
+{{% img src="/images/old_doc_images/static-vxlan-tunnels.png" %}}
 
 ## Configure Static VXLAN Tunnels
 

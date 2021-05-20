@@ -45,13 +45,13 @@ The following examples show OVSDB server high availability mode.
 The OVSDB server on the MLAG secondary switch is the hot standby. Only
 the active OVSDB server communicates with the NSX controller.
 
-{{% imgOld 0 %}}
+{{< img src = "/images/cumulus-linux/ovsdb-example.png" >}}
 
 **Example 2:** If failover occurs, the OVSDB server on the MLAG
 secondary switch becomes the active OVSDB server and communicates with
 the NSX controller.
 
-{{% imgOld 1 %}}
+{{< img src = "/images/cumulus-linux/ovsdb-example2.png" >}}
 
 When the OVSDB server on the MLAG primary switch starts responding
 again, it resynchronizes its database, becomes the active OVSDB server,

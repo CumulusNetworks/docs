@@ -20,7 +20,7 @@ Segment routing is MPLS for the data plane **only**. In this EA release, Cumulus
 
 - MPLS label edge router (LER) functionality for IPv4 and IPv6 routing with {{<link url="Equal-Cost-Multipath-Load-Sharing-Hardware-ECMP" text="ECMP">}}. An ingress LER first adds an MPLS label to an IP packet. An egress LER removes the outermost MPLS label (also called *popping* the label).
 - MPLS label switch router (LSR) functionality with ECMP. The LSR receives a packet with a label and forwards it based on that label.
-- {{<link url="FRRouting" text="FRRouting">}} support for MPLS transit label switched paths (LSPs) and labeled routes (LER), both static routes and routes using BGP labeled-unicast (LU).
+- {{<link title="FRRouting Overview" text="FRRouting">}} support for MPLS transit label switched paths (LSPs) and labeled routes (LER), both static routes and routes using BGP labeled-unicast (LU).
 - FRR support for BGP/MPLS segment routing based on {{<exlink url="https://datatracker.ietf.org/doc/draft-ietf-idr-bgp-prefix-sid/" text="draft-ietf-idr-bgp-prefix-sid-06">}}.
 
 ## Configure Segment Routing
@@ -41,7 +41,7 @@ To configure the segment routing example above:
     cumulus@switch:~$ net add bgp network 10.1.1.5/32 label-index 5
     ```
 
-2. For each switch in the topology, define the *global-block* of labels to use for segment routing in {{<link url="Configure-FRRouting" text="FRR">}}. The default global-block is 16000-23999. The example configuration uses global-block `100 200`. The *local label* is the MPLS label global-block plus the label-index.
+2. For each switch in the topology, define the *global-block* of labels to use for segment routing in FRR. The default global-block is 16000-23999. The example configuration uses global-block `100 200`. The *local label* is the MPLS label global-block plus the label-index.
 
     ```
     cumulus@switch:~$ net add mpls label global-block 100 200
@@ -71,7 +71,7 @@ To configure the segment routing example above:
     switch(config)#
     ```
 
-2. For each switch in the topology, define the *global-block* of labels to use for segment routing in {{<link url="Configure-FRRouting" text="FRR">}}. The default global-block is 16000-23999. The example configuration uses global-block `100 200`. The *local label* is the MPLS label global-block plus the label-index.
+2. For each switch in the topology, define the *global-block* of labels to use for segment routing in FRR. The default global-block is 16000-23999. The example configuration uses global-block `100 200`. The *local label* is the MPLS label global-block plus the label-index.
 
     ```
     switch(config)# mpls label global-block 100 200

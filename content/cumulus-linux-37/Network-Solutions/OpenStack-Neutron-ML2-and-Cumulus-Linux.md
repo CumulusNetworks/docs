@@ -23,7 +23,7 @@ in a network with Cumulus Linux switches, you need the following:
 - The Modular Layer 2 (ML2) mechanism driver for OpenStack, which you install on the OpenStack Neutron controller node. It's available as a Python package from upstream.
 - The OpenStack Queens release.
 
-{{% imgOld 0 %}}
+{{< img src = "/images/cumulus-linux/network-solutions-ml2-driver-arch.png" >}}
 
 ## Configure the REST API
 

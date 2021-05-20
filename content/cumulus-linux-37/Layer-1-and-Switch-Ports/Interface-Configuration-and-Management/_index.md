@@ -361,13 +361,13 @@ To print the dependency information of an interface in `dot` format:
 You can use `dot` to render the graph on an external system where `dot`
 is installed.
 
-{{% imgOld 0 %}}
+{{% img src = "/images/cumulus-linux/layer1-interfaces.png" %}}
 
 To print the dependency information of the entire `interfaces` file:
 
     cumulus@switch:~$ sudo ifquery --print-dependency=dot -a >interfaces_all.dot
 
-{{% imgOld 1 %}}
+{{% img src = "/images/cumulus-linux/layer1-interfaces-all.png" %}}
 
 ## Subinterfaces
 

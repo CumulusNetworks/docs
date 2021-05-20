@@ -52,7 +52,7 @@ Single tag translation works with both {{<link url="VLAN-aware-Bridge-Mode" text
 
 An example configuration with VLAN-aware bridge mode looks like this:
 
-{{% imgOld 0 %}}
+{{< img src = "/images/cumulus-linux/qinq-double-tag-translation.png" >}}
 
 You configure two switches: one at the service provider edge that faces
 the customer (the switch on the left above), and one on the public cloud
@@ -274,7 +274,7 @@ Double tag translation only works with bridges in
 
 An example configuration could look like the following:
 
-{{% imgOld 1 %}}
+{{< img src="/images/cumulus-linux/QinQ-single-tag-translation.png" width="600" >}}
 
 To configure the switch for double tag translation using the above
 example, edit the `/etc/network/interfaces` file in a text editor and add the

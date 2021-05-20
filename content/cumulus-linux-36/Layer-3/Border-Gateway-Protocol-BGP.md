@@ -88,7 +88,7 @@ reflector server, announcing the routes between tier 1 nodes 1.1 and 1.2
 to tier 1 node 1.3. It is also a route reflector client, learning the
 routes between tier 2 nodes 2.2 and 2.3 from the tier 3 node, 3.1.
 
-{{% imgOld 0 %}}
+{{% img src="/images/old_doc_images/bgp_route_reflectors.png" %}}
 
 {{%notice note%}}
 
@@ -1181,7 +1181,7 @@ Limiting the exchange of routing information at various parts in the
 network is a best practice you should follow. The following image
 illustrates one way you can do so in a typical Clos architecture:
 
-{{% imgOld 1 %}}
+{{% img src="/images/old_doc_images/BGP-Advertisement-Best-Practices.png" %}}
 
 ### Utilizing Multiple Routing Tables and Forwarding
 

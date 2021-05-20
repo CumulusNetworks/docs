@@ -61,7 +61,7 @@ When deploying VXLAN with a VLAN-aware bridge, there is no
 The following topology is used in this chapter. Each IP address
 corresponds to the loopback address of the switch.
 
-{{% imgOld 0 %}}
+{{% img src="/images/old_doc_images/static-vxlan-tunnels.png" %}}
 
 ## Configuring Static VXLAN Tunnels
 

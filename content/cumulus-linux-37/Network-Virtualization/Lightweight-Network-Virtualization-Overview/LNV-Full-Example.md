@@ -30,9 +30,9 @@ The following images illustrate the configuration:
 <tbody>
 <tr class="odd">
 <td><p>Physical Cabling Diagram</p>
-<p>{{% imgOld 0 %}}</p></td>
+<p>{{% img src="/images/old_doc_images/Screen-Shot-2015-04-20-at-10.02.57-AM.png" %}}</p></td>
 <td><p>Network Virtualization Diagram</p>
-<p>{{% imgOld 1 %}}</p></td>
+<p>{{% img src="/images/old_doc_images/Screen-Shot-2015-04-22-at-1.58.50-PM.png" %}}</p></td>
 </tr>
 </tbody>
 </table>

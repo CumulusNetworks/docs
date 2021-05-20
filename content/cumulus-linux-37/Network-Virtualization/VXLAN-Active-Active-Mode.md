@@ -105,7 +105,7 @@ VTEP, even though the switches independently encapsulate and decapsulate
 layer 2 traffic originating from the host. You can configure the anycast
 address under the loopback interface, as shown below.
 
-{{% imgOld 0 %}}
+{{% img src="/images/old_doc_images/anycastIP.png" %}}
 
     auto lo
     iface lo inet loopback
@@ -119,7 +119,7 @@ address under the loopback interface, as shown below.
 
 ## Example VXLAN Active-Active Configuration
 
-{{% imgOld 1 %}}
+{{% img src="/images/old_doc_images/vxlanactiveactive.png" %}}
 
 Note the configuration of the local IP address in the VXLAN interfaces
 below. They are configured with individual IP addresses, which `clagd`

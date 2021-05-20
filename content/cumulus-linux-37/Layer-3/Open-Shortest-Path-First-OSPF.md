@@ -20,7 +20,7 @@ An increase in the number of nodes affects:
 
 The OSPF protocol advocates hierarchy as a *divide and conquer* approach to achieve high scale. You can divide the topology into areas, resulting in a two-level hierarchy. Area 0 (or 0.0.0.0), called the backbone area, is the top level of the hierarchy. Packets traveling from one non-zero area to another must go through the backbone area. For example, you can divide the leaf-spine topology into the following areas:
 
-{{% imgOld 0 %}}
+{{< img src = "/images/cumulus-linux/ospf-areas.png" >}}
 
 {{%notice note%}}
 
@@ -189,7 +189,7 @@ Summarization can cause non-optimal forwarding of packets during failures. Here 
 
 {{%/notice%}}
 
-{{% imgOld 1 %}}
+{{< img src = "/images/cumulus-linux/ospf-summarization.png" >}}
 
 As shown in the diagram, the ABRs in the right non-zero area summarize the host prefixes as 10.1.0.0/16. When the link between R5 and R10 fails, R5 will send a worse metric for the summary route (metric for the summary route is the maximum of the metrics of intra-area routes that are covered by the summary route. Upon failure of the R5-R10 link, the metric for 10.1.2.0/24 goes higher at R5 as the path is R5-R9-R6-R10). As a result, other backbone routers shift traffic destined to 10.1.0.0/16 towards R6. This breaks ECMP and is an under-utilization of network capacity for traffic destined to 10.1.1.0/24.
 

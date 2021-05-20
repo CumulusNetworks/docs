@@ -45,7 +45,7 @@ protocol at the time of writing). Hence, it is more scalable.
 
 An example configuration could look like the following:
 
-{{% imgOld 0 %}}
+{{< img src="/images/cumulus-linux/QinQ-single-tag-translation.png" width="600" >}}
 
 You configure two switches: one at the service provider edge that faces
 the customer (the switch on the left above), and one on the public cloud
@@ -246,7 +246,7 @@ to configure it.
 
 An example configuration could look like the following:
 
-{{% imgOld 1 %}}
+{{< img src = "/images/cumulus-linux/qinq-double-tag-translation.png" >}}
 
 ### Configuring the Switch
 

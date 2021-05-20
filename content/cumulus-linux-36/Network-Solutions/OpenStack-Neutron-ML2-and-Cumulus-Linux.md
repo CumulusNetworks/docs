@@ -25,7 +25,7 @@ Cumulus Linux switches, you need the following:
     OpenStack, which you install on the OpenStack Neutron controller
     node. It's available as a Python package from upstream.
 
-{{% imgOld 0 %}}
+{{< img src = "/images/cumulus-linux/network-solutions-ml2-driver-arch.png" >}}
 
 ## Configuring the REST API
 

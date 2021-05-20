@@ -1275,7 +1275,7 @@ is a duplicate MAC address for two hosts attached to VTEP-A and VTEP-B.
 However, duplicate detection does *not* trigger on VTEP-A when mobility
 events occur between two remote VTEPs (VTEP-B and VTEP-C).
 
-{{% imgOld 0 %}}
+{{% img src="/images/cumulus-linux/evpn-dad-example.png" %}}
 
 #### Configure Duplicate Address Detection
 

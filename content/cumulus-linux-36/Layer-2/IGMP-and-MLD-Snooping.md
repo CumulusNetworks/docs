@@ -27,7 +27,7 @@ all ports in the VLAN. The multicast group IP address is mapped to a
 multicast MAC address and a forwarding entry is created with a list of
 ports interested in receiving multicast traffic destined to that group.
 
-{{% imgOld 0 %}}
+{{% img src = "/images/cumulus-linux/igmp_snoop_diagram.png" %}}
 
 ## Configuring IGMP/MLD Querier
 

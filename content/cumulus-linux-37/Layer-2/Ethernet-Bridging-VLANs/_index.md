@@ -22,7 +22,7 @@ interfaces that traverse an 802.1Q VLAN trunk.
 
 {{%/notice%}}
 
-{{% imgOld 0 %}}
+{{% img src = "/images/cumulus-linux/ethernet-bridging-example.png" %}}
 
 {{%notice tip%}}
 

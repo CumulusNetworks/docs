@@ -32,7 +32,7 @@ Cumulus Linux only supports VRR on switched virtual interfaces (SVIs). VRR is no
 
 {{%/notice%}}
 
-{{% imgOld 0 %}}
+{{< img src="/images/cumulus-linux/vrr-active-active.png" width="600" >}}
 
 A production implementation has many more server hosts and network connections than are shown here. However, this basic configuration provides a complete description of the important aspects of the VRR setup.
 

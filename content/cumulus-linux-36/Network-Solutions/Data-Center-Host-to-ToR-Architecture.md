@@ -18,7 +18,7 @@ This chapter discusses the various architectures and strategies available from t
 
 | <div style="width:130px">Active-Active Mode | <div style="width:130px">Active-Passive Mode | L2 to L3 Demarcation|
 |---------------------|--------------------|---------------------|
-| None (not possible with traditional spanning tree) | {{<link url="Virtual-Router-Redundancy-VRR-and-VRRP" text="VRR">}} | <ul><li>ToR layer (recommended)</li><li>Spine layer</li><li>Core/edge/exit</li></ul><br>You can configure VRR on a pair of switches at any level in the network. However, the higher up the network, the larger the layer 2 domain becomes. The benefit is layer 2 reachability. The drawback is that the layer 2 domain is more difficult to troubleshoot, does not scale as well, and the pair of switches running VRR needs to carry the entire MAC address table of everything below it in the network. Cumulus Professional Services recommends minimizing the layer 2 domain as much as possible. For more information, see {{<exlink url="https://docs.google.com/presentation/d/1l1d_6iUF7RTUHTSAmGuLwm3WCUXTNdFjndCLLxzBSOU/edit?usp=sharing" text="this presentation">}}.|
+| None (not possible with traditional spanning tree) | {{<link title="Virtual Router Redundancy - VRR" text="VRR">}} | <ul><li>ToR layer (recommended)</li><li>Spine layer</li><li>Core/edge/exit</li></ul><br>You can configure VRR on a pair of switches at any level in the network. However, the higher up the network, the larger the layer 2 domain becomes. The benefit is layer 2 reachability. The drawback is that the layer 2 domain is more difficult to troubleshoot, does not scale as well, and the pair of switches running VRR needs to carry the entire MAC address table of everything below it in the network. Cumulus Professional Services recommends minimizing the layer 2 domain as much as possible. For more information, see {{<exlink url="https://docs.google.com/presentation/d/1l1d_6iUF7RTUHTSAmGuLwm3WCUXTNdFjndCLLxzBSOU/edit?usp=sharing" text="this presentation">}}.|
 
 **Example Configuration**
 
@@ -82,7 +82,7 @@ iface br-20 inet manual
 
 | <div style="width:300px">Example | Summary |
 |----|----|
-|{{< img src = "/images/cumulus-linux/network-solutions-mlag.png" >}} | {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="MLAG (multi-chassis link aggregation)">}} uses both uplinks at the same time. VRR enables both spines to act as gateways simultaneously for HA (high availability) and {{<link url="VXLAN-Active-Active-Mode" text="active-active mode">}} (both are used at the same time). |
+|{{< img src = "/images/cumulus-linux/network-solutions-mlag.png" >}} | {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="MLAG (multi-chassis link aggregation)">}} uses both uplinks at the same time. VRR enables both spines to act as gateways simultaneously for HA (high availability) and {{<link title="LNV VXLAN Active-Active Mode" text="active-active mode">}} (both are used at the same time). |
 
 | <div style="width:300px">Benefits | Caveats |
 |----------| --------|
@@ -90,7 +90,7 @@ iface br-20 inet manual
 
 | Active-Active Mode | Active-Passive Mode | L2 to L3 Demarcation| More Information|
 |---------------------|--------------------|---------------------|-----------------|
-| {{<link url="Virtual-Router-Redundancy-VRR-and-VRRP" text="VRR">}}| None | <ul><li>ToR layer (recommended)</li><li>Spine layer</li><li>Core/edge/exit</li><ul>|<ul><li>Can be done with either the {{<link url="Traditional-Bridge-Mode" text="traditional">}} or {{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware">}} bridge driver depending on overall STP needs.</li><li>There are a few different solutions including Cisco VPC and Arista MLAG, but none of them interoperate and are very vendor specific.</li><li>{{<exlink url="https://resource.nvidia.com/en-us-ethernet-switching/bgp-evpn-for-vxlan-techincal-overview" text="Cumulus Networks Layer 2 HA validated design guide">}}.</li></ul>|
+| {{<link title="Virtual Router Redundancy - VRR" text="VRR">}}| None | <ul><li>ToR layer (recommended)</li><li>Spine layer</li><li>Core/edge/exit</li><ul>|<ul><li>Can be done with either the {{<link url="Traditional-Bridge-Mode" text="traditional">}} or {{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware">}} bridge driver depending on overall STP needs.</li><li>There are a few different solutions including Cisco VPC and Arista MLAG, but none of them interoperate and are very vendor specific.</li><li>{{<exlink url="https://resource.nvidia.com/en-us-ethernet-switching/bgp-evpn-for-vxlan-techincal-overview" text="Cumulus Networks Layer 2 HA validated design guide">}}.</li></ul>|
 
 **Example Configuration**
 
@@ -389,7 +389,7 @@ Each server is configured on a VLAN, with a total of two VLANs for the setup. ML
 
 |Active-Active Mode|Active-Passive Mode|Demarcation| More Information|
 |------------------|-------------------|------------|-------------|
-| {{<link url="Virtual-Router-Redundancy-VRR-and-VRRP" text="VRR">}} |None|ToR layer|<ul><li>{{<exlink url="https://github.com/CumulusNetworks/cldemo-evpn-symmetric" text="Cumulus Networks EVPN with symmetric routing demo on GitHub">}}</li><li>{{<link url="Ethernet-Virtual-Private-Network-EVPN" text="Ethernet Virtual Private Network - EVPN">}}</li><li>{{<link url="VXLAN-Routing">}}</li></ul>|
+| {{<link title="Virtual Router Redundancy - VRR" text="VRR">}} |None|ToR layer|<ul><li>{{<exlink url="https://github.com/CumulusNetworks/cldemo-evpn-symmetric" text="Cumulus Networks EVPN with symmetric routing demo on GitHub">}}</li><li>{{<link url="Ethernet-Virtual-Private-Network-EVPN" text="Ethernet Virtual Private Network - EVPN">}}</li><li>{{<link url="VXLAN-Routing">}}</li></ul>|
 
 **Example Configuration**
 

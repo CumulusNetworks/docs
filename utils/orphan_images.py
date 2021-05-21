@@ -28,7 +28,13 @@ def get_used_images():
     image_names = set()
 
     for path in glob.glob("/Volumes/RAMDisk/public/**/*.html", recursive=True):
-        if "pdf/index.html" in path:
+        skip_files = ["pdf/index.html", "foss/index.html", "licenses"]
+        skip_file_found = False
+        for skip in skip_files:
+            if skip in path:
+                skip_file_found = True
+
+        if skip_file_found:
             continue
 
         with open(path, mode="r") as in_file:
@@ -66,8 +72,7 @@ def get_used_images():
                                         # Remove known junk
                                         for bad_string in bad_stuff:
                                             temp_string = temp_string.replace(bad_string, "")
-
-                                        image_names.add(temp_string)
+                                        image_names.add(temp_string.lower())
     return image_names
 
 def main():
@@ -79,20 +84,24 @@ def main():
     print(len(used_images))
     print(len(all_images))
 
-    for k,v in all_images.items():
-        print("{} : {}".format(k, v))
-    # for image in used_images:
-    #     # print(image)
-    #     # Confirm that all used_images were found locally
-    #     if image not in all_images:
-    #         print("Couldn't find {}".format(image))
+    max_length = 30
+    for k in all_images.keys():
+        if len(k) > max_length:
+            max_length = len(k)
 
-    #     all_image_names.remove(image)
+    for image in used_images:
+        # print(image)
+        # Confirm that all used_images were found locally
+        if image not in all_images:
+            print("Couldn't find {}".format(image))
 
-    # index = len("/Volumes/RAMDisk/")
-    # for image in all_image_names:
-    #     print("Deleting {}".format(all_images[image]))
-    #     os.unlink(all_images[image][index:])
+        all_image_names.remove(image)
+
+    index = len("/Volumes/RAMDisk/")
+    for image in all_image_names:
+        #print("{} {}".format(image.ljust(max_length), all_images[image]))
+        print("Deleting {}".format(all_images[image][index:]))
+        os.unlink(all_images[image][index:])
 
 
     # used_images = set()

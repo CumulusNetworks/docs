@@ -1,17 +1,17 @@
 ---
-title: Licensing in Cumulus Linux 5.0 and Later
+title: Licensing in Cumulus Linux 4.4 and Later
 author: Cumulus Networks
 weight: 252
 toc: 4
 draft: true
 ---
-In NVIDIA Cumulus Linux 5.0 and later, you no longer need a specific software license key to enable the `switchd` service. In earlier Cumulus Linux releases, the `switchd` service fails to start and the switch ports are inoperable if you do *not* install a license key.
+In NVIDIA Cumulus Linux 4.4 and later, you no longer need a specific software license key to enable the `switchd` service. In earlier Cumulus Linux releases, the `switchd` service fails to start and the switch ports are inoperable if you do *not* install a license key.
 
 This knowledge base article answers some frequently asked questions.
 
 ## What different behavior should I expect?
 
-When you install Cumulus Linux 5.0 or later on an NVIDIA Spectrum switch, the ASIC runs and you can configure the front-panel ports without additional requirements. Cumulus Linux no longer includes the `cl-license` command on the system and returns a `command not found` error message if you run the command.
+When you install Cumulus Linux 4.4 or later on an NVIDIA Spectrum switch, the ASIC runs and you can configure the front-panel ports without additional requirements. Cumulus Linux no longer includes the `cl-license` command on the system and returns a `command not found` error message if you run the command.
 
 ## Is Cumulus Linux no longer licensed?
 
@@ -23,7 +23,7 @@ No. A single purchase of Cumulus Linux entitles you to install Cumulus Linux on 
 
 ## What does this mean for my NVIDIA Spectrum switches running an earlier Cumulus Linux release?
 
-In Cumulus Linux 5.0 and later, you are no longer required to install a license key. You might need to adjust your Zero Touch Provisioning or automation processes because the `cl-license` command no longer exists. This does not change the number of licenses you own or their validity.
+In Cumulus Linux 4.4 and later, you are no longer required to install a license key. You might need to adjust your Zero Touch Provisioning or automation processes because the `cl-license` command no longer exists. This does not change the number of licenses you own or their validity.
 
 ## Is support still required when Cumulus Linux is purchased?
 

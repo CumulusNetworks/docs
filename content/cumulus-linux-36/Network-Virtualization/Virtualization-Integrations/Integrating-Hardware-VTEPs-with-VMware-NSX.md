@@ -8,7 +8,7 @@ Switches running Cumulus Linux can integrate with VMware NSX to act as
 hardware VTEP gateways. The VMware NSX controller provides consistent
 provisioning across virtual and physical server infrastructures.
 
-{{% imgOld 0 %}}
+{{< img src = "/images/cumulus-linux/virtualization-integrations-nsxv.png" >}}
 
 ## Getting Started
 
@@ -90,7 +90,7 @@ A script is available so you can perform bootstrapping automatically.
 For information, read `man vtep-bootstrap`. The output of the script is
 displayed here:
 
-{{% imgOld 1 %}}
+{{% img src="/images/old_doc_images/vxlan_bootstrap.screenshot.png" %}}
 
 In the above example, the following information is passed to the
 `vtep-bootstrap` script:
@@ -193,7 +193,7 @@ IP address of the NSX manager is 192.168.100.12.
     Node**, click **Add**, then select **Manually Enter All Fields**.
     The Create Gateway wizard appears.
     
-    {{% imgOld 2 %}}
+    {{< img src = "/images/cumulus-linux/virtualization-integrations-nsx-netcomponents.png" >}}
 
 2.  In the Create Gateway dialog, select *Gateway* for the **Transport
     Node Type**, then click **Next**.
@@ -210,11 +210,11 @@ IP address of the NSX manager is 192.168.100.12.
     portion, including the `BEGIN CERTIFICATE` and `END CERTIFICATE`
     lines. For example, copy all the highlighted text in the terminal:
     
-    {{% imgOld 3 %}}
+    {{< img src = "/images/cumulus-linux/virtualization-integrations-nsx-cert-term.png" >}}
     
     And paste it into NSX Manager:
     
-    {{% imgOld 4 %}}
+    {{< img src = "/images/cumulus-linux/virtualization-integrations-nsx-cert.png" >}}
     
     Then click **Next**.
 
@@ -260,7 +260,7 @@ a VXLAN instance, define a **Gateway Service** for the port.
 2.  In the Create Gateway Service dialog, select *VTEP L2 Gateway
     Service* as the **Gateway Service Type**.
     
-    {{% imgOld 5 %}}
+    {{< img src = "/images/cumulus-linux/virtualization-integrations-nsx-gwsvc-create.png" >}}
 
 3.  Provide a **Display Name** for the service to represent the VTEP in
     NSX.
@@ -280,7 +280,7 @@ a VXLAN instance, define a **Gateway Service** for the port.
 
 The gateway service shows up as type *VTEP L2* in NSX.
 
-{{% imgOld 6 %}}
+{{< img src = "/images/cumulus-linux/virtualization-integrations-nsx-gwsvc.png" >}}
 
 Next, configure the logical layer on NSX.
 
@@ -302,7 +302,7 @@ To define the logical switch, do the following:
 2.  In the **Display Name** field, enter a name for the logical switch,
     then click **Next**.
     
-    {{% imgOld 7 %}}
+    {{< img src = "/images/cumulus-linux/virtualization-integrations-nsx-logswitch.png" >}}
 
 3.  Under **Replication Mode**, select **Service Nodes**, then click
     **Next**.
@@ -310,12 +310,12 @@ To define the logical switch, do the following:
 4.  Specify the transport zone bindings for the logical switch. Click
     **Add Binding**. The Create Transport Zone Binding dialog opens.
     
-    {{% imgOld 8 %}}
+    {{< img src = "/images/cumulus-linux/virtualization-integrations-nsx-addbinding.png" >}}
 
 5.  In the **Transport Type** list, select *VXLAN*, then click **OK** to
     add the binding to the logical switch.
     
-    {{% imgOld 9 %}}
+    {{< img src = "/images/cumulus-linux/virtualization-integrations-nsx-createvni.png" >}}
 
 6.  In the **VNI** field, assign the switch a VNI ID, then click **OK**.
     
@@ -328,7 +328,7 @@ Do not use 0 or 16777215 as the VNI ID; these are reserved values
 
 7.  Click **Save** to save the logical switch configuration.  
     
-    {{% imgOld 10 %}}
+    {{< img src = "/images/cumulus-linux/virtualization-integrations-nsx-logswitch-done.png" >}}
 
 ### Defining Logical Switch Ports
 
@@ -345,12 +345,12 @@ To define the logical switch ports, do the following:
     **Logical Switch Port**, click **Add**. The Create Logical Switch
     Port wizard opens.
     
-    {{% imgOld 11 %}}
+    {{< img src = "/images/cumulus-linux/virtualization-integrations-nsx-loglayer.png" >}}
 
 2.  In the **Logical Switch UUID** list, select the logical switch you
     created above, then click **Create**.
     
-    {{% imgOld 12 %}}
+    {{< img src = "/images/cumulus-linux/virtualization-integrations-nsx-logswp-create.png" >}}
 
 3.  In the **Display Name** field, provide a name for the port that
     indicates it is the port that connects the gateway, then click
@@ -369,7 +369,7 @@ To define the logical switch ports, do the following:
     established. Repeat this procedure for each logical switch port you
     want to define.
     
-    {{% imgOld 13 %}}
+    {{< img src = "/images/cumulus-linux/virtualization-integrations-nsx-logswp-done.png" >}}
 
 ## Verifying the VXLAN Configuration
 

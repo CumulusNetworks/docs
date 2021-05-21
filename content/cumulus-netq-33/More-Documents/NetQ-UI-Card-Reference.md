@@ -1079,7 +1079,7 @@ The *Interface Health* tab displays:
 <td>Range of time in which the displayed data was collected; applies to all card sizes.</td>
 </tr>
 <tr class="even">
-<td><img src="/images/netq/ntwk-health-if-health-icon.png" height="20" width="20"/></td>
+<td>{{<img src="/images/netq/ntwk-health-if-health-icon.png" height="20" width="20" >}}</td>
 <td>Indicates data is for Interface Health.</td>
 </tr>
 <tr class="odd">
@@ -4664,7 +4664,7 @@ The *Digital Optics* tab displays:
 </thead>
 <tbody>
 <tr class="odd">
-<td><img src="/images/netq/dom.svg" width="18" height="18"/></td>
+<td>{{<img src="/images/netq/dom.svg" width="18" height="18" >}}</td>
 <td>Indicates digital optics metrics for a single switch.</td>
 </tr>
 <tr class="even">

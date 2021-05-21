@@ -8,7 +8,7 @@ Switches running Cumulus Linux can integrate with VMware NSX-V to act as
 hardware VTEP gateways. The VMware NSX-V controller provides consistent
 provisioning across virtual and physical server infrastructures.
 
-{{% imgOld 0 %}}
+{{< img src = "/images/cumulus-linux/virtualization-integrations-nsxv.png" >}}
 
 ## Getting Started
 
@@ -222,7 +222,7 @@ example, the IP address of the NSX Manager is 192.168.110.23.
     **Hardware Devices** tab. Under **Hardware Devices**, click **+**.
     The Create Add Hardware Devices window appears.
     
-    {{% imgOld 1 %}}
+    {{< img src = "/images/cumulus-linux/virtualization-integrations-nsxv-hw-devs.png" >}}
 
 2.  In the **Name** field, provide a name for the HW VTEP gateway.
 
@@ -241,11 +241,11 @@ example, the IP address of the NSX Manager is 192.168.110.23.
         conf.db  pki  vtep7-cert.pem  vtep7-privkey.pem  vtep7-req.pem
         cumulus@switch:/var/lib/openvswitch$ cat vtep7-cert.pem
     
-    {{% imgOld 2 %}}
+    {{< img src = "/images/cumulus-linux/virtualization-integrations-nsxv-add-hw-vtep.png" >}}
 
 5.  Click **OK** to save the gateway.  
     
-    {{% imgOld 3 %}}
+    {{< img src = "/images/cumulus-linux/virtualization-integrations-nsxv-mgr-svc.png" >}}
 
 After communication is established between the switch and the
 controller, a `controller.cacert` file is downloaded onto the switch.
@@ -274,21 +274,21 @@ transport zone and segment ID.
 2.  Click **Edit** and add the segment IDs (VNIDs) to be used. Here VNIs
     5000-5999 are configured.
     
-    {{% imgOld 4 %}}
+    {{< img src = "/images/cumulus-linux/virtualization-integrations-nsxv-segment-id-tab.png" >}}
     
-    {{% imgOld 5 %}}
+    {{< img src = "/images/cumulus-linux/virtualization-integrations-nsxv-segment-id-edit.png" >}}
 
 3.  Click **OK** to save and provision the segment IDs.
 
 4.  Click the **Transport Zones** tab, choose the name of the transport
     zone.  
     
-    {{% imgOld 6 %}}
+    {{< img src = "/images/cumulus-linux/virtualization-integrations-nsxv-transport-zone.png" >}}
 
 5.  Select **Unicast** to choose the NSX-V Controller Cluster to handle
     the VXLAN control plane.  
     
-    {{% imgOld 7 %}}
+    {{< img src = "/images/cumulus-linux/virtualization-integrations-nsxv-transport-zone-new.png" >}}
 
 6.  Click **OK** to save the new transport zone.
 
@@ -307,7 +307,7 @@ To define the logical switch, do the following:
 1.  In NSX Manager, select the **Logical Switches** category. Click
     **+** to add a logical switch instance.  
     
-    {{% imgOld 8 %}}
+    {{< img src = "/images/cumulus-linux/virtualization-integrations-nsxv-logical-switch-new.png" >}}
 
 2.  In the **Name** field, enter a name for the logical switch.
 
@@ -320,7 +320,7 @@ To define the logical switch, do the following:
 
 5.  Click **OK**.  
     
-    {{% imgOld 9 %}}
+    {{< img src = "/images/cumulus-linux/virtualization-integrations-nsxv-logical-switch.png" >}}
 
 ### Configuring the Replication Cluster
 
@@ -328,14 +328,14 @@ To define the logical switch, do the following:
     **Hardware Devices** tab. Next to the **Replication Cluster** field,
     click **Edit**.
     
-    {{% imgOld 10 %}}
+    {{< img src = "/images/cumulus-linux/virtualization-integrations-nsxv-replication-cluster.png" >}}
 
 2.  Hypervisors connected to the NSX controller for replication appear
     in the **Available Objects** list. Select the required service
     nodes, then click the green arrow to move them to the **Selected
     Objects** list.
     
-    {{% imgOld 11 %}}
+    {{< img src = "/images/cumulus-linux/virtualization-integrations-nsxv-replication-cluster-save.png" >}}
 
 3.  Click **OK** to save the replication node configuration.
 
@@ -351,11 +351,11 @@ To define the logical switch ports, do the following:
     Switches** category. Under **Actions**, click **Manage Hardware
     Bindings**. The Manage Hardware Binding wizard appears.
     
-    {{% imgOld 12 %}}
+    {{< img src = "/images/cumulus-linux/virtualization-integrations-nsxv-hw-bindings.png" >}}
 
 2.  Click **+** to add a logical port to the logical switch.  
     
-    {{% imgOld 13 %}}
+    {{< img src = "/images/cumulus-linux/virtualization-integrations-nsxv-hw-bindings-new.png" >}}
 
 3.  Select the logical switch that you created earlier (5000).
 
@@ -367,7 +367,7 @@ To define the logical switch ports, do the following:
     established. Repeat this procedure for each logical switch port you
     want to define.  
     
-    {{% imgOld 14 %}}
+    {{< img src = "/images/cumulus-linux/virtualization-integrations-nsxv-hw-bindings-save.png" >}}
 
 ## Verifying the VXLAN Configuration
 

@@ -32,7 +32,7 @@ at the same time.
 
 Consider the following example deployment:
 
-{{% imgOld 0 %}}
+{{% img src="/images/old_doc_images/Screen-Shot-2015-04-23-at-5.00.38-PM.png" %}}
 
 The two switches running Cumulus Linux, called leaf1 and leaf2, each
 have a bridge configured. These two bridges contain the physical switch
@@ -169,7 +169,7 @@ throughout this chapter.
 
 | Physical Cabling Diagram | Network Virtualization Diagram |
 | ------------------------ | ------------------------------ |
-| {{% imgOld 1 %}} | {{% imgOld 2 %}} |
+| {{% img src="/images/old_doc_images/Screen-Shot-2015-04-20-at-10.02.57-AM.png" %}} | {{% img src="/images/old_doc_images/Screen-Shot-2015-04-20-at-10.02.37-AM.png" %}} |
 
 {{%notice tip%}}
 

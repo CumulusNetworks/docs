@@ -45,7 +45,7 @@ VLAN-aware bridge configured for STP, that contains two switch ports,
 and includes 3 VLANs - the tagged VLANs 100 and 200 and the untagged
 (native) VLAN of 1:
 
-{{% imgOld 0 %}} 
+{{< img src = "/images/cumulus-linux/ethernet-bridging-basic-trunking.png" >}}
 
 ```
 cumulus@switch:~$ net add bridge bridge ports swp1-2 
@@ -150,7 +150,7 @@ By default, the bridge port inherits the bridge VIDs. A port's
 configuration can override the bridge VIDs, by using the `bridge-vids`
 attribute:
 
-{{% imgOld 1 %}}
+{{% img src = "/images/cumulus-linux/ethernet-bridging-vlan-pruned.png" %}}
 
 ```
 cumulus@switch:~$ net add bridge bridge ports swp1-3
@@ -180,7 +180,7 @@ Access ports ignore all tagged packets. In the configuration below, swp1
 and swp2 are configured as access ports, while all untagged traffic goes
 to VLAN 100, as specified in the example below:
 
-{{% imgOld 2 %}}
+{{% img src = "/images/cumulus-linux/ethernet-bridging-vlan_untagged_access_ports.png" %}}
 
 ```
 cumulus@switch:~$ net add bridge bridge ports swp1-2

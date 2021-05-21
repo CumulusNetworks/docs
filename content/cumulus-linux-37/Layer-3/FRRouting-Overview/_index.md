@@ -11,7 +11,7 @@ Cumulus Linux uses FRRouting to provide the routing protocols for dynamic routin
 
 ## Architecture
 
-{{% imgOld 0 %}}
+{{< img src = "/images/cumulus-linux/frrouting-overview-daemons.png" >}}
 
 As shown in the figure above, the FRRouting suite consists of various protocol-specific daemons and a protocol-independent daemon called `zebra`. Each of the protocol-specific daemons are responsible for running the relevant protocol and building the routing table based on the information exchanged.
 

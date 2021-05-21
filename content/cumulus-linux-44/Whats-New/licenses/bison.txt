@@ -1,0 +1,22 @@
+Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: Bison
+Upstream-Contact: bug-bison@gnu.org
+Source: http://ftp.gnu.org/pub/gnu/bison/
+Comment: 
+ This file is extracted from upstream source with debian/repack, which
+ moves the non-DFSG-free parts of the upstream source into a separate
+ bison-doc package (which is not part of Debian).
+
+Files: *
+Copyright: 1984, 1986, 1987-2015 Free Software Foundation, Inc.
+License: GPL-3+
+ On Debian systems, the full text of the GNU General Public License
+ Version 3 can be found in the file
+ '/usr/share/common-licenses/GPL-3'.
+
+Files: debian/*
+Copyright: 2015 Chuan-kai Lin <cklin@debian.org>
+License: GPL-2+
+ On Debian systems, the full text of the GNU General Public License
+ Version 2 can be found in the file
+ '/usr/share/common-licenses/GPL-2'.

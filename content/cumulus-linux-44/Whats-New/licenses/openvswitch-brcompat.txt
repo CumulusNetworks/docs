@@ -1,0 +1,43 @@
+The original sources for this package can be found at:
+
+	http://openvswitch.org/
+
+Upstream Authors (from AUTHORS):
+
+  ..
+        Licensed under the Apache License, Version 2.0 (the "License"); you may
+        not use this file except in compliance with the License. You may obtain
+        a copy of the License at
+The original sources for this package can be found at:
+
+	http://openvswitch.org/
+
+Upstream Authors (from AUTHORS):
+
+%AUTHORS%
+
+Upstream Copyright Holders:
+
+	Copyright (c) 2007, 2008, 2009, 2010, 2011, 2012, 2013 Nicira, Inc.
+	Copyright (c) 2010 Jean Tourrilhes - HP-Labs.
+	Copyright (c) 2008,2009,2010 Citrix Systems, Inc.
+	and authors listed above.
+	Copyright (c) 2011 Gaetano Catalli
+	Copyright (C) 2000-2003 Geoffrey Wossum (gwossum@acm.org)
+	Copyright (C) 2000 The NetBSD Foundation, Inc.
+	Copyright (C) 1995, 1996, 1997, and 1998 WIDE Project.
+	Copyright (c) 1982, 1986, 1990, 1993 The Regents of the University of California.
+	Copyright (c) 2008, 2012 Vincent Bernat <bernat@luffy.cx>
+	Copyright (c) 2014 Michael Chapman
+	Copyright (c) 2014 WindRiver, Inc.
+	Copyright (c) 2014 Avaya, Inc.
+	Copyright (c) 2001 Daniel Hartmeier
+	Copyright (c) 2002 - 2008 Henning Brauer
+	Copyright (c) 2012 Gleb Smirnoff <glebius@FreeBSD.org>
+
+License:
+
+* The following components are licensed under the
+  GNU Lesser General Public License version 2.1 only
+  with the exception clause below as a pre-amble.
+

@@ -151,12 +151,6 @@ This is an information leak in algorithm negotiation that can allow man-in-the-m
 <td></td>
 </tr>
 <tr>
-<td>2625778</td>
-<td>After provisioning switches and running automation in the background to collect device information, NCLU is slow to return output. This might prevent you from configuring and troubleshooting the switch as well as preventing  background automation from collecting information from the switch.</td>
-<td>3.7.12-3.7.15</td>
-<td></td>
-</tr>
-<tr>
 <td>2607965</td>
 <td>On the EdgeCore AS7726 switch, when you run the NCLU {{net show system}} command, you see the error {{Command not found}}.</td>
 <td>3.7.14.2-3.7.15</td>
@@ -2124,12 +2118,6 @@ Vulnerable: &lt;= 2.8.0-cl3.7.15u2
 Fixed: 2.8.0-cl3.7.15u3</td>
 <td>3.7.14-3.7.14.2, 4.3.0</td>
 <td>3.7.15</td>
-</tr>
-<tr>
-<td>2625778</td>
-<td>After provisioning switches and running automation in the background to collect device information, NCLU is slow to return output. This might prevent you from configuring and troubleshooting the switch as well as preventing  background automation from collecting information from the switch.</td>
-<td>3.7.12-3.7.15</td>
-<td></td>
 </tr>
 <tr>
 <td>2617009</td>
@@ -4142,12 +4130,6 @@ Vulnerable: &lt;= 2.8.0-cl3.7.15u2
 Fixed: 2.8.0-cl3.7.15u3</td>
 <td>3.7.14-3.7.14.2, 4.3.0</td>
 <td>3.7.15</td>
-</tr>
-<tr>
-<td>2625778</td>
-<td>After provisioning switches and running automation in the background to collect device information, NCLU is slow to return output. This might prevent you from configuring and troubleshooting the switch as well as preventing  background automation from collecting information from the switch.</td>
-<td>3.7.12-3.7.15</td>
-<td></td>
 </tr>
 <tr>
 <td>2617009</td>
@@ -6713,12 +6695,6 @@ Vulnerable: &lt;= 1.4.4-2+deb8u2
 Fixed: 1.4.4-2+deb8u3</td>
 <td>3.7.0-3.7.14.2</td>
 <td>3.7.15</td>
-</tr>
-<tr>
-<td>2625778</td>
-<td>After provisioning switches and running automation in the background to collect device information, NCLU is slow to return output. This might prevent you from configuring and troubleshooting the switch as well as preventing  background automation from collecting information from the switch.</td>
-<td>3.7.12-3.7.15</td>
-<td></td>
 </tr>
 <tr>
 <td>2617009</td>
@@ -9488,12 +9464,6 @@ Vulnerable: &lt;= 1.4.4-2+deb8u2
 Fixed: 1.4.4-2+deb8u3</td>
 <td>3.7.0-3.7.14.2</td>
 <td>3.7.15</td>
-</tr>
-<tr>
-<td>2625778</td>
-<td>After provisioning switches and running automation in the background to collect device information, NCLU is slow to return output. This might prevent you from configuring and troubleshooting the switch as well as preventing  background automation from collecting information from the switch.</td>
-<td>3.7.12-3.7.15</td>
-<td></td>
 </tr>
 <tr>
 <td>2617009</td>

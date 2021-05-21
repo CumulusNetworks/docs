@@ -73,7 +73,7 @@ times the queue length for a port was in the ranges specified by each
 bin. The example shows that the queue length was between 960 and 2495
 bytes 125 times within one second.
 
-{{% imgOld 0 %}}
+{{< img src = "/images/cumulus-linux/asic-monior-histogram-queue.png" >}}
 
 ## Configure ASIC Monitoring
 

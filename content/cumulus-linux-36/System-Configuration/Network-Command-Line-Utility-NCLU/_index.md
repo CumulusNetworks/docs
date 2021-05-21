@@ -21,7 +21,7 @@ and sub-modes. NCLU:
   - Configures dependent features automatically so that you don't have
     to.
 
-{{% imgOld 0 %}}
+{{< img src = "/images/cumulus-linux/nclu-architecture.png" >}}
 
 The NCLU wrapper utility called `net` is capable of configuring layer 2
 and layer 3 features of the networking stack, installing ACLs and

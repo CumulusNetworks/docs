@@ -604,7 +604,7 @@ Successfully added/updated Svr01toSvr04x3Hrs running every 180m
 
 ## netq add validation name
 
-Creates a validation for various protocols and services to be run on a regular interval, with results displayed in the associated Scheduled Validation Result cards in the NetQ UI. A maximum of 15 scheduled validations can be configured, not including the default scheduled validations.
+Creates a validation for various protocols and services to be run on a regular interval, with results displayed inline. A maximum of 15 scheduled validations can be configured, not including the default scheduled validations.
 
 ### Syntax
 
@@ -657,7 +657,7 @@ cumulus@switch:~$ netq add validation name Bgp15m type bgp interval 15m
 
 ## netq add validation type
 
-Creates an on-demand validation for various protocols and services, with results displayed in the associated On-demand Validation Result cards in the NetQ UI.
+Creates an on-demand validation for various protocols and services, with results displayed inline.
 
 ### Syntax
 

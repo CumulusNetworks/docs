@@ -34,7 +34,7 @@ If you do not have Grafana installed already, refer to {{<exlink url="https://gr
 
 Use the Grafana CLI to install the NetQ plug-in. For more detail about this command, refer to the {{<exlink url="https://grafana.com/docs/grafana/latest/administration/cli/" text="Grafana CLI documentation">}}.
 
-For NetQ 3.3.1, use this command:
+For NetQ 3.3.1 and later, use this command:
 
 ```
 grafana-cli --pluginUrl https://netq-grafana-dsrc.s3-us-west-2.amazonaws.com/NetQ-DSplugin-3.3.1-plus.zip plugins install netq-dashboard

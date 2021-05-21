@@ -91,7 +91,7 @@ You can create filters to suppress false alarms or uninteresting errors and warn
 Filtered errors and warnings related to validation checks do NOT generate notifications and are not counted in the alarm and info event totals. They are counted as part of suppressed notifications instead.
 {{%/notice%}}
 
-The filters are defined in the  `check-filter.yml` file in the `/etc/netq/` directory. You can create a rule for individual check commands or you can create a global rule that applies to all tests run by the check command. Additionally, you can create a rule specific to a particular test run by the check command.
+The filters are defined in the `check-filter.yml` file in the `/etc/netq/` directory. You can create a rule for individual check commands or you can create a global rule that applies to all tests run by the check command. Additionally, you can create a rule specific to a particular test run by the check command.
 
 Each rule must contain at least one `match` criteria and an `action` response. The only action currently available is *filter*. The match can be comprised of multiple criteria, one per line, creating a logical AND. Matches can be made against any column in the validation check output. The match criteria values *must match* the case and spacing of the column names in the corresponding `netq check` output and are parsed as regular expressions.
 

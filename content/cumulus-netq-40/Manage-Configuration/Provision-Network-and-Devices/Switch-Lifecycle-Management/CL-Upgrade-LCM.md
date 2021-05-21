@@ -192,10 +192,10 @@ If the switches have not been assigned a role, then do not use the `order` optio
 
 #### Network Snapshot Creation
 
-You can also generate a Network Snapshot before and after the upgrade by adding the `run-before-after` option to the command:
+You can also generate a Network Snapshot before and after the upgrade by adding the `run-snapshot-before-after` option to the command:
 
 ```
-cumulus@switch:~$ netq lcm upgrade cl-image name upgrade-430 cl-version 4.3.0 netq-version 4.0.0 hostnames spine01,spine02,leaf01,leaf02 order spine,leaf run-before-after
+cumulus@switch:~$ netq lcm upgrade cl-image name upgrade-430 cl-version 4.3.0 netq-version 4.0.0 hostnames spine01,spine02,leaf01,leaf02 order spine,leaf run-snapshot-before-after
 ```
 
 #### Restore on an Upgrade Failure

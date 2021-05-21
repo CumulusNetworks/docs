@@ -56,11 +56,11 @@ Use the following instructions to upload missing Cumulus Linux and NetQ images.
 
 For *Cumulus Linux* images:
 
-{{< tabs "TabID61" >}}
+{{<tabs "Upload Missing CL Images" >}}
 
-{{< tab "NetQ UI" >}}
+{{<tab "NetQ UI" >}}
 
-1. On the Manage Switch Assets page, click **Image Management**.
+1. On the Manage Switch Assets page, Click **Upgrade**, then click **Image Management**.
 
     {{<figure src="/images/netq/lcm-image-mgmt-tab-330.png" width="600">}}
 
@@ -109,9 +109,9 @@ If you have already specified a default image, you must click <strong>Manage</st
 
     The Cumulus Linux Images card now shows the number of images you uploaded.
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "NetQ CLI" >}}
+{{<tab "NetQ CLI" >}}
 
 1. Download the Cumulus Linux disk images (*.bin* files) needed for upgrade from the {{<exlink url="https://cumulusnetworks.com/downloads/#product=Cumulus%20Linux" text="Cumulus Downloads page">}}, selecting the appropriate version, CPU, and ASIC. Place them in an accessible part of your local network.
 
@@ -123,17 +123,17 @@ If you have already specified a default image, you must click <strong>Manage</st
 
 3. Repeat Step 2 for each image you need to upload to the LCM repository.
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}
 
 For *NetQ* images:
 
-{{< tabs "TabID122">}}
+{{<tabs "Upload Missing NetQ Images">}}
 
-{{< tab "NetQ UI" >}}
+{{<tab "NetQ UI" >}}
 
-1. Click **Image Management**.
+1. Click **Upgrade**, then click **Image Management**.
 
 2. On the NetQ Images card, click the *View # missing NetQ images* link to see what images you need. This opens the list of missing images.
 
@@ -177,9 +177,9 @@ If you have already specified a default image, you must click <strong>Manage</st
 
     The NetQ Images card now shows the number of images you uploaded.
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "NetQ CLI" >}}
+{{<tab "NetQ CLI" >}}
 
 1. Download the NetQ debian packages needed for upgrade from the {{<exlink url="https://cumulusnetworks.com/downloads/#product=NetQ" text="Cumulus Downloads page">}}, selecting the appropriate version and hypervisor/platform. Place them in an accessible part of your local network.
 
@@ -190,9 +190,9 @@ If you have already specified a default image, you must click <strong>Manage</st
     cumulus@switch:~$ netq lcm add netq-image /path/to/download/netq-apps_4.0.0-ub18.04u33~1614767175.886b337_amd64.deb
     ```
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}
 
 ### Upload Upgrade Images
 
@@ -204,11 +204,11 @@ If you are upgrading Cumulus Linux on switches with different ASIC vendors or CP
 
 Then continue with the instructions here based on whether you want to use the NetQ UI or CLI.
 
-{{< tabs "TabID190" >}}
+{{<tabs "Upload Upgrade Images" >}}
 
-{{< tab "NetQ UI" >}}
+{{<tab "NetQ UI" >}}
 
-1. Click **Image Management**.
+1. Click **Upgrade**, then click **Image Management**.
 
 2. Click **Add Image** on the Cumulus Linux Images or NetQ Images card.
 
@@ -228,9 +228,9 @@ Then continue with the instructions here based on whether you want to use the Ne
 
     The NetQ Images card is updated to show the number of additional images you uploaded.
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "NetQ CLI" >}}
+{{<tab "NetQ CLI" >}}
 
 Use the `netq lcm add cl-image <text-image-path>` and `netq lcm add netq-image <text-image-path>` commands to upload the images. Run the relevant command for each image that needs to be uploaded.
 
@@ -247,9 +247,9 @@ cumulus@switch:~$ netq lcm add image /path/to/download/	netq-agent_4.0.0-ub18.04
 cumulus@switch:~$ netq lcm add image /path/to/download/netq-apps_4.0.0-ub18.04u33~1614767175.886b337_amd64.deb
 ```
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}
 
 #### Specify a Default Upgrade Version
 
@@ -257,11 +257,11 @@ Lifecycle management does not have a default Cumulus Linux or NetQ upgrade versi
 
 To specify a default Cumulus Linux or NetQ version in the NetQ UI:
 
-{{< tabs "Specify default version" >}}
+{{<tabs "Specify default version">}}
 
-{{< tab "NetQ UI" >}}
+{{<tab "NetQ UI">}}
 
-1. Click **Image Management**.
+1. Click **Upgrade**, then click **Image Management**.
 
 2. Click the *Click here to set the default CL version* link in the middle of the Cumulus Linux Images card, or click the *Click here to set the default NetQ version* link in the middle of the NetQ Images card.
 
@@ -273,9 +273,9 @@ To specify a default Cumulus Linux or NetQ version in the NetQ UI:
 
     {{<figure src="/images/netq/lcm-images-cards-default-assigned-330.png" width="400">}}
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "NetQ CLI" >}}
+{{<tab "NetQ CLI">}}
 
 To specify a default Cumulus Linux version, run:
 
@@ -289,17 +289,17 @@ To specify a default NetQ version, run:
 cumulus@switch:~$ netq lcm add default-version netq-images <text-netq-version>
 ```
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}
 
 After you have specified a default version, you have the option to change it.
 
 To change the default Cumulus Linux or NetQ version:
 
-{{< tabs "Change default version" >}}
+{{<tabs "Change default version">}}
 
-{{< tab "NetQ UI" >}}
+{{<tab "NetQ UI">}}
 
 1. Click **change** next to the currently identified default image on the Cumulus Linux Images or NetQ Images card.
 
@@ -307,9 +307,9 @@ To change the default Cumulus Linux or NetQ version:
 
 3. Click **Save**.
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "NetQ CLI" >}}
+{{<tab "NetQ CLI">}}
 
 To change the default Cumulus Linux version, run:
 
@@ -323,9 +323,9 @@ To change the default NetQ version, run:
 cumulus@switch:~$ netq lcm add default-version netq-images <text-netq-version>
 ```
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}
 
 In the CLI, you can check which version of Cumulus Linux or NetQ has been configured as the default.
 
@@ -363,13 +363,13 @@ You can export a listing of the Cumulus Linux and NetQ images stored in the LCM 
 
 To export image listings:
 
-{{< tabs "TabID265" >}}
+{{<tabs "Export Images">}}
 
-{{< tab "NetQ UI" >}}
+{{<tab "NetQ UI">}}
 
 1. Open the LCM dashboard.
 
-2. Click **Image Management**.
+2. Click **Upgrade**, then click **Image Management**.
 
 3. Click **Manage** on the Cumulus Linux Images or NetQ Images card.
 
@@ -385,9 +385,9 @@ To export image listings:
 
     {{<figure src="/images/netq/export-data-dialog-300.png" width="250">}}
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "NetQ CLI" >}}
+{{<tab "NetQ CLI">}}
 
 Use the `json` option with the `netq lcm show cl-images` command to output a list of the Cumulus Linux image files stored in the LCM repository.
 
@@ -413,9 +413,9 @@ cumulus@switch:~$ netq lcm show cl-images json
 ]
 ```
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}
 
 ## Remove Images from Local Repository
 
@@ -423,13 +423,13 @@ Once you have upgraded all of your switches beyond a particular release of Cumul
 
 To remove images:
 
-{{< tabs "TabID306" >}}
+{{<tabs "Remove Local Images">}}
 
-{{< tab "NetQ UI" >}}
+{{<tab "NetQ UI">}}
 
 1. Open the LCM dashboard.
 
-2. Click **Image Management**.
+2. Click **Upgrade**, then click **Image Management**.
 
 3. Click **Manage** on the Cumulus Linux Images or NetQ Images card.
 
@@ -441,9 +441,9 @@ To remove images:
 
 5. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/bin-1.svg" height="18" width="18"/>.
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "NetQ CLI" >}}
+{{<tab "NetQ CLI">}}
 
 To remove Cumulus Linux images, run:
 
@@ -554,6 +554,6 @@ netq lcm del netq-image <text-image-id>
     ]
     ```
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}

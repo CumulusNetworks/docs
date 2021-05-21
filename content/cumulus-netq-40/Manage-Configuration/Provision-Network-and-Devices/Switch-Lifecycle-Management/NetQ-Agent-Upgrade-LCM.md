@@ -85,7 +85,7 @@ You can upgrade NetQ Agents on switches as follows:
 
 You can apply <em>different</em> profiles to switches in a <em>single</em> upgrade job by selecting a subset of switches (click checkbox for each switch) and then choosing a different profile. You can also change the profile on a per switch basis by clicking the current profile link and selecting an alternate one.
 
-<img src="/images/netq/lcm-netq-upgrade-select-alternate-profile-320.png" width="450">
+{{<img src="/images/netq/lcm-netq-upgrade-select-alternate-profile-320.png" width="450">}}
 
 {{</notice>}}
 

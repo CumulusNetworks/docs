@@ -62,12 +62,6 @@ To work around this issue, run the &lt;tt&gt;apt-get upgrade&lt;/tt&gt; command 
 <td></td>
 </tr>
 <tr>
-<td>2660583</td>
-<td>In an MLAG configuration, the secondary MLAG switch does not use a unique address instead of the MLAG system MAC address when there is a peer link failure.</td>
-<td>3.7.14-3.7.15</td>
-<td></td>
-</tr>
-<tr>
 <td>2658233</td>
 <td>The following vulnerabilities have been announced in the graphviz package:
 CVE-2018-10196: NULL pointer dereference vulnerability in the rebuild_vlists function in lib/dotgen/conc.c in the dotgen library allows remote attackers to cause a denial of service (application
@@ -76,6 +70,12 @@ CVE-2020-18032: A buffer overflow was discovered in Graphviz, which could potent
 Vulnerable: 2.38.0-7
 Fixed: 2.38.0-7+deb8u1</td>
 <td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2658021</td>
+<td>In an MLAG configuration, the secondary MLAG switch does not use a unique address instead of the MLAG system MAC address when there is a peer link failure.</td>
+<td>3.7.14-3.7.15</td>
 <td></td>
 </tr>
 <tr>
@@ -2014,12 +2014,6 @@ To work around this issue, run the &lt;tt&gt;apt-get upgrade&lt;/tt&gt; command 
 <td></td>
 </tr>
 <tr>
-<td>2660583</td>
-<td>In an MLAG configuration, the secondary MLAG switch does not use a unique address instead of the MLAG system MAC address when there is a peer link failure.</td>
-<td>3.7.14-3.7.15</td>
-<td></td>
-</tr>
-<tr>
 <td>2658233</td>
 <td>The following vulnerabilities have been announced in the graphviz package:
 CVE-2018-10196: NULL pointer dereference vulnerability in the rebuild_vlists function in lib/dotgen/conc.c in the dotgen library allows remote attackers to cause a denial of service (application
@@ -2028,6 +2022,12 @@ CVE-2020-18032: A buffer overflow was discovered in Graphviz, which could potent
 Vulnerable: 2.38.0-7
 Fixed: 2.38.0-7+deb8u1</td>
 <td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2658021</td>
+<td>In an MLAG configuration, the secondary MLAG switch does not use a unique address instead of the MLAG system MAC address when there is a peer link failure.</td>
+<td>3.7.14-3.7.15</td>
 <td></td>
 </tr>
 <tr>
@@ -4026,12 +4026,6 @@ To work around this issue, run the &lt;tt&gt;apt-get upgrade&lt;/tt&gt; command 
 <td></td>
 </tr>
 <tr>
-<td>2660583</td>
-<td>In an MLAG configuration, the secondary MLAG switch does not use a unique address instead of the MLAG system MAC address when there is a peer link failure.</td>
-<td>3.7.14-3.7.15</td>
-<td></td>
-</tr>
-<tr>
 <td>2658233</td>
 <td>The following vulnerabilities have been announced in the graphviz package:
 CVE-2018-10196: NULL pointer dereference vulnerability in the rebuild_vlists function in lib/dotgen/conc.c in the dotgen library allows remote attackers to cause a denial of service (application
@@ -4040,6 +4034,12 @@ CVE-2020-18032: A buffer overflow was discovered in Graphviz, which could potent
 Vulnerable: 2.38.0-7
 Fixed: 2.38.0-7+deb8u1</td>
 <td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2658021</td>
+<td>In an MLAG configuration, the secondary MLAG switch does not use a unique address instead of the MLAG system MAC address when there is a peer link failure.</td>
+<td>3.7.14-3.7.15</td>
 <td></td>
 </tr>
 <tr>

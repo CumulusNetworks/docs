@@ -39,10 +39,12 @@ Validates the communication status of all nodes (leafs, spines, and hosts) runni
 
 ```
 netq check agents
-   [label <text-label-name> | hostnames <text-list-hostnames>]
-   [include <agent-number-range-list> | exclude <agent-number-range-list>]
-   [around <text-time>]
-   [json]
+    [label <text-label-name> | hostnames <text-list-hostnames>]
+    [check_filter_id <text-check-filter-id>]
+    [include <agents-number-range-list> | exclude <agents-number-range-list>]
+    [around <text-time>]
+    [streaming]
+    [json]
 ```
 
 ### Required Arguments
@@ -55,9 +57,11 @@ None
 | ---- | ---- | ---- |
 | label | \<text-label-name\> | Reserved |
 | hostnames | \<text-list-hostnames\> | Comma-separated list (no spaces) of hostnames with to include in validation |
+| check_filter_id | \<text-check-filter-id> | Include the specific filter for a validation |
 | include | \<agent-number-range-list\> | Include the specified validation tests |
 | exclude | \<agent-number-range-list\> | Exclude the specified validation tests |
 | around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. The value is written using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
+| streaming | NA | Perform a streaming query check |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 
 ### Command History
@@ -147,8 +151,10 @@ The output displays the status (passed/failed/skipped) of all tests and a summar
 netq check bgp
     [label <text-label-name> | hostnames <text-list-hostnames>]
     [vrf <vrf>]
+    [check_filter_id <text-check-filter-id>]
     [include <bgp-number-range-list> | exclude <bgp-number-range-list>]
     [around <text-time>]
+    [streaming]
     [json | summary]
 ```
 
@@ -163,9 +169,11 @@ None
 | label | \<text-label-name\> | Reserved |
 | hostnames | \<text-list-hostnames\> | Comma-separated list (no spaces) of hostnames to include in validation |
 | vrf | \<vrf\> | When a VRF is configured, the accepted values include: <ul><li>default: use the default routing table</li><li> mgmt: use management routing table</li><li>\<custom\>: use user-defined routing table</li></ul> |
+| check_filter_id | \<text-check-filter-id> | Include the specific filter for a validation |
 | include | \<agent-number-range-list\> | Include the specified validation tests |
 | exclude | \<agent-number-range-list\> | Exclude the specified validation tests |
 | around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. The value is written using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
+| streaming | NA | Perform a streaming query check |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 | summary | NA | Display only the summary information and test results. Do not display details for tests that failed or had warnings.. |
 
@@ -218,7 +226,13 @@ Verifies the Cumulus Linux version is consistent across nodes, matches a specifi
 ### Syntax
 
 ```
-netq check cl-version [label <text-label-name> | hostnames <text-list-hostnames>] [match-version <cl-ver> | min-version <cl-ver>] [include <version-number-range-list> | exclude <version-number-range-list>] [around <text-time>] [json | summary]
+netq check cl-version
+    [label <text-label-name> | hostnames <text-list-hostnames>]
+    [match-version <cl-ver> | min-version <cl-ver>]
+    [check_filter_id <text-check-filter-id>]
+    [include <version-number-range-list> | exclude <version-number-range-list>]
+    [around <text-time>]
+    [json | summary]
 ```
 
 ### Required Arguments
@@ -233,6 +247,7 @@ None
 | hostnames | \<text-list-hostnames\> | Comma-separated list (no spaces) of hostnames to include in validation |
 | match-version | \<cl-ver\> | Identifies all switches with a Cumulus Linux version other than the one specified with this option. `cl-ver` values are specified in x.y.z format, for example 4.2.0.
 | min-version | \<cl-ver\> | Identifies all switches with a Cumulus Linux version older than the one specified with this option. `cl-ver` values are specified in x.y.z format, for example 3.7.12. |
+| check_filter_id | \<text-check-filter-id> | Include the specific filter for a validation |
 | include | \<agent-number-range-list\> | Include the specified validation tests |
 | exclude | \<agent-number-range-list\> | Exclude the specified validation tests |
 | around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. The value is written using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
@@ -341,8 +356,10 @@ The output displays the status (passed/failed/skipped) of all tests and a summar
 ```
 netq check clag
     [label <text-label-name> | hostnames <text-list-hostnames> ]
+    [check_filter_id <text-check-filter-id>]
     [include <clag-number-range-list> | exclude <clag-number-range-list>]
     [around <text-time>]
+    [streaming]
     [json | summary]
 ```
 
@@ -356,9 +373,11 @@ None
 | ---- | ---- | ---- |
 | label | \<text-label-name\> | Reserved |
 | hostnames | \<text-list-hostnames\> | Comma-separated list (no spaces) of hostnames to include in validation |
+| check_filter_id | \<text-check-filter-id> | Include the specific filter for a validation |
 | include | \<agent-number-range-list\> | Include the specified validation tests |
 | exclude | \<agent-number-range-list\> | Exclude the specified validation tests |
 | around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. The value is written using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
+| streaming | NA | Perform a streaming query check |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 | summary | NA | Display only the summary informationand test results. Do not display details for tests that failed or had warnings.. |
 
@@ -484,6 +503,7 @@ The output displays the status (passed/failed/skipped) of all tests and a summar
 netq check evpn
     [mac-consistency]
     [label <text-label-name> | hostnames <text-list-hostnames>]
+    [check_filter_id <text-check-filter-id>]
     [include <evpn-number-range-list> | exclude <evpn-number-range-list>]
     [around <text-time>]
     [json | summary]
@@ -501,6 +521,7 @@ None
 the same |
 | label | \<text-label-name\> | Reserved |
 | hostnames | \<text-list-hostnames\> | Comma-separated list (no spaces) of hostnames to include in validation |
+| check_filter_id | \<text-check-filter-id> | Include the specific filter for a validation |
 | include | \<agent-number-range-list\> | Include the specified validation tests |
 | exclude | \<agent-number-range-list\> | Exclude the specified validation tests |
 | around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. The value is written using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
@@ -580,8 +601,10 @@ The output displays the status (passed/failed/skipped) of all tests and a summar
 ```
 netq check interfaces
     [label <text-label-name> | hostnames <text-list-hostnames>]
+    [check_filter_id <text-check-filter-id>]
     [include <interface-number-range-list> | exclude <interface-number-range-list>]
     [around <text-time>]
+    [streaming]
     [json | summary]
 ```
 
@@ -595,9 +618,11 @@ None
 | ---- | ---- | ---- |
 | label | \<text-label-name\> | Reserved |
 | hostnames | \<text-list-hostnames\> | Comma-separated list (no spaces) of hostnames to include in validation |
+| check_filter_id | \<text-check-filter-id> | Include the specific filter for a validation |
 | include | \<agent-number-range-list\> | Include the specified validation tests |
 | exclude | \<agent-number-range-list\> | Exclude the specified validation tests |
 | around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. The value is written using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
+| streaming | NA | Perform a streaming query check |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 | summary | NA | Display only the summary information and test results. Do not display details for tests that failed or had warnings.. |
 
@@ -685,85 +710,6 @@ Autoneg Test       : 0 warnings, 12 errors
 
 - - -
 
-## netq check license
-
-Verifies license status for all nodes (leafs, spines, and hosts) in your network fabric. In particular, it looks for the validity of the Cumulus Linux license on each node.
-
-The output displays the status (passed/failed/skipped) of all tests and a summary including:
-
-- Total number of nodes found
-- Number of nodes validated
-- Number of nodes that failed validation
-- Number of nodes that have not been heard from in 90 seconds (rotten)
-- Number of nodes with warnings
-- Number of licenses validated
-- Number of licenses that failed validation
-
-### Syntax
-
-```
-netq check license
-    [label <text-label-name> | hostnames <text-list-hostnames>]
-    [include <license-number-range-list> | exclude <license-number-range-list>]
-    [around <text-time>]
-    [json | summary]
-```
-
-### Required Arguments
-
-None
-
-### Options
-
-| Option | Value | Description |
-| ---- | ---- | ---- |
-| label | \<text-label-name\> | Reserved |
-| hostnames | \<text-list-hostnames\> | Comma-separated list (no spaces) of hostnames to include in validation |
-| include | \<agent-number-range-list\> | Include the specified validation tests |
-| exclude | \<agent-number-range-list\> | Exclude the specified validation tests |
-| around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. The value is written using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
-| json | NA | Display the output in JSON file format instead of default on-screen text format |
-| summary | NA | Display only the summary information and test results. Do not display details for tests that failed or had warnings.. |
-
-### Command History
-
-A release is included if there were changes to the command, otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 3.0.0 | Added `hostnames` option |
-| 2.4.0 | Added `include` and `exclude` options; output changed to include individual test status |
-| 1.x | Introduced |
-
-### Sample Usage
-
-Basic validation: All devices, all tests, currently
-
-```
-cumulus@switch:~$ netq check license
-license check result summary:
-
-Total nodes         : 21
-Checked nodes       : 21
-Failed nodes        : 0
-Rotten nodes        : 0
-Warning nodes       : 0
-
-Additional summary:
-Checked Licenses    : 0
-Failed Licenses     : 0
-
-License validity Test   : passed
-```
-
-### Related Commands
-
-- netq show unit-tests license
-- netq add validation
-- netq add validation name
-
-- - -
-
 ## netq check mlag
 
 Verifies MLAG session consistency by identifying all MLAG peers with errors or misconfigurations in the NetQ domain. In particular, it looks for such items as:
@@ -787,8 +733,10 @@ The output displays the status (passed/failed/skipped) of all tests and a summar
 ```
 netq check mlag
     [label <text-label-name> | hostnames <text-list-hostnames> ]
+    [check_filter_id <text-check-filter-id>]
     [include <mlag-number-range-list> | exclude <mlag-number-range-list>]
     [around <text-time>]
+    [streaming]
     [json | summary]
 ```
 
@@ -802,9 +750,11 @@ None
 | ---- | ---- | ---- |
 | label | \<text-label-name\> | Reserved |
 | hostnames | \<text-list-hostnames\> | Comma-separated list (no spaces) of hostnames to include in validation |
+| check_filter_id | \<text-check-filter-id> | Include the specific filter for a validation |
 | include | \<agent-number-range-list\> | Include the specified validation tests |
 | exclude | \<agent-number-range-list\> | Exclude the specified validation tests |
 | around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. The value is written using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
+| streaming | NA | Perform a streaming query check |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 | summary | NA | Display only the summary informationand test results. Do not display details for tests that failed or had warnings.. |
 
@@ -925,8 +875,10 @@ The output displays the status (passed/failed/skipped) of all tests and a summar
 netq check mtu
     [label <text-label-name> | hostnames <text-list-hostnames>]
     [unverified]
+    [check_filter_id <text-check-filter-id>]
     [include <mtu-number-range-list> | exclude <mtu-number-range-list>]
     [around <text-time>]
+    [streaming]
     [json | summary]
 ```
 
@@ -941,9 +893,11 @@ None
 | label | \<text-label-name\> | Reserved |
 | hostnames | \<text-list-hostnames\> | Comma-separated list (no spaces) of hostnames to include in validation |
 | unverified | NA | Find nodes without a known peer link |
+| check_filter_id | \<text-check-filter-id> | Include the specific filter for a validation |
 | include | \<agent-number-range-list\> | Include the specified validation tests |
 | exclude | \<agent-number-range-list\> | Exclude the specified validation tests |
 | around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. The value is written using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
+| streaming | NA | Perform a streaming query check |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 | summary | NA | Display only the summary information and test results. Do not display details for tests that failed or had warnings. |
 
@@ -1057,7 +1011,13 @@ The output displays the status (passed/failed/skipped) of all tests and a summar
 ### Syntax
 
 ```
-netq check ntp [label <text-label-name> | hostnames <text-list-hostnames>] [include <ntp-number-range-list> | exclude <ntp-number-range-list>] [around <text-time>] [json | summary]
+netq check ntp
+    [label <text-label-name> | hostnames <text-list-hostnames>]
+    [check_filter_id <text-check-filter-id>]
+    [include <ntp-number-range-list> | exclude <ntp-number-range-list>]
+    [around <text-time>]
+    [streaming]
+    [json | summary]
 ```
 
 ### Required Arguments
@@ -1070,9 +1030,11 @@ None
 | ---- | ---- | ---- |
 | label | \<text-label-name\> | Reserved |
 | hostnames | \<text-list-hostnames\> | Comma-separated list (no spaces) of hostnames to include in validation |
+| check_filter_id | \<text-check-filter-id> | Include the specific filter for a validation |
 | include | \<agent-number-range-list\> | Include the specified validation tests |
 | exclude | \<agent-number-range-list\> | Exclude the specified validation tests |
 | around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. The value is written using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
+| streaming | NA | Perform a streaming query check |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 | summary | NA | Display only the summary information and test results. Do not display details for tests that failed or had warnings. |
 
@@ -1141,6 +1103,7 @@ The output displays the status (passed/failed/skipped) of all tests and a summar
 ```
 netq check ospf
     [label <text-label-name> | hostnames <text-list-hostnames>]
+    [check_filter_id <text-check-filter-id>]
     [include <ospf-number-range-list> | exclude <ospf-number-range-list>]
     [around <text-time>]
     [json | summary]
@@ -1156,6 +1119,7 @@ None
 | ---- | ---- | ---- |
 | label | \<text-label-name\> | Reserved |
 | hostnames | \<text-list-hostnames\> | Comma-separated list (no spaces) of hostnames to include in validation |
+| check_filter_id | \<text-check-filter-id> | Include the specific filter for a validation |
 | include | \<agent-number-range-list\> | Include the specified validation tests |
 | exclude | \<agent-number-range-list\> | Exclude the specified validation tests |
 | around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. The value is written using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
@@ -1241,8 +1205,10 @@ The output displays the status (passed/failed/skipped) of all tests and a summar
 ```
 netq check sensors
     [label <text-label-name> | hostnames <text-list-hostnames>]
+    [check_filter_id <text-check-filter-id>]
     [include <sensors-number-range-list> | exclude <sensors-number-range-list>]
     [around <text-time>]
+    [streaming]
     [json | summary]
 ```
 
@@ -1256,9 +1222,11 @@ None
 | ---- | ---- | ---- |
 | label | \<text-label-name\> | Reserved |
 | hostnames | \<text-list-hostnames\> | Comma-separated list (no spaces) of hostnames to include in validation |
+| check_filter_id | \<text-check-filter-id> | Include the specific filter for a validation |
 | include | \<agent-number-range-list\> | Include the specified validation tests |
 | exclude | \<agent-number-range-list\> | Exclude the specified validation tests |
 | around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. The value is written using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
+| streaming | NA | Perform a streaming query check |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 | summary | NA | Display only the summary information and test results. Do not display details for tests that failed or had warnings. |
 
@@ -1325,6 +1293,7 @@ The output displays the status (passed/failed/skipped) of all tests and a summar
 netq check vlan
     [label <text-label-name> | hostnames <text-list-hostnames>]
     [unverified]
+    [check_filter_id <text-check-filter-id>] 
     [include <vlan-number-range-list> | exclude <vlan-number-range-list>]
     [around <text-time>]
     [json | summary]
@@ -1341,6 +1310,7 @@ None
 | label | \<text-label-name\> | Reserved |
 | hostnames | \<text-list-hostnames\> | Comma-separated list (no spaces) of hostnames to include in validation |
 | unverified | NA | Find nodes with no peer |
+| check_filter_id | \<text-check-filter-id> | Include the specific filter for a validation |
 | include | \<agent-number-range-list\> | Include the specified validation tests |
 | exclude | \<agent-number-range-list\> | Exclude the specified validation tests |
 | around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. The value is written using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
@@ -1427,6 +1397,7 @@ The output displays the status (passed/failed/skipped) of all tests and a summar
 ```
 netq check vxlan
     [label <text-label-name> | hostnames <text-list-hostnames>]
+    [check_filter_id <text-check-filter-id>]
     [include <vxlan-number-range-list> | exclude <vxlan-number-range-list>]
     [around <text-time>]
     [json | summary]
@@ -1442,6 +1413,7 @@ None
 | ---- | ---- | ---- |
 | label | \<text-label-name\> | Reserved |
 | hostnames | \<text-list-hostnames\> | Comma-separated list (no spaces) of hostnames to include in validation |
+| check_filter_id | \<text-check-filter-id> | Include the specific filter for a validation |
 | include | \<agent-number-range-list\> | Include the specified validation tests |
 | exclude | \<agent-number-range-list\> | Exclude the specified validation tests |
 | around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. The value is written using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
@@ -2125,8 +2097,8 @@ WJH latency and congestion metrics depend on threshold settings to trigger the e
 ```
 netq config add agent wjh-threshold
     (latency|congestion)
-    <text-tc-list>
-    <text-port-list>
+    (<text-tc-list>|all)
+    (<text-port-list>|all)
     <text-th-hi>
     <text-th-lo>
 ```
@@ -2138,8 +2110,8 @@ netq config add agent wjh-threshold
 | wjh-threshold | NA | Collect and send WJH latency or congestion events triggered by the specified high and low thresholds |
 | latency | NA | Collect and send WJH latency events |
 | congestion | NA | Collect and send WJH congestion events |
-| NA | \<text-tc-list\> | Only send events for these traffic classes. When more than one traffic class is desired, this value should be formatted as a comma-separated list, without spaces. |
-| NA | \<text-port-list\> | Only send events occurring on these ports. When more than one port is desired, this value should be formatted as a comma-separated list, without spaces. For example *swp1,swp2,swp3,swp4*. |
+| NA | \<text-tc-list\> or all | Only send events for these traffic classes, or use *all* for all traffic classes. When more than one traffic class is desired, this value should be formatted as a comma-separated list, without spaces. |
+| NA | \<text-port-list\> or all | Only send events occurring on these ports, or use *all* for all ports. When more than one port is desired, this value should be formatted as a comma-separated list, without spaces. For example *swp1,swp2,swp3,swp4*. |
 | NA | \<text-th-hi\> | Trigger an event when the latency is greater than this amount of time, or when buffer occupancy is greater than this percentage. |
 | NA | \<text-th-lo\> | Trigger an event when the latency is less than this amount of time, or when buffer occupancy is less than this percentage. |
 
@@ -2793,9 +2765,9 @@ Remove latency or congestion thresholds for WJH events.
 ### Syntax
 
 ```
-netq config add agent wjh-threshold
+netq config del agent wjh-threshold
     (latency|congestion)
-    <text-tc-list>
+    (<text-tc-list>|all)
 ```
 
 ### Required Arguments
@@ -2805,7 +2777,7 @@ netq config add agent wjh-threshold
 | wjh-threshold | NA | Remove latency or congestion events triggered by thresholds |
 | latency | NA | Remove latency event thresholds |
 | congestion | NA | Remove congestion event thresholds |
-| NA | \<text-tc-list\> | Remove latency or congestion events for these traffic classes. When more than one traffic class is desired, this value should be formatted as a comma-separated list, without spaces. |
+| NA | \<text-tc-list\> or all | Remove latency or congestion events for these traffic classes, or use *all* for all traffic classes. When more than one traffic class is desired, this value should be formatted as a comma-separated list, without spaces. |
 
 ### Options
 

@@ -261,6 +261,7 @@ If you have nodes that implement virtual routing and forwarding (VRF), you can r
 netq [<hostname>] show bgp
     [<bgp-session>|asn <number-asn>]
     [vrf <vrf>]
+    [established|failed]
     [around <text-time>]
     [json]
 ```
@@ -277,6 +278,8 @@ None
 | NA | <!-- vale off -->\<bgp-session\><!-- vale on --> | Only display results for this particular BGP session; for example 5468354 |
 | asn | \<number-asn\> | Only display results for nodes using this ASN; for example 65013 |
 | vrf | \<vrf\> | Only display results for sessions run on this VRF; for example default, mgmt, or vrf10 |
+| established | NA | Only display established BGP sessions |
+| failed | NA | Only display failed BGP sessions |
 | around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. The value is written using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 
@@ -4317,7 +4320,6 @@ netq show unit-tests clag [json]
 netq show unit-tests cl-version [json]
 netq show unit-tests evpn [json]
 netq show unit-tests interfaces [json]
-netq show unit-tests license [json]
 netq show unit-tests mlag [json]
 netq show unit-tests mtu [json]
 netq show unit-tests ntp [json]

@@ -532,13 +532,9 @@ module WjhDropAggregate {
 
 {{</expand>}}
 
-### Supported Features and Limitations
+### Supported Features
 
-In this release, the gNMI agent has these features and limitations: 
-
-- The agent only supports *capability* and *subscribe* requests for WJH events.
-  - Only *stream* subscribe requests are supported. *Pull* and *once* requests are not supported.
-- gNMI GET and SET requests are **not** supported.
+In this release, the gNMI agent supports *capability* and *stream subscribe* requests for WJH events.
 
 ### Configure the gNMI Agent
 

@@ -5,7 +5,7 @@ weight: 1
 subsection: true
 toc: 1
 cascade:
-    product: NVIDIA Cumulus NetQ
+    product: Cumulus NetQ
     version: "4.0"
     imgData: cumulus-netq
     siteSlug: cumulus-netq

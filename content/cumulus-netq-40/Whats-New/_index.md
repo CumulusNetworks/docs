@@ -12,22 +12,18 @@ toc: 1
 
 NetQ 4.0.0 includes the following new features and improvements:
 
-- NetQ now monitors the SONiC operating system. This is an early access feature and the NetQ CLI is not supported on SONiC switches in this release.
-- RoCE in Cumulus Linux now monitored.
-- Licenses removed from network health.
+- NetQ now monitors the SONiC operating system. Support includes traces, validations, snapshots, events, service visibility, lifecycle management and What Just Happened. This is an early access feature.
+- RoCE (RDMA over Converged Ethernet) in Cumulus Linux now monitored.
+- License checks have been removed from network health and the CLI.
 - You can rename premises.
+- The Grafana plugin has new endpoints for:
+  - Cloud: *plugin.prod.netq.cumulusnetworks.com*
+  - On-premises: *\<hostname-or-ipaddr-of-netq-appl-or-vm\>/plugin*
+    
 
 ## Upgrade Paths
 
-VERIFY THIS. You can upgrade NetQ versions 2.4.x through 3.3.0 directly to version 4.0.0:
-
-- NetQ 2.4.x to NetQ 3.3.1
-- NetQ 3.0.0 to NetQ 3.3.1
-- NetQ 3.1.x to NetQ 3.3.1
-- NetQ 3.2.x to NetQ 3.3.1
-- NetQ 3.3.0 to NetQ 3.3.1
-
-Upgrades from NetQ 2.3.x and earlier require a fresh installation.
+You can upgrade NetQ versions 3.0.0 and later directly to version 4.0.0. Upgrades from NetQ 2.4.x and earlier require a fresh installation.
 
 ## Additional Information
 

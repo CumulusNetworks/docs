@@ -97,7 +97,7 @@ If the installation fails, a failure indication is given.
 2. Can the error can be resolved by moving to the advanced configuration flow?
 
     - **No**: close the Admin UI, resolve the error, run `netq boostrap reset` and `netq bootstrap master` commands, then reopen the Admin UI to start installation again.
-    - **Yes**: click <img src="/images/netq/adminui-install-advanced-icon-320.png" height="18" width="18"/> to be taken to the advanced installation flow and retry the failed task. Refer to the **Advanced** tab for instructions.
+    - **Yes**: click {{<img src="/images/netq/adminui-install-advanced-icon-320.png" height="18" width="18" >}} to be taken to the advanced installation flow and retry the failed task. Refer to the **Advanced** tab for instructions.
 
 {{< /tab >}}
 

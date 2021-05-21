@@ -110,28 +110,3 @@ This section describes how to create a simple message of the day (MOTD) using An
 ## See Also
 
 {{<link url="Default-User-Name-and-Password-in-Cumulus-Linux" text="Default username and password for Cumulus Linux">}}
-
-<!-- Comments
-
-- 
-    
-    <div id="comment_204689507">
-    
-    <div class="comment-avatar">
-    
-    ![Avatar](https://secure.gravatar.com/avatar/a1680065284521a617cd455854851226?default=https%3A%2F%2Fassets.zendesk.com%2Fhc%2Fassets%2Fdefault_avatar.png&r=g)
-    
-    </div>
-    
-    <div class="comment-container">
-    
-    **Eoin Kenny** <span class="comment-published">August 18, 2015
-    14:00</span>
-    
-    <div class="comment-body markdown">
-    
-    Should step 3 not just be:  
-    ansible -k -K -u cumulus -i \~/ansible.hosts -m 'copy' -a
-    'src=\~/sample.motd dest=/etc/motd' 192.168.0.12
-    
-    </div> -->

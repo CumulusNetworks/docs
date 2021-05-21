@@ -20,7 +20,7 @@ NetQ lets you validate the operation of the network protocols and services runni
     - View summary results, individual test status, and protocol or service specific info in the terminal window
 - `netq add validation` command
     - Create an on-demand or scheduled validation
-    - View results <!-- WHERE -->
+    - View results inline
 
 For a more general understanding of how well your network is operating, refer to the {{<link title="Validate Overall Network Health">}} topic.
 
@@ -73,14 +73,13 @@ netq check cl-version [label <text-label-name> | hostnames <text-list-hostnames>
 netq check clag [label <text-label-name> | hostnames <text-list-hostnames> ] [check_filter_id <text-check-filter-id>] [include <clag-number-range-list> | exclude <clag-number-range-list>] [around <text-time>] [streaming] [json | summary]
 netq check evpn [mac-consistency] [label <text-label-name> | hostnames <text-list-hostnames>] [check_filter_id <text-check-filter-id>] [include <evpn-number-range-list> | exclude <evpn-number-range-list>] [around <text-time>] [json | summary]
 netq check interfaces [label <text-label-name> | hostnames <text-list-hostnames>] [check_filter_id <text-check-filter-id>] [include <interface-number-range-list> | exclude <interface-number-range-list>] [around <text-time>] [streaming] [json | summary]
-netq check license [label <text-label-name> | hostnames <text-list-hostnames>] [check_filter_id <text-check-filter-id>] [include <license-number-range-list> | exclude <license-number-range-list>] [around <text-time>] [json | summary]
 netq check mlag [label <text-label-name> | hostnames <text-list-hostnames> ] [check_filter_id <text-check-filter-id>] [include <mlag-number-range-list> | exclude <mlag-number-range-list>] [around <text-time>] [streaming] [json | summary]
 netq check mtu [label <text-label-name> | hostnames <text-list-hostnames>] [unverified] [check_filter_id <text-check-filter-id>] [include <mtu-number-range-list> | exclude <mtu-number-range-list>] [around <text-time>] [streaming] [json | summary]
 netq check ntp [label <text-label-name> | hostnames <text-list-hostnames>] [check_filter_id <text-check-filter-id>] [include <ntp-number-range-list> | exclude <ntp-number-range-list>] [around <text-time>] [streaming] [json | summary]
-netq check ospf [label <text-label-name> | hostnames <text-list-hostnames>] [include <ospf-number-range-list> | exclude <ospf-number-range-list>] [around <text-time>] [json | summary]
-netq check sensors [label <text-label-name> | hostnames <text-list-hostnames>] [include <sensors-number-range-list> | exclude <sensors-number-range-list>] [around <text-time>] [streaming] [json | summary]
+netq check ospf [label <text-label-name> | hostnames <text-list-hostnames>] [check_filter_id <text-check-filter-id>] [include <ospf-number-range-list> | exclude <ospf-number-range-list>] [around <text-time>] [json | summary]
+netq check sensors [label <text-label-name> | hostnames <text-list-hostnames>] [check_filter_id <text-check-filter-id>] [include <sensors-number-range-list> | exclude <sensors-number-range-list>] [around <text-time>] [streaming] [json | summary]
 netq check vlan [label <text-label-name> | hostnames <text-list-hostnames>] [unverified] [check_filter_id <text-check-filter-id>] [include <vlan-number-range-list> | exclude <vlan-number-range-list>] [around <text-time>] [json | summary]
-netq check vxlan [label <text-label-name> | hostnames <text-list-hostnames>] [include <vxlan-number-range-list> | exclude <vxlan-number-range-list>] [around <text-time>] [json | summary]
+netq check vxlan [label <text-label-name> | hostnames <text-list-hostnames>] [check_filter_id <text-check-filter-id>] [include <vxlan-number-range-list> | exclude <vxlan-number-range-list>] [around <text-time>] [json | summary]
 ```
 
 All of the `netq check` commands have a summary and test results section. Some have additional summary information.
@@ -116,7 +115,7 @@ L3 VNI RMAC Test                 : skipped
 
 {{<tab "netq add validation">}}
 
-To create a request containing checks on a single protocol or service in the NetQ CLI and view results in the NetQ UI, run:
+To create a request containing checks on a single protocol or service in the NetQ CLI, run:
 
 ```
 netq add validation type (ntp | interfaces | license | sensors | evpn | vxlan | agents | mlag | vlan | bgp | mtu | ospf) [alert-on-failure]
@@ -297,20 +296,14 @@ The results of the `netq check` command are displayed in the terminal window whe
 
 {{</tab>}}
 
+{{<tab "netq add validation">}}
+
+The results of the `netq add validation` command are displayed in the terminal window where you ran the command. See {{<link title="Validate Network Protocol and Service Operations#on-demand-cli-validation-examples" text="On-demand CLI Validation Examples">}} below.
+
+{{</tab>}}
+
+
 {{</tabs>}}
-
-<!-- 
-
-{ {<tab "netq add validation">}}
-
-After you run the `netq add validation` command, you can view the results .
-
-1. Open the NetQ UI and log in.
-
-2. Open the workbench where the associated On-demand Validation Result card has been placed.
-
-{ {</tab>}}  -->
-
 
 #### On-Demand CLI Validation Examples
 
@@ -748,35 +741,6 @@ Using the `include <interface-number-range-list>` and `exclude <interface-number
 | 3 | Autoneg |
 
 Refer to {{<link url="#interface-validation-tests" text="Interface Validation Tests">}} for descriptions of these tests.
-
-{{</tab>}}
-
-{{<tab "License">}}
-
-You can also check for any nodes that have invalid licenses without going to each node. Because switches do not operate correctly without a valid license you might want to verify that your Cumulus Linux licenses on a regular basis.
-
-This example shows that all licenses on switches are valid.
-
-```
-cumulus@switch:~$ netq check license
-license check result summary:
-
-Checked nodes       : 12
-Total nodes         : 12
-Rotten nodes        : 0
-Failed nodes        : 0
-Warning nodes       : 0
-
-Additional summary:
-Checked Licenses    : 8
-Failed Licenses     : 0
-
-License validity Test   : passed,
-```
-
-{{%notice tip%}}
-This command checks every node, meaning every switch and host in the network. Hosts do not require a Cumulus Linux license, so the number of licenses checked might be smaller than the total number of nodes checked.
-{{%/notice%}}
 
 {{</tab>}}
 

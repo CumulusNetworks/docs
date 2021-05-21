@@ -11,29 +11,29 @@ To upgrade the NetQ CLI:
 
 1. Log in to your switch or host.
 
-2. Update and install the new NetQ debian package.
+2. Update and install the new NetQ Debian package.
 
-    {{< tabs "TabID0" >}}
+    {{<tabs "Install Debian" >}}
 
-{{< tab "Cumulus Linux Switches and Ubuntu Hosts" >}}
+{{<tab "Cumulus Linux and SONiC Switches and Ubuntu Hosts">}}
 
 ```
 sudo apt-get update
 sudo apt-get install -y netq-apps
 ```
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "RHEL or CentOS Hosts " >}}
+{{<tab "RHEL or CentOS Hosts">}}
 
 ```
 sudo yum update
 sudo yum install netq-apps
 ```
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}
 
 3. Restart the CLI.
 

@@ -103,7 +103,15 @@ CUE is created from the ground up and does not inherit any previous functionalit
 
 ## Upgrade Cumulus Linux
 
-You can upgrade Cumulus Linux in one of two ways:
+To upgrade to Cumulus Linux 4.4, you must install a disk image of the new release using ONIE. You *cannot* upgrade packages with the `apt-get upgrade` command.
+
+ONIE is an open source project (equivalent to PXE on servers) that enables the installation of network operating systems (NOS) on a bare metal switch.
+
+{{%notice note%}}
+Upgrading an MLAG pair requires additional steps. If you are using MLAG to dual connect two Cumulus Linux switches in your environment, follow the steps in {{<link title="#Upgrade Switches in an MLAG Pair">}} below to ensure a smooth upgrade.
+{{%/notice%}}
+
+<!--You can upgrade Cumulus Linux in one of two ways:
 
 - Install a Cumulus Linux image of the new release, using ONIE.
 - Upgrade only the changed packages using the `sudo -E apt-get update` and `sudo -E apt-get upgrade` command.
@@ -119,7 +127,7 @@ Upgrading an MLAG pair requires additional steps. If you are using MLAG to dual 
 The decision to upgrade Cumulus Linux by either installing a Cumulus Linux image or upgrading packages depends on your environment and your preferences. Here are some recommendations for each upgrade method.
 
 **Installing a Cumulus Linux image** is recommended if you are performing a rolling upgrade in a production environment and if are using up-to-date and comprehensive automation scripts. This upgrade method enables you to choose the exact release to which you want to upgrade and is the *only* method available to upgrade your switch to a new release train (for example, from 3.7.14 to 4.1.0).
-
+-->
 Be aware of the following when installing the Cumulus Linux image:
 
 - Installing a Cumulus Linux image is destructive; any configuration files on the switch are not saved; copy them to a different server before you start the Cumulus Linux image install.
@@ -130,7 +138,7 @@ Be aware of the following when installing the Cumulus Linux image:
 - If configuration files are not restored correctly, you might be unable to ssh to the switch from in-band management. Out-of-band connectivity (eth0 or console) is recommended.
 - You *must* reinstall and reconfigure third-party applications after upgrade.
 
-**Package upgrade** is recommended if you are upgrading from Cumulus Linux 4.0.0 to a later 4.x release, or if you use third-party applications (package upgrade does not replace or remove third-party applications, unlike the Cumulus Linux image install).
+<!--*Package upgrade** is recommended if you are upgrading from Cumulus Linux 4.0.0 to a later 4.x release, or if you use third-party applications (package upgrade does not replace or remove third-party applications, unlike the Cumulus Linux image install).
 
 Be aware of the following when upgrading packages:
 
@@ -141,7 +149,7 @@ Be aware of the following when upgrading packages:
 
 ### Cumulus Linux Image Install (ONIE)
 
-ONIE is an open source project (equivalent to PXE on servers) that enables the installation of network operating systems (NOS) on a bare metal switch.
+ONIE is an open source project (equivalent to PXE on servers) that enables the installation of network operating systems (NOS) on a bare metal switch.-->
 
 To upgrade the switch:
 
@@ -157,7 +165,7 @@ To upgrade the switch:
 5. Verify correct operation with the old configurations on the new release.
 6. Reinstall third party applications and associated configurations.
 
-### Package Upgrade
+<!--### Package Upgrade
 
 Cumulus Linux completely embraces the Linux and Debian upgrade workflow, where you use an installer to install a base image, then perform any upgrades within that release train with `sudo -E apt-get update` and `sudo -E apt-get upgrade` commands. Any packages that have changed after the base install get upgraded in place from the repository. All switch configuration files remain untouched, or in rare cases merged (using the Debian merge function) during the package upgrade.
 
@@ -239,7 +247,7 @@ To upgrade the switch using package upgrade:
 Because Cumulus Linux is a collection of different Debian Linux packages, be aware of the following:
 
 - The `/etc/os-release` and `/etc/lsb-release` files are updated to the currently installed Cumulus Linux release when you upgrade the switch using either *package upgrade* or *Cumulus Linux image install*. For example, if you run `sudo -E apt-get upgrade` and the latest Cumulus Linux release on the repository is 4.1.0, these two files display the release as 4.1.0 after the upgrade.
-- The `/etc/image-release` file is updated **only** when you run a Cumulus Linux image install. Therefore, if you run a Cumulus Linux image install of Cumulus Linux 4.0.0, followed by a package upgrade to 4.1.0 using `sudo -E apt-get upgrade`, the `/etc/image-release` file continues to display Cumulus Linux 4.0.0, which is the originally installed base image.
+- The `/etc/image-release` file is updated **only** when you run a Cumulus Linux image install. Therefore, if you run a Cumulus Linux image install of Cumulus Linux 4.0.0, followed by a package upgrade to 4.1.0 using `sudo -E apt-get upgrade`, the `/etc/image-release` file continues to display Cumulus Linux 4.0.0, which is the originally installed base image.-->
 
 ## Upgrade Switches in an MLAG Pair
 

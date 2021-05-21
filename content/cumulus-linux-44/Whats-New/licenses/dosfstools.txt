@@ -1,0 +1,39 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: dosfstools
+Upstream-Contact: Andreas Bombe <aeb@debian.org>
+Source: https://github.com/dosfstools/dosfstools
+
+Files: *
+Copyright: 1991 Linus Torvalds <torvalds@klaava.helsinki.fi>
+           1992-1993 Remy Card <card@masi.ibp.fr>
+           1993-1994 David Hudson <dave@humbug.demon.co.uk>
+           1999-2005 Roman Hodek <Roman.Hodek@informatik.uni-erlangen.de>
+           1999-2005 Werner Almesberger <werner.almesberger@lrc.di.epfl.ch>
+           1999-2005 Roman Hodek <Roman.Hodek@informatik.uni-erlangen.de>
+           2008-2014 Daniel Baumann <mail@daniel-baumann.ch>
+           2015-2016 Andreas Bombe <aeb@debian.org>
+License: GPL-3+
+
+Files: src/blkdev/*
+Copyright: Karel Zak <kzak@redhat.com>
+License: public-domain
+ No copyright is claimed.  This code is in the public domain; do with
+ it what you wish.
+
+
+License: GPL-3+
+ This program is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, either version 3 of the License, or
+ (at your option) any later version.
+ .
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ GNU General Public License for more details.
+ .
+ You should have received a copy of the GNU General Public License
+ along with this program. If not, see <http://www.gnu.org/licenses/>.
+ .
+ The complete text of the GNU General Public License
+ can be found in /usr/share/common-licenses/GPL-3 file.

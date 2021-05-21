@@ -1,0 +1,61 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Source: https://metacpan.org/release/Error
+Upstream-Contact: Shlomi Fish <shlomif@iglu.org.il>
+Upstream-Name: Error
+
+Files: *
+Copyright: 1997-1998, Graham Barr <gbarr@pobox.com>
+ 2018, Shlomi Fish http://www.shlomifish.org/
+License: Artistic or GPL-1+
+Comment:
+ # Based on my original Error.pm, and Exceptions.pm by Peter Seibel
+ # <peter@weblogic.com> and adapted by Jesse Glick <jglick@sig.bsh.com>.
+ #
+ # but modified ***significantly***
+
+Files: lib/Error/Simple.pm
+Copyright: 2006, Shlomi Fish <shlomif@iglu.org.il>
+License: MIT/X11
+
+Files: debian/*
+Copyright: 1999, 2000, 2001, 2002, 2003, Paolo Molaro <lupus@debian.org>
+ 2003, 2004, 2005, Luk Claes <luk@debian.org>
+ 2003, Ardo van Rangelrooij <ardo@debian.org>
+ 2005, 2007, Clint Burfoot <clint@burfoot.info>
+ 2013, CSILLAG Tamas <cstamas@cstamas.hu>
+ 2015-2019, gregor herrmann <gregoa@debian.org>
+License: Artistic or GPL-1+
+
+License: Artistic
+ This program is free software; you can redistribute it and/or modify
+ it under the terms of the Artistic License, which comes with Perl.
+ .
+ On Debian systems, the complete text of the Artistic License can be
+ found in `/usr/share/common-licenses/Artistic'.
+
+License: GPL-1+
+ This program is free software; you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation; either version 1, or (at your option)
+ any later version.
+ .
+ On Debian systems, the complete text of version 1 of the GNU General
+ Public License can be found in `/usr/share/common-licenses/GPL-1'.
+
+License: MIT/X11
+ Permission is hereby granted, free of charge, to any person obtaining a copy
+ of this software and associated documentation files (the "Software"), to deal
+ in the Software without restriction, including without limitation the rights
+ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ copies of the Software, and to permit persons to whom the Software is
+ furnished to do so, subject to the following conditions:
+ .
+ The above copyright notice and this permission notice shall be included in
+ all copies or substantial portions of the Software.
+ .
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE X
+ CONSORTIUM BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
+ ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.

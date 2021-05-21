@@ -88,7 +88,7 @@ The following configuration steps are based on the
 [reference topology](https://github.com/cumulusnetworks/cldemo-vagrant) set forth
 by Cumulus Networks. Here is a diagram of the topology:
 
-{{% imgOld 0 %}}
+{{< img src = "/images/cumulus-linux/redistribute-neighbor-example.png" >}}
 
 ### Configuring the Leaf(s)
 

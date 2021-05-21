@@ -118,4 +118,4 @@ Notice how Admin down (down/up above) and down/down look identical.
 
 {{%/notice%}}
 
-For additional troubleshooting of physical ports, read the documentation on [duplex, speed and auto-negotiation settings]({{<ref "/cumulus-linux-43/Layer-1-and-Switch-Ports/Interface-Configuration-and-Management/Switch-Port-Attributes" >}}.
+For additional troubleshooting of physical ports, read the documentation on [duplex, speed and auto-negotiation settings]({{<ref "/cumulus-linux-43/Layer-1-and-Switch-Ports/Interface-Configuration-and-Management/Switch-Port-Attributes" >}}).

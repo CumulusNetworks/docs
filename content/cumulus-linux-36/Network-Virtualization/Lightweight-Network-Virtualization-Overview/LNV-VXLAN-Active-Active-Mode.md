@@ -167,7 +167,7 @@ VTEP, even though the switches independently encapsulate and decapsulate
 layer 2 traffic originating from the host. You can configure the anycast
 address under the loopback interface, as shown below.
 
-{{% imgOld 0 %}}
+{{% img src="/images/old_doc_images/anycastIP.png" %}}
 
 **leaf01:** `/etc/network/interfaces snippet`
 
@@ -218,7 +218,7 @@ address under the loopback interface, as shown below.
 
 ## Example VXLAN Active-Active Configuration
 
-{{% imgOld 1 %}}
+{{% img src="/images/old_doc_images/vxlanactiveactive.png" %}}
 
 Note the configuration of the local IP address in the VXLAN interfaces
 below. They are configured with individual IP addresses, which `clagd`
@@ -1020,7 +1020,7 @@ topologies only, and is not needed on real hardware.
       post-up ip link set $IFACE promisc on
 
 For more information on using Cumulus VX and Vagrant, refer to the
-[Cumulus VX documentation]({{<ref "/cumulus-vx" >}}.
+[Cumulus VX documentation]({{<ref "/cumulus-vx" >}}).
 
 ## Troubleshooting with LNV Active-active
 

@@ -17,7 +17,7 @@ Dual-connected devices can create LACP bonds that contain links to each physical
 
 A basic setup looks like this:
 
-{{% imgOld 0 %}}
+{{< img src = "/images/old_doc_images/host_ha1.png" >}}
 
 {{%notice tip%}}
 
@@ -46,11 +46,11 @@ If for some reason you cannot use LACP, you can also use {{<link url="Bonding-Li
 
 More elaborate configurations are also possible. The number of links between the host and the switches can be greater than two, and does not have to be symmetrical:
 
-{{% imgOld 1 %}}
+{{% img src="/images/old_doc_images/host_ha2.png" %}}
 
 Additionally, because S1 and S2 appear as a single switch to other bonding devices, you can also connect pairs of MLAG switches to each other in a switch-to-switch MLAG setup:
 
-{{% imgOld 2 %}}
+{{% img src="/images/old_doc_images/2pair_mlag.png" %}}
 
 In this case, L1 and L2 are also MLAG peer switches, and present a two-port bond from a single logical system to S1 and S2. S1 and S2 do the same as far as L1 and L2 are concerned. For a switch-to-switch MLAG configuration, each switch pair must have a unique system MAC address. In the above example, switches L1 and L2 each have the same system MAC address configured. Switch pair S1 and S2 each have the same system MAC address configured; however, it is a different system MAC address than the one used by the switch pair L1 and L2.
 
@@ -62,7 +62,7 @@ However, if for some reason you cannot use LACP in your environment, you can con
 
 On each of the peer switches, you must place the links that are connected to the dual-connected host or switch in the bond. This is true even if the links are a single port on each peer switch, where each port is placed into a bond, as shown below:
 
-{{% imgOld 3 %}}
+{{% img src="/images/old_doc_images/2l_3h.png" %}}
 
 All of the dual-connected bonds on the peer switches have their system ID set to the MLAG system ID. Therefore, from the point of view of the hosts, each of the links in its bond is connected to the same system, and so the host uses both links.
 
@@ -134,7 +134,7 @@ To prevent MAC address conflicts with other interfaces in the same bridged netwo
 
 On your dual-connected device, create a bond that uses LACP. The method you use varies with the type of device you are configuring. The following image is a basic MLAG configuration, showing all the essential elements; a more detailed two-leaf/two-spine configuration is shown {{<link url="#example-mlag-configuration" text="below">}}.
 
-{{% imgOld 4 %}}
+{{% img src="/images/old_doc_images/mlag_basic.png" %}}
 
 ### Configure the Interfaces
 
@@ -1062,7 +1062,7 @@ cumulus@spine01:~$ net commit
 
 In this scenario, the spine switches connect at layer 3, as shown in the image below. Alternatively, the spine switches can be singly connected to each core switch at layer 3 (not shown below).
 
-{{% imgOld 6 %}}
+{{% img src="/images/old_doc_images/mlag_cfg_l3.png" %}}
 
 In this design, the spine switches route traffic between the server hosts in the layer 2 domains and the core. The servers (host1 thru host4) each have a layer 2 connection up to the spine layer where the default gateway for the host subnets resides. However, since the spine switches as gateway devices communicate at layer 3, you need to configure a protocol such as {{<link url="Virtual-Router-Redundancy-VRR-and-VRRP" text="VRR">}} (virtual router redundancy) between the spine switch pair to support active/active forwarding.
 
@@ -1247,7 +1247,7 @@ In addition, you might want to add extra links to the peer link bond to handle l
 
 In the illustration below, each host has two 10G links, with each 10G link going to each switch in the MLAG pair. Each host has 20G of dual-connected bandwidth, so all three hosts have a total of 60G of dual-connected bandwidth. We recommend you allocate at least 15G of bandwidth to each peer link bond, which represents half of the single-connected bandwidth.
 
-{{% imgOld 7 %}}
+{{% img src="/images/old_doc_images/MLAG_UD-729.png" %}}
 
 Scaling this example out to a full rack, when planning for link failures, you need only allocate enough bandwidth to meet your site's strategy for handling failure scenarios. Imagine a full rack with 40 servers and two switches. You might plan for four to six servers to lose connectivity to a single switch and become single connected before you respond to the event. So expanding upon our previous example, if you have 40 hosts each with 20G of bandwidth dual-connected to the MLAG pair, you might allocate 20G to 30G of bandwidth to the peer link - which accounts for half of the single-connected bandwidth for four to six hosts.
 

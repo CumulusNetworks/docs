@@ -89,7 +89,7 @@ pushing/pulling the same exact file on each device\!
         "leaf2":"swp5s0" -- "server2":"eth1";
     }
 
-{{% imgOld 0 %}}
+{{% img src="/images/cumulus-linux/ptm-dot.png" %}}
 
 ## ptmd Scripts
 

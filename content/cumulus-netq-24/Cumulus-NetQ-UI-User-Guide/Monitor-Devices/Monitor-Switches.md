@@ -415,7 +415,7 @@ The full screen Switch card provides multiple tabs.
 <li><strong>Hostname</strong>: Hostname of the given device</li>
 <li><strong>Largest Chunk Size</strong>: Largest remaining chunk size on disk</li>
 <li><strong>Last Changed</strong>: Data and time that the storage allocation was last updated</li>
-<li><strong>Rebalance Recommended</strong>: Based on rules described in [When to Rebalance BTRFS Partitions]({{<ref "/knowledge-base/Configuration-and-Usage/Storage/When-to-Rebalance-BTRFS-Partitions" >}}, a rebalance is suggested</li>
+<li><strong>Rebalance Recommended</strong>: A BTRFS rebalance is suggested</li>
 <li><strong>Unallocated Space</strong>: Amount of space remaining on the disk</li>
 <li><strong>Unused Data Chunks Space</strong>: Amount of available data chunk space</li>
 </ul></td>

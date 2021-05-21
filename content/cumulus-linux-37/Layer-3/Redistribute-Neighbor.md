@@ -49,7 +49,7 @@ Redistribute neighbor works as follows:
 
 The following example configuration is based on the {{<exlink url="https://github.com/cumulusnetworks/cldemo-vagrant" text="reference topology">}}. Other configurations are possible, based on the use cases outlined above. Here is a diagram of the topology:
 
-{{% imgOld 0 %}}
+{{< img src = "/images/cumulus-linux/redistribute-neighbor-example.png" >}}
 
 ### Configure the Leaf(s)
 

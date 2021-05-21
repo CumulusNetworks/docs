@@ -5,7 +5,7 @@ weight: 363
 pageID: 8362793
 ---
 In VXLAN-based networks, there are a range of complexities and challenges in determining the destination *virtual tunnel endpoints* (VTEPs) for any given VXLAN. At scale, various solutions, including {{<link url="Lightweight-Network-Virtualization-Overview" text="Lightweight Network Virtualization">}}
-(LNV), controller-based options like {{<link url="Integrating-Hardware-VTEPs-with-Midokura-MidoNet-and-OpenStack" text="Midokura MidoNet">}} or {{<link url="Integrating-Hardware-VTEPs-with-VMware-NSX-MH" text="VMware NSX">}} and even new standards like
+(LNV), controller-based options like {{<link url="Integrating-Hardware-VTEPs-with-Midokura-MidoNet-and-OpenStack" text="Midokura MidoNet">}} or {{<link title="Integrating Hardware VTEPs with VMware NSX" text="VMware NSX">}} and even new standards like
 {{<link url="Ethernet-Virtual-Private-Network-EVPN" text="EVPN">}} are attempts to address these complexities, however do retain their own complexities.
 
 Enter *static VXLAN tunnels*, which simply serve to connect two VTEPs in a given environment. Static VXLAN tunnels are the simplest deployment mechanism for small scale environments and are interoperable with other vendors that adhere to VXLAN standards. Because you are simply mapping which VTEPs are in a particular VNI, you can avoid the tedious process of defining connections to every VLAN on every other VTEP on every other rack.
@@ -36,7 +36,7 @@ cumulus@switch:~ sudo systemctl stop vxrd.service
 
 This chapter uses the following topology. Each IP address corresponds to the loopback address of the switch.
 
-{{% imgOld 0 %}}
+{{% img src="/images/old_doc_images/static-vxlan-tunnels.png" %}}
 
 ## Configure Static VXLAN Tunnels
 

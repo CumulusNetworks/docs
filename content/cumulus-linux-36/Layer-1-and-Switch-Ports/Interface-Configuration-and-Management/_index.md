@@ -45,7 +45,7 @@ command:
 In this example, swp1 is administratively UP and the physical link is UP
 (LOWER\_UP flag). More information on interface administrative state and
 physical state can be found in 
-[this knowledge base article]({{<ref "/knowledge-base/Configuration-and-Usage/Monitoring/Monitor-Interface-Administrative-State-and-Physical-State-on-Cumulus-Linux" >}}.
+[this knowledge base article]({{<ref "/knowledge-base/Configuration-and-Usage/Monitoring/Monitor-Interface-Administrative-State-and-Physical-State-on-Cumulus-Linux" >}}).
 
 ### Using NCLU to Set the Admin State of an Interface
 
@@ -260,7 +260,7 @@ iface br-100
 </details>
 
 For more information on the bridge in traditional mode vs the bridge in
-VLAN-aware mode, please read [this knowledge base article]({{<ref "/knowledge-base/Configuration-and-Usage/Network-Interfaces/Compare-Traditional-Bridge-Mode-to-VLAN-aware-Bridge-Mode" >}}.
+VLAN-aware mode, please read [this knowledge base article]({{<ref "/knowledge-base/Configuration-and-Usage/Network-Interfaces/Compare-Traditional-Bridge-Mode-to-VLAN-aware-Bridge-Mode" >}}).
 
 ## ifupdown2 Interface Dependencies
 
@@ -380,13 +380,13 @@ To print the dependency information of an interface in `dot` format:
 You can use `dot` to render the graph on an external system where `dot`
 is installed.
 
-{{% imgOld 0 %}}
+{{% img src = "/images/cumulus-linux/layer1-interfaces.png" %}}
 
 To print the dependency information of the entire `interfaces` file:
 
     cumulus@switch:~$ sudo ifquery --print-dependency=dot -a >interfaces_all.dot
 
-{{% imgOld 1 %}}
+{{% img src = "/images/cumulus-linux/layer1-interfaces-all.png" %}}
 
 ### ifup Handling of Upper (Parent) Interfaces
 
@@ -752,7 +752,7 @@ You can test your template and confirm it evaluates correctly by running
 
 {{%notice tip%}}
 
-For more examples of configuring Mako templates, read this [knowledge base article]({{<ref "/knowledge-base/Configuration-and-Usage/Automation/Configure-the-interfaces-File-with-Mako" >}}.
+For more examples of configuring Mako templates, read this [knowledge base article]({{<ref "/knowledge-base/Configuration-and-Usage/Automation/Configure-the-interfaces-File-with-Mako" >}}).
 
 {{%/notice%}}
 

@@ -1,5 +1,5 @@
 ---
-title: Cumulus NetQ Operation
+title: NetQ Operation
 author: NVIDIA
 weight: 80
 toc: 4

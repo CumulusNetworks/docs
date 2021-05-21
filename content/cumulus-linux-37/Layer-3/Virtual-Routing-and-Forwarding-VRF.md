@@ -61,7 +61,7 @@ You configure VRF by associating each subset of interfaces to a VRF
 routing table, and configuring an instance of the routing protocol - BGP
 or OSPFv2 - for each routing table.
 
-{{% imgOld 0 %}}
+{{< img src = "/images/cumulus-linux/vrf-example.png" >}}
 
 ## Configure VRF
 
@@ -1279,20 +1279,10 @@ See the example configuration below for more details.
 In the following example, there is one IPv4 network with a VRF named
 *rocket* and one IPv6 network with a VRF named *turtle*.
 
-<table>
-<colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
-</colgroup>
-<tbody>
-<tr class="odd">
-<td><p>The IPv4 DHCP server/relay network looks like this:</p>
-<p>{{% imgOld 1 %}}</p></td>
-<td><p>The IPv6 DHCP server/relay network looks like this:</p>
-<p>{{% imgOld 2 %}}</p></td>
-</tr>
-</tbody>
-</table>
+|IPv4 DHCP Server/relay network|IPv6 DHCP Server/relay network|
+|---|---|
+|{{< img src = "/images/cumulus-linux/vrf-rocket-dhcp4.png" >}}|{{< img src = "/images/cumulus-linux/vrf-turtle-dhcp6.png" >}}|
+
 
 Configure each DHCP server and relay as follows:
 

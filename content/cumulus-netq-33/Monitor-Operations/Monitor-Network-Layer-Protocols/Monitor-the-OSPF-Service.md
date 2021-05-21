@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 960
 toc: 4
 ---
-OSPF maintains the view of the network topology conceptually as a directed graph. Each router represents a vertex in the graph. Each link between neighboring routers represents a unidirectional edge and has an associated weight (called cost) that is either automatically derived from its bandwidth or administratively assigned. Using the weighted topology graph, each router computes a shortest path tree (SPT) with itself as the root, and applies the results to build its forwarding table. For more information about OSPF operation and how to configure OSPF to run in your data center network, refer to [Open Shortest Path First - OSPF]({{<ref "/cumulus-linux-43/Layer-3/OSPF" >}} or [Open Shortest Path First v3 - OSPFv3]({{<ref "/cumulus-linux-43/Layer-3/OSPF/Open-Shortest-Path-First-v3-OSPFv3" >}}.
+OSPF maintains the view of the network topology conceptually as a directed graph. Each router represents a vertex in the graph. Each link between neighboring routers represents a unidirectional edge and has an associated weight (called cost) that is either automatically derived from its bandwidth or administratively assigned. Using the weighted topology graph, each router computes a shortest path tree (SPT) with itself as the root, and applies the results to build its forwarding table. For more information about OSPF operation and how to configure OSPF to run in your data center network, refer to [Open Shortest Path First - OSPF]({{<ref "/cumulus-linux-43/Layer-3/OSPF" >}}) or [Open Shortest Path First v3 - OSPFv3]({{<ref "/cumulus-linux-43/Layer-3/OSPF/Open-Shortest-Path-First-v3-OSPFv3" >}}).
 
 If you have OSPF running on your switches and hosts, NetQ enables you to view the health of the OSPF service on a networkwide and a per session basis, giving greater insight into all aspects of the service. For each device, you can view its associated interfaces, areas, peers, state, and type of OSPF running (numbered or unnumbered). Additionally, you can view the information at an earlier point in time and filter against a particular device, interface, or area.
 
@@ -367,7 +367,7 @@ With NetQ, you can monitor the performance of a single OSPF session using the Ne
     - Full-screen: view all session attributes and all events
 - `netq <hostname> show ospf` command: view configuration and status for session by hostname, including interface, area, type, state, peer hostname, peer interface, and the last time this information changed
 
-For an overview and how to configure OSPF to run in your data center network, refer to [Open Shortest Path First - OSPF]({{<ref "/cumulus-linux-43/Layer-3/OSPF" >}} or [Open Shortest Path First v3 - OSPFv3]({{<ref "/cumulus-linux-43/Layer-3/OSPF/Open-Shortest-Path-First-v3-OSPFv3" >}}.
+For an overview and how to configure OSPF to run in your data center network, refer to [Open Shortest Path First - OSPF]({{<ref "/cumulus-linux-43/Layer-3/OSPF" >}}) or [Open Shortest Path First v3 - OSPFv3]({{<ref "/cumulus-linux-43/Layer-3/OSPF/Open-Shortest-Path-First-v3-OSPFv3" >}}).
 
 {{<notice note>}}
 To access the single session cards, you must open the full screen Network Services|All OSPF Sessions card, click the <strong>All Sessions</strong> tab, select the desired session, then click <img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> (Open Card).

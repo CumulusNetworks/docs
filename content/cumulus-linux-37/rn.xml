@@ -62,6 +62,23 @@ To work around this issue, run the &lt;tt&gt;apt-get upgrade&lt;/tt&gt; command 
 <td></td>
 </tr>
 <tr>
+<td>2660583</td>
+<td>In an MLAG configuration, the secondary MLAG switch does not use a unique address instead of the MLAG system MAC address when there is a peer link failure.</td>
+<td>3.7.14-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2658233</td>
+<td>The following vulnerabilities have been announced in the graphviz package:
+CVE-2018-10196: NULL pointer dereference vulnerability in the rebuild_vlists function in lib/dotgen/conc.c in the dotgen library allows remote attackers to cause a denial of service (application
+crash) via a crafted file.
+CVE-2020-18032: A buffer overflow was discovered in Graphviz, which could potentially result in the execution of arbitrary code when processing a malformed file.
+Vulnerable: 2.38.0-7
+Fixed: 2.38.0-7+deb8u1</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2656291</td>
 <td>The following CVEs affect the linux kernel package:
 CVE-2019-14821 CVE-2019-14835 CVE-2019-15117 CVE-2019-15118 CVE-2019-15902
@@ -131,12 +148,6 @@ Fixed: 6.8.9.9-5+deb8u24</td>
 <td>OpenSSH is vulnerable to CVE-2020-14145, as described in https://www.fzi.de/fileadmin/user_upload/2020-06-26-FSA-2020-2.pdf.  
 This is an information leak in algorithm negotiation that can allow man-in-the-middle attacks on initial connection attempts without a previously stored server host key on the client. If desired, mitigation using UpdateHostKeys and HostKeyAlgorithms is also given in that paper.</td>
 <td>3.7.14-3.7.15, 4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
-<td>2625778</td>
-<td>After provisioning switches and running automation in the background to collect device information, NCLU is slow to return output. This might prevent you from configuring and troubleshooting the switch as well as preventing  background automation from collecting information from the switch.</td>
-<td>3.7.12-3.7.15</td>
 <td></td>
 </tr>
 <tr>
@@ -2003,6 +2014,23 @@ To work around this issue, run the &lt;tt&gt;apt-get upgrade&lt;/tt&gt; command 
 <td></td>
 </tr>
 <tr>
+<td>2660583</td>
+<td>In an MLAG configuration, the secondary MLAG switch does not use a unique address instead of the MLAG system MAC address when there is a peer link failure.</td>
+<td>3.7.14-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2658233</td>
+<td>The following vulnerabilities have been announced in the graphviz package:
+CVE-2018-10196: NULL pointer dereference vulnerability in the rebuild_vlists function in lib/dotgen/conc.c in the dotgen library allows remote attackers to cause a denial of service (application
+crash) via a crafted file.
+CVE-2020-18032: A buffer overflow was discovered in Graphviz, which could potentially result in the execution of arbitrary code when processing a malformed file.
+Vulnerable: 2.38.0-7
+Fixed: 2.38.0-7+deb8u1</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2656291</td>
 <td>The following CVEs affect the linux kernel package:
 CVE-2019-14821 CVE-2019-14835 CVE-2019-15117 CVE-2019-15118 CVE-2019-15902
@@ -2090,12 +2118,6 @@ Vulnerable: &lt;= 2.8.0-cl3.7.15u2
 Fixed: 2.8.0-cl3.7.15u3</td>
 <td>3.7.14-3.7.14.2, 4.3.0</td>
 <td>3.7.15</td>
-</tr>
-<tr>
-<td>2625778</td>
-<td>After provisioning switches and running automation in the background to collect device information, NCLU is slow to return output. This might prevent you from configuring and troubleshooting the switch as well as preventing  background automation from collecting information from the switch.</td>
-<td>3.7.12-3.7.15</td>
-<td></td>
 </tr>
 <tr>
 <td>2617009</td>
@@ -4004,6 +4026,23 @@ To work around this issue, run the &lt;tt&gt;apt-get upgrade&lt;/tt&gt; command 
 <td></td>
 </tr>
 <tr>
+<td>2660583</td>
+<td>In an MLAG configuration, the secondary MLAG switch does not use a unique address instead of the MLAG system MAC address when there is a peer link failure.</td>
+<td>3.7.14-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2658233</td>
+<td>The following vulnerabilities have been announced in the graphviz package:
+CVE-2018-10196: NULL pointer dereference vulnerability in the rebuild_vlists function in lib/dotgen/conc.c in the dotgen library allows remote attackers to cause a denial of service (application
+crash) via a crafted file.
+CVE-2020-18032: A buffer overflow was discovered in Graphviz, which could potentially result in the execution of arbitrary code when processing a malformed file.
+Vulnerable: 2.38.0-7
+Fixed: 2.38.0-7+deb8u1</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2656291</td>
 <td>The following CVEs affect the linux kernel package:
 CVE-2019-14821 CVE-2019-14835 CVE-2019-15117 CVE-2019-15118 CVE-2019-15902
@@ -4091,12 +4130,6 @@ Vulnerable: &lt;= 2.8.0-cl3.7.15u2
 Fixed: 2.8.0-cl3.7.15u3</td>
 <td>3.7.14-3.7.14.2, 4.3.0</td>
 <td>3.7.15</td>
-</tr>
-<tr>
-<td>2625778</td>
-<td>After provisioning switches and running automation in the background to collect device information, NCLU is slow to return output. This might prevent you from configuring and troubleshooting the switch as well as preventing  background automation from collecting information from the switch.</td>
-<td>3.7.12-3.7.15</td>
-<td></td>
 </tr>
 <tr>
 <td>2617009</td>
@@ -6579,6 +6612,17 @@ To work around this issue, run the &lt;tt&gt;apt-get upgrade&lt;/tt&gt; command 
 <td></td>
 </tr>
 <tr>
+<td>2658233</td>
+<td>The following vulnerabilities have been announced in the graphviz package:
+CVE-2018-10196: NULL pointer dereference vulnerability in the rebuild_vlists function in lib/dotgen/conc.c in the dotgen library allows remote attackers to cause a denial of service (application
+crash) via a crafted file.
+CVE-2020-18032: A buffer overflow was discovered in Graphviz, which could potentially result in the execution of arbitrary code when processing a malformed file.
+Vulnerable: 2.38.0-7
+Fixed: 2.38.0-7+deb8u1</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2656291</td>
 <td>The following CVEs affect the linux kernel package:
 CVE-2019-14821 CVE-2019-14835 CVE-2019-15117 CVE-2019-15118 CVE-2019-15902
@@ -6651,12 +6695,6 @@ Vulnerable: &lt;= 1.4.4-2+deb8u2
 Fixed: 1.4.4-2+deb8u3</td>
 <td>3.7.0-3.7.14.2</td>
 <td>3.7.15</td>
-</tr>
-<tr>
-<td>2625778</td>
-<td>After provisioning switches and running automation in the background to collect device information, NCLU is slow to return output. This might prevent you from configuring and troubleshooting the switch as well as preventing  background automation from collecting information from the switch.</td>
-<td>3.7.12-3.7.15</td>
-<td></td>
 </tr>
 <tr>
 <td>2617009</td>
@@ -9349,6 +9387,17 @@ To work around this issue, run the &lt;tt&gt;apt-get upgrade&lt;/tt&gt; command 
 <td></td>
 </tr>
 <tr>
+<td>2658233</td>
+<td>The following vulnerabilities have been announced in the graphviz package:
+CVE-2018-10196: NULL pointer dereference vulnerability in the rebuild_vlists function in lib/dotgen/conc.c in the dotgen library allows remote attackers to cause a denial of service (application
+crash) via a crafted file.
+CVE-2020-18032: A buffer overflow was discovered in Graphviz, which could potentially result in the execution of arbitrary code when processing a malformed file.
+Vulnerable: 2.38.0-7
+Fixed: 2.38.0-7+deb8u1</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2656291</td>
 <td>The following CVEs affect the linux kernel package:
 CVE-2019-14821 CVE-2019-14835 CVE-2019-15117 CVE-2019-15118 CVE-2019-15902
@@ -9415,12 +9464,6 @@ Vulnerable: &lt;= 1.4.4-2+deb8u2
 Fixed: 1.4.4-2+deb8u3</td>
 <td>3.7.0-3.7.14.2</td>
 <td>3.7.15</td>
-</tr>
-<tr>
-<td>2625778</td>
-<td>After provisioning switches and running automation in the background to collect device information, NCLU is slow to return output. This might prevent you from configuring and troubleshooting the switch as well as preventing  background automation from collecting information from the switch.</td>
-<td>3.7.12-3.7.15</td>
-<td></td>
 </tr>
 <tr>
 <td>2617009</td>
@@ -11985,6 +12028,17 @@ To work around this issue, run the &lt;tt&gt;apt-get upgrade&lt;/tt&gt; command 
 <td></td>
 </tr>
 <tr>
+<td>2658233</td>
+<td>The following vulnerabilities have been announced in the graphviz package:
+CVE-2018-10196: NULL pointer dereference vulnerability in the rebuild_vlists function in lib/dotgen/conc.c in the dotgen library allows remote attackers to cause a denial of service (application
+crash) via a crafted file.
+CVE-2020-18032: A buffer overflow was discovered in Graphviz, which could potentially result in the execution of arbitrary code when processing a malformed file.
+Vulnerable: 2.38.0-7
+Fixed: 2.38.0-7+deb8u1</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2654684</td>
 <td>CVE-2021-3517 CVE-2021-3518 CVE-2021-3537: Several vulnerabilities were discovered in libxml2, a library providing support to read, modify and write XML and HTML files, which could cause denial of service via application crash when parsing specially crafted files.
 Vulnerable: &lt;= 2.9.1+dfsg1-5+deb8u9
@@ -14321,6 +14375,17 @@ To work around this issue, run the &lt;tt&gt;apt-get upgrade&lt;/tt&gt; command 
 <td></td>
 </tr>
 <tr>
+<td>2658233</td>
+<td>The following vulnerabilities have been announced in the graphviz package:
+CVE-2018-10196: NULL pointer dereference vulnerability in the rebuild_vlists function in lib/dotgen/conc.c in the dotgen library allows remote attackers to cause a denial of service (application
+crash) via a crafted file.
+CVE-2020-18032: A buffer overflow was discovered in Graphviz, which could potentially result in the execution of arbitrary code when processing a malformed file.
+Vulnerable: 2.38.0-7
+Fixed: 2.38.0-7+deb8u1</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2654684</td>
 <td>CVE-2021-3517 CVE-2021-3518 CVE-2021-3537: Several vulnerabilities were discovered in libxml2, a library providing support to read, modify and write XML and HTML files, which could cause denial of service via application crash when parsing specially crafted files.
 Vulnerable: &lt;= 2.9.1+dfsg1-5+deb8u9
@@ -16097,6 +16162,17 @@ More information at https://security-tracker.debian.org/tracker/CVE-2018-6594 .<
 <td>CM-15812</td>
 <td>&lt;p&gt;Multicast forwarding fails for IP addresses whose DMAC overlaps with reserved DIPs.&lt;/p&gt;</td>
 <td>3.2.1-3.7.14.2, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2658233</td>
+<td>The following vulnerabilities have been announced in the graphviz package:
+CVE-2018-10196: NULL pointer dereference vulnerability in the rebuild_vlists function in lib/dotgen/conc.c in the dotgen library allows remote attackers to cause a denial of service (application
+crash) via a crafted file.
+CVE-2020-18032: A buffer overflow was discovered in Graphviz, which could potentially result in the execution of arbitrary code when processing a malformed file.
+Vulnerable: 2.38.0-7
+Fixed: 2.38.0-7+deb8u1</td>
+<td>3.7.0-3.7.15</td>
 <td></td>
 </tr>
 <tr>
@@ -18199,6 +18275,17 @@ To work around this issue, run the {{sudo ethtool -S swp1}} command to collect i
 <td></td>
 </tr>
 <tr>
+<td>2658233</td>
+<td>The following vulnerabilities have been announced in the graphviz package:
+CVE-2018-10196: NULL pointer dereference vulnerability in the rebuild_vlists function in lib/dotgen/conc.c in the dotgen library allows remote attackers to cause a denial of service (application
+crash) via a crafted file.
+CVE-2020-18032: A buffer overflow was discovered in Graphviz, which could potentially result in the execution of arbitrary code when processing a malformed file.
+Vulnerable: 2.38.0-7
+Fixed: 2.38.0-7+deb8u1</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2654684</td>
 <td>CVE-2021-3517 CVE-2021-3518 CVE-2021-3537: Several vulnerabilities were discovered in libxml2, a library providing support to read, modify and write XML and HTML files, which could cause denial of service via application crash when parsing specially crafted files.
 Vulnerable: &lt;= 2.9.1+dfsg1-5+deb8u9
@@ -19729,6 +19816,17 @@ To work around this issue, use {{net show interface}} command for LLDP output wh
 <td>CM-15812</td>
 <td>&lt;p&gt;Multicast forwarding fails for IP addresses whose DMAC overlaps with reserved DIPs.&lt;/p&gt;</td>
 <td>3.2.1-3.7.14.2, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2658233</td>
+<td>The following vulnerabilities have been announced in the graphviz package:
+CVE-2018-10196: NULL pointer dereference vulnerability in the rebuild_vlists function in lib/dotgen/conc.c in the dotgen library allows remote attackers to cause a denial of service (application
+crash) via a crafted file.
+CVE-2020-18032: A buffer overflow was discovered in Graphviz, which could potentially result in the execution of arbitrary code when processing a malformed file.
+Vulnerable: 2.38.0-7
+Fixed: 2.38.0-7+deb8u1</td>
+<td>3.7.0-3.7.15</td>
 <td></td>
 </tr>
 <tr>
@@ -21595,6 +21693,17 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <td></td>
 </tr>
 <tr>
+<td>2658233</td>
+<td>The following vulnerabilities have been announced in the graphviz package:
+CVE-2018-10196: NULL pointer dereference vulnerability in the rebuild_vlists function in lib/dotgen/conc.c in the dotgen library allows remote attackers to cause a denial of service (application
+crash) via a crafted file.
+CVE-2020-18032: A buffer overflow was discovered in Graphviz, which could potentially result in the execution of arbitrary code when processing a malformed file.
+Vulnerable: 2.38.0-7
+Fixed: 2.38.0-7+deb8u1</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2654684</td>
 <td>CVE-2021-3517 CVE-2021-3518 CVE-2021-3537: Several vulnerabilities were discovered in libxml2, a library providing support to read, modify and write XML and HTML files, which could cause denial of service via application crash when parsing specially crafted files.
 Vulnerable: &lt;= 2.9.1+dfsg1-5+deb8u9
@@ -23202,6 +23311,17 @@ This issue was discovered on the Helix4 switch but applies to all switches.
 <td></td>
 </tr>
 <tr>
+<td>2658233</td>
+<td>The following vulnerabilities have been announced in the graphviz package:
+CVE-2018-10196: NULL pointer dereference vulnerability in the rebuild_vlists function in lib/dotgen/conc.c in the dotgen library allows remote attackers to cause a denial of service (application
+crash) via a crafted file.
+CVE-2020-18032: A buffer overflow was discovered in Graphviz, which could potentially result in the execution of arbitrary code when processing a malformed file.
+Vulnerable: 2.38.0-7
+Fixed: 2.38.0-7+deb8u1</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2654684</td>
 <td>CVE-2021-3517 CVE-2021-3518 CVE-2021-3537: Several vulnerabilities were discovered in libxml2, a library providing support to read, modify and write XML and HTML files, which could cause denial of service via application crash when parsing specially crafted files.
 Vulnerable: &lt;= 2.9.1+dfsg1-5+deb8u9
@@ -24458,6 +24578,17 @@ The NetQ agent has been removed from Cumulus VX 3.7.7. The NetQ agent will be bu
 <td>CM-15812</td>
 <td>&lt;p&gt;Multicast forwarding fails for IP addresses whose DMAC overlaps with reserved DIPs.&lt;/p&gt;</td>
 <td>3.2.1-3.7.14.2, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2658233</td>
+<td>The following vulnerabilities have been announced in the graphviz package:
+CVE-2018-10196: NULL pointer dereference vulnerability in the rebuild_vlists function in lib/dotgen/conc.c in the dotgen library allows remote attackers to cause a denial of service (application
+crash) via a crafted file.
+CVE-2020-18032: A buffer overflow was discovered in Graphviz, which could potentially result in the execution of arbitrary code when processing a malformed file.
+Vulnerable: 2.38.0-7
+Fixed: 2.38.0-7+deb8u1</td>
+<td>3.7.0-3.7.15</td>
 <td></td>
 </tr>
 <tr>
@@ -25744,6 +25875,17 @@ The NetQ agent has been removed from Cumulus VX 3.7.7. The NetQ agent will be bu
 <td>CM-15812</td>
 <td>&lt;p&gt;Multicast forwarding fails for IP addresses whose DMAC overlaps with reserved DIPs.&lt;/p&gt;</td>
 <td>3.2.1-3.7.14.2, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2658233</td>
+<td>The following vulnerabilities have been announced in the graphviz package:
+CVE-2018-10196: NULL pointer dereference vulnerability in the rebuild_vlists function in lib/dotgen/conc.c in the dotgen library allows remote attackers to cause a denial of service (application
+crash) via a crafted file.
+CVE-2020-18032: A buffer overflow was discovered in Graphviz, which could potentially result in the execution of arbitrary code when processing a malformed file.
+Vulnerable: 2.38.0-7
+Fixed: 2.38.0-7+deb8u1</td>
+<td>3.7.0-3.7.15</td>
 <td></td>
 </tr>
 <tr>
@@ -27131,6 +27273,17 @@ The NetQ agent has been removed from Cumulus VX 3.7.7. The NetQ agent will be bu
 <td>CM-15812</td>
 <td>&lt;p&gt;Multicast forwarding fails for IP addresses whose DMAC overlaps with reserved DIPs.&lt;/p&gt;</td>
 <td>3.2.1-3.7.14.2, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2658233</td>
+<td>The following vulnerabilities have been announced in the graphviz package:
+CVE-2018-10196: NULL pointer dereference vulnerability in the rebuild_vlists function in lib/dotgen/conc.c in the dotgen library allows remote attackers to cause a denial of service (application
+crash) via a crafted file.
+CVE-2020-18032: A buffer overflow was discovered in Graphviz, which could potentially result in the execution of arbitrary code when processing a malformed file.
+Vulnerable: 2.38.0-7
+Fixed: 2.38.0-7+deb8u1</td>
+<td>3.7.0-3.7.15</td>
 <td></td>
 </tr>
 <tr>
@@ -28564,6 +28717,17 @@ Permanent MAC address sync between MLAG peers is now supported.</td>
 <td></td>
 </tr>
 <tr>
+<td>2658233</td>
+<td>The following vulnerabilities have been announced in the graphviz package:
+CVE-2018-10196: NULL pointer dereference vulnerability in the rebuild_vlists function in lib/dotgen/conc.c in the dotgen library allows remote attackers to cause a denial of service (application
+crash) via a crafted file.
+CVE-2020-18032: A buffer overflow was discovered in Graphviz, which could potentially result in the execution of arbitrary code when processing a malformed file.
+Vulnerable: 2.38.0-7
+Fixed: 2.38.0-7+deb8u1</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2654684</td>
 <td>CVE-2021-3517 CVE-2021-3518 CVE-2021-3537: Several vulnerabilities were discovered in libxml2, a library providing support to read, modify and write XML and HTML files, which could cause denial of service via application crash when parsing specially crafted files.
 Vulnerable: &lt;= 2.9.1+dfsg1-5+deb8u9
@@ -29309,6 +29473,17 @@ To work around this issue, remove the matching {{network}} statement. </td>
 <td>CM-15812</td>
 <td>&lt;p&gt;Multicast forwarding fails for IP addresses whose DMAC overlaps with reserved DIPs.&lt;/p&gt;</td>
 <td>3.2.1-3.7.14.2, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2658233</td>
+<td>The following vulnerabilities have been announced in the graphviz package:
+CVE-2018-10196: NULL pointer dereference vulnerability in the rebuild_vlists function in lib/dotgen/conc.c in the dotgen library allows remote attackers to cause a denial of service (application
+crash) via a crafted file.
+CVE-2020-18032: A buffer overflow was discovered in Graphviz, which could potentially result in the execution of arbitrary code when processing a malformed file.
+Vulnerable: 2.38.0-7
+Fixed: 2.38.0-7+deb8u1</td>
+<td>3.7.0-3.7.15</td>
 <td></td>
 </tr>
 <tr>

@@ -1,0 +1,13 @@
+This package was debianized by Christian Marillat <marillat@debian.org> on
+Wed,  8 Aug 2001 11:22:50 +0200.
+
+It was downloaded from ftp://sources.redhat.com/pub/docbook-tools/new-trials/SOURCES/
+
+Upstream Author: Eric Bischoff <eric@caldera.de>
+
+Copyright: 2000, 2001 Eric Bischoff
+
+  You should have received a copy of the GNU General Public License with the
+  Debian GNU/Linux distribution in file /usr/share/common-licenses/GPL; if
+  not, write to the Free Software Foundation, Inc., 51 Franklin Street,
+  Fifth Floor, Boston, MA 02110-1301 USA

@@ -81,6 +81,14 @@
 <td></td>
 </tr>
 <tr>
+<td>2656530</td>
+<td>CVE-2020-18032: A buffer overflow was discovered in Graphviz, which could potentially result in the execution of arbitrary code when processing a malformed file.
+Vulnerable: 2.40.1-6
+Fixed: 2.40.1-6+deb10u1</td>
+<td>4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
 <td>2654715</td>
 <td>The {{cl-acltool}} takes a significant amount of time to run, which can slow down automation scripts.</td>
 <td>4.2.0-4.3.0</td>
@@ -163,6 +171,12 @@ See the following for more information:
 https://www.libssh.org/security/advisories/CVE-2019-14889.txt
 https://security-tracker.debian.org/tracker/CVE-2019-14889</td>
 <td>4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2618227</td>
+<td>The NCLU {{net show bridge macs}} command displays permanent MAC addresses for trunked VLANs.</td>
+<td>4.3.0</td>
 <td></td>
 </tr>
 <tr>
@@ -250,6 +264,12 @@ Fixed: 2.3.1+dfsg-1+deb10u1</td>
 Vulnerable: &lt;= 4.1.0+git191117-2~deb10u1
 Fixed: 4.1.0+git191117-2~deb10u2</td>
 <td>4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2578814</td>
+<td>On NVIDIA Spectrum switches, BUM traffic might be dropped during VXLAN decapsulation in an EVPN multihoming environment after multiple PIM uplink interfaces flap.</td>
+<td>4.3.0</td>
 <td></td>
 </tr>
 <tr>

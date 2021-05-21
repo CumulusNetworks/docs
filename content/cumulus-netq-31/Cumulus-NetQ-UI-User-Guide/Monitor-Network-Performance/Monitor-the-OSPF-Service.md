@@ -8,7 +8,7 @@ The Cumulus NetQ UI enables operators to view the health of the OSPF service on 
 
 ## Monitor the OSPF Service (All Sessions)
 
-With NetQ, you can monitor the number of nodes running the OSPF service, view switches with the most full and unestablished OSPF sessions, and view alarms triggered by the OSPF service. For an overview and how to configure OSPF to run in your data center network, refer to [Open Shortest Path First - OSPF]({{<ref "/cumulus-linux-43/Layer-3/OSPF" >}} or [Open Shortest Path First v3 - OSPFv3]({{<ref "/cumulus-linux-43/Layer-3/OSPF/Open-Shortest-Path-First-v3-OSPFv3" >}}.
+With NetQ, you can monitor the number of nodes running the OSPF service, view switches with the most full and unestablished OSPF sessions, and view alarms triggered by the OSPF service. For an overview and how to configure OSPF to run in your data center network, refer to [Open Shortest Path First - OSPF]({{<ref "/cumulus-linux-43/Layer-3/OSPF" >}}) or [Open Shortest Path First v3 - OSPFv3]({{<ref "/cumulus-linux-43/Layer-3/OSPF/Open-Shortest-Path-First-v3-OSPFv3" >}}).
 
 ### OSPF Service Card Workflow
 
@@ -470,7 +470,7 @@ Use the icons above the table to select/deselect, filter, and export items in th
 
 ## Monitor a Single OSPF Session
 
-With NetQ, you can monitor a single session of the OSPF service, view session state changes, and compare with alarms occurring at the same time, as well as monitor the running OSPF configuration and changes to the configuration file. For an overview and how to configure OSPF to run in your data center network, refer to [Open Shortest Path First - OSPF]({{<ref "/cumulus-linux-43/Layer-3/OSPF" >}} or [Open Shortest Path First v3 - OSPFv3]({{<ref "/cumulus-linux-43/Layer-3/OSPF/Open-Shortest-Path-First-v3-OSPFv3" >}}.
+With NetQ, you can monitor a single session of the OSPF service, view session state changes, and compare with alarms occurring at the same time, as well as monitor the running OSPF configuration and changes to the configuration file. For an overview and how to configure OSPF to run in your data center network, refer to [Open Shortest Path First - OSPF]({{<ref "/cumulus-linux-43/Layer-3/OSPF" >}}) or [Open Shortest Path First v3 - OSPFv3]({{<ref "/cumulus-linux-43/Layer-3/OSPF/Open-Shortest-Path-First-v3-OSPFv3" >}}).
 
 {{<notice note>}}
 To access the single session cards, you must open the full screen OSPF Service, click the <strong>All Sessions</strong> tab, select the desired session, then click <img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> (Open Cards).

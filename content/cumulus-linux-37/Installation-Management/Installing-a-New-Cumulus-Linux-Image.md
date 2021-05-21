@@ -43,7 +43,7 @@ To install Cumulus Linux using a DHCP/web server *with* DHCP options, set up a D
 3. ONIE downloads the Cumulus Linux disk image, installs, and reboots.
 4. Success\! You are now running Cumulus Linux.
 
-    {{% imgOld 0 %}}
+    {{< img src = "/images/cumulus-linux/install-image-onie-dhcp.png" >}}
 
 {{%notice note%}}
 
@@ -356,11 +356,11 @@ SSH sessions to the switch get dropped after this step. To complete the remainin
 
 2. Monitor the console and select the ONIE option from the first GRUB screen shown below.
 
-    {{% imgOld 1 %}}
+    {{< figure src = "/images/cumulus-linux/install-image-GNUx86-1.png" >}}
 
 3. Cumulus Linux on x86 uses GRUB chainloading to present a second GRUB menu specific to the ONIE partition. No action is necessary in this menu to select the default option *ONIE: Install OS*.
 
-    {{% imgOld 2 %}}
+    {{< figure src = "/images/cumulus-linux/install-image-GNUx86-2.png" >}}
 
 4. The USB drive is recognized and mounted automatically. The image file is located and automatic installation of Cumulus Linux begins. Here is some sample output:
 

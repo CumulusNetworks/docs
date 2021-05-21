@@ -55,7 +55,7 @@ For TCP/UDP frames, Cumulus Linux also hashes on:
   - Source port
   - Destination port
 
-{{% imgOld 0 %}}
+{{< img src = "/images/cumulus-linux/ecmp-packet-hash.png" >}}
 
 To prevent out of order packets, ECMP hashing is done on a per-flow
 basis, which means that all packets with the same source and destination
@@ -118,7 +118,7 @@ In the following example, 4 next hops exist. Three different flows are
 hashed to different hash buckets. Each next hop is assigned to a unique
 hash bucket.
 
-{{% imgOld 1 %}}
+{{< img src = "/images/cumulus-linux/ecmp-hash-bucket.png" >}}
 
 #### Adding a Next Hop
 
@@ -126,7 +126,7 @@ When a next hop is added, a new hash bucket is created. The assignment
 of next hops to hash buckets, as well as the hash result, may change
 when additional next hops are added.
 
-{{% imgOld 2 %}}
+{{< img src = "/images/cumulus-linux/ecmp-hash-bucket-added.png" >}}
 
   
 A new next hop is added and a new hash bucket is created. As a result,
@@ -139,9 +139,9 @@ When a next hop is removed, the remaining hash bucket assignments may
 change, again, potentially changing the next hop selected for an
 existing flow.
 
-{{% imgOld 3 %}}
+{{< img src = "/images/cumulus-linux/ecmp-hash-failure.png" >}}
 
-{{% imgOld 4 %}}
+{{< img src = "/images/cumulus-linux/ecmp-hash-post-failure.png" >}}
 
   
 A next hop fails and the next hop and hash bucket are removed. The
@@ -220,21 +220,21 @@ defined. Next hops are then assigned in round robin fashion to each of
 those buckets. In this example, 12 buckets are created and four next
 hops are assigned.
 
-{{% imgOld 5 %}}
+{{< img src = "/images/cumulus-linux/ecmp-reshash-bucket-assignment.png" >}}
 
 ### Removing Next Hops
 
 Unlike default ECMP hashing, when a next hop needs to be removed, the
 number of hash buckets does not change.
 
-{{% imgOld 6 %}}
+{{< img src = "/images/cumulus-linux/ecmp-reshash-failure.png" >}}
 
   
 With 12 buckets assigned and four next hops, instead of reducing the
 number of buckets - which would impact flows to known good hosts - the
 remaining next hops replace the failed next hop.
 
-{{% imgOld 7 %}}
+{{< img src = "/images/cumulus-linux/ecmp-reshash-restore.png" >}}
 
 After the failed next hop is removed, the remaining next hops are
 installed as replacements. This prevents impact to any flows that hash
@@ -246,7 +246,7 @@ Resilient hashing does not prevent possible impact to existing flows
 when new next hops are added. Due to the fact there are a fixed number
 of buckets, a new next hop requires reassigning next hops to buckets.
 
-{{% imgOld 8 %}}
+{{< img src = "/images/cumulus-linux/ecmp-reshash-add.png" >}}
 
 As a result, some flows may hash to new next hops, which can impact
 anycast deployments.

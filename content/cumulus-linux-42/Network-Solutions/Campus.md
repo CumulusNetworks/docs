@@ -23,4 +23,4 @@ These features work in conjunction with the following core Cumulus Linux functio
 
 ## Related Information
 
-For a deep dive into campus architecture, read the [campus architecture solution guide]({{<ref "/guides/campus-architecture-guide" >}}.
+For a deep dive into campus architecture, read the [campus architecture solution guide]({{<ref "/guides/campus-architecture-guide" >}}).

@@ -5,7 +5,7 @@ weight: 50
 toc: 3
 ---
 
-NVIDIA Cumulus NetQ is a highly scalable, modern network operations tool set that provides visibility and troubleshooting of your overlay and underlay networks in real-time. NetQ delivers actionable insights and operational intelligence about the health of your data center - from the container, virtual machine, or host, all the way to the switch and port. NetQ correlates configuration and operational status, and instantly identifies and tracks state changes while simplifying management for the entire Linux-based data center. With NetQ, network operations change from a manual, reactive, box-by-box approach to an automated, informed and agile one.
+{{<product>}} is a highly scalable, modern network operations tool set that provides visibility and troubleshooting of your overlay and underlay networks in real-time. NetQ delivers actionable insights and operational intelligence about the health of your data center - from the container, virtual machine, or host, all the way to the switch and port. NetQ correlates configuration and operational status, and instantly identifies and tracks state changes while simplifying management for the entire Linux-based data center. With NetQ, network operations change from a manual, reactive, box-by-box approach to an automated, informed and agile one.
 
 NetQ performs three primary functions:
 

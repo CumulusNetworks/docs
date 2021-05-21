@@ -172,7 +172,7 @@ The use of <code>netq-latest</code> in this example means that a <code>get</code
 
         {{<figure src="/images/netq/mymellanox-cumulus-software-download-320.png" width="500">}}
 
-    5. Click **All downloads** next to **Cumulus NetQ**.
+    5. Click **All downloads** next to **NVIDIA NetQ**.
 
     6. Select *4.0.0* from the **NetQ Version** dropdown.
 
@@ -190,8 +190,8 @@ The use of <code>netq-latest</code> in this example means that a <code>get</code
 
         ```
         cumulus@<hostname>:~$ dpkg -l | grep netq
-        ii  netq-agent   4.0.0-ub18.04u33~1614767175.886b337_amd64   Cumulus NetQ Telemetry Agent for Ubuntu
-        ii  netq-apps    4.0.0-ub18.04u33~1614767175.886b337_amd64   Cumulus NetQ Fabric Validation Application for Ubuntu
+        ii  netq-agent   4.0.0-ub18.04u33~1614767175.886b337_amd64   NVIDIA NetQ Telemetry Agent for Ubuntu
+        ii  netq-apps    4.0.0-ub18.04u33~1614767175.886b337_amd64   NVIDIA NetQ Fabric Validation Application for Ubuntu
 
         cumulus@<hostname>:~$ cd /mnt/installables/
         cumulus@<hostname>:/mnt/installables$ ls

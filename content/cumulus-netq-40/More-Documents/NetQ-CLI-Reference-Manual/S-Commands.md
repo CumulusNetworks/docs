@@ -391,7 +391,7 @@ Displays status about disk utilization on a given device or all devices networkw
 - Whether a rebalance of the disk is recommended
 - When the last change was made to any of these items
 
-For details about when a rebalance is recommended, refer to {{<exlink url="https://docs.cumulusnetworks.com/knowledge-base/Configuration-and-Usage/Storage/When-to-Rebalance-BTRFS-Partitions/" text="When to Rebalance BTRFS Partitions">}}.
+For details about when a rebalance is recommended, refer to [When to Rebalance BTRFS Partitions]({{<ref "/knowledge-base/Configuration-and-Usage/Storage/When-to-Rebalance-BTRFS-Partitions">}}).
 
 ### Syntax
 

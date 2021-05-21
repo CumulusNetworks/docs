@@ -30,14 +30,14 @@ Starting with Cumulus Linux 4.0.0, the Cumulus RMP uses the same binary image as
 Cumulus RMP 3.7.0 contains several bug fixes and the following new
 features:
 
-- [RADIUS Change of Authorization (CoA) requests]({{<ref "/cumulus-linux-37/Layer-1-and-Switch-Ports/802.1X-Interfaces.md#radius-change-of-authorization-and-disconnect-requests" >}}
-- [RADIUS AAA local fallback authentication]({{<ref "/cumulus-linux-37/System-Configuration/Authentication,-Authorization-and-Accounting/RADIUS-AAA#local-fallback-authentication" >}}
-- [TACACS+ local fallback authentication]({{<ref "/cumulus-linux-37/System-Configuration/Authentication,-Authorization-and-Accounting/TACACS-Plus#local-fallback-authentication" >}}
+- [RADIUS Change of Authorization (CoA) requests]({{<ref "/cumulus-linux-37/Layer-1-and-Switch-Ports/802.1X-Interfaces.md#radius-change-of-authorization-and-disconnect-requests" >}})
+- [RADIUS AAA local fallback authentication]({{<ref "/cumulus-linux-37/System-Configuration/Authentication,-Authorization-and-Accounting/RADIUS-AAA#local-fallback-authentication" >}})
+- [TACACS+ local fallback authentication]({{<ref "/cumulus-linux-37/System-Configuration/Authentication,-Authorization-and-Accounting/TACACS-Plus#local-fallback-authentication" >}})
 - New NCLU commands:
-  - [Show the version of a package]({{<ref "/cumulus-linux-37/Installation-Management/Adding-and-Updating-Packages#display-the-version-of-a-package" >}}
-  - [Show the interface description (alias)]({{<ref "/cumulus-linux-37/Layer-1-and-Switch-Ports/Interface-Configuration-and-Management#add-descriptions-to-interfaces" >}}
+  - [Show the version of a package]({{<ref "/cumulus-linux-37/Installation-Management/Adding-and-Updating-Packages#display-the-version-of-a-package" >}})
+  - [Show the interface description (alias)]({{<ref "/cumulus-linux-37/Layer-1-and-Switch-Ports/Interface-Configuration-and-Management#add-descriptions-to-interfaces" >}})
     for all interfaces on the switch
-  - [Change bond mode to IEEE 802.3ad]({{<ref "/cumulus-linux-37/Layer-2/Bonding-Link-Aggregation" >}} link
+  - [Change bond mode to IEEE 802.3ad]({{<ref "/cumulus-linux-37/Layer-2/Bonding-Link-Aggregation" >}}) link
     aggregation mode
 
 ### What's New in Cumulus RMP 3.6.2
@@ -45,7 +45,7 @@ features:
 Cumulus RMP 3.6.2 contains several bug fixes and the following new
 feature:
 
-- NCLU commands available for [configuring traditional mode bridges]({{<ref "/cumulus-linux-36/Layer-2/Ethernet-Bridging-VLANs/Traditional-Bridge-Mode" >}}
+- NCLU commands available for [configuring traditional mode bridges]({{<ref "/cumulus-linux-36/Layer-2/Ethernet-Bridging-VLANs/Traditional-Bridge-Mode" >}})
 
 ### What's New in Cumulus RMP 3.6.0
 
@@ -64,22 +64,22 @@ For more information about each feature, follow the links below to the
 
 | **Layer 2 Support**                                                                              | **Cumulus RMP** | **Cumulus Linux** |
 | ------------------------------------------------------------------------------------------------ | --------------- | ----------------- |
-| [LLDP]({{<ref "/cumulus-linux-37/Layer-2/Link-Layer-Discovery-Protocol" >}}                                 | ✓               | ✓                 |
-| [PTM]({{<ref "/cumulus-linux-37/Layer-1-and-Switch-Ports/Prescriptive-Topology-Manager-PTM" >}}             | ✓               | ✓                 |
-| [Ethernet bridging]({{<ref "/cumulus-linux-37/Layer-2/Ethernet-Bridging-VLANs" >}}                          | ✓               | ✓                 |
-| [Bonds/link aggregation]({{<ref "/cumulus-linux-37/Layer-2/Bonding-Link-Aggregation" >}}                    | ✓               | ✓                 |
-| [MLAG]({{<ref "/cumulus-linux-37/Layer-2/Multi-Chassis-Link-Aggregation-MLAG" >}}                                                                                             |                 | ✓                 |
+| [LLDP]({{<ref "/cumulus-linux-37/Layer-2/Link-Layer-Discovery-Protocol" >}})                                 | ✓               | ✓                 |
+| [PTM]({{<ref "/cumulus-linux-37/Layer-1-and-Switch-Ports/Prescriptive-Topology-Manager-PTM" >}})             | ✓               | ✓                 |
+| [Ethernet bridging]({{<ref "/cumulus-linux-37/Layer-2/Ethernet-Bridging-VLANs" >}})                          | ✓               | ✓                 |
+| [Bonds/link aggregation]({{<ref "/cumulus-linux-37/Layer-2/Bonding-Link-Aggregation" >}})                    | ✓               | ✓                 |
+| [MLAG]({{<ref "/cumulus-linux-37/Layer-2/Multi-Chassis-Link-Aggregation-MLAG" >}})                                                                                             |                 | ✓                 |
 | LACP                                                                                             | ✓               | ✓                 |
 | [LACP bypass]({{<ref "/cumulus-linux-37/Layer-2/LACP-Bypass">}})                                                                                    |                 | ✓                 |
-| [Spanning tree protocol/RST]({{<ref "/cumulus-linux-37/Layer-2/Spanning-Tree-and-Rapid-Spanning-Tree" >}}   | ✓               | ✓                 |
-| [802.1Q VLAN tagging]({{<ref "/cumulus-linux-37/Layer-2/Ethernet-Bridging-VLANs/VLAN-Tagging" >}}           | ✓               | ✓                 |
-| [VLAN-aware bridging]({{<ref "/cumulus-linux-37/Layer-2/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode" >}} | ✓               | ✓                 |
-| [BPDU guard]({{<ref "/cumulus-linux-37/Layer-2/Spanning-Tree-and-Rapid-Spanning-Tree" >}}                   | ✓               | ✓                 |
-| [Bridge assurance]({{<ref "/cumulus-linux-37/Layer-2/Spanning-Tree-and-Rapid-Spanning-Tree" >}}             | ✓               | ✓                 |
-| [BPDU filter]({{<ref "/cumulus-linux-37/Layer-2/Spanning-Tree-and-Rapid-Spanning-Tree" >}}                  | ✓               | ✓                 |
-| [VRR]({{<ref "/cumulus-linux-37/Layer-2/Virtual-Router-Redundancy-VRR-and-VRRP" >}}                                                                                              |                 | ✓                 |
-| [IGMP and MLD snooping]({{<ref "/cumulus-linux-37/Layer-2/IGMP-and-MLD-Snooping" >}}                                                                            |                 | ✓                 |
-| [Unicast/broadcast storm control]({{<ref "/cumulus-linux-37/Layer-2/Storm-Control" >}}                                                                  |                 | ✓                 |
+| [Spanning tree protocol/RST]({{<ref "/cumulus-linux-37/Layer-2/Spanning-Tree-and-Rapid-Spanning-Tree" >}})   | ✓               | ✓                 |
+| [802.1Q VLAN tagging]({{<ref "/cumulus-linux-37/Layer-2/Ethernet-Bridging-VLANs/VLAN-Tagging" >}})           | ✓               | ✓                 |
+| [VLAN-aware bridging]({{<ref "/cumulus-linux-37/Layer-2/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode" >}}) | ✓               | ✓                 |
+| [BPDU guard]({{<ref "/cumulus-linux-37/Layer-2/Spanning-Tree-and-Rapid-Spanning-Tree" >}})                   | ✓               | ✓                 |
+| [Bridge assurance]({{<ref "/cumulus-linux-37/Layer-2/Spanning-Tree-and-Rapid-Spanning-Tree" >}})             | ✓               | ✓                 |
+| [BPDU filter]({{<ref "/cumulus-linux-37/Layer-2/Spanning-Tree-and-Rapid-Spanning-Tree" >}})                  | ✓               | ✓                 |
+| [VRR]({{<ref "/cumulus-linux-37/Layer-2/Virtual-Router-Redundancy-VRR-and-VRRP" >}})                                                                                              |                 | ✓                 |
+| [IGMP and MLD snooping]({{<ref "/cumulus-linux-37/Layer-2/IGMP-and-MLD-Snooping" >}})                                                                            |                 | ✓                 |
+| [Unicast/broadcast storm control]({{<ref "/cumulus-linux-37/Layer-2/Storm-Control" >}})                                                                  |                 | ✓                 |
 | CDP                                                                                              |                 | ✓                 |
 
 &nbsp;
@@ -101,16 +101,16 @@ For more information about each feature, follow the links below to the
 
 | **Additional Functionality**                                                                                                     | **Cumulus RMP** | **Cumulus Linux** |
 | -------------------------------------------------------------------------------------------------------------------------------- | --------------- | ----------------- |
-| [Network command line utility]({{<ref "/cumulus-linux-37/System-Configuration/Network-Command-Line-Utility-NCLU" >}}                        | ✓               | ✓                 |
-| [Interface configuration & management]({{<ref "/cumulus-linux-37/Layer-1-and-Switch-Ports/Interface-Configuration-and-Management" >}}       | ✓               | ✓                 |
-| [802.1X interfaces]({{<ref "/cumulus-linux-37/Layer-1-and-Switch-Ports/802.1X-Interfaces.md" >}}                                               |                 | ✓                 |
-| [Zero-touch OS install & upgrade]({{<ref "/cumulus-linux-37/Installation-Management/Zero-Touch-Provisioning-ZTP" >}}                        | ✓               | ✓                 |
-| [Installation and package management]({{<ref "/cumulus-linux-37/Installation-Management" >}}                                                | ✓               | ✓                 |
+| [Network command line utility]({{<ref "/cumulus-linux-37/System-Configuration/Network-Command-Line-Utility-NCLU" >}})                        | ✓               | ✓                 |
+| [Interface configuration & management]({{<ref "/cumulus-linux-37/Layer-1-and-Switch-Ports/Interface-Configuration-and-Management" >}})       | ✓               | ✓                 |
+| [802.1X interfaces]({{<ref "/cumulus-linux-37/Layer-1-and-Switch-Ports/802.1X-Interfaces.md" >}})                                               |                 | ✓                 |
+| [Zero-touch OS install & upgrade]({{<ref "/cumulus-linux-37/Installation-Management/Zero-Touch-Provisioning-ZTP" >}})                        | ✓               | ✓                 |
+| [Installation and package management]({{<ref "/cumulus-linux-37/Installation-Management" >}})                                                | ✓               | ✓                 |
 | Full Linux extensibility                                                                                                         | ✓               | ✓                 |
 | Network virtualization (VXLAN, EVPN, etc.)                                                                                       |                 | ✓                 |
-| [Monitoring & troubleshooting]({{<ref "/cumulus-linux-37/Monitoring-and-Troubleshooting" >}}                                                | ✓               | ✓                 |
-| [AAA]({{<ref "/cumulus-linux-37/System-Configuration/Authentication,-Authorization-and-Accounting/LDAP-Authentication-and-Authorization" >}} | ✓               | ✓                 |
-| [ACLs / Netfilter]({{<ref "/cumulus-linux-37/System-Configuration/Netfilter-ACLs" >}}                                                       | ✓               | ✓                 |
+| [Monitoring & troubleshooting]({{<ref "/cumulus-linux-37/Monitoring-and-Troubleshooting" >}})                                                | ✓               | ✓                 |
+| [AAA]({{<ref "/cumulus-linux-37/System-Configuration/Authentication,-Authorization-and-Accounting/LDAP-Authentication-and-Authorization" >}}) | ✓               | ✓                 |
+| [ACLs / Netfilter]({{<ref "/cumulus-linux-37/System-Configuration/Netfilter-ACLs" >}})                                                       | ✓               | ✓                 |
 | QoS                                                                                                                              |                 | ✓                 |
 
 

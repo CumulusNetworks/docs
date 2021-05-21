@@ -213,7 +213,7 @@ errors are located in `/var/log/syslog`.
 `mstpd` is the preferred utility for interacting with STP on Cumulus
 Linux. `brctl` also provides certain methods for configuring STP;
 however, they are not as complete as the tools offered in `mstpd` and
-[output from brctl can be misleading]({{<ref "/knowledge-base/Configuration-and-Usage/Network-Interfaces/brctl-showstp-Shows-Carrier-Down-Ports-as-Blocking" >}}
+[output from brctl can be misleading]({{<ref "/knowledge-base/Configuration-and-Usage/Network-Interfaces/brctl-showstp-Shows-Carrier-Down-Ports-as-Blocking" >}})
 in some cases.
 
 {{%/notice%}}
@@ -604,7 +604,7 @@ specifications and in the table below.
 
 For a comparison of STP parameter configuration between `mstpctl` and
 other vendors, 
-[read this knowledge base article]({{<ref "/knowledge-base/Demos-and-Training/Interoperability/Cumulus-Linux-vs-Cisco-IOS-Spanning-Tree-Protocol" >}}.
+[read this knowledge base article]({{<ref "/knowledge-base/Demos-and-Training/Interoperability/Cumulus-Linux-vs-Cisco-IOS-Spanning-Tree-Protocol" >}}).
 
 The table below describes the configuration parameters available.
 

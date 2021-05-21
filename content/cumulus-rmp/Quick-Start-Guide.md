@@ -26,7 +26,7 @@ as your command line tool to interact with Cumulus RMP.
 {{<notice tip>}}
 
 If you are a networking engineer but are unfamiliar with Linux concepts,
-refer to [this reference guide]({{<ref "/knowledge-base/Demos-and-Training/Interoperability/Cumulus-Linux-Conversion-Guide-for-NX-OS-or-IOS-Users" >}}
+refer to [this reference guide]({{<ref "/knowledge-base/Demos-and-Training/Interoperability/Cumulus-Linux-Conversion-Guide-for-NX-OS-or-IOS-Users" >}})
 for examples of the Cumulus Linux CLI and configuration options, and
 their equivalent Cisco Nexus 3000 NX-OS commands and settings. You can
 also <a href="https://academy.mellanox.com/en/training-by-topic/?training_by_topic=58">watch a series of short videos</a> introducing you to
@@ -91,7 +91,7 @@ All accounts except `root` are permitted remote SSH login; you can use
 `sudo` to grant root-level access to a non-root account. Commands that
 change system configuration require this elevated level of access.
 
-For more information about `sudo`, read [Using sudo to Delegate Privileges]({{<ref "/cumulus-linux-37/System-Configuration/Authentication,-Authorization-and-Accounting/Using-sudo-to-Delegate-Privileges" >}}.
+For more information about `sudo`, read [Using sudo to Delegate Privileges]({{<ref "/cumulus-linux-37/System-Configuration/Authentication,-Authorization-and-Accounting/Using-sudo-to-Delegate-Privileges" >}}).
 
 ### Serial Console Management
 
@@ -110,7 +110,7 @@ management ports, the first of which is named *eth0*. These interfaces
 are geared specifically for out-of-band management use. The management
 interface uses DHCPv4 for addressing by default. While it is generally
 recommended to **not** assign an address to eth0, you can set a static
-IP address with the [Network Command Line Utility]({{<ref "/cumulus-linux-37/System-Configuration/Network-Command-Line-Utility-NCLU" >}} (NCLU).
+IP address with the [Network Command Line Utility]({{<ref "/cumulus-linux-37/System-Configuration/Network-Command-Line-Utility-NCLU" >}}) (NCLU).
 
 {{%notice info%}}
 

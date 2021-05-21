@@ -9,7 +9,7 @@ toc: 4
 
 I already have Cumulus Linux running but I want to boot back into {{<exlink url="https://opencomputeproject.github.io/onie/" text="ONIE">}} for troubleshooting/installation issues.
 
-You use ONIE (the Open Network Install Environment) to [install Cumulus Linux]({{<ref "/cumulus-linux-43/Quick-Start-Guide" >}} on open networking switches.
+You use ONIE (the Open Network Install Environment) to [install Cumulus Linux]({{<ref "/cumulus-linux-43/Quick-Start-Guide" >}}) on open networking switches.
 
 ## Environment
 
@@ -17,7 +17,7 @@ You use ONIE (the Open Network Install Environment) to [install Cumulus Linux]({
 
 ## Resolution
 
-1. Log in to your switch via the [console]({{<ref "/cumulus-linux-43/Quick-Start-Guide/#serial-console-management" >}}.
+1. Log in to your switch via the [console]({{<ref "/cumulus-linux-43/Quick-Start-Guide/#serial-console-management" >}}).
 
 1. Reboot the switch:
 

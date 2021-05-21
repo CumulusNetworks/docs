@@ -21,7 +21,7 @@ interfaces that traverse an 802.1Q VLAN trunk.
 
 {{%/notice%}}
 
-{{% imgOld 0 %}}
+{{% img src = "/images/cumulus-linux/ethernet-bridging-example.png" %}}
 
 {{%notice tip%}}
 
@@ -36,7 +36,7 @@ which allows for configurations that are similar to incumbent network devices.
 {{%notice info%}}
 
 For a comparison of traditional and VLAN-aware modes, read 
-[this knowledge base article]({{<ref "/knowledge-base/Configuration-and-Usage/Network-Interfaces/Compare-Traditional-Bridge-Mode-to-VLAN-aware-Bridge-Mode" >}}.
+[this knowledge base article]({{<ref "/knowledge-base/Configuration-and-Usage/Network-Interfaces/Compare-Traditional-Bridge-Mode-to-VLAN-aware-Bridge-Mode" >}}).
 
 {{%/notice%}}
 
@@ -268,4 +268,4 @@ remain up:
   - [Linux Foundation - Bridges](http://www.linuxfoundation.org/collaborate/workgroups/networking/bridge)
   - [Linux Foundation - VLANs](http://www.linuxfoundation.org/collaborate/workgroups/networking/vlan)
   - [Linux Journal - Linux as an Ethernet Bridge](http://www.linuxjournal.com/article/8172)
-  - [Comparing Traditional Bridge Mode to VLAN-aware Bridge Mode]({{<ref "/knowledge-base/Configuration-and-Usage/Network-Interfaces/Compare-Traditional-Bridge-Mode-to-VLAN-aware-Bridge-Mode" >}}
+  - [Comparing Traditional Bridge Mode to VLAN-aware Bridge Mode]({{<ref "/knowledge-base/Configuration-and-Usage/Network-Interfaces/Compare-Traditional-Bridge-Mode-to-VLAN-aware-Bridge-Mode" >}})

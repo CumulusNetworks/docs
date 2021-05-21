@@ -30,7 +30,7 @@ physical switches.
 
 A basic setup looks like this:
 
-{{< img src = "/images/old_doc_images/bgp-unnumbered.png" >}}}
+{{< img src = "/images/old_doc_images/host_ha1.png" >}}
 
 {{%notice tip%}}
 
@@ -82,13 +82,13 @@ More elaborate configurations are also possible. The number of links
 between the host and the switches can be greater than two, and does not
 have to be symmetrical:
 
-{{% imgOld 1 %}}
+{{% img src="/images/old_doc_images/host_ha2.png" %}}
 
 Additionally, because S1 and S2 appear as a single switch to other
 bonding devices, you can also connect pairs of MLAG switches to each
 other in a switch-to-switch MLAG setup:
 
-{{% imgOld 2 %}}
+{{% img src="/images/old_doc_images/2pair_mlag.png" %}}
 
 In this case, L1 and L2 are also MLAG peer switches, and present a
 two-port bond from a single logical system to S1 and S2. S1 and S2 do
@@ -127,7 +127,7 @@ connected to the dual-connected host or switch in the bond. This is true
 even if the links are a single port on each peer switch, where each port
 is placed into a bond, as shown below:
 
-{{% imgOld 3 %}}
+{{% img src="/images/old_doc_images/2l_3h.png" %}}
 
 All of the dual-connected bonds on the peer switches have their system
 ID set to the MLAG system ID. Therefore, from the point of view of the
@@ -322,7 +322,7 @@ following image is a basic MLAG configuration, showing all the essential
 elements; a more detailed two-leaf/two-spine configuration is shown
 [below](#example-mlag-configuration).
 
-{{% imgOld 4 %}}
+{{% img src="/images/old_doc_images/mlag_basic.png" %}}
 
 ### Configuring the Interfaces
 
@@ -489,7 +489,7 @@ example clag l2-with-server-vlan-trunks`.
 
 {{%/notice%}}
 
-{{% imgOld 5 %}}
+{{% img src="/images/cumulus-linux/exampleMLAGconfig.png" %}}
 
 You configure these interfaces using
 [NCLU](/cumulus-linux-36/System-Configuration/Network-Command-Line-Utility-NCLU/),
@@ -1107,7 +1107,7 @@ link:
       bridge-stp on
 
 For a deeper comparison of traditional versus VLAN-aware bridge modes,
-read this [knowledge base article]({{<ref "/knowledge-base/Configuration-and-Usage/Network-Interfaces/Compare-Traditional-Bridge-Mode-to-VLAN-aware-Bridge-Mode" >}}.
+read this [knowledge base article]({{<ref "/knowledge-base/Configuration-and-Usage/Network-Interfaces/Compare-Traditional-Bridge-Mode-to-VLAN-aware-Bridge-Mode" >}}).
 
 ## Peer Link Interfaces and the protodown State
 
@@ -1331,7 +1331,7 @@ In this scenario, the spine switches connect at layer 3, as shown in the
 image below. Alternatively, the spine switches can be singly connected
 to each core switch at layer 3 (not shown below).
 
-{{% imgOld 6 %}}
+{{% img src="/images/old_doc_images/mlag_cfg_l3.png" %}}
 
 In this design, the spine switches route traffic between the server
 hosts in the layer 2 domains and the core. The servers (host1 thru
@@ -1575,7 +1575,7 @@ dual-connected bandwidth. We recommend you allocate at least 15G of
 bandwidth to each peerlink bond, which represents half of the
 single-connected bandwidth.
 
-{{% imgOld 7 %}}
+{{% img src="/images/old_doc_images/MLAG_UD-729.png" %}}
 
 Scaling this example out to a full rack, when planning for link
 failures, you need only allocate enough bandwidth to meet your site's

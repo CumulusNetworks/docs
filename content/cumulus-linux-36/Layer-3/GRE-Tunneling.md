@@ -44,7 +44,7 @@ tunneling, the two end points can encapsulate an IPv4 or IPv6 payload
 inside an IPv4 packet. The packet is routed based on the destination in
 the outer IPv4 header.
 
-{{% imgOld 0 %}}
+{{< img src = "/images/cumulus-linux/gre-tunnel-example.png" >}}
 
 ## Configuring GRE Tunneling
 
@@ -68,7 +68,7 @@ The local tunnel endpoint for `Tunnel-R1` is 10.0.0.9 and the remote
 endpoint is 10.0.0.2. The local tunnel endpoint for `Tunnel-R2` is 10.0.0.2 
 and the remote endpoint is 10.0.0.9.
 
-{{% imgOld 1 %}}
+{{< img src = "/images/cumulus-linux/gre-tunnel-config.png" >}}
 
 **Tunnel-R1 commands:**
 

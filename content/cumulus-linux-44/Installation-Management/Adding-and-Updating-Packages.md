@@ -128,26 +128,26 @@ The search commands look for the search terms not only in the package name but i
 
 ## List Packages Installed on the System
 
-The `apt-cache` command shows information about all the packages available in the repository. To see which packages are actually installed on your system with the version, run the following commands.
+The `apt-cache` command shows information about all the packages available in the repository. To see which packages are actually installed on your system with the version, run the following command.
 
 {{< tabs "TabID143 ">}}
-{{< tab "CUE Commands ">}}
-
-Run the `cl show platform software installed` command:
+{{< tab "NCLU Command ">}}
 
 ```
-cumulus@switch:~$ cl show platform software installed
-                                       description                                                                                                                   package                                version
--------------------------------------  ----------------------------------------------------------------------------------------------------------------------------  -------------------------------------  ----------------------------------------------
-acpi                                   displays information on ACPI devices                                                                                          acpi                                   1.7-1.1
-acpi-support-base                      scripts for handling base ACPI events such as the power button                                                                acpi-support-base                      0.142-8
-acpid                                  Advanced Configuration and Power Interface event daemon                                                                       acpid                                  1:2.0.31-1
+cumulus@switch:~$ net show package version
+Package                            Installed Version(s)
+---------------------------------  -----------------------------------------------------------------------
+acpi                               1.7-1.1
+acpi-support-base                  0.142-8
+acpid                              1:2.0.31-1
+adduser                            3.118
+apt                                1.8.2
+arping                             2.19-6
+arptables                          0.0.4+snapshot20181021-4
 ```
 
 {{< /tab >}}
-{{< tab "Linux Commands ">}}
-
-Run the `dpkg -l` command:
+{{< tab "Linux Command ">}}
 
 ```
 cumulus@switch:~$ dpkg -l
@@ -167,6 +167,18 @@ ii  arptables           0.0.4+snapshot20181021-4  amd64        ARP table adminis
 ```
 
 {{< /tab >}}
+{{< tab "CUE Command ">}}
+
+```
+cumulus@switch:~$ cl show platform software installed
+                                       description                                                                                                                   package                                version
+-------------------------------------  ----------------------------------------------------------------------------------------------------------------------------  -------------------------------------  ----------------------------------------------
+acpi                                   displays information on ACPI devices                                                                                          acpi                                   1.7-1.1
+acpi-support-base                      scripts for handling base ACPI events such as the power button                                                                acpi-support-base                      0.142-8
+acpid                                  Advanced Configuration and Power Interface event daemon                                                                       acpid                                  1:2.0.31-1
+```
+
+{{< /tab >}}
 {{< /tabs >}}
 
 ## Show the Version of a Package
@@ -174,23 +186,19 @@ ii  arptables           0.0.4+snapshot20181021-4  amd64        ARP table adminis
 To show the version of a specific package installed on the system:
 
 {{< tabs "TabID202 ">}}
-{{< tab "CUE Commands ">}}
+{{< tab "NCLU Command" >}}
 
-Run the `cl show platform software installed <package>` command. The following example command shows which version of the `vrf` package is installed on the system:
+The following example command shows which version of the `vrf` package is installed on the system:
 
 ```
-cumulus@switch:~$ cl show platform software installed vrf
-             running              applied  pending  description
------------  -------------------  -------  -------  -----------
-description  Linux tools for VRF                    Description
-package      vrf                                    Package
-version      1.0-cl4.2.1+u1                         Version
+cumulus@switch:~$ net show package version vrf
+1.0-cl4u1
 ```
 
 {{< /tab >}}
-{{< tab "Linux Commands ">}}
+{{< tab "Linux Command ">}}
 
-Run the Linux `dpkg -l <package_name>` command. The following example command shows which version of the `vrf` package is installed on the system:
+The following example command shows which version of the `vrf` package is installed on the system:
 
 ```
 cumulus@switch:~$ dpkg -l vrf
@@ -200,6 +208,20 @@ Desired=Unknown/Install/Remove/Purge/Hold
 ||/ Name       Version      Architecture Description
 +++-==========-============-============-=================================
 ii  vrf        1.0-cl4u2    amd64        Linux tools for VRF
+```
+
+{{< /tab >}}
+{{< tab "CUE Command ">}}
+
+The following example command shows which version of the `vrf` package is installed on the system:
+
+```
+cumulus@switch:~$ cl show platform software installed vrf
+             running              applied  pending  description
+-----------  -------------------  -------  -------  -----------
+description  Linux tools for VRF                    Description
+package      vrf                                    Package
+version      1.0-cl4.2.1+u1                         Version
 ```
 
 {{< /tab >}}

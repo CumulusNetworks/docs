@@ -582,11 +582,11 @@ To upgrade Cumulus NetQ on switches:
     - Is the NetQ version 2.4.x or 3.0.0? If not, this switch can only be upgraded through the {{<link url="Lifecycle-Management/#switch-discovery" text="switch discovery">}} process.
     - Is the configuration profile the one you want to apply? If not, click **Change config**, then select an alternate profile to apply to all selected switches. 
     
-    {{<notice tip>}}
-You can apply <em>different</em> profiles to switches in a <em>single</em> upgrade job by selecting a subset of switches (click checkbox for each switch) and then choosing a different profile. You can also change the profile on a per switch basis by clicking the current profile link and selecting an alternate one.
+    {{%notice tip%}}
+You can apply *different* profiles to switches in a *single* upgrade job by selecting a subset of switches (click checkbox for each switch) and then choosing a different profile. You can also change the profile on a per switch basis by clicking the current profile link and selecting an alternate one.
 
-<img src="/images/netq/lcm-netq-upgrade-select-alternate-profile-310.png" width="450">
-    {{</notice>}}
+{{<img src="/images/netq/lcm-netq-upgrade-select-alternate-profile-310.png" width="450">}}
+    {{%/notice%}}
 
     Scroll down to view all selected switches or use **Search** to find a particular switch of interest.
 

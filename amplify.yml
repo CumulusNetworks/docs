@@ -21,7 +21,6 @@ frontend:
         # If PDF/XLS generation is failing, comment out the following line to build the site.
         #- if [ "${AWS_BRANCH}" = "plumbis-stage" ]; then python3 utils/build_pdf_xls.py $DOCRAPTOR_KEY https://plumbis-stage.dxpqhdvalo8nj.amplifyapp.com/networking-ethernet-software/ ; fi
         # Don't minify in non-prod branches to simplify troubleshooting
-        - if [ "${AWS_BRANCH}" == "plumbis-stage" ]; then pip3 install beautifulsoup4 ; fi
         - if [ "${AWS_BRANCH}" != "master" ]; then hugo -D --baseURL $BASEURL -d public/networking-ethernet-software/ ; fi
         - if [ "${AWS_BRANCH}" = "master" ]; then hugo --minify --baseURL $BASEURL ; fi
         - if [ "${AWS_BRANCH}" != "master" ]; then echo "<html><head></head><body><a href='networking-ethernet-software/''>click here</a></body></html>" > public/index.html ; fi

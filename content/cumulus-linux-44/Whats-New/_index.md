@@ -32,7 +32,7 @@ CUE is created from the ground up and does not inherit any previous functionalit
 - {{<link url="IGMP-and-MLD-Snooping/#optimized-multicast-flooding-omf" text="Optimized Multicast Flooding (OMF)">}}
 - Support for QinQ/QinVNI access and trunk ports on the same system
 - On NVIDIA Spectrum switches, you now have the ability to {{<link url="Hybrid-Cloud-Connectivity-with-QinQ-and-VXLANs" text="modify the inner tag in double-tagged packets ">}}
-- A specific software license key is no longer required to enable the `switchd` service. Refer to this [knowledge base article]({{<ref "/knowledge-base/Installing-and-Upgrading/Installation/Licensing-in-Cumulus-Linux-4.4-and-Later.md" >}}).
+- A specific software license key is no longer required to enable the `switchd` service. x
 
 ### Unsupported Platforms
 

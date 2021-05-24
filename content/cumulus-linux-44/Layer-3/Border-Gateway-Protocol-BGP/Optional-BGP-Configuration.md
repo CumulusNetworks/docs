@@ -17,6 +17,18 @@ If the peer you want to add to a group already exists in the BGP configuration, 
 The following example commands create a peer group called SPINE that includes two external peers.
 
 {{< tabs "21 ">}}
+{{< tab "NCLU Commands ">}}
+
+```
+cumulus@leaf01:~$ net add bgp neighbor SPINE peer-group
+cumulus@leaf01:~$ net add bgp neighbor SPINE remote-as external
+cumulus@leaf01:~$ net add bgp neighbor 10.0.1.0 peer-group SPINE
+cumulus@leaf01:~$ net add bgp neighbor 10.0.1.12 peer-group SPINE
+cumulus@leaf01:~$ net pending
+cumulus@leaf01:~$ net commit
+```
+
+{{< /tab >}}
 {{< tab "CUE Commands ">}}
 
 ```
@@ -50,6 +62,13 @@ cumulus@leaf01:~$
 For an unnumbered configuration, you can use a single command to configure a neighbor and attach it to a peer group.
 
 {{< tabs "62 ">}}
+{{< tab "NCLU Commands ">}}
+
+```
+cumulus@leaf01:~$ net add bgp neighbor swp51 interface peer-group SPINE
+```
+
+{{< /tab >}}
 {{< tab "CUE Commands ">}}
 
 ```
@@ -74,7 +93,31 @@ You configure dynamic neighbors using the `bgp listen range <ip-address> peer-gr
 
 The following example commands create the peer group SPINE and configure BGP peering to remote neighbors within the address range 10.0.1.0/31.
 
-{{< tabs "100 ">}}
+{{< tabs "96 ">}}
+{{< tab "NCLU Commands ">}}
+
+```
+cumulus@leaf01:~$ net add bgp neighbor SPINE peer-group
+cumulus@leaf01:~$ net add bgp neighbor SPINE remote-as external
+cumulus@leaf01:~$ net add bgp listen range 10.0.1.0/24 peer-group SPINE
+cumulus@leaf01:~$ net add bgp listen limit 5
+cumulus@leaf01:~$ net pending
+cumulus@leaf01:~$ net commit
+```
+
+The `net add bgp listen limit` command limits the number of dynamic peers. The default value is *100*.
+
+The NCLU commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+
+```
+router bgp 65101
+  neighbor SPINE peer-group
+  neighbor SPINE remote-as external
+  bgp listen limit 5
+  bgp listen range 10.0.1.0/24 peer-group SPINE
+```
+
+{{< /tab >}}
 {{< tab "CUE Commands ">}}
 
 CUE commands are not supported.
@@ -135,6 +178,16 @@ The eBGP multihop option lets you use BGP to exchange routes with an external pe
 The following example command configures Cumulus Linux to establish a connection between two eBGP peers that are not directly connected and sets the maximum number of hops used to reach a eBGP peer to 1.
 
 {{< tabs "154 ">}}
+{{< tab "NCLU Commands ">}}
+
+```
+cumulus@leaf01:~$ net add bgp neighbor 10.10.10.101 remote-as external
+cumulus@leaf01:~$ net add bgp neighbor 10.10.10.101 ebgp-multihop
+cumulus@leaf01:~$ net pending
+cumulus@leaf01:~$ net commit
+```
+
+{{< /tab >}}
 {{< tab "CUE Commands ">}}
 
 ```
@@ -173,6 +226,25 @@ When TTL security is in use, eBGP multihop is no longer needed.
 The following command example sets the TTL security hop count value to 200:
 
 {{< tabs "197 ">}}
+{{< tab "NCLU Commands ">}}
+
+```
+cumulus@leaf01:~$ net add bgp neighbor swp51 ttl-security hops 200
+cumulus@leaf01:~$ net pending
+cumulus@leaf01:~$ net commit
+```
+
+The NCLU commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+
+```
+...
+router bgp 65101
+  ...
+  neighbor swp51 ttl-security hops 200
+...
+```
+
+{{< /tab >}}
 {{< tab "CUE Commands ">}}
 
 ```
@@ -221,6 +293,30 @@ To enable MD5 authentication for BGP peers, set the same password on each peer.
 The following example commands set the password *mypassword* on BGP peers leaf01 and spine01:
 
 {{< tabs "40 ">}}
+{{< tab "NCLU Commands ">}}
+
+{{< tabs "288 ">}}
+{{< tab "leaf01 ">}}
+
+```
+cumulus@leaf01:~$ net add bgp neighbor swp51 password mypassword
+cumulus@leaf01:~$ net pending
+cumulus@leaf01:~$ net commit
+```
+
+{{< /tab >}}
+{{< tab "spine01 ">}}
+
+```
+cumulus@spine01:~$ net add bgp neighbor swp1 password mypassword
+cumulus@spine01:~$ net pending
+cumulus@spine01:~$ net commit
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+{{< /tabs >}}
 {{< tab "CUE Commands ">}}
 
 {{< tabs "270 ">}}
@@ -350,6 +446,19 @@ If you use private ASNs in the data center, any routes you send out to the inter
 The following example command removes private ASNs from routes sent to the neighbor on swp51 (an unnumbered interface):
 
 {{< tabs "424 ">}}
+{{< tab "NCLU Commands ">}}
+
+```
+cumulus@switch:~$ net add bgp neighbor swp51 remove-private-AS
+```
+
+You can replace the private ASNs with your public ASN with the following command:
+
+```
+cumulus@switch:~$ net add bgp neighbor swp51 remove-private-AS replace-AS
+```
+
+{{< /tab >}}
 {{< tab "CUE Commands ">}}
 
 ```
@@ -401,6 +510,79 @@ The following example configures VRF RED and VRF BLUE on border01 to use ASN 655
 {{< img src = "/images/cumulus-linux/asn-vrf-config.png" >}}
 
 {{< tabs "411 ">}}
+{{< tab "NCLU Commands ">}}
+
+```
+cumulus@border01:~$ net add bgp vrf RED autonomous-system 65532        
+cumulus@border01:~$ net add bgp vrf RED router-id 10.10.10.63
+cumulus@border01:~$ net add bgp vrf RED neighbor swp3 interface remote-as external
+cumulus@border01:~$ net add bgp vrf BLUE autonomous-system 65533 
+cumulus@border01:~$ net add bgp vrf BLUE router-id 10.10.10.63
+cumulus@border01:~$ net add bgp vrf BLUE neighbor swp4 interface remote-as external
+cumulus@border01:~$ net pending
+cumulus@border01:~$ net commit
+```
+
+The NCLU commands save the configuration in the `/etc/frr/frr.conf` file:
+
+```
+cumulus@border01:~$ cat /etc/frr/frr.conf
+...
+log syslog informational
+!
+vrf RED
+  vni 4001
+vrf BLUE
+  vni 4002
+!
+router bgp 65132
+ bgp router-id 10.10.10.63
+ bgp bestpath as-path multipath-relax
+ neighbor underlay peer-group
+ neighbor underlay remote-as external
+ neighbor peerlink.4094 interface remote-as internal
+ neighbor swp51 interface peer-group underlay
+ neighbor swp52 interface peer-group underlay
+ !
+ address-family ipv4 unicast
+  redistribute connected
+ exit-address-family
+ !
+ address-family l2vpn evpn
+  neighbor underlay activate
+  advertise-all-vni
+ exit-address-family
+!
+router bgp 65532 vrf RED
+ bgp router-id 10.10.10.63
+ neighbor swp3 remote-as external
+ !
+ address-family ipv4 unicast
+  redistribute static
+ exit-address-family
+ !
+ address-family l2vpn evpn
+  neighbor underlay activate
+  advertise-all-vni
+ exit-address-family
+!
+router bgp 65533 vrf BLUE
+ bgp router-id 10.10.10.63
+ neighbor swp4 remote-as external
+ !
+ address-family ipv4 unicast
+  redistribute static
+ exit-address-family
+ !
+ address-family l2vpn evpn
+  neighbor underlay activate
+  advertise-all-vni
+ exit-address-family
+!
+line vty
+```
+
+{{< /tab >}}
 {{< tab "CUE Commands ">}}
 
 ```
@@ -540,6 +722,27 @@ In Cumulus Linux, the *BGP multipath* option is enabled by default with the maxi
 The example commands change the maximum number of paths to 120. You can set a value between 1 and 256. 1 disables the BGP multipath option.
 
 {{< tabs "617 ">}}
+{{< tab "NCLU Commands ">}}
+
+```
+cumulus@switch:~$ net add bgp maximum-paths 120
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+The NCLU commands save the configuration in the `address-family` stanza of the `/etc/frr/frr.conf` file. For example:
+
+```
+...
+address-family ipv4 unicast
+ network 10.1.10.0/24
+ network 10.10.10.1/32
+ maximum-paths 120
+exit-address-family
+...
+```
+
+{{< /tab >}}
 {{< tab "CUE Commands ">}}
 
 ```
@@ -580,11 +783,30 @@ exit-address-family
 When *BGP multipath* is enabled, only BGP routes from the same AS are load balanced. If the routes go across several different AS neighbors, even if the AS path length is the same, they are not load balanced. To be able to load balance between multiple paths received from different AS neighbors:.
 
 {{< tabs "601 ">}}
+{{< tab "NCLU Commands ">}}
+
+```
+cumulus@switch:~$ net add bgp bestpath as-path multipath-relax
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+The NCLU commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+
+```
+...
+router bgp 65101
+  bgp router-id 10.0.0.1
+  bgp bestpath as-path multipath-relax
+...
+```
+
+{{< /tab >}}
 {{< tab "CUE Commands ">}}
 
 ```
 cumulus@switch:~$ cl set vrf default router bgp path-selection multipath aspath-ignore on
-cumulus@border01:~$ cl config apply
+cumulus@switch:~$ cl config apply
 ```
 
 {{< /tab >}}
@@ -627,6 +849,25 @@ When BGP peering uses IPv6 global addresses and IPv4 prefixes are being advertis
 To enable advertisement of IPv4 prefixes with IPv6 next hops over global IPv6 peerings, add the `extended-nexthop` capability to the global IPv6 neighbor statements on each end of the BGP sessions.
 
 {{< tabs "724 ">}}
+{{< tab "NCLU Commands ">}}
+
+```
+cumulus@switch:~$ net add bgp neighbor 2001:db8:0002::0a00:0002 capability extended-nexthop
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+The NCLU commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+
+```
+...
+router bgp 65101
+  ...
+  neighbor 2001:db8:0002::0a00:0002 capability extended-nexthop
+...
+```
+
+{{< /tab >}}
 {{< tab "CUE Commands ">}}
 
 ```
@@ -664,6 +905,32 @@ router bgp 65101
 Ensure that the IPv6 peers are activated under the IPv4 unicast address family; otherwise, all peers are activated in the IPv4 unicast address family by default. If `no bgp default ipv4-unicast` is configured, you need to explicitly activate the IPv6 neighbor under the IPv4 unicast address family as shown below:
 
 {{< tabs "769 ">}}
+{{< tab "NCLU Commands ">}}
+
+```
+cumulus@switch:~$ net add bgp neighbor 2001:db8:0002::0a00:0002 capability extended-nexthop
+cumulus@switch:~$ net add bgp ipv4 unicast neighbor 2001:db8:0002::0a00:0002 activate
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+The NCLU commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+
+```
+...
+router bgp 65101
+router-id 10.10.10.1
+no bgp default ipv4-unicast
+neighbor 2001:db8:0002::0a00:0002 remote-as external
+neighbor 2001:db8:0002::0a00:0002 capability extended-nexthop
+!
+address-family ipv4 unicast
+  neighbor 2001:db8:0002::0a00:0002 activate
+exit-address-family
+...
+```
+
+{{< /tab >}}
 {{< tab "CUE Commands ">}}
 
 ```
@@ -744,6 +1011,26 @@ To minimize the size of the routing table and save bandwidth, you can aggregate 
 
 The following example command aggregates a range of addresses, such as 10.1.1.0/24, 10.1.2.0/24, 10.1.3.0/24 into the single prefix 10.1.0.0/16.
 
+{{< tabs "897 ">}}
+{{< tab "NCLU Commands ">}}
+
+```
+cumulus@leaf01:~$ net add bgp aggregate-address 10.1.0.0/16
+cumulus@leaf01:~$ net pending
+cumulus@leaf01:~$ net commit
+```
+
+The `summary-only` option ensures that longer-prefixes inside the aggregate address are suppressed before sending BGP updates:
+
+```
+cumulus@leaf01:~$ net add bgp aggregate-address 10.1.0.0/16 summary-only
+cumulus@leaf01:~$ net pending
+cumulus@leaf01:~$ net commit
+```
+
+{{< /tab >}}
+{{< tab "CUE Commands ">}}
+
 ```
 cumulus@leaf01:~$ cl set vrf default router bgp address-family ipv4-unicast aggregate-route 10.1.0.0/16 
 cumulus@leaf01:~$ cl config apply
@@ -756,11 +1043,34 @@ cumulus@leaf01:~$ cl set vrf default router bgp address-family ipv4-unicast aggr
 cumulus@leaf01:~$ cl config apply
 ```
 
+{{< /tab >}}
+{{< /tabs >}}
+
 ## Suppress Route Advertisement
 
 You can configure BGP to wait for a response from the RIB indicating that the routes installed in the RIB are also installed in the ASIC before sending updates to peers.
 
 {{< tabs "TabID788 ">}}
+{{< tab "NCLU Commands ">}}
+
+```
+cumulus@switch:~$ net add bgp wait-for-install
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+The NCLU commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+
+```
+...
+router bgp 65199
+ bgp router-id 10.10.10.101
+ neighbor swp51 remote-as external
+ bgp suppress-fib-pending
+...
+```
+
+{{< /tab >}}
 {{< tab "CUE Commands ">}}
 
 ```
@@ -863,6 +1173,16 @@ BGP add-path TX enables BGP to advertise more than just the best path for a pref
 The following example commands configure leaf01 to advertise the best path learned from each AS to the BGP neighbor on swp50:
 
 {{< tabs "895 ">}}
+{{< tab "NCLU Commands ">}}
+
+```
+cumulus@leaf01:~$ net add bgp autonomous-system 65101
+cumulus@leaf01:~$ net add bgp neighbor swp50 addpath-tx-bestpath-per-AS
+cumulus@leaf01:~$ net pending
+cumulus@leaf01:~$ net commit
+```
+
+{{< /tab >}}
 {{< tab "CUE Commands ">}}
 
 ```
@@ -891,6 +1211,16 @@ cumulus@leaf01:~$
 The following example commands configure leaf01 to advertise all paths learned from each AS to the BGP neighbor on swp50:
 
 {{< tabs "928 ">}}
+{{< tab "NCLU Commands ">}}
+
+```
+cumulus@leaf01:~$ net add bgp autonomous-system 65101
+cumulus@leaf01:~$ net add bgp neighbor swp50 addpath-tx-all-paths
+cumulus@leaf01:~$ net pending
+cumulus@leaf01:~$ net commit
+```
+
+{{< /tab >}}
 {{< tab "CUE Commands ">}}
 
 ```
@@ -1030,6 +1360,25 @@ By default, BGP exchanges periodic keepalive messages to measure and ensure that
 The following example commands set the keepalive interval to 10 seconds and the hold time to 30 seconds.
 
 {{< tabs "1120 ">}}
+{{< tab "NCLU Commands ">}}
+
+```
+cumulus@leaf01:~$ net add bgp neighbor swp51 timers 10 30
+cumulus@leaf01:~$ net pending
+cumulus@leaf01:~$ net commit
+```
+
+The NCLU commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+
+```
+...
+router bgp 65101
+  ...
+  neighbor swp51 timers 10 30
+...
+```
+
+{{< /tab >}}
 {{< tab "CUE Commands ">}}
 
 ```
@@ -1072,6 +1421,25 @@ By default, the BGP process attempts to connect to a peer after a failure (or on
 The following example commands set the reconnect value to 30 seconds:
 
 {{< tabs "1040 ">}}
+{{< tab "NCLU Commands ">}}
+
+```
+cumulus@leaf01:~$ net add bgp neighbor swp51 timers connect 30
+cumulus@leaf01:~$ net pending
+cumulus@leaf01:~$ net commit
+```
+
+The NCLU commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+
+```
+...
+router bgp 65101
+  ...
+  neighbor swp51 timers connect 30
+...
+```
+
+{{< /tab >}}
 {{< tab "CUE Commands ">}}
 
 ```
@@ -1113,6 +1481,25 @@ After making a new best path decision for a prefix, BGP can optionally insert a 
 The following example commands set the advertisement interval to 5 seconds:
 
 {{< tabs "1082 ">}}
+{{< tab "NCLU Commands ">}}
+
+```
+cumulus@leaf01:~$ net add bgp neighbor swp51 advertisement-interval 5
+cumulus@leaf01:~$ net pending
+cumulus@leaf01:~$ net commit
+```
+
+The NCLU commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+
+```
+...
+router bgp 65101
+  ...
+  neighbor swp51 advertisement-interval 5
+...
+```
+
+{{< /tab >}}
 {{< tab "CUE Commands ">}}
 
 ```
@@ -1158,6 +1545,30 @@ In the following example, spine01 is acting as a route reflector. The leaf switc
 To configure the BGP node as a route reflector for a BGP peer, set the neighbor `route-reflector-client` option. The following example sets spine01 shown in the illustration above to be a route reflector for leaf01 (on swp1), which is a route reflector client. No configuration is required on the client.
 
 {{< tabs "1212 ">}}
+{{< tab "NCLU Commands ">}}
+
+```
+cumulus@spine01:~$ net add bgp neighbor swp1 route-reflector-client
+cumulus@spine01:~$ net pending
+cumulus@spine01:~$ net commit
+```
+
+The NCLU commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+
+```
+...
+router bgp 65199
+ bgp router-id 10.10.10.101
+ neighbor swp51 remote-as external
+ !
+ address-family ipv4 unicast
+  network 10.10.10.101/32
+  neighbor swp51 route-reflector-client
+ exit-address-family
+...
+```
+
+{{< /tab >}}
 {{< tab "CUE Commands ">}}
 
 ```
@@ -1252,6 +1663,25 @@ cumulus@spine01:~$
 To reduce packet loss during planned maintenance of a router or link, you can configure graceful BGP shutdown, which forces traffic to route around the BGP node:
 
 {{< tabs "1481 ">}}
+{{< tab "NCLU Commands ">}}
+
+To enable graceful shutdown:
+
+```
+cumulus@leaf01:~$ net add bgp graceful-shutdown
+cumulus@leaf01:~$ net pending
+cumulus@leaf01:~$ net commit
+```
+
+To disable graceful shutdown:
+
+```
+cumulus@leaf01:~$ net del bgp graceful-shutdown
+cumulus@leaf01:~$ net pending
+cumulus@leaf01:~$ net commit
+```
+
+{{< /tab >}}
 {{< tab "CUE Commands ">}}
 
 ```
@@ -1388,10 +1818,19 @@ BGP goes through a graceful restart (as a restarting router) only with a planned
 The following example commands enable global graceful BGP restart:
 
 {{< tabs "TabID1442 ">}}
+{{< tab "NCLU Commands ">}}
+
+```
+cumulus@switch:~$ net add routing bgp graceful-restart-mode helper-and-restarter
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+{{< /tab >}}
 {{< tab "CUE Commands ">}}
 
 ```
-cumulus@leaf01:~$ cl set vrf default router bgp raceful-restart
+cumulus@leaf01:~$ cl set vrf default router bgp graceful-restart
 cumulus@leaf01:~$ cl config apply
 ```
 
@@ -1415,6 +1854,15 @@ cumulus@leaf01:~$
 The following example commands enable BGP graceful restart on the BGP peer connected on swp51.
 
 {{< tabs "TabID1474 ">}}
+{{< tab "NCLU Commands ">}}
+
+```
+cumulus@switch:~$ net add bgp neighbor swp51 graceful-restart-mode helper-and-restarter
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+{{< /tab >}}
 {{< tab "CUE Commands ">}}
 
 ```
@@ -1442,6 +1890,26 @@ cumulus@leaf01:~$
 The following example commands enable helper mode only for the BGP peer connected on swp51. Routes originated and advertised from the peer are not deleted.
 
 {{< tabs "TabID1506 ">}}
+{{< tab "NCLU Commands ">}}
+
+```
+cumulus@switch:~$ net add bgp neighbor swp51 graceful-restart-mode helper
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+The NCLU commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+
+```
+...
+router bgp 65199
+ bgp router-id 10.10.10.101
+ neighbor swp51 remote-as external
+ neighbor swp51 graceful-restart
+...
+```
+
+{{< /tab >}}
 {{< tab "CUE Commands ">}}
 
 ```
@@ -1488,6 +1956,30 @@ You can configure the following graceful restart timers, which are set globally.
 The following example commands set the `restart-time` to 400 seconds, `pathselect-defer-time` to 300 seconds, and `stalepath-time` to 400 seconds:
 
 {{< tabs "TabID1557 ">}}
+{{< tab "NCLU Commands ">}}
+
+```
+cumulus@switch:~$ net add routing bgp graceful-restart restart-time 400
+cumulus@switch:~$ net add routing bgp graceful-restart pathselect-defer-time 300
+cumulus@switch:~$ net add routing bgp graceful-restart stalepath-time 400
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+The NCLU commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+
+```
+...
+router bgp 65199
+ bgp router-id 10.10.10.101
+ neighbor swp51 remote-as external
+ bgp graceful-restart restart-time 400
+ bgp graceful-restart select-defer-time 300
+ bgp graceful-restart stalepath-time 400
+...
+```
+
+{{< /tab >}}
 {{< tab "CUE Commands ">}}
 
 ```
@@ -1532,6 +2024,15 @@ router bgp 65199
 The following example commands disable global graceful restart:
 
 {{< tabs "TabID1816 ">}}
+{{< tab "NCLU Commands ">}}
+
+```
+cumulus@switch:~$ net add routing bgp graceful-restart-mode disabled
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+{{< /tab >}}
 {{< tab "CUE Commands ">}}
 
 ```
@@ -1559,6 +2060,15 @@ cumulus@leaf01:~$
 The following example commands disable graceful BGP restart on a BGP peer:
 
 {{< tabs "TabID169 ">}}
+{{< tab "NCLU Commands ">}}
+
+```
+cumulus@switch:~$ net add bgp neighbor swp51 graceful-restart-disable
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+{{< /tab >}}
 {{< tab "CUE Commands ">}}
 
 ```
@@ -1629,6 +2139,26 @@ While in read-only mode, BGP does not run best-path or generate any updates to i
 The following example commands enable read-only mode:
 
 {{< tabs "1723 ">}}
+{{< tab "NCLU Commands ">}}
+
+```
+cumulus@switch:~$ net add bgp update-delay 300 90
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+The NCLU commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+
+```
+...
+router bgp 65199
+ bgp router-id 10.10.10.101
+ neighbor swp51 remote-as external
+ bgp update-delay 300 200
+...
+```
+
+{{< /tab >}}
 {{< tab "CUE Commands ">}}
 
 ```
@@ -1705,6 +2235,15 @@ When the neighbor receives the prefix, it examines the community value and takes
 Here is an example of a standard community list filter:
 
 {{< tabs "1995 ">}}
+{{< tab "NCLU Commands ">}}
+
+```
+cumulus@switch:~$ net add routing community-list standard COMMUNITY1 permit 100:100
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+{{< /tab >}}
 {{< tab "CUE Commands ">}}
 
 ```
@@ -1732,6 +2271,15 @@ cumulus@leaf01:~$
 You can apply the community list to a route map to define the routing policy:
 
 {{< tabs "2029">}}
+{{< tab "NCLU Commands ">}}
+
+```
+cumulus@switch:~$ net add bgp table-map ROUTE-MAP1
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+{{< /tab >}}
 {{< tab "CUE Commands ">}}
 
 ```

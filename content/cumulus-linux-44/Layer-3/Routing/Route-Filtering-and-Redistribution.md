@@ -18,6 +18,28 @@ Prefix lists are access lists for route advertisements that match routes instead
 The following example commands configure a prefix list that permits all prefixes in the range 10.0.0.0/16 with a subnet mask less than or equal to /30. For networks 10.0.0.0/24, 10.10.10.0/24, and 10.0.0.10/32, only 10.0.0.0/24 is matched (10.10.10.0/24 has a different prefix and 10.0.0.10/32 has a greater subnet mask).
 
 {{< tabs "TabID22 ">}}
+{{< tab "NCLU Commands ">}}
+
+```
+cumulus@switch:~$ net add routing prefix-list ipv4 prefixlist1 permit 10.0.0.0/16 le 30
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+The NCLU commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+
+```
+cumulus@switch:~$ sudo cat /etc/frr/frr.conf
+...
+router ospf
+ ospf router-id 10.10.10.1
+ timers throttle spf 80 100 6000
+ passive-interface vlan10
+ passive-interface vlan20
+ip prefix-list prefixlist1 seq 1 permit 10.0.0.0/16 le 30
+```
+
+{{< /tab >}}
 {{< tab "CUE Commands ">}}
 
 ```
@@ -57,7 +79,16 @@ ip prefix-list prefixlist1 seq 1 permit 10.0.0.0/16 le 30
 
 To use this prefix list in a route map called MAP1:
 
-{{< tabs "TabID60 ">}}
+{{< tabs "TabID82 ">}}
+{{< tab "NCLU Commands ">}}
+
+```
+cumulus@switch:~$ net add routing route-map MAP1 permit 10 match ip-prefix-list prefixlist1
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+{{< /tab >}}
 {{< tab "CUE Commands ">}}
 
 ```
@@ -102,6 +133,26 @@ Route maps are routing policies that are considered before the router examines t
 The following example commands configure a route map that sets the metric to 50 for interface swp51:
 
 {{< tabs "TabID73 ">}}
+{{< tab "NCLU Commands ">}}
+
+```
+cumulus@switch:~$ net add routing route-map routemap1 permit 10 match interface swp51
+cumulus@switch:~$ net add routing route-map routemap1 permit 10 set metric 50
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+The NCLU commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+
+```
+cumulus@switch:~$ sudo cat /etc/frr/frr.conf
+...
+route-map routemap1 permit 10
+ match interface swp51
+ set metric 50
+```
+
+{{< /tab >}}
 {{< tab "CUE Commands ">}}
 
 ```
@@ -146,6 +197,23 @@ To apply the route map, you specify the routing protocol and the route map name.
 The following example filters routes from Zebra into the Linux kernel. The commands apply the route map called routemap1 to BGP:
 
 {{< tabs "TabID152 ">}}
+{{< tab "NCLU Commands ">}}
+
+```
+cumulus@switch:~$ net add routing protocol bgp route-map routemap1
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+The NCLU commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+
+```
+cumulus@switch:~$ sudo cat /etc/frr/frr.conf
+...
+ip protocol bgp route-map routemap1
+```
+
+{{< /tab >}}
 {{< tab "CUE Commands ">}}
 
 ```
@@ -181,14 +249,29 @@ For BGP, you can also apply a route map on route updates from BGP to Zebra. All 
 
 To apply a route map to filter route updates from BGP into Zebra, run the following command:
 
+{{< tabs "TabID243 ">}}
+{{< tab "NCLU Commands ">}}
+
 ```
-cumulus@switch:$ cl set vrf default router bgp address-family ipv4-unicast rib-filter routemap1
-cumulus@switch:$ cl config apply
+cumulus@switch:$ net add bgp table-map routemap2
+cumulus@switch:$ net pending
+cumulus@switch:$ net commit
 ```
 
 {{%notice note%}}
 In NCLU, you can only set the community number in a route map. You cannot set other community options such as `no-export`, `no-advertise`, or `additive`.
 {{%/notice%}}
+
+{{< /tab >}}
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@switch:$ cl set vrf default router bgp address-family ipv4-unicast rib-filter routemap1
+cumulus@switch:$ cl config apply
+```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ## Route Redistribution
 
@@ -196,7 +279,16 @@ Route redistribution allows a network to use a routing protocol to route traffic
 
 The following example commands redistribute routing information from ospf routes into BGP:
 
-{{< tabs "TabID219 ">}}
+{{< tabs "TabID273 ">}}
+{{< tab "NCLU Commands ">}}
+
+```
+cumulus@switch:~$ net add bgp redistribute ospf
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+{{< /tab >}}
 {{< tab "CUE Commands ">}}
 
 ```
@@ -224,6 +316,15 @@ cumulus@switch:~$
 To redistribute all directly connected networks, use the `redistribute connected` command. For example:
 
 {{< tabs "TabID251 ">}}
+{{< tab "NCLU Commands ">}}
+
+```
+cumulus@switch:~$ net add bgp redistribute connected
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+{{< /tab >}}
 {{< tab "CUE Commands ">}}
 
 ```

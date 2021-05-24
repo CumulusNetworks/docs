@@ -7,6 +7,13 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-32516</td>
+<td>&lt;p&gt;When using NCLU to add new BGP neighbors to existing configurations, the existence of address-family statements are ignored and the neighbors are added at the end of these lines. This might cause a problem if you try to activate these new neighbors in any of the existing address-family configurations.&lt;br/&gt;
+To work around this issue, configure the new BGP neighbors with vtysh.&lt;/p&gt;</td>
+<td>3.7.14-3.7.14.2, 4.2.1-4.3.0</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-28249</td>
 <td>&lt;p&gt;On the Mellanox switch, when you modify the buffer and queue configuration without restarting &lt;tt&gt;switchd&lt;/tt&gt;, you might see a one second interruption in forwarding.&lt;/p&gt;</td>
 <td>4.0.0-4.3.0</td>
@@ -392,13 +399,6 @@ net add vlan 1 ip6-forward off
 
 The correct NCLU command to disable IPv6 forwarding is {{net add vlan 1 ipv6 forward off}} (without the hyphen).</td>
 <td>4.2.1-4.3.0</td>
-<td></td>
-</tr>
-<tr>
-<td>2555148</td>
-<td>When using NCLU to add new BGP neighbors to existing configurations, the existence of address-family statements are ignored and the neighbors are added at the end of these lines. This might cause a problem if you try to activate these new neighbors in any of the existing address-family configurations.
-To work around this issue, configure the new BGP neighbors with vtysh.</td>
-<td>3.7.14-3.7.15, 4.2.1-4.3.0</td>
 <td></td>
 </tr>
 <tr>
@@ -1446,6 +1446,13 @@ To work around this issue, change the value of {{arp_ignore}} to 2. See [Address
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-32516</td>
+<td>&lt;p&gt;When using NCLU to add new BGP neighbors to existing configurations, the existence of address-family statements are ignored and the neighbors are added at the end of these lines. This might cause a problem if you try to activate these new neighbors in any of the existing address-family configurations.&lt;br/&gt;
+To work around this issue, configure the new BGP neighbors with vtysh.&lt;/p&gt;</td>
+<td>3.7.14-3.7.14.2, 4.2.1-4.3.0</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-30832</td>
 <td>&lt;p&gt;The Mellanox SN2700 and SN2410 switch intermittently reports PSU fan state changes with &lt;tt&gt;Unable to read from device/fan1_input/pwm1&lt;/tt&gt; syslog messages.&lt;/p&gt;</td>
 <td>3.7.11-3.7.14, 4.1.1-4.2.1</td>
@@ -2017,13 +2024,6 @@ Vulnerable: 1.0.7-2
 Fixed: 1.0.7-2+deb10u1</td>
 <td>4.0.0-4.2.1</td>
 <td>4.3.0</td>
-</tr>
-<tr>
-<td>2555148</td>
-<td>When using NCLU to add new BGP neighbors to existing configurations, the existence of address-family statements are ignored and the neighbors are added at the end of these lines. This might cause a problem if you try to activate these new neighbors in any of the existing address-family configurations.
-To work around this issue, configure the new BGP neighbors with vtysh.</td>
-<td>3.7.14-3.7.15, 4.2.1-4.3.0</td>
-<td></td>
 </tr>
 <tr>
 <td>2554992</td>

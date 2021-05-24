@@ -57,16 +57,6 @@ Cumulus Linux accepts the bandwidth extended community by default. No additional
 The following command examples show how you can set the BGP link bandwidth extended community against **all** prefixes.
 
 {{< tabs "TabID61 ">}}
-{{< tab "CUE Commands ">}}
-
-```
-cumulus@leaf01:~$ cl set router policy route-map ucmp-route-map rule 10 set ext-community-bw num-multipaths
-cumulus@leaf01:~$ cl set router policy route-map ucmp-route-map rule 10 action permit
-cumulus@leaf01:~$ NEED COMMAND
-cumulus@leaf01:~$ cl config apply
-```
-
-{{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
 ```
@@ -74,6 +64,28 @@ cumulus@leaf01:~$ net add routing route-map ucmp-route-map permit 10 set extcomm
 cumulus@leaf01:~$ net add bgp neighbor 10.1.1.1 route-map ucmp-route-map out
 cumulus@leaf01:~$ net pending
 cumulus@leaf01:~$ net commit
+```
+
+The NCLU commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+
+```
+...
+address-family ipv4 unicast
+ neighbor 10.1.1.1 route-map ucmp-route-map out
+!
+route-map ucmp-route-map permit 10
+ set extcommunity bandwidth num-multipaths
+...
+```
+
+{{< /tab >}}
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@leaf01:~$ cl set router policy route-map ucmp-route-map rule 10 set ext-community-bw num-multipaths
+cumulus@leaf01:~$ cl set router policy route-map ucmp-route-map rule 10 action permit
+cumulus@leaf01:~$ NEED COMMAND
+cumulus@leaf01:~$ cl config apply
 ```
 
 {{< /tab >}}
@@ -94,10 +106,7 @@ leaf01# exit
 cumulus@leaf01:~$
 ```
 
-{{< /tab >}}
-{{< /tabs >}}
-
-The NCLU and `vtysh` commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+The vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
 ```
 ...
@@ -109,20 +118,14 @@ route-map ucmp-route-map permit 10
 ...
 ```
 
+{{< /tab >}}
+{{< /tabs >}}
+
 ### Set the BGP Link Bandwidth Extended Community Against Certain Prefixes
 
 The following command examples show how you can set the BGP link bandwidth extended community for anycast servers in the 192.168/16 IP address range.
 
 {{< tabs "TabID111 ">}}
-{{< tab "CUE Commands ">}}
-
-```
-cumulus@leaf01:~$ NEED COMMAND
-cumulus@leaf01:~$ 
-cumulus@leaf01:~$ 
-```
-
-{{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
 ```
@@ -132,6 +135,29 @@ cumulus@leaf01:~$ net add routing route-map ucmp-route-map permit 10 set extcomm
 cumulus@leaf01:~$ net add bgp neighbor 10.1.1.1 route-map ucmp-route-map out
 cumulus@leaf01:~$ net pending
 cumulus@leaf01:~$ net commit
+```
+
+The NCLU commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+
+```
+...
+address-family ipv4 unicast
+ neighbor 10.1.1.1 route-map ucmp-route-map out
+!
+ip prefix-list anycast-ip permit 192.168.0.0/16 le 32
+route-map ucmp-route-map permit 10
+ match ip address prefix-list anycast-ip
+ set extcommunity bandwidth num-multipaths
+...
+```
+
+{{< /tab >}}
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@leaf01:~$ NEED COMMAND
+cumulus@leaf01:~$ 
+cumulus@leaf01:~$ 
 ```
 
 {{< /tab >}}
@@ -153,10 +179,7 @@ leaf01# exit
 cumulus@leaf01:~$
 ```
 
-{{< /tab >}}
-{{< /tabs >}}
-
-The NCLU and `vtysh` commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+The vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
 ```
 ...
@@ -170,20 +193,14 @@ route-map ucmp-route-map permit 10
 ...
 ```
 
+{{< /tab >}}
+{{< /tabs >}}
+
 ### EVPN Configuration
 
 For EVPN configuration, make sure that you activate the commands under the EVPN address family. The following shows an example EVPN configuration that sets the BGP link bandwidth extended community against **all** prefixes.
 
 {{< tabs "TabID166 ">}}
-{{< tab "CUE Commands ">}}
-
-```
-cumulus@leaf01:~$ NEED COMMAND
-cumulus@leaf01:~$ 
-cumulus@leaf01:~$ 
-```
-
-{{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
 ```
@@ -191,6 +208,30 @@ cumulus@leaf01:~$ net add routing route-map ucmp-route-map permit 10 set extcomm
 cumulus@leaf01:~$ net add bgp vrf turtle l2vpn evpn advertise ipv4 unicast route-map ucmp-route-map
 cumulus@leaf01:~$ net pending
 cumulus@leaf01:~$ net commit
+```
+
+The NCLU commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+
+```
+...
+ address-family l2vpn evpn
+  advertise ipv4 unicast route-map ucmp-route-map
+ exit-address-family
+!
+ip prefix-list anycast-ip permit 192.168.0.0/16 le 32
+route-map ucmp-route-map permit 10
+ match ip address prefix-list anycast-ip
+ set extcommunity bandwidth num-multipaths
+...
+```
+
+{{< /tab >}}
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@leaf01:~$ NEED COMMAND
+cumulus@leaf01:~$ 
+cumulus@leaf01:~$ 
 ```
 
 {{< /tab >}}
@@ -210,10 +251,7 @@ leaf01# exit
 cumulus@leaf01:~$
 ```
 
-{{< /tab >}}
-{{< /tabs >}}
-
-The NCLU and `vtysh` commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+The vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
 ```
 ...
@@ -227,6 +265,9 @@ route-map ucmp-route-map permit 10
  set extcommunity bandwidth num-multipaths
 ...
 ```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ## Control UCMP on the Receiving Switch
 
@@ -250,15 +291,6 @@ Either run the NCLU `net add bestpath bandwidth ignore|skip-missing|default-weig
 The following commands set link bandwidth processing to skip paths without link bandwidth and perform UCMP among the other paths:
 
 {{< tabs "TabID235 ">}}
-{{< tab "CUE Commands ">}}
-
-```
-cumulus@leaf01:~$ NEED COMMAND
-cumulus@leaf01:~$ 
-cumulus@leaf01:~$ 
-```
-
-{{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
 ```
@@ -267,24 +299,7 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-{{< /tab >}}
-{{< tab "vtysh Commands ">}}
-
-```
-cumulus@switch:~$ sudo vtysh
-switch# configure terminal
-switch(config)# router bgp 65011
-switch(config-router)# bgp bestpath bandwidth skip-missing
-switch(config-router)# end
-switch# write memory
-switch# exit
-cumulus@switch:~$
-```
-
-{{< /tab >}}
-{{< /tabs >}}
-
-The NCLU and `vtysh` commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+The NCLU commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
 ```
 router bgp 65011
@@ -303,6 +318,51 @@ router bgp 65011
  ...
  ```
 
+{{< /tab >}}
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@leaf01:~$ NEED COMMAND
+cumulus@leaf01:~$ 
+cumulus@leaf01:~$ 
+```
+
+{{< /tab >}}
+{{< tab "vtysh Commands ">}}
+
+```
+cumulus@switch:~$ sudo vtysh
+switch# configure terminal
+switch(config)# router bgp 65011
+switch(config-router)# bgp bestpath bandwidth skip-missing
+switch(config-router)# end
+switch# write memory
+switch# exit
+cumulus@switch:~$
+```
+
+The vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+
+```
+router bgp 65011
+  bgp bestpath as-path multipath-relax
+  neighbor LEAF peer-group
+  neighbor LEAF remote-as external
+  neighbor swp1 interface peer-group LEAF
+  neighbor swp2 interface peer-group LEAF
+  neighbor swp3 interface peer-group LEAF
+  neighbor swp4 interface peer-group LEAF
+  bgp bestpath bandwidth skip-missing
+!
+  address-family ipv4 unicast
+    network 10.0.0.1/32
+  exit-address-family
+ ...
+ ```
+
+{{< /tab >}}
+{{< /tabs >}}
+
 ### BGP Link Bandwidth Outside a Domain
 
 The BGP link bandwidth extended community is automatically passed on with the prefix to eBGP peers. If you do not want to pass on the BGP link bandwidth extended community outside of a particular domain, you can disable the advertisement of all BGP extended communities on specific peerings.
@@ -314,21 +374,21 @@ You cannot disable just the BGP link bandwidth extended community from being adv
 To disable all BGP extended communities on a peer or peer group (per address family), either run the NCLU `net del bgp neighbor <neighbor> send-community extended` command or the `vtysh` `no neighbor <neighbor> send-community extended` command:
 
 {{< tabs "TabID295 ">}}
-{{< tab "CUE Commands ">}}
-
-```
-cumulus@leaf01:~$ NEED COMMAND
-cumulus@leaf01:~$ 
-cumulus@leaf01:~$ 
-```
-
-{{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
 ```
 cumulus@switch:~$ net del bgp neighbor 10.10.0.2 send-community extended
 cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
+```
+
+{{< /tab >}}
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@leaf01:~$ NEED COMMAND
+cumulus@leaf01:~$ 
+cumulus@leaf01:~$ 
 ```
 
 {{< /tab >}}

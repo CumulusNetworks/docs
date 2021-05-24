@@ -4,13 +4,161 @@ author: NVIDIA
 weight: 880
 toc: 3
 ---
-This section shows a BGP configuration example based on the reference topology. The example configures BGP *unnumbered* on all leafs and spines and uses the peer group *underlay*. MLAG is configured on leaf01 and leaf02, and on leaf03 and leaf04.
+This section shows a BGP configuration example based on the reference topology. The example configures BGP *unnumbered* on all leafs and spines. MLAG is configured on leaf01 and leaf02, and on leaf03 and leaf04.
 
 {{< img src = "/images/cumulus-linux/mlag-config-peering.png" >}}
 
-## CUE Commands
+## Commands
 
-{{< tabs "TabID13 ">}}
+{{< tabs "TabID11 ">}}
+{{< tab "NCLU ">}}
+
+{{< tabs "TabID14 ">}}
+{{< tab "leaf01 ">}}
+
+```
+cumulus@leaf01:~$ net add loopback lo ip address 10.10.10.1/32
+cumulus@leaf01:~$ net add bond bond1 bond slaves swp1
+cumulus@leaf01:~$ net add bond bond2 bond slaves swp2
+cumulus@leaf01:~$ net add bond bond3 bond slaves swp3
+cumulus@leaf01:~$ net add bond bond1 clag id 1
+cumulus@leaf01:~$ net add bond bond2 clag id 2
+cumulus@leaf01:~$ net add bond bond3 clag id 2
+cumulus@leaf01:~$ net add bridge bridge ports bond1,bond2,bond3
+cumulus@leaf01:~$ net add clag peer sys-mac 44:38:39:BE:EF:AA interface swp49-50 primary backup-ip 10.10.10.2
+cumulus@leaf01:~$ net add vlan 10 ip address 10.1.10.2/24
+cumulus@leaf01:~$ net add vlan 20 ip address 10.1.20.2/24
+cumulus@leaf01:~$ net add vlan 30 ip address 10.1.30.2/24
+cumulus@leaf01:~$ net add bridge bridge vids 10,20,30
+cumulus@leaf01:~$ net add bridge bridge pvid 1
+cumulus@leaf01:~$ net add bgp autonomous-system 65101
+cumulus@leaf01:~$ net add bgp router-id 10.10.10.1
+cumulus@leaf01:~$ net add bgp neighbor swp51 remote-as external
+cumulus@leaf01:~$ net add bgp neighbor swp52 remote-as external
+cumulus@leaf01:~$ net add bgp ipv4 unicast network 10.10.10.1/32
+cumulus@leaf01:~$ net add bgp ipv4 unicast network 10.1.10.0/24 
+cumulus@leaf01:~$ net commit
+cumulus@leaf01:~$ net apply
+```
+
+{{< /tab >}}
+{{< tab "leaf02 ">}}
+
+```
+cumulus@leaf02:~$ net add loopback lo ip address 10.10.10.2/32
+cumulus@leaf02:~$ net add bond bond1 bond slaves swp1
+cumulus@leaf02:~$ net add bond bond2 bond slaves swp2
+cumulus@leaf02:~$ net add bond bond3 bond slaves swp3
+cumulus@leaf02:~$ net add bond bond1 clag id 1
+cumulus@leaf02:~$ net add bond bond2 clag id 2
+cumulus@leaf02:~$ net add bond bond3 clag id 2
+cumulus@leaf02:~$ net add bridge bridge ports bond1,bond2,bond3
+cumulus@leaf02:~$ net add clag peer sys-mac 44:38:39:BE:EF:AA interface swp49-50 primary backup-ip 10.10.10.1
+cumulus@leaf02:~$ net add vlan 10 ip address 10.1.10.3/24
+cumulus@leaf02:~$ net add vlan 20 ip address 10.1.20.3/24
+cumulus@leaf02:~$ net add vlan 30 ip address 10.1.30.3/24
+cumulus@leaf02:~$ net add bridge bridge vids 10,20,30
+cumulus@leaf02:~$ net add bridge bridge pvid 1
+cumulus@leaf02:~$ net add bgp autonomous-system 65102
+cumulus@leaf02:~$ net add bgp router-id 10.10.10.2
+cumulus@leaf02:~$ net add bgp neighbor swp51 remote-as external
+cumulus@leaf02:~$ net add bgp neighbor swp52 remote-as external
+cumulus@leaf02:~$ net add bgp ipv4 unicast network 10.10.10.1/32
+cumulus@leaf02:~$ net commit
+cumulus@leaf02:~$ net apply
+```
+
+{{< /tab >}}
+{{< tab "leaf03 ">}}
+
+```
+cumulus@leaf03:~$ net add loopback lo ip address 10.10.10.3/32
+cumulus@leaf03:~$ net add bond bond1 bond slaves swp1
+cumulus@leaf03:~$ net add bond bond2 bond slaves swp2
+cumulus@leaf03:~$ net add bond bond3 bond slaves swp3
+cumulus@leaf03:~$ net add bond bond1 clag id 1
+cumulus@leaf03:~$ net add bond bond2 clag id 2
+cumulus@leaf03:~$ net add bond bond3 clag id 2
+cumulus@leaf03:~$ net add bridge bridge ports bond1,bond2,bond3
+cumulus@leaf03:~$ net add clag peer sys-mac 44:38:39:BE:EF:AA interface swp49-50 primary backup-ip 10.10.10.4
+cumulus@leaf03:~$ net add vlan 40 ip address 10.1.40.4/24
+cumulus@leaf03:~$ net add vlan 50 ip address 10.1.50.4/24
+cumulus@leaf03:~$ net add vlan 60 ip address 10.1.60.5/24
+cumulus@leaf03:~$ net add bridge bridge vids 40,50,60
+cumulus@leaf03:~$ net add bridge bridge pvid 1
+cumulus@leaf03:~$ net add bgp autonomous-system 65103
+cumulus@leaf03:~$ net add bgp router-id 10.10.10.3
+cumulus@leaf03:~$ net add bgp neighbor swp51 remote-as external
+cumulus@leaf03:~$ net add bgp neighbor swp52 remote-as external
+cumulus@leaf03:~$ net add bgp ipv4 unicast network 10.10.10.3/32
+cumulus@leaf03:~$ net commit
+cumulus@leaf03:~$ net apply
+```
+
+{{< /tab >}}
+{{< tab "leaf04 ">}}
+
+```
+cumulus@leaf04:~$ net add loopback lo ip address 10.10.10.4/32
+cumulus@leaf03:~$ net add bond bond1 bond slaves swp1
+cumulus@leaf03:~$ net add bond bond2 bond slaves swp2
+cumulus@leaf03:~$ net add bond bond3 bond slaves swp3
+cumulus@leaf03:~$ net add bond bond1 clag id 1
+cumulus@leaf03:~$ net add bond bond2 clag id 2
+cumulus@leaf03:~$ net add bond bond3 clag id 2
+cumulus@leaf03:~$ net add bridge bridge ports bond1,bond2,bond3
+cumulus@leaf03:~$ net add clag peer sys-mac 44:38:39:BE:EF:AA interface swp49-50 primary backup-ip 10.10.10.3
+cumulus@leaf03:~$ net add vlan 40 ip address 10.1.40.6/24
+cumulus@leaf03:~$ net add vlan 50 ip address 10.1.50.6/24
+cumulus@leaf03:~$ net add vlan 60 ip address 10.1.60.6/24
+cumulus@leaf03:~$ net add bridge bridge vids 40,50,60
+cumulus@leaf03:~$ net add bridge bridge pvid 1
+cumulus@leaf03:~$ net add bgp autonomous-system 65103
+cumulus@leaf03:~$ net add bgp router-id 10.10.10.3
+cumulus@leaf03:~$ net add bgp neighbor swp51 remote-as external
+cumulus@leaf04:~$ net add bgp neighbor swp52 remote-as external
+cumulus@leaf03:~$ net add bgp ipv4 unicast network 10.10.10.101/32
+cumulus@leaf04:~$ net commit
+cumulus@leaf04:~$ net apply
+```
+
+{{< /tab >}}
+{{< tab "spine01 ">}}
+
+```
+cumulus@spine01:~$ net add loopback lo ip address 10.10.10.101/32
+cumulus@spine01:~$ net add bgp autonomous-system 65199
+cumulus@spine01:~$ net add bgp router-id 10.10.10.101
+cumulus@spine01:~$ net add bgp neighbor swp1 remote-as external
+cumulus@spine01:~$ net add bgp neighbor swp2 remote-as external
+cumulus@spine01:~$ net add bgp neighbor swp3 remote-as external
+cumulus@spine01:~$ net add bgp neighbor swp4 remote-as external
+cumulus@spine01:~$ net commit
+cumulus@spine01:~$ net apply 
+```
+
+{{< /tab >}}
+{{< tab "spine02 ">}}
+
+```
+cumulus@spine02:~$ net add loopback lo ip address 10.10.10.102/32
+cumulus@spine02:~$ net add bgp autonomous-system 65199
+cumulus@spine02:~$ net add bgp router-id 10.10.10.102
+cumulus@spine02:~$ net add bgp neighbor swp1 remote-as external
+cumulus@spine02:~$ net add bgp neighbor swp2 remote-as external
+cumulus@spine02:~$ net add bgp neighbor swp3 remote-as external
+cumulus@spine02:~$ net add bgp neighbor swp4 remote-as external 
+cumulus@spine02:~$ net commit
+cumulus@spine02:~$ net apply
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+{{< /tab >}}
+{{< tab "CUE ">}}
+
+{{< tabs "TabID38 ">}}
 {{< tab "leaf01 ">}}
 
 ```
@@ -123,8 +271,6 @@ cumulus@leaf04:~$ cl set router bgp autonomous-system 65104
 cumulus@leaf04:~$ cl set router bgp router-id 10.10.10.4
 cumulus@leaf04:~$ cl set vrf default router bgp peer swp51 remote-as external
 cumulus@leaf04:~$ cl set vrf default router bgp peer swp52 remote-as external
-cumulus@leaf04:~$ cl set vrf default router bgp peer swp53 remote-as external
-cumulus@leaf04:~$ cl set vrf default router bgp peer swp54 remote-as external
 cumulus@leaf04:~$ cl set vrf default router bgp address-family ipv4-unicast static-network 10.10.10.4/32
 cumulus@leaf04:~$ cl config apply
 ```
@@ -158,6 +304,9 @@ cumulus@spine02:~$ cl set vrf default router bgp peer swp4 remote-as external
 cumulus@spine02:~$ cl set vrf default router bgp address-family ipv4-unicast static-network 10.10.10.102/32
 cumulus@spine02:~$ cl config apply
 ```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 {{< /tab >}}
 {{< /tabs >}}
@@ -433,24 +582,24 @@ cumulus@leaf03:mgmt:~$ sudo cat /etc/cue.d/startup.yaml
         type: sub
         base-interface: peerlink
         vlan: 4094
-      vlan10:
+      vlan40:
         ip:
           address:
-            10.1.10.4/24: {}
+            10.1.40.4/24: {}
         type: svi
-        vlan: 10
-      vlan20:
+        vlan: 40
+      vlan50:
         ip:
           address:
-            10.1.20.4/24: {}
+            10.1.50.4/24: {}
         type: svi
-        vlan: 20
-      vlan30:
+        vlan: 50
+      vlan60:
         ip:
           address:
-            10.1.30.4/24: {}
+            10.1.60.4/24: {}
         type: svi
-        vlan: 30
+        vlan: 60
     mlag:
       mac-address: 44:38:39:BE:EF:AA
       backup:
@@ -460,9 +609,9 @@ cumulus@leaf03:mgmt:~$ sudo cat /etc/cue.d/startup.yaml
       domain:
         br_default:
           vlan:
-            '10': {}
-            '20': {}
-            '30': {}
+            '40': {}
+            '50': {}
+            '60': {}
           untagged: 1
     router:
       bgp:
@@ -540,24 +689,24 @@ cumulus@leaf04:mgmt:~$ sudo cat /etc/cue.d/startup.yaml
         type: sub
         base-interface: peerlink
         vlan: 4094
-      vlan10:
+      vlan40:
         ip:
           address:
-            10.1.10.5/24: {}
+            10.1.40.5/24: {}
         type: svi
-        vlan: 10
-      vlan20:
+        vlan: 40
+      vlan50:
         ip:
           address:
-            10.1.20.5/24: {}
+            10.1.50.5/24: {}
         type: svi
-        vlan: 20
-      vlan30:
+        vlan: 50
+      vlan60:
         ip:
           address:
-            10.1.30.5/24: {}
+            10.1.60.5/24: {}
         type: svi
-        vlan: 30
+        vlan: 60
     mlag:
       mac-address: 44:38:39:BE:EF:AA
       backup:
@@ -567,9 +716,9 @@ cumulus@leaf04:mgmt:~$ sudo cat /etc/cue.d/startup.yaml
       domain:
         br_default:
           vlan:
-            '10': {}
-            '20': {}
-            '30': {}
+            '40': {}
+            '50': {}
+            '60': {}
           untagged: 1
     router:
       bgp:
@@ -1154,29 +1303,17 @@ iface swp4
 ```
 cumulus@leaf01:~$ cat /etc/frr/frr.conf
 ...
-router bgp 65101 vrf default
-bgp router-id 10.10.10.1
-timers bgp 3 9
-bgp deterministic-med
-! Neighbors
-neighbor swp51 interface remote-as internal
-neighbor swp51 timers 3 9
-neighbor swp51 timers connect 10
-neighbor swp51 advertisement-interval 0
-neighbor swp51 capability extended-nexthop
-neighbor swp52 interface remote-as internal
-neighbor swp52 timers 3 9
-neighbor swp52 timers connect 10
-neighbor swp52 advertisement-interval 0
-neighbor swp52 capability extended-nexthop
-! Address families
-address-family ipv4 unicast
-network 10.1.10.0/24
-network 10.10.10.1/32
-maximum-paths ibgp 64
-maximum-paths 64
-distance bgp 20 200 200
-exit-address-family
+router bgp 65101
+ bgp router-id 10.10.10.1
+ bgp bestpath as-path multipath-relax
+ neighbor peerlink.4094 interface remote-as internal
+ neighbor swp51 interface remote-as external
+ neighbor swp52 interface remote-as external
+ !
+ address-family ipv4 unicast
+  redistribute connected
+ exit-address-family
+!
 ```
 
 {{< /tab >}}
@@ -1185,28 +1322,17 @@ exit-address-family
 ```
 cumulus@leaf02:~$ cat /etc/frr/frr.conf
 ...
-router bgp 65102 vrf default
-bgp router-id 10.10.10.2
-timers bgp 3 9
-bgp deterministic-med
-! Neighbors
-neighbor swp51 interface remote-as internal
-neighbor swp51 timers 3 9
-neighbor swp51 timers connect 10
-neighbor swp51 advertisement-interval 0
-neighbor swp51 capability extended-nexthop
-neighbor swp52 interface remote-as internal
-neighbor swp52 timers 3 9
-neighbor swp52 timers connect 10
-neighbor swp52 advertisement-interval 0
-neighbor swp52 capability extended-nexthop
-! Address families
-address-family ipv4 unicast
-network 10.10.10.2/32
-maximum-paths ibgp 64
-maximum-paths 64
-distance bgp 20 200 200
-exit-address-family
+router bgp 65101
+ bgp router-id 10.10.10.2
+ bgp bestpath as-path multipath-relax
+ neighbor peerlink.4094 interface remote-as internal
+ neighbor swp51 interface remote-as external
+ neighbor swp52 interface remote-as external
+ !
+ address-family ipv4 unicast
+  redistribute connected
+ exit-address-family
+!
 ```
 
 {{< /tab >}}
@@ -1215,28 +1341,17 @@ exit-address-family
 ```
 cumulus@leaf03:~$ cat /etc/frr/frr.conf
 ...
-router bgp 65103 vrf default
-bgp router-id 10.10.10.3
-timers bgp 3 9
-bgp deterministic-med
-! Neighbors
-neighbor swp51 interface remote-as internal
-neighbor swp51 timers 3 9
-neighbor swp51 timers connect 10
-neighbor swp51 advertisement-interval 0
-neighbor swp51 capability extended-nexthop
-neighbor swp52 interface remote-as internal
-neighbor swp52 timers 3 9
-neighbor swp52 timers connect 10
-neighbor swp52 advertisement-interval 0
-neighbor swp52 capability extended-nexthop
-! Address families
-address-family ipv4 unicast
-network 10.10.10.3/32
-maximum-paths ibgp 64
-maximum-paths 64
-distance bgp 20 200 200
-exit-address-family
+router bgp 65102
+ bgp router-id 10.10.10.3
+ bgp bestpath as-path multipath-relax
+ neighbor peerlink.4094 interface remote-as internal
+ neighbor swp51 interface remote-as external
+ neighbor swp52 interface remote-as external
+ !
+ address-family ipv4 unicast
+  redistribute connected
+ exit-address-family
+!
 ```
 
 {{< /tab >}}
@@ -1245,28 +1360,17 @@ exit-address-family
 ```
 cumulus@leaf04:~$ cat /etc/frr/frr.conf
 ...
-router bgp 65104
-bgp router-id 10.10.10.4
-timers bgp 3 9
-bgp deterministic-med
-! Neighbors
-neighbor swp51 interface remote-as internal
-neighbor swp51 timers 3 9
-neighbor swp51 timers connect 10
-neighbor swp51 advertisement-interval 0
-neighbor swp51 capability extended-nexthop
-neighbor swp52 interface remote-as internal
-neighbor swp52 timers 3 9
-neighbor swp52 timers connect 10
-neighbor swp52 advertisement-interval 0
-neighbor swp52 capability extended-nexthop
-! Address families
-address-family ipv4 unicast
-network 10.10.10.4/32
-maximum-paths ibgp 64
-maximum-paths 64
-distance bgp 20 200 200
-exit-address-family
+router bgp 65102
+ bgp router-id 10.10.10.4
+ bgp bestpath as-path multipath-relax
+ neighbor peerlink.4094 interface remote-as internal
+ neighbor swp51 interface remote-as external
+ neighbor swp52 interface remote-as external
+ !
+ address-family ipv4 unicast
+  redistribute connected
+ exit-address-family
+!
 ```
 
 {{< /tab >}}
@@ -1276,36 +1380,17 @@ exit-address-family
 cumulus@spine01:~$ cat /etc/frr/frr.conf
 ...
 router bgp 65199
-bgp router-id 10.10.10.101
-timers bgp 3 9
-bgp deterministic-med
-! Neighbors
-neighbor swp1 interface remote-as internal
-neighbor swp1 timers 3 9
-neighbor swp1 timers connect 10
-neighbor swp1 advertisement-interval 0
-neighbor swp1 capability extended-nexthop
-neighbor swp2 interface remote-as internal
-neighbor swp2 timers 3 9
-neighbor swp2 timers connect 10
-neighbor swp2 advertisement-interval 0
-neighbor swp2 capability extended-nexthop
-neighbor swp3 interface remote-as internal
-neighbor swp3 timers 3 9
-neighbor swp3 timers connect 10
-neighbor swp3 advertisement-interval 0
-neighbor swp3 capability extended-nexthop
-neighbor swp4 interface remote-as internal
-neighbor swp4 timers 3 9
-neighbor swp4 timers connect 10
-neighbor swp4 advertisement-interval 0
-neighbor swp4 capability extended-nexthop
-! Address families
-address-family ipv4 unicast
-network 10.10.10.101/32
-maximum-paths ibgp 64
-maximum-paths 64
-distance bgp 20 200 200
+ bgp router-id 10.10.10.101
+ bgp bestpath as-path multipath-relax
+ neighbor swp1 interface remote-as external
+ neighbor swp2 interface remote-as external
+ neighbor swp3 interface remote-as external
+ neighbor swp4 interface remote-as external
+ !
+ address-family ipv4 unicast
+  redistribute connected
+ exit-address-family
+!
 ```
 
 {{< /tab >}}
@@ -1315,36 +1400,17 @@ distance bgp 20 200 200
 cumulus@spine02:~$ cat /etc/frr/frr.conf
 ...
 router bgp 65199
-bgp router-id 10.10.10.102
-timers bgp 3 9
-bgp deterministic-med
-! Neighbors
-neighbor swp1 interface remote-as internal
-neighbor swp1 timers 3 9
-neighbor swp1 timers connect 10
-neighbor swp1 advertisement-interval 0
-neighbor swp1 capability extended-nexthop
-neighbor swp2 interface remote-as internal
-neighbor swp2 timers 3 9
-neighbor swp2 timers connect 10
-neighbor swp2 advertisement-interval 0
-neighbor swp2 capability extended-nexthop
-neighbor swp3 interface remote-as internal
-neighbor swp3 timers 3 9
-neighbor swp3 timers connect 10
-neighbor swp3 advertisement-interval 0
-neighbor swp3 capability extended-nexthop
-neighbor swp4 interface remote-as internal
-neighbor swp4 timers 3 9
-neighbor swp4 timers connect 10
-neighbor swp4 advertisement-interval 0
-neighbor swp4 capability extended-nexthop
-! Address families
-address-family ipv4 unicast
-network 10.10.10.102/32
-maximum-paths ibgp 64
-maximum-paths 64
-distance bgp 20 200 200
+ bgp router-id 10.10.10.102
+ bgp bestpath as-path multipath-relax
+ neighbor swp1 interface remote-as external
+ neighbor swp2 interface remote-as external
+ neighbor swp3 interface remote-as external
+ neighbor swp4 interface remote-as external
+ !
+ address-family ipv4 unicast
+  redistribute connected
+ exit-address-family
+!
 ```
 
 {{< /tab >}}

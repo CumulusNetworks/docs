@@ -375,7 +375,7 @@ cumulus@spine01:~$
 {{< /tab >}}
 {{< /tabs >}}
 
-You can confirm the configuration with the NCLU command `net show bgp neighbor <neighbor>` or with the `vtysh` command `show ip bgp neighbor <neighbor>`.
+You can confirm the configuration with the NCLU command `net show bgp neighbor <neighbor>` or with the vtysh command `show ip bgp neighbor <neighbor>`.
 
 {{< expand "net show bgp neighbor <neighbor> example" >}}
 
@@ -1116,7 +1116,7 @@ Cumulus Linux supports both BGP add-path RX and BGP add-path TX.
 
 BGP add-path RX allows BGP to receive multiple paths for the same prefix. A path identifier is used so that additional paths do not override previously advertised paths. BGP add-path RX is enabled by default; no additional configuration is required.
 
-To view the existing capabilities, run the NCLU command `net show bgp neighbor` or the `vtysh` command `show ip bgp neighbors`. The existing capabilities are listed in the subsection *Add Path*, below *Neighbor capabilities.*
+To view the existing capabilities, run the NCLU command `net show bgp neighbor` or the vtysh command `show ip bgp neighbors`. The existing capabilities are listed in the subsection *Add Path*, below *Neighbor capabilities.*
 
 The following example output shows that additional BGP paths can be sent and received and that the BGP neighbor on swp51 supports both.
 
@@ -1142,7 +1142,7 @@ Hostname: spine01
 ...
 ```
 
-To view the current additional paths, run the NCLU command `net show bgp <prefix>` or the `vtysh` command `show ip bgp <prefix>`. The example output shows an additional path that has been added by the TX node for receiving. Each path has a unique AddPath ID.
+To view the current additional paths, run the NCLU command `net show bgp <prefix>` or the vtysh command `show ip bgp <prefix>`. The example output shows an additional path that has been added by the TX node for receiving. Each path has a unique AddPath ID.
 
 ```
 cumulus@leaf01:mgmt:~$ net show bgp 10.10.10.9
@@ -1728,7 +1728,7 @@ cumulus@leaf01:~$
 {{< /tab >}}
 {{< /tabs >}}
 
-When configured, the `graceful-shutdown` community is added to all paths from eBGP peers and the `local-pref` for that route is set to `0`. To see the configuration, run the NCLU command `net show bgp <route>` or the `vtysh` command `show ip bgp <route>`. For example:
+When configured, the `graceful-shutdown` community is added to all paths from eBGP peers and the `local-pref` for that route is set to `0`. To see the configuration, run the NCLU command `net show bgp <route>` or the vtysh command `show ip bgp <route>`. For example:
 
 ```
 cumulus@leaf01:~$ net show bgp 10.10.10.0/24

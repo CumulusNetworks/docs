@@ -7,6 +7,13 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-32516</td>
+<td>&lt;p&gt;When using NCLU to add new BGP neighbors to existing configurations, the existence of address-family statements are ignored and the neighbors are added at the end of these lines. This might cause a problem if you try to activate these new neighbors in any of the existing address-family configurations.&lt;br/&gt;
+To work around this issue, configure the new BGP neighbors with vtysh.&lt;/p&gt;</td>
+<td>3.7.14-3.7.15, 4.2.1-4.3.0</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-31420</td>
 <td>&lt;p&gt;On a Cumulus Linux switch with high load averages, cl-support might end without creating a tar file  and leave a temporary directory in &lt;tt&gt;/var/support&lt;/tt&gt; undeleted. Subsequent runs of cl-support do not clean up this directory.&lt;/p&gt;</td>
 <td>3.7.13-3.7.15</td>
@@ -189,13 +196,6 @@ To work around this issue, increase the burst value of the ARP policers to 200 o
 This operation is not supported in the kernel without recreating the SVI. To apply the change, run {{ifdown}}, then {{ifup}} for the SVI to recreate the interface.</td>
 <td>3.7.13-4.2.1</td>
 <td>4.3.0</td>
-</tr>
-<tr>
-<td>2555148</td>
-<td>When using NCLU to add new BGP neighbors to existing configurations, the existence of address-family statements are ignored and the neighbors are added at the end of these lines. This might cause a problem if you try to activate these new neighbors in any of the existing address-family configurations.
-To work around this issue, configure the new BGP neighbors with vtysh.</td>
-<td>3.7.14-3.7.15, 4.2.1-4.3.0</td>
-<td></td>
 </tr>
 <tr>
 <td>2554785</td>
@@ -1959,6 +1959,13 @@ These messages are harmless and can be ignored.</td>
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-32516</td>
+<td>&lt;p&gt;When using NCLU to add new BGP neighbors to existing configurations, the existence of address-family statements are ignored and the neighbors are added at the end of these lines. This might cause a problem if you try to activate these new neighbors in any of the existing address-family configurations.&lt;br/&gt;
+To work around this issue, configure the new BGP neighbors with vtysh.&lt;/p&gt;</td>
+<td>3.7.14-3.7.14.2, 4.2.1-4.3.0</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-31420</td>
 <td>&lt;p&gt;On a Cumulus Linux switch with high load averages, cl-support might end without creating a tar file  and leave a temporary directory in &lt;tt&gt;/var/support&lt;/tt&gt; undeleted. Subsequent runs of cl-support do not clean up this directory.&lt;/p&gt;</td>
 <td>3.7.13-3.7.14.2</td>
@@ -2524,13 +2531,6 @@ Vulnerable: &lt;= 3.4.0-1+deb8u1
 Fixed: 3.4.0-1+deb8u2</td>
 <td>3.7.14-3.7.14.2</td>
 <td>3.7.15</td>
-</tr>
-<tr>
-<td>2555148</td>
-<td>When using NCLU to add new BGP neighbors to existing configurations, the existence of address-family statements are ignored and the neighbors are added at the end of these lines. This might cause a problem if you try to activate these new neighbors in any of the existing address-family configurations.
-To work around this issue, configure the new BGP neighbors with vtysh.</td>
-<td>3.7.14-3.7.15, 4.2.1-4.3.0</td>
-<td></td>
 </tr>
 <tr>
 <td>2555147</td>
@@ -3965,6 +3965,13 @@ You can see the temperature reading in the output of the {{sensors}} command.</t
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-32516</td>
+<td>&lt;p&gt;When using NCLU to add new BGP neighbors to existing configurations, the existence of address-family statements are ignored and the neighbors are added at the end of these lines. This might cause a problem if you try to activate these new neighbors in any of the existing address-family configurations.&lt;br/&gt;
+To work around this issue, configure the new BGP neighbors with vtysh.&lt;/p&gt;</td>
+<td>3.7.14-3.7.14.2, 4.2.1-4.3.0</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-31420</td>
 <td>&lt;p&gt;On a Cumulus Linux switch with high load averages, cl-support might end without creating a tar file  and leave a temporary directory in &lt;tt&gt;/var/support&lt;/tt&gt; undeleted. Subsequent runs of cl-support do not clean up this directory.&lt;/p&gt;</td>
 <td>3.7.13-3.7.14.2</td>
@@ -4580,13 +4587,6 @@ Fixed: 3.4.0-1+deb8u2</td>
 You can see the temperature reading in the output of the {{sensors}} command.</td>
 <td>3.7.14</td>
 <td>3.7.14.2-3.7.15, 3.7.15</td>
-</tr>
-<tr>
-<td>2555148</td>
-<td>When using NCLU to add new BGP neighbors to existing configurations, the existence of address-family statements are ignored and the neighbors are added at the end of these lines. This might cause a problem if you try to activate these new neighbors in any of the existing address-family configurations.
-To work around this issue, configure the new BGP neighbors with vtysh.</td>
-<td>3.7.14-3.7.15, 4.2.1-4.3.0</td>
-<td></td>
 </tr>
 <tr>
 <td>2555147</td>

@@ -167,9 +167,9 @@ Spanning tree is a protocol that prevents loops in a layer 2 infrastructure. In 
 
 ## Layer 3 Protocols
 
-When FRRouting boots up for the first time, there is a different log file for each daemon that is activated. If the log file is ever edited (for example, through `vtysh` or `frr.conf`), the integrated configuration sends all logs to the same file.
+When FRRouting boots up for the first time, there is a different log file for each daemon that is activated. If the log file is ever edited (for example, through vtysh or `frr.conf`), the integrated configuration sends all logs to the same file.
 
-To send FRRouting logs to syslog, apply the configuration `log syslog` in `vtysh`.
+To send FRRouting logs to syslog, apply the configuration `log syslog` in vtysh.
 
 ### BGP
 

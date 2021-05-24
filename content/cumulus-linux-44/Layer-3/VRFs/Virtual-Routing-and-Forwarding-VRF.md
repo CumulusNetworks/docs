@@ -38,6 +38,16 @@ To configure VRF, you associate each subset of interfaces to a VRF routing table
 The following example commands configure a VRF called BLUE with a table ID that is automatically assigned.
 
 {{< tabs "TabID44 ">}}
+{{< tab "NCLU Commands ">}}
+
+```
+cumulus@switch:~$ net add vrf BLUE vrf-table auto
+cumulus@switch:~$ net add interface swp1 vrf BLUE
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+{{< /tab >}}
 {{< tab "CUE Commands ">}}
 
 ```
@@ -77,6 +87,15 @@ cumulus@switch:~$ sudo ifreload -a
 Instead of having Cumulus Linux assign a table ID for the VRF table, you can specify your own table ID in the configuration. The table ID to name mapping is saved in `/etc/iproute2/rt_tables.d/` for name-based references. Instead of using the `auto` option as shown above, specify the table ID. For example:
 
 {{< tabs "TabID89 ">}}
+{{< tab "NCLU Commands ">}}
+
+```
+cumulus@switch:~$ net add vrf BLUE vrf-table 1016
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+{{< /tab >}}
 {{< tab "CUE Commands ">}}
 
 ```
@@ -124,8 +143,8 @@ If you take down a VRF using `ifdown`, you need to run one of the following comm
 For example:
 
 ```
-cumulus@switch:~$ sudo ifdown rocket
-cumulus@switch:~$ sudo ifup --with-depends rocket
+cumulus@switch:~$ sudo ifdown BLUE
+cumulus@switch:~$ sudo ifup --with-depends BLUE
 ```
 
 ### Use the vrf Command
@@ -139,15 +158,15 @@ cumulus@switch:~$ vrf list
 
 VRF              Table
 ---------------- -----
-rocket            1016
+BLUE            1016
 ```
 
 To show a list of processes and PIDs associated with a specific VRF table, run the `ip vrf pids <vrf-name>` command. For example:
 
 ```
-cumulus@switch:~$ ip vrf pids rocket
+cumulus@switch:~$ ip vrf pids BLUE
 
-VRF: rocket
+VRF: BLUE
 -----------------------
 dhclient           2508
 sshd               2659
@@ -161,17 +180,17 @@ To determine which VRF table is associated with a particular PID, run the `ip vr
 
 ```
 cumulus@switch:~$ ip vrf identify 2829
-rocket
+BLUE
 ```
 
 #### IPv4 and IPv6 Commands in a VRF Context
 
 You can execute non-VRF-specific Linux commands and perform other tasks against a given VRF table. This typically applies to single-use commands started from a login shell, as they affect only AF_INET and AF_INET6 sockets opened by the command that gets executed; it has no impact on netlink sockets, associated with the `ip` command.
 
-To execute such a command against a VRF table, run `ip vrf exec <vrf-name> <command>`. For  example, to SSH from the switch to a device accessible through VRF *rocket*:
+To execute such a command against a VRF table, run `ip vrf exec <vrf-name> <command>`. For  example, to SSH from the switch to a device accessible through VRF *BLUE*:
 
 ```
-cumulus@switch:~$ sudo ip vrf exec rocket ssh user@host
+cumulus@switch:~$ sudo ip vrf exec BLUE ssh user@host
 ```
 
 ### Services in VRFs
@@ -219,7 +238,7 @@ Cumulus Linux supports dynamic VRF route leaking. Static route leaking is not su
 - Route leaking is supported for both IPv4 and IPv6 routes.
 - Route leaking is supported with EVPN in a symmetric routing configuration only.
 - VRF route leaking is not supported between the tenant VRF and the default VRF with onlink next hops (BGP unnumbered).
-- The NCLU command to configure route leaking fails if the VRF is named `red` (lowercase letters only). This is not a problem if the VRF is named `RED` (uppercase letters) or has a name other than red. To work around this issue, rename the VRF or run the `vtysh` command instead. This is a known limitation in `network-docopt`.
+- The NCLU command to configure route leaking fails if the VRF is named `red` (lowercase letters only). This is not a problem if the VRF is named `RED` (uppercase letters) or has a name other than red. To work around this issue, rename the VRF or run the vtysh command instead. This is a known limitation in `network-docopt`.
 {{%/notice%}}
 
 ### Configure Route Leaking
@@ -251,6 +270,26 @@ cumulus@switch:~$ cl config apply
 ```
 
 {{< /tab >}}
+{{< tab "NCLU Commands ">}}
+
+```
+cumulus@switch:~$ net add bgp vrf RED ipv4 unicast import vrf BLUE
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+The NCLU commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+
+```
+...
+router bgp 65001 vrf RED
+ !
+ address-family ipv4 unicast
+  import vrf BLUE
+...
+```
+
+{{< /tab >}}
 {{< tab "vtysh Commands ">}}
 
 ```
@@ -266,10 +305,7 @@ switch# exit
 cumulus@switch:~$
 ```
 
-{{< /tab >}}
-{{< /tabs >}}
-
-The NCLU and `vtysh` commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+The vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
 ```
 ...
@@ -280,6 +316,9 @@ router bgp 65001 vrf RED
 ...
 ```
 
+{{< /tab >}}
+{{< /tabs >}}
+
 ### Exclude Certain Prefixes
 
 You can exclude certain prefixes from being imported. The prefixes must be configured in a route map.
@@ -287,6 +326,19 @@ You can exclude certain prefixes from being imported. The prefixes must be confi
 The following example configures a route map to match the source protocol BGP and imports the routes from VRF BLUE to VRF RED. For the imported routes, the community is set to 11:11 in VRF RED.
 
 {{< tabs "TabID313 ">}}
+{{< tab "NCLU Commands ">}}
+
+```
+cumulus@switch:~$ net add bgp vrf RED ipv4 unicast import vrf BLUE
+cumulus@switch:~$ net add routing route-map BLUEtoRED permit 10
+cumulus@switch:~$ net add routing route-map BLUEtoRED permit 10 match source-protocol bgp
+cumulus@switch:~$ net add routing route-map BLUEtoRED permit 10 set community 11:11
+cumulus@switch:~$ net add bgp vrf RED ipv4 unicast import vrf route-map BLUEtoRED
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+{{< /tab >}}
 {{< tab "CUE Commands ">}}
 
 ```
@@ -326,7 +378,7 @@ cumulus@switch:~$
 
 ### Verify Route Leaking Configuration
 
-To check the status of VRF route leaking, run the NCLU `net show bgp vrf <vrf-name> ipv4|ipv6 unicast route-leak` command or the `vtysh` `show ip bgp vrf <vrf-name> ipv4|ipv6 unicast route-leak` command. For example:
+To check the status of VRF route leaking, run the NCLU `net show bgp vrf <vrf-name> ipv4|ipv6 unicast route-leak` command or the vtysh `show ip bgp vrf <vrf-name> ipv4|ipv6 unicast route-leak` command. For example:
 
 ```
 cumulus@switch:~$ net show bgp vrf RED ipv4 unicast route-leak
@@ -339,8 +391,8 @@ RD: 10.1.1.1:2
 Export RT: 10.1.1.1:2
 ```
 
-- To view the BGP routing table, run the NCLU `net show bgp vrf <vrf-name> ipv4|ipv6 unicast` command or the `vtysh` `show ip bgp vrf <vrf-name> ipv4|ipv6 unicast` command.
-- To view the FRRouting IP routing table, use the NCLU `net show route vrf <vrf-name>` command or the `vtysh` `show ip route vrf <vrf-name>` command. These commands show all routes, including routes leaked from other VRFs.
+- To view the BGP routing table, run the NCLU `net show bgp vrf <vrf-name> ipv4|ipv6 unicast` command or the vtysh `show ip bgp vrf <vrf-name> ipv4|ipv6 unicast` command.
+- To view the FRRouting IP routing table, use the NCLU `net show route vrf <vrf-name>` command or the vtysh `show ip route vrf <vrf-name>` command. These commands show all routes, including routes leaked from other VRFs.
 
 The following example commands show all routes in VRF `RED`, including routes leaked from VRF `BLUE`:
 
@@ -371,6 +423,15 @@ To remove route leaking configuration, run the following commands. These command
 The following example commands delete leaked routes from VRF `BLUE` to VRF `RED`:
 
 {{< tabs "TabID407 ">}}
+{{< tab "NCLU Commands ">}}
+
+```
+cumulus@switch:~$ net del bgp vrf RED ipv4 unicast import vrf BLUE
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+{{< /tab >}}
 {{< tab "CUE Commands ">}}
 
 ```
@@ -427,13 +488,6 @@ VRFs are provisioned using NCLU. VRFs can be pre-provisioned in FRRouting too, b
 ### Example VRF Configuration in BGP
 
 {{< tabs "TabID471 ">}}
-{{< tab "CUE Commands ">}}
-
-```
-cumulus@switch:~$ NEED COMMAND
-```
-
-{{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
 ```
@@ -453,6 +507,43 @@ cumulus@switch:~$ net add bgp vrf vrf1012 neighbor ISL route-map ALLOW_BR2 out
 cumulus@switch:~$ net add bgp vrf vrf1012 ipv6 unicast network 2003:7:2::/125
 cumulus@switch:~$ net add bgp vrf vrf1012 ipv6 unicast neighbor ISLv6 activate
 cumulus@switch:~$ net add bgp vrf vrf1012 neighbor ISLv6 route-map ALLOW_BR2_v6 out
+```
+
+The NCLU commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+
+```
+...
+router bgp 64900 vrf vrf1012
+  bgp router-id 6.0.2.7
+  no bgp default ipv4-unicast
+  neighbor ISL peer-group
+  neighbor ISLv6 peer-group
+  neighbor swp1.2 interface v6only peer-group ISLv6
+  neighbor swp1.2 remote-as external
+  neighbor swp3.2 interface v6only peer-group ISLv6
+  neighbor swp3.2 remote-as external
+  neighbor 169.254.2.18 remote-as external
+  neighbor 169.254.2.18 peer-group ISL
+  !
+  address-family ipv4 unicast
+    network 20.7.2.0/24
+    neighbor ISL activate
+    neighbor ISL route-map ALLOW_BR2 out
+  exit-address-family
+  !
+  address-family ipv6 unicast
+    network 2003:7:2::/125
+    neighbor ISLv6 activate
+    neighbor ISLv6 route-map ALLOW_BR2_v6 out
+  exit-address-family
+...
+```
+
+{{< /tab >}}
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@switch:~$ NEED COMMAND
 ```
 
 {{< /tab >}}
@@ -488,10 +579,7 @@ switch# exit
 cumulus@switch:~$
 ```
 
-{{< /tab >}}
-{{< /tabs >}}
-
-The NCLU and `vtysh` commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+The vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
 ```
 ...
@@ -521,17 +609,12 @@ router bgp 64900 vrf vrf1012
 ...
 ```
 
+{{< /tab >}}
+{{< /tabs >}}
+
 ### Example VRF Configuration in OSPF
 
 {{< tabs "TabID564 ">}}
-{{< tab "CUE Commands ">}}
-
-```
-cumulus@switch:~$ NEED COMMAND
-cumulus@switch:~$ 
-```
-
-{{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
 ```
@@ -546,6 +629,36 @@ cumulus@switch:~$ net add interface swp1 ospf network point-to-point
 cumulus@switch:~$ net add interface swp2 ospf network point-to-point
 cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
+```
+
+The NCLU commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+
+```
+...
+interface swp1
+  ip address 192.0.2.1/32
+  ip ospf network point-to-point
+!
+interface swp2
+  ip address 192.0.2.1/32
+  ip ospf network point-to-point
+!
+router ospf vrf vrf1
+  ospf router-id 4.4.4.4
+  log-adjacency-changes detail
+  redistribute connected
+  redistribute bgp
+  network 9.9.0.0/16 area 0.0.0.0
+  network 10.0.0.0/24 area 0.0.0.1
+...
+```
+
+{{< /tab >}}
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@switch:~$ NEED COMMAND
+cumulus@switch:~$ 
 ```
 
 {{< /tab >}}
@@ -577,10 +690,7 @@ switch# exit
 cumulus@switch:~$
 ```
 
-{{< /tab >}}
-{{< /tabs >}}
-
-The NCLU and `vtysh` commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+The vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
 ```
 ...
@@ -602,6 +712,9 @@ router ospf vrf vrf1
 ...
 ```
 
+{{< /tab >}}
+{{< /tabs >}}
+
 ## BGP Unnumbered Interfaces with VRF
 
 {{<link url="Border-Gateway-Protocol-BGP#bgp-unnumbered" text="BGP unnumbered interface configurations">}} are supported with VRF. In BGP unnumbered, there are no addresses on any interface. However, debugging tools like `traceroute` need at least a single IP address per node as the node's source IP address. Typically, this address is assigned to the loopback device. With VRF, you need a loopback device for each VRF table because VRF is based on interfaces, not IP addresses. While Linux does not support multiple loopback devices, it does support the concept of a dummy interface, which is used to achieve the same goal.
@@ -613,14 +726,6 @@ The BGP unnumbered configuration is the same as for a non-VRF, applied under the
 To configure BGP unnumbered:
 
 {{< tabs "TabID1081 ">}}
-{{< tab "CUE Commands ">}}
-
-```
-cumulus@switch:~$ NEED COMMAND
-cumulus@switch:~$ 
-```
-
-{{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
 ```
@@ -652,6 +757,40 @@ cumulus@switch:~$ net add bgp vrf vrf1 ipv6 unicast redistribute connected
 cumulus@switch:~$ net add bgp vrf vrf1 ipv6 unicast neighbor LEAF activate
 cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
+```
+
+The NCLU commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+
+```
+...
+router bgp 65001 vrf vrf1
+ no bgp default ipv4-unicast
+ bgp bestpath as-path multipath-relax
+ bgp bestpath compare-routerid
+ neighbor LEAF peer-group
+ neighbor LEAF remote-as external
+ neighbor LEAF capability extended-nexthop
+ neighbor swp1.101 interface peer-group LEAF
+ neighbor swp2.101 interface peer-group LEAF
+ !
+ address-family ipv4 unicast
+  redistribute connected
+  neighbor LEAF activate
+  exit-address-family
+  !
+ address-family ipv6 unicast
+  redistribute connected
+  neighbor LEAF activate
+ exit-address-family
+...
+```
+
+{{< /tab >}}
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@switch:~$ NEED COMMAND
+cumulus@switch:~$ 
 ```
 
 {{< /tab >}}
@@ -717,10 +856,7 @@ switch# exit
 cumulus@switch:~$
 ```
 
-{{< /tab >}}
-{{< /tabs >}}
-
-The NCLU and `vtysh` commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+The vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
 ```
 ...
@@ -745,6 +881,9 @@ router bgp 65001 vrf vrf1
  exit-address-family
 ...
 ```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ## DHCP with VRF
 
@@ -774,12 +913,10 @@ In addition, you need to create a separate default file in `/etc/default` for ev
 See the example configuration below for more details.
 
 {{%notice note%}}
-
 - Cumulus Linux does **not** support DHCP server and relay across VRFs; the server and host cannot be in different VRF tables. In addition, the server and relay cannot be in different VRF tables.
 - Typically, a service running in the default VRF owns a port across all VRFs. If the VRF local instance is preferred, first disable and stop the global instance.
 - VRF is a layer 3 routing feature; only run programs that use AF\_INET and AF\_INET6 sockets in a VRF. VRF context does not affect any other aspects of the operation of a program.
 - This method only works with `systemd`-based services.
-
 {{%/notice%}}
 
 ### Example Configuration
@@ -1010,17 +1147,9 @@ cumulus@switch:~$ sudo traceroute -i turtle
 
 ## Troubleshooting
 
-You can use NCLU, `vtysh`, or Linux show commands commands to troubleshoot VRFs.
+You can use NCLU, vtysh, or Linux show commands commands to troubleshoot VRFs.
 
 {{< tabs "TabID642 ">}}
-{{< tab "CUE Commands ">}}
-
-```
-cumulus@switch:~$ NEED COMMAND
-cumulus@switch:~$ 
-```
-
-{{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
 To show the routes in a VRF, run the `net show route vrf <vrf-name>` command. For example:
@@ -1075,7 +1204,7 @@ Total number of prefixes 1
 ```
 
 {{%notice note%}}
-To show BGP IPv6 routes in the VRF, you need to run the `vtysh` `show bgp vrf <vrf-name>` command.
+To show BGP IPv6 routes in the VRF, you need to run the vtysh `show bgp vrf <vrf-name>` command.
 {{%/notice%}}
 
 To show the OSPF VRFs, run the `net show ospf vrf all` command. For example:

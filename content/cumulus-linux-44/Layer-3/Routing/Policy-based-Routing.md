@@ -710,14 +710,14 @@ cumulus@switch:~$ cl config apply
 
 ## Troubleshooting
 
-To see the policies applied to all interfaces on the switch, run the NCLU `net show pbr interface` command or the `vtysh` `show pbr interface` command. For example:
+To see the policies applied to all interfaces on the switch, run the NCLU `net show pbr interface` command or the vtysh `show pbr interface` command. For example:
 
 ```
 cumulus@switch:~$ net show pbr interface
 swp51(53) with pbr-policy map1
 ```
 
-To see the policies applied to a specific interface on the switch, add the interface name at the end of the command; for example, `net show pbr interface swp51` (or `show pbr interface swp51` in `vtysh`).
+To see the policies applied to a specific interface on the switch, add the interface name at the end of the command; for example, `net show pbr interface swp51` (or `show pbr interface swp51` in vtysh).
 
 To see information about all policies, including mapped table and rule numbers, run the NCLU `net show pbr map` command or the vtysh `show pbr map` command. If the rule is not set, you see a reason why.
 
@@ -734,7 +734,7 @@ cumulus@switch:~$ net show pbr map
       Installed: yes Tableid: 10004
 ```
 
-To see information about a specific policy, what it matches, and with which interface it is associated, add the map name at the end of the command; for example, `net show pbr map map1` (or `show pbr map map1` in `vtysh`).
+To see information about a specific policy, what it matches, and with which interface it is associated, add the map name at the end of the command; for example, `net show pbr map map1` (or `show pbr map map1` in vtysh).
 
 To see information about all next hop groups, run the CUE `cl show router pbr nexthop-group` command or the vtysh `show pbr nexthop-group` command.
 

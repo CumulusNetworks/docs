@@ -503,7 +503,7 @@ cumulus@spine01:~$ cl unset vrf default router ospf passive-interface swp1
     cumulus@leaf01:~$ ifreload -a
     ```
 
-4. From the `vtysh` shell, configure OSPF:
+4. From the vtysh shell, configure OSPF:
 
     ```
     cumulus@leaf01:~$ sudo vtysh
@@ -574,7 +574,7 @@ router ospf
     cumulus@spine01:~$ sudo ifreload -a
     ```
 
-4. From the `vtysh` shell, configure OSPF:
+4. From the vtysh shell, configure OSPF:
 
     ```
     cumulus@spine01:~$ sudo vtysh
@@ -1043,7 +1043,7 @@ leaf01# exit
 cumulus@leaf01:~$
 ```
 
-The `vtysh` commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+The vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
 ```
 cumulus@border01:mgmt:~$ sudo cat /etc/frr/frr.conf

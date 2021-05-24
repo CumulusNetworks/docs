@@ -378,7 +378,7 @@ cumulus@switch:~$
 
 ### Verify Route Leaking Configuration
 
-To check the status of VRF route leaking, run the NCLU `net show bgp vrf <vrf-name> ipv4|ipv6 unicast route-leak` command or the `vtysh` `show ip bgp vrf <vrf-name> ipv4|ipv6 unicast route-leak` command. For example:
+To check the status of VRF route leaking, run the NCLU `net show bgp vrf <vrf-name> ipv4|ipv6 unicast route-leak` command or the vtysh `show ip bgp vrf <vrf-name> ipv4|ipv6 unicast route-leak` command. For example:
 
 ```
 cumulus@switch:~$ net show bgp vrf RED ipv4 unicast route-leak
@@ -391,8 +391,8 @@ RD: 10.1.1.1:2
 Export RT: 10.1.1.1:2
 ```
 
-- To view the BGP routing table, run the NCLU `net show bgp vrf <vrf-name> ipv4|ipv6 unicast` command or the `vtysh` `show ip bgp vrf <vrf-name> ipv4|ipv6 unicast` command.
-- To view the FRRouting IP routing table, use the NCLU `net show route vrf <vrf-name>` command or the `vtysh` `show ip route vrf <vrf-name>` command. These commands show all routes, including routes leaked from other VRFs.
+- To view the BGP routing table, run the NCLU `net show bgp vrf <vrf-name> ipv4|ipv6 unicast` command or the vtysh `show ip bgp vrf <vrf-name> ipv4|ipv6 unicast` command.
+- To view the FRRouting IP routing table, use the NCLU `net show route vrf <vrf-name>` command or the vtysh `show ip route vrf <vrf-name>` command. These commands show all routes, including routes leaked from other VRFs.
 
 The following example commands show all routes in VRF `RED`, including routes leaked from VRF `BLUE`:
 
@@ -1204,7 +1204,7 @@ Total number of prefixes 1
 ```
 
 {{%notice note%}}
-To show BGP IPv6 routes in the VRF, you need to run the `vtysh` `show bgp vrf <vrf-name>` command.
+To show BGP IPv6 routes in the VRF, you need to run the vtysh `show bgp vrf <vrf-name>` command.
 {{%/notice%}}
 
 To show the OSPF VRFs, run the `net show ospf vrf all` command. For example:

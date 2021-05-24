@@ -59,7 +59,7 @@ iface swp51
 ...
 ```
 
-Run `vtysh` commands to configure the static route (the destination prefix and next hop). For example:
+Run vtysh commands to configure the static route (the destination prefix and next hop). For example:
 
 ```
 cumulus@leaf01:~$ sudo vtysh
@@ -134,7 +134,7 @@ iface swp3
 ...
 ```
 
-Run `vtysh` commands to configure the static route (the destination prefix and next hop). For example:
+Run vtysh commands to configure the static route (the destination prefix and next hop). For example:
 
 ```
 cumulus@border01:~$ sudo vtysh
@@ -324,7 +324,7 @@ The default route created by the `gateway` parameter in ifupdown2 is not install
 
 ### Deleting Routes through the Linux Shell
 
-To avoid incorrect routing, **do not** use the Linux shell to delete static routes that you added with `vtysh` commands. Delete the routes with the `vtysh` commands.
+To avoid incorrect routing, **do not** use the Linux shell to delete static routes that you added with vtysh commands. Delete the routes with the vtysh commands.
 
 ### IPv6 Default Route with a Source IP Address on eth0
 

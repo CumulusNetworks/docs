@@ -37,8 +37,8 @@ cumulus@leaf01:~$ net add bgp neighbor swp51 remote-as external
 cumulus@leaf01:~$ net add bgp neighbor swp52 remote-as external
 cumulus@leaf01:~$ net add bgp ipv4 unicast network 10.10.10.1/32
 cumulus@leaf01:~$ net add bgp ipv4 unicast network 10.1.10.0/24 
+cumulus@leaf01:~$ net pending
 cumulus@leaf01:~$ net commit
-cumulus@leaf01:~$ net apply
 ```
 
 {{< /tab >}}
@@ -64,8 +64,8 @@ cumulus@leaf02:~$ net add bgp router-id 10.10.10.2
 cumulus@leaf02:~$ net add bgp neighbor swp51 remote-as external
 cumulus@leaf02:~$ net add bgp neighbor swp52 remote-as external
 cumulus@leaf02:~$ net add bgp ipv4 unicast network 10.10.10.1/32
-cumulus@leaf02:~$ net commit
-cumulus@leaf02:~$ net apply
+cumulus@leaf01:~$ net pending
+cumulus@leaf01:~$ net commit
 ```
 
 {{< /tab >}}
@@ -91,8 +91,8 @@ cumulus@leaf03:~$ net add bgp router-id 10.10.10.3
 cumulus@leaf03:~$ net add bgp neighbor swp51 remote-as external
 cumulus@leaf03:~$ net add bgp neighbor swp52 remote-as external
 cumulus@leaf03:~$ net add bgp ipv4 unicast network 10.10.10.3/32
-cumulus@leaf03:~$ net commit
-cumulus@leaf03:~$ net apply
+cumulus@leaf01:~$ net pending
+cumulus@leaf01:~$ net commit
 ```
 
 {{< /tab >}}
@@ -118,8 +118,8 @@ cumulus@leaf03:~$ net add bgp router-id 10.10.10.3
 cumulus@leaf03:~$ net add bgp neighbor swp51 remote-as external
 cumulus@leaf04:~$ net add bgp neighbor swp52 remote-as external
 cumulus@leaf03:~$ net add bgp ipv4 unicast network 10.10.10.101/32
-cumulus@leaf04:~$ net commit
-cumulus@leaf04:~$ net apply
+cumulus@leaf01:~$ net pending
+cumulus@leaf01:~$ net commit
 ```
 
 {{< /tab >}}
@@ -133,8 +133,8 @@ cumulus@spine01:~$ net add bgp neighbor swp1 remote-as external
 cumulus@spine01:~$ net add bgp neighbor swp2 remote-as external
 cumulus@spine01:~$ net add bgp neighbor swp3 remote-as external
 cumulus@spine01:~$ net add bgp neighbor swp4 remote-as external
-cumulus@spine01:~$ net commit
-cumulus@spine01:~$ net apply 
+cumulus@leaf01:~$ net pending
+cumulus@leaf01:~$ net commit
 ```
 
 {{< /tab >}}
@@ -148,8 +148,8 @@ cumulus@spine02:~$ net add bgp neighbor swp1 remote-as external
 cumulus@spine02:~$ net add bgp neighbor swp2 remote-as external
 cumulus@spine02:~$ net add bgp neighbor swp3 remote-as external
 cumulus@spine02:~$ net add bgp neighbor swp4 remote-as external 
-cumulus@spine02:~$ net commit
-cumulus@spine02:~$ net apply
+cumulus@leaf01:~$ net pending
+cumulus@leaf01:~$ net commit
 ```
 
 {{< /tab >}}

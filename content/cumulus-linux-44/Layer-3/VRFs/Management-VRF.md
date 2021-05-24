@@ -194,6 +194,41 @@ This also creates a route on the neighbor device to the management network throu
 Using route maps is highly recommended to control the advertised networks redistributed by the `redistribute connected` command. For example, you can specify a route map to redistribute routes in this way (for both BGP and OSPF):
 
 {{< tabs "TabID222 ">}}
+{{< tab "NCLU Commands ">}}
+
+```
+cumulus@switch:~$ net add routing route-map REDISTRIBUTE-CONNECTED deny 100 match interface eth0
+cumulus@switch:~$ net add routing route-map REDISTRIBUTE-CONNECTED permit 1000
+cumulus@switch:~$ net add bgp redistribute connected route-map REDISTRIBUTE-CONNECTED
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+The NCLU commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+
+```
+...
+router bgp 65101
+ bgp router-id 10.10.10.1
+ neighbor swp51 interface remote-as external
+ neighbor swp52 interface remote-as external
+ !
+ address-family ipv4 unicast
+  network 10.1.10.0/24
+  network 10.10.10.1/32
+  redistribute connected route-map REDISTRIBUTE-CONNECTED
+  maximum-paths 64
+  maximum-paths ibgp 64
+ exit-address-family
+!
+route-map REDISTRIBUTE-CONNECTED deny 100
+match interface eth0
+!
+route-map REDISTRIBUTE-CONNECTED permit 1000
+...
+```
+
+{{< /tab >}}
 {{< tab "CUE Commands ">}}
 
 ```
@@ -230,13 +265,7 @@ The vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For e
 router bgp 65101
  bgp router-id 10.10.10.1
  neighbor swp51 interface remote-as external
- neighbor swp51 advertisement-interval 0
- neighbor swp51 timers 3 9
- neighbor swp51 timers connect 10
  neighbor swp52 interface remote-as external
- neighbor swp52 advertisement-interval 0
- neighbor swp52 timers 3 9
- neighbor swp52 timers connect 10
  !
  address-family ipv4 unicast
   network 10.1.10.0/24
@@ -246,10 +275,10 @@ router bgp 65101
   maximum-paths ibgp 64
  exit-address-family
 !
-route-map REDISTRIBUTE-CONNECTED deny 10
+route-map REDISTRIBUTE-CONNECTED deny 100
 match interface eth0
 !
-route-map REDISTRIBUTE-CONNECTED permit 100
+route-map REDISTRIBUTE-CONNECTED permit 1000
 ...
 ```
 
@@ -370,6 +399,17 @@ For DNS to use the management VRF, the static DNS entries must reference the man
 For example, to specify DNS servers and associate some of them with the management VRF, run the following commands:
 
 {{< tabs "TabID388 ">}}
+{{< tab "NCLU Commands ">}}
+
+```
+cumulus@switch:~$ net add dns nameserver ipv4 192.0.2.1
+cumulus@switch:~$ net add dns nameserver ipv4 198.51.100.31 vrf mgmt
+cumulus@switch:~$ net add dns nameserver ipv4 203.0.113.13 vrf mgmt
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+{{< /tab >}}
 {{< tab "CUE Commands ">}}
 
 ```

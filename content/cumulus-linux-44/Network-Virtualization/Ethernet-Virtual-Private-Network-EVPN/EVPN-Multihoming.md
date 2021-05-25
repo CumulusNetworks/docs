@@ -1826,7 +1826,7 @@ iface uplink inet static
 {{</tabs>}}
 
 {{</tab>}}
-{{<tab "frr.conf Files">}}
+{{<tab "/etc/frr/frr.conf">}}
 
 {{< tabs "TabID1831 ">}}
 {{<tab "leaf01">}}
@@ -2209,7 +2209,7 @@ exit-address-family
 <!-- NEED COMMANDS for PIM-->
 
 {{< tabs "TabID2213 ">}}
-{{<tab "NCLU">}}
+{{<tab "NCLU Commands">}}
 
 {{< tabs "TabID2205 ">}}
 {{< tab "leaf01 ">}}
@@ -2691,7 +2691,7 @@ cumulus@spine02:~$ net commit
 {{</tabs>}}
 
 {{</tab>}}
-{{< tab "CUE ">}}
+{{< tab "CUE Commands">}}
 
 {{< tabs "TabID2698 ">}}
 {{< tab "leaf01 ">}}

@@ -41,6 +41,63 @@ You must make several choices to determine what steps you need to perform to ins
 
 The documentation walks you through these choices and then provides the instructions specific to your selections.
 
+{{%notice tip%}}
+
+**Why deploy a cluster?**
+
+Deploying the NetQ servers in a cluster arrangement has many benefits even though it's a more complex configuration. The primary benefits of having multiple servers that run the software and store the data are reduced potential downtime and increased availability.
+    
+The clustering is implemented with three servers: 1 master and 2 workers, although NetQ supports up to 10 worker nodes in a cluster. NetQ supports 5000 devices (switches, servers and hosts) in a cluster.
+
+All NetQ services should continue to work when the master node is down. Keep in mind that the master hosts the Kubernetes control plane so anything that requires connectivity with the Kubernetes cluster, such as upgrading to a new NetQ version or rescheduling pods to other worker if a worker goes down will not work.
+
+You only need a load balancer for API and GUI high availability.
+
+ 
+
+    how can I shutdown/poweroff the servers/service?
+
+ 
+
+[AS] Following are the commands
+
+ 
+
+kubectl get nodes #### to get the list of all node in the k8 cluster
+kubectl drain <node name> ### tell Kubernetes to drain the node so that the pods running on it are gracefully scheduled elsewhere.
+kubectl uncordon <node name> ### Once the maintenance window is over, use this command to put node back into cluster so that k8 can start scheduling pods on it
+
+ 
+
+    do my agents connect to just one of the server addresses (and what when this node is down)?
+
+ 
+
+[AS] it’s recommended to connect the agents to first 3 nodes in the cluster by providing the IPs as comma separated list. If we later add more nodes in the cluster then there is no need to configure those again.
+
+ 
+
+    the certificate to configure in the admin UI (8443) does not seem to set a certificate on the UI (443)?
+
+ 
+
+[AS] It does set the same certificate for UI also. However, if a UI is accessed from load balancer then it won’t work. If a load balancer is used then we recommend that
+
+    Either the certs are installed directly on the load balancer for ssl offloading
+    Or if the certs are installed on the master node, then the load balancer allow ssl passthrough
+
+ 
+
+    how do agents connect to the server, just by syslog messaging?
+
+ 
+
+[AS] It uses GRPC protocol under the hood
+
+
+
+{{%/notice%}}
+
 ## Installation Workflow Summary
 
 No matter which choices you made above, the installation workflow can be summarized as follows:

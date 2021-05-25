@@ -224,7 +224,7 @@ cumulus@switch:~$ netq config restart agent
 
 ### Configure a NetQ Agent to Send Data to a Server Cluster
 
-If you have a server cluster arrangement for NetQ, you will want to configure the NetQ Agent to send the data it collects to all of the servers in the cluster.
+If you have a server cluster arrangement for NetQ, you should configure the NetQ Agent to send the data it collects to all of the servers in the cluster.
 
 To configure the agent to send data to the servers in your cluster, run:
 

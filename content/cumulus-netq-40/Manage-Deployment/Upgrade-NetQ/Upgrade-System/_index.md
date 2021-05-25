@@ -22,7 +22,7 @@ To complete the preparation:
 
 2. Download the relevant software.
 
-    {{<netq-install/upgrade-image version="3.3.1">}} <!-- UPDATE ME! -->
+    {{<netq-install/upgrade-image version="4.0">}}
 
 3. Copy the file to the `/mnt/installables/` directory on your appliance or VM.
 

@@ -50,12 +50,21 @@ switch            swp35           Lossy      0,3          ECN      10432    1088
 
 ## View RoCE Counters
 
-- `netq show roce-counters`: Displays the RoCE counters for a given switch.
+The `netq show roce-counters` command shows various RoCE counters for a given switch, including:
+
+- Rx and Tx counters
+- General and RoCE-specific counters
+- Counter pools
+- Port-specific counters
+
+You can also go back in time to view counters at a particular point in the past.
 
 ### View General Rx Counters
 
+To view general Rx counters, run `netq show roce-counters rx general`:
+
 ```
-cumulus@switch:~$ netq show roce-counters rx general 
+cumulus@switch:~$ netq show roce-counters rx general
 
 Matching roce records:
 Hostname          Interface            PG packets           PG bytes             no buffer discard    buffer usage         buffer max usage     PG usage             PG max usage
@@ -72,8 +81,10 @@ switch            swp63s2              1618361              160178796           
 
 ### View RoCE-specific Rx Counters
 
+To view RoCE-specific Rx counters, run `netq show roce-counters rx roce`:
+
 ```
-cumulus@switch:~$ netq show roce-counters rx roce 
+cumulus@switch:~$ netq show roce-counters rx roce
 
 Matching roce records:
 Hostname          Interface       PG packets   PG bytes     no buffer discard  PFC pause packets  PFC pause duration buffer usage buffer max usage   PG usage     PG max usage
@@ -89,6 +100,8 @@ switch            swp63s2         0            0            0                  0
 ```
 
 ### View General Tx Counters
+
+To view general Tx counters, run `netq show roce-counters tx general`:
 
 ```
 cumulus@switch:~$ netq show roce-counters tx general 
@@ -109,6 +122,8 @@ cumulus@switch      :~$
 
 ### View RoCE-specific Tx Counters
 
+To view RoCE-specific Tx counters, run `netq show roce-counters tx roce`:
+
 ```
 cumulus@switch:~$ netq show roce-counters tx roce 
 
@@ -127,7 +142,7 @@ switch            swp63s2         0          0          0                       
 
 ### View RoCE Counter Pools
 
-- `netq show roce-counters pool`: Displays RoCE pools.
+To view the RoCE counter pools, run `netq show roce-counters pool`:
 
 ```
 cumulus@switch:~$ netq show roce-counters pool 
@@ -140,6 +155,8 @@ switch            104823                         104823                         
 
 ### View Counters for a Specific Switch Port
 
+To view counters for a specific switch port, include the switch name with the command.
+
 ```
 cumulus@switch:~$ netq show roce-counters swp1s1 rx general 
 
@@ -149,7 +166,9 @@ Hostname          Interface            PG packets           PG bytes            
 switch            swp1s1               1643392              154094520            0                    0                    1                    0                    1
 ```
 
-### View Results from Time in the Past
+### View Results from a Time in the Past
+
+You can use the `around` keyword with any RoCE-related command to go back in time to view counters.
 
 ```
 cumulus@switch:~$ netq show roce-counters swp1s1 rx general around 1h
@@ -159,7 +178,6 @@ Hostname          Interface            PG packets           PG bytes            
 ----------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- --------------------
 switch            swp1s1               661                  61856                0                    0                    1                    0                    1
 ```
-
 
 ## Related Information 
 

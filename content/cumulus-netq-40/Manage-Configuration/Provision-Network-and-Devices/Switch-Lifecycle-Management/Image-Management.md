@@ -1,14 +1,15 @@
 ---
-title: Manage Cumulus Linux and NetQ Images
+title: Manage NetQ and Network OS Images
 author: NVIDIA
 weight: 630
 toc: 4
 ---
-You can manage both Cumulus Linux and NetQ images with LCM. They are managed in a similar manner.
+
+You manage NetQ and network OS (Cumulus Linux and SONiC) images with LCM. They are managed in a similar manner.
 
 Cumulus Linux binary images can be uploaded to a local LCM repository for upgrade of your switches. NetQ debian packages can be uploaded to the local LCM repository for installation or upgrade. You can upload images from an external drive.
 
-The Linux and NetQ images are available in several variants based on the software version (x.y.z), the CPU architecture (ARM, x86), platform (based on ASIC vendor, Broadcom or NVIDIA), SHA Checksum, and so forth. When LCM discovers Cumulus Linux switches running NetQ 2.x or later in your network, it extracts the meta data needed to select the appropriate image for a given switch. Similarly, LCM discovers and extracts the meta data from NetQ images.
+The Linux and NetQ images are available in several variants based on the software version (x.y.z), the CPU architecture (ARM, x86), platform (based on ASIC vendor, Broadcom or NVIDIA), SHA checksum, and so forth. When LCM discovers Cumulus Linux switches running NetQ 2.x or later in your network, it extracts the meta data needed to select the appropriate image for a given switch. Similarly, LCM discovers and extracts the meta data from NetQ images.
 
 {{<figure src="/images/netq/lcm-image-naming-conventions-310.png" width="400">}}
 
@@ -61,8 +62,6 @@ For *Cumulus Linux* images:
 {{<tab "NetQ UI" >}}
 
 1. On the Manage Switch Assets page, Click **Upgrade**, then click **Image Management**.
-
-    {{<figure src="/images/netq/lcm-image-mgmt-tab-330.png" width="600">}}
 
 2. On the Cumulus Linux Images card, click the *View # missing CL images* link to see what images you need. This opens the list of missing images.
 
@@ -149,8 +148,6 @@ If you have already specified a default image, you must click <strong>Manage</st
 
 4. Download the NetQ debian packages needed for upgrade from the {{<exlink url="http://apps3.cumulusnetworks.com/repos/deb/pool/netq-3.3/p/python-netq/" text="NetQ repository">}}, selecting the appropriate OS version and architecture. Place the files in an accessible part of your local network.
 
-    {{<figure src="/images/netq/lcm-import-netq-image-repo-330.png" width="400">}}
-
 5. Back in the UI, click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18">}} (Add Image) above the table.
 
     {{<figure src="/images/netq/lcm-import-netq-image-dialog-320.png" width="250">}}
@@ -163,7 +160,7 @@ If you have already specified a default image, you must click <strong>Manage</st
 
 <div style="padding-left: 18px;">On successful completion, you receive confirmation of the upload.</div>
 
-    {{<figure src="/images/netq/lcm-import-netq-image-success-320.png" width="250">}}
+    {{<figure src="/images/netq/lcm-import-netq-sonic-image-success-400.png" width="250">}}
 
 <div style="padding-left: 18px;">If the upload was not successful, an <em>Image Import Failed</em> message is shown. Close the Import Image dialog and try uploading the file again.</div>
 
@@ -375,9 +372,7 @@ To export image listings:
 
 4. Optionally, use the filter option above the table on the **Uploaded** tab to narrow down a large listing of images.
 
-    {{<figure src="/images/netq/lcm-images-uploaded-tab-300.png" width="700">}}
-
-    {{<figure src="/images/netq/lcm-netq-images-uploaded-tab-310.png" width="700">}}
+    {{<figure src="/images/netq/lcm-images-uploaded-tab-400.png" width="700">}}
 
 5. Click <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/08-Upload-Download/upload-bottom.svg" height="18" width="18"/> above the table.
 
@@ -435,9 +430,7 @@ To remove images:
 
 4. On **Uploaded**, select the images you want to remove. Use the filter option above the table to narrow down a large listing of images.
 
-    {{<figure src="/images/netq/lcm-images-uploaded-tab-300.png" width="700">}}
-
-    {{<figure src="/images/netq/lcm-netq-images-uploaded-tab-310.png" width="700">}}
+    {{<figure src="/images/netq/lcm-images-uploaded-tab-400.png" width="700">}}
 
 5. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/bin-1.svg" height="18" width="18"/>.
 

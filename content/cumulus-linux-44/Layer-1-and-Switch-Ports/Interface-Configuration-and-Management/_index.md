@@ -37,6 +37,33 @@ When you bring an interface up or down administratively (admin up or admin down)
 When you put an interface into an admin down state, the interface *remains down* after any future reboots or configuration changes with `ifreload -a`.
 
 {{< tabs "TabID39 ">}}
+{{< tab "NCLU Commands ">}}
+
+To put an interface into an admin *down* state:
+
+```
+cumulus@switch:~$ net add interface swp1 link down
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+These commands create the following configuration in the `/etc/network/interfaces` file:
+
+```
+auto swp1
+iface swp1
+    link-down yes
+```
+
+To bring the interface back *up*:
+
+```
+cumulus@switch:~$ net del interface swp1 link down
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+{{< /tab >}}
 {{< tab "CUE Commands ">}}
 
 To put an interface into an admin *down* state:
@@ -167,6 +194,17 @@ The loopback interface *lo* must always exist on the switch and must always be u
 You can configure multiple IP addresses for the loopback interface:
 
 {{< tabs "TabID196 ">}}
+{{< tab "NCLU Commands ">}}
+
+To add an IP address to a loopback interface, configure the *lo* interface:
+
+```
+cumulus@switch:~$ net add loopback lo ip address 10.10.10.1
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+{{< /tab >}}
 {{< tab "CUE Commands ">}}
 
 ```

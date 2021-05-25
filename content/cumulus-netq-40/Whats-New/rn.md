@@ -1,8 +1,8 @@
 ---
 title: NVIDIA Cumulus NetQ 4.0 Release Notes
-author: NVIDIA/NVIDIA
+author: NVIDIA
 weight: 30
-product: NVIDIA Cumulus NetQ
+product: Cumulus NetQ
 version: "4.0"
 toc: 1
 type: rn

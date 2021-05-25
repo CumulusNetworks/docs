@@ -41,72 +41,35 @@ You must make several choices to determine what steps you need to perform to ins
 
 The documentation walks you through these choices and then provides the instructions specific to your selections.
 
-{{%notice tip%}}
-
-**Why deploy a cluster?**
+### Cluster Deployments
 
 Deploying the NetQ servers in a cluster arrangement has many benefits even though it's a more complex configuration. The primary benefits of having multiple servers that run the software and store the data are reduced potential downtime and increased availability.
     
-The clustering is implemented with three servers: 1 master and 2 workers, although NetQ supports up to 10 worker nodes in a cluster. NetQ supports 5000 devices (switches, servers and hosts) in a cluster.
+The default clustering implementation has three servers: 1 master and 2 workers. However, NetQ supports up to 10 worker nodes in a cluster, and up to 5000 devices in total (switches, servers and hosts). When you configure the cluster, {{<link url="Install-NetQ-Agents/#configure-netq-agent" text="configure the NetQ Agents">}} to connect to these three nodes in the cluster first by providing the IP addresses as a comma-separated list. If you later add more nodes to the cluster, you do not need to configure these nodes again.
 
-All NetQ services should continue to work when the master node is down. Keep in mind that the master hosts the Kubernetes control plane so anything that requires connectivity with the Kubernetes cluster, such as upgrading to a new NetQ version or rescheduling pods to other worker if a worker goes down will not work.
+The Agents connect to the server using gRPC.
 
-You only need a load balancer for API and GUI high availability.
+#### Cluster Deployments and Kubernetes 
 
- 
+NetQ also monitors {{<link title="Monitor Container Environments Using Kubernetes API Server" text="Kubernetes containers">}}. If the master node ever goes down, all NetQ services should continue to work. However, keep in mind that the master hosts the Kubernetes control plane so anything that requires connectivity with the Kubernetes cluster &mdash; such as upgrading NetQ or rescheduling pods to other workers if a worker goes down &mdash; will not work.
 
-    how can I shutdown/poweroff the servers/service?
+#### Cluster Deployments and Load Balancers
 
- 
+You need a load balancer for high availability for the NetQ API and the NetQ UI.
 
-[AS] Following are the commands
+However, you need to be mindful of where you install the certificates for the admin UI (port 8443) and the NetQ UI (port 443); otherwise, you cannot access the NetQ UI. 
 
- 
-
-kubectl get nodes #### to get the list of all node in the k8 cluster
-kubectl drain <node name> ### tell Kubernetes to drain the node so that the pods running on it are gracefully scheduled elsewhere.
-kubectl uncordon <node name> ### Once the maintenance window is over, use this command to put node back into cluster so that k8 can start scheduling pods on it
-
- 
-
-    do my agents connect to just one of the server addresses (and what when this node is down)?
-
- 
-
-[AS] it’s recommended to connect the agents to first 3 nodes in the cluster by providing the IPs as comma separated list. If we later add more nodes in the cluster then there is no need to configure those again.
-
- 
-
-    the certificate to configure in the admin UI (8443) does not seem to set a certificate on the UI (443)?
-
- 
-
-[AS] It does set the same certificate for UI also. However, if a UI is accessed from load balancer then it won’t work. If a load balancer is used then we recommend that
-
-    Either the certs are installed directly on the load balancer for ssl offloading
-    Or if the certs are installed on the master node, then the load balancer allow ssl passthrough
-
- 
-
-    how do agents connect to the server, just by syslog messaging?
-
- 
-
-[AS] It uses GRPC protocol under the hood
-
-
-
-{{%/notice%}}
+If you are using a load balancer in your deployment, we recommend you install the certificates directly on the load balancer for SSL offloading. However, if you install the certificates on the master node, then configure the load balancer to allow for SSL passthrough.
 
 ## Installation Workflow Summary
 
 No matter which choices you made above, the installation workflow can be summarized as follows:
 
-1. Prepare physical server or virtual machine.
-2. Install the software (NetQ Platform or NetQ Collector).
-3. Install and configure NetQ Agents on switches and hosts.
-4. Install and configure NetQ CLI on switches and hosts (optional, but useful).
+1. Prepare the physical server or virtual machine.
+1. Install the software (NetQ Platform or NetQ Collector).
+1. Install and configure the NetQ Agents on switches and hosts.
+1. Install and configure the NetQ CLI on switches and hosts (optional, but useful).
 
 ## Where to Go Next
 
-Follow the instructions in {{<link title="Install the NetQ System">}} to begin installation of NetQ.
+Follow the instructions in {{<link title="Install the NetQ System">}} to begin installing NetQ.

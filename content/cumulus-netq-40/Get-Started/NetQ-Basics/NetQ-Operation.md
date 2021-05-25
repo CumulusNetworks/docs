@@ -5,75 +5,31 @@ weight: 80
 toc: 4
 ---
 
-In either in-band or out-of-band deployments, NetQ offers networkwide configuration
-and device management, proactive monitoring capabilities, and
-performance diagnostics for complete management of your network. Each
-component of the solution provides a critical element to make this
-possible.
+In either in-band or out-of-band deployments, NetQ offers networkwide configuration and device management, proactive monitoring capabilities, and performance diagnostics for complete management of your network. Each component of the solution provides a critical element to make this possible.
 
 ## The NetQ Agent
 
-From a software perspective, a network
-switch has software associated with the hardware platform, the operating
-system, and communications. For data centers, the software on a Cumulus
-Linux network switch would be similar to the diagram shown here.
+From a software perspective, a network switch has software associated with the hardware platform, the operating system, and communications. For data centers, the software on a Cumulus Linux network switch would be similar to the diagram shown here.
 
-{{< figure src="/images/netq/netq-agent-operation-diag.png" width="500" >}}
+{{<figure src="/images/netq/netq-agent-operation-diag.png" width="500">}}
 
-The NetQ Agent interacts with the various
-components and software on switches and hosts and provides the gathered
-information to the NetQ Platform. You can view the data using the NetQ
-CLI or UI.
+The NetQ Agent interacts with the various components and software on switches and hosts and provides the gathered information to the NetQ Platform. You can view the data using the NetQ CLI or UI.
 
-The NetQ Agent polls the user
-space applications for information about the performance of the various
-routing protocols and services that are running on the switch. Cumulus
-Networks supports BGP and OSPF FRRouting (FRR) protocols as
-well as static addressing. Cumulus Linux also supports LLDP and MSTP
-among other protocols, and a variety of services such as systemd and
-sensors . For hosts, the NetQ Agent also polls for performance of
-containers managed with Kubernetes. All of this information is used to
-provide the current health of the network and verify it is configured
-and operating correctly.
+The NetQ Agent polls the user space applications for information about the performance of the various routing protocols and services that are running on the switch. Cumulus Networks supports BGP and OSPF FRRouting (FRR) protocols as well as static addressing. Cumulus Linux also supports LLDP and MSTP among other protocols, and a variety of services such as systemd and sensors. For hosts, the NetQ Agent also polls for performance of containers managed with Kubernetes. All of this information is used to provide the current health of the network and verify it is configured and operating correctly.
 
-For example, if the NetQ Agent learns that an interface has gone down, a
-new BGP neighbor has been configured, or a container has moved, it
-provides that information to the NetQ
-Platform. That information can then be used to notify users of
-the operational state change through various channels. By default, data
-is logged in the database, but you can use the CLI (`netq show events`)
-or configure the Event Service in NetQ to send the information to a
-third-party notification application as well. NetQ supports PagerDuty
-and Slack integrations.
+For example, if the NetQ Agent learns that an interface has gone down, a new BGP neighbor has been configured, or a container has moved, it provides that information to the NetQ Platform. That information can then be used to notify users of the operational state change through various channels. By default, data is logged in the database, but you can use the CLI (`netq show events`) or configure the Event Service in NetQ to send the information to a third-party notification application as well. NetQ supports PagerDuty and Slack integrations.
 
-The NetQ Agent interacts with the Netlink communications between the
-Linux kernel and the user space, listening for changes to the network
-state, configurations, routes and MAC addresses. NetQ uses this
-information to enable notifications about these changes so that network
-operators and administrators can respond quickly when changes are not
-expected or favorable.
+The NetQ Agent interacts with the Netlink communications between the Linux kernel and the user space, listening for changes to the network state, configurations, routes and MAC addresses. NetQ uses this information to enable notifications about these changes so that network operators and administrators can respond quickly when changes are not expected or favorable.
 
-For example, if a new route is added or a MAC address removed, NetQ
-Agent records these changes and sends that information to the
-NetQ Platform. Based on the
-configuration of the Event Service, these changes can be sent to a
-variety of locations for end user response.
+For example, if a new route is added or a MAC address removed, NetQ Agent records these changes and sends that information to the NetQ Platform. Based on the configuration of the Event Service, these changes can be sent to a variety of locations for end user response.
 
-The NetQ Agent also interacts with the hardware platform to obtain
-performance information about various physical components, such as fans
-and power supplies, on the switch. Operational states and temperatures
-are measured and reported, along with cabling information to enable
-management of the hardware and cabling, and proactive maintenance.
+The NetQ Agent also interacts with the hardware platform to obtain performance information about various physical components, such as fans and power supplies, on the switch. Operational states and temperatures are measured and reported, along with cabling information to enable management of the hardware and cabling, and proactive maintenance.
 
-For example, as thermal sensors in the switch indicate that it is
-becoming very warm, various levels of alarms are generated. These are
-then communicated through notifications according to the Event Service
-configuration.
+For example, as thermal sensors in the switch indicate that it is becoming very warm, various levels of alarms are generated. These are then communicated through notifications according to the Event Service configuration.
 
 ## The NetQ Platform
 
-Once the collected data is sent to and stored in the NetQ database, you
-can:
+Once the collected data is sent to and stored in the NetQ database, you can:
 
   - Validate configurations, identifying misconfigurations in your
     current network, in the past, or prior to deployment,
@@ -84,21 +40,7 @@ can:
 
 ### Validate Configurations
 
-The NetQ CLI enables validation of your network health through two sets
-of commands: `netq check` and `netq show`. They extract the information
-from the Network Service component and Event service. The Network
-Service component is continually validating the connectivity and
-configuration of the devices and protocols running on the network. Using
-the `netq check` and `netq show` commands displays the status of the
-various components and services on a networkwide and complete software
-stack basis. For example, you can perform a networkwide check on all
-sessions of BGP with a single `netq check bgp` command. The command
-lists any devices that have misconfigurations or other operational
-errors in seconds. When errors or misconfigurations are present, using
-the `netq show bgp` command displays the BGP configuration on each
-device so that you can compare and contrast each device, looking for
-potential causes. `netq check` and `netq show` commands are available
-for numerous components and services as shown in the following table.
+The NetQ CLI enables validation of your network health through two sets of commands: `netq check` and `netq show`. They extract the information from the Network Service component and Event service. The Network Service component is continually validating the connectivity and configuration of the devices and protocols running on the network. Using the `netq check` and `netq show` commands displays the status of the various components and services on a networkwide and complete software stack basis. For example, you can perform a networkwide check on all sessions of BGP with a single `netq check bgp` command. The command lists any devices that have misconfigurations or other operational errors in seconds. When errors or misconfigurations are present, using the `netq show bgp` command displays the BGP configuration on each device so that you can compare and contrast each device, looking for potential causes. `netq check` and `netq show` commands are available for numerous components and services as shown in the following table.
 
 | Component or Service | Check | Show | Component or Service | Check | Show |
 | -------------------- | :---: | :---:| -------------------- | :---: | :---: |
@@ -115,13 +57,7 @@ for numerous components and services as shown in the following table.
 
 ### Monitor Communication Paths
 
-The trace engine is used to validate the available communication paths
-between two network devices. The corresponding `netq trace` command
-enables you to view all of the paths between the two devices and if
-there are any breaks in the paths. This example shows two successful
-paths between server12 and leaf11, all with an MTU of 9152. The first
-command shows the output in path by path tabular mode. The second
-command show the same output as a tree.
+The trace engine is used to validate the available communication paths between two network devices. The corresponding `netq trace` command enables you to view all of the paths between the two devices and if there are any breaks in the paths. This example shows two successful paths between server12 and leaf11, all with an MTU of 9152. The first command shows the output in path by path tabular mode. The second command show the same output as a tree.
 
     cumulus@switch:~$ netq trace 10.0.0.13 from 10.0.0.21
     Number of Paths: 2
@@ -149,34 +85,14 @@ command show the same output as a tree.
 
 This output is read as:
 
-  - Path 1 traverses the network from server12 out bond1.1002 into
-    leaf12 interface swp8 out VLAN1002 peerlink-1 into VLAN1002
-    interface swp6 on leaf11
-  - Path 2 traverses the network from server12 out bond1.1002 into
-    VLAN1002 interface swp8 on leaf11
+  - Path 1 traverses the network from server12 out bond1.1002 into leaf12 interface swp8 out VLAN1002 peerlink-1 into VLAN1002 interface swp6 on leaf11
+  - Path 2 traverses the network from server12 out bond1.1002 into VLAN1002 interface swp8 on leaf11
 
-If the MTU does not match across the network, or any of the paths or
-parts of the paths have issues, that data is called out in the summary
-at the top of the output and shown in red along the paths, giving you a
-starting point for troubleshooting.
+If the MTU does not match across the network, or any of the paths or parts of the paths have issues, that data is called out in the summary at the top of the output and shown in red along the paths, giving you a starting point for troubleshooting.
 
 ### View Historical State and Configuration
 
-All of the check, show and trace commands can be run for the current
-status and for a prior point in time. For example, this is useful when
-you receive messages from the night before, but are not seeing any
-problems now. You can use the `netq check` command to look for
-configuration or operational issues around the time that the messages
-are timestamped. Then use the `netq show` commands to see information
-about how the devices in question were configured at that time or if
-there were any changes in a given timeframe. Optionally, you can use the
-`netq trace` command to see what the connectivity looked like between
-any problematic nodes at that time. This example shows problems occurred
-on spine01, leaf04, and server03 last night. The network administrator
-received notifications and wants to investigate. The diagram is followed
-by the commands to run to determine the cause of a BGP error on spine01.
-Note that the commands use the `around` option to see the results for
-last night and that they can be run from any switch in the network.
+All of the check, show and trace commands can be run for the current status and for a prior point in time. For example, this is useful when you receive messages from the night before, but are not seeing any problems now. You can use the `netq check` command to look for configuration or operational issues around the time that the messages are timestamped. Then use the `netq show` commands to see information about how the devices in question were configured at that time or if there were any changes in a given timeframe. Optionally, you can use the `netq trace` command to see what the connectivity looked like between any problematic nodes at that time. This example shows problems occurred on spine01, leaf04, and server03 last night. The network administrator received notifications and wants to investigate. The diagram is followed by the commands to run to determine the cause of a BGP error on spine01. Note that the commands use the `around` option to see the results for last night and that they can be run from any switch in the network.
 
 {{< figure src="/images/netq/netq-ops-historic-230.png" width="700" >}}
 
@@ -231,25 +147,11 @@ last night and that they can be run from any switch in the network.
 
 ### Manage Network Events
 
-The NetQ notifier manages the events that occur for the devices and
-components, protocols and services that it receives from the NetQ
-Agents. The notifier enables you to capture and filter events that occur
-to manage the behavior of your network. This is especially useful when
-an interface or routing protocol goes down and you want to get them back
-up and running as quickly as possible, preferably before anyone notices
-or complains. You can improve resolution time significantly by creating
-filters that focus on topics appropriate for a particular group of
-users. You can easily create filters around events related to BGP and
-MLAG session states, interfaces, links, NTP and other services,
-fans, power supplies, and physical sensor measurements.
+The NetQ notifier manages the events that occur for the devices and components, protocols and services that it receives from the NetQ Agents. The notifier enables you to capture and filter events that occur to manage the behavior of your network. This is especially useful when an interface or routing protocol goes down and you want to get them back up and running as quickly as possible, preferably before anyone notices or complains. You can improve resolution time significantly by creating filters that focus on topics appropriate for a particular group of users. You can easily create filters around events related to BGP and MLAG session states, interfaces, links, NTP and other services, fans, power supplies, and physical sensor measurements.
 
-For example, for operators responsible for routing, you can create an
-integration with a notification application that notifies them of
-routing issues as they occur. This is an example of a Slack message
-received on a *netq-notifier* channel indicating that the BGP session on
-switch *leaf04* interface *swp2* has gone down.
+For example, for operators responsible for routing, you can create an integration with a notification application that notifies them of routing issues as they occur. This is an example of a Slack message received on a *netq-notifier* channel indicating that the BGP session on switch *leaf04* interface *swp2* has gone down.
 
-{{< figure src="/images/netq/slack-msg-example.png" width="500" >}}
+{{<figure src="/images/netq/slack-msg-example.png" width="500">}}
 
 ## Timestamps in NetQ
 
@@ -609,7 +511,7 @@ When you show the output in JSON format, this same command looks like this:
 
 Open the full screen Switch Inventory card, select the data to export, and click **Export**.
 
-{{< figure src="/images/netq/inventory-devices-fullscr-export-button-230.png" width="700" >}}
+{{<figure src="/images/netq/inventory-devices-fullscr-export-button-230.png" width="700">}}
 
 ## Important File Locations
 

@@ -191,12 +191,10 @@ Cumulus Linux has a preconfigured loopback interface. When the switch boots up, 
 The loopback interface *lo* must always exist on the switch and must always be up.
 {{%/notice%}}
 
-You can configure multiple IP addresses for the loopback interface:
+To configure an IP address for the loopback interface:
 
 {{< tabs "TabID196 ">}}
 {{< tab "NCLU Commands ">}}
-
-To add an IP address to a loopback interface, configure the *lo* interface:
 
 ```
 cumulus@switch:~$ net add loopback lo ip address 10.10.10.1
@@ -208,7 +206,6 @@ cumulus@switch:~$ net commit
 {{< tab "CUE Commands ">}}
 
 ```
-cumulus@switch:~$ cl set interface lo ip address 172.16.2.1/24
 cumulus@switch:~$ cl set interface lo ip address 10.10.10.1
 cumulus@switch:~$ cl config apply
 ```
@@ -216,20 +213,20 @@ cumulus@switch:~$ cl config apply
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Add multiple `address` lines in the `/etc/network/interfaces` file:
+Edit the `/etc/network/interfaces` file to add an `address` line:
 
 ```
 auto lo
 iface lo inet loopback
     address 10.10.10.1
-    address 172.16.2.1/24
 ```
 
 {{< /tab >}}
 {{< /tabs >}}
 
 {{%notice note%}}
-If the IP address is configured without a subnet mask, it automatically becomes a /32 IP address. For example, 10.10.10.1 is 10.10.10.1/32.
+- If the IP address is configured without a subnet mask, it automatically becomes a /32 IP address. For example, 10.10.10.1 is 10.10.10.1/32.
+- You can configure multiple IP addresses for the loopback interface.
 {{%/notice%}}
 
 ## Child Interfaces
@@ -451,6 +448,34 @@ For IPv6 addresses, you can create or modify the IP address for an interface usi
 The following example commands configure three IP addresses for swp1; two IPv4 addresses and one IPv6 address.
 
 {{< tabs "TabID464 ">}}
+{{< tab "NCLU Commands ">}}
+
+```
+cumulus@switch:~$ net add interface swp1 ip address 12.0.0.1/30
+cumulus@switch:~$ net add interface swp1 ip address 12.0.0.2/30
+cumulus@switch:~$ net add interface swp1 ipv6 address 2001:DB8::1/126
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+These commands create the following code snippet in the `/etc/network/interfaces` file:
+
+```
+auto swp1
+iface swp1
+    address 12.0.0.1/30
+    address 12.0.0.2/30
+    address 2001:DB8::1/126
+```
+
+- NCLU adds the address method and address family when needed:
+
+   ```
+   auto lo
+   iface lo inet loopback
+   ```
+
+{{< /tab >}}
 {{< tab "CUE Commands ">}}
 
 ```
@@ -458,13 +483,6 @@ cumulus@switch:~$ cl set interface swp1 ip address 10.0.0.1/30
 cumulus@switch:~$ cl set interface swp1 ip address 10.0.0.2/30
 cumulus@switch:~$ cl set interface swp1 ip address 2001:DB8::1/126
 cumulus@switch:~$ cl config apply
-```
-
-CUE adds the address method and address family when needed (for example, when you create DHCP or loopback interfaces).
-
-```
-auto lo
-iface lo inet loopback
 ```
 
 {{< /tab >}}
@@ -518,20 +536,20 @@ Interface descriptions also appear in the {{<link url="Simple-Network-Management
 The following example commands create a description for swp1:
 
 {{< tabs "TabID838 ">}}
-{{< tab "CUE Commands ">}}
-
-```
-cumulus@switch:~$ NEED COMMAND
-cumulus@switch:~$ cl config apply
-```
-
-{{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
 ```
 cumulus@switch:~$ net add interface swp1 alias hypervisor_port_1
 cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
+```
+
+{{< /tab >}}
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@switch:~$ NEED COMMAND
+cumulus@switch:~$ cl config apply
 ```
 
 {{< /tab >}}
@@ -559,13 +577,6 @@ You can add any valid command in the sequence to bring an interface up or down; 
 The following examples adds a command to an interface to enable proxy ARP:
 
 {{< tabs "TabID640 ">}}
-{{< tab "CUE Commands ">}}
-
-```
-cumulus@switch:~$ NEED COMMAND
-```
-
-{{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
 ```
@@ -577,10 +588,17 @@ cumulus@switch:~$ net commit
 
 {{%notice warning%}}
 If your `post-up` command also starts, restarts, or reloads any `systemd` service, you must use the `--no-block` option with `systemctl`. Otherwise, that service or even the switch itself might hang after starting or restarting. For example, to restart the `dhcrelay` service after bringing up VLAN 100, first run:
-{{%/notice%}}
 
 ```
 cumulus@switch:~$ net add vlan 100 post-up systemctl --no-block restart dhcrelay.service
+```
+{{%/notice%}}
+
+{{< /tab >}}
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@switch:~$ NEED COMMAND
 ```
 
 {{< /tab >}}
@@ -637,9 +655,33 @@ iface bond0
 
 ## Port Ranges
 
-You can specify port ranges in commands (for example, swp1-4,6,10-12).
+To specify port ranges in commands:
 
 {{< tabs "TabID725 ">}}
+{{< tab "NCLU Commands ">}}
+
+Use commas to separate different port ranges (for example, swp1-46,10-12):
+
+```
+cumulus@switch:~$ net add bridge bridge ports swp1-4,6,10-12
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+These commands produce the following snippet in the `/etc/network/interfaces` file. The file renders the list of ports individually.
+
+```
+...
+auto bridge
+iface bridge
+    bridge-ports swp1 swp2 swp3 swp4 swp6 swp10 swp11 swp12
+    bridge-vlan-aware yes
+auto swp1
+iface swp1
+...
+```
+
+{{< /tab >}}
 {{< tab "CUE Commands ">}}
 
 Use commas to separate different port ranges (for example, swp1-46,10-12):
@@ -722,6 +764,13 @@ addon_scripts_support=1
 To see the link and administrative state of an interface:
 
 {{< tabs "TabID875 ">}}
+{{< tab "NCLU Commands ">}}
+
+```
+cumulus@switch:~$ net show interface swp1
+```
+
+{{< /tab >}}
 {{< tab "CUE Commands ">}}
 
 ```
@@ -745,6 +794,13 @@ cumulus@switch:~$ ip link show dev swp1
 To show the assigned IP address on an interface:
 
 {{< tabs "TabID898 ">}}
+{{< tab "NCLU Commands ">}}
+
+```
+cumulus@switch:~$ net show interface swp1
+```
+
+{{< /tab >}}
 {{< tab "CUE Commands ">}}
 
 ```
@@ -770,6 +826,40 @@ cumulus@switch:~$ ip addr show swp1
 To show the description (alias) for an interface:
 
 {{< tabs "TabID923 ">}}
+{{< tab "NCLU Commands ">}}
+
+```
+cumulus@switch$ net show interface swp1
+    Name   MAC                Speed     MTU   Mode
+--  ----   -----------------  -------   -----  ---------
+UP  swp1   44:38:39:00:00:04  1G        1500   Access/L2
+Alias
+-----
+hypervisor_port_1
+```
+
+To show the interface description (alias) for all interfaces on the switch:
+
+```
+cumulus@switch:~$ net show interface alias
+State    Name            Mode              Alias
+-----    -------------   -------------     ------------------
+UP       bond01          LACP
+UP       bond02          LACP
+UP       bridge          Bridge/L2
+UP       eth0            Mgmt
+UP       lo              Loopback          loopback interface
+UP       mgmt            Interface/L3
+UP       peerlink        LACP
+UP       peerlink.4094   SubInt/L3
+UP       swp1            BondMember        hypervisor_port_1
+UP       swp2            BondMember        to Server02
+...
+```
+
+To show the interface description for all interfaces on the switch in JSON format, run the `net show interface alias json` command.
+
+{{< /tab >}}
 {{< tab "CUE Commands ">}}
 
 ```
@@ -783,19 +873,6 @@ cumulus@switch$ NEED COMMAND
 ```
 
 {{< /tab >}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@switch$ net show interface swp1
-    Name   MAC                Speed     MTU   Mode
---  ----   -----------------  -------   -----  ---------
-UP  swp1   44:38:39:00:00:04  1G        1500   Access/L2
-Alias
------
-hypervisor_port_1
-```
-
-{{< /tab >}}
 {{< tab "Linux Commands ">}}
 
 ```
@@ -803,55 +880,6 @@ cumulus@switch$ ip link show swp1
 3: swp1: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc pfifo_fast state DOWN mode DEFAULT qlen 500
     link/ether aa:aa:aa:aa:aa:bc brd ff:ff:ff:ff:ff:ff
     alias hypervisor_port_1
-```
-
-{{< /tab >}}
-{{< /tabs >}}
-
-To see the status of the loopback interface (lo):
-
-{{< tabs "TabID951 ">}}
-{{< tab "CUE Commands ">}}
-
-```
-cumulus@switch:~$ cl show interface lo
-                         running      applied   description
------------------------  -----------  --------  ----------------------------------------------------------------------
-type                     loopback     loopback  The type of interface
-ip
-  vrf                                 default   Virtual routing and forwarding
-  [address]              127.0.0.1/8            ipv4 and ipv6 address
-  [address]              ::1/128
-  ipv4
-    forward                           on        Enable or disable forwarding.
-  ipv6
-    enable                            on        Turn the feature 'on' or 'off'.  The default is 'on'.
-    forward                           on        Enable or disable forwarding.
-link
-  mtu                    65536                  interface mtu
-  state                  up                     The state of the interface
-  stats
-    carrier-transitions  0                      Number of times the interface state has transitioned between up and...
-    in-bytes             27211641               total number of bytes received on the interface
-    in-drops             0                      number of received packets dropped
-    in-errors            0                      number of received packets with errors
-    in-pkts              413828                 total number of packets received on the interface
-    out-bytes            27211641               total number of bytes transmitted out of the interface
-    out-drops            0                      The number of outbound packets that were chosen to be discarded eve...
-    out-errors           0                      The number of outbound packets that could not be transmitted becaus...
-    out-pkts             413828                 total number of packets transmitted out of the interface
-```
-
-{{< /tab >}}
-{{< tab "Linux Commands ">}}
-
-```
-cumulus@switch:~$ ip addr show lo
-1: lo: <LOOPBACK,UP,LOWER_UP> mtu 16436 qdisc noqueue state UNKNOWN
-    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
-    inet 127.0.0.1/8 scope host lo
-    inet6 ::1/128 scope host
-        valid_lft forever preferred_lft forever
 ```
 
 {{< /tab >}}
@@ -944,20 +972,20 @@ valid_lft forever preferred_lft forever
 To work around this issue, configure the IP address scope:
 
 {{< tabs "TabID589 ">}}
-{{< tab "CUE Commands ">}}
-
-```
-cumulus@switch:~$ NEED COMMAND
-cumulus@switch:~$ cl config apply
-```
-
-{{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
 ```
 cumulus@switch:~$ net add interface swp6 post-up ip address add 71.21.21.20/32 dev swp6 scope site
 cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
+```
+
+{{< /tab >}}
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@switch:~$ NEED COMMAND
+cumulus@switch:~$ cl config apply
 ```
 
 {{< /tab >}}

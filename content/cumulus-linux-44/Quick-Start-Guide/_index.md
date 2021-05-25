@@ -78,6 +78,15 @@ cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@switch:~$ cl set interface eth0 ip address 192.0.2.42/24
+cumulus@switch:~$ cl set interface eth0 ip gateway 192.0.2.1
+cumulus@switch:~$ cl config apply
+```
+
+{{< /tab >}}
 {{< tab "Linux Commands ">}}
 
 Edit the `/etc/network/interfaces` file:
@@ -89,15 +98,6 @@ auto eth0
 iface eth0
     address 192.0.2.42/24
     gateway 192.0.2.1
-```
-
-{{< /tab >}}
-{{< tab "CUE Commands ">}}
-
-```
-cumulus@switch:~$ cl set interface eth0 ip address 192.0.2.42/24
-cumulus@switch:~$ cl set interface eth0 ip gateway 192.0.2.1
-cumulus@switch:~$ cl config apply
 ```
 
 {{< /tab >}}
@@ -125,6 +125,14 @@ cumulus@switch:~$ net commit
 The above command modifies both the `/etc/hostname` and `/etc/hosts` files.
 
 {{< /tab >}}
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@switch:~$ cl set platform hostname value leaf01
+cumulus@switch:~$ cl config apply
+```
+
+{{< /tab >}}
 {{< tab "Linux Commands ">}}
 
 1. Edit the `/etc/hostname` file with the desired hostname:
@@ -138,14 +146,6 @@ The above command modifies both the `/etc/hostname` and `/etc/hosts` files.
     ```
     cumulus@switch:~$ sudo nano /etc/hosts
     ```
-
-{{< /tab >}}
-{{< tab "CUE Commands ">}}
-
-```
-cumulus@switch:~$ cl set platform hostname value leaf01
-cumulus@switch:~$ cl config apply
-```
 
 {{< /tab >}}
 {{< /tabs >}}
@@ -302,36 +302,6 @@ UP     vxlan4001      N/A  1500   Access/L2                              Master:
 ```
 
 {{< /tab >}}
-{{< tab "Linux Commands ">}}
-
-To administratively enable a port, such as swp1:
-
-```
-cumulus@switch:~$ sudo ip link set swp1 up
-```
-
-To administratively enable all physical ports, run the following bash script:
-
-```
-cumulus@switch:~$ sudo su -
-cumulus@switch:~$ for i in /sys/class/net/*; do iface=`basename $i`; if [[ $iface == swp* ]]; then ip link set $iface up fi done
-```
-
-To view link status, run the `ip link show` command:
-
-```
-cumulus@switch:~$ ip link show
-# Administratively Down
-swp1: <BROADCAST,MULTICAST> mtu 1500 qdisc pfifo_fast state DOWN mode DEFAULT qlen 1000
-
-# Administratively Up but Layer 1 protocol is Down
-swp1: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc pfifo_fast state DOWN mode DEFAULT qlen 500
-
-# Administratively Up, Layer 1 protocol is Up
-swp1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP mode DEFAULT qlen 500
-```
-
-{{< /tab >}}
 {{< tab "CUE Commands ">}}
 
 To administratively enable a port, such as swp1:
@@ -390,6 +360,36 @@ Interface  State  Speed  MTU    Type      Summary
 ```
 
 {{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+To administratively enable a port, such as swp1:
+
+```
+cumulus@switch:~$ sudo ip link set swp1 up
+```
+
+To administratively enable all physical ports, run the following bash script:
+
+```
+cumulus@switch:~$ sudo su -
+cumulus@switch:~$ for i in /sys/class/net/*; do iface=`basename $i`; if [[ $iface == swp* ]]; then ip link set $iface up fi done
+```
+
+To view link status, run the `ip link show` command:
+
+```
+cumulus@switch:~$ ip link show
+# Administratively Down
+swp1: <BROADCAST,MULTICAST> mtu 1500 qdisc pfifo_fast state DOWN mode DEFAULT qlen 1000
+
+# Administratively Up but Layer 1 protocol is Down
+swp1: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc pfifo_fast state DOWN mode DEFAULT qlen 500
+
+# Administratively Up, Layer 1 protocol is Up
+swp1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP mode DEFAULT qlen 500
+```
+
+{{< /tab >}}
 {{< /tabs >}}
 
 ## Configure Switch Ports
@@ -417,6 +417,32 @@ You can add a range of ports in one command. For example, to add swp1 through sw
 cumulus@switch:~$ net add bridge bridge ports swp1-10,12,14-20
 cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
+```
+
+{{< /tab >}}
+{{< tab "CUE Commands ">}}
+
+The following configuration example places the front panel port swp1 into the default bridge called `br_default`.
+
+```
+cumulus@switch:~$ cl set interface swp1 bridge domain br_default
+cumulus@switch:~$ cl config apply
+```
+
+You can add a range of ports in one command. For example, to add swp1 through swp3, swp10, and swp14 through swp20 to the bridge:
+
+```
+cumulus@switch:~$ cl set interface swp1-3,swp6,swp14-20 bridge domain br_default
+cumulus@switch:~$ cl config apply
+```
+
+To show the bridges configured on the switch, run the `cl show bridge` command:
+
+```
+cumulus@switch:~$ cl show bridge
+          running     applied      description
+--------  -------     ----------   --------------
+[domain]  br_default  br_default   Bridge domains
 ```
 
 {{< /tab >}}
@@ -455,32 +481,6 @@ cumulus@switch:~$ sudo ifup -a
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
-
-The following configuration example places the front panel port swp1 into the default bridge called `br_default`.
-
-```
-cumulus@switch:~$ cl set interface swp1 bridge domain br_default
-cumulus@switch:~$ cl config apply
-```
-
-You can add a range of ports in one command. For example, to add swp1 through swp3, swp10, and swp14 through swp20 to the bridge:
-
-```
-cumulus@switch:~$ cl set interface swp1-3,swp6,swp14-20 bridge domain br_default
-cumulus@switch:~$ cl config apply
-```
-
-To show the bridges configured on the switch, run the `cl show bridge` command:
-
-```
-cumulus@switch:~$ cl show bridge
-          running     applied      description
---------  -------     ----------   --------------
-[domain]  br_default  br_default   Bridge domains
-```
-
-{{< /tab >}}
 {{< /tabs >}}
 
 ### Layer 3 Port Configuration
@@ -505,6 +505,26 @@ cumulus@switch:~$ net add vlan 100 ip address 10.2.2.1/24
 cumulus@switch:~$ net add bridge bridge pvid 100
 cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
+```
+
+{{< /tab >}}
+{{< tab "CUE Commands ">}}
+
+The following configuration example configures the front panel port swp1 as a layer 3 access port:
+
+```
+cumulus@switch:~$ cl set interface swp1 ip address 10.1.1.1/30
+cumulus@switch:~$ cl config apply
+```
+
+To add an IP address to a bridge interface, you must put it into a VLAN interface. If you want to use a VLAN other than the native one, set the bridge PVID:
+
+```
+cumulus@switch:~$ cl set interface swp1-2 bridge domain br_default
+cumulus@switch:~$ cl set bridge domain br_default vlan 100
+cumulus@switch:~$ cl set interface vlan100 ip address 10.2.2.1/24
+cumulus@switch:~$ cl set bridge domain br_default untagged 100
+cumulus@switch:~$ cl config apply
 ```
 
 {{< /tab >}}
@@ -538,26 +558,6 @@ If there are no errors, run the following command:
 
 ```
 cumulus@switch:~$ sudo ifup -a
-```
-
-{{< /tab >}}
-{{< tab "CUE Commands ">}}
-
-The following configuration example configures the front panel port swp1 as a layer 3 access port:
-
-```
-cumulus@switch:~$ cl set interface swp1 ip address 10.1.1.1/30
-cumulus@switch:~$ cl config apply
-```
-
-To add an IP address to a bridge interface, you must put it into a VLAN interface. If you want to use a VLAN other than the native one, set the bridge PVID:
-
-```
-cumulus@switch:~$ cl set interface swp1-2 bridge domain br_default
-cumulus@switch:~$ cl set bridge domain br_default vlan 100
-cumulus@switch:~$ cl set interface vlan100 ip address 10.2.2.1/24
-cumulus@switch:~$ cl set bridge domain br_default untagged 100
-cumulus@switch:~$ cl config apply
 ```
 
 {{< /tab >}}
@@ -604,6 +604,22 @@ cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
+{{< tab "CUE Commands ">}}
+
+To check the status of the loopback interface:
+
+```
+cumulus@switch:~$ cl show interface lo
+```
+
+To add an IP address to a loopback interface:
+
+```
+cumulus@switch:~$ cl set interface lo ip address 10.10.10.1/32
+cumulus@switch:~$ cl config apply
+```
+
+{{< /tab >}}
 {{< tab "Linux Commands ">}}
 
 To check the status of the loopback interface:
@@ -618,22 +634,6 @@ Add the IP address directly under the `iface lo inet loopback` definition in the
 auto lo
 iface lo inet loopback
     address 10.10.10.1
-```
-
-{{< /tab >}}
-{{< tab "CUE Commands ">}}
-
-To check the status of the loopback interface:
-
-```
-cumulus@switch:~$ cl show interface lo
-```
-
-To add an IP address to a loopback interface:
-
-```
-cumulus@switch:~$ cl set interface lo ip address 10.10.10.1/32
-cumulus@switch:~$ cl config apply
 ```
 
 {{< /tab >}}

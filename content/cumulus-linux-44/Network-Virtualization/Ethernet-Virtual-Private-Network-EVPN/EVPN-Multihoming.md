@@ -685,17 +685,15 @@ The following configuration examples use the topology illustrated below.
 
 ### EVPN-MH with Head End Replication
 
-*Commands*
-
-{{< tabs "TabID690 ">}}
-{{<tab "NCLU">}}
+{{< tabs "TabID688 ">}}
+{{<tab "NCLU Commands">}}
 
 NCLU commands are not supported.
 
 {{</tab>}}
-{{<tab "CUE">}}
+{{<tab "CUE Commands">}}
 
-{{< tabs "TabID689 ">}}
+{{< tabs "TabID696 ">}}
 {{< tab "leaf01 ">}}
 
 ```
@@ -995,11 +993,9 @@ cumulus@spine02:~$ cl config apply
 {{</tabs>}}
 
 {{</tab>}}
-{{</tabs>}}
+{{<tab "/etc/network/interfaces">}}
 
-#### /etc/network/interfaces
-
-{{<tabs "/etc/network/interfaces">}}
+{{< tabs "TabID998 ">}}
 {{<tab "leaf01">}}
 
 ```
@@ -1829,9 +1825,10 @@ iface uplink inet static
 {{</tab>}}
 {{</tabs>}}
 
-#### /etc/frr/frr.conf
+{{</tab>}}
+{{<tab "frr.conf Files">}}
 
-{{<tabs "frr.conf Files">}}
+{{< tabs "TabID1831 ">}}
 {{<tab "leaf01">}}
 
 ```
@@ -2204,11 +2201,12 @@ exit-address-family
 {{</tab>}}
 {{</tabs>}}
 
+{{</tab>}}
+{{</tabs>}}
+
 ### EVPN-MH with EVPN-PIM
 
-The following example CUE commands do not include PIM configuration. To configure PIM, see {{<link url="Protocol-Independent-Multicast-PIM" text="Protocol Independent Multicast - PIM">}}. The `/etc/frr/frr.conf` file examples do include PIM configuration for completeness.
-
-#### Commands
+<!-- NEED COMMANDS for PIM-->
 
 {{< tabs "TabID2213 ">}}
 {{<tab "NCLU">}}
@@ -2995,9 +2993,7 @@ cumulus@spine02:~$ cl config apply
 {{</tabs>}}
 
 {{</tab>}}
-{{</tabs>}}
-
-#### /etc/network/interfaces
+{{<tab "/etc/network/interfaces">}}
 
 {{< tabs "TabID919 ">}}
 {{<tab "leaf01">}}
@@ -3844,9 +3840,10 @@ iface uplink inet static
 {{</tab>}}
 {{</tabs>}}
 
-#### /etc/frr/frr.conf
+{{</tab>}}
+{{<tab "/etc/frr/frr.conf">}}
 
-{{< tabs "TabID1758 ">}}
+{{< tabs "TabID3846 ">}}
 {{<tab "leaf01">}}
 
 ```
@@ -4267,6 +4264,9 @@ neighbor underlay activate
 exit-address-family
 !
 ```
+
+{{</tab>}}
+{{</tabs>}}
 
 {{</tab>}}
 {{</tabs>}}

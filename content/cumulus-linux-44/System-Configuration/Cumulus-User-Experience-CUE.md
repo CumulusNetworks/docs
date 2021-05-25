@@ -14,6 +14,31 @@ CUE follows a declarative model, removing context-specific commands and settings
 
 The CUE REST API is currently is an early access feature. The REST API is not intended to run in production and is not supported through NVIDIA networking support.
 
+## Start the CUE Service
+
+CUE is installed by default in Cumulus Linux but the CUE service is disabled. To run CUE commands, you must first stop and disable the NCLU (`netd`) service, then enable and start the CUE (`cued`) service.
+
+{{%notice info%}}
+- Do not install CUE in a production environment.
+- You cannot run both CUE and NCLU commands to configure the switch.
+{{%/notice%}}
+
+1. Stop then disable the `netd` service:
+
+   ```
+   cumulus@switch:~$ sudo systemctl stop netd
+   cumulus@switch:~$ sudo systemctl disable netd
+   ```
+
+4. Enable then start the CUE service:
+
+   ```
+   cumulus@switch:~$ sudo systemctl enable cued
+   cumulus@switch:~$ sudo systemctl start cued
+   ```
+
+5. Log out of the switch, then log back in to get the CUE CLI prompt.
+
 ## Command Line Interface
 
 The CUE command line has a flat structure as opposed to a modal structure. This means that you can run all commands from the primary prompt instead of only in a specific mode.

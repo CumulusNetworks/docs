@@ -29,9 +29,26 @@ Interface MTU applies to traffic traversing the management port, front panel or 
 
 In Cumulus Linux, `ifupdown2` assigns 9216 as the default MTU setting. The initial MTU value set by the driver is 9238. After you configure the interface, the default MTU setting is 9216.
 
-To change the MTU setting, run the following commands:
+To change the MTU setting, run the following commands. The example command sets the MTU to 1500 for the swp1 interface.
 
 {{< tabs "TabID227 ">}}
+{{< tab "NCLU Commands ">}}
+
+```
+cumulus@switch:~$ net add interface swp1 mtu 1500
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+These commands create the following code snippet in the `/etc/network/interfaces` file:
+
+```
+auto swp1
+iface swp1
+    mtu 1500
+```
+
+{{< /tab >}}
 {{< tab "CUE Commands ">}}
 
 ```
@@ -42,7 +59,7 @@ cumulus@switch:~$ cl config apply
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Edit the `/etc/network/interfaces` file, then run the `ifreload -a` command. The following example sets the MTU to 1500 for the swp1 interface.
+Edit the `/etc/network/interfaces` file, then run the `ifreload -a` command.
 
 ```
 cumulus@switch:~$ sudo nano /etc/network/interfaces
@@ -118,6 +135,16 @@ The MTU for an SVI interface, such as vlan10, is derived from the bridge. When y
 To show the MTU setting for an interface:
 
 {{< tabs "TabID354 ">}}
+{{< tab "NCLU Commands ">}}
+
+```
+cumulus@switch:~$ net show interface swp1
+    Name    MAC                Speed      MTU  Mode
+--  ------  -----------------  -------  -----  ---------
+UP  swp1    44:38:39:00:00:04  1G        9216  Access/L2
+```
+
+{{< /tab >}}
 {{< tab "CUE Commands ">}}
 
 ```
@@ -283,10 +310,17 @@ Active FEC encoding: Off
 
 To enable **Reed Solomon (RS) FEC** on a link:
 
-{{< tabs "TabID568 ">}}
-{{< tab "CUE Commands ">}}
+{{< tabs "TabID313 ">}}
+{{< tab "NCLU Commands ">}}
 
-Run the `cl set interface <interface> link fec rs` command. For example:
+```
+cumulus@switch:~$ sudo net add interface swp1 link fec rs
+cumulus@switch:~$ sudo net pending
+cumulus@switch:~$ sudo net commit
+```
+
+{{< /tab >}}
+{{< tab "CUE Commands ">}}
 
 ```
 cumulus@switch:~$ cl set interface swp1 link fec rs
@@ -329,10 +363,17 @@ A runtime configuration is non-persistent. The configuration you create does not
 
 To enable **Base-R/FireCode FEC** on a link:
 
-{{< tabs "TabID568 ">}}
-{{< tab "CUE Commands ">}}
+{{< tabs "TabID366 ">}}
+{{< tab "NCLU Commands ">}}
 
-Run the `cl set interface <interface> link fec baser` command. For example:
+```
+cumulus@switch:~$ sudo net add interface swp1 link fec baser
+cumulus@switch:~$ sudo net pending
+cumulus@switch:~$ sudo net commit
+```
+
+{{< /tab >}}
+{{< tab "CUE Commands ">}}
 
 ```
 cumulus@switch:~$ cl set interface swp1 link fec baser
@@ -379,10 +420,18 @@ To enable FEC with Auto-negotiation:
 FEC with auto-negotiation is supported on DACs only.
 {{%/notice%}}
 
-{{< tabs "TabID678 ">}}
-{{< tab "CUE Commands ">}}
+{{< tabs "TabID423 ">}}
+{{< tab "NCLU Commands ">}}
 
-The following example command enables FEC with auto-negotiation on the swp1 interface:
+```
+cumulus@switch:~$ sudo net add interface swp1 link autoneg on
+cumulus@switch:~$ sudo net pending
+cumulus@switch:~$ sudo net commit
+```
+
+{{< /tab >}}
+
+{{< tab "CUE Commands ">}}
 
 ```
 cumulus@switch:~$ cl set interface swp1 link auto-negotiate on
@@ -392,7 +441,7 @@ cumulus@switch:~$ cl config apply
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Edit the `/etc/network/interfaces` file to set auto-negotiation to *on*, then run the `ifreload -a` command. For example:
+Edit the `/etc/network/interfaces` file to set auto-negotiation to *on*, then run the `ifreload -a` command:
 
 ```
 cumulus@switch:~$ sudo nano /etc/network/interfaces
@@ -435,10 +484,17 @@ Link partner advertised FEC modes: Not reported
 
 To disable FEC on a link:
 
-{{< tabs "TabID741 ">}}
-{{< tab "CUE Commands ">}}
+{{< tabs "TabID487 ">}}
+{{< tab "NCLU Commands ">}}
 
-Run the `cl set interface <interface> link fec off` command. For example:
+```
+cumulus@switch:~$ sudo net add interface swp1 link fec off
+cumulus@switch:~$ sudo net pending
+cumulus@switch:~$ sudo net commit
+```
+
+{{< /tab >}}
+{{< tab "CUE Commands ">}}
 
 ```
 cumulus@switch:~$ cl set interface swp1 link fec off
@@ -548,7 +604,45 @@ Valid port configuration and breakout guidance is provided in the `/etc/cumulus/
 
 To configure a breakout port:
 
-{{< tabs "TabID883 ">}}
+{{< tabs "TabID607 ">}}
+{{< tab "NCLU Commands ">}}
+
+This example command breaks out the 100G port on swp1 into four 25G ports:
+
+```
+cumulus@switch:~$ net add interface swp1 breakout 4x25G
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+To break out a port into four 10G ports, you must **also** disable the next port.
+
+```
+cumulus@switch:~$ net add interface swp2 breakout disabled
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+These commands break out swp1 into four 25G interfaces in the `/etc/cumulus/ports.conf` file and create four interfaces in the `/etc/network/interfaces` file:
+
+```
+cumulus@switch:~$ cat /etc/network/interfaces
+...
+auto swp1s0
+iface swp1s0
+
+auto swp1s1
+iface swp1s1
+
+auto swp1s2
+iface swp1s2
+
+auto swp1s3
+iface swp1s3
+...
+```
+
+{{< /tab >}}
 {{< tab "CUE Commands ">}}
 
 This example command breaks out the 100G port on swp1 into four 25G ports:
@@ -613,7 +707,40 @@ cumulus@switch:~$ sudo systemctl reload switchd.service
 
 To remove a breakout port:
 
-{{< tabs "TabID987 ">}}
+{{< tabs "TabID710 ">}}
+{{< tab "NCLU Commands ">}}
+
+1. Run the `net del interface <interface>` command. For example:
+
+    ```
+    cumulus@switch:~$ net del interface swp1s0
+    cumulus@switch:~$ net del interface swp1s1
+    cumulus@switch:~$ net del interface swp1s2
+    cumulus@switch:~$ net del interface swp1s3
+    cumulus@switch:~$ net pending
+    cumulus@switch:~$ net commit
+    ```
+
+2. Manually edit the `/etc/cumulus/ports.conf` file to configure the interface for the original speed. For example:
+
+    ```
+    cumulus@switch:~$ sudo nano /etc/cumulus/ports.conf
+    ...
+
+    1=100G
+    2=100G
+    3=100G
+    4=100G
+    ...
+    ```
+
+3. Reload `switchd`. The reload does **not** interrupt network services.
+
+   ```
+   cumulus@switch:~$ sudo systemctl reload switchd.service
+   ```
+
+{{< /tab >}}
 {{< tab "CUE Commands ">}}
 
 Run the `cl unset interface <interface>` command. For example:
@@ -642,7 +769,7 @@ Run the `cl unset interface <interface>` command. For example:
     ...
     ```
 
-2. Reload `switchd` with the `sudo systemctl reload switchd.service` command. The reload does **not** interrupt network services.
+2. Reload `switchd`. The reload does **not** interrupt network services.
 
    ```
    cumulus@switch:~$ sudo systemctl reload switchd.service
@@ -661,28 +788,29 @@ This section shows basic commands for troubleshooting switch ports. For a more c
 
 ### Statistics
 
-To show high-level interface statistics, run the `cl show interface` command:
+To show high-level interface statistics, run the NCLU `net show interface` command. The CUE command is `cl show interface`.
 
 ```
-cumulus@switch:~$ cl show interface swp1
-                         running  applied  description
------------------------  -------  -------  ----------------------------------------------------------------------
-type                     swp               The type of interface
-ip
-  [address]                                ipv4 and ipv6 address
-link
-  mtu                    1500              interface mtu
-  state                  down              The state of the interface
-  stats
-    carrier-transitions  2                 Number of times the interface state hastransitioned between up and...
-    in-bytes             0                 total number of bytes received on the interface
-    in-drops             0                 number of received packets dropped
-    in-errors            0                 number of received packets with errors
-    in-pkts              0                 total number of packets received on theinterface
-    out-bytes            0                 total number of bytes transmitted out of the interface
-    out-drops            0                 The number of outbound packets that were chosen to be discarded eve...
-    out-errors           0                 The number of outbound packets that could not be transmitted becaus...
-    out-pkts             0                 total number of packets transmitted outof the interface
+cumulus@switch:~$ net show interface swp1
+
+    Name    MAC                Speed      MTU  Mode
+--  ------  -----------------  -------  -----  ---------
+UP  swp1    44:38:39:00:00:04  1G        1500  Access/L2
+
+Vlans in disabled State
+-------------------------
+br0
+
+Counters      TX    RX
+----------  ----  ----
+errors         0     0
+unicast        0     0
+broadcast      0     0
+multicast      0     0
+
+LLDP
+------  ----  ---------------------------
+swp1    ====  44:38:39:00:00:03(server01)
 ```
 
 To show low-level interface statistics, run the following `ethtool` command:

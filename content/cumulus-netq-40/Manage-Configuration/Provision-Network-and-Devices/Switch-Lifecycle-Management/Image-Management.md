@@ -440,10 +440,10 @@ To remove images:
 
 To remove Cumulus Linux images, run:
 
-```
-netq lcm show cl-images [json]
-netq lcm del cl-image <text-image-id>
-```
+
+    netq lcm show cl-images [json]
+    netq lcm del cl-image <text-image-id>
+
 
 1. Determine the ID of the image you want to remove.
 

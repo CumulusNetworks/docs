@@ -140,7 +140,7 @@ FRRouting inherits the IP addresses and any associated routing tables for the ne
 
 ## FRRouting vtysh Modal CLI
 
-FRRouting provides a command-line interface (CLI) called `vtysh` for configuring and displaying protocol state. To start the CLI, run the `sudo vtysh` command:
+FRRouting provides a command-line interface (CLI) called vtysh for configuring and displaying protocol state. To start the CLI, run the `sudo vtysh` command:
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -151,7 +151,7 @@ Copyright 1996-2005 Kunihiro Ishiguro, et al.
 switch#
 ```
 
-`vtysh` provides a Cisco-like modal CLI and many of the commands are similar to Cisco IOS commands. There are different modes to the CLI and certain commands are only available within a specific mode. Configuration is available with the `configure terminal` command:
+vtysh provides a Cisco-like modal CLI and many of the commands are similar to Cisco IOS commands. There are different modes to the CLI and certain commands are only available within a specific mode. Configuration is available with the `configure terminal` command:
 
 ```
 switch# configure terminal
@@ -206,7 +206,7 @@ rip      Routing Information Protocol
 router   IP router interface commands
 ```
 
-To search for specific `vtysh` commands so that you can identify the correct syntax to use, run the `sudo vtysh -c 'find <term>'` command. For example, to show only commands that include `mlag`:
+To search for specific vtysh commands so that you can identify the correct syntax to use, run the `sudo vtysh -c 'find <term>'` command. For example, to show only commands that include `mlag`:
 
 ```
 cumulus@leaf01:mgmt:~$ sudo vtysh -c 'find mlag'
@@ -281,7 +281,7 @@ B>* 172.16.3.0/24 [20/0] via fe80::4638:39ff:fe00:57, swp3, 00:05:18
   *                      via fe80::4638:39ff:fe00:43, swp4, 00:05:18
 ```
 
-To run single commands with `vtysh`, use the `-c` option:
+To run single commands with vtysh, use the `-c` option:
 
 ```
 cumulus@switch:~$ sudo vtysh -c 'sh ip route'
@@ -427,7 +427,7 @@ end
 {{< /expand >}}
 
 {{%notice note%}}
-If you try to configure a routing protocol that has not been started, `vtysh` silently ignores those commands.
+If you try to configure a routing protocol that has not been started, vtysh silently ignores those commands.
 {{%/notice%}}
 
 ## Reload the FRRouting Configuration

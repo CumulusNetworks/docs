@@ -17,6 +17,26 @@ The following example commands configure Cumulus Linux to send traffic with the 
 {{< img src="/images/cumulus-linux/static-routing.png" width="300" >}}
 
 {{< tabs "TabID17 ">}}
+{{< tab "NCLU Commands ">}}
+
+```
+cumulus@leaf01:~$ net add interface swp51 ip address 10.0.1.1/31
+cumulus@leaf01:~$ net add routing route 10.10.10.101/32 10.0.1.0
+cumulus@leaf01:~$ net pending
+cumulus@leaf01:~$ net commit
+```
+
+The NCLU commands save the static route configuration in the `/etc/frr/frr.conf` file. For example:
+
+```
+...
+!
+ip route 10.10.10.101/32 10.0.1.0
+!
+...
+```
+
+{{< /tab >}}
 {{< tab "CUE Commands ">}}
 
 ```
@@ -39,7 +59,7 @@ iface swp51
 ...
 ```
 
-Run `vtysh` commands to configure the static route (the destination prefix and next hop). For example:
+Run vtysh commands to configure the static route (the destination prefix and next hop). For example:
 
 ```
 cumulus@leaf01:~$ sudo vtysh
@@ -70,6 +90,26 @@ The following example commands configure Cumulus Linux to send traffic with the 
 {{< img src="/images/cumulus-linux/static-vrf-example.png" width="400" >}}
 
 {{< tabs "TabID76 ">}}
+{{< tab "NCLU Commands ">}}
+
+```
+cumulus@border01:~$ net add interface swp3 ip address 10.0.0.32/31
+cumulus@border01:~$ net add interface swp3 vrf BLUE
+cumulus@border01:~$ net add routing route 10.10.10.61/32 10.0.0.33 vrf BLUE
+cumulus@border01:~$ net pending
+cumulus@border01:~$ net commit
+```
+
+The NCLU commands save the static route configuration in the `/etc/frr/frr.conf` file. For example:
+
+```
+...
+vrf BLUE
+ ip route 10.10.10.61/32 10.0.0.33
+...
+```
+
+{{< /tab >}}
 {{< tab "CUE Commands ">}}
 
 ```
@@ -94,7 +134,7 @@ iface swp3
 ...
 ```
 
-Run `vtysh` commands to configure the static route (the destination prefix and next hop). For example:
+Run vtysh commands to configure the static route (the destination prefix and next hop). For example:
 
 ```
 cumulus@border01:~$ sudo vtysh
@@ -122,6 +162,19 @@ vrf BLUE
 To delete a static route:
 
 {{< tabs "TabID58 ">}}
+{{< tab "NCLU Commands ">}}
+
+```
+cumulus@leaf01:~$ net del routing route 10.10.10.101/32 10.0.1.0
+cumulus@leaf01:~$ net pending
+cumulus@leaf01:~$ net commit
+```
+
+{{%notice tip%}}
+When you use NCLU commands to delete routing configuration such as static routes, commit ten or fewer delete commands at a time to avoid commit failures.
+{{%/notice%}}
+
+{{< /tab >}}
 {{< tab "CUE Commands ">}}
 
 ```
@@ -164,14 +217,6 @@ S>* 10.10.10.101/32 [1/0] via 10.0.1.0, swp51, weight 1, 00:02:07
 You can also create a static route by adding the route to a switch port configuration. For example:
 
 {{< tabs "TabID187 ">}}
-{{< tab "CUE Commands ">}}
-
-```
-cumulus@leaf01:~$ cl set interface swp51 ip address 10.0.1.1/31
-cumulus@leaf01:~$ NEED COMMAND
-```
-
-{{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
 ```
@@ -181,6 +226,11 @@ cumulus@leaf01:~$ net add interface swp51 post-down ip route del 10.10.10.101/32
 cumulus@leaf01:~$ net pending
 cumulus@leaf01:~$ net commit
 ```
+
+{{< /tab >}}
+{{< tab "CUE Commands ">}}
+
+CUE command not supported currently.
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
@@ -209,6 +259,25 @@ On each switch, consider creating a *gateway* or *default route* for traffic des
 The following example configures the default route 0.0.0.0/0, which indicates any IP address can be sent to the gateway. The gateway is another switch with the IP address 10.0.1.0.
 
 {{< tabs "TabID310 ">}}
+{{< tab "NCLU Commands ">}}
+
+```
+cumulus@leaf01:~$ net add routing route 0.0.0.0/0 10.0.1.0
+cumulus@leaf01:~$ net pending
+cumulus@leaf01:~$ net commit
+```
+
+The NCLU commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+
+```
+...
+!
+ip route 0.0.0.0/0 10.0.1.0
+!
+...
+```
+
+{{< /tab >}}
 {{< tab "CUE Commands ">}}
 
 ```
@@ -255,7 +324,7 @@ The default route created by the `gateway` parameter in ifupdown2 is not install
 
 ### Deleting Routes through the Linux Shell
 
-To avoid incorrect routing, **do not** use the Linux shell to delete static routes that you added with `vtysh` commands. Delete the routes with the `vtysh` commands.
+To avoid incorrect routing, **do not** use the Linux shell to delete static routes that you added with vtysh commands. Delete the routes with the vtysh commands.
 
 ### IPv6 Default Route with a Source IP Address on eth0
 

@@ -127,7 +127,7 @@ PIM is included in the FRRouting package. For proper PIM operation, PIM depends 
 
 2. {{<cl/restart-frr>}}
 
-3. In the `vtysh` shell, run the following commands to configure the PIM interfaces:
+3. In the vtysh shell, run the following commands to configure the PIM interfaces:
 
    ```
    cumulus@switch:~$ sudo vtysh
@@ -258,7 +258,7 @@ switch# exit
 cumulus@switch:~$
 ```
 
-To view the configured prefix-list, run the `vtysh` `show ip mroute` command or the NCLU `net show mroute` command. The following command shows that *235.0.0.0* is configured for SPT switchover, identified by *pimreg*.
+To view the configured prefix-list, run the vtysh `show ip mroute` command or the NCLU `net show mroute` command. The following command shows that *235.0.0.0* is configured for SPT switchover, identified by *pimreg*.
 
 ```
 switch# show ip mroute
@@ -610,7 +610,7 @@ The rebalance command might cause some packet loss.
 {{< /tab >}}
 {{< /tabs >}}
 
-To show which next hop is selected for a specific source/group, run the `show ip pim nexthop` command from the `vtysh` shell:
+To show which next hop is selected for a specific source/group, run the `show ip pim nexthop` command from the vtysh shell:
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -877,7 +877,7 @@ iface purple
 ...
 ```
 
-Then add the PIM configuration to FRR. You can do this in `vtysh`:
+Then add the PIM configuration to FRR. You can do this in vtysh:
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -905,7 +905,7 @@ cumulus@switch:~$
 {{< /tab >}}
 {{< /tabs >}}
 
-To show VRF information, run the NCLU `net show mroute vrf <vrf-name>` command or the `vtysh` `show ip mroute vrf <vrf-name>` command:
+To show VRF information, run the NCLU `net show mroute vrf <vrf-name>` command or the vtysh `show ip mroute vrf <vrf-name>` command:
 
 ```
 cumulus@fhr:~$ net show mroute vrf blue
@@ -1184,7 +1184,7 @@ swp1      *               239.2.2.2       no         yes   no         yes       
 
 On the FHR, an mroute is built, but the upstream state is *Prune*. The FHR flag is set on the interface receiving multicast.
 
-Use the `vtysh` `show ip` commands to review detailed output for the FHR. For example:
+Use the vtysh `show ip` commands to review detailed output for the FHR. For example:
 
 ```
 cumulus@fhr:~$ sudo vtysh
@@ -1472,7 +1472,7 @@ Source          Group           Proto  Input      Output     TTL  Uptime
 172.16.5.105    239.2.2.9       none   br0        none       0    --:--:--
 ```
 
-This is expected behavior. You can see the active source on the RP with either the NCLU `net show pim upstream` command or the `vtysh` `show ip pim upstream` command:
+This is expected behavior. You can see the active source on the RP with either the NCLU `net show pim upstream` command or the vtysh `show ip pim upstream` command:
 
 ```
 cumulus@rp01:~$ net show pim upstream
@@ -1499,7 +1499,7 @@ For Spectrum chipsets, refer to {{<link url="Supported-Route-Table-Entries#tcam-
 
 ### Verify MSDP Session State
 
-To verify the state of MSDP sessions, run either the NCLU `net show msdp mesh-group` command or the `vtysh` `show ip msdp mesh-group` command:
+To verify the state of MSDP sessions, run either the NCLU `net show msdp mesh-group` command or the vtysh `show ip msdp mesh-group` command:
 
 ```
 cumulus@switch:~$ net show msdp mesh-group
@@ -1517,7 +1517,7 @@ Peer                       Local        State    Uptime   SaCnt
 
 ### View the Active Sources
 
-To review the active sources learned locally (through PIM registers) and from MSDP peers, run either the NCLU `net show msdp sa` command or the `vtysh` `show ip msdp sa` command:
+To review the active sources learned locally (through PIM registers) and from MSDP peers, run either the NCLU `net show msdp sa` command or the vtysh `show ip msdp sa` command:
 
 ```
 cumulus@switch:~$ net show msdp sa

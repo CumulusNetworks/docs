@@ -439,7 +439,7 @@ The current algorithm returns the first name matching the UID from the mapping f
 
 To work around this issue, you can use the switch audit log or the TACACS server accounting logs to determine which processes and files are created by each user.
 
-- For commands that do not execute other commands (for example, changes to configurations in an editor, or actions with tools like `clagctl` and `vtysh`), no additional accounting is done.
+- For commands that do not execute other commands (for example, changes to configurations in an editor, or actions with tools like `clagctl` and vtysh), no additional accounting is done.
 - Per-command authorization is implemented at the most basic level (commands are permitted or denied based on the standard Linux user permissions for the local TACACS users and only privilege level 15 users can run `sudo` commands by default).
 
 The Linux `auditd` system does not always generate audit events for processes when terminated with a signal (with the `kill` system call or internal errors such as SIGSEGV). As a result, processes that exit on a signal that is not caught and handled, might not generate a STOP accounting record.

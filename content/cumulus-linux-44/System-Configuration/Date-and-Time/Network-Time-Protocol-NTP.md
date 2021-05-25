@@ -19,12 +19,32 @@ The default NTP configuration includes the following servers, which are listed i
 - server 2.cumulusnetworks.pool.ntp.org iburst
 - server 3.cumulusnetworks.pool.ntp.org iburst
 
-To add the NTP servers you want to use:
+To add the NTP servers you want to use, run the following commands. Include the `iburst` option to increase the sync speed.
 
 {{< tabs "TabID106 ">}}
-{{< tab "CUE Commands ">}}
+{{< tab "NCLU Commands ">}}
 
-Run the following commands. Include the `iburst` option to increase the sync speed.
+```
+cumulus@switch:~$ net add time ntp server 4.cumulusnetworks.pool.ntp.org iburst
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+These commands add the NTP server to the list of servers in the `/etc/ntp.conf` file:
+
+```
+# pool.ntp.org maps to about 1000 low-stratum NTP servers.  Your server will
+# pick a different set every time it starts up.  Please consider joining the
+# pool: <http://www.pool.ntp.org/join.html>
+server 0.cumulusnetworks.pool.ntp.org iburst
+server 1.cumulusnetworks.pool.ntp.org iburst
+server 2.cumulusnetworks.pool.ntp.org iburst
+server 3.cumulusnetworks.pool.ntp.org iburst
+server 4.cumulusnetworks.pool.ntp.org iburst
+```
+
+{{< /tab >}}
+{{< tab "CUE Commands ">}}
 
 ```
 cumulus@switch:~$ cl set system ntp pool 4.cumulusnetworks.pool.ntp.org iburst on
@@ -65,6 +85,20 @@ ntp       4074     1  0 Jun20 ?        00:00:33 /usr/sbin/ntpd -p /var/run/ntpd.
 To check the NTP peer status:
 
 {{< tabs "TabID166 ">}}
+{{< tab "NCLU Commands ">}}
+
+<!-- vale off -->
+```
+cumulus@switch:~$ net show time ntp servers
+      remote           refid      st t when poll reach   delay   offset  jitter
+==============================================================================
++minime.fdf.net  58.180.158.150   3 u  140 1024  377   55.659    0.339   1.464
++69.195.159.158  128.138.140.44   2 u  259 1024  377   41.587    1.011   1.677
+*chl.la          216.218.192.202  2 u  210 1024  377    4.008    1.277   1.628
++vps3.drown.org  17.253.2.125     2 u  743 1024  377   39.319   -0.316   1.384
+```
+
+{{< /tab >}}
 {{< tab "CUE Commands ">}}
 
 ```
@@ -73,8 +107,6 @@ cumulus@switch:~$ cl show system ntp server
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
-
-Run the `ntpq -p` command:
 
 ```
 cumulus@switch:~$ ntpq -p
@@ -92,6 +124,18 @@ cumulus@switch:~$ ntpq -p
 The following example commands remove some of the default NTP servers:
 
 {{< tabs "TabID204 ">}}
+{{< tab "NCLU Commands ">}}
+
+```
+cumulus@switch:~$ net del time ntp server 0.cumulusnetworks.pool.ntp.org
+cumulus@switch:~$ net del time ntp server 1.cumulusnetworks.pool.ntp.org
+cumulus@switch:~$ net del time ntp server 2.cumulusnetworks.pool.ntp.org
+cumulus@switch:~$ net del time ntp server 3.cumulusnetworks.pool.ntp.org
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+{{< /tab >}}
 {{< tab "CUE Commands ">}}
 
 ```
@@ -125,6 +169,24 @@ server 4.cumulusnetworks.pool.ntp.org iburst
 By default, the source interface that NTP uses is eth0. The following example command configures the NTP source interface to be swp10.
 
 {{< tabs "TabID243 ">}}
+{{< tab "NCLU Commands ">}}
+
+```
+cumulus@switch:~$ net add time ntp source swp10
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+These commands create the following configuration snippet in the `ntp.conf` file:
+
+```
+...
+# Specify interfaces
+interface listen swp10
+...
+```
+
+{{< /tab >}}
 {{< tab "CUE Commands ">}}
 
 ```
@@ -135,7 +197,7 @@ cumulus@switch:~$ cl config apply
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Edit the `/etc/ntp.conf` file and modify the entry under the **\# Specify interfaces** comment.
+Edit the `/etc/ntp.conf` file and modify the entry under the `Specify interfaces` comment.
 ```
 cumulus@switch:~$ sudo nano /etc/ntp.conf
 ...
@@ -211,7 +273,7 @@ The NTP client is the Cumulus Linux switch.
     ```
     cumulus@switch:~$  sudo nano /etc/ntp.keys
     #
-    # PLEASE DO NOT USE THE DEFAULT VALUES HERE.
+    # DO NOT USE THE DEFAULT VALUES HERE.
     #
     #65535  M  akey
     #1      M  pass

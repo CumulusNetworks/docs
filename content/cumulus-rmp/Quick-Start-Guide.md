@@ -91,7 +91,7 @@ All accounts except `root` are permitted remote SSH login; you can use
 `sudo` to grant root-level access to a non-root account. Commands that
 change system configuration require this elevated level of access.
 
-For more information about `sudo`, read [Using sudo to Delegate Privileges]({{<ref "/cumulus-linux-37/System-Configuration/Authentication,-Authorization-and-Accounting/Using-sudo-to-Delegate-Privileges" >}}).
+For more information about `sudo`, read [Using sudo to Delegate Privileges]({{<ref "/cumulus-linux-37/System-Configuration/Authentication-Authorization-and-Accounting/Using-sudo-to-Delegate-Privileges" >}}).
 
 ### Serial Console Management
 

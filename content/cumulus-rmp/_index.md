@@ -31,8 +31,8 @@ Cumulus RMP 3.7.0 contains several bug fixes and the following new
 features:
 
 - [RADIUS Change of Authorization (CoA) requests]({{<ref "/cumulus-linux-37/Layer-1-and-Switch-Ports/802.1X-Interfaces.md#radius-change-of-authorization-and-disconnect-requests" >}})
-- [RADIUS AAA local fallback authentication]({{<ref "/cumulus-linux-37/System-Configuration/Authentication,-Authorization-and-Accounting/RADIUS-AAA#local-fallback-authentication" >}})
-- [TACACS+ local fallback authentication]({{<ref "/cumulus-linux-37/System-Configuration/Authentication,-Authorization-and-Accounting/TACACS-Plus#local-fallback-authentication" >}})
+- [RADIUS AAA local fallback authentication]({{<ref "/cumulus-linux-37/System-Configuration/Authentication-Authorization-and-Accounting/RADIUS-AAA#local-fallback-authentication" >}})
+- [TACACS+ local fallback authentication]({{<ref "/cumulus-linux-37/System-Configuration/Authentication-Authorization-and-Accounting/TACACS-Plus#local-fallback-authentication" >}})
 - New NCLU commands:
   - [Show the version of a package]({{<ref "/cumulus-linux-37/Installation-Management/Adding-and-Updating-Packages#display-the-version-of-a-package" >}})
   - [Show the interface description (alias)]({{<ref "/cumulus-linux-37/Layer-1-and-Switch-Ports/Interface-Configuration-and-Management#add-descriptions-to-interfaces" >}})
@@ -109,7 +109,7 @@ For more information about each feature, follow the links below to the
 | Full Linux extensibility                                                                                                         | ✓               | ✓                 |
 | Network virtualization (VXLAN, EVPN, etc.)                                                                                       |                 | ✓                 |
 | [Monitoring & troubleshooting]({{<ref "/cumulus-linux-37/Monitoring-and-Troubleshooting" >}})                                                | ✓               | ✓                 |
-| [AAA]({{<ref "/cumulus-linux-37/System-Configuration/Authentication,-Authorization-and-Accounting/LDAP-Authentication-and-Authorization" >}}) | ✓               | ✓                 |
+| [AAA]({{<ref "/cumulus-linux-37/System-Configuration/Authentication-Authorization-and-Accounting/LDAP-Authentication-and-Authorization" >}}) | ✓               | ✓                 |
 | [ACLs / Netfilter]({{<ref "/cumulus-linux-37/System-Configuration/Netfilter-ACLs" >}})                                                       | ✓               | ✓                 |
 | QoS                                                                                                                              |                 | ✓                 |
 

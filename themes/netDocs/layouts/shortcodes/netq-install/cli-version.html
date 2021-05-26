@@ -10,7 +10,7 @@ You should see version 3.0.0 and update 27 or later in the results. For example:
             <li>netq-apps_<strong>3.0.0</strong>-cl3u<strong>27</strong>~1588048439.0e20d33_armel.deb</li>
             <li>netq-apps_<strong>3.0.0</strong>-cl3u<strong>27</strong>~1588242701.9fb5b87_amd64.deb</li>
         </ul>
-    <li>Cumulus Linux 4.0.0-4.1.x</li>
+    <li>Cumulus Linux 4.0.0 and later</li>
         <ul>
             <li>netq-apps_<strong>3.0.0</strong>-cl4u<strong>27</strong>~1588048918.0e20d335_armel.deb</li>
             <li>netq-apps_<strong>3.0.0</strong>-cl4u<strong>27</strong>~1588242814.9fb5b87d_amd64.deb</li>
@@ -50,7 +50,7 @@ You should see version 3.1.0 and update 28 or later in the results. For example:
             <li>netq-apps_<strong>3.1.0</strong>-cl3u<strong>28</strong>~1594095615.8f00ba1_armel.deb</li>
             <li>netq-apps_<strong>3.1.0</strong>-cl3u<strong>28</strong>~1594095615.8f00ba1_amd64.deb</li>
         </ul>
-    <li>Cumulus Linux 4.0.0-4.1.x</li>
+    <li>Cumulus Linux 4.0.0 and later</li>
         <ul>
             <li>netq-apps_<strong>3.1.0</strong>-cl4u<strong>28</strong>~1594095738.8f00ba1e_armel.deb</li>
             <li>netq-apps_<strong>3.1.0</strong>-cl4u<strong>28</strong>~1594095738.8f00ba1e_amd64.deb</li>
@@ -90,7 +90,7 @@ You should see version 3.2.0 and update 30 in the results. For example:
             <li>netq-apps_<strong>3.2.0</strong>-cl3u<strong>30</strong>~1601403857.104fb9e_armel.deb</li>
             <li>netq-apps_<strong>3.2.0</strong>-cl3u<strong>30</strong>~1601403857.104fb9e_amd64.deb</li>
         </ul>
-    <li>Cumulus Linux 4.0.0-4.1.x</li>
+    <li>Cumulus Linux 4.0.0 and later</li>
         <ul>
             <li>netq-apps_<strong>3.2.0</strong>-cl4u<strong>30</strong>~1601403318.104fb9ed_armel.deb</li>
             <li>netq-apps_<strong>3.2.0</strong>-cl4u<strong>30</strong>~1601403318.104fb9ed_amd64.deb</li>
@@ -131,7 +131,7 @@ You should see version 3.2.1 and update 30 or 31 in the results. For example:
             <li>netq-apps_<strong>3.2.1</strong>-cl3u<strong>30</strong>~1603788322.6f62fad_armel.deb</li>
             <li>netq-apps_<strong>3.2.1</strong>-cl3u<strong>30</strong>~1603788322.6f62fad_amd64.deb</li>
         </ul>
-    <li>Cumulus Linux 4.0.0-4.1.x</li>
+    <li>Cumulus Linux 4.0.0 and later</li>
         <ul>
             <li>netq-apps_<strong>3.2.1</strong>-cl4u<strong>31</strong>~1603788322.6f62fadf_armel.deb</li>
             <li>netq-apps_<strong>3.2.1</strong>-cl4u<strong>31</strong>~1603788322.6f62fadf_amd64.deb</li>
@@ -172,7 +172,7 @@ You should see version 3.3.0 and update 32 in the results. For example:
             <li>netq-apps_<strong>3.3.0</strong>-cl3u<strong>32</strong>~1610528866.2e51873_armel.deb</li>
             <li>netq-apps_<strong>3.3.0</strong>-cl3u<strong>32</strong>~1610528867.2e51873_amd64.deb</li>
         </ul>
-    <li>Cumulus Linux 4.0.0-4.1.x</li>
+    <li>Cumulus Linux 4.0.0 and later</li>
         <ul>
             <li>netq-apps_<strong>3.3.0</strong>-cl4u<strong>32</strong>~1610528866.2e518733_armel.deb</li>
             <li>netq-apps_<strong>3.3.0</strong>-cl4u<strong>32</strong>~1610528867.2e518733_amd64.deb</li>
@@ -213,7 +213,7 @@ You should see version 3.3.1 and update 33 in the results. For example:
             <li>netq-apps_<strong>3.3.1</strong>-cl3u<strong>33</strong>~1614767181.886b337_armel.deb</li>
             <li>netq-apps_<strong>3.3.1</strong>-cl3u<strong>33</strong>~1614767180.886b337_amd64.deb</li>
         </ul>
-    <li>Cumulus Linux 4.0.0-4.1.x</li>
+    <li>Cumulus Linux 4.0.0 and later</li>
         <ul>
             <li>netq-apps_<strong>3.3.1</strong>-cl4u<strong>33</strong>~1614767182.886b337e_armel.deb</li>
             <li>netq-apps_<strong>3.3.1</strong>-cl4u<strong>33</strong>~1614767182.886b337e_amd64.deb</li>
@@ -235,6 +235,50 @@ You should see version 3.3.1 and update 33 in the results. For example:
 
 <ul>
     <li>netq-apps-<strong>3.3.1</strong>-rh7u<strong>33</strong>~1614768254.886b337.x86_64.rpm</li>
+</ul>
+
+{{ end }}
+
+{{ end }}
+
+
+
+
+
+{{- if eq (.Get "version") "4.0" -}}
+
+You should see version 4.0.0 and update 34 in the results. For example:
+
+{{- if eq (.Get "opsys") "cl" -}}
+
+<ul>
+    <li>Cumulus Linux 3.3.2-3.7.x</li>
+        <ul>
+            <li>netq-apps_<strong>4.0.0</strong>-cl3u<strong>34</strong>~1621595386.3030ea9_armel.deb</li>
+            <li>netq-apps_<strong>4.0.0</strong>-cl3u<strong>34</strong>~1621860085.c5a5d7e_amd64.deb</li>
+        </ul>
+    <li>Cumulus Linux 4.0.0 and later</li>
+        <ul>
+            <li>netq-apps_<strong>4.0.0</strong>-cl4u<strong>34</strong>~1621595395.3030ea91_armel.deb</li>
+            <li>netq-apps_<strong>4.0.0</strong>-cl4u<strong>34</strong>~1621860147.c5a5d7e2_amd64.deb</li>
+        </ul>
+</ul>
+
+{{ end }}
+
+{{- if eq (.Get "opsys") "ub" -}}
+
+<ul>
+    <li>netq-apps_<strong>4.0.0</strong>-ub18.04u<strong>34</strong>~1621861602.c5a5d7e2_amd64.deb</li>
+    <li>netq-apps_<strong>4.0.0</strong>-ub16.04u<strong>34</strong>~1621861051.c5a5d7e_amd64.deb</li>
+</ul>
+
+{{ end }}
+
+{{- if eq (.Get "opsys") "rh" -}}
+
+<ul>
+    <li>netq-apps-<strong>4.0.0</strong>-rh7u<strong>34</strong>~1614768254.886b337.x86_64.rpm</li>
 </ul>
 
 {{ end }}

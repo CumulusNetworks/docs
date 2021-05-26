@@ -12,9 +12,9 @@ Switch access credentials are not specified by default. You must add these.
 
 To specify access credentials:
 
-{{< tabs "TabID15" >}}
+{{<tabs "TabID15">}}
 
-{{< tab "NetQ UI" >}}
+{{<tab "NetQ UI">}}
 
 1. Open the LCM dashboard.
 
@@ -24,9 +24,9 @@ To specify access credentials:
 
 3. Select the authentication method you want to use; **SSH** or **Basic Authentication**. Basic authentication is selected by default.
 
-{{< tabs "TabID183 ">}}
+{{<tabs "TabID183">}}
 
-{{< tab "Basic Authentication ">}}
+{{<tab "Basic Authentication">}}
 
 Be sure to use credentials for a user account that has permission to configure switches.
 
@@ -48,12 +48,12 @@ The default credentials for Cumulus Linux have changed from *cumulus/CumulusLinu
 
     {{<figure src="/images/netq/lcm-access-configured-300.png" width="200">}}
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "SSH" >}}
+{{<tab "SSH">}}
 
 {{<notice info>}}
-You must have sudoer permission to properly configure switches when using the SSH Key method.
+You must have sudoer permission to properly configure switches when using the SSH key method.
 {{</notice>}}
 
 1. Create a pair of SSH private and public keys.
@@ -79,13 +79,13 @@ The Access card now indicates your credential configuration.
 
 {{<figure src="/images/netq/lcm-access-ssh-configured-300.png" width="200">}}
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "NetQ CLI" >}}
+{{<tab "NetQ CLI">}}
 
 To configure basic authentication, run:
 
@@ -95,7 +95,7 @@ cumulus@switch:~$ netq lcm add credentials username cumulus password cumulus
 
 {{<notice tip>}}
 
-The default credentials for Cumulus Linux have changed from *cumulus/CumulusLinux!* to *cumulus/cumulus* for releases 4.2 and later. For details, read {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux-42/System-Configuration/Authentication-Authorization-and-Accounting/User-Accounts/" text="Cumulus Linux User Accounts">}}.
+The default credentials for Cumulus Linux have changed from *cumulus/CumulusLinux!* to *cumulus/cumulus* for releases 4.2 and later. For details, read [Cumulus Linux User Accounts]({{<ref "cumulus-linux-43/System-Configuration/Authentication-Authorization-and-Accounting/User-Accounts">}}).
 
 {{</notice>}}
 
@@ -122,9 +122,9 @@ You must have sudoer permission to properly configure switches when using the SS
     cumulus@switch:~$ netq lcm add credentials ssh-key PUBLIC_SSH_KEY
     ```
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}
 
 ## View Switch Credentials
 

@@ -9,13 +9,13 @@ In either in-band or out-of-band deployments, NetQ offers networkwide configurat
 
 ## The NetQ Agent
 
-From a software perspective, a network switch has software associated with the hardware platform, the operating system, and communications. For data centers, the software on a Cumulus Linux network switch would be similar to the diagram shown here.
+From a software perspective, a network switch has software associated with the hardware platform, the operating system, and communications. For data centers, the software on a network switch would be similar to the diagram shown here.
 
 {{<figure src="/images/netq/netq-agent-operation-diag.png" width="500">}}
 
 The NetQ Agent interacts with the various components and software on switches and hosts and provides the gathered information to the NetQ Platform. You can view the data using the NetQ CLI or UI.
 
-The NetQ Agent polls the user space applications for information about the performance of the various routing protocols and services that are running on the switch. Cumulus Networks supports BGP and OSPF FRRouting (FRR) protocols as well as static addressing. Cumulus Linux also supports LLDP and MSTP among other protocols, and a variety of services such as systemd and sensors. For hosts, the NetQ Agent also polls for performance of containers managed with Kubernetes. All of this information is used to provide the current health of the network and verify it is configured and operating correctly.
+The NetQ Agent polls the user space applications for information about the performance of the various routing protocols and services that are running on the switch. Cumulus Linux supports BGP and OSPF FRRouting (FRR) protocols as well as static addressing. Cumulus Linux also supports LLDP and MSTP among other protocols, and a variety of services such as systemd and sensors. For hosts, the NetQ Agent also polls for performance of containers managed with Kubernetes. All of this information is used to provide the current health of the network and verify it is configured and operating correctly.
 
 For example, if the NetQ Agent learns that an interface has gone down, a new BGP neighbor has been configured, or a container has moved, it provides that information to the NetQ Platform. That information can then be used to notify users of the operational state change through various channels. By default, data is logged in the database, but you can use the CLI (`netq show events`) or configure the Event Service in NetQ to send the information to a third-party notification application as well. NetQ supports PagerDuty and Slack integrations.
 

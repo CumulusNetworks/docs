@@ -88,7 +88,7 @@ Attributes are displayed as the default tab on the large Switch card. You can vi
 
 {{<figure src="/images/netq/dev-switch-large-attributes-tab-230.png" width="500">}}
 
-From a performance perspective, this example shows that five interfaces are down, the NetQ Agent is communicating with the NetQ appliance or VM, and it is missing the Cumulus Linux license. It is important the license is valid, so you would want to fix this first (refer to {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux-42/Quick-Start-Guide/#install-the-license" text="Install the Cumulus Linux License">}}). Secondly, you would want to look more closely at the interfaces (refer to {{<link title="#view-interface-statistics-and-utilization" text="interface statistics">}}).
+From a performance perspective, this example shows that five interfaces are down and the NetQ Agent is communicating with the NetQ appliance or VM. Investigate the interfaces (refer to {{<link title="#view-interface-statistics-and-utilization" text="interface statistics">}}).
 
 ## System Configuration
 
@@ -708,25 +708,39 @@ This example shows all installed software packages for *spine01*.
 ```
 cumulus@switch:~$ netq spine01 show cl-pkg-info
 Matching package_info records:
-Hostname          Package Name             Version              CL Version           Package Status       Last Changed
------------------ ------------------------ -------------------- -------------------- -------------------- -------------------------
-spine01           libfile-fnmatch-perl     0.02-2+b1            Cumulus Linux 3.7.12 installed            Wed Aug 26 19:58:45 2020
-spine01           screen                   4.2.1-3+deb8u1       Cumulus Linux 3.7.12 installed            Wed Aug 26 19:58:45 2020
-spine01           libudev1                 215-17+deb8u13       Cumulus Linux 3.7.12 installed            Wed Aug 26 19:58:45 2020
-spine01           libjson-c2               0.11-4               Cumulus Linux 3.7.12 installed            Wed Aug 26 19:58:45 2020
-spine01           atftp                    0.7.git20120829-1+de Cumulus Linux 3.7.12 installed            Wed Aug 26 19:58:45 2020
-                                           b8u1
-spine01           isc-dhcp-relay           4.3.1-6-cl3u14       Cumulus Linux 3.7.12 installed            Wed Aug 26 19:58:45 2020
-spine01           iputils-ping             3:20121221-5+b2      Cumulus Linux 3.7.12 installed            Wed Aug 26 19:58:45 2020
-spine01           base-files               8+deb8u11            Cumulus Linux 3.7.12 installed            Wed Aug 26 19:58:45 2020
-spine01           libx11-data              2:1.6.2-3+deb8u2     Cumulus Linux 3.7.12 installed            Wed Aug 26 19:58:45 2020
-spine01           onie-tools               3.2-cl3u6            Cumulus Linux 3.7.12 installed            Wed Aug 26 19:58:45 2020
-spine01           python-cumulus-restapi   0.1-cl3u10           Cumulus Linux 3.7.12 installed            Wed Aug 26 19:58:45 2020
-spine01           tasksel                  3.31+deb8u1          Cumulus Linux 3.7.12 installed            Wed Aug 26 19:58:45 2020
-spine01           ncurses-base             5.9+20140913-1+deb8u Cumulus Linux 3.7.12 installed            Wed Aug 26 19:58:45 2020
-                                           3
-spine01           libmnl0                  1.0.3-5-cl3u2        Cumulus Linux 3.7.12 installed            Wed Aug 26 19:58:45 2020
-spine01           xz-utils                 5.1.1alpha+20120614- Cumulus Linux 3.7.12 installed            Wed Aug 26 19:58:45 2020
+Hostname          Package Name             Version              CL Version  Package Status       Last Changed
+----------------- ------------------------ -------------------- ----------- -------------------- -------------------------
+spine01           libxpm4                  1:3.5.12-1           Cumulus Lin installed            Tue May 25 16:01:24 2021
+                                                                ux 4.3.0
+spine01           libgdbm6                 1.18.1-4             Cumulus Lin installed            Tue May 25 16:01:24 2021
+                                                                ux 4.3.0
+spine01           multiarch-support        2.28-10              Cumulus Lin installed            Tue May 25 16:01:24 2021
+                                                                ux 4.3.0
+spine01           diffutils                1:3.7-3              Cumulus Lin installed            Tue May 25 16:01:24 2021
+                                                                ux 4.3.0
+spine01           adduser                  3.118                Cumulus Lin installed            Tue May 25 16:01:24 2021
+                                                                ux 4.3.0
+spine01           python-pkg-resources     40.8.0-1             Cumulus Lin installed            Tue May 25 16:01:24 2021
+                                                                ux 4.3.0
+spine01           libtiff5                 4.1.0+git191117-2~de Cumulus Lin installed            Tue May 25 16:01:24 2021
+                                           b10u1                ux 4.3.0
+spine01           make                     4.2.1-1.2            Cumulus Lin installed            Tue May 25 16:01:24 2021
+                                                                ux 4.3.0
+spine01           libpcre3                 2:8.39-12            Cumulus Lin installed            Tue May 25 16:01:24 2021
+                                                                ux 4.3.0
+spine01           cumulus-hyperconverged   0.1-cl4u3            Cumulus Lin installed            Tue May 25 16:01:24 2021
+                                                                ux 4.3.0
+spine01           python3-urllib3          1.24.1-1             Cumulus Lin installed            Tue May 25 16:01:24 2021
+                                                                ux 4.3.0
+spine01           python-markupsafe        1.1.0-1              Cumulus Lin installed            Tue May 25 16:01:24 2021
+                                                                ux 4.3.0
+spine01           libusb-0.1-4             2:0.1.12-32          Cumulus Lin installed            Tue May 25 16:01:24 2021
+                                                                ux 4.3.0
+spine01           cron                     3.0pl1-133-cl4u1     Cumulus Lin installed            Tue May 25 16:01:24 2021
+                                                                ux 4.3.0
+spine01           libsasl2-modules-db      2.1.27+dfsg-1+deb10u Cumulus Lin installed            Tue May 25 16:01:24 2021
+                                           1                    ux 4.3.0
+
 ...
 ```
 

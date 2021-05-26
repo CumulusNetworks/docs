@@ -11,6 +11,7 @@ After installing your NetQ software and the NetQ {{<version>}} Agent on each swi
 
 - Cumulus Linux version 3.3.2-3.7.x
 - Cumulus Linux version 4.0.0 and later
+- SONiC 202012 and later
 - CentOS 7
 - RHEL 7.1
 - Ubuntu 16.04
@@ -29,7 +30,7 @@ For servers running RHEL 7, CentOS or Ubuntu OS, you need to:
 - Install and configure NTP, if needed
 - Obtain NetQ software packages
 
-You don't need to take any of these steps on Cumulus Linux.
+You don't need to take any of these steps on Cumulus Linux or SONiC.
 
 ### Verify Service Package Versions
 
@@ -346,7 +347,7 @@ Edit the `/etc/apt/sources.list` file to add the repository for NetQ.
 ```
 cumulus@switch:~$ sudo nano /etc/apt/sources.list
 ...
-deb http://apps3.cumulusnetworks.com/repos/deb CumulusLinux-3 netq-3.3
+deb http://apps3.cumulusnetworks.com/repos/deb CumulusLinux-3 netq-4.0
 ...
 ```
 
@@ -361,7 +362,7 @@ The repository <code>deb http://apps3.cumulusnetworks.com/repos/deb CumulusLinux
 ```
 cumulus@switch:~$ sudo nano /etc/apt/sources.list
 ...
-deb http://apps3.cumulusnetworks.com/repos/deb CumulusLinux-4 netq-3.3
+deb http://apps3.cumulusnetworks.com/repos/deb CumulusLinux-4 netq-4.0
 ...
 ```
 
@@ -386,7 +387,7 @@ The repository <code>deb http://apps3.cumulusnetworks.com/repos/deb CumulusLinux
     cumulus@switch:~$ dpkg-query -W -f '${Package}\t${Version}\n' netq-agent
     ```
 <!-- vale off -->
-{{<netq-install/cli-version version="3.3.1" opsys="cl">}}
+{{<netq-install/cli-version version="4.0" opsys="cl">}}
 <!-- vale on -->
 4. Continue with NetQ CLI configuration in the next section.
 
@@ -406,14 +407,14 @@ The repository <code>deb http://apps3.cumulusnetworks.com/repos/deb CumulusLinux
     ```
     root@rhel7:~# vi /etc/yum.repos.d/cumulus-host-el.repo
     ...
-    [cumulus-arch-netq-3.3]
+    [cumulus-arch-netq-4.0]
     name=Cumulus netq packages
-    baseurl=https://apps3.cumulusnetworks.com/repos/rpm/el/7/netq-3.2/$basearch
+    baseurl=https://apps3.cumulusnetworks.com/repos/rpm/el/7/netq-4.0/$basearch
     gpgcheck=1
     enabled=1
-    [cumulus-noarch-netq-3.3]
+    [cumulus-noarch-netq-4.0]
     name=Cumulus netq architecture-independent packages
-    baseurl=https://apps3.cumulusnetworks.com/repos/rpm/el/7/netq-3.3/noarch
+    baseurl=https://apps3.cumulusnetworks.com/repos/rpm/el/7/netq-4.0/noarch
     gpgcheck=1
     enabled=1
     ...
@@ -432,7 +433,7 @@ The repository <code>deb http://apps3.cumulusnetworks.com/repos/deb CumulusLinux
     root@rhel7:~# rpm -q -netq-apps
     ```
 <!-- vale off -->
-    {{<netq-install/cli-version version="3.3.0" opsys="rh">}}
+    {{<netq-install/cli-version version="4.0.0" opsys="rh">}}
 <!-- vale on -->
 5. Continue with the next section.
 
@@ -453,7 +454,7 @@ The repository <code>deb http://apps3.cumulusnetworks.com/repos/deb CumulusLinux
     root@ubuntu:~# dpkg-query -W -f '${Package}\t${Version}\n' netq-apps
     ```
 <!-- vale off -->
-    {{<netq-install/cli-version version="3.3.1" opsys="ub">}}
+    {{<netq-install/cli-version version="4.0" opsys="ub">}}
 <!-- vale on -->
 3. Continue with NetQ CLI configuration in the next section.
 

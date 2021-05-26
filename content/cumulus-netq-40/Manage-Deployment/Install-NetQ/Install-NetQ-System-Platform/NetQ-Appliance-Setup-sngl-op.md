@@ -89,13 +89,13 @@ Change the password and specify the hostname and IP address for the appliance be
 
 Now that the appliance is up and running, verify that the software is available and the appliance is ready for installation.
 
-1. Verify that the needed packages are present and of the correct release, version 3.3.1 and update 31.
+1. Verify that the needed packages are present and of the correct release, version {{<version>}} and update 34.
 
-    {{<netq-install/verify-pkgs version="3.3.1" platform="appliance">}}
+    {{<netq-install/verify-pkgs version="4.0" platform="appliance">}}
 
-2. Verify the installation images are present and of the correct release, version 3.3.1.
+2. Verify the installation images are present and of the correct release, version {{<version>}}.
 
-    {{<netq-install/verify-image deployment="onprem" version="3.3.1">}}
+    {{<netq-install/verify-image deployment="onprem" version="4.0">}}
 
 3. Verify the appliance is ready for installation. Fix any errors indicated before installing the NetQ software.
 
@@ -103,11 +103,11 @@ Now that the appliance is up and running, verify that the software is available 
 
 4. Run the Bootstrap CLI. Be sure to replace the *eno1* interface used in this example with the interface or IP address on the appliance used to listen for NetQ Agents.
 
-    {{<netq-install/bootstrap server="single" version="3.3.1" platform="appliance" deployment="onprem">}}
+    {{<netq-install/bootstrap server="single" version="4.0" platform="appliance" deployment="onprem">}}
 
 5. Consider the following for container environments, and make adjustments as needed.
 
-    {{<netq-install/container version="3.3.1">}}
+    {{<netq-install/container version="4.0">}}
 
 The final step is to install and activate the NetQ software. You can do this using the Admin UI or the NetQ CLI.
 

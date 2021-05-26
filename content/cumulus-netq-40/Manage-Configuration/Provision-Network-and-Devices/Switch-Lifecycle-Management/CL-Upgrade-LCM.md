@@ -216,171 +216,39 @@ If one or more of the pre-checks fail, resolve the related issue and start the u
 
 Expand the following dropdown to view common failures, their causes and corrective actions.
 
-{{< expand "Precheck Failure Messages"  >}}
+{{<expand "Precheck Failure Messages">}}
 
-<table>
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 24%" />
-<col style="width: 10%" />
-<col style="width: 23%" />
-<col style="width: 23%" />
-</colgroup>
-<thead>
-<tr>
-<th>Pre-check</th>
-<th>Message</th>
-<th>Type</th>
-<th>Description</th>
-<th>Corrective Action</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>(1) Switch Order</td>
-<td>&lt;hostname1&gt; switch cannot be upgraded without isolating &lt;hostname2&gt;, &lt;hostname3&gt; which are connected neighbors. Unable to upgrade</td>
-<td>Warning</td>
-<td>Hostname2 and hostname3 switches will be isolated during upgrade, making them unreachable. These switches are skipped if you continue with the upgrade.</td>
-<td>Reconfigure hostname2 and hostname 3 switches to have redundant connections, or continue with upgrade knowing that you will lose connectivity with these switches during the upgrade process.</td>
-</tr>
-<tr>
-<td>(2) Version Compatibility</td>
-<td>Unable to upgrade &lt;hostname&gt; with CL version &lt;3.y.z&gt; to &lt;4.y.z&gt;</td>
-<td>Error</td>
-<td>LCM only supports CL 3.x to 3.x and CL 4.x to 4.x upgrades</td>
-<td>Perform a fresh install of CL 4.x</td>
-</tr>
-<tr>
-<td></td>
-<td>Image not uploaded for the combination: CL Version - &lt;x.y.z&gt;, Asic Vendor - &lt;NVIDIA | Broadcom&gt;, CPU Arch - &lt;x86 | ARM &gt;</td>
-<td>Error</td>
-<td>The specified Cumulus Linux image is not available in the LCM repository</td>
-<td>Upload missing image. Refer to {{<link title="#Upload Images" text="Upload Images">}}.</td>
-</tr>
-<tr>
-<td></td>
-<td>Restoration image not uploaded for the combination: CL Version - &lt;x.y.z&gt;, Asic Vendor - &lt;Mellanox | Broadcom&gt;, CPU Arch - &lt;x86 | ARM &gt;</td>
-<td>Error</td>
-<td>The specified Cumulus Linux image needed to restore the switch back to its original version if the upgrade fails is not available in the LCM repository. This applies only when the "Roll back on upgrade failure" job option is selected.</td>
-<td>Upload missing image. Refer to {{<link title="#Upload Images" text="Upload Images">}}.</td>
-</tr>
-<tr>
-<td></td>
-<td>NetQ Agent and NetQ CLI Debian packages are not present for combination: CL Version - &lt;x.y.z&gt;, CPU Arch - &lt;x86 | ARM &gt;</td>
-<td>Error</td>
-<td>The specified NetQ packages are not installed on the switch.</td>
-<td>Upload missing packages. Refer to {{<link title="Install NetQ Agents" text="Install NetQ Agents">}} and {{<link title="Install NetQ CLI" text="Install NetQ CLI">}}.</td>
-</tr>
-<tr>
-<td></td>
-<td>Restoration NetQ Agent and NetQ CLI Debian packages are not present for combination: CL Version - &lt;x.y.z&gt;, CPU Arch - &lt;x86 | ARM &gt;</td>
-<td>Error</td>
-<td>The specified NetQ packages are not installed on the switch.</td>
-<td>Install missing packages. Refer to {{<link title="Install NetQ Agents" text="Install NetQ Agents">}} and {{<link title="Install NetQ CLI" text="Install NetQ CLI">}}.</td>
-</tr>
-<tr>
-<td></td>
-<td>CL version to be upgraded to and current version on switch &lt;hostname&gt; are the same.</td>
-<td>Warning</td>
-<td>Switch is already operating the desired upgrade CL version. No upgrade is required.</td>
-<td>Choose an alternate CL version for upgrade or remove switch from upgrade job.</td>
-</tr>
-<tr>
-<td>(3) Switch Connectivity</td>
-<td>Global credentials are not specified</td>
-<td>Error</td>
-<td>Switch access credentials are required to perform a CL upgrade, and they have not been specified.</td>
-<td>Specify access credentials. Refer to {{<link title="#Specify Switch Credentials" text="Specify Switch Credentials">}}.</td>
-</tr>
-<tr>
-<td></td>
-<td>Switch is not in NetQ inventory: &lt;hostname&gt;</td>
-<td>Error</td>
-<td>LCM cannot upgrade a switch that is not in its inventory.</td>
-<td><p>Verify you have the correct hostname or IP address for the switch. </p> <p>Verify the switch has NetQ Agent 2.4.0 or later installed: click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18" alt="Main Menu">}}, then click <strong>Agents</strong> in the <strong>Network</strong> section, view <strong>Version</strong> column. Upgrade NetQ Agents if needed. Refer to {{<link title="Upgrade NetQ Agents">}}.</p></td>
-</tr>
-<tr>
-<td></td>
-<td>Switch &lt;hostname&gt; is rotten. Cannot select for upgrade.</td>
-<td>Error</td>
-<td>LCM must be able to communicate with the switch to upgrade it.</td>
-<td>Troubleshoot the connectivity issue and retry upgrade when the switch is fresh.</td>
-</tr>
-<tr>
-<td></td>
-<td>Total number of jobs &lt;running jobs count&gt; exceeded Max jobs supported 50</td>
-<td>Error</td>
-<td>LCM can support a total of 50 upgrade jobs running simultaneously.</td>
-<td>Wait for the total number of simultaneous upgrade jobs to drop below 50.</td>
-</tr>
-<tr>
-<td></td>
-<td>Switch &lt;hostname&gt; is already being upgraded. Cannot initiate another upgrade.</td>
-<td>Error</td>
-<td>Switch is already a part of another running upgrade job.</td>
-<td>Remove switch from current job or wait until the competing job has completed.</td>
-</tr>
-<tr>
-<td></td>
-<td>Backup failed in previous upgrade attempt for switch &lt;hostname&gt;.</td>
-<td>Warning</td>
-<td>LCM was unable to back up switch during a previously failed upgrade attempt.</td>
-<td>You may want to back up switch manually prior to upgrade if you want to restore the switch after upgrade. Refer to [add link here].</td>
-</tr>
-<tr>
-<td></td>
-<td>Restore failed in previous upgrade attempt for switch &lt;hostname&gt;.</td>
-<td>Warning</td>
-<td>LCM was unable to restore switch after a previously failed upgrade attempt.</td>
-<td>You may need to restore switch manually after upgrade. Refer to [add link here].</td>
-</tr>
-<tr>
-<td></td>
-<td>Upgrade failed in previous attempt for switch &lt;hostname&gt;.</td>
-<td>Warning</td>
-<td>LCM was unable to upgrade switch during last attempt.</td>
-<td></td>
-</tr>
-<tr>
-<td>(4) MLAG Configuration</td>
-<td>hostname:&lt;hostname&gt;,reason:&lt;MLAG error message&gt;</td>
-<td>Error</td>
-<td>An error in an MLAG configuration has been detected. For example: Backup IP 10.10.10.1 does not belong to peer.</td>
-<td>Review the MLAG configuration on the identified switch. Refer to {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux-41/Layer-2/Multi-Chassis-Link-Aggregation-MLAG/" text="Multi-Chassis Link Aggregation-MLAG">}}. Make any needed changes.</td>
-</tr>
-<tr>
-<td></td>
-<td>MLAG configuration checks timed out</td>
-<td>Error</td>
-<td>One or more switches stopped responding to the MLAG checks.</td>
-<td></td>
-</tr>
-<tr>
-<td></td>
-<td>MLAG configuration checks failed</td>
-<td>Error</td>
-<td>One or more switches failed the MLAG checks.</td>
-<td></td>
-</tr>
-<tr>
-<td></td>
-<td>For switch &lt;hostname&gt;, the MLAG switch with Role: secondary and ClagSysmac: &lt;MAC address&gt; does not exist.</td>
-<td>Error</td>
-<td>Identified switch is the primary in an MLAG pair, but the defined secondary switch is not in NetQ inventory.</td>
-<td>Verify the switch has NetQ Agent 2.4.0 or later installed: click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18" alt="Main Menu">}}, then click <strong>Agents</strong> in the <strong>Network</strong> section, view <strong>Version</strong> column. Upgrade NetQ Agent if needed. Refer to {{<link title="Upgrade NetQ Agents">}}. Add the missing peer switch to NetQ inventory.</td>
-</tr>
-</tbody>
-</table>
+| Pre-check | Message | Type | Description | Corrective Action |
+| --------- | ------- | ---- | ----------- | ----------------- |
+| (1) Switch Order | &lt;hostname1&gt; switch cannot be upgraded without isolating &lt;hostname2&gt;, &lt;hostname3&gt; which are connected neighbors. Unable to upgrade | Warning | Hostname2 and hostname3 switches will be isolated during upgrade, making them unreachable. These switches are skipped if you continue with the upgrade. | Reconfigure hostname2 and hostname 3 switches to have redundant connections, or continue with upgrade knowing that you will lose connectivity with these switches during the upgrade process. |
+| (2) Version Compatibility | Unable to upgrade &lt;hostname&gt; with CL version &lt;3.y.z&gt; to &lt;4.y.z&gt; | Error | LCM only supports CL 3.x to 3.x and CL 4.x to 4.x upgrades | Perform a fresh install of CL 4.x |
+|  | Image not uploaded for the combination: CL Version - &lt;x.y.z&gt;, Asic Vendor - &lt;NVIDIA \| Broadcom&gt;, CPU Arch - &lt;x86 \| ARM &gt; | Error | The specified Cumulus Linux image is not available in the LCM repository | Upload missing image. Refer to {{<link title="#Upload Images" text="Upload Images">}}. |
+|  | Restoration image not uploaded for the combination: CL Version - &lt;x.y.z&gt;, Asic Vendor - &lt;Mellanox \| Broadcom&gt;, CPU Arch - &lt;x86 \| ARM &gt; | Error | The specified Cumulus Linux image needed to restore the switch back to its original version if the upgrade fails is not available in the LCM repository. This applies only when the "Roll back on upgrade failure" job option is selected. | Upload missing image. Refer to {{<link title="#Upload Images" text="Upload Images">}}. |
+|  | NetQ Agent and NetQ CLI Debian packages are not present for combination: CL Version - &lt;x.y.z&gt;, CPU Arch - &lt;x86 \| ARM &gt; | Error | The specified NetQ packages are not installed on the switch. | Upload missing packages. Refer to {{<link title="Install NetQ Agents" text="Install NetQ Agents">}} and {{<link title="Install NetQ CLI" text="Install NetQ CLI">}}. |
+|  |  | Restoration NetQ Agent and NetQ CLI Debian packages are not present for combination: CL Version - &lt;x.y.z&gt;, CPU Arch - &lt;x86 \| ARM &gt; | Error | The specified NetQ packages are not installed on the switch. | Install missing packages. Refer to {{<link title="Install NetQ Agents" text="Install NetQ Agents">}} and {{<link title="Install NetQ CLI" text="Install NetQ CLI">}}. |
+|  | CL version to be upgraded to and current version on switch &lt;hostname&gt; are the same. | Warning | Switch is already operating the desired upgrade CL version. No upgrade is required. | Choose an alternate CL version for upgrade or remove switch from upgrade job. |
+| (3) Switch Connectivity | Global credentials are not specified | Error | Switch access credentials are required to perform a CL upgrade, and they have not been specified. | Specify access credentials. Refer to {{<link title="#Specify Switch Credentials" text="Specify Switch Credentials">}}. |
+|  | Switch is not in NetQ inventory: &lt;hostname&gt; | Error | LCM cannot upgrade a switch that is not in its inventory. | Verify you have the correct hostname or IP address for the switch.<br/><br/>Verify the switch has NetQ Agent 2.4.0 or later installed: click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18" alt="Main Menu">}}, then click <strong>Agents</strong> in the <strong>Network</strong> section, view <strong>Version</strong> column. Upgrade NetQ Agents if needed. Refer to {{<link title="Upgrade NetQ Agents">}}. |
+|  | Switch &lt;hostname&gt; is rotten. Cannot select for upgrade. | Error | LCM must be able to communicate with the switch to upgrade it. | Troubleshoot the connectivity issue and retry upgrade when the switch is fresh. |
+|  | Total number of jobs &lt;running jobs count&gt; exceeded Max jobs supported 50 | Error | LCM can support a total of 50 upgrade jobs running simultaneously. | Wait for the total number of simultaneous upgrade jobs to drop below 50. |
+|  | Switch &lt;hostname&gt; is already being upgraded. Cannot initiate another upgrade. | Error | Switch is already a part of another running upgrade job. | Remove switch from current job or wait until the competing job has completed. |
+|  | Backup failed in previous upgrade attempt for switch &lt;hostname&gt;. | Warning | LCM was unable to back up switch during a previously failed upgrade attempt. | You may want to back up switch manually prior to upgrade if you want to restore the switch after upgrade. Refer to [add link here]. |
+|  | Restore failed in previous upgrade attempt for switch &lt;hostname&gt;. | Warning | LCM was unable to restore switch after a previously failed upgrade attempt. | You may need to restore switch manually after upgrade. Refer to [add link here]. |
+|  | Upgrade failed in previous attempt for switch &lt;hostname&gt;. | Warning | LCM was unable to upgrade switch during last attempt. |  |
+| (4) MLAG Configuration | hostname:&lt;hostname&gt;,reason:&lt;MLAG error message&gt; | Error | An error in an MLAG configuration has been detected. For example: Backup IP 10.10.10.1 does not belong to peer. | Review the MLAG configuration on the identified switch. Refer to [Multi-Chassis Link Aggregation - MLAG]({{<ref "cumulus-linux-43/Layer-2/Multi-Chassis-Link-Aggregation-MLAG">}}). Make any needed changes. |
+|  | MLAG configuration checks timed out | Error | One or more switches stopped responding to the MLAG checks. |  |
+|  | MLAG configuration checks failed | Error | One or more switches failed the MLAG checks. |  |
+|  | For switch &lt;hostname&gt;, the MLAG switch with Role: secondary and ClagSysmac: &lt;MAC address&gt; does not exist. | Error | Identified switch is the primary in an MLAG pair, but the defined secondary switch is not in NetQ inventory. | Verify the switch has NetQ Agent 2.4.0 or later installed: click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18" alt="Main Menu">}}, then click <strong>Agents</strong> in the <strong>Network</strong> section, view <strong>Version</strong> column. Upgrade NetQ Agent if needed. Refer to {{<link title="Upgrade NetQ Agents">}}. Add the missing peer switch to NetQ inventory. |
 
-{{< /expand >}}
+{{</expand>}}
 
 ### Analyze Results
 
 After starting the upgrade you can monitor the progress of your upgrade job and the final results. While the views are different, essentially the same information is available from either the NetQ UI or the NetQ CLI.
 
-{{< tabs "TabID334" >}}
+{{<tabs "TabID334">}}
 
-{{< tab "NetQ UI" >}}
+{{<tab "NetQ UI">}}
 
 You can track the progress of your upgrade job from the Preview page or the Upgrade History page of the NetQ UI.
 

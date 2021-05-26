@@ -38,7 +38,7 @@ To complete the preparation:
     ```
     cumulus@<hostname>:~$ sudo apt-get update
     Get:1 http://apps3.cumulusnetworks.com/repos/deb bionic InRelease [13.8 kB]
-    Get:2 http://apps3.cumulusnetworks.com/repos/deb bionic/netq-3.3 amd64 Packages [758 B]
+    Get:2 http://apps3.cumulusnetworks.com/repos/deb bionic/netq-4.0 amd64 Packages [758 B]
     Hit:3 http://archive.ubuntu.com/ubuntu bionic InRelease
     Get:4 http://security.ubuntu.com/ubuntu bionic-security InRelease [88.7 kB]
     Get:5 http://archive.ubuntu.com/ubuntu bionic-updates InRelease [88.7 kB]

@@ -306,6 +306,65 @@ You can set the scheduling weight per egress queue, which determines the amount 
 
 You set the weights per egress queue as a percentage. The total weight percentages for all egress queues cannot be greater than 100. If you do not define a weight for an egress queue, no scheduling is done for packets on this queue if congestion occurs. If you want to configure strict scheduling on an egress queue (always send every single packet in the queue) set the value to 0.
 
+You can configure per queue egress scheduling with NCLU commands or manually by editing the `/etc/cumulus/datapath/traffic.conf` file.
+
+Cumulus Linux provides a default profile. You can either enable the default profile or configure a non-default profile.
+
+{{< tabs "TabID313 ">}}
+{{< tab "NCLU Commands ">}}
+
+The following example commands enable the default profile:
+
+```
+cumulus@switch:~$ net add qos egress-sched default_profile
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+In the default profile, the egress queue weights are set as follows. You cannot modify these values with NCLU.
+
+```
+...
+default_egress_sched.egr_queue_0.bw_percent = 12
+default_egress_sched.egr_queue_1.bw_percent = 12
+default_egress_sched.egr_queue_2.bw_percent = 24
+default_egress_sched.egr_queue_3.bw_percent = 12
+default_egress_sched.egr_queue_4.bw_percent = 12
+default_egress_sched.egr_queue_5.bw_percent = 12
+default_egress_sched.egr_queue_6.bw_percent = 12
+default_egress_sched.egr_queue_7.bw_percent = 0
+```
+
+The following commands create a non-default profile for port group `port_group1` for swp2 and swp3, set the weight to 30 percent on egress queue 2 and strict scheduling on egress queue 3:
+
+```
+cumulus@switch:~$ net add qos egress-sched profile port_set swp2-swp3
+cumulus@switch:~$ net add qos egress_sched profile sched_port_group1 queue 2 dwrr bw_percent 30​
+cumulus@switch:~$ net add qos egress_sched profile sched_port_group1 queue 3 strict
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+The NCLU commands save the configuration in the `/etc/cumulus/datapath/traffic.conf` file. For example:
+
+```
+...
+egress_sched.port_group_list = [sched_port_group1]
+egress_sched.sched_port_group1.port_set = swp2-swp3
+egress_sched.sched_port_group1.egr_queue_2.bw_percent = 30
+egress_sched.sched_port_group1.egr_queue_3.bw_percent = 0
+...
+```
+
+{{%notice note%}}
+- To configure a non-default profile with NCLU, you must configure the port set for the profile before you configure the bandwidth percent for the egress queues.
+- The total bandwidth percent for all egress queues cannot be greater than 100.
+- If you delete the port set for a non-default profile, the bandwidth percent for all the queues in that profile are deleted.
+{{%/notice%}}
+
+{{< /tab >}}
+{{< tab "Edit the traffic.conf File ">}}
+
 To configure per queue egress scheduling, edit the `default egress scheduling weight per egress queue` section  of the `/etc/cumulus/datapath/traffic.conf` file.
 
 Cumulus Linux provides a default profile. You can either enable the default profile or configure a non-default profile.
@@ -351,6 +410,9 @@ cumulus@switch:~$ echo 1 > /cumulus/switchd/config/traffic/reload
 ```
 
 Always run the {{<link url="#syntax-checker" text="syntax checker">}} syntax checker before applying the configuration changes.
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ## Traffic Shaping
 

@@ -7,13 +7,13 @@ This site uses the static site generator [Hugo](https://gohugo.io/documentation/
 
 Hugo contains a local development server to build and view live changes to the repo. To build and view the live site:
 
-1. Install Hugo version 0.65.3 **extended** from https://github.com/gohugoio/hugo/releases/tag/v0.65.3.
+1. Install Hugo version 0.82.0 **extended** from https://github.com/gohugoio/hugo/releases/tag/v0.82.0.
 
-2. Verify Hugo with `hugo version`. This site supports Hugo version 0.65.3. The output of the `hugo version` command should read:
+2. Verify Hugo with `hugo version`. This site supports Hugo version 0.82.0. The output of the `hugo version` command should read:
 
 <!-- vale off -->
 ```
-Hugo Static Site Generator v0.65.3/extended darwin/amd64 BuildDate: unknown
+hugo v0.82.0-9D960784+extended linux/amd64 BuildDate=2021-03-21T17:28:04Z VendorInfo=gohugoio
 ```
 <!-- vale on -->
 3. Clone this repository with `git clone`.

@@ -30,7 +30,7 @@ To submit your feedback with this method:
 
 5. Click the **Preview changes** tab to see what your changes will look like.
 
-6. When you are satisfied with your changes, scroll down until you see the    **Commit changes** box.
+6. When you are satisfied with your changes, scroll down until you see the **Commit changes** box.
 
 7. Type a summary (top field) and, optionally, a description (bottom field) of the changes you made.
 

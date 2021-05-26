@@ -23,6 +23,22 @@ In *all-active* mode, when a bond has multiple slave interfaces, each bond slave
 To enable LACP bypass on the host-facing bond:
 
 {{< tabs "TabID28 ">}}
+{{< tab "NCLU Commands ">}}
+
+The following commands create a VLAN-aware bridge with LACP bypass enabled:
+
+```
+cumulus@switch:~$ net add bond bond1 bond slaves swp1,swp2
+cumulus@switch:~$ net add bond bond1 clag id 1
+cumulus@switch:~$ net add bond bond1 bond lacp-bypass-allow
+cumulus@switch:~$ net add bond bond1 stp bpduguard
+cumulus@switch:~$ net add bridge bridge ports bond1,bond2,bond3
+cumulus@switch:~$ net add bridge bridge vids 10,20,30
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+{{< /tab >}}
 {{< tab "CUE Commands ">}}
 
 The following commands create a VLAN-aware bridge with LACP bypass enabled:
@@ -66,7 +82,7 @@ cumulus@switch:~$ sudo ifreload -a
 {{< /tab >}}
 {{< /tabs >}}
 
-To check the status of the configuration, run the CUE `cl show interface <bond>` command or the Linux `ip link show` command on the bond and its slave interfaces:
+To check the status of the configuration, run the NCLU `net show interface <bond>` command or the Linux `ip link show` command on the bond and its slave interfaces. The CUE command is `cl show interface <bond>`.
 
 ```
 cumulus@switch:~$ ip link show bond1

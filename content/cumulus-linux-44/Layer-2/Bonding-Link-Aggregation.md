@@ -89,6 +89,15 @@ In the example below, the front panel port interfaces swp1 thru swp4 are slaves 
 To create and configure a bond:
 
 {{< tabs "TabID46 ">}}
+{{< tab "NCLU Commands ">}}
+
+```
+cumulus@switch:~$ net add bond bond0 bond slaves swp1-4
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+{{< /tab >}}
 {{< tab "CUE Commands ">}}
 
 ```
@@ -99,7 +108,7 @@ cumulus@switch:~$ cl config apply
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Edit the `/etc/network/interfaces` file to add a stanza for the bond, then run the `ifreload -a` command. The example below creates a bond called `bond0` with slaves swp1, swp2, swp3, and swp4:
+Edit the `/etc/network/interfaces` file to add a stanza for the bond, then run the `ifreload -a` command.
 
 ```
 cumulus@switch:~$ sudo nano /etc/network/interfaces
@@ -155,6 +164,15 @@ The configuration options for a bond are are described in the table below. To co
 The following example sets the bond mode for bond01 to balance-xor (static):
 
 {{< tabs "TabID119 ">}}
+{{< tab "NCLU Commands ">}}
+
+```
+cumulus@switch:~$ net add bond bond1 bond mode balance-xor
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+{{< /tab >}}
 {{< tab "CUE Commands ">}}
 
 ```
@@ -202,6 +220,50 @@ Each bond configuration option, except for `bond slaves,` is set to the recommen
 To show information for a bond:
 
 {{< tabs "TabID177 ">}}
+{{< tab "NCLU Commands ">}}
+
+Run the `net show interface <bond>` command:
+
+```
+cumulus@switch:~$ net show interface bond1
+    Name    MAC                Speed    MTU    Mode
+--  ------  -----------------  -------  -----  ------
+UP  bond1   00:02:00:00:00:12  20G      1500   Bond
+
+
+Bond Details
+---------------  -------------
+Bond Mode:       Balance-XOR
+Load Balancing:  Layer3+4
+Minimum Links:   1
+In CLAG:         CLAG Inactive
+
+
+    Port     Speed      TX    RX    Err    Link Failures
+--  -------  -------  ----  ----  -----  ---------------
+UP  swp3(P)  10G         0     0      0                0
+UP  swp4(P)  10G         0     0      0                0
+
+
+LLDP
+-------  ----  ------------
+swp3(P)  ====  swp1(p1c1h1)
+swp4(P)  ====  swp2(p1c1h1)Routing
+-------
+  Interface bond1 is up, line protocol is up
+  Link ups:       3    last: 2017/04/26 21:00:38.26
+  Link downs:     2    last: 2017/04/26 20:59:56.78
+  PTM status: disabled
+  vrf: Default-IP-Routing-Table
+  index 31 metric 0 mtu 1500
+  flags: <UP,BROADCAST,RUNNING,MULTICAST>
+  Type: Ethernet
+  HWaddr: 00:02:00:00:00:12
+  inet6 fe80::202:ff:fe00:12/64
+  Interface Type Other
+```
+
+{{< /tab >}}
 {{< tab "CUE Commands ">}}
 
 ```

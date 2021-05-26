@@ -9,7 +9,7 @@ The NetQ CLI provides access to all of the network state and event information c
 
 {{%notice note%}}
 
-The NetQ command line interface only runs on switches and server  hosts implemented with Intel x86 or ARM-based architectures. If you are unsure what architecture your switch or server employs, check the Cumulus {{<exlink url="https://cumulusnetworks.com/hcl" text="Hardware Compatibility List">}} and verify the value in the **Platforms** tab \> **CPU** column.
+The NetQ command line interface only runs on switches and server  hosts implemented with Intel x86 or ARM-based architectures. If you are unsure what architecture your switch or server employs, check the Cumulus {{<exlink url="https://www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="Hardware Compatibility List">}} and verify the value in the **Platforms** tab \> **CPU** column.
 
 {{%/notice%}}
 

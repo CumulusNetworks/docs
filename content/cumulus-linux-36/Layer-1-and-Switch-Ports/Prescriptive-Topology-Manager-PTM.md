@@ -89,7 +89,7 @@ pushing/pulling the same exact file on each device\!
         "leaf2":"swp5s0" -- "server2":"eth1";
     }
 
-{{% imgOld 0 %}}
+{{% img src="/images/cumulus-linux/ptm-dot.png" %}}
 
 ## ptmd Scripts
 
@@ -133,18 +133,18 @@ using in the `topology.dot` file.
     graph G {
              hostnametype="hostname"
              BFD="upMinTx=150,requiredMinRx=250"
-             "cumulus":"swp44" -- "switch04.cumulusnetworks.com":"swp20"
-             "cumulus":"swp46" -- "switch04.cumulusnetworks.com":"swp22"
+             "cumulus":"swp44" -- "switch04.nvidia.com":"swp20"
+             "cumulus":"swp46" -- "switch04.nvidia.com":"swp22"
     }
 
 However, in this next example, PTM will compare using the FQDN and look
-for *switch05.cumulusnetworks.com*, which is the FQDN of the switch it's
+for *switch05.nvidia.com*, which is the FQDN of the switch it's
 running on:
 
     graph G {
              hostnametype="fqdn"
-             "cumulus":"swp44" -- "switch05.cumulusnetworks.com":"swp20"
-             "cumulus":"swp46" -- "switch05.cumulusnetworks.com":"swp22"
+             "cumulus":"swp44" -- "switch05.nvidia.com":"swp20"
+             "cumulus":"swp46" -- "switch05.nvidia.com":"swp22"
     }
 
 ### Global Parameters

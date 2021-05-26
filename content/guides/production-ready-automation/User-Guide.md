@@ -195,7 +195,7 @@ This method is the easiest way to experience the final product of the Cumulus go
 
 If you are interested in taking a closer look at the automation and deployment processes, and see the actual examples of the infrastructure as code, you need to clone the demo project and manually run the automation playbook to render the configuration as code into the network devices. This automated process clones your selected demo repository and runs the Ansible deployment playbook for you with a few easy and convenient clicks from Cumulus in the Cloud UI.
 
-1. Go to {{<exlink url="https://www.cumulusnetworks.com/citc" text="Cumulus in the Cloud">}} to request a demo or to reach your existing simulation.
+1. Go to {{<exlink url="https://www.nvidia.com/en-us/networking/network-simulation/" text="Cumulus in the Cloud">}} to request a demo or to reach your existing simulation.
 2. After you reach your simulation console, choose a demo from the dropdown menu on the left panel.
 
     {{<img src="/images/guides/citc-interface-demo.png" >}}
@@ -205,7 +205,7 @@ If you are interested in taking a closer look at the automation and deployment p
 
 ## Manually Run the Automation Demo from Cumulus in the Cloud
 
-{{<exlink url="https://www.cumulusnetworks.com/citc" text="Cumulus in the Cloud">}} provides the fastest way to enjoy the experience of provisioning a full data center using best practice Ansible automation and see a working example of infrastructure as code. By removing the complexity of the simulation hardware and software dependencies, you can be in the driver’s seat of a fully provisioned data center to test the automation experience and any of the demo solution architectures in minutes. Cumulus in the Cloud also includes a free temporary NetQ Cloud account to showcase the NetQ features with live data from your simulation.
+{{<exlink url="https://www.nvidia.com/en-us/networking/network-simulation/" text="Cumulus in the Cloud">}} provides the fastest way to enjoy the experience of provisioning a full data center using best practice Ansible automation and see a working example of infrastructure as code. By removing the complexity of the simulation hardware and software dependencies, you can be in the driver’s seat of a fully provisioned data center to test the automation experience and any of the demo solution architectures in minutes. Cumulus in the Cloud also includes a free temporary NetQ Cloud account to showcase the NetQ features with live data from your simulation.
 
 1. Start from the `oob-mgmt-server` in your Cumulus in the Cloud simulation. For the best experience, use an SSH client to connect. Find the SSH client connection information from the **Services** window in the UI.
 
@@ -258,14 +258,14 @@ You now have a deployed and operational golden standard Cumulus Linux architectu
 
 ## Install and Configure the NetQ Cloud Server
 
-The Cumulus Networks reference topology includes an Ubuntu 18.04 server with additional CPU, memory, and disk resources to support a NetQ Cloud Server installation. Vagrant provisions this box with all the required software package dependencies to be able to go immediately to the bootstrap and install steps of the NetQ server setup documented in the {{<kb_link url="cumulus-netq-30/Cumulus-NetQ-Deployment-Guide/Install-NetQ/Install-NetQ-System-Platform/Prepare-Existing-NetQ-Appliance/" text="NetQ Deployment Guide" >}}.
+The Cumulus Networks reference topology includes an Ubuntu 18.04 server with additional CPU, memory, and disk resources to support a NetQ Cloud Server installation. Vagrant provisions this box with all the required software package dependencies to be able to go immediately to the bootstrap and install steps of the NetQ server setup documented in the [NetQ Deployment Guide]({{<ref "/cumulus-netq-30/Cumulus-NetQ-Deployment-Guide/Install-NetQ/Install-NetQ-System-Platform/Prepare-Existing-NetQ-Appliance" >}}).
 
 To use the included NetQ Cloud server, the following is required:
 
 - An active NetQ Cloud account with {{<exlink url="https://netq.cumulusnetworks.com" text="netq.cumulusnetworks.com" >}}.
 - An additional site that is set up and provisioned, and dedicated for virtualization use (a unique NetQ configuration key for your simulation environment). Do not mix a simulation topology with an existing site or use an existing and in-use NetQ premises configuration key.
-- The NetQ bootstrap tarball downloaded from {{<exlink url="https://cumulusnetworks.com/" text="cumulusnetworks.com" >}}.
-- The NetQ OPTA install tarball downloaded from {{<exlink url="https://cumulusnetworks.com/" text="cumulusnetworks.com" >}}.
+- The NetQ bootstrap tarball downloaded from {{<exlink url="https://support.mellanox.com/s/" text="cumulusnetworks.com" >}}.
+- The NetQ OPTA install tarball downloaded from {{<exlink url="https://support.mellanox.com/s/" text="cumulusnetworks.com" >}}.
 
 {{%notice info%}}
 
@@ -302,7 +302,7 @@ The `netq-bootstrap` and `netq-opta` image version numbers must match.
 
 #### Stage from the Local Filesystem
 
-For specific steps on how to log into cumulusnetworks.com and download the NetQ files, refer to {{<kb_link url="cumulus-netq-30/Cumulus-NetQ-Deployment-Guide/Install-NetQ/Install-NetQ-System-Platform/Prepare-Existing-NetQ-Appliance/" text="Download the bootstrap and NetQ installation tarballs" >}} in the NetQ documentation. Use SCP to copy the files onto the Linux-based simulation host securely.
+For specific steps on how to log into cumulusnetworks.com and download the NetQ files, refer to [Download the bootstrap and NetQ installation tarballs]({{<ref "/cumulus-netq-30/Cumulus-NetQ-Deployment-Guide/Install-NetQ/Install-NetQ-System-Platform/Prepare-Existing-NetQ-Appliance" >}}) in the NetQ documentation. Use SCP to copy the files onto the Linux-based simulation host securely.
 
 The following procedure shows you how to copy the installation tarball files to the `/mnt/installables` directory (any directory that has sufficient read permissions is suitable for staging these files). Repeat the following steps for each file:
 
@@ -331,7 +331,7 @@ The following procedure shows you how to copy the installation tarball files to 
 
 #### Stage from a Remote HTTP Server
 
-For specific steps on how to log into cumulusnetworks.com and download the NetQ files, refer to {{<kb_link url="cumulus-netq-30/Cumulus-NetQ-Deployment-Guide/Install-NetQ/Install-NetQ-System-Platform/Prepare-Existing-NetQ-Appliance/" text="Download the bootstrap and NetQ installation tarballs" >}} in the NetQ documentation. Specific steps on how to copy the tarballs onto a remote HTTP server vary depending on the specific HTTP server software. This following example shows you how to set up an HTTP server with Apache on a Debian- or Ubuntu-based Linux system.
+For specific steps on how to log into cumulusnetworks.com and download the NetQ files, refer to [Download the bootstrap and NetQ installation tarballs]({{<ref "/cumulus-netq-30/Cumulus-NetQ-Deployment-Guide/Install-NetQ/Install-NetQ-System-Platform/Prepare-Existing-NetQ-Appliance" >}}) in the NetQ documentation. Specific steps on how to copy the tarballs onto a remote HTTP server vary depending on the specific HTTP server software. This following example shows you how to set up an HTTP server with Apache on a Debian- or Ubuntu-based Linux system.
 
 1. Download these two required installation files from cumulusnetworks.com:
     - Bootstrap
@@ -348,7 +348,7 @@ This process installs the NetQ Cloud server application to be able to receive an
 - You must stage the bootstrap and install tarball files in either the local filesystem on netq-ts or on a remote HTTP server accessible from netq-ts. See the {{<link text="previous section" title="#Stage the NetQ Installation Tarballs" >}} for instructions.
 - The NetQ configuration key associated with the NetQ site/premises that this simulation will occupy is required. You receive the key from Cumulus Networks by email as part of NetQ Cloud onboarding.
 
-For more complete information about installing NetQ, refer to the {{<kb_link url="cumulus-netq-30/Cumulus-NetQ-Deployment-Guide/Install-NetQ/Install-NetQ-System-Platform/Prepare-Existing-NetQ-Appliance/" text="NetQ documentation" >}}. To complete the NetQ Cloud Server installation in the Cumulus demo topology, follow these steps:
+For more complete information about installing NetQ, refer to the [NetQ documentation]({{<ref "/cumulus-netq-30/Cumulus-NetQ-Deployment-Guide/Install-NetQ/Install-NetQ-System-Platform/Prepare-Existing-NetQ-Appliance" >}}). To complete the NetQ Cloud Server installation in the Cumulus demo topology, follow these steps:
 
 1. Perform the NetQ server bootstrap with the bootstrap tarball.
 
@@ -386,7 +386,7 @@ For more complete information about installing NetQ, refer to the {{<kb_link url
 
 The NetQ CLI is a separate daemon that is configured independently from the NetQ agent data collection and telemetry streaming daemon. To fully complete the NetQ installation in your demo environment, you must also configure and install the CLI on all devices where you want to run the `netq` CLI commands. In most deployments, this is also configured with every agent so that you can obtain all NetQ data from any device in the network.
 
-You must have a set of authorization keys generated for a NetQ user (access-key and secret-key). Refer to {{<kb_link url="cumulus-netq-30/Cumulus-NetQ-Deployment-Guide/Install-NetQ/Install-NetQ-CLI/Install-NetQ-CLI-on-CL/" text="Configuring the CLI for Cloud Deployments" >}} in the NetQ documentation to create the keys.
+You must have a set of authorization keys generated for a NetQ user (access-key and secret-key). Refer to [Configuring the CLI for Cloud Deployments]({{<ref "/cumulus-netq-30/Cumulus-NetQ-Deployment-Guide/Install-NetQ/Install-NetQ-CLI/Install-NetQ-CLI-on-CL" >}}) in the NetQ documentation to create the keys.
 
 To install the CLI:
 

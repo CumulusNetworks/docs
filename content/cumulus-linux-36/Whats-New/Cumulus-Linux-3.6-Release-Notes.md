@@ -2,20 +2,16 @@
 title: Cumulus Linux 3.6 Release Notes
 author: Cumulus Networks
 weight: 7
+type: rn
 ---
 
 These release notes support Cumulus Linux 3.6.0, 3.6.1, and 3.6.2 and describe currently available features and known issues.
-
-## Stay up to Date
-
-- Subscribe to our {{<exlink url="https://lists.cumulusnetworks.com/listinfo/cumulus-product-bulletin" text="product bulletin">}} mailing list to receive important announcements and updates about issues that arise in our products.
-- Subscribe to our {{<exlink url="https://lists.cumulusnetworks.com/listinfo/cumulus-security-announce" text="security announcement">}} mailing list to receive alerts whenever we update our software for security issues.
 
 ## What's New in Cumulus Linux 3.6.2
 
 Cumulus Linux 3.6.2 contains the following new features, platforms, and improvements:
 
-- {{<exlink url="https://cumulusnetworks.com/hcl" text="Facebook Voyager">}} (DWDM) (100G Tomahawk) now generally available
+- {{<exlink url="https://www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="Facebook Voyager">}} (DWDM) (100G Tomahawk) now generally available
 - NCLU commands available for {{<link url="Traditional-Bridge-Mode" text="configuring traditional mode bridges">}}
 - {{<link url="Virtual-Routing-and-Forwarding-VRF/#configuring-static-route-leaking-with-evpn" text="VRF static route leaking with EVPN">}} symmetric routing
 - New {{<link url="Virtual-Routing-and-Forwarding-VRF/#enabling-vrf-route-leaking" text="vrf_route_leak_enable option">}} used to enable VRF route leaking
@@ -28,7 +24,7 @@ Cumulus Linux 3.6.1 contains bug fixes and security fixes.
 
 Cumulus Linux 3.6.0 contains a number of new platforms, features and improvements:
 
-- New {{<exlink url="https://cumulusnetworks.com/hcl" text="platforms">}} include:
+- New {{<exlink url="https://www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="platforms">}} include:
     - Dell S4128T-ON (10GBASE-T Maverick)
     - Dell S5048-ON (25G Tomahawk+)
     - Delta AG-5648v1 (25G Tomahawk+)
@@ -74,18 +70,18 @@ variables, such as HTTP proxies, before you install new packages or
 upgrade your distribution.
 
 1.  Retrieve the new version packages: `cumulus@switch:~$ sudo -E apt-get update`
-2.  If you are using any {{<kb_link url="knowledge-base/Support/Support-Offerings/Early-Access-Features-Defined/" text="early access features">}} from an older release, remove them with: `cumulus@switch:~$ sudo -E apt-get remove EA_PACKAGENAME`
+2.  If you are using any [early access features]({{<ref "/knowledge-base/Support/Support-Offerings/Early-Access-Features-Defined" >}}) from an older release, remove them with: `cumulus@switch:~$ sudo -E apt-get remove EA_PACKAGENAME`
 3.  Upgrade the release: `cumulus@switch:~$ sudo -E apt-get upgrade`
 4.  To include additional Cumulus Linux packages not present in your current version, run the command: `cumulus@switch:~$ apt-get install nclu hostapd python-cumulus-restapi linuxptp` 
 
     If you already have the latest version of a package installed, you see messages similar to: `nclu is already the newest version`. You might also see additional packages being installed due to dependencies.
 5.  Reboot the switch: `cumulus@switch:~$ sudo reboot`
 
-{{<notice note>}}
+{{%notice note%}}
 
-If you see errors for expired GPG keys that prevent you from upgrading packages when upgrading to Cumulus Linux 3.6 from 3.5.1 or earlier, follow the steps in {{<kb_link url="knowledge-base/Installing-and-Upgrading/Upgrading/Update-Expired-GPG-Keys/" text="Upgrading Expired GPG Keys">}}.
+If you see errors for expired GPG keys that prevent you from upgrading packages when upgrading to Cumulus Linux 3.6 from 3.5.1 or earlier, follow the steps in [Upgrading Expired GPG Keys]({{<ref "/knowledge-base/Installing-and-Upgrading/Upgrading/Update-Expired-GPG-Keys" >}}).
 
-{{</notice>}}
+{{%/notice%}}
 
 {{%notice note%}}
 

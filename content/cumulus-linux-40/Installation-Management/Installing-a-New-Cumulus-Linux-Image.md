@@ -12,7 +12,7 @@ Before you install Cumulus Linux, the switch can be in two different states:
 - No image is installed on the switch (the switch is only running ONIE).
 - Cumulus Linux is already installed on the switch but you want to use ONIE to reinstall Cumulus Linux or upgrade to a newer version.
 
-The sections below describe some of the different ways you can install the Cumulus Linux disk image, such as using a DHCP/web server, FTP, a local file, or a USB drive. Steps are provided for both installing directly from ONIE (if no image is installed on the switch) and from Cumulus Linux (if the image is already installed on the switch), where applicable. For additional methods to find and install the Cumulus Linux image, see the {{<exlink url="http://opencomputeproject.github.io/onie/design-spec/discovery.html" text="ONIE Design Specification">}}.
+The sections below describe some of the different ways you can install the Cumulus Linux disk image, such as using a DHCP/web server, FTP, TFTP, a local file, or a USB drive. Steps are provided for both installing directly from ONIE (if no image is installed on the switch) and from Cumulus Linux (if the image is already installed on the switch), where applicable. For additional methods to find and install the Cumulus Linux image, see the {{<exlink url="http://opencomputeproject.github.io/onie/design-spec/discovery.html" text="ONIE Design Specification">}}.
 
 You can download a Cumulus Linux image from the {{<exlink url="https://support.mellanox.com/s/contact-support-page" text="MyMellanox Downloads">}} page.
 
@@ -24,8 +24,7 @@ Installing the Cumulus Linux disk image is destructive; configuration files on t
 
 In the following procedures:
 
-- You can name your Cumulus Linux installer disk image using any of the 
-{{<exlink url="http://opencomputeproject.github.io/onie/design-spec/discovery.html#default-file-name-search-order" text="ONIE naming schemes">}} mentioned here.
+- You can name your Cumulus Linux installer disk image using any of the {{<exlink url="http://opencomputeproject.github.io/onie/design-spec/discovery.html#default-file-name-search-order" text="ONIE naming schemes">}} mentioned here.
 - In the example commands, `[PLATFORM]` can be any supported Cumulus Linux platform, such as *x86\_64*, or *arm*.
 - Run the `sudo onie-install -h` command to show the ONIE installer options.
 - After you install the Cumulus Linux disk image, you need to install the license file. Refer to {{<link url="Quick-Start-Guide#install-the-license" text="Install the License">}}.
@@ -181,7 +180,7 @@ Follow the steps below if your laptop is on the same network as the switch eth0 
 
 3. Place the Cumulus Linux disk image into a TFTP or FTP directory.
 
-4. If you are not using DHCP options, run one of the following commands (`tftp` for TFTP or `ftp` for FTP):
+4. If you are not using DHCP options, run one of the following commands (tftp for TFTP or ftp for FTP):
 
     ```
     ONIE# onie-nos-install ftp://local-ftp-server/cumulus-install-[PLATFORM].bin
@@ -193,14 +192,12 @@ Follow the steps below if your laptop is on the same network as the switch eth0 
 
 {{< tab "Install from Cumulus Linux" >}}
 
-1. Place the Cumulus Linux disk image into a TFTP or FTP directory.
+1. Place the Cumulus Linux disk image into an FTP directory (TFTP is *not* supported in Cumulus Linux).
 
-2. From the Cumulus Linux command prompt, run one of the following commands (`tftp` for TFTP or `ftp` for FTP), then reboot the switch.
+2. From the Cumulus Linux command prompt, run the following command:
 
     ```
     cumulus@switch:~$ sudo onie-install -a -i ftp://local-ftp-server/cumulus-install-[PLATFORM].bin
-
-    cumulus@switch:~$ sudo onie-install -a -i tftp://local-ftp-server/cumulus-install-[PLATFORM].bin
     ```
 
 {{< /tab >}}
@@ -472,5 +469,4 @@ When using a Mac or Windows computer to rename the installation file, the file e
 
 - {{<exlink url="http://opencomputeproject.github.io/onie/design-spec/" text="ONIE Design Specification">}}
 - {{<exlink url="https://support.mellanox.com/s/" text="MyMellanox Downloads page">}}
-- {{<exlink url="https://cumulusnetworks.com/cumulus-on-a-stick/" text="Cumulus on a Stick">}}
 - {{<link url="Managing-Cumulus-Linux-Disk-Images" text="Managing Cumulus Linux Disk Images">}}

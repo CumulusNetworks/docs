@@ -16,7 +16,7 @@ Cumulus Linux supports the following:
 
 ## Architecture
 
-{{% imgOld 0 %}}
+{{< img src = "/images/cumulus-linux/frrouting-overview-daemons.png" >}}
 
 As shown in the figure above, the FRRouting suite consists of various
 protocol-specific daemons and a protocol-independent daemon called

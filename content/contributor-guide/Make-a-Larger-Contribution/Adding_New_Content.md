@@ -216,7 +216,7 @@ To preserve portability of pages, a [Hugo shortcode](https://gohugo.io/content-m
 
 The `link` shortcode is used with the `title` argument. Use the `Title` value in the front matter of the page being linked. For example, to link to the "Give Simple Feedback" chapter use the shortcode `{{</* link title="Give Simple Feedback" */>}}`. By default the link title is the link text used. The text can be specified with the `text` attribute. For example, `{{</* link title="Give Simple Feedback" text="How to give feedback"*/>}}` generates the link {{< link title="Give Simple Feedback" text="How to give feedback" >}}.
 
-For external links standard markdown link syntax can be used. The link text is placed in brackets `[]`, followed by the full URL in parenthesis `()`. For example `[Link to Cumulus](https://www.cumulusnetworks.com)` generates the link [Link to Cumulus](https://www.cumulusnetworks.com). 
+For external links standard markdown link syntax can be used. The link text is placed in brackets `[]`, followed by the full URL in parenthesis `()`. For example `[Link to Cumulus](https://www.cumulusnetworks.com)` generates the link [Link to Cumulus](https://docs.nvidia.com/networking-ethernet-software/). 
 
 {{% notice note %}}
 Do not put a space between the brackets and parenthesis.

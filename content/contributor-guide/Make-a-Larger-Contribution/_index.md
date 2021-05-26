@@ -17,13 +17,13 @@ To get started:
 
 The first step is to install Hugo:
 
-1. Go to *https://github.com/gohugoio/hugo/releases/tag/v0.65.3*.
+1. Go to *https://github.com/gohugoio/hugo/releases/tag/v0.82.0*.
 
 2. Select the relevant **extended** package based on your operating system:
-    - hugo_extended_0.65.3_Linux-64bit.deb
-    - hugo_extended_0.65.3_Linux-64bit.tar.gz
-    - hugo_extended_0.65.3_macOS-64bit.tar.gz
-    - hugo_extended_0.65.3_Windows-64bit.zip
+    - hugo_extended_0.82.0_Linux-64bit.deb
+    - hugo_extended_0.82.0_Linux-64bit.tar.gz
+    - hugo_extended_0.82.0_macOS-64bit.tar.gz
+    - hugo_extended_0.82.0_Windows-64bit.zip
 
 {{%notice note%}}
 You must use the **extended** version of Hugo to support our use of SCSS stylesheets.
@@ -36,8 +36,8 @@ You must use the **extended** version of Hugo to support our use of SCSS stylesh
     From a terminal window, run `hugo version`:
 
     ```
-    <computer>:<username>$ hugo server
-    Hugo Static Site Generator v0.65.3-211BA42A/extended darwin/amd64
+    <computer>:<username>$ hugo version
+    hugo v0.82.0-9D960784+extended linux/amd64 BuildDate=2021-03-21T17:28:04Z VendorInfo=gohugoio
     ```
 
 ## Clone the Documentation Repository

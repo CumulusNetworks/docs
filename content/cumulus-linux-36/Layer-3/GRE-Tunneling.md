@@ -5,13 +5,11 @@ weight: 195
 pageID: 8362432
 ---
 
-{{<notice warning>}}
+{{%notice warning%}}
 
-**Early Access Feature**
+GRE Tunneling is an [eary access feature]({{<ref "/knowledge-base/Support/Support-Offerings/Early-Access-Features-Defined">}}) in Cumulus Linux 3.6.
 
-GRE Tunneling is an {{<kb_link url="knowledge-base/Support/Support-Offerings/Early-Access-Features-Defined/" text="early access feature" >}} in Cumulus Linux 3.6.
-
-{{</notice>}}
+{{%/notice%}}
 
 Generic Routing Encapsulation (GRE) is a tunneling protocol that
 encapsulates network layer protocols inside virtual point-to-point links
@@ -46,7 +44,7 @@ tunneling, the two end points can encapsulate an IPv4 or IPv6 payload
 inside an IPv4 packet. The packet is routed based on the destination in
 the outer IPv4 header.
 
-{{% imgOld 0 %}}
+{{< img src = "/images/cumulus-linux/gre-tunnel-example.png" >}}
 
 ## Configuring GRE Tunneling
 
@@ -70,7 +68,7 @@ The local tunnel endpoint for `Tunnel-R1` is 10.0.0.9 and the remote
 endpoint is 10.0.0.2. The local tunnel endpoint for `Tunnel-R2` is 10.0.0.2 
 and the remote endpoint is 10.0.0.9.
 
-{{% imgOld 1 %}}
+{{< img src = "/images/cumulus-linux/gre-tunnel-config.png" >}}
 
 **Tunnel-R1 commands:**
 

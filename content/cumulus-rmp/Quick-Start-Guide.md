@@ -26,10 +26,10 @@ as your command line tool to interact with Cumulus RMP.
 {{<notice tip>}}
 
 If you are a networking engineer but are unfamiliar with Linux concepts,
-refer to {{<kb_link url="knowledge-base/Demos-and-Training/Interoperability/Cumulus-Linux-Conversion-Guide-for-NX-OS-or-IOS-Users/" text="this reference guide" >}}
+refer to [this reference guide]({{<ref "/knowledge-base/Demos-and-Training/Interoperability/Cumulus-Linux-Conversion-Guide-for-NX-OS-or-IOS-Users" >}})
 for examples of the Cumulus Linux CLI and configuration options, and
 their equivalent Cisco Nexus 3000 NX-OS commands and settings. You can
-also <a href="http://cumulusnetworks.com/technical-videos/">watch a series of short videos</a> introducing you to
+also <a href="https://academy.mellanox.com/en/training-by-topic/?training_by_topic=58">watch a series of short videos</a> introducing you to
 Linux and Cumulus Linux-specific concepts.
 
 {{</notice>}}
@@ -54,9 +54,9 @@ Cumulus RMP switch up and running after you remove it from the box.
 ## Upgrading Cumulus RMP
 
 If you are running a Cumulus RMP version earlier than 3.0.0, you must
-perform a [complete install](/cumulus-linux-37/Installation-Management/Installing-a-New-Cumulus-Linux-Image/). If you
+perform a [complete install]({{<ref "/cumulus-linux-37/Installation-Management/Installing-a-New-Cumulus-Linux-Image">}}) . If you
 already have Cumulus Linux 3.0.0 or later installed on your switch, read
-[Upgrading Cumulus Linux](/cumulus-linux-37/Installation-Management/Upgrading-Cumulus-Linux/) for
+[Upgrading Cumulus Linux]({{<ref "/cumulus-linux-37/Installation-Management/Upgrading-Cumulus-Linux">}}) for
 considerations before you start the process.
 
 ## Getting Started
@@ -91,7 +91,7 @@ All accounts except `root` are permitted remote SSH login; you can use
 `sudo` to grant root-level access to a non-root account. Commands that
 change system configuration require this elevated level of access.
 
-For more information about `sudo`, read [Using sudo to Delegate Privileges](/cumulus-linux-37/System-Configuration/Authentication-Authorization-and-Accounting/Using-sudo-to-Delegate-Privileges/).
+For more information about `sudo`, read [Using sudo to Delegate Privileges]({{<ref "/cumulus-linux-37/System-Configuration/Authentication-Authorization-and-Accounting/Using-sudo-to-Delegate-Privileges" >}}).
 
 ### Serial Console Management
 
@@ -110,8 +110,7 @@ management ports, the first of which is named *eth0*. These interfaces
 are geared specifically for out-of-band management use. The management
 interface uses DHCPv4 for addressing by default. While it is generally
 recommended to **not** assign an address to eth0, you can set a static
-IP address with the [Network Command Line
-Utility](/cumulus-linux-37/System-Configuration/Network-Command-Line-Utility-NCLU/) (NCLU).
+IP address with the [Network Command Line Utility]({{<ref "/cumulus-linux-37/System-Configuration/Network-Command-Line-Utility-NCLU" >}}) (NCLU).
 
 {{%notice info%}}
 
@@ -280,7 +279,7 @@ To view the changes in the kernel, use the `brctl` command:
 ### Layer 3 Port Configuration
 
 To configure a front panel port or bridge interface as a layer 3 port,
-use [NCLU](/cumulus-linux/System-Configuration/Network-Command-Line-Utility-NCLU/).
+use {{<kb_link text="NCLU" url="cumulus-linux-37/System-Configuration/Network-Command-Line-Utility-NCLU/">}}.
 
 In the following configuration example, the front panel port swp1 is
 configured as a layer 3 access port:

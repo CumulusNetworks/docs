@@ -112,7 +112,7 @@ The rules created by these programs inspect or operate on packets at
 several points in the life of the packet through the system. These five
 points are known as *chains* and are shown here:
 
-{{% imgOld 0 %}}
+{{< img src = "/images/cumulus-linux/acl-chains.png" >}}
 
 The chains and their uses are:
 
@@ -149,11 +149,11 @@ the default chains they support are shown below. Tables and chains in
 green are supported by Cumulus Linux, those in red are not supported
 (that is, they are not hardware accelerated) at this time.
 
-{{% imgOld 1 %}}
+{{< img src = "/images/cumulus-linux/acl-iptables.png" >}}
 
-{{% imgOld 2 %}}
+{{< img src = "/images/cumulus-linux/acl-etables.png" >}}
 
-{{% imgOld 3 %}}
+{{< img src = "/images/cumulus-linux/acl-legend.png" >}}
 
 ### Understanding Rules
 
@@ -161,12 +161,12 @@ Rules are the items that actually classify traffic to be acted upon.
 Rules are applied to chains, which are attached to tables, similar to
 the graphic below.
 
-{{% imgOld 4 %}}
+{{< img src = "/images/cumulus-linux/acl-tables-chains-rules.png" >}}
 
 Rules have several different components; the examples below highlight
 those different components.
 
-{{% imgOld 5 %}}
+{{< img src = "/images/cumulus-linux/acl-anatomy-rule.png" >}}
 
   - **Table:** The first argument is the *table*. Notice the second
     example does not specify a table, that is because the filter table
@@ -300,12 +300,12 @@ However, removing the `-o` option and interface make it a valid rule.
 In Cumulus Linux, *atomic update mode* is enabled by default. However,
 this mode limits the number of ACL rules that you can configure.
 
-{{% imgOld 6 %}}
+{{< img src = "/images/cumulus-linux/acl-update-operation-atomic.png" >}}
 
 To increase the number of ACL rules that can be configured, configure
 the switch to operate in *nonatomic mode*.
 
-{{% imgOld 7 %}}
+{{< img src = "/images/cumulus-linux/acl-update-operation-nonatomic.png" >}}
 
 #### How the Rules Get Installed 
 
@@ -316,9 +316,9 @@ Linux then deletes the old rules and frees up the original TCAM space.
 If there is insufficient free space to complete this task, the original
 nonatomic update is performed, which interrupts traffic.
 
-{{% imgOld 8 %}}
+{{< img src = "/images/cumulus-linux/acl-update-del.png" >}}
 
-{{% imgOld 9 %}}
+{{< img src = "/images/cumulus-linux/acl-update-add.png" >}}
 
 #### Enabling Nonatomic Update Mode
 
@@ -783,7 +783,7 @@ The maximum number of rules that can be handled in hardware is a
 function of the following factors:
 
   - The platform type (switch silicon, like Tomahawk or Spectrum - see
-    the [HCL](https://cumulusnetworks.com/support/hcl) to determine which
+    the [HCL](https://www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/) to determine which
     platform type applies to a particular switch).
   - The mix of IPv4 and IPv6 rules; Cumulus Linux does not support the
     maximum number of rules for both IPv4 and IPv6 simultaneously.
@@ -1255,7 +1255,7 @@ rule as:
 
 The following example scenario demonstrates how several different rules are applied.
 
-{{% imgOld 10 %}}
+{{< img src = "/images/cumulus-linux/acl-diagram.png" >}}
 
 Following are the configurations for the two switches used in these
 examples. The configuration for each switch appears in

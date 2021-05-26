@@ -145,7 +145,7 @@ route all traffic from the Internet to a server that performs anti-DDOS.
 The traffic returns to the PBR-enabled switch after being cleaned and is
 then passed onto the regular destination based routing mechanism.
 
-{{% imgOld 0 %}}
+{{< img src = "/images/cumulus-linux/pbr-example.png" >}}
 
 The configuration for the example above is:
 

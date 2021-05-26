@@ -13,7 +13,7 @@ from `ifupdown2`.
 A simple configuration demonstrating VLAN tagging involves two hosts
 connected to a switch.
 
-{{% imgOld 0 %}}
+{{< img src = "/images/cumulus-linux/vlan-tagging-trunks-bond-simple.png" >}}
 
   - *host1* connects to swp1 with both untagged frames and with 802.1Q
     frames tagged for *vlan100*.
@@ -48,7 +48,7 @@ and add a configuration like the following:
 This example of VLAN tagging is more complex, involving three hosts and
 two switches, with a number of bridges and a bond connecting them all.
 
-{{% imgOld 1 %}}
+{{< img src = "/images/cumulus-linux/vlan-tagging-trunks-bond-adv.png" >}}
 
 
   - *host1* connects to bridge *br-untagged* with bare Ethernet frames
@@ -308,4 +308,4 @@ VLAN ID translated from 100 to 200:
     br_mix          8000.4438390032bd       yes             swp10.100
                                                             swp11.200
 
-{{% imgOld 2 %}}
+{{< img src = "/images/cumulus-linux/vlan-tagging-mixed-vlans.png" >}}

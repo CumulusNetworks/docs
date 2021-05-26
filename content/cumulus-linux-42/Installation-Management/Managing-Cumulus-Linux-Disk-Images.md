@@ -26,7 +26,7 @@ cumulus@switch:~$ uname -m
  armv7l
 ```
 
-You can also visit the HCL ({{<exlink url="https://cumulusnetworks.com/products/hardware-compatibility-list/" text="hardware compatibility list">}}) to look at your hardware and determine the processor type.
+You can also visit the HCL ({{<exlink url="www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="hardware compatibility list">}}) to look at your hardware and determine the processor type.
 
 ## Reprovision the System (Restart the Installer)
 
@@ -52,7 +52,7 @@ cumulus@switch:~$ sudo onie-select -c
 Cancelling pending install at next reboot...done.
 ```
 
-To stage an installer located in a specific location, run the `onie-install` `-i` command. You can specify a local, absolute or relative path, an HTTP or HTTPS server, SCP or FTP server. You can also stage a Zero Touch Provisioning (ZTP) script along with the installer.
+To stage an installer located in a specific location, run the `onie-install` `-i` command. You can specify a local, absolute or relative path, an HTTP or HTTPS server, SCP TFTP, or FTP server. You can also stage a Zero Touch Provisioning (ZTP) script along with the installer.
 The `onie-install` command is typically used with the `-a` option to activate installation. If you do not specify the `-a` option, a reboot is required for the reinstall to begin.
 
 The following example stages the installer located at `http://203.0.113.10/image-installer` together with the ZTP script located at `http://203.0.113.10/ztp-script` and activates installation and ZTP:

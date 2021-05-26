@@ -19,7 +19,7 @@ Here is a list of things to check:
 
 ### Use Suggested Optics, Cables, Transceivers
 
-Please read the pluggables section of the {{<exlink url="https://cumulusnetworks.com/hcl" text="HCL">}} for recommendations on which optics, cables and transceivers to use with your platform.
+Please read the pluggables section of the {{<exlink url="https://www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="HCL">}} for recommendations on which optics, cables and transceivers to use with your platform.
 
 ### Ensure Your Cumulus Linux License Is Valid
 
@@ -97,7 +97,7 @@ Note that if the interface name starts with swp and ends with \_sX, where X is a
     port_init_autoneg_xe34=0
     serdes_if_type_xe34=9
 
-Please {{<kb_link url="cumulus-linux-43/Layer-1-and-Switch-Ports/Interface-Configuration-and-Management/Switch-Port-Attributes/" text="Switch Port Attributes">}}
+Please [Switch Port Attributes]({{<ref "/cumulus-linux-43/Layer-1-and-Switch-Ports/Interface-Configuration-and-Management/Switch-Port-Attributes" >}})
  for more details on how to configure the physical switch port attributes.
 
 ### Validate Hardware Settings with ethtool
@@ -108,7 +108,7 @@ The `ethtool` command enables you to query or control the network driver and har
 
     cumulus@switch$ sudo ethtool -m swp1
 
-Please read {{<kb_link url="cumulus-linux-43/Monitoring-and-Troubleshooting/Troubleshooting-Network-Interfaces/Monitoring-Interfaces-and-Transceivers-Using-ethtool/" text="Monitoring Interfaces and Transceivers Using ethtool">}} for more details on `ethtool`.
+Please read [Monitoring Interfaces and Transceivers Using ethtool]({{<ref "/cumulus-linux-43/Monitoring-and-Troubleshooting/Troubleshooting-Network-Interfaces/Monitoring-Interfaces-and-Transceivers-Using-ethtool" >}}) for more details on `ethtool`.
 
 ### Force the Interface Configurations to Be Pushed to Hardware
 

@@ -14,7 +14,7 @@ to be executed. You can develop this script using a variety of
 automation tools and scripting languages, providing ample flexibility
 for you to design the provisioning scheme to meet your needs. You can
 also use it to add the switch to a configuration management (CM)
-platform such as [Puppet](http://puppetlabs.com/puppet/what-is-puppet),
+platform such as [Puppet](https://puppet.com/docs/puppet/7.6/puppet_overview.html),
 [Chef](http://www.opscode.com), [CFEngine](https://cfengine.com) or
 possibly a custom, proprietary tool.
 

@@ -1275,7 +1275,7 @@ is a duplicate MAC address for two hosts attached to VTEP-A and VTEP-B.
 However, duplicate detection does *not* trigger on VTEP-A when mobility
 events occur between two remote VTEPs (VTEP-B and VTEP-C).
 
-{{% imgOld 0 %}}
+{{% img src="/images/cumulus-linux/evpn-dad-example.png" %}}
 
 #### Configure Duplicate Address Detection
 
@@ -2202,7 +2202,7 @@ The following caveats apply to EVPN in this version of Cumulus Linux:
 
    This is expected behavior with Cumulus Linux; when you send an ICMP echo request to an IP address that is not in the same subnet using the `ping -I` command, Cumulus Linux creates a failed ARP entry for the destination IP address.
 
-   For more information, refer to {{<kb_link url="knowledge-base/ICMP-Ping-Doesn-t-Work-when-Specifying-I-Option" text="this article">}}.
+   For more information, refer to [this article]({{<ref "/knowledge-base/Configuration-and-Usage/Network-Interfaces/ICMP-Ping-Doesn-t-Work-when-Specifying-I-Option" >}}).
 
 - On Broadcom Trident II+ and Maverick-based switches,
   when a lookup is done after VXLAN decapsulation on the

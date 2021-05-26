@@ -98,7 +98,7 @@ cumulus@switch:~$ ip link show dev swp1
     link/ether 44:38:39:00:03:c1 brd ff:ff:ff:ff:ff:ff
 ```
 
-For additional information on interface administrative state and physical state, refer to {{<kb_link url="knowledge-base/Configuration-and-Usage/Monitoring/Monitor-Interface-Administrative-State-and-Physical-State-on-Cumulus-Linux/" text="this knowledge base article">}}.
+For additional information on interface administrative state and physical state, refer to [this knowledge base article]({{<ref "/knowledge-base/Configuration-and-Usage/Monitoring/Monitor-Interface-Administrative-State-and-Physical-State-on-Cumulus-Linux" >}}).
 
 ## ifupdown2 Interface Classes
 
@@ -267,7 +267,7 @@ iface br-100
     bridge-stp on
 ```
 
-For more information about bridges in traditional mode and bridges in VLAN-aware mode, read {{<kb_link url="knowledge-base/Configuration-and-Usage/Network-Interfaces/Compare-Traditional-Bridge-Mode-to-VLAN-aware-Bridge-Mode/" text="this knowledge base article">}}.
+For more information about bridges in traditional mode and bridges in VLAN-aware mode, read [this knowledge base article]({{<ref "/knowledge-base/Configuration-and-Usage/Network-Interfaces/Compare-Traditional-Bridge-Mode-to-VLAN-aware-Bridge-Mode" >}}).
 
 ## ifupdown2 Interface Dependencies
 
@@ -908,7 +908,7 @@ To comment out content in Mako templates, use double hash marks (\#\#). For exam
 ##
 ```
 
-For more examples of configuring Mako templates, read this {{<kb_link url="knowledge-base/Configuration-and-Usage/Automation/Configure-the-interfaces-File-with-Mako/" text="knowledge base article">}}.
+For more examples of configuring Mako templates, read this [knowledge base article]({{<ref "/knowledge-base/Configuration-and-Usage/Automation/Configure-the-interfaces-File-with-Mako" >}}).
 
 ## Run ifupdown Scripts under /etc/network/ with ifupdown2
 
@@ -1028,7 +1028,7 @@ cumulus@switch$ ip link show swp1
 
 {{< /tabs >}}
 
-Interface descriptions also appear in the {{<link url="Simple-Network-Management-Protocol-SNMP" text="SNMP">}} OID {{<kb_link url="mibs/IF-MIB.txt" text="IF-MIB::ifAlias">}}.
+Interface descriptions also appear in the {{<link url="Simple-Network-Management-Protocol-SNMP" text="SNMP">}} OID {{<kb_link text="IF-MIB::ifAlias" url="mibs/IF-MIB.txt" >}}.
 
 {{%notice note%}}
 

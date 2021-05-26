@@ -7,7 +7,7 @@ pageID: 8362100
 Cumulus Linux gathers statistics for VXLANs and VLANs using virtual
 device counters. These counters are supported on Tomahawk, Trident II+
 and Trident II-based platforms only; see the 
-[Cumulus Networks HCL](http://cumulusnetworks.com/hcl/) for a list of 
+[Cumulus Networks HCL](https://www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/) for a list of 
 supported platforms.
 
 You can retrieve the data from these counters using tools like `ip -s

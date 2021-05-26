@@ -6,12 +6,18 @@ body {
   font-weight: 400;
 }
 
+.h1, .h2, .h3, .h4, .h5, .h6,
+h1, h2, h3, h4, h5, h6 {
+  font-family: $cumulus-font-family;
+  color: #3c3c3c;
+}
+
 .docs-home {
   a {
-    color: $jade;
+    color: $nvidia-green;
 
     &:hover {
-      color: $fern;
+      color: $nvidia-green;
       text-decoration: none;
     }
   }
@@ -52,7 +58,8 @@ body {
       color: white;
       font-size: 40px;
       font-weight: 300;
-      letter-spacing: -3.56px;
+      font-family: 'DINPro', Helvetica, Arial, sans-serif;
+      letter-spacing: -5px;
       line-height: 58px;
       @media #{$md-up} {
         font-size: 80px;
@@ -64,7 +71,7 @@ body {
   section {
     padding: 73px 0 120px;
     h3 {
-      font-size: 21.998px;
+      font-size: 24px;
       font-weight: 300;
       letter-spacing: -.15px;
       line-height: 34px;
@@ -73,9 +80,9 @@ body {
 
     p {
       &.small {
-        color: #75828c;
+        color: #3c3c3c;
         letter-spacing: -.1px;
-        font-size: 14px;
+        font-size: 16px;
         line-height: 27px;
       }
     }
@@ -86,9 +93,9 @@ body {
         list-style: none;
 
         a {
-          font-size: 14px;
+          font-size: 17px;
           font-weight: 400;
-          line-height: 27px;
+          line-height: 34px;
           letter-spacing: -0.09px;
         }
       }
@@ -182,17 +189,18 @@ body {
     }
 
     p {
-      color: #75828c;
-      font-size: 14px;
+      color: #3c3c3c;
+      font-size: 16px;
       font-weight: 300;
       letter-spacing: -0.09px;
       line-height: 27px;
     }
 
     span {
-      color: $jade;
+      color: $nvidia-green;
       font-size: 13px;
       font-weight: 500;
+      font-family: DINWebPro-Medium;
       line-height: 24px;
       letter-spacing: 1.25px;
       margin-top: auto;
@@ -208,7 +216,7 @@ body {
     border: 1px solid rgb(224, 228, 236);
     color: rgb(117, 130, 140);
     font-family: $cumulus-font-family;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 400;
     letter-spacing: -0.1px;
     line-height: 30px;
@@ -250,7 +258,7 @@ body {
 
   span {
     position: relative;
-    font-size: 14px;
+    font-size: 17px;
     font-weight: 500;
     letter-spacing: 3px;
     line-height: 24px;
@@ -261,7 +269,7 @@ body {
     &:after {
       content: "";
       position: absolute;
-      border-bottom: 1px solid #dee3ea;
+      border-bottom: 1px solid #afb2b7;
       width: 2000px;
       height: auto;
       top: 50%;
@@ -287,7 +295,7 @@ body {
     border: none;
     border-radius: 0;
     display: inline-block;
-    font-size: 14px;
+    font-size: 16px;
     line-height: 30px;
     font-weight: 400;
     background-color: white;
@@ -320,7 +328,7 @@ body {
     min-width: 10rem;
     padding: 1.5rem 0;
     margin: .125rem 0 0;
-    font-size: 14px;
+    font-size: 16px;
     color: #36424a;
     text-align: left;
     list-style: none;
@@ -400,11 +408,11 @@ body {
 
   a {
     text-decoration: none;
-    color: $white;
+    color: #999;
     transition: color .1s;
 
     &:hover {
-      color:$white;
+      color: $nvidia-green;
     }
   }
 
@@ -423,7 +431,6 @@ body {
     align-items: center;
     height: 47px;
     margin: 0 auto;
-    max-width: 1600px;
     padding: 0 30px;
 
     li {
@@ -445,7 +452,6 @@ body {
 
   .navRoot {
     position: relative;
-    max-width: 1600px;
     margin: 0 auto;
     padding: 0 30px;
 
@@ -472,7 +478,7 @@ body {
     .rootLink,
     .rootLink a {
       color: white !important;
-      font-family: DIN-Web-Pro;
+      font-family: 'DINPro-Regular';
       font-size: 24px;
       font-weight: 400;
       letter-spacing: 0;
@@ -485,12 +491,17 @@ body {
 
   .navSection.primary {
     display: none;
-    justify-content: flex-end;
+    justify-content: flex-start;
     align-items: center;
     margin-top: 18px;
+    margin-left: 200px;
 
     @media #{$xl-up} {
       display: flex;
+    }
+
+    .rootLink {
+      margin-left: 20px;
     }
   }
 
@@ -510,8 +521,7 @@ body {
     outline: none;
 	  white-space: nowrap;
 	  user-select: none;
-    font-size: 14px;
-    letter-spacing: 1.75px;
+    font-size: 16px;
     line-height: 43px;
     height: 43px;
 	  font-weight: 500;
@@ -519,14 +529,10 @@ body {
     padding: 0 5px;
     position: relative;
     text-transform: uppercase;
-
-    @media screen and (min-width: 1300px) {
-      padding: 0 8px;
-    }
   }
 
   .mobileMenu {
-    background-color: #364249;
+    background-color: #1a1a1a;
     display: none;
     position: absolute;
     top: 125px;
@@ -539,9 +545,8 @@ body {
         line-height: 30px;
         a {
           color: #fff;
-          font-size: 14px;
+          font-size: 16px;
           font-weight: 500;
-          letter-spacing: 1.75px;
           text-transform: uppercase;
           padding-right: 28px;
         }
@@ -580,17 +585,13 @@ body {
   border: 1px solid rgb(224, 228, 236);
   box-shadow: 0px 2px 10px 0px rgba(175, 184, 197, 0.2);
   align-items: center;
-  justify-content: space-between;
-  padding: 20px 30px;
+  justify-content: start;
+  padding: 20px 35px;
   position: relative;
   display: none;
 
   @media #{$md-up} {
     display: flex;
-  }
-
-  @media #{$xl-up} {
-    padding: 21px 50px;
   }
 
   .menu-container {
@@ -646,7 +647,7 @@ body {
       }
       a, button {
         color: $spruce-gray;
-        font-size: 14px;
+        font-size: 16px;
         font-weight: 400;
         letter-spacing: -0.1px;
         line-height: 30px;
@@ -655,7 +656,7 @@ body {
 
       &.active {
         &:after {
-          background-color: $jade;
+          background-color: $nvidia-green;
           content: '';
           width: calc(100% - 26px);
           height: 2px;
@@ -717,7 +718,7 @@ body {
 
       &:before {
         content: "Layout";
-        font-size: 14px;
+        font-size: 16px;
         letter-spacing: -.1px;
         line-height: 30px;
         background-color: #fff;
@@ -728,7 +729,7 @@ body {
         display: flex;
         color: $spruce-gray;
         &.active {
-          color: $fern;
+          color: $nvidia-green;
         }
         svg {
           width: 20px;
@@ -807,7 +808,7 @@ body {
   flex-direction: column;
 
   .m-top-nav {
-    padding: 0 30px 0 30px;
+    padding: 15px 30px;
     border-bottom: 1px solid rgb(224, 228, 236);
     box-shadow: 0 2px -2px 0 rgba(175, 184, 197, 0.2);
 
@@ -823,7 +824,7 @@ body {
             padding: 0;
             li {
               a {
-                font-size: 14px;
+                font-size: 16px;
                 letter-spacing: -.1px;
                 line-height: 30px;
                 background-color: #fff;
@@ -839,7 +840,7 @@ body {
               border-top: 0;
               li {
                 a {
-                  font-size: 14px;
+                  font-size: 16px;
                   padding: .25rem 1.5rem .25rem 2rem;
                 }
               }
@@ -878,7 +879,7 @@ body {
           height: 40px;
         }
         &.active {
-          color: $fern;
+          color: $nvidia-green;
         }
         &.default {
           display: none;
@@ -945,8 +946,8 @@ body {
 }
 
 .gsc-search-button-v2 {
-  border-color: #00ad69 !important;
-  background: linear-gradient(-225deg, rgb(0, 173, 105) 0%, rgb(75, 192, 91) 100%) !important;
+  border-color: $nvidia-green !important;
+  background: $nvidia-green !important;
   outline: none !important;
   cursor: pointer !important;
   height: 31px;
@@ -1036,7 +1037,7 @@ aside nav ul li {
 }
 
 aside nav .expand>li:not(.cn-book-section) {
-  border-left: solid $jade;
+  border-left: solid $nvidia-green;
   border-width: 1px;
   margin: 0;
   padding:  0 0 1.3em;
@@ -1306,7 +1307,7 @@ div.notices.tip>*:first-child:after {
 
   a {
     &:visited {
-      color: $jade;
+      color: $nvidia-green;
     }
   }
 }
@@ -1318,7 +1319,7 @@ div.notices.tip>*:first-child:after {
   top: 278px;
 
   a.active {
-    color: $jade;
+    color: $nvidia-green;
     font-weight: 500;
 
     &:before {
@@ -1328,7 +1329,7 @@ div.notices.tip>*:first-child:after {
       top: 0;
       width: 1px;
       height: 100%;
-      background-color: $jade;
+      background-color: $nvidia-green;
     }
   }
 }
@@ -1339,6 +1340,7 @@ div.notices.tip>*:first-child:after {
 
 .book-toc ul li a {
   padding: 0 1.5rem;
+  letter-spacing: 0;
 }
 
 .book-toc nav ul li {
@@ -1440,12 +1442,12 @@ footer {
 
     a {
       color: white !important;
-      font-size: 14px;
+      font-size: 16px;
       font-weight: 400;
       line-height: 30px;
 
       &:hover {
-        color: $jade !important;
+        color: $nvidia-green !important;
       }
     }
 
@@ -1495,7 +1497,7 @@ footer {
         rect,
         circle,
         ellipse {
-          stroke: $jade;
+          stroke: $nvidia-green;
         }
 
         &:hover {
@@ -1503,7 +1505,7 @@ footer {
           rect,
           circle,
           ellipse {
-            stroke: $fern;
+            stroke: $nvidia-green;
           }
         }
       }
@@ -1524,7 +1526,7 @@ footer {
       ul {
 
         h4 {
-          color: $jade;
+          color: $nvidia-green;
           font-size: .764rem;
           font-weight: 600;
           letter-spacing: 1.25px;
@@ -1638,7 +1640,7 @@ footer {
         letter-spacing: -0.1px;
 
         &:hover {
-          color: $jade !important;
+          color: $nvidia-green !important;
         }
       }
     }
@@ -1695,7 +1697,7 @@ footer {
 }
 
 .expand-label {
-  color: $jade;
+  color: $nvidia-green;
 }
 
 .expand-content {

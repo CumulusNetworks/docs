@@ -32,7 +32,7 @@ at the same time.
 
 Consider the following example deployment:
 
-{{% imgOld 0 %}}
+{{% img src="/images/old_doc_images/Screen-Shot-2015-04-23-at-5.00.38-PM.png" %}}
 
 The two switches running Cumulus Linux, called leaf1 and leaf2, each
 have a bridge configured. These two bridges contain the physical switch
@@ -96,7 +96,7 @@ to every remote VTEP.
 #### Head End Replication
 
 Broadcom switches with Tomahawk, Trident II+, and Trident II ASICs
-and switches with {{<exlink url="https://cumulusnetworks.com/products/hardware-compatibility-list/?asic%5B0%5D=Mellanox%20Spectrum&asic%5B1%5D=Mellanox%20Spectrum_A1" text="Spectrum ASICs">}} are capable of head end replication (HER), which is the ability to generate all the BUM traffic in hardware. The most scalable solution available with LNV is to have each VTEP (top of rack switch) generate all of its own BUM traffic instead of relying on an external service node. HER is enabled by default in Cumulus Linux.
+and switches with {{<exlink url="www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="Spectrum ASICs">}} are capable of head end replication (HER), which is the ability to generate all the BUM traffic in hardware. The most scalable solution available with LNV is to have each VTEP (top of rack switch) generate all of its own BUM traffic instead of relying on an external service node. HER is enabled by default in Cumulus Linux.
 
 Cumulus Linux verified support for up to 128 VTEPs with head end
 replication.
@@ -146,7 +146,7 @@ You only specify this parameter when head end replication is
 
 ### Hardware Requirements
 
-Switches with the Broadcom Tomahawk, Trident II+, or Trident II ASIC or switches with the Mellanox Spectrum ASIC running Cumulus Linux 2.5.4 or later. Refer to the {{<exlink url="https://cumulusnetworks.com/hcl" text="hardware compatibility list">}} for a list of supported switch models.
+Switches with the Broadcom Tomahawk, Trident II+, or Trident II ASIC or switches with the Mellanox Spectrum ASIC running Cumulus Linux 2.5.4 or later. Refer to the {{<exlink url="https://www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="hardware compatibility list">}} for a list of supported switch models.
 
 ### Configuration Requirements
 
@@ -169,12 +169,12 @@ throughout this chapter.
 
 | Physical Cabling Diagram | Network Virtualization Diagram |
 | ------------------------ | ------------------------------ |
-| {{% imgOld 1 %}} | {{% imgOld 2 %}} |
+| {{% img src="/images/old_doc_images/Screen-Shot-2015-04-20-at-10.02.57-AM.png" %}} | {{% img src="/images/old_doc_images/Screen-Shot-2015-04-20-at-10.02.37-AM.png" %}} |
 
 {{%notice tip%}}
 
 Want to try out configuring LNV and do not have a Cumulus Linux switch?
-Check out {{<exlink url="https://cumulusnetworks.com/cumulus-vx/" text="Cumulus VX">}}.
+Check out {{<exlink url="https://www.nvidia.com/en-us/networking/ethernet-switching/cumulus-vx/" text="Cumulus VX">}}.
 
 {{%/notice%}}
 

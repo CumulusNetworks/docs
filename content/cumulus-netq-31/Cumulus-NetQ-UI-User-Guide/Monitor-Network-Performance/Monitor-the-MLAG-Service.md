@@ -13,7 +13,7 @@ The Cumulus Linux implementation of MLAG is referred to by other vendors as MLAG
 
 ## Monitor the MLAG Service (All Sessions)
 
-With NetQ, you can monitor the number of nodes running the MLAG service, view sessions running, and view alarms triggered by the MLAG service. For an overview and how to configure MLAG in your data center network, refer to {{<kb_link url="cumulus-linux-43/Layer-2/Multi-Chassis-Link-Aggregation-MLAG/" text="Multi-Chassis Link Aggregation - MLAG">}}.
+With NetQ, you can monitor the number of nodes running the MLAG service, view sessions running, and view alarms triggered by the MLAG service. For an overview and how to configure MLAG in your data center network, refer to [Multi-Chassis Link Aggregation - MLAG]({{<ref "/cumulus-linux-43/Layer-2/Multi-Chassis-Link-Aggregation-MLAG" >}}).
 
 ### MLAG Service Card Workflow Summary
 
@@ -485,7 +485,7 @@ Use the icons above the table to select/deselect, filter, and export items in th
 
 ## Monitor a Single MLAG Session
 
-With NetQ, you can monitor the number of nodes running the MLAG service, view switches with the most peers alive and not alive, and view alarms triggered by the MLAG service. For an overview and how to configure MLAG in your data center network, refer to {{<kb_link url="cumulus-linux-43/Layer-2/Multi-Chassis-Link-Aggregation-MLAG/" text="Multi-Chassis Link Aggregation - MLAG">}}.
+With NetQ, you can monitor the number of nodes running the MLAG service, view switches with the most peers alive and not alive, and view alarms triggered by the MLAG service. For an overview and how to configure MLAG in your data center network, refer to [Multi-Chassis Link Aggregation - MLAG]({{<ref "/cumulus-linux-43/Layer-2/Multi-Chassis-Link-Aggregation-MLAG" >}}).
 
 {{%notice note%}}
 To access the single session cards, you must open the full screen MLAG Service, click the All Sessions tab, select the desired session, then click <img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> (Open Cards).

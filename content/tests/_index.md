@@ -47,7 +47,7 @@ This is some text around {{< figure src="/images/cumulus-linux/acl-legend.png" >
 
 ### Figure Link
 
-{{< figure src="/images/cumulus-linux/acl-legend.png" link="http://cumulusnetworks.com" >}}
+{{< figure src="/images/cumulus-linux/acl-legend.png" link="http://nvidia.com" >}}
 
 ### Figure Alt
 
@@ -56,12 +56,6 @@ This is some text around {{< figure src="/images/cumulus-linux/acl-legend.png" >
 ### Figure Caption
 
 {{< figure src="/images/cumulus-linux/acl-legend.png" caption="blah blah" >}}
-
-### Broken Figure
-
-<!-- Uncomment this to test that hugo fails when we don't have an image available. --> 
-{{- /* < figure src="/images/cumulus-linux/acl-legend.png-plumbis.png" alt="blah blah" > */ -}}
-
 ## Img
 
 ### Src and no Src
@@ -72,12 +66,6 @@ This is some text around {{< figure src="/images/cumulus-linux/acl-legend.png" >
 ### Alt, Height, Width
 
 {{< img src="/images/cumulus-linux/acl-legend.png" width="50px" height="50px" alt="blah" >}}  
-
-### Broken Figure
-
-<!-- Uncomment this to test that hugo fails when we don't have an image available. --> 
-{{- /* < img src="/images/cumulus-linux/acl-legend.png-plumbis.png" alt="blah blah" > */ -}}
-
 
 ## Link
 

@@ -415,7 +415,7 @@ The full screen Switch card provides multiple tabs.
 <li><strong>Hostname</strong>: Hostname of the given device</li>
 <li><strong>Largest Chunk Size</strong>: Largest remaining chunk size on disk</li>
 <li><strong>Last Changed</strong>: Data and time that the storage allocation was last updated</li>
-<li><strong>Rebalance Recommended</strong>: Based on rules described in {{<kb_link url="knowledge-base/Configuration-and-Usage/Storage/When-to-Rebalance-BTRFS-Partitions/" text="When to Rebalance BTRFS Partitions" >}}, a rebalance is suggested</li>
+<li><strong>Rebalance Recommended</strong>: Based on rules described in [When to Rebalance BTRFS Partitions]({{<ref "/knowledge-base/Configuration-and-Usage/Storage/When-to-Rebalance-BTRFS-Partitions" >}}), a rebalance is suggested</li>
 <li><strong>Unallocated Space</strong>: Amount of space remaining on the disk</li>
 <li><strong>Unused Data Chunks Space</strong>: Amount of available data chunk space</li>
 </ul></td>
@@ -691,7 +691,7 @@ To view all software packages:
 
 ### View Disk Storage After BTRFS Allocation
 
-Customers running Cumulus Linux 3.x which uses the BTRFS (b-tree file system) might experience issues with disk space management. This is a known problem of BTRFS because it does not perform periodic garbage collection, or rebalancing. If left unattended, these errors can make it impossible to rebalance the partitions on the disk. To avoid this issue, Cumulus Networks recommends rebalancing the BTRFS partitions in a preemptive manner, but only when absolutely needed to avoid reduction in the lifetime of the disk. By tracking the state of the disk space usage, users can determine when rebalancing should be performed. For details about when a rebalance is recommended, refer to {{<kb_link url="knowledge-base/Configuration-and-Usage/Storage/When-to-Rebalance-BTRFS-Partitions/" text="When to Rebalance BTRFS Partitions">}}.
+Customers running Cumulus Linux 3.x which uses the BTRFS (b-tree file system) might experience issues with disk space management. This is a known problem of BTRFS because it does not perform periodic garbage collection, or rebalancing. If left unattended, these errors can make it impossible to rebalance the partitions on the disk. To avoid this issue, Cumulus Networks recommends rebalancing the BTRFS partitions in a preemptive manner, but only when absolutely needed to avoid reduction in the lifetime of the disk. By tracking the state of the disk space usage, users can determine when rebalancing should be performed. For details about when a rebalance is recommended, refer to [When to Rebalance BTRFS Partitions]({{<ref "/knowledge-base/Configuration-and-Usage/Storage/When-to-Rebalance-BTRFS-Partitions" >}}).
 
 To view the disk state:
 

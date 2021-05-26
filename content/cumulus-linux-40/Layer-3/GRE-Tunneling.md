@@ -5,11 +5,11 @@ weight: 880
 toc: 3
 ---
 
-{{<notice warning>}}
+{{%notice warning%}}
 
-GRE Tunneling is an {{<kb_link url="knowledge-base/Support/Support-Offerings/Early-Access-Features-Defined/" text="early access feature">}}.
+GRE Tunneling is an [early access feature]({{<ref "/knowledge-base/Support/Support-Offerings/Early-Access-Features-Defined" >}}).
 
-{{</notice>}}
+{{%/notice%}}
 
 Generic Routing Encapsulation (GRE) is a tunneling protocol that encapsulates network layer protocols inside virtual point-to-point links over an Internet Protocol network. The two endpoints are identified by the tunnel source and tunnel destination addresses at each endpoint.
 
@@ -19,7 +19,7 @@ GRE uses multiple protocols over a single-protocol backbone and is less demandin
 
 {{%notice note%}}
 
-- GRE tunneling is supported for switches with {{<exlink url="https://cumulusnetworks.com/products/hardware-compatibility-list/?asic%5B0%5D=Mellanox%20Spectrum&asic%5B1%5D=Mellanox%20Spectrum_A1" text="Spectrum ASICs">}} only.
+- GRE tunneling is supported for switches with {{<exlink url="www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="Spectrum ASICs">}} only.
 - Only static routes are supported as a destination for the tunnel interface.
 - IPv6 endpoints are not supported.
 

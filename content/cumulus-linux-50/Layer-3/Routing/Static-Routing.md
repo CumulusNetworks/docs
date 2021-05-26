@@ -52,10 +52,7 @@ leaf01# exit
 cumulus@leaf01:~$
 ```
 
-{{< /tab >}}
-{{< /tabs >}}
-
-The commands save the static route configuration in the `/etc/frr/frr.conf` file. For example:
+The vtysh commands save the static route configuration in the `/etc/frr/frr.conf` file. For example:
 
 ```
 ...
@@ -64,6 +61,9 @@ ip route 10.10.10.101/32 10.0.1.0
 !
 ...
 ```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 The following example commands configure Cumulus Linux to send traffic with the destination prefix 10.10.10.61/32 out swp3 (10.0.0.32/31) to the next hop 10.0.0.33 in vrf BLUE.
 
@@ -107,10 +107,7 @@ border01# exit
 cumulus@border01:~$
 ```
 
-{{< /tab >}}
-{{< /tabs >}}
-
-The commands save the static route configuration in the `/etc/frr/frr.conf` file. For example:
+The vtysh commands save the static route configuration in the `/etc/frr/frr.conf` file. For example:
 
 ```
 ...
@@ -118,6 +115,9 @@ vrf BLUE
  ip route 10.10.10.61/32 10.0.0.33
 ...
 ```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 To delete a static route:
 
@@ -167,6 +167,7 @@ You can also create a static route by adding the route to a switch port configur
 {{< tab "CUE Commands ">}}
 
 ```
+cumulus@leaf01:~$ cl set interface swp51 ip address 10.0.1.1/31
 cumulus@leaf01:~$ NEED COMMAND
 ```
 
@@ -233,14 +234,7 @@ leaf01# exit
 cumulus@leaf01:~$
 ```
 
-{{%notice note%}}
-The default route created by the `gateway` parameter in ifupdown2 is not installed in FRR and cannot be redistributed into other routing protocols. See {{<link url="Interface-Configuration-and-Management#ifupdown2-and-the-gateway-parameter" text="ifupdown2 and the gateway Parameter" >}} for more information.
-{{%/notice%}}
-
-{{< /tab >}}
-{{< /tabs >}}
-
-The commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+The vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
 ```
 ...
@@ -249,6 +243,13 @@ ip route 0.0.0.0/0 10.0.1.0
 !
 ...
 ```
+
+{{%notice note%}}
+The default route created by the `gateway` parameter in ifupdown2 is not installed in FRR and cannot be redistributed into other routing protocols. See {{<link url="Interface-Configuration-and-Management#ifupdown2-and-the-gateway-parameter" text="ifupdown2 and the gateway Parameter" >}} for more information.
+{{%/notice%}}
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ## Considerations
 

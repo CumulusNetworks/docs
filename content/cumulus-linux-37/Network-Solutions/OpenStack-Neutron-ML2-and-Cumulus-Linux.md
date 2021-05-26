@@ -23,7 +23,7 @@ in a network with Cumulus Linux switches, you need the following:
 - The Modular Layer 2 (ML2) mechanism driver for OpenStack, which you install on the OpenStack Neutron controller node. It's available as a Python package from upstream.
 - The OpenStack Queens release.
 
-{{% imgOld 0 %}}
+{{< img src = "/images/cumulus-linux/network-solutions-ml2-driver-arch.png" >}}
 
 ## Configure the REST API
 
@@ -88,6 +88,6 @@ You configure them in the `/etc/neutron/plugins/ml2/ml2_conf.ini` file.
 ## Try OpenStack with Cumulus in the Cloud
 
 OpenStack Neutron is available as a preconfigured option with
-{{<exlink url="https://cumulusnetworks.com/products/cumulus-in-the-cloud/" text="Cumulus in the Cloud">}}.
+{{<exlink url="https://www.nvidia.com/en-us/networking/network-simulation/" text="Cumulus in the Cloud">}}.
 You just need to add the ML2 driver, as per the
 {{<link url="#install-and-configure-the-cumulus-networks-modular-layer-2-mechanism-driver" text="instructions above">}}.

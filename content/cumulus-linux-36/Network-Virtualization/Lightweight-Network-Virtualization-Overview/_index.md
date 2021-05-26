@@ -38,7 +38,7 @@ at the same time.
 
 Consider the following example deployment:
 
-{{% imgOld 0 %}}
+{{% img src="/images/old_doc_images/Screen-Shot-2015-04-23-at-5.00.38-PM.png" %}}
 
 The two switches running Cumulus Linux, called leaf1 and leaf2, each
 have a bridge configured. These two bridges contain the physical switch
@@ -164,7 +164,7 @@ To enable service node replication:
     or Mellanox switches with the Spectrum ASIC running Cumulus Linux
     2.5.4 or later. Please refer to the Cumulus Networks [hardware
     compatibility
-    list](http://cumulusnetworks.com/support/linux-hardware-compatibility-list/)
+    list](https://www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/)
     for a list of supported switch models.
 
 ### Configuration Requirements
@@ -206,9 +206,9 @@ throughout this chapter.
 <tbody>
 <tr class="odd">
 <td><p>Physical Cabling Diagram</p>
-<p>{{% imgOld 1 %}}</p></td>
+<p>{{% img src="/images/old_doc_images/Screen-Shot-2015-04-20-at-10.02.57-AM.png" %}}</p></td>
 <td><p>Network Virtualization Diagram</p>
-<p>{{% imgOld 2 %}}</p></td>
+<p>{{% img src="/images/old_doc_images/Screen-Shot-2015-04-20-at-10.02.37-AM.png" %}}</p></td>
 </tr>
 </tbody>
 </table>
@@ -216,7 +216,7 @@ throughout this chapter.
 {{%notice tip%}}
 
 Want to try out configuring LNV and do not have a Cumulus Linux switch?
-Check out [Cumulus VX](https://cumulusnetworks.com/cumulus-vx/).
+Check out [Cumulus VX](https://www.nvidia.com/en-us/networking/network-simulation/).
 
 {{%/notice%}}
 

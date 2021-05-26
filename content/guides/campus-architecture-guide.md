@@ -12,7 +12,7 @@ This guide walks a network architect or administrator through the various techno
 
 ## Cumulus Linux Network Operating System
 
-Cumulus Linux is the industry-leading open network operating system (NOS) that drives [open networking switches](https://cumulusnetworks.com/hcl) built on commodity hardware and switching silicon. It is the key that brings the same hardware and software disaggregation advantages to the network that IT departments already enjoy for their application servers and storage resources.
+Cumulus Linux is the industry-leading open network operating system (NOS) that drives [open networking switches](https://www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/) built on commodity hardware and switching silicon. It is the key that brings the same hardware and software disaggregation advantages to the network that IT departments already enjoy for their application servers and storage resources.
 
 Incumbent and traditional networking vendors create lock-in by bundling a proprietary operating system on custom built and proprietary networking hardware. Open networking switches often contain the same hardware forwarding chipsets as traditional vendors. When you need to run Linux on a server today, you have your choice of any bare metal server from any manufacturer that meets your needs and budget. The commitment to the operating system is a separate choice from the hardware that it runs on.
 
@@ -36,11 +36,11 @@ Since Cumulus Linux is a full Linux distribution based on Debian, administrators
 
 Cumulus Linux runs on over 100 open switch platforms from more than 10 hardware manufacturers, providing the widest choice and ultimate control over supply chain, procurement, speeds and features. Networking hardware from multiple vendors can become unified and simple to operate with Cumulus Linux running as a standard NOS. Cumulus Linux supports the widest range of platforms in the industry from open hardware vendors and is now extending this freedom and choice to the modern campus.
 
-Refer to the [hardware compatibility list](https://cumulusnetworks.com/hcl) for complete and detailed hardware platform support.
+Refer to the [hardware compatibility list](https://www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/) for complete and detailed hardware platform support.
 
 ## Cumulus NetQ Streaming Telemetry Platform
 
-Built using the same open, modern, web-scale principals that inspires Cumulus Linux, [Cumulus NetQ](https://cumulusnetworks.com/products/netq/) is a highly-scalable, modern network operations toolset that provides unprecedented visibility to your network operations in real time. Cumulus NetQ is designed from the ground up to process large amounts of data to deliver real-time insights and perform complex network-wide troubleshooting and validation tasks at nearly any scale.
+Built using the same open, modern, web-scale principals that inspires Cumulus Linux, [Cumulus NetQ](https://www.nvidia.com/en-us/networking/ethernet-switching/netq/) is a highly-scalable, modern network operations toolset that provides unprecedented visibility to your network operations in real time. Cumulus NetQ is designed from the ground up to process large amounts of data to deliver real-time insights and perform complex network-wide troubleshooting and validation tasks at nearly any scale.
 
 Adding Cumulus NetQ to a network powered by Cumulus Linux heightens visibility, eases troubleshooting, and enriches existing monitoring and operational strategies with an all-in-one tool that provides information such as:
 
@@ -182,7 +182,7 @@ In cases where the network is contained to a single floor or even with multiple 
 
 Similarly, it may be possible in some instances such as a very small building or sparse connectivity needs to combine the access and distribution layers into a single switch or pair of switches and route directly into a core layer.
 
-{{<figure src="/images/guides/campus-collapseddistro-access example.jpg" caption="A large campus network with collapsed distribution and access segments that route directly into the layer 3 core">}}
+{{<figure src="/images/guides/campus-collapseddistro-access-example.jpg" caption="A large campus network with collapsed distribution and access segments that route directly into the layer 3 core">}}
 
 #### Layer 2 vs Layer 3 ECMP Device Connections
 
@@ -210,7 +210,7 @@ Another important component, [RFC5549](https://tools.ietf.org/html/rfc5549), pro
 
 Because of this, BGP is much simpler to configure. Instead of requiring a peer address for each BGP neighbor, we can refer to the physical interface identifier and only need to specify if it is an internal (iBGP) neighbor or an external (eBGP) neighbor. This makes building and configuring a layer 3 routed network nearly plug and play.
 
-For more information on BGP Unnumbered and eBGP inside the network, download the free ebook here: [https://cumulusnetworks.com/lp/bgp-ebook/](https://cumulusnetworks.com/lp/bgp-ebook/)
+For more information on BGP Unnumbered and eBGP inside the network, download the free ebook here: [https://www.nvidia.com/en-us/networking/border-gateway-protocol/](https://www.nvidia.com/en-us/networking/border-gateway-protocol/)
 
 #### EVPN and VXLAN
 
@@ -262,7 +262,7 @@ Chassis create lock-in and a certain inflexibility of the network devices and se
 
 Open networking switches are almost exclusively built in fixed and non-modular form factors and support a wide range of pluggables. The [Recommended Designs](#recommended-designs) section below illustrates how campus networks can be built at scale without the need for large port-dense chassis switches.
 
-For more information about switch platforms that run Cumulus Linux, refer to our [hardware compatibility list](https://cumulusnetworks.com/hcl).
+For more information about switch platforms that run Cumulus Linux, refer to our [hardware compatibility list](https://www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/).
 
 ## Recommended Designs
 
@@ -272,7 +272,7 @@ Small campus network sites such as remote and satellite offices are often able t
 
 For these small networks, [inter-subnet routing](/cumulus-linux/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN/#inter-subnet-routing) can be performed on either the LAN switch or on a layer 3 device upstream. Performing routing upstream provides the opportunity for more robust and granular security and policy enforcement beyond what a LAN switch can provide in its hardware forwarding path, but may not be able to meet performance requirements. Inter-subnet routing can be performed at wire speed and takes the most direct path when performed on the LAN switch.
 
-Platform choice is flexible and includes options with or without Power over Ethernet (PoE). To see all 1G switch options, refer to the [hardware compatibility list](https://cumulusnetworks.com/products/hardware-compatibility-list/?portfolio%5B0%5D=1G&Speed=1G).
+Platform choice is flexible and includes options with or without Power over Ethernet (PoE). To see all 1G switch options, refer to the [hardware compatibility list](https://www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/).
 
 {{<figure src="/images/guides/campus-SmallOfficeRemoteOffice.jpg" caption="Small campus networks with consolidated network layers. **Left**: A small campus site with a single LAN switch. **Right**: One collapsed layer with one MLAG switch pair and security services in the WAN edge.">}}
 
@@ -307,13 +307,13 @@ In this configuration, distribution layer switches only route IP packets between
 
 | Tier | Supported Platforms |
 | ---- | ------------------- |
-| Access | Any model on the Cumulus HCL. See 1G models [here](https://cumulusnetworks.com/products/hardware-compatibility-list/?portfolio%5B0%5D=1G&Speed=1G). |
+| Access | Any model on the Cumulus HCL. See 1G models [here](https://www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/). |
 | Distribution | Any Broadcom Trident3, Trident II+ or Mellanox Spectrum-based platform is preferred. Broadcom Tomahawk family is acceptable. |
 | Border | Any Broadcom Trident3, Trident II+ or Mellanox Spectrum-based platform is preferred. Broadcom Tomahawk family is acceptable. |
 
 ### Redistribute Neighbor
 
-The Cumulus Linux layer 3 {{<kb_link url="cumulus-linux-41/Layer-3/Redistribute-Neighbor/" text="Redistribute Neighbor">}} feature helps modernise your campus network to make it more resilient, maximize utilisation, and eliminate the use of the Spanning Tree Protocol (STP).
+The Cumulus Linux layer 3 [Redistribute Neighbor]({{<ref "/cumulus-linux-41/Layer-3/Redistribute-Neighbor" >}}) feature helps modernise your campus network to make it more resilient, maximize utilisation, and eliminate the use of the Spanning Tree Protocol (STP).
 
 Redistribute neighbor provides a way for IP subnets to span racks without forcing the end hosts to run a routing protocol by redistributing the Address Resolution Protocol (ARP) table (Linux IP neighbor table) into a dynamic routing protocol, such as OSPF or BGP. The host routes continue to be advertised into the routing domain as /32 prefix routes. Routing protocols can achieve reachability by routing on the Longest Prefix Match (LPM) based on these /32 host routes.
 
@@ -323,7 +323,7 @@ Using Redistribute neighbor provides the following benefits:
 
 - Eliminates the requirement to stretch a layer 2 domain across the entire campus network or across more than one switch. Limiting your layer 2 domain between the access switch port and the directly-connected host eliminates STP from the entire network. Without a stretched layer 2 domain, BUM traffic is limited to the access switch port, where the host is directly connected.
 - Provides faster convergence, greater resiliency, and packet forwarding intelligence because the multiple uplink ports on the access switch and the rest of the core network become layer 3. In addition, using Equal Cost Multipath (ECMP) on all layer 3 links lets you take advantage of the full available bandwidth. Coupling with features, such as BFD, helps you achieve essential sub-second failover and forwarding reconvergence on the core layer 3 links.
-- Ensures efficiency, IP address conservation, and reduces IP address management by using {{<kb_link url="cumulus-linux-43/Layer-3/Border-Gateway-Protocol-BGP/#bgp-unnumbered-interfaces" text="BGP unnumbered interfaces ">}} for all layer 3 routing protocol links. Using BGP in the core enables you to achieve traffic engineering with route maps and prefix lists to manipulate routing and forwarding paths with the BGP attributes for certain prefixes and hosts.
+- Ensures efficiency, IP address conservation, and reduces IP address management by using [BGP unnumbered interfaces ]({{<ref "/cumulus-linux-43/Layer-3/Border-Gateway-Protocol-BGP/#bgp-unnumbered-interfaces" >}}) for all layer 3 routing protocol links. Using BGP in the core enables you to achieve traffic engineering with route maps and prefix lists to manipulate routing and forwarding paths with the BGP attributes for certain prefixes and hosts.
 - Optimises performance with the use of subnets. For example, when you have multiple buildings across the campus, you can allocate a /24 IP address block to a building, then another separate IP address block of /24 network addresses to another building, and so on. You can then perform route summarisation at the egress links of the building aggregation switches to summarise the subset /32 network prefixes and networks when advertising to the network core.
 
 #### Example Configuration
@@ -412,7 +412,7 @@ cumulus@Host_C:~$ 10.1.3.101 show eth1
 
 {{< /tabs >}}
 
-In this design, {{<kb_link url="cumulus-linux-41/Layer-3/Address-Resolution-Protocol-ARP/#configure-proxy-arp" text="Proxy ARP ">}} is configured on the VLAN attached to the host so that the switch responds to all ARP requests when a host sends an ARP request to a system on its subnet.
+In this design, [Proxy ARP ]({{<ref "/cumulus-linux-41/Layer-3/Address-Resolution-Protocol-ARP#configure-proxy-arp" >}}) is configured on the VLAN attached to the host so that the switch responds to all ARP requests when a host sends an ARP request to a system on its subnet.
 
 If you have many switches and need the VLAN across all the switches, you can specify a unique IP address on all the SVIs in the subnet, or you can use the anycast gateway with VRR. To conserve IP addresses, repeat physical IP addresses on a switch or switch pair (if you use MLAG).
 
@@ -623,8 +623,8 @@ FIB entry for 10.1.3.101
 
 In this deployment, you can perform segmentation in one of two ways:
 
-- Use {{<kb_link url="cumulus-linux-43/Layer-3/VRFs/Virtual-Routing-and-Forwarding-VRF/" text="VRF ">}} (depending on the scale and design).
-- Use {{<kb_link url="cumulus-linux-43/Layer-1-and-Switch-Ports/802.1X-Interfaces/#dynamic-acls" text="802.1x Dynamic ACL (DACL) ">}} with a NAC. This option is more suitable and scalable in this design. A host joining the network can be authenticated and policies pushed to the access switch through `iptable` rules or an access control list (ACL) to restrict the network resource access of that particular host.
+- Use [VRF ]({{<ref "/cumulus-linux-43/Layer-3/VRFs/Virtual-Routing-and-Forwarding-VRF" >}}) (depending on the scale and design).
+- Use [802.1x Dynamic ACL (DACL) ]({{<ref "/cumulus-linux-43/Layer-1-and-Switch-Ports/802.1X-Interfaces.md#dynamic-acls" >}}) with a NAC. This option is more suitable and scalable in this design. A host joining the network can be authenticated and policies pushed to the access switch through `iptable` rules or an access control list (ACL) to restrict the network resource access of that particular host.
 
 ### EVPN VXLAN
 
@@ -688,13 +688,13 @@ This design increases platform flexibility and choice on access switches as they
 
 Symmetric mode with distributed anycast gateways provides for devices to move between access switches and always perform routing at the local switch. All routing for access VLANs occurs in the context of a tenant (VRF). The global routing table is used to carry and advertise routing information for the network endpoints (such as VTEP addresses and loopbacks). All IP subnets for access VLANs exist as a member of a VRF. More information about VRFs in this design is discussed below.
 
-Data center network segments that implement VXLAN and EVPN can also be folded into the broader EVPN VXLAN-enabled campus. This provides opportunities to consolidate and centralize server and compute resources that had been traditionally co-located in the access or distribution layer. For more information about using EVPN and VXLAN in a data center network, visit our [EVPN solution page](https://cumulusnetworks.com/lp/evpn-control-plane-solution-vxlan-tunnels/).
+Data center network segments that implement VXLAN and EVPN can also be folded into the broader EVPN VXLAN-enabled campus. This provides opportunities to consolidate and centralize server and compute resources that had been traditionally co-located in the access or distribution layer. For more information about using EVPN and VXLAN in a data center network, visit our [EVPN solution page](https://www.nvidia.com/en-us/networking/evpn-ebook/).
 
 Distribution layer or border switches serve as VTEPs; thus, they carry the most stringent platform requirements. Distribution layer switches must be able to support VXLAN encapsulation/decapsulation and also routing in and out of VXLAN tunnels (RIOT). Core switches do not serve as VTEPs and only perform IP routing to more closely adhere to [core layer design principles](#core-tier).
 
 | Tier | Supported Platforms |
 | ---- | ------------------- |
-| Access | Any model on the Cumulus HCL. See 1G models [here](https://cumulusnetworks.com/products/hardware-compatibility-list/?portfolio%5B0%5D=1G&Speed=1G). |
+| Access | Any model on the Cumulus HCL. See 1G models [here](https://www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/). |
 | Distribution | Any Broadcom Trident3, Trident II+ or Mellanox Spectrum-based platform is preferred. Broadcom Tomahawk family is acceptable, although routing in and out of VXLAN tunnels (RIOT) on Tomahawk platforms introduces a[few limitations and extra configuration](/cumulus-linux/Network-Virtualization/VXLAN-Routing/#tomahawk-and-tomahawk). |
 | Border | Any Broadcom Trident3, Trident II+ or Mellanox Spectrum-based platform is preferred. Broadcom Tomahawk family is acceptable, although routing in and out of VXLAN tunnels (RIOT) on Tomahawk platforms introduces a [few limitations and extra configuration](/cumulus-linux/Network-Virtualization/VXLAN-Routing/#tomahawk-and-tomahawk). |
 | Core | Any model on the Cumulus HCL. |

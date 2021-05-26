@@ -92,11 +92,11 @@ ACL L4 port range checkers:             2,   8% of maximum value     24
 
 {{%notice note%}}
 
-On a switch with a {{<exlink url="https://cumulusnetworks.com/products/hardware-compatibility-list/?asic%5B0%5D=Mellanox%20Spectrum&asic%5B1%5D=Mellanox%20Spectrum_A1" text="Spectrum ASIC">}}, the `cl-resource-query` command shows the number of TCAM entries used by the different types of ACL resources.
+On a switch with a {{<exlink url="www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="Spectrum ASIC">}}, the `cl-resource-query` command shows the number of TCAM entries used by the different types of ACL resources.
 
 {{%/notice%}}
 
-The example below shows `cl-resource-query` results for a NVIDIA Mellanox Spectrum switch:
+The example below shows `cl-resource-query` results for an NVIDIA Mellanox Spectrum switch:
 ```
 cumulus@switch:~$ sudo cl-resource-query
 IPv4 host entries:                      0,   0% of maximum value  32768

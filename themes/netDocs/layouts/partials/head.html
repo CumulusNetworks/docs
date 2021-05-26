@@ -1,5 +1,18 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+{{ if .Page.GitInfo }}
+<meta name="nv-pub-date" content="{{ .Page.GitInfo.AuthorDate.Format "2006-01-02T15:04:05.000Z" }}">
+{{ end }}
+{{ if .Page.Params.version }}
+<meta name="docs_version" content="{{ .Page.Params.version }}">
+{{ end }}
+{{ if .Page.Params.keywords }}
+<meta name="keywords" content="{{ .Page.Params.keywords }}">
+{{ end }}
+{{ if .Page.Params.description }}
+<meta name="description" content="{{ .Page.Params.description }}">
+{{ end }}
+<meta name="products" content=”{{.Page.Params.product | htmlUnescape }}”>
 {{$prodVersion := print .Page.Params.product " " (.Page.Params.version | default "") }}
 <title>{{ .Page.Title }} | {{ $prodVersion | default .Site.Title -}}</title>
 
@@ -16,11 +29,6 @@
 
 <!-- Favicon -->
 <link rel="icon" href="{{ "icons/favicon.png" | absURL }}" type="image/x-icon">
-
-<!-- RSS -->
-{{ with .OutputFormats.Get "rss" -}}
-    {{ printf `<link rel="%s" type="%s" href="%s" title="%s" />` .Rel .MediaType.Type .Permalink $.Site.Title | safeHTML }}
-{{ end -}}
 
 {{ "<!--" | safeHTML }}
     Made with Book Theme

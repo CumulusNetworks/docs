@@ -4127,6 +4127,17 @@ To work around this issue, change the value of {{arp_ignore}} to 2. See [Address
 <th> Affects </th>
 </tr>
 <tr>
+<td>2656291</td>
+<td>The following CVEs affect the linux kernel package:
+CVE-2019-14821 CVE-2019-14835 CVE-2019-15117 CVE-2019-15118 CVE-2019-15902
+Several vulnerabilities have been discovered in the Linux kernel that
+may lead to a privilege escalation, denial of service or information
+leaks.
+For the detailed security status of linux,  refer to its security tracker page at:
+https://security-tracker.debian.org/tracker/linux</td>
+<td>3.7.12-3.7.15</td>
+</tr>
+<tr>
 <td>2555278</td>
 <td>When you change the anycast address for the MLAG pair (clagd-vxlan-anycast-ip), high peak traffic occurs on the peer link interface of all MLAG switches.</td>
 <td>3.7.13-3.7.14.2</td>

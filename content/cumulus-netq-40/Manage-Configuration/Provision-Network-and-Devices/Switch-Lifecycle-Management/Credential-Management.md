@@ -32,7 +32,7 @@ Be sure to use credentials for a user account that has permission to configure s
 
 {{<notice tip>}}
 
-The default credentials for Cumulus Linux have changed from *cumulus/CumulusLinux!* to *cumulus/cumulus* for releases 4.2 and later. For details, read {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux-42/System-Configuration/Authentication-Authorization-and-Accounting/User-Accounts/" text="Cumulus Linux User Accounts">}}.
+The default credentials for Cumulus Linux have changed from *cumulus/CumulusLinux!* to *cumulus/cumulus* for releases 4.2 and later. For details, read [Cumulus Linux User Accounts]({{<ref "cumulus-linux-43/System-Configuration/Authentication-Authorization-and-Accounting/User-Accounts">}}).
 
 {{</notice>}}
 

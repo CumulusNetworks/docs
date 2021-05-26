@@ -28,7 +28,7 @@ You can install a certificate using the Admin UI or the NetQ CLI.
 
 {{<tab "NetQ UI">}}
 
-1. Enter *https://\<hostname-or-ipaddr-of-netq-appliance-or-vm\>:8443* in your broswer address bar to open the Admin UI.
+1. Enter *https://\<hostname-or-ipaddr-of-netq-appliance-or-vm\>:8443* in your browser address bar to open the Admin UI.
 
 2. From the Health page, click **Settings**.
 

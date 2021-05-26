@@ -1,5 +1,5 @@
 ---
-title: 'Authentication, Authorization and Accounting'
+title: Authentication Authorization and Accounting
 author: NVIDIA
 weight: 130
 toc: 3

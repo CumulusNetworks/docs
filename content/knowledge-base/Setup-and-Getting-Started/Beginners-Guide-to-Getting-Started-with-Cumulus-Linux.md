@@ -9,11 +9,11 @@ This simple document provides a checklist for users like network administrators,
 
 ## Adding and Managing User Accounts
 
-1.  Learn about [user accounts]({{<ref "/cumulus-linux-43/System-Configuration/Authentication,-Authorization-and-Accounting/User-Accounts" >}})
-3.  [Use sudo to delegate privileges]({{<ref "/cumulus-linux-43/System-Configuration/Authentication,-Authorization-and-Accounting/Using-sudo-to-Delegate-Privileges" >}})
+1.  Learn about [user accounts]({{<ref "/cumulus-linux-43/System-Configuration/Authentication-Authorization-and-Accounting/User-Accounts" >}})
+3.  [Use sudo to delegate privileges]({{<ref "/cumulus-linux-43/System-Configuration/Authentication-Authorization-and-Accounting/Using-sudo-to-Delegate-Privileges" >}})
 4.  [What is the default password in Cumulus Linux?]({{<ref "/knowledge-base/Setup-and-Getting-Started/Default-User-Name-and-Password-in-Cumulus-Linux" >}})
 5.  Optional: Configure LDAP for centralized user management
-    - [LDAP authentication and authorization]({{<ref "/cumulus-linux-43/System-Configuration/Authentication,-Authorization-and-Accounting/LDAP-Authentication-and-Authorization" >}})
+    - [LDAP authentication and authorization]({{<ref "/cumulus-linux-43/System-Configuration/Authentication-Authorization-and-Accounting/LDAP-Authentication-and-Authorization" >}})
     - [LDAP authentication and authorization with Active Directory]({{<ref "/knowledge-base/Security/Authentication/LDAP-on-Cumulus-Linux-Using-Server-2008-Active-Directory" >}})
 
 ## Editing Files in Linux

@@ -110,17 +110,6 @@ Fixed: 1.14.4-2+deb10u1</td>
 <td></td>
 </tr>
 <tr>
-<td>2625818</td>
-<td>The following CVEs were announced that affect the libssh package:
-CVE-2019-14889 has been announced in the libssh library, where unsanitized user-provided scp command lines could allow an attacker to execute arbitrary commands on the server.
-The libssh library is not installed on Cumulus Linux by default, but is available in the Cumulus Linux 4 repository for optional installation. Note that libssh is distinct from libssh2 and openssh, which are present on the switches and in the repositories.
-See the following for more information:
-https://www.libssh.org/security/advisories/CVE-2019-14889.txt
-https://security-tracker.debian.org/tracker/CVE-2019-14889</td>
-<td>4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
 <td>2617001</td>
 <td>CVE-2021-26933 CVE-2021-27379
 Multiple vulnerabilities have been discovered in the Xen hypervisor, which could result in denial of service, privilege escalation or memory disclosure.
@@ -2005,6 +1994,17 @@ To work around this issue, run the {{bridge fdb show}} command to show the inter
 <td>4.2.0-4.3.0</td>
 </tr>
 <tr>
+<td>2546261</td>
+<td>The following CVEs were announced that affect the libssh package:
+CVE-2019-14889 has been announced in the libssh library, where unsanitized user-provided scp command lines could allow an attacker to execute arbitrary commands on the server.
+The libssh library is not installed on Cumulus Linux by default, but is available in the Cumulus Linux 4 repository for optional installation. Note that libssh is distinct from libssh2 and openssh, which are present on the switches and in the repositories.
+See the following for more information:
+https://www.libssh.org/security/advisories/CVE-2019-14889.txt
+https://security-tracker.debian.org/tracker/CVE-2019-14889</td>
+<td>4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
 <td>2546255</td>
 <td>On the EdgeCore Minipack-AS8000 switch, a 100G DAC link does not come up when auto-negotiation is enabled on the neighbor. This switch does not support 100G DAC auto-negotiation at this time.</td>
 <td>4.0.0-4.1.1</td>
@@ -2887,17 +2887,6 @@ This is an information leak in algorithm negotiation that can allow man-in-the-m
 Multiple vulnerabilities were discovered in plugins for the GStreamer media framework, which may result in denial of service or potentially the execution of arbitrary code if a malformed media file is opened.
 Vulnerable: 1.14.4-2
 Fixed: 1.14.4-2+deb10u1</td>
-<td>4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
-<td>2625818</td>
-<td>The following CVEs were announced that affect the libssh package:
-CVE-2019-14889 has been announced in the libssh library, where unsanitized user-provided scp command lines could allow an attacker to execute arbitrary commands on the server.
-The libssh library is not installed on Cumulus Linux by default, but is available in the Cumulus Linux 4 repository for optional installation. Note that libssh is distinct from libssh2 and openssh, which are present on the switches and in the repositories.
-See the following for more information:
-https://www.libssh.org/security/advisories/CVE-2019-14889.txt
-https://security-tracker.debian.org/tracker/CVE-2019-14889</td>
 <td>4.0.0-4.3.0</td>
 <td></td>
 </tr>
@@ -4628,6 +4617,17 @@ Command '['/sbin/ifreload', '-a']' returned non-zero exit status 1
 To work around this issue, run the {{bridge fdb show}} command to show the interface.</td>
 <td>4.0.0-4.1.1</td>
 <td>4.2.0-4.3.0</td>
+</tr>
+<tr>
+<td>2546261</td>
+<td>The following CVEs were announced that affect the libssh package:
+CVE-2019-14889 has been announced in the libssh library, where unsanitized user-provided scp command lines could allow an attacker to execute arbitrary commands on the server.
+The libssh library is not installed on Cumulus Linux by default, but is available in the Cumulus Linux 4 repository for optional installation. Note that libssh is distinct from libssh2 and openssh, which are present on the switches and in the repositories.
+See the following for more information:
+https://www.libssh.org/security/advisories/CVE-2019-14889.txt
+https://security-tracker.debian.org/tracker/CVE-2019-14889</td>
+<td>4.0.0-4.3.0</td>
+<td></td>
 </tr>
 <tr>
 <td>2546255</td>

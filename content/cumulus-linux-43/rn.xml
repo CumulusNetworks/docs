@@ -178,17 +178,6 @@ Fixed: 2.8.0-cl3.7.15u3</td>
 <td>3.7.15</td>
 </tr>
 <tr>
-<td>2625818</td>
-<td>The following CVEs were announced that affect the libssh package:
-CVE-2019-14889 has been announced in the libssh library, where unsanitized user-provided scp command lines could allow an attacker to execute arbitrary commands on the server.
-The libssh library is not installed on Cumulus Linux by default, but is available in the Cumulus Linux 4 repository for optional installation. Note that libssh is distinct from libssh2 and openssh, which are present on the switches and in the repositories.
-See the following for more information:
-https://www.libssh.org/security/advisories/CVE-2019-14889.txt
-https://security-tracker.debian.org/tracker/CVE-2019-14889</td>
-<td>4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
 <td>2618227</td>
 <td>The NCLU {{net show bridge macs}} command displays permanent MAC addresses for trunked VLANs.</td>
 <td>4.3.0</td>
@@ -988,6 +977,17 @@ To increase the {{systemd}} timeout:
 <tr>
 <td>2546874</td>
 <td>On the Dell S5232F, S5248F, S5296F, and S3048 switch, using the {{poweroff}} or {{halt}} commands does not fully power off the switch.</td>
+<td>4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2546261</td>
+<td>The following CVEs were announced that affect the libssh package:
+CVE-2019-14889 has been announced in the libssh library, where unsanitized user-provided scp command lines could allow an attacker to execute arbitrary commands on the server.
+The libssh library is not installed on Cumulus Linux by default, but is available in the Cumulus Linux 4 repository for optional installation. Note that libssh is distinct from libssh2 and openssh, which are present on the switches and in the repositories.
+See the following for more information:
+https://www.libssh.org/security/advisories/CVE-2019-14889.txt
+https://security-tracker.debian.org/tracker/CVE-2019-14889</td>
 <td>4.0.0-4.3.0</td>
 <td></td>
 </tr>

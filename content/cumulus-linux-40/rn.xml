@@ -1183,17 +1183,6 @@ Fixed: 1.14.4-2+deb10u1</td>
 <td></td>
 </tr>
 <tr>
-<td>2625818</td>
-<td>The following CVEs were announced that affect the libssh package:
-CVE-2019-14889 has been announced in the libssh library, where unsanitized user-provided scp command lines could allow an attacker to execute arbitrary commands on the server.
-The libssh library is not installed on Cumulus Linux by default, but is available in the Cumulus Linux 4 repository for optional installation. Note that libssh is distinct from libssh2 and openssh, which are present on the switches and in the repositories.
-See the following for more information:
-https://www.libssh.org/security/advisories/CVE-2019-14889.txt
-https://security-tracker.debian.org/tracker/CVE-2019-14889</td>
-<td>4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
 <td>2617001</td>
 <td>CVE-2021-26933 CVE-2021-27379
 Multiple vulnerabilities have been discovered in the Xen hypervisor, which could result in denial of service, privilege escalation or memory disclosure.
@@ -3056,6 +3045,17 @@ Fixed: 2.20.1-2+deb10u1</td>
 To work around this issue, restart the networking service after {{ifreload -a}} with the {{systemctl restart networking}} command.</td>
 <td>3.7.10-3.7.11, 4.0.0-4.0.1</td>
 <td>3.7.12-3.7.15, 4.1.0-4.3.0</td>
+</tr>
+<tr>
+<td>2546261</td>
+<td>The following CVEs were announced that affect the libssh package:
+CVE-2019-14889 has been announced in the libssh library, where unsanitized user-provided scp command lines could allow an attacker to execute arbitrary commands on the server.
+The libssh library is not installed on Cumulus Linux by default, but is available in the Cumulus Linux 4 repository for optional installation. Note that libssh is distinct from libssh2 and openssh, which are present on the switches and in the repositories.
+See the following for more information:
+https://www.libssh.org/security/advisories/CVE-2019-14889.txt
+https://security-tracker.debian.org/tracker/CVE-2019-14889</td>
+<td>4.0.0-4.3.0</td>
+<td></td>
 </tr>
 <tr>
 <td>2546255</td>

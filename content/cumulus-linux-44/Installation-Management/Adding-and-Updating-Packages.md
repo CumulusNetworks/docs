@@ -147,6 +147,18 @@ arptables                          0.0.4+snapshot20181021-4
 ```
 
 {{< /tab >}}
+{{< tab "CUE Command ">}}
+
+```
+cumulus@switch:~$ cl show platform software installed
+                                       description                                                                                                                   package                                version
+-------------------------------------  ----------------------------------------------------------------------------------------------------------------------------  -------------------------------------  ----------------------------------------------
+acpi                                   displays information on ACPI devices                                                                                          acpi                                   1.7-1.1
+acpi-support-base                      scripts for handling base ACPI events such as the power button                                                                acpi-support-base                      0.142-8
+acpid                                  Advanced Configuration and Power Interface event daemon                                                                       acpid                                  1:2.0.31-1
+```
+
+{{< /tab >}}
 {{< tab "Linux Command ">}}
 
 ```
@@ -167,18 +179,6 @@ ii  arptables           0.0.4+snapshot20181021-4  amd64        ARP table adminis
 ```
 
 {{< /tab >}}
-{{< tab "CUE Command ">}}
-
-```
-cumulus@switch:~$ cl show platform software installed
-                                       description                                                                                                                   package                                version
--------------------------------------  ----------------------------------------------------------------------------------------------------------------------------  -------------------------------------  ----------------------------------------------
-acpi                                   displays information on ACPI devices                                                                                          acpi                                   1.7-1.1
-acpi-support-base                      scripts for handling base ACPI events such as the power button                                                                acpi-support-base                      0.142-8
-acpid                                  Advanced Configuration and Power Interface event daemon                                                                       acpid                                  1:2.0.31-1
-```
-
-{{< /tab >}}
 {{< /tabs >}}
 
 ## Show the Version of a Package
@@ -196,6 +196,20 @@ cumulus@switch:~$ net show package version vrf
 ```
 
 {{< /tab >}}
+{{< tab "CUE Command ">}}
+
+The following example command shows which version of the `vrf` package is installed on the system:
+
+```
+cumulus@switch:~$ cl show platform software installed vrf
+             running              applied  pending  description
+-----------  -------------------  -------  -------  -----------
+description  Linux tools for VRF                    Description
+package      vrf                                    Package
+version      1.0-cl4.2.1+u1                         Version
+```
+
+{{< /tab >}}
 {{< tab "Linux Command ">}}
 
 The following example command shows which version of the `vrf` package is installed on the system:
@@ -208,20 +222,6 @@ Desired=Unknown/Install/Remove/Purge/Hold
 ||/ Name       Version      Architecture Description
 +++-==========-============-============-=================================
 ii  vrf        1.0-cl4u2    amd64        Linux tools for VRF
-```
-
-{{< /tab >}}
-{{< tab "CUE Command ">}}
-
-The following example command shows which version of the `vrf` package is installed on the system:
-
-```
-cumulus@switch:~$ cl show platform software installed vrf
-             running              applied  pending  description
------------  -------------------  -------  -------  -----------
-description  Linux tools for VRF                    Description
-package      vrf                                    Package
-version      1.0-cl4.2.1+u1                         Version
 ```
 
 {{< /tab >}}

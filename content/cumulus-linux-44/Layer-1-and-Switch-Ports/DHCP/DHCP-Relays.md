@@ -19,9 +19,34 @@ If you intend to run the `dhcrelay` service within a {{<link url="Virtual-Routin
 To set up DHCP relay, you need to provide the IP address of the DHCP server and the interfaces participating in DHCP relay (facing the server and facing the client). You can specify as many server IP addresses that can fit in 255 octets.
 
 {{< tabs "TabID21 ">}}
-{{< tab "CUE Commands ">}}
+{{< tab "NCLU Commands ">}}
 
 {{< tabs "TabID24 ">}}
+{{< tab "IPv4 ">}}
+
+In the example commands below, the DHCP server IP address is 172.16.1.102, vlan10 is the SVI for VLAN 10 and the uplinks are swp51 and swp52.
+
+```
+cumulus@leaf01:~$ net add dhcp relay interface swp51
+cumulus@leaf01:~$ net add dhcp relay interface swp52
+cumulus@leaf01:~$ net add dhcp relay interface vlan10
+cumulus@leaf01:~$ net add dhcp relay server 172.16.1.102
+cumulus@leaf01:~$ net pending
+cumulus@leaf01:~$ net commit
+```
+
+{{< /tab >}}
+{{< tab "IPv6 ">}}
+
+NCLU commands are not currently available to configure IPv6 relays. Use the Linux Commands.
+
+{{< /tab >}}
+{{< /tabs >}}
+
+{{< /tab >}}
+{{< tab "CUE Commands ">}}
+
+{{< tabs "TabID49 ">}}
 {{< tab "IPv4 ">}}
 
 Specify the IP address of each DHCP server and both interfaces participating in DHCP relay (facing the server and facing the client).
@@ -61,7 +86,7 @@ cumulus@leaf01:~$ cl apply
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-{{< tabs "TabID85 ">}}
+{{< tabs "TabID89 ">}}
 {{< tab "IPv4 ">}}
 
 1. Edit the `/etc/default/isc-dhcp-relay` file to add the IP address of the DHCP server and the interfaces participating in DHCP relay. In the example below, the DHCP server IP address is 172.16.1.102, vlan10 is the SVI for VLAN 10, and the uplinks are swp51 and swp52.
@@ -176,6 +201,35 @@ RFC 3527 is supported for IPv4 DHCP relays only.
 To enable RFC 3527 support and control the giaddr:
 
 {{< tabs "TabID203 ">}}
+{{< tab "NCLU Commands ">}}
+
+Run the `net add dhcp relay giaddr-interface` command with the interface or the interface and IP address you want to use.
+
+This example uses the first IP address on the loopback interface as the giaddr:
+
+```
+cumulus@leaf01:~$ net add dhcp relay giaddr-interface lo
+```
+
+The first IP address on the loopback interface is typically the 127.0.0.1 address. This example uses IP address 10.10.10.1 on the loopback interface as the giaddr:
+
+```
+cumulus@leaf01:~$ net add dhcp relay giaddr-interface lo 10.10.10.1
+```
+
+This example uses the first IP address on swp2 as the giaddr:
+
+```
+cumulus@leaf01:~$ net add dhcp relay giaddr-interface swp2
+```
+
+This example uses IP address 10.0.0.4 on swp2 as the giaddr:
+
+```
+cumulus@leaf01:~$ net add dhcp relay giaddr-interface swp2 10.0.0.4
+```
+
+{{< /tab >}}
 {{< tab "CUE Commands ">}}
 
 Run the `cl set service dhcp-relay default giaddress-interface` command with the interface/IP address you want to use. The following example uses the first IP address on the loopback interface as the gateway IP address:
@@ -263,9 +317,16 @@ This option impacts all relayed IPv4 packets globally.
 To use the gateway IP address as the source IP address:
 
 {{< tabs "TabID319 ">}}
-{{< tab "CUE Commands ">}}
+{{< tab "NCLU Commands ">}}
 
-Run the `cl set service dhcp-relay default source-ip giaddress` command:
+```
+cumulus@leaf:~$ net add dhcp relay use-giaddr-as-src
+cumulus@leaf:~$ net pending
+cumulus@leaf:~$ net commit
+```
+
+{{< /tab >}}
+{{< tab "CUE Commands ">}}
 
 ```
 cumulus@leaf01:~$ cl set service dhcp-relay default source-ip giaddress

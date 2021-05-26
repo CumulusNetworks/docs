@@ -5,7 +5,7 @@ weight: 980
 toc: 4
 ---
 
-*RDMA over Converged Ethernet* ({{<exlink url="http://www.roceinitiative.org/roce-introduction/" text="RoCE">}}) provides the ability to write to compute or storage elements using remote direct memory access (RDMA) over an Ethernet network instead of using host CPUs. RoCE relies on congestion control and lossless Ethernet to operate. Cumulus Linux supports features that can enable lossless Ethernet for RoCE environments.
+*RDMA over Converged Ethernet* ({{<exlink url="http://www.roceinitiative.org/roce-introduction/" text="RoCE">}}) provides the ability to write to compute or storage elements using remote direct memory access (RDMA) over an Ethernet network instead of using host CPUs. RoCE relies on congestion control and lossless Ethernet to operate. Cumulus Linux and SONiC both support features that can enable lossless Ethernet for RoCE environments.
 
 RoCE helps you obtain a converged network, where all services run over the Ethernet infrastructure, including Infiniband apps.
 
@@ -61,6 +61,20 @@ You can also go back in time to view counters at a particular point in the past.
 
 ### View General Rx Counters
 
+You can view RoCE counters in both the UI and CLI.
+
+{{<tabs "View general Rx counters">}}
+
+{{<tab "NetQ UI">}}
+
+To view general Rx counters, open the RoCE Counters card.
+
+{{<figure src="/images/netq/roce-counters-fs-4.0.0.png" width="700">}}
+
+{{</tab>}}
+
+{{<tab "NetQ CLI">}}
+
 To view general Rx counters, run `netq show roce-counters rx general`:
 
 ```
@@ -78,6 +92,10 @@ switch            swp1s3               1627273              152582910           
 switch            swp63s0              1094532              120228456            0                    0                    1                    0                    1
 switch            swp63s2              1618361              160178796            0                    0                    2                    0                    2
 ```
+
+{{</tab>}}
+
+{{</tabs>}}
 
 ### View RoCE-specific Rx Counters
 

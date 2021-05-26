@@ -9,8 +9,7 @@ When installing NetQ {{<version>}}, you are not required to install the NetQ CLI
 
 After installing your NetQ software and the NetQ {{<version>}} Agent on each switch you want to monitor, you can also install the NetQ CLI on switches running:
 
-- Cumulus Linux version 3.3.2-3.7.x
-- Cumulus Linux version 4.0.0 and later
+- Cumulus Linux version 3.3.2-3.7.x, 4.0.0 and later
 - SONiC 202012 and later
 - CentOS 7
 - RHEL 7.1

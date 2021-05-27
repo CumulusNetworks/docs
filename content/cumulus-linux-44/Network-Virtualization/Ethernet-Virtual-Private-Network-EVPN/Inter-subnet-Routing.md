@@ -23,6 +23,28 @@ In centralized routing, you configure a specific VTEP to act as the default gate
 To enable centralized routing, you must configure the gateway VTEPs to advertise their IP and MAC address.
 
 {{< tabs "TabID26 ">}}
+{{< tab "NCLU Commands ">}}
+
+```
+cumulus@leaf01:~$ net add bgp autonomous-system 65101
+cumulus@leaf01:~$ net add bgp l2vpn evpn advertise-default-gw
+cumulus@leaf01:~$ net pending
+cumulus@leaf01:~$ net commit
+```
+
+The NCLU commands create the following configuration snippet in the `/etc/frr/frr.conf` file.
+
+```
+...
+router bgp 65101
+...
+  address-family l2vpn evpn
+    advertise-default-gw
+  exit-address-family
+...
+```
+
+{{< /tab >}}
 {{< tab "CUE Commands ">}}
 
 ```
@@ -105,6 +127,18 @@ Optional configuration includes {{<link url="#configure-rd-and-rts-for-the-tenan
 ### Configure a Per-tenant VXLAN Interface
 
 {{< tabs "TabID113 ">}}
+{{< tab "NCLU Commands ">}}
+
+```
+cumulus@leaf01:~$ net add vxlan vni10 vxlan id 10
+cumulus@leaf01:~$ net add vxlan vni10 bridge access 10
+cumulus@leaf01:~$ net add vxlan vni10 vxlan local-tunnelip 10.10.10.1
+cumulus@leaf01:~$ net add bridge bridge ports vni10
+cumulus@leaf01:~$ net pending
+cumulus@leaf01:~$ net commit
+```
+
+{{< /tab >}}
 {{< tab "CUE Commands ">}}
 
 ```
@@ -140,6 +174,15 @@ auto bridge
 ### Configure an SVI for the Layer 3 VNI
 
 {{< tabs "TabID154 ">}}
+{{< tab "NCLU Commands ">}}
+
+```
+cumulus@leaf01:~$ net add vlan10 vrf RED
+cumulus@leaf01:~$ net pending
+cumulus@leaf01:~$ net commit
+```
+
+{{< /tab >}}
 {{< tab "CUE Commands ">}}
 
 ```
@@ -174,29 +217,21 @@ When two VTEPs are operating in **VXLAN active-active** mode and performing **sy
 ### Configure the VRF to Layer 3 VNI Mapping
 
 {{< tabs "TabID206 ">}}
+{{< tab "NCLU Commands ">}}
+
+```
+cumulus@leaf01:~$ net add vrf RED vni 4001
+cumulus@leaf01:~$ net pending
+cumulus@leaf01:~$ net commit
+```
+
+{{< /tab >}}
 {{< tab "CUE Commands ">}}
 
 ```
 cumulus@leaf01:~$ cl set vrf RED evpn vni 4001
 cumulus@leaf01:~$ cl config apply
 ```
-
-{{< /tab >}}
-{{< tab "Linux Commands ">}}
-
-Edit the `/etc/frr/frr.conf` file. For example:
-
-```
-cumulus@leaf01:~$ sudo nano /etc/frr/frr.conf
-...
-vrf RED
-  vni 4001
-!
-...
-```
-
-{{< /tab >}}
-{{< /tabs >}}
 
 {{%notice note%}}
 When you run the `cl set vrf RED evpn vni 4001` command, CUE:
@@ -225,11 +260,49 @@ iface vlan220_l3
 ```
 {{%/notice%}}
 
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Edit the `/etc/frr/frr.conf` file. For example:
+
+```
+cumulus@leaf01:~$ sudo nano /etc/frr/frr.conf
+...
+vrf RED
+  vni 4001
+!
+...
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
 ### Configure RD and RTs for the Tenant VRF
 
 If you do not want the RD and RTs (layer 3 RTs) for the tenant VRF to be derived automatically, you can configure them manually by specifying them under the `l2vpn evpn` address family for that specific VRF.
 
 {{< tabs "TabID226 ">}}
+{{< tab "NCLU Commands ">}}
+
+```
+cumulus@leaf01:~$ net add bgp vrf RED l2vpn evpn rd 10.1.20.2:5
+cumulus@leaf01:~$ net add bgp vrf RED l2vpn evpn route-target import 65102:4001
+cumulus@leaf01:~$ net pending
+cumulus@leaf01:~$ net commit
+```
+
+The NCLU commands create the following configuration snippet in the `/etc/frr/frr.conf` file:
+
+```
+...
+router bgp 65101 vrf RED
+  address-family l2vpn evpn
+  rd 10.1.20.2:5
+  route-target import 65102:4001
+...
+```
+
+{{< /tab >}}
 {{< tab "CUE Commands ">}}
 
 ```
@@ -315,6 +388,27 @@ For a switch to be able to install EVPN type-5 routes into the routing table, yo
 The following configuration is required in the tenant VRF to announce IP prefixes in the BGP RIB as EVPN type-5 routes.
 
 {{< tabs "TabID317 ">}}
+{{< tab "NCLU Commands ">}}
+
+```
+cumulus@leaf01:~$ net add bgp vrf RED l2vpn evpn advertise ipv4 unicast
+cumulus@leaf01:~$ net pending
+cumulus@leaf01:~$ net commit
+```
+
+The NCLU commands create the following snippet in the `/etc/frr/frr.conf` file:
+
+```
+...
+router bgp 65101 vrf RED
+  address-family l2vpn evpn
+    advertise ipv4 unicast
+  exit-address-family
+end
+...
+```
+
+{{< /tab >}}
 {{< tab "CUE Commands ">}}
 
 ```
@@ -409,6 +503,15 @@ By default, when announcing IP prefixes in the BGP RIB as EVPN type-5 routes, al
 The following commands add a route map filter to IPv4 EVPN type-5 route advertisement:
 
 {{< tabs "TabID408 ">}}
+{{< tab "NCLU Commands ">}}
+
+```
+cumulus@leaf01:~$ net add bgp vrf RED l2vpn evpn advertise ipv4 unicast route-map map1
+cumulus@leaf01:~$ net pending
+cumulus@leaf01:~$ net commit
+```
+
+{{< /tab >}}
 {{< tab "CUE Commands ">}}
 
 ```
@@ -468,6 +571,15 @@ See {{<link url="Basic-Configuration#evpn-and-vxlan-active-active-mode" text="EV
 Set the MLAG system MAC address on both switches in the MLAG pair.
 
 {{< tabs "TabID472 ">}}
+{{< tab "NCLU Commands ">}}
+
+```
+cumulus@leaf01:~$ net add vlan 4001 ip address-virtual 44:38:39:BE:EF:AA
+cumulus@leaf01:~$ net pending
+cumulus@leaf01:~$ net commit
+```
+
+{{< /tab >}}
 {{< tab "CUE Commands ">}}
 
 ```
@@ -538,6 +650,15 @@ Each switch in the MLAG pair advertises type-5 routes with its own system IP, wh
 To disable Advertise Primary IP Address:
 
 {{< tabs "TabID560 ">}}
+{{< tab "NCLU Commands ">}}
+
+```
+cumulus@leaf01:~$ net del bgp vrf RED l2vpn evpn advertise-pip
+cumulus@leaf01:~$ net pending
+cumulus@leaf01:~$ net commit
+```
+
+{{< /tab >}}
 {{< tab "CUE Commands ">}}
 
 ```

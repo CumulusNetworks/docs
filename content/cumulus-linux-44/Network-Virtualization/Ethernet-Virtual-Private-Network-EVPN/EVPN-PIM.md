@@ -27,7 +27,6 @@ The configuration steps needed to configure PIM-SM in the underlay are provided 
 In addition to the PIM-SM configuration, you need to run the following commands on each VTEP to provide the layer 2 VNI to MDT mapping.
 
 {{< tabs "TabID37 ">}}
-
 {{< tab "NCLU Commands ">}}
 
 Run the `net add vxlan <interface> vxlan mcastgrp <ip-address>` command. For example:
@@ -37,7 +36,6 @@ cumulus@switch:~$ net add vxlan vxlan1000111 vxlan mcastgrp 239.1.1.111
 ```
 
 {{< /tab >}}
-
 {{< tab "Linux Commands ">}}
 
 Edit the `/etc/network/interfaces` file and add `vxlan-mcastgrp <ip-address>` to the interface stanza. For example:
@@ -59,13 +57,10 @@ cumulus@switch:~$ ifreload -a
 ```
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 {{%notice note%}}
-
 One multicast group per layer 2 VNI is optimal configuration for underlay bandwidth utilization. However, you can specify the same multicast group for more than one layer 2 VNI.
-
 {{%/notice%}}
 
 ## Verify EVPN-PIM
@@ -106,9 +101,7 @@ cumulus@switch:~$ bridge fdb show | grep 00:00:00:00:00:00
 ```
 
 {{%notice note%}}
-
 The `show ip mroute count` command, often used to check multicast packet counts does *not* update for encapsulated BUM traffic originating or terminating on the VTEPs.
-
 {{%/notice%}}
 
 Run the NCLU `net show evpn vni <vni>` command or the vtysh `show evpn vni <vni>` command to ensure that your layer 2 VNI has the correct flooding information:
@@ -137,7 +130,6 @@ VNI: 10
 To configure EVPN-PIM in VXLAN active-active mode, enable PIM on the peer link on each MLAG peer switch (**in addition to** the configuration described in {{<link url="#configure-multicast-vxlan-tunnels" text="Configure Multicast VXLAN Tunnels">}}, above).
 
 {{< tabs "TabID318 ">}}
-
 {{< tab "NCLU Commands ">}}
 
 Run the `net add interface <peerlink> pim` command. For example:
@@ -149,7 +141,6 @@ cumulus@switch:~$ net pending
 ```
 
 {{< /tab >}}
-
 {{< tab "vtysh Commands ">}}
 
 In the vtysh shell, run the following commands:
@@ -167,7 +158,6 @@ cumulus@switch:~$
 ```
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 ## Example Configuration
@@ -179,7 +169,6 @@ The following example shows an EVPN-PIM configuration on the VTEP, where:
 - Multicast group 239.1.1.111 is mapped to VXLAN1000111. Multicast group 239.1.1.112 is mapped to VXLAN1000112 (shown in the example `/etc/network/interfaces` file below).
 
 {{< tabs "TabID87 ">}}
-
 {{< tab "/etc/frr/frr.conf file ">}}
 
 ```
@@ -250,7 +239,6 @@ end
 ```
 
 {{< /tab >}}
-
 {{< tab "/etc/network/interfaces file ">}}
 
 ```
@@ -352,5 +340,4 @@ iface vlan4002
 ```
 
 {{< /tab >}}
-
 {{< /tabs >}}

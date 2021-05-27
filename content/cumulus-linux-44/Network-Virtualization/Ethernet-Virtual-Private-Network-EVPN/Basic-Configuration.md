@@ -17,9 +17,81 @@ Basic configuration in a BGP-EVPN-based layer 2 extension deployment requires yo
 For a non-VTEP device that is only participating in EVPN route exchange, such as a spine switch where the network deployment uses hop-by-hop eBGP or the switch is acting as an iBGP route reflector, configuring VXLAN interfaces is not required.
 {{%/notice%}}
 
-You can configure EVPN with CUE commands or with Linux and vtysh commands.
+{{< tabs "TabID20 ">}}
+{{< tab "NCLU Commands ">}}
 
-{{< tabs "TabID78 ">}}
+1. Configure VXLAN Interfaces. The following example creates two VXLAN interfaces, adds the VXLAN devices to the bridge, and sets the VXLAN local tunnel IP address to 10.10.10.1.
+
+   ```
+   cumulus@leaf01:~$ net add vxlan vni10 vxlan id 10
+   cumulus@leaf01:~$ net add vxlan vni20 vxlan id 20
+   cumulus@leaf01:~$ net add bridge bridge ports vni10,vni20
+   cumulus@leaf01:~$ net add bridge bridge vids 10,20
+   cumulus@leaf01:~$ net add vxlan vni10 bridge access 10
+   cumulus@leaf01:~$ net add vxlan vni20 bridge access 20
+   cumulus@leaf01:~$ net add vxlan vni10 bridge learning on
+   cumulus@leaf01:~$ net add loopback lo vxlan local-tunnelip 10.10.10.1
+   ```
+
+2. Configure BGP. The following example commands assign an ASN and router ID to leaf01 and spine01, specify the interfaces between the two BGP peers, and the prefixes to originate. For complete information on how to configure BGP, see {{<link url="Border-Gateway-Protocol-BGP" text="Border Gateway Protocol - BGP">}}.
+
+   {{< tabs "TabID38 ">}}
+{{< tab "leaf01 ">}}
+
+```
+cumulus@leaf01:~$ net add bgp autonomous-system 65101
+cumulus@leaf01:~$ net add bgp router-id 10.10.10.1
+cumulus@leaf01:~$ net add bgp neighbor swp51 interface remote-as external
+cumulus@leaf01:~$ net add bgp ipv4 unicast network 10.10.10.1/32
+cumulus@leaf01:~$ net pending
+cumulus@leaf01:~$ net commit
+```
+
+{{< /tab >}}
+{{< tab "spine01 ">}}
+
+```
+cumulus@spine01:~$ net add bgp autonomous-system 65199
+cumulus@spine01:~$ net add bgp router-id 10.10.10.101
+cumulus@spine01:~$ net add bgp neighbor swp1 remote-as external
+cumulus@spine01:~$ net add bgp ipv4 unicast network 10.10.10.101/32
+cumulus@spine01:~$ net pending
+cumulus@spine01:~$ net commit
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+3. Activate the EVPN address family and enable EVPN between BGP neighbors. The following example commands enable EVPN between leaf01 and spine01:
+
+   {{< tabs "TabID67 ">}}
+{{< tab "leaf01 ">}}
+
+```
+cumulus@leaf01:~$ net add bgp l2vpn evpn neighbor swp51 activate
+```
+
+{{< /tab >}}
+{{< tab "spine01 ">}}
+
+cumulus@spine01:~$ net add bgp l2vpn evpn neighbor swp1 activate
+
+{{< /tab >}}
+{{< /tabs >}}
+
+4. FRR is not aware of any local VNIs and MACs, or hosts (neighbors) associated with those VNIs until you enable the BGP control plane for all VNIs configured on the switch by setting the `advertise-all-vni` option.
+
+```
+cumulus@leaf01:~$ net add bgp l2vpn evpn advertise-all-vni
+cumulus@leaf01:~$ net pending
+cumulus@leaf01:~$ net commit
+```
+
+{{%notice note%}}
+This configuration is only needed on leaf switches that are VTEPs. EVPN routes received from a BGP peer are accepted, even without this explicit EVPN configuration. These routes are maintained in the global EVPN routing table. However, they only become effective (imported into the per-VNI routing table and appropriate entries installed in the kernel) when the VNI corresponding to the received route is locally known.
+{{%/notice%}}
+
+{{< /tab >}}
 {{< tab "CUE Commands ">}}
 
 1. Configure VXLAN Interfaces. The following example creates a single VXLAN interface (vxlan0), maps VLAN 10 to vni10 and VLAN 20 to vni20, adds the VXLAN device to the default bridge `br_default`, and sets the VXLAN local tunnel IP address to 10.10.10.10.
@@ -31,11 +103,11 @@ You can configure EVPN with CUE commands or with Linux and vtysh commands.
    cumulus@leaf01:~$ cl config apply
    ```
 
-   To create a traditional VXLAN device, where each VNI is represented as a separate device instead of  a set of VNIs in a single device model, see {{<link url="VXLAN-Devices" text="VXLAN-Devices">}}.
+   To create a traditional VXLAN device, where each VNI is represented as a separate device instead of a set of VNIs in a single device model, see {{<link url="VXLAN-Devices" text="VXLAN-Devices">}}.
 
 2. Configure BGP. The following example commands assign an ASN and router ID to leaf01 and spine01, specify the interfaces between the two BGP peers, and the prefixes to originate. For complete information on how to configure BGP, see {{<link url="Border-Gateway-Protocol-BGP" text="Border Gateway Protocol - BGP">}}.
 
-   {{< tabs "TabID25 ">}}
+   {{< tabs "TabID110 ">}}
 {{< tab "leaf01 ">}}
 
 ```
@@ -62,7 +134,7 @@ cumulus@spine01:~$ cl config apply
 
 3. Activate the EVPN address family and enable EVPN between BGP neighbors. The following example commands enable EVPN between leaf01 and spine01:
 
-   {{< tabs "TabID119 ">}}
+   {{< tabs "TabID137 ">}}
 {{< tab "leaf01 ">}}
 
 ```
@@ -179,6 +251,8 @@ cumulus@spine01:~$ sudo cat /etc/cue.d/startup.yaml
 {{< /tab >}}
 {{< /tabs >}}
 
+Unlike with NCLU, you do not need enable the BGP control plane for all VNIs configured on the switch. FRR **is** aware of any local VNIs and MACs, and hosts (neighbors) associated with those VNIs.
+
 {{< /tab >}}
 {{< tab "Linux and vtysh Commands ">}}
 
@@ -224,7 +298,7 @@ cumulus@spine01:~$ sudo cat /etc/cue.d/startup.yaml
 
 2. Configure BGP with vtysh commands. The following example commands assign an ASN and router ID to leaf01 and spine01, specify the interfaces between the two BGP peers, and the prefixes to originate. For complete information on how to configure BGP, see {{<link url="Border-Gateway-Protocol-BGP" text="Border Gateway Protocol - BGP">}}.
 
-   {{< tabs "TabID117 ">}}
+   {{< tabs "TabID299 ">}}
 {{< tab "leaf01 ">}}
 
 ```
@@ -263,7 +337,7 @@ cumulus@spine01:~$
 
 3. Activate the EVPN address family and enable EVPN between BGP neighbors. The following example commands enable EVPN between leaf01 and spine01. The commands automatically provision all locally configured VNIs to be advertised by the BGP control plane.
 
-   {{< tabs "TabID194 ">}}
+   {{< tabs "TabID338 ">}}
 {{< tab "leaf01 ">}}
 
 ```

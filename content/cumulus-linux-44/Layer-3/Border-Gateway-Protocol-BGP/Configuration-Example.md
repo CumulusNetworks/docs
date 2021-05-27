@@ -24,15 +24,6 @@ cumulus@leaf01:~$ net add bond bond3 bond slaves swp3
 cumulus@leaf01:~$ net add bond bond1 clag id 1
 cumulus@leaf01:~$ net add bond bond2 clag id 2
 cumulus@leaf01:~$ net add bond bond3 clag id 3
-cumulus@leaf01:~$ net add bond bond1 stp portadminedge
-cumulus@leaf01:~$ net add bond bond2 stp portadminedge
-cumulus@leaf01:~$ net add bond bond3 stp portadminedge
-cumulus@leaf01:~$ net add bond bond1 stp bpduguard
-cumulus@leaf01:~$ net add bond bond2 stp bpduguard
-cumulus@leaf01:~$ net add bond bond3 stp bpduguard
-cumulus@leaf01:~$ net add bond bond1 bond lacp-bypass-allow
-cumulus@leaf01:~$ net add bond bond2 bond lacp-bypass-allow
-cumulus@leaf01:~$ net add bond bond3 bond lacp-bypass-allow
 cumulus@leaf01:~$ net add bridge bridge ports bond1,bond2,bond3
 cumulus@leaf01:~$ net add clag peer sys-mac 44:38:39:BE:EF:AA interface swp49-50 primary backup-ip 10.10.10.2
 cumulus@leaf01:~$ net add vlan 10 ip address 10.1.10.2/24
@@ -61,15 +52,6 @@ cumulus@leaf02:~$ net add bond bond3 bond slaves swp3
 cumulus@leaf02:~$ net add bond bond1 clag id 1
 cumulus@leaf02:~$ net add bond bond2 clag id 2
 cumulus@leaf02:~$ net add bond bond3 clag id 3
-cumulus@leaf02:~$ net add bond bond1 stp portadminedge
-cumulus@leaf02:~$ net add bond bond2 stp portadminedge
-cumulus@leaf02:~$ net add bond bond3 stp portadminedge
-cumulus@leaf02:~$ net add bond bond1 stp bpduguard
-cumulus@leaf02:~$ net add bond bond2 stp bpduguard
-cumulus@leaf02:~$ net add bond bond3 stp bpduguard
-cumulus@leaf02:~$ net add bond bond1 bond lacp-bypass-allow
-cumulus@leaf02:~$ net add bond bond2 bond lacp-bypass-allow
-cumulus@leaf02:~$ net add bond bond3 bond lacp-bypass-allow
 cumulus@leaf02:~$ net add bridge bridge ports bond1,bond2,bond3
 cumulus@leaf02:~$ net add clag peer sys-mac 44:38:39:BE:EF:AA interface swp49-50 primary backup-ip 10.10.10.1
 cumulus@leaf02:~$ net add vlan 10 ip address 10.1.10.3/24
@@ -97,15 +79,6 @@ cumulus@leaf03:~$ net add bond bond3 bond slaves swp3
 cumulus@leaf03:~$ net add bond bond1 clag id 1
 cumulus@leaf03:~$ net add bond bond2 clag id 2
 cumulus@leaf03:~$ net add bond bond3 clag id 3
-cumulus@leaf03:~$ net add bond bond1 stp portadminedge
-cumulus@leaf03:~$ net add bond bond2 stp portadminedge
-cumulus@leaf03:~$ net add bond bond3 stp portadminedge
-cumulus@leaf03:~$ net add bond bond1 stp bpduguard
-cumulus@leaf03:~$ net add bond bond2 stp bpduguard
-cumulus@leaf03:~$ net add bond bond3 stp bpduguard
-cumulus@leaf03:~$ net add bond bond1 bond lacp-bypass-allow
-cumulus@leaf03:~$ net add bond bond2 bond lacp-bypass-allow
-cumulus@leaf03:~$ net add bond bond3 bond lacp-bypass-allow
 cumulus@leaf03:~$ net add bridge bridge ports bond1,bond2,bond3
 cumulus@leaf03:~$ net add clag peer sys-mac 44:38:39:BE:EF:AA interface swp49-50 primary backup-ip 10.10.10.4
 cumulus@leaf03:~$ net add vlan 40 ip address 10.1.40.4/24
@@ -133,15 +106,6 @@ cumulus@leaf04:~$ net add bond bond3 bond slaves swp3
 cumulus@leaf04:~$ net add bond bond1 clag id 1
 cumulus@leaf04:~$ net add bond bond2 clag id 2
 cumulus@leaf04:~$ net add bond bond3 clag id 3
-cumulus@leaf04:~$ net add bond bond1 stp portadminedge
-cumulus@leaf04:~$ net add bond bond2 stp portadminedge
-cumulus@leaf04:~$ net add bond bond3 stp portadminedge
-cumulus@leaf04:~$ net add bond bond1 stp bpduguard
-cumulus@leaf04:~$ net add bond bond2 stp bpduguard
-cumulus@leaf04:~$ net add bond bond3 stp bpduguard
-cumulus@leaf04:~$ net add bond bond1 bond lacp-bypass-allow
-cumulus@leaf04:~$ net add bond bond2 bond lacp-bypass-allow
-cumulus@leaf04:~$ net add bond bond3 bond lacp-bypass-allow
 cumulus@leaf04:~$ net add bridge bridge ports bond1,bond2,bond3
 cumulus@leaf04:~$ net add clag peer sys-mac 44:38:39:BE:EF:AA interface swp49-50 primary backup-ip 10.10.10.3
 cumulus@leaf04:~$ net add vlan 40 ip address 10.1.40.6/24
@@ -205,9 +169,6 @@ cumulus@leaf01:~$ cl set interface bond3 bond member swp3
 cumulus@leaf01:~$ cl set interface bond1 bond mlag id 1
 cumulus@leaf01:~$ cl set interface bond2 bond mlag id 2
 cumulus@leaf01:~$ cl set interface bond3 bond mlag id 3
-cumulus@leaf01:~$ cl set interface bond1 bond lacp-bypass on
-cumulus@leaf01:~$ cl set interface bond2 bond lacp-bypass on
-cumulus@leaf01:~$ cl set interface bond3 bond lacp-bypass on
 cumulus@leaf01:~$ cl set interface bond1-3 bridge domain br_default 
 cumulus@leaf01:~$ cl set interface peerlink bond member swp49-50
 cumulus@leaf01:~$ cl set mlag mac-address 44:38:39:BE:EF:AA
@@ -238,9 +199,6 @@ cumulus@leaf02:~$ cl set interface bond3 bond member swp3
 cumulus@leaf02:~$ cl set interface bond1 bond mlag id 1
 cumulus@leaf02:~$ cl set interface bond2 bond mlag id 2
 cumulus@leaf02:~$ cl set interface bond3 bond mlag id 3
-cumulus@leaf02:~$ cl set interface bond1 bond lacp-bypass on
-cumulus@leaf02:~$ cl set interface bond2 bond lacp-bypass on
-cumulus@leaf02:~$ cl set interface bond3 bond lacp-bypass on
 cumulus@leaf02:~$ cl set interface bond1-3 bridge domain br_default 
 cumulus@leaf02:~$ cl set interface peerlink bond member swp49-50
 cumulus@leaf02:~$ cl set mlag mac-address 44:38:39:BE:EF:AA
@@ -270,9 +228,6 @@ cumulus@leaf03:~$ cl set interface bond3 bond member swp3
 cumulus@leaf03:~$ cl set interface bond1 bond mlag id 1
 cumulus@leaf03:~$ cl set interface bond2 bond mlag id 2
 cumulus@leaf03:~$ cl set interface bond3 bond mlag id 3
-cumulus@leaf03:~$ cl set interface bond1 bond lacp-bypass on
-cumulus@leaf03:~$ cl set interface bond2 bond lacp-bypass on
-cumulus@leaf03:~$ cl set interface bond3 bond lacp-bypass on
 cumulus@leaf03:~$ cl set interface bond1-3 bridge domain br_default 
 cumulus@leaf03:~$ cl set interface peerlink bond member swp49-50
 cumulus@leaf03:~$ cl set mlag mac-address 44:38:39:BE:EF:AA
@@ -302,9 +257,6 @@ cumulus@leaf04:~$ cl set interface bond3 bond member swp3
 cumulus@leaf04:~$ cl set interface bond1 bond mlag id 1
 cumulus@leaf04:~$ cl set interface bond2 bond mlag id 2
 cumulus@leaf04:~$ cl set interface bond3 bond mlag id 3
-cumulus@leaf04:~$ cl set interface bond1 bond lacp-bypass on
-cumulus@leaf04:~$ cl set interface bond2 bond lacp-bypass on
-cumulus@leaf04:~$ cl set interface bond3 bond lacp-bypass on
 cumulus@leaf04:~$ cl set interface bond1-3 bridge domain br_default 
 cumulus@leaf04:~$ cl set interface peerlink bond member swp49-50
 cumulus@leaf04:~$ cl set mlag mac-address 44:38:39:BE:EF:AA
@@ -904,25 +856,16 @@ iface bond1
     bond-slaves swp1
     bond-mode 802.3ad
     clag-id 1
-    mstpctl-bpduguard yes
-    mstpctl-portadminedge yes
-    bond-lacp-bypass-allow yes
 
 auto bond2
 iface bond2
     bond-slaves swp2
     clag-id 2
-    mstpctl-bpduguard yes
-    mstpctl-portadminedge yes
-    bond-lacp-bypass-allow yes
 
 auto bond3
 iface bond3
     bond-slaves swp3
     clag-id 3
-    mstpctl-bpduguard yes
-    mstpctl-portadminedge yes
-    bond-lacp-bypass-allow yes
 
 auto peerlink
 iface peerlink
@@ -1004,25 +947,16 @@ auto bond1
 iface bond1
     clag-id 1
     bond-slaves swp1
-    mstpctl-bpduguard yes
-    mstpctl-portadminedge yes
-    bond-lacp-bypass-allow yes
 
 auto bond2
 iface bond2
     clag-id 2
     bond-slaves swp2
-    mstpctl-bpduguard yes
-    mstpctl-portadminedge yes
-    bond-lacp-bypass-allow yes
 
 auto bond3
 iface bond3
     clag-id 3
     bond-slaves swp3
-    mstpctl-bpduguard yes
-    mstpctl-portadminedge yes
-    bond-lacp-bypass-allow yes
 
 auto peerlink
 iface peerlink
@@ -1103,25 +1037,16 @@ auto bond1
 iface bond1
     bond-slaves swp1
     clag-id 1
-    mstpctl-bpduguard yes
-    mstpctl-portadminedge yes
-    bond-lacp-bypass-allow yes
 
 auto bond2
 iface bond2
     bond-slaves swp2
     clag-id 2
-    mstpctl-bpduguard yes
-    mstpctl-portadminedge yes
-    bond-lacp-bypass-allow yes
 
 auto bond3
 iface bond3
     bond-slaves swp3
     clag-id 3
-    mstpctl-bpduguard yes
-    mstpctl-portadminedge yes
-    bond-lacp-bypass-allow yes
 
 auto peerlink
 iface peerlink
@@ -1202,25 +1127,16 @@ auto bond1
 iface bond1
     bond-slaves swp
     clag-id 1
-    mstpctl-bpduguard yes
-    mstpctl-portadminedge yes
-    bond-lacp-bypass-allow yes
 
 auto bond2
 iface bond2
     bond-slaves swp2
     clag-id 2
-    mstpctl-bpduguard yes
-    mstpctl-portadminedge yes
-    bond-lacp-bypass-allow yes
 
 auto bond3
 iface bond3
     bond-slaves swp3
     clag-id 3
-    mstpctl-bpduguard yes
-    mstpctl-portadminedge yes
-    bond-lacp-bypass-allow yes
 
 auto peerlink
 iface peerlink

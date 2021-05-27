@@ -104,11 +104,16 @@ When EVPN-MH is enabled, all SVI MAC addresses are advertised as type 2 routes. 
 ### Enable EVPN-MH
 
 {{< tabs "TabID105 ">}}
+{{<tab "NCLU Commands">}}
+
+NCLU commands are not supported; use Linux commands.
+
+{{< /tab >}}
 {{<tab "CUE Commands">}}
 
 ```
-cumulus@switch:~$ cl set evpn multihoming enable on
-cumulus@switch:~$ cl config apply
+cumulus@leaf01:~$ cl set evpn multihoming enable on
+cumulus@leaf01:~$ cl config apply
 ```
 
 {{< /tab >}}
@@ -117,14 +122,14 @@ cumulus@switch:~$ cl config apply
 Set the `evpn.multihoming.enable` variable in the `/etc/cumulus/switchd.conf` file to `TRUE`, then restart the `switchd` service. The variable is disabled by default.
 
 ```
-cumulus@switch:~$ sudo nano /etc/cumulus/switchd.conf
+cumulus@leaf01:~$ sudo nano /etc/cumulus/switchd.conf
 ...
 evpn.multihoming.enable = TRUE
 ...
 ```
 
 ```
-cumulus@switch:~$ sudo systemctl restart switchd.service
+cumulus@leaf01:~$ sudo systemctl restart switchd.service
 ```
 
 {{< /tab >}}
@@ -135,6 +140,63 @@ cumulus@switch:~$ sudo systemctl restart switchd.service
 To configure bond interfaces for EVPN-MH, run commands similar to the following:
 
 {{<tabs "bond config">}}
+{{<tab "NCLU Commands">}}
+
+```
+cumulus@leaf01:~$ net add bond bond1 bond slaves swp1
+cumulus@leaf01:~$ net add bond bond2 bond slaves swp2
+cumulus@leaf01:~$ net add bond bond3 bond slaves swp3
+cumulus@leaf01:~$ net add bond bond1 evpn mh es-id 1
+cumulus@leaf01:~$ net add bond bond2 evpn mh es-id 2
+cumulus@leaf01:~$ net add bond bond3 evpn mh es-id 3
+cumulus@leaf01:~$ net add bond bond1-3 evpn mh es-sys-mac 44:38:39:BE:EF:AA
+cumulus@leaf01:~$ net add bond bond1-3 evpn mh es-df-pref 50000
+cumulus@leaf01:~$ net pending
+cumulus@leaf01:~$ net commit
+```
+
+The NCLU commands create the following configuration in the `/etc/network/interfaces` file.
+
+```
+cumulus@leaf01:~$ sudo cat /etc/network/interfaces
+...
+interface bond1
+  bond-slaves swp1
+  es-sys-mac 44:38:39:BE:EF:AA
+
+interface bond2
+  bond-slaves swp2
+  es-sys-mac 44:38:39:BE:EF:AA
+
+interface bond3
+  bond-slaves swp3
+  es-sys-mac 44:38:39:BE:EF:AA
+```
+
+The NCLU commands also create the following configuration in the `/etc/frr/frr.conf` file.
+
+```
+cumulus@leaf01:~$ sudo cat /etc/frr/frr.conf
+...
+!
+interface bond1
+ evpn mh es-df-pref 50000
+ evpn mh es-id 1
+ evpn mh es-sys-mac 44:38:39:BE:EF:AA
+!
+interface bond2
+ evpn mh es-df-pref 50000
+ evpn mh es-id 2
+ evpn mh es-sys-mac 44:38:39:BE:EF:AA
+!
+interface bond3
+ evpn mh es-df-pref 50000
+ evpn mh es-id 3
+ evpn mh es-sys-mac 44:38:39:BE:EF:AA
+!
+```
+
+{{</tab>}}
 {{<tab "CUE Commands">}}
 
 ```
@@ -183,7 +245,7 @@ leaf01# exit
 cumulus@leaf01:~$
 ```
 
-The commands create the following configuration in the `/etc/network/interfaces` file.
+The vtysh commands create the following configuration in the `/etc/network/interfaces` file.
 
 ```
 cumulus@leaf01:~$ sudo cat /etc/network/interfaces
@@ -201,7 +263,7 @@ interface bond3
   es-sys-mac 44:38:39:BE:EF:AA
 ```
 
-The commands also create the following configuration in the `/etc/frr/frr.conf` file.
+The vtysh commands also create the following configuration in the `/etc/frr/frr.conf` file.
 
 ```
 cumulus@leaf01:~$ sudo cat /etc/frr/frr.conf
@@ -240,6 +302,23 @@ You can set these global settings for EVPN-MH:
 To configure a MAC hold time for 1000 seconds, run the following commands:
 
 {{<tabs "MAC hold time">}}
+{{<tab "NCLU Commands">}}
+
+```
+cumulus@leaf01:~$ net add evpn mh mac-holdtime 1000
+cumulus@leaf01:~$ net pending
+cumulus@leaf01:~$ net commit
+```
+
+The NCLU commands create the following configuration in the `/etc/frr/frr.conf` file:
+
+```
+cumulus@leaf01:~$ sudo cat /etc/frr/frr.conf
+...
+evpn mh mac-holdtime 1000
+```
+
+{{</tab>}}
 {{<tab "CUE Commands">}}
 
 ```
@@ -278,6 +357,23 @@ evpn mh mac-holdtime 1000
 To configure a neighbor hold time for 600 seconds, run the following commands:
 
 {{<tabs "Neighbor hold time">}}
+{{<tab "NCLU Commands">}}
+
+```
+cumulus@leaf01:~$ net add evpn mh neigh-holdtime 600
+cumulus@leaf01:~$ net pending
+cumulus@leaf01:~$ net commit
+```
+
+The NCLU commands create the following configuration in the `/etc/frr/frr.conf` file:
+
+```
+cumulus@leaf01:~$ sudo cat /etc/frr/frr.conf
+...
+evpn mh neigh-holdtime 600
+```
+
+{{</tab>}}
 {{<tab "CUE Commands">}}
 
 ```
@@ -316,6 +412,23 @@ evpn mh neigh-holdtime 600
 To configure a startup delay for 1800 seconds, run the following commands:
 
 {{<tabs "startup delay">}}
+{{<tab "NCLU Commands">}}
+
+```
+cumulus@leaf01:~$ net add evpn mh startup-delay 1800
+cumulus@leaf01:~$ net pending
+cumulus@leaf01:~$ net commit
+```
+
+The NCLU commands create the following configuration in the `/etc/frr/frr.conf` file:
+
+```
+cumulus@leaf01:~$ sudo cat /etc/frr/frr.conf
+...
+evpn mh startup-delay 1800
+```
+
+{{</tab>}}
 {{<tab "CUE Commands">}}
 
 ```
@@ -356,6 +469,37 @@ evpn mh startup-delay 1800
 When all the uplinks go down, the VTEP loses connectivity to the VXLAN overlay. To prevent traffic loss in this state, the uplinks' oper-state is tracked. When all the uplinks are down, the Ethernet segment bonds on the switch are put into a protodown or error-disabled state. You can configure a link as an MH uplink to enable this tracking.
 
 {{<tabs "upink tracking">}}
+{{<tab "NCLU Commands">}}
+
+```
+cumulus@leaf01:~$ net add interface swp1-4 evpn mh uplink
+cumulus@leaf01:~$ net add interface swp1-4 pim
+cumulus@leaf01:~$ net pending
+cumulus@leaf01:~$ net commit
+```
+
+The NCLU commands create the following configuration in the `/etc/frr/frr.conf` file:
+
+```
+cumulus@leaf01:~$ sudo cat /etc/frr/frr.conf
+...
+!
+interface swp1
+ evpn mh uplink
+!
+interface swp2
+ evpn mh uplink
+!
+interface swp3
+ evpn mh uplink
+!
+interface swp4
+ evpn mh uplink
+!
+...
+```
+
+{{</tab>}}
 {{<tab "CUE Commands">}}
 
 ```
@@ -428,6 +572,41 @@ interface swp4
 You can add debug statements to the `/etc/frr/frr.conf` file to debug the Ethernet segments, routes, and routing protocols (via Zebra).
 
 {{<tabs "debug">}}
+{{<tab "NCLU Commands">}}
+
+To debug Ethernet segments and routes, use the `net add bgp debug evpn mh (es|route)` command. To debug the routing protocols, use `net add evpn mh debug zebra (es|mac|neigh|nh)`.
+
+```
+cumulus@leaf01:~$ net add bgp debug evpn mh es
+cumulus@leaf01:~$ net add bgp debug evpn mh route
+cumulus@leaf01:~$ net add evpn mh debug zebra
+cumulus@leaf01:~$ net add evpn mh debug zebra es
+cumulus@leaf01:~$ net add evpn mh debug zebra mac
+cumulus@leaf01:~$ net add evpn mh debug zebra neigh
+cumulus@leaf01:~$ net add evpn mh debug zebra nh
+cumulus@leaf01:~$ net pending
+cumulus@leaf01:~$ net commit
+```
+
+The NCLU commands create the following configuration in the `/etc/frr/frr.conf` file:
+
+```
+cumulus@leaf01:~$ sudo cat /etc/frr/frr.conf
+...
+!
+debug bgp evpn mh es
+debug bgp evpn mh route
+debug bgp zebra
+debug zebra evpn mh es
+debug zebra evpn mh mac
+debug zebra evpn mh neigh
+debug zebra evpn mh nh
+debug zebra vxlan
+!
+...
+```
+
+{{</tab>}}
 {{<tab "CUE Commands">}}
 
 CUE commands are not supported.
@@ -515,6 +694,25 @@ Some third party switch vendors do not advertise EAD-per-EVI routes; they only a
 To remove the dependency on EAD-per-EVI routes and activate the VTEP upon receiving the EAD-per-ES route:
 
 {{< tabs "TabID516 ">}}
+{{< tab "NCLU Commands ">}}
+
+To remove the dependency on EAD-per-EVI routes and activate the VTEP upon receiving the EAD-per-ES route, run:
+
+```
+cumulus@switch:~$ net add bgp l2vpn evpn disable-ead-evi-rx
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+To suppress the advertisement of EAD-per-EVI routes, run:
+
+```
+cumulus@switch:~$ net add bgp l2vpn evpn disable-ead-evi-tx
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+{{< /tab >}}
 {{< tab "CUE Commands ">}}
 
 ```
@@ -2314,6 +2512,7 @@ cumulus@leaf01:~$ net add bgp vrf BLUE autonomous-system 65101
 cumulus@leaf01:~$ net add bgp vrf BLUE router-id 10.10.10.1
 cumulus@leaf01:~$ net add bgp vrf BLUE ipv4 unicast redistribute connected
 cumulus@leaf01:~$ net add bgp vrf BLUE l2vpn evpn advertise ipv4 unicast
+cumulus@leaf01:~$ net pending
 cumulus@leaf01:~$ net commit
 ```
 
@@ -2420,6 +2619,7 @@ cumulus@leaf02:~$ net add bgp vrf BLUE autonomous-system 65102
 cumulus@leaf02:~$ net add bgp vrf BLUE router-id 10.10.10.2
 cumulus@leaf02:~$ net add bgp vrf BLUE ipv4 unicast redistribute connected
 cumulus@leaf02:~$ net add bgp vrf BLUE l2vpn evpn advertise ipv4 unicast
+cumulus@leaf02:~$ net pending
 cumulus@leaf02:~$ net commit
 ```
 
@@ -2526,6 +2726,7 @@ cumulus@leaf03:~$ net add bgp vrf BLUE autonomous-system 65103
 cumulus@leaf03:~$ net add bgp vrf BLUE router-id 10.10.10.3
 cumulus@leaf03:~$ net add bgp vrf BLUE ipv4 unicast redistribute connected
 cumulus@leaf03:~$ net add bgp vrf BLUE l2vpn evpn advertise ipv4 unicast
+cumulus@leaf03:~$ net pending
 cumulus@leaf03:~$ net commit
 ```
 
@@ -2632,6 +2833,7 @@ cumulus@leaf04:~$ net add bgp vrf BLUE autonomous-system 65104
 cumulus@leaf04:~$ net add bgp vrf BLUE router-id 10.10.10.4
 cumulus@leaf04:~$ net add bgp vrf BLUE ipv4 unicast redistribute connected
 cumulus@leaf04:~$ net add bgp vrf BLUE l2vpn evpn advertise ipv4 unicast
+cumulus@leaf04:~$ net pending
 cumulus@leaf04:~$ net commit
 ```
 
@@ -2658,6 +2860,7 @@ cumulus@spine01:~$ net add bgp neighbor swp3 interface peer-group underlay
 cumulus@spine01:~$ net add bgp neighbor swp4 interface peer-group underlay
 cumulus@spine01:~$ net add bgp ipv4 unicast redistribute connected
 cumulus@spine01:~$ net add bgp l2vpn evpn  neighbor underlay activate
+cumulus@spine01:~$ net pending
 cumulus@spine01:~$ net commit
 ```
 
@@ -2684,6 +2887,7 @@ cumulus@spine02:~$ net add bgp neighbor swp3 interface peer-group underlay
 cumulus@spine02:~$ net add bgp neighbor swp4 interface peer-group underlay
 cumulus@spine02:~$ net add bgp ipv4 unicast redistribute connected
 cumulus@spine02:~$ net add bgp l2vpn evpn  neighbor underlay activate
+cumulus@spine02:~$ net pending
 cumulus@spine02:~$ net commit
 ```
 

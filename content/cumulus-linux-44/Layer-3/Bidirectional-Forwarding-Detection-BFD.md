@@ -53,6 +53,25 @@ You can configure BFD for a peer group or for an individual neighbor.
 {{%/notice%}}
 
 {{< tabs "TabID66 ">}}
+{{< tab "NCLU Commands ">}}
+
+The following example configures BFD for swp1 and uses the default intervals.
+
+```
+cumulus@switch:~$ net add bgp neighbor swp1 bfd
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+The following example configures BFD for the peer group `fabric` and sets the interval multiplier to 4, the minimum interval between received BFD control packets to 400, and the minimum interval for sending BFD control packets to 400.
+
+```
+cumulus@switch:~$ net add bgp neighbor fabric bfd 4 400 400
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+{{< /tab >}}
 {{< tab "CUE Commands ">}}
 
 The following example configures BFD for swp51 and uses the default intervals.
@@ -139,6 +158,17 @@ When you enable or disable BFD in OSPF, neighbors are registered and de-register
 To configure BFD in OSPF, run the following commands.
 
 {{< tabs "TabID150 ">}}
+{{< tab "NCLU Commands ">}}
+
+The following example configures BFD in OSPFv3 for interface swp1 and sets interval multiplier to 4, the minimum interval between *received* BFD control packets to 400, and the minimum interval for *sending* BFD control packets to 400.
+
+```
+cumulus@switch:~$ net add interface swp1 ospf6 bfd 4 400 400
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+{{< /tab >}}
 {{< tab "CUE Commands ">}}
 
 ```

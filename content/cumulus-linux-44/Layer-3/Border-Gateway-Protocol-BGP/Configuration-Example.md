@@ -854,7 +854,6 @@ iface eth0 inet dhcp
 auto bond1
 iface bond1
     bond-slaves swp1
-    bond-mode 802.3ad
     clag-id 1
 
 auto bond2
@@ -983,7 +982,7 @@ iface vlan20
 auto vlan30
 iface vlan30
     address 10.1.30.3/24
-    vlan-raw-device v
+    vlan-raw-device bridge
     vlan-id 30
 
 auto swp1

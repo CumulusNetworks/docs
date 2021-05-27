@@ -20,7 +20,7 @@ For a non-VTEP device that is only participating in EVPN route exchange, such as
 {{< tabs "TabID20 ">}}
 {{< tab "NCLU Commands ">}}
 
-1. Configure VXLAN Interfaces. The following example creates two VXLAN interfaces, adds the VXLAN devices to the bridge, and sets the VXLAN local tunnel IP address to 10.10.10.1.
+1. Configure VXLAN Interfaces. The following example creates two VXLAN interfaces (vni10 and vni20), adds the VXLAN devices to the bridge, and sets the VXLAN local tunnel IP address to 10.10.10.1.
 
    ```
    cumulus@leaf01:~$ net add vxlan vni10 vxlan id 10
@@ -73,12 +73,14 @@ cumulus@leaf01:~$ net add bgp l2vpn evpn neighbor swp51 activate
 {{< /tab >}}
 {{< tab "spine01 ">}}
 
+```
 cumulus@spine01:~$ net add bgp l2vpn evpn neighbor swp1 activate
+```
 
 {{< /tab >}}
 {{< /tabs >}}
 
-4. FRR is not aware of any local VNIs and MACs, or hosts (neighbors) associated with those VNIs until you enable the BGP control plane for all VNIs configured on the switch by setting the `advertise-all-vni` option.
+4. FRR is not aware of any local VNIs or MAC addresses, or neighbors associated with those VNIs until you enable the BGP control plane for all VNIs configured on the switch by setting the `advertise-all-vni` option.
 
 ```
 cumulus@leaf01:~$ net add bgp l2vpn evpn advertise-all-vni
@@ -121,7 +123,7 @@ cumulus@leaf01:~$ cl config apply
 {{< tab "spine01 ">}}
 
 ```
-cumulus@spine01:~$ cl set router bgp autonomous-system 651000
+cumulus@spine01:~$ cl set router bgp autonomous-system 65199
 cumulus@spine01:~$ cl set router bgp router-id 10.10.10.101
 cumulus@spine01:~$ cl set vrf default router bgp peer swp1 remote-as external
 cumulus@spine01:~$ cl set vrf default router bgp address-family ipv4-unicast static-network 10.10.10.101/32
@@ -142,6 +144,8 @@ cumulus@leaf01:~$ cl set vrf default router bgp address-family l2vpn-evpn enable
 cumulus@leaf01:~$ cl set vrf default router bgp peer swp51 address-family l2vpn-evpn enable on
 cumulus@leaf01:~$ cl config apply
 ```
+
+Unlike with NCLU, you do not need enable the BGP control plane for all VNIs configured on the switch with CUE with the `advertise-all-vni` option. FRR **is** aware of any local VNIs and MACs, and hosts (neighbors) associated with those VNIs.
 
 The CUE commands create the following configuration snippet in the `/etc/cue.d/startup.yaml` file:
 
@@ -228,7 +232,7 @@ cumulus@spine01:~$ sudo cat /etc/cue.d/startup.yaml
           address: 10.10.10.101
     router:
       bgp:
-        autonomous-system: 651000
+        autonomous-system: 65199
         enable: on
         router-id: 10.10.10.101
     vrf:
@@ -249,8 +253,6 @@ cumulus@spine01:~$ sudo cat /etc/cue.d/startup.yaml
 
 {{< /tab >}}
 {{< /tabs >}}
-
-Unlike with NCLU, you do not need enable the BGP control plane for all VNIs configured on the switch. FRR **is** aware of any local VNIs and MACs, and hosts (neighbors) associated with those VNIs.
 
 {{< /tab >}}
 {{< tab "Linux and vtysh Commands ">}}
@@ -320,7 +322,7 @@ cumulus@leaf01:~$
 ```
 cumulus@spine01:~$ sudo vtysh
 spine01# configure terminal
-spine01(config)# router bgp 651000
+spine01(config)# router bgp 65199
 spine01(config-router)# bgp router-id 10.10.10.101
 spine01(config-router)# neighbor swp1 remote-as external
 spine01(config-router)# address-family ipv4
@@ -375,7 +377,7 @@ neighbor swp1 activate
 cumulus@spine01:~$ sudo vtysh
 
 spine01# configure terminal
-spine01(config)# router bgp 651000
+spine01(config)# router bgp 65199
 spine01(config-router)# bgp router-id 10.10.10.101
 spine01(config-router)# neighbor swp1 interface remote-as external
 spine01(config-router)# address-family l2vpn evpn
@@ -386,15 +388,11 @@ spine01)# exit
 cumulus@spine01:~$
 ```
 
-{{%notice note%}}
-The `advertise-all-vni` option is only needed on leaf switches that are VTEPs. EVPN routes received from a BGP peer are accepted, even without this explicit EVPN configuration. These routes are maintained in the global EVPN routing table. However, they only become effective (imported into the per-VNI routing table and appropriate entries installed in the kernel) when the VNI corresponding to the received route is locally known.
-{{%/notice%}}
-
 The vtysh commands create the following configuration snippet in the `/etc/frr/frr.conf` file:
 
 ```
 ...
-router bgp 651000
+router bgp 65199
   bgp router-id 10.10.10.101
   neighbor swp1 interface remote-as external
   address-family l2vpn evpn
@@ -404,6 +402,10 @@ neighbor swp1 activate
 
 {{< /tab >}}
 {{< /tabs >}}
+
+{{%notice note%}}
+The `advertise-all-vni` option is only needed on leaf switches that are VTEPs. EVPN routes received from a BGP peer are accepted, even without this explicit EVPN configuration. These routes are maintained in the global EVPN routing table. However, they only become effective (imported into the per-VNI routing table and appropriate entries installed in the kernel) when the VNI corresponding to the received route is locally known.
+{{%/notice%}}
 
 {{< /tab >}}
 {{< /tabs >}}

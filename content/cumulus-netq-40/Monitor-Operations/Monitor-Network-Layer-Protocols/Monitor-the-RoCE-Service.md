@@ -199,4 +199,6 @@ switch            swp1s1               661                  61856               
 
 ## Related Information 
 
-[RoCE and Cumulus Linux]({{<ref "cumulus-linux-43/Network-Solutions/RDMA-over-Converged-Ethernet-RoCE">}})
+- {{<link title="Configure Threshold-Based Event Notifications" text="Configure notifications for TCA events">}}
+- {{<link title="TCA Event Messages Reference#roce" text="RoCE TCA event reference">}}
+- [RoCE and Cumulus Linux]({{<ref "cumulus-linux-43/Network-Solutions/RDMA-over-Converged-Ethernet-RoCE">}})

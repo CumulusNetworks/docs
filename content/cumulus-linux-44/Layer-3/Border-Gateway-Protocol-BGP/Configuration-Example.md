@@ -80,10 +80,10 @@ cumulus@leaf03:~$ net add bond bond1 clag id 1
 cumulus@leaf03:~$ net add bond bond2 clag id 2
 cumulus@leaf03:~$ net add bond bond3 clag id 3
 cumulus@leaf03:~$ net add bridge bridge ports bond1,bond2,bond3
-cumulus@leaf03:~$ net add clag peer sys-mac 44:38:39:BE:EF:AA interface swp49-50 primary backup-ip 10.10.10.4
+cumulus@leaf03:~$ net add clag peer sys-mac 44:38:39:BE:EF:BB interface swp49-50 primary backup-ip 10.10.10.4
 cumulus@leaf03:~$ net add vlan 40 ip address 10.1.40.4/24
 cumulus@leaf03:~$ net add vlan 50 ip address 10.1.50.4/24
-cumulus@leaf03:~$ net add vlan 60 ip address 10.1.60.5/24
+cumulus@leaf03:~$ net add vlan 60 ip address 10.1.60.4/24
 cumulus@leaf03:~$ net add bridge bridge vids 40,50,60
 cumulus@leaf03:~$ net add bridge bridge pvid 1
 cumulus@leaf03:~$ net add bgp autonomous-system 65103
@@ -107,10 +107,10 @@ cumulus@leaf04:~$ net add bond bond1 clag id 1
 cumulus@leaf04:~$ net add bond bond2 clag id 2
 cumulus@leaf04:~$ net add bond bond3 clag id 3
 cumulus@leaf04:~$ net add bridge bridge ports bond1,bond2,bond3
-cumulus@leaf04:~$ net add clag peer sys-mac 44:38:39:BE:EF:AA interface swp49-50 primary backup-ip 10.10.10.3
-cumulus@leaf04:~$ net add vlan 40 ip address 10.1.40.6/24
-cumulus@leaf04:~$ net add vlan 50 ip address 10.1.50.6/24
-cumulus@leaf04:~$ net add vlan 60 ip address 10.1.60.6/24
+cumulus@leaf04:~$ net add clag peer sys-mac 44:38:39:BE:EF:BB interface swp49-50 primary backup-ip 10.10.10.3
+cumulus@leaf04:~$ net add vlan 40 ip address 10.1.40.5/24
+cumulus@leaf04:~$ net add vlan 50 ip address 10.1.50.5/24
+cumulus@leaf04:~$ net add vlan 60 ip address 10.1.60.5/24
 cumulus@leaf04:~$ net add bridge bridge vids 40,50,60
 cumulus@leaf04:~$ net add bridge bridge pvid 1
 cumulus@leaf04:~$ net add bgp autonomous-system 65103

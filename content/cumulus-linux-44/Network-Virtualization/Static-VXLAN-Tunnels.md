@@ -33,9 +33,78 @@ The following single VXLAN device example configuration:
 - Adds the VXLAN device to the default bridge br_default
 
 {{< tabs "TabID35 ">}}
-{{< tab "CUE Commands ">}}
+{{< tab "NCLU Commands ">}}
 
 {{< tabs "TabID38 ">}}
+{{< tab "leaf01 ">}}
+
+```
+cumulus@leaf01:~$ net add loopback lo ip address 10.0.0.11/32
+cumulus@leaf01:~$ net add vxlan vni-10 vxlan id 10
+cumulus@leaf01:~$ net add vxlan vni-10 bridge learning on
+cumulus@leaf01:~$ net add vxlan vni-10 vxlan local-tunnelip 10.0.0.11
+cumulus@leaf01:~$ net add vxlan vni-10 vxlan remoteip 10.0.0.12
+cumulus@leaf01:~$ net add vxlan vni-10 vxlan remoteip 10.0.0.13
+cumulus@leaf01:~$ net add vxlan vni-10 vxlan remoteip 10.0.0.14
+cumulus@leaf01:~$ net add vxlan vni-10 bridge access 10
+cumulus@leaf01:~$ net pending
+cumulus@leaf01:~$ net commit
+
+{{< /tab >}}
+{{< tab "leaf02 ">}}
+
+```
+cumulus@leaf02:~$ net add loopback lo ip address 10.0.0.12/32
+cumulus@leaf02:~$ net add vxlan vni-10 vxlan id 10
+cumulus@leaf02:~$ net add vxlan vni-10 bridge learning on
+cumulus@leaf02:~$ net add vxlan vni-10 vxlan local-tunnelip 10.0.0.12
+cumulus@leaf02:~$ net add vxlan vni-10 vxlan remoteip 10.0.0.11
+cumulus@leaf02:~$ net add vxlan vni-10 vxlan remoteip 10.0.0.13
+cumulus@leaf02:~$ net add vxlan vni-10 vxlan remoteip 10.0.0.14
+cumulus@leaf02:~$ net add vxlan vni-10 bridge access 10
+cumulus@leaf02:~$ net pending
+cumulus@leaf02:~$ net commit
+```
+
+{{< /tab >}}
+{{< tab "leaf03 ">}}
+
+```
+cumulus@leaf03:~$ net add loopback lo ip address 10.0.0.13/32
+cumulus@leaf03:~$ net add vxlan vni-10 vxlan id 10
+cumulus@leaf03:~$ net add vxlan vni-10 bridge learning on
+cumulus@leaf03:~$ net add vxlan vni-10 vxlan local-tunnelip 10.0.0.13
+cumulus@leaf03:~$ net add vxlan vni-10 vxlan remoteip 10.0.0.11
+cumulus@leaf03:~$ net add vxlan vni-10 vxlan remoteip 10.0.0.12
+cumulus@leaf03:~$ net add vxlan vni-10 vxlan remoteip 10.0.0.14
+cumulus@leaf03:~$ net add vxlan vni-10 bridge access 10
+cumulus@leaf03:~$ net pending
+cumulus@leaf03:~$ net commit
+```
+
+{{< /tab >}}
+{{< tab "leaf04 ">}}
+
+```
+cumulus@leaf04:~$ net add loopback lo ip address 10.0.0.14/32
+cumulus@leaf04:~$ net add vxlan vni-10 vxlan id 10
+cumulus@leaf04:~$ net add vxlan vni-10 bridge learning on
+cumulus@leaf04:~$ net add vxlan vni-10 vxlan local-tunnelip 10.0.0.14
+cumulus@leaf04:~$ net add vxlan vni-10 vxlan remoteip 10.0.0.11
+cumulus@leaf04:~$ net add vxlan vni-10 vxlan remoteip 10.0.0.12
+cumulus@leaf04:~$ net add vxlan vni-10 vxlan remoteip 10.0.0.13
+cumulus@leaf04:~$ net add vxlan vni-10 bridge access 10
+cumulus@leaf04:~$ net pending
+cumulus@leaf04:~$ net commit
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+{{< /tab >}}
+{{< tab "CUE Commands ">}}
+
+{{< tabs "TabID107 ">}}
 {{< tab "leaf01 ">}}
 
 ```
@@ -107,28 +176,24 @@ Editing the `/etc/network/interfaces` file as follows:
 {{< tab "leaf01 ">}}
 
 ```
-
 ```
 
 {{< /tab >}}
 {{< tab "leaf02 ">}}
 
 ```
-
 ```
 
 {{< /tab >}}
 {{< tab "leaf03 ">}}
 
 ```
-
 ```
 
 {{< /tab >}}
 {{< tab "leaf04 ">}}
 
 ```
-
 ```
 
 {{< /tab >}}

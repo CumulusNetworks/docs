@@ -42,16 +42,6 @@ For the switch facing the public cloud:
 To configure the public cloud-facing switch:
 
 {{< tabs "TabID51 ">}}
-{{< tab "CUE Commands ">}}
-
-```
-cumulus@switch:~$ NEED COMMAND
-cumulus@switch:~$ 
-cumulus@switch:~$ cl set
-cumulus@switch:~$ 
-```
-
-{{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
 ```
@@ -65,6 +55,13 @@ cumulus@switch:~$ net add bridge bridge vlan-protocol 802.1ad
 cumulus@switch:~$ net add bridge bridge ports swp3,vni-1000,vni-3000
 cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
+```
+
+{{< /tab >}}
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@switch:~$ NEED COMMAND
 ```
 
 {{< /tab >}}
@@ -116,13 +113,6 @@ For the switch facing the customer:
 To configure the customer-facing switch:
 
 {{< tabs "TabID118 ">}}
-{{< tab "CUE Commands ">}}
-
-```
-cumulus@switch:~$ NEED COMMAND
-```
-
-{{< /tab >}}
 {{< tab "NCLU Commands ">}}
 
 ```
@@ -138,6 +128,13 @@ cumulus@switch:~$ net add bridge bridge ports swp3,swp4,vni-1000,vni-3000
 cumulus@switch:~$ net add bridge bridge vlan-protocol 802.1ad
 cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
+```
+
+{{< /tab >}}
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@switch:~$ NEED COMMAND
 ```
 
 {{< /tab >}}

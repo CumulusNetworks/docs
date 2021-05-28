@@ -69,6 +69,13 @@ To work around this issue, run the &lt;tt&gt;apt-get upgrade&lt;/tt&gt; command 
 <td></td>
 </tr>
 <tr>
+<td>2669858</td>
+<td>OpenSSH is vulnerable to CVE-2020-14145, as described in https://www.fzi.de/fileadmin/user_upload/2020-06-26-FSA-2020-2.pdf.  
+This is an information leak in algorithm negotiation that can allow man-in-the-middle attacks on initial connection attempts without a previously stored server host key on the client. If desired, mitigation using UpdateHostKeys and HostKeyAlgorithms is also given in that paper.</td>
+<td>3.7.14-3.7.15, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
 <td>2660583</td>
 <td>In an MLAG configuration, the secondary MLAG switch does not use a unique address instead of the MLAG system MAC address when there is a peer link failure.</td>
 <td>3.7.14-3.7.15</td>
@@ -95,7 +102,7 @@ leaks.
 For the detailed security status of linux,  refer to its security tracker page at:
 https://security-tracker.debian.org/tracker/linux</td>
 <td>3.7.12-3.7.15</td>
-<td></td>
+<td>4.0.0-4.3.0</td>
 </tr>
 <tr>
 <td>2654684</td>
@@ -148,13 +155,6 @@ Fixed: 6.8.9.9-5+deb8u24</td>
 <td>2638137</td>
 <td>When you delete a static route using NCLU, the configuration is not deleted from the running configuration or from the {{/etc/frr/frr.conf}} file. </td>
 <td>3.7.13-3.7.15</td>
-<td></td>
-</tr>
-<tr>
-<td>2638043</td>
-<td>OpenSSH is vulnerable to CVE-2020-14145, as described in https://www.fzi.de/fileadmin/user_upload/2020-06-26-FSA-2020-2.pdf.  
-This is an information leak in algorithm negotiation that can allow man-in-the-middle attacks on initial connection attempts without a previously stored server host key on the client. If desired, mitigation using UpdateHostKeys and HostKeyAlgorithms is also given in that paper.</td>
-<td>3.7.14-3.7.15, 4.0.0-4.3.0</td>
 <td></td>
 </tr>
 <tr>
@@ -2021,6 +2021,13 @@ To work around this issue, run the &lt;tt&gt;apt-get upgrade&lt;/tt&gt; command 
 <td></td>
 </tr>
 <tr>
+<td>2669858</td>
+<td>OpenSSH is vulnerable to CVE-2020-14145, as described in https://www.fzi.de/fileadmin/user_upload/2020-06-26-FSA-2020-2.pdf.  
+This is an information leak in algorithm negotiation that can allow man-in-the-middle attacks on initial connection attempts without a previously stored server host key on the client. If desired, mitigation using UpdateHostKeys and HostKeyAlgorithms is also given in that paper.</td>
+<td>3.7.14-3.7.15, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
 <td>2660583</td>
 <td>In an MLAG configuration, the secondary MLAG switch does not use a unique address instead of the MLAG system MAC address when there is a peer link failure.</td>
 <td>3.7.14-3.7.15</td>
@@ -2047,7 +2054,7 @@ leaks.
 For the detailed security status of linux,  refer to its security tracker page at:
 https://security-tracker.debian.org/tracker/linux</td>
 <td>3.7.12-3.7.15</td>
-<td></td>
+<td>4.0.0-4.3.0</td>
 </tr>
 <tr>
 <td>2654684</td>
@@ -2100,13 +2107,6 @@ Fixed: 6.8.9.9-5+deb8u24</td>
 <td>2638137</td>
 <td>When you delete a static route using NCLU, the configuration is not deleted from the running configuration or from the {{/etc/frr/frr.conf}} file. </td>
 <td>3.7.13-3.7.15</td>
-<td></td>
-</tr>
-<tr>
-<td>2638043</td>
-<td>OpenSSH is vulnerable to CVE-2020-14145, as described in https://www.fzi.de/fileadmin/user_upload/2020-06-26-FSA-2020-2.pdf.  
-This is an information leak in algorithm negotiation that can allow man-in-the-middle attacks on initial connection attempts without a previously stored server host key on the client. If desired, mitigation using UpdateHostKeys and HostKeyAlgorithms is also given in that paper.</td>
-<td>3.7.14-3.7.15, 4.0.0-4.3.0</td>
 <td></td>
 </tr>
 <tr>
@@ -4033,6 +4033,13 @@ To work around this issue, run the &lt;tt&gt;apt-get upgrade&lt;/tt&gt; command 
 <td></td>
 </tr>
 <tr>
+<td>2669858</td>
+<td>OpenSSH is vulnerable to CVE-2020-14145, as described in https://www.fzi.de/fileadmin/user_upload/2020-06-26-FSA-2020-2.pdf.  
+This is an information leak in algorithm negotiation that can allow man-in-the-middle attacks on initial connection attempts without a previously stored server host key on the client. If desired, mitigation using UpdateHostKeys and HostKeyAlgorithms is also given in that paper.</td>
+<td>3.7.14-3.7.15, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
 <td>2660583</td>
 <td>In an MLAG configuration, the secondary MLAG switch does not use a unique address instead of the MLAG system MAC address when there is a peer link failure.</td>
 <td>3.7.14-3.7.15</td>
@@ -4059,7 +4066,7 @@ leaks.
 For the detailed security status of linux,  refer to its security tracker page at:
 https://security-tracker.debian.org/tracker/linux</td>
 <td>3.7.12-3.7.15</td>
-<td></td>
+<td>4.0.0-4.3.0</td>
 </tr>
 <tr>
 <td>2654684</td>
@@ -4112,13 +4119,6 @@ Fixed: 6.8.9.9-5+deb8u24</td>
 <td>2638137</td>
 <td>When you delete a static route using NCLU, the configuration is not deleted from the running configuration or from the {{/etc/frr/frr.conf}} file. </td>
 <td>3.7.13-3.7.15</td>
-<td></td>
-</tr>
-<tr>
-<td>2638043</td>
-<td>OpenSSH is vulnerable to CVE-2020-14145, as described in https://www.fzi.de/fileadmin/user_upload/2020-06-26-FSA-2020-2.pdf.  
-This is an information leak in algorithm negotiation that can allow man-in-the-middle attacks on initial connection attempts without a previously stored server host key on the client. If desired, mitigation using UpdateHostKeys and HostKeyAlgorithms is also given in that paper.</td>
-<td>3.7.14-3.7.15, 4.0.0-4.3.0</td>
 <td></td>
 </tr>
 <tr>
@@ -6632,7 +6632,7 @@ leaks.
 For the detailed security status of linux,  refer to its security tracker page at:
 https://security-tracker.debian.org/tracker/linux</td>
 <td>3.7.12-3.7.15</td>
-<td></td>
+<td>4.0.0-4.3.0</td>
 </tr>
 <tr>
 <td>2654684</td>
@@ -9407,7 +9407,7 @@ leaks.
 For the detailed security status of linux,  refer to its security tracker page at:
 https://security-tracker.debian.org/tracker/linux</td>
 <td>3.7.12-3.7.15</td>
-<td></td>
+<td>4.0.0-4.3.0</td>
 </tr>
 <tr>
 <td>2654684</td>

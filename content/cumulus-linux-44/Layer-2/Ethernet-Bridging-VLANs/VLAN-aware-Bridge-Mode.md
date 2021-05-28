@@ -23,6 +23,28 @@ The example below shows the commands required to create a VLAN-aware bridge conf
 {{< img src = "/images/cumulus-linux/ethernet-bridging-basic-trunking1.png" >}}
 
 {{< tabs "TabID25 ">}}
+{{< tab "NCLU Commands ">}}
+
+```
+cumulus@switch:~$ net add bridge bridge ports swp1-2
+cumulus@switch:~$ net add bridge bridge vids 10,20
+cumulus@switch:~$ net add bridge bridge pvid 1
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+The above commands create the following code snippet in the `/etc/network/interfaces` file:
+
+```
+auto bridge
+iface bridge
+    bridge-ports swp1 swp2
+    bridge-pvid 1
+    bridge-vids 10 20
+    bridge-vlan-aware yes
+```
+
+{{< /tab >}}
 {{< tab "CUE Commands ">}}
 
 With CUE, there is a default bridge called `br_default`, which has no ports assigned to it. The example below configures this default bridge.
@@ -103,7 +125,21 @@ This example shows the commands required to create two VLAN-aware bridges on the
 
 Bridges are independent so you can reuse VLANs between bridges. Each VLAN-aware bridge maintains its own MAC address and VLAN tag table; MAC and VLAN tags in one bridge are not visibile to the other table.
 
-{{< tabs "TabID103 ">}}
+{{< tabs "TabID128 ">}}
+{{< tab "NCLU Commands ">}}
+
+```
+cumulus@switch:~$ net add bridge bridge1 ports swp1-2
+cumulus@switch:~$ net add bridge bridge1 vids 10,20
+cumulus@switch:~$ net add bridge bridge1 pvid 1
+cumulus@switch:~$ net add bridge bridge2 ports swp3
+cumulus@switch:~$ net add bridge bridge2 vids 10
+cumulus@switch:~$ net add bridge bridge2 pvid 1
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+{{< /tab >}}
 {{< tab "CUE Commands ">}}
 
 ```
@@ -178,6 +214,20 @@ By default, the bridge port inherits the bridge VIDs. To configure a port to ove
 {{< img src = "/images/cumulus-linux/ethernet-bridging-vlan-pruned1.png" >}}
 
 {{< tabs "TabID157 ">}}
+{{< tab "NCLU Commands ">}}
+
+The following example commands configure swp3 to override the bridge VIDs:
+
+```
+cumulus@switch:~$ net add bridge bridge ports swp1-3
+cumulus@switch:~$ net add bridge bridge vids 10,20
+cumulus@switch:~$ net add bridge bridge pvid 1
+cumulus@switch:~$ net add interface swp3 bridge vids 20
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+{{< /tab >}}
 {{< tab "CUE Commands ">}}
 
 ```
@@ -223,6 +273,19 @@ Access ports ignore all tagged packets. In the configuration below, swp1 and swp
 {{< img src = "/images/cumulus-linux/ethernet-bridging-vlan_untagged_access_ports1.png" >}}
 
 {{< tabs "TabID223 ">}}
+{{< tab "NCLU Commands ">}}
+
+```
+cumulus@switch:~$ net add bridge bridge ports swp1-2
+cumulus@switch:~$ net add bridge bridge vids 10,20
+cumulus@switch:~$ net add bridge bridge pvid 1
+cumulus@switch:~$ net add interface swp1 bridge access 10
+cumulus@switch:~$ net add interface swp2 bridge access 10
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+{{< /tab >}}
 {{< tab "CUE Commands ">}}
 
 ```
@@ -273,6 +336,15 @@ With VLAN-aware bridge mode, you can configure a switch port to drop any untagge
 The following example command configures swp2 to drop untagged frames:
 
 {{< tabs "TabID294 ">}}
+{{< tab "NCLU Commands ">}}
+
+```
+cumulus@switch:~$ net add interface swp2 bridge allow-untagged no
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit 
+```
+
+{{< /tab >}}
 {{< tab "CUE Commands ">}}
 
 ```
@@ -307,6 +379,7 @@ iface br_default
 ```
 cumulus@switch:~$ sudo ifreload -a
 ```
+
 {{< /tab >}}
 {{< /tabs >}}
 
@@ -330,6 +403,16 @@ When configuring the VLAN attributes for the bridge, specify the attributes for 
 The following example commands declare native VLAN 10 with IPv4 address 10.1.10.2/24 and IPv6 address 2001:db8::1/32.
 
 {{< tabs "TabID370 ">}}
+{{< tab "NCLU Commands ">}}
+
+```
+cumulus@switch:~$ net add vlan 10 ip address 10.1.10.2/24
+cumulus@switch:~$ net add vlan 10 ipv6 address 2001:db8::1/32
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+{{< /tab >}}
 {{< tab "CUE Commands ">}}
 
 ```
@@ -346,8 +429,8 @@ Edit the `/etc/network/interfaces` file, then run the `ifreload -a` command.
 ```
 cumulus@switch:~$ sudo nano /etc/network/interfaces
 ...
-auto br_default
-iface br_default
+auto bridge
+iface bridge
     bridge-ports swp1 swp2
     bridge-pvid 1
     bridge-vids 10 20
@@ -455,9 +538,18 @@ Now add the dummy interface to your network configuration:
 
 By default, Cumulus Linux automatically generates IPv6 *linklocal* addresses on VLAN interfaces. If you want to use a different mechanism to assign linklocal addresses, you can disable this feature. You can disable linklocal automatic address generation for both regular IPv6 addresses and address-virtual (macvlan) addresses.
 
-To disable automatic address generation for a regular IPv6 address on a VLAN, run the following commands. The following example command disables automatic address generation for a regular IPv6 address on VLAN 10.
+To disable automatic address generation for a regular IPv6 address on a VLAN, run the following command. The following example command disables automatic address generation for a regular IPv6 address on VLAN 10.
 
 {{< tabs "TabID248 ">}}
+{{< tab "NCLU Commands ">}}
+
+```
+cumulus@switch:~$ net add vlan 10 ipv6-addrgen off
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+{{< /tab >}}
 {{< tab "CUE Commands ">}}
 
 CUE commands are not supported.
@@ -488,6 +580,15 @@ cumulus@switch:~$ ifreload -a
 To re-enable automatic linklocal address generation for a VLAN:
 
 {{< tabs "TabID287 ">}}
+{{< tab "NCLU Commands ">}}
+
+```
+cumulus@switch:~$ net del vlan 10 ipv6-addrgen off
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+{{< /tab >}}
 {{< tab "CUE Commands ">}}
 
 CUE commands are not supported.
@@ -633,34 +734,6 @@ iface peerlink.4094
 ...
 ```
 
-<!--### VXLANs with VLAN-aware Bridges
-
-Cumulus Linux supports using VXLANs with VLAN-aware bridge configurations to provide improved scalability, as multiple VXLANs can be added to a single VLAN-aware bridge. A one to one association is used between the VXLAN VNI and the VLAN, with the bridge access VLAN definition on the VXLAN and the VLAN membership definition on the local bridge member interfaces.
-
-The configuration example below shows a VXLAN configured for a bridge in VLAN-aware mode. The configurations use head end replication (HER) together with the VLAN-aware bridge to map VLANs to VNIs.
-
-```
-...
-auto lo
-iface lo inet loopback
-    address 10.10.10.1/32
-    vxlan-local-tunnelip 10.10.10.1
-
-auto br_default
-iface br_default
-    bridge-ports swp1 vni10
-    bridge-pvid 1
-    bridge-vids 10
-    bridge-vlan-aware yes
-
-auto vni10
-iface vni10
-    bridge-access 10
-    vxlan-id 10
-    vxlan-remoteip 10.10.10.34
-...
-```
--->
 ### Static MAC Address Entries
 
 The following configuration adds a static MAC address entry to the layer 2 table for an interface within the VLAN-aware bridge by running a command similar to the following:
@@ -695,6 +768,6 @@ IGMP snooping and group membership are supported on a per-VLAN basis; however, t
 
 You cannot enable VLAN translation on a bridge in VLAN-aware mode. Only traditional mode bridges support VLAN translation.
 
-### Bridges Conversion
+### Bridge Conversion
 
 You cannot convert traditional mode bridges automatically to and from a VLAN-aware bridge. You must delete the original configuration and bring down all member switch ports before creating a new bridge.

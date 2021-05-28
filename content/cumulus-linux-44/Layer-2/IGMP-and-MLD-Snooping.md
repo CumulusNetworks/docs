@@ -116,15 +116,22 @@ To enable OMF:
 
    {{<cl/restart-switchd>}}
 
-When IGMP reports are sent for a multicast group, OMF has no effect. Normal IGMP Snooping behavior is followed.
+When IGMP reports are sent for a multicast group, OMF has no effect; normal IGMP Snooping behavior is followed.
 
 ## Disable IGMP and MLD Snooping
 
 If you do not use mirroring functions or other types of multicast traffic, you can disable IGMP and MLD Snooping.
 
-To disable IGMP and MLD snooping:
-
 {{< tabs "TabID114 ">}}
+{{< tab "NCLU Commands ">}}
+
+```
+cumulus@switch:~$ net add bridge bridge mcsnoop no
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+{{< /tab >}}
 {{< tab "CUE Commands ">}}
 
 ```
@@ -213,7 +220,7 @@ swp3 (3)
   flags
 ```
 
-To show the groups and bridge port state, run the Linux `bridge mdb show` command. To show detailed router ports and group information, run the `bridge -d -s mdb show` command:
+To show the groups and bridge port state, run the NCLU `net show bridge mdb` command or the Linux `sudo bridge mdb show` command. To show detailed router ports and group information, run the `sudo bridge -d -s mdb show` command:
 
 ```
 cumulus@switch:~$ sudo bridge -d -s mdb show

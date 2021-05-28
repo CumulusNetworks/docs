@@ -9,7 +9,7 @@ toc: 4
 
 RoCE helps you obtain a converged network, where all services run over the Ethernet infrastructure, including Infiniband apps.
 
-You monitor RoCE in your network with the following commands:
+You monitor RoCE in your network with the UI and with the following CLI commands:
 
     netq [<hostname>] show roce-counters [<text-port>] tx | rx [roce | general] [around <text-time>] [json]
     netq [<hostname>] show roce-config [<text-port>] [around <text-time>] [json]
@@ -50,32 +50,33 @@ switch            swp35           Lossy      0,3          ECN      10432    1088
 
 ## View RoCE Counters
 
-The `netq show roce-counters` command shows various RoCE counters for a given switch, including:
+Various RoCE counters are available for viewing for a given switch, including:
 
 - Rx and Tx counters
-- General and RoCE-specific counters
+- General, CNP and RoCE-specific counters
 - Counter pools
 - Port-specific counters
 
 You can also go back in time to view counters at a particular point in the past.
 
-### View General Rx Counters
+### View Rx Counters
 
-You can view RoCE counters in both the UI and CLI.
+You can view RoCE Rx counters in both the UI and CLI.
 
-{{<tabs "View general Rx counters">}}
+{{<tabs "View Rx counters">}}
 
 {{<tab "NetQ UI">}}
 
-To view general Rx counters, open the RoCE Counters card.
+1. To view Rx counters, open the large switch card, then click the RoCE icon ({{<img src="/images/netq/icon-roce-4.0.0.png" width="34px">}}).
+1. Switch to the full-screen card, then click **RoCE Counters**.
 
-{{<figure src="/images/netq/roce-counters-fs-4.0.0.png" width="700">}}
+{{<figure src="/images/netq/roce-rx-counters-fs-4.0.0.png" width="700">}}
 
 {{</tab>}}
 
 {{<tab "NetQ CLI">}}
 
-To view general Rx counters, run `netq show roce-counters rx general`:
+To view general and CNP Rx counters, run `netq show roce-counters rx general`:
 
 ```
 cumulus@switch:~$ netq show roce-counters rx general
@@ -92,12 +93,6 @@ switch            swp1s3               1627273              152582910           
 switch            swp63s0              1094532              120228456            0                    0                    1                    0                    1
 switch            swp63s2              1618361              160178796            0                    0                    2                    0                    2
 ```
-
-{{</tab>}}
-
-{{</tabs>}}
-
-### View RoCE-specific Rx Counters
 
 To view RoCE-specific Rx counters, run `netq show roce-counters rx roce`:
 
@@ -117,9 +112,29 @@ switch            swp63s0         0            0            0                  0
 switch            swp63s2         0            0            0                  0                  0                  0            0                  0            0
 ```
 
-### View General Tx Counters
+{{</tab>}}
 
-To view general Tx counters, run `netq show roce-counters tx general`:
+{{</tabs>}}
+
+### View Tx Counters
+
+You can view RoCE Tx counters in both the UI and CLI.
+
+{{<tabs "View Tx counters">}}
+
+{{<tab "NetQ UI">}}
+
+1. To view Tx counters, open the large switch card, then click the RoCE icon ({{<img src="/images/netq/icon-roce-4.0.0.png" width="34px">}}).
+1. Switch to the full-screen card, then click **RoCE Counters**.
+1. Click **Tx** above the panel on the right.
+
+{{<figure src="/images/netq/roce-rx-counters-fs-4.0.0.png" width="700">}}
+
+{{</tab>}}
+
+{{<tab "NetQ CLI">}}
+
+To view general and CNP Tx counters, run `netq show roce-counters tx general`:
 
 ```
 cumulus@switch:~$ netq show roce-counters tx general 
@@ -137,8 +152,6 @@ switch            swp63s0         0                    0            0           
 switch            swp63s2         0                    0            0            0                         0            0                  0            0
 cumulus@switch      :~$ 
 ```
-
-### View RoCE-specific Tx Counters
 
 To view RoCE-specific Tx counters, run `netq show roce-counters tx roce`:
 
@@ -158,7 +171,24 @@ switch            swp63s0         0          0          0                       
 switch            swp63s2         0          0          0                         0                  0                  0            0                  0          0
 ```
 
+{{</tab>}}
+
+{{</tabs>}}
+
 ### View RoCE Counter Pools
+
+{{<tabs "View RoCE counter pools">}}
+
+{{<tab "NetQ UI">}}
+
+1. To view Rx counters, open the large switch card, then click the RoCE icon ({{<img src="/images/netq/icon-roce-4.0.0.png" width="34px">}}).
+1. Switch to the full-screen card, then click **RoCE Counters**. Look for these columns: **Lossy Default Ingress Size**, **Roce Reserved Ingress Size**, **Lossy Default Egress Size**, and **Roce Reserved Egress Size**.
+
+{{<figure src="/images/netq/roce-rx-counters-fs-4.0.0.png" width="700">}}
+
+{{</tab>}}
+
+{{<tab "NetQ CLI">}}
 
 To view the RoCE counter pools, run `netq show roce-counters pool`:
 
@@ -171,7 +201,26 @@ Hostname          Lossy Default Ingress Size     Roce Reserved Ingress Size     
 switch            104823                         104823                         104823                         104823
 ```
 
+{{</tab>}}
+
+{{</tabs>}}
+
 ### View Counters for a Specific Switch Port
+
+{{<tabs "View counters for a specific port">}}
+
+{{<tab "NetQ UI">}}
+
+To view counters for a specific port:
+
+1. Open the large switch card, then click the RoCE icon ({{<img src="/images/netq/icon-roce-4.0.0.png" width="34px">}}).
+1. Select a port on the left.
+
+{{<figure src="/images/netq/roce-l3-card-4.0.0.png" width="500">}}
+
+{{</tab>}}
+
+{{<tab "NetQ CLI">}}
 
 To view counters for a specific switch port, include the switch name with the command.
 
@@ -184,7 +233,24 @@ Hostname          Interface            PG packets           PG bytes            
 switch            swp1s1               1643392              154094520            0                    0                    1                    0                    1
 ```
 
+{{</tab>}}
+
+{{</tabs>}}
+
 ### View Results from a Time in the Past
+
+{{<tabs "View results in the past">}}
+
+{{<tab "NetQ UI">}}
+
+To view counters for a different time period in the past:
+
+1. Open the large switch card, then click the RoCE icon ({{<img src="/images/netq/icon-roce-4.0.0.png" width="34px">}}).
+1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/18-Time/time-stopwatch.svg" height="18" width="18"/> in the header and select a different time period.
+
+{{</tab>}}
+
+{{<tab "NetQ CLI">}}
 
 You can use the `around` keyword with any RoCE-related command to go back in time to view counters.
 
@@ -196,6 +262,10 @@ Hostname          Interface            PG packets           PG bytes            
 ----------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- --------------------
 switch            swp1s1               661                  61856                0                    0                    1                    0                    1
 ```
+
+{{</tab>}}
+
+{{</tabs>}}
 
 ## Related Information 
 

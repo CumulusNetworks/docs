@@ -41,9 +41,9 @@ You can upgrade Cumulus Linux on switches that already have a NetQ Agent (versio
 
 1. Click {{<img src="https://icons.cumulusnetworks.com/03-Computers-Devices-Electronics/09-Hard-Drives/hard-drive-1.svg" height="18" width="18">}} (Switches) in any workbench header, then click **Manage switches**.
 
-2. Upload the Cumulus Linux {{<link title="Manage Cumulus Linux and NetQ Images/#upload-upgrade-images" text="upgrade images">}}.
+2. Upload the Cumulus Linux {{<link title="Manage NetQ and Network OS Images/#upload-upgrade-images" text="upgrade images">}}.
 
-3. Optionally, specify a {{<link title="Manage Cumulus Linux and NetQ Images/#specify-a-default-upgrade-version" text="default upgrade version">}}.
+3. Optionally, specify a {{<link title="Manage NetQ and Network OS Images/#specify-a-default-upgrade-version" text="default upgrade version">}}.
 
 4. Verify the switches you want to manage are running NetQ Agent 2.4 or later. Refer to {{<link title="Manage Switch Inventory and Roles" text="Manage Switches">}}.
 
@@ -70,7 +70,7 @@ Your LCM dashboard should look similar to this after you have completed these st
 
 1. Verify the switches you want to manage are running NetQ Agent 2.4 or later. Refer to {{<link title="Manage Switch Configurations" text="Manage Switches">}}.
 
-1. Upload the Cumulus Linux {{<link title="Manage Cumulus Linux and NetQ Images/#upload-upgrade-images" text="upgrade images">}}. 
+1. Upload the Cumulus Linux {{<link title="Manage NetQ and Network OS Images/#upload-upgrade-images" text="upgrade images">}}. 
 
 1. Configure {{<link title="Manage Switch Credentials" text="switch access credentials">}}.
 

@@ -30,9 +30,454 @@ The following images shows traffic flow between tenants. The spines and other de
 | --- | --- |
 | <img width=1000/> {{< img src="/images/cumulus-linux/evpn-layer2-diagram.png" >}} | server01 and server04 are in the same VLAN but are located across different leafs.<br><ol><li>server01 makes a LACP hash decision and forwards traffic to leaf01.</li><li>leaf01 does a layer 2 lookup, has the MAC address for server04, and forwards the packet out VNI10, towards leaf04.</li><li>The VXLAN encapsulated frame arrives on leaf04, which does a layer 2 lookup and has the MAC address for server04 in VLAN10.</li></ul>|
 
-### CUE Commands
+### Commands
 
 {{< tabs "TabID35 ">}}
+{{< tab "NCLU ">}}
+
+{{< tabs "TabID38 ">}}
+{{< tab "leaf01 ">}}
+
+```
+cumulus@leaf01:~$ net add loopback lo ip address 10.10.10.1/32
+cumulus@leaf01:~$ net add bond bond1 bond slaves swp1
+cumulus@leaf01:~$ net add bond bond2 bond slaves swp2
+cumulus@leaf01:~$ net add interface swp1 alias bond member of bond1
+cumulus@leaf01:~$ net add interface swp2 alias bond member of bond2
+cumulus@leaf01:~$ net add bond bond1 bridge access 10
+cumulus@leaf01:~$ net add bond bond1 clag id 1
+cumulus@leaf01:~$ net add bond bond1-2 bond lacp-bypass-allow
+cumulus@leaf01:~$ net add bond bond1-2 mtu 9000
+cumulus@leaf01:~$ net add bond bond1-2 stp bpduguard
+cumulus@leaf01:~$ net add bond bond1-2 stp portadminedge
+cumulus@leaf01:~$ net add bond bond2 bridge access 20
+cumulus@leaf01:~$ net add bond bond2 clag id 2
+cumulus@leaf01:~$ net add bridge bridge ports bond1,bond2
+cumulus@leaf01:~$ net add interface swp51-54 alias to spine
+cumulus@leaf01:~$ net add bond peerlink bond slaves swp49,swp50
+cumulus@leaf01:~$ net add interface swp49-50 alias peerlink
+cumulus@leaf01:~$ net add bridge bridge ports peerlink
+cumulus@leaf01:~$ net add interface peerlink.4094 clag args --initDelay 10
+cumulus@leaf01:~$ net add interface peerlink.4094 clag backup-ip 10.10.10.2
+cumulus@leaf01:~$ net add interface peerlink.4094 clag peer-ip linklocal
+cumulus@leaf01:~$ net add interface peerlink.4094 clag priority 1000
+cumulus@leaf01:~$ net add interface peerlink.4094 clag sys-mac 44:38:39:BE:EF:AA
+cumulus@leaf01:~$ net add loopback lo clag vxlan-anycast-ip 10.0.1.12
+cumulus@leaf01:~$ net add vlan 10 ip forward off
+cumulus@leaf01:~$ net add vlan 10 vlan-id 10
+cumulus@leaf01:~$ net add vlan 10 vlan-raw-device bridge
+cumulus@leaf01:~$ net add vlan 20 ip forward off
+cumulus@leaf01:~$ net add vlan 20 vlan-id 20
+cumulus@leaf01:~$ net add vlan 20 vlan-raw-device bridge
+cumulus@leaf01:~$ net add vxlan vni10 bridge access 10
+cumulus@leaf01:~$ net add vxlan vni10,20 bridge arp-nd-suppress on
+cumulus@leaf01:~$ net add vxlan vni10,20 bridge learning off
+cumulus@leaf01:~$ net add vxlan vni10,20 stp bpduguard
+cumulus@leaf01:~$ net add vxlan vni10,20 stp portbpdufilter
+cumulus@leaf01:~$ net add vxlan vni20 bridge access 20
+cumulus@leaf01:~$ net add vxlan vni10 vxlan id 10
+cumulus@leaf01:~$ net add vxlan vni20 vxlan id 20
+cumulus@leaf01:~$ net add bridge bridge ports vni10,vni20
+cumulus@leaf01:~$ net add bridge bridge vids 10,20
+cumulus@leaf01:~$ net add bridge bridge vlan-aware
+cumulus@leaf01:~$ net add loopback lo vxlan local-tunnelip 10.10.10.1
+cumulus@leaf01:~$ net add bgp autonomous-system 65101
+cumulus@leaf01:~$ net add bgp router-id 10.10.10.1
+cumulus@leaf01:~$ net add bgp neighbor underlay peer-group
+cumulus@leaf01:~$ net add bgp neighbor underlay remote-as external
+cumulus@leaf01:~$ net add bgp neighbor peerlink.4094 interface peer-group underlay
+cumulus@leaf01:~$ net add bgp neighbor swp51 interface peer-group underlay
+cumulus@leaf01:~$ net add bgp neighbor swp52 interface peer-group underlay
+cumulus@leaf01:~$ net add bgp neighbor swp53 interface peer-group underlay
+cumulus@leaf01:~$ net add bgp neighbor swp54 interface peer-group underlay
+cumulus@leaf01:~$ net add bgp ipv4 unicast redistribute connected
+cumulus@leaf01:~$ net add bgp l2vpn evpn  neighbor underlay activate
+cumulus@leaf01:~$ net add bgp l2vpn evpn  advertise-all-vni
+cumulus@leaf01:~$ net commit
+```
+
+{{< /tab >}}
+{{< tab "leaf02 ">}}
+
+```
+cumulus@leaf02:~$ net add loopback lo ip address 10.10.10.2/32
+cumulus@leaf02:~$ net add bond bond1 bond slaves swp1
+cumulus@leaf02:~$ net add bond bond2 bond slaves swp2
+cumulus@leaf02:~$ net add interface swp1 alias bond member of bond1
+cumulus@leaf02:~$ net add interface swp2 alias bond member of bond2
+cumulus@leaf02:~$ net add bond bond1 bridge access 10
+cumulus@leaf02:~$ net add bond bond1 clag id 1
+cumulus@leaf02:~$ net add bond bond1-2 bond lacp-bypass-allow
+cumulus@leaf02:~$ net add bond bond1-2 mtu 9000
+cumulus@leaf02:~$ net add bond bond1-2 stp bpduguard
+cumulus@leaf02:~$ net add bond bond1-2 stp portadminedge
+cumulus@leaf02:~$ net add bond bond2 bridge access 20
+cumulus@leaf02:~$ net add bond bond2 clag id 2
+cumulus@leaf02:~$ net add bridge bridge ports bond1,bond2
+cumulus@leaf02:~$ net add interface swp51-54 alias to spine
+cumulus@leaf02:~$ net add bond peerlink bond slaves swp49,swp50
+cumulus@leaf02:~$ net add interface swp49-50 alias peerlink
+cumulus@leaf02:~$ net add bridge bridge ports peerlink
+cumulus@leaf02:~$ net add interface peerlink.4094 clag args --initDelay 10
+cumulus@leaf02:~$ net add interface peerlink.4094 clag backup-ip 10.10.10.1
+cumulus@leaf02:~$ net add interface peerlink.4094 clag peer-ip linklocal
+cumulus@leaf02:~$ net add interface peerlink.4094 clag priority 1000
+cumulus@leaf02:~$ net add interface peerlink.4094 clag sys-mac 44:38:39:BE:EF:AA
+cumulus@leaf02:~$ net add loopback lo clag vxlan-anycast-ip 10.0.1.12
+cumulus@leaf02:~$ net add vlan 10 ip forward off
+cumulus@leaf02:~$ net add vlan 10 vlan-id 10
+cumulus@leaf02:~$ net add vlan 10 vlan-raw-device bridge
+cumulus@leaf02:~$ net add vlan 20 ip forward off
+cumulus@leaf02:~$ net add vlan 20 vlan-id 20
+cumulus@leaf02:~$ net add vlan 20 vlan-raw-device bridge
+cumulus@leaf02:~$ net add vxlan vni10 bridge access 10
+cumulus@leaf02:~$ net add vxlan vni10,20 bridge arp-nd-suppress on
+cumulus@leaf02:~$ net add vxlan vni10,20 bridge learning off
+cumulus@leaf02:~$ net add vxlan vni10,20 stp bpduguard
+cumulus@leaf02:~$ net add vxlan vni10,20 stp portbpdufilter
+cumulus@leaf02:~$ net add vxlan vni20 bridge access 20
+cumulus@leaf02:~$ net add vxlan vni10 vxlan id 10
+cumulus@leaf02:~$ net add vxlan vni20 vxlan id 20
+cumulus@leaf02:~$ net add bridge bridge ports vni10,vni20
+cumulus@leaf02:~$ net add bridge bridge vids 10,20
+cumulus@leaf02:~$ net add bridge bridge vlan-aware
+cumulus@leaf02:~$ net add loopback lo vxlan local-tunnelip 10.10.10.2
+cumulus@leaf02:~$ net add bgp autonomous-system 65102
+cumulus@leaf02:~$ net add bgp router-id 10.10.10.2
+cumulus@leaf02:~$ net add bgp neighbor underlay peer-group
+cumulus@leaf02:~$ net add bgp neighbor underlay remote-as external
+cumulus@leaf02:~$ net add bgp neighbor peerlink.4094 interface peer-group underlay
+cumulus@leaf02:~$ net add bgp neighbor swp51 interface peer-group underlay
+cumulus@leaf02:~$ net add bgp neighbor swp52 interface peer-group underlay
+cumulus@leaf02:~$ net add bgp neighbor swp53 interface peer-group underlay
+cumulus@leaf02:~$ net add bgp neighbor swp54 interface peer-group underlay
+cumulus@leaf02:~$ net add bgp ipv4 unicast redistribute connected
+cumulus@leaf02:~$ net add bgp l2vpn evpn  neighbor underlay activate
+cumulus@leaf02:~$ net add bgp l2vpn evpn  advertise-all-vni
+cumulus@leaf02:~$ net commit
+```
+
+{{< /tab >}}
+{{< tab "leaf03 ">}}
+
+```
+cumulus@leaf03:~$ net add loopback lo ip address 10.10.10.3/32
+cumulus@leaf03:~$ net add bond bond1 bond slaves swp1
+cumulus@leaf03:~$ net add bond bond2 bond slaves swp2
+cumulus@leaf03:~$ net add interface swp1 alias bond member of bond1
+cumulus@leaf03:~$ net add interface swp2 alias bond member of bond2
+cumulus@leaf03:~$ net add bond bond1 bridge access 10
+cumulus@leaf03:~$ net add bond bond1 clag id 1
+cumulus@leaf03:~$ net add bond bond1-2 bond lacp-bypass-allow
+cumulus@leaf03:~$ net add bond bond1-2 mtu 9000
+cumulus@leaf03:~$ net add bond bond1-2 stp bpduguard
+cumulus@leaf03:~$ net add bond bond1-2 stp portadminedge
+cumulus@leaf03:~$ net add bond bond2 bridge access 20
+cumulus@leaf03:~$ net add bond bond2 clag id 2
+cumulus@leaf03:~$ net add bridge bridge ports bond1,bond2
+cumulus@lea303:~$ net add interface swp51-54 alias to spine
+cumulus@leaf03:~$ net add bond peerlink bond slaves swp49,swp50
+cumulus@leaf03:~$ net add interface swp49-50 alias peerlink
+cumulus@leaf03:~$ net add bridge bridge ports peerlink
+cumulus@leaf03:~$ net add interface peerlink.4094 clag args --initDelay 10
+cumulus@leaf03:~$ net add interface peerlink.4094 clag backup-ip 10.10.10.4
+cumulus@leaf03:~$ net add interface peerlink.4094 clag peer-ip linklocal
+cumulus@leaf03:~$ net add interface peerlink.4094 clag priority 1000
+cumulus@leaf03:~$ net add interface peerlink.4094 clag sys-mac 44:38:39:BE:EF:BB
+cumulus@leaf03:~$ net add loopback lo clag vxlan-anycast-ip 10.0.1.34
+cumulus@leaf03:~$ net add vlan 10 ip forward off
+cumulus@leaf03:~$ net add vlan 10 vlan-id 10
+cumulus@leaf03:~$ net add vlan 10 vlan-raw-device bridge
+cumulus@leaf03:~$ net add vlan 20 ip forward off
+cumulus@leaf03:~$ net add vlan 20 vlan-id 20
+cumulus@leaf03:~$ net add vlan 20 vlan-raw-device bridge
+cumulus@leaf03:~$ net add vxlan vni10 bridge access 10
+cumulus@leaf03:~$ net add vxlan vni10,20 bridge arp-nd-suppress on
+cumulus@leaf03:~$ net add vxlan vni10,20 bridge learning off
+cumulus@leaf03:~$ net add vxlan vni10,20 stp bpduguard
+cumulus@leaf03:~$ net add vxlan vni10,20 stp portbpdufilter
+cumulus@leaf03:~$ net add vxlan vni20 bridge access 20
+cumulus@leaf03:~$ net add vxlan vni10 vxlan id 10
+cumulus@leaf03:~$ net add vxlan vni20 vxlan id 20
+cumulus@leaf03:~$ net add bridge bridge ports vni10,vni20
+cumulus@leaf03:~$ net add bridge bridge vids 10,20
+cumulus@leaf03:~$ net add bridge bridge vlan-aware
+cumulus@leaf03:~$ net add loopback lo vxlan local-tunnelip 10.10.10.3
+cumulus@leaf03:~$ net add bgp autonomous-system 65103
+cumulus@leaf03:~$ net add bgp router-id 10.10.10.3
+cumulus@leaf03:~$ net add bgp neighbor underlay peer-group
+cumulus@leaf03:~$ net add bgp neighbor underlay remote-as external
+cumulus@leaf03:~$ net add bgp neighbor peerlink.4094 interface peer-group underlay
+cumulus@leaf03:~$ net add bgp neighbor swp51 interface peer-group underlay
+cumulus@leaf03:~$ net add bgp neighbor swp52 interface peer-group underlay
+cumulus@leaf03:~$ net add bgp neighbor swp53 interface peer-group underlay
+cumulus@leaf03:~$ net add bgp neighbor swp54 interface peer-group underlay
+cumulus@leaf03:~$ net add bgp ipv4 unicast redistribute connected
+cumulus@leaf03:~$ net add bgp l2vpn evpn  neighbor underlay activate
+cumulus@leaf03:~$ net add bgp l2vpn evpn  advertise-all-vni
+cumulus@leaf03:~$ net commit
+```
+
+{{< /tab >}}
+{{< tab "leaf04 ">}}
+
+```
+cumulus@leaf04:~$ net add loopback lo ip address 10.10.10.4/32
+cumulus@leaf04:~$ net add bond bond1 bond slaves swp1
+cumulus@leaf04:~$ net add bond bond2 bond slaves swp2
+cumulus@leaf04:~$ net add interface swp1 alias bond member of bond1
+cumulus@leaf04:~$ net add interface swp2 alias bond member of bond2
+cumulus@leaf04:~$ net add bond bond1 bridge access 10
+cumulus@leaf04:~$ net add bond bond1 clag id 1
+cumulus@leaf04:~$ net add bond bond1-2 bond lacp-bypass-allow
+cumulus@leaf04:~$ net add bond bond1-2 mtu 9000
+cumulus@leaf04:~$ net add bond bond1-2 stp bpduguard
+cumulus@leaf04:~$ net add bond bond1-2 stp portadminedge
+cumulus@leaf04:~$ net add bond bond2 bridge access 20
+cumulus@leaf04:~$ net add bond bond2 clag id 2
+cumulus@leaf04:~$ net add bridge bridge ports bond1,bond2
+cumulus@leaf04:~$ net add interface swp51-54 alias to spine
+cumulus@leaf04:~$ net add bond peerlink bond slaves swp49,swp50
+cumulus@leaf04:~$ net add interface swp49-50 alias peerlink
+cumulus@leaf04:~$ net add bridge bridge ports peerlink
+cumulus@leaf04:~$ net add interface peerlink.4094 clag args --initDelay 10
+cumulus@leaf04:~$ net add interface peerlink.4094 clag backup-ip 10.10.10.3
+cumulus@leaf04:~$ net add interface peerlink.4094 clag peer-ip linklocal
+cumulus@leaf04:~$ net add interface peerlink.4094 clag priority 1000
+cumulus@leaf04:~$ net add interface peerlink.4094 clag sys-mac 44:38:39:BE:EF:BB
+cumulus@leaf04:~$ net add loopback lo clag vxlan-anycast-ip 10.0.1.34
+cumulus@leaf04:~$ net add vlan 10 ip forward off
+cumulus@leaf04:~$ net add vlan 10 vlan-id 10
+cumulus@leaf04:~$ net add vlan 10 vlan-raw-device bridge
+cumulus@leaf04:~$ net add vlan 20 ip forward off
+cumulus@leaf04:~$ net add vlan 20 vlan-id 20
+cumulus@leaf04:~$ net add vlan 20 vlan-raw-device bridge
+cumulus@leaf04:~$ net add vxlan vni10 bridge access 10
+cumulus@leaf04:~$ net add vxlan vni10,20 bridge arp-nd-suppress on
+cumulus@leaf04:~$ net add vxlan vni10,20 bridge learning off
+cumulus@leaf04:~$ net add vxlan vni10,20 stp bpduguard
+cumulus@leaf04:~$ net add vxlan vni10,20 stp portbpdufilter
+cumulus@leaf04:~$ net add vxlan vni20 bridge access 20
+cumulus@leaf04:~$ net add vxlan vni10 vxlan id 10
+cumulus@leaf04:~$ net add vxlan vni20 vxlan id 20
+cumulus@leaf04:~$ net add bridge bridge ports vni10,vni20
+cumulus@leaf04:~$ net add bridge bridge vids 10,20
+cumulus@leaf04:~$ net add bridge bridge vlan-aware
+cumulus@leaf04:~$ net add loopback lo vxlan local-tunnelip 10.10.10.4
+cumulus@leaf04:~$ net add bgp autonomous-system 65104
+cumulus@leaf04:~$ net add bgp router-id 10.10.10.4
+cumulus@leaf04:~$ net add bgp neighbor underlay peer-group
+cumulus@leaf04:~$ net add bgp neighbor underlay remote-as external
+cumulus@leaf04:~$ net add bgp neighbor peerlink.4094 interface peer-group underlay
+cumulus@leaf04:~$ net add bgp neighbor swp51 interface peer-group underlay
+cumulus@leaf04:~$ net add bgp neighbor swp52 interface peer-group underlay
+cumulus@leaf04:~$ net add bgp neighbor swp53 interface peer-group underlay
+cumulus@leaf04:~$ net add bgp neighbor swp54 interface peer-group underlay
+cumulus@leaf04:~$ net add bgp ipv4 unicast redistribute connected
+cumulus@leaf04:~$ net add bgp l2vpn evpn  neighbor underlay activate
+cumulus@leaf04:~$ net add bgp l2vpn evpn  advertise-all-vni
+cumulus@leaf04:~$ net commit
+```
+
+{{< /tab >}}
+{{< tab "spine01 ">}}
+
+```
+cumulus@spine01:~$ net add loopback lo ip address 10.10.10.101/32
+cumulus@spine01:~$ net add interface swp1-6 alias to leaf
+cumulus@spine01:~$ net add bgp autonomous-system 65199
+cumulus@spine01:~$ net add bgp router-id 10.10.10.101
+cumulus@spine01:~$ net add bgp neighbor underlay peer-group
+cumulus@spine01:~$ net add bgp neighbor underlay remote-as external
+cumulus@spine01:~$ net add bgp neighbor swp1 interface peer-group underlay
+cumulus@spine01:~$ net add bgp neighbor swp2 interface peer-group underlay
+cumulus@spine01:~$ net add bgp neighbor swp3 interface peer-group underlay
+cumulus@spine01:~$ net add bgp neighbor swp4 interface peer-group underlay
+cumulus@spine01:~$ net add bgp neighbor swp5 interface peer-group underlay
+cumulus@spine01:~$ net add bgp neighbor swp6 interface peer-group underlay
+cumulus@spine01:~$ net add bgp ipv4 unicast redistribute connected
+cumulus@spine01:~$ net add bgp l2vpn evpn  neighbor underlay activate
+cumulus@spine01:~$ net commit
+```
+
+{{< /tab >}}
+{{< tab "spine02 ">}}
+
+```
+cumulus@spine02:~$ net add loopback lo ip address 10.10.10.102/32
+cumulus@spine02:~$ net add interface swp1-6 alias to leaf
+cumulus@spine02:~$ net add bgp autonomous-system 65199
+cumulus@spine02:~$ net add bgp router-id 10.10.10.102
+cumulus@spine02:~$ net add bgp neighbor underlay peer-group
+cumulus@spine02:~$ net add bgp neighbor underlay remote-as external
+cumulus@spine02:~$ net add bgp neighbor swp1 interface peer-group underlay
+cumulus@spine02:~$ net add bgp neighbor swp2 interface peer-group underlay
+cumulus@spine02:~$ net add bgp neighbor swp3 interface peer-group underlay
+cumulus@spine02:~$ net add bgp neighbor swp4 interface peer-group underlay
+cumulus@spine02:~$ net add bgp neighbor swp5 interface peer-group underlay
+cumulus@spine02:~$ net add bgp neighbor swp6 interface peer-group underlay
+cumulus@spine02:~$ net add bgp ipv4 unicast redistribute connected
+cumulus@spine02:~$ net add bgp l2vpn evpn  neighbor underlay activate
+cumulus@spine02:~$ net commit
+```
+
+{{< /tab >}}
+{{< tab "spine03 ">}}
+
+```
+cumulus@spine03:~$ net add loopback lo ip address 10.10.10.103/32
+cumulus@spine03:~$ net add interface swp1-6 alias to leaf
+cumulus@spine03:~$ net add bgp autonomous-system 65199
+cumulus@spine03:~$ net add bgp router-id 10.10.10.103
+cumulus@spine03:~$ net add bgp neighbor underlay peer-group
+cumulus@spine03:~$ net add bgp neighbor underlay remote-as external
+cumulus@spine03:~$ net add bgp neighbor swp1 interface peer-group underlay
+cumulus@spine03:~$ net add bgp neighbor swp2 interface peer-group underlay
+cumulus@spine03:~$ net add bgp neighbor swp3 interface peer-group underlay
+cumulus@spine03:~$ net add bgp neighbor swp4 interface peer-group underlay
+cumulus@spine03:~$ net add bgp neighbor swp5 interface peer-group underlay
+cumulus@spine03:~$ net add bgp neighbor swp6 interface peer-group underlay
+cumulus@spine03:~$ net add bgp ipv4 unicast redistribute connected
+cumulus@spine03:~$ net add bgp l2vpn evpn  neighbor underlay activate
+cumulus@spine03:~$ net commit
+```
+
+{{< /tab >}}
+{{< tab "spine04 ">}}
+
+```
+cumulus@spine04:~$ net add loopback lo ip address 10.10.10.104/32
+cumulus@spine04:~$ net add interface swp1-6 alias to leaf
+cumulus@spine04:~$ net add bgp autonomous-system 65199
+cumulus@spine04:~$ net add bgp router-id 10.10.10.104
+cumulus@spine04:~$ net add bgp neighbor underlay peer-group
+cumulus@spine04:~$ net add bgp neighbor underlay remote-as external
+cumulus@spine04:~$ net add bgp neighbor swp1 interface peer-group underlay
+cumulus@spine04:~$ net add bgp neighbor swp2 interface peer-group underlay
+cumulus@spine04:~$ net add bgp neighbor swp3 interface peer-group underlay
+cumulus@spine04:~$ net add bgp neighbor swp4 interface peer-group underlay
+cumulus@spine04:~$ net add bgp neighbor swp5 interface peer-group underlay
+cumulus@spine04:~$ net add bgp neighbor swp6 interface peer-group underlay
+cumulus@spine04:~$ net add bgp ipv4 unicast redistribute connected
+cumulus@spine04:~$ net add bgp l2vpn evpn  neighbor underlay activate
+cumulus@spine04:~$ net commit
+```
+
+{{< /tab >}}
+{{< tab "border01 ">}}
+
+```
+cumulus@border01:~$ net add loopback lo ip address 10.10.10.63/32
+cumulus@border01:~$ net add bond bond1 bond slaves swp3
+cumulus@border01:~$ net add interface swp3 alias bond member of bond1
+cumulus@border01:~$ net add interface swp51-54 alias to spine
+cumulus@border01:~$ net add bond bond1 bridge vids 10,20
+cumulus@border01:~$ net add bond bond1 clag id 1
+cumulus@border01:~$ net add bond bond1 mtu 9000
+cumulus@border01:~$ net add bridge bridge ports bond1
+cumulus@border01:~$ net add bond peerlink bond slaves swp49,swp50
+cumulus@border01:~$ net add interface swp49-50 alias peerlink
+cumulus@border01:~$ net add bridge bridge ports peerlink
+cumulus@border01:~$ net add interface peerlink.4094 clag args --initDelay 10
+cumulus@border01:~$ net add interface peerlink.4094 clag backup-ip 10.10.10.64
+cumulus@border01:~$ net add interface peerlink.4094 clag peer-ip linklocal
+cumulus@border01:~$ net add interface peerlink.4094 clag priority 1000
+cumulus@border01:~$ net add interface peerlink.4094 clag sys-mac 44:38:39:BE:EF:FF
+cumulus@border01:~$ net add loopback lo clag vxlan-anycast-ip 10.0.1.255
+cumulus@border01:~$ net add vlan 10 ip forward off
+cumulus@border01:~$ net add vlan 10 vlan-id 10
+cumulus@border01:~$ net add vlan 10 vlan-raw-device bridge
+cumulus@border01:~$ net add vlan 20 ip forward off
+cumulus@border01:~$ net add vlan 20 vlan-id 20
+cumulus@border01:~$ net add vlan 20 vlan-raw-device bridge
+cumulus@border01:~$ net add vxlan vni10 vxlan id 10
+cumulus@border01:~$ net add vxlan vni20 vxlan id 20
+cumulus@border01:~$ net add bridge bridge ports vni10,vni20
+cumulus@border01:~$ net add bridge bridge vids 10,20
+cumulus@border01:~$ net add bridge bridge vlan-aware
+cumulus@border01:~$ net add loopback lo vxlan local-tunnelip 10.10.10.63
+cumulus@border01:~$ net add vxlan vni10 bridge access 10
+cumulus@border01:~$ net add vxlan vni10,20 bridge arp-nd-suppress on
+cumulus@border01:~$ net add vxlan vni10,20 bridge learning off
+cumulus@border01:~$ net add vxlan vni10,20 stp bpduguard
+cumulus@border01:~$ net add vxlan vni10,20 stp portbpdufilter
+cumulus@border01:~$ net add vxlan vni20 bridge access 20
+cumulus@border01:~$ net add bgp autonomous-system 65163
+cumulus@border01:~$ net add bgp router-id 10.10.10.63
+cumulus@border01:~$ net add bgp neighbor underlay peer-group
+cumulus@border01:~$ net add bgp neighbor underlay remote-as external
+cumulus@border01:~$ net add bgp neighbor peerlink.4094 interface peer-group underlay
+cumulus@border01:~$ net add bgp neighbor swp51 interface peer-group underlay
+cumulus@border01:~$ net add bgp neighbor swp52 interface peer-group underlay
+cumulus@border01:~$ net add bgp neighbor swp53 interface peer-group underlay
+cumulus@border01:~$ net add bgp neighbor swp54 interface peer-group underlay
+cumulus@border01:~$ net add bgp ipv4 unicast redistribute connected
+cumulus@border01:~$ net add bgp l2vpn evpn  neighbor underlay activate
+cumulus@border01:~$ net add bgp l2vpn evpn  advertise-all-vni
+cumulus@border01:~$ net commit
+```
+
+{{< /tab >}}
+{{< tab "border02 ">}}
+
+```
+cumulus@border02:~$ net add loopback lo ip address 10.10.10.64/32
+cumulus@border02:~$ net add bond bond1 bond slaves swp3
+cumulus@border02:~$ net add interface swp3 alias bond member of bond1
+cumulus@border02:~$ net add interface swp51-54 alias to spine
+cumulus@border02:~$ net add bond bond1 bridge vids 10,20
+cumulus@border02:~$ net add bond bond1 clag id 1
+cumulus@border02:~$ net add bond bond1 mtu 9000
+cumulus@border02:~$ net add bridge bridge ports bond1
+cumulus@border02:~$ net add bond peerlink bond slaves swp49,swp50
+cumulus@border02:~$ net add interface swp49-50 alias peerlink
+cumulus@border02:~$ net add bridge bridge ports peerlink
+cumulus@border02:~$ net add interface peerlink.4094 clag args --initDelay 10
+cumulus@border02:~$ net add interface peerlink.4094 clag backup-ip 10.10.10.64
+cumulus@border02:~$ net add interface peerlink.4094 clag peer-ip linklocal
+cumulus@border02:~$ net add interface peerlink.4094 clag priority 1000
+cumulus@border02:~$ net add interface peerlink.4094 clag sys-mac 44:38:39:BE:EF:FF
+cumulus@border02:~$ net add loopback lo clag vxlan-anycast-ip 10.0.1.255
+cumulus@border02:~$ net add vlan 10 ip forward off
+cumulus@border02:~$ net add vlan 10 vlan-id 10
+cumulus@border02:~$ net add vlan 10 vlan-raw-device bridge
+cumulus@border02:~$ net add vlan 20 ip forward off
+cumulus@border02:~$ net add vlan 20 vlan-id 20
+cumulus@border02:~$ net add vlan 20 vlan-raw-device bridge
+cumulus@border02:~$ net add vxlan vni10 vxlan id 10
+cumulus@border02:~$ net add vxlan vni20 vxlan id 20
+cumulus@border02:~$ net add bridge bridge ports vni10,vni20
+cumulus@border02:~$ net add bridge bridge vids 10,20
+cumulus@border02:~$ net add bridge bridge vlan-aware
+cumulus@border02:~$ net add loopback lo vxlan local-tunnelip 10.10.10.64
+cumulus@border02:~$ net add vxlan vni10 bridge access 10
+cumulus@border02:~$ net add vxlan vni10,20 bridge arp-nd-suppress on
+cumulus@border02:~$ net add vxlan vni10,20 bridge learning off
+cumulus@border02:~$ net add vxlan vni10,20 stp bpduguard
+cumulus@border02:~$ net add vxlan vni10,20 stp portbpdufilter
+cumulus@border02:~$ net add vxlan vni20 bridge access 20
+cumulus@border02:~$ net add bgp autonomous-system 65164
+cumulus@border02:~$ net add bgp router-id 10.10.10.64
+cumulus@border02:~$ net add bgp neighbor underlay peer-group
+cumulus@border02:~$ net add bgp neighbor underlay remote-as external
+cumulus@border02:~$ net add bgp neighbor peerlink.4094 interface peer-group underlay
+cumulus@border02:~$ net add bgp neighbor swp51 interface peer-group underlay
+cumulus@border02:~$ net add bgp neighbor swp52 interface peer-group underlay
+cumulus@border02:~$ net add bgp neighbor swp53 interface peer-group underlay
+cumulus@border02:~$ net add bgp neighbor swp54 interface peer-group underlay
+cumulus@border02:~$ net add bgp ipv4 unicast redistribute connected
+cumulus@border02:~$ net add bgp l2vpn evpn  neighbor underlay activate
+cumulus@border02:~$ net add bgp l2vpn evpn  advertise-all-vni
+cumulus@border02:~$ net commit
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+{{< /tab >}}
+{{< tab "CUE ">}}
+
+{{< tabs "TabID144 ">}}
 {{< tab "leaf01 ">}}
 
 ```
@@ -154,7 +599,7 @@ cumulus@leaf03:~$ cl set bridge domain br_default vlan 10 vni 10
 cumulus@leaf03:~$ cl set bridge domain br_default vlan 20 vni 20
 cumulus@leaf03:~$ cl set nve vxlan mlag shared-address 10.0.1.34
 cumulus@leaf03:~$ cl set nve vxlan source address 10.10.10.3
-cumulus@leaf03:~$ cl set nve vxlan arp-nd-suppress on 
+cumulus@leaf03:~$ cl set nve vxlan arp-nd-suppress on
 cumulus@leaf03:~$ cl set evpn enable on
 cumulus@leaf03:~$ cl set router bgp autonomous-system 65103
 cumulus@leaf03:~$ cl set router bgp router-id 10.10.10.3
@@ -200,7 +645,7 @@ cumulus@leaf04:~$ cl set bridge domain br_default vlan 10 vni 10
 cumulus@leaf04:~$ cl set bridge domain br_default vlan 20 vni 20
 cumulus@leaf04:~$ cl set nve vxlan mlag shared-address 10.0.1.34
 cumulus@leaf04:~$ cl set nve vxlan source address 10.10.10.4
-cumulus@leaf04:~$ cl set nve vxlan arp-nd-suppress on 
+cumulus@leaf04:~$ cl set nve vxlan arp-nd-suppress on
 cumulus@leaf04:~$ cl set evpn enable on
 cumulus@leaf04:~$ cl set router bgp autonomous-system 65104
 cumulus@leaf04:~$ cl set router bgp router-id 10.10.10.4
@@ -383,6 +828,9 @@ cumulus@border02:~$ cl set vrf default router bgp peer peerlink.4094 remote-as i
 cumulus@border02:~$ cl set vrf default router bgp address-family ipv4-unicast redistribute connected
 cumulus@border02:~$ cl config apply
 ```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 {{< /tab >}}
 {{< /tabs >}}

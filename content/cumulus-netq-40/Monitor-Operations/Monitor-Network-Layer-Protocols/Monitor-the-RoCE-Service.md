@@ -181,7 +181,7 @@ switch            swp63s2         0          0          0                       
 
 {{<tab "NetQ UI">}}
 
-1. To view Rx counters, open the large switch card, then click the RoCE icon ({{<img src="/images/netq/icon-roce-4.0.0.png" width="34px">}}).
+1. To view RoCE counter pools, open the large switch card, then click the RoCE icon ({{<img src="/images/netq/icon-roce-4.0.0.png" width="34px">}}).
 1. Switch to the full-screen card, then click **RoCE Counters**. Look for these columns: **Lossy Default Ingress Size**, **Roce Reserved Ingress Size**, **Lossy Default Egress Size**, and **Roce Reserved Egress Size**.
 
 {{<figure src="/images/netq/roce-rx-counters-fs-4.0.0.png" width="700">}}

@@ -28,7 +28,7 @@ You can install a certificate using the Admin UI or the NetQ CLI.
 
 {{<tab "NetQ UI">}}
 
-1. Enter *https://\<hostname-or-ipaddr-of-netq-appliance-or-vm\>:8443* in your broswer address bar to open the Admin UI.
+1. Enter *https://\<hostname-or-ipaddr-of-netq-appliance-or-vm\>:8443* in your browser address bar to open the Admin UI.
 
 2. From the Health page, click **Settings**.
 
@@ -157,10 +157,10 @@ cumulus@<hostname>:~$ netq install standalone activate-job config-key <text-opta
 
 ## Add More Nodes to Your Server Cluster
 
-Installation of NetQ with a server cluster sets up the master and two worker nodes. To expand your cluster to include up to a total of nine worker nodes, use the Admin UI.
+Installation of NetQ with a server cluster sets up the master and two worker nodes. To expand your cluster to include up to a total of 10 nodes, use the Admin UI.
 
 {{<notice note>}}
-Adding additional worker nodes increases availability, but does not increase scalability at this time. A maximum of 1000 nodes is supported regardless of the number of worker nodes in your cluster.
+Adding additional worker nodes increases availability, but does not increase scalability at this time. A maximum of 5000 nodes is supported regardless of the number of worker nodes in your cluster.
 {{</notice>}}
 
 To add more worker nodes:

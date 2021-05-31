@@ -318,7 +318,7 @@ A release is included if there were changes to the command, otherwise it is not 
 
 <!-- Add output/results -->
 ```
-cumulus@<hostname>:~$ netq install cluster install-job bundle /mnt/installables/NetQ-3.3.0.tgz
+cumulus@<hostname>:~$ netq install cluster install-job bundle /mnt/installables/NetQ-4.0.0.tgz
 ```
 
 ### Related Commands

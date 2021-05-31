@@ -5,11 +5,11 @@ weight: 980
 toc: 4
 ---
 
-*RDMA over Converged Ethernet* ({{<exlink url="http://www.roceinitiative.org/roce-introduction/" text="RoCE">}}) provides the ability to write to compute or storage elements using remote direct memory access (RDMA) over an Ethernet network instead of using host CPUs. RoCE relies on congestion control and lossless Ethernet to operate. Cumulus Linux supports features that can enable lossless Ethernet for RoCE environments.
+*RDMA over Converged Ethernet* ({{<exlink url="http://www.roceinitiative.org/roce-introduction/" text="RoCE">}}) provides the ability to write to compute or storage elements using remote direct memory access (RDMA) over an Ethernet network instead of using host CPUs. RoCE relies on congestion control and lossless Ethernet to operate. Cumulus Linux and SONiC both support features that can enable lossless Ethernet for RoCE environments.
 
 RoCE helps you obtain a converged network, where all services run over the Ethernet infrastructure, including Infiniband apps.
 
-You monitor RoCE in your network with the following commands:
+You monitor RoCE in your network with the UI and with the following CLI commands:
 
     netq [<hostname>] show roce-counters [<text-port>] tx | rx [roce | general] [around <text-time>] [json]
     netq [<hostname>] show roce-config [<text-port>] [around <text-time>] [json]
@@ -50,12 +50,36 @@ switch            swp35           Lossy      0,3          ECN      10432    1088
 
 ## View RoCE Counters
 
-- `netq show roce-counters`: Displays the RoCE counters for a given switch.
+Various RoCE counters are available for viewing for a given switch, including:
 
-### View General Rx Counters
+- Rx and Tx counters
+- General, CNP and RoCE-specific counters
+- Counter pools
+- Port-specific counters
+
+You can also go back in time to view counters at a particular point in the past.
+
+### View Rx Counters
+
+You can view RoCE Rx counters in both the UI and CLI.
+
+{{<tabs "View Rx counters">}}
+
+{{<tab "NetQ UI">}}
+
+1. To view Rx counters, open the large switch card, then click the RoCE icon ({{<img src="/images/netq/icon-roce-4.0.0.png" width="34px">}}).
+1. Switch to the full-screen card, then click **RoCE Counters**.
+
+{{<figure src="/images/netq/roce-rx-counters-fs-4.0.0.png" width="700">}}
+
+{{</tab>}}
+
+{{<tab "NetQ CLI">}}
+
+To view general and CNP Rx counters, run `netq show roce-counters rx general`:
 
 ```
-cumulus@switch:~$ netq show roce-counters rx general 
+cumulus@switch:~$ netq show roce-counters rx general
 
 Matching roce records:
 Hostname          Interface            PG packets           PG bytes             no buffer discard    buffer usage         buffer max usage     PG usage             PG max usage
@@ -70,10 +94,10 @@ switch            swp63s0              1094532              120228456           
 switch            swp63s2              1618361              160178796            0                    0                    2                    0                    2
 ```
 
-### View RoCE-specific Rx Counters
+To view RoCE-specific Rx counters, run `netq show roce-counters rx roce`:
 
 ```
-cumulus@switch:~$ netq show roce-counters rx roce 
+cumulus@switch:~$ netq show roce-counters rx roce
 
 Matching roce records:
 Hostname          Interface       PG packets   PG bytes     no buffer discard  PFC pause packets  PFC pause duration buffer usage buffer max usage   PG usage     PG max usage
@@ -88,7 +112,29 @@ switch            swp63s0         0            0            0                  0
 switch            swp63s2         0            0            0                  0                  0                  0            0                  0            0
 ```
 
-### View General Tx Counters
+{{</tab>}}
+
+{{</tabs>}}
+
+### View Tx Counters
+
+You can view RoCE Tx counters in both the UI and CLI.
+
+{{<tabs "View Tx counters">}}
+
+{{<tab "NetQ UI">}}
+
+1. To view Tx counters, open the large switch card, then click the RoCE icon ({{<img src="/images/netq/icon-roce-4.0.0.png" width="34px">}}).
+1. Switch to the full-screen card, then click **RoCE Counters**.
+1. Click **Tx** above the panel on the right.
+
+{{<figure src="/images/netq/roce-rx-counters-fs-4.0.0.png" width="700">}}
+
+{{</tab>}}
+
+{{<tab "NetQ CLI">}}
+
+To view general and CNP Tx counters, run `netq show roce-counters tx general`:
 
 ```
 cumulus@switch:~$ netq show roce-counters tx general 
@@ -107,7 +153,7 @@ switch            swp63s2         0                    0            0           
 cumulus@switch      :~$ 
 ```
 
-### View RoCE-specific Tx Counters
+To view RoCE-specific Tx counters, run `netq show roce-counters tx roce`:
 
 ```
 cumulus@switch:~$ netq show roce-counters tx roce 
@@ -125,9 +171,26 @@ switch            swp63s0         0          0          0                       
 switch            swp63s2         0          0          0                         0                  0                  0            0                  0          0
 ```
 
+{{</tab>}}
+
+{{</tabs>}}
+
 ### View RoCE Counter Pools
 
-- `netq show roce-counters pool`: Displays RoCE pools.
+{{<tabs "View RoCE counter pools">}}
+
+{{<tab "NetQ UI">}}
+
+1. To view RoCE counter pools, open the large switch card, then click the RoCE icon ({{<img src="/images/netq/icon-roce-4.0.0.png" width="34px">}}).
+1. Switch to the full-screen card, then click **RoCE Counters**. Look for these columns: **Lossy Default Ingress Size**, **Roce Reserved Ingress Size**, **Lossy Default Egress Size**, and **Roce Reserved Egress Size**.
+
+{{<figure src="/images/netq/roce-rx-counters-fs-4.0.0.png" width="700">}}
+
+{{</tab>}}
+
+{{<tab "NetQ CLI">}}
+
+To view the RoCE counter pools, run `netq show roce-counters pool`:
 
 ```
 cumulus@switch:~$ netq show roce-counters pool 
@@ -138,7 +201,28 @@ Hostname          Lossy Default Ingress Size     Roce Reserved Ingress Size     
 switch            104823                         104823                         104823                         104823
 ```
 
+{{</tab>}}
+
+{{</tabs>}}
+
 ### View Counters for a Specific Switch Port
+
+{{<tabs "View counters for a specific port">}}
+
+{{<tab "NetQ UI">}}
+
+To view counters for a specific port:
+
+1. Open the large switch card, then click the RoCE icon ({{<img src="/images/netq/icon-roce-4.0.0.png" width="34px">}}).
+1. Select a port on the left.
+
+{{<figure src="/images/netq/roce-l3-card-4.0.0.png" width="500">}}
+
+{{</tab>}}
+
+{{<tab "NetQ CLI">}}
+
+To view counters for a specific switch port, include the switch name with the command.
 
 ```
 cumulus@switch:~$ netq show roce-counters swp1s1 rx general 
@@ -149,7 +233,26 @@ Hostname          Interface            PG packets           PG bytes            
 switch            swp1s1               1643392              154094520            0                    0                    1                    0                    1
 ```
 
-### View Results from Time in the Past
+{{</tab>}}
+
+{{</tabs>}}
+
+### View Results from a Time in the Past
+
+{{<tabs "View results in the past">}}
+
+{{<tab "NetQ UI">}}
+
+To view counters for a different time period in the past:
+
+1. Open the large switch card, then click the RoCE icon ({{<img src="/images/netq/icon-roce-4.0.0.png" width="34px">}}).
+1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/18-Time/time-stopwatch.svg" height="18" width="18"/> in the header and select a different time period.
+
+{{</tab>}}
+
+{{<tab "NetQ CLI">}}
+
+You can use the `around` keyword with any RoCE-related command to go back in time to view counters.
 
 ```
 cumulus@switch:~$ netq show roce-counters swp1s1 rx general around 1h
@@ -160,7 +263,12 @@ Hostname          Interface            PG packets           PG bytes            
 switch            swp1s1               661                  61856                0                    0                    1                    0                    1
 ```
 
+{{</tab>}}
+
+{{</tabs>}}
 
 ## Related Information 
 
-[RoCE and Cumulus Linux]({{<ref "cumulus-linux-43/Network-Solutions/RDMA-over-Converged-Ethernet-RoCE">}})
+- {{<link title="Configure Threshold-Based Event Notifications" text="Configure notifications for TCA events">}}
+- {{<link title="TCA Event Messages Reference#roce" text="RoCE TCA event reference">}}
+- [RoCE and Cumulus Linux]({{<ref "cumulus-linux-43/Network-Solutions/RDMA-over-Converged-Ethernet-RoCE">}})

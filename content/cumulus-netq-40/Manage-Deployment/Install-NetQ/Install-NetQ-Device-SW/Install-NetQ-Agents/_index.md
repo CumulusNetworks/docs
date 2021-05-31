@@ -8,6 +8,7 @@ toc: 4
 After installing your {{<link url="Install-NetQ" text="NetQ software">}}, you should install the NetQ {{<version>}} Agents on each switch you want to monitor. NetQ Agents can be installed on switches and servers running:
 
 - Cumulus Linux 3.3.2-3.7.x, 4.0.0 and later
+- SONiC 202012 and later
 - CentOS 7
 - RHEL 7.1
 - Ubuntu 16.04 and 18.04
@@ -87,7 +88,7 @@ The repository <code>deb http://apps3.cumulusnetworks.com/repos/deb CumulusLinux
 
 {{</tab>}}
 
-{{< tab "Cumulus Linux 4.x" >}}
+{{<tab "Cumulus Linux 4.x">}}
 
 Add the repository:
 
@@ -196,14 +197,14 @@ To obtain the NetQ Agent package:
     ```
     root@rhel7:~# vi /etc/yum.repos.d/cumulus-host-el.repo
     ...
-    [cumulus-arch-netq-3.2]
+    [cumulus-arch-netq-4.0]
     name=Cumulus netq packages
-    baseurl=https://apps3.cumulusnetworks.com/repos/rpm/el/7/netq-3.2/$basearch
+    baseurl=https://apps3.cumulusnetworks.com/repos/rpm/el/7/netq-4.0/$basearch
     gpgcheck=1
     enabled=1
-    [cumulus-noarch-netq-3.2]
+    [cumulus-noarch-netq-4.0]
     name=Cumulus netq architecture-independent packages
-    baseurl=https://apps3.cumulusnetworks.com/repos/rpm/el/7/netq-3.2/noarch
+    baseurl=https://apps3.cumulusnetworks.com/repos/rpm/el/7/netq-4.0/noarch
     gpgcheck=1
     enabled=1
     ...
@@ -393,7 +394,7 @@ deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb bionic netq-latest
 {{</tabs >}}
 
     {{<notice note>}}
-The use of <code>netq-latest</code> in these examples means that a <code>get</code> to the repository always retrieves the latest version of NetQ, even in the case where a major version update has been made. If you want to keep the repository on a specific version - such as <code>netq-3.1</code> - use that instead.
+The use of <code>netq-latest</code> in these examples means that a <code>get</code> to the repository always retrieves the latest version of NetQ, even in the case where a major version update has been made. If you want to keep the repository on a specific version - such as <code>netq-4.0</code> - use that instead.
     {{</notice>}}
 
 {{</tab>}}

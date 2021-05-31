@@ -13,7 +13,7 @@ This topic assumes a reasonable familiarity with Kubernetes terminology and arch
 
 ## Use NetQ with Kubernetes Clusters
 
-The NetQ Agent interfaces with the Kubernetes API server and listens to Kubernetes events. The NetQ Agent monitors network identity and physical network connectivity of Kubernetes resources like Pods, Daemon sets, Service, and so forth. NetQ works with any container network interface (CNI), such as Calico or Flannel.
+The NetQ Agent interfaces with the Kubernetes API server and listens to Kubernetes events. The NetQ Agent monitors network identity and physical network connectivity of Kubernetes resources like pods, daemon sets, services, and so forth. NetQ works with any container network interface (CNI), such as Calico or Flannel.
 
 The NetQ Kubernetes integration enables network administrators to:
 
@@ -639,3 +639,19 @@ You can determine the impact on the Kubernetes deployment in the event a host or
                                   -- server12:swp1:swp1 -- swp6:VlanA-1:tor-1
           -- nginx-8586cf59-26pj5 -- server24:swp2:NetQBond-1 -- swp29:NetQBond-29:edge01
                                   -- server24:swp3:NetQBond-1 -- swp29:NetQBond-29:edge02
+
+## Kubernetes Cluster Maintenance
+
+If you need to perform maintenance on the Kubernetes cluster itself, use the following commands to bring the cluster down and then back up.
+
+1. If you need, get the list of all the nodes in the Kubernetes cluster:
+
+       cumulus@host:~$ kubectl get nodes 
+
+1. Have Kubernetes to drain the node so that the pods running on it are gracefully scheduled elsewhere:
+
+       cumulus@host:~$ kubectl drain <node name> 
+
+1. Once the maintenance window is over, put the node back into the cluster so that Kubernetes can start scheduling pods on it again:
+
+       cumulus@host:~$ kubectl uncordon <node name>

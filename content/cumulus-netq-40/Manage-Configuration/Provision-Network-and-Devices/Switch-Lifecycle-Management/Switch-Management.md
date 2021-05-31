@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 650
 toc: 4
 ---
-On initial installation, the lifecycle management feature provides an inventory of switches that have been automatically discovered by NetQ and are available for software installation or upgrade through NetQ. This includes all switches running Cumulus Linux 3.6 or later and NetQ Agent 2.4 or later in your network. You assign network roles to switches and select switches for software installation and upgrade from this inventory listing.
+On initial installation, the lifecycle management feature provides an inventory of switches that have been automatically discovered by NetQ and are available for software installation or upgrade through NetQ. This includes all switches running Cumulus Linux 3.6 or later, SONiC 202012 or later, and NetQ Agent 2.4 or later in your network. You assign network roles to switches and select switches for software installation and upgrade from this inventory listing.
 
 ## View the LCM Switch Inventory
 
@@ -14,7 +14,7 @@ The switch inventory can be viewed from the NetQ UI and the NetQ CLI.
 
 {{< tab "NetQ UI" >}}
 
-A count of the switches NetQ was able to discover and the Cumulus Linux versions that are running on those switches is available from the LCM dashboard.
+A count of the switches NetQ was able to discover and the network OS versions that are running on those switches is available from the LCM dashboard.
 
 {{<figure src="/images/netq/lcm-switches-card-with-labels-320.png" width="400">}}
 
@@ -27,7 +27,7 @@ Review the list:
 - Filter the list: click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/15-Filter/filter-1.svg" height="18" width="18" alt="Filter Switch List">}} and enter parameter value of interest
 
 {{<notice tip>}}
-If you have more than one Cumulus Linux version running on your switches, you can click a version segment on the Switches card graph to open a list of switches pre-filtered by that version.
+If you have more than one network OS version running on your switches, you can click a version segment on the Switches card graph to open a list of switches pre-filtered by that version.
 {{</notice>}}
 
 {{< /tab >}}
@@ -40,7 +40,7 @@ To view a list of all switches known to lifecycle management, run:
 netq lcm show switches [version <text-cumulus-linux-version>] [json]
 ```
 <!-- vale off -->
-Use the `version` option to only show switches with a given Cumulus Linux version, X.Y.Z.
+Use the `version` option to only show switches with a given network OS version, X.Y.Z.
 <!-- vale on -->
 This example shows all switches known by lifecycle management.
 
@@ -78,7 +78,7 @@ leaf02            leaf       192.168.200.12            44:38:39:00:01:78  x86_64
 
 {{< /tabs >}}
 
-This listing is the starting point for Cumulus Linux upgrades or NetQ installations and upgrades. If the switches you want to upgrade are not present in the list, you can:
+This listing is the starting point for network OS upgrades or NetQ installations and upgrades. If the switches you want to upgrade are not present in the list, you can:
 
 - Work with the list you have and add them later
 - Verify the missing switches are reachable using `ping`
@@ -185,7 +185,7 @@ To view all switch roles, run:
 netq lcm show switches [version <text-cumulus-linux-version>] [json]
 ```
 <!-- vale off -->
-Use the `version` option to only show switches with a given Cumulus Linux version, X.Y.Z.
+Use the `version` option to only show switches with a given network OS version, X.Y.Z.
 <!-- vale on -->
 This example shows the role of all switches in the **Role** column of the listing.
 
@@ -293,7 +293,7 @@ To export the switch listing:
 
 {{< tab "NetQ CLI" >}}
 
-Use the `json` option with the `netq lcm show switches` command to output a list of all switches in the LCM repository. Alternately, output only switches running a particular version of Cumulus Linux by including the `version` option.
+Use the `json` option with the `netq lcm show switches` command to output a list of all switches in the LCM repository. Alternately, output only switches running a particular network OS version by including the `version` option.
 
 ```
 cumulus@switch:~$ netq lcm show switches json

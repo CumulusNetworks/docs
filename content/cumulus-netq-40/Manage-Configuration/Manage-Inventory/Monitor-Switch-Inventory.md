@@ -40,7 +40,7 @@ Component information for all of the switches in your network can be viewed from
 
 ### View the Number of Types of Any Component Deployed
 
-For each of the components monitored on a switch, NetQ displays the variety of those component by way of a count. For example, if you have three operating systems running on your switches, say Cumulus Linux, Ubuntu and RHEL, NetQ indicates a total unique count of three OSs. If you only use Cumulus Linux, then the count shows as one.
+For each of the components monitored on a switch, NetQ displays the variety of those component by way of a count. For example, if you have four operating systems running on your switches, say Cumulus Linux, SONiC, Ubuntu and RHEL, NetQ indicates a total unique count of three OSs. If you only use Cumulus Linux, then the count shows as one.
 
 To view this count for all of the components on the switch:
 

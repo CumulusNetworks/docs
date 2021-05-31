@@ -105,6 +105,28 @@ Some of the event IDs have changed. If you have TCA rules configured for digital
 | Disk Utilization | TCA_DISK_UTILIZATION_UPPER  |  Percentage of disk utilization exceeded user-defined maximum threshold on a switch or host | Disk Utilization for host leaf11 exceed configured mark 90 |
 | Memory Utilization | TCA_MEMORY_UTILIZATION_UPPER  |  Percentage of memory utilization exceeded user-defined maximum threshold on a switch or host | Memory Utilization for host leaf11 exceed configured mark 95 |
 
+## RoCE 
+
+| NetQ UI Name | NetQ CLI Event ID | Description |
+| --- | --- | --- |
+| Rx CNP Buffer Usage Cells | TCA_RX_CNP_BUFFER_USAGE_CELLS | Percentage of Rx General+CNP buffer usage exceeded user-defined maximum threshold on a switch interface |
+| Rx CNP No Buffer Discard | TCA_RX_CNP_NO_BUFFER_DISCARD | Rate of Rx General+CNP no buffer discard exceeded user-defined maximum threshold on a switch interface |
+| Rx CNP PG Usage Cells | TCA_RX_CNP_PG_USAGE_CELLS | Percentage of Rx General+CNP PG usage exceeded user-defined maximum threshold on a switch interface |
+| Rx RoCE Buffer Usage Cells | TCA_RX_ROCE_BUFFER_USAGE_CELLS | Percentage of Rx RoCE buffer usage exceeded user-defined maximum threshold on a switch interface |
+| Rx RoCE No Buffer Discard | TCA_RX_ROCE_NO_BUFFER_DISCARD | Rate of Rx RoCE no buffer discard exceeded user-defined maximum threshold on a switch interface |
+| Rx RoCE PG Usage Cells | TCA_RX_ROCE_PG_USAGE_CELLS | Percentage of Rx RoCE PG usage exceeded user-defined maximum threshold on a switch interface |
+| Rx RoCE PFC Pause Duration | TCA_RX_ROCE_PFC_PAUSE_DURATION | Number of Rx RoCE PFC pause duration exceeded user-defined maximum threshold on a switch interface |
+| Rx RoCE PFC Pause Packets | TCA_RX_ROCE_PFC_PAUSE_PACKETS | Rate of Rx RoCE PFC pause packets exceeded user-defined maximum threshold on a switch interface |
+| Tx CNP Buffer Usage Cells | TCA_TX_CNP_BUFFER_USAGE_CELLS | Percentage of Tx General+CNP buffer usage exceeded user-defined maximum threshold on a switch interface |
+| Tx CNP TC Usage Cells | TCA_TX_CNP_TC_USAGE_CELLS | Percentage of Tx CNP TC usage exceeded user-defined maximum threshold on a switch interface |
+| Tx CNP Unicast No Buffer Discard | TCA_TX_CNP_UNICAST_NO_BUFFER_DISCARD | Rate of Tx CNP unicast no buffer discard exceeded user-defined maximum threshold on a switch interface |
+| Tx ECN Marked Packets | TCA_TX_ECN_MARKED_PACKETS | Rate of Tx Port ECN marked packets exceeded user-defined maximum threshold on a switch interface |
+| Tx RoCE Buffer Usage Cells | TCA_TX_ROCE_BUFFER_USAGE_CELLS | Percentage of Tx RoCE buffer usage exceeded user-defined maximum threshold on a switch interface | 
+| Tx RoCE PFC Pause Duration | TCA_TX_ROCE_PFC_PAUSE_DURATION | Number of Tx RoCE PFC pause duration exceeded user-defined maximum threshold on a switch interface |
+| Tx RoCE PFC Pause Packets | TCA_TX_ROCE_PFC_PAUSE_PACKETS | Rate of Tx RoCE PFC pause packets exceeded user-defined maximum threshold on a switch interface |
+| Tx RoCE TC Usage Cells | TCA_TX_ROCE_TC_USAGE_CELLS | Percentage of Tx RoCE TC usage exceeded user-defined maximum threshold on a switch interface |
+| Tx RoCE Unicast No Buffer Discard | TCA_TX_ROCE_UNICAST_NO_BUFFER_DISCARD | Rate of Tx RoCE unicast no buffer discard exceeded user-defined maximum threshold on a switch interface |
+
 ## Sensors
 
 | NetQ UI Name | NetQ CLI Event ID | Description | Example Message |

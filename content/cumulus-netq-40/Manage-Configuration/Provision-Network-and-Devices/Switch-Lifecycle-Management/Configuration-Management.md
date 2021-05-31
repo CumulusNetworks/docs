@@ -515,7 +515,7 @@ To create a profile:
 
 9. Optionally set a CPU usage limit for the NetQ Agent. Click **Enable** and drag the dot to the desired limit.
 
-    Refer to this {{<exlink url="https://support.cumulusnetworks.com/hc/en-us/articles/360046925373-NetQ-Agent-CPU-Utilization-on-Cumulus-Linux-Switches" text="Knowledge Base article">}} for information about this feature.
+    Refer to this [Knowledge Base article]({{<ref "knowledge-base/Configuration-and-Usage/Cumulus-NetQ/NetQ-Agent-CPU-Utilization-on-Cumulus-Linux-Switches">}}) for information about this feature.
 
 10. Click **Add** to complete the configuration or **Close** to discard the configuration.
 
@@ -1217,9 +1217,9 @@ Click **Continue to port details**, or click **Save and Exit** to come back late
 
 5. To run the job to apply the configuration, click **Save and deploy on switches**.
 
-6. Enter a name for the job (maximum of 22 characters including spaces). Verify the configuration name and number of switches you have selected to assign this configuratin to. then click **Continue**.
+6. Enter a name for the job (maximum of 22 characters including spaces). Verify the configuration name and number of switches you have selected to assign this configuration to. then click **Continue**.
 
-    This opens the monitoring page for the assignment jobs, similar to the upgrade jobs. The job title bar indicates the name of the switch configuration being applied and the number of switches that to be assigned with the configuration. (After you have mulitple switch configurations created, you might have more than one configuration being applied in a single job.) Each switch element indicates its hostname, IP address, installed Cumulus Linux and NetQ versions, a note indicating this is a new assignment, the switch configuration being applied, and a menu that provides the detailed steps being executed. The last is useful when the assignment fails as any errors are included in this popup.
+    This opens the monitoring page for the assignment jobs, similar to the upgrade jobs. The job title bar indicates the name of the switch configuration being applied and the number of switches that to be assigned with the configuration. (After you have multiple switch configurations created, you might have more than one configuration being applied in a single job.) Each switch element indicates its hostname, IP address, installed Cumulus Linux and NetQ versions, a note indicating this is a new assignment, the switch configuration being applied, and a menu that provides the detailed steps being executed. The last is useful when the assignment fails as any errors are included in this popup.
 
     {{<figure src="/images/netq/lcm-switch-config-assign-job-success-320.png" width="700">}}
 

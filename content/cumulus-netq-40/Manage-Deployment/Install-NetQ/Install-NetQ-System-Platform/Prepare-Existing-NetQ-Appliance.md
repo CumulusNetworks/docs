@@ -1,10 +1,10 @@
 ---
-title: Prepare Your Existing NetQ Appliances for a NetQ 3.3 Deployment
+title: Prepare Your Existing NetQ Appliances for a NetQ 4.0 Deployment
 author: NVIDIA
 weight: 235
 toc: 5
 ---
-This topic describes how to prepare a NetQ 3.2.x or earlier NetQ Appliance before installing NetQ {{<version>}}. The steps are the same for both the on-premises and cloud appliances. The only difference is the software you download for each platform. On completion of the steps included here, you will be ready to perform a fresh installation of NetQ {{<version>}}.
+This topic describes how to prepare a NetQ 3.3.x or earlier NetQ Appliance before installing NetQ {{<version>}}. The steps are the same for both the on-premises and cloud appliances. The only difference is the software you download for each platform. On completion of the steps included here, you will be ready to perform a fresh installation of NetQ {{<version>}}.
 
 The preparation workflow is summarized in this figure:
 

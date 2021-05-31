@@ -249,12 +249,6 @@ DHCPD_PID="-pf {1}"
 <td>4.3.0</td>
 </tr>
 <tr>
-<td>2554329</td>
-<td>On the Dell N3248PXE switch, fixed RJ45 interfaces with PoE neighbors can end up in _Paused_ mode after a {{switchd}} restart, which blocks traffic on that interface. </td>
-<td>3.7.12-3.7.15</td>
-<td></td>
-</tr>
-<tr>
 <td>2553887</td>
 <td>When using TACACS+ configured with a DEFAULT user providing privilege level lower than 16, TACACS+ configured users with privilege level 16 access might not be able to run privilege level 16 NCLU commands, such as {{net add}} and {{net del}} and see an error similar to the following:
 
@@ -2613,12 +2607,6 @@ DHCPD_PID="-pf {1}"
 <td>4.3.0</td>
 </tr>
 <tr>
-<td>2554329</td>
-<td>On the Dell N3248PXE switch, fixed RJ45 interfaces with PoE neighbors can end up in _Paused_ mode after a {{switchd}} restart, which blocks traffic on that interface. </td>
-<td>3.7.12-3.7.15</td>
-<td></td>
-</tr>
-<tr>
 <td>2553887</td>
 <td>When using TACACS+ configured with a DEFAULT user providing privilege level lower than 16, TACACS+ configured users with privilege level 16 access might not be able to run privilege level 16 NCLU commands, such as {{net add}} and {{net del}} and see an error similar to the following:
 
@@ -4667,12 +4655,6 @@ DHCPD_PID="-pf {1}"
 <td>Certain Dell S4048-ON switches show an incorrect vendor name and hang when you issue the {{reboot}} command. </td>
 <td>3.7.12-4.2.1</td>
 <td>4.3.0</td>
-</tr>
-<tr>
-<td>2554329</td>
-<td>On the Dell N3248PXE switch, fixed RJ45 interfaces with PoE neighbors can end up in _Paused_ mode after a {{switchd}} restart, which blocks traffic on that interface. </td>
-<td>3.7.12-3.7.15</td>
-<td></td>
 </tr>
 <tr>
 <td>2553887</td>
@@ -6944,12 +6926,6 @@ Fixed: 5.43-2+deb9u2~deb8u2</td>
 <td>Certain Dell S4048-ON switches show an incorrect vendor name and hang when you issue the {{reboot}} command. </td>
 <td>3.7.12-4.2.1</td>
 <td>4.3.0</td>
-</tr>
-<tr>
-<td>2554329</td>
-<td>On the Dell N3248PXE switch, fixed RJ45 interfaces with PoE neighbors can end up in _Paused_ mode after a {{switchd}} restart, which blocks traffic on that interface. </td>
-<td>3.7.12-3.7.15</td>
-<td></td>
 </tr>
 <tr>
 <td>2554232</td>
@@ -9612,12 +9588,6 @@ To work around this issue, reboot the switch.</td>
 <td>Certain Dell S4048-ON switches show an incorrect vendor name and hang when you issue the {{reboot}} command. </td>
 <td>3.7.12-4.2.1</td>
 <td>4.3.0</td>
-</tr>
-<tr>
-<td>2554329</td>
-<td>On the Dell N3248PXE switch, fixed RJ45 interfaces with PoE neighbors can end up in _Paused_ mode after a {{switchd}} restart, which blocks traffic on that interface. </td>
-<td>3.7.12-3.7.15</td>
-<td></td>
 </tr>
 <tr>
 <td>2554232</td>

@@ -76,6 +76,39 @@ This is an information leak in algorithm negotiation that can allow man-in-the-m
 <td></td>
 </tr>
 <tr>
+<td>2669831</td>
+<td>If you try to remove BFD configuration with {{systemctl reload frr}}, the FRR service fails. The reload action results in a {{TypeError: expected string or bytes-like object}} error.
+You see this issue only if there is default configuration, such as configuration in the {{/etc/frr/frr.conf}} file that is suppressed from view in the FRR running configuration.
+To work around this issue, remove the default configuration lines; for example: 
+
+username cumulus nopassword
+</td>
+<td>3.7.14.2-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2668483</td>
+<td>If you update the MAC address of an SVI using {{ifreload}} and {{hwaddress}}, the kernel maintains a stale permanent fdb entry for the old MAC address.</td>
+<td>3.7.14-3.7.15, 4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2668477</td>
+<td>CVE-2021-31535: libX11, the X11 protocol client library, was vulnerable to protocol command injection due to insufficient validation of arguments to some functions.
+Vulnerable: &lt;= 1.6.2-3+deb8u4
+Fixed: 1.6.2-3+deb8u5</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2660693</td>
+<td>CVE-2021-22876: libcurl, an URL transfer library, does not strip off user credentials from the URL when automatically populating the Referer HTTP request header field in outgoing HTTP requests. Sensitive authentication data may leak to the server that is the target of the second HTTP request.
+Vulnerable: 7.38.0-4+deb8u19
+Fixed: 7.38.0-4+deb8u20</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2660583</td>
 <td>In an MLAG configuration, the secondary MLAG switch does not use a unique address instead of the MLAG system MAC address when there is a peer link failure.</td>
 <td>3.7.14-3.7.15</td>
@@ -124,6 +157,12 @@ Fixed: 0.4.1-1.2+deb8u1</td>
 <td>2653400</td>
 <td>When 802.1x MAB and a parking VLAN are configured on an interface, hostapd might install a static fdb entry if the interface is down.  To work around this issue, delete 802.1x from the interface with the {{net del interface &lt;interface&gt; dot1x}} command, then add back the 802.1x configuration.</td>
 <td>3.7.10-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2648658</td>
+<td>If you try to use more than one percent of {{max-ecmp-nexthops}}, you get an error indicating a failure.</td>
+<td>3.7.15</td>
 <td></td>
 </tr>
 <tr>

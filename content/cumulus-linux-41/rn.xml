@@ -2859,6 +2859,21 @@ CVE-2020-10531: An issue was discovered in International Components for Unicode 
 <td></td>
 </tr>
 <tr>
+<td>2677049</td>
+<td>CVE-2020-25681 CVE-2020-25682 CVE-2020-25683 CVE-2020-25684 CVE-2020-25685 CVE-2020-25686 CVE-2020-25687: Several vulnerabilities in dnsmasq, a small caching DNS proxy and DHCP/TFTP server, could result in denial of service, cache poisoning or the execution of arbitrary code.</td>
+<td>4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2671668</td>
+<td>CVE-2021-23017: off-by-one in Nginx, a high-performance web and reverse proxy server, which could
+result in denial of service and potentially the execution of arbitrary code.
+Vulnerable: &lt;= 1.14.2-2+deb10u3
+Fixed: 1.14.2-2+deb10u4</td>
+<td>4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
 <td>2669863</td>
 <td>The following CVEs were announced for rsyslog:
 CVE-2019-17041 CVE-2019-17042
@@ -2896,6 +2911,14 @@ https://security-tracker.debian.org/tracker/CVE-2019-14889</td>
 <td>CVE-2021-31535: missing length validation in various functions provided by libx11, the X11 client-side library, allow to inject X11 protocol commands on X clients, leading to authentication bypass, denial of service or potentially the execution of arbitrary code.
 Vulnerable: &lt;= 1.6.7-1+deb10u1
 Fixed: 1.6.7-1+deb10u2</td>
+<td>4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2663480</td>
+<td>CVE-2021-3520: integer overflow flaw in lz4, a fast LZ compression algorithm library, resulting in memory corruption.
+Vulnerable: 1.8.3-1
+Fixed: 1.8.3-1+deb10u1</td>
 <td>4.0.0-4.3.0</td>
 <td></td>
 </tr>
@@ -3126,12 +3149,6 @@ Fixed: 1.3.8+dfsg-3+deb10u1</td>
 <tr>
 <td>2556500</td>
 <td>Cumulus Linux does not support bond members at 200G or greater.</td>
-<td>4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
-<td>2556474</td>
-<td>CVE-2020-25681 CVE-2020-25682 CVE-2020-25683 CVE-2020-25684 CVE-2020-25685 CVE-2020-25686 CVE-2020-25687: Several vulnerabilities in dnsmasq, a small caching DNS proxy and DHCP/TFTP server, could result in denial of service, cache poisoning or the execution of arbitrary code.</td>
 <td>4.0.0-4.3.0</td>
 <td></td>
 </tr>

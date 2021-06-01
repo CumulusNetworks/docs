@@ -178,7 +178,7 @@ If you have already specified a default image, you must click <strong>Manage</st
 
 {{<tab "NetQ CLI">}}
 
-1. Download the NetQ Debian packages needed for upgrade from the {{<exlink url="https://cumulusnetworks.com/downloads/#product=NetQ" text="Cumulus Downloads page">}}, selecting the appropriate version and hypervisor/platform. Place them in an accessible part of your local network.
+1. Download the NetQ Debian packages needed for upgrade from the {{<exlink url="http://support.mellanox.com/s/" text="My Mellanox support">}} page, selecting the appropriate version and hypervisor/platform. Place them in an accessible part of your local network.
 
 2. Upload the images to the LCM repository. This example uploads the two packages (`netq-agent` and `netq-apps`) needed for NetQ version 4.0.0 for a NetQ appliance or VM running Ubuntu 18.04 with an x86 architecture.
 

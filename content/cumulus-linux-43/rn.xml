@@ -144,7 +144,8 @@ https://security-tracker.debian.org/tracker/CVE-2019-14889</td>
 </tr>
 <tr>
 <td>2669073</td>
-<td>The {{l1-show}} command shows the wrong data.</td>
+<td>The {{l1-show}} command shows the wrong data when the mst service is stopped.
+Relevant for spectrum,spectrum-2 and spectrum-3 switches</td>
 <td>4.3.0</td>
 <td></td>
 </tr>

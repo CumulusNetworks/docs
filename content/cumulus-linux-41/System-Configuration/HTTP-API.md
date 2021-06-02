@@ -37,7 +37,7 @@ Each service runs as a background daemon.
 
 ## Configuration
 
-To configure the HTTP API services, edit the `/etc/nginx/sites-available/nginx-restapi.conf` configuration file, then run the `sudo systemctl restart nginx` command.
+To configure the HTTP API services, edit the `/etc/nginx/sites-available/nginx-restapi.conf` configuration file, enter in the IP address in which the REST API will listen on and then run the command `sudo systemctl restart nginx`.
 
 ### IP and Port Settings
 

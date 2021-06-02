@@ -34,7 +34,7 @@ section of the {{<link url="Buffer-and-Queue-Management">}} chapter.
 
 {{%notice tip%}}
 
-On switches with {{<exlink url="https://cumulusnetworks.com/products/hardware-compatibility-list/?asic%5B0%5D=Mellanox%20Spectrum&asic%5B1%5D=Mellanox%20Spectrum_A1" text="Spectrum ASICs">}},
+On switches with {{<exlink url="www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="Spectrum ASICs">}},
 you can alternately use NCLU to configure RoCE with PFC:
 
     cumulus@switch:~$ net add interface swp1 storage-optimized pfc
@@ -193,7 +193,7 @@ section of the {{<link url="Buffer-and-Queue-Management">}} chapter.
 
 {{%notice tip%}}
 
-On switches with {{<exlink url="https://cumulusnetworks.com/products/hardware-compatibility-list/?asic%5B0%5D=Mellanox%20Spectrum&asic%5B1%5D=Mellanox%20Spectrum_A1" text="Spectrum ASICs">}}, you can alternately use NCLU to configure RoCE with ECN:
+On switches with {{<exlink url="www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="Spectrum ASICs">}}, you can alternately use NCLU to configure RoCE with ECN:
 
     cumulus@switch:~$ net add interface swp1 storage-optimized
     cumulus@switch:~$ net pending

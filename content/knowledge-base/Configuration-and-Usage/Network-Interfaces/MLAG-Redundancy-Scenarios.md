@@ -7,7 +7,7 @@ toc: 4
 
 ## Issue
 
-Cumulus Linux Multi-Chassis Link Aggregation (MLAG) enables two switches to operate at layer 2 as if they are a single logical L2 switch in order to provide greater throughput and redundancy. This article discusses expected LACP and STP behavior during common failure redundancy scenarios. It is assumed the reader has a working knowledge of Cumulus Linux MLAG, LACP bonding, and STP. MLAG capabilities and configuration instructions are provided in the {{<kb_link url="cumulus-linux-43/Layer-2/Multi-Chassis-Link-Aggregation-MLAG/" text="Cumulus Linux user guide">}}.
+Cumulus Linux Multi-Chassis Link Aggregation (MLAG) enables two switches to operate at layer 2 as if they are a single logical L2 switch in order to provide greater throughput and redundancy. This article discusses expected LACP and STP behavior during common failure redundancy scenarios. It is assumed the reader has a working knowledge of Cumulus Linux MLAG, LACP bonding, and STP. MLAG capabilities and configuration instructions are provided in the [Cumulus Linux user guide]({{<ref "/cumulus-linux-43/Layer-2/Multi-Chassis-Link-Aggregation-MLAG" >}}).
 
 ## Environment
 

@@ -20,7 +20,7 @@ The network includes several hosts, and two routers running Cumulus
 Linux configured with [Multi-chassis Link Aggregation](/cumulus-linux-36/Layer-2/Multi-Chassis-Link-Aggregation-MLAG)
 (MLAG):
 
-{{% imgOld 0 %}}
+{{< img src="/images/cumulus-linux/vrr-active-active.png" width="600" >}}
 
 {{%notice note%}}
 

@@ -1,7 +1,7 @@
 ---
 title: Hybrid Cloud Connectivity with QinQ and VXLANs
 author: NVIDIA
-weight: 650
+weight: 630
 toc: 3
 ---
 *QinQ* is an amendment to the {{<exlink url="http://www.ieee802.org/1/pages/802.1Q.html" text="IEEE 802.1Q specification">}} that provides the capability for multiple {{<link url="VLAN-Tagging" text="VLAN tags">}} to be inserted into a single Ethernet frame.
@@ -256,9 +256,9 @@ You configure a double-tagged interface by stacking the VLANs in the following m
 
 The outer tag or *TPID* (tagged protocol identifier) needs the `vlan_protocol` to be specified. It can be either *802.1Q* or *802.1ad*. If 802.1ad is used, it must be specified on the lower VLAN device, such as swp3.100 in the example below.
 
-{{%notice note%}}
-<!--Double tag translation only works with bridges in {{<link url="Traditional-Bridge-Mode" text="traditional mode">}} (not VLAN-aware mode).
-{{%/notice%}}-->
+<!--{{%notice note%}}
+Double tag translation only works with bridges in {{<link url="Traditional-Bridge-Mode" text="traditional mode">}} (not VLAN-aware mode).
+{{%/notice%}} -->
 
 An example configuration:
 

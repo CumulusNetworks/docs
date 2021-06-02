@@ -6,7 +6,7 @@ toc: 3
 ---
 Cumulus Linux supports Power over Ethernet (PoE) and PoE+, so certain Cumulus Linux switches can supply power from Ethernet switch ports to enabled devices over the Ethernet cables that connect them. PoE is capable of powering devices up to 15W, while PoE+ can power devices up to 30W. Configuration for power negotiation is done over {{<link url="Link-Layer-Discovery-Protocol" text="LLDP">}}.
 
-The {{<exlink url="https://cumulusnetworks.com/products/hardware-compatibility-list/?platform_type%5B0%5D=POE" text="currently supported platforms">}} include:
+The {{<exlink url="www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="currently supported platforms">}} include:
 
 - Cumulus Express CX-1048-P
 - Dell N3048EP-ON
@@ -43,7 +43,7 @@ Link state and PoE state are completely independent of each other. When a link i
 
 ## Configure PoE
 
-You use the `poectl` command utility to configure PoE on a {{<exlink url="https://cumulusnetworks.com/products/hardware-compatibility-list/?platform_type%5B0%5D=POE" text="switch that supports">}} the feature. You can:
+You use the `poectl` command utility to configure PoE on a {{<exlink url="www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="switch that supports">}} the feature. You can:
 
 - Enable or disable PoE for a given switch port
 - Set a switch port's PoE priority to one of three values: *low*, *high* or *critical*

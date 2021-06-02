@@ -1,5 +1,5 @@
 ---
-title: Open Shortest Path First - OSPF - Protocol
+title: Open Shortest Path First - OSPF
 author: Cumulus Networks
 weight: 177
 pageID: 8362392
@@ -44,7 +44,7 @@ area to another must go via the backbone area. As an example, the
 leaf-spine topology we have been referring to in the routing section can
 be divided into areas as follows:
 
-{{% imgOld 0 %}}
+{{< img src = "/images/cumulus-linux/ospf-areas.png" >}}
 
 Here are some points to note about areas and OSPF behavior:
 
@@ -251,7 +251,7 @@ failures. Here is an example scenario:
 
 {{%/notice%}}
 
-{{% imgOld 1 %}}
+{{< img src = "/images/cumulus-linux/ospf-summarization.png" >}}
 
 As shown in the diagram, the ABRs in the right non-zero area summarize
 the host prefixes as 10.1.0.0/16. When the link between R5 and R10

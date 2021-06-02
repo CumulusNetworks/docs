@@ -8,7 +8,7 @@ version: '4.x'
 This section describes advanced procedures that help you get more out of Cumulus VX; for example, you can:
 
 - Test the Cumulus Linux upgrade process in your virtual environment by installing a Cumulus VX binary image with ONIE.
-- Convert the two leaf and one spine topology so that you can follow the {{<exlink url="https://cumulusnetworks.com/lp/cumulus-linux-on-demand/" text="Cumulus Linux on demand">}} lab tutorials.
+- Convert the two leaf and one spine topology so that you can follow the {{<exlink url="https://www.nvidia.com/en-us/networking/linux-on-demand/" text="Cumulus Linux on demand">}} lab tutorials.
 - Run the topology converter script to convert a topology file into a Vagrantfile so you can simulate a custom network topology that includes servers and custom interface names and connections.
 
 ## Install an ONIE Virtual Machine
@@ -24,7 +24,7 @@ To install Cumulus VX, run the `onie-nos-install <URL to cumulus-linux-vx-amd64.
 
 ## Convert the Topology for Cumulus Linux on Demand
 
-Cumulus Networks offers {{<exlink url="https://cumulusnetworks.com/lp/cumulus-linux-on-demand/" text="Cumulus Linux on demand">}} to help you get familiar with Cumulus Linux. This introductory lab tutorial includes various self-paced labs that let you practice configuring Cumulus Linux and use features such as NCLU, FRR, and BGP unnumbered.
+Cumulus Networks offers {{<exlink url="https://www.nvidia.com/en-us/networking/linux-on-demand/" text="Cumulus Linux on demand">}} to help you get familiar with Cumulus Linux. This introductory lab tutorial includes various self-paced labs that let you practice configuring Cumulus Linux and use features such as NCLU, FRR, and BGP unnumbered.
 
 The Cumulus Linux on demand labs use the following topology:
 
@@ -33,7 +33,7 @@ The Cumulus Linux on demand labs use the following topology:
 To be able to follow the labs, you need to convert the two leaf and one spine topology we use in this documentation to the topology used in the labs.
 
 {{%notice tip%}}
-As an alternative to using Cumulus VX with the Cumulus Linux on demand labs, you can use {{<exlink url="https://cumulusnetworks.com/products/cumulus-in-the-cloud/" text="Cumulus in the Cloud">}}, which is a free, personal, virtual data center network that provides a low-effort way to see Cumulus Networks technology in action. Your virtual data center consists of two racks with two dual-homed servers connected with a leaf-spine network.
+As an alternative to using Cumulus VX with the Cumulus Linux on demand labs, you can use {{<exlink url="https://www.nvidia.com/en-us/networking/network-simulation/" text="Cumulus in the Cloud">}}, which is a free, personal, virtual data center network that provides a low-effort way to see Cumulus Networks technology in action. Your virtual data center consists of two racks with two dual-homed servers connected with a leaf-spine network.
 {{%/notice%}}
 
 To convert the topology, you need to:
@@ -140,7 +140,7 @@ In your hypervisor environment, create two Ubuntu virtual servers; server01 and 
 
 Refer to the your hypervisor documentation for detailed instructions on creating virtual servers and network connections.
 
-After you change the ports and create server01 and server02, you are ready to go to {{<exlink url="https://cumulusnetworks.com/lp/cumulus-linux-on-demand" text="Cumulus Linux on demand">}} and follow the lab tutorials.
+After you change the ports and create server01 and server02, you are ready to go to {{<exlink url="https://www.nvidia.com/en-us/networking/linux-on-demand/" text="Cumulus Linux on demand">}} and follow the lab tutorials.
 
 ## Run the Topology Converter
 
@@ -179,7 +179,7 @@ This procedure assumes you are on a system running Linux and have a vagrant box 
 
 1. In the `topology_converter` folder (which includes `topology_converter.py`), create a `topology.dot` file.
 
-   The following example `toplology.dot` file represents the topology used in the Cumulus Linux on demand labs; leaf01, leaf02, spine01, server01, and server02. With the following topology, you can follow the lab tutorials with {{<exlink url="https://cumulusnetworks.com/lp/cumulus-linux-on-demand" text="Cumulus Linux on demand">}}.
+   The following example `toplology.dot` file represents the topology used in the Cumulus Linux on demand labs; leaf01, leaf02, spine01, server01, and server02. With the following topology, you can follow the lab tutorials with {{<exlink url="https://www.nvidia.com/en-us/networking/linux-on-demand/" text="Cumulus Linux on demand">}}.
 
    ```
    graph dc1 {
@@ -220,4 +220,4 @@ This procedure assumes you are on a system running Linux and have a vagrant box 
 
 To explore the topology converter further, read the documentation and take a look at the selection of example topologies included with the source code you downloaded.
 
-If you encounter any issues, you can file them directly in the {{<exlink url="https://gitlab.com/cumulus-consulting/tools/topology_converter/" text="gitlab topology converter project">}}. You can also go to {{<exlink url="cumulusnetworks.slack.com" text="Cumulus Networks community slack">}} to discuss issues or ask questions.
+If you encounter any issues, you can file them directly in the {{<exlink url="https://gitlab.com/cumulus-consulting/tools/topology_converter/" text="gitlab topology converter project">}}. You can also go to {{<exlink url="https://cumulusnetworks.slack.com/" text="Cumulus Networks community slack">}} to discuss issues or ask questions.

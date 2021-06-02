@@ -4,11 +4,11 @@ author: NVIDIA
 weight: 700
 toc: 4
 ---
-{{<notice warning>}}
+{{%notice warning%}}
 
-OVSDB server high availability is an {{<kb_link url="knowledge-base/Support/Support-Offerings/Early-Access-Features-Defined/" text="early access feature">}}.
+OVSDB server high availability is an [early access feature]({{<ref "/knowledge-base/Support/Support-Offerings/Early-Access-Features-Defined" >}}).
 
-{{</notice>}}
+{{%/notice%}}
 
 Cumulus Linux supports integration with VMware NSX in both *standalonemode* and *OVSDB server high availability mode* (where the data plane is running in active-active mode). For information about VMware NSX in standalone mode and for a description of the components that work together to integrate VMware NSX and Cumulus Linux, see {{<link url="Integrating-Hardware-VTEPs-with-VMware-NSX-MH">}} or {{<link url="Integrating-Hardware-VTEPs-with-VMware-NSX-V">}}.
 

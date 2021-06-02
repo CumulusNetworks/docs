@@ -99,9 +99,28 @@ iface br0
 ...
 ```
 
+## Optimized Multicast Flooding (OMF)
+
+IGMP Snooping restricts multicast forwarding only to the ports where IGMP report messages are received. If no IGMP reports are received, multicast traffic is flooded to all ports in the VLAN. To restrict this flooding to only querier ports, you must enable OMF.
+
+To enable OMF:
+
+1. Configure an IGMP querier. See {{<link url="#configure-the-igmp-and-mld-querier" text="Configure the IGMP and MLD Querier">}} above.
+2. Change the `bridge.optimized_mcast_flood` option to `TRUE` in the `/etc/cumulus/switchd.conf` file, then restart `switchd`.
+
+   ```
+   cumulus@switch:~$ sudo nano /etc/cumulus/switchd.conf
+   ...
+   bridge.optimized_mcast_flood = TRUE
+   ```
+
+   {{<cl/restart-switchd>}}
+
+When IGMP reports are sent for a multicast group, OMF has no effect. Normal IGMP Snooping behavior is followed.
+
 ## Disable IGMP and MLD Snooping
 
-if you do not use mirroring functions or other types of multicast traffic, you can disable IGMP and MLD Snooping.
+If you do not use mirroring functions or other types of multicast traffic, you can disable IGMP and MLD Snooping.
 
 To disable IGMP and MLD snooping:
 
@@ -110,7 +129,7 @@ To disable IGMP and MLD snooping:
 
 ```
 cumulus@switch:~$ NEED COMMAND
-cumulus@switch:~$ cl set bridge domain br_default mcsnoop enable no???
+cumulus@switch:~$ cl config apply
 ```
 
 {{< /tab >}}
@@ -194,7 +213,7 @@ swp3 (3)
   flags
 ```
 
-To show the groups and bridge port state, run the NCLU `net show bridge mdb` command or the Linux `bridge mdb show` command. To show detailed router ports and group information, run the `bridge -d -s mdb show` command:
+To show the groups and bridge port state, run the Linux `bridge mdb show` command. To show detailed router ports and group information, run the `bridge -d -s mdb show` command:
 
 ```
 cumulus@switch:~$ sudo bridge -d -s mdb show

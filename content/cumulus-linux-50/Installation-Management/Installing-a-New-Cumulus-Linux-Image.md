@@ -169,26 +169,23 @@ Follow the steps below if your laptop is on the same network as the switch eth0 
 
 3. Place the Cumulus Linux image into a TFTP or FTP directory.
 
-4. If you are not using DHCP options, run one of the following commands (`tftp` for TFTP or `ftp` for FTP):
+4. If you are not using DHCP options, run one of the following commands (tftp for TFTP or ftp for FTP):
 
     ```
     ONIE# onie-nos-install ftp://local-ftp-server/cumulus-install-x86_64.bin
 
-    ONIE# onie-nos-install tftp://local-tftp-server/cumulus-install-x86_64.bin
+    ONIE# onie-nos-install tftp://local-tftp-server/cumulus-install-[PLATFORM].bin
     ```
 
 {{< /tab >}}
 {{< tab "Install from Cumulus Linux ">}}
 
-1. Place the Cumulus Linux image into a TFTP or FTP directory.
+1. Place the Cumulus Linux image into an FTP directory (TFTP is *not* supported in  Cumulus Linux).
 
-2. From the Cumulus Linux command prompt, run one of the following
-    commands (`tftp` for TFTP or `ftp` for FTP), then reboot the switch.
+2. From the Cumulus Linux command prompt, run the following command, then reboot the switch.
 
     ```
     cumulus@switch:~$ sudo onie-install -a -i ftp://local-ftp-server/cumulus-install-x86_64.bin
-
-    cumulus@switch:~$ sudo onie-install -a -i tftp://local-ftp-server/cumulus-install-x86_64.bin
     ```
 
 {{< /tab >}}

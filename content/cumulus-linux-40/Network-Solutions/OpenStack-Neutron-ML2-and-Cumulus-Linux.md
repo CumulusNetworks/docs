@@ -76,4 +76,4 @@ The ML2 mechanism driver includes the following parameters, which you can config
 
 ## OpenStack with Cumulus in the Cloud
 
-OpenStack Neutron is available as a preconfigured option with {{<exlink url="https://cumulusnetworks.com/products/cumulus-in-the-cloud" text="Cumulus in the Cloud">}}. Add the ML2 driver, described above.
+OpenStack Neutron is available as a preconfigured option with {{<exlink url="https://www.nvidia.com/en-us/networking/network-simulation/" text="Cumulus in the Cloud">}}. Add the ML2 driver, described above.

@@ -8,7 +8,7 @@ Hardware datapath configuration manages packet buffering, queueing and schedulin
 
 {{%notice note%}}
 
-The `/usr/lib/python2.7/dist-packages/cumulus/__chip_config/[bcm|mlx]/datapath.conf` assigns buffer space and egress queues. {{<exlink url="https://support.mellanox.com/s/contact-support-page" text="Working with a support engineer">}} to change buffer limits in the `datapath.conf` file is recommended.
+The `/usr/lib/python2.7/dist-packages/cumulus/__chip_config/[bcm|mlx]/datapath.conf` assigns buffer space and egress queues. The default thresholds defined in the `datapath.conf` file are intended for data center environments, but certain workloads may require additional tuning. It is best to make small, incremental changes to validate the changes with your application performance. Be sure to backup the original file before making changes.
 
 {{%/notice%}}
 
@@ -148,7 +148,7 @@ PFC congestion detection is implemented on the switch using xoff and xon thresho
 
 After the downstream switch has sent a PFC frame upstream, it continues to receive packets until the upstream switch receives and responds to the PFC frame. The downstream ingress buffer must be large enough to store those additional packets after the xoff threshold has been reached.
 
-Priority flow control is fully supported on both {{<exlink url="https://cumulusnetworks.com/products/hardware-compatibility-list/?asic%5B0%5D=Broadcom%20Apollo2&asic%5B1%5D=Broadcom%20Firebolt3&asic%5B2%5D=Broadcom%20Helix4&asic%5B3%5D=Broadcom%20Hurricane2&asic%5B4%5D=Broadcom%20Maverick&asic%5B5%5D=Broadcom%20Tomahawk&asic%5B6%5D=Broadcom%20Tomahawk%2B&asic%5B7%5D=Broadcom%20Tomahawk2&asic%5B8%5D=Broadcom%20Trident&asic%5B9%5D=Broadcom%20Trident%2B&asic%5B10%5D=Broadcom%20Trident2&asic%5B11%5D=Broadcom%20Trident2%2B&asic%5B12%5D=Broadcom%20Trident3%20X7&asic%5B13%5D=Broadcom%20Triumph2&CPUType=x86_64&Brand%5B0%5D=broadcomtrident&Brand%5B1%5D=broadcomtridentplus&Brand%5B2%5D=broadcomtrident2plus&Brand%5B3%5D=broadcomtriumph2&SwitchSilicon=broadcomtrident2" text="Broadcom">}} (including the Edgecore Minipack-AS8000/Trident3) and {{<exlink url="https://cumulusnetworks.com/products/hardware-compatibility-list/?vendor_name%5B0%5D=Mellanox" text="Mellanox">}} switches.
+Priority flow control is fully supported on both {{<exlink url="www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="Broadcom">}} (including the Edgecore Minipack-AS8000/Trident3) and {{<exlink url="www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="Mellanox">}} switches.
 
 PFC is disabled by default in Cumulus Linux. To enable priority flow control (PFC), you must configure the following settings in the `/etc/cumulus/datapath/traffic.conf` file on the switch:
 
@@ -327,7 +327,7 @@ ECN is implemented on the switch using minimum and maximum threshold values for 
 
 The downstream switches with ECN enabled perform the same actions as the traffic is received. If the ECN bits are set, they remain set. The only way to overwrite ECN bits is to set the ECN bits to *11*.
 
-ECN is supported on {{<exlink url="https://cumulusnetworks.com/hcl" text="Broadcom Tomahawk, Tomahawk2, Trident II, Trident II+ and Trident3, and Mellanox Spectrum ASICs">}}.
+ECN is supported on {{<exlink url="https://www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="Broadcom Tomahawk, Tomahawk2, Trident II, Trident II+ and Trident3, and Mellanox Spectrum ASICs">}}.
 
 {{< expand "Click to learn how to configure ECN "  >}}
 
@@ -366,12 +366,12 @@ On a Broadcom switch, restart `switchd` with the `sudo systemctl restart switchd
 ## Check Interface Buffer Status
 
 - On switches with 
-{{<exlink url="https://cumulusnetworks.com/products/hardware-compatibility-list/?asic%5B0%5D=Mellanox%20Spectrum&asic%5B1%5D=Mellanox%20Spectrum_A1" text="ASICs">}}, you can collect a fine-grained history of queue lengths using histograms maintained by the ASIC; see the {{<link title="ASIC Monitoring">}} for details.
+{{<exlink url="www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="ASICs">}}, you can collect a fine-grained history of queue lengths using histograms maintained by the ASIC; see the {{<link title="ASIC Monitoring">}} for details.
 - On Broadcom switches, the buffer status is not visible currently.
 
 ## Example Configuration File
 
-The following example `/etc/cumulus/datapath/traffic.conf` datapath configuration file applies to 10G, 40G, and 100G switches on Broadcom Tomahawk, Trident II, Trident II+, or Trident3 and Mellanox Spectrum {{<exlink url="https://cumulusnetworks.com/hcl/" text="platforms">}} only.
+The following example `/etc/cumulus/datapath/traffic.conf` datapath configuration file applies to 10G, 40G, and 100G switches on Broadcom Tomahawk, Trident II, Trident II+, or Trident3 and Mellanox Spectrum {{<exlink url="https://www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="platforms">}} only.
 
 - For the default source packet fields and mapping, each selected packet field must have a block of mapped values. Any packet field value that is not specified in the configuration is assigned to a default internal switch priority. The configuration applies to every forwarding port unless a custom remark configuration is defined for that port (see below).
 - For the default remark packet fields and mapping, each selected packet field should have a block of mapped values. Any internal switch priority value that is not specified in the configuration is assigned to a default packet field value. The configuration applies to every forwarding port unless a custom remark configuration is defined for that port (see below).
@@ -629,7 +629,7 @@ lag_hash_config.ip_prot = true
 
 {{%notice note%}}
 
-On switches with {{<exlink url="https://cumulusnetworks.com/products/hardware-compatibility-list/?asic%5B0%5D=Mellanox%20Spectrum&asic%5B1%5D=Mellanox%20Spectrum_A1" text="Spectrum ASICs">}}, you must enable packet priority remark on the **ingress** port. A packet received on a remark-enabled port is remarked according to the priority mapping configured on the **egress** port. If you configure packet priority remark the same way on every port, the default configuration example above is correct. However, per-port customized configurations require two port groups, one for the ingress ports and one for the egress ports, as below:
+On switches with {{<exlink url="www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="Spectrum ASICs">}}, you must enable packet priority remark on the **ingress** port. A packet received on a remark-enabled port is remarked according to the priority mapping configured on the **egress** port. If you configure packet priority remark the same way on every port, the default configuration example above is correct. However, per-port customized configurations require two port groups, one for the ingress ports and one for the egress ports, as below:
 
 ```
 remark.port_group_list = [ingress_remark_group, egress_remark_group]

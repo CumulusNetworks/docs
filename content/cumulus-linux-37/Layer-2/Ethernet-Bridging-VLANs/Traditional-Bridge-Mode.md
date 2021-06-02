@@ -237,7 +237,7 @@ native VLAN, thus merging those two VLANs and their spanning tree state.
 
 ### Trunk Example
 
-{{% imgOld 1 %}}
+{{% img src = "/images/cumulus-linux/ethernet-bridging-multiple-bridges.png" %}}
 
 To create the above example:
 

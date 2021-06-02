@@ -60,7 +60,7 @@ become available, for the period of the subscription.
 
 The following diagram illustrates the release version and support relationship.
 
-{{<img src="/images/knowledge-base/NQ rel vers and sup pol.png" width="700">}}
+{{<img src="/images/knowledge-base/NQ-rel-vers-and-sup-pol.png" width="700">}}
 
 Customers running NetQ 1.4.x and earlier, can continue to use their
 current license until their support expires.  These customers have the
@@ -77,4 +77,4 @@ Currently, there are no end of life plans for Cumulus NetQ 1.x or 2.x.
 ## Upgrade Process
 
 For information regarding upgrading from previous Cumulus NetQ releases,
-refer to the {{<kb_link url="cumulus-netq-33/Manage-Deployment" text="Cumulus NetQ Deployment Guide">}}.
+refer to the [Cumulus NetQ Deployment Guide]({{<ref "/cumulus-netq-33/Manage-Deployment" >}}).

@@ -30,45 +30,15 @@ Whereas this example does work:
     rtt min/avg/max/mdev = 0.000/1.000/4.001/1.732 ms
     cumulus@switch:default:~:#
 
-<table>
-<colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
-</colgroup>
-<tbody>
-<tr class="odd">
-<th>Diagram</th>
-<th>IP Addressing</th>
-</tr>
-<tr class="even">
-<td><p><img src="/images/knowledge-base/icmp-ping-I-option.png" width="350" /></p></td>
-<td><table>
-<tbody>
-<tr class="odd">
-<th>Device</th>
-<th>VLAN 2</th>
-<th>VLAN 5</th>
-</tr>
-<tr class="even">
-<td>Edge Router</td>
-<td>2.2.2.1</td>
-<td>N/A</td>
-</tr>
-<tr class="odd">
-<td>Cumulus Linux Switch</td>
-<td>2.2.2.5</td>
-<td>5.5.5.5</td>
-</tr>
-<tr class="even">
-<td>Hypervisor</td>
-<td>2.2.2.10</td>
-<td>5.5.5.10</td>
-</tr>
-</tbody>
-</table></td>
-</tr>
-</tbody>
-</table>
+{{<figure src="/images/knowledge-base/icmp-ping-I-option.png" width="350">}}
+
+The image above has these IP addresses:
+
+| Device | VLAN 2 | VLAN 5 |
+| ------ | ------ | ------ |
+| Edge router | 2.2.2.1 | N/A |
+| Cumulus Linux switch | 2.2.2.5 | 5.5.5.5 |
+| Hypervisor | 2.2.2.10 | 5.5.5.10 |
 
 ## Configurations
 
@@ -76,11 +46,12 @@ Whereas this example does work:
 
     auto swp1
     iface swp1
-    address 2.2.2.10/24
-    up ip route add 0.0.0.0/0 via 2.2.2.1
+        address 2.2.2.10/24
+        up ip route add 0.0.0.0/0 via 2.2.2.1
+    
     auto swp2
     iface swp2
-    address 5.5.5.10/24
+        address 5.5.5.10/24
 
 ### Cumulus Linux Switch
 
@@ -95,33 +66,33 @@ Whereas this example does work:
     
     auto bridge_2
     iface bridge_2
-    address 2.2.2.5/24
-    bridge-ports swp1 swp17
-    up ip route add 0.0.0.0/0 via 2.2.2.1
+        address 2.2.2.5/24
+        bridge-ports swp1 swp17
+        up ip route add 0.0.0.0/0 via 2.2.2.1
     
     auto bridge_5
     iface bridge_5
-    address 5.5.5.5/24
-    bridge-ports swp2
+        address 5.5.5.5/24
+        bridge-ports swp2
 
 ### Edge Router
 
     auto swp30
     iface swp30
-    address 50.50.50.2/24
+        address 50.50.50.2/24
     
     auto swp17
     iface swp17
-    address 2.2.2.1/24
-    up ip route add 5.5.5.0/24 via 2.2.2.5
+        address 2.2.2.1/24
+        up ip route add 5.5.5.0/24 via 2.2.2.5
 
 ### Internet Router
 
     auto swp1
     iface swp1
-    address 50.50.50.1/24
-    up route add -net 5.5.5.0/24 gw 50.50.50.2
-    up route add -net 2.2.2.0/24 gw 50.50.50.2
+        address 50.50.50.1/24
+        up route add -net 5.5.5.0/24 gw 50.50.50.2
+        up route add -net 2.2.2.0/24 gw 50.50.50.2
 
 ## Explanation
 
@@ -147,6 +118,6 @@ is doing in the situation (such as IP rules or containers).
 
 ## See Also
 
-- {{<kb_link url="cumulus-linux-43/Layer-3/Routing/" text="Routing on Cumulus Linux">}}
-- {{<kb_link url="cumulus-linux-43/Monitoring-and-Troubleshooting/Network-Troubleshooting/" text="Network Troubleshooting">}}
+- [Routing on Cumulus Linux]({{<ref "/cumulus-linux-43/Layer-3/Routing" >}})
+- [Network Troubleshooting]({{<ref "/cumulus-linux-43/Monitoring-and-Troubleshooting/Network-Troubleshooting" >}})
 - {{<exlink url="https://www.kernel.org/doc/Documentation/networking/ip-sysctl.txt" text="ip-sysctl on kernel.org">}}, which covers `arp_announce`

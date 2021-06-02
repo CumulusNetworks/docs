@@ -18,7 +18,7 @@
     {{ end }}
 {{ end }}
 {{ if (.Scratch.Get "page_found") }}
-    <a rel="canonical" href="{{ (.Get "url") | absURL }}" target="_blank">{{- default (.Get "url") (.Get "text") -}}</a>
+    <a rel="canonical" href="{{ (.Get "url") | urlize | absURL }}" target="_blank">{{- default (.Get "url") (.Get "text") -}}</a>
 {{ else }}
     {{ errorf "kb_link failed to find a home for %s on %s. Path: %s" (printf "content/%s.md" (path.Dir (.Get "url") | printf "%s"))  .Position (.Scratch.Get "file_path") }}
 {{ end }}

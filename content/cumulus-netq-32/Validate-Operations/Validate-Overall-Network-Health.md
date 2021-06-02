@@ -22,7 +22,7 @@ To view this summary:
 
 ## View Key Metrics of Network Health
 
-Overall network health in the NetQ UI is a calculated average of several key health metrics: System, Network Services, and Interface health.
+Overall network health in the NetQ UI is a calculated average of several key health metrics: System, Network Services, and Interface health. 
 
 To view these key metrics:
 

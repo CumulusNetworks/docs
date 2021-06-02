@@ -2,28 +2,6 @@
 
 
 <script>
-    function replace_url() {
-        var elems = document.getElementsByTagName("a");
-        for (var i = 0; i < elems.length; i++) {
-            path = elems[i]["href"];
-            path_parts = path.split("/");
-            if(path_parts[3] != "{{.Section}}"){
-                continue
-            }
-            if(path_parts[path_parts.length - 1] == ""){
-                elems[i]["href"] = "#" + path_parts[path_parts.length - 2];
-            }
-            else {
-                if(path_parts[path_parts.length - 1].charAt(0) == "#"){
-                    elems[i]["href"] = path_parts[path_parts.length - 1]
-                }
-                else{
-                    elems[i]["href"] = "#" + path_parts[path_parts.length - 1]
-                }
-            }
-
-        }
-    }
 
     function expand_tabs() {
         // Break tabs into separate sections
@@ -42,18 +20,17 @@
             $(this).find('.book-tabs-content').show();
             $(this).find('input[type="radio"]').attr('name', Math.floor(Math.random() * 100000000000000));
         });
+        tabs_finished = true;
     }
 
     window.onload = function() {
-        replace_url();
         expand_tabs();
 
-        // Auto expand all of the code folding "<details>" tags.
-        $( "details" ).attr("open", "true");
     }
 </script>
 <meta name="author" content="Cumulus Networks" />
 <meta name="keywords" content="COMMIT_INFO" />
+<meta name="search_visibility" content="hidden" />
 
 <style type="text/css">
     @page {
@@ -78,7 +55,7 @@
 
   @page:right {
       @bottom {
-          content: "https://docs.cumulusnetworks.com"
+          content: {{.Site.Params.baseURL}}
       }
 
       @bottom-right {
@@ -111,7 +88,7 @@
 
   @page:left {
       @bottom {
-          content: "https://docs.cumulusnetworks.com"
+          content: "{{.Site.Params.BaseURL}}"
       }
 
       @bottom-right {

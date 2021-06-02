@@ -69,7 +69,7 @@ In order to use EVPN-MH, you must remove any MLAG configuration on the switch. T
   - When an EVPN-MH bond enters LACP bypass state, BGP stops advertising EVPN type-1 and type-4 routes for that bond. Split-horizon and designated forwarder filters are disabled.
   - When an EVPN-MH bond exits the LACP bypass state, BGP starts advertising EVPN type-1 and type-4 routes for that bond. Split-horizon and designated forwarder filters are enabled.
 - EVI (*EVPN virtual instance*). Cumulus Linux supports VLAN-based service only, so the EVI is just a layer 2 VNI.
-- Supported {{<exlink url="https://cumulusnetworks.com/hcl" text="ASICs">}} include Mellanox Spectrum A1, Spectrum 2 and Spectrum 3.
+- Supported {{<exlink url="https://www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="ASICs">}} include Mellanox Spectrum A1, Spectrum 2 and Spectrum 3.
 
 ### Supported EVPN Route Types
 

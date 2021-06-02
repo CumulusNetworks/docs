@@ -1807,7 +1807,7 @@ The following caveats apply to EVPN in this version of Cumulus Linux:
 
 The following example configuration shows a basic Clos topology for bridging.
 
-{{% imgOld 0 %}}
+{{% img src="/images/old_doc_images/EVPN-BasicCLOS.png" %}}
 
 ### leaf01 and leaf02 Configurations
 

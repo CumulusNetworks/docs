@@ -57,7 +57,7 @@ for the changes to take effect:
 The following example `/etc/cumulus/datapath/traffic.conf` datapath
 configuration file applies to 10G, 40G, and 100G switches on Broadcom
 Tomahawk, Trident II+ or Trident II and Mellanox Spectrum
-[platforms](http://cumulusnetworks.com/hcl/) only. However, see the note
+[platforms](https://www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/) only. However, see the note
 above for all the supported ASICs and speeds.
 
 Keep in mind the following about the configuration:
@@ -417,9 +417,9 @@ group. The lossless priority group has been removed from Cumulus Linux.
 {{%/notice%}}
 
 Priority flow control is fully supported on both
-[Broadcom](https://cumulusnetworks.com/support/linux-hardware-compatibility-list/?CPUType=x86_64&Brand=broadcomtrident&Brand=broadcomtridentplus&SwitchSilicon=broadcomtrident2&Brand=broadcomtrident2plus&Brand=broadcomtriumph2)
+[Broadcom](https://www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/)
 and [Mellanox
-switches](https://cumulusnetworks.com/support/linux-hardware-compatibility-list/?Brand=mellanox).
+switches](https://www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/).
 
 PFC is disabled by default in Cumulus Linux. Enabling priority flow
 control (PFC) requires configuring the following settings in
@@ -658,7 +658,7 @@ way to overwrite ECN bits is to enable it - that is, set the ECN bits to
 *11*.
 
 ECN is supported on 
-[Broadcom Tomahawk, Trident II+ and Trident II, and Mellanox Spectrum switches](https://cumulusnetworks.com/hcl) only.
+[Broadcom Tomahawk, Trident II+ and Trident II, and Mellanox Spectrum switches](https://www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/) only.
 
 <details>
 <summary>Click to learn how to configure ECN ... </summary>

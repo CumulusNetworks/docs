@@ -61,7 +61,7 @@ You configure VRF by associating each subset of interfaces to a VRF
 routing table, and configuring an instance of the routing protocol - BGP
 or OSPFv2 - for each routing table.
 
-{{% imgOld 0 %}}
+{{< img src = "/images/cumulus-linux/vrf-example.png" >}}
 
 ## Configure VRF
 
@@ -393,7 +393,7 @@ between a pair of VRFs.
 - You cannot configure VRF instances of BGP in multiple autonomous systems
   (AS) or an AS that is not the same as the global AS.
 - Do not use the default VRF as a shared service VRF. Create another VRF for shared services.
-- An EVPN symmetric routing configuration on a Mellanox switch with a {{<exlink url="https://cumulusnetworks.com/products/hardware-compatibility-list/?asic%5B0%5D=Mellanox%20Spectrum&asic%5B1%5D=Mellanox%20Spectrum_A1" text="Spectrum ASIC">}} or a Broadcom switch has certain limitations when leaking routes between the default VRF and non-default VRFs. The default VRF has underlay routes (routes to VTEP addresses) that cannot be leaked to any tenant VRFs. If you need to leak routes between the default VRF and a non-default VRF, you must filter out routes to the VTEP addresses to prevent leaking these routes. Use caution with such a configuration. Run common services in a separate VRF (service VRF) instead of the default VRF to simplify configuration and avoid using route-maps for filtering.
+- An EVPN symmetric routing configuration on a Mellanox switch with a {{<exlink url="www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="Spectrum ASIC">}} or a Broadcom switch has certain limitations when leaking routes between the default VRF and non-default VRFs. The default VRF has underlay routes (routes to VTEP addresses) that cannot be leaked to any tenant VRFs. If you need to leak routes between the default VRF and a non-default VRF, you must filter out routes to the VTEP addresses to prevent leaking these routes. Use caution with such a configuration. Run common services in a separate VRF (service VRF) instead of the default VRF to simplify configuration and avoid using route-maps for filtering.
 
 {{%/notice%}}
 
@@ -1279,20 +1279,10 @@ See the example configuration below for more details.
 In the following example, there is one IPv4 network with a VRF named
 *rocket* and one IPv6 network with a VRF named *turtle*.
 
-<table>
-<colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
-</colgroup>
-<tbody>
-<tr class="odd">
-<td><p>The IPv4 DHCP server/relay network looks like this:</p>
-<p>{{% imgOld 1 %}}</p></td>
-<td><p>The IPv6 DHCP server/relay network looks like this:</p>
-<p>{{% imgOld 2 %}}</p></td>
-</tr>
-</tbody>
-</table>
+|IPv4 DHCP Server/relay network|IPv6 DHCP Server/relay network|
+|---|---|
+|{{< img src = "/images/cumulus-linux/vrf-rocket-dhcp4.png" >}}|{{< img src = "/images/cumulus-linux/vrf-turtle-dhcp6.png" >}}|
+
 
 Configure each DHCP server and relay as follows:
 

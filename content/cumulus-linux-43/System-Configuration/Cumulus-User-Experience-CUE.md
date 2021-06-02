@@ -4,11 +4,11 @@ author: NVIDIA
 weight: 115
 toc: 3
 ---
-{{<notice warning>}}
-Cumulus User Experience (CUE) is an {{<kb_link url="knowledge-base/Support/Support-Offerings/Early-Access-Features-Defined/" text="early access feature">}} currently in ALPHA and open to customer feedback.
+{{%notice warning%}}
+Cumulus User Experience (CUE) is an [early access feature]({{<ref "/knowledge-base/Support/Support-Offerings/Early-Access-Features-Defined" >}}) currently in ALPHA and open to customer feedback.
 
 CUE is not currently intended to run in production and is not supported through NVIDIA networking support.
-{{</notice>}}
+{{%/notice%}}
 <!-- vale off -->
 Your evaluation is welcome and appreciated as we start to roll out this new Cumulus Linux CLI. You can provide feedback by sending an email to net-cl-cue-ea-feedback@nvidia.com.
 <!-- vale on -->
@@ -61,7 +61,7 @@ CUE evaluation is available in Cumulus in the Cloud (CITC); a virtual data cente
 
 To start your CUE similation in CITC:
 
-1. Go to {{<exlink url="https://cumulusnetworks.com/products/cumulus-in-the-cloud/Cumulus" text="CUE" >}} NEED REAL LINK HERE.
+1. Go to {{<exlink url="https://www.nvidia.com/en-us/networking/network-simulation/Cumulus" text="CUE" >}} NEED REAL LINK HERE.
 
 2. On the dashboard, click the CUE simulation link under Simulations.
 
@@ -416,8 +416,6 @@ cumulus@switch:~$ cl show platform software
 [installed]  apt
 [installed]  arping
 [installed]  arptables
-[installed]  atftp
-[installed]  atftpd
 [installed]  auditd
 [installed]  base-files
 [installed]  base-passwd

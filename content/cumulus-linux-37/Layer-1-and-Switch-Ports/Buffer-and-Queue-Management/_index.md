@@ -13,7 +13,7 @@ scheduling in hardware. There are two configuration input files:
 
     {{%notice note%}}
 
-While it is possible to change the buffer limits in the `datapath.conf` file, it's best to {{<exlink url="https://support.mellanox.com/s/contact-support-page" text="work with a Cumulus support engineer">}} to do so.
+The default thresholds defined in the `datapath.conf` file are intended for data center environments, but certain workloads may require additional tuning. It is best to make small, incremental changes to validate the changes with your application performance. Be sure to backup the original file before making changes.
 
     {{%/notice%}}
 
@@ -59,7 +59,7 @@ If you modify the configuration in the `/etc/cumulus/datapath/traffic.conf` file
 The following example `/etc/cumulus/datapath/traffic.conf` datapath
 configuration file applies to 10G, 40G, and 100G switches on Broadcom
 Tomahawk, Trident II, Trident II+, or Trident3 and Mellanox Spectrum
-{{<exlink url="https://cumulusnetworks.com/hcl/" text="platforms">}} only. However, see the note
+{{<exlink url="https://www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="platforms">}} only. However, see the note
 above for all the supported ASICs.
 
 Keep in mind the following about the configuration:
@@ -411,8 +411,8 @@ group. The lossless priority group has been removed from Cumulus Linux.
 {{%/notice%}}
 
 Priority flow control is fully supported on both
-{{<exlink url="https://cumulusnetworks.com/products/hardware-compatibility-list/?asic%5B0%5D=Broadcom%20Apollo2&asic%5B1%5D=Broadcom%20Firebolt3&asic%5B2%5D=Broadcom%20Helix4&asic%5B3%5D=Broadcom%20Hurricane2&asic%5B4%5D=Broadcom%20Maverick&asic%5B5%5D=Broadcom%20Tomahawk&asic%5B6%5D=Broadcom%20Tomahawk%2B&asic%5B7%5D=Broadcom%20Tomahawk2&asic%5B8%5D=Broadcom%20Trident&asic%5B9%5D=Broadcom%20Trident%2B&asic%5B10%5D=Broadcom%20Trident2&asic%5B11%5D=Broadcom%20Trident2%2B&asic%5B12%5D=Broadcom%20Trident3%20X7&asic%5B13%5D=Broadcom%20Triumph2&asic%5B14%5D=Broadcom%20Tomahawk3&asic%5B15%5D=Broadcom%20Trident3%20X5&CPUType=x86_64&Brand%5B0%5D=broadcomtrident&Brand%5B1%5D=broadcomtridentplus&Brand%5B2%5D=broadcomtrident2plus&Brand%5B3%5D=broadcomtriumph2&SwitchSilicon=broadcomtrident2" text="Broadcom">}}
-and {{<exlink url="https://cumulusnetworks.com/products/hardware-compatibility-list/?vendor_name%5B0%5D=Mellanox" text="Mellanox">}} switches.
+{{<exlink url="www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="Broadcom">}}
+and {{<exlink url="www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="Mellanox">}} switches.
 
 PFC is disabled by default in Cumulus Linux. Enabling priority flow
 control (PFC) requires configuring the following settings in
@@ -669,7 +669,7 @@ traffic is received. If the ECN bits are set, they remain set. The only
 way to overwrite ECN bits is to enable it - that is, set the ECN bits to
 *11*.
 
-ECN is supported on {{<exlink url="https://cumulusnetworks.com/hcl" text="Broadcom Tomahawk, Tomahawk2, Trident II, Trident II+ and Trident3, and Mellanox Spectrum switches">}}.
+ECN is supported on {{<exlink url="https://www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="Broadcom Tomahawk, Tomahawk2, Trident II, Trident II+ and Trident3, and Mellanox Spectrum switches">}}.
 
 <details>
 <summary>Click to learn how to configure ECN ... </summary>
@@ -723,7 +723,7 @@ Restart `switchd` to allow the ECN configuration changes to take effect:
 
 ## Check Interface Buffer Status
 
-On switches with {{<exlink url="https://cumulusnetworks.com/products/hardware-compatibility-list/?asic%5B0%5D=Mellanox%20Spectrum&asic%5B1%5D=Mellanox%20Spectrum_A1" text="Spectrum ASICs">}}, you can collect a fine-grained history of queue lengths using histograms maintained by the ASIC; see the {{<link url="ASIC-Monitoring" text="ASIC monitoring chapter">}} for details.
+On switches with {{<exlink url="www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="Spectrum ASICs">}}, you can collect a fine-grained history of queue lengths using histograms maintained by the ASIC; see the {{<link url="ASIC-Monitoring" text="ASIC monitoring chapter">}} for details.
 
 On Broadcom switches, the buffer status is not visible currently.
 

@@ -251,7 +251,7 @@ The *Interface Health* tab displays:
 <td>Range of time in which the displayed data was collected; applies to all card sizes</td>
 </tr>
 <tr class="even">
-<td><img src="/images/netq/ntwk-health-if-health-icon.png" height="20" width="20"/></td>
+<td>{{<img src="/images/netq/ntwk-health-if-health-icon.png" height="20" width="20" >}}</td>
 <td>Indicates data is for Interface Health</td>
 </tr>
 <tr class="odd">
@@ -480,7 +480,7 @@ The interface health is a calculated average of the interfaces, VLAN, and MTU he
 To view information about each system component:
 
 1.  Open the large Network Health card.
-2.  Hover over the card and click <img src="/images/netq/ntwk-health-if-health-icon.png" height="20" width="20"/>.
+2.  Hover over the card and click {{<img src="/images/netq/ntwk-health-if-health-icon.png" height="20" width="20" >}}.
 
     {{<figure src="/images/netq/ntwk-hlth-large-if-hlth-tab-241.png" width="500">}}
 

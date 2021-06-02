@@ -8,7 +8,7 @@ To run DHCP for both IPv4 and IPv6, you need to initiate the DHCP server
 twice: once for IPv4 and once for IPv6. The following configuration uses
 the following topology for the host, DHCP relay and DHCP server:
 
-{{% imgOld 0 %}}
+{{< img src = "/images/cumulus-linux/dhcp-server-swp.png" >}}
 
 For the configurations used in this chapter, the DHCP server is a switch
 running Cumulus Linux; however, the DHCP server can also be located on a

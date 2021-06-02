@@ -21,7 +21,7 @@ and sub-modes. NCLU:
   - Configures dependent features automatically so that you don't have
     to.
 
-{{% imgOld 0 %}}
+{{< img src = "/images/cumulus-linux/nclu-architecture.png" >}}
 
 The NCLU wrapper utility called `net` is capable of configuring layer 2
 and layer 3 features of the networking stack, installing ACLs and
@@ -105,8 +105,7 @@ configuration with the following commands:
     
     {{%notice note%}}
     
-    This command does not remove [management
-    VRF](/cumulus-linux-36/Layer-3/Management-VRF)
+    This command does not remove [management VRF](/cumulus-linux-36/Layer-3/Management-VRF)
     configurations, as NCLU does not interact with eth0 interfaces and
     management VRF.
     

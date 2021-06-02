@@ -13,7 +13,7 @@ cascade:
     esr: true
 ---
 
-NVIDIA® Cumulus Linux is the first full-featured Linux operating system for the networking industry. The {{<exlink url="https://www.debian.org/releases/jessie/" text="Debian Jessie" >}}-based, networking-focused distribution runs on hardware produced by a {{<exlink url="https://cumulusnetworks.com/hcl/" text="broad partner ecosystem" >}}, ensuring unmatched customer choice regarding silicon, optics, cables, and systems.
+NVIDIA® Cumulus Linux is the first full-featured Linux operating system for the networking industry. The {{<exlink url="https://www.debian.org/releases/jessie/" text="Debian Jessie" >}}-based, networking-focused distribution runs on hardware produced by a {{<exlink url="https://www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="broad partner ecosystem" >}}, ensuring unmatched customer choice regarding silicon, optics, cables, and systems.
 
 This user guide provides in-depth documentation on the Cumulus Linux installation process, system configuration and management, network solutions, and monitoring and troubleshooting recommendations. In addition, the quick start guide provides an end-to-end setup process to get you started.
 
@@ -32,19 +32,14 @@ open source. The list of open source projects is on the
 ## Hardware Compatibility List
 
 You can find the most up-to-date hardware compatibility list (HCL)
-{{<exlink url="https://cumulusnetworks.com/hcl/" text="here" >}}. Use the HCL to confirm that
+{{<exlink url="https://www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="here" >}}. Use the HCL to confirm that
 your switch model is supported by Cumulus Linux. The HCL is updated
 regularly, listing products by port configuration, manufacturer, and SKU
 part number.
 
-## Stay up to Date
-
-- Subscribe to our {{<exlink url="https://lists.cumulusnetworks.com/listinfo/cumulus-product-bulletin" text="product bulletin" >}} mailing list to receive important announcements and updates about issues that arise in our products.
-- Subscribe to our {{<exlink url="https://lists.cumulusnetworks.com/listinfo/cumulus-security-announce" text="security announcement" >}} mailing list to receive alerts whenever we update our software for security issues.
-
 ## Extended Support Release
 
-This version of Cumulus Linux is an Extended Support Release (ESR). Cumulus Linux 3.7 ESR started with Cumulus Linux 3.7.12 and all future releases in the 3.7 product family will all be ESR releases. To learn about ESR, please read {{<kb_link url="knowledge-base/Support/Support-Offerings/Cumulus-Linux-Release-Versioning-and-Support-Policy/" text="this article">}}.
+This version of Cumulus Linux is an Extended Support Release (ESR). Cumulus Linux 3.7 ESR started with Cumulus Linux 3.7.12 and all future releases in the 3.7 product family will all be ESR releases. To learn about ESR, please read [this article]({{<ref "/knowledge-base/Support/Support-Offerings/Cumulus-Linux-Release-Versioning-and-Support-Policy" >}}).
 
 The PDF of the 3.7.12 ESR user guide is available {{% pdf_link "here." %}} PDFs of pre-ESR 3.7 versions are available below.
 

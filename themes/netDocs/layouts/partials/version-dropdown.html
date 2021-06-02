@@ -8,37 +8,16 @@
     {{  $.Scratch.SetInMap "version_page_map" (string .Params.version) .Page.RelPermalink }}
 {{ end }}
 
-<div id="product-nav" class="flex">
-    <div class="menu-container">
-        <!-- generates subnav memu from config.toml -->
-        {{ $currentProduct := $.Page.Params.product}}
-        <ul>
-            {{ range .Site.Menus.subnav}}
-                <li {{ with eq $currentProduct .Title }} class = "active" {{ end }}><a href = {{.URL}} >{{.Title}} </a> </li>
-            {{ end }}
-        </ul>
-        <div class="productMenu-dropdown">
-            <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="siteMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Cumulus Linux
-                </button>
-                <ul class="dropdown-menu" aria-lablledby="siteMenuButton">
-                    {{ range .Site.Menus.subnav}}
-                        <li class="dropdown-item"><a href={{.URL}}>{{.Title}} </a> </li>
-                    {{ end }}
-                    <li>
-                        <a href="#" class="dropdown-item dropdown-toggle" id="productsDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Products</a>
-                        <ul class="dropdown-menu multi-level" aria-lablledby="productsDropdown" style="display:none;">
-                            {{range .Site.Menus.dropnav}}
-                                <li><a class="dropdown-item" href={{.URL}}>{{.Title}}</a></li>
-                            {{ end }}
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
+{{if in .Page.Title "Release Notes" }}
+    <!-- The RN page names include the release version so they never match -->
+    <!-- This will look for page type "rn" and map it to the version, which only matches the RN page -->
+    {{ range where (where .Site.Pages "Params.type" "rn") ".Page.Params.product" .Page.Params.product  }}
+        {{  $.Scratch.SetInMap "version_page_map" (string .Params.version) .Page.RelPermalink }}
+    {{ end }}
+  {{ end }}
 
+
+<div id="product-nav" class="flex">
     <div class="search-container">
         <div class="screen-layout">
             <a class="default" href="#"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><defs><style>.a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round;}</style></defs><title>layout-3</title><rect class="a" x="0.5" y="0.497" width="22" height="22" rx="1" ry="1"/><line class="a" x1="7.5" y1="6.497" x2="7.5" y2="22.497"/><line class="a" x1="15.5" y1="6.513" x2="15.5" y2="22.497"/><line class="a" x1="0.5" y1="6.497" x2="22.5" y2="6.497"/></svg></a>
@@ -46,7 +25,7 @@
             <a class="sb-left" href="#"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><defs><style>.a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round;}</style></defs><title>layout-1</title><rect class="a" x="0.5" y="0.497" width="22" height="22" rx="1" ry="1"/><line class="a" x1="0.5" y1="6.497" x2="22.5" y2="6.497"/><line class="a" x1="7.5" y1="6.539" x2="7.5" y2="22.497"/></svg></a>
             <a class="no-sb" href="#"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><defs><style>.a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round;}</style></defs><title>layout-top</title><rect class="a" x="0.5" y="0.497" width="22" height="22" rx="1" ry="1"/><line class="a" x1="0.5" y1="6.497" x2="22.5" y2="6.497"/></svg></a>
         </div>
-        <form action="/search/" method="GET">
+        <form action={{"search" | absURL}} method="GET">
             <div id="doc-search-box">
                 <input type="text" name="q" class="doc-search-input" placeholder="Search">
                 <span>
@@ -65,7 +44,6 @@
                 <!-- Sort our list of versions so it's high to low -->
                 {{ range sort (where .Site.Sections "Params.product" .Page.Params.product) ".Page.Params.version" "desc"}}
                     <!-- The version is the key in version_links. Get the Permalink of the page stored as a value  -->
-                    {{ $ver := "" }}
                     {{ if not ($.Scratch.Get "version_page_map") }}
                         <a class="dropdown-item" href="{{ .Page.RelPermalink }}">v{{.Page.Params.version}} </a>
                     {{ else }}

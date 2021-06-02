@@ -1,0 +1,1 @@
+libfreeipmi17 has no copyright file

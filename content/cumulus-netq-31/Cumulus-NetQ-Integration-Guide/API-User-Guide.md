@@ -411,7 +411,7 @@ For simplicity, all of the endpoint APIs are combined into a single json-formatt
   "basePath": "/netq/telemetry/v1",
   "externalDocs": {
     "description": "API Documentation",
-    "url": "https://docs.cumulusnetworks.com/cumulus-netq/Cumulus-NetQ-Integration-Guide/API-User-Guide/"
+    "url": "https://docs.nvidia.com/networking-ethernet-software/cumulus-netq/Cumulus-NetQ-Integration-Guide/API-User-Guide/"
   },
   "schemes": [
     "https"

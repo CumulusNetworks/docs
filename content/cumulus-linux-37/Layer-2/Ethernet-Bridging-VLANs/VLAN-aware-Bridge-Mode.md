@@ -50,7 +50,7 @@ and includes 3 VLANs - the tagged VLANs 100 and 200 and the untagged
 </colgroup>
 <tbody>
 <tr class="odd">
-<td><p> <div style="width:300px">{{% imgOld 0 %}}</p></td>
+<td><p> <div style="width:300px">{{< img src = "/images/cumulus-linux/ethernet-bridging-basic-trunking.png" >}}</p></td>
 <td><pre><code>cumulus@switch:~$ net add bridge bridge ports swp1-2 
 cumulus@switch:~$ net add bridge bridge vids 100,200 
 cumulus@switch:~$ net add bridge bridge pvid 1
@@ -194,7 +194,7 @@ attribute:
 </colgroup>
 <tbody>
 <tr class="odd">
-<td><p> <div style="width:300px">{{% imgOld 1 %}}</p></td>
+<td><p> <div style="width:300px">{{% img src = "/images/cumulus-linux/ethernet-bridging-vlan-pruned.png" %}}</p></td>
 <td><pre><code>cumulus@switch:~$ net add bridge bridge ports swp1-3
 cumulus@switch:~$ net add bridge bridge vids 100,200
 cumulus@switch:~$ net add bridge bridge pvid 1
@@ -231,7 +231,7 @@ to VLAN 100, as specified in the example below:
 </colgroup>
 <tbody>
 <tr class="odd">
-<td><p>{{% imgOld 2 %}}</p></td>
+<td><p>{{% img src = "/images/cumulus-linux/ethernet-bridging-vlan_untagged_access_ports.png" %}}</p></td>
 <td><pre><code>cumulus@switch:~$ net add bridge bridge ports swp1-2
 cumulus@switch:~$ net add bridge bridge vids 100,200
 cumulus@switch:~$ net add bridge bridge pvid 1

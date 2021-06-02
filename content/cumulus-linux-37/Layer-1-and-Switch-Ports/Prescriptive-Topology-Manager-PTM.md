@@ -83,7 +83,7 @@ graph G {
 }
 ```
 
-{{% imgOld 0 %}}
+{{% img src="/images/cumulus-linux/ptm-dot.png" %}}
 
 ## ptmd Scripts
 

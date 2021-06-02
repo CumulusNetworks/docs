@@ -124,4 +124,4 @@ RMP 3.7 ESR for 3 years, until 21 February, 2023.
 
 ## Upgrade Process
 
-For information regarding upgrading from previous Cumulus Linux releases, refer to the {{<kb_link url="cumulus-linux-43/Installation-Management/Upgrading-Cumulus-Linux/" text="Cumulus Linux upgrade documentation">}}.
+For information regarding upgrading from previous Cumulus Linux releases, refer to the [Cumulus Linux upgrade documentation]({{<ref "/cumulus-linux-43/Installation-Management/Upgrading-Cumulus-Linux" >}}).

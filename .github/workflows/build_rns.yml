@@ -1,0 +1,24 @@
+name: 'Release Note Publisher'
+
+on:
+  push:
+    branches:
+      - stage
+
+jobs:
+  release-notes:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the repo
+        uses: actions/checkout@v2
+      - name: Run the RN and FOSS scripts
+        run: |
+          python3 utils/build_rns.py
+          python3 utils/build_foss_licenses.py
+      - name: Create PR
+        uses: peter-evans/create-pull-request@v3
+        with:
+          commit-message: "Automated release note commit"
+
+    env:
+      GITHUB_TOKEN: ${{ secrets.PLUMBIS_GITHUB_TOKEN }}

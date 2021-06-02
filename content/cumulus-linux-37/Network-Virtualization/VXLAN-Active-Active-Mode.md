@@ -21,7 +21,7 @@ This chapter outlines the configurations for both options.
 | VTEP                     | The virtual tunnel endpoint. This is an encapsulation and decapsulation point for VXLANs.    |
 | active-active VTEP       | A pair of switches acting as a single VTEP.                             |
 | ToR                      | The top of rack switch; also referred to as a leaf or access switch.    |
-| spine                    | The aggregation switch for multiple leafs. Specifically used when a data center is using a {{<exlink url="https://en.wikipedia.org/wiki/Clos_network" text="Clos network architecture">}}. Read more about spine-leaf architecture in this {{<exlink url="https://cumulusnetworks.com/learn/resources/whitepapers/building-scalable-data-center-networks" text="white paper">}}. |
+| spine                    | The aggregation switch for multiple leafs. Specifically used when a data center is using a {{<exlink url="https://en.wikipedia.org/wiki/Clos_network" text="Clos network architecture">}}. Read more about spine-leaf architecture in this {{<exlink url="https://resource.nvidia.com/en-us-scalability/building-scalable-data-center-networks?xs=257738" text="white paper">}}. |
 | exit leaf                | A switch dedicated to peering the Clos network to an outside network; also referred to as a border leaf, service leaf, or edge leaf.                                            |
 | anycast                  | An IP address that is advertised from multiple locations. Anycast enables multiple devices to share the same IP address and effectively load balance traffic across them. With VXLAN, anycast is used to share a VTEP IP address between a pair of MLAG switches.  |
 | RIOT                     | Routing in and out of tunnels. A Broadcom feature for routing in and out of tunnels. Allows a VXLAN bridge to have a switch VLAN interface associated with it, and traffic to exit a VXLAN into the layer 3 fabric. Also called VXLAN Routing.                    |
@@ -105,7 +105,7 @@ VTEP, even though the switches independently encapsulate and decapsulate
 layer 2 traffic originating from the host. You can configure the anycast
 address under the loopback interface, as shown below.
 
-{{% imgOld 0 %}}
+{{% img src="/images/old_doc_images/anycastIP.png" %}}
 
     auto lo
     iface lo inet loopback
@@ -119,7 +119,7 @@ address under the loopback interface, as shown below.
 
 ## Example VXLAN Active-Active Configuration
 
-{{% imgOld 1 %}}
+{{% img src="/images/old_doc_images/vxlanactiveactive.png" %}}
 
 Note the configuration of the local IP address in the VXLAN interfaces
 below. They are configured with individual IP addresses, which `clagd`
@@ -952,7 +952,7 @@ topologies only, and is not needed on real hardware.
       post-up ip link set $IFACE promisc on
 
 For more information on using Cumulus VX and Vagrant, refer to the
-{{<kb_link url="cumulus-vx/" text="Cumulus VX documentation">}}.
+[Cumulus VX documentation]({{<ref "/cumulus-vx" >}}).
 
 ### With LNV, Unique Node ID Required for vxrd in Cumulus VX
 

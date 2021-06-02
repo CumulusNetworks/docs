@@ -10,7 +10,7 @@ To run DHCP for both IPv4 and IPv6, initiate the DHCP relay once for
 IPv4 and once for IPv6. Following are the configurations on the server
 hosts, DHCP relay and DHCP server using the following topology:
 
-{{% imgOld 0 %}}
+{{< img src = "/images/cumulus-linux/dhcp-relay-topology.png" >}}
 
 {{%notice warning%}}
 
@@ -123,7 +123,7 @@ RFC 3527 is supported for IPv4 DHCP relays only.
 The following illustration demonstrates how you can control the giaddr
 with RFC 3527.
 
-{{% imgOld 1 %}}
+{{< img src = "/images/cumulus-linux/dhcp-relay-RFC3527.png" >}}
 
   
 

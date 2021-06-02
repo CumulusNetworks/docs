@@ -250,7 +250,7 @@ To view the bond, use
 In the following example, the front panel port interfaces swp1-swp4 are
 slaves in bond0, while swp5 and swp6 are not part of bond0.
 
-{{% imgOld 0 %}}
+{{% img src="/images/cumulus-linux/bonding-example.png" %}}
 
 {{%notice info%}}
 

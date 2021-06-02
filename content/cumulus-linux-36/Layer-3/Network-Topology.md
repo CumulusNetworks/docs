@@ -16,7 +16,7 @@ very popular. This topology is shown in the figure below. It is also commonly
 referred to as leaf-spine topology. We shall use this topology throughout the
 routing protocol guide.
 
-{{% imgOld 0 %}}
+{{< img src = "/images/cumulus-linux/network-topology.png" >}}
 
 This topology allows the building of networks of varying size using
 nodes of different port counts and/or by increasing the tiers. The

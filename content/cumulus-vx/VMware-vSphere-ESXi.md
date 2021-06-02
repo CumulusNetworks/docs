@@ -17,7 +17,7 @@ The following procedure creates leaf01, leaf02, and spine01 and the network conn
 
 ### Download Cumulus VX
 
-Download the {{<exlink url="https://cumulusnetworks.com/products/cumulus-vx/download/" text="OVA disk image for VMware">}}.
+Download the {{<exlink url="https://www.nvidia.com/en-us/networking/ethernet-switching/cumulus-vx/" text="OVA disk image for VMware">}}.
 
 ### Create the VMs
 

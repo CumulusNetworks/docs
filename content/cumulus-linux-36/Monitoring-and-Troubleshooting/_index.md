@@ -81,7 +81,7 @@ To change the serial console baud rate:
 
 3.  If you plan on accessing your switch's BIOS over the serial console,
     you need to update the baud rate in the switch BIOS. For more
-    information, see {{<kb_link url="knowledge-base/Configuration-and-Usage/Administration/Accessing-the-BIOS-on-an-x86-Switch/" text="this knowledge base article">}}.
+    information, see [this knowledge base article]({{<ref "/knowledge-base/Configuration-and-Usage/Administration/Accessing-the-BIOS-on-an-x86-Switch" >}}).
 
 4.  Reboot the switch.
 

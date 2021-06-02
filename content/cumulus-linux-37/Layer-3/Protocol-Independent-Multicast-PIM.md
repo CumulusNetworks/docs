@@ -23,7 +23,7 @@ Cumulus Linux supports only PIM Sparse Mode.
 
 ## PIM Overview
 
-{{% imgOld 0 %}}
+{{% figure src = "/images/cumulus-linux/pim-illustrated.png" %}}
 
 <table>
 <colgroup>
@@ -120,7 +120,7 @@ switch# write memory</li><li>Do not use a spine switch as an RP. If you are runn
 <p>{{%notice note%}}</p>
 <p>PIM join/prune messages are sent to PIM neighbors on individual interfaces. Join/prune messages are never unicast.</p>
 <p>{{%/notice%}}</p>
-<p>{{% imgOld 1 %}}</p>
+<p>{{< figure src = "/images/cumulus-linux/pim-join-prune.png" >}}</p>
 <p>This PIM join/prune is for group 239.1.1.9, with 1 join and 0 prunes for the group. Join/prunes for multiple groups can exist in a single packet.</p>
 <pre><code>21:49:59.470885 IP (tos 0x0, ttl 255, id 138, offset 0, flags [none], proto PIM (103), length 54)
  22.1.2.2 &gt; 224.0.0.13: PIMv2, length 34
@@ -351,7 +351,7 @@ to the IGMPv3 multicast group, 224.0.0.22. The PIM multicast router for
 the segment that is listening to the IGMPv3 group receives the IGMP
 membership join message and becomes an LHR for this group.
 
-{{% imgOld 2 %}}
+{{< img src = "/images/cumulus-linux/pim-igmp.png" >}}
 
 This creates a (\*,G) mroute with an OIF of the interface on which the
 IGMP Membership Report is received and an IIF of the RPF interface for
@@ -363,7 +363,7 @@ RP builds a (\*,G) mroute with the OIF being the interface on which the
 PIM join message is received and an Incoming Interface of the reverse
 path forwarding interface for the RP.
 
-{{% imgOld 3 %}}
+{{< img src = "/images/cumulus-linux/pim-join.png" >}}
 
 {{%notice note%}}
 
@@ -403,9 +403,9 @@ sends it along the (S,G) mroute.
 The RP then receives the multicast packet along the (S,G) tree and sends
 a PIM register stop to the FHR to end the register process.
 
-{{% imgOld 4 %}}
+{{< img src = "/images/cumulus-linux/pim-data.png" >}}
 
-{{% imgOld 5 %}}
+{{< img src = "/images/cumulus-linux/pim-register.png" >}}
 
 ##### PIM SPT Switchover
 

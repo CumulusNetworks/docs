@@ -50,12 +50,10 @@ The `smond` process provides monitoring functionality for various switch hardwar
 | PSU Fan | <pre>cumulus@switch:~$ smonctl -j<br>cumulus@switch:~$ smonctl -j -s PSU[X]Fan[X]</pre> |10 seconds |
 | PSU Temperature | <pre>cumulus@switch:~$ smonctl -j<br>cumulus@switch:~$ smonctl -j -s PSU[X]Temp[X]</pre> |10 seconds |
 | Voltage|<pre>cumulus@switch:~$ smonctl -j<br>cumulus@switch:~$ smonctl -j -s Volt[X]</pre> | 10 seconds |
-| Front Panel LED | <pre>cumulus@switch:~$ ledmgrd -d<br>cumulus@switch:~$ ledmgrd -j</pre><p>You can also run `net show system leds`, which is the NCLU command equivalent of `ledmgrd -d`.</p>|5 seconds |
+| Front Panel LED | <pre>cumulus@switch:~$ ledmgrd -d<br>cumulus@switch:~$ ledmgrd -j |5 seconds |
 
 {{%notice note%}}
-
 Not all switch models include a sensor for monitoring power consumption and voltage. See {{<link url="Monitoring-System-Hardware#smond-daemon" text="this note">}} for details.
-
 {{%/notice%}}
 
 | Hardware Logs| Log Location| Log Entries|
@@ -73,9 +71,7 @@ Cumulus Linux includes a number of ways to monitor various aspects of system dat
 When a CPU reports five high CPU alerts within a span of five minutes, an alert is logged.
 
 {{%notice warning%}}
-
 Short bursts of high CPU can occur during `switchd` churn or routing protocol startup. Do not set alerts for these short bursts.
-
 {{%/notice%}}
 
 | System Element | Monitoring Commands | Interval Poll |
@@ -146,9 +142,7 @@ Interface counters are obtained from either querying the hardware or the Linux k
 Prescriptive Topology Manager (PTM) uses LLDP information to compare against a `topology.dot` file that describes the network. It has built in alerting capabilities, so it is preferable to use PTM on box rather than polling LLDP information regularly. The PTM code is available with the Cumulus Linux {{<exlink url="https://github.com/CumulusNetworks/ptm" text="GitHub repository">}}. Additional PTM, BFD, and associated logs are documented in the code.
 
 {{%notice note%}}
-
 Consider tracking peering information through PTM. For more information, refer to the {{<link url="Prescriptive-Topology-Manager-PTM" text="Prescriptive Topology Manager documentation">}}.
-
 {{%/notice%}}
 
 | Neighbor Element | Monitoring Commands | Interval Poll |
@@ -210,11 +204,9 @@ Monitoring the routing table provides trending on the size of the infrastructure
 | Host Entries | <pre>cumulus@switch:~$ cl-resource-query<br>cumulus@switch:~$ cl-resource-query -k</pre> | 600 seconds |
 | Route Entries | <pre>cumulus@switch:~$ cl-resource-query<br>cumulus@switch:~$ cl-resource-query -k</pre> | 600 seconds |
 
-{{%notice note%}}
-
+<!--
 You can also run the `net show system asic` command, which is the NCLU command equivalent of `cl-resource-query`.
-
-{{%/notice%}}
+-->
 
 ### Routing Logs
 

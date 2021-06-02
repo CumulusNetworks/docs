@@ -183,7 +183,7 @@ into an external hyperloop and bonded together.
 The following diagram illustrates the configuration and operation of an
 external hyperloop.
 
-{{% imgOld 0 %}}
+{{% img src="/images/old_doc_images/Screen-Shot-2017-03-09-at-12.39.53-PM.png" %}}
 
 In the above diagram, VTEPs *exit01* and *exit02* are acting as VXLAN
 layer 3 gateways. On *exit01*, two pairs of ports are externally looped

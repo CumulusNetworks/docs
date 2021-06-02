@@ -61,7 +61,8 @@ After you connect the cable, the installation proceeds as follows:
 
 4.  Success\! You are now running Cumulus Linux.
 
-    {{% imgOld 0 %}}
+    {{< img src = "/images/cumulus-linux/install-image-onie-dhcp.png" >}}
+
 
 {{%notice note%}}
 
@@ -328,13 +329,13 @@ you need to monitor the console specifically to complete the next step.
 2.  Monitor the console and select the ONIE option from the first GRUB
     screen shown below.
     
-    {{% imgOld 1 %}}
+    {{< img src = "/images/cumulus-linux/install-image-GNUx86-1.png" >}}
 
 3.  Cumulus Linux on x86 uses GRUB chainloading to present a second GRUB
     menu specific to the ONIE partition. No action is necessary in this
     menu to select the default option *ONIE: Install OS*.
     
-    {{% imgOld 2 %}}
+    {{< img src = "/images/cumulus-linux/install-image-GNUx86-2.png" >}}
 
 4.  The USB drive is recognized and mounted automatically. The image
     file is located and automatic installation of Cumulus Linux begins.

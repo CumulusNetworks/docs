@@ -152,7 +152,7 @@ For information about active-active VTEPs and anycast IP behavior, and for failu
 ## Caveats
 
 - When EVPN is enabled on a VTEP, all locally defined VNIs on that switch and other information (such as MAC addresses) are advertised to EVPN peers. There is no provision to only announce certain VNIs.
-- On switches with {{<exlink url="https://cumulusnetworks.com/products/hardware-compatibility-list/?asic%5B0%5D=Mellanox%20Spectrum&asic%5B1%5D=Mellanox%20Spectrum_A1" text="Spectrum ASICs">}}, ND suppression only works with the Spectrum-A1 chip.
+- On switches with {{<exlink url="www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="Spectrum ASICs">}}, ND suppression only works with the Spectrum-A1 chip.
 - ARP suppression is enabled by default in Cumulus Linux. However, in a {{<link url="VXLAN-Active-Active-Mode" text="VXLAN active-active">}} configuration, ARPs are sometimes *not* suppressed. This is because the neighbor entries are not synchronized between the two switches operating in active-active mode by a control plane. This has no impact on forwarding.
 - You must configure the overlay (tenants) in a specific VRF and separate from the underlay, which resides in the default VRF. Layer 3 VNI mapping for the default VRF is not supported.
 - In an EVPN deployment, Cumulus Linux supports a single BGP ASN which represents the ASN of the core as well as the ASN for any tenant VRFs if they have BGP peerings. If you need to change the ASN, you must first remove the layer 3 VNI in the `/etc/frr/frr.conf` file, modify the BGP ASN, then add back the layer 3 VNI in the `/etc/frr/frr.conf` file.

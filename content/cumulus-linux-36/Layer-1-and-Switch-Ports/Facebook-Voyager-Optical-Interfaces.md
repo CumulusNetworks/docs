@@ -27,7 +27,7 @@ The Voyager platform has 16 ports on the front of the switch:
     AC400 module 2. L3 and L4 connect to AC400 module 1. Each AC400
     module connects to four Tomahawk ASIC ports.
 
-{{% imgOld 0 %}}
+{{<img src="/images/old_doc_images/voyagerPorts.png" >}}
 
 The `fc` designations on the Tomahawk stand for Falcon Core. Each AC400
 module has four 100G interfaces connected to the Tomahawk and two
@@ -76,10 +76,10 @@ interface to network interface connections are as follows:
 
 |||
 |--- |--- |
-|{{% imgOld 1 %}}|In this configuration, two client interfaces, 0 and 2, are mapped to the two network interfaces. Client interfaces 1 and 3 are not used.|
-|{{% imgOld 2 %}}|In this configuration, two client interfaces are mapped to each network interface. Each network interface, therefore, has two tributaries.|
-|{{% imgOld 3 %}}<br />{{% imgOld 4 %}}|These configurations are combinations of the previous two.<br />The network interface configured for QPSK connects to one client interface and the network interface configured for 16-QAM connects to two client interfaces.|
-|{{% imgOld 5 %}}|This configuration uses three client interfaces, for a total of 300Gbps; 150Gbps on each network interface. Because the network interfaces are coupled, they cannot be connected to different far-end systems. Each network interface carries three tributaries.|
+|{{% img src="/images/old_doc_images/image2018-2-22-13_55_38.png" %}}|In this configuration, two client interfaces, 0 and 2, are mapped to the two network interfaces. Client interfaces 1 and 3 are not used.|
+|{{% img src="/images/old_doc_images/image2018-2-22-13_57_29.png" %}}|In this configuration, two client interfaces are mapped to each network interface. Each network interface, therefore, has two tributaries.|
+|{{% img src="/images/old_doc_images/image2018-2-22-13_59_58.png" %}}<br />{{% img src="/images/old_doc_images/image2018-2-22-14_0_23.png" %}}|These configurations are combinations of the previous two.<br />The network interface configured for QPSK connects to one client interface and the network interface configured for 16-QAM connects to two client interfaces.|
+|{{% img src="/images/old_doc_images/image2018-2-22-14_1_32.png" %}}|This configuration uses three client interfaces, for a total of 300Gbps; 150Gbps on each network interface. Because the network interfaces are coupled, they cannot be connected to different far-end systems. Each network interface carries three tributaries.|
 
 ## Configuring the Voyager Ports
 

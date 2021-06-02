@@ -262,7 +262,7 @@ SPAN and ERSPAN are configured via `cl-acltool`, the
 The match criteria for SPAN and ERSPAN is usually an interface; for more
 granular match terms, use {{<link url="#selective-spanning" text="selective spanning">}}. The
 SPAN source interface can be a port, a subinterface or a bond interface.
-Ingress traffic on interfaces can be matched, and on switches with {{<exlink url="https://cumulusnetworks.com/products/hardware-compatibility-list/?asic%5B0%5D=Mellanox%20Spectrum&asic%5B1%5D=Mellanox%20Spectrum_A1" text="Spectrum ASICs">}}, egress traffic can be matched. See the
+Ingress traffic on interfaces can be matched, and on switches with {{<exlink url="www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="Spectrum ASICs">}}, egress traffic can be matched. See the
 {{<link url="#limitations-for-spanerspan" text="list of limitations">}} below.
 
 Cumulus Linux supports a maximum of 2 SPAN destinations. Multiple rules
@@ -502,11 +502,11 @@ switches using Spectrum ASICs.
     `ping` or `ip route get <ip>` to verify that the destination IP
     address is reachable. Setting the `--ttl` option is recommended.
 
-{{<notice tip>}}
+{{%notice tip%}}
 
-If a SPAN destination IP address is not available, or if the interface type or types prevent using a laptop as a SPAN destination, read this {{<kb_link url="knowledge-base/Configuration-and-Usage/Administration/Configure-ERSPAN-to-a-Cumulus-Linux-Switch/" text="knowledge base article">}} for a workaround.
+If a SPAN destination IP address is not available, or if the interface type or types prevent using a laptop as a SPAN destination, read this [knowledge base article]({{<ref "/knowledge-base/Configuration-and-Usage/Administration/Configure-ERSPAN-to-a-Cumulus-Linux-Switch" >}}) for a workaround.
 
-{{</notice>}}
+{{%/notice%}}
 
 #### ERSPAN and Wireshark
 

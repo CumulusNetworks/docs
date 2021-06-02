@@ -1,1 +1,1 @@
-<a href='/{{ .Page.Section }}/{{ .Page.Section }}.pdf'>{{.Get 0}}</a>
+<a href='{{ printf "%s/pdf" (.Page.Section | absURL) }}'>{{.Get 0}}</a>

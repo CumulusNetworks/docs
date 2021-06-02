@@ -933,7 +933,7 @@ named as follows:
 
 {{%notice note%}}
 
-On [Dell switches with Maverick ASICs](https://cumulusnetworks.com/products/hardware-compatibility-list/?Brand=Dell&ASIC=Broadcom%20Maverick),
+On [Dell switches with Maverick ASICs](https://www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/),
 you configure breakout ports on the 100G uplink ports by manually
 editing the `/etc/cumulus/ports.conf` file. You need to specify either
 *4x10* or *4x25* for the port speed. For example, on a Dell S4148F-ON
@@ -1012,7 +1012,7 @@ The breakout port configuration is stored in the
 
 `/etc/cumulus/ports.conf` varies across different hardware platforms.
 Check the current list of supported platforms on [the hardware
-compatibility list](http://www.cumulusnetworks.com/hcl).
+compatibility list](http://www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list).
 
 A snippet from the `/etc/cumulus/ports.conf` on a Dell S6000 switch
 (with a Trident II+ ASIC) where swp6 is broken out looks like this:
@@ -1186,7 +1186,7 @@ depending upon the manufacturer; these include:
 
   - Mellanox SN2700 and SN2700B switches
   - Switches with Broadcom Tomahawk, Trident II and Trident II+ chipsets
-    (check the [HCL](https://cumulusnetworks.com/hcl))
+    (check the [HCL](https://www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/))
 
 Before you configure any logical/unganged ports on a switch, check the
 limitations listed in `/etc/cumulus/ports.conf`; this file is specific

@@ -24,6 +24,12 @@
 
 {{ end }}
 
+{{- if eq (.Get "version") "4.0" -}}
+
+<pre>cumulus@hostname:~$ netq bootstrap master interface eth0 tarball /mnt/installables/netq-bootstrap-4.0.0.tgz pod-ip-range 10.255.0.0/16</pre>
+
+{{ end }}
+
 <em>Docker Default Bridge Interface</em>
 
 <p>The default Docker bridge interface is disabled in NetQ. If you need to re-enable the interface, contact <a href="https://support.mellanox.com/s/" target="_blank">support</a>.</p>

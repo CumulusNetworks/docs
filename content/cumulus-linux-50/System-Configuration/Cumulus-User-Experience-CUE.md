@@ -10,9 +10,11 @@ CUE follows a declarative model, removing context-specific commands and settings
 
 {{<img src = "/images/cumulus-linux/cue-architecture.png">}}
 
-This documentation describes how to access CUE and navigate the CUE CLI to configure and monitor Cumulus Linux.
+## REST API
 
-## Command Line Basics
+The CUE REST API is currently is an early access feature. The REST API is not intended to run in production and is not supported through NVIDIA networking support.
+
+## Command Line Interface
 
 The CUE command line has a flat structure as opposed to a modal structure. This means that you can run all commands from the primary prompt instead of only in a specific mode.
 
@@ -355,8 +357,6 @@ cumulus@switch:~$ cl show platform software
 [installed]  apt
 [installed]  arping
 [installed]  arptables
-[installed]  atftp
-[installed]  atftpd
 [installed]  auditd
 [installed]  base-files
 [installed]  base-passwd

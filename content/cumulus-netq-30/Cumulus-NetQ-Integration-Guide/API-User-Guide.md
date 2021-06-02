@@ -431,7 +431,7 @@ json-formatted file. There have been no changes to the file in the NetQ 3.0.0 re
   "basePath": "/netq/telemetry/v1",
   "externalDocs": {
     "description": "API Documentation",
-    "url": "https://docs.cumulusnetworks.com/cumulus-netq/Cumulus-NetQ-Integration-Guide/API-User-Guide/"
+    "url": "https://docs.nvidia.com/networking-ethernet-software/cumulus-netq/Cumulus-NetQ-Integration-Guide/API-User-Guide/"
   },
   "schemes": [
     "https"

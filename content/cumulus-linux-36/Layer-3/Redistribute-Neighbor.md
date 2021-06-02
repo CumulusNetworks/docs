@@ -88,7 +88,7 @@ The following configuration steps are based on the
 [reference topology](https://github.com/cumulusnetworks/cldemo-vagrant) set forth
 by Cumulus Networks. Here is a diagram of the topology:
 
-{{% imgOld 0 %}}
+{{< img src = "/images/cumulus-linux/redistribute-neighbor-example.png" >}}
 
 ### Configuring the Leaf(s)
 
@@ -263,7 +263,7 @@ connect to the leaves.
     ARGS="-q -f -u10 -d10 -w -I"
     SUSPEND_ACTION="stop"
 
-For full instructions on installing `ifplugd` on Ubuntu, {{<kb_link url="knowledge-base/Configuration-and-Usage/Network-Interfaces/Using-ifplugd-on-a-Server-Host/" text="follow this guide">}}.
+For full instructions on installing `ifplugd` on Ubuntu, [follow this guide]({{<ref "/knowledge-base/Configuration-and-Usage/Network-Interfaces/Using-ifplugd-on-a-Server-Host" >}}).
 
 ## Known Limitations
 
@@ -273,7 +273,7 @@ This feature adds each ARP entry as a /32 host route into the routing
 table of all switches within a summarization domain. Take care to keep
 the number of hosts minus fabric routes under the TCAM size of the
 switch. Review the [Cumulus Networks
-datasheets](http://cumulusnetworks.com/hcl/) for up to date scalability
+datasheets](https://www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/) for up to date scalability
 limits of your chosen hardware platforms. If in doubt, contact Cumulus
 Networks support or your Cumulus Networks CSE; they will be happy to
 help.

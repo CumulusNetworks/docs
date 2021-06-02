@@ -23,7 +23,7 @@ There are two versions of RoCE, which run at separate layers of the stack:
 
 RoCEv1 uses the Infiniband (IB) Protocol over converged Ethernet. The IB global route header rides directly on top of the Ethernet header. The lossless Ethernet layer handles congestion hop by hop.
 
-On switches with {{<exlink url="https://cumulusnetworks.com/products/hardware-compatibility-list/?asic%5B0%5D=Mellanox%20Spectrum&asic%5B1%5D=Mellanox%20Spectrum_A1" text="Spectrum ASICs">}}, use NCLU to configure RoCE with PFC and ECN:
+On switches with {{<exlink url="www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="Spectrum ASICs">}}, use NCLU to configure RoCE with PFC and ECN:
 
 ```
 cumulus@switch:~$ net add roce lossless
@@ -44,7 +44,7 @@ RoCEv2 requires flow control for lossless Ethernet. RoCEv2 uses the Infiniband (
 
 RoCEv2 congestion management uses RFC 3168 to signal congestion experienced to the receiver. The receiver generates an RoCEv2 congestion notification packet directed to the source of the packet.
 
-On switches with {{<exlink url="https://cumulusnetworks.com/products/hardware-compatibility-list/?asic%5B0%5D=Mellanox%20Spectrum&asic%5B1%5D=Mellanox%20Spectrum_A1" text="Spectrum ASICs">}}, use NCLU to configure RoCE with ECN:
+On switches with {{<exlink url="www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="Spectrum ASICs">}}, use NCLU to configure RoCE with ECN:
 
 ```
 cumulus@switch:~$ net add roce lossy

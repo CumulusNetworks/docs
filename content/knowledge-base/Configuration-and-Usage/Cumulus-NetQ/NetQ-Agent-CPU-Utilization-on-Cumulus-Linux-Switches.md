@@ -77,4 +77,4 @@ While the NetQ Agent may cause high CPU usage on switches, it does not interfere
 
 ## References
 
-{{<kb_link url="cumulus-netq-33/Manage-Configuration/Provision-Network-and-Devices/Manage-NetQ-Agents/" text="Manage NetQ Agents">}}
+[Manage NetQ Agents]({{<ref "/cumulus-netq-33/Manage-Configuration/Provision-Network-and-Devices/Manage-NetQ-Agents" >}})

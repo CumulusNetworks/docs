@@ -20,7 +20,7 @@ You must have a GitHub account to submit your suggestion. If you do not have a G
 
 To submit your feedback with this method:
 
-1. Open the document in the {{<kb_link url="" text="Cumulus Docs site" >}}.
+1. Open the document in the Cumulus Docs site.
 
 2. Confirm you are displaying the document using one of the layouts with the right navigation column visible. If needed, select an appropriate layout.
 
@@ -30,7 +30,7 @@ To submit your feedback with this method:
 
 5. Click the **Preview changes** tab to see what your changes will look like.
 
-6. When you are satisfied with your changes, scroll down until you see the    **Commit changes** box.
+6. When you are satisfied with your changes, scroll down until you see the **Commit changes** box.
 
 7. Type a summary (top field) and, optionally, a description (bottom field) of the changes you made.
 

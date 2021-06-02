@@ -16,7 +16,7 @@ This opens the full screen view of your network topology.
 
 {{<figure src="/images/netq/topo-main-page-ref-topo-240.png" width="700">}}
 
-This document uses the Cumulus Networks {{<kb_link url="cumulus-linux-43/Network-Solutions/Cumulus-Networks-Services-Demos#reference-topology" text="reference topology">}} for all examples.
+This document uses the Cumulus Networks [reference topology]({{<ref "/cumulus-linux-43/Network-Solutions/Cumulus-Networks-Services-Demos#reference-topology" >}}) for all examples.
 
 To close the view, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner.
 

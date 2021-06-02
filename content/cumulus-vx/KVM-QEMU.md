@@ -21,7 +21,7 @@ The following procedure creates leaf01, leaf02, and spine01 and the network conn
 
 ### Download and Install the Software
 
-1. Download the {{<exlink url="https://cumulusnetworks.com/products/cumulus-vx/download/" text="Cumulus VX Qcow2 image for KVM">}}.
+1. Download the {{<exlink url="https://www.nvidia.com/en-us/networking/ethernet-switching/cumulus-vx/" text="Cumulus VX Qcow2 image for KVM">}}.
 
 2. Run the following commands to install KVM, QEMU and Libvirt:
 

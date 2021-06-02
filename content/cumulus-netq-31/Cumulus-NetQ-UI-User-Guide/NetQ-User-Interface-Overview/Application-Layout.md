@@ -57,8 +57,6 @@ By default, the time zone is set to the user's local time zone. If a time zone h
 
 The name of the location you are monitoring is presented in the Premises field of the application header. If you have more than one premises configured, you can select the premises for the data you want to see.  Click {{<img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-down-2.svg" height="18" width="18">}}, then select the desired premises. If you have a large number of premises, you can search for a premises by name. Simply start typing the name in the search box and suggestions are provided.
 
-<!-- NetQ-6121: Add a figure src="/images/netq/app-layout-premises-list-310.png" width="200">}} -->
-
 ## Workbenches
 
 A workbench is comprised of a given set of cards. A pre-configured default workbench, Cumulus Workbench, is available to get you started. It contains Device Inventory, Switch Inventory, Alarm and Info Events, and Network Health cards. On initial login, this workbench is opened. You can create your own workbenches and add or remove cards to meet your particular needs. For more detail about managing your data using workbenches, refer to {{<link title="Focus Your Monitoring Using Workbenches">}}.

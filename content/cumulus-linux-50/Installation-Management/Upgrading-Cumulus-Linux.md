@@ -16,8 +16,10 @@ Consider deploying, provisioning, configuring, and upgrading switches using auto
 
 {{%notice tip%}}
 Be sure to read the knowledge base article
-{{<kb_link url="knowledge-base/Installing-and-Upgrading/Upgrading/Network-Device-and-Linux-Host-Worldview-Comparison/" text="Upgrades: Network Device and Linux Host Worldview Comparison" >}}, which provides a detailed comparison between the network device and Linux host worldview of upgrade and installation.
+[Upgrades: Network Device and Linux Host Worldview Comparison]({{<ref "/knowledge-base/Installing-and-Upgrading/Upgrading/Network-Device-and-Linux-Host-Worldview-Comparison" >}}), which provides a detailed comparison between the network device and Linux host worldview of upgrade and installation.
 {{%/notice%}}
+
+### Back up Configuration Files
 
 Understanding the location of configuration data is required for successful upgrades, migrations, and backup. As with other Linux distributions, the `/etc` directory is the primary location for all configuration data in Cumulus Linux. The following list is a likely set of files that you need to back up and migrate to a new release. Make sure you examine any file that has been changed. Make the following files and directories part of a backup strategy.
 
@@ -46,7 +48,7 @@ Understanding the location of configuration data is required for successful upgr
 | `/etc/group` | Defines user groups on the switch| Not unique to Cumulus Linux | {{<exlink url="https://www.debian.org/doc/manuals/debian-reference/ch04.en.html">}} |
 | `/etc/lldpd.conf` | Link Layer Discover Protocol (LLDP) daemon configuration | {{<link title="Link Layer Discovery Protocol">}} | {{<exlink url="https://packages.debian.org/buster/lldpd">}} |
 | `/etc/lldpd.d/` | Configuration directory for lldpd | {{<link title="Link Layer Discovery Protocol">}} | {{<exlink url="https://packages.debian.org/buster/lldpd">}} |
-| `/etc/nsswitch.conf` | Name Service Switch (NSS) configuration file | {{<link title="TACACS+">}} | N/A |
+| `/etc/nsswitch.conf` | Name Service Switch (NSS) configuration file | {{<link title="TACACS">}} | N/A |
 |`/etc/ssh/` | SSH configuration files | {{<link title="SSH for Remote Access">}} | {{<exlink url="https://wiki.debian.org/SSH">}} |
 | `/etc/sudoers`, `/etc/sudoers.d` | Best practice is to place changes in `/etc/sudoers.d/` instead of `/etc/sudoers`; changes in the `/etc/sudoers.d/` directory are not lost during upgrade | {{<link title="Using sudo to Delegate Privileges">}} |
 
@@ -90,6 +92,14 @@ The following commands verify which files have changed compared to the previous 
 - Run the `sudo dpkg --verify` command to show a list of changed files.
 - Run the `egrep -v '^$|^#|=""$' /etc/default/isc-dhcp-*` command to see if any of the generated `/etc/default/isc-*` files have changed.
 {{%/notice%}}
+
+### CUE replaces NCLU
+
+{{<link url="Cumulus-User-Experience-CUE" text="Cumulus User Experience (CUE)">}} is a new object-oriented, schema driven model of a complete Cumulus Linux system (hardware and software) with a robust API that allows multiple interfaces to both view and configure any element within the system. CUE replaces the NCLU command line interface.
+
+{{<notice info>}}
+CUE is created from the ground up and does not inherit any previous functionality from NCLU. Certain features are not yet supported by CUE. If you are an NCLU user, confirm that your features are fully supported in CUE before upgrading to Cumulus Linux 5.0. If you use a feature that is not yet supported, you can either remain on your current 4.x release or perform all your switch configuration using Linux and vtysh commands.
+{{</notice>}}
 
 ## Upgrade Cumulus Linux
 
@@ -207,7 +217,7 @@ To upgrade the switch using package upgrade:
     
     When the upgrade is complete, you can search for the files with the `sudo find / -mount -type f -name '*.dpkg-*'` command.
 
-    If you see errors for expired GPG keys that prevent you from upgrading packages, follow the steps in {{<kb_link url="knowledge-base/Installing-and-Upgrading/Upgrading/Update-Expired-GPG-Keys/" text="Upgrading Expired GPG Keys">}}.
+    If you see errors for expired GPG keys that prevent you from upgrading packages, follow the steps in [Upgrading Expired GPG Keys]({{<ref "/knowledge-base/Installing-and-Upgrading/Upgrading/Update-Expired-GPG-Keys" >}}).
 
 5. Reboot the switch if the upgrade messages indicate that a system restart is required.
 
@@ -314,7 +324,7 @@ This is due to a change in the bonding driver to handle how the *actor port key*
 Even the most well planned and tested upgrades can result in unforeseen problems and sometimes the best solution is to roll back to the previous state. There are three main strategies, all of which require detailed planning and execution:
 
 - Flatten and rebuild. If the OS becomes unusable, you can use orchestration tools to reinstall the previous OS release from scratch and then rebuild the configuration automatically.
-- Backup and restore. Restore to a previous state using a backup captured before the upgrade. See {{<link title="Back up and Restore">}}.
+- Restore to a previous state using a backup configuration captured before the upgrade.
 
 The method you employ is specific to your deployment strategy. Providing detailed steps for each scenario is outside the scope of this document.
 
@@ -328,8 +338,8 @@ After you upgrade using a full Cumulus Linux image install, you need to reinstal
 
 ## Related Information
 
-- {{<kb_link url="knowledge-base/Installing-and-Upgrading/Upgrading/Network-Device-and-Linux-Host-Worldview-Comparison/" text="Upgrades: Network Device Worldview and Linux Host Worldview Comparison">}}
-- {{<exlink url="https://cumulusnetworks.com/solutions/automation/" text="Automation Solutions">}}
+- [Upgrades: Network Device Worldview and Linux Host Worldview Comparison]({{<ref "/knowledge-base/Installing-and-Upgrading/Upgrading/Network-Device-and-Linux-Host-Worldview-Comparison" >}})
+- {{<exlink url="https://www.nvidia.com/en-us/networking/network-automation/" text="Automation Solutions">}}
 - {{<exlink url="http://opencomputeproject.github.io/onie/design-spec/" text="ONIE Design Specification">}}
 - {{<link title="Multi-Chassis Link Aggregation - MLAG">}}
 - {{<link title="Zero Touch Provisioning - ZTP">}}

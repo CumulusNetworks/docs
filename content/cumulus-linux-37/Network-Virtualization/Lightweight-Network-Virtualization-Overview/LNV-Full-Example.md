@@ -30,9 +30,9 @@ The following images illustrate the configuration:
 <tbody>
 <tr class="odd">
 <td><p>Physical Cabling Diagram</p>
-<p>{{% imgOld 0 %}}</p></td>
+<p>{{% img src="/images/old_doc_images/Screen-Shot-2015-04-20-at-10.02.57-AM.png" %}}</p></td>
 <td><p>Network Virtualization Diagram</p>
-<p>{{% imgOld 1 %}}</p></td>
+<p>{{% img src="/images/old_doc_images/Screen-Shot-2015-04-22-at-1.58.50-PM.png" %}}</p></td>
 </tr>
 </tbody>
 </table>
@@ -40,7 +40,7 @@ The following images illustrate the configuration:
 {{%notice tip%}}
 
 Want to try out configuring LNV and do not have a Cumulus Linux switch?
-Check out {{<exlink url="https://cumulusnetworks.com/cumulus-vx/" text="Cumulus VX">}} .
+Check out {{<exlink url="https://www.nvidia.com/en-us/networking/ethernet-switching/cumulus-vx/" text="Cumulus VX">}} .
 
 {{%/notice%}}
 
@@ -48,7 +48,7 @@ Check out {{<exlink url="https://cumulusnetworks.com/cumulus-vx/" text="Cumulus 
 
 {{< img src="/images/old_doc_images/turtle_training.png" width="40">}}
 
-Feeling overwhelmed? Come join a {{<exlink url="https://education.cumulusnetworks.com/series/bootcamps/" text="Cumulus Boot Camp">}} and get instructor-led training\!
+Feeling overwhelmed? Come join a {{<exlink url="https://academy.mellanox.com/en/training-by-topic/?training_by_topic=58" text="Cumulus Boot Camp">}} and get instructor-led training\!
 
 {{%/notice%}}
 
@@ -504,5 +504,5 @@ svcnode_peers = 10.2.1.3
   - {{<exlink url="https://tools.ietf.org/html/rfc7348" text="RFC 7348">}}
   - {{<exlink url="http://en.wikipedia.org/wiki/Anycast" text="Wikipedia - Anycast">}}
   - {{<link url="Lightweight-Network-Virtualization-Overview" text="Detailed LNV Configuration Guide">}}
-  - {{<exlink url="http://cumulusnetworks.com/education/instructor-led-training/" text="Cumulus Linux Training">}}
+  - {{<exlink url="https://academy.mellanox.com/en/training-by-topic/?training_by_topic=58" text="Cumulus Linux Training">}}
   - {{<link url="Network-Virtualization" text="Network virtualization chapter, Cumulus Linux user guide">}}

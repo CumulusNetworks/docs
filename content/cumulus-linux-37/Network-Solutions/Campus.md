@@ -24,4 +24,4 @@ deployment:
 
 ## More Information
 
-For a deep dive into campus architecture, read the {{<kb_link url="guides/campus-architecture-guide" text="campus architecture solution guide">}}.
+For a deep dive into campus architecture, read the [campus architecture solution guide]({{<ref "/guides/campus-architecture-guide" >}}).

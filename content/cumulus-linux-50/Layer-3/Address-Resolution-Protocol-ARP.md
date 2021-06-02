@@ -132,20 +132,7 @@ To enable proxy ARP:
 {{< tabs "TabID137 ">}}
 {{< tab "CUE Commands ">}}
 
-```
-cumulus@switch:~$ NEED COMMAND
-```
-
-{{< /tab >}}
-{{< tab "NCLU Commands ">}}
-
-The following example commands enable proxy ARP on swp1.
-
-```
-cumulus@switch:~$ net add interface swp1 post-up "echo 1 > /proc/sys/net/ipv4/conf/swp1/proxy_arp"
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
+CUE commands are not supported.
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
@@ -173,20 +160,7 @@ If you are running two interfaces in the same broadcast domain (typically seen w
 {{< tabs "TabID174 ">}}
 {{< tab "CUE Commands ">}}
 
-```
-cumulus@switch:~$ NEED COMMAND
-```
-
-{{< /tab >}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@switch:~$ net add interface swp1 post-up "echo 2 > /proc/sys/net/ipv4/conf/swp1/medium_id"
-cumulus@switch:~$ net add interface swp1-v0 post-up "echo 1 > /proc/sys/net/ipv4/conf/swp1-v0/proxy_arp"
-cumulus@switch:~$ net add interface swp1-v0 post-up "echo 2 > /proc/sys/net/ipv4/conf/swp1-v0/medium_id"
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
+CUE commands are not supported.
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
@@ -220,21 +194,7 @@ If you are running proxy ARP on a VRR interface, add a post-up line to the VRR i
 {{< tabs "TabID217 ">}}
 {{< tab "CUE Commands ">}}
 
-```
-NEED COMMAND
-```
-
-{{< /tab >}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@switch:~$ net add vlan 100 post-up "echo 1 > /proc/sys/net/ipv4/conf/swp1/proxy_arp"
-cumulus@switch:~$ net add vlan 100 post-up "echo 1 > /proc/sys/net/ipv4/conf/swp1-v0/proxy_arp"
-cumulus@switch:~$ net add vlan 100 post-up "echo 2 > /proc/sys/net/ipv4/conf/swp1/medium_id"
-cumulus@switch:~$ net add vlan 100 post-up "echo 2 > /proc/sys/net/ipv4/conf/swp1-v0/medium_id"
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
+CUE commands are not supported.
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
@@ -287,3 +247,9 @@ The configuration above takes effect immediately but does not persist if you reb
     ```
     cumulus@switch:~$ sudo systemctl restart neighmgrd
     ```
+
+## ARP Timers
+
+Cumulus Linux does not often interact directly with end systems as much as end systems interact with each another. Therefore, after a successful {{<exlink url="http://linux-ip.net/html/ether-arp.html" text="address resolution protocol">}} (ARP) places a neighbor into a reachable state, Cumulus Linux might not interact with the client again for a long enough period of time for the neighbor to move into a stale state. To keep neighbors in the reachable state, Cumulus Linux includes a background process (`/usr/bin/neighmgrd`). The background process tracks neighbors that move into a stale, delay, or probe state, and attempts to refresh their state before they are removed from the Linux kernel and from hardware forwarding. The `neighmgrd` process only adds a neighbor if the sender's IP in the ARP packet is in one of the SVI's subnets (you can disable this check by setting `subnet_checks` to *0* in the `/etc/cumulus/neighmgr.conf` file).
+
+The ARP refresh timer defaults to 1080 seconds (18 minutes). To change this setting, see {{<link url="Address-Resolution-Protocol-ARP">}}.

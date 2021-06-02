@@ -73,7 +73,3 @@ The ML2 mechanism driver includes the following parameters, which you can config
 | `sync_time` | A periodic time interval for polling the Cumulus Linux switch. The default value is *30* seconds.|
 | `spf_enable` | Enables and disables SPF for the bridge. The default value is *False*.|
 |`new_bridge` | Enables and disables {{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware bridge mode">}} for the bridge configuration. The default value is *False*, so a traditional mode bridge is created. |
-
-## OpenStack with Cumulus in the Cloud
-
-OpenStack Neutron is available as a preconfigured option with {{<exlink url="https://cumulusnetworks.com/products/cumulus-in-the-cloud" text="Cumulus in the Cloud">}}. Add the ML2 driver, described above.

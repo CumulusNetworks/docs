@@ -526,7 +526,6 @@ cumulus@leaf01:~$ net del vxlan vni10 bridge arp-nd-suppress
 cumulus@leaf01:~$ net del vxlan vni20 bridge arp-nd-suppress
 cumulus@leaf01:~$ net pending
 cumulus@leaf01:~$ net commit
-
 ```
 
 {{< /tab >}}

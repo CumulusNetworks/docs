@@ -18,7 +18,7 @@ This type of model can be beneficial for:
 
 ## Requirements
 
-- {{<exlink url="https://cumulusnetworks.com/hcl" text="Cumulus Linux switch">}}
+- {{<exlink url="https://www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="Cumulus Linux switch">}}
 - Server/laptop for running Ansible
 - {{<exlink url="https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html" text="Install Ansible on the server/laptop">}}
 
@@ -89,7 +89,7 @@ The playbook copies these four commonly used Cumulus Linux files to the server:
 | /etc/frr/daemons        | Daemons configuration file for FRR |
 | /etc/frr/frr.conf       | FRR Configuration file             |
 
-For more information on which files to back up and what Cumulus Linux uses, please refer to {{<kb_link url="cumulus-linux-43/Installation-Management/Upgrading-Cumulus-Linux/#before-you-upgrade" text="Upgrading Cumulus Linux">}}.
+For more information on which files to back up and what Cumulus Linux uses, please refer to [Upgrading Cumulus Linux]({{<ref "/cumulus-linux-43/Installation-Management/Upgrading-Cumulus-Linux#before-you-upgrade" >}}).
 
 The playbook copies the files to a directory called `save`:
 
@@ -175,45 +175,3 @@ generic folder called save by using:
     {{ansible_date_time.time}}
 
 You can find more information on which facts Ansible gathers by reading {{<link url="Gathering-Ansible-Facts-on-Cumulus-Linux" text="this article">}}.
-
-<!-- Comments
-
-- ::: {#comment_360002061134}
-    ::: {.comment-avatar}
-    ![Avatar](https://secure.gravatar.com/avatar/99427969e74d6703a8dd61c77abe1e58?default=https%3A%2F%2Fassets.zendesk.com%2Fhc%2Fassets%2Fdefault_avatar.png&r=g)
-    :::
-
-    ::: {.comment-container}
-    **Kurt Bendl** [May 23, 2019 18:28]{.comment-published}
-    ::: {.comment-body .markdown}
-    I also configure radius and snmp. If anyone else wants those
-    snippets::
-
-        - name: "Check if pam_radius config exists"
-          stat:
-            path: /etc/pam_radius_auth.conf
-          register: radius_conf
-
-        - name: "Check if snmpd config exists"
-          stat:
-            path: /etc/snmp/snmpd.conf
-          register: snmpd_conf
-
-        - name: "BACKUP RADIUS config"
-          when: radius_conf.stat.exists == true
-          fetch:
-            dest: save/{{ansible_hostname}}/
-            src: /etc/pam_radius_auth.conf
-            flat: yes
-
-        - name: "BACKUP SNMPD config"
-          when: radius_conf.stat.exists == true
-          fetch:
-            dest: save/{{ansible_hostname}}/
-            src: /etc/pam_radius_auth.conf
-            flat: yes
-    :::
-
-    ::: {.comment-edited .meta}
-    Edited by Kurt Bendl May 23, 2019 18:30
--->

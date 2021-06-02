@@ -13,7 +13,7 @@ This issue was reported as Cumulus Networks Product Bulletin 2017-02-08.
 
 ## Environment
 
-This issue may affect the following switches on the Cumulus Networks {{<exlink url="https://cumulusnetworks.com/products/hardware-compatibility-list/?CPU=x86_64" text="hardware compatibility list">}}:
+This issue may affect the following switches on the Cumulus Networks {{<exlink url="www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="hardware compatibility list">}}:
 
 - 100G switches: Dell Z9100-ON, Edge-Core AS7712-32X, HPE Altoline 6960, Mellanox SN2100, Penguin Arctica 3200C, QCT QuantaMesh BMS T7032-IX1, Supermicro SSE-C3632S
 - 40G switches: Dell S6010-ON, Edge-Core AS6712-32X, Edge-Core AS6812-32X, HPE Altoline 6940, HPE Altoline 6941, Mellanox SN2100B, Penguin Arctica 3200XLP, QCT QuantaMesh BMS T5032-LY6-x86

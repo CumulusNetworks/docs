@@ -28,7 +28,7 @@ QinQ is available on the following switches:
 
 - Broadcom Tomahawk 2, Tomahawk+, Tomahawk, Trident3, Trident II+ and
   Trident II switches.
-- {{<exlink url="https://cumulusnetworks.com/products/hardware-compatibility-list/?asic%5B0%5D=Mellanox%20Spectrum&asic%5B1%5D=Mellanox%20Spectrum_A1" text="Spectrum 1 switches">}}, only with {{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware bridges">}} with 802.1ad and only with single tag translation.
+- {{<exlink url="www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="Spectrum 1 switches">}}, only with {{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware bridges">}} with 802.1ad and only with single tag translation.
 
 ## Remove the Early Access QinQ Metapackage
 
@@ -36,7 +36,7 @@ If you are upgrading Cumulus Linux from a version earlier than 3.4.0 and
 had installed the early access QinQ metapackage, you need to remove the
 `cumulus-qinq` metapackage before upgrading to Cumulus Linux 3.4.0 or
 later. To remove the `cumulus-qinq` metapackage, read the
-{{<kb_link url="knowledge-base/Support/Support-Offerings/Early-Access-Features-Defined/" text="early access feature">}}
+[early access feature]({{<ref "/knowledge-base/Support/Support-Offerings/Early-Access-Features-Defined" >}})
 article.
 
 ## Configure Single Tag Translation
@@ -52,7 +52,7 @@ Single tag translation works with both {{<link url="VLAN-aware-Bridge-Mode" text
 
 An example configuration with VLAN-aware bridge mode looks like this:
 
-{{% imgOld 0 %}}
+{{< img src = "/images/cumulus-linux/qinq-double-tag-translation.png" >}}
 
 You configure two switches: one at the service provider edge that faces
 the customer (the switch on the left above), and one on the public cloud
@@ -274,7 +274,7 @@ Double tag translation only works with bridges in
 
 An example configuration could look like the following:
 
-{{% imgOld 1 %}}
+{{< img src="/images/cumulus-linux/QinQ-single-tag-translation.png" width="600" >}}
 
 To configure the switch for double tag translation using the above
 example, edit the `/etc/network/interfaces` file in a text editor and add the
@@ -347,7 +347,7 @@ If the bridge is not VXLAN-enabled, the configuration looks like this:
   {{<link url="Traditional-Bridge-Mode" text="traditional mode">}},
   all VLANs that are members of the same switch port must use the same
   `vlan_protocol`.
-- When using switches with {{<exlink url="https://cumulusnetworks.com/products/hardware-compatibility-list/?asic%5B0%5D=Mellanox%20Spectrum&asic%5B1%5D=Mellanox%20Spectrum_A1" text="Spectrum ASICs">}} in an MLAG pair:
+- When using switches with {{<exlink url="www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="Spectrum ASICs">}} in an MLAG pair:
 
   - The peerlink (peerlink.4094) between the MLAG pair should be
     configured for VLAN protocol 802.1ad.

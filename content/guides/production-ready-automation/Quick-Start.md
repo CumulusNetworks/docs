@@ -16,7 +16,7 @@ To run a full reference topology *without* NetQ, you need 15104MB of memory. If 
 
 {{%notice tip%}}
 
-To take a *quick* look at a Cumulus Networks golden standard demo, use our simulation platform, Cumulus in the Cloud. The simulation platform has no system requirements or dependencies. Visit {{<exlink url="https://cumulusnetworks.com/products/cumulus-in-the-cloud/" text="Cumulus in the Cloud">}} to get a full blank slate Cumulus Networks reference topology. You can deploy any of the golden standard demos right from the UI with one click.
+To take a *quick* look at a Cumulus Networks golden standard demo, use our simulation platform, Cumulus in the Cloud. The simulation platform has no system requirements or dependencies. Visit {{<exlink url="https://www.nvidia.com/en-us/networking/network-simulation/" text="Cumulus in the Cloud">}} to get a full blank slate Cumulus Networks reference topology. You can deploy any of the golden standard demos right from the UI with one click.
 
 {{%/notice%}}
 

@@ -237,6 +237,6 @@ cumulus@switch:~$ sudo delgroup radius_users
 
 ## Related Information
 
-- {{<link url="TACACS+" text="TACACS+ client">}}
+- {{<link url="TACACS" text="TACACS+ client">}}
 - {{<exlink url="https://github.com/CumulusNetworks/cldemo-radius" text="Cumulus Networks RADIUS demo on GitHub">}}
 - {{<exlink url="https://github.com/CumulusNetworks/cldemo-tacacs" text="Cumulus Network TACACS demo on GitHub">}}

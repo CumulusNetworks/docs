@@ -34,7 +34,7 @@ unsupported error is shown.
 
 {{%/notice%}}
 
-For switches with **{{<exlink url="https://cumulusnetworks.com/products/hardware-compatibility-list/?asic%5B0%5D=Mellanox%20Spectrum&asic%5B1%5D=Mellanox%20Spectrum_A1" text="Spectrum ASICs">}}**, MTU is the only port attribute you can directly configure. The Spectrum firmware configures FEC, link speed, duplex mode and auto-negotiation automatically, following a predefined list of parameter settings until
+For switches with **{{<exlink url="www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="Spectrum ASICs">}}**, MTU is the only port attribute you can directly configure. The Spectrum firmware configures FEC, link speed, duplex mode and auto-negotiation automatically, following a predefined list of parameter settings until
 the link comes up. However, you can disable FEC if necessary, which forces the firmware to not try any FEC options.
 
 For **Broadcom-based switches,** enable auto-negotiation on each port. When enabled, Cumulus Linux automatically configures the best link parameter settings based on the module type (speed, duplex, auto-negotiation, and FEC where supported). To understand the default configuration for the various port and cable types, see the {{<link url="#interface-configuration-recommendations-for-broadcom-platforms" text="table below">}}. If you need to troubleshoot further to bring the link up, follow the sections below to set the specific link parameters.
@@ -983,7 +983,7 @@ When you commit your change, `switchd` restarts to apply the changes. The restar
    ...
    ```
 
-   The `/etc/cumulus/ports.conf` file varies across different hardware platforms. Check the current list of supported platforms in {{<exlink url="https://www.cumulusnetworks.com/hcl" text="the hardware compatibility list">}}.
+   The `/etc/cumulus/ports.conf` file varies across different hardware platforms. Check the current list of supported platforms in {{<exlink url="https://www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list" text="the hardware compatibility list">}}.
 
 2. Configure the breakout ports in the `/etc/network/interfaces` file. The following example shows the swp1 breakout ports (swp1s0, swp1s1, swp1s2, and swp1s3).
 
@@ -1114,7 +1114,7 @@ depending upon the manufacturer; these include:
 
 - Mellanox SN2700, SN2700B, SN2410 and SN2410B switches
 - Switches with Broadcom Tomahawk, Trident II, Trident II+ and Trident3
-  chipsets (check the {{<exlink url="https://cumulusnetworks.com/hcl/" text="HCL">}})
+  chipsets (check the {{<exlink url="https://www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="HCL">}})
 
 You *cannot* have more than 128 total logical ports on a Broadcom
 switch.

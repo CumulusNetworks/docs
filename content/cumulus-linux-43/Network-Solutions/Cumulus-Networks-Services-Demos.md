@@ -17,7 +17,7 @@ The Cumulus Linux *reference topology* includes cabling (in DOT format for dual 
 | Hostname | eth0 IP | eth0 MAC | Interface Count |
 | -------- | ------- | ---------| ----------------|
 | oob-mgmt-server | 192.168.0.254 | any |  |
-| oob-mgmt-switch | 192.168.0.1   | any | {{<kb_link url="cumulus-rmp/" text="Cumulus RMP">}} |
+| oob-mgmt-switch | 192.168.0.1   | any |  |
 | leaf01 | 192.168.0.11  | A0:00:00:00:00:11 | 48x10g w/ 6x40g uplink |
 | leaf02 | 192.168.0.12  | A0:00:00:00:00:12 | 48x10g w/ 6x40g uplink |
 | leaf03 | 192.168.0.13  | A0:00:00:00:00:13 | 48x10g w/ 6x40g uplink |
@@ -42,7 +42,7 @@ essentially the reference topology built out inside Vagrant with VirtualBox or K
 
 ### Hardware
 
-Any switch from the {{<exlink url="https://cumulusnetworks.com/hcl" text="hardware compatibility list">}} is compatible with the topology as long as you follow the interface count from the table above. Of course, in your own production environment, you don't have to use exactly the same devices and cabling as outlined above.
+Any switch from the {{<exlink url="https://www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="hardware compatibility list">}} is compatible with the topology as long as you follow the interface count from the table above. Of course, in your own production environment, you don't have to use exactly the same devices and cabling as outlined above.
 
 ## Demos
 

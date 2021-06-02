@@ -4,19 +4,19 @@ author: NVIDIA
 weight: 395
 pageID: 8362860
 ---
-{{<notice warning>}}
+{{%notice warning%}}
 
-OVSDB server high availability is an {{<kb_link url="knowledge-base/Support/Support-Offerings/Early-Access-Features-Defined/" text="early access feature">}}
+OVSDB server high availability is an [early access feature]({{<ref "/knowledge-base/Support/Support-Offerings/Early-Access-Features-Defined" >}})
 in Cumulus Linux 3.7.
 
-{{</notice>}}
+{{%/notice%}}
 
 Cumulus Linux supports integration with VMware NSX in both *standalone
 mode* and *OVSDB server high availability mode* (where the data plane is
 running in active-active mode). For information about VMware NSX in
 standalone mode and for a description of the components that work
 together to integrate VMware NSX and Cumulus Linux, see
-{{<link url="Integrating-Hardware-VTEPs-with-VMware-NSX-MH">}}
+{{<link title="Integrating Hardware VTEPs with VMware NSX">}}
 or {{<link url="Integrating-Hardware-VTEPs-with-VMware-NSX-V">}}.
 
 {{%notice note%}}
@@ -45,13 +45,13 @@ The following examples show OVSDB server high availability mode.
 The OVSDB server on the MLAG secondary switch is the hot standby. Only
 the active OVSDB server communicates with the NSX controller.
 
-{{% imgOld 0 %}}
+{{< img src = "/images/cumulus-linux/ovsdb-example.png" >}}
 
 **Example 2:** If failover occurs, the OVSDB server on the MLAG
 secondary switch becomes the active OVSDB server and communicates with
 the NSX controller.
 
-{{% imgOld 1 %}}
+{{< img src = "/images/cumulus-linux/ovsdb-example2.png" >}}
 
 When the OVSDB server on the MLAG primary switch starts responding
 again, it resynchronizes its database, becomes the active OVSDB server,
@@ -270,8 +270,8 @@ vtep-bootstrap` or run the command `vtep-bootstrap --help`.
 After you finish configuring the NSX integration on both the MLAG
 primary and MLAG secondary switch, you need to configure the transport
 and logical layers from the NSX Manager. Refer to
-{{<link url="Integrating-Hardware-VTEPs-with-VMware-NSX-MH/#configure-the-transport-and-logical-layers" text="Configuring the Transport and Logical Layers (NSX-MH)">}}
-or {{<link url="Integrating-Hardware-VTEPs-with-VMware-NSX-V/#configure-the-transport-and-logical-layers" text="Configuring the Transport and Logical Layers (NSX-V)">}}.
+{{<link url="Integrating-Hardware-VTEPs-with-VMware-NSX-V#configuring-the-logical-layer" text="Configuring the Transport and Logical Layers (NSX-MH)">}}
+or {{<link url="Integrating-Hardware-VTEPs-with-VMware-NSX-V#configure-the-transport-and-logical-layers" text="Configuring the Transport and Logical Layers (NSX-V)">}}.
 
 ## Troubleshooting
 

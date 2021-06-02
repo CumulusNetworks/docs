@@ -23,7 +23,7 @@ For a basic VXLAN configuration, make sure that:
 
 Consider the following example:
 
-{{% imgOld 0 %}}
+{{% img src="/images/old_doc_images/vxlan.png" %}}
 
 {{%notice warning%}}
 

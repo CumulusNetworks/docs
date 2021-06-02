@@ -20,7 +20,7 @@ The following procedure creates leaf01, leaf02, and spine01 and the network conn
 
 1. Download and install {{<exlink url="https://www.virtualbox.org" text="VirtualBox">}}.
 2. Download and install {{<exlink url="https://www.gns3.com/software" text="GNS3">}}.
-3. Download the {{<exlink url="https://cumulusnetworks.com/cumulus-vx/download/" text="VirtualBox OVA image">}}.
+3. Download the {{<exlink url="https://www.nvidia.com/en-us/networking/ethernet-switching/cumulus-vx/" text="VirtualBox OVA image">}}.
 
 ### Create VMs in VirtualBox
 

@@ -25,7 +25,7 @@ The relevant OIDs are:
 To configure SNMP to expose CPU and memory information:
 
 1.  If `snmpd` has not already been enabled, follow instructions in the
-    {{<kb_link url="cumulus-linux-43/Monitoring-and-Troubleshooting/Simple-Network-Management-Protocol-SNMP/" text="technical documentation">}} to enable and start `snmpd`.
+    [technical documentation]({{<ref "/cumulus-linux-43/Monitoring-and-Troubleshooting/Simple-Network-Management-Protocol-SNMP" >}}) to enable and start `snmpd`.
 2.  Allow access to the OIDs by editing `/etc/snmp/snmpd.conf`. The
     following example adds the relevant MIBs to the `systemonly` view.
 

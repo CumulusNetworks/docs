@@ -35,7 +35,7 @@ integrates with controller-based overlay solutions like
 and [Midokura MidoNet](/cumulus-linux-36/Network-Virtualization/Virtualization-Integrations/Integrating-Hardware-VTEPs-with-Midokura-MidoNet-and-OpenStack).
 
 VXLAN is supported only on switches in the 
-[Cumulus Linux HCL](https://cumulusnetworks.com/support/hcl/) using the 
+[Cumulus Linux HCL](https://www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/) using the 
 Broadcom Tomahawk, Trident II+ and Trident II chipsets, as well as the Mellanox
 Spectrum chipset.
 

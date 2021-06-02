@@ -848,6 +848,14 @@ To work around this issue, do not make bash or bash scripts {{setuid}}.</td>
 <td></td>
 </tr>
 <tr>
+<td>2547903</td>
+<td>CVE-2019-19956: xmlParseBalancedChunkMemoryRecover in parser.c in libxml2 before 2.9.10 has a memory leak related to newDoc-&gt;oldNs.
+Vulnerable: 2.9.4+dfsg1-7
+Fixed: 2.9.4+dfsg1-7+deb10u1</td>
+<td>4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
 <td>2547890</td>
 <td>QinQ across VXLAN on a traditional bridge does not work.</td>
 <td>4.1.0-4.3.0</td>
@@ -3052,6 +3060,14 @@ To work around this issue, do not make bash or bash scripts {{setuid}}.</td>
 <td>2548060</td>
 <td>On the Mellanox SN3800 switch, links do not come up when the ports are configured for 40G.</td>
 <td>4.1.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2547903</td>
+<td>CVE-2019-19956: xmlParseBalancedChunkMemoryRecover in parser.c in libxml2 before 2.9.10 has a memory leak related to newDoc-&gt;oldNs.
+Vulnerable: 2.9.4+dfsg1-7
+Fixed: 2.9.4+dfsg1-7+deb10u1</td>
+<td>4.0.0-4.3.0</td>
 <td></td>
 </tr>
 <tr>
@@ -5676,6 +5692,14 @@ To work around this issue, do not make bash or bash scripts {{setuid}}.</td>
 <td>2548060</td>
 <td>On the Mellanox SN3800 switch, links do not come up when the ports are configured for 40G.</td>
 <td>4.1.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2547903</td>
+<td>CVE-2019-19956: xmlParseBalancedChunkMemoryRecover in parser.c in libxml2 before 2.9.10 has a memory leak related to newDoc-&gt;oldNs.
+Vulnerable: 2.9.4+dfsg1-7
+Fixed: 2.9.4+dfsg1-7+deb10u1</td>
+<td>4.0.0-4.3.0</td>
 <td></td>
 </tr>
 <tr>

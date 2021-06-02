@@ -2600,6 +2600,14 @@ Fixed: 7.64.0-4+deb10u1</td>
 <td>4.1.0-4.3.0</td>
 </tr>
 <tr>
+<td>2547903</td>
+<td>CVE-2019-19956: xmlParseBalancedChunkMemoryRecover in parser.c in libxml2 before 2.9.10 has a memory leak related to newDoc-&gt;oldNs.
+Vulnerable: 2.9.4+dfsg1-7
+Fixed: 2.9.4+dfsg1-7+deb10u1</td>
+<td>4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
 <td>2547839</td>
 <td>When you try to configure {{link-down}} on a parent interface of a subinterface configured in a VRF, you encounter an error.</td>
 <td>3.7.11-4.1.1</td>

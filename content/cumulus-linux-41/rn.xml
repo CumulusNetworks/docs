@@ -1855,6 +1855,14 @@ To work around this issue, move 100G SR4 modules to one of the ports not affecte
 <td>4.2.0-4.3.0</td>
 </tr>
 <tr>
+<td>2547903</td>
+<td>CVE-2019-19956: xmlParseBalancedChunkMemoryRecover in parser.c in libxml2 before 2.9.10 has a memory leak related to newDoc-&gt;oldNs.
+Vulnerable: 2.9.4+dfsg1-7
+Fixed: 2.9.4+dfsg1-7+deb10u1</td>
+<td>4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
 <td>2547890</td>
 <td>QinQ across VXLAN on a traditional bridge does not work.</td>
 <td>4.1.0-4.3.0</td>
@@ -4495,6 +4503,14 @@ swp1, 2, 3, 9, 10, 23, 24, 30, 31, and 32 might be affected
 To work around this issue, move 100G SR4 modules to one of the ports not affected by this issue.</td>
 <td>3.7.11-4.1.1</td>
 <td>4.2.0-4.3.0</td>
+</tr>
+<tr>
+<td>2547903</td>
+<td>CVE-2019-19956: xmlParseBalancedChunkMemoryRecover in parser.c in libxml2 before 2.9.10 has a memory leak related to newDoc-&gt;oldNs.
+Vulnerable: 2.9.4+dfsg1-7
+Fixed: 2.9.4+dfsg1-7+deb10u1</td>
+<td>4.0.0-4.3.0</td>
+<td></td>
 </tr>
 <tr>
 <td>2547890</td>

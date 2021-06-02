@@ -144,8 +144,8 @@ https://security-tracker.debian.org/tracker/CVE-2019-14889</td>
 </tr>
 <tr>
 <td>2669073</td>
-<td>The {{l1-show}} command shows the wrong data when the mst service is stopped.
-Relevant for spectrum,spectrum-2 and spectrum-3 switches</td>
+<td>On Spectrum, Spectrum-2, and Spectrum-3 switches, the {{l1-show}} command shows the wrong data when the MST service is stopped.
+To work around this issue, start the MST service with the {{sudo mst start}} command.</td>
 <td>4.3.0</td>
 <td></td>
 </tr>
@@ -989,6 +989,14 @@ To work around this issue, do not make bash or bash scripts {{setuid}}.</td>
 <td>2548060</td>
 <td>On the Mellanox SN3800 switch, links do not come up when the ports are configured for 40G.</td>
 <td>4.1.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2547903</td>
+<td>CVE-2019-19956: xmlParseBalancedChunkMemoryRecover in parser.c in libxml2 before 2.9.10 has a memory leak related to newDoc-&gt;oldNs.
+Vulnerable: 2.9.4+dfsg1-7
+Fixed: 2.9.4+dfsg1-7+deb10u1</td>
+<td>4.0.0-4.3.0</td>
 <td></td>
 </tr>
 <tr>

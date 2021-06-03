@@ -300,7 +300,7 @@ router:
 
     ```
     cumulus@spine01:~$ nv set vrf default router bgp address-family ipv4-unicast static-network 10.10.10.101/32
-    cumulus@spine01:~$ cl config diff
+    cumulus@spine01:~$ nv config diff
     cumulus@spine01:~$ nv config apply
     ```
 

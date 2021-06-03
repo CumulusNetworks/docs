@@ -242,9 +242,9 @@ cumulus@switch:~$ nv config apply
 To delete PTP configuration, delete the PTP master and slave interfaces. The following example commands delete the PTP interfaces `swp13s0`, `swp13s1`, and `swp13s2`.
 
 ```
-cumulus@switch:~$ cl unset interface swp13s0 service ptp
-cumulus@switch:~$ cl unset interface swp13s1 service ptp
-cumulus@switch:~$ cl unset interface swp13s2 service ptp
+cumulus@switch:~$ nv unset interface swp13s0 service ptp
+cumulus@switch:~$ nv unset interface swp13s1 service ptp
+cumulus@switch:~$ nv unset interface swp13s2 service ptp
 cumulus@switch:~$ nv config apply
 ```
 

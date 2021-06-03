@@ -139,10 +139,10 @@ cumulus@switch:~$ net commit
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ cl unset system ntp server 0.cumulusnetworks.pool.ntp.org
-cumulus@switch:~$ cl unset system ntp server 1.cumulusnetworks.pool.ntp.org
-cumulus@switch:~$ cl unset system ntp server 2.cumulusnetworks.pool.ntp.org
-cumulus@switch:~$ cl unset system ntp server 3.cumulusnetworks.pool.ntp.org
+cumulus@switch:~$ nv unset system ntp server 0.cumulusnetworks.pool.ntp.org
+cumulus@switch:~$ nv unset system ntp server 1.cumulusnetworks.pool.ntp.org
+cumulus@switch:~$ nv unset system ntp server 2.cumulusnetworks.pool.ntp.org
+cumulus@switch:~$ nv unset system ntp server 3.cumulusnetworks.pool.ntp.org
 cumulus@switch:~$ nv config apply
 ```
 

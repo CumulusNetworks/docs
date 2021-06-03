@@ -2036,7 +2036,7 @@ cumulus@switch:~$ net commit
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@leaf01:~$ cl unset router bgp graceful-restart mode
+cumulus@leaf01:~$ nv unset router bgp graceful-restart mode
 cumulus@leaf01:~$ nv config apply$
 ```
 
@@ -2072,7 +2072,7 @@ cumulus@switch:~$ net commit
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@leaf01:~$ cl unset vrf default router bgp peer swp51 graceful-restart-mode
+cumulus@leaf01:~$ nv unset vrf default router bgp peer swp51 graceful-restart-mode
 cumulus@leaf01:~$ nv config apply
 ```
 

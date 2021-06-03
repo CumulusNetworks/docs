@@ -120,7 +120,7 @@ router bgp 65101
 {{< /tab >}}
 {{< tab "NVUE Commands ">}}
 
-NVUE Commands are not supported.
+NVUE commands are not supported.
 
 <!--```
 cumulus@leaf01:~$ nv set vrf default router bgp peer-group SPINE

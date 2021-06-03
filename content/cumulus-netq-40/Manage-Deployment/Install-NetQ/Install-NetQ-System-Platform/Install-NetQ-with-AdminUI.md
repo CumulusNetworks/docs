@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 240
 toc: 5
 ---
-You can now install the NetQ software using the Admin UI using the default basic installation or an advanced installation.
+You can install the NetQ software using the Admin UI, which you use for either a default basic installation or an advanced installation.
 
 {{%notice info%}}
 This is the final set of steps for installing NetQ. If you have not already performed the installation preparation steps, go to {{<link title="Install the NetQ System">}} before continuing here.

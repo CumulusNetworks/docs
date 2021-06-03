@@ -298,7 +298,7 @@ To export a scheduled validation:
 
 ## Manage Threshold Crossing Rules
 
-NetQ supports a set of events that are triggered by crossing a user-defined threshold, called TCA events. These events allow detection and prevention of network failures for selected ACL resources, digital optics, forwarding resources, interface errors and statistics, link flaps, resource utilization, sensor and WJH events. A complete list of supported events can be found in the {{<link title="TCA Event Messages Reference">}}.
+NetQ supports a set of events that are triggered by crossing a user-defined threshold, called TCA events. These events allow detection and prevention of network failures for selected ACL resources, digital optics, forwarding resources, interface errors and statistics, link flaps, resource utilization, RoCE (RDMA over converged Ethernet), sensor and WJH events. A complete list of supported events can be found in the {{<link title="TCA Event Messages Reference">}}.
 
 Instructions for managing these rules can be found in {{<link title="Configure Threshold-Based Event Notifications/#manage-threshold-based-event-notifications" text="Manage Threshold-based Event Notifications">}}.
 

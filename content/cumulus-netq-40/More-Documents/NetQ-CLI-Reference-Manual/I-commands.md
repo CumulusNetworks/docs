@@ -76,7 +76,7 @@ cumulus@switch:~$ netq install cluster activate-job config-key ju8Kl4IhZ3cucHJvZ
 
 Installs the NetQ Platform software on the servers (NetQ On-premises Appliances or VMs) in an on-premises, server cluster deployment, all with a single command. You must have the hostname or IP address of the master node and two worker nodes, and the NetQ software bundle to run the command.
 
-Obtain the software release bundle from the {{<exlink url="https://cumulusnetworks.com/downloads/#product=NetQ" text="Cumulus Downloads">}} page or {{<exlink url="http://support.mellanox.com/s/" text="My Mellanox support">}} page.
+Obtain the software release bundle from the {{<exlink url="http://support.mellanox.com/s/" text="My Mellanox support">}} page.
 
 ### Syntax
 
@@ -284,7 +284,7 @@ cumulus@<hostname>:~$ netq install cluster infra-job
 
 After all of the infrastructure has been prepared and configured, this command installs the NetQ software using the NetQ installation file that you have previously downloaded and stored.
 
-Obtain the software release bundle from the {{<exlink url="https://cumulusnetworks.com/downloads/#product=NetQ" text="Cumulus Downloads">}} page or {{<exlink url="http://support.mellanox.com/s/" text="My Mellanox support">}} page.
+Obtain the software release bundle from the {{<exlink url="http://support.mellanox.com/s/" text="My Mellanox support">}} page.
 
 Alternately, use {{<link title="#netq-install-cluster-full" text="netq install cluster full">}} (on-premises) or {{<link title="#netq-install-opta-cluster" text="netq install opta cluster">}} (remote/cloud) to perform this and all other steps of a NetQ installation with a single command.
 
@@ -318,7 +318,7 @@ A release is included if there were changes to the command, otherwise it is not 
 
 <!-- Add output/results -->
 ```
-cumulus@<hostname>:~$ netq install cluster install-job bundle /mnt/installables/NetQ-3.3.0.tgz
+cumulus@<hostname>:~$ netq install cluster install-job bundle /mnt/installables/NetQ-4.0.0.tgz
 ```
 
 ### Related Commands
@@ -379,7 +379,7 @@ cumulus@switch:~$ netq install opta activate-job config-key ju8Kl4IhZ3cucHJvZDEu
 
 Installs the NetQ Collector software on a master node and two worker nodes. For cloud deployments, it installs the software on the NetQ Cloud Appliance or VM. For a multi-site on-premises deployment, it installs the software on one or two secondary servers at the external premises. You must have the hostname, IP address, or interface of the servers, the NetQ software bundle, and configuration key to run the command. A proxy can also be configured.
 
-Obtain the software release bundle from the {{<exlink url="https://cumulusnetworks.com/downloads/#product=NetQ" text="Cumulus Downloads">}} page or {{<exlink url="http://support.mellanox.com/s/" text="My Mellanox support">}} page.
+Obtain the software release bundle from the {{<exlink url="http://support.mellanox.com/s/" text="My Mellanox support">}} page.
 
 Obtain the config-key as follows:
 - Cloud: Locate and retrieve key from email titled *A new site has been added to your NVIDIA Cumulus NetQ account* (sent to your NetQ administrator)
@@ -442,7 +442,7 @@ cumulus@<hostname>:~$ netq install opta cluster full interface en01 bundle /mnt/
 
 Installs the NetQ Collector software on a single cloud server (NetQ Cloud Appliance or VM) with a single command. You must have the hostname, IP address, or interface of the server, the NetQ software bundle, and configuration key to run the command. A proxy can also be configured.
 
-Obtain the software release bundle from the {{<exlink url="https://cumulusnetworks.com/downloads/#product=NetQ" text="Cumulus Downloads">}} page or {{<exlink url="http://support.mellanox.com/s/" text="My Mellanox support">}} page.
+Obtain the software release bundle from the {{<exlink url="http://support.mellanox.com/s/" text="My Mellanox support">}} page.
 
 Obtain the config-key from the email sent to your NetQ administrator titled <!-- vale off -->*A new site has been added to your NVIDIA Cumulus NetQ account*.<!-- vale on -->
 
@@ -589,7 +589,7 @@ cumulus@switch:~$ netq install standalone activate-job config-key ju8Kl4IhZ3cucH
 
 Installs the NetQ Platform software on the NetQ On-premises Appliance or VM in an on-premises, single server deployment, all with a single command. You must have the hostname or IP address of the server, and the NetQ software bundle to run the command. A configuration key is optional.
 
-Obtain the software release bundle from the {{<exlink url="https://cumulusnetworks.com/downloads/#product=NetQ" text="Cumulus Downloads">}} page or {{<exlink url="http://support.mellanox.com/s/" text="My Mellanox support">}} page.
+Obtain the software release bundle from the {{<exlink url="http://support.mellanox.com/s/" text="My Mellanox support">}} page.
 
 ### Syntax
 
@@ -738,7 +738,7 @@ cumulus@<hostname>:~$ netq install standalone init-job
 
 After all of the infrastructure has been prepared and configured, this command installs the NetQ Platform software on the NetQ On-premises Appliance or VM using the NetQ installation file that you have previously downloaded and stored.
 
-Obtain the software release bundle from the {{<exlink url="https://cumulusnetworks.com/downloads/#product=NetQ" text="Cumulus Downloads">}} page or {{<exlink url="http://support.mellanox.com/s/" text="My Mellanox support">}} page.
+Obtain the software release bundle from the {{<exlink url="http://support.mellanox.com/s/" text="My Mellanox support">}} page.
 
 Alternately, use {{<link title="#netq-install-standalone-full" text="netq install standalone full">}} to perform this and all other steps of a NetQ installation with a single command.
 

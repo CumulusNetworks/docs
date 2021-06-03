@@ -27,7 +27,7 @@ Notifications are generated for the following types of events:
 | Services | <ul><li>NetQ Agent status</li><li>PTM\*</li><li>SSH \*</li><li>NTP status\*</li></ul> |
 | Traces | <ul><li>On-demand trace status</li><li>Scheduled trace status</li></ul> |
 | Sensors | <ul><li>Fan status</li><li>PSU (power supply unit) status</li><li>Temperature status</li></ul> |
-| System Software | <ul><li>Configuration File changes</li><li>Running Configuration File changes</li><li>Cumulus Linux License status</li><li>Cumulus Linux Support status</li><li>Software Package status</li><li>Operating System version</li><li>Lifecycle Management status</li></ul> |
+| System Software | <ul><li>Configuration File changes</li><li>Running Configuration File changes</li><li>Cumulus Linux Support status</li><li>Software Package status</li><li>Operating System version</li><li>Lifecycle Management status</li></ul> |
 | System Hardware | <ul><li>Physical resources status</li><li>BTRFS status</li><li>SSD utilization status</li></ul> |
 
 *\* This type of event can only be viewed in the CLI with this release.*

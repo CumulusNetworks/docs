@@ -12,14 +12,16 @@ toc: 1
 
 NetQ 4.0.0 includes the following new features and improvements:
 
+- Collect What Just Happened event data using {{<link title="Configure and Monitor What Just Happened#collect-wjh-data-using-gnmi" text="gNMI">}} (gPRC network management interface) and export it to your gNMI client or keep it within NetQ.
 - NetQ now monitors the SONiC operating system. Support includes traces, validations, snapshots, events, service visibility, lifecycle management and What Just Happened. This is an early access feature.
-- RoCE (RDMA over Converged Ethernet) in Cumulus Linux now monitored.
+- {{<link url="Monitor-the-RoCE-Service" text="RoCE">}} (RDMA over Converged Ethernet) in Cumulus Linux now monitored.
+- Improvements to the {{<link url="Validate-Operations" text="validation flow">}}.
+- General user interface improvements.
 - License checks have been removed from network health and the CLI.
-- You can rename premises.
-- The Grafana plugin has new endpoints for:
+- You can {{<link title="Manage the NetQ UI#rename-a-premises" text="rename premises">}}.
+- The {{<link title="Integrate NetQ with Grafana" text="Grafana plugin">}} has new endpoints for:
   - Cloud: *plugin.prod.netq.cumulusnetworks.com*
   - On-premises: *\<hostname-or-ipaddr-of-netq-appl-or-vm\>/plugin*
-    
 
 ## Upgrade Paths
 

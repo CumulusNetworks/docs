@@ -590,11 +590,3 @@ iface lo inet loopback
 {{< /tab >}}
 
 {{< /tabs >}}
-
-## Reboot the Switch
-
-After you complete the configuration in this section, reboot the switch:
-
-```
-cumulus@switch:~$ sudo reboot
-```

@@ -108,7 +108,7 @@ NetQ code examples use the following prompts:
 - `cumulus@netq-appliance:~$` Indicates the user *cumulus* is logged in to either the NetQ Appliance or NetQ Cloud Appliance to run the command
 - `cumulus@hostname:~$` Indicates the user *cumulus* is logged in to a switch, host or appliance to run the example command
 
-To use the NetQ CLI, the switches must be running the Cumulus Linux operating system (OS), NetQ Platform or NetQ Collector software, the NetQ Agent, and the NetQ CLI. The hosts must be running CentOS, RHEL, or Ubuntu OS, the NetQ Agent, and the NetQ CLI. Refer to the {{<link url="Install-NetQ">}} topic for details.
+To use the NetQ CLI, the switches must be running the Cumulus Linux or SONiC operating system (OS), NetQ Platform or NetQ Collector software, the NetQ Agent, and the NetQ CLI. The hosts must be running CentOS, RHEL, or Ubuntu OS, the NetQ Agent, and the NetQ CLI. Refer to the {{<link url="Install-NetQ">}} topic for details.
 
 ### Command Completion
 
@@ -532,12 +532,12 @@ netq show tca [tca_id <text-tca-id-anchor>] [json]
 
 The `netq lcm` ({{<link title="Manage Switches through Their Lifecycle" text="lifecycle management">}}) commands enable you to manage the deployment of NVIDIA product software onto your network devices (servers, appliances, and switches) in the most efficient way and with the most information about the process as possible. The LCM commands provide for:
 
-- Managing Cumulus Linux and NetQ images in a local repository
+- Managing network OS and NetQ images in a local repository
 - Configuring switch access credentials for installations and upgrades
-- Managing Cumulus Linux switch inventory and roles
-- Upgrade NetQ (Agents and CLI) on Cumulus Linux switches with NetQ Agents
-- Install or upgrade NetQ Agents and CLI on Cumulus Linux switches with or without NetQ Agents all in a single job
-- Upgrade Cumulus Linux on switches with NetQ Agents
+- Managing switch inventory and roles
+- Upgrade NetQ (Agents and CLI) on switches with NetQ Agents
+- Install or upgrade NetQ Agents and CLI on switches with or without NetQ Agents all in a single job
+- Upgrade the network OS on switches with NetQ Agents
 - View a result history of upgrade attempts
 
 This example shows the NetQ configuration profiles:
@@ -554,7 +554,7 @@ eb2b
 
 This example shows how to add a Cumulus Linux installation image to the NetQ repository on the switch:
 
-    netq lcm add cl-image /path/to/download/cumulus-linux-4.2.0-mlnx-amd64.bin
+    netq lcm add cl-image /path/to/download/cumulus-linux-4.3.0-mlnx-amd64.bin
 
 ### Trace Commands
 

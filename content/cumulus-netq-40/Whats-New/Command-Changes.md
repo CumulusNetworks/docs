@@ -20,9 +20,9 @@ The following table summarizes the new commands available with this release.
 | netq add check-filter | Creates a filter for validations. | 4.0.0 |
 | netq del check-filter | Deletes the specified check filter. | 4.0.0 |
 | netq show check-filter | Shows all check filters. | 4.0.0 |
-| netq [&lt;hostname>] show roce-counters | | 4.0.0 |                             
-| netq [&lt;hostname>] show roce-config | | 4.0.0 |
-| netq [&lt;hostname>] show roce-counters pool | | 4.0.0 |
+| netq [&lt;hostname>] show roce-counters | Displays the RoCE counters. | 4.0.0 |                             
+| netq [&lt;hostname>] show roce-config | Displays the RoCE configuration. | 4.0.0 |
+| netq [&lt;hostname>] show roce-counters pool | Displays the RoCE counter pools. | 4.0.0 |
 
 ## Modified Commands
 

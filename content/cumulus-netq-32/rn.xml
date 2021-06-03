@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>NETQ-3451</td>
+<td>&lt;p&gt;UI: If either the peer_hostname or the peer_asn is invalid, the full screen BGP Service card does not provide the ability to open cards for a selected BGP session.&lt;/p&gt;</td>
+<td>2.3.0-2.4.1, 3.0.0-3.3.0</td>
+<td></td>
+</tr>
+<tr>
 <td>2556205</td>
 <td>NetQ CLI: User cannot remove a notification channel when threshold-based event rules are configured.</td>
 <td>3.2.1-3.3.0</td>
@@ -53,12 +59,6 @@
 <td>NetQ UI: Snapshot comparison cards may not render correctly after navigating away from a workbench and then returning to it. If you are viewing the Snapshot comparison card(s) on a custom workbench, refresh the page to reload the data. If you are viewing it on the Cumulus Default workbench, after refreshing the page you must recreate the comparison(s).</td>
 <td>2.4.0-3.2.1</td>
 <td>3.3.0-3.3.1</td>
-</tr>
-<tr>
-<td>2543867</td>
-<td>NetQ UI: If either the hostname or the ASN of a BGP peer is invalid, the full screen BGP Service card does not provide the ability to open cards for a selected BGP session.</td>
-<td>2.3.0-2.4.1, 3.0.0-3.3.1</td>
-<td></td>
 </tr>
 </table>
 <table name="Fixed issues in 3.2.1">
@@ -138,6 +138,12 @@ netq-cli:
 <th> Fixed </th>
 </tr>
 <tr>
+<td>NETQ-3451</td>
+<td>&lt;p&gt;UI: If either the peer_hostname or the peer_asn is invalid, the full screen BGP Service card does not provide the ability to open cards for a selected BGP session.&lt;/p&gt;</td>
+<td>2.3.0-2.4.1, 3.0.0-3.3.0</td>
+<td></td>
+</tr>
+<tr>
 <td>2555854</td>
 <td>NetQ Agent: If a NetQ Agent is downgraded to the 3.0.0 version from any higher release, the default commands file present in the _/etc/netq/commands/_ also needs to be updated to prevent the NetQ Agent from becoming rotten.</td>
 <td>3.0.0-3.3.1</td>
@@ -237,12 +243,6 @@ netq-cli:
 <td>NetQ UI: Snapshot comparison cards may not render correctly after navigating away from a workbench and then returning to it. If you are viewing the Snapshot comparison card(s) on a custom workbench, refresh the page to reload the data. If you are viewing it on the Cumulus Default workbench, after refreshing the page you must recreate the comparison(s).</td>
 <td>2.4.0-3.2.1</td>
 <td>3.3.0-3.3.1</td>
-</tr>
-<tr>
-<td>2543867</td>
-<td>NetQ UI: If either the hostname or the ASN of a BGP peer is invalid, the full screen BGP Service card does not provide the ability to open cards for a selected BGP session.</td>
-<td>2.3.0-2.4.1, 3.0.0-3.3.1</td>
-<td></td>
 </tr>
 </table>
 <table name="Fixed issues in 3.2.0">

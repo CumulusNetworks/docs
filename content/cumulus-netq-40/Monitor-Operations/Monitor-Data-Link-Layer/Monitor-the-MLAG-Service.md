@@ -265,7 +265,7 @@ To view these sessions:
 
 3. Click the **All Sessions** tab.
 
-4. Scroll to the right to view the **Conflicted Bonds** column. Based on the value/s in that field, reconfigure MLAG accordingly, using the `net add bond` NCLU command or edit the `/etc/network/interfaces` file. Refer to {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux-42/Layer-2/Multi-Chassis-Link-Aggregation-MLAG/#basic-configuration" text="Basic Configuration">}} in the Cumulus Linux MLAG topic.
+4. Scroll to the right to view the **Conflicted Bonds** column. Based on the value/s in that field, reconfigure MLAG accordingly, using the `net add bond` NCLU command or edit the `/etc/network/interfaces` file. Refer to [Basic Configuration]({{<ref "cumulus-linux-43/Layer-2/Multi-Chassis-Link-Aggregation-MLAG#basic-configuration">}}) in the Cumulus Linux MLAG topic.
 
 ### View Devices with the Most MLAG Sessions
 

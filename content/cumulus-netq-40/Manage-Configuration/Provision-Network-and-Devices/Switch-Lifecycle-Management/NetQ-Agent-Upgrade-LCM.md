@@ -26,9 +26,9 @@ Prepare for NetQ Agent upgrade on switches as follows:
 
 1. Click {{<img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/06-Servers/server-upload.svg" width="18" height="18">}} (Upgrade) in the workbench header.
 
-2. Add the {{<link title="Manage Cumulus Linux and NetQ Images/#upload-upgrade-images" text="upgrade images">}}.
+2. Add the {{<link title="Manage NetQ and Network OS Images/#upload-upgrade-images" text="upgrade images">}}.
 
-3. Optionally, specify a {{<link title="Manage Cumulus Linux and NetQ Images/#specify-a-default-upgrade-version" text="default upgrade version">}}.
+3. Optionally, specify a {{<link title="Manage NetQ and Network OS Images/#specify-a-default-upgrade-version" text="default upgrade version">}}.
 
 4. Verify or add {{<link title="Manage Switch Credentials/#specify-switch-credentials" text="switch access credentials">}}.
 
@@ -46,7 +46,7 @@ Your LCM dashboard should look similar to this after you have completed the abov
 
 2. Configure {{<link title="Manage Switch Credentials/#role-management" text="switch roles">}} to determine the order in which the switches get upgraded.
 
-3. Upload the {{<link title="Manage Cumulus Linux and NetQ Images/#upload-upgrade-images" text="Cumulus Linux install images">}}.
+3. Upload the {{<link title="Manage NetQ and Network OS Images/#upload-upgrade-images" text="Cumulus Linux install images">}}.
 
 {{< /tab >}}
 

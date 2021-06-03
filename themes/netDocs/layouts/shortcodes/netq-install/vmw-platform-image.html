@@ -349,3 +349,53 @@
 {{ end }}
 
 {{ end }}
+
+
+
+{{- if eq (.Get "version") "4.0" -}}
+
+{{- if eq (.Get "deployment") "onprem" -}}
+
+<ol>
+    <li>On the <a href="http://support.mellanox.com/s/">My Mellanox support</a> page, log in to your account. If needed create a new account and then log in.<br>
+        <img src={{"images/netq/mymellanox-login-320.png" | absURL }} width="500"><br>
+        Your username is based on your Email address. For example, user1@domain.com.mlnx.</li>
+    <li>Open the <strong>Downloads</strong> menu.</li>
+    <li>Click <strong>Software</strong>.</li>
+    <li>Open the <strong>Cumulus Software</strong> option.<br>
+        <img src={{"images/netq/mymellanox-cumulus-software-download-320.png" | absURL }} width="500"></li>
+    <li>Click <strong>All downloads</strong> next to <strong>Cumulus NetQ</strong>.</li>
+    <li>Select <strong>4.0.0</strong> from the <strong>NetQ Version</strong> dropdown.</li>
+    <li>Select <strong>VMware</strong> from the <strong>Hypervisor</strong> dropdown.</li>
+    <li>Click <strong>Show Download</strong>.<br>
+        <img src={{"/images/netq/mymellanox-netq-download-vmware-331.png" | absURL }} width="500"></li>
+    <li>Verify this is the correct image, then click <strong>Download</strong>.</li>
+</ol>
+
+<div class="notices note"><p>The Documentation option lets you download a copy of the user manual. Ignore the Firmware and More files options as these do not apply to NetQ.</p></div>
+
+{{ end }}
+
+{{- if eq (.Get "deployment") "cloud" -}}
+
+<ol>
+    <li>On the <a href="http://support.mellanox.com/s/">My Mellanox support</a> page, log in to your account. If needed create a new account and then log in.<br>
+        <img src={{"images/netq/mymellanox-login-320.png" | absURL }} width="500"><br>
+        Your username is based on your Email address. For example, user1@domain.com.mlnx.</li>
+    <li>Open the <strong>Downloads</strong> menu.</li>
+    <li>Click <strong>Software</strong>.</li>
+    <li>Open the <strong>Cumulus Software</strong> option.<br>
+        <img src={{"images/netq/mymellanox-cumulus-software-download-320.png" | absURL }} width="500"></li>
+    <li>Click <strong>All downloads</strong> next to <strong>Cumulus NetQ</strong>.</li>
+    <li>Select <strong>4.0.0</strong> from the <strong>NetQ Version</strong> dropdown.</li>
+    <li>Select <strong>VMware (cloud)</strong> from the <strong>Hypervisor</strong> dropdown.</li>
+    <li>Click <strong>Show Download</strong>.<br>
+        <img src={{"/images/netq/mymellanox-netq-download-vmware-cld-331.png" | absURL }} width="500"></li>
+    <li>Verify this is the correct image, then click <strong>Download</strong>.</li>
+</ol>
+
+<div class="notices note"><p>The Documentation option lets you download a copy of the user manual. Ignore the Firmware and More files options as these do not apply to NetQ.</p></div>
+
+{{ end }}
+
+{{ end }}

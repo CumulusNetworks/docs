@@ -712,6 +712,12 @@ With NetQ, you can monitor a single session of the BGP service, view session sta
 To access the single session cards, you must open the full-screen Network Services|All BGP Sessions card, click the <strong>All Sessions</strong> tab, select the desired session, then click <img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg"  height="18" width="18"/> (Open Card).
 {{</notice>}}
 
+{{%notice info%}}
+
+In order to open the BGP single session card, verify that both the peer hostname and peer ASN are valid. This ensures the information presented is reliable.
+
+{{%/notice%}}
+
 ### Granularity of Data Shown Based on Time Period
 
 On the medium and large single BGP session cards, the status of the sessions is represented in heat maps stacked vertically; one for established sessions, and one for unestablished sessions. Depending on the time period of data on the card, the number of smaller time blocks used to indicate the status varies. A vertical stack of time blocks, one from each map, includes the results from all checks during that time. The results are shown by how saturated the color is for each block. If all sessions during that time period were established for the entire time block, then the top block is 100% saturated (white) and the not established block is zero percent saturated (gray). As sessions that are not established increase in saturation, the sessions that are established block is proportionally reduced in saturation. An example heat map for a time period of 24 hours is shown here with the most common time periods in the table showing the resulting time blocks.

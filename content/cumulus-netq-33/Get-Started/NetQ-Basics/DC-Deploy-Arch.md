@@ -25,7 +25,7 @@ layer 3 routed environments. A layer 3 routed environment is recommended wheneve
 NVIDIA recommends deploying NetQ on an out-of-band (OOB)
 management network to separate network management traffic from standard
 network data traffic, but it is not required. This figure shows a sample
-CLOS-based network fabric design for a data center using an OOB
+Clos-based network fabric design for a data center using an OOB
 management network overlaid on top, where NetQ is deployed.
 
 The physical *network* hardware includes:
@@ -66,7 +66,7 @@ While not the preferred deployment method, you might choose to implement
 NetQ within your data network. In this scenario, there is no overlay and
 all traffic to and from the NetQ Agents and the NetQ Platform traverses
 the data paths along with your regular network traffic. The roles of the
-switches in the CLOS network are the same, except that the NetQ Platform
+switches in the Clos network are the same, except that the NetQ Platform
 performs the aggregation function that the OOB management switch
 performed. If your network goes down, you might not have access to the
 NetQ Platform for troubleshooting.

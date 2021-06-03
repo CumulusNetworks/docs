@@ -38,7 +38,7 @@ and event information immediately to the NetQ Platform.
 
 ### Switch Agents
 
-The NetQ Agents running on Cumulus Linux switches gather the following
+The NetQ Agents running on Cumulus Linux or SONiC switches gather the following
 network data via {{<exlink url="https://tools.ietf.org/html/rfc3549" text="Netlink">}}:
 
   - Interfaces
@@ -54,7 +54,7 @@ for the following protocols:
   - Routing protocols: BGP, OSPF
   - Network virtualization: EVPN, VXLAN
 
-The NetQ Agent is supported on Cumulus Linux 3.3.2 and later.
+The NetQ Agent is supported on Cumulus Linux 3.3.2 and later and SONiC 202012 and later.
 
 ### Host Agents
 

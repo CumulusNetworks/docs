@@ -709,10 +709,3 @@ cumulus@switch:~$ cl config apply
 
 You can add multiple loopback addresses. See {{<link url="Interface-Configuration-and-Management#configure-multiple-loopbacks" text="Configure Multiple Loopbacks">}} for details.
 <!-- vale on --> 
-## Reboot the Switch
-
-After you complete the configuration in this section, reboot the switch:
-
-```
-cumulus@switch:~$ sudo reboot
-```

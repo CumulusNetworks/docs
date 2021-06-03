@@ -156,9 +156,9 @@ cumulus@switch:~$ netq config restart agent
 
 ### Configure a NetQ Agent to Limit Switch CPU Usage
 
-While not typically an issue, you can restrict the NetQ Agent from using more than a configurable amount of the CPU resources. This setting requires Cumulus Linux versions 3.6 or later or 4.1.0 or later to be running on the switch.
+While not typically an issue, you can restrict the NetQ Agent from using more than a configurable amount of the CPU resources. This setting requires Cumulus Linux versions 3.6.x, 3.7.x or 4.1.0 or later to be running on the switch.
 
-For more detail about this feature, refer to this {{<exlink url="https://docs.cumulusnetworks.com/knowledge-base/Configuration-and-Usage/Cumulus-NetQ/NetQ-Agent-CPU-Utilization-on-Cumulus-Linux-Switches/" text="Knowledge Base article">}}.
+For more detail about this feature, refer to this [Knowledge Base article]({{<ref "knowledge-base/Configuration-and-Usage/Cumulus-NetQ/NetQ-Agent-CPU-Utilization-on-Cumulus-Linux-Switches">}}).
 
 This example limits a NetQ Agent from consuming more than 40% of the CPU resources on a Cumulus Linux switch.
 
@@ -224,7 +224,7 @@ cumulus@switch:~$ netq config restart agent
 
 ### Configure a NetQ Agent to Send Data to a Server Cluster
 
-If you have a server cluster arrangement for NetQ, you will want to configure the NetQ Agent to send the data it collects to all of the servers in the cluster.
+If you have a server cluster arrangement for NetQ, you should configure the NetQ Agent to send the data it collects to all of the servers in the cluster.
 
 To configure the agent to send data to the servers in your cluster, run:
 

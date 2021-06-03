@@ -478,10 +478,6 @@ If you configure an IP address without a subnet mask, it becomes a /32 IP addres
 
 You can add multiple loopback addresses. For more information, see {{<link url="Interface-Configuration-and-Management/#loopback-interface" text="Interface Configuration and Management">}}.
 
-## Reboot the Switch
-
-After you complete the configuration in this section, reboot the switch with the `sudo reboot` command.
-
 {{%notice info%}}
 If you run CUE commands to configure the switch, run the `cl config save` command before you reboot to save the applied configuration to the startup configuration so that the changes persist after the reboot.
 

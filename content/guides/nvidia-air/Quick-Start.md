@@ -4,6 +4,7 @@ weight: 20
 version: "1.0"
 draft: true
 ---
+
 This quick start provides an easy way to access the NVIDIA Air simulation platform.
 
 ## Logging into NVIDIA Air

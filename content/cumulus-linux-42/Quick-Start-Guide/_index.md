@@ -582,11 +582,3 @@ If an IP address is configured without a mask (as shown above), the IP address b
 ### Multiple Loopbacks
 
 You can add multiple loopback addresses. See {{<link url="Interface-Configuration-and-Management#configure-multiple-loopbacks" text="Configure Multiple Loopbacks">}} for details.
-
-## Reboot the Switch
-
-After you complete the configuration in this section, reboot the switch:
-
-```
-cumulus@switch:~$ sudo reboot
-```

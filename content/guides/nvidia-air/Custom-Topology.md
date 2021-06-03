@@ -71,6 +71,6 @@ To export a custom topology, click on the `Export` button referenced in {{<link 
 
 ### Building a Custom Topology
 
-To build a custom topology, reach out to your local NVIDIA Solutions Architect as they can take the exported topology.dot file and get it loaded into Air. If you don't know who you're local Solutions Architect is, contact NVIDIA Air Support.com for assistance by clicking `Report an issue`.
+To build a custom topology, reach out to your local NVIDIA Solutions Architect as they can take the exported topology.dot file and get it loaded into Air. If you don't know who you're local Solutions Architect is, contact NVIDIA Air Support for assistance by clicking `Report an issue`.
 
 {{<img src="/images/guides/nvidia-air/ReportAnIssue.png" >}}

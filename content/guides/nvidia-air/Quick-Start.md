@@ -26,11 +26,16 @@ From here there are a few options the users can select.
 
 ### Organizations
 
-If you have custom simulations, the `Organizations` dropdown will show differen organizations to which each simulation belongs. This is not common and will normally be associated with working directly with an NVIDIA Solutions Architect to set up a custom topology.
+If you have custom simulations, the `Organizations` dropdown will show different organizations to which each simulation belongs. This is not common and will normally be associated with working directly with an NVIDIA Solutions Architect to set up a custom topology.
+
+{{<img src="/images/guides/nvidia-air/OrganizationDropdown.png" >}}
 
 ### Search Simulations
 
 If you have more than one simulation, the search box can help filter your simulations based on a text match.
+
+{{<img src="/images/guides/nvidia-air/SearchSimulation.png" >}}
+
 
 ### Build a Simulation
 
@@ -44,3 +49,24 @@ This will launch a new window that lets the user select from a list of pre-build
 
 {{<img src="/images/guides/nvidia-air/BuildSim_Demos.png" >}}
 
+## Simulation View
+
+### Basic View
+
+The basic view of the simulation allows users to click on the nodes in the topology image to launch a console to each specific node.
+
+{{<img src="/images/guides/nvidia-air/BasicView.png" >}}
+
+Clicking on the node launches a console:
+
+{{<img src="/images/guides/nvidia-air/Console.png" >}}
+
+### Advanced View
+
+The advanced view has 4 different panes:
+1. Guided Tour
+2. Console
+3. Nodes
+4. Services 
+
+{{<img src="/images/guides/nvidia-air/AdvancedView.png" >}}

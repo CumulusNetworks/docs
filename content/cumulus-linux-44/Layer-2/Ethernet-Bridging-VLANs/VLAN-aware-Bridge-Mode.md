@@ -45,15 +45,15 @@ iface bridge
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
-With CUE, there is a default bridge called `br_default`, which has no ports assigned to it. The example below configures this default bridge.
+With NVUE, there is a default bridge called `br_default`, which has no ports assigned to it. The example below configures this default bridge.
 
 ```
-cumulus@switch:~$ cl set interface swp1-2 bridge domain br_default
-cumulus@switch:~$ cl set bridge domain br_default vlan 10,20
-cumulus@switch:~$ cl set bridge domain br_default untagged 1
-cumulus@switch:~$ cl config apply
+cumulus@switch:~$ nv set interface swp1-2 bridge domain br_default
+cumulus@switch:~$ nv set bridge domain br_default vlan 10,20
+cumulus@switch:~$ nv set bridge domain br_default untagged 1
+cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -140,16 +140,16 @@ cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ cl set interface swp1-2 bridge domain bridge1
-cumulus@switch:~$ cl set bridge domain bridge1 vlan 10,20
-cumulus@switch:~$ cl set bridge domain bridge1 untagged 1
-cumulus@switch:~$ cl set interface swp3 bridge domain bridge2
-cumulus@switch:~$ cl set bridge domain bridge2 vlan 10
-cumulus@switch:~$ cl set bridge domain bridge2 untagged 1
-cumulus@switch:~$ cl config apply
+cumulus@switch:~$ nv set interface swp1-2 bridge domain bridge1
+cumulus@switch:~$ nv set bridge domain bridge1 vlan 10,20
+cumulus@switch:~$ nv set bridge domain bridge1 untagged 1
+cumulus@switch:~$ nv set interface swp3 bridge domain bridge2
+cumulus@switch:~$ nv set bridge domain bridge2 vlan 10
+cumulus@switch:~$ nv set bridge domain bridge2 untagged 1
+cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -220,14 +220,14 @@ cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ cl set interface swp1-3 bridge domain br_default
-cumulus@switch:~$ cl set bridge domain br_default vlan 10,20
-cumulus@switch:~$ cl set bridge domain br_default untagged 1
-cumulus@switch:~$ cl set interface swp3 bridge domain br_default vlan 20
-cumulus@switch:~$ cl config apply
+cumulus@switch:~$ nv set interface swp1-3 bridge domain br_default
+cumulus@switch:~$ nv set bridge domain br_default vlan 10,20
+cumulus@switch:~$ nv set bridge domain br_default untagged 1
+cumulus@switch:~$ nv set interface swp3 bridge domain br_default vlan 20
+cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -278,15 +278,15 @@ cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ cl set interface swp1-2 bridge domain br_default
-cumulus@switch:~$ cl set bridge domain br_default vlan 10,20
-cumulus@switch:~$ cl set bridge domain br_default untagged 1
-cumulus@switch:~$ cl set interface swp1 bridge domain br_default access 10
-cumulus@switch:~$ cl set interface swp2 bridge domain br_default access 10
-cumulus@switch:~$ cl config apply
+cumulus@switch:~$ nv set interface swp1-2 bridge domain br_default
+cumulus@switch:~$ nv set bridge domain br_default vlan 10,20
+cumulus@switch:~$ nv set bridge domain br_default untagged 1
+cumulus@switch:~$ nv set interface swp1 bridge domain br_default access 10
+cumulus@switch:~$ nv set interface swp2 bridge domain br_default access 10
+cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -337,11 +337,11 @@ cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ cl set interface swp2 bridge domain br_default untagged none
-cumulus@switch:~$ cl config apply
+cumulus@switch:~$ nv set interface swp2 bridge domain br_default untagged none
+cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -405,12 +405,12 @@ cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ cl set interface vlan10 ip address 10.1.10.2/24
-cumulus@switch:~$ cl set interface vlan10 ip address 2001:db8::1/32
-cumulus@switch:~$ cl config apply
+cumulus@switch:~$ nv set interface vlan10 ip address 10.1.10.2/24
+cumulus@switch:~$ nv set interface vlan10 ip address 2001:db8::1/32
+cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -542,9 +542,9 @@ cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
-CUE commands are not supported.
+NVUE Commands are not supported.
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
@@ -581,9 +581,9 @@ cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
-CUE commands are not supported.
+NVUE Commands are not supported.
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}

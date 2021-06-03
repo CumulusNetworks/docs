@@ -301,7 +301,7 @@ Module Info
 
 ### Configured State
 
-The configured state reflects the configuration that has been applied to the kernel via `ifupdown2` or CUE. The `switchd` daemon translates the kernel state to the platform hardware state and keeps them in sync.
+The configured state reflects the configuration that has been applied to the kernel via `ifupdown2` or NCLU. The `switchd` daemon translates the kernel state to the platform hardware state and keeps them in sync.
 
 ```
 Configured State
@@ -310,12 +310,12 @@ Configured State
 ```
 
 - Admin state:  
-  - *Admin Up* means the kernel has enabled the port with CUE, `ifupdown2`, or temporarily with `ip set line <swp> up`.
+  - *Admin Up* means the kernel has enabled the port with NCLU, NVUE, `ifupdown2`, or temporarily with `ip set line <swp> up`.
   - *Admin Down* means the kernel has disabled the port.
 - Speed:  
   - The configured speed in the kernel.  
   - The maximum speed is set in the `/etc/cumulus/ports.conf` file.
-  - You can lower the speed with CUE or `ifupdown2`.
+  - You can lower the speed with NCLU, NVUE, or `ifupdown2`.
   - If auto-negotiation is enabled, this output displays the negotiated or autodetected speed.
 - MTU: The configured MTU setting in the kernel.
 - Autoneg: The configured auto-negotiation state in the kernel. See {{<link url="#auto-negotiation" text="Auto-negotiation">}} for more information.

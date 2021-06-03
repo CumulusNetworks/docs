@@ -15,7 +15,7 @@ ERSPAN (Encapsulated Remote SPAN) enables the mirrored packets to be sent to a m
 ```
 
 You can configure SPAN and ERSPAN in one of the following ways:
-- With CUE commands
+- With NVUE Commands
 <!--- With NCLU commands-->
 - With ACL rules
 - Manually by editing the `/etc/cumulus/switchd.d/port-mirror.conf` file (for advanced users)
@@ -31,11 +31,11 @@ All three methods are described below.
 - Mirroring to the same interface that is being monitored causes a recursive flood of traffic and might impact traffic on other interfaces.
 {{%/notice%}}
 
-## CUE Configuration
+## NVUE Configuration
 
 NEED COMMAND
 
-<!--## NCLU Configuration
+## NCLU Configuration
 
 - To configure SPAN with NCLU, run the `net add port-mirror session <session-id> (ingress|egress) span src-port <interface> dst-port <interface>` command.
 - To configure ERSPAN with NCLU, run the `net add port-mirror session <session-id> (ingress|egress) erspan src-port <interface> src-ip <interface> dst-ip <ip-address>` command.
@@ -126,7 +126,7 @@ cumulus@switch:~$ net del port-mirror session all
 cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
--->
+
 ## cl-acltool Configuration
 
 You can configure SPAN and ERSPAN with `cl-acltool`, the {{<link url="Netfilter-ACLs" text="same utility used for security ACL configuration">}}. The match criteria for SPAN and ERSPAN is usually an interface; for more granular match terms, use {{<link url="#selective-spanning" text="selective spanning">}}. The SPAN source interface can be a port, a subinterface, or a bond interface. Ingress traffic on interfaces can be matched, and on switches with {{<exlink url="www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="Spectrum ASICs">}}, egress traffic can be matched. See the {{<link url="#limitations-for-span-and-erspan" text="list of limitations">}} below.

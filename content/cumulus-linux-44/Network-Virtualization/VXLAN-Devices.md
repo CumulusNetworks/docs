@@ -23,23 +23,23 @@ The following example configuration:
 - Adds the VXLAN device to the default bridge `br_default`
 
 {{< tabs "TabID24 ">}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
-cumulus@leaf01:~$ cl set bridge domain br_default vlan 10 vni 10
-cumulus@leaf01:~$ cl set bridge domain br_default vlan 20 vni 20
-cumulus@leaf01:~$ cl set nve vxlan source address 10.10.10.1
-cumulus@leaf01:~$ cl set bridge domain br_default vlan 10 vni 10 flooding multicast-group 239.1.1.110
-cumulus@leaf01:~$ cl set bridge domain br_default vlan 20 vni 20 flooding multicast-group 239.1.1.110
-cumulus@leaf04:~$ cl set interface swp1 bridge domain br_default access 10
-cumulus@leaf04:~$ cl set interface swp2 bridge domain br_default access 20
-cumulus@leaf01:~$ cl config apply
+cumulus@leaf01:~$ nv set bridge domain br_default vlan 10 vni 10
+cumulus@leaf01:~$ nv set bridge domain br_default vlan 20 vni 20
+cumulus@leaf01:~$ nv set nve vxlan source address 10.10.10.1
+cumulus@leaf01:~$ nv set bridge domain br_default vlan 10 vni 10 flooding multicast-group 239.1.1.110
+cumulus@leaf01:~$ nv set bridge domain br_default vlan 20 vni 20 flooding multicast-group 239.1.1.110
+cumulus@leaf04:~$ nv set interface swp1 bridge domain br_default access 10
+cumulus@leaf04:~$ nv set interface swp2 bridge domain br_default access 20
+cumulus@leaf01:~$ nv config apply
 ```
 
-The CUE commands create the following configuration snippet in the `/etc/cue.d/startup.yaml` file:
+The NVUE Commands create the following configuration snippet in the `/etc/nvue.d/startup.yaml` file:
 
 ```
-cumulus@spine01:~$ sudo cat /etc/cue.d/startup.yaml
+cumulus@spine01:~$ sudo cat /etc/nvue.d/startup.yaml
 
 ```
 
@@ -74,23 +74,23 @@ The following example configures:
 - VXLAN device (vxlan1), which maps VLAN 30 to VNI 30 and adds the VXLAN device to the bridge `bridge2`
 
 {{< tabs "TabID74 ">}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
-cumulus@leaf01:~$ cl set bridge domain bridge1 vlan 10 vni 10 flooding multicast-group 239.1.1.110
-cumulus@leaf01:~$ cl set bridge domain bridge1 vlan 20 vni 20 flooding multicast-group 239.1.1.110
-cumulus@leaf04:~$ cl set interface swp1 bridge domain bridge1 access 10
-cumulus@leaf04:~$ cl set interface swp2 bridge domain bridge1 access 20
-cumulus@leaf01:~$ cl set bridge domain bridge2 vlan 30 vni 30 flooding multicast-group 239.1.1.112
-cumulus@leaf04:~$ cl set interface swp3 bridge domain bridge2 access 30
-cumulus@leaf01:~$ cl set nve vxlan source address 10.10.10.1
-cumulus@leaf01:~$ cl config apply
+cumulus@leaf01:~$ nv set bridge domain bridge1 vlan 10 vni 10 flooding multicast-group 239.1.1.110
+cumulus@leaf01:~$ nv set bridge domain bridge1 vlan 20 vni 20 flooding multicast-group 239.1.1.110
+cumulus@leaf04:~$ nv set interface swp1 bridge domain bridge1 access 10
+cumulus@leaf04:~$ nv set interface swp2 bridge domain bridge1 access 20
+cumulus@leaf01:~$ nv set bridge domain bridge2 vlan 30 vni 30 flooding multicast-group 239.1.1.112
+cumulus@leaf04:~$ nv set interface swp3 bridge domain bridge2 access 30
+cumulus@leaf01:~$ nv set nve vxlan source address 10.10.10.1
+cumulus@leaf01:~$ nv config apply
 ```
 
-The CUE commands create the following configuration snippet in the `/etc/cue.d/startup.yaml` file:
+The NVUE Commands create the following configuration snippet in the `/etc/nvue.d/startup.yaml` file:
 
 ```
-cumulus@spine01:~$ sudo cat /etc/cue.d/startup.yaml
+cumulus@spine01:~$ sudo cat /etc/nvue.d/startup.yaml
 ```
 
 {{< /tab >}}
@@ -145,19 +145,19 @@ The following example configuration:
 - Adds each VXLAN device (vni10, vni20, and vni30) to the default bridge `br_default`
 
 {{< tabs "TabID84 ">}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
 cumulus@leaf01:~$ NEED COMMAND
-cumulus@leaf01:~$ cl set interface lo ip address 10.10.10.1/32
-cumulus@leaf01:~$ cl set bridge domain br_default vlan 10 vni 10
-cumulus@leaf01:~$ cl set bridge domain br_default vlan 20 vni 20
-cumulus@leaf01:~$ cl set bridge domain br_default vlan 30 vni 30
-cumulus@leaf01:~$ cl set nve vxlan source address 10.10.10.1
-cumulus@leaf04:~$ cl set interface swp1 bridge domain br_default access 10
-cumulus@leaf04:~$ cl set interface swp2 bridge domain br_default access 20
-cumulus@leaf04:~$ cl set interface swp3 bridge domain br_default access 30
-cumulus@leaf01:~$ cl config apply
+cumulus@leaf01:~$ nv set interface lo ip address 10.10.10.1/32
+cumulus@leaf01:~$ nv set bridge domain br_default vlan 10 vni 10
+cumulus@leaf01:~$ nv set bridge domain br_default vlan 20 vni 20
+cumulus@leaf01:~$ nv set bridge domain br_default vlan 30 vni 30
+cumulus@leaf01:~$ nv set nve vxlan source address 10.10.10.1
+cumulus@leaf04:~$ nv set interface swp1 bridge domain br_default access 10
+cumulus@leaf04:~$ nv set interface swp2 bridge domain br_default access 20
+cumulus@leaf04:~$ nv set interface swp3 bridge domain br_default access 30
+cumulus@leaf01:~$ nv config apply
 ```
 
 {{< /tab >}}

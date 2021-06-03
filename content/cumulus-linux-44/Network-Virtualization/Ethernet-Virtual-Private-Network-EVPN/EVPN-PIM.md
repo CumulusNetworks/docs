@@ -36,7 +36,7 @@ cumulus@switch:~$ net add vxlan vxlan10 vxlan mcastgrp 224.0.0.10
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
 cumulus@switch:~$ NEED COMMAND
@@ -416,7 +416,7 @@ cumulus@switch:~$ net pending
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
 cumulus@switch:~$ NEED COMMAND

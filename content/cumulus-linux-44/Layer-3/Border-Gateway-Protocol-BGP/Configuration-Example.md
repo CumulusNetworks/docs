@@ -156,153 +156,153 @@ cumulus@spine02:~$ net commit
 {{< /tabs >}}
 
 {{< /tab >}}
-{{< tab "CUE ">}}
+{{< tab "NVUE ">}}
 
 {{< tabs "TabID38 ">}}
 {{< tab "leaf01 ">}}
 
 ```
-cumulus@leaf01:~$ cl set interface lo ip address 10.10.10.1/32
-cumulus@leaf01:~$ cl set interface bond1 bond member swp1
-cumulus@leaf01:~$ cl set interface bond2 bond member swp2
-cumulus@leaf01:~$ cl set interface bond3 bond member swp3
-cumulus@leaf01:~$ cl set interface bond1 bond mlag id 1
-cumulus@leaf01:~$ cl set interface bond2 bond mlag id 2
-cumulus@leaf01:~$ cl set interface bond3 bond mlag id 3
-cumulus@leaf01:~$ cl set interface bond1-3 bridge domain br_default 
-cumulus@leaf01:~$ cl set interface peerlink bond member swp49-50
-cumulus@leaf01:~$ cl set mlag mac-address 44:38:39:BE:EF:AA
-cumulus@leaf01:~$ cl set mlag backup 10.10.10.2
-cumulus@leaf01:~$ cl set mlag peer-ip linklocal
-cumulus@leaf01:~$ cl set interface vlan10 ip address 10.1.10.2/24
-cumulus@leaf01:~$ cl set interface vlan20 ip address 10.1.20.2/24
-cumulus@leaf01:~$ cl set interface vlan30 ip address 10.1.30.2/24
-cumulus@leaf01:~$ cl set bridge domain br_default vlan 10,20,30
-cumulus@leaf01:~$ cl set bridge domain br_default untagged 1
-cumulus@leaf01:~$ cl set router bgp autonomous-system 65101
-cumulus@leaf01:~$ cl set router bgp router-id 10.10.10.1
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp51 remote-as external
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp52 remote-as external
-cumulus@leaf01:~$ cl set vrf default router bgp address-family ipv4-unicast static-network 10.10.10.1/32
-cumulus@leaf01:~$ cl set vrf default router bgp address-family ipv4-unicast static-network 10.1.10.0/24
-cumulus@leaf01:~$ cl config apply
+cumulus@leaf01:~$ nv set interface lo ip address 10.10.10.1/32
+cumulus@leaf01:~$ nv set interface bond1 bond member swp1
+cumulus@leaf01:~$ nv set interface bond2 bond member swp2
+cumulus@leaf01:~$ nv set interface bond3 bond member swp3
+cumulus@leaf01:~$ nv set interface bond1 bond mlag id 1
+cumulus@leaf01:~$ nv set interface bond2 bond mlag id 2
+cumulus@leaf01:~$ nv set interface bond3 bond mlag id 3
+cumulus@leaf01:~$ nv set interface bond1-3 bridge domain br_default 
+cumulus@leaf01:~$ nv set interface peerlink bond member swp49-50
+cumulus@leaf01:~$ nv set mlag mac-address 44:38:39:BE:EF:AA
+cumulus@leaf01:~$ nv set mlag backup 10.10.10.2
+cumulus@leaf01:~$ nv set mlag peer-ip linklocal
+cumulus@leaf01:~$ nv set interface vlan10 ip address 10.1.10.2/24
+cumulus@leaf01:~$ nv set interface vlan20 ip address 10.1.20.2/24
+cumulus@leaf01:~$ nv set interface vlan30 ip address 10.1.30.2/24
+cumulus@leaf01:~$ nv set bridge domain br_default vlan 10,20,30
+cumulus@leaf01:~$ nv set bridge domain br_default untagged 1
+cumulus@leaf01:~$ nv set router bgp autonomous-system 65101
+cumulus@leaf01:~$ nv set router bgp router-id 10.10.10.1
+cumulus@leaf01:~$ nv set vrf default router bgp peer swp51 remote-as external
+cumulus@leaf01:~$ nv set vrf default router bgp peer swp52 remote-as external
+cumulus@leaf01:~$ nv set vrf default router bgp address-family ipv4-unicast static-network 10.10.10.1/32
+cumulus@leaf01:~$ nv set vrf default router bgp address-family ipv4-unicast static-network 10.1.10.0/24
+cumulus@leaf01:~$ nv config apply
 ```
 
 {{< /tab >}}
 {{< tab "leaf02 ">}}
 
 ```
-cumulus@leaf02:~$ cl set interface lo ip address 10.10.10.2/32
-cumulus@leaf02:~$ cl set interface bond1 bond member swp1
-cumulus@leaf02:~$ cl set interface bond2 bond member swp2
-cumulus@leaf02:~$ cl set interface bond3 bond member swp3
-cumulus@leaf02:~$ cl set interface bond1 bond mlag id 1
-cumulus@leaf02:~$ cl set interface bond2 bond mlag id 2
-cumulus@leaf02:~$ cl set interface bond3 bond mlag id 3
-cumulus@leaf02:~$ cl set interface bond1-3 bridge domain br_default 
-cumulus@leaf02:~$ cl set interface peerlink bond member swp49-50
-cumulus@leaf02:~$ cl set mlag mac-address 44:38:39:BE:EF:AA
-cumulus@leaf02:~$ cl set mlag backup 10.10.10.1
-cumulus@leaf02:~$ cl set mlag peer-ip linklocal
-cumulus@leaf02:~$ cl set interface vlan10 ip address 10.1.10.3/24
-cumulus@leaf02:~$ cl set interface vlan20 ip address 10.1.20.3/24
-cumulus@leaf02:~$ cl set interface vlan30 ip address 10.1.30.3/24
-cumulus@leaf02:~$ cl set bridge domain br_default vlan 10,20,30
-cumulus@leaf02:~$ cl set bridge domain br_default untagged 1
-cumulus@leaf02:~$ cl set router bgp autonomous-system 65102
-cumulus@leaf02:~$ cl set router bgp router-id 10.10.10.2
-cumulus@leaf02:~$ cl set vrf default router bgp peer swp51 remote-as external
-cumulus@leaf02:~$ cl set vrf default router bgp peer swp52 remote-as external
-cumulus@leaf02:~$ cl set vrf default router bgp address-family ipv4-unicast static-network 10.10.10.2/32
-cumulus@leaf02:~$ cl config apply
+cumulus@leaf02:~$ nv set interface lo ip address 10.10.10.2/32
+cumulus@leaf02:~$ nv set interface bond1 bond member swp1
+cumulus@leaf02:~$ nv set interface bond2 bond member swp2
+cumulus@leaf02:~$ nv set interface bond3 bond member swp3
+cumulus@leaf02:~$ nv set interface bond1 bond mlag id 1
+cumulus@leaf02:~$ nv set interface bond2 bond mlag id 2
+cumulus@leaf02:~$ nv set interface bond3 bond mlag id 3
+cumulus@leaf02:~$ nv set interface bond1-3 bridge domain br_default 
+cumulus@leaf02:~$ nv set interface peerlink bond member swp49-50
+cumulus@leaf02:~$ nv set mlag mac-address 44:38:39:BE:EF:AA
+cumulus@leaf02:~$ nv set mlag backup 10.10.10.1
+cumulus@leaf02:~$ nv set mlag peer-ip linklocal
+cumulus@leaf02:~$ nv set interface vlan10 ip address 10.1.10.3/24
+cumulus@leaf02:~$ nv set interface vlan20 ip address 10.1.20.3/24
+cumulus@leaf02:~$ nv set interface vlan30 ip address 10.1.30.3/24
+cumulus@leaf02:~$ nv set bridge domain br_default vlan 10,20,30
+cumulus@leaf02:~$ nv set bridge domain br_default untagged 1
+cumulus@leaf02:~$ nv set router bgp autonomous-system 65102
+cumulus@leaf02:~$ nv set router bgp router-id 10.10.10.2
+cumulus@leaf02:~$ nv set vrf default router bgp peer swp51 remote-as external
+cumulus@leaf02:~$ nv set vrf default router bgp peer swp52 remote-as external
+cumulus@leaf02:~$ nv set vrf default router bgp address-family ipv4-unicast static-network 10.10.10.2/32
+cumulus@leaf02:~$ nv config apply
 ```
 
 {{< /tab >}}
 {{< tab "leaf03 ">}}
 
 ```
-cumulus@leaf03:~$ cl set interface lo ip address 10.10.10.3/32
-cumulus@leaf03:~$ cl set interface bond1 bond member swp1
-cumulus@leaf03:~$ cl set interface bond2 bond member swp2
-cumulus@leaf03:~$ cl set interface bond3 bond member swp3
-cumulus@leaf03:~$ cl set interface bond1 bond mlag id 1
-cumulus@leaf03:~$ cl set interface bond2 bond mlag id 2
-cumulus@leaf03:~$ cl set interface bond3 bond mlag id 3
-cumulus@leaf03:~$ cl set interface bond1-3 bridge domain br_default 
-cumulus@leaf03:~$ cl set interface peerlink bond member swp49-50
-cumulus@leaf03:~$ cl set mlag mac-address 44:38:39:BE:EF:AA
-cumulus@leaf03:~$ cl set mlag backup 10.10.10.4
-cumulus@leaf03:~$ cl set mlag peer-ip linklocal
-cumulus@leaf03:~$ cl set interface vlan40 ip address 10.1.40.4/24
-cumulus@leaf03:~$ cl set interface vlan50 ip address 10.1.50.4/24
-cumulus@leaf03:~$ cl set interface vlan60 ip address 10.1.60.4/24
-cumulus@leaf03:~$ cl set bridge domain br_default vlan 40,50,60
-cumulus@leaf03:~$ cl set bridge domain br_default untagged 1
-cumulus@leaf03:~$ cl set router bgp autonomous-system 65103
-cumulus@leaf03:~$ cl set router bgp router-id 10.10.10.3
-cumulus@leaf03:~$ cl set vrf default router bgp peer swp51 remote-as external
-cumulus@leaf03:~$ cl set vrf default router bgp peer swp52 remote-as external
-cumulus@leaf03:~$ cl set vrf default router bgp address-family ipv4-unicast static-network 10.10.10.3/32
-cumulus@leaf03:~$ cl config apply
+cumulus@leaf03:~$ nv set interface lo ip address 10.10.10.3/32
+cumulus@leaf03:~$ nv set interface bond1 bond member swp1
+cumulus@leaf03:~$ nv set interface bond2 bond member swp2
+cumulus@leaf03:~$ nv set interface bond3 bond member swp3
+cumulus@leaf03:~$ nv set interface bond1 bond mlag id 1
+cumulus@leaf03:~$ nv set interface bond2 bond mlag id 2
+cumulus@leaf03:~$ nv set interface bond3 bond mlag id 3
+cumulus@leaf03:~$ nv set interface bond1-3 bridge domain br_default 
+cumulus@leaf03:~$ nv set interface peerlink bond member swp49-50
+cumulus@leaf03:~$ nv set mlag mac-address 44:38:39:BE:EF:AA
+cumulus@leaf03:~$ nv set mlag backup 10.10.10.4
+cumulus@leaf03:~$ nv set mlag peer-ip linklocal
+cumulus@leaf03:~$ nv set interface vlan40 ip address 10.1.40.4/24
+cumulus@leaf03:~$ nv set interface vlan50 ip address 10.1.50.4/24
+cumulus@leaf03:~$ nv set interface vlan60 ip address 10.1.60.4/24
+cumulus@leaf03:~$ nv set bridge domain br_default vlan 40,50,60
+cumulus@leaf03:~$ nv set bridge domain br_default untagged 1
+cumulus@leaf03:~$ nv set router bgp autonomous-system 65103
+cumulus@leaf03:~$ nv set router bgp router-id 10.10.10.3
+cumulus@leaf03:~$ nv set vrf default router bgp peer swp51 remote-as external
+cumulus@leaf03:~$ nv set vrf default router bgp peer swp52 remote-as external
+cumulus@leaf03:~$ nv set vrf default router bgp address-family ipv4-unicast static-network 10.10.10.3/32
+cumulus@leaf03:~$ nv config apply
 ```
 
 {{< /tab >}}
 {{< tab "leaf04 ">}}
 
 ```
-cumulus@leaf04:~$ cl set interface lo ip address 10.10.10.4/32
-cumulus@leaf04:~$ cl set interface bond1 bond member swp1
-cumulus@leaf04:~$ cl set interface bond2 bond member swp2
-cumulus@leaf04:~$ cl set interface bond3 bond member swp3
-cumulus@leaf04:~$ cl set interface bond1 bond mlag id 1
-cumulus@leaf04:~$ cl set interface bond2 bond mlag id 2
-cumulus@leaf04:~$ cl set interface bond3 bond mlag id 3
-cumulus@leaf04:~$ cl set interface bond1-3 bridge domain br_default 
-cumulus@leaf04:~$ cl set interface peerlink bond member swp49-50
-cumulus@leaf04:~$ cl set mlag mac-address 44:38:39:BE:EF:AA
-cumulus@leaf04:~$ cl set mlag backup 10.10.10.3
-cumulus@leaf04:~$ cl set mlag peer-ip linklocal
-cumulus@leaf04:~$ cl set interface vlan40 ip address 10.1.40.5/24
-cumulus@leaf04:~$ cl set interface vlan50 ip address 10.1.50.5/24
-cumulus@leaf04:~$ cl set interface vlan60 ip address 10.1.60.5/24
-cumulus@leaf04:~$ cl set bridge domain br_default vlan 40,50,60
-cumulus@leaf04:~$ cl set bridge domain br_default untagged 1
-cumulus@leaf04:~$ cl set router bgp autonomous-system 65104
-cumulus@leaf04:~$ cl set router bgp router-id 10.10.10.4
-cumulus@leaf04:~$ cl set vrf default router bgp peer swp51 remote-as external
-cumulus@leaf04:~$ cl set vrf default router bgp peer swp52 remote-as external
-cumulus@leaf04:~$ cl set vrf default router bgp address-family ipv4-unicast static-network 10.10.10.4/32
-cumulus@leaf04:~$ cl config apply
+cumulus@leaf04:~$ nv set interface lo ip address 10.10.10.4/32
+cumulus@leaf04:~$ nv set interface bond1 bond member swp1
+cumulus@leaf04:~$ nv set interface bond2 bond member swp2
+cumulus@leaf04:~$ nv set interface bond3 bond member swp3
+cumulus@leaf04:~$ nv set interface bond1 bond mlag id 1
+cumulus@leaf04:~$ nv set interface bond2 bond mlag id 2
+cumulus@leaf04:~$ nv set interface bond3 bond mlag id 3
+cumulus@leaf04:~$ nv set interface bond1-3 bridge domain br_default 
+cumulus@leaf04:~$ nv set interface peerlink bond member swp49-50
+cumulus@leaf04:~$ nv set mlag mac-address 44:38:39:BE:EF:AA
+cumulus@leaf04:~$ nv set mlag backup 10.10.10.3
+cumulus@leaf04:~$ nv set mlag peer-ip linklocal
+cumulus@leaf04:~$ nv set interface vlan40 ip address 10.1.40.5/24
+cumulus@leaf04:~$ nv set interface vlan50 ip address 10.1.50.5/24
+cumulus@leaf04:~$ nv set interface vlan60 ip address 10.1.60.5/24
+cumulus@leaf04:~$ nv set bridge domain br_default vlan 40,50,60
+cumulus@leaf04:~$ nv set bridge domain br_default untagged 1
+cumulus@leaf04:~$ nv set router bgp autonomous-system 65104
+cumulus@leaf04:~$ nv set router bgp router-id 10.10.10.4
+cumulus@leaf04:~$ nv set vrf default router bgp peer swp51 remote-as external
+cumulus@leaf04:~$ nv set vrf default router bgp peer swp52 remote-as external
+cumulus@leaf04:~$ nv set vrf default router bgp address-family ipv4-unicast static-network 10.10.10.4/32
+cumulus@leaf04:~$ nv config apply
 ```
 
 {{< /tab >}}
 {{< tab "spine01 ">}}
 
 ```
-cumulus@spine01:~$ cl set interface lo ip address 10.10.10.101/32
-cumulus@spine01:~$ cl set router bgp autonomous-system 65199
-cumulus@spine01:~$ cl set router bgp router-id 10.10.10.101
-cumulus@spine01:~$ cl set vrf default router bgp peer swp1 remote-as external
-cumulus@spine01:~$ cl set vrf default router bgp peer swp2 remote-as external
-cumulus@spine01:~$ cl set vrf default router bgp peer swp3 remote-as external
-cumulus@spine01:~$ cl set vrf default router bgp peer swp4 remote-as external
-cumulus@spine01:~$ cl set vrf default router bgp address-family ipv4-unicast static-network 10.10.10.101/32
-cumulus@spine01:~$ cl config apply
+cumulus@spine01:~$ nv set interface lo ip address 10.10.10.101/32
+cumulus@spine01:~$ nv set router bgp autonomous-system 65199
+cumulus@spine01:~$ nv set router bgp router-id 10.10.10.101
+cumulus@spine01:~$ nv set vrf default router bgp peer swp1 remote-as external
+cumulus@spine01:~$ nv set vrf default router bgp peer swp2 remote-as external
+cumulus@spine01:~$ nv set vrf default router bgp peer swp3 remote-as external
+cumulus@spine01:~$ nv set vrf default router bgp peer swp4 remote-as external
+cumulus@spine01:~$ nv set vrf default router bgp address-family ipv4-unicast static-network 10.10.10.101/32
+cumulus@spine01:~$ nv config apply
 ```
 
 {{< /tab >}}
 {{< tab "spine02 ">}}
 
 ```
-cumulus@spine02:~$ cl set interface lo ip address 10.10.10.102/32
-cumulus@spine02:~$ cl set router bgp autonomous-system 65199
-cumulus@spine02:~$ cl set router bgp router-id 10.10.10.102
-cumulus@spine02:~$ cl set vrf default router bgp peer swp1 remote-as external
-cumulus@spine02:~$ cl set vrf default router bgp peer swp2 remote-as external
-cumulus@spine02:~$ cl set vrf default router bgp peer swp3 remote-as external
-cumulus@spine02:~$ cl set vrf default router bgp peer swp4 remote-as external
-cumulus@spine02:~$ cl set vrf default router bgp address-family ipv4-unicast static-network 10.10.10.102/32
-cumulus@spine02:~$ cl config apply
+cumulus@spine02:~$ nv set interface lo ip address 10.10.10.102/32
+cumulus@spine02:~$ nv set router bgp autonomous-system 65199
+cumulus@spine02:~$ nv set router bgp router-id 10.10.10.102
+cumulus@spine02:~$ nv set vrf default router bgp peer swp1 remote-as external
+cumulus@spine02:~$ nv set vrf default router bgp peer swp2 remote-as external
+cumulus@spine02:~$ nv set vrf default router bgp peer swp3 remote-as external
+cumulus@spine02:~$ nv set vrf default router bgp peer swp4 remote-as external
+cumulus@spine02:~$ nv set vrf default router bgp address-family ipv4-unicast static-network 10.10.10.102/32
+cumulus@spine02:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -311,15 +311,15 @@ cumulus@spine02:~$ cl config apply
 {{< /tab >}}
 {{< /tabs >}}
 
-## /etc/cue.d/startup.yaml
+## /etc/nvue.d/startup.yaml
 
-The CUE `cl config save` command saves the configuration in the `/etc/cue.d/startup.yaml` file. For example:
+The NVUE `nv config save` command saves the configuration in the `/etc/nvue.d/startup.yaml` file. For example:
 
 {{< tabs "TabID169 ">}}
 {{< tab "leaf01 ">}}
 
 ```
-cumulus@leaf01:mgmt:~$ sudo cat /etc/cue.d/startup.yaml 
+cumulus@leaf01:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml 
 - set:
     interface:
       lo:
@@ -427,7 +427,7 @@ cumulus@leaf01:mgmt:~$ sudo cat /etc/cue.d/startup.yaml
 {{< tab "leaf02 ">}}
 
 ```
-cumulus@leaf02:mgmt:~$ sudo cat /etc/cue.d/startup.yaml
+cumulus@leaf02:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
 - set:
     interface:
       lo:
@@ -534,7 +534,7 @@ cumulus@leaf02:mgmt:~$ sudo cat /etc/cue.d/startup.yaml
 {{< tab "leaf03 ">}}
 
 ```
-cumulus@leaf03:mgmt:~$ sudo cat /etc/cue.d/startup.yaml 
+cumulus@leaf03:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml 
 - set:
     interface:
       lo:
@@ -641,7 +641,7 @@ cumulus@leaf03:mgmt:~$ sudo cat /etc/cue.d/startup.yaml
 {{< tab "leaf04 ">}}
 
 ```
-cumulus@leaf04:mgmt:~$ sudo cat /etc/cue.d/startup.yaml 
+cumulus@leaf04:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml 
 - set:
     interface:
       lo:
@@ -748,7 +748,7 @@ cumulus@leaf04:mgmt:~$ sudo cat /etc/cue.d/startup.yaml
 {{< tab "spine01 ">}}
 
 ```
-cumulus@spine01:mgmt:~$ sudo cat /etc/cue.d/startup.yaml 
+cumulus@spine01:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml 
 - set:
     interface:
       lo:
@@ -790,7 +790,7 @@ cumulus@spine01:mgmt:~$ sudo cat /etc/cue.d/startup.yaml
 {{< tab "spine02 ">}}
 
 ```
-cumulus@spine02:mgmt:~$ sudo cat /etc/cue.d/startup.yaml 
+cumulus@spine02:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml 
 - set:
     interface:
       lo:

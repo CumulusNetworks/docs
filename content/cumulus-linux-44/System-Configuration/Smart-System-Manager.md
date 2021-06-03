@@ -33,10 +33,10 @@ cumulus@switch:~$ net system maintenance restart cold
 ```
 
 {{< /tab >}}
-{{< tab "CUE Command ">}}
+{{< tab "NVUE Command ">}}
 
 ```
-cumulus@switch:~$ cl set NEED COMMAND
+cumulus@switch:~$ nv set NEED COMMAND
 ```
 
 {{< /tab >}}
@@ -59,10 +59,10 @@ cumulus@switch:~$ net system maintenance restart fast
 ```
 
 {{< /tab >}}
-{{< tab "CUE Command ">}}
+{{< tab "NVUE Command ">}}
 
 ```
-cumulus@switch:~$ cl set NEED COMMAND
+cumulus@switch:~$ nv set NEED COMMAND
 ```
 
 {{< /tab >}}
@@ -93,10 +93,10 @@ cumulus@switch:~$ net system maintenance upgrade all
 ```
 
 {{< /tab >}}
-{{< tab "CUE Command ">}}
+{{< tab "NVUE Command ">}}
 
 ```
-cumulus@switch:~$ cl set NEED COMMAND
+cumulus@switch:~$ nv set NEED COMMAND
 ```
 
 {{< /tab >}}
@@ -119,10 +119,10 @@ cumulus@switch:~$ net system maintenance upgrade dry-run
 ```
 
 {{< /tab >}}
-{{< tab "CUE Command ">}}
+{{< tab "NVUE Command ">}}
 
 ```
-cumulus@switch:~$ cl set NEED COMMAND
+cumulus@switch:~$ nv set NEED COMMAND
 ```
 
 {{< /tab >}}
@@ -155,10 +155,10 @@ cumulus@switch:~$ net system maintenance mode enable
 ```
 
 {{< /tab >}}
-{{< tab "CUE Command ">}}
+{{< tab "NVUE Command ">}}
 
 ```
-cumulus@switch:~$ cl set NEED COMMAND
+cumulus@switch:~$ nv set NEED COMMAND
 ```
 
 {{< /tab >}}
@@ -182,10 +182,10 @@ cumulus@switch:~$ net system maintenance ports up
 ```
 
 {{< /tab >}}
-{{< tab "CUE Command ">}}
+{{< tab "NVUE Command ">}}
 
 ```
-cumulus@switch:~$ cl set NEED COMMAND
+cumulus@switch:~$ nv set NEED COMMAND
 ```
 
 {{< /tab >}}
@@ -215,10 +215,10 @@ cumulus@switch:~$ net system maintenance mode disable
 ```
 
 {{< /tab >}}
-{{< tab "CUE Command ">}}
+{{< tab "NVUE Command ">}}
 
 ```
-cumulus@switch:~$ cl set NEED COMMAND
+cumulus@switch:~$ nv set NEED COMMAND
 ```
 
 {{< /tab >}}

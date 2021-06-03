@@ -42,7 +42,7 @@ You may need to install the `snmptrapd` Debian package before you can configure 
 The following configuration defines the trap receiver IP address where SNMPv1 and SNMPv2c traps are sent. For SNMP versions 1 and 2c, you must set at least one SNMP trap destination IP address; multiple destinations can exist. Removing all settings disables SNMP traps. The default version is 2c, unless otherwise configured. You must include a VRF name with the IP address to force traps to be sent in a non-default VRF table.
 
 {{< tabs "trap-destination" >}}
-{{< tab "CUE Commands" >}}
+{{< tab "NVUE Commands" >}}
 
 ```
 cumulus@switch:~$ NEED COMMAND
@@ -100,7 +100,7 @@ cumulus@switch:~$ sudo systemctl restart snmpd.service
 The SNMP trap receiving daemon must have usernames, authentication passwords, and encryption passwords created with its own EngineID. You must configure this trap server EngineID in the switch `snmpd` daemon sending the trap and inform messages. You specify the level of authentication and encryption for SNMPv3 trap and inform messages with `-l` (`NoauthNoPriv, authNoPriv,` or `authPriv`).
 
 {{< tabs "traps-informs" >}}
-{{< tab "CUE Commands" >}}
+{{< tab "NVUE Commands" >}}
 
 ```
 cumulus@switch:~$ NEED COMMAND
@@ -246,7 +246,7 @@ The default frequency for checking link up/down is 60 seconds. You can change th
 {{%/notice%}}
 
 {{< tabs "traps-linkupdown" >}}
-{{< tab "CUE Commands" >}}
+{{< tab "NVUE Commands" >}}
 
 ```
 cumulus@switch:~$ NEED COMMAND
@@ -321,7 +321,7 @@ cumulus@switch:~$ sudo systemctl restart snmpd.service
 To enable a trap when the CPU load average exceeds a configured threshold, run the following commands. You can only use integers or floating point numbers.
 
 {{< tabs "traps-cpuload" >}}
-{{< tab "CUE Commands" >}}
+{{< tab "NVUE Commands" >}}
 
 ```
 cumulus@switch:~$ NEED COMMAND
@@ -382,7 +382,7 @@ cumulus@switch:~$ sudo systemctl restart snmpd.service
 To enable SNMP trap notifications to be sent for every SNMP authentication failure, run the following commands.
 
 {{< tabs "traps-authfailurre" >}}
-{{< tab "CUE Commands" >}}
+{{< tab "NVUE Commands" >}}
 
 ```
 cumulus@switch:~$ NEED COMMAND

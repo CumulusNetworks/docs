@@ -9,7 +9,7 @@ NVIDIA Air has full support to launching custom topologies. This feature augment
 
 To access the custom topologies, go to the link https://air.nvidia.com/build
 
-## Building a Custom Topology
+## Custom Topology Landing Page
 
 The custom topology landing page is a blank canvas that can be used to design any network.
 
@@ -68,3 +68,9 @@ To connect two nodes together, use your mouse to click and drag the two ports th
 To export a custom topology, click on the `Export` button referenced in {{<link text="Canvas Overview" title="### Canvas Overview" >}}. This lets you report the topology on the canvas as a GraphViz format.
 
 {{<img src="/images/guides/nvidia-air/CustomTopology_Export.png" >}}
+
+### Building a Custom Topology
+
+To build a custom topology, reach out to your local NVIDIA Solutions Architect as they can take the exported topology.dot file and get it loaded into Air. If you don't know who you're local Solutions Architect is, contact NVIDIA Air Support.com for assistance by clicking `Report an issue`.
+
+{{<img src="/images/guides/nvidia-air/ReportAnIssue.png" >}}

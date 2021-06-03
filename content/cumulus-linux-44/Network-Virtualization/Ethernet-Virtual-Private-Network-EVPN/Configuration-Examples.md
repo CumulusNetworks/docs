@@ -1350,13 +1350,13 @@ iface vni20
 ```
 
 {{< /tab >}}
-{{< tab "spine03 ">}}
+{{< /tabs >}}
 
 {{< /tab >}}
 {{< tab "/etc/frr/frr.conf ">}}
 
-{{< /tab >}}
-{{< tab "spine04 ">}}
+{{< tabs "TabID2310 ">}}
+{{< tab "leaf01 ">}}
 
 ```
 cumulus@leaf01:~$ sudo cat /etc/frr/frr.conf
@@ -1375,11 +1375,12 @@ router bgp 65101
  exit-address-family
  address-family l2vpn evpn
   neighbor underlay activate
+  advertise-all-vni
  exit-address-family
 ```
 
 {{< /tab >}}
-{{< tab "border01 ">}}
+{{< tab "leaf02 ">}}
 
 ```
 cumulus@leaf02:~$ sudo cat /etc/frr/frr.conf
@@ -1403,7 +1404,7 @@ router bgp 65102
 ```
 
 {{< /tab >}}
-{{< tab "border02 ">}}
+{{< tab "leaf03 ">}}
 
 ```
 cumulus@leaf03:~$ sudo cat /etc/frr/frr.conf
@@ -1602,7 +1603,6 @@ router bgp 65164
 
 {{< /tab >}}
 {{< /tabs >}}
-
 
 {{< tabs "TabID480 ">}}
 {{< tab "NVUE Commands">}}
@@ -2761,7 +2761,9 @@ cumulus@spine04:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
           address:
             10.10.10.104/32: {}
         type: loopback
-      swp3:
+      swp1:
+        type: swp
+      swp2:
         type: swp
       swp3:
         type: swp
@@ -4220,9 +4222,6 @@ auto swp3
 iface swp3
     alias bond member of bond1
 
-auto swp3
-iface swp3
-
 auto swp49
 iface swp49
     alias peerlink
@@ -4859,7 +4858,7 @@ cumulus@leaf03:~$ nv config apply
 ```
 
 {{< /tab >}}
-{{< tab "border02 ">}}
+{{< tab "leaf04 ">}}
 
 ```
 cumulus@leaf04:~$ nv set interface lo ip address 10.10.10.4/32

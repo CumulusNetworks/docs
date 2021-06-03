@@ -501,7 +501,7 @@ cumulus@switch:~$ nv set interface swp1 link fec off
 cumulus@switch:~$ nv config apply
 ```
 
-To configure FEC to the default value, run the `cl unset interface swp1 link fec` command.
+To configure FEC to the default value, run the `nv unset interface swp1 link fec` command.
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
@@ -743,13 +743,13 @@ To remove a breakout port:
 {{< /tab >}}
 {{< tab "NVUE Commands ">}}
 
-Run the `cl unset interface <interface>` command. For example:
+Run the `nv unset interface <interface>` command. For example:
 
     ```
-    cumulus@switch:~$ cl unset interface swp1s0
-    cumulus@switch:~$ cl unset interface swp1s1
-    cumulus@switch:~$ cl unset interface swp1s2
-    cumulus@switch:~$ cl unset interface swp1s3
+    cumulus@switch:~$ nv unset interface swp1s0
+    cumulus@switch:~$ nv unset interface swp1s1
+    cumulus@switch:~$ nv unset interface swp1s2
+    cumulus@switch:~$ nv unset interface swp1s3
     cumulus@switch:~$ nv config apply
     ```
 

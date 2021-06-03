@@ -121,11 +121,11 @@ cumulus@leaf01:~$ nv set vrf default router ospf passive-interface swp2
 cumulus@leaf01:~$ nv config apply
 ```
 
-You can use the `nv set vrf default router ospf passive-interface default` command to set all interfaces as *passive* and the `cl unset vrf default router ospf passive-interface <interface>` command to selectively bring up protocol adjacency only on certain interfaces:
+You can use the `nv set vrf default router ospf passive-interface default` command to set all interfaces as *passive* and the `nv unset vrf default router ospf passive-interface <interface>` command to selectively bring up protocol adjacency only on certain interfaces:
 
 ```
 cumulus@leaf01:~$ nv set vrf default router ospf passive-interface default
-cumulus@leaf01:~$ cl unset vrf default router ospf passive-interface swp51
+cumulus@leaf01:~$ nv unset vrf default router ospf passive-interface swp51
 ```
 
 {{< /tab >}}
@@ -140,11 +140,11 @@ cumulus@spine01:~$ nv set vrf default router ospf area 0 network 10.0.1.1/31
 cumulus@spine01:~$ nv config apply
 ```
 
-You can use the `nv set vrf default router ospf passive-interface default` command to set all interfaces as *passive* and the `cl unset vrf default router ospf passive-interface <interface>` command to selectively bring up protocol adjacency only on certain interfaces:
+You can use the `nv set vrf default router ospf passive-interface default` command to set all interfaces as *passive* and the `nv unset vrf default router ospf passive-interface <interface>` command to selectively bring up protocol adjacency only on certain interfaces:
 
 ```
 cumulus@spine01:~$ nv set vrf default router ospf passive-interface default
-cumulus@spine01:~$ cl unset vrf default router ospf passive-interface swp1
+cumulus@spine01:~$ nv unset vrf default router ospf passive-interface swp1
 ```
 
 {{< /tab >}}
@@ -437,11 +437,11 @@ cumulus@leaf01:~$ net pending
 cumulus@leaf01:~$ net commit
 ```
 
-You can use the `nv set vrf default router ospf passive-interface default` command to set all interfaces as *passive* and the `cl unset vrf default router ospf passive-interface <interface>` command to selectively bring up protocol adjacency only on certain interfaces:
+You can use the `nv set vrf default router ospf passive-interface default` command to set all interfaces as *passive* and the `nv unset vrf default router ospf passive-interface <interface>` command to selectively bring up protocol adjacency only on certain interfaces:
 
 ```
 cumulus@leaf01:~$ nv set vrf default router ospf passive-interface default
-cumulus@leaf01:~$ cl unset vrf default router ospf passive-interface swp51
+cumulus@leaf01:~$ nv unset vrf default router ospf passive-interface swp51
 ```
 
 {{< /tab >}}
@@ -465,11 +465,11 @@ cumulus@spine01:~$ NEED COMMAND
 cumulus@spine01:~$ nv config apply
 ```
 
-You can use the `nv set vrf default router ospf passive-interface default` command to set all interfaces as *passive* and the `cl unset vrf default router ospf passive-interface <interface>` command to selectively bring up protocol adjacency only on certain interfaces:
+You can use the `nv set vrf default router ospf passive-interface default` command to set all interfaces as *passive* and the `nv unset vrf default router ospf passive-interface <interface>` command to selectively bring up protocol adjacency only on certain interfaces:
 
 ```
 cumulus@spine01:~$ nv set vrf default router ospf passive-interface default
-cumulus@spine01:~$ cl unset vrf default router ospf passive-interface swp1
+cumulus@spine01:~$ nv unset vrf default router ospf passive-interface swp1
 ```
 
 {{< /tab >}}

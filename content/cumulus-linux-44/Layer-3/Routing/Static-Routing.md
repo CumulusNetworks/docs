@@ -178,7 +178,7 @@ When you use NCLU commands to delete routing configuration such as static routes
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@leaf01:~$ cl unset vrf default router static 10.10.10.101/32 via 10.0.1.0
+cumulus@leaf01:~$ nv unset vrf default router static 10.10.10.101/32 via 10.0.1.0
 cumulus@leaf01:~$ nv config apply
 ```
 

@@ -347,7 +347,7 @@ cumulus@switch:~$ nv set router policy route-map BLUEtoRED rule 10 match source-
 cumulus@switch:~$ nv set router policy route-map BLUEtoRED rule 10 action permit
 cumulus@switch:~$ nv set router policy route-map BLUEtoRED rule 10 set community 11:11
 cumulus@switch:~$ nv set vrf RED router bgp address-family ipv4-unicast route-import from-vrf route-map BLUEtoRED
-cumulus@switch:~$ cl config
+cumulus@switch:~$ nv config
 ```
 
 {{< /tab >}}
@@ -435,7 +435,7 @@ cumulus@switch:~$ net commit
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ cl unset vrf RED router bgp address-family ipv4-unicast route-import from-vrf list BLUE
+cumulus@switch:~$ nv unset vrf RED router bgp address-family ipv4-unicast route-import from-vrf list BLUE
 cumulus@switch:~$ nv config apply
 ```
 

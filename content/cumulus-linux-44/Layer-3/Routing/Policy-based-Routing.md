@@ -343,9 +343,9 @@ cumulus@switch:~$ nv set router pbr map pbr-policy rule 4 action nexthop-group g
 To change the source IP match from 10.1.4.**1**/24 to 10.1.4.**2**/24, you must delete the existing sequence by explicitly specifying the match/set condition. For example:
 
 ```
-cumulus@switch:~$ cl unset router pbr map pbr-policy rule 4 match source-ip
-cumulus@switch:~$ cl unset router pbr map pbr-policy rule 4 match destination-ip
-cumulus@switch:~$ cl unset router pbr nexthop-group group1 via 192.168.0.21
+cumulus@switch:~$ nv unset router pbr map pbr-policy rule 4 match source-ip
+cumulus@switch:~$ nv unset router pbr map pbr-policy rule 4 match destination-ip
+cumulus@switch:~$ nv unset router pbr nexthop-group group1 via 192.168.0.21
 ```
 
 Add the new rule with the following commands:
@@ -438,8 +438,8 @@ cumulus@switch:~$ nv set router pbr nexthop-group group1 via 192.168.0.21
 To add a destination IP match to the rule, you must delete the existing rule sequence:
 
 ```
-cumulus@switch:~$ cl unset router pbr map pbr-policy rule 3 match source-ip
-cumulus@switch:~$ cl unset router pbr nexthop-group group1 via 192.168.0.21
+cumulus@switch:~$ nv router pbr map pbr-policy rule 3 match source-ip
+cumulus@switch:~$ nv unset router pbr nexthop-group group1 via 192.168.0.21
 cumulus@switch:~$ nv config apply
 ```
 
@@ -538,35 +538,35 @@ cumulus@switch:~$ net commit
 The following examples show how to delete a PBR rule match:
 
 ```
-cumulus@switch:~$ cl unset router pbr map map1 rule 1 match destination-ip
+cumulus@switch:~$ nv unset router pbr map map1 rule 1 match destination-ip
 cumulus@switch:~$ nv config apply
 ```
 
 The following examples show how to delete a next hop from a group:
 
 ```
-cumulus@switch:~$ cl unset router pbr nexthop-group group1 via 192.168.0.22
+cumulus@switch:~$ nv unset router pbr nexthop-group group1 via 192.168.0.22
 cumulus@switch:~$ nv config apply
 ```
 
 The following examples show how to delete a next hop group:
 
 ```
-cumulus@switch:~$ cl unset router pbr nexthop-group group1
+cumulus@switch:~$ nv unset router pbr nexthop-group group1
 cumulus@switch:~$ nv config apply
 ```
 
 The following examples show how to delete a PBR policy so that the PBR interface is no longer receiving PBR traffic:
 
 ```
-cumulus@switch:~$ cl unset interface swp51 router pbr map map1
+cumulus@switch:~$ nv unset interface swp51 router pbr map map1
 cumulus@switch:~$ nv config apply
 ```
 
 The following examples show how to delete a PBR rule:
 
 ```
-cumulus@switch:~$ cl unset router pbr map map1
+cumulus@switch:~$ nv unset router pbr map map1
 cumulus@switch:~$ nv config apply
 ```
 
@@ -691,9 +691,9 @@ cumulus@switch:~$ nv set router pbr nexthop-group group1 via 192.168.0.21
 To remove the destination IP match, you must first delete all existing conditions defined under this sequence:
 
 ```
-cumulus@switch:~$ cl unset router pbr map pbr-policy rule 6 match source-ip 
-cumulus@switch:~$ cl unset router pbr map pbr-policy rule 6 match destination-ip
-cumulus@switch:~$ cl unset router pbr nexthop-group group1 via 192.168.0.21
+cumulus@switch:~$ nv unset router pbr map pbr-policy rule 6 match source-ip 
+cumulus@switch:~$ nv unset router pbr map pbr-policy rule 6 match destination-ip
+cumulus@switch:~$ nv unset router pbr nexthop-group group1 via 192.168.0.21
 cumulus@switch:~$ nv config apply
 ```
 
@@ -701,7 +701,7 @@ Then, add back the conditions you want to keep:
 
 ```
 cumulus@switch:~$ nv set router pbr map pbr-policy rule 6 match source-ip 10.1.4.1/24
-cumulus@switch:~$ cl unset router pbr nexthop-group group1 via 192.168.0.21
+cumulus@switch:~$ nv unset router pbr nexthop-group group1 via 192.168.0.21
 cumulus@switch:~$ nv config apply
 ```
 
@@ -800,7 +800,7 @@ cumulus@leaf01:~$ nv set router pbr map map1 rule 1 match source-ip 0.0.0.0/0
 cumulus@leaf01:~$ nv set router pbr nexthop-group group1 via 192.168.0.32
 cumulus@leaf01:~$ nv set router pbr map map1 rule 1 action nexthop-group group1
 cumulus@leaf01:~$ nv set interface swp51 router pbr map map1
-cumulus@leaf01:~$ cl config
+cumulus@leaf01:~$ nv config
 ```
 
 {{< /tab >}}

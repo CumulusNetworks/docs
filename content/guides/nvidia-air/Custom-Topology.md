@@ -62,3 +62,9 @@ Once a node has been added, it can be edited for function.
 To connect two nodes together, use your mouse to click and drag the two ports that should be connected. This willd raw a line between the two ports.
 
 {{<img src="/images/guides/nvidia-air/CustomTopology_Link.png" >}}
+
+## Exporting a Custom Topology
+
+To export a custom topology, click on the `Export` button referenced in {{<link text="Canvas Overview" title="### Canvas Overview" >}}. This lets you report the topology on the canvas as a GraphViz format.
+
+{{<img src="/images/guides/nvidia-air/CustomTopology_Export.png" >}}

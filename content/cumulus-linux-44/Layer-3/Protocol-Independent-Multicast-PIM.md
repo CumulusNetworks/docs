@@ -99,7 +99,7 @@ To configure PIM, run the following commands:
    ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
 cumulus@switch:~$ NEED COMMAND
@@ -350,7 +350,7 @@ To configure PIM active-active with MLAG, run the following commands:
    ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
 cumulus@switch:~$ NEED COMMAND
@@ -480,7 +480,7 @@ PIM: ip prefix-list my-custom-ssm-range: 1 entries
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
 cumulus@switch:~$ NEED COMMAND
@@ -549,7 +549,7 @@ The rebalance command might cause some packet loss.
 {{%/notice%}}
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
 cumulus@switch:~$ NEED COMMAND
@@ -623,7 +623,7 @@ cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
 cumulus@switch:~$ NEED COMMAND
@@ -711,7 +711,7 @@ The following steps demonstrate how to configure a Cumulus switch to use the MSD
    ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
 cumulus@rp01:~$ NEED COMMAND
@@ -821,7 +821,7 @@ cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
 cumulus@switch:~$ NEED COMMAND
@@ -907,7 +907,7 @@ cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
 cumulus@switch:~$ NEED COMMAND
@@ -940,20 +940,20 @@ In some configurations, it is desirable to configure the LHR with an RP address 
 To can configure the switch to allow joins from all upstream neighbors or to provide a prefix list so that only joins with an upstream neighbor address in the list are accepted unconditionally:
 
 {{< tabs "TabID997 ">}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 The following example command configures PIM to ignore the RP check for all upstream neighbors:
 
 ```
 cumulus@switch:~$ NEED COMMAND
-cumulus@switch:~$ cl config apply
+cumulus@switch:~$ nv config apply
 ```
 
 The following example command configures PIM to only ignore the RP check for upstream neighbors in the prefix list called ALLOW-RP:
 
 ```
 cumulus@switch:~$ NEED COMMAND
-cumulus@switch:~$ cl config apply
+cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -1146,7 +1146,7 @@ swp1      *               239.2.2.2       no         yes   no         yes       
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
 cumulus@switch:~$ NEED COMMAND

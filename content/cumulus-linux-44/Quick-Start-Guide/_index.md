@@ -78,12 +78,12 @@ cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ cl set interface eth0 ip address 192.0.2.42/24
-cumulus@switch:~$ cl set interface eth0 ip gateway 192.0.2.1
-cumulus@switch:~$ cl config apply
+cumulus@switch:~$ nv set interface eth0 ip address 192.0.2.42/24
+cumulus@switch:~$ nv set interface eth0 ip gateway 192.0.2.1
+cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -125,11 +125,11 @@ cumulus@switch:~$ net commit
 The above command modifies both the `/etc/hostname` and `/etc/hosts` files.
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ cl set platform hostname value leaf01
-cumulus@switch:~$ cl config apply
+cumulus@switch:~$ nv set platform hostname value leaf01
+cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -302,20 +302,20 @@ UP     vxlan4001      N/A  1500   Access/L2                              Master:
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 To administratively enable a port, such as swp1:
 
 ```
-cumulus@switch:~$ cl set interface swp1 link state up
-cumulus@switch:~$ cl config apply
+cumulus@switch:~$ nv set interface swp1 link state up
+cumulus@switch:~$ nv config apply
 ```
 
 To administratively enable all physical ports on a switch that has ports numbered from swp1 to swp52:
 
 ```
-cumulus@switch:~$ cl set interface swp1-52 link state up
-cumulus@switch:~$ cl config apply
+cumulus@switch:~$ nv set interface swp1-52 link state up
+cumulus@switch:~$ nv config apply
 ```
 
 To view link status, run the `cl show interface` command:
@@ -420,20 +420,20 @@ cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 The following configuration example places the front panel port swp1 into the default bridge called `br_default`.
 
 ```
-cumulus@switch:~$ cl set interface swp1 bridge domain br_default
-cumulus@switch:~$ cl config apply
+cumulus@switch:~$ nv set interface swp1 bridge domain br_default
+cumulus@switch:~$ nv config apply
 ```
 
 You can add a range of ports in one command. For example, to add swp1 through swp3, swp10, and swp14 through swp20 to the bridge:
 
 ```
-cumulus@switch:~$ cl set interface swp1-3,swp6,swp14-20 bridge domain br_default
-cumulus@switch:~$ cl config apply
+cumulus@switch:~$ nv set interface swp1-3,swp6,swp14-20 bridge domain br_default
+cumulus@switch:~$ nv config apply
 ```
 
 To show the bridges configured on the switch, run the `cl show bridge` command:
@@ -508,23 +508,23 @@ cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 The following configuration example configures the front panel port swp1 as a layer 3 access port:
 
 ```
-cumulus@switch:~$ cl set interface swp1 ip address 10.1.1.1/30
-cumulus@switch:~$ cl config apply
+cumulus@switch:~$ nv set interface swp1 ip address 10.1.1.1/30
+cumulus@switch:~$ nv config apply
 ```
 
 To add an IP address to a bridge interface, you must put it into a VLAN interface. If you want to use a VLAN other than the native one, set the bridge PVID:
 
 ```
-cumulus@switch:~$ cl set interface swp1-2 bridge domain br_default
-cumulus@switch:~$ cl set bridge domain br_default vlan 100
-cumulus@switch:~$ cl set interface vlan100 ip address 10.2.2.1/24
-cumulus@switch:~$ cl set bridge domain br_default untagged 100
-cumulus@switch:~$ cl config apply
+cumulus@switch:~$ nv set interface swp1-2 bridge domain br_default
+cumulus@switch:~$ nv set bridge domain br_default vlan 100
+cumulus@switch:~$ nv set interface vlan100 ip address 10.2.2.1/24
+cumulus@switch:~$ nv set bridge domain br_default untagged 100
+cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -604,7 +604,7 @@ cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 To check the status of the loopback interface:
 
@@ -615,8 +615,8 @@ cumulus@switch:~$ cl show interface lo
 To add an IP address to a loopback interface:
 
 ```
-cumulus@switch:~$ cl set interface lo ip address 10.10.10.1/32
-cumulus@switch:~$ cl config apply
+cumulus@switch:~$ nv set interface lo ip address 10.10.10.1/32
+cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -647,9 +647,9 @@ You can add multiple loopback addresses. For more information, see {{<link url="
 
 
 {{%notice info%}}
-If you run CUE commands to configure the switch, run the `cl config save` command before you reboot to save the applied configuration to the startup configuration so that the changes persist after the reboot.
+If you run NVUE Commands to configure the switch, run the `nv config save` command before you reboot to save the applied configuration to the startup configuration so that the changes persist after the reboot.
 
 ```
-cumulus@switch:~$ cl config save
+cumulus@switch:~$ nv config save
 ```
 {{%/notice%}}

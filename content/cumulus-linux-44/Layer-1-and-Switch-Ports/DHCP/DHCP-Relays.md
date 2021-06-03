@@ -44,7 +44,7 @@ NCLU commands are not currently available to configure IPv6 relays. Use the Linu
 {{< /tabs >}}
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 {{< tabs "TabID49 ">}}
 {{< tab "IPv4 ">}}
@@ -56,11 +56,11 @@ In the example commands below, the DHCP server IP address is 172.16.1.102, vlan1
 <!-- vale on -->
 
 ```
-cumulus@leaf01:~$ cl set service dhcp-relay default interface swp51
-cumulus@leaf01:~$ cl set service dhcp-relay default interface swp52
-cumulus@leaf01:~$ cl set service dhcp-relay default interface vlan10
-cumulus@leaf01:~$ cl set service dhcp-relay default server 172.16.1.102
-cumulus@leaf01:~$ cl apply
+cumulus@leaf01:~$ nv set service dhcp-relay default interface swp51
+cumulus@leaf01:~$ nv set service dhcp-relay default interface swp52
+cumulus@leaf01:~$ nv set service dhcp-relay default interface vlan10
+cumulus@leaf01:~$ nv set service dhcp-relay default server 172.16.1.102
+cumulus@leaf01:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -73,11 +73,11 @@ In the example commands below, the DHCP server IP address is 2001:db8:100::2, vl
 <!-- vale on -->
 
 ```
-cumulus@leaf01:~$ cl set service dhcp-relay6 default interface swp51
-cumulus@leaf01:~$ cl set service dhcp-relay6 default interface swp52
-cumulus@leaf01:~$ cl set service dhcp-relay6 default interface vlan10
-cumulus@leaf01:~$ cl set service dhcp-relay6 default server 2001:db8:100::2
-cumulus@leaf01:~$ cl apply
+cumulus@leaf01:~$ nv set service dhcp-relay6 default interface swp51
+cumulus@leaf01:~$ nv set service dhcp-relay6 default interface swp52
+cumulus@leaf01:~$ nv set service dhcp-relay6 default interface vlan10
+cumulus@leaf01:~$ nv set service dhcp-relay6 default server 2001:db8:100::2
+cumulus@leaf01:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -230,30 +230,30 @@ cumulus@leaf01:~$ net add dhcp relay giaddr-interface swp2 10.0.0.4
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
-Run the `cl set service dhcp-relay default giaddress-interface` command with the interface/IP address you want to use. The following example uses the first IP address on the loopback interface as the gateway IP address:
+Run the `nv set service dhcp-relay default giaddress-interface` command with the interface/IP address you want to use. The following example uses the first IP address on the loopback interface as the gateway IP address:
 
 ```
-cumulus@leaf01:~$ cl set service dhcp-relay default giaddress-interface lo
+cumulus@leaf01:~$ nv set service dhcp-relay default giaddress-interface lo
 ```
 
 The first IP address on the loopback interface is typically the 127.0.0.1 address. This example uses IP address 10.10.10.1 on the loopback interface as the giaddr:
 
 ```
-cumulus@leaf01:~$ cl set service dhcp-relay default giaddress-interface lo 10.10.10.1
+cumulus@leaf01:~$ nv set service dhcp-relay default giaddress-interface lo 10.10.10.1
 ```
 
 This example uses the first IP address on swp2 as the giaddr:
 
 ```
-cumulus@leaf01:~$ cl set service dhcp-relay default giaddr-interface swp2
+cumulus@leaf01:~$ nv set service dhcp-relay default giaddr-interface swp2
 ```
 
 This example uses IP address 10.0.0.4 on swp2 as the giaddr:
 
 ```
-cumulus@leaf01:~$ cl set service dhcp-relay default giaddr-interface swp2 10.0.0.4
+cumulus@leaf01:~$ nv set service dhcp-relay default giaddr-interface swp2 10.0.0.4
 ```
 
 {{< /tab >}}
@@ -326,11 +326,11 @@ cumulus@leaf:~$ net commit
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
-cumulus@leaf01:~$ cl set service dhcp-relay default source-ip giaddress
-cumulus@leaf01:~$ cl config apply
+cumulus@leaf01:~$ nv set service dhcp-relay default source-ip giaddress
+cumulus@leaf01:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -399,7 +399,7 @@ This section provides troubleshooting tips.
 To show the DHCP relay status:
 
 {{< tabs "TabID405 ">}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 Run the `cl show service dhcp-relay` command for IPv4 or the `cl show service dhcp-relay6` command for IPv6:
 

@@ -24,8 +24,8 @@ RoCEv1 uses the Infiniband (IB) Protocol over converged Ethernet. The IB global 
 To configure RoCE with PFC and ECN:
 
 ```
-cumulus@switch:~$ cl set qos roce mode lossless
-cumulus@switch:~$ cl config apply
+cumulus@switch:~$ nv set qos roce mode lossless
+cumulus@switch:~$ nv config apply
 ```
 
 {{%notice note%}}
@@ -41,8 +41,8 @@ RoCEv2 congestion management uses RFC 3168 to signal congestion experienced to t
 To configure RoCE with ECN:
 
 ```
-cumulus@switch:~$ cl set qos roce mode lossy
-cumulus@switch:~$ cl config apply
+cumulus@switch:~$ nv set qos roce mode lossy
+cumulus@switch:~$ nv config apply
 ```
 
 ## Related Information

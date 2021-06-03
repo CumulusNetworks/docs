@@ -93,15 +93,15 @@ This configuration is only needed on leaf switches that are VTEPs. EVPN routes r
 {{%/notice%}}
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 1. Configure VXLAN Interfaces. The following example creates a single VXLAN interface (vxlan0), maps VLAN 10 to vni10 and VLAN 20 to vni20, adds the VXLAN device to the default bridge `br_default`, and sets the VXLAN local tunnel IP address to 10.10.10.10.
 
    ```
-   cumulus@leaf01:~$ cl set bridge domain br_default vlan 10 vni 10
-   cumulus@leaf01:~$ cl set bridge domain br_default vlan 20 vni 20
-   cumulus@leaf01:~$ cl set nve vxlan source address 10.10.10.10
-   cumulus@leaf01:~$ cl config apply
+   cumulus@leaf01:~$ nv set bridge domain br_default vlan 10 vni 10
+   cumulus@leaf01:~$ nv set bridge domain br_default vlan 20 vni 20
+   cumulus@leaf01:~$ nv set nve vxlan source address 10.10.10.10
+   cumulus@leaf01:~$ nv config apply
    ```
 
    To create a traditional VXLAN device, where each VNI is represented as a separate device instead of a set of VNIs in a single device model, see {{<link url="VXLAN-Devices" text="VXLAN-Devices">}}.
@@ -112,22 +112,22 @@ This configuration is only needed on leaf switches that are VTEPs. EVPN routes r
 {{< tab "leaf01 ">}}
 
 ```
-cumulus@leaf01:~$ cl set router bgp autonomous-system 65101
-cumulus@leaf01:~$ cl set router bgp router-id 10.10.10.1
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp51 remote-as external
-cumulus@leaf01:~$ cl set vrf default router bgp address-family ipv4-unicast static-network 10.10.10.1/32
-cumulus@leaf01:~$ cl config apply
+cumulus@leaf01:~$ nv set router bgp autonomous-system 65101
+cumulus@leaf01:~$ nv set router bgp router-id 10.10.10.1
+cumulus@leaf01:~$ nv set vrf default router bgp peer swp51 remote-as external
+cumulus@leaf01:~$ nv set vrf default router bgp address-family ipv4-unicast static-network 10.10.10.1/32
+cumulus@leaf01:~$ nv config apply
 ```
 
 {{< /tab >}}
 {{< tab "spine01 ">}}
 
 ```
-cumulus@spine01:~$ cl set router bgp autonomous-system 65199
-cumulus@spine01:~$ cl set router bgp router-id 10.10.10.101
-cumulus@spine01:~$ cl set vrf default router bgp peer swp1 remote-as external
-cumulus@spine01:~$ cl set vrf default router bgp address-family ipv4-unicast static-network 10.10.10.101/32
-cumulus@spine01:~$ cl config apply
+cumulus@spine01:~$ nv set router bgp autonomous-system 65199
+cumulus@spine01:~$ nv set router bgp router-id 10.10.10.101
+cumulus@spine01:~$ nv set vrf default router bgp peer swp1 remote-as external
+cumulus@spine01:~$ nv set vrf default router bgp address-family ipv4-unicast static-network 10.10.10.101/32
+cumulus@spine01:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -139,18 +139,18 @@ cumulus@spine01:~$ cl config apply
 {{< tab "leaf01 ">}}
 
 ```
-cumulus@leaf01:~$ cl set evpn enable on
-cumulus@leaf01:~$ cl set vrf default router bgp address-family l2vpn-evpn enable on
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp51 address-family l2vpn-evpn enable on
-cumulus@leaf01:~$ cl config apply
+cumulus@leaf01:~$ nv set evpn enable on
+cumulus@leaf01:~$ nv set vrf default router bgp address-family l2vpn-evpn enable on
+cumulus@leaf01:~$ nv set vrf default router bgp peer swp51 address-family l2vpn-evpn enable on
+cumulus@leaf01:~$ nv config apply
 ```
 
-Unlike with NCLU, you do not need enable the BGP control plane for all VNIs configured on the switch with CUE with the `advertise-all-vni` option. FRR **is** aware of any local VNIs and MACs, and hosts (neighbors) associated with those VNIs.
+Unlike with NCLU, you do not need enable the BGP control plane for all VNIs configured on the switch with NVUE with the `advertise-all-vni` option. FRR **is** aware of any local VNIs and MACs, and hosts (neighbors) associated with those VNIs.
 
-The CUE commands create the following configuration snippet in the `/etc/cue.d/startup.yaml` file:
+The NVUE Commands create the following configuration snippet in the `/etc/nvue.d/startup.yaml` file:
 
 ```
-cumulus@leaf01:~$ sudo cat /etc/cue.d/startup.yaml
+cumulus@leaf01:~$ sudo cat /etc/nvue.d/startup.yaml
 - set:
     interface:
       lo:
@@ -198,16 +198,16 @@ cumulus@leaf01:~$ sudo cat /etc/cue.d/startup.yaml
 {{< tab "spine01 ">}}
 
 ```
-cumulus@spine01:~$ cl set evpn enable on
-cumulus@spine01:~$ cl set vrf default router bgp address-family l2vpn-evpn enable on
-cumulus@spine01:~$ cl set vrf default router bgp peer swp1 address-family l2vpn-evpn enable on
-cumulus@spine01:~$ cl config apply
+cumulus@spine01:~$ nv set evpn enable on
+cumulus@spine01:~$ nv set vrf default router bgp address-family l2vpn-evpn enable on
+cumulus@spine01:~$ nv set vrf default router bgp peer swp1 address-family l2vpn-evpn enable on
+cumulus@spine01:~$ nv config apply
 ```
 
-The CUE commands create the following configuration snippet in the `/etc/cue.d/startup.yaml` file:
+The NVUE Commands create the following configuration snippet in the `/etc/nvue.d/startup.yaml` file:
 
 ```
-cumulus@spine01:~$ sudo cat /etc/cue.d/startup.yaml
+cumulus@spine01:~$ sudo cat /etc/nvue.d/startup.yaml
 - set:
     interface:
       lo:

@@ -147,7 +147,7 @@ arptables                          0.0.4+snapshot20181021-4
 ```
 
 {{< /tab >}}
-{{< tab "CUE Command ">}}
+{{< tab "NVUE Command ">}}
 
 ```
 cumulus@switch:~$ cl show platform software installed
@@ -196,7 +196,7 @@ cumulus@switch:~$ net show package version vrf
 ```
 
 {{< /tab >}}
-{{< tab "CUE Command ">}}
+{{< tab "NVUE Command ">}}
 
 The following example command shows which version of the `vrf` package is installed on the system:
 

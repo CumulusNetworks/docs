@@ -79,12 +79,12 @@ cumulus@leaf01:~$ net commit
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
-cumulus@leaf01:~$ cl set interface bond1 bond member swp1
-cumulus@leaf01:~$ cl set interface bond2 bond member swp2
-cumulus@leaf01:~$ cl config apply
+cumulus@leaf01:~$ nv set interface bond1 bond member swp1
+cumulus@leaf01:~$ nv set interface bond2 bond member swp2
+cumulus@leaf01:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -128,12 +128,12 @@ cumulus@leaf01:~$ net commit
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
-cumulus@leaf01:~$ cl set interface bond1 bond mlag id 1
-cumulus@leaf01:~$ cl set interface bond2 bond mlag id 2 
-cumulus@leaf01:~$ cl config apply
+cumulus@leaf01:~$ nv set interface bond1 bond mlag id 1
+cumulus@leaf01:~$ nv set interface bond2 bond mlag id 2 
+cumulus@leaf01:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -175,11 +175,11 @@ cumulus@leaf01:~$ net commit
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ cl set interface bond1-2 bridge domain br_default 
-cumulus@switch:~$ cl config apply
+cumulus@switch:~$ nv set interface bond1-2 bridge domain br_default 
+cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -265,42 +265,42 @@ cumulus@leaf02:~$ net commit
 {{< /tabs >}}
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
    {{< tabs "TabID223 ">}}
 {{< tab "leaf01 ">}}
 
 ```
-cumulus@leaf01:~$ cl set interface peerlink bond member swp49-50
-cumulus@leaf01:~$ cl set mlag mac-address 44:38:39:BE:EF:AA
-cumulus@leaf01:~$ cl set mlag backup 10.10.10.2
-cumulus@leaf01:~$ cl set mlag peer-ip linklocal
-cumulus@leaf01:~$ cl config apply
+cumulus@leaf01:~$ nv set interface peerlink bond member swp49-50
+cumulus@leaf01:~$ nv set mlag mac-address 44:38:39:BE:EF:AA
+cumulus@leaf01:~$ nv set mlag backup 10.10.10.2
+cumulus@leaf01:~$ nv set mlag peer-ip linklocal
+cumulus@leaf01:~$ nv config apply
 ```
 
 To configure the backup link to a VRF, include the name of the VRF with the `backup-ip` parameter. The following example configures the backup link to VRF RED:
 
 ```
-cumulus@leaf01:~$ cl set mlag backup 10.10.10.2 vrf RED
-cumulus@leaf01:~$ cl config apply
+cumulus@leaf01:~$ nv set mlag backup 10.10.10.2 vrf RED
+cumulus@leaf01:~$ nv config apply
 ```
 
 {{< /tab >}}
 {{< tab "leaf02 ">}}
 
 ```
-cumulus@leaf02:~$ cl set interface peerlink bond member swp49-50
-cumulus@leaf02:~$ cl set mlag mac-address 44:38:39:BE:EF:AA
-cumulus@leaf02:~$ cl set mlag backup 10.10.10.1
-cumulus@leaf02:~$ cl set mlag peer-ip linklocal
-cumulus@leaf02:~$ cl config apply
+cumulus@leaf02:~$ nv set interface peerlink bond member swp49-50
+cumulus@leaf02:~$ nv set mlag mac-address 44:38:39:BE:EF:AA
+cumulus@leaf02:~$ nv set mlag backup 10.10.10.1
+cumulus@leaf02:~$ nv set mlag peer-ip linklocal
+cumulus@leaf02:~$ nv config apply
 ```
 
 To configure the backup link to a VRF, include the name of the VRF with the backup-ip parameter. The following example configures the backup link to VRF RED:
 
 ```
-cumulus@leaf02:~$ cl set mlag backup 10.10.10.1 vrf RED
-cumulus@leaf02:~$ cl config apply
+cumulus@leaf02:~$ nv set mlag backup 10.10.10.1 vrf RED
+cumulus@leaf02:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -436,11 +436,11 @@ cumulus@leaf01:~$ net commit
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
-cumulus@leaf01:~$ cl set mlag priority 2084
-cumulus@leaf01:~$ cl config apply
+cumulus@leaf01:~$ nv set mlag priority 2084
+cumulus@leaf01:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -497,13 +497,13 @@ cumulus@leaf01:~$ net commit
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
-Currently, the only timer you can set with CUE is the initial delay timer. The following example CUE command sets the initial delay to 100 seconds:
+Currently, the only timer you can set with NVUE is the initial delay timer. The following example NVUE Command sets the initial delay to 100 seconds:
 
 ```
-cumulus@leaf01:~$ cl set mlag init-delay 100
-cumulus@leaf01:~$ cl config apply
+cumulus@leaf01:~$ nv set mlag init-delay 100
+cumulus@leaf01:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -634,14 +634,14 @@ cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ cl set interface peerlink.4094 link mtu 1500
-cumulus@switch:~$ cl set interface uplink link mtu 1500
-cumulus@switch:~$ cl set interface bond1 link mtu 1500
-cumulus@switch:~$ cl set interface bond2 link mtu 1500
-cumulus@switch:~$ cl config apply
+cumulus@switch:~$ nv set interface peerlink.4094 link mtu 1500
+cumulus@switch:~$ nv set interface uplink link mtu 1500
+cumulus@switch:~$ nv set interface bond1 link mtu 1500
+cumulus@switch:~$ nv set interface bond2 link mtu 1500
+cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -741,11 +741,11 @@ If you use NCLU to create an iBGP peering across the peer link, the `net add bgp
 {{%/notice%}}
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ cl set vrf default router bgp peer peerlink remote-as internal
-cumulus@switch:~$ cl config apply
+cumulus@switch:~$ nv set vrf default router bgp peer peerlink remote-as internal
+cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -793,11 +793,11 @@ cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
 cumulus@switch:~$ NEED COMMAND
-cumulus@switch:~$ cl config apply
+cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -813,42 +813,42 @@ The example below shows a basic MLAG configuration, where:
 
 For an example configuration with MLAG and BGP, see the {{<link title="Configuration Example" text="BGP configuration example">}}.
 
-#### CUE Commands
+#### NVUE Commands
 
 {{< tabs "TabID803 ">}}
 {{< tab "leaf01 ">}}
 
 ```
-cumulus@leaf01:~$ cl set interface bond1 bond member swp1
-cumulus@leaf01:~$ cl set interface bond2 bond member swp2
-cumulus@leaf01:~$ cl set interface bond3 bond member swp3
-cumulus@leaf01:~$ cl set interface bond1 bond mlag id 1
-cumulus@leaf01:~$ cl set interface bond2 bond mlag id 2
-cumulus@leaf01:~$ cl set interface bond3 bond mlag id 3
-cumulus@switch:~$ cl set interface bond1-3 bridge domain br_default 
-cumulus@leaf01:~$ cl set interface peerlink bond member swp49-50
-cumulus@leaf01:~$ cl set mlag mac-address 44:38:39:BE:EF:AA
-cumulus@leaf01:~$ cl set mlag backup 10.10.10.2
-cumulus@leaf01:~$ cl set mlag peer-ip linklocal
-cumulus@leaf01:~$ cl config apply
+cumulus@leaf01:~$ nv set interface bond1 bond member swp1
+cumulus@leaf01:~$ nv set interface bond2 bond member swp2
+cumulus@leaf01:~$ nv set interface bond3 bond member swp3
+cumulus@leaf01:~$ nv set interface bond1 bond mlag id 1
+cumulus@leaf01:~$ nv set interface bond2 bond mlag id 2
+cumulus@leaf01:~$ nv set interface bond3 bond mlag id 3
+cumulus@switch:~$ nv set interface bond1-3 bridge domain br_default 
+cumulus@leaf01:~$ nv set interface peerlink bond member swp49-50
+cumulus@leaf01:~$ nv set mlag mac-address 44:38:39:BE:EF:AA
+cumulus@leaf01:~$ nv set mlag backup 10.10.10.2
+cumulus@leaf01:~$ nv set mlag peer-ip linklocal
+cumulus@leaf01:~$ nv config apply
 ```
 
 {{< /tab >}}
 {{< tab "leaf02 ">}}
 
 ```
-cumulus@leaf02:~$ cl set interface bond1 bond member swp1
-cumulus@leaf02:~$ cl set interface bond2 bond member swp2
-cumulus@leaf01:~$ cl set interface bond3 bond member swp3
-cumulus@leaf02:~$ cl set interface bond1 bond mlag id 1
-cumulus@leaf02:~$ cl set interface bond2 bond mlag id 2
-cumulus@leaf01:~$ cl set interface bond3 bond mlag id 3
-cumulus@switc2:~$ cl set interface bond1-3 bridge domain br_default
-cumulus@leaf02:~$ cl set interface peerlink bond member swp49-50
-cumulus@leaf02:~$ cl set mlag mac-address 44:38:39:BE:EF:AA
-cumulus@leaf02:~$ cl set mlag backup 10.10.10.1
-cumulus@leaf02:~$ cl set mlag peer-ip linklocal
-cumulus@leaf02:~$ cl config apply
+cumulus@leaf02:~$ nv set interface bond1 bond member swp1
+cumulus@leaf02:~$ nv set interface bond2 bond member swp2
+cumulus@leaf01:~$ nv set interface bond3 bond member swp3
+cumulus@leaf02:~$ nv set interface bond1 bond mlag id 1
+cumulus@leaf02:~$ nv set interface bond2 bond mlag id 2
+cumulus@leaf01:~$ nv set interface bond3 bond mlag id 3
+cumulus@switc2:~$ nv set interface bond1-3 bridge domain br_default
+cumulus@leaf02:~$ nv set interface peerlink bond member swp49-50
+cumulus@leaf02:~$ nv set mlag mac-address 44:38:39:BE:EF:AA
+cumulus@leaf02:~$ nv set mlag backup 10.10.10.1
+cumulus@leaf02:~$ nv set mlag peer-ip linklocal
+cumulus@leaf02:~$ nv config apply
 ```
 
 {{< /tab >}}

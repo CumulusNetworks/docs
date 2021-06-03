@@ -32,9 +32,9 @@ cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
-CUE commands are not supported for bridges in traditional mode.
+NVUE Commands are not supported for bridges in traditional mode.
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
@@ -136,9 +136,9 @@ cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
-CUE commands are not supported for bridges in traditional mode.
+NVUE Commands are not supported for bridges in traditional mode.
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}

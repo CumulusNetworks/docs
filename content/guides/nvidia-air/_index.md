@@ -8,6 +8,6 @@ NVIDIA Air is a network simulation platform that is used to create a digital twi
 
 NVIDIA Air has the following value propositions:
 
-* Run full scale network architectures with multiple network operating systems
-* Behaves exactly like a real world production deployment
-* Used to validate configurations, features and automation code
+- Run full scale network architectures with multiple network operating systems
+- Behaves exactly like a real world production deployment
+- Used to validate configurations, features and automation code

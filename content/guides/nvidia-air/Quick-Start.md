@@ -67,3 +67,15 @@ The advanced view has 4 different panes:
 2. **Console**: The console connection to the simulation.
 3. **Nodes**: The list of the nodes in the topology.
 4. **Services**: Optional services you can add, such as SSH.
+
+## Manage a Simulation
+
+From the Air landing page, you can manage simulations. There are three options for each public simulation:
+
+- **Power On/Off**: Wakes the simulation up or puts it to sleep.
+- **Rebuild**: Resets the simulation to a factory default setting. This is useful if you've made many changes to the simulation and it is no longer in a desireable state.
+- **Delete**: Deletes the simulation.
+
+The `Power On/Off` and `Rebuild` functions are both under the power icon. `Power On/Off` function either . The `Rebuild` option resets the simulation to a factory default setting. This is useful if you've made lots of changes to the simulation and it is no longer in a desireable state. Using `Rebuild` will reset the simulation to a known base state.
+
+{{<img src="/images/guides/nvidia-air/ManagingSim.png" >}}

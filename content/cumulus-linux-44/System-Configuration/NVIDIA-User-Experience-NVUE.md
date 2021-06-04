@@ -8,7 +8,7 @@ NVUE is an object-oriented, schema driven model of a complete Cumulus Linux syst
 
 NVUE follows a declarative model, removing context-specific commands and settings. It is structured as a *big tree* that represents the entire state of a Cumulus Linux instance. At the base of the tree are high level branches representing objects, such as *router* and *interface*. Under each of these branches are further branches. As you navigate through the tree, you gain a more specific context. At the leaves of the tree are actual attributes, represented as key/value pairs. The path through the tree is similar to a filesystem path.
 
-{{<img src = "/images/cumulus-linux/cue-architecture.png">}}
+{{<img src = "/images/cumulus-linux/nvue-architecture.png">}}
 
 ## REST API
 
@@ -20,7 +20,7 @@ NVUE is installed by default in Cumulus Linux but the NVUE service is disabled. 
 
 {{%notice info%}}
 - Do not install NVUE in a production environment.
-- You cannot run both NVUE and NCLU commands to configure the switch.
+- Do not mix NVUE and NCLU commands to configure the switch. Use either the NCLU CLI or the NVUE CLI.
 {{%/notice%}}
 
 1. Stop then disable the `netd` service:

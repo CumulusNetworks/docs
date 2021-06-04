@@ -48,12 +48,12 @@ cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ cl set vrf BLUE table auto
-cumulus@switch:~$ cl set interface swp1 ip vrf BLUE
-cumulus@switch:~$ cl config apply
+cumulus@switch:~$ nv set vrf BLUE table auto
+cumulus@switch:~$ nv set interface swp1 ip vrf BLUE
+cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -96,11 +96,11 @@ cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ cl set vrf BLUE table 1016
-cumulus@switch:~$ cl config apply
+cumulus@switch:~$ nv set vrf BLUE table 1016
+cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -262,11 +262,11 @@ When you use route leaking:
 In the following example commands, routes in the BGP routing table of VRF `BLUE` are dynamically leaked into VRF `RED`.
 
 {{< tabs "TabID266 ">}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ cl set vrf RED router bgp address-family ipv4-unicast route-import from-vrf list BLUE
-cumulus@switch:~$ cl config apply
+cumulus@switch:~$ nv set vrf RED router bgp address-family ipv4-unicast route-import from-vrf list BLUE
+cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -339,15 +339,15 @@ cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ cl set vrf RED router bgp address-family ipv4-unicast route-import from-vrf list BLUE
-cumulus@switch:~$ cl set router policy route-map BLUEtoRED rule 10 match source-protocol bgp 
-cumulus@switch:~$ cl set router policy route-map BLUEtoRED rule 10 action permit
-cumulus@switch:~$ cl set router policy route-map BLUEtoRED rule 10 set community 11:11
-cumulus@switch:~$ cl set vrf RED router bgp address-family ipv4-unicast route-import from-vrf route-map BLUEtoRED
-cumulus@switch:~$ cl config
+cumulus@switch:~$ nv set vrf RED router bgp address-family ipv4-unicast route-import from-vrf list BLUE
+cumulus@switch:~$ nv set router policy route-map BLUEtoRED rule 10 match source-protocol bgp 
+cumulus@switch:~$ nv set router policy route-map BLUEtoRED rule 10 action permit
+cumulus@switch:~$ nv set router policy route-map BLUEtoRED rule 10 set community 11:11
+cumulus@switch:~$ nv set vrf RED router bgp address-family ipv4-unicast route-import from-vrf route-map BLUEtoRED
+cumulus@switch:~$ nv config
 ```
 
 {{< /tab >}}
@@ -432,11 +432,11 @@ cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ cl unset vrf RED router bgp address-family ipv4-unicast route-import from-vrf list BLUE
-cumulus@switch:~$ cl config apply
+cumulus@switch:~$ nv unset vrf RED router bgp address-family ipv4-unicast route-import from-vrf list BLUE
+cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -540,7 +540,7 @@ router bgp 64900 vrf vrf1012
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
 cumulus@switch:~$ NEED COMMAND
@@ -654,7 +654,7 @@ router ospf vrf vrf1
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
 cumulus@switch:~$ NEED COMMAND
@@ -786,7 +786,7 @@ router bgp 65001 vrf vrf1
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
 cumulus@switch:~$ NEED COMMAND

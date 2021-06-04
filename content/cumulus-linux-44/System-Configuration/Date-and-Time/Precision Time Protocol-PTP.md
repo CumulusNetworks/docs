@@ -29,17 +29,17 @@ In the following example, boundary clock 2 receives time from Master 1 (the gran
 
 Basic PTP configuration requires you:
 
-- Enable PTP on the switch to start the `ptp4l` and `phc2sys` processes. The `cl set service PTP` commands require an instance number (1 in the example commands below). This number is used for management purposes.
+- Enable PTP on the switch to start the `ptp4l` and `phc2sys` processes. The `nv set service PTP` commands require an instance number (1 in the example commands below). This number is used for management purposes.
 - Configure the interfaces on the switch that you want to use for PTP. Each interface must be configured as a layer 3 routed interface with an IP address.
 - Add the PTP master and slave interfaces. You do not need to specify which is a master interface and which is a slave interface; this is determined by the PTP packet received.
 
 ```
-cumulus@switch:~$ cl set service ptp 1 enable on
-cumulus@switch:~$ cl set interface swp13s0 ip address 10.0.0.9/32
-cumulus@switch:~$ cl set interface swp13s1 ip address 10.0.0.10/32
-cumulus@switch:~$ cl set interface swp13s0 service ptp enable on
-cumulus@switch:~$ cl set interface swp13s1 service ptp enable on
-cumulus@switch:~$ cl config apply
+cumulus@switch:~$ nv set service ptp 1 enable on
+cumulus@switch:~$ nv set interface swp13s0 ip address 10.0.0.9/32
+cumulus@switch:~$ nv set interface swp13s1 ip address 10.0.0.10/32
+cumulus@switch:~$ nv set interface swp13s0 service ptp enable on
+cumulus@switch:~$ nv set interface swp13s1 service ptp enable on
+cumulus@switch:~$ nv config apply
 ```
 
 The configuration is saved in the `/etc/ptp4l.conf` file.
@@ -77,22 +77,22 @@ The following table shows the default settings for each profile.
 To configure the switch to use the AES67 profile:
 
 ```
-cumulus@switch:~$ cl set service ptp 1 profile-type aes67
-cumulus@switch:~$ cl config apply
+cumulus@switch:~$ nv set service ptp 1 profile-type aes67
+cumulus@switch:~$ nv config apply
 ```
 
 To configure the switch to use the SMPTE ST-2059-2 profile:
 
 ```
-cumulus@switch:~$ cl set service ptp 1 profile-type smpte
-cumulus@switch:~$ cl config apply
+cumulus@switch:~$ nv set service ptp 1 profile-type smpte
+cumulus@switch:~$ nv config apply
 ```
 
 To set the profile back to the default:
 
 ```
-cumulus@switch:~$ cl set service ptp 1 profile-type default-1588
-cumulus@switch:~$ cl config apply
+cumulus@switch:~$ nv set service ptp 1 profile-type default-1588
+cumulus@switch:~$ nv config apply
 ```
 
 ### PTP Clock Domains
@@ -104,8 +104,8 @@ You can specify multiple PTP clock domains. Each domain is completely isolated f
 The following examle commands configure domain 3:
 
 ```
-cumulus@switch:~$ cl set service ptp 1 domain 3
-cumulus@switch:~$ cl config apply
+cumulus@switch:~$ nv set service ptp 1 domain 3
+cumulus@switch:~$ nv config apply
 ```
 
 ### PTP Priority
@@ -119,9 +119,9 @@ The range for both priority1 and priority2 is between 0 and 255. The default pri
 The following example commands set priority 1 and priority 2 to 200:
 
 ```
-cumulus@switch:~$ cl set service ptp 1 priority1 200
-cumulus@switch:~$ cl set service ptp 1 priority2 200
-cumulus@switch:~$ cl config apply
+cumulus@switch:~$ nv set service ptp 1 priority1 200
+cumulus@switch:~$ nv set service ptp 1 priority2 200
+cumulus@switch:~$ nv config apply
 ```
 
 ### Transport Mode
@@ -129,8 +129,8 @@ cumulus@switch:~$ cl config apply
 By default, PTP messages are encapsulated in UDP/IPV4 frames. To configure PTP messages to be encapsulated in UDP/IPV6 frames:
 
 ```
-cumulus@switch:~$ cl set interface swp13s1 service ptp transport ipv6
-cumulus@switch:~$ cl config apply
+cumulus@switch:~$ nv set interface swp13s1 service ptp transport ipv6
+cumulus@switch:~$ nv config apply
 ```
 
 <!--### Message Mode
@@ -142,8 +142,8 @@ Cumulus Linux currently supports the following PTP message mode:
 Multicast mode is the default setting. To set the message mode to *mixed*:
 
 ```
-cumulus@switch:~$ cl set service ptp 1 message-mode mixed
-cumulus@switch:~$ cl config apply
+cumulus@switch:~$ nv set service ptp 1 message-mode mixed
+cumulus@switch:~$ nv config apply
 ```-->
 
 ### One-step and Two-step Mode
@@ -155,8 +155,8 @@ The Cumulus Linux switch supports hardware packet time stamping and provides two
 One-step mode is the default configuration. To configure the switch to use two-step mode:
 
 ```
-cumulus@switch:~$ cl set service ptp 1 two-step on
-cumulus@switch:~$ cl config apply
+cumulus@switch:~$ nv set service ptp 1 two-step on
+cumulus@switch:~$ nv config apply
 ```
 
 ### Forced Master
@@ -166,8 +166,8 @@ By default, ports configured for PTP are in auto mode, where the state of the po
 You can configure *Forced Master* mode on a PTP port so that it is always in a master state and the BMC algorithm is not run for this port. Any Announce messages received on this port are ignored.
 
 ```
-cumulus@switch:~$ cl set interface swp13s1 service ptp forced-master on
-cumulus@switch:~$ cl config apply
+cumulus@switch:~$ nv set interface swp13s1 service ptp forced-master on
+cumulus@switch:~$ nv config apply
 ```
 
 ### DSCP and TTL
@@ -175,15 +175,15 @@ cumulus@switch:~$ cl config apply
 You can configure the DiffServ code point (DSCP) value for all PTP IPv4 packets originated locally. You can set a value between 0 and 63.
 
 ```
-cumulus@switch:~$ cl set service ptp 1 ip-dscp 22
-cumulus@switch:~$ cl config apply
+cumulus@switch:~$ nv set service ptp 1 ip-dscp 22
+cumulus@switch:~$ nv config apply
 ```
 
 To restrict the number of hops a PTP message can travel, set the TTL on the PTP interface. You can set a value between 1 and 255.
 
 ```
-cumulus@switch:~$ cl set interface swp13s1 service ptp ttl 20
-cumulus@switch:~$ cl config apply
+cumulus@switch:~$ nv set interface swp13s1 service ptp ttl 20
+cumulus@switch:~$ nv config apply
 ```
 
 ### Acceptable Master Table
@@ -193,21 +193,21 @@ The acceptable master table option is a security feature that prevents a rogue p
 The following example command adds the Grandmaster clock ID 000200.fffe.000001 to the acceptable master table.
 
 ```
-cumulus@switch:~$ cl set service ptp 1 acceptable-master 000200.fffe.000001
-cumulus@switch:~$ cl config apply
+cumulus@switch:~$ nv set service ptp 1 acceptable-master 000200.fffe.000001
+cumulus@switch:~$ nv config apply
 ```
 
 You can also configure an alternate priority 1 value for the Grandmaster:
 
 ```
-cumulus@switch:~$ cl set service ptp 1 acceptable-master 000200.fffe.000001 alt-priority 2
+cumulus@switch:~$ nv set service ptp 1 acceptable-master 000200.fffe.000001 alt-priority 2
 ```
 
 The following example commands enable the PTP acceptable master table option for swp13s1:
 
 ```
-cumulus@switch:~$ cl set interface swp13s1 service ptp acceptable-master on
-cumulus@switch:~$ cl config apply
+cumulus@switch:~$ nv set interface swp13s1 service ptp acceptable-master on
+cumulus@switch:~$ nv config apply
 ```
 
 ### PTP Timers
@@ -221,20 +221,20 @@ You can set the following timers for PTP messages. The default values for the su
 | `delay-req-interval` | The minimum average time interval allowed between successive Delay Required messages. |
 | `sync-interval` | The interval between PTP synchronization messages on an interface. Specify the value as a power of two in seconds. |
 
-To set the timers, run the `cl set interface <interface> service ptp timers <timer> <value>` command.
+To set the timers, run the `nv set interface <interface> service ptp timers <timer> <value>` command.
 
 The following example sets the announce interval between successive Announce messages on swp13s1 to -1.
 
 ```
-cumulus@switch:~$ cl set interface swp13s1 service ptp timers announce-interval -1
-cumulus@switch:~$ cl config apply
+cumulus@switch:~$ nv set interface swp13s1 service ptp timers announce-interval -1
+cumulus@switch:~$ nv config apply
 ```
 
 The following example sets the mean sync-interval for multicast messages on swp13s1 to -5.
 
 ```
-cumulus@switch:~$ cl set interface swp13s1 service ptp timers sync-interval -5
-cumulus@switch:~$ cl config apply
+cumulus@switch:~$ nv set interface swp13s1 service ptp timers sync-interval -5
+cumulus@switch:~$ nv config apply
 ```
 
 ## Delete PTP Boundary Clock Configuration
@@ -242,22 +242,22 @@ cumulus@switch:~$ cl config apply
 To delete PTP configuration, delete the PTP master and slave interfaces. The following example commands delete the PTP interfaces `swp13s0`, `swp13s1`, and `swp13s2`.
 
 ```
-cumulus@switch:~$ cl unset interface swp13s0 service ptp
-cumulus@switch:~$ cl unset interface swp13s1 service ptp
-cumulus@switch:~$ cl unset interface swp13s2 service ptp
-cumulus@switch:~$ cl config apply
+cumulus@switch:~$ nv unset interface swp13s0 service ptp
+cumulus@switch:~$ nv unset interface swp13s1 service ptp
+cumulus@switch:~$ nv unset interface swp13s2 service ptp
+cumulus@switch:~$ nv config apply
 ```
 
 To disable PTP on the switch, and stop the `ptp4l` and `phc2sys` processes:
 
 ```
-cumulus@switch:~$ cl set service ptp 1 enable off
-cumulus@switch:~$ cl config apply
+cumulus@switch:~$ nv set service ptp 1 enable off
+cumulus@switch:~$ nv config apply
 ```
 
 ## Troubleshooting
 
-CUE provides several show commands for PTP. You can view the current PTP configuration, monitor violations, and see time attributes of the clock. For example, to show a summary of the PTP configuration on the switch, run the `cl show service ptp <instance>` command:
+NVUE provides several show commands for PTP. You can view the current PTP configuration, monitor violations, and see time attributes of the clock. For example, to show a summary of the PTP configuration on the switch, run the `cl show service ptp <instance>` command:
 
 ```
 cumulus@switch:~$ cl show service ptp 1
@@ -280,7 +280,7 @@ monitor
 ...
 ```
 
-To see the list of CUE show commands for PTP, run `cl list-commands service ptp`:
+To see the list of NVUE show commands for PTP, run `nv list-commands service ptp`:
 
 ```
 cumulus@leaf01:mgmt:~$ cl list-commands service ptp
@@ -345,23 +345,23 @@ In the following example, the boundary clock on the switch receives time from Ma
 This is the configuration for the above example. The example assumes that you have already configured the layer 3 routed interfaces (`swp3s0`, `swp3s1`, `swp3s2`, and `swp3s3`) you want to use for PTP.
 
 {{< tabs "352 ">}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ cl set service ptp 1 enable on
-cumulus@switch:~$ cl set service ptp 1 priority2 254
-cumulus@switch:~$ cl set service ptp 1 priority1 254
-cumulus@switch:~$ cl set service ptp 1 profile-type aes67
-cumulus@switch:~$ cl set service ptp 1 domain 3
-cumulus@switch:~$ cl set interface swp13s0 service ptp enable on
-cumulus@switch:~$ cl set interface swp13s1 service ptp enable on
-cumulus@switch:~$ cl set interface swp13s2 service ptp enable on
-cumulus@switch:~$ cl set interface swp13s3 service ptp enable on
-cumulus@switch:~$ cl config apply
+cumulus@switch:~$ nv set service ptp 1 enable on
+cumulus@switch:~$ nv set service ptp 1 priority2 254
+cumulus@switch:~$ nv set service ptp 1 priority1 254
+cumulus@switch:~$ nv set service ptp 1 profile-type aes67
+cumulus@switch:~$ nv set service ptp 1 domain 3
+cumulus@switch:~$ nv set interface swp13s0 service ptp enable on
+cumulus@switch:~$ nv set interface swp13s1 service ptp enable on
+cumulus@switch:~$ nv set interface swp13s2 service ptp enable on
+cumulus@switch:~$ nv set interface swp13s3 service ptp enable on
+cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
-{{< tab "/etc/cue.d/startup.yaml file ">}}
+{{< tab "/etc/nvue.d/startup.yaml file ">}}
 
 ```
 - set:

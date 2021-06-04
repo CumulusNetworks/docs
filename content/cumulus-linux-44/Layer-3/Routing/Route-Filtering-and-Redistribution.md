@@ -40,12 +40,12 @@ ip prefix-list prefixlist1 seq 1 permit 10.0.0.0/16 le 30
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ cl set router policy prefix-list prefixlist1 rule 1 match 10.0.0.0/16 max-prefix-len 30
-cumulus@switch:~$ cl set router policy prefix-list prefixlist1 rule 1 action permit
-cumulus@switch:~$ cl config apply
+cumulus@switch:~$ nv set router policy prefix-list prefixlist1 rule 1 match 10.0.0.0/16 max-prefix-len 30
+cumulus@switch:~$ nv set router policy prefix-list prefixlist1 rule 1 action permit
+cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -89,12 +89,12 @@ cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ cl set router policy route-map MAP1 rule 10 action permit
-cumulus@switch:~$ cl set router policy route-map MAP1 rule 10 match ip-prefix-list prefixlist1
-cumulus@switch:~$ cl config apply
+cumulus@switch:~$ nv set router policy route-map MAP1 rule 10 action permit
+cumulus@switch:~$ nv set router policy route-map MAP1 rule 10 match ip-prefix-list prefixlist1
+cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -153,13 +153,13 @@ route-map routemap1 permit 10
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ cl set router policy route-map routemap1 rule 10 match interface swp51
-cumulus@switch:~$ cl set router policy route-map routemap1 rule 10 set metric 50
-cumulus@switch:~$ cl set router policy route-map routemap1 rule 10 action permit
-cumulus@switch:~$ cl config apply
+cumulus@switch:~$ nv set router policy route-map routemap1 rule 10 match interface swp51
+cumulus@switch:~$ nv set router policy route-map routemap1 rule 10 set metric 50
+cumulus@switch:~$ nv set router policy route-map routemap1 rule 10 action permit
+cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -214,11 +214,11 @@ ip protocol bgp route-map routemap1
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ cl set vrf default router bgp address-family ipv4-unicast rib-filter routemap1
-cumulus@switch:~$ cl config apply
+cumulus@switch:~$ nv set vrf default router bgp address-family ipv4-unicast rib-filter routemap1
+cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -263,11 +263,11 @@ In NCLU, you can only set the community number in a route map. You cannot set ot
 {{%/notice%}}
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:$ cl set vrf default router bgp address-family ipv4-unicast rib-filter routemap1
-cumulus@switch:$ cl config apply
+cumulus@switch:$ nv set vrf default router bgp address-family ipv4-unicast rib-filter routemap1
+cumulus@switch:$ nv config apply
 ```
 
 {{< /tab >}}
@@ -289,11 +289,11 @@ cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ cl set vrf default router bgp address-family ipv4-unicast route-redistribute ospf
-cumulus@switch:~$ cl config apply
+cumulus@switch:~$ nv set vrf default router bgp address-family ipv4-unicast route-redistribute ospf
+cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -325,11 +325,11 @@ cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ cl set vrf default router bgp address-family ipv4-unicast route-redistribute connected
-cumulus@switch:~$ cl config apply
+cumulus@switch:~$ nv set vrf default router bgp address-family ipv4-unicast route-redistribute connected
+cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}

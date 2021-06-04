@@ -64,20 +64,20 @@ cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 To put an interface into an admin *down* state:
 
 ```
-cumulus@switch:~$ cl set interface swp1 link state down
-cumulus@switch:~$ cl config apply
+cumulus@switch:~$ nv set interface swp1 link state down
+cumulus@switch:~$ nv config apply
 ```
 
 To bring the interface back *up*:
 
 ```
-cumulus@switch:~$ cl set interface swp1 link state up
-cumulus@switch:~$ cl config apply
+cumulus@switch:~$ nv set interface swp1 link state up
+cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -203,11 +203,11 @@ cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ cl set interface lo ip address 10.10.10.1
-cumulus@switch:~$ cl config apply
+cumulus@switch:~$ nv set interface lo ip address 10.10.10.1
+cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -476,13 +476,13 @@ iface swp1
    ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ cl set interface swp1 ip address 10.0.0.1/30
-cumulus@switch:~$ cl set interface swp1 ip address 10.0.0.2/30
-cumulus@switch:~$ cl set interface swp1 ip address 2001:DB8::1/126
-cumulus@switch:~$ cl config apply
+cumulus@switch:~$ nv set interface swp1 ip address 10.0.0.1/30
+cumulus@switch:~$ nv set interface swp1 ip address 10.0.0.2/30
+cumulus@switch:~$ nv set interface swp1 ip address 2001:DB8::1/126
+cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -545,11 +545,11 @@ cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
 cumulus@switch:~$ NEED COMMAND
-cumulus@switch:~$ cl config apply
+cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -595,7 +595,7 @@ cumulus@switch:~$ net add vlan 100 post-up systemctl --no-block restart dhcrelay
 {{%/notice%}}
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
 cumulus@switch:~$ NEED COMMAND
@@ -682,13 +682,13 @@ iface swp1
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 Use commas to separate different port ranges (for example, swp1-46,10-12):
 
 ```
-cumulus@switch:~$ cl set interface swp1-4,6,10-12 bridge domain br_default
-cumulus@switch:~$ cl config apply
+cumulus@switch:~$ nv set interface swp1-4,6,10-12 bridge domain br_default
+cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -771,7 +771,7 @@ cumulus@switch:~$ net show interface swp1
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
 cumulus@switch:~$ cl show interface swp1 link state
@@ -801,7 +801,7 @@ cumulus@switch:~$ net show interface swp1
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
 cumulus@switch:~$ cl show interface swp1 ip address
@@ -860,7 +860,7 @@ UP       swp2            BondMember        to Server02
 To show the interface description for all interfaces on the switch in JSON format, run the `net show interface alias json` command.
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
 cumulus@switch$ cl show interface swp1
@@ -981,11 +981,11 @@ cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
 cumulus@switch:~$ NEED COMMAND
-cumulus@switch:~$ cl config apply
+cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}

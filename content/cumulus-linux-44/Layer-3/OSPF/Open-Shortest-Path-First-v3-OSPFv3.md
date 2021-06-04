@@ -15,7 +15,7 @@ IETF has defined extensions to OSPFv3 to support multiple address families (both
 You can configure OSPFv3 using either numbered interfaces or unnumbered interfaces. Both methods are described below.
 
 {{%notice note%}}
-CUE commands are not supported for OSPFv3.
+NVUE commands are not supported for OSPFv3.
 {{%/notice%}}
 
 ### OSPFv3 Numbered

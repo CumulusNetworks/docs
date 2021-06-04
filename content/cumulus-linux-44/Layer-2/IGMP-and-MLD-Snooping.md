@@ -132,11 +132,11 @@ cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
 cumulus@switch:~$ NEED COMMAND
-cumulus@switch:~$ cl config apply
+cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}

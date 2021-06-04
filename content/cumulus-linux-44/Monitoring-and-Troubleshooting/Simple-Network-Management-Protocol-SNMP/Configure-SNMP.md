@@ -73,7 +73,7 @@ The IP address must exist on an interface that has link UP on the switch where `
 You can configure multiple IP addresses and bind to a particular IP address within a particular VRF table.
 
 {{< tabs "Listening IP" >}}
-{{< tab "CUE Commands" >}}
+{{< tab "NVUE Commands" >}}
 
 ```
 cumulus@switch:~$ NEED COMMAND
@@ -150,7 +150,7 @@ agentAddress udp:66.66.66.66:161,udp:77.77.77.77:161,udp6:[2001::1]:161
 Cumulus Linux provides a listening address for VRFs along with trap and inform support. You can configure `snmpd` to listen to a specific IPv4 or IPv6 address on an interface within a particular VRF. With VRFs, identical IP addresses can exist in different VRF tables. This command restricts listening to a particular IP address within a particular VRF. If the VRF name is not given, the default VRF is used.
 
 {{< tabs "SNMP and VRFs" >}}
-{{< tab "CUE Commands" >}}
+{{< tab "NVUE Commands" >}}
 
 ```
 cumulus@switch:~$ NEED COMMAND
@@ -209,7 +209,7 @@ You have three choices for authenticating the user:
 - SHA password
 
 {{< tabs "username" >}}
-{{< tab "CUE Commands" >}}
+{{< tab "NVUE Commands" >}}
 
 ```
 cumulus@switch:~$ NEED COMMAND
@@ -381,7 +381,7 @@ You can define a specific view multiple times and fine tune to provide or restri
 By default, the `snmpd.conf` file contains numerous views within the *systemonly* view.
 
 {{< tabs "viewname" >}}
-{{< tab "CUE Commands" >}}
+{{< tab "NVUE Commands" >}}
 
 ```
 cumulus@switch:~$ NEED COMMAND
@@ -430,7 +430,7 @@ You can specify a source IP address token to restrict access to only that host o
 You can also specify a view to restrict the subset of the OID tree.
 
 {{< tabs "community-string" >}}
-{{< tab "CUE Commands" >}}
+{{< tab "NVUE Commands" >}}
 
 ```
 cumulus@switch:~$ NEED COMMAND
@@ -506,7 +506,7 @@ You can configure system settings for the SNMPv2 MIB. The example commands here 
 - An administratively-assigned name for the managed node (the `sysname`).
 
 {{< tabs "sys-settings" >}}
-{{< tab "CUE Commands" >}}
+{{< tab "NVUE Commands" >}}
 
 ```
 cumulus@switch:~$ NEED COMMAND
@@ -651,8 +651,6 @@ To enable the .1.3.6.1.2.1 range, make sure the view commands include the requir
 
 The following command removes all custom entries in the `/etc/snmp/snmpd.conf` file and replaces them with defaults, including for all SNMPv3 usernames and readonly-communities. A `listening-address` for the localhost is configured in its place.
 
-NEED COMMAND for CUE
-
 ```
 cumulus@switch:~$ net del snmp-server all
 cumulus@switch:~$ net commit
@@ -705,7 +703,7 @@ The following example configuration:
 You can find a working example configuration on the {{<exlink url="https://gitlab.com/nvidia-networking/systems-engineering/poc-support/snmp-and-cl" text="NVIDIA Networking GitLab project">}}, which you can try for free with {{<exlink url="https://air.nvidia.com" text="NVIDIA AIR Simulation Platform">}}.
 
 {{< tabs "example-config" >}}
-{{< tab "CUE Commands" >}}
+{{< tab "NVUE Commands" >}}
 
 ```
 cumulus@switch:~$ NEED COMMAND

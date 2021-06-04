@@ -22,9 +22,9 @@ cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
-CUE commands are unsupported currently.
+NVUE Commands are not supported.
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
@@ -74,9 +74,9 @@ cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
-CUE commands are unsupported currently.
+NVUE Commands are not supported.
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}

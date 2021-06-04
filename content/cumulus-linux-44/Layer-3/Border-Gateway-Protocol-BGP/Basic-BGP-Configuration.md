@@ -172,7 +172,7 @@ router bgp 65199
 {{< /tabs >}}
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 {{< tabs "142 ">}}
 {{< tab " leaf01 ">}}
@@ -182,13 +182,13 @@ router bgp 65199
     - To assign an ASN manually:
 
       ```
-      cumulus@leaf01:~$ cl set router bgp autonomous-system 65101
+      cumulus@leaf01:~$ nv set router bgp autonomous-system 65101
       ```
 
     - To use auto BGP to assign an ASN automatically on the leaf:
 
        ```
-       cumulus@leaf01:~$ cl set router bgp autonomous-system leaf
+       cumulus@leaf01:~$ nv set router bgp autonomous-system leaf
        ```
 
        The auto BGP `leaf` keyword is only used to configure the ASN. The configuration files and `cl show` commands display the AS number.
@@ -196,20 +196,20 @@ router bgp 65199
 2. Assign the router ID.
 
    ```
-   cumulus@leaf01:~$ cl set router bgp router-id 10.10.10.1
+   cumulus@leaf01:~$ nv set router bgp router-id 10.10.10.1
    ```
 
 3. Specify the BGP neighbor to which you want to distribute routing information.
 
     ```
-    cumulus@leaf01:~$ cl set vrf default router bgp peer 10.0.1.0 remote-as external
+    cumulus@leaf01:~$ nv set vrf default router bgp peer 10.0.1.0 remote-as external
     ```
 
     For BGP to advertise IPv6 prefixes, you need to run an additional command to activate the BGP neighbor under the IPv6 address family. The IPv4 address family is enabled by default and the `activate` command is not required for IPv4 route exchange.
 
     ```
-    cumulus@leaf01:~$ cl set vrf default router bgp peer 2001:db8:0002::0a00:0002 remote-as external
-    cumulus@leaf01:~$ cl set vrf default router bgp peer 2001:db8:0002::0a00:0002 address-family ipv6-unicast enable on
+    cumulus@leaf01:~$ nv set vrf default router bgp peer 2001:db8:0002::0a00:0002 remote-as external
+    cumulus@leaf01:~$ nv set vrf default router bgp peer 2001:db8:0002::0a00:0002 address-family ipv6-unicast enable on
     ```
 
     For BGP to advertise *IPv4* prefixes with IPv6 next hops, see {{<link url="Optional-BGP-Configuration#advertise-ipv4-prefixes-with-ipv6-next-hops" text="Advertise IPv4 Prefixes with IPv6 Next Hops">}}.
@@ -217,22 +217,22 @@ router bgp 65199
 4. Specify which prefixes to originate:
 
     ```
-    cumulus@leaf01:~$ cl set vrf default router bgp address-family ipv4-unicast static-network 10.10.10.1/32
-    cumulus@leaf01:~$ cl set vrf default router bgp address-family ipv4-unicast static-network 10.1.10.0/24
-    cumulus@leaf01:~$ cl config apply
+    cumulus@leaf01:~$ nv set vrf default router bgp address-family ipv4-unicast static-network 10.10.10.1/32
+    cumulus@leaf01:~$ nv set vrf default router bgp address-family ipv4-unicast static-network 10.1.10.0/24
+    cumulus@leaf01:~$ nv config apply
     ```
 
    IPv6 prefix example:
 
    ```
-   cumulus@leaf01:~$ cl set vrf default router bgp address-family ipv6-unicast static-network 2001:db8::1/128
-   cumulus@leaf01:~$ cl config apply
+   cumulus@leaf01:~$ nv set vrf default router bgp address-family ipv6-unicast static-network 2001:db8::1/128
+   cumulus@leaf01:~$ nv config apply
    ```
 
-After you run `cl config save`, the CUE commands create the following configuration snippet in the `/etc/cue.d/startup.yaml` file:
+After you run `nv config save`, the NVUE Commands create the following configuration snippet in the `/etc/nvue.d/startup.yaml` file:
 
 ```
-cumulus@leaf01:~$ sudo cat /etc/cue.d/startup.yaml
+cumulus@leaf01:~$ sudo cat /etc/nvue.d/startup.yaml
 ...
 router:
       bgp:
@@ -264,13 +264,13 @@ router:
     - To assign an ASN manually:
 
       ```
-      cumulus@spine01:~$ cl set router bgp autonomous-system 65199
+      cumulus@spine01:~$ nv set router bgp autonomous-system 65199
       ```
 
     - To use auto BGP to assign an ASN automatically on the spine:
 
       ```
-      cumulus@spine01:~$ cl set router bgp autonomous-system spine
+      cumulus@spine01:~$ nv set router bgp autonomous-system spine
       ```
 
       The auto BGP `spine` keyword is only used to configure the ASN. The configuration files and `cl show` commands display the AS number.
@@ -278,20 +278,20 @@ router:
 2. Assign the router ID.
 
     ```
-    cumulus@spine01:~$ cl set router bgp router-id 10.10.10.101
+    cumulus@spine01:~$ nv set router bgp router-id 10.10.10.101
     ```
 
 3. Specify the BGP neighbor to which you want to distribute routing information.
 
     ```
-    cumulus@spine01:~$ cl set vrf default router bgp peer 10.0.1.0 remote-as external
+    cumulus@spine01:~$ nv set vrf default router bgp peer 10.0.1.0 remote-as external
     ```
 
     For BGP to advertise IPv6 prefixes, you need to run an additional command to activate the BGP neighbor under the IPv6 address family. The IPv4 address family is enabled by default and the `activate` command is not required for IPv4 route exchange.
 
     ```
-    cumulus@spine01:~$ cl set vrf default router bgp peer 2001:db8:0002::0a00:1 remote-as external
-    cumulus@spine01:~$ cl set vrf default router bgp peer address-family ipv6-unicast 2001:db8:0002::0a00:1 enable on
+    cumulus@spine01:~$ nv set vrf default router bgp peer 2001:db8:0002::0a00:1 remote-as external
+    cumulus@spine01:~$ nv set vrf default router bgp peer address-family ipv6-unicast 2001:db8:0002::0a00:1 enable on
     ```
 
     For BGP to advertise *IPv4* prefixes with IPv6 next hops, see {{<link url="Optional-BGP-Configuration#advertise-ipv4-prefixes-with-ipv6-next-hops" text="Advertise IPv4 Prefixes with IPv6 Next Hops">}}.
@@ -299,22 +299,22 @@ router:
 4. Specify which prefixes to originate:
 
     ```
-    cumulus@spine01:~$ cl set vrf default router bgp address-family ipv4-unicast static-network 10.10.10.101/32
-    cumulus@spine01:~$ cl config diff
-    cumulus@spine01:~$ cl config apply
+    cumulus@spine01:~$ nv set vrf default router bgp address-family ipv4-unicast static-network 10.10.10.101/32
+    cumulus@spine01:~$ nv config diff
+    cumulus@spine01:~$ nv config apply
     ```
 
    IPv6 prefix example:
 
    ```
-   cumulus@spine01:~$ cl set vrf default router bgp address-family ipv6-unicast static-network 2001:db8::101/128
-   cumulus@spine01:~$ cl config apply
+   cumulus@spine01:~$ nv set vrf default router bgp address-family ipv6-unicast static-network 2001:db8::101/128
+   cumulus@spine01:~$ nv config apply
    ```
 
-After you run `cl config save`, the CUE commands create the following configuration snippet in the `/etc/cue.d/startup.yaml` file:
+After you run `nv config save`, the NVUE Commands create the following configuration snippet in the `/etc/nvue.d/startup.yaml` file:
 
 ```
-cumulus@spine01:~$ sudo cat /etc/cue.d/startup.yaml
+cumulus@spine01:~$ sudo cat /etc/nvue.d/startup.yaml
 ...
 router:
       bgp:
@@ -551,35 +551,35 @@ router bgp 65199
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 {{< tabs "518 ">}}
 {{< tab " leaf01 ">}}
 
 ```
-cumulus@leaf01:~$ cl set router bgp autonomous-system 65101
-cumulus@leaf01:~$ cl set router bgp router-id 10.10.10.1
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp51 remote-as external
-cumulus@leaf01:~$ cl set vrf default router bgp address-family ipv4-unicast static-network 10.10.10.1/32
-cumulus@leaf01:~$ cl set vrf default router bgp address-family ipv4-unicast static-network 10.1.10.0/24
-cumulus@leaf01:~$ cl config apply
+cumulus@leaf01:~$ nv set router bgp autonomous-system 65101
+cumulus@leaf01:~$ nv set router bgp router-id 10.10.10.1
+cumulus@leaf01:~$ nv set vrf default router bgp peer swp51 remote-as external
+cumulus@leaf01:~$ nv set vrf default router bgp address-family ipv4-unicast static-network 10.10.10.1/32
+cumulus@leaf01:~$ nv set vrf default router bgp address-family ipv4-unicast static-network 10.1.10.0/24
+cumulus@leaf01:~$ nv config apply
 ```
 
 For BGP to advertise IPv6 prefixes, you need to run an additional command to activate the BGP neighbor under the IPv6 address family. The IPv4 address family is enabled by default and the `enable` command is not required for IPv4 route exchange.
 
 ```
-cumulus@leaf01:~$ cl set router bgp autonomous-system 65101
-cumulus@leaf01:~$ cl set router bgp router-id 10.10.10.1
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp51 remote-as external
-cumulus@leaf01:~$ cl set vrf default router bgp address-family ipv6-unicast enable on
-cumulus@leaf01:~$ cl set vrf default router bgp address-family ipv6-unicast static-network 2001:db8::1/128
-cumulus@leaf01:~$ cl config apply
+cumulus@leaf01:~$ nv set router bgp autonomous-system 65101
+cumulus@leaf01:~$ nv set router bgp router-id 10.10.10.1
+cumulus@leaf01:~$ nv set vrf default router bgp peer swp51 remote-as external
+cumulus@leaf01:~$ nv set vrf default router bgp address-family ipv6-unicast enable on
+cumulus@leaf01:~$ nv set vrf default router bgp address-family ipv6-unicast static-network 2001:db8::1/128
+cumulus@leaf01:~$ nv config apply
 ```
 
-After you run `cl config save`, the CUE commands create the following configuration snippet in the `/etc/cue.d/startup.yaml` file:
+After you run `nv config save`, the NVUE Commands create the following configuration snippet in the `/etc/nvue.d/startup.yaml` file:
 
 ```
-cumulus@leaf01:~$ sudo cat /etc/cue.d/startup.yaml
+cumulus@leaf01:~$ sudo cat /etc/nvue.d/startup.yaml
 ...
 router:
       bgp:
@@ -607,28 +607,28 @@ router:
 {{< tab "spine01 ">}}
 
 ```
-cumulus@spine01:~$ cl set router bgp autonomous-system 65199
-cumulus@spine01:~$ cl set router bgp router-id 10.10.10.101
-cumulus@spine01:~$ cl set vrf default router bgp peer swp1 remote-as external
-cumulus@spine01:~$ cl set vrf default router bgp address-family ipv4-unicast static-network 10.10.10.101/32
-cumulus@spine01:~$ cl config apply
+cumulus@spine01:~$ nv set router bgp autonomous-system 65199
+cumulus@spine01:~$ nv set router bgp router-id 10.10.10.101
+cumulus@spine01:~$ nv set vrf default router bgp peer swp1 remote-as external
+cumulus@spine01:~$ nv set vrf default router bgp address-family ipv4-unicast static-network 10.10.10.101/32
+cumulus@spine01:~$ nv config apply
 ```
 
 For BGP to advertise IPv6 prefixes, you need to run an additional command to activate the BGP neighbor under the IPv6 address family. The IPv4 address family is enabled by default and the `enable` command is not required for IPv4 route exchange.
 
 ```
-cumulus@spine01:~$ cl set router bgp autonomous-system 65199
-cumulus@spine01:~$ cl set router bgp router-id 10.10.10.101
-cumulus@spine01:~$ cl set vrf default router bgp peer swp1 remote-as external
-cumulus@spine01:~$ cl set vrf default router bgp address-family ipv6-unicast enable on
-cumulus@spine01:~$ cl set vrf default router bgp address-family ipv6-unicast static-network 2001:db8::101/128
-cumulus@spine01:~$ cl config apply
+cumulus@spine01:~$ nv set router bgp autonomous-system 65199
+cumulus@spine01:~$ nv set router bgp router-id 10.10.10.101
+cumulus@spine01:~$ nv set vrf default router bgp peer swp1 remote-as external
+cumulus@spine01:~$ nv set vrf default router bgp address-family ipv6-unicast enable on
+cumulus@spine01:~$ nv set vrf default router bgp address-family ipv6-unicast static-network 2001:db8::101/128
+cumulus@spine01:~$ nv config apply
 ```
 
-After you run `cl config save`, the CUE commands create the following configuration snippet in the `/etc/cue.d/startup.yaml` file:
+After you run `nv config save`, the NVUE Commands create the following configuration snippet in the `/etc/nvue.d/startup.yaml` file:
 
 ```
-cumulus@spine01:~$ sudo cat /etc/cue.d/startup.yaml
+cumulus@spine01:~$ sudo cat /etc/nvue.d/startup.yaml
 ...
 router:
       bgp:

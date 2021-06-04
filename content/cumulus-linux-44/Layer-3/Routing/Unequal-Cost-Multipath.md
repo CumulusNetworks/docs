@@ -79,13 +79,13 @@ route-map ucmp-route-map permit 10
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
-cumulus@leaf01:~$ cl set router policy route-map ucmp-route-map rule 10 set ext-community-bw num-multipaths
-cumulus@leaf01:~$ cl set router policy route-map ucmp-route-map rule 10 action permit
+cumulus@leaf01:~$ nv set router policy route-map ucmp-route-map rule 10 set ext-community-bw num-multipaths
+cumulus@leaf01:~$ nv set router policy route-map ucmp-route-map rule 10 action permit
 cumulus@leaf01:~$ NEED COMMAND
-cumulus@leaf01:~$ cl config apply
+cumulus@leaf01:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -152,7 +152,7 @@ route-map ucmp-route-map permit 10
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
 cumulus@leaf01:~$ NEED COMMAND
@@ -226,7 +226,7 @@ route-map ucmp-route-map permit 10
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
 cumulus@leaf01:~$ NEED COMMAND
@@ -319,7 +319,7 @@ router bgp 65011
  ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
 cumulus@leaf01:~$ NEED COMMAND
@@ -383,7 +383,7 @@ cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
 cumulus@leaf01:~$ NEED COMMAND

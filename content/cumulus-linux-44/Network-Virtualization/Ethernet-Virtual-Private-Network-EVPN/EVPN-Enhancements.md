@@ -73,38 +73,38 @@ address-family l2vpn evpn
 {{< /tabs >}}
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 {{< tabs "TabID52 ">}}
 {{< tab "leaf01 ">}}
 
 ``` 
-cumulus@leaf01:~$ cl set evpn evi 10 route-target 10.10.10.1:20
-cumulus@leaf01:~$ cl set evpn evi 10 route-target export 65101:10
-cumulus@leaf01:~$ cl set evpn evi 10 route-target import 65102:10
-cumulus@leaf01:~$ cl config apply
+cumulus@leaf01:~$ nv set evpn evi 10 route-target 10.10.10.1:20
+cumulus@leaf01:~$ nv set evpn evi 10 route-target export 65101:10
+cumulus@leaf01:~$ nv set evpn evi 10 route-target import 65102:10
+cumulus@leaf01:~$ nv config apply
 ```
 
-The CUE commands create the following configuration snippet in the `/etc/cue.d/startup.yaml` file:
+The NVUE Commands create the following configuration snippet in the `/etc/nvue.d/startup.yaml` file:
 
 ```
-cumulus@leaf01:~$ sudo cat /etc/cue.d/startup.yaml
+cumulus@leaf01:~$ sudo cat /etc/nvue.d/startup.yaml
 ```
 
 {{< /tab >}}
 {{< tab "leaf03 ">}}
 
 ```
-cumulus@leaf03:~$ cl set evpn evi 10 route-target 10.10.10.3:20
-cumulus@leaf03:~$ cl set evpn evi 10 route-target export 65102:10
-cumulus@leaf03:~$ cl set evpn evi 10 route-target import 65101:10
-cumulus@leaf03:~$ cl config apply
+cumulus@leaf03:~$ nv set evpn evi 10 route-target 10.10.10.3:20
+cumulus@leaf03:~$ nv set evpn evi 10 route-target export 65102:10
+cumulus@leaf03:~$ nv set evpn evi 10 route-target import 65101:10
+cumulus@leaf03:~$ nv config apply
 ```
 
-The CUE commands create the following configuration snippet in the `/etc/cue.d/startup.yaml` file:
+The NVUE Commands create the following configuration snippet in the `/etc/nvue.d/startup.yaml` file:
 
 ```
-cumulus@leaf03:~$ sudo cat /etc/cue.d/startup.yaml
+cumulus@leaf03:~$ sudo cat /etc/nvue.d/startup.yaml
 ```
 
 {{< /tab >}}
@@ -249,38 +249,38 @@ address-family l2vpn evpn
 {{< /tabs >}}
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 {{< tabs "TabID200 ">}}
 {{< tab "leaf01 ">}}
 
 ```
-cumulus@leaf01:~$ cl set evpn evi 10 route-target import 65102:10
-cumulus@leaf01:~$ cl set evpn evi 10 route-target import 65102:20
-cumulus@leaf01:~$ cl set evpn evi 20 route-target both 65101:10
-cumulus@leaf01:~$ cl config apply
+cumulus@leaf01:~$ nv set evpn evi 10 route-target import 65102:10
+cumulus@leaf01:~$ nv set evpn evi 10 route-target import 65102:20
+cumulus@leaf01:~$ nv set evpn evi 20 route-target both 65101:10
+cumulus@leaf01:~$ nv config apply
 ```
 
-The CUE commands create the following configuration snippet in the `/etc/cue.d/startup.yaml` file:
+The NVUE Commands create the following configuration snippet in the `/etc/nvue.d/startup.yaml` file:
 
 ```
-cumulus@leaf01:~$ sudo cat /etc/cue.d/startup.yaml
+cumulus@leaf01:~$ sudo cat /etc/nvue.d/startup.yaml
 ```
 
 {{< /tab >}}
 {{< tab "leaf03 ">}}
 
 ```
-cumulus@leaf03:~$ cl set evpn evi 10 route-target import 65101:10
-cumulus@leaf03:~$ cl set evpn evi 10 route-target import 65101:20
-cumulus@leaf03:~$ cl set evpn evi 20 route-target both 65102:10
-cumulus@leaf03:~$ cl config apply
+cumulus@leaf03:~$ nv set evpn evi 10 route-target import 65101:10
+cumulus@leaf03:~$ nv set evpn evi 10 route-target import 65101:20
+cumulus@leaf03:~$ nv set evpn evi 20 route-target both 65102:10
+cumulus@leaf03:~$ nv config apply
 ```
 
-The CUE commands create the following configuration snippet in the `/etc/cue.d/startup.yaml` file:
+The NVUE Commands create the following configuration snippet in the `/etc/nvue.d/startup.yaml` file:
 
 ```
-cumulus@leaf03:~$ sudo cat /etc/cue.d/startup.yaml
+cumulus@leaf03:~$ sudo cat /etc/nvue.d/startup.yaml
 ```
 
 {{< /tab >}}
@@ -440,16 +440,16 @@ Router ospf
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
 cumulus@leaf01:~$ NEED COMMANDS
 ```
 
-The CUE commands create the following configuration snippet in the `/etc/cue.d/startup.yaml` file:
+The NVUE Commands create the following configuration snippet in the `/etc/nvue.d/startup.yaml` file:
 
 ```
-cumulus@leaf01:~$ sudo cat /etc/cue.d/startup.yaml
+cumulus@leaf01:~$ sudo cat /etc/nvue.d/startup.yaml
 ```
 
 {{< /tab >}}
@@ -578,14 +578,14 @@ cumulus@leaf01:~$ net commit
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
-cumulus@leaf01:~$ cl set interface vlan10 ip ipv4 forward off
-cumulus@leaf01:~$ cl set interface vlan10 ip ipv6 forward off
-cumulus@leaf01:~$ cl set interface vlan20 ip ipv4 forward off
-cumulus@leaf01:~$ cl set interface vlan20 ip ipv6 forward off
-cumulus@leaf01:~$ cl config apply
+cumulus@leaf01:~$ nv set interface vlan10 ip ipv4 forward off
+cumulus@leaf01:~$ nv set interface vlan10 ip ipv6 forward off
+cumulus@leaf01:~$ nv set interface vlan20 ip ipv4 forward off
+cumulus@leaf01:~$ nv set interface vlan20 ip ipv6 forward off
+cumulus@leaf01:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -669,11 +669,11 @@ cumulus@leaf01:~$ net commit
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
-cumulus@leaf01:~$ cl set nve vxlan arp-nd-suppress off
-cumulus@leaf01:~$ cl config apply
+cumulus@leaf01:~$ nv set nve vxlan arp-nd-suppress off
+cumulus@leaf01:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -716,11 +716,11 @@ cumulus@leaf01:~$ net commit
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
 cumulus@leaf01:~$ NEED COMMAND
-cumulus@leaf01:~$ cl config apply
+cumulus@leaf01:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -771,12 +771,12 @@ cumulus@leaf01:~$ net commit
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
-cumulus@leaf01:~$ cl set router policy route-map map1 rule 10 match evpn-route-type ip-prefix
-cumulus@leaf01:~$ cl set router policy route-map map1 rule 10 action permit
-cumulus@leaf01:~$ cl set vrf default router bgp address-family ipv4-unicast route-export to-evpn route-map map1
+cumulus@leaf01:~$ nv set router policy route-map map1 rule 10 match evpn-route-type ip-prefix
+cumulus@leaf01:~$ nv set router policy route-map map1 rule 10 action permit
+cumulus@leaf01:~$ nv set vrf default router bgp address-family ipv4-unicast route-export to-evpn route-map map1
 ```
 
 {{< /tab >}}
@@ -822,11 +822,11 @@ cumulus@leaf01:~$ net commit
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
-cumulus@leaf01:~$ cl set evpn route-advertise svi-ip on
-cumulus@leaf01:~$ cl config apply
+cumulus@leaf01:~$ nv set evpn route-advertise svi-ip on
+cumulus@leaf01:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -872,17 +872,17 @@ exit-address-family
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
-cumulus@leaf01:~$ cl set evpn evi 10 route-advertise svi-ip on
-cumulus@leaf01:~$ cl config apply
+cumulus@leaf01:~$ nv set evpn evi 10 route-advertise svi-ip on
+cumulus@leaf01:~$ nv config apply
 ```
 
-The CUE commands create the following configuration snippet in the `/etc/cue.d/startup.yaml` file:
+The NVUE Commands create the following configuration snippet in the `/etc/nvue.d/startup.yaml` file:
 
 ```
-cumulus@leaf01:~$ sudo cat /etc/cue.d/startup.yaml
+cumulus@leaf01:~$ sudo cat /etc/nvue.d/startup.yaml
 ```
 
 {{< /tab >}}
@@ -957,20 +957,20 @@ router bgp 65101
 To re-enable BUM flooding, run the NCLU `net del bgp l2vpn evpn disable-flooding` command.
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
-cumulus@leaf01:~$ cl set nve vxlan flooding enable off
-cumulus@leaf01:~$ cl config apply
+cumulus@leaf01:~$ nv set nve vxlan flooding enable off
+cumulus@leaf01:~$ nv config apply
 ```
 
-The CUE commands create the following configuration snippet in the `/etc/cue.d/startup.yaml` file:
+The NVUE Commands create the following configuration snippet in the `/etc/nvue.d/startup.yaml` file:
 
 ```
-cumulus@leaf01:~$ sudo cat /etc/cue.d/startup.yaml
+cumulus@leaf01:~$ sudo cat /etc/nvue.d/startup.yaml
 ```
 
-To renable BUM flodding, run the `cl set nve vxlan flooding enable on` command.
+To renable BUM flodding, run the `nv set nve vxlan flooding enable on` command.
 
 {{< /tab >}}
 {{< tab "vtysh Commands ">}}
@@ -1104,12 +1104,12 @@ cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ cl set evpn dad mac-move-threshold 10
-cumulus@switch:~$ cl set evpn dad move-window 1200
-cumulus@switch:~$ cl config apply
+cumulus@switch:~$ nv set evpn dad mac-move-threshold 10
+cumulus@switch:~$ nv set evpn dad move-window 1200
+cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -1180,11 +1180,11 @@ cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ cl set evpn dad duplicate-action freeze duration 1000
-cumulus@switch:~$ cl config apply
+cumulus@switch:~$ nv set evpn dad duplicate-action freeze duration 1000
+cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -1222,11 +1222,11 @@ cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ cl set evpn dad duplicate-action freeze duration permanent
-cumulus@switch:~$ cl config apply
+cumulus@switch:~$ nv set evpn dad duplicate-action freeze duration permanent
+cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -1262,9 +1262,9 @@ cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
-The CUE command is not curently supported.
+The NVUE Command is not curently supported.
 
 {{< /tab >}}
 {{< tab "vtysh Commands ">}}
@@ -1292,9 +1292,9 @@ cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
-CUE command is not curently supported.
+NVUE Command is not curently supported.
 
 {{< /tab >}}
 {{< tab "vtysh Commands ">}}
@@ -1329,11 +1329,11 @@ cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ cl set evpn dad enable off
-cumulus@switch:~$ cl config apply
+cumulus@switch:~$ nv set evpn dad enable off
+cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}

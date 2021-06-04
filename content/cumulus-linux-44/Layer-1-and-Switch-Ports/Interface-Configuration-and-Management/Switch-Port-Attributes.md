@@ -49,11 +49,11 @@ iface swp1
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ cl set interface swp1 link mtu 1500
-cumulus@switch:~$ cl config apply
+cumulus@switch:~$ nv set interface swp1 link mtu 1500
+cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -129,7 +129,7 @@ VLAN interfaces inherit their MTU settings from their physical devices or their 
 If you are working with {{<link url="Network-Virtualization" text="VXLANs">}}, the MTU for a virtual network interface (VNI must be 50 bytes smaller than the MTU of the physical interfaces on the switch, as those 50 bytes are required for various headers and other data. Also, consider setting the MTU much higher than 1500.
 
 {{%notice note%}}
-The MTU for an SVI interface, such as vlan10, is derived from the bridge. When you use CUE to change the MTU for an SVI and the MTU setting is higher than it is for the other bridge member interfaces, the MTU for all bridge member interfaces changes to the new setting. If you need to use a mixed MTU configuration for SVIs, (if some SVIs have a higher MTU and some lower), set the MTU for all member interfaces to the maximum value, then set the MTU on the specific SVIs that need to run at a lower MTU.
+The MTU for an SVI interface, such as vlan10, is derived from the bridge. When you use NCLU to change the MTU for an SVI and the MTU setting is higher than it is for the other bridge member interfaces, the MTU for all bridge member interfaces changes to the new setting. If you need to use a mixed MTU configuration for SVIs, (if some SVIs have a higher MTU and some lower), set the MTU for all member interfaces to the maximum value, then set the MTU on the specific SVIs that need to run at a lower MTU.
 {{%/notice%}}
 
 To show the MTU setting for an interface:
@@ -145,7 +145,7 @@ UP  swp1    44:38:39:00:00:04  1G        9216  Access/L2
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
 cumulus@switch:~$ cl show interface swp1
@@ -320,11 +320,11 @@ cumulus@switch:~$ sudo net commit
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ cl set interface swp1 link fec rs
-cumulus@switch:~$ cl config apply
+cumulus@switch:~$ nv set interface swp1 link fec rs
+cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -373,11 +373,11 @@ cumulus@switch:~$ sudo net commit
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ cl set interface swp1 link fec baser
-cumulus@switch:~$ cl config apply
+cumulus@switch:~$ nv set interface swp1 link fec baser
+cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -431,11 +431,11 @@ cumulus@switch:~$ sudo net commit
 
 {{< /tab >}}
 
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ cl set interface swp1 link auto-negotiate on
-cumulus@switch:~$ cl config apply
+cumulus@switch:~$ nv set interface swp1 link auto-negotiate on
+cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -494,14 +494,14 @@ cumulus@switch:~$ sudo net commit
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ cl set interface swp1 link fec off
-cumulus@switch:~$ cl config apply
+cumulus@switch:~$ nv set interface swp1 link fec off
+cumulus@switch:~$ nv config apply
 ```
 
-To configure FEC to the default value, run the `cl unset interface swp1 link fec` command.
+To configure FEC to the default value, run the `nv unset interface swp1 link fec` command.
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
@@ -643,21 +643,21 @@ iface swp1s3
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 This example command breaks out the 100G port on swp1 into four 25G ports:
 
 ```
-cumulus@switch:~$ cl set interface swp1 link breakout 4x25G 
-cumulus@switch:~$ cl config apply
+cumulus@switch:~$ nv set interface swp1 link breakout 4x25G 
+cumulus@switch:~$ nv config apply
 ```
 
 To break out a port into four 10G ports, you must **also** disable the next port.
 
 ```
-cumulus@switch:~$ cl set interface swp1 link breakout 4x10G
-cumulus@switch:~$ cl set interface swp2 breakout disabled
-cumulus@switch:~$ cl config apply
+cumulus@switch:~$ nv set interface swp1 link breakout 4x10G
+cumulus@switch:~$ nv set interface swp2 breakout disabled
+cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -741,16 +741,16 @@ To remove a breakout port:
    ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
-Run the `cl unset interface <interface>` command. For example:
+Run the `nv unset interface <interface>` command. For example:
 
     ```
-    cumulus@switch:~$ cl unset interface swp1s0
-    cumulus@switch:~$ cl unset interface swp1s1
-    cumulus@switch:~$ cl unset interface swp1s2
-    cumulus@switch:~$ cl unset interface swp1s3
-    cumulus@switch:~$ cl config apply
+    cumulus@switch:~$ nv unset interface swp1s0
+    cumulus@switch:~$ nv unset interface swp1s1
+    cumulus@switch:~$ nv unset interface swp1s2
+    cumulus@switch:~$ nv unset interface swp1s3
+    cumulus@switch:~$ nv config apply
     ```
 
 {{< /tab >}}
@@ -788,7 +788,7 @@ This section shows basic commands for troubleshooting switch ports. For a more c
 
 ### Statistics
 
-To show high-level interface statistics, run the NCLU `net show interface` command. The CUE command is `cl show interface`.
+To show high-level interface statistics, run the NCLU `net show interface` command. The NVUE Command is `cl show interface`.
 
 ```
 cumulus@switch:~$ net show interface swp1

@@ -44,11 +44,11 @@ server 4.cumulusnetworks.pool.ntp.org iburst
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ cl set system ntp pool 4.cumulusnetworks.pool.ntp.org iburst on
-cumulus@switch:~$ cl config apply
+cumulus@switch:~$ nv set system ntp pool 4.cumulusnetworks.pool.ntp.org iburst on
+cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -99,7 +99,7 @@ cumulus@switch:~$ net show time ntp servers
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
 cumulus@switch:~$ cl show system ntp server
@@ -136,14 +136,14 @@ cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ cl unset system ntp server 0.cumulusnetworks.pool.ntp.org
-cumulus@switch:~$ cl unset system ntp server 1.cumulusnetworks.pool.ntp.org
-cumulus@switch:~$ cl unset system ntp server 2.cumulusnetworks.pool.ntp.org
-cumulus@switch:~$ cl unset system ntp server 3.cumulusnetworks.pool.ntp.org
-cumulus@switch:~$ cl config apply
+cumulus@switch:~$ nv unset system ntp server 0.cumulusnetworks.pool.ntp.org
+cumulus@switch:~$ nv unset system ntp server 1.cumulusnetworks.pool.ntp.org
+cumulus@switch:~$ nv unset system ntp server 2.cumulusnetworks.pool.ntp.org
+cumulus@switch:~$ nv unset system ntp server 3.cumulusnetworks.pool.ntp.org
+cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -187,11 +187,11 @@ interface listen swp10
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ cl set system ntp listen swp10
-cumulus@switch:~$ cl config apply
+cumulus@switch:~$ nv set system ntp listen swp10
+cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}

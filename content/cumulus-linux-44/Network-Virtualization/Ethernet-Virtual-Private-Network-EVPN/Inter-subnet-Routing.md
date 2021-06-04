@@ -45,17 +45,17 @@ router bgp 65101
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
-cumulus@leaf01:~$ cl set evpn route-advertise default-gateway on
-cumulus@leaf01:~$ cl config apply
+cumulus@leaf01:~$ nv set evpn route-advertise default-gateway on
+cumulus@leaf01:~$ nv config apply
 ```
 
-The CUE commands create the following configuration snippet in the `/etc/cue.d/startup.yaml` file:
+The NVUE Commands create the following configuration snippet in the `/etc/nvue.d/startup.yaml` file:
 
 ```
-cumulus@leaf01:~$ sudo cat /etc/cue.d/startup.yaml
+cumulus@leaf01:~$ sudo cat /etc/nvue.d/startup.yaml
 ```
 
 {{< /tab >}}
@@ -139,12 +139,12 @@ cumulus@leaf01:~$ net commit
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
-cumulus@leaf01:~$ cl set bridge domain br_default vlan 10 vni 10 
-cumulus@leaf01:~$ cl set nve vxlan source address 10.10.10.10
-cumulus@leaf01:~$ cl config apply
+cumulus@leaf01:~$ nv set bridge domain br_default vlan 10 vni 10 
+cumulus@leaf01:~$ nv set nve vxlan source address 10.10.10.10
+cumulus@leaf01:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -183,12 +183,12 @@ cumulus@leaf01:~$ net commit
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
-cumulus@leaf01:~$ cl set vrf RED
-cumulus@leaf01:~$ cl set interface vlan10 ip vrf RED
-cumulus@leaf01:~$ cl config apply
+cumulus@leaf01:~$ nv set vrf RED
+cumulus@leaf01:~$ nv set interface vlan10 ip vrf RED
+cumulus@leaf01:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -226,15 +226,15 @@ cumulus@leaf01:~$ net commit
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
-cumulus@leaf01:~$ cl set vrf RED evpn vni 4001
-cumulus@leaf01:~$ cl config apply
+cumulus@leaf01:~$ nv set vrf RED evpn vni 4001
+cumulus@leaf01:~$ nv config apply
 ```
 
 {{%notice note%}}
-When you run the `cl set vrf RED evpn vni 4001` command, CUE:
+When you run the `nv set vrf RED evpn vni 4001` command, NVUE:
 - Creates a layer 3 VNI called vni4001
 - Assigns the vni4001 a VLAN automatically from the reserved VLAN range and adds `_l3` (layer 3) at the end (for example vlan220_l3)
 - Creates a layer 3 bridge called br_l3vni
@@ -303,17 +303,17 @@ router bgp 65101 vrf RED
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
-cumulus@leaf01:~$ cl set vrf RED router bgp rd 10.1.20.2:5
-cumulus@leaf01:~$ cl set vrf RED router bgp route-import from-evpn route-target 65102:4001
+cumulus@leaf01:~$ nv set vrf RED router bgp rd 10.1.20.2:5
+cumulus@leaf01:~$ nv set vrf RED router bgp route-import from-evpn route-target 65102:4001
 ```
 
-The CUE commands create the following configuration snippet in the `/etc/cue.d/startup.yaml` file:
+The NVUE Commands create the following configuration snippet in the `/etc/nvue.d/startup.yaml` file:
 
 ```
-cumulus@leaf01:~$ sudo cat /etc/cue.d/startup.yaml
+cumulus@leaf01:~$ sudo cat /etc/nvue.d/startup.yaml
 
 ```
 
@@ -409,17 +409,17 @@ end
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
-cumulus@leaf01:~$ cl set vrf RED router bgp address-family ipv4-unicast route-export to-evpn enable on
-cumulus@leaf01:~$ cl config apply
+cumulus@leaf01:~$ nv set vrf RED router bgp address-family ipv4-unicast route-export to-evpn enable on
+cumulus@leaf01:~$ nv config apply
 ```
 
-The CUE commands create the following configuration snippet in the `/etc/cue.d/startup.yaml` file:
+The NVUE Commands create the following configuration snippet in the `/etc/nvue.d/startup.yaml` file:
 
 ```
-cumulus@leaf01:~$ sudo cat /etc/cue.d/startup.yaml
+cumulus@leaf01:~$ sudo cat /etc/nvue.d/startup.yaml
 
 ```
 
@@ -512,10 +512,10 @@ cumulus@leaf01:~$ net commit
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
-cumulus@leaf01:~$ cl set vrf RED router bgp address-family ipv4-unicast route-export to-evpn route-map map1
+cumulus@leaf01:~$ nv set vrf RED router bgp address-family ipv4-unicast route-export to-evpn route-map map1
 ```
 
 {{< /tab >}}
@@ -580,11 +580,11 @@ cumulus@leaf01:~$ net commit
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
-cumulus@leaf01:~$ cl set system global anycast-mac 44:38:39:BE:EF:AA
-cumulus@leaf01:~$ cl config apply
+cumulus@leaf01:~$ nv set system global anycast-mac 44:38:39:BE:EF:AA
+cumulus@leaf01:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -617,11 +617,11 @@ iface vlan4001
 To advertise type-5 routes and host type-2 routes using the system IP address and system MAC address:
 
 {{< tabs "TabID520 ">}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
-cumulus@leaf01:~$ cl set evpn route-advertise nexthop-setting system-ip-mac
-cumulus@leaf01:~$ cl config apply
+cumulus@leaf01:~$ nv set evpn route-advertise nexthop-setting system-ip-mac
+cumulus@leaf01:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -659,11 +659,11 @@ cumulus@leaf01:~$ net commit
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
-cumulus@leaf01:~$ cl set evpn route-advertise nexthop-setting shared-ip-mac
-cumulus@leaf01:~$ cl config apply
+cumulus@leaf01:~$ nv set evpn route-advertise nexthop-setting shared-ip-mac
+cumulus@leaf01:~$ nv config apply
 ```
 
 {{< /tab >}}

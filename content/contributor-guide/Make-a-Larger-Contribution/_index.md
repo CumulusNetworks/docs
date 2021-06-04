@@ -108,3 +108,179 @@ If the page does not appear to be updating, you may need to stop the Hugo server
     {{%/notice%}}
 
 You are now ready to edit the documentation or create a new topic. Refer to [Adding New Content](Adding_New_Content).
+
+## Troubleshooting Hugo
+### Large Changes
+If Hugo is currently running and a large volume of changes are made, for example, changing branches, Hugo may not always detect the changes. Stop and restart Hugo to see the new changes.
+
+### Hugo pipe failed Error
+When launching Hugo it may fail and produce a traceback similar to the following
+
+```Start building sites …
+
+                   |  EN
+-------------------+-------
+  Pages            | 1736
+  Paginator pages  |    0
+  Non-page files   | 6722
+  Static files     | 1685
+  Processed images |    0
+  Aliases          |    0
+  Sitemaps         |    1
+  Cleaned          |    0
+
+Built in 18957 ms
+Watching for changes in /git/docs/{content,static,themes}
+Watching for config changes in /git/docs/config.yml
+fatal error: pipe failed
+```
+
+<details>
+<summary>Traceback Output</summary>
+<pre>
+<code class="language-Start">goroutine 1 [running]:
+runtime.throw(0x5a04840, 0xb)
+	/usr/local/go/src/runtime/panic.go:1117 +0x72 fp=0xc03cc51890 sp=0xc03cc51860 pc=0x40394f2
+runtime.sigNoteSetup(0x6c9b140)
+	/usr/local/go/src/runtime/os_darwin.go:98 +0xc5 fp=0xc03cc518b8 sp=0xc03cc51890 pc=0x40359e5
+os/signal.signal_enable(0x2fa5a6e100000002)
+	/usr/local/go/src/runtime/sigqueue.go:228 +0xa5 fp=0xc03cc518d8 sp=0xc03cc518b8 pc=0x406f7e5
+os/signal.enableSignal(...)
+	/usr/local/go/src/os/signal/signal_unix.go:49
+os/signal.Notify.func1(0x2)
+	/usr/local/go/src/os/signal/signal.go:145 +0x88 fp=0xc03cc518f8 sp=0xc03cc518d8 pc=0x5426108
+os/signal.Notify(0xc048ce3da0, 0xc03cc51b38, 0x2, 0x2)
+	/usr/local/go/src/os/signal/signal.go:165 +0x185 fp=0xc03cc51970 sp=0xc03cc518f8 pc=0x5425b25
+github.com/gohugoio/hugo/commands.(*commandeer).serve(0xc000030a80, 0xc0008e7d40, 0x1f2, 0x200)
+	/root/project/hugo/commands/server.go:494 +0x629 fp=0xc03cc51b68 sp=0xc03cc51970 pc=0x5459e49
+github.com/gohugoio/hugo/commands.(*serverCmd).server(0xc0008e7d40, 0xc000612580, 0xc000152b20, 0x0, 0x2, 0x0, 0x0)
+	/root/project/hugo/commands/server.go:272 +0x2c5 fp=0xc03cc51cb0 sp=0xc03cc51b68 pc=0x5458605
+github.com/gohugoio/hugo/commands.(*serverCmd).server-fm(0xc000612580, 0xc000152b20, 0x0, 0x2, 0x0, 0x0)
+	/root/project/hugo/commands/server.go:131 +0x5b fp=0xc03cc51cf8 sp=0xc03cc51cb0 pc=0x546685b
+github.com/spf13/cobra.(*Command).execute(0xc000612580, 0xc000152ae0, 0x2, 0x2, 0xc000612580, 0xc000152ae0)
+	/go/pkg/mod/github.com/spf13/cobra@v1.1.1/command.go:850 +0x472 fp=0xc03cc51db8 sp=0xc03cc51cf8 pc=0x41d3c52
+github.com/spf13/cobra.(*Command).ExecuteC(0xc000359340, 0xc0002bde40, 0x5, 0x6)
+	/go/pkg/mod/github.com/spf13/cobra@v1.1.1/command.go:958 +0x375 fp=0xc03cc51e98 sp=0xc03cc51db8 pc=0x41d47d5
+github.com/gohugoio/hugo/commands.Execute(0xc000128010, 0x3, 0x3, 0x4007c85, 0xc00009e058, 0x546a730, 0x0)
+	/root/project/hugo/commands/hugo.go:87 +0xb9 fp=0xc03cc51f28 sp=0xc03cc51e98 pc=0x5445019
+main.main()
+	/root/project/hugo/main.go:23 +0x76 fp=0xc03cc51f88 sp=0xc03cc51f28 pc=0x546a096
+runtime.main()
+	/usr/local/go/src/runtime/proc.go:225 +0x256 fp=0xc03cc51fe0 sp=0xc03cc51f88 pc=0x403bd16
+runtime.goexit()
+	/usr/local/go/src/runtime/asm_amd64.s:1371 +0x1 fp=0xc03cc51fe8 sp=0xc03cc51fe0 pc=0x40735a1
+
+goroutine 20 [select]:
+go.opencensus.io/stats/view.(*worker).start(0xc0000a8880)
+	/go/pkg/mod/go.opencensus.io@v0.22.5/stats/view/worker.go:276 +0xcd
+created by go.opencensus.io/stats/view.init.0
+	/go/pkg/mod/go.opencensus.io@v0.22.5/stats/view/worker.go:34 +0x68
+
+goroutine 2003 [syscall]:
+syscall.syscall6(0x424e440, 0x8, 0x0, 0x0, 0xc000064e88, 0xa, 0x6c9ac00, 0x0, 0x0, 0x0)
+	/usr/local/go/src/runtime/sys_darwin.go:41 +0x2e
+golang.org/x/sys/unix.kevent(0x8, 0x0, 0x0, 0xc000064e88, 0xa, 0x6c9ac00, 0x0, 0x0, 0x0)
+	/go/pkg/mod/golang.org/x/sys@v0.0.0-20210104204734-6f8348627aad/unix/zsyscall_darwin_amd64.go:275 +0xa5
+golang.org/x/sys/unix.Kevent(0x8, 0x0, 0x0, 0x0, 0xc000064e88, 0xa, 0xa, 0x6c9ac00, 0x0, 0x0, ...)
+	/go/pkg/mod/golang.org/x/sys@v0.0.0-20210104204734-6f8348627aad/unix/syscall_bsd.go:428 +0x71
+github.com/fsnotify/fsnotify.read(0x8, 0xc000064e88, 0xa, 0xa, 0x6c9ac00, 0xc000064e88, 0x0, 0xa, 0x0, 0x0)
+	/go/pkg/mod/github.com/fsnotify/fsnotify@v1.4.9/kqueue.go:511 +0x6e
+github.com/fsnotify/fsnotify.(*Watcher).readEvents(0xc046ae2960)
+	/go/pkg/mod/github.com/fsnotify/fsnotify@v1.4.9/kqueue.go:274 +0x81b
+created by github.com/fsnotify/fsnotify.NewWatcher
+	/go/pkg/mod/github.com/fsnotify/fsnotify@v1.4.9/kqueue.go:62 +0x199
+
+goroutine 2004 [select]:
+github.com/gohugoio/hugo/watcher.(*Batcher).run(0xc04640fea0)
+	/root/project/hugo/watcher/batcher.go:53 +0x129
+created by github.com/gohugoio/hugo/watcher.New
+	/root/project/hugo/watcher/batcher.go:42 +0x13b
+
+goroutine 2005 [select]:
+github.com/gohugoio/hugo/livereload.(*hub).run(0x6c5c4e0)
+	/root/project/hugo/livereload/hub.go:39 +0xfd
+created by github.com/gohugoio/hugo/livereload.Initialize
+	/root/project/hugo/livereload/livereload.go:99 +0x45
+
+goroutine 1976 [select]:
+github.com/gohugoio/hugo/commands.(*commandeer).newWatcher.func1(0xc04640fea0, 0xc000030a80, 0xc0457a79a0, 0xc044930a80)
+	/root/project/hugo/commands/hugo.go:853 +0xc5
+created by github.com/gohugoio/hugo/commands.(*commandeer).newWatcher
+	/root/project/hugo/commands/hugo.go:851 +0x2ce
+</code>
+</pre>
+</details>
+
+This is caused by operating system limits on the number of open files. The way to verify and adjust this depends on the operating system and version in use.
+
+#### Mac OSX 10.4 Mojave and Later
+To adjust the max file limits both the kernel settings and session ulimits must be changed.
+
+```sudo sysctl -w kern.maxfiles=65536
+ulimit -n 65536 65536
+```
+
+{{%notice note%}}
+The `ulimit` adjustment only lives for the life of that terminal window. If the window is closed or a new window is open, the `ulimit` command must be run again.
+{{%/notice%}}
+
+### Sparse Checkout
+It is possible to only checkout a portion of the docs repository to work on only the section you wish to contribute to. Git refers to this partial checkout as a `Sparse Checkout`.  
+A sparse checkout will speed up Hugo build times, limits the amount of local disk space that is used and can be a valid workaround for the Hugo `pipe failed` error message.
+
+To create a sparse checkout:
+1. Create a directory where the repo will be cloned into
+
+`mkdir docs`
+
+2. Enter the new directory and initalize it with Git.
+
+```
+cd docs
+git init
+```
+3. Add the docs repo as a Git Remote
+
+`git remote add -f origin git@github.com:CumulusNetworks/docs.git`
+
+4. Configure this directory as a `sparse checkout`
+
+`git config core.sparseCheckout true`
+
+5. Configure Git to checkout the manditory docs files
+
+```
+echo "utils/" >> .git/info/sparse-checkout
+echo "config.toml" >> .git/info/sparse-checkout
+echo "build_trigger.txt" >> .git/info/sparse-checkout
+echo "themes/" >> .git/info/sparse-checkout
+echo ".vale" >> .git/info/sparse-checkout
+echo "config.yml" >> .git/info/sparse-checkout
+echo "static/mibs" >> .git/info/sparse-checkout
+```
+
+6. Add the content you wish to modify to the Git sparse checkout. This includes both the files in the `/content` directory as well as any relevant images in `/static/images` directory. For example, to make contributions or modifications to {{<kb_link url="knowledge-base" text="Knowledge Base" >}} articles add both `/content/knowledge-base` and `/static/images/knowledge-base` directories.
+
+```
+echo "content/knowledge-base/` >> .git/info/sparse-checkout
+echo "static/images/knowledge-base/` >> .git/info/sparse-checkout
+```
+
+7. Checkout the appropiate branch
+
+`git checkout stage`
+
+8. Adjust the Hugo configuration to ignore link checking.  
+If you plan to run Hugo locally, due to how the Hugo `ref` shortcode validates links it will cause Hugo to fail at runtime due to the sparse checkout. The Hugo configuration must be changed locally to only log Warnings and allow Hugo to start
+
+`echo "\nrefLinksErrorLevel: WARNING" >> config.yml`
+
+9. Configure Git to ignore the `config.yml` file to prevent an accidental commit of this change
+
+`git update-index --assume-unchanged config.yml`
+
+10. Run Hugo. `REF_NOT_FOUND` warnings may be safely ignored.
+
+`hugo server --baseURL localhost:1313`
+
+All other git operations including `git commit`, `git push` and `git checkout` work normally.

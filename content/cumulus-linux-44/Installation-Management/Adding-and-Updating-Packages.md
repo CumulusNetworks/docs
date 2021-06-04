@@ -144,18 +144,20 @@ adduser                            3.118
 apt                                1.8.2
 arping                             2.19-6
 arptables                          0.0.4+snapshot20181021-4
+...
 ```
 
 {{< /tab >}}
 {{< tab "NVUE Command ">}}
 
 ```
-cumulus@switch:~$ cl show platform software installed
+cumulus@switch:~$ nv show platform software installed
                                        description                                                                                                                   package                                version
 -------------------------------------  ----------------------------------------------------------------------------------------------------------------------------  -------------------------------------  ----------------------------------------------
 acpi                                   displays information on ACPI devices                                                                                          acpi                                   1.7-1.1
 acpi-support-base                      scripts for handling base ACPI events such as the power button                                                                acpi-support-base                      0.142-8
 acpid                                  Advanced Configuration and Power Interface event daemon                                                                       acpid                                  1:2.0.31-1
+...
 ```
 
 {{< /tab >}}
@@ -201,7 +203,7 @@ cumulus@switch:~$ net show package version vrf
 The following example command shows which version of the `vrf` package is installed on the system:
 
 ```
-cumulus@switch:~$ cl show platform software installed vrf
+cumulus@switch:~$ nv show platform software installed vrf
              running              applied  pending  description
 -----------  -------------------  -------  -------  -----------
 description  Linux tools for VRF                    Description

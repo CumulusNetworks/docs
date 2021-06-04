@@ -71,3 +71,16 @@ The advanced view has 4 different panes:
 4. Services 
 
 {{<img src="/images/guides/nvidia-air/AdvancedView.png" >}}
+
+
+## Managing a Simulation
+
+From the main Air landing page, you can manage simulations. There are three options for each public simulation:
+
+1. Power On/Off
+2. Rebuild
+3. Delete
+
+The `Power On/Off` and `Rebuild` functions are both under the power icon. `Power On/Off` function either wakes the simulation up or puts it to sleep. The `Rebuild` option resets the simulation to a factory default setting. This is useful if you've made lots of changes to the simulation and it is no longer in a desireable state. Using `Rebuild` will reset the simulation to a known base state.
+
+{{<img src="/images/guides/nvidia-air/ManagingSim.png" >}}

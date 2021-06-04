@@ -2,7 +2,7 @@
 title: Buffer and Queue Management
 author: NVIDIA
 weight: 320
-toc: 3
+right_toc_levels: 2
 ---
 
 traffic.conf is now qos_features.conf
@@ -99,7 +99,8 @@ The existing `traffic_cos*.priority_source.8021p` **must** be commented out.
 
 The `traffic.cos_` number is the internal COS value, for example `traffic.cos_0` defines the mapping for internal COS 0. To map ingress DSCP 22 to internal COS 4, the configuration `traffic.cos_4.priority_source.dscp = [22]` is used.
 
-Multiple ingress DSCP values can be mapped to the same internal value. For example, to map ingress DSCP values 10, 21 and 36 to internal COS 0,
+Multiple ingress DSCP values can be mapped to the same internal COS value. For example, to map ingress DSCP values 10, 21 and 36 to internal COS 0
+
 ```
 traffic.cos_0.priority_source.dscp = [10,21,36]
 ```
@@ -119,7 +120,9 @@ traffic.cos_7.priority_source.dscp = [56,57,58,59,60,61,62,63]
 ### Trust Port
 To assign all traffic to an internal COS queue, regardless of the ingress marking configure `traffic.packet_priority_source_set = [port]`.
 
-Additional settings are configured using {{<link text="Port Groups" url="#port-groups" >}}
+All traffic will be assigned to COS value defined by `traffic.port_default_priority`
+
+Additional settings may be configured using {{<link text="Port Groups" url="#port-groups" >}}
 
 ## Traffic Marking and Remarking
 
@@ -143,54 +146,53 @@ More information on how to configure and apply ACLs please reference the {{<link
 You must use `ebtables` in order to match and mark layer-2 bridged traffic.
 
 Traffic can be matched with any supported ebtables rule.  
-When traffic is matched, to mark the traffic, use `-A FORWARD -o <interface> -j setqos --set-cos <value>`
+When traffic is matched, to set the new COS value, use `-A FORWARD -o <interface> -j setqos --set-cos <value>`
 
 {{% notice info %}}
-COS can only be set on a _per-egress interface_ basis.
+COS can only be set on a _per-egress interface_ basis. `ebtables` based matching is not supported on ingress.
 {{% /notice %}}
 
-The configured action always follows the following conditions:
+The configured action always has the following conditions:
 * the rule is always configured as part of the `FORWARD` chain
 * the interface (`<interface>`) is a physical swp port
-* the "jump" action is always `setqos`, in lowercase.
-* the `--set-cos` value is a COS value between 0 and 7
+* the "jump" action is always `setqos`, in lowercase
+* the `--set-cos` value is a COS value between 0 and 7 (inclusive)
 
-For example, to set traffic leaving interface `swp5` to COS value `4`, the following rule could be used  
+For example, to set traffic leaving interface `swp5` to COS value `4`, the following rule would be used  
 `-A FORWARD -o swp5 -j setqos --set-cos 4`
 
 #### Marking Layer-3 DSCP
 
-You must use `iptables` (for IPv4 traffic) or `ip6tables` (for IPv6 traffic) to match and mark layer 3 routed traffic.
+You must use `iptables` (for IPv4 traffic) or `ip6tables` (for IPv6 traffic) to match and mark layer 3 traffic.
 
 Traffic can be matched with any supported iptable or ip6tables rule. 
-When traffic is matched, to mark the traffic, use `-j SETQOS --set-dscp 10 --set-cos 5`
+When traffic is matched, to mark the traffic, to set the new COS or DSCP value, use `-A FORWARD -o <interface> -j setqos [--set-dscp <value> | --set-cos <value> | --set-dscp-class <name>]`
 
+The configured action always has the following conditions:
+* the rule is always configured as part of the `FORWARD` chain
+* the interface (`<interface>`) is a physical swp port
+* the "jump" action is always `setqos`, in lowercase
 
-You can specify one of the following targets for SETQOS/setqos:
+COS markings may optionally be configured with `--set-cos` with a value between 0 and 7 (inclusive).
 
-| Option<img width=400/>| Description<img width=400/>|
-|----------------|---------------|
-| `--set-cos INT` | Sets the datapath resource/queuing class value. Values are defined in {{<exlink url="http://en.wikipedia.org/wiki/IEEE_P802.1p" text="IEEE P802.1p">}}.|
-| `--set-dscp value`| Sets the DSCP field in packet header to a value, which can be either a decimal or hex value.|
-| `--set-dscp-class class`| Sets the DSCP field in the packet header to the value represented by the DiffServ class value. This class can be EF, BE or any of the CSxx or AFxx classes.|
+Only one of `--set-dscp` or `--set-dscp-class` may be used.  
+`--set-dscp` supports decimal or hex DSCP values between 0 and 77.
+`--set-dscp-class` supports standard DSCP naming described in [RFC3260](https://datatracker.ietf.org/doc/html/rfc3260) including `ef`, `be`, CS and AF classes. 
 
 {{%notice note%}}
 You can specify either `--set-dscp` or `--set-dscp-class`, but not both.
 {{%/notice%}}
 
-Here are two example rules:
+For example, to set traffic leaving interface `swp5` to DSCP value `32`, the following rule would be used  
+`-A FORWARD -o swp5 -j setqos --set-dscp 32`
 
-```
-[iptables]
--t mangle -A FORWARD --in-interface swp+ -p tcp --dport bgp -j SETQOS --set-dscp 10 --set-cos 5
+To set traffic leaving interface `swp11` to DSCP class value `CS6`, the following rule would be used  
+`-A FORWARD -o swp11 -j setqos --set-dscp-class cs6`
 
-[ip6tables]
--t mangle -A FORWARD --in-interface swp+ -j SETQOS --set-dscp 10
-```
-
+<!--
 You can put the rule in either the *mangle* table or the default *filter* table; the mangle table and filter table are put into separate TCAM slices in the hardware.
-
 To put the rule in the mangle table, include `-t mangle`; to put the rule in the filter table, omit `-t mangle`.
+-->
 
 ### Using ingress COS or DSCP for remarking
 To define if COS or DSCP values should be remarked modify the `traffic.packet_priority_remark_set` value in `qos_features.conf`.
@@ -206,7 +208,9 @@ You can remark both COS and DSCP with
 #### Remarking COS
 COS is remarked with the `priority_remark.8021p` component of `qos_features.conf`.
 
-To remark internal COS 0 to egress COS 4, the following configuration would be used  
+The internal `cos_` value determines the egress 802.1p COS remarking. 
+
+For example, to remark internal COS 0 to egress COS 4, the following configuration would be used  
 `traffic.cos_0.priority_remark.8021p = [4]`
 
 {{% notice note %}}
@@ -220,10 +224,16 @@ traffic.cos_1.priority_remark.8021p = [3]
 traffic.cos_2.priority_remark.8021p = [3]
 ```
 
+{{% notice note %}}
+If `traffic.packet_priority_remark_set` is configured to remark `cos` then all `traffic.cos_*.priority_remark.8021p` lines must be uncommented.
+{{% /notice %}}
+
 #### Remarking DSCP
 DSCP is remarked with the `priority_remark.dscp` component of `qos_features.conf`.
 
-To remark internal COS 0 to egress DSCP 22 the following configuration would be used
+The internal `cos_` value determines the egress DSCP remarking.
+
+For example, to remark internal COS 0 to egress DSCP 22 the following configuration would be used
 `traffic.cos_0.priority_remark.dscp = [22]`
 
 {{% notice note %}}
@@ -236,6 +246,10 @@ Multiple internal COS values can be remapped to the same external DSCP values. F
 traffic.cos_1.priority_remark.dscp = [40]
 traffic.cos_2.priority_remark.dscp = [40]
 ```
+
+{{% notice note %}}
+If `traffic.packet_priority_remark_set` is configured to remark `dscp` then all `traffic.cos_*.priority_remark.dscp` lines must be uncommented.
+{{% /notice %}}
 
 ## Using Port Groups
 `qos_features.conf` supports the use of "port groups" to apply similar QoS configurations to a set of ports.
@@ -254,26 +268,27 @@ A `source.port_group_list` is one or more names to be used for group settings. T
 The following is an explanation of an example `source.port_group_list` configuration.
 ```
 source.port_group_list = [customer1,customer2]
+source.customer1.packet_priority_source_set = [dscp]
 source.customer1.port_set = swp1-swp4,swp6
 source.customer1.port_default_priority = 0
 source.customer1.cos_0.priority_source.dscp = [0,1,2,3,4,5,6,7]
-source.packet_priority_source_set = [cos]
+source.customer2.packet_priority_source_set = [cos]
 source.customer2.port_set = swp5,swp7
 source.customer2.port_default_priority = 0
 source.customer2.cos_1.priority_source.8021p = [4]
 ```
 
-| Configuration | Example | Explanation |
-| ------------- | ------- | ----------- |
-| `source.port_group_list` | `source.port_group_list = [customer1,customer2]` | Defines the names of the port groups to be used. Two groups are created `customer1` and `customer2` |
-| `source.customer1.packet_priority_source_set` | `source.customer1.packet_priority_source_set = [dscp]` | Defines the ingress marking trust. In this example ingress DSCP values will be preserved for group `customer1`|
-| `source.customer1.port_set` | `source.customer1.port_set = swp1-swp4,swp6` | The set of ports to apply the ingress marking trust policy to. In this example, ports swp1, swp2, swp3, swp4 and swp6 will be used for `customer1` |
-| `source.customer1.port_default_priority` | `source.customer1.port_default_priority = 0` | Define the default internal COS marking for unmarked or untrusted traffic. In this example unmarked traffic or Layer 2 traffic for `customer1` ports will be marked with internal COS 0 |
-| `source.customer1.cos_0.priority_source` | `source.customer1.cos_0.priority_source.dscp = [0,1,2,3,4,5,6,7]` | Map the ingress DSCP values to an internal COS value for `customer1`. In this example the set of DSCP values from 0-7 are mapped to internal COS 0 |
-| `source.customer2.packet_priority_source_set` | `source.packet_priority_source_set = [cos]` | Defines the ingress marking trust for `customer2`. In this example COS will be trusted |
-| `source.customer2.port_set` | `source.customer2.port_set = swp5,swp7` | The set of ports to apply the ingress marking trust policy to. In this example, ports swp5 and swp7 will be used for `customer2` |
-| `source.customer2.port_default_priority` | `source.customer2.port_default_priority = 0` | Define the default internal COS marking for unmarked or untrusted traffic. In this example unmarked tagged layer 2 traffic or unmarked VLAN tagged traffic for `customer1` ports will be marked with internal COS 0 |
-| `source.customer2.cos_0.priority_source` | `source.customer2.cos_1.priority_source.8021p = [4]` | Map the ingress COS values to an internal COS value for `customer2`. In this example ingress COS value 4 is mapped to internal COS 1 |
+| Configuration                                 | Example                                                           | Explanation                                                                                                                                                                                                         |
+| -------------                                 | -------                                                           | -----------                                                                                                                                                                                                         |
+| `source.port_group_list`                      | `source.port_group_list = [customer1,customer2]`                  | Defines the names of the port groups to be used. Two groups are created `customer1` and `customer2`                                                                                                                 |
+| `source.customer1.packet_priority_source_set` | `source.customer1.packet_priority_source_set = [dscp]`            | Defines the ingress marking trust. In this example ingress DSCP values will be preserved for group `customer1`                                                                                                      |
+| `source.customer1.port_set`                   | `source.customer1.port_set = swp1-swp4,swp6`                      | The set of ports to apply the ingress marking trust policy to. In this example, ports swp1, swp2, swp3, swp4 and swp6 will be used for `customer1`                                                                  |
+| `source.customer1.port_default_priority`      | `source.customer1.port_default_priority = 0`                      | Define the default internal COS marking for unmarked or untrusted traffic. In this example unmarked traffic or Layer 2 traffic for `customer1` ports will be marked with internal COS 0                             |
+| `source.customer1.cos_0.priority_source`      | `source.customer1.cos_0.priority_source.dscp = [0,1,2,3,4,5,6,7]` | Map the ingress DSCP values to an internal COS value for `customer1`. In this example the set of DSCP values from 0-7 are mapped to internal COS 0                                                                  |
+| `source.customer2.packet_priority_source_set` | `source.packet_priority_source_set = [cos]`                       | Defines the ingress marking trust for `customer2`. In this example COS will be trusted                                                                                                                              |
+| `source.customer2.port_set`                   | `source.customer2.port_set = swp5,swp7`                           | The set of ports to apply the ingress marking trust policy to. In this example, ports swp5 and swp7 will be used for `customer2`                                                                                    |
+| `source.customer2.port_default_priority`      | `source.customer2.port_default_priority = 0`                      | Define the default internal COS marking for unmarked or untrusted traffic. In this example unmarked tagged layer 2 traffic or unmarked VLAN tagged traffic for `customer1` ports will be marked with internal COS 0 |
+| `source.customer2.cos_0.priority_source`      | `source.customer2.cos_1.priority_source.8021p = [4]`              | Map the ingress COS values to an internal COS value for `customer2`. In this example ingress COS value 4 is mapped to internal COS 1                                                                                |
 
 ### Port Groups for Remarking
 Port groups can also be used for remarking COS or DSCP on egress based on the internal COS value that was assigned. These port groups are defined with `remark.port_group_list` in `qos_features.conf`.
@@ -288,29 +303,29 @@ remark.list1.port_set = swp1-swp3,swp6
 remark.list1.cos_3.priority_remark.dscp = [24]
 remark.list2.packet_priority_remark_set = [cos]
 remark.list2.port_set = swp9,swp10
-remark.list1.cos_3.priority_remark.8021p = [2]
+remark.list2.cos_3.priority_remark.8021p = [2]
 ```
 
-| Configuration | Example | Explanation |
-| ------------- | ------- | ----------- |
-| `remark.port_group_list` | `remark.port_group_list = [list1,list2]` | Defines the names of the port groups to be used. Two groups are created `list1` and `list2` |
-| `remark.list1.packet_priority_remark_set` | `remark.list1.packet_priority_remark_set = [dscp]` | Defines the egress marking to be applied, `cos` or `dscp`. In this example the egress DSCP marking will be rewritten |
-| `remark.list1.port_set` | `remark.list1.port_set = swp1-swp3,swp6` | The set of _ingress_ ports that received frames or packets that will have remarking applied, regardless of egress interface. In this example traffic arriving on ports swp1, swp2, swp3 and swp6 will have their egress DSCP values remarked |
-| `remark.list1.cos_3.priority_remark.dscp` | `remark.list1.cos_3.priority_remark.dscp = [24]` | The egress DSCP value to write to the packet based on the internal COS value. In this example, traffic in internal COS 3 will set the egress DSCP to 24 |
-| `remark.list2.packet_priority_remark_set` | `remark.list2.packet_priority_remark_set = [cos]` | Defines the egress marking to be applied, `cos` or `dscp`. In this example the egress COS marking will be rewritten |
-| `remark.list2.port_set` | `remark.list2.port_set = swp9,swp10` | The set of _ingress_ ports that received frames or packets that will have remarking applied, regardless of egress interface. In this example traffic arriving on ports swp9 and swp10 will have their egress COS values remarked |
-| `remark.list2.cos_4.priority_remark.8021p` | `remark.list1.cos_3.priority_remark.8021p = [2]` | The egress COS value to write to the frame based on the internal COS value. In this example, traffic in internal COS 4 will set the egress COS 2 |
+|Configuration                             |Example                                           |Explanation                                                                                                                                                                                                                                 |
+|-------------                             |-------                                           |-----------                                                                                                                                                                                                                                 |
+|`remark.port_group_list`                  |`remark.port_group_list = [list1,list2]`          |Defines the names of the port groups to be used. Two groups are created `list1` and `list2`                                                                                                                                                 |
+|`remark.list1.packet_priority_remark_set` |`remark.list1.packet_priority_remark_set = [dscp]`|Defines the egress marking to be applied, `cos` or `dscp`. In this example the egress DSCP marking will be rewritten                                                                                                                        |
+|`remark.list1.port_set`                   |`remark.list1.port_set = swp1-swp3,swp6`          |The set of _ingress_ ports that received frames or packets that will have remarking applied, regardless of egress interface. In this example traffic arriving on ports swp1, swp2, swp3 and swp6 will have their egress DSCP values remarked|
+|`remark.list1.cos_3.priority_remark.dscp` |`remark.list1.cos_3.priority_remark.dscp = [24]`  |The egress DSCP value to write to the packet based on the internal COS value. In this example, traffic in internal COS 3 will set the egress DSCP to 24                                                                                     |
+|`remark.list2.packet_priority_remark_set` |`remark.list2.packet_priority_remark_set = [cos]` |Defines the egress marking to be applied, `cos` or `dscp`. In this example the egress COS marking will be rewritten                                                                                                                         |
+|`remark.list2.port_set`                   |`remark.list2.port_set = swp9,swp10`              |The set of _ingress_ ports that received frames or packets that will have remarking applied, regardless of egress interface. In this example traffic arriving on ports swp9 and swp10 will have their egress COS values remarked            |
+|`remark.list2.cos_4.priority_remark.8021p`|`remark.list1.cos_3.priority_remark.8021p = [2]`  |The egress COS value to write to the frame based on the internal COS value. In this example, traffic in internal COS 4 will set the egress COS 2                                                                                            |
 
 
 ## Flow Control 
 Congestion control is used to help prevent traffic loss during times of congestion or to identify the traffic that should be preserved if packets must be dropped.
 
-By default Cumulus Linux on the Spectrum family of ASICs will tail-drop packets in the buffer without additional configuration. 
+By default Cumulus Linux tail-drops packets exceeding the buffer. 
 
 Cumulus supports the following congestion control mechanisms:
 
-* Pause Frames - defined by IEEE 802.3x use specalized ethernet frames sent to an adjacent layer 2 switch to stop or "pause" _all_ traffic on the link during times of congestion. Pause frames are generally not recommended due to their scope of their impact.
-* Priority Flow Control (PFC) - An upgrade of Pause Frames, defined by IEEE 802.1bb extends the pause frame concept to act on a per-COS value basis instead of an entire link. A PFC pause frame indicates to the peer which specific COS value needs to pause, while other COS values or queues may continue transmitting.
+* Pause Frames - defined by IEEE 802.3x, uses specalized ethernet frames sent to an adjacent layer 2 switch to stop or "pause" _all_ traffic on the link during times of congestion. Pause frames are generally not recommended due to their scope of their impact.
+* Priority Flow Control (PFC) - An upgrade of Pause Frames, defined by IEEE 802.1bb, extends the pause frame concept to act on a per-COS value basis instead of an entire link. A PFC pause frame indicates to the peer which specific COS value needs to pause, while other COS values or queues may continue transmitting.
 * Explicit Congestion Notification (ECN) - Unlike Pause Frames and PFC which operate only at layer 2, ECN is an end-to-end layer 3 congestion control protocol relying on bits in the IPv4 header Traffic Class to signal congestion conditions. ECN requires one or both server endpoints to support ECN to be effective.
 
 ### Pause Frames

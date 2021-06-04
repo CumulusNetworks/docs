@@ -270,7 +270,7 @@ cumulus@switch:~$ nv set interface swp1-52 link state up
 cumulus@switch:~$ nv config apply
 ```
 
-To view link status, run the `cl show interface` command.
+To view link status, run the `nv show interface` command.
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
@@ -333,10 +333,10 @@ cumulus@switch:~$ nv set interface swp1-3,swp6,swp14-20 bridge domain br_default
 cumulus@switch:~$ nv config apply
 ```
 
-To show the bridges configured on the switch, run the `cl show bridge` command:
+To show the bridges configured on the switch, run the `nv show bridge` command:
 
 ```
-cumulus@switch:~$ cl show bridge
+cumulus@switch:~$ nv show bridge
           running     applied      description
 --------  -------     ----------   --------------
 [domain]  br_default  br_default   Bridge domains
@@ -380,7 +380,7 @@ cumulus@switch:~$ sudo ifup -a
 {{< /tab >}}
 {{< /tabs >}}
 
-For more information about Ethernet bridges, see {{<link url="Ethernet-Bridging-VLANs" text="Ethernet Bridging - VLANs">}}
+For more information about Ethernet bridges, see {{<link url="Ethernet-Bridging-VLANs" text="Ethernet Bridging - VLANs">}}.
 
 ## Configure Layer 3 Ports
 
@@ -496,7 +496,7 @@ The loopback is up and is assigned an IP address of 127.0.0.1.
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ cl show interface lo
+cumulus@switch:~$ nv show interface lo
 ```
 
 {{< /tab >}}

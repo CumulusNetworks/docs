@@ -9,6 +9,10 @@ You can back up the current configuration on a switch and restore the configurat
 Cumulus Linux automatically creates a backup of the configuration files on the switch after you install the Cumulus Linux image, in case you want to return to the initial switch configuration. NCLU automatically
 creates a backup of the configuration files when you run the `net commit` command and restores a previous configuration when you run the `net rollback` command.
 
+{{%notice note%}}
+NVUE does not use backup and restore. See {{<link url="NVIDIA-User-Experience-NVUE" text="NVIDIA User Experience - NVUE">}} for information about backing up and restoring NVUE configuration files.
+{{%/notice%}}
+
 ## Back up Configuration Files
 
 To back up the current configuration files on the switch, run the `config-backup` command:

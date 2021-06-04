@@ -1,8 +1,8 @@
 ---
 title: Custom Topology
+author: NVIDIA
 weight: 40
 version: "1.0"
-draft: true
 ---
 
 NVIDIA Air fully supports the creation of custom topologies. This feature augments the pre-built demo infrastructure.

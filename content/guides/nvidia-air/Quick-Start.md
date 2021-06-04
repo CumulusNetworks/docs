@@ -1,8 +1,8 @@
 ---
 title: Quick Start
+author: NVIDIA
 weight: 20
 version: "1.0"
-draft: true
 ---
 
 This quick start provides an easy way to get started with the NVIDIA Air simulation platform.

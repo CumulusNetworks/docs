@@ -9,7 +9,7 @@ This quick start provides an easy way to get started with the NVIDIA Air simulat
 
 ## Log into NVIDIA Air
 
-NVIDIA Air uses the same credentials as the NVIDIA developer forums for account access. When the login page appears, enter your email address (the one you already use for the forums or the one you intend to use to sign up) in the box and click **GET STARTED**:
+NVIDIA Air uses the same credentials as the NVIDIA developer forums for account access. When the login page appears, enter your email address (the one you already use for the forums or the one you intend to use to sign up) in the box and click **Get Started**:
 
 {{<img src="/images/guides/nvidia-air/Login.png" width="800px">}}
 
@@ -33,7 +33,7 @@ The landing page offers the following options:
 
   {{<img src="/images/guides/nvidia-air/SearchSimulation.png" >}}
 
-- **Build a Simulation**: If you have no simulations, click the `BUILD A SIMULATION` button in the middle of the screen. The details of the demos are described in {{<link title="Pre-built Demos">}}.
+- **Build a Simulation**: If you have no simulations, click the **Build a Simulation** button in the middle of the screen. The details of the demos are described in {{<link title="Pre-built Demos">}}.
 
   {{<img src="/images/guides/nvidia-air/BuildSim.png" width="300px">}}
 

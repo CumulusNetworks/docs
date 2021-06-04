@@ -467,7 +467,7 @@ cumulus@switch:~$ sudo grep -i ztp /var/log/syslog
 ## Common ZTP Script Errors
 
 <!-- vale off -->
-### Could not find referenced script/interpreter in downloaded payload
+**Could not find referenced script/interpreter in downloaded payload**
 <!-- vale on -->
 ```
 cumulus@leaf01:~$ sudo cat /var/log/syslog | grep ztp

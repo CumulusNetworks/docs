@@ -243,6 +243,7 @@ The following table lists the most important services in Cumulus Linux.
 |neighmgrd|Synchronizes MAC address information if using MLAG.|YES if using MLAG|
 |mstpd|{{<link url="Spanning-Tree-and-Rapid-Spanning-Tree-STP" text="Spanning tree protocol">}} daemon.|YES if using layer 2|
 |ptmd|{{<link url="Prescriptive-Topology-Manager-PTM" text="Prescriptive Topology Manager">}}. Verifies cabling based on {{<link url="Link-Layer-Discovery-Protocol" text="LLDP">}} output. Also sets up {{<link url="Bidirectional-Forwarding-Detection-BFD" text="BFD">}} sessions.|YES if using BFD|
+|netd | {{<link url="Network-Command-Line-Utility-NCLU" text="NCLU">}} back end. |
 |nvued| Handles the NVUE object model.|NO|
 |rsyslog|Handles logging of syslog messages.|NO|
 |ntp|{{<link url="Network-Time-Protocol-NTP" text="Network time protocol">}}.|NO|

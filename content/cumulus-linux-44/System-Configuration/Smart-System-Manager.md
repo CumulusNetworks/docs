@@ -35,9 +35,7 @@ cumulus@switch:~$ net system maintenance restart cold
 {{< /tab >}}
 {{< tab "NVUE Command ">}}
 
-```
-cumulus@switch:~$ nv set NEED COMMAND
-```
+NVUE command is not supported.
 
 {{< /tab >}}
 {{< tab "Linux Command ">}}
@@ -61,9 +59,7 @@ cumulus@switch:~$ net system maintenance restart fast
 {{< /tab >}}
 {{< tab "NVUE Command ">}}
 
-```
-cumulus@switch:~$ nv set NEED COMMAND
-```
+NVUE command is not supported.
 
 {{< /tab >}}
 {{< tab "Linux Command ">}}
@@ -95,9 +91,7 @@ cumulus@switch:~$ net system maintenance upgrade all
 {{< /tab >}}
 {{< tab "NVUE Command ">}}
 
-```
-cumulus@switch:~$ nv set NEED COMMAND
-```
+NVUE command is not supported.
 
 {{< /tab >}}
 {{< tab "Linux Command ">}}
@@ -121,9 +115,7 @@ cumulus@switch:~$ net system maintenance upgrade dry-run
 {{< /tab >}}
 {{< tab "NVUE Command ">}}
 
-```
-cumulus@switch:~$ nv set NEED COMMAND
-```
+NVUE command is not supported.
 
 {{< /tab >}}
 {{< tab "Linux Command ">}}
@@ -157,9 +149,7 @@ cumulus@switch:~$ net system maintenance mode enable
 {{< /tab >}}
 {{< tab "NVUE Command ">}}
 
-```
-cumulus@switch:~$ nv set NEED COMMAND
-```
+NVUE command is not supported.
 
 {{< /tab >}}
 {{< tab "Linux Command ">}}
@@ -184,9 +174,7 @@ cumulus@switch:~$ net system maintenance ports up
 {{< /tab >}}
 {{< tab "NVUE Command ">}}
 
-```
-cumulus@switch:~$ nv set NEED COMMAND
-```
+NVUE command is not supported.
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
@@ -217,9 +205,7 @@ cumulus@switch:~$ net system maintenance mode disable
 {{< /tab >}}
 {{< tab "NVUE Command ">}}
 
-```
-cumulus@switch:~$ nv set NEED COMMAND
-```
+NVUE command is not supported.
 
 {{< /tab >}}
 {{< tab "Linux Command ">}}

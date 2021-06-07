@@ -25,7 +25,7 @@ This feature is fully enabled for on-premises deployments and fully disabled for
 
 You can access the lifecycle management features from several places in NetQ. All of them take you to the same location:
 
-- Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18" alt="Main Menu">}} (Main Menu) and select **Upgrade Switches**
+- Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18" alt="Main Menu" /> (Main Menu) and select **Upgrade Switches**
 - If you have a workbench open:
      - Click <img src="https://icons.cumulusnetworks.com/03-Computers-Devices-Electronics/09-Hard-Drives/hard-drive-1.svg" height="18" width="18"/> (Switches) in the workbench header, then click **Manage switches**
     - Click <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/06-Servers/server-upload.svg" height="18" width="18"/> (Upgrade) in the workbench header (this option is planned for removal in later releases)

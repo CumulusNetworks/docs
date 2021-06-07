@@ -547,10 +547,7 @@ cumulus@switch:~$ net commit
 {{< /tab >}}
 {{< tab "NVUE Commands ">}}
 
-```
-cumulus@switch:~$ NEED COMMAND
-cumulus@switch:~$ nv config apply
-```
+NVUE command is not supported.
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
@@ -597,9 +594,8 @@ cumulus@switch:~$ net add vlan 100 post-up systemctl --no-block restart dhcrelay
 {{< /tab >}}
 {{< tab "NVUE Commands ">}}
 
-```
-cumulus@switch:~$ NEED COMMAND
-```
+NVUE command is not supported.
+
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
@@ -866,12 +862,6 @@ To show the interface description for all interfaces on the switch in JSON forma
 cumulus@switch$ cl show interface swp1
 ```
 
-To show the interface description (alias) for all interfaces on the switch:
-
-```
-cumulus@switch$ NEED COMMAND
-```
-
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
@@ -983,10 +973,7 @@ cumulus@switch:~$ net commit
 {{< /tab >}}
 {{< tab "NVUE Commands ">}}
 
-```
-cumulus@switch:~$ NEED COMMAND
-cumulus@switch:~$ nv config apply
-```
+NVUE command is not supported.
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}

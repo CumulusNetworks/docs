@@ -1775,6 +1775,13 @@ These errors are result of  user space acting on kernel events a bit slow. The m
 <td>3.7.13-3.7.15, 4.2.0-4.3.0</td>
 </tr>
 <tr>
+<td>2548286</td>
+<td>Several vulnerabilities have been discovered in the Linux kernel that may lead to a privilege escalation, denial of service or information leaks. CVE-2019-10125 CVE-2019-15239 CVE-2019-19927 CVE-2019-19062 CVE-2019-19252 CVE-2019-19767 CVE-2019-19922
+For the detailed security status of linux, refer to its security tracker page at: https://security-tracker.debian.org/tracker/linux</td>
+<td>4.1.0-4.1.1</td>
+<td>4.2.0-4.3.0</td>
+</tr>
+<tr>
 <td>2548275</td>
 <td>On the QuantaMesh BMS T5032-LY6 switch, when you run the {{hwclock}} command, you might see the error {{hwclock: select() to /dev/rtc0 to wait for clock tick timed out}}. </td>
 <td>4.1.0-4.1.1</td>
@@ -4423,6 +4430,13 @@ These errors are result of  user space acting on kernel events a bit slow. The m
  </td>
 <td>3.7.11-3.7.12, 4.1.0-4.1.1</td>
 <td>3.7.13-3.7.15, 4.2.0-4.3.0</td>
+</tr>
+<tr>
+<td>2548286</td>
+<td>Several vulnerabilities have been discovered in the Linux kernel that may lead to a privilege escalation, denial of service or information leaks. CVE-2019-10125 CVE-2019-15239 CVE-2019-19927 CVE-2019-19062 CVE-2019-19252 CVE-2019-19767 CVE-2019-19922
+For the detailed security status of linux, refer to its security tracker page at: https://security-tracker.debian.org/tracker/linux</td>
+<td>4.1.0-4.1.1</td>
+<td>4.2.0-4.3.0</td>
 </tr>
 <tr>
 <td>2548275</td>

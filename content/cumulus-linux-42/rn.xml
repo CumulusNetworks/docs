@@ -4009,9 +4009,7 @@ To work around this issue, correct the cause of the frequent link flaps. You can
 </tr>
 <tr>
 <td>2550048</td>
-<td>Several vulnerabilities have been discovered in the Linux kernel that may lead to a privilege escalation, denial of service or information leaks. CVE-2019-10125 CVE-2019-15239 CVE-2019-19927 CVE-2019-19062 CVE-2019-19252 CVE-2019-19767 CVE-2019-19922
- 
-For the detailed security status of linux, refer to its security tracker page at: https://security-tracker.debian.org/tracker/linux</td>
+<td>Several vulnerabilities have been discovered in the Linux kernel that may lead to a privilege escalation, denial of service or information leaks.  CVE-2020-10690 CVE-2020-12770 CVE-2020-12826 CVE-2019-15794 CVE-2020-10711 CVE-2020-13974 CVE-2020-10732 CVE-2020-10757 CVE-2020-15780 CVE-2019-20908 CVE-2020-16166 CVE-2018-16884 CVE-2020-14356 CVE-2019-18885 CVE-2019-12379 For the detailed security status of linux, refer to its security tracker page at: https://security-tracker.debian.org/tracker/linux</td>
 <td>4.2.0</td>
 </tr>
 <tr>
@@ -5486,9 +5484,7 @@ Press any key to continue...
 </tr>
 <tr>
 <td>2550048</td>
-<td>Several vulnerabilities have been discovered in the Linux kernel that may lead to a privilege escalation, denial of service or information leaks. CVE-2019-10125 CVE-2019-15239 CVE-2019-19927 CVE-2019-19062 CVE-2019-19252 CVE-2019-19767 CVE-2019-19922
- 
-For the detailed security status of linux, refer to its security tracker page at: https://security-tracker.debian.org/tracker/linux</td>
+<td>Several vulnerabilities have been discovered in the Linux kernel that may lead to a privilege escalation, denial of service or information leaks.  CVE-2020-10690 CVE-2020-12770 CVE-2020-12826 CVE-2019-15794 CVE-2020-10711 CVE-2020-13974 CVE-2020-10732 CVE-2020-10757 CVE-2020-15780 CVE-2019-20908 CVE-2020-16166 CVE-2018-16884 CVE-2020-14356 CVE-2019-18885 CVE-2019-12379 For the detailed security status of linux, refer to its security tracker page at: https://security-tracker.debian.org/tracker/linux</td>
 <td>4.2.0</td>
 <td>4.2.1-4.3.0</td>
 </tr>
@@ -6760,6 +6756,12 @@ Note: A network restart is a disruptive operation. </td>
 <td>When the garbage collector does not release memory back to the operating system, {{clagd}} might consume a large amount of memory. As a result of low system memory, {{systemd}} might shut down services to reclaim memory.
  </td>
 <td>3.7.11-3.7.12, 4.1.0-4.1.1</td>
+</tr>
+<tr>
+<td>2548286</td>
+<td>Several vulnerabilities have been discovered in the Linux kernel that may lead to a privilege escalation, denial of service or information leaks. CVE-2019-10125 CVE-2019-15239 CVE-2019-19927 CVE-2019-19062 CVE-2019-19252 CVE-2019-19767 CVE-2019-19922
+For the detailed security status of linux, refer to its security tracker page at: https://security-tracker.debian.org/tracker/linux</td>
+<td>4.1.0-4.1.1</td>
 </tr>
 <tr>
 <td>2548275</td>

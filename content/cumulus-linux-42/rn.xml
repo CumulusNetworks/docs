@@ -4008,6 +4008,13 @@ To work around this issue, correct the cause of the frequent link flaps. You can
 <td>4.2.0</td>
 </tr>
 <tr>
+<td>2550048</td>
+<td>Several vulnerabilities have been discovered in the Linux kernel that may lead to a privilege escalation, denial of service or information leaks. CVE-2019-10125 CVE-2019-15239 CVE-2019-19927 CVE-2019-19062 CVE-2019-19252 CVE-2019-19767 CVE-2019-19922
+ 
+For the detailed security status of linux, refer to its security tracker page at: https://security-tracker.debian.org/tracker/linux</td>
+<td>4.2.0</td>
+</tr>
+<tr>
 <td>2549794</td>
 <td>The {{asic-monitor.service}} fails when you configure {{/etc/cumulus/datapath/monitor.conf}} with {{monitor.histogram_pg.collect.port_group_list  = [all_packet_pg]}} and there is traffic passing through the buffer. When the service fails, you see the following traceback in {{journalctl}}:
 
@@ -5476,6 +5483,14 @@ Press any key to continue...
 </td>
 <td>3.7.12-3.7.15, 4.1.1-4.3.0</td>
 <td></td>
+</tr>
+<tr>
+<td>2550048</td>
+<td>Several vulnerabilities have been discovered in the Linux kernel that may lead to a privilege escalation, denial of service or information leaks. CVE-2019-10125 CVE-2019-15239 CVE-2019-19927 CVE-2019-19062 CVE-2019-19252 CVE-2019-19767 CVE-2019-19922
+ 
+For the detailed security status of linux, refer to its security tracker page at: https://security-tracker.debian.org/tracker/linux</td>
+<td>4.2.0</td>
+<td>4.2.1-4.3.0</td>
 </tr>
 <tr>
 <td>2549925</td>

@@ -392,6 +392,42 @@ The repository <code>deb http://apps3.cumulusnetworks.com/repos/deb CumulusLinux
 
 {{</tab>}}
 
+{{<tab "SONiC">}}
+
+To install the NetQ CLI you need to install `netq-apps` on each switch. This is available from the NVIDIA networking repository.
+
+{{<notice note>}}
+If your network uses a proxy server for external connections, you should first {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/System-Configuration/Configuring-a-Global-Proxy/" text="configure a global proxy">}} so <code>apt-get</code> can access the software package in the NVIDIA networking repository.
+{{</notice>}}
+
+To obtain the NetQ Agent package:
+
+1. Edit the `/etc/apt/sources.list` file to add the repository for NetQ.
+
+       admin@switch:~$ sudo nano /etc/apt/sources.list
+       ...
+       deb [arch=amd64] http://apps3.cumulusnetworks.com/repos/deb buster netq-4.0
+       ...
+
+2. Update the local `apt` repository and install the software on the switch.
+
+       admin@switch:~$ sudo apt-get update
+       admin@switch:~$ sudo apt-get install netq-apps
+
+3. Verify you have the correct version of the CLI.
+
+    ```
+    admin@switch:~$ dpkg-query -W -f '${Package}\t${Version}\n' netq-agent
+    ```
+
+    You should see version 4.0.0 and update 34 in the results. For example:
+
+    - netq-apps_<strong>4.0.0</strong>-deb10u<strong>34</strong>~1622184065.3c77d9bd_amd64.deb
+
+4. Continue with NetQ CLI configuration in the next section.
+
+{{</tab>}}
+
 {{<tab "RHEL7 or CentOS">}}
 
 1. Reference and update the local `yum` repository and key.

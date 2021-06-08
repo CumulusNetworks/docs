@@ -6,7 +6,11 @@ toc: 4
 ---
 LCM provides the ability to upgrade Cumulus Linux on one or more switches in your network through the NetQ UI or the NetQ CLI. Up to five upgrade jobs can be run simultaneously; however, a given switch can only be contained in one running job at a time.
 
-Upgrades can be performed between Cumulus Linux 3.x releases, between Cumulus Linux 4.x releases, and between Cumulus Linux 3.x and 4.x releases.
+Upgrades can be performed between following Cumulus Linux releases:
+
+- 3.6.z to later versions of 3.y.z
+- 4.x to later versions of 4.y.z
+- 3.6.0 or later to 4.2.0 or later
 
 ## Workflows for Cumulus Linux Upgrades Using LCM
 
@@ -179,17 +183,6 @@ Perform the upgrade using the `netq lcm upgrade cl-image` command, providing a n
 cumulus@switch:~$ netq lcm upgrade cl-image name upgrade-cl430 cl-version 4.3.0 netq-version 4.0.0 hostnames spine01,spine02
 ```
 
-<!-- #### Upgrade Order
-Removed from 3.2 per Naga R.
-
-To assign the order in which switches are upgraded, make sure your switches have roles assigned. Then use the `order` option and list the role names in the order you want the switches to be upgraded. For example, to upgrade the spine switches before the leaf switches, add `order spine,leaf` after the hostname listing in the command:
-
-```
-cumulus@switch:~$ netq lcm upgrade name upgrade-3712 cl-version 3.7.12 netq-version 3.1.0 hostnames spine01,spine02,leaf01,leaf02 order spine,leaf
-```
-
-If the switches have not been assigned a role, then do not use the `order` option. So in this example, if switches spine01 and spine02 have not been assigned the _spine_ role, then do not specify the `order spine` option. -->
-
 #### Network Snapshot Creation
 
 You can also generate a Network Snapshot before and after the upgrade by adding the `run-snapshot-before-after` option to the command:
@@ -221,7 +214,7 @@ Expand the following dropdown to view common failures, their causes and correcti
 | Pre-check | Message | Type | Description | Corrective Action |
 | --------- | ------- | ---- | ----------- | ----------------- |
 | (1) Switch Order | &lt;hostname1&gt; switch cannot be upgraded without isolating &lt;hostname2&gt;, &lt;hostname3&gt; which are connected neighbors. Unable to upgrade | Warning | Hostname2 and hostname3 switches will be isolated during upgrade, making them unreachable. These switches are skipped if you continue with the upgrade. | Reconfigure hostname2 and hostname 3 switches to have redundant connections, or continue with upgrade knowing that you will lose connectivity with these switches during the upgrade process. |
-| (2) Version Compatibility | Unable to upgrade &lt;hostname&gt; with CL version &lt;3.y.z&gt; to &lt;4.y.z&gt; | Error | LCM only supports CL 3.x to 3.x and CL 4.x to 4.x upgrades | Perform a fresh install of CL 4.x |
+| (2) Version Compatibility | Unable to upgrade &lt;hostname&gt; with CL version &lt;3.y.z&gt; to &lt;4.y.z&gt; | Error | LCM only supports the following Cumulus Linux upgrades:<br/><ul><li>3.6.z to later versions of 3.y.z</li><li>4.x to later versions of 4.y.z</li><li>3.6.0 or later to 4.2.0 or later</li></ul> | Perform a fresh install of CL 4.x. |
 |  | Image not uploaded for the combination: CL Version - &lt;x.y.z&gt;, Asic Vendor - &lt;NVIDIA \| Broadcom&gt;, CPU Arch - &lt;x86 \| ARM &gt; | Error | The specified Cumulus Linux image is not available in the LCM repository | Upload missing image. Refer to {{<link title="#Upload Images" text="Upload Images">}}. |
 |  | Restoration image not uploaded for the combination: CL Version - &lt;x.y.z&gt;, Asic Vendor - &lt;Mellanox \| Broadcom&gt;, CPU Arch - &lt;x86 \| ARM &gt; | Error | The specified Cumulus Linux image needed to restore the switch back to its original version if the upgrade fails is not available in the LCM repository. This applies only when the "Roll back on upgrade failure" job option is selected. | Upload missing image. Refer to {{<link title="#Upload Images" text="Upload Images">}}. |
 |  | NetQ Agent and NetQ CLI Debian packages are not present for combination: CL Version - &lt;x.y.z&gt;, CPU Arch - &lt;x86 \| ARM &gt; | Error | The specified NetQ packages are not installed on the switch. | Upload missing packages. Refer to {{<link title="Install NetQ Agents" text="Install NetQ Agents">}} and {{<link title="Install NetQ CLI" text="Install NetQ CLI">}}. |

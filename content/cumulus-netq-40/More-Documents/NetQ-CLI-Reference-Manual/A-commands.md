@@ -828,6 +828,12 @@ cumulus@switch:~$ netq bootstrap reset keep-db
 
 Loads master node with a new NetQ installer in an existing server cluster deployment.
 
+{{%notice note%}}
+
+This command applies only when upgrading from NetQ 3.1.1 and earlier.
+
+{{%/notice%}}
+
 ### Syntax
 
 ```

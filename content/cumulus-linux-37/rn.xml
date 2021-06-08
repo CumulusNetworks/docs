@@ -69,6 +69,14 @@ To work around this issue, run the &lt;tt&gt;apt-get upgrade&lt;/tt&gt; command 
 <td></td>
 </tr>
 <tr>
+<td>2684404</td>
+<td>CVE-2017-20005: NGINX has a buffer overflow for years that exceed four digits, as demonstrated by a file with a modification date in 1969 that causes an integer overflow (or a false modification date far in the future), when encountered by the autoindex module.
+Vulnerable: &lt;= 1.6.2-5+deb8u8
+Fixed: 1.6.2-5+deb8u9</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2682832</td>
 <td>When the  NetQ agent is installed on the Dell N3048EP switch, {{switchd}} might crash if pluggables are installed in the SFP+ ports.</td>
 <td>3.7.13-3.7.15</td>
@@ -2084,6 +2092,14 @@ To work around this issue, run the &lt;tt&gt;apt-get upgrade&lt;/tt&gt; command 
 <td>CM-15812</td>
 <td>&lt;p&gt;Multicast forwarding fails for IP addresses whose DMAC overlaps with reserved DIPs.&lt;/p&gt;</td>
 <td>3.2.1-3.7.14.2, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2684404</td>
+<td>CVE-2017-20005: NGINX has a buffer overflow for years that exceed four digits, as demonstrated by a file with a modification date in 1969 that causes an integer overflow (or a false modification date far in the future), when encountered by the autoindex module.
+Vulnerable: &lt;= 1.6.2-5+deb8u8
+Fixed: 1.6.2-5+deb8u9</td>
+<td>3.7.0-3.7.15</td>
 <td></td>
 </tr>
 <tr>
@@ -4155,6 +4171,14 @@ To work around this issue, run the &lt;tt&gt;apt-get upgrade&lt;/tt&gt; command 
 <td>CM-15812</td>
 <td>&lt;p&gt;Multicast forwarding fails for IP addresses whose DMAC overlaps with reserved DIPs.&lt;/p&gt;</td>
 <td>3.2.1-3.7.14.2, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2684404</td>
+<td>CVE-2017-20005: NGINX has a buffer overflow for years that exceed four digits, as demonstrated by a file with a modification date in 1969 that causes an integer overflow (or a false modification date far in the future), when encountered by the autoindex module.
+Vulnerable: &lt;= 1.6.2-5+deb8u8
+Fixed: 1.6.2-5+deb8u9</td>
+<td>3.7.0-3.7.15</td>
 <td></td>
 </tr>
 <tr>
@@ -6782,6 +6806,14 @@ To work around this issue, run the &lt;tt&gt;apt-get upgrade&lt;/tt&gt; command 
 <td>CM-15812</td>
 <td>&lt;p&gt;Multicast forwarding fails for IP addresses whose DMAC overlaps with reserved DIPs.&lt;/p&gt;</td>
 <td>3.2.1-3.7.14.2, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2684404</td>
+<td>CVE-2017-20005: NGINX has a buffer overflow for years that exceed four digits, as demonstrated by a file with a modification date in 1969 that causes an integer overflow (or a false modification date far in the future), when encountered by the autoindex module.
+Vulnerable: &lt;= 1.6.2-5+deb8u8
+Fixed: 1.6.2-5+deb8u9</td>
+<td>3.7.0-3.7.15</td>
 <td></td>
 </tr>
 <tr>
@@ -9602,6 +9634,14 @@ To work around this issue, run the &lt;tt&gt;apt-get upgrade&lt;/tt&gt; command 
 <td></td>
 </tr>
 <tr>
+<td>2684404</td>
+<td>CVE-2017-20005: NGINX has a buffer overflow for years that exceed four digits, as demonstrated by a file with a modification date in 1969 that causes an integer overflow (or a false modification date far in the future), when encountered by the autoindex module.
+Vulnerable: &lt;= 1.6.2-5+deb8u8
+Fixed: 1.6.2-5+deb8u9</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2679950</td>
 <td>CVE-2021-25217: parsing of stored leases by dhclient or dhcpd has an incorrect length check that may cause a crash.
 Vulnerable: &lt;= 4.3.1-6-cl3.7.14u1
@@ -12285,6 +12325,14 @@ To work around this issue, run the &lt;tt&gt;apt-get upgrade&lt;/tt&gt; command 
 <td></td>
 </tr>
 <tr>
+<td>2684404</td>
+<td>CVE-2017-20005: NGINX has a buffer overflow for years that exceed four digits, as demonstrated by a file with a modification date in 1969 that causes an integer overflow (or a false modification date far in the future), when encountered by the autoindex module.
+Vulnerable: &lt;= 1.6.2-5+deb8u8
+Fixed: 1.6.2-5+deb8u9</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2679950</td>
 <td>CVE-2021-25217: parsing of stored leases by dhclient or dhcpd has an incorrect length check that may cause a crash.
 Vulnerable: &lt;= 4.3.1-6-cl3.7.14u1
@@ -14680,6 +14728,14 @@ To work around this issue, run the &lt;tt&gt;apt-get upgrade&lt;/tt&gt; command 
 <td></td>
 </tr>
 <tr>
+<td>2684404</td>
+<td>CVE-2017-20005: NGINX has a buffer overflow for years that exceed four digits, as demonstrated by a file with a modification date in 1969 that causes an integer overflow (or a false modification date far in the future), when encountered by the autoindex module.
+Vulnerable: &lt;= 1.6.2-5+deb8u8
+Fixed: 1.6.2-5+deb8u9</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2679950</td>
 <td>CVE-2021-25217: parsing of stored leases by dhclient or dhcpd has an incorrect length check that may cause a crash.
 Vulnerable: &lt;= 4.3.1-6-cl3.7.14u1
@@ -16515,6 +16571,14 @@ More information at https://security-tracker.debian.org/tracker/CVE-2018-6594 .<
 <td>CM-15812</td>
 <td>&lt;p&gt;Multicast forwarding fails for IP addresses whose DMAC overlaps with reserved DIPs.&lt;/p&gt;</td>
 <td>3.2.1-3.7.14.2, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2684404</td>
+<td>CVE-2017-20005: NGINX has a buffer overflow for years that exceed four digits, as demonstrated by a file with a modification date in 1969 that causes an integer overflow (or a false modification date far in the future), when encountered by the autoindex module.
+Vulnerable: &lt;= 1.6.2-5+deb8u8
+Fixed: 1.6.2-5+deb8u9</td>
+<td>3.7.0-3.7.15</td>
 <td></td>
 </tr>
 <tr>
@@ -18676,6 +18740,14 @@ To work around this issue, run the {{sudo ethtool -S swp1}} command to collect i
 <td></td>
 </tr>
 <tr>
+<td>2684404</td>
+<td>CVE-2017-20005: NGINX has a buffer overflow for years that exceed four digits, as demonstrated by a file with a modification date in 1969 that causes an integer overflow (or a false modification date far in the future), when encountered by the autoindex module.
+Vulnerable: &lt;= 1.6.2-5+deb8u8
+Fixed: 1.6.2-5+deb8u9</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2679950</td>
 <td>CVE-2021-25217: parsing of stored leases by dhclient or dhcpd has an incorrect length check that may cause a crash.
 Vulnerable: &lt;= 4.3.1-6-cl3.7.14u1
@@ -20265,6 +20337,14 @@ To work around this issue, use {{net show interface}} command for LLDP output wh
 <td>CM-15812</td>
 <td>&lt;p&gt;Multicast forwarding fails for IP addresses whose DMAC overlaps with reserved DIPs.&lt;/p&gt;</td>
 <td>3.2.1-3.7.14.2, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2684404</td>
+<td>CVE-2017-20005: NGINX has a buffer overflow for years that exceed four digits, as demonstrated by a file with a modification date in 1969 that causes an integer overflow (or a false modification date far in the future), when encountered by the autoindex module.
+Vulnerable: &lt;= 1.6.2-5+deb8u8
+Fixed: 1.6.2-5+deb8u9</td>
+<td>3.7.0-3.7.15</td>
 <td></td>
 </tr>
 <tr>
@@ -22190,6 +22270,14 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <td></td>
 </tr>
 <tr>
+<td>2684404</td>
+<td>CVE-2017-20005: NGINX has a buffer overflow for years that exceed four digits, as demonstrated by a file with a modification date in 1969 that causes an integer overflow (or a false modification date far in the future), when encountered by the autoindex module.
+Vulnerable: &lt;= 1.6.2-5+deb8u8
+Fixed: 1.6.2-5+deb8u9</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2679950</td>
 <td>CVE-2021-25217: parsing of stored leases by dhclient or dhcpd has an incorrect length check that may cause a crash.
 Vulnerable: &lt;= 4.3.1-6-cl3.7.14u1
@@ -23856,6 +23944,14 @@ This issue was discovered on the Helix4 switch but applies to all switches.
 <td></td>
 </tr>
 <tr>
+<td>2684404</td>
+<td>CVE-2017-20005: NGINX has a buffer overflow for years that exceed four digits, as demonstrated by a file with a modification date in 1969 that causes an integer overflow (or a false modification date far in the future), when encountered by the autoindex module.
+Vulnerable: &lt;= 1.6.2-5+deb8u8
+Fixed: 1.6.2-5+deb8u9</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2679950</td>
 <td>CVE-2021-25217: parsing of stored leases by dhclient or dhcpd has an incorrect length check that may cause a crash.
 Vulnerable: &lt;= 4.3.1-6-cl3.7.14u1
@@ -25171,6 +25267,14 @@ The NetQ agent has been removed from Cumulus VX 3.7.7. The NetQ agent will be bu
 <td>CM-15812</td>
 <td>&lt;p&gt;Multicast forwarding fails for IP addresses whose DMAC overlaps with reserved DIPs.&lt;/p&gt;</td>
 <td>3.2.1-3.7.14.2, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2684404</td>
+<td>CVE-2017-20005: NGINX has a buffer overflow for years that exceed four digits, as demonstrated by a file with a modification date in 1969 that causes an integer overflow (or a false modification date far in the future), when encountered by the autoindex module.
+Vulnerable: &lt;= 1.6.2-5+deb8u8
+Fixed: 1.6.2-5+deb8u9</td>
+<td>3.7.0-3.7.15</td>
 <td></td>
 </tr>
 <tr>
@@ -26516,6 +26620,14 @@ The NetQ agent has been removed from Cumulus VX 3.7.7. The NetQ agent will be bu
 <td>CM-15812</td>
 <td>&lt;p&gt;Multicast forwarding fails for IP addresses whose DMAC overlaps with reserved DIPs.&lt;/p&gt;</td>
 <td>3.2.1-3.7.14.2, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2684404</td>
+<td>CVE-2017-20005: NGINX has a buffer overflow for years that exceed four digits, as demonstrated by a file with a modification date in 1969 that causes an integer overflow (or a false modification date far in the future), when encountered by the autoindex module.
+Vulnerable: &lt;= 1.6.2-5+deb8u8
+Fixed: 1.6.2-5+deb8u9</td>
+<td>3.7.0-3.7.15</td>
 <td></td>
 </tr>
 <tr>
@@ -27962,6 +28074,14 @@ The NetQ agent has been removed from Cumulus VX 3.7.7. The NetQ agent will be bu
 <td>CM-15812</td>
 <td>&lt;p&gt;Multicast forwarding fails for IP addresses whose DMAC overlaps with reserved DIPs.&lt;/p&gt;</td>
 <td>3.2.1-3.7.14.2, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2684404</td>
+<td>CVE-2017-20005: NGINX has a buffer overflow for years that exceed four digits, as demonstrated by a file with a modification date in 1969 that causes an integer overflow (or a false modification date far in the future), when encountered by the autoindex module.
+Vulnerable: &lt;= 1.6.2-5+deb8u8
+Fixed: 1.6.2-5+deb8u9</td>
+<td>3.7.0-3.7.15</td>
 <td></td>
 </tr>
 <tr>
@@ -29454,6 +29574,14 @@ Permanent MAC address sync between MLAG peers is now supported.</td>
 <td></td>
 </tr>
 <tr>
+<td>2684404</td>
+<td>CVE-2017-20005: NGINX has a buffer overflow for years that exceed four digits, as demonstrated by a file with a modification date in 1969 that causes an integer overflow (or a false modification date far in the future), when encountered by the autoindex module.
+Vulnerable: &lt;= 1.6.2-5+deb8u8
+Fixed: 1.6.2-5+deb8u9</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2679950</td>
 <td>CVE-2021-25217: parsing of stored leases by dhclient or dhcpd has an incorrect length check that may cause a crash.
 Vulnerable: &lt;= 4.3.1-6-cl3.7.14u1
@@ -30258,6 +30386,14 @@ To work around this issue, remove the matching {{network}} statement. </td>
 <td>CM-15812</td>
 <td>&lt;p&gt;Multicast forwarding fails for IP addresses whose DMAC overlaps with reserved DIPs.&lt;/p&gt;</td>
 <td>3.2.1-3.7.14.2, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2684404</td>
+<td>CVE-2017-20005: NGINX has a buffer overflow for years that exceed four digits, as demonstrated by a file with a modification date in 1969 that causes an integer overflow (or a false modification date far in the future), when encountered by the autoindex module.
+Vulnerable: &lt;= 1.6.2-5+deb8u8
+Fixed: 1.6.2-5+deb8u9</td>
+<td>3.7.0-3.7.15</td>
 <td></td>
 </tr>
 <tr>

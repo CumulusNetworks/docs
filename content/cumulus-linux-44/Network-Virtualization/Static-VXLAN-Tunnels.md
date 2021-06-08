@@ -199,7 +199,7 @@ cumulus@leaf04:~$ nv config apply
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Edit the `/etc/network/interfaces` file as follows:
+Edit the `/etc/network/interfaces` file, then run the `ifreload -a` command.
 
 {{< tabs "TabID217 ">}}
 {{< tab "leaf01 ">}}
@@ -511,7 +511,7 @@ cumulus@leaf04:~$ nv config apply
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Editing the `/etc/network/interfaces` file as follows:
+Edit the `/etc/network/interfaces` file, then run the `sudo ifreload -a` command.
 
 {{< tabs "TabID78 ">}}
 {{< tab "leaf01 ">}}

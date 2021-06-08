@@ -46,7 +46,7 @@ NVUE commands are not supported.
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Edit the `/etc/network/interfaces` file.
+Edit the `/etc/network/interfaces` file, then run the `ifreload -a` command.
 
 ```
 auto lo
@@ -87,6 +87,10 @@ iface bridge
     bridge-vlan-aware yes
     bridge-vids 10 20
     bridge-pvid 1
+```
+
+```
+cumulus@leaf01:~$ ifreload -a
 ```
 
 {{< /tab >}}
@@ -132,6 +136,8 @@ cumulus@spine01:~$ sudo cat /etc/nvue.d/startup.yaml
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
+Edit the `/etc/network/interfaces` file then run the `ifreload -a` command.
+
 ```
 cumulus@leaf01:~$ sudo nano /etc/network/interfaces
 ...
@@ -157,6 +163,10 @@ iface br_default
     bridge-vlan-aware yes
     bridge-vids 10 20
     bridge-pvid 1
+```
+
+```
+cumulus@leaf01:~$ ifreload -a
 ```
 
 {{< /tab >}}

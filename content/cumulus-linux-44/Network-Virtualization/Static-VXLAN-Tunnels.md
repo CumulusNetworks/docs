@@ -47,6 +47,13 @@ cumulus@leaf01:~$ net add vxlan vni-10 vxlan remoteip 10.10.10.2
 cumulus@leaf01:~$ net add vxlan vni-10 vxlan remoteip 10.10.10.3
 cumulus@leaf01:~$ net add vxlan vni-10 vxlan remoteip 10.10.10.4
 cumulus@leaf01:~$ net add vxlan vni-10 bridge access 10
+cumulus@leaf01:~$ net add vxlan vni-20 vxlan id 20
+cumulus@leaf01:~$ net add vxlan vni-20 bridge learning on
+cumulus@leaf01:~$ net add vxlan vni-20 vxlan local-tunnelip 10.10.10.1
+cumulus@leaf01:~$ net add vxlan vni-20 vxlan remoteip 10.10.10.2
+cumulus@leaf01:~$ net add vxlan vni-20 vxlan remoteip 10.10.10.3
+cumulus@leaf01:~$ net add vxlan vni-20 vxlan remoteip 10.10.10.4
+cumulus@leaf01:~$ net add vxlan vni-20 bridge access 20
 cumulus@leaf01:~$ net pending
 cumulus@leaf01:~$ net commit
 ```
@@ -63,6 +70,13 @@ cumulus@leaf02:~$ net add vxlan vni-10 vxlan remoteip 10.10.10.1
 cumulus@leaf02:~$ net add vxlan vni-10 vxlan remoteip 10.10.10.3
 cumulus@leaf02:~$ net add vxlan vni-10 vxlan remoteip 10.10.10.4
 cumulus@leaf02:~$ net add vxlan vni-10 bridge access 10
+cumulus@leaf02:~$ net add vxlan vni-20 vxlan id 20
+cumulus@leaf02:~$ net add vxlan vni-20 bridge learning on
+cumulus@leaf02:~$ net add vxlan vni-20 vxlan local-tunnelip 10.10.10.2
+cumulus@leaf02:~$ net add vxlan vni-20 vxlan remoteip 10.10.10.1
+cumulus@leaf02:~$ net add vxlan vni-20 vxlan remoteip 10.10.10.3
+cumulus@leaf02:~$ net add vxlan vni-20 vxlan remoteip 10.10.10.4
+cumulus@leaf02:~$ net add vxlan vni-20 bridge access 20
 cumulus@leaf02:~$ net pending
 cumulus@leaf02:~$ net commit
 ```
@@ -78,7 +92,13 @@ cumulus@leaf03:~$ net add vxlan vni-10 vxlan local-tunnelip 10.10.10.3
 cumulus@leaf03:~$ net add vxlan vni-10 vxlan remoteip 10.10.10.1
 cumulus@leaf03:~$ net add vxlan vni-10 vxlan remoteip 10.10.10.2
 cumulus@leaf03:~$ net add vxlan vni-10 vxlan remoteip 10.10.10.4
-cumulus@leaf03:~$ net add vxlan vni-10 bridge access 10
+cumulus@leaf03:~$ net add vxlan vni-20 bridge access 10
+cumulus@leaf03:~$ net add vxlan vni-20 bridge learning on
+cumulus@leaf03:~$ net add vxlan vni-20 vxlan local-tunnelip 10.10.10.3
+cumulus@leaf03:~$ net add vxlan vni-20 vxlan remoteip 10.10.10.1
+cumulus@leaf03:~$ net add vxlan vni-20 vxlan remoteip 10.10.10.2
+cumulus@leaf03:~$ net add vxlan vni-20 vxlan remoteip 10.10.10.4
+cumulus@leaf03:~$ net add vxlan vni-20 bridge access 20
 cumulus@leaf03:~$ net pending
 cumulus@leaf03:~$ net commit
 ```
@@ -95,6 +115,13 @@ cumulus@leaf04:~$ net add vxlan vni-10 vxlan remoteip 10.10.10.1
 cumulus@leaf04:~$ net add vxlan vni-10 vxlan remoteip 10.10.10.2
 cumulus@leaf04:~$ net add vxlan vni-10 vxlan remoteip 10.10.10.3
 cumulus@leaf04:~$ net add vxlan vni-10 bridge access 10
+cumulus@leaf04:~$ net add vxlan vni-20 vxlan id 20
+cumulus@leaf04:~$ net add vxlan vni-20 bridge learning on
+cumulus@leaf04:~$ net add vxlan vni-20 vxlan local-tunnelip 10.10.10.4
+cumulus@leaf04:~$ net add vxlan vni-20 vxlan remoteip 10.10.10.1
+cumulus@leaf04:~$ net add vxlan vni-20 vxlan remoteip 10.10.10.2
+cumulus@leaf04:~$ net add vxlan vni-20 vxlan remoteip 10.10.10.3
+cumulus@leaf04:~$ net add vxlan vni-20 bridge access 20
 cumulus@leaf04:~$ net pending
 cumulus@leaf04:~$ net commit
 ```

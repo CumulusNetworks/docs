@@ -14,6 +14,8 @@ In the example configuration:
 - leaf01, leaf02, spine01, and spine02 are in area 0
 - border01 and border02 are ABRs and are in area 0 (lo, swp51, swp52) and area 1 (swp1, swp2)
 
+## NCLU Commands
+
 {{< tabs "TabID17 ">}}
 {{< tab "NCLU Commands ">}}
 
@@ -925,6 +927,8 @@ interface swp2
 
 {{< /tab >}}
 {{< /tabs >}}
+
+## NVUE Commands
 
 {{< tabs "TabID801 ">}}
 {{< tab "NVUE Commands ">}}

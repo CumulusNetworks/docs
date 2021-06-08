@@ -1134,6 +1134,28 @@ To work around this issue, change the value of &lt;tt&gt;arp_ignore&lt;/tt&gt; t
 <td></td>
 </tr>
 <tr>
+<td>2682976</td>
+<td>CVE-2021-28902, CVE-2021-28903, CVE-2021-28904, CVE-2021-28905, CVE-2021-28906: Several vulnerabilities have been announced in libyang that can cause a crash.
+Vulnerable: &lt;= 1.0.184-2+cl4.3.0u1</td>
+<td>4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2682973</td>
+<td>CVE-2020-12762: integer overflow in the json-c JSON library, which could result in denial of service or potentially the execution of arbitrary code if large malformed JSON files are processed.
+Vulnerable: 0.12.2+cl4u1</td>
+<td>4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2679950</td>
+<td>CVE-2021-25217: parsing of stored leases by dhclient or dhcpd has an incorrect length check that may cause a crash.
+Vulnerable: &lt;= 4.3.1-6-cl3.7.14u1
+Fixed: 4.3.1-6-cl3.7.16u1</td>
+<td>3.7.0-3.7.15, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
 <td>2677049</td>
 <td>CVE-2020-25681 CVE-2020-25682 CVE-2020-25683 CVE-2020-25684 CVE-2020-25685 CVE-2020-25686 CVE-2020-25687: Several vulnerabilities in dnsmasq, a small caching DNS proxy and DHCP/TFTP server, could result in denial of service, cache poisoning or the execution of arbitrary code.</td>
 <td>4.0.0-4.3.0</td>

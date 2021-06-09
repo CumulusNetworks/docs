@@ -1635,14 +1635,230 @@ cumulus@spine02:~$ sudo cat /etc/nvue.d/startup.yaml
 {{< tab "border01 ">}}
 
 ```
-
+cumulus@border01:~$ sudo cat /etc/nvue.d/startup.yaml
+- set:
+    interface:
+      lo:
+        ip:
+          address:
+            10.10.10.63/32: {}
+        type: loopback
+        router:
+          ospf:
+            area: 0
+            enable: on
+      swp51:
+        ip:
+          address:
+            10.10.10.63/32: {}
+        type: swp
+        router:
+          ospf:
+            area: 0
+            enable: on
+            network-type: point-to-point
+            timers:
+              hello-interval: 5
+              dead-interval: 60
+      swp52:
+        ip:
+          address:
+            10.10.10.63/32: {}
+        type: swp
+        router:
+          ospf:
+            area: 0
+            enable: on
+            network-type: point-to-point
+            timers:
+              hello-interval: 5
+              dead-interval: 60
+      bond1:
+        bond:
+          member:
+            swp1: {}
+          mlag:
+            id: 1
+          lacp-bypass: on
+        type: bond
+        bridge:
+          domain:
+            br_default:
+              access: 10
+      bond2:
+        bond:
+          member:
+            swp2: {}
+          mlag:
+            id: 2
+          lacp-bypass: on
+        type: bond
+        bridge:
+          domain:
+            br_default:
+              access: 20
+      peerlink:
+        bond:
+          member:
+            swp49: {}
+            swp50: {}
+        type: peerlink
+      peerlink.4094:
+        type: sub
+        base-interface: peerlink
+        vlan: 4094
+      swp1:
+        router:
+          ospf:
+            area: 1
+            enable: on
+        type: swp
+      swp2:
+        router:
+          ospf:
+            area: 1
+            enable: on
+        type: swp
+    mlag:
+      mac-address: 44:38:39:BE:EF:FF
+      backup:
+        10.10.10.64: {}
+      peer-ip: linklocal
+    bridge:
+      domain:
+        br_default:
+          untagged: 1
+    router:
+      ospf:
+        router-id: 10.10.10.63
+        enable: on
+        timers:
+          spf:
+            max-holdtime: 6000
+            holdtime: 100
 ```
 
 {{< /tab >}}
 {{< tab "border02 ">}}
 
 ```
-
+cumulus@border02:~$ sudo cat /etc/nvue.d/startup.yaml 
+- set:
+    interface:
+      lo:
+        ip:
+          address:
+            10.10.10.64/32: {}
+        type: loopback
+        router:
+          ospf:
+            area: 0
+            enable: on
+      swp51:
+        ip:
+          address:
+            10.10.10.64/32: {}
+        type: swp
+        router:
+          ospf:
+            area: 0
+            enable: on
+            network-type: point-to-point
+            timers:
+              hello-interval: 5
+              dead-interval: 60
+      swp52:
+        ip:
+          address:
+            10.10.10.64/32: {}
+        type: swp
+        router:
+          ospf:
+            area: 0
+            enable: on
+            network-type: point-to-point
+            timers:
+              hello-interval: 5
+              dead-interval: 60
+      bond1:
+        bond:
+          member:
+            swp1: {}
+          mlag:
+            id: 1
+          lacp-bypass: on
+        type: bond
+        bridge:
+          domain:
+            br_default:
+              access: 10
+      bond2:
+        bond:
+          member:
+            swp2: {}
+          mlag:
+            id: 2
+          lacp-bypass: on
+        type: bond
+        bridge:
+          domain:
+            br_default:
+              access: 20
+      vlan10:
+        type: svi
+        vlan: 10
+        ip:
+          ipv4:
+            forward: off
+          ipv6:
+            forward: off
+      vlan20:
+        type: svi
+        vlan: 20
+        ip:
+          ipv4:
+            forward: off
+          ipv6:
+            forward: off
+      peerlink:
+        bond:
+          member:
+            swp49: {}
+            swp50: {}
+        type: peerlink
+      peerlink.4094:
+        type: sub
+        base-interface: peerlink
+        vlan: 4094
+      swp1:
+        router:
+          ospf:
+            area: 1
+            enable: on
+        type: swp
+      swp2:
+        router:
+          ospf:
+            area: 1
+            enable: on
+        type: swp
+    mlag:
+      mac-address: 44:38:39:BE:EF:FF
+      backup:
+        10.10.10.63: {}
+      peer-ip: linklocal
+    bridge:
+      domain:
+        br_default:
+          untagged: 1
+    router:
+      ospf:
+        router-id: 10.10.10.64
+        enable: on
+        timers:
+          spf:
+            max-holdtime: 6000
+            holdtime: 100
 ```
 
 {{< /tab >}}

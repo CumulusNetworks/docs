@@ -10672,6 +10672,7 @@ iface br_default
 
 ```
 cumulus@leaf02:mgmt:~$ sudo cat /etc/network/interfaces
+
 auto lo
 iface lo inet loopback
     address 10.10.10.2/32
@@ -10826,6 +10827,7 @@ iface br_default
 
 ```
 cumulus@leaf03:mgmt:~$ sudo cat /etc/network/interfaces
+
 auto lo
 iface lo inet loopback
     address 10.10.10.3/32
@@ -10981,6 +10983,7 @@ iface br_default
 
 ```
 cumulus@leaf04:mgmt:~$ sudo cat /etc/network/interfaces 
+
 auto lo
 iface lo inet loopback
     address 10.10.10.4/32
@@ -11176,6 +11179,7 @@ iface swp6
 
 ```
 cumulus@spine02:mgmt:~$ sudo cat /etc/network/interfaces
+
 auto lo
 iface lo inet loopback
     address 10.10.10.102/32
@@ -11216,6 +11220,7 @@ iface swp6
 
 ```
 cumulus@spine03:mgmt:~$ sudo cat /etc/network/interfaces 
+
 auto lo
 iface lo inet loopback
     address 10.10.10.103/32
@@ -11256,6 +11261,7 @@ iface swp6
 
 ```
 cumulus@spine04:mgmt:~$ sudo cat /etc/network/interfaces
+
 auto lo
 iface lo inet loopback
     address 10.10.10.104/32
@@ -11419,6 +11425,7 @@ iface br_default
 
 ```
 cumulus@border02:mgmt:~$ sudo cat /etc/network/interfaces
+
 auto lo
 iface lo inet loopback
     address 10.10.10.64/32
@@ -11626,7 +11633,8 @@ exit-address-family
 
 ```
 cumulus@leaf02:mgmt:~$ sudo cat /etc/frr/frr.conf
-...vrf BLUE
+...
+vrf BLUE
 vni 4002
 exit-vrf
 vrf RED
@@ -11705,6 +11713,7 @@ exit-address-family
 
 ```
 cumulus@leaf03:mgmt:~$ sudo cat /etc/frr/frr.conf
+...
 vrf BLUE
 vni 4002
 exit-vrf
@@ -12030,6 +12039,7 @@ exit-address-family
 
 ```
 cumulus@spine03:mgmt:~$ sudo cat /etc/frr/frr.conf 
+...
 vrf default
 exit-vrf
 vrf mgmt
@@ -12112,6 +12122,7 @@ exit-address-family
 
 ```
 cumulus@spine04:mgmt:~$ sudo cat /etc/frr/frr.conf
+...
 vrf default
 exit-vrf
 vrf mgmt
@@ -12194,6 +12205,7 @@ exit-address-family
 
 ```
 cumulus@border01:mgmt:~$ sudo cat /etc/frr/frr.conf
+...
 vrf BLUE
 vni 4002
 exit-vrf
@@ -12293,6 +12305,7 @@ exit-address-family
 
 ```
 cumulus@border02:mgmt:~$ sudo cat /etc/frr/frr.conf
+...
 vrf BLUE
 vni 4002
 exit-vrf

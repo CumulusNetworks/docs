@@ -24,6 +24,7 @@ NVUE is created from the ground up and does not inherit any previous functionali
 
 - {{<link url="NVIDIA-User-Experience-NVUE" text="NVIDIA User Experience (NVUE)">}} is a new object-oriented, schema driven model of a complete Cumulus Linux system (hardware and software) with a robust API that allows multiple interfaces to both view and configure any element within the system. NVUE is an early access feature currently in BETA and open to customer feedback.
 - {{<link url="VLAN-aware-Bridge-Mode/" text="Multiple VLAN-aware bridges">}}
+- {{<link url="VXLAN-Devices/#single-vxlan-device" text="Single VXLAN Devices">}}
 - {{<link url="EVPN-Multihoming" text="EVPN multihoming Head End Replication">}}
 - {{<link url="Precision-Time-Protocol-PTP" text="PTP Boundary Clock">}} enhancements
 - {{<link url="Protocol-Independent-Multicast-PIM/#allow-rp" text="PIM Allow RP">}}

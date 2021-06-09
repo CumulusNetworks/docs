@@ -49,7 +49,7 @@ cumulus@switch:~$ sudo csmgrctl -c
 
 The following command restarts the system in fast mode:
 
-{{< tabs "49 ">}}
+{{< tabs "52 ">}}
 {{< tab "NCLU Command ">}}
 
 ```
@@ -66,6 +66,30 @@ NVUE command is not supported.
 
 ```
 cumulus@switch:~$ sudo csmgrctl -f
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+The following command restarts the system in warm mode:
+
+{{< tabs "76 ">}}
+{{< tab "NCLU Command ">}}
+
+```
+cumulus@switch:~$ net system maintenance restart warm
+```
+
+{{< /tab >}}
+{{< tab "NVUE Command ">}}
+
+NVUE command is not supported.
+
+{{< /tab >}}
+{{< tab "Linux Command ">}}
+
+```
+cumulus@switch:~$ sudo csmgrctl -w
 ```
 
 {{< /tab >}}

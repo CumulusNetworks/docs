@@ -401,10 +401,10 @@ To show the DHCP relay status:
 {{< tabs "TabID405 ">}}
 {{< tab "NVUE Commands ">}}
 
-Run the `cl show service dhcp-relay` command for IPv4 or the `cl show service dhcp-relay6` command for IPv6:
+Run the `nv show service dhcp-relay` command for IPv4 or the `nv show service dhcp-relay6` command for IPv6:
 
 ```
-cumulus@leaf01:~$ cl show service dhcp-relay
+cumulus@leaf01:~$ nv show service dhcp-relay
            source-ip  Summary
 ---------  ---------  -----------------------
 + default  auto       giaddress-interface: lo

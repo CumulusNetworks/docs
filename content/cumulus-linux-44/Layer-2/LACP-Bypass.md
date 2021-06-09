@@ -82,7 +82,7 @@ cumulus@switch:~$ sudo ifreload -a
 {{< /tab >}}
 {{< /tabs >}}
 
-To check the status of the configuration, run the NCLU `net show interface <bond>` command or the Linux `ip link show` command on the bond and its slave interfaces. The NVUE Command is `cl show interface <bond>`.
+To check the status of the configuration, run the NCLU `net show interface <bond>` command or the Linux `ip link show` command on the bond and its slave interfaces. The NVUE Command is `nv show interface <bond>`.
 
 ```
 cumulus@switch:~$ ip link show bond1

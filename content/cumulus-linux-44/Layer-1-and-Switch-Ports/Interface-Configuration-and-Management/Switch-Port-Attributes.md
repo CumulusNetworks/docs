@@ -148,7 +148,7 @@ UP  swp1    44:38:39:00:00:04  1G        9216  Access/L2
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ cl show interface swp1
+cumulus@switch:~$ nv show interface swp1
 ```
 
 {{< /tab >}}
@@ -788,7 +788,7 @@ This section shows basic commands for troubleshooting switch ports. For a more c
 
 ### Statistics
 
-To show high-level interface statistics, run the NCLU `net show interface` command. The NVUE Command is `cl show interface`.
+To show high-level interface statistics, run the NCLU `net show interface` command. The NVUE Command is `nv show interface`.
 
 ```
 cumulus@switch:~$ net show interface swp1

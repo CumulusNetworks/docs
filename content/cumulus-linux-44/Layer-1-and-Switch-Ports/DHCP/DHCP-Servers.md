@@ -473,10 +473,10 @@ cumulus@switch:~$ nv set system dhcp-server6 static server1 interface swp1
 
 ## Troubleshooting
 
-To show the current DHCP server settings, run the `cl show system dhcp-server` command:
+To show the current DHCP server settings, run the `nv show system dhcp-server` command:
 
 ```
-cumulus@leaf01:mgmt:~$ cl show system dhcp-server
+cumulus@leaf01:mgmt:~$ nv show system dhcp-server
                       running       applied       description
 --------------------  ------------  ------------  ----------------------------------------------
 [domain-name]                                     DHCP domain names

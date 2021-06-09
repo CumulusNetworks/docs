@@ -770,7 +770,7 @@ cumulus@switch:~$ net show interface swp1
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ cl show interface swp1 link state
+cumulus@switch:~$ nv show interface swp1 link state
 ```
 
 {{< /tab >}}
@@ -800,7 +800,7 @@ cumulus@switch:~$ net show interface swp1
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ cl show interface swp1 ip address
+cumulus@switch:~$ nv show interface swp1 ip address
 ```
 
 {{< /tab >}}
@@ -859,7 +859,7 @@ To show the interface description for all interfaces on the switch in JSON forma
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch$ cl show interface swp1
+cumulus@switch$ nv show interface swp1
 ```
 
 {{< /tab >}}

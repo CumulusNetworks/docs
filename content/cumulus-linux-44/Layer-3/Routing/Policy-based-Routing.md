@@ -754,7 +754,7 @@ Valid: yes nexthop 192.168.8.2
 Valid: yes nexthop 192.168.8.3
 ```
 
-To see information about a specific next hop group, add the group name at the end of the command; for example, `cl show router pbr nexthop-group group1` (or `show pbr nexthop-group group1` in vtysh).
+To see information about a specific next hop group, add the group name at the end of the command; for example, `nv show router pbr nexthop-group group1` (or `show pbr nexthop-group group1` in vtysh).
 
 {{%notice note%}}
 A new Linux routing table ID is used for each next hop and next hop group.

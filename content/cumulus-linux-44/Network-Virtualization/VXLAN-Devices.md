@@ -102,6 +102,8 @@ With a single VXLAN device, a set of VNIs are included in a single device model.
 
 Cumulus Linux creates a unique name for the single VXLAN device in the format `vxlan<id>`, where the ID is generated using the bridge name as the hash key.
 
+You can configure a single VXLAN device with NVUE or by manually editing the `/etc/network/interfaces` file.
+
 The following example configuration:
 - Creates a single VXLAN device (vxlan48)
 - Maps VLAN 10 to VNI 10, VLAN 20 to VNI 20, and VLAN 30 to VNI 30
@@ -127,10 +129,45 @@ cumulus@leaf01:~$ nv set interface swp2 bridge domain br_default access 20
 cumulus@leaf01:~$ nv config apply
 ```
 
-The NVUE Commands create the following configuration snippet in the `/etc/nvue.d/startup.yaml` file:
+The `nv config save` command creates the following configuration snippet in the `/etc/nvue.d/startup.yaml` file:
 
 ```
 cumulus@spine01:~$ sudo cat /etc/nvue.d/startup.yaml
+- set:
+    bridge:
+      domain:
+        br_default:
+          vlan:
+            '10':
+              vni:
+                '10':
+                  flooding:
+                    multicast-group: 239.1.1.110
+                    enable: on
+            '20':
+              vni:
+                '20':
+                  flooding:
+                    multicast-group: 239.1.1.120
+                    enable: on
+    nve:
+      vxlan:
+        enable: on
+        source:
+          address: 10.10.10.1
+    interface:
+      swp1:
+        bridge:
+          domain:
+            br_default:
+              access: 10
+        type: swp
+      swp2:
+        bridge:
+          domain:
+            br_default:
+              access: 20
+        type: swp
 ```
 
 {{< /tab >}}

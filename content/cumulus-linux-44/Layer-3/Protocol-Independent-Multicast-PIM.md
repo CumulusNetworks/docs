@@ -940,21 +940,14 @@ In some configurations, it is desirable to configure the LHR with an RP address 
 To can configure the switch to allow joins from all upstream neighbors or to provide a prefix list so that only joins with an upstream neighbor address in the list are accepted unconditionally:
 
 {{< tabs "TabID997 ">}}
+{{< tab "NCLU Commands ">}}
+
+NCLU command is not supported.
+
+{{< /tab >}}
 {{< tab "NVUE Commands ">}}
 
-The following example command configures PIM to ignore the RP check for all upstream neighbors:
-
-```
-cumulus@switch:~$ NEED COMMAND
-cumulus@switch:~$ nv config apply
-```
-
-The following example command configures PIM to only ignore the RP check for upstream neighbors in the prefix list called ALLOW-RP:
-
-```
-cumulus@switch:~$ NEED COMMAND
-cumulus@switch:~$ nv config apply
-```
+NVUE command is not supported.
 
 {{< /tab >}}
 {{< tab "vtysh Commands ">}}

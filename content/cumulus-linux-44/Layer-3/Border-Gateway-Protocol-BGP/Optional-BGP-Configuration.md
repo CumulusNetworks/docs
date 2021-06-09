@@ -1291,6 +1291,11 @@ The following example commands configure Cumulus Linux to send a 10.0.0.0/8 summ
 - Configure BGP neighbor swp51 to use the route maps.
 
 {{< tabs "962 ">}}
+{{< tab "NCLU Commands ">}}
+
+NCLU commands are not supported.
+
+{{< /tab >}}
 {{< tab "NVUE Commands ">}}
 
 ```

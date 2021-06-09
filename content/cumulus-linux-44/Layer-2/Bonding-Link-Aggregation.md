@@ -206,14 +206,14 @@ cumulus@switch:~$ ifreload -a
 Each bond configuration option, except for `bond slaves,` is set to the recommended value by default in Cumulus Linux. Only configure an option if a different setting is needed. For more information on configuration values, refer to the {{<link url="#related-information" text="Related Information">}}  section below.
 {{%/notice%}}
 
-| Parameter | NVUE Command | Description|
-|---------- |------------ | ---------- |
-| `bond-mode 802.3ad`<br><br>`bond-mode balance-xor` | `nv set interface <bond-name> bond mode lacp`<br><br>`nv set interface <bond-name> bond mode static` | Cumulus Linux supports IEEE 802.3ad link aggregation mode (802.3ad) and balance-xor mode.<br>The default mode is 802.3ad.<br><br>**Note:** When you enable balance-xor mode, the bonding of slave interfaces are static and all slave interfaces are active for load balancing and fault tolerance purposes. Packet transmission on the bond is based on the hash policy specified by xmit-hash-policy.<br><br>When using balance-xor mode to dual-connect host-facing bonds in an MLAG environment, you must configure the clag-id parameter on the MLAG bonds and it must be the same on both MLAG switches. Otherwise, the bonds are treated by the MLAG switch pair as single-connected.<br><br>Use balance-xor mode only if you cannot use LACP; LACP can detect mismatched link attributes between bond members and can even detect misconnections. |
-| `bond miimon <value>` | N/A |Defines how often the link state of each slave is inspected for failures. You can specify a value between 0 and 255. The default value is 100. |
-| `bond-use-carrier no` | N/A | Determines the link state. |
-| `bond-lacp-bypass-allow`| `nv set interface <bond-name> bond lacp-bypass on`<br><br>`nv set interface <bond-name> bond lacp-bypass off` | Enables LACP bypass. |
-| `bond-lacp-rate slow` | `nv set interface <bond-name> bond lacp-rate slow`<br><br>`nv set interface <bond-name> bond lacp-rate fast` | Sets the rate to ask the link partner to transmit LACP control packets. slow is the only option. |
-| `bond-min-links` |  N/A | Defines the minimum number of links (between 0 and 255) that must be active before the bond is put into service. The default value is 1.<br><br>A value greater than 1 is useful if higher level services need to ensure a minimum aggregate bandwidth level before activating a bond. Keeping bond-min-links set to 1 indicates the bond must have at least one active member. If the number of active members drops below the bond-min-links setting, the bond appears to upper-level protocols as link-down. When the number of active links returns to greater than or equal to bond-min-links, the bond becomes link-up. |
+| Parameter |  Description|
+|---------- | ---------- |
+| `bond-mode 802.3ad`<br><br>`bond-mode balance-xor` | Cumulus Linux supports IEEE 802.3ad link aggregation mode (802.3ad) and balance-xor mode.<br>The default mode is 802.3ad.<br><br>**Note:** When you enable balance-xor mode, the bonding of slave interfaces are static and all slave interfaces are active for load balancing and fault tolerance purposes. Packet transmission on the bond is based on the hash policy specified by xmit-hash-policy.<br><br>When using balance-xor mode to dual-connect host-facing bonds in an MLAG environment, you must configure the clag-id parameter on the MLAG bonds and it must be the same on both MLAG switches. Otherwise, the bonds are treated by the MLAG switch pair as single-connected.<br><br>Use balance-xor mode only if you cannot use LACP; LACP can detect mismatched link attributes between bond members and can even detect misconnections. <br><br>NCLU command: `net add bond <bond-name> bond mode balance-xor` <br>NVUE command: `nv set interface <bond-name> bond mode static` |
+| `bond miimon <value>` | Defines how often the link state of each slave is inspected for failures. You can specify a value between 0 and 255. The default value is 100. |
+| `bond-use-carrier no` | Determines the link state. |
+| `bond-lacp-bypass-allow`| Enables LACP bypass.<br><br>NCLU command: `net add bond <bond-name> bond lacp-bypass-allow` <br>NVUE command: `nv set interface <bond-name> bond lacp-bypass on` |
+| `bond-lacp-rate slow` | Sets the rate to ask the link partner to transmit LACP control packets. slow is the only option. |
+| `bond-min-links` | Defines the minimum number of links (between 0 and 255) that must be active before the bond is put into service. The default value is 1.<br><br>A value greater than 1 is useful if higher level services need to ensure a minimum aggregate bandwidth level before activating a bond. Keeping bond-min-links set to 1 indicates the bond must have at least one active member. If the number of active members drops below the bond-min-links setting, the bond appears to upper-level protocols as link-down. When the number of active links returns to greater than or equal to bond-min-links, the bond becomes link-up. |
 
 ## Show Bond Information
 
@@ -267,7 +267,7 @@ swp4(P)  ====  swp2(p1c1h1)Routing
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ cl legacy show interface bond0 
+cumulus@switch:~$ NEED COMMAND 
     Name    MAC                Speed    MTU    Mode
 --  ------  -----------------  -------  -----  ------
 UP  bond1   00:02:00:00:00:12  20G      1500   Bond

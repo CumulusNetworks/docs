@@ -106,7 +106,7 @@ You can configure a single VXLAN device with NVUE or by manually editing the `/e
 
 The following example configuration:
 - Creates a single VXLAN device (vxlan48)
-- Maps VLAN 10 to VNI 10, VLAN 20 to VNI 20, and VLAN 30 to VNI 30
+- Maps VLAN 10 to VNI 10 and VLAN 20 to VNI 20
 - Adds the VXLAN device to the default bridge `br_default`
 - Sets the flooding multicast group for VNI 10 to 239.1.1.110 and the multicast group for VNI 20 to 239.1.1.120
 

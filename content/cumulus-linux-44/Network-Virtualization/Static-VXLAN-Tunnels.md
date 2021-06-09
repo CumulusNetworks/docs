@@ -450,11 +450,11 @@ iface bridge
 
 The following single VXLAN device example configuration:
 - Sets the loopback address on each leaf
-- Creates a single VXLAN device (vxlan48). Cumulus Linux creates a unique name for the single VXLAN device in the format `vxlan<id>`, where the ID is generated using the bridge name as the hash key.
-- Configures the local tunnel IP address to be the loopback address of the switch
+- Creates a single VXLAN device (vxlan48), and maps vlan 10 to VNI 10 and vlan 20 to VNI 20
 - Enables bridge learning on the single VXLAN device
-- Creates the static VXLAN tunnels by specifying the loopback addresses of the other leafs
 - Adds the VXLAN device to the default bridge `br_default`
+- Configures the local tunnel IP address to be the loopback address of the switch
+- Creates the static VXLAN tunnels by specifying the loopback addresses of the other leafs
 
 {{< tabs "TabID35 ">}}
 {{< tab "NCLU Commands ">}}

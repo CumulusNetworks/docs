@@ -257,10 +257,10 @@ cumulus@switch:~$ nv config apply
 
 ## Troubleshooting
 
-NVUE provides several show commands for PTP. You can view the current PTP configuration, monitor violations, and see time attributes of the clock. For example, to show a summary of the PTP configuration on the switch, run the `cl show service ptp <instance>` command:
+NVUE provides several show commands for PTP. You can view the current PTP configuration, monitor violations, and see time attributes of the clock. For example, to show a summary of the PTP configuration on the switch, run the `nv show service ptp <instance>` command:
 
 ```
-cumulus@switch:~$ cl show service ptp 1
+cumulus@switch:~$ nv show service ptp 1
 
                        operational  applied   description
 ----------------------  -----------  --------  ----------------------------------------------------------------------
@@ -284,21 +284,21 @@ To see the list of NVUE show commands for PTP, run `nv list-commands service ptp
 
 ```
 cumulus@leaf01:mgmt:~$ cl list-commands service ptp
-cl show service ptp
-cl show service ptp <instance-id>
-cl show service ptp <instance-id> acceptable-master
-cl show service ptp <instance-id> acceptable-master <clock-id>
-cl show service ptp <instance-id> monitor
-cl show service ptp <instance-id> monitor violations
-cl show service ptp <instance-id> monitor violations forced-master
-cl show service ptp <instance-id> monitor violations forced-master <clock-id>
-cl show service ptp <instance-id> monitor violations acceptable-master
-cl show service ptp <instance-id> monitor violations acceptable-master <clock-id>
-cl show service ptp <instance-id> current
-cl show service ptp <instance-id> clock-quality
-cl show service ptp <instance-id> parent
-cl show service ptp <instance-id> parent grandmaster-clock-quality
-cl show service ptp <instance-id> time
+nv show service ptp
+nv show service ptp <instance-id>
+nv show service ptp <instance-id> acceptable-master
+nv show service ptp <instance-id> acceptable-master <clock-id>
+nv show service ptp <instance-id> monitor
+nv show service ptp <instance-id> monitor violations
+nv show service ptp <instance-id> monitor violations forced-master
+nv show service ptp <instance-id> monitor violations forced-master <clock-id>
+nv show service ptp <instance-id> monitor violations acceptable-master
+nv show service ptp <instance-id> monitor violations acceptable-master <clock-id>
+nv show service ptp <instance-id> current
+nv show service ptp <instance-id> clock-quality
+nv show service ptp <instance-id> parent
+nv show service ptp <instance-id> parent grandmaster-clock-quality
+nv show service ptp <instance-id> time
 ...
 ```
 

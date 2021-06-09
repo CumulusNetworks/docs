@@ -191,7 +191,7 @@ router bgp 65199
        cumulus@leaf01:~$ nv set router bgp autonomous-system leaf
        ```
 
-       The auto BGP `leaf` keyword is only used to configure the ASN. The configuration files and `cl show` commands display the AS number.
+       The auto BGP `leaf` keyword is only used to configure the ASN. The configuration files and `nv show` commands display the AS number.
 
 2. Assign the router ID.
 
@@ -273,7 +273,7 @@ router:
       cumulus@spine01:~$ nv set router bgp autonomous-system spine
       ```
 
-      The auto BGP `spine` keyword is only used to configure the ASN. The configuration files and `cl show` commands display the AS number.
+      The auto BGP `spine` keyword is only used to configure the ASN. The configuration files and `nv show` commands display the AS number.
 
 2. Assign the router ID.
 

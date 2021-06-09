@@ -321,7 +321,7 @@ cumulus@switch:~$ net show bridge spanning-tree | grep bpdu
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ cl show bridge domain br_default stp
+cumulus@switch:~$ nv show bridge domain br_default stp
 ```
 
 {{< /tab >}}
@@ -585,7 +585,7 @@ vxlan4001  forw   Desg  Yes
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ cl show bridge domain br_default stp
+cumulus@switch:~$ nv show bridge domain br_default stp
 ```
 
 {{< /tab >}}

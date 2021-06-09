@@ -102,7 +102,7 @@ cumulus@switch:~$ net show time ntp servers
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ cl show system ntp server
+cumulus@switch:~$ nv show system ntp server
 ```
 
 {{< /tab >}}

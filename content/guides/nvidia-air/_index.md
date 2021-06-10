@@ -2,7 +2,9 @@
 title: NVIDIA Air
 author: NVIDIA
 weight: 10
-version: "1.0"
+cascade:
+    product: "Infrastructure Simulation Platform"
+    version: ""
 ---
 
 NVIDIA Air is a network simulation platform that is used to create a digital twin of your IT infrastructure. NVIDIA Air is a cloud hosted platform that is accessible to anyone. To access NVIDIA Air, go to {{<exlink url="https://air.nvidia.com" text="air.nvidia.com">}}.

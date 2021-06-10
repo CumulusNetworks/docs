@@ -481,13 +481,12 @@ cumulus@border02:~$ net commit
 {{< /tab >}}
 {{< tab "/etc/network/interfaces ">}}
 
-   {{< tabs "TabID481 ">}}
+{{< tabs "TabID481 ">}}
 {{< tab "leaf01 ">}}
 
 ```
 cumulus@leaf01:~$ sudo cat /etc/network/interfaces
 
-```
 auto lo
 iface lo inet loopback
     address 10.10.10.1/32

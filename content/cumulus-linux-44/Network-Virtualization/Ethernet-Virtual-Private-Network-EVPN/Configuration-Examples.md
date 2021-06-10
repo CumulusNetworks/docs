@@ -487,6 +487,7 @@ cumulus@border02:~$ net commit
 ```
 cumulus@leaf01:~$ sudo cat /etc/network/interfaces
 
+```
 auto lo
 iface lo inet loopback
     address 10.10.10.1/32
@@ -511,7 +512,7 @@ iface swp50
 
 auto swp51
 iface swp51
-   alias to spine
+    alias to spine
 
 auto swp52
 iface swp52
@@ -555,6 +556,7 @@ auto mgmt
 iface mgmt
     vrf-table auto
     address 127.0.0.1/8
+    address ::1/128
 
 auto eth0
 iface eth0 inet dhcp
@@ -694,13 +696,11 @@ iface peerlink.4094
 
 auto vlan10
 iface vlan10
-    ip-forward off
     vlan-id 10
     vlan-raw-device bridge
 
 auto vlan20
 iface vlan20
-    ip-forward off
     vlan-id 20
     vlan-raw-device bridge
 
@@ -816,13 +816,11 @@ iface peerlink.4094
 
 auto vlan10
 iface vlan10
-    ip-forward off
     vlan-id 10
     vlan-raw-device bridge
 
 auto vlan20
 iface vlan20
-    ip-forward off
     vlan-id 20
     vlan-raw-device bridge
 
@@ -938,13 +936,11 @@ iface peerlink.4094
 
 auto vlan10
 iface vlan10
-    ip-forward off
     vlan-id 10
     vlan-raw-device bridge
 
 auto vlan20
 iface vlan20
-    ip-forward off
     vlan-id 20
     vlan-raw-device bridge
 
@@ -1219,13 +1215,11 @@ iface peerlink.4094
 
 auto vlan10
 iface vlan10
-    ip-forward off
     vlan-id 10
     vlan-raw-device bridge
 
 auto vlan20
 iface vlan20
-    ip-forward off
     vlan-id 20
     vlan-raw-device bridge
 
@@ -1324,13 +1318,11 @@ iface peerlink.4094
 
 auto vlan10
 iface vlan10
-    ip-forward off
     vlan-id 10
     vlan-raw-device bridge
 
 auto vlan20
 iface vlan20
-    ip-forward off
     vlan-id 20
     vlan-raw-device bridge
 
@@ -1369,7 +1361,7 @@ router bgp 65101
  bgp router-id 10.10.10.1
  neighbor underlay peer-group
  neighbor underlay remote-as external
- neighbor peerlink.4094 interface remote-as internal
+ neighbor peerlink.4094 interface peer-group underlay
  neighbor swp51 interface peer-group underlay
  neighbor swp52 interface peer-group underlay
  neighbor swp53 interface peer-group underlay

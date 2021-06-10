@@ -1612,10 +1612,10 @@ router bgp 65164
 
 The NVUE commands configure single VXLAN devices.
 
-{{< tabs "TabID480 ">}}
+{{< tabs "TabID1615 ">}}
 {{< tab "NVUE Commands">}}
 
-{{< tabs "TabID144 ">}}
+{{< tabs "TabID1618 ">}}
 {{< tab "leaf01 ">}}
 
 ```
@@ -1973,7 +1973,7 @@ cumulus@border02:~$ nv config apply
 {{< /tab >}}
 {{< tab "/etc/nvue.d/startup.yaml ">}}
 
-{{< tabs "TabID392 ">}}
+{{< tabs "TabID1976 ">}}
 {{< tab "leaf01 ">}}
 
 ```
@@ -3084,6 +3084,421 @@ cumulus@border02:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
                     enable: on
                 enable: on
 ```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+{{< /tab >}}
+{{< tab "/etc/network/interfaces ">}}
+
+{{< tabs "TabID3094 ">}}
+{{< tab "leaf01 ">}}
+
+```
+auto lo
+iface lo inet loopback
+    address 10.10.10.1/32
+    clagd-vxlan-anycast-ip 10.0.1.12
+    vxlan-local-tunnelip 10.10.10.1
+
+auto mgmt
+iface mgmt
+    address 127.0.0.1/8
+    address ::1/128
+    vrf-table auto
+
+auto eth0
+iface eth0 inet dhcp
+    ip-forward off
+    ip6-forward off
+    vrf mgmt
+
+auto swp1
+iface swp1
+
+auto swp2
+iface swp2
+
+auto swp49
+iface swp49
+
+auto swp50
+iface swp50
+
+auto swp51
+iface swp51
+
+auto swp52
+iface swp52
+
+auto swp53
+iface swp53
+
+auto swp54
+iface swp54
+
+auto bond1
+iface bond1
+    mtu 9000
+    bond-slaves swp1
+    bond-mode 802.3ad
+    bond-lacp-bypass-allow yes
+    clag-id 1
+    bridge-access 10
+
+auto bond2
+iface bond2
+    mtu 9000
+    bond-slaves swp2
+    bond-mode 802.3ad
+    bond-lacp-bypass-allow yes
+    clag-id 2
+    bridge-access 20
+
+auto peerlink
+iface peerlink
+    bond-slaves swp49 swp50
+    bond-mode 802.3ad
+    bond-lacp-bypass-allow no
+
+auto peerlink.4094
+iface peerlink.4094
+    clagd-peer-ip linklocal
+    clagd-priority 1000
+    clagd-backup-ip 10.10.10.2
+    clagd-sys-mac 44:38:39:BE:EF:AA
+    clagd-args --initDelay 10
+
+auto vlan10
+iface vlan10
+    hwaddress 44:38:39:22:01:b1
+    vlan-raw-device br_default
+    vlan-id 10
+
+auto vlan20
+iface vlan20
+    hwaddress 44:38:39:22:01:b1
+    vlan-raw-device br_default
+    vlan-id 20
+
+auto vxlan48
+iface vxlan48
+    bridge-vlan-vni-map 10=10 20=20
+    bridge-vids 10 20
+    bridge-learning off
+
+auto br_default
+iface br_default
+    bridge-ports bond1 bond2 peerlink vxlan48
+    hwaddress 44:38:39:22:01:b1
+    bridge-vlan-aware yes
+    bridge-vids 10 20
+    bridge-pvid 1
+```
+
+{{< /tab >}}
+{{< tab "leaf02 ">}}
+
+```
+auto lo
+iface lo inet loopback
+    address 10.10.10.2/32
+    clagd-vxlan-anycast-ip 10.0.1.12
+    vxlan-local-tunnelip 10.10.10.2
+
+auto mgmt
+iface mgmt
+    address 127.0.0.1/8
+    address ::1/128
+    vrf-table auto
+
+auto eth0
+iface eth0 inet dhcp
+    ip-forward off
+    ip6-forward off
+    vrf mgmt
+
+auto swp1
+iface swp1
+
+auto swp2
+iface swp2
+
+auto swp49
+iface swp49
+
+auto swp50
+iface swp50
+
+auto swp51
+iface swp51
+
+auto swp52
+iface swp52
+
+auto swp53
+iface swp53
+
+auto swp54
+iface swp54
+
+auto bond1
+iface bond1
+    mtu 9000
+    bond-slaves swp1
+    bond-mode 802.3ad
+    bond-lacp-bypass-allow yes
+    clag-id 1
+    bridge-access 10
+
+auto bond2
+iface bond2
+    mtu 9000
+    bond-slaves swp2
+    bond-mode 802.3ad
+    bond-lacp-bypass-allow yes
+    clag-id 2
+    bridge-access 20
+
+auto peerlink
+iface peerlink
+    bond-slaves swp49 swp50
+    bond-mode 802.3ad
+    bond-lacp-bypass-allow no
+
+auto peerlink.4094
+iface peerlink.4094
+    clagd-peer-ip linklocal
+    clagd-backup-ip 10.10.10.1
+    clagd-sys-mac 44:38:39:BE:EF:AA
+    clagd-args --initDelay 10
+
+auto vlan10
+iface vlan10
+    hwaddress 44:38:39:22:01:af
+    vlan-raw-device br_default
+    vlan-id 10
+
+auto vlan20
+iface vlan20
+    hwaddress 44:38:39:22:01:af
+    vlan-raw-device br_default
+    vlan-id 20
+
+auto vxlan48
+iface vxlan48
+    bridge-vlan-vni-map 10=10 20=20
+    bridge-vids 10 20
+    bridge-learning off
+
+auto br_default
+iface br_default
+    bridge-ports bond1 bond2 peerlink vxlan48
+    hwaddress 44:38:39:22:01:af
+    bridge-vlan-aware yes
+    bridge-vids 10 20
+    bridge-pvid 1
+```
+
+{{< /tab >}}
+{{< tab "leaf03 ">}}
+
+{{< /tab >}}
+{{< tab "leaf04 ">}}
+
+{{< /tab >}}
+{{< tab "spine01 ">}}
+
+{{< /tab >}}
+{{< tab "spine02 ">}}
+
+{{< /tab >}}
+{{< tab "spine03 ">}}
+
+{{< /tab >}}
+{{< tab "spine04 ">}}
+
+{{< /tab >}}
+{{< tab "border01 ">}}
+
+{{< /tab >}}
+{{< tab "border02 ">}}
+
+{{< /tab >}}
+{{< /tabs >}}
+
+{{< /tab >}}
+{{< tab "/etc/frr/frr.conf ">}}
+
+{{< tabs "TabID3232 ">}}
+{{< tab "leaf01 ">}}
+
+```
+...
+vrf default
+exit-vrf
+vrf mgmt
+exit-vrf
+router bgp 65101 vrf default
+bgp router-id 10.10.10.1
+bgp bestpath as-path multipath-relax
+timers bgp 3 9
+bgp deterministic-med
+! Neighbors
+neighbor underlay peer-group
+neighbor underlay remote-as external
+neighbor underlay timers 3 9
+neighbor underlay timers connect 10
+neighbor underlay advertisement-interval 0
+no neighbor underlay capability extended-nexthop
+neighbor peerlink.4094 interface remote-as internal
+neighbor peerlink.4094 timers 3 9
+neighbor peerlink.4094 timers connect 10
+neighbor peerlink.4094 advertisement-interval 0
+neighbor peerlink.4094 capability extended-nexthop
+neighbor swp51 interface remote-as external
+neighbor swp51 interface peer-group underlay
+neighbor swp51 timers 3 9
+neighbor swp51 timers connect 10
+neighbor swp51 advertisement-interval 0
+neighbor swp51 capability extended-nexthop
+neighbor swp52 interface remote-as external
+neighbor swp52 interface peer-group underlay
+neighbor swp52 timers 3 9
+neighbor swp52 timers connect 10
+neighbor swp52 advertisement-interval 0
+neighbor swp52 capability extended-nexthop
+neighbor swp53 interface remote-as external
+neighbor swp53 interface peer-group underlay
+neighbor swp53 timers 3 9
+neighbor swp53 timers connect 10
+neighbor swp53 advertisement-interval 0
+neighbor swp53 capability extended-nexthop
+neighbor swp54 interface remote-as external
+neighbor swp54 interface peer-group underlay
+neighbor swp54 timers 3 9
+neighbor swp54 timers connect 10
+neighbor swp54 advertisement-interval 0
+neighbor swp54 capability extended-nexthop
+! Address families
+address-family ipv4 unicast
+redistribute connected
+maximum-paths ibgp 64
+maximum-paths 64
+distance bgp 20 200 200
+neighbor peerlink.4094 activate
+neighbor swp51 activate
+neighbor swp52 activate
+neighbor swp53 activate
+neighbor swp54 activate
+neighbor underlay activate
+exit-address-family
+address-family l2vpn evpn
+advertise-all-vni
+neighbor swp51 activate
+neighbor swp52 activate
+neighbor swp53 activate
+neighbor swp54 activate
+neighbor underlay activate
+exit-address-family
+...
+```
+
+{{< /tab >}}
+{{< tab "leaf02 ">}}
+
+```
+vrf default
+exit-vrf
+vrf mgmt
+exit-vrf
+router bgp 65102 vrf default
+bgp router-id 10.10.10.2
+bgp bestpath as-path multipath-relax
+timers bgp 3 9
+bgp deterministic-med
+! Neighbors
+neighbor underlay peer-group
+neighbor underlay remote-as external
+neighbor underlay timers 3 9
+neighbor underlay timers connect 10
+neighbor underlay advertisement-interval 0
+no neighbor underlay capability extended-nexthop
+neighbor peerlink.4094 interface remote-as internal
+neighbor peerlink.4094 timers 3 9
+neighbor peerlink.4094 timers connect 10
+neighbor peerlink.4094 advertisement-interval 0
+neighbor peerlink.4094 capability extended-nexthop
+neighbor swp51 interface remote-as external
+neighbor swp51 interface peer-group underlay
+neighbor swp51 timers 3 9
+neighbor swp51 timers connect 10
+neighbor swp51 advertisement-interval 0
+neighbor swp51 capability extended-nexthop
+neighbor swp52 interface remote-as external
+neighbor swp52 interface peer-group underlay
+neighbor swp52 timers 3 9
+neighbor swp52 timers connect 10
+neighbor swp52 advertisement-interval 0
+neighbor swp52 capability extended-nexthop
+neighbor swp53 interface remote-as external
+neighbor swp53 interface peer-group underlay
+neighbor swp53 timers 3 9
+neighbor swp53 timers connect 10
+neighbor swp53 advertisement-interval 0
+neighbor swp53 capability extended-nexthop
+neighbor swp54 interface remote-as external
+neighbor swp54 interface peer-group underlay
+neighbor swp54 timers 3 9
+neighbor swp54 timers connect 10
+neighbor swp54 advertisement-interval 0
+neighbor swp54 capability extended-nexthop
+! Address families
+address-family ipv4 unicast
+redistribute connected
+maximum-paths ibgp 64
+maximum-paths 64
+distance bgp 20 200 200
+neighbor peerlink.4094 activate
+neighbor swp51 activate
+neighbor swp52 activate
+neighbor swp53 activate
+neighbor swp54 activate
+neighbor underlay activate
+exit-address-family
+address-family l2vpn evpn
+advertise-all-vni
+neighbor swp51 activate
+neighbor swp52 activate
+neighbor swp53 activate
+neighbor swp54 activate
+neighbor underlay activate
+exit-address-family
+```
+
+{{< /tab >}}
+{{< tab "leaf03 ">}}
+
+{{< /tab >}}
+{{< tab "leaf04 ">}}
+
+{{< /tab >}}
+{{< tab "spine01 ">}}
+
+{{< /tab >}}
+{{< tab "spine02 ">}}
+
+{{< /tab >}}
+{{< tab "spine03 ">}}
+
+{{< /tab >}}
+{{< tab "spine04 ">}}
+
+{{< /tab >}}
+{{< tab "border01 ">}}
+
+{{< /tab >}}
+{{< tab "border02 ">}}
 
 {{< /tab >}}
 {{< /tabs >}}

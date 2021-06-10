@@ -13,13 +13,15 @@ In Cumulus Linux, you map QinQ packets to VXLANs through:
 - *Single tag translation*, where you map a customer to a VNI and preserve the service as an inner VLAN inside a VXLAN packet.
 - *Double tag translation*, where you map a customer and service to a VNI.
 
-<!--QinQ is available only on {{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware bridges">}} with 802.1ad.-->
+<!-- QinQ is only supported on {{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware bridges">}} with 802.1ad.-->
+
+{{%notice note%}}
+You must disable ARP/ND suppression on VXLAN bridges when using QinQ.
+{{%/notice%}}
 
 ## Configure Single Tag Translation
 
 Single tag translation adheres to the traditional QinQ service model. The customer-facing interface is a QinQ access port with the outer S-tag being the PVID, representing the customer. The S-tag is translated to a VXLAN VNI. The inner C-tag, which represents the service, is transparent to the provider. The public cloud handoff interface is a QinQ trunk where packets on the wire carry both the S-tag and the C-tag.
-
-Single tag translation works with both {{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware bridge mode">}} and {{<link url="Traditional-Bridge-Mode" text="traditional bridge mode">}}. However, single tag translation with *VLAN-aware bridge mode* is more scalable.
 
 An example configuration in VLAN-aware bridge mode looks like this:
 

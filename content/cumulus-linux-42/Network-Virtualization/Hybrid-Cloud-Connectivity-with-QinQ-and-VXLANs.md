@@ -18,6 +18,10 @@ QinQ is available on switches with the following ASICs:
 - Broadcom Tomahawk 2, Tomahawk+, Tomahawk, Trident3, Trident II+ and Trident II.
 - Mellanox Spectrum 1, Spectrum 2 and Spectrum 3, only with {{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware bridges">}} with 802.1ad and only with single tag translation.
 
+{{%notice note%}}
+You must disable ARP/ND suppression on VXLAN bridges when using QinQ.
+{{%/notice%}}
+
 ## Configure Single Tag Translation
 
 Single tag translation adheres to the traditional QinQ service model. The customer-facing interface is a QinQ access port with the outer S-tag being the PVID, representing the customer. The S-tag is translated to a VXLAN VNI. The inner C-tag, which represents the service, is transparent to the provider. The public cloud handoff interface is a QinQ trunk where packets on the wire carry both the S-tag and the C-tag.

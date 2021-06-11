@@ -57,7 +57,7 @@ cumulus@switch:~$ nv config apply
 The configuration is saved in the `/etc/ptp4l.conf` file.
 
 {{< /tab >}}
-{{< tab "vtysh Commands ">}}
+{{< tab "Linux Commands ">}}
 
 1. Open the `/etc/cumulus/switchd.conf` file in a text editor and add the following line:
 
@@ -181,7 +181,7 @@ cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
-{{< tab "vtysh Commands ">}}
+{{< tab "Linux Commands ">}}
 
 Edit the `/etc/ptp4l.conf` file to change the `domainNumber` setting, then restart the `ptp4l` and `phc2sys` daemons with the `sudo systemctl restart ptp4l.service phc2sys.service` command:
 
@@ -221,7 +221,7 @@ cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
-{{< tab "vtysh Commands ">}}
+{{< tab "Linux Commands ">}}
 
 Edit the `/etc/ptp4l.conf` file to change the `priority1` and, or `priority2` setting, then restart the `ptp4l` and `phc2sys` daemons with the `sudo systemctl restart ptp4l.service phc2sys.service` command.
 
@@ -280,7 +280,7 @@ cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
-{{< tab "vtysh Commands ">}}
+{{< tab "Linux Commands ">}}
 
 Edit the `/etc/ptp4l.conf` file to change the `twoStepFlag` setting to 1, then restart the `ptp4l` and `phc2sys` daemons with the `sudo systemctl restart ptp4l.service phc2sys.service` command.
 
@@ -335,7 +335,7 @@ cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
-{{< tab "vtysh Commands ">}}
+{{< tab "Linux Commands ">}}
 
 Edit the `/etc/ptp4l.conf` file to change the `dscp_event` and `dscp_general` setting, then restart the `ptp4l` and `phc2sys` daemons with the `sudo systemctl restart ptp4l.service phc2sys.service` command.
 

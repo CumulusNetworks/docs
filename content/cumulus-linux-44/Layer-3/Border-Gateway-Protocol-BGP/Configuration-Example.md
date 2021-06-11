@@ -8,7 +8,7 @@ This section shows a BGP configuration example based on the reference topology. 
 
 {{< img src = "/images/cumulus-linux/mlag-config-peering.png" >}}
 
-## Commands
+## NCLU Commands
 
 {{< tabs "TabID13 ">}}
 {{< tab "NCLU Commands">}}
@@ -697,6 +697,8 @@ router bgp 65199
 
 {{< /tab >}}
 {{< /tabs >}}
+
+## NVUE Commands
 
 {{< tabs "TabID695 ">}}
 {{< tab "NVUE Commands">}}

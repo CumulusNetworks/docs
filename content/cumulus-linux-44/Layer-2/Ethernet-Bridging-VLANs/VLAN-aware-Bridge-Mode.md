@@ -201,14 +201,14 @@ To configure the reserved range, edit the `/etc/cumulus/switchd.conf` file to un
 
 ## VLAN Pruning
 
-By default, the bridge port inherits the bridge VIDs. To configure a port to override the bridge VIDs:
+By default, the bridge port inherits the bridge VIDs, however, you can configure a port to override the bridge VIDs.
 
 {{< img src = "/images/cumulus-linux/ethernet-bridging-vlan-pruned1.png" >}}
 
+This example commands configure swp3 to override the bridge VIDs:
+
 {{< tabs "TabID157 ">}}
 {{< tab "NCLU Commands ">}}
-
-The following example commands configure swp3 to override the bridge VIDs:
 
 ```
 cumulus@switch:~$ net add bridge bridge ports swp1-3
@@ -593,11 +593,7 @@ Edit the `/etc/network/interfaces` file to **remove** the line `ipv6-addrgen off
 {{< /tab >}}
 {{< /tabs >}}
 
-## Example Configurations
-
-The following sections provide example VLAN-aware bridge configurations.
-
-### Access Ports and Pruned VLANs
+## Example Configuration
 
 The following example configuration contains an access port and switch port that are *pruned*; they only send and receive traffic tagged to and from a specific set of VLANs declared by the `bridge-vids` attribute. It also contains other switch ports that send and receive traffic from all the defined VLANs.
 
@@ -641,88 +637,6 @@ iface swp49
  iface swp50
       mstpctl-portnetwork yes
       mstpctl-portpathcost 0
-...
-```
-
-### Large Bond Set Configuration
-
-The configuration below shows a VLAN-aware bridge with a large set of bonds. The bond configurations are generated from a {{<exlink url="http://www.makotemplates.org/" text="Mako">}} template.
-
-```
-...
-#
-# vlan-aware bridge with bonds example
-#
-# uplink1, peerlink and downlink are bond interfaces.
-# 'bridge' is a vlan-aware bridge with ports uplink1, peerlink
-# and downlink (swp2-20).
-#
-# native vlan is by default 1
-#
-# 'bridge-vids' attribute is used to declare vlans.
-# 'bridge-pvid' attribute is used to specify native vlans if other than 1
-# 'bridge-access' attribute is used to declare access port
-#
-auto lo
-iface lo
-
-auto eth0
-iface eth0 inet dhcp
-
-# bond interface
-auto uplink1
-iface uplink1
-    bond-slaves swp32
-    bridge-vids 2000-2079
-
-# bond interface
-auto peerlink
-iface peerlink
-    bond-slaves swp30 swp31
-    bridge-vids 2000-2079 4094
-
-# bond interface
-auto downlink
-iface downlink
-    bond-slaves swp1
-    bridge-vids 2000-2079
-
-#
-# Declare vlans for all swp ports
-# swp2-20 get vlans from 2004 to 2022.
-# The below uses mako templates to generate iface sections
-# with vlans for swp ports
-#
-%for port, vlanid in zip(range(2, 20), range(2004, 2022)) :
-    auto swp${port}
-    iface swp${port}
-      bridge-vids ${vlanid}
-
-%endfor
-
-# svi vlan 2000
-auto bridge.2000
-iface bridge.2000
-    address 11.100.1.252/24
-
-# l2 attributes for vlan 2000
-auto bridge.2000
-vlan bridge.2000
-    bridge-igmp-querier-src 172.16.101.1
-
-#
-# vlan-aware bridge
-#
-auto bridge
-iface bridge
-    bridge-ports uplink1 peerlink downlink swp1 swp2 swp49 swp50
-    bridge-vlan-aware yes
-
-# svi peerlink vlan
-auto peerlink.4094
-iface peerlink.4094
-    address 192.168.10.1/30
-    broadcast 192.168.10.3
 ...
 ```
 

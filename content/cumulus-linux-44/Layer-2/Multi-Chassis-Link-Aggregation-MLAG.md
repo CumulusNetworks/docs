@@ -1557,17 +1557,18 @@ To check the status of your MLAG configuration, run the NCLU `net show clag` com
 ```
 cumulus@leaf01:~$ net show clag
 The peer is alive
-    Peer Priority, ID, and Role: 4096 44:38:39:BE:EF:AA primary
-     Our Priority, ID, and Role: 8192 44:38:39:BE:EF:AA secondary
-          Peer Interface and IP: peerlink.4094 linklocal
+     Our Priority, ID, and Role: 32768 44:38:39:00:00:59 primary
+    Peer Priority, ID, and Role: 32768 44:38:39:00:00:5a secondary
+          Peer Interface and IP: peerlink.4094 fe80::4638:39ff:fe00:5a (linklocal)
                       Backup IP: 10.10.10.2 (inactive)
-                     System MAC: 44:38:39:BE:EF:AA
+                     System MAC: 44:38:39:be:ef:aa
 
 CLAG Interfaces
 Our Interface      Peer Interface     CLAG Id   Conflicts              Proto-Down Reason
 ----------------   ----------------   -------   --------------------   -----------------
-           bond1   bond1              1         -                      -
-           bond2   bond2              2         -                      -
+           bond1   -                  1         -                      -              
+           bond2   -                  2         -                      -              
+           bond3   -                  3         -                      -              
 ```
 
 ### Show All MLAG Settings
@@ -1590,7 +1591,7 @@ peerLinkPoll = 1
 switchdReadyTimeout = 120
 reloadTimer = 300
 periodicRun = 4
-priority = 1000
+priority = 32768
 quiet = False
 debug = 0x0
 verbose = False
@@ -1604,13 +1605,14 @@ sendBufSize = 65536
 forceDynamic = False
 dormantDisable = False
 redirectEnable = False
+redirect2Enable = True
 backupIp = 10.10.10.2
 backupVrf = None
 backupPort = 5342
 vxlanAnycast = None
 neighSync = True
 permanentMacSync = True
-cmdLine = /usr/sbin/clagd --daemon linklocal peerlink.4094 44:38:39:BE:EF:AA --priority 1000 --backupIp 10.10.10.2
+cmdLine = /usr/sbin/clagd --daemon linklocal peerlink.4094 44:38:39:BE:EF:AA --priority 32768 --backupIp 10.10.10.2 --initDelay 100
 peerlinkLearnEnable = False
 ```
 
@@ -1628,7 +1630,6 @@ cumulus@spine01:~$ sudo tail /var/log/clagd.log
 2016-10-03T20:31:54.252642+00:00 spine01 clagd[1235]: HealthCheck: backup active
 2016-10-03T20:31:54.537967+00:00 spine01 clagd[1235]: Initial data sync from peer done.
 2016-10-03T20:31:54.538435+00:00 spine01 clagd[1235]: Initial handshake done.
-2016-10-03T20:31:58.527464+00:00 spine01 clagd[1235]: leaf03-04 is now dual connected.
 2016-10-03T22:47:35.255317+00:00 spine01 clagd[1235]: leaf01-02 is now dual connected.
 ```
 
@@ -1654,23 +1655,11 @@ Service clagd              enabled    active
 cumulus@leaf01:~$ systemctl status clagd.service
  ● clagd.service - Cumulus Linux Multi-Chassis LACP Bonding Daemon
     Loaded: loaded (/lib/systemd/system/clagd.service; enabled)
-    Active: active (running) since Mon 2016-10-03 20:31:50 UTC; 4 days ago
+    Active: active (running) since Fri 2021-06-11 16:17:19 UTC; 12min ago
         Docs: man:clagd(8)
-    Main PID: 1235 (clagd)
+    Main PID: 27078 (clagd)
     CGroup: /system.slice/clagd.service
-            ├─1235 /usr/bin/python /usr/sbin/clagd --daemon 169.254.255.2 peerlink.4094 44:38:39:FF:40:90 --prior...
-            └─15795 /usr/share/mgmt-vrf/bin/ping6 -L -c 1 ff02::1 -I peerlink.409
-
-Feb 01 23:19:30 leaf01 clagd[1717]: Cleanup is executing.
-Feb 01 23:19:31 leaf01 clagd[1717]: Cleanup is finished
-Feb 01 23:19:31 leaf01 clagd[1717]: Beginning execution of clagd version 1.3.0
-Feb 01 23:19:31 leaf01 clagd[1717]: Invoked with: /usr/sbin/clagd --daemon 169.254.255.2 peerlink.4094 44:38:39:FF:40:94 --pri...168.0.12
-Feb 01 23:19:31 leaf01 clagd[1717]: Role is now secondary
-Feb 01 23:19:31 leaf01 clagd[1717]: Initial config loaded
-Feb 01 23:19:31 leaf01 systemd[1]: Started Cumulus Linux Multi-Chassis LACP Bonding Daemon.
-Feb 01 23:24:31 leaf01 clagd[1717]: HealthCheck: reload timeout.
-Feb 01 23:24:31 leaf01 clagd[1717]: Role is now primary; Reload timeout
-...
+            └─27078 /usr/bin/python3 /usr/sbin/clagd --daemon linklocal peerlink.4094 44:38:39:BE:EF:AA --priority 32768
 ```
 
 ### Large Packet Drops on the Peer Link Interface

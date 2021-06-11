@@ -56,8 +56,8 @@ As you enter commands, you can get help with the valid keywords or options using
 
 ```
 cumulus@switch:~$ nv set <<press Tab>>
-bridge    interface  nve        qos        service    vrf
-evpn      mlag       platform   router     system
+acl        evpn       mlag       platform   router     system     
+bridge     interface  nve        qos        service    vrf 
 
 cumulus@switch:~$ nv set
 ```
@@ -105,17 +105,18 @@ The `nv set` and `nv unset` commands are grouped into the following categories. 
 
 | <div style="width:300px">Command Group | Description |
 | ------- | ----------- |
-| `nv set router`<br>`nv unset router` | Configures router policies, such as prefix list rules and route maps, and global BGP options. This is where you enable and disable BGP, set the ASN and the router ID, and configure BGP graceful restart and shutdown. |
-| `nv set platform`<br>`nv unset platform` | Configures the hostname of the switch and sets how configuration apply operations are performed (such as which files to ignore and which files to overwrite). |
+| `nv set acl`<br>`nv unset acl` | Configures ACLs in Cumulus Linux.|
 | `nv set bridge`<br>`nv unset bridge` | Configures a bridge domain. This is where you configure the bridge type (such as VLAN-aware), 802.1Q encapsulation, the STP state and priority, and the VLANs in the bridge domain. |
-| `nv set mlag`<br>`nv unset mlag` | Configures MLAG. This is where you configure the backup IP address or interface, MLAG system MAC address, peer IP address, MLAG priority, and the delay before bonds are brought up. |
-| `nv set evpn`<br>`nv unset evpn` | Configures EVPN. This is where you enable and disable the EVPN control plane, and set EVPN route advertise options, default gateway configuration for centralized routing, and duplicate address detection options. |
+| `nv set evpn`<br>`nv unset evpn` | Configures EVPN. This is where you enable and disable the EVPN control plane, and set EVPN route advertise options, default gateway configuration for centralized routing, multihoming, and duplicate address detection options. |
 | `nv set interface <interface-id>`<br>`nv unset interface <interface-id>` | Configures the switch interfaces. Use this command to configure bond interfaces, bridge interfaces, interface IP addresses, VLAN IDs, and links (MTU, FEC, speed, duplex, and so on).|
-| `nv set system`<br>`nv unset system` | Configures global system settings, such as the anycast ID, the system MAC address, and the anycast MAC address. This is also where you configure the DNS server IP address. |
-| `nv set vrf  <vrf-id>`<br>`nv unset vrf <vrf-id>` | Configures VRFs. This is where you configure VRF-level router configuration such as BGP, including BGP for the default VRF. |
-| `nv set service`<br>`nv unset service` | Configures DHCP relays and servers, NTP, LLDP, and syslog. |
-| `nv set nve`<br>`nv unset nve` | Configures network virtualization (VXLAN) settings. This is where you configure the UDP port for VXLAN frames, control dynamic MAC learning over VXLAN tunnels, and configure how Cumulus Linux handles BUM traffic in the overlay.|
+| `nv set mlag`<br>`nv unset mlag` | Configures MLAG. This is where you configure the backup IP address or interface, MLAG system MAC address, peer IP address, MLAG priority, and the delay before bonds are brought up. |
+| `nv set nve`<br>`nv unset nve` | Configures network virtualization (VXLAN) settings. This is where you configure the UDP port for VXLAN frames, control dynamic MAC learning over VXLAN tunnels, enable and disable ARP/ND suppression, and configure how Cumulus Linux handles BUM traffic in the overlay.|
+| `nv set platform`<br>`nv unset platform` | Configures the hostname of the switch and sets how configuration apply operations are performed (such as which files to ignore and which files to overwrite). |
 | `nv set qos`<br>`nv unset qos` | Configures QoS RoCE. |
+| `nv set router`<br>`nv unset router` | Configures router policies (prefix list rules and route maps), global BGP options (enable and disable BGP, set the ASN and the router ID, and configure BGP graceful restart and shutdown), global OSPF options (enable and disable OSPF, set the router ID, and configure OSPF timers), and PBR. |
+| `nv set service`<br>`nv unset service` | Configures DHCP relays and servers, NTP, PTP, LLDP, and syslog. |
+| `nv set system`<br>`nv unset system` | Configures global system settings, such as the anycast ID, the system MAC address, and the anycast MAC address. This is also where you configure SPAN and ERSPAN sessions. |
+| `nv set vrf  <vrf-id>`<br>`nv unset vrf <vrf-id>` | Configures VRFs. This is where you configure VRF-level router configuration including PTP, BGP, OSPF, and EVPN. |
 
 ### Monitoring Commands
 
@@ -123,54 +124,59 @@ The NVUE monitoring commands show various parts of the network configuration. Fo
 
 | <div style="width:300px">Command Group | Description |
 | ------- | ----------- |
-| `nv show router` | Shows router configuration, such as router policies and global BGP configuration. |
-| `nv show platform` | Shows platform configuration, such as hardware and software components, and the hostname of the switch. |
+| `nv show acl` | Shows ACL configuration. |
 | `nv show bridge` | Shows bridge domain configuration.|
-| `nv show mlag` | Shows MLAG configuration. |
 | `nv show evpn` |Shows EVPN configuration. |
 | `nv show interface` |Shows interface configuration. |
-| `nv show system` | Shows global system settings, such as the anycast ID, the system MAC address, and the anycast MAC address. |
-| `nv show service` | Shows DHCP relays and server, NTP, LLDP, and syslog configuration. |
-| `nv show vrf` | Shows VRF configuration.|
+| `nv show mlag` | Shows MLAG configuration. |
 | `nv show nve` | Shows network virtualization configuration, such as VXLAN-specfic MLAG configuration and VXLAN flooding.|
+| `nv show platform` | Shows platform configuration, such as hardware and software components, and the hostname of the switch. |
 | `nv show qos` | Shows QoS RoCE configuration.|
+| `nv show router` | Shows router configuration, such as router policies, and global BGP and OSPF configuration. |
+| `nv show service` | Shows DHCP relays and server, NTP, PTP, LLDP, and syslog configuration. |
+| `nv show system` | Shows global system settings, such as the anycast ID, the system MAC address, and the anycast MAC address. |
+| `nv show vrf` | Shows VRF configuration.|
 
 The following example shows the `nv show router` commands after pressing the TAB key, then shows the output of the `nv show router bgp` command.
 
 ```
-cumulus@leaf01:mgmt:~$ nv show router <<press Tab>>
-bgp     policy
 cumulus@leaf01:mgmt:~$ nv show router bgp
-                                running  applied      pending      description
-------------------------------  -------  -----------  -----------  ----------------------------------------------------------------------
-enable                                   on                        Turn the feature 'on' or 'off'.  The default is 'off'.
-autonomous-system                        65101                     ASN for all VRFs, if a single AS is in use.  If "none", then ASN mu...
-graceful-shutdown                        off                       Graceful shutdown enable will initiate the GSHUT community to be an...
-policy-update-timer                      5                         Wait time in seconds before processing updates to policies to ensur...
-router-id                                10.10.10.1                BGP router-id for all VRFs, if a common one is used.  If "none", th...
+                                operational  applied  pending      description
+------------------------------  -----------  -------  -----------  ----------------------------------------------------------------------
+enable                                       off      on           Turn the feature 'on' or 'off'.  The default is 'off'.
+autonomous-system                                     none         ASN for all VRFs, if a single AS is in use.  If "none", then ASN mu...
+graceful-shutdown                                     off          Graceful shutdown enable will initiate the GSHUT community to be an...
+policy-update-timer                                   5            Wait time in seconds before processing updates to policies to ensur...
+router-id                                             none         BGP router-id for all VRFs, if a common one is used.  If "none", th...
+wait-for-install                                      off          bgp waits for routes to be installed into kernel/asic before advert...
 convergence-wait
-  establish-wait-time                    0                         Maximum time to wait to establish BGP sessions. Any peerswhich do...
-  time                                   0                         Time to wait for peers to send end-of-RIB before router performs pa...
+  establish-wait-time                                 0            Maximum time to wait to establish BGP sessions. Any peers which do...
+  time                                                0            Time to wait for peers to send end-of-RIB before router performs pa...
 graceful-restart
-  mode                                   helper-only               Role of router during graceful restart. helper-only, router is in h...
-  path-selection-deferral-time           360                       Used by the restarter as an upper-bounds for waiting for peering es...
-  restart-time                           120                       Amount of time taken to restart by router. It is advertised to the...
-  stale-routes-time                      360                       Specifies an upper-bounds on how long we retain routes from a ....
+  mode                                                helper-only  Role of router during graceful restart. helper-only, router is in h...
+  path-selection-deferral-time                        360          Used by the restarter as an upper-bounds for waiting for peering es...
+  restart-time                                        120          Amount of time taken to restart by router. It is advertised to the...
+  stale-routes-time                                   360          Specifies an upper-bounds on how long we retain routes from a resta...
+cumulus@leaf01:mgmt:~$ 
 ```
 
 {{%notice note%}}
 If there are no pending or applied configuration changes, the `nv show` command only shows the running configuration.
 {{%/notice%}}
 
-*Revision* options are available for the `nv show` commands. You can choose the configuration you want to show (pending, applied, startup, or running):
+Aditional options are available for the `nv show` commands. For example, you can choose the configuration you want to show (pending, applied, startup, or running). You can also turn on colored output, and send specific output to a pager.
 
 | <div style="width:200px">Option | Description |
 | ------ | ----------- |
-| `--rev <revision>` | Shows a detached pending configuration. See the `nv config detach` configuration management command below.  |
-| `--pending`       |  Shows the configuration you `set` and `unset` but have not yet applied or saved.|
-| `--applied`       |  Shows the last set of commands applied with the `nv config apply` command. |
-| `--startup`       |  Shows the set of commands saved with the `nv config save` command. This is the configuration after the switch boots. |
-| `--running`       |  Shows the running configuration (the actual system state). The running and applied configuration should be the same. If different, inspect the logs. |
+| `--applied`       | Shows configuration applied with the `nv config apply` command. For example, `nv show --applied interface bond1`. |
+| `--color`         | Turns colored output on or off. For example, `nv show --color on interface bond1`|
+| `--help`          | Shows help for the NVUE commands. |
+| `--operational`   | Shows the running configuration (the actual system state). For example, `nv show --operational interface bond1` shows the running configuration for bond1. The running and applied configuration should be the same. If different, inspect the logs. |
+| `--output`        | Shows command output in table format (auto), json format or yaml format. For example:<br>`nv show --ouptut auto interface bond1`<br>`nv show --ouptut json interface bond1`<br>`nv show --ouptut yaml interface bond1` |
+| `--paginate`      | Sends output to a pager. For example, `nv show --paginate on interface bond1`. |
+| `--pending`       | Shows configuration that is `set` and `unset` but not yet applied or saved. For example, `nv show --pending interface bond1`.|
+| `--rev <revision>`| Shows a detached pending configuration. See the `nv config detach` configuration management command below. For example, `nv show --rev changeset/cumulus/2021-06-11_16.16.41_FPKK interface bond1`. |
+| `--startup`       | Shows configuration saved with the `nv config save` command. This is the configuration after the switch boots. |
 
 The following example shows *pending* BGP graceful restart configuration:
 
@@ -193,6 +199,7 @@ The NVUE configuration management commands manage and apply configurations.
 | `nv config apply` | Applies the pending configuration to become the applied configuration.<br>You can also use these prompt options:<ul><li>`--y` or `--assume-yes` to automatically reply `yes` to all prompts.</li><li>`--assume-no` to automatically reply `no` to all prompts.</li></ul> {{%notice note%}}The configuration is applied but not saved and does not persist after a reboot.{{%/notice%}}You can also use these apply options:<br>`--confirm` applies the configuration change but requires you to confirm the applied configuration. If you do not confirm within ten minutes, the configuration is rolled back automatically. You can change the default time with the apply `--confirm <time>` command. For example, `apply --confirm 60` requires you to confirm within one hour.<br>`--confirm-status` shows the amount of time left before the automatic rollback.|
 | `nv config detach` | Detaches the configuration from the current pending configuration. The detached configuration is called `pending` and includes a timestamp with extra characters. For example: `pending_20210128_212626_4WSY`|
 | `nv config diff <revision> <revision>` | Shows differences between configurations, such as the pending configuration and the applied configuration or the detached configuration and the pending configuration.|
+| `nv config history <nvue-file>` | Shows the apply history for the revision. |
 | `nv config patch <nvue-file>` | Updates the pending configuration with the specified YAML configuration file. |
 | `nv config replace <nvue-file>` | Replaces the pending configuration with the specified YAML configuration file. |
 | `nv config save` | Overwrites the startup configuration with the applied configuration by writing to the `/etc/nvue.d/startup.yaml` file. The configuration persists after a reboot. |
@@ -203,21 +210,20 @@ To show the full list of NVUE Commands, run `nv list-commands`. For example:
 
 ```
 cumulus@switch:~$ nv list-commands
-...
-nv show interface <interface-id> link lldp neighbor
-nv show interface <interface-id> link lldp neighbor <neighbor-id>
-nv show interface <interface-id> link lldp neighbor <neighbor-id> bridge
-nv show interface <interface-id> link lldp neighbor <neighbor-id> bridge vlan
-nv show interface <interface-id> link lldp neighbor <neighbor-id> bridge vlan <vid>
-nv show interface <interface-id> link stats
-nv show system
-nv show system global
-nv show system ntp
-nv show system ntp server
-nv show system ntp server <server-id>
-nv show system ntp pool
-nv show system ntp pool <server-id>
-nv show system dhcp-server
+nv show router
+nv show router pbr
+nv show router pbr nexthop-group
+nv show router pbr nexthop-group <nexthop-group-id>
+nv show router pbr nexthop-group <nexthop-group-id> via
+nv show router pbr nexthop-group <nexthop-group-id> via <nhg-via-id>
+nv show router pbr map
+nv show router pbr map <pbr-map-id>
+nv show router pbr map <pbr-map-id> rule
+nv show router pbr map <pbr-map-id> rule <rule-id>
+nv show router pbr map <pbr-map-id> rule <rule-id> match
+nv show router pbr map <pbr-map-id> rule <rule-id> action
+nv show router policy
+nv show router policy community-list
 ...
 ```
 
@@ -227,17 +233,17 @@ You can show the list of commands for a command grouping and for subcommands. Fo
 cumulus@switch:~$ nv list-commands interface
 nv show interface
 nv show interface <interface-id>
+nv show interface <interface-id> router
+nv show interface <interface-id> router pbr
+nv show interface <interface-id> router ospf
+nv show interface <interface-id> router ospf timers
+nv show interface <interface-id> router ospf authentication
+nv show interface <interface-id> router ospf bfd
 nv show interface <interface-id> bond
 nv show interface <interface-id> bond member
 nv show interface <interface-id> bond member <member-id>
 nv show interface <interface-id> bond mlag
 nv show interface <interface-id> bridge
-nv show interface <interface-id> bridge domain
-nv show interface <interface-id> bridge domain <domain-id>
-nv show interface <interface-id> bridge domain <domain-id> stp
-nv show interface <interface-id> bridge domain <domain-id> vlan
-nv show interface <interface-id> bridge domain <domain-id> vlan <vid>
-nv show interface <interface-id> ip
 ...
 ```
 
@@ -245,31 +251,7 @@ Use the Tab key to get help for the command lists you want to see. For example, 
 
 ```
 cumulus@switch:~$ nv list-commands interface swp1 <<press Tab>>
-bond    bridge  ip      link
-cumulus@switch:~$ nv list-commands interface swp1 bond
-nv show interface <interface-id> bond
-nv show interface <interface-id> bond member
-nv show interface <interface-id> bond member <member-id>
-nv show interface <interface-id> bond mlag
-nv set interface <interface-id> bond
-nv set interface <interface-id> bond member <member-id>
-nv set interface <interface-id> bond mlag
-nv set interface <interface-id> bond mlag id (1-65535|auto)
-nv set interface <interface-id> bond down-delay 0-65535
-nv set interface <interface-id> bond lacp-bypass (on|off)
-nv set interface <interface-id> bond lacp-rate (fast|slow)
-nv set interface <interface-id> bond mode (lacp|static)
-nv set interface <interface-id> bond up-delay 0-65535
-nv unset interface <interface-id> bond
-nv unset interface <interface-id> bond member
-nv unset interface <interface-id> bond member <member-id>
-nv unset interface <interface-id> bond mlag
-nv unset interface <interface-id> bond mlag id
-nv unset interface <interface-id> bond down-delay
-nv unset interface <interface-id> bond lacp-bypass
-nv unset interface <interface-id> bond lacp-rate
-nv unset interface <interface-id> bond mode
-nv unset interface <interface-id> bond up-delay
+acl      bond     bridge   evpn     ip       link     qos      router   service
 ```
 
 ## Example Configuration Commands
@@ -290,7 +272,7 @@ cumulus@switch:~$ nv config apply
 The example below shows the NVUE Commands required to define the DNS server for the switch:
 
 ```
-cumulus@switch:~$ nv set system dns server 192.168.200.1
+cumulus@switch:~$ nv set system dhcp-server 192.168.200.1
 cumulus@switch:~$ nv config apply
 ```
 
@@ -400,38 +382,34 @@ The following example command shows the running and applied swp1 interface confi
 
 ```
 cumulus@leaf01:~$ nv show interface swp1
-                        running     applied      description
------------------------  ----------  -----------  ----------------------------------------------------------------------
-type                     swp         swp          The type of interface
-bridge
-  [domain]               br_default  br_default   Bridge domains on this interface
-  [domain]                           bridge
+                         operational  applied  pending  description
+-----------------------  -----------  -------  -------  ----------------------------------------------------------------------
+type                     swp                   swp      The type of interface
+[acl]                                                   Interface ACL rules
+evpn
+  multihoming
+    uplink                                     off      Enable evpn multihoming tracking to prevent traffic loss due to NVE...
 ip
-  vrf                                default      Virtual routing and forwarding
-  ipv4                               forward      IPv4 support on the interface. A value of 'on' means IPv4 is enable...
-  ipv6                               forward      IPv6 support on the interface. A value of 'on' means IPv6 is enable...
-  [address]                          10.1.1.1/30  ipv4 and ipv6 address
+  vrf                                          default  Virtual routing and forwarding
+  [address]                                             ipv4 and ipv6 address
+  [gateway]                                             default ipv4 and ipv6 gateways
+  ipv4
+    forward                                    on       Enable or disable forwarding.
+  ipv6
+    enable                                     on       Turn the feature 'on' or 'off'.  The default is 'on'.
+    forward                                    on       Enable or disable forwarding.
 link
-  auto-negotiate                     on           Link speed and characteritic auto negotiation
-  breakout                           1x           sub-divide, aggregate, or disable ports (only valid on plug interfa...
-  duplex                             full         Link duplex
-  fec                                auto         Link forward error correction mechanism
-  mtu                    9216        9216         interface mtu
-  speed                              auto         Link speed
+  auto-negotiate                               on       Link speed and characteritic auto negotiation
+  breakout                                     1x       sub-divide or disable ports (only valid on plug interfaces)
+  duplex                                       full     Link duplex
+  fec                                          auto     Link forward error correction mechanism
+  mtu                    9216                  9216     interface mtu
+  speed                                        auto     Link speed
   dot1x
-    mab                              off          bypass MAC authentication
-    parking-vlan                     off          VLAN for unauthorized MAC addresses
-  state                  down        up           The state of the interface
-  stats
-    carrier-transitions  3                        Number of times the interface state has transitioned between up and...
-    in-bytes             0                        total number of bytes received on the interface
-    in-drops             0                        number of received packets dropped
-    in-errors            0                        number of received packets with errors
-    in-pkts              0                        total number of packets received on the interface
-    out-bytes            65700                    total number of bytes transmitted out of the interface
-    out-drops            0                        The number of outbound packets that were chosen to be discarded eve...
-    out-errors           0                        The number of outbound packets that could not be transmitted becaus...
-    out-pkts             934                      total number of packets transmitted out of the interface
+    mab                                        off      bypass MAC authentication
+    parking-vlan                               off      VLAN for unauthorized MAC addresses
+  state                  up                    up       The state of the interface
+...
 ```
 
 ## Example Configuration Management Commands
@@ -460,7 +438,7 @@ cumulus@switch:~$ nv config save
 
 ### Detach a Pending Configuration
 
-The following example configures the IP address of the loopback interface, then detaches the configuration from the current pending configuration. The detached configuration is saved to a file called `pending` that includes a timestamp with extra characters to distinguish it from other pending configurations; for example, `pending_20210128_212626_4WSY`.
+The following example configures the IP address of the loopback interface, then detaches the configuration from the current pending configuration. The detached configuration is saved to a file called `changeset/cumulus` that includes a timestamp with extra characters to distinguish it from other pending configurations; for example, `changeset/cumulus/2021-06-11_18.35.06_FPKP`.
 
 ```
 cumulus@switch:~$ nv set interface lo ip address 10.10.10.1
@@ -475,20 +453,19 @@ To view differences between two detached pending configurations, run the `nv con
 
 ```
 cumulus@switch:~$ nv config diff <<press Tab>>
-cumulus@switch:~$ nv config diff
-applied                              pending_20210208_201140_MJ0V
-pending_20210208_195315_MJ0P         pending_20210208_204655_MJ12
-pending_20210208_195937_MJ0S         startup
+applied                                     changeset/cumulus/2021-06-11_18.35.06_FPKP
+changeset/cumulus/2021-06-11_16.16.41_FPKK  empty
+changeset/cumulus/2021-06-11_17.05.12_FPKN  startup
 ```
 
 ```
-cumulus@switch:~$ nv config diff pending_20210208_201140_MJ0V pending_20210208_195315_MJ0P
+cumulus@switch:~$ nv config diff changeset/cumulus/2021-06-11_18.35.06_FPKP changeset/cumulus/2021-06-11_17.05.12_FPKN
 ```
 
 To view differences between a detached pending configuration and the applied configuration:
 
 ```
-cumulus@switch:~$ nv config diff pending_20210208_201140_MJ0V applied
+cumulus@switch:~$ nv config diff changeset/cumulus/2021-06-11_18.35.06_FPKP applied
 ```
 
 ### Replace and Patch a Pending Configuration

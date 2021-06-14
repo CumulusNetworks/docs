@@ -1606,7 +1606,14 @@ Nov 12 12:20:05.099798 leaf01 switchd[9867]:
 Nov 12 12:20:05.099871 leaf01 switchd[9867]: hal_bcm_console.c:294 ERROR loading rc script on unit 0
 Nov 12 12:20:05.099892 leaf01 switchd[9867]:
 Nov 12 12:20:05.099943 leaf01 switchd[9867]: hal_bcm_console.c:299 CRIT loading of rc script failed, aborting!
-</td>
+
+
+To work around this issue, configure Cumulus Linux to boot with the kernel command option 'intel_iommu=off':
+
+a) Open the file /etc/default/grub with a text editor
+b) Edit the variable GRUB_CMDLINE_LINUX by adding the string 'intel_iommu=off' at the end.  For example: GRUB_CMDLINE_LINUX="cl_platform=cel_e1031 console=ttyS1,115200n8 intel_iommu=off"
+c) Run the command 'update-grub'
+d) Reboot the switch</td>
 <td>3.7.11-4.2.1</td>
 <td>4.3.0</td>
 </tr>

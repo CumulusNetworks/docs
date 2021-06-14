@@ -26,6 +26,8 @@ The configuration steps needed to configure PIM-SM in the underlay are provided 
 
 In addition to the PIM-SM configuration, you need to run the following commands on each VTEP to provide the layer 2 VNI to MDT mapping.
 
+NVUE commands are not supported.
+
 {{< tabs "TabID37 ">}}
 {{< tab "NCLU Commands ">}}
 
@@ -33,13 +35,6 @@ Run the `net add vxlan <interface> vxlan mcastgrp <ip-address>` command. For exa
 
 ```
 cumulus@switch:~$ net add vxlan vxlan10 vxlan mcastgrp 224.0.0.10
-```
-
-{{< /tab >}}
-{{< tab "NVUE Commands ">}}
-
-```
-cumulus@switch:~$ NEED COMMAND
 ```
 
 {{< /tab >}}
@@ -413,13 +408,6 @@ Run the `net add interface <peerlink> pim` command. For example:
 cumulus@switch:~$ net add interface peerlink.4094 pim
 cumulus@switch:~$ net commit
 cumulus@switch:~$ net pending
-```
-
-{{< /tab >}}
-{{< tab "NVUE Commands ">}}
-
-```
-cumulus@switch:~$ NEED COMMAND
 ```
 
 {{< /tab >}}

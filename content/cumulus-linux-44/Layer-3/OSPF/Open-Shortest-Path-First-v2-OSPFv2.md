@@ -1245,10 +1245,7 @@ cumulus@switch:~$ net commit
 {{< /tab >}}
 {{< tab "NVUE Commands ">}}
 
-```
-cumulus@switch:~$ NEED COMMAND
-cumulus@switch:~$ nv config apply
-```
+The NVUE command is not supported.
 
 {{< /tab >}}
 {{< tab "vtysh Commands ">}}

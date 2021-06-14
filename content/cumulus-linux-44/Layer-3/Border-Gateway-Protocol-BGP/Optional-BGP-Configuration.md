@@ -126,7 +126,6 @@ NVUE commands are not supported.
 cumulus@leaf01:~$ nv set vrf default router bgp peer-group SPINE
 cumulus@leaf01:~$ nv set vrf default router bgp peer-group SPINE remote-as external
 cumulus@leaf01:~$ NEED COMMAND
-cumulus@leaf01:~$ NEED COMMAND
 cumulus@leaf01:~$ nv config apply
 ```
 NCLU FOR REFERENCE

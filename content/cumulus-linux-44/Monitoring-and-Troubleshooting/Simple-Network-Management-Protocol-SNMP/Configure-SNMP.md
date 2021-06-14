@@ -14,6 +14,10 @@ By default, the SNMP configuration has a listening address of localhost (127.0.0
 
 The SNMPv3 username is the recommended option instead of the read-only community name, as it is more secure; it does not expose the user credentials and can also encrypt packet contents. However, a read-only community password is required for SNMPv1 or SNMPv2c environments so that the `snmpd` daemon can respond to requests. The read-only community string allows polling of the various MIB objects on the device itself.
 
+{{%notice note%}}
+NVUE commands are not supported for SNMP.
+{{%/notice%}}
+
 ## Start the SNMP Daemon
 
 Before you can use SNMP, you need to enable and start the `snmpd` service.
@@ -73,13 +77,6 @@ The IP address must exist on an interface that has link UP on the switch where `
 You can configure multiple IP addresses and bind to a particular IP address within a particular VRF table.
 
 {{< tabs "Listening IP" >}}
-{{< tab "NVUE Commands" >}}
-
-```
-cumulus@switch:~$ NEED COMMAND
-```
-
-{{< /tab >}}
 {{< tab "NCLU Commands" >}}
 
 To configure the `snmpd` daemon to listen on the localhost IPv4 and IPv6 interfaces, run:
@@ -150,13 +147,6 @@ agentAddress udp:66.66.66.66:161,udp:77.77.77.77:161,udp6:[2001::1]:161
 Cumulus Linux provides a listening address for VRFs along with trap and inform support. You can configure `snmpd` to listen to a specific IPv4 or IPv6 address on an interface within a particular VRF. With VRFs, identical IP addresses can exist in different VRF tables. This command restricts listening to a particular IP address within a particular VRF. If the VRF name is not given, the default VRF is used.
 
 {{< tabs "SNMP and VRFs" >}}
-{{< tab "NVUE Commands" >}}
-
-```
-cumulus@switch:~$ NEED COMMAND
-```
-
-{{< /tab >}}
 {{< tab "NCLU Commands" >}}
 
 The following command configures `snmpd` to listen to IP address 10.10.10.10 on eth0, the management interface in the management VRF:
@@ -209,13 +199,6 @@ You have three choices for authenticating the user:
 - SHA password
 
 {{< tabs "username" >}}
-{{< tab "NVUE Commands" >}}
-
-```
-cumulus@switch:~$ NEED COMMAND
-```
-
-{{< /tab >}}
 {{< tab "NCLU Commands" >}}
 
 For no authentication, run:
@@ -381,13 +364,6 @@ You can define a specific view multiple times and fine tune to provide or restri
 By default, the `snmpd.conf` file contains numerous views within the *systemonly* view.
 
 {{< tabs "viewname" >}}
-{{< tab "NVUE Commands" >}}
-
-```
-cumulus@switch:~$ NEED COMMAND
-```
-
-{{< /tab >}}
 {{< tab "NCLU Commands" >}}
 
 ```
@@ -430,13 +406,6 @@ You can specify a source IP address token to restrict access to only that host o
 You can also specify a view to restrict the subset of the OID tree.
 
 {{< tabs "community-string" >}}
-{{< tab "NVUE Commands" >}}
-
-```
-cumulus@switch:~$ NEED COMMAND
-```
-
-{{< /tab >}}
 {{< tab "NCLU Commands" >}}
 
 The following example configuration:
@@ -506,13 +475,6 @@ You can configure system settings for the SNMPv2 MIB. The example commands here 
 - An administratively-assigned name for the managed node (the `sysname`).
 
 {{< tabs "sys-settings" >}}
-{{< tab "NVUE Commands" >}}
-
-```
-cumulus@switch:~$ NEED COMMAND
-```
-
-{{< /tab >}}
 {{< tab "NCLU Commands" >}}
 
 For example, to set the system physical location for the node in the SNMPv2-MIB system table, run:
@@ -703,13 +665,6 @@ The following example configuration:
 You can find a working example configuration on the {{<exlink url="https://gitlab.com/nvidia-networking/systems-engineering/poc-support/snmp-and-cl" text="NVIDIA Networking GitLab project">}}, which you can try for free with {{<exlink url="https://air.nvidia.com" text="NVIDIA AIR Simulation Platform">}}.
 
 {{< tabs "example-config" >}}
-{{< tab "NVUE Commands" >}}
-
-```
-cumulus@switch:~$ NEED COMMAND
-```
-
-{{< /tab >}}
 {{< tab "NCLU Commands" >}}
 
 ```

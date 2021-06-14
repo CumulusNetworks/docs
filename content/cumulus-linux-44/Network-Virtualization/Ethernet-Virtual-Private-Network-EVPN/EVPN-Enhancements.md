@@ -443,13 +443,120 @@ Router ospf
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@leaf01:~$ NEED COMMANDS
+cumulus@leaf01:~$ nv set router bgp autonomous-system 65101
+cumulus@leaf01:~$ nv set router bgp router-id 10.10.10.1
+cumulus@leaf01:~$ nv set vrf default router bgp peer 10.10.10.2 remote-as internal
+cumulus@leaf01:~$ nv set vrf default router bgp peer 10.10.10.3 remote-as internal
+cumulus@leaf01:~$ nv set vrf default router bgp peer 10.10.10.4 remote-as internal
+cumulus@leaf01:~$ nv set evpn enable on
+cumulus@leaf01:~$ nv set vrf default router bgp address-family l2vpn-evpn enable on
+cumulus@leaf01:~$ nv set vrf default router bgp peer 10.10.10.2 address-family l2vpn-evpn enable on
+cumulus@leaf01:~$ nv set vrf default router bgp peer 10.10.10.3 address-family l2vpn-evpn enable on
+cumulus@leaf01:~$ nv set vrf default router bgp peer 10.10.10.4 address-family l2vpn-evpn enable on
+cumulus@leaf01:~$ nv set router ospf router-id 10.10.10.1
+cumulus@leaf01:~$ nv set interface lo router ospf area 0
+cumulus@leaf01:~$ nv set interface lo router ospf passive on
+cumulus@leaf01:~$ nv set interface swp49 router ospf area 0.0.0.0
+cumulus@leaf01:~$ nv set interface swp50 router ospf area 0.0.0.0
+cumulus@leaf01:~$ nv set interface swp51 router ospf area 0.0.0.0
+cumulus@leaf01:~$ nv set interface swp52 router ospf area 0.0.0.0
+cumulus@leaf01:~$ nv set interface swp49 router ospf network-type point-to-point
+cumulus@leaf01:~$ nv set interface swp50 router ospf network-type point-to-point
+cumulus@leaf01:~$ nv set interface swp51 router ospf network-type point-to-point
+cumulus@leaf01:~$ nv set interface swp52 router ospf network-type point-to-point
+cumulus@leaf01:~$ nv config apply
 ```
 
 The NVUE Commands create the following configuration snippet in the `/etc/nvue.d/startup.yaml` file:
 
 ```
 cumulus@leaf01:~$ sudo cat /etc/nvue.d/startup.yaml
+- set:
+      lo:
+        ip:
+          address:
+            10.10.10.1/32: {}
+        router:
+          ospf:
+            area: 0
+            enable: on
+            network-type: point-to-point    
+        type: loopback
+      swp49:
+        router:
+          ospf:
+            area: 0.0.0.0
+            enable: on
+        type: swp
+      swp50:
+        router:
+          ospf:
+            area: 0.0.0.0
+            enable: on
+            network-type: point-to-point
+        type: swp
+      swp51:
+        router:
+          ospf:
+            area: 0.0.0.0
+            enable: on
+            network-type: point-to-point
+        type: swp
+      swp52:
+        router:
+          ospf:
+            area: 0.0.0.0
+            enable: on
+            network-type: point-to-point
+        type: swp
+    bridge:
+      domain:
+        br_default:
+          multicast:
+            snooping:
+              enable: off
+              querier:
+                enable: on
+    router:
+      bgp:
+        autonomous-system: 65101
+        enable: on
+        router-id: 10.10.10.1
+      ospf:
+        router-id: 10.10.10.1
+        enable: on
+    vrf:
+      default:
+        router:
+          bgp:
+            peer:
+              10.10.10.2:
+                remote-as: internal
+                type: numbered
+                address-family:
+                  l2vpn-evpn:
+                    enable: on
+              10.10.10.3:
+                remote-as: internal
+                type: numbered
+                address-family:
+                  l2vpn-evpn:
+                    enable: on
+              10.10.10.4:
+                remote-as: internal
+                type: numbered
+                address-family:
+                  l2vpn-evpn:
+                    enable: on
+            enable: on
+            address-family:
+              l2vpn-evpn:
+                enable: on
+    evpn:
+      enable: on
+    nve:
+      vxlan:
+        enable: on
 ```
 
 {{< /tab >}}
@@ -718,10 +825,7 @@ cumulus@leaf01:~$ net commit
 {{< /tab >}}
 {{< tab "NVUE Commands ">}}
 
-```
-cumulus@leaf01:~$ NEED COMMAND
-cumulus@leaf01:~$ nv config apply
-```
+NVUE commands are not supported.
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}

@@ -9,9 +9,8 @@ Protocol Independent Multicast (PIM) is a multicast control plane protocol that 
 PIM has two modes of operation: Sparse Mode (PIM-SM) and Dense Mode (PIM-DM).
 
 {{%notice note%}}
-
-Cumulus Linux supports only PIM Sparse Mode.
-
+- Cumulus Linux supports only PIM Sparse Mode.
+- NVUE commands are not supported.
 {{%/notice%}}
 
 ## Example PIM Topology
@@ -55,9 +54,7 @@ switch# write memory</li><li><p>NVIDIA Cumulus Networks recommends you <b>not</b
 When PIM is configured on an interface, `PIM Hello` messages are sent to the linklocal multicast group 224.0.0.13. Any other router configured with PIM on the segment that hears the PIM Hello messages builds a PIM neighbor with the sending device.
 
 {{%notice note%}}
-
 PIM neighbors are stateless. No confirmation of neighbor relationship is exchanged between PIM endpoints.
-
 {{%/notice%}}
 
 ## Configure PIM
@@ -97,13 +94,6 @@ To configure PIM, run the following commands:
    cumulus@switch:~$ net add pim rp 192.168.0.1 224.10.0.0/16
    cumulus@switch:~$ net add pim rp 192.168.0.2 224.10.2.0/24
    ```
-
-{{< /tab >}}
-{{< tab "NVUE Commands ">}}
-
-```
-cumulus@switch:~$ NEED COMMAND
-```
 
 {{< /tab >}}
 {{< tab "vtysh Commands ">}}
@@ -350,13 +340,6 @@ To configure PIM active-active with MLAG, run the following commands:
    ```
 
 {{< /tab >}}
-{{< tab "NVUE Commands ">}}
-
-```
-cumulus@switch:~$ NEED COMMAND
-```
-
-{{< /tab >}}
 {{< tab "vtysh Commands ">}}
 
 1. Configure `ip pim active-active` on the VLAN interface where the multicast source or receiver exists along with the required `ip igmp` command.
@@ -480,13 +463,6 @@ PIM: ip prefix-list my-custom-ssm-range: 1 entries
 ```
 
 {{< /tab >}}
-{{< tab "NVUE Commands ">}}
-
-```
-cumulus@switch:~$ NEED COMMAND
-```
-
-{{< /tab >}}
 {{< tab "vtysh Commands ">}}
 
 Create a prefix-list with the `permit` keyword to match address ranges that you want to treat as SSM groups and the `deny` keyword for the ranges you do not want to treat as SSM-enabled ranges:
@@ -547,13 +523,6 @@ cumulus@switch:~$ net commit
 {{%notice warning%}}
 The rebalance command might cause some packet loss.
 {{%/notice%}}
-
-{{< /tab >}}
-{{< tab "NVUE Commands ">}}
-
-```
-cumulus@switch:~$ NEED COMMAND
-```
 
 {{< /tab >}}
 {{< tab "vtysh Commands ">}}
@@ -620,13 +589,6 @@ To configure the boundary, first create a prefix-list as described above, then r
 cumulus@switch:~$ net add interface swp1 multicast boundary oil <prefix-list>
 cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
-```
-
-{{< /tab >}}
-{{< tab "NVUE Commands ">}}
-
-```
-cumulus@switch:~$ NEED COMMAND
 ```
 
 {{< /tab >}}
@@ -709,13 +671,6 @@ The following steps demonstrate how to configure a Cumulus switch to use the MSD
    cumulus@rp01:$ net pending
    cumulus@rp01:$ net commit
    ```
-
-{{< /tab >}}
-{{< tab "NVUE Commands ">}}
-
-```
-cumulus@rp01:~$ NEED COMMAND
-```
 
 {{< /tab >}}
 {{< tab "vtysh Commands ">}}
@@ -821,13 +776,6 @@ cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
-{{< tab "NVUE Commands ">}}
-
-```
-cumulus@switch:~$ NEED COMMAND
-```
-
-{{< /tab >}}
 {{< tab "vtysh Commands ">}}
 
 First, edit the `/etc/network/interfaces` file and to the VRFs and associate them with switch ports, then run `ifreload -a` to reload the configuration.
@@ -907,13 +855,6 @@ cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
-{{< tab "NVUE Commands ">}}
-
-```
-cumulus@switch:~$ NEED COMMAND
-```
-
-{{< /tab >}}
 {{< tab "vtysh Commands ">}}
 
 ```
@@ -942,12 +883,7 @@ To can configure the switch to allow joins from all upstream neighbors or to pro
 {{< tabs "TabID997 ">}}
 {{< tab "NCLU Commands ">}}
 
-NCLU command is not supported.
-
-{{< /tab >}}
-{{< tab "NVUE Commands ">}}
-
-NVUE command is not supported.
+The NCLU command is not supported.
 
 {{< /tab >}}
 {{< tab "vtysh Commands ">}}
@@ -1136,13 +1072,6 @@ lo        *               239.2.2.2       Joined      00:05:17 00:00:43  --:--:-
 cumulus@rp01:~$ net show pim upstream-join-desired
 Interface Source          Group           LostAssert Joins PimInclude JoinDesired EvalJD
 swp1      *               239.2.2.2       no         yes   no         yes         yes
-```
-
-{{< /tab >}}
-{{< tab "NVUE Commands ">}}
-
-```
-cumulus@switch:~$ NEED COMMAND
 ```
 
 {{< /tab >}}

@@ -542,9 +542,7 @@ router bgp 64900 vrf vrf1012
 {{< /tab >}}
 {{< tab "NVUE Commands ">}}
 
-```
-cumulus@switch:~$ NEED COMMAND
-```
+NVUE commands are not supported.
 
 {{< /tab >}}
 {{< tab "vtysh Commands ">}}
@@ -656,10 +654,7 @@ router ospf vrf vrf1
 {{< /tab >}}
 {{< tab "NVUE Commands ">}}
 
-```
-cumulus@switch:~$ NEED COMMAND
-cumulus@switch:~$ 
-```
+NVUE commands are not supported.
 
 {{< /tab >}}
 {{< tab "vtysh Commands ">}}

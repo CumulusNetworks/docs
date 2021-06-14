@@ -61,9 +61,30 @@ To disable IGMP/MLD snooping over VXLAN, run the `net add bridge <bridge> mcsnoo
 
 In the absence of a multicast router, a single switch in an IP subnet can coordinate multicast traffic flows. This switch is called the querier or the designated router. The querier generates query messages to check group membership, and processes membership reports and leave messages.
 
-To configure the querier on the switch for a {{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware bridge">}}, edit the `/etc/network/interfaces` file to add `bridge-mcquerier 1` to the bridge stanza (this enables the multicast querier on the bridge) and add `bridge-igmp-querier-src <ip-address>` to the VLAN stanza (the is the source IP address of the queries).
+To configure the querier on the switch for a {{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware bridge">}}, enable the multicast querier on the bridge and add source IP address of the queries to the VLAN.
 
-The following configuration example sets `bridge-igmp-querier-src` to 10.10.10.1 (the loopback address of the switch) and `bridge-mcquerier` to 1.
+The following configuration example enables the multicast querier and sets source IP address of the queries to 10.10.10.1 (the loopback address of the switch).
+
+{{< tabs "TabID68 ">}}
+{{< tab "NCLU Commands ">}}
+
+NCLU commands are not supported.
+
+{{< /tab >}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set bridge domain br_default multicast snooping querier enable on
+cumulus@switch:~$ nv set bridge domain br_default vlan vlan10 multicast snooping querier source-ip 10.10.10.1
+cumulus@switch:~$ nv config apply
+```
+
+NVUE commands for a bridge in {{<link url="Traditional-Bridge-Mode" text="traditional mode">}} are not supported.
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Edit the `/etc/network/interfaces` file to add `bridge-mcquerier 1` to the bridge stanza (this enables the multicast querier on the bridge) and add `bridge-igmp-querier-src <ip-address>` to the VLAN stanza (the is the source IP address of the queries).
 
 ```
 cumulus@switch:~$ sudo nano /etc/network/interfaces
@@ -85,6 +106,12 @@ iface br_default
 ...
 ```
 
+Run the `ifreload -a` command to reload the configuration:
+
+```
+cumulus@switch:~$ sudo ifreload -a
+```
+
 To configure the querier on the switch for a bridge in {{<link url="Traditional-Bridge-Mode" text="traditional mode">}}, edit the bridge stanza in the `/etc/network/interfaces` file to add `bridge-mcquerier 1` (this enables the multicast querier on the bridge) and `bridge-mcqifaddr` to 1 (this configures the source IP address of the queries to be the bridge IP address).
 
 ```
@@ -99,6 +126,15 @@ iface br0
 ...
 ```
 
+Run the `ifreload -a` command to reload the configuration:
+
+```
+cumulus@switch:~$ sudo ifreload -a
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
 ## Optimized Multicast Flooding (OMF)
 
 IGMP Snooping restricts multicast forwarding only to the ports where IGMP report messages are received. If no IGMP reports are received, multicast traffic is flooded to all ports in the VLAN. To restrict this flooding to only querier ports, you must enable OMF.
@@ -106,7 +142,7 @@ IGMP Snooping restricts multicast forwarding only to the ports where IGMP report
 To enable OMF:
 
 1. Configure an IGMP querier. See {{<link url="#configure-the-igmp-and-mld-querier" text="Configure the IGMP and MLD Querier">}} above.
-2. Uncomment and change the `bridge.unreg_v4_mcast_prune` option for IPv4 and the `bridge.unreg_v6_mcast_prune` option for IPv6 to `TRUE` in the `/etc/cumulus/switchd.conf` file, then restart `switchd`.
+2. In the `/etc/cumulus/switchd.conf` file, uncomment then change `bridge.unreg_v4_mcast_prune` and `bridge.unreg_v6_mcast_prune` to `TRUE`, then restart `switchd`.
 
    ```
    cumulus@switch:~$ sudo nano /etc/cumulus/switchd.conf
@@ -136,7 +172,7 @@ cumulus@switch:~$ net commit
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ NEED COMMAND
+cumulus@switch:~$ nv set bridge domain br_default multicast snooping enable off
 cumulus@switch:~$ nv config apply
 ```
 

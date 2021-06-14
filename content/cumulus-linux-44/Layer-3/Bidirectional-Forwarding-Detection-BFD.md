@@ -155,12 +155,10 @@ BFD: Type: single hop
 
 When you enable or disable BFD in OSPF, neighbors are registered and de-registered dynamically with {{<link url="Prescriptive-Topology-Manager-PTM" text="PTM">}}. When BFD is enabled on the interface, a neighbor is registered with BFD when two-way adjacency is established and deregistered when adjacency goes down. The BFD configuration is per interface and any IPv4 and IPv6 neighbors discovered on that interface inherit the configuration.
 
-To configure BFD in OSPF, run the following commands.
+The following example configures BFD in OSPF for interface swp1 and sets interval multiplier to 4, the minimum interval between *received* BFD control packets to 400, and the minimum interval for *sending* BFD control packets to 400.
 
 {{< tabs "TabID150 ">}}
 {{< tab "NCLU Commands ">}}
-
-The following example configures BFD in OSPFv3 for interface swp1 and sets interval multiplier to 4, the minimum interval between *received* BFD control packets to 400, and the minimum interval for *sending* BFD control packets to 400.
 
 ```
 cumulus@switch:~$ net add interface swp1 ospf6 bfd 4 400 400
@@ -172,24 +170,14 @@ cumulus@switch:~$ net commit
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ NEED COMMAND
-```
-
-{{< /tab >}}
-{{< tab "NCLU Commands ">}}
-
-The following example configures BFD in OSPFv3 for interface swp1 and sets interval multiplier to 4, the minimum interval between *received* BFD control packets to 400, and the minimum interval for *sending* BFD control packets to 400.
-
-```
-cumulus@switch:~$ net add interface swp1 ospf6 bfd 4 400 400
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
+cumulus@switch:~$ nv set interface swp1 router ospf bfd detect-multiplier 4
+cumulus@switch:~$ nv set interface swp1 router ospf bfd min-receive-interval 400
+cumulus@switch:~$ nv set interface swp1 router ospf bfd min-transmit-interval 400
+cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
 {{< tab "vtysh Commands ">}}
-
-The following example configures BFD in OSPFv3 for interface swp1 and sets interval multiplier to 4, the minimum interval between *received* BFD control packets to 400, and the minimum interval for *sending* BFD control packets to 400.
 
 ```
 cumulus@switch:~$ sudo vtysh

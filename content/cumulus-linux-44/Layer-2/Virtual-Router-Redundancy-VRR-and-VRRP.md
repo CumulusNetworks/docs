@@ -504,26 +504,12 @@ cumulus@spine02:~$ net commit
 {{< tabs "TabID504 ">}}
 {{< tab "spine01 ">}}
 
-```
-cumulus@spine01:~$ nv set interface swp1 ip address 10.0.0.2/24
-cumulus@spine01:~$ nv set interface swp1 ip address 2001:0db8::2/64
-cumulus@switch:~$ NEED COMMAND
-cumulus@switch:~$ NEED COMMAND
-cumulus@switch:~$ NEED COMMAND
-cumulus@switch:~$ nv config apply
-```
+NVUE commands are not supported.
 
 {{< /tab >}}
 {{< tab "spine02 ">}}
 
-```
-cumulus@spine02:~$ nv set interface swp1 ip address 10.0.0.3/24
-cumulus@spine02:~$ nv set interface swp1 address 2001:0db8::3/64
-cumulus@switch:~$ NEED COMMAND
-cumulus@switch:~$ NEED COMMAND
-cumulus@switch:~$ NEED COMMAND
-cumulus@switch:~$ nv config apply
-```
+NVUE commands are not supported.
 
 {{< /tab >}}
 {{< /tabs >}}

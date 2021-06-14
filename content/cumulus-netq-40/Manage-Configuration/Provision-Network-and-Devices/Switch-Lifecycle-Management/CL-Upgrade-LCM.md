@@ -213,7 +213,7 @@ Expand the following dropdown to view common failures, their causes and correcti
 
 | Pre-check | Message | Type | Description | Corrective Action |
 | --------- | ------- | ---- | ----------- | ----------------- |
-| (1) Switch Order | &lt;hostname1&gt; switch cannot be upgraded without isolating &lt;hostname2&gt;, &lt;hostname3&gt; which are connected neighbors. Unable to upgrade | Warning | Hostname2 and hostname3 switches will be isolated during upgrade, making them unreachable. These switches are skipped if you continue with the upgrade. | Reconfigure hostname2 and hostname 3 switches to have redundant connections, or continue with upgrade knowing that you will lose connectivity with these switches during the upgrade process. |
+| (1) Switch Order | &lt;hostname1&gt; switch cannot be upgraded without isolating &lt;hostname2&gt;, &lt;hostname3&gt; which are connected neighbors. Unable to upgrade | Warning | Switches hostname2 and hostname3 get isolated during an upgrade, making them unreachable. These switches are skipped if you continue with the upgrade. | Reconfigure hostname2 and hostname3 to have redundant connections, or continue with upgrade knowing that connectivity is lost with these switches during the upgrade process. |
 | (2) Version Compatibility | Unable to upgrade &lt;hostname&gt; with CL version &lt;3.y.z&gt; to &lt;4.y.z&gt; | Error | LCM only supports the following Cumulus Linux upgrades:<br/><ul><li>3.6.z to later versions of 3.y.z</li><li>4.x to later versions of 4.y.z</li><li>3.6.0 or later to 4.2.0 or later</li></ul> | Perform a fresh install of CL 4.x. |
 |  | Image not uploaded for the combination: CL Version - &lt;x.y.z&gt;, Asic Vendor - &lt;NVIDIA \| Broadcom&gt;, CPU Arch - &lt;x86 \| ARM &gt; | Error | The specified Cumulus Linux image is not available in the LCM repository | Upload missing image. Refer to {{<link title="#Upload Images" text="Upload Images">}}. |
 |  | Restoration image not uploaded for the combination: CL Version - &lt;x.y.z&gt;, Asic Vendor - &lt;Mellanox \| Broadcom&gt;, CPU Arch - &lt;x86 \| ARM &gt; | Error | The specified Cumulus Linux image needed to restore the switch back to its original version if the upgrade fails is not available in the LCM repository. This applies only when the "Roll back on upgrade failure" job option is selected. | Upload missing image. Refer to {{<link title="#Upload Images" text="Upload Images">}}. |
@@ -385,7 +385,7 @@ To see only Cumulus Linux upgrade jobs, run `netq lcm show status cl-image job-I
 
 ### Postcheck Failures
 
-Upgrades can be considered successful and still have post-check warnings. For example, the OS has been updated, but not all services are fully up and running after the upgrade. If one or more of the post-checks fail, warning messages are provided in the Post-Upgrade Tasks section of the preview. Click on the warning category to view the detailed messages.
+Upgrades can be considered successful and still have post-check warnings. For example, the OS has been updated, but not all services are fully up and running after the upgrade. If one or more of the post-checks fail, warning messages are provided in the Post-Upgrade Tasks section of the preview. Click the warning category to view the detailed messages.
 
 Expand the following dropdown to view common failures, their causes and corrective actions.
 
@@ -439,7 +439,7 @@ Some of the common reasons for upgrade failures and the errors they present:
 | Switch is not reachable via SSH | Data could not be sent to remote host "192.168.0.15." Make sure this host can be reached over ssh: ssh: connect to host 192.168.0.15 port 22: No route to host |
 | Switch is reachable, but user-provided credentials are invalid | Invalid/incorrect username/password. Skipping remaining 2 retries to prevent account lockout: Warning: Permanently added '\<hostname-ipaddr\>' to the list of known hosts. Permission denied, please try again. |
 | Switch is reachable, but a valid Cumulus Linux license is not installed | <!-- vale off -->1587866683.880463 2020-04-26 02:04:43 license.c:336 CRIT No license file. No license installed! <!-- vale on -->|
-| Upgrade task could not be run | Failure message depends on the why the task could not be run. For example: /etc/network/interfaces: No such file or directory |
+| Upgrade task could not be run | Failure message depends on the why the task could not be run. For example: `/etc/network/interfaces`: No such file or directory |
 | Upgrade task failed | Failed at- \<task that failed\>. <!-- vale off -->For example: Failed at- MLAG check for the peerLink interface status <!-- vale on -->|
 | Retry failed after five attempts | FAILED In all retries to process the LCM Job |
 
@@ -518,7 +518,7 @@ You must have an IP address in your file, but the hostname is optional and if th
 {{</notice>}}
 </div>
 
-Click **Remove** if you decide to use a different file or want to use IP address ranges instead. If you had entered ranges prior to selecting the CSV file option, they will have  remained.
+Click **Remove** if you decide to use a different file or want to use IP address ranges instead. If you entered ranges prior to selecting the CSV file option, they remain.
 
 {{< /tab >}}
 
@@ -635,7 +635,7 @@ When the network discovery is complete, NetQ presents the number of Cumulus Linu
 - **OS not Supported**: Switches found that are running Cumulus Linux version not supported by the LCM upgrade feature
 - **NOT\_FOUND**: IP addresses which did not have an associated Cumulus Linux switch
 
-Once you've determined which switches you need to upgrade, run the upgrade process as described {{<link url="#perform-a-cumulus-linux-upgrade" text="above">}}.
+After you determine which switches you need to upgrade, run the upgrade process as described {{<link url="#perform-a-cumulus-linux-upgrade" text="above">}}.
 
 {{< /tab >}}
 

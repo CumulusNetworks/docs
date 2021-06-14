@@ -94,8 +94,8 @@ It is helpful to verify the connectivity between two devices when you suspect an
 
 2. Open the Trace Request card.
 
-    - On new workbench: Click in the **Global Search** box. Type *trace*. Click on card name.
-    - On current workbench: Click {{<img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18">}}. Click **Trace**. Click on card. Click **Open Cards**.
+    - On new workbench: Click in the **Global Search** field. Type *trace*. Click the card name.
+    - On current workbench: Click {{<img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18">}}. Click **Trace**. Click the card. Click **Open Cards**.
 
 3. In the **Source** field, enter the hostname or IP address of the device where you want to start the trace.
 
@@ -516,8 +516,8 @@ To create a layer 2 trace request:
 
 2. Open the Trace Request card.
 
-    - On new workbench: Click in the **Global Search** box. Type *trace*. Click on card name.
-    - On current workbench: Click {{<img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18">}}. Click **Trace**. Click on card. Click **Open Cards**.
+    - On new workbench: Click in the **Global Search** field. Type *trace*. Click the card name.
+    - On current workbench: Click {{<img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18">}}. Click **Trace**. Click the card. Click **Open Cards**.
 
     {{<figure src="/images/netq/trace-request-large-310.png" width="500">}}
 
@@ -1015,7 +1015,7 @@ To schedule a trace from the NetQ UI:
 
 2. Open the Trace Request card.
 
-    Click {{<img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18">}}. Click **Trace**. Click on card. Click **Open Cards**.
+    Click {{<img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18">}}. Click **Trace**. Click the card. Click **Open Cards**.
 
 3. In the **Source** field, enter the hostname or IP address of the device where you want to start the trace.
 
@@ -1098,8 +1098,8 @@ To schedule a layer 2 trace:
 
 2. Open the Trace Request card.
 
-    - On new workbench: Click in the **Global Search** box. Type *trace*. Click on card name.
-    - On current workbench: Click {{<img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18">}}. Click **Trace**. Click on card. Click **Open Cards**.
+    - On new workbench: Click in the **Global Search** field. Type *trace*. Click the card name.
+    - On current workbench: Click {{<img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18">}}. Click **Trace**. Click the card. Click **Open Cards**.
 
     {{<figure src="/images/netq/trace-request-large-310.png" width="500">}}
 
@@ -1356,7 +1356,7 @@ To modify a scheduled trace:
 
 1. Open the Trace Request card.
 
-    Click {{<img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18">}}. Click **Trace**. Click on card. Click **Open Cards**.
+    Click {{<img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18">}}. Click **Trace**. Click the card. Click **Open Cards**.
 
 2. Select the trace from the **New Trace Request** dropdown.
 

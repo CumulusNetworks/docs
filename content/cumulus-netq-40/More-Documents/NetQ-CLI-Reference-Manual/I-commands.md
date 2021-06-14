@@ -13,7 +13,7 @@ This topic includes all commands that begin with `netq i*`, `netq j*`, and `netq
 
 NetQ installation can be performed with a single command or you can perform the individual steps using multiple commands. Generally, using the single command option is *strongly recommended*. However, the individual commands can be useful for troubleshooting the installation process when it fails. You may need to {{<exlink url="https://support.mellanox.com/s/contact-support-page" text="create a support ticket">}} to take full advantage of the individual commands.
 
-These commands can only be used once the physical server or VM has been bootstrapped. Refer to {{<link title="A and B Commands/#netq-bootstrap" text="netq bootstrap">}}.
+These commands can only be used after the physical server or VM has been bootstrapped. Refer to {{<link title="A and B Commands/#netq-bootstrap" text="netq bootstrap">}}.
 
 {{<figure src="/images/netq/cliref-install-onprem-single-server-330.png" width="500" caption="On-premises single server">}}
 
@@ -786,7 +786,7 @@ cumulus@<hostname>:~$ netq install standalone install-job bundle /mnt/installabl
 
 ## netq install update-settings
 
-Overrides system variables after encountering issues during installation. File a {{<exlink url="https://support.mellanox.com/s/contact-support-page" text="support ticket">}} with the NVIDIA Cumulus Networks Global Support Services team before using this command. They can provide the key/value pair needed to resolve your issue.
+Overrides system variables after encountering issues during installation. File a {{<exlink url="https://support.mellanox.com/s/contact-support-page" text="support ticket">}} with the NVIDIA Global Support Services team before using this command. They can provide the key/value pair needed to resolve your issue.
 
 ### Syntax
 

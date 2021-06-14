@@ -8,7 +8,9 @@ toc: 1
 
 {{<product>}} {{<version>}} eases your customers deployment and maintenance activities for their data center networks with new configuration, performance, and security features and improvements.
 
+<!-- vale off -->
 ## What's New in NetQ 4.0.0
+<!-- vale on -->
 
 NetQ 4.0.0 includes the following new features and improvements:
 

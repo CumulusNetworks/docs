@@ -225,7 +225,7 @@ netq lcm add
 | Argument | Value | Description |
 | ---- | ---- | ---- |
 | role | superspine, spine, leaf, exit | Assign this role to the specified switches |
-| switches | \<text-switch-hostnames\> | Assign the specified role to the switches with these hostnames. Use a comma-separated list (no spaces) to assign the role to multiple switches at once. |
+| switches | \<text-switch-hostnames\> | Assign the specified role to the switches with these hostnames. Use a comma-separated list (no spaces) to assign the role to multiple switches at the same time. |
 
 ### Options
 
@@ -411,7 +411,7 @@ cumulus@switch:~$ netq lcm del netq-image image_68db386683c796d86422f2172c103494
 
 ## netq lcm discover
 
-Searches for switches that do not have NetQ installed based on IP addresses or from a file. Once found you can add them to the lifecycle management repository and upgrade Cumulus Linux. Use the `netq lcm show discovery-job` command to view the results of this command.
+Searches for switches that do not have NetQ installed based on IP addresses or from a file. After they are discovered, can add them to the lifecycle management repository and upgrade Cumulus Linux. Use the `netq lcm show discovery-job` command to view the results of this command.
 
 ### Syntax
 

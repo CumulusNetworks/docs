@@ -44,7 +44,6 @@ swap:
   '(?:synched|synced|synch)': sync
   '(?:syncing|synching)': synchronizing
   'time stamp': timestamp
-  'task bar': taskbar
   'timezone': time zone
   'USB stick': USB drive
   'flash drive': usb drive

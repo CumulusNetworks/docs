@@ -430,7 +430,7 @@ This example shows the difference between the timestamp displays.
 
 {{%notice note%}}
 
-If a NetQ Agent is restarted on a device, the timestamps for existing objects are not updated to reflect this new restart time. Their timestamps are preserved relative to the original start time of the Agent. A rare exception is if the device is rebooted between the time it takes the Agent being stopped and restarted; in this case, the time is once again relative to the start time of the Agent.
+If a NetQ Agent is restarted on a device, the timestamps for existing objects are not updated to reflect this new restart time. Their timestamps are preserved relative to the original start time of the Agent. A rare exception is if the device is rebooted between the time it takes the Agent being stopped and restarted; in this case, the time is still relative to the start time of the Agent.
 
 {{%/notice%}}
 

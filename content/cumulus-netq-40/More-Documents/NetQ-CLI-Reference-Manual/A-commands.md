@@ -70,7 +70,7 @@ netq add events-config events_config_name mybtrfs message_type ospf scope '[{"sc
 
 ## netq add notification channel
 
-NetQ events are presented to the user through event notification channels. NetQ supports four channel types: email, PagerDuty, Slack, or Syslog. This command configures these channels.
+NetQ events are presented to the user through event notification channels. NetQ supports four channel types: email, PagerDuty, Slack, or `syslog`. This command configures these channels.
 
 {{<notice note>}}
 You must have at least one channel, one rule, and one filter to fully configure a notification.

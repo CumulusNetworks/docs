@@ -1767,7 +1767,7 @@ eventsconfig_10      job_cl_upgrade_2d89c sensor               {"sensor":"*","ne
                      fw2
 ```
 
-When you filter for a message type, you must include the `show-filter-conditions` keyword to show the conditions associated with that message type and the hierarchy in which they're processed.
+When you filter for a message type, you must include the `show-filter-conditions` keyword to show the conditions associated with that message type and the hierarchy in which they are processed.
 
 ```
 cumulus@switch:~$ netq show events-config message_type evpn show-filter-conditions
@@ -1992,13 +1992,9 @@ interface *swp52*.
     configChange    4          info             slk-netq-events  sysconf
     svcDown         5          critical         slk-netq-events  svcStatus
 
-### Create a Notification for a Given Device that has a Tendency to Overheat (using multiple rules)
+### Create a Notification for a Given Device that Has a Tendency to Overheat (Using Multiple Rules)
 
-In this example, we created a notification when switch *leaf04* has
-passed over the high temperature threshold. Two rules were needed to
-create this notification, one to identify the specific device and one to
-identify the temperature trigger. We sent the message to the
-*pd-netq-events* channel.
+In this example, we created a notification when switch *leaf04* has passed over the high temperature threshold. Two rules were needed to create this notification, one to identify the specific device and one to identify the temperature trigger. We sent the message to the *pd-netq-events* channel.
 
 ```
 cumulus@switch:~$ netq add notification channel pagerduty pd-netq-events integration-key 1234567890
@@ -2178,7 +2174,7 @@ To remove notification channels:
 
     {{<figure src="/images/netq/channels-slack-created-300.png" width="700">}}
 
-2. Click the tab for the type of channel you want to remove (Slack, PagerDuty, <!-- vale off -->Syslog<!-- vale on -->, Email).
+2. Click the tab for the type of channel you want to remove (Slack, PagerDuty, `syslog`, Email).
 
 3. Select one or more channels.
 

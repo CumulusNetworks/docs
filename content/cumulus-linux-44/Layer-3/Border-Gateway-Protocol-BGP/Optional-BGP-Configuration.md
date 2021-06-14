@@ -1277,11 +1277,16 @@ Paths: (2 available, best #2, table default)
 
 Routes are typically propagated even if a different path exists. The BGP conditional advertisement feature lets you advertise certain routes only if other routes either do or do not exist.
 
-This feature is typically used in multihomed networks where some prefixes are advertised to one of the providers only if information from the other provider is not present. For example, a multihomed router can use conditional advertisement to choose which upstream provider learns about the routes it provides so that it can influence which provider handles traffic destined for the downstream router. This is useful for cost of service (one provider is cheaper than another), latency, or other policy requirements that are not natively accounted for in BGP.
+This feature is typically used in multihomed networks where some prefixes are advertised to one of the providers only if information from the other provider is not present. For example, a multihomed router can use conditional advertisement to choose which upstream provider learns about the routes it provides so that it can influence which provider handles traffic destined for the downstream router. This is useful for cost of service, latency, or other policy requirements that are not natively accounted for in BGP.
 
-Conditional advertisement uses the `non-exist-map` or the `exist-map` and the `advertise-map` keywords to track routes by the route prefix.
+Conditional advertisement uses the `non-exist-map` or the `exist-map` and the `advertise-map` keywords to track routes by route prefix.
+You configure the BGP neighbors you want to use the route maps.
 
-The following example commands configure Cumulus Linux to send a 10.0.0.0/8 summary route only if the 10.0.0.0/24 route exists in the routing table. The commands perform the following configuration:
+{{%notice info%}}
+Use caution when configuring conditional advertisement on a large number of BGP neighbors. Cumulus Linux scans the entire RIB table every 60 seconds; depending on the number of routes in the RIB, this can result in longer processing times. NVIDIA does not recommend that you configure conditional advertisement on more than 50 neighbors.
+{{%/notice%}}
+
+The following example commands configure the switch to send a 10.0.0.0/8 summary route only if the 10.0.0.0/24 route exists in the routing table. The commands perform the following configuration:
 - Enable the conditional advertisement option.
 - Create a prefix list called EXIST with the route 10.0.0.0/24.
 - Create a route map called EXISTMAP that uses the prefix list EXIST.
@@ -1334,7 +1339,10 @@ leaf01# exit
 cumulus@leaf01:~$
 ```
 
-The vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+{{< /tab >}}
+{{< /tabs >}}
+
+The commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
 ```
 cumulus@leaf01:~$ sudo nano /etc/frr/frr.conf
@@ -1349,9 +1357,6 @@ match ip address prefix-list ADVERTISE
 route-map EXISTMAP permit 10
 match ip address prefix-list EXIST
 ```
-
-{{< /tab >}}
-{{< /tabs >}}
 
 ## BGP Timers
 

@@ -1375,6 +1375,25 @@ leaf01# exit
 cumulus@leaf01:~$
 ```
 
+The commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+
+```
+cumulus@leaf01:~$ sudo nano /etc/frr/frr.conf
+...
+router bgp 65101
+ bgp router-id 10.10.10.1
+ bgp conditional-advertisement timer 100
+ neighbor swp51 interface remote-as external
+ neighbor swp51 advertisement-interval 0
+ neighbor swp51 timers 3 9
+ neighbor swp51 timers connect 10
+ neighbor swp52 interface remote-as external
+ neighbor swp52 advertisement-interval 0
+ neighbor swp52 timers 3 9
+ neighbor swp52 timers connect 10
+...
+```
+
 ## BGP Timers
 
 BGP includes several timers that you can configure.

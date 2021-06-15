@@ -617,6 +617,8 @@ The original file is now split, with the first 20 lines in `cumulus-linux-4.2.0-
 
 3. Use a text editor to change the variables in `cumulus-linux-4.2.0-bcm-amd64.bin.1`.
 
+    After changing any variables you will need to recalculate the sha256 hash and update the `CL_INSTALLER_PAYLOAD_SHA256` variable.
+
 4. Put the two pieces back together using `cat`:
 
 ```

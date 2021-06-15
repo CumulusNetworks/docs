@@ -859,7 +859,7 @@ SVI Test                 : passed
 
 ## netq check mtu
 
-Verifies consistency of the maximum transmission unit (MTU) across all links in your network fabric. MTU consistency is verified at the level that is appropriate to the specific type of link. For example, bond interfaces have their MTU enforced at the bond level and not at the individual slave level. For MLAG/CLAG bonds, verification confirms whether or not both ends of the bond have the same MTU value configured for their local instance of the bond. You can also view nodes without a peer link.
+Verifies consistency of the maximum transmission unit (MTU) across all links in your network fabric. MTU consistency is verified at the level that is appropriate to the specific type of link. For example, bond interfaces have their MTU enforced at the bond level and not at the individual slave level. For MLAG/CLAG bonds, verification confirms whether both ends of the bond have the same MTU value configured for their local instance of the bond. You can also view nodes without a peer link.
 
 The output displays the status (passed/failed/skipped) of all tests and a summary including:
 
@@ -2942,7 +2942,7 @@ None
 
 ## netq config restart
 
-Restart the NetQ Agent or CLI daemons on a switch. This is used after making changes to the the NetQ Agent or CLI configurations.
+Restart the NetQ Agent or CLI daemons on a switch. This is used after making changes to the NetQ Agent or CLI configurations.
 
 ### Syntax
 

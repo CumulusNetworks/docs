@@ -686,7 +686,7 @@ torc-22           evpn         info     VNI 39 state changed from down to u 1d:8
 
 ### View All EVPN Events
 
-The Network Services|All EVPN Sessions card workflow and the `netq show events type evpn` command enable you to view all of the EVPN events in a designated time period.
+The Network Services|All EVPN Sessions card workflow and the `netq show events type evpn` command enable you to view all EVPN events in a designated time period.
 
 {{<tabs "View all EVPN events">}}
 
@@ -901,13 +901,13 @@ leaf01            4001       10.0.1.1         L3               Vrf RED        ye
 
 ### View All EVPN Sessions on a VNI
 
-You can view the attributes of all of the EVPN sessions for a given VNI using the NetQ UI or NetQ CLI.
+You can view the attributes of all EVPN sessions for a given VNI using the NetQ UI or NetQ CLI.
 
 {{< tabs "TabID898" >}}
 
 {{< tab "NetQ UI" >}}
 
-You can view all stored attributes of all of the EVPN sessions running networkwide.
+You can view all stored attributes of all EVPN sessions running networkwide.
 
 To view all session details, open the full screen EVPN Session card and click the **All EVPN Sessions** tab.
 
@@ -940,7 +940,7 @@ leaf04            20         10.0.1.2         L2               Vlan 20        ye
 
 ### View All Session Events
 
-You can view all of the alarm and info events for a given session with the NetQ UI.
+You can view all alarm and info events for a given session with the NetQ UI.
 
 To view all events, open the full-screen Network Services|EVPN Session card and click the **All Events** tab.
 

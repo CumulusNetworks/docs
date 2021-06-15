@@ -10,6 +10,7 @@ The NetQ UI is a web-based application. Logging in and logging out are simple an
 
 To log in to the UI:
 
+<!-- vale off -->
 1. Open a new Chrome browser window or tab.
 2. Enter the following URL into the address bar:  
     - NetQ On-premises Appliance or VM: *https://\<hostname-or-ipaddress\>:443*  
@@ -22,10 +23,11 @@ To log in to the UI:
     Default usernames and passwords for UI access:  
     - NetQ On-premises: *admin, admin*
     - NetQ Cloud: Use credentials provided by NVIDIA via email titled *Welcome to NVIDIA Cumulus NetQ\!*
+<!-- vale on -->
 
-{{< tabs "login" >}}
+{{<tabs "login">}}
 
-{{< tab "First Time Log In" >}}
+{{<tab "First Time Log In">}}
 
 1. Enter your username.
 
@@ -41,9 +43,9 @@ To log in to the UI:
 
     {{<figure src="/images/netq/access-ui-cumulus-wb-400.png" width="700">}}
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "Log In After First Time" >}}
+{{<tab "Log In After First Time">}}
 
 1. Enter your username.
 
@@ -55,9 +57,9 @@ To log in to the UI:
 Any workbench can be set as the home workbench. Click <img src="https://icons.cumulusnetworks.com/17-Users/19-Natural-Close%20Up-Single%20User-Man/single-man-circle.svg" height="18" width="18"/> (User Settings), click <strong>Profiles and Preferences</strong>, then on the Workbenches card click to the left of the workbench name you want to be your home workbench.
     {{</notice>}}
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}
 
 ## Reset a Forgotten Password
 

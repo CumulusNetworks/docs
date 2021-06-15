@@ -312,7 +312,7 @@ netq trace <ip> from (<src-hostname>|<ip-src>) vrf <vrf> [json|detail|pretty]
 
 Note the syntax requires the *destination* device address first and then the *source* device address or hostname.
 
-This example shows a trace from 10.1.10.101 (source, server01) to 10.1.10.104 (destination, server04) through VRF RED in detail output. It first identifies the addresses for the source and destination devices and a VRF between them using `netq show ip addresses` then runs the trace. Note that the VRF name is case sensitive. The trace job may take a bit to compile all of the available paths, especially if there are a large number of them.
+This example shows a trace from 10.1.10.101 (source, server01) to 10.1.10.104 (destination, server04) through VRF RED in detail output. It first identifies the addresses for the source and destination devices and a VRF between them using `netq show ip addresses` then runs the trace. Note that the VRF name is case sensitive. The trace job may take some time to compile all the available paths, especially if there are many of them.
 
 ```
 cumulus@switch:~$ netq server01 show ip addresses
@@ -992,7 +992,7 @@ To create a layer 3 scheduled trace and see the results in the Scheduled Trace R
 netq add trace name <text-new-trace-name> <ip> from (<src-hostname>|<ip-src>) interval <text-time-min>
 ```
 
-This example shows the creation of a scheduled trace between leaf01 (source, 10.10.10.1) and border01 (destination, 10.10.10.63) with a name of L01toB01Daily that is run on an daily basis. The `interval` option value must be a number of minutes with the units indicator (m).
+This example shows the creation of a scheduled trace between *leaf01* (source, *10.10.10.1*) and *border01* (destination, *10.10.10.63*) with a name of *L01toB01Daily* that is run on an daily basis. The `interval` option value is *1440* minutes, as denoted by the units indicator (*m*).
 
 ```
 cumulus@switch:~$ netq add trace name Lf01toBor01Daily 10.10.10.63 from 10.10.10.1 interval 1440m
@@ -1075,7 +1075,7 @@ To create a layer 3 scheduled trace that uses a VRF other than default and then 
 netq add trace name <text-new-trace-name> <ip> from (<src-hostname>|<ip-src>) vrf <vrf> interval <text-time-min>
 ```
 
-This example shows the creation of a scheduled trace between server01 (source, 10.1.10.101) and server04 (destination, 10.1.10.104) with a name of Svr01toSvr04Hrly that is run on an hourly basis. The `interval` option value must be a number of minutes with the units indicator (m).
+This example shows the creation of a scheduled trace between *server01* (source, *10.1.10.101*) and *server04* (destination, *10.1.10.104*) with a name of *Svr01toSvr04Hrly* that is run on an hourly basis. The `interval` option value is *60* minutes, as denoted by the units indicator (*m*).
 
 ```
 cumulus@switch:~$ netq add trace name Svr01toSvr04Hrly 10.1.10.104 from 10.10.10.1 interval 60m
@@ -1161,7 +1161,7 @@ To create a layer 2 scheduled trace and then see the results in the Scheduled Tr
 netq add trace name <text-new-trace-name> <mac> vlan <1-4096> from (<src-hostname> | <ip-src>) [vrf <vrf>] interval <text-time-min>
 ```
 
-This example shows the creation of a scheduled trace between server01 (source, 10.1.10.101) and server04 (destination, 44:38:39:00:00:3e) on VLAN 10 with a name of Svr01toSvr04x3Hrs that is run every three hours. The `interval` option value must be a number of minutes with the units indicator (m).
+This example shows the creation of a scheduled trace between *server01* (source, *10.1.10.101*) and *server04* (destination, *44:38:39:00:00:3e*) on VLAN 10 with a name of *Svr01toSvr04x3Hrs* that is run every three hours. The `interval` option value is *180* minutes, as denoted by the units indicator (*m*).
 
 ```
 cumulus@switch:~$ netq add trace name Svr01toSvr04x3Hrs 44:38:39:00:00:3e vlan 10 from 10.1.10.101 interval 180m

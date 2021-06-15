@@ -84,11 +84,11 @@ To enable NetQ Agent monitoring of the containers using the Kubernetes API, you 
     cumulus@host:~$netq show kubernetes cluster
     ```
 
-5. Next, you must enable the NetQ Agent on all of the worker nodes for complete insight into your container network. Repeat steps 2 and 3 on each worker node.
+5. Next, you must enable the NetQ Agent on every worker node for complete insight into your container network. Repeat steps 2 and 3 on each worker node.
 
 ## View Status of Kubernetes Clusters
 
-Run the `netq show kubernetes cluster` command to view the status of all Kubernetes clusters in the fabric. In this example, we see there are two clusters; one with *server11* as the master server and the other with *server12* as the master server. Both are healthy and their associated worker nodes are listed.
+Run the `netq show kubernetes cluster` command to view the status of all Kubernetes clusters in the fabric. The following example shows two clusters; one with *server11* as the master server and the other with *server12* as the master server. Both are healthy and their associated worker nodes are listed.
 
     cumulus@host:~$ netq show kubernetes cluster
     Matching kube_cluster records:
@@ -148,7 +148,7 @@ If data collection from the NetQ Agents is not occurring as it did previously, y
 - **s**: seconds
 - **now**
 
-This example shows changes that have been made to the cluster in the last hour. In this example we see the addition of the two master nodes and the various worker nodes for each cluster.
+This example shows changes that have been made to the cluster in the last hour. This example shows the addition of the two master nodes and the various worker nodes for each cluster.
 
     cumulus@host:~$ netq show kubernetes cluster around 1h
     Matching kube_cluster records:
@@ -368,7 +368,7 @@ You can filter this information to focus on pods on a particular node:
 
 ## View Kubernetes Node Information
 
-You can view detailed information about a node, including their role in the cluster,  pod CIDR and kubelet status. This example shows all of the nodes in the cluster with *server11* as the master. Note that *server11* acts as a worker node along with the other nodes in the cluster, *server12*, *server13*, *server22*, *server23*, and *server24*.
+You can view detailed information about a node, including their role in the cluster,  pod CIDR and kubelet status. This example shows all the nodes in the cluster with *server11* as the master. Note that *server11* acts as a worker node along with the other nodes in the cluster, *server12*, *server13*, *server22*, *server23*, and *server24*.
 
     cumulus@host:~$ netq server11 show kubernetes node
     Matching kube_cluster records:
@@ -503,7 +503,7 @@ For each depolyment, you can view the number of replicas associated with an appl
 
 ## Search Using Labels
 
-You can search for information about your Kubernetes clusters using labels. A label search is similar to a "contains" regular expression search. In the following example, we are looking for all nodes that contain *kube* in the replication set name or label:
+You can search for information about your Kubernetes clusters using labels. A label search is similar to a "contains" regular expression search. The following example looks for all nodes that contain *kube* in the replication set name or label:
 
     cumulus@host:~$ netq server11 show kubernetes replica-set label kube
     Matching kube_replica records:

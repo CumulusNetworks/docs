@@ -174,7 +174,7 @@ To complete the preparation:
 
 6. Start the VM and log back in.
 
-7. From step 1 we know the name of the root disk is */dev/vda 1*. Use that to run the following commands on the partition.
+7. From step 1 you know the name of the root disk is */dev/vda 1*. Use that to run the following commands on the partition.
 
     ```
     cumulus@netq-310-cloud:~$ sudo growpart /dev/vda 1

@@ -8,11 +8,13 @@ With the NetQ UI and NetQ CLI, you can monitor your inventory of switches across
 
 The commands and cards available to obtain this type of information help you to answer questions such as:
 
+<!-- vale off -->
 - What hardware is installed on my switch?
 - How many transmit and receive packets have been dropped?
 - How healthy are the fans and power supply?
 - What software is installed on my switch?
 - What is the ACL and forwarding resources usage?
+<!-- vale on -->
 
 To monitor networkwide inventory, refer to {{<link title="Monitor Networkwide Inventory">}}.
 
@@ -243,7 +245,7 @@ To view a list of motherboards installed in a switch, run:
 netq [<hostname>] show inventory board [opta] [json]
 ```
 
-This example shows all of the motherboard data for the *spine01* switch.
+This example shows all motherboard data for the *spine01* switch.
 
 ```
 cumulus@switch:~$ netq spine01 show inventory board
@@ -429,7 +431,7 @@ To view memory information for your switches and host servers, run:
 netq [<hostname>] show inventory memory [opta] [json]
 ```
 
-This example shows all of the memory characteristics for the *leaf01* switch.
+This example shows all the memory characteristics for the *leaf01* switch.
 
 ```
 cumulus@switch:~$ netq leaf01 show inventory memory
@@ -527,7 +529,7 @@ netq-ts           Ubuntu          18.04                                Tue Jul 1
 
 ### View Cumulus Linux License Information for a Switch
 
-It is important to know when you have switches that have invalid or missing Cumulus Linux licenses, as not all of the features are operational without a valid license. If the license status is *Bad* or *Missing*, the license must be updated or applied for a switch to operate properly. Hosts do not require a Cumulus Linux or NetQ license.
+It is important to know when you have switches that have invalid or missing Cumulus Linux licenses, as not all features are operational without a valid license. If the license status is *Bad* or *Missing*, the license must be updated or applied for a switch to operate properly. Hosts do not require a Cumulus Linux or NetQ license.
 
 Cumulus Linux license information is available from the NetQ UI and NetQ CLI.
 
@@ -762,7 +764,7 @@ You can narrow your focus in several ways:
 
 ## Monitor Software Services
 
-Cumulus Linux and NetQ run a number of services to deliver the various features of these products. You can monitor their status using the `netq show services` command. The services related to system-level operation are described here. Monitoring of other services, such as those related to routing, are described with those topics. NetQ automatically monitors the following services:
+Cumulus Linux and NetQ run many services to deliver the various features of these products. You can monitor their status using the `netq show services` command. The services related to system-level operation are described here. Monitoring of other services, such as those related to routing, are described with those topics. NetQ automatically monitors the following services:
 
 - **bgpd**: BGP (Border Gateway Protocol) daemon
 - **clagd**: MLAG (Multi-chassis Link Aggregation) daemon
@@ -794,7 +796,7 @@ netq [<hostname>] show events [level info | level error | level warning | level 
 
 ### View All Services on All Devices
 
-This example shows all of the available services on each device and whether each is enabled, active, and monitored, along with how long the service has been running and the last time it was changed.
+This example shows all available services on each device and whether each is enabled, active, and monitored, along with how long the service has been running and the last time it was changed.
 
 {{<notice tip>}}
 
@@ -953,7 +955,7 @@ This example shows the status of the BGP daemon.
 
 To view changes over a given time period, use the `netq show events` command. For more detailed information about events, refer to {{<link title="Manage Events and Notifications">}}.
 
-In this example, we want to view changes to the bgpd service in the last 48 hours.
+This example shows changes to the `bgpd` service in the last 48 hours.
 
     cumulus@switch:/$ netq show events type bgp between now and 48h
     Matching events records:

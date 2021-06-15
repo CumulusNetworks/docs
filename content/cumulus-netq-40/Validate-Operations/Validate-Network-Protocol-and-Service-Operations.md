@@ -36,7 +36,7 @@ When you want to validate the operation of one or more network protocols and ser
 
 You can create on-demand validations that contain checks for protocols or services that you suspect may have issues.
 
-Using the NetQ UI, you can create an on-demand validation for multiple protocols or services at the same time. This is handy when the protocols are strongly related with respect to a possible issue or if you only want to create one validation request.
+Using the NetQ UI, you can create an on-demand validation for multiple protocols or services at the same time. This is handy when the protocols are strongly related regarding a possible issue or if you only want to create one validation request.
 
 {{<tabs "On-demand Validation">}}
 
@@ -86,7 +86,7 @@ netq check vlan [label <text-label-name> | hostnames <text-list-hostnames>] [unv
 netq check vxlan [label <text-label-name> | hostnames <text-list-hostnames>] [check_filter_id <text-check-filter-id>] [include <vxlan-number-range-list> | exclude <vxlan-number-range-list>] [around <text-time>] [json | summary]
 ```
 
-All of the `netq check` commands have a summary and test results section. Some have additional summary information.
+All `netq check` commands have a summary and test results section. Some have additional summary information.
 
 This example shows a validation of the EVPN protocol.
 
@@ -1137,7 +1137,7 @@ After creating scheduled validations with either the NetQ UI or the NetQ CLI, th
 
 #### Granularity of Data Shown Based on Time Period
 
-On the medium and large Validation Result cards, the status of the runs is represented in heat maps stacked vertically; one for passing runs,  one for runs with warnings, and one for runs with failures. Depending on the time period of data on the card, the number of smaller time blocks used to indicate the status varies. A vertical stack of time blocks, one from each map, includes the results from all checks during that time. The results are shown by how saturated the color is for each block. If all validations during that time period pass, then the middle block is 100% saturated (white) and the warning and failure blocks are zero % saturated (gray). As warnings and errors increase in saturation, the passing block is proportionally reduced in saturation. An example heat map for a time period of 24 hours is shown here with the most common time periods in the table showing the resulting time blocks and regions.
+On the medium and large Validation Result cards, the status of the runs is represented in heat maps stacked vertically; one for passing runs, one for runs with warnings, and one for runs with failures. Depending on the time period of data on the card, the number of smaller time blocks indicate that the status varies. A vertical stack of time blocks, one from each map, includes the results from all checks during that time. The results are shown by how saturated the color is for each block. If all validations during that time period pass, then the middle block is 100% saturated (white) and the warning and failure blocks are zero % saturated (gray). As warnings and errors increase in saturation, the passing block is proportionally reduced in saturation. An example heat map for a time period of 24 hours is shown here with the most common time periods in the table showing the resulting time blocks and regions.
 
 {{<figure src="/images/netq/sch-valid-result-granularity-230.png" width="300">}}
 

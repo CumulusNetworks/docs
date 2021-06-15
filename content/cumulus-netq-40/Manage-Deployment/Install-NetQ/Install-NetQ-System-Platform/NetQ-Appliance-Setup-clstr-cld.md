@@ -115,7 +115,7 @@ Now that the appliances are up and running, verify that the software is availabl
 
     {{<netq-install/verify-pkgs version="4.0" platform="appliance">}}
 
-7. Configure the IP address, hostname, and password using the same steps as as for the master node. Refer to {{<link url="#configure-the-password-hostname-and-ip-address" text="Configure the Password, Hostname, and IP Address">}}.
+7. Configure the IP address, hostname, and password using the same steps as for the master node. Refer to {{<link url="#configure-the-password-hostname-and-ip-address" text="Configure the Password, Hostname, and IP Address">}}.
 
     {{<notice note>}}
 Make a note of the private IP addresses you assign to the master and worker nodes. They are needed for later installation steps.

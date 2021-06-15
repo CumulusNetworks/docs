@@ -443,7 +443,7 @@ border02          clag                     info             Peer state changed t
 
 ### View All MLAG Events
 
-The Network Services|All MLAG Sessions card workflow and the `netq show events type mlag` command enable you to view all of the MLAG events in a designated time period.
+The Network Services|All MLAG Sessions card workflow and the `netq show events type mlag` command enable you to view all MLAG events in a designated time period.
 
 {{< tabs "TabID446" >}}
 
@@ -771,7 +771,7 @@ leaf04            leaf03(P)         44:38:39:be:ef:bb  up         up     8     8
 
 ### View All MLAG Session Events
 
-You can view all of the alarm and info events for the two devices on this card.
+You can view all alarm and info events for the two devices on this card.
 
 1. Open or add the Network Services|All MLAG Sessions card.
 

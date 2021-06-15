@@ -69,6 +69,17 @@ To work around this issue, run the &lt;tt&gt;apt-get upgrade&lt;/tt&gt; command 
 <td></td>
 </tr>
 <tr>
+<td>2690100</td>
+<td>When you run the vtysh {{show ip bgp vrf &lt;name&gt; &lt;afi&gt; &lt;safi&gt; statistics}} command, the {{bgpd}} service crashes if you use {{vrf all}}. For example:
+spine01# show ip bgp vrf all statistics 
+&lt;pre&gt;vtysh: error reading from bgpd: Success (0)Warning: closing connection to bgpd because of an I/O error!&lt;/pre&gt;
+&lt;pre&gt;spine01# show bgp vrf all ipv6 unicast statistics 
+vtysh: error reading from bgpd: Success (0)Warning: closing connection to bgpd because of an I/O error!&lt;/pre&gt;
+To workaround this issue, run the command against each VRF independently.</td>
+<td>3.7.15, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
 <td>2684404</td>
 <td>CVE-2017-20005: NGINX has a buffer overflow for years that exceed four digits, as demonstrated by a file with a modification date in 1969 that causes an integer overflow (or a false modification date far in the future), when encountered by the autoindex module.
 Vulnerable: &lt;= 1.6.2-5+deb8u8

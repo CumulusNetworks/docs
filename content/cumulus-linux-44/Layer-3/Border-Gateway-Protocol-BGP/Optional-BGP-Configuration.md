@@ -1283,7 +1283,7 @@ Conditional advertisement uses the `non-exist-map` or the `exist-map` and the `a
 You configure the BGP neighbors you want to use the route maps.
 
 {{%notice info%}}
-Use caution when configuring conditional advertisement on a large number of BGP neighbors. Cumulus Linux scans the entire RIB table every 60 seconds; depending on the number of routes in the RIB, this can result in longer processing times. NVIDIA does not recommend that you configure conditional advertisement on more than 50 neighbors.
+Use caution when configuring conditional advertisement on a large number of BGP neighbors. Cumulus Linux scans the entire RIB table every 60 seconds by default; depending on the number of routes in the RIB, this can result in longer processing times. NVIDIA does not recommend that you configure conditional advertisement on more than 50 neighbors.
 {{%/notice%}}
 
 The following example commands configure the switch to send a 10.0.0.0/8 summary route only if the 10.0.0.0/24 route exists in the routing table. The commands perform the following configuration:
@@ -1356,6 +1356,23 @@ route-map ADVERTISEMAP permit 10
 match ip address prefix-list ADVERTISE
 route-map EXISTMAP permit 10
 match ip address prefix-list EXIST
+```
+
+Cumulus Linux scans the entire RIB table every 60 seconds. You can increase or decrease how often you want Cumulus Linux to scan the RIB table. A value between 5 and 240 seconds is allowed.
+
+{{%notice note%}}
+A lower value (such as 5) increases the amount of processing needed. Use caution when configuring conditional advertisement on a large number of BGP neighbors.
+{{%/notice%}}
+
+```
+cumulus@leaf01:~$ sudo vtysh
+leaf01# configure terminal
+leaf01(config)# router bgp
+leaf01(config-router)# bgp conditional-advertisement timer 100
+leaf01(config-router)# end
+leaf01# write memory
+leaf01# exit
+cumulus@leaf01:~$
 ```
 
 ## BGP Timers

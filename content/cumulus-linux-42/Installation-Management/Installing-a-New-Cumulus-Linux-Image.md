@@ -617,18 +617,20 @@ The original file is now split, with the first 20 lines in `cumulus-linux-4.2.0-
 
 3. Use a text editor to change the variables in `cumulus-linux-4.2.0-bcm-amd64.bin.1`.
 
-    After changing any variables you will need to recalculate the sha256 hash and update the `CL_INSTALLER_PAYLOAD_SHA256` variable.
-
 4. Put the two pieces back together using `cat`:
 
 ```
 cat cumulus-linux-4.2.0-bcm-amd64.bin.1 cumulus-linux-4.2.0-bcm-amd64.bin.2 > cumulus-linux-4.2.0-bcm-amd64.bin.final
 ```
+5. Calculate the new checksum and update the `CL_INSTALLER_PAYLOAD_SHA256` variable.  
+`sed -e '1,/^exit_marker$/d' "cumulus-linux-4.2.0-bcm-amd64.bin.final" | sha256sum | awk '{ print $1 }'`
+
 
 This is an example of a modified image file:
 
 ```
 ...
+CL_INSTALLER_PAYLOAD_SHA256='d14a028c2a3a2bc9476102bb288234c415a2b01f828ea62ac332e42f'
 CL_INSTALLER_PASSWORD='MyP4$$word'
 CL_INSTALLER_HASHED_PASSWORD=''
 CL_INSTALLER_LICENSE='customer@datacenter.com|4C3YMCACDiK0D/EnrxlXpj71FBBNAg4Yrq+brza4ZtJFCInvalid'

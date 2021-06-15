@@ -7,7 +7,7 @@ bookhidden: true
 ---
 This topic describes how to prepare your cluster of NetQ On-premises Appliances for installation of the NetQ Platform software.
 
-Inside each box that was shipped to you, you'll find:
+Each <!-- vale off -->box<!-- vale on --> that was shipped to you contains:
 
 - Your NVIDIA Cumulus NetQ On-premises Appliance (a Supermicro 6019P-WTR server)
 - Hardware accessories, such as power cables and rack mounting gear (note that network cables and optics ship separately)
@@ -23,7 +23,7 @@ For more detail about hardware specifications (including LED layouts and FRUs li
 
 Change the password and specify the hostname and IP address for each appliance before installing the NetQ software.
 
-1. Log in to the appliance that will be your master node using the default login credentials:
+1. Log in to the appliance that you intend to use as your master node using the default login credentials:
 
     - **Username**: cumulus
     - **Password**: cumulus

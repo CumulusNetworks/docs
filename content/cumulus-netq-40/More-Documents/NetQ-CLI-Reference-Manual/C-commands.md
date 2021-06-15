@@ -219,7 +219,9 @@ Router ID Test               : passed
 <!-- vale on -->
 - - -
 
+<!-- vale off -->
 ## netq check cl-version
+<!-- vale on -->
 
 Verifies the Cumulus Linux version is consistent across nodes, matches a specified version, or is greater than or equal to a specified version, based on the options chosen.
 
@@ -1457,7 +1459,9 @@ BUM replication Test    : passed
 <!-- vale on -->
 - - -
 
+<!-- vale off -->
 ## netq config add agent cluster-servers
+<!-- vale on -->
 
 Configures the server cluster where the NetQ Agents on monitored switches and hosts should send their collected data. You can also provide a specific port or VRF to use for the communication. Note that you must restart the NetQ Agent for the configuration to be enabled.
 
@@ -2050,10 +2054,12 @@ netq config add agent wjh-drop-filter
 
 ### Required Arguments
 
+<!-- vale off -->
 | Argument | Value | Description |
 | ---- | ---- | ---- |
 | wjh-drop-filter | NA | Collect and send WJH events filtered by drop type, reason or severity |
 | drop-type | \<text-wjh-drop-type\> | Only collect and send WJH events with this drop type. Valid drop types include *acl*, *buffer*, *l1*, *l2*, *router*, and *tunnel*. |
+<!-- vale on -->
 
 ### Options
 
@@ -2720,10 +2726,12 @@ netq config del agent wjh-drop-filter
 
 ### Required Arguments
 
+<!-- vale off -->
 | Argument | Value | Description |
 | ---- | ---- | ---- |
 | wjh-drop-filter | NA | Delete existing WJH event filter |
 | drop-type | \<text-wjh-drop-type\> | Delete WJH event filter with this drop type. Valid drop types include *acl*, *buffer*, *l1*, *l2*, *router*, and *tunnel*. |
+<!-- vale on -->
 
 ### Options
 
@@ -3114,11 +3122,13 @@ The NetQ Agent contains a pre-configured set of modular commands that run period
 
 ### Syntax
 
+<!-- vale off -->
 ```
 netq config show agent commands
     [service-key <text-service-key-anchor>]
     [json]
 ```
+<!-- vale on -->
 
 ### Required Arguments
 
@@ -3181,9 +3191,11 @@ agent_stats           300  yes       Netq Predefined Command
 
 - - -
 
+<!-- vale off -->
 ## netq config show agent cpu-limit
+<!-- vale on -->
 
-Displays the maximum percentage of CPU resources of the switch that a NetQ Agent may use. When restricted by the `netq config add agent cpu-limit` command, the value will be between 40 and 60 percent.
+Displays the maximum percentage of CPU resources of the switch that a NetQ Agent may use. When restricted by the `netq config add agent cpu-limit` command, the value is between 40 and 60 percent.
 
 For more detail about this feature, refer to this [Knowledge Base]({{<ref "knowledge-base/Configuration-and-Usage/Cumulus-NetQ/NetQ-Agent-CPU-Utilization-on-Cumulus-Linux-Switches">}}) article.
 
@@ -3243,9 +3255,9 @@ CPU Limit
 
 - - -
 
-
-
+<!-- vale off -->
 ## netq config show agent frr-monitor
+<!-- vale on -->
 
 Displays the NetQ Agent Free Range Router (FRR) function monitoring configuration on a switch. If configured, FRR monitoring occurs on FRR running in a Docker container. If not configured, FRR is likely running as a service.
 
@@ -3306,7 +3318,9 @@ false
 
 - - -
 
+<!-- vale off -->
 ## netq config show agent kubernetes-monitor
+<!-- vale on -->
 
 Displays the NetQ Agent kubernetes monitoring configuration on a switch, included whether it is enabled and the polling period.
 
@@ -3567,7 +3581,9 @@ cumulus@chassis:~$ netq config show agent wjh
 
 - - -
 
+<!-- vale off -->
 ## netq config show agent wjh-threshold
+<!-- vale on -->
 
 Displays whether the NetQ Agent is configured with WJH latency and congestion thresholds on an  NVIDIA Spectrum switch.
 

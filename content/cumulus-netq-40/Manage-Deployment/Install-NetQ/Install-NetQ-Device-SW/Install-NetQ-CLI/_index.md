@@ -29,7 +29,7 @@ For servers running RHEL 7, CentOS or Ubuntu OS, you need to:
 - Install and configure NTP, if needed
 - Obtain NetQ software packages
 
-You don't need to take any of these steps on Cumulus Linux or SONiC.
+You do not take any of these steps on Cumulus Linux or SONiC.
 
 ### Verify Service Package Versions
 

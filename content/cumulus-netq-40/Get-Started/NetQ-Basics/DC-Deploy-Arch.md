@@ -20,7 +20,9 @@ layer 3 routed environments. A layer 3 routed environment is recommended wheneve
 
 {{</notice>}}
 
+<!-- vale off -->
 ## Out-of-band Management Deployment
+<!-- vale on -->
 
 NVIDIA recommends deploying NetQ on an out-of-band (OOB)
 management network to separate network management traffic from standard
@@ -60,7 +62,9 @@ through a virtual network overlay, shown with purple lines.
 
 {{< figure src="/images/netq/deploy-arch-oob-example-230.png" width="700" >}}
 
+<!-- vale off -->
 ## In-band Management Deployment
+<!-- vale on -->
 
 While not the preferred deployment method, you might choose to implement
 NetQ within your data network. In this scenario, there is no overlay and

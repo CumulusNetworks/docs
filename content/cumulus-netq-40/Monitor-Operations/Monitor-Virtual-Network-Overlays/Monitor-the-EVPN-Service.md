@@ -347,6 +347,7 @@ You can view the number layer 2 EVPN sessions on your switches and hosts using t
 
 To view switches and hosts with the most layer 2 EVPN sessions:
 
+<!-- vale off -->
 1. Open the large Network Services|All EVPN Sessions card.
 
 2. Select **Switches with Most L2 EVPN** from the filter above the table.  
@@ -354,6 +355,7 @@ To view switches and hosts with the most layer 2 EVPN sessions:
     The table content is sorted by this characteristic, listing nodes running the most layer 2 EVPN sessions at the top. Scroll down to view those with the fewest sessions.
 
     {{<figure src="/images/netq/ntwk-svcs-all-evpn-large-summary-tab-most-l2evpn-300.png" width="500">}}
+<!-- vale on -->
 
 To compare this data with the same data at a previous time:
 
@@ -467,6 +469,7 @@ You can view the number layer 3 EVPN sessions on your switches and hosts using t
 
 To view switches and hosts with the most layer 3 EVPN sessions:
 
+<!-- vale off -->
 1. Open the large Network Services|All EVPN Sessions card.
 
 2. Select **Switches with Most L3 EVPN** from the filter above the table.  
@@ -474,6 +477,7 @@ To view switches and hosts with the most layer 3 EVPN sessions:
     The table content is sorted by this characteristic, listing nodes running the most layer 3 EVPN sessions at the top. Scroll down to view those with the fewest sessions.
 
     {{<figure src="/images/netq/ntwk-svcs-all-evpn-large-summary-tab-most-l3evpn-300.png" width="500">}}
+<!-- vale on -->
 
 To compare this data with the same data at a previous time:
 
@@ -618,7 +622,9 @@ leaf04            4001       10.0.1.2         L3               Vrf RED        ye
 
 {{</tabs>}}
 
+<!-- vale off -->
 ### View Devices with the Most EVPN-related Alarms
+<!-- vale on -->
 
 Switches experiencing a large number of EVPN alarms may indicate a configuration or performance issue that needs further investigation. You can view the switches sorted by the number of EVPN alarms and then use the Switches card workflow or the Events|Alarms card workflow to gather more information about possible causes for the alarms.
 

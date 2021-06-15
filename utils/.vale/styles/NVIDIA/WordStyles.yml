@@ -50,5 +50,5 @@ swap:
   'thumb drive': usb drive
   'user name': username
   subcommand: argument
-  'link local': linklocal
-  'link-local': linklocal
+  'link local': link-local
+  'linklocal': link-local

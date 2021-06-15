@@ -211,6 +211,7 @@ Expand the following dropdown to view common failures, their causes and correcti
 
 {{<expand "Precheck Failure Messages">}}
 
+<!-- vale off -->
 | Pre-check | Message | Type | Description | Corrective Action |
 | --------- | ------- | ---- | ----------- | ----------------- |
 | (1) Switch Order | &lt;hostname1&gt; switch cannot be upgraded without isolating &lt;hostname2&gt;, &lt;hostname3&gt; which are connected neighbors. Unable to upgrade | Warning | Switches hostname2 and hostname3 get isolated during an upgrade, making them unreachable. These switches are skipped if you continue with the upgrade. | Reconfigure hostname2 and hostname3 to have redundant connections, or continue with upgrade knowing that connectivity is lost with these switches during the upgrade process. |
@@ -232,6 +233,7 @@ Expand the following dropdown to view common failures, their causes and correcti
 |  | MLAG configuration checks timed out | Error | One or more switches stopped responding to the MLAG checks. |  |
 |  | MLAG configuration checks failed | Error | One or more switches failed the MLAG checks. |  |
 |  | For switch &lt;hostname&gt;, the MLAG switch with Role: secondary and ClagSysmac: &lt;MAC address&gt; does not exist. | Error | Identified switch is the primary in an MLAG pair, but the defined secondary switch is not in NetQ inventory. | Verify the switch has NetQ Agent 2.4.0 or later installed: click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18" alt="Main Menu">}}, then click <strong>Agents</strong> in the <strong>Network</strong> section, view <strong>Version</strong> column. Upgrade NetQ Agent if needed. Refer to {{<link title="Upgrade NetQ Agents">}}. Add the missing peer switch to NetQ inventory. |
+<!-- vale on -->
 
 {{</expand>}}
 

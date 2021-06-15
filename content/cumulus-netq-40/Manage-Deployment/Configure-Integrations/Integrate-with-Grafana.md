@@ -30,7 +30,9 @@ If you do not have Grafana installed already, refer to {{<exlink url="https://gr
 
 {{%/notice%}}
 
+<!-- vale off -->
 ## Install NetQ Plug-in for Grafana
+<!-- vale on -->
 
 Use the Grafana CLI to install the NetQ plug-in. For more detail about this command, refer to the {{<exlink url="https://grafana.com/docs/grafana/latest/administration/cli/" text="Grafana CLI documentation">}}.
 

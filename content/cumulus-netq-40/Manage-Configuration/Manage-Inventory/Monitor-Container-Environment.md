@@ -139,7 +139,7 @@ Optionally, use the `json` option to present the results in JSON format.
 
 ### View Changes to a Cluster
 
-If data collection from the NetQ Agents is not occurring as it once was, you can verify that no changes have been made to the Kubernetes cluster configuration using the `around` option. Be sure to include the unit of measure with the around value. Valid units include:
+If data collection from the NetQ Agents is not occurring as it did previously, you can verify that no changes have been made to the Kubernetes cluster configuration using the `around` option. Be sure to include the unit of measure with the around value. Valid units include:
 
 - **w**: weeks
 - **d**: days
@@ -451,7 +451,9 @@ You can view information about the replica set, including the name, labels, and 
     server11:3.0.0.68        default      kube-system      calico-kube-controllers-d669cc k8s-app:calico-kube- 1                                  1              14h:27m:9s
                                                            78f                            controllers
 
+<!-- vale off -->
 ### View the Daemon-sets on a Node
+<!-- vale on -->
 
 You can view information about the daemon set running on the node. This example shows that six copies of the *cumulus-frr* daemon are running on the server11 node:
 
@@ -652,6 +654,6 @@ If you need to perform maintenance on the Kubernetes cluster itself, use the fol
 
        cumulus@host:~$ kubectl drain <node name> 
 
-1. Once the maintenance window is over, put the node back into the cluster so that Kubernetes can start scheduling pods on it again:
+1. After the maintenance window is over, put the node back into the cluster so that Kubernetes can start scheduling pods on it again:
 
        cumulus@host:~$ kubectl uncordon <node name>

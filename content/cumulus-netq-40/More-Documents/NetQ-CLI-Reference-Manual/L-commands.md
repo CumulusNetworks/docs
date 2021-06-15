@@ -9,7 +9,9 @@ pdfhidden: true
 
 This topic includes all commands that begin with `netq l*`, `netq m*`, `netq n*`, `netq o*`, `netq p*`, `netq q*`, and `netq r*`.
 
+<!-- vale off -->
 ## netq lcm add cl-image
+<!-- vale on -->
 
 Adds a Cumulus Linux image (.bin file) to the lifecycle management repository. Images must match the version, architecture, and ASIC vendor for the switches you want to upgrade.
 
@@ -108,7 +110,9 @@ cumulus@switch:~$ netq lcm add credentials username cumulus password cumulus
 
 - - -
 
+<!-- vale off -->
 ## netq lcm add default-version
+<!-- vale on -->
 
 Configures or changes the Cumulus Linux or NetQ version to use automatically during an upgrade. This value can be overridden during upgrade as needed, but eases the upgrade process for the majority of switches.
 
@@ -1027,12 +1031,14 @@ Displays information about switches monitored by NetQ and contained in the lifec
 
 ### Syntax
 
+<!-- vale off -->
 ```
 netq lcm show switches
     [cl-version <text-cumulus-linux-version>]
     [netq-version <text-netq-version>]
     [json]
 ```
+<!-- vale on -->
 
 ### Required Arguments
 
@@ -1093,7 +1099,9 @@ None
 
 - - -
 
+<!-- vale off -->
 ## netq lcm show upgrade-jobs
+<!-- vale on -->
 
 Displays a history of all Cumulus Linux or NetQ upgrade jobs, including the job identifier and name, Cumulus Linux or NetQ version, pre-check status, warnings and errors, and start the job started. The NetQ upgrade jobs also show the overall status.
 

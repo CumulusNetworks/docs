@@ -474,9 +474,11 @@ netq add tca event_id TCA_SENSOR_TEMPERATURE_UPPER scope leaf03,temp1 channel sy
 
 Now you have four rules created (the original one, plus these three new ones) all based on the TCA_SENSOR_TEMPERATURE_UPPER event. To identify the various rules, NetQ automatically generates a TCA name for each rule. As each rule is created, an *\_#* is added to the event name. The TCA Name for the first rule created is then TCA_SENSOR_TEMPERATURE_UPPER_1, the second rule created for this event is TCA_SENSOR_TEMPERATURE_UPPER_2, and so forth.
 
+<!-- vale off -->
 ## Manage Threshold-based Event Notifications
+<!-- vale on -->
 
-Once you have created a bunch of rules, you might want to modify them; view a list of the rules, disable a rule, delete a rule, and so forth.
+After you create some rules, you might want to modify them; view a list of them, disable a rule, delete a rule, and so forth.
 
 ### View TCA Rules
 

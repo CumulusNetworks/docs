@@ -109,14 +109,146 @@ If the page does not appear to be updating, you may need to stop the Hugo server
 
 You are now ready to edit the documentation or create a new topic. Refer to [Adding New Content](Adding_New_Content).
 
+## Conform to House Style with Vale
+
+The documentation uses {{<exlink url="https://docs.errata.ai/vale/about" text="Vale">}} as a linting tool to keep the writing consistent. Think of it as an AI editor you invoke at the command line.
+
+### Install Vale
+
+To get started, {{<exlink url="https://docs.errata.ai/vale/install" text="install Vale">}}. Run the following command in a terminal:
+
+{{<tabs "Install Vale">}}
+
+{{<tab "MacOS or Linux">}}
+
+```
+$ brew install vale
+```
+
+{{</tab>}}
+ 
+{{<tab "Windows">}}
+
+```
+> choco install vale
+```
+
+{{</tab>}}
+
+{{<tab "Docker">}}
+
+```
+$ docker pull jdkato/vale
+```
+
+{{</tab>}}
+
+{{</tabs>}}
+
+{{%notice note%}}
+
+You need {{<exlink url="https://docs.brew.sh/Installation" text="homebrew">}} to install on MacOS or Linux, and {{<exlink url="https://docs.chocolatey.org/en-us/" text="choco">}} to install on Windows.
+
+{{%/notice%}}
+
+### Run Vale
+
+Before you run Vale, pull the latest version from the stage branch, then make sure your local checkout has the `/utils/.vale` folder.
+
+Run Vale from the root of your local checkout:
+
+    $ vale --glob='!*{foss,rn}.md'  --config utils/.vale/.vale.ini content/cumulus-linux-43
+ 
+The command above uses the following arguments and options: 
+
+- The `--glob` regular expression instructs Vale to ignore the `foss.md` and `rn.md` files; Vale does not check the release notes or t the Cumulus Linux open source software license page.
+- The `--config utils/.vale/vale.ini` tells Vale where to find its configuration file.
+- The `content/cumulus-linux-43` is the folder Vale is going to check. Vale recurses through every folder below it, so if you run it on the top level `content` folder, it checks every single page for every version and product.
+ 
+Vale returns output like the followings sample:
+
+```
+pete$ vale --glob='!*{foss,rn}.md'  --config utils/.vale/.vale.ini content/cumulus-netq-40
+...
+ content/cumulus-netq-40/Manage-Configuration/Provision-Network-and-Devices/Switch-Lifecycle-Management/CL-Upgrade-LCM.md
+ 219:104  error  'Mellanox' should reference     NVIDIA.Branding 
+                 NVIDIA Networking or NVIDIA                     
+                 Spectrum                                        
+
+ content/cumulus-netq-40/Get-Started/NetQ-Basics/NetQ-Components.md
+ 35:60  warning  'bare metal' is the house       NVIDIA.WordStyles    
+                 style of 'bare-metal'                                
+ 99:9   warning  '-' should use title            NVIDIA.HeadingTitles 
+                 caps-style capitalization.     
+
+ content/cumulus-netq-40/Validate-Operations/_index.md
+ 120:328  warning  Possible future tense ??  NVIDIA.FutureTense 
+...
+✖ 1 error, 408 warnings and 0 suggestions in 131 files.
+pete$
+```
+
+The Vale output breaks down as follows:
+
+- Name of and path to the file with the issue.
+- The location of the issue in the Markdown file. For example, *35:60* means line 35, cursor position 60.
+- The severity of the issue, which is one of *error*, *warning* or *suggestion*.
+- The error message itself.
+- The Vale configuration file that references the rule. For example, *NVIDIA.WordStyles* is the WordStyles.yml file in the `utils/.vale/NVIDIA` directory.
+ 
+### Ignore Errors
+
+Occasionally, Vale may flag something as an error, when it is actually a false positive. If the word choice or spelling is a valid reason to violate the rules, you can disable the Vale check for that text. For example, the NVIDIA Vale style guide states that there should not be any punctuation in a title, but that does not work for version numbers, as in the following example:
+
+```  
+## For Servers Running Ubuntu 16.04 or 18.04
+ 
+Run the following command to view the NetQ Agent version.
+```
+
+Vale returns the following error when it checks that heading:
+
+```
+21:33  warning  '.' should use title            NVIDIA.HeadingTitles
+                 caps-style capitalization.
+```
+
+To avoid the error, you can disable Vale for that heading in the source file. Wrap the whole paragraph in `<!-- vale off -->` and `<!-- vale on -->` tags:
+
+```
+<!-- vale off -->
+## For Servers Running Ubuntu 16.04 or 18.04
+<!-- vale on -->
+Run the following command to view the NetQ Agent version.
+```
+
+The `<!-- vale on -->` tag must be on its own line in order to re-enable Vale checking; otherwise, Vale ignores the rest of the file.
+
+Vale currently has a bug where it does not properly ignore a hyphen (-) in a title. If you wrote a heading with a hyphen and see this error, disable Vale and add a comment so we can find it later. For example:
+
+```
+<!-- vale off -->
+<!-- vale.ai Issue #253 -->
+### Any-source Multicast Routing (ASM)
+<!-- vale on -->
+```
+
+### Expand the Checks
+
+Feel free to suggest modifications for anything in the `.vale` folder, or submit your own pull request.
+
 ## Troubleshooting Hugo
+
 ### Large Changes
+
 If Hugo is currently running and a large volume of changes are made, for example, changing branches, Hugo may not always detect the changes. Stop and restart Hugo to see the new changes.
 
 ### Hugo pipe failed Error
-When launching Hugo it may fail and produce a traceback similar to the following
 
-```Start building sites …
+When launching Hugo it may fail and produce a traceback similar to the following:
+
+```
+Start building sites …
 
                    |  EN
 -------------------+-------
@@ -135,10 +267,10 @@ Watching for config changes in /git/docs/config.yml
 fatal error: pipe failed
 ```
 
-<details>
-<summary>Traceback Output</summary>
-<pre>
-<code class="language-Start">goroutine 1 [running]:
+{{<expand "Traceback Output">}}
+
+```
+goroutine 1 [running]:
 runtime.throw(0x5a04840, 0xb)
 	/usr/local/go/src/runtime/panic.go:1117 +0x72 fp=0xc03cc51890 sp=0xc03cc51860 pc=0x40394f2
 runtime.sigNoteSetup(0x6c9b140)
@@ -207,16 +339,18 @@ github.com/gohugoio/hugo/commands.(*commandeer).newWatcher.func1(0xc04640fea0, 0
 	/root/project/hugo/commands/hugo.go:853 +0xc5
 created by github.com/gohugoio/hugo/commands.(*commandeer).newWatcher
 	/root/project/hugo/commands/hugo.go:851 +0x2ce
-</code>
-</pre>
-</details>
+```
+
+{{</expand>}}
 
 This is caused by operating system limits on the number of open files. The way to verify and adjust this depends on the operating system and version in use.
 
 #### Mac OSX 10.4 Mojave and Later
-To adjust the max file limits both the kernel settings and session ulimits must be changed.
 
-```sudo sysctl -w kern.maxfiles=65536
+To adjust the max file limits, you must change both the kernel settings and session ulimits.
+
+```
+sudo sysctl -w kern.maxfiles=65536
 ulimit -n 65536 65536
 ```
 
@@ -225,62 +359,62 @@ The `ulimit` adjustment only lives for the life of that terminal window. If the 
 {{%/notice%}}
 
 ### Sparse Checkout
-It is possible to only checkout a portion of the docs repository to work on only the section you wish to contribute to. Git refers to this partial checkout as a `Sparse Checkout`.  
-A sparse checkout will speed up Hugo build times, limits the amount of local disk space that is used and can be a valid workaround for the Hugo `pipe failed` error message.
+
+It is possible to only check out a portion of the docs repository to work on only the section you wish to contribute to. Git refers to this partial checkout as a *sparse checkout*.
+
+A sparse checkout speeds up Hugo build times, limits the amount of local disk space that is used and can be a valid workaround for the Hugo `pipe failed` error message.
 
 To create a sparse checkout:
-1. Create a directory where the repo will be cloned into
 
-`mkdir docs`
+1. Create the destination directory for the repo:
 
-2. Enter the new directory and initalize it with Git.
+       mkdir docs
 
-```
-cd docs
-git init
-```
-3. Add the docs repo as a Git Remote
+2. Enter the new directory and initialize it with Git:
 
-`git remote add -f origin git@github.com:CumulusNetworks/docs.git`
+   ```
+   cd docs
+   git init
+   ```
+3. Add the docs repo as a Git Remote:
 
-4. Configure this directory as a `sparse checkout`
+       git remote add -f origin git@github.com:CumulusNetworks/docs.git
 
-`git config core.sparseCheckout true`
+4. Configure this directory as a *sparse checkout*:
 
-5. Configure Git to checkout the manditory docs files
+       git config core.sparseCheckout true
 
-```
-echo "utils/" >> .git/info/sparse-checkout
-echo "config.toml" >> .git/info/sparse-checkout
-echo "build_trigger.txt" >> .git/info/sparse-checkout
-echo "themes/" >> .git/info/sparse-checkout
-echo ".vale" >> .git/info/sparse-checkout
-echo "config.yml" >> .git/info/sparse-checkout
-echo "static/mibs" >> .git/info/sparse-checkout
-```
+5. Configure Git to check out the mandatory docs files:
 
-6. Add the content you wish to modify to the Git sparse checkout. This includes both the files in the `/content` directory as well as any relevant images in `/static/images` directory. For example, to make contributions or modifications to {{<kb_link url="knowledge-base" text="Knowledge Base" >}} articles add both `/content/knowledge-base` and `/static/images/knowledge-base` directories.
+       echo "utils/" >> .git/info/sparse-checkout
+       echo "config.toml" >> .git/info/sparse-checkout
+       echo "build_trigger.txt" >> .git/info/sparse-checkout
+       echo "themes/" >> .git/info/sparse-checkout
+       echo ".vale" >> .git/info/sparse-checkout
+       echo "config.yml" >> .git/info/sparse-checkout
+       echo "static/mibs" >> .git/info/sparse-checkout
 
-```
-echo "content/knowledge-base/` >> .git/info/sparse-checkout
-echo "static/images/knowledge-base/` >> .git/info/sparse-checkout
-```
+6. Add the content you wish to modify to the Git sparse checkout. This includes both the files in the `/content` directory as well as any relevant images in `/static/images` directory. For example, to make contributions or modifications to {{<kb_link url="knowledge-base" text="Knowledge Base" >}} articles add both the `/content/knowledge-base` and `/static/images/knowledge-base` directories.
 
-7. Checkout the appropiate branch
+       echo "content/knowledge-base/` >> .git/info/sparse-checkout
+       echo "static/images/knowledge-base/` >> .git/info/sparse-checkout
 
-`git checkout stage`
+7. Checkout the appropriate branch:
 
-8. Adjust the Hugo configuration to ignore link checking.  
-If you plan to run Hugo locally, due to how the Hugo `ref` shortcode validates links it will cause Hugo to fail at runtime due to the sparse checkout. The Hugo configuration must be changed locally to only log Warnings and allow Hugo to start
+       git checkout stage
 
-`echo "\nrefLinksErrorLevel: WARNING" >> config.yml`
+8. Adjust the Hugo configuration to ignore link checking.
 
-9. Configure Git to ignore the `config.yml` file to prevent an accidental commit of this change
+   If you plan to run Hugo locally, due to how the Hugo `ref` shortcode validates links it will cause Hugo to fail at runtime due to the sparse checkout. The Hugo configuration must be changed locally to only log Warnings and allow Hugo to start
 
-`git update-index --assume-unchanged config.yml`
+       echo "\nrefLinksErrorLevel: WARNING" >> config.yml
 
-10. Run Hugo. `REF_NOT_FOUND` warnings may be safely ignored.
+9. Configure Git to ignore the `config.yml` file to prevent an accidental commit of this change:
 
-`hugo server --baseURL localhost:1313`
+       git update-index --assume-unchanged config.yml
+
+10. Run Hugo. You can safely ignore `REF_NOT_FOUND` warnings.
+
+        hugo server --baseURL localhost:1313
 
 All other git operations including `git commit`, `git push` and `git checkout` work normally.

@@ -173,7 +173,7 @@ To view switch components, run:
 netq show inventory brief [json]
 ```
 
-This example shows the operating systems (Cumulus Linux and Ubuntu), CPU architecture (all x86_64), ASIC (virtual), and ports (none, since virtual) for each device in the network. You can manually count the number of each of these, or export to a spreadsheet tool to sort and filter the list.
+This example shows the operating systems (Cumulus Linux and Ubuntu), CPU architecture (all x86_64), ASIC (virtual), and ports (N/A because Cumulus VX is virtual) for each device in the network. You can manually count the number of each of these, or export to a spreadsheet tool to sort and filter the list.
 
 ```
 cumulus@switch:~$ netq show inventory brief

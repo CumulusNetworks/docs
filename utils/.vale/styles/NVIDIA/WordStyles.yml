@@ -44,12 +44,11 @@ swap:
   '(?:synched|synced|synch)': sync
   '(?:syncing|synching)': synchronizing
   'time stamp': timestamp
-  'task bar': taskbar
   'timezone': time zone
   'USB stick': USB drive
   'flash drive': usb drive
   'thumb drive': usb drive
   'user name': username
   subcommand: argument
-  'link local': linklocal
-  'link-local': linklocal
+  'link local': link-local
+  'linklocal': link-local

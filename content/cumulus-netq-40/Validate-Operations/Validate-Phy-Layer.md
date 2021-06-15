@@ -47,8 +47,7 @@ You can verify that the following configurations are the same on both sides of a
 - Link speed
 - Auto-negotiation setting
 
-The `netq check interfaces` command is used to determine if any of the interfaces have any continuity errors. This command only checks the physical interfaces; it does not check bridges, bonds or other software
-constructs. You can check all interfaces at once. It enables you to compare the current status of the interfaces, as well as their status at an earlier point in time. The command syntax is:
+The `netq check interfaces` command is used to determine if any of the interfaces have any continuity errors. This command only checks the physical interfaces; it does not check bridges, bonds or other software constructs. You can check all interfaces at one time. It enables you to compare the current status of the interfaces, as well as their status at an earlier point in time. The command syntax is:
 
 ```
 netq check interfaces [around <text-time>] [json]
@@ -122,7 +121,9 @@ server03          swp49                     server03          swp50             
 server03          swp50                     server03          swp49                     Speed mismatch (Unknown, 40G)  
 ```
 
+<!-- vale off -->
 ### Find Mismatched Auto-negotiation Settings
+<!-- vale on -->
 
 This example checks for configuration mismatches and finds auto-negotation setting mismatches between the servers and leafs. Auto-negotiation is *off* on the leafs, but *on* on the servers.
 

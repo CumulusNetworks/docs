@@ -16,7 +16,7 @@ netq [<hostname>] show events [level info | level error | level warning | level 
 
 ### View Status for All Interfaces
 
-Viewing the status of all interfaces at once can be helpful when you are trying to compare configuration or status of a set of links, or generally when changes have been made.
+Viewing the status of all interfaces at one time can be helpful when you are trying to compare configuration or status of a set of links, or generally when changes have been made.
 
 This example shows all interfaces networkwide.
 

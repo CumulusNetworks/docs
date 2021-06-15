@@ -49,7 +49,7 @@ Follow these steps to setup and configure your VM on a cluster of servers in a r
 
 11. Confirm that the needed ports are open for communications, as described in Step 2.
 
-12. Open your hypervisor and setup the VM in the same manner as for the master node.
+12. Open your hypervisor and set up the VM in the same manner as for the master node.
 
     {{<notice note>}}
 Make a note of the private IP address you assign to the worker node. It is needed for later installation steps.

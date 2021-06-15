@@ -65,7 +65,7 @@ Now that you are familiar with the various LDAP configuration parameters, you ca
 
 ## Create an LDAP Configuration
 
-One LDAP server can be configured per bind DN (distinguished name). Once LDAP is configured, you can validate the connectivity (and configuration) and save the configuration.
+One LDAP server can be configured per bind DN (distinguished name). After you configure LDAP, you can validate the connectivity (and configuration) and save the configuration.
 
 To create an LDAP configuration:
 

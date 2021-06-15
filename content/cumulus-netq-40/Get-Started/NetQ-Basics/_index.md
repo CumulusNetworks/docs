@@ -5,7 +5,7 @@ weight: 50
 toc: 3
 ---
 
-{{<product>}} is a highly scalable, modern network operations tool set that provides visibility and troubleshooting of your overlay and underlay networks in real-time. NetQ delivers actionable insights and operational intelligence about the health of your data center - from the container, virtual machine, or host, all the way to the switch and port. NetQ correlates configuration and operational status, and instantly identifies and tracks state changes while simplifying management for the entire Linux-based data center. With NetQ, network operations change from a manual, reactive, box-by-box approach to an automated, informed and agile one.
+{{<product>}} is a highly scalable, modern network operations tool set that provides visibility and troubleshooting of your overlay and underlay networks in real-time. NetQ delivers actionable insights and operational intelligence about the health of your data center - from the container, virtual machine, or host, all the way to the switch and port. NetQ correlates configuration and operational status, and instantly identifies and tracks state changes while simplifying management for the entire Linux-based data center. With NetQ, network operations change from a manual, reactive, node-by-node approach to an automated, informed and agile one.
 
 NetQ performs three primary functions:
 
@@ -19,7 +19,7 @@ Unlike other network operations tools, NetQ delivers significant operational imp
 
 ## Demystify Overlay Networks
 
-While overlay networks provide significant advantages in network management, it can be difficult to troubleshoot issues that occur in the overlay one box at a time. You are unable to correlate what events (configuration changes, power outages, etc.) may have caused problems in the network and when they occurred. Only a sampling of data is available to use for your analysis. By contrast, with NetQ deployed, you have a networkwide view of the overlay network, can correlate events with what is happening now or in the past, and have real-time data to fill out the complete picture of your network health and operation.
+While overlay networks provide significant advantages in network management, it can be difficult to troubleshoot issues that occur in the overlay one node at a time. You are unable to correlate what events (configuration changes, power outages, and so forth.) may have caused problems in the network and when they occurred. Only a sampling of data is available to use for your analysis. By contrast, with NetQ deployed, you have a networkwide view of the overlay network, can correlate events with what is happening now or in the past, and have real-time data to fill out the complete picture of your network health and operation.
 
 In summary:
 
@@ -43,7 +43,7 @@ In summary:
 
 ## Troubleshoot Issues Across the Network
 
-Troubleshooting networks is challenging in the best of times, but trying to do so manually, one box at a time, and digging through a series of long and ugly logs make the job harder than it needs to be. NetQ provides rolled up and correlated network status on a regular basis, enabling you to get down to the root of the problem quickly, whether it occurred recently or over a week ago. The graphical user interface makes this possible visually to speed the analysis.
+Troubleshooting networks is challenging in the best of times, but trying to do so manually, one node at a time, and digging through a series of long and ugly logs make the job harder than it needs to be. NetQ provides rolled up and correlated network status on a regular basis, enabling you to get down to the root of the problem quickly, whether it occurred recently or over a week ago. The graphical user interface makes this possible visually to speed the analysis.
 
 In summary:
 
@@ -51,7 +51,7 @@ In summary:
 | ------------ | --------- |
 | Large amount of data and multiple tools to correlate the logs/events with the issues | Rolled up and correlated network status, view events and status together |
 | Past events are lost | Historical data gathered and stored for comparison with current network state |
-| Manual, box-by-box troubleshooting | View issues on all devices all at once, pointing to the source of the problem |
+| Manual, node-by-node troubleshooting | View issues on all devices all at one time, pointing to the source of the problem |
 
 ## Track Connectivity with NetQ Trace
 
@@ -62,5 +62,5 @@ In summary:
 | Without NetQ                                            | With NetQ                                                            |
 | ------------------------------------------------------- | -------------------------------------------------------------------- |
 | Trace covers only data path; hard to check control path | Both data and control paths are verified                             |
-| View portion of entire path                             | View all paths between devices all at once to find problem paths     |
+| View portion of entire path                             | View all paths between devices at one time to find problem paths     |
 | Node-to-node check on misconfigurations                 | View any misconfigurations along all hops from source to destination |

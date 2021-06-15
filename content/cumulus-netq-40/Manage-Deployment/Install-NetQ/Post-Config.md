@@ -137,7 +137,7 @@ Update the activation key using the Admin UI or NetQ CLI:
 
 4. Click **Edit**.
 
-5. Enter your new configuration key in the designated text box.
+5. Enter your new configuration key in the designated entry field.
 
 6. Click **Apply**.
 

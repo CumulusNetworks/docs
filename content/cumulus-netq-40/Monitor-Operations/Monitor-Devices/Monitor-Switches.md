@@ -974,7 +974,7 @@ border01          swp54                     2461                 0              
 
 You can monitor the incoming and outgoing access control lists (ACLs) configured on a switch. This ACL resource information is available from the NetQ UI and NetQ CLI.
 
-Both the Switch card and `netq show cl-resource acl` command display the ingress/egress IPv4/IPv6 filter/mangle, ingress 802.1x filter, ingress mirror, ingress/egress PBR IPv4/IPv6 filter/mangle, ACL Regions, 18B/32B/54B Rules Key, and L4 port range checker.
+Both the Switch card and `netq show cl-resource acl` command display the ingress/egress IPv4/IPv6 filter/mangle, ingress 802.1x filter, ingress mirror, ingress/egress PBR IPv4/IPv6 filter/mangle, ACL Regions, 18B/32B/54B Rules Key, and layer 4 port range checker.
 
 {{< tabs "TabID1338" >}}
 
@@ -1177,7 +1177,7 @@ To view the disk state:
 
 1. Open the full-screen Switch card for a switch of interest:
 
-     - Type the switch name in the Global Search box, then use the card size picker to open the full-screen card, *or* 
+     - Type the switch name in the Global Search entry field, then use the card size picker to open the full-screen card, *or* 
      - Click {{<img src="https://icons.cumulusnetworks.com/03-Computers-Devices-Electronics/09-Hard-Drives/hard-drive-1.svg" height="24" width="24">}} (Switches), select **Open a switch card**, enter the switch name and select the full-screen card size.
 
 2. Click **BTRFS Utilization**.

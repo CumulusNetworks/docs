@@ -1187,6 +1187,48 @@ cumulus@spine02:~$ nv config apply
 {{</tab>}}
 {{</tabs>}}
 
+{{%notice note%}}
+When you run the `nv set vrf RED evpn vni 4001` and the `nv set vrf BLUE evpn vni 4002` commands, NVUE creates the following in the `/etc/network/interfaces` file:
+- Creates a single VXLAN device (vxlan99)
+- Assigns two VLANs automatically from the reserved VLAN range and adds `_l3` (layer 3) at the end (for example vlan220_l3 and vlan297_l3)
+- Maps the VLANs to the VNIs (bridge-vlan-vni-map 220=4001 297=4002)
+- Creates a layer 3 bridge called br_l3vni
+- Reserves and assigns a dedicated hardware address for the layer 3 bridge from the pool of MAC addresses available on the switch
+- Adds the VXLAN device to the br_l3vni bridge
+- Assigns vlan220_l3 to vrf RED and vlan297_l3 to vrf BLUE
+
+```
+cumulus@leaf01:~$ sudo cat /etc/network/interfaces
+...
+auto vlan220_l3
+iface vlan220_l3
+vrf RED
+vlan-raw-device br_l3vni
+vlan-id 220
+
+
+auto vlan297_l3
+iface vlan297_l3
+vrf BLUE
+vlan-raw-device br_l3vni
+vlan-id 297
+
+
+auto vxlan99
+iface vxlan99
+bridge-vlan-vni-map 220=4001 297=4002
+bridge-vids 220 297
+bridge-learning off
+
+auto br_l3vni
+iface br_l3vni
+bridge-ports vxlan99
+hwaddress 44:38:39:22:01:b1
+bridge-vlan-aware yes
+...
+```
+{{%/notice%}}
+
 {{</tab>}}
 {{<tab "/etc/network/interfaces">}}
 

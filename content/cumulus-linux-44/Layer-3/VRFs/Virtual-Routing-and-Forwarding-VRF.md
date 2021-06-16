@@ -799,6 +799,7 @@ cumulus@switch:~$ nv set bridge domain br_default vlan 101
 Here is the FRRouting BGP configuration:
 
 ```
+cumulus@switch:~$ nv set vrf vrf1 router bgp router-id 10.10.10.1
 cumulus@switch:~$ nv set vrf vrf1 router bgp autonomous-system 65001
 cumulus@switch:~$ nv set vrf vrf1 router bgp path-selection multipath aspath-ignore on 
 cumulus@switch:~$ nv set vrf vrf1 router bgp path-selection routerid-compare on 
@@ -808,9 +809,9 @@ cumulus@switch:~$ nv set vrf vrf1 router bgp peer-group LEAF capabilities extend
 cumulus@switch:~$ nv set vrf vrf1 router bgp peer swp1.101 peer-group LEAF
 cumulus@switch:~$ nv set vrf vrf1 router bgp peer swp1.102 peer-group LEAF
 cumulus@switch:~$ nv set vrf vrf1 router bgp address-family ipv4-unicast redistribute connected enable on
-cumulus@switch:~$ nv set vrf vrf1 router bgp peer LEAF address-family ipv4-unicast enable on
+cumulus@switch:~$ nv set vrf vrf1 router bgp peer-group LEAF address-family ipv4-unicast enable on
 cumulus@switch:~$ nv set vrf vrf1 router bgp address-family ipv6-unicast redistribute connected enable on
-cumulus@switch:~$ nv set vrf vrf1 router bgp peer LEAF address-family ipv6-unicast enable on
+cumulus@switch:~$ nv set vrf vrf1 router bgp peer-group LEAF address-family ipv6-unicast enable on
 cumulus@switch:~$ nv config apply
 ```
 

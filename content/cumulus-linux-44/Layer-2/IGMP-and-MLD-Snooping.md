@@ -135,9 +135,9 @@ cumulus@switch:~$ sudo ifreload -a
 {{< /tab >}}
 {{< /tabs >}}
 
-## Optimized Multicast Flooding (OMF) 
+## Optimized Multicast Flooding (OMF)
 
-IGMP Snooping restricts multicast forwarding only to the ports where IGMP report messages are received. If no IGMP reports are received, multicast traffic is flooded to all ports in the bridge domain (this traffic is known as unregistered multicast (URMC) traffic). To restrict this flooding to only querier ports, you must enable OMF.
+IGMP Snooping restricts multicast forwarding only to the ports where IGMP report messages are received. If no IGMP reports are received, multicast traffic is flooded to all ports in the bridge domain (this traffic is known as unregistered multicast (URMC) traffic). To restrict this flooding to only querier ports, you can enable OMF.
 
 To enable OMF:
 

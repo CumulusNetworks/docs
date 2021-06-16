@@ -761,93 +761,77 @@ cumulus@switch:~$
 
 ## Troubleshooting
 
-You can use the following `net show` commands to troubleshoot your EVPN multihoming configuration.
+Use the following commands to troubleshoot your EVPN multihoming configuration.
 
 ### Show Ethernet Segment Information
 
-The `net show evpn es` command displays the Ethernet segments across all VNIs.
+To display the Ethernet segments across all VNIs, run the NCLU `net show evpn es` command or the vtysh `show evpn es` command. For example:
 
 ```
 cumulus@switch:~$ net show evpn es
-Type: L local, R remote, N non-DF
+Type: B bypass, L local, R remote, N non-DF
 ESI                            Type ES-IF                 VTEPs
-03:44:38:39:BE:EF:AA:00:00:01  R    -                     172.0.0.22,172.0.0.23
-03:44:38:39:BE:EF:AA:00:00:02  LR   bond2             172.0.0.22,172.0.0.23
-03:44:38:39:BE:EF:AA:00:00:03  LR   bond3             172.0.0.22,172.0.0.23
-03:44:38:39:BE:EF:AA:00:00:05  L    bond1
-03:44:38:39:ff:ff:02:00:00:01  R    -                     172.0.0.24,172.0.0.25,172.0.0.26
-03:44:38:39:ff:ff:02:00:00:02  R    -                     172.0.0.24,172.0.0.25,172.0.0.26
-03:44:38:39:ff:ff:02:00:00:03  R    -                     172.0.0.24,172.0.0.25,172.0.0.26
+03:44:38:39:be:ef:aa:00:00:01  LB   bond1                 
+03:44:38:39:be:ef:aa:00:00:02  LB   bond2                 
+03:44:38:39:be:ef:aa:00:00:03  LB   bond3
 ```
 
 ### Show Ethernet Segment per VNI Information
 
-The `net show evpn es-evi` command displays the Ethernet segments learned for each VNI.
+To display the Ethernet segments learned for each VNI, run the NCLU `net show evpn es-evi` command or the vtysh `show evpn es-evi` command. For example:
 
 ```
-cumulus@switch:~$ net show evpn es-evi
+cumulus@switch:~$ show evpn es-evi
+Type: L local, R remote
 Type: L local, R remote
 VNI      ESI                            Type
-...
-1002     03:44:38:39:BE:EF:AA:00:00:02  L
-1002     03:44:38:39:BE:EF:AA:00:00:03  L
-1002     03:44:38:39:BE:EF:AA:00:00:05  L
-1001     03:44:38:39:BE:EF:AA:00:00:02  L
-1001     03:44:38:39:BE:EF:AA:00:00:03  L
-1001     03:44:38:39:BE:EF:AA:00:00:05  L
-...
+20       03:44:38:39:be:ef:aa:00:00:02  L   
+30       03:44:38:39:be:ef:aa:00:00:03  L   
+10       03:44:38:39:be:ef:aa:00:00:01  L 
 ```
 
 ### Show BGP Ethernet Segment Information
 
-The `net show bgp l2vpn evpn es` command displays the Ethernet segments across all VNIs learned via type-1 and type-4 routes.
+To display the Ethernet segments across all VNIs learned via type-1 and type-4 routes, run the NCLU `net show bgp l2vpn evpn es` command or the vtysh `show bgp l2vpn evpn es` command. For example:
 
 ```
-cumulus@switch:~$ net show bgp l2vpn evpn es
-ES Flags: L local, R remote, I inconsistent
+cumulus@switch:~$ show bgp l2vpn evpn es
+ES Flags: B - bypass, L local, R remote, I inconsistent
 VTEP Flags: E ESR/Type-4, A active nexthop
 ESI                            Flags RD                    #VNIs    VTEPs
-03:44:38:39:BE:EF:AA:00:00:01  LR    172.0.0.9:3            10       172.0.0.10(EA),172.0.0.11(EA)
-03:44:38:39:BE:EF:AA:00:00:02  LR    172.0.0.9:4            10       172.0.0.10(EA),172.0.0.11(EA)
-03:44:38:39:BE:EF:AA:00:00:03  LR    172.0.0.9:5            10       172.0.0.10(EA),172.0.0.11(EA)
-cumulus@switch:~$
+03:44:38:39:be:ef:aa:00:00:01  BLR   10.10.10.1:3          1        
+03:44:38:39:be:ef:aa:00:00:02  BLR   10.10.10.1:4          1        
+03:44:38:39:be:ef:aa:00:00:03  BLR   10.10.10.1:5          1        
+03:44:38:39:be:ef:bb:00:00:01  R     -                     1        
+03:44:38:39:be:ef:bb:00:00:02  R     -                     1        
+03:44:38:39:be:ef:bb:00:00:03  R     -                     1    
 ```
 
 ### Show BGP Ethernet Segment per VNI Information
 
-The `net show bgp l2vpn evpn es-evi` command displays the Ethernet segments per VNI learned via type-1 and type-4 routes.
+To display the Ethernet segments per VNI learned via type-1 and type-4 routes, run the NCLU `net show bgp l2vpn evpn es-evi` command or the vtysh `show bgp l2vpn evpn es-evi` command.
 
 ```
 cumulus@switch:~$ net show bgp l2vpn evpn es-evi
 Flags: L local, R remote, I inconsistent
 VTEP-Flags: E EAD-per-ES, V EAD-per-EVI
 VNI      ESI                            Flags VTEPs
+20       03:44:38:39:be:ef:aa:00:00:02  LR    10.10.10.2(V)
+20       03:44:38:39:be:ef:bb:00:00:02  R     10.10.10.3(V),10.10.10.4(V)
+30       03:44:38:39:be:ef:aa:00:00:03  LR    10.10.10.2(V)
+30       03:44:38:39:be:ef:bb:00:00:03  R     10.10.10.3(V),10.10.10.4(V)
+10       03:44:38:39:be:ef:aa:00:00:01  LR    10.10.10.2(V)
+10       03:44:38:39:be:ef:bb:00:00:01  R     10.10.10.3(V),10.10.10.4(V)
 ...
-1002     03:44:38:39:BE:EF:AA:00:00:01  R     172.0.0.22(EV),172.0.0.23(EV)
-1002     03:44:38:39:BE:EF:AA:00:00:02  LR    172.0.0.22(EV),172.0.0.23(EV)
-1002     03:44:38:39:BE:EF:AA:00:00:03  LR    172.0.0.22(EV),172.0.0.23(EV)
-1002     03:44:38:39:BE:EF:AA:00:00:05  L  
-1002     03:44:38:39:ff:ff:02:00:00:01  R     172.0.0.24(EV),172.0.0.25(EV),172.0.0.26(EV)
-1002     03:44:38:39:ff:ff:02:00:00:02  R     172.0.0.24(EV),172.0.0.25(EV),172.0.0.26(EV)
-1002     03:44:38:39:ff:ff:02:00:00:03  R     172.0.0.24(EV),172.0.0.25(EV),172.0.0.26(EV)
-1001     03:44:38:39:BE:EF:AA:00:00:01  R     172.0.0.22(EV),172.0.0.23(EV)
-1001     03:44:38:39:BE:EF:AA:00:00:02  LR    172.0.0.22(EV),172.0.0.23(EV)
-1001     03:44:38:39:BE:EF:AA:00:00:03  LR    172.0.0.22(EV),172.0.0.23(EV)
-1001     03:44:38:39:BE:EF:AA:00:00:05  L  
-1001     03:44:38:39:ff:ff:02:00:00:01  R     172.0.0.24(EV),172.0.0.25(EV),172.0.0.26(EV)
-1001     03:44:38:39:ff:ff:02:00:00:02  R     172.0.0.24(EV),172.0.0.25(EV),172.0.0.26(EV)
-1001     03:44:38:39:ff:ff:02:00:00:03  R     172.0.0.24(EV),172.0.0.25(EV),172.0.0.26(EV)
-...
-cumulus@switch:~$
 ```
 
 ### Show EAD Route Types
 
-You can use the `net show bgp l2vpn evpn route` command to view type-1 EAD routes. Just include the `ead` route type option.
+To view type-1 EAD routes, run the NCLU `net show bgp l2vpn evpn route` command or the vtysh `show bgp l2vpn evpn route` command with the `ead` route type option. For example:
 
 ```
 cumulus@switch:~$ net show bgp evpn l2vpn route type ead
-BGP table version is 30, local router ID is 172.16.0.21
+BGP table version is 3, local router ID is 10.10.10.1
 Status codes: s suppressed, d damped, h history, * valid, > best, i - internal
 Origin codes: i - IGP, e - EGP, ? - incomplete
 EVPN type-1 prefix: [1]:[ESI]:[EthTag]:[IPlen]:[VTEP-IP]
@@ -858,21 +842,35 @@ EVPN type-5 prefix: [5]:[EthTag]:[IPlen]:[IP]
 
    Network          Next Hop            Metric LocPrf Weight Path
                     Extended Community
-Route Distinguisher: 172.16.0.21:2
-*> [1]:[0]:[03:44:38:39:BE:EF:AA:00:00:01]:[128]:[0.0.0.0]
-                    172.16.0.21                          32768 i
-                    ET:8 RT:5556:1005
-*> [1]:[0]:[03:44:38:39:BE:EF:AA:00:00:02]:[128]:[0.0.0.0]
-                    172.16.0.21                          32768 i
-                    ET:8 RT:5556:1005
-*> [1]:[0]:[03:44:38:39:BE:EF:AA:00:00:03]:[128]:[0.0.0.0]
-                    172.16.0.21                          32768 i
-                    ET:8 RT:5556:1005
-
+Route Distinguisher: 10.10.10.1:2
+*> [1]:[0]:[03:44:38:39:be:ef:aa:00:00:02]:[128]:[0.0.0.0]
+                    10.10.10.1                         32768 i
+                    ET:8 RT:65101:20
+Route Distinguisher: 10.10.10.1:6
+*> [1]:[0]:[03:44:38:39:be:ef:aa:00:00:03]:[128]:[0.0.0.0]
+                    10.10.10.1                         32768 i
+                    ET:8 RT:65101:30
+Route Distinguisher: 10.10.10.1:7
+*> [1]:[0]:[03:44:38:39:be:ef:aa:00:00:01]:[128]:[0.0.0.0]
+                    10.10.10.1                         32768 i
+                    ET:8 RT:65101:10
+Route Distinguisher: 10.10.10.2:2
+*> [1]:[0]:[03:44:38:39:be:ef:aa:00:00:02]:[32]:[0.0.0.0]
+                    10.10.10.2                             0 65199 65102 i
+                    RT:65102:20 ET:8
+Route Distinguisher: 10.10.10.2:6
+*> [1]:[0]:[03:44:38:39:be:ef:aa:00:00:03]:[32]:[0.0.0.0]
+                    10.10.10.2                             0 65199 65102 i
+                    RT:65102:30 ET:8
+Route Distinguisher: 10.10.10.2:7
+*> [1]:[0]:[03:44:38:39:be:ef:aa:00:00:01]:[32]:[0.0.0.0]
+                    10.10.10.2                             0 65199 65102 i
+                    RT:65102:10 ET:8
+Route Distinguisher: 10.10.10.3:2
+*> [1]:[0]:[03:44:38:39:be:ef:bb:00:00:02]:[32]:[0.0.0.0]
+                    10.10.10.3                             0 65199 65103 i
+                    RT:65103:20 ET:8
 ...
-
-Displayed 198 prefixes (693 paths) (of requested type)
-cumulus@switch:~$
 ```
 
 ## Example Configurations

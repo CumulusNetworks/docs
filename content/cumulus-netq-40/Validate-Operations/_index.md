@@ -45,7 +45,7 @@ For a general understanding of how well your network is operating, the Network H
 
 The NetQ CLI uses the `netq check` commands to validate the various elements of your network fabric, looking for inconsistencies in configuration across your fabric, connectivity faults, missing configuration, and so forth, and then display the results for your assessment. They can be run from any node in the network.
 
-The NetQ CLI has a number of additional validation features and considerations.
+The NetQ CLI has many other validation features and considerations.
 
 ### Set a Time Period
 

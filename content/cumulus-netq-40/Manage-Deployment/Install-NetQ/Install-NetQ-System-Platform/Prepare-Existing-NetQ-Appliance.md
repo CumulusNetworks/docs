@@ -44,7 +44,7 @@ To prepare your appliance:
     Note these tips when installing:
 
     - Ignore the instructions for MAAS.
-    - Ubuntu OS should be installed on the SSD disk. Select Micron SSD with ~900 GB at step#9 in the aforementioned instructions.
+    - Ubuntu OS should be installed on the SSD disk. Select Micron SSD with ~900 GB at step #9 in the {{<exlink url="https://www.fosslinux.com/6406/how-to-install-ubuntu-server-18-04-lts.htm" text="Ubuntu instructions">}}.
 
         {{<figure src="/images/netq/install-ubuntu-ssd-selection-240.png" width="700">}}
 

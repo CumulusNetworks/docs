@@ -97,11 +97,11 @@ Switch roles are used to:
 
 When roles are assigned, the upgrade process begins with switches having the superspine role, then continues with the spine switches, leaf switches, exit switches, and finally switches with no role assigned. All switches with a given role must be successfully upgraded before the switches with the closest dependent role can be upgraded.
 
-For example, a group of seven switches are selected for upgrade. Three are spine switches and four are leaf switches. After all of the spine switches are successfully upgraded, then the leaf switches are upgraded. If one of the spine switches were to fail the upgrade, the other two spine switches are upgraded, but the upgrade process stops after that, leaving the leaf switches untouched, and the upgrade job fails.
+For example, a group of seven switches are selected for upgrade. Three are spine switches and four are leaf switches. After all the spine switches are successfully upgraded, then the leaf switches are upgraded. If one of the spine switches were to fail the upgrade, the other two spine switches are upgraded, but the upgrade process stops after that, leaving the leaf switches untouched, and the upgrade job fails.
 
 When only some of the selected switches have roles assigned in an upgrade job, the switches with roles are upgraded first and then all the switches with no roles assigned are upgraded.
 
-While role assignment is optional, using roles can prevent switches from becoming unreachable due to dependencies between switches or single attachments. And when MLAG pairs are deployed, switch roles avoid upgrade conflicts. For these reasons, NVIDIA highly recommends assigning roles to all of your switches.
+While role assignment is optional, using roles can prevent switches from becoming unreachable due to dependencies between switches or single attachments. And when MLAG pairs are deployed, switch roles avoid upgrade conflicts. For these reasons, NVIDIA highly recommends assigning roles to all your switches.
 
 ### Assign Switch Roles
 

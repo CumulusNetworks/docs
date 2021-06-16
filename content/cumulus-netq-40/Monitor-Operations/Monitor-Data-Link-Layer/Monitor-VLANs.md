@@ -1,5 +1,5 @@
 ---
-title: Monitor Virtual LANs
+title: Monitor VLANs
 author: NVIDIA
 weight: 910
 toc: 3
@@ -292,7 +292,7 @@ yes    44:38:39:00:00:37  10     leaf02            bridge                       
 
 ### View the MAC Addresses Associated with VRR Configurations
 
-You can view all of the MAC addresses associated with your VRR (virtual router reflector) interface configuration using the `netq show interfaces type macvlan` command. This is useful for determining if the specified MAC address inside a VLAN is the same or different across your VRR configuration.
+You can view all MAC addresses associated with your VRR (virtual router reflector) interface configuration using the `netq show interfaces type macvlan` command. This is useful for determining if the specified MAC address inside a VLAN is the same or different across your VRR configuration.
 
 ```
 cumulus@switch:~$ netq show interfaces type macvlan

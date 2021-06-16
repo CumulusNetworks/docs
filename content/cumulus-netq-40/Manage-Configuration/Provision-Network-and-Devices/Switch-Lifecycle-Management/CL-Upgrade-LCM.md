@@ -436,20 +436,22 @@ Upgrades can fail at any of the stages of the process, including when backing up
 
 Some of the common reasons for upgrade failures and the errors they present:
 
+<!-- vale off -->
 | Reason | Error Message |
 | --- | --- |
 | Switch is not reachable via SSH | Data could not be sent to remote host "192.168.0.15." Make sure this host can be reached over ssh: ssh: connect to host 192.168.0.15 port 22: No route to host |
 | Switch is reachable, but user-provided credentials are invalid | Invalid/incorrect username/password. Skipping remaining 2 retries to prevent account lockout: Warning: Permanently added '\<hostname-ipaddr\>' to the list of known hosts. Permission denied, please try again. |
-| Switch is reachable, but a valid Cumulus Linux license is not installed | <!-- vale off -->1587866683.880463 2020-04-26 02:04:43 license.c:336 CRIT No license file. No license installed! <!-- vale on -->|
+| Switch is reachable, but a valid Cumulus Linux license is not installed | 1587866683.880463 2020-04-26 02:04:43 license.c:336 CRIT No license file. No license installed! |
 | Upgrade task could not be run | Failure message depends on the why the task could not be run. For example: `/etc/network/interfaces`: No such file or directory |
-| Upgrade task failed | Failed at- \<task that failed\>. <!-- vale off -->For example: Failed at- MLAG check for the peerLink interface status <!-- vale on -->|
+| Upgrade task failed | Failed at- \<task that failed\>. For example: Failed at- MLAG check for the peerLink interface status |
 | Retry failed after five attempts | FAILED In all retries to process the LCM Job |
+<!-- vale on -->
 
 ## Upgrade Cumulus Linux on Switches Without NetQ Agent Installed
 
 When you want to update Cumulus Linux on switches without NetQ installed, NetQ provides the LCM switch discovery feature. The feature browses your network to find all Cumulus Linux switches, with and without NetQ currently installed and determines the versions of Cumulus Linux and NetQ installed. The results of switch discovery are then used to install or upgrade Cumulus Linux and NetQ on all discovered switches in a single procedure rather than in two steps. Up to five jobs can be run simultaneously; however, a given switch can only be contained in one running job at a time.
 
-If all of your Cumulus Linux switches already have NetQ 2.4.x or later installed, you can upgrade them directly. Refer to {{<link title="#upgrade-cumulus-linux-on-switches-with-netq-agent-installed" text="Upgrade Cumulus Linux">}}.
+If all your Cumulus Linux switches already have NetQ 2.4.x or later installed, you can upgrade them directly. Refer to {{<link title="#upgrade-cumulus-linux-on-switches-with-netq-agent-installed" text="Upgrade Cumulus Linux">}}.
 
 To discover switches running Cumulus Linux and upgrade Cumulus Linux and NetQ on them:
 
@@ -520,7 +522,7 @@ You must have an IP address in your file, but the hostname is optional and if th
 {{</notice>}}
 </div>
 
-Click **Remove** if you decide to use a different file or want to use IP address ranges instead. If you entered ranges prior to selecting the CSV file option, they remain.
+Click **Remove** if you decide to use a different file or want to use IP address ranges instead. If you entered ranges before selecting the CSV file option, they remain.
 
 {{< /tab >}}
 

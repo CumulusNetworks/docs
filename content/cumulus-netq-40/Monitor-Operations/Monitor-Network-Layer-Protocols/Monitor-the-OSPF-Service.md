@@ -578,7 +578,7 @@ spine02           swp4                      0.0.0.0      Unnumbered       Full  
 
 ### View All Events for a Given Session
 
-You can view all of the alarm and info events for the devices participating in a given session with the NetQ UI.
+You can view all alarm and info events for the devices participating in a given session with the NetQ UI.
 
 To view all events:
 

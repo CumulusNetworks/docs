@@ -527,7 +527,7 @@ leaf01            bgp          info     BGP session with peer spine01 @desc 2h:1
 
 ### View All BGP Events
 
-The Network Services|All BGP Sessions card workflow and the `netq show events type bgp` command enable you to view all of the BGP events in a designated time period.
+The Network Services|All BGP Sessions card workflow and the `netq show events type bgp` command enable you to view all BGP events in a designated time period.
 
 {{< tabs "TabID436" >}}
 
@@ -716,7 +716,7 @@ To access the single session cards, you must open the full-screen Network Servic
 
 {{%notice info%}}
 
-In order to open the BGP single session card, verify that both the peer hostname and peer ASN are valid. This ensures the information presented is reliable.
+To open the BGP single session card, verify that both the peer hostname and peer ASN are valid. This ensures the information presented is reliable.
 
 {{%/notice%}}
 
@@ -921,7 +921,7 @@ spine04           swp4(leaf04)                 default         65199      65102 
 
 ### View All Events for a Given BGP Session
 
-You can view all of the alarm and info events for the devices participating in a given session with the NetQ UI.
+You can view all alarm and info events for the devices participating in a given session with the NetQ UI.
 
 To view all events:
 

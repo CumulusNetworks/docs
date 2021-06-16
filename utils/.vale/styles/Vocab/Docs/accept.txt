@@ -66,7 +66,7 @@ http://
 HTTPie
 https://
 iburst
-ICMP
+[ICMP|icmp]
 iface
 ifdown
 ifname
@@ -86,7 +86,7 @@ jpg
 [JSON|json]
 [k|K]bps
 [KVM|kvm]
-LDAP
+[LDAP|ldap]
 ledmgrd
 Lenovo
 link url
@@ -149,13 +149,13 @@ Reflectometer
 reinstalls
 repo
 [RoCE|roce]
-rsa
+[RSA|rsa]
 rsyslog
 sbin
 [sdk|SDK]
 shortcode
 smond
-src
+[Src|src]
 [SSD|ssd]
 SSM
 subinterfaces?
@@ -172,16 +172,16 @@ syslog
 sysmonitor
 systemctl
 systemd
-TACACS
+[TACACS|tacacs]
 tacadmin
 tacplus
 [TCA|tca]
 tclass
-TCP
+[TCP|tcp]
 tcpdump
 traceroute
 [ttl|TTL]
-[UDP|udp:]
+[UDP|udp]
 uncomment
 unconfigure
 unencrypted
@@ -196,8 +196,8 @@ usr
 [VMware|vmware]
 [VNI|vni]
 [VRF|vrf]
-VRR
-VRRP
+[VRR|vrr]
+[VRRP|vrrp]
 [VTEP|vtep]
 vtysh
 [VXLAN|vxlan]

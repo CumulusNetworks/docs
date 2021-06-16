@@ -308,7 +308,7 @@ If NTP is not already installed and configured, follow these steps:
 
 2. Configure the network time server.
 
-   {{< tabs "TabID0" >}}
+   {{<tabs "TabID0" >}}
 
 {{<tab "Use NTP Configuration File" >}}
 
@@ -335,9 +335,9 @@ If you are running NTP in your out-of-band management network with VRF, specify 
           2a00:7600::41    .STEP.          16 u    - 1024    0    0.000    0.000   0.000
           \*129.250.35.250 249.224.99.213   2 u  101  128  377   14.588   -0.299   0.243
 
-   {{< /tab >}}
+   {{</tab>}}
 
-   {{< tab "Use Chrony (Ubuntu 18.04 only)" >}}
+   {{<tab "Use Chrony (Ubuntu 18.04 only)" >}}
 
    1. Install chrony if needed.
 
@@ -404,9 +404,9 @@ If you are running NTP in your out-of-band management network with VRF, specify 
           Update interval : 115.2 seconds
           Leap status     : Normal
 
-{{</tab >}}
+{{</tab>}}
 
-{{</tabs >}}
+{{</tabs>}}
 
 ### Obtain NetQ Agent Software Package
 
@@ -422,8 +422,8 @@ root@ubuntu:~# sudo wget -O- https://apps3.cumulusnetworks.com/setup/cumulus-app
 
 2. Add the Ubuntu repository:
 
-    {{< tabs "TabID2" >}}
-{{< tab "Ubuntu 16.04" >}}
+    {{<tabs "TabID2" >}}
+{{<tab "Ubuntu 16.04" >}}
 
 Create the file `/etc/apt/sources.list.d/cumulus-host-ubuntu-xenial.list` and add the following line:
 
@@ -434,7 +434,7 @@ deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb xenial netq-latest
 ...
 ```
 
-{{</tab >}}
+{{</tab>}}
 
 {{<tab "Ubuntu 18.04" >}}
 
@@ -447,9 +447,9 @@ deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb bionic netq-latest
 ...
 ```
 
-{{</tab >}}
+{{</tab>}}
 
-{{</tabs >}}
+{{</tabs>}}
 
     {{<notice note>}}
 The use of <code>netq-latest</code> in these examples means that a <code>get</code> to the repository always retrieves the latest version of NetQ, even in the case where a major version update has been made. If you want to keep the repository on a specific version - such as <code>netq-4.0</code> - use that instead.

@@ -26,7 +26,7 @@ Run the following command on your NetQ platform server or NetQ Appliance:
 cumulus@hostname:~$ netq install standalone full interface eth0 bundle /mnt/installables/NetQ-4.0.0.tgz
 ```
 
-{{</tab >}}
+{{</tab>}}
 
 {{<tab "On-premises, Server Cluster Deployment" >}}
 
@@ -36,9 +36,9 @@ Run the following commands on your *master* node, using the IP addresses of your
 cumulus@<hostname>:~$ netq install cluster full interface eth0 bundle /mnt/installables/NetQ-4.0.0.tgz workers <worker-1-ip> <worker-2-ip>
 ```
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}
 
 {{<notice tip>}}
 You can specify the IP address instead of the interface name here: use <code>ip-addr &lt;IP address&gt;</code> in place of <code>interface &lt;ifname&gt;</code> above.
@@ -81,7 +81,7 @@ Run the following command on your NetQ Cloud Appliance with the `config-key` sen
 cumulus@<hostname>:~$ netq install opta standalone full interface eth0 bundle /mnt/installables/NetQ-4.0.0-opta.tgz config-key <your-config-key-from-email> proxy-host <proxy-hostname> proxy-port <proxy-port>
 ```
 
-{{</tab >}}
+{{</tab>}}
 
 {{<tab "Cloud, Server Cluster Deployment" >}}
 
@@ -91,9 +91,9 @@ Run the following commands on your *master* NetQ Cloud Appliance with the `confi
 cumulus@<hostname>:~$ netq install opta cluster full interface eth0 bundle /mnt/installables/NetQ-4.0.0-opta.tgz config-key <your-config-key-from-email> workers <worker-1-ip> <worker-2-ip> proxy-host <proxy-hostname> proxy-port <proxy-port>
 ```
 
-{{</tab >}}
+{{</tab>}}
 
-{{</tabs >}}
+{{</tabs>}}
 
 {{<notice tip>}}
 You can specify the IP address instead of the interface name here: use <code>ip-addr &lt;IP address&gt;</code> in place of <code>interface eth0</code> above.

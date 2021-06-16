@@ -45,17 +45,17 @@ When entering a time value in the <code>netq show evpn</code> command, you must 
 
 You can view a summary of BGP service with the NetQ UI or the NetQ CLI.
 
-{{< tabs "TabID48" >}}
+{{<tabs "TabID48" >}}
 
-{{< tab "NetQ UI" >}}
+{{<tab "NetQ UI" >}}
 
 To view the summary, open the small Network Services|All BGP Sessions card.
 
 {{<figure src="/images/netq/ntwk-svcs-all-bgp-small-300.png" width="200" >}}
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "NetQ CLI" >}}
+{{<tab "NetQ CLI" >}}
 
 To view the summary, run `netq show bgp`.
 
@@ -122,9 +122,9 @@ spine04           swp3(leaf03)                 default         65199      65102 
 spine04           swp4(leaf04)                 default         65199      65102      3/-/18       Fri Oct  2 22:39:00 2020
 ```
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}
 
 ### View the Distribution of Sessions and Alarms
 
@@ -132,9 +132,9 @@ It is useful to know the number of network nodes running the BGP protocol over a
 
 It is also useful to compare the number of nodes running BGP with unestablished sessions with the alarms present at the same time to determine if there is any correlation between the issues and the ability to establish a BGP session. This is visible with the NetQ UI.
 
-{{< tabs "TabID135" >}}
+{{<tabs "TabID135" >}}
 
-{{< tab "NetQ UI" >}}
+{{<tab "NetQ UI" >}}
 
 To view these distributions, open the medium Network Services|All BGP Sessions card.
 
@@ -142,9 +142,9 @@ To view these distributions, open the medium Network Services|All BGP Sessions c
 
 In this example, we see that 10 nodes are running the BGP protocol, there are no nodes with unestablished sessions, and that 54 LLDP-related alarms have occurred in the last 24 hours. If a visual correlation between the alarms and unestablished sessions is apparent, you can dig a little deeper with the large Network Services|All BGP Sessions card.
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "NetQ CLI" >}}
+{{<tab "NetQ CLI" >}}
 
 To view the number of switches running the BGP service, run:
 
@@ -217,17 +217,17 @@ spine04           swp3(leaf03)                 default         65199      65102 
 spine04           swp4(leaf04)                 default         65199      65102      3/-/18       Fri Oct  2 22:39:00 2020
 ```
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}
 
 ### View Devices with the Most BGP Sessions
 
 You can view the load from BGP on your switches and hosts using the large Network Services|All BGP Sessions card or the NetQ CLI. This data enables you to see which switches are handling the most BGP sessions currently, validate that is what is expected based on your network design, and compare that with data from an earlier time to look for any differences.
 
-{{< tabs "TabID228" >}}
+{{<tabs "TabID228" >}}
 
-{{< tab "NetQ UI" >}}
+{{<tab "NetQ UI" >}}
 
 To view switches and hosts with the most BGP sessions:
 
@@ -255,9 +255,9 @@ To compare this data with the same data at a previous time:
 
 <div style="padding-left: 18px;">You can now see whether there are significant differences between this time and the original time. If the changes are unexpected, you can investigate further by looking at another time frame, determining if more nodes are now running BGP than previously, looking for changes in the topology, and so forth.</div>
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "NetQ CLI" >}}
+{{<tab "NetQ CLI" >}}
 
 To determine the devices with the most sessions, run `netq show bgp`. Then count the sessions on each device.
 
@@ -324,9 +324,9 @@ spine04           swp3(leaf03)                 default         65199      65102 
 spine04           swp4(leaf04)                 default         65199      65102      3/-/18       Fri Oct  2 22:39:00 2020
 ```
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}
 
 ### View Devices with the Most Unestablished BGP Sessions
 
@@ -355,9 +355,9 @@ include:
 
 You can view the BGP configuration information for a given device from the NetQ UI or the NetQ CLI.
 
-{{< tabs "TabID358" >}}
+{{<tabs "TabID358" >}}
 
-{{< tab "NetQ UI" >}}
+{{<tab "NetQ UI" >}}
 
 1. Open the full-screen Network Services|All BGP Sessions card.
 
@@ -367,9 +367,9 @@ You can view the BGP configuration information for a given device from the NetQ 
 
     {{<figure src="/images/netq/ntwk-svcs-all-bgp-fullscr-allsess-tab-filterbyHn-320.png" width="500">}}
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "NetQ CLI" >}}
+{{<tab "NetQ CLI" >}}
 
 Run the `netq show bgp` command with the `hostname` option.
 
@@ -391,17 +391,17 @@ spine02           swp2(leaf02)                 default         65199      65101 
 
 ```
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}
 
 ### View BGP Configuration Information for a Given ASN
 
 You can view the BGP configuration information for a given ASN from the NetQ UI or the NetQ CLI.
 
-{{< tabs "TabID402" >}}
+{{<tabs "TabID402" >}}
 
-{{< tab "NetQ UI" >}}
+{{<tab "NetQ UI" >}}
 
 1. Open the full-screen Network Services|All BGP Sessions card.
 
@@ -417,9 +417,9 @@ You may want to pause the auto-refresh feature during this process to avoid the 
 
     {{<figure src="/images/netq/ntwk-svcs-all-bgp-fullscr-allsess-tab-filterbyASN-320.png" width="700">}}
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "NetQ CLI" >}}
+{{<tab "NetQ CLI" >}}
 
 Run the `netq show bgp` command with the `asn <number-asn>` option.
 
@@ -444,9 +444,9 @@ leaf04            swp52(spine02)               default         65102      65199 
 leaf04            swp51(spine01)               default         65102      65199      7/-/36       Fri Oct  2 22:39:00 2020
 ```
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}
 
 <!-- vale off -->
 ### View Devices with the Most BGP-related Alarms
@@ -454,9 +454,9 @@ leaf04            swp51(spine01)               default         65102      65199 
 
 Switches or hosts experiencing a large number of BGP alarms may indicate a configuration or performance issue that needs further investigation. You can view this information using the NetQ UI or NetQ CLI.
 
-{{< tabs "TabID455" >}}
+{{<tabs "TabID455" >}}
 
-{{< tab "NetQ UI" >}}
+{{<tab "NetQ UI" >}}
 
 With the NetQ UI, you can view the devices sorted by the number of BGP alarms and then use the Switches card workflow or the Events|Alarms card workflow to gather more information about possible causes for the alarms.
 
@@ -478,9 +478,9 @@ Where to go next depends on what data you see, but a few options include:
 
 - Click **Show All Sessions** to investigate all BGP sessions with events in the full-screen card.
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "NetQ CLI" >}}
+{{<tab "NetQ CLI" >}}
 
 To view the switches and hosts with the most BGP alarms and informational events, run the `netq show events` command with the `type` option set to *bgp*, and optionally the `between` option set to display the events within a given time range. Count the events associated with each switch.
 
@@ -521,17 +521,17 @@ leaf01            bgp          info     BGP session with peer spine01 @desc 2h:1
 ...
 ```
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}
 
 ### View All BGP Events
 
 The Network Services|All BGP Sessions card workflow and the `netq show events type bgp` command enable you to view all BGP events in a designated time period.
 
-{{< tabs "TabID436" >}}
+{{<tabs "TabID436" >}}
 
-{{< tab "NetQ UI" >}}
+{{<tab "NetQ UI" >}}
 
 To view all BGP events:
 
@@ -554,9 +554,9 @@ Where to go next depends on what data you see, but a couple of options include:
 
 To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner.
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "NetQ CLI" >}}
+{{<tab "NetQ CLI" >}}
 
 To view all BGP alarms, run:
 
@@ -603,9 +603,9 @@ leaf01            bgp          info     BGP session with peer spine01 @desc 2h:1
 ...
 ```
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}
 
 ### View Details for All Devices Running BGP
 
@@ -621,9 +621,9 @@ To return to your workbench, click <img src="https://icons.cumulusnetworks.com/0
 
 You can view attributes of all BGP sessions in your network with the NetQ UI or NetQ CLI.
 
-{{< tabs "TabID526" >}}
+{{<tabs "TabID526" >}}
 
-{{< tab "NetQ UI" >}}
+{{<tab "NetQ UI" >}}
 
 To view all session details, open the full-screen Network Services|All BGP Sessions card and click the **All Sessions** tab.
 
@@ -633,9 +633,9 @@ Use the icons above the table to select/deselect, filter, and export items in th
 
 To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner.
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "NetQ CLI" >}}
+{{<tab "NetQ CLI" >}}
 
 To view session details, run `netq show bgp`.
 
@@ -702,9 +702,9 @@ spine04           swp3(leaf03)                 default         65199      65102 
 spine04           swp4(leaf04)                 default         65199      65102      3/-/18       Fri Oct  2 22:39:00 2020
 ```
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}
 
 ## Monitor a Single BGP Session
 
@@ -739,9 +739,9 @@ On the medium and large single BGP session cards, the status of the sessions is 
 
 You can view information about a given BGP session using the NetQ UI or NetQ CLI.
 
-{{< tabs "TabID737" >}}
+{{<tabs "TabID737" >}}
 
-{{< tab "NetQ UI" >}}
+{{<tab "NetQ UI" >}}
 
 A summary of a BGP session is available from the Network Services|BGP Session card workflow, showing the node and its peer and current status.
 
@@ -763,9 +763,9 @@ To view the summary:
 
     {{<figure src="/images/netq/ntwk-svcs-single-bgp-small-230.png" width="200">}}
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "NetQ CLI" >}}
+{{<tab "NetQ CLI" >}}
 
 Run the `netq show bgp` command with the `bgp-session` option.
 
@@ -802,9 +802,9 @@ leaf03            swp51(spine01)               default         65102      65199 
 leaf04            swp51(spine01)               default         65102      65199      7/-/36       Fri Oct  2 22:39:00 2020
 ```
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}
 
 ### View BGP Session State Changes
 
@@ -874,9 +874,9 @@ To view the configuration file changes:
 
 You can view attributes of all of the BGP sessions for the devices participating in a given session with the NetQ UI and the NetQ CLI.
 
-{{< tabs "TabID873" >}}
+{{<tabs "TabID873" >}}
 
-{{< tab "NetQ UI" >}}
+{{<tab "NetQ UI" >}}
 
 To view all session details:
 
@@ -896,9 +896,9 @@ To view all session details:
 
 7. To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner.
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "NetQ CLI" >}}
+{{<tab "NetQ CLI" >}}
 
 Run the `netq show bgp` command with the `bgp-session` option.
 
@@ -915,9 +915,9 @@ spine03           swp4(leaf04)                 default         65199      65102 
 spine04           swp4(leaf04)                 default         65199      65102      3/-/18       Fri Oct  2 22:39:00 2020
 ```
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}
 
 ### View All Events for a Given BGP Session
 

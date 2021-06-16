@@ -487,9 +487,9 @@ To integrate your authentication server:
 
     You need several pieces of data from your Microsoft Azure or Google account and authentication server to complete the integration. Open your account for easy cut and paste of this data into the NetQ form.
 
-    {{< tabs "TabID468" >}}
+    {{<tabs "TabID468" >}}
 
-{{< tab "OAuth+OpenID Connect" >}}
+{{<tab "OAuth+OpenID Connect" >}}
 
 {{<figure src="/images/netq/netq-mgmt-add-sso-oauth-330.png" width="600">}}
 
@@ -529,9 +529,9 @@ To integrate your authentication server:
 
     {{<figure src="/images/netq/netq-mgmt-sso-oauth-config-enabled-330.png" width="200">}}
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "SAML" >}}
+{{<tab "SAML" >}}
 
 {{<figure src="/images/netq/netq-mgmt-add-sso-saml-330.png" width="600">}}
 
@@ -571,9 +571,9 @@ To integrate your authentication server:
 
     {{<figure src="/images/netq/netq-mgmt-sso-saml-config-enabled-330.png" width="200">}}
 
-{{< /tab >}}
+{{</tab>}}
 
-    {{< /tabs >}}
+    {{</tabs>}}
 
 ### Modify Integrations
 

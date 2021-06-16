@@ -70,9 +70,9 @@ To complete the preparation:
 
 6. If you are upgrading NetQ as a VM in the cloud from version 3.1.0 or earlier, you must increase the root volume disk image size for proper operation of the lifecycle management feature.
 
-    {{< tabs "TabID89" >}}
+    {{<tabs "TabID89" >}}
 
-{{< tab "VMware" >}}
+{{<tab "VMware" >}}
 
 1. Check the size of the existing disk in the VM to confirm it is 32 GB. In this example, the number of 1 MB blocks is 31583, or 32 GB.
 
@@ -119,9 +119,9 @@ To complete the preparation:
     /dev/sda1          63341  4772     58554   8% /
     ```
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "KVM" >}}
+{{<tab "KVM" >}}
 
 1. Check the size of the existing hard disk in the VM to confirm it is 32 GB. In this example, the number of 1 MB blocks is 31583, or 32 GB.
 
@@ -195,9 +195,9 @@ Filesystem     1M-blocks  Used Available Use% Mounted on
 /dev/vda1          63341  1193     62132   2% /
 ```
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}
 
 You can now upgrade your appliance using the NetQ Admin UI, in the next section. Alternately, you can upgrade using the CLI here: {{<link title="#Upgrade Your Platform Using the NetQ CLI" text="Upgrade Your Platform Using the NetQ CLI">}}.
 

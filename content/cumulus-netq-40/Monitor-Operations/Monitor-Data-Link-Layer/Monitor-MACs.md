@@ -52,9 +52,9 @@ When using the `between` option, the start time (`text-time`) and end time (`tex
 
 You can view all MAC addresses across your network with the NetQ UI or the NetQ CLI.
 
-{{< tabs "TabID49" >}}
+{{<tabs "TabID49" >}}
 
-{{< tab "NetQ UI" >}}
+{{<tab "NetQ UI" >}}
 
 1. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} (main menu).
 
@@ -66,9 +66,9 @@ Page through the listing or sort by MAC address.
 
 Refer to {{<link title="Monitor System Inventory/#view-all-macs" text="Monitor System Inventory">}} for descriptions of each of the displayed parameters.
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "NetQ CLI" >}}
+{{<tab "NetQ CLI" >}}
 
 Use the `netq show macs` command to view all MAC addresses.
 
@@ -95,17 +95,17 @@ yes    7a:4a:c7:bb:48:27  4001   border01          vniRED                       
 yes    ce:93:1d:e3:08:1b  4002   border01          vniBLUE                        no     Tue Oct 27 22:28:48 2020
 ```
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}
 
 ## View MAC Addresses for a Given Device
 
 You can view all MAC addresses on a given device with the NetQ UI or the NetQ CLI.
 
-{{< tabs "TabID98" >}}
+{{<tabs "TabID98" >}}
 
-{{< tab "NetQ UI" >}}
+{{<tab "NetQ UI" >}}
 
 1. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} (main menu).
 
@@ -123,9 +123,9 @@ Page through the listing.
 
 Refer to {{<link title="Monitor System Inventory/#view-all-macs" text="Monitor System Inventory">}} for descriptions of each of the displayed parameters.
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "NetQ CLI" >}}
+{{<tab "NetQ CLI" >}}
 
 Use the `netq <hostname> show macs` command to view MAC address on a given device.
 
@@ -180,17 +180,17 @@ no     46:38:39:00:00:3a  20     leaf03            vni20                        
 no     46:38:39:00:00:40  20     leaf03            bond2                          no     Tue Oct 27 22:28:24 2020
 ```
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}
 
 ## View MAC Addresses Associated with a VLAN
 
 You can determine the MAC addresses associated with a given VLAN with the NetQ UI or NetQ CLI.
 
-{{< tabs "TabID185" >}}
+{{<tabs "TabID185" >}}
 
-{{< tab "NetQ UI" >}}
+{{<tab "NetQ UI" >}}
 
 1. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} (main menu).
 
@@ -210,9 +210,9 @@ Page through the listing.
 
 Refer to {{<link title="Monitor System Inventory/#view-all-macs" text="Monitor System Inventory">}} for descriptions of each of the displayed parameters.
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "NetQ CLI" >}}
+{{<tab "NetQ CLI" >}}
 
 Use the `netq show macs` command with the `vlan` option to view the MAC addresses for a given VLAN.
 
@@ -296,17 +296,17 @@ no     46:38:39:00:00:32  10     leaf02            bond1                        
 yes    4a:32:30:8c:13:08  10     leaf02            vni10                          no     Tue Oct 27 22:28:51 2020
 ```
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}
 
 ## View MAC Addresses Associated with an Egress Port
 
 You can the MAC addresses that use a particular egress port with the NetQ UI and the NetQ CLI.
 
-{{< tabs "TabID301" >}}
+{{<tabs "TabID301" >}}
 
-{{< tab "NetQ UI" >}}
+{{<tab "NetQ UI" >}}
 
 1. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} (main menu).
 
@@ -324,9 +324,9 @@ You can the MAC addresses that use a particular egress port with the NetQ UI and
 
 Refer to {{<link title="Monitor System Inventory/#view-all-macs" text="Monitor System Inventory">}} for descriptions of each of the displayed parameters.
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "NetQ CLI" >}}
+{{<tab "NetQ CLI" >}}
 
 Use the `netq <hostname> show macs egress-port <egress-port>` command to view the MAC addresses on a given device that use a given egress port. Note that you cannot view this information across all devices.
 
@@ -349,9 +349,9 @@ yes    44:38:39:be:ef:bb  4001   leaf03            bridge                       
 yes    00:00:00:00:00:1c  30     leaf03            bridge                         no     Tue Oct 27 22:28:24 2020
 ```
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}
 
 ## View MAC Addresses Associated with VRR Configurations
 
@@ -590,9 +590,9 @@ You can get more descriptive information about changes to a given MAC address on
 | A local MAC address is flushed or expires | leaf04 (and MLAG peer leaf05) 44:38:39:00:00:5d is flushed or expires from bond4 |
 | A local MAC address moves from one interface to another interface or to another switch | leaf04: 00:08:00:00:aa:13 moved from hostbond2 to hostbond3 <br> 00:08:00:00:aa:13 moved from hostbond2 to remote dest 27.0.0.13 |
 
-{{< tabs "MAC commentary" >}}
+{{<tabs "MAC commentary" >}}
 
-{{< tab "NetQ UI" >}}
+{{<tab "NetQ UI" >}}
 
 1. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} (main menu).
 
@@ -629,9 +629,9 @@ You can get more descriptive information about changes to a given MAC address on
 
 <div style="padding-left: 18px;">A red dot on the filter icon indicates that filtering is active. To remove the filter, click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/15-Filter/filter-1.svg" width="18" height="18">}} again, then click <strong>Clear Filter</strong>.</div>
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "NetQ CLI" >}}
+{{<tab "NetQ CLI" >}}
 
 To see MAC address commentary, use the `netq show mac-commentary` command. The following examples show the commentary seen in common situations.
 
@@ -733,6 +733,6 @@ Tue Aug 25 2020 11:36:06  leaf11           1008   leaf11:  00:02:00:00:00:2d is 
 Tue Aug 25 2020 11:36:06  leaf11           1008   leaf11:  00:02:00:00:00:2d on vni 1008 remote dest changed to 27.0.0.22
 ```
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}

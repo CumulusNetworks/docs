@@ -34,9 +34,9 @@ To install NetQ:
 
     Read the descriptions carefully to be sure to select the correct type. Then follow these instructions based on your selection.
 
-    {{< tabs "TabID33" >}}
+    {{<tabs "TabID33" >}}
 
-{{< tab "Basic" >}}
+{{<tab "Basic" >}}
 
 1. Select **Basic Install**, then click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/50-Navigate/navigation-right-circle-1_1.svg" height="18" width="18"/>.
 
@@ -50,9 +50,9 @@ To install NetQ:
 
 3. Install the NetQ software according to your deployment type.
 
-    {{< tabs "TabID49" >}}
+    {{<tabs "TabID49" >}}
 
-{{< tab "Self-hosted DB" >}}
+{{<tab "Self-hosted DB" >}}
 
 - Enter or upload the NetQ 4.0.0 tarball.
 
@@ -62,9 +62,9 @@ To install NetQ:
 
     NOTE: You cannot stop the installation once it has begun.
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "Remote-hosted DB" >}}
+{{<tab "Remote-hosted DB" >}}
 
 - Enter or upload the NetQ 4.0.0 tarball.
 
@@ -76,9 +76,9 @@ To install NetQ:
 
     NOTE: You cannot stop the installation once it has begun.
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}
 
 4. Monitor the progress of the installation job. Click **Details** for a job to see more granular progress.
 
@@ -99,9 +99,9 @@ If the installation fails, a failure indication is given.
     - **No**: close the Admin UI, resolve the error, run `netq boostrap reset` and `netq bootstrap master` commands, then reopen the Admin UI to start installation again.
     - **Yes**: click {{<img src="/images/netq/adminui-install-advanced-icon-320.png" height="18" width="18" >}} to be taken to the advanced installation flow and retry the failed task. Refer to the **Advanced** tab for instructions.
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "Advanced" >}}
+{{<tab "Advanced" >}}
 
 1. Select **Advanced Install**, then click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/50-Navigate/navigation-right-circle-1_1.svg" height="18" width="18"/>.
 
@@ -147,17 +147,17 @@ If you are moving from a standalone to a server cluster arrangement, you can onl
 
     {{<figure src="/images/netq/adminui-server-arrange-advanced-330.png" width="600">}}
 
-{{< tabs "TabID137" >}}
+{{<tabs "TabID137" >}}
 
-{{< tab "Single Server" >}}
+{{<tab "Single Server" >}}
 
 Monitor the master configuration. When complete click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/50-Navigate/navigation-right-circle-1_1.svg" height="18" width="18"/>.
 
 {{<figure src="/images/netq/adminui-master-config-advanced-330.png" width="600">}}
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "Server Cluster" >}}
+{{<tab "Server Cluster" >}}
 
 Use the private IP addresses that you assigned to the nodes being used as worker nodes to add the worker nodes to the server cluster.
 
@@ -183,9 +183,9 @@ If either of the add worker jobs fail, an indication is given. For example, the 
 
 Refer to {{<link title="Post Installation Configuration Options/#add-more-nodes-to-your-server-cluster" text="Add More Nodes to Your Server Cluster">}} to add additional worker nodes *after* NetQ installation is complete.
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}
 
 6. Install the NetQ software.
 
@@ -217,9 +217,9 @@ Click <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/0
 
     {{<figure src="/images/netq/adminui-activate-netq-cloud-240.png" width="700" caption="Remote-hosted activation">}}
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}
 
 ## View NetQ System Health
 

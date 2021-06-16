@@ -58,9 +58,9 @@ To prepare your appliance:
 
     Ubuntu uses Netplan for network configuration. You can give your appliance an IP address using DHCP or a static address.
 
-    {{< tabs "TabID0" >}}
+    {{<tabs "TabID0" >}}
     
-{{< tab "DHCP" >}}
+{{<tab "DHCP" >}}
 
 - Create and/or edit the  */etc/netplan/01-ethernet.yaml* Netplan configuration file.
 
@@ -81,9 +81,9 @@ To prepare your appliance:
     $ sudo netplan apply
     ```
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "Static IP" >}}
+{{<tab "Static IP" >}}
 
 - Create and/or edit the  */etc/netplan/01-ethernet.yaml* Netplan configuration file.
 
@@ -110,9 +110,9 @@ To prepare your appliance:
     $ sudo netplan apply
     ```
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}
 
 5. Update the Ubuntu repository.
 

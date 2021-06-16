@@ -10,9 +10,9 @@ On initial installation, the lifecycle management feature provides an inventory 
 
 The switch inventory can be viewed from the NetQ UI and the NetQ CLI.
 
-{{< tabs "TabID13" >}}
+{{<tabs "TabID13" >}}
 
-{{< tab "NetQ UI" >}}
+{{<tab "NetQ UI" >}}
 
 A count of the switches NetQ was able to discover and the network OS versions that are running on those switches is available from the LCM dashboard.
 
@@ -30,9 +30,9 @@ Review the list:
 If you have more than one network OS version running on your switches, you can click a version segment on the Switches card graph to open a list of switches pre-filtered by that version.
 {{</notice>}}
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "NetQ CLI" >}}
+{{<tab "NetQ CLI" >}}
 
 To view a list of all switches known to lifecycle management, run:
 
@@ -74,9 +74,9 @@ leaf02            leaf       192.168.200.12            44:38:39:00:01:78  x86_64
                                                                                                         104fb9ed
 ```
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}
 
 This listing is the starting point for network OS upgrades or NetQ installations and upgrades. If the switches you want to upgrade are not present in the list, you can:
 
@@ -107,9 +107,9 @@ While role assignment is optional, using roles can prevent switches from becomin
 
 Roles can be assigned to one or more switches using the NetQ UI or the NetQ CLI.
 
-{{< tabs "TabID99" >}}
+{{<tabs "TabID99" >}}
 
-{{< tab "NetQ UI" >}}
+{{<tab "NetQ UI" >}}
 
 1. Open the LCM dashboard.
 
@@ -133,9 +133,9 @@ Roles can be assigned to one or more switches using the NetQ UI or the NetQ CLI.
 
 A bonus of assigning roles to switches is that you can then filter the list of switches by their roles by clicking the appropriate tab.
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "NetQ CLI" >}}
+{{<tab "NetQ CLI" >}}
 
 To add a role to one or more switches, run:
 
@@ -155,17 +155,17 @@ For multiple switches to be assigned the same role, separate the hostnames with 
 netq lcm add role leaf switches leaf01,leaf02,leaf03,leaf04
 ```
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}
 
 ### View Switch Roles
 
 You can view the roles assigned to the switches in the LCM inventory at any time.
 
-{{< tabs "TabID151" >}}
+{{<tabs "TabID151" >}}
 
-{{< tab "NetQ UI" >}}
+{{<tab "NetQ UI" >}}
 
 1. Open the LCM dashboard.
 
@@ -175,9 +175,9 @@ You can view the roles assigned to the switches in the LCM inventory at any time
 
     {{<figure src="/images/netq/lcm-switch-mgmt-list-300.png" width="700">}}
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "NetQ CLI" >}}
+{{<tab "NetQ CLI" >}}
 
 To view all switch roles, run:
 
@@ -219,9 +219,9 @@ leaf02            leaf       192.168.200.12            44:38:39:00:01:78  x86_64
                                                                                                         104fb9ed
 ```
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}
 
 ### Change the Role of a Switch
 
@@ -229,9 +229,9 @@ If you accidentally assign an incorrect role to a switch, it can easily be chang
 
 To change a switch role:
 
-{{< tabs "TabID179" >}}
+{{<tabs "TabID179" >}}
 
-{{< tab "NetQ UI" >}}
+{{<tab "NetQ UI" >}}
 
 1. Open the LCM dashboard.
 
@@ -245,9 +245,9 @@ To change a switch role:
 
 6. Click **Assign**.
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "NetQ CLI" >}}
+{{<tab "NetQ CLI" >}}
 
 You use the same command to assign a role as you use to change the role.
 
@@ -263,9 +263,9 @@ For multiple switches to be assigned the same role, separate the hostnames with 
 cumulus@switch:~$ netq lcm add role exit switches border01,border02
 ```
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}
 
 ## Export List of Switches
 
@@ -273,9 +273,9 @@ Using the Switch Management feature you can export a listing of all or a selecte
 
 To export the switch listing:
 
-{{< tabs "TabID223" >}}
+{{<tabs "TabID223" >}}
 
-{{< tab "NetQ UI" >}}
+{{<tab "NetQ UI" >}}
 
 1. Open the LCM dashboard.
 
@@ -289,9 +289,9 @@ To export the switch listing:
 
     {{<figure src="/images/netq/export-data-dialog-300.png" width="250">}}
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "NetQ CLI" >}}
+{{<tab "NetQ CLI" >}}
 
 Use the `json` option with the `netq lcm show switches` command to output a list of all switches in the LCM repository. Alternately, output only switches running a particular network OS version by including the `version` option.
 
@@ -301,6 +301,6 @@ cumulus@switch:~$ netq lcm show switches json
 cumulus@switch:~$ netq lcm show switches version 3.7.11 json
 ```
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}

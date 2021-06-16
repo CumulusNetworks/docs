@@ -32,13 +32,13 @@ Component information for all of the switches in your network can be viewed from
 
 - Inventory|Switches card:
     - Small: view count of switches and distribution of switch status
-    - Medium: view count of OS, license, ASIC, platform, CPU model, Disk, and memory types or versions across all switches
+    - Medium: view count of OS, ASIC, platform, CPU model, Disk, and memory types or versions across all switches
 - `netq show inventory` command:
     -View ASIC, CPU, disk, OS, and ports on all switches
 
-{{< tabs "TabID25" >}}
+{{<tabs "TabID25" >}}
 
-{{< tab "NetQ UI" >}}
+{{<tab "NetQ UI" >}}
 
 ### View the Number of Types of Any Component Deployed
 
@@ -74,20 +74,13 @@ To view the distribution:
 
 3. Hover over any of the segments in the distribution chart to highlight a specific component. Scroll down to view additional components.
 
-    {{<figure src="/images/netq/inventory-switch-medium-hover-license-230.png" width="200">}}
+   When you <em>hover</em>, a tooltip appears displaying:
+   
+   - Name or value of the component type, such as the version number or status
+   - Total number of switches with that type of component deployed compared to the total number of switches
+   - Percentage of this type with respect to all component types
 
-<div style="padding-left: 18px;">When you <em>hover</em>, a tooltip appears displaying:
-
-<ul>
-<li>Name or value of the component type, such as the version number or status</li>
-<li>Total number of switches with that type of component deployed compared to the total number of switches</li>
-<li>Percentage of this type with respect to all component types</li></ul>
-
-On the large Switch Inventory card, hovering also highlights the related components for the selected component. This is shown in blue here.
-
-{{<figure src="/images/netq/inventory-switch-large-summary-tab-hover-os-230.png" width="500">}}
-
-</div>
+   On the large Switch Inventory card, hovering also highlights the related components for the selected component.
 
 4. Choose *Rotten Switches* from the dropdown to see which, if any, switches are currently not communicating with NetQ.
 
@@ -99,9 +92,9 @@ On the large Switch Inventory card, hovering also highlights the related compone
 
 <div style="padding-left: 18px;">Here you can see the total switch count and the distribution of those that are communicating well with the NetQ appliance or VM and those that are not. In this example, there are a total of 13 switches and they are all fresh (communicating well).</div>
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "NetQ CLI" >}}
+{{<tab "NetQ CLI" >}}
 
 To view the hardware and software components for a switch, run:
 
@@ -129,9 +122,9 @@ Hostname          Switch               OS              CPU      ASIC            
 netq-ts           N/A                  Ubuntu          x86_64   N/A             N/A
 ```
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}
 
 ## View Switch Hardware Inventory
 
@@ -141,9 +134,9 @@ You can view hardware components deployed on each switch in your network.
 
 ASIC information for a switch can be viewed from either the NetQ CLI or NetQ UI.
 
-{{< tabs "TabID96" >}}
+{{<tabs "TabID96" >}}
 
-{{< tab "NetQ UI" >}}
+{{<tab "NetQ UI" >}}
 
 1. Locate the medium Inventory|Switches card on your workbench.
 
@@ -165,9 +158,9 @@ ASIC information for a switch can be viewed from either the NetQ CLI or NetQ UI.
 
 6. To return to your workbench, click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14">}} in the top right corner of the card.
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "NetQ CLI" >}}
+{{<tab "NetQ CLI" >}}
 
 To view information about the ASIC on a switch, run:
 
@@ -195,9 +188,9 @@ Hostname          Vendor               Model                          Model ID  
 netq-ts            Mellanox             Spectrum                       MT52132                   N/A            32 x 100G-QSFP28
 ```
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}
 
 ### View Motherboard Information for a Switch
 
@@ -209,9 +202,9 @@ Motherboard/platform information is available from the NetQ UI and NetQ CLI.
 - `netq show inventory board` command
     - View motherboard vendor, model, base MAC address, serial number, part number, revision, and manufacturing date on a switch
 
-{{< tabs "TabID164" >}}
+{{<tabs "TabID164" >}}
 
-{{< tab "NetQ UI">}}
+{{<tab "NetQ UI">}}
 
 1. Locate the medium Inventory|Switches card on your workbench.
 
@@ -235,9 +228,9 @@ Motherboard/platform information is available from the NetQ UI and NetQ CLI.
 
 7. To return to your workbench, click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14">}} in the top right corner of the card.
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "NetQ CLI" >}}
+{{<tab "NetQ CLI" >}}
 
 To view a list of motherboards installed in a switch, run:
 
@@ -257,9 +250,9 @@ spine01           Dell                 S6000-ON                       44:38:39:0
 
 Use the `opta` option without the `hostname` option to view the motherboard data for the NetQ On-premises or Cloud Appliance. No motherboard data is available for NetQ On-premises or Cloud VMs.
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}
 
 ### View CPU Information for a Switch
 
@@ -268,9 +261,9 @@ CPU information is available from the NetQ UI and NetQ CLI.
 - Inventory|Switches card: view CPU architecture, model, maximum operating frequency, the number of cores, and data on a switch (table)
 - `netq show inventory cpu` command: view CPU architecture, model, maximum operating frequency, and the number of cores on a switch
 
-{{< tabs "TabID232" >}}
+{{<tabs "TabID232" >}}
 
-{{< tab "NetQ UI" >}}
+{{<tab "NetQ UI" >}}
 
 1. Locate the Inventory|Switches card on your workbench.
 
@@ -290,9 +283,9 @@ CPU information is available from the NetQ UI and NetQ CLI.
 
 6. To return to your workbench, click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14">}} in the top right corner of the card.
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "NetQ CLI" >}}
+{{<tab "NetQ CLI" >}}
 
 To view CPU information for a switch in your network, run:
 
@@ -322,9 +315,9 @@ netq-ts           x86_64   Intel Xeon Processor (Skylake, N/A        8
                            IBRS)
 ```
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}
 
 ### View Disk Information for a Switch
 
@@ -333,9 +326,9 @@ Disk information is available from the NetQ UI and NetQ CLI.
 - Inventory|Switches card: view disk vendor, size, revision, model, name, transport, and type on a switch (table)
 - `netq show inventory disk` command: view disk name, type, transport, size, vendor, and model on all devices
 
-{{< tabs "TabID336" >}}
+{{<tabs "TabID336" >}}
 
-{{< tab "NetQ UI" >}}
+{{<tab "NetQ UI" >}}
 
 1. Locate the Inventory|Switches card on your workbench.
 
@@ -357,9 +350,9 @@ Disk information is available from the NetQ UI and NetQ CLI.
 
 6. To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner of the card.
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "NetQ CLI" >}}
+{{<tab "NetQ CLI" >}}
 
 To view disk information for a switch in your network, run:
 
@@ -388,9 +381,9 @@ Hostname          Name            Type             Transport          Size      
 netq-ts           vda             disk             N/A                265G       0x1af4               N/A
 ```
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}
 
 ### View Memory Information for a Switch
 
@@ -399,9 +392,9 @@ Memory information is available from the NetQ UI and NetQ CLI.
 - Inventory|Switches card: view memory chip vendor, name, serial number, size, speed, and type on a switch (table)
 - `netq show inventory memory`: view memory chip name, type, size, speed, vendor, and serial number on all devices
 
-{{< tabs "TabID411" >}}
+{{<tabs "TabID411" >}}
 
-{{< tab "NetQ UI" >}}
+{{<tab "NetQ UI" >}}
 
 1. Locate the medium Inventory|Switches card on your workbench.
 
@@ -421,9 +414,9 @@ Memory information is available from the NetQ UI and NetQ CLI.
 
 6. To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner of the card.
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "NetQ CLI" >}}
+{{<tab "NetQ CLI" >}}
 
 To view memory information for your switches and host servers, run:
 
@@ -455,9 +448,9 @@ netq-ts           DIMM 2          RAM              16384 MB   Unknown    QEMU   
 netq-ts           DIMM 3          RAM              16384 MB   Unknown    QEMU                 Not Specified
 ```
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}
 
 ## View Switch Software Inventory
 
@@ -470,9 +463,9 @@ OS information is available from the NetQ UI and NetQ CLI.
 - Inventory|Switches card: view OS vendor, version, and version ID on a switch (table)
 - `netq show inventory os`: view OS name and version on a switch
 
-{{< tabs "TabID1099" >}}
+{{<tabs "TabID1099" >}}
 
-{{< tab "NetQ UI" >}}
+{{<tab "NetQ UI" >}}
 
 1. Locate the Inventory|Switches card on your workbench.
 
@@ -492,9 +485,9 @@ OS information is available from the NetQ UI and NetQ CLI.
 
 6. To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner of the card.
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "NetQ CLI" >}}
+{{<tab "NetQ CLI" >}}
 
 To view OS information for a switch, run:
 
@@ -523,71 +516,9 @@ Hostname          Name            Version                              Last Chan
 netq-ts           Ubuntu          18.04                                Tue Jul 14 19:27:39 2020
 ```
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
-
-### View Cumulus Linux License Information for a Switch
-
-It is important to know when you have switches that have invalid or missing Cumulus Linux licenses, as not all features are operational without a valid license. If the license status is *Bad* or *Missing*, the license must be updated or applied for a switch to operate properly. Hosts do not require a Cumulus Linux or NetQ license.
-
-Cumulus Linux license information is available from the NetQ UI and NetQ CLI.
-
-- Inventory|Switches card: view license state on a switch (table)
-- `netq show inventory license`: view license name and state on a switch
-
-{{< tabs "TabID1154" >}}
-
-{{< tab "NetQ UI" >}}
-
-1. Locate the Inventory|Switches card on your workbench.
-
-2. Hover over the card, and change to the full-screen card using the size picker.
-
-4. The **Show All** tab is displayed by default.
-
-5. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/15-Filter/filter-1.svg" height="18" width="18">}} to quickly locate a switch that does not appear on the first page of the switch list.
-
-6. Select *hostname* from the **Field** dropdown. Then enter the hostname of the switch you want to view.
-
-   {{<figure src="/images/netq/inventory-switch-fullscr-filterbyhostname-320.png" width="300">}}
-
-    {{<figure src="/images/netq/inventory-switch-license-single-switch-filter-320.png" width="700">}}
-
-<div style="padding-left: 18px;">Scroll to the right to locate the <strong>License State</strong> and <strong>License Name</strong> columns. Based on the state value:
-<ul>
-    <li>OK: no action is required</li>
-    <li>Bad: validate the correct license is installed and has not expired</li>
-    <li>Missing: install a valid Cumulus Linux license</li>
-    <li>N/A: This device does not require a license; typically a host.</li>
-</ul>
-</div>
-
-7. To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner of the card.
-
-{{< /tab >}}
-
-{{< tab "NetQ CLI" >}}
-
-To view license information for a switch, run:
-
-```
-netq <hostname> show inventory license [opta] [around <text-time>] [json]
-```
-
-This example shows the license status for the *leaf02* switch.
-
-```
-cumulus@switch:~$ netq leaf02 show inventory license
-Matching inventory records:
-Hostname          Name            State      Last Changed
------------------ --------------- ---------- -------------------------
-leaf02            Cumulus Linux   ok         Fri Apr 19 16:01:46 2020
-```
-
-{{< /tab >}}
-
-{{< /tabs >}}
+{{</tabs>}}
 
 ### View the Cumulus Linux Packages on a Switch
 
@@ -764,26 +695,44 @@ You can narrow your focus in several ways:
 
 ## Monitor Software Services
 
-Cumulus Linux and NetQ run many services to deliver the various features of these products. You can monitor their status using the `netq show services` command. The services related to system-level operation are described here. Monitoring of other services, such as those related to routing, are described with those topics. NetQ automatically monitors the following services:
+Cumulus Linux, SONiC and NetQ run many services to deliver the various features of these products. You can monitor their status using the `netq show services` command. The services related to system-level operation are described here. Monitoring of other services, such as those related to routing, are described with those topics. NetQ automatically monitors the following services:
 
-- **bgpd**: BGP (Border Gateway Protocol) daemon
+- **aclinit**: `aclinit` service
+- **acltool**: `acltool` service
+- **bgp**: BGP (Border Gateway Protocol) service
+- **bgpd**: BGP daemon
+- **chrony**:  `chrony` service
 - **clagd**: MLAG (Multi-chassis Link Aggregation) daemon
-- **helpledmgrd**: Switch LED manager daemon
-- **lldpd**: LLDP (Link Layer Discovery Protocol) daemon
+- **cumulus-chassis-ssh**: cumulus-chassis-ssh
+- **cumulus-chassisd**:  cumulus-chassisd
+- **database**: database
+- **dhcp_relay**: DHCP relay service
+- **docker**: Docker container service
+- **ledmgrd**: Switch LED manager daemon
+- **lldp**: LLDP (Link Layer Discovery Protocol) service
+- **lldpd**: LLDP daemon
 - **mstpd**: MSTP (Multiple Spanning Tree Protocol) daemon
-- **neighmgrd**: Neighbor Manager daemon for BGP and OSPF
+- **neighmgrd**: Neighbor manager daemon for BGP and OSPF
 - **netq-agent**: NetQ Agent service
 - **netqd**: NetQ application daemon
-- **ntp**: NTP service
-- **ntpd**: NTP daemon
+- **ntp**: Network Time Protocol (NTP) service
+- **pmon**: Process monitor service
+- **portwd**: Port watch daemon
 - **ptmd**: PTM (Prescriptive Topology Manager) daemon
-- **pwmd**: PWM (Password Manager) daemon
+- **pwmd**: Password manager daemon
+- **radv**: Route advertiser service
 - **rsyslog**: Rocket-fast system event logging processing service
 - **smond**: System monitor daemon
-- **ssh**: Secure Shell service for switches and servers
-- **status**: License validation service
+- **ssh**: Secure shell service for switches and servers
+- **status**: Show services with a given status (*ok*, *error*, *warning*, *fail*)
+- **switchd**: Cumulus Linux `switchd` service for hardware acceleration
+- **swss**: SONiC switch state service daemon
+- **sx_sdk**: Spectrum ASIC SDK service
+- **syncd**: Synchronization service
 - **syslog**: System event logging service
+- **teamd**: Network team service
 - **vrf**: VRF (Virtual Route Forwarding) service
+- **wd_keepalive**: Software watchdog service
 - **zebra**: GNU Zebra routing daemon
 
 The CLI syntax for viewing the status of services is:

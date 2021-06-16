@@ -17,7 +17,7 @@ netq [<hostname>] show events [level info|level error|level warning|level critic
 
 ## View Current Time Synchronization Status
 
-You can view the current status of all devices with respect to their time synchronization with a given NTP server, stratum, and application.
+You can view the current status of all devices regarding their time synchronization with a given NTP server, stratum, and application.
 
 This example shows the time synchronization status for all devices in the NVIDIA reference architecture. You can see that all border, leaf, and spine switches rely on the out-of-band management server running *ntpq* to provide their time and that they are all in time synchronization. The out-of-band management server uses the *titan.crash-ove* server running *ntpq* to obtain and maintain time synchronization. And the NetQ server uses the *eterna.binary.net* server running *chronyc* to obtain and maintain time synchronization. The firewall switches are not time synchronized, which is appropriate. The *Stratum* value indicates the number of hierarchical levels the switch or host is from reference clock.
 
@@ -54,7 +54,7 @@ spine04           yes      oob-mgmt-server   3       ntpq
 
 When a device is out of time synchronization with the NetQ server, the collected data may be improperly processed. For example, the wrong timestamp could be applied to a piece of data, or that data might be included in an aggregated metric when is should have been included in the next bucket of the aggregated metric. This would make the presented data be slightly off or give an incorrect impression.
 
-This example shows all devices in the network that are out of time synchronization, and consequently need to be investigated.
+This example shows all devices in the network that are out of time synchronization, and therefore need to be investigated.
 
 ```
 cumulus@switch:~$ netq show ntp out-of-sync

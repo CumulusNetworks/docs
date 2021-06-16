@@ -13,7 +13,7 @@ This topic includes all commands that begin with `netq a*` and `netq b*`.
 ## netq add events-config
 <!-- vale on -->
 
-Enables suppression of any of the numerous system events, excluding them from event displays. By default all events are delivered. You can suppress events for:
+Enables suppression of any of the various system events, excluding them from event displays. By default all events are delivered. You can suppress events for:
 
 - Two years (default): useful when you do not want to see the events (essentially never show them)
 - A period of time: useful when you want to temporarily suppress events due to maintenance (typically days), or when testing a new network configuration where the switch may generate many messages that are expected and not needed beyond this time period (typically minutes or hours)

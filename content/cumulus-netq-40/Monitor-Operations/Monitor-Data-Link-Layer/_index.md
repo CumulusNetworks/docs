@@ -8,9 +8,11 @@ With NetQ, a user can monitor OSI Layer 2 devices and protocols, including switc
 
 It helps answer questions such as:
 
+<!-- vale off -->
 - Is a VLAN misconfigured?
 - Is MLAG configured correctly?
 - Is LLDP running on all of my devices?
 - Is there an STP loop?
 - What is the status of interfaces on a device?
 - Where has a given MAC address lived in my network?
+<!-- vale on -->

@@ -550,7 +550,9 @@ If you have a server cluster deployed, use the IP address of the master server.
 
 {{<tab "Cloud Deployments">}}
 
-To access and configure the CLI on your NetQ Cloud Appliance or VM, you must have your username and password to access the NetQ UI to generate AuthKeys. These keys provide authorized access (access key) and user authentication (secret key). Your credentials and NetQ Cloud addresses were provided by NVIDIA via an email titled <!-- vale off -->*Welcome to NVIDIA Cumulus NetQ!*<!-- vale on -->
+<!-- vale off -->
+To access and configure the CLI on your NetQ Cloud Appliance or VM, you must have your username and password to access the NetQ UI to generate AuthKeys. These keys provide authorized access (access key) and user authentication (secret key). Your credentials and NetQ Cloud addresses were provided by NVIDIA via an email titled *Welcome to NVIDIA Cumulus NetQ!*.
+<!-- vale on -->
 
 To generate AuthKeys:
 

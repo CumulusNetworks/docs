@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 780
 toc: 3
 ---
-To take advantage of the numerous event messages generated and processed by NetQ, you must integrate with third-party event notification applications. You can integrate NetQ with <!-- vale off -->Syslog<!-- vale on -->, PagerDuty, Slack, and Email. You may integrate with one or more of these applications simultaneously.
+To take advantage of the various event messages generated and processed by NetQ, you must integrate with third-party event notification applications. You can integrate NetQ with <!-- vale off -->Syslog<!-- vale on -->, PagerDuty, Slack, and Email. You may integrate with one or more of these applications simultaneously.
 
 In an on-premises deployment, the NetQ On-premises Appliance or VM receives the raw data stream from the NetQ Agents, processes the data, stores, and delivers events to the Notification function. Notification then filters and sends messages to any configured notification applications. In a cloud deployment, the NetQ Cloud Appliance or VM passes the raw data stream on to the NetQ Cloud service for processing and delivery.
 
@@ -1781,18 +1781,11 @@ evpn                     hostname                                   1           
 
 ## Examples of Advanced Notification Configurations
 
-Putting all of these channel, rule, and filter definitions together you
-create a complete notification configuration. The following are example
-notification configurations are created using the three-step process
-outlined above.
+Putting all these channel, rule, and filter definitions together you create a complete notification configuration. The following are example notification configurations are created using the three-step process outlined above.
 
 ### Create a Notification for BGP Events from a Selected Switch
 
-In this example, we created a notification integration with a PagerDuty
-channel called *pd-netq-events*. We then created a rule *bgpHostname*
-and a filter called *4bgpSpine* for any notifications from *spine-01*.
-The result is that any info severity event messages from Spine-01 are
-filtered to the *pd-netq-events* channel.
+This example creates a notification integration with a PagerDuty channel called *pd-netq-events*. It then creates a rule *bgpHostname* and a filter called *4bgpSpine* for any notifications from *spine-01*. The result is that any info severity event messages from Spine-01 are filtered to the *pd-netq-events* channel.
 
     cumulus@switch:~$ netq add notification channel pagerduty pd-netq-events integration-key 1234567890
     Successfully added/updated channel pd-netq-events
@@ -1823,11 +1816,7 @@ filtered to the *pd-netq-events* channel.
 
 ### Create a Notification for Warnings on a Given EVPN VNI
 
-In this example, we created a notification integration with a PagerDuty
-channel called *pd-netq-events*. We then created a rule *evpnVni* and a
-filter called *3vni42* for any warnings messages from VNI 42 on the EVPN
-overlay network. The result is that any warning severity event messages
-from VNI 42 are filtered to the *pd-netq-events* channel.
+This example creates a notification integration with a PagerDuty channel called *pd-netq-events*. It then creates a rule *evpnVni* and a filter called *3vni42* for any warnings messages from VNI 42 on the EVPN overlay network. The result is that any warning severity event messages from VNI 42 are filtered to the *pd-netq-events* channel.
 
     cumulus@switch:~$ netq add notification channel pagerduty pd-netq-events integration-key 1234567890
     Successfully added/updated channel pd-netq-events
@@ -1862,11 +1851,7 @@ from VNI 42 are filtered to the *pd-netq-events* channel.
 
 ### Create a Notification for Configuration File Changes
 
-In this example, we created a notification integration with a Slack
-channel called *slk-netq-events*. We then created a rule *sysconf* and a
-filter called *configChange* for any configuration file update messages.
-The result is that any configuration update messages are filtered to the
-*slk-netq-events* channel.
+This example creates a notification integration with a Slack channel called *slk-netq-events*. It then creates a rule *sysconf* and a filter called *configChange* for any configuration file update messages. The result is that any configuration update messages are filtered to the *slk-netq-events* channel.
 
     cumulus@switch:~$ netq add notification channel slack slk-netq-events webhook https://hooks.slack.com/services/text/moretext/evenmoretext
     Successfully added/updated channel slk-netq-events
@@ -1904,11 +1889,7 @@ The result is that any configuration update messages are filtered to the
 
 ### Create a Notification for When a Service Goes Down
 
-In this example, we created a notification integration with a Slack
-channel called *slk-netq-events*. We then created a rule *svcStatus* and
-a filter called *svcDown* for any services state messages indicating a
-service is no longer operational. The result is that any service down
-messages are filtered to the *slk-netq-events* channel.
+This example creates a notification integration with a Slack channel called *slk-netq-events*. It then creates a rule *svcStatus* and a filter called *svcDown* for any services state messages indicating a service is no longer operational. The result is that any service down messages are filtered to the *slk-netq-events* channel.
 
     cumulus@switch:~$ netq add notification channel slack slk-netq-events webhook https://hooks.slack.com/services/text/moretext/evenmoretext
     Successfully added/updated channel slk-netq-events
@@ -1948,10 +1929,7 @@ messages are filtered to the *slk-netq-events* channel.
 
 ### Create a Filter to Drop Notifications from a Given Interface
 
-In this example, we created a notification integration with a Slack
-channel called *slk-netq-events*. We then created a rule *swp52* and a
-filter called *swp52Drop* that drops all notifications for events from
-interface *swp52*.
+This example creates a notification integration with a Slack channel called *slk-netq-events*. It then creates a rule *swp52* and a filter called *swp52Drop* that drops all notifications for events from interface *swp52*.
 
     cumulus@switch:~$ netq add notification channel slack slk-netq-events webhook https://hooks.slack.com/services/text/moretext/evenmoretext
     Successfully added/updated channel slk-netq-events
@@ -1994,7 +1972,7 @@ interface *swp52*.
 
 ### Create a Notification for a Given Device that Has a Tendency to Overheat (Using Multiple Rules)
 
-In this example, we created a notification when switch *leaf04* has passed over the high temperature threshold. Two rules were needed to create this notification, one to identify the specific device and one to identify the temperature trigger. We sent the message to the *pd-netq-events* channel.
+This example creates a notification when switch *leaf04* has passed over the high temperature threshold. Two rules were needed to create this notification, one to identify the specific device and one to identify the temperature trigger. NetQ then sends the message to the *pd-netq-events* channel.
 
 ```
 cumulus@switch:~$ netq add notification channel pagerduty pd-netq-events integration-key 1234567890

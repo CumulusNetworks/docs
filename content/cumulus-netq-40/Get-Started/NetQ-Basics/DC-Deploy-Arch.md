@@ -54,7 +54,7 @@ connected to Exit 01.
 
 The physical *management* hardware includes:
 
-- OOB Management Switch: aggregation switch that connects to all of the network devices through communications with the NetQ Agent on each node
+- OOB Management Switch: aggregation switch that connects to all network devices through communications with the NetQ Agent on each node
 - NetQ Platform: hosts the telemetry software, database and user interfaces (refer to description above)
 
 These switches are connected to each of the physical network devices

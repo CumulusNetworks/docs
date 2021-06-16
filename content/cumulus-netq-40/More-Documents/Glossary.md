@@ -36,7 +36,7 @@ user documentation.
 |Switch|High-speed device that connects that receives data packets from one device or node and redirects them to other devices or nodes on a network.|
 |Telemetry server|NetQ server which receives metrics and other data from NetQ agents on leaf and spine switches and hosts.|
 |Top of Rack|Switch that connects to the network (versus internally); also known as a ToR switch.|
-|Virtual Machine|Emulation of a computer system that provides all of the functions of a particular architecture.|
+|Virtual Machine|Emulation of a computer system that provides all the functions of a particular architecture.|
 |Web-scale|A network architecture designed to deliver capabilities of large cloud service providers within an enterprise IT environment.|
 |Whitebox|Generic, off-the-shelf, switch or router hardware used in Software Defined Networks (SDN).|
 

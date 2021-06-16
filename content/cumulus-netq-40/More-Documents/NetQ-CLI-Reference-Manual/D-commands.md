@@ -344,7 +344,7 @@ Successfully deleted schedule trace leaf01toborder01
 
 ## netq del validation
 
-Removes a scheduled validation. Useful when you have created a scheduled validation for troubleshooting and you no longer need it, or if you are reaching your maximum of 15 scheduled validations and you want to prioritize one validation over another. Use the related `netq show validation settings` command to view the names of existing scheduled validations.
+Removes a scheduled validation. Useful when you have created a scheduled validation for troubleshooting and you no longer need it, or if you are reaching your maximum of 15 scheduled validations and you want to <!-- vale off -->prioritize<!-- vale on --> one validation over another. Use the related `netq show validation settings` command to view the names of existing scheduled validations.
 
 ### Syntax
 

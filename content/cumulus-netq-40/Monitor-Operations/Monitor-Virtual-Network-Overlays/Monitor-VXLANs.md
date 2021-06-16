@@ -14,9 +14,11 @@ With NetQ, a network administrator can monitor VXLANs in the data center. NetQ p
 
 It helps answer questions such as:
 
+<!-- vale off -->
 - Is my overlay configured and operating correctly?
 - Is my control plane configured correctly?
 - Can device A reach device B?
+<!-- vale on -->
 
 You can monitor your VXLANs using the following commands:
 
@@ -108,7 +110,7 @@ leaf04            13         EVPN   10.0.0.134       13     10.0.0.112()        
 ...
 ```
 
-Consequently, if you looked for the VXLAN configuration and status for last week, you would find either another configuration or no configuration. This example shows that no VXLAN configuration was present.
+Therefore, if you looked for the VXLAN configuration and status for last week, you would find either another configuration or no configuration. This example shows that no VXLAN configuration was present.
 
 ```
 cumulus@switch:~$ netq show vxlan around 7d

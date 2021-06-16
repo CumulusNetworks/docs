@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 813
 toc: 4
 ---
-This reference lists all of the NetQ-supported WJH metrics and provides a brief description of each. The full outputs vary slightly based on the type of drop and whether you are viewing the results in the NetQ UI or through one of the NetQ CLI commands.
+This reference lists all the NetQ-supported WJH metrics and provides a brief description of each. The full outputs vary slightly based on the type of drop and whether you are viewing the results in the NetQ UI or through one of the NetQ CLI commands.
 
 For instructions on how to configure and monitor What Just Happened events, refer to {{<link title="Configure and Monitor What Just Happened">}}.
 

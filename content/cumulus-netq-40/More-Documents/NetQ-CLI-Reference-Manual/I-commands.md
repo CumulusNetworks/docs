@@ -290,7 +290,7 @@ cumulus@<hostname>:~$ netq install cluster infra-job
 ## netq install cluster install-job
 <!-- vale on -->
 
-After all of the infrastructure has been prepared and configured, this command installs the NetQ software using the NetQ installation file that you have previously downloaded and stored.
+After all the infrastructure has been prepared and configured, this command installs the NetQ software using the NetQ installation file that you have previously downloaded and stored.
 
 Obtain the software release bundle from the {{<exlink url="http://support.mellanox.com/s/" text="My Mellanox support">}} page.
 
@@ -754,7 +754,7 @@ cumulus@<hostname>:~$ netq install standalone init-job
 ## netq install standalone install-job
 <!-- vale on -->
 
-After all of the infrastructure has been prepared and configured, this command installs the NetQ Platform software on the NetQ On-premises Appliance or VM using the NetQ installation file that you have previously downloaded and stored.
+After all the infrastructure has been prepared and configured, this command installs the NetQ Platform software on the NetQ On-premises Appliance or VM using the NetQ installation file that you have previously downloaded and stored.
 
 Obtain the software release bundle from the {{<exlink url="http://support.mellanox.com/s/" text="My Mellanox support">}} page.
 

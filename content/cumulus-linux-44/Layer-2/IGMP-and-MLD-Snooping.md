@@ -61,7 +61,7 @@ To disable IGMP/MLD snooping over VXLAN, run the `net add bridge <bridge> mcsnoo
 
 In the absence of a multicast router, a single switch in an IP subnet can coordinate multicast traffic flows. This switch is called the querier or the designated router. The querier generates query messages to check group membership, and processes membership reports and leave messages.
 
-To configure the querier on the switch for a {{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware bridge">}}, enable the multicast querier on the bridge and add source IP address of the queries to the VLAN.
+To configure the querier on the switch for a {{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware bridge">}}, enable the multicast querier on the bridge and add the source IP address of the queries to the VLAN.
 
 The following configuration example enables the multicast querier and sets source IP address of the queries to 10.10.10.1 (the loopback address of the switch).
 
@@ -137,16 +137,27 @@ cumulus@switch:~$ sudo ifreload -a
 
 ## Optimized Multicast Flooding (OMF)
 
-IGMP Snooping restricts multicast forwarding only to the ports where IGMP report messages are received. If no IGMP reports are received, multicast traffic is flooded to all ports in the VLAN. To restrict this flooding to only querier ports, you must enable OMF.
+IGMP Snooping restricts multicast forwarding only to the ports where IGMP report messages are received. If no IGMP reports are received, multicast traffic is flooded to all ports in the bridge domain (this traffic is known as unregistered multicast (URMC) traffic). To restrict this flooding to only querier ports, you can enable OMF.
 
 To enable OMF:
 
 1. Configure an IGMP querier. See {{<link url="#configure-the-igmp-and-mld-querier" text="Configure the IGMP and MLD Querier">}} above.
-2. In the `/etc/cumulus/switchd.conf` file, uncomment then change `bridge.unreg_v4_mcast_prune` and `bridge.unreg_v6_mcast_prune` to `TRUE`, then restart `switchd`.
+2. In the `/etc/cumulus/switchd.conf` file, uncomment and change the `bridge.unreg_mcast_init`,  `bridge.unreg_v4_mcast_prune`, and `bridge.unreg_v6_mcast_prune` settings to `TRUE`, then restart `switchd`.
 
    ```
    cumulus@switch:~$ sudo nano /etc/cumulus/switchd.conf
    ...
+   #IGMP snooping unregistered L2 multicast flood control
+   #
+   #Initialize prune module:
+   bridge.unreg_mcast_init = TRUE
+   #
+   #Note:
+   #Below configuration allowed only when bridge.unreg_mcast_init is set to TRUE
+   #
+   #Set below to TRUE to enable unregistered L2 multicast prune to mrouter ports.
+   #Default is to flood the unregistered L2 multicast
+   #
    bridge.unreg_v4_mcast_prune = TRUE
    bridge.unreg_v6_mcast_prune = TRUE
    ```
@@ -154,6 +165,10 @@ To enable OMF:
    {{<cl/restart-switchd>}}
 
 When IGMP reports are sent for a multicast group, OMF has no effect; normal IGMP Snooping behavior is followed.
+
+{{%notice note%}}
+OMF increases memory usage, which can impact scaling on Spectrum 1 switches.
+{{%/notice%}}
 
 ## Disable IGMP and MLD Snooping
 

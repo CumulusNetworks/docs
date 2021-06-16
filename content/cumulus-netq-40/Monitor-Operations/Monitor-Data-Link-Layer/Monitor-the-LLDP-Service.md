@@ -555,7 +555,9 @@ leaf01            swp51                     spine01           swp1              
 
 {{< /tabs >}}
 
+<!-- vale off -->
 ### View Switches with the Most LLDP-related Alarms
+<!-- vale on -->
 
 Switches or hosts experiencing a large number of LLDP alarms may indicate a configuration or performance issue that needs further investigation. You can view this information using the NetQ UI or NetQ CLI.
 

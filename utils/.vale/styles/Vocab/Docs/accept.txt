@@ -35,7 +35,7 @@ bootpc
 bps
 brctl
 Broadcom
-BTRFS
+[BTRFS|btrfs]
 cbl status
 chipset
 chipsets
@@ -83,9 +83,9 @@ ip6tables
 iptables
 ipv6
 jpg
-JSON
+[JSON|json]
 [k|K]bps
-KVM
+[KVM|kvm]
 LDAP
 ledmgrd
 Lenovo
@@ -102,7 +102,7 @@ mkhomedir
 [m|M]route
 mstpctl
 mstpd
-MTU
+[MTU|mtu]
 [m|M]ultihop
 multiport
 mysecret
@@ -136,7 +136,7 @@ ppp
 pps
 preconfigured
 [p|P]roto
-PSU
+[PSU|psu]
 ptmctl
 ptmd
 [pvid|PVID]
@@ -148,7 +148,7 @@ reauthentication
 Reflectometer
 reinstalls
 repo
-RoCE
+[RoCE|roce]
 rsa
 rsyslog
 sbin
@@ -156,7 +156,7 @@ sbin
 shortcode
 smond
 src
-SSD
+[SSD|ssd]
 SSM
 subinterfaces?
 subnet
@@ -175,7 +175,7 @@ systemd
 TACACS
 tacadmin
 tacplus
-TCA
+[TCA|tca]
 tclass
 TCP
 tcpdump
@@ -193,14 +193,14 @@ usr
 [vids|VIDs]
 [v|V]irtualized
 [VLAN|vlan]
-VMware
-VNI
+[VMware|vmware]
+[VNI|vni]
 [VRF|vrf]
 VRR
 VRRP
 [VTEP|vtep]
 vtysh
-VXLAN
+[VXLAN|vxlan]
 wpasupplicant
 xls
 xoff

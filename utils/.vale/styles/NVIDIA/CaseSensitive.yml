@@ -8,6 +8,4 @@ message: The word '%s' is case sensitive. Use '%s' instead.
 level: warning
 swap:
   tx: TX
-  Tx: TX
   rx: RX
-  Rx: RX

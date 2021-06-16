@@ -448,7 +448,9 @@ leaf04            swp51(spine01)               default         65102      65199 
 
 {{< /tabs >}}
 
+<!-- vale off -->
 ### View Devices with the Most BGP-related Alarms
+<!-- vale on -->
 
 Switches or hosts experiencing a large number of BGP alarms may indicate a configuration or performance issue that needs further investigation. You can view this information using the NetQ UI or NetQ CLI.
 

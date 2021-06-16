@@ -59,7 +59,9 @@ None
 
 - - -
 
+<!-- vale off -->
 ## netq del events-config
+<!-- vale on -->
 
 Removes an events suppression configuration. Useful when you no longer want to suppress the specified events. Consider modifying the configuration to disable or temporarily suspend the configuration.
 
@@ -124,7 +126,7 @@ Successfully deleted Events Config eventsconfig_10
 
 Removes a channel, filter, rule, or proxy component from an event notification configuration. This is commonly done when:
 
-- You retire selected channels from a given notification application (Slack, PagerDuty, <!-- vale off -->Syslog<!-- vale on -->, or Email) and you no longer need the configuration in NetQ
+- You retire selected channels from a given notification application (Slack, PagerDuty, `syslog`, or Email) and you no longer need the configuration in NetQ
 - A filter was temporary; for debugging for example
 - A rule no longer applies
 - A proxy is no longer needed or desired

@@ -518,7 +518,9 @@ Successfully added/updated channel pd-netq-events
 
 Refer to {{<link title="Configure System Event Notifications">}} for details about using these commands and additional examples.
 
+<!-- vale off -->
 #### Threshold-based Event Notification Commands
+<!-- vale on -->
 
 NetQ supports a set of events that are triggered by crossing a user-defined threshold, called {{<link title="Configure Threshold-Based Event Notifications" text="TCA events">}}. You configure and manage TCA events using the following commands:
 

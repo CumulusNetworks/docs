@@ -7,7 +7,7 @@ This reference provides details about each of the NetQ CLI commands, starting wi
 
 The commands are listed alphabetically by command name.
 
-- Since all commands begin with `netq`, order is determined by next required keyword
+- Because all commands begin with `netq`, order is determined by next required keyword
 - Punctuation and numbers are ordered before letters
 
 When options are available, they should be used in the order listed.

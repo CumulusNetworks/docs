@@ -117,7 +117,7 @@ bgp:
 
 ### Create Filters for Provisioning Exceptions
 
-You can configure filters to change validation errors to warnings that would normally occur due to the default expectations of the `netq check` commands. This applies to all protocols and services, except for Agents. For example, if you have provisioned BGP with configurations where a BGP peer is not expected or desired, you will get errors that a BGP peer is missing. By creating a filter, you can remove the error in favor of a warning.
+You can configure filters to change validation errors to warnings that would normally occur due to the default expectations of the `netq check` commands. This applies to all protocols and services, except for Agents. For example, if you provision BGP with configurations where a BGP peer is not expected or desired, then errors that a BGP peer is missing occur. By creating a filter, you can remove the error in favor of a warning.
 
 To create a validation filter:
 

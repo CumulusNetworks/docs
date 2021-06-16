@@ -291,7 +291,7 @@ You can enter a severity using the <code>level</code> option to further narrow t
 
 You can view system and TCA events by their severity on a networkwide basis with the NetQ UI and the NetQ CLI using the:
 
-- Events list: with events of all severities at once or filter by severity
+- Events list: with events of all severities at on time or filter by severity
 - Events|Alarms card: view events with critical severity
 - Events|Info card: view events with info, error, and warning severities
 - `netq show events level` command
@@ -528,7 +528,7 @@ You can use the <code>type</code> and <code>between</code> options to further na
 
 You can view system and TCA events by their severity on a given device with the NetQ UI and the NetQ CLI using the:
 
-- Events list: view events of all severities at once or by one severity filtered by device
+- Events list: view events of all severities at on time or by one severity filtered by device
 - Events|Alarms card: view events with critical severity filtered by device
 - Events|Info card: view events with info, error, and warning severities filtered by device
 - Switch card: view all events with critical severity on the given device

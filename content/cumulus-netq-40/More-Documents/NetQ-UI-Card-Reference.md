@@ -6,8 +6,8 @@ toc: 3
 ---
 This reference describes the cards available with the NetQ {{<version>}} graphical user interface (NetQ UI). Each item and field on the four sizes of cards is shown. You can open cards using one of two methods:
 
-- Search for the card by name in the Global Search box in the application header
-- Click {{<img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18">}}. Select a card category or scroll down. Click on the desired card. Click **Open Cards**.
+- Search for the card by name in the Global Search field in the application header
+- Click {{<img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18">}}. Select a card category or scroll down. Click the desired card. Click **Open Cards**.
 
 Cards opened on the default NetQ Workbench are not saved. Create a new workbench and open cards there to save and view the cards at a later time.
 

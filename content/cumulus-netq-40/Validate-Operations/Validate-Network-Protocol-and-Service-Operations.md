@@ -24,11 +24,15 @@ NetQ lets you validate the operation of the network protocols and services runni
 
 For a more general understanding of how well your network is operating, refer to the {{<link title="Validate Overall Network Health">}} topic.
 
+<!-- vale off -->
 ## On-demand Validations
+<!-- vale on -->
 
 When you want to validate the operation of one or more network protocols and services right now, you can create and run on-demand validations using the NetQ UI or the NetQ CLI.
 
+<!-- vale off -->
 ### Create an On-demand Validation
+<!-- vale on -->
 
 You can create on-demand validations that contain checks for protocols or services that you suspect may have issues.
 
@@ -134,7 +138,9 @@ The associated Validation Result card is accessible from the full-screen Validat
 
 {{</tabs>}}
 
+<!-- vale off -->
 ### Create an On-demand Validation with Selected Tests
+<!-- vale on -->
 
 You can include or exclude one or more of the various checks performed during a validation. Refer to {{<link title="Validation Checks">}} for a description of the tests for each protocol or service.
 
@@ -585,6 +591,7 @@ Vrf Consistency Test             : passed,
 
 Using the `include <evpn-number-range-list>` and `exclude <evpn-number-range-list>` options, you can include or exclude one or more of the various checks performed during the validation. You can select from the following EVPN validation tests:
 
+<!-- vale off -->
 | Test Number | Test Name |
 | :---------: | --------- |
 | 0 | EVPN BGP Session |
@@ -595,6 +602,7 @@ Using the `include <evpn-number-range-list>` and `exclude <evpn-number-range-lis
 | 5 | L3 VNI RMAC |
 | 6 | VLAN Consistency |
 | 7 | VRF Consistency |
+<!-- vale on -->
 
 Refer to {{<link url="#evpn-validation-tests" text="EVPN Validation Tests">}} for descriptions of these tests.
 
@@ -1117,7 +1125,7 @@ Successfully added Bgp15m running every 15m
 
 The associated Validation Result card is accessible from the full-screen Scheduled Validation Result card. Refer to {{<link title="Validate Network Protocol and Service Operations#view-scheduled-validation-results" text="View Scheduled Validation Results">}}.
 
-You might want to remove this validation once you complete your analysis. Refer to {{<link title="Validate Network Protocol and Service Operations#delete-a-scheduled-validation" text="Delete a Scheduled Validation">}}.
+You might want to remove this validation after you complete your analysis. Refer to {{<link title="Validate Network Protocol and Service Operations#delete-a-scheduled-validation" text="Delete a Scheduled Validation">}}.
 
 {{</tab>}}
 

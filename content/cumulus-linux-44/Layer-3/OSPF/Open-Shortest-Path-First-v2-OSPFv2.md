@@ -109,7 +109,7 @@ router ospf
 ```
 cumulus@leaf01:~$ nv set interface lo ip address 10.10.10.1/32
 cumulus@leaf01:~$ nv set interface swp51 ip address 10.0.1.0/31
-cumulus@leaf01:~$ nv set router ospf router-id 10.10.10.1
+cumulus@leaf01:~$ nv set vrf default router ospf router-id 10.10.10.1
 cumulus@leaf01:~$ nv set vrf default router ospf area 0 network 10.10.10.1/32
 cumulus@leaf01:~$ nv set vrf default router ospf area 0 network 10.0.1.0/31
 cumulus@leaf01:~$ nv set interface swp1 router ospf passive on
@@ -123,7 +123,7 @@ cumulus@leaf01:~$ nv config apply
 ```
 cumulus@spine01:~$ nv set interface lo ip address 10.10.10.101/32
 cumulus@spine01:~$ nv set interface swp1 ip address 10.0.1.1/31
-cumulus@spine01:~$ nv set router ospf router-id 10.10.10.101
+cumulus@spine01:~$ nv set vrf default router ospf router-id 10.10.10.101
 cumulus@spine01:~$ nv set vrf default router ospf area 0 network 10.10.10.101/32
 cumulus@spine01:~$ nv set vrf default router ospf area 0 network 10.0.1.1/31
 cumulus@spine01:~$ nv config apply
@@ -399,7 +399,7 @@ cumulus@leaf01:~$ nv config apply
 Configure OSPF:
 
 ```
-cumulus@leaf01:~$ nv set router ospf router-id 10.10.10.1
+cumulus@leaf01:~$ nv set vrf default router ospf router-id 10.10.10.1
 cumulus@leaf01:~$ nv set interface lo router ospf area 0
 cumulus@leaf01:~$ nv set interface swp51 router ospf area 0
 cumulus@leaf01:~$ nv set interface swp1 router ospf passive on
@@ -422,7 +422,7 @@ cumulus@spine01:~$ nv config apply
 Configure OSPF:
 
 ```
-cumulus@spine01:~$ nv set router ospf router-id 10.10.10.101
+cumulus@spine01:~$ nv set vrf default router ospf router-id 10.10.10.101
 cumulus@spine01:~$ nv set interface lo router ospf area 0
 cumulus@spine01:~$ nv set interface swp1 router ospf area 0
 cumulus@spine01:~$ nv set interface swp1 router ospf network-type point-to-point

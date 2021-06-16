@@ -453,7 +453,7 @@ cumulus@leaf01:~$ nv set vrf default router bgp address-family l2vpn-evpn enable
 cumulus@leaf01:~$ nv set vrf default router bgp peer 10.10.10.2 address-family l2vpn-evpn enable on
 cumulus@leaf01:~$ nv set vrf default router bgp peer 10.10.10.3 address-family l2vpn-evpn enable on
 cumulus@leaf01:~$ nv set vrf default router bgp peer 10.10.10.4 address-family l2vpn-evpn enable on
-cumulus@leaf01:~$ nv set router ospf router-id 10.10.10.1
+cumulus@leaf01:~$ nv set vrf default router ospf router-id 10.10.10.1
 cumulus@leaf01:~$ nv set interface lo router ospf area 0
 cumulus@leaf01:~$ nv set interface lo router ospf passive on
 cumulus@leaf01:~$ nv set interface swp49 router ospf area 0.0.0.0

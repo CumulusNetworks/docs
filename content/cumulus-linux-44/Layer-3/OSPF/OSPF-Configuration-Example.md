@@ -962,7 +962,7 @@ cumulus@leaf01:~$ nv set bridge domain br_default untagged 1
 cumulus@leaf01:~$ nv set interface bond1 bridge domain br_default access 10
 cumulus@leaf01:~$ nv set interface bond2 bridge domain br_default access 20
 cumulus@leaf01:~$ nv set interface bond3 bridge domain br_default access 30
-cumulus@leaf01:~$ nv set router ospf router-id 10.10.10.1
+cumulus@leaf01:~$ nv set vrf default router ospf router-id 10.10.10.1
 cumulus@leaf01:~$ nv set interface lo router ospf area 0
 cumulus@leaf01:~$ nv set interface swp51 router ospf area 0
 cumulus@leaf01:~$ nv set interface swp52 router ospf area 0
@@ -1013,7 +1013,7 @@ cumulus@leaf02:~$ nv set bridge domain br_default untagged 1
 cumulus@leaf02:~$ nv set interface bond1 bridge domain br_default access 10
 cumulus@leaf02:~$ nv set interface bond2 bridge domain br_default access 20
 cumulus@leaf02:~$ nv set interface bond3 bridge domain br_default access 30
-cumulus@leaf02:~$ nv set router ospf router-id 10.10.10.2
+cumulus@leaf02:~$ nv set vrf default router ospf router-id 10.10.10.2
 cumulus@leaf02:~$ nv set interface lo router ospf area 0
 cumulus@leaf02:~$ nv set interface swp51 router ospf area 0
 cumulus@leaf02:~$ nv set interface swp52 router ospf area 0
@@ -1044,7 +1044,7 @@ cumulus@spine01:~$ nv set interface swp1 ip address 10.10.10.101/32
 cumulus@spine01:~$ nv set interface swp2 ip address 10.10.10.101/32
 cumulus@spine01:~$ nv set interface swp5 ip address 10.10.10.101/32
 cumulus@spine01:~$ nv set interface swp6 ip address 10.10.10.101/32
-cumulus@spine01:~$ nv set router ospf router-id 10.10.10.101
+cumulus@spine01:~$ nv set vrf default router ospf router-id 10.10.10.101
 cumulus@spine01:~$ nv set interface lo router ospf area 0
 cumulus@spine01:~$ nv set interface swp1 router ospf area 0
 cumulus@spine01:~$ nv set interface swp1 router ospf network-type point-to-point
@@ -1077,7 +1077,7 @@ cumulus@spine02:~$ nv set interface swp1 ip address 10.10.10.102/32
 cumulus@spine02:~$ nv set interface swp2 ip address 10.10.10.102/32
 cumulus@spine02:~$ nv set interface swp5 ip address 10.10.10.102/32
 cumulus@spine02:~$ nv set interface swp6 ip address 10.10.10.102/32
-cumulus@spine02:~$ nv set router ospf router-id 10.10.10.102
+cumulus@spine02:~$ nv set vrf default router ospf router-id 10.10.10.102
 cumulus@spine02:~$ nv set interface lo router ospf area 0
 cumulus@spine02:~$ nv set interface swp1 router ospf area 0
 cumulus@spine02:~$ nv set interface swp1 router ospf network-type point-to-point
@@ -1122,7 +1122,7 @@ cumulus@border01:~$ nv set mlag mac-address 44:38:39:BE:EF:FF
 cumulus@border01:~$ nv set mlag backup 10.10.10.64
 cumulus@border01:~$ nv set mlag peer-ip linklocal
 cumulus@border01:~$ nv set bridge domain br_default untagged 1
-cumulus@border01:~$ nv set router ospf router-id 10.10.10.63
+cumulus@border01:~$ nv set vrf default router ospf router-id 10.10.10.63
 cumulus@border01:~$ nv set interface lo router ospf area 0
 cumulus@border01:~$ nv set interface swp51 router ospf area 0
 cumulus@border01:~$ nv set interface swp51 router ospf network-type point-to-point
@@ -1167,7 +1167,7 @@ cumulus@border02:~$ nv set mlag mac-address 44:38:39:BE:EF:FF
 cumulus@border02:~$ nv set mlag backup 10.10.10.63
 cumulus@border02:~$ nv set mlag peer-ip linklocal
 cumulus@border02:~$ nv set bridge domain br_default untagged 1
-cumulus@border02:~$ nv set router ospf router-id 10.10.10.64
+cumulus@border02:~$ nv set vrf default router ospf router-id 10.10.10.64
 cumulus@border02:~$ nv set interface lo router ospf area 0
 cumulus@border02:~$ nv set interface swp51 router ospf area 0
 cumulus@border02:~$ nv set interface swp51 router ospf network-type point-to-point
@@ -1322,9 +1322,14 @@ cumulus@leaf01:~$ sudo cat /etc/nvue.d/startup.yaml
             '20': {}
             '30': {}
           untagged: 1
+     vrf:
+      default:
+        router:
+          ospf:
+            router-id: 10.10.10.1
+            enable: on
     router:
       ospf:
-        router-id: 10.10.10.1
         enable: on
         timers:
           spf:
@@ -1464,9 +1469,14 @@ cumulus@leaf02:~$ sudo cat /etc/nvue.d/startup.yaml
             '20': {}
             '30': {}
           untagged: 1
+     vrf:
+      default:
+        router:
+          ospf:
+            router-id: 10.10.10.2
+            enable: on
     router:
       ospf:
-        router-id: 10.10.10.2
         enable: on
         timers:
           spf:
@@ -1543,9 +1553,14 @@ cumulus@spine01:~$ sudo cat /etc/nvue.d/startup.yaml
             timers:
               hello-interval: 5
               dead-interval: 60
+    vrf:
+      default:
+        router:
+          ospf:
+            router-id: 10.10.10.101
+            enable: on
     router:
       ospf:
-        router-id: 10.10.10.101
         enable: on
         timers:
           spf:
@@ -1621,9 +1636,14 @@ cumulus@spine02:~$ sudo cat /etc/nvue.d/startup.yaml
             timers:
               hello-interval: 5
               dead-interval: 60
+    vrf:
+      default:
+        router:
+          ospf:
+            router-id: 10.10.10.102
+            enable: on
     router:
       ospf:
-        router-id: 10.10.10.102
         enable: on
         timers:
           spf:
@@ -1728,9 +1748,14 @@ cumulus@border01:~$ sudo cat /etc/nvue.d/startup.yaml
       domain:
         br_default:
           untagged: 1
+    vrf:
+      default:
+        router:
+          ospf:
+            router-id: 10.10.10.63
+            enable: on
     router:
       ospf:
-        router-id: 10.10.10.63
         enable: on
         timers:
           spf:
@@ -1851,9 +1876,13 @@ cumulus@border02:~$ sudo cat /etc/nvue.d/startup.yaml
       domain:
         br_default:
           untagged: 1
-    router:
+    vrf:
+      default:
+        router:
+          ospf:
+            router-id: 10.10.10.102
+            enable: onrouter:
       ospf:
-        router-id: 10.10.10.64
         enable: on
         timers:
           spf:

@@ -35,7 +35,7 @@ Run the `what-just-happened -h` command to see all the WJH command options. (For
 The following example shows all dropped packets and the reason for the drop:
 
 ```
-root@mlx-2010-51:~# what-just-happened poll
+root@switch:~# what-just-happened poll
 #    Timestamp              sPort  dPort  VLAN  sMAC               dMAC               EthType  Src IP:Port  Dst IP:Port  IP Proto  Drop   Severity  Drop reason - Recommended action
                                                                                                                                    Group
 ---- ---------------------- ------ ------ ----- ------------------ ------------------ -------- ------------ ------------ --------- ------ --------- -----------------------------------------------
@@ -48,7 +48,7 @@ root@mlx-2010-51:~# what-just-happened poll
 The following example shows that packets were dropped five times because the source MAC address equals the destination MAC address:
 
 ```
-cumulus@switch:~$ what-just-happened poll --aggregate
+root@switch:~# what-just-happened poll --aggregate
 Sample Window : 2021/06/16 12:57:23.046 - 2021/06/16 14:46:17.701
 
 #  sPort  VLAN  sMAC               dMAC               EthType  Src IP:Port  Dst IP:Port  IP Proto  Count  Severity  Drop reason - Recommended action
@@ -57,10 +57,10 @@ Sample Window : 2021/06/16 12:57:23.046 - 2021/06/16 14:46:17.701
 2  swp1   N/A   44:38:39:00:a4:80  44:38:39:00:a4:80  IPv4     0.0.0.0:0    0.0.0.0:0    ip        100    Error     Source MAC equals destination MAC - Bad packet was received from peer
 ```
 
-The following example shows information about dropped packets due to forwarding-related issues and saves the information into a file in PCAP format.
+The following command saves dropped packets to a file in PCAP format
 
 ```
-root@mlx-2010-51:~# what-just-happened poll --export
+root@switch:~# what-just-happened poll --export
 PCAP file path : /var/log/mellanox/wjh/wjh_user_2021_06_16_12_03_15.pcap
 
 #    Timestamp              sPort  dPort  VLAN  sMAC               dMAC               EthType  Src IP:Port  Dst IP:Port  IP Proto  Drop   Severity  Drop reason - Recommended action

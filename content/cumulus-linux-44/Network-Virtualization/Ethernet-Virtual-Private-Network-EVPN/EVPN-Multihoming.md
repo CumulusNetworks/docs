@@ -1187,48 +1187,6 @@ cumulus@spine02:~$ nv config apply
 {{</tab>}}
 {{</tabs>}}
 
-{{%notice note%}}
-When you run the `nv set vrf RED evpn vni 4001` and the `nv set vrf BLUE evpn vni 4002` commands, NVUE creates the following in the `/etc/network/interfaces` file:
-- Creates a single VXLAN device (vxlan99)
-- Assigns two VLANs automatically from the reserved VLAN range and adds `_l3` (layer 3) at the end (for example vlan220_l3 and vlan297_l3)
-- Maps the VLANs to the VNIs (bridge-vlan-vni-map 220=4001 297=4002)
-- Creates a layer 3 bridge called br_l3vni
-- Reserves and assigns a dedicated hardware address for the layer 3 bridge from the pool of MAC addresses available on the switch
-- Adds the VXLAN device to the br_l3vni bridge
-- Assigns vlan220_l3 to vrf RED and vlan297_l3 to vrf BLUE
-
-```
-cumulus@leaf01:~$ sudo cat /etc/network/interfaces
-...
-auto vlan220_l3
-iface vlan220_l3
-vrf RED
-vlan-raw-device br_l3vni
-vlan-id 220
-
-
-auto vlan297_l3
-iface vlan297_l3
-vrf BLUE
-vlan-raw-device br_l3vni
-vlan-id 297
-
-
-auto vxlan99
-iface vxlan99
-bridge-vlan-vni-map 220=4001 297=4002
-bridge-vids 220 297
-bridge-learning off
-
-auto br_l3vni
-iface br_l3vni
-bridge-ports vxlan99
-hwaddress 44:38:39:22:01:b1
-bridge-vlan-aware yes
-...
-```
-{{%/notice%}}
-
 {{</tab>}}
 {{<tab "/etc/network/interfaces">}}
 
@@ -2463,7 +2421,949 @@ neighbor underlay activate
 {{</tabs>}}
 
 {{</tab>}}
+{{<tab "/etc/nvue.d/startup.yaml">}}
+
+{{< tabs "TabID2426 ">}}
+{{< tab "leaf01 ">}}
+
+```
+- set:
+    interface:
+      lo:
+        ip:
+          address:
+            10.10.10.1/32: {}
+        type: loopback
+      swp1:
+        type: swp
+      swp2:
+        type: swp
+      swp3:
+        type: swp
+      swp51:
+        type: swp
+        evpn:
+          multihoming:
+            uplink: on
+      swp52:
+        type: swp
+        evpn:
+          multihoming:
+            uplink: on
+      bond1:
+        bond:
+          member:
+            swp1: {}
+          lacp-bypass: on
+        type: bond
+        link:
+          mtu: 9000
+        bridge:
+          domain:
+            br_default:
+              access: 10
+        evpn:
+          multihoming:
+            segment:
+              local-id: 1
+              enable: on
+              mac-address: 44:38:39:BE:EF:AA
+              df-preference: 50000
+      bond2:
+        bond:
+          member:
+            swp2: {}
+          lacp-bypass: on
+        type: bond
+        link:
+          mtu: 9000
+        bridge:
+          domain:
+            br_default:
+              access: 20
+        evpn:
+          multihoming:
+            segment:
+              local-id: 2
+              enable: on
+              mac-address: 44:38:39:BE:EF:AA
+              df-preference: 50000
+      bond3:
+        bond:
+          member:
+            swp3: {}
+          lacp-bypass: on
+        type: bond
+        link:
+          mtu: 9000
+        bridge:
+          domain:
+            br_default:
+              access: 30
+        evpn:
+          multihoming:
+            segment:
+              local-id: 3
+              enable: on
+              mac-address: 44:38:39:BE:EF:AA
+              df-preference: 50000
+      vlan10:
+        ip:
+          address:
+            10.1.10.2/24: {}
+          vrr:
+            address:
+              10.1.10.1/24: {}
+            mac-address: 00:00:00:00:00:10
+            state:
+              up: {}
+          vrf: RED
+        type: svi
+        vlan: 10
+      vlan20:
+        ip:
+          address:
+            10.1.20.2/24: {}
+          vrr:
+            address:
+              10.1.20.1/24: {}
+            mac-address: 00:00:00:00:00:20
+            state:
+              up: {}
+          vrf: RED
+        type: svi
+        vlan: 20
+      vlan30:
+        ip:
+          address:
+            10.1.30.2/24: {}
+          vrr:
+            address:
+              10.1.30.1/24: {}
+            mac-address: 00:00:00:00:00:30
+            state:
+              up: {}
+          vrf: BLUE
+        type: svi
+        vlan: 30
+    bridge:
+      domain:
+        br_default:
+          vlan:
+            '10':
+              vni:
+                '10': {}
+            '20':
+              vni:
+                '20': {}
+            '30':
+              vni:
+                '30': {}
+    vrf:
+      RED:
+        evpn:
+          vni:
+            '4001': {}
+          enable: on
+      BLUE:
+        evpn:
+          vni:
+            '4002': {}
+          enable: on
+      default:
+        router:
+          bgp:
+            peer-group:
+              underlay:
+                remote-as: external
+                address-family:
+                  l2vpn-evpn:
+                    enable: on
+            enable: on
+            peer:
+              swp51:
+                peer-group: underlay
+                type: unnumbered
+              swp52:
+                peer-group: underlay
+                type: unnumbered
+            path-selection:
+              multipath:
+                aspath-ignore: on
+            address-family:
+              ipv4-unicast:
+                redistribute:
+                  connected:
+                    enable: on
+                enable: on
+    nve:
+      vxlan:
+        enable: on
+        source:
+          address: 10.10.10.1
+        arp-nd-suppress: on
+    system:
+      global:
+        anycast-mac: 44:38:39:BE:EF:AA
+    evpn:
+      enable: on
+      multihoming:
+        enable: on
+    router:
+      bgp:
+        enable: on
+        autonomous-system: 65101
+        router-id: 10.10.10.1
+```
+
+{{</tab>}}
+{{< tab "leaf02 ">}}
+
+```
+- set:
+    interface:
+      lo:
+        ip:
+          address:
+            10.10.10.2/32: {}
+        type: loopback
+      swp1:
+        type: swp
+      swp2:
+        type: swp
+      swp3:
+        type: swp
+      swp51:
+        type: swp
+        evpn:
+          multihoming:
+            uplink: on
+      swp52:
+        type: swp
+        evpn:
+          multihoming:
+            uplink: on
+      bond1:
+        bond:
+          member:
+            swp1: {}
+          lacp-bypass: on
+        type: bond
+        link:
+          mtu: 9000
+        bridge:
+          domain:
+            br_default:
+              access: 10
+        evpn:
+          multihoming:
+            segment:
+              local-id: 1
+              enable: on
+              mac-address: 44:38:39:BE:EF:AA
+              df-preference: 50000
+      bond2:
+        bond:
+          member:
+            swp2: {}
+          lacp-bypass: on
+        type: bond
+        link:
+          mtu: 9000
+        bridge:
+          domain:
+            br_default:
+              access: 20
+        evpn:
+          multihoming:
+            segment:
+              local-id: 2
+              enable: on
+              mac-address: 44:38:39:BE:EF:AA
+              df-preference: 50000
+      bond3:
+        bond:
+          member:
+            swp3: {}
+          lacp-bypass: on
+        type: bond
+        link:
+          mtu: 9000
+        bridge:
+          domain:
+            br_default:
+              access: 30
+        evpn:
+          multihoming:
+            segment:
+              local-id: 3
+              enable: on
+              mac-address: 44:38:39:BE:EF:AA
+              df-preference: 50000
+      vlan10:
+        ip:
+          address:
+            10.1.10.3/24: {}
+          vrr:
+            address:
+              10.1.10.1/24: {}
+            mac-address: 00:00:00:00:00:10
+            state:
+              up: {}
+          vrf: RED
+        type: svi
+        vlan: 10
+      vlan20:
+        ip:
+          address:
+            10.1.20.3/24: {}
+          vrr:
+            address:
+              10.1.20.1/24: {}
+            mac-address: 00:00:00:00:00:20
+            state:
+              up: {}
+          vrf: RED
+        type: svi
+        vlan: 20
+      vlan30:
+        ip:
+          address:
+            10.1.30.3/24: {}
+          vrr:
+            address:
+              10.1.30.1/24: {}
+            mac-address: 00:00:00:00:00:30
+            state:
+              up: {}
+          vrf: BLUE
+        type: svi
+        vlan: 30
+    bridge:
+      domain:
+        br_default:
+          vlan:
+            '10':
+              vni:
+                '10': {}
+            '20':
+              vni:
+                '20': {}
+            '30':
+              vni:
+                '30': {}
+    vrf:
+      RED:
+        evpn:
+          vni:
+            '4001': {}
+          enable: on
+      BLUE:
+        evpn:
+          vni:
+            '4002': {}
+          enable: on
+      default:
+        router:
+          bgp:
+            peer-group:
+              underlay:
+                remote-as: external
+                address-family:
+                  l2vpn-evpn:
+                    enable: on
+            enable: on
+            peer:
+              swp51:
+                peer-group: underlay
+                type: unnumbered
+              swp52:
+                peer-group: underlay
+                type: unnumbered
+            path-selection:
+              multipath:
+                aspath-ignore: on
+            address-family:
+              ipv4-unicast:
+                redistribute:
+                  connected:
+                    enable: on
+                enable: on
+    nve:
+      vxlan:
+        enable: on
+        source:
+          address: 10.10.10.2
+        arp-nd-suppress: on
+    system:
+      global:
+        anycast-mac: 44:38:39:BE:EF:AA
+    evpn:
+      enable: on
+      multihoming:
+        enable: on
+    router:
+      bgp:
+        enable: on
+        autonomous-system: 65102
+        router-id: 10.10.10.2
+```
+
+{{</tab>}}
+{{< tab "leaf03 ">}}
+
+```
+- set:
+    interface:
+      lo:
+        ip:
+          address:
+            10.10.10.3/32: {}
+        type: loopback
+      swp1:
+        type: swp
+      swp2:
+        type: swp
+      swp3:
+        type: swp
+      swp51:
+        type: swp
+        evpn:
+          multihoming:
+            uplink: on
+      swp52:
+        type: swp
+        evpn:
+          multihoming:
+            uplink: on
+      bond1:
+        bond:
+          member:
+            swp1: {}
+          lacp-bypass: on
+        type: bond
+        link:
+          mtu: 9000
+        bridge:
+          domain:
+            br_default:
+              access: 10
+        evpn:
+          multihoming:
+            segment:
+              local-id: 1
+              enable: on
+              mac-address: 44:38:39:BE:EF:BB
+              df-preference: 50000
+      bond2:
+        bond:
+          member:
+            swp2: {}
+          lacp-bypass: on
+        type: bond
+        link:
+          mtu: 9000
+        bridge:
+          domain:
+            br_default:
+              access: 20
+        evpn:
+          multihoming:
+            segment:
+              local-id: 2
+              enable: on
+              mac-address: 44:38:39:BE:EF:BB
+              df-preference: 50000
+      bond3:
+        bond:
+          member:
+            swp3: {}
+          lacp-bypass: on
+        type: bond
+        link:
+          mtu: 9000
+        bridge:
+          domain:
+            br_default:
+              access: 30
+        evpn:
+          multihoming:
+            segment:
+              local-id: 3
+              enable: on
+              mac-address: 44:38:39:BE:EF:BB
+              df-preference: 50000
+      vlan10:
+        ip:
+          address:
+            10.1.10.4/24: {}
+          vrr:
+            address:
+              10.1.10.1/24: {}
+            mac-address: 00:00:00:00:00:10
+            state:
+              up: {}
+          vrf: RED
+        type: svi
+        vlan: 10
+      vlan20:
+        ip:
+          address:
+            10.1.20.4/24: {}
+          vrr:
+            address:
+              10.1.20.1/24: {}
+            mac-address: 00:00:00:00:00:20
+            state:
+              up: {}
+          vrf: RED
+        type: svi
+        vlan: 20
+      vlan30:
+        ip:
+          address:
+            10.1.30.4/24: {}
+          vrr:
+            address:
+              10.1.30.1/24: {}
+            mac-address: 00:00:00:00:00:30
+            state:
+              up: {}
+          vrf: BLUE
+        type: svi
+        vlan: 30
+    bridge:
+      domain:
+        br_default:
+          vlan:
+            '10':
+              vni:
+                '10': {}
+            '20':
+              vni:
+                '20': {}
+            '30':
+              vni:
+                '30': {}
+    vrf:
+      RED:
+        evpn:
+          vni:
+            '4001': {}
+          enable: on
+      BLUE:
+        evpn:
+          vni:
+            '4002': {}
+          enable: on
+      default:
+        router:
+          bgp:
+            peer-group:
+              underlay:
+                remote-as: external
+                address-family:
+                  l2vpn-evpn:
+                    enable: on
+            enable: on
+            peer:
+              swp51:
+                peer-group: underlay
+                type: unnumbered
+              swp52:
+                peer-group: underlay
+                type: unnumbered
+            path-selection:
+              multipath:
+                aspath-ignore: on
+            address-family:
+              ipv4-unicast:
+                redistribute:
+                  connected:
+                    enable: on
+                enable: on
+    nve:
+      vxlan:
+        enable: on
+        source:
+          address: 10.10.10.3
+        arp-nd-suppress: on
+    system:
+      global:
+        anycast-mac: 44:38:39:BE:EF:AA
+    evpn:
+      enable: on
+      multihoming:
+        enable: on
+    router:
+      bgp:
+        enable: on
+        autonomous-system: 65103
+        router-id: 10.10.10.3
+```
+
+{{</tab>}}
+{{< tab "leaf04 ">}}
+
+```
+- set:
+    interface:
+      lo:
+        ip:
+          address:
+            10.10.10.4/32: {}
+        type: loopback
+      swp1:
+        type: swp
+      swp2:
+        type: swp
+      swp3:
+        type: swp
+      swp51:
+        type: swp
+        evpn:
+          multihoming:
+            uplink: on
+      swp52:
+        type: swp
+        evpn:
+          multihoming:
+            uplink: on
+      bond1:
+        bond:
+          member:
+            swp1: {}
+          lacp-bypass: on
+        type: bond
+        link:
+          mtu: 9000
+        bridge:
+          domain:
+            br_default:
+              access: 10
+        evpn:
+          multihoming:
+            segment:
+              local-id: 1
+              enable: on
+              mac-address: 44:38:39:BE:EF:BB
+              df-preference: 50000
+      bond2:
+        bond:
+          member:
+            swp2: {}
+          lacp-bypass: on
+        type: bond
+        link:
+          mtu: 9000
+        bridge:
+          domain:
+            br_default:
+              access: 20
+        evpn:
+          multihoming:
+            segment:
+              local-id: 2
+              enable: on
+              mac-address: 44:38:39:BE:EF:BB
+              df-preference: 50000
+      bond3:
+        bond:
+          member:
+            swp3: {}
+          lacp-bypass: on
+        type: bond
+        link:
+          mtu: 9000
+        bridge:
+          domain:
+            br_default:
+              access: 30
+        evpn:
+          multihoming:
+            segment:
+              local-id: 3
+              enable: on
+              mac-address: 44:38:39:BE:EF:BB
+              df-preference: 50000
+      vlan10:
+        ip:
+          address:
+            10.1.10.5/24: {}
+          vrr:
+            address:
+              10.1.10.1/24: {}
+            mac-address: 00:00:00:00:00:10
+            state:
+              up: {}
+          vrf: RED
+        type: svi
+        vlan: 10
+      vlan20:
+        ip:
+          address:
+            10.1.20.5/24: {}
+          vrr:
+            address:
+              10.1.20.1/24: {}
+            mac-address: 00:00:00:00:00:20
+            state:
+              up: {}
+          vrf: RED
+        type: svi
+        vlan: 20
+      vlan30:
+        ip:
+          address:
+            10.1.30.5/24: {}
+          vrr:
+            address:
+              10.1.30.1/24: {}
+            mac-address: 00:00:00:00:00:30
+            state:
+              up: {}
+          vrf: BLUE
+        type: svi
+        vlan: 30
+    bridge:
+      domain:
+        br_default:
+          vlan:
+            '10':
+              vni:
+                '10': {}
+            '20':
+              vni:
+                '20': {}
+            '30':
+              vni:
+                '30': {}
+    vrf:
+      RED:
+        evpn:
+          vni:
+            '4001': {}
+          enable: on
+      BLUE:
+        evpn:
+          vni:
+            '4002': {}
+          enable: on
+      default:
+        router:
+          bgp:
+            peer-group:
+              underlay:
+                remote-as: external
+                address-family:
+                  l2vpn-evpn:
+                    enable: on
+            enable: on
+            peer:
+              swp51:
+                peer-group: underlay
+                type: unnumbered
+              swp52:
+                peer-group: underlay
+                type: unnumbered
+            path-selection:
+              multipath:
+                aspath-ignore: on
+            address-family:
+              ipv4-unicast:
+                redistribute:
+                  connected:
+                    enable: on
+                enable: on
+    nve:
+      vxlan:
+        enable: on
+        source:
+          address: 10.10.10.4
+        arp-nd-suppress: on
+    system:
+      global:
+        anycast-mac: 44:38:39:BE:EF:AA
+    evpn:
+      enable: on
+      multihoming:
+        enable: on
+    router:
+      bgp:
+        enable: on
+        autonomous-system: 65104
+        router-id: 10.10.10.4
+```
+
+{{</tab>}}
+{{< tab "spine01 ">}}
+
+```
+- set:
+    interface:
+      lo:
+        ip:
+          address:
+            10.10.10.101/32: {}
+        type: loopback
+      swp1:
+        type: swp
+      swp2:
+        type: swp
+      swp3:
+        type: swp
+      swp4:
+        type: swp
+    router:
+      bgp:
+        autonomous-system: 65199
+        enable: on
+        router-id: 10.10.10.101
+    vrf:
+      default:
+        router:
+          bgp:
+            peer-group:
+              underlay:
+                remote-as: external
+                address-family:
+                  l2vpn-evpn:
+                    enable: on
+            enable: on
+            peer:
+              swp1:
+                peer-group: underlay
+                type: unnumbered
+              swp2:
+                peer-group: underlay
+                type: unnumbered
+              swp3:
+                peer-group: underlay
+                type: unnumbered
+              swp4:
+                peer-group: underlay
+                type: unnumbered
+            path-selection:
+              multipath:
+                aspath-ignore: on
+            address-family:
+              l2vpn-evpn:
+                enable: on
+              ipv4-unicast:
+                redistribute:
+                  connected:
+                    enable: on
+                enable: on
+```
+
+{{</tab>}}
+{{< tab "spine02 ">}}
+
+```
+- set:
+    interface:
+      lo:
+        ip:
+          address:
+            10.10.10.102/32: {}
+        type: loopback
+      swp1:
+        type: swp
+      swp2:
+        type: swp
+      swp3:
+        type: swp
+      swp4:
+        type: swp
+    router:
+      bgp:
+        autonomous-system: 65199
+        enable: on
+        router-id: 10.10.10.102
+    vrf:
+      default:
+        router:
+          bgp:
+            peer-group:
+              underlay:
+                remote-as: external
+                address-family:
+                  l2vpn-evpn:
+                    enable: on
+            enable: on
+            peer:
+              swp1:
+                peer-group: underlay
+                type: unnumbered
+              swp2:
+                peer-group: underlay
+                type: unnumbered
+              swp3:
+                peer-group: underlay
+                type: unnumbered
+              swp4:
+                peer-group: underlay
+                type: unnumbered
+            path-selection:
+              multipath:
+                aspath-ignore: on
+            address-family:
+              l2vpn-evpn:
+                enable: on
+              ipv4-unicast:
+                redistribute:
+                  connected:
+                    enable: on
+                enable: on
+```
+
+{{</tab>}}
 {{</tabs>}}
+
+{{</tab>}}
+{{</tabs>}}
+
+{{%notice note%}}
+When you run the `nv set vrf RED evpn vni 4001` and the `nv set vrf BLUE evpn vni 4002` commands, NVUE creates the following in the `/etc/network/interfaces` file:
+- Creates a single VXLAN device (vxlan99)
+- Assigns two VLANs automatically from the reserved VLAN range and adds `_l3` (layer 3) at the end (for example vlan220_l3 and vlan297_l3)
+- Maps the VLANs to the VNIs (bridge-vlan-vni-map 220=4001 297=4002)
+- Creates a layer 3 bridge called br_l3vni
+- Reserves and assigns a dedicated hardware address for the layer 3 bridge from the pool of MAC addresses available on the switch
+- Adds the VXLAN device to the br_l3vni bridge
+- Assigns vlan220_l3 to vrf RED and vlan297_l3 to vrf BLUE
+
+```
+cumulus@leaf01:~$ sudo cat /etc/network/interfaces
+...
+auto vlan220_l3
+iface vlan220_l3
+vrf RED
+vlan-raw-device br_l3vni
+vlan-id 220
+
+
+auto vlan297_l3
+iface vlan297_l3
+vrf BLUE
+vlan-raw-device br_l3vni
+vlan-id 297
+
+
+auto vxlan99
+iface vxlan99
+bridge-vlan-vni-map 220=4001 297=4002
+bridge-vids 220 297
+bridge-learning off
+
+auto br_l3vni
+iface br_l3vni
+bridge-ports vxlan99
+hwaddress 44:38:39:22:01:b1
+bridge-vlan-aware yes
+...
+```
+{{%/notice%}}
 
 ### EVPN-MH with EVPN-PIM
 

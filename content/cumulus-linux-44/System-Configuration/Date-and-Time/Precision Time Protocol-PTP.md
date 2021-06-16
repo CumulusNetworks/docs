@@ -11,13 +11,13 @@ A boundary clock has multiple ports; one or more master ports and one or more sl
 Cumulus Linux includes the `linuxptp` package for PTP, which uses the `phc2sys` daemon to synchronize the PTP clock with the system clock.
 
 {{%notice note%}}
+- You cannot run both PTP and NTP on the switch.
 - PTP is supported in boundary clock mode only (the switch provides timing to downstream servers; it is a slave to a higher-level clock and a master to downstream clocks).
 - The switch uses hardware time stamping to capture timestamps from an Ethernet frame at the physical layer. This allows PTP to account for delays in message transfer and greatly improves the accuracy of time synchronization.
 - IPv4 and IPv6 UDP PTP packets are supported.
 - Only a single PTP domain per network is supported.
-- PTP is supported on BGP unnumbered interfaces.
 - You can isolate PTP traffic to a non-default VRF.
-- You cannot run both PTP and NTP on the switch.
+- PTP does not support bonds.
 <!--- Multicast and mixed message mode is supported; unicast only message mode is *not* supported.-->
 {{%/notice%}}
 

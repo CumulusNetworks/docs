@@ -21,7 +21,7 @@ BFD multihop sessions are built over arbitrary paths between two systems, which 
 
 ## Configure BFD
 
-You can configure BFD by either using {{<link url="FRRouting" text="FRRouting">}} (with CUE or vtysh commands) or by specifying the configuration in the {{<link url="Prescriptive-Topology-Manager-PTM" text="PTM `topology.dot` file">}}. However, the topology file has some limitations:
+You can configure BFD by either using {{<link url="FRRouting" text="FRRouting">}} (with NCLU, NVUE, or vtysh commands) or by specifying the configuration in the {{<link url="Prescriptive-Topology-Manager-PTM" text="PTM `topology.dot` file">}}. However, the topology file has some limitations:
 
 - The topology file supports BFD IPv4 and IPv6 *single* hop sessions only; you *cannot* specify IPv4 or IPv6 *multihop* sessions in the topology file.
 - The topology file supports BFD sessions for only linklocal IPv6 peers; BFD sessions for global IPv6 peers discovered on the link are not created.
@@ -72,23 +72,23 @@ cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 The following example configures BFD for swp51 and uses the default intervals.
 
 ```
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp51 bfd enable on
-cumulus@leaf01:~$ cl config apply
+cumulus@leaf01:~$ nv set vrf default router bgp peer swp51 bfd enable on
+cumulus@leaf01:~$ nv config apply
 ```
 
 The following example configures BFD for the peer group `fabric` and sets the interval multiplier to 4, the minimum interval between received BFD control packets to 400, and the minimum interval for sending BFD control packets to 400.
 
 ```
-cumulus@leaf01:~$ cl set vrf default router bgp peer fabric bfd enable on
-cumulus@leaf01:~$ cl set vrf default router bgp peer fabric bfd detect-multiplier 4 
-cumulus@leaf01:~$ cl set vrf default router bgp peer fabric bfd min-rx-interval 400 
-cumulus@leaf01:~$ cl set vrf default router bgp peer fabric bfd min-tx-interval 400
-cumulus@leaf01:~$ cl config apply
+cumulus@leaf01:~$ nv set vrf default router bgp peer fabric bfd enable on
+cumulus@leaf01:~$ nv set vrf default router bgp peer fabric bfd detect-multiplier 4 
+cumulus@leaf01:~$ nv set vrf default router bgp peer fabric bfd min-rx-interval 400 
+cumulus@leaf01:~$ nv set vrf default router bgp peer fabric bfd min-tx-interval 400
+cumulus@leaf01:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -155,13 +155,11 @@ BFD: Type: single hop
 
 When you enable or disable BFD in OSPF, neighbors are registered and de-registered dynamically with {{<link url="Prescriptive-Topology-Manager-PTM" text="PTM">}}. When BFD is enabled on the interface, a neighbor is registered with BFD when two-way adjacency is established and deregistered when adjacency goes down. The BFD configuration is per interface and any IPv4 and IPv6 neighbors discovered on that interface inherit the configuration.
 
-To configure BFD in OSPF, run the following commands.
+The following example configures BFD in OSPF for interface swp1 and sets interval multiplier to 4, the minimum interval between *received* BFD control packets to 400, and the minimum interval for *sending* BFD control packets to 400.
 
 {{< tabs "TabID150 ">}}
 {{< tab "NCLU Commands ">}}
 
-The following example configures BFD in OSPFv3 for interface swp1 and sets interval multiplier to 4, the minimum interval between *received* BFD control packets to 400, and the minimum interval for *sending* BFD control packets to 400.
-
 ```
 cumulus@switch:~$ net add interface swp1 ospf6 bfd 4 400 400
 cumulus@switch:~$ net pending
@@ -169,27 +167,17 @@ cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ NEED COMMAND
-```
-
-{{< /tab >}}
-{{< tab "NCLU Commands ">}}
-
-The following example configures BFD in OSPFv3 for interface swp1 and sets interval multiplier to 4, the minimum interval between *received* BFD control packets to 400, and the minimum interval for *sending* BFD control packets to 400.
-
-```
-cumulus@switch:~$ net add interface swp1 ospf6 bfd 4 400 400
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
+cumulus@switch:~$ nv set interface swp1 router ospf bfd detect-multiplier 4
+cumulus@switch:~$ nv set interface swp1 router ospf bfd min-receive-interval 400
+cumulus@switch:~$ nv set interface swp1 router ospf bfd min-transmit-interval 400
+cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
 {{< tab "vtysh Commands ">}}
-
-The following example configures BFD in OSPFv3 for interface swp1 and sets interval multiplier to 4, the minimum interval between *received* BFD control packets to 400, and the minimum interval for *sending* BFD control packets to 400.
 
 ```
 cumulus@switch:~$ sudo vtysh

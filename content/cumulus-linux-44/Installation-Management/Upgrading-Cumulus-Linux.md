@@ -87,18 +87,17 @@ Understanding the location of configuration data is required for successful upgr
 If you are using certain forms of network virtualization, such as {{<link url="Integrating-Hardware-VTEPs-with-VMware-NSX-V" text="VMware NSX-V">}}, you might have updated the `/usr/share/openvswitch/scripts/ovs-ctl-vtep` file. This file is not marked as a configuration file; therefore, if the file contents change in a newer release of Cumulus Linux, they overwrite any changes you made to the file. Be sure to back up this file and the database file `conf.db` before upgrading.
 
 {{%notice note%}}
-The following commands verify which files have changed compared to the previous Cumulus Linux install. Be sure to back up any changed files:
-
+The following commands verify which files have changed compared to the previous Cumulus Linux install. Be sure to back up any changed files.
 - Run the `sudo dpkg --verify` command to show a list of changed files.
 - Run the `egrep -v '^$|^#|=""$' /etc/default/isc-dhcp-*` command to see if any of the generated `/etc/default/isc-*` files have changed.
 {{%/notice%}}
 
-<!-- ### CUE replaces NCLU
+<!-- ### NVUE replaces NCLU
 
-{{<link url="Cumulus-User-Experience-CUE" text="Cumulus User Experience (CUE)">}} is a new object-oriented, schema driven model of a complete Cumulus Linux system (hardware and software) with a robust API that allows multiple interfaces to both view and configure any element within the system. CUE replaces the NCLU command line interface.
+{{<link url="NVIDA-User-Experience-NVUE" text="Cumulus User Experience (NVUE)">}} is a new object-oriented, schema driven model of a complete Cumulus Linux system (hardware and software) with a robust API that allows multiple interfaces to both view and configure any element within the system. NVUE replaces the NCLU command line interface.
 
 {{<notice info>}}
-CUE is created from the ground up and does not inherit any previous functionality from NCLU. Certain features are not yet supported by CUE. If you are an NCLU user, confirm that your features are fully supported in CUE before upgrading to Cumulus Linux 5.0. If you use a feature that is not yet supported, you can either remain on your current 4.x release or perform all your switch configuration using Linux and vtysh commands.
+NVUE is created from the ground up and does not inherit any previous functionality from NCLU. Certain features are not yet supported by NVUE. If you are an NCLU user, confirm that your features are fully supported in NVUE before upgrading to Cumulus Linux 5.0. If you use a feature that is not yet supported, you can either remain on your current 4.x release or perform all your switch configuration using Linux and vtysh commands.
 {{</notice>}}-->
 
 ## Upgrade Cumulus Linux
@@ -132,7 +131,7 @@ Be aware of the following when installing the Cumulus Linux image:
 
 - Installing a Cumulus Linux image is destructive; any configuration files on the switch are not saved; copy them to a different server before you start the Cumulus Linux image install.
 - You must move configuration data to the new OS using ZTP or automation while the OS is first booted, or soon afterwards using out-of-band management.
-- Moving a configuration file might cause issues;
+- Moving a configuration file might cause issues.
 - Identifying all the locations of configuration data is not always an easy task. See [Before You Upgrade Cumulus Linux](#before-you-upgrade-cumulus-linux) above.
 - Merge conflicts with configuration file changes in the new release might go undetected.
 - If configuration files are not restored correctly, you might be unable to ssh to the switch from in-band management. Out-of-band connectivity (eth0 or console) is recommended.
@@ -161,7 +160,7 @@ To upgrade the switch:
     cumulus@switch:~$ sudo onie-install -a -i http://10.0.1.251/cumulus-linux-4.1.0-mlx-amd64.bin && sudo reboot
     ```
 
-4. Restore the configuration files to the new release - ideally with automation.
+4. Restore the configuration files to the new release (restoring files with automation is not recommended).
 5. Verify correct operation with the old configurations on the new release.
 6. Reinstall third party applications and associated configurations.
 
@@ -274,7 +273,7 @@ This is due to a change in the bonding driver to handle how the *actor port key*
 2. Shut down the core uplink layer 3 interfaces:
 
     ```
-    cumulus@switch:~$ sudo ip link set swpX down
+    cumulus@switch:~$ sudo ip link set <switch-port> down
     ```
 
 3. Shut down the peer link:
@@ -304,7 +303,7 @@ This is due to a change in the bonding driver to handle how the *actor port key*
 7. Verify core uplinks and peer links are UP:
 
     ```
-    cumulus@switch:~$ cl show interface
+    cumulus@switch:~$ nv show interface
     ```
 
 8. Verify MLAG convergence:
@@ -338,9 +337,7 @@ The method you employ is specific to your deployment strategy. Providing detaile
 
 ## Third Party Packages
 
-Third party packages in the *Linux host* world often use the same package system as the distribution into which they are to be installed (for example, Debian uses `apt-get`). Or, the package might be compiled and installed by the system administrator. Configuration and executable files generally follow the same filesystem hierarchy standards as other applications.
-
-If you install any third party applications on a Cumulus Linux switch, configuration data is typically installed into the `/etc` directory, but it is not guaranteed. It is your responsibility to understand the behavior and configuration file information of any third party packages installed on the switch.
+If you install any third party applications on a Cumulus Linux switch, configuration data is typically installed in the `/etc` directory, but it is not guaranteed. It is your responsibility to understand the behavior and configuration file information of any third party packages installed on the switch.
 
 After you upgrade using a full Cumulus Linux image install, you need to reinstall any third party packages or any Cumulus Linux add-on packages.
 

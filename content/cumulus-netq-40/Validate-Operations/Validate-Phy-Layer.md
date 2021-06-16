@@ -47,8 +47,7 @@ You can verify that the following configurations are the same on both sides of a
 - Link speed
 - Auto-negotiation setting
 
-The `netq check interfaces` command is used to determine if any of the interfaces have any continuity errors. This command only checks the physical interfaces; it does not check bridges, bonds or other software
-constructs. You can check all interfaces at once. It enables you to compare the current status of the interfaces, as well as their status at an earlier point in time. The command syntax is:
+The `netq check interfaces` command is used to determine if any of the interfaces have any continuity errors. This command only checks the physical interfaces; it does not check bridges, bonds or other software constructs. You can check all interfaces at one time. It enables you to compare the current status of the interfaces, as well as their status at an earlier point in time. The command syntax is:
 
 ```
 netq check interfaces [around <text-time>] [json]
@@ -64,8 +63,7 @@ If you find a misconfiguration, use the `netq show interfaces physical` command 
 
 ### Find Mismatched Operational States
 
-In this example, we check all of the interfaces for misconfigurations and we find that one interface port has an error. We look for clues about the cause and see that the Operational states do not match on the
-connection between leaf 03 and leaf04: leaf03 is up, but leaf04 is down. If the misconfiguration was due to a mismatch in the administrative state, the message would have been *Admin state mismatch (up, down)* or *Admin state mismatch (down, up)*.
+This example checks every interface for misconfiguration and you can find that one interface port has an error. Look for clues about the cause and see that the operational states do not match on the connection between leaf 03 and leaf04: leaf03 is up, but leaf04 is down. If the misconfiguration was due to a mismatch in the administrative state, the message would have been *Admin state mismatch (up, down)* or *Admin state mismatch (down, up)*.
 
 ```
 cumulus@switch:~$ netq check interfaces
@@ -89,7 +87,7 @@ leaf03            swp52                                                         
 
 ### Find Mismatched Peers
 
-This example uses the *and* keyword to check the connections between two peers. An error is seen, so we check the physical peer information and discover that the incorrect peer has been specified. After fixing it, we run the check again, and see that there are no longer any interface errors.
+This example uses the *and* keyword to check the connections between two peers. You can see an error, so you check the physical peer information and discover that the incorrect peer has been specified. After fixing it, run the check again, and see that there are no longer any interface errors.
 
 ```
 cumulus@switch:~$ netq check interfaces
@@ -110,7 +108,7 @@ Checked Ports: 1, Failed Ports: 0, Unverified Ports: 0
 
 ### Find Mismatched Link Speeds
 
-This example checks for for configuration mismatches and finds a link speed mismatch on server03. The link speed on swp49 is *40G* and the peer port swp50 is *unspecified*.
+This example checks for configuration mismatches and finds a link speed mismatch on server03. The link speed on swp49 is *40G* and the peer port swp50 is *unspecified*.
 
 ```
 cumulus@switch:~$ netq check interfaces
@@ -122,9 +120,11 @@ server03          swp49                     server03          swp50             
 server03          swp50                     server03          swp49                     Speed mismatch (Unknown, 40G)  
 ```
 
+<!-- vale off -->
 ### Find Mismatched Auto-negotiation Settings
+<!-- vale on -->
 
-This example checks for configuration mismatches and finds auto-negotation setting mismatches between the servers and leafs. Auto-negotiation is *off* on the leafs, but *on* on the servers.
+This example checks for configuration mismatches and finds auto-negotiation setting mismatches between the servers and leafs. Auto-negotiation is *off* for the leafs, but *on* for the servers.
 
 ```
 cumulus@switch:~$ netq check interfaces

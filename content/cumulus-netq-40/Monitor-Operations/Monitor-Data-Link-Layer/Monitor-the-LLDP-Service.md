@@ -514,9 +514,9 @@ Where to go next depends on what data you see, but a few options include:
 
 You can view the LLDP configuration information for a given device from the NetQ UI or the NetQ CLI.
 
-{{< tabs "TabID520" >}}
+{{<tabs "View LLDP for a Device">}}
 
-{{< tab "NetQ UI" >}}
+{{<tab "NetQ UI">}}
 
 1. Open the full-screen Network Services|All LLDP Sessions card.
 
@@ -526,9 +526,9 @@ You can view the LLDP configuration information for a given device from the NetQ
 
     {{<figure src="/images/netq/ntwk-svcs-all-lldp-fullscr-allsess-tab-filterbyHn-320.png" width="500">}}
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "NetQ CLI" >}}
+{{<tab "NetQ CLI">}}
 
 Run the `netq show lldp` command with the `hostname` option.
 
@@ -551,17 +551,19 @@ leaf01            swp54                     spine04           swp1              
 leaf01            swp51                     spine01           swp1                      Mon Oct 26 04:13:57 2020
 ```
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}
 
+<!-- vale off -->
 ### View Switches with the Most LLDP-related Alarms
+<!-- vale on -->
 
 Switches or hosts experiencing a large number of LLDP alarms may indicate a configuration or performance issue that needs further investigation. You can view this information using the NetQ UI or NetQ CLI.
 
-{{< tabs "TabID565" >}}
+{{<tabs "View switches with most LLDP alarms">}}
 
-{{< tab "NetQ UI" >}}
+{{<tab "NetQ UI">}}
 
 With the NetQ UI, you can view the switches sorted by the number of LLDP alarms and then use the Switches card workflow or the Events|Alarms card workflow to gather more information about possible causes for the alarms.
 
@@ -582,9 +584,9 @@ Where to go next depends on what data you see, but a few options include:
 - Change the time period for the data to compare with a prior time. If the same switches are consistently indicating the most alarms, you might want to look more carefully at those switches using the Switches card workflow.
 - Click **Show All Sessions** to investigate all switches running LLDP sessions in the full-screen card.
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "NetQ CLI" >}}
+{{<tab "NetQ CLI">}}
 
 To view the switches and hosts with the most LLDP alarms and informational events, run the `netq show events` command with the `type` option set to *lldp*, and optionally the `between` option set to display the events within a given time range. Count the events associated with each switch.
 
@@ -688,17 +690,17 @@ leaf02            lldp                     info             LLDP Session with ho
                                                             v":"3.7.12"}
 ```
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}
 
 ### View All LLDP Events
 
-The Network Services|All LLDP Sessions card workflow and the `netq show events type lldp` command enable you to view all of the LLDP events in a designated time period.
+The Network Services|All LLDP Sessions card workflow and the `netq show events type lldp` command enable you to view all LLDP events in a designated time period.
 
-{{< tabs "TabID703" >}}
+{{<tabs "View all LLDP events">}}
 
-{{< tab "NetQ UI" >}}
+{{<tab "NetQ UI">}}
 
 To view all LLDP events:
 
@@ -709,7 +711,7 @@ To view all LLDP events:
 3. Click the **All Alarms** tab.
 
     By default, events are listed in most recent to least recent order.
-    
+
     {{<figure src="/images/netq/ntwk-svcs-all-lldp-fullscr-alarms-tab-241.png" width="700">}}
 
 Where to go next depends on what data you see, but a few options include:
@@ -722,9 +724,9 @@ Where to go next depends on what data you see, but a few options include:
 - Export data to a file for use in another analytics tool by clicking <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/08-Upload-Download/upload-bottom.svg" height="18" width="18"/> and providing a name for the data file.
 - Return to your workbench by clicking <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner.
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "NetQ CLI" >}}
+{{<tab "NetQ CLI">}}
 
 To view all LLDP alarms, run:
 
@@ -741,9 +743,9 @@ cumulus@switch:~$ netq show events type lldp between now and 3d
 No matching event records found
 ```
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}
 
 ### View Details About All Switches Running LLDP
 
@@ -1071,7 +1073,7 @@ spine04           swp6                      border02          swp54             
 
 ### View All Events for a Given LLDP Session
 
-You can view all of the alarm and info events for the devices participating in a given session with the NetQ UI.
+You can view all alarm and info events for the devices participating in a given session with the NetQ UI.
 
 To view all events:
 

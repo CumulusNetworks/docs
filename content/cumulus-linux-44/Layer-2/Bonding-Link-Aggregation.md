@@ -88,7 +88,7 @@ In the example below, the front panel port interfaces swp1 thru swp4 are slaves 
 
 To create and configure a bond:
 
-{{< tabs "TabID46 ">}}
+{{< tabs "TabID91 ">}}
 {{< tab "NCLU Commands ">}}
 
 ```
@@ -98,11 +98,11 @@ cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ cl set interface bond0 bond member swp1-4
-cumulus@switch:~$ cl config apply
+cumulus@switch:~$ nv set interface bond0 bond member swp1-4
+cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -159,11 +159,11 @@ All slave interfaces within a bond have the same MAC address as the bond. Typica
 
 ## Configure Bond Options
 
-The configuration options for a bond are are described in the table below. To configure a bond, run the CUE `cl set interface <bond-name> bond <option>` command or add the parameter to the bond stanza in the `/etc/network/interfaces` file.
+The configuration options for a bond are are described in the table below. To configure a bond, run the commands shown below or add the parameter to the bond stanza in the `/etc/network/interfaces` file.
 
 The following example sets the bond mode for bond01 to balance-xor (static):
 
-{{< tabs "TabID119 ">}}
+{{< tabs "TabID166 ">}}
 {{< tab "NCLU Commands ">}}
 
 ```
@@ -173,11 +173,11 @@ cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ cl set interface bond01 bond mode static 
-cumulus@switch:~$ cl config apply
+cumulus@switch:~$ nv set interface bond01 bond mode static 
+cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -206,68 +206,26 @@ cumulus@switch:~$ ifreload -a
 Each bond configuration option, except for `bond slaves,` is set to the recommended value by default in Cumulus Linux. Only configure an option if a different setting is needed. For more information on configuration values, refer to the {{<link url="#related-information" text="Related Information">}}  section below.
 {{%/notice%}}
 
-| Parameter | CUE Command | Description|
-|---------- |------------ | ---------- |
-| `bond-mode 802.3ad`<br><br>`bond-mode balance-xor` | `cl set interface <bond-name> bond mode lacp`<br><br>`cl set interface <bond-name> bond mode static` | Cumulus Linux supports IEEE 802.3ad link aggregation mode (802.3ad) and balance-xor mode.<br>The default mode is 802.3ad.<br><br>**Note:** When you enable balance-xor mode, the bonding of slave interfaces are static and all slave interfaces are active for load balancing and fault tolerance purposes. Packet transmission on the bond is based on the hash policy specified by xmit-hash-policy.<br><br>When using balance-xor mode to dual-connect host-facing bonds in an MLAG environment, you must configure the clag-id parameter on the MLAG bonds and it must be the same on both MLAG switches. Otherwise, the bonds are treated by the MLAG switch pair as single-connected.<br><br>Use balance-xor mode only if you cannot use LACP; LACP can detect mismatched link attributes between bond members and can even detect misconnections. |
-| `bond miimon <value>` | N/A |Defines how often the link state of each slave is inspected for failures. You can specify a value between 0 and 255. The default value is 100. |
-| `bond-use-carrier no` | N/A | Determines the link state. |
-| `bond-lacp-bypass-allow`| `cl set interface <bond-name> bond lacp-bypass on`<br><br>`cl set interface <bond-name> bond lacp-bypass off` | Enables LACP bypass. |
-| `bond-lacp-rate slow` | `cl set interface <bond-name> bond lacp-rate slow`<br><br>`cl set interface <bond-name> bond lacp-rate fast` | Sets the rate to ask the link partner to transmit LACP control packets. slow is the only option. |
-| `bond-min-links` |  N/A | Defines the minimum number of links (between 0 and 255) that must be active before the bond is put into service. The default value is 1.<br><br>A value greater than 1 is useful if higher level services need to ensure a minimum aggregate bandwidth level before activating a bond. Keeping bond-min-links set to 1 indicates the bond must have at least one active member. If the number of active members drops below the bond-min-links setting, the bond appears to upper-level protocols as link-down. When the number of active links returns to greater than or equal to bond-min-links, the bond becomes link-up. |
+| Parameter |  Description|
+|---------- | ---------- |
+| `bond-mode 802.3ad`<br><br>`bond-mode balance-xor` | Cumulus Linux supports IEEE 802.3ad link aggregation mode (802.3ad) and balance-xor mode.<br>The default mode is 802.3ad.<br><br>**Note:** When you enable balance-xor mode, the bonding of slave interfaces are static and all slave interfaces are active for load balancing and fault tolerance purposes. Packet transmission on the bond is based on the hash policy specified by xmit-hash-policy.<br><br>When using balance-xor mode to dual-connect host-facing bonds in an MLAG environment, you must configure the clag-id parameter on the MLAG bonds and it must be the same on both MLAG switches. Otherwise, the bonds are treated by the MLAG switch pair as single-connected.<br><br>Use balance-xor mode only if you cannot use LACP; LACP can detect mismatched link attributes between bond members and can even detect misconnections. <br><br>NCLU command: `net add bond <bond-name> bond mode balance-xor` <br>NVUE command: `nv set interface <bond-name> bond mode static` |
+| `bond miimon <value>` | Defines how often the link state of each slave is inspected for failures. You can specify a value between 0 and 255. The default value is 100. |
+| `bond-use-carrier no` | Determines the link state. |
+| `bond-lacp-bypass-allow`| Enables LACP bypass.<br><br>NCLU command: `net add bond <bond-name> bond lacp-bypass-allow` <br>NVUE command: `nv set interface <bond-name> bond lacp-bypass on` |
+| `bond-lacp-rate slow` | Sets the rate to ask the link partner to transmit LACP control packets. slow is the only option. |
+| `bond-min-links` | Defines the minimum number of links (between 0 and 255) that must be active before the bond is put into service. The default value is 1.<br><br>A value greater than 1 is useful if higher level services need to ensure a minimum aggregate bandwidth level before activating a bond. Keeping bond-min-links set to 1 indicates the bond must have at least one active member. If the number of active members drops below the bond-min-links setting, the bond appears to upper-level protocols as link-down. When the number of active links returns to greater than or equal to bond-min-links, the bond becomes link-up. |
 
 ## Show Bond Information
 
 To show information for a bond:
 
-{{< tabs "TabID177 ">}}
+{{< tabs "TabID222 ">}}
 {{< tab "NCLU Commands ">}}
 
 Run the `net show interface <bond>` command:
 
 ```
 cumulus@switch:~$ net show interface bond1
-    Name    MAC                Speed    MTU    Mode
---  ------  -----------------  -------  -----  ------
-UP  bond1   00:02:00:00:00:12  20G      1500   Bond
-
-
-Bond Details
----------------  -------------
-Bond Mode:       Balance-XOR
-Load Balancing:  Layer3+4
-Minimum Links:   1
-In CLAG:         CLAG Inactive
-
-
-    Port     Speed      TX    RX    Err    Link Failures
---  -------  -------  ----  ----  -----  ---------------
-UP  swp3(P)  10G         0     0      0                0
-UP  swp4(P)  10G         0     0      0                0
-
-
-LLDP
--------  ----  ------------
-swp3(P)  ====  swp1(p1c1h1)
-swp4(P)  ====  swp2(p1c1h1)Routing
--------
-  Interface bond1 is up, line protocol is up
-  Link ups:       3    last: 2017/04/26 21:00:38.26
-  Link downs:     2    last: 2017/04/26 20:59:56.78
-  PTM status: disabled
-  vrf: Default-IP-Routing-Table
-  index 31 metric 0 mtu 1500
-  flags: <UP,BROADCAST,RUNNING,MULTICAST>
-  Type: Ethernet
-  HWaddr: 00:02:00:00:00:12
-  inet6 fe80::202:ff:fe00:12/64
-  Interface Type Other
-```
-
-{{< /tab >}}
-{{< tab "CUE Commands ">}}
-
-```
-cumulus@switch:~$ cl legacy show interface bond0 
     Name    MAC                Speed    MTU    Mode
 --  ------  -----------------  -------  -----  ------
 UP  bond1   00:02:00:00:00:12  20G      1500   Bond

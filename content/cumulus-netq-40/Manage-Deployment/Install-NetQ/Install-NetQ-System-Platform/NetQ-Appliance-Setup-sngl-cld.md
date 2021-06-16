@@ -7,7 +7,7 @@ bookhidden: true
 ---
 This topic describes how to prepare your single, NetQ Cloud Appliance for installation of the NetQ Collector software.
 
-Inside the box that was shipped to you, you'll find:
+Each <!-- vale off -->box<!-- vale on --> that was shipped to you contains:
 
 - Your NVIDIA Cumulus NetQ Cloud Appliance (a Supermicro SuperServer E300-9D)
 - Hardware accessories, such as power cables and rack mounting gear (note that network cables and optics ship separately)

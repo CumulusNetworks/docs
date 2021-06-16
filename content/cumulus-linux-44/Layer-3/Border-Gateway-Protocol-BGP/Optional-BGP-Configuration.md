@@ -29,14 +29,14 @@ cumulus@leaf01:~$ net commit
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
-cumulus@leaf01:~$ cl set vrf default router bgp peer-group SPINE
-cumulus@leaf01:~$ cl set vrf default router bgp peer-group SPINE remote-as external
-cumulus@leaf01:~$ cl set vrf default router bgp peer 10.0.1.0 peer-group SPINE
-cumulus@leaf01:~$ cl set vrf default router bgp peer 10.0.1.12 peer-group SPINE
-cumulus@leaf01:~$ cl config apply
+cumulus@leaf01:~$ nv set vrf default router bgp peer-group SPINE
+cumulus@leaf01:~$ nv set vrf default router bgp peer-group SPINE remote-as external
+cumulus@leaf01:~$ nv set vrf default router bgp peer 10.0.1.0 peer-group SPINE
+cumulus@leaf01:~$ nv set vrf default router bgp peer 10.0.1.12 peer-group SPINE
+cumulus@leaf01:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -69,10 +69,10 @@ cumulus@leaf01:~$ net add bgp neighbor swp51 interface peer-group SPINE
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp51 peer-group SPINE
+cumulus@leaf01:~$ nv set vrf default router bgp peer swp51 peer-group SPINE
 ```
 
 {{< /tab >}}
@@ -118,16 +118,15 @@ router bgp 65101
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
-CUE commands are not supported.
+NVUE commands are not supported.
 
 <!--```
-cumulus@leaf01:~$ cl set vrf default router bgp peer-group SPINE
-cumulus@leaf01:~$ cl set vrf default router bgp peer-group SPINE remote-as external
+cumulus@leaf01:~$ nv set vrf default router bgp peer-group SPINE
+cumulus@leaf01:~$ nv set vrf default router bgp peer-group SPINE remote-as external
 cumulus@leaf01:~$ NEED COMMAND
-cumulus@leaf01:~$ NEED COMMAND
-cumulus@leaf01:~$ cl config apply
+cumulus@leaf01:~$ nv config apply
 ```
 NCLU FOR REFERENCE
 ```
@@ -188,12 +187,12 @@ cumulus@leaf01:~$ net commit
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
-cumulus@leaf01:~$ cl set vrf default router bgp peer 10.10.10.101 remote-as external
-cumulus@leaf01:~$ cl set vrf default router bgp peer 10.10.10.101 multihop-ttl 1
-cumulus@leaf01:~$ cl config apply
+cumulus@leaf01:~$ nv set vrf default router bgp peer 10.10.10.101 remote-as external
+cumulus@leaf01:~$ nv set vrf default router bgp peer 10.10.10.101 multihop-ttl 1
+cumulus@leaf01:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -245,11 +244,11 @@ router bgp 65101
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp51 ttl-security hops 200
-cumulus@leaf01:~$ cl config apply
+cumulus@leaf01:~$ nv set vrf default router bgp peer swp51 ttl-security hops 200
+cumulus@leaf01:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -278,7 +277,7 @@ router bgp 65101
 
 {{%notice note%}}
 - When you configure `ttl-security hops` on a peer group instead of a specific neighbor, FRR does not add it to either the running configuration or to the `/etc/frr/frr.conf` file. To work around this issue, add `ttl-security hops` to individual neighbors instead of the peer group.
-- Enabling `ttl-security hops` does not program the hardware with relevant information. Frames are forwarded to the CPU and are dropped. Use the CUE command to explicitly add the relevant entry to hardware. For more information about ACLs, see {{<link title="Netfilter - ACLs">}}.
+- Enabling `ttl-security hops` does not program the hardware with relevant information. Frames are forwarded to the CPU and are dropped. Use the NVUE Command to explicitly add the relevant entry to hardware. For more information about ACLs, see {{<link title="Netfilter - ACLs">}}.
 {{%/notice%}}
 
 {{< /tab >}}
@@ -317,22 +316,22 @@ cumulus@spine01:~$ net commit
 {{< /tabs >}}
 
 {{< /tabs >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 {{< tabs "270 ">}}
 {{< tab "leaf01 ">}}
 
 ```
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp51 password mypassword
-cumulus@leaf01:~$ cl config apply
+cumulus@leaf01:~$ nv set vrf default router bgp peer swp51 password mypassword
+cumulus@leaf01:~$ nv config apply
 ```
 
 {{< /tab >}}
 {{< tab "spine01 ">}}
 
 ```
-cumulus@spine01:~$ cl set vrf default router bgp peer swp1 password mypassword
-cumulus@spine01:~$ cl config apply
+cumulus@spine01:~$ nv set vrf default router bgp peer swp1 password mypassword
+cumulus@spine01:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -459,18 +458,18 @@ cumulus@switch:~$ net add bgp neighbor swp51 remove-private-AS replace-AS
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp51 address-family ipv4-unicast aspath private-as remove
-cumulus@leaf01:~$ cl config apply
+cumulus@leaf01:~$ nv set vrf default router bgp peer swp51 address-family ipv4-unicast aspath private-as remove
+cumulus@leaf01:~$ nv config apply
 ```
 
 You can replace the private ASNs with your public ASN with the following command:
 
 ```
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp51 address-family ipv4-unicast aspath replace-peer-as on
-cumulus@leaf01:~$ cl config apply
+cumulus@leaf01:~$ nv set vrf default router bgp peer swp51 address-family ipv4-unicast aspath replace-peer-as on
+cumulus@leaf01:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -583,16 +582,16 @@ line vty
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
-cumulus@border01:~$ cl set vrf RED router bgp autonomous-system 65532        
-cumulus@border01:~$ cl set vrf RED router bgp router-id 10.10.10.63
-cumulus@border01:~$ cl set vrf RED router bgp peer swp3 remote-as external
-cumulus@border01:~$ cl set vrf BLUE router bgp autonomous-system 65533 
-cumulus@border01:~$ cl set vrf BLUE router bgp router-id 10.10.10.63
-cumulus@border01:~$ cl set vrf BLUE router bgp peer swp4 remote-as external
-cumulus@border01:~$ cl config apply
+cumulus@border01:~$ nv set vrf RED router bgp autonomous-system 65532        
+cumulus@border01:~$ nv set vrf RED router bgp router-id 10.10.10.63
+cumulus@border01:~$ nv set vrf RED router bgp peer swp3 remote-as external
+cumulus@border01:~$ nv set vrf BLUE router bgp autonomous-system 65533 
+cumulus@border01:~$ nv set vrf BLUE router bgp router-id 10.10.10.63
+cumulus@border01:~$ nv set vrf BLUE router bgp peer swp4 remote-as external
+cumulus@border01:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -743,11 +742,11 @@ exit-address-family
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ cl set vrf default router bgp address-family ipv4-unicast multipaths ibgp 120 
-cumulus@switch:~$ cl config apply
+cumulus@switch:~$ nv set vrf default router bgp address-family ipv4-unicast multipaths ibgp 120 
+cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -802,11 +801,11 @@ router bgp 65101
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ cl set vrf default router bgp path-selection multipath aspath-ignore on
-cumulus@switch:~$ cl config apply
+cumulus@switch:~$ nv set vrf default router bgp path-selection multipath aspath-ignore on
+cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -868,11 +867,11 @@ router bgp 65101
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ cl set vrf default router bgp peer 2001:db8:0002::0a00:0002 capabilities extended-nexthop on
-cumulus@switch:~$ cl config apply
+cumulus@switch:~$ nv set vrf default router bgp peer 2001:db8:0002::0a00:0002 capabilities extended-nexthop on
+cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -931,12 +930,12 @@ exit-address-family
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ cl set vrf default router bgp peer 2001:db8:0002::0a00:0002 capabilities extended-nexthop on
-cumulus@switch:~$ cl set vrf default router bgp peer 2001:db8:0002::0a00:0002 address-family ipv4-unicast enable on
-cumulus@switch:~$ cl config apply
+cumulus@switch:~$ nv set vrf default router bgp peer 2001:db8:0002::0a00:0002 capabilities extended-nexthop on
+cumulus@switch:~$ nv set vrf default router bgp peer 2001:db8:0002::0a00:0002 address-family ipv4-unicast enable on
+cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -981,11 +980,11 @@ To protect against an internal network connectivity disruption caused by BGP, yo
 The following example commands set the maximum number of prefixes allowed from the BGP neighbor on swp51 to 3000:
 
 {{< tabs "829 ">}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp51 address-family ipv4-unicast prefix-limits inbound maximum 3000
-cumulus@leaf01:~$ cl config apply
+cumulus@leaf01:~$ nv set vrf default router bgp peer swp51 address-family ipv4-unicast prefix-limits inbound maximum 3000
+cumulus@leaf01:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -1029,18 +1028,18 @@ cumulus@leaf01:~$ net commit
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
-cumulus@leaf01:~$ cl set vrf default router bgp address-family ipv4-unicast aggregate-route 10.1.0.0/16 
-cumulus@leaf01:~$ cl config apply
+cumulus@leaf01:~$ nv set vrf default router bgp address-family ipv4-unicast aggregate-route 10.1.0.0/16 
+cumulus@leaf01:~$ nv config apply
 ```
 
 The `summary-only` option ensures that longer-prefixes inside the aggregate address are suppressed before sending BGP updates:
 
 ```
-cumulus@leaf01:~$ cl set vrf default router bgp address-family ipv4-unicast aggregate-route 10.1.0.0/16 summary-only on
-cumulus@leaf01:~$ cl config apply
+cumulus@leaf01:~$ nv set vrf default router bgp address-family ipv4-unicast aggregate-route 10.1.0.0/16 summary-only on
+cumulus@leaf01:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -1071,11 +1070,11 @@ router bgp 65199
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
-cumulus@leaf01:~$ cl set router bgp wait-for-install on
-cumulus@leaf01:~$ cl config apply
+cumulus@leaf01:~$ nv set router bgp wait-for-install on
+cumulus@leaf01:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -1183,12 +1182,12 @@ cumulus@leaf01:~$ net commit
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
-cumulus@leaf01:~$ cl set vrf default router bgp autonomous-system 65101
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp50 address-family ipv4-unicast add-path-tx best-per-as
-cumulus@leaf01:~$ cl config apply
+cumulus@leaf01:~$ nv set vrf default router bgp autonomous-system 65101
+cumulus@leaf01:~$ nv set vrf default router bgp peer swp50 address-family ipv4-unicast add-path-tx best-per-as
+cumulus@leaf01:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -1221,12 +1220,12 @@ cumulus@leaf01:~$ net commit
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
-cumulus@leaf01:~$ cl set vrf default router bgp autonomous-system 65101
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp50 address-family ipv4-unicast add-path-tx all-paths
-cumulus@leaf01:~$ cl config apply
+cumulus@leaf01:~$ nv set vrf default router bgp autonomous-system 65101
+cumulus@leaf01:~$ nv set vrf default router bgp peer swp50 address-family ipv4-unicast add-path-tx all-paths
+cumulus@leaf01:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -1278,11 +1277,16 @@ Paths: (2 available, best #2, table default)
 
 Routes are typically propagated even if a different path exists. The BGP conditional advertisement feature lets you advertise certain routes only if other routes either do or do not exist.
 
-This feature is typically used in multihomed networks where some prefixes are advertised to one of the providers only if information from the other provider is not present. For example, a multihomed router can use conditional advertisement to choose which upstream provider learns about the routes it provides so that it can influence which provider handles traffic destined for the downstream router. This is useful for cost of service (one provider is cheaper than another), latency, or other policy requirements that are not natively accounted for in BGP.
+This feature is typically used in multihomed networks where some prefixes are advertised to one of the providers only if information from the other provider is not present. For example, a multihomed router can use conditional advertisement to choose which upstream provider learns about the routes it provides so that it can influence which provider handles traffic destined for the downstream router. This is useful for cost of service, latency, or other policy requirements that are not natively accounted for in BGP.
 
-Conditional advertisement uses the `non-exist-map` or the `exist-map` and the `advertise-map` keywords to track routes by the route prefix.
+Conditional advertisement uses the `non-exist-map` or the `exist-map` and the `advertise-map` keywords to track routes by route prefix.
+You configure the BGP neighbors you want to use the route maps.
 
-The following example commands configure Cumulus Linux to send a 10.0.0.0/8 summary route only if the 10.0.0.0/24 route exists in the routing table. The commands perform the following configuration:
+{{%notice info%}}
+Use caution when configuring conditional advertisement on a large number of BGP neighbors. Cumulus Linux scans the entire RIB table every 60 seconds by default; depending on the number of routes in the RIB, this can result in longer processing times. NVIDIA does not recommend that you configure conditional advertisement on more than 50 neighbors.
+{{%/notice%}}
+
+The following example commands configure the switch to send a 10.0.0.0/8 summary route only if the 10.0.0.0/24 route exists in the routing table. The commands perform the following configuration:
 - Enable the conditional advertisement option.
 - Create a prefix list called EXIST with the route 10.0.0.0/24.
 - Create a route map called EXISTMAP that uses the prefix list EXIST.
@@ -1291,21 +1295,26 @@ The following example commands configure Cumulus Linux to send a 10.0.0.0/8 summ
 - Configure BGP neighbor swp51 to use the route maps.
 
 {{< tabs "962 ">}}
-{{< tab "CUE Commands ">}}
+{{< tab "NCLU Commands ">}}
+
+NCLU commands are not supported.
+
+{{< /tab >}}
+{{< tab "NVUE Commands ">}}
 
 ```
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp51 address-family ipv4-unicast conditional-advertise enable on 
-cumulus@leaf01:~$ cl set router policy prefix-list EXIST rule 10 match 10.0.0.0/24
-cumulus@leaf01:~$ cl set router policy prefix-list EXIST rule 10 action permit 
-cumulus@leaf01:~$ cl set router policy route-map EXISTMAP rule 10 action permit
-cumulus@leaf01:~$ cl set router policy route-map EXISTMAP rule 10 match ip-prefix-list EXIST
-cumulus@leaf01:~$ cl set router policy prefix-list ADVERTISE rule 10 action permit
-cumulus@leaf01:~$ cl set router policy prefix-list ADVERTISE rule 10 match 10.0.0.0/8
-cumulus@leaf01:~$ cl set router policy route-map ADVERTISEMAP rule 10 action permit
-cumulus@leaf01:~$ cl set router policy route-map ADVERTISEMAP rule 10 match ip-prefix-list ADVERTISE
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp51 address-family ipv4-unicast conditional-advertise advertise-map ADVERTISEMAP
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp51 address-family ipv4-unicast conditional-advertise exist-map EXIST
-cumulus@leaf01:~$ cl config apply
+cumulus@leaf01:~$ nv set vrf default router bgp peer swp51 address-family ipv4-unicast conditional-advertise enable on 
+cumulus@leaf01:~$ nv set router policy prefix-list EXIST rule 10 match 10.0.0.0/24
+cumulus@leaf01:~$ nv set router policy prefix-list EXIST rule 10 action permit 
+cumulus@leaf01:~$ nv set router policy route-map EXISTMAP rule 10 action permit
+cumulus@leaf01:~$ nv set router policy route-map EXISTMAP rule 10 match ip-prefix-list EXIST
+cumulus@leaf01:~$ nv set router policy prefix-list ADVERTISE rule 10 action permit
+cumulus@leaf01:~$ nv set router policy prefix-list ADVERTISE rule 10 match 10.0.0.0/8
+cumulus@leaf01:~$ nv set router policy route-map ADVERTISEMAP rule 10 action permit
+cumulus@leaf01:~$ nv set router policy route-map ADVERTISEMAP rule 10 match ip-prefix-list ADVERTISE
+cumulus@leaf01:~$ nv set vrf default router bgp peer swp51 address-family ipv4-unicast conditional-advertise advertise-map ADVERTISEMAP
+cumulus@leaf01:~$ nv set vrf default router bgp peer swp51 address-family ipv4-unicast conditional-advertise exist-map EXIST
+cumulus@leaf01:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -1330,7 +1339,10 @@ leaf01# exit
 cumulus@leaf01:~$
 ```
 
-The vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+{{< /tab >}}
+{{< /tabs >}}
+
+The commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
 ```
 cumulus@leaf01:~$ sudo nano /etc/frr/frr.conf
@@ -1346,8 +1358,41 @@ route-map EXISTMAP permit 10
 match ip address prefix-list EXIST
 ```
 
-{{< /tab >}}
-{{< /tabs >}}
+Cumulus Linux scans the entire RIB table every 60 seconds. You can increase or decrease how often you want Cumulus Linux to scan the RIB table. A value between 5 and 240 seconds is allowed.
+
+{{%notice note%}}
+A lower value (such as 5) increases the amount of processing needed. Use caution when configuring conditional advertisement on a large number of BGP neighbors.
+{{%/notice%}}
+
+```
+cumulus@leaf01:~$ sudo vtysh
+leaf01# configure terminal
+leaf01(config)# router bgp
+leaf01(config-router)# bgp conditional-advertisement timer 100
+leaf01(config-router)# end
+leaf01# write memory
+leaf01# exit
+cumulus@leaf01:~$
+```
+
+The commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+
+```
+cumulus@leaf01:~$ sudo nano /etc/frr/frr.conf
+...
+router bgp 65101
+ bgp router-id 10.10.10.1
+ bgp conditional-advertisement timer 100
+ neighbor swp51 interface remote-as external
+ neighbor swp51 advertisement-interval 0
+ neighbor swp51 timers 3 9
+ neighbor swp51 timers connect 10
+ neighbor swp52 interface remote-as external
+ neighbor swp52 advertisement-interval 0
+ neighbor swp52 timers 3 9
+ neighbor swp52 timers connect 10
+...
+```
 
 ## BGP Timers
 
@@ -1379,12 +1424,12 @@ router bgp 65101
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp51 timers keepalive 10
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp51 timers hold 30
-cumulus@leaf01:~$ cl config apply
+cumulus@leaf01:~$ nv set vrf default router bgp peer swp51 timers keepalive 10
+cumulus@leaf01:~$ nv set vrf default router bgp peer swp51 timers hold 30
+cumulus@leaf01:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -1440,11 +1485,11 @@ router bgp 65101
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp51 timers connection-retry 30
-cumulus@leaf01:~$ cl config apply
+cumulus@leaf01:~$ nv set vrf default router bgp peer swp51 timers connection-retry 30
+cumulus@leaf01:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -1500,11 +1545,11 @@ router bgp 65101
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp51 timers route-advertisement 5
-cumulus@leaf01:~$ cl config apply
+cumulus@leaf01:~$ nv set vrf default router bgp peer swp51 timers route-advertisement 5
+cumulus@leaf01:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -1569,11 +1614,11 @@ router bgp 65199
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
-cumulus@spine01:~$ cl set vrf default router bgp peer swp1 address-family ipv4-unicast route-reflector-client on
-cumulus@spine01:~$ cl config apply
+cumulus@spine01:~$ nv set vrf default router bgp peer swp1 address-family ipv4-unicast route-reflector-client on
+cumulus@spine01:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -1620,12 +1665,12 @@ Cumulus Linux uses the administrative distance to choose which routing protocol 
 The following example commands set the administrative distance for external routes to 150 and internal routes to 110:
 
 {{< tabs "1451 ">}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
-cumulus@spine01:~$ cl set vrf default router bgp address-family ipv4-unicast admin-distance external 150
-cumulus@spine01:~$ cl set vrf default router bgp address-family ipv4-unicast admin-distance internal 110
-cumulus@spine01:~$ cl config apply
+cumulus@spine01:~$ nv set vrf default router bgp address-family ipv4-unicast admin-distance external 150
+cumulus@spine01:~$ nv set vrf default router bgp address-family ipv4-unicast admin-distance internal 110
+cumulus@spine01:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -1682,18 +1727,18 @@ cumulus@leaf01:~$ net commit
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
-cumulus@leaf01:~$ cl set router bgp graceful-shutdown on
-cumulus@leaf01:~$ cl config apply
+cumulus@leaf01:~$ nv set router bgp graceful-shutdown on
+cumulus@leaf01:~$ nv config apply
 ```
 
 To disable graceful shutdown:
 
 ```
-cumulus@leaf01:~$ cl set router bgp graceful-shutdown off
-cumulus@leaf01:~$ cl config apply
+cumulus@leaf01:~$ nv set router bgp graceful-shutdown off
+cumulus@leaf01:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -1827,11 +1872,11 @@ cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
-cumulus@leaf01:~$ cl set vrf default router bgp graceful-restart
-cumulus@leaf01:~$ cl config apply
+cumulus@leaf01:~$ nv set vrf default router bgp graceful-restart
+cumulus@leaf01:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -1863,11 +1908,11 @@ cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp51 graceful-restart-mode full
-cumulus@leaf01:~$ cl config apply
+cumulus@leaf01:~$ nv set vrf default router bgp peer swp51 graceful-restart-mode full
+cumulus@leaf01:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -1910,11 +1955,11 @@ router bgp 65199
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp51 graceful-restart-mode helper-only
-cumulus@leaf01:~$ cl config apply
+cumulus@leaf01:~$ nv set vrf default router bgp peer swp51 graceful-restart-mode helper-only
+cumulus@leaf01:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -1980,13 +2025,13 @@ router bgp 65199
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
-cumulus@leaf01:~$ cl set router bgp graceful-restart restart-time 400
-cumulus@leaf01:~$ cl set router bgp graceful-restart path-selection-deferral-time 300
-cumulus@leaf01:~$ cl set router bgp graceful-restart stale-routes-time 400
-cumulus@leaf01:~$ cl config apply
+cumulus@leaf01:~$ nv set router bgp graceful-restart restart-time 400
+cumulus@leaf01:~$ nv set router bgp graceful-restart path-selection-deferral-time 300
+cumulus@leaf01:~$ nv set router bgp graceful-restart stale-routes-time 400
+cumulus@leaf01:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -2033,11 +2078,11 @@ cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
-cumulus@leaf01:~$ cl unset router bgp graceful-restart mode
-cumulus@leaf01:~$ cl config apply$
+cumulus@leaf01:~$ nv unset router bgp graceful-restart mode
+cumulus@leaf01:~$ nv config apply$
 ```
 
 {{< /tab >}}
@@ -2069,11 +2114,11 @@ cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
-cumulus@leaf01:~$ cl unset vrf default router bgp peer swp51 graceful-restart-mode
-cumulus@leaf01:~$ cl config apply
+cumulus@leaf01:~$ nv unset vrf default router bgp peer swp51 graceful-restart-mode
+cumulus@leaf01:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -2159,12 +2204,12 @@ router bgp 65199
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
-cumulus@leaf01:~$ cl set router bgp convergence-wait time 300
-cumulus@leaf01:~$ cl set router bgp convergence-wait establish-wait-time 200
-cumulus@leaf01:~$ cl config apply
+cumulus@leaf01:~$ nv set router bgp convergence-wait time 300
+cumulus@leaf01:~$ nv set router bgp convergence-wait establish-wait-time 200
+cumulus@leaf01:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -2244,12 +2289,12 @@ cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
-cumulus@leaf01:~$ cl set router policy community-list COMMUNITY1 rule 10 action permit
-cumulus@leaf01:~$ cl set router policy community-list COMMUNITY1 rule 10 community 100:100
-cumulus@leaf01:~$ cl config apply
+cumulus@leaf01:~$ nv set router policy community-list COMMUNITY1 rule 10 action permit
+cumulus@leaf01:~$ nv set router policy community-list COMMUNITY1 rule 10 community 100:100
+cumulus@leaf01:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -2280,11 +2325,11 @@ cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
-cumulus@leaf01:~$ cl set router policy route-map ROUTEMAP1 rule 10 match community-list COMMUNITY1
-cumulus@leaf01:~$ cl config apply
+cumulus@leaf01:~$ nv set router policy route-map ROUTEMAP1 rule 10 match community-list COMMUNITY1
+cumulus@leaf01:~$ nv config apply
 ```
 
 {{< /tab >}}

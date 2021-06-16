@@ -141,7 +141,7 @@ spine01           agent                    critical         Netq-agent rebooted 
 
 ### View Status of All Interfaces
 
-You can view all of the configured interfaces on a switch in one place making it easier to see inconsistencies in the configuration, quickly see when changes were made, and the operational status.
+You can view all configured interfaces on a switch in one place making it easier to see inconsistencies in the configuration, quickly see when changes were made, and the operational status.
 
 {{< tabs "TabID146" >}}
 
@@ -278,7 +278,7 @@ netq <hostname> show macs [<mac>] [vlan <1-4096>] [origin | count] [around <text
 netq <hostname> show macs egress-port <egress-port> [<mac>] [vlan <1-4096>] [origin] [around <text-time>] [json]
 ```
 
-This example shows all of the MAC addresses on the *leaf01* switch:
+This example shows all MAC addresses on the *leaf01* switch:
 
 ```
 cumulus@switch:~$ netq leaf01 show macs
@@ -516,9 +516,9 @@ no     default         10.10.10.1/32                  spine01           169.254.
 
 You can view all IP neighbors currently known by a switch using the NetQ UI or the NetQ CLI.
 
-{{< tabs "TabID523" >}}
+{{<tabs "View all IP neighbors">}}
 
-{{< tab "NetQ UI" >}}
+{{<tab "NetQ UI">}}
 
 To view all IP neighbors on a switch:
 
@@ -530,9 +530,9 @@ To view all IP neighbors on a switch:
 
 3. Optionally, click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/15-Filter/filter-1.svg" height="18" width="18">}} to filter by VRF or view a different time period.
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "NetQ CLI" >}}
+{{<tab "NetQ CLI">}}
 
 To view all IP neighbors on a switch, run:
 
@@ -586,17 +586,17 @@ IP Address                Hostname          Interface                 MAC Addres
 10.1.10.2                 leaf02            vlan10                    44:38:39:00:00:59  RED             no     Thu Sep 17 20:25:14 2020
 ```
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}
 
 ### View All IP Addresses on a Switch
 
 You can view all IP addresses currently known by a switch using the NetQ UI or the NetQ CLI.
 
-{{< tabs "TabID603" >}}
+{{<tabs "View all IP addresses">}}
 
-{{< tab "NetQ UI" >}}
+{{<tab "NetQ UI">}}
 
 To view all IP addresses on a switch:
 
@@ -608,9 +608,9 @@ To view all IP addresses on a switch:
 
 3. Optionally, click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/15-Filter/filter-1.svg" height="18" width="18">}} to filter by interface or VRF, or view a different time period.
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "NetQ CLI" >}}
+{{<tab "NetQ CLI">}}
 
 To view all IP addresses on a switch, run:
 
@@ -665,19 +665,19 @@ Address                   Hostname          Interface                 VRF       
 10.1.30.2/24              leaf03            vlan30                    BLUE            Thu Sep 17 20:25:08 2020
 ```
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}
 
 ### View All Software Packages
 
 If you are having an issue with a particular switch, you may want to verify what software is installed and whether it needs updating.
 
-You can view all of the software installed on a given switch using the NetQ UI or NetQ CLI to quickly validate versions and total software installed.
+You can view all the software that was installed on a given switch using the NetQ UI or NetQ CLI to quickly validate versions and total software installed.
 
-{{< tabs "TabID680" >}}
+{{<tabs "View all packages">}}
 
-{{< tab "NetQ UI" >}}
+{{<tab "NetQ UI">}}
 
 To view all software packages:
 
@@ -691,9 +691,9 @@ To view all software packages:
 
 3. Optionally, export the list by selecting all or specific packages, then clicking <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/08-Upload-Download/upload-bottom.svg" height="18" width="18"/>.
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "NetQ CLI" >}}
+{{<tab "NetQ CLI">}}
 
 To view package information for a switch, run:
 
@@ -834,7 +834,7 @@ Hostname          Memory Utilization   Last Updated
 leaf01            72.1                 Wed Sep 16 20:52:12 2020
 ```
 
-This example shows only the disk utilization for the *leaf01* switch. If you have more than one disk in your switch, utilization data for all of the disks are displayed. If you want to view the data for only one of the disks, you must specify a disk name.
+This example shows only the disk utilization for the *leaf01* switch. If you have more than one disk in your switch, utilization data for all disks are displayed. If you want to view the data for only one of the disks, you must specify a disk name.
 
 ```
 cumulus@switch:~$ netq leaf01 show resource-util disk
@@ -909,7 +909,7 @@ Where the various options are:
 - `text-port` limits output to a particular host and port; `hostname` is required with this option
 - `tx`, `rx` limits output to the transmit or receive values, respectively
 
-This example shows the interface statistics for the *leaf01* switch for all of its physical interfaces.
+This example shows the interface statistics for the *leaf01* switch for all its physical interfaces.
 
 ```
 cumulus@switch:~$ netq leaf01 show interface-stats
@@ -974,7 +974,7 @@ border01          swp54                     2461                 0              
 
 You can monitor the incoming and outgoing access control lists (ACLs) configured on a switch. This ACL resource information is available from the NetQ UI and NetQ CLI.
 
-Both the Switch card and `netq show cl-resource acl` command display the ingress/egress IPv4/IPv6 filter/mangle, ingress 802.1x filter, ingress mirror, ingress/egress PBR IPv4/IPv6 filter/mangle, ACL Regions, 18B/32B/54B Rules Key, and L4 port range checker.
+Both the Switch card and `netq show cl-resource acl` command display the ingress/egress IPv4/IPv6 filter/mangle, ingress 802.1x filter, ingress mirror, ingress/egress PBR IPv4/IPv6 filter/mangle, ACL Regions, 18B/32B/54B Rules Key, and layer 4 port range checker.
 
 {{< tabs "TabID1338" >}}
 
@@ -1123,9 +1123,9 @@ cumulus@switch:~$ netq spine02 show cl-resource forwarding  json
 
 For NetQ Appliances that have 3ME3 solid state drives (SSDs) installed (primarily in on-premises deployments), you can view the utilization of the drive on-demand. An alarm is generated for drives that drop below 10% health, or have more than a two percent loss of health in 24 hours, indicating the need to rebalance the drive. Tracking SSD utilization over time enables you to see any downward trend or instability of the drive before you receive an alarm.
 
-{{< tabs "TabID368" >}}
+{{<tabs "View SSD utilization" >}}
 
-{{< tab "NetQ UI" >}}
+{{<tab "NetQ UI">}}
 
 To view SSD utilization:
 
@@ -1139,9 +1139,9 @@ To view SSD utilization:
 
 Consider adding the switch cards that are suspect to a workbench for easy tracking.
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "NetQ CLI" >}}
+{{<tab "NetQ CLI">}}
 
 To view SDD utilization, run:
 
@@ -1159,9 +1159,9 @@ spine02         80                      576                             2880    
 
 This output indicates that this drive is in a good state overall with 80% of its PE cycles remaining. Use the `around` option to view this information around a particular time in the past.
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}
 
 ### View Disk Storage After BTRFS Allocation
 
@@ -1177,7 +1177,7 @@ To view the disk state:
 
 1. Open the full-screen Switch card for a switch of interest:
 
-     - Type the switch name in the Global Search box, then use the card size picker to open the full-screen card, *or* 
+     - Type the switch name in the Global Search entry field, then use the card size picker to open the full-screen card, *or* 
      - Click {{<img src="https://icons.cumulusnetworks.com/03-Computers-Devices-Electronics/09-Hard-Drives/hard-drive-1.svg" height="24" width="24">}} (Switches), select **Open a switch card**, enter the switch name and select the full-screen card size.
 
 2. Click **BTRFS Utilization**.
@@ -1487,7 +1487,7 @@ netq <hostname> show sensors all [around <text-time>] [json]
 
 Use the `around` option to view sensor information for a time in the past.
 
-This example show all of the sensors on the *border01* switch.
+This example show every sensor on the *border01* switch.
 
 ```
 cumulus@switch:~$ netq border01 show sensors all

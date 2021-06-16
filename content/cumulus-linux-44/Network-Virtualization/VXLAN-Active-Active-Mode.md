@@ -65,22 +65,22 @@ With MLAG peering, both switches use an anycast IP address for VXLAN encapsulati
 {{< img src = "/images/cumulus-linux/vxlan-active-active-config.png" >}}
 
 {{< tabs "TabID70 ">}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 {{< tabs "TabID73 ">}}
 {{< tab "leaf01 ">}}
 
 ```
-cumulus@leaf01:~$ cl set nve vxlan mlag shared-address 10.0.1.12
-cumulus@leaf01:~$ cl config apply
+cumulus@leaf01:~$ nv set nve vxlan mlag shared-address 10.0.1.12
+cumulus@leaf01:~$ nv config apply
 ```
 
 {{< /tab >}}
 {{< tab "leaf02 ">}}
 
 ```
-cumulus@leaf01:~$ cl set nve vxlan mlag shared-address 10.0.1.12
-cumulus@leaf01:~$ cl config apply
+cumulus@leaf01:~$ nv set nve vxlan mlag shared-address 10.0.1.12
+cumulus@leaf01:~$ nv config apply
 ```
 
 {{< /tab >}}

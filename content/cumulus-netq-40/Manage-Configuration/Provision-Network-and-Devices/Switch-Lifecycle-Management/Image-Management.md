@@ -168,7 +168,7 @@ If you have already specified a default image, you must click <strong>Manage</st
 
 9. Click **Uploaded** to verify the images are in the repository.
 
-   When all of the missing images have been uploaded, the Missing list will be empty.
+   When all the missing images have been uploaded, the Missing list is empty.
 
 10. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14">}} to return to the LCM dashboard.
 
@@ -412,7 +412,7 @@ cumulus@switch:~$ netq lcm show cl-images json
 
 ## Remove Images from Local Repository
 
-Once you have upgraded all of your switches beyond a particular release, you may want to remove those images from the LCM repository to save space on the server.
+After you upgrade all your switches beyond a particular release, you may want to remove those images from the LCM repository to save space on the server.
 
 To remove images:
 

@@ -17,9 +17,7 @@ With NetQ, you can:
 MAC addresses are associated with switch interfaces. They are classified as:
 
 - **Origin**: MAC address is owned by a particular switch, on one or more interfaces. A MAC address typically has only one origin node. The exceptions are when MLAG is configured, the MAC on the VRR interfaces for the MLAG pair is the same, and when EVPN is configured, the MAC is distributed across the layer 3 gateways.
-
 - **Remote**: MAC address is learned or distributed by the control plane on a tunnel interface pointing to a particular remote location. For a given MAC address and VLAN there is only one first-hop switch (or switch pair), but multiple nodes can have the same remote MAC address.
-
 - **Local** (not origin and not remote): MAC address is learned on a bridge and points to an interface on another switch. If the LLDP neighbor of the interface is a host, then this switch is the first-hop switch where the MAC address is learned. For a given MAC address and VLAN there is only one first-hop switch, except if the switches are part of an MLAG pair, and the interfaces on both switches form a dually or singly connected bond.
 
 The NetQ UI provides a listing of current MAC Addresses that can be filtered by hostname, timestamp, MAC address, VLAN, and origin. The list can be sorted by these parameters and also remote, static, and next hop.
@@ -657,7 +655,7 @@ Mon Aug 24 2020 14:16:32  leaf02           1003   leaf02: 00:00:5e:00:01:01 conf
 
 #### MAC Address Configured on Server and Learned from a Peer
 
-In this example, the 00:08:00:00:aa:13 MAC address was configured on server01. As a result, both leaf11 and leaf12 learned this address on the next-hop interface serv01bond2 (learned locally), whereas, the leaf01 switch learned this address remotely on vx-34 (learned remotely).
+In this example, the 00:08:00:00:aa:13 MAC address was configured on server01. As a result, both leaf11 and leaf12 learned this address on the next hop interface serv01bond2 (learned locally), whereas, the leaf01 switch learned this address remotely on vx-34 (learned remotely).
 
 ```
 cumulus@server11:~$ netq show mac-commentary 00:08:00:00:aa:13 vlan 1000 between now and 5hr 

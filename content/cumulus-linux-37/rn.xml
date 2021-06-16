@@ -69,6 +69,63 @@ To work around this issue, run the &lt;tt&gt;apt-get upgrade&lt;/tt&gt; command 
 <td></td>
 </tr>
 <tr>
+<td>2690100</td>
+<td>When you run the vtysh {{show ip bgp vrf &lt;name&gt; &lt;afi&gt; &lt;safi&gt; statistics}} command, the {{bgpd}} service crashes if you use {{vrf all}}. For example:
+spine01# show ip bgp vrf all statistics 
+&lt;pre&gt;vtysh: error reading from bgpd: Success (0)Warning: closing connection to bgpd because of an I/O error!&lt;/pre&gt;
+&lt;pre&gt;spine01# show bgp vrf all ipv6 unicast statistics 
+vtysh: error reading from bgpd: Success (0)Warning: closing connection to bgpd because of an I/O error!&lt;/pre&gt;
+To workaround this issue, run the command against each VRF independently.</td>
+<td>3.7.15, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2684404</td>
+<td>CVE-2017-20005: NGINX has a buffer overflow for years that exceed four digits, as demonstrated by a file with a modification date in 1969 that causes an integer overflow (or a false modification date far in the future), when encountered by the autoindex module.
+Vulnerable: &lt;= 1.6.2-5+deb8u8
+Fixed: 1.6.2-5+deb8u9</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2682832</td>
+<td>When the  NetQ agent is installed on the Dell N3048EP switch, {{switchd}} might crash if pluggables are installed in the SFP+ ports.</td>
+<td>3.7.13-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2679950</td>
+<td>CVE-2021-25217: parsing of stored leases by dhclient or dhcpd has an incorrect length check that may cause a crash.
+Vulnerable: &lt;= 4.3.1-6-cl3.7.14u1
+Fixed: 4.3.1-6-cl3.7.16u1</td>
+<td>3.7.0-3.7.15, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2677063</td>
+<td>CVE-2021-3541: "Parameter Laughs" attack related to parameter entities expansion.
+Vulnerable: &lt;= 2.9.1+dfsg1-5+deb8u10
+Fixed: 2.9.1+dfsg1-5+deb8u11</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2677061</td>
+<td>CVE-2021-23017: off-by-one in Nginx, a high-performance web and reverse proxy server, which could result in denial of service and potentially the execution of arbitrary code.
+Vulnerable: &lt;= 1.6.2-5+deb8u7
+Fixed: 1.6.2-5+deb8u8</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2677060</td>
+<td>CVE-2021-23336: Python2.7 is vulnerable to Web Cache Poisoning via urllib.parse.parse_qsl and urllib.parse.parse_qs by using a vector called parameter cloaking. When the attacker can separate query parameters using a semicolon (;), they can cause a difference in the interpretation of the request between the proxy (running with default configuration) and the server. This can result in malicious requests being cached as completely safe ones, as the proxy would usually not see the semicolon as a separator, and therefore would not include it in a cache key of an unkeyed parameter.
+Vulnerable: &lt;= 2.7.9-2-ds1-1+deb8u6
+Fixed: 2.7.9-2-ds1-1+deb8u7</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2669858</td>
 <td>OpenSSH is vulnerable to CVE-2020-14145, as described in https://www.fzi.de/fileadmin/user_upload/2020-06-26-FSA-2020-2.pdf.  
 This is an information leak in algorithm negotiation that can allow man-in-the-middle attacks on initial connection attempts without a previously stored server host key on the client. If desired, mitigation using UpdateHostKeys and HostKeyAlgorithms is also given in that paper.</td>
@@ -256,7 +313,14 @@ Nov 12 12:20:05.099798 leaf01 switchd[9867]:
 Nov 12 12:20:05.099871 leaf01 switchd[9867]: hal_bcm_console.c:294 ERROR loading rc script on unit 0
 Nov 12 12:20:05.099892 leaf01 switchd[9867]:
 Nov 12 12:20:05.099943 leaf01 switchd[9867]: hal_bcm_console.c:299 CRIT loading of rc script failed, aborting!
-</td>
+
+
+To work around this issue, configure Cumulus Linux to boot with the kernel command option 'intel_iommu=off':
+
+a) Open the file /etc/default/grub with a text editor
+b) Edit the variable GRUB_CMDLINE_LINUX by adding the string 'intel_iommu=off' at the end.  For example: GRUB_CMDLINE_LINUX="cl_platform=cel_e1031 console=ttyS1,115200n8 intel_iommu=off"
+c) Run the command 'update-grub'
+d) Reboot the switch</td>
 <td>3.7.11-4.2.1</td>
 <td>4.3.0</td>
 </tr>
@@ -1642,11 +1706,6 @@ FIxed: 2.6.1-2+deb8u6</td>
 <td>3.7.0-3.7.14.2</td>
 </tr>
 <tr>
-<td>2581473</td>
-<td>When netq-agent is installed on the Dell N3048EP platform, switchd might crash if pluggables are installed in the SFP+ ports.</td>
-<td>3.7.13-3.7.14.2</td>
-</tr>
-<tr>
 <td>2574294</td>
 <td>CVE-2021-3410: A buffer overflow issue in caca_resize function in libcaca/caca/canvas.c may lead to local execution of arbitrary code in the user context.
 Vulnerable: &lt;= 0.99.beta19-2+deb8u1
@@ -2054,6 +2113,52 @@ To work around this issue, run the &lt;tt&gt;apt-get upgrade&lt;/tt&gt; command 
 <td></td>
 </tr>
 <tr>
+<td>2684404</td>
+<td>CVE-2017-20005: NGINX has a buffer overflow for years that exceed four digits, as demonstrated by a file with a modification date in 1969 that causes an integer overflow (or a false modification date far in the future), when encountered by the autoindex module.
+Vulnerable: &lt;= 1.6.2-5+deb8u8
+Fixed: 1.6.2-5+deb8u9</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2682832</td>
+<td>When the  NetQ agent is installed on the Dell N3048EP switch, {{switchd}} might crash if pluggables are installed in the SFP+ ports.</td>
+<td>3.7.13-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2679950</td>
+<td>CVE-2021-25217: parsing of stored leases by dhclient or dhcpd has an incorrect length check that may cause a crash.
+Vulnerable: &lt;= 4.3.1-6-cl3.7.14u1
+Fixed: 4.3.1-6-cl3.7.16u1</td>
+<td>3.7.0-3.7.15, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2677063</td>
+<td>CVE-2021-3541: "Parameter Laughs" attack related to parameter entities expansion.
+Vulnerable: &lt;= 2.9.1+dfsg1-5+deb8u10
+Fixed: 2.9.1+dfsg1-5+deb8u11</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2677061</td>
+<td>CVE-2021-23017: off-by-one in Nginx, a high-performance web and reverse proxy server, which could result in denial of service and potentially the execution of arbitrary code.
+Vulnerable: &lt;= 1.6.2-5+deb8u7
+Fixed: 1.6.2-5+deb8u8</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2677060</td>
+<td>CVE-2021-23336: Python2.7 is vulnerable to Web Cache Poisoning via urllib.parse.parse_qsl and urllib.parse.parse_qs by using a vector called parameter cloaking. When the attacker can separate query parameters using a semicolon (;), they can cause a difference in the interpretation of the request between the proxy (running with default configuration) and the server. This can result in malicious requests being cached as completely safe ones, as the proxy would usually not see the semicolon as a separator, and therefore would not include it in a cache key of an unkeyed parameter.
+Vulnerable: &lt;= 2.7.9-2-ds1-1+deb8u6
+Fixed: 2.7.9-2-ds1-1+deb8u7</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2669858</td>
 <td>OpenSSH is vulnerable to CVE-2020-14145, as described in https://www.fzi.de/fileadmin/user_upload/2020-06-26-FSA-2020-2.pdf.  
 This is an information leak in algorithm negotiation that can allow man-in-the-middle attacks on initial connection attempts without a previously stored server host key on the client. If desired, mitigation using UpdateHostKeys and HostKeyAlgorithms is also given in that paper.</td>
@@ -2281,12 +2386,6 @@ CVE-2021-25290: In TiffDecode.c, there is a negative-offset memcpy with an inval
 Vulnerable: &lt;= 2.6.1-2+deb8u5
 FIxed: 2.6.1-2+deb8u6</td>
 <td>3.7.0-3.7.14.2</td>
-<td>3.7.15</td>
-</tr>
-<tr>
-<td>2581473</td>
-<td>When netq-agent is installed on the Dell N3048EP platform, switchd might crash if pluggables are installed in the SFP+ ports.</td>
-<td>3.7.13-3.7.14.2</td>
 <td>3.7.15</td>
 </tr>
 <tr>
@@ -2640,7 +2739,14 @@ Nov 12 12:20:05.099798 leaf01 switchd[9867]:
 Nov 12 12:20:05.099871 leaf01 switchd[9867]: hal_bcm_console.c:294 ERROR loading rc script on unit 0
 Nov 12 12:20:05.099892 leaf01 switchd[9867]:
 Nov 12 12:20:05.099943 leaf01 switchd[9867]: hal_bcm_console.c:299 CRIT loading of rc script failed, aborting!
-</td>
+
+
+To work around this issue, configure Cumulus Linux to boot with the kernel command option 'intel_iommu=off':
+
+a) Open the file /etc/default/grub with a text editor
+b) Edit the variable GRUB_CMDLINE_LINUX by adding the string 'intel_iommu=off' at the end.  For example: GRUB_CMDLINE_LINUX="cl_platform=cel_e1031 console=ttyS1,115200n8 intel_iommu=off"
+c) Run the command 'update-grub'
+d) Reboot the switch</td>
 <td>3.7.11-4.2.1</td>
 <td>4.3.0</td>
 </tr>
@@ -4093,6 +4199,52 @@ To work around this issue, run the &lt;tt&gt;apt-get upgrade&lt;/tt&gt; command 
 <td></td>
 </tr>
 <tr>
+<td>2684404</td>
+<td>CVE-2017-20005: NGINX has a buffer overflow for years that exceed four digits, as demonstrated by a file with a modification date in 1969 that causes an integer overflow (or a false modification date far in the future), when encountered by the autoindex module.
+Vulnerable: &lt;= 1.6.2-5+deb8u8
+Fixed: 1.6.2-5+deb8u9</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2682832</td>
+<td>When the  NetQ agent is installed on the Dell N3048EP switch, {{switchd}} might crash if pluggables are installed in the SFP+ ports.</td>
+<td>3.7.13-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2679950</td>
+<td>CVE-2021-25217: parsing of stored leases by dhclient or dhcpd has an incorrect length check that may cause a crash.
+Vulnerable: &lt;= 4.3.1-6-cl3.7.14u1
+Fixed: 4.3.1-6-cl3.7.16u1</td>
+<td>3.7.0-3.7.15, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2677063</td>
+<td>CVE-2021-3541: "Parameter Laughs" attack related to parameter entities expansion.
+Vulnerable: &lt;= 2.9.1+dfsg1-5+deb8u10
+Fixed: 2.9.1+dfsg1-5+deb8u11</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2677061</td>
+<td>CVE-2021-23017: off-by-one in Nginx, a high-performance web and reverse proxy server, which could result in denial of service and potentially the execution of arbitrary code.
+Vulnerable: &lt;= 1.6.2-5+deb8u7
+Fixed: 1.6.2-5+deb8u8</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2677060</td>
+<td>CVE-2021-23336: Python2.7 is vulnerable to Web Cache Poisoning via urllib.parse.parse_qsl and urllib.parse.parse_qs by using a vector called parameter cloaking. When the attacker can separate query parameters using a semicolon (;), they can cause a difference in the interpretation of the request between the proxy (running with default configuration) and the server. This can result in malicious requests being cached as completely safe ones, as the proxy would usually not see the semicolon as a separator, and therefore would not include it in a cache key of an unkeyed parameter.
+Vulnerable: &lt;= 2.7.9-2-ds1-1+deb8u6
+Fixed: 2.7.9-2-ds1-1+deb8u7</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2669858</td>
 <td>OpenSSH is vulnerable to CVE-2020-14145, as described in https://www.fzi.de/fileadmin/user_upload/2020-06-26-FSA-2020-2.pdf.  
 This is an information leak in algorithm negotiation that can allow man-in-the-middle attacks on initial connection attempts without a previously stored server host key on the client. If desired, mitigation using UpdateHostKeys and HostKeyAlgorithms is also given in that paper.</td>
@@ -4303,12 +4455,6 @@ CVE-2021-25290: In TiffDecode.c, there is a negative-offset memcpy with an inval
 Vulnerable: &lt;= 2.6.1-2+deb8u5
 FIxed: 2.6.1-2+deb8u6</td>
 <td>3.7.0-3.7.14.2</td>
-<td>3.7.15</td>
-</tr>
-<tr>
-<td>2581473</td>
-<td>When netq-agent is installed on the Dell N3048EP platform, switchd might crash if pluggables are installed in the SFP+ ports.</td>
-<td>3.7.13-3.7.14.2</td>
 <td>3.7.15</td>
 </tr>
 <tr>
@@ -4712,7 +4858,14 @@ Nov 12 12:20:05.099798 leaf01 switchd[9867]:
 Nov 12 12:20:05.099871 leaf01 switchd[9867]: hal_bcm_console.c:294 ERROR loading rc script on unit 0
 Nov 12 12:20:05.099892 leaf01 switchd[9867]:
 Nov 12 12:20:05.099943 leaf01 switchd[9867]: hal_bcm_console.c:299 CRIT loading of rc script failed, aborting!
-</td>
+
+
+To work around this issue, configure Cumulus Linux to boot with the kernel command option 'intel_iommu=off':
+
+a) Open the file /etc/default/grub with a text editor
+b) Edit the variable GRUB_CMDLINE_LINUX by adding the string 'intel_iommu=off' at the end.  For example: GRUB_CMDLINE_LINUX="cl_platform=cel_e1031 console=ttyS1,115200n8 intel_iommu=off"
+c) Run the command 'update-grub'
+d) Reboot the switch</td>
 <td>3.7.11-4.2.1</td>
 <td>4.3.0</td>
 </tr>
@@ -6688,6 +6841,52 @@ To work around this issue, run the &lt;tt&gt;apt-get upgrade&lt;/tt&gt; command 
 <td></td>
 </tr>
 <tr>
+<td>2684404</td>
+<td>CVE-2017-20005: NGINX has a buffer overflow for years that exceed four digits, as demonstrated by a file with a modification date in 1969 that causes an integer overflow (or a false modification date far in the future), when encountered by the autoindex module.
+Vulnerable: &lt;= 1.6.2-5+deb8u8
+Fixed: 1.6.2-5+deb8u9</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2682832</td>
+<td>When the  NetQ agent is installed on the Dell N3048EP switch, {{switchd}} might crash if pluggables are installed in the SFP+ ports.</td>
+<td>3.7.13-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2679950</td>
+<td>CVE-2021-25217: parsing of stored leases by dhclient or dhcpd has an incorrect length check that may cause a crash.
+Vulnerable: &lt;= 4.3.1-6-cl3.7.14u1
+Fixed: 4.3.1-6-cl3.7.16u1</td>
+<td>3.7.0-3.7.15, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2677063</td>
+<td>CVE-2021-3541: "Parameter Laughs" attack related to parameter entities expansion.
+Vulnerable: &lt;= 2.9.1+dfsg1-5+deb8u10
+Fixed: 2.9.1+dfsg1-5+deb8u11</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2677061</td>
+<td>CVE-2021-23017: off-by-one in Nginx, a high-performance web and reverse proxy server, which could result in denial of service and potentially the execution of arbitrary code.
+Vulnerable: &lt;= 1.6.2-5+deb8u7
+Fixed: 1.6.2-5+deb8u8</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2677060</td>
+<td>CVE-2021-23336: Python2.7 is vulnerable to Web Cache Poisoning via urllib.parse.parse_qsl and urllib.parse.parse_qs by using a vector called parameter cloaking. When the attacker can separate query parameters using a semicolon (;), they can cause a difference in the interpretation of the request between the proxy (running with default configuration) and the server. This can result in malicious requests being cached as completely safe ones, as the proxy would usually not see the semicolon as a separator, and therefore would not include it in a cache key of an unkeyed parameter.
+Vulnerable: &lt;= 2.7.9-2-ds1-1+deb8u6
+Fixed: 2.7.9-2-ds1-1+deb8u7</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2668477</td>
 <td>CVE-2021-31535: libX11, the X11 protocol client library, was vulnerable to protocol command injection due to insufficient validation of arguments to some functions.
 Vulnerable: &lt;= 1.6.2-3+deb8u4
@@ -6866,12 +7065,6 @@ FIxed: 2.6.1-2+deb8u6</td>
 <td>3.7.15</td>
 </tr>
 <tr>
-<td>2581473</td>
-<td>When netq-agent is installed on the Dell N3048EP platform, switchd might crash if pluggables are installed in the SFP+ ports.</td>
-<td>3.7.13-3.7.14.2</td>
-<td>3.7.15</td>
-</tr>
-<tr>
 <td>2562511</td>
 <td>{{hostapd}} does not fail over to secondary RADIUS servers for 802.1x authentication when the primary radius is reachable but not responding to Access-Requests.
 If the primary RADIUS server is having a problem servicing requests, you can remove it from the configuration temporarily to force requests to be sent to alternate servers.</td>
@@ -6945,7 +7138,14 @@ Nov 12 12:20:05.099798 leaf01 switchd[9867]:
 Nov 12 12:20:05.099871 leaf01 switchd[9867]: hal_bcm_console.c:294 ERROR loading rc script on unit 0
 Nov 12 12:20:05.099892 leaf01 switchd[9867]:
 Nov 12 12:20:05.099943 leaf01 switchd[9867]: hal_bcm_console.c:299 CRIT loading of rc script failed, aborting!
-</td>
+
+
+To work around this issue, configure Cumulus Linux to boot with the kernel command option 'intel_iommu=off':
+
+a) Open the file /etc/default/grub with a text editor
+b) Edit the variable GRUB_CMDLINE_LINUX by adding the string 'intel_iommu=off' at the end.  For example: GRUB_CMDLINE_LINUX="cl_platform=cel_e1031 console=ttyS1,115200n8 intel_iommu=off"
+c) Run the command 'update-grub'
+d) Reboot the switch</td>
 <td>3.7.11-4.2.1</td>
 <td>4.3.0</td>
 </tr>
@@ -9473,6 +9673,46 @@ To work around this issue, run the &lt;tt&gt;apt-get upgrade&lt;/tt&gt; command 
 <td></td>
 </tr>
 <tr>
+<td>2684404</td>
+<td>CVE-2017-20005: NGINX has a buffer overflow for years that exceed four digits, as demonstrated by a file with a modification date in 1969 that causes an integer overflow (or a false modification date far in the future), when encountered by the autoindex module.
+Vulnerable: &lt;= 1.6.2-5+deb8u8
+Fixed: 1.6.2-5+deb8u9</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2679950</td>
+<td>CVE-2021-25217: parsing of stored leases by dhclient or dhcpd has an incorrect length check that may cause a crash.
+Vulnerable: &lt;= 4.3.1-6-cl3.7.14u1
+Fixed: 4.3.1-6-cl3.7.16u1</td>
+<td>3.7.0-3.7.15, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2677063</td>
+<td>CVE-2021-3541: "Parameter Laughs" attack related to parameter entities expansion.
+Vulnerable: &lt;= 2.9.1+dfsg1-5+deb8u10
+Fixed: 2.9.1+dfsg1-5+deb8u11</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2677061</td>
+<td>CVE-2021-23017: off-by-one in Nginx, a high-performance web and reverse proxy server, which could result in denial of service and potentially the execution of arbitrary code.
+Vulnerable: &lt;= 1.6.2-5+deb8u7
+Fixed: 1.6.2-5+deb8u8</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2677060</td>
+<td>CVE-2021-23336: Python2.7 is vulnerable to Web Cache Poisoning via urllib.parse.parse_qsl and urllib.parse.parse_qs by using a vector called parameter cloaking. When the attacker can separate query parameters using a semicolon (;), they can cause a difference in the interpretation of the request between the proxy (running with default configuration) and the server. This can result in malicious requests being cached as completely safe ones, as the proxy would usually not see the semicolon as a separator, and therefore would not include it in a cache key of an unkeyed parameter.
+Vulnerable: &lt;= 2.7.9-2-ds1-1+deb8u6
+Fixed: 2.7.9-2-ds1-1+deb8u7</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2668477</td>
 <td>CVE-2021-31535: libX11, the X11 protocol client library, was vulnerable to protocol command injection due to insufficient validation of arguments to some functions.
 Vulnerable: &lt;= 1.6.2-3+deb8u4
@@ -9698,7 +9938,14 @@ Nov 12 12:20:05.099798 leaf01 switchd[9867]:
 Nov 12 12:20:05.099871 leaf01 switchd[9867]: hal_bcm_console.c:294 ERROR loading rc script on unit 0
 Nov 12 12:20:05.099892 leaf01 switchd[9867]:
 Nov 12 12:20:05.099943 leaf01 switchd[9867]: hal_bcm_console.c:299 CRIT loading of rc script failed, aborting!
-</td>
+
+
+To work around this issue, configure Cumulus Linux to boot with the kernel command option 'intel_iommu=off':
+
+a) Open the file /etc/default/grub with a text editor
+b) Edit the variable GRUB_CMDLINE_LINUX by adding the string 'intel_iommu=off' at the end.  For example: GRUB_CMDLINE_LINUX="cl_platform=cel_e1031 console=ttyS1,115200n8 intel_iommu=off"
+c) Run the command 'update-grub'
+d) Reboot the switch</td>
 <td>3.7.11-4.2.1</td>
 <td>4.3.0</td>
 </tr>
@@ -12124,6 +12371,46 @@ To work around this issue, run the &lt;tt&gt;apt-get upgrade&lt;/tt&gt; command 
 <td></td>
 </tr>
 <tr>
+<td>2684404</td>
+<td>CVE-2017-20005: NGINX has a buffer overflow for years that exceed four digits, as demonstrated by a file with a modification date in 1969 that causes an integer overflow (or a false modification date far in the future), when encountered by the autoindex module.
+Vulnerable: &lt;= 1.6.2-5+deb8u8
+Fixed: 1.6.2-5+deb8u9</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2679950</td>
+<td>CVE-2021-25217: parsing of stored leases by dhclient or dhcpd has an incorrect length check that may cause a crash.
+Vulnerable: &lt;= 4.3.1-6-cl3.7.14u1
+Fixed: 4.3.1-6-cl3.7.16u1</td>
+<td>3.7.0-3.7.15, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2677063</td>
+<td>CVE-2021-3541: "Parameter Laughs" attack related to parameter entities expansion.
+Vulnerable: &lt;= 2.9.1+dfsg1-5+deb8u10
+Fixed: 2.9.1+dfsg1-5+deb8u11</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2677061</td>
+<td>CVE-2021-23017: off-by-one in Nginx, a high-performance web and reverse proxy server, which could result in denial of service and potentially the execution of arbitrary code.
+Vulnerable: &lt;= 1.6.2-5+deb8u7
+Fixed: 1.6.2-5+deb8u8</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2677060</td>
+<td>CVE-2021-23336: Python2.7 is vulnerable to Web Cache Poisoning via urllib.parse.parse_qsl and urllib.parse.parse_qs by using a vector called parameter cloaking. When the attacker can separate query parameters using a semicolon (;), they can cause a difference in the interpretation of the request between the proxy (running with default configuration) and the server. This can result in malicious requests being cached as completely safe ones, as the proxy would usually not see the semicolon as a separator, and therefore would not include it in a cache key of an unkeyed parameter.
+Vulnerable: &lt;= 2.7.9-2-ds1-1+deb8u6
+Fixed: 2.7.9-2-ds1-1+deb8u7</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2668477</td>
 <td>CVE-2021-31535: libX11, the X11 protocol client library, was vulnerable to protocol command injection due to insufficient validation of arguments to some functions.
 Vulnerable: &lt;= 1.6.2-3+deb8u4
@@ -12319,7 +12606,14 @@ Nov 12 12:20:05.099798 leaf01 switchd[9867]:
 Nov 12 12:20:05.099871 leaf01 switchd[9867]: hal_bcm_console.c:294 ERROR loading rc script on unit 0
 Nov 12 12:20:05.099892 leaf01 switchd[9867]:
 Nov 12 12:20:05.099943 leaf01 switchd[9867]: hal_bcm_console.c:299 CRIT loading of rc script failed, aborting!
-</td>
+
+
+To work around this issue, configure Cumulus Linux to boot with the kernel command option 'intel_iommu=off':
+
+a) Open the file /etc/default/grub with a text editor
+b) Edit the variable GRUB_CMDLINE_LINUX by adding the string 'intel_iommu=off' at the end.  For example: GRUB_CMDLINE_LINUX="cl_platform=cel_e1031 console=ttyS1,115200n8 intel_iommu=off"
+c) Run the command 'update-grub'
+d) Reboot the switch</td>
 <td>3.7.11-4.2.1</td>
 <td>4.3.0</td>
 </tr>
@@ -14487,6 +14781,46 @@ To work around this issue, run the &lt;tt&gt;apt-get upgrade&lt;/tt&gt; command 
 <td></td>
 </tr>
 <tr>
+<td>2684404</td>
+<td>CVE-2017-20005: NGINX has a buffer overflow for years that exceed four digits, as demonstrated by a file with a modification date in 1969 that causes an integer overflow (or a false modification date far in the future), when encountered by the autoindex module.
+Vulnerable: &lt;= 1.6.2-5+deb8u8
+Fixed: 1.6.2-5+deb8u9</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2679950</td>
+<td>CVE-2021-25217: parsing of stored leases by dhclient or dhcpd has an incorrect length check that may cause a crash.
+Vulnerable: &lt;= 4.3.1-6-cl3.7.14u1
+Fixed: 4.3.1-6-cl3.7.16u1</td>
+<td>3.7.0-3.7.15, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2677063</td>
+<td>CVE-2021-3541: "Parameter Laughs" attack related to parameter entities expansion.
+Vulnerable: &lt;= 2.9.1+dfsg1-5+deb8u10
+Fixed: 2.9.1+dfsg1-5+deb8u11</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2677061</td>
+<td>CVE-2021-23017: off-by-one in Nginx, a high-performance web and reverse proxy server, which could result in denial of service and potentially the execution of arbitrary code.
+Vulnerable: &lt;= 1.6.2-5+deb8u7
+Fixed: 1.6.2-5+deb8u8</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2677060</td>
+<td>CVE-2021-23336: Python2.7 is vulnerable to Web Cache Poisoning via urllib.parse.parse_qsl and urllib.parse.parse_qs by using a vector called parameter cloaking. When the attacker can separate query parameters using a semicolon (;), they can cause a difference in the interpretation of the request between the proxy (running with default configuration) and the server. This can result in malicious requests being cached as completely safe ones, as the proxy would usually not see the semicolon as a separator, and therefore would not include it in a cache key of an unkeyed parameter.
+Vulnerable: &lt;= 2.7.9-2-ds1-1+deb8u6
+Fixed: 2.7.9-2-ds1-1+deb8u7</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2668477</td>
 <td>CVE-2021-31535: libX11, the X11 protocol client library, was vulnerable to protocol command injection due to insufficient validation of arguments to some functions.
 Vulnerable: &lt;= 1.6.2-3+deb8u4
@@ -16290,6 +16624,46 @@ More information at https://security-tracker.debian.org/tracker/CVE-2018-6594 .<
 <td>CM-15812</td>
 <td>&lt;p&gt;Multicast forwarding fails for IP addresses whose DMAC overlaps with reserved DIPs.&lt;/p&gt;</td>
 <td>3.2.1-3.7.14.2, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2684404</td>
+<td>CVE-2017-20005: NGINX has a buffer overflow for years that exceed four digits, as demonstrated by a file with a modification date in 1969 that causes an integer overflow (or a false modification date far in the future), when encountered by the autoindex module.
+Vulnerable: &lt;= 1.6.2-5+deb8u8
+Fixed: 1.6.2-5+deb8u9</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2679950</td>
+<td>CVE-2021-25217: parsing of stored leases by dhclient or dhcpd has an incorrect length check that may cause a crash.
+Vulnerable: &lt;= 4.3.1-6-cl3.7.14u1
+Fixed: 4.3.1-6-cl3.7.16u1</td>
+<td>3.7.0-3.7.15, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2677063</td>
+<td>CVE-2021-3541: "Parameter Laughs" attack related to parameter entities expansion.
+Vulnerable: &lt;= 2.9.1+dfsg1-5+deb8u10
+Fixed: 2.9.1+dfsg1-5+deb8u11</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2677061</td>
+<td>CVE-2021-23017: off-by-one in Nginx, a high-performance web and reverse proxy server, which could result in denial of service and potentially the execution of arbitrary code.
+Vulnerable: &lt;= 1.6.2-5+deb8u7
+Fixed: 1.6.2-5+deb8u8</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2677060</td>
+<td>CVE-2021-23336: Python2.7 is vulnerable to Web Cache Poisoning via urllib.parse.parse_qsl and urllib.parse.parse_qs by using a vector called parameter cloaking. When the attacker can separate query parameters using a semicolon (;), they can cause a difference in the interpretation of the request between the proxy (running with default configuration) and the server. This can result in malicious requests being cached as completely safe ones, as the proxy would usually not see the semicolon as a separator, and therefore would not include it in a cache key of an unkeyed parameter.
+Vulnerable: &lt;= 2.7.9-2-ds1-1+deb8u6
+Fixed: 2.7.9-2-ds1-1+deb8u7</td>
+<td>3.7.0-3.7.15</td>
 <td></td>
 </tr>
 <tr>
@@ -18419,6 +18793,46 @@ To work around this issue, run the {{sudo ethtool -S swp1}} command to collect i
 <td></td>
 </tr>
 <tr>
+<td>2684404</td>
+<td>CVE-2017-20005: NGINX has a buffer overflow for years that exceed four digits, as demonstrated by a file with a modification date in 1969 that causes an integer overflow (or a false modification date far in the future), when encountered by the autoindex module.
+Vulnerable: &lt;= 1.6.2-5+deb8u8
+Fixed: 1.6.2-5+deb8u9</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2679950</td>
+<td>CVE-2021-25217: parsing of stored leases by dhclient or dhcpd has an incorrect length check that may cause a crash.
+Vulnerable: &lt;= 4.3.1-6-cl3.7.14u1
+Fixed: 4.3.1-6-cl3.7.16u1</td>
+<td>3.7.0-3.7.15, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2677063</td>
+<td>CVE-2021-3541: "Parameter Laughs" attack related to parameter entities expansion.
+Vulnerable: &lt;= 2.9.1+dfsg1-5+deb8u10
+Fixed: 2.9.1+dfsg1-5+deb8u11</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2677061</td>
+<td>CVE-2021-23017: off-by-one in Nginx, a high-performance web and reverse proxy server, which could result in denial of service and potentially the execution of arbitrary code.
+Vulnerable: &lt;= 1.6.2-5+deb8u7
+Fixed: 1.6.2-5+deb8u8</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2677060</td>
+<td>CVE-2021-23336: Python2.7 is vulnerable to Web Cache Poisoning via urllib.parse.parse_qsl and urllib.parse.parse_qs by using a vector called parameter cloaking. When the attacker can separate query parameters using a semicolon (;), they can cause a difference in the interpretation of the request between the proxy (running with default configuration) and the server. This can result in malicious requests being cached as completely safe ones, as the proxy would usually not see the semicolon as a separator, and therefore would not include it in a cache key of an unkeyed parameter.
+Vulnerable: &lt;= 2.7.9-2-ds1-1+deb8u6
+Fixed: 2.7.9-2-ds1-1+deb8u7</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2668477</td>
 <td>CVE-2021-31535: libX11, the X11 protocol client library, was vulnerable to protocol command injection due to insufficient validation of arguments to some functions.
 Vulnerable: &lt;= 1.6.2-3+deb8u4
@@ -19976,6 +20390,46 @@ To work around this issue, use {{net show interface}} command for LLDP output wh
 <td>CM-15812</td>
 <td>&lt;p&gt;Multicast forwarding fails for IP addresses whose DMAC overlaps with reserved DIPs.&lt;/p&gt;</td>
 <td>3.2.1-3.7.14.2, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2684404</td>
+<td>CVE-2017-20005: NGINX has a buffer overflow for years that exceed four digits, as demonstrated by a file with a modification date in 1969 that causes an integer overflow (or a false modification date far in the future), when encountered by the autoindex module.
+Vulnerable: &lt;= 1.6.2-5+deb8u8
+Fixed: 1.6.2-5+deb8u9</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2679950</td>
+<td>CVE-2021-25217: parsing of stored leases by dhclient or dhcpd has an incorrect length check that may cause a crash.
+Vulnerable: &lt;= 4.3.1-6-cl3.7.14u1
+Fixed: 4.3.1-6-cl3.7.16u1</td>
+<td>3.7.0-3.7.15, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2677063</td>
+<td>CVE-2021-3541: "Parameter Laughs" attack related to parameter entities expansion.
+Vulnerable: &lt;= 2.9.1+dfsg1-5+deb8u10
+Fixed: 2.9.1+dfsg1-5+deb8u11</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2677061</td>
+<td>CVE-2021-23017: off-by-one in Nginx, a high-performance web and reverse proxy server, which could result in denial of service and potentially the execution of arbitrary code.
+Vulnerable: &lt;= 1.6.2-5+deb8u7
+Fixed: 1.6.2-5+deb8u8</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2677060</td>
+<td>CVE-2021-23336: Python2.7 is vulnerable to Web Cache Poisoning via urllib.parse.parse_qsl and urllib.parse.parse_qs by using a vector called parameter cloaking. When the attacker can separate query parameters using a semicolon (;), they can cause a difference in the interpretation of the request between the proxy (running with default configuration) and the server. This can result in malicious requests being cached as completely safe ones, as the proxy would usually not see the semicolon as a separator, and therefore would not include it in a cache key of an unkeyed parameter.
+Vulnerable: &lt;= 2.7.9-2-ds1-1+deb8u6
+Fixed: 2.7.9-2-ds1-1+deb8u7</td>
+<td>3.7.0-3.7.15</td>
 <td></td>
 </tr>
 <tr>
@@ -21869,6 +22323,46 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <td></td>
 </tr>
 <tr>
+<td>2684404</td>
+<td>CVE-2017-20005: NGINX has a buffer overflow for years that exceed four digits, as demonstrated by a file with a modification date in 1969 that causes an integer overflow (or a false modification date far in the future), when encountered by the autoindex module.
+Vulnerable: &lt;= 1.6.2-5+deb8u8
+Fixed: 1.6.2-5+deb8u9</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2679950</td>
+<td>CVE-2021-25217: parsing of stored leases by dhclient or dhcpd has an incorrect length check that may cause a crash.
+Vulnerable: &lt;= 4.3.1-6-cl3.7.14u1
+Fixed: 4.3.1-6-cl3.7.16u1</td>
+<td>3.7.0-3.7.15, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2677063</td>
+<td>CVE-2021-3541: "Parameter Laughs" attack related to parameter entities expansion.
+Vulnerable: &lt;= 2.9.1+dfsg1-5+deb8u10
+Fixed: 2.9.1+dfsg1-5+deb8u11</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2677061</td>
+<td>CVE-2021-23017: off-by-one in Nginx, a high-performance web and reverse proxy server, which could result in denial of service and potentially the execution of arbitrary code.
+Vulnerable: &lt;= 1.6.2-5+deb8u7
+Fixed: 1.6.2-5+deb8u8</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2677060</td>
+<td>CVE-2021-23336: Python2.7 is vulnerable to Web Cache Poisoning via urllib.parse.parse_qsl and urllib.parse.parse_qs by using a vector called parameter cloaking. When the attacker can separate query parameters using a semicolon (;), they can cause a difference in the interpretation of the request between the proxy (running with default configuration) and the server. This can result in malicious requests being cached as completely safe ones, as the proxy would usually not see the semicolon as a separator, and therefore would not include it in a cache key of an unkeyed parameter.
+Vulnerable: &lt;= 2.7.9-2-ds1-1+deb8u6
+Fixed: 2.7.9-2-ds1-1+deb8u7</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2668477</td>
 <td>CVE-2021-31535: libX11, the X11 protocol client library, was vulnerable to protocol command injection due to insufficient validation of arguments to some functions.
 Vulnerable: &lt;= 1.6.2-3+deb8u4
@@ -23503,6 +23997,46 @@ This issue was discovered on the Helix4 switch but applies to all switches.
 <td></td>
 </tr>
 <tr>
+<td>2684404</td>
+<td>CVE-2017-20005: NGINX has a buffer overflow for years that exceed four digits, as demonstrated by a file with a modification date in 1969 that causes an integer overflow (or a false modification date far in the future), when encountered by the autoindex module.
+Vulnerable: &lt;= 1.6.2-5+deb8u8
+Fixed: 1.6.2-5+deb8u9</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2679950</td>
+<td>CVE-2021-25217: parsing of stored leases by dhclient or dhcpd has an incorrect length check that may cause a crash.
+Vulnerable: &lt;= 4.3.1-6-cl3.7.14u1
+Fixed: 4.3.1-6-cl3.7.16u1</td>
+<td>3.7.0-3.7.15, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2677063</td>
+<td>CVE-2021-3541: "Parameter Laughs" attack related to parameter entities expansion.
+Vulnerable: &lt;= 2.9.1+dfsg1-5+deb8u10
+Fixed: 2.9.1+dfsg1-5+deb8u11</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2677061</td>
+<td>CVE-2021-23017: off-by-one in Nginx, a high-performance web and reverse proxy server, which could result in denial of service and potentially the execution of arbitrary code.
+Vulnerable: &lt;= 1.6.2-5+deb8u7
+Fixed: 1.6.2-5+deb8u8</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2677060</td>
+<td>CVE-2021-23336: Python2.7 is vulnerable to Web Cache Poisoning via urllib.parse.parse_qsl and urllib.parse.parse_qs by using a vector called parameter cloaking. When the attacker can separate query parameters using a semicolon (;), they can cause a difference in the interpretation of the request between the proxy (running with default configuration) and the server. This can result in malicious requests being cached as completely safe ones, as the proxy would usually not see the semicolon as a separator, and therefore would not include it in a cache key of an unkeyed parameter.
+Vulnerable: &lt;= 2.7.9-2-ds1-1+deb8u6
+Fixed: 2.7.9-2-ds1-1+deb8u7</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2668477</td>
 <td>CVE-2021-31535: libX11, the X11 protocol client library, was vulnerable to protocol command injection due to insufficient validation of arguments to some functions.
 Vulnerable: &lt;= 1.6.2-3+deb8u4
@@ -24786,6 +25320,46 @@ The NetQ agent has been removed from Cumulus VX 3.7.7. The NetQ agent will be bu
 <td>CM-15812</td>
 <td>&lt;p&gt;Multicast forwarding fails for IP addresses whose DMAC overlaps with reserved DIPs.&lt;/p&gt;</td>
 <td>3.2.1-3.7.14.2, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2684404</td>
+<td>CVE-2017-20005: NGINX has a buffer overflow for years that exceed four digits, as demonstrated by a file with a modification date in 1969 that causes an integer overflow (or a false modification date far in the future), when encountered by the autoindex module.
+Vulnerable: &lt;= 1.6.2-5+deb8u8
+Fixed: 1.6.2-5+deb8u9</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2679950</td>
+<td>CVE-2021-25217: parsing of stored leases by dhclient or dhcpd has an incorrect length check that may cause a crash.
+Vulnerable: &lt;= 4.3.1-6-cl3.7.14u1
+Fixed: 4.3.1-6-cl3.7.16u1</td>
+<td>3.7.0-3.7.15, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2677063</td>
+<td>CVE-2021-3541: "Parameter Laughs" attack related to parameter entities expansion.
+Vulnerable: &lt;= 2.9.1+dfsg1-5+deb8u10
+Fixed: 2.9.1+dfsg1-5+deb8u11</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2677061</td>
+<td>CVE-2021-23017: off-by-one in Nginx, a high-performance web and reverse proxy server, which could result in denial of service and potentially the execution of arbitrary code.
+Vulnerable: &lt;= 1.6.2-5+deb8u7
+Fixed: 1.6.2-5+deb8u8</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2677060</td>
+<td>CVE-2021-23336: Python2.7 is vulnerable to Web Cache Poisoning via urllib.parse.parse_qsl and urllib.parse.parse_qs by using a vector called parameter cloaking. When the attacker can separate query parameters using a semicolon (;), they can cause a difference in the interpretation of the request between the proxy (running with default configuration) and the server. This can result in malicious requests being cached as completely safe ones, as the proxy would usually not see the semicolon as a separator, and therefore would not include it in a cache key of an unkeyed parameter.
+Vulnerable: &lt;= 2.7.9-2-ds1-1+deb8u6
+Fixed: 2.7.9-2-ds1-1+deb8u7</td>
+<td>3.7.0-3.7.15</td>
 <td></td>
 </tr>
 <tr>
@@ -26099,6 +26673,46 @@ The NetQ agent has been removed from Cumulus VX 3.7.7. The NetQ agent will be bu
 <td>CM-15812</td>
 <td>&lt;p&gt;Multicast forwarding fails for IP addresses whose DMAC overlaps with reserved DIPs.&lt;/p&gt;</td>
 <td>3.2.1-3.7.14.2, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2684404</td>
+<td>CVE-2017-20005: NGINX has a buffer overflow for years that exceed four digits, as demonstrated by a file with a modification date in 1969 that causes an integer overflow (or a false modification date far in the future), when encountered by the autoindex module.
+Vulnerable: &lt;= 1.6.2-5+deb8u8
+Fixed: 1.6.2-5+deb8u9</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2679950</td>
+<td>CVE-2021-25217: parsing of stored leases by dhclient or dhcpd has an incorrect length check that may cause a crash.
+Vulnerable: &lt;= 4.3.1-6-cl3.7.14u1
+Fixed: 4.3.1-6-cl3.7.16u1</td>
+<td>3.7.0-3.7.15, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2677063</td>
+<td>CVE-2021-3541: "Parameter Laughs" attack related to parameter entities expansion.
+Vulnerable: &lt;= 2.9.1+dfsg1-5+deb8u10
+Fixed: 2.9.1+dfsg1-5+deb8u11</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2677061</td>
+<td>CVE-2021-23017: off-by-one in Nginx, a high-performance web and reverse proxy server, which could result in denial of service and potentially the execution of arbitrary code.
+Vulnerable: &lt;= 1.6.2-5+deb8u7
+Fixed: 1.6.2-5+deb8u8</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2677060</td>
+<td>CVE-2021-23336: Python2.7 is vulnerable to Web Cache Poisoning via urllib.parse.parse_qsl and urllib.parse.parse_qs by using a vector called parameter cloaking. When the attacker can separate query parameters using a semicolon (;), they can cause a difference in the interpretation of the request between the proxy (running with default configuration) and the server. This can result in malicious requests being cached as completely safe ones, as the proxy would usually not see the semicolon as a separator, and therefore would not include it in a cache key of an unkeyed parameter.
+Vulnerable: &lt;= 2.7.9-2-ds1-1+deb8u6
+Fixed: 2.7.9-2-ds1-1+deb8u7</td>
+<td>3.7.0-3.7.15</td>
 <td></td>
 </tr>
 <tr>
@@ -27513,6 +28127,46 @@ The NetQ agent has been removed from Cumulus VX 3.7.7. The NetQ agent will be bu
 <td>CM-15812</td>
 <td>&lt;p&gt;Multicast forwarding fails for IP addresses whose DMAC overlaps with reserved DIPs.&lt;/p&gt;</td>
 <td>3.2.1-3.7.14.2, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2684404</td>
+<td>CVE-2017-20005: NGINX has a buffer overflow for years that exceed four digits, as demonstrated by a file with a modification date in 1969 that causes an integer overflow (or a false modification date far in the future), when encountered by the autoindex module.
+Vulnerable: &lt;= 1.6.2-5+deb8u8
+Fixed: 1.6.2-5+deb8u9</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2679950</td>
+<td>CVE-2021-25217: parsing of stored leases by dhclient or dhcpd has an incorrect length check that may cause a crash.
+Vulnerable: &lt;= 4.3.1-6-cl3.7.14u1
+Fixed: 4.3.1-6-cl3.7.16u1</td>
+<td>3.7.0-3.7.15, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2677063</td>
+<td>CVE-2021-3541: "Parameter Laughs" attack related to parameter entities expansion.
+Vulnerable: &lt;= 2.9.1+dfsg1-5+deb8u10
+Fixed: 2.9.1+dfsg1-5+deb8u11</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2677061</td>
+<td>CVE-2021-23017: off-by-one in Nginx, a high-performance web and reverse proxy server, which could result in denial of service and potentially the execution of arbitrary code.
+Vulnerable: &lt;= 1.6.2-5+deb8u7
+Fixed: 1.6.2-5+deb8u8</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2677060</td>
+<td>CVE-2021-23336: Python2.7 is vulnerable to Web Cache Poisoning via urllib.parse.parse_qsl and urllib.parse.parse_qs by using a vector called parameter cloaking. When the attacker can separate query parameters using a semicolon (;), they can cause a difference in the interpretation of the request between the proxy (running with default configuration) and the server. This can result in malicious requests being cached as completely safe ones, as the proxy would usually not see the semicolon as a separator, and therefore would not include it in a cache key of an unkeyed parameter.
+Vulnerable: &lt;= 2.7.9-2-ds1-1+deb8u6
+Fixed: 2.7.9-2-ds1-1+deb8u7</td>
+<td>3.7.0-3.7.15</td>
 <td></td>
 </tr>
 <tr>
@@ -28973,6 +29627,46 @@ Permanent MAC address sync between MLAG peers is now supported.</td>
 <td></td>
 </tr>
 <tr>
+<td>2684404</td>
+<td>CVE-2017-20005: NGINX has a buffer overflow for years that exceed four digits, as demonstrated by a file with a modification date in 1969 that causes an integer overflow (or a false modification date far in the future), when encountered by the autoindex module.
+Vulnerable: &lt;= 1.6.2-5+deb8u8
+Fixed: 1.6.2-5+deb8u9</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2679950</td>
+<td>CVE-2021-25217: parsing of stored leases by dhclient or dhcpd has an incorrect length check that may cause a crash.
+Vulnerable: &lt;= 4.3.1-6-cl3.7.14u1
+Fixed: 4.3.1-6-cl3.7.16u1</td>
+<td>3.7.0-3.7.15, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2677063</td>
+<td>CVE-2021-3541: "Parameter Laughs" attack related to parameter entities expansion.
+Vulnerable: &lt;= 2.9.1+dfsg1-5+deb8u10
+Fixed: 2.9.1+dfsg1-5+deb8u11</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2677061</td>
+<td>CVE-2021-23017: off-by-one in Nginx, a high-performance web and reverse proxy server, which could result in denial of service and potentially the execution of arbitrary code.
+Vulnerable: &lt;= 1.6.2-5+deb8u7
+Fixed: 1.6.2-5+deb8u8</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2677060</td>
+<td>CVE-2021-23336: Python2.7 is vulnerable to Web Cache Poisoning via urllib.parse.parse_qsl and urllib.parse.parse_qs by using a vector called parameter cloaking. When the attacker can separate query parameters using a semicolon (;), they can cause a difference in the interpretation of the request between the proxy (running with default configuration) and the server. This can result in malicious requests being cached as completely safe ones, as the proxy would usually not see the semicolon as a separator, and therefore would not include it in a cache key of an unkeyed parameter.
+Vulnerable: &lt;= 2.7.9-2-ds1-1+deb8u6
+Fixed: 2.7.9-2-ds1-1+deb8u7</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2668477</td>
 <td>CVE-2021-31535: libX11, the X11 protocol client library, was vulnerable to protocol command injection due to insufficient validation of arguments to some functions.
 Vulnerable: &lt;= 1.6.2-3+deb8u4
@@ -29745,6 +30439,46 @@ To work around this issue, remove the matching {{network}} statement. </td>
 <td>CM-15812</td>
 <td>&lt;p&gt;Multicast forwarding fails for IP addresses whose DMAC overlaps with reserved DIPs.&lt;/p&gt;</td>
 <td>3.2.1-3.7.14.2, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2684404</td>
+<td>CVE-2017-20005: NGINX has a buffer overflow for years that exceed four digits, as demonstrated by a file with a modification date in 1969 that causes an integer overflow (or a false modification date far in the future), when encountered by the autoindex module.
+Vulnerable: &lt;= 1.6.2-5+deb8u8
+Fixed: 1.6.2-5+deb8u9</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2679950</td>
+<td>CVE-2021-25217: parsing of stored leases by dhclient or dhcpd has an incorrect length check that may cause a crash.
+Vulnerable: &lt;= 4.3.1-6-cl3.7.14u1
+Fixed: 4.3.1-6-cl3.7.16u1</td>
+<td>3.7.0-3.7.15, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2677063</td>
+<td>CVE-2021-3541: "Parameter Laughs" attack related to parameter entities expansion.
+Vulnerable: &lt;= 2.9.1+dfsg1-5+deb8u10
+Fixed: 2.9.1+dfsg1-5+deb8u11</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2677061</td>
+<td>CVE-2021-23017: off-by-one in Nginx, a high-performance web and reverse proxy server, which could result in denial of service and potentially the execution of arbitrary code.
+Vulnerable: &lt;= 1.6.2-5+deb8u7
+Fixed: 1.6.2-5+deb8u8</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2677060</td>
+<td>CVE-2021-23336: Python2.7 is vulnerable to Web Cache Poisoning via urllib.parse.parse_qsl and urllib.parse.parse_qs by using a vector called parameter cloaking. When the attacker can separate query parameters using a semicolon (;), they can cause a difference in the interpretation of the request between the proxy (running with default configuration) and the server. This can result in malicious requests being cached as completely safe ones, as the proxy would usually not see the semicolon as a separator, and therefore would not include it in a cache key of an unkeyed parameter.
+Vulnerable: &lt;= 2.7.9-2-ds1-1+deb8u6
+Fixed: 2.7.9-2-ds1-1+deb8u7</td>
+<td>3.7.0-3.7.15</td>
 <td></td>
 </tr>
 <tr>

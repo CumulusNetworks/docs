@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 235
 toc: 5
 ---
-This topic describes how to prepare a NetQ 3.3.x or earlier NetQ Appliance before installing NetQ {{<version>}}. The steps are the same for both the on-premises and cloud appliances. The only difference is the software you download for each platform. On completion of the steps included here, you will be ready to perform a fresh installation of NetQ {{<version>}}.
+This topic describes how to prepare a NetQ 3.3.x or earlier NetQ Appliance before installing NetQ {{<version>}}. The steps are the same for both the on-premises and cloud appliances. The only difference is the software you download for each platform. After you complete the steps included here, you are ready to perform a fresh installation of NetQ {{<version>}}.
 
 The preparation workflow is summarized in this figure:
 
@@ -44,7 +44,7 @@ To prepare your appliance:
     Note these tips when installing:
 
     - Ignore the instructions for MAAS.
-    - Ubuntu OS should be installed on the SSD disk. Select Micron SSD with ~900 GB at step#9 in the aforementioned instructions.
+    - Ubuntu OS should be installed on the SSD disk. Select Micron SSD with ~900 GB at step #9 in the {{<exlink url="https://www.fosslinux.com/6406/how-to-install-ubuntu-server-18-04-lts.htm" text="Ubuntu instructions">}}.
 
         {{<figure src="/images/netq/install-ubuntu-ssd-selection-240.png" width="700">}}
 

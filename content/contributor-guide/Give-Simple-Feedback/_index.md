@@ -7,6 +7,8 @@ You can provide feedback about errors that are easy to fix, such as typographica
 
 - Use the **Edit this page** link in any web document
 - Post a message on [Cumulus Community Slack channel](http://slack.cumulusnetworks.com)
+- Open a [Github Issue](https://github.com/CumulusNetworks/docs/issues)
+- Email [ethernet-docs@nvidia.com](mailto:ethernet-docs@nvidia.com)
 
 Details for each are included here. All are easy and quick, so choose the method that is most comfortable for you!
 

@@ -451,3 +451,5 @@ NCLU does not support interfaces named `dev`.
 ### Bonds With No Configured Members
 If a bond interface is configured and it contains no members NCLU will report the interace does not exist. 
 
+### Large NCLU Inputs
+Each NCLU command must be parsed by the system. Large inputs, for example a large paste of NCLU commands can take some time, sometimes minutes, to process.

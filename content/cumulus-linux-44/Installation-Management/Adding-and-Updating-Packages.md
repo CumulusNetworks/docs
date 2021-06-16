@@ -20,34 +20,29 @@ To work correctly, `apt` relies on a local cache listing of the available packag
 
 ```
 cumulus@switch:~$ sudo -E apt-get update
-Get:1 http://apt.cumulusnetworks.com CumulusLinux-4-latest InRelease [7,624 B]
-Get:2 http://apt.cumulusnetworks.com CumulusLinux-4-security-updates-latest InRelease [7,555 B]
-Get:3 http://apt.cumulusnetworks.com CumulusLinux-4-latest-updates InRelease [7,660 B]
-Get:4 http://apt.cumulusnetworks.com CumulusLinux-4-latest/cumulus Sources [20 B]
-Get:5 http://apt.cumulusnetworks.com CumulusLinux-4-latest/upstream Sources [20 B]
-Get:6 http://apt.cumulusnetworks.com CumulusLinux-4-latest/cumulus amd64 Packages [38.4 kB]
-Get:7 http://apt.cumulusnetworks.com CumulusLinux-4--latest/upstream amd64 Packages [445 kB]
-Get:8 http://apt.cumulusnetworks.com CumulusLinux-4-security-updates-latest/cumulus Sources [20 B]
-Get:9 http://apt.cumulusnetworks.com CumulusLinux-4-security-updates-latest/upstream Sources [11.8 kB]
-Get:10 http://apt.cumulusnetworks.com CumulusLinux-4-security-updates-latest/cumulus amd64 Packages [20 B]
-Get:11 http://apt.cumulusnetworks.com CumulusLinux-4-security-updates-latest/upstream amd64 Packages [8,941 B]
-Get:12 http://apt.cumulusnetworks.com CumulusLinux-4-updates-latest/cumulus Sources [20 B]
-Get:13 http://apt.cumulusnetworks.com CumulusLinux-4-updates-latest/upstream Sources [776 B]
-Get:14 http://apt.cumulusnetworks.com CumulusLinux-4-updates-latest/cumulus amd64 Packages [38.4 kB]
-Get:15 http://apt.cumulusnetworks.com CumulusLinux-4-updates-latest/upstream amd64 Packages [444 kB]
-Ign http://apt.cumulusnetworks.com CumulusLinux-4-latest/cumulus Translation-en_US
-Ign http://apt.cumulusnetworks.com CumulusLinux-4-latest/cumulus Translation-en
-Ign http://apt.cumulusnetworks.com CumulusLinux-4-latest/upstream Translation-en_US
-Ign http://apt.cumulusnetworks.com CumulusLinux-4-latest/upstream Translation-en
-Ign http://apt.cumulusnetworks.com CumulusLinux-4-security-updates-latest/cumulus Translation-en_US
-Ign http://apt.cumulusnetworks.com CumulusLinux-4-security-updates-latest/cumulus Translation-en
-Ign http://apt.cumulusnetworks.com CumulusLinux-4-security-updates-latest/upstream Translation-en_US
-Ign http://apt.cumulusnetworks.com CumulusLinux-4-security-updates-latest/upstream Translation-en
-Ign http://apt.cumulusnetworks.com CumulusLinux-4-updates-latest/cumulus Translation-en_US
-Ign http://apt.cumulusnetworks.com CumulusLinux-4-updates-latest/cumulus Translation-en
-Ign http://apt.cumulusnetworks.com CumulusLinux-4-updates-latest/upstream Translation-en_US
-Ign http://apt.cumulusnetworks.com CumulusLinux-4-updates-latest/upstream Translation-en
-Fetched 1,011 kB in 1s (797 kB/s)
+Ign:1 copy:/var/lib/cumulus/cumulus-local-apt-archive cumulus-local-apt-archive InRelease
+Get:2 copy:/var/lib/cumulus/cumulus-local-apt-archive cumulus-local-apt-archive Release [1,115 B]
+Ign:3 copy:/var/lib/cumulus/cumulus-local-apt-archive cumulus-local-apt-archive Release.gpg
+Hit:4 http://deb.debian.org/debian buster InRelease
+Get:5 http://deb.debian.org/debian buster-updates InRelease [51.9 kB]
+Get:6 http://deb.debian.org/debian buster-backports InRelease [46.7 kB]
+Get:7 http://security.debian.org buster/updates InRelease [65.4 kB]
+Get:8 http://apps3.cumulusnetworks.com/repos/deb CumulusLinux-4 InRelease [35.7 kB]
+Hit:9 http://apt.cumulusnetworks.com/repo CumulusLinux-4-latest InRelease
+Get:10 http://deb.debian.org/debian buster-backports/main Sources.diff/Index [27.8 kB]
+Get:11 http://deb.debian.org/debian buster-backports/main amd64 Packages.diff/Index [27.8 kB]
+Get:12 http://deb.debian.org/debian buster-backports/main Translation-en.diff/Index [27.8 kB]
+Get:13 http://deb.debian.org/debian buster-backports/main Sources 2021-06-04-1401.15.pdiff [1,731 B]
+Get:13 http://deb.debian.org/debian buster-backports/main Sources 2021-06-04-1401.15.pdiff [1,731 B]
+Get:14 http://deb.debian.org/debian buster-backports/main amd64 Packages 2021-06-04-1401.15.pdiff [653 B]
+Get:15 http://deb.debian.org/debian buster-backports/main Translation-en 2021-06-04-1401.15.pdiff [358 B]
+Get:14 http://deb.debian.org/debian buster-backports/main amd64 Packages 2021-06-04-1401.15.pdiff [653 B]
+Get:15 http://deb.debian.org/debian buster-backports/main Translation-en 2021-06-04-1401.15.pdiff [358 B]
+Get:16 http://security.debian.org buster/updates/main Sources [187 kB]
+Get:17 http://security.debian.org buster/updates/main amd64 Packages [291 kB]
+Get:18 http://security.debian.org buster/updates/main Translation-en [151 kB]
+Get:19 http://apps3.cumulusnetworks.com/repos/deb CumulusLinux-4/netq-latest amd64 Packages [1,418 B]
+Fetched 917 kB in 3s (265 kB/s)
 Reading package lists... Done
 ```
 
@@ -144,18 +139,20 @@ adduser                            3.118
 apt                                1.8.2
 arping                             2.19-6
 arptables                          0.0.4+snapshot20181021-4
+...
 ```
 
 {{< /tab >}}
-{{< tab "CUE Command ">}}
+{{< tab "NVUE Command ">}}
 
 ```
-cumulus@switch:~$ cl show platform software installed
+cumulus@switch:~$ nv show platform software installed
                                        description                                                                                                                   package                                version
 -------------------------------------  ----------------------------------------------------------------------------------------------------------------------------  -------------------------------------  ----------------------------------------------
 acpi                                   displays information on ACPI devices                                                                                          acpi                                   1.7-1.1
 acpi-support-base                      scripts for handling base ACPI events such as the power button                                                                acpi-support-base                      0.142-8
 acpid                                  Advanced Configuration and Power Interface event daemon                                                                       acpid                                  1:2.0.31-1
+...
 ```
 
 {{< /tab >}}
@@ -192,21 +189,21 @@ The following example command shows which version of the `vrf` package is instal
 
 ```
 cumulus@switch:~$ net show package version vrf
-1.0-cl4u1
+1.0-cl4.4.0u0 
 ```
 
 {{< /tab >}}
-{{< tab "CUE Command ">}}
+{{< tab "NVUE Command ">}}
 
 The following example command shows which version of the `vrf` package is installed on the system:
 
 ```
-cumulus@switch:~$ cl show platform software installed vrf
+cumulus@switch:~$ nv show platform software installed vrf
              running              applied  pending  description
 -----------  -------------------  -------  -------  -----------
 description  Linux tools for VRF                    Description
 package      vrf                                    Package
-version      1.0-cl4.2.1+u1                         Version
+version      1.0-cl4.4.0u0                         Version
 ```
 
 {{< /tab >}}
@@ -221,7 +218,7 @@ Desired=Unknown/Install/Remove/Purge/Hold
 |/ Err?=(none)/Reinst-required (Status,Err: uppercase=bad)
 ||/ Name       Version      Architecture Description
 +++-==========-============-============-=================================
-ii  vrf        1.0-cl4u2    amd64        Linux tools for VRF
+ii  vrf        1.0-cl4.4.0u0    amd64        Linux tools for VRF
 ```
 
 {{< /tab >}}
@@ -348,7 +345,3 @@ You add these packages normally with `apt-get update && apt-get install`, as {{<
 
 - {{<exlink url="https://www.debian.org/doc/manuals/debian-faq/pkgtools.en.html" text="Debian GNU/Linux FAQ, Ch 8 Package management tools">}}
 - man pages for `apt-get`, `dpkg`, `sources.list`, `apt_preferences`
-
-## Considerations
-
-You cannot directly browse the contents of the apt.cumulusnetworks.com repository using HTTP.

@@ -201,17 +201,17 @@ Filesystem     1M-blocks  Used Available Use% Mounted on
 
 You can now upgrade your appliance using the NetQ Admin UI, in the next section. Alternately, you can upgrade using the CLI here: {{<link title="#Upgrade Your Platform Using the NetQ CLI" text="Upgrade Your Platform Using the NetQ CLI">}}.
 
-## Upgrade Your Platform Using the NetQ Admin UI
+## Upgrade Older Platforms Using the NetQ Admin UI
 
-After completing the preparation steps, upgrading your NetQ On-premises or Cloud Appliances or VMs is simple using the Admin UI.
+If you are upgrading from NetQ 3.1.1 or earlier, after completing the preparation steps, upgrading your NetQ On-premises or Cloud Appliances or VMs is simple using the Admin UI.
 
 To upgrade your NetQ software:
 
 1. Run the bootstrap CLI to upgrade the Admin UI application.
 
-    {{< tabs "TabID100" >}}
+    {{<tabs "Upgrade Older Platforms">}}
 
-{{< tab "On-premises Deployments" >}}
+{{<tab "On-premises Deployments">}}
 
 ```
 cumulus@<hostname>:~$ netq bootstrap master upgrade /mnt/installables/NetQ-3.3.1.tgz
@@ -222,17 +222,17 @@ cumulus@<hostname>:~$ netq bootstrap master upgrade /mnt/installables/NetQ-3.3.1
 Successfully bootstrap-upgraded the master node
 ```
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "Remote Deployments" >}}
+{{<tab "Remote Deployments">}}
 
 ```
 netq bootstrap master upgrade /mnt/installables/NetQ-3.3.1-opta.tgz
 ```
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}
 
 2. Open the Admin UI by entering *http://\<hostname-or-ipaddress\>:8443* in your browser address field.
 

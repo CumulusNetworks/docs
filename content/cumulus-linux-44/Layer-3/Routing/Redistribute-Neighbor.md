@@ -63,7 +63,7 @@ The following example configuration is based on the following topology.
 The following steps demonstrate how to configure leaf01, but you can follow the same steps on any leaf.
 
 {{%notice note%}}
-CUE commands are currently unsupported.
+NVUE Commands are currently unsupported.
 {{%/notice%}}
 
 1. Edit the `/etc/network/interfaces` file to configure the host facing ports, using the same IP address on both host-facing interfaces as well as a /32 prefix. In this case, swp1 and swp2 are configured as they are the ports facing server01 and server02:

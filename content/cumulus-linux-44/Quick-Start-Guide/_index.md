@@ -78,12 +78,12 @@ cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ cl set interface eth0 ip address 192.0.2.42/24
-cumulus@switch:~$ cl set interface eth0 ip gateway 192.0.2.1
-cumulus@switch:~$ cl config apply
+cumulus@switch:~$ nv set interface eth0 ip address 192.0.2.42/24
+cumulus@switch:~$ nv set interface eth0 ip gateway 192.0.2.1
+cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -125,11 +125,11 @@ cumulus@switch:~$ net commit
 The above command modifies both the `/etc/hostname` and `/etc/hosts` files.
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ cl set platform hostname value leaf01
-cumulus@switch:~$ cl config apply
+cumulus@switch:~$ nv set platform hostname value leaf01
+cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -230,9 +230,7 @@ If you are using 4x10G DAC or AOC cables, or you want to break out 100G or 40G s
 
 ## Test Cable Connectivity
 
-By default, all data plane ports (every Ethernet port except the management interface, eth0) are disabled.
-
-To test cable connectivity:
+By default, all data plane ports (every Ethernet port except the management interface, eth0) are disabled. You can test cable connectivity by administratively enabling physical ports.
 
 {{< tabs "TabID260 ">}}
 {{< tab "NCLU Commands ">}}
@@ -245,7 +243,7 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-To administratively enable all physical ports, run the following command, where swp1-52 represents a switch with switch ports numbered from swp1 to swp52:
+To administratively enable all physical ports on a switch that has ports numbered from swp1 to swp52:
 
 ```
 cumulus@switch:~$ net add interface swp1-52
@@ -253,116 +251,31 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-To view link status, use the `net show interface all` command. The following examples show the output of ports in `admin down`, `down`, and `up` modes:
-
-```
-cumulus@switch:~$ net show interface all
-State  Name           Spd  MTU    Mode           LLDP                    Summary
------  -------------  ---  -----  -------------  ----------------------  -------------------------
-UP     lo             N/A  65536  Loopback                               IP: 127.0.0.1/8
-       lo                                                                IP: 10.0.0.11/32
-       lo                                                                IP: 10.0.0.112/32
-       lo                                                                IP: ::1/128
-UP     eth0           1G   1500   Mgmt           oob-mgmt-switch (swp6)  Master: mgmt(UP)
-       eth0                                                              IP: 192.168.0.11/24(DHCP)
-UP     swp1           1G   9000   BondMember     server01 (eth1)         Master: bond01(UP)
-UP     swp2           1G   9000   BondMember     server02 (eth1)         Master: bond02(UP)
-ADMDN  swp45          N/A  1500   NotConfigured
-ADMDN  swp46          N/A  1500   NotConfigured
-ADMDN  swp47          N/A  1500   NotConfigured
-ADMDN  swp48          N/A  1500   NotConfigured
-UP     swp49          1G   9000   BondMember     leaf02 (swp49)          Master: peerlink(UP)
-UP     swp50          1G   9000   BondMember     leaf02 (swp50)          Master: peerlink(UP)
-UP     swp51          1G   9216   NotConfigured  spine01 (swp1)
-UP     swp52          1G   9216   NotConfigured  spine02 (swp1)
-UP     bond01         1G   9000   802.3ad                                Master: bridge(UP)
-       bond01                                                            Bond Members: swp1(UP)
-UP     bond02         1G   9000   802.3ad                                Master: bridge(UP)
-       bond02                                                            Bond Members: swp2(UP)
-UP     bridge         N/A  1500   Bridge/L2
-UP     mgmt           N/A  65536  Interface/L3                           IP: 127.0.0.1/8
-UP     peerlink       2G   9000   802.3ad                                Master: bridge(UP)
-       peerlink                                                          Bond Members: swp49(UP)
-       peerlink                                                          Bond Members: swp50(UP)
-DN     peerlink.4094  2G   9000   SubInt/L3                              IP: 169.254.1.1/30
-ADMDN  vagrant        N/A  1500   NotConfigured
-UP     vlan13         N/A  1500   Interface/L3                           Master: vrf1(UP)
-       vlan13                                                            IP: 10.1.3.11/24
-UP     vlan13-v0      N/A  1500   Interface/L3                           Master: vrf1(UP)
-       vlan13-v0                                                         IP: 10.1.3.1/24
-UP     vlan24         N/A  1500   Interface/L3                           Master: vrf1(UP)
-       vlan24                                                            IP: 10.2.4.11/24
-UP     vlan24-v0      N/A  1500   Interface/L3                           Master: vrf1(UP)
-       vlan24-v0                                                         IP: 10.2.4.1/24
-UP     vlan4001       N/A  1500   NotConfigured                          Master: vrf1(UP)
-UP     vni13          N/A  9000   Access/L2                              Master: bridge(UP)
-UP     vni24          N/A  9000   Access/L2                              Master: bridge(UP)
-UP     vrf1           N/A  65536  NotConfigured
-UP     vxlan4001      N/A  1500   Access/L2                              Master: bridge(UP)
-```
+To view link status, run the `net show interface all` command.
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
-To administratively enable a port, such as swp1:
+To administratively enable a port:
 
 ```
-cumulus@switch:~$ cl set interface swp1 link state up
-cumulus@switch:~$ cl config apply
+cumulus@switch:~$ nv set interface swp1 link state up
+cumulus@switch:~$ nv config apply
 ```
 
 To administratively enable all physical ports on a switch that has ports numbered from swp1 to swp52:
 
 ```
-cumulus@switch:~$ cl set interface swp1-52 link state up
-cumulus@switch:~$ cl config apply
+cumulus@switch:~$ nv set interface swp1-52 link state up
+cumulus@switch:~$ nv config apply
 ```
 
-To view link status, run the `cl show interface` command:
-
-```
-cumulus@switch:~$ cl show interface
-Interface  State  Speed  MTU    Type      Summary
----------  -----  -----  -----  --------  ---------------------------------
-+ eth0     up            1500   eth       IP Address:         192.0.2.42/24
-  eth0                                    link.stats.carrier-transitions: 2
-  eth0                                    link.stats.in-bytes:     14716832
-  eth0                                    link.stats.in-drops:            0
-  eth0                                    link.stats.in-errors:           0
-  eth0                                    link.stats.in-pkts:        214216
-  eth0                                    link.stats.out-bytes:    22153528
-  eth0                                    link.stats.out-drops:           0
-  eth0                                    link.stats.out-errors:          0
-  eth0                                    link.stats.out-pkts:       276187
-+ lo       up            65536  loopback  IP Address:         10.10.10.1/32
-  lo                                      IP Address:           127.0.0.1/8
-  lo                                      IP Address:               ::1/128
-  lo                                      link.stats.carrier-transitions: 0
-  lo                                      link.stats.in-bytes:     15503778
-  lo                                      link.stats.in-drops:            0
-  lo                                      link.stats.in-errors:           0
-  lo                                      link.stats.in-pkts:        235814
-  lo                                      link.stats.out-bytes:    15503778
-  lo                                      link.stats.out-drops:           0
-  lo                                      link.stats.out-errors:          0
-  lo                                      link.stats.out-pkts:       235814
-+ swp1     up            9216   swp       bridge.domain:         br_default
-  swp1                                    link.stats.carrier-transitions: 2
-  swp1                                    link.stats.in-bytes:          300
-  swp1                                    link.stats.in-drops:            5
-  swp1                                    link.stats.in-errors:           0
-  swp1                                    link.stats.in-pkts:             5
-  swp1                                    link.stats.out-bytes:    12026953
-  swp1                                    link.stats.out-drops:           0
-  swp1                                    link.stats.out-errors:          0
-  swp1                                    link.stats.out-pkts:       174770
-...
-```
+To view link status, run the `nv show interface` command.
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-To administratively enable a port, such as swp1:
+To administratively enable a port:
 
 ```
 cumulus@switch:~$ sudo ip link set swp1 up
@@ -375,28 +288,12 @@ cumulus@switch:~$ sudo su -
 cumulus@switch:~$ for i in /sys/class/net/*; do iface=`basename $i`; if [[ $iface == swp* ]]; then ip link set $iface up fi done
 ```
 
-To view link status, run the `ip link show` command:
-
-```
-cumulus@switch:~$ ip link show
-# Administratively Down
-swp1: <BROADCAST,MULTICAST> mtu 1500 qdisc pfifo_fast state DOWN mode DEFAULT qlen 1000
-
-# Administratively Up but Layer 1 protocol is Down
-swp1: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc pfifo_fast state DOWN mode DEFAULT qlen 500
-
-# Administratively Up, Layer 1 protocol is Up
-swp1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP mode DEFAULT qlen 500
-```
+To view link status, run the `ip link show` command.
 
 {{< /tab >}}
 {{< /tabs >}}
 
-## Configure Switch Ports
-
-This section describes how to configure switch ports.
-
-### Layer 2 Port Configuration
+## Configure Layer 2 Ports
 
 Cumulus Linux does not put all ports into a bridge by default. To create a bridge and configure one or more front panel ports as members of the bridge:
 
@@ -420,26 +317,26 @@ cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 The following configuration example places the front panel port swp1 into the default bridge called `br_default`.
 
 ```
-cumulus@switch:~$ cl set interface swp1 bridge domain br_default
-cumulus@switch:~$ cl config apply
+cumulus@switch:~$ nv set interface swp1 bridge domain br_default
+cumulus@switch:~$ nv config apply
 ```
 
 You can add a range of ports in one command. For example, to add swp1 through swp3, swp10, and swp14 through swp20 to the bridge:
 
 ```
-cumulus@switch:~$ cl set interface swp1-3,swp6,swp14-20 bridge domain br_default
-cumulus@switch:~$ cl config apply
+cumulus@switch:~$ nv set interface swp1-3,swp6,swp14-20 bridge domain br_default
+cumulus@switch:~$ nv config apply
 ```
 
-To show the bridges configured on the switch, run the `cl show bridge` command:
+To show the bridges configured on the switch, run the `nv show bridge` command:
 
 ```
-cumulus@switch:~$ cl show bridge
+cumulus@switch:~$ nv show bridge
           running     applied      description
 --------  -------     ----------   --------------
 [domain]  br_default  br_default   Bridge domains
@@ -483,7 +380,9 @@ cumulus@switch:~$ sudo ifup -a
 {{< /tab >}}
 {{< /tabs >}}
 
-### Layer 3 Port Configuration
+For more information about Ethernet bridges, see {{<link url="Ethernet-Bridging-VLANs" text="Ethernet Bridging - VLANs">}}.
+
+## Configure Layer 3 Ports
 
 You can configure a front panel port or bridge interface as a layer 3 port.
 
@@ -508,23 +407,23 @@ cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 The following configuration example configures the front panel port swp1 as a layer 3 access port:
 
 ```
-cumulus@switch:~$ cl set interface swp1 ip address 10.1.1.1/30
-cumulus@switch:~$ cl config apply
+cumulus@switch:~$ nv set interface swp1 ip address 10.1.1.1/30
+cumulus@switch:~$ nv config apply
 ```
 
 To add an IP address to a bridge interface, you must put it into a VLAN interface. If you want to use a VLAN other than the native one, set the bridge PVID:
 
 ```
-cumulus@switch:~$ cl set interface swp1-2 bridge domain br_default
-cumulus@switch:~$ cl set bridge domain br_default vlan 100
-cumulus@switch:~$ cl set interface vlan100 ip address 10.2.2.1/24
-cumulus@switch:~$ cl set bridge domain br_default untagged 100
-cumulus@switch:~$ cl config apply
+cumulus@switch:~$ nv set interface swp1-2 bridge domain br_default
+cumulus@switch:~$ nv set bridge domain br_default vlan 100
+cumulus@switch:~$ nv set interface vlan100 ip address 10.2.2.1/24
+cumulus@switch:~$ nv set bridge domain br_default untagged 100
+cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -571,12 +470,10 @@ Cumulus Linux has a preconfigured loopback interface. When the switch boots up, 
 The loopback interface *lo* must always exist on the switch and must always be up.
 {{%/notice%}}
 
-To see the status of the loopback interface and to add an IP address to a loopback interface:
-
-{{< tabs "TabID538 ">}}
-{{< tab "NCLU Commands ">}}
-
 To check the status of the loopback interface:
+
+{{< tabs "TabID473 ">}}
+{{< tab "NCLU Commands ">}}
 
 ```
 cumulus@switch:~$ net show interface lo
@@ -595,7 +492,27 @@ IP Neighbor(ARP) Entries:  0
 
 The loopback is up and is assigned an IP address of 127.0.0.1.
 
+{{< /tab >}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv show interface lo
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+```
+cumulus@switch:~$ ip addr show lo
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
 To add an IP address to a loopback interface, configure the *lo* interface:
+
+{{< tabs "TabID510 ">}}
+{{< tab "NCLU Commands ">}}
 
 ```
 cumulus@switch:~$ net add loopback lo ip address 10.1.1.1/32
@@ -604,29 +521,15 @@ cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
-
-To check the status of the loopback interface:
+{{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ cl show interface lo
-```
-
-To add an IP address to a loopback interface:
-
-```
-cumulus@switch:~$ cl set interface lo ip address 10.10.10.1/32
-cumulus@switch:~$ cl config apply
+cumulus@switch:~$ nv set interface lo ip address 10.10.10.1/32
+cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
-
-To check the status of the loopback interface:
-
-```
-cumulus@switch:~$ ip addr show lo
-```
 
 Add the IP address directly under the `iface lo inet loopback` definition in the `/etc network/interfaces` file:
 
@@ -645,14 +548,10 @@ If you configure an IP address without a subnet mask, it becomes a /32 IP addres
 
 You can add multiple loopback addresses. For more information, see {{<link url="Interface-Configuration-and-Management/#loopback-interface" text="Interface Configuration and Management">}}.
 
-## Reboot the Switch
-
-After you complete the configuration in this section, reboot the switch with the `sudo reboot` command.
-
 {{%notice info%}}
-If you run CUE commands to configure the switch, run the `cl config save` command before you reboot to save the applied configuration to the startup configuration so that the changes persist after the reboot.
+If you run NVUE Commands to configure the switch, run the `nv config save` command before you reboot to save the applied configuration to the startup configuration so that the changes persist after the reboot.
 
 ```
-cumulus@switch:~$ cl config save
+cumulus@switch:~$ nv config save
 ```
 {{%/notice%}}

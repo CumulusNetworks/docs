@@ -39,17 +39,17 @@ cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 The following commands create a VLAN-aware bridge with LACP bypass enabled:
 
 ```
-cumulus@leaf01:~$ cl set interface bond1 bond member swp1-2
-cumulus@leaf01:~$ cl set interface bond1 bond mlag id 1
-cumulus@leaf01:~$ cl set interface bond1 bond lacp-bypass on
-cumulus@leaf01:~$ cl set interface bond1-3 bridge domain br_default
-cumulus@leaf01:~$ cl set bridge domain br_default vlan 10,20,30
-cumulus@leaf01:~$ cl config apply
+cumulus@leaf01:~$ nv set interface bond1 bond member swp1-2
+cumulus@leaf01:~$ nv set interface bond1 bond mlag id 1
+cumulus@leaf01:~$ nv set interface bond1 bond lacp-bypass on
+cumulus@leaf01:~$ nv set interface bond1-3 bridge domain br_default
+cumulus@leaf01:~$ nv set bridge domain br_default vlan 10,20,30
+cumulus@leaf01:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -82,7 +82,7 @@ cumulus@switch:~$ sudo ifreload -a
 {{< /tab >}}
 {{< /tabs >}}
 
-To check the status of the configuration, run the NCLU `net show interface <bond>` command or the Linux `ip link show` command on the bond and its slave interfaces. The CUE command is `cl show interface <bond>`.
+To check the status of the configuration, run the NCLU `net show interface <bond>` command or the Linux `ip link show` command on the bond and its slave interfaces. The NVUE Command is `nv show interface <bond>`.
 
 ```
 cumulus@switch:~$ ip link show bond1

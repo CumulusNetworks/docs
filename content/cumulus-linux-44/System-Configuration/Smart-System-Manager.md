@@ -33,11 +33,9 @@ cumulus@switch:~$ net system maintenance restart cold
 ```
 
 {{< /tab >}}
-{{< tab "CUE Command ">}}
+{{< tab "NVUE Command ">}}
 
-```
-cumulus@switch:~$ cl set NEED COMMAND
-```
+NVUE command is not supported.
 
 {{< /tab >}}
 {{< tab "Linux Command ">}}
@@ -51,7 +49,7 @@ cumulus@switch:~$ sudo csmgrctl -c
 
 The following command restarts the system in fast mode:
 
-{{< tabs "49 ">}}
+{{< tabs "52 ">}}
 {{< tab "NCLU Command ">}}
 
 ```
@@ -59,17 +57,39 @@ cumulus@switch:~$ net system maintenance restart fast
 ```
 
 {{< /tab >}}
-{{< tab "CUE Command ">}}
+{{< tab "NVUE Command ">}}
 
-```
-cumulus@switch:~$ cl set NEED COMMAND
-```
+NVUE command is not supported.
 
 {{< /tab >}}
 {{< tab "Linux Command ">}}
 
 ```
 cumulus@switch:~$ sudo csmgrctl -f
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+The following command restarts the system in warm mode:
+
+{{< tabs "76 ">}}
+{{< tab "NCLU Command ">}}
+
+```
+cumulus@switch:~$ net system maintenance restart warm
+```
+
+{{< /tab >}}
+{{< tab "NVUE Command ">}}
+
+NVUE command is not supported.
+
+{{< /tab >}}
+{{< tab "Linux Command ">}}
+
+```
+cumulus@switch:~$ sudo csmgrctl -w
 ```
 
 {{< /tab >}}
@@ -93,11 +113,9 @@ cumulus@switch:~$ net system maintenance upgrade all
 ```
 
 {{< /tab >}}
-{{< tab "CUE Command ">}}
+{{< tab "NVUE Command ">}}
 
-```
-cumulus@switch:~$ cl set NEED COMMAND
-```
+NVUE command is not supported.
 
 {{< /tab >}}
 {{< tab "Linux Command ">}}
@@ -119,11 +137,9 @@ cumulus@switch:~$ net system maintenance upgrade dry-run
 ```
 
 {{< /tab >}}
-{{< tab "CUE Command ">}}
+{{< tab "NVUE Command ">}}
 
-```
-cumulus@switch:~$ cl set NEED COMMAND
-```
+NVUE command is not supported.
 
 {{< /tab >}}
 {{< tab "Linux Command ">}}
@@ -155,11 +171,9 @@ cumulus@switch:~$ net system maintenance mode enable
 ```
 
 {{< /tab >}}
-{{< tab "CUE Command ">}}
+{{< tab "NVUE Command ">}}
 
-```
-cumulus@switch:~$ cl set NEED COMMAND
-```
+NVUE command is not supported.
 
 {{< /tab >}}
 {{< tab "Linux Command ">}}
@@ -182,11 +196,9 @@ cumulus@switch:~$ net system maintenance ports up
 ```
 
 {{< /tab >}}
-{{< tab "CUE Command ">}}
+{{< tab "NVUE Command ">}}
 
-```
-cumulus@switch:~$ cl set NEED COMMAND
-```
+NVUE command is not supported.
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
@@ -215,11 +227,9 @@ cumulus@switch:~$ net system maintenance mode disable
 ```
 
 {{< /tab >}}
-{{< tab "CUE Command ">}}
+{{< tab "NVUE Command ">}}
 
-```
-cumulus@switch:~$ cl set NEED COMMAND
-```
+NVUE command is not supported.
 
 {{< /tab >}}
 {{< tab "Linux Command ">}}

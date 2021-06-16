@@ -17,7 +17,7 @@ NetQ enables operators to view the health of the MLAG service on a networkwide a
 
 {{%notice tip%}}
 
-If you have prior scripts or automation that use the older `netq show clag` command, they will still work as the command has not been removed yet.
+Any prior scripts or automation that use the older `netq show clag` command continue to work as the command has not been removed yet.
 
 {{%/notice%}}
 
@@ -385,7 +385,9 @@ leaf01(P)         leaf02            44:38:39:be:ef:aa  up         up     8     8
 
 {{< /tabs >}}
 
+<!-- vale off -->
 ### View Switches with the Most MLAG-related Alarms
+<!-- vale on -->
 
 Switches experiencing a large number of MLAG alarms may indicate a configuration or performance issue that needs further investigation. You can view this information using the NetQ UI or NetQ CLI.
 
@@ -441,7 +443,7 @@ border02          clag                     info             Peer state changed t
 
 ### View All MLAG Events
 
-The Network Services|All MLAG Sessions card workflow and the `netq show events type mlag` command enable you to view all of the MLAG events in a designated time period.
+The Network Services|All MLAG Sessions card workflow and the `netq show events type mlag` command enable you to view all MLAG events in a designated time period.
 
 {{< tabs "TabID446" >}}
 
@@ -769,7 +771,7 @@ leaf04            leaf03(P)         44:38:39:be:ef:bb  up         up     8     8
 
 ### View All MLAG Session Events
 
-You can view all of the alarm and info events for the two devices on this card.
+You can view all alarm and info events for the two devices on this card.
 
 1. Open or add the Network Services|All MLAG Sessions card.
 

@@ -72,11 +72,11 @@ cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ cl set bridge domain br_default stp priority 8192
-cumulus@switch:~$ cl config apply
+cumulus@switch:~$ nv set bridge domain br_default stp priority 8192
+cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -133,12 +133,12 @@ cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ cl set interface swp5 bridge domain br_default stp admin-edge on
-cumulus@switch:~$ cl set interface swp5 bridge domain br_default stp bpdu-guard on
-cumulus@switch:~$ cl config apply
+cumulus@switch:~$ nv set interface swp5 bridge domain br_default stp admin-edge on
+cumulus@switch:~$ nv set interface swp5 bridge domain br_default stp bpdu-guard on
+cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -200,11 +200,11 @@ cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ cl set interface swp1 bridge domain br_default stp auto-edge off
-cumulus@switch:~$ cl config apply
+cumulus@switch:~$ nv set interface swp1 bridge domain br_default stp auto-edge off
+cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -242,11 +242,11 @@ cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ cl set interface swp1 bridge domain br_default stp auto-edge on
-cumulus@switch:~$ cl config apply
+cumulus@switch:~$ nv set interface swp1 bridge domain br_default stp auto-edge on
+cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -273,11 +273,11 @@ cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ cl set interface swp5 bridge domain br_default stp bpdu-guard on
-cumulus@switch:~$ cl config apply
+cumulus@switch:~$ nv set interface swp5 bridge domain br_default stp bpdu-guard on
+cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -318,10 +318,10 @@ cumulus@switch:~$ net show bridge spanning-tree | grep bpdu
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ cl show bridge domain br_default stp
+cumulus@switch:~$ nv show bridge domain br_default stp
 ```
 
 {{< /tab >}}
@@ -380,11 +380,11 @@ cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ cl set interface swp5 bridge domain br_default stp network on
-cumulus@switch:~$ cl config apply
+cumulus@switch:~$ nv set interface swp5 bridge domain br_default stp network on
+cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -450,11 +450,11 @@ cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ cl set interface swp6 bridge domain br_default stp bpdu-filter on
-cumulus@switch:~$ cl config apply
+cumulus@switch:~$ nv set interface swp6 bridge domain br_default stp bpdu-filter on
+cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -495,11 +495,11 @@ cumulus@switch:~$ sudo mstpctl setportbpdufilter br100 swp1.100=yes swp2.100=yes
 To enable the interface in the bridge to take the root role:
 
 {{< tabs "TabID427 ">}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ cl set interface swp1 bridge domain br_default stp restrrole on
-cumulus@switch:~$ cl config apply
+cumulus@switch:~$ nv set interface swp1 bridge domain br_default stp restrrole on
+cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -525,7 +525,7 @@ cumulus@switch:~$ sudo ifreload -a
 
 ## Additional STP Parameters
 
-The table below describes additional STP configuration parameters available in Cumulus Linux. You can set these optional parameters manually by editing the `/etc/network/interfaces` file. CUE commands are not supported.
+The table below describes additional STP configuration parameters available in Cumulus Linux. You can set these optional parameters manually by editing the `/etc/network/interfaces` file. NVUE commands are not supported.
 
 Spanning tree parameters are defined in the IEEE {{<exlink url="https://standards.ieee.org/standard/802_1D-2004.html" text="802.1D">}} and {{<exlink url="https://standards.ieee.org/standard/802_1Q-2018.html" text="802.1Q">}} specifications. For a comparison of STP parameter configuration between `mstpctl` and other vendors, [read this knowledge base article]({{<ref "/knowledge-base/Demos-and-Training/Interoperability/Cumulus-Linux-vs-Cisco-IOS-Spanning-Tree-Protocol" >}}).
 
@@ -582,10 +582,10 @@ vxlan4001  forw   Desg  Yes
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ cl show bridge domain br_default stp
+cumulus@switch:~$ nv show bridge domain br_default stp
 ```
 
 {{< /tab >}}

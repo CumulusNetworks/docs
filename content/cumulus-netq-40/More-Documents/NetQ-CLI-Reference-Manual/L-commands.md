@@ -6,10 +6,12 @@ toc: 3
 right_toc_levels: 1
 pdfhidden: true
 ---
-
+<!-- vale NVIDIA.HeadingTitles = NO -->
 This topic includes all commands that begin with `netq l*`, `netq m*`, `netq n*`, `netq o*`, `netq p*`, `netq q*`, and `netq r*`.
 
+<!-- vale off -->
 ## netq lcm add cl-image
+<!-- vale on -->
 
 Adds a Cumulus Linux image (.bin file) to the lifecycle management repository. Images must match the version, architecture, and ASIC vendor for the switches you want to upgrade.
 
@@ -108,7 +110,9 @@ cumulus@switch:~$ netq lcm add credentials username cumulus password cumulus
 
 - - -
 
+<!-- vale off -->
 ## netq lcm add default-version
+<!-- vale on -->
 
 Configures or changes the Cumulus Linux or NetQ version to use automatically during an upgrade. This value can be overridden during upgrade as needed, but eases the upgrade process for the majority of switches.
 
@@ -225,7 +229,7 @@ netq lcm add
 | Argument | Value | Description |
 | ---- | ---- | ---- |
 | role | superspine, spine, leaf, exit | Assign this role to the specified switches |
-| switches | \<text-switch-hostnames\> | Assign the specified role to the switches with these hostnames. Use a comma-separated list (no spaces) to assign the role to multiple switches at once. |
+| switches | \<text-switch-hostnames\> | Assign the specified role to the switches with these hostnames. Use a comma-separated list (no spaces) to assign the role to multiple switches at the same time. |
 
 ### Options
 
@@ -411,7 +415,7 @@ cumulus@switch:~$ netq lcm del netq-image image_68db386683c796d86422f2172c103494
 
 ## netq lcm discover
 
-Searches for switches that do not have NetQ installed based on IP addresses or from a file. Once found you can add them to the lifecycle management repository and upgrade Cumulus Linux. Use the `netq lcm show discovery-job` command to view the results of this command.
+Searches for switches that do not have NetQ installed based on IP addresses or from a file. After they are discovered, can add them to the lifecycle management repository and upgrade Cumulus Linux. Use the `netq lcm show discovery-job` command to view the results of this command.
 
 ### Syntax
 
@@ -1027,12 +1031,14 @@ Displays information about switches monitored by NetQ and contained in the lifec
 
 ### Syntax
 
+<!-- vale off -->
 ```
 netq lcm show switches
     [cl-version <text-cumulus-linux-version>]
     [netq-version <text-netq-version>]
     [json]
 ```
+<!-- vale on -->
 
 ### Required Arguments
 
@@ -1093,7 +1099,9 @@ None
 
 - - -
 
+<!-- vale off -->
 ## netq lcm show upgrade-jobs
+<!-- vale on -->
 
 Displays a history of all Cumulus Linux or NetQ upgrade jobs, including the job identifier and name, Cumulus Linux or NetQ version, pre-check status, warnings and errors, and start the job started. The NetQ upgrade jobs also show the overall status.
 
@@ -1210,3 +1218,4 @@ cumulus@switch:~$ netq lcm show upgrade-jobs netq-image json
 - netq lcm show status
 
 - - -
+<!-- vale NVIDIA.HeadingTitles = YES -->

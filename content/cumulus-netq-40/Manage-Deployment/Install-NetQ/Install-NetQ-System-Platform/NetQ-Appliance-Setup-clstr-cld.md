@@ -7,7 +7,7 @@ bookhidden: true
 ---
 This topic describes how to prepare your cluster of NetQ Cloud Appliances for installation of the NetQ Collector software.
 
-Inside each box that was shipped to you, you'll find:
+Each <!-- vale off -->box<!-- vale on --> that was shipped to you contains:
 
 - Your NVIDIA Cumulus NetQ Cloud Appliance (a Supermicro SuperServer E300-9D)
 - Hardware accessories, such as power cables and rack mounting gear (note that network cables and optics ship separately)
@@ -23,7 +23,7 @@ For more detail about hardware specifications (including LED layouts and FRUs li
 
 Change the password and specify the hostname and IP address for each appliance before installing the NetQ software.
 
-1. Log in to the appliance that will be your master node using the default login credentials:
+1. Log in to the appliance that you intend to use as your master node using the default login credentials:
 
     - **Username**: cumulus
     - **Password**: cumulus
@@ -115,7 +115,7 @@ Now that the appliances are up and running, verify that the software is availabl
 
     {{<netq-install/verify-pkgs version="4.0" platform="appliance">}}
 
-7. Configure the IP address, hostname, and password using the same steps as as for the master node. Refer to {{<link url="#configure-the-password-hostname-and-ip-address" text="Configure the Password, Hostname, and IP Address">}}.
+7. Configure the IP address, hostname, and password using the same steps as for the master node. Refer to {{<link url="#configure-the-password-hostname-and-ip-address" text="Configure the Password, Hostname, and IP Address">}}.
 
     {{<notice note>}}
 Make a note of the private IP addresses you assign to the master and worker nodes. They are needed for later installation steps.

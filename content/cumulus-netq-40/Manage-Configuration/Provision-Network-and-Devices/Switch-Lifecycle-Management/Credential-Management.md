@@ -64,10 +64,10 @@ You must have sudoer permission to properly configure switches when using the SS
 
 2. Copy the SSH *public* key to each switch that you want to upgrade using one of the following methods:
 
-    - Manually copy the the SSH public key to the */home/\<USER\>/.ssh/authorized_keys* file on each switch, or
+    - Manually copy the SSH public key to the */home/\<USER\>/.ssh/authorized_keys* file on each switch, or
     - Run `ssh-copy-id USER@<switch_ip>` on the server where the SSH key pair was generated for each switch
 
-3. Copy the SSH *private* key into the text box in the Create Switch Access card.
+3. Copy the SSH *private* key into the entry field in the Create Switch Access card.
 
     {{<figure src="/images/netq/lcm-access-create-SSH-300.png" width="250">}}
 
@@ -113,7 +113,7 @@ You must have sudoer permission to properly configure switches when using the SS
 
 2. Copy the SSH *public* key to each switch that you want to upgrade using one of the following methods:
 
-    - Manually copy the the SSH public key to the */home/\<USER\>/.ssh/authorized_keys* file on each switch, or
+    - Manually copy the SSH public key to the */home/\<USER\>/.ssh/authorized_keys* file on each switch, or
     - Run `ssh-copy-id USER@<switch_ip>` on the server where the SSH key pair was generated for each switch
 
 3. Add these credentials to the switch.
@@ -219,7 +219,7 @@ You must have sudoer permission to properly configure switches when using the SS
 
 2. Copy the SSH *public* key to each switch that you want to upgrade using one of the following methods:
 
-    - Manually copy the the SSH public key to the */home/\<USER\>/.ssh/authorized_keys* file on each switch, or
+    - Manually copy the SSH public key to the */home/\<USER\>/.ssh/authorized_keys* file on each switch, or
     - Run `ssh-copy-id USER@<switch_ip>` on the server where the SSH key pair was generated for each switch
 
 3. Add these new credentials to the switch.
@@ -234,6 +234,6 @@ You must have sudoer permission to properly configure switches when using the SS
 
 ## Remove Switch Credentials
 
-You can remove the access credentials for switches using the NetQ CLI. Note that without valid credentials, you will not be able to upgrade your switches.
+You can remove the access credentials for switches using the NetQ CLI. Note that without valid credentials, you cannot upgrade your switches.
 
 To remove the credentials, run `netq lcm del credentials`. Verify they are removed by running `netq lcm show credentials`.

@@ -15,192 +15,12 @@ Cumulus Linux supports *more* than one VXLAN ID per VLAN-aware bridge. However, 
 ## Configure Static VXLAN Tunnels
 
 To configure static VXLAN tunnels, you create VXLAN devices. Cumulus Linux supports:
-- *Single VXLAN devices*, where all VXLAN tunnels with the same settings (local tunnel IP address and VXLAN remote IP addresses) can share the same VXLAN device and you only need to add the single VXLAN device to the bridge. This is the default setting.
 - *Traditional VXLAN devices*, where you configure unique VXLAN devices and add each device to the bridge.
+- *Single VXLAN devices*, where all VXLAN tunnels with the same settings (local tunnel IP address and VXLAN remote IP addresses) can share the same VXLAN device and you only need to add the single VXLAN device to the bridge.
 
 The following topology is used in the configuration examples. Each IP address corresponds to the loopback address of the switch.
 
 {{< img src = "/images/cumulus-linux/static-vxlan-tunnel-example.png" >}}
-
-### Single VXLAN Device
-
-The following single VXLAN device example configuration:
-- Sets the loopback address on each leaf
-- Creates a single VXLAN device (vxlan0)
-- Configures the local tunnel IP address to be the loopback address of the switch
-- Enables bridge learning on the single VXLAN device
-- Creates the static VXLAN tunnels by specifying the loopback addresses of the other leafs
-- Adds the VXLAN device to the default bridge br_default
-
-{{< tabs "TabID35 ">}}
-{{< tab "NCLU Commands ">}}
-
-{{< tabs "TabID38 ">}}
-{{< tab "leaf01 ">}}
-
-```
-cumulus@leaf01:~$ net add loopback lo ip address 10.0.0.11/32
-cumulus@leaf01:~$ net add vxlan vni-10 vxlan id 10
-cumulus@leaf01:~$ net add vxlan vni-10 bridge learning on
-cumulus@leaf01:~$ net add vxlan vni-10 vxlan local-tunnelip 10.0.0.11
-cumulus@leaf01:~$ net add vxlan vni-10 vxlan remoteip 10.0.0.12
-cumulus@leaf01:~$ net add vxlan vni-10 vxlan remoteip 10.0.0.13
-cumulus@leaf01:~$ net add vxlan vni-10 vxlan remoteip 10.0.0.14
-cumulus@leaf01:~$ net add vxlan vni-10 bridge access 10
-cumulus@leaf01:~$ net pending
-cumulus@leaf01:~$ net commit
-
-{{< /tab >}}
-{{< tab "leaf02 ">}}
-
-```
-cumulus@leaf02:~$ net add loopback lo ip address 10.0.0.12/32
-cumulus@leaf02:~$ net add vxlan vni-10 vxlan id 10
-cumulus@leaf02:~$ net add vxlan vni-10 bridge learning on
-cumulus@leaf02:~$ net add vxlan vni-10 vxlan local-tunnelip 10.0.0.12
-cumulus@leaf02:~$ net add vxlan vni-10 vxlan remoteip 10.0.0.11
-cumulus@leaf02:~$ net add vxlan vni-10 vxlan remoteip 10.0.0.13
-cumulus@leaf02:~$ net add vxlan vni-10 vxlan remoteip 10.0.0.14
-cumulus@leaf02:~$ net add vxlan vni-10 bridge access 10
-cumulus@leaf02:~$ net pending
-cumulus@leaf02:~$ net commit
-```
-
-{{< /tab >}}
-{{< tab "leaf03 ">}}
-
-```
-cumulus@leaf03:~$ net add loopback lo ip address 10.0.0.13/32
-cumulus@leaf03:~$ net add vxlan vni-10 vxlan id 10
-cumulus@leaf03:~$ net add vxlan vni-10 bridge learning on
-cumulus@leaf03:~$ net add vxlan vni-10 vxlan local-tunnelip 10.0.0.13
-cumulus@leaf03:~$ net add vxlan vni-10 vxlan remoteip 10.0.0.11
-cumulus@leaf03:~$ net add vxlan vni-10 vxlan remoteip 10.0.0.12
-cumulus@leaf03:~$ net add vxlan vni-10 vxlan remoteip 10.0.0.14
-cumulus@leaf03:~$ net add vxlan vni-10 bridge access 10
-cumulus@leaf03:~$ net pending
-cumulus@leaf03:~$ net commit
-```
-
-{{< /tab >}}
-{{< tab "leaf04 ">}}
-
-```
-cumulus@leaf04:~$ net add loopback lo ip address 10.0.0.14/32
-cumulus@leaf04:~$ net add vxlan vni-10 vxlan id 10
-cumulus@leaf04:~$ net add vxlan vni-10 bridge learning on
-cumulus@leaf04:~$ net add vxlan vni-10 vxlan local-tunnelip 10.0.0.14
-cumulus@leaf04:~$ net add vxlan vni-10 vxlan remoteip 10.0.0.11
-cumulus@leaf04:~$ net add vxlan vni-10 vxlan remoteip 10.0.0.12
-cumulus@leaf04:~$ net add vxlan vni-10 vxlan remoteip 10.0.0.13
-cumulus@leaf04:~$ net add vxlan vni-10 bridge access 10
-cumulus@leaf04:~$ net pending
-cumulus@leaf04:~$ net commit
-```
-
-{{< /tab >}}
-{{< /tabs >}}
-
-{{< /tab >}}
-{{< tab "CUE Commands ">}}
-
-{{< tabs "TabID107 ">}}
-{{< tab "leaf01 ">}}
-
-```
-cumulus@leaf01:~$ cl set interface lo ip address 10.10.10.1/32
-cumulus@leaf01:~$ cl set bridge domain br_default vlan 10 vni 10
-cumulus@leaf01:~$ cl set bridge domain br_default vlan 20 vni 20
-cumulus@leaf01:~$ cl set nve vxlan mac-learning on
-cumulus@leaf01:~$ cl set nve vxlan source address 10.10.10.1
-cumulus@leaf01:~$ cl set nve vxlan flooding head-end-replication 10.10.10.2,10.10.10.3,10.10.10.4,
-cumulus@leaf04:~$ cl set interface swp1 bridge domain br_default access 10
-cumulus@leaf04:~$ cl set interface swp2 bridge domain br_default access 20
-cumulus@leaf01:~$ cl config apply
-```
-
-{{< /tab >}}
-{{< tab "leaf02 ">}}
-
-```
-cumulus@leaf02:~$ cl set interface lo ip address 10.10.10.2/32
-cumulus@leaf02:~$ cl set bridge domain br_default vlan 10 vni 10
-cumulus@leaf02:~$ cl set bridge domain br_default vlan 20 vni 20
-cumulus@leaf01:~$ cl set nve vxlan mac-learning on
-cumulus@leaf02:~$ cl set nve vxlan source address 10.10.10.2
-cumulus@leaf01:~$ cl set nve vxlan flooding head-end-replication 10.10.10.1,10.10.10.3,10.10.10.4,
-cumulus@leaf04:~$ cl set interface swp1 bridge domain br_default access 10
-cumulus@leaf04:~$ cl set interface swp2 bridge domain br_default access 20
-cumulus@leaf02:~$ cl config apply
-```
-
-{{< /tab >}}
-{{< tab "leaf03 ">}}
-
-```
-cumulus@leaf03:~$ cl set interface lo ip address 10.10.10.3/32
-cumulus@leaf03:~$ cl set bridge domain br_default vlan 10 vni 10
-cumulus@leaf03:~$ cl set bridge domain br_default vlan 20 vni 20
-cumulus@leaf01:~$ cl set nve vxlan mac-learning on
-cumulus@leaf03:~$ cl set nve vxlan source address 10.10.10.3
-cumulus@leaf03:~$ cl set nve vxlan flooding head-end-replication 10.10.10.1,10.10.10.2,10.10.10.4,
-cumulus@leaf04:~$ cl set interface swp1 bridge domain br_default access 10
-cumulus@leaf04:~$ cl set interface swp2 bridge domain br_default access 20
-cumulus@leaf03:~$ cl config apply
-```
-
-{{< /tab >}}
-{{< tab "leaf04 ">}}
-
-```
-cumulus@leaf04:~$ cl set interface lo ip address 10.10.10.4/32
-cumulus@leaf04:~$ cl set bridge domain br_default vlan 10 vni 10
-cumulus@leaf04:~$ cl set bridge domain br_default vlan 20 vni 20
-cumulus@leaf01:~$ cl set nve vxlan mac-learning on
-cumulus@leaf04:~$ cl set nve vxlan source address 10.10.10.4
-cumulus@leaf04:~$ cl set nve vxlan flooding head-end-replication 10.10.10.1,10.10.10.2,10.10.10.3,
-cumulus@leaf04:~$ cl set interface swp1 bridge domain br_default access 10
-cumulus@leaf04:~$ cl set interface swp2 bridge domain br_default access 20
-cumulus@leaf04:~$ cl config apply
-```
-
-{{< /tab >}}
-{{< /tabs >}}
-
-{{< /tab >}}
-{{< tab "Linux Commands ">}}
-
-Editing the `/etc/network/interfaces` file as follows:
-
-{{< tabs "TabID78 ">}}
-{{< tab "leaf01 ">}}
-
-```
-```
-
-{{< /tab >}}
-{{< tab "leaf02 ">}}
-
-```
-```
-
-{{< /tab >}}
-{{< tab "leaf03 ">}}
-
-```
-```
-
-{{< /tab >}}
-{{< tab "leaf04 ">}}
-
-```
-```
-
-{{< /tab >}}
-{{< /tabs >}}
-
-{{< /tab >}}
-{{< /tabs >}}
 
 ### Traditional VXLAN Device
 
@@ -210,102 +30,203 @@ The following traditional VXLAN device configuration:
 - Configures the local tunnel IP address to be the loopback address of the switch
 - Enables bridge learning on the each VXLAN device
 - Creates the tunnels on each VXLAN device by specifying the loopback addresses of the other leafs
-- Adds both VXLAN devices (vni10 and vni20) to the default bridge br_default
+- Adds both VXLAN devices (vni10 and vni20) to the bridge called `bridge`
 
 {{< tabs "TabID122 ">}}
-{{< tab "CUE Commands ">}}
+{{< tab "NCLU Commands ">}}
 
-{{< tabs "TabID125 ">}}
+{{< tabs "TabID38 ">}}
 {{< tab "leaf01 ">}}
 
 ```
-cumulus@leaf01:~$ cl set interface lo ip address 10.10.10.1/32
-cumulus@leaf01:~$ cl set bridge domain br_default vlan 10 vni 10
-cumulus@leaf01:~$ cl set bridge domain br_default vlan 10 vni 10 mac-learning on
-cumulus@leaf01:~$ cl set bridge domain br_default vlan 20 vni 20
-cumulus@leaf01:~$ cl set bridge domain br_default vlan 20 vni 20 mac-learning on
-cumulus@leaf01:~$ cl set nve vxlan source address 10.10.10.1
-cumulus@leaf01:~$ cl set bridge domain br_default vlan 10 vni 10 flooding head-end-replication 10.10.10.2
-cumulus@leaf01:~$ cl set bridge domain br_default vlan 10 vni 10 flooding head-end-replication 10.10.10.3
-cumulus@leaf01:~$ cl set bridge domain br_default vlan 10 vni 10 flooding head-end-replication 10.10.10.4
-cumulus@leaf01:~$ cl set bridge domain br_default vlan 20 vni 20 flooding head-end-replication 10.10.10.2
-cumulus@leaf01:~$ cl set bridge domain br_default vlan 20 vni 20 flooding head-end-replication 10.10.10.3
-cumulus@leaf01:~$ cl set bridge domain br_default vlan 20 vni 20 flooding head-end-replication 10.10.10.4
-cumulus@leaf04:~$ cl set interface swp1 bridge domain br_default access 10
-cumulus@leaf04:~$ cl set interface swp2 bridge domain br_default access 20
-cumulus@leaf01:~$ cl config apply
+cumulus@leaf01:~$ net add loopback lo ip address 10.10.10.1/32
+cumulus@leaf01:~$ net add vxlan vni-10 vxlan id 10
+cumulus@leaf01:~$ net add vxlan vni-10 bridge learning on
+cumulus@leaf01:~$ net add vxlan vni-10 vxlan local-tunnelip 10.10.10.1
+cumulus@leaf01:~$ net add vxlan vni-10 vxlan remoteip 10.10.10.2
+cumulus@leaf01:~$ net add vxlan vni-10 vxlan remoteip 10.10.10.3
+cumulus@leaf01:~$ net add vxlan vni-10 vxlan remoteip 10.10.10.4
+cumulus@leaf01:~$ net add vxlan vni-10 bridge access 10
+cumulus@leaf01:~$ net add vxlan vni-20 vxlan id 20
+cumulus@leaf01:~$ net add vxlan vni-20 bridge learning on
+cumulus@leaf01:~$ net add vxlan vni-20 vxlan local-tunnelip 10.10.10.1
+cumulus@leaf01:~$ net add vxlan vni-20 vxlan remoteip 10.10.10.2
+cumulus@leaf01:~$ net add vxlan vni-20 vxlan remoteip 10.10.10.3
+cumulus@leaf01:~$ net add vxlan vni-20 vxlan remoteip 10.10.10.4
+cumulus@leaf01:~$ net add vxlan vni-20 bridge access 20
+cumulus@leaf01:~$ net pending
+cumulus@leaf01:~$ net commit
 ```
 
 {{< /tab >}}
 {{< tab "leaf02 ">}}
 
 ```
-cumulus@leaf02:~$ cl set interface lo ip address 10.10.10.2/32
-cumulus@leaf02:~$ cl set bridge domain br_default vlan 10 vni 10
-cumulus@leaf02:~$ cl set bridge domain br_default vlan 10 vni 10 mac-learning on
-cumulus@leaf02:~$ cl set bridge domain br_default vlan 20 vni 20
-cumulus@leaf02:~$ cl set bridge domain br_default vlan 20 vni 20 mac-learning on
-cumulus@leaf02:~$ cl set nve vxlan source address 10.10.10.2
-cumulus@leaf02:~$ cl set bridge domain br_default vlan 10 vni 10 flooding head-end-replication 10.10.10.1
-cumulus@leaf02:~$ cl set bridge domain br_default vlan 10 vni 10 flooding head-end-replication 10.10.10.3
-cumulus@leaf02:~$ cl set bridge domain br_default vlan 10 vni 10 flooding head-end-replication 10.10.10.4
-cumulus@leaf02:~$ cl set bridge domain br_default vlan 20 vni 20 flooding head-end-replication 10.10.10.1
-cumulus@leaf02:~$ cl set bridge domain br_default vlan 20 vni 20 flooding head-end-replication 10.10.10.3
-cumulus@leaf02:~$ cl set bridge domain br_default vlan 20 vni 20 flooding head-end-replication 10.10.10.4
-cumulus@leaf04:~$ cl set interface swp1 bridge domain br_default access 10
-cumulus@leaf04:~$ cl set interface swp2 bridge domain br_default access 20
-cumulus@leaf02:~$ cl config apply
+cumulus@leaf02:~$ net add loopback lo ip address 10.10.10.2/32
+cumulus@leaf02:~$ net add vxlan vni-10 vxlan id 10
+cumulus@leaf02:~$ net add vxlan vni-10 bridge learning on
+cumulus@leaf02:~$ net add vxlan vni-10 vxlan local-tunnelip 10.10.10.2
+cumulus@leaf02:~$ net add vxlan vni-10 vxlan remoteip 10.10.10.1
+cumulus@leaf02:~$ net add vxlan vni-10 vxlan remoteip 10.10.10.3
+cumulus@leaf02:~$ net add vxlan vni-10 vxlan remoteip 10.10.10.4
+cumulus@leaf02:~$ net add vxlan vni-10 bridge access 10
+cumulus@leaf02:~$ net add vxlan vni-20 vxlan id 20
+cumulus@leaf02:~$ net add vxlan vni-20 bridge learning on
+cumulus@leaf02:~$ net add vxlan vni-20 vxlan local-tunnelip 10.10.10.2
+cumulus@leaf02:~$ net add vxlan vni-20 vxlan remoteip 10.10.10.1
+cumulus@leaf02:~$ net add vxlan vni-20 vxlan remoteip 10.10.10.3
+cumulus@leaf02:~$ net add vxlan vni-20 vxlan remoteip 10.10.10.4
+cumulus@leaf02:~$ net add vxlan vni-20 bridge access 20
+cumulus@leaf02:~$ net pending
+cumulus@leaf02:~$ net commit
 ```
 
 {{< /tab >}}
 {{< tab "leaf03 ">}}
 
 ```
-cumulus@leaf03:~$ cl set interface lo ip address 10.10.10.3/32
-cumulus@leaf03:~$ cl set bridge domain br_default vlan 10 vni 10
-cumulus@leaf03:~$ cl set bridge domain br_default vlan 10 vni 10 mac-learning on
-cumulus@leaf03:~$ cl set bridge domain br_default vlan 20 vni 20
-cumulus@leaf03:~$ cl set bridge domain br_default vlan 20 vni 20 mac-learning on
-cumulus@leaf03:~$ cl set nve vxlan source address 10.10.10.3
-cumulus@leaf03:~$ cl set bridge domain br_default vlan 10 vni 10 flooding head-end-replication 10.10.10.1
-cumulus@leaf03:~$ cl set bridge domain br_default vlan 10 vni 10 flooding head-end-replication 10.10.10.2
-cumulus@leaf03:~$ cl set bridge domain br_default vlan 10 vni 10 flooding head-end-replication 10.10.10.4
-cumulus@leaf03:~$ cl set bridge domain br_default vlan 20 vni 20 flooding head-end-replication 10.10.10.1
-cumulus@leaf03:~$ cl set bridge domain br_default vlan 20 vni 20 flooding head-end-replication 10.10.10.2
-cumulus@leaf03:~$ cl set bridge domain br_default vlan 20 vni 20 flooding head-end-replication 10.10.10.4
-cumulus@leaf04:~$ cl set interface swp1 bridge domain br_default access 10
-cumulus@leaf04:~$ cl set interface swp2 bridge domain br_default access 20
-cumulus@leaf03:~$ cl config apply
+cumulus@leaf03:~$ net add loopback lo ip address 10.10.10.3/32
+cumulus@leaf03:~$ net add vxlan vni-10 vxlan id 10
+cumulus@leaf03:~$ net add vxlan vni-10 bridge learning on
+cumulus@leaf03:~$ net add vxlan vni-10 vxlan local-tunnelip 10.10.10.3
+cumulus@leaf03:~$ net add vxlan vni-10 vxlan remoteip 10.10.10.1
+cumulus@leaf03:~$ net add vxlan vni-10 vxlan remoteip 10.10.10.2
+cumulus@leaf03:~$ net add vxlan vni-10 vxlan remoteip 10.10.10.4
+cumulus@leaf03:~$ net add vxlan vni-20 bridge access 10
+cumulus@leaf03:~$ net add vxlan vni-20 bridge learning on
+cumulus@leaf03:~$ net add vxlan vni-20 vxlan local-tunnelip 10.10.10.3
+cumulus@leaf03:~$ net add vxlan vni-20 vxlan remoteip 10.10.10.1
+cumulus@leaf03:~$ net add vxlan vni-20 vxlan remoteip 10.10.10.2
+cumulus@leaf03:~$ net add vxlan vni-20 vxlan remoteip 10.10.10.4
+cumulus@leaf03:~$ net add vxlan vni-20 bridge access 20
+cumulus@leaf03:~$ net pending
+cumulus@leaf03:~$ net commit
 ```
 
 {{< /tab >}}
 {{< tab "leaf04 ">}}
 
 ```
-cumulus@leaf04:~$ cl set interface lo ip address 10.10.10.4/32
-cumulus@leaf04:~$ cl set bridge domain br_default vlan 10 vni 10
-cumulus@leaf04:~$ cl set bridge domain br_default vlan 10 vni 10 mac-learning on
-cumulus@leaf04:~$ cl set bridge domain br_default vlan 20 vni 20
-cumulus@leaf04:~$ cl set bridge domain br_default vlan 20 vni 20 mac-learning on
-cumulus@leaf04:~$ cl set nve vxlan source address 10.10.10.4
-cumulus@leaf04:~$ cl set bridge domain br_default vlan 10 vni 10 flooding head-end-replication 10.10.10.1
-cumulus@leaf04:~$ cl set bridge domain br_default vlan 10 vni 10 flooding head-end-replication 10.10.10.2
-cumulus@leaf04:~$ cl set bridge domain br_default vlan 10 vni 10 flooding head-end-replication 10.10.10.3
-cumulus@leaf04:~$ cl set bridge domain br_default vlan 20 vni 20 flooding head-end-replication 10.10.10.1
-cumulus@leaf04:~$ cl set bridge domain br_default vlan 20 vni 20 flooding head-end-replication 10.10.10.2
-cumulus@leaf04:~$ cl set bridge domain br_default vlan 20 vni 20 flooding head-end-replication 10.10.10.3
-cumulus@leaf04:~$ cl set interface swp1 bridge domain br_default access 10
-cumulus@leaf04:~$ cl set interface swp2 bridge domain br_default access 20
-cumulus@leaf04:~$ cl config apply
+cumulus@leaf04:~$ net add loopback lo ip address 10.10.10.4/32
+cumulus@leaf04:~$ net add vxlan vni-10 vxlan id 10
+cumulus@leaf04:~$ net add vxlan vni-10 bridge learning on
+cumulus@leaf04:~$ net add vxlan vni-10 vxlan local-tunnelip 10.10.10.4
+cumulus@leaf04:~$ net add vxlan vni-10 vxlan remoteip 10.10.10.1
+cumulus@leaf04:~$ net add vxlan vni-10 vxlan remoteip 10.10.10.2
+cumulus@leaf04:~$ net add vxlan vni-10 vxlan remoteip 10.10.10.3
+cumulus@leaf04:~$ net add vxlan vni-10 bridge access 10
+cumulus@leaf04:~$ net add vxlan vni-20 vxlan id 20
+cumulus@leaf04:~$ net add vxlan vni-20 bridge learning on
+cumulus@leaf04:~$ net add vxlan vni-20 vxlan local-tunnelip 10.10.10.4
+cumulus@leaf04:~$ net add vxlan vni-20 vxlan remoteip 10.10.10.1
+cumulus@leaf04:~$ net add vxlan vni-20 vxlan remoteip 10.10.10.2
+cumulus@leaf04:~$ net add vxlan vni-20 vxlan remoteip 10.10.10.3
+cumulus@leaf04:~$ net add vxlan vni-20 bridge access 20
+cumulus@leaf04:~$ net pending
+cumulus@leaf04:~$ net commit
 ```
 
 {{< /tab >}}
 {{< /tabs >}}
 
 {{< /tab >}}
+{{< tab "NVUE Commands ">}}
+
+NVUE commands are not supported.
+
+<!--Is Traditional supported with NVUE?
+
+{{< tabs "TabID125 ">}}
+{{< tab "leaf01 ">}}
+
+```
+cumulus@leaf01:~$ nv set interface lo ip address 10.10.10.1/32
+cumulus@leaf01:~$ nv set bridge domain br_default vlan 10 vni 10
+cumulus@leaf01:~$ nv set bridge domain br_default vlan 10 vni 10 mac-learning on
+cumulus@leaf01:~$ nv set bridge domain br_default vlan 20 vni 20
+cumulus@leaf01:~$ nv set bridge domain br_default vlan 20 vni 20 mac-learning on
+cumulus@leaf01:~$ nv set nve vxlan source address 10.10.10.1
+cumulus@leaf01:~$ nv set bridge domain br_default vlan 10 vni 10 flooding head-end-replication 10.10.10.2
+cumulus@leaf01:~$ nv set bridge domain br_default vlan 10 vni 10 flooding head-end-replication 10.10.10.3
+cumulus@leaf01:~$ nv set bridge domain br_default vlan 10 vni 10 flooding head-end-replication 10.10.10.4
+cumulus@leaf01:~$ nv set bridge domain br_default vlan 20 vni 20 flooding head-end-replication 10.10.10.2
+cumulus@leaf01:~$ nv set bridge domain br_default vlan 20 vni 20 flooding head-end-replication 10.10.10.3
+cumulus@leaf01:~$ nv set bridge domain br_default vlan 20 vni 20 flooding head-end-replication 10.10.10.4
+cumulus@leaf01:~$ nv set interface swp1 bridge domain br_default access 10
+cumulus@leaf01:~$ nv set interface swp2 bridge domain br_default access 20
+cumulus@leaf01:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "leaf02 ">}}
+
+```
+cumulus@leaf02:~$ nv set interface lo ip address 10.10.10.2/32
+cumulus@leaf02:~$ nv set bridge domain br_default vlan 10 vni 10
+cumulus@leaf02:~$ nv set bridge domain br_default vlan 10 vni 10 mac-learning on
+cumulus@leaf02:~$ nv set bridge domain br_default vlan 20 vni 20
+cumulus@leaf02:~$ nv set bridge domain br_default vlan 20 vni 20 mac-learning on
+cumulus@leaf02:~$ nv set nve vxlan source address 10.10.10.2
+cumulus@leaf02:~$ nv set bridge domain br_default vlan 10 vni 10 flooding head-end-replication 10.10.10.1
+cumulus@leaf02:~$ nv set bridge domain br_default vlan 10 vni 10 flooding head-end-replication 10.10.10.3
+cumulus@leaf02:~$ nv set bridge domain br_default vlan 10 vni 10 flooding head-end-replication 10.10.10.4
+cumulus@leaf02:~$ nv set bridge domain br_default vlan 20 vni 20 flooding head-end-replication 10.10.10.1
+cumulus@leaf02:~$ nv set bridge domain br_default vlan 20 vni 20 flooding head-end-replication 10.10.10.3
+cumulus@leaf02:~$ nv set bridge domain br_default vlan 20 vni 20 flooding head-end-replication 10.10.10.4
+cumulus@leaf02:~$ nv set interface swp1 bridge domain br_default access 10
+cumulus@leaf02:~$ nv set interface swp2 bridge domain br_default access 20
+cumulus@leaf02:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "leaf03 ">}}
+
+```
+cumulus@leaf03:~$ nv set interface lo ip address 10.10.10.3/32
+cumulus@leaf03:~$ nv set bridge domain br_default vlan 10 vni 10
+cumulus@leaf03:~$ nv set bridge domain br_default vlan 10 vni 10 mac-learning on
+cumulus@leaf03:~$ nv set bridge domain br_default vlan 20 vni 20
+cumulus@leaf03:~$ nv set bridge domain br_default vlan 20 vni 20 mac-learning on
+cumulus@leaf03:~$ nv set nve vxlan source address 10.10.10.3
+cumulus@leaf03:~$ nv set bridge domain br_default vlan 10 vni 10 flooding head-end-replication 10.10.10.1
+cumulus@leaf03:~$ nv set bridge domain br_default vlan 10 vni 10 flooding head-end-replication 10.10.10.2
+cumulus@leaf03:~$ nv set bridge domain br_default vlan 10 vni 10 flooding head-end-replication 10.10.10.4
+cumulus@leaf03:~$ nv set bridge domain br_default vlan 20 vni 20 flooding head-end-replication 10.10.10.1
+cumulus@leaf03:~$ nv set bridge domain br_default vlan 20 vni 20 flooding head-end-replication 10.10.10.2
+cumulus@leaf03:~$ nv set bridge domain br_default vlan 20 vni 20 flooding head-end-replication 10.10.10.4
+cumulus@leaf03:~$ nv set interface swp1 bridge domain br_default access 10
+cumulus@leaf03:~$ nv set interface swp2 bridge domain br_default access 20
+cumulus@leaf03:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "leaf04 ">}}
+
+```
+cumulus@leaf04:~$ nv set interface lo ip address 10.10.10.4/32
+cumulus@leaf04:~$ nv set bridge domain br_default vlan 10 vni 10
+cumulus@leaf04:~$ nv set bridge domain br_default vlan 10 vni 10 mac-learning on
+cumulus@leaf04:~$ nv set bridge domain br_default vlan 20 vni 20
+cumulus@leaf04:~$ nv set bridge domain br_default vlan 20 vni 20 mac-learning on
+cumulus@leaf04:~$ nv set nve vxlan source address 10.10.10.4
+cumulus@leaf04:~$ nv set bridge domain br_default vlan 10 vni 10 flooding head-end-replication 10.10.10.1
+cumulus@leaf04:~$ nv set bridge domain br_default vlan 10 vni 10 flooding head-end-replication 10.10.10.2
+cumulus@leaf04:~$ nv set bridge domain br_default vlan 10 vni 10 flooding head-end-replication 10.10.10.3
+cumulus@leaf04:~$ nv set bridge domain br_default vlan 20 vni 20 flooding head-end-replication 10.10.10.1
+cumulus@leaf04:~$ nv set bridge domain br_default vlan 20 vni 20 flooding head-end-replication 10.10.10.2
+cumulus@leaf04:~$ nv set bridge domain br_default vlan 20 vni 20 flooding head-end-replication 10.10.10.3
+cumulus@leaf04:~$ nv set interface swp1 bridge domain br_default access 10
+cumulus@leaf04:~$ nv set interface swp2 bridge domain br_default access 20
+cumulus@leaf04:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+-->
+{{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Edit the `/etc/network/interfaces` file as follows:
+Edit the `/etc/network/interfaces` file, then run the `ifreload -a` command.
 
 {{< tabs "TabID217 ">}}
 {{< tab "leaf01 ">}}
@@ -352,8 +273,8 @@ iface vni20
     vxlan-remoteip 10.10.10.4
     vxlan-id 20
 
-auto br_default
-iface br_default
+auto bridge
+iface bridge
     bridge-ports swp1 swp2 vni10 vni20
     bridge-vlan-aware yes
     bridge-vids 10 20
@@ -405,8 +326,8 @@ iface vni20
     vxlan-remoteip 10.10.10.4
     vxlan-id 20
 
-auto br_default
-iface br_default
+auto bridge
+iface bridge
     bridge-ports swp1 swp2 vni10 vn20
     bridge-vlan-aware yes
     bridge-vids 10 20
@@ -458,8 +379,8 @@ iface vni20
     vxlan-remoteip 10.10.10.4
     vxlan-id 20
 
-auto br_default
-iface br_default
+auto bridge
+iface bridge
     bridge-ports swp1 swp2 vni10 vni20
     bridge-vlan-aware yes
     bridge-vids 10 20
@@ -511,9 +432,242 @@ iface vni20
     vxlan-remoteip 10.10.10.3
     vxlan-id 20
 
+auto bridge
+iface bridge
+    bridge-ports swp1 swp2 vni10 vn20
+    bridge-vlan-aware yes
+    bridge-vids 10 20
+    bridge-pvid 1
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+{{< /tab >}}
+{{< /tabs >}}
+
+### Single VXLAN Device
+
+The following single VXLAN device example configuration:
+- Sets the loopback address on each leaf
+- Creates a single VXLAN device (vxlan48), and maps vlan 10 to VNI 10 and vlan 20 to VNI 20
+- Enables bridge learning on the single VXLAN device
+- Adds the VXLAN device to the default bridge `br_default`
+- Configures the local tunnel IP address to be the loopback address of the switch
+- Creates the static VXLAN tunnels by specifying the loopback addresses of the other leafs
+
+{{< tabs "TabID35 ">}}
+{{< tab "NCLU Commands ">}}
+
+NCLU commands are not supported.
+
+{{< /tab >}}
+{{< tab "NVUE Commands ">}}
+
+{{< tabs "TabID107 ">}}
+{{< tab "leaf01 ">}}
+
+```
+cumulus@leaf01:~$ nv set interface lo ip address 10.10.10.1/32
+cumulus@leaf01:~$ nv set bridge domain br_default vlan 10 vni 10
+cumulus@leaf01:~$ nv set bridge domain br_default vlan 20 vni 20
+cumulus@leaf01:~$ nv set nve vxlan mac-learning on
+cumulus@leaf01:~$ nv set nve vxlan source address 10.10.10.1
+cumulus@leaf01:~$ nv set nve vxlan flooding head-end-replication 10.10.10.2
+cumulus@leaf01:~$ nv set nve vxlan flooding head-end-replication 10.10.10.3
+cumulus@leaf01:~$ nv set nve vxlan flooding head-end-replication 10.10.10.4
+cumulus@leaf04:~$ nv set interface swp1 bridge domain br_default access 10
+cumulus@leaf04:~$ nv set interface swp2 bridge domain br_default access 20
+cumulus@leaf01:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "leaf02 ">}}
+
+```
+cumulus@leaf02:~$ nv set interface lo ip address 10.10.10.2/32
+cumulus@leaf02:~$ nv set bridge domain br_default vlan 10 vni 10
+cumulus@leaf02:~$ nv set bridge domain br_default vlan 20 vni 20
+cumulus@leaf02:~$ nv set nve vxlan mac-learning on
+cumulus@leaf02:~$ nv set nve vxlan source address 10.10.10.2
+cumulus@leaf02:~$ nv set nve vxlan flooding head-end-replication 10.10.10.1
+cumulus@leaf02:~$ nv set nve vxlan flooding head-end-replication 10.10.10.3
+cumulus@leaf02:~$ nv set nve vxlan flooding head-end-replication 10.10.10.4
+cumulus@leaf02:~$ nv set interface swp1 bridge domain br_default access 10
+cumulus@leaf02:~$ nv set interface swp2 bridge domain br_default access 20
+cumulus@leaf02:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "leaf03 ">}}
+
+```
+cumulus@leaf03:~$ nv set interface lo ip address 10.10.10.3/32
+cumulus@leaf03:~$ nv set bridge domain br_default vlan 10 vni 10
+cumulus@leaf03:~$ nv set bridge domain br_default vlan 20 vni 20
+cumulus@leaf03:~$ nv set nve vxlan mac-learning on
+cumulus@leaf03:~$ nv set nve vxlan source address 10.10.10.3
+cumulus@leaf03:~$ nv set nve vxlan flooding head-end-replication 10.10.10.1
+cumulus@leaf03:~$ nv set nve vxlan flooding head-end-replication 10.10.10.2
+cumulus@leaf03:~$ nv set nve vxlan flooding head-end-replication 10.10.10.4
+cumulus@leaf03:~$ nv set interface swp1 bridge domain br_default access 10
+cumulus@leaf03:~$ nv set interface swp2 bridge domain br_default access 20
+cumulus@leaf03:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "leaf04 ">}}
+
+```
+cumulus@leaf04:~$ nv set interface lo ip address 10.10.10.4/32
+cumulus@leaf04:~$ nv set bridge domain br_default vlan 10 vni 10
+cumulus@leaf04:~$ nv set bridge domain br_default vlan 20 vni 20
+cumulus@leaf01:~$ nv set nve vxlan mac-learning on
+cumulus@leaf04:~$ nv set nve vxlan source address 10.10.10.4
+cumulus@leaf04:~$ nv set nve vxlan flooding head-end-replication 10.10.10.1
+cumulus@leaf04:~$ nv set nve vxlan flooding head-end-replication 10.10.10.2
+cumulus@leaf04:~$ nv set nve vxlan flooding head-end-replication 10.10.10.3
+cumulus@leaf04:~$ nv set interface swp1 bridge domain br_default access 10
+cumulus@leaf04:~$ nv set interface swp2 bridge domain br_default access 20
+cumulus@leaf04:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Edit the `/etc/network/interfaces` file, then run the `sudo ifreload -a` command.
+
+{{< tabs "TabID78 ">}}
+{{< tab "leaf01 ">}}
+
+```
+auto lo
+iface lo inet loopback
+    address 10.10.10.1/32
+    vxlan-local-tunnelip 10.10.10.1
+
+auto swp1
+iface swp1
+    bridge-access 10
+
+auto swp2
+iface swp2
+    bridge-access 20
+
+auto vxlan48
+iface vxlan48
+    vxlan-remoteip 10.10.10.2
+    vxlan-remoteip 10.10.10.3
+    vxlan-remoteip 10.10.10.4
+    bridge-vlan-vni-map 10=10 20=20
+    bridge-vids 10 20
+    bridge-learning off
+
 auto br_default
 iface br_default
-    bridge-ports swp1 swp2 vni10 vn20
+    bridge-ports swp1 swp2 vxlan48
+    hwaddress 44:38:39:22:01:aa
+    bridge-vlan-aware yes
+    bridge-vids 10 20
+    bridge-pvid 1
+```
+
+{{< /tab >}}
+{{< tab "leaf02 ">}}
+
+```
+auto swp1
+iface swp1
+    bridge-access 10
+
+auto swp2
+iface swp2
+    bridge-access 20
+
+auto vxlan48
+iface vxlan48
+    vxlan-remoteip 10.10.10.1
+    vxlan-remoteip 10.10.10.3
+    vxlan-remoteip 10.10.10.4
+    bridge-vlan-vni-map 10=10 20=20
+    bridge-vids 10 20
+    bridge-learning off
+
+auto br_default
+iface br_default
+    bridge-ports swp1 swp2 vxlan48
+    hwaddress 44:38:39:22:01:ab
+    bridge-vlan-aware yes
+    bridge-vids 10 20
+    bridge-pvid 1
+```
+
+{{< /tab >}}
+{{< tab "leaf03 ">}}
+
+```
+auto lo
+iface lo inet loopback
+    address 10.10.10.3/32
+    vxlan-local-tunnelip 10.10.10.3
+
+auto swp1
+iface swp1
+    bridge-access 10
+
+auto swp2
+iface swp2
+    bridge-access 20
+
+auto vxlan48
+iface vxlan48
+    bridge-vlan-vni-map 10=10 20=20
+    bridge-vids 10 20
+    vxlan-remoteip 10.10.10.1
+    vxlan-remoteip 10.10.10.2
+    vxlan-remoteip 10.10.10.4
+
+auto br_default
+iface br_default
+    bridge-ports swp1 swp2 vxlan48
+    hwaddress 44:38:39:22:01:bb
+    bridge-vlan-aware yes
+    bridge-vids 10 20
+    bridge-pvid 1
+```
+
+{{< /tab >}}
+{{< tab "leaf04 ">}}
+
+```
+auto lo
+iface lo inet loopback
+    address 10.10.10.4/32
+    vxlan-local-tunnelip 10.10.10.4
+
+auto swp1
+iface swp1
+    bridge-access 10
+
+auto swp2
+iface swp2
+    bridge-access 20
+
+auto vxlan48
+iface vxlan48
+    bridge-vlan-vni-map 10=10 20=20
+    bridge-vids 10 20
+    vxlan-remoteip 10.10.10.1
+    vxlan-remoteip 10.10.10.2
+    vxlan-remoteip 10.10.10.3
+
+auto br_default
+iface br_default
+    bridge-ports swp1 swp2 vxlan48
+    hwaddress 44:38:39:22:01:c1
     bridge-vlan-aware yes
     bridge-vids 10 20
     bridge-pvid 1

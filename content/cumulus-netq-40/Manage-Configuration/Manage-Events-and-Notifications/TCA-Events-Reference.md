@@ -8,6 +8,7 @@ This reference lists the threshold-based events that NetQ supports for ACL resou
 
 ## ACL Resources
 
+<!-- vale off -->
 | NetQ UI Name | NetQ CLI Event ID | Description |
 | --- | --- | --- |
 | Ingress ACL IPv4 % | TCA_TCAM_IN_ACL_V4_FILTER_UPPER | Number of ingress ACL filters for IPv4 addresses on a given switch or host exceeded user-defined threshold |
@@ -27,6 +28,7 @@ This reference lists the threshold-based events that NetQ supports for ACL resou
 | ACL 54B % | TCA_TCAM_ACL_54B_RULES_UPPER | Number of ACL 54B rules on a given switch or host exceeded user-defined maximum threshold |
 | Ingress PBR IPv4 % | TCA_TCAM_IN_PBR_V4_FILTER_UPPER | Number of ingress policy-based routing (PBR) filters for IPv4 addresses on a given switch or host exceeded user-defined maximum threshold |
 | Ingress PBR IPv6 % | TCA_TCAM_IN_PBR_V6_FILTER_UPPER | Number of ingress policy-based routing (PBR) filters for IPv6 addresses on a given switch or host exceeded user-defined maximum threshold |
+<!-- vale on -->
 
 ## Digital Optics
 
@@ -138,6 +140,7 @@ Some of the event IDs have changed. If you have TCA rules configured for digital
 
 ## What Just Happened
 
+<!-- vale off -->
 | NetQ UI Name | NetQ CLI Event ID | Drop Type | Reason/Port Down Reason | Description |
 | --- | --- | :---: | --- | --- |
 | ACL Drop Aggregate Upper | TCA_WJH_ACL_DROP_AGG_UPPER | ACL | Egress port ACL | ACL action set to deny on the physical egress port or bond |
@@ -201,3 +204,4 @@ Some of the event IDs have changed. If you have TCA rules configured for digital
 | Symbol Error Upper | TCA_WJH_SYMBOL_ERROR_UPPER | L1 | Link training failure | Link is not able to go operational up due to link training failure |
 | Symbol Error Upper | TCA_WJH_SYMBOL_ERROR_UPPER | L1 | Peer is sending remote faults | Peer node is not operating correctly |
 | Symbol Error Upper | TCA_WJH_SYMBOL_ERROR_UPPER | L1 | Port admin down | Port has been purposely set down by user |
+<!-- vale on -->

@@ -38,6 +38,7 @@ The Cumulus Linux version tests looks for version consistency. This is accomplis
 
 The EVPN validation tests look for indications of the session sanity and configuration consistency. This is accomplished with the following tests:
 
+<!-- vale off -->
 | Test Number | Test Name | Description |
 | :---------: | --------- | ----------- |
 | 0 | EVPN BGP Session | Checks if: <ul><li>BGP EVPN sessions are established</li><li>The EVPN address family advertisement is consistent</li></ul> |
@@ -48,6 +49,7 @@ The EVPN validation tests look for indications of the session sanity and configu
 | 5 | VLAN Consistency | Checks for consistency of VLAN to VNI mapping across the network |
 | 6 | VRF Consistency | Checks for consistency of VRF to L3 VNI mapping across the network |
 | 7 | L3 VNI RMAC | Checks L3 VNI router MAC and SVI |
+<!-- vale on -->
 
 ## Interface Validation Tests
 

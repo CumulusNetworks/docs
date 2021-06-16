@@ -8,12 +8,12 @@ This section shows a BGP configuration example based on the reference topology. 
 
 {{< img src = "/images/cumulus-linux/mlag-config-peering.png" >}}
 
-## Commands
+## NCLU Commands
 
-{{< tabs "TabID11 ">}}
-{{< tab "NCLU ">}}
+{{< tabs "TabID13 ">}}
+{{< tab "NCLU Commands">}}
 
-{{< tabs "TabID14 ">}}
+{{< tabs "TabID16 ">}}
 {{< tab "leaf01 ">}}
 
 ```
@@ -156,688 +156,14 @@ cumulus@spine02:~$ net commit
 {{< /tabs >}}
 
 {{< /tab >}}
-{{< tab "CUE ">}}
-
-{{< tabs "TabID38 ">}}
-{{< tab "leaf01 ">}}
-
-```
-cumulus@leaf01:~$ cl set interface lo ip address 10.10.10.1/32
-cumulus@leaf01:~$ cl set interface bond1 bond member swp1
-cumulus@leaf01:~$ cl set interface bond2 bond member swp2
-cumulus@leaf01:~$ cl set interface bond3 bond member swp3
-cumulus@leaf01:~$ cl set interface bond1 bond mlag id 1
-cumulus@leaf01:~$ cl set interface bond2 bond mlag id 2
-cumulus@leaf01:~$ cl set interface bond3 bond mlag id 3
-cumulus@leaf01:~$ cl set interface bond1-3 bridge domain br_default 
-cumulus@leaf01:~$ cl set interface peerlink bond member swp49-50
-cumulus@leaf01:~$ cl set mlag mac-address 44:38:39:BE:EF:AA
-cumulus@leaf01:~$ cl set mlag backup 10.10.10.2
-cumulus@leaf01:~$ cl set mlag peer-ip linklocal
-cumulus@leaf01:~$ cl set interface vlan10 ip address 10.1.10.2/24
-cumulus@leaf01:~$ cl set interface vlan20 ip address 10.1.20.2/24
-cumulus@leaf01:~$ cl set interface vlan30 ip address 10.1.30.2/24
-cumulus@leaf01:~$ cl set bridge domain br_default vlan 10,20,30
-cumulus@leaf01:~$ cl set bridge domain br_default untagged 1
-cumulus@leaf01:~$ cl set router bgp autonomous-system 65101
-cumulus@leaf01:~$ cl set router bgp router-id 10.10.10.1
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp51 remote-as external
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp52 remote-as external
-cumulus@leaf01:~$ cl set vrf default router bgp address-family ipv4-unicast static-network 10.10.10.1/32
-cumulus@leaf01:~$ cl set vrf default router bgp address-family ipv4-unicast static-network 10.1.10.0/24
-cumulus@leaf01:~$ cl config apply
-```
-
-{{< /tab >}}
-{{< tab "leaf02 ">}}
-
-```
-cumulus@leaf02:~$ cl set interface lo ip address 10.10.10.2/32
-cumulus@leaf02:~$ cl set interface bond1 bond member swp1
-cumulus@leaf02:~$ cl set interface bond2 bond member swp2
-cumulus@leaf02:~$ cl set interface bond3 bond member swp3
-cumulus@leaf02:~$ cl set interface bond1 bond mlag id 1
-cumulus@leaf02:~$ cl set interface bond2 bond mlag id 2
-cumulus@leaf02:~$ cl set interface bond3 bond mlag id 3
-cumulus@leaf02:~$ cl set interface bond1-3 bridge domain br_default 
-cumulus@leaf02:~$ cl set interface peerlink bond member swp49-50
-cumulus@leaf02:~$ cl set mlag mac-address 44:38:39:BE:EF:AA
-cumulus@leaf02:~$ cl set mlag backup 10.10.10.1
-cumulus@leaf02:~$ cl set mlag peer-ip linklocal
-cumulus@leaf02:~$ cl set interface vlan10 ip address 10.1.10.3/24
-cumulus@leaf02:~$ cl set interface vlan20 ip address 10.1.20.3/24
-cumulus@leaf02:~$ cl set interface vlan30 ip address 10.1.30.3/24
-cumulus@leaf02:~$ cl set bridge domain br_default vlan 10,20,30
-cumulus@leaf02:~$ cl set bridge domain br_default untagged 1
-cumulus@leaf02:~$ cl set router bgp autonomous-system 65102
-cumulus@leaf02:~$ cl set router bgp router-id 10.10.10.2
-cumulus@leaf02:~$ cl set vrf default router bgp peer swp51 remote-as external
-cumulus@leaf02:~$ cl set vrf default router bgp peer swp52 remote-as external
-cumulus@leaf02:~$ cl set vrf default router bgp address-family ipv4-unicast static-network 10.10.10.2/32
-cumulus@leaf02:~$ cl config apply
-```
-
-{{< /tab >}}
-{{< tab "leaf03 ">}}
-
-```
-cumulus@leaf03:~$ cl set interface lo ip address 10.10.10.3/32
-cumulus@leaf03:~$ cl set interface bond1 bond member swp1
-cumulus@leaf03:~$ cl set interface bond2 bond member swp2
-cumulus@leaf03:~$ cl set interface bond3 bond member swp3
-cumulus@leaf03:~$ cl set interface bond1 bond mlag id 1
-cumulus@leaf03:~$ cl set interface bond2 bond mlag id 2
-cumulus@leaf03:~$ cl set interface bond3 bond mlag id 3
-cumulus@leaf03:~$ cl set interface bond1-3 bridge domain br_default 
-cumulus@leaf03:~$ cl set interface peerlink bond member swp49-50
-cumulus@leaf03:~$ cl set mlag mac-address 44:38:39:BE:EF:AA
-cumulus@leaf03:~$ cl set mlag backup 10.10.10.4
-cumulus@leaf03:~$ cl set mlag peer-ip linklocal
-cumulus@leaf03:~$ cl set interface vlan40 ip address 10.1.40.4/24
-cumulus@leaf03:~$ cl set interface vlan50 ip address 10.1.50.4/24
-cumulus@leaf03:~$ cl set interface vlan60 ip address 10.1.60.4/24
-cumulus@leaf03:~$ cl set bridge domain br_default vlan 40,50,60
-cumulus@leaf03:~$ cl set bridge domain br_default untagged 1
-cumulus@leaf03:~$ cl set router bgp autonomous-system 65103
-cumulus@leaf03:~$ cl set router bgp router-id 10.10.10.3
-cumulus@leaf03:~$ cl set vrf default router bgp peer swp51 remote-as external
-cumulus@leaf03:~$ cl set vrf default router bgp peer swp52 remote-as external
-cumulus@leaf03:~$ cl set vrf default router bgp address-family ipv4-unicast static-network 10.10.10.3/32
-cumulus@leaf03:~$ cl config apply
-```
-
-{{< /tab >}}
-{{< tab "leaf04 ">}}
-
-```
-cumulus@leaf04:~$ cl set interface lo ip address 10.10.10.4/32
-cumulus@leaf04:~$ cl set interface bond1 bond member swp1
-cumulus@leaf04:~$ cl set interface bond2 bond member swp2
-cumulus@leaf04:~$ cl set interface bond3 bond member swp3
-cumulus@leaf04:~$ cl set interface bond1 bond mlag id 1
-cumulus@leaf04:~$ cl set interface bond2 bond mlag id 2
-cumulus@leaf04:~$ cl set interface bond3 bond mlag id 3
-cumulus@leaf04:~$ cl set interface bond1-3 bridge domain br_default 
-cumulus@leaf04:~$ cl set interface peerlink bond member swp49-50
-cumulus@leaf04:~$ cl set mlag mac-address 44:38:39:BE:EF:AA
-cumulus@leaf04:~$ cl set mlag backup 10.10.10.3
-cumulus@leaf04:~$ cl set mlag peer-ip linklocal
-cumulus@leaf04:~$ cl set interface vlan40 ip address 10.1.40.5/24
-cumulus@leaf04:~$ cl set interface vlan50 ip address 10.1.50.5/24
-cumulus@leaf04:~$ cl set interface vlan60 ip address 10.1.60.5/24
-cumulus@leaf04:~$ cl set bridge domain br_default vlan 40,50,60
-cumulus@leaf04:~$ cl set bridge domain br_default untagged 1
-cumulus@leaf04:~$ cl set router bgp autonomous-system 65104
-cumulus@leaf04:~$ cl set router bgp router-id 10.10.10.4
-cumulus@leaf04:~$ cl set vrf default router bgp peer swp51 remote-as external
-cumulus@leaf04:~$ cl set vrf default router bgp peer swp52 remote-as external
-cumulus@leaf04:~$ cl set vrf default router bgp address-family ipv4-unicast static-network 10.10.10.4/32
-cumulus@leaf04:~$ cl config apply
-```
-
-{{< /tab >}}
-{{< tab "spine01 ">}}
-
-```
-cumulus@spine01:~$ cl set interface lo ip address 10.10.10.101/32
-cumulus@spine01:~$ cl set router bgp autonomous-system 65199
-cumulus@spine01:~$ cl set router bgp router-id 10.10.10.101
-cumulus@spine01:~$ cl set vrf default router bgp peer swp1 remote-as external
-cumulus@spine01:~$ cl set vrf default router bgp peer swp2 remote-as external
-cumulus@spine01:~$ cl set vrf default router bgp peer swp3 remote-as external
-cumulus@spine01:~$ cl set vrf default router bgp peer swp4 remote-as external
-cumulus@spine01:~$ cl set vrf default router bgp address-family ipv4-unicast static-network 10.10.10.101/32
-cumulus@spine01:~$ cl config apply
-```
-
-{{< /tab >}}
-{{< tab "spine02 ">}}
-
-```
-cumulus@spine02:~$ cl set interface lo ip address 10.10.10.102/32
-cumulus@spine02:~$ cl set router bgp autonomous-system 65199
-cumulus@spine02:~$ cl set router bgp router-id 10.10.10.102
-cumulus@spine02:~$ cl set vrf default router bgp peer swp1 remote-as external
-cumulus@spine02:~$ cl set vrf default router bgp peer swp2 remote-as external
-cumulus@spine02:~$ cl set vrf default router bgp peer swp3 remote-as external
-cumulus@spine02:~$ cl set vrf default router bgp peer swp4 remote-as external
-cumulus@spine02:~$ cl set vrf default router bgp address-family ipv4-unicast static-network 10.10.10.102/32
-cumulus@spine02:~$ cl config apply
-```
-
-{{< /tab >}}
-{{< /tabs >}}
-
-{{< /tab >}}
-{{< /tabs >}}
-
-## /etc/cue.d/startup.yaml
-
-The CUE `cl config save` command saves the configuration in the `/etc/cue.d/startup.yaml` file. For example:
-
-{{< tabs "TabID169 ">}}
-{{< tab "leaf01 ">}}
-
-```
-cumulus@leaf01:mgmt:~$ sudo cat /etc/cue.d/startup.yaml 
-- set:
-    interface:
-      lo:
-        ip:
-          address:
-            10.10.10.1/32: {}
-        type: loopback
-      bond1:
-        bond:
-          member:
-            swp1: {}
-          mlag:
-            id: 1
-        type: bond
-        bridge:
-          domain:
-            br_default: {}
-      bond2:
-        bond:
-          member:
-            swp2: {}
-          mlag:
-            id: 2
-        type: bond
-        bridge:
-          domain:
-            br_default: {}
-      bond3:
-        bond:
-          member:
-            swp3: {}
-          mlag:
-            id: 3
-        type: bond
-        bridge:
-          domain:
-            br_default: {}
-      peerlink:
-        bond:
-          member:
-            swp49: {}
-            swp50: {}
-        type: peerlink
-      peerlink.4094:
-        type: sub
-        base-interface: peerlink
-        vlan: 4094
-      vlan10:
-        ip:
-          address:
-            10.1.10.2/24: {}
-        type: svi
-        vlan: 10
-      vlan20:
-        ip:
-          address:
-            10.1.20.2/24: {}
-        type: svi
-        vlan: 20
-      vlan30:
-        ip:
-          address:
-            10.1.30.2/24: {}
-        type: svi
-        vlan: 30
-    mlag:
-      mac-address: 44:38:39:BE:EF:AA
-      backup:
-        10.10.10.2: {}
-      peer-ip: linklocal
-    bridge:
-      domain:
-        br_default:
-          vlan:
-            '10': {}
-            '20': {}
-            '30': {}
-          untagged: 1
-    router:
-      bgp:
-        autonomous-system: 65101
-        enable: on
-        router-id: 10.10.10.1
-    vrf:
-      default:
-        router:
-          bgp:
-            peer:
-              swp51:
-                remote-as: external
-                type: unnumbered
-              swp52:
-                remote-as: external
-                type: unnumbered
-            enable: on
-            address-family:
-              ipv4-unicast:
-                static-network:
-                  10.10.10.1/32: {}
-                  10.1.10.0/24: {}
-                enable: on
-```
-
-{{< /tab >}}
-{{< tab "leaf02 ">}}
-
-```
-cumulus@leaf02:mgmt:~$ sudo cat /etc/cue.d/startup.yaml
-- set:
-    interface:
-      lo:
-        ip:
-          address:
-            10.10.10.2/32: {}
-        type: loopback
-      bond1:
-        bond:
-          member:
-            swp1: {}
-          mlag:
-            id: 1
-        type: bond
-        bridge:
-          domain:
-            br_default: {}
-      bond2:
-        bond:
-          member:
-            swp2: {}
-          mlag:
-            id: 2
-        type: bond
-        bridge:
-          domain:
-            br_default: {}
-      bond3:
-        bond:
-          member:
-            swp3: {}
-          mlag:
-            id: 3
-        type: bond
-        bridge:
-          domain:
-            br_default: {}
-      peerlink:
-        bond:
-          member:
-            swp49: {}
-            swp50: {}
-        type: peerlink
-      peerlink.4094:
-        type: sub
-        base-interface: peerlink
-        vlan: 4094
-      vlan10:
-        ip:
-          address:
-            10.1.10.3/24: {}
-        type: svi
-        vlan: 10
-      vlan20:
-        ip:
-          address:
-            10.1.20.3/24: {}
-        type: svi
-        vlan: 20
-      vlan30:
-        ip:
-          address:
-            10.1.30.3/24: {}
-        type: svi
-        vlan: 30
-    mlag:
-      mac-address: 44:38:39:BE:EF:AA
-      backup:
-        10.10.10.1: {}
-      peer-ip: linklocal
-    bridge:
-      domain:
-        br_default:
-          vlan:
-            '10': {}
-            '20': {}
-            '30': {}
-          untagged: 1
-    router:
-      bgp:
-        autonomous-system: 65102
-        enable: on
-        router-id: 10.10.10.2
-    vrf:
-      default:
-        router:
-          bgp:
-            peer:
-              swp51:
-                remote-as: external
-                type: unnumbered
-              swp52:
-                remote-as: external
-                type: unnumbered
-            enable: on
-            address-family:
-              ipv4-unicast:
-                static-network:
-                  10.10.10.2/32: {}
-                enable: on
-```
-
-{{< /tab >}}
-{{< tab "leaf03 ">}}
-
-```
-cumulus@leaf03:mgmt:~$ sudo cat /etc/cue.d/startup.yaml 
-- set:
-    interface:
-      lo:
-        ip:
-          address:
-            10.10.10.3/32: {}
-        type: loopback
-      bond1:
-        bond:
-          member:
-            swp1: {}
-          mlag:
-            id: 1
-        type: bond
-        bridge:
-          domain:
-            br_default: {}
-      bond2:
-        bond:
-          member:
-            swp2: {}
-          mlag:
-            id: 2
-        type: bond
-        bridge:
-          domain:
-            br_default: {}
-      bond3:
-        bond:
-          member:
-            swp3: {}
-          mlag:
-            id: 3
-        type: bond
-        bridge:
-          domain:
-            br_default: {}
-      peerlink:
-        bond:
-          member:
-            swp49: {}
-            swp50: {}
-        type: peerlink
-      peerlink.4094:
-        type: sub
-        base-interface: peerlink
-        vlan: 4094
-      vlan40:
-        ip:
-          address:
-            10.1.40.4/24: {}
-        type: svi
-        vlan: 40
-      vlan50:
-        ip:
-          address:
-            10.1.50.4/24: {}
-        type: svi
-        vlan: 50
-      vlan60:
-        ip:
-          address:
-            10.1.60.4/24: {}
-        type: svi
-        vlan: 60
-    mlag:
-      mac-address: 44:38:39:BE:EF:AA
-      backup:
-        10.10.10.4: {}
-      peer-ip: linklocal
-    bridge:
-      domain:
-        br_default:
-          vlan:
-            '40': {}
-            '50': {}
-            '60': {}
-          untagged: 1
-    router:
-      bgp:
-        autonomous-system: 65103
-        enable: on
-        router-id: 10.10.10.3
-    vrf:
-      default:
-        router:
-          bgp:
-            peer:
-              swp51:
-                remote-as: external
-                type: unnumbered
-              swp52:
-                remote-as: external
-                type: unnumbered
-            enable: on
-            address-family:
-              ipv4-unicast:
-                static-network:
-                  10.10.10.3/32: {}
-                enable: on
-```
-
-{{< /tab >}}
-{{< tab "leaf04 ">}}
-
-```
-cumulus@leaf04:mgmt:~$ sudo cat /etc/cue.d/startup.yaml 
-- set:
-    interface:
-      lo:
-        ip:
-          address:
-            10.10.10.4/32: {}
-        type: loopback
-      bond1:
-        bond:
-          member:
-            swp1: {}
-          mlag:
-            id: 1
-        type: bond
-        bridge:
-          domain:
-            br_default: {}
-      bond2:
-        bond:
-          member:
-            swp2: {}
-          mlag:
-            id: 2
-        type: bond
-        bridge:
-          domain:
-            br_default: {}
-      bond3:
-        bond:
-          member:
-            swp3: {}
-          mlag:
-            id: 3
-        type: bond
-        bridge:
-          domain:
-            br_default: {}
-      peerlink:
-        bond:
-          member:
-            swp49: {}
-            swp50: {}
-        type: peerlink
-      peerlink.4094:
-        type: sub
-        base-interface: peerlink
-        vlan: 4094
-      vlan40:
-        ip:
-          address:
-            10.1.40.5/24: {}
-        type: svi
-        vlan: 40
-      vlan50:
-        ip:
-          address:
-            10.1.50.5/24: {}
-        type: svi
-        vlan: 50
-      vlan60:
-        ip:
-          address:
-            10.1.60.5/24: {}
-        type: svi
-        vlan: 60
-    mlag:
-      mac-address: 44:38:39:BE:EF:AA
-      backup:
-        10.10.10.3: {}
-      peer-ip: linklocal
-    bridge:
-      domain:
-        br_default:
-          vlan:
-            '40': {}
-            '50': {}
-            '60': {}
-          untagged: 1
-    router:
-      bgp:
-        autonomous-system: 65104
-        enable: on
-        router-id: 10.10.10.4
-    vrf:
-      default:
-        router:
-          bgp:
-            peer:
-              swp51:
-                remote-as: external
-                type: unnumbered
-              swp52:
-                remote-as: external
-                type: unnumbered
-            enable: on
-            address-family:
-              ipv4-unicast:
-                static-network:
-                  10.10.10.4/32: {}
-                enable: on
-```
-
-{{< /tab >}}
-{{< tab "spine01 ">}}
-
-```
-cumulus@spine01:mgmt:~$ sudo cat /etc/cue.d/startup.yaml 
-- set:
-    interface:
-      lo:
-        ip:
-          address:
-            10.10.10.101/32: {}
-        type: loopback
-    router:
-      bgp:
-        autonomous-system: 65199
-        enable: on
-        router-id: 10.10.10.101
-    vrf:
-      default:
-        router:
-          bgp:
-            peer:
-              swp1:
-                remote-as: external
-                type: unnumbered
-              swp2:
-                remote-as: external
-                type: unnumbered
-              swp3:
-                remote-as: external
-                type: unnumbered
-              swp4:
-                remote-as: external
-                type: unnumbered
-            enable: on
-            address-family:
-              ipv4-unicast:
-                static-network:
-                  10.10.10.101/32: {}
-                enable: on
-```
-
-{{< /tab >}}
-{{< tab "spine02 ">}}
-
-```
-cumulus@spine02:mgmt:~$ sudo cat /etc/cue.d/startup.yaml 
-- set:
-    interface:
-      lo:
-        ip:
-          address:
-            10.10.10.102/32: {}
-        type: loopback
-    router:
-      bgp:
-        autonomous-system: 65199
-        enable: on
-        router-id: 10.10.10.102
-    vrf:
-      default:
-        router:
-          bgp:
-            peer:
-              swp1:
-                remote-as: external
-                type: unnumbered
-              swp2:
-                remote-as: external
-                type: unnumbered
-              swp3:
-                remote-as: external
-                type: unnumbered
-              swp4:
-                remote-as: external
-                type: unnumbered
-            enable: on
-            address-family:
-              ipv4-unicast:
-                static-network:
-                  10.10.10.102/32: {}
-                enable: on
-```
-
-{{< /tab >}}
-{{< /tabs >}}
-
-## /etc/network/interfaces
+{{< tab "/etc/network/interfaces ">}}
 
 {{< tabs "TabID901 ">}}
 {{< tab "leaf01 ">}}
 
 ```
 cumulus@leaf01:~$ sudo cat /etc/network/interfaces
+
 auto lo
 iface lo inet loopback
     address 10.10.10.1/32
@@ -918,10 +244,10 @@ iface swp52
 
 auto bridge
 iface bridge
-    bridge-ports peerlink bond1 bond2 bond3
-    bridge-vlan-aware yes
-    bridge-vids 10 20 30
-    bridge-pvid 1
+  bridge-ports peerlink bond1 bond2 bond3
+  bridge-vlan-aware yes
+  bridge-vids 10 20 30
+  bridge-pvid 1
 ```
 
 {{< /tab >}}
@@ -1258,7 +584,8 @@ iface swp4
 {{< /tab >}}
 {{< /tabs >}}
 
-## /etc/frr/frr.conf
+{{< /tab >}}
+{{< tab "/etc/frr/frr.conf ">}}
 
 {{< tabs "TabID944 ">}}
 {{< tab "leaf01 ">}}
@@ -1364,6 +691,688 @@ router bgp 65199
  neighbor swp4 interface
  neighbor swp4 remote-as external
 ```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+{{< /tab >}}
+{{< /tabs >}}
+
+## NVUE Commands
+
+{{< tabs "TabID695 ">}}
+{{< tab "NVUE Commands">}}
+
+{{< tabs "TabID38 ">}}
+{{< tab "leaf01 ">}}
+
+```
+cumulus@leaf01:~$ nv set interface lo ip address 10.10.10.1/32
+cumulus@leaf01:~$ nv set interface bond1 bond member swp1
+cumulus@leaf01:~$ nv set interface bond2 bond member swp2
+cumulus@leaf01:~$ nv set interface bond3 bond member swp3
+cumulus@leaf01:~$ nv set interface bond1 bond mlag id 1
+cumulus@leaf01:~$ nv set interface bond2 bond mlag id 2
+cumulus@leaf01:~$ nv set interface bond3 bond mlag id 3
+cumulus@leaf01:~$ nv set interface bond1-3 bridge domain br_default 
+cumulus@leaf01:~$ nv set interface peerlink bond member swp49-50
+cumulus@leaf01:~$ nv set mlag mac-address 44:38:39:BE:EF:AA
+cumulus@leaf01:~$ nv set mlag backup 10.10.10.2
+cumulus@leaf01:~$ nv set mlag peer-ip linklocal
+cumulus@leaf01:~$ nv set interface vlan10 ip address 10.1.10.2/24
+cumulus@leaf01:~$ nv set interface vlan20 ip address 10.1.20.2/24
+cumulus@leaf01:~$ nv set interface vlan30 ip address 10.1.30.2/24
+cumulus@leaf01:~$ nv set bridge domain br_default vlan 10,20,30
+cumulus@leaf01:~$ nv set bridge domain br_default untagged 1
+cumulus@leaf01:~$ nv set router bgp autonomous-system 65101
+cumulus@leaf01:~$ nv set router bgp router-id 10.10.10.1
+cumulus@leaf01:~$ nv set vrf default router bgp peer swp51 remote-as external
+cumulus@leaf01:~$ nv set vrf default router bgp peer swp52 remote-as external
+cumulus@leaf01:~$ nv set vrf default router bgp address-family ipv4-unicast static-network 10.10.10.1/32
+cumulus@leaf01:~$ nv set vrf default router bgp address-family ipv4-unicast static-network 10.1.10.0/24
+cumulus@leaf01:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "leaf02 ">}}
+
+```
+cumulus@leaf02:~$ nv set interface lo ip address 10.10.10.2/32
+cumulus@leaf02:~$ nv set interface bond1 bond member swp1
+cumulus@leaf02:~$ nv set interface bond2 bond member swp2
+cumulus@leaf02:~$ nv set interface bond3 bond member swp3
+cumulus@leaf02:~$ nv set interface bond1 bond mlag id 1
+cumulus@leaf02:~$ nv set interface bond2 bond mlag id 2
+cumulus@leaf02:~$ nv set interface bond3 bond mlag id 3
+cumulus@leaf02:~$ nv set interface bond1-3 bridge domain br_default 
+cumulus@leaf02:~$ nv set interface peerlink bond member swp49-50
+cumulus@leaf02:~$ nv set mlag mac-address 44:38:39:BE:EF:AA
+cumulus@leaf02:~$ nv set mlag backup 10.10.10.1
+cumulus@leaf02:~$ nv set mlag peer-ip linklocal
+cumulus@leaf02:~$ nv set interface vlan10 ip address 10.1.10.3/24
+cumulus@leaf02:~$ nv set interface vlan20 ip address 10.1.20.3/24
+cumulus@leaf02:~$ nv set interface vlan30 ip address 10.1.30.3/24
+cumulus@leaf02:~$ nv set bridge domain br_default vlan 10,20,30
+cumulus@leaf02:~$ nv set bridge domain br_default untagged 1
+cumulus@leaf02:~$ nv set router bgp autonomous-system 65102
+cumulus@leaf02:~$ nv set router bgp router-id 10.10.10.2
+cumulus@leaf02:~$ nv set vrf default router bgp peer swp51 remote-as external
+cumulus@leaf02:~$ nv set vrf default router bgp peer swp52 remote-as external
+cumulus@leaf02:~$ nv set vrf default router bgp address-family ipv4-unicast static-network 10.10.10.2/32
+cumulus@leaf02:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "leaf03 ">}}
+
+```
+cumulus@leaf03:~$ nv set interface lo ip address 10.10.10.3/32
+cumulus@leaf03:~$ nv set interface bond1 bond member swp1
+cumulus@leaf03:~$ nv set interface bond2 bond member swp2
+cumulus@leaf03:~$ nv set interface bond3 bond member swp3
+cumulus@leaf03:~$ nv set interface bond1 bond mlag id 1
+cumulus@leaf03:~$ nv set interface bond2 bond mlag id 2
+cumulus@leaf03:~$ nv set interface bond3 bond mlag id 3
+cumulus@leaf03:~$ nv set interface bond1-3 bridge domain br_default 
+cumulus@leaf03:~$ nv set interface peerlink bond member swp49-50
+cumulus@leaf03:~$ nv set mlag mac-address 44:38:39:BE:EF:AA
+cumulus@leaf03:~$ nv set mlag backup 10.10.10.4
+cumulus@leaf03:~$ nv set mlag peer-ip linklocal
+cumulus@leaf03:~$ nv set interface vlan40 ip address 10.1.40.4/24
+cumulus@leaf03:~$ nv set interface vlan50 ip address 10.1.50.4/24
+cumulus@leaf03:~$ nv set interface vlan60 ip address 10.1.60.4/24
+cumulus@leaf03:~$ nv set bridge domain br_default vlan 40,50,60
+cumulus@leaf03:~$ nv set bridge domain br_default untagged 1
+cumulus@leaf03:~$ nv set router bgp autonomous-system 65103
+cumulus@leaf03:~$ nv set router bgp router-id 10.10.10.3
+cumulus@leaf03:~$ nv set vrf default router bgp peer swp51 remote-as external
+cumulus@leaf03:~$ nv set vrf default router bgp peer swp52 remote-as external
+cumulus@leaf03:~$ nv set vrf default router bgp address-family ipv4-unicast static-network 10.10.10.3/32
+cumulus@leaf03:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "leaf04 ">}}
+
+```
+cumulus@leaf04:~$ nv set interface lo ip address 10.10.10.4/32
+cumulus@leaf04:~$ nv set interface bond1 bond member swp1
+cumulus@leaf04:~$ nv set interface bond2 bond member swp2
+cumulus@leaf04:~$ nv set interface bond3 bond member swp3
+cumulus@leaf04:~$ nv set interface bond1 bond mlag id 1
+cumulus@leaf04:~$ nv set interface bond2 bond mlag id 2
+cumulus@leaf04:~$ nv set interface bond3 bond mlag id 3
+cumulus@leaf04:~$ nv set interface bond1-3 bridge domain br_default 
+cumulus@leaf04:~$ nv set interface peerlink bond member swp49-50
+cumulus@leaf04:~$ nv set mlag mac-address 44:38:39:BE:EF:AA
+cumulus@leaf04:~$ nv set mlag backup 10.10.10.3
+cumulus@leaf04:~$ nv set mlag peer-ip linklocal
+cumulus@leaf04:~$ nv set interface vlan40 ip address 10.1.40.5/24
+cumulus@leaf04:~$ nv set interface vlan50 ip address 10.1.50.5/24
+cumulus@leaf04:~$ nv set interface vlan60 ip address 10.1.60.5/24
+cumulus@leaf04:~$ nv set bridge domain br_default vlan 40,50,60
+cumulus@leaf04:~$ nv set bridge domain br_default untagged 1
+cumulus@leaf04:~$ nv set router bgp autonomous-system 65104
+cumulus@leaf04:~$ nv set router bgp router-id 10.10.10.4
+cumulus@leaf04:~$ nv set vrf default router bgp peer swp51 remote-as external
+cumulus@leaf04:~$ nv set vrf default router bgp peer swp52 remote-as external
+cumulus@leaf04:~$ nv set vrf default router bgp address-family ipv4-unicast static-network 10.10.10.4/32
+cumulus@leaf04:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "spine01 ">}}
+
+```
+cumulus@spine01:~$ nv set interface lo ip address 10.10.10.101/32
+cumulus@spine01:~$ nv set router bgp autonomous-system 65199
+cumulus@spine01:~$ nv set router bgp router-id 10.10.10.101
+cumulus@spine01:~$ nv set vrf default router bgp peer swp1 remote-as external
+cumulus@spine01:~$ nv set vrf default router bgp peer swp2 remote-as external
+cumulus@spine01:~$ nv set vrf default router bgp peer swp3 remote-as external
+cumulus@spine01:~$ nv set vrf default router bgp peer swp4 remote-as external
+cumulus@spine01:~$ nv set vrf default router bgp address-family ipv4-unicast static-network 10.10.10.101/32
+cumulus@spine01:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "spine02 ">}}
+
+```
+cumulus@spine02:~$ nv set interface lo ip address 10.10.10.102/32
+cumulus@spine02:~$ nv set router bgp autonomous-system 65199
+cumulus@spine02:~$ nv set router bgp router-id 10.10.10.102
+cumulus@spine02:~$ nv set vrf default router bgp peer swp1 remote-as external
+cumulus@spine02:~$ nv set vrf default router bgp peer swp2 remote-as external
+cumulus@spine02:~$ nv set vrf default router bgp peer swp3 remote-as external
+cumulus@spine02:~$ nv set vrf default router bgp peer swp4 remote-as external
+cumulus@spine02:~$ nv set vrf default router bgp address-family ipv4-unicast static-network 10.10.10.102/32
+cumulus@spine02:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+{{< /tab >}}
+{{< tab "/etc/nvue.d/startup.yaml ">}}
+
+The NVUE `nv config save` command saves the configuration in the `/etc/nvue.d/startup.yaml` file. For example:
+
+{{< tabs "TabID169 ">}}
+{{< tab "leaf01 ">}}
+
+```
+cumulus@leaf01:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml 
+- set:
+    interface:
+      lo:
+        ip:
+          address:
+            10.10.10.1/32: {}
+        type: loopback
+      bond1:
+        bond:
+          member:
+            swp1: {}
+          mlag:
+            id: 1
+        type: bond
+        bridge:
+          domain:
+            br_default: {}
+      bond2:
+        bond:
+          member:
+            swp2: {}
+          mlag:
+            id: 2
+        type: bond
+        bridge:
+          domain:
+            br_default: {}
+      bond3:
+        bond:
+          member:
+            swp3: {}
+          mlag:
+            id: 3
+        type: bond
+        bridge:
+          domain:
+            br_default: {}
+      peerlink:
+        bond:
+          member:
+            swp49: {}
+            swp50: {}
+        type: peerlink
+      peerlink.4094:
+        type: sub
+        base-interface: peerlink
+        vlan: 4094
+      vlan10:
+        ip:
+          address:
+            10.1.10.2/24: {}
+        type: svi
+        vlan: 10
+      vlan20:
+        ip:
+          address:
+            10.1.20.2/24: {}
+        type: svi
+        vlan: 20
+      vlan30:
+        ip:
+          address:
+            10.1.30.2/24: {}
+        type: svi
+        vlan: 30
+    mlag:
+      mac-address: 44:38:39:BE:EF:AA
+      backup:
+        10.10.10.2: {}
+      peer-ip: linklocal
+    bridge:
+      domain:
+        br_default:
+          vlan:
+            '10': {}
+            '20': {}
+            '30': {}
+          untagged: 1
+    router:
+      bgp:
+        autonomous-system: 65101
+        enable: on
+        router-id: 10.10.10.1
+    vrf:
+      default:
+        router:
+          bgp:
+            peer:
+              swp51:
+                remote-as: external
+                type: unnumbered
+              swp52:
+                remote-as: external
+                type: unnumbered
+            enable: on
+            address-family:
+              ipv4-unicast:
+                static-network:
+                  10.10.10.1/32: {}
+                  10.1.10.0/24: {}
+                enable: on
+```
+
+{{< /tab >}}
+{{< tab "leaf02 ">}}
+
+```
+cumulus@leaf02:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
+- set:
+    interface:
+      lo:
+        ip:
+          address:
+            10.10.10.2/32: {}
+        type: loopback
+      bond1:
+        bond:
+          member:
+            swp1: {}
+          mlag:
+            id: 1
+        type: bond
+        bridge:
+          domain:
+            br_default: {}
+      bond2:
+        bond:
+          member:
+            swp2: {}
+          mlag:
+            id: 2
+        type: bond
+        bridge:
+          domain:
+            br_default: {}
+      bond3:
+        bond:
+          member:
+            swp3: {}
+          mlag:
+            id: 3
+        type: bond
+        bridge:
+          domain:
+            br_default: {}
+      peerlink:
+        bond:
+          member:
+            swp49: {}
+            swp50: {}
+        type: peerlink
+      peerlink.4094:
+        type: sub
+        base-interface: peerlink
+        vlan: 4094
+      vlan10:
+        ip:
+          address:
+            10.1.10.3/24: {}
+        type: svi
+        vlan: 10
+      vlan20:
+        ip:
+          address:
+            10.1.20.3/24: {}
+        type: svi
+        vlan: 20
+      vlan30:
+        ip:
+          address:
+            10.1.30.3/24: {}
+        type: svi
+        vlan: 30
+    mlag:
+      mac-address: 44:38:39:BE:EF:AA
+      backup:
+        10.10.10.1: {}
+      peer-ip: linklocal
+    bridge:
+      domain:
+        br_default:
+          vlan:
+            '10': {}
+            '20': {}
+            '30': {}
+          untagged: 1
+    router:
+      bgp:
+        autonomous-system: 65102
+        enable: on
+        router-id: 10.10.10.2
+    vrf:
+      default:
+        router:
+          bgp:
+            peer:
+              swp51:
+                remote-as: external
+                type: unnumbered
+              swp52:
+                remote-as: external
+                type: unnumbered
+            enable: on
+            address-family:
+              ipv4-unicast:
+                static-network:
+                  10.10.10.2/32: {}
+                enable: on
+```
+
+{{< /tab >}}
+{{< tab "leaf03 ">}}
+
+```
+cumulus@leaf03:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml 
+- set:
+    interface:
+      lo:
+        ip:
+          address:
+            10.10.10.3/32: {}
+        type: loopback
+      bond1:
+        bond:
+          member:
+            swp1: {}
+          mlag:
+            id: 1
+        type: bond
+        bridge:
+          domain:
+            br_default: {}
+      bond2:
+        bond:
+          member:
+            swp2: {}
+          mlag:
+            id: 2
+        type: bond
+        bridge:
+          domain:
+            br_default: {}
+      bond3:
+        bond:
+          member:
+            swp3: {}
+          mlag:
+            id: 3
+        type: bond
+        bridge:
+          domain:
+            br_default: {}
+      peerlink:
+        bond:
+          member:
+            swp49: {}
+            swp50: {}
+        type: peerlink
+      peerlink.4094:
+        type: sub
+        base-interface: peerlink
+        vlan: 4094
+      vlan40:
+        ip:
+          address:
+            10.1.40.4/24: {}
+        type: svi
+        vlan: 40
+      vlan50:
+        ip:
+          address:
+            10.1.50.4/24: {}
+        type: svi
+        vlan: 50
+      vlan60:
+        ip:
+          address:
+            10.1.60.4/24: {}
+        type: svi
+        vlan: 60
+    mlag:
+      mac-address: 44:38:39:BE:EF:AA
+      backup:
+        10.10.10.4: {}
+      peer-ip: linklocal
+    bridge:
+      domain:
+        br_default:
+          vlan:
+            '40': {}
+            '50': {}
+            '60': {}
+          untagged: 1
+    router:
+      bgp:
+        autonomous-system: 65103
+        enable: on
+        router-id: 10.10.10.3
+    vrf:
+      default:
+        router:
+          bgp:
+            peer:
+              swp51:
+                remote-as: external
+                type: unnumbered
+              swp52:
+                remote-as: external
+                type: unnumbered
+            enable: on
+            address-family:
+              ipv4-unicast:
+                static-network:
+                  10.10.10.3/32: {}
+                enable: on
+```
+
+{{< /tab >}}
+{{< tab "leaf04 ">}}
+
+```
+cumulus@leaf04:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml 
+- set:
+    interface:
+      lo:
+        ip:
+          address:
+            10.10.10.4/32: {}
+        type: loopback
+      bond1:
+        bond:
+          member:
+            swp1: {}
+          mlag:
+            id: 1
+        type: bond
+        bridge:
+          domain:
+            br_default: {}
+      bond2:
+        bond:
+          member:
+            swp2: {}
+          mlag:
+            id: 2
+        type: bond
+        bridge:
+          domain:
+            br_default: {}
+      bond3:
+        bond:
+          member:
+            swp3: {}
+          mlag:
+            id: 3
+        type: bond
+        bridge:
+          domain:
+            br_default: {}
+      peerlink:
+        bond:
+          member:
+            swp49: {}
+            swp50: {}
+        type: peerlink
+      peerlink.4094:
+        type: sub
+        base-interface: peerlink
+        vlan: 4094
+      vlan40:
+        ip:
+          address:
+            10.1.40.5/24: {}
+        type: svi
+        vlan: 40
+      vlan50:
+        ip:
+          address:
+            10.1.50.5/24: {}
+        type: svi
+        vlan: 50
+      vlan60:
+        ip:
+          address:
+            10.1.60.5/24: {}
+        type: svi
+        vlan: 60
+    mlag:
+      mac-address: 44:38:39:BE:EF:AA
+      backup:
+        10.10.10.3: {}
+      peer-ip: linklocal
+    bridge:
+      domain:
+        br_default:
+          vlan:
+            '40': {}
+            '50': {}
+            '60': {}
+          untagged: 1
+    router:
+      bgp:
+        autonomous-system: 65104
+        enable: on
+        router-id: 10.10.10.4
+    vrf:
+      default:
+        router:
+          bgp:
+            peer:
+              swp51:
+                remote-as: external
+                type: unnumbered
+              swp52:
+                remote-as: external
+                type: unnumbered
+            enable: on
+            address-family:
+              ipv4-unicast:
+                static-network:
+                  10.10.10.4/32: {}
+                enable: on
+```
+
+{{< /tab >}}
+{{< tab "spine01 ">}}
+
+```
+cumulus@spine01:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml 
+- set:
+    interface:
+      lo:
+        ip:
+          address:
+            10.10.10.101/32: {}
+        type: loopback
+    router:
+      bgp:
+        autonomous-system: 65199
+        enable: on
+        router-id: 10.10.10.101
+    vrf:
+      default:
+        router:
+          bgp:
+            peer:
+              swp1:
+                remote-as: external
+                type: unnumbered
+              swp2:
+                remote-as: external
+                type: unnumbered
+              swp3:
+                remote-as: external
+                type: unnumbered
+              swp4:
+                remote-as: external
+                type: unnumbered
+            enable: on
+            address-family:
+              ipv4-unicast:
+                static-network:
+                  10.10.10.101/32: {}
+                enable: on
+```
+
+{{< /tab >}}
+{{< tab "spine02 ">}}
+
+```
+cumulus@spine02:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml 
+- set:
+    interface:
+      lo:
+        ip:
+          address:
+            10.10.10.102/32: {}
+        type: loopback
+    router:
+      bgp:
+        autonomous-system: 65199
+        enable: on
+        router-id: 10.10.10.102
+    vrf:
+      default:
+        router:
+          bgp:
+            peer:
+              swp1:
+                remote-as: external
+                type: unnumbered
+              swp2:
+                remote-as: external
+                type: unnumbered
+              swp3:
+                remote-as: external
+                type: unnumbered
+              swp4:
+                remote-as: external
+                type: unnumbered
+            enable: on
+            address-family:
+              ipv4-unicast:
+                static-network:
+                  10.10.10.102/32: {}
+                enable: on
+```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 {{< /tab >}}
 {{< /tabs >}}

@@ -15,7 +15,9 @@ From a software perspective, a network switch has software associated with the h
 
 The NetQ Agent interacts with the various components and software on switches and hosts and provides the gathered information to the NetQ Platform. You can view the data using the NetQ CLI or UI.
 
-The NetQ Agent polls the user space applications for information about the performance of the various routing protocols and services that are running on the switch. Cumulus Linux supports BGP and OSPF FRRouting (FRR) protocols as well as static addressing. Cumulus Linux also supports LLDP and MSTP among other protocols, and a variety of services such as systemd and sensors. For hosts, the NetQ Agent also polls for performance of containers managed with Kubernetes. All of this information is used to provide the current health of the network and verify it is configured and operating correctly.
+The NetQ Agent polls the user space applications for information about the performance of the various routing protocols and services that are running on the switch. Cumulus Linux supports BGP and OSPF routing protocols as well as static addressing through FRRouting (FRR). Cumulus Linux also supports LLDP and MSTP among other protocols, and a variety of services such as systemd and sensors. SONiC supports BGP and LLDP.
+
+For hosts, the NetQ Agent also polls for performance of containers managed with Kubernetes. All of this information is used to provide the current health of the network and verify it is configured and operating correctly.
 
 For example, if the NetQ Agent learns that an interface has gone down, a new BGP neighbor has been configured, or a container has moved, it provides that information to the NetQ Platform. That information can then be used to notify users of the operational state change through various channels. By default, data is logged in the database, but you can use the CLI (`netq show events`) or configure the Event Service in NetQ to send the information to a third-party notification application as well. NetQ supports PagerDuty and Slack integrations.
 
@@ -92,7 +94,7 @@ If the MTU does not match across the network, or any of the paths or parts of th
 
 ### View Historical State and Configuration
 
-All of the check, show and trace commands can be run for the current status and for a prior point in time. For example, this is useful when you receive messages from the night before, but are not seeing any problems now. You can use the `netq check` command to look for configuration or operational issues around the time that the messages are timestamped. Then use the `netq show` commands to see information about how the devices in question were configured at that time or if there were any changes in a given timeframe. Optionally, you can use the `netq trace` command to see what the connectivity looked like between any problematic nodes at that time. This example shows problems occurred on spine01, leaf04, and server03 last night. The network administrator received notifications and wants to investigate. The diagram is followed by the commands to run to determine the cause of a BGP error on spine01. Note that the commands use the `around` option to see the results for last night and that they can be run from any switch in the network.
+You can run all check, show and trace commands for the current status and for a prior point in time. For example, this is useful when you receive messages from the night before, but are not seeing any problems now. You can use the `netq check` command to look for configuration or operational issues around the time that the messages are timestamped. Then use the `netq show` commands to see information about how the devices in question were configured at that time or if there were any changes in a given timeframe. Optionally, you can use the `netq trace` command to see what the connectivity looked like between any problematic nodes at that time. This example shows problems occurred on spine01, leaf04, and server03 last night. The network administrator received notifications and wants to investigate. The diagram is followed by the commands to run to determine the cause of a BGP error on spine01. Note that the commands use the `around` option to see the results for last night and that they can be run from any switch in the network.
 
 {{< figure src="/images/netq/netq-ops-historic-230.png" width="700" >}}
 
@@ -428,7 +430,7 @@ This example shows the difference between the timestamp displays.
 
 {{%notice note%}}
 
-If a NetQ Agent is restarted on a device, the timestamps for existing objects are not updated to reflect this new restart time. Their timestamps are preserved relative to the original start time of the Agent. A rare exception is if the device is rebooted between the time it takes the Agent being stopped and restarted; in this case, the time is once again relative to the start time of the Agent.
+If a NetQ Agent is restarted on a device, the timestamps for existing objects are not updated to reflect this new restart time. Their timestamps are preserved relative to the original start time of the Agent. A rare exception is if the device is rebooted between the time it takes the Agent being stopped and restarted; in this case, the time is still relative to the start time of the Agent.
 
 {{%/notice%}}
 

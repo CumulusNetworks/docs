@@ -62,6 +62,60 @@ To work around this issue, configure the new BGP neighbors with vtysh.&lt;/p&gt;
 <td></td>
 </tr>
 <tr>
+<td>2690100</td>
+<td>When you run the vtysh {{show ip bgp vrf &lt;name&gt; &lt;afi&gt; &lt;safi&gt; statistics}} command, the {{bgpd}} service crashes if you use {{vrf all}}. For example:
+spine01# show ip bgp vrf all statistics 
+&lt;pre&gt;vtysh: error reading from bgpd: Success (0)Warning: closing connection to bgpd because of an I/O error!&lt;/pre&gt;
+&lt;pre&gt;spine01# show bgp vrf all ipv6 unicast statistics 
+vtysh: error reading from bgpd: Success (0)Warning: closing connection to bgpd because of an I/O error!&lt;/pre&gt;
+To workaround this issue, run the command against each VRF independently.</td>
+<td>3.7.15, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2687160</td>
+<td>CVE-2018-25009 CVE-2018-25010 CVE-2018-25011 CVE-2018-25013 CVE-2018-25014 CVE-2020-36328 CVE-2020-36329 CVE-2020-36330 CVE-2020-36331 CVE-2020-36332: Multiple vulnerabilities were discovered in libwebp, the implementation of the WebP image format, which could result in denial of service, memory disclosure or potentially the execution of arbitrary code if malformed images are processed.
+Vulnerable: 0.6.1-2
+Fixed: 0.6.1-2+deb10u1</td>
+<td>4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2685584</td>
+<td>A host migrated to an 802.1x port within the same broadcast domain does not have the correct static FDB entry installed if a dynamic FDB entry for that MAC address exists from previous connectivity in the broadcast domain.</td>
+<td>4.2.1-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2682976</td>
+<td>CVE-2021-28902, CVE-2021-28903, CVE-2021-28904, CVE-2021-28905, CVE-2021-28906: Several vulnerabilities have been announced in libyang that can cause a crash.
+Vulnerable: &lt;= 1.0.184-2+cl4.3.0u1</td>
+<td>4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2682973</td>
+<td>CVE-2020-12762: integer overflow in the json-c JSON library, which could result in denial of service or potentially the execution of arbitrary code if large malformed JSON files are processed.
+Vulnerable: 0.12.2+cl4u1</td>
+<td>4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2682780</td>
+<td>Adding a route map configuration after a MAC access list configuration line causes the route map configuration to be applied incorrectly.
+To work around this issue, add the MAC access list configuration to the end of the {{/etc/frr/frr.conf}} file.</td>
+<td>4.2.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2679950</td>
+<td>CVE-2021-25217: parsing of stored leases by dhclient or dhcpd has an incorrect length check that may cause a crash.
+Vulnerable: &lt;= 4.3.1-6-cl3.7.14u1
+Fixed: 4.3.1-6-cl3.7.16u1</td>
+<td>3.7.0-3.7.15, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
 <td>2677049</td>
 <td>CVE-2020-25681 CVE-2020-25682 CVE-2020-25683 CVE-2020-25684 CVE-2020-25685 CVE-2020-25686 CVE-2020-25687: Several vulnerabilities in dnsmasq, a small caching DNS proxy and DHCP/TFTP server, could result in denial of service, cache poisoning or the execution of arbitrary code.</td>
 <td>4.0.0-4.3.0</td>
@@ -848,6 +902,14 @@ To work around this issue, do not make bash or bash scripts {{setuid}}.</td>
 <td></td>
 </tr>
 <tr>
+<td>2547903</td>
+<td>CVE-2019-19956: xmlParseBalancedChunkMemoryRecover in parser.c in libxml2 before 2.9.10 has a memory leak related to newDoc-&gt;oldNs.
+Vulnerable: 2.9.4+dfsg1-7
+Fixed: 2.9.4+dfsg1-7+deb10u1</td>
+<td>4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
 <td>2547890</td>
 <td>QinQ across VXLAN on a traditional bridge does not work.</td>
 <td>4.1.0-4.3.0</td>
@@ -1532,6 +1594,60 @@ To work around this issue, configure the new BGP neighbors with vtysh.&lt;/p&gt;
 <td></td>
 </tr>
 <tr>
+<td>2690100</td>
+<td>When you run the vtysh {{show ip bgp vrf &lt;name&gt; &lt;afi&gt; &lt;safi&gt; statistics}} command, the {{bgpd}} service crashes if you use {{vrf all}}. For example:
+spine01# show ip bgp vrf all statistics 
+&lt;pre&gt;vtysh: error reading from bgpd: Success (0)Warning: closing connection to bgpd because of an I/O error!&lt;/pre&gt;
+&lt;pre&gt;spine01# show bgp vrf all ipv6 unicast statistics 
+vtysh: error reading from bgpd: Success (0)Warning: closing connection to bgpd because of an I/O error!&lt;/pre&gt;
+To workaround this issue, run the command against each VRF independently.</td>
+<td>3.7.15, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2687160</td>
+<td>CVE-2018-25009 CVE-2018-25010 CVE-2018-25011 CVE-2018-25013 CVE-2018-25014 CVE-2020-36328 CVE-2020-36329 CVE-2020-36330 CVE-2020-36331 CVE-2020-36332: Multiple vulnerabilities were discovered in libwebp, the implementation of the WebP image format, which could result in denial of service, memory disclosure or potentially the execution of arbitrary code if malformed images are processed.
+Vulnerable: 0.6.1-2
+Fixed: 0.6.1-2+deb10u1</td>
+<td>4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2685584</td>
+<td>A host migrated to an 802.1x port within the same broadcast domain does not have the correct static FDB entry installed if a dynamic FDB entry for that MAC address exists from previous connectivity in the broadcast domain.</td>
+<td>4.2.1-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2682976</td>
+<td>CVE-2021-28902, CVE-2021-28903, CVE-2021-28904, CVE-2021-28905, CVE-2021-28906: Several vulnerabilities have been announced in libyang that can cause a crash.
+Vulnerable: &lt;= 1.0.184-2+cl4.3.0u1</td>
+<td>4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2682973</td>
+<td>CVE-2020-12762: integer overflow in the json-c JSON library, which could result in denial of service or potentially the execution of arbitrary code if large malformed JSON files are processed.
+Vulnerable: 0.12.2+cl4u1</td>
+<td>4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2682780</td>
+<td>Adding a route map configuration after a MAC access list configuration line causes the route map configuration to be applied incorrectly.
+To work around this issue, add the MAC access list configuration to the end of the {{/etc/frr/frr.conf}} file.</td>
+<td>4.2.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2679950</td>
+<td>CVE-2021-25217: parsing of stored leases by dhclient or dhcpd has an incorrect length check that may cause a crash.
+Vulnerable: &lt;= 4.3.1-6-cl3.7.14u1
+Fixed: 4.3.1-6-cl3.7.16u1</td>
+<td>3.7.0-3.7.15, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
 <td>2677049</td>
 <td>CVE-2020-25681 CVE-2020-25682 CVE-2020-25683 CVE-2020-25684 CVE-2020-25685 CVE-2020-25686 CVE-2020-25687: Several vulnerabilities in dnsmasq, a small caching DNS proxy and DHCP/TFTP server, could result in denial of service, cache poisoning or the execution of arbitrary code.</td>
 <td>4.0.0-4.3.0</td>
@@ -2164,7 +2280,14 @@ Nov 12 12:20:05.099798 leaf01 switchd[9867]:
 Nov 12 12:20:05.099871 leaf01 switchd[9867]: hal_bcm_console.c:294 ERROR loading rc script on unit 0
 Nov 12 12:20:05.099892 leaf01 switchd[9867]:
 Nov 12 12:20:05.099943 leaf01 switchd[9867]: hal_bcm_console.c:299 CRIT loading of rc script failed, aborting!
-</td>
+
+
+To work around this issue, configure Cumulus Linux to boot with the kernel command option 'intel_iommu=off':
+
+a) Open the file /etc/default/grub with a text editor
+b) Edit the variable GRUB_CMDLINE_LINUX by adding the string 'intel_iommu=off' at the end.  For example: GRUB_CMDLINE_LINUX="cl_platform=cel_e1031 console=ttyS1,115200n8 intel_iommu=off"
+c) Run the command 'update-grub'
+d) Reboot the switch</td>
 <td>3.7.11-4.2.1</td>
 <td>4.3.0</td>
 </tr>
@@ -3052,6 +3175,14 @@ To work around this issue, do not make bash or bash scripts {{setuid}}.</td>
 <td>2548060</td>
 <td>On the Mellanox SN3800 switch, links do not come up when the ports are configured for 40G.</td>
 <td>4.1.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2547903</td>
+<td>CVE-2019-19956: xmlParseBalancedChunkMemoryRecover in parser.c in libxml2 before 2.9.10 has a memory leak related to newDoc-&gt;oldNs.
+Vulnerable: 2.9.4+dfsg1-7
+Fixed: 2.9.4+dfsg1-7+deb10u1</td>
+<td>4.0.0-4.3.0</td>
 <td></td>
 </tr>
 <tr>
@@ -3992,6 +4123,11 @@ To work around this issue, correct the cause of the frequent link flaps. You can
 <td>4.2.0</td>
 </tr>
 <tr>
+<td>2550048</td>
+<td>Several vulnerabilities have been discovered in the Linux kernel that may lead to a privilege escalation, denial of service or information leaks.  CVE-2020-10690 CVE-2020-12770 CVE-2020-12826 CVE-2019-15794 CVE-2020-10711 CVE-2020-13974 CVE-2020-10732 CVE-2020-10757 CVE-2020-15780 CVE-2019-20908 CVE-2020-16166 CVE-2018-16884 CVE-2020-14356 CVE-2019-18885 CVE-2019-12379 For the detailed security status of linux, refer to its security tracker page at: https://security-tracker.debian.org/tracker/linux</td>
+<td>4.2.0</td>
+</tr>
+<tr>
 <td>2549794</td>
 <td>The {{asic-monitor.service}} fails when you configure {{/etc/cumulus/datapath/monitor.conf}} with {{monitor.histogram_pg.collect.port_group_list  = [all_packet_pg]}} and there is traffic passing through the buffer. When the service fails, you see the following traceback in {{journalctl}}:
 
@@ -4079,6 +4215,54 @@ asic-monitor[7389]: File "/usr/lib/python2.7/dist-packages/cumulus/asic_monitor.
 <td>CM-15812</td>
 <td>&lt;p&gt;Multicast forwarding fails for IP addresses whose DMAC overlaps with reserved DIPs.&lt;/p&gt;</td>
 <td>3.2.1-3.7.14.2, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2690100</td>
+<td>When you run the vtysh {{show ip bgp vrf &lt;name&gt; &lt;afi&gt; &lt;safi&gt; statistics}} command, the {{bgpd}} service crashes if you use {{vrf all}}. For example:
+spine01# show ip bgp vrf all statistics 
+&lt;pre&gt;vtysh: error reading from bgpd: Success (0)Warning: closing connection to bgpd because of an I/O error!&lt;/pre&gt;
+&lt;pre&gt;spine01# show bgp vrf all ipv6 unicast statistics 
+vtysh: error reading from bgpd: Success (0)Warning: closing connection to bgpd because of an I/O error!&lt;/pre&gt;
+To workaround this issue, run the command against each VRF independently.</td>
+<td>3.7.15, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2687160</td>
+<td>CVE-2018-25009 CVE-2018-25010 CVE-2018-25011 CVE-2018-25013 CVE-2018-25014 CVE-2020-36328 CVE-2020-36329 CVE-2020-36330 CVE-2020-36331 CVE-2020-36332: Multiple vulnerabilities were discovered in libwebp, the implementation of the WebP image format, which could result in denial of service, memory disclosure or potentially the execution of arbitrary code if malformed images are processed.
+Vulnerable: 0.6.1-2
+Fixed: 0.6.1-2+deb10u1</td>
+<td>4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2682976</td>
+<td>CVE-2021-28902, CVE-2021-28903, CVE-2021-28904, CVE-2021-28905, CVE-2021-28906: Several vulnerabilities have been announced in libyang that can cause a crash.
+Vulnerable: &lt;= 1.0.184-2+cl4.3.0u1</td>
+<td>4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2682973</td>
+<td>CVE-2020-12762: integer overflow in the json-c JSON library, which could result in denial of service or potentially the execution of arbitrary code if large malformed JSON files are processed.
+Vulnerable: 0.12.2+cl4u1</td>
+<td>4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2682780</td>
+<td>Adding a route map configuration after a MAC access list configuration line causes the route map configuration to be applied incorrectly.
+To work around this issue, add the MAC access list configuration to the end of the {{/etc/frr/frr.conf}} file.</td>
+<td>4.2.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2679950</td>
+<td>CVE-2021-25217: parsing of stored leases by dhclient or dhcpd has an incorrect length check that may cause a crash.
+Vulnerable: &lt;= 4.3.1-6-cl3.7.14u1
+Fixed: 4.3.1-6-cl3.7.16u1</td>
+<td>3.7.0-3.7.15, 4.0.0-4.3.0</td>
 <td></td>
 </tr>
 <tr>
@@ -4581,7 +4765,14 @@ Nov 12 12:20:05.099798 leaf01 switchd[9867]:
 Nov 12 12:20:05.099871 leaf01 switchd[9867]: hal_bcm_console.c:294 ERROR loading rc script on unit 0
 Nov 12 12:20:05.099892 leaf01 switchd[9867]:
 Nov 12 12:20:05.099943 leaf01 switchd[9867]: hal_bcm_console.c:299 CRIT loading of rc script failed, aborting!
-</td>
+
+
+To work around this issue, configure Cumulus Linux to boot with the kernel command option 'intel_iommu=off':
+
+a) Open the file /etc/default/grub with a text editor
+b) Edit the variable GRUB_CMDLINE_LINUX by adding the string 'intel_iommu=off' at the end.  For example: GRUB_CMDLINE_LINUX="cl_platform=cel_e1031 console=ttyS1,115200n8 intel_iommu=off"
+c) Run the command 'update-grub'
+d) Reboot the switch</td>
 <td>3.7.11-4.2.1</td>
 <td>4.3.0</td>
 </tr>
@@ -5462,6 +5653,12 @@ Press any key to continue...
 <td></td>
 </tr>
 <tr>
+<td>2550048</td>
+<td>Several vulnerabilities have been discovered in the Linux kernel that may lead to a privilege escalation, denial of service or information leaks.  CVE-2020-10690 CVE-2020-12770 CVE-2020-12826 CVE-2019-15794 CVE-2020-10711 CVE-2020-13974 CVE-2020-10732 CVE-2020-10757 CVE-2020-15780 CVE-2019-20908 CVE-2020-16166 CVE-2018-16884 CVE-2020-14356 CVE-2019-18885 CVE-2019-12379 For the detailed security status of linux, refer to its security tracker page at: https://security-tracker.debian.org/tracker/linux</td>
+<td>4.2.0</td>
+<td>4.2.1-4.3.0</td>
+</tr>
+<tr>
 <td>2549925</td>
 <td>When you run an Ansible script to replace the {{/etc/network/interfaces}} file, then run the {{ifreload -a}} command, you see errors similar to the following:
 
@@ -5676,6 +5873,14 @@ To work around this issue, do not make bash or bash scripts {{setuid}}.</td>
 <td>2548060</td>
 <td>On the Mellanox SN3800 switch, links do not come up when the ports are configured for 40G.</td>
 <td>4.1.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2547903</td>
+<td>CVE-2019-19956: xmlParseBalancedChunkMemoryRecover in parser.c in libxml2 before 2.9.10 has a memory leak related to newDoc-&gt;oldNs.
+Vulnerable: 2.9.4+dfsg1-7
+Fixed: 2.9.4+dfsg1-7+deb10u1</td>
+<td>4.0.0-4.3.0</td>
 <td></td>
 </tr>
 <tr>
@@ -6721,6 +6926,12 @@ Note: A network restart is a disruptive operation. </td>
 <td>When the garbage collector does not release memory back to the operating system, {{clagd}} might consume a large amount of memory. As a result of low system memory, {{systemd}} might shut down services to reclaim memory.
  </td>
 <td>3.7.11-3.7.12, 4.1.0-4.1.1</td>
+</tr>
+<tr>
+<td>2548286</td>
+<td>Several vulnerabilities have been discovered in the Linux kernel that may lead to a privilege escalation, denial of service or information leaks. CVE-2019-10125 CVE-2019-15239 CVE-2019-19927 CVE-2019-19062 CVE-2019-19252 CVE-2019-19767 CVE-2019-19922
+For the detailed security status of linux, refer to its security tracker page at: https://security-tracker.debian.org/tracker/linux</td>
+<td>4.1.0-4.1.1</td>
 </tr>
 <tr>
 <td>2548275</td>

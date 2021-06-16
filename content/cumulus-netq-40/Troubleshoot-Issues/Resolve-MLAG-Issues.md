@@ -112,7 +112,9 @@ vx-35            vx-35            -       -                    -
 vx-34            vx-34            -       -                    -
 ```
 
+<!-- vale off -->
 ## Scenario 2: Dual-connected Bond Is Down
+<!-- vale on -->
 
 When dual connectivity is lost in an MLAG configuration, you receive messages from NetQ similar to the following:
 
@@ -210,7 +212,9 @@ vx-35            vx-35            -       -                    -
 vx-34            vx-34            -       -                    -
 ```
 
+<!-- vale off -->
 ## Scenario 3: VXLAN Active-active Device or Interface Is Down
+<!-- vale on -->
 
 When a VXLAN active-active device or interface in an MLAG configuration is down, log messages also include VXLAN checks.
 
@@ -300,7 +304,9 @@ the state:
     vx-35            vx-35            -       -                    -
     vx-34            vx-34            -       -                    -
 
+<!-- vale off -->
 ## Scenario 4: Remote-side clagd Stopped by systemctl Command
+<!-- vale on -->
 
 In the event the `clagd` service is stopped via the `systemctl` command, NetQ Notifier sends messages similar to the following:
 

@@ -474,17 +474,19 @@ netq add tca event_id TCA_SENSOR_TEMPERATURE_UPPER scope leaf03,temp1 channel sy
 
 Now you have four rules created (the original one, plus these three new ones) all based on the TCA_SENSOR_TEMPERATURE_UPPER event. To identify the various rules, NetQ automatically generates a TCA name for each rule. As each rule is created, an *\_#* is added to the event name. The TCA Name for the first rule created is then TCA_SENSOR_TEMPERATURE_UPPER_1, the second rule created for this event is TCA_SENSOR_TEMPERATURE_UPPER_2, and so forth.
 
+<!-- vale off -->
 ## Manage Threshold-based Event Notifications
+<!-- vale on -->
 
-Once you have created a bunch of rules, you might want to modify them; view a list of the rules, disable a rule, delete a rule, and so forth.
+After you create some rules, you might want to modify them; view a list of them, disable a rule, delete a rule, and so forth.
 
 ### View TCA Rules
 
-You can view all of the threshold-crossing event rules you have created in the NetQ UI or the NetQ CLI.
+You can view all the threshold-crossing event rules you have created in the NetQ UI or the NetQ CLI.
 
-{{< tabs "TabID2438" >}}
+{{<tabs "View TCA rules">}}
 
-{{< tab "NetQ UI" >}}
+{{<tab "NetQ UI">}}
 
 1. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}}.
 
@@ -498,9 +500,9 @@ When you have at least one rule created, you can use the filters that appear abo
 
 {{<figure src="/images/netq/tca-rules-filter-330.png" width="500">}}
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "NetQ CLI" >}}
+{{<tab "NetQ CLI">}}
 
 To view TCA rules, run:
 
@@ -540,17 +542,17 @@ TCA_TXMULTICAST_UPPER_1      TCA_TXMULTICAST_UPPE {"ifname":"swp3","hostname inf
                              R                    ":"leaf01"}
 ```
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}
 
 ### Change the Threshold on a TCA Rule
 
 After receiving notifications based on a rule, you might find that you want to increase or decrease the threshold value to limit or increase the events you receive. This can be accomplished with the NetQ UI or the NetQ CLI.
 
-{{< tabs "TabID2512" >}}
+{{<tabs "Change TCA rule threshold">}}
 
-{{< tab "NetQ UI" >}}
+{{<tab "NetQ UI">}}
 
 To modify the threshold:
 
@@ -570,9 +572,9 @@ To modify the threshold:
 
 6. Click **Update Rule**.
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "NetQ CLI" >}}
+{{<tab "NetQ CLI">}}
 
 To modify the threshold, run:
 
@@ -586,9 +588,9 @@ This example changes the threshold for the rule *TCA_CPU_UTILIZATION_UPPER_1* to
 cumulus@switch:~$ netq add tca tca_id TCA_CPU_UTILIZATION_UPPER_1 threshold 96
 ```
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}
 
 ### Change the Scope of a TCA Rule
 
@@ -620,9 +622,9 @@ To modify the scope:
 
 6. Click **Update Rule**.
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "NetQ CLI" >}}
+{{<tab "NetQ CLI">}}
 
 To modify the scope, run:
 
@@ -630,7 +632,7 @@ To modify the scope, run:
 netq add tca event_id <text-event-id-anchor> scope <text-scope-anchor> threshold <text-threshold-value>
 ```
 
-This example changes the scope for the rule *TCA_CPU_UTILIZATION_UPPER* to apply only to switches beginning with a hostname of *leaf*.  You must also provide a threshold value. In this case we have used a value of 95 percent. *Note that this overwrites the existing scope and threshold values.*
+This example changes the scope for the rule *TCA_CPU_UTILIZATION_UPPER* to apply only to switches beginning with a hostname of *leaf*.  You must also provide a threshold value. This example case uses a value of 95 percent. *Note that this overwrites the existing scope and threshold values.*
 
 ```
 cumulus@switch:~$ netq add tca event_id TCA_CPU_UTILIZATION_UPPER scope hostname^leaf threshold 95

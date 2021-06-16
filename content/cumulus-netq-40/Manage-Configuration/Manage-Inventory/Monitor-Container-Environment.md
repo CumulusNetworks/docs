@@ -84,11 +84,11 @@ To enable NetQ Agent monitoring of the containers using the Kubernetes API, you 
     cumulus@host:~$netq show kubernetes cluster
     ```
 
-5. Next, you must enable the NetQ Agent on all of the worker nodes for complete insight into your container network. Repeat steps 2 and 3 on each worker node.
+5. Next, you must enable the NetQ Agent on every worker node for complete insight into your container network. Repeat steps 2 and 3 on each worker node.
 
 ## View Status of Kubernetes Clusters
 
-Run the `netq show kubernetes cluster` command to view the status of all Kubernetes clusters in the fabric. In this example, we see there are two clusters; one with *server11* as the master server and the other with *server12* as the master server. Both are healthy and their associated worker nodes are listed.
+Run the `netq show kubernetes cluster` command to view the status of all Kubernetes clusters in the fabric. The following example shows two clusters; one with *server11* as the master server and the other with *server12* as the master server. Both are healthy and their associated worker nodes are listed.
 
     cumulus@host:~$ netq show kubernetes cluster
     Matching kube_cluster records:
@@ -139,7 +139,7 @@ Optionally, use the `json` option to present the results in JSON format.
 
 ### View Changes to a Cluster
 
-If data collection from the NetQ Agents is not occurring as it once was, you can verify that no changes have been made to the Kubernetes cluster configuration using the `around` option. Be sure to include the unit of measure with the around value. Valid units include:
+If data collection from the NetQ Agents is not occurring as it did previously, you can verify that no changes have been made to the Kubernetes cluster configuration using the `around` option. Be sure to include the unit of measure with the around value. Valid units include:
 
 - **w**: weeks
 - **d**: days
@@ -148,7 +148,7 @@ If data collection from the NetQ Agents is not occurring as it once was, you can
 - **s**: seconds
 - **now**
 
-This example shows changes that have been made to the cluster in the last hour. In this example we see the addition of the two master nodes and the various worker nodes for each cluster.
+This example shows changes that have been made to the cluster in the last hour. This example shows the addition of the two master nodes and the various worker nodes for each cluster.
 
     cumulus@host:~$ netq show kubernetes cluster around 1h
     Matching kube_cluster records:
@@ -368,7 +368,7 @@ You can filter this information to focus on pods on a particular node:
 
 ## View Kubernetes Node Information
 
-You can view detailed information about a node, including their role in the cluster,  pod CIDR and kubelet status. This example shows all of the nodes in the cluster with *server11* as the master. Note that *server11* acts as a worker node along with the other nodes in the cluster, *server12*, *server13*, *server22*, *server23*, and *server24*.
+You can view detailed information about a node, including their role in the cluster,  pod CIDR and kubelet status. This example shows all the nodes in the cluster with *server11* as the master. Note that *server11* acts as a worker node along with the other nodes in the cluster, *server12*, *server13*, *server22*, *server23*, and *server24*.
 
     cumulus@host:~$ netq server11 show kubernetes node
     Matching kube_cluster records:
@@ -451,7 +451,9 @@ You can view information about the replica set, including the name, labels, and 
     server11:3.0.0.68        default      kube-system      calico-kube-controllers-d669cc k8s-app:calico-kube- 1                                  1              14h:27m:9s
                                                            78f                            controllers
 
+<!-- vale off -->
 ### View the Daemon-sets on a Node
+<!-- vale on -->
 
 You can view information about the daemon set running on the node. This example shows that six copies of the *cumulus-frr* daemon are running on the server11 node:
 
@@ -501,7 +503,7 @@ For each depolyment, you can view the number of replicas associated with an appl
 
 ## Search Using Labels
 
-You can search for information about your Kubernetes clusters using labels. A label search is similar to a "contains" regular expression search. In the following example, we are looking for all nodes that contain *kube* in the replication set name or label:
+You can search for information about your Kubernetes clusters using labels. A label search is similar to a "contains" regular expression search. The following example looks for all nodes that contain *kube* in the replication set name or label:
 
     cumulus@host:~$ netq server11 show kubernetes replica-set label kube
     Matching kube_replica records:
@@ -652,6 +654,6 @@ If you need to perform maintenance on the Kubernetes cluster itself, use the fol
 
        cumulus@host:~$ kubectl drain <node name> 
 
-1. Once the maintenance window is over, put the node back into the cluster so that Kubernetes can start scheduling pods on it again:
+1. After the maintenance window is over, put the node back into the cluster so that Kubernetes can start scheduling pods on it again:
 
        cumulus@host:~$ kubectl uncordon <node name>

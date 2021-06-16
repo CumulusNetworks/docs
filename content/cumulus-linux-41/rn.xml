@@ -61,6 +61,47 @@
 <td></td>
 </tr>
 <tr>
+<td>2690100</td>
+<td>When you run the vtysh {{show ip bgp vrf &lt;name&gt; &lt;afi&gt; &lt;safi&gt; statistics}} command, the {{bgpd}} service crashes if you use {{vrf all}}. For example:
+spine01# show ip bgp vrf all statistics 
+&lt;pre&gt;vtysh: error reading from bgpd: Success (0)Warning: closing connection to bgpd because of an I/O error!&lt;/pre&gt;
+&lt;pre&gt;spine01# show bgp vrf all ipv6 unicast statistics 
+vtysh: error reading from bgpd: Success (0)Warning: closing connection to bgpd because of an I/O error!&lt;/pre&gt;
+To workaround this issue, run the command against each VRF independently.</td>
+<td>3.7.15, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2687160</td>
+<td>CVE-2018-25009 CVE-2018-25010 CVE-2018-25011 CVE-2018-25013 CVE-2018-25014 CVE-2020-36328 CVE-2020-36329 CVE-2020-36330 CVE-2020-36331 CVE-2020-36332: Multiple vulnerabilities were discovered in libwebp, the implementation of the WebP image format, which could result in denial of service, memory disclosure or potentially the execution of arbitrary code if malformed images are processed.
+Vulnerable: 0.6.1-2
+Fixed: 0.6.1-2+deb10u1</td>
+<td>4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2682976</td>
+<td>CVE-2021-28902, CVE-2021-28903, CVE-2021-28904, CVE-2021-28905, CVE-2021-28906: Several vulnerabilities have been announced in libyang that can cause a crash.
+Vulnerable: &lt;= 1.0.184-2+cl4.3.0u1</td>
+<td>4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2682973</td>
+<td>CVE-2020-12762: integer overflow in the json-c JSON library, which could result in denial of service or potentially the execution of arbitrary code if large malformed JSON files are processed.
+Vulnerable: 0.12.2+cl4u1</td>
+<td>4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2679950</td>
+<td>CVE-2021-25217: parsing of stored leases by dhclient or dhcpd has an incorrect length check that may cause a crash.
+Vulnerable: &lt;= 4.3.1-6-cl3.7.14u1
+Fixed: 4.3.1-6-cl3.7.16u1</td>
+<td>3.7.0-3.7.15, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
 <td>2677049</td>
 <td>CVE-2020-25681 CVE-2020-25682 CVE-2020-25683 CVE-2020-25684 CVE-2020-25685 CVE-2020-25686 CVE-2020-25687: Several vulnerabilities in dnsmasq, a small caching DNS proxy and DHCP/TFTP server, could result in denial of service, cache poisoning or the execution of arbitrary code.</td>
 <td>4.0.0-4.3.0</td>
@@ -530,7 +571,14 @@ Nov 12 12:20:05.099798 leaf01 switchd[9867]:
 Nov 12 12:20:05.099871 leaf01 switchd[9867]: hal_bcm_console.c:294 ERROR loading rc script on unit 0
 Nov 12 12:20:05.099892 leaf01 switchd[9867]:
 Nov 12 12:20:05.099943 leaf01 switchd[9867]: hal_bcm_console.c:299 CRIT loading of rc script failed, aborting!
-</td>
+
+
+To work around this issue, configure Cumulus Linux to boot with the kernel command option 'intel_iommu=off':
+
+a) Open the file /etc/default/grub with a text editor
+b) Edit the variable GRUB_CMDLINE_LINUX by adding the string 'intel_iommu=off' at the end.  For example: GRUB_CMDLINE_LINUX="cl_platform=cel_e1031 console=ttyS1,115200n8 intel_iommu=off"
+c) Run the command 'update-grub'
+d) Reboot the switch</td>
 <td>3.7.11-4.2.1</td>
 <td>4.3.0</td>
 </tr>
@@ -1775,6 +1823,13 @@ These errors are result of  user space acting on kernel events a bit slow. The m
 <td>3.7.13-3.7.15, 4.2.0-4.3.0</td>
 </tr>
 <tr>
+<td>2548286</td>
+<td>Several vulnerabilities have been discovered in the Linux kernel that may lead to a privilege escalation, denial of service or information leaks. CVE-2019-10125 CVE-2019-15239 CVE-2019-19927 CVE-2019-19062 CVE-2019-19252 CVE-2019-19767 CVE-2019-19922
+For the detailed security status of linux, refer to its security tracker page at: https://security-tracker.debian.org/tracker/linux</td>
+<td>4.1.0-4.1.1</td>
+<td>4.2.0-4.3.0</td>
+</tr>
+<tr>
 <td>2548275</td>
 <td>On the QuantaMesh BMS T5032-LY6 switch, when you run the {{hwclock}} command, you might see the error {{hwclock: select() to /dev/rtc0 to wait for clock tick timed out}}. </td>
 <td>4.1.0-4.1.1</td>
@@ -1853,6 +1908,14 @@ swp1, 2, 3, 9, 10, 23, 24, 30, 31, and 32 might be affected
 To work around this issue, move 100G SR4 modules to one of the ports not affected by this issue.</td>
 <td>3.7.11-4.1.1</td>
 <td>4.2.0-4.3.0</td>
+</tr>
+<tr>
+<td>2547903</td>
+<td>CVE-2019-19956: xmlParseBalancedChunkMemoryRecover in parser.c in libxml2 before 2.9.10 has a memory leak related to newDoc-&gt;oldNs.
+Vulnerable: 2.9.4+dfsg1-7
+Fixed: 2.9.4+dfsg1-7+deb10u1</td>
+<td>4.0.0-4.3.0</td>
+<td></td>
 </tr>
 <tr>
 <td>2547890</td>
@@ -2859,6 +2922,47 @@ CVE-2020-10531: An issue was discovered in International Components for Unicode 
 <td></td>
 </tr>
 <tr>
+<td>2690100</td>
+<td>When you run the vtysh {{show ip bgp vrf &lt;name&gt; &lt;afi&gt; &lt;safi&gt; statistics}} command, the {{bgpd}} service crashes if you use {{vrf all}}. For example:
+spine01# show ip bgp vrf all statistics 
+&lt;pre&gt;vtysh: error reading from bgpd: Success (0)Warning: closing connection to bgpd because of an I/O error!&lt;/pre&gt;
+&lt;pre&gt;spine01# show bgp vrf all ipv6 unicast statistics 
+vtysh: error reading from bgpd: Success (0)Warning: closing connection to bgpd because of an I/O error!&lt;/pre&gt;
+To workaround this issue, run the command against each VRF independently.</td>
+<td>3.7.15, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2687160</td>
+<td>CVE-2018-25009 CVE-2018-25010 CVE-2018-25011 CVE-2018-25013 CVE-2018-25014 CVE-2020-36328 CVE-2020-36329 CVE-2020-36330 CVE-2020-36331 CVE-2020-36332: Multiple vulnerabilities were discovered in libwebp, the implementation of the WebP image format, which could result in denial of service, memory disclosure or potentially the execution of arbitrary code if malformed images are processed.
+Vulnerable: 0.6.1-2
+Fixed: 0.6.1-2+deb10u1</td>
+<td>4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2682976</td>
+<td>CVE-2021-28902, CVE-2021-28903, CVE-2021-28904, CVE-2021-28905, CVE-2021-28906: Several vulnerabilities have been announced in libyang that can cause a crash.
+Vulnerable: &lt;= 1.0.184-2+cl4.3.0u1</td>
+<td>4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2682973</td>
+<td>CVE-2020-12762: integer overflow in the json-c JSON library, which could result in denial of service or potentially the execution of arbitrary code if large malformed JSON files are processed.
+Vulnerable: 0.12.2+cl4u1</td>
+<td>4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2679950</td>
+<td>CVE-2021-25217: parsing of stored leases by dhclient or dhcpd has an incorrect length check that may cause a crash.
+Vulnerable: &lt;= 4.3.1-6-cl3.7.14u1
+Fixed: 4.3.1-6-cl3.7.16u1</td>
+<td>3.7.0-3.7.15, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
 <td>2677049</td>
 <td>CVE-2020-25681 CVE-2020-25682 CVE-2020-25683 CVE-2020-25684 CVE-2020-25685 CVE-2020-25686 CVE-2020-25687: Several vulnerabilities in dnsmasq, a small caching DNS proxy and DHCP/TFTP server, could result in denial of service, cache poisoning or the execution of arbitrary code.</td>
 <td>4.0.0-4.3.0</td>
@@ -3309,7 +3413,14 @@ Nov 12 12:20:05.099798 leaf01 switchd[9867]:
 Nov 12 12:20:05.099871 leaf01 switchd[9867]: hal_bcm_console.c:294 ERROR loading rc script on unit 0
 Nov 12 12:20:05.099892 leaf01 switchd[9867]:
 Nov 12 12:20:05.099943 leaf01 switchd[9867]: hal_bcm_console.c:299 CRIT loading of rc script failed, aborting!
-</td>
+
+
+To work around this issue, configure Cumulus Linux to boot with the kernel command option 'intel_iommu=off':
+
+a) Open the file /etc/default/grub with a text editor
+b) Edit the variable GRUB_CMDLINE_LINUX by adding the string 'intel_iommu=off' at the end.  For example: GRUB_CMDLINE_LINUX="cl_platform=cel_e1031 console=ttyS1,115200n8 intel_iommu=off"
+c) Run the command 'update-grub'
+d) Reboot the switch</td>
 <td>3.7.11-4.2.1</td>
 <td>4.3.0</td>
 </tr>
@@ -4417,6 +4528,13 @@ These errors are result of  user space acting on kernel events a bit slow. The m
 <td>3.7.13-3.7.15, 4.2.0-4.3.0</td>
 </tr>
 <tr>
+<td>2548286</td>
+<td>Several vulnerabilities have been discovered in the Linux kernel that may lead to a privilege escalation, denial of service or information leaks. CVE-2019-10125 CVE-2019-15239 CVE-2019-19927 CVE-2019-19062 CVE-2019-19252 CVE-2019-19767 CVE-2019-19922
+For the detailed security status of linux, refer to its security tracker page at: https://security-tracker.debian.org/tracker/linux</td>
+<td>4.1.0-4.1.1</td>
+<td>4.2.0-4.3.0</td>
+</tr>
+<tr>
 <td>2548275</td>
 <td>On the QuantaMesh BMS T5032-LY6 switch, when you run the {{hwclock}} command, you might see the error {{hwclock: select() to /dev/rtc0 to wait for clock tick timed out}}. </td>
 <td>4.1.0-4.1.1</td>
@@ -4495,6 +4613,14 @@ swp1, 2, 3, 9, 10, 23, 24, 30, 31, and 32 might be affected
 To work around this issue, move 100G SR4 modules to one of the ports not affected by this issue.</td>
 <td>3.7.11-4.1.1</td>
 <td>4.2.0-4.3.0</td>
+</tr>
+<tr>
+<td>2547903</td>
+<td>CVE-2019-19956: xmlParseBalancedChunkMemoryRecover in parser.c in libxml2 before 2.9.10 has a memory leak related to newDoc-&gt;oldNs.
+Vulnerable: 2.9.4+dfsg1-7
+Fixed: 2.9.4+dfsg1-7+deb10u1</td>
+<td>4.0.0-4.3.0</td>
+<td></td>
 </tr>
 <tr>
 <td>2547890</td>

@@ -138,7 +138,9 @@ cumulus@switch~:$ netq config add agent server 10.0.0.23
 cumulus@switch~:$ netq config restart agent
 ```
 
+<!-- vale off -->
 ### Disable and Re-enable a NetQ Agent
+<!-- vale on -->
 
 You can temporarily disable NetQ Agent on a node. Disabling the NetQ Agent maintains the data already collected in the NetQ database, but stops the NetQ Agent from collecting new data until it is re-enabled.
 
@@ -224,7 +226,7 @@ cumulus@switch:~$ netq config restart agent
 
 ### Configure a NetQ Agent to Send Data to a Server Cluster
 
-If you have a server cluster arrangement for NetQ, you should configure the NetQ Agent to send the data it collects to all of the servers in the cluster.
+If you have a server cluster arrangement for NetQ, you should configure the NetQ Agent to send the data it collects to every server in the cluster.
 
 To configure the agent to send data to the servers in your cluster, run:
 

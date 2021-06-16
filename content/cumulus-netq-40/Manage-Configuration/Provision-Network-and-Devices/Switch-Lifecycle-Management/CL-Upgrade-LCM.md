@@ -6,7 +6,11 @@ toc: 4
 ---
 LCM provides the ability to upgrade Cumulus Linux on one or more switches in your network through the NetQ UI or the NetQ CLI. Up to five upgrade jobs can be run simultaneously; however, a given switch can only be contained in one running job at a time.
 
-Upgrades can be performed between Cumulus Linux 3.x releases, between Cumulus Linux 4.x releases, and between Cumulus Linux 3.x and 4.x releases.
+Upgrades can be performed between following Cumulus Linux releases:
+
+- 3.6.z to later versions of 3.y.z
+- 4.x to later versions of 4.y.z
+- 3.6.0 or later to 4.2.0 or later
 
 ## Workflows for Cumulus Linux Upgrades Using LCM
 
@@ -179,17 +183,6 @@ Perform the upgrade using the `netq lcm upgrade cl-image` command, providing a n
 cumulus@switch:~$ netq lcm upgrade cl-image name upgrade-cl430 cl-version 4.3.0 netq-version 4.0.0 hostnames spine01,spine02
 ```
 
-<!-- #### Upgrade Order
-Removed from 3.2 per Naga R.
-
-To assign the order in which switches are upgraded, make sure your switches have roles assigned. Then use the `order` option and list the role names in the order you want the switches to be upgraded. For example, to upgrade the spine switches before the leaf switches, add `order spine,leaf` after the hostname listing in the command:
-
-```
-cumulus@switch:~$ netq lcm upgrade name upgrade-3712 cl-version 3.7.12 netq-version 3.1.0 hostnames spine01,spine02,leaf01,leaf02 order spine,leaf
-```
-
-If the switches have not been assigned a role, then do not use the `order` option. So in this example, if switches spine01 and spine02 have not been assigned the _spine_ role, then do not specify the `order spine` option. -->
-
 #### Network Snapshot Creation
 
 You can also generate a Network Snapshot before and after the upgrade by adding the `run-snapshot-before-after` option to the command:
@@ -218,10 +211,11 @@ Expand the following dropdown to view common failures, their causes and correcti
 
 {{<expand "Precheck Failure Messages">}}
 
+<!-- vale off -->
 | Pre-check | Message | Type | Description | Corrective Action |
 | --------- | ------- | ---- | ----------- | ----------------- |
-| (1) Switch Order | &lt;hostname1&gt; switch cannot be upgraded without isolating &lt;hostname2&gt;, &lt;hostname3&gt; which are connected neighbors. Unable to upgrade | Warning | Hostname2 and hostname3 switches will be isolated during upgrade, making them unreachable. These switches are skipped if you continue with the upgrade. | Reconfigure hostname2 and hostname 3 switches to have redundant connections, or continue with upgrade knowing that you will lose connectivity with these switches during the upgrade process. |
-| (2) Version Compatibility | Unable to upgrade &lt;hostname&gt; with CL version &lt;3.y.z&gt; to &lt;4.y.z&gt; | Error | LCM only supports CL 3.x to 3.x and CL 4.x to 4.x upgrades | Perform a fresh install of CL 4.x |
+| (1) Switch Order | &lt;hostname1&gt; switch cannot be upgraded without isolating &lt;hostname2&gt;, &lt;hostname3&gt; which are connected neighbors. Unable to upgrade | Warning | Switches hostname2 and hostname3 get isolated during an upgrade, making them unreachable. These switches are skipped if you continue with the upgrade. | Reconfigure hostname2 and hostname3 to have redundant connections, or continue with upgrade knowing that connectivity is lost with these switches during the upgrade process. |
+| (2) Version Compatibility | Unable to upgrade &lt;hostname&gt; with CL version &lt;3.y.z&gt; to &lt;4.y.z&gt; | Error | LCM only supports the following Cumulus Linux upgrades:<br/><ul><li>3.6.z to later versions of 3.y.z</li><li>4.x to later versions of 4.y.z</li><li>3.6.0 or later to 4.2.0 or later</li></ul> | Perform a fresh install of CL 4.x. |
 |  | Image not uploaded for the combination: CL Version - &lt;x.y.z&gt;, Asic Vendor - &lt;NVIDIA \| Broadcom&gt;, CPU Arch - &lt;x86 \| ARM &gt; | Error | The specified Cumulus Linux image is not available in the LCM repository | Upload missing image. Refer to {{<link title="#Upload Images" text="Upload Images">}}. |
 |  | Restoration image not uploaded for the combination: CL Version - &lt;x.y.z&gt;, Asic Vendor - &lt;Mellanox \| Broadcom&gt;, CPU Arch - &lt;x86 \| ARM &gt; | Error | The specified Cumulus Linux image needed to restore the switch back to its original version if the upgrade fails is not available in the LCM repository. This applies only when the "Roll back on upgrade failure" job option is selected. | Upload missing image. Refer to {{<link title="#Upload Images" text="Upload Images">}}. |
 |  | NetQ Agent and NetQ CLI Debian packages are not present for combination: CL Version - &lt;x.y.z&gt;, CPU Arch - &lt;x86 \| ARM &gt; | Error | The specified NetQ packages are not installed on the switch. | Upload missing packages. Refer to {{<link title="Install NetQ Agents" text="Install NetQ Agents">}} and {{<link title="Install NetQ CLI" text="Install NetQ CLI">}}. |
@@ -239,6 +233,7 @@ Expand the following dropdown to view common failures, their causes and correcti
 |  | MLAG configuration checks timed out | Error | One or more switches stopped responding to the MLAG checks. |  |
 |  | MLAG configuration checks failed | Error | One or more switches failed the MLAG checks. |  |
 |  | For switch &lt;hostname&gt;, the MLAG switch with Role: secondary and ClagSysmac: &lt;MAC address&gt; does not exist. | Error | Identified switch is the primary in an MLAG pair, but the defined secondary switch is not in NetQ inventory. | Verify the switch has NetQ Agent 2.4.0 or later installed: click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18" alt="Main Menu">}}, then click <strong>Agents</strong> in the <strong>Network</strong> section, view <strong>Version</strong> column. Upgrade NetQ Agent if needed. Refer to {{<link title="Upgrade NetQ Agents">}}. Add the missing peer switch to NetQ inventory. |
+<!-- vale on -->
 
 {{</expand>}}
 
@@ -392,7 +387,7 @@ To see only Cumulus Linux upgrade jobs, run `netq lcm show status cl-image job-I
 
 ### Postcheck Failures
 
-Upgrades can be considered successful and still have post-check warnings. For example, the OS has been updated, but not all services are fully up and running after the upgrade. If one or more of the post-checks fail, warning messages are provided in the Post-Upgrade Tasks section of the preview. Click on the warning category to view the detailed messages.
+Upgrades can be considered successful and still have post-check warnings. For example, the OS has been updated, but not all services are fully up and running after the upgrade. If one or more of the post-checks fail, warning messages are provided in the Post-Upgrade Tasks section of the preview. Click the warning category to view the detailed messages.
 
 Expand the following dropdown to view common failures, their causes and corrective actions.
 
@@ -441,20 +436,22 @@ Upgrades can fail at any of the stages of the process, including when backing up
 
 Some of the common reasons for upgrade failures and the errors they present:
 
+<!-- vale off -->
 | Reason | Error Message |
 | --- | --- |
 | Switch is not reachable via SSH | Data could not be sent to remote host "192.168.0.15." Make sure this host can be reached over ssh: ssh: connect to host 192.168.0.15 port 22: No route to host |
 | Switch is reachable, but user-provided credentials are invalid | Invalid/incorrect username/password. Skipping remaining 2 retries to prevent account lockout: Warning: Permanently added '\<hostname-ipaddr\>' to the list of known hosts. Permission denied, please try again. |
-| Switch is reachable, but a valid Cumulus Linux license is not installed | <!-- vale off -->1587866683.880463 2020-04-26 02:04:43 license.c:336 CRIT No license file. No license installed! <!-- vale on -->|
-| Upgrade task could not be run | Failure message depends on the why the task could not be run. For example: /etc/network/interfaces: No such file or directory |
-| Upgrade task failed | Failed at- \<task that failed\>. <!-- vale off -->For example: Failed at- MLAG check for the peerLink interface status <!-- vale on -->|
+| Switch is reachable, but a valid Cumulus Linux license is not installed | 1587866683.880463 2020-04-26 02:04:43 license.c:336 CRIT No license file. No license installed! |
+| Upgrade task could not be run | Failure message depends on the why the task could not be run. For example: `/etc/network/interfaces`: No such file or directory |
+| Upgrade task failed | Failed at- \<task that failed\>. For example: Failed at- MLAG check for the peerLink interface status |
 | Retry failed after five attempts | FAILED In all retries to process the LCM Job |
+<!-- vale on -->
 
 ## Upgrade Cumulus Linux on Switches Without NetQ Agent Installed
 
 When you want to update Cumulus Linux on switches without NetQ installed, NetQ provides the LCM switch discovery feature. The feature browses your network to find all Cumulus Linux switches, with and without NetQ currently installed and determines the versions of Cumulus Linux and NetQ installed. The results of switch discovery are then used to install or upgrade Cumulus Linux and NetQ on all discovered switches in a single procedure rather than in two steps. Up to five jobs can be run simultaneously; however, a given switch can only be contained in one running job at a time.
 
-If all of your Cumulus Linux switches already have NetQ 2.4.x or later installed, you can upgrade them directly. Refer to {{<link title="#upgrade-cumulus-linux-on-switches-with-netq-agent-installed" text="Upgrade Cumulus Linux">}}.
+If all your Cumulus Linux switches already have NetQ 2.4.x or later installed, you can upgrade them directly. Refer to {{<link title="#upgrade-cumulus-linux-on-switches-with-netq-agent-installed" text="Upgrade Cumulus Linux">}}.
 
 To discover switches running Cumulus Linux and upgrade Cumulus Linux and NetQ on them:
 
@@ -525,7 +522,7 @@ You must have an IP address in your file, but the hostname is optional and if th
 {{</notice>}}
 </div>
 
-Click **Remove** if you decide to use a different file or want to use IP address ranges instead. If you had entered ranges prior to selecting the CSV file option, they will have  remained.
+Click **Remove** if you decide to use a different file or want to use IP address ranges instead. If you entered ranges before selecting the CSV file option, they remain.
 
 {{< /tab >}}
 
@@ -642,7 +639,7 @@ When the network discovery is complete, NetQ presents the number of Cumulus Linu
 - **OS not Supported**: Switches found that are running Cumulus Linux version not supported by the LCM upgrade feature
 - **NOT\_FOUND**: IP addresses which did not have an associated Cumulus Linux switch
 
-Once you've determined which switches you need to upgrade, run the upgrade process as described {{<link url="#perform-a-cumulus-linux-upgrade" text="above">}}.
+After you determine which switches you need to upgrade, run the upgrade process as described {{<link url="#perform-a-cumulus-linux-upgrade" text="above">}}.
 
 {{< /tab >}}
 

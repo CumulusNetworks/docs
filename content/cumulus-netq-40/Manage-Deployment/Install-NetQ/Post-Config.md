@@ -141,7 +141,7 @@ Update the activation key using the Admin UI or NetQ CLI:
 
 6. Click **Apply**.
 
-{{< /tab >}}
+{{</tab>}}
 
 {{<tab "NetQ CLI">}}
 

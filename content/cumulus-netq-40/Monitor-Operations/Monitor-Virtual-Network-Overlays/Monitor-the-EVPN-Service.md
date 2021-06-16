@@ -95,9 +95,9 @@ It is useful to know the number of network nodes running the EVPN protocol over 
 
 It is also useful to compare the number of nodes running EVPN with the alarms present at the same time to determine if there is any correlation between the issues and the ability to establish an EVPN session. This is visible with the NetQ UI.
 
-{{< tabs "TabID62" >}}
+{{<tabs "TabID62" >}}
 
-{{< tab "NetQ UI" >}}
+{{<tab "NetQ UI" >}}
 
 Open the medium Network Services|All EVPN Sessions card. In this example there are no alarms, but there are three (3) VNIs.
 
@@ -105,9 +105,9 @@ Open the medium Network Services|All EVPN Sessions card. In this example there a
 
 If a visual correlation is apparent, you can dig a little deeper with the large card tabs.
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "NetQ CLI" >}}
+{{<tab "NetQ CLI" >}}
 
 To view the number of switches running the EVPN service, run:
 
@@ -152,25 +152,25 @@ leaf04            30         10.0.1.2         L2               Vlan 30        ye
 
 To compare this count with the count at another time, run the `netq show evpn` command with the `around` option. Count the devices running EVPN at that time. Repeat with another time to collect a picture of changes over time.
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}
 
 ### View the Distribution of Layer 3 VNIs
 
 It is useful to know the number sessions between devices and VNIs that are occurring over layer 3, as it gives you insight into the complexity of the VXLAN.
 
-{{< tabs "TabID150" >}}
+{{<tabs "TabID150" >}}
 
-{{< tab "NetQ UI" >}}
+{{<tab "NetQ UI" >}}
 
 To view this distribution, open the large Network Services|All EVPN Services card and view the bottom chart on the left. In this example, there are 12 layer 3 EVPN sessions running on the three VNIs.
 
 {{<figure src="/images/netq/ntwk-svcs-all-evpn-large-summary-tab-vni-chart-300.png" width="500">}}
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "NetQ CLI" >}}
+{{<tab "NetQ CLI" >}}
 
 To view the distribution of switches running layer 3 VNIs, run:
 
@@ -213,17 +213,17 @@ leaf04            10         10.0.1.2         L2               Vlan 10        ye
 leaf04            30         10.0.1.2         L2               Vlan 30        yes       65102:30         65102:30         Wed Oct  7 00:50:09 2020
 ```
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}
 
 ### View Devices with the Most EVPN Sessions
 
 You can view the load from EVPN on your switches and hosts using the large Network Services|All EVPN Sessions card or the NetQ CLI. This data enables you to see which switches are handling the most EVPN traffic currently, validate that is what is expected based on your network design, and compare that with data from an earlier time to look for any differences.
 
-{{< tabs "TabID211" >}}
+{{<tabs "TabID211" >}}
 
-{{< tab "NetQ UI" >}}
+{{<tab "NetQ UI" >}}
 
 To view switches and hosts with the most EVPN sessions:
 
@@ -253,9 +253,9 @@ To compare this data with the same data at a previous time:
 
 You can now see whether there are significant differences between this time and the original time. If the changes are unexpected, you can investigate further by looking at another time frame, determining if more nodes are now running EVPN than previously, looking for changes in the topology, and so forth.
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "NetQ CLI" >}}
+{{<tab "NetQ CLI" >}}
 
 To determine the devices with the most sessions, run `netq show evpn`. Then count the sessions on each device.
 
@@ -333,17 +333,17 @@ leaf04            3004002    10.0.1.2         L3               -              no
 leaf04            30010      10.0.1.2         L2               -              no        65102:30010      65102:30010      Mon Sep 28 11:00:59 2020
 ```
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}
 
 ### View Devices with the Most Layer 2 EVPN Sessions
 
 You can view the number layer 2 EVPN sessions on your switches and hosts using the large Network Services|All EVPN Sessions card and the NetQ CLI. This data enables you to see which switches are handling the most EVPN traffic currently, validate that is what is expected based on your network design, and compare that with data from an earlier time to look for any differences.
 
-{{< tabs "TabID332" >}}
+{{<tabs "TabID332" >}}
 
-{{< tab "NetQ UI" >}}
+{{<tab "NetQ UI" >}}
 
 To view switches and hosts with the most layer 2 EVPN sessions:
 
@@ -375,9 +375,9 @@ To compare this data with the same data at a previous time:
 
 If the changes are unexpected, you can investigate further by looking at another time frame, determining if more nodes are now running EVPN than previously, looking for changes in the topology, and so forth.
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "NetQ CLI" >}}
+{{<tab "NetQ CLI" >}}
 
 To determine the devices with the most layer 2 EVPN sessions, run `netq show evpn`, then count the layer 2 sessions.
 
@@ -455,17 +455,17 @@ leaf04            3004002    10.0.1.2         L3               -              no
 leaf04            30010      10.0.1.2         L2               -              no        65102:30010      65102:30010      Mon Sep 28 11:00:59 2020
 ```
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}
 
 ### View Devices with the Most Layer 3 EVPN Sessions
 
 You can view the number layer 3 EVPN sessions on your switches and hosts using the large Network Services|All EVPN Sessions card and the NetQ CLI. This data enables you to see which switches are handling the most EVPN traffic currently, validate that is what is expected based on your network design, and compare that with data from an earlier time to look for any differences.
 
-{{< tabs "TabID453" >}}
+{{<tabs "TabID453" >}}
 
-{{< tab "NetQ UI" >}}
+{{<tab "NetQ UI" >}}
 
 To view switches and hosts with the most layer 3 EVPN sessions:
 
@@ -497,9 +497,9 @@ To compare this data with the same data at a previous time:
 
 If the changes are unexpected, you can investigate further by looking at another time frame, determining if more nodes are now running EVPN than previously, looking for changes in the topology, and so forth.
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "NetQ CLI" >}}
+{{<tab "NetQ CLI" >}}
 
 To determine the devices with the most layer 3 EVPN sessions, run `netq show evpn`, then count the layer 3 sessions.
 
@@ -577,17 +577,17 @@ leaf04            3004002    10.0.1.2         L3               -              no
 leaf04            30010      10.0.1.2         L2               -              no        65102:30010      65102:30010      Mon Sep 28 11:00:59 2020
 ```
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}
 
 ### View the Status of EVPN for a Given VNI
 
 You can view the status of the EVPN service on a single VNI using the full-screen Network Services|All Sessions card or the NetQ CLI.
 
-{{< tabs "TabID586" >}}
+{{<tabs "TabID586" >}}
 
-{{< tab "NetQ UI" >}}
+{{<tab "NetQ UI" >}}
 
 1. Open the full-screen Network Services|All Sessions card.
 
@@ -597,9 +597,9 @@ You can view the status of the EVPN service on a single VNI using the full-scree
 
 {{<figure src="/images/netq/ntwk-svcs-all-evpn-fullscr-allsessions-tab-byVNI-320.png" width="700">}}
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "NetQ CLI" >}}
+{{<tab "NetQ CLI" >}}
 
 Use the `vni` option with the `netq show evpn` command to filter the result for a specific VNI.
 
@@ -820,9 +820,9 @@ To access the single session cards, you must open the full-screen Network Servic
 
 You can view a summary of a given EVPN session from the NetQ UI or NetQ CLI.
 
-{{< tabs "TabID815" >}}
+{{<tabs "TabID815" >}}
 
-{{< tab "NetQ UI" >}}
+{{<tab "NetQ UI" >}}
 
 To view the summary:
 
@@ -836,9 +836,9 @@ To view the summary:
 
     {{<figure src="/images/netq/ntwk-svcs-single-evpn-medium-230.png" width="200">}}
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "NetQ CLI" >}}
+{{<tab "NetQ CLI" >}}
 
 To view a session summary, run:
 
@@ -858,9 +858,9 @@ Hostname          VNI        VTEP IP          Type             Mapping        In
 leaf01            4001       10.0.1.1         L3               Vrf RED        yes       65101:4001       65101:4001       Tue Oct 13 04:21:15 2020
 ```
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}
 
 ### View VTEP Count
 
@@ -903,9 +903,9 @@ leaf01            4001       10.0.1.1         L3               Vrf RED        ye
 
 You can view the attributes of all EVPN sessions for a given VNI using the NetQ UI or NetQ CLI.
 
-{{< tabs "TabID898" >}}
+{{<tabs "TabID898" >}}
 
-{{< tab "NetQ UI" >}}
+{{<tab "NetQ UI" >}}
 
 You can view all stored attributes of all EVPN sessions running networkwide.
 
@@ -915,9 +915,9 @@ To view all session details, open the full screen EVPN Session card and click th
 
 To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right of the card.
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "NetQ CLI" >}}
+{{<tab "NetQ CLI" >}}
 
 To view the sessions, run `netq show evpn` with the `vni` option.
 
@@ -934,9 +934,9 @@ leaf03            20         10.0.1.2         L2               Vlan 20        ye
 leaf04            20         10.0.1.2         L2               Vlan 20        yes       65102:20         65102:20         Wed Oct 14 04:58:46 2020
 ```
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}
 
 ### View All Session Events
 

@@ -98,9 +98,9 @@ At some point in the lifecycle of a switch, you are likely to want more detail a
 
 You can focus on all *critical* alarms for a given switch using the NetQ UI or NetQ CLI.
 
-{{< tabs "TabID101" >}}
+{{<tabs "TabID101" >}}
 
-{{< tab "NetQ UI" >}}
+{{<tab "NetQ UI" >}}
 
 To view all alarms:
 
@@ -114,9 +114,9 @@ To view all alarms:
 
 4. Return to your workbench by clicking <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner.
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "NetQ CLI" >}}
+{{<tab "NetQ CLI" >}}
 
 To view all critical alarms on the switch, run:
 
@@ -135,17 +135,17 @@ spine01           agent                    critical         Netq-agent rebooted 
                                                             19:55:07 UTC 2020)
 ```
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}
 
 ### View Status of All Interfaces
 
 You can view all configured interfaces on a switch in one place making it easier to see inconsistencies in the configuration, quickly see when changes were made, and the operational status.
 
-{{< tabs "TabID146" >}}
+{{<tabs "TabID146" >}}
 
-{{< tab "NetQ UI" >}}
+{{<tab "NetQ UI" >}}
 
 To view all interfaces:
 
@@ -165,9 +165,9 @@ To view all interfaces:
 
 7. To return to the workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner.
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "NetQ CLI" >}}
+{{<tab "NetQ CLI" >}}
 
 You can view all interfaces or filter by the interface type.
 
@@ -245,17 +245,17 @@ spine01           swp4                      swp              up         default 
                                                                                         1
 ```
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}
 
 ### View All MAC Addresses on a Switch
 
 You can view all MAC address currently used by a switch using the NetQ UI or the NetQ CLI.
 
-{{< tabs "TabID256" >}}
+{{<tabs "TabID256" >}}
 
-{{< tab "NetQ UI" >}}
+{{<tab "NetQ UI" >}}
 
 1. Open the full-screen switch card for the switch of interest.
 
@@ -265,9 +265,9 @@ You can view all MAC address currently used by a switch using the NetQ UI or the
 
 3. Optionally, click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/15-Filter/filter-1.svg" height="18" width="18">}} to filter by MAC address, VLAN, origin, or alternate time range.
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "NetQ CLI" >}}
+{{<tab "NetQ CLI" >}}
 
 You can view all MAC addresses on a switch, or filter the list to view a particular address, only the addresses on the egress port, a particular VLAN, or those that are owned by the switch. You can also view the number addresses.
 
@@ -362,17 +362,17 @@ yes    00:00:00:00:00:1b  20     leaf01            bridge                       
 yes    00:00:00:00:00:1c  30     leaf01            bridge                         no     Thu Sep 17 16:16:11 2020
 ```
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}
 
 ### View All VLANs on a Switch
 
 You can view all VLANs running on a given switch using the NetQ UI or NetQ CLI.
 
-{{< tabs "TabID375" >}}
+{{<tabs "TabID375" >}}
 
-{{< tab "NetQ UI" >}}
+{{<tab "NetQ UI" >}}
 
 To view all VLANs on a switch:
 
@@ -384,9 +384,9 @@ To view all VLANs on a switch:
 
 3. Optionally, click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/15-Filter/filter-1.svg" height="18" width="18">}} to filter by interface name or type.
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "NetQ CLI" >}}
+{{<tab "NetQ CLI" >}}
 
 To view all VLANs on a switch, run:
 
@@ -425,17 +425,17 @@ cumulus@switch:~$ netq leaf01 show interfaces type vlan state down
 No matching link records found
 ```
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}
 
 ### View All IP Routes on a Switch
 
 You can view all IP routes currently used by a switch using the NetQ UI or the NetQ CLI.
 
-{{< tabs "TabID440" >}}
+{{<tabs "TabID440" >}}
 
-{{< tab "NetQ UI" >}}
+{{<tab "NetQ UI" >}}
 
 To view all IP routes on a switch:
 
@@ -447,9 +447,9 @@ To view all IP routes on a switch:
 
 3. Optionally, click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/15-Filter/filter-1.svg" height="18" width="18">}} to filter by VRF or view a different time period.
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "NetQ CLI" >}}
+{{<tab "NetQ CLI" >}}
 
 To view all IPv4 and IPv6 routes or only IPv4 routes on a switch, run:
 
@@ -508,9 +508,9 @@ no     default         10.10.10.1/32                  spine01           169.254.
                                                                         169.254.0.1: swp2
 ```
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}
 
 ### View All IP Neighbors on a Switch
 
@@ -754,9 +754,9 @@ Hostname          Package Name             Version              CL Version      
 spine01           ntp                      1:4.2.8p10-cl3u2     Cumulus Linux 3.7.12 installed            Wed Aug 26 19:58:45 2020
 ```
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}
 
 ## Utilization Statistics
 
@@ -766,9 +766,9 @@ Utilization statistics provide a view into the operation of a switch. They indic
 
 You can view the current utilization of CPU, memory, and disk resources to determine whether a switch is reaching its maximum load and compare its performance with other switches.
 
-{{< tabs "TabID763" >}}
+{{<tabs "TabID763" >}}
 
-{{< tab "NetQ UI" >}}
+{{<tab "NetQ UI" >}}
 
 To view the compute resources utilization:
 
@@ -788,9 +788,9 @@ To view the compute resources utilization:
 
 6. Open the large Switch card for a comparable switch. Is the performance similar?
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "NetQ CLI" >}}
+{{<tab "NetQ CLI" >}}
 
 You can quickly determine how many compute resources &mdash; CPU, disk and memory &mdash; are being consumed by the switches on your network.
 
@@ -844,9 +844,9 @@ Hostname          Disk Name            Total                Used                
 leaf01            /dev/vda4            6170849280           1230393344           20.9                 Wed Sep 16 20:54:14 2020
 ```
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}
 
 ### View Interface Statistics and Utilization
 
@@ -861,9 +861,9 @@ NetQ Agents collect performance statistics every 30 seconds for the physical int
 
 You can view these statistics and utilization data using the NetQ UI or the NetQ CLI.
 
-{{< tabs "TabID858" >}}
+{{<tabs "TabID858" >}}
 
-{{< tab "NetQ UI" >}}
+{{<tab "NetQ UI" >}}
 
 1. Locate the switch card of interest on your workbench and change to the large size card if needed. Otherwise, open the relevant switch card:
 
@@ -888,9 +888,9 @@ What you view next depends on what you see, but a couple of possibilities includ
 - Open the full screen card to view details about all of the interfaces on the switch.
 - Open another switch card to compare performance on a similar interface.
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "NetQ CLI" >}}
+{{<tab "NetQ CLI" >}}
 
 To view the interface statistics and utilization, run:
 
@@ -966,9 +966,9 @@ border01          swp54                     2461                 0              
                                                                                                                                                      2020
 ```
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}
 
 ### View ACL Resource Utilization
 
@@ -976,9 +976,9 @@ You can monitor the incoming and outgoing access control lists (ACLs) configured
 
 Both the Switch card and `netq show cl-resource acl` command display the ingress/egress IPv4/IPv6 filter/mangle, ingress 802.1x filter, ingress mirror, ingress/egress PBR IPv4/IPv6 filter/mangle, ACL Regions, 18B/32B/54B Rules Key, and layer 4 port range checker.
 
-{{< tabs "TabID1338" >}}
+{{<tabs "TabID1338" >}}
 
-{{< tab "NetQ UI" >}}
+{{<tab "NetQ UI" >}}
 
 To view ACL resource utilization on a switch:
 
@@ -992,9 +992,9 @@ To view ACL resource utilization on a switch:
 
 4. To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner of the card.
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "NetQ CLI" >}}
+{{<tab "NetQ CLI" >}}
 
 To view ACL resource utilization on a switch, run:
 
@@ -1047,17 +1047,17 @@ cumulus@switch:~$ netq leaf01 show cl-resource acl json
 }
 ```
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}
 
 ### View Forwarding Resource Utilization
 
 You can monitor the amount of forwarding resources used by a switch, currently or at a time in the past using the NetQ UI and NetQ CLI.
 
-{{< tabs "TabID1052" >}}
+{{<tabs "TabID1052" >}}
 
-{{< tab "NetQ UI" >}}
+{{<tab "NetQ UI" >}}
 
 To view forwarding resources utilization on a switch:
 
@@ -1071,9 +1071,9 @@ To view forwarding resources utilization on a switch:
 
 4. To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner of the card.
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "NetQ CLI" >}}
+{{<tab "NetQ CLI" >}}
 
 To view forwarding resources utilization on a switch, run:
 
@@ -1115,9 +1115,9 @@ cumulus@switch:~$ netq spine02 show cl-resource forwarding  json
 }
 ```
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}
 
 ### View SSD Utilization
 
@@ -1169,9 +1169,9 @@ Customers running Cumulus Linux 3.x which uses the BTRFS (b-tree file system) mi
 
 For details about when a rebalance is recommended, refer to [When to Rebalance BTRFS Partitions]({{<ref "/knowledge-base/Configuration-and-Usage/Storage/When-to-Rebalance-BTRFS-Partitions">}}).
 
-{{< tabs "TabID414" >}}
+{{<tabs "TabID414" >}}
 
-{{< tab "NetQ UI" >}}
+{{<tab "NetQ UI" >}}
 
 To view the disk state:
 
@@ -1188,9 +1188,9 @@ To view the disk state:
 
     If the value in that column says *Yes*, then you are strongly encouraged to rebalance the BTRFS partitions. If it says *No*, then you can review the other values in the table to determine if you are getting close to needing a rebalance, and come back to view this table at a later time.
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "NetQ CLI" >}}
+{{<tab "NetQ CLI" >}}
 
 To view the disk utilization and whether a rebalance is recommended, run:
 
@@ -1214,9 +1214,9 @@ Look for the **Rebalance Recommended** column. If the value in that column says 
 
 Optionally, use the `around` option to view the information for a particular time in the past.
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}
 
 ## Physical Sensing
 
@@ -1238,9 +1238,9 @@ Sensor information is available from the NetQ UI and NetQ CLI.
 - Temperature Sensor card: view sensor name, description, minimum/maximum threshold, current/critical(maximum)/lower critical (minimum) threshold, and current/previous state on all devices (table)
 - `netq show sensors`: view sensor name, description, current state, and time when data was last changed on all devices for all or one sensor type
 
-{{< tabs "TabID488" >}}
+{{<tabs "TabID488" >}}
 
-{{< tab "NetQ UI" >}}
+{{<tab "NetQ UI" >}}
 
 #### Power Supply Unit Health
 
@@ -1473,9 +1473,9 @@ Sensor information is available from the NetQ UI and NetQ CLI.
 
 5. To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner of the card.
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "NetQ CLI" >}}
+{{<tab "NetQ CLI" >}}
 
 #### View All Sensor Information for a Switch
 
@@ -1668,9 +1668,9 @@ leaf01            psu2temp1       psu2 temp sensor                    ok        
 
 ```
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}
 
 ### View Digital Optics Health
 
@@ -1682,9 +1682,9 @@ Digital optics module information is available regarding the performance degrada
 - Digital Optics card: view laser bias current, laser output power, received signal average optical power, and module temperature/voltage (table)
 - `netq show dom type` command: view laser bias current, laser output power, received signal average optical power, and module temperature/voltage
 
-{{< tabs "TabID925" >}}
+{{<tabs "TabID925" >}}
 
-{{< tab "Switch card" >}}
+{{<tab "Switch card" >}}
 
 1. Open a switch card by searching for a switch by hostname in **Global Search**.
 
@@ -1712,9 +1712,9 @@ Digital optics module information is available regarding the performance degrada
 
 10. Review the laser parameter values by interface and channel. Review the module parameters by interface.
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "DOM card" >}}
+{{<tab "DOM card" >}}
 
 1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> (main menu), then click **Digital Optics** in the **Network** heading.
 
@@ -1808,9 +1808,9 @@ Digital optics module information is available regarding the performance degrada
 
 6. To return to your workbench, click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14">}} in the top right corner of the card.
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "netq show dom type" >}}
+{{<tab "netq show dom type" >}}
 
 To view digital optics information for a switch, run one of the following:
 
@@ -1867,6 +1867,6 @@ spine01           swp31      module_temperature   {‘degree_c’: 75,     {‘d
                                                   ‘degree_f’: 167}     ‘degree_f’: 23}      ‘degree_f’: 158}     ‘degree_f’: 32}      ‘degree_f’: 80.69}
 ```
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}

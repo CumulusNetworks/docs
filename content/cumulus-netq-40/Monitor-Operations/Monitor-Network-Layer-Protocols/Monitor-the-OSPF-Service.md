@@ -38,17 +38,17 @@ For the `between` option, the start (`text-time`) and end time (`text-endtime`) 
 
 You can view a summary of the OSPF service from the NetQ UI or the NetQ CLI.
 
-{{< tabs "TabID41" >}}
+{{<tabs "TabID41" >}}
 
-{{< tab "NetQ UI" >}}
+{{<tab "NetQ UI" >}}
 
 To view the summary, open the Network Services|All OSPF Sessions card. In this example, the number of devices running the OSPF service is nine (9) and the number and distribution of related critical severity alarms is zero (0).
 
 {{<figure src="/images/netq/ntwk-svcs-all-ospf-small-230.png" width="200">}}
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "NetQ CLI" >}}
+{{<tab "NetQ CLI" >}}
 
 To view OSPF service status, run:
 
@@ -81,25 +81,25 @@ spine02           swp3                      0.0.0.0      Unnumbered       Full  
 spine02           swp4                      0.0.0.0      Unnumbered       Full       leaf04            swp52                     Thu Feb  7 14:42:16 2019
 ```
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}
 
 ### View the Distribution of Sessions
 
 It is useful to know the number of network nodes running the OSPF protocol over a period of time, as it gives you insight into the amount of traffic associated with and breadth of use of the protocol. It is also useful to view the health of the sessions.
 
-{{< tabs "TabID92" >}}
+{{<tabs "TabID92" >}}
 
-{{< tab "NetQ UI" >}}
+{{<tab "NetQ UI" >}}
 
 To view these distributions, open the medium Network Services|All OSPF Sessions card. In this example, there are nine nodes running the service with a total of 40 sessions. This has not changed over the past 24 hours.
 
 {{<figure src="/images/netq/ntwk-svcs-all-ospf-medium-230.png" width="200">}}
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "NetQ CLI" >}}
+{{<tab "NetQ CLI" >}}
 
 To view the number of switches running the OSPF service, run:
 
@@ -136,17 +136,17 @@ spine02           swp4                      0.0.0.0      Unnumbered       Full  
 
 To compare this count with the count at another time, run the `netq show ospf` command with the `around` option. Count the devices running OSPF at that time. Repeat with another time to collect a picture of changes over time.
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}
 
 ### View Devices with the Most OSPF Sessions
 
 You can view the load from OSPF on your switches and hosts using the large Network Services card. This data enables you to see which switches are handling the most OSPF traffic currently, validate that is what is expected based on your network design, and compare that with data from an earlier time to look for any differences.
 
-{{< tabs "TabID211" >}}
+{{<tabs "TabID211" >}}
 
-{{< tab "NetQ UI" >}}
+{{<tab "NetQ UI" >}}
 
 To view switches and hosts with the most OSPF sessions:
 
@@ -174,9 +174,9 @@ To compare this data with the same data at a previous time:
 
 <div style="padding-left: 18px;">You can now see whether there are significant differences between this time and the original time. If the changes are unexpected, you can investigate further by looking at another time frame, determining if more nodes are now running OSPF than previously, looking for changes in the topology, and so forth.</div>
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "NetQ CLI" >}}
+{{<tab "NetQ CLI" >}}
 
 To determine the devices with the most sessions, run `netq show ospf`. Then count the sessions on each device.
 
@@ -205,9 +205,9 @@ spine02           swp3                      0.0.0.0      Unnumbered       Full  
 spine02           swp4                      0.0.0.0      Unnumbered       Full       leaf04            swp52                     Thu Feb  7 14:42:16 2019
 ```
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}
 
 ### View Devices with the Most Unestablished OSPF Sessions
 
@@ -258,9 +258,9 @@ Where to go next depends on what data you see, but a few options include:
 
 You can view all of the OSPF-related events in the network using the NetQ UI or the NetQ CLI.
 
-{{< tabs "TabID286" >}}
+{{<tabs "TabID286" >}}
 
-{{< tab "NetQ UI" >}}
+{{<tab "NetQ UI" >}}
 
 The Network Services|All OSPF Sessions card enables you to view all of the OSPF events in the designated time period.
 
@@ -275,9 +275,9 @@ Where to go next depends on what data you see, but a couple of options include:
 - Open one of the other full-screen tabs in this flow to focus on devices or sessions.
 - Export the data for use in another analytics tool, by clicking {{<img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/08-Upload-Download/upload-bottom.svg" height="18" width="18">}} and providing a name for the data file.
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "NetQ CLI" >}}
+{{<tab "NetQ CLI" >}}
 
 To view OSPF events, run:
 
@@ -291,9 +291,9 @@ For example:
 - To view only critical OSPF events, run `netq show events level critical type ospf`.
 - To view all OSPF events in the past three days, run `netq show events type ospf between now and 3d`.
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}
 
 ### View Details for All Devices Running OSPF
 
@@ -309,9 +309,9 @@ To return to your workbench, click {{<img src="https://icons.cumulusnetworks.com
 
 You can view all stored attributes of all OSPF sessions in your network with the NetQ UI or the NetQ CLI.
 
-{{< tabs "TabID337" >}}
+{{<tabs "TabID337" >}}
 
-{{< tab "NetQ UI" >}}
+{{<tab "NetQ UI" >}}
 
 To view all session details, open the full screen Network Services|All OSPF Sessions card and click the **All Sessions** tab.
 
@@ -321,9 +321,9 @@ To return to your workbench, click {{<img src="https://icons.cumulusnetworks.com
 
 Use the icons above the table to select/deselect, filter, and export items in the list. Refer to {{<link url="Access-Data-with-Cards/#table-settings" text="Table Settings">}} for more detail. To return to original display of results, click the associated tab.
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "NetQ CLI" >}}
+{{<tab "NetQ CLI" >}}
 
 To view session details, run `netq show ospf`.
 
@@ -352,9 +352,9 @@ spine02           swp3                      0.0.0.0      Unnumbered       Full  
 spine02           swp4                      0.0.0.0      Unnumbered       Full       leaf04            swp52                     Thu Feb  7 14:42:16 2019
 ```
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}
 
 ## Monitor a Single OSPF Session
 
@@ -392,9 +392,9 @@ On the medium and large single OSPF session cards, the status of the sessions is
 
 You can view a summary of a given OSPF session from the NetQ UI or NetQ CLI.
 
-{{< tabs "TabID420" >}}
+{{<tabs "TabID420" >}}
 
-{{< tab "NetQ UI" >}}
+{{<tab "NetQ UI" >}}
 
 To view the summary:
 
@@ -412,9 +412,9 @@ To view the summary:
 
     {{<figure src="/images/netq/ntwk-svcs-single-ospf-small-230.png" width="200">}}
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "NetQ CLI" >}}
+{{<tab "NetQ CLI" >}}
 
 To view a session summary, run:
 
@@ -453,9 +453,9 @@ leaf03            swp51                     0.0.0.0      Unnumbered       Full  
 leaf04            swp51                     0.0.0.0      Unnumbered       Full       spine01           swp4                      Thu Feb  7 14:42:16 2019
 ```
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}
 
 ### View OSPF Session State Changes
 
@@ -521,9 +521,9 @@ To view the configuration file changes:
 
 You can view attributes of all of the OSPF sessions for the devices participating in a given session with the NetQ UI and the NetQ CLI.
 
-{{< tabs "TabID520" >}}
+{{<tabs "TabID520" >}}
 
-{{< tab "NetQ UI" >}}
+{{<tab "NetQ UI" >}}
 
 To view all session details:
 
@@ -541,9 +541,9 @@ To view all session details:
 
 6. To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner.
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "NetQ CLI" >}}
+{{<tab "NetQ CLI" >}}
 
 Run the `netq show ospf` command.
 
@@ -572,9 +572,9 @@ spine02           swp3                      0.0.0.0      Unnumbered       Full  
 spine02           swp4                      0.0.0.0      Unnumbered       Full       leaf04            swp52                     Thu Feb  7 14:42:16 2019
 ```
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}
 
 ### View All Events for a Given Session
 

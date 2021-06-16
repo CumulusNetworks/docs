@@ -149,9 +149,9 @@ If you are running NTP in your out-of-band management network with VRF, specify 
 
 2.  Configure the network time server.
 
-    {{< tabs "TabID0" >}}
+    {{<tabs "TabID0" >}}
 
-{{< tab "Use NTP Configuration File" >}}
+{{<tab "Use NTP Configuration File" >}}
 
 1. Open the `/etc/ntp.conf` file in your text editor of choice.
 
@@ -179,7 +179,7 @@ If you are running NTP in your out-of-band management network with VRF, specify 
     2a00:7600::41    .STEP.          16 u    - 1024    0    0.000    0.000   0.000
     \*129.250.35.250 249.224.99.213   2 u  101  128  377   14.588   -0.299   0.243
 
-{{</tab >}}
+{{</tab>}}
     
 {{<tab "Use Chrony (Ubuntu 18.04 only)" >}}
 
@@ -262,9 +262,9 @@ If you are running NTP in your out-of-band management network with VRF, specify 
     Leap status     : Normal
     ```
 
-{{</tab >}}
+{{</tab>}}
 
-{{</tabs >}}
+{{</tabs>}}
 
 
 {{</tab>}}
@@ -285,7 +285,7 @@ To get the NetQ CLI package:
 
 2. Add the Ubuntu repository:
 
-    {{< tabs "TabID2" >}}
+    {{<tabs "TabID2" >}}
 
 {{<tab "Ubuntu 16.04" >}}
 
@@ -298,7 +298,7 @@ deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb xenial netq-latest
 ...
 ```
 
-{{</tab >}}
+{{</tab>}}
 
 {{<tab "Ubuntu 18.04" >}}
 
@@ -311,9 +311,9 @@ deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb bionic netq-latest
 ...
 ```
 
-{{</tab >}}
+{{</tab>}}
 
-{{</tabs >}}
+{{</tabs>}}
 
     {{<notice note>}}
 The use of <code>netq-latest</code> in these examples means that a <code>get</code> to the repository always retrieves the latest version of NetQ, even in the case where a major version update has been made. If you want to keep the repository on a specific version - such as <code>netq-3.1</code> - use that instead.
@@ -354,7 +354,7 @@ deb http://apps3.cumulusnetworks.com/repos/deb CumulusLinux-3 netq-4.0
 The repository <code>deb http://apps3.cumulusnetworks.com/repos/deb CumulusLinux-4 netq-latest</code> can be used if you want to always retrieve the latest posted version of NetQ.
 {{</notice>}}
 
-{{</tab >}}
+{{</tab>}}
 
 {{<tab "Cumulus Linux 4.x" >}}
 
@@ -369,9 +369,9 @@ deb http://apps3.cumulusnetworks.com/repos/deb CumulusLinux-4 netq-4.0
 The repository <code>deb http://apps3.cumulusnetworks.com/repos/deb CumulusLinux-4 netq-latest</code> can be used if you want to always retrieve the latest posted version of NetQ.
 {{</notice>}}
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}
 
 2. Update the local `apt` repository and install the software on the switch.
 
@@ -641,7 +641,7 @@ You can configure the NetQ CLI in the `netq.yml` configuration file contained in
 <!-- vale on -->
 3. Set the parameters for the CLI.
 
-    {{< tabs "TabID1" >}}
+    {{<tabs "TabID1" >}}
 
 {{<tab "On-premises Deployments" >}}
 
@@ -660,7 +660,7 @@ port: 32708
 server: 192.168.0.254
 ```
 
-{{</tab >}}
+{{</tab>}}
 
 {{<tab "Cloud Deployments" >}}
 
@@ -681,6 +681,6 @@ premises: datacenterwest
 server: api.netq.cumulusnetworks.com
 ```
 
-{{</tab >}}
+{{</tab>}}
 
-{{</tabs >}}
+{{</tabs>}}

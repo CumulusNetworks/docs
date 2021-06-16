@@ -517,7 +517,7 @@ The *Switches* tab displays:
 </tr>
 <tr class="even">
 <td>Component</td>
-<td>Switch components monitored-ASIC, Operating System (OS), Cumulus Linux license, NetQ Agent version, and Platform.</td>
+<td>Switch components monitored-ASIC, Operating System (OS), NetQ Agent version, and Platform.</td>
 </tr>
 <tr class="odd">
 <td>Distribution charts</td>
@@ -656,7 +656,7 @@ The medium Switch Inventory card displays:
 </tr>
 <tr class="odd">
 <td>Chart</td>
-<td><p>Distribution of switch components (disk size, OS, ASIC, NetQ Agents, CPU, Cumulus Linux licenses, platform, and memory size) during the designated time period. Hover over chart segment to view versions of each component.</p>
+<td><p>Distribution of switch components (disk size, OS, ASIC, NetQ Agents, CPU, platform, and memory size) during the designated time period. Hover over chart segment to view versions of each component.</p>
 <p><strong>Note</strong>: You should only have one version of NetQ Agent running and it should match the NetQ Platform release number. If you have more than one, you likely need to upgrade the older agents.</p></td>
 </tr>
 <tr class="even">
@@ -694,7 +694,7 @@ The *Summary* tab displays:
 </tr>
 <tr class="odd">
 <td>Charts</td>
-<td><p>Distribution of switch components (disk size, OS, ASIC, NetQ Agents, CPU, Cumulus Linux licenses, platform, and memory size), divided into software and hardware, during the designated time period. Hover over chart segment to view versions of each component.</p>
+<td><p>Distribution of switch components (disk size, OS, ASIC, NetQ Agents, CPU, platform, and memory size), divided into software and hardware, during the designated time period. Hover over chart segment to view versions of each component.</p>
 <p><strong>Note</strong>: You should only have one version of NetQ Agent running and it should match the NetQ Platform release number. If you have more than one, you likely need to upgrade the older agents.</p></td>
 </tr>
 <tr class="even">
@@ -776,10 +776,6 @@ The *Platform* tab displays:
 <td>Distribution of platform models. Hover over chart segment to view the number of switches with each model.</td>
 </tr>
 <tr class="odd">
-<td>License State chart</td>
-<td>Distribution of Cumulus Linux license status. Hover over chart segments to highlight the vendor and platforms that have that license status.</td>
-</tr>
-<tr class="even">
 <td>Show All</td>
 <td>Opens full screen card displaying all components for all switches.</td>
 </tr>
@@ -927,7 +923,7 @@ trend of the:
 <td>Health score</td>
 <td>Percentage of devices which passed validation versus the number of devices checked during the time window for:
 <ul>
-<li><strong>System health</strong>: NetQ Agent health, Cumulus Linux license status, and sensors</li>
+<li><strong>System health</strong>: NetQ Agent health and sensors</li>
 <li><strong>Network services health</strong>: BGP, CLAG, EVPN, NTP, OSPF, and VXLAN health</li>
 <li><strong>Interface health</strong>: interfaces MTU, VLAN health.</li>
 </ul>
@@ -968,7 +964,7 @@ The *System Health* tab displays:
 </tr>
 <tr class="odd">
 <td>Health trend</td>
-<td>Trend of NetQ Agents, Cumulus Linux licenses, and sensor health, represented by an arrow:
+<td>Trend of NetQ Agents and sensor health, represented by an arrow:
 <ul>
 <li><strong>Pointing upward and green</strong>: Health score in the most recent window is higher than in the last two data collection windows, an increasing trend.</li>
 <li><strong>Pointing downward and bright pink</strong>: Health score in the most recent window is lower than in the last two data collection windows, a decreasing trend.</li>
@@ -978,12 +974,12 @@ The *System Health* tab displays:
 </tr>
 <tr class="even">
 <td>Health score</td>
-<td><p>Percentage of devices which passed validation versus the number of devices checked during the time window for NetQ Agents, Cumulus Linux license status, and platform sensors.</p>
+<td><p>Percentage of devices which passed validation versus the number of devices checked during the time window for NetQ Agents and platform sensors.</p>
 <p>The data collection window varies based on the time period of the card. For a 24 hour time period (default), the window is one hour. This gives you current, hourly, updates about your network health.</p></td>
 </tr>
 <tr class="odd">
 <td>Charts</td>
-<td>Distribution of health score for NetQ Agents, Cumulus Linux license status, and platform sensors during the designated time period.</td>
+<td>Distribution of health score for NetQ Agents and platform sensors during the designated time period.</td>
 </tr>
 <tr class="even">
 <td>Table</td>
@@ -4540,7 +4536,7 @@ The *Attributes* tab displays:
 </tr>
 <tr class="odd">
 <td>OS</td>
-<td>Operating system running on the switch. CL indicates a Cumulus Linux license.</td>
+<td>Operating system running on the switch. CL indicates Cumulus Linux is installed.</td>
 </tr>
 <tr class="even">
 <td>OS Version</td>

@@ -38,17 +38,17 @@ When using the `between` option, the start time (`text-time`) and end time (`tex
 
 You can view a summary of the LLDP service from the NetQ UI or the NetQ CLI.
 
-{{< tabs "TabID41" >}}
+{{<tabs "TabID41" >}}
 
-{{< tab "NetQ UI" >}}
+{{<tab "NetQ UI" >}}
 
 Open the small Network Services|All LLDP Sessions card. In this example, the number of devices running the LLDP service is 14 and no alarms are present.
 
 {{<figure src="/images/netq/ntwk-svcs-all-lldp-small-230.png" width="200" >}}
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "NetQ CLI" >}}
+{{<tab "NetQ CLI" >}}
 
 To view LLDP service status, run `netq show lldp`.
 
@@ -93,17 +93,17 @@ leaf01            swp51                     spine01           swp1              
 ...
 ```
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}
 
 <!-- ### View Devices Running LLDP Service
 
 You can view the devices running the LLDP service with either the NetQ UI or the NetQ CLI.
 
-{{< tabs "TabID41" >}}
+{{<tabs "TabID41" >}}
 
-{{< tab "NetQ UI" >}}
+{{<tab "NetQ UI" >}}
 
 1. Open the LLDP Service card.
 
@@ -117,9 +117,9 @@ You can view the devices running the LLDP service with either the NetQ UI or the
 
     If you have more than one page of switches running LLDP, the total count is indicated in the pagination bar.
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "NetQ CLI" >}}
+{{<tab "NetQ CLI" >}}
 
 To view the devices running LLDP, run:
 
@@ -165,9 +165,9 @@ server12          swp1                      leaf01            swp8              
 server12          swp2                      leaf02            swp8                      Thu Feb  7 18:31:47 2019
 ```
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}} -->
+{{</tabs>}} -->
 
 ### View the Distribution of Nodes, Alarms, and Sessions
 
@@ -175,9 +175,9 @@ It is useful to know the number of network nodes running the LLDP protocol over 
 
 Nodes which have a large number of unestablished sessions might be misconfigured or experiencing communication issues. This is visible with the NetQ UI.
 
-{{< tabs "TabID178" >}}
+{{<tabs "TabID178" >}}
 
-{{< tab "NetQ UI" >}}
+{{<tab "NetQ UI" >}}
 
 To view the distribution, open the medium Network Services|All LLDP Sessions card.
 
@@ -185,9 +185,9 @@ To view the distribution, open the medium Network Services|All LLDP Sessions car
 
 In this example, we see that 13 nodes are running the LLDP protocol, that there are 52 sessions established, and that no LLDP-related alarms have occurred in the last 24 hours. If there was a visual correlation between the alarms and sessions, you could dig a little deeper with the large Network Services|All LLDP Sessions card.
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "NetQ CLI" >}}
+{{<tab "NetQ CLI" >}}
 
 To view the number of switches running the LLDP service, run:
 
@@ -315,9 +315,9 @@ spine04           swp5                      border01          swp54             
 spine04           swp6                      border02          swp54                     Mon Oct 26 04:11:23 2020
 ```
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}
 
 ### View the Distribution of Missing Neighbors
 
@@ -333,9 +333,9 @@ In this example, we see that 16 of the 52 sessions are consistently missing the 
 
 You can view the load from LLDP on your switches using the large Network Services|All LLDP Sessions card or the NetQ CLI. This data enables you to see which switches are handling the most LLDP traffic currently, validate that is what is expected based on your network design, and compare that with data from an earlier time to look for any differences.
 
-{{< tabs "TabID336" >}}
+{{<tabs "TabID336" >}}
 
-{{< tab "NetQ UI" >}}
+{{<tab "NetQ UI" >}}
 
 To view switches and hosts with the most LLDP sessions:
 
@@ -363,9 +363,9 @@ To compare this data with the same data at a previous time:
 
 <div style="padding-left: 18px;">In this case, notice that their are fewer nodes running the protocol, but the total number of sessions running has nearly doubled. If the changes are unexpected, you can investigate further by looking at another time frame, determining if more nodes are now running LLDP than previously, looking for changes in the topology, and so forth.</div>
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "NetQ CLI" >}}
+{{<tab "NetQ CLI" >}}
 
 To determine the devices with the most sessions, run `netq show lldp`. Then count the sessions on each device.
 
@@ -487,9 +487,9 @@ spine04           swp5                      border01          swp54             
 spine04           swp6                      border02          swp54                     Mon Oct 26 04:11:23 2020
 ```
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}
 
 ### View Devices with the Most Unestablished LLDP Sessions
 
@@ -763,9 +763,9 @@ Return to your workbench by clicking <img src="https://icons.cumulusnetworks.com
 
 You can view attributes of all LLDP sessions in your network with the NetQ UI or NetQ CLI.
 
-{{< tabs "TabID766" >}}
+{{<tabs "TabID766" >}}
 
-{{< tab "NetQ UI" >}}
+{{<tab "NetQ UI" >}}
 
 To view all session details:
 
@@ -781,9 +781,9 @@ To view all session details:
 
 Return to your workbench by clicking <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner.
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "NetQ CLI" >}}
+{{<tab "NetQ CLI" >}}
 
 To view session details, run `netq show lldp`.
 
@@ -832,9 +832,9 @@ leaf02            swp3                      server03          mac:44:38:39:00:00
 ...
 ```
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}
 
 ## Monitor a Single LLDP Session
 
@@ -865,9 +865,9 @@ On the medium and large single LLDP session cards, the status of the neighboring
 
 You can view information about a given LLDP session using the NetQ UI or NetQ CLI.
 
-{{< tabs "TabID862" >}}
+{{<tabs "TabID862" >}}
 
-{{< tab "NetQ UI" >}}
+{{<tab "NetQ UI" >}}
 
 A summary of the LLDP session is available from the Network Services|LLDP Session card workflow, showing the node and its peer and current status.
 
@@ -889,9 +889,9 @@ To view the summary:
 
     {{<figure src="/images/netq/ntwk-svcs-single-lldp-small-230.png" width="200">}}
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "NetQ CLI" >}}
+{{<tab "NetQ CLI" >}}
 
 Run the `netq show lldp` command with the `hostname` and `remote-physical-interface` options.
 
@@ -905,9 +905,9 @@ Hostname          Interface                 Peer Hostname     Peer Interface    
 leaf02            swp49                     leaf01            swp49                     Mon Oct 26 04:14:57 2020
 ```
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}
 
 ### View LLDP Session Neighbor State Changes
 
@@ -977,9 +977,9 @@ To view the configuration file changes:
 
 You can view attributes of all of the LLDP sessions for the devices participating in a given session with the NetQ UI and the NetQ CLI.
 
-{{< tabs "TabID974" >}}
+{{<tabs "TabID974" >}}
 
-{{< tab "NetQ UI" >}}
+{{<tab "NetQ UI" >}}
 
 To view all session details:
 
@@ -999,9 +999,9 @@ To view all session details:
 
 7. To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right of the card.
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "NetQ CLI" >}}
+{{<tab "NetQ CLI" >}}
 
 Run the `netq show lldp` command.
 
@@ -1067,9 +1067,9 @@ spine04           swp5                      border01          swp54             
 spine04           swp6                      border02          swp54                     Mon Oct 26 04:11:23 2020
 ```
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}
 
 ### View All Events for a Given LLDP Session
 

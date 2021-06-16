@@ -53,9 +53,9 @@ You can specify your template in any order, but to complete the configuration, y
 
 5. Configure the template using the following instructions.
 
-    {{< tabs "TabID51" >}}
+    {{<tabs "TabID51" >}}
 
-{{< tab "General" >}}
+{{<tab "General" >}}
 
 1. Provide a name for the template. This field is required and can be a maximum of 22 characters, including spaces.
 
@@ -63,9 +63,9 @@ You can specify your template in any order, but to complete the configuration, y
 
 3. Click **Save and Continue to SNMP** or select another tab.
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "SNMP" >}}
+{{<tab "SNMP" >}}
 
 SNMP provides a way to query, monitor, and manage your devices in addition to NetQ.
 
@@ -159,9 +159,9 @@ For either MDS or SHA, enter an authorization key and optionally specify AES or 
 
 8. Click **Save and Continue to NTP** or select another tab.
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "NTP" >}}
+{{<tab "NTP" >}}
 
 Switches and hosts must be kept in time synchronization with the NetQ appliance or VM to ensure accurate data reporting. NTP is one protocol that can be used to synchronize the clocks of these devices. None of the parameters are required. Specify those which apply to your configuration.
 
@@ -237,9 +237,9 @@ Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Re
 
 7. Click **Save and Continue to LLDP** or select another tab.
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "LLDP" >}}
+{{<tab "LLDP" >}}
 
 LLDP advertises device identities, capabilities, and neighbors. The network template enables you to specify how often you want the advertisement to take place and how long those messages should remain alive on the network.
 
@@ -309,9 +309,9 @@ To create a network template with LLDP parameters included:
 
 5. Click **Save and Continue to User** or select another tab.
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "User" >}}
+{{<tab "User" >}}
 
 Creating a User template controls who or what accounts can access the switch and what permissions they have with respect to the data found (read/write/execute). You can also control access using groups of users. No parameters are required. Specify parameters which apply to your specific configuration need.
 
@@ -346,9 +346,9 @@ Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Re
 
 6. Click **Save and Finish**.
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}
 
 6. Once you have finished the template configuration, you are returned to the network templates library.
 
@@ -436,9 +436,9 @@ You can view, add, and remove NetQ configuration profiles at any time.
 
 To view existing profiles:
 
-{{< tabs "View existing profiles" >}}
+{{<tabs "View existing profiles" >}}
 
-{{< tab "NetQ UI" >}}
+{{<tab "NetQ UI" >}}
 
 1. Click <img src="https://icons.cumulusnetworks.com/03-Computers-Devices-Electronics/09-Hard-Drives/hard-drive-1.svg" height="18" width="18"/> (Switches) in the workbench header, then click **Manage switches**, or click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18" alt="Main Menu">}} (Main Menu) and select **Manage Switches**.
 
@@ -454,9 +454,9 @@ To view existing profiles:
 
     {{<figure src="/images/netq/lcm-netq-config-profiles-list-310.png" width="550">}}
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "NetQ CLI" >}}
+{{<tab "NetQ CLI" >}}
 
 Run the `netq lcm show netq-config` command:
 
@@ -474,9 +474,9 @@ eb8ee77d6c27fe2eaca51a9bf
 a0dd
 ```
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}
 
 ### Create NetQ Configuration Profiles
 
@@ -583,9 +583,9 @@ To create a switch configuration profile:
 The VLAN, MLAG, Interface profiles and Interfaces settings are provided as Early Access capabilities.
     {{</notice>}}
 
-    {{< tabs "TabID383" >}}
+    {{<tabs "TabID383" >}}
 
-{{< tab "CL Configuration" >}}
+{{<tab "CL Configuration" >}}
 
 Four configuration items are available for the Cumulus Linux configuration portion of the switch configuration profile. Items with a red asterisk (*) are required.
 
@@ -644,9 +644,9 @@ In either case, if you change your mind about including network settings, click 
     <li><strong>Save and deploy on switches</strong> if the switch configuration is now complete</li>
     </ul></div>
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "NetQ Agent" >}}
+{{<tab "NetQ Agent" >}}
 
 1. Click **NetQ Agent Configuration**.
 
@@ -670,9 +670,9 @@ In either case, if you change your mind about including network settings, click 
     <li><strong>Save and deploy on switches</strong> if the switch configuration is now complete</li>
     </ul></div>
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "VLANs" >}}
+{{<tab "VLANs" >}}
 
 *This is an Early Access capability.*
 
@@ -703,9 +703,9 @@ In either case, if you change your mind about including network settings, click 
     <li><strong>Save and deploy on switches</strong> if the switch configuration is now complete</li>
     </ul></div>
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "MLAG" >}}
+{{<tab "MLAG" >}}
 
 MLAG is disabled by default. If you want to include MLAG in the switch configuration, you must enable it.
 
@@ -733,9 +733,9 @@ MLAG is disabled by default. If you want to include MLAG in the switch configura
     <li><strong>Save and deploy on switches</strong> if the switch configuration is now complete</li>
     </ul></div>
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "Interface Profiles" >}}
+{{<tab "Interface Profiles" >}}
 
 *This is an Early Access capability.*
 
@@ -964,9 +964,9 @@ You can create a new port profile or import an existing one to modify. Port prof
     <li><strong>Save and deploy on switches</strong> if the switch configuration is now complete</li>
     </ul></div>
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "Interfaces" >}}
+{{<tab "Interfaces" >}}
 
 *This is an Early Access capability.*
 
@@ -1093,9 +1093,9 @@ You must have at least one port interface profile specified to configure a port 
     <li><strong>Save and deploy on switches</strong> to complete the switch configuration and go to your switch configurations listing. You can edit the configuration to assign it to switches at a later time.</li>
     </ul></div>
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}
 
 ### Assign Switch Configuration Profiles to Switches
 
@@ -1135,9 +1135,9 @@ To assign a switch configuration:
 
 3. Enter the required parameters for each switch using the following instructions.
 
-    {{< tabs "TabID1086" >}}
+    {{<tabs "TabID1086" >}}
 
-{{< tab "General Changes" >}}
+{{<tab "General Changes" >}}
 
 *This is an Early Access capability.*
 
@@ -1163,9 +1163,9 @@ To assign a switch configuration:
 
 10. Click **Continue to vrf details**, or click **Save and Exit** to come back later to finish the specification. If you choose to save and exit, click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/14-Alerts/alert-circle.svg" height="18" width="18">}} on the switch card to return to the per instance variable definition pages.
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "VRF" >}}
+{{<tab "VRF" >}}
 
 The VRF identified in **General Changes** is presented. Optionally add the associated IPv4 and IPv6 addresses for this VRF.
 
@@ -1173,15 +1173,15 @@ The VRF identified in **General Changes** is presented. Optionally add the assoc
 
 Click **Continue to bond details**, or click **Save and Exit** to come back later to finish the specification. If you choose to save and exit, click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/14-Alerts/alert-circle.svg" height="18" width="18">}} on the switch card to return to the per instance variable definition pages.
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "Bond Changes" >}}
+{{<tab "Bond Changes" >}}
 
 {{<img src="https://icons.cumulusnetworks.com/11-Content/01-Content-Creation/content-paper-edit.svg" height="36" width="36">}} This topic is in development.
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "SVI Changes" >}}
+{{<tab "SVI Changes" >}}
 
 The SVIs specified are presented. If no SVIs are defined and there should be, return to the Interface Profiles and Interfaces tabs to specify them.
 
@@ -1191,9 +1191,9 @@ Optionally add the associated IPv4 and IPv6 addresses this switch should use for
 
 Click **Continue to subinterface details**, or click **Save and Exit** to come back later to finish the specification. If you choose to save and exit, click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/14-Alerts/alert-circle.svg" height="18" width="18">}} on the switch card to return to the per instance variable definition pages.
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "Subinterface Changes" >}}
+{{<tab "Subinterface Changes" >}}
 
 The subinterfaces specified are presented. If no subinterfaces are defined and there should be, return to the Interface Profiles and Interfaces tabs to specify them.
 
@@ -1203,15 +1203,15 @@ Optionally add the associated IPv4 and IPv6 addresses this switch should use for
 
 Click **Continue to port details**, or click **Save and Exit** to come back later to finish the specification. If you choose to save and exit, click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/14-Alerts/alert-circle.svg" height="18" width="18">}} on the switch card to return to the per instance variable definition pages.
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "Port Changes" >}}
+{{<tab "Port Changes" >}}
 
 {{<img src="https://icons.cumulusnetworks.com/11-Content/01-Content-Creation/content-paper-edit.svg" height="36" width="36">}} This topic is in development.
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}
 
 4. Click **Save and Exit**.
 

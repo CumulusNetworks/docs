@@ -21,6 +21,12 @@ QoS in Cumulus Linux is controlled by two configuration files:
 - `/etc/mlx/datapath/qos_features.conf` - Responsible for all standard QoS configuration including marking, shaping and flow control.
 - `/etc/mlx/datapath/qos_infra.conf` - Responsible for all platform specific configurations including buffer allocations and Alpha values. 
 
+{{% notice note %}}
+Cumulus Linux 4.4 has removed the `traffic.conf` and `datapath.conf` files. The contents have been reorganized and placed into `qos_features.conf` and `qos_infra.conf` files.
+
+Please manually review your existing QoS configuration to determine what changes are required. 
+{{% /notice %}}
+
 ## Classification
 When a frame or packet arrives on the switch it is mapped to an "internal COS" value. This value is never written to the frame or packet but is used to internally classify and prioritize traffic through the switch.
 

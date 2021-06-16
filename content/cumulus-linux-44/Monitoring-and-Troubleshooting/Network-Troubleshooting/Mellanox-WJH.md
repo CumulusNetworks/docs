@@ -32,38 +32,42 @@ Run the `what-just-happened -h` command to see all the WJH command options. (For
 
 ## Command Examples
 
-The following command example shows all dropped packets and the reason for the drop:
+The following example shows all dropped packets and the reason for the drop:
 
 ```
-cumulus@switch:~$ what-just-happened poll
-#  Timestamp              sPort  dPort  VLAN  sMAC               dMAC               EthType  Src IP:Port  Dst IP:Port  IP Proto  Drop   Severity  Drop reason - Recommended action
-                                                                                                                                 Group
--- ---------------------- ------ ------ ----- ------------------ ------------------ -------- ------------ ------------ --------- ------ --------- -----------------------------------------------
-1  20/11/06 16:10:24.594  -1     N/A    N/A   44:38:39:00:a4:80  44:38:39:00:a4:80  IPv4     N/A          N/A          N/A       L2     Error     Source MAC equals destination MAC - Bad packet
-                                                                                                                                                  was received from peer
-2  20/11/06 16:10:25.106  -1     N/A    N/A   44:38:39:00:a4:80  44:38:39:00:a4:80  IPv4     N/A          N/A          N/A       L2     Error     Source MAC equals destination MAC - Bad packet
-                                                                                                                                                  was received from peer
+root@mlx-2010-51:~# what-just-happened poll
+#    Timestamp              sPort  dPort  VLAN  sMAC               dMAC               EthType  Src IP:Port  Dst IP:Port  IP Proto  Drop   Severity  Drop reason - Recommended action
+                                                                                                                                   Group
+---- ---------------------- ------ ------ ----- ------------------ ------------------ -------- ------------ ------------ --------- ------ --------- -----------------------------------------------
+1    21/06/16 12:02:42.052  swp1   N/A    N/A   44:38:39:00:a4:84  44:38:39:00:a4:84  IPv4     N/A          N/A          N/A       L2     Error     Source MAC equals destination MAC - Bad packet was received from peer
+2    21/06/16 12:02:42.052  swp1   N/A    N/A   44:38:39:00:a4:84  44:38:39:00:a4:84  IPv4     N/A          N/A          N/A       L2     Error     Source MAC equals destination MAC - Bad packet was received from peer
+3    21/06/16 12:02:42.052  swp1   N/A    N/A   44:38:39:00:a4:84  44:38:39:00:a4:84  IPv4     N/A          N/A          N/A       L2     Error     Source MAC equals destination MAC - Bad packet was received from peer
+4    21/06/16 12:02:42.069  swp1   N/A    N/A   44:38:39:00:a4:84  44:38:39:00:a4:84  IPv4     N/A          N/A          N/A       L2     Error     Source MAC equals destination MAC - Bad packet was received from peer
 ```
 
 The following example shows that packets were dropped five times because the source MAC address equals the destination MAC address:
 
 ```
 cumulus@switch:~$ what-just-happened poll --aggregate
-Sample Window : 2020/11/06 16:12:54.032 - 2020/11/06 16:12:59.381
+Sample Window : 2021/06/16 12:57:23.046 - 2021/06/16 14:46:17.701
+
 #  sPort  VLAN  sMAC               dMAC               EthType  Src IP:Port  Dst IP:Port  IP Proto  Count  Severity  Drop reason - Recommended action
 -- ------ ----- ------------------ ------------------ -------- ------------ ------------ --------- ------ --------- -----------------------------------------------
-1  -1     N/A   44:38:39:00:a4:80  44:38:39:00:a4:80  IPv4     0.0.0.0:0    0.0.0.0:0    ip        5      Error     Source MAC equals destination MAC - Bad packet
+1  swp4   N/A   44:38:39:00:a4:87  44:38:39:00:a4:87  IPv4     0.0.0.0:0    0.0.0.0:0    ip        100    Error     Source MAC equals destination MAC - Bad packet was received from peer
+2  swp1   N/A   44:38:39:00:a4:80  44:38:39:00:a4:80  IPv4     0.0.0.0:0    0.0.0.0:0    ip        100    Error     Source MAC equals destination MAC - Bad packet was received from peer
 ```
 
-The following command saves dropped packets to a file in PCAP format:
+The following example shows information about dropped packets due to forwarding-related issues and saves the information into a file in PCAP format.
+
 ```
-cumulus@switch:~$ what-just-happened --export
-PCAP file path : /var/log/mellanox/wjh/wjh_user_2020_11_06_16_13_37.pcap
-#  Timestamp              sPort  dPort  VLAN  sMAC               dMAC               EthType  Src IP:Port  Dst IP:Port  IP Proto  Drop   Severity  Drop reason - Recommended action
-                                                                                                                                 Group
--- ---------------------- ------ ------ ----- ------------------ ------------------ -------- ------------ ------------ --------- ------ --------- -----------------------------------------------
-1  20/11/06 16:13:30.644  -1     N/A    N/A   44:38:39:00:a4:80  44:38:39:00:a4:80  IPv4     N/A          N/A          N/A       L2     Error     Source MAC equals destination MAC - Bad packet
-                                                                                                                                                  was received from peer
-2  20/11/06 16:13:31.063  -1     N/A    N/A   44:38:39:00:a4:80  44:38:39:00:a4:80  IPv4     N/A          N/A          N/A       L2     Error     Source MAC equals destination MAC - Bad packet
-                                                                                                                                                  was received from peer
+root@mlx-2010-51:~# what-just-happened poll --export
+PCAP file path : /var/log/mellanox/wjh/wjh_user_2021_06_16_12_03_15.pcap
+
+#    Timestamp              sPort  dPort  VLAN  sMAC               dMAC               EthType  Src IP:Port  Dst IP:Port  IP Proto  Drop   Severity  Drop reason - Recommended action
+                                                                                                                                   Group
+---- ---------------------- ------ ------ ----- ------------------ ------------------ -------- ------------ ------------ --------- ------ --------- -----------------------------------------------
+1    21/06/16 12:03:12.728  swp1   N/A    N/A   44:38:39:00:a4:84  44:38:39:00:a4:84  IPv4     N/A          N/A          N/A       L2     Error     Source MAC equals destination MAC - Bad packet as received from peer
+2    21/06/16 12:03:12.728  swp1   N/A    N/A   44:38:39:00:a4:84  44:38:39:00:a4:84  IPv4     N/A          N/A          N/A       L2     Error     Source MAC equals destination MAC - Bad packet was received from peer
+3    21/06/16 12:03:12.745  swp1   N/A    N/A   44:38:39:00:a4:84  44:38:39:00:a4:84  IPv4     N/A          N/A          N/A       L2     Error     Source MAC equals destination MAC - Bad packet was received from peer
+4    21/06/16 12:03:12.745  swp1   N/A    N/A   44:38:39:00:a4:84  44:38:39:00:a4:84  IPv4     N/A          N/A          N/A       L2     Error     Source MAC equals destination MAC - Bad packet was received from peer
 ```

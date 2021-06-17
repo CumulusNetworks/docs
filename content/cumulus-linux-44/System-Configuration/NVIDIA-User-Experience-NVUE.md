@@ -10,9 +10,80 @@ NVUE follows a declarative model, removing context-specific commands and setting
 
 {{<img src = "/images/cumulus-linux/nvue-architecture.png">}}
 
-## REST API
+## NVUE REST API
 
+{{%notice note%}}
 The NVUE REST API is currently is an early access feature. The REST API is not intended to run in production and is not supported through NVIDIA networking support.
+{{%/notice%}}
+
+To access the NVUE REST API, run these commands:
+
+```
+cumulus@switch:~$ sudo ln -s /etc/nginx/sites-{available,enabled}/nvue.conf
+cumulus@switch:~$ sudo sed -i 's/listen localhost:8765 ssl;/dlisten \[::\]:8765 ipv6only=off ssl;/g' /etc/nginx/sites-available/nvue.conf
+cumulus@switch:~$ sudo systemctl restart nginx
+```
+
+You can run the cURL commands from the command line. For example:
+
+```
+cumulus@switch:~$ curl  -u 'cumulus:CumulusLinux!' --insecure https://[IP ADDRESS]:8765/cue_v1/interface
+{
+  "eth0": {
+    "ip": {
+      "address": {
+        "192.168.200.12/24": {}
+      }
+    },
+    "link": {
+      "mtu": 1500,
+      "state": {
+        "up": {}
+      },
+      "stats": {
+        "carrier-transitions": 2,
+        "in-bytes": 184151,
+        "in-drops": 0,
+        "in-errors": 0,
+        "in-pkts": 2371,
+        "out-bytes": 117506,
+        "out-drops": 0,
+        "out-errors": 0,
+        "out-pkts": 762
+      }
+    },
+    "type": "eth"
+  },
+  "lo": {
+    "ip": {
+      "address": {
+        "127.0.0.1/8": {},
+        "::1/128": {}
+      }
+    },
+    "link": {
+      "mtu": 65536,
+      "state": {
+        "up": {}
+      },
+      "stats": {
+        "carrier-transitions": 0,
+        "in-bytes": 134000,
+        "in-drops": 0,
+        "in-errors": 0,
+        "in-pkts": 2032,
+        "out-bytes": 134000,
+        "out-drops": 0,
+        "out-errors": 0,
+        "out-pkts": 2032
+      }
+    },
+    "type": "loopback"
+  },
+...
+```
+
+Refer to the [NVUE API documentation]({{<ref "/api" >}}) for details.
 
 ## Start the NVUE Service
 

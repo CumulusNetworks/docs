@@ -144,9 +144,9 @@ By default, authorization is valid for 24 hours, after which users must sign in 
 
 You can use either the Swagger UI or a terminal window with bash and curl commands to create and execute API requests.
 
-{{< tabs "TabID133" >}}
+{{<tabs "TabID133" >}}
 
-{{< tab "Swagger UI" >}}
+{{<tab "Swagger UI" >}}
 
 API requests are easy to execute in the Swagger UI. Simply select the endpoint of interest and try it out.
 

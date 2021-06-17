@@ -599,43 +599,6 @@ The following table lists all system event messages organized by type. These mes
 </body>
 </table>
 
-## Cumulus Linux License Events
-
-<table>
-<colgroup>
-<col style="width: 15%" />
-<col style="width: 25%" />
-<col style="width: 10%" />
-<col style="width: 25%" />
-<col style="width: 25%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Type</th>
-<th>Trigger</th>
-<th>Severity</th>
-<th>Message Format</th>
-<th>Example</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>license</td>
-<td>License state is missing or invalid</td>
-<td>Critical</td>
-<td>License check failed, name @lic_name state @state</td>
-<td>License check failed, name agent.lic state invalid</td>
-</tr>
-<tr>
-<td>license</td>
-<td>License state is missing or invalid on a particular device</td>
-<td>Critical</td>
-<td>License check failed on @hostname</td>
-<td>License check failed on leaf03</td>
-</tr>
-</body>
-</table>
-
 ## Link Events
 
 <table>

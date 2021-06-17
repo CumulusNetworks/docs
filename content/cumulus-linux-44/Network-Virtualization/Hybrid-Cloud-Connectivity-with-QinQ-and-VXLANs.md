@@ -60,9 +60,7 @@ cumulus@switch:~$ net commit
 {{< /tab >}}
 {{< tab "NVUE Commands ">}}
 
-```
-cumulus@switch:~$ NEED COMMAND
-```
+NVUE commands are not supported.
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
@@ -133,9 +131,7 @@ cumulus@switch:~$ net commit
 {{< /tab >}}
 {{< tab "NVUE Commands ">}}
 
-```
-cumulus@switch:~$ NEED COMMAND
-```
+NVUE commands are not supported.
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}

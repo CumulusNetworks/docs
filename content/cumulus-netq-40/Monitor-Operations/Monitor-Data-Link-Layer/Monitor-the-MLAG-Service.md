@@ -51,17 +51,17 @@ When using the `between` option, the start time (`text-time`) and end time (`tex
 
 You can view a summary of the MLAG service from the NetQ UI or the NetQ CLI.
 
-{{< tabs "TabID54" >}}
+{{<tabs "TabID54" >}}
 
-{{< tab "NetQ UI" >}}
+{{<tab "NetQ UI" >}}
 
 To view the summary, open the small Network Services|All MLAG Sessions card. In this example, the number of devices running the MLAG service is 4 and no alarms are present.
 
 {{<figure src="/images/netq/ntwk-svcs-all-mlag-small-230.png" width="200" >}}
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "NetQ CLI" >}}
+{{<tab "NetQ CLI" >}}
 
 To view MLAG service status, run `netq show mlag`.
 
@@ -81,9 +81,9 @@ leaf03(P)         leaf04            44:38:39:be:ef:bb  up         up     8     8
 leaf04            leaf03(P)         44:38:39:be:ef:bb  up         up     8     8     Tue Oct 27 10:48:18 2020
 ```
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}
 
 ### View the Distribution of Sessions and Alarms
 
@@ -91,9 +91,9 @@ It is useful to know the number of network nodes running the MLAG protocol over 
 
 Nodes which have a large number of unestablished sessions might be misconfigured or experiencing communication issues. This is visible with the NetQ UI.
 
-{{< tabs "TabID94" >}}
+{{<tabs "TabID94" >}}
 
-{{< tab "NetQ UI" >}}
+{{<tab "NetQ UI" >}}
 
 To view the distribution, open the medium Network Services|All MLAG Sessions card.
 
@@ -107,9 +107,9 @@ This example shows the following for the last 24 hours:
 
 If there was a visual correlation between the alarms and sessions, you could dig a little deeper with the large Network Services|All MLAG Sessions card.
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "NetQ CLI" >}}
+{{<tab "NetQ CLI" >}}
 
 To view the number of switches running the MLAG service, run:
 
@@ -135,17 +135,17 @@ leaf03(P)         leaf04            44:38:39:be:ef:bb  up         up     8     8
 leaf04            leaf03(P)         44:38:39:be:ef:bb  up         up     8     8     Tue Oct 27 10:48:18 2020
 ```
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}
 
 ### View Bonds with Only a Single Link
 
 You can determine whether there are any bonds in your MLAG configuration with only a single link, instead of the usual two, using the NetQ UI or the NetQ CLI.
 
-{{< tabs "TabID146" >}}
+{{<tabs "TabID146" >}}
 
-{{< tab "NetQ UI" >}}
+{{<tab "NetQ UI" >}}
 
 1. Open the medium Network Services|All MLAG Sessions card.
 
@@ -161,9 +161,9 @@ You can determine whether there are any bonds in your MLAG configuration with on
 
 5. Optionally, change the time period of the data on either size card to determine when the configuration may have changed from a dual to a single bond.
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "NetQ CLI" >}}
+{{<tab "NetQ CLI" >}}
 
 Run the `netq show mlag` command to view bonds with single links in the last 24 hours. Use the `around` option to view bonds with single links for a time in the past.
 
@@ -199,17 +199,17 @@ leaf03(P)         leaf04            44:38:39:be:ef:bb  up         up     8     8
 leaf04            leaf03(P)         44:38:39:be:ef:bb  up         up     8     8     Sun Sep 27 03:37:59 2020
 ```
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}
 
 ### View Sessions with No Backup IP addresses Assigned
 
 You can determine whether MLAG sessions have a backup IP address assigned and ready using the NetQ UI or NetQ CLI.
 
-{{< tabs "TabID210" >}}
+{{<tabs "TabID210" >}}
 
-{{< tab "NetQ UI" >}}
+{{<tab "NetQ UI" >}}
 
 1. Open the medium Network Services|All MLAG Sessions card.
 
@@ -227,9 +227,9 @@ You can determine whether MLAG sessions have a backup IP address assigned and re
 
 5. Optionally, change the time period of the data on either size card to determine when a backup IP address was added or removed.
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "NetQ CLI" >}}
+{{<tab "NetQ CLI" >}}
 
 Run `netq show mlag` to view the status of backup IP addresses for sessions.
 
@@ -249,9 +249,9 @@ leaf03(P)         leaf04            44:38:39:be:ef:bb  up         up     8     8
 leaf04            leaf03(P)         44:38:39:be:ef:bb  up         up     8     8     Tue Oct 27 10:48:18 2020
 ```
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}
 
 ### View Sessions with Conflicted Bonds
 
@@ -271,9 +271,9 @@ To view these sessions:
 
 You can view the load from MLAG on your switches using the large Network Services|All MLAG Sessions card. This data enables you to see which switches are handling the most MLAG traffic currently, validate that is what is expected based on your network design, and compare that with data from an earlier time to look for any differences.
 
-{{< tabs "TabID274" >}}
+{{<tabs "TabID274" >}}
 
-{{< tab "NetQ UI" >}}
+{{<tab "NetQ UI" >}}
 
 To view switches and hosts with the most MLAG sessions:
 
@@ -301,9 +301,9 @@ To compare this data with the same data at a previous time:
 
 <div style="padding-left: 18px;">If the changes are unexpected, you can investigate further by looking at another time frame, determining if more nodes are now running MLAG than previously, looking for changes in the topology, and so forth.</div>
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "NetQ CLI" >}}
+{{<tab "NetQ CLI" >}}
 
 To determine the devices with the most sessions, run `netq show mlag`. Then count the sessions on each device.
 
@@ -323,9 +323,9 @@ leaf03(P)         leaf04            44:38:39:be:ef:bb  up         up     8     8
 leaf04            leaf03(P)         44:38:39:be:ef:bb  up         up     8     8     Tue Oct 27 10:48:18 2020
 ```
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}
 
 ### View Devices with the Most Unestablished MLAG Sessions
 
@@ -350,9 +350,9 @@ Where to go next depends on what data you see, but a few options include:
 
 You can view the MLAG configuration information for a given device from the NetQ UI or the NetQ CLI.
 
-{{< tabs "TabID353" >}}
+{{<tabs "TabID353" >}}
 
-{{< tab "NetQ UI" >}}
+{{<tab "NetQ UI" >}}
 
 1. Open the full-screen Network Services|All MLAG Sessions card.
 
@@ -364,9 +364,9 @@ You can view the MLAG configuration information for a given device from the NetQ
 
     {{<figure src="/images/netq/ntwk-svcs-all-mlag-fullscr-allsess-tab-filterbyHn-320.png" width="700">}}
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "NetQ CLI" >}}
+{{<tab "NetQ CLI" >}}
 
 Run the `netq show mlag` command with the `hostname` option.
 
@@ -381,9 +381,9 @@ Hostname          Peer              SysMac             State      Backup #Bond #
 leaf01(P)         leaf02            44:38:39:be:ef:aa  up         up     8     8     Tue Oct 27 10:44:39 2020
 ```
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}
 
 <!-- vale off -->
 ### View Switches with the Most MLAG-related Alarms
@@ -391,9 +391,9 @@ leaf01(P)         leaf02            44:38:39:be:ef:aa  up         up     8     8
 
 Switches experiencing a large number of MLAG alarms may indicate a configuration or performance issue that needs further investigation. You can view this information using the NetQ UI or NetQ CLI.
 
-{{< tabs "TabID392" >}}
+{{<tabs "TabID392" >}}
 
-{{< tab "NetQ UI" >}}
+{{<tab "NetQ UI" >}}
 
 With the NetQ UI, you can view the switches sorted by the number of MLAG alarms and then use the Switches card workflow or the Events|Alarms card workflow to gather more information about possible causes for the alarms.
 
@@ -414,9 +414,9 @@ Where to go next depends on what data you see, but a few options include:
 - Change the time period for the data to compare with a prior time. If the same switches are consistently indicating the most alarms, you might want to look more carefully at those switches using the Switches card workflow.
 - Click **Show All Sessions** to investigate all MLAG sessions with alarms in the full-screen card.
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "NetQ CLI" >}}
+{{<tab "NetQ CLI" >}}
 
 To view the switches and hosts with the most MLAG alarms and informational events, run the `netq show events` command with the `type` option set to *clag*, and optionally the `between` option set to display the events within a given time range. Count the events associated with each switch.
 
@@ -437,17 +437,17 @@ Hostname          Message Type             Severity         Message             
 border02          clag                     info             Peer state changed to up            Fri Oct  2 22:39:28 2020
 ```
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}
 
 ### View All MLAG Events
 
 The Network Services|All MLAG Sessions card workflow and the `netq show events type mlag` command enable you to view all MLAG events in a designated time period.
 
-{{< tabs "TabID446" >}}
+{{<tabs "TabID446" >}}
 
-{{< tab "NetQ UI" >}}
+{{<tab "NetQ UI" >}}
 
 To view all MLAG events:
 
@@ -470,9 +470,9 @@ Where to go next depends on what data you see, but a few options include:
 - Export the data to a file for use in another analytics tool by clicking <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/08-Upload-Download/upload-bottom.svg" height="18" width="18"/>.
 - Return to your workbench by clicking <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner.
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "NetQ CLI" >}}
+{{<tab "NetQ CLI" >}}
 
 To view all MLAG alarms, run:
 
@@ -499,9 +499,9 @@ Hostname          Message Type             Severity         Message             
 border02          clag                     info             Peer state changed to up            Fri Oct  2 22:39:28 2020
 ```
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}
 
 ### View Details About All Switches Running MLAG
 
@@ -526,9 +526,9 @@ To return to your workbench, click <img src="https://icons.cumulusnetworks.com/0
 You can view attributes of all MLAG sessions in your network
 with the NetQ UI or NetQ CLI.
 
-{{< tabs "TabID527" >}}
+{{<tabs "TabID527" >}}
 
-{{< tab "NetQ UI" >}}
+{{<tab "NetQ UI" >}}
 
 To view all session details:
 
@@ -544,9 +544,9 @@ To view all session details:
 
 Return to your workbench by clicking <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner.
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "NetQ CLI" >}}
+{{<tab "NetQ CLI" >}}
 
 To view session details, run `netq show mlag`.
 
@@ -566,9 +566,9 @@ leaf03(P)         leaf04            44:38:39:be:ef:bb  up         up     8     8
 leaf04            leaf03(P)         44:38:39:be:ef:bb  up         up     8     8     Tue Oct 27 10:48:18 2020
 ```
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}
 
 ## Monitor a Single MLAG Session
 
@@ -599,9 +599,9 @@ On the medium and large single MLAG session cards, the status of the peers is re
 
 A summary of the MLAG session is available about a given MLAG session using the NetQ UI or NetQ CLI.
 
-{{< tabs "TabID600" >}}
+{{<tabs "TabID600" >}}
 
-{{< tab "NetQ UI" >}}
+{{<tab "NetQ UI" >}}
 
 A summary of the MLAG session is available from the Network Services|MLAG Session card workflow, showing the host and peer devices participating in the session, node role, peer role and state, the associated system MAC address, and the distribution of the MLAG session state.
 
@@ -625,9 +625,9 @@ To view the summary:
 
     {{<figure src="/images/netq/ntwk-svcs-single-mlag-small-230.png" width="200">}}
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "NetQ CLI" >}}
+{{<tab "NetQ CLI" >}}
 
 Run the `netq show mlag` command with the `hostname` option.
 
@@ -642,9 +642,9 @@ Hostname          Peer              SysMac             State      Backup #Bond #
 leaf01(P)         leaf02            44:38:39:be:ef:aa  up         up     8     8     Tue Oct 27 10:44:39 2020
 ```
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}
 
 ### View MLAG Session Peering State Changes
 
@@ -714,9 +714,9 @@ To view the configuration file changes:
 
 You can view attributes of all of the MLAG sessions  for the devices participating in a given session with the NetQ UI and the NetQ CLI.
 
-{{< tabs "TabID715" >}}
+{{<tabs "TabID715" >}}
 
-{{< tab "NetQ UI" >}}
+{{<tab "NetQ UI" >}}
 
 To view all session details:
 
@@ -743,9 +743,9 @@ Where to go next depends on what data you see, but a few options include:
 - Export the data to a file by clicking <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/08-Upload-Download/upload-bottom.svg" height="18" width="18"/>.
 - Return to your workbench by clicking <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner.
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "NetQ CLI" >}}
+{{<tab "NetQ CLI" >}}
 
 Run the `netq show mlag` command.
 
@@ -765,9 +765,9 @@ leaf03(P)         leaf04            44:38:39:be:ef:bb  up         up     8     8
 leaf04            leaf03(P)         44:38:39:be:ef:bb  up         up     8     8     Tue Oct 27 10:48:18 2020
 ```
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}
 
 ### View All MLAG Session Events
 

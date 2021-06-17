@@ -82,9 +82,9 @@ You can view the current connectivity between two devices in your network by cre
 
 It is helpful to verify the connectivity between two devices when you suspect an issue is preventing proper communication between them. If you cannot find a layer 3 path, you might also try checking connectivity through a layer 2 path.
 
-{{< tabs "TabID83" >}}
+{{<tabs "TabID83" >}}
 
-{{< tab "On-demand Trace Request" >}}
+{{<tab "On-demand Trace Request" >}}
 
 1. Determine the IP addresses of the two devices to be traced.
 
@@ -113,9 +113,9 @@ It is helpful to verify the connectivity between two devices when you suspect an
 
 5. Click **Run Now**. A corresponding Trace Results card is opened on your workbench. Refer to {{<link title="Verify Network Connectivity#view-layer-3-on-demand-trace-results" text="View Layer 3 On-demand Trace Results">}} for details.
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "netq trace" >}}
+{{<tab "netq trace" >}}
 
 Use the `netq trace` command to view the results in the terminal window. Use the `netq add trace` command to view the results in the NetQ UI.
 
@@ -234,9 +234,9 @@ Id  Hop Hostname    InPort          InTun, RtrIf    OutRtrIf, Tun   OutPort
 --- --- ----------- --------------- --------------- --------------- ---------------
 ```
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "netq add trace" >}}
+{{<tab "netq add trace" >}}
 
 To create a layer 3 on-demand trace and see the results in the On-demand Trace Results card, run:
 
@@ -253,9 +253,9 @@ Running job None src 10.10.10.1 dst 10.10.10.63
 
 Confirmation of the on-demand job is provided. Refer to {{<link title="Verify Network Connectivity#view-layer-3-on-demand-trace-results" text="View Layer 3 On-demand Trace Results">}} for details.
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}
 
 <!-- vale off -->
 ### Create a Layer 3 On-demand Trace Through a Given VRF
@@ -263,9 +263,9 @@ Confirmation of the on-demand job is provided. Refer to {{<link title="Verify Ne
 
 You can guide a layer 3 trace through a particular VRF interface using the NetQ UI or the NetQ CLI.
 
-{{< tabs "TabID264" >}}
+{{<tabs "TabID264" >}}
 
-{{< tab "On-demand Trace Request" >}}
+{{<tab "On-demand Trace Request" >}}
 
 To create the trace request:
 
@@ -541,9 +541,9 @@ To create a layer 2 trace request:
 
 6. Click **Run Now**. A corresponding Trace Results card is opened on your workbench. Refer to {{<link title="Verify Network Connectivity#view-layer-2-on-demand-trace-results" text="View Layer 2 On-demand Trace Results">}} for details.
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "netq trace" >}}
+{{<tab "netq trace" >}}
 
 Use the `netq trace` command to view on-demand trace results in the terminal window.
 
@@ -751,9 +751,9 @@ Path MTU: 9000
                                                        swp51 -- swp1 spine01 swp3 -- swp51 vni: 10 leaf03 bond1 -- uplink server04  
 ```
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "netq add trace" >}}
+{{<tab "netq add trace" >}}
 
 Use the `netq add trace` command to view on-demand trace results in the NetQ UI.
 
@@ -771,9 +771,9 @@ cumulus@switch:~$ netq add trace 44:38:39:00:00:3e vlan 10 from 44:38:39:00:00:3
 
 Confirmation of the on-demand job is provided. Refer to {{<link title="Verify Network Connectivity#view-layer-2-on-demand-trace-results" text="View Layer 2 On-demand Trace Results">}} for details.
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}
 
 <!-- vale off -->
 ## View On-demand Trace Results
@@ -787,9 +787,9 @@ After you have started an on-demand trace, the results are displayed either in t
 
 View the results for a layer 3 trace based on how you created the request.
 
-{{< tabs "TabID832" >}}
+{{<tabs "TabID832" >}}
 
-{{< tab "Trace Request card" >}}
+{{<tab "Trace Request card" >}}
 
 After you click **Run Now**, the corresponding results card is opened on your workbench. While it is working on the trace, a notice is shown on the card indicating it is running.
 
@@ -805,15 +805,15 @@ In this example, we see that the trace was successful. 12 paths were found betwe
 
 In our example, we can see that paths 9-12 had three hops by scrolling through the path listing in the table. To view the hop details, refer to the next section. If there were errors or warnings, that caused the trace failure, a count would be visible in this table. To view more details for this and other traces, refer to {{<link title="#View Detailed On-demand Trace Results" text="Detailed On-demand Trace Results">}}.
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "netq trace" >}}
+{{<tab "netq trace" >}}
 
 The results of the `netq trace` command are displayed in the terminal window where you ran the command. Refer to {{<link title="#Create On-demand Traces" text="Create On-demand Traces">}}.
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "netq add trace" >}}
+{{<tab "netq add trace" >}}
 
 After you have run the `netq add trace` command, you are able to view the results in the NetQ UI.
 
@@ -823,17 +823,17 @@ After you have run the `netq add trace` command, you are able to view the result
 
 To view more details for this and other traces, refer to {{<link title="#View Detailed On-demand Trace Results" text="Detailed On-demand Trace Results">}}.
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}
 
 ### View Layer 2 On-demand Trace Results
 
 View the results for a layer 2 trace based on how you created the request.
 
-{{< tabs "TabID782" >}}
+{{<tabs "TabID782" >}}
 
-{{< tab "Trace Request card" >}}
+{{<tab "Trace Request card" >}}
 
 After clicking **Run Now** on the Trace Request card, the corresponding On-demand Trace Result card is opened on your workbench. While it is working on the trace, a notice is shown on the card indicating it is running.
 
@@ -855,15 +855,15 @@ If there was a difference between the minimum and maximum number of hops or othe
 
 In the example on top, we can verify that every path option had five hops since the distribution chart only shows one hop count and the table indicates each path had a value of five hops. Similarly, you can view the MTU data. In the example on the bottom, is an error (scroll to the right in the table to see the count). To view more details for this and other traces, refer to {{<link title="#View Detailed On-demand Trace Results" text="Detailed On-demand Trace Results">}}.
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "netq trace" >}}
+{{<tab "netq trace" >}}
 
 The results of the `netq trace` command are displayed in the terminal window where you ran the command. Refer to {{<link title="#Create On-demand Traces" text="Create On-demand Traces">}}.
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "netq add trace" >}}
+{{<tab "netq add trace" >}}
 
 After you have run the `netq add trace` command, you are able to view the results in the NetQ UI.
 
@@ -873,9 +873,9 @@ After you have run the `netq add trace` command, you are able to view the result
 
 To view more details for this and other traces, refer to {{<link title="#View Detailed On-demand Trace Results" text="Detailed On-demand Trace Results">}}.
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}
 
 ### View Detailed On-demand  Trace Results
 
@@ -925,9 +925,9 @@ There may be paths through your network that you consider critical or particular
 
 Use the instructions here, based on how you want to create the trace using the NetQ UI or NetQ CLI.
 
-{{< tabs "TabID920" >}}
+{{<tabs "TabID920" >}}
 
-{{< tab "NetQ UI" >}}
+{{<tab "NetQ UI" >}}
 
 To schedule a trace:
 
@@ -982,9 +982,9 @@ To schedule a trace:
 
     You can now run this trace on demand by selecting it from the dropdown list, or wait for it to run on its defined schedule. To view the scheduled trace results after its normal run, refer to {{<link title="Verify Network Connectivity#view-scheduled-trace-results" text="View Scheduled Trace Results">}}.
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "NetQ CLI" >}}
+{{<tab "NetQ CLI" >}}
 
 To create a layer 3 scheduled trace and see the results in the Scheduled Trace Results card, run:
 
@@ -1001,17 +1001,17 @@ Successfully added/updated Lf01toBor01Daily running every 1440m
 
 View the results in the NetQ UI. Refer to {{<link title="Verify Network Connectivity#view-scheduled-trace-results" text="View Scheduled Trace Results">}}.
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}
 
 ### Create a Layer 3 Scheduled Trace through a Given VRF
 
 Use the instructions here, based on how you want to create the trace using the NetQ UI or NetQ CLI.
 
-{{< tabs "TabID1004" >}}
+{{<tabs "TabID1004" >}}
 
-{{< tab "NetQ UI" >}}
+{{<tab "NetQ UI" >}}
 
 To schedule a trace from the NetQ UI:
 
@@ -1065,9 +1065,9 @@ To schedule a trace from the NetQ UI:
 
     You can now run this trace on demand by selecting it from the dropdown list, or wait for it to run on its defined schedule. To view the scheduled trace results after its normal run, refer to {{<link title="Verify Network Connectivity#view-scheduled-trace-results" text="View Scheduled Trace Results">}}.
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "NetQ CLI" >}}
+{{<tab "NetQ CLI" >}}
 
 To create a layer 3 scheduled trace that uses a VRF other than default and then see the results in the Scheduled Trace Results card, run:
 
@@ -1084,17 +1084,17 @@ Successfully added/updated Svr01toSvr04Hrly running every 60m
 
 View the results in the NetQ UI. Refer to {{<link title="Verify Network Connectivity#view-scheduled-trace-results" text="View Scheduled Trace Results">}}.
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}
 
 ### Create a Layer 2 Scheduled Trace
 
 Use the instructions here, based on how you want to create the trace using the NetQ UI or NetQ CLI.
 
-{{< tabs "TabID1069" >}}
+{{<tabs "TabID1069" >}}
 
-{{< tab "NetQ UI" >}}
+{{<tab "NetQ UI" >}}
 
 To schedule a layer 2 trace:
 
@@ -1151,9 +1151,9 @@ To schedule a layer 2 trace:
 
     You can now run this trace on demand by selecting it from the dropdown list, or wait for it to run on its defined schedule. To view the scheduled trace results after its normal run, refer to {{<link title="Verify Network Connectivity#view-scheduled-trace-results" text="View Scheduled Trace Results">}}.
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "NetQ CLI" >}}
+{{<tab "NetQ CLI" >}}
 
 To create a layer 2 scheduled trace and then see the results in the Scheduled Trace Result card, run:
 
@@ -1170,9 +1170,9 @@ Successfully added/updated Svr01toSvr04x3Hrs running every 180m
 
 View the results in the NetQ UI. Refer to {{<link title="Verify Network Connectivity#view-scheduled-trace-results" text="View Scheduled Trace Results">}}.
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}
 
 ### Run a Scheduled Trace on Demand
 
@@ -1196,9 +1196,9 @@ To run a scheduled trace now:
 
 You can view the results of scheduled traces at any time. Results can be displayed in the NetQ UI or in the NetQ CLI.
 
-{{< tabs "TabID1166" >}}
+{{<tabs "TabID1166" >}}
 
-{{< tab "NetQ UI" >}}
+{{<tab "NetQ UI" >}}
 
 The results of scheduled traces are displayed on the Scheduled Trace Result card.
 
@@ -1272,9 +1272,9 @@ To view the results:
 
 15. Export this data by clicking **Export** or click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> to return to the results list to view another trace in detail.
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "NetQ CLI" >}}
+{{<tab "NetQ CLI" >}}
 
 ### View a Summary of All Scheduled Traces
 
@@ -1346,9 +1346,9 @@ cumulus@switch:~$ netq show trace summary name Lf01toBor01Daily json
 cumulus@switch:~$ netq show trace results f501f9b0-cca3-4fa1-a60d-fb6f495b7a0e
 ```
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}
 
 ## Manage Scheduled Traces
 
@@ -1404,9 +1404,9 @@ Both a standard user and an administrative user can remove scheduled traces. No 
 
 {{%/notice%}}
 
-{{< tabs "TabID1372" >}}
+{{<tabs "TabID1372" >}}
 
-{{< tab "NetQ UI" >}}
+{{<tab "NetQ UI" >}}
 
 1. Open the Trace Request card.
 
@@ -1420,9 +1420,9 @@ Both a standard user and an administrative user can remove scheduled traces. No 
 
 4. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/bin-1.svg" height="18" width="18">}}.
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "NetQ CLI" >}}
+{{<tab "NetQ CLI" >}}
 
 1. Determine the name of the scheduled trace you want to remove. Run:
 
@@ -1517,6 +1517,6 @@ Both a standard user and an administrative user can remove scheduled traces. No 
 
 3. Repeat these steps for additional traces you want to remove.
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}

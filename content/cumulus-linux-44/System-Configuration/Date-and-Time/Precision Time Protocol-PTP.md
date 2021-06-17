@@ -31,9 +31,8 @@ In the following example, boundary clock 2 receives time from Master 1 (the gran
 
 Basic PTP configuration requires you:
 
-- Enable PTP on the switch to start the `ptp4l` and `phc2sys` processes. The `nv set service PTP` commands require an instance number (1 in the example commands below). This number is used for management purposes.
-- Configure the interfaces on the switch that you want to use for PTP. Each interface must be configured as a layer 3 routed interface with an IP address.
-- Add the PTP master and slave interfaces. You do not need to specify which is a master interface and which is a slave interface; this is determined by the PTP packet received.
+- Enable PTP on the switch to start the `ptp4l` and `phc2sys` processes. The NVUE `nv set service PTP` commands require an instance number (1 in the example commands below). This number is used for management purposes.
+- Configure the interfaces on the switch that you want to use for PTP. Each interface must be configured as a layer 3 routed interface with an IP address. You do not need to specify which is a master interface and which is a slave interface; this is determined by the PTP packet received.
 
 The basic configuration uses the {{<link url="#ptp-profiles" text="default profile">}} and these default settings:
 - Boundary Clock mode - this is the only clock mode supported, where the switch provides timing to downstream servers; it is a slave to a higher-level clock and a master to downstream clocks.
@@ -51,8 +50,8 @@ To use a different profile and to configure optional settings, see optional conf
 cumulus@switch:~$ nv set service ptp 1 enable on
 cumulus@switch:~$ nv set interface swp1 ip address 10.0.0.9/32
 cumulus@switch:~$ nv set interface swp2 ip address 10.0.0.10/32
-cumulus@switch:~$ nv set interface swp1 service ptp enable on
-cumulus@switch:~$ nv set interface swp2 service ptp enable on
+cumulus@switch:~$ nv set interface swp1 ptp enable on
+cumulus@switch:~$ nv set interface swp2 ptp enable on
 cumulus@switch:~$ nv config apply
 ```
 
@@ -71,43 +70,68 @@ The configuration is saved in the `/etc/ptp4l.conf` file.
 
     {{<cl/restart-switchd>}}
 
-3. Edit the `/etc/ptp4l.conf` file to change the `priority1`, `priority2` and `domainNumber` settings, and configure the interfaces on the switch that you want to use for PTP:
+3. Edit the `/etc/ptp4l.conf` file to configure the interfaces on the switch that you want to use for PTP.
 
-   ```
-   cumulus@switch:~$ sudo nano /etc/ptp4l.conf
-   [global]
-   #
-   # Default Data Set
-   #
-   slaveOnly               0
-   priority1               254
-   priority2               254
-   domainNumber            3
+```
+cumulus@switch:~$ sudo nano /etc/ptp4l.conf
+...
+[global]
+#
+# Default Data Set
+#
+slaveOnly               0
+priority1               128
+priority2               128
+domainNumber            0
 
-   #
-   # Run time options
-   #
-   logging_level      5
-   path_trace_enabled 0
-   use_syslog       1
-   verbose          0
-   summary_interval 0
+twoStepFlag             0
+dscp_event              43
+dscp_general            43
 
-   #
-   # Default interface options
-   #
-   time_stamping   hardware
+offset_from_master_min_threshold   -200
+offset_from_master_max_threshold   200
+mean_path_delay_threshold          1
 
-   # Clock description
-   # Interfaces in which ptp should be enabled
-   # these interfaces should be routed ports
-   # if an interface does not have an ip address
-   # the ptp4l will not work as expected.
-     [swp1] 
-     
-     [swp2]
-   ...
-   ```
+#
+# Run time options
+#
+logging_level           6
+path_trace_enabled      0
+use_syslog              1
+verbose                 0
+summary_interval        0
+
+#
+# Default interface options
+#
+time_stamping           software
+
+# Interfaces in which ptp should be enabled
+# these interfaces should be routed ports
+# if an interface does not have an ip address
+# the ptp4l will not work as expected.
+
+[swp1]
+logAnnounceInterval     0
+logSyncInterval         -3
+logMinDelayReqInterval  -3
+announceReceiptTimeout  3
+udp_ttl                 1
+masterOnly              0
+delay_mechanism         E2E
+network_transport       UDPv4
+
+[swp2]
+logAnnounceInterval     0
+logSyncInterval         -3
+logMinDelayReqInterval  -3
+announceReceiptTimeout  3
+udp_ttl                 1
+masterOnly              0
+delay_mechanism         E2E
+network_transport       UDPv4
+...
+```
 
 4. Restart the `ptp4l` and `phc2sys` daemons:
 
@@ -247,10 +271,55 @@ domainNumber            3
 
 By default, PTP messages are encapsulated in UDP/IPV4 frames. To configure PTP messages to be encapsulated in UDP/IPV6 frames:
 
+{{< tabs "TabID274 ">}}
+{{< tab "NVUE Commands ">}}
+
 ```
-cumulus@switch:~$ nv set interface swp1 service ptp transport ipv6
+cumulus@switch:~$ nv set interface swp1 ptp transport ipv6
 cumulus@switch:~$ nv config apply
 ```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Edit the `/etc/ptp4l.conf` file to change the `network_transport` setting, then restart the `ptp4l` and `phc2sys` daemons with the `sudo systemctl restart ptp4l.service phc2sys.service` command.
+
+```
+cumulus@switch:~$ sudo nano /etc/ptp4l.conf
+...
+# Default interface options
+#
+time_stamping           software
+
+# Interfaces in which ptp should be enabled
+# these interfaces should be routed ports
+# if an interface does not have an ip address
+# the ptp4l will not work as expected.
+
+[swp1]
+logAnnounceInterval     0
+logSyncInterval         -3
+logMinDelayReqInterval  -3
+announceReceiptTimeout  3
+udp_ttl                 1
+masterOnly              0
+delay_mechanism         E2E
+network_transport       UDPv4
+
+[swp2]
+logAnnounceInterval     0
+logSyncInterval         -3
+logMinDelayReqInterval  -3
+announceReceiptTimeout  3
+udp_ttl                 1
+masterOnly              0
+delay_mechanism         E2E
+network_transport       UDPv6
+...
+```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 <!--### Message Mode
 
@@ -312,27 +381,55 @@ By default, ports configured for PTP are in auto mode, where the state of the po
 
 You can configure *Forced Master* mode on a PTP port so that it is always in a master state and the BMC algorithm is not run for this port. Any Announce messages received on this port are ignored.
 
+{{< tabs "TabID384 ">}}
+{{< tab "NVUE Commands ">}}
+
 ```
-cumulus@switch:~$ nv set interface swp1 service ptp forced-master on
+cumulus@switch:~$ nv set interface swp1 ptp forced-master on
 cumulus@switch:~$ nv config apply
 ```
 
-### DSCP and TTL
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
 
-You can configure the DiffServ code point (DSCP) value for all PTP IPv4 packets originated locally. You can set a value between 0 and 63.
+Edit the `/etc/ptp4l.conf` file to change the `masterOnly` setting, then restart the `ptp4l` and `phc2sys` daemons with the `sudo systemctl restart ptp4l.service phc2sys.service` command.
+
+```
+cumulus@switch:~$ sudo nano /etc/ptp4l.conf
+...
+# Default interface options
+#
+time_stamping           software
+
+# Interfaces in which ptp should be enabled
+# these interfaces should be routed ports
+# if an interface does not have an ip address
+# the ptp4l will not work as expected.
+
+[swp1]
+logAnnounceInterval     0
+logSyncInterval         -3
+logMinDelayReqInterval  -3
+announceReceiptTimeout  3
+udp_ttl                 1
+masterOnly              1
+delay_mechanism         E2E
+network_transport       UDPv4
+...
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+### DiffServ code point (DSCP)
+
+You can configure the DSCP value for all PTP IPv4 packets originated locally. You can set a value between 0 and 63.
 
 {{< tabs "TabID320 ">}}
 {{< tab "NVUE Commands ">}}
 
 ```
 cumulus@switch:~$ nv set service ptp 1 ip-dscp 22
-cumulus@switch:~$ nv config apply
-```
-
-To restrict the number of hops a PTP message can travel, set the TTL on the PTP interface. You can set a value between 1 and 255.
-
-```
-cumulus@switch:~$ nv set interface swp1 service ptp ttl 20
 cumulus@switch:~$ nv config apply
 ```
 
@@ -361,6 +458,50 @@ dscp_general            22
 {{< /tab >}}
 {{< /tabs >}}
 
+## TTL for a PTP Message
+
+To restrict the number of hops a PTP message can travel, set the TTL on the PTP interface. You can set a value between 1 and 255.
+
+{{< tabs "TabID462 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set interface swp1 ptp ttl 20
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Edit the `/etc/ptp4l.conf` file to change the `udp_ttl` setting, then restart the `ptp4l` and `phc2sys` daemons with the `sudo systemctl restart ptp4l.service phc2sys.service` command.
+
+```
+cumulus@switch:~$ sudo nano /etc/ptp4l.conf
+...
+# Default interface options
+#
+time_stamping           software
+
+# Interfaces in which ptp should be enabled
+# these interfaces should be routed ports
+# if an interface does not have an ip address
+# the ptp4l will not work as expected.
+
+[swp1]
+logAnnounceInterval     0
+logSyncInterval         -3
+logMinDelayReqInterval  -3
+announceReceiptTimeout  3
+udp_ttl                 20
+masterOnly              1
+delay_mechanism         E2E
+network_transport       UDPv4
+...
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+<!-->
 ### Acceptable Master Table
 
 The acceptable master table option is a security feature that prevents a rogue player from pretending to be the Grandmaster to take over the PTP network. To use this feature, you configure the clock IDs of known Grandmasters in the acceptable master table and set the acceptable master table option on a PTP port. The BMC algorithm checks if the Grandmaster received on the Announce message is in this table before proceeding with the master selection. This option is disabled by default on PTP ports.
@@ -381,9 +522,9 @@ cumulus@switch:~$ nv set service ptp 1 acceptable-master 000200.fffe.000001 alt-
 The following example commands enable the PTP acceptable master table option for swp1:
 
 ```
-cumulus@switch:~$ nv set interface swp1 service ptp acceptable-master on
+cumulus@switch:~$ nv set interface swp1 ptp acceptable-master on
 cumulus@switch:~$ nv config apply
-```
+``` -->
 
 ### PTP Timers
 
@@ -396,39 +537,119 @@ You can set the following timers for PTP messages. The default values for the su
 | `delay-req-interval` | The minimum average time interval allowed between successive Delay Required messages. |
 | `sync-interval` | The interval between PTP synchronization messages on an interface. Specify the value as a power of two in seconds. |
 
-To set the timers, run the `nv set interface <interface> service ptp timers <timer> <value>` command.
+To set the timers with NVUE, run the `nv set interface <interface> ptp timers <timer> <value>` command.
+To set the timers with Linux commands, edit the `/etc/ptp4l.conf` file and set the timers in the `Default interface options` section.
+
+{{< tabs "TabID542 ">}}
+{{< tab "NVUE Commands ">}}
 
 The following example sets the announce interval between successive Announce messages on swp1 to -1.
 
 ```
-cumulus@switch:~$ nv set interface swp1 service ptp timers announce-interval -1
+cumulus@switch:~$ nv set interface swp1 ptp timers announce-interval -1
 cumulus@switch:~$ nv config apply
 ```
 
 The following example sets the mean sync-interval for multicast messages on swp1 to -5.
 
 ```
-cumulus@switch:~$ nv set interface swp1 service ptp timers sync-interval -5
+cumulus@switch:~$ nv set interface swp1 ptp timers sync-interval -5
 cumulus@switch:~$ nv config apply
 ```
+
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+In the `/etc/ptp4l.conf` file:
+
+- To set the announce interval between successive Announce messages on swp1 to -1, change the `logAnnounceInterval` setting to -1.
+- To set the mean sync-interval for multicast messages on swp1 to -5, change the `logSyncInterval` setting to -5.
+
+After you edit the `/etc/ptp4l.conf` file, restart the `ptp4l` and `phc2sys` daemons with the `sudo systemctl restart ptp4l.service phc2sys.service` command.
+
+```
+cumulus@switch:~$ sudo nano /etc/ptp4l.conf
+...
+# Default interface options
+#
+time_stamping           software
+
+# Interfaces in which ptp should be enabled
+# these interfaces should be routed ports
+# if an interface does not have an ip address
+# the ptp4l will not work as expected.
+
+[swp1]
+logAnnounceInterval     -1
+logSyncInterval         -5
+logMinDelayReqInterval  -3
+announceReceiptTimeout  3
+udp_ttl                 20
+masterOnly              1
+delay_mechanism         E2E
+network_transport       UDPv4
+...
+```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ## Delete PTP Boundary Clock Configuration
 
 To delete PTP configuration, delete the PTP master and slave interfaces. The following example commands delete the PTP interfaces `swp1`, `swp2`, and `swp3`.
 
+{{< tabs "TabID602 ">}}
+{{< tab "NVUE Commands ">}}
+
 ```
-cumulus@switch:~$ nv unset interface swp1 service ptp
-cumulus@switch:~$ nv unset interface swp2 service ptp
-cumulus@switch:~$ nv unset interface swp3 service ptp
+cumulus@switch:~$ nv unset interface swp1 ptp
+cumulus@switch:~$ nv unset interface swp2 ptp
+cumulus@switch:~$ nv unset interface swp3 ptp
 cumulus@switch:~$ nv config apply
 ```
 
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Edit the `/etc/ptp4l.conf` file to remove the interfaces from the `Default interface options` section, then restart the `ptp4l` and `phc2sys` daemons with the `sudo systemctl restart ptp4l.service phc2sys.service` command.
+
+```
+cumulus@switch:~$ sudo nano /etc/ptp4l.conf
+...
+# Default interface options
+#
+time_stamping           software
+
+# Interfaces in which ptp should be enabled
+# these interfaces should be routed ports
+# if an interface does not have an ip address
+# the ptp4l will not work as expected.
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
 To disable PTP on the switch and stop the `ptp4l` and `phc2sys` processes:
+
+{{< tabs "TabID627 ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
 cumulus@switch:~$ nv set service ptp 1 enable off
 cumulus@switch:~$ nv config apply
 ```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+```
+cumulus@switch:~$ sudo systemctl stop ptp4l.service phc2sys.service
+cumulus@switch:~$ sudo systemctl disable ptp4l.service phc2sys.service
+```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ## Troubleshooting
 
@@ -473,7 +694,6 @@ nv show service ptp <instance-id> current
 nv show service ptp <instance-id> clock-quality
 nv show service ptp <instance-id> parent
 nv show service ptp <instance-id> parent grandmaster-clock-quality
-nv show service ptp <instance-id> time
 ...
 ```
 
@@ -528,10 +748,10 @@ cumulus@switch:~$ nv set service ptp 1 priority2 254
 cumulus@switch:~$ nv set service ptp 1 priority1 254
 cumulus@switch:~$ nv set service ptp 1 profile-type aes67
 cumulus@switch:~$ nv set service ptp 1 domain 3
-cumulus@switch:~$ nv set interface swp1 service ptp enable on
-cumulus@switch:~$ nv set interface swp2 service ptp enable on
-cumulus@switch:~$ nv set interface swp3 service ptp enable on
-cumulus@switch:~$ nv set interface swp4 service ptp enable on
+cumulus@switch:~$ nv set interface swp1 ptp enable on
+cumulus@switch:~$ nv set interface swp2 ptp enable on
+cumulus@switch:~$ nv set interface swp3 ptp enable on
+cumulus@switch:~$ nv set interface swp4 ptp enable on
 cumulus@switch:~$ nv config apply
 ```
 

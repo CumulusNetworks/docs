@@ -83,8 +83,6 @@ cumulus@switch:~$ curl  -u 'cumulus:CumulusLinux!' --insecure https://[IP ADDRES
 ...
 ```
 
-Refer to the [NVUE API documentation]({{<ref "/api" >}}) for details.
-
 ## Start the NVUE Service
 
 NVUE is installed by default in Cumulus Linux but the NVUE service is disabled. To run NVUE Commands, you must first stop and disable the NCLU (`netd`) service, then enable and start the NVUE (`nvued`) service.

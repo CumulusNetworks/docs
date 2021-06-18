@@ -13,6 +13,7 @@ Cumulus Linux includes the `linuxptp` package for PTP, which uses the `phc2sys` 
 PTP in Cumulus 4.4 includes updated features, which you can configure with NVUE or by manually editing `/etc/cumulus/switchd.conf` file; NCLU configuration is not supported.
 
 {{%notice note%}}
+- PTP is supported on Spectrum-2 and Spectrum-3 switches.
 - You cannot run both PTP and NTP on the switch.
 - PTP is supported in boundary clock mode only (the switch provides timing to downstream servers; it is a slave to a higher-level clock and a master to downstream clocks).
 - The switch uses hardware time stamping to capture timestamps from an Ethernet frame at the physical layer. This allows PTP to account for delays in message transfer and greatly improves the accuracy of time synchronization.

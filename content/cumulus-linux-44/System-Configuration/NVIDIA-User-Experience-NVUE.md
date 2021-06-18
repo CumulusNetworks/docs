@@ -10,6 +10,35 @@ NVUE follows a declarative model, removing context-specific commands and setting
 
 {{<img src = "/images/cumulus-linux/nvue-architecture.png">}}
 
+## Start the NVUE Service
+
+NVUE is installed by default in Cumulus Linux but the NVUE service is disabled. To run NVUE commands, you must enable and start the NVUE (`nvued`) service.
+
+{{%notice info%}}
+- Do not install NVUE in a production environment.
+- Do not mix NVUE and NCLU commands to configure the switch; use either the NCLU CLI or the NVUE CLI.
+{{%/notice%}}
+
+1. Enable, then start the NVUE service:
+
+   ```
+   cumulus@switch:~$ sudo systemctl enable nvued
+   cumulus@switch:~$ sudo systemctl start nvued
+   ```
+
+2. Log out of the switch, then log back in to get the NVUE CLI prompt.
+
+{{%notice info%}}
+When configuring the switch with NVUE, NVIDIA recommends that you stop, then disable the `netd` service to prevent accidental use of the NCLU commands:
+
+```
+cumulus@switch:~$ sudo systemctl stop netd
+cumulus@switch:~$ sudo systemctl disable netd
+```
+
+If you want to use legacy show commands to monitor the switch, you need to reenable the `netd` service. See {{<link url="#legacy-show-commands" text="Legacy Show Commands">}} below.
+{{%/notice%}}
+
 ## NVUE REST API
 
 {{%notice note%}}
@@ -51,62 +80,8 @@ cumulus@switch:~$ curl  -u 'cumulus:CumulusLinux!' --insecure https://[IP ADDRES
         "out-errors": 0,
         "out-pkts": 762
       }
-    },
-    "type": "eth"
-  },
-  "lo": {
-    "ip": {
-      "address": {
-        "127.0.0.1/8": {},
-        "::1/128": {}
-      }
-    },
-    "link": {
-      "mtu": 65536,
-      "state": {
-        "up": {}
-      },
-      "stats": {
-        "carrier-transitions": 0,
-        "in-bytes": 134000,
-        "in-drops": 0,
-        "in-errors": 0,
-        "in-pkts": 2032,
-        "out-bytes": 134000,
-        "out-drops": 0,
-        "out-errors": 0,
-        "out-pkts": 2032
-      }
-    },
-    "type": "loopback"
-  },
 ...
 ```
-
-## Start the NVUE Service
-
-NVUE is installed by default in Cumulus Linux but the NVUE service is disabled. To run NVUE Commands, you must first stop and disable the NCLU (`netd`) service, then enable and start the NVUE (`nvued`) service.
-
-{{%notice info%}}
-- Do not install NVUE in a production environment.
-- Do not mix NVUE and NCLU commands to configure the switch. Use either the NCLU CLI or the NVUE CLI.
-{{%/notice%}}
-
-1. Stop then disable the `netd` service:
-
-   ```
-   cumulus@switch:~$ sudo systemctl stop netd
-   cumulus@switch:~$ sudo systemctl disable netd
-   ```
-
-4. Enable then start the NVUE service:
-
-   ```
-   cumulus@switch:~$ sudo systemctl enable nvued
-   cumulus@switch:~$ sudo systemctl start nvued
-   ```
-
-5. Log out of the switch, then log back in to get the NVUE CLI prompt.
 
 ## Command Line Interface
 
@@ -258,6 +233,84 @@ path-selection-deferral-time  360                           Used by the restarte
 restart-time                  120                           Amount of time taken to restart by router. It is advertised to the...
 stale-routes-time             360                           Specifies an upper-bounds on how long we retain routes from a resta...
 ```
+
+### Legacy Show Commands
+
+Cumulus Linux provides legacy show commands that provide the same output as the NCLU show commands.
+
+To use the legacy show commands, you need to enable, then start the NCLU service (netd):
+
+```
+cumulus@switch:~$ sudo systemctl enable netd
+cumulus@switch:~$ sudo systemctl start netd
+```
+
+To run the legacy show commands, replace `net show` with `nv show --legacy`.
+
+For example, to show the link and administrative state of an interface (such as swp1), run the `nv show --legacy interface swp1` command:
+
+```
+cumulus@switch:~$ nv show --legacy interface swp1
+    Name  MAC                Speed  MTU   Mode
+--  ----  -----------------  -----  ----  ------------
+UP  swp1  44:38:39:00:00:31  1G     9216  Interface/L3
+
+IP Details
+-------------------------  -----------
+IP:                        10.0.0.9/32
+IP Neighbor(ARP) Entries:  0
+
+cl-netstat counters
+-------------------
+RX_OK  RX_ERR  RX_DRP  RX_OVR  TX_OK  TX_ERR  TX_DRP  TX_OVR
+-----  ------  ------  ------  -----  ------  ------  ------
+    4       0       4       0  55425       0       0       0
+
+Routing
+-------
+  Interface swp1 is up, line protocol is up
+  Link ups:       0    last: (never)
+  Link downs:     0    last: (never)
+  PTM status: disabled
+  vrf: default
+  index 3 metric 0 mtu 9216 speed 1000
+  flags: <UP,BROADCAST,RUNNING,MULTICAST>
+  Type: Ethernet
+  HWaddr: 44:38:39:00:00:31
+  inet 10.0.0.9/32 unnumbered
+  inet6 fe80::4638:39ff:fe00:31/64
+  Interface Type Other
+  protodown: off
+```
+
+To see a summary of the layer 3 fabric connectivity, run the `nv show --legacy bgp` command:
+
+```
+cumulus@switch:~$ nv show --legacy bgp
+show bgp ipv4 unicast
+=====================
+BGP table version is 0, local router ID is 10.10.10.2, vrf id 0
+Default local pref 100, local AS 65102
+Status codes:  s suppressed, d damped, h history, * valid, > best, = multipath,
+               i internal, r RIB-failure, S Stale, R Removed
+Nexthop codes: @NNN nexthop's vrf id, < announce-nh-self
+Origin codes:  i - IGP, e - EGP, ? - incomplete
+
+   Network          Next Hop            Metric LocPrf Weight Path
+   10.10.10.2/32    0.0.0.0                  0         32768 i
+
+Displayed  1 routes and 1 total paths
+
+
+show bgp ipv6 unicast
+=====================
+No BGP prefixes displayed, 0 exist
+...
+```
+
+{{%notice note%}}
+Not all `net show` commands are available as `nv show --legacy` commands.
+{{%/notice%}}
 
 ### Configuration Management Commands
 

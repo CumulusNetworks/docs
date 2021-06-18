@@ -20,7 +20,7 @@ PTP in Cumulus 4.4 includes updated features, which you can configure with NVUE 
 - IPv4 and IPv6 UDP PTP packets are supported.
 - Only a single PTP domain per network is supported.
 - You can isolate PTP traffic to a non-default VRF.
-- PTP does not support bonds.
+- You can configure PTP on bridges and VRFs; however PTP is not supported on bonds.
 <!--- Multicast and mixed message mode is supported; unicast only message mode is *not* supported.-->
 {{%/notice%}}
 
@@ -35,14 +35,14 @@ Basic PTP configuration requires you:
 - Enable PTP on the switch to start the `ptp4l` and `phc2sys` processes. The NVUE `nv set service PTP` commands require an instance number (1 in the example commands below). This number is used for management purposes.
 - Configure the interfaces on the switch that you want to use for PTP. Each interface must be configured as a layer 3 routed interface with an IP address. You do not need to specify which is a master interface and which is a slave interface; this is determined by the PTP packet received.
 
-The basic configuration uses the {{<link url="#ptp-profiles" text="default profile">}} and these default settings:
+The basic configuration shown below uses these default settings:
 - Boundary Clock mode - this is the only clock mode supported, where the switch provides timing to downstream servers; it is a slave to a higher-level clock and a master to downstream clocks.
 - {{<link url="#transport-mode" text="Transport mode">}} is IPv4.
 - {{<link url="#one-step-and-two-step-mode" text="One-step hardware timestamping mode">}}.
 - {{<link url="#acceptable-master-table" text="Announce messages from any master are accepted">}}.
 <!-- - {{<link url="#message-mode" text="Message Mode">}} is multicast.-->
 
-To use a different profile and to configure optional settings, see optional configuration below.
+To configure optional settings, see optional configuration below.
 
 {{< tabs "TabID36 ">}}
 {{< tab "NVUE Commands ">}}
@@ -151,7 +151,7 @@ network_transport       UDPv4
 
 ## Optional Configuration
 
-### PTP Profiles
+<!--### PTP Profiles
 
 PTP profiles are a standardized set of configurations and rules intended to meet the requirements of a specific application. Profiles define required, allowed, and restricted PTP options, network restrictions, and performance requirements.
 
@@ -190,7 +190,7 @@ To set the profile back to the default:
 cumulus@switch:~$ nv set service ptp 1 profile-type default-1588
 cumulus@switch:~$ nv config apply
 ```
-
+-->
 ### PTP Clock Domains
 
 PTP domains allow different independent timing systems to be present in the same network without confusing each other. A PTP domain is a network or a portion of a network within which all the clocks are synchronized. Every PTP message contains a domain number. A PTP instance is configured to work in only one domain and ignores messages that contain a different domain number.
@@ -234,7 +234,7 @@ Use the PTP priority to select the best master clock. You can set priority 1 and
 - Priority 1 overrides the clock class and quality selection criteria to select the best master clock.
 - Priority 2 is used to identify primary and backup clocks among identical redundant Grandmasters.
 
-The range for both priority1 and priority2 is between 0 and 255. The default priority for all profiles is 128. For the boundary clock, use a number above 128. The lower priority is applied first.
+The range for both priority1 and priority2 is between 0 and 255. The default priority is 128. For the boundary clock, use a number above 128. The lower priority is applied first.
 
 The following example commands set priority 1 and priority 2 to 200:
 
@@ -459,7 +459,7 @@ dscp_general            22
 {{< /tab >}}
 {{< /tabs >}}
 
-## TTL for a PTP Message
+### TTL for a PTP Message
 
 To restrict the number of hops a PTP message can travel, set the TTL on the PTP interface. You can set a value between 1 and 255.
 
@@ -502,7 +502,7 @@ network_transport       UDPv4
 
 {{< /tab >}}
 {{< /tabs >}}
-<!-->
+<!--
 ### Acceptable Master Table
 
 The acceptable master table option is a security feature that prevents a rogue player from pretending to be the Grandmaster to take over the PTP network. To use this feature, you configure the clock IDs of known Grandmasters in the acceptable master table and set the acceptable master table option on a PTP port. The BMC algorithm checks if the Grandmaster received on the Announce message is in this table before proceeding with the master selection. This option is disabled by default on PTP ports.
@@ -529,7 +529,7 @@ cumulus@switch:~$ nv config apply
 
 ### PTP Timers
 
-You can set the following timers for PTP messages. The default values for the supported profiles are listed in {{<link url="#ptp-profiles" text="PTP Profiles">}}.
+You can set the following timers for PTP messages.
 
 | Timer | Description |
 | ----- | ----------- |
@@ -539,7 +539,7 @@ You can set the following timers for PTP messages. The default values for the su
 | `sync-interval` | The interval between PTP synchronization messages on an interface. Specify the value as a power of two in seconds. |
 
 To set the timers with NVUE, run the `nv set interface <interface> ptp timers <timer> <value>` command.
-To set the timers with Linux commands, edit the `/etc/ptp4l.conf` file and set the timers in the `Default interface options` section.
+To set the timers with Linux commands, edit the `/etc/ptp4l.conf` file and set the timers in the `Default interface options` section. For example:
 
 {{< tabs "TabID542 ">}}
 {{< tab "NVUE Commands ">}}
@@ -557,7 +557,6 @@ The following example sets the mean sync-interval for multicast messages on swp1
 cumulus@switch:~$ nv set interface swp1 ptp timers sync-interval -5
 cumulus@switch:~$ nv config apply
 ```
-
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
@@ -668,7 +667,6 @@ ipv4-dscp                            43        Sets the Diffserv code point for 
 message-mode                         mixed     Mode in which PTP delay message is transmitted.
 priority1                            254       Priority1 attribute of the local clock
 priority2                            254       Priority2 attribute of the local clock
-profile-type                         aes67     Profile provides various PTP configuration parameters optimized for...
 two-step                             off       Determines if the Clock is a 2 step clock
 monitor
   max-offset-threshold               200       Maximum offset threshold in nano seconds
@@ -747,7 +745,6 @@ This is the configuration for the above example. The example assumes that you ha
 cumulus@switch:~$ nv set service ptp 1 enable on
 cumulus@switch:~$ nv set service ptp 1 priority2 254
 cumulus@switch:~$ nv set service ptp 1 priority1 254
-cumulus@switch:~$ nv set service ptp 1 profile-type aes67
 cumulus@switch:~$ nv set service ptp 1 domain 3
 cumulus@switch:~$ nv set interface swp1 ptp enable on
 cumulus@switch:~$ nv set interface swp2 ptp enable on
@@ -793,7 +790,6 @@ cumulus@switch:~$ nv config apply
           enable: on
           priority1: 254
           priority2: 254
-          profile-type: aes67
           domain: 3
 ```
 

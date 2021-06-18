@@ -29,7 +29,7 @@ cumulus@switch:~$ nv config apply
 ```
 
 {{%notice note%}}
-{{<link url="Buffer-and-Queue-Management#link-pause" text="Link pause">}} is another way to provide lossless ethernet; however, PFC is the preferred method. PFC allows more granular control by pausing the traffic flow for a given CoS group instead of the entire link.
+{{<link url="Quality-of-Service#link-pause" text="Link pause">}} is another way to provide lossless ethernet; however, PFC is the preferred method. PFC allows more granular control by pausing the traffic flow for a given CoS group instead of the entire link.
 {{%/notice%}}
 
 ## Enable RDMA over Converged Ethernet lossy (with ECN)

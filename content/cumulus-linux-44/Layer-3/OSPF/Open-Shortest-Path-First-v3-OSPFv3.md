@@ -72,7 +72,7 @@ cumulus@spine01:~$ net commit
 {{< tabs "TabID85 ">}}
 {{< tab "leaf01 ">}}
 
-1. Edit the `/etc/frr/daemons` file to enable the `ospf6` daemon, then start the FRRouting service (see {{<link url="Configure-FRRouting">}}).
+1. Edit the `/etc/frr/daemons` file to enable the `ospf6` daemon, then start the FRRouting service (see {{<link title="FRRouting">}}).
 
 2. Edit the `/etc/network/interfaces` file to configure the IP address for the loopback and swp51:
 

@@ -94,7 +94,7 @@ The following commands verify which files have changed compared to the previous 
 
 <!-- ### NVUE replaces NCLU
 
-{{<link url="NVIDA-User-Experience-NVUE" text="Cumulus User Experience (NVUE)">}} is a new object-oriented, schema driven model of a complete Cumulus Linux system (hardware and software) with a robust API that allows multiple interfaces to both view and configure any element within the system. NVUE replaces the NCLU command line interface.
+{{<link title="NVIDIA User Experience - NVUE" text="Cumulus User Experience (NVUE)">}} is a new object-oriented, schema driven model of a complete Cumulus Linux system (hardware and software) with a robust API that allows multiple interfaces to both view and configure any element within the system. NVUE replaces the NCLU command line interface.
 
 {{<notice info>}}
 NVUE is created from the ground up and does not inherit any previous functionality from NCLU. Certain features are not yet supported by NVUE. If you are an NCLU user, confirm that your features are fully supported in NVUE before upgrading to Cumulus Linux 5.0. If you use a feature that is not yet supported, you can either remain on your current 4.x release or perform all your switch configuration using Linux and vtysh commands.

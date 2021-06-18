@@ -22,7 +22,7 @@ Cumulus Linux provides a number of generalized profiles, described below. These 
 
 The following tables list the number of MAC addresses, layer 3 neighbors, and LPM routes validated for each forwarding table profile. If you do not specify any profiles as described below, the switch uses the *default* values.
 
-{{%notice tip%}}
+{{%notice note%}}
 The values in the following tables reflect results from testing, which might differ from published manufacturer specifications.
 {{%/notice%}}
 
@@ -37,8 +37,8 @@ The values in the following tables reflect results from testing, which might dif
 | v4-lpm-heavy-1 | 16k           | 16k (IPv4) and 4k (IPv6)  | 256k (IPv4), 8k (IPv6-long), 10K (IPv4-Mcast)|
 | v6-lpm-heavy   | 16k           | 16k (IPv4) and 62k (IPv6) | 16k (IPv4), 99k (IPv6-long), 10K (IPv4-Mcast)|
 | lpm-balanced   | 16k           | 16k (IPv4) and 12k (IPv6) | 124k (IPv4), 124k (IPv6-long), 10K (IPv4-Mcast)|
-|ipmc-heavy      | 57k           | 41k (IPv4) and 20k (IPv6) | 82K (IPv4), 66K (IPv6), 8K (IPv4-Mcast) |
-|ipmc-max        | 41K           | 41k (IPv4) and 20k (IPv6) | 74K (IPv4), 66K (IPv6), 15K (IPv4-Mcast) |
+| ipmc-heavy      | 57k           | 41k (IPv4) and 20k (IPv6) | 82K (IPv4), 66K (IPv6), 8K (IPv4-Mcast) |
+| ipmc-max        | 41K           | 41k (IPv4) and 20k (IPv6) | 74K (IPv4), 66K (IPv6), 15K (IPv4-Mcast) |
 
 The IPv6 number corresponds to the /64 IPv6 prefix. The /128 IPv6 prefix number is half of the /64 IPv6 prefix number.
 
@@ -56,7 +56,7 @@ The IPv6 number corresponds to the /64 IPv6 prefix. The /128 IPv6 prefix number 
 
 ## Forwarding Resource Profiles
 
-You can configure TCAM resource allocation, which is shared between IP multicast forwarding entries and ACL tables. Choose the profile that best suits your network architecture.
+You can configure forwarding resource allocation, which is shared between IP multicast forwarding entries and ACL tables. Choose the profile that best suits your network architecture.
 
 ### Spectrum-2 and Spectrum-3
 

@@ -20,7 +20,8 @@ PTP in Cumulus 4.4 includes updated features, which you can configure with NVUE 
 - IPv4 and IPv6 UDP PTP packets are supported.
 - Only a single PTP domain per network is supported.
 - You can isolate PTP traffic to a non-default VRF.
-- You can configure PTP on bridges and VRFs; however PTP is not supported on bonds.
+- PTP is supported on layer 3 interfaces, trunk ports, and VLANs. However, PTP is not supported on bonds.
+- You can enable PTP on the default VRF or a non-default VRF to isolate the PTP traffic.
 <!--- Multicast and mixed message mode is supported; unicast only message mode is *not* supported.-->
 {{%/notice%}}
 
@@ -37,12 +38,14 @@ Basic PTP configuration requires you:
 
 The basic configuration shown below uses these default settings:
 - Boundary Clock mode - this is the only clock mode supported, where the switch provides timing to downstream servers; it is a slave to a higher-level clock and a master to downstream clocks.
-- {{<link url="#transport-mode" text="Transport mode">}} is IPv4.
-- {{<link url="#one-step-and-two-step-mode" text="One-step hardware timestamping mode">}}.
+- {{<link url="#transport-mode" text="Transport mode">}} is set to IPv4.
+- {{<link url="#ptp-clock-domain" text="PTP clock domain">}} is set to 0.
+- {{<link url="#ptp-priority" text="PTP Priority1 and Priority2">}} are set to 128.
+- {{<link url="#one-step-and-two-step-mode" text="Hardware packet time stamping mode" >}} is set to one-step.
 - {{<link url="#acceptable-master-table" text="Announce messages from any master are accepted">}}.
 <!-- - {{<link url="#message-mode" text="Message Mode">}} is multicast.-->
 
-To configure optional settings, see optional configuration below.
+To configure optional settings, such as the PTP domain, priority, transport mode, DSCP, and timers, see {{<link url="#optional-configuration" text="Optional Configuration">}} below.
 
 {{< tabs "TabID36 ">}}
 {{< tab "NVUE Commands ">}}
@@ -437,7 +440,9 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Edit the `/etc/ptp4l.conf` file to change the `dscp_event` and `dscp_general` setting, then restart the `ptp4l` and `phc2sys` daemons with the `sudo systemctl restart ptp4l.service phc2sys.service` command.
+Edit the `/etc/ptp4l.conf` file to change the `dscp_event` setting for PTP messages that trigger a Time Stamp read from the clock, and the `dscp_general` setting for PTP messages that carry commands, responses, information, or time stamps.
+
+After you save the `/etc/ptp4l.conf` file, restart the `ptp4l` and `phc2sys` daemons with the `sudo systemctl restart ptp4l.service phc2sys.service` command.
 
 ```
 cumulus@switch:~$ sudo nano /etc/ptp4l.conf

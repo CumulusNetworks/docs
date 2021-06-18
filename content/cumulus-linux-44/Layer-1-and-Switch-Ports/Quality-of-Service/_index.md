@@ -13,13 +13,13 @@ This section refers to frames for all internal QoS functionality; the actions ar
 Cumulus Linux supports a number of different QoS features and standards including:
 - COS and DSCP marking and remarking
 - Shaping and policing
-- Egress traffic bandwidth weighting (802.1Qaz, Enhanced Transmission Selection)
+- Egress traffic traffic scheduling (802.1Qaz, Enhanced Transmission Selection)
 - Flow control with IEEE Pause Frames, Priority Flow Control and Explicit Congestion Notification
 - {{<link title="RDMA over Converged Ethernet - RoCE" text="Lossless and lossy RoCE ">}}
 
 QoS in Cumulus Linux is controlled by two configuration files:
-- `/etc/mlx/datapath/qos_features.conf` is responsible for all standard QoS configuration including marking, shaping and flow control.
-- `/etc/mlx/datapath/qos_infra.conf` is responsible for all platform specific configurations including buffer allocations and Alpha values.
+- `/etc/cumulus/datapath/qos/qos_features.conf` is responsible for all standard QoS configuration including marking, shaping and flow control.
+- `/etc/mlx/datapath/qos/qos_infra.conf` is responsible for all platform specific configurations including buffer allocations and Alpha values.
 
 {{% notice note %}}
 Cumulus Linux 4.4 has removed the `traffic.conf` and `datapath.conf` files. The contents have been reorganized and placed into the `qos_features.conf` and `qos_infra.conf` files. Review your existing QoS configuration to determine the changes required.
@@ -30,13 +30,25 @@ When a frame or packet arrives on the switch, it is mapped to an *internal COS* 
 
 By default, 802.1p COS markings are trusted. Frames or packets without 802.1p markings are set to internal COS `0`.
 
-You can define which values are trusted in the `qos_features.conf` file by editing the `traffic.packet_priority_source_set` line:
+You can define which values are trusted in the `qos_features.conf` file by editing the `traffic.packet_priority_source_set` line.
 
-| traffic.packet_priority_source_set setting | Result |
-| ------------------------------------------ | ------ |
-| 802.1p | Accept incoming 802.1p COS marking. |
-| dscp | Accept incoming DSCP IP header marking. |
-| port | Ignore any existing markings and use `traffic.port_default_priority` setting. |
+The following table describes what classification will be used for various frame and `packet_priority_source_set` configurations:
+
+| `source_set` setting | VLAN Tagged? | IP or Non-IP | Result |
+| ------------------------------------------ | ------ | ---- | ---- |
+| 802.1p | Yes | IP | Accept incoming 802.1p COS marking. |
+| 802.1p | Yes | Non-IP | Accept incoming 802.1p COS marking. |
+| 802.1p | No | IP | Default port setting. |
+| 802.1p | No | Non-IP | Default port setting. |
+| dscp | Yes | IP | Accept incoming DSCP IP header marking. |
+| dscp | Yes | Non-IP | Default port setting. |
+| dscp | No | IP | Accept incoming DSCP IP header marking. |
+| dscp | No | Non-IP | Default port setting. |
+| 802.1p, dscp | Yes | IP | Accept incoming DSCP IP header marking. |
+| 802.1p, dscp | Yes | Non-IP | Accept incoming 802.1p COS marking. |
+| 802.1p, dscp | No | IP | Accept incoming DSCP IP header marking. |
+| 802.1p, dscp | No | Non-IP | Default port setting. |
+| port | Either | Either | Ignore any existing markings and use `traffic.port_default_priority` setting. |
 
 The `traffic.port_default_priority` setting accepts a value between 0 and 7 and defines which internal COS marking to use when the `port` value is used.
 

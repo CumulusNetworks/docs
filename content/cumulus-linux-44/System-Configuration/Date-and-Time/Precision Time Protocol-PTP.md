@@ -19,9 +19,8 @@ PTP in Cumulus 4.4 includes updated features, which you can configure with NVUE 
 - The switch uses hardware time stamping to capture timestamps from an Ethernet frame at the physical layer. This allows PTP to account for delays in message transfer and greatly improves the accuracy of time synchronization.
 - IPv4 and IPv6 UDP PTP packets are supported.
 - Only a single PTP domain per network is supported.
+- PTP is supported on layer 3 interfaces, trunk ports, and VLANs. PTP is not supported on bonds.
 - You can isolate PTP traffic to a non-default VRF.
-- PTP is supported on layer 3 interfaces, trunk ports, and VLANs. However, PTP is not supported on bonds.
-- You can enable PTP on the default VRF or a non-default VRF to isolate the PTP traffic.
 <!--- Multicast and mixed message mode is supported; unicast only message mode is *not* supported.-->
 {{%/notice%}}
 
@@ -507,7 +506,7 @@ network_transport       UDPv4
 
 {{< /tab >}}
 {{< /tabs >}}
-<!--
+
 ### Acceptable Master Table
 
 The acceptable master table option is a security feature that prevents a rogue player from pretending to be the Grandmaster to take over the PTP network. To use this feature, you configure the clock IDs of known Grandmasters in the acceptable master table and set the acceptable master table option on a PTP port. The BMC algorithm checks if the Grandmaster received on the Announce message is in this table before proceeding with the master selection. This option is disabled by default on PTP ports.
@@ -530,7 +529,7 @@ The following example commands enable the PTP acceptable master table option for
 ```
 cumulus@switch:~$ nv set interface swp1 ptp acceptable-master on
 cumulus@switch:~$ nv config apply
-``` -->
+```
 
 ### PTP Timers
 

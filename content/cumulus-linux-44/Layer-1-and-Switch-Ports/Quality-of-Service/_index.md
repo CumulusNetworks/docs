@@ -25,7 +25,7 @@ QoS in Cumulus Linux is controlled by two configuration files:
 Cumulus Linux 4.4 has removed the `traffic.conf` and `datapath.conf` files. The contents have been reorganized and placed into the `qos_features.conf` and `qos_infra.conf` files. Review your existing QoS configuration to determine the changes required.
 {{% /notice %}}
 
-## SwitchD and QoS
+## switchd and QoS
 QoS changes are applied to the ASIC by issuing the command
 
 ```
@@ -39,18 +39,23 @@ Unlike the `restart` command, issuing `reload switchd.service` does not impact t
 
 These circumstances requires modification to the ASIC buffer which may result in momentary packet loss.
 
-For all cases issuing a `reload` or `restart` of `switchd` will run the [Syntax Checker](#syntax-checker) before applying any changes. 
+For all cases issuing a `reload` of `switchd` will run the [Syntax Checker](#syntax-checker) before applying any changes. 
 
 ## Classification
 When a frame or packet arrives on the switch, it is mapped to an *internal COS* value. This value is never written to the frame or packet but is used to classify and prioritize traffic internally through the switch.
 
-By default, 802.1p COS markings are trusted. Frames or packets without 802.1p markings are set to internal COS `0`.
-
 You can define which values are trusted in the `qos_features.conf` file by editing the `traffic.packet_priority_source_set` line.
 
-The following table describes what classification will be used for various frame and `packet_priority_source_set` configurations:
 
-| `source_set` setting | VLAN Tagged? | IP or Non-IP | Result |
+The `traffic.port_default_priority` setting accepts a value between 0 and 7 and defines which internal COS marking to use when the `port` value is used.
+
+If `traffic.packet_priority_source_set` is set to `cos` or `dscp`, the ingress values can then be mapped to an internal COS value.
+
+{{<cl/qos-switchd>}}
+
+The following table describes the default classifications used for various frame and `packet_priority_source_set` configurations:
+
+| `packet_priority_source_set` setting | VLAN Tagged? | IP or Non-IP | Result |
 | ------------------------------------------ | ------ | ---- | ---- |
 | 802.1p | Yes | IP | Accept incoming 802.1p COS marking. |
 | 802.1p | Yes | Non-IP | Accept incoming 802.1p COS marking. |
@@ -65,12 +70,6 @@ The following table describes what classification will be used for various frame
 | 802.1p, dscp | No | IP | Accept incoming DSCP IP header marking. |
 | 802.1p, dscp | No | Non-IP | Default port setting. |
 | port | Either | Either | Ignore any existing markings and use `traffic.port_default_priority` setting. |
-
-The `traffic.port_default_priority` setting accepts a value between 0 and 7 and defines which internal COS marking to use when the `port` value is used.
-
-If `traffic.packet_priority_source_set` is set to `cos` or `dscp`, the ingress values can then be mapped to an internal COS value.
-
-{{<cl/qos-switchd>}}
 
 ### Trust COS
 To trust ingress COS markings, set `traffic.packet_priority_source_set = [802.1p]`.
@@ -131,7 +130,6 @@ traffic.cos_7.priority_source.dscp = [56,57,58,59,60,61,62,63]
 {{% notice note %}}
 The `#` in the configuration file is a comment. By default the `traffic.cos_*.priority_source.dscp` lines are commented out.  
 You must uncomment them for them to take effect.  
-You **must** comment out the existing `traffic_cos*.priority_source.8021p` line.
 {{% /notice %}}
 
 The `traffic.cos_` number is the internal COS value; for example `traffic.cos_0` defines the mapping for internal COS 0. To map ingress DSCP 22 to internal COS 4, the configuration `traffic.cos_4.priority_source.dscp = [22]` is used.
@@ -201,7 +199,7 @@ The configured action always has the following conditions:
 * the rule is always configured as part of the `FORWARD` chain
 * the interface (`<interface>`) is a physical swp port
 * the *jump* action is always `setqos` (lowercase)
-* the `--set-cos` value is a COS value between 0 and 7 (inclusive)
+* the `--set-cos` value is a COS value between 0 and 7
 
 For example, to set traffic leaving interface `swp5` to COS value `4`, use the following rule:
 
@@ -388,19 +386,13 @@ Congestion control helps prevent traffic loss during times of congestion or iden
 
 Cumulus Linux supports the following congestion control mechanisms:
 
-* Pause Frames - defined by IEEE 802.3x, uses specialized ethernet frames sent to an adjacent layer 2 switch to stop or *pause* _all_ traffic on the link during times of congestion. Pause frames are generally not recommended due to their scope of their impact.
+* Pause Frames - defined by IEEE 802.3x, uses specialized ethernet frames sent to an adjacent layer 2 switch to stop or *pause* **all** traffic on the link during times of congestion. Pause frames are generally not recommended due to their scope of their impact.
 * Priority Flow Control (PFC) - An upgrade of Pause Frames, defined by IEEE 802.1bb, extends the pause frame concept to act on a per-COS value basis instead of an entire link. A PFC pause frame indicates to the peer which specific COS value needs to pause, while other COS values or queues continue transmitting.
 * Explicit Congestion Notification (ECN) - Unlike Pause Frames and PFC that operate only at layer 2, ECN is an end-to-end layer 3 congestion control protocol. Defined by RFC 3168, ECN relies on bits in the IPv4 header Traffic Class to signal congestion conditions. ECN requires one or both server endpoints to support ECN to be effective.
 
-{{% notice warning %}}
-When using `sudo systemctl reload switchd.service` to apply changes to flow control, the switch buffer might change causing momentary packet loss. This only applies to flow control changes and not other QoS settings.
-
-This is less disruptive than the use of `restart switchd.service`.
-{{% /notice %}}
-
 ### Flow Control Buffers
 
-Before you configure Pause Frames or PFC, allocate buffer pools and limits for lossless flows.
+Before configuring Pause Frames or PFC, allocate buffer pools and limits for lossless flows.
 
 Edit the following lines in the `/etc/mlx/datapath/qos_infra.conf` file:
 
@@ -500,7 +492,7 @@ A common use case for PFC is {{<link title="RDMA over Converged Ethernet - RoCE"
 Before configuring PFC, you must first modify the switch buffer allocation according to {{<link title="#Flow Control Buffers" text="Flow Control Buffers">}}.
 {{% /notice %}}
 
-PFC pause frames are configured on a per-direction, per-interface basis under the `pfc` section of the `qos_features.conf` file.  
+You configure PFC pause frames on a per-direction, per-interface basis under the `pfc` section of the `qos_features.conf` file.  
 Setting `pfc.pfc_port_group.rx_enable = true` supports the reception of PFC pause frames causing the switch to stop transmitting when requested.
 
 Setting `pfc.pfc_port_group.tx_enable = true` supports the sending of PFC pause frames for the defined COS values, causing the switch to request neighboring devices to stop transmitting.
@@ -626,11 +618,39 @@ By default internal COS values are mapped directly to the matching egress queue.
 `cos_egr_queue.cos_0.uc  = 0`  
 Maps internal COS value 0 to egress queue 0.
 
-Queues can be remapped by changing the `.cos_` to the corresponding queue value. For example, to assign COS 2 to queue 7:  
+Queues can be remapped by changing the `.cos_` to the corresponding queue value. For example, to assign internal COS 2 to queue 7:  
 `cos_egr_queue.cos_2.uc  = 7`
 
 Multiple COS values can be mapped to a single queue. Not all queues must be assigned.
 
+## Egress Scheduling
+Cumulus Linux supports 802.1Qaz, Enhanced Transmission Selection. This allows the switch to assign bandwidth to egress queues and then prioritize the transmission of traffic from each queue. This includes support for Priority Queuing.
+
+The egress scheduling policy is configured in the following section of `qos_features.conf`.
+```
+default_egress_sched.egr_queue_0.bw_percent = 12
+default_egress_sched.egr_queue_1.bw_percent = 13
+default_egress_sched.egr_queue_2.bw_percent = 12
+default_egress_sched.egr_queue_3.bw_percent = 13
+default_egress_sched.egr_queue_4.bw_percent = 12
+default_egress_sched.egr_queue_5.bw_percent = 13
+default_egress_sched.egr_queue_6.bw_percent = 12
+default_egress_sched.egr_queue_7.bw_percent = 13
+```
+
+The `egr_queue_` value defines the [egress queue](#egress-queuing) to assign bandwidth to. For example, `default_egress_sched.egr_queue_0` defines the bandwidth allocation for egress queue 0.
+
+The combined total of values assigned to `bw_percent` must be less than or equal to 100.
+
+If a queue is not defined, no bandwidth reservation will be made.
+
+If a value of `0` is used then strict priority scheduling will be used. This queue will always be serviced ahead of other queues. 
+
+{{% notice note %}}
+The use of strict priority does not define a maximum bandwidth allocation. This can lead to starvation of other queues. 
+{{% /notice %}}
+
+Configured schedules are applied on a per-interface basis. Using the `default_egress_sched` will apply the settings to all ports. To customize the scheduler for other interfaces configure a [port_group](#using-port-groups).
 
 ## Policing and Shaping
 
@@ -718,10 +738,9 @@ The following iptables flags are supported with a dual-rate policer.
 
 For example, to configures a dual-rate, three-color policer, with a 3 Mbps CIR, 500 KB CBS, 10 Mbps PIR, and 1 MB EBS and drops packets that violate the policer:
 
-`-A INPUT --in-interface swp1 -j TRICOLORPOLICE --set-color-mode blind --set-cir 3000 --set-cbs 500 --set-pir 10000 --set-ebs 1000 --set-violate-action drop`
+`-j TRICOLORPOLICE --set-color-mode blind --set-cir 3000 --set-cbs 500 --set-pir 10000 --set-ebs 1000 --set-violate-action drop`
 
-## Troubleshooting
-### Syntax Checker
+## Syntax Checker
 Cumulus Linux provides a syntax checker for the `qos_features.conf` and `qos_infra.conf` files to check for errors, such missing parameters, or invalid parameter labels and values.
 
 The syntax checker automatically runs with every `switchd reload`.
@@ -1278,4 +1297,4 @@ If QoS settings are applied on bond member interfaces instead of the logical bon
 If QoS settings do not match `switchd reload` will fail, however, `switchd restart` will not fail. 
 
 ### Cut-Through Switching
-Cut-through switching can _not_ be disabled on Spectrum ASICs. Setting `cut_through_enable = false` in `qos_features.conf` will either be ignored.
+Cut-through switching can _not_ be disabled on Spectrum ASICs. Setting `cut_through_enable = false` in `qos_features.conf` will be ignored.

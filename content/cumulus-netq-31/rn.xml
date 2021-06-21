@@ -43,12 +43,6 @@
 <td>3.2.0-3.3.1</td>
 </tr>
 <tr>
-<td>2551545</td>
-<td>Infra: Rarely, after a node is restarted, Kubernetes pods do not synchronize properly and the output of {{netq show opta-health}} shows failures. Node operation is not functionally impacted. You can safely remove the failures by running {{kubectl get pods | grep MatchNodeSelector | cut \-f1 \-d' ' | xargs kubectl delete pod}}. To work around the issue, do not label nodes using the API. Instead label nodes through local configuration using {{kubelet flag "--node-labels"}}.</td>
-<td>3.1.0-3.3.1</td>
-<td></td>
-</tr>
-<tr>
 <td>2549649</td>
 <td>NetQ UI: Warnings might appear during the post-upgrade phase for a Cumulus Linux switch upgrade job. They are caused by services that have not yet been restored by the time the job is complete. Cumulus Networks recommend waiting five minutes, creating a network snapshot, then comparing that to the pre-upgrade snapshot. If the comparison shows no differences for the services, the warnings can be ignored. If there are differences, then troubleshooting the relevant service(s) is recommended.</td>
 <td>3.0.0-3.3.1</td>

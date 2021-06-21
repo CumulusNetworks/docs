@@ -102,6 +102,10 @@ With a single VXLAN device, a set of VNIs are included in a single device model.
 
 Cumulus Linux creates a unique name for the single VXLAN device in the format `vxlan<id>`, where the ID is generated using the bridge name as the hash key.
 
+{{%notice note%}}
+Cumulus Linux supports multiple single VXLAN devices.
+{{%/notice%}}
+
 You can configure a single VXLAN device with NVUE or by manually editing the `/etc/network/interfaces` file.
 
 The following example configuration:

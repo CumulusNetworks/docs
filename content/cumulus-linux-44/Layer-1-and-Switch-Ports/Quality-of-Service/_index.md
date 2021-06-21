@@ -13,7 +13,7 @@ This section refers to frames for all internal QoS functionality; the actions ar
 Cumulus Linux supports a number of different QoS features and standards including:
 - COS and DSCP marking and remarking
 - Shaping and policing
-- Egress traffic traffic scheduling (802.1Qaz, Enhanced Transmission Selection)
+- Egress traffic scheduling (802.1Qaz, Enhanced Transmission Selection)
 - Flow control with IEEE Pause Frames, Priority Flow Control and Explicit Congestion Notification
 - {{<link title="RDMA over Converged Ethernet - RoCE" text="Lossless and lossy RoCE ">}}
 
@@ -169,7 +169,7 @@ You can configure additional settings using [Port Groups](#using-port-groups).
 
 You can mark or remark traffic in two different ways:
 
- * Using {{<link url="#using-iptables-for-marking" text="iptables" >}} to match packet settings and setting COS or DSCP values.
+ * Using [iptables](#using-iptables-for-marking) to match packets and set COS or DSCP values.
  * Using ingress COS or DSCP to remark an existing COS or DSCP value to a new value.
 
 ### Using iptables for Marking
@@ -275,7 +275,7 @@ The `#` in the configuration file is a comment. By default the `traffic.cos_*.pr
 You must uncomment them to set the configuration.
 {{% /notice %}}
 
-You can remap multiple internal COS values to the same external COS values. For example, to map internal COS 1 and internal COS 2 to external COS 3:
+You can remap multiple internal COS values to the same external COS value. For example, to map internal COS 1 and internal COS 2 to external COS 3:
 
 ```
 traffic.cos_1.priority_remark.8021p = [3]
@@ -301,7 +301,7 @@ The `#` in the configuration file is a comment. By default the `traffic.cos_*.pr
 You must uncomment them to set the configuration.
 {{% /notice %}}
 
-You can remap multiple internal COS values to the same external DSCP values. For example, to map internal COS 1 and internal COS 2 to external DSCP 40:
+You can remap multiple internal COS values to the same external DSCP value. For example, to map internal COS 1 and internal COS 2 to external DSCP 40:
 
 ```
 traffic.cos_1.priority_remark.dscp = [40]
@@ -315,7 +315,7 @@ Congestion control helps prevent traffic loss during times of congestion or iden
 
 Cumulus Linux supports the following congestion control mechanisms:
 
-* Pause Frames - defined by IEEE 802.3x, uses specialized ethernet frames sent to an adjacent layer 2 switch to stop or *pause* **all** traffic on the link during times of congestion. Pause frames are generally not recommended due to their scope of their impact.
+* Pause Frames - defined by IEEE 802.3x, uses specialized ethernet frames sent to an adjacent layer 2 switch to stop or *pause* **all** traffic on the link during times of congestion. Pause frames are generally not recommended due to their scope of impact.
 * Priority Flow Control (PFC) - An upgrade of Pause Frames, defined by IEEE 802.1bb, extends the pause frame concept to act on a per-COS value basis instead of an entire link. A PFC pause frame indicates to the peer which specific COS value needs to pause, while other COS values or queues continue transmitting.
 * Explicit Congestion Notification (ECN) - Unlike Pause Frames and PFC that operate only at layer 2, ECN is an end-to-end layer 3 congestion control protocol. Defined by RFC 3168, ECN relies on bits in the IPv4 header Traffic Class to signal congestion conditions. ECN requires one or both server endpoints to support ECN to be effective.
 
@@ -356,7 +356,7 @@ flow_control.egress_buffer.dynamic_quota = ALPHA_INFINITY
 Pause frames are an older congestion control mechanism that causes all traffic on a link between two devices (two switches or a host and switch) to stop transmitting during times of congestion. Pause frames are started and stopped based on how congested the buffer is. The value that determines when pause frames start is called the `xoff` value (xoff for "transmit off"). When the buffer congestion reaches the `xoff` point, the switch sends a pause frame to one or more neighbors. When congestion drops below the `xon` point (xon for "transmit on") an updated pause frame is sent so that the neighbor resumes sending traffic.
 
 {{% notice note %}}
-Pause frames are not recommended due to the corse nature of flow control. Priority Flow Control (PFC) is recommended over the use of pause frames.
+Pause frames are not recommended due to the coarse nature of flow control. Priority Flow Control (PFC) is recommended over the use of pause frames.
 {{% /notice  %}}
 
 {{% notice note %}}
@@ -569,8 +569,10 @@ The combined total of values assigned to `bw_percent` must be less than or equal
 
 If a queue is not defined, no bandwidth reservation will be made.
 
+{{% notice note %}}
 If a value of `0` is used then strict priority scheduling will be used. This queue will always be serviced ahead of other queues. 
-
+{{% /notice %}}
+  
 {{% notice note %}}
 The use of strict priority does not define a maximum bandwidth allocation. This can lead to starvation of other queues. 
 {{% /notice %}}
@@ -604,16 +606,16 @@ Traffic shaping is generally used at egress while traffic policing is used at in
 
 ### Shaping
 
-Traffic shaping allows a switch to send traffic at and average bitrate lower than the physical interface. Traffic shaping prevents bursty traffic from being dropped by a receiving device that is either not capable of that rate of traffic or may have a policer limiting what will be accepted, for example, an ISP.
+Traffic shaping allows a switch to send traffic at an average bitrate lower than the physical interface. Traffic shaping prevents bursty traffic from being dropped by a receiving device that is either not capable of that rate of traffic or may have a policer limiting what will be accepted, for example, an ISP.
 
 Traffic shaping works by holding packets in the buffer and releasing them at time intervals called the `tc`. 
 
 Cumulus Linux supports two-levels of hierarchical traffic shaping: one at the egress-queue level and one at the port level. This allows for minimum and maximum bandwidth guarantees for each egress-queue and a defined interface traffic shaping rate.
 
-Traffic shaping is configured in the `shaping.` section of `qos_features.conf`. 
+Traffic shaping is configured in the `shaping` section of `qos_features.conf`. 
 Traffic shaping configuration supports [Port Groups](#using-port-groups) to apply different shaping profiles to different ports. 
 
-The `egr_queue` value is based on the configured [egress queue](#egress-queuing)
+The `egr_queue` value is based on the configured [egress queue](#egress-queuing).
 
 This is an example traffic shaping configuration.
 ```
@@ -678,12 +680,12 @@ The following iptables flags are supported with a dual-rate policer.
 | `--set-violate-action-dscp <dscp value>` | The numerical DSCP value to mark for traffic that is violating the policer rate |
 | `--set-violate-action [accept \| drop]` | For packets that violate the policer rate should they be `accept`ed and remarked or `drop`ped |
 
-For example, to configures a dual-rate, three-color policer, with a 3 Mbps CIR, 500 KB CBS, 10 Mbps PIR, and 1 MB EBS and drops packets that violate the policer:
+For example, to configure a dual-rate, three-color policer, with a 3 Mbps CIR, 500 KB CBS, 10 Mbps PIR, and 1 MB EBS and drops packets that violate the policer:
 
 `-j TRICOLORPOLICE --set-color-mode blind --set-cir 3000 --set-cbs 500 --set-pir 10000 --set-ebs 1000 --set-violate-action drop`
 
 ## Using Port Groups
-`qos_features.conf` supports the use of *port groups* to apply similar QoS configurations to a set of ports. Port groups are supported for any feature 
+`qos_features.conf` supports the use of *port groups* to apply similar QoS configurations to a set of ports. Port groups are supported for any feature. 
 
 {{% notice note %}}
 Any configurations used with port groups override the global settings for the ingress ports defined in the port group.

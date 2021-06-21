@@ -39,7 +39,7 @@ In the following example:
 Basic PTP configuration requires you:
 
 - Enable PTP on the switch to start the `ptp4l` and `phc2sys` processes.
-- Configure the interfaces on the switch that you want to use for PTP. Each interface must a layer 3 routed interface with an IP address. You do not need to specify which is a master interface and which is a slave interface; this is determined by the PTP packet received.
+- Configure the interfaces on the switch that you want to use for PTP. Each interface must be a layer 3 routed interface with an IP address. You do not need to specify which is a master interface and which is a slave interface; this is determined by the PTP packet received.
 
 The basic configuration shown below uses the *default* PTP settings:
 - Boundary clock mode - this is the only clock mode supported.
@@ -579,8 +579,8 @@ You can set the following timers for PTP messages.
 | `delay-req-interval` | The minimum average time interval allowed between successive Delay Required messages. |
 | `sync-interval` | The interval between PTP synchronization messages on an interface. Specify the value as a power of two in seconds. |
 
-To set the timers with NVUE, run the `nv set interface <interface> ptp timers <timer> <value>` command.
-To set the timers with Linux commands, edit the `/etc/ptp4l.conf` file and set the timers in the `Default interface options` section. For example:
+- To set the timers with NVUE, run the `nv set interface <interface> ptp timers <timer> <value>` command.
+- To set the timers with Linux commands, edit the `/etc/ptp4l.conf` file and set the timers in the `Default interface options` section.
 
 {{< tabs "TabID542 ">}}
 {{< tab "NVUE Commands ">}}

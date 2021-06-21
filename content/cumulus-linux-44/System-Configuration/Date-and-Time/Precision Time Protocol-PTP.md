@@ -8,13 +8,19 @@ Cumulus Linux supports IEEE 1588-2008 Precision Timing Protocol (PTPv2), which d
 
 PTP is capable of sub-microsecond accuracy. The clocks are organized in a master-slave hierarchy, where the slaves are synchronized to their masters, which can be slaves to their own masters. The hierarchy is created and updated automatically by the best master clock (BMC) algorithm, which runs on every clock. The grandmaster clock is the top-level master and is typically synchronized using a Global Positioning System (GPS) time source to provide a high-degree of accuracy.
 
+In the following example:
+- Boundary clock 2 receives time from Master 1 (the grandmaster) on a PTP slave port, sets its clock and passes the time down from the PTP master port to Boundary clock 1. 
+- Boundary clock 1 receives the time on a PTP slave port, sets its clock and passes the time down the hierarchy through the PTP master ports to the hosts that receive the time.
+
+{{< img src = "/images/cumulus-linux/date-time-ptp-example.png" >}}
+
+## Cumulus Linux and PTP
+
 PTP in Cumulus Linux uses the `linuxptp` package that includes the following programs:
 - `ptp4l` provides the PTP protocol and state machines
 - `phc2sys` provides PTP Hardware Clock and System Clock synchronization
 - `timemaster` provides System Clock and PTP synchronization
 - `monitor` provides monitoring
-
-PTP in Cumulus 4.4 includes updated features, which you can configure with NVUE or by manually editing `/etc/cumulus/switchd.conf` file; NCLU configuration is not supported.
 
 {{%notice note%}}
 - PTP is supported on Spectrum-2 and above.
@@ -27,12 +33,6 @@ PTP in Cumulus 4.4 includes updated features, which you can configure with NVUE 
 - You can isolate PTP traffic to a non-default VRF.
 - Multicast and mixed message mode is supported; unicast only message mode is *not* supported.
 {{%/notice%}}
-
-In the following example:
-- Boundary clock 2 receives time from Master 1 (the grandmaster) on a PTP slave port, sets its clock and passes the time down from the PTP master port to Boundary clock 1. 
-- Boundary clock 1 receives the time on a PTP slave port, sets its clock and passes the time down the hierarchy through the PTP master ports to the hosts that receive the time.
-
-{{< img src = "/images/cumulus-linux/date-time-ptp-example.png" >}}
 
 ## Basic Configuration
 
@@ -53,6 +53,10 @@ The basic configuration shown below uses the *default* PTP settings:
 - {{<link url="#message-mode" text="Message Mode">}} is multicast.
 
 To configure optional settings, such as the PTP domain, priority, transport mode, DSCP, and timers, see {{<link url="#optional-configuration" text="Optional Configuration">}} below.
+
+{{%notice note%}}
+You can configure PTP with NVUE or by manually editing `/etc/cumulus/switchd.conf` file; NCLU configuration is not supported.
+{{%/notice%}}
 
 {{< tabs "TabID36 ">}}
 {{< tab "NVUE Commands ">}}

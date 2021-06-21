@@ -4,24 +4,28 @@ author: NVIDIA
 weight: 128
 toc: 3
 ---
-With the growth of low latency and high performance applications, precision timing has become increasingly important. Precision Time Protocol (PTP) is used to synchronize clocks in a network and is capable of sub-microsecond accuracy. The clocks are organized in a master-slave hierarchy. The slaves are synchronized to their masters, which can be slaves to their own masters. The hierarchy is created and updated automatically by the best master clock (BMC) algorithm, which runs on every clock. The grandmaster clock is the top-level master and is typically synchronized using a Global Positioning System (GPS) time source to provide a high-degree of accuracy.
+Cumulus Linux supports IEEE 1588-2008 Precision Timing Protocol (PTPv2), which defines the algorithm and method for synchronizing clocks of various devices across packet-based networks, including Ethernet switches and IP routers.
 
-A boundary clock has multiple ports; one or more master ports and one or more slave ports. The master ports provide time (the time can originate from other masters further up the hierarchy) and the slave ports receive time. The boundary clock absorbs Sync messages in the slave port, uses that port to set its clock, then generates new Sync messages from this clock out of all of its master ports.
+PTP is capable of sub-microsecond accuracy. The clocks are organized in a master-slave hierarchy, where the slaves are synchronized to their masters, which can be slaves to their own masters. The hierarchy is created and updated automatically by the best master clock (BMC) algorithm, which runs on every clock. The grandmaster clock is the top-level master and is typically synchronized using a Global Positioning System (GPS) time source to provide a high-degree of accuracy.
 
-Cumulus Linux includes the `linuxptp` package for PTP, which uses the `phc2sys` daemon to synchronize the PTP clock with the system clock.
+PTP in Cumulus Linux uses the `linuxptp` package that includes the following programs:
+- `ptp4l` provides the PTP protocol and state machines
+- `phc2sys` provides PTP Hardware Clock and System Clock synchronization
+- `timemaster` provides System Clock and PTP synchronization
+- `monitor` provides monitoring
 
 PTP in Cumulus 4.4 includes updated features, which you can configure with NVUE or by manually editing `/etc/cumulus/switchd.conf` file; NCLU configuration is not supported.
 
 {{%notice note%}}
-- PTP is supported on Spectrum-2 and Spectrum-3 switches.
+- PTP is supported on Spectrum-2 and above.
 - You cannot run both PTP and NTP on the switch.
 - PTP is supported in boundary clock mode only (the switch provides timing to downstream servers; it is a slave to a higher-level clock and a master to downstream clocks).
 - The switch uses hardware time stamping to capture timestamps from an Ethernet frame at the physical layer. This allows PTP to account for delays in message transfer and greatly improves the accuracy of time synchronization.
-- IPv4 and IPv6 UDP PTP packets are supported.
+- Both IPv4 and IPv6 UDP PTP packets are supported.
 - Only a single PTP domain per network is supported.
-- PTP is supported on layer 3 interfaces, trunk ports, and VLANs. PTP is not supported on bonds.
+- PTP is supported on layer 3 interfaces, trunk ports, and switch ports belonging to a VLAN. PTP is not supported on bonds.
 - You can isolate PTP traffic to a non-default VRF.
-<!--- Multicast and mixed message mode is supported; unicast only message mode is *not* supported.-->
+- Multicast and mixed message mode is supported; unicast only message mode is *not* supported.
 {{%/notice%}}
 
 In the following example:
@@ -38,14 +42,14 @@ Basic PTP configuration requires you:
 - Configure the interfaces on the switch that you want to use for PTP. Each interface must a layer 3 routed interface with an IP address. You do not need to specify which is a master interface and which is a slave interface; this is determined by the PTP packet received.
 
 The basic configuration shown below uses the *default* PTP settings:
-- Boundary Clock mode - this is the only clock mode supported, where the switch provides timing to downstream servers; it is a slave to a higher-level clock and a master to downstream clocks.
+- Boundary clock mode - this is the only clock mode supported.
 - {{<link url="#transport-mode" text="Transport mode">}} is set to IPv4.
 - {{<link url="#ptp-clock-domain" text="PTP clock domain">}} is set to 0.
 - {{<link url="#ptp-priority" text="PTP Priority1 and Priority2">}} are set to 128.
 - {{<link url="#one-step-and-two-step-mode" text="Hardware packet time stamping mode" >}} is set to one-step.
 - {{<link url="#diffserv-code-point-dscp" text="DSCP" >}} is set to 43 for both general and event messages.
 - {{<link url="#acceptable-master-table" text="Announce messages from any master are accepted">}}.
-<!-- - {{<link url="#message-mode" text="Message Mode">}} is multicast.-->
+- {{<link url="#message-mode" text="Message Mode">}} is multicast.
 
 To configure optional settings, such as the PTP domain, priority, transport mode, DSCP, and timers, see {{<link url="#optional-configuration" text="Optional Configuration">}} below.
 
@@ -198,7 +202,7 @@ cumulus@switch:~$ nv set service ptp 1 profile-type default-1588
 cumulus@switch:~$ nv config apply
 ```
 -->
-### PTP Clock Domains
+### Clock Domains
 
 PTP domains allow different independent timing systems to be present in the same network without confusing each other. A PTP domain is a network or a portion of a network within which all the clocks are synchronized. Every PTP message contains a domain number. A PTP instance is configured to work in only one domain and ignores messages that contain a different domain number.
 
@@ -283,6 +287,107 @@ cumulus@switch:~$ sudo systemctl restart ptp4l.service phc2sys.service
 {{< /tab >}}
 {{< /tabs >}}
 
+### Message Mode
+
+Cumulus Linux currently supports the following PTP message mode:
+- *Multicast*, where the ports subscribe to two multicast addresses, one for event messages that are timestamped and the other for general messages that are not timestamped. The Sync message sent by the master is a multicast message and is received by all slave ports. This is required because the slaves need the master's time. The slave ports in turn generate a Delay Request to the master. This is a multicast message and is received not only by the master for which the message is intended, but also by other slave ports. Similarly, the master's Delay Response is also received by all slave ports in addition to the intended slave port. The slave ports receiving the unintended Delay Requests and Responses need to drop the packets. This can affect network bandwidth, especially if there are hundreds of slave ports.
+- *Mixed*, where Sync and Announce messages are sent as multicast messages but Delay Request and Response messages are sent as unicast. This avoids the issue seen in multicast message mode where every slave port sees Delay Requests and Responses from every other slave port.
+
+Multicast mode is the default setting. To set the message mode to *mixed*:
+
+```
+cumulus@switch:~$ nv set service ptp 1 message-mode mixed
+cumulus@switch:~$ nv config apply
+```
+
+### One-step and Two-step Mode
+
+The Cumulus Linux switch supports hardware packet time stamping and provides two modes:
+- In *one-step* mode, the PTP packet is time stamped as it egresses the port and there is no need for a follow-up packet.
+- In *two-step* mode, the time is noted when the PTP packet egresses the port and is sent in a separate (follow-up) message.
+
+One-step mode is the default configuration. To configure the switch to use two-step mode:
+
+{{< tabs "TabID272 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set service ptp 1 two-step on
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Edit the `Default Data Set` section of the `/etc/ptp4l.conf` file to change the `twoStepFlag` setting to 1, then restart the `ptp4l` and `phc2sys` daemons.
+
+```
+cumulus@switch:~$ sudo nano /etc/ptp4l.conf
+[global]
+#
+# Default Data Set
+#
+slaveOnly               0
+priority1               254
+priority2               254
+domainNumber            3
+
+twoStepFlag             1
+dscp_event              43
+dscp_general            43
+...
+```
+
+```
+cumulus@switch:~$ sudo systemctl restart ptp4l.service phc2sys.service
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+### DSCP
+
+You can configure the DiffServ code point (DSCP) value for all PTP IPv4 packets originated locally. You can set a value between 0 and 63.
+
+{{< tabs "TabID320 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set service ptp 1 ip-dscp 22
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Edit the `Default Data Set` section of the `/etc/ptp4l.conf` file to change the `dscp_event` setting for PTP messages that trigger a Time Stamp read from the clock and the `dscp_general` setting for PTP messages that carry commands, responses, information, or time stamps.
+
+After you save the `/etc/ptp4l.conf` file, restart the `ptp4l` and `phc2sys` daemons.
+
+```
+cumulus@switch:~$ sudo nano /etc/ptp4l.conf
+[global]
+#
+# Default Data Set
+#
+slaveOnly               0
+priority1               254
+priority2               254
+domainNumber            3
+
+twoStepFlag             1
+dscp_event              22
+dscp_general            22
+...
+```
+
+```
+cumulus@switch:~$ sudo systemctl restart ptp4l.service phc2sys.service
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
 ### Transport Mode
 
 By default, PTP messages are encapsulated in UDP/IPV4 frames. To configure PTP messages on an interface to be encapsulated in UDP/IPV6 frames:
@@ -341,64 +446,6 @@ cumulus@switch:~$ sudo systemctl restart ptp4l.service phc2sys.service
 {{< /tab >}}
 {{< /tabs >}}
 
-<!--### Message Mode
-
-Cumulus Linux currently supports the following PTP message mode:
-- *Multicast*, where the ports subscribe to two multicast addresses, one for event messages that are timestamped and the other for general messages that are not timestamped. The Sync message sent by the master is a multicast message and is received by all slave ports. This is required because the slaves need the master's time. The slave ports in turn generate a Delay Request to the master. This is a multicast message and is received not only by the master for which the message is intended, but also by other slave ports. Similarly, the master's Delay Response is also received by all slave ports in addition to the intended slave port. The slave ports receiving the unintended Delay Requests and Responses need to drop the packets. This can affect network bandwidth, especially if there are hundreds of slave ports.
-- *Mixed*, where Sync and Announce messages are sent as multicast messages but Delay Request and Response messages are sent as unicast. This avoids the issue seen in multicast message mode where every slave port sees Delay Requests and Responses from every other slave port.
-
-Multicast mode is the default setting. To set the message mode to *mixed*:
-
-```
-cumulus@switch:~$ nv set service ptp 1 message-mode mixed
-cumulus@switch:~$ nv config apply
-```-->
-
-### One-step and Two-step Mode
-
-The Cumulus Linux switch supports hardware packet time stamping and provides two modes:
-- In *one-step* mode, the PTP packet is time stamped as it egresses the port and there is no need for a follow-up packet.
-- In *two-step* mode, the time is noted when the PTP packet egresses the port and is sent in a separate (follow-up) message.
-
-One-step mode is the default configuration. To configure the switch to use two-step mode:
-
-{{< tabs "TabID272 ">}}
-{{< tab "NVUE Commands ">}}
-
-```
-cumulus@switch:~$ nv set service ptp 1 two-step on
-cumulus@switch:~$ nv config apply
-```
-
-{{< /tab >}}
-{{< tab "Linux Commands ">}}
-
-Edit the `Default Data Set` section of the `/etc/ptp4l.conf` file to change the `twoStepFlag` setting to 1, then restart the `ptp4l` and `phc2sys` daemons.
-
-```
-cumulus@switch:~$ sudo nano /etc/ptp4l.conf
-[global]
-#
-# Default Data Set
-#
-slaveOnly               0
-priority1               254
-priority2               254
-domainNumber            3
-
-twoStepFlag             1
-dscp_event              43
-dscp_general            43
-...
-```
-
-```
-cumulus@switch:~$ sudo systemctl restart ptp4l.service phc2sys.service
-```
-
-{{< /tab >}}
-{{< /tabs >}}
-
 ### Forced Master
 
 By default, ports configured for PTP are in auto mode, where the state of the port is determined by the BMC algorithm.
@@ -439,49 +486,6 @@ udp_ttl                 1
 masterOnly              1
 delay_mechanism         E2E
 network_transport       UDPv4
-...
-```
-
-```
-cumulus@switch:~$ sudo systemctl restart ptp4l.service phc2sys.service
-```
-
-{{< /tab >}}
-{{< /tabs >}}
-
-### DiffServ code point (DSCP)
-
-You can configure the DSCP value for all PTP IPv4 packets originated locally. You can set a value between 0 and 63.
-
-{{< tabs "TabID320 ">}}
-{{< tab "NVUE Commands ">}}
-
-```
-cumulus@switch:~$ nv set service ptp 1 ip-dscp 22
-cumulus@switch:~$ nv config apply
-```
-
-{{< /tab >}}
-{{< tab "Linux Commands ">}}
-
-Edit the `Default Data Set` section of the `/etc/ptp4l.conf` file to change the `dscp_event` setting for PTP messages that trigger a Time Stamp read from the clock and the `dscp_general` setting for PTP messages that carry commands, responses, information, or time stamps.
-
-After you save the `/etc/ptp4l.conf` file, restart the `ptp4l` and `phc2sys` daemons.
-
-```
-cumulus@switch:~$ sudo nano /etc/ptp4l.conf
-[global]
-#
-# Default Data Set
-#
-slaveOnly               0
-priority1               254
-priority2               254
-domainNumber            3
-
-twoStepFlag             1
-dscp_event              22
-dscp_general            22
 ...
 ```
 
@@ -544,17 +548,17 @@ cumulus@switch:~$ sudo systemctl restart ptp4l.service phc2sys.service
 
 The acceptable master table option is a security feature that prevents a rogue player from pretending to be the Grandmaster to take over the PTP network. To use this feature, you configure the clock IDs of known Grandmasters in the acceptable master table and set the acceptable master table option on a PTP port. The BMC algorithm checks if the Grandmaster received on the Announce message is in this table before proceeding with the master selection. This option is disabled by default on PTP ports.
 
-The following example command adds the Grandmaster clock ID 000200.fffe.000001 to the acceptable master table.
+The following example command adds the Grandmaster clock ID 248a07.fffe.f41606 to the acceptable master table.
 
 ```
-cumulus@switch:~$ nv set service ptp 1 acceptable-master 000200.fffe.000001
+cumulus@switch:~$ nv set service ptp 1 acceptable-master 248a07.fffe.f41606
 cumulus@switch:~$ nv config apply
 ```
 
 You can also configure an alternate priority 1 value for the Grandmaster:
 
 ```
-cumulus@switch:~$ nv set service ptp 1 acceptable-master 000200.fffe.000001 alt-priority 2
+cumulus@switch:~$ nv set service ptp 1 acceptable-master 248a07.fffe.f41606 alt-priority 2
 ```
 
 The following example commands enable the PTP acceptable master table option for swp1:
@@ -571,7 +575,7 @@ You can set the following timers for PTP messages.
 | Timer | Description |
 | ----- | ----------- |
 | `announce-interval` | The average interval between successive Announce messages. Specify the value as a power of two in seconds. |
-| `announce-timeout` | The number of announce intervals that have to occur without receipt of an Announce message before a timeout occurs. <br>Make sure that this value is longer than the announce-interval in your network.|
+| `announce-timeout` | The number of announce intervals that have to occur without receiving an Announce message before a timeout occurs. <br>Make sure that this value is longer than the announce-interval in your network.|
 | `delay-req-interval` | The minimum average time interval allowed between successive Delay Required messages. |
 | `sync-interval` | The interval between PTP synchronization messages on an interface. Specify the value as a power of two in seconds. |
 
@@ -636,7 +640,7 @@ cumulus@switch:~$ sudo systemctl restart ptp4l.service phc2sys.service
 {{< /tab >}}
 {{< /tabs >}}
 
-## Delete PTP Boundary Clock Configuration
+## Delete PTP Configuration
 
 To delete PTP configuration, delete the PTP master and slave interfaces. The following example commands delete the PTP interfaces `swp1`, `swp2`, and `swp3`.
 

@@ -59,17 +59,17 @@ The following table describes the default classifications used for various frame
 | ------------------------------------------ | ------ | ---- | ---- |
 | 802.1p | Yes | IP | Accept incoming 802.1p COS marking. |
 | 802.1p | Yes | Non-IP | Accept incoming 802.1p COS marking. |
-| 802.1p | No | IP | Default port setting. |
-| 802.1p | No | Non-IP | Default port setting. |
+| 802.1p | No | IP | Use the `port_default_priority` setting. |
+| 802.1p | No | Non-IP | Use the `port_default_priority` setting. |
 | dscp | Yes | IP | Accept incoming DSCP IP header marking. |
-| dscp | Yes | Non-IP | Default port setting. |
+| dscp | Yes | Non-IP | Use the `port_default_priority` setting. |
 | dscp | No | IP | Accept incoming DSCP IP header marking. |
-| dscp | No | Non-IP | Default port setting. |
+| dscp | No | Non-IP | Use the `port_default_priority` setting. |
 | 802.1p, dscp | Yes | IP | Accept incoming DSCP IP header marking. |
 | 802.1p, dscp | Yes | Non-IP | Accept incoming 802.1p COS marking. |
 | 802.1p, dscp | No | IP | Accept incoming DSCP IP header marking. |
-| 802.1p, dscp | No | Non-IP | Default port setting. |
-| port | Either | Either | Ignore any existing markings and use `traffic.port_default_priority` setting. |
+| 802.1p, dscp | No | Non-IP | Use the `port_default_priority` setting. |
+| port | Either | Either | Ignore any existing markings and use `port_default_priority` setting. |
 
 ### Trust COS
 To trust ingress COS markings, set `traffic.packet_priority_source_set = [802.1p]`.
@@ -161,7 +161,7 @@ To assign all traffic to an internal COS queue, regardless of the ingress markin
 
 All traffic is assigned to the COS value defined by `traffic.port_default_priority`.
 
-You can configure additional settings using {{<link text="Port Groups" url="#port-groups" >}}.
+You can configure additional settings using [Port Groups](#using-port-groups).
 
 {{<cl/qos-switchd>}}
 
@@ -309,77 +309,6 @@ traffic.cos_2.priority_remark.dscp = [40]
 ```
 
 {{<cl/qos-switchd>}}
-
-## Using Port Groups
-`qos_features.conf` supports the use of *port groups* to apply similar QoS configurations to a set of ports.
-
-{{% notice note %}}
-Any configurations used with port groups override the global settings for the ingress ports defined in the port group.
-
-Any ports that are not defined in a port group use the global settings.
-{{% /notice %}}
-
-### Port Groups for Trust and Marking
-
-You define port groups with the `source.port_group_list` configuration in the `qos_features.conf` file.
-
-A `source.port_group_list` is one or more names used for group settings. The name is used as a label for configuration settings. For example, if a `source.port_group_list` includes `test`, the following `port_default_priority` is configured with `source.test.port_default_priority`.
-
-The following is an explanation of an example `source.port_group_list` configuration.
-
-```
-source.port_group_list = [customer1,customer2]
-source.customer1.packet_priority_source_set = [dscp]
-source.customer1.port_set = swp1-swp4,swp6
-source.customer1.port_default_priority = 0
-source.customer1.cos_0.priority_source.dscp = [0,1,2,3,4,5,6,7]
-source.customer2.packet_priority_source_set = [cos]
-source.customer2.port_set = swp5,swp7
-source.customer2.port_default_priority = 0
-source.customer2.cos_1.priority_source.8021p = [4]
-```
-
-| Configuration  | Example | Description  |
-| -------------  | ------- | -----------  |
-| `source.port_group_list`  | `source.port_group_list = [customer1,customer2]` | Defines the names of the port groups to be used. Two groups are created `customer1` and `customer2`.  |
-| `source.customer1.packet_priority_source_set` | `source.customer1.packet_priority_source_set = [dscp]` | Defines the ingress marking trust. In this example, ingress DSCP values are preserved for group `customer1`. |
-| `source.customer1.port_set` | `source.customer1.port_set = swp1-swp4,swp6` | The set of ports to which to apply the ingress marking trust policy. In this example, ports swp1, swp2, swp3, swp4 and swp6 are used for `customer1`. |
-| `source.customer1.port_default_priority` | `source.customer1.port_default_priority = 0` | Define the default internal COS marking for unmarked or untrusted traffic. In this example, unmarked traffic or layer 2 traffic for `customer1` ports are marked with internal COS 0. |
-| `source.customer1.cos_0.priority_source` | `source.customer1.cos_0.priority_source.dscp = [0,1,2,3,4,5,6,7]` | Map the ingress DSCP values to an internal COS value for `customer1`. In this example, the set of DSCP values from 0-7 are mapped to internal COS 0.  |
-| `source.customer2.packet_priority_source_set` | `source.packet_priority_source_set = [cos]` | Defines the ingress marking trust for `customer2`. In this example, COS is trusted. |
-| `source.customer2.port_set`  | `source.customer2.port_set = swp5,swp7` | The set of ports to which to apply the ingress marking trust policy. In this example, ports swp5 and swp7 are used for `customer2`. |
-| `source.customer2.port_default_priority` | `source.customer2.port_default_priority = 0` | Define the default internal COS marking for unmarked or untrusted traffic. In this example, unmarked tagged layer 2 traffic or unmarked VLAN tagged traffic for `customer1` ports are marked with internal COS 0. |
-| `source.customer2.cos_0.priority_source` | `source.customer2.cos_1.priority_source.8021p = [4]` | Map the ingress COS values to an internal COS value for `customer2`. In this example ingress COS value 4 is mapped to internal COS 1 . |
-
-{{<cl/qos-switchd>}}
-
-### Port Groups for Remarking
-
-You can also use port groups for remarking COS or DSCP on egress based on the internal COS value that assigned. These port groups are defined with `remark.port_group_list` in `qos_features.conf`.
-
-A `remark.port_group_list` is one or more names to be used for group settings. The name is used as a label for configuration settings. For example, if a `remark.port_group_list` includes `test`, the following `remark.port_set` is configured with `remark.test.port_set`.
-
-The following is an explanation of an example `remark.group_list` configuration.
-
-```
-remark.port_group_list = [list1,list2]
-remark.list1.port_set = swp1-swp3,swp6
-remark.list1.cos_3.priority_remark.dscp = [24]
-remark.list2.packet_priority_remark_set = [802.1p]
-remark.list2.port_set = swp9,swp10
-remark.list2.cos_3.priority_remark.8021p = [2]
-```
-
-|Configuration |Example |Explanation |
-|------------- |------- |----------- |
-|`remark.port_group_list` |`remark.port_group_list = [list1,list2]` |Defines the names of the port groups to be used. Two groups are created `list1` and `list2`.|
-|`remark.list1.packet_priority_remark_set` |`remark.list1.packet_priority_remark_set = [dscp]`| Defines the egress marking to be applied, `802.1p` or `dscp`. In this example, the egress DSCP marking is rewritten. |
-|`remark.list1.port_set` |`remark.list1.port_set = swp1-swp3,swp6` | The set of _ingress_ ports that receives frames or packets that has remarking applied, regardless of egress interface. In this example, traffic arriving on ports swp1, swp2, swp3 and swp6 have their egress DSCP values remarked.|
-|`remark.list1.cos_3.priority_remark.dscp` |`remark.list1.cos_3.priority_remark.dscp = [24]` | The egress DSCP value to write to the packet based on the internal COS value. In this example, traffic in internal COS 3 sets the egress DSCP to 24.  |
-|`remark.list2.packet_priority_remark_set` |`remark.list2.packet_priority_remark_set = [802.1p]` | Defines the egress marking to be applied, `cos` or `dscp`. In this example, the egress COS marking is rewritten.  |
-|`remark.list2.port_set`  |`remark.list2.port_set = swp9,swp10` | The set of _ingress_ ports that receives frames or packets that have remarking applied, regardless of egress interface. In this example, traffic arriving on ports swp9 and swp10 have their egress COS values remarked.  |
-|`remark.list2.cos_4.priority_remark.8021p`|`remark.list1.cos_3.priority_remark.8021p = [2]` | The egress COS value to write to the frame based on the internal COS value. In this example, traffic in internal COS 4 sets the egress COS 2. |
-
 ## Flow Control 
 
 Congestion control helps prevent traffic loss during times of congestion or identify the traffic to be preserved if packets must be dropped.
@@ -597,10 +526,6 @@ To configure RED, change the value of `default_ecn_conf.red_enable` to `true`.
 ## Egress Queuing
 Cumulus Linux supports eight egress queues to provide different classes of service. 
 
-{{% notice note %}}
-Unicast and multicast share the same queue.
-{{% /notice %}}
-
 Egress queues are configured in the following section of `qos_infra.conf`.
 
 ```
@@ -621,7 +546,7 @@ Maps internal COS value 0 to egress queue 0.
 Queues can be remapped by changing the `.cos_` to the corresponding queue value. For example, to assign internal COS 2 to queue 7:  
 `cos_egr_queue.cos_2.uc  = 7`
 
-Multiple COS values can be mapped to a single queue. Not all queues must be assigned.
+Multiple internal COS values can be mapped to a single egress queue. Not all egress queues must be assigned.
 
 ## Egress Scheduling
 Cumulus Linux supports 802.1Qaz, Enhanced Transmission Selection. This allows the switch to assign bandwidth to egress queues and then prioritize the transmission of traffic from each queue. This includes support for Priority Queuing.
@@ -650,7 +575,24 @@ If a value of `0` is used then strict priority scheduling will be used. This que
 The use of strict priority does not define a maximum bandwidth allocation. This can lead to starvation of other queues. 
 {{% /notice %}}
 
-Configured schedules are applied on a per-interface basis. Using the `default_egress_sched` will apply the settings to all ports. To customize the scheduler for other interfaces configure a [port_group](#using-port-groups).
+Configured schedules are applied on a per-interface basis. Using the `default_egress_sched` will apply the settings to all ports. To customize the scheduler for other interfaces configure a [port_group](#port-groups-for-egress-scheduling).
+
+<details>
+<summary>All egress scheduling options</summary>
+
+|Configuration                                 |Example                                                         |Explanation|
+|----                                          |----                                                            |---        |
+| `default_egress_sched.egr_queue_0.bw_percent` | `default_egress_sched.egr_queue_0.bw_percent = 12` | Define the bandwidth percentage for queue 0. |
+| `default_egress_sched.egr_queue_1.bw_percent` | `default_egress_sched.egr_queue_1.bw_percent = 13` | Define the bandwidth percentage for queue 1.|
+| `default_egress_sched.egr_queue_2.bw_percent` | `default_egress_sched.egr_queue_2.bw_percent = 0` | Define the bandwidth percentage for queue 2. In this example, a value of `0` means *strict priority* scheduling. |
+| `default_egress_sched.egr_queue_3.bw_percent` | `default_egress_sched.egr_queue_3.bw_percent = 13` | Define the bandwidth percentage for queue 3.|
+| `default_egress_sched.egr_queue_4.bw_percent` | `default_egress_sched.egr_queue_4.bw_percent = 12` | Define the bandwidth percentage for queue 4.|
+| `default_egress_sched.egr_queue_5.bw_percent` | `default_egress_sched.egr_queue_5.bw_percent = 13` | Define the bandwidth percentage for queue 5.|
+| `default_egress_sched.egr_queue_6.bw_percent` | `default_egress_sched.egr_queue_6.bw_percent = 12` | Define the bandwidth percentage for queue 6.|
+| `default_egress_sched.egr_queue_7.bw_percent` | `default_egress_sched.egr_queue_7.bw_percent = 13` | Define the bandwidth percentage for queue 7.|
+</details>
+
+
 
 ## Policing and Shaping
 
@@ -739,6 +681,121 @@ The following iptables flags are supported with a dual-rate policer.
 For example, to configures a dual-rate, three-color policer, with a 3 Mbps CIR, 500 KB CBS, 10 Mbps PIR, and 1 MB EBS and drops packets that violate the policer:
 
 `-j TRICOLORPOLICE --set-color-mode blind --set-cir 3000 --set-cbs 500 --set-pir 10000 --set-ebs 1000 --set-violate-action drop`
+
+## Using Port Groups
+`qos_features.conf` supports the use of *port groups* to apply similar QoS configurations to a set of ports. Port groups are supported for any feature 
+
+{{% notice note %}}
+Any configurations used with port groups override the global settings for the ingress ports defined in the port group.
+
+Any ports that are not defined in a port group use the global settings.
+{{% /notice %}}
+
+### Port Groups for Trust and Marking
+
+You define port groups with the `source.port_group_list` configuration in the `qos_features.conf` file.
+
+A `source.port_group_list` is one or more names used for group settings. The name is used as a label for configuration settings. For example, if a `source.port_group_list` includes `test`, the following `port_default_priority` is configured with `source.test.port_default_priority`.
+
+The following is an explanation of an example `source.port_group_list` configuration.
+
+```
+source.port_group_list = [customer1,customer2]
+source.customer1.packet_priority_source_set = [dscp]
+source.customer1.port_set = swp1-swp4,swp6
+source.customer1.port_default_priority = 0
+source.customer1.cos_0.priority_source.dscp = [0,1,2,3,4,5,6,7]
+source.customer2.packet_priority_source_set = [cos]
+source.customer2.port_set = swp5,swp7
+source.customer2.port_default_priority = 0
+source.customer2.cos_1.priority_source.8021p = [4]
+```
+
+| Configuration  | Example | Description  |
+| -------------  | ------- | -----------  |
+| `source.port_group_list`  | `source.port_group_list = [customer1,customer2]` | Defines the names of the port groups to be used. Two groups are created `customer1` and `customer2`.  |
+| `source.customer1.packet_priority_source_set` | `source.customer1.packet_priority_source_set = [dscp]` | Defines the ingress marking trust. In this example, ingress DSCP values are preserved for group `customer1`. |
+| `source.customer1.port_set` | `source.customer1.port_set = swp1-swp4,swp6` | The set of ports to which to apply the ingress marking trust policy. In this example, ports swp1, swp2, swp3, swp4 and swp6 are used for `customer1`. |
+| `source.customer1.port_default_priority` | `source.customer1.port_default_priority = 0` | Define the default internal COS marking for unmarked or untrusted traffic. In this example, unmarked traffic or layer 2 traffic for `customer1` ports are marked with internal COS 0. |
+| `source.customer1.cos_0.priority_source` | `source.customer1.cos_0.priority_source.dscp = [0,1,2,3,4,5,6,7]` | Map the ingress DSCP values to an internal COS value for `customer1`. In this example, the set of DSCP values from 0-7 are mapped to internal COS 0.  |
+| `source.customer2.packet_priority_source_set` | `source.packet_priority_source_set = [cos]` | Defines the ingress marking trust for `customer2`. In this example, COS is trusted. |
+| `source.customer2.port_set`  | `source.customer2.port_set = swp5,swp7` | The set of ports to which to apply the ingress marking trust policy. In this example, ports swp5 and swp7 are used for `customer2`. |
+| `source.customer2.port_default_priority` | `source.customer2.port_default_priority = 0` | Define the default internal COS marking for unmarked or untrusted traffic. In this example, unmarked tagged layer 2 traffic or unmarked VLAN tagged traffic for `customer1` ports are marked with internal COS 0. |
+| `source.customer2.cos_0.priority_source` | `source.customer2.cos_1.priority_source.8021p = [4]` | Map the ingress COS values to an internal COS value for `customer2`. In this example ingress COS value 4 is mapped to internal COS 1 . |
+
+{{<cl/qos-switchd>}}
+
+### Port Groups for Remarking
+
+You can also use port groups for remarking COS or DSCP on egress based on the internal COS value that assigned. These port groups are defined with `remark.port_group_list` in `qos_features.conf`.
+
+A `remark.port_group_list` is one or more names to be used for group settings. The name is used as a label for configuration settings. For example, if a `remark.port_group_list` includes `test`, the following `remark.port_set` is configured with `remark.test.port_set`.
+
+The following is an explanation of an example `remark.group_list` configuration.
+
+```
+remark.port_group_list = [list1,list2]
+remark.list1.port_set = swp1-swp3,swp6
+remark.list1.cos_3.priority_remark.dscp = [24]
+remark.list2.packet_priority_remark_set = [802.1p]
+remark.list2.port_set = swp9,swp10
+remark.list2.cos_3.priority_remark.8021p = [2]
+```
+
+|Configuration |Example |Explanation |
+|------------- |------- |----------- |
+|`remark.port_group_list` |`remark.port_group_list = [list1,list2]` |Defines the names of the port groups to be used. Two groups are created `list1` and `list2`.|
+|`remark.list1.packet_priority_remark_set` |`remark.list1.packet_priority_remark_set = [dscp]`| Defines the egress marking to be applied, `802.1p` or `dscp`. In this example, the egress DSCP marking is rewritten. |
+|`remark.list1.port_set` |`remark.list1.port_set = swp1-swp3,swp6` | The set of _ingress_ ports that receives frames or packets that has remarking applied, regardless of egress interface. In this example, traffic arriving on ports swp1, swp2, swp3 and swp6 have their egress DSCP values remarked.|
+|`remark.list1.cos_3.priority_remark.dscp` |`remark.list1.cos_3.priority_remark.dscp = [24]` | The egress DSCP value to write to the packet based on the internal COS value. In this example, traffic in internal COS 3 sets the egress DSCP to 24.  |
+|`remark.list2.packet_priority_remark_set` |`remark.list2.packet_priority_remark_set = [802.1p]` | Defines the egress marking to be applied, `cos` or `dscp`. In this example, the egress COS marking is rewritten.  |
+|`remark.list2.port_set`  |`remark.list2.port_set = swp9,swp10` | The set of _ingress_ ports that receives frames or packets that have remarking applied, regardless of egress interface. In this example, traffic arriving on ports swp9 and swp10 have their egress COS values remarked.  |
+|`remark.list2.cos_4.priority_remark.8021p`|`remark.list1.cos_3.priority_remark.8021p = [2]` | The egress COS value to write to the frame based on the internal COS value. In this example, traffic in internal COS 4 sets the egress COS 2. |
+
+### Port Groups for Egress Scheduling
+
+You can also use port groups with egress scheduling weights to assign different profiles to different egress ports. These port groups are defined with `egress_sched.port_group_list ` in `qos_features.conf`.
+
+An `egress_sched.port_group_list` is one or more names to be used for group settings. The name is used as a label for configuration settings. For example, if an `egress_sched.port_group_list` includes `test`, the following `egress_sched.port_set` is configured with `egress_sched.test.port_set`.
+
+The following is an explanation of an example `egress_sched.group_list` configuration.
+
+```
+egress_sched.port_group_list = [list1,list2]
+egress_sched.list1.port_set = swp2
+egress_sched.list1.egr_queue_0.bw_percent = 10
+egress_sched.list1.egr_queue_1.bw_percent = 20
+egress_sched.list1.egr_queue_2.bw_percent = 30
+egress_sched.list1.egr_queue_3.bw_percent = 10
+egress_sched.list1.egr_queue_4.bw_percent = 10
+egress_sched.list1.egr_queue_5.bw_percent = 10
+egress_sched.list1.egr_queue_6.bw_percent = 10
+egress_sched.list1.egr_queue_7.bw_percent = 0
+#
+egress_sched.list2.port_set = [swp1,swp3,swp18]
+egress_sched.list2.egr_queue_2.bw_percent = 50
+egress_sched.list2.egr_queue_5.bw_percent = 50
+egress_sched.list2.egr_queue_6.bw_percent = 0
+```
+
+|Configuration |Example |Explanation |
+|------------- |------- |----------- |
+| `egress_sched.port_group_list` | `egress_sched.port_group_list = [list1,list2]` |  Defines the names of the port groups to be used. Two groups are created: `list1` and `list2`. |
+| `egress_sched.list1.port_set` | `egress_sched.list1.port_set = swp2` | Assigns a port to a port group. In this example, `swp2` is now part of port group `list1`.       |
+| `egress_sched.list1.egr_queue_0.bw_percent` | `egress_sched.list1.egr_queue_0.bw_percent = 10` | Assigns the percentage of bandwidth to egress queue 0. In this example, `10`% of egress bandwidth.    |
+| `egress_sched.list1.egr_queue_1.bw_percent` | `egress_sched.list1.egr_queue_1.bw_percent = 20` | Assigns the percentage of bandwidth to egress queue 1. In this example, `20`% of egress bandwidth.       |
+| `egress_sched.list1.egr_queue_2.bw_percent` | `egress_sched.list1.egr_queue_2.bw_percent = 30` | Assigns the percentage of bandwidth to egress queue 2. In this example, `13`% of egress bandwidth.       |
+| `egress_sched.list1.egr_queue_3.bw_percent` | `egress_sched.list1.egr_queue_3.bw_percent = 10` | Assigns the percentage of bandwidth to egress queue 3. In this example, `10`% of egress bandwidth.       |
+| `egress_sched.list1.egr_queue_4.bw_percent` | `egress_sched.list1.egr_queue_4.bw_percent = 10` | Assigns the percentage of bandwidth to egress queue 4. In this example, `10`% of egress bandwidth.       |
+| `egress_sched.list1.egr_queue_5.bw_percent` | `egress_sched.list1.egr_queue_5.bw_percent = 10` | Assigns the percentage of bandwidth to egress queue 5. In this example, `10`% of egress bandwidth.       |
+| `egress_sched.list1.egr_queue_6.bw_percent` | `egress_sched.list1.egr_queue_6.bw_percent = 10` | Assigns the percentage of bandwidth to egress queue 6. In this example, `10`% of egress bandwidth.       |
+| `egress_sched.list1.egr_queue_7.bw_percent` | `egress_sched.list1.egr_queue_7.bw_percent = 0` |  Assigns the percentage of bandwidth to egress queue 7. In this example, `0` indicates a strict priority queue.      |
+| `egress_sched.list2.port_set` | `egress_sched.list2.port_set = [swp1,swp3,swp18]` |   Assigns ports `swp1`, `swp3` and `swp18` to port group `list2`.     |
+| `egress_sched.list2.egr_queue_2.bw_percent` | `egress_sched.list2.egr_queue_2.bw_percent = 50` | Assigns the percentage of bandwidth to egress queue 2. In this example, `50`% of egress bandwidth.      |
+| `egress_sched.list2.egr_queue_5.bw_percent` | `egress_sched.list2.egr_queue_5.bw_percent = 50` | Assigns the percentage of bandwidth to egress queue 5. In this example, `50`% of egress bandwidth. |
+| `egress_sched.list2.egr_queue_6.bw_percent` | `egress_sched.list2.egr_queue_6.bw_percent = 0` | Assigns the percentage of bandwidth to egress queue 6. In this example, `0` indicates a strict priority queue. |
+
+In this example the port group `list2` only assigns weights to queues 2, 5 and 6. The other queues will be scheduled on a best-effort basis when there is no congestion in queues 2, 5 or 6.
 
 ## Syntax Checker
 Cumulus Linux provides a syntax checker for the `qos_features.conf` and `qos_infra.conf` files to check for errors, such missing parameters, or invalid parameter labels and values.

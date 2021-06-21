@@ -21,7 +21,7 @@ To configure RoCE with PFC and ECN:
 {{< tabs "roce lossless commands">}}
 {{< tab "NCLU Commands">}}
 ```
-cumulus@switch:~$ net add roce roce mode lossless
+cumulus@switch:~$ net add roce mode lossless
 cumulus@switch:~$ net commit
 ```
 {{< /tab >}}
@@ -48,13 +48,31 @@ To configure RoCE with ECN:
 {{< tabs "roce commands">}}
 {{< tab "NCLU Commands">}}
 ```
-cumulus@switch:~$ net add roce roce mode lossless
+cumulus@switch:~$ net add roce mode lossless
 cumulus@switch:~$ net commit
 ```
 {{< /tab >}}
 {{< tab "NVUE Commands">}}
 ```
 cumulus@switch:~$ nv set qos roce mode lossy
+cumulus@switch:~$ nv config apply
+```
+{{< /tab >}}
+{{< /tabs >}}
+
+## Remove RoCE Configuration
+To remove RoCE configurations:
+
+{{< tabs "remove roce commands">}}
+{{< tab "NCLU Commands">}}
+```
+cumulus@switch:~$ net del roce
+cumulus@switch:~$ net commit
+```
+{{< /tab >}}
+{{< tab "NVUE Commands">}}
+```
+cumulus@switch:~$ nv unset qos roce
 cumulus@switch:~$ nv config apply
 ```
 {{< /tab >}}

@@ -58,7 +58,7 @@ cumulus@switch:~$ sudo ifreload -a
 - The name of the bridge must be compliant with Linux interface naming conventions and unique within the switch.
 {{%/notice%}}
 
-## Configure Multiple Traditional Mode Bridges
+## Multiple Traditional Mode Bridges
 
 You can configure multiple bridges to logically divide a switch into multiple layer 2 domains. This allows for hosts to communicate with other hosts in the same domain, while separating them from hosts in other domains.
 
@@ -93,10 +93,10 @@ The {{<exlink url="http://www.ieee802.org/1/pages/802.1Q.html" text=" standard">
 802.1Q also identifies an *untagged* frame as belonging to the *native* VLAN (most network devices default their native VLAN to 1). In Cumulus Linux:
 
 - A *trunk port* is a switch port configured to send and receive 802.1Q tagged frames.
-- A switch sending an untagged (bare Ethernet) frame on a trunk port is sending from the native VLAN defined on the trunk port.
-- A switch sending a tagged frame on a trunk port is sending to the VLAN identified by the 802.1Q tag.
-- A switch receiving an untagged (bare Ethernet) frame on a trunk port places that frame in the native VLAN defined on the trunk port.
-- A switch receiving a tagged frame on a trunk port places that frame in the VLAN identified by the 802.1Q tag.
+- A switch that sends an untagged (bare Ethernet) frame on a trunk port sends from the native VLAN defined on the trunk port.
+- A switch that sends a tagged frame on a trunk port sends to the VLAN identified by the 802.1Q tag.
+- A switch that receives an untagged (bare Ethernet) frame on a trunk port places that frame in the native VLAN defined on the trunk port.
+- A switch that receives a tagged frame on a trunk port places that frame in the VLAN identified by the 802.1Q tag.
 
 A bridge in traditional mode has no concept of trunks, just tagged or untagged frames. With a trunk of 200 VLANs, there would need to be 199 bridges, each containing a tagged physical interface, and one bridge containing the native untagged VLAN.
 

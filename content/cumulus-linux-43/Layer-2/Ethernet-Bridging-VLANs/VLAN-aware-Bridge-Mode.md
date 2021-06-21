@@ -4,15 +4,11 @@ author: NVIDIA
 weight: 430
 toc: 4
 ---
-The Cumulus Linux bridge driver supports two configuration modes, one that is VLAN-aware, and one that follows a more traditional Linux bridge model.
-
-For {{<link url="Traditional-Bridge-Mode" text="traditional Linux bridges">}}, the kernel supports VLANs in the form of VLAN subinterfaces. Enabling bridging on multiple VLANs means configuring a bridge for each VLAN and, for each member port on a bridge, creating one or more VLAN subinterfaces out of that port. This mode poses scalability challenges in terms of configuration size as well as boot time and run time state management, when the number of ports times the number of VLANs becomes large.
-
 The VLAN-aware mode in Cumulus Linux implements a configuration model for large-scale layer 2 environments, with **one single instance** of {{<link url="Spanning-Tree-and-Rapid-Spanning-Tree-STP" text="spanning tree protocol">}}. Each physical bridge member port is configured with the list of allowed VLANs as well as its port VLAN ID, either primary VLAN Identifier (PVID) or native VLAN. MAC address learning, filtering and forwarding are *VLAN-aware*. This significantly reduces the configuration size, and eliminates the large overhead of managing the port/VLAN instances as subinterfaces, replacing them with lightweight VLAN bitmaps and state updates.
 
 {{%notice tip%}}
 
-You can configure both VLAN-aware and traditional mode bridges on thesame network in Cumulus Linux; however do not have more than one VLAN-aware bridge on a given switch.
+You cannot have more than one VLAN-aware bridge on a switch.
 
 {{%/notice%}}
 
@@ -32,17 +28,6 @@ cumulus@switch:~$ net add bridge bridge vids 100,200
 cumulus@switch:~$ net add bridge bridge pvid 1
 cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
-```
-
-The above commands create the following code snippet in the `/etc/network/interfaces` file:
-
-```
-auto bridge
-iface bridge
-    bridge-ports swp1 swp2
-    bridge-pvid 1
-    bridge-vids 100 200
-    bridge-vlan-aware yes
 ```
 
 {{< /tab >}}
@@ -71,9 +56,20 @@ cumulus@switch:~$ ifreload -a
 
 {{< /tab >}}
 
-{{< /tabs >}}
+{{< tab "CUE Commands ">}}
 
-{{%notice note%}}
+With CUE, there is a default bridge called `br_default`, which has no ports assigned to it. The example below configures this default bridge.
+
+```
+cumulus@switch:~$ cl set interface swp1-2 bridge domain br_default
+cumulus@switch:~$ cl set bridge domain br_default vlan 100,200
+cumulus@switch:~$ cl set bridge domain br_default untagged 1
+cumulus@switch:~$ cl config apply
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
 
 The Primary VLAN Identifer (PVID) of the bridge defaults to 1. You do *not* have to specify `bridge-pvid` for a bridge or a port. However, even though this does not affect the configuration, it helps other users for readability. The following configurations are identical to each other and the configuration above:
 
@@ -102,8 +98,6 @@ iface bridge
     bridge-vlan-aware yes
 ```
 
-{{%/notice%}}
-
 {{%notice tip%}}
 
 If you specify `bridge-vids` or `bridge-pvid` at the bridge level, these configurations are inherited by all ports in the bridge. However, specifying any of these settings for a specific port overrides the setting in the bridge.
@@ -112,19 +106,15 @@ If you specify `bridge-vids` or `bridge-pvid` at the bridge level, these configu
 
 {{%notice warning%}}
 
-Do not try to bridge the management port, eth0, with any switch ports (swp0, swp1 and so on). For example, if you create a bridge with eth0 and swp1, it will not work properly and might disrupt access to the management interface.
+Do not try to bridge the management port eth0 with any switch ports (swp0, swp1 and so on). For example, if you create a bridge with eth0 and swp1, it will not work properly and might disrupt access to the management interface.
 
 {{%/notice%}}
 
-### Reserved VLAN Range
+## Reserved VLAN Range
 
-For hardware data plane internal operations, the switching silicon requires VLANs for every physical port, Linux bridge, and layer 3 subinterface. Cumulus Linux reserves a range of  VLANs by default; the reserved range is 3600-3999.
-
-{{%notice tip%}}
+For hardware data plane internal operations, the switching silicon requires VLANs for every physical port, Linux bridge, and layer 3 subinterface. Cumulus Linux reserves a range of VLANs by default; the reserved range is 3600-3999.
 
 You can modify the reserved range if it conflicts with any user-defined VLANs, as long the new range is a contiguous set of VLANs with IDs anywhere between 2 and 4094, and the minimum size of the range is 150 VLANs.
-
-{{%/notice%}}
 
 To configure the reserved range:
 
@@ -138,7 +128,7 @@ resv_vlan_range
 
 {{<cl/restart-switchd>}}
 
-## VLAN Filtering (VLAN Pruning)
+## VLAN Pruning
 
 By default, the bridge port inherits the bridge VIDs. To configure a port to override the bridge VIDs:
 
@@ -198,6 +188,18 @@ iface swp3
 
 ```
 cumulus@switch:~$ ifreload -a
+```
+
+{{< /tab >}}
+
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@switch:~$ cl set interface swp1-3 bridge domain br_default
+cumulus@switch:~$ cl set bridge domain br_default vlan 100,200
+cumulus@switch:~$ cl set bridge domain br_default untagged 1
+cumulus@switch:~$ cl set interface swp3 bridge domain br_default vlan 200
+cumulus@switch:~$ cl config apply
 ```
 
 {{< /tab >}}
@@ -271,6 +273,19 @@ iface swp2
 
 ```
 cumulus@switch:~$ ifreload -a
+```
+
+{{< /tab >}}
+
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@switch:~$ cl set interface swp1-2 bridge domain br_default
+cumulus@switch:~$ cl set bridge domain br_default vlan 100,200
+cumulus@switch:~$ cl set bridge domain br_default untagged 1
+cumulus@switch:~$ cl set interface swp1 bridge domain br_default access 100
+cumulus@switch:~$ cl set interface swp2 bridge domain br_default access 100
+cumulus@switch:~$ cl config apply
 ```
 
 {{< /tab >}}
@@ -351,6 +366,15 @@ bridge 1
 
 {{< /tab >}}
 
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@switch:~$ cl set interface swp2 bridge domain br_default untagged none
+cumulus@switch:~$ cl config apply
+```
+
+{{< /tab >}}
+
 {{< /tabs >}}
 
 ## VLAN Layer 3 Addressing
@@ -361,10 +385,10 @@ When configuring the VLAN attributes for the bridge, specify the attributes for 
 
 {{< tab "NCLU Commands ">}}
 
-The following example commands declare native VLAN 100 with IPv4 address 192.168.10.1/24 and IPv6 address 2001:db8::1/32.
+The following example commands declare native VLAN 100 with IPv4 address 10.1.10.2/24 and IPv6 address 2001:db8::1/32.
 
 ```
-cumulus@switch:~$ net add vlan 100 ip address 192.168.10.1/24
+cumulus@switch:~$ net add vlan 100 ip address 10.1.10.2/24
 cumulus@switch:~$ net add vlan 100 ipv6 address 2001:db8::1/32
 cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
@@ -374,7 +398,7 @@ cumulus@switch:~$ net commit
 
 {{< tab "Linux Commands ">}}
 
-Edit the `/etc/network/interfaces` file, then run the `ifreload -a` command. The following example declares native VLAN 100 with IPv4 address 192.168.10.1/24 and IPv6 address 2001:db8::1/32.
+Edit the `/etc/network/interfaces` file, then run the `ifreload -a` command. The following example declares native VLAN 100 with IPv4 address 10.1.10.2/24 and IPv6 address 2001:db8::1/32.
 
 ```
 cumulus@switch:~$ sudo nano /etc/network/interfaces
@@ -388,7 +412,7 @@ iface bridge
 
 auto vlan100
 iface vlan100
-    address 192.168.10.1/24
+    address 10.1.10.2/24
     address 2001:db8::1/32
     vlan-id 100
     vlan-raw-device bridge
@@ -401,6 +425,16 @@ cumulus@switch:~$ ifreload -a
 
 {{< /tab >}}
 
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@switch:~$ cl set interface vlan100 ip address 10.1.10.2/24
+cumulus@switch:~$ cl set interface vlan100 ip address 2001:db8::1/32
+cumulus@switch:~$ cl config apply
+```
+
+{{< /tab >}}
+
 {{< /tabs >}}
 
 {{%notice note%}}
@@ -409,26 +443,102 @@ In the above configuration, if your switch is configured for multicast routing, 
 
 {{%/notice%}}
 
-## Configure ARP Timers
+When you configure a switch initially, all southbound bridge ports might be down; therefore, by default, the SVI is also down. You can force the SVI to always be up by disabling interface state tracking, which leaves the SVI in the UP state always, even if all member ports are down. Other implementations describe this feature as *no autostate*. This is beneficial if you want to perform connectivity testing.
 
-Cumulus Linux does not often interact directly with end systems as much as end systems interact with one another. Therefore, after a successful {{<exlink url="http://linux-ip.net/html/ether-arp.html" text="address resolution protocol">}} (ARP) places a neighbor into a reachable state, Cumulus Linux might not interact with the client again for a long enough period of time for the neighbor to move into a stale state. To keep neighbors in the reachable state, Cumulus Linux includes a background process (`/usr/bin/neighmgrd`). The background process tracks neighbors that move into a stale, delay, or probe state, and attempts to refresh their state before they are removed from the Linux kernel and from hardware forwarding.
+To keep the SVI perpetually UP, create a dummy interface, then make the dummy interface a member of the bridge.
 
-The ARP refresh timer defaults to 1080 seconds (18 minutes). To change this setting, follow the procedures outlined in {{<link url="Address-Resolution-Protocol-ARP">}}.
+{{< expand "Example Configuration"  >}}
 
-## Configure Multiple Ports in a Range
+Consider the following configuration, without a dummy interface in the bridge:
 
-To save time, you can specify a range of ports or VLANs instead of enumerating each one individually.
+```
+cumulus@switch:~$ sudo cat /etc/network/interfaces
+...
 
-To specify a range:
+auto bridge
+iface bridge
+    bridge-vlan-aware yes
+    bridge-ports swp3
+    bridge-vids 100
+    bridge-pvid 1
+...
+```
 
-{{< tabs "TabID436 ">}}
+With this configuration, when swp3 is down, the SVI is also down:
+
+```
+cumulus@switch:~$ ip link show swp3
+5: swp3: <BROADCAST,MULTICAST> mtu 1500 qdisc pfifo_fast master bridge state DOWN mode DEFAULT group default qlen 1000
+    link/ether 2c:60:0c:66:b1:7f brd ff:ff:ff:ff:ff:ff
+cumulus@switch:~$ ip link show bridge
+35: bridge: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc noqueue state DOWN mode DEFAULT group default
+    link/ether 2c:60:0c:66:b1:7f brd ff:ff:ff:ff:ff:ff
+```
+
+Now add the dummy interface to your network configuration:
+
+1. Edit the `/etc/network/interfaces` file and add the dummy interface stanza before the bridge stanza:
+
+    ```
+    cumulus@switch:~$ sudo nano /etc/network/interfaces
+    ...
+
+    auto dummy
+    iface dummy
+        link-type dummy
+
+    auto bridge
+    iface bridge
+    ...
+    ```
+
+2. Add the dummy interface to the `bridge-ports` line in the bridge configuration:
+
+    ```
+    auto bridge
+    iface bridge
+        bridge-vlan-aware yes
+        bridge-ports swp3 dummy
+        bridge-vids 100
+        bridge-pvid 1
+    ```
+
+3. Save and exit the file, then reload the configuration:
+
+    ```
+    cumulus@switch:~$ sudo ifreload -a
+    ```
+
+    Now, even when swp3 is down, both the dummy interface and the bridge remain up:
+
+    ```
+    cumulus@switch:~$ ip link show swp3
+    5: swp3: <BROADCAST,MULTICAST> mtu 1500 qdisc pfifo_fast master bridge state DOWN mode DEFAULT group default qlen 1000
+        link/ether 2c:60:0c:66:b1:7f brd ff:ff:ff:ff:ff:ff
+    cumulus@switch:~$ ip link show dummy
+    37: dummy: <BROADCAST,NOARP,UP,LOWER_UP> mtu 1500 qdisc noqueue master bridge state UNKNOWN mode DEFAULT group default
+        link/ether 66:dc:92:d4:f3:68 brd ff:ff:ff:ff:ff:ff
+    cumulus@switch:~$ ip link show bridge
+    35: bridge: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP mode DEFAULT group default
+        link/ether 2c:60:0c:66:b1:7f brd ff:ff:ff:ff:ff:ff
+    ```
+
+{{< /expand >}}
+
+## IPv6 Link-local Address Generation
+
+By default, Cumulus Linux automatically generates IPv6 {{<exlink url="https://en.wikipedia.org/wiki/Link-local_address" text="link-local addresses">}} on VLAN interfaces. If you want to use a different mechanism to assign link-local addresses, you can disable this feature. You can disable link-local automatic address generation for both regular IPv6 addresses and address-virtual (macvlan) addresses.
+
+To disable automatic address generation for a regular IPv6 address on a VLAN:
+
+{{< tabs "TabID248 ">}}
 
 {{< tab "NCLU Commands ">}}
 
-In the example below, `swp1-52` indicates that swp1 through swp52 are part of the bridge.
+Run the `net add vlan <vlan> ipv6-addrgen off` command. The following example command disables automatic address generation for a regular IPv6 address on VLAN 100.
 
 ```
-cumulus@switch:~$ net add bridge bridge ports swp1-52
+cumulus@switch:~$ net add vlan 100 ipv6-addrgen off
 cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
@@ -437,22 +547,74 @@ cumulus@switch:~$ net commit
 
 {{< tab "Linux Commands ">}}
 
-The `glob` keyword referenced in the `bridge-ports` attribute indicates that swp1 through swp52 are part of the bridge:
+Edit the `/etc/network/interfaces` file to add the line `ipv6-addrgen off` to the VLAN stanza, then run the `ifreload -a` command. The following example disables automatic address generation for a regular IPv6 address on VLAN 100.
 
 ```
+cumulus@switch:~$ sudo nano /etc/network/interfaces
 ...
-auto bridge
-iface bridge
-        bridge-vlan-aware yes
-        bridge-ports glob swp1-52
-        bridge-stp on
-        bridge-vids 310 700 707 712 850 910
+auto vlan100
+iface vlan 100
+    ipv6-addrgen off
+    vlan-id 100
+    vlan-raw-device bridge
 ...
+```
+
+```
+cumulus@switch:~$ ifreload -a
+```
+
+{{< /tab >}}
+
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@switch:~$ cl set 
+cumulus@switch:~$ cl config apply
 ```
 
 {{< /tab >}}
 
 {{< /tabs >}}
+
+To re-enable automatic link-local address generation for a VLAN:
+
+{{< tabs "TabID287 ">}}
+
+{{< tab "NCLU Commands ">}}
+
+Run the `net del vlan <vlan> ipv6-addrgen off` command. The following example command re-enables automatic address generation for a regular IPv6 address on VLAN 100.
+
+```
+cumulus@switch:~$ net del vlan 100 ipv6-addrgen off
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+{{< /tab >}}
+
+{{< tab "Linux Commands ">}}
+
+Edit the `/etc/network/interfaces` file to **remove** the line `ipv6-addrgen off` from the VLAN stanza, then run the `ifreload -a` command.
+
+{{< /tab >}}
+
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@switch:~$ cl set 
+cumulus@switch:~$ cl config apply
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
+## Configure ARP Timers
+
+Cumulus Linux does not often interact directly with end systems as much as end systems interact with one another. Therefore, after a successful {{<exlink url="http://linux-ip.net/html/ether-arp.html" text="address resolution protocol">}} (ARP) places a neighbor into a reachable state, Cumulus Linux might not interact with the client again for a long enough period of time for the neighbor to move into a stale state. To keep neighbors in the reachable state, Cumulus Linux includes a background process (`/usr/bin/neighmgrd`). The background process tracks neighbors that move into a stale, delay, or probe state, and attempts to refresh their state before they are removed from the Linux kernel and from hardware forwarding.
+
+The ARP refresh timer defaults to 1080 seconds (18 minutes). To change this setting, follow the procedures outlined in {{<link url="Address-Resolution-Protocol-ARP">}}.
 
 ## Example Configurations
 
@@ -460,7 +622,7 @@ The following sections provide example VLAN-aware bridge configurations.
 
 ### Access Ports and Pruned VLANs
 
-The following example configuration contains an access port and switch port that are *pruned*; they only sends and receive traffic tagged to and from a specific set of VLANs declared by the `bridge-vids` attribute. It also contains other switch ports that send and receive traffic from all the defined VLANs.
+The following example configuration contains an access port and switch port that are *pruned*; they only send and receive traffic tagged to and from a specific set of VLANs declared by the `bridge-vids` attribute. It also contains other switch ports that send and receive traffic from all the defined VLANs.
 
 ```
 ...

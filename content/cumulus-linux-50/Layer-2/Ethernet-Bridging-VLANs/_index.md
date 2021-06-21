@@ -27,7 +27,7 @@ You can configure both VLAN-aware and traditional mode bridges on the same netwo
 
 The MAC address for a frame is learned when the frame enters the bridge through an interface. The MAC address is recorded in the bridge table and the bridge forwards the frame to its intended destination by looking up the destination MAC address. The MAC entry is then maintained for 1800 seconds (30 minutes). If the frame is seen with the same source MAC address before the MAC entry age is exceeded, the MAC entry age is refreshed; if the MAC entry age is exceeded, the MAC address is deleted from the bridge table.
 
-The following example CUE command output shows a MAC address table for the bridge.
+The following example CUE command output shows a MAC address table for the bridge `br_default`.
 
 ```
 cumulus@switch:~$ cl show bridge domain br_default mac-table
@@ -49,8 +49,8 @@ The Linux `bridge fdb` command interacts with the forwarding database table (FDB
 
 | Keyword| Description |
 |--- |--- |
-| self | The FDB entry belongs to the FDB on the device referenced by the device.<br>For example, this FDB entry belongs to the VXLAN device:<br>`vx-1000`: `00:02:00:00:00:08 dev vx-1000 dst 27.0.0.10 self` |
-| master |The FDB entry belongs to the FDB on the device's master and the FDB entry is pointing to a master's port.<br>For example, this FDB entry is from the master device named bridge and is pointing to the VXLAN bridge port:<br>`vx-1001`: `02:02:00:00:00:08 dev vx-1001 vlan 1001 master bridge` |
+| self | The FDB entry belongs to the FDB on the device referenced by the device. For example, this FDB entry belongs to the VXLAN device:<br>`vx-1000`: `00:02:00:00:00:08 dev vx-1000 dst 27.0.0.10 self` |
+| master |The FDB entry belongs to the FDB on the device's master and the FDB entry is pointing to a master's port. For example, this FDB entry is from the master device named bridge and is pointing to the VXLAN bridge port:<br>`vx-1001`: `02:02:00:00:00:08 dev vx-1001 vlan 1001 master bridge` |
 | extern_learn | The FDB entry is managed (or offloaded) by an external control plane, such as the BGP control plane for EVPN.|
 
 The following example shows the `bridge fdb show` command output:
@@ -67,10 +67,16 @@ cumulus@switch:~$ bridge fdb show | grep 02:02:00:00:00:08
 - The VXLAN FDB augments the bridge FDB with additional remote destination information.
 - All FDB entries that point to a VXLAN port appear as two entries. The second entry augments the remote destination information.
 
+### ARP Timers
+
+Cumulus Linux does not often interact directly with end systems as much as end systems interact with one another. Therefore, after a successful {{<exlink url="http://linux-ip.net/html/ether-arp.html" text="address resolution protocol">}} (ARP) places a neighbor into a reachable state, Cumulus Linux might not interact with the client again for a long enough period of time for the neighbor to move into a stale state. To keep neighbors in the reachable state, Cumulus Linux includes a background process (`/usr/bin/neighmgrd`). The background process tracks neighbors that move into a stale, delay, or probe state, and attempts to refresh their state before they are removed from the Linux kernel and from hardware forwarding.
+
+The ARP refresh timer defaults to 1080 seconds (18 minutes). To change this setting, see {{<link url="Address-Resolution-Protocol-ARP">}}.
+
 ## Considerations
 
 - A bridge cannot contain multiple subinterfaces of the **same** port. Attempting this configuration results in an error.
-- In environments where both VLAN-aware and traditional bridges are used, if a traditional bridge has a subinterface of a bond that is a normal interface in a VLAN-aware bridge, the bridge is flapped when the traditional bridge's bond subinterface is brought down.
+- In environments where both VLAN-aware and traditional bridges are used, if a traditional bridge has a subinterface of a bond that is a normal interface in a VLAN-aware bridge, the bridge is flapped when the bond subinterface of the traditional bridge is brought down.
 - You cannot enslave a VLAN raw device to a different master interface (you cannot edit the `vlan-raw-device` setting in the `/etc/network/interfaces` file). You need to delete the VLAN and recreate it.
 - Cumulus Linux supports up to 2000 VLANs. This includes the internal interfaces, bridge interfaces, logical interfaces, and so on.
 - In Cumulus Linux, MAC learning is enabled by default on traditional and VLAN-aware bridge interfaces. Do not disable MAC learning unless you are using EVPN. See {{<link title="Ethernet Virtual Private Network - EVPN">}}.

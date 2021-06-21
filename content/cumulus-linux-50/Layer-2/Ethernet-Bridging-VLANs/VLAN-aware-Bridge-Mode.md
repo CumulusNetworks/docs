@@ -18,7 +18,7 @@ On NVIDIA Spectrum-2 and Spectrum-3 switches, Cumulus Linux supports multiple VL
 
 ## Configure a VLAN-aware Bridge
 
-The example below shows the commands required to create a VLAN-aware bridge configured for STP that contains two switch ports and includes 3 VLANs; tagged VLANs 10 and 20, and untagged (native) VLAN 1.
+The example below shows the commands required to create a VLAN-aware bridge that contains two switch ports and includes 3 VLANs; VLANs 10 and 20 (tagged), and native VLAN 1 (untagged).
 
 {{< img src = "/images/cumulus-linux/ethernet-bridging-basic-trunking1.png" >}}
 
@@ -60,7 +60,7 @@ cumulus@switch:~$ ifreload -a
 {{< /tab >}}
 {{< /tabs >}}
 
-The Primary VLAN Identifer (PVID) of the bridge defaults to 1. You do *not* have to specify `bridge-pvid` for a bridge or a port. However, even though this does not affect the configuration, it helps other users for readability. The following configurations are identical to each other and the configuration above:
+The Primary VLAN Identifer (PVID) of the bridge defaults to 1. You do *not* have to specify `bridge-pvid` for a bridge or port. However, even though this does not affect the configuration, it helps other users for readability. The following configurations are identical to each other and the configuration above:
 
 ```
 auto br_default
@@ -173,7 +173,9 @@ resv_vlan_range
 
 ## VLAN Pruning
 
-By default, the bridge port inherits the bridge VIDs. To configure a port to override the bridge VIDs:
+By default, the bridge port inherits the bridge VIDs; however, you can configure a port to override the bridge VIDs.
+
+The following example shows you how to configure swp3 to override the bridge VIDs.
 
 {{< img src = "/images/cumulus-linux/ethernet-bridging-vlan-pruned1.png" >}}
 
@@ -191,7 +193,7 @@ cumulus@switch:~$ cl config apply
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Edit the `/etc/network/interfaces` file, then run the `ifreload -a` command. The following example commands configure swp3 to override the bridge VIDs:
+Edit the `/etc/network/interfaces` file, then run the `ifreload -a` command.
 
 ```
 cumulus@switch:~$ sudo nano /etc/network/interfaces
@@ -216,9 +218,9 @@ cumulus@switch:~$ ifreload -a
 {{< /tab >}}
 {{< /tabs >}}
 
-## Untagged/Access Ports
+## Access Ports
 
-Access ports ignore all tagged packets. In the configuration below, swp1 and swp2 are configured as access ports, while all untagged traffic goes to VLAN 10:
+Access ports ignore all tagged packets. In the configuration below, swp1 and swp2 are configured as access ports, while all untagged traffic goes to VLAN 10.
 
 {{< img src = "/images/cumulus-linux/ethernet-bridging-vlan_untagged_access_ports1.png" >}}
 
@@ -268,7 +270,7 @@ cumulus@switch:~$ ifreload -a
 
 ## Drop Untagged Frames
 
-With VLAN-aware bridge mode, you can configure a switch port to drop any untagged frames. To do this, add `bridge-allow-untagged no` to the **switch port** (not to the bridge). This leaves the bridge port without a PVID and drops untagged packets.
+With VLAN-aware bridge mode, you can configure a switch port (not the bridge) to drop any untagged frames. This leaves the bridge port without a PVID and drops untagged packets.
 
 The following example command configures swp2 to drop untagged frames:
 
@@ -307,10 +309,11 @@ iface br_default
 ```
 cumulus@switch:~$ sudo ifreload -a
 ```
+
 {{< /tab >}}
 {{< /tabs >}}
 
-When you check VLAN membership for that port, it shows that there is **no** untagged VLAN.
+You can check VLAN membership for the port with the CUE `cl show bridge domain <domain-name> vlan` command or the Linux `bridge -c vlan show` command. The command output shows that there is **no** untagged VLAN. For example:
 
 ```
 cumulus@switch:~$ bridge -c vlan show
@@ -325,7 +328,7 @@ bridge 1
 
 ## VLAN Layer 3 Addressing
 
-When configuring the VLAN attributes for the bridge, specify the attributes for each VLAN interface. If you are configuring the switch virtual interface (SVI) for the native VLAN, you must declare the native VLAN and specify its IP address. Specifying the IP address in the bridge stanza itself returns an error.
+When you configure VLAN attributes for a bridge, you must specify the attributes for each VLAN interface. If you configure the switch virtual interface (SVI) for the native VLAN, you must declare the native VLAN and specify its IP address.
 
 The following example commands declare native VLAN 10 with IPv4 address 10.1.10.2/24 and IPv6 address 2001:db8::1/32.
 
@@ -342,6 +345,10 @@ cumulus@switch:~$ cl config apply
 {{< tab "Linux Commands ">}}
 
 Edit the `/etc/network/interfaces` file, then run the `ifreload -a` command.
+
+{{%notice note%}}
+Specifying the IP address in the bridge stanza itself returns an error.
+{{%/notice%}}
 
 ```
 cumulus@switch:~$ sudo nano /etc/network/interfaces
@@ -455,7 +462,7 @@ Now add the dummy interface to your network configuration:
 
 By default, Cumulus Linux automatically generates IPv6 *linklocal* addresses on VLAN interfaces. If you want to use a different mechanism to assign linklocal addresses, you can disable this feature. You can disable linklocal automatic address generation for both regular IPv6 addresses and address-virtual (macvlan) addresses.
 
-To disable automatic address generation for a regular IPv6 address on a VLAN, run the following commands. The following example command disables automatic address generation for a regular IPv6 address on VLAN 10.
+The following example command disables automatic address generation for a regular IPv6 address on VLAN 10.
 
 {{< tabs "TabID248 ">}}
 {{< tab "CUE Commands ">}}
@@ -510,8 +517,8 @@ The following example configuration contains an access port and switch port that
 
 ```
 ...
-# ports swp3-swp48 are trunk ports which inherit vlans from the 'bridge'
-# ie vlans 310,700,707,712,850,910
+# ports swp3-swp48 are trunk ports that inherit vlans from the 'bridge'
+# vlans 310,700,707,712,850,910
 #
 auto br_default
 iface br_default
@@ -551,7 +558,7 @@ iface swp49
 ...
 ```
 
-### Large Bond Set Configuration
+### Large Bond Sets
 
 The configuration below shows a VLAN-aware bridge with a large set of bonds. The bond configurations are generated from a {{<exlink url="http://www.makotemplates.org/" text="Mako">}} template.
 
@@ -666,17 +673,7 @@ iface vni10
 The following configuration adds a static MAC address entry to the layer 2 table for an interface within the VLAN-aware bridge by running a command similar to the following:
 
 ```
-cumulus@switch:~$ sudo bridge fdb add 12:34:56:12:34:56 dev swp1 vlan 150 master static
-cumulus@switch:~$ sudo bridge fdb show
-44:38:39:00:00:7c dev swp1 master bridge permanent
-12:34:56:12:34:56 dev swp1 vlan 150 master bridge static
-44:38:39:00:00:7c dev swp1 self permanent
-12:12:12:12:12:12 dev swp1 self permanent
-12:34:12:34:12:34 dev swp1 self permanent
-12:34:56:12:34:56 dev swp1 self permanent
-12:34:12:34:12:34 dev bridge master bridge permanent
-44:38:39:00:00:7c dev bridge vlan 500 master bridge permanent
-12:12:12:12:12:12 dev bridge master bridge permanent
+cumulus@switch:~$ sudo bridge fdb add 12:34:56:12:34:56 dev swp1 vlan 10 master static
 ```
 
 ## Considerations

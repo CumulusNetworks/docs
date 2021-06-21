@@ -22,7 +22,7 @@ In *all-active* mode, when a bond has multiple slave interfaces, each bond slave
 
 ## Configure LACP Bypass
 
-To enable LACP bypass on the host-facing bond, set `bond-lacp-bypass-allow` to *yes*.
+To enable LACP bypass on the host-facing bond:
 
 {{< tabs "TabID28 ">}}
 
@@ -35,7 +35,7 @@ cumulus@switch:~$ net add bond bond1 bond slaves swp51s2,swp51s3
 cumulus@switch:~$ net add bond bond1 clag id 1
 cumulus@switch:~$ net add bond bond1 bond lacp-bypass-allow
 cumulus@switch:~$ net add bond bond1 stp bpduguard
-cumulus@switch:~$ net add bridge bridge ports bond1,bond2,bond3,bond4,peer5
+cumulus@switch:~$ net add bridge bridge ports bond1,bond2,bond3,bond4,bond5
 cumulus@switch:~$ net add bridge bridge vids 100-105
 cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
@@ -67,6 +67,19 @@ iface bridge
 
 ```
 cumulus@switch:~$ sudo ifreload -a
+```
+
+{{< /tab >}}
+
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@switch:~$ cl set interface bond1 bond member swp51s2,swp51s3
+cumulus@switch:~$ cl set interface bond1 bond mlag id 1
+cumulus@switch:~$ cl set interface bond1 bond lacp-bypass on
+cumulus@switch:~$ cl set interface bond1,bond2,bond3,bond4,bond5 bridge domain bridge vlan 100-105
+cumulus@switch:~$ cl set interface bond1 bridge domain bridge stp bpdu-guard on
+cumulus@switch:~$ cl config apply
 ```
 
 {{< /tab >}}
@@ -138,6 +151,14 @@ cumulus@switch:~$ ip link show swp51s2
 cumulus@switch:~$ ip link show swp52s3
 56: swp51s3: <BROADCAST,MULTICAST,SLAVE,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast master bond1 state UP mode DEFAULT group default qlen 1000
     link/ether c4:54:44:f6:44:5a brd ff:ff:ff:ff:ff:ff
+```
+
+{{< /tab >}}
+
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@switch:~$ cl show interface bond1 
 ```
 
 {{< /tab >}}

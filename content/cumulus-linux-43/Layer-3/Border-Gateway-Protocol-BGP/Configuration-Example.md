@@ -5,6 +5,9 @@ weight: 880
 toc: 3
 ---
 This section shows a BGP configuration example based on the reference topology. The example configures BGP *unnumbered* on all leafs and spines and uses the peer group *underlay*. MLAG is configured on leaf01 and leaf02, and on leaf03 and leaf04.
+<!-- laclac: Showing these underlying Linux files is going to be tricky with CUE as the CUE rendered files will not be the same as in the past. CUE exposes the single CUE config file and should leave viewing/manipulating these Linux files to the SuperUser.  How do we manage this in the docs?   -->
+
+<!-- AniaR:We will show the CUE commands required to configure the example -->
 
 {{< img src = "/images/cumulus-linux/mlag-config-peering.png" >}}
 

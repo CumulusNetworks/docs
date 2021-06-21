@@ -4,7 +4,9 @@ author: NVIDIA
 weight: 440
 toc: 4
 ---
-Use a {{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware bridge">}} on your switch. Use traditional mode bridges only if you need to run more than one bridge on the switch or if you need to use PVSTP+.
+For a traditional Linux bridge, the kernel supports VLANs in the form of VLAN subinterfaces. Enabling bridging on multiple VLANs means configuring a bridge for each VLAN and, for each member port on a bridge, creating one or more VLAN subinterfaces out of that port. This mode poses scalability challenges in terms of configuration size as well as boot time and run time state management, when the number of ports times the number of VLANs becomes large.
+
+Using a {{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware bridge">}} on your switch is recommended. Use traditional mode bridges only if you need to run more than one bridge on the switch or if you need to use PVSTP+.
 
 ## Configure a Traditional Mode Bridge
 
@@ -19,7 +21,7 @@ To configure spanning tree options for a bridge interface, refer to {{<link titl
 
 {{< tab "NCLU Commands ">}}
 
-The following example commands configure a traditional mode bridge called my\_bridge with IP address 10.10.10.10/24. swp1, swp2, swp3, and swp4 are members of the bridge.
+The following example commands configure a traditional mode bridge called my_bridge with IP address 10.10.10.10/24. swp1, swp2, swp3, and swp4 are members of the bridge.
 
 ```
 cumulus@switch:~$ net add bridge my_bridge ports swp1-4
@@ -32,7 +34,7 @@ cumulus@switch:~$ net commit
 
 {{< tab "Linux Commands ">}}
 
-Edit the `/etc/network/interfaces` file, then run the `ifreload -a` command. The following example command configures a traditional mode bridge called my\_bridge with IP address 10.10.10.10/24. swp1, swp2, swp3, and swp4 are members of the bridge.
+Edit the `/etc/network/interfaces` file, then run the `ifreload -a` command. The following example command configures a traditional mode bridge called my_bridge with IP address 10.10.10.10/24. swp1, swp2, swp3, and swp4 are members of the bridge.
 
 ```
 ...
@@ -58,6 +60,15 @@ iface my_bridge
 
 ```
 cumulus@switch:~$ sudo ifreload -a
+```
+
+{{< /tab >}}
+
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@switch:~$ cl set 
+cumulus@switch:~$ cl config apply
 ```
 
 {{< /tab >}}
@@ -165,11 +176,20 @@ iface br-VLAN200
 
 {{< /tab >}}
 
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@switch:~$ cl set 
+cumulus@switch:~$ cl config apply
+```
+
+{{< /tab >}}
+
 {{< /tabs >}}
 
 ### VLAN Tagging Examples
 
-You can find more examples of VLAN tagging in {{<link url="VLAN-Tagging" text="the VLAN tagging chapter">}}.
+For more VLAN tagging examples, see {{<link url="VLAN-Tagging" text="VLAN Tagging">}}.
 
 ### Configure ARP Timers
 

@@ -61,6 +61,15 @@ cumulus@switch:~$ sudo ifreload -a
 
 {{< /tab >}}
 
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@switch:~$ cl set 
+cumulus@switch:~$ cl config apply
+```
+
+{{< /tab >}}
+
 {{< /tabs >}}
 
 Consider also configuring IGMP/MLD querier. See {{<link url="#configure-igmpmld-querier" text="Configure IGMP/MLD Querier">}}, below.
@@ -155,6 +164,14 @@ Run the `ifreload -a` command to reload the configuration:
 
 ```
 cumulus@switch:~$ sudo ifreload -a
+```
+{{< /tab >}}
+
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@switch:~$ cl set 
+cumulus@switch:~$ cl config apply
 ```
 
 {{< /tab >}}

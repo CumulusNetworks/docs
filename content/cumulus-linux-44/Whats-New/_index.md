@@ -16,15 +16,9 @@ Cumulus Linux 4.4 supports supports new platforms, provides bug fixes, and conta
 
 ### New Platforms
 
-- Mellanox SN3700C-S with Secure Boot (Spectrum-2 and Spectrum-3)
+- Mellanox SN3700C-S (100G Spectrum-2) with Secure Boot
 
 ### New Features and Enhancements
-
-<!-- - {{<link url="NVIDIA-User-Experience-NVUE" text="NVIDIA User Experience (NVUE)">}} is a new object-oriented, schema driven model of a complete Cumulus Linux system (hardware and software) with a robust API that allows multiple interfaces to both view and configure any element within the system. NVUE replaces the NCLU command line interface.
-
-{{<notice info>}}
-NVUE is created from the ground up and does not inherit any previous functionality from NCLU. Certain features are not yet supported by NVUE. If you are an NCLU user, confirm that your features are fully supported in NVUE before upgrading to Cumulus Linux 5.0. If you use a feature that is not yet supported, you can either remain on your current 4.x release or perform all your switch configuration using Linux and vtysh commands.
-{{</notice>}} -->
 
 - {{<link url="NVIDIA-User-Experience-NVUE" text="NVIDIA User Experience (NVUE)">}} is a new object-oriented, schema driven model of a complete Cumulus Linux system (hardware and software) with a robust API that allows multiple interfaces to both view and configure any element within the system. NVUE is an early access feature currently in BETA and open to customer feedback.
 - {{<link url="VLAN-aware-Bridge-Mode/" text="Multiple VLAN-aware bridges">}}

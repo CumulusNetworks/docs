@@ -42,7 +42,8 @@ Basic PTP configuration requires you:
 - Configure the interfaces on the switch that you want to use for PTP. Each interface must be a layer 3 routed interface with an IP address. You do not need to specify which is a master interface and which is a slave interface; this is determined by the PTP packet received.
 
 The basic configuration shown below uses the *default* PTP settings:
-- Boundary clock mode - this is the only clock mode supported.
+- Clock mode is set to Boundary. This is the only clock mode currently supported.
+- PTP profile is set to default-1588; the profile specified in the IEEE 1588 standard. This is the only profile currently supported.
 - {{<link url="#transport-mode" text="Transport mode">}} is set to IPv4.
 - {{<link url="#ptp-clock-domain" text="PTP clock domain">}} is set to 0.
 - {{<link url="#ptp-priority" text="PTP Priority1 and Priority2">}} are set to 128.
@@ -287,19 +288,6 @@ cumulus@switch:~$ sudo systemctl restart ptp4l.service phc2sys.service
 {{< /tab >}}
 {{< /tabs >}}
 
-### Message Mode
-
-Cumulus Linux currently supports the following PTP message modes:
-- *Multicast*, where the ports subscribe to two multicast addresses, one for event messages that are timestamped and the other for general messages that are not timestamped. The Sync message sent by the master is a multicast message and is received by all slave ports. This is required because the slaves need the master's time. The slave ports in turn generate a Delay Request to the master. This is a multicast message and is received not only by the master for which the message is intended, but also by other slave ports. Similarly, the master's Delay Response is also received by all slave ports in addition to the intended slave port. The slave ports receiving the unintended Delay Requests and Responses need to drop the packets. This can affect network bandwidth, especially if there are hundreds of slave ports.
-- *Mixed*, where Sync and Announce messages are sent as multicast messages but Delay Request and Response messages are sent as unicast. This avoids the issue seen in multicast message mode where every slave port sees Delay Requests and Responses from every other slave port.
-
-Multicast mode is the default setting. To set the message mode to *mixed*:
-
-```
-cumulus@switch:~$ nv set service ptp 1 message-mode mixed
-cumulus@switch:~$ nv config apply
-```
-
 ### One-step and Two-step Mode
 
 The Cumulus Linux switch supports hardware packet time stamping and provides two modes:
@@ -486,6 +474,59 @@ udp_ttl                 1
 masterOnly              1
 delay_mechanism         E2E
 network_transport       UDPv4
+...
+```
+
+```
+cumulus@switch:~$ sudo systemctl restart ptp4l.service phc2sys.service
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+### Message Mode
+
+Cumulus Linux currently supports the following PTP message modes:
+- *Multicast*, where the ports subscribe to two multicast addresses, one for event messages that are timestamped and the other for general messages that are not timestamped. The Sync message sent by the master is a multicast message and is received by all slave ports. This is required because the slaves need the master's time. The slave ports in turn generate a Delay Request to the master. This is a multicast message and is received not only by the master for which the message is intended, but also by other slave ports. Similarly, the master's Delay Response is also received by all slave ports in addition to the intended slave port. The slave ports receiving the unintended Delay Requests and Responses need to drop the packets. This can affect network bandwidth, especially if there are hundreds of slave ports.
+- *Mixed*, where Sync and Announce messages are sent as multicast messages but Delay Request and Response messages are sent as unicast. This avoids the issue seen in multicast message mode where every slave port sees Delay Requests and Responses from every other slave port.
+
+Multicast mode is the default setting. To set the message mode to *mixed* on an interface:
+
+{{< tabs "TabID494 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set interface swp1 ptp message-mode mixed
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Edit the `Default interface options` section of the  `/etc/ptp4l.conf` file to change the `message_mode` setting for the interface, then restart the `ptp4l` and `phc2sys` daemons.
+
+```
+cumulus@switch:~$ sudo nano /etc/ptp4l.conf
+...
+# Default interface options
+#
+time_stamping           software
+
+# Interfaces in which ptp should be enabled
+# these interfaces should be routed ports
+# if an interface does not have an ip address
+# the ptp4l will not work as expected.
+
+[swp1]
+logAnnounceInterval     0
+logSyncInterval         -3
+logMinDelayReqInterval  -3
+announceReceiptTimeout  3
+udp_ttl                 20
+masterOnly              1
+delay_mechanism         E2E
+network_transport       UDPv4
+message_mode            mixed
 ...
 ```
 
@@ -727,7 +768,7 @@ monitor
 To see the list of NVUE show commands for PTP, run `nv list-commands service ptp`:
 
 ```
-cumulus@leaf01:mgmt:~$ cl list-commands service ptp
+cumulus@leaf01:mgmt:~$ nv list-commands service ptp
 nv show service ptp
 nv show service ptp <instance-id>
 nv show service ptp <instance-id> acceptable-master

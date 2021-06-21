@@ -12,7 +12,11 @@ This document supports the Cumulus Linux 4.4 release, and lists new platforms an
 
 ## What's New in Cumulus Linux 4.4
 
-Cumulus Linux 4.4 supports provides bug fixes, and contains several new features and improvements.
+Cumulus Linux 4.4 supports supports new platforms, provides bug fixes, and contains several new features and improvements.
+
+### New Platforms
+
+- Mellanox SN3700C-S with Secure Boot (Spectrum-2 and Spectrum-3)
 
 ### New Features and Enhancements
 
@@ -29,8 +33,8 @@ NVUE is created from the ground up and does not inherit any previous functionali
 - {{<link url="Precision-Time-Protocol-PTP" text="PTP Boundary Clock">}} enhancements
 - {{<link url="Protocol-Independent-Multicast-PIM/#allow-rp" text="PIM Allow RP">}}
 - {{<link url="Optional-BGP-Configuration/#conditional-advertisement" text="BGP conditional route advertisement">}}
-- Smart System Manager {{<link url="Smart-System-Manager" text="warm boot">}}
 - {{<link url="IGMP-and-MLD-Snooping/#optimized-multicast-flooding-omf" text="Optimized Multicast Flooding (OMF)">}}
+- Smart System Manager {{<link url="Smart-System-Manager" text="warm boot">}}
 - {{<link url="Quality-of-Service" text="QoS enhancements ">}} (`traffic.conf` and `datapath.conf` files removed and replaced)
 - On NVIDIA Spectrum switches, you can {{<link url="Hybrid-Cloud-Connectivity-with-QinQ-and-VXLANs" text="modify the inner tag in double-tagged packets ">}}
 - A specific software license key is no longer required to enable the `switchd` service.

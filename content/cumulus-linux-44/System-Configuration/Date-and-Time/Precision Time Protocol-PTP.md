@@ -24,7 +24,9 @@ PTP in Cumulus 4.4 includes updated features, which you can configure with NVUE 
 <!--- Multicast and mixed message mode is supported; unicast only message mode is *not* supported.-->
 {{%/notice%}}
 
-In the following example, boundary clock 2 receives time from Master 1 (the grandmaster) on a PTP slave port, sets its clock and passes the time down from the PTP master port to boundary clock 1. Boundary clock 1 receives the time on a PTP slave port, sets its clock and passes the time down the hierarchy through the PTP master ports to the hosts that receive the time.
+In the following example:
+- Boundary clock 2 receives time from Master 1 (the grandmaster) on a PTP slave port, sets its clock and passes the time down from the PTP master port to Boundary clock 1. 
+- Boundary clock 1 receives the time on a PTP slave port, sets its clock and passes the time down the hierarchy through the PTP master ports to the hosts that receive the time.
 
 {{< img src = "/images/cumulus-linux/date-time-ptp-example.png" >}}
 
@@ -32,15 +34,16 @@ In the following example, boundary clock 2 receives time from Master 1 (the gran
 
 Basic PTP configuration requires you:
 
-- Enable PTP on the switch to start the `ptp4l` and `phc2sys` processes. The NVUE `nv set service PTP` commands require an instance number (1 in the example commands below). This number is used for management purposes.
-- Configure the interfaces on the switch that you want to use for PTP. Each interface must be configured as a layer 3 routed interface with an IP address. You do not need to specify which is a master interface and which is a slave interface; this is determined by the PTP packet received.
+- Enable PTP on the switch to start the `ptp4l` and `phc2sys` processes.
+- Configure the interfaces on the switch that you want to use for PTP. Each interface must a layer 3 routed interface with an IP address. You do not need to specify which is a master interface and which is a slave interface; this is determined by the PTP packet received.
 
-The basic configuration shown below uses these default settings:
+The basic configuration shown below uses the *default* PTP settings:
 - Boundary Clock mode - this is the only clock mode supported, where the switch provides timing to downstream servers; it is a slave to a higher-level clock and a master to downstream clocks.
 - {{<link url="#transport-mode" text="Transport mode">}} is set to IPv4.
 - {{<link url="#ptp-clock-domain" text="PTP clock domain">}} is set to 0.
 - {{<link url="#ptp-priority" text="PTP Priority1 and Priority2">}} are set to 128.
 - {{<link url="#one-step-and-two-step-mode" text="Hardware packet time stamping mode" >}} is set to one-step.
+- {{<link url="#diffserv-code-point-dscp" text="DSCP" >}} is set to 43 for both general and event messages.
 - {{<link url="#acceptable-master-table" text="Announce messages from any master are accepted">}}.
 <!-- - {{<link url="#message-mode" text="Message Mode">}} is multicast.-->
 
@@ -48,6 +51,8 @@ To configure optional settings, such as the PTP domain, priority, transport mode
 
 {{< tabs "TabID36 ">}}
 {{< tab "NVUE Commands ">}}
+
+The NVUE `nv set service PTP` commands require an instance number (1 in the example command below). This number is used for management purposes.
 
 ```
 cumulus@switch:~$ nv set service ptp 1 enable on
@@ -73,7 +78,7 @@ The configuration is saved in the `/etc/ptp4l.conf` file.
 
     {{<cl/restart-switchd>}}
 
-3. Edit the `/etc/ptp4l.conf` file to configure the interfaces on the switch that you want to use for PTP.
+3. Edit the `Default interface options` section of the `/etc/ptp4l.conf` file to configure the interfaces on the switch that you want to use for PTP.
 
 ```
 cumulus@switch:~$ sudo nano /etc/ptp4l.conf
@@ -212,7 +217,7 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Edit the `/etc/ptp4l.conf` file to change the `domainNumber` setting, then restart the `ptp4l` and `phc2sys` daemons with the `sudo systemctl restart ptp4l.service phc2sys.service` command:
+Edit the `Default Data Set` section of the `/etc/ptp4l.conf` file to change the `domainNumber` setting, then restart the `ptp4l` and `phc2sys` daemons.
 
 ```
 cumulus@switch:~$ sudo nano /etc/ptp4l.conf
@@ -225,6 +230,10 @@ priority1               254
 priority2               254
 domainNumber            3
 ...
+```
+
+```
+cumulus@switch:~$ sudo systemctl restart ptp4l.service phc2sys.service
 ```
 
 {{< /tab >}}
@@ -252,7 +261,7 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Edit the `/etc/ptp4l.conf` file to change the `priority1` and, or `priority2` setting, then restart the `ptp4l` and `phc2sys` daemons with the `sudo systemctl restart ptp4l.service phc2sys.service` command.
+Edit the `Default Data Set` section of the `/etc/ptp4l.conf` file to change the `priority1` and, or `priority2` setting, then restart the `ptp4l` and `phc2sys` daemons.
 
 ```
 cumulus@switch:~$ sudo nano /etc/ptp4l.conf
@@ -267,12 +276,16 @@ domainNumber            3
 ...
 ```
 
+```
+cumulus@switch:~$ sudo systemctl restart ptp4l.service phc2sys.service
+```
+
 {{< /tab >}}
 {{< /tabs >}}
 
 ### Transport Mode
 
-By default, PTP messages are encapsulated in UDP/IPV4 frames. To configure PTP messages to be encapsulated in UDP/IPV6 frames:
+By default, PTP messages are encapsulated in UDP/IPV4 frames. To configure PTP messages on an interface to be encapsulated in UDP/IPV6 frames:
 
 {{< tabs "TabID274 ">}}
 {{< tab "NVUE Commands ">}}
@@ -285,7 +298,7 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Edit the `/etc/ptp4l.conf` file to change the `network_transport` setting, then restart the `ptp4l` and `phc2sys` daemons with the `sudo systemctl restart ptp4l.service phc2sys.service` command.
+Edit the `Default interface options` section of the `/etc/ptp4l.conf` file to change the `network_transport` setting for the interface, then restart the `ptp4l` and `phc2sys` daemons.
 
 ```
 cumulus@switch:~$ sudo nano /etc/ptp4l.conf
@@ -307,7 +320,7 @@ announceReceiptTimeout  3
 udp_ttl                 1
 masterOnly              0
 delay_mechanism         E2E
-network_transport       UDPv4
+network_transport       UDPv6
 
 [swp2]
 logAnnounceInterval     0
@@ -319,6 +332,10 @@ masterOnly              0
 delay_mechanism         E2E
 network_transport       UDPv6
 ...
+```
+
+```
+cumulus@switch:~$ sudo systemctl restart ptp4l.service phc2sys.service
 ```
 
 {{< /tab >}}
@@ -356,7 +373,7 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Edit the `/etc/ptp4l.conf` file to change the `twoStepFlag` setting to 1, then restart the `ptp4l` and `phc2sys` daemons with the `sudo systemctl restart ptp4l.service phc2sys.service` command.
+Edit the `Default Data Set` section of the `/etc/ptp4l.conf` file to change the `twoStepFlag` setting to 1, then restart the `ptp4l` and `phc2sys` daemons.
 
 ```
 cumulus@switch:~$ sudo nano /etc/ptp4l.conf
@@ -373,6 +390,10 @@ twoStepFlag             1
 dscp_event              43
 dscp_general            43
 ...
+```
+
+```
+cumulus@switch:~$ sudo systemctl restart ptp4l.service phc2sys.service
 ```
 
 {{< /tab >}}
@@ -395,7 +416,7 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Edit the `/etc/ptp4l.conf` file to change the `masterOnly` setting, then restart the `ptp4l` and `phc2sys` daemons with the `sudo systemctl restart ptp4l.service phc2sys.service` command.
+Edit the `Default interface options` section of the `/etc/ptp4l.conf` file to change the `masterOnly` setting for the interface, then restart the `ptp4l` and `phc2sys` daemons.
 
 ```
 cumulus@switch:~$ sudo nano /etc/ptp4l.conf
@@ -421,6 +442,10 @@ network_transport       UDPv4
 ...
 ```
 
+```
+cumulus@switch:~$ sudo systemctl restart ptp4l.service phc2sys.service
+```
+
 {{< /tab >}}
 {{< /tabs >}}
 
@@ -439,9 +464,9 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Edit the `/etc/ptp4l.conf` file to change the `dscp_event` setting for PTP messages that trigger a Time Stamp read from the clock, and the `dscp_general` setting for PTP messages that carry commands, responses, information, or time stamps.
+Edit the `Default Data Set` section of the `/etc/ptp4l.conf` file to change the `dscp_event` setting for PTP messages that trigger a Time Stamp read from the clock and the `dscp_general` setting for PTP messages that carry commands, responses, information, or time stamps.
 
-After you save the `/etc/ptp4l.conf` file, restart the `ptp4l` and `phc2sys` daemons with the `sudo systemctl restart ptp4l.service phc2sys.service` command.
+After you save the `/etc/ptp4l.conf` file, restart the `ptp4l` and `phc2sys` daemons.
 
 ```
 cumulus@switch:~$ sudo nano /etc/ptp4l.conf
@@ -458,6 +483,10 @@ twoStepFlag             1
 dscp_event              22
 dscp_general            22
 ...
+```
+
+```
+cumulus@switch:~$ sudo systemctl restart ptp4l.service phc2sys.service
 ```
 
 {{< /tab >}}
@@ -478,7 +507,7 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Edit the `/etc/ptp4l.conf` file to change the `udp_ttl` setting, then restart the `ptp4l` and `phc2sys` daemons with the `sudo systemctl restart ptp4l.service phc2sys.service` command.
+Edit the `Default interface options` section of the  `/etc/ptp4l.conf` file to change the `udp_ttl` setting for the interface, then restart the `ptp4l` and `phc2sys` daemons.
 
 ```
 cumulus@switch:~$ sudo nano /etc/ptp4l.conf
@@ -502,6 +531,10 @@ masterOnly              1
 delay_mechanism         E2E
 network_transport       UDPv4
 ...
+```
+
+```
+cumulus@switch:~$ sudo systemctl restart ptp4l.service phc2sys.service
 ```
 
 {{< /tab >}}
@@ -565,12 +598,12 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-In the `/etc/ptp4l.conf` file:
+Edit the `Default interface options` section of the `/etc/ptp4l.conf` file:
 
-- To set the announce interval between successive Announce messages on swp1 to -1, change the `logAnnounceInterval` setting to -1.
-- To set the mean sync-interval for multicast messages on swp1 to -5, change the `logSyncInterval` setting to -5.
+- To set the announce interval between successive Announce messages on swp1 to -1, change the `logAnnounceInterval` setting for the interface to -1.
+- To set the mean sync-interval for multicast messages on swp1 to -5, change the `logSyncInterval` setting for the interface to -5.
 
-After you edit the `/etc/ptp4l.conf` file, restart the `ptp4l` and `phc2sys` daemons with the `sudo systemctl restart ptp4l.service phc2sys.service` command.
+After you edit the `/etc/ptp4l.conf` file, restart the `ptp4l` and `phc2sys` daemons.
 
 ```
 cumulus@switch:~$ sudo nano /etc/ptp4l.conf
@@ -596,6 +629,10 @@ network_transport       UDPv4
 ...
 ```
 
+```
+cumulus@switch:~$ sudo systemctl restart ptp4l.service phc2sys.service
+```
+
 {{< /tab >}}
 {{< /tabs >}}
 
@@ -616,7 +653,7 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Edit the `/etc/ptp4l.conf` file to remove the interfaces from the `Default interface options` section, then restart the `ptp4l` and `phc2sys` daemons with the `sudo systemctl restart ptp4l.service phc2sys.service` command.
+Edit the `/etc/ptp4l.conf` file to remove the interfaces from the `Default interface options` section, then restart the `ptp4l` and `phc2sys` daemons.
 
 ```
 cumulus@switch:~$ sudo nano /etc/ptp4l.conf
@@ -629,6 +666,10 @@ time_stamping           software
 # these interfaces should be routed ports
 # if an interface does not have an ip address
 # the ptp4l will not work as expected.
+```
+
+```
+cumulus@switch:~$ sudo systemctl restart ptp4l.service phc2sys.service
 ```
 
 {{< /tab >}}

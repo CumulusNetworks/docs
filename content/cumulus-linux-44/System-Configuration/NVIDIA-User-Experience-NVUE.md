@@ -12,7 +12,7 @@ NVUE follows a declarative model, removing context-specific commands and setting
 
 ## Start the NVUE Service
 
-NVUE is installed by default in Cumulus Linux but the NVUE service is disabled. To run NVUE commands, you must enable and start the NVUE (`nvued`) service.
+NVUE is installed by default in Cumulus Linux but the NVUE service is disabled. To run NVUE commands, you must enable and start the NVUE service (`nvued`).
 
 {{%notice info%}}
 - Do not install NVUE in a production environment.
@@ -36,7 +36,7 @@ cumulus@switch:~$ sudo systemctl stop netd
 cumulus@switch:~$ sudo systemctl disable netd
 ```
 
-If you want to use legacy show commands to monitor the switch, you need to reenable the `netd` service. See {{<link url="#legacy-show-commands" text="Legacy Show Commands">}} below.
+However, if you want to use legacy show commands to monitor the switch, you need to reenable the `netd` service. See {{<link url="#legacy-show-commands" text="Legacy Show Commands">}} below.
 {{%/notice%}}
 
 ## NVUE REST API
@@ -236,14 +236,16 @@ stale-routes-time             360                           Specifies an upper-b
 
 ### Legacy Show Commands
 
-Cumulus Linux provides legacy show commands that provide the same output as the NCLU show commands.
-
-To use the legacy show commands, you need to enable, then start the NCLU service (netd):
+Cumulus Linux provides legacy show commands that provide the same output as the NCLU show commands. To use the legacy show commands, you need to enable, then start the NCLU service (`netd`):
 
 ```
 cumulus@switch:~$ sudo systemctl enable netd
 cumulus@switch:~$ sudo systemctl start netd
 ```
+
+{{%notice info%}}
+Use caution if you enable `netd` to run the legacy show commands; do not mix NVUE and NCLU commands to *configure* the switch; use either the NCLU CLI or the NVUE CLI.
+{{%/notice%}}
 
 To run the legacy show commands, replace `net show` with `nv show --legacy`.
 

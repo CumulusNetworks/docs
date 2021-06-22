@@ -73,18 +73,12 @@ When rules are combined and put into one table, the order determines the relativ
 The Linux packet forwarding construct is an overlay for how the silicon underneath processes packets. Be aware of the following:
 
 - The order of operations for how rules are processed is not perfectly maintained when you compare how `iptables` and the switch silicon process packets. The switch silicon reorders rules when `switchd` writes to the ASIC, whereas traditional `iptables` execute the list of rules in order.
-- All rules are terminating; after a rule matches, the action is carried out and no more rules are processed. However, as an exception, when a SETCLASS rule is placed immediately before another rule, it exists multiple times in the default ACL configuration. In the example below, the SETCLASS action applied with the `--in-interface` option, creates the internal ASIC classification, and continues to process the next rule, which does the rate-limiting for the matched protocol:
+- All rules, except for POLICE and SETCLASS rules, are terminating; after a rule matches, the action is carried out and no more rules are processed. In the example below, the SETCLASS action applied with the `--in-interface` option, creates the internal ASIC classification, and continues to process the next rule, which does the rate-limiting for the matched protocol:
 
     ```
     -A $INGRESS_CHAIN --in-interface $INGRESS_INTF -p udp --dport $BFD_ECHO_PORT -j SETCLASS --class 7
     -A $INGRESS_CHAIN -p udp --dport $BFD_ECHO_PORT -j POLICE --set-mode pkt --set-rate 2000 --set-burst 2000
     ```
-
-    {{%notice warning%}}
-
-If multiple contiguous rules with the same match criteria are applied to `--in-interface`, **only** the first rule is processed and then terminates processing. This is a misconfiguration; there is no reason to have duplicate rules with different actions.
-
-    {{%/notice%}}
 
 - When processing traffic, rules affecting the FORWARD chain that specify an ingress interface are performed prior to rules that match on an egress interface. As a workaround, rules that only affect the egress interface can have an ingress interface wildcard (currently, only *swp+* and *bond+* are supported as wildcard names; see below) that matches any interface applied so that you can maintain order of operations with other input interface rules. For example, with the following rules:
 

@@ -1134,7 +1134,7 @@ To work around this issue, change the value of &lt;tt&gt;arp_ignore&lt;/tt&gt; t
 <td></td>
 </tr>
 <tr>
-<td>2690100</td>
+<td>2699399</td>
 <td>When you run the vtysh {{show ip bgp vrf &lt;name&gt; &lt;afi&gt; &lt;safi&gt; statistics}} command, the {{bgpd}} service crashes if you use {{vrf all}}. For example:
 spine01# show ip bgp vrf all statistics 
 &lt;pre&gt;vtysh: error reading from bgpd: Success (0)Warning: closing connection to bgpd because of an I/O error!&lt;/pre&gt;

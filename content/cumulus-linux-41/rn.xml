@@ -61,7 +61,7 @@
 <td></td>
 </tr>
 <tr>
-<td>2690100</td>
+<td>2699399</td>
 <td>When you run the vtysh {{show ip bgp vrf &lt;name&gt; &lt;afi&gt; &lt;safi&gt; statistics}} command, the {{bgpd}} service crashes if you use {{vrf all}}. For example:
 spine01# show ip bgp vrf all statistics 
 &lt;pre&gt;vtysh: error reading from bgpd: Success (0)Warning: closing connection to bgpd because of an I/O error!&lt;/pre&gt;
@@ -2922,7 +2922,7 @@ CVE-2020-10531: An issue was discovered in International Components for Unicode 
 <td></td>
 </tr>
 <tr>
-<td>2690100</td>
+<td>2699399</td>
 <td>When you run the vtysh {{show ip bgp vrf &lt;name&gt; &lt;afi&gt; &lt;safi&gt; statistics}} command, the {{bgpd}} service crashes if you use {{vrf all}}. For example:
 spine01# show ip bgp vrf all statistics 
 &lt;pre&gt;vtysh: error reading from bgpd: Success (0)Warning: closing connection to bgpd because of an I/O error!&lt;/pre&gt;

@@ -69,7 +69,7 @@ To work around this issue, run the &lt;tt&gt;apt-get upgrade&lt;/tt&gt; command 
 <td></td>
 </tr>
 <tr>
-<td>2690100</td>
+<td>2699399</td>
 <td>When you run the vtysh {{show ip bgp vrf &lt;name&gt; &lt;afi&gt; &lt;safi&gt; statistics}} command, the {{bgpd}} service crashes if you use {{vrf all}}. For example:
 spine01# show ip bgp vrf all statistics 
 &lt;pre&gt;vtysh: error reading from bgpd: Success (0)Warning: closing connection to bgpd because of an I/O error!&lt;/pre&gt;
@@ -94,21 +94,18 @@ Before:
 
 After:
 &lt;pre&gt;ip route 10.10.0.0/16 Null0
-!
-&lt;snipped&gt;
- !
+
  address-family ipv4 unicast
   redistribute connected route-map DENY-COMPONENTS
   redistribute static
  exit-address-family
-!
+
 ip prefix-list NO-COMPONENTS seq 5 permit 10.10.0.0/16 ge 17
-!
+
 route-map DENY-COMPONENTS deny 10
  match ip address prefix-list NO-COMPONENTS
-!
-route-map DENY-COMPONENTS permit 20
-!&lt;/pre&gt;
+
+route-map DENY-COMPONENTS permit 20&lt;/pre&gt;
 
 Note: this example assumes no other static routes are present. If other static routes are present, additional route maps may need to be configured to limit the static routes being redistributed. </td>
 <td>3.7.12-3.7.15</td>
@@ -2162,21 +2159,18 @@ Before:
 
 After:
 &lt;pre&gt;ip route 10.10.0.0/16 Null0
-!
-&lt;snipped&gt;
- !
+
  address-family ipv4 unicast
   redistribute connected route-map DENY-COMPONENTS
   redistribute static
  exit-address-family
-!
+
 ip prefix-list NO-COMPONENTS seq 5 permit 10.10.0.0/16 ge 17
-!
+
 route-map DENY-COMPONENTS deny 10
  match ip address prefix-list NO-COMPONENTS
-!
-route-map DENY-COMPONENTS permit 20
-!&lt;/pre&gt;
+
+route-map DENY-COMPONENTS permit 20&lt;/pre&gt;
 
 Note: this example assumes no other static routes are present. If other static routes are present, additional route maps may need to be configured to limit the static routes being redistributed. </td>
 <td>3.7.12-3.7.15</td>
@@ -4283,21 +4277,18 @@ Before:
 
 After:
 &lt;pre&gt;ip route 10.10.0.0/16 Null0
-!
-&lt;snipped&gt;
- !
+
  address-family ipv4 unicast
   redistribute connected route-map DENY-COMPONENTS
   redistribute static
  exit-address-family
-!
+
 ip prefix-list NO-COMPONENTS seq 5 permit 10.10.0.0/16 ge 17
-!
+
 route-map DENY-COMPONENTS deny 10
  match ip address prefix-list NO-COMPONENTS
-!
-route-map DENY-COMPONENTS permit 20
-!&lt;/pre&gt;
+
+route-map DENY-COMPONENTS permit 20&lt;/pre&gt;
 
 Note: this example assumes no other static routes are present. If other static routes are present, additional route maps may need to be configured to limit the static routes being redistributed. </td>
 <td>3.7.12-3.7.15</td>
@@ -6960,21 +6951,18 @@ Before:
 
 After:
 &lt;pre&gt;ip route 10.10.0.0/16 Null0
-!
-&lt;snipped&gt;
- !
+
  address-family ipv4 unicast
   redistribute connected route-map DENY-COMPONENTS
   redistribute static
  exit-address-family
-!
+
 ip prefix-list NO-COMPONENTS seq 5 permit 10.10.0.0/16 ge 17
-!
+
 route-map DENY-COMPONENTS deny 10
  match ip address prefix-list NO-COMPONENTS
-!
-route-map DENY-COMPONENTS permit 20
-!&lt;/pre&gt;
+
+route-map DENY-COMPONENTS permit 20&lt;/pre&gt;
 
 Note: this example assumes no other static routes are present. If other static routes are present, additional route maps may need to be configured to limit the static routes being redistributed. </td>
 <td>3.7.12-3.7.15</td>
@@ -9827,21 +9815,18 @@ Before:
 
 After:
 &lt;pre&gt;ip route 10.10.0.0/16 Null0
-!
-&lt;snipped&gt;
- !
+
  address-family ipv4 unicast
   redistribute connected route-map DENY-COMPONENTS
   redistribute static
  exit-address-family
-!
+
 ip prefix-list NO-COMPONENTS seq 5 permit 10.10.0.0/16 ge 17
-!
+
 route-map DENY-COMPONENTS deny 10
  match ip address prefix-list NO-COMPONENTS
-!
-route-map DENY-COMPONENTS permit 20
-!&lt;/pre&gt;
+
+route-map DENY-COMPONENTS permit 20&lt;/pre&gt;
 
 Note: this example assumes no other static routes are present. If other static routes are present, additional route maps may need to be configured to limit the static routes being redistributed. </td>
 <td>3.7.12-3.7.15</td>

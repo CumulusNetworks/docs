@@ -27,20 +27,14 @@ You can configure both VLAN-aware and traditional mode bridges on the same netwo
 
 The MAC address for a frame is learned when the frame enters the bridge through an interface. The MAC address is recorded in the bridge table and the bridge forwards the frame to its intended destination by looking up the destination MAC address. The MAC entry is then maintained for 1800 seconds (30 minutes). If the frame is seen with the same source MAC address before the MAC entry age is exceeded, the MAC entry age is refreshed; if the MAC entry age is exceeded, the MAC address is deleted from the bridge table.
 
-The following example CUE command output shows a MAC address table for the bridge.
+The following example NCLU command output shows a MAC address table for the bridge.
 
 ```
-cumulus@switch:~$ cl show bridge domain br_default mac-table
-     age    entry-type  interface  last-update  mac                vlan  vni  Summary
----  -----  ----------  ---------  -----------  -----------------  ----  ---  -------
-+ 0  1394   permanent   swp1       1394         44:38:39:00:00:31
-+ 1  1394   permanent   swp2       1394         44:38:39:00:00:33
-+ 2  99388  permanent   swp3       99388        44:38:39:00:00:35
-+ 3  99388  permanent   swp4       99388        44:38:39:00:00:e6
-+ 4  99388  permanent   swp6       99388        44:38:39:00:00:e8
-+ 5  99388  permanent   swp10      99388        44:38:39:00:00:ec
-+ 6  99388  permanent   swp11      99388        44:38:39:00:00:ed
-+ 7  99388  permanent   swp12      99388        44:38:39:00:00:ee
+cumulus@switch:~$ net show bridge macs
+VLAN      Master    Interface    MAC                  TunnelDest  State      Flags    LastSeen
+--------  --------  -----------  -----------------  ------------  ---------  -------  -----------------
+untagged  bridge    swp1         44:38:39:00:00:03                                    00:00:15
+untagged  bridge    swp1         44:38:39:00:00:04                permanent           20 days, 01:14:03
 ```
 
 ## bridge fdb Command Output

@@ -229,13 +229,13 @@ route-map REDISTRIBUTE-CONNECTED permit 1000
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ cl set router policy route-map REDISTRIBUTE rule 10 match interface eth0
-cumulus@switch:~$ cl set router policy route-map REDISTRIBUTE rule 100 action deny
-cumulus@switch:~$ cl set vrf default router bgp address-family ipv4-unicast redistribute connected route-map REDISTRIBUTE
-cumulus@switch:~$ cl config apply
+cumulus@switch:~$ nv set router policy route-map REDISTRIBUTE rule 10 match interface eth0
+cumulus@switch:~$ nv set router policy route-map REDISTRIBUTE rule 100 action deny
+cumulus@switch:~$ nv set vrf default router bgp address-family ipv4-unicast redistribute connected route-map REDISTRIBUTE
+cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -410,13 +410,13 @@ cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ cl set service dns server 192.0.2.1
-cumulus@switch:~$ cl set service dns mgmt server 198.51.100.31
-cumulus@switch:~$ cl set service dns mgmt server 203.0.113.13
-cumulus@switch:~$ cl config apply
+cumulus@switch:~$ nv set service dns server 192.0.2.1
+cumulus@switch:~$ nv set service dns mgmt server 198.51.100.31
+cumulus@switch:~$ nv set service dns mgmt server 203.0.113.13
+cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}

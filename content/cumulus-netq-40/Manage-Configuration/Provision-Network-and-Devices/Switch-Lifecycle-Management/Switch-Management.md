@@ -4,17 +4,17 @@ author: NVIDIA
 weight: 650
 toc: 4
 ---
-On initial installation, the lifecycle management feature provides an inventory of switches that have been automatically discovered by NetQ and are available for software installation or upgrade through NetQ. This includes all switches running Cumulus Linux 3.6 or later and NetQ Agent 2.4 or later in your network. You assign network roles to switches and select switches for software installation and upgrade from this inventory listing.
+On initial installation, the lifecycle management feature provides an inventory of switches that have been automatically discovered by NetQ and are available for software installation or upgrade through NetQ. This includes all switches running Cumulus Linux 3.6 or later, SONiC 202012 or later, and NetQ Agent 2.4 or later in your network. You assign network roles to switches and select switches for software installation and upgrade from this inventory listing.
 
 ## View the LCM Switch Inventory
 
 The switch inventory can be viewed from the NetQ UI and the NetQ CLI.
 
-{{< tabs "TabID13" >}}
+{{<tabs "TabID13" >}}
 
-{{< tab "NetQ UI" >}}
+{{<tab "NetQ UI" >}}
 
-A count of the switches NetQ was able to discover and the Cumulus Linux versions that are running on those switches is available from the LCM dashboard.
+A count of the switches NetQ was able to discover and the network OS versions that are running on those switches is available from the LCM dashboard.
 
 {{<figure src="/images/netq/lcm-switches-card-with-labels-320.png" width="400">}}
 
@@ -27,12 +27,12 @@ Review the list:
 - Filter the list: click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/15-Filter/filter-1.svg" height="18" width="18" alt="Filter Switch List">}} and enter parameter value of interest
 
 {{<notice tip>}}
-If you have more than one Cumulus Linux version running on your switches, you can click a version segment on the Switches card graph to open a list of switches pre-filtered by that version.
+If you have more than one network OS version running on your switches, you can click a version segment on the Switches card graph to open a list of switches pre-filtered by that version.
 {{</notice>}}
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "NetQ CLI" >}}
+{{<tab "NetQ CLI" >}}
 
 To view a list of all switches known to lifecycle management, run:
 
@@ -40,7 +40,7 @@ To view a list of all switches known to lifecycle management, run:
 netq lcm show switches [version <text-cumulus-linux-version>] [json]
 ```
 <!-- vale off -->
-Use the `version` option to only show switches with a given Cumulus Linux version, X.Y.Z.
+Use the `version` option to only show switches with a given network OS version, X.Y.Z.
 <!-- vale on -->
 This example shows all switches known by lifecycle management.
 
@@ -74,11 +74,11 @@ leaf02            leaf       192.168.200.12            44:38:39:00:01:78  x86_64
                                                                                                         104fb9ed
 ```
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}
 
-This listing is the starting point for Cumulus Linux upgrades or NetQ installations and upgrades. If the switches you want to upgrade are not present in the list, you can:
+This listing is the starting point for network OS upgrades or NetQ installations and upgrades. If the switches you want to upgrade are not present in the list, you can:
 
 - Work with the list you have and add them later
 - Verify the missing switches are reachable using `ping`
@@ -97,19 +97,19 @@ Switch roles are used to:
 
 When roles are assigned, the upgrade process begins with switches having the superspine role, then continues with the spine switches, leaf switches, exit switches, and finally switches with no role assigned. All switches with a given role must be successfully upgraded before the switches with the closest dependent role can be upgraded.
 
-For example, a group of seven switches are selected for upgrade. Three are spine switches and four are leaf switches. After all of the spine switches are successfully upgraded, then the leaf switches are upgraded. If one of the spine switches were to fail the upgrade, the other two spine switches are upgraded, but the upgrade process stops after that, leaving the leaf switches untouched, and the upgrade job fails.
+For example, a group of seven switches are selected for upgrade. Three are spine switches and four are leaf switches. After all the spine switches are successfully upgraded, then the leaf switches are upgraded. If one of the spine switches were to fail the upgrade, the other two spine switches are upgraded, but the upgrade process stops after that, leaving the leaf switches untouched, and the upgrade job fails.
 
 When only some of the selected switches have roles assigned in an upgrade job, the switches with roles are upgraded first and then all the switches with no roles assigned are upgraded.
 
-While role assignment is optional, using roles can prevent switches from becoming unreachable due to dependencies between switches or single attachments. And when MLAG pairs are deployed, switch roles avoid upgrade conflicts. For these reasons, NVIDIA highly recommends assigning roles to all of your switches.
+While role assignment is optional, using roles can prevent switches from becoming unreachable due to dependencies between switches or single attachments. And when MLAG pairs are deployed, switch roles avoid upgrade conflicts. For these reasons, NVIDIA highly recommends assigning roles to all your switches.
 
 ### Assign Switch Roles
 
 Roles can be assigned to one or more switches using the NetQ UI or the NetQ CLI.
 
-{{< tabs "TabID99" >}}
+{{<tabs "TabID99" >}}
 
-{{< tab "NetQ UI" >}}
+{{<tab "NetQ UI" >}}
 
 1. Open the LCM dashboard.
 
@@ -133,9 +133,9 @@ Roles can be assigned to one or more switches using the NetQ UI or the NetQ CLI.
 
 A bonus of assigning roles to switches is that you can then filter the list of switches by their roles by clicking the appropriate tab.
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "NetQ CLI" >}}
+{{<tab "NetQ CLI" >}}
 
 To add a role to one or more switches, run:
 
@@ -155,17 +155,17 @@ For multiple switches to be assigned the same role, separate the hostnames with 
 netq lcm add role leaf switches leaf01,leaf02,leaf03,leaf04
 ```
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}
 
 ### View Switch Roles
 
 You can view the roles assigned to the switches in the LCM inventory at any time.
 
-{{< tabs "TabID151" >}}
+{{<tabs "TabID151" >}}
 
-{{< tab "NetQ UI" >}}
+{{<tab "NetQ UI" >}}
 
 1. Open the LCM dashboard.
 
@@ -175,9 +175,9 @@ You can view the roles assigned to the switches in the LCM inventory at any time
 
     {{<figure src="/images/netq/lcm-switch-mgmt-list-300.png" width="700">}}
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "NetQ CLI" >}}
+{{<tab "NetQ CLI" >}}
 
 To view all switch roles, run:
 
@@ -185,7 +185,7 @@ To view all switch roles, run:
 netq lcm show switches [version <text-cumulus-linux-version>] [json]
 ```
 <!-- vale off -->
-Use the `version` option to only show switches with a given Cumulus Linux version, X.Y.Z.
+Use the `version` option to only show switches with a given network OS version, X.Y.Z.
 <!-- vale on -->
 This example shows the role of all switches in the **Role** column of the listing.
 
@@ -219,9 +219,9 @@ leaf02            leaf       192.168.200.12            44:38:39:00:01:78  x86_64
                                                                                                         104fb9ed
 ```
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}
 
 ### Change the Role of a Switch
 
@@ -229,9 +229,9 @@ If you accidentally assign an incorrect role to a switch, it can easily be chang
 
 To change a switch role:
 
-{{< tabs "TabID179" >}}
+{{<tabs "TabID179" >}}
 
-{{< tab "NetQ UI" >}}
+{{<tab "NetQ UI" >}}
 
 1. Open the LCM dashboard.
 
@@ -245,9 +245,9 @@ To change a switch role:
 
 6. Click **Assign**.
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "NetQ CLI" >}}
+{{<tab "NetQ CLI" >}}
 
 You use the same command to assign a role as you use to change the role.
 
@@ -263,9 +263,9 @@ For multiple switches to be assigned the same role, separate the hostnames with 
 cumulus@switch:~$ netq lcm add role exit switches border01,border02
 ```
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}
 
 ## Export List of Switches
 
@@ -273,9 +273,9 @@ Using the Switch Management feature you can export a listing of all or a selecte
 
 To export the switch listing:
 
-{{< tabs "TabID223" >}}
+{{<tabs "TabID223" >}}
 
-{{< tab "NetQ UI" >}}
+{{<tab "NetQ UI" >}}
 
 1. Open the LCM dashboard.
 
@@ -289,11 +289,11 @@ To export the switch listing:
 
     {{<figure src="/images/netq/export-data-dialog-300.png" width="250">}}
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "NetQ CLI" >}}
+{{<tab "NetQ CLI" >}}
 
-Use the `json` option with the `netq lcm show switches` command to output a list of all switches in the LCM repository. Alternately, output only switches running a particular version of Cumulus Linux by including the `version` option.
+Use the `json` option with the `netq lcm show switches` command to output a list of all switches in the LCM repository. Alternately, output only switches running a particular network OS version by including the `version` option.
 
 ```
 cumulus@switch:~$ netq lcm show switches json
@@ -301,6 +301,6 @@ cumulus@switch:~$ netq lcm show switches json
 cumulus@switch:~$ netq lcm show switches version 3.7.11 json
 ```
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}

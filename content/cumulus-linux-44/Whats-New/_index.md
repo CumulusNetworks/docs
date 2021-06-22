@@ -12,28 +12,26 @@ This document supports the Cumulus Linux 4.4 release, and lists new platforms an
 
 ## What's New in Cumulus Linux 4.4
 
-Cumulus Linux 4.4 supports provides bug fixes, and contains several new features and improvements.
+Cumulus Linux 4.4 supports supports new platforms, provides bug fixes, and contains several new features and improvements.
+
+### New Platforms
+
+- Mellanox SN3700C-S (100G Spectrum-2) with Secure Boot
 
 ### New Features and Enhancements
 
-<!-- - {{<link url="Cumulus-User-Experience-CUE" text="Cumulus User Experience (CUE)">}} is a new object-oriented, schema driven model of a complete Cumulus Linux system (hardware and software) with a robust API that allows multiple interfaces to both view and configure any element within the system. CUE replaces the NCLU command line interface.
-
-{{<notice info>}}
-CUE is created from the ground up and does not inherit any previous functionality from NCLU. Certain features are not yet supported by CUE. If you are an NCLU user, confirm that your features are fully supported in CUE before upgrading to Cumulus Linux 5.0. If you use a feature that is not yet supported, you can either remain on your current 4.x release or perform all your switch configuration using Linux and vtysh commands.
-{{</notice>}} -->
-
-- {{<link url="Cumulus-User-Experience-CUE" text="Cumulus User Experience (CUE)">}} is a new object-oriented, schema driven model of a complete Cumulus Linux system (hardware and software) with a robust API that allows multiple interfaces to both view and configure any element within the system. CUE is an early access feature currently in BETA and open to customer feedback.
+- {{<link url="NVIDIA-User-Experience-NVUE" text="NVIDIA User Experience (NVUE)">}} is a new object-oriented, schema driven model of a complete Cumulus Linux system (hardware and software) with a robust API that allows multiple interfaces to both view and configure any element within the system. NVUE is an early access feature currently in BETA and open to customer feedback.
 - {{<link url="VLAN-aware-Bridge-Mode/" text="Multiple VLAN-aware bridges">}}
+- {{<link url="VXLAN-Devices/#single-vxlan-device" text="Single VXLAN Devices">}}
 - {{<link url="EVPN-Multihoming" text="EVPN multihoming Head End Replication">}}
 - {{<link url="Precision-Time-Protocol-PTP" text="PTP Boundary Clock">}} enhancements
 - {{<link url="Protocol-Independent-Multicast-PIM/#allow-rp" text="PIM Allow RP">}}
 - {{<link url="Optional-BGP-Configuration/#conditional-advertisement" text="BGP conditional route advertisement">}}
-- Smart System Manager supports {{<link url="Smart-System-Manager" text="warm boot">}}
-- QoS: Dynamic buffer configuration as default
 - {{<link url="IGMP-and-MLD-Snooping/#optimized-multicast-flooding-omf" text="Optimized Multicast Flooding (OMF)">}}
-- Support for QinQ/QinVNI access and trunk ports on the same system
-- On NVIDIA Spectrum switches, you now have the ability to {{<link url="Hybrid-Cloud-Connectivity-with-QinQ-and-VXLANs" text="modify the inner tag in double-tagged packets ">}}
-- A specific software license key is no longer required to enable the `switchd` service.
+- Smart System Manager {{<link url="Smart-System-Manager" text="warm boot">}}
+- {{<link url="Quality-of-Service" text="QoS enhancements ">}} (`traffic.conf` and `datapath.conf` files removed and replaced)
+- {{<link url="Hybrid-Cloud-Connectivity-with-QinQ-and-VXLANs" text="QinQ Double-tagged translation ">}} is now supported on NVIDIA Spectrum-2 and above
+- A specific software license key is no longer required to enable the `switchd` service
 
 ### Unsupported Platforms
 

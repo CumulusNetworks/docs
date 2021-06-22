@@ -8,6 +8,7 @@ This reference lists the threshold-based events that NetQ supports for ACL resou
 
 ## ACL Resources
 
+<!-- vale off -->
 | NetQ UI Name | NetQ CLI Event ID | Description |
 | --- | --- | --- |
 | Ingress ACL IPv4 % | TCA_TCAM_IN_ACL_V4_FILTER_UPPER | Number of ingress ACL filters for IPv4 addresses on a given switch or host exceeded user-defined threshold |
@@ -27,6 +28,7 @@ This reference lists the threshold-based events that NetQ supports for ACL resou
 | ACL 54B % | TCA_TCAM_ACL_54B_RULES_UPPER | Number of ACL 54B rules on a given switch or host exceeded user-defined maximum threshold |
 | Ingress PBR IPv4 % | TCA_TCAM_IN_PBR_V4_FILTER_UPPER | Number of ingress policy-based routing (PBR) filters for IPv4 addresses on a given switch or host exceeded user-defined maximum threshold |
 | Ingress PBR IPv6 % | TCA_TCAM_IN_PBR_V6_FILTER_UPPER | Number of ingress policy-based routing (PBR) filters for IPv6 addresses on a given switch or host exceeded user-defined maximum threshold |
+<!-- vale on -->
 
 ## Digital Optics
 
@@ -105,6 +107,28 @@ Some of the event IDs have changed. If you have TCA rules configured for digital
 | Disk Utilization | TCA_DISK_UTILIZATION_UPPER  |  Percentage of disk utilization exceeded user-defined maximum threshold on a switch or host | Disk Utilization for host leaf11 exceed configured mark 90 |
 | Memory Utilization | TCA_MEMORY_UTILIZATION_UPPER  |  Percentage of memory utilization exceeded user-defined maximum threshold on a switch or host | Memory Utilization for host leaf11 exceed configured mark 95 |
 
+## RoCE 
+
+| NetQ UI Name | NetQ CLI Event ID | Description |
+| --- | --- | --- |
+| Rx CNP Buffer Usage Cells | TCA_RX_CNP_BUFFER_USAGE_CELLS | Percentage of Rx General+CNP buffer usage exceeded user-defined maximum threshold on a switch interface |
+| Rx CNP No Buffer Discard | TCA_RX_CNP_NO_BUFFER_DISCARD | Rate of Rx General+CNP no buffer discard exceeded user-defined maximum threshold on a switch interface |
+| Rx CNP PG Usage Cells | TCA_RX_CNP_PG_USAGE_CELLS | Percentage of Rx General+CNP PG usage exceeded user-defined maximum threshold on a switch interface |
+| Rx RoCE Buffer Usage Cells | TCA_RX_ROCE_BUFFER_USAGE_CELLS | Percentage of Rx RoCE buffer usage exceeded user-defined maximum threshold on a switch interface |
+| Rx RoCE No Buffer Discard | TCA_RX_ROCE_NO_BUFFER_DISCARD | Rate of Rx RoCE no buffer discard exceeded user-defined maximum threshold on a switch interface |
+| Rx RoCE PG Usage Cells | TCA_RX_ROCE_PG_USAGE_CELLS | Percentage of Rx RoCE PG usage exceeded user-defined maximum threshold on a switch interface |
+| Rx RoCE PFC Pause Duration | TCA_RX_ROCE_PFC_PAUSE_DURATION | Number of Rx RoCE PFC pause duration exceeded user-defined maximum threshold on a switch interface |
+| Rx RoCE PFC Pause Packets | TCA_RX_ROCE_PFC_PAUSE_PACKETS | Rate of Rx RoCE PFC pause packets exceeded user-defined maximum threshold on a switch interface |
+| Tx CNP Buffer Usage Cells | TCA_TX_CNP_BUFFER_USAGE_CELLS | Percentage of Tx General+CNP buffer usage exceeded user-defined maximum threshold on a switch interface |
+| Tx CNP TC Usage Cells | TCA_TX_CNP_TC_USAGE_CELLS | Percentage of Tx CNP TC usage exceeded user-defined maximum threshold on a switch interface |
+| Tx CNP Unicast No Buffer Discard | TCA_TX_CNP_UNICAST_NO_BUFFER_DISCARD | Rate of Tx CNP unicast no buffer discard exceeded user-defined maximum threshold on a switch interface |
+| Tx ECN Marked Packets | TCA_TX_ECN_MARKED_PACKETS | Rate of Tx Port ECN marked packets exceeded user-defined maximum threshold on a switch interface |
+| Tx RoCE Buffer Usage Cells | TCA_TX_ROCE_BUFFER_USAGE_CELLS | Percentage of Tx RoCE buffer usage exceeded user-defined maximum threshold on a switch interface | 
+| Tx RoCE PFC Pause Duration | TCA_TX_ROCE_PFC_PAUSE_DURATION | Number of Tx RoCE PFC pause duration exceeded user-defined maximum threshold on a switch interface |
+| Tx RoCE PFC Pause Packets | TCA_TX_ROCE_PFC_PAUSE_PACKETS | Rate of Tx RoCE PFC pause packets exceeded user-defined maximum threshold on a switch interface |
+| Tx RoCE TC Usage Cells | TCA_TX_ROCE_TC_USAGE_CELLS | Percentage of Tx RoCE TC usage exceeded user-defined maximum threshold on a switch interface |
+| Tx RoCE Unicast No Buffer Discard | TCA_TX_ROCE_UNICAST_NO_BUFFER_DISCARD | Rate of Tx RoCE unicast no buffer discard exceeded user-defined maximum threshold on a switch interface |
+
 ## Sensors
 
 | NetQ UI Name | NetQ CLI Event ID | Description | Example Message |
@@ -116,6 +140,7 @@ Some of the event IDs have changed. If you have TCA rules configured for digital
 
 ## What Just Happened
 
+<!-- vale off -->
 | NetQ UI Name | NetQ CLI Event ID | Drop Type | Reason/Port Down Reason | Description |
 | --- | --- | :---: | --- | --- |
 | ACL Drop Aggregate Upper | TCA_WJH_ACL_DROP_AGG_UPPER | ACL | Egress port ACL | ACL action set to deny on the physical egress port or bond |
@@ -179,3 +204,4 @@ Some of the event IDs have changed. If you have TCA rules configured for digital
 | Symbol Error Upper | TCA_WJH_SYMBOL_ERROR_UPPER | L1 | Link training failure | Link is not able to go operational up due to link training failure |
 | Symbol Error Upper | TCA_WJH_SYMBOL_ERROR_UPPER | L1 | Peer is sending remote faults | Peer node is not operating correctly |
 | Symbol Error Upper | TCA_WJH_SYMBOL_ERROR_UPPER | L1 | Port admin down | Port has been purposely set down by user |
+<!-- vale on -->

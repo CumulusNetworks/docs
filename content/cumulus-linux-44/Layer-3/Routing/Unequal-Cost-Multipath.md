@@ -48,6 +48,7 @@ The BGP link bandwidth extended community is encoded in bytes-per-second. To con
 Cumulus Linux accepts the bandwidth extended community by default. No additional configuration is required on transit devices where UCMP routes are not being originated.
 
 {{%notice note%}}
+- NVUE commands are not supported.
 - The bandwidth used in the extended community has no impact on or relation to port bandwidth.
 - You can only apply the route weight information on the outbound direction to a peer; you cannot apply route weight information on the inbound direction from peers advertising routes to the switch.
 {{%/notice%}}
@@ -76,16 +77,6 @@ address-family ipv4 unicast
 route-map ucmp-route-map permit 10
  set extcommunity bandwidth num-multipaths
 ...
-```
-
-{{< /tab >}}
-{{< tab "CUE Commands ">}}
-
-```
-cumulus@leaf01:~$ cl set router policy route-map ucmp-route-map rule 10 set ext-community-bw num-multipaths
-cumulus@leaf01:~$ cl set router policy route-map ucmp-route-map rule 10 action permit
-cumulus@leaf01:~$ NEED COMMAND
-cumulus@leaf01:~$ cl config apply
 ```
 
 {{< /tab >}}
@@ -152,15 +143,6 @@ route-map ucmp-route-map permit 10
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
-
-```
-cumulus@leaf01:~$ NEED COMMAND
-cumulus@leaf01:~$ 
-cumulus@leaf01:~$ 
-```
-
-{{< /tab >}}
 {{< tab "vtysh Commands ">}}
 
 ```
@@ -223,15 +205,6 @@ route-map ucmp-route-map permit 10
  match ip address prefix-list anycast-ip
  set extcommunity bandwidth num-multipaths
 ...
-```
-
-{{< /tab >}}
-{{< tab "CUE Commands ">}}
-
-```
-cumulus@leaf01:~$ NEED COMMAND
-cumulus@leaf01:~$ 
-cumulus@leaf01:~$ 
 ```
 
 {{< /tab >}}
@@ -319,15 +292,6 @@ router bgp 65011
  ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
-
-```
-cumulus@leaf01:~$ NEED COMMAND
-cumulus@leaf01:~$ 
-cumulus@leaf01:~$ 
-```
-
-{{< /tab >}}
 {{< tab "vtysh Commands ">}}
 
 ```
@@ -380,15 +344,6 @@ To disable all BGP extended communities on a peer or peer group (per address fam
 cumulus@switch:~$ net del bgp neighbor 10.10.0.2 send-community extended
 cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
-```
-
-{{< /tab >}}
-{{< tab "CUE Commands ">}}
-
-```
-cumulus@leaf01:~$ NEED COMMAND
-cumulus@leaf01:~$ 
-cumulus@leaf01:~$ 
 ```
 
 {{< /tab >}}

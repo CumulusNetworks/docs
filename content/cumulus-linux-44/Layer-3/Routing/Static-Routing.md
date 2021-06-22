@@ -37,12 +37,12 @@ ip route 10.10.10.101/32 10.0.1.0
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
-cumulus@leaf01:~$ cl set interface swp1 ip address 10.0.1.1/31
-cumulus@leaf01:~$ cl set vrf default router static 10.10.10.101/32 via 10.0.1.0
-cumulus@leaf01:~$ cl config apply
+cumulus@leaf01:~$ nv set interface swp1 ip address 10.0.1.1/31
+cumulus@leaf01:~$ nv set vrf default router static 10.10.10.101/32 via 10.0.1.0
+cumulus@leaf01:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -110,13 +110,13 @@ vrf BLUE
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
-cumulus@border01:~$ cl set interface swp3 ip address 10.0.0.32/31
-cumulus@border01:~$ cl set interface swp3 ip vrf BLUE
-cumulus@border01:~$ cl set vrf BLUE router static 10.10.10.61/32 via 10.0.0.33
-cumulus@border01:~$ cl config apply
+cumulus@border01:~$ nv set interface swp3 ip address 10.0.0.32/31
+cumulus@border01:~$ nv set interface swp3 ip vrf BLUE
+cumulus@border01:~$ nv set vrf BLUE router static 10.10.10.61/32 via 10.0.0.33
+cumulus@border01:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -175,11 +175,11 @@ When you use NCLU commands to delete routing configuration such as static routes
 {{%/notice%}}
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
-cumulus@leaf01:~$ cl unset vrf default router static 10.10.10.101/32 via 10.0.1.0
-cumulus@leaf01:~$ cl config apply
+cumulus@leaf01:~$ nv unset vrf default router static 10.10.10.101/32 via 10.0.1.0
+cumulus@leaf01:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -228,9 +228,9 @@ cumulus@leaf01:~$ net commit
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
-CUE command not supported currently.
+NVUE commands are not supported.
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
@@ -278,11 +278,11 @@ ip route 0.0.0.0/0 10.0.1.0
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
-cumulus@leaf01:~$ cl set vrf default router static 0.0.0.0/0 via 10.0.1.0
-cumulus@leaf01:~$ cl config apply
+cumulus@leaf01:~$ nv set vrf default router static 0.0.0.0/0 via 10.0.1.0
+cumulus@leaf01:~$ nv config apply
 ```
 
 {{%notice note%}}

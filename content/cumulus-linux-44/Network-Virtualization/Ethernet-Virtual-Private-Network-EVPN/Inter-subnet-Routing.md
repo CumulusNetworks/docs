@@ -23,17 +23,39 @@ In centralized routing, you configure a specific VTEP to act as the default gate
 To enable centralized routing, you must configure the gateway VTEPs to advertise their IP and MAC address.
 
 {{< tabs "TabID26 ">}}
-{{< tab "CUE Commands ">}}
+{{< tab "NCLU Commands ">}}
 
 ```
-cumulus@leaf01:~$ cl set evpn route-advertise default-gateway on
-cumulus@leaf01:~$ cl config apply
+cumulus@leaf01:~$ net add bgp autonomous-system 65101
+cumulus@leaf01:~$ net add bgp l2vpn evpn advertise-default-gw
+cumulus@leaf01:~$ net pending
+cumulus@leaf01:~$ net commit
 ```
 
-The CUE commands create the following configuration snippet in the `/etc/cue.d/startup.yaml` file:
+The NCLU commands create the following configuration snippet in the `/etc/frr/frr.conf` file.
 
 ```
-cumulus@leaf01:~$ sudo cat /etc/cue.d/startup.yaml
+...
+router bgp 65101
+...
+  address-family l2vpn evpn
+    advertise-default-gw
+  exit-address-family
+...
+```
+
+{{< /tab >}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@leaf01:~$ nv set evpn route-advertise default-gateway on
+cumulus@leaf01:~$ nv config apply
+```
+
+The NVUE Commands create the following configuration snippet in the `/etc/nvue.d/startup.yaml` file:
+
+```
+cumulus@leaf01:~$ sudo cat /etc/nvue.d/startup.yaml
 ```
 
 {{< /tab >}}
@@ -105,12 +127,24 @@ Optional configuration includes {{<link url="#configure-rd-and-rts-for-the-tenan
 ### Configure a Per-tenant VXLAN Interface
 
 {{< tabs "TabID113 ">}}
-{{< tab "CUE Commands ">}}
+{{< tab "NCLU Commands ">}}
 
 ```
-cumulus@leaf01:~$ cl set bridge domain br_default vlan 10 vni 10 
-cumulus@leaf01:~$ cl set nve vxlan source address 10.10.10.10
-cumulus@leaf01:~$ cl config apply
+cumulus@leaf01:~$ net add vxlan vni10 vxlan id 10
+cumulus@leaf01:~$ net add vxlan vni10 bridge access 10
+cumulus@leaf01:~$ net add vxlan vni10 vxlan local-tunnelip 10.10.10.1
+cumulus@leaf01:~$ net add bridge bridge ports vni10
+cumulus@leaf01:~$ net pending
+cumulus@leaf01:~$ net commit
+```
+
+{{< /tab >}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@leaf01:~$ nv set bridge domain br_default vlan 10 vni 10 
+cumulus@leaf01:~$ nv set nve vxlan source address 10.10.10.10
+cumulus@leaf01:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -140,12 +174,21 @@ auto bridge
 ### Configure an SVI for the Layer 3 VNI
 
 {{< tabs "TabID154 ">}}
-{{< tab "CUE Commands ">}}
+{{< tab "NCLU Commands ">}}
 
 ```
-cumulus@leaf01:~$ cl set vrf RED
-cumulus@leaf01:~$ cl set interface vlan10 ip vrf RED
-cumulus@leaf01:~$ cl config apply
+cumulus@leaf01:~$ net add vlan10 vrf RED
+cumulus@leaf01:~$ net pending
+cumulus@leaf01:~$ net commit
+```
+
+{{< /tab >}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@leaf01:~$ nv set vrf RED
+cumulus@leaf01:~$ nv set interface vlan10 ip vrf RED
+cumulus@leaf01:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -174,32 +217,24 @@ When two VTEPs are operating in **VXLAN active-active** mode and performing **sy
 ### Configure the VRF to Layer 3 VNI Mapping
 
 {{< tabs "TabID206 ">}}
-{{< tab "CUE Commands ">}}
+{{< tab "NCLU Commands ">}}
 
 ```
-cumulus@leaf01:~$ cl set vrf RED evpn vni 4001
-cumulus@leaf01:~$ cl config apply
-```
-
-{{< /tab >}}
-{{< tab "Linux Commands ">}}
-
-Edit the `/etc/frr/frr.conf` file. For example:
-
-```
-cumulus@leaf01:~$ sudo nano /etc/frr/frr.conf
-...
-vrf RED
-  vni 4001
-!
-...
+cumulus@leaf01:~$ net add vrf RED vni 4001
+cumulus@leaf01:~$ net pending
+cumulus@leaf01:~$ net commit
 ```
 
 {{< /tab >}}
-{{< /tabs >}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@leaf01:~$ nv set vrf RED evpn vni 4001
+cumulus@leaf01:~$ nv config apply
+```
 
 {{%notice note%}}
-When you run the `cl set vrf RED evpn vni 4001` command, CUE:
+When you run the `nv set vrf RED evpn vni 4001` command, NVUE:
 - Creates a layer 3 VNI called vni4001
 - Assigns the vni4001 a VLAN automatically from the reserved VLAN range and adds `_l3` (layer 3) at the end (for example vlan220_l3)
 - Creates a layer 3 bridge called br_l3vni
@@ -225,22 +260,60 @@ iface vlan220_l3
 ```
 {{%/notice%}}
 
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Edit the `/etc/frr/frr.conf` file. For example:
+
+```
+cumulus@leaf01:~$ sudo nano /etc/frr/frr.conf
+...
+vrf RED
+  vni 4001
+!
+...
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
 ### Configure RD and RTs for the Tenant VRF
 
 If you do not want the RD and RTs (layer 3 RTs) for the tenant VRF to be derived automatically, you can configure them manually by specifying them under the `l2vpn evpn` address family for that specific VRF.
 
 {{< tabs "TabID226 ">}}
-{{< tab "CUE Commands ">}}
+{{< tab "NCLU Commands ">}}
 
 ```
-cumulus@leaf01:~$ cl set vrf RED router bgp rd 10.1.20.2:5
-cumulus@leaf01:~$ cl set vrf RED router bgp route-import from-evpn route-target 65102:4001
+cumulus@leaf01:~$ net add bgp vrf RED l2vpn evpn rd 10.1.20.2:5
+cumulus@leaf01:~$ net add bgp vrf RED l2vpn evpn route-target import 65102:4001
+cumulus@leaf01:~$ net pending
+cumulus@leaf01:~$ net commit
 ```
 
-The CUE commands create the following configuration snippet in the `/etc/cue.d/startup.yaml` file:
+The NCLU commands create the following configuration snippet in the `/etc/frr/frr.conf` file:
 
 ```
-cumulus@leaf01:~$ sudo cat /etc/cue.d/startup.yaml
+...
+router bgp 65101 vrf RED
+  address-family l2vpn evpn
+  rd 10.1.20.2:5
+  route-target import 65102:4001
+...
+```
+
+{{< /tab >}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@leaf01:~$ nv set vrf RED router bgp rd 10.1.20.2:5
+cumulus@leaf01:~$ nv set vrf RED router bgp route-import from-evpn route-target 65102:4001
+```
+
+The NVUE Commands create the following configuration snippet in the `/etc/nvue.d/startup.yaml` file:
+
+```
+cumulus@leaf01:~$ sudo cat /etc/nvue.d/startup.yaml
 
 ```
 
@@ -315,17 +388,38 @@ For a switch to be able to install EVPN type-5 routes into the routing table, yo
 The following configuration is required in the tenant VRF to announce IP prefixes in the BGP RIB as EVPN type-5 routes.
 
 {{< tabs "TabID317 ">}}
-{{< tab "CUE Commands ">}}
+{{< tab "NCLU Commands ">}}
 
 ```
-cumulus@leaf01:~$ cl set vrf RED router bgp address-family ipv4-unicast route-export to-evpn enable on
-cumulus@leaf01:~$ cl config apply
+cumulus@leaf01:~$ net add bgp vrf RED l2vpn evpn advertise ipv4 unicast
+cumulus@leaf01:~$ net pending
+cumulus@leaf01:~$ net commit
 ```
 
-The CUE commands create the following configuration snippet in the `/etc/cue.d/startup.yaml` file:
+The NCLU commands create the following snippet in the `/etc/frr/frr.conf` file:
 
 ```
-cumulus@leaf01:~$ sudo cat /etc/cue.d/startup.yaml
+...
+router bgp 65101 vrf RED
+  address-family l2vpn evpn
+    advertise ipv4 unicast
+  exit-address-family
+end
+...
+```
+
+{{< /tab >}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@leaf01:~$ nv set vrf RED router bgp address-family ipv4-unicast route-export to-evpn enable on
+cumulus@leaf01:~$ nv config apply
+```
+
+The NVUE Commands create the following configuration snippet in the `/etc/nvue.d/startup.yaml` file:
+
+```
+cumulus@leaf01:~$ sudo cat /etc/nvue.d/startup.yaml
 
 ```
 
@@ -409,10 +503,19 @@ By default, when announcing IP prefixes in the BGP RIB as EVPN type-5 routes, al
 The following commands add a route map filter to IPv4 EVPN type-5 route advertisement:
 
 {{< tabs "TabID408 ">}}
-{{< tab "CUE Commands ">}}
+{{< tab "NCLU Commands ">}}
 
 ```
-cumulus@leaf01:~$ cl set vrf RED router bgp address-family ipv4-unicast route-export to-evpn route-map map1
+cumulus@leaf01:~$ net add bgp vrf RED l2vpn evpn advertise ipv4 unicast route-map map1
+cumulus@leaf01:~$ net pending
+cumulus@leaf01:~$ net commit
+```
+
+{{< /tab >}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@leaf01:~$ nv set vrf RED router bgp address-family ipv4-unicast route-export to-evpn route-map map1
 ```
 
 {{< /tab >}}
@@ -468,11 +571,20 @@ See {{<link url="Basic-Configuration#evpn-and-vxlan-active-active-mode" text="EV
 Set the MLAG system MAC address on both switches in the MLAG pair.
 
 {{< tabs "TabID472 ">}}
-{{< tab "CUE Commands ">}}
+{{< tab "NCLU Commands ">}}
 
 ```
-cumulus@leaf01:~$ cl set system global anycast-mac 44:38:39:BE:EF:AA
-cumulus@leaf01:~$ cl config apply
+cumulus@leaf01:~$ net add vlan 4001 ip address-virtual 44:38:39:BE:EF:AA
+cumulus@leaf01:~$ net pending
+cumulus@leaf01:~$ net commit
+```
+
+{{< /tab >}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@leaf01:~$ nv set system global anycast-mac 44:38:39:BE:EF:AA
+cumulus@leaf01:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -505,11 +617,11 @@ iface vlan4001
 To advertise type-5 routes and host type-2 routes using the system IP address and system MAC address:
 
 {{< tabs "TabID520 ">}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
-cumulus@leaf01:~$ cl set evpn route-advertise nexthop-setting system-ip-mac
-cumulus@leaf01:~$ cl config apply
+cumulus@leaf01:~$ nv set evpn route-advertise nexthop-setting system-ip-mac
+cumulus@leaf01:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -538,11 +650,20 @@ Each switch in the MLAG pair advertises type-5 routes with its own system IP, wh
 To disable Advertise Primary IP Address:
 
 {{< tabs "TabID560 ">}}
-{{< tab "CUE Commands ">}}
+{{< tab "NCLU Commands ">}}
 
 ```
-cumulus@leaf01:~$ cl set evpn route-advertise nexthop-setting shared-ip-mac
-cumulus@leaf01:~$ cl config apply
+cumulus@leaf01:~$ net del bgp vrf RED l2vpn evpn advertise-pip
+cumulus@leaf01:~$ net pending
+cumulus@leaf01:~$ net commit
+```
+
+{{< /tab >}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@leaf01:~$ nv set evpn route-advertise nexthop-setting shared-ip-mac
+cumulus@leaf01:~$ nv config apply
 ```
 
 {{< /tab >}}

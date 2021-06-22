@@ -63,11 +63,20 @@ If you have a multiple spanning tree instance (MSTI 0, also known as a common sp
 The following example command sets the tree priority to 8192:
 
 {{< tabs "TabID213 ">}}
-{{< tab "CUE Commands ">}}
+{{< tab "NCLU Commands ">}}
 
 ```
-cumulus@switch:~$ cl set bridge domain br_default stp priority 8192
-cumulus@switch:~$ cl config apply
+cumulus@switch:~$ net add bridge stp treeprio 8192
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+{{< /tab >}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set bridge domain br_default stp priority 8192
+cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -114,12 +123,22 @@ It is common for edge ports to be configured as access ports for a simple end ho
 The following example commands configure PortAdminEdge and BPDU guard for swp5:
 
 {{< tabs "TabID276 ">}}
-{{< tab "CUE Commands ">}}
+{{< tab "NCLU Commands ">}}
 
 ```
-cumulus@switch:~$ cl set interface swp5 bridge domain br_default stp admin-edge on
-cumulus@switch:~$ cl set interface swp5 bridge domain br_default stp bpdu-guard on
-cumulus@switch:~$ cl config apply
+cumulus@switch:~$ net add interface swp5 stp bpduguard
+cumulus@switch:~$ net add interface swp5 stp portadminedge
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+{{< /tab >}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set interface swp5 bridge domain br_default stp admin-edge on
+cumulus@switch:~$ nv set interface swp5 bridge domain br_default stp bpdu-guard on
+cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -172,11 +191,20 @@ PortAutoEdge is enabled by default in Cumulus Linux.
 The following example commands disable PortAutoEdge on swp1:
 
 {{< tabs "TabID344 ">}}
-{{< tab "CUE Commands ">}}
+{{< tab "NCLU Commands ">}}
 
 ```
-cumulus@switch:~$ cl set interface swp1 bridge domain br_default stp auto-edge off
-cumulus@switch:~$ cl config apply
+cumulus@switch:~$ net add interface swp1 stp portautoedge no
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+{{< /tab >}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set interface swp1 bridge domain br_default stp auto-edge off
+cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -205,11 +233,20 @@ cumulus@switch:~$ sudo ifreload -a
 The following example commands re-enable PortAutoEdge on swp1:
 
 {{< tabs "TabID383 ">}}
-{{< tab "CUE Commands ">}}
+{{< tab "NCLU Commands ">}}
 
 ```
-cumulus@switch:~$ cl set interface swp1 bridge domain br_default stp auto-edge on
-cumulus@switch:~$ cl config apply
+cumulus@switch:~$ net del interface swp1 stp portautoedge no
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+{{< /tab >}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set interface swp1 bridge domain br_default stp auto-edge on
+cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -227,11 +264,20 @@ You can configure *BPDU guard* to protect the spanning tree topology from unauth
 The following example commands set BPDU guard for swp5:
 
 {{< tabs "TabID411 ">}}
-{{< tab "CUE Commands ">}}
+{{< tab "NCLU Commands ">}}
 
 ```
-cumulus@switch:~$ cl set interface swp5 bridge domain br_default stp bpdu-guard on
-cumulus@switch:~$ cl config apply
+cumulus@switch:~$ net add interface swp5 stp bpduguard
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+{{< /tab >}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set interface swp5 bridge domain br_default stp bpdu-guard on
+cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -264,10 +310,18 @@ mstpd: error, MSTP_IN_rx_bpdu: bridge:bond0 Recvd BPDU on BPDU Guard Port - Port
 To determine whether BPDU guard is configured, or if a BPDU has been received:
 
 {{< tabs "TabID454 ">}}
-{{< tab "CUE Commands ">}}
+{{< tab "NCLU Commands ">}}
 
 ```
-cumulus@switch:~$ cl show bridge domain br_default stp
+cumulus@switch:~$ net show bridge spanning-tree | grep bpdu
+  bpdu guard port    yes                bpdu guard error     yes
+```
+
+{{< /tab >}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv show bridge domain br_default stp
 ```
 
 {{< /tab >}}
@@ -317,11 +371,20 @@ Bridge assurance is disabled by default.
 The following example commands enable bridge assurance on swp1:
 
 {{< tabs "TabID513 ">}}
-{{< tab "CUE Commands ">}}
+{{< tab "NCLU Commands ">}}
 
 ```
-cumulus@switch:~$ cl set interface swp5 bridge domain br_default stp network on
-cumulus@switch:~$ cl config apply
+cumulus@switch:~$ net add interface swp1 stp portnetwork
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+{{< /tab >}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set interface swp5 bridge domain br_default stp network on
+cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -378,11 +441,20 @@ Using BDPU filter might cause layer 2 loops. Use this feature deliberately and w
 The following example commands configure the BPDU filter on swp6:
 
 {{< tabs "TabID584 ">}}
-{{< tab "CUE Commands ">}}
+{{< tab "NCLU Commands ">}}
 
 ```
-cumulus@switch:~$ cl set interface swp6 bridge domain br_default stp bpdu-filter on
-cumulus@switch:~$ cl config apply
+cumulus@switch:~$ net add interface swp6 stp portbpdufilter
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+{{< /tab >}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set interface swp6 bridge domain br_default stp bpdu-filter on
+cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -423,11 +495,11 @@ cumulus@switch:~$ sudo mstpctl setportbpdufilter br100 swp1.100=yes swp2.100=yes
 To enable the interface in the bridge to take the root role:
 
 {{< tabs "TabID427 ">}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ cl set interface swp1 bridge domain br_default stp restrrole on
-cumulus@switch:~$ cl config apply
+cumulus@switch:~$ nv set interface swp1 bridge domain br_default stp restrrole on
+cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -453,7 +525,7 @@ cumulus@switch:~$ sudo ifreload -a
 
 ## Additional STP Parameters
 
-The table below describes additional STP configuration parameters available in Cumulus Linux. You can set these optional parameters manually by editing the `/etc/network/interfaces` file. CUE commands are not supported.
+The table below describes additional STP configuration parameters available in Cumulus Linux. You can set these optional parameters manually by editing the `/etc/network/interfaces` file. NVUE commands are not supported.
 
 Spanning tree parameters are defined in the IEEE {{<exlink url="https://standards.ieee.org/standard/802_1D-2004.html" text="802.1D">}} and {{<exlink url="https://standards.ieee.org/standard/802_1Q-2018.html" text="802.1Q">}} specifications. For a comparison of STP parameter configuration between `mstpctl` and other vendors, [read this knowledge base article]({{<ref "/knowledge-base/Demos-and-Training/Interoperability/Cumulus-Linux-vs-Cisco-IOS-Spanning-Tree-Protocol" >}}).
 
@@ -478,16 +550,7 @@ Be sure to run the `sudo ifreload -a` command after you set the STP parameter in
 To check STP status for a bridge:
 
 {{< tabs "TabID50 ">}}
-{{< tab "CUE Commands ">}}
-
-```
-cumulus@switch:~$ cl show bridge domain br_default stp
-```
-
-{{< /tab >}}
 {{< tab "NCLU Commands ">}}
-
-Run the `net show bridge spanning-tree` command:
 
 ```
 cumulus@switch:~$ net show bridge spanning-tree
@@ -516,6 +579,13 @@ peerlink   forw   Desg  Yes
 vni13      forw   Desg  Yes
 vni24      forw   Desg  Yes
 vxlan4001  forw   Desg  Yes
+```
+
+{{< /tab >}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv show bridge domain br_default stp
 ```
 
 {{< /tab >}}

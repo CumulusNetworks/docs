@@ -103,6 +103,18 @@ iface bond2
 
 {{< /tab >}}
 
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@leaf01:~$ cl set interface bond1 bond member swp1
+cumulus@leaf01:~$ cl set NEED COMMAND FOR ALIAS
+cumulus@leaf01:~$ cl set interface bond2 bond member swp2
+cumulus@leaf01:~$ cl set NEED COMMAND FOR ALIAS
+cumulus@leaf01:~$ cl config apply
+```
+
+{{< /tab >}}
+
 {{< /tabs >}}
 
 3. Add a unique MLAG ID (clag-id) to each bond.
@@ -147,6 +159,16 @@ iface bond2
 
 {{< /tab >}}
 
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@leaf01:~$ cl set interface bond1 bond mlag id 1
+cumulus@leaf01:~$ cl set interface bond2 bond mlag id 2 
+cumulus@leaf01:~$ cl config apply
+```
+
+{{< /tab >}}
+
 {{< /tabs >}}
 
 4. Add the bonds you created above to a bridge. The example commands below add bond1 and bond2 to a VLAN-aware bridge.
@@ -177,6 +199,15 @@ iface bridge
     bridge-ports bond1 bond2
     bridge-vlan-aware yes
 ...
+```
+
+{{< /tab >}}
+
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@switch:~$ cl set interface bond1-2 bridge domain bridge 
+cumulus@switch:~$ cl config apply
 ```
 
 {{< /tab >}}
@@ -345,6 +376,53 @@ Run the `sudo ifreload -a` command to apply all the configuration changes:
 ```
 cumulus@leaf02:~$ sudo ifreload -a
 ```
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
+{{< /tab >}}
+
+{{< tab "CUE Commands ">}}
+
+   {{< tabs "TabID384 ">}}
+
+{{< tab "leaf01 ">}}
+
+```
+cumulus@leaf01:~$ cl set interface peerlink bond member swp49-50
+cumulus@leaf01:~$ cl set mlag mac-address 44:38:39:BE:EF:AA
+cumulus@leaf01:~$ cl set mlag backup 10.10.10.2
+cumulus@leaf01:~$ cl set mlag peer-ip linklocal
+cumulus@leaf01:~$ cl config apply
+```
+
+To configure the backup link to a VRF, include the name of the VRF with the `backup-ip` parameter. The following example configures the backup link to VRF RED:
+
+```
+cumulus@leaf01:~$ cl set NEED COMMAND
+cumulus@leaf01:~$ cl config apply
+```
+
+{{< /tab >}}
+
+{{< tab "leaf02 ">}}
+
+```
+cumulus@leaf02:~$ cl set interface swp49-50 type peerlink
+cumulus@leaf02:~$ cl set mlag mac-address 44:38:39:BE:EF:AA
+cumulus@leaf02:~$ cl set mlag backup 10.10.10.1
+cumulus@leaf02:~$ cl set mlag peer-ip linklocal
+cumulus@leaf02:~$ cl config apply
+```
+
+To configure the backup link to a VRF, include the name of the VRF with the `backup-ip` parameter. The following example configures the backup link to VRF RED:
+
+```
+cumulus@leaf01:~$ cl set NEED COMMAND
+cumulus@leaf01:~$ cl config apply
+```
+
 {{< /tab >}}
 
 {{< /tabs >}}
@@ -410,6 +488,15 @@ cumulus@switch:~$ sudo ifreload -a
 
 {{< /tab >}}
 
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@switch:~$ cl set mlag priority 2048
+cumulus@switch:~$ cl config apply
+```
+
+{{< /tab >}}
+
 {{< /tabs >}}
 
 The switch with the lower priority value is given the primary role; the default value is 32768 and the range is between 0 and 65535.
@@ -464,6 +551,15 @@ iface peerlink.4094
 
 ```
 cumulus@switch:~$ sudo ifreload -a
+```
+
+{{< /tab >}}
+
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@switch:~$ cl set NEED COMMAND
+cumulus@switch:~$ cl config apply
 ```
 
 {{< /tab >}}
@@ -532,6 +628,15 @@ cumulus@leaf01:~$ sudo ifreload -a
 
 {{< /tab >}}
 
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@switch:~$ cl set NEED COMMAND
+cumulus@switch:~$ cl config apply
+```
+
+{{< /tab >}}
+
 {{< /tabs >}}
 
 ## Best Practices
@@ -594,6 +699,18 @@ cumulus@switch:~$ sudo ifreload -a
 
 {{< /tab >}}
 
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@switch:~$ cl set interface peerlink mtu 1500
+cumulus@switch:~$ cl set interface uplink mtu 1500
+cumulus@switch:~$ cl set interface bond1 mtu 1500
+cumulus@switch:~$ cl set interface bond2 mtu 1500
+cumulus@switch:~$ cl config apply
+```
+
+{{< /tab >}}
+
 {{< /tabs >}}
 
 ### STP and MLAG
@@ -635,25 +752,73 @@ To set up the adjacency, configure a {{<link url="Border-Gateway-Protocol-BGP#bg
 
 For BGP, use a configuration like this:
 
+{{< tabs "TabID742 ">}}
+
+{{< tab "NCLU Commands ">}}
+
 ```
 cumulus@switch:~$ net add bgp neighbor peerlink.4094 interface remote-as internal
 cumulus@switch:~$ net commit
 ```
 
+{{< /tab >}}
+
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@switch:~$ cl set vrf default router bgp peer peerlink.4094 remote-as internal 
+cumulus@switch:~$ cl config apply
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
 For OSPF, use a configuration like this:
+
+{{< tabs "TabID766 ">}}
+
+{{< tab "NCLU Commands ">}}
 
 ```
 cumulus@switch:~$ net add interface peerlink.4094 ospf area 0.0.0.1
 cumulus@switch:~$ net commit
 ```
 
+{{< /tab >}}
+
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@switch:~$ cl set NEED COMMAND
+cumulus@switch:~$ cl config apply
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
 If you are using {{<link url="Ethernet-Virtual-Private-Network-EVPN" text="EVPN">}} and MLAG, you need to enable the EVPN address family across the peerlink.4094 interface as well:
+
+{{< tabs "TabID790 ">}}
+
+{{< tab "NCLU Commands ">}}
 
 ```
 cumulus@switch:~$ net add bgp neighbor peerlink.4094 interface remote-as internal
 cumulus@switch:~$ net add bgp l2vpn evpn neighbor peerlink.4094 activate
 cumulus@switch:~$ net commit
 ```
+
+{{< /tab >}}
+
+{{< tab "CUE Commands ">}}
+
+Currently unavailable
+
+{{< /tab >}}
+
+{{< /tabs >}}
 
 {{%notice note%}}
 

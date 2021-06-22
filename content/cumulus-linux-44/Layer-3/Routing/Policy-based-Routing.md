@@ -105,7 +105,7 @@ pbr-policy map1
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 1. Configure the policy map.
 
@@ -114,20 +114,20 @@ pbr-policy map1
     If the IP address in the rule is `0.0.0.0/0 or ::/0`, any IP address is a match. You cannot mix IPv4 and IPv6 addresses in a rule.
 
     ```
-    cumulus@switch:~$ cl set router pbr map map1 rule 1 match destination-ip 10.1.2.0/24
-    cumulus@switch:~$ cl set router pbr map map1 rule 1 match source-ip 10.1.4.1/24 
+    cumulus@switch:~$ nv set router pbr map map1 rule 1 match destination-ip 10.1.2.0/24
+    cumulus@switch:~$ nv set router pbr map map1 rule 1 match source-ip 10.1.4.1/24 
     ```
 
     Instead of matching on IP address, you can match packets according to the DSCP or ECN field in the IP header. The DSCP value can be an integer between 0 and 63 or the DSCP codepoint name. The ECN value can be an integer between 0 and 3. The following example command configures a policy map called `map1` with rule number 1 that matches on packets with the DSCP value 10:
 
     ```
-    cumulus@switch:~$ cl set router pbr map map1 rule 1 match dscp 10
+    cumulus@switch:~$ nv set router pbr map map1 rule 1 match dscp 10
     ```
 
     The following example command configures a policy map called `map1` with rule number 1 that matches on packets with the ECN value 2:
 
     ```
-    cumulus@switch:~$ cl set router pbr map map1 rule 1 match ecn 2
+    cumulus@switch:~$ nv set router pbr map map1 rule 1 match ecn 2
     ```
 
 2. Apply a next hop group to the policy map. First configure the next hop group, then apply the group to the policy map. The example commands below create a next hop group called `group1` that contains the next hop 192.168.0.21 on output interface swp1 and VRF `RED` and the next hop 192.168.0.22, then applies the next hop group `group1` to the `map1` policy map.
@@ -135,23 +135,23 @@ pbr-policy map1
     The output interface and VRF are optional. However, you must specify the VRF if the next hop is not in the default VRF.
 
     ```
-    cumulus@switch:~$ cl set router pbr nexthop-group group1 via 192.168.0.21 interface swp1
-    cumulus@switch:~$ cl set router pbr nexthop-group group1 via 192.168.0.21 vrf RED
-    cumulus@switch:~$ cl set router pbr nexthop-group group1 via 192.168.0.22
-    cumulus@switch:~$ cl set router pbr map map1 rule 1 action nexthop-group group1
+    cumulus@switch:~$ nv set router pbr nexthop-group group1 via 192.168.0.21 interface swp1
+    cumulus@switch:~$ nv set router pbr nexthop-group group1 via 192.168.0.21 vrf RED
+    cumulus@switch:~$ nv set router pbr nexthop-group group1 via 192.168.0.22
+    cumulus@switch:~$ nv set router pbr map map1 rule 1 action nexthop-group group1
     ```
 
    If you want the rule to use a specific VRF table as its lookup, set the VRF. If no VRF is set, the rule uses the VRF table the interface is in as its lookup. The example command below sets the rule to use the `dmz` VRF table:
 
     ```
-    cumulus@switch:~$ cl set router pbr map map1 rule 1 action vrf dmz
+    cumulus@switch:~$ nv set router pbr map map1 rule 1 action vrf dmz
     ```
 
 3. Assign the PBR policy to an ingress interface. The example command below assigns the PBR policy `map1` to interface swp51:
 
     ```
-    cumulus@switch:~$ cl set interface swp51 router pbr map map1
-    cumulus@switch:~$ cl config apply
+    cumulus@switch:~$ nv set interface swp51 router pbr map map1
+    cumulus@switch:~$ nv config apply
     ```
 
 {{< /tab >}}
@@ -331,30 +331,30 @@ cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ cl set router pbr map pbr-policy rule 4 match source-ip 10.1.4.1/24
-cumulus@switch:~$ cl set router pbr map pbr-policy rule 4 match destination-ip 10.1.2.0/24
-cumulus@switch:~$ cl set router pbr nexthop-group group1 via 192.168.0.21
-cumulus@switch:~$ cl set router pbr map pbr-policy rule 4 action nexthop-group group1
+cumulus@switch:~$ nv set router pbr map pbr-policy rule 4 match source-ip 10.1.4.1/24
+cumulus@switch:~$ nv set router pbr map pbr-policy rule 4 match destination-ip 10.1.2.0/24
+cumulus@switch:~$ nv set router pbr nexthop-group group1 via 192.168.0.21
+cumulus@switch:~$ nv set router pbr map pbr-policy rule 4 action nexthop-group group1
 ```
 
 To change the source IP match from 10.1.4.**1**/24 to 10.1.4.**2**/24, you must delete the existing sequence by explicitly specifying the match/set condition. For example:
 
 ```
-cumulus@switch:~$ cl unset router pbr map pbr-policy rule 4 match source-ip
-cumulus@switch:~$ cl unset router pbr map pbr-policy rule 4 match destination-ip
-cumulus@switch:~$ cl unset router pbr nexthop-group group1 via 192.168.0.21
+cumulus@switch:~$ nv unset router pbr map pbr-policy rule 4 match source-ip
+cumulus@switch:~$ nv unset router pbr map pbr-policy rule 4 match destination-ip
+cumulus@switch:~$ nv unset router pbr nexthop-group group1 via 192.168.0.21
 ```
 
 Add the new rule with the following commands:
 
 ```
-cumulus@switch:~$ cl set router pbr map pbr-policy rule 4 match source-ip 10.1.4.2/24
-cumulus@switch:~$ cl set router pbr map pbr-policy rule 4 match destination-ip 10.1.2.0/24
-cumulus@switch:~$ cl set router pbr nexthop-group group1 via 192.168.0.21
-cumulus@switch:~$ cl config apply
+cumulus@switch:~$ nv set router pbr map pbr-policy rule 4 match source-ip 10.1.4.2/24
+cumulus@switch:~$ nv set router pbr map pbr-policy rule 4 match destination-ip 10.1.2.0/24
+cumulus@switch:~$ nv set router pbr nexthop-group group1 via 192.168.0.21
+cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -428,28 +428,28 @@ cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
-{{< tab "CUE ">}}
+{{< tab "NVUE ">}}
 
 ```
-cumulus@switch:~$ cl set router pbr map pbr-policy rule 3 match source-ip 10.1.4.1/24
-cumulus@switch:~$ cl set router pbr nexthop-group group1 via 192.168.0.21
+cumulus@switch:~$ nv set router pbr map pbr-policy rule 3 match source-ip 10.1.4.1/24
+cumulus@switch:~$ nv set router pbr nexthop-group group1 via 192.168.0.21
 ```
 
 To add a destination IP match to the rule, you must delete the existing rule sequence:
 
 ```
-cumulus@switch:~$ cl unset router pbr map pbr-policy rule 3 match source-ip
-cumulus@switch:~$ cl unset router pbr nexthop-group group1 via 192.168.0.21
-cumulus@switch:~$ cl config apply
+cumulus@switch:~$ nv router pbr map pbr-policy rule 3 match source-ip
+cumulus@switch:~$ nv unset router pbr nexthop-group group1 via 192.168.0.21
+cumulus@switch:~$ nv config apply
 ```
 
 Add back the source IP match and next hop condition, and add the new destination IP match (dst-ip 10.1.2.0/24):
 
 ```
-cumulus@switch:~$ cl set router pbr map pbr-policy rule 3 match source-ip 10.1.4.1/24
-cumulus@switch:~$ cl set router pbr map pbr-policy rule 3 match destination-ip 10.1.2.0/24
-cumulus@switch:~$ cl set router pbr nexthop-group group1 via 192.168.0.21
-cumulus@switch:~$ cl config apply
+cumulus@switch:~$ nv set router pbr map pbr-policy rule 3 match source-ip 10.1.4.1/24
+cumulus@switch:~$ nv set router pbr map pbr-policy rule 3 match destination-ip 10.1.2.0/24
+cumulus@switch:~$ nv set router pbr nexthop-group group1 via 192.168.0.21
+cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -533,41 +533,41 @@ cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 The following examples show how to delete a PBR rule match:
 
 ```
-cumulus@switch:~$ cl unset router pbr map map1 rule 1 match destination-ip
-cumulus@switch:~$ cl config apply
+cumulus@switch:~$ nv unset router pbr map map1 rule 1 match destination-ip
+cumulus@switch:~$ nv config apply
 ```
 
 The following examples show how to delete a next hop from a group:
 
 ```
-cumulus@switch:~$ cl unset router pbr nexthop-group group1 via 192.168.0.22
-cumulus@switch:~$ cl config apply
+cumulus@switch:~$ nv unset router pbr nexthop-group group1 via 192.168.0.22
+cumulus@switch:~$ nv config apply
 ```
 
 The following examples show how to delete a next hop group:
 
 ```
-cumulus@switch:~$ cl unset router pbr nexthop-group group1
-cumulus@switch:~$ cl config apply
+cumulus@switch:~$ nv unset router pbr nexthop-group group1
+cumulus@switch:~$ nv config apply
 ```
 
 The following examples show how to delete a PBR policy so that the PBR interface is no longer receiving PBR traffic:
 
 ```
-cumulus@switch:~$ cl unset interface swp51 router pbr map map1
-cumulus@switch:~$ cl config apply
+cumulus@switch:~$ nv unset interface swp51 router pbr map map1
+cumulus@switch:~$ nv config apply
 ```
 
 The following examples show how to delete a PBR rule:
 
 ```
-cumulus@switch:~$ cl unset router pbr map map1
-cumulus@switch:~$ cl config apply
+cumulus@switch:~$ nv unset router pbr map map1
+cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -680,29 +680,29 @@ cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ cl set router pbr map pbr-policy rule 6 match source-ip 10.1.4.1/24
-cumulus@switch:~$ cl set router pbr map pbr-policy rule 6 match destination-ip 10.1.2.0/24
-cumulus@switch:~$ cl set router pbr nexthop-group group1 via 192.168.0.21
+cumulus@switch:~$ nv set router pbr map pbr-policy rule 6 match source-ip 10.1.4.1/24
+cumulus@switch:~$ nv set router pbr map pbr-policy rule 6 match destination-ip 10.1.2.0/24
+cumulus@switch:~$ nv set router pbr nexthop-group group1 via 192.168.0.21
 ```
 
 To remove the destination IP match, you must first delete all existing conditions defined under this sequence:
 
 ```
-cumulus@switch:~$ cl unset router pbr map pbr-policy rule 6 match source-ip 
-cumulus@switch:~$ cl unset router pbr map pbr-policy rule 6 match destination-ip
-cumulus@switch:~$ cl unset router pbr nexthop-group group1 via 192.168.0.21
-cumulus@switch:~$ cl config apply
+cumulus@switch:~$ nv unset router pbr map pbr-policy rule 6 match source-ip 
+cumulus@switch:~$ nv unset router pbr map pbr-policy rule 6 match destination-ip
+cumulus@switch:~$ nv unset router pbr nexthop-group group1 via 192.168.0.21
+cumulus@switch:~$ nv config apply
 ```
 
 Then, add back the conditions you want to keep:
 
 ```
-cumulus@switch:~$ cl set router pbr map pbr-policy rule 6 match source-ip 10.1.4.1/24
-cumulus@switch:~$ cl unset router pbr nexthop-group group1 via 192.168.0.21
-cumulus@switch:~$ cl config apply
+cumulus@switch:~$ nv set router pbr map pbr-policy rule 6 match source-ip 10.1.4.1/24
+cumulus@switch:~$ nv unset router pbr nexthop-group group1 via 192.168.0.21
+cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -736,7 +736,7 @@ cumulus@switch:~$ net show pbr map
 
 To see information about a specific policy, what it matches, and with which interface it is associated, add the map name at the end of the command; for example, `net show pbr map map1` (or `show pbr map map1` in vtysh).
 
-To see information about all next hop groups, run the CUE `cl show router pbr nexthop-group` command or the vtysh `show pbr nexthop-group` command.
+To see information about all next hop groups, run the NVUE `nv show router pbr nexthop-group` command or the vtysh `show pbr nexthop-group` command.
 
 ```
 cumulus@switch:~$ show pbr nexthop-group
@@ -754,7 +754,7 @@ Valid: yes nexthop 192.168.8.2
 Valid: yes nexthop 192.168.8.3
 ```
 
-To see information about a specific next hop group, add the group name at the end of the command; for example, `cl show router pbr nexthop-group group1` (or `show pbr nexthop-group group1` in vtysh).
+To see information about a specific next hop group, add the group name at the end of the command; for example, `nv show router pbr nexthop-group group1` (or `show pbr nexthop-group group1` in vtysh).
 
 {{%notice note%}}
 A new Linux routing table ID is used for each next hop and next hop group.
@@ -793,14 +793,14 @@ pbr-policy map1
 ```
 
 {{< /tab >}}
-{{< tab "CUE Commands ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
-cumulus@leaf01:~$ cl set router pbr map map1 rule 1 match source-ip 0.0.0.0/0
-cumulus@leaf01:~$ cl set router pbr nexthop-group group1 via 192.168.0.32
-cumulus@leaf01:~$ cl set router pbr map map1 rule 1 action nexthop-group group1
-cumulus@leaf01:~$ cl set interface swp51 router pbr map map1
-cumulus@leaf01:~$ cl config
+cumulus@leaf01:~$ nv set router pbr map map1 rule 1 match source-ip 0.0.0.0/0
+cumulus@leaf01:~$ nv set router pbr nexthop-group group1 via 192.168.0.32
+cumulus@leaf01:~$ nv set router pbr map map1 rule 1 action nexthop-group group1
+cumulus@leaf01:~$ nv set interface swp51 router pbr map map1
+cumulus@leaf01:~$ nv config
 ```
 
 {{< /tab >}}

@@ -225,7 +225,7 @@ switch# exit
 cumulus@switch:~$
 ```
 
-With PTM enabled on an interface, the `zebra` daemon connects to `ptmd` over a Unix socket. Any time there is a change of status for an interface, `ptmd` sends notifications to `zebra`. Zebra maintains a `ptm-status` flag per interface and evaluates routing adjacency based on this flag. To check the per-interface `ptm-status`, run the CUE `cl show interface <interface>` command or the vtysh `show interface <interface>` command.
+With PTM enabled on an interface, the `zebra` daemon connects to `ptmd` over a Unix socket. Any time there is a change of status for an interface, `ptmd` sends notifications to `zebra`. Zebra maintains a `ptm-status` flag per interface and evaluates routing adjacency based on this flag. To check the per-interface `ptm-status`, run the NVUE `nv show interface <interface>` command or the vtysh `show interface <interface>` command.
 
 ```
 cumulus@switch:~$ sudo vtysh

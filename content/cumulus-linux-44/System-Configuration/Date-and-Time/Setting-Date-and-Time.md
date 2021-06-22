@@ -5,10 +5,7 @@ weight: 124
 toc: 3
 ---
 
-This section discusses how to set the time zone, and how to set the date and time on the software clock on the switch.
-
-- To configure NTP, see {{<link url="Network-Time-Protocol-NTP">}}.
-- To configure PTP, see {{<link url="Precision-Time-Protocol-PTP">}}.
+This section discusses how to set the time zone, and how to set the date and time on the software clock on the switch. To configure NTP, see {{<link url="Network-Time-Protocol-NTP">}}. To configure PTP, see {{<link url="Precision-Time-Protocol-PTP">}}.
 
 Setting the time zone, and the date and time on the software clock requires root privileges; use `sudo`.
 

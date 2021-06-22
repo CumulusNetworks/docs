@@ -22,7 +22,7 @@ To complete the preparation:
 
 2. Download the relevant software.
 
-    {{<netq-install/upgrade-image version="3.3.1">}} <!-- UPDATE ME! -->
+    {{<netq-install/upgrade-image version="4.0">}}
 
 3. Copy the file to the `/mnt/installables/` directory on your appliance or VM.
 
@@ -38,7 +38,7 @@ To complete the preparation:
     ```
     cumulus@<hostname>:~$ sudo apt-get update
     Get:1 http://apps3.cumulusnetworks.com/repos/deb bionic InRelease [13.8 kB]
-    Get:2 http://apps3.cumulusnetworks.com/repos/deb bionic/netq-3.3 amd64 Packages [758 B]
+    Get:2 http://apps3.cumulusnetworks.com/repos/deb bionic/netq-4.0 amd64 Packages [758 B]
     Hit:3 http://archive.ubuntu.com/ubuntu bionic InRelease
     Get:4 http://security.ubuntu.com/ubuntu bionic-security InRelease [88.7 kB]
     Get:5 http://archive.ubuntu.com/ubuntu bionic-updates InRelease [88.7 kB]
@@ -70,9 +70,9 @@ To complete the preparation:
 
 6. If you are upgrading NetQ as a VM in the cloud from version 3.1.0 or earlier, you must increase the root volume disk image size for proper operation of the lifecycle management feature.
 
-    {{< tabs "TabID89" >}}
+    {{<tabs "TabID89" >}}
 
-{{< tab "VMware" >}}
+{{<tab "VMware" >}}
 
 1. Check the size of the existing disk in the VM to confirm it is 32 GB. In this example, the number of 1 MB blocks is 31583, or 32 GB.
 
@@ -119,9 +119,9 @@ To complete the preparation:
     /dev/sda1          63341  4772     58554   8% /
     ```
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "KVM" >}}
+{{<tab "KVM" >}}
 
 1. Check the size of the existing hard disk in the VM to confirm it is 32 GB. In this example, the number of 1 MB blocks is 31583, or 32 GB.
 
@@ -174,7 +174,7 @@ To complete the preparation:
 
 6. Start the VM and log back in.
 
-7. From step 1 we know the name of the root disk is */dev/vda 1*. Use that to run the following commands on the partition.
+7. From step 1 you know the name of the root disk is */dev/vda 1*. Use that to run the following commands on the partition.
 
     ```
     cumulus@netq-310-cloud:~$ sudo growpart /dev/vda 1
@@ -195,23 +195,23 @@ Filesystem     1M-blocks  Used Available Use% Mounted on
 /dev/vda1          63341  1193     62132   2% /
 ```
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}
 
 You can now upgrade your appliance using the NetQ Admin UI, in the next section. Alternately, you can upgrade using the CLI here: {{<link title="#Upgrade Your Platform Using the NetQ CLI" text="Upgrade Your Platform Using the NetQ CLI">}}.
 
-## Upgrade Your Platform Using the NetQ Admin UI
+## Upgrade Older Platforms Using the NetQ Admin UI
 
-After completing the preparation steps, upgrading your NetQ On-premises or Cloud Appliances or VMs is simple using the Admin UI.
+If you are upgrading from NetQ 3.1.1 or earlier, after completing the preparation steps, upgrading your NetQ On-premises or Cloud Appliances or VMs is simple using the Admin UI.
 
 To upgrade your NetQ software:
 
 1. Run the bootstrap CLI to upgrade the Admin UI application.
 
-    {{< tabs "TabID100" >}}
+    {{<tabs "Upgrade Old Platforms">}}
 
-{{< tab "On-premises Deployments" >}}
+{{<tab "On-premises Deployments">}}
 
 ```
 cumulus@<hostname>:~$ netq bootstrap master upgrade /mnt/installables/NetQ-4.0.0.tgz
@@ -222,17 +222,17 @@ cumulus@<hostname>:~$ netq bootstrap master upgrade /mnt/installables/NetQ-4.0.0
 Successfully bootstrap-upgraded the master node
 ```
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< tab "Remote Deployments" >}}
+{{<tab "Remote Deployments">}}
 
 ```
 netq bootstrap master upgrade /mnt/installables/NetQ-4.0.0-opta.tgz
 ```
 
-{{< /tab >}}
+{{</tab>}}
 
-{{< /tabs >}}
+{{</tabs>}}
 
 2. Open the Admin UI by entering *http://\<hostname-or-ipaddress\>:8443* in your browser address field.
 

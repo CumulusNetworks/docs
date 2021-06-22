@@ -16,32 +16,33 @@ Cumulus Linux advertises the maximum number of route table entries supported on 
 
 To determine the current table sizes on a switch, use either the NCLU `net show system asic` command or `{{<link url="Resource-Diagnostics-Using-cl-resource-query" text="cl-resource-query">}}`.
 
-## Forwarding Table Profiles
-
-You can configure the allocation of forwarding table resources and mechanisms. Cumulus Linux provides a number of generalized profiles, described below. These profiles work only with layer 2 and layer 3 unicast forwarding.
-
-Choose the profile that best suits your network architecture and specify the profile name for the `forwarding_table.profile` variable in the `/etc/cumulus/datapath/traffic.conf` file; for example:
-
-```
-cumulus@switch:~$ cat /etc/cumulus/datapath/traffic.conf | grep forwarding_table -B 4
-# Manage shared forwarding table allocations
-# Valid profiles -
-# default, l2-heavy, v4-lpm-heavy, v6-lpm-heavy
-#
-forwarding_table.profile = default
-```
-
-After you specify a different profile, {{%link url="Configuring-switchd#restart-switchd" text="restart `switchd`"%}} for the change to take effect. You can see the forwarding table profile when you run `cl-resource-query`.
-
 ## Supported Route Entries
 
-The following tables list the number of MAC addresses, layer 3 neighbors, and LPM routes validated for each forwarding table profile. If you do not specify any profiles as described above, the switch uses the *default* values.
+Cumulus Linux provides a number of generalized profiles, described below. These profiles work only with layer 2 and layer 3 unicast forwarding.
 
-{{%notice tip%}}
+The following tables list the number of MAC addresses, layer 3 neighbors, and LPM routes validated for each forwarding table profile. If you do not specify any profiles as described below, the switch uses the *default* values.
 
+{{%notice note%}}
 The values in the following tables reflect results from testing, which might differ from published manufacturer specifications.
-
 {{%/notice%}}
+
+### Spectrum-2 and Spectrum-3
+
+| <div style="width:100px">Profile| MAC Addresses | <div style="width:190px">Layer 3 Neighbors| Longest Prefix Match (LPM)  |
+| -------------- | ------------- | ------------------------- | ------------------------------ |
+| default        | 50k           | 41k (IPv4) and 20k (IPv6) | 82k (IPv4), 74k (IPv6-long), 10K (IPv4-Mcast)|
+| l2-heavy       | 115k          | 74k (IPv4) and 37k (IPv6) | 16k (IPv4), 24k (IPv6-long), 10K (IPv4-Mcast)|
+| l2-heavy-1     | 239K          | 16k (IPv4) and 12k (IPv6) | 16k (IPv4), 16k (IPv6-long), 10K (IPv4-Mcast)|
+| v4-lpm-heavy   | 16k           | 41k (IPv4) and 24k (IPv6) | 124k (IPv4), 24k (IPv6-long), 10K (IPv4-Mcast)|
+| v4-lpm-heavy-1 | 16k           | 16k (IPv4) and 4k (IPv6)  | 256k (IPv4), 8k (IPv6-long), 10K (IPv4-Mcast)|
+| v6-lpm-heavy   | 16k           | 16k (IPv4) and 62k (IPv6) | 16k (IPv4), 99k (IPv6-long), 10K (IPv4-Mcast)|
+| lpm-balanced   | 16k           | 16k (IPv4) and 12k (IPv6) | 124k (IPv4), 124k (IPv6-long), 10K (IPv4-Mcast)|
+| ipmc-heavy      | 57k           | 41k (IPv4) and 20k (IPv6) | 82K (IPv4), 66K (IPv6), 8K (IPv4-Mcast) |
+| ipmc-max        | 41K           | 41k (IPv4) and 20k (IPv6) | 74K (IPv4), 66K (IPv6), 15K (IPv4-Mcast) |
+
+The IPv6 number corresponds to the /64 IPv6 prefix. The /128 IPv6 prefix number is half of the /64 IPv6 prefix number.
+
+### Spectrum
 
 | <div style="width:100px">Profile| MAC Addresses | <div style="width:190px">Layer 3 Neighbors| Longest Prefix Match (LPM)  |
 | -------------- | ------------- | ------------------------- | ------------------------------ |
@@ -51,19 +52,60 @@ The values in the following tables reflect results from testing, which might dif
 | v4-lpm-heavy   | 8k            | 8k (IPv4) and 16k (IPv6)  | 80k (IPv4) and 16k (IPv6-long) |
 | v4-lpm-heavy-1 | 8k            | 8k (IPv4) and 2k (IPv6)   | 176k (IPv4) and 2k (IPv6-long) |
 | v6-lpm-heavy   | 40k           | 8k (IPv4) and 40k (IPv6)  | 8k (IPv4), 32k (IPv6-long) and 32K (IPv6/64) |
-| lpm-balanced   | 8k            | 8k (IPv4) and 8k (IPv6)   | Spectrum-2 and Spectrum-3:<br>120k (IPv4) and 120k (IPv6-long)<br>Spectrum:<br>60k (IPv4), 60k (IPv6-long) and 120k (IPv6/64) |
+| lpm-balanced   | 8k            | 8k (IPv4) and 8k (IPv6)   | 60k (IPv4), 60k (IPv6-long) and 120k (IPv6/64) |
 
-## TCAM Resource Profiles
+## Forwarding Resource Profiles
 
-You can configure TCAM resource allocation, which is shared between IP multicast forwarding entries and ACL tables. Cumulus Linux provides a number of general profiles. Choose the profile that best suits your network architecture and specify that profile name in the `tcam_resource.profile` variable in the `/usr/lib/python2.7/dist-packages/cumulus/__chip_config/mlx/datapath.conf` file; for example:
+You can configure forwarding resource allocation, which is shared between IP multicast forwarding entries and ACL tables. Choose the profile that best suits your network architecture.
+
+### Spectrum-2 and Spectrum-3
+
+Specify the profile you want to use with the `forwarding_table.profile` variable in the `/etc/cumulus/datapath/traffic.conf` file. The following example specifies ipmc-max:
 
 ```
-cumulus@switch:~$ cat /usr/lib/python2.7/dist-packages/cumulus/__chip_config/mlx/datapath.conf | grep -B3 "tcam_resource"
-#TCAM resource forwarding profile
+cumulus@switch:~$ sudo cat /etc/cumulus/datapath/traffic.conf
+# Specify the forwarding table resource allocation profile, applicable
+# only on platforms that support universal forwarding resources.
+#
+# /usr/cumulus/sbin/cl-resource-query reports the allocated table sizes
+# based on the profile setting.
+#
+#   Values: one of { *** Common ***
+#                   'default', 'l2-heavy', 'l2-heavy-1', 'l2-heavy-2',
+#                   'v4-lpm-heavy', 'v4-lpm-heavy-1', 'v6-lpm-heavy',
+#                   'rash-v4-lpm-heavy', 'rash-custom-profile1',
+#                   'rash-custom-profile2', 'lpm-balanced'
+#
+#                   *** Mellanox Spectrum2+ only platforms ***
+#                   'ipmc-heavy', 'ipmc-max'
+#
+#                   }
+#
+#   Default value: 'default'
+#   Notes: some devices may support more modes, please consult user
+#          guide for more details
+#
+forwarding_table.profile = ipmc-max
+```
 
-    1. Valid profiles -
-    2. default, ipmc-heavy, acl-heavy, ipmc-max
-       tcam_resource.profile = default
+After you specify a different profile, {{%link url="Configuring-switchd#restart-switchd" text="restart `switchd`"%}} for the change to take effect.
+
+### Spectrum
+
+Specify the profile you want to use with the `tcam_resource.profile` variable in the `/etc/mlx/datapath/tcam_profile.conf` file. The following example specifies ipmc-max:
+
+```
+cumulus@switch:~$ cat /etc/mlx/datapath/tcam_profile.conf
+#
+# Default tcam_profile configuration for Mellanox Spectrum chip
+# Copyright (C) 20xx-2021 NVIDIA Corporation. ALL RIGHTS RESERVED.
+#
+
+#TCAM resource forwarding profile
+# Applicable for Spectrum-1 and Spectrum-A1 switches only
+# Valid profiles -
+#    default, ipmc-heavy, acl-heavy, ipmc-max, ip-acl-heavy
+tcam_resource.profile = ipmc-max
 ```
 
 After you specify a different profile, {{%link url="Configuring-switchd#restart-switchd" text="restart `switchd`"%}} for the change to take effect.

@@ -103,6 +103,15 @@ cumulus@switch:~$ ifreload -a
 
 {{< /tab >}}
 
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@switch:~$ cl set bridge domain bridge stp priority 8192
+cumulus@switch:~$ cl config apply
+```
+
+{{< /tab >}}
+
 {{< /tabs >}}
 
 {{%notice note%}}
@@ -131,7 +140,7 @@ To configure PortAdminEdge mode:
 
 {{< tab "NCLU Commands ">}}
 
-The following example commands configure PortAdminEdge and BPDU guard for swp5.
+The following example commands configure PortAdminEdge and BPDU guard for swp1.
 
 ```
 cumulus@switch:~$ net add interface swp5 stp bpduguard
@@ -147,7 +156,7 @@ cumulus@switch:~$ net commit
 Configure PortAdminEdge and BPDU guard under the switch port interface stanza in the `/etc/network/interfaces` file, then run the `ifreload -a` command. The following example configures PortAdminEdge and BPD guard on swp5.
 
 ```
-cumulus@switch:~$ sudo nano /etc/netowrk/interfaces
+cumulus@switch:~$ sudo nano /etc/network/interfaces
 ...
 auto swp5
 iface swp5
@@ -171,8 +180,18 @@ A runtime configuration is non-persistent, which means the configuration you cre
 To configure PortAdminEdge and BPDU guard at runtime, run the following commands:
 
 ```
-cumulus@switch:~$ sudo mstpctl setportadminedge br2 swp1 yes
-cumulus@switch:~$ sudo mstpctl setbpduguard br2 swp1 yes
+cumulus@switch:~$ sudo mstpctl setportadminedge bridge swp5 yes
+cumulus@switch:~$ sudo mstpctl setbpduguard bridge swp5 yes
+```
+
+{{< /tab >}}
+
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@switch:~$ cl set interface swp5 bridge domain br_default stp admin-edge on
+cumulus@switch:~$ cl set interface swp5 bridge domain br_default stp bpdu-guard on
+cumulus@switch:~$ cl config apply
 ```
 
 {{< /tab >}}
@@ -230,6 +249,15 @@ cumulus@switch:~$ sudo ifreload -a
 
 {{< /tab >}}
 
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@switch:~$ cl set interface swp1 bridge domain br_default stp auto-edge off
+cumulus@switch:~$ cl config apply
+```
+
+{{< /tab >}}
+
 {{< /tabs >}}
 
 To re-enable PortAutoEdge for an interface:
@@ -251,6 +279,15 @@ cumulus@switch:~$ net commit
 {{< tab "Linux Commands ">}}
 
 Edit the switch port interface stanza in the `/etc/network/interfaces` file to remove `mstpctl-portautoedge no`, then run the `ifreload -a` command.
+
+{{< /tab >}}
+
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@switch:~$ cl set interface swp1 bridge domain br_default stp auto-edge on
+cumulus@switch:~$ cl config apply
+```
 
 {{< /tab >}}
 
@@ -291,6 +328,15 @@ iface swp5
 
 ```
 cumulus@switch:~$ sudo ifreload -a
+```
+
+{{< /tab >}}
+
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@switch:~$ cl set interface swp5 bridge domain br_default stp bpdu-guard on
+cumulus@switch:~$ cl config apply
 ```
 
 {{< /tab >}}
@@ -344,6 +390,14 @@ bridge:bond0 CIST info
   clag remote portID F.FFF                   clag system mac      0:0:0:0:0:0
 ```
 <!-- vale on -->
+{{< /tab >}}
+
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@switch:~$ cl show bridge domain br_default stp
+```
+
 {{< /tab >}}
 
 {{< /tabs >}}
@@ -414,6 +468,15 @@ cumulus@switch:~$ sudo mstpctl showportdetail br1007 swp1.1007 | grep network
 
 {{< /tab >}}
 
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@switch:~$ cl set interface swp5 bridge domain br_default stp network on
+cumulus@switch:~$ cl config apply
+```
+
+{{< /tab >}}
+
 {{< /tabs >}}
 
 To monitor logs for bridge assurance messages, run the following command:
@@ -478,6 +541,15 @@ To enable BPDU filter at runtime, run `mstpctl`. For example:
 
 ```
 cumulus@switch:~$ sudo mstpctl setportbpdufilter br100 swp1.100=yes swp2.100=yes
+```
+
+{{< /tab >}}
+
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@switch:~$ cl set interface swp5 bridge domain br_default stp bpdu-filter on
+cumulus@switch:~$ cl config apply
 ```
 
 {{< /tab >}}
@@ -588,6 +660,14 @@ cumulus@switch:~$ sudo mstpctl showport bridge
   E swp1 8.001 forw F.000.00:14:01:01:01:00 F.000.00:14:01:01:01:00 8.001 Desg
     swp4 8.002 forw F.000.00:14:01:01:01:00 F.000.00:14:01:01:01:00 8.002 Desg
   E swp5 8.003 forw F.000.00:14:01:01:01:00 F.000.00:14:01:01:01:00 8.003 Desg
+```
+
+{{< /tab >}}
+
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@switch:~$ cl show bridge domain bridge stp
 ```
 
 {{< /tab >}}

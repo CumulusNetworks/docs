@@ -17,44 +17,45 @@ Basic configuration in a BGP-EVPN-based layer 2 extension deployment requires yo
 For a non-VTEP device that is only participating in EVPN route exchange, such as a spine switch where the network deployment uses hop-by-hop eBGP or the switch is acting as an iBGP route reflector, configuring VXLAN interfaces is not required.
 {{%/notice%}}
 
-You can configure EVPN with CUE commands or with Linux and vtysh commands.
+{{< tabs "TabID20 ">}}
+{{< tab "NCLU Commands ">}}
 
-{{< tabs "TabID78 ">}}
-{{< tab "CUE Commands ">}}
-
-1. Configure VXLAN Interfaces. The following example creates a single VXLAN interface (vxlan0), maps VLAN 10 to vni10 and VLAN 20 to vni20, adds the VXLAN device to the default bridge `br_default`, and sets the VXLAN local tunnel IP address to 10.10.10.10.
+1. Configure VXLAN Interfaces. The following example creates two VXLAN interfaces (vni10 and vni20), adds the VXLAN devices to the bridge, and sets the VXLAN local tunnel IP address to 10.10.10.1.
 
    ```
-   cumulus@leaf01:~$ cl set bridge domain br_default vlan 10 vni 10
-   cumulus@leaf01:~$ cl set bridge domain br_default vlan 20 vni 20
-   cumulus@leaf01:~$ cl set nve vxlan source address 10.10.10.10
-   cumulus@leaf01:~$ cl config apply
+   cumulus@leaf01:~$ net add vxlan vni10 vxlan id 10
+   cumulus@leaf01:~$ net add vxlan vni20 vxlan id 20
+   cumulus@leaf01:~$ net add bridge bridge ports vni10,vni20
+   cumulus@leaf01:~$ net add bridge bridge vids 10,20
+   cumulus@leaf01:~$ net add vxlan vni10 bridge access 10
+   cumulus@leaf01:~$ net add vxlan vni20 bridge access 20
+   cumulus@leaf01:~$ net add loopback lo vxlan local-tunnelip 10.10.10.1
    ```
-
-   To create a traditional VXLAN device, where each VNI is represented as a separate device instead of  a set of VNIs in a single device model, see {{<link url="VXLAN-Devices" text="VXLAN-Devices">}}.
 
 2. Configure BGP. The following example commands assign an ASN and router ID to leaf01 and spine01, specify the interfaces between the two BGP peers, and the prefixes to originate. For complete information on how to configure BGP, see {{<link url="Border-Gateway-Protocol-BGP" text="Border Gateway Protocol - BGP">}}.
 
-   {{< tabs "TabID25 ">}}
+   {{< tabs "TabID38 ">}}
 {{< tab "leaf01 ">}}
 
 ```
-cumulus@leaf01:~$ cl set router bgp autonomous-system 65101
-cumulus@leaf01:~$ cl set router bgp router-id 10.10.10.1
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp51 remote-as external
-cumulus@leaf01:~$ cl set vrf default router bgp address-family ipv4-unicast static-network 10.10.10.1/32
-cumulus@leaf01:~$ cl config apply
+cumulus@leaf01:~$ net add bgp autonomous-system 65101
+cumulus@leaf01:~$ net add bgp router-id 10.10.10.1
+cumulus@leaf01:~$ net add bgp neighbor swp51 interface remote-as external
+cumulus@leaf01:~$ net add bgp ipv4 unicast network 10.10.10.1/32
+cumulus@leaf01:~$ net pending
+cumulus@leaf01:~$ net commit
 ```
 
 {{< /tab >}}
 {{< tab "spine01 ">}}
 
 ```
-cumulus@spine01:~$ cl set router bgp autonomous-system 651000
-cumulus@spine01:~$ cl set router bgp router-id 10.10.10.101
-cumulus@spine01:~$ cl set vrf default router bgp peer swp1 remote-as external
-cumulus@spine01:~$ cl set vrf default router bgp address-family ipv4-unicast static-network 10.10.10.101/32
-cumulus@spine01:~$ cl config apply
+cumulus@spine01:~$ net add bgp autonomous-system 65199
+cumulus@spine01:~$ net add bgp router-id 10.10.10.101
+cumulus@spine01:~$ net add bgp neighbor swp1 remote-as external
+cumulus@spine01:~$ net add bgp ipv4 unicast network 10.10.10.101/32
+cumulus@spine01:~$ net pending
+cumulus@spine01:~$ net commit
 ```
 
 {{< /tab >}}
@@ -62,20 +63,94 @@ cumulus@spine01:~$ cl config apply
 
 3. Activate the EVPN address family and enable EVPN between BGP neighbors. The following example commands enable EVPN between leaf01 and spine01:
 
-   {{< tabs "TabID119 ">}}
+   {{< tabs "TabID67 ">}}
 {{< tab "leaf01 ">}}
 
 ```
-cumulus@leaf01:~$ cl set evpn enable on
-cumulus@leaf01:~$ cl set vrf default router bgp address-family l2vpn-evpn enable on
-cumulus@leaf01:~$ cl set vrf default router bgp peer swp51 address-family l2vpn-evpn enable on
-cumulus@leaf01:~$ cl config apply
+cumulus@leaf01:~$ net add bgp l2vpn evpn neighbor swp51 activate
 ```
 
-The CUE commands create the following configuration snippet in the `/etc/cue.d/startup.yaml` file:
+{{< /tab >}}
+{{< tab "spine01 ">}}
 
 ```
-cumulus@leaf01:~$ sudo cat /etc/cue.d/startup.yaml
+cumulus@spine01:~$ net add bgp l2vpn evpn neighbor swp1 activate
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+4. FRR is not aware of any local VNIs or MAC addresses, or neighbors associated with those VNIs until you enable the BGP control plane for all VNIs configured on the switch by setting the `advertise-all-vni` option.
+
+```
+cumulus@leaf01:~$ net add bgp l2vpn evpn advertise-all-vni
+cumulus@leaf01:~$ net pending
+cumulus@leaf01:~$ net commit
+```
+
+{{%notice note%}}
+This configuration is only needed on leaf switches that are VTEPs. EVPN routes received from a BGP peer are accepted, even without this explicit EVPN configuration. These routes are maintained in the global EVPN routing table. However, they only become effective (imported into the per-VNI routing table and appropriate entries installed in the kernel) when the VNI corresponding to the received route is locally known.
+{{%/notice%}}
+
+{{< /tab >}}
+{{< tab "NVUE Commands ">}}
+
+1. Configure VXLAN Interfaces. The following example creates a single VXLAN interface (vxlan0), maps VLAN 10 to vni10 and VLAN 20 to vni20, adds the VXLAN device to the default bridge `br_default`, and sets the VXLAN local tunnel IP address to 10.10.10.10.
+
+   ```
+   cumulus@leaf01:~$ nv set bridge domain br_default vlan 10 vni 10
+   cumulus@leaf01:~$ nv set bridge domain br_default vlan 20 vni 20
+   cumulus@leaf01:~$ nv set nve vxlan source address 10.10.10.10
+   cumulus@leaf01:~$ nv config apply
+   ```
+
+   To create a traditional VXLAN device, where each VNI is represented as a separate device instead of a set of VNIs in a single device model, see {{<link url="VXLAN-Devices" text="VXLAN-Devices">}}.
+
+2. Configure BGP. The following example commands assign an ASN and router ID to leaf01 and spine01, specify the interfaces between the two BGP peers, and the prefixes to originate. For complete information on how to configure BGP, see {{<link url="Border-Gateway-Protocol-BGP" text="Border Gateway Protocol - BGP">}}.
+
+   {{< tabs "TabID110 ">}}
+{{< tab "leaf01 ">}}
+
+```
+cumulus@leaf01:~$ nv set router bgp autonomous-system 65101
+cumulus@leaf01:~$ nv set router bgp router-id 10.10.10.1
+cumulus@leaf01:~$ nv set vrf default router bgp peer swp51 remote-as external
+cumulus@leaf01:~$ nv set vrf default router bgp address-family ipv4-unicast static-network 10.10.10.1/32
+cumulus@leaf01:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "spine01 ">}}
+
+```
+cumulus@spine01:~$ nv set router bgp autonomous-system 65199
+cumulus@spine01:~$ nv set router bgp router-id 10.10.10.101
+cumulus@spine01:~$ nv set vrf default router bgp peer swp1 remote-as external
+cumulus@spine01:~$ nv set vrf default router bgp address-family ipv4-unicast static-network 10.10.10.101/32
+cumulus@spine01:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+3. Activate the EVPN address family and enable EVPN between BGP neighbors. The following example commands enable EVPN between leaf01 and spine01:
+
+   {{< tabs "TabID137 ">}}
+{{< tab "leaf01 ">}}
+
+```
+cumulus@leaf01:~$ nv set evpn enable on
+cumulus@leaf01:~$ nv set vrf default router bgp address-family l2vpn-evpn enable on
+cumulus@leaf01:~$ nv set vrf default router bgp peer swp51 address-family l2vpn-evpn enable on
+cumulus@leaf01:~$ nv config apply
+```
+
+Unlike with NCLU, you do not need enable the BGP control plane for all VNIs configured on the switch with NVUE with the `advertise-all-vni` option. FRR **is** aware of any local VNIs and MACs, and hosts (neighbors) associated with those VNIs.
+
+The NVUE Commands create the following configuration snippet in the `/etc/nvue.d/startup.yaml` file:
+
+```
+cumulus@leaf01:~$ sudo cat /etc/nvue.d/startup.yaml
 - set:
     interface:
       lo:
@@ -123,16 +198,16 @@ cumulus@leaf01:~$ sudo cat /etc/cue.d/startup.yaml
 {{< tab "spine01 ">}}
 
 ```
-cumulus@spine01:~$ cl set evpn enable on
-cumulus@spine01:~$ cl set vrf default router bgp address-family l2vpn-evpn enable on
-cumulus@spine01:~$ cl set vrf default router bgp peer swp1 address-family l2vpn-evpn enable on
-cumulus@spine01:~$ cl config apply
+cumulus@spine01:~$ nv set evpn enable on
+cumulus@spine01:~$ nv set vrf default router bgp address-family l2vpn-evpn enable on
+cumulus@spine01:~$ nv set vrf default router bgp peer swp1 address-family l2vpn-evpn enable on
+cumulus@spine01:~$ nv config apply
 ```
 
-The CUE commands create the following configuration snippet in the `/etc/cue.d/startup.yaml` file:
+The NVUE Commands create the following configuration snippet in the `/etc/nvue.d/startup.yaml` file:
 
 ```
-cumulus@spine01:~$ sudo cat /etc/cue.d/startup.yaml
+cumulus@spine01:~$ sudo cat /etc/nvue.d/startup.yaml
 - set:
     interface:
       lo:
@@ -157,7 +232,7 @@ cumulus@spine01:~$ sudo cat /etc/cue.d/startup.yaml
           address: 10.10.10.101
     router:
       bgp:
-        autonomous-system: 651000
+        autonomous-system: 65199
         enable: on
         router-id: 10.10.10.101
     vrf:
@@ -224,7 +299,7 @@ cumulus@spine01:~$ sudo cat /etc/cue.d/startup.yaml
 
 2. Configure BGP with vtysh commands. The following example commands assign an ASN and router ID to leaf01 and spine01, specify the interfaces between the two BGP peers, and the prefixes to originate. For complete information on how to configure BGP, see {{<link url="Border-Gateway-Protocol-BGP" text="Border Gateway Protocol - BGP">}}.
 
-   {{< tabs "TabID117 ">}}
+   {{< tabs "TabID299 ">}}
 {{< tab "leaf01 ">}}
 
 ```
@@ -247,7 +322,7 @@ cumulus@leaf01:~$
 ```
 cumulus@spine01:~$ sudo vtysh
 spine01# configure terminal
-spine01(config)# router bgp 651000
+spine01(config)# router bgp 65199
 spine01(config-router)# bgp router-id 10.10.10.101
 spine01(config-router)# neighbor swp1 remote-as external
 spine01(config-router)# address-family ipv4
@@ -263,7 +338,7 @@ cumulus@spine01:~$
 
 3. Activate the EVPN address family and enable EVPN between BGP neighbors. The following example commands enable EVPN between leaf01 and spine01. The commands automatically provision all locally configured VNIs to be advertised by the BGP control plane.
 
-   {{< tabs "TabID194 ">}}
+   {{< tabs "TabID338 ">}}
 {{< tab "leaf01 ">}}
 
 ```
@@ -302,7 +377,7 @@ neighbor swp1 activate
 cumulus@spine01:~$ sudo vtysh
 
 spine01# configure terminal
-spine01(config)# router bgp 651000
+spine01(config)# router bgp 65199
 spine01(config-router)# bgp router-id 10.10.10.101
 spine01(config-router)# neighbor swp1 interface remote-as external
 spine01(config-router)# address-family l2vpn evpn
@@ -313,15 +388,11 @@ spine01)# exit
 cumulus@spine01:~$
 ```
 
-{{%notice note%}}
-The `advertise-all-vni` option is only needed on leaf switches that are VTEPs. EVPN routes received from a BGP peer are accepted, even without this explicit EVPN configuration. These routes are maintained in the global EVPN routing table. However, they only become effective (imported into the per-VNI routing table and appropriate entries installed in the kernel) when the VNI corresponding to the received route is locally known.
-{{%/notice%}}
-
 The vtysh commands create the following configuration snippet in the `/etc/frr/frr.conf` file:
 
 ```
 ...
-router bgp 651000
+router bgp 65199
   bgp router-id 10.10.10.101
   neighbor swp1 interface remote-as external
   address-family l2vpn evpn
@@ -331,6 +402,10 @@ neighbor swp1 activate
 
 {{< /tab >}}
 {{< /tabs >}}
+
+{{%notice note%}}
+The `advertise-all-vni` option is only needed on leaf switches that are VTEPs. EVPN routes received from a BGP peer are accepted, even without this explicit EVPN configuration. These routes are maintained in the global EVPN routing table. However, they only become effective (imported into the per-VNI routing table and appropriate entries installed in the kernel) when the VNI corresponding to the received route is locally known.
+{{%/notice%}}
 
 {{< /tab >}}
 {{< /tabs >}}

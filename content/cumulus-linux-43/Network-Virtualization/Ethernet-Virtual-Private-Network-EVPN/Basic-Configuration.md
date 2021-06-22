@@ -56,9 +56,21 @@ cumulus@leaf01:~$
 
 {{< /tab >}}
 
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@leaf01:~$ cl set router bgp autonomous-system 65101
+cumulus@leaf01:~$ cl set router bgp router-id 10.10.10.1
+cumulus@leaf01:~$ cl set vrf default router bgp peer swp51 remote-as external
+cumulus@leaf01:~$ cl set vrf default router bgp peer swp51 address-family l2vpn-evpn enable on
+cumulus@leaf01:~$ cl config apply 
+```
+
+{{< /tab >}}
+
 {{< /tabs >}}
 
-The above commands create the following configuration snippet in the `/etc/frr/frr.conf` file.
+The NCLU and vtysh commands create the following configuration snippet in the `/etc/frr/frr.conf` file.
 
 ```
 ...
@@ -111,9 +123,18 @@ cumulus@leaf01:~$
 
 {{< /tab >}}
 
+{{< tab "CUE Commands ">}}
+
+```
+cumulus@leaf01:~$ cl set 
+cumulus@leaf01:~$ cl config apply
+```
+
+{{< /tab >}}
+
 {{< /tabs >}}
 
-The above commands create the following configuration snippet in the `/etc/frr/frr.conf` file.
+The NCLU and vtysh commands create the following configuration snippet in the `/etc/frr/frr.conf` file.
 
 ```
 ...

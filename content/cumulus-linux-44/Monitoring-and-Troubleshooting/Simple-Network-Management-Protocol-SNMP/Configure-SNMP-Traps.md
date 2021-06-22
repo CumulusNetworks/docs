@@ -42,13 +42,6 @@ You may need to install the `snmptrapd` Debian package before you can configure 
 The following configuration defines the trap receiver IP address where SNMPv1 and SNMPv2c traps are sent. For SNMP versions 1 and 2c, you must set at least one SNMP trap destination IP address; multiple destinations can exist. Removing all settings disables SNMP traps. The default version is 2c, unless otherwise configured. You must include a VRF name with the IP address to force traps to be sent in a non-default VRF table.
 
 {{< tabs "trap-destination" >}}
-{{< tab "CUE Commands" >}}
-
-```
-cumulus@switch:~$ NEED COMMAND
-```
-
-{{< /tab >}}
 {{< tab "NCLU Commands" >}}
 
 ```
@@ -100,13 +93,6 @@ cumulus@switch:~$ sudo systemctl restart snmpd.service
 The SNMP trap receiving daemon must have usernames, authentication passwords, and encryption passwords created with its own EngineID. You must configure this trap server EngineID in the switch `snmpd` daemon sending the trap and inform messages. You specify the level of authentication and encryption for SNMPv3 trap and inform messages with `-l` (`NoauthNoPriv, authNoPriv,` or `authPriv`).
 
 {{< tabs "traps-informs" >}}
-{{< tab "CUE Commands" >}}
-
-```
-cumulus@switch:~$ NEED COMMAND
-```
-
-{{< /tab >}}
 {{< tab "NCLU Commands" >}}
 
 For inform messages, the engine ID/username creates the username on the receiving trap daemon server. The trap receiver sends the response for the trap message using its own engine ID/username. In practice, the trap daemon generates the usernames with its own engine ID and after these are created, the SNMP server (or agent) needs to use these engine ID/usernames when configuring the inform messages so that they are correctly authenticated and the correct response is sent to the `snmpd` agent that sent it.
@@ -246,13 +232,6 @@ The default frequency for checking link up/down is 60 seconds. You can change th
 {{%/notice%}}
 
 {{< tabs "traps-linkupdown" >}}
-{{< tab "CUE Commands" >}}
-
-```
-cumulus@switch:~$ NEED COMMAND
-```
-
-{{< /tab >}}
 {{< tab "NCLU Commands" >}}
 
 To enable notifications for interface link-up events to be sent to SNMP trap destinations every 15 seconds, run:
@@ -321,13 +300,6 @@ cumulus@switch:~$ sudo systemctl restart snmpd.service
 To enable a trap when the CPU load average exceeds a configured threshold, run the following commands. You can only use integers or floating point numbers.
 
 {{< tabs "traps-cpuload" >}}
-{{< tab "CUE Commands" >}}
-
-```
-cumulus@switch:~$ NEED COMMAND
-```
-
-{{< /tab >}}
 {{< tab "NCLU Commands" >}}
 
 ```
@@ -382,13 +354,6 @@ cumulus@switch:~$ sudo systemctl restart snmpd.service
 To enable SNMP trap notifications to be sent for every SNMP authentication failure, run the following commands.
 
 {{< tabs "traps-authfailurre" >}}
-{{< tab "CUE Commands" >}}
-
-```
-cumulus@switch:~$ NEED COMMAND
-```
-
-{{< /tab >}}
 {{< tab "NCLU Commands" >}}
 
 ```

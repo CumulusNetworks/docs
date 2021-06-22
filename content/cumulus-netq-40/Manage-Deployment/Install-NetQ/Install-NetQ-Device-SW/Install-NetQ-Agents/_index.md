@@ -8,13 +8,14 @@ toc: 4
 After installing your {{<link url="Install-NetQ" text="NetQ software">}}, you should install the NetQ {{<version>}} Agents on each switch you want to monitor. NetQ Agents can be installed on switches and servers running:
 
 - Cumulus Linux 3.3.2-3.7.x, 4.0.0 and later
+- SONiC 202012 and later
 - CentOS 7
 - RHEL 7.1
 - Ubuntu 16.04 and 18.04
 
 ## Prepare for NetQ Agent Installation
 
-For switches running Cumulus Linux, you need to:
+For switches running Cumulus Linux and SONiC, you need to:
 
 - Install and configure NTP, if needed
 - Obtain NetQ software packages
@@ -87,7 +88,7 @@ The repository <code>deb http://apps3.cumulusnetworks.com/repos/deb CumulusLinux
 
 {{</tab>}}
 
-{{< tab "Cumulus Linux 4.x" >}}
+{{<tab "Cumulus Linux 4.x">}}
 
 Add the repository:
 
@@ -111,6 +112,64 @@ cumulus@switch:~$ wget -qO - https://apps3.cumulusnetworks.com/setup/cumulus-app
 {{</tab>}}
 
 {{</tabs>}}
+
+{{</tab>}}
+
+{{<tab "SONiC">}}
+
+### Verify NTP is Installed and Configured
+
+Verify that {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/System-Configuration/Setting-Date-and-Time/" text="NTP">}} is running on the switch. The switch must be in time synchronization with the NetQ Platform or NetQ Appliance to enable useful statistical analysis.
+
+```
+admin@switch:~$ sudo systemctl status ntp
+● ntp.service - Network Time Service
+     Loaded: loaded (/lib/systemd/system/ntp.service; enabled; vendor preset: enabled)
+     Active: active (running) since Tue 2021-06-08 14:56:16 UTC; 2min 18s ago
+       Docs: man:ntpd(8)
+    Process: 1444909 ExecStart=/usr/lib/ntp/ntp-systemd-wrapper (code=exited, status=0/SUCCESS)
+   Main PID: 1444921 (ntpd)
+      Tasks: 2 (limit: 9485)
+     Memory: 1.9M
+     CGroup: /system.slice/ntp.service
+             └─1444921 /usr/sbin/ntpd -p /var/run/ntpd.pid -x -u 106:112
+```
+
+If NTP is not installed, install and configure it before continuing.  
+
+If NTP is not running:
+
+- Verify the IP address or hostname of the NTP server in the `/etc/sonic/config_db.json` file, and then
+- Re-enable and start the NTP service using the `sudo config reload -n` command
+
+Verify NTP is operating correctly. Look for an asterisk (\*) or a plus sign (+) that indicates the clock is synchronized.
+
+```
+admin@switch:~$ show ntp
+MGMT_VRF_CONFIG is not present.
+synchronised to NTP server (104.194.8.227) at stratum 3
+   time correct to within 2014 ms
+   polling server every 64 s
+     remote           refid      st t when poll reach   delay   offset  jitter
+==============================================================================
+-144.172.118.20  139.78.97.128    2 u   26   64  377   47.023  -1798.1 120.803
++208.67.75.242   128.227.205.3    2 u   32   64  377   72.050  -1939.3  97.869
++216.229.4.66    69.89.207.99     2 u  160   64  374   41.223  -1965.9  83.585
+*104.194.8.227   164.67.62.212    2 u   33   64  377    9.180  -1934.4  97.376
+```
+
+### Obtain NetQ Agent Software Package
+
+To install the NetQ Agent you need to install `netq-agent` on each switch or host. This is available from the NVIDIA networking repository.
+
+To obtain the NetQ Agent package, edit the `/etc/apt/sources.list` file to add the repository for NetQ.
+
+```
+admin@switch:~$ sudo nano /etc/apt/sources.list
+...
+deb [arch=amd64] http://apps3.cumulusnetworks.com/repos/deb buster netq-4.0
+...
+```
 
 {{</tab>}}
 
@@ -196,14 +255,14 @@ To obtain the NetQ Agent package:
     ```
     root@rhel7:~# vi /etc/yum.repos.d/cumulus-host-el.repo
     ...
-    [cumulus-arch-netq-3.2]
+    [cumulus-arch-netq-4.0]
     name=Cumulus netq packages
-    baseurl=https://apps3.cumulusnetworks.com/repos/rpm/el/7/netq-3.2/$basearch
+    baseurl=https://apps3.cumulusnetworks.com/repos/rpm/el/7/netq-4.0/$basearch
     gpgcheck=1
     enabled=1
-    [cumulus-noarch-netq-3.2]
+    [cumulus-noarch-netq-4.0]
     name=Cumulus netq architecture-independent packages
-    baseurl=https://apps3.cumulusnetworks.com/repos/rpm/el/7/netq-3.2/noarch
+    baseurl=https://apps3.cumulusnetworks.com/repos/rpm/el/7/netq-4.0/noarch
     gpgcheck=1
     enabled=1
     ...
@@ -249,7 +308,7 @@ If NTP is not already installed and configured, follow these steps:
 
 2. Configure the network time server.
 
-   {{< tabs "TabID0" >}}
+   {{<tabs "TabID0" >}}
 
 {{<tab "Use NTP Configuration File" >}}
 
@@ -276,9 +335,9 @@ If you are running NTP in your out-of-band management network with VRF, specify 
           2a00:7600::41    .STEP.          16 u    - 1024    0    0.000    0.000   0.000
           \*129.250.35.250 249.224.99.213   2 u  101  128  377   14.588   -0.299   0.243
 
-   {{< /tab >}}
+   {{</tab>}}
 
-   {{< tab "Use Chrony (Ubuntu 18.04 only)" >}}
+   {{<tab "Use Chrony (Ubuntu 18.04 only)" >}}
 
    1. Install chrony if needed.
 
@@ -345,9 +404,9 @@ If you are running NTP in your out-of-band management network with VRF, specify 
           Update interval : 115.2 seconds
           Leap status     : Normal
 
-{{</tab >}}
+{{</tab>}}
 
-{{</tabs >}}
+{{</tabs>}}
 
 ### Obtain NetQ Agent Software Package
 
@@ -363,8 +422,8 @@ root@ubuntu:~# sudo wget -O- https://apps3.cumulusnetworks.com/setup/cumulus-app
 
 2. Add the Ubuntu repository:
 
-    {{< tabs "TabID2" >}}
-{{< tab "Ubuntu 16.04" >}}
+    {{<tabs "TabID2" >}}
+{{<tab "Ubuntu 16.04" >}}
 
 Create the file `/etc/apt/sources.list.d/cumulus-host-ubuntu-xenial.list` and add the following line:
 
@@ -375,7 +434,7 @@ deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb xenial netq-latest
 ...
 ```
 
-{{</tab >}}
+{{</tab>}}
 
 {{<tab "Ubuntu 18.04" >}}
 
@@ -388,12 +447,12 @@ deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb bionic netq-latest
 ...
 ```
 
-{{</tab >}}
+{{</tab>}}
 
-{{</tabs >}}
+{{</tabs>}}
 
     {{<notice note>}}
-The use of <code>netq-latest</code> in these examples means that a <code>get</code> to the repository always retrieves the latest version of NetQ, even in the case where a major version update has been made. If you want to keep the repository on a specific version - such as <code>netq-3.1</code> - use that instead.
+The use of <code>netq-latest</code> in these examples means that a <code>get</code> to the repository always retrieves the latest version of NetQ, even in the case where a major version update has been made. If you want to keep the repository on a specific version - such as <code>netq-4.0</code> - use that instead.
     {{</notice>}}
 
 {{</tab>}}
@@ -408,7 +467,7 @@ After completing the preparation steps, you can successfully install the agent o
 
 {{<tab "Cumulus Linux">}}
 
-To install the NetQ Agent:
+To install the NetQ Agent (this example uses Cumulus Linux but the steps are the same for SONiC):
 
 1. Update the local `apt` repository, then install the NetQ software on the switch.
 
@@ -429,6 +488,37 @@ To install the NetQ Agent:
 
     ```
     cumulus@switch:~$ sudo systemctl restart rsyslog.service
+    ```
+
+4. Continue with NetQ Agent configuration in the next section.
+
+{{</tab>}}
+
+{{<tab "SONiC">}}
+
+To install the NetQ Agent (this example uses Cumulus Linux but the steps are the same for SONiC):
+
+1. Update the local `apt` repository, then install the NetQ software on the switch.
+
+    ```
+    admin@switch:~$ sudo apt-get update
+    admin@switch:~$ sudo apt-get install netq-agent
+    ```
+
+2. Verify you have the correct version of the Agent.
+
+    ```
+    admin@switch:~$ dpkg-query -W -f '${Package}\t${Version}\n' netq-agent
+    ```
+
+    You should see version 4.0.0 and update 34 in the results. For example:
+
+    - netq-agent_<strong>4.0.0</strong>-deb10u<strong>34</strong>~1622184065.3c77d9bd_amd64.deb
+
+3. Restart `rsyslog` so log files are sent to the correct destination.
+
+    ```
+    admin@switch:~$ sudo systemctl restart rsyslog.service
     ```
 
 4. Continue with NetQ Agent configuration in the next section.

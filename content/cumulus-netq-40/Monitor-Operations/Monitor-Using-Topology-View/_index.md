@@ -68,7 +68,6 @@ From the Configuration Panel, you can view the following data about nodes and li
 | Node Data | Description |
 | --------- | ----------- |
 | ASIC | Name of the ASIC used in the switch. A value of Cumulus Networks VX indicates a virtual machine. |
-| License State | Status of the Cumulus Linux license for the switch; OK, BAD (missing or invalid), or N/A (for hosts). |
 | NetQ Agent Status | Operational status of the NetQ Agent on the switch; Fresh, Rotten. |
 | NetQ Agent Version | Version ID of the NetQ Agent on the switch. |
 | OS Name | Operating system running on the switch. |

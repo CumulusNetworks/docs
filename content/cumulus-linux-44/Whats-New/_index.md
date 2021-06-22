@@ -29,6 +29,7 @@ Cumulus Linux 4.4 supports supports new platforms, provides bug fixes, and conta
 - {{<link url="Optional-BGP-Configuration/#conditional-advertisement" text="BGP conditional route advertisement">}}
 - {{<link url="IGMP-and-MLD-Snooping/#optimized-multicast-flooding-omf" text="Optimized Multicast Flooding (OMF)">}}
 - Smart System Manager {{<link url="Smart-System-Manager" text="warm boot">}}
+- Secure Boot
 - {{<link url="Quality-of-Service" text="QoS enhancements ">}} (`traffic.conf` and `datapath.conf` files removed and replaced)
 - {{<link url="Hybrid-Cloud-Connectivity-with-QinQ-and-VXLANs" text="QinQ Double-tagged translation ">}} is now supported on NVIDIA Spectrum-2 and above
 - A specific software license key is no longer required to enable the `switchd` service

@@ -609,7 +609,10 @@ cumulus@switch:~$ sudo systemctl restart ptp4l.service phc2sys.service
 
 The acceptable master table option is a security feature that prevents a rogue player from pretending to be the Grandmaster to take over the PTP network. To use this feature, you configure the clock IDs of known Grandmasters in the acceptable master table and set the acceptable master table option on a PTP port. The BMC algorithm checks if the Grandmaster received on the Announce message is in this table before proceeding with the master selection. This option is disabled by default on PTP ports.
 
-The following example command adds the Grandmaster clock ID 24:8a:07:ff:fe:f4:16:06 to the acceptable master table.
+The following example command adds the Grandmaster clock ID 24:8a:07:ff:fe:f4:16:06 to the acceptable master table and enable the PTP acceptable master table option for swp1:
+
+{{< tabs "TabID614 ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
 cumulus@switch:~$ nv set service ptp 1 acceptable-master 24:8a:07:ff:fe:f4:16:06
@@ -622,12 +625,83 @@ You can also configure an alternate priority 1 value for the Grandmaster:
 cumulus@switch:~$ nv set service ptp 1 acceptable-master 24:8a:07:ff:fe:f4:16:06 alt-priority 2
 ```
 
-The following example commands enable the PTP acceptable master table option for swp1:
+To enable the PTP acceptable master table option for swp1:
 
 ```
 cumulus@switch:~$ nv set interface swp1 ptp acceptable-master on
 cumulus@switch:~$ nv config apply
 ```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Edit the `Default interface options` section of the `/etc/ptp4l.conf` file to add `acceptable_master_clockIdentity 248a07.fffe.f41606`.
+
+```
+cumulus@switch:~$ sudo nano /etc/ptp4l.conf
+...
+#
+# Default interface options
+#
+time_stamping           software
+
+
+[acceptable_master_table]
+maxTableSize 16
+acceptable_master_clockIdentity 248a07.fffe.f41606
+...
+```
+
+You can also configure an alternate priority 1 value for the Grandmaster.
+
+```
+cumulus@switch:~$ sudo nano /etc/ptp4l.conf
+...
+#
+# Default interface options
+#
+time_stamping           software
+
+
+[acceptable_master_table]
+maxTableSize 16
+acceptable_master_clockIdentity 248a07.fffe.f41606 2
+```
+
+To enable the PTP acceptable master table option for swp1, add `acceptable_master on` under `[swp1]`.
+
+```
+...
+# Default interface options
+#
+time_stamping           software
+
+# Interfaces in which ptp should be enabled
+# these interfaces should be routed ports
+# if an interface does not have an ip address
+# the ptp4l will not work as expected.
+
+[swp1]
+logAnnounceInterval     0
+logSyncInterval         -3
+logMinDelayReqInterval  -3
+announceReceiptTimeout  3
+udp_ttl                 20
+masterOnly              1
+delay_mechanism         E2E
+network_transport       UDPv4
+acceptable_master       on
+...
+```
+
+Restart the `ptp4l` and `phc2sys` daemons:
+
+```
+cumulus@switch:~$ sudo systemctl restart ptp4l.service phc2sys.service
+```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ### PTP Timers
 

@@ -19,7 +19,7 @@ Cumulus Linux supports a number of different QoS features and standards includin
 
 QoS in Cumulus Linux is controlled by two configuration files:
 - `/etc/cumulus/datapath/qos/qos_features.conf` is responsible for all standard QoS configuration including marking, shaping and flow control.
-- `/etc/mlx/datapath/qos/qos_infra.conf` is responsible for all platform specific configurations including buffer allocations and Alpha values.
+- `/etc/mlx/datapath/qos/qos_infra.conf` is responsible for all platform specific configurations including buffer allocations and [Alpha values](https://community.mellanox.com/s/article/understanding-the-alpha-parameter-in-the-buffer-configuration-of-mellanox-spectrum-switches).
 
 {{% notice note %}}
 Cumulus Linux 4.4 has removed the `traffic.conf` and `datapath.conf` files. The contents have been reorganized and placed into the `qos_features.conf` and `qos_infra.conf` files. Review your existing QoS configuration to determine the changes required.
@@ -685,7 +685,7 @@ For example, to configure a dual-rate, three-color policer, with a 3 Mbps CIR, 5
 `-j TRICOLORPOLICE --set-color-mode blind --set-cir 3000 --set-cbs 500 --set-pir 10000 --set-ebs 1000 --set-violate-action drop`
 
 ## Using Port Groups
-`qos_features.conf` supports the use of *port groups* to apply similar QoS configurations to a set of ports. Port groups are supported for any feature. 
+`qos_features.conf` supports the use of *port groups* to apply similar QoS configurations to a set of ports. Port groups are supported for all features including [ECN](#explicit-congestion-notification-ecn) and [RED](#random-early-detection-red) . 
 
 {{% notice note %}}
 Any configurations used with port groups override the global settings for the ingress ports defined in the port group.

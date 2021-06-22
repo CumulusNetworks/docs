@@ -22,14 +22,6 @@ cumulus@switch:~$ sudo systemctl start nvued
 {{%notice info%}}
 - Do not run NVUE in a production environment.
 - Do not mix NVUE and NCLU commands to configure the switch; use either the NCLU CLI or the NVUE CLI.
-- When configuring the switch with NVUE, NVIDIA recommends that you stop, then disable the `netd` service to prevent accidental use of the NCLU commands:
-
-   ```
-   cumulus@switch:~$ sudo systemctl stop netd
-   cumulus@switch:~$ sudo systemctl disable netd
-   ```
-
-   However, if you want to use legacy show commands to monitor the switch, you need to reenable the `netd` service. See {{<link url="#legacy-show-commands" text="Legacy Show Commands">}} below.
 {{%/notice%}}
 
 ## NVUE REST API
@@ -229,20 +221,15 @@ restart-time                  120                           Amount of time taken
 stale-routes-time             360                           Specifies an upper-bounds on how long we retain routes from a resta...
 ```
 
-### Legacy Show Commands
+### Show Legacy Commands
 
-Cumulus Linux provides legacy show commands that provide the same output as the NCLU show commands. To use the legacy show commands, you need to enable, then start the NCLU service (`netd`):
+Cumulus Linux provides show legacy commands that provide the same output as the NCLU show commands. To use the show legacy commands, the NCLU service (`netd`) must be running.
 
-```
-cumulus@switch:~$ sudo systemctl enable netd
-cumulus@switch:~$ sudo systemctl start netd
-```
-
-{{%notice info%}}
-Use caution when you enable `netd` to run legacy show commands; do not mix NVUE and NCLU commands to *configure* the switch; use either the NCLU CLI or the NVUE CLI for configuration.
+{{%notice note%}}
+When the NVUE service is running, NCLU commands (`net add`, `net del`, `net show`) are disabled to prevent you from configuring the switch with both NVUE and NVUE commands. For example, if you try to run the `net show interface` command, you see the error `Using NCLU with 'nvued' running is not supported`.
 {{%/notice%}}
 
-To run the legacy show commands, replace `net show` with `nv show --legacy`.
+To run the show legacy commands, replace `net show` with `nv show --legacy`.
 
 For example, to show the link and administrative state of an interface (such as swp1), run the `nv show --legacy interface swp1` command:
 

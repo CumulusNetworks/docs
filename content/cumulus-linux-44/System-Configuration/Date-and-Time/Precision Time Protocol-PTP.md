@@ -44,10 +44,10 @@ Basic PTP configuration requires you:
 The basic configuration shown below uses the *default* PTP settings:
 - Clock mode is set to Boundary. This is the only clock mode currently supported.
 - PTP profile is set to default-1588; the profile specified in the IEEE 1588 standard. This is the only profile currently supported.
-- {{<link url="#transport-mode" text="Transport mode">}} is set to IPv4.
 - {{<link url="#ptp-clock-domain" text="PTP clock domain">}} is set to 0.
 - {{<link url="#ptp-priority" text="PTP Priority1 and Priority2">}} are set to 128.
-- {{<link url="#one-step-and-two-step-mode" text="Hardware packet time stamping mode" >}} is set to one-step.
+- {{<link url="#one-step-and-two-step-mode" text="Hardware packet time stamping mode" >}} is set to two-step.
+- {{<link url="#transport-mode" text="Transport mode">}} is set to IPv4.
 - {{<link url="#diffserv-code-point-dscp" text="DSCP" >}} is set to 43 for both general and event messages.
 - {{<link url="#acceptable-master-table" text="Announce messages from any master are accepted">}}.
 - {{<link url="#message-mode" text="Message Mode">}} is multicast.
@@ -101,13 +101,13 @@ priority1               128
 priority2               128
 domainNumber            0
 
-twoStepFlag             0
+twoStepFlag             1
 dscp_event              43
 dscp_general            43
 
-offset_from_master_min_threshold   -200
-offset_from_master_max_threshold   200
-mean_path_delay_threshold          1
+offset_from_master_min_threshold   -50
+offset_from_master_max_threshold   50
+mean_path_delay_threshold          200
 
 #
 # Run time options
@@ -119,9 +119,26 @@ verbose                 0
 summary_interval        0
 
 #
+# servo parameters
+#
+pi_proportional_const   0.000000
+pi_integral_const       0.000000
+pi_proportional_scale   0.700000
+pi_proportional_exponent -0.300000
+pi_proportional_norm_max 0.700000
+pi_integral_scale       0.300000
+pi_integral_exponent    0.400000
+pi_integral_norm_max    0.300000
+step_threshold          0.000002
+first_step_threshold    0.000020
+max_frequency           900000000
+sanity_freq_limit       0
+
+#
 # Default interface options
 #
 time_stamping           software
+
 
 # Interfaces in which ptp should be enabled
 # these interfaces should be routed ports
@@ -147,7 +164,6 @@ udp_ttl                 1
 masterOnly              0
 delay_mechanism         E2E
 network_transport       UDPv4
-...
 ```
 
 4. Restart the `ptp4l` and `phc2sys` daemons:
@@ -298,20 +314,20 @@ The Cumulus Linux switch supports hardware packet time stamping and provides two
 - In *one-step* mode, the PTP packet is time stamped as it egresses the port and there is no need for a follow-up packet.
 - In *two-step* mode, the time is noted when the PTP packet egresses the port and is sent in a separate (follow-up) message.
 
-One-step mode is the default configuration. To configure the switch to use two-step mode:
+Two-step mode is the default configuration. To configure the switch to use one-step mode:
 
 {{< tabs "TabID272 ">}}
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ nv set service ptp 1 two-step on
+cumulus@switch:~$ nv set service ptp 1 two-step off
 cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Edit the `Default Data Set` section of the `/etc/ptp4l.conf` file to change the `twoStepFlag` setting to 1, then restart the `ptp4l` and `phc2sys` daemons.
+Edit the `Default Data Set` section of the `/etc/ptp4l.conf` file to change the `twoStepFlag` setting to 0, then restart the `ptp4l` and `phc2sys` daemons.
 
 ```
 cumulus@switch:~$ sudo nano /etc/ptp4l.conf
@@ -324,7 +340,7 @@ priority1               254
 priority2               254
 domainNumber            3
 
-twoStepFlag             1
+twoStepFlag             0
 dscp_event              43
 dscp_general            43
 ...

@@ -25,6 +25,7 @@ pdfhidden: True
 | <a name="2661988"></a> [2661988](#2661988) <a name="2661988"></a> | Rerunning a validation in the UI or the CLI can return the same error if the query includes special characters, such as **+** or **:**. | 4.0.0 | |
 | <a name="2663274"></a> [2663274](#2663274) <a name="2663274"></a> | You cannot set a validation filter for sensor validations. | 4.0.0 | |
 | <a name="2663534"></a> [2663534](#2663534) <a name="2663534"></a> | Validation check filtering is only applied to errors in validation results and is not applied to warnings in validation results. | 4.0.0 | |
+| <a name="2690469"></a> [2690469](#2690469) <a name="2690469"></a> | While upgrading an on-premises deployment from version 2.4.x to 3.x.y then to 4.x, the upgrade fails during the NetQ application stage.<br /><br />To work around this issue, run the following command on the NetQ telemetry server, then start the upgrade again:<br /><pre>netq install opta activate-job config-key EhVuZXRxLWVuZHBvaW50LWdhdGV3YXkYsagDIiw3T2sweW9kR3Y4Wk9sTHU3MkwrQTRjNkhhQkU3bVpBNVlZVjEvWWgyZGJBPQ==</pre> | 4.0.0 | |
 
 ### Fixed Issues in 4.0.0
 

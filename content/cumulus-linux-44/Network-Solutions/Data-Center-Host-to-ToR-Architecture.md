@@ -113,7 +113,7 @@ iface peerlink
 
 auto peerlink.4094
 iface peerlink.4094
-    address 169.254.1.2
+    address 169.254.1.1/30
     clagd-enable yes
     clagd-peer-ip 169.254.1.2
     clagd-system-mac 44:38:39:FF:40:94

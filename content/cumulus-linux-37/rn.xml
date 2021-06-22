@@ -80,6 +80,41 @@ To workaround this issue, run the command against each VRF independently.</td>
 <td></td>
 </tr>
 <tr>
+<td>2687332</td>
+<td>When using {{aggregate-address summary-only}} BGP configuration, if any component route within the summary is updated, all component routes within the summary will be updated in the RIB on the device advertising the summary. This condition can result in increased CPU usage.
+
+To workaround this issue, remove the aggregate-address summary-only configuration, add a static route to Null0 for the prefix, and configure an outbound route map to restrict anything more specific than the desired prefix from being advertised. For example: 
+
+Before:
+
+&lt;pre&gt;address-family ipv4 unicast
+   aggregate-address 10.10.0.0/16 summary-only
+   redistribute connected&lt;/pre&gt;
+
+
+After:
+&lt;pre&gt;ip route 10.10.0.0/16 Null0
+!
+&lt;snipped&gt;
+ !
+ address-family ipv4 unicast
+  redistribute connected route-map DENY-COMPONENTS
+  redistribute static
+ exit-address-family
+!
+ip prefix-list NO-COMPONENTS seq 5 permit 10.10.0.0/16 ge 17
+!
+route-map DENY-COMPONENTS deny 10
+ match ip address prefix-list NO-COMPONENTS
+!
+route-map DENY-COMPONENTS permit 20
+!&lt;/pre&gt;
+
+Note: this example assumes no other static routes are present. If other static routes are present, additional route maps may need to be configured to limit the static routes being redistributed. </td>
+<td>3.7.12-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2684404</td>
 <td>CVE-2017-20005: NGINX has a buffer overflow for years that exceed four digits, as demonstrated by a file with a modification date in 1969 that causes an integer overflow (or a false modification date far in the future), when encountered by the autoindex module.
 Vulnerable: &lt;= 1.6.2-5+deb8u8
@@ -2110,6 +2145,41 @@ To work around this issue, run the &lt;tt&gt;apt-get upgrade&lt;/tt&gt; command 
 <td>CM-15812</td>
 <td>&lt;p&gt;Multicast forwarding fails for IP addresses whose DMAC overlaps with reserved DIPs.&lt;/p&gt;</td>
 <td>3.2.1-3.7.14.2, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2687332</td>
+<td>When using {{aggregate-address summary-only}} BGP configuration, if any component route within the summary is updated, all component routes within the summary will be updated in the RIB on the device advertising the summary. This condition can result in increased CPU usage.
+
+To workaround this issue, remove the aggregate-address summary-only configuration, add a static route to Null0 for the prefix, and configure an outbound route map to restrict anything more specific than the desired prefix from being advertised. For example: 
+
+Before:
+
+&lt;pre&gt;address-family ipv4 unicast
+   aggregate-address 10.10.0.0/16 summary-only
+   redistribute connected&lt;/pre&gt;
+
+
+After:
+&lt;pre&gt;ip route 10.10.0.0/16 Null0
+!
+&lt;snipped&gt;
+ !
+ address-family ipv4 unicast
+  redistribute connected route-map DENY-COMPONENTS
+  redistribute static
+ exit-address-family
+!
+ip prefix-list NO-COMPONENTS seq 5 permit 10.10.0.0/16 ge 17
+!
+route-map DENY-COMPONENTS deny 10
+ match ip address prefix-list NO-COMPONENTS
+!
+route-map DENY-COMPONENTS permit 20
+!&lt;/pre&gt;
+
+Note: this example assumes no other static routes are present. If other static routes are present, additional route maps may need to be configured to limit the static routes being redistributed. </td>
+<td>3.7.12-3.7.15</td>
 <td></td>
 </tr>
 <tr>
@@ -4196,6 +4266,41 @@ To work around this issue, run the &lt;tt&gt;apt-get upgrade&lt;/tt&gt; command 
 <td>CM-15812</td>
 <td>&lt;p&gt;Multicast forwarding fails for IP addresses whose DMAC overlaps with reserved DIPs.&lt;/p&gt;</td>
 <td>3.2.1-3.7.14.2, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2687332</td>
+<td>When using {{aggregate-address summary-only}} BGP configuration, if any component route within the summary is updated, all component routes within the summary will be updated in the RIB on the device advertising the summary. This condition can result in increased CPU usage.
+
+To workaround this issue, remove the aggregate-address summary-only configuration, add a static route to Null0 for the prefix, and configure an outbound route map to restrict anything more specific than the desired prefix from being advertised. For example: 
+
+Before:
+
+&lt;pre&gt;address-family ipv4 unicast
+   aggregate-address 10.10.0.0/16 summary-only
+   redistribute connected&lt;/pre&gt;
+
+
+After:
+&lt;pre&gt;ip route 10.10.0.0/16 Null0
+!
+&lt;snipped&gt;
+ !
+ address-family ipv4 unicast
+  redistribute connected route-map DENY-COMPONENTS
+  redistribute static
+ exit-address-family
+!
+ip prefix-list NO-COMPONENTS seq 5 permit 10.10.0.0/16 ge 17
+!
+route-map DENY-COMPONENTS deny 10
+ match ip address prefix-list NO-COMPONENTS
+!
+route-map DENY-COMPONENTS permit 20
+!&lt;/pre&gt;
+
+Note: this example assumes no other static routes are present. If other static routes are present, additional route maps may need to be configured to limit the static routes being redistributed. </td>
+<td>3.7.12-3.7.15</td>
 <td></td>
 </tr>
 <tr>
@@ -6838,6 +6943,41 @@ To work around this issue, run the &lt;tt&gt;apt-get upgrade&lt;/tt&gt; command 
 <td>CM-15812</td>
 <td>&lt;p&gt;Multicast forwarding fails for IP addresses whose DMAC overlaps with reserved DIPs.&lt;/p&gt;</td>
 <td>3.2.1-3.7.14.2, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2687332</td>
+<td>When using {{aggregate-address summary-only}} BGP configuration, if any component route within the summary is updated, all component routes within the summary will be updated in the RIB on the device advertising the summary. This condition can result in increased CPU usage.
+
+To workaround this issue, remove the aggregate-address summary-only configuration, add a static route to Null0 for the prefix, and configure an outbound route map to restrict anything more specific than the desired prefix from being advertised. For example: 
+
+Before:
+
+&lt;pre&gt;address-family ipv4 unicast
+   aggregate-address 10.10.0.0/16 summary-only
+   redistribute connected&lt;/pre&gt;
+
+
+After:
+&lt;pre&gt;ip route 10.10.0.0/16 Null0
+!
+&lt;snipped&gt;
+ !
+ address-family ipv4 unicast
+  redistribute connected route-map DENY-COMPONENTS
+  redistribute static
+ exit-address-family
+!
+ip prefix-list NO-COMPONENTS seq 5 permit 10.10.0.0/16 ge 17
+!
+route-map DENY-COMPONENTS deny 10
+ match ip address prefix-list NO-COMPONENTS
+!
+route-map DENY-COMPONENTS permit 20
+!&lt;/pre&gt;
+
+Note: this example assumes no other static routes are present. If other static routes are present, additional route maps may need to be configured to limit the static routes being redistributed. </td>
+<td>3.7.12-3.7.15</td>
 <td></td>
 </tr>
 <tr>
@@ -9670,6 +9810,41 @@ To work around this issue, run the &lt;tt&gt;apt-get upgrade&lt;/tt&gt; command 
 <td>CM-15812</td>
 <td>&lt;p&gt;Multicast forwarding fails for IP addresses whose DMAC overlaps with reserved DIPs.&lt;/p&gt;</td>
 <td>3.2.1-3.7.14.2, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2687332</td>
+<td>When using {{aggregate-address summary-only}} BGP configuration, if any component route within the summary is updated, all component routes within the summary will be updated in the RIB on the device advertising the summary. This condition can result in increased CPU usage.
+
+To workaround this issue, remove the aggregate-address summary-only configuration, add a static route to Null0 for the prefix, and configure an outbound route map to restrict anything more specific than the desired prefix from being advertised. For example: 
+
+Before:
+
+&lt;pre&gt;address-family ipv4 unicast
+   aggregate-address 10.10.0.0/16 summary-only
+   redistribute connected&lt;/pre&gt;
+
+
+After:
+&lt;pre&gt;ip route 10.10.0.0/16 Null0
+!
+&lt;snipped&gt;
+ !
+ address-family ipv4 unicast
+  redistribute connected route-map DENY-COMPONENTS
+  redistribute static
+ exit-address-family
+!
+ip prefix-list NO-COMPONENTS seq 5 permit 10.10.0.0/16 ge 17
+!
+route-map DENY-COMPONENTS deny 10
+ match ip address prefix-list NO-COMPONENTS
+!
+route-map DENY-COMPONENTS permit 20
+!&lt;/pre&gt;
+
+Note: this example assumes no other static routes are present. If other static routes are present, additional route maps may need to be configured to limit the static routes being redistributed. </td>
+<td>3.7.12-3.7.15</td>
 <td></td>
 </tr>
 <tr>

@@ -1406,6 +1406,7 @@ If you change the port speed in the `/etc/cumulus/ports.conf` file but the speed
 
 - NVIDIA SN2410
 - NVIDIA SN2010
+- NVIDIA SN3420
 
 1000BASE-T SFP modules are not supported on any 100G or faster platforms.
 

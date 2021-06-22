@@ -609,17 +609,17 @@ cumulus@switch:~$ sudo systemctl restart ptp4l.service phc2sys.service
 
 The acceptable master table option is a security feature that prevents a rogue player from pretending to be the Grandmaster to take over the PTP network. To use this feature, you configure the clock IDs of known Grandmasters in the acceptable master table and set the acceptable master table option on a PTP port. The BMC algorithm checks if the Grandmaster received on the Announce message is in this table before proceeding with the master selection. This option is disabled by default on PTP ports.
 
-The following example command adds the Grandmaster clock ID 248a07.fffe.f41606 to the acceptable master table.
+The following example command adds the Grandmaster clock ID 24:8a:07:ff:fe:f4:16:06 to the acceptable master table.
 
 ```
-cumulus@switch:~$ nv set service ptp 1 acceptable-master 248a07.fffe.f41606
+cumulus@switch:~$ nv set service ptp 1 acceptable-master 24:8a:07:ff:fe:f4:16:06
 cumulus@switch:~$ nv config apply
 ```
 
 You can also configure an alternate priority 1 value for the Grandmaster:
 
 ```
-cumulus@switch:~$ nv set service ptp 1 acceptable-master 248a07.fffe.f41606 alt-priority 2
+cumulus@switch:~$ nv set service ptp 1 acceptable-master 24:8a:07:ff:fe:f4:16:06 alt-priority 2
 ```
 
 The following example commands enable the PTP acceptable master table option for swp1:

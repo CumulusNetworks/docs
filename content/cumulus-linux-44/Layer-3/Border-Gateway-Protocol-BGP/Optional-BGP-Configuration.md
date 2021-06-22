@@ -1358,10 +1358,11 @@ route-map EXISTMAP permit 10
 match ip address prefix-list EXIST
 ```
 
-Cumulus Linux scans the entire RIB table every 60 seconds. You can increase or decrease how often you want Cumulus Linux to scan the RIB table. A value between 5 and 240 seconds is allowed.
+Cumulus Linux scans the entire RIB table every 60 seconds. You can set the conditional advertisement timer to increase or decrease how often you want Cumulus Linux to scan the RIB table. A value between 5 and 240 seconds is allowed.
 
 {{%notice note%}}
-A lower value (such as 5) increases the amount of processing needed. Use caution when configuring conditional advertisement on a large number of BGP neighbors.
+- A lower value (such as 5) increases the amount of processing needed. Use caution when configuring conditional advertisement on a large number of BGP neighbors.
+- NVUE commands are not currently supported for the conditional advertisement timer. Only change the timer if you configured conditional advertisement with vtysh.
 {{%/notice%}}
 
 ```

@@ -12,31 +12,24 @@ NVUE follows a declarative model, removing context-specific commands and setting
 
 ## Start the NVUE Service
 
-NVUE is installed by default in Cumulus Linux but the NVUE service is disabled. To run NVUE commands, you must enable and start the NVUE service (`nvued`).
+NVUE is installed by default in Cumulus Linux but the NVUE service is disabled. To run NVUE commands, you must enable and start the NVUE service (`nvued`):
+
+```
+cumulus@switch:~$ sudo systemctl enable nvued
+cumulus@switch:~$ sudo systemctl start nvued
+```
 
 {{%notice info%}}
-- Do not install NVUE in a production environment.
+- Do not run NVUE in a production environment.
 - Do not mix NVUE and NCLU commands to configure the switch; use either the NCLU CLI or the NVUE CLI.
-{{%/notice%}}
-
-1. Enable, then start the NVUE service:
+- When configuring the switch with NVUE, NVIDIA recommends that you stop, then disable the `netd` service to prevent accidental use of the NCLU commands:
 
    ```
-   cumulus@switch:~$ sudo systemctl enable nvued
-   cumulus@switch:~$ sudo systemctl start nvued
+   cumulus@switch:~$ sudo systemctl stop netd
+   cumulus@switch:~$ sudo systemctl disable netd
    ```
 
-2. Log out of the switch, then log back in to get the NVUE CLI prompt.
-
-{{%notice info%}}
-When configuring the switch with NVUE, NVIDIA recommends that you stop, then disable the `netd` service to prevent accidental use of the NCLU commands:
-
-```
-cumulus@switch:~$ sudo systemctl stop netd
-cumulus@switch:~$ sudo systemctl disable netd
-```
-
-However, if you want to use legacy show commands to monitor the switch, you need to reenable the `netd` service. See {{<link url="#legacy-show-commands" text="Legacy Show Commands">}} below.
+   However, if you want to use legacy show commands to monitor the switch, you need to reenable the `netd` service. See {{<link url="#legacy-show-commands" text="Legacy Show Commands">}} below.
 {{%/notice%}}
 
 ## NVUE REST API
@@ -49,14 +42,14 @@ To access the NVUE REST API, run these commands:
 
 ```
 cumulus@switch:~$ sudo ln -s /etc/nginx/sites-{available,enabled}/nvue.conf
-cumulus@switch:~$ sudo sed -i 's/listen localhost:8765 ssl;/dlisten \[::\]:8765 ipv6only=off ssl;/g' /etc/nginx/sites-available/nvue.conf
+cumulus@switch:~$ sudo sed -i 's/listen localhost:8765 ssl;/listen \[::\]:8765 ipv6only=off ssl;/g' /etc/nginx/sites-available/nvue.conf
 cumulus@switch:~$ sudo systemctl restart nginx
 ```
 
 You can run the cURL commands from the command line. For example:
 
 ```
-cumulus@switch:~$ curl  -u 'cumulus:CumulusLinux!' --insecure https://[IP ADDRESS]:8765/cue_v1/interface
+cumulus@switch:~$ curl  -u 'cumulus:CumulusLinux!' --insecure https://127.0.0.1:8765/cue_v1/interface
 {
   "eth0": {
     "ip": {
@@ -113,7 +106,7 @@ As you enter commands, you can get help with command syntax by entering `-h` or 
 ```
 cumulus@switch:~$ nv set interface -h
 Usage:
-nv set interface <interface-id> ...
+  nv set interface [options] <interface-id> ...
 
 Description:
   Interfaces
@@ -178,12 +171,14 @@ The NVUE monitoring commands show various parts of the network configuration. Fo
 | `nv show qos` | Shows QoS RoCE configuration.|
 | `nv show router` | Shows router configuration, such as router policies, and global BGP and OSPF configuration. |
 | `nv show service` | Shows DHCP relays and server, NTP, PTP, LLDP, and syslog configuration. |
-| `nv show system` | Shows global system settings, such as the anycast ID, the system MAC address, and the anycast MAC address. |
+| `nv show system` | Shows global system settings, such as the reserved routing table range for PBR and the reserved VLAN range for layer 3 VNIs, and switch reboot history with the reason why the switch rebooted. |
 | `nv show vrf` | Shows VRF configuration.|
 
 The following example shows the `nv show router` commands after pressing the TAB key, then shows the output of the `nv show router bgp` command.
 
 ```
+cumulus@leaf01:mgmt:~$ nv show router <<TAB>>
+bgp     ospf    pbr     policy
 cumulus@leaf01:mgmt:~$ nv show router bgp
                                 operational  applied  pending      description
 ------------------------------  -----------  -------  -----------  ----------------------------------------------------------------------
@@ -244,7 +239,7 @@ cumulus@switch:~$ sudo systemctl start netd
 ```
 
 {{%notice info%}}
-Use caution if you enable `netd` to run the legacy show commands; do not mix NVUE and NCLU commands to *configure* the switch; use either the NCLU CLI or the NVUE CLI.
+Use caution when you enable `netd` to run legacy show commands; do not mix NVUE and NCLU commands to *configure* the switch; use either the NCLU CLI or the NVUE CLI for configuration.
 {{%/notice%}}
 
 To run the legacy show commands, replace `net show` with `nv show --legacy`.
@@ -396,7 +391,7 @@ cumulus@switch:~$ nv config apply
 The example below shows the NVUE Commands required to define the DNS server for the switch:
 
 ```
-cumulus@switch:~$ nv set system dhcp-server 192.168.200.1
+cumulus@switch:~$ nv set service dhcp-server 192.168.200.1
 cumulus@switch:~$ nv config apply
 ```
 

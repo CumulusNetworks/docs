@@ -502,6 +502,9 @@ If you install the modified installation image and specify installer command lin
 
 {{< /expand >}}
 
+## Secure Boot
+
+Cumulus Linux 4.4 introduced support for Secure Boot on the NVIDIA SN3700C-S platform.
 ## Related Information
 
 - {{<exlink url="http://opencomputeproject.github.io/onie/design-spec/" text="ONIE Design Specification">}}

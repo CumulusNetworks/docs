@@ -94,17 +94,17 @@ Before:
 
 After:
 &lt;pre&gt;ip route 10.10.0.0/16 Null0
-
+!
  address-family ipv4 unicast
   redistribute connected route-map DENY-COMPONENTS
   redistribute static
  exit-address-family
-
+!
 ip prefix-list NO-COMPONENTS seq 5 permit 10.10.0.0/16 ge 17
-
+!
 route-map DENY-COMPONENTS deny 10
  match ip address prefix-list NO-COMPONENTS
-
+!
 route-map DENY-COMPONENTS permit 20&lt;/pre&gt;
 
 Note: this example assumes no other static routes are present. If other static routes are present, additional route maps may need to be configured to limit the static routes being redistributed. </td>
@@ -2159,17 +2159,17 @@ Before:
 
 After:
 &lt;pre&gt;ip route 10.10.0.0/16 Null0
-
+!
  address-family ipv4 unicast
   redistribute connected route-map DENY-COMPONENTS
   redistribute static
  exit-address-family
-
+!
 ip prefix-list NO-COMPONENTS seq 5 permit 10.10.0.0/16 ge 17
-
+!
 route-map DENY-COMPONENTS deny 10
  match ip address prefix-list NO-COMPONENTS
-
+!
 route-map DENY-COMPONENTS permit 20&lt;/pre&gt;
 
 Note: this example assumes no other static routes are present. If other static routes are present, additional route maps may need to be configured to limit the static routes being redistributed. </td>
@@ -4277,17 +4277,17 @@ Before:
 
 After:
 &lt;pre&gt;ip route 10.10.0.0/16 Null0
-
+!
  address-family ipv4 unicast
   redistribute connected route-map DENY-COMPONENTS
   redistribute static
  exit-address-family
-
+!
 ip prefix-list NO-COMPONENTS seq 5 permit 10.10.0.0/16 ge 17
-
+!
 route-map DENY-COMPONENTS deny 10
  match ip address prefix-list NO-COMPONENTS
-
+!
 route-map DENY-COMPONENTS permit 20&lt;/pre&gt;
 
 Note: this example assumes no other static routes are present. If other static routes are present, additional route maps may need to be configured to limit the static routes being redistributed. </td>
@@ -6951,17 +6951,17 @@ Before:
 
 After:
 &lt;pre&gt;ip route 10.10.0.0/16 Null0
-
+!
  address-family ipv4 unicast
   redistribute connected route-map DENY-COMPONENTS
   redistribute static
  exit-address-family
-
+!
 ip prefix-list NO-COMPONENTS seq 5 permit 10.10.0.0/16 ge 17
-
+!
 route-map DENY-COMPONENTS deny 10
  match ip address prefix-list NO-COMPONENTS
-
+!
 route-map DENY-COMPONENTS permit 20&lt;/pre&gt;
 
 Note: this example assumes no other static routes are present. If other static routes are present, additional route maps may need to be configured to limit the static routes being redistributed. </td>
@@ -9815,17 +9815,17 @@ Before:
 
 After:
 &lt;pre&gt;ip route 10.10.0.0/16 Null0
-
+!
  address-family ipv4 unicast
   redistribute connected route-map DENY-COMPONENTS
   redistribute static
  exit-address-family
-
+!
 ip prefix-list NO-COMPONENTS seq 5 permit 10.10.0.0/16 ge 17
-
+!
 route-map DENY-COMPONENTS deny 10
  match ip address prefix-list NO-COMPONENTS
-
+!
 route-map DENY-COMPONENTS permit 20&lt;/pre&gt;
 
 Note: this example assumes no other static routes are present. If other static routes are present, additional route maps may need to be configured to limit the static routes being redistributed. </td>

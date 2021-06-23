@@ -62,7 +62,7 @@ To work around this issue, configure the new BGP neighbors with vtysh.&lt;/p&gt;
 <td></td>
 </tr>
 <tr>
-<td>2690100</td>
+<td>2699399</td>
 <td>When you run the vtysh {{show ip bgp vrf &lt;name&gt; &lt;afi&gt; &lt;safi&gt; statistics}} command, the {{bgpd}} service crashes if you use {{vrf all}}. For example:
 spine01# show ip bgp vrf all statistics 
 &lt;pre&gt;vtysh: error reading from bgpd: Success (0)Warning: closing connection to bgpd because of an I/O error!&lt;/pre&gt;
@@ -78,12 +78,6 @@ To workaround this issue, run the command against each VRF independently.</td>
 Vulnerable: 0.6.1-2
 Fixed: 0.6.1-2+deb10u1</td>
 <td>4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
-<td>2685584</td>
-<td>A host migrated to an 802.1x port within the same broadcast domain does not have the correct static FDB entry installed if a dynamic FDB entry for that MAC address exists from previous connectivity in the broadcast domain.</td>
-<td>4.2.1-4.3.0</td>
 <td></td>
 </tr>
 <tr>
@@ -1594,7 +1588,7 @@ To work around this issue, configure the new BGP neighbors with vtysh.&lt;/p&gt;
 <td></td>
 </tr>
 <tr>
-<td>2690100</td>
+<td>2699399</td>
 <td>When you run the vtysh {{show ip bgp vrf &lt;name&gt; &lt;afi&gt; &lt;safi&gt; statistics}} command, the {{bgpd}} service crashes if you use {{vrf all}}. For example:
 spine01# show ip bgp vrf all statistics 
 &lt;pre&gt;vtysh: error reading from bgpd: Success (0)Warning: closing connection to bgpd because of an I/O error!&lt;/pre&gt;
@@ -1610,12 +1604,6 @@ To workaround this issue, run the command against each VRF independently.</td>
 Vulnerable: 0.6.1-2
 Fixed: 0.6.1-2+deb10u1</td>
 <td>4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
-<td>2685584</td>
-<td>A host migrated to an 802.1x port within the same broadcast domain does not have the correct static FDB entry installed if a dynamic FDB entry for that MAC address exists from previous connectivity in the broadcast domain.</td>
-<td>4.2.1-4.3.0</td>
 <td></td>
 </tr>
 <tr>
@@ -4218,7 +4206,7 @@ asic-monitor[7389]: File "/usr/lib/python2.7/dist-packages/cumulus/asic_monitor.
 <td></td>
 </tr>
 <tr>
-<td>2690100</td>
+<td>2699399</td>
 <td>When you run the vtysh {{show ip bgp vrf &lt;name&gt; &lt;afi&gt; &lt;safi&gt; statistics}} command, the {{bgpd}} service crashes if you use {{vrf all}}. For example:
 spine01# show ip bgp vrf all statistics 
 &lt;pre&gt;vtysh: error reading from bgpd: Success (0)Warning: closing connection to bgpd because of an I/O error!&lt;/pre&gt;

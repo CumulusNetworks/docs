@@ -1,1 +1,0 @@
-openssh-server has no copyright file

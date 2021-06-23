@@ -1,1 +1,0 @@
-linuxptp-dbgsym has no copyright file

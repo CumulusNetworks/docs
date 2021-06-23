@@ -1,1 +1,0 @@
-libncurses6 has no copyright file

@@ -77,17 +77,15 @@ The configuration is saved in the `/etc/ptp4l.conf` file.
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-1. Open the `/etc/cumulus/switchd.conf` file in a text editor and add the following line:
+1. Enable and start the ptp4l and phc2sys services:
 
     ```
-    ptp.timestamping = TRUE
+    cumulus@switch:~$ sudo systemctl enable ptp4l.service phc2sys.service
+    cumulus@switch:~$ sudo systemctl start ptp4l.service phc2sys.service
+
     ```
 
-2. Restart `switchd`:
-
-    {{<cl/restart-switchd>}}
-
-3. Edit the `Default interface options` section of the `/etc/ptp4l.conf` file to configure the interfaces on the switch that you want to use for PTP.
+2. Edit the `Default interface options` section of the `/etc/ptp4l.conf` file to configure the interfaces on the switch that you want to use for PTP.
 
 ```
 cumulus@switch:~$ sudo nano /etc/ptp4l.conf
@@ -170,12 +168,6 @@ network_transport       UDPv4
 
     ```
     cumulus@switch:~$ sudo systemctl restart ptp4l.service phc2sys.service
-    ```
-
-5. Enable the services to start at boot time:
-
-    ```
-    cumulus@switch:~$ sudo systemctl enable ptp4l.service phc2sys.service
     ```
 
 {{< /tab >}}

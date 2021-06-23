@@ -253,9 +253,9 @@ The configuration in Cumulus Linux uses the outer tag for the customer and the i
 Double tag translation:
 - Is supported on Spectrum-2 and Spectrum-3 switches in a VXLAN configuration on native interfaces only (bonds are not supported).
 - Is supported with bridges in {{<link url="Traditional-Bridge-Mode" text="traditional mode">}} only.
+- Is supported with 802.1Q bridge mode only.
 - Is *not* supported with MLAG.
-- Is verified with 300 traditional-mode bridges.
-- Uses ACL resources internally, which can increase resource utilization. To see the number of ACL entries used, run the `sudo cat /cumulus/switchd/run/acl_info/iacl_resource` command.
+- Uses ACL resources internally, which can increase ACL resource utilization. To see the number of ACL entries used, run the `sudo cat /cumulus/switchd/run/acl_info/iacl_resource` command.
 - Uses internal VLANs for each traditional-mode bridge, which has a default range of 275. To change the range, edit the `/etc/cumulus/switchd.conf` file to uncomment the `#resv_vlan_range = 3725-3999` line and specify the range you want to use.
 {{%/notice%}}
 

@@ -23,7 +23,6 @@ PTP in Cumulus Linux uses the `linuxptp` package that includes the following pro
 - `monitor` provides monitoring
 
 {{%notice note%}}
-- PTP is supported on Spectrum-2 and above.
 - You cannot run both PTP and NTP on the switch.
 - PTP is supported in boundary clock mode only (the switch provides timing to downstream servers; it is a slave to a higher-level clock and a master to downstream clocks).
 - The switch uses hardware time stamping to capture timestamps from an Ethernet frame at the physical layer. This allows PTP to account for delays in message transfer and greatly improves the accuracy of time synchronization.

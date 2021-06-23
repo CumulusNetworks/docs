@@ -1086,6 +1086,13 @@ To work around this issue, change the value of &lt;tt&gt;arp_ignore&lt;/tt&gt; t
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-31073</td>
+<td>&lt;p&gt;When you set the &lt;tt&gt;sysctl&lt;/tt&gt; settings &lt;tt&gt;net.ipv6.conf.all.accept_ra_defrtr&lt;/tt&gt; (to prevent acceptance of IPv6 default route advertisements) and &lt;tt&gt;net.ipv6.conf.default.accept_ra_defrtr&lt;/tt&gt; (set for newly created interfaces), if you create a new virtual interface, any pre-existing interface does not start accepting IPv6 default route avertisements again.&lt;br/&gt;
+To work around this issue, when you create a new virtual interface, set &lt;tt&gt;net.ipv6.conf.&amp;lt;interface&amp;gt;.accept_ra_defrtr&lt;/tt&gt; to 0 for all interfaces and run &lt;tt&gt;sysctl -p --system&lt;/tt&gt;.&lt;/p&gt;</td>
+<td>3.7.12-4.2.1</td>
+<td>4.3.0</td>
+</tr>
+<tr>
 <td>CM-28249</td>
 <td>&lt;p&gt;On the Mellanox switch, when you modify the buffer and queue configuration without restarting &lt;tt&gt;switchd&lt;/tt&gt;, you might see a one second interruption in forwarding.&lt;/p&gt;</td>
 <td>4.0.0-4.3.0</td>
@@ -1854,13 +1861,6 @@ Fixed: 9.27~dfsg-2+deb10u4</td>
 <td>2552742</td>
 <td>On the Mellanox SN2410 switch, you see {{switchd}} core and {{GBIN_MALLOC}} errors.
 To work around this issue, restart {{switchd}}.</td>
-<td>3.7.12-4.2.1</td>
-<td>4.3.0</td>
-</tr>
-<tr>
-<td>2552632</td>
-<td>When you set the {{sysctl}} settings {{net.ipv6.conf.all.accept_ra_defrtr}} (to prevent acceptance of IPv6 default route advertisements) and {{net.ipv6.conf.default.accept_ra_defrtr}} (set for newly created interfaces), if you create a new virtual interface, any pre-existing interface does not start accepting IPv6 default route avertisements again.
-To work around this issue, when you create a new virtual interface, set {{net.ipv6.conf.&lt;interface&gt;.accept_ra_defrtr}} to 0 for all interfaces and run {{sysctl -p --system}}.</td>
 <td>3.7.12-4.2.1</td>
 <td>4.3.0</td>
 </tr>

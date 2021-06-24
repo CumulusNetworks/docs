@@ -728,6 +728,420 @@ Route Distinguisher: 10.10.10.1:3
 
 To show the learned route from an external router injected as a type-5 route, run the NCLU `net show bgp vrf <vrf> ipv4 unicast` command or the vtysh `show bgp vrf <vrf> ipv4 unicast` command.
 
+## Downstream VNI
+
+Downstream VNI (symmetric EVPN route leaking) enables you to assign a VNI from a downstream remote VTEP through EVPN routes instead of configuring layer 3 VNIs globally across the network.
+
+To configure a downstream VNI, you configure tenant VRFs as usual; however, to configure the desired route leaking, you define a route target import and, or export statement.
+
+The route target import or export statement is in the format `route-target import|export <asn>:<vni>`; for example, `route-target import 65101:6000`. As an alternative, you can use `route-target import|export *:<vni>`; * uses the ASN configured on the switch.
+
+To configure the downsteam VNI, you must manually edit the `/etc/frr/frr.conf` file; NCLU and NVUE commands are not supported.
+
+{{%notice note%}}
+- Downstream VNI is supported in EVPN symmetric mode with layer 3 VNIs and single VXLAN devices only
+- You can configure multiple import and export route targets in a VRF
+- You can configure selective route targets for individual prefixes with routing policies
+- You cannot leak (import) overlapping tenant prefixes into the same destination VRF
+
+{{%/notice%}}
+
+The following example shows a configuration with downstream VNI on leaf01 thru leaf04, and border01. Because the configuration is similar on all the leafs, only leaf01 and border01 configuration files are shown below.
+
+|   Traffic Flow between server01 and server04  |     |
+| ----------------------------------------------| ----|
+| <img width=1300/> {{< img src="/images/cumulus-linux/evpn-downstream-vni.png"  >}}| <br><ol><li>server01 forwards traffic to leaf01.</li><li>leaf01 encapsulates the packet with the VNI in its route-target import statement (6000) and tunnels the traffic over to border01.</li><li> border01 uses the VNI received from leaf01 to forward the packet.</li><li> The reverse traffic from border01 to server01 is encapsulated with the VNI in the route-target import statement on border01 (2001) and tunneled over to leaf01, where routing occurs in VRF RED.</li></ul> |
+
+This is the configuration for the example.
+
+{{< tabs "TabID749 ">}}
+{{< tab "/etc/network/interfaces ">}}
+
+{{< tabs "TabID752 ">}}
+{{< tab "leaf01 ">}}
+
+```
+cumulus@leaf01:~$ sudo cat /etc/network/interfaces
+...
+auto lo
+iface lo inet loopback
+    address 10.10.10.1/32
+    vxlan-local-tunnelip 10.10.10.1
+auto mgmt
+iface mgmt
+    address 127.0.0.1/8
+    address ::1/128
+    vrf-table auto
+auto RED
+iface RED
+    vrf-table auto
+auto BLUE
+iface BLUE
+    vrf-table auto
+auto eth0
+iface eth0 inet dhcp
+    ip-forward off
+    ip6-forward off
+    vrf mgmt
+auto swp1
+iface swp1
+auto swp2
+iface swp2
+auto swp3
+iface swp3
+auto swp51
+iface swp51
+auto swp52
+iface swp52
+auto bond1
+iface bond1
+    mtu 9000
+    es-sys-mac 44:38:39:BE:EF:AA
+    bond-slaves swp1
+    bond-mode 802.3ad
+    bond-lacp-bypass-allow yes
+    bridge-access 10
+auto bond2
+iface bond2
+    mtu 9000
+    es-sys-mac 44:38:39:BE:EF:AA
+    bond-slaves swp2
+    bond-mode 802.3ad
+    bond-lacp-bypass-allow yes
+    bridge-access 20
+auto bond3
+iface bond3
+    mtu 9000
+    es-sys-mac 44:38:39:BE:EF:AA
+    bond-slaves swp3
+    bond-mode 802.3ad
+    bond-lacp-bypass-allow yes
+    bridge-access 30
+auto vlan10
+iface vlan10
+    address 10.1.10.2/24
+    address-virtual 00:00:00:00:00:10 10.1.10.1/24
+    hwaddress 44:38:39:22:01:b1
+    vrf RED
+    vlan-raw-device br_default
+    vlan-id 10
+auto vlan20
+iface vlan20
+    address 10.1.20.2/24
+    address-virtual 00:00:00:00:00:20 10.1.20.1/24
+    hwaddress 44:38:39:22:01:b1
+    vrf RED
+    vlan-raw-device br_default
+    vlan-id 20
+auto vlan30
+iface vlan30
+    address 10.1.30.2/24
+    address-virtual 00:00:00:00:00:30 10.1.30.1/24
+    hwaddress 44:38:39:22:01:b1
+    vrf BLUE
+    vlan-raw-device br_default
+    vlan-id 30
+auto vxlan48
+iface vxlan48
+    bridge-vlan-vni-map 10=10 20=20 30=30
+    bridge-vids 10 20 30
+    bridge-learning off
+auto vlan220_l3
+iface vlan220_l3
+    vrf RED
+    vlan-raw-device br_l3vni
+    vlan-id 220
+auto vlan297_l3
+iface vlan297_l3
+    vrf BLUE
+    vlan-raw-device br_l3vni
+    vlan-id 297
+auto vxlan99
+iface vxlan99
+    bridge-vlan-vni-map 220=4001 297=4002
+    bridge-vids 220 297
+    bridge-learning off
+auto br_default
+iface br_default
+    bridge-ports bond1 bond2 bond3 vxlan48
+    hwaddress 44:38:39:22:01:b1
+    bridge-vlan-aware yes
+    bridge-vids 10 20 30
+    bridge-pvid 1
+auto br_l3vni
+iface br_l3vni
+    bridge-ports vxlan99
+    hwaddress 44:38:39:22:01:b1
+    bridge-vlan-aware yes
+```
+
+{{< /tab >}}
+{{< tab "border01 ">}}
+
+```
+cumulus@border01:~$ sudo cat /etc/network/interfaces
+...
+auto lo
+iface lo inet loopback
+    address 10.10.10.63/32
+    vxlan-local-tunnelip 10.10.10.63
+auto mgmt
+iface mgmt
+    address 127.0.0.1/8
+    address ::1/128
+    vrf-table auto
+auto VRF10
+iface VRF10
+    vrf-table auto
+auto EXTERNAL1
+iface EXTERNAL1
+    vrf-table auto
+auto EXTERNAL2
+iface EXTERNAL2
+    vrf-table auto
+auto eth0
+iface eth0 inet dhcp
+    ip-forward off
+    ip6-forward off
+    vrf mgmt
+auto swp1
+iface swp1
+auto swp2
+iface swp2
+auto swp3
+iface swp3
+auto swp51
+iface swp51
+auto swp52
+iface swp52
+auto bond1
+iface bond1
+    mtu 9000
+    es-sys-mac 44:38:39:BE:EF:FF
+    bond-slaves swp1
+    bond-mode 802.3ad
+    bond-lacp-bypass-allow yes
+    bridge-access 2001
+auto bond2
+iface bond2
+    mtu 9000
+    es-sys-mac 44:38:39:BE:EF:FF
+    bond-slaves swp2
+    bond-mode 802.3ad
+    bond-lacp-bypass-allow yes
+    bridge-access 2002
+auto bond3
+iface bond3
+    mtu 9000
+    es-sys-mac 44:38:39:BE:EF:FF
+    bond-slaves swp3
+    bond-mode 802.3ad
+    bond-lacp-bypass-allow yes
+    bridge-access 2010
+auto vlan2001
+iface vlan2001
+    address 10.1.201.1/24
+    hwaddress 44:38:39:22:01:b3
+    vrf EXTERNAL1
+    vlan-raw-device br_default
+    vlan-id 2001
+auto vlan2002
+iface vlan2002
+    address 10.1.202.1/24
+    hwaddress 44:38:39:22:01:b3
+    vrf EXTERNAL2
+    vlan-raw-device br_default
+    vlan-id 2002
+auto vlan2010
+iface vlan2010
+    address 10.1.210.1/24
+    hwaddress 44:38:39:22:01:b3
+    vrf VRF10
+    vlan-raw-device br_default
+    vlan-id 2010
+auto vxlan48
+iface vxlan48
+    bridge-vlan-vni-map 2001=2001 2002=2002 2010=2010
+    bridge-vids 2001 2002 2010
+    bridge-learning off
+auto vlan336_l3
+iface vlan336_l3
+    vrf VRF10
+    vlan-raw-device br_l3vni
+    vlan-id 336
+auto vxlan99
+iface vxlan99
+    bridge-vlan-vni-map 336=600000
+    bridge-vids 336
+    bridge-learning off
+auto br_default
+iface br_default
+    bridge-ports bond1 bond2 bond3 vxlan48
+    hwaddress 44:38:39:22:01:b3
+    bridge-vlan-aware yes
+    bridge-vids 2001 2002 2010
+    bridge-pvid 1
+auto br_l3vni
+iface br_l3vni
+    bridge-ports vxlan99
+    hwaddress 44:38:39:22:01:b3
+    bridge-vlan-aware yes
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+{{< /tab >}}
+{{< tab "/etc/frr/frr.conf ">}}
+
+{{< tabs "TabID1018 ">}}
+{{< tab "leaf01 ">}}
+
+```
+cumulus@leaf01:~$ sudo cat /etc/frr/frr.conf
+...
+interface bond1
+  evpn mh es-df-pref 50000
+  evpn mh es-id 1
+  evpn mh es-sys-mac 44:38:39:BE:EF:AA
+!
+interface bond2
+  evpn mh es-df-pref 50000
+  evpn mh es-id 2
+  evpn mh es-sys-mac 44:38:39:BE:EF:AA
+  interface bond3
+!
+evpn mh es-df-pref 50000
+  evpn mh es-id 3
+  evpn mh es-sys-mac 44:38:39:BE:EF:AA
+!
+interface swp51
+  evpn mh uplink
+!
+interface swp52
+  evpn mh uplink
+!
+vrf BLUE
+  vni 4002
+  exit-vrf
+!
+vrf RED
+  vni 4001
+  exit-vrf
+!
+vrf default
+  exit-vrf
+  vrf mgmt
+  exit-vrf
+!
+router bgp 65101 vrf default
+  bgp router-id 10.10.10.1
+  bgp bestpath as-path multipath-relax
+  neighbor underlay peer-group
+  neighbor underlay remote-as external
+  neighbor underlay timers 3 9
+  neighbor underlay timers connect 10
+  neighbor underlay advertisement-interval 0
+  no neighbor underlay capability extended-nexthop
+  neighbor swp51 interface remote-as external
+  neighbor swp51 interface peer-group underlay
+  neighbor swp51 timers 3 9
+  neighbor swp51 timers connect 10
+  neighbor swp51 advertisement-interval 0
+  neighbor swp51 capability extended-nexthop
+  neighbor swp52 interface remote-as external
+  neighbor swp52 interface peer-group underlay
+  neighbor swp52 timers 3 9
+  neighbor swp52 timers connect 10
+  neighbor swp52 advertisement-interval 0
+  neighbor swp52 capability extended-nexthop
+  !
+  address-family ipv4 unicast
+   redistribute connected
+   maximum-paths 64
+   exit-address-family
+  !
+  address-family l2vpn evpn
+   advertise-all-vni
+   neighbor underlay activate
+   route-target import *:6000
+exit-address-family
+```
+
+{{< /tab >}}
+{{< tab "border01 ">}}
+
+```
+cumulus@border01:~$ sudo cat /etc/frr/frr.conf
+...
+vrf VRF10
+ vni 600000
+ exit-vrf
+!
+interface bond1
+ evpn mh es-df-pref 50000
+ evpn mh es-id 1
+ evpn mh es-sys-mac 44:38:39:be:ef:ff
+!
+interface bond2
+ evpn mh es-df-pref 50000
+ evpn mh es-id 2
+ evpn mh es-sys-mac 44:38:39:be:ef:ff
+!
+interface bond3
+ evpn mh es-df-pref 50000
+ evpn mh es-id 3
+ evpn mh es-sys-mac 44:38:39:be:ef:ff
+!
+interface swp51
+ evpn mh uplink
+!
+interface swp52
+ evpn mh uplink
+!
+router bgp 65163
+ bgp router-id 10.10.10.63
+ bgp bestpath as-path multipath-relax
+ neighbor underlay peer-group
+ neighbor underlay remote-as external
+ neighbor underlay advertisement-interval 0
+ neighbor underlay timers 3 9
+ neighbor underlay timers connect 10
+ neighbor swp51 interface peer-group underlay
+ neighbor swp51 advertisement-interval 0
+ neighbor swp51 timers 3 9
+ neighbor swp51 timers connect 10
+ neighbor swp52 interface peer-group underlay
+ neighbor swp52 advertisement-interval 0
+ neighbor swp52 timers 3 9
+ neighbor swp52 timers connect 10
+ !
+ address-family ipv4 unicast
+  redistribute connected
+  maximum-paths 64
+  maximum-paths ibgp 64
+ exit-address-family
+ !
+ address-family l2vpn evpn
+  neighbor underlay activate
+  advertise-all-vni
+ exit-address-family
+!
+router bgp 65163 vrf vrf10
+ !
+ address-family l2vpn evpn
+  route-target import *:4001
+  route-target import *:4002
+ exit-address-family
+ ...
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+{{< /tab >}}
+{{< /tabs >}}
+
 ## Considerations
 
 ### Centralized Routing with ARP Suppression Enabled on the Gateway

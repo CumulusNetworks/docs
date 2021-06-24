@@ -124,7 +124,6 @@ cumulus@switch:~$ netq check <<press Tab>>
     clag        :  Cumulus Multi-chassis LAG
     evpn        :  EVPN
     interfaces  :  network interface port
-    license     :  License information
     mlag        :  Multi-chassis LAG (alias of clag)
     mtu         :  Link MTU
     ntp         :  NTP
@@ -182,7 +181,6 @@ The `netq` `check` commands enable the network administrator to validate the cur
 - **cl-version**: Cumulus Linux version
 - **evpn**: EVPN (Ethernet Virtual Private Network) operation
 - **interfaces**: network interface port operation
-- **license**: License status
 - **mlag**: Cumulus MLAG (multi-chassis LAG/link aggregation) operation
 - **mtu**: Link MTU (maximum transmission unit) consistency across paths
 - **ntp**: NTP (Network Time Protocol) operation

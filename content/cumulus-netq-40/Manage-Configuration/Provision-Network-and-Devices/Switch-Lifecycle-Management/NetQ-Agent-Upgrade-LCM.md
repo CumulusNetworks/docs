@@ -158,7 +158,7 @@ cumulus@switch:~$ netq lcm upgrade name upgrade-cl430-nq330 netq-version 4.0.0 h
 
 <!-- You can assign an order for which switches to upgrade based on the switch roles defined above. For example, to upgrade the spines before the leafs, add the `order ROLE1,ROLE2` option to the command:
 
-    cumulus@switch:~$ netq lcm upgrade name upgrade-3712 image-id cl_image_69ce56d15b7958de5bb8371e9c4bf2fc9131da9a57b13853e2a60ca109238b22 license LICENSE hostnames spine01,spine02,leaf01,leaf02 order spine,leaf
+    cumulus@switch:~$ netq lcm upgrade name upgrade-3712 image-id cl_image_69ce56d15b7958de5bb8371e9c4bf2fc9131da9a57b13853e2a60ca109238b22 hostnames spine01,spine02,leaf01,leaf02 order spine,leaf
 
 If the switches have not been assigned a role, then do not use the `order` option. So in this example, if switches spine01 and spine02 have not been assigned the _spine_ role, then do not specify the `order spine` option. -->
 

@@ -122,7 +122,7 @@ L3 VNI RMAC Test                 : skipped
 To create a request containing checks on a single protocol or service in the NetQ CLI, run:
 
 ```
-netq add validation type (ntp | interfaces | license | sensors | evpn | vxlan | agents | mlag | vlan | bgp | mtu | ospf) [alert-on-failure]
+netq add validation type (bgp | evpn | interfaces | mlag | mtu | ntp | ospf | sensors | vlan | vxlan) [alert-on-failure]
 ```
 
 This example shows the creation of an on-demand BGP validation.
@@ -1113,7 +1113,7 @@ Sometimes it is useful to run validations on more than one protocol simultaneous
 To create a scheduled request containing checks on a single protocol or service in the NetQ CLI, run:
 
 ```
-netq add validation name <text-new-validation-name> type (ntp | interfaces | license | sensors | evpn | vxlan | agents | mlag | vlan | bgp | mtu | ospf) interval <text-time-min>
+netq add validation name <text-new-validation-name> type (agents | bgp | evpn | interfaces | mlag | mtu | ntp | ospf | sensors | vlan | vxlan) interval <text-time-min>
 ```
 
 This example shows the creation of a BGP validation run every 15 minutes for debugging.
@@ -1280,7 +1280,7 @@ You can remove a user-defined scheduled validation at any time using the NetQ UI
 1. Determine the name of the scheduled validation you want to remove. Run:
 
     ```
-    netq show validation summary [name <text-validation-name>] type (ntp | interfaces | license | sensors | evpn | vxlan | agents | mlag | vlan | bgp | mtu | ospf) [around <text-time-hr>] [json]
+    netq show validation summary [name <text-validation-name>] type (agents | bgp | evpn | interfaces | mlag | mtu | ntp | ospf | sensors | vlan | vxlan) [around <text-time-hr>] [json]
     ```
 
     This example shows all scheduled validations for BGP.

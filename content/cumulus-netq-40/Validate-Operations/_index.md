@@ -21,7 +21,6 @@ Validation support is available in the NetQ UI and the NetQ CLI as shown here.
 | Cumulus Linux version | No | Yes |
 | EVPN | Yes | Yes |
 | Interfaces | Yes | Yes |
-| License | Yes | Yes |
 | LLDP | No | Yes |
 | MLAG (CLAG) | Yes | Yes |
 | MTU | Yes | Yes |

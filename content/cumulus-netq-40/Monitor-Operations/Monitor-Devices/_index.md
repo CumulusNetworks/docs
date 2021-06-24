@@ -8,7 +8,6 @@ With the NetQ UI and CLI, a user can monitor the network inventory of switches a
 
 <!-- vale off -->
 - What switches do I have in the network?
-- Do all switches have valid licenses?
 - Are NetQ agents running on all of my switches?
 - How many transmit and receive packets have been dropped?
 - How healthy are the fans and power supply?

@@ -9,7 +9,7 @@ This topic lists all commands that have been deprecated from NetQ 1.4.1 and late
 
 | Command | Alternate Command | Last Available Release |
 | --- | --- | --- |
-| netq check license, netq show unit-tests license | Cumulus Linux license checks are no longer needed in order for NetQ to operate.| 3.3.1 | 
+| netq check license, netq show license, netq show unit-tests license | Cumulus Linux license checks are no longer needed in order for NetQ to operate.| 3.3.1 |
 | netq check lnv, netq show lnv | LNV was deprecated in Cumulus Linux 3.7.4 and was removed from Cumulus Linux 4.0.0. NetQ continues to support and return LNV data as long as you are running a supported version of Cumulus Linux earlier than 4.0.0). For information on the support timeline, read this [knowledge base article]({{<ref "knowledge-base/Support/Support-Offerings/Cumulus-Linux-Release-Versioning-and-Support-Policy">}}). | 2.4.1 |
 | netq config ts (add \| del \| show) (notifier \| server) | netq (add \| del \| show) notification and netq config (add \| del \| show) (agent \| cli server) | 2.1.0 |
 | netq config ts (start \| stop \| status \| restart) notifier | None. No longer necessary. | 2.1.0 |

@@ -67,6 +67,12 @@ The ZTP process over DHCP follows these steps:
 6. If provisioning is necessary, the script executes locally on the switch with root privileges.
 7. The return code of the script is examined. If it is 0, the provisioning state is marked as complete in the autoprovisioning configuration file.
 
+### DHCP on Front Panel Ports
+
+You can also configure ZTP to bring all the front panel ports that are operational and run DHCP on any active interface. The list of active ports is reassessed on every retry cycle. When the DHCP client returns the interface name and option 239 is present in the response, ZTP determines the VRF based on the interface and sets the proper VRF context before executing the script.
+
+To configure ZTP to bring all the front panel ports up and run DHCP on any active interface, add `CUMULUS-AUTOPROVISION-FRONT-PANEL` to the local ZTP script.
+
 ### Trigger ZTP Over DHCP
 
 If provisioning has not already occurred, you can trigger the ZTP process over DHCP when eth0 is set to use DHCP and one of the following events occur:

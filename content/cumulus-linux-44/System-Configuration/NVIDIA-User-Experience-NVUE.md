@@ -5,7 +5,7 @@ weight: 115
 toc: 3
 ---
 {{%notice warning%}}
-GRE Tunneling is an [early access feature]({{<ref "/knowledge-base/Support/Support-Offerings/Early-Access-Features-Defined" >}}).
+NVUE is an [early access feature]({{<ref "/knowledge-base/Support/Support-Offerings/Early-Access-Features-Defined" >}}).
 {{%/notice%}}
 
 NVUE is an object-oriented, schema driven model of a complete Cumulus Linux system (hardware and software) providing a robust API that allows for multiple interfaces to both view (show) and configure (set and unset) any element within a system running the NVUE software. The NVUE CLI and the REST API leverage the same API to interface with Cumulus Linux.
@@ -34,7 +34,8 @@ cumulus@switch:~$ sudo systemctl start nvued
 The NVUE REST API is currently is an early access feature. The REST API is not intended to run in production and is not supported through NVIDIA networking support.
 {{%/notice%}}
 
-To access the NVUE REST API, run these commands:
+For information about using the NVUE API, refer to 
+To access the NVUE API, run these commands:
 
 ```
 cumulus@switch:~$ sudo ln -s /etc/nginx/sites-{available,enabled}/nvue.conf
@@ -71,6 +72,8 @@ cumulus@switch:~$ curl  -u 'cumulus:CumulusLinux!' --insecure https://127.0.0.1:
       }
 ...
 ```
+
+For information about using the NVUE API, refer to the [NVUE API documentation]({{<ref "/cumulus-linux-44/api" >}}).
 
 ## Command Line Interface
 

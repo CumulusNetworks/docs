@@ -4,10 +4,6 @@ author: NVIDIA
 weight: 115
 toc: 3
 ---
-{{%notice warning%}}
-NVUE is an [early access feature]({{<ref "/knowledge-base/Support/Support-Offerings/Early-Access-Features-Defined" >}}).
-{{%/notice%}}
-
 NVUE is an object-oriented, schema driven model of a complete Cumulus Linux system (hardware and software) providing a robust API that allows for multiple interfaces to both view (show) and configure (set and unset) any element within a system running the NVUE software. The NVUE CLI and the REST API leverage the same API to interface with Cumulus Linux.
 
 NVUE follows a declarative model, removing context-specific commands and settings. It is structured as a *big tree* that represents the entire state of a Cumulus Linux instance. At the base of the tree are high level branches representing objects, such as *router* and *interface*. Under each of these branches are further branches. As you navigate through the tree, you gain a more specific context. At the leaves of the tree are actual attributes, represented as key/value pairs. The path through the tree is similar to a filesystem path.
@@ -24,7 +20,7 @@ cumulus@switch:~$ sudo systemctl start nvued
 ```
 
 {{%notice info%}}
-- Do not run NVUE in a production environment.
+- NVIDIA recommends that do not run NVUE in a production environment.
 - Do not mix NVUE and NCLU commands to configure the switch; use either the NCLU CLI or the NVUE CLI.
 {{%/notice%}}
 
@@ -34,7 +30,6 @@ cumulus@switch:~$ sudo systemctl start nvued
 The NVUE REST API is currently is an early access feature. The REST API is not intended to run in production and is not supported through NVIDIA networking support.
 {{%/notice%}}
 
-For information about using the NVUE API, refer to 
 To access the NVUE API, run these commands:
 
 ```

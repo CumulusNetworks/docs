@@ -11,7 +11,6 @@ The commands and cards available to obtain this type of information help you to 
 <!-- vale off -->
 - What switches are being monitored in the network?
 - What is the distribution of ASICs, CPUs, Agents, and so forth across my network?
-- Do all switches have valid licenses?
 - Are NetQ agents running on all of my switches?
 - What hardware is installed on my switches?
 - What software is installed on my switches?
@@ -117,8 +116,8 @@ You can view hardware components deployed on all switches and hosts, or on all s
 
 It can be useful to know the quantity and ratio of many components deployed in your network to determine the scope of upgrade tasks, balance vendor reliance, or for detailed troubleshooting. Hardware and software component summary information is available from the NetQ UI and NetQ CLI.
 
-- Inventory|Devices card: view ASIC, license, NetQ Agent version, OS, and platform information on all devices
-- Inventory|Switches card: view  ASIC, CPU, disk, license, NetQ Agent version, OS, and platform information on all switches
+- Inventory|Devices card: view ASIC, NetQ Agent version, OS, and platform information on all devices
+- Inventory|Switches card: view  ASIC, CPU, disk, NetQ Agent version, OS, and platform information on all switches
 - `netq show inventory` command: view ASIC, CPU, disk, OS, and ports on all devices
 
 {{<tabs "View component summary">}}
@@ -129,20 +128,17 @@ It can be useful to know the quantity and ratio of many components deployed in y
 
 2. Hover over the card, and change to the large size card using the size picker.
 
-    By default the Switches tab is shown displaying the total number of switches, ASIC vendors, OS versions, license status, NetQ Agent versions, and specific platforms deployed across all your switches.
+   By default the Switches tab is shown displaying the total number of switches, ASIC vendors, OS versions, NetQ Agent versions, and specific platforms deployed across all your switches.
 
-    {{<figure src="/images/netq/inventory-devices-large-switches-tab-230.png" width="500">}}
+   You can hover over any of the segments in a component distribution chart to highlight a specific type of the given component. When you *hover*, a tooltip appears displaying:
 
-<div style="padding-left: 18px;">You can hover over any of the segments in a component distribution chart to highlight a specific type of the given component. When you *hover*, a tooltip appears displaying:
+   - Name or value of the component type, such as the version number or status
+   - Total number of switches with that type of component deployed compared to the total number of switches
+   - Percentage of this type with respect to all component types
 
-<ul>
-<li>Name or value of the component type, such as the version number or status</li>
-<li>Total number of switches with that type of component deployed compared to the total number of switches</li>
-<li>Percentage of this type with respect to all component types</li></ul>
+   {{<figure src="/images/netq/inventory-devices-large-switches-tab-component-highlight-400.png" width="650">}}
 
-{{<figure src="/images/netq/inventory-devices-large-switches-tab-component-highlight-230.png" width="650">}}
-
-Additionally, sympathetic highlighting is used to show the related component types relevant to the highlighted segment and the number of unique component types associated with this type (shown in blue here).</div>
+   Additionally, sympathetic highlighting is used to show the related component types relevant to the highlighted segment and the number of unique component types associated with this type (shown in light gray here).
 
 {{</tab>}}
 
@@ -150,20 +146,21 @@ Additionally, sympathetic highlighting is used to show the related component typ
 
 1. Locate the Inventory|Switches card on your workbench.
 
-2. Hover over any of the segments in the distribution chart to highlight a specific component.
+2. Select a specific component from the dropdown menu.
 
-    {{<figure src="/images/netq/inventory-switch-medium-hover-license-230.png" width="200">}}
+    {{<figure src="/images/netq/inventory-switch-medium-dropdown-400.png" width="200">}}
 
-<div style="padding-left: 18px;">When you <em>hover</em>, a tooltip appears displaying:
+3. Hover over any of the segments in the distribution chart to highlight a specific component.
 
-<ul>
-<li>Name or value of the component type, such as the version number or status</li>
-<li>Total number of switches with that type of component deployed compared to the total number of switches</li>
-<li>Percentage of this type with respect to all component types</li></ul></div>
+   When you <em>hover</em>, a tooltip appears displaying:
 
-3. Change to the large size card. The same information is shown separated by hardware and software, and sympathetic highlighting is used to show the related component types relevant to the highlighted segment and the number of unique component types associated with this type (shown in blue here).
+   - Name or value of the component type, such as the version number or status
+   - Total number of switches with that type of component deployed compared to the total number of switches
+   - Percentage of this type with respect to all component types
 
-    {{<figure src="/images/netq/inventory-switch-large-sympathetic-highlight-320.png" width="500">}}
+4. Change to the large size card. The same information is shown separated by hardware and software, and sympathetic highlighting is used to show the related component types relevant to the highlighted segment and the number of unique component types associated with this type (shown in blue here).
+
+   {{<figure src="/images/netq/inventory-switch-large-sympathetic-highlight-400.png" width="500">}}
 
 {{</tab>}}
 
@@ -1624,81 +1621,6 @@ spine04           CL              3.7.12                               Mon Aug 1
 
 {{</tabs>}}
 
-### View Cumulus Linux License Information
-
-The state of a Cumulus Linux license can impact the function of your switches. If the license status is *Bad* or *Missing*, the license must be updated or applied for a switch to operate properly. Hosts do not require a Cumulus Linux or NetQ license.
-
-Cumulus Linux license information is available from the NetQ CLI.
-
-To view license information for your switches, run:
-
-```
-netq show inventory license [cumulus] [status ok | status missing] [around <text-time>] [json]
-```
-
-Use the `cumulus` option to list only Cumulus Linux licenses. Use the `status` option to list only the switches with that status.
-
-This example shows the license information for all switches.
-
-```
-cumulus@switch:~$ netq show inventory license
-
-Matching inventory records:
-Hostname          Name            State      Last Changed
------------------ --------------- ---------- -------------------------
-border01          Cumulus Linux   missing    Tue Jul 28 18:49:46 2020
-border02          Cumulus Linux   missing    Tue Jul 28 18:44:42 2020
-fw1               Cumulus Linux   missing    Tue Jul 28 19:14:27 2020
-fw2               Cumulus Linux   missing    Tue Jul 28 19:12:50 2020
-leaf01            Cumulus Linux   missing    Wed Jul 29 16:12:20 2020
-leaf02            Cumulus Linux   missing    Wed Jul 29 16:12:21 2020
-leaf03            Cumulus Linux   missing    Tue Jul 14 21:18:21 2020
-leaf04            Cumulus Linux   missing    Tue Jul 14 20:58:47 2020
-oob-mgmt-server   Cumulus Linux   N/A        Mon Jul 13 21:01:35 2020
-server01          Cumulus Linux   N/A        Mon Jul 13 22:09:18 2020
-server02          Cumulus Linux   N/A        Mon Jul 13 22:09:18 2020
-server03          Cumulus Linux   N/A        Mon Jul 13 22:09:20 2020
-server04          Cumulus Linux   N/A        Mon Jul 13 22:09:20 2020
-server05          Cumulus Linux   N/A        Mon Jul 13 22:09:20 2020
-server06          Cumulus Linux   N/A        Mon Jul 13 22:09:21 2020
-server07          Cumulus Linux   N/A        Mon Jul 13 22:09:21 2020
-server08          Cumulus Linux   N/A        Mon Jul 13 22:09:22 2020
-spine01           Cumulus Linux   missing    Mon Aug 10 19:55:06 2020
-spine02           Cumulus Linux   missing    Mon Aug 10 19:55:07 2020
-spine03           Cumulus Linux   missing    Mon Aug 10 19:55:09 2020
-spine04           Cumulus Linux   missing    Mon Aug 10 19:55:08 2020
-```
-
-Based on the state value:
-
-- OK: no action is required
-- Bad: validate the correct license is installed and has not expired
-- Missing: install a valid Cumulus Linux license
-- N/A: This device does not require a license; typically a host.
-
-You can view the historical state of licenses using the `around` keyword. This example shows the license state for all devices about 7 days ago. Remember to use measurement units on the time values.
-
-```
-cumulus@switch:~$ netq show inventory license around 7d
-
-Matching inventory records:
-Hostname          Name            State      Last Changed
------------------ --------------- ---------- -------------------------
-edge01            Cumulus Linux   N/A        Tue Apr 2 14:01:18 2019
-exit01            Cumulus Linux   ok         Tue Apr 2 14:01:13 2019
-exit02            Cumulus Linux   ok         Tue Apr 2 14:01:38 2019
-leaf01            Cumulus Linux   ok         Tue Apr 2 20:07:09 2019
-leaf02            Cumulus Linux   ok         Tue Apr 2 14:01:46 2019
-leaf03            Cumulus Linux   ok         Tue Apr 2 14:01:41 2019
-leaf04            Cumulus Linux   ok         Tue Apr 2 14:01:32 2019
-server01          Cumulus Linux   N/A        Tue Apr 2 14:01:55 2019
-server02          Cumulus Linux   N/A        Tue Apr 2 14:01:55 2019
-server03          Cumulus Linux   N/A        Tue Apr 2 14:01:55 2019
-server04          Cumulus Linux   N/A        Tue Apr 2 14:01:55 2019
-spine01           Cumulus Linux   ok         Tue Apr 2 14:01:49 2019
-spine02           Cumulus Linux   ok         Tue Apr 2 14:01:05 2019
-```
-
 ### View the Supported Cumulus Linux Packages
 
 When you are troubleshooting an issue with a switch, you might want to know what versions of the Cumulus Linux operating system are supported on that switch and on a switch that is not having the same issue.
@@ -2124,7 +2046,7 @@ the following services:
   - **rsyslog**: Rocket-fast system event logging processing service
   - **smond**: System monitor daemon
   - **ssh**: Secure Shell service for switches and servers
-  - **status**: License validation service
+  - **status**: Shows status of a Cumulus Linux or NetQ upgrade
   - **syslog**: System event logging service
   - **vrf**: VRF (Virtual Route Forwarding) service
   - **zebra**: GNU Zebra routing daemon

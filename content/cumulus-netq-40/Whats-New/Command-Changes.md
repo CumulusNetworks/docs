@@ -45,4 +45,5 @@ The following table summarizes the commands that have been removed in this relea
 | Updated Command | Version |
 | --------------- | ------- |
 | netq check license | 4.0.0 |
+| netq show license | 4.0.0 |
 | netq show unit-tests license | 4.0.0 |

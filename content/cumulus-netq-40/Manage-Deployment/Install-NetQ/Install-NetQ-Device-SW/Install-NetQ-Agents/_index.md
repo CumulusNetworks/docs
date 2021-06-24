@@ -162,18 +162,27 @@ synchronised to NTP server (104.194.8.227) at stratum 3
 
 To install the NetQ Agent you need to install `netq-agent` on each switch or host. This is available from the NVIDIA networking repository.
 
-To obtain the NetQ Agent package, edit the `/etc/apt/sources.list` file to add the repository for NetQ.
+*Note that NetQ has a separate repository from SONiC.*
 
-```
-admin@switch:~$ sudo nano /etc/apt/sources.list
-...
-deb [arch=amd64] http://apps3.cumulusnetworks.com/repos/deb buster netq-4.0
-...
-```
+To obtain the NetQ Agent package:
+
+1. Install the `wget` utility so you can install the GPG keys in step 3.
+
+       admin@switch:~$ sudo apt-get update
+       admin@switch:~$ sudo apt-get install wget -y
+1. Edit the `/etc/apt/sources.list` file to add the SONiC repository:
+
+       admin@switch:~$ sudo vi /etc/apt/sources.list
+       ...
+       deb http://apps3.cumulusnetworks.com/repos/deb buster netq-latest
+       ...
+1. Add the SONiC repo key:
+
+       admin@switch:~$ sudo wget -qO - http://apps3.cumulusnetworks.com/setup/cumulus-apps-deb.pubkey | sudo apt-key add -
 
 {{</tab>}}
 
-{{<tab "RHEL 7or CentOS">}}
+{{<tab "RHEL 7 or CentOS">}}
 
 ### Verify Service Package Versions
 
@@ -422,7 +431,7 @@ root@ubuntu:~# sudo wget -O- https://apps3.cumulusnetworks.com/setup/cumulus-app
 
 2. Add the Ubuntu repository:
 
-    {{<tabs "TabID2" >}}
+    {{<tabs "Get NetQ Agent Package" >}}
 {{<tab "Ubuntu 16.04" >}}
 
 Create the file `/etc/apt/sources.list.d/cumulus-host-ubuntu-xenial.list` and add the following line:

@@ -163,10 +163,10 @@ delay_mechanism         E2E
 network_transport       UDPv4
 ```
 
-4. Restart the `ptp4l` and `phc2sys` daemons:
+4. Restart the `ptp4l` service:
 
     ```
-    cumulus@switch:~$ sudo systemctl restart ptp4l.service phc2sys.service
+    cumulus@switch:~$ sudo systemctl restart ptp4l.service
     ```
 
 {{< /tab >}}
@@ -233,7 +233,7 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Edit the `Default Data Set` section of the `/etc/ptp4l.conf` file to change the `domainNumber` setting, then restart the `ptp4l` and `phc2sys` daemons.
+Edit the `Default Data Set` section of the `/etc/ptp4l.conf` file to change the `domainNumber` setting, then restart the `ptp4l` service.
 
 ```
 cumulus@switch:~$ sudo nano /etc/ptp4l.conf
@@ -249,7 +249,7 @@ domainNumber            3
 ```
 
 ```
-cumulus@switch:~$ sudo systemctl restart ptp4l.service phc2sys.service
+cumulus@switch:~$ sudo systemctl restart ptp4l.service
 ```
 
 {{< /tab >}}
@@ -277,7 +277,7 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Edit the `Default Data Set` section of the `/etc/ptp4l.conf` file to change the `priority1` and, or `priority2` setting, then restart the `ptp4l` and `phc2sys` daemons.
+Edit the `Default Data Set` section of the `/etc/ptp4l.conf` file to change the `priority1` and, or `priority2` setting, then restart the `ptp4l` service.
 
 ```
 cumulus@switch:~$ sudo nano /etc/ptp4l.conf
@@ -293,7 +293,7 @@ domainNumber            3
 ```
 
 ```
-cumulus@switch:~$ sudo systemctl restart ptp4l.service phc2sys.service
+cumulus@switch:~$ sudo systemctl restart ptp4l.service
 ```
 
 {{< /tab >}}
@@ -318,7 +318,7 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Edit the `Default Data Set` section of the `/etc/ptp4l.conf` file to change the `twoStepFlag` setting to 0, then restart the `ptp4l` and `phc2sys` daemons.
+Edit the `Default Data Set` section of the `/etc/ptp4l.conf` file to change the `twoStepFlag` setting to 0, then restart the `ptp4l` service.
 
 ```
 cumulus@switch:~$ sudo nano /etc/ptp4l.conf
@@ -338,7 +338,7 @@ dscp_general            43
 ```
 
 ```
-cumulus@switch:~$ sudo systemctl restart ptp4l.service phc2sys.service
+cumulus@switch:~$ sudo systemctl restart ptp4l.service
 ```
 
 {{< /tab >}}
@@ -361,7 +361,7 @@ cumulus@switch:~$ nv config apply
 
 Edit the `Default Data Set` section of the `/etc/ptp4l.conf` file to change the `dscp_event` setting for PTP messages that trigger a Time Stamp read from the clock and the `dscp_general` setting for PTP messages that carry commands, responses, information, or time stamps.
 
-After you save the `/etc/ptp4l.conf` file, restart the `ptp4l` and `phc2sys` daemons.
+After you save the `/etc/ptp4l.conf` file, restart the `ptp4l` service.
 
 ```
 cumulus@switch:~$ sudo nano /etc/ptp4l.conf
@@ -381,7 +381,7 @@ dscp_general            22
 ```
 
 ```
-cumulus@switch:~$ sudo systemctl restart ptp4l.service phc2sys.service
+cumulus@switch:~$ sudo systemctl restart ptp4l.service
 ```
 
 {{< /tab >}}
@@ -402,7 +402,7 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Edit the `Default interface options` section of the `/etc/ptp4l.conf` file to change the `network_transport` setting for the interface, then restart the `ptp4l` and `phc2sys` daemons.
+Edit the `Default interface options` section of the `/etc/ptp4l.conf` file to change the `network_transport` setting for the interface, then restart the `ptp4l` service.
 
 ```
 cumulus@switch:~$ sudo nano /etc/ptp4l.conf
@@ -439,7 +439,7 @@ network_transport       UDPv6
 ```
 
 ```
-cumulus@switch:~$ sudo systemctl restart ptp4l.service phc2sys.service
+cumulus@switch:~$ sudo systemctl restart ptp4l.service
 ```
 
 {{< /tab >}}
@@ -462,7 +462,7 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Edit the `Default interface options` section of the `/etc/ptp4l.conf` file to change the `masterOnly` setting for the interface, then restart the `ptp4l` and `phc2sys` daemons.
+Edit the `Default interface options` section of the `/etc/ptp4l.conf` file to change the `masterOnly` setting for the interface, then restart the `ptp4l` service.
 
 ```
 cumulus@switch:~$ sudo nano /etc/ptp4l.conf
@@ -489,7 +489,7 @@ network_transport       UDPv4
 ```
 
 ```
-cumulus@switch:~$ sudo systemctl restart ptp4l.service phc2sys.service
+cumulus@switch:~$ sudo systemctl restart ptp4l.service
 ```
 
 {{< /tab >}}
@@ -514,7 +514,7 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Edit the `Default interface options` section of the  `/etc/ptp4l.conf` file to change the `message_mode` setting for the interface, then restart the `ptp4l` and `phc2sys` daemons.
+Edit the `Default interface options` section of the  `/etc/ptp4l.conf` file to change the `message_mode` setting for the interface, then restart the `ptp4l` service.
 
 ```
 cumulus@switch:~$ sudo nano /etc/ptp4l.conf
@@ -542,7 +542,7 @@ message_mode            mixed
 ```
 
 ```
-cumulus@switch:~$ sudo systemctl restart ptp4l.service phc2sys.service
+cumulus@switch:~$ sudo systemctl restart ptp4l.service
 ```
 
 {{< /tab >}}
@@ -563,7 +563,7 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Edit the `Default interface options` section of the  `/etc/ptp4l.conf` file to change the `udp_ttl` setting for the interface, then restart the `ptp4l` and `phc2sys` daemons.
+Edit the `Default interface options` section of the  `/etc/ptp4l.conf` file to change the `udp_ttl` setting for the interface, then restart the `ptp4l` service.
 
 ```
 cumulus@switch:~$ sudo nano /etc/ptp4l.conf
@@ -590,7 +590,7 @@ network_transport       UDPv4
 ```
 
 ```
-cumulus@switch:~$ sudo systemctl restart ptp4l.service phc2sys.service
+cumulus@switch:~$ sudo systemctl restart ptp4l.service
 ```
 
 {{< /tab >}}
@@ -685,10 +685,10 @@ acceptable_master       on
 ...
 ```
 
-Restart the `ptp4l` and `phc2sys` daemons:
+Restart the `ptp4l` service:
 
 ```
-cumulus@switch:~$ sudo systemctl restart ptp4l.service phc2sys.service
+cumulus@switch:~$ sudo systemctl restart ptp4l.service
 ```
 
 {{< /tab >}}
@@ -733,7 +733,7 @@ Edit the `Default interface options` section of the `/etc/ptp4l.conf` file:
 - To set the announce interval between successive Announce messages on swp1 to -1, change the `logAnnounceInterval` setting for the interface to -1.
 - To set the mean sync-interval for multicast messages on swp1 to -5, change the `logSyncInterval` setting for the interface to -5.
 
-After you edit the `/etc/ptp4l.conf` file, restart the `ptp4l` and `phc2sys` daemons.
+After you edit the `/etc/ptp4l.conf` file, restart the `ptp4l` service.
 
 ```
 cumulus@switch:~$ sudo nano /etc/ptp4l.conf
@@ -760,7 +760,7 @@ network_transport       UDPv4
 ```
 
 ```
-cumulus@switch:~$ sudo systemctl restart ptp4l.service phc2sys.service
+cumulus@switch:~$ sudo systemctl restart ptp4l.service
 ```
 
 {{< /tab >}}
@@ -783,7 +783,7 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Edit the `/etc/ptp4l.conf` file to remove the interfaces from the `Default interface options` section, then restart the `ptp4l` and `phc2sys` daemons.
+Edit the `/etc/ptp4l.conf` file to remove the interfaces from the `Default interface options` section, then restart the `ptp4l` service.
 
 ```
 cumulus@switch:~$ sudo nano /etc/ptp4l.conf
@@ -799,7 +799,7 @@ time_stamping           software
 ```
 
 ```
-cumulus@switch:~$ sudo systemctl restart ptp4l.service phc2sys.service
+cumulus@switch:~$ sudo systemctl restart ptp4l.service
 ```
 
 {{< /tab >}}

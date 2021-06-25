@@ -108,9 +108,9 @@ Do not use an underscore (_) in the hostname; underscores are not permitted in h
 
 ### DHCP on Front Panel Ports
 
-In case eth0 is not operational or you prefer to use a front panel port, you can configure ZTP to bring all the front panel ports that are operational and run DHCP on any active interface. The list of active ports is reassessed on every retry cycle. When the DHCP lease is recieved and option 239 is present in the response, ZTP begins executing the script.
+In case eth0 is not operational or you prefer to use a front panel port, you can configure ZTP to bring all the front panel ports that are operational and run DHCP on any active interface. The list of active ports is reassessed on every retry cycle. When the DHCP lease is received and option 239 is present in the response, ZTP begins executing the script.
 
-To configure ZTP to bring up the front panel ports and run DHCP on any active interface, add `CUMULUS-AUTOPROVISION-FRONT-PANEL` to the local ZTP script.
+To configure ZTP to bring up the front panel ports and run DHCP on any active interface, add the `CUMULUS-AUTOPROVISIONING-FRONT-PANEL` directive to the local ZTP script.
 
 ### Inspect HTTP Headers
 

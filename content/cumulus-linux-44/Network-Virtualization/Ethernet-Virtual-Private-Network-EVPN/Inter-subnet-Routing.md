@@ -743,7 +743,6 @@ To configure the downsteam VNI, you must manually edit the `/etc/frr/frr.conf` f
 - You can configure multiple import and export route targets in a VRF
 - You can configure selective route targets for individual prefixes with routing policies
 - You cannot leak (import) overlapping tenant prefixes into the same destination VRF
-
 {{%/notice%}}
 
 The following example shows a configuration with downstream VNI on leaf01 thru leaf04, and border01. Because the configuration is similar on all the leafs, only leaf01 and border01 configuration files are shown below.
@@ -1000,72 +999,85 @@ iface br_l3vni
 ```
 cumulus@leaf01:~$ sudo cat /etc/frr/frr.conf
 ...
-interface bond1
-  evpn mh es-df-pref 50000
-  evpn mh es-id 1
-  evpn mh es-sys-mac 44:38:39:BE:EF:AA
-!
-interface bond2
-  evpn mh es-df-pref 50000
-  evpn mh es-id 2
-  evpn mh es-sys-mac 44:38:39:BE:EF:AA
-  interface bond3
-!
-evpn mh es-df-pref 50000
-  evpn mh es-id 3
-  evpn mh es-sys-mac 44:38:39:BE:EF:AA
-!
-interface swp51
-  evpn mh uplink
-!
-interface swp52
-  evpn mh uplink
-!
 vrf BLUE
-  vni 4002
-  exit-vrf
+ vni 4002
+ exit-vrf
 !
 vrf RED
-  vni 4001
-  exit-vrf
+ vni 4001
+ exit-vrf
 !
-vrf default
-  exit-vrf
-  vrf mgmt
-  exit-vrf
+interface bond1
+ evpn mh es-df-pref 50000
+ evpn mh es-id 1
+ evpn mh es-sys-mac 44:38:39:be:ef:aa
 !
-router bgp 65101 vrf default
-  bgp router-id 10.10.10.1
-  bgp bestpath as-path multipath-relax
-  neighbor underlay peer-group
-  neighbor underlay remote-as external
-  neighbor underlay timers 3 9
-  neighbor underlay timers connect 10
-  neighbor underlay advertisement-interval 0
-  no neighbor underlay capability extended-nexthop
-  neighbor swp51 interface remote-as external
-  neighbor swp51 interface peer-group underlay
-  neighbor swp51 timers 3 9
-  neighbor swp51 timers connect 10
-  neighbor swp51 advertisement-interval 0
-  neighbor swp51 capability extended-nexthop
-  neighbor swp52 interface remote-as external
-  neighbor swp52 interface peer-group underlay
-  neighbor swp52 timers 3 9
-  neighbor swp52 timers connect 10
-  neighbor swp52 advertisement-interval 0
-  neighbor swp52 capability extended-nexthop
-  !
-  address-family ipv4 unicast
-   redistribute connected
-   maximum-paths 64
-   exit-address-family
-  !
-  address-family l2vpn evpn
-   advertise-all-vni
-   neighbor underlay activate
-   route-target import *:6000
-exit-address-family
+interface bond2
+ evpn mh es-df-pref 50000
+ evpn mh es-id 2
+ evpn mh es-sys-mac 44:38:39:be:ef:aa
+!
+interface bond3
+ evpn mh es-df-pref 50000
+ evpn mh es-id 3
+ evpn mh es-sys-mac 44:38:39:be:ef:aa
+!
+interface swp51
+ evpn mh uplink
+!
+interface swp52
+ evpn mh uplink
+!
+router bgp 65101
+ bgp router-id 10.10.10.1
+ bgp bestpath as-path multipath-relax
+ neighbor underlay peer-group
+ neighbor underlay remote-as external
+ neighbor underlay advertisement-interval 0
+ neighbor underlay timers 3 9
+ neighbor underlay timers connect 10
+ neighbor swp51 interface peer-group underlay
+ neighbor swp51 advertisement-interval 0
+ neighbor swp51 timers 3 9
+ neighbor swp51 timers connect 10
+ neighbor swp52 interface peer-group underlay
+ neighbor swp52 advertisement-interval 0
+ neighbor swp52 timers 3 9
+ neighbor swp52 timers connect 10
+ !
+ address-family ipv4 unicast
+  redistribute connected
+  maximum-paths 64
+ exit-address-family
+ !
+ address-family l2vpn evpn
+  neighbor underlay activate
+  advertise-all-vni
+ exit-address-family
+!
+router bgp 65101 vrf RED
+ bgp router-id 10.10.10.1
+ !
+ address-family ipv4 unicast
+  redistribute connected
+ exit-address-family
+ !
+ address-family l2vpn evpn
+  advertise ipv4 unicast
+  route-target import *:6000
+ exit-address-family
+!
+router bgp 65101 vrf BLUE
+ bgp router-id 10.10.10.1
+ !
+ address-family ipv4 unicast
+  redistribute connected
+ exit-address-family
+ !
+ address-family l2vpn evpn
+  advertise ipv4 unicast
+  route-target import *:6000
+ exit-address-family
 ```
 
 {{< /tab >}}
@@ -1127,11 +1139,39 @@ router bgp 65163
   advertise-all-vni
  exit-address-family
 !
-router bgp 65163 vrf vrf10
+router bgp 65163 vrf VRF10
+ bgp router-id 10.10.10.63
+ !
+ address-family ipv4 unicast
+  redistribute connected
+ exit-address-family
  !
  address-family l2vpn evpn
+  advertise ipv4 unicast
   route-target import *:4001
   route-target import *:4002
+ exit-address-family
+!
+router bgp 65163 vrf EXTERNAL1
+ bgp router-id 10.10.10.63
+ !
+ address-family ipv4 unicast
+  redistribute connected
+ exit-address-family
+ !
+ address-family l2vpn evpn
+  advertise ipv4 unicast
+ exit-address-family
+!
+router bgp 65163 vrf EXTERNAL2
+ bgp router-id 10.10.10.63
+ !
+ address-family ipv4 unicast
+  redistribute connected
+ exit-address-family
+ !
+ address-family l2vpn evpn
+  advertise ipv4 unicast
  exit-address-family
  ...
 ```

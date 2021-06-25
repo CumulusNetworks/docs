@@ -67,12 +67,6 @@ The ZTP process over DHCP follows these steps:
 6. If provisioning is necessary, the script executes locally on the switch with root privileges.
 7. The return code of the script is examined. If it is 0, the provisioning state is marked as complete in the autoprovisioning configuration file.
 
-### DHCP on Front Panel Ports
-
-You can also configure ZTP to bring all the front panel ports that are operational and run DHCP on any active interface. The list of active ports is reassessed on every retry cycle. When the DHCP client returns the interface name and option 239 is present in the response, ZTP determines the VRF based on the interface and sets the proper VRF context before executing the script.
-
-To configure ZTP to bring all the front panel ports up and run DHCP on any active interface, add `CUMULUS-AUTOPROVISION-FRONT-PANEL` to the local ZTP script.
-
 ### Trigger ZTP Over DHCP
 
 If provisioning has not already occurred, you can trigger the ZTP process over DHCP when eth0 is set to use DHCP and one of the following events occur:
@@ -111,6 +105,12 @@ subnet 192.168.0.0 netmask 255.255.255.0 {
 {{%notice note%}}
 Do not use an underscore (_) in the hostname; underscores are not permitted in hostnames.
 {{%/notice%}}
+
+### DHCP on Front Panel Ports
+
+In case eth0 is not operational or you prefer to use a front panel port, you can configure ZTP to bring all the front panel ports that are operational and run DHCP on any active interface. The list of active ports is reassessed on every retry cycle. When the DHCP lease is recieved and option 239 is present in the response, ZTP begins executing the script.
+
+To configure ZTP to bring up the front panel ports and run DHCP on any active interface, add `CUMULUS-AUTOPROVISION-FRONT-PANEL` to the local ZTP script.
 
 ### Inspect HTTP Headers
 
@@ -195,6 +195,10 @@ exit 0
 ```
 
 Several ZTP example scripts are available in the {{<exlink url="https://github.com/CumulusNetworks/example-ztp-scripts" text="Cumulus GitHub repository">}}.
+
+## Continue Provisioning
+
+Typically ZTP exits after executing the script locally and does not continue. To continue with provisioning so that you do not have to intervine manually or embed an Ansible callback into the script, you can add the CUMULUS-AUTOPROVISION-CASCADE directive.
 
 ## Best Practices
 

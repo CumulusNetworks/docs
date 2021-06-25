@@ -11698,7 +11698,7 @@ cumulus@leaf01:~$ nv set interface vlan20 ip vrf RED
 cumulus@leaf01:~$ nv set interface vlan30 ip vrf BLUE
 cumulus@leaf01:~$ nv set nve vxlan mlag shared-address 10.0.1.12
 cumulus@leaf01:~$ nv set nve vxlan source address 10.10.10.1
-cumulus@leaf01:~$ nv set nve vxlan arp-nd-suppress on 
+cumulus@leaf01:~$ nv set nve vxlan arp-nd-suppress on
 cumulus@leaf01:~$ nv set vrf RED evpn vni 4001
 cumulus@leaf01:~$ nv set vrf BLUE evpn vni 4002
 cumulus@leaf01:~$ nv set system global anycast-mac 44:38:39:BE:EF:AA
@@ -11714,6 +11714,16 @@ cumulus@leaf01:~$ nv set vrf default router bgp path-selection multipath aspath-
 cumulus@leaf01:~$ nv set vrf default router bgp peer-group underlay address-family l2vpn-evpn enable on
 cumulus@leaf01:~$ nv set vrf default router bgp peer peerlink.4094 remote-as internal
 cumulus@leaf01:~$ nv set vrf default router bgp address-family ipv4-unicast redistribute connected
+cumulus@leaf01:~$ nv set vrf RED router BGP aut 65101
+cumulus@leaf01:~$ nv set vrf RED router BGP router-id 10.10.10.1
+cumulus@leaf01:~$ nv set vrf RED router bgp address-family ipv4-unicast redistribute connected enable on
+cumulus@leaf01:~$ nv set vrf RED router bgp peer-group underlay address-family l2vpn-evpn enable on
+cumulus@leaf01:~$ nv set vrf RED router bgp address-family ipv4-unicast route-export to-evpn
+cumulus@leaf01:~$ nv set vrf BLUE router BGP aut 65101
+cumulus@leaf01:~$ nv set vrf BLUE router BGP router-id 10.10.10.1
+cumulus@leaf01:~$ nv set vrf BLUE router bgp address-family ipv4-unicast redistribute connected enable on
+cumulus@leaf01:~$ nv set vrf BLUE router bgp peer-group underlay address-family l2vpn-evpn enable on
+cumulus@leaf01:~$ nv set vrf BLUE router bgp address-family ipv4-unicast route-export to-evpn
 cumulus@leaf01:~$ nv config apply
 ```
 
@@ -11784,6 +11794,16 @@ cumulus@leaf02:~$ nv set vrf default router bgp path-selection multipath aspath-
 cumulus@leaf02:~$ nv set vrf default router bgp peer-group underlay address-family l2vpn-evpn enable on
 cumulus@leaf02:~$ nv set vrf default router bgp peer peerlink.4094 remote-as internal
 cumulus@leaf02:~$ nv set vrf default router bgp address-family ipv4-unicast redistribute connected
+cumulus@leaf02:~$ nv set vrf RED router BGP aut 65102
+cumulus@leaf02:~$ nv set vrf RED router BGP router-id 10.10.10.2
+cumulus@leaf02:~$ nv set vrf RED router bgp address-family ipv4-unicast redistribute connected enable on
+cumulus@leaf02:~$ nv set vrf RED router bgp peer-group underlay address-family l2vpn-evpn enable on
+cumulus@leaf02:~$ nv set vrf RED router bgp address-family ipv4-unicast route-export to-evpn
+cumulus@leaf02:~$ nv set vrf BLUE router BGP aut 65102
+cumulus@leaf02:~$ nv set vrf BLUE router BGP router-id 10.10.10.2
+cumulus@leaf02:~$ nv set vrf BLUE router bgp address-family ipv4-unicast redistribute connected enable on
+cumulus@leaf02:~$ nv set vrf BLUE router bgp peer-group underlay address-family l2vpn-evpn enable on
+cumulus@leaf02:~$ nv set vrf BLUE router bgp address-family ipv4-unicast route-export to-evpn
 cumulus@leaf02:~$ nv config apply
 ```
 
@@ -11838,7 +11858,7 @@ cumulus@leaf03:~$ nv set interface vlan20 ip vrf RED
 cumulus@leaf03:~$ nv set interface vlan30 ip vrf BLUE
 cumulus@leaf03:~$ nv set nve vxlan mlag shared-address 10.0.1.34
 cumulus@leaf03:~$ nv set nve vxlan source address 10.10.10.3
-cumulus@leaf03:~$ nv set nve vxlan arp-nd-suppress on 
+cumulus@leaf03:~$ nv set nve vxlan arp-nd-suppress on
 cumulus@leaf03:~$ nv set vrf RED evpn vni 4001
 cumulus@leaf03:~$ nv set vrf BLUE evpn vni 4002
 cumulus@leaf03:~$ nv set system global anycast-mac 44:38:39:BE:EF:BB
@@ -11854,6 +11874,16 @@ cumulus@leaf03:~$ nv set vrf default router bgp path-selection multipath aspath-
 cumulus@leaf03:~$ nv set vrf default router bgp peer-group underlay address-family l2vpn-evpn enable on
 cumulus@leaf03:~$ nv set vrf default router bgp peer peerlink.4094 remote-as internal
 cumulus@leaf03:~$ nv set vrf default router bgp address-family ipv4-unicast redistribute connected
+cumulus@leaf03:~$ nv set vrf RED router BGP aut 65103
+cumulus@leaf03:~$ nv set vrf RED router BGP router-id 10.10.10.3
+cumulus@leaf03:~$ nv set vrf RED router bgp address-family ipv4-unicast redistribute connected enable on
+cumulus@leaf03:~$ nv set vrf RED router bgp peer-group underlay address-family l2vpn-evpn enable on
+cumulus@leaf03:~$ nv set vrf RED router bgp address-family ipv4-unicast route-export to-evpn
+cumulus@leaf03:~$ nv set vrf BLUE router BGP aut 65103
+cumulus@leaf03:~$ nv set vrf BLUE router BGP router-id 10.10.10.3
+cumulus@leaf03:~$ nv set vrf BLUE router bgp address-family ipv4-unicast redistribute connected enable on
+cumulus@leaf03:~$ nv set vrf BLUE router bgp peer-group underlay address-family l2vpn-evpn enable on
+cumulus@leaf03:~$ nv set vrf BLUE router bgp address-family ipv4-unicast route-export to-evpn
 cumulus@leaf03:~$ nv config apply
 ```
 
@@ -11924,6 +11954,16 @@ cumulus@leaf04:~$ nv set vrf default router bgp path-selection multipath aspath-
 cumulus@leaf04:~$ nv set vrf default router bgp peer-group underlay address-family l2vpn-evpn enable on
 cumulus@leaf04:~$ nv set vrf default router bgp peer peerlink.4094 remote-as internal
 cumulus@leaf04:~$ nv set vrf default router bgp address-family ipv4-unicast redistribute connected
+cumulus@leaf04:~$ nv set vrf RED router BGP aut 65104
+cumulus@leaf04:~$ nv set vrf RED router BGP router-id 10.10.10.4
+cumulus@leaf04:~$ nv set vrf RED router bgp address-family ipv4-unicast redistribute connected enable on
+cumulus@leaf04:~$ nv set vrf RED router bgp peer-group underlay address-family l2vpn-evpn enable on
+cumulus@leaf04:~$ nv set vrf RED router bgp address-family ipv4-unicast route-export to-evpn
+cumulus@leaf04:~$ nv set vrf BLUE router BGP aut 65104
+cumulus@leaf04:~$ nv set vrf BLUE router BGP router-id 10.10.10.4
+cumulus@leaf04:~$ nv set vrf BLUE router bgp address-family ipv4-unicast redistribute connected enable on
+cumulus@leaf04:~$ nv set vrf BLUE router bgp peer-group underlay address-family l2vpn-evpn enable on
+cumulus@leaf04:~$ nv set vrf BLUE router bgp address-family ipv4-unicast route-export to-evpn
 cumulus@leaf04:~$ nv config apply
 ```
 
@@ -12061,15 +12101,19 @@ cumulus@border01:~$ nv set vrf default router bgp peer swp52 peer-group underlay
 cumulus@border01:~$ nv set vrf default router bgp peer swp53 peer-group underlay
 cumulus@border01:~$ nv set vrf default router bgp peer swp54 peer-group underlay
 cumulus@border01:~$ nv set vrf default router bgp path-selection multipath aspath-ignore on
-cumulus@border01:~$ nv set vrf RED router bgp autonomous-system 651063
-cumulus@border01:~$ nv set vrf RED router bgp router-id 10.10.10.63
-cumulus@border01:~$ nv set vrf RED router bgp path-selection multipath aspath-ignore on
-cumulus@border01:~$ nv set vrf BLUE router bgp autonomous-system 65132
-cumulus@border01:~$ nv set vrf BLUE router bgp router-id 10.10.10.63
-cumulus@border01:~$ nv set vrf BLUE router bgp path-selection multipath aspath-ignore on
 cumulus@border01:~$ nv set vrf default router bgp peer-group underlay address-family l2vpn-evpn enable on
 cumulus@border01:~$ nv set vrf default router bgp peer peerlink.4094 remote-as internal
 cumulus@border01:~$ nv set vrf default router bgp address-family ipv4-unicast redistribute connected
+cumulus@border01:~$ nv set vrf RED router bgp autonomous-system 65253
+cumulus@border01:~$ nv set vrf RED router bgp router-id 10.10.10.63
+cumulus@border01:~$ nv set vrf RED router bgp address-family ipv4-unicast redistribute connected enable on
+cumulus@border01:~$ nv set vrf RED router bgp peer-group underlay address-family l2vpn-evpn enable on
+cumulus@border01:~$ nv set vrf RED router bgp address-family ipv4-unicast route-export to-evpn
+cumulus@border01:~$ nv set vrf BLUE router bgp autonomous-system 65253
+cumulus@border01:~$ nv set vrf BLUE router bgp router-id 10.10.10.63
+cumulus@border01:~$ nv set vrf BLUE router bgp address-family ipv4-unicast redistribute connected enable on
+cumulus@border01:~$ nv set vrf BLUE router bgp peer-group underlay address-family l2vpn-evpn enable on
+cumulus@border01:~$ nv set vrf BLUE router bgp address-family ipv4-unicast route-export to-evpn
 cumulus@border01:~$ nv config apply
 ```
 
@@ -12119,15 +12163,16 @@ cumulus@border02:~$ nv set vrf default router bgp peer swp52 peer-group underlay
 cumulus@border02:~$ nv set vrf default router bgp peer swp53 peer-group underlay
 cumulus@border02:~$ nv set vrf default router bgp peer swp54 peer-group underlay
 cumulus@border02:~$ nv set vrf default router bgp path-selection multipath aspath-ignore on
-cumulus@border02:~$ nv set vrf RED router bgp autonomous-system 65132
-cumulus@border02:~$ nv set vrf RED router bgp router-id 10.10.10.63
-cumulus@border02:~$ nv set vrf RED router bgp path-selection multipath aspath-ignore on
-cumulus@border02:~$ nv set vrf BLUE router bgp autonomous-system 65132
-cumulus@border02:~$ nv set vrf BLUE router bgp router-id 10.10.10.63
-cumulus@border02:~$ nv set vrf BLUE router bgp path-selection multipath aspath-ignore on
-cumulus@border02:~$ nv set vrf default router bgp peer-group underlay address-family l2vpn-evpn enable on
-cumulus@border02:~$ nv set vrf default router bgp peer peerlink.4094 remote-as internal
-cumulus@border02:~$ nv set vrf default router bgp address-family ipv4-unicast redistribute connected
+cumulus@border02:~$ nv set vrf RED router bgp autonomous-system 65254
+cumulus@border02:~$ nv set vrf RED router bgp router-id 10.10.10.64
+cumulus@border02:~$ nv set vrf RED router bgp address-family ipv4-unicast redistribute connected enable on
+cumulus@border02:~$ nv set vrf RED router bgp peer-group underlay address-family l2vpn-evpn enable on
+cumulus@border02:~$ nv set vrf RED router bgp address-family ipv4-unicast route-export to-evpn
+cumulus@border02:~$ nv set vrf BLUE router bgp autonomous-system 65254
+cumulus@border02:~$ nv set vrf BLUE router bgp router-id 10.10.10.64
+cumulus@border02:~$ nv set vrf BLUE router bgp address-family ipv4-unicast redistribute connected enable on
+cumulus@border02:~$ nv set vrf BLUE router bgp peer-group underlay address-family l2vpn-evpn enable on
+cumulus@border02:~$ nv set vrf BLUE router bgp address-family ipv4-unicast route-export to-evpn
 cumulus@border02:~$ nv config apply
 ```
 
@@ -12348,7 +12393,7 @@ cumulus@leaf01:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
 {{< tab "leaf02 ">}}
 
 ```
-cumulus@leaf02:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml 
+cumulus@leaf02:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
 - set:
     interface:
       lo:
@@ -12762,7 +12807,7 @@ cumulus@leaf03:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
 {{< tab "leaf04 ">}}
 
 ```
-cumulus@leaf04:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml 
+cumulus@leaf04:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
 - set:
     interface:
       lo:
@@ -14720,6 +14765,55 @@ neighbor swp53 activate
 neighbor swp54 activate
 neighbor underlay activate
 exit-address-family
+! end of router bgp 65101 vrf default
+router bgp 65101 vrf RED
+bgp router-id 10.10.10.1
+timers bgp 3 9
+bgp deterministic-med
+! Neighbors
+neighbor underlay peer-group
+neighbor underlay remote-as
+neighbor underlay timers 3 9
+neighbor underlay timers connect 10
+neighbor underlay advertisement-interval 0
+no neighbor underlay capability extended-nexthop
+! Address families
+address-family ipv4 unicast
+redistribute connected
+maximum-paths ibgp 64
+maximum-paths 64
+distance bgp 20 200 200
+neighbor underlay activate
+exit-address-family
+address-family l2vpn evpn
+advertise ipv4 unicast
+neighbor underlay activate
+exit-address-family
+! end of router bgp 65101 vrf RED
+router bgp 65101 vrf BLUE
+bgp router-id 10.10.10.1
+timers bgp 3 9
+bgp deterministic-med
+! Neighbors
+neighbor underlay peer-group
+neighbor underlay remote-as
+neighbor underlay timers 3 9
+neighbor underlay timers connect 10
+neighbor underlay advertisement-interval 0
+no neighbor underlay capability extended-nexthop
+! Address families
+address-family ipv4 unicast
+redistribute connected
+maximum-paths ibgp 64
+maximum-paths 64
+distance bgp 20 200 200
+neighbor underlay activate
+exit-address-family
+address-family l2vpn evpn
+advertise ipv4 unicast
+neighbor underlay activate
+exit-address-family
+! end of router bgp 65101 vrf BLUE
 ```
 
 {{< /tab >}}
@@ -14800,6 +14894,55 @@ neighbor swp53 activate
 neighbor swp54 activate
 neighbor underlay activate
 exit-address-family
+! end of router bgp 65102 vrf default
+router bgp 65102 vrf RED
+bgp router-id 10.10.10.2
+timers bgp 3 9
+bgp deterministic-med
+! Neighbors
+neighbor underlay peer-group
+neighbor underlay remote-as
+neighbor underlay timers 3 9
+neighbor underlay timers connect 10
+neighbor underlay advertisement-interval 0
+no neighbor underlay capability extended-nexthop
+! Address families
+address-family ipv4 unicast
+redistribute connected
+maximum-paths ibgp 64
+maximum-paths 64
+distance bgp 20 200 200
+neighbor underlay activate
+exit-address-family
+address-family l2vpn evpn
+advertise ipv4 unicast
+neighbor underlay activate
+exit-address-family
+! end of router bgp 65102 vrf RED
+router bgp 65102 vrf BLUE
+bgp router-id 10.10.10.2
+timers bgp 3 9
+bgp deterministic-med
+! Neighbors
+neighbor underlay peer-group
+neighbor underlay remote-as
+neighbor underlay timers 3 9
+neighbor underlay timers connect 10
+neighbor underlay advertisement-interval 0
+no neighbor underlay capability extended-nexthop
+! Address families
+address-family ipv4 unicast
+redistribute connected
+maximum-paths ibgp 64
+maximum-paths 64
+distance bgp 20 200 200
+neighbor underlay activate
+exit-address-family
+address-family l2vpn evpn
+advertise ipv4 unicast
+neighbor underlay activate
+exit-address-family
+! end of router bgp 65102 vrf BLUE
 ```
 
 {{< /tab >}}
@@ -14880,6 +15023,55 @@ neighbor swp53 activate
 neighbor swp54 activate
 neighbor underlay activate
 exit-address-family
+! end of router bgp 65103 vrf default
+router bgp 65103 vrf RED
+bgp router-id 10.10.10.3
+timers bgp 3 9
+bgp deterministic-med
+! Neighbors
+neighbor underlay peer-group
+neighbor underlay remote-as
+neighbor underlay timers 3 9
+neighbor underlay timers connect 10
+neighbor underlay advertisement-interval 0
+no neighbor underlay capability extended-nexthop
+! Address families
+address-family ipv4 unicast
+redistribute connected
+maximum-paths ibgp 64
+maximum-paths 64
+distance bgp 20 200 200
+neighbor underlay activate
+exit-address-family
+address-family l2vpn evpn
+advertise ipv4 unicast
+neighbor underlay activate
+exit-address-family
+! end of router bgp 65103 vrf RED
+router bgp 65103 vrf BLUE
+bgp router-id 10.10.10.3
+timers bgp 3 9
+bgp deterministic-med
+! Neighbors
+neighbor underlay peer-group
+neighbor underlay remote-as
+neighbor underlay timers 3 9
+neighbor underlay timers connect 10
+neighbor underlay advertisement-interval 0
+no neighbor underlay capability extended-nexthop
+! Address families
+address-family ipv4 unicast
+redistribute connected
+maximum-paths ibgp 64
+maximum-paths 64
+distance bgp 20 200 200
+neighbor underlay activate
+exit-address-family
+address-family l2vpn evpn
+advertise ipv4 unicast
+neighbor underlay activate
+exit-address-family
+! end of router bgp 65103 vrf BLUE
 ```
 
 {{< /tab >}}
@@ -14960,6 +15152,55 @@ neighbor swp53 activate
 neighbor swp54 activate
 neighbor underlay activate
 exit-address-family
+! end of router bgp 65104 vrf default
+router bgp 65104 vrf RED
+bgp router-id 10.10.10.4
+timers bgp 3 9
+bgp deterministic-med
+! Neighbors
+neighbor underlay peer-group
+neighbor underlay remote-as
+neighbor underlay timers 3 9
+neighbor underlay timers connect 10
+neighbor underlay advertisement-interval 0
+no neighbor underlay capability extended-nexthop
+! Address families
+address-family ipv4 unicast
+redistribute connected
+maximum-paths ibgp 64
+maximum-paths 64
+distance bgp 20 200 200
+neighbor underlay activate
+exit-address-family
+address-family l2vpn evpn
+advertise ipv4 unicast
+neighbor underlay activate
+exit-address-family
+! end of router bgp 65104 vrf RED
+router bgp 65104 vrf BLUE
+bgp router-id 10.10.10.4
+timers bgp 3 9
+bgp deterministic-med
+! Neighbors
+neighbor underlay peer-group
+neighbor underlay remote-as
+neighbor underlay timers 3 9
+neighbor underlay timers connect 10
+neighbor underlay advertisement-interval 0
+no neighbor underlay capability extended-nexthop
+! Address families
+address-family ipv4 unicast
+redistribute connected
+maximum-paths ibgp 64
+maximum-paths 64
+distance bgp 20 200 200
+neighbor underlay activate
+exit-address-family
+address-family l2vpn evpn
+advertise ipv4 unicast
+neighbor underlay activate
+exit-address-family
+! end of router bgp 65104 vrf BLUE
 ```
 
 {{< /tab >}}
@@ -15373,25 +15614,54 @@ neighbor swp54 activate
 neighbor underlay activate
 exit-address-family
 ! end of router bgp 65253 vrf default
-router bgp 651063 vrf RED
+router bgp 65253 vrf RED
 bgp router-id 10.10.10.63
-bgp bestpath as-path multipath-relax
 timers bgp 3 9
 bgp deterministic-med
 ! Neighbors
+neighbor underlay peer-group
+neighbor underlay remote-as
+neighbor underlay timers 3 9
+neighbor underlay timers connect 10
+neighbor underlay advertisement-interval 0
+no neighbor underlay capability extended-nexthop
 ! Address families
-address-family l2vpn evpn
+address-family ipv4 unicast
+redistribute connected
+maximum-paths ibgp 64
+maximum-paths 64
+distance bgp 20 200 200
+neighbor underlay activate
 exit-address-family
-! end of router bgp 651063 vrf RED
-router bgp 65132 vrf BLUE
+address-family l2vpn evpn
+advertise ipv4 unicast
+neighbor underlay activate
+exit-address-family
+! end of router bgp 65253 vrf RED
+router bgp 65253 vrf BLUE
 bgp router-id 10.10.10.63
-bgp bestpath as-path multipath-relax
 timers bgp 3 9
 bgp deterministic-med
 ! Neighbors
+neighbor underlay peer-group
+neighbor underlay remote-as
+neighbor underlay timers 3 9
+neighbor underlay timers connect 10
+neighbor underlay advertisement-interval 0
+no neighbor underlay capability extended-nexthop
 ! Address families
-address-family l2vpn evpn
+address-family ipv4 unicast
+redistribute connected
+maximum-paths ibgp 64
+maximum-paths 64
+distance bgp 20 200 200
+neighbor underlay activate
 exit-address-family
+address-family l2vpn evpn
+advertise ipv4 unicast
+neighbor underlay activate
+exit-address-family
+! end of router bgp 65253 vrf BLUE
 ```
 
 {{< /tab >}}
@@ -15474,7 +15744,7 @@ neighbor underlay activate
 exit-address-family
 ! end of router bgp 65254 vrf default
 router bgp 65132 vrf RED
-bgp router-id 10.10.10.63
+bgp router-id 10.10.10.64
 bgp bestpath as-path multipath-relax
 timers bgp 3 9
 bgp deterministic-med
@@ -15482,9 +15752,9 @@ bgp deterministic-med
 ! Address families
 address-family l2vpn evpn
 exit-address-family
-! end of router bgp 65132 vrf RED
-router bgp 65132 vrf BLUE
-bgp router-id 10.10.10.63
+! end of router bgp 65254 vrf RED
+router bgp 65254 vrf BLUE
+bgp router-id 10.10.10.64
 bgp bestpath as-path multipath-relax
 timers bgp 3 9
 bgp deterministic-med
@@ -15492,6 +15762,55 @@ bgp deterministic-med
 ! Address families
 address-family l2vpn evpn
 exit-address-family
+! end of router bgp 65254 vrf default
+router bgp 65254 vrf RED
+bgp router-id 10.10.10.64
+timers bgp 3 9
+bgp deterministic-med
+! Neighbors
+neighbor underlay peer-group
+neighbor underlay remote-as
+neighbor underlay timers 3 9
+neighbor underlay timers connect 10
+neighbor underlay advertisement-interval 0
+no neighbor underlay capability extended-nexthop
+! Address families
+address-family ipv4 unicast
+redistribute connected
+maximum-paths ibgp 64
+maximum-paths 64
+distance bgp 20 200 200
+neighbor underlay activate
+exit-address-family
+address-family l2vpn evpn
+advertise ipv4 unicast
+neighbor underlay activate
+exit-address-family
+! end of router bgp 65254 vrf RED
+router bgp 65254 vrf BLUE
+bgp router-id 10.10.10.64
+timers bgp 3 9
+bgp deterministic-med
+! Neighbors
+neighbor underlay peer-group
+neighbor underlay remote-as
+neighbor underlay timers 3 9
+neighbor underlay timers connect 10
+neighbor underlay advertisement-interval 0
+no neighbor underlay capability extended-nexthop
+! Address families
+address-family ipv4 unicast
+redistribute connected
+maximum-paths ibgp 64
+maximum-paths 64
+distance bgp 20 200 200
+neighbor underlay activate
+exit-address-family
+address-family l2vpn evpn
+advertise ipv4 unicast
+neighbor underlay activate
+exit-address-family
+! end of router bgp 65254 vrf BLUE
 ```
 
 {{< /tab >}}
@@ -15514,16 +15833,9 @@ The following example shows an EVPN asymmetric routing configuration.
 
 ```
 cumulus@leaf01:~$ cat /etc/network/interfaces
-
-# This file describes the network interfaces available on your system
-# and how to activate them. For more information, see interfaces(5)
-
-# The primary network interface
+...
 auto eth0
 iface eth0 inet dhcp
-
-# Include any platform-specific interface configuration
-#source /etc/network/interfaces.d/*.if
 
 auto lo
 iface lo

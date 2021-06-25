@@ -734,15 +734,17 @@ Downstream VNI (symmetric EVPN route leaking) enables you to assign a VNI from a
 
 To configure a downstream VNI, you configure tenant VRFs as usual; however, to configure the desired route leaking, you define a route target import and, or export statement.
 
-The route target import or export statement is in the format `route-target import|export <asn>:<vni>`; for example, `route-target import 65101:6000`. As an alternative, you can use `route-target import|export *:<vni>`; * uses any ASN as a wildcard.
+### Configure the Route Targets
+
+The route target import or export statement is in the format `route-target import|export <asn>:<vni>`; for example, `route-target import 65101:6000`. As an alternative, you can use `route-target import|export *:<vni>`. The asterisk (*) uses any ASN as a wildcard.
 
 To configure the downsteam VNI, you must manually edit the `/etc/frr/frr.conf` file; NCLU and NVUE commands are not supported.
 
 {{%notice note%}}
-- Downstream VNI is supported in EVPN symmetric mode with layer 3 VNIs and single VXLAN devices only
-- You can configure multiple import and export route targets in a VRF
-- You can configure selective route targets for individual prefixes with routing policies
-- You cannot leak (import) overlapping tenant prefixes into the same destination VRF
+- Downstream VNI is supported in EVPN symmetric mode with layer 3 VNIs and single VXLAN devices only.
+- You can configure multiple import and export route targets in a VRF.
+- You can configure selective route targets for individual prefixes with routing policies.
+- You cannot leak (import) overlapping tenant prefixes into the same destination VRF.
 {{%/notice%}}
 
 The following example shows a configuration with downstream VNI on leaf01 thru leaf04, and border01. Because the configuration is similar on all the leafs, only leaf01 and border01 configuration files are shown below.
@@ -1178,6 +1180,69 @@ router bgp 65163 vrf EXTERNAL2
 
 {{< /tab >}}
 {{< /tabs >}}
+
+{{< /tab >}}
+{{< /tabs >}}
+
+### Verify the Configuration
+
+To verify the configuration, check that the routes are properly received and tagged:
+
+{{< tabs "TabID1187 ">}}
+{{< tab "leaf01 ">}}
+
+The following vtysh command on leaf01 shows the routes tagged with route target 6000:
+
+```
+cumulus@leaf01:~$ sudo vtysh
+leaf01# show bgp l2vpn evpn route type prefix
+...
+Route Distinguisher: 10.10.10.63:3
+*> [5]:[0]:[24]:[10.1.210.0]
+                    10.10.10.63                            0 65222 65163 ?
+                    RT:65163:6000 ET:8 Rmac:44:38:39:22:01:b3
+...
+```
+
+The following Linux command on leaf01 shows the encapsulated IDs (6000) on the routes:
+
+```
+cumulus@leaf01:mgmt:~$ ip route show vrf RED 10.1.210.0/24
+10.1.210.0/24  encap ip id 6000 src 0.0.0.0 dst 10.10.10.63 ttl 0 tos 0 via 10.10.10.63 dev vxlan99 proto bgp metric 20 onlink
+```
+
+{{< /tab >}}
+{{< tab "border01 ">}}
+
+The following vtysh command on border01 shows the routes tagged with route targets 4001 and 4002:
+
+```
+cumulus@border01:~$ sudo vtysh
+border01# show bgp l2vpn evpn route type prefix
+...
+Route Distinguisher: 10.10.10.1:2
+*> [5]:[0]:[24]:[10.1.10.0]
+                    10.10.10.1                             0 65222 65101 ?
+                    RT:65101:4001 ET:8 Rmac:44:38:39:22:01:b1
+*> [5]:[0]:[24]:[10.1.20.0]
+                    10.10.10.1                             0 65222 65101 ?
+                    RT:65101:4001 ET:8 Rmac:44:38:39:22:01:b1
+Route Distinguisher: 10.10.10.1:3
+*> [5]:[0]:[24]:[10.1.30.0]
+                    10.10.10.1                             0 65222 65101 ?
+                    RT:65101:4002 ET:8 Rmac:44:38:39:22:01:b1
+...
+```
+
+The following Linux command on border01 shows the encapsulated IDs (4001 and 4002) on the routes:
+
+```
+cumulus@border01:mgmt:~$ ip route show vrf VRF10
+10.1.10.0/24  encap ip id 4001 src 0.0.0.0 dst 10.10.10.1 ttl 0 tos 0 via 10.10.10.1 dev vxlan99 proto bgp metric 20 onlink 
+10.1.20.0/24  encap ip id 4001 src 0.0.0.0 dst 10.10.10.1 ttl 0 tos 0 via 10.10.10.1 dev vxlan99 proto bgp metric 20 onlink 
+10.1.30.0/24  encap ip id 4002 src 0.0.0.0 dst 10.10.10.1 ttl 0 tos 0 via 10.10.10.1 dev vxlan99 proto bgp metric 20 onlink 
+...
+```
 
 {{< /tab >}}
 {{< /tabs >}}

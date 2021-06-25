@@ -504,7 +504,34 @@ If you install the modified installation image and specify installer command lin
 
 ## Secure Boot
 
-Cumulus Linux 4.4 introduced support for Secure Boot on the NVIDIA SN3700C-S platform.
+Secure Boot is supported on the NVIDIA SN3700C-S platform.
+
+Secure Boot settings are located in the BIOS Security menu. To access BIOS, press `Ctrl+B` through the serial console during system boot while the BIOS version is printed:
+
+    {{< img src = "/images/cumulus-linux/SB-BIOS-post.png" >}}
+
+To access the BIOS menu, the default BIOS password of `admin` should be used:
+
+    {{< img src = "/images/cumulus-linux/SB-BIOS-main.png" >}}
+
+NVIDIA recommends changing the default BIOS password. The BIOS password can be changed under the **Security** menu by selecting **Administrator Password**:
+
+    {{< img src = "/images/cumulus-linux/SB-BIOS-sec-passwd.png" >}}
+
+To validate or change the Secure Boot mode, navigate to **Security** and select **Secure Boot**:
+
+    {{< img src = "/images/cumulus-linux/SB-BIOS-secboot.png" >}}
+
+In the Secure Boot menu, the feature may be Enabled or Disabled:
+
+    {{< img src = "/images/cumulus-linux/SB-BIOS-secbootEnableDisable.png" >}}
+
+To validate the Secure Boot status of a system from Cumulus Linux, use the `mokutil --sb-state` command.
+```
+cumulus@leaf01:mgmt:~$ mokutil --sb-state
+SecureBoot enabled
+```
+
 ## Related Information
 
 - {{<exlink url="http://opencomputeproject.github.io/onie/design-spec/" text="ONIE Design Specification">}}

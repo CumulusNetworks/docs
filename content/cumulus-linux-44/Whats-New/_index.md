@@ -23,12 +23,14 @@ Cumulus Linux 4.4 supports supports new platforms, provides bug fixes, and conta
 - {{<link url="NVIDIA-User-Experience-NVUE" text="NVIDIA User Experience (NVUE)">}} is a new object-oriented, schema driven model of a complete Cumulus Linux system (hardware and software) with a robust API that allows multiple interfaces to both view and configure any element within the system. NVUE is an early access feature currently in BETA and open to customer feedback.
 - {{<link url="VLAN-aware-Bridge-Mode/" text="Multiple VLAN-aware bridges">}}
 - {{<link url="VXLAN-Devices/#single-vxlan-device" text="Single VXLAN Devices">}}
+- {{<link url="Inter-subnet-Routing/#downstream-vni" text="Downstream VNI (symmetric EVPN route leaking)">}}
 - {{<link url="EVPN-Multihoming" text="EVPN multihoming Head End Replication">}}
 - {{<link url="Precision-Time-Protocol-PTP" text="PTP Boundary Clock">}} enhancements
 - {{<link url="Protocol-Independent-Multicast-PIM/#allow-rp" text="PIM Allow RP">}}
 - {{<link url="Optional-BGP-Configuration/#conditional-advertisement" text="BGP conditional route advertisement">}}
 - {{<link url="IGMP-and-MLD-Snooping/#optimized-multicast-flooding-omf" text="Optimized Multicast Flooding (OMF)">}}
 - Smart System Manager {{<link url="Smart-System-Manager" text="warm boot">}}
+- Secure Boot
 - {{<link url="Quality-of-Service" text="QoS enhancements ">}} (`traffic.conf` and `datapath.conf` files removed and replaced)
 - {{<link url="Hybrid-Cloud-Connectivity-with-QinQ-and-VXLANs" text="QinQ Double-tagged translation ">}} is now supported on NVIDIA Spectrum-2 and above
 - A specific software license key is no longer required to enable the `switchd` service

@@ -20,6 +20,19 @@ To work around this issue, configure the new BGP neighbors with vtysh.&lt;/p&gt;
 <td></td>
 </tr>
 <tr>
+<td>CM-31073</td>
+<td>&lt;p&gt;When you set the &lt;tt&gt;sysctl&lt;/tt&gt; settings &lt;tt&gt;net.ipv6.conf.all.accept_ra_defrtr&lt;/tt&gt; (to prevent acceptance of IPv6 default route advertisements) and &lt;tt&gt;net.ipv6.conf.default.accept_ra_defrtr&lt;/tt&gt; (set for newly created interfaces), if you create a new virtual interface, any pre-existing interface does not start accepting IPv6 default route avertisements again.&lt;br/&gt;
+To work around this issue, when you create a new virtual interface, set &lt;tt&gt;net.ipv6.conf.&amp;lt;interface&amp;gt;.accept_ra_defrtr&lt;/tt&gt; to 0 for all interfaces and run &lt;tt&gt;sysctl -p --system&lt;/tt&gt;.&lt;/p&gt;</td>
+<td>3.7.12-4.2.1</td>
+<td>4.3.0</td>
+</tr>
+<tr>
+<td>CM-29890</td>
+<td>&lt;p&gt;Multiple paths to identical EVPN prefixes are either not displayed or not accepted into the l2vpn evpn table if they are received from a different AS.&lt;/p&gt;</td>
+<td>3.7.12-3.7.15, 4.1.1-4.3.0</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-28462</td>
 <td>&lt;p&gt;On rare occasions, when you upgrade Cumulus Linux with the &lt;tt&gt;apt-get upgrade&lt;/tt&gt; command, the upgrade fails and reports &lt;tt&gt;No space left on device&lt;/tt&gt;. Checking the disk utilization shows that the disk is not full.&lt;br/&gt;
 To work around this issue, run the &lt;tt&gt;apt-get upgrade&lt;/tt&gt; command again and reboot the device if prompted to complete the upgrade.&lt;/p&gt;</td>
@@ -30,6 +43,13 @@ To work around this issue, run the &lt;tt&gt;apt-get upgrade&lt;/tt&gt; command 
 <td>CM-28080</td>
 <td>&lt;p&gt;TACACS+ through ClearPass is not currently supported. Cumulus Linux sends authorization before authentication, but ClearPass does not accept an authorization before the user is authenticated.&lt;/p&gt;</td>
 <td>3.7.11-3.7.15, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-23004</td>
+<td>&lt;p&gt;The local fallback account authenticates using the local password when the RADIUS or TACACS service is up. The expected behavior is for this to fail and only succeed when the RADIUS OR TACACS server fails to respond. &lt;/p&gt;
+</td>
+<td>3.7.1-3.7.15</td>
 <td></td>
 </tr>
 <tr>
@@ -69,7 +89,7 @@ To work around this issue, run the &lt;tt&gt;apt-get upgrade&lt;/tt&gt; command 
 <td></td>
 </tr>
 <tr>
-<td>2690100</td>
+<td>2699399</td>
 <td>When you run the vtysh {{show ip bgp vrf &lt;name&gt; &lt;afi&gt; &lt;safi&gt; statistics}} command, the {{bgpd}} service crashes if you use {{vrf all}}. For example:
 spine01# show ip bgp vrf all statistics 
 &lt;pre&gt;vtysh: error reading from bgpd: Success (0)Warning: closing connection to bgpd because of an I/O error!&lt;/pre&gt;
@@ -77,6 +97,37 @@ spine01# show ip bgp vrf all statistics
 vtysh: error reading from bgpd: Success (0)Warning: closing connection to bgpd because of an I/O error!&lt;/pre&gt;
 To workaround this issue, run the command against each VRF independently.</td>
 <td>3.7.15, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2687332</td>
+<td>When using {{aggregate-address summary-only}} BGP configuration, if any component route within the summary is updated, all component routes within the summary will be updated in the RIB on the device advertising the summary. This condition can result in increased CPU usage.
+
+To workaround this issue, remove the aggregate-address summary-only configuration, add a static route to Null0 for the prefix, and configure an outbound route map to restrict anything more specific than the desired prefix from being advertised. For example: 
+
+Before:
+
+&lt;pre&gt;address-family ipv4 unicast
+   aggregate-address 10.10.0.0/16 summary-only
+   redistribute connected&lt;/pre&gt;
+
+
+After:
+&lt;pre&gt;ip route 10.10.0.0/16 Null0
+   !
+   address-family ipv4 unicast
+   redistribute connected route-map DENY-COMPONENTS
+   redistribute static
+    exit-address-family
+   ip prefix-list NO-COMPONENTS seq 5 permit 10.10.0.0/16 ge 17
+   !
+   route-map DENY-COMPONENTS deny 10
+    match ip address prefix-list NO-COMPONENTS
+   !
+   route-map DENY-COMPONENTS permit 20&lt;/pre&gt;
+
+Note: this example assumes no other static routes are present. If other static routes are present, additional route maps may need to be configured to limit the static routes being redistributed. </td>
+<td>3.7.12-3.7.15</td>
 <td></td>
 </tr>
 <tr>
@@ -167,7 +218,7 @@ Fixed: 7.38.0-4+deb8u20</td>
 </tr>
 <tr>
 <td>2660583</td>
-<td>In an MLAG configuration, the secondary MLAG switch does not use a unique address instead of the MLAG system MAC address when there is a peer link failure.</td>
+<td>In an MLAG configuration, the secondary MLAG switch does not use a unique address instead of the MLAG system MAC address when there is a double-failure (peer link failure and backup IP failure)</td>
 <td>3.7.14-3.7.15</td>
 <td></td>
 </tr>
@@ -434,13 +485,6 @@ To work around this issue, restart {{switchd}}.</td>
 <td></td>
 </tr>
 <tr>
-<td>2552632</td>
-<td>When you set the {{sysctl}} settings {{net.ipv6.conf.all.accept_ra_defrtr}} (to prevent acceptance of IPv6 default route advertisements) and {{net.ipv6.conf.default.accept_ra_defrtr}} (set for newly created interfaces), if you create a new virtual interface, any pre-existing interface does not start accepting IPv6 default route avertisements again.
-To work around this issue, when you create a new virtual interface, set {{net.ipv6.conf.&lt;interface&gt;.accept_ra_defrtr}} to 0 for all interfaces and run {{sysctl -p --system}}.</td>
-<td>3.7.12-4.2.1</td>
-<td>4.3.0</td>
-</tr>
-<tr>
 <td>2552610</td>
 <td>The following vulnerability has been announced:
 CVE-2019-11360: A buffer overflow in {{iptables-restore}} in netfilter iptables 1.8.2 allows an attacker to (at least) crash the program or potentially gain code execution via a specially crafted iptables-save file. This is related to {{add_param_to_argv}} in {{xshared.c}}.</td>
@@ -530,12 +574,6 @@ To work around this issue, either do not set {{acl.non_atomic_update_mode = TRUE
 <td>VXLAN interface as in-interface or out-interface in an ACL is not supported in Spectrum-based switches.</td>
 <td>3.7.7-4.2.0</td>
 <td>4.2.1-4.3.0, 4.3.0</td>
-</tr>
-<tr>
-<td>2550466</td>
-<td>Multiple paths to identical EVPN prefixes are either not displayed or not accepted into the l2vpn evpn table if they are received from a different AS.</td>
-<td>3.7.12-3.7.15, 4.1.1-4.3.0</td>
-<td></td>
 </tr>
 <tr>
 <td>2550444</td>
@@ -1508,13 +1546,6 @@ Vulnerable on CL3: 1.0.1t-1+deb8u12</td>
 <td>4.3.0</td>
 </tr>
 <tr>
-<td>2537514</td>
-<td>The local fallback account authenticates using the local password when the RADIUS or TACACS service is up. The expected behavior is for this to fail and only succeed when the RADIUS OR TACACS server fails to respond. 
- </td>
-<td>3.7.1-3.7.15</td>
-<td></td>
-</tr>
-<tr>
 <td>2537378</td>
 <td>NCLU SNMPv3 user configuration (add, delete, modify) does not complete. Changes are made to the {{/etc/snmp/snmpd.conf}} file but the SNMPv3 user cache file {{/var/lib/snmp/snmpd.conf}} fails to update correctly and the configuration does not reflect in operation. 
  To work around this issue, stop {{snmpd}}, remove the cache file, then restart {{snmpd}}. 
@@ -2064,6 +2095,19 @@ To work around this issue, configure the new BGP neighbors with vtysh.&lt;/p&gt;
 <td></td>
 </tr>
 <tr>
+<td>CM-31073</td>
+<td>&lt;p&gt;When you set the &lt;tt&gt;sysctl&lt;/tt&gt; settings &lt;tt&gt;net.ipv6.conf.all.accept_ra_defrtr&lt;/tt&gt; (to prevent acceptance of IPv6 default route advertisements) and &lt;tt&gt;net.ipv6.conf.default.accept_ra_defrtr&lt;/tt&gt; (set for newly created interfaces), if you create a new virtual interface, any pre-existing interface does not start accepting IPv6 default route avertisements again.&lt;br/&gt;
+To work around this issue, when you create a new virtual interface, set &lt;tt&gt;net.ipv6.conf.&amp;lt;interface&amp;gt;.accept_ra_defrtr&lt;/tt&gt; to 0 for all interfaces and run &lt;tt&gt;sysctl -p --system&lt;/tt&gt;.&lt;/p&gt;</td>
+<td>3.7.12-4.2.1</td>
+<td>4.3.0</td>
+</tr>
+<tr>
+<td>CM-29890</td>
+<td>&lt;p&gt;Multiple paths to identical EVPN prefixes are either not displayed or not accepted into the l2vpn evpn table if they are received from a different AS.&lt;/p&gt;</td>
+<td>3.7.12-3.7.14.2, 4.1.1-4.3.0</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-28462</td>
 <td>&lt;p&gt;On rare occasions, when you upgrade Cumulus Linux with the &lt;tt&gt;apt-get upgrade&lt;/tt&gt; command, the upgrade fails and reports &lt;tt&gt;No space left on device&lt;/tt&gt;. Checking the disk utilization shows that the disk is not full.&lt;br/&gt;
 To work around this issue, run the &lt;tt&gt;apt-get upgrade&lt;/tt&gt; command again and reboot the device if prompted to complete the upgrade.&lt;/p&gt;</td>
@@ -2074,6 +2118,13 @@ To work around this issue, run the &lt;tt&gt;apt-get upgrade&lt;/tt&gt; command 
 <td>CM-28080</td>
 <td>&lt;p&gt;TACACS+ through ClearPass is not currently supported. Cumulus Linux sends authorization before authentication, but ClearPass does not accept an authorization before the user is authenticated.&lt;/p&gt;</td>
 <td>3.7.11-3.7.14.2, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-23004</td>
+<td>&lt;p&gt;The local fallback account authenticates using the local password when the RADIUS or TACACS service is up. The expected behavior is for this to fail and only succeed when the RADIUS OR TACACS server fails to respond. &lt;/p&gt;
+</td>
+<td>3.7.1-3.7.14.2</td>
 <td></td>
 </tr>
 <tr>
@@ -2110,6 +2161,37 @@ To work around this issue, run the &lt;tt&gt;apt-get upgrade&lt;/tt&gt; command 
 <td>CM-15812</td>
 <td>&lt;p&gt;Multicast forwarding fails for IP addresses whose DMAC overlaps with reserved DIPs.&lt;/p&gt;</td>
 <td>3.2.1-3.7.14.2, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2687332</td>
+<td>When using {{aggregate-address summary-only}} BGP configuration, if any component route within the summary is updated, all component routes within the summary will be updated in the RIB on the device advertising the summary. This condition can result in increased CPU usage.
+
+To workaround this issue, remove the aggregate-address summary-only configuration, add a static route to Null0 for the prefix, and configure an outbound route map to restrict anything more specific than the desired prefix from being advertised. For example: 
+
+Before:
+
+&lt;pre&gt;address-family ipv4 unicast
+   aggregate-address 10.10.0.0/16 summary-only
+   redistribute connected&lt;/pre&gt;
+
+
+After:
+&lt;pre&gt;ip route 10.10.0.0/16 Null0
+   !
+   address-family ipv4 unicast
+   redistribute connected route-map DENY-COMPONENTS
+   redistribute static
+    exit-address-family
+   ip prefix-list NO-COMPONENTS seq 5 permit 10.10.0.0/16 ge 17
+   !
+   route-map DENY-COMPONENTS deny 10
+    match ip address prefix-list NO-COMPONENTS
+   !
+   route-map DENY-COMPONENTS permit 20&lt;/pre&gt;
+
+Note: this example assumes no other static routes are present. If other static routes are present, additional route maps may need to be configured to limit the static routes being redistributed. </td>
+<td>3.7.12-3.7.15</td>
 <td></td>
 </tr>
 <tr>
@@ -2200,7 +2282,7 @@ Fixed: 7.38.0-4+deb8u20</td>
 </tr>
 <tr>
 <td>2660583</td>
-<td>In an MLAG configuration, the secondary MLAG switch does not use a unique address instead of the MLAG system MAC address when there is a peer link failure.</td>
+<td>In an MLAG configuration, the secondary MLAG switch does not use a unique address instead of the MLAG system MAC address when there is a double-failure (peer link failure and backup IP failure)</td>
 <td>3.7.14-3.7.15</td>
 <td></td>
 </tr>
@@ -2874,13 +2956,6 @@ To work around this issue, restart {{switchd}}.</td>
 <td></td>
 </tr>
 <tr>
-<td>2552632</td>
-<td>When you set the {{sysctl}} settings {{net.ipv6.conf.all.accept_ra_defrtr}} (to prevent acceptance of IPv6 default route advertisements) and {{net.ipv6.conf.default.accept_ra_defrtr}} (set for newly created interfaces), if you create a new virtual interface, any pre-existing interface does not start accepting IPv6 default route avertisements again.
-To work around this issue, when you create a new virtual interface, set {{net.ipv6.conf.&lt;interface&gt;.accept_ra_defrtr}} to 0 for all interfaces and run {{sysctl -p --system}}.</td>
-<td>3.7.12-4.2.1</td>
-<td>4.3.0</td>
-</tr>
-<tr>
 <td>2552610</td>
 <td>The following vulnerability has been announced:
 CVE-2019-11360: A buffer overflow in {{iptables-restore}} in netfilter iptables 1.8.2 allows an attacker to (at least) crash the program or potentially gain code execution via a specially crafted iptables-save file. This is related to {{add_param_to_argv}} in {{xshared.c}}.</td>
@@ -2976,12 +3051,6 @@ To work around this issue, either do not set {{acl.non_atomic_update_mode = TRUE
 <td>VXLAN interface as in-interface or out-interface in an ACL is not supported in Spectrum-based switches.</td>
 <td>3.7.7-4.2.0</td>
 <td>4.2.1-4.3.0, 4.3.0</td>
-</tr>
-<tr>
-<td>2550466</td>
-<td>Multiple paths to identical EVPN prefixes are either not displayed or not accepted into the l2vpn evpn table if they are received from a different AS.</td>
-<td>3.7.12-3.7.15, 4.1.1-4.3.0</td>
-<td></td>
 </tr>
 <tr>
 <td>2550444</td>
@@ -3965,13 +4034,6 @@ Vulnerable on CL3: 1.0.1t-1+deb8u12</td>
 <td>4.3.0</td>
 </tr>
 <tr>
-<td>2537514</td>
-<td>The local fallback account authenticates using the local password when the RADIUS or TACACS service is up. The expected behavior is for this to fail and only succeed when the RADIUS OR TACACS server fails to respond. 
- </td>
-<td>3.7.1-3.7.15</td>
-<td></td>
-</tr>
-<tr>
 <td>2537378</td>
 <td>NCLU SNMPv3 user configuration (add, delete, modify) does not complete. Changes are made to the {{/etc/snmp/snmpd.conf}} file but the SNMPv3 user cache file {{/var/lib/snmp/snmpd.conf}} fails to update correctly and the configuration does not reflect in operation. 
  To work around this issue, stop {{snmpd}}, remove the cache file, then restart {{snmpd}}. 
@@ -4144,10 +4206,23 @@ To work around this issue, configure the new BGP neighbors with vtysh.&lt;/p&gt;
 <td></td>
 </tr>
 <tr>
+<td>CM-31073</td>
+<td>&lt;p&gt;When you set the &lt;tt&gt;sysctl&lt;/tt&gt; settings &lt;tt&gt;net.ipv6.conf.all.accept_ra_defrtr&lt;/tt&gt; (to prevent acceptance of IPv6 default route advertisements) and &lt;tt&gt;net.ipv6.conf.default.accept_ra_defrtr&lt;/tt&gt; (set for newly created interfaces), if you create a new virtual interface, any pre-existing interface does not start accepting IPv6 default route avertisements again.&lt;br/&gt;
+To work around this issue, when you create a new virtual interface, set &lt;tt&gt;net.ipv6.conf.&amp;lt;interface&amp;gt;.accept_ra_defrtr&lt;/tt&gt; to 0 for all interfaces and run &lt;tt&gt;sysctl -p --system&lt;/tt&gt;.&lt;/p&gt;</td>
+<td>3.7.12-4.2.1</td>
+<td>4.3.0</td>
+</tr>
+<tr>
 <td>CM-30832</td>
 <td>&lt;p&gt;The Mellanox SN2700 and SN2410 switch intermittently reports PSU fan state changes with &lt;tt&gt;Unable to read from device/fan1_input/pwm1&lt;/tt&gt; syslog messages.&lt;/p&gt;</td>
 <td>3.7.11-3.7.14, 4.1.1-4.2.1</td>
 <td>3.7.14.2, 4.3.0</td>
+</tr>
+<tr>
+<td>CM-29890</td>
+<td>&lt;p&gt;Multiple paths to identical EVPN prefixes are either not displayed or not accepted into the l2vpn evpn table if they are received from a different AS.&lt;/p&gt;</td>
+<td>3.7.12-3.7.14.2, 4.1.1-4.3.0</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-28462</td>
@@ -4160,6 +4235,13 @@ To work around this issue, run the &lt;tt&gt;apt-get upgrade&lt;/tt&gt; command 
 <td>CM-28080</td>
 <td>&lt;p&gt;TACACS+ through ClearPass is not currently supported. Cumulus Linux sends authorization before authentication, but ClearPass does not accept an authorization before the user is authenticated.&lt;/p&gt;</td>
 <td>3.7.11-3.7.14.2, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-23004</td>
+<td>&lt;p&gt;The local fallback account authenticates using the local password when the RADIUS or TACACS service is up. The expected behavior is for this to fail and only succeed when the RADIUS OR TACACS server fails to respond. &lt;/p&gt;
+</td>
+<td>3.7.1-3.7.14.2</td>
 <td></td>
 </tr>
 <tr>
@@ -4196,6 +4278,37 @@ To work around this issue, run the &lt;tt&gt;apt-get upgrade&lt;/tt&gt; command 
 <td>CM-15812</td>
 <td>&lt;p&gt;Multicast forwarding fails for IP addresses whose DMAC overlaps with reserved DIPs.&lt;/p&gt;</td>
 <td>3.2.1-3.7.14.2, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2687332</td>
+<td>When using {{aggregate-address summary-only}} BGP configuration, if any component route within the summary is updated, all component routes within the summary will be updated in the RIB on the device advertising the summary. This condition can result in increased CPU usage.
+
+To workaround this issue, remove the aggregate-address summary-only configuration, add a static route to Null0 for the prefix, and configure an outbound route map to restrict anything more specific than the desired prefix from being advertised. For example: 
+
+Before:
+
+&lt;pre&gt;address-family ipv4 unicast
+   aggregate-address 10.10.0.0/16 summary-only
+   redistribute connected&lt;/pre&gt;
+
+
+After:
+&lt;pre&gt;ip route 10.10.0.0/16 Null0
+   !
+   address-family ipv4 unicast
+   redistribute connected route-map DENY-COMPONENTS
+   redistribute static
+    exit-address-family
+   ip prefix-list NO-COMPONENTS seq 5 permit 10.10.0.0/16 ge 17
+   !
+   route-map DENY-COMPONENTS deny 10
+    match ip address prefix-list NO-COMPONENTS
+   !
+   route-map DENY-COMPONENTS permit 20&lt;/pre&gt;
+
+Note: this example assumes no other static routes are present. If other static routes are present, additional route maps may need to be configured to limit the static routes being redistributed. </td>
+<td>3.7.12-3.7.15</td>
 <td></td>
 </tr>
 <tr>
@@ -4275,7 +4388,7 @@ Fixed: 7.38.0-4+deb8u20</td>
 </tr>
 <tr>
 <td>2660583</td>
-<td>In an MLAG configuration, the secondary MLAG switch does not use a unique address instead of the MLAG system MAC address when there is a peer link failure.</td>
+<td>In an MLAG configuration, the secondary MLAG switch does not use a unique address instead of the MLAG system MAC address when there is a double-failure (peer link failure and backup IP failure)</td>
 <td>3.7.14-3.7.15</td>
 <td></td>
 </tr>
@@ -4993,13 +5106,6 @@ To work around this issue, restart {{switchd}}.</td>
 <td></td>
 </tr>
 <tr>
-<td>2552632</td>
-<td>When you set the {{sysctl}} settings {{net.ipv6.conf.all.accept_ra_defrtr}} (to prevent acceptance of IPv6 default route advertisements) and {{net.ipv6.conf.default.accept_ra_defrtr}} (set for newly created interfaces), if you create a new virtual interface, any pre-existing interface does not start accepting IPv6 default route avertisements again.
-To work around this issue, when you create a new virtual interface, set {{net.ipv6.conf.&lt;interface&gt;.accept_ra_defrtr}} to 0 for all interfaces and run {{sysctl -p --system}}.</td>
-<td>3.7.12-4.2.1</td>
-<td>4.3.0</td>
-</tr>
-<tr>
 <td>2552610</td>
 <td>The following vulnerability has been announced:
 CVE-2019-11360: A buffer overflow in {{iptables-restore}} in netfilter iptables 1.8.2 allows an attacker to (at least) crash the program or potentially gain code execution via a specially crafted iptables-save file. This is related to {{add_param_to_argv}} in {{xshared.c}}.</td>
@@ -5101,12 +5207,6 @@ To work around this issue, either do not set {{acl.non_atomic_update_mode = TRUE
 <td>VXLAN interface as in-interface or out-interface in an ACL is not supported in Spectrum-based switches.</td>
 <td>3.7.7-4.2.0</td>
 <td>4.2.1-4.3.0, 4.3.0</td>
-</tr>
-<tr>
-<td>2550466</td>
-<td>Multiple paths to identical EVPN prefixes are either not displayed or not accepted into the l2vpn evpn table if they are received from a different AS.</td>
-<td>3.7.12-3.7.15, 4.1.1-4.3.0</td>
-<td></td>
 </tr>
 <tr>
 <td>2550444</td>
@@ -6090,13 +6190,6 @@ Vulnerable on CL3: 1.0.1t-1+deb8u12</td>
 <td>4.3.0</td>
 </tr>
 <tr>
-<td>2537514</td>
-<td>The local fallback account authenticates using the local password when the RADIUS or TACACS service is up. The expected behavior is for this to fail and only succeed when the RADIUS OR TACACS server fails to respond. 
- </td>
-<td>3.7.1-3.7.15</td>
-<td></td>
-</tr>
-<tr>
 <td>2537378</td>
 <td>NCLU SNMPv3 user configuration (add, delete, modify) does not complete. Changes are made to the {{/etc/snmp/snmpd.conf}} file but the SNMPv3 user cache file {{/var/lib/snmp/snmpd.conf}} fails to update correctly and the configuration does not reflect in operation. 
  To work around this issue, stop {{snmpd}}, remove the cache file, then restart {{snmpd}}. 
@@ -6786,10 +6879,23 @@ To work around this issue, modify the routing design or policy such that routes 
 <td></td>
 </tr>
 <tr>
+<td>CM-31073</td>
+<td>&lt;p&gt;When you set the &lt;tt&gt;sysctl&lt;/tt&gt; settings &lt;tt&gt;net.ipv6.conf.all.accept_ra_defrtr&lt;/tt&gt; (to prevent acceptance of IPv6 default route advertisements) and &lt;tt&gt;net.ipv6.conf.default.accept_ra_defrtr&lt;/tt&gt; (set for newly created interfaces), if you create a new virtual interface, any pre-existing interface does not start accepting IPv6 default route avertisements again.&lt;br/&gt;
+To work around this issue, when you create a new virtual interface, set &lt;tt&gt;net.ipv6.conf.&amp;lt;interface&amp;gt;.accept_ra_defrtr&lt;/tt&gt; to 0 for all interfaces and run &lt;tt&gt;sysctl -p --system&lt;/tt&gt;.&lt;/p&gt;</td>
+<td>3.7.12-4.2.1</td>
+<td>4.3.0</td>
+</tr>
+<tr>
 <td>CM-30832</td>
 <td>&lt;p&gt;The Mellanox SN2700 and SN2410 switch intermittently reports PSU fan state changes with &lt;tt&gt;Unable to read from device/fan1_input/pwm1&lt;/tt&gt; syslog messages.&lt;/p&gt;</td>
 <td>3.7.11-3.7.14, 4.1.1-4.2.1</td>
 <td>3.7.14.2, 4.3.0</td>
+</tr>
+<tr>
+<td>CM-29890</td>
+<td>&lt;p&gt;Multiple paths to identical EVPN prefixes are either not displayed or not accepted into the l2vpn evpn table if they are received from a different AS.&lt;/p&gt;</td>
+<td>3.7.12-3.7.14.2, 4.1.1-4.3.0</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-28462</td>
@@ -6802,6 +6908,13 @@ To work around this issue, run the &lt;tt&gt;apt-get upgrade&lt;/tt&gt; command 
 <td>CM-28080</td>
 <td>&lt;p&gt;TACACS+ through ClearPass is not currently supported. Cumulus Linux sends authorization before authentication, but ClearPass does not accept an authorization before the user is authenticated.&lt;/p&gt;</td>
 <td>3.7.11-3.7.14.2, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-23004</td>
+<td>&lt;p&gt;The local fallback account authenticates using the local password when the RADIUS or TACACS service is up. The expected behavior is for this to fail and only succeed when the RADIUS OR TACACS server fails to respond. &lt;/p&gt;
+</td>
+<td>3.7.1-3.7.14.2</td>
 <td></td>
 </tr>
 <tr>
@@ -6838,6 +6951,37 @@ To work around this issue, run the &lt;tt&gt;apt-get upgrade&lt;/tt&gt; command 
 <td>CM-15812</td>
 <td>&lt;p&gt;Multicast forwarding fails for IP addresses whose DMAC overlaps with reserved DIPs.&lt;/p&gt;</td>
 <td>3.2.1-3.7.14.2, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2687332</td>
+<td>When using {{aggregate-address summary-only}} BGP configuration, if any component route within the summary is updated, all component routes within the summary will be updated in the RIB on the device advertising the summary. This condition can result in increased CPU usage.
+
+To workaround this issue, remove the aggregate-address summary-only configuration, add a static route to Null0 for the prefix, and configure an outbound route map to restrict anything more specific than the desired prefix from being advertised. For example: 
+
+Before:
+
+&lt;pre&gt;address-family ipv4 unicast
+   aggregate-address 10.10.0.0/16 summary-only
+   redistribute connected&lt;/pre&gt;
+
+
+After:
+&lt;pre&gt;ip route 10.10.0.0/16 Null0
+   !
+   address-family ipv4 unicast
+   redistribute connected route-map DENY-COMPONENTS
+   redistribute static
+    exit-address-family
+   ip prefix-list NO-COMPONENTS seq 5 permit 10.10.0.0/16 ge 17
+   !
+   route-map DENY-COMPONENTS deny 10
+    match ip address prefix-list NO-COMPONENTS
+   !
+   route-map DENY-COMPONENTS permit 20&lt;/pre&gt;
+
+Note: this example assumes no other static routes are present. If other static routes are present, additional route maps may need to be configured to limit the static routes being redistributed. </td>
+<td>3.7.12-3.7.15</td>
 <td></td>
 </tr>
 <tr>
@@ -7598,13 +7742,6 @@ To work around this issue, bounce the bond or shutdown the new interface and use
 <td>3.7.14-3.7.15, 4.2.1-4.3.0</td>
 </tr>
 <tr>
-<td>2552632</td>
-<td>When you set the {{sysctl}} settings {{net.ipv6.conf.all.accept_ra_defrtr}} (to prevent acceptance of IPv6 default route advertisements) and {{net.ipv6.conf.default.accept_ra_defrtr}} (set for newly created interfaces), if you create a new virtual interface, any pre-existing interface does not start accepting IPv6 default route avertisements again.
-To work around this issue, when you create a new virtual interface, set {{net.ipv6.conf.&lt;interface&gt;.accept_ra_defrtr}} to 0 for all interfaces and run {{sysctl -p --system}}.</td>
-<td>3.7.12-4.2.1</td>
-<td>4.3.0</td>
-</tr>
-<tr>
 <td>2552610</td>
 <td>The following vulnerability has been announced:
 CVE-2019-11360: A buffer overflow in {{iptables-restore}} in netfilter iptables 1.8.2 allows an attacker to (at least) crash the program or potentially gain code execution via a specially crafted iptables-save file. This is related to {{add_param_to_argv}} in {{xshared.c}}.</td>
@@ -7844,12 +7981,6 @@ To work around this issue, either do not set {{acl.non_atomic_update_mode = TRUE
 <td>VXLAN interface as in-interface or out-interface in an ACL is not supported in Spectrum-based switches.</td>
 <td>3.7.7-4.2.0</td>
 <td>4.2.1-4.3.0, 4.3.0</td>
-</tr>
-<tr>
-<td>2550466</td>
-<td>Multiple paths to identical EVPN prefixes are either not displayed or not accepted into the l2vpn evpn table if they are received from a different AS.</td>
-<td>3.7.12-3.7.15, 4.1.1-4.3.0</td>
-<td></td>
 </tr>
 <tr>
 <td>2550444</td>
@@ -8947,13 +9078,6 @@ Vulnerable on CL3: 1.0.1t-1+deb8u12</td>
 <td>4.3.0</td>
 </tr>
 <tr>
-<td>2537514</td>
-<td>The local fallback account authenticates using the local password when the RADIUS or TACACS service is up. The expected behavior is for this to fail and only succeed when the RADIUS OR TACACS server fails to respond. 
- </td>
-<td>3.7.1-3.7.15</td>
-<td></td>
-</tr>
-<tr>
 <td>2537378</td>
 <td>NCLU SNMPv3 user configuration (add, delete, modify) does not complete. Changes are made to the {{/etc/snmp/snmpd.conf}} file but the SNMPv3 user cache file {{/var/lib/snmp/snmpd.conf}} fails to update correctly and the configuration does not reflect in operation. 
  To work around this issue, stop {{snmpd}}, remove the cache file, then restart {{snmpd}}. 
@@ -9618,10 +9742,23 @@ Typically, the destination MAC address 01:00:5e:xx:xx:xx is used only for PIM/IG
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-31073</td>
+<td>&lt;p&gt;When you set the &lt;tt&gt;sysctl&lt;/tt&gt; settings &lt;tt&gt;net.ipv6.conf.all.accept_ra_defrtr&lt;/tt&gt; (to prevent acceptance of IPv6 default route advertisements) and &lt;tt&gt;net.ipv6.conf.default.accept_ra_defrtr&lt;/tt&gt; (set for newly created interfaces), if you create a new virtual interface, any pre-existing interface does not start accepting IPv6 default route avertisements again.&lt;br/&gt;
+To work around this issue, when you create a new virtual interface, set &lt;tt&gt;net.ipv6.conf.&amp;lt;interface&amp;gt;.accept_ra_defrtr&lt;/tt&gt; to 0 for all interfaces and run &lt;tt&gt;sysctl -p --system&lt;/tt&gt;.&lt;/p&gt;</td>
+<td>3.7.12-4.2.1</td>
+<td>4.3.0</td>
+</tr>
+<tr>
 <td>CM-30832</td>
 <td>&lt;p&gt;The Mellanox SN2700 and SN2410 switch intermittently reports PSU fan state changes with &lt;tt&gt;Unable to read from device/fan1_input/pwm1&lt;/tt&gt; syslog messages.&lt;/p&gt;</td>
 <td>3.7.11-3.7.14, 4.1.1-4.2.1</td>
 <td>3.7.14.2, 4.3.0</td>
+</tr>
+<tr>
+<td>CM-29890</td>
+<td>&lt;p&gt;Multiple paths to identical EVPN prefixes are either not displayed or not accepted into the l2vpn evpn table if they are received from a different AS.&lt;/p&gt;</td>
+<td>3.7.12-3.7.14.2, 4.1.1-4.3.0</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-28462</td>
@@ -9634,6 +9771,13 @@ To work around this issue, run the &lt;tt&gt;apt-get upgrade&lt;/tt&gt; command 
 <td>CM-28080</td>
 <td>&lt;p&gt;TACACS+ through ClearPass is not currently supported. Cumulus Linux sends authorization before authentication, but ClearPass does not accept an authorization before the user is authenticated.&lt;/p&gt;</td>
 <td>3.7.11-3.7.14.2, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-23004</td>
+<td>&lt;p&gt;The local fallback account authenticates using the local password when the RADIUS or TACACS service is up. The expected behavior is for this to fail and only succeed when the RADIUS OR TACACS server fails to respond. &lt;/p&gt;
+</td>
+<td>3.7.1-3.7.14.2</td>
 <td></td>
 </tr>
 <tr>
@@ -9670,6 +9814,37 @@ To work around this issue, run the &lt;tt&gt;apt-get upgrade&lt;/tt&gt; command 
 <td>CM-15812</td>
 <td>&lt;p&gt;Multicast forwarding fails for IP addresses whose DMAC overlaps with reserved DIPs.&lt;/p&gt;</td>
 <td>3.2.1-3.7.14.2, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2687332</td>
+<td>When using {{aggregate-address summary-only}} BGP configuration, if any component route within the summary is updated, all component routes within the summary will be updated in the RIB on the device advertising the summary. This condition can result in increased CPU usage.
+
+To workaround this issue, remove the aggregate-address summary-only configuration, add a static route to Null0 for the prefix, and configure an outbound route map to restrict anything more specific than the desired prefix from being advertised. For example: 
+
+Before:
+
+&lt;pre&gt;address-family ipv4 unicast
+   aggregate-address 10.10.0.0/16 summary-only
+   redistribute connected&lt;/pre&gt;
+
+
+After:
+&lt;pre&gt;ip route 10.10.0.0/16 Null0
+   !
+   address-family ipv4 unicast
+   redistribute connected route-map DENY-COMPONENTS
+   redistribute static
+    exit-address-family
+   ip prefix-list NO-COMPONENTS seq 5 permit 10.10.0.0/16 ge 17
+   !
+   route-map DENY-COMPONENTS deny 10
+    match ip address prefix-list NO-COMPONENTS
+   !
+   route-map DENY-COMPONENTS permit 20&lt;/pre&gt;
+
+Note: this example assumes no other static routes are present. If other static routes are present, additional route maps may need to be configured to limit the static routes being redistributed. </td>
+<td>3.7.12-3.7.15</td>
 <td></td>
 </tr>
 <tr>
@@ -10094,13 +10269,6 @@ To work around this issue, bounce the bond or shutdown the new interface and use
 <td>3.7.14-3.7.15, 4.2.1-4.3.0</td>
 </tr>
 <tr>
-<td>2552632</td>
-<td>When you set the {{sysctl}} settings {{net.ipv6.conf.all.accept_ra_defrtr}} (to prevent acceptance of IPv6 default route advertisements) and {{net.ipv6.conf.default.accept_ra_defrtr}} (set for newly created interfaces), if you create a new virtual interface, any pre-existing interface does not start accepting IPv6 default route avertisements again.
-To work around this issue, when you create a new virtual interface, set {{net.ipv6.conf.&lt;interface&gt;.accept_ra_defrtr}} to 0 for all interfaces and run {{sysctl -p --system}}.</td>
-<td>3.7.12-4.2.1</td>
-<td>4.3.0</td>
-</tr>
-<tr>
 <td>2552528</td>
 <td>Ingress SPAN/ERSPAN does not mirror packets when the next hop is EVPN encapsulated.</td>
 <td>3.7.7-3.7.13, 4.0.0-4.2.1</td>
@@ -10466,12 +10634,6 @@ Fixed: 1:9.9.5.dfsg-9+deb8u19</td>
 <td>VXLAN interface as in-interface or out-interface in an ACL is not supported in Spectrum-based switches.</td>
 <td>3.7.7-4.2.0</td>
 <td>4.2.1-4.3.0, 4.3.0</td>
-</tr>
-<tr>
-<td>2550466</td>
-<td>Multiple paths to identical EVPN prefixes are either not displayed or not accepted into the l2vpn evpn table if they are received from a different AS.</td>
-<td>3.7.12-3.7.15, 4.1.1-4.3.0</td>
-<td></td>
 </tr>
 <tr>
 <td>2550444</td>
@@ -11962,13 +12124,6 @@ Vulnerable on CL3: 1.0.1t-1+deb8u12</td>
 <td>4.3.0</td>
 </tr>
 <tr>
-<td>2537514</td>
-<td>The local fallback account authenticates using the local password when the RADIUS or TACACS service is up. The expected behavior is for this to fail and only succeed when the RADIUS OR TACACS server fails to respond. 
- </td>
-<td>3.7.1-3.7.15</td>
-<td></td>
-</tr>
-<tr>
 <td>2537378</td>
 <td>NCLU SNMPv3 user configuration (add, delete, modify) does not complete. Changes are made to the {{/etc/snmp/snmpd.conf}} file but the SNMPv3 user cache file {{/var/lib/snmp/snmpd.conf}} fails to update correctly and the configuration does not reflect in operation. 
  To work around this issue, stop {{snmpd}}, remove the cache file, then restart {{snmpd}}. 
@@ -12332,6 +12487,13 @@ To work around this issue, run the &lt;tt&gt;apt-get upgrade&lt;/tt&gt; command 
 <td>CM-28080</td>
 <td>&lt;p&gt;TACACS+ through ClearPass is not currently supported. Cumulus Linux sends authorization before authentication, but ClearPass does not accept an authorization before the user is authenticated.&lt;/p&gt;</td>
 <td>3.7.11-3.7.14.2, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-23004</td>
+<td>&lt;p&gt;The local fallback account authenticates using the local password when the RADIUS or TACACS service is up. The expected behavior is for this to fail and only succeed when the RADIUS OR TACACS server fails to respond. &lt;/p&gt;
+</td>
+<td>3.7.1-3.7.14.2</td>
 <td></td>
 </tr>
 <tr>
@@ -14077,13 +14239,6 @@ Vulnerable on CL3: 1.0.1t-1+deb8u12</td>
 <td>4.3.0</td>
 </tr>
 <tr>
-<td>2537514</td>
-<td>The local fallback account authenticates using the local password when the RADIUS or TACACS service is up. The expected behavior is for this to fail and only succeed when the RADIUS OR TACACS server fails to respond. 
- </td>
-<td>3.7.1-3.7.15</td>
-<td></td>
-</tr>
-<tr>
 <td>2537378</td>
 <td>NCLU SNMPv3 user configuration (add, delete, modify) does not complete. Changes are made to the {{/etc/snmp/snmpd.conf}} file but the SNMPv3 user cache file {{/var/lib/snmp/snmpd.conf}} fails to update correctly and the configuration does not reflect in operation. 
  To work around this issue, stop {{snmpd}}, remove the cache file, then restart {{snmpd}}. 
@@ -14742,6 +14897,13 @@ To work around this issue, use {{net show interface}} command for LLDP output wh
 <td>&lt;p&gt;On rare occasions, when you upgrade Cumulus Linux with the &lt;tt&gt;apt-get upgrade&lt;/tt&gt; command, the upgrade fails and reports &lt;tt&gt;No space left on device&lt;/tt&gt;. Checking the disk utilization shows that the disk is not full.&lt;br/&gt;
 To work around this issue, run the &lt;tt&gt;apt-get upgrade&lt;/tt&gt; command again and reboot the device if prompted to complete the upgrade.&lt;/p&gt;</td>
 <td>3.7.10-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-23004</td>
+<td>&lt;p&gt;The local fallback account authenticates using the local password when the RADIUS or TACACS service is up. The expected behavior is for this to fail and only succeed when the RADIUS OR TACACS server fails to respond. &lt;/p&gt;
+</td>
+<td>3.7.1-3.7.14.2</td>
 <td></td>
 </tr>
 <tr>
@@ -16433,13 +16595,6 @@ Note: The advertised link mode gets set incorrectly if you include 1000baseT/Hal
 <td>3.7.11-3.7.15, 4.0.0-4.3.0</td>
 </tr>
 <tr>
-<td>2537514</td>
-<td>The local fallback account authenticates using the local password when the RADIUS or TACACS service is up. The expected behavior is for this to fail and only succeed when the RADIUS OR TACACS server fails to respond. 
- </td>
-<td>3.7.1-3.7.15</td>
-<td></td>
-</tr>
-<tr>
 <td>2537378</td>
 <td>NCLU SNMPv3 user configuration (add, delete, modify) does not complete. Changes are made to the {{/etc/snmp/snmpd.conf}} file but the SNMPv3 user cache file {{/var/lib/snmp/snmpd.conf}} fails to update correctly and the configuration does not reflect in operation. 
  To work around this issue, stop {{snmpd}}, remove the cache file, then restart {{snmpd}}. 
@@ -16589,6 +16744,13 @@ More information at https://security-tracker.debian.org/tracker/CVE-2018-6594 .<
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>CM-23004</td>
+<td>&lt;p&gt;The local fallback account authenticates using the local password when the RADIUS or TACACS service is up. The expected behavior is for this to fail and only succeed when the RADIUS OR TACACS server fails to respond. &lt;/p&gt;
+</td>
+<td>3.7.1-3.7.14.2</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-21678</td>
@@ -17969,13 +18131,6 @@ Note: The advertised link mode gets set incorrectly if you include 1000baseT/Hal
 <td>3.7.11-3.7.15, 4.0.0-4.3.0</td>
 </tr>
 <tr>
-<td>2537514</td>
-<td>The local fallback account authenticates using the local password when the RADIUS or TACACS service is up. The expected behavior is for this to fail and only succeed when the RADIUS OR TACACS server fails to respond. 
- </td>
-<td>3.7.1-3.7.15</td>
-<td></td>
-</tr>
-<tr>
 <td>2537378</td>
 <td>NCLU SNMPv3 user configuration (add, delete, modify) does not complete. Changes are made to the {{/etc/snmp/snmpd.conf}} file but the SNMPv3 user cache file {{/var/lib/snmp/snmpd.conf}} fails to update correctly and the configuration does not reflect in operation. 
  To work around this issue, stop {{snmpd}}, remove the cache file, then restart {{snmpd}}. 
@@ -18755,6 +18910,13 @@ To work around this issue, run the {{sudo ethtool -S swp1}} command to collect i
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>CM-23004</td>
+<td>&lt;p&gt;The local fallback account authenticates using the local password when the RADIUS or TACACS service is up. The expected behavior is for this to fail and only succeed when the RADIUS OR TACACS server fails to respond. &lt;/p&gt;
+</td>
+<td>3.7.1-3.7.14.2</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-21678</td>
@@ -20194,13 +20356,6 @@ https://security-tracker.debian.org/tracker/wireshark</td>
 <td>3.7.11-3.7.15, 4.0.0-4.3.0</td>
 </tr>
 <tr>
-<td>2537514</td>
-<td>The local fallback account authenticates using the local password when the RADIUS or TACACS service is up. The expected behavior is for this to fail and only succeed when the RADIUS OR TACACS server fails to respond. 
- </td>
-<td>3.7.1-3.7.15</td>
-<td></td>
-</tr>
-<tr>
 <td>2537378</td>
 <td>NCLU SNMPv3 user configuration (add, delete, modify) does not complete. Changes are made to the {{/etc/snmp/snmpd.conf}} file but the SNMPv3 user cache file {{/var/lib/snmp/snmpd.conf}} fails to update correctly and the configuration does not reflect in operation. 
  To work around this issue, stop {{snmpd}}, remove the cache file, then restart {{snmpd}}. 
@@ -20355,6 +20510,13 @@ To work around this issue, use {{net show interface}} command for LLDP output wh
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>CM-23004</td>
+<td>&lt;p&gt;The local fallback account authenticates using the local password when the RADIUS or TACACS service is up. The expected behavior is for this to fail and only succeed when the RADIUS OR TACACS server fails to respond. &lt;/p&gt;
+</td>
+<td>3.7.1-3.7.14.2</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-21678</td>
@@ -21674,13 +21836,6 @@ Note: The advertised link mode gets set incorrectly if you include 1000baseT/Hal
 <td>3.7.11-3.7.15, 4.0.0-4.3.0</td>
 </tr>
 <tr>
-<td>2537514</td>
-<td>The local fallback account authenticates using the local password when the RADIUS or TACACS service is up. The expected behavior is for this to fail and only succeed when the RADIUS OR TACACS server fails to respond. 
- </td>
-<td>3.7.1-3.7.15</td>
-<td></td>
-</tr>
-<tr>
 <td>2537378</td>
 <td>NCLU SNMPv3 user configuration (add, delete, modify) does not complete. Changes are made to the {{/etc/snmp/snmpd.conf}} file but the SNMPv3 user cache file {{/var/lib/snmp/snmpd.conf}} fails to update correctly and the configuration does not reflect in operation. 
  To work around this issue, stop {{snmpd}}, remove the cache file, then restart {{snmpd}}. 
@@ -22285,6 +22440,13 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>CM-23004</td>
+<td>&lt;p&gt;The local fallback account authenticates using the local password when the RADIUS or TACACS service is up. The expected behavior is for this to fail and only succeed when the RADIUS OR TACACS server fails to respond. &lt;/p&gt;
+</td>
+<td>3.7.1-3.7.14.2</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-21678</td>
@@ -23682,13 +23844,6 @@ Note: The advertised link mode gets set incorrectly if you include 1000baseT/Hal
 <td>3.7.11-3.7.15, 4.0.0-4.3.0</td>
 </tr>
 <tr>
-<td>2537514</td>
-<td>The local fallback account authenticates using the local password when the RADIUS or TACACS service is up. The expected behavior is for this to fail and only succeed when the RADIUS OR TACACS server fails to respond. 
- </td>
-<td>3.7.1-3.7.15</td>
-<td></td>
-</tr>
-<tr>
 <td>2537378</td>
 <td>NCLU SNMPv3 user configuration (add, delete, modify) does not complete. Changes are made to the {{/etc/snmp/snmpd.conf}} file but the SNMPv3 user cache file {{/var/lib/snmp/snmpd.conf}} fails to update correctly and the configuration does not reflect in operation. 
  To work around this issue, stop {{snmpd}}, remove the cache file, then restart {{snmpd}}. 
@@ -23959,6 +24114,13 @@ This issue was discovered on the Helix4 switch but applies to all switches.
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>CM-23004</td>
+<td>&lt;p&gt;The local fallback account authenticates using the local password when the RADIUS or TACACS service is up. The expected behavior is for this to fail and only succeed when the RADIUS OR TACACS server fails to respond. &lt;/p&gt;
+</td>
+<td>3.7.1-3.7.14.2</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-21678</td>
@@ -25036,13 +25198,6 @@ Note: The advertised link mode gets set incorrectly if you include 1000baseT/Hal
 <td>3.7.11-3.7.15, 4.0.0-4.3.0</td>
 </tr>
 <tr>
-<td>2537514</td>
-<td>The local fallback account authenticates using the local password when the RADIUS or TACACS service is up. The expected behavior is for this to fail and only succeed when the RADIUS OR TACACS server fails to respond. 
- </td>
-<td>3.7.1-3.7.15</td>
-<td></td>
-</tr>
-<tr>
 <td>2537378</td>
 <td>NCLU SNMPv3 user configuration (add, delete, modify) does not complete. Changes are made to the {{/etc/snmp/snmpd.conf}} file but the SNMPv3 user cache file {{/var/lib/snmp/snmpd.conf}} fails to update correctly and the configuration does not reflect in operation. 
  To work around this issue, stop {{snmpd}}, remove the cache file, then restart {{snmpd}}. 
@@ -25285,6 +25440,13 @@ The NetQ agent has been removed from Cumulus VX 3.7.7. The NetQ agent will be bu
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>CM-23004</td>
+<td>&lt;p&gt;The local fallback account authenticates using the local password when the RADIUS or TACACS service is up. The expected behavior is for this to fail and only succeed when the RADIUS OR TACACS server fails to respond. &lt;/p&gt;
+</td>
+<td>3.7.1-3.7.14.2</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-21678</td>
@@ -26208,13 +26370,6 @@ Note: The advertised link mode gets set incorrectly if you include 1000baseT/Hal
 <td>4.3.0</td>
 </tr>
 <tr>
-<td>2537514</td>
-<td>The local fallback account authenticates using the local password when the RADIUS or TACACS service is up. The expected behavior is for this to fail and only succeed when the RADIUS OR TACACS server fails to respond. 
- </td>
-<td>3.7.1-3.7.15</td>
-<td></td>
-</tr>
-<tr>
 <td>2537378</td>
 <td>NCLU SNMPv3 user configuration (add, delete, modify) does not complete. Changes are made to the {{/etc/snmp/snmpd.conf}} file but the SNMPv3 user cache file {{/var/lib/snmp/snmpd.conf}} fails to update correctly and the configuration does not reflect in operation. 
  To work around this issue, stop {{snmpd}}, remove the cache file, then restart {{snmpd}}. 
@@ -26638,6 +26793,13 @@ The NetQ agent has been removed from Cumulus VX 3.7.7. The NetQ agent will be bu
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>CM-23004</td>
+<td>&lt;p&gt;The local fallback account authenticates using the local password when the RADIUS or TACACS service is up. The expected behavior is for this to fail and only succeed when the RADIUS OR TACACS server fails to respond. &lt;/p&gt;
+</td>
+<td>3.7.1-3.7.14.2</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-21678</td>
@@ -27567,13 +27729,6 @@ Note: The advertised link mode gets set incorrectly if you include 1000baseT/Hal
 <td>4.3.0</td>
 </tr>
 <tr>
-<td>2537514</td>
-<td>The local fallback account authenticates using the local password when the RADIUS or TACACS service is up. The expected behavior is for this to fail and only succeed when the RADIUS OR TACACS server fails to respond. 
- </td>
-<td>3.7.1-3.7.15</td>
-<td></td>
-</tr>
-<tr>
 <td>2537409</td>
 <td>It is not currently possible to bring up some 10G LR interfaces on Mellanox switches as auto-negotiation is set to {{on}} in hardware. </td>
 <td>3.7.1-3.7.3</td>
@@ -28092,6 +28247,13 @@ The NetQ agent has been removed from Cumulus VX 3.7.7. The NetQ agent will be bu
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>CM-23004</td>
+<td>&lt;p&gt;The local fallback account authenticates using the local password when the RADIUS or TACACS service is up. The expected behavior is for this to fail and only succeed when the RADIUS OR TACACS server fails to respond. &lt;/p&gt;
+</td>
+<td>3.7.1-3.7.14.2</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-21678</td>
@@ -28966,13 +29128,6 @@ Note: The advertised link mode gets set incorrectly if you include 1000baseT/Hal
 <td>4.3.0</td>
 </tr>
 <tr>
-<td>2537514</td>
-<td>The local fallback account authenticates using the local password when the RADIUS or TACACS service is up. The expected behavior is for this to fail and only succeed when the RADIUS OR TACACS server fails to respond. 
- </td>
-<td>3.7.1-3.7.15</td>
-<td></td>
-</tr>
-<tr>
 <td>2537409</td>
 <td>It is not currently possible to bring up some 10G LR interfaces on Mellanox switches as auto-negotiation is set to {{on}} in hardware. </td>
 <td>3.7.1-3.7.3</td>
@@ -29591,6 +29746,13 @@ Permanent MAC address sync between MLAG peers is now supported.</td>
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-23004</td>
+<td>&lt;p&gt;The local fallback account authenticates using the local password when the RADIUS or TACACS service is up. The expected behavior is for this to fail and only succeed when the RADIUS OR TACACS server fails to respond. &lt;/p&gt;
+</td>
+<td>3.7.1-3.7.14.2</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-21678</td>
 <td>&lt;p&gt;On a Dell switch with a Maverick ASIC, NetQ might receive false alerts like the following via PagerDuty: &lt;/p&gt;
  &lt;div class="code panel" style="border-width: 1px;"&gt;&lt;div class="codeContent panelContent"&gt;
@@ -30042,13 +30204,6 @@ https://security-tracker.debian.org/tracker/ghostscript</td>
 <td>When you run the {{mstpctl}} command, you might see the bridge-port state as blocking when it is actually disabled. You might see the same incorrect bridge-port state when other programs or tools use the output of {{mstpctl}}; for example, SNMP output from the BRIDGE-MIB.</td>
 <td>3.7.1-4.2.1</td>
 <td>4.3.0</td>
-</tr>
-<tr>
-<td>2537514</td>
-<td>The local fallback account authenticates using the local password when the RADIUS or TACACS service is up. The expected behavior is for this to fail and only succeed when the RADIUS OR TACACS server fails to respond. 
- </td>
-<td>3.7.1-3.7.15</td>
-<td></td>
 </tr>
 <tr>
 <td>2537409</td>

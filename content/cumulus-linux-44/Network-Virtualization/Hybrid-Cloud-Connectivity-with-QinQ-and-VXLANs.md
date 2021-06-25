@@ -253,9 +253,9 @@ The configuration in Cumulus Linux uses the outer tag for the customer and the i
 Double tag translation:
 - Is supported on Spectrum-2 and Spectrum-3 switches in a VXLAN configuration on native interfaces only (bonds are not supported).
 - Is supported with bridges in {{<link url="Traditional-Bridge-Mode" text="traditional mode">}} only.
+- Is supported with 802.1Q bridge mode only.
 - Is *not* supported with MLAG.
-- Is verified with 300 traditional-mode bridges.
-- Uses ACL resources internally, which can increase resource utilization. To see the number of ACL entries used, run the `sudo cat /cumulus/switchd/run/acl_info/iacl_resource` command.
+- Uses ACL resources internally, which can increase ACL resource utilization. To see the number of ACL entries used, run the `sudo cat /cumulus/switchd/run/acl_info/iacl_resource` command.
 - Uses internal VLANs for each traditional-mode bridge, which has a default range of 275. To change the range, edit the `/etc/cumulus/switchd.conf` file to uncomment the `#resv_vlan_range = 3725-3999` line and specify the range you want to use.
 {{%/notice%}}
 
@@ -264,6 +264,29 @@ You configure a double-tagged interface by stacking the VLANs as `<port>.<outer 
 An example configuration:
 
 {{< img src = "/images/cumulus-linux/qinq-double-tag-translation.png" >}}
+
+{{< tabs "TabID268 ">}}
+{{< tab "NCLU Commands ">}}
+
+```
+cumulus@switch:~$ net add interface swp3.100.10
+cumulus@switch:~$ net add interface swp3.100.10 stp portbpdufilter
+cumulus@switch:~$ net add interface swp3.100.10 stp bpduguard
+cumulus@switch:~$ net add vxlan vni1000 vxlan id 1000
+cumulus@switch:~$ net add vxlan vni1000 stp portbpdufilter
+cumulus@switch:~$ net add vxlan vni1000 stp bpduguard
+cumulus@switch:~$ net add vxlan vni1000 vxlan local-tunnelip 10.0.0.1
+cumulus@switch:~$ net add bridge custA-10-azr
+cumulus@switch:~$ net add bridge custA-10-azr ports swp3.100.10,vni1000
+```
+
+{{< /tab >}}
+{{< tab "NVUE Commands ">}}
+
+NVUE commands are not supported.
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
 
 To configure the switch for double tag translation using the above example, edit the `/etc/network/interfaces` file in a text editor and add the following:
 
@@ -285,6 +308,9 @@ iface custA-10-azr
     bridge-ports swp3.100.10 vni1000
     bridge-vlan-aware no
 ```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 To check the configuration, run the `brctl show` command:
 

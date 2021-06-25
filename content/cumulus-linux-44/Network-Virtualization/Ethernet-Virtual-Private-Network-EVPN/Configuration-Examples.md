@@ -7497,7 +7497,7 @@ cumulus@spine04:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
 {{< tab "border01 ">}}
 
 ```
-cumulus@border01:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml 
+cumulus@border01:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
 - set:
     interface:
       lo:
@@ -7807,6 +7807,7 @@ cumulus@border02:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
 {{< tab "leaf01 ">}}
 
 ```
+...
 auto lo
 iface lo inet loopback
     address 10.10.10.1/32
@@ -7911,6 +7912,7 @@ iface br_default
 {{< tab "leaf02 ">}}
 
 ```
+...
 auto lo
 iface lo inet loopback
     address 10.10.10.2/32
@@ -8015,6 +8017,7 @@ iface br_default
 {{< tab "leaf03 ">}}
 
 ```
+...
 auto lo
 iface lo inet loopback
     address 10.10.10.3/32
@@ -8119,6 +8122,7 @@ iface br_default
 {{< tab "leaf04 ">}}
 
 ```
+...
 auto lo
 iface lo inet loopback
     address 10.10.10.4/32
@@ -8223,6 +8227,7 @@ iface br_default
 {{< tab "spine01 ">}}
 
 ```
+...
 auto lo
 iface lo inet loopback
     address 10.10.10.101/32
@@ -8262,6 +8267,7 @@ iface swp6
 {{< tab "spine02 ">}}
 
 ```
+...
 auto lo
 iface lo inet loopback
     address 10.10.10.102/32
@@ -8302,6 +8308,7 @@ iface swp6
 {{< tab "spine03 ">}}
 
 ```
+...
 auto lo
 iface lo inet loopback
     address 10.10.10.103/32
@@ -8341,6 +8348,7 @@ iface swp6
 {{< tab "spine04 ">}}
 
 ```
+...
 auto lo
 iface lo inet loopback
     address 10.10.10.104/32
@@ -8380,6 +8388,7 @@ iface swp6
 {{< tab "border01 ">}}
 
 ```
+...
 auto lo
 iface lo inet loopback
     address 10.10.10.63/32
@@ -8483,6 +8492,7 @@ iface br_default
 {{< tab "border02 ">}}
 
 ```
+...
 auto lo
 iface lo inet loopback
     address 10.10.10.64/32
@@ -10025,7 +10035,7 @@ cumulus@border02:~$ net commit
 
 ```
 cumulus@leaf01:~$ sudo cat /etc/network/interfaces
-
+...
 auto lo
 iface lo inet loopback
     address 10.10.10.1/32
@@ -10222,7 +10232,7 @@ iface vniRED
 
 ```
 cumulus@leaf02:~$ sudo cat /etc/network/interfaces
-
+...
 auto lo
 iface lo inet loopback
     address 10.10.10.2/32
@@ -10419,7 +10429,7 @@ iface vniRED
 
 ```
 cumulus@leaf03:~$ sudo cat /etc/network/interfaces
-
+...
 auto lo
 iface lo inet loopback
     address 10.10.10.3/32
@@ -10616,7 +10626,7 @@ iface vniRED
 
 ```
 cumulus@leaf04:~$ sudo cat /etc/network/interfaces
-
+...
 auto lo
 iface lo inet loopback
     address 10.10.10.4/32
@@ -13600,7 +13610,7 @@ cumulus@border02:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
 
 ```
 cumulus@leaf01:mgmt:~$ sudo cat /etc/network/interfaces 
-
+...
 auto lo
 iface lo inet loopback
     address 10.10.10.1/32
@@ -13756,7 +13766,7 @@ iface br_default
 
 ```
 cumulus@leaf02:mgmt:~$ sudo cat /etc/network/interfaces
-
+...
 auto lo
 iface lo inet loopback
     address 10.10.10.2/32
@@ -13911,7 +13921,7 @@ iface br_default
 
 ```
 cumulus@leaf03:mgmt:~$ sudo cat /etc/network/interfaces
-
+...
 auto lo
 iface lo inet loopback
     address 10.10.10.3/32
@@ -14067,7 +14077,7 @@ iface br_default
 
 ```
 cumulus@leaf04:mgmt:~$ sudo cat /etc/network/interfaces 
-
+...
 auto lo
 iface lo inet loopback
     address 10.10.10.4/32
@@ -14222,7 +14232,7 @@ iface br_default
 
 ```
 cumulus@spine01:mgmt:~$ sudo cat /etc/network/interfaces
-
+...
 auto lo
 iface lo inet loopback
     address 10.10.10.101/32
@@ -14263,7 +14273,7 @@ iface swp6
 
 ```
 cumulus@spine02:mgmt:~$ sudo cat /etc/network/interfaces
-
+...
 auto lo
 iface lo inet loopback
     address 10.10.10.102/32
@@ -14304,7 +14314,7 @@ iface swp6
 
 ```
 cumulus@spine03:mgmt:~$ sudo cat /etc/network/interfaces 
-
+...
 auto lo
 iface lo inet loopback
     address 10.10.10.103/32
@@ -14345,7 +14355,7 @@ iface swp6
 
 ```
 cumulus@spine04:mgmt:~$ sudo cat /etc/network/interfaces
-
+...
 auto lo
 iface lo inet loopback
     address 10.10.10.104/32
@@ -14386,7 +14396,7 @@ iface swp6
 
 ```
 cumulus@border01:mgmt:~$ sudo cat /etc/network/interfaces
-
+...
 auto lo
 iface lo inet loopback
     address 10.10.10.63/32
@@ -14509,7 +14519,7 @@ iface br_default
 
 ```
 cumulus@border02:mgmt:~$ sudo cat /etc/network/interfaces
-
+...
 auto lo
 iface lo inet loopback
     address 10.10.10.64/32
@@ -15806,17 +15816,7 @@ iface vlan1003
 
 ```
 cumulus@leaf03:~$ cat /etc/network/interfaces
-
-# This file describes the network interfaces available on your system
-# and how to activate them. For more information, see interfaces(5)
-
-# The primary network interface
-auto eth0
-iface eth0 inet dhcp
-
-# Include any platform-specific interface configuration
-#source /etc/network/interfaces.d/*.if
-
+...
 auto lo
 iface lo
     address 10.0.0.9/32
@@ -15957,17 +15957,7 @@ iface vlan1003
 
 ```
 cumulus@leaf04:~$ cat /etc/network/interfaces
-
-# This file describes the network interfaces available on your system
-# and how to activate them. For more information, see interfaces(5)
-
-# The primary network interface
-auto eth0
-iface eth0 inet dhcp
-
-# Include any platform-specific interface configuration
-#source /etc/network/interfaces.d/*.if
-
+...
 auto lo
 iface lo
     address 10.0.0.10/32
@@ -16108,17 +16098,7 @@ iface vlan1003
 
 ```
 cumulus@spine01:~$ cat /etc/network/interfaces
-
-# This file describes the network interfaces available on your system
-# and how to activate them. For more information, see interfaces(5)
-
-# The primary network interface
-auto eth0
-iface eth0 inet dhcp
-
-# Include any platform-specific interface configuration
-#source /etc/network/interfaces.d/*.if
-
+...
 auto lo
 iface lo
     address 10.0.0.5/32
@@ -16150,16 +16130,9 @@ iface downlink-4
 
 ```
 cumulus@spine02:~$ cat /etc/network/interfaces
-
-# This file describes the network interfaces available on your system
-# and how to activate them. For more information, see interfaces(5)
-
-# The primary network interface
+...
 auto eth0
 iface eth0 inet dhcp
-
-# Include any platform-specific interface configuration
-#source /etc/network/interfaces.d/*.if
 
 auto lo
 iface lo

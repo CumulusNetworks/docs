@@ -1,1 +1,0 @@
-linux-headers-4.19.0-cl-1-debug-iproc has no copyright file

@@ -7,10 +7,23 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-31073</td>
+<td>&lt;p&gt;When you set the &lt;tt&gt;sysctl&lt;/tt&gt; settings &lt;tt&gt;net.ipv6.conf.all.accept_ra_defrtr&lt;/tt&gt; (to prevent acceptance of IPv6 default route advertisements) and &lt;tt&gt;net.ipv6.conf.default.accept_ra_defrtr&lt;/tt&gt; (set for newly created interfaces), if you create a new virtual interface, any pre-existing interface does not start accepting IPv6 default route avertisements again.&lt;br/&gt;
+To work around this issue, when you create a new virtual interface, set &lt;tt&gt;net.ipv6.conf.&amp;lt;interface&amp;gt;.accept_ra_defrtr&lt;/tt&gt; to 0 for all interfaces and run &lt;tt&gt;sysctl -p --system&lt;/tt&gt;.&lt;/p&gt;</td>
+<td>3.7.12-4.2.1</td>
+<td>4.3.0</td>
+</tr>
+<tr>
 <td>CM-30832</td>
 <td>&lt;p&gt;The Mellanox SN2700 and SN2410 switch intermittently reports PSU fan state changes with &lt;tt&gt;Unable to read from device/fan1_input/pwm1&lt;/tt&gt; syslog messages.&lt;/p&gt;</td>
 <td>3.7.11-3.7.14, 4.1.1-4.2.1</td>
 <td>3.7.14.2, 4.3.0</td>
+</tr>
+<tr>
+<td>CM-29890</td>
+<td>&lt;p&gt;Multiple paths to identical EVPN prefixes are either not displayed or not accepted into the l2vpn evpn table if they are received from a different AS.&lt;/p&gt;</td>
+<td>3.7.12-3.7.14.2, 4.1.1-4.3.0</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-28249</td>
@@ -61,7 +74,7 @@
 <td></td>
 </tr>
 <tr>
-<td>2690100</td>
+<td>2699399</td>
 <td>When you run the vtysh {{show ip bgp vrf &lt;name&gt; &lt;afi&gt; &lt;safi&gt; statistics}} command, the {{bgpd}} service crashes if you use {{vrf all}}. For example:
 spine01# show ip bgp vrf all statistics 
 &lt;pre&gt;vtysh: error reading from bgpd: Success (0)Warning: closing connection to bgpd because of an I/O error!&lt;/pre&gt;
@@ -69,6 +82,22 @@ spine01# show ip bgp vrf all statistics
 vtysh: error reading from bgpd: Success (0)Warning: closing connection to bgpd because of an I/O error!&lt;/pre&gt;
 To workaround this issue, run the command against each VRF independently.</td>
 <td>3.7.15, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2695527</td>
+<td>CVE-2021-3580 CVE-2021-20305: Multiple vulnerabilities were discovered in nettle, a low level cryptographic library, which could result in denial of service (remote crash in RSA decryption via specially crafted ciphertext, crash on ECDSA signature verification) or incorrect verification of ECDSA signatures.
+Vulnerable: 3.4.1-1
+Fixed: 3.4.1-1+deb10u1</td>
+<td>4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2691590</td>
+<td>CVE-2021-0089 CVE-2021-26313 CVE-2021-28690 CVE-2021-28692: Multiple vulnerabilities have been discovered in the Xen hypervisor, which could result in denial of service or information leaks.
+Vulnerable: &lt;= 4.11.4+99-g8bce4698f6-1
+Fixed: 4.11.4+107-gef32c7afa2-1</td>
+<td>4.0.0-4.3.0</td>
 <td></td>
 </tr>
 <tr>
@@ -809,13 +838,6 @@ To work around this issue, restart {{switchd}}.</td>
 <td>4.3.0</td>
 </tr>
 <tr>
-<td>2552632</td>
-<td>When you set the {{sysctl}} settings {{net.ipv6.conf.all.accept_ra_defrtr}} (to prevent acceptance of IPv6 default route advertisements) and {{net.ipv6.conf.default.accept_ra_defrtr}} (set for newly created interfaces), if you create a new virtual interface, any pre-existing interface does not start accepting IPv6 default route avertisements again.
-To work around this issue, when you create a new virtual interface, set {{net.ipv6.conf.&lt;interface&gt;.accept_ra_defrtr}} to 0 for all interfaces and run {{sysctl -p --system}}.</td>
-<td>3.7.12-4.2.1</td>
-<td>4.3.0</td>
-</tr>
-<tr>
 <td>2552610</td>
 <td>The following vulnerability has been announced:
 CVE-2019-11360: A buffer overflow in {{iptables-restore}} in netfilter iptables 1.8.2 allows an attacker to (at least) crash the program or potentially gain code execution via a specially crafted iptables-save file. This is related to {{add_param_to_argv}} in {{xshared.c}}.</td>
@@ -1238,12 +1260,6 @@ To work around this issue, apply an extended community with a route map using {{
 <td>VXLAN interface as in-interface or out-interface in an ACL is not supported in Spectrum-based switches.</td>
 <td>3.7.7-4.2.0</td>
 <td>4.2.1-4.3.0, 4.3.0</td>
-</tr>
-<tr>
-<td>2550466</td>
-<td>Multiple paths to identical EVPN prefixes are either not displayed or not accepted into the l2vpn evpn table if they are received from a different AS.</td>
-<td>3.7.12-3.7.15, 4.1.1-4.3.0</td>
-<td></td>
 </tr>
 <tr>
 <td>2550444</td>
@@ -2874,6 +2890,13 @@ CVE-2020-10531: An issue was discovered in International Components for Unicode 
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-31073</td>
+<td>&lt;p&gt;When you set the &lt;tt&gt;sysctl&lt;/tt&gt; settings &lt;tt&gt;net.ipv6.conf.all.accept_ra_defrtr&lt;/tt&gt; (to prevent acceptance of IPv6 default route advertisements) and &lt;tt&gt;net.ipv6.conf.default.accept_ra_defrtr&lt;/tt&gt; (set for newly created interfaces), if you create a new virtual interface, any pre-existing interface does not start accepting IPv6 default route avertisements again.&lt;br/&gt;
+To work around this issue, when you create a new virtual interface, set &lt;tt&gt;net.ipv6.conf.&amp;lt;interface&amp;gt;.accept_ra_defrtr&lt;/tt&gt; to 0 for all interfaces and run &lt;tt&gt;sysctl -p --system&lt;/tt&gt;.&lt;/p&gt;</td>
+<td>3.7.12-4.2.1</td>
+<td>4.3.0</td>
+</tr>
+<tr>
 <td>CM-28249</td>
 <td>&lt;p&gt;On the Mellanox switch, when you modify the buffer and queue configuration without restarting &lt;tt&gt;switchd&lt;/tt&gt;, you might see a one second interruption in forwarding.&lt;/p&gt;</td>
 <td>4.0.0-4.3.0</td>
@@ -2922,7 +2945,7 @@ CVE-2020-10531: An issue was discovered in International Components for Unicode 
 <td></td>
 </tr>
 <tr>
-<td>2690100</td>
+<td>2699399</td>
 <td>When you run the vtysh {{show ip bgp vrf &lt;name&gt; &lt;afi&gt; &lt;safi&gt; statistics}} command, the {{bgpd}} service crashes if you use {{vrf all}}. For example:
 spine01# show ip bgp vrf all statistics 
 &lt;pre&gt;vtysh: error reading from bgpd: Success (0)Warning: closing connection to bgpd because of an I/O error!&lt;/pre&gt;
@@ -2930,6 +2953,22 @@ spine01# show ip bgp vrf all statistics
 vtysh: error reading from bgpd: Success (0)Warning: closing connection to bgpd because of an I/O error!&lt;/pre&gt;
 To workaround this issue, run the command against each VRF independently.</td>
 <td>3.7.15, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2695527</td>
+<td>CVE-2021-3580 CVE-2021-20305: Multiple vulnerabilities were discovered in nettle, a low level cryptographic library, which could result in denial of service (remote crash in RSA decryption via specially crafted ciphertext, crash on ECDSA signature verification) or incorrect verification of ECDSA signatures.
+Vulnerable: 3.4.1-1
+Fixed: 3.4.1-1+deb10u1</td>
+<td>4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2691590</td>
+<td>CVE-2021-0089 CVE-2021-26313 CVE-2021-28690 CVE-2021-28692: Multiple vulnerabilities have been discovered in the Xen hypervisor, which could result in denial of service or information leaks.
+Vulnerable: &lt;= 4.11.4+99-g8bce4698f6-1
+Fixed: 4.11.4+107-gef32c7afa2-1</td>
+<td>4.0.0-4.3.0</td>
 <td></td>
 </tr>
 <tr>
@@ -3626,13 +3665,6 @@ Fixed: 9.27~dfsg-2+deb10u4</td>
 <td>2552742</td>
 <td>On the Mellanox SN2410 switch, you see {{switchd}} core and {{GBIN_MALLOC}} errors.
 To work around this issue, restart {{switchd}}.</td>
-<td>3.7.12-4.2.1</td>
-<td>4.3.0</td>
-</tr>
-<tr>
-<td>2552632</td>
-<td>When you set the {{sysctl}} settings {{net.ipv6.conf.all.accept_ra_defrtr}} (to prevent acceptance of IPv6 default route advertisements) and {{net.ipv6.conf.default.accept_ra_defrtr}} (set for newly created interfaces), if you create a new virtual interface, any pre-existing interface does not start accepting IPv6 default route avertisements again.
-To work around this issue, when you create a new virtual interface, set {{net.ipv6.conf.&lt;interface&gt;.accept_ra_defrtr}} to 0 for all interfaces and run {{sysctl -p --system}}.</td>
 <td>3.7.12-4.2.1</td>
 <td>4.3.0</td>
 </tr>

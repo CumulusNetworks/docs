@@ -13,7 +13,9 @@ In *all-active* mode, when a bond has multiple slave interfaces, each bond slave
 {{%notice note%}}
 - All-active mode is *not* supported on bonds that are *not* specified as bridge ports on the switch.
 - STP does not run on the individual bond slave interfaces when the LACP bond is in all-active mode. Only use all-active mode on host-facing LACP bonds. Configure {{<link url="Spanning-Tree-and-Rapid-Spanning-Tree-STP" text="STP BPDU guard">}} together with all-active mode.
-- In an {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="MLAG deployment">}} where bond slaves of a host are connected to two switches and the bond is in all-active mode, all the slaves of bond are active on both the primary and secondary MLAG nodes.
+- In an {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="MLAG deployment">}} where bond slaves of a host are connected to two switches and the bond is in all-active mode, all the slaves of the bond are active on both the primary and secondary MLAG nodes. If multiple physical NIC interfaces or more than one physical NIC is present on the physical host, NVIDIA recommends that you define which physical NIC or interface runs the PXE boot inside the PXE boot configuration file. If you do not define a specific NIC or interface, a PXE boot request is sent on all the interfaces in the bond and the PXE request fails.
+
+Another point that we might need to do is open an FR and implement behaviour like Arista LACP fallback in case the
 - LACP bypass is supported with {{<link url="EVPN-Multihoming/#supported-features" text="EVPN multihoming">}}.
 - `priority mode`, `bond-lacp-bypass-period`, `bond-lacp-bypass-priority`, and `bond-lacp-bypass-all-active` are not supported.
 {{%/notice%}}

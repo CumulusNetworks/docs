@@ -48,13 +48,13 @@ To configure RoCE with ECN:
 {{< tabs "roce commands">}}
 {{< tab "NCLU Commands">}}
 ```
-cumulus@switch:~$ net add roce mode lossless
+cumulus@switch:~$ net add roce lossless
 cumulus@switch:~$ net commit
 ```
 {{< /tab >}}
 {{< tab "NVUE Commands">}}
 ```
-cumulus@switch:~$ nv set qos roce mode lossy
+cumulus@switch:~$ nv set qos roce lossy
 cumulus@switch:~$ nv config apply
 ```
 {{< /tab >}}

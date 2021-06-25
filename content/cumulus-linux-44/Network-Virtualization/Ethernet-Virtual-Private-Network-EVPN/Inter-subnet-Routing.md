@@ -734,7 +734,7 @@ Downstream VNI (symmetric EVPN route leaking) enables you to assign a VNI from a
 
 To configure a downstream VNI, you configure tenant VRFs as usual; however, to configure the desired route leaking, you define a route target import and, or export statement.
 
-The route target import or export statement is in the format `route-target import|export <asn>:<vni>`; for example, `route-target import 65101:6000`. As an alternative, you can use `route-target import|export *:<vni>`; * uses the ASN configured on the switch.
+The route target import or export statement is in the format `route-target import|export <asn>:<vni>`; for example, `route-target import 65101:6000`. As an alternative, you can use `route-target import|export *:<vni>`; * uses any ASN as a wildcard.
 
 To configure the downsteam VNI, you must manually edit the `/etc/frr/frr.conf` file; NCLU and NVUE commands are not supported.
 
@@ -748,9 +748,9 @@ To configure the downsteam VNI, you must manually edit the `/etc/frr/frr.conf` f
 
 The following example shows a configuration with downstream VNI on leaf01 thru leaf04, and border01. Because the configuration is similar on all the leafs, only leaf01 and border01 configuration files are shown below.
 
-|   Traffic Flow between server01 and server04  |     |
+|   Traffic Flow between VRF RED and VRF 10  |     |
 | ----------------------------------------------| ----|
-| <img width=1300/> {{< img src="/images/cumulus-linux/evpn-downstream-vni.png"  >}}| <br><ol><li>server01 forwards traffic to leaf01.</li><li>leaf01 encapsulates the packet with the VNI in its route-target import statement (6000) and tunnels the traffic over to border01.</li><li> border01 uses the VNI received from leaf01 to forward the packet.</li><li> The reverse traffic from border01 to server01 is encapsulated with the VNI in the route-target import statement on border01 (2001) and tunneled over to leaf01, where routing occurs in VRF RED.</li></ul> |
+| <img width=1300/> {{< img src="/images/cumulus-linux/evpn-downstream-vni.png"  >}}| <br><ol><li>server01 forwards traffic to leaf01.</li><li>leaf01 encapsulates the packet with the VNI in its route-target import statement (6000) and tunnels the traffic over to border01.</li><li> border01 uses the VNI received from leaf01 to forward the packet.</li><li> The reverse traffic from border01 to server01 is encapsulated with the VNI in the route-target import statement on border01 (4001) and tunneled over to leaf01, where routing occurs in VRF RED.</li></ul> |
 
 This is the configuration for the example.
 
@@ -971,7 +971,7 @@ iface vlan336_l3
     vlan-id 336
 auto vxlan99
 iface vxlan99
-    bridge-vlan-vni-map 336=600000
+    bridge-vlan-vni-map 336=6000
     bridge-vids 336
     bridge-learning off
 auto br_default
@@ -1075,7 +1075,7 @@ exit-address-family
 cumulus@border01:~$ sudo cat /etc/frr/frr.conf
 ...
 vrf VRF10
- vni 600000
+ vni 6000
  exit-vrf
 !
 interface bond1

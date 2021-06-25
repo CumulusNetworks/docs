@@ -25,12 +25,14 @@ PTP in Cumulus Linux uses the `linuxptp` package that includes the following pro
 {{%notice note%}}
 - You cannot run both PTP and NTP on the switch.
 - PTP is supported in boundary clock mode only (the switch provides timing to downstream servers; it is a slave to a higher-level clock and a master to downstream clocks).
-- The switch uses hardware time stamping to capture timestamps from an Ethernet frame at the physical layer. This allows PTP to account for delays in message transfer and greatly improves the accuracy of time synchronization.
-- Both IPv4 and IPv6 UDP PTP packets are supported.
+- The switch uses hardware time stamping for PTP packets. This allows PTP to avoid inaccuracies caused by message transfer delays and improves the accuracy of time synchronization.
+- Both IPv4 and IPv6 UDP PTP encapsulation are supported. 802.3 encapsulation is not supported.
 - Only a single PTP domain per network is supported.
 - PTP is supported on layer 3 interfaces, trunk ports, and switch ports belonging to a VLAN. PTP is not supported on bonds.
-- You can isolate PTP traffic to a non-default VRF.
+- By default, PTP is enabled in the default VRF and on any new VRFs you create. You can disable PTP on a VRF to isolate PTP traffic.
 - Multicast and mixed message mode is supported; unicast only message mode is *not* supported.
+- The default PTP clock correction mode is two-step, where the time is noted when the PTP packet egresses the port and is sent in a separate (follow-up) message. One-step mode is *not* supported.
+- The delay mechanism is End-to-End, Peer-to-Peer is not supported.
 {{%/notice%}}
 
 ## Basic Configuration
@@ -38,7 +40,7 @@ PTP in Cumulus Linux uses the `linuxptp` package that includes the following pro
 Basic PTP configuration requires you:
 
 - Enable PTP on the switch to start the `ptp4l` and `phc2sys` processes.
-- Configure the interfaces on the switch that you want to use for PTP. Each interface must be a layer 3 routed interface with an IP address. You do not need to specify which is a master interface and which is a slave interface; this is determined by the PTP packet received.
+- Configure the interfaces on the switch that you want to use for PTP. Each interface must be a layer 3 routed interface with an IP address. You do not need to specify which is a master interface and which is a slave interface; the PTP Best Master Clock Algorithm (BMCA) determines the master and slave.
 
 The basic configuration shown below uses the *default* PTP settings:
 - Clock mode is set to Boundary. This is the only clock mode currently supported.
@@ -50,6 +52,7 @@ The basic configuration shown below uses the *default* PTP settings:
 - {{<link url="#diffserv-code-point-dscp" text="DSCP" >}} is set to 43 for both general and event messages.
 - {{<link url="#acceptable-master-table" text="Announce messages from any master are accepted">}}.
 - {{<link url="#message-mode" text="Message Mode">}} is multicast.
+- The delay mechanism is End-to-End (E2E).
 
 To configure optional settings, such as the PTP domain, priority, transport mode, DSCP, and timers, see {{<link url="#optional-configuration" text="Optional Configuration">}} below.
 
@@ -134,7 +137,7 @@ sanity_freq_limit       0
 #
 # Default interface options
 #
-time_stamping           software
+time_stamping           hardware
 
 
 # Interfaces in which ptp should be enabled
@@ -299,7 +302,7 @@ cumulus@switch:~$ sudo systemctl restart ptp4l.service
 {{< /tab >}}
 {{< /tabs >}}
 
-### One-step and Two-step Mode
+<!-- ### One-step and Two-step Mode
 
 The Cumulus Linux switch supports hardware packet time stamping and provides two modes:
 - In *one-step* mode, the PTP packet is time stamped as it egresses the port and there is no need for a follow-up packet.
@@ -342,8 +345,7 @@ cumulus@switch:~$ sudo systemctl restart ptp4l.service
 ```
 
 {{< /tab >}}
-{{< /tabs >}}
-
+{{< /tabs >}} -->
 ### DSCP
 
 You can configure the DiffServ code point (DSCP) value for all PTP IPv4 packets originated locally. You can set a value between 0 and 63.
@@ -409,7 +411,7 @@ cumulus@switch:~$ sudo nano /etc/ptp4l.conf
 ...
 # Default interface options
 #
-time_stamping           software
+time_stamping           hardware
 
 # Interfaces in which ptp should be enabled
 # these interfaces should be routed ports
@@ -469,7 +471,7 @@ cumulus@switch:~$ sudo nano /etc/ptp4l.conf
 ...
 # Default interface options
 #
-time_stamping           software
+time_stamping           hardware
 
 # Interfaces in which ptp should be enabled
 # these interfaces should be routed ports
@@ -506,22 +508,24 @@ Multicast mode is the default setting. To set the message mode to *mixed* on an 
 {{< tabs "TabID494 ">}}
 {{< tab "NVUE Commands ">}}
 
+NVUE commands are not supported.
+<!--
 ```
 cumulus@switch:~$ nv set interface swp1 ptp message-mode mixed
 cumulus@switch:~$ nv config apply
 ```
-
+-->
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Edit the `Default interface options` section of the  `/etc/ptp4l.conf` file to change the `message_mode` setting for the interface, then restart the `ptp4l` service.
+Edit the `Default interface options` section of the  `/etc/ptp4l.conf` file to change the `Hybrid_e2e` setting to 1 for the interface, then restart the `ptp4l` service.
 
 ```
 cumulus@switch:~$ sudo nano /etc/ptp4l.conf
 ...
 # Default interface options
 #
-time_stamping           software
+time_stamping           hardware
 
 # Interfaces in which ptp should be enabled
 # these interfaces should be routed ports
@@ -537,7 +541,7 @@ udp_ttl                 20
 masterOnly              1
 delay_mechanism         E2E
 network_transport       UDPv4
-message_mode            mixed
+Hybrid_e2e              1
 ...
 ```
 
@@ -570,7 +574,7 @@ cumulus@switch:~$ sudo nano /etc/ptp4l.conf
 ...
 # Default interface options
 #
-time_stamping           software
+time_stamping           hardware
 
 # Interfaces in which ptp should be enabled
 # these interfaces should be routed ports
@@ -634,7 +638,7 @@ cumulus@switch:~$ sudo nano /etc/ptp4l.conf
 #
 # Default interface options
 #
-time_stamping           software
+time_stamping           hardware
 
 
 [acceptable_master_table]
@@ -651,7 +655,7 @@ cumulus@switch:~$ sudo nano /etc/ptp4l.conf
 #
 # Default interface options
 #
-time_stamping           software
+time_stamping           hardware
 
 
 [acceptable_master_table]
@@ -665,7 +669,7 @@ To enable the PTP acceptable master table option for swp1, add `acceptable_maste
 ...
 # Default interface options
 #
-time_stamping           software
+time_stamping           hardware
 
 # Interfaces in which ptp should be enabled
 # these interfaces should be routed ports
@@ -740,7 +744,7 @@ cumulus@switch:~$ sudo nano /etc/ptp4l.conf
 ...
 # Default interface options
 #
-time_stamping           software
+time_stamping           hardware
 
 # Interfaces in which ptp should be enabled
 # these interfaces should be routed ports
@@ -762,6 +766,26 @@ network_transport       UDPv4
 ```
 cumulus@switch:~$ sudo systemctl restart ptp4l.service
 ```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+## PTP on a VRF
+
+By default, PTP is enabled on the default VRF and on any VRFs you create. You can isolate traffic to a specific VRF by disabling PTP on any other VRFs.
+
+{{< tabs "TabID777 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set vrf RED ptp enable off
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Linux commands are not supported.
 
 {{< /tab >}}
 {{< /tabs >}}
@@ -790,7 +814,7 @@ cumulus@switch:~$ sudo nano /etc/ptp4l.conf
 ...
 # Default interface options
 #
-time_stamping           software
+time_stamping           hardware
 
 # Interfaces in which ptp should be enabled
 # these interfaces should be routed ports
@@ -985,7 +1009,7 @@ domainNumber            3
 
 clock_type              BC
 
-twoStepFlag             0
+twoStepFlag             1
 dscp_event              43
 dscp_general            43
 
@@ -1005,7 +1029,7 @@ summary_interval        0
 #
 # Default interface options
 #
-time_stamping           software
+time_stamping           hardware
 
 # Interfaces in which ptp should be enabled
 # these interfaces should be routed ports

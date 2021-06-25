@@ -134,7 +134,7 @@ It can be useful to know the quantity and ratio of many components deployed in y
 
    - Name or value of the component type, such as the version number or status
    - Total number of switches with that type of component deployed compared to the total number of switches
-   - Percentage of this type with respect to all component types
+   - Percentage of this type as compared to all component types
 
    {{<figure src="/images/netq/inventory-devices-large-switches-tab-component-highlight-400.png" width="650">}}
 
@@ -257,7 +257,7 @@ ASIC information is available from the NetQ UI and NetQ CLI.
 
     The same information is available on the summary tab of the large size card.
 
-    {{<figure src="/images/netq/inventory-switch-large-summary-tab-230.png" width="700">}}
+    {{<figure src="/images/netq/inventory-switch-large-sympathetic-highlight-400.png" width="700">}}
 
 3. Hover over the card header and click <img src="https://icons.cumulusnetworks.com/03-Computers-Devices-Electronics/08-Microprocessor-Chips/computer-chip-core.svg" height="14" width="14"/> to view the ASIC vendor and model distribution.
 
@@ -469,7 +469,7 @@ CPU information is available from the NetQ UI and NetQ CLI.
 
     The same information is available on the summary tab of the large size card.
 
-    {{<figure src="/images/netq/inventory-switch-large-summary-tab-230.png" width="700">}}
+    {{<figure src="/images/netq/inventory-switch-large-sympathetic-highlight-400.png" width="700">}}
 
 3. Hover over the card, and change to the full-screen card using the size picker.
 
@@ -587,7 +587,7 @@ Disk information is available from the NetQ UI and NetQ CLI.
 
     The same information is available on the summary tab of the large size card.
 
-    {{<figure src="/images/netq/inventory-switch-large-summary-tab-230.png" width="700">}}
+    {{<figure src="/images/netq/inventory-switch-large-sympathetic-highlight-400.png" width="700">}}
 
 3. Hover over the card, and change to the full-screen card using the size picker.
 
@@ -671,7 +671,7 @@ Memory information is available from the NetQ UI and NetQ CLI.
 
     The same information is available on the summary tab of the large size card.
 
-    {{<figure src="/images/netq/inventory-switch-large-summary-tab-230.png" width="700">}}
+    {{<figure src="/images/netq/inventory-switch-large-sympathetic-highlight-400.png" width="700">}}
 
 3. Hover over the card, and change to the full-screen card using the size picker.
 
@@ -760,7 +760,7 @@ Sensor information is available from the NetQ UI and NetQ CLI.
 
 1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> (main menu), then click **Sensors** in the **Network** heading.
 
-    {{<figure src="/images/netq/main-menu-admin-network-selected-310.png" width="700">}}
+    {{<figure src="/images/netq/main-menu-admin-400.png" width="200">}}
 
 2. The PSU tab is displayed by default.
 
@@ -1551,7 +1551,7 @@ OS information is available from the NetQ UI and NetQ CLI.
 
     The same information is available on the summary tab of the large size card.
 
-    {{<figure src="/images/netq/inventory-switch-large-summary-tab-230.png" width="700">}}
+    {{<figure src="/images/netq/inventory-switch-large-sympathetic-highlight-400.png" width="700">}}
 
 3. Hover over the card, and change to the full-screen card using the size picker.
 

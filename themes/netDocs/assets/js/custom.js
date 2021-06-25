@@ -192,7 +192,7 @@ $(document).ready(function() {
 					var elem = document.getElementById(anc.hash.replace('#',''));
 					var url = window.location.protocol + "//" + window.location.host + window.location.pathname + anc.getAttribute("href");    
 					window.history.pushState({ path: url }, '', url);
-					$('html,body').animate({scrollTop: elem.offsetTop + 120},100)
+					$('html,body').animate({scrollTop: elem.offsetTop + 240},100)
 					e.preventDefault()
         };
       });
@@ -237,7 +237,7 @@ function checkHash() {
 		if(window.location.hash) {
 
 			var elem = document.getElementById(window.location.hash.replace('#',''));
-			$('html,body').animate({scrollTop: elem.offsetTop + 120},100)
+			$('html,body').animate({scrollTop: elem.offsetTop + 240},100)
 		}
 	}
 }

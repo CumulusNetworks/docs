@@ -16,7 +16,7 @@ Cumulus Linux 4.4 supports supports new platforms, provides bug fixes, and conta
 
 ### New Platforms
 
-- Mellanox SN3700C-S (100G Spectrum-2) with Secure Boot
+- NVIDIA SN3700C-S (100G Spectrum-2) with Secure Boot
 
 ### New Features and Enhancements
 

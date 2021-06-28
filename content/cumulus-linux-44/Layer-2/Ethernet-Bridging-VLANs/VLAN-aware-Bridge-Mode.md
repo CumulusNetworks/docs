@@ -593,7 +593,9 @@ Edit the `/etc/network/interfaces` file to **remove** the line `ipv6-addrgen off
 {{< /tab >}}
 {{< /tabs >}}
 
-## Example Configuration
+## Example Configurations
+
+### VLAN Pruning
 
 The following example configuration contains an access port and switch port that are *pruned*; they only send and receive traffic tagged to and from a specific set of VLANs declared by the `bridge-vids` attribute. It also contains other switch ports that send and receive traffic from all the defined VLANs.
 
@@ -640,6 +642,51 @@ iface swp49
 ...
 ```
 
+### Multiple VXLAN bridges with a Single VXLAN Device
+
+The following example shows a configuration with two VLAN-aware bridges and {{<link url="VXLAN-Devices/#single-vxlan-device" text="single VXLAN device">}}. For a more detailed example, see {{<link url="EVPN-Multihoming/#evpn-mh-with-head-end-replication" text="EVPN multihoming with head end replication">}}.
+
+{{%notice note%}}
+NCLU commands are not supported for single VXLAN devices.
+{{%/notice%}}
+
+{{< tabs "TabID169 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set interface bridge2_vlan10 type svi
+cumulus@switch:~$ nv set interface bridge2_vlan10 vlan 10
+cumulus@switch:~$ nv set interface bridge2_vlan10 base-interface bridge2
+cumulus@switch:~$ nv set interface bridge2_vlan10 ip address 10.1.10.2/24
+
+cumulus@switch:~$ nv set interface bridge1_vlan10 type svi
+cumulus@switch:~$ nv set interface bridge1_vlan10 vlan 10
+cumulus@switch:~$ nv set interface bridge1_vlan10 base-interface bridge1
+cumulus@switch:~$ nv set interface bridge1_vlan10 ip address 12.1.10.2/24
+```
+
+{{< /tab >}}
+{{< tab "vtysh Commands ">}}
+
+```
+auto bridge2_vlan10
+iface bridge2_vlan10
+    address 10.1.10.2/24
+    hwaddress 1c:34:da:1d:e6:fd
+    vlan-raw-device bridge2
+    vlan-id 10
+
+auto bridge1_vlan10
+iface bridge1_vlan10
+    address 12.1.10.2/24
+    hwaddress 1c:34:da:1d:e6:fd
+    vlan-raw-device bridge1
+    vlan-id 10
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
 ### Static MAC Address Entries
 
 The following configuration adds a static MAC address entry to the layer 2 table for an interface within the VLAN-aware bridge by running a command similar to the following:
@@ -662,7 +709,7 @@ cumulus@switch:~$ sudo bridge fdb show
 
 ### Spanning Tree Protocol (STP)
 
-- STP is enabled on a per-bridge basis; VLAN-aware mode supports a single instance of STP across all VLANs. A common practice when using a single STP instance for all VLANs is to define every VLAN on every switch in the spanning tree instance.
+- STP is enabled on a per-bridge basis. A common practice when using a single STP instance for all VLANs is to define every VLAN on every switch in the spanning tree instance.
 - `mstpd` remains the user space protocol daemon.
 - Cumulus Linux supports {{<link url="Spanning-Tree-and-Rapid-Spanning-Tree-STP" text="Rapid Spanning Tree Protocol (RSTP)">}}.
 

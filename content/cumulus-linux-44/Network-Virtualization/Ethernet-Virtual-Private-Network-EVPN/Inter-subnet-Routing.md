@@ -1204,7 +1204,7 @@ Route Distinguisher: 10.10.10.63:3
 ...
 ```
 
-The following Linux command on leaf01 shows the encapsulated IDs (6000) on the routes:
+The following Linux command on leaf01 shows the encapsulated ID (6000) on the routes:
 
 ```
 cumulus@leaf01:mgmt:~$ ip route show vrf RED 10.1.210.0/24

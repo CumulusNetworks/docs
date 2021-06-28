@@ -4,9 +4,9 @@ author: NVIDIA
 weight: 115
 toc: 3
 ---
-NVUE is an object-oriented, schema driven model of a complete Cumulus Linux system (hardware and software) providing a robust API that allows for multiple interfaces to both view (show) and configure (set and unset) any element within a system running the NVUE software. The NVUE CLI and the REST API leverage the same API to interface with Cumulus Linux.
+NVUE is an object-oriented, schema driven model of a complete Cumulus Linux system (hardware and software) providing a robust API that allows for multiple interfaces to both view (show) and configure (set and unset) any element within a system running the NVUE software. The NVUE command line interface (CLI) and the REST API leverage the same API to interface with Cumulus Linux.
 
-NVUE follows a declarative model, removing context-specific commands and settings. It is structured as a *big tree* that represents the entire state of a Cumulus Linux instance. At the base of the tree are high level branches representing objects, such as *router* and *interface*. Under each of these branches are further branches. As you navigate through the tree, you gain a more specific context. At the leaves of the tree are actual attributes, represented as key/value pairs. The path through the tree is similar to a filesystem path.
+NVUE follows a declarative model, removing context-specific commands and settings. It is structured as a *big tree* that represents the entire state of a Cumulus Linux instance. At the base of the tree are high level branches representing objects, such as *router* and *interface*. Under each of these branches are further branches. As you navigate through the tree, you gain a more specific context. At the leaves of the tree are actual attributes, represented as key-value pairs. The path through the tree is similar to a filesystem path.
 
 {{<img src = "/images/cumulus-linux/nvue-architecture.png">}}
 
@@ -27,7 +27,7 @@ cumulus@switch:~$ sudo systemctl start nvued
 ## NVUE REST API
 
 {{%notice note%}}
-The NVUE REST API is currently is an early access feature. The REST API is not intended to run in production and is not supported through NVIDIA networking support.
+The NVUE REST API is currently an early access feature that is not intended to run in production and is not supported through NVIDIA networking support.
 {{%/notice%}}
 
 To access the NVUE API, run these commands:
@@ -70,15 +70,15 @@ cumulus@switch:~$ curl  -u 'cumulus:CumulusLinux!' --insecure https://127.0.0.1:
 
 For information about using the NVUE API, refer to the {{<kb_link url="cumulus-linux-44/api" text="NVUE API documentation">}}.
 
-## Command Line Interface
+## NVUE CLI
 
-The NVUE Command line interface (CLI) has a flat structure as opposed to a modal structure. This means that you can run all commands from the primary prompt instead of only in a specific mode.
+The NVUE CLI has a flat structure as opposed to a modal structure. This means that you can run all commands from the primary prompt instead of only in a specific mode.
 
-The NVUE CLI is currently is an early access feature; the NVUE commands and outputs in this documentation are subject to change.
+The NVUE CLI is currently an early access feature; the NVUE commands and outputs in this documentation are subject to change.
 
 ### Command Syntax
 
-NVUE Commands all begin with `nv` and fall into one of three syntax categories:
+NVUE commands all begin with `nv` and fall into one of three syntax categories:
 - Configuration (`nv set` and ` nv unset`)
 - Monitoring (`nv show`)
 - Configuration management (`nv config`).
@@ -116,7 +116,7 @@ General Options:
 
 ### Command List
 
-You can list all the NVUE Commands by running `nv list-commands`. See {{<link url="#list-all-nvue-commands" text="List All NVUE Commands">}} below.
+You can list all the NVUE commands by running `nv list-commands`. See {{<link url="#list-all-nvue-commands" text="List All NVUE Commands">}} below.
 
 ### Command History
 
@@ -316,7 +316,7 @@ The NVUE configuration management commands manage and apply configurations.
 
 ## List All NVUE Commands
 
-To show the full list of NVUE Commands, run `nv list-commands`. For example:
+To show the full list of NVUE commands, run `nv list-commands`. For example:
 
 ```
 cumulus@switch:~$ nv list-commands
@@ -366,11 +366,11 @@ acl      bond     bridge   evpn     ip       link     qos      router   service
 
 ## Example Configuration Commands
 
-This section provides examples of how to configure a Cumulus Linux switch using NVUE Commands.
+This section provides examples of how to configure a Cumulus Linux switch using NVUE commands.
 
 ### Configure the System Hostname
 
-The example below shows the NVUE Commands required to change the hostname for the switch to leaf01:
+The example below shows the NVUE commands required to change the hostname for the switch to leaf01:
 
 ```
 cumulus@switch:~$ nv set platform hostname value leaf01
@@ -379,7 +379,7 @@ cumulus@switch:~$ nv config apply
 
 ### Configure the System DNS Server
 
-The example below shows the NVUE Commands required to define the DNS server for the switch:
+The example below shows the NVUE commands required to define the DNS server for the switch:
 
 ```
 cumulus@switch:~$ nv set service dhcp-server 192.168.200.1
@@ -388,7 +388,7 @@ cumulus@switch:~$ nv config apply
 
 ### Configure an Interface
 
-The example below shows the NVUE Commands required to bring up swp1.
+The example below shows the NVUE commands required to bring up swp1.
 
 ```
 cumulus@switch:~$ nv set interface swp1 link state up
@@ -397,7 +397,7 @@ cumulus@switch:~$ nv config apply
 
 ### Configure a Bond
 
-The example below shows the NVUE Commands required to configure the front panel port interfaces swp1 thru swp4 to be slaves in bond0.
+The example below shows the NVUE commands required to configure the front panel port interfaces swp1 thru swp4 to be slaves in bond0.
 
 ```
 cumulus@switch:~$ nv set interface bond0 bond member swp1-4
@@ -406,7 +406,7 @@ cumulus@switch:~$ nv config apply
 
 ### Configure a Bridge
 
-The example below shows the NVUE Commands required to create a VLAN-aware bridge that contains two switch ports (swp1 and swp2) and includes 3 VLANs; tagged VLANs 10 and 20 and an untagged (native) VLAN of 1.
+The example below shows the NVUE commands required to create a VLAN-aware bridge that contains two switch ports (swp1 and swp2) and includes 3 VLANs; tagged VLANs 10 and 20 and an untagged (native) VLAN of 1.
 
 With NVUE, there is a default bridge called `br_default`, which has no ports assigned to it. The example below configures this default bridge.
 
@@ -419,7 +419,7 @@ cumulus@switch:~$ nv config apply
 
 ### Configure MLAG
 
-The example below shows the NVUE Commands required to configure MLAG on leaf01. The commands:
+The example below shows the NVUE commands required to configure MLAG on leaf01. The commands:
 - Place swp1 into bond1 and swp2 into bond2.
 - Configure the MLAG ID to 1 for bond1 and to 2 for bond2.
 - Add bond1 and bond2 to the default bridge (br_default).
@@ -441,7 +441,7 @@ cumulus@leaf01:~$ nv config apply
 
 ### Configure BGP Unnumbered
 
-The example below shows the NVUE Commands required to configure BGP unnumbered on leaf01. The commands:
+The example below shows the NVUE commands required to configure BGP unnumbered on leaf01. The commands:
 - Assign the ASN for this BGP node to 65101.
 - Set the router ID to 10.10.10.1.
 - Distribute routing information to the peer on swp51.
@@ -594,7 +594,7 @@ cumulus@switch:~$ nv config patch /deps/nv-02/13/2021.yaml
 
 ## How Is NVUE Different from NCLU?
 
-This section lists some of the differences between NVUE and the NCLU command line interface to help you navigate configuration.
+This section lists some of the differences between NVUE CLI and the NCLU CLI to help you navigate configuration.
 
 ### Configuration File
 

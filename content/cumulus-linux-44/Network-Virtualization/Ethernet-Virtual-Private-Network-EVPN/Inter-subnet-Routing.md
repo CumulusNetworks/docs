@@ -734,7 +734,7 @@ Downstream VNI (symmetric EVPN route leaking) enables you to assign a VNI from a
 
 To configure a downstream VNI, you configure tenant VRFs as usual; however, to configure the desired route leaking, you define a route target import and, or export statement.
 
-### Configure the Route Targets
+### Configure Route Targets
 
 The route target import or export statement is in the format `route-target import|export <asn>:<vni>`; for example, `route-target import 65101:6000`. As an alternative, you can use `route-target import|export *:<vni>`. The asterisk (*) uses any ASN as a wildcard.
 
@@ -1184,7 +1184,7 @@ router bgp 65163 vrf EXTERNAL2
 {{< /tab >}}
 {{< /tabs >}}
 
-### Verify the Configuration
+### Verify Configuration
 
 To verify the configuration, check that the routes are properly received and tagged:
 

@@ -120,4 +120,4 @@ To manage your workbenches:
 4. To specify a home workbench, click to the left of the desired workbench name. <img src="https://icons.cumulusnetworks.com/49-Building-Construction/01-Houses/house-heart.svg" height="18" width="18"/> is placed there to indicate its status as your favorite workbench.
 5. To search the workbench list by name, access type, and cards present on the workbench, click the relevant header and begin typing your search criteria.
 6. To sort the workbench list, click the relevant header and click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/35-Text-Options/arrange-letter.svg" height="18" width="18"/>.
-7. To delete a workbench, hover over the workbench name to view the *Delete* button. As an administrator, you can delete both private and public workbenches.
+7. To delete a workbench, hover over the workbench name to view the **Delete** button. As an administrator, you can delete both private and public workbenches.

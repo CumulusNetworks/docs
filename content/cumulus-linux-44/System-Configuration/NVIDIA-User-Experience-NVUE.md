@@ -72,7 +72,9 @@ For information about using the NVUE API, refer to the {{<kb_link url="cumulus-l
 
 ## Command Line Interface
 
-The NVUE Command line has a flat structure as opposed to a modal structure. This means that you can run all commands from the primary prompt instead of only in a specific mode.
+The NVUE Command line interface (CLI) has a flat structure as opposed to a modal structure. This means that you can run all commands from the primary prompt instead of only in a specific mode.
+
+The NVUE CLI is currently is an early access feature; the NVUE commands and outputs in this documentation are subject to change.
 
 ### Command Syntax
 

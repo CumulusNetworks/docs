@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 430
 toc: 4
 ---
-The VLAN-aware mode in Cumulus Linux implements a configuration model for large-scale layer 2 environments, with **one single instance** of {{<link url="Spanning-Tree-and-Rapid-Spanning-Tree-STP" text="spanning tree protocol">}}. Each physical bridge member port is configured with the list of allowed VLANs as well as its port VLAN ID, either primary VLAN Identifier (PVID) or native VLAN. MAC address learning, filtering and forwarding are *VLAN-aware*. This significantly reduces the configuration size, and eliminates the large overhead of managing the port and VLAN instances as subinterfaces, replacing them with lightweight VLAN bitmaps and state updates.
+The VLAN-aware mode in Cumulus Linux implements a configuration model for large-scale layer 2 environments, with *one single instance* of {{<link url="Spanning-Tree-and-Rapid-Spanning-Tree-STP" text="spanning tree protocol">}}. Each physical bridge member port is configured with the list of allowed VLANs as well as its port VLAN ID, either primary VLAN Identifier (PVID) or native VLAN. MAC address learning, filtering and forwarding are *VLAN-aware*. This significantly reduces the configuration size, and eliminates the large overhead of managing the port and VLAN instances as subinterfaces, replacing them with lightweight VLAN bitmaps and state updates.
 
 On NVIDIA Spectrum-2 and Spectrum-3 switches, Cumulus Linux supports multiple VLAN-aware bridges but with the following limitations:
 
@@ -593,6 +593,24 @@ Edit the `/etc/network/interfaces` file to **remove** the line `ipv6-addrgen off
 {{< /tab >}}
 {{< /tabs >}}
 
+## Static MAC Address Entries
+
+You can add a static MAC address entry to the layer 2 table for an interface within the VLAN-aware bridge by running a command similar to the following:
+
+```
+cumulus@switch:~$ sudo bridge fdb add 12:34:56:12:34:56 dev swp1 vlan 150 master static
+cumulus@switch:~$ sudo bridge fdb show
+44:38:39:00:00:7c dev swp1 master bridge permanent
+12:34:56:12:34:56 dev swp1 vlan 150 master bridge static
+44:38:39:00:00:7c dev swp1 self permanent
+12:12:12:12:12:12 dev swp1 self permanent
+12:34:12:34:12:34 dev swp1 self permanent
+12:34:56:12:34:56 dev swp1 self permanent
+12:34:12:34:12:34 dev bridge master bridge permanent
+44:38:39:00:00:7c dev bridge vlan 500 master bridge permanent
+12:12:12:12:12:12 dev bridge master bridge permanent
+```
+
 ## Example Configurations
 
 ### VLAN Pruning
@@ -686,24 +704,6 @@ iface bridge1_vlan10
 
 {{< /tab >}}
 {{< /tabs >}}
-
-### Static MAC Address Entries
-
-The following configuration adds a static MAC address entry to the layer 2 table for an interface within the VLAN-aware bridge by running a command similar to the following:
-
-```
-cumulus@switch:~$ sudo bridge fdb add 12:34:56:12:34:56 dev swp1 vlan 150 master static
-cumulus@switch:~$ sudo bridge fdb show
-44:38:39:00:00:7c dev swp1 master bridge permanent
-12:34:56:12:34:56 dev swp1 vlan 150 master bridge static
-44:38:39:00:00:7c dev swp1 self permanent
-12:12:12:12:12:12 dev swp1 self permanent
-12:34:12:34:12:34 dev swp1 self permanent
-12:34:56:12:34:56 dev swp1 self permanent
-12:34:12:34:12:34 dev bridge master bridge permanent
-44:38:39:00:00:7c dev bridge vlan 500 master bridge permanent
-12:12:12:12:12:12 dev bridge master bridge permanent
-```
 
 ## Considerations
 

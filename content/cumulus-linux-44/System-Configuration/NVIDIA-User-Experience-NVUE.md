@@ -74,7 +74,9 @@ For information about using the NVUE API, refer to the {{<kb_link url="cumulus-l
 
 The NVUE CLI has a flat structure as opposed to a modal structure. This means that you can run all commands from the primary prompt instead of only in a specific mode.
 
+{{%notice note%}}
 The NVUE CLI is currently an early access feature; the NVUE commands and outputs in this documentation are subject to change.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -85,7 +87,7 @@ NVUE commands all begin with `nv` and fall into one of three syntax categories:
 
 ### Command Completion
 
-As you enter commands, you can get help with the valid keywords or options using the Tab key. For example, using Tab completion with `nv set` displays the possible objects for the command, and returns you to the command prompt to complete the command.
+As you enter commands, you can get help with the valid keywords or options using the Tab key. For example, using Tab completion with `nv set` displays the possible options for the command, and returns you to the command prompt to complete the command.
 
 ```
 cumulus@switch:~$ nv set <<press Tab>>
@@ -124,7 +126,7 @@ At the command prompt, press the Up Arrow and Down Arrow keys to move back and f
 
 ## Command Categories
 
-The NVUE CLI has a flat structure; however, the commands are conceptually grouped into three functional categories:
+The NVUE CLI has a flat structure; however, the commands are grouped into three functional categories:
 
 - Configuration
 - Monitoring
@@ -167,7 +169,7 @@ The NVUE monitoring commands show various parts of the network configuration. Fo
 | `nv show qos` | Shows QoS RoCE configuration.|
 | `nv show router` | Shows router configuration, such as router policies, and global BGP and OSPF configuration. |
 | `nv show service` | Shows DHCP relays and server, NTP, PTP, LLDP, and syslog configuration. |
-| `nv show system` | Shows global system settings, such as the reserved routing table range for PBR and the reserved VLAN range for layer 3 VNIs, and switch reboot history with the reason why the switch rebooted. |
+| `nv show system` | Shows global system settings, such as the reserved routing table range for PBR and the reserved VLAN range for layer 3 VNIs. You can also see switch reboot history with the reason why the switch rebooted. |
 | `nv show vrf` | Shows VRF configuration.|
 
 The following example shows the `nv show router` commands after pressing the TAB key, then shows the output of the `nv show router bgp` command.
@@ -196,10 +198,10 @@ cumulus@leaf01:mgmt:~$
 ```
 
 {{%notice note%}}
-If there are no pending or applied configuration changes, the `nv show` command only shows the running configuration.
+If there are no pending or applied configuration changes, the `nv show` command only shows the running (opertional) configuration.
 {{%/notice%}}
 
-Aditional options are available for the `nv show` commands. For example, you can choose the configuration you want to show (pending, applied, startup, or running). You can also turn on colored output, and send specific output to a pager.
+Aditional options are available for the `nv show` commands. For example, you can choose the configuration you want to show (pending, applied, startup, or operational). You can also turn on colored output, and paginate specific output.
 
 | <div style="width:200px">Option | Description |
 | ------ | ----------- |
@@ -208,7 +210,7 @@ Aditional options are available for the `nv show` commands. For example, you can
 | `--help`          | Shows help for the NVUE commands. |
 | `--operational`   | Shows the running configuration (the actual system state). For example, `nv show --operational interface bond1` shows the running configuration for bond1. The running and applied configuration should be the same. If different, inspect the logs. |
 | `--output`        | Shows command output in table format (auto), json format or yaml format. For example:<br>`nv show --ouptut auto interface bond1`<br>`nv show --ouptut json interface bond1`<br>`nv show --ouptut yaml interface bond1` |
-| `--paginate`      | Sends output to a pager. For example, `nv show --paginate on interface bond1`. |
+| `--paginate`      | Paginates the output. For example, `nv show --paginate on interface bond1`. |
 | `--pending`       | Shows configuration that is `set` and `unset` but not yet applied or saved. For example, `nv show --pending interface bond1`.|
 | `--rev <revision>`| Shows a detached pending configuration. See the `nv config detach` configuration management command below. For example, `nv show --rev changeset/cumulus/2021-06-11_16.16.41_FPKK interface bond1`. |
 | `--startup`       | Shows configuration saved with the `nv config save` command. This is the configuration after the switch boots. |
@@ -227,7 +229,7 @@ stale-routes-time             360                           Specifies an upper-b
 
 ### Show Legacy Commands
 
-Cumulus Linux provides show legacy commands that provide the same output as the NCLU show commands. To use the show legacy commands, the NCLU service (`netd`) must be running.
+Cumulus Linux includes show legacy commands that provide the same output as the NCLU show commands. To use the show legacy commands, the NCLU service (`netd`) must be running.
 
 {{%notice note%}}
 When the NVUE service is running, NCLU commands (`net add`, `net del`, `net show`) are disabled to prevent you from configuring the switch with both NVUE and NVUE commands. For example, if you try to run the `net show interface` command, you see the error `Using NCLU with 'nvued' running is not supported`.
@@ -271,7 +273,7 @@ Routing
   protodown: off
 ```
 
-To see a summary of the layer 3 fabric connectivity, run the `nv show --legacy bgp` command:
+To see a summary of layer 3 fabric connectivity, run the `nv show --legacy bgp` command:
 
 ```
 cumulus@switch:~$ nv show --legacy bgp
@@ -488,7 +490,7 @@ cumulus@switch:~$ nv show platform software
 
 ### Show Interface Configuration
 
-The following example command shows the running and applied swp1 interface configuration. There is no pending configuration.
+The following example command shows the running (operationa), applied, and pending swp1 interface configuration.
 
 ```
 cumulus@leaf01:~$ nv show interface swp1
@@ -548,7 +550,7 @@ cumulus@switch:~$ nv config save
 
 ### Detach a Pending Configuration
 
-The following example configures the IP address of the loopback interface, then detaches the configuration from the current pending configuration. The detached configuration is saved to a file called `changeset/cumulus` that includes a timestamp with extra characters to distinguish it from other pending configurations; for example, `changeset/cumulus/2021-06-11_18.35.06_FPKP`.
+The following example configures the IP address of the loopback interface, then detaches the configuration from the current pending configuration. The detached configuration is saved to a file `changeset/cumulus/<date>_<time>_xxxx` that includes a timestamp with extra characters to distinguish it from other pending configurations; for example, `changeset/cumulus/2021-06-11_18.35.06_FPKP`.
 
 ```
 cumulus@switch:~$ nv set interface lo ip address 10.10.10.1

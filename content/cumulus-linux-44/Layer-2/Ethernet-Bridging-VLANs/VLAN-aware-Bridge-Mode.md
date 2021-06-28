@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 430
 toc: 4
 ---
-The VLAN-aware mode in Cumulus Linux implements a configuration model for large-scale layer 2 environments, with *one single instance* of {{<link url="Spanning-Tree-and-Rapid-Spanning-Tree-STP" text="spanning tree protocol">}}. Each physical bridge member port is configured with the list of allowed VLANs as well as its port VLAN ID, either primary VLAN Identifier (PVID) or native VLAN. MAC address learning, filtering and forwarding are *VLAN-aware*. This significantly reduces the configuration size, and eliminates the large overhead of managing the port and VLAN instances as subinterfaces, replacing them with lightweight VLAN bitmaps and state updates.
+VLAN-aware bridge mode in Cumulus Linux implements a configuration model for large-scale layer 2 environments, with *one single instance* of {{<link url="Spanning-Tree-and-Rapid-Spanning-Tree-STP" text="spanning tree protocol">}}. Each physical bridge member port is configured with the list of allowed VLANs as well as its port VLAN ID, either primary VLAN Identifier (PVID) or native VLAN. MAC address learning, filtering and forwarding are *VLAN-aware*. This significantly reduces the configuration size, and eliminates the large overhead of managing the port and VLAN instances as subinterfaces, replacing them with lightweight VLAN bitmaps and state updates.
 
 On NVIDIA Spectrum-2 and Spectrum-3 switches, Cumulus Linux supports multiple VLAN-aware bridges but with the following limitations:
 
@@ -13,7 +13,7 @@ On NVIDIA Spectrum-2 and Spectrum-3 switches, Cumulus Linux supports multiple VL
 - The same VNIs cannot appear in multiple VLAN-aware bridges
 - VLAN translation is not supported with multiple VLAN-aware bridges
 - Double tagged VLAN interfaces are not supported with multiple VLAN-aware bridges
-- You cannot associate multiple single virtual devices (SVDs) with a single VLAN-aware bridge
+- You cannot associate multiple single VXLAN devices (SVDs) with a single VLAN-aware bridge
 - IGMPv3 is not supported
 
 ## Configure a VLAN-aware Bridge
@@ -258,7 +258,7 @@ cumulus@switch:~$ ifreload -a
 {{< /tab >}}
 {{< /tabs >}}
 
-## Untagged/Access Ports
+## Access Ports and Tagged Packets
 
 Access ports ignore all tagged packets. In the configuration below, swp1 and swp2 are configured as access ports, while all untagged traffic goes to VLAN 10:
 
@@ -662,7 +662,7 @@ iface swp49
 
 ### Multiple VXLAN bridges with a Single VXLAN Device
 
-The following example shows a configuration with two VLAN-aware bridges and {{<link url="VXLAN-Devices/#single-vxlan-device" text="single VXLAN device">}}. For a more detailed example, see {{<link url="EVPN-Multihoming/#evpn-mh-with-head-end-replication" text="EVPN multihoming with head end replication">}}.
+The following example shows a configuration with two VLAN-aware bridges and a {{<link url="VXLAN-Devices/#single-vxlan-device" text="single VXLAN device">}}. For a more detailed example, see {{<link url="EVPN-Multihoming/#evpn-mh-with-head-end-replication" text="EVPN multihoming with head end replication">}}.
 
 {{%notice note%}}
 NCLU commands are not supported for single VXLAN devices.

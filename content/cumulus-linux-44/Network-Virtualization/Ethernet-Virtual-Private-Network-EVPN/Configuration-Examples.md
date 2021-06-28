@@ -11714,13 +11714,13 @@ cumulus@leaf01:~$ nv set vrf default router bgp path-selection multipath aspath-
 cumulus@leaf01:~$ nv set vrf default router bgp peer-group underlay address-family l2vpn-evpn enable on
 cumulus@leaf01:~$ nv set vrf default router bgp peer peerlink.4094 remote-as internal
 cumulus@leaf01:~$ nv set vrf default router bgp address-family ipv4-unicast redistribute connected
-cumulus@leaf01:~$ nv set vrf RED router BGP aut 65101
-cumulus@leaf01:~$ nv set vrf RED router BGP router-id 10.10.10.1
+cumulus@leaf01:~$ nv set vrf RED router bgp autonomous-system 65101
+cumulus@leaf01:~$ nv set vrf RED router bgp router-id 10.10.10.1
 cumulus@leaf01:~$ nv set vrf RED router bgp address-family ipv4-unicast redistribute connected enable on
 cumulus@leaf01:~$ nv set vrf RED router bgp peer-group underlay address-family l2vpn-evpn enable on
 cumulus@leaf01:~$ nv set vrf RED router bgp address-family ipv4-unicast route-export to-evpn
-cumulus@leaf01:~$ nv set vrf BLUE router BGP aut 65101
-cumulus@leaf01:~$ nv set vrf BLUE router BGP router-id 10.10.10.1
+cumulus@leaf01:~$ nv set vrf BLUE router bgp autonomous-system 65101
+cumulus@leaf01:~$ nv set vrf BLUE router bgp router-id 10.10.10.1
 cumulus@leaf01:~$ nv set vrf BLUE router bgp address-family ipv4-unicast redistribute connected enable on
 cumulus@leaf01:~$ nv set vrf BLUE router bgp peer-group underlay address-family l2vpn-evpn enable on
 cumulus@leaf01:~$ nv set vrf BLUE router bgp address-family ipv4-unicast route-export to-evpn
@@ -11794,13 +11794,13 @@ cumulus@leaf02:~$ nv set vrf default router bgp path-selection multipath aspath-
 cumulus@leaf02:~$ nv set vrf default router bgp peer-group underlay address-family l2vpn-evpn enable on
 cumulus@leaf02:~$ nv set vrf default router bgp peer peerlink.4094 remote-as internal
 cumulus@leaf02:~$ nv set vrf default router bgp address-family ipv4-unicast redistribute connected
-cumulus@leaf02:~$ nv set vrf RED router BGP aut 65102
-cumulus@leaf02:~$ nv set vrf RED router BGP router-id 10.10.10.2
+cumulus@leaf02:~$ nv set vrf RED router bgp autonomous-system 65102
+cumulus@leaf02:~$ nv set vrf RED router bgp router-id 10.10.10.2
 cumulus@leaf02:~$ nv set vrf RED router bgp address-family ipv4-unicast redistribute connected enable on
 cumulus@leaf02:~$ nv set vrf RED router bgp peer-group underlay address-family l2vpn-evpn enable on
 cumulus@leaf02:~$ nv set vrf RED router bgp address-family ipv4-unicast route-export to-evpn
-cumulus@leaf02:~$ nv set vrf BLUE router BGP aut 65102
-cumulus@leaf02:~$ nv set vrf BLUE router BGP router-id 10.10.10.2
+cumulus@leaf02:~$ nv set vrf BLUE router bgp autonomous-system 65102
+cumulus@leaf02:~$ nv set vrf BLUE router bgp router-id 10.10.10.2
 cumulus@leaf02:~$ nv set vrf BLUE router bgp address-family ipv4-unicast redistribute connected enable on
 cumulus@leaf02:~$ nv set vrf BLUE router bgp peer-group underlay address-family l2vpn-evpn enable on
 cumulus@leaf02:~$ nv set vrf BLUE router bgp address-family ipv4-unicast route-export to-evpn
@@ -11874,13 +11874,13 @@ cumulus@leaf03:~$ nv set vrf default router bgp path-selection multipath aspath-
 cumulus@leaf03:~$ nv set vrf default router bgp peer-group underlay address-family l2vpn-evpn enable on
 cumulus@leaf03:~$ nv set vrf default router bgp peer peerlink.4094 remote-as internal
 cumulus@leaf03:~$ nv set vrf default router bgp address-family ipv4-unicast redistribute connected
-cumulus@leaf03:~$ nv set vrf RED router BGP aut 65103
-cumulus@leaf03:~$ nv set vrf RED router BGP router-id 10.10.10.3
+cumulus@leaf03:~$ nv set vrf RED router bgp autonomous-system 65103
+cumulus@leaf03:~$ nv set vrf RED router bgp router-id 10.10.10.3
 cumulus@leaf03:~$ nv set vrf RED router bgp address-family ipv4-unicast redistribute connected enable on
 cumulus@leaf03:~$ nv set vrf RED router bgp peer-group underlay address-family l2vpn-evpn enable on
 cumulus@leaf03:~$ nv set vrf RED router bgp address-family ipv4-unicast route-export to-evpn
-cumulus@leaf03:~$ nv set vrf BLUE router BGP aut 65103
-cumulus@leaf03:~$ nv set vrf BLUE router BGP router-id 10.10.10.3
+cumulus@leaf03:~$ nv set vrf BLUE router bgp autonomous-system 65103
+cumulus@leaf03:~$ nv set vrf BLUE router bgp router-id 10.10.10.3
 cumulus@leaf03:~$ nv set vrf BLUE router bgp address-family ipv4-unicast redistribute connected enable on
 cumulus@leaf03:~$ nv set vrf BLUE router bgp peer-group underlay address-family l2vpn-evpn enable on
 cumulus@leaf03:~$ nv set vrf BLUE router bgp address-family ipv4-unicast route-export to-evpn
@@ -11954,13 +11954,13 @@ cumulus@leaf04:~$ nv set vrf default router bgp path-selection multipath aspath-
 cumulus@leaf04:~$ nv set vrf default router bgp peer-group underlay address-family l2vpn-evpn enable on
 cumulus@leaf04:~$ nv set vrf default router bgp peer peerlink.4094 remote-as internal
 cumulus@leaf04:~$ nv set vrf default router bgp address-family ipv4-unicast redistribute connected
-cumulus@leaf04:~$ nv set vrf RED router BGP aut 65104
-cumulus@leaf04:~$ nv set vrf RED router BGP router-id 10.10.10.4
+cumulus@leaf04:~$ nv set vrf RED router bgp autonomous-system 65104
+cumulus@leaf04:~$ nv set vrf RED router bgp router-id 10.10.10.4
 cumulus@leaf04:~$ nv set vrf RED router bgp address-family ipv4-unicast redistribute connected enable on
 cumulus@leaf04:~$ nv set vrf RED router bgp peer-group underlay address-family l2vpn-evpn enable on
 cumulus@leaf04:~$ nv set vrf RED router bgp address-family ipv4-unicast route-export to-evpn
-cumulus@leaf04:~$ nv set vrf BLUE router BGP aut 65104
-cumulus@leaf04:~$ nv set vrf BLUE router BGP router-id 10.10.10.4
+cumulus@leaf04:~$ nv set vrf BLUE router bgp autonomous-system 65104
+cumulus@leaf04:~$ nv set vrf BLUE router bgp router-id 10.10.10.4
 cumulus@leaf04:~$ nv set vrf BLUE router bgp address-family ipv4-unicast redistribute connected enable on
 cumulus@leaf04:~$ nv set vrf BLUE router bgp peer-group underlay address-family l2vpn-evpn enable on
 cumulus@leaf04:~$ nv set vrf BLUE router bgp address-family ipv4-unicast route-export to-evpn

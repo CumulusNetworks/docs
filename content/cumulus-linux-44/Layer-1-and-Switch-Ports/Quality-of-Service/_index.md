@@ -6,7 +6,7 @@ right_toc_levels: 2
 ---
 
 {{< notice note >}}
-This section refers to frames for all internal QoS functionality; the actions are independent of layer 2 frames or layer 3 packets, unless explicitly stated.
+This section refers to frames for all internal QoS functionality. Unless explicitly stated, the actions are independent of layer 2 frames or layer 3 packets.
 {{< /notice >}}
 
 ## Overview

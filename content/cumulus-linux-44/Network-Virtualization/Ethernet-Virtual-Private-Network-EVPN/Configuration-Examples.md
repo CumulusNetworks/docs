@@ -6261,7 +6261,7 @@ router bgp 65164
 
 ### NVUE Commands
 
-The NCLU commands configure traditional VXLAN devices.
+The NVUE commands configure single VXLAN devices.
 
 {{< tabs "TabID4619 ">}}
 {{< tab "NVUE Commands ">}}
@@ -7877,7 +7877,8 @@ iface peerlink
 auto peerlink.4094
 iface peerlink.4094
     clagd-peer-ip linklocal
-    clagd-backup-ip 10.10.10.1
+    clagd-priority 1000
+    clagd-backup-ip 10.10.10.2
     clagd-sys-mac 44:38:39:BE:EF:AA
     clagd-args --initDelay 10
 
@@ -8087,6 +8088,7 @@ iface peerlink
 auto peerlink.4094
 iface peerlink.4094
     clagd-peer-ip linklocal
+    clagd-priority 1000
     clagd-backup-ip 10.10.10.4
     clagd-sys-mac 44:38:39:BE:EF:BB
     clagd-args --initDelay 10

@@ -99,8 +99,7 @@ Refer to {{<link title="Validate Operations">}} for more information.
 
 ## Diagnose an Event after It Occurs
 
-NetQ provides users with the ability to go back in time to replay the network state, see fabric-wide event change logs and root cause state deviations. The NetQ Telemetry Server maintains data collected by NetQ
-agents in a time-series database, making fabric-wide events available for analysis. This enables you to replay and analyze networkwide events for better visibility and to correlate patterns. This allows for root-cause analysis and optimization of network configs for the future.
+NetQ provides users with the ability to go back in time to replay the network state, see fabric-wide event change logs and root cause state deviations. The NetQ Telemetry Server maintains data collected by NetQ agents in a time-series database, making fabric-wide events available for analysis. This enables you to replay and analyze networkwide events for better visibility and to correlate patterns. This allows for root-cause analysis and optimization of network configs for the future.
 
 NetQ provides many commands and cards for diagnosing past events.
 
@@ -110,7 +109,7 @@ NetQ records network events and stores them in its database. You can:
 - View the events using the Events|Alarms and Events|Info cards in the NetQ UI, then use the Trace Request card to track the connection between nodes
 - Use `netq show events` command to look for any changes made to the runtime configuration that may have triggered the alert, then use `netq trace` to track the connection between the nodes
 
-The `netq trace` command traces the route of an IP or MAC address from one endpoint to another. It works across bridged, routed and VXLAN connections, computing the path using available data instead of sending real traffic&mdash;this way, it can be run from anywhere. It performs MTU and VLAN consistency checks for every link along the path.
+The `netq trace` command traces the route of an IP or MAC address from one endpoint to another. It works across bridged, routed and VXLAN connections, computing the path using available data instead of sending real traffic &mdash; this way, it can be run from anywhere. It performs MTU and VLAN consistency checks for every link along the path.
 
 Refer to {{<link title="Manage Events and Notifications">}} and {{<link title="Verify Network Connectivity">}} for more information.
 
@@ -118,7 +117,7 @@ Refer to {{<link title="Manage Events and Notifications">}} and {{<link title="V
 
 With the NetQ UI or NetQ CLI, you can travel back to a specific point in time or a range of times to help you isolate errors and issues.
 
-{{<tabs "TabID121" >}}
+{{<tabs "Time Machine" >}}
 
 {{<tab "NetQ UI" >}}
 

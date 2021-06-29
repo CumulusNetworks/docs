@@ -502,6 +502,71 @@ If you install the modified installation image and specify installer command lin
 
 {{< /expand >}}
 
+## Secure Boot
+
+Secure Boot ensures that each binary image loaded during system boot is validated with key signatures that correspond to a stored trusted key in firmware.
+
+{{%notice note%}}
+Secure Boot is supported on the NVIDIA SN3700C-S switch.
+{{%/notice%}}
+
+Secure Boot settings are located in the BIOS Security menu. To access BIOS, press `Ctrl+B` through the serial console during system boot while the BIOS version is printed:
+
+    {{< img src = "/images/cumulus-linux/SB-BIOS-post.png" >}}
+
+To access the BIOS menu, use `admin` which is the default BIOS password:
+
+    {{< img src = "/images/cumulus-linux/SB-BIOS-main.png" >}}
+
+NVIDIA recommends changing the default BIOS password. To change the BIOS password, select **Administrator Password** from the **Security** menu:
+
+  {{< img src = "/images/cumulus-linux/SB-BIOS-sec-passwd.png" >}}
+
+To validate or change the Secure Boot mode, navigate to **Security** and select **Secure Boot**:
+
+    {{< img src = "/images/cumulus-linux/SB-BIOS-secboot.png" >}}
+
+In the Secure Boot menu, you can enable and disable Secure Boot mode. To install an unsigned version of Cumulus Linux or access ONIE without being prompted for a username and password, set Secure Boot to disabled: 
+
+    {{< img src = "/images/cumulus-linux/SB-BIOS-secbootEnableDisable.png" >}}
+
+To access ONIE when Secure Boot is enabled, authentication is necessary. The default username and password are both `root`:
+
+```
+​ONIE: Rescue Mode ...
+Platform  : x86_64-mlnx_x86-r0
+Version   : 2021.02-5.3.0006-rc3-115200
+Build Date: 2021-05-20T14:27+03:00
+Info: Mounting kernel filesystems... done.
+
+Info: Mounting ONIE-BOOT on /mnt/onie-boot ...
+[   17.011057] ext4 filesystem being mounted at /mnt/onie-boot supports timestamps until 2038 (0x7fffffff)
+Info: Mounting EFI System on /boot/efi ...
+Info: BIOS mode: UEFI
+Info: Using eth0 MAC address: b8:ce:f6:3c:62:06
+Info: eth0:  Checking link... up.
+Info: Trying DHCPv4 on interface: eth0
+ONIE: Using DHCPv4 addr: eth0: 10.20.84.226 / 255.255.255.0
+Starting: klogd... done.
+Starting: dropbear ssh daemon... done.
+Starting: telnetd... done.
+discover: Rescue mode detected.  Installer disabled.
+
+Please press Enter to activate this console. To check the install status inspect /var/log/onie.log.
+Try this:  tail -f /var/log/onie.log
+
+** Rescue Mode Enabled **
+login: root
+Password: root
+ONIE:~ #
+```
+
+To validate the Secure Boot status of a system from Cumulus Linux, run the `mokutil --sb-state` command.
+```
+cumulus@leaf01:mgmt:~$ mokutil --sb-state
+SecureBoot enabled
+```
+
 ## Related Information
 
 - {{<exlink url="http://opencomputeproject.github.io/onie/design-spec/" text="ONIE Design Specification">}}

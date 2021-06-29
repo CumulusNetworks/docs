@@ -201,9 +201,53 @@ Filesystem     1M-blocks  Used Available Use% Mounted on
 
 You can now upgrade your appliance using the NetQ Admin UI, in the next section. Alternately, you can upgrade using the CLI here: {{<link title="#Upgrade Your Platform Using the NetQ CLI" text="Upgrade Your Platform Using the NetQ CLI">}}.
 
-## Upgrade Older Platforms Using the NetQ Admin UI
+## Run the Upgrade
 
-If you are upgrading from NetQ 3.1.1 or earlier, after completing the preparation steps, upgrading your NetQ On-premises or Cloud Appliances or VMs is simple using the Admin UI.
+You can upgrade the NetQ platform in one of two ways:
+
+- Using the `netq upgrade` CLI command, which works with any supported older versions
+- Using the NetQ Admin UI, which works only if you are upgrading from version 3.1.1 or later
+
+### Upgrade Using the NetQ CLI
+
+After completing the {{<link url="#prepare-for-upgrade" text="preparation steps">}}, upgrading your NetQ On-premises/Cloud Appliance(s) or VMs is simple using the NetQ CLI.
+
+To upgrade your NetQ software:
+
+1. Run the appropriate `netq upgrade` command.
+
+{{<tabs "CLI Upgrade">}}
+
+{{<tab "On-premises Deployments">}}
+
+```
+netq upgrade bundle /mnt/installables/NetQ-4.0.0.tgz
+```
+
+{{</tab>}}
+
+{{<tab "Cloud Deployments">}}
+
+```
+netq upgrade bundle /mnt/installables/NetQ-4.0.0-opta.tgz
+```
+
+{{</tab>}}
+
+{{</tabs>}}
+
+2. After the upgrade completes, confirm the upgrade was successful.
+
+    ```
+    cumulus@<hostname>:~$ cat /etc/app-release
+    BOOTSTRAP_VERSION=4.0.0
+    APPLIANCE_MANIFEST_HASH=74ac3017d5
+    APPLIANCE_VERSION=4.0.0
+    ```
+
+### Upgrade Using the NetQ Admin UI
+
+If you are upgrading from NetQ 3.1.1 or later, after completing the {{<link url="#prepare-for-upgrade" text="preparation steps">}}, upgrading your NetQ On-premises or Cloud Appliances or VMs is simple using the Admin UI.
 
 To upgrade your NetQ software:
 
@@ -261,40 +305,3 @@ The <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/50-Naviga
     {{<figure src="/images/netq/adminui-upgrade-progress-4.0.0.png" width="700">}}
 
 7. When it completes, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/50-Navigate/navigation-right-circle-1_1.svg" height="18" width="18"/> to be returned to the Health dashboard.
-
-## Upgrade Your Platform Using the NetQ CLI
-
-After completing the preparation steps, upgrading your NetQ On-premises/Cloud Appliance(s) or VMs is simple using the NetQ CLI.
-
-To upgrade:
-
-1. Run the appropriate `netq upgrade` command.
-
-{{<tabs "CLI Upgrade">}}
-
-{{<tab "On-premises Deployments">}}
-
-```
-netq upgrade bundle /mnt/installables/NetQ-4.0.0.tgz
-```
-
-{{</tab>}}
-
-{{<tab "Cloud Deployments">}}
-
-```
-netq upgrade bundle /mnt/installables/NetQ-4.0.0-opta.tgz
-```
-
-{{</tab>}}
-
-{{</tabs>}}
-
-2. After the upgrade completes, confirm the upgrade was successful.
-
-    ```
-    cumulus@<hostname>:~$ cat /etc/app-release
-    BOOTSTRAP_VERSION=4.0.0
-    APPLIANCE_MANIFEST_HASH=74ac3017d5
-    APPLIANCE_VERSION=4.0.0
-    ```

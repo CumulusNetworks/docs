@@ -40,6 +40,12 @@ To work around this issue, configure the new BGP neighbors with vtysh.&lt;/p&gt;
 <td></td>
 </tr>
 <tr>
+<td>CM-29890</td>
+<td>&lt;p&gt;Multiple paths to identical EVPN prefixes are either not displayed or not accepted into the l2vpn evpn table if they are received from a different AS.&lt;/p&gt;</td>
+<td>3.7.12-3.7.14.2, 4.1.1-4.3.0</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-28249</td>
 <td>&lt;p&gt;On the Mellanox switch, when you modify the buffer and queue configuration without restarting &lt;tt&gt;switchd&lt;/tt&gt;, you might see a one second interruption in forwarding.&lt;/p&gt;</td>
 <td>4.0.0-4.3.0</td>
@@ -88,6 +94,15 @@ To work around this issue, configure the new BGP neighbors with vtysh.&lt;/p&gt;
 <td></td>
 </tr>
 <tr>
+<td>2701000</td>
+<td>A default route learned from DHCP on eth0 in the management VRF might install in the default VRF if all the following conditions exist:
+- eth0 is disconnected
+- the original next hop is reachable in the default VRF
+To work around this issue, delete the DHCP lease file for eth0 with the {{sudo rm /var/lib/dhcp/dhclient.eth0.leases}} command.</td>
+<td>4.3.0</td>
+<td></td>
+</tr>
+<tr>
 <td>2699399</td>
 <td>When you run the vtysh {{show ip bgp vrf &lt;name&gt; &lt;afi&gt; &lt;safi&gt; statistics}} command, the {{bgpd}} service crashes if you use {{vrf all}}. For example:
 spine01# show ip bgp vrf all statistics 
@@ -104,6 +119,12 @@ To workaround this issue, run the command against each VRF independently.</td>
 Vulnerable: 3.4.1-1
 Fixed: 3.4.1-1+deb10u1</td>
 <td>4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2695314</td>
+<td>In a VRRP configuration, BGP unnumbered sessions for VRFs fail to establish after a networking restart.</td>
+<td>4.3.0</td>
 <td></td>
 </tr>
 <tr>
@@ -416,6 +437,12 @@ Fixed: 4.1.0+git191117-2~deb10u2</td>
 <td></td>
 </tr>
 <tr>
+<td>2577499</td>
+<td>Arista QSFP-40G-SRBD optics do not work on Spectrum platforms.</td>
+<td>4.3.0</td>
+<td></td>
+</tr>
+<tr>
 <td>2574368</td>
 <td>When you run the NCLU {{net add bgp maximum-paths ibgp}} command, FRR restarts unexpectedly.
 To work around this issue, either use the {{vtysh}} commands or edit the {{/etc/frr/frr.conf}} file directly, then run {{systemctl reload frr}}.</td>
@@ -527,6 +554,13 @@ Fixed: 1.1.1d-0+deb10u5</td>
 <td>CVE-2020-35498: A vulnerability was found in openvswitch. A limitation in the implementation of userspace packet parsing can allow a malicious user to send a specially crafted packet causing the resulting megaflow in the kernel to be too wide, potentially causing a denial of service. The highest threat from this vulnerability is to system availability.
 Vulnerable: &lt;= 2.8.90-1-cl4u5</td>
 <td>4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2556591</td>
+<td>After upgrading to Cumulus Linux 4.3.0, MLAG ports might remain down with {{clagctl}} and {{net show clag}} reporting {{bridge-priority-mismatch}}.
+To work around this issue, run the {{sudo ifreload -a}} command on both peers, or configure {{bridge-bridgeprio}} to be the same value as {{mstpcl-treeprio}} on the bridge interface in /etc/network/interfaces followed by {{sudo ifreload -a}}.</td>
+<td>4.3.0</td>
 <td></td>
 </tr>
 <tr>
@@ -910,12 +944,6 @@ To work around this issue, do not enslave the subinterface of a VXLAN layer 3 up
 <td>2550704</td>
 <td>On the Mellanox SN3420 switch, 25G SR optics only link up in force mode.</td>
 <td>4.3.0</td>
-<td></td>
-</tr>
-<tr>
-<td>2550466</td>
-<td>Multiple paths to identical EVPN prefixes are either not displayed or not accepted into the l2vpn evpn table if they are received from a different AS.</td>
-<td>3.7.12-3.7.15, 4.1.1-4.3.0</td>
 <td></td>
 </tr>
 <tr>
@@ -1661,6 +1689,12 @@ To work around this issue, change the value of {{arp_ignore}} to 2. See [Address
 <th> Issue ID </th>
 <th> Description </th>
 <th> Affects </th>
+</tr>
+<tr>
+<td>CM-31073</td>
+<td>&lt;p&gt;When you set the &lt;tt&gt;sysctl&lt;/tt&gt; settings &lt;tt&gt;net.ipv6.conf.all.accept_ra_defrtr&lt;/tt&gt; (to prevent acceptance of IPv6 default route advertisements) and &lt;tt&gt;net.ipv6.conf.default.accept_ra_defrtr&lt;/tt&gt; (set for newly created interfaces), if you create a new virtual interface, any pre-existing interface does not start accepting IPv6 default route avertisements again.&lt;br/&gt;
+To work around this issue, when you create a new virtual interface, set &lt;tt&gt;net.ipv6.conf.&amp;lt;interface&amp;gt;.accept_ra_defrtr&lt;/tt&gt; to 0 for all interfaces and run &lt;tt&gt;sysctl -p --system&lt;/tt&gt;.&lt;/p&gt;</td>
+<td>3.7.12-4.2.1</td>
 </tr>
 <tr>
 <td>CM-30832</td>

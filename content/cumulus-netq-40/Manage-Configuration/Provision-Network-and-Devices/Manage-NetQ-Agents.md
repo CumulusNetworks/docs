@@ -359,7 +359,6 @@ clagctl-json                   60  yes       /usr/bin/clagctl -j
 dpkg-query                  21600  yes       dpkg-query --show -f ${Package},${Version},${Status}\n
 ptmctl-json                   120  yes       ptmctl
 mstpctl-bridge-json            60  yes       /sbin/mstpctl showall json
-cl-license                  21600  yes       /usr/sbin/switchd -lic
 ports                        3600  yes       Netq Predefined Command
 proc-net-dev                   30  yes       Netq Predefined Command
 agent_stats                   300  yes       Netq Predefined Command
@@ -405,7 +404,6 @@ clagctl-json                   60  yes       /usr/bin/clagctl -j
 dpkg-query                  21600  yes       dpkg-query --show -f ${Package},${Version},${Status}\n
 ptmctl-json                   120  yes       /usr/bin/ptmctl -d -j
 mstpctl-bridge-json            60  yes       /sbin/mstpctl showall json
-cl-license                  21600  yes       /usr/sbin/switchd -lic
 ports                        3600  yes       Netq Predefined Command
 proc-net-dev                   30  yes       Netq Predefined Command
 agent_stats                   300  yes       Netq Predefined Command
@@ -441,7 +439,6 @@ clagctl-json                   60  yes       /usr/bin/clagctl -j
 dpkg-query                  21600  yes       dpkg-query --show -f ${Package},${Version},${Status}\n
 ptmctl-json                   120  yes       /usr/bin/ptmctl -d -j
 mstpctl-bridge-json            60  yes       /sbin/mstpctl showall json
-cl-license                  21600  yes       /usr/sbin/switchd -lic
 ports                        3600  yes       Netq Predefined Command
 proc-net-dev                   30  yes       Netq Predefined Command
 agent_stats                   300  yes       Netq Predefined Command
@@ -477,7 +474,6 @@ clagctl-json                   60  yes       /usr/bin/clagctl -j
 dpkg-query                  21600  yes       dpkg-query --show -f ${Package},${Version},${Status}\n
 ptmctl-json                   120  yes       /usr/bin/ptmctl -d -j
 mstpctl-bridge-json            60  yes       /sbin/mstpctl showall json
-cl-license                  21600  yes       /usr/sbin/switchd -lic
 ports                        3600  yes       Netq Predefined Command
 proc-net-dev                   30  yes       Netq Predefined Command
 agent_stats                   300  yes       Netq Predefined Command

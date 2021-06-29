@@ -1060,7 +1060,7 @@ Display system events that have occurred in the last 24 hours. Optionally, view 
 ```
 netq [<hostname>] show events
     [level info | level error | level warning | level critical | level debug]
-    [type clsupport | type ntp | type mtu | type configdiff | type vlan | type trace | type vxlan | type clag | type bgp | type interfaces | type interfaces-physical | type agents | type ospf | type evpn | type macs | type services | type lldp | type license | type os | type sensors | type btrfsinfo | type lcm]
+    [type agents|bgp|btrfsinfo|clag|clsupport|configdiff|evpn|interfaces|interfaces-physical|lcm|lldp|macs|mtu|ntp|os|ospf|roceconfig|sensors|services|tca_roce|trace|vlan|vxlan]
     [between <text-time> and <text-endtime>]
     [json]
 ```
@@ -1075,7 +1075,7 @@ None
 | ---- | ---- | ---- |
 | NA | \<hostname\> | Only display results for the switch or host with this name |
 | level | info, error, warning, critical, or debug | Only display events with this severity level |
-| type | <!-- vale off -->agents, bgp, btrfsinfo, clag, clsupport, configdiff, evpn, interfaces, interfaces-physical, lcm, license, lldp, macs, mtu, ntp, os, ospf, sensors, services, trace, vlan, or vxlan<!-- vale on --> | Display events for the type with this name |
+| type | <!-- vale off -->agents, bgp, btrfsinfo, clag, clsupport, configdiff, evpn, interfaces, interfaces-physical, lcm, lldp, macs, mtu, ntp, os, ospf, roceconfig, sensors, services, tca_roce, trace, vlan or vxlan<!-- vale on --> | Display events for the type with this name |
 | between | \<text-time\> and \<text-endtime\> | <p>Only display results between these two times. Times must include a numeric value <em>and</em> the unit of measure:<ul><li><strong>w</strong>: weeks</li><li><strong>d</strong>: days</li><li><strong>h</strong>: hours</li><li><strong>m</strong>: minutes</li><li><strong>s</strong>: seconds</li><li><strong>now</strong></li></ul></p><p>The start time (<code>text-time</code>) and end time (<code>text-endtime</code>) values can be entered as most recent first and least recent second, or vice versa. The values do not have to have the same unit of measure.</p> |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 
@@ -1793,13 +1793,6 @@ netq [<hostname>] show inventory disk
     [opta]
     [json]
 
-netq [<hostname>] show inventory license
-    [cumulus]
-    [status ok | status missing]
-    [around <text-time>]
-    [opta]
-    [json]
-
 netq [<hostname>] show inventory memory
     [type <memory-type>|vendor <memory-vendor>]
     [opta]
@@ -1820,7 +1813,6 @@ netq [<hostname>] show inventory os
 | board | NA | Only display motherboard information; hostname, vendor, model, base MAC address, serial number, part number, revision, manufacturing date |
 | cpu | NA | Only display processor information; hostname, architecture, model, frequency, number of cores |
 | disk | NA | Only display disk information; hostname, disk name and type, transport, size, vendor, model |
-| license | NA | Only display license information; hostname, license name, current state, when changed |
 | memory | NA | Only display memory information; hostname, memory name, type, size, speed, vendor, serial number |
 | os | NA | Only display operating system information; hostname, OS name, version, when changed |
 
@@ -1834,8 +1826,6 @@ netq [<hostname>] show inventory os
 | model-id | \<asic-model-id\> | Only display results for ASIC models with this ID |
 | arch | \<cpu-arch\> | Only display results for CPUs with this architecure |
 | transport | \<disk-transport\> | Only display results for disks with this transport method |
-| cumulus | NA | Only display results for Cumulus Linux licenses |
-| status | ok, missing | Only display results for licenses with this status |
 | type | \<memory-type\> | Only display results for memory of this type |
 | version | \<os-version\> | Only display results for operating systems of this version |
 | name | \<os-name\> | Only display results for operating systems with this name |
@@ -1849,6 +1839,7 @@ A release is included if there were changes to the command, otherwise it is not 
 
 | Release | Description |
 | ---- | ---- |
+| 4.0.0 | Removed license commands and options |
 | 2.1.2 | Added `status` keyword to license form of command |
 | 1.x | Introduced |
 
@@ -3972,7 +3963,6 @@ Displays configuration and health of system-level services for one or all switch
 - **rsyslog**: Rocket-fast system event logging processing service
 - **smond**: System monitor daemon
 - **ssh**: Secure Shell service for switches and servers
-- **status**: License validation service
 - **syslog**: System event logging service
 - **vrf**: VRF (Virtual Route Forwarding) service
 - **zebra**: GNU Zebra routing daemon
@@ -4354,7 +4344,7 @@ netq show unit-tests vxlan [json]
 
 | Argument | Value | Description |
 | ---- | ---- | ---- |
-| <!-- vale off -->agent, bgp, clag, cl-version, evpn, interfaces, license, mlag, mtu, ntp, ospf, sensors, vlan, or vxlan<!-- vale on --> | NA | Display tests run during standard validation for the protocol or service with this name |
+| <!-- vale off -->agent, bgp, clag, cl-version, evpn, interfaces, mlag, mtu, ntp, ospf, sensors, vlan, or vxlan<!-- vale on --> | NA | Display tests run during standard validation for the protocol or service with this name |
 
 ### Options
 
@@ -4402,7 +4392,7 @@ Displays one or all scheduled validations, including their name, type, cadence, 
 ```
 netq show validation settings
     [name <text-validation-name>]
-    [type ntp | type interfaces | type license | type sensors | type evpn | type vxlan | type agents | type mlag | type vlan | type bgp | type mtu | type ospf]
+    [type agents|bgp|evpn|interfaces|mlag|mtu|ntp|ospf|sensors|vlan|vxlan]
     [json]
 ```
 
@@ -4415,7 +4405,7 @@ None
 | Option | Value | Description |
 | ---- | ---- | ---- |
 | name | \<text-validation-name\> | Filter output to view settings for the scheduled validation with this name |
-| type | <!-- vale off -->agents, bgp, evpn, interfaces, license, mlag, mtu, ntp, ospf, sensors, vlan, or vxlan<!-- vale on --> | Filter output to view settings for only the indicated protocol or service |
+| type | <!-- vale off -->agents, bgp, evpn, interfaces, mlag, mtu, ntp, ospf, sensors, vlan, or vxlan<!-- vale on --> | Filter output to view settings for only the indicated protocol or service |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 
 ### Command History
@@ -4460,8 +4450,6 @@ Default validat ntp        60m            Wed Nov 11 08:38:40  Wed Nov 11 08:38:
 ion NTP                                   2020
 Default validat evpn       60m            Wed Nov 11 08:38:40  Wed Nov 11 08:38:40 2020   yes
 ion EVPN                                  2020
-Default validat license    60m            Wed Nov 11 08:38:40  Wed Nov 11 08:38:40 2020   yes
-ion LICENSE                               2020
 ```
 
 ### Related Commands
@@ -4481,7 +4469,7 @@ Displays summary status of a scheduled validation for a given protocol or servic
 ```
 netq show validation summary
     [name <text-validation-name>]
-    type (ntp | interfaces | license | sensors | evpn | vxlan | agents | mlag | vlan | bgp | mtu | ospf)
+    type (agents | bgp | evpn | interfaces | mlag | mtu | ntp | ospf | sensors | vlan | vxlan)
     [around <text-time-hr>]
     [json]
 ```
@@ -4490,7 +4478,7 @@ netq show validation summary
 
 | Argument | Value | Description |
 | ---- | ---- | ---- |
-| type | <!-- vale off -->agents, bgp, evpn, interfaces, license, mlag, mtu, ntp, ospf, sensors, vlan, or vxlan<!-- vale on --> | Show validation runs summary for the indicated protocol or service |
+| type | <!-- vale off -->agents, bgp, evpn, interfaces, mlag, mtu, ntp, ospf, sensors, vlan or vxlan <!-- vale on --> | Show validation runs summary for the indicated protocol or service |
 
 ### Options
 

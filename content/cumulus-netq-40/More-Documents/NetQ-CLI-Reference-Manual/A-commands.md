@@ -613,7 +613,7 @@ Creates a validation for various protocols and services to be run on a regular i
 ```
 netq add validation
     name <text-new-validation-name>
-    type (ntp | interfaces | license | sensors | evpn | vxlan | agents | mlag | vlan | bgp | mtu | ospf)
+    type (agents | bgp | evpn | interfaces | mlag | mtu | ntp | ospf | sensors | vlan | vxlan)
     interval <text-time-min>
     [alert-on-failure]
 ```
@@ -623,7 +623,7 @@ netq add validation
 | Argument | Value | Description |
 | ---- | ---- | ---- |
 | name | user defined | Unique name for the validation |
-| type | <!-- vale off -->agents, bgp, evpn, interfaces, license, mlag, mtu, ntp, sensors, vlan, or vxlan <!-- vale on -->| Protocol or service to be validated |
+| type | <!-- vale off -->agents, bgp, evpn, interfaces, mlag, mtu, ntp, ospf, sensors, vlan or vxlan <!-- vale on -->| Protocol or service to be validated |
 | interval | \<text-time-min\> | Frequency to run the validation, in minutes. Value must include time unit of *m*, minutes. Default scheduled validations per type run every 60 minutes. |
 
 ### Options
@@ -665,7 +665,7 @@ Creates an on-demand validation for various protocols and services, with results
 
 ```
 netq add validation
-    type (ntp | interfaces | license | sensors | evpn | vxlan | agents | mlag | vlan | bgp | mtu | ospf)
+    type (agents | bgp | evpn | interfaces | mlag | mtu | ntp | ospf | sensors | vlan | vxlan)
     [alert-on-failure]
 ```
 
@@ -673,7 +673,7 @@ netq add validation
 
 | Argument | Value | Description |
 | ---- | ---- | ---- |
-| type | agents, bgp, evpn, interfaces, license, mlag, mtu, ntp, sensors, vlan, or vxlan | Protocol or service to be validated |
+| type | agents, bgp, evpn, interfaces, mlag, mtu, ntp, ospf, sensors, vlan or vxlan | Protocol or service to be validated |
 
 ### Options
 

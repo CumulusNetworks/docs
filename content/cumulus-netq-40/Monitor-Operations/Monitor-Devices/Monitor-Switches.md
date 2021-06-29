@@ -84,7 +84,7 @@ OR
 
 4. Click **Add**.
 
-Attributes are displayed as the default tab on the large Switch card. You can view the static information about the switch, including its hostname, addresses, server and ASIC vendors and models, OS and NetQ software information. You can also view the state of the interfaces, NetQ Agent, and license on the switch.
+Attributes are displayed as the default tab on the large Switch card. You can view the static information about the switch, including its hostname, addresses, server and ASIC vendors and models, OS and NetQ software information. You can also view the state of the interfaces and NetQ Agent on the switch.
 
 {{<figure src="/images/netq/dev-switch-large-attributes-tab-230.png" width="500">}}
 

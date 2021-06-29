@@ -55,7 +55,6 @@ The NetQ CLI enables validation of your network health through two sets of comma
 | Inventory  |  | X | Services |   | X |
 | IPv4/v6 |  | X | VLAN | X | X |
 | Kubernetes |  | X | VXLAN | X | X |
-| License | X |  |  |  |  |
 
 ### Monitor Communication Paths
 

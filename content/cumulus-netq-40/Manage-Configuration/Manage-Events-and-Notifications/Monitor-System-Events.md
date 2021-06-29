@@ -198,7 +198,7 @@ You can enter additional filters for severity and time range to further narrow t
 To view all system events for a given network protocol or service, run:
 
 ```
-netq show events (type clsupport | type ntp | type mtu | type configdiff | type vlan | type trace | type vxlan | type clag | type bgp | type interfaces | type interfaces-physical | type agents | type ospf | type evpn | type macs | type services | type lldp | type license | type os | type sensors | type btrfsinfo) [between <text-time> and <text-endtime>] [json]
+netq show events (type agents|bgp|btrfsinfo|clag|clsupport|configdiff|evpn|interfaces|interfaces-physical|lcm|lldp|macs|mtu|ntp|os|ospf|roceconfig|sensors|services|tca_roce|trace|vlan|vxlan) [between <text-time> and <text-endtime>] [json]
 ```
 
 This example shows all services events between now and 30 days ago.
@@ -263,8 +263,9 @@ You can enter additional filters for severity and time range to further narrow t
 To view all system events for a given network protocol or service, run:
 
 ```
-netq <hostname> show events (type clsupport | type ntp | type mtu | type configdiff | type vlan | type trace | type vxlan | type clag | type bgp | type interfaces | type interfaces-physical | type agents | type ospf | type evpn | type macs | type services | type lldp | type license | type os | type sensors | type btrfsinfo) [between <text-time> and <text-endtime>] [json]
+netq <hostname> show events (type agents|bgp|btrfsinfo|clag|clsupport|configdiff|evpn|interfaces|interfaces-physical|lcm|lldp|macs|mtu|ntp|os|ospf|roceconfig|sensors|services|tca_roce|trace|vlan|vxlan) [between <text-time> and <text-endtime>] [json]
 ```
+
 
 This example shows all *services* events on the *spine03* switch between now and 30 days ago.
 

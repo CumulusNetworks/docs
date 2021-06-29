@@ -526,7 +526,7 @@ To validate or change the Secure Boot mode, navigate to **Security** and select 
 
     {{< img src = "/images/cumulus-linux/SB-BIOS-secboot.png" >}}
 
-In the Secure Boot menu, you can Enable or Disable Secure Boot mode. Setting Secure Boot to Disabled allows one to install an unsigned version of Cumulus Linux or access ONIE without being prompted for a username and password: 
+In the Secure Boot menu, you can enable and disable Secure Boot mode. To install an unsigned version of Cumulus Linux or access ONIE without being prompted for a username and password, set Secure Boot to disabled: 
 
     {{< img src = "/images/cumulus-linux/SB-BIOS-secbootEnableDisable.png" >}}
 

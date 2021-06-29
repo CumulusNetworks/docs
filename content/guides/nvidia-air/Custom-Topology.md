@@ -7,7 +7,11 @@ version: "1.0"
 
 NVIDIA Air fully supports the creation of custom topologies. This feature augments the pre-built demo infrastructure.
 
-To access the custom topologies, go to {{<exlink url="https://air.nvidia.com/build" text="air.nvidia.com/build">}}.
+To access the custom topologies click on the `Build a Topology` link in the rop left of the dashboard:
+
+{{<img src="/images/guides/nvidia-air/BuildaTopology.png">}}
+
+Alternatively, go directly via the link {{<exlink url="https://air.nvidia.com/build" text="air.nvidia.com/build">}}.
 
 ## Custom Topology Landing Page
 

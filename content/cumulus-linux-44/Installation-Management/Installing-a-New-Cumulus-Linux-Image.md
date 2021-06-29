@@ -504,7 +504,7 @@ If you install the modified installation image and specify installer command lin
 
 ## Secure Boot
 
-Secure Boot ensures that each binary image loaded upon system boot is validated with key signatures that correspond to a stored trusted key in firmware.
+Secure Boot ensures that each binary image loaded during system boot is validated with key signatures that correspond to a stored trusted key in firmware.
 
 {{%notice note%}}
 Secure Boot is supported on the NVIDIA SN3700C-S switch.
@@ -518,9 +518,9 @@ To access the BIOS menu, use `admin` which is the default BIOS password:
 
     {{< img src = "/images/cumulus-linux/SB-BIOS-main.png" >}}
 
-NVIDIA recommends changing the default BIOS password. You can change the BIOS password under the **Security** menu by selecting **Administrator Password**:
+NVIDIA recommends changing the default BIOS password. To change the BIOS password, select **Administrator Password** from the **Security** menu:
 
-    {{< img src = "/images/cumulus-linux/SB-BIOS-sec-passwd.png" >}}
+  {{< img src = "/images/cumulus-linux/SB-BIOS-sec-passwd.png" >}}
 
 To validate or change the Secure Boot mode, navigate to **Security** and select **Secure Boot**:
 

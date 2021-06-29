@@ -426,11 +426,11 @@ cumulus@switch:~$ nv set interface bridge2_vlan10 type svi
 cumulus@switch:~$ nv set interface bridge2_vlan10 vlan 10
 cumulus@switch:~$ nv set interface bridge2_vlan10 base-interface bridge2
 cumulus@switch:~$ nv set interface bridge2_vlan10 ip address 10.1.10.2/24
-
 cumulus@switch:~$ nv set interface bridge1_vlan10 type svi
 cumulus@switch:~$ nv set interface bridge1_vlan10 vlan 10
 cumulus@switch:~$ nv set interface bridge1_vlan10 base-interface bridge1
 cumulus@switch:~$ nv set interface bridge1_vlan10 ip address 12.1.10.2/24
+cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}

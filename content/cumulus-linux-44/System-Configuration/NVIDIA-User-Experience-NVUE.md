@@ -20,15 +20,10 @@ cumulus@switch:~$ sudo systemctl start nvued
 ```
 
 {{%notice info%}}
-- NVIDIA recommends that do not run NVUE in a production environment.
-- Do not mix NVUE and NCLU commands to configure the switch; use either the NCLU CLI or the NVUE CLI.
+Do not mix NVUE and NCLU commands to configure the switch; use either the NCLU CLI or the NVUE CLI.
 {{%/notice%}}
 
 ## NVUE REST API
-
-{{%notice note%}}
-The NVUE REST API is currently an early access feature that is not intended to run in production and is not supported through NVIDIA networking support.
-{{%/notice%}}
 
 To access the NVUE API, run these commands:
 
@@ -75,7 +70,7 @@ For information about using the NVUE API, refer to the {{<kb_link url="cumulus-l
 The NVUE CLI has a flat structure as opposed to a modal structure. This means that you can run all commands from the primary prompt instead of only in a specific mode.
 
 {{%notice note%}}
-The NVUE CLI is currently an early access feature; the NVUE commands and outputs in this documentation are subject to change.
+The NVUE commands and outputs in this documentation are subject to change.
 {{%/notice%}}
 
 ### Command Syntax

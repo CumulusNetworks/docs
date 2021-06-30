@@ -1227,47 +1227,37 @@ cumulus@spine02:~$ nv config apply
 
 ```
 cumulus@leaf01:~$ cat /etc/network/interfaces
-
+...
 auto lo
 iface lo inet loopback
     address 10.10.10.1/32
     vxlan-local-tunnelip 10.10.10.1
-
 auto mgmt
 iface mgmt
     address 127.0.0.1/8
     address ::1/128
     vrf-table auto
-
 auto RED
 iface RED
     vrf-table auto
-
 auto BLUE
 iface BLUE
     vrf-table auto
-
 auto eth0
 iface eth0 inet dhcp
     ip-forward off
     ip6-forward off
     vrf mgmt
-
 auto swp1
 iface swp1
-
 auto swp2
 iface swp2
-
 auto swp3
 iface swp3
-
 auto swp51
 iface swp51
-
 auto swp52
 iface swp52
-
 auto bond1
 iface bond1
     mtu 9000
@@ -1276,7 +1266,6 @@ iface bond1
     bond-mode 802.3ad
     bond-lacp-bypass-allow yes
     bridge-access 10
-
 auto bond2
 iface bond2
     mtu 9000
@@ -1285,7 +1274,6 @@ iface bond2
     bond-mode 802.3ad
     bond-lacp-bypass-allow yes
     bridge-access 20
-
 auto bond3
 iface bond3
     mtu 9000
@@ -1294,7 +1282,6 @@ iface bond3
     bond-mode 802.3ad
     bond-lacp-bypass-allow yes
     bridge-access 30
-
 auto vlan10
 iface vlan10
     address 10.1.10.2/24
@@ -1303,7 +1290,6 @@ iface vlan10
     vrf RED
     vlan-raw-device br_default
     vlan-id 10
-
 auto vlan20
 iface vlan20
     address 10.1.20.2/24
@@ -1312,7 +1298,6 @@ iface vlan20
     vrf RED
     vlan-raw-device br_default
     vlan-id 20
-
 auto vlan30
 iface vlan30
     address 10.1.30.2/24
@@ -1321,31 +1306,26 @@ iface vlan30
     vrf BLUE
     vlan-raw-device br_default
     vlan-id 30
-
 auto vxlan48
 iface vxlan48
     bridge-vlan-vni-map 10=10 20=20 30=30
     bridge-vids 10 20 30
     bridge-learning off
-
 auto vlan220_l3
 iface vlan220_l3
     vrf RED
     vlan-raw-device br_l3vni
     vlan-id 220
-
 auto vlan297_l3
 iface vlan297_l3
     vrf BLUE
     vlan-raw-device br_l3vni
     vlan-id 297
-
 auto vxlan99
 iface vxlan99
     bridge-vlan-vni-map 220=4001 297=4002
     bridge-vids 220 297
     bridge-learning off
-
 auto br_default
 iface br_default
     bridge-ports bond1 bond2 bond3 vxlan48
@@ -1353,7 +1333,6 @@ iface br_default
     bridge-vlan-aware yes
     bridge-vids 10 20 30
     bridge-pvid 1
-
 auto br_l3vni
 iface br_l3vni
     bridge-ports vxlan99
@@ -1366,47 +1345,37 @@ iface br_l3vni
 
 ```
 cumulus@leaf02:~$ cat /etc/network/interfaces
-
+...
 auto lo
 iface lo inet loopback
     address 10.10.10.2/32
     vxlan-local-tunnelip 10.10.10.2
-
 auto mgmt
 iface mgmt
     address 127.0.0.1/8
     address ::1/128
     vrf-table auto
-
 auto RED
 iface RED
     vrf-table auto
-
 auto BLUE
 iface BLUE
     vrf-table auto
-
 auto eth0
 iface eth0 inet dhcp
     ip-forward off
     ip6-forward off
     vrf mgmt
-
 auto swp1
 iface swp1
-
 auto swp2
 iface swp2
-
 auto swp3
 iface swp3
-
 auto swp51
 iface swp51
-
 auto swp52
 iface swp52
-
 auto bond1
 iface bond1
     mtu 9000
@@ -1415,7 +1384,6 @@ iface bond1
     bond-mode 802.3ad
     bond-lacp-bypass-allow yes
     bridge-access 10
-
 auto bond2
 iface bond2
     mtu 9000
@@ -1424,7 +1392,6 @@ iface bond2
     bond-mode 802.3ad
     bond-lacp-bypass-allow yes
     bridge-access 20
-
 auto bond3
 iface bond3
     mtu 9000
@@ -1433,7 +1400,6 @@ iface bond3
     bond-mode 802.3ad
     bond-lacp-bypass-allow yes
     bridge-access 30
-
 auto vlan10
 iface vlan10
     address 10.1.10.3/24
@@ -1442,7 +1408,6 @@ iface vlan10
     vrf RED
     vlan-raw-device br_default
     vlan-id 10
-
 auto vlan20
 iface vlan20
     address 10.1.20.3/24
@@ -1451,7 +1416,6 @@ iface vlan20
     vrf RED
     vlan-raw-device br_default
     vlan-id 20
-
 auto vlan30
 iface vlan30
     address 10.1.30.3/24
@@ -1460,31 +1424,26 @@ iface vlan30
     vrf BLUE
     vlan-raw-device br_default
     vlan-id 30
-
 auto vxlan48
 iface vxlan48
     bridge-vlan-vni-map 10=10 20=20 30=30
     bridge-vids 10 20 30
     bridge-learning off
-
 auto vlan220_l3
 iface vlan220_l3
     vrf RED
     vlan-raw-device br_l3vni
     vlan-id 220
-
 auto vlan297_l3
 iface vlan297_l3
     vrf BLUE
     vlan-raw-device br_l3vni
     vlan-id 297
-
 auto vxlan99
 iface vxlan99
     bridge-vlan-vni-map 220=4001 297=4002
     bridge-vids 220 297
     bridge-learning off
-
 auto br_default
 iface br_default
     bridge-ports bond1 bond2 bond3 vxlan48
@@ -1492,7 +1451,6 @@ iface br_default
     bridge-vlan-aware yes
     bridge-vids 10 20 30
     bridge-pvid 1
-
 auto br_l3vni
 iface br_l3vni
     bridge-ports vxlan99
@@ -1505,47 +1463,37 @@ iface br_l3vni
 
 ```
 cumulus@leaf03:~$ cat /etc/network/interfaces
-
+...
 auto lo
 iface lo inet loopback
     address 10.10.10.3/32
     vxlan-local-tunnelip 10.10.10.3
-
 auto mgmt
 iface mgmt
     address 127.0.0.1/8
     address ::1/128
     vrf-table auto
-
 auto RED
 iface RED
     vrf-table auto
-
 auto BLUE
 iface BLUE
     vrf-table auto
-
 auto eth0
 iface eth0 inet dhcp
     ip-forward off
     ip6-forward off
     vrf mgmt
-
 auto swp1
 iface swp1
-
 auto swp2
 iface swp2
-
 auto swp3
 iface swp3
-
 auto swp51
 iface swp51
-
 auto swp52
 iface swp52
-
 auto bond1
 iface bond1
     mtu 9000
@@ -1554,7 +1502,6 @@ iface bond1
     bond-mode 802.3ad
     bond-lacp-bypass-allow yes
     bridge-access 10
-
 auto bond2
 iface bond2
     mtu 9000
@@ -1563,7 +1510,6 @@ iface bond2
     bond-mode 802.3ad
     bond-lacp-bypass-allow yes
     bridge-access 20
-
 auto bond3
 iface bond3
     mtu 9000
@@ -1572,7 +1518,6 @@ iface bond3
     bond-mode 802.3ad
     bond-lacp-bypass-allow yes
     bridge-access 30
-
 auto vlan10
 iface vlan10
     address 10.1.10.4/24
@@ -1581,7 +1526,6 @@ iface vlan10
     vrf RED
     vlan-raw-device br_default
     vlan-id 10
-
 auto vlan20
 iface vlan20
     address 10.1.20.4/24
@@ -1590,7 +1534,6 @@ iface vlan20
     vrf RED
     vlan-raw-device br_default
     vlan-id 20
-
 auto vlan30
 iface vlan30
     address 10.1.30.4/24
@@ -1599,31 +1542,26 @@ iface vlan30
     vrf BLUE
     vlan-raw-device br_default
     vlan-id 30
-
 auto vxlan48
 iface vxlan48
     bridge-vlan-vni-map 10=10 20=20 30=30
     bridge-vids 10 20 30
     bridge-learning off
-
 auto vlan220_l3
 iface vlan220_l3
     vrf RED
     vlan-raw-device br_l3vni
     vlan-id 220
-
 auto vlan297_l3
 iface vlan297_l3
     vrf BLUE
     vlan-raw-device br_l3vni
     vlan-id 297
-
 auto vxlan99
 iface vxlan99
     bridge-vlan-vni-map 220=4001 297=4002
     bridge-vids 220 297
     bridge-learning off
-
 auto br_default
 iface br_default
     bridge-ports bond1 bond2 bond3 vxlan48
@@ -1631,7 +1569,6 @@ iface br_default
     bridge-vlan-aware yes
     bridge-vids 10 20 30
     bridge-pvid 1
-
 auto br_l3vni
 iface br_l3vni
     bridge-ports vxlan99
@@ -1644,47 +1581,37 @@ iface br_l3vni
 
 ```
 cumulus@leaf04:~$ cat /etc/network/interfaces
-
+...
 auto lo
 iface lo inet loopback
     address 10.10.10.4/32
     vxlan-local-tunnelip 10.10.10.4
-
 auto mgmt
 iface mgmt
     address 127.0.0.1/8
     address ::1/128
     vrf-table auto
-
 auto RED
 iface RED
     vrf-table auto
-
 auto BLUE
 iface BLUE
     vrf-table auto
-
 auto eth0
 iface eth0 inet dhcp
     ip-forward off
     ip6-forward off
     vrf mgmt
-
 auto swp1
 iface swp1
-
 auto swp2
 iface swp2
-
 auto swp3
 iface swp3
-
 auto swp51
 iface swp51
-
 auto swp52
 iface swp52
-
 auto bond1
 iface bond1
     mtu 9000
@@ -1693,7 +1620,6 @@ iface bond1
     bond-mode 802.3ad
     bond-lacp-bypass-allow yes
     bridge-access 10
-
 auto bond2
 iface bond2
     mtu 9000
@@ -1702,7 +1628,6 @@ iface bond2
     bond-mode 802.3ad
     bond-lacp-bypass-allow yes
     bridge-access 20
-
 auto bond3
 iface bond3
     mtu 9000
@@ -1711,7 +1636,6 @@ iface bond3
     bond-mode 802.3ad
     bond-lacp-bypass-allow yes
     bridge-access 30
-
 auto vlan10
 iface vlan10
     address 10.1.10.5/24
@@ -1720,7 +1644,6 @@ iface vlan10
     vrf RED
     vlan-raw-device br_default
     vlan-id 10
-
 auto vlan20
 iface vlan20
     address 10.1.20.5/24
@@ -1729,7 +1652,6 @@ iface vlan20
     vrf RED
     vlan-raw-device br_default
     vlan-id 20
-
 auto vlan30
 iface vlan30
     address 10.1.30.5/24
@@ -1738,31 +1660,26 @@ iface vlan30
     vrf BLUE
     vlan-raw-device br_default
     vlan-id 30
-
 auto vxlan48
 iface vxlan48
     bridge-vlan-vni-map 10=10 20=20 30=30
     bridge-vids 10 20 30
     bridge-learning off
-
 auto vlan220_l3
 iface vlan220_l3
     vrf RED
     vlan-raw-device br_l3vni
     vlan-id 220
-
 auto vlan297_l3
 iface vlan297_l3
     vrf BLUE
     vlan-raw-device br_l3vni
     vlan-id 297
-
 auto vxlan99
 iface vxlan99
     bridge-vlan-vni-map 220=4001 297=4002
     bridge-vids 220 297
     bridge-learning off
-
 auto br_default
 iface br_default
     bridge-ports bond1 bond2 bond3 vxlan48
@@ -1770,7 +1687,6 @@ iface br_default
     bridge-vlan-aware yes
     bridge-vids 10 20 30
     bridge-pvid 1
-
 auto br_l3vni
 iface br_l3vni
     bridge-ports vxlan99
@@ -1783,32 +1699,26 @@ iface br_l3vni
 
 ```
 cumulus@spine01:~$ cat /etc/network/interfaces
-
+...
 auto lo
 iface lo inet loopback
     address 10.10.10.101/32
-
 auto mgmt
 iface mgmt
     address 127.0.0.1/8
     address ::1/128
     vrf-table auto
-
 auto eth0
 iface eth0 inet dhcp
     ip-forward off
     ip6-forward off
     vrf mgmt
-
 auto swp1
 iface swp1
-
 auto swp2
 iface swp2
-
 auto swp3
 iface swp3
-
 auto swp4
 iface swp4
 ```
@@ -1818,32 +1728,26 @@ iface swp4
 
 ```
 cumulus@spine02:~$ cat /etc/network/interfaces
-
+...
 auto lo
 iface lo inet loopback
     address 10.10.10.102/32
-
 auto mgmt
 iface mgmt
     address 127.0.0.1/8
     address ::1/128
     vrf-table auto
-
 auto eth0
 iface eth0 inet dhcp
     ip-forward off
     ip6-forward off
     vrf mgmt
-
 auto swp1
 iface swp1
-
 auto swp2
 iface swp2
-
 auto swp3
 iface swp3
-
 auto swp4
 iface swp4
 ```
@@ -1856,22 +1760,18 @@ cumulus@server01:~$ sudo cat /etc/network/interfaces
 # The loopback network interface
 auto lo
 iface lo inet loopback
-
 # The OOB network interface
 auto eth0
 iface eth0 inet dhcp
-
 # The data plane network interfaces
 auto eth1
 iface eth1 inet manual
   # Required for Vagrant
   post-up ip link set promisc on dev eth1
-
 auto eth2
 iface eth2 inet manual
   # Required for Vagrant
   post-up ip link set promisc on dev eth2
-
 auto uplink
 iface uplink inet static
   address 10.1.10.101
@@ -1894,22 +1794,18 @@ cumulus@server02:~$ sudo cat /etc/network/interfaces
 # The loopback network interface
 auto lo
 iface lo inet loopback
-
 # The OOB network interface
 auto eth0
 iface eth0 inet dhcp
-
 # The data plane network interfaces
 auto eth1
 iface eth1 inet manual
   # Required for Vagrant
   post-up ip link set promisc on dev eth1
-
 auto eth2
 iface eth2 inet manual
   # Required for Vagrant
   post-up ip link set promisc on dev eth2
-
 auto uplink
 iface uplink inet static
   address 10.1.20.102
@@ -1932,22 +1828,18 @@ cumulus@server03:~$ sudo cat /etc/network/interfaces
 # The loopback network interface
 auto lo
 iface lo inet loopback
-
 # The OOB network interface
 auto eth0
 iface eth0 inet dhcp
-
 # The data plane network interfaces
 auto eth1
 iface eth1 inet manual
   # Required for Vagrant
   post-up ip link set promisc on dev eth1
-
 auto eth2
 iface eth2 inet manual
   # Required for Vagrant
   post-up ip link set promisc on dev eth2
-
 auto uplink
 iface uplink inet static
   address 10.1.30.103
@@ -1970,22 +1862,18 @@ cumulus@server04:~$ sudo cat /etc/network/interfaces
 # The loopback network interface
 auto lo
 iface lo inet loopback
-
 # The OOB network interface
 auto eth0
 iface eth0 inet dhcp
-
 # The data plane network interfaces
 auto eth1
 iface eth1 inet manual
   # Required for Vagrant
   post-up ip link set promisc on dev eth1
-
 auto eth2
 iface eth2 inet manual
   # Required for Vagrant
   post-up ip link set promisc on dev eth2
-
 auto uplink
 iface uplink inet static
   address 10.1.10.104
@@ -2648,6 +2536,7 @@ neighbor underlay activate
 {{< tab "leaf01 ">}}
 
 ```
+cumulus@leaf01:~$ cat /etc/nvue.d/startup.yaml
 - set:
     interface:
       lo:
@@ -2786,11 +2675,49 @@ neighbor underlay activate
           vni:
             '4001': {}
           enable: on
+        router:
+          bgp:
+            autonomous-system: 65101
+            enable: on
+            router-id: 10.10.10.1
+            address-family:
+              ipv4-unicast:
+                redistribute:
+                  connected:
+                    enable: on
+                enable: on
+                route-export:
+                  to-evpn:
+                    enable: on
+            peer-group:
+              underlay:
+                address-family:
+                  l2vpn-evpn:
+                    enable: on
       BLUE:
         evpn:
           vni:
             '4002': {}
           enable: on
+        router:
+          bgp:
+            autonomous-system: 65101
+            enable: on
+            router-id: 10.10.10.1
+            address-family:
+              ipv4-unicast:
+                redistribute:
+                  connected:
+                    enable: on
+                enable: on
+                route-export:
+                  to-evpn:
+                    enable: on
+            peer-group:
+              underlay:
+                address-family:
+                  l2vpn-evpn:
+                    enable: on
       default:
         router:
           bgp:
@@ -2838,6 +2765,7 @@ neighbor underlay activate
 {{< tab "leaf02 ">}}
 
 ```
+cumulus@leaf02:~$ cat /etc/nvue.d/startup.yaml
 - set:
     interface:
       lo:
@@ -2976,11 +2904,49 @@ neighbor underlay activate
           vni:
             '4001': {}
           enable: on
+        router:
+          bgp:
+            autonomous-system: 65102
+            enable: on
+            router-id: 10.10.10.2
+            address-family:
+              ipv4-unicast:
+                redistribute:
+                  connected:
+                    enable: on
+                enable: on
+                route-export:
+                  to-evpn:
+                    enable: on
+            peer-group:
+              underlay:
+                address-family:
+                  l2vpn-evpn:
+                    enable: on
       BLUE:
         evpn:
           vni:
             '4002': {}
           enable: on
+        router:
+          bgp:
+            autonomous-system: 65102
+            enable: on
+            router-id: 10.10.10.2
+            address-family:
+              ipv4-unicast:
+                redistribute:
+                  connected:
+                    enable: on
+                enable: on
+                route-export:
+                  to-evpn:
+                    enable: on
+            peer-group:
+              underlay:
+                address-family:
+                  l2vpn-evpn:
+                    enable: on
       default:
         router:
           bgp:
@@ -3028,6 +2994,7 @@ neighbor underlay activate
 {{< tab "leaf03 ">}}
 
 ```
+cumulus@leaf03:~$ cat /etc/nvue.d/startup.yaml
 - set:
     interface:
       lo:
@@ -3166,11 +3133,49 @@ neighbor underlay activate
           vni:
             '4001': {}
           enable: on
+        router:
+          bgp:
+            autonomous-system: 65103
+            enable: on
+            router-id: 10.10.10.3
+            address-family:
+              ipv4-unicast:
+                redistribute:
+                  connected:
+                    enable: on
+                enable: on
+                route-export:
+                  to-evpn:
+                    enable: on
+            peer-group:
+              underlay:
+                address-family:
+                  l2vpn-evpn:
+                    enable: on
       BLUE:
         evpn:
           vni:
             '4002': {}
           enable: on
+        router:
+          bgp:
+            autonomous-system: 65103
+            enable: on
+            router-id: 10.10.10.3
+            address-family:
+              ipv4-unicast:
+                redistribute:
+                  connected:
+                    enable: on
+                enable: on
+                route-export:
+                  to-evpn:
+                    enable: on
+            peer-group:
+              underlay:
+                address-family:
+                  l2vpn-evpn:
+                    enable: on
       default:
         router:
           bgp:
@@ -3218,6 +3223,7 @@ neighbor underlay activate
 {{< tab "leaf04 ">}}
 
 ```
+cumulus@leaf04:~$ cat /etc/nvue.d/startup.yaml
 - set:
     interface:
       lo:
@@ -3356,11 +3362,49 @@ neighbor underlay activate
           vni:
             '4001': {}
           enable: on
+        router:
+          bgp:
+            autonomous-system: 65104
+            enable: on
+            router-id: 10.10.10.4
+            address-family:
+              ipv4-unicast:
+                redistribute:
+                  connected:
+                    enable: on
+                enable: on
+                route-export:
+                  to-evpn:
+                    enable: on
+            peer-group:
+              underlay:
+                address-family:
+                  l2vpn-evpn:
+                    enable: on
       BLUE:
         evpn:
           vni:
             '4002': {}
           enable: on
+        router:
+          bgp:
+            autonomous-system: 65104
+            enable: on
+            router-id: 10.10.10.4
+            address-family:
+              ipv4-unicast:
+                redistribute:
+                  connected:
+                    enable: on
+                enable: on
+                route-export:
+                  to-evpn:
+                    enable: on
+            peer-group:
+              underlay:
+                address-family:
+                  l2vpn-evpn:
+                    enable: on
       default:
         router:
           bgp:
@@ -3408,6 +3452,7 @@ neighbor underlay activate
 {{< tab "spine01 ">}}
 
 ```
+cumulus@spine01:~$ cat /etc/nvue.d/startup.yaml
 - set:
     interface:
       lo:
@@ -3466,6 +3511,7 @@ neighbor underlay activate
 {{< tab "spine02 ">}}
 
 ```
+cumulus@spine02:~$ cat /etc/nvue.d/startup.yaml
 - set:
     interface:
       lo:
@@ -4061,40 +4107,32 @@ cumulus@spine02:~$ net commit
 
 ```
 cumulus@leaf01:~$ cat /etc/network/interfaces
-
+...
 auto lo
 iface lo inet loopback
     address 10.10.10.1/32
     vxlan-local-tunnelip 10.10.10.1
-
 auto swp1
 iface swp1
     alias bond member of bond1
-
 auto swp2
 iface swp2
     alias bond member of bond2
-
 auto swp3
 iface swp3
     alias bond member of bond3
-
 auto swp51
 iface swp51
     alias to spine
-
 auto swp52
 iface swp52
     alias to spine
-
 auto BLUE
 iface BLUE
     vrf-table auto
-
 auto RED
 iface RED
     vrf-table auto
-
 auto bond1
 iface bond1
     bond-lacp-bypass-allow yes
@@ -4104,7 +4142,6 @@ iface bond1
     mstpctl-bpduguard yes
     mstpctl-portadminedge yes
     mtu 9000
-
 auto bond2
 iface bond2
     bond-lacp-bypass-allow yes
@@ -4114,7 +4151,6 @@ iface bond2
     mstpctl-bpduguard yes
     mstpctl-portadminedge yes
     mtu 9000
-
 auto bond3
 iface bond3
     bond-lacp-bypass-allow yes
@@ -4124,23 +4160,19 @@ iface bond3
     mstpctl-bpduguard yes
     mstpctl-portadminedge yes
     mtu 9000
-
 auto bridge
 iface bridge
     bridge-ports bond1 bond2 bond3 vni10 vni20 vni30 vniBLUE vniRED
     bridge-vids 10 20 30 4001-4002
     bridge-vlan-aware yes
-
 auto mgmt
 iface mgmt
     vrf-table auto
     address 127.0.0.1/8
     address ::1/128
-
 auto eth0
 iface eth0 inet dhcp
     vrf mgmt
-
 auto vlan10
 iface vlan10
     address 10.1.10.2/24
@@ -4148,7 +4180,6 @@ iface vlan10
     vlan-id 10
     vlan-raw-device bridge
     vrf RED
-
 auto vlan20
 iface vlan20
     address 10.1.20.2/24
@@ -4156,7 +4187,6 @@ iface vlan20
     vlan-id 20
     vlan-raw-device bridge
     vrf RED
-
 auto vlan30
 iface vlan30
     address 10.1.30.2/24
@@ -4164,21 +4194,18 @@ iface vlan30
     vlan-id 30
     vlan-raw-device bridge
     vrf BLUE
-
 auto vlan4001
 iface vlan4001
     hwaddress 44:38:39:BE:EF:AA
     vlan-id 4001
     vlan-raw-device bridge
     vrf RED
-
 auto vlan4002
 iface vlan4002
     hwaddress 44:38:39:BE:EF:AA
     vlan-id 4002
     vlan-raw-device bridge
     vrf BLUE
-
 auto vni10
 iface vni10
     bridge-access 10
@@ -4188,7 +4215,6 @@ iface vni10
     mstpctl-portbpdufilter yes
     vxlan-id 10
     vxlan-mcastgrp 224.0.0.10
-
 auto vni20
 iface vni20
     bridge-access 20
@@ -4198,7 +4224,6 @@ iface vni20
     mstpctl-portbpdufilter yes
     vxlan-id 20
     vxlan-mcastgrp 224.0.0.20
-
 auto vni30
 iface vni30
     bridge-access 30
@@ -4208,7 +4233,6 @@ iface vni30
     mstpctl-portbpdufilter yes
     vxlan-id 30
     vxlan-mcastgrp 224.0.0.30
-
 auto vniBLUE
 iface vniBLUE
     bridge-access 4002
@@ -4217,7 +4241,6 @@ iface vniBLUE
     mstpctl-bpduguard yes
     mstpctl-portbpdufilter yes
     vxlan-id 4002
-
 auto vniRED
 iface vniRED
     bridge-access 4001
@@ -4233,40 +4256,32 @@ iface vniRED
 
 ```
 cumulus@leaf02:~$ cat /etc/network/interfaces
-
+...
 auto lo
 iface lo inet loopback
     address 10.10.10.2/32
     vxlan-local-tunnelip 10.10.10.2
-
 auto swp1
 iface swp1
     alias bond member of bond1
-
 auto swp2
 iface swp2
     alias bond member of bond2
-
 auto swp3
 iface swp3
     alias bond member of bond3
-
 auto swp51
 iface swp51
     alias to spine
-
 auto swp52
 iface swp52
     alias to spine
-
 auto BLUE
 iface BLUE
     vrf-table auto
-
 auto RED
 iface RED
     vrf-table auto
-
 auto bond1
 iface bond1
     bond-lacp-bypass-allow yes
@@ -4276,7 +4291,6 @@ iface bond1
     mstpctl-bpduguard yes
     mstpctl-portadminedge yes
     mtu 9000
-
 auto bond2
 iface bond2
     bond-lacp-bypass-allow yes
@@ -4286,7 +4300,6 @@ iface bond2
     mstpctl-bpduguard yes
     mstpctl-portadminedge yes
     mtu 9000
-
 auto bond3
 iface bond3
     bond-lacp-bypass-allow yes
@@ -4296,23 +4309,19 @@ iface bond3
     mstpctl-bpduguard yes
     mstpctl-portadminedge yes
     mtu 9000
-
 auto bridge
 iface bridge
     bridge-ports bond1 bond2 bond3 vni10 vni20 vni30 vniBLUE vniRED
     bridge-vids 10 20 30 4001-4002
     bridge-vlan-aware yes
-
 auto mgmt
 iface mgmt
     vrf-table auto
     address 127.0.0.1/8
     address ::1/128
-
 auto eth0
 iface eth0 inet dhcp
     vrf mgmt
-
 auto vlan10
 iface vlan10
     address 10.1.10.3/24
@@ -4320,7 +4329,6 @@ iface vlan10
     vlan-id 10
     vlan-raw-device bridge
     vrf RED
-
 auto vlan20
 iface vlan20
     address 10.1.20.3/24
@@ -4328,7 +4336,6 @@ iface vlan20
     vlan-id 20
     vlan-raw-device bridge
     vrf RED
-
 auto vlan30
 iface vlan30
     address 10.1.30.3/24
@@ -4336,21 +4343,18 @@ iface vlan30
     vlan-id 30
     vlan-raw-device bridge
     vrf BLUE
-
 auto vlan4001
 iface vlan4001
     hwaddress 44:38:39:BE:EF:AA
     vlan-id 4001
     vlan-raw-device bridge
     vrf RED
-
 auto vlan4002
 iface vlan4002
     hwaddress 44:38:39:BE:EF:AA
     vlan-id 4002
     vlan-raw-device bridge
     vrf BLUE
-
 auto vni10
 iface vni10
     bridge-access 10
@@ -4360,7 +4364,6 @@ iface vni10
     mstpctl-portbpdufilter yes
     vxlan-id 10
     vxlan-mcastgrp 224.0.0.10
-
 auto vni20
 iface vni20
     bridge-access 20
@@ -4370,7 +4373,6 @@ iface vni20
     mstpctl-portbpdufilter yes
     vxlan-id 20
     vxlan-mcastgrp 224.0.0.20
-
 auto vni30
 iface vni30
     bridge-access 30
@@ -4380,7 +4382,6 @@ iface vni30
     mstpctl-portbpdufilter yes
     vxlan-id 30
     vxlan-mcastgrp 224.0.0.30
-
 auto vniBLUE
 iface vniBLUE
     bridge-access 4002
@@ -4389,7 +4390,6 @@ iface vniBLUE
     mstpctl-bpduguard yes
     mstpctl-portbpdufilter yes
     vxlan-id 4002
-
 auto vniRED
 iface vniRED
     bridge-access 4001
@@ -4405,40 +4405,32 @@ iface vniRED
 
 ```
 cumulus@leaf03:~$ cat /etc/network/interfaces
-
+...
 auto lo
 iface lo inet loopback
     address 10.10.10.3/32
     vxlan-local-tunnelip 10.10.10.3
-
 auto swp1
 iface swp1
     alias bond member of bond1
-
 auto swp2
 iface swp2
     alias bond member of bond2
-
 auto swp3
 iface swp3
     alias bond member of bond3
-
 auto swp51
 iface swp51
     alias to spine
-
 auto swp52
 iface swp52
     alias to spine
-
 auto BLUE
 iface BLUE
     vrf-table auto
-
 auto RED
 iface RED
     vrf-table auto
-
 auto bond1
 iface bond1
     bond-lacp-bypass-allow yes
@@ -4448,7 +4440,6 @@ iface bond1
     mstpctl-bpduguard yes
     mstpctl-portadminedge yes
     mtu 9000
-
 auto bond2
 iface bond2
     bond-lacp-bypass-allow yes
@@ -4458,7 +4449,6 @@ iface bond2
     mstpctl-bpduguard yes
     mstpctl-portadminedge yes
     mtu 9000
-
 auto bond3
 iface bond3
     bond-lacp-bypass-allow yes
@@ -4468,23 +4458,19 @@ iface bond3
     mstpctl-bpduguard yes
     mstpctl-portadminedge yes
     mtu 9000
-
 auto bridge
 iface bridge
     bridge-ports bond1 bond2 bond3 vni10 vni20 vni30 vniBLUE vniRED
     bridge-vids 10 20 30 4001-4002
     bridge-vlan-aware yes
-
 auto mgmt
 iface mgmt
     vrf-table auto
     address 127.0.0.1/8
     address ::1/128
-
 auto eth0
 iface eth0 inet dhcp
     vrf mgmt
-
 auto vlan10
 iface vlan10
     address 10.1.10.4/24
@@ -4492,7 +4478,6 @@ iface vlan10
     vlan-id 10
     vlan-raw-device bridge
     vrf RED
-
 auto vlan20
 iface vlan20
     address 10.1.20.4/24
@@ -4500,7 +4485,6 @@ iface vlan20
     vlan-id 20
     vlan-raw-device bridge
     vrf RED
-
 auto vlan30
 iface vlan30
     address 10.1.30.4/24
@@ -4508,21 +4492,18 @@ iface vlan30
     vlan-id 30
     vlan-raw-device bridge
     vrf BLUE
-
 auto vlan4001
 iface vlan4001
     hwaddress 44:38:39:BE:EF:AA
     vlan-id 4001
     vlan-raw-device bridge
     vrf RED
-
 auto vlan4002
 iface vlan4002
     hwaddress 44:38:39:BE:EF:AA
     vlan-id 4002
     vlan-raw-device bridge
     vrf BLUE
-
 auto vni10
 iface vni10
     bridge-access 10
@@ -4532,7 +4513,6 @@ iface vni10
     mstpctl-portbpdufilter yes
     vxlan-id 10
     vxlan-mcastgrp 224.0.0.10
-
 auto vni20
 iface vni20
     bridge-access 20
@@ -4542,7 +4522,6 @@ iface vni20
     mstpctl-portbpdufilter yes
     vxlan-id 20
     vxlan-mcastgrp 224.0.0.20
-
 auto vni30
 iface vni30
     bridge-access 30
@@ -4552,7 +4531,6 @@ iface vni30
     mstpctl-portbpdufilter yes
     vxlan-id 30
     vxlan-mcastgrp 224.0.0.30
-
 auto vniBLUE
 iface vniBLUE
     bridge-access 4002
@@ -4561,7 +4539,6 @@ iface vniBLUE
     mstpctl-bpduguard yes
     mstpctl-portbpdufilter yes
     vxlan-id 4002
-
 auto vniRED
 iface vniRED
     bridge-access 4001
@@ -4577,40 +4554,32 @@ iface vniRED
 
 ```
 cumulus@leaf04:~$ cat /etc/network/interfaces
-
+...
 auto lo
 iface lo inet loopback
     address 10.10.10.4/32
     vxlan-local-tunnelip 10.10.10.4
-
 auto swp1
 iface swp1
     alias bond member of bond1
-
 auto swp2
 iface swp2
     alias bond member of bond2
-
 auto swp3
 iface swp3
     alias bond member of bond3
-
 auto swp51
 iface swp51
     alias to spine
-
 auto swp52
 iface swp52
     alias to spine
-
 auto BLUE
 iface BLUE
     vrf-table auto
-
 auto RED
 iface RED
     vrf-table auto
-
 auto bond1
 iface bond1
     bond-lacp-bypass-allow yes
@@ -4620,7 +4589,6 @@ iface bond1
     mstpctl-bpduguard yes
     mstpctl-portadminedge yes
     mtu 9000
-
 auto bond2
 iface bond2
     bond-lacp-bypass-allow yes
@@ -4630,7 +4598,6 @@ iface bond2
     mstpctl-bpduguard yes
     mstpctl-portadminedge yes
     mtu 9000
-
 auto bond3
 iface bond3
     bond-lacp-bypass-allow yes
@@ -4640,23 +4607,19 @@ iface bond3
     mstpctl-bpduguard yes
     mstpctl-portadminedge yes
     mtu 9000
-
 auto bridge
 iface bridge
     bridge-ports bond1 bond2 bond3 vni10 vni20 vni30 vniBLUE vniRED
     bridge-vids 10 20 30 4001-4002
     bridge-vlan-aware yes
-
 auto mgmt
 iface mgmt
     vrf-table auto
     address 127.0.0.1/8
     address ::1/128
-
 auto eth0
 iface eth0 inet dhcp
     vrf mgmt
-
 auto vlan10
 iface vlan10
     address 10.1.10.5/24
@@ -4664,7 +4627,6 @@ iface vlan10
     vlan-id 10
     vlan-raw-device bridge
     vrf RED
-
 auto vlan20
 iface vlan20
     address 10.1.20.5/24
@@ -4672,7 +4634,6 @@ iface vlan20
     vlan-id 20
     vlan-raw-device bridge
     vrf RED
-
 auto vlan30
 iface vlan30
     address 10.1.30.5/24
@@ -4680,21 +4641,18 @@ iface vlan30
     vlan-id 30
     vlan-raw-device bridge
     vrf BLUE
-
 auto vlan4001
 iface vlan4001
     hwaddress 44:38:39:BE:EF:AA
     vlan-id 4001
     vlan-raw-device bridge
     vrf RED
-
 auto vlan4002
 iface vlan4002
     hwaddress 44:38:39:BE:EF:AA
     vlan-id 4002
     vlan-raw-device bridge
     vrf BLUE
-
 auto vni10
 iface vni10
     bridge-access 10
@@ -4704,7 +4662,6 @@ iface vni10
     mstpctl-portbpdufilter yes
     vxlan-id 10
     vxlan-mcastgrp 224.0.0.10
-
 auto vni20
 iface vni20
     bridge-access 20
@@ -4714,7 +4671,6 @@ iface vni20
     mstpctl-portbpdufilter yes
     vxlan-id 20
     vxlan-mcastgrp 224.0.0.20
-
 auto vni30
 iface vni30
     bridge-access 30
@@ -4724,7 +4680,6 @@ iface vni30
     mstpctl-portbpdufilter yes
     vxlan-id 30
     vxlan-mcastgrp 224.0.0.30
-
 auto vniBLUE
 iface vniBLUE
     bridge-access 4002
@@ -4733,7 +4688,6 @@ iface vniBLUE
     mstpctl-bpduguard yes
     mstpctl-portbpdufilter yes
     vxlan-id 4002
-
 auto vniRED
 iface vniRED
     bridge-access 4001
@@ -4749,33 +4703,27 @@ iface vniRED
 
 ```
 cumulus@spine01:~$ cat /etc/network/interfaces
-
+...
 auto lo
 iface lo inet loopback
     address 10.10.10.101/32
-
 auto swp1
 iface swp1
     alias to leaf
-
 auto swp2
 iface swp2
     alias to leaf
-
 auto swp3
 iface swp3
     alias to leaf
-
 auto swp4
 iface swp4
     alias to leaf
-
 auto mgmt
 iface mgmt
     vrf-table auto
     address 127.0.0.1/8
     address ::1/128
-
 auto eth0
 iface eth0 inet dhcp
     vrf mgmt
@@ -4786,33 +4734,27 @@ iface eth0 inet dhcp
 
 ```
 cumulus@spine02:~$ cat /etc/network/interfaces
-
+...
 auto lo
 iface lo inet loopback
     address 10.10.10.102/32
-
 auto swp1
 iface swp1
     alias to leaf
-
 auto swp2
 iface swp2
     alias to leaf
-
 auto swp3
 iface swp3
     alias to leaf
-
 auto swp4
 iface swp4
     alias to leaf
-
 auto mgmt
 iface mgmt
     vrf-table auto
     address 127.0.0.1/8
     address ::1/128
-
 auto eth0
 iface eth0 inet dhcp
     vrf mgmt
@@ -4826,22 +4768,18 @@ cumulus@server01:~$ sudo cat /etc/network/interfaces
 # The loopback network interface
 auto lo
 iface lo inet loopback
-
 # The OOB network interface
 auto eth0
 iface eth0 inet dhcp
-
 # The data plane network interfaces
 auto eth1
 iface eth1 inet manual
   # Required for Vagrant
   post-up ip link set promisc on dev eth1
-
 auto eth2
 iface eth2 inet manual
   # Required for Vagrant
   post-up ip link set promisc on dev eth2
-
 auto uplink
 iface uplink inet static
   address 10.1.10.101
@@ -4864,22 +4802,18 @@ cumulus@server02:~$ sudo cat /etc/network/interfaces
 # The loopback network interface
 auto lo
 iface lo inet loopback
-
 # The OOB network interface
 auto eth0
 iface eth0 inet dhcp
-
 # The data plane network interfaces
 auto eth1
 iface eth1 inet manual
   # Required for Vagrant
   post-up ip link set promisc on dev eth1
-
 auto eth2
 iface eth2 inet manual
   # Required for Vagrant
   post-up ip link set promisc on dev eth2
-
 auto uplink
 iface uplink inet static
   address 10.1.20.102
@@ -4902,22 +4836,18 @@ cumulus@server03:~$ sudo cat /etc/network/interfaces
 # The loopback network interface
 auto lo
 iface lo inet loopback
-
 # The OOB network interface
 auto eth0
 iface eth0 inet dhcp
-
 # The data plane network interfaces
 auto eth1
 iface eth1 inet manual
   # Required for Vagrant
   post-up ip link set promisc on dev eth1
-
 auto eth2
 iface eth2 inet manual
   # Required for Vagrant
   post-up ip link set promisc on dev eth2
-
 auto uplink
 iface uplink inet static
   address 10.1.30.103
@@ -4940,22 +4870,18 @@ cumulus@server04:~$ sudo cat /etc/network/interfaces
 # The loopback network interface
 auto lo
 iface lo inet loopback
-
 # The OOB network interface
 auto eth0
 iface eth0 inet dhcp
-
 # The data plane network interfaces
 auto eth1
 iface eth1 inet manual
   # Required for Vagrant
   post-up ip link set promisc on dev eth1
-
 auto eth2
 iface eth2 inet manual
   # Required for Vagrant
   post-up ip link set promisc on dev eth2
-
 auto uplink
 iface uplink inet static
   address 10.1.10.104

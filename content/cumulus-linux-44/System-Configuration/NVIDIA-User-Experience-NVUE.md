@@ -311,7 +311,7 @@ The NVUE configuration management commands manage and apply configurations.
 | `nv config replace <nvue-file>` | Replaces the pending configuration with the specified YAML configuration file. |
 | `nv config save` | Overwrites the startup configuration with the applied configuration by writing to the `/etc/nvue.d/startup.yaml` file. The configuration persists after a reboot. |
 
-## List All NVUE Commands
+### List All NVUE Commands
 
 To show the full list of NVUE commands, run `nv list-commands`. For example:
 
@@ -359,6 +359,21 @@ Use the Tab key to get help for the command lists you want to see. For example, 
 ```
 cumulus@switch:~$ nv list-commands interface swp1 <<press Tab>>
 acl      bond     bridge   evpn     ip       link     qos      router   service
+```
+
+## NVUE Configuration File
+
+When you save network configuration using NVUE, the configuration is written to the `/etc/nvue.d/startup.yaml` file.
+
+NVUE also writes to underlying Linux files, such as `/etc/network/interfaces` and `/etc/frr/frr.conf`, when you apply a configuration. You can view these configuration files; however NVIDIA recommends that you do not manually edit them while using NVUE.
+
+You can edit or replace the contents of the `/etc/nvue.d/startup.yaml` file. NVUE  applies the configuration in the edited or replaced `/etc/nvue.d/startup.yaml` file only if the `nvue-startup.service` is running. If this service is not running, NVUE saves the *running* configuration to the `/etc/nvue.d/startup.yaml` file, which is applied when the switch reboots.
+
+To start `nvue-startup.service`:
+
+```
+cumulus@switch:~$ sudo systemctl enable nvue-startup.service
+cumulus@switch:~$ sudo systemctl start nvue-startup.service
 ```
 
 ## Example Configuration Commands

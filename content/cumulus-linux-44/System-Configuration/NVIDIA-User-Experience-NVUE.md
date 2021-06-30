@@ -367,7 +367,7 @@ When you save network configuration using NVUE, the configuration is written to 
 
 NVUE also writes to underlying Linux files, such as `/etc/network/interfaces` and `/etc/frr/frr.conf`, when you apply a configuration. You can view these configuration files; however NVIDIA recommends that you do not manually edit them while using NVUE.
 
-You can edit or replace the contents of the `/etc/nvue.d/startup.yaml` file. NVUE  applies the configuration in the edited or replaced `/etc/nvue.d/startup.yaml` file only if the `nvue-startup.service` is running. If this service is not running, NVUE saves the *running* configuration to the `/etc/nvue.d/startup.yaml` file, which is applied when the switch reboots.
+You can edit or replace the contents of the `/etc/nvue.d/startup.yaml` file. NVUE applies the configuration in the `/etc/nvue.d/startup.yaml` file during system boot only if the `nvue-startup.service` is running. If this service is not running, the running configuration that was last applied is loaded when the switch boots.
 
 To start `nvue-startup.service`:
 

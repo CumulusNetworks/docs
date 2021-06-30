@@ -676,7 +676,7 @@ iface br_default
 
 ## Verify the Configuration
 
-After you configure all the leafs, run the following command to check for replication entries. The command output is differnet for traditional and single VXLAN devices.
+After you configure all the leafs, run the following command to check for replication entries. The command output is different for traditional and single VXLAN devices.
 
 For traditional VXLAN devices:
 

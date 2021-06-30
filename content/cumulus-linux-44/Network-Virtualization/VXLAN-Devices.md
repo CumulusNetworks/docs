@@ -49,6 +49,8 @@ NVUE commands are not supported.
 Edit the `/etc/network/interfaces` file, then run the `ifreload -a` command.
 
 ```
+cumulus@leaf01:~$ sudo nano /etc/network/interfaces
+...
 auto lo
 iface lo inet loopback
     address 10.10.10.1/32

@@ -892,7 +892,7 @@ The following example command configures PIM to ignore the RP check for all upst
 
 ```
 cumulus@switch:~$ sudo vtysh
-
+...
 switch# configure terminal
 switch(config)# interface swp50
 switch(config-if)# ip pim allow-rp
@@ -906,7 +906,7 @@ The following example command configures PIM to only ignore the RP check for the
 
 ```
 cumulus@switch:~$ sudo vtysh
-
+...
 switch# configure terminal
 switch(config)# interface swp50
 switch(config-if)# ip pim allow-rp rp-list ALLOW-RP

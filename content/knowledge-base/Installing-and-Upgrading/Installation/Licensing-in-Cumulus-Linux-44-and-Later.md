@@ -3,7 +3,6 @@ title: Licensing in Cumulus Linux 4.4 and Later
 author: Cumulus Networks
 weight: 252
 toc: 4
-draft: true
 ---
 In NVIDIA Cumulus Linux 4.4 and later, you no longer need a specific software license key to enable the `switchd` service. In earlier Cumulus Linux releases, the `switchd` service fails to start and the switch ports are inoperable if you do *not* install a license key.
 

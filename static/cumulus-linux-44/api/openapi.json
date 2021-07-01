@@ -431,7 +431,7 @@
         }
       }
     },
-    "/router/pbr/nexthop-group/{nexthop-group-id}/via/{nhg-via-id}": {
+    "/router/pbr/nexthop-group/{nexthop-group-id}/via/{via-id}": {
       "parameters": [
         {
           "$ref": "#/x-defs/parameter-pbr-nexthop-group-id"
@@ -7152,83 +7152,7 @@
         }
       }
     },
-    "/bridge/domain/{domain-id}/vlan/{vid}/service": {
-      "parameters": [
-        {
-          "$ref": "#/x-defs/parameter-bridge-domain-id"
-        },
-        {
-          "$ref": "#/x-defs/parameter-vlan-vid-vlan-vid-id"
-        }
-      ],
-      "get": {
-        "summary": "Return services details of a vlan.",
-        "tags": [
-          "bridge"
-        ],
-        "operationId": "getBridgeDomainVlanService",
-        "x-cue-controller": "cue_cue_v1.bridge.vlan_service_get",
-        "parameters": [
-          {
-            "$ref": "#/x-defs/parameter-revision-revGet"
-          }
-        ],
-        "responses": {
-          "default": {
-            "$ref": "#/x-defs/response-shared-default"
-          },
-          "200": {
-            "$ref": "#/x-defs/cue-show-response-service-vlan-service"
-          }
-        }
-      },
-      "patch": {
-        "summary": "Update the service configuration of a vlan.",
-        "tags": [
-          "bridge"
-        ],
-        "operationId": "updateBridgeDomainVlanService",
-        "x-cue-controller": "cue_cue_v1.bridge.vlan_service_patch",
-        "parameters": [
-          {
-            "$ref": "#/x-defs/parameter-revision-revUpdate"
-          }
-        ],
-        "requestBody": {
-          "$ref": "#/x-defs/cue-patch-response-service-vlan-service"
-        },
-        "responses": {
-          "default": {
-            "$ref": "#/x-defs/response-shared-default"
-          },
-          "200": {
-            "$ref": "#/x-defs/cue-show-response-service-vlan-service"
-          }
-        }
-      },
-      "delete": {
-        "summary": "Clear the service configuration of a vlan.",
-        "tags": [
-          "bridge"
-        ],
-        "operationId": "deleteBridgeDomainVlanService",
-        "x-cue-controller": "cue_cue_v1.bridge.vlan_service_delete",
-        "parameters": [
-          {
-            "$ref": "#/x-defs/parameter-revision-revUpdate"
-          }
-        ],
-        "responses": {
-          "default": {
-            "$ref": "#/x-defs/response-shared-default"
-          },
-          "200": {
-            "$ref": "#/x-defs/response-shared-empty"
-          }
-        }
-      }
-    },
-    "/bridge/domain/{domain-id}/vlan/{vid}/service/ptp": {
+    "/bridge/domain/{domain-id}/vlan/{vid}/ptp": {
       "parameters": [
         {
           "$ref": "#/x-defs/parameter-bridge-domain-id"
@@ -7289,82 +7213,6 @@
         ],
         "operationId": "deleteBridgeDomainVlanPtp",
         "x-cue-controller": "cue_cue_v1.bridge.vlan_ptp_delete",
-        "parameters": [
-          {
-            "$ref": "#/x-defs/parameter-revision-revUpdate"
-          }
-        ],
-        "responses": {
-          "default": {
-            "$ref": "#/x-defs/response-shared-default"
-          },
-          "200": {
-            "$ref": "#/x-defs/response-shared-empty"
-          }
-        }
-      }
-    },
-    "/bridge/domain/{domain-id}/vlan/{vid}/service/ptp/timers": {
-      "parameters": [
-        {
-          "$ref": "#/x-defs/parameter-bridge-domain-id"
-        },
-        {
-          "$ref": "#/x-defs/parameter-vlan-vid-vlan-vid-id"
-        }
-      ],
-      "get": {
-        "summary": "Return PTP timer details of a vlan.",
-        "tags": [
-          "bridge"
-        ],
-        "operationId": "getBridgeDomainVlanPtpTimers",
-        "x-cue-controller": "cue_cue_v1.bridge.vlan_ptp_timers_get",
-        "parameters": [
-          {
-            "$ref": "#/x-defs/parameter-revision-revGet"
-          }
-        ],
-        "responses": {
-          "default": {
-            "$ref": "#/x-defs/response-shared-default"
-          },
-          "200": {
-            "$ref": "#/x-defs/cue-show-response-ptp-vlan-ptp-timers"
-          }
-        }
-      },
-      "patch": {
-        "summary": "Update the PTP timer configuration of a vlan.",
-        "tags": [
-          "bridge"
-        ],
-        "operationId": "updateBridgeDomainVlanPtpTimers",
-        "x-cue-controller": "cue_cue_v1.bridge.vlan_ptp_timers_patch",
-        "parameters": [
-          {
-            "$ref": "#/x-defs/parameter-revision-revUpdate"
-          }
-        ],
-        "requestBody": {
-          "$ref": "#/x-defs/cue-patch-response-ptp-vlan-ptp-timers"
-        },
-        "responses": {
-          "default": {
-            "$ref": "#/x-defs/response-shared-default"
-          },
-          "200": {
-            "$ref": "#/x-defs/cue-show-response-ptp-vlan-ptp-timers"
-          }
-        }
-      },
-      "delete": {
-        "summary": "Clear the PTP timer configuration of a vlan.",
-        "tags": [
-          "bridge"
-        ],
-        "operationId": "deleteBridgeDomainVlanPtpTimers",
-        "x-cue-controller": "cue_cue_v1.bridge.vlan_ptp_timers_delete",
         "parameters": [
           {
             "$ref": "#/x-defs/parameter-revision-revUpdate"
@@ -12503,79 +12351,6 @@
         }
       }
     },
-    "/interface/{interface-id}/service": {
-      "parameters": [
-        {
-          "$ref": "#/x-defs/parameter-interface-interface-id"
-        }
-      ],
-      "get": {
-        "summary": "Return service details of an interface.",
-        "tags": [
-          "interface"
-        ],
-        "operationId": "getInterfaceService",
-        "x-cue-controller": "cue_cue_v1.interface.service_get",
-        "parameters": [
-          {
-            "$ref": "#/x-defs/parameter-revision-revGet"
-          }
-        ],
-        "responses": {
-          "default": {
-            "$ref": "#/x-defs/response-shared-default"
-          },
-          "200": {
-            "$ref": "#/x-defs/cue-show-response-service-if-service"
-          }
-        }
-      },
-      "patch": {
-        "summary": "Update the service details of an interface.",
-        "tags": [
-          "interface"
-        ],
-        "operationId": "updateInterfaceService",
-        "x-cue-controller": "cue_cue_v1.interface.service_patch",
-        "parameters": [
-          {
-            "$ref": "#/x-defs/parameter-revision-revUpdate"
-          }
-        ],
-        "requestBody": {
-          "$ref": "#/x-defs/cue-patch-response-service-if-service"
-        },
-        "responses": {
-          "default": {
-            "$ref": "#/x-defs/response-shared-default"
-          },
-          "200": {
-            "$ref": "#/x-defs/cue-show-response-service-if-service"
-          }
-        }
-      },
-      "delete": {
-        "summary": "Clear service configuration of an interface.",
-        "tags": [
-          "interface"
-        ],
-        "operationId": "deleteInterfaceService",
-        "x-cue-controller": "cue_cue_v1.interface.service_delete",
-        "parameters": [
-          {
-            "$ref": "#/x-defs/parameter-revision-revUpdate"
-          }
-        ],
-        "responses": {
-          "default": {
-            "$ref": "#/x-defs/response-shared-default"
-          },
-          "200": {
-            "$ref": "#/x-defs/response-shared-empty"
-          }
-        }
-      }
-    },
     "/interface/{interface-id}/acl": {
       "parameters": [
         {
@@ -13029,7 +12804,7 @@
         }
       }
     },
-    "/interface/{interface-id}/service/ptp": {
+    "/interface/{interface-id}/ptp": {
       "parameters": [
         {
           "$ref": "#/x-defs/parameter-interface-interface-id"
@@ -13102,7 +12877,7 @@
         }
       }
     },
-    "/interface/{interface-id}/service/ptp/timers": {
+    "/interface/{interface-id}/ptp/timers": {
       "parameters": [
         {
           "$ref": "#/x-defs/parameter-interface-interface-id"
@@ -13175,7 +12950,7 @@
         }
       }
     },
-    "/interface/{interface-id}/service/ptp/counters": {
+    "/interface/{interface-id}/ptp/counters": {
       "parameters": [
         {
           "$ref": "#/x-defs/parameter-interface-interface-id"
@@ -16364,6 +16139,142 @@
         ],
         "operationId": "deleteReservedPbr",
         "x-cue-controller": "cue_cue_v1.system.pbr_delete",
+        "parameters": [
+          {
+            "$ref": "#/x-defs/parameter-revision-revUpdate"
+          }
+        ],
+        "responses": {
+          "default": {
+            "$ref": "#/x-defs/response-shared-default"
+          },
+          "200": {
+            "$ref": "#/x-defs/response-shared-empty"
+          }
+        }
+      }
+    },
+    "/system/global/reserved/vlan": {
+      "get": {
+        "summary": "Get Reserved VLAN config",
+        "tags": [
+          "global"
+        ],
+        "operationId": "getReservedVlan",
+        "x-cue-controller": "cue_cue_v1.system.vlan_get",
+        "parameters": [
+          {
+            "$ref": "#/x-defs/parameter-revision-revGet"
+          }
+        ],
+        "responses": {
+          "default": {
+            "$ref": "#/x-defs/response-shared-default"
+          },
+          "200": {
+            "$ref": "#/x-defs/cue-show-response-reserved-vlan"
+          }
+        }
+      },
+      "patch": {
+        "summary": "Update reserved VLAN config",
+        "tags": [
+          "global"
+        ],
+        "operationId": "updateReservedVlan",
+        "x-cue-controller": "cue_cue_v1.system.vlan_patch",
+        "parameters": [
+          {
+            "$ref": "#/x-defs/parameter-revision-revUpdate"
+          }
+        ],
+        "requestBody": {
+          "$ref": "#/x-defs/cue-patch-response-reserved-vlan"
+        },
+        "responses": {
+          "default": {
+            "$ref": "#/x-defs/response-shared-default"
+          },
+          "200": {
+            "$ref": "#/x-defs/cue-show-response-reserved-vlan"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete reserved VLAN config",
+        "tags": [
+          "global"
+        ],
+        "operationId": "deleteReservedVlan",
+        "x-cue-controller": "cue_cue_v1.system.vlan_delete",
+        "parameters": [
+          {
+            "$ref": "#/x-defs/parameter-revision-revUpdate"
+          }
+        ],
+        "responses": {
+          "default": {
+            "$ref": "#/x-defs/response-shared-default"
+          },
+          "200": {
+            "$ref": "#/x-defs/response-shared-empty"
+          }
+        }
+      }
+    },
+    "/system/global/reserved/vlan/l3-vni-vlan": {
+      "get": {
+        "summary": "Get Reserved l3vni VLAN config",
+        "tags": [
+          "global"
+        ],
+        "operationId": "getReservedL3VniVlan",
+        "x-cue-controller": "cue_cue_v1.system.l3vni_vlan_get",
+        "parameters": [
+          {
+            "$ref": "#/x-defs/parameter-revision-revGet"
+          }
+        ],
+        "responses": {
+          "default": {
+            "$ref": "#/x-defs/response-shared-default"
+          },
+          "200": {
+            "$ref": "#/x-defs/cue-show-response-reserved-l3-vni-vlan"
+          }
+        }
+      },
+      "patch": {
+        "summary": "Update reserved l3vni VLAN config",
+        "tags": [
+          "global"
+        ],
+        "operationId": "updateReservedL3VniVlan",
+        "x-cue-controller": "cue_cue_v1.system.l3vni_vlan_patch",
+        "parameters": [
+          {
+            "$ref": "#/x-defs/parameter-revision-revUpdate"
+          }
+        ],
+        "requestBody": {
+          "$ref": "#/x-defs/cue-patch-response-reserved-l3-vni-vlan"
+        },
+        "responses": {
+          "default": {
+            "$ref": "#/x-defs/response-shared-default"
+          },
+          "200": {
+            "$ref": "#/x-defs/cue-show-response-reserved-l3-vni-vlan"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete reserved l3vni VLAN config",
+        "tags": [
+          "global"
+        ],
+        "operationId": "deleteReservedL3VniVlan",
+        "x-cue-controller": "cue_cue_v1.system.l3vni_vlan_delete",
         "parameters": [
           {
             "$ref": "#/x-defs/parameter-revision-revUpdate"
@@ -31627,80 +31538,7 @@
         }
       }
     },
-    "/vrf/{vrf-id}/service": {
-      "parameters": [
-        {
-          "$ref": "#/x-defs/parameter-vrf-vrf-id"
-        }
-      ],
-      "get": {
-        "summary": "Return services details of an vrf.",
-        "tags": [
-          "vrf"
-        ],
-        "operationId": "getVrfService",
-        "x-cue-controller": "cue_cue_v1.vrf.service_get",
-        "parameters": [
-          {
-            "$ref": "#/x-defs/parameter-revision-revGet"
-          }
-        ],
-        "responses": {
-          "default": {
-            "$ref": "#/x-defs/response-shared-default"
-          },
-          "200": {
-            "$ref": "#/x-defs/cue-show-response-service-vrf-service"
-          }
-        }
-      },
-      "patch": {
-        "summary": "Update the service configuration of an vrf.",
-        "tags": [
-          "vrf"
-        ],
-        "operationId": "updateVrfService",
-        "x-cue-controller": "cue_cue_v1.vrf.service_patch",
-        "parameters": [
-          {
-            "$ref": "#/x-defs/parameter-revision-revUpdate"
-          }
-        ],
-        "requestBody": {
-          "$ref": "#/x-defs/cue-patch-response-service-vrf-service"
-        },
-        "responses": {
-          "default": {
-            "$ref": "#/x-defs/response-shared-default"
-          },
-          "200": {
-            "$ref": "#/x-defs/cue-show-response-service-vrf-service"
-          }
-        }
-      },
-      "delete": {
-        "summary": "Clear the service configuration of an vrf.",
-        "tags": [
-          "vrf"
-        ],
-        "operationId": "deleteVrfService",
-        "x-cue-controller": "cue_cue_v1.vrf.service_delete",
-        "parameters": [
-          {
-            "$ref": "#/x-defs/parameter-revision-revUpdate"
-          }
-        ],
-        "responses": {
-          "default": {
-            "$ref": "#/x-defs/response-shared-default"
-          },
-          "200": {
-            "$ref": "#/x-defs/response-shared-empty"
-          }
-        }
-      }
-    },
-    "/vrf/{vrf-id}/service/ptp": {
+    "/vrf/{vrf-id}/ptp": {
       "parameters": [
         {
           "$ref": "#/x-defs/parameter-vrf-vrf-id"
@@ -31758,79 +31596,6 @@
         ],
         "operationId": "deleteVrfPtp",
         "x-cue-controller": "cue_cue_v1.vrf.ptp_delete",
-        "parameters": [
-          {
-            "$ref": "#/x-defs/parameter-revision-revUpdate"
-          }
-        ],
-        "responses": {
-          "default": {
-            "$ref": "#/x-defs/response-shared-default"
-          },
-          "200": {
-            "$ref": "#/x-defs/response-shared-empty"
-          }
-        }
-      }
-    },
-    "/vrf/{vrf-id}/service/ptp/timers": {
-      "parameters": [
-        {
-          "$ref": "#/x-defs/parameter-vrf-vrf-id"
-        }
-      ],
-      "get": {
-        "summary": "Return PTP timer details of an vrf.",
-        "tags": [
-          "vrf"
-        ],
-        "operationId": "getVrfPtpTimers",
-        "x-cue-controller": "cue_cue_v1.vrf.ptp_timers_get",
-        "parameters": [
-          {
-            "$ref": "#/x-defs/parameter-revision-revGet"
-          }
-        ],
-        "responses": {
-          "default": {
-            "$ref": "#/x-defs/response-shared-default"
-          },
-          "200": {
-            "$ref": "#/x-defs/cue-show-response-ptp-vrf-ptp-timers"
-          }
-        }
-      },
-      "patch": {
-        "summary": "Update the PTP timer configuration of an vrf.",
-        "tags": [
-          "vrf"
-        ],
-        "operationId": "updateVrfPtpTimers",
-        "x-cue-controller": "cue_cue_v1.vrf.ptp_timers_patch",
-        "parameters": [
-          {
-            "$ref": "#/x-defs/parameter-revision-revUpdate"
-          }
-        ],
-        "requestBody": {
-          "$ref": "#/x-defs/cue-patch-response-ptp-vrf-ptp-timers"
-        },
-        "responses": {
-          "default": {
-            "$ref": "#/x-defs/response-shared-default"
-          },
-          "200": {
-            "$ref": "#/x-defs/cue-show-response-ptp-vrf-ptp-timers"
-          }
-        }
-      },
-      "delete": {
-        "summary": "Clear the PTP timer configuration of an vrf.",
-        "tags": [
-          "vrf"
-        ],
-        "operationId": "deleteVrfPtpTimers",
-        "x-cue-controller": "cue_cue_v1.vrf.ptp_timers_delete",
         "parameters": [
           {
             "$ref": "#/x-defs/parameter-revision-revUpdate"
@@ -34444,6 +34209,161 @@
         }
       }
     },
+    "/vrf/{vrf-id}/router/ospf/area/{area-id}/network": {
+      "parameters": [
+        {
+          "$ref": "#/x-defs/parameter-vrf-vrf-id"
+        },
+        {
+          "$ref": "#/x-defs/parameter-ospf-area-id"
+        }
+      ],
+      "get": {
+        "summary": "Return ospf area.",
+        "tags": [
+          "vrf"
+        ],
+        "operationId": "getVrfOspfAreaNetworks",
+        "x-cue-controller": "cue_cue_v1.vrf.ospf_area_networks_get",
+        "parameters": [
+          {
+            "$ref": "#/x-defs/parameter-revision-revGet"
+          }
+        ],
+        "responses": {
+          "default": {
+            "$ref": "#/x-defs/response-shared-default"
+          },
+          "200": {
+            "$ref": "#/x-defs/cue-show-response-ospf-networks"
+          }
+        }
+      },
+      "patch": {
+        "summary": "Update detail of the ospf area-id.",
+        "tags": [
+          "vrf"
+        ],
+        "operationId": "updateVrfOspfAreaNetworks",
+        "x-cue-controller": "cue_cue_v1.vrf.ospf_area_networks_patch",
+        "parameters": [
+          {
+            "$ref": "#/x-defs/parameter-revision-revUpdate"
+          }
+        ],
+        "requestBody": {
+          "$ref": "#/x-defs/cue-patch-response-ospf-networks"
+        },
+        "responses": {
+          "default": {
+            "$ref": "#/x-defs/response-shared-default"
+          },
+          "200": {
+            "$ref": "#/x-defs/cue-show-response-ospf-networks"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Clear the ospf area",
+        "tags": [
+          "vrf"
+        ],
+        "operationId": "deleteVrfOspfAreaNetworks",
+        "x-cue-controller": "cue_cue_v1.vrf.ospf_area_networks_delete",
+        "parameters": [
+          {
+            "$ref": "#/x-defs/parameter-revision-revUpdate"
+          }
+        ],
+        "responses": {
+          "default": {
+            "$ref": "#/x-defs/response-shared-default"
+          },
+          "200": {
+            "$ref": "#/x-defs/response-shared-empty"
+          }
+        }
+      }
+    },
+    "/vrf/{vrf-id}/router/ospf/area/{area-id}/network/{network-id}": {
+      "parameters": [
+        {
+          "$ref": "#/x-defs/parameter-vrf-vrf-id"
+        },
+        {
+          "$ref": "#/x-defs/parameter-ospf-area-id"
+        },
+        {
+          "$ref": "#/x-defs/parameter-ospf-network-id"
+        }
+      ],
+      "get": {
+        "summary": "Return ospf area's network.",
+        "tags": [
+          "vrf"
+        ],
+        "operationId": "getVrfOspfAreaNetwork",
+        "x-cue-controller": "cue_cue_v1.vrf.ospf_area_network_get",
+        "parameters": [
+          {
+            "$ref": "#/x-defs/parameter-revision-revGet"
+          }
+        ],
+        "responses": {
+          "default": {
+            "$ref": "#/x-defs/response-shared-default"
+          },
+          "200": {
+            "$ref": "#/x-defs/cue-show-response-ospf-network"
+          }
+        }
+      },
+      "patch": {
+        "summary": "Update detail of the ospf area's network.",
+        "tags": [
+          "vrf"
+        ],
+        "operationId": "updateVrfOspfAreaNetwork",
+        "x-cue-controller": "cue_cue_v1.vrf.ospf_area_network_patch",
+        "parameters": [
+          {
+            "$ref": "#/x-defs/parameter-revision-revUpdate"
+          }
+        ],
+        "requestBody": {
+          "$ref": "#/x-defs/cue-patch-response-ospf-network"
+        },
+        "responses": {
+          "default": {
+            "$ref": "#/x-defs/response-shared-default"
+          },
+          "200": {
+            "$ref": "#/x-defs/cue-show-response-ospf-network"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Clear the ospf area's network",
+        "tags": [
+          "vrf"
+        ],
+        "operationId": "deleteVrfOspfAreaNetwork",
+        "x-cue-controller": "cue_cue_v1.vrf.ospf_area_network_delete",
+        "parameters": [
+          {
+            "$ref": "#/x-defs/parameter-revision-revUpdate"
+          }
+        ],
+        "responses": {
+          "default": {
+            "$ref": "#/x-defs/response-shared-default"
+          },
+          "200": {
+            "$ref": "#/x-defs/response-shared-empty"
+          }
+        }
+      }
+    },
     "/vrf/{vrf-id}/router/ospf/default-originate": {
       "parameters": [
         {
@@ -35661,6 +35581,7 @@
             "echo-request",
             "time-exceeded",
             "dest-unreachable",
+            "port-unreachable",
             null
           ],
           "nullable": true
@@ -35772,7 +35693,7 @@
       "x-cue-marker": "def",
       "type": "string",
       "format": "integer",
-      "x-cue-minimum": 1,
+      "x-cue-minimum": 0,
       "x-cue-maximum": 65535,
       "nullable": true
     },
@@ -35791,6 +35712,9 @@
         "bgp",
         "bootpc",
         "bootps",
+        "bfd",
+        "bfd-echo",
+        "bfd-multihop",
         "clag",
         "dhcp-client",
         "dhcp-server",
@@ -35801,6 +35725,7 @@
         "imap2",
         "ldap",
         "ldaps",
+        "ntp",
         "msdp",
         "pop3",
         "smtp",
@@ -35808,6 +35733,7 @@
         "snmp-trap",
         "ssh",
         "telnet",
+        "tftp",
         null
       ],
       "nullable": true
@@ -35967,6 +35893,14 @@
         },
         "all": {
           "description": "TCP ALL flag",
+          "allOf": [
+            {
+              "$ref": "#/x-defs/cue-show-schema-flags-flag"
+            }
+          ]
+        },
+        "none": {
+          "description": "TCP No flags",
           "allOf": [
             {
               "$ref": "#/x-defs/cue-show-schema-flags-flag"
@@ -36140,6 +36074,13 @@
         }
       ]
     },
+    "schema-vlan-vid-vlan-vid-int-def": {
+      "x-cue-marker": "def",
+      "type": "integer",
+      "nullable": true,
+      "minimum": 1,
+      "maximum": 4094
+    },
     "schema-acl-mac-match-config": {
       "x-cue-marker": "config",
       "properties": {
@@ -36174,6 +36115,15 @@
           "anyOf": [
             {
               "$ref": "#/x-defs/schema-acl-mac-protocol-def"
+            }
+          ],
+          "nullable": true
+        },
+        "vlan": {
+          "description": "VLAN ID",
+          "anyOf": [
+            {
+              "$ref": "#/x-defs/schema-vlan-vid-vlan-vid-int-def"
             }
           ],
           "nullable": true
@@ -36378,14 +36328,14 @@
           "description": "Policing burst value",
           "type": "integer",
           "minimum": 1,
-          "maximum": 65535,
+          "maximum": 2147483647,
           "nullable": true
         },
         "rate": {
           "description": "Policing rate value",
           "type": "integer",
           "minimum": 1,
-          "maximum": 65535,
+          "maximum": 2147483647,
           "nullable": true
         }
       }
@@ -36537,6 +36487,12 @@
         "$ref": "#/x-defs/cue-show-schema-acl-rule"
       }
     },
+    "schema-acl-rules-presentation": {
+      "x-cue-marker": "presentation",
+      "x-cue-collection-view": {
+        "id_title": "Number"
+      }
+    },
     "cue-show-schema-acl-rules": {
       "description": "ACL rules",
       "x-cue-marker": "collection",
@@ -36545,6 +36501,9 @@
       "allOf": [
         {
           "$ref": "#/x-defs/cue-show-schema-acl-rules-mapping"
+        },
+        {
+          "$ref": "#/x-defs/schema-acl-rules-presentation"
         }
       ]
     },
@@ -36624,13 +36583,6 @@
       ],
       "type": "string",
       "nullable": true
-    },
-    "schema-vlan-vid-vlan-vid-int-def": {
-      "x-cue-marker": "def",
-      "type": "integer",
-      "nullable": true,
-      "minimum": 1,
-      "maximum": 4094
     },
     "schema-common-none-def": {
       "x-cue-marker": "def",
@@ -37089,242 +37041,29 @@
         null
       ]
     },
-    "schema-feature-isa-feature-default-off-config": {
+    "schema-feature-isa-feature-default-on-config": {
       "x-cue-marker": "config",
       "properties": {
         "enable": {
-          "description": "Turn the feature 'on' or 'off'.  The default is 'off'.\n",
+          "description": "Turn the feature 'on' or 'off'.  The default is 'on'.\n",
           "allOf": [
             {
               "$ref": "#/x-defs/schema-common-offon-def"
             }
           ],
-          "default": "off",
+          "default": "on",
           "type": "string",
           "nullable": true
         }
       }
     },
-    "cue-show-schema-feature-isa-feature-default-off-trait": {
+    "schema-feature-isa-feature-default-on-trait": {
       "x-cue-marker": "trait",
       "allOf": [
         {
-          "$ref": "#/x-defs/schema-feature-isa-feature-default-off-config"
+          "$ref": "#/x-defs/schema-feature-isa-feature-default-on-config"
         }
       ]
-    },
-    "schema-ptp-ptp-instance-id-def": {
-      "x-cue-marker": "def",
-      "type": "integer",
-      "x-cue-minimum": 1,
-      "x-cue-maximum": 16,
-      "nullable": true
-    },
-    "schema-ptp-delay-mechanism-def": {
-      "x-cue-marker": "def",
-      "type": "string",
-      "enum": [
-        "end-to-end",
-        null
-      ],
-      "nullable": true
-    },
-    "schema-ptp-transport-def": {
-      "x-cue-marker": "def",
-      "type": "string",
-      "enum": [
-        "ipv4",
-        "ipv6",
-        "802.3",
-        null
-      ],
-      "nullable": true
-    },
-    "schema-ptp-ttl-def": {
-      "x-cue-marker": "def",
-      "type": "integer",
-      "minimum": 1,
-      "maximum": 255,
-      "nullable": true
-    },
-    "schema-ptp-message-mode-def": {
-      "x-cue-marker": "def",
-      "type": "string",
-      "enum": [
-        "multicast",
-        "unicast",
-        "mixed",
-        null
-      ],
-      "nullable": true
-    },
-    "schema-ptp-vrf-ptp-config": {
-      "x-cue-marker": "config",
-      "properties": {
-        "instance": {
-          "description": "PTP instance number.\n",
-          "anyOf": [
-            {
-              "$ref": "#/x-defs/schema-ptp-ptp-instance-id-def"
-            }
-          ],
-          "default": 1,
-          "nullable": true
-        },
-        "forced-master": {
-          "description": "Configures PTP interfaces to forced master state.\n",
-          "anyOf": [
-            {
-              "$ref": "#/x-defs/schema-common-offon-def"
-            }
-          ],
-          "default": "off",
-          "nullable": true
-        },
-        "acceptable-master": {
-          "description": "Determines if acceptable master check is enabled for this interface.\n",
-          "anyOf": [
-            {
-              "$ref": "#/x-defs/schema-common-offon-def"
-            }
-          ],
-          "default": "off",
-          "nullable": true
-        },
-        "delay-mechanism": {
-          "description": "Mode in which PTP message is transmitted.\n",
-          "anyOf": [
-            {
-              "$ref": "#/x-defs/schema-ptp-delay-mechanism-def"
-            }
-          ],
-          "default": "end-to-end",
-          "nullable": true
-        },
-        "transport": {
-          "description": "Transport method for the PTP messages.\n",
-          "anyOf": [
-            {
-              "$ref": "#/x-defs/schema-ptp-transport-def"
-            }
-          ],
-          "default": "ipv4",
-          "nullable": true
-        },
-        "ttl": {
-          "description": "Maximum number of hops the PTP messages can make before it gets dropped.\n",
-          "anyOf": [
-            {
-              "$ref": "#/x-defs/schema-ptp-ttl-def"
-            }
-          ],
-          "default": 1,
-          "nullable": true
-        },
-        "message-mode": {
-          "description": "Mode in which PTP delay message is transmitted.\n",
-          "anyOf": [
-            {
-              "$ref": "#/x-defs/schema-ptp-message-mode-def"
-            }
-          ],
-          "default": "mixed",
-          "nullable": true
-        }
-      }
-    },
-    "schema-ptp-announce-interval-def": {
-      "x-cue-marker": "def",
-      "type": "integer",
-      "minimum": -3,
-      "maximum": 4,
-      "nullable": true
-    },
-    "schema-ptp-sync-interval-def": {
-      "x-cue-marker": "def",
-      "type": "integer",
-      "minimum": -7,
-      "maximum": 1,
-      "nullable": true
-    },
-    "schema-ptp-delay-req-interval-def": {
-      "x-cue-marker": "def",
-      "type": "integer",
-      "minimum": -7,
-      "maximum": 6,
-      "nullable": true
-    },
-    "schema-ptp-announce-timeout-def": {
-      "x-cue-marker": "def",
-      "type": "integer",
-      "minimum": 2,
-      "maximum": 10,
-      "nullable": true
-    },
-    "schema-ptp-vrf-ptp-timers-config": {
-      "x-cue-marker": "config",
-      "properties": {
-        "announce-interval": {
-          "description": "Mean time interval between successive Announce messages.  It's specified as a power of two in seconds.\n",
-          "anyOf": [
-            {
-              "$ref": "#/x-defs/schema-ptp-announce-interval-def"
-            }
-          ],
-          "default": 0,
-          "nullable": true
-        },
-        "sync-interval": {
-          "description": "The mean SyncInterval for multicast messages.  It's specified as a power of two in seconds.\n",
-          "anyOf": [
-            {
-              "$ref": "#/x-defs/schema-ptp-sync-interval-def"
-            }
-          ],
-          "default": -3,
-          "nullable": true
-        },
-        "delay-req-interval": {
-          "description": "The minimum permitted mean time interval between successive Delay Req messages.  It's specified as a power of two in seconds.\n",
-          "anyOf": [
-            {
-              "$ref": "#/x-defs/schema-ptp-delay-req-interval-def"
-            }
-          ],
-          "default": -3,
-          "nullable": true
-        },
-        "announce-timeout": {
-          "description": "The number of announceIntervals that have to pass without receipt of an Announce message before the occurrence of the timeout event\n",
-          "anyOf": [
-            {
-              "$ref": "#/x-defs/schema-ptp-announce-timeout-def"
-            }
-          ],
-          "default": 3,
-          "nullable": true
-        }
-      }
-    },
-    "cue-show-schema-ptp-vlan-ptp-timers": {
-      "description": "VLAN PTP timers. Inherited by interfaces in this VLAN.",
-      "x-unevaluatedProperties": false,
-      "x-cue-marker": "instance",
-      "type": "object",
-      "nullable": true,
-      "allOf": [
-        {
-          "$ref": "#/x-defs/schema-ptp-vrf-ptp-timers-config"
-        }
-      ]
-    },
-    "cue-show-schema-ptp-vlan-ptp-config-children": {
-      "x-cue-marker": "config-children",
-      "properties": {
-        "timers": {
-          "$ref": "#/x-defs/cue-show-schema-ptp-vlan-ptp-timers"
-        }
-      }
     },
     "cue-show-schema-ptp-vlan-ptp": {
       "description": "VLAN PTP configuration.  Inherited by interfaces in this VLAN.\n",
@@ -37334,33 +37073,10 @@
       "nullable": true,
       "allOf": [
         {
-          "$ref": "#/x-defs/cue-show-schema-feature-isa-feature-default-off-trait"
+          "$ref": "#/x-defs/schema-feature-isa-feature-default-on-trait"
         },
         {
-          "$ref": "#/x-defs/schema-ptp-vrf-ptp-config"
-        },
-        {
-          "$ref": "#/x-defs/cue-show-schema-ptp-vlan-ptp-config-children"
-        }
-      ]
-    },
-    "cue-show-schema-service-vlan-service-config-children": {
-      "x-cue-marker": "config-children",
-      "properties": {
-        "ptp": {
-          "$ref": "#/x-defs/cue-show-schema-ptp-vlan-ptp"
-        }
-      }
-    },
-    "cue-show-schema-service-vlan-service": {
-      "description": "A service",
-      "x-unevaluatedProperties": false,
-      "x-cue-marker": "instance",
-      "type": "object",
-      "nullable": true,
-      "allOf": [
-        {
-          "$ref": "#/x-defs/cue-show-schema-service-vlan-service-config-children"
+          "$ref": "#/x-defs/schema-common-empty-config"
         }
       ]
     },
@@ -37435,8 +37151,8 @@
     "cue-show-schema-bridge-domain-vlan-config-children": {
       "x-cue-marker": "config-children",
       "properties": {
-        "service": {
-          "$ref": "#/x-defs/cue-show-schema-service-vlan-service"
+        "ptp": {
+          "$ref": "#/x-defs/cue-show-schema-ptp-vlan-ptp"
         },
         "multicast": {
           "$ref": "#/x-defs/cue-show-schema-multicast-vlan-multicast"
@@ -37478,33 +37194,33 @@
         }
       ]
     },
-    "schema-feature-isa-feature-default-on-config": {
+    "schema-multicast-snooping-config": {
+      "x-cue-marker": "config",
+      "properties": {}
+    },
+    "schema-feature-isa-feature-default-off-config": {
       "x-cue-marker": "config",
       "properties": {
         "enable": {
-          "description": "Turn the feature 'on' or 'off'.  The default is 'on'.\n",
+          "description": "Turn the feature 'on' or 'off'.  The default is 'off'.\n",
           "allOf": [
             {
               "$ref": "#/x-defs/schema-common-offon-def"
             }
           ],
-          "default": "on",
+          "default": "off",
           "type": "string",
           "nullable": true
         }
       }
     },
-    "schema-feature-isa-feature-default-on-trait": {
+    "cue-show-schema-feature-isa-feature-default-off-trait": {
       "x-cue-marker": "trait",
       "allOf": [
         {
-          "$ref": "#/x-defs/schema-feature-isa-feature-default-on-config"
+          "$ref": "#/x-defs/schema-feature-isa-feature-default-off-config"
         }
       ]
-    },
-    "schema-multicast-snooping-config": {
-      "x-cue-marker": "config",
-      "properties": {}
     },
     "schema-multicast-querier-config": {
       "x-cue-marker": "config",
@@ -40497,149 +40213,195 @@
         }
       ]
     },
+    "schema-ptp-ptp-instance-id-def": {
+      "x-cue-marker": "def",
+      "type": "integer",
+      "x-cue-minimum": 1,
+      "x-cue-maximum": 16,
+      "nullable": true
+    },
+    "schema-ptp-delay-mechanism-def": {
+      "x-cue-marker": "def",
+      "type": "string",
+      "enum": [
+        "end-to-end",
+        null
+      ],
+      "nullable": true
+    },
+    "schema-ptp-transport-def": {
+      "x-cue-marker": "def",
+      "type": "string",
+      "enum": [
+        "ipv4",
+        "ipv6",
+        "802.3",
+        null
+      ],
+      "nullable": true
+    },
+    "schema-ptp-ttl-def": {
+      "x-cue-marker": "def",
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 255,
+      "nullable": true
+    },
+    "schema-ptp-message-mode-def": {
+      "x-cue-marker": "def",
+      "type": "string",
+      "enum": [
+        "multicast",
+        "unicast",
+        "mixed",
+        null
+      ],
+      "nullable": true
+    },
     "schema-ptp-if-ptp-config": {
       "x-cue-marker": "config",
       "properties": {
         "instance": {
-          "description": "PTP instance number.  If \"auto\", inherit from the VRF, VLAN, or bond config as appropriate.  This is the default.\n",
+          "description": "PTP instance number.\n",
           "anyOf": [
             {
               "$ref": "#/x-defs/schema-ptp-ptp-instance-id-def"
-            },
-            {
-              "$ref": "#/x-defs/schema-common-auto-def"
             }
           ],
-          "default": "auto",
+          "default": 1,
           "nullable": true
         },
         "forced-master": {
-          "description": "Configures PTP interfaces to forced master state.  If \"auto\", inherit from the VRF, VLAN, or bond config as appropriate.  This is the default.\n",
+          "description": "Configures PTP interfaces to forced master state.\n",
           "anyOf": [
             {
-              "$ref": "#/x-defs/schema-common-offonauto-def"
+              "$ref": "#/x-defs/schema-common-offon-def"
             }
           ],
-          "default": "auto",
+          "default": "off",
           "nullable": true
         },
         "acceptable-master": {
-          "description": "Determines if acceptable master check is enabled for this interface.  If \"auto\", inherit from the VRF, VLAN, or bond config as appropriate.  This is the default.\n",
+          "description": "Determines if acceptable master check is enabled for this interface.\n",
           "anyOf": [
             {
-              "$ref": "#/x-defs/schema-common-offonauto-def"
+              "$ref": "#/x-defs/schema-common-offon-def"
             }
           ],
-          "default": "auto",
+          "default": "off",
           "nullable": true
         },
         "delay-mechanism": {
-          "description": "Mode in which PTP message is transmitted.  If \"auto\", inherit from the VRF, VLAN, or bond config as appropriate.  This is the default.\n",
+          "description": "Mode in which PTP message is transmitted.\n",
           "anyOf": [
             {
               "$ref": "#/x-defs/schema-ptp-delay-mechanism-def"
-            },
-            {
-              "$ref": "#/x-defs/schema-common-auto-def"
             }
           ],
-          "default": "auto",
+          "default": "end-to-end",
           "nullable": true
         },
         "transport": {
-          "description": "Transport method for the PTP messages.  If \"auto\", inherit from the VRF, VLAN, or bond config as appropriate.  This is the default.\n",
+          "description": "Transport method for the PTP messages.\n",
           "anyOf": [
             {
               "$ref": "#/x-defs/schema-ptp-transport-def"
-            },
-            {
-              "$ref": "#/x-defs/schema-common-auto-def"
             }
           ],
-          "default": "auto",
+          "default": "ipv4",
           "nullable": true
         },
         "ttl": {
-          "description": "Maximum number of hops the PTP messages can make before it gets dropped.  If \"auto\", inherit from the VRF, VLAN, or bond config as appropriate.  This is the default.\n",
+          "description": "Maximum number of hops the PTP messages can make before it gets dropped.\n",
           "anyOf": [
             {
               "$ref": "#/x-defs/schema-ptp-ttl-def"
-            },
-            {
-              "$ref": "#/x-defs/schema-common-auto-def"
             }
           ],
-          "default": "auto",
+          "default": 1,
           "nullable": true
         },
         "message-mode": {
-          "description": "Mode in which PTP delay message is transmitted.  If \"auto\", inherit from the VRF, VLAN, or bond config as appropriate.  This is the default.\n",
+          "description": "Mode in which PTP delay message is transmitted.\n",
           "anyOf": [
             {
               "$ref": "#/x-defs/schema-ptp-message-mode-def"
-            },
-            {
-              "$ref": "#/x-defs/schema-common-auto-def"
             }
           ],
-          "default": "auto",
+          "default": "mixed",
           "nullable": true
         }
       }
+    },
+    "schema-ptp-announce-interval-def": {
+      "x-cue-marker": "def",
+      "type": "integer",
+      "minimum": -3,
+      "maximum": 4,
+      "nullable": true
+    },
+    "schema-ptp-sync-interval-def": {
+      "x-cue-marker": "def",
+      "type": "integer",
+      "minimum": -7,
+      "maximum": 1,
+      "nullable": true
+    },
+    "schema-ptp-delay-req-interval-def": {
+      "x-cue-marker": "def",
+      "type": "integer",
+      "minimum": -7,
+      "maximum": 6,
+      "nullable": true
+    },
+    "schema-ptp-announce-timeout-def": {
+      "x-cue-marker": "def",
+      "type": "integer",
+      "minimum": 2,
+      "maximum": 10,
+      "nullable": true
     },
     "schema-ptp-if-ptp-timers-config": {
       "x-cue-marker": "config",
       "properties": {
         "announce-interval": {
-          "description": "Mean time interval between successive Announce messages.  It's specified as a power of two in seconds.  If \"auto\", inherit from the VRF, VLAN, or bond config as appropriate.  This is the default.\n",
+          "description": "Mean time interval between successive Announce messages.  It's specified as a power of two in seconds.\n",
           "anyOf": [
             {
               "$ref": "#/x-defs/schema-ptp-announce-interval-def"
-            },
-            {
-              "$ref": "#/x-defs/schema-common-auto-def"
             }
           ],
-          "default": "auto",
+          "default": 0,
           "nullable": true
         },
         "sync-interval": {
-          "description": "The mean SyncInterval for multicast messages.  It's specified as a power of two in seconds.  If \"auto\", inherit from the VRF, VLAN, or bond config as appropriate.  This is the default.\n",
+          "description": "The mean SyncInterval for multicast messages.  It's specified as a power of two in seconds.\n",
           "anyOf": [
             {
               "$ref": "#/x-defs/schema-ptp-sync-interval-def"
-            },
-            {
-              "$ref": "#/x-defs/schema-common-auto-def"
             }
           ],
-          "default": "auto",
+          "default": -3,
           "nullable": true
         },
         "delay-req-interval": {
-          "description": "The minimum permitted mean time interval between successive Delay Req messages.  It's specified as a power of two in seconds.  If \"auto\", inherit from the VRF, VLAN, or bond config as appropriate. This is the default.\n",
+          "description": "The minimum permitted mean time interval between successive Delay Req messages.  It's specified as a power of two in seconds.\n",
           "anyOf": [
             {
               "$ref": "#/x-defs/schema-ptp-delay-req-interval-def"
-            },
-            {
-              "$ref": "#/x-defs/schema-common-auto-def"
             }
           ],
-          "default": "auto",
+          "default": -3,
           "nullable": true
         },
         "announce-timeout": {
-          "description": "The number of announceIntervals that have to pass without receipt of an Announce message before the occurrence of the timeout event If \"auto\", inherit from the VRF, VLAN, or bond config as appropriate.  This is the default.\n",
+          "description": "The number of announceIntervals that have to pass without receipt of an Announce message before the occurrence of the timeout event\n",
           "anyOf": [
             {
               "$ref": "#/x-defs/schema-ptp-announce-timeout-def"
-            },
-            {
-              "$ref": "#/x-defs/schema-common-auto-def"
             }
           ],
-          "default": "auto",
+          "default": 3,
           "nullable": true
         }
       }
@@ -40820,26 +40582,6 @@
         }
       ]
     },
-    "cue-show-schema-service-if-service-config-children": {
-      "x-cue-marker": "config-children",
-      "properties": {
-        "ptp": {
-          "$ref": "#/x-defs/cue-show-schema-ptp-if-ptp"
-        }
-      }
-    },
-    "cue-show-schema-service-if-service": {
-      "description": "A service",
-      "x-unevaluatedProperties": false,
-      "x-cue-marker": "instance",
-      "type": "object",
-      "nullable": true,
-      "allOf": [
-        {
-          "$ref": "#/x-defs/cue-show-schema-service-if-service-config-children"
-        }
-      ]
-    },
     "cue-show-schema-acl-outbound-config-children": {
       "x-cue-marker": "config-children",
       "properties": {
@@ -40973,8 +40715,8 @@
         "evpn": {
           "$ref": "#/x-defs/cue-show-schema-evpn-if-evpn"
         },
-        "service": {
-          "$ref": "#/x-defs/cue-show-schema-service-if-service"
+        "ptp": {
+          "$ref": "#/x-defs/cue-show-schema-ptp-if-ptp"
         },
         "acl": {
           "$ref": "#/x-defs/cue-show-schema-acl-if-acls"
@@ -47616,18 +47358,6 @@
     "schema-ptp-ptp-config": {
       "x-cue-marker": "config",
       "properties": {
-        "profile-type": {
-          "description": "Profile provides various PTP configuration parameters optimized for a specific application\n",
-          "type": "string",
-          "enum": [
-            "default-1588",
-            "aes67",
-            "smpte",
-            null
-          ],
-          "nullable": true,
-          "default": "default-1588"
-        },
         "two-step": {
           "description": "Determines if the Clock is a 2 step clock",
           "anyOf": [
@@ -47635,7 +47365,7 @@
               "$ref": "#/x-defs/schema-common-offon-def"
             }
           ],
-          "default": "off",
+          "default": "on",
           "nullable": true
         },
         "priority1": {
@@ -47770,21 +47500,21 @@
           "description": "Minimum offset threshold in nano seconds",
           "type": "integer",
           "maximum": -1,
-          "default": -200,
+          "default": -50,
           "nullable": true
         },
         "max-offset-threshold": {
           "description": "Maximum offset threshold in nano seconds",
           "type": "integer",
           "minimum": 1,
-          "default": 200,
+          "default": 50,
           "nullable": true
         },
         "path-delay-threshold": {
           "description": "Path delay threshold in nano seconds",
           "type": "integer",
           "minimum": 1,
-          "default": 1,
+          "default": 200,
           "nullable": true
         }
       }
@@ -48390,9 +48120,46 @@
         }
       ]
     },
-    "schema-reserved-vlan-config-children": {
+    "schema-reserved-l3-vni-vlan-config": {
+      "x-cue-marker": "config",
+      "properties": {
+        "start": {
+          "description": "Start of reserved vlan range for L3 VNI",
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 4093,
+          "default": 4000,
+          "nullable": true
+        },
+        "end": {
+          "description": "End of reserved vlan range for L3 VNI",
+          "type": "integer",
+          "minimum": 2,
+          "maximum": 4093,
+          "default": 4064,
+          "nullable": true
+        }
+      }
+    },
+    "cue-show-schema-reserved-l3-vni-vlan": {
+      "description": "Reserved vlans to be used with l3vni",
+      "x-unevaluatedProperties": false,
+      "x-cue-marker": "instance",
+      "type": "object",
+      "nullable": true,
+      "allOf": [
+        {
+          "$ref": "#/x-defs/schema-reserved-l3-vni-vlan-config"
+        }
+      ]
+    },
+    "cue-show-schema-reserved-vlan-config-children": {
       "x-cue-marker": "config-children",
-      "properties": {}
+      "properties": {
+        "l3-vni-vlan": {
+          "$ref": "#/x-defs/cue-show-schema-reserved-l3-vni-vlan"
+        }
+      }
     },
     "cue-show-schema-reserved-vlan": {
       "description": "reserved vlan ranges",
@@ -48402,7 +48169,7 @@
       "nullable": true,
       "allOf": [
         {
-          "$ref": "#/x-defs/schema-reserved-vlan-config-children"
+          "$ref": "#/x-defs/cue-show-schema-reserved-vlan-config-children"
         }
       ]
     },
@@ -52160,19 +51927,6 @@
           "maximum": 16777215,
           "nullable": true,
           "default": 1
-        },
-        "network": {
-          "description": "Method to identify which interfaces should be used in ospf\n",
-          "anyOf": [
-            {
-              "$ref": "#/x-defs/schema-ip-address-ipv4-prefix-def"
-            },
-            {
-              "$ref": "#/x-defs/schema-common-none-def"
-            }
-          ],
-          "nullable": true,
-          "default": "none"
         }
       }
     },
@@ -52293,6 +52047,49 @@
         }
       ]
     },
+    "schema-ospf-network-id": {
+      "x-cue-marker": "id",
+      "x-cue-synopsis": "Network",
+      "anyOf": [
+        {
+          "$ref": "#/x-defs/schema-ip-address-ipv4-prefix-def"
+        }
+      ],
+      "type": "string",
+      "nullable": true
+    },
+    "cue-show-schema-ospf-network": {
+      "description": "Filters out components of the prefix",
+      "x-unevaluatedProperties": false,
+      "x-cue-marker": "instance",
+      "type": "object",
+      "nullable": true,
+      "allOf": [
+        {
+          "$ref": "#/x-defs/schema-common-empty-config"
+        }
+      ]
+    },
+    "cue-show-schema-ospf-networks-mapping": {
+      "x-cue-marker": "mapping",
+      "x-propertyNames": {
+        "$ref": "#/x-defs/schema-ospf-network-id"
+      },
+      "additionalProperties": {
+        "$ref": "#/x-defs/cue-show-schema-ospf-network"
+      }
+    },
+    "cue-show-schema-ospf-networks": {
+      "description": "Area networks",
+      "x-cue-marker": "collection",
+      "type": "object",
+      "nullable": true,
+      "allOf": [
+        {
+          "$ref": "#/x-defs/cue-show-schema-ospf-networks-mapping"
+        }
+      ]
+    },
     "cue-show-schema-ospf-area-config-children": {
       "x-cue-marker": "config-children",
       "properties": {
@@ -52301,6 +52098,9 @@
         },
         "range": {
           "$ref": "#/x-defs/cue-show-schema-ospf-ranges"
+        },
+        "network": {
+          "$ref": "#/x-defs/cue-show-schema-ospf-networks"
         }
       }
     },
@@ -52973,26 +52773,6 @@
         }
       ]
     },
-    "cue-show-schema-ptp-vrf-ptp-timers": {
-      "description": "VRF PTP timers. Inherited by interfaces in this VRF.",
-      "x-unevaluatedProperties": false,
-      "x-cue-marker": "instance",
-      "type": "object",
-      "nullable": true,
-      "allOf": [
-        {
-          "$ref": "#/x-defs/schema-ptp-vrf-ptp-timers-config"
-        }
-      ]
-    },
-    "cue-show-schema-ptp-vrf-ptp-config-children": {
-      "x-cue-marker": "config-children",
-      "properties": {
-        "timers": {
-          "$ref": "#/x-defs/cue-show-schema-ptp-vrf-ptp-timers"
-        }
-      }
-    },
     "cue-show-schema-ptp-vrf-ptp": {
       "description": "VRF PTP configuration.  Inherited by interfaces in this VRF.\n",
       "x-unevaluatedProperties": false,
@@ -53001,33 +52781,10 @@
       "nullable": true,
       "allOf": [
         {
-          "$ref": "#/x-defs/cue-show-schema-feature-isa-feature-default-off-trait"
+          "$ref": "#/x-defs/schema-feature-isa-feature-default-on-trait"
         },
         {
-          "$ref": "#/x-defs/schema-ptp-vrf-ptp-config"
-        },
-        {
-          "$ref": "#/x-defs/cue-show-schema-ptp-vrf-ptp-config-children"
-        }
-      ]
-    },
-    "cue-show-schema-service-vrf-service-config-children": {
-      "x-cue-marker": "config-children",
-      "properties": {
-        "ptp": {
-          "$ref": "#/x-defs/cue-show-schema-ptp-vrf-ptp"
-        }
-      }
-    },
-    "cue-show-schema-service-vrf-service": {
-      "description": "A service",
-      "x-unevaluatedProperties": false,
-      "x-cue-marker": "instance",
-      "type": "object",
-      "nullable": true,
-      "allOf": [
-        {
-          "$ref": "#/x-defs/cue-show-schema-service-vrf-service-config-children"
+          "$ref": "#/x-defs/schema-common-empty-config"
         }
       ]
     },
@@ -53043,8 +52800,8 @@
         "evpn": {
           "$ref": "#/x-defs/cue-show-schema-evpn-vrf-evpn"
         },
-        "service": {
-          "$ref": "#/x-defs/cue-show-schema-service-vrf-service"
+        "ptp": {
+          "$ref": "#/x-defs/cue-show-schema-ptp-vrf-ptp"
         }
       }
     },
@@ -53557,6 +53314,14 @@
         },
         "all": {
           "description": "TCP ALL flag",
+          "allOf": [
+            {
+              "$ref": "#/x-defs/cue-patch-schema-flags-flag"
+            }
+          ]
+        },
+        "none": {
+          "description": "TCP No flags",
           "allOf": [
             {
               "$ref": "#/x-defs/cue-patch-schema-flags-flag"
@@ -54150,34 +53915,6 @@
         }
       ]
     },
-    "cue-patch-schema-feature-isa-feature-default-off-trait": {
-      "x-cue-marker": "trait",
-      "allOf": [
-        {
-          "$ref": "#/x-defs/schema-feature-isa-feature-default-off-config"
-        }
-      ]
-    },
-    "cue-patch-schema-ptp-vlan-ptp-timers": {
-      "description": "VLAN PTP timers. Inherited by interfaces in this VLAN.",
-      "x-unevaluatedProperties": false,
-      "x-cue-marker": "instance",
-      "type": "object",
-      "nullable": true,
-      "allOf": [
-        {
-          "$ref": "#/x-defs/schema-ptp-vrf-ptp-timers-config"
-        }
-      ]
-    },
-    "cue-patch-schema-ptp-vlan-ptp-config-children": {
-      "x-cue-marker": "config-children",
-      "properties": {
-        "timers": {
-          "$ref": "#/x-defs/cue-patch-schema-ptp-vlan-ptp-timers"
-        }
-      }
-    },
     "cue-patch-schema-ptp-vlan-ptp": {
       "description": "VLAN PTP configuration.  Inherited by interfaces in this VLAN.\n",
       "x-unevaluatedProperties": false,
@@ -54186,33 +53923,10 @@
       "nullable": true,
       "allOf": [
         {
-          "$ref": "#/x-defs/cue-patch-schema-feature-isa-feature-default-off-trait"
+          "$ref": "#/x-defs/schema-feature-isa-feature-default-on-trait"
         },
         {
-          "$ref": "#/x-defs/schema-ptp-vrf-ptp-config"
-        },
-        {
-          "$ref": "#/x-defs/cue-patch-schema-ptp-vlan-ptp-config-children"
-        }
-      ]
-    },
-    "cue-patch-schema-service-vlan-service-config-children": {
-      "x-cue-marker": "config-children",
-      "properties": {
-        "ptp": {
-          "$ref": "#/x-defs/cue-patch-schema-ptp-vlan-ptp"
-        }
-      }
-    },
-    "cue-patch-schema-service-vlan-service": {
-      "description": "A service",
-      "x-unevaluatedProperties": false,
-      "x-cue-marker": "instance",
-      "type": "object",
-      "nullable": true,
-      "allOf": [
-        {
-          "$ref": "#/x-defs/cue-patch-schema-service-vlan-service-config-children"
+          "$ref": "#/x-defs/schema-common-empty-config"
         }
       ]
     },
@@ -54271,8 +53985,8 @@
     "cue-patch-schema-bridge-domain-vlan-config-children": {
       "x-cue-marker": "config-children",
       "properties": {
-        "service": {
-          "$ref": "#/x-defs/cue-patch-schema-service-vlan-service"
+        "ptp": {
+          "$ref": "#/x-defs/cue-patch-schema-ptp-vlan-ptp"
         },
         "multicast": {
           "$ref": "#/x-defs/cue-patch-schema-multicast-vlan-multicast"
@@ -54311,6 +54025,14 @@
       "allOf": [
         {
           "$ref": "#/x-defs/cue-patch-schema-bridge-domain-vlans-mapping"
+        }
+      ]
+    },
+    "cue-patch-schema-feature-isa-feature-default-off-trait": {
+      "x-cue-marker": "trait",
+      "allOf": [
+        {
+          "$ref": "#/x-defs/schema-feature-isa-feature-default-off-config"
         }
       ]
     },
@@ -55476,26 +55198,6 @@
         }
       ]
     },
-    "cue-patch-schema-service-if-service-config-children": {
-      "x-cue-marker": "config-children",
-      "properties": {
-        "ptp": {
-          "$ref": "#/x-defs/cue-patch-schema-ptp-if-ptp"
-        }
-      }
-    },
-    "cue-patch-schema-service-if-service": {
-      "description": "A service",
-      "x-unevaluatedProperties": false,
-      "x-cue-marker": "instance",
-      "type": "object",
-      "nullable": true,
-      "allOf": [
-        {
-          "$ref": "#/x-defs/cue-patch-schema-service-if-service-config-children"
-        }
-      ]
-    },
     "cue-patch-schema-acl-outbound-config-children": {
       "x-cue-marker": "config-children",
       "properties": {
@@ -55620,8 +55322,8 @@
         "evpn": {
           "$ref": "#/x-defs/cue-patch-schema-evpn-if-evpn"
         },
-        "service": {
-          "$ref": "#/x-defs/cue-patch-schema-service-if-service"
+        "ptp": {
+          "$ref": "#/x-defs/cue-patch-schema-ptp-if-ptp"
         },
         "acl": {
           "$ref": "#/x-defs/cue-patch-schema-acl-if-acls"
@@ -58591,6 +58293,26 @@
         }
       ]
     },
+    "cue-patch-schema-reserved-l3-vni-vlan": {
+      "description": "Reserved vlans to be used with l3vni",
+      "x-unevaluatedProperties": false,
+      "x-cue-marker": "instance",
+      "type": "object",
+      "nullable": true,
+      "allOf": [
+        {
+          "$ref": "#/x-defs/schema-reserved-l3-vni-vlan-config"
+        }
+      ]
+    },
+    "cue-patch-schema-reserved-vlan-config-children": {
+      "x-cue-marker": "config-children",
+      "properties": {
+        "l3-vni-vlan": {
+          "$ref": "#/x-defs/cue-patch-schema-reserved-l3-vni-vlan"
+        }
+      }
+    },
     "cue-patch-schema-reserved-vlan": {
       "description": "reserved vlan ranges",
       "x-unevaluatedProperties": false,
@@ -58599,7 +58321,7 @@
       "nullable": true,
       "allOf": [
         {
-          "$ref": "#/x-defs/schema-reserved-vlan-config-children"
+          "$ref": "#/x-defs/cue-patch-schema-reserved-vlan-config-children"
         }
       ]
     },
@@ -60577,6 +60299,38 @@
         }
       ]
     },
+    "cue-patch-schema-ospf-network": {
+      "description": "Filters out components of the prefix",
+      "x-unevaluatedProperties": false,
+      "x-cue-marker": "instance",
+      "type": "object",
+      "nullable": true,
+      "allOf": [
+        {
+          "$ref": "#/x-defs/schema-common-empty-config"
+        }
+      ]
+    },
+    "cue-patch-schema-ospf-networks-mapping": {
+      "x-cue-marker": "mapping",
+      "x-propertyNames": {
+        "$ref": "#/x-defs/schema-ospf-network-id"
+      },
+      "additionalProperties": {
+        "$ref": "#/x-defs/cue-patch-schema-ospf-network"
+      }
+    },
+    "cue-patch-schema-ospf-networks": {
+      "description": "Area networks",
+      "x-cue-marker": "collection",
+      "type": "object",
+      "nullable": true,
+      "allOf": [
+        {
+          "$ref": "#/x-defs/cue-patch-schema-ospf-networks-mapping"
+        }
+      ]
+    },
     "cue-patch-schema-ospf-area-config-children": {
       "x-cue-marker": "config-children",
       "properties": {
@@ -60585,6 +60339,9 @@
         },
         "range": {
           "$ref": "#/x-defs/cue-patch-schema-ospf-ranges"
+        },
+        "network": {
+          "$ref": "#/x-defs/cue-patch-schema-ospf-networks"
         }
       }
     },
@@ -60938,26 +60695,6 @@
         }
       ]
     },
-    "cue-patch-schema-ptp-vrf-ptp-timers": {
-      "description": "VRF PTP timers. Inherited by interfaces in this VRF.",
-      "x-unevaluatedProperties": false,
-      "x-cue-marker": "instance",
-      "type": "object",
-      "nullable": true,
-      "allOf": [
-        {
-          "$ref": "#/x-defs/schema-ptp-vrf-ptp-timers-config"
-        }
-      ]
-    },
-    "cue-patch-schema-ptp-vrf-ptp-config-children": {
-      "x-cue-marker": "config-children",
-      "properties": {
-        "timers": {
-          "$ref": "#/x-defs/cue-patch-schema-ptp-vrf-ptp-timers"
-        }
-      }
-    },
     "cue-patch-schema-ptp-vrf-ptp": {
       "description": "VRF PTP configuration.  Inherited by interfaces in this VRF.\n",
       "x-unevaluatedProperties": false,
@@ -60966,33 +60703,10 @@
       "nullable": true,
       "allOf": [
         {
-          "$ref": "#/x-defs/cue-patch-schema-feature-isa-feature-default-off-trait"
+          "$ref": "#/x-defs/schema-feature-isa-feature-default-on-trait"
         },
         {
-          "$ref": "#/x-defs/schema-ptp-vrf-ptp-config"
-        },
-        {
-          "$ref": "#/x-defs/cue-patch-schema-ptp-vrf-ptp-config-children"
-        }
-      ]
-    },
-    "cue-patch-schema-service-vrf-service-config-children": {
-      "x-cue-marker": "config-children",
-      "properties": {
-        "ptp": {
-          "$ref": "#/x-defs/cue-patch-schema-ptp-vrf-ptp"
-        }
-      }
-    },
-    "cue-patch-schema-service-vrf-service": {
-      "description": "A service",
-      "x-unevaluatedProperties": false,
-      "x-cue-marker": "instance",
-      "type": "object",
-      "nullable": true,
-      "allOf": [
-        {
-          "$ref": "#/x-defs/cue-patch-schema-service-vrf-service-config-children"
+          "$ref": "#/x-defs/schema-common-empty-config"
         }
       ]
     },
@@ -61008,8 +60722,8 @@
         "evpn": {
           "$ref": "#/x-defs/cue-patch-schema-evpn-vrf-evpn"
         },
-        "service": {
-          "$ref": "#/x-defs/cue-patch-schema-service-vrf-service"
+        "ptp": {
+          "$ref": "#/x-defs/cue-patch-schema-ptp-vrf-ptp"
         }
       }
     },
@@ -61273,7 +60987,7 @@
       }
     },
     "parameter-pbr-nhg-via-id": {
-      "name": "nexthop-group-id",
+      "name": "via-id",
       "in": "path",
       "required": true,
       "description": "The name of the nexthop-group IP address to get.",
@@ -63443,26 +63157,6 @@
         "$ref": "#/x-defs/schema-vxlan-head-end-replication-id"
       }
     },
-    "cue-show-response-service-vlan-service": {
-      "description": "A service",
-      "content": {
-        "application/json": {
-          "schema": {
-            "$ref": "#/x-defs/cue-show-schema-service-vlan-service"
-          }
-        }
-      }
-    },
-    "cue-patch-response-service-vlan-service": {
-      "description": "A service",
-      "content": {
-        "application/json": {
-          "schema": {
-            "$ref": "#/x-defs/cue-patch-schema-service-vlan-service"
-          }
-        }
-      }
-    },
     "cue-show-response-ptp-vlan-ptp": {
       "description": "VLAN PTP configuration.  Inherited by interfaces in this VLAN.\n",
       "content": {
@@ -63479,26 +63173,6 @@
         "application/json": {
           "schema": {
             "$ref": "#/x-defs/cue-patch-schema-ptp-vlan-ptp"
-          }
-        }
-      }
-    },
-    "cue-show-response-ptp-vlan-ptp-timers": {
-      "description": "VLAN PTP timers. Inherited by interfaces in this VLAN.",
-      "content": {
-        "application/json": {
-          "schema": {
-            "$ref": "#/x-defs/cue-show-schema-ptp-vlan-ptp-timers"
-          }
-        }
-      }
-    },
-    "cue-patch-response-ptp-vlan-ptp-timers": {
-      "description": "VLAN PTP timers. Inherited by interfaces in this VLAN.",
-      "content": {
-        "application/json": {
-          "schema": {
-            "$ref": "#/x-defs/cue-patch-schema-ptp-vlan-ptp-timers"
           }
         }
       }
@@ -64874,26 +64548,6 @@
         }
       }
     },
-    "cue-show-response-service-if-service": {
-      "description": "A service",
-      "content": {
-        "application/json": {
-          "schema": {
-            "$ref": "#/x-defs/cue-show-schema-service-if-service"
-          }
-        }
-      }
-    },
-    "cue-patch-response-service-if-service": {
-      "description": "A service",
-      "content": {
-        "application/json": {
-          "schema": {
-            "$ref": "#/x-defs/cue-patch-schema-service-if-service"
-          }
-        }
-      }
-    },
     "cue-show-response-acl-if-acls": {
       "description": "Interface ACL rules",
       "content": {
@@ -65900,6 +65554,46 @@
         "application/json": {
           "schema": {
             "$ref": "#/x-defs/cue-patch-schema-reserved-rt-pbr"
+          }
+        }
+      }
+    },
+    "cue-show-response-reserved-vlan": {
+      "description": "reserved vlan ranges",
+      "content": {
+        "application/json": {
+          "schema": {
+            "$ref": "#/x-defs/cue-show-schema-reserved-vlan"
+          }
+        }
+      }
+    },
+    "cue-patch-response-reserved-vlan": {
+      "description": "reserved vlan ranges",
+      "content": {
+        "application/json": {
+          "schema": {
+            "$ref": "#/x-defs/cue-patch-schema-reserved-vlan"
+          }
+        }
+      }
+    },
+    "cue-show-response-reserved-l3-vni-vlan": {
+      "description": "Reserved vlans to be used with l3vni",
+      "content": {
+        "application/json": {
+          "schema": {
+            "$ref": "#/x-defs/cue-show-schema-reserved-l3-vni-vlan"
+          }
+        }
+      }
+    },
+    "cue-patch-response-reserved-l3-vni-vlan": {
+      "description": "Reserved vlans to be used with l3vni",
+      "content": {
+        "application/json": {
+          "schema": {
+            "$ref": "#/x-defs/cue-patch-schema-reserved-l3-vni-vlan"
           }
         }
       }
@@ -68638,26 +68332,6 @@
         }
       }
     },
-    "cue-show-response-service-vrf-service": {
-      "description": "A service",
-      "content": {
-        "application/json": {
-          "schema": {
-            "$ref": "#/x-defs/cue-show-schema-service-vrf-service"
-          }
-        }
-      }
-    },
-    "cue-patch-response-service-vrf-service": {
-      "description": "A service",
-      "content": {
-        "application/json": {
-          "schema": {
-            "$ref": "#/x-defs/cue-patch-schema-service-vrf-service"
-          }
-        }
-      }
-    },
     "cue-show-response-ptp-vrf-ptp": {
       "description": "VRF PTP configuration.  Inherited by interfaces in this VRF.\n",
       "content": {
@@ -68674,26 +68348,6 @@
         "application/json": {
           "schema": {
             "$ref": "#/x-defs/cue-patch-schema-ptp-vrf-ptp"
-          }
-        }
-      }
-    },
-    "cue-show-response-ptp-vrf-ptp-timers": {
-      "description": "VRF PTP timers. Inherited by interfaces in this VRF.",
-      "content": {
-        "application/json": {
-          "schema": {
-            "$ref": "#/x-defs/cue-show-schema-ptp-vrf-ptp-timers"
-          }
-        }
-      }
-    },
-    "cue-patch-response-ptp-vrf-ptp-timers": {
-      "description": "VRF PTP timers. Inherited by interfaces in this VRF.",
-      "content": {
-        "application/json": {
-          "schema": {
-            "$ref": "#/x-defs/cue-patch-schema-ptp-vrf-ptp-timers"
           }
         }
       }
@@ -69310,6 +68964,55 @@
         "application/json": {
           "schema": {
             "$ref": "#/x-defs/cue-patch-schema-ospf-range"
+          }
+        }
+      }
+    },
+    "cue-show-response-ospf-networks": {
+      "description": "Area networks",
+      "content": {
+        "application/json": {
+          "schema": {
+            "$ref": "#/x-defs/cue-show-schema-ospf-networks"
+          }
+        }
+      }
+    },
+    "cue-patch-response-ospf-networks": {
+      "description": "Area networks",
+      "content": {
+        "application/json": {
+          "schema": {
+            "$ref": "#/x-defs/cue-patch-schema-ospf-networks"
+          }
+        }
+      }
+    },
+    "parameter-ospf-network-id": {
+      "name": "network-id",
+      "in": "path",
+      "required": true,
+      "description": "The id of the network to get.",
+      "schema": {
+        "$ref": "#/x-defs/schema-ospf-network-id"
+      }
+    },
+    "cue-show-response-ospf-network": {
+      "description": "Filters out components of the prefix",
+      "content": {
+        "application/json": {
+          "schema": {
+            "$ref": "#/x-defs/cue-show-schema-ospf-network"
+          }
+        }
+      }
+    },
+    "cue-patch-response-ospf-network": {
+      "description": "Filters out components of the prefix",
+      "content": {
+        "application/json": {
+          "schema": {
+            "$ref": "#/x-defs/cue-patch-schema-ospf-network"
           }
         }
       }
@@ -69969,6 +69672,32 @@
         "$ref": "#/x-defs/schema-acl-port"
       }
     },
+    "schema-acl-ports-constraints": {
+      "x-cue-marker": "constraints",
+      "allOf": [
+        {
+          "$ref": "#/x-defs/schema-common-no-nulls-def"
+        },
+        {
+          "x-cue-error": "Must be either \"ANY\" or a set of ports\n",
+          "anyOf": [
+            {
+              "required": [
+                "ANY"
+              ],
+              "maxProperties": 1
+            },
+            {
+              "not": {
+                "required": [
+                  "ANY"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
     "schema-acl-ports": {
       "description": "L4 ports",
       "x-cue-marker": "collection",
@@ -69979,10 +69708,10 @@
           "$ref": "#/x-defs/schema-acl-ports-mapping"
         },
         {
-          "$ref": "#/x-defs/schema-common-no-nulls-constraints"
+          "$ref": "#/x-defs/schema-acl-ports-presentation"
         },
         {
-          "$ref": "#/x-defs/schema-acl-ports-presentation"
+          "$ref": "#/x-defs/schema-acl-ports-constraints"
         }
       ]
     },
@@ -69999,14 +69728,6 @@
         },
         {
           "$ref": "#/x-defs/schema-common-no-nulls-constraints"
-        }
-      ]
-    },
-    "schema-flags-flags-constraints": {
-      "x-cue-marker": "constraints",
-      "allOf": [
-        {
-          "$ref": "#/x-defs/schema-common-no-nulls-def"
         }
       ]
     },
@@ -70086,6 +69807,14 @@
               "$ref": "#/x-defs/schema-flags-flag"
             }
           ]
+        },
+        "none": {
+          "description": "TCP No flags",
+          "allOf": [
+            {
+              "$ref": "#/x-defs/schema-flags-flag"
+            }
+          ]
         }
       }
     },
@@ -70151,6 +69880,49 @@
         {}
       ]
     },
+    "schema-acl-tcp-flags-constraints": {
+      "x-cue-marker": "constraints",
+      "allOf": [
+        {
+          "$ref": "#/x-defs/schema-common-no-nulls-def"
+        },
+        {
+          "x-cue-error": "Must be either \"all\" or \"none\" or other flags\n",
+          "anyOf": [
+            {
+              "required": [
+                "all"
+              ],
+              "maxProperties": 1
+            },
+            {
+              "required": [
+                "none"
+              ],
+              "maxProperties": 1
+            },
+            {
+              "allOf": [
+                {
+                  "not": {
+                    "required": [
+                      "none"
+                    ]
+                  }
+                },
+                {
+                  "not": {
+                    "required": [
+                      "all"
+                    ]
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
     "schema-acl-tcp-flags": {
       "description": "TCP flags",
       "x-unevaluatedProperties": false,
@@ -70159,13 +69931,13 @@
       "nullable": true,
       "allOf": [
         {
-          "$ref": "#/x-defs/schema-flags-flags-constraints"
-        },
-        {
           "$ref": "#/x-defs/schema-acl-tcp-flags-config-children"
         },
         {
           "$ref": "#/x-defs/schema-acl-tcp-flags-defaults"
+        },
+        {
+          "$ref": "#/x-defs/schema-acl-tcp-flags-constraints"
         }
       ]
     },
@@ -70190,6 +69962,405 @@
         }
       }
     },
+    "schema-acl-tcp-flags-is-syn-def": {
+      "x-cue-marker": "def",
+      "required": [
+        "flags"
+      ],
+      "properties": {
+        "flags": {
+          "required": [
+            "syn"
+          ]
+        }
+      }
+    },
+    "schema-acl-tcp-flags-is-not-syn-def": {
+      "x-cue-marker": "def",
+      "not": {
+        "$ref": "#/x-defs/schema-acl-tcp-flags-is-syn-def"
+      }
+    },
+    "schema-acl-tcp-mask-is-syn-def": {
+      "x-cue-marker": "def",
+      "required": [
+        "mask"
+      ],
+      "properties": {
+        "mask": {
+          "required": [
+            "syn"
+          ]
+        }
+      }
+    },
+    "schema-acl-tcp-mask-is-all-def": {
+      "x-cue-marker": "def",
+      "required": [
+        "mask"
+      ],
+      "properties": {
+        "mask": {
+          "required": [
+            "all"
+          ]
+        }
+      }
+    },
+    "schema-acl-tcp-syn-constraints": {
+      "x-cue-marker": "constraints",
+      "oneOf": [
+        {
+          "$ref": "#/x-defs/schema-acl-tcp-flags-is-not-syn-def"
+        },
+        {
+          "allOf": [
+            {
+              "$ref": "#/x-defs/schema-acl-tcp-flags-is-syn-def"
+            },
+            {
+              "$ref": "#/x-defs/schema-acl-tcp-mask-is-syn-def"
+            }
+          ]
+        },
+        {
+          "allOf": [
+            {
+              "$ref": "#/x-defs/schema-acl-tcp-flags-is-syn-def"
+            },
+            {
+              "$ref": "#/x-defs/schema-acl-tcp-mask-is-all-def"
+            }
+          ]
+        }
+      ]
+    },
+    "schema-acl-tcp-flags-is-urg-def": {
+      "x-cue-marker": "def",
+      "required": [
+        "flags"
+      ],
+      "properties": {
+        "flags": {
+          "required": [
+            "urg"
+          ]
+        }
+      }
+    },
+    "schema-acl-tcp-flags-is-not-urg-def": {
+      "x-cue-marker": "def",
+      "not": {
+        "$ref": "#/x-defs/schema-acl-tcp-flags-is-urg-def"
+      }
+    },
+    "schema-acl-tcp-mask-is-urg-def": {
+      "x-cue-marker": "def",
+      "required": [
+        "mask"
+      ],
+      "properties": {
+        "mask": {
+          "required": [
+            "urg"
+          ]
+        }
+      }
+    },
+    "schema-acl-tcp-urg-constraints": {
+      "x-cue-marker": "constraints",
+      "oneOf": [
+        {
+          "$ref": "#/x-defs/schema-acl-tcp-flags-is-not-urg-def"
+        },
+        {
+          "allOf": [
+            {
+              "$ref": "#/x-defs/schema-acl-tcp-flags-is-urg-def"
+            },
+            {
+              "$ref": "#/x-defs/schema-acl-tcp-mask-is-urg-def"
+            }
+          ]
+        },
+        {
+          "allOf": [
+            {
+              "$ref": "#/x-defs/schema-acl-tcp-flags-is-urg-def"
+            },
+            {
+              "$ref": "#/x-defs/schema-acl-tcp-mask-is-all-def"
+            }
+          ]
+        }
+      ]
+    },
+    "schema-acl-tcp-flags-is-ack-def": {
+      "x-cue-marker": "def",
+      "required": [
+        "flags"
+      ],
+      "properties": {
+        "flags": {
+          "required": [
+            "ack"
+          ]
+        }
+      }
+    },
+    "schema-acl-tcp-flags-is-not-ack-def": {
+      "x-cue-marker": "def",
+      "not": {
+        "$ref": "#/x-defs/schema-acl-tcp-flags-is-ack-def"
+      }
+    },
+    "schema-acl-tcp-mask-is-ack-def": {
+      "x-cue-marker": "def",
+      "required": [
+        "mask"
+      ],
+      "properties": {
+        "mask": {
+          "required": [
+            "ack"
+          ]
+        }
+      }
+    },
+    "schema-acl-tcp-ack-constraints": {
+      "x-cue-marker": "constraints",
+      "oneOf": [
+        {
+          "$ref": "#/x-defs/schema-acl-tcp-flags-is-not-ack-def"
+        },
+        {
+          "allOf": [
+            {
+              "$ref": "#/x-defs/schema-acl-tcp-flags-is-ack-def"
+            },
+            {
+              "$ref": "#/x-defs/schema-acl-tcp-mask-is-ack-def"
+            }
+          ]
+        },
+        {
+          "allOf": [
+            {
+              "$ref": "#/x-defs/schema-acl-tcp-flags-is-ack-def"
+            },
+            {
+              "$ref": "#/x-defs/schema-acl-tcp-mask-is-all-def"
+            }
+          ]
+        }
+      ]
+    },
+    "schema-acl-tcp-flags-is-fin-def": {
+      "x-cue-marker": "def",
+      "required": [
+        "flags"
+      ],
+      "properties": {
+        "flags": {
+          "required": [
+            "fin"
+          ]
+        }
+      }
+    },
+    "schema-acl-tcp-flags-is-not-fin-def": {
+      "x-cue-marker": "def",
+      "not": {
+        "$ref": "#/x-defs/schema-acl-tcp-flags-is-fin-def"
+      }
+    },
+    "schema-acl-tcp-mask-is-fin-def": {
+      "x-cue-marker": "def",
+      "required": [
+        "mask"
+      ],
+      "properties": {
+        "mask": {
+          "required": [
+            "fin"
+          ]
+        }
+      }
+    },
+    "schema-acl-tcp-fin-constraints": {
+      "x-cue-marker": "constraints",
+      "oneOf": [
+        {
+          "$ref": "#/x-defs/schema-acl-tcp-flags-is-not-fin-def"
+        },
+        {
+          "allOf": [
+            {
+              "$ref": "#/x-defs/schema-acl-tcp-flags-is-fin-def"
+            },
+            {
+              "$ref": "#/x-defs/schema-acl-tcp-mask-is-fin-def"
+            }
+          ]
+        },
+        {
+          "allOf": [
+            {
+              "$ref": "#/x-defs/schema-acl-tcp-flags-is-fin-def"
+            },
+            {
+              "$ref": "#/x-defs/schema-acl-tcp-mask-is-all-def"
+            }
+          ]
+        }
+      ]
+    },
+    "schema-acl-tcp-flags-is-psh-def": {
+      "x-cue-marker": "def",
+      "required": [
+        "flags"
+      ],
+      "properties": {
+        "flags": {
+          "required": [
+            "psh"
+          ]
+        }
+      }
+    },
+    "schema-acl-tcp-flags-is-not-psh-def": {
+      "x-cue-marker": "def",
+      "not": {
+        "$ref": "#/x-defs/schema-acl-tcp-flags-is-psh-def"
+      }
+    },
+    "schema-acl-tcp-mask-is-psh-def": {
+      "x-cue-marker": "def",
+      "required": [
+        "mask"
+      ],
+      "properties": {
+        "mask": {
+          "required": [
+            "psh"
+          ]
+        }
+      }
+    },
+    "schema-acl-tcp-psh-constraints": {
+      "x-cue-marker": "constraints",
+      "oneOf": [
+        {
+          "$ref": "#/x-defs/schema-acl-tcp-flags-is-not-psh-def"
+        },
+        {
+          "allOf": [
+            {
+              "$ref": "#/x-defs/schema-acl-tcp-flags-is-psh-def"
+            },
+            {
+              "$ref": "#/x-defs/schema-acl-tcp-mask-is-psh-def"
+            }
+          ]
+        },
+        {
+          "allOf": [
+            {
+              "$ref": "#/x-defs/schema-acl-tcp-flags-is-psh-def"
+            },
+            {
+              "$ref": "#/x-defs/schema-acl-tcp-mask-is-all-def"
+            }
+          ]
+        }
+      ]
+    },
+    "schema-acl-tcp-flags-is-rst-def": {
+      "x-cue-marker": "def",
+      "required": [
+        "flags"
+      ],
+      "properties": {
+        "flags": {
+          "required": [
+            "rst"
+          ]
+        }
+      }
+    },
+    "schema-acl-tcp-flags-is-not-rst-def": {
+      "x-cue-marker": "def",
+      "not": {
+        "$ref": "#/x-defs/schema-acl-tcp-flags-is-rst-def"
+      }
+    },
+    "schema-acl-tcp-mask-is-rst-def": {
+      "x-cue-marker": "def",
+      "required": [
+        "mask"
+      ],
+      "properties": {
+        "mask": {
+          "required": [
+            "rst"
+          ]
+        }
+      }
+    },
+    "schema-acl-tcp-rst-constraints": {
+      "x-cue-marker": "constraints",
+      "oneOf": [
+        {
+          "$ref": "#/x-defs/schema-acl-tcp-flags-is-not-rst-def"
+        },
+        {
+          "allOf": [
+            {
+              "$ref": "#/x-defs/schema-acl-tcp-flags-is-rst-def"
+            },
+            {
+              "$ref": "#/x-defs/schema-acl-tcp-mask-is-rst-def"
+            }
+          ]
+        },
+        {
+          "allOf": [
+            {
+              "$ref": "#/x-defs/schema-acl-tcp-flags-is-rst-def"
+            },
+            {
+              "$ref": "#/x-defs/schema-acl-tcp-mask-is-all-def"
+            }
+          ]
+        }
+      ]
+    },
+    "schema-acl-tcp-constraints": {
+      "x-cue-marker": "constraints",
+      "allOf": [
+        {
+          "$ref": "#/x-defs/schema-common-no-nulls-def"
+        },
+        {
+          "$ref": "#/x-defs/schema-acl-tcp-syn-constraints"
+        },
+        {
+          "$ref": "#/x-defs/schema-acl-tcp-urg-constraints"
+        },
+        {
+          "$ref": "#/x-defs/schema-acl-tcp-ack-constraints"
+        },
+        {
+          "$ref": "#/x-defs/schema-acl-tcp-fin-constraints"
+        },
+        {
+          "$ref": "#/x-defs/schema-acl-tcp-psh-constraints"
+        },
+        {
+          "$ref": "#/x-defs/schema-acl-tcp-rst-constraints"
+        }
+      ]
+    },
     "schema-acl-tcp": {
       "description": "L4 port",
       "x-unevaluatedProperties": false,
@@ -70198,13 +70369,13 @@
       "nullable": true,
       "allOf": [
         {
-          "$ref": "#/x-defs/schema-common-no-nulls-constraints"
-        },
-        {
           "$ref": "#/x-defs/schema-acl-tcp-config-children"
         },
         {
           "$ref": "#/x-defs/schema-acl-tcp-config"
+        },
+        {
+          "$ref": "#/x-defs/schema-acl-tcp-constraints"
         }
       ]
     },
@@ -70835,6 +71006,9 @@
         },
         {
           "$ref": "#/x-defs/schema-acl-rules-constraints"
+        },
+        {
+          "$ref": "#/x-defs/schema-acl-rules-presentation"
         }
       ]
     },
@@ -70962,6 +71136,95 @@
         }
       }
     },
+    "schema-acl-ip-match-is-source-port-match-def": {
+      "x-cue-marker": "def",
+      "properties": {
+        "rule": {
+          "additionalProperties": {
+            "properties": {
+              "match": {
+                "required": [
+                  "ip"
+                ],
+                "properties": {
+                  "ip": {
+                    "required": [
+                      "source-port"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "schema-acl-ip-match-is-not-source-port-match-def": {
+      "x-cue-marker": "def",
+      "not": {
+        "$ref": "#/x-defs/schema-acl-ip-match-is-source-port-match-def"
+      }
+    },
+    "schema-acl-ip-match-is-protocol-match-def": {
+      "x-cue-marker": "def",
+      "properties": {
+        "rule": {
+          "additionalProperties": {
+            "properties": {
+              "match": {
+                "required": [
+                  "ip"
+                ],
+                "properties": {
+                  "ip": {
+                    "required": [
+                      "protocol"
+                    ],
+                    "properties": {
+                      "protocol": {
+                        "enum": [
+                          "tcp",
+                          "udp"
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "schema-acl-ip-match-is-dest-port-match-def": {
+      "x-cue-marker": "def",
+      "properties": {
+        "rule": {
+          "additionalProperties": {
+            "properties": {
+              "match": {
+                "required": [
+                  "ip"
+                ],
+                "properties": {
+                  "ip": {
+                    "required": [
+                      "dest-port"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "schema-acl-ip-match-is-not-dest-port-match-def": {
+      "x-cue-marker": "def",
+      "not": {
+        "$ref": "#/x-defs/schema-acl-ip-match-is-dest-port-match-def"
+      }
+    },
     "schema-acl-acl-ipv4-type-constraints": {
       "x-cue-marker": "constraints",
       "oneOf": [
@@ -70975,6 +71238,40 @@
             },
             {
               "$ref": "#/x-defs/schema-acl-acl-is-match-ipv4-def"
+            },
+            {
+              "oneOf": [
+                {
+                  "$ref": "#/x-defs/schema-acl-ip-match-is-not-source-port-match-def"
+                },
+                {
+                  "allOf": [
+                    {
+                      "$ref": "#/x-defs/schema-acl-ip-match-is-protocol-match-def"
+                    },
+                    {
+                      "$ref": "#/x-defs/schema-acl-ip-match-is-source-port-match-def"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "oneOf": [
+                {
+                  "$ref": "#/x-defs/schema-acl-ip-match-is-not-dest-port-match-def"
+                },
+                {
+                  "allOf": [
+                    {
+                      "$ref": "#/x-defs/schema-acl-ip-match-is-protocol-match-def"
+                    },
+                    {
+                      "$ref": "#/x-defs/schema-acl-ip-match-is-dest-port-match-def"
+                    }
+                  ]
+                }
+              ]
             }
           ]
         }
@@ -71079,6 +71376,40 @@
             },
             {
               "$ref": "#/x-defs/schema-acl-acl-is-match-ipv6-def"
+            },
+            {
+              "oneOf": [
+                {
+                  "$ref": "#/x-defs/schema-acl-ip-match-is-not-source-port-match-def"
+                },
+                {
+                  "allOf": [
+                    {
+                      "$ref": "#/x-defs/schema-acl-ip-match-is-protocol-match-def"
+                    },
+                    {
+                      "$ref": "#/x-defs/schema-acl-ip-match-is-source-port-match-def"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "oneOf": [
+                {
+                  "$ref": "#/x-defs/schema-acl-ip-match-is-not-dest-port-match-def"
+                },
+                {
+                  "allOf": [
+                    {
+                      "$ref": "#/x-defs/schema-acl-ip-match-is-protocol-match-def"
+                    },
+                    {
+                      "$ref": "#/x-defs/schema-acl-ip-match-is-dest-port-match-def"
+                    }
+                  ]
+                }
+              ]
             }
           ]
         }
@@ -71281,6 +71612,37 @@
         }
       }
     },
+    "schema-acl-mac-match-is-protocol-match-def": {
+      "x-cue-marker": "def",
+      "properties": {
+        "rule": {
+          "additionalProperties": {
+            "properties": {
+              "match": {
+                "required": [
+                  "mac"
+                ],
+                "properties": {
+                  "mac": {
+                    "required": [
+                      "protocol"
+                    ],
+                    "properties": {
+                      "protocol": {
+                        "enum": [
+                          "ipv4",
+                          "ipv6"
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "schema-acl-acl-mac-type-constraints": {
       "x-cue-marker": "constraints",
       "oneOf": [
@@ -71294,6 +71656,40 @@
             },
             {
               "$ref": "#/x-defs/schema-acl-acl-is-match-mac-def"
+            },
+            {
+              "oneOf": [
+                {
+                  "$ref": "#/x-defs/schema-acl-ip-match-is-not-source-port-match-def"
+                },
+                {
+                  "allOf": [
+                    {
+                      "$ref": "#/x-defs/schema-acl-mac-match-is-protocol-match-def"
+                    },
+                    {
+                      "$ref": "#/x-defs/schema-acl-ip-match-is-source-port-match-def"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "oneOf": [
+                {
+                  "$ref": "#/x-defs/schema-acl-ip-match-is-not-dest-port-match-def"
+                },
+                {
+                  "allOf": [
+                    {
+                      "$ref": "#/x-defs/schema-acl-mac-match-is-protocol-match-def"
+                    },
+                    {
+                      "$ref": "#/x-defs/schema-acl-ip-match-is-dest-port-match-def"
+                    }
+                  ]
+                }
+              ]
             }
           ]
         }
@@ -71881,73 +72277,6 @@
         }
       ]
     },
-    "schema-feature-isa-feature-default-off-defaults": {
-      "x-cue-marker": "defaults",
-      "anyOf": [
-        {
-          "allOf": [
-            {
-              "x-cue-defaults-only": [
-                "enable"
-              ],
-              "anyOf": [
-                {
-                  "maxProperties": 0
-                },
-                {
-                  "required": [
-                    "enable"
-                  ],
-                  "properties": {
-                    "enable": {
-                      "enum": [
-                        "off"
-                      ]
-                    }
-                  },
-                  "maxProperties": 1
-                }
-              ]
-            }
-          ]
-        },
-        {}
-      ]
-    },
-    "schema-feature-isa-feature-default-off-trait": {
-      "x-cue-marker": "trait",
-      "allOf": [
-        {
-          "$ref": "#/x-defs/schema-feature-isa-feature-default-off-config"
-        },
-        {
-          "$ref": "#/x-defs/schema-feature-isa-feature-default-off-defaults"
-        }
-      ]
-    },
-    "schema-ptp-vlan-ptp-timers": {
-      "description": "VLAN PTP timers. Inherited by interfaces in this VLAN.",
-      "x-unevaluatedProperties": false,
-      "x-cue-marker": "instance",
-      "type": "object",
-      "nullable": true,
-      "allOf": [
-        {
-          "$ref": "#/x-defs/schema-ptp-vrf-ptp-timers-config"
-        },
-        {
-          "$ref": "#/x-defs/schema-common-no-nulls-constraints"
-        }
-      ]
-    },
-    "schema-ptp-vlan-ptp-config-children": {
-      "x-cue-marker": "config-children",
-      "properties": {
-        "timers": {
-          "$ref": "#/x-defs/schema-ptp-vlan-ptp-timers"
-        }
-      }
-    },
     "schema-ptp-vlan-ptp": {
       "description": "VLAN PTP configuration.  Inherited by interfaces in this VLAN.\n",
       "x-unevaluatedProperties": false,
@@ -71956,36 +72285,10 @@
       "nullable": true,
       "allOf": [
         {
-          "$ref": "#/x-defs/schema-feature-isa-feature-default-off-trait"
+          "$ref": "#/x-defs/schema-feature-isa-feature-default-on-trait"
         },
         {
-          "$ref": "#/x-defs/schema-ptp-vrf-ptp-config"
-        },
-        {
-          "$ref": "#/x-defs/schema-ptp-vlan-ptp-config-children"
-        },
-        {
-          "$ref": "#/x-defs/schema-common-no-nulls-constraints"
-        }
-      ]
-    },
-    "schema-service-vlan-service-config-children": {
-      "x-cue-marker": "config-children",
-      "properties": {
-        "ptp": {
-          "$ref": "#/x-defs/schema-ptp-vlan-ptp"
-        }
-      }
-    },
-    "schema-service-vlan-service": {
-      "description": "A service",
-      "x-unevaluatedProperties": false,
-      "x-cue-marker": "instance",
-      "type": "object",
-      "nullable": true,
-      "allOf": [
-        {
-          "$ref": "#/x-defs/schema-service-vlan-service-config-children"
+          "$ref": "#/x-defs/schema-common-empty-config"
         },
         {
           "$ref": "#/x-defs/schema-common-no-nulls-constraints"
@@ -72056,8 +72359,8 @@
     "schema-bridge-domain-vlan-config-children": {
       "x-cue-marker": "config-children",
       "properties": {
-        "service": {
-          "$ref": "#/x-defs/schema-service-vlan-service"
+        "ptp": {
+          "$ref": "#/x-defs/schema-ptp-vlan-ptp"
         },
         "multicast": {
           "$ref": "#/x-defs/schema-multicast-vlan-multicast"
@@ -72110,6 +72413,50 @@
         },
         {
           "$ref": "#/x-defs/schema-vlan-vid-vlan-vids-constraints"
+        }
+      ]
+    },
+    "schema-feature-isa-feature-default-off-defaults": {
+      "x-cue-marker": "defaults",
+      "anyOf": [
+        {
+          "allOf": [
+            {
+              "x-cue-defaults-only": [
+                "enable"
+              ],
+              "anyOf": [
+                {
+                  "maxProperties": 0
+                },
+                {
+                  "required": [
+                    "enable"
+                  ],
+                  "properties": {
+                    "enable": {
+                      "enum": [
+                        "off"
+                      ]
+                    }
+                  },
+                  "maxProperties": 1
+                }
+              ]
+            }
+          ]
+        },
+        {}
+      ]
+    },
+    "schema-feature-isa-feature-default-off-trait": {
+      "x-cue-marker": "trait",
+      "allOf": [
+        {
+          "$ref": "#/x-defs/schema-feature-isa-feature-default-off-config"
+        },
+        {
+          "$ref": "#/x-defs/schema-feature-isa-feature-default-off-defaults"
         }
       ]
     },
@@ -72929,14 +73276,10 @@
     },
     "schema-interface-interface-has-no-ptp-def": {
       "x-cue-marker": "def",
-      "properties": {
-        "service": {
-          "not": {
-            "required": [
-              "ptp"
-            ]
-          }
-        }
+      "not": {
+        "required": [
+          "ptp"
+        ]
       }
     },
     "schema-interface-interface-eth-constraints": {
@@ -74163,6 +74506,14 @@
         }
       ]
     },
+    "schema-flags-flags-constraints": {
+      "x-cue-marker": "constraints",
+      "allOf": [
+        {
+          "$ref": "#/x-defs/schema-common-no-nulls-def"
+        }
+      ]
+    },
     "schema-flags-isa-flags-container-trait": {
       "x-cue-marker": "trait",
       "allOf": [
@@ -75184,29 +75535,6 @@
         }
       ]
     },
-    "schema-service-if-service-config-children": {
-      "x-cue-marker": "config-children",
-      "properties": {
-        "ptp": {
-          "$ref": "#/x-defs/schema-ptp-if-ptp"
-        }
-      }
-    },
-    "schema-service-if-service": {
-      "description": "A service",
-      "x-unevaluatedProperties": false,
-      "x-cue-marker": "instance",
-      "type": "object",
-      "nullable": true,
-      "allOf": [
-        {
-          "$ref": "#/x-defs/schema-service-if-service-config-children"
-        },
-        {
-          "$ref": "#/x-defs/schema-common-no-nulls-constraints"
-        }
-      ]
-    },
     "schema-acl-outbound-config-children": {
       "x-cue-marker": "config-children",
       "properties": {
@@ -75340,6 +75668,18 @@
         {}
       ]
     },
+    "schema-acl-if-acl-constraints": {
+      "x-cue-marker": "constraints",
+      "allOf": [
+        {
+          "$ref": "#/x-defs/schema-common-no-nulls-def"
+        },
+        {
+          "x-cue-error": "one of the directions has to configured",
+          "minProperties": 1
+        }
+      ]
+    },
     "schema-acl-if-acl": {
       "description": "An ACL is used for matching packets and take actions\n",
       "x-unevaluatedProperties": false,
@@ -75351,10 +75691,10 @@
           "$ref": "#/x-defs/schema-acl-if-acl-config-children"
         },
         {
-          "$ref": "#/x-defs/schema-common-no-nulls-constraints"
+          "$ref": "#/x-defs/schema-acl-if-acl-defaults"
         },
         {
-          "$ref": "#/x-defs/schema-acl-if-acl-defaults"
+          "$ref": "#/x-defs/schema-acl-if-acl-constraints"
         }
       ]
     },
@@ -75405,8 +75745,8 @@
         "evpn": {
           "$ref": "#/x-defs/schema-evpn-if-evpn"
         },
-        "service": {
-          "$ref": "#/x-defs/schema-service-if-service"
+        "ptp": {
+          "$ref": "#/x-defs/schema-ptp-if-ptp"
         },
         "acl": {
           "$ref": "#/x-defs/schema-acl-if-acls"
@@ -75903,9 +76243,7 @@
             },
             "evpn": null,
             "router": null,
-            "service": {
-              "ptp": null
-            }
+            "ptp": null
           }
         },
         {
@@ -75969,9 +76307,7 @@
             "ip": {
               "vrr": null
             },
-            "service": {
-              "ptp": null
-            }
+            "ptp": null
           }
         }
       ]
@@ -75992,9 +76328,7 @@
             "bridge": null,
             "evpn": null,
             "router": null,
-            "service": {
-              "ptp": null
-            },
+            "ptp": null,
             "acl": null
           }
         }
@@ -76016,9 +76350,7 @@
             },
             "bridge": null,
             "evpn": null,
-            "service": {
-              "ptp": null
-            }
+            "ptp": null
           }
         }
       ]
@@ -76046,9 +76378,7 @@
                 "segment": null
               }
             },
-            "service": {
-              "ptp": null
-            }
+            "ptp": null
           }
         }
       ]
@@ -76069,9 +76399,7 @@
             },
             "evpn": null,
             "router": null,
-            "service": {
-              "ptp": null
-            },
+            "ptp": null,
             "acl": null
           }
         }
@@ -80415,6 +80743,10 @@
       "allOf": [
         {
           "$ref": "#/x-defs/schema-common-no-nulls-def"
+        },
+        {
+          "x-cue-error": "Only one ntp server can be configured",
+          "maxProperties": 1
         }
       ]
     },
@@ -81006,6 +81338,29 @@
           "$ref": "#/x-defs/schema-common-no-nulls-constraints"
         }
       ]
+    },
+    "schema-reserved-l3-vni-vlan": {
+      "description": "Reserved vlans to be used with l3vni",
+      "x-unevaluatedProperties": false,
+      "x-cue-marker": "instance",
+      "type": "object",
+      "nullable": true,
+      "allOf": [
+        {
+          "$ref": "#/x-defs/schema-reserved-l3-vni-vlan-config"
+        },
+        {
+          "$ref": "#/x-defs/schema-common-no-nulls-constraints"
+        }
+      ]
+    },
+    "schema-reserved-vlan-config-children": {
+      "x-cue-marker": "config-children",
+      "properties": {
+        "l3-vni-vlan": {
+          "$ref": "#/x-defs/schema-reserved-l3-vni-vlan"
+        }
+      }
     },
     "schema-reserved-vlan": {
       "description": "reserved vlan ranges",
@@ -84025,6 +84380,44 @@
         }
       ]
     },
+    "schema-ospf-network": {
+      "description": "Filters out components of the prefix",
+      "x-unevaluatedProperties": false,
+      "x-cue-marker": "instance",
+      "type": "object",
+      "nullable": true,
+      "allOf": [
+        {
+          "$ref": "#/x-defs/schema-common-no-nulls-constraints"
+        },
+        {
+          "$ref": "#/x-defs/schema-common-empty-config"
+        }
+      ]
+    },
+    "schema-ospf-networks-mapping": {
+      "x-cue-marker": "mapping",
+      "x-propertyNames": {
+        "$ref": "#/x-defs/schema-ospf-network-id"
+      },
+      "additionalProperties": {
+        "$ref": "#/x-defs/schema-ospf-network"
+      }
+    },
+    "schema-ospf-networks": {
+      "description": "Area networks",
+      "x-cue-marker": "collection",
+      "type": "object",
+      "nullable": true,
+      "allOf": [
+        {
+          "$ref": "#/x-defs/schema-ospf-networks-mapping"
+        },
+        {
+          "$ref": "#/x-defs/schema-common-no-nulls-constraints"
+        }
+      ]
+    },
     "schema-ospf-area-config-children": {
       "x-cue-marker": "config-children",
       "properties": {
@@ -84033,6 +84426,9 @@
         },
         "range": {
           "$ref": "#/x-defs/schema-ospf-ranges"
+        },
+        "network": {
+          "$ref": "#/x-defs/schema-ospf-networks"
         }
       }
     },
@@ -84445,29 +84841,6 @@
         }
       ]
     },
-    "schema-ptp-vrf-ptp-timers": {
-      "description": "VRF PTP timers. Inherited by interfaces in this VRF.",
-      "x-unevaluatedProperties": false,
-      "x-cue-marker": "instance",
-      "type": "object",
-      "nullable": true,
-      "allOf": [
-        {
-          "$ref": "#/x-defs/schema-ptp-vrf-ptp-timers-config"
-        },
-        {
-          "$ref": "#/x-defs/schema-common-no-nulls-constraints"
-        }
-      ]
-    },
-    "schema-ptp-vrf-ptp-config-children": {
-      "x-cue-marker": "config-children",
-      "properties": {
-        "timers": {
-          "$ref": "#/x-defs/schema-ptp-vrf-ptp-timers"
-        }
-      }
-    },
     "schema-ptp-vrf-ptp": {
       "description": "VRF PTP configuration.  Inherited by interfaces in this VRF.\n",
       "x-unevaluatedProperties": false,
@@ -84476,36 +84849,10 @@
       "nullable": true,
       "allOf": [
         {
-          "$ref": "#/x-defs/schema-feature-isa-feature-default-off-trait"
+          "$ref": "#/x-defs/schema-feature-isa-feature-default-on-trait"
         },
         {
-          "$ref": "#/x-defs/schema-ptp-vrf-ptp-config"
-        },
-        {
-          "$ref": "#/x-defs/schema-ptp-vrf-ptp-config-children"
-        },
-        {
-          "$ref": "#/x-defs/schema-common-no-nulls-constraints"
-        }
-      ]
-    },
-    "schema-service-vrf-service-config-children": {
-      "x-cue-marker": "config-children",
-      "properties": {
-        "ptp": {
-          "$ref": "#/x-defs/schema-ptp-vrf-ptp"
-        }
-      }
-    },
-    "schema-service-vrf-service": {
-      "description": "A service",
-      "x-unevaluatedProperties": false,
-      "x-cue-marker": "instance",
-      "type": "object",
-      "nullable": true,
-      "allOf": [
-        {
-          "$ref": "#/x-defs/schema-service-vrf-service-config-children"
+          "$ref": "#/x-defs/schema-common-empty-config"
         },
         {
           "$ref": "#/x-defs/schema-common-no-nulls-constraints"
@@ -84524,8 +84871,8 @@
         "evpn": {
           "$ref": "#/x-defs/schema-evpn-vrf-evpn"
         },
-        "service": {
-          "$ref": "#/x-defs/schema-service-vrf-service"
+        "ptp": {
+          "$ref": "#/x-defs/schema-ptp-vrf-ptp"
         }
       }
     },

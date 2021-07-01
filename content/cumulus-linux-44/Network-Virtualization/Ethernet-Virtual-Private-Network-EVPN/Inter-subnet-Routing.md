@@ -757,7 +757,7 @@ The configuration for the example is shown below.
 - On leaf01, you can see the route target (`route-target import *:6000`) under the `router bgp 65101 vrf RED` and `router bgp 65101 vrf BLUE` stanza of the `/etc/frr/frr.conf` file.
 - On border01, you can see the route targets (`route-target import *:4001` and `route-target import *:4002`) under the `router bgp 65163 vrf VRF10` stanza of the `/etc/frr/frr.conf` file.
 
-Because the configuration is similar on all the leafs, only leaf01 and border01 configuration files are shown below.
+Because the configuration is similar on all the leafs, only leaf01 and border01 configuration files are shown below. The spine configuration files are not shown for brevity.
 
 {{< tabs "TabID749 ">}}
 {{< tab "/etc/network/interfaces ">}}
@@ -1195,7 +1195,7 @@ To verify the configuration, check that the routes are properly received and tag
 {{< tabs "TabID1187 ">}}
 {{< tab "leaf01 ">}}
 
-The following vtysh command on leaf01 shows the routes tagged with route target 6000:
+The following vtysh command on leaf01 shows the route from border01 tagged with route target 6000
 
 ```
 cumulus@leaf01:~$ sudo vtysh
@@ -1218,7 +1218,7 @@ cumulus@leaf01:mgmt:~$ ip route show vrf RED 10.1.210.0/24
 {{< /tab >}}
 {{< tab "border01 ">}}
 
-The following vtysh command on border01 shows the routes tagged with route targets 4001 and 4002:
+The following vtysh command on border01 shows the routes from leaf01 tagged with route targets 4001 and 4002:
 
 ```
 cumulus@border01:~$ sudo vtysh

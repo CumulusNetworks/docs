@@ -40,7 +40,7 @@ interface e1/1
 | `ip address <IP>` | `nv set interface <interface> address <IP>` | NVUE supports setting either IPv4 or IPv6 addresses with the same command. |
 | `ip address <IP> secondary` | `nv set interface <interface> address <IP>` | Configuring a second IP address is additive. To replace an address use `nv unset interface <interface> address <IP>`. |
 | `ipv6 address <IP>` | `nv set interface <interface> address <IP>` | NVUE supports setting either IPv4 or IPv6 addresses with the same command. |
-| `mtu 9000` | `nv set interface <interface> link mtu <mtu>` | The default MTU in Cumulus Linux is 9216. |
+| `mtu <mtu>` | `nv set interface <interface> link mtu <mtu>` | The default MTU in Cumulus Linux is 9216. |
 | `speed <speed>` | `nv set interface <interface> link speed <speed>` | | 
 | `fec <mode>` | `nv set interface link fec <mode>` | |
 | `no shutdown` | `nv set interface <interface> link state up` | The default state for interfaces is `up`. Use `link state down` to shutdown an interface. |

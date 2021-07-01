@@ -3,6 +3,14 @@ Disallow: */pdf
 Sitemap: {{.Site.BaseURL}}/sitemap.xml
 
 User-Agent: *
+Disallow: /cumulus-linux/
+Sitemap: {{.Site.BaseURL}}/sitemap.xml
+
+User-Agent: *
+Disallow: /cumulus-netq/
+Sitemap: {{.Site.BaseURL}}/sitemap.xml
+
+User-Agent: *
 Disallow:
 Allow: /
 Sitemap: {{.Site.BaseURL}}/sitemap.xml

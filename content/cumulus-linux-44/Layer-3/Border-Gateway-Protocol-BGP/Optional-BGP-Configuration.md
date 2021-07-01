@@ -1280,7 +1280,7 @@ Routes are typically propagated even if a different path exists. The BGP conditi
 This feature is typically used in multihomed networks where some prefixes are advertised to one of the providers only if information from the other provider is not present. For example, a multihomed router can use conditional advertisement to choose which upstream provider learns about the routes it provides so that it can influence which provider handles traffic destined for the downstream router. This is useful for cost of service, latency, or other policy requirements that are not natively accounted for in BGP.
 
 Conditional advertisement uses the `non-exist-map` or the `exist-map` and the `advertise-map` keywords to track routes by route prefix.
-You configure the BGP neighbors you want to use the route maps.
+You configure the BGP neighbors to use the route maps.
 
 {{%notice info%}}
 Use caution when configuring conditional advertisement on a large number of BGP neighbors. Cumulus Linux scans the entire RIB table every 60 seconds by default; depending on the number of routes in the RIB, this can result in longer processing times. NVIDIA does not recommend that you configure conditional advertisement on more than 50 neighbors.

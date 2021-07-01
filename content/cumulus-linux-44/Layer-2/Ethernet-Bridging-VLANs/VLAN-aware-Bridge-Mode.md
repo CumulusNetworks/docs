@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 430
 toc: 4
 ---
-The VLAN-aware mode in Cumulus Linux implements a configuration model for large-scale layer 2 environments, with *one single instance* of {{<link url="Spanning-Tree-and-Rapid-Spanning-Tree-STP" text="spanning tree protocol">}}. Each physical bridge member port is configured with the list of allowed VLANs as well as its port VLAN ID, either primary VLAN Identifier (PVID) or native VLAN. MAC address learning, filtering and forwarding are *VLAN-aware*. This significantly reduces the configuration size, and eliminates the large overhead of managing the port and VLAN instances as subinterfaces, replacing them with lightweight VLAN bitmaps and state updates.
+VLAN-aware bridge mode in Cumulus Linux implements a configuration model for large-scale layer 2 environments, with *one single instance* of {{<link url="Spanning-Tree-and-Rapid-Spanning-Tree-STP" text="spanning tree protocol">}}. Each physical bridge member port is configured with the list of allowed VLANs as well as its port VLAN ID, either primary VLAN Identifier (PVID) or native VLAN. MAC address learning, filtering and forwarding are *VLAN-aware*. This significantly reduces the configuration size, and eliminates the large overhead of managing the port and VLAN instances as subinterfaces, replacing them with lightweight VLAN bitmaps and state updates.
 
 On NVIDIA Spectrum-2 and Spectrum-3 switches, Cumulus Linux supports multiple VLAN-aware bridges but with the following limitations:
 
@@ -13,7 +13,7 @@ On NVIDIA Spectrum-2 and Spectrum-3 switches, Cumulus Linux supports multiple VL
 - The same VNIs cannot appear in multiple VLAN-aware bridges
 - VLAN translation is not supported with multiple VLAN-aware bridges
 - Double tagged VLAN interfaces are not supported with multiple VLAN-aware bridges
-- You cannot associate multiple single virtual devices (SVDs) with a single VLAN-aware bridge
+- You cannot associate multiple single VXLAN devices (SVDs) with a single VLAN-aware bridge
 - IGMPv3 is not supported
 
 ## Configure a VLAN-aware Bridge
@@ -258,7 +258,7 @@ cumulus@switch:~$ ifreload -a
 {{< /tab >}}
 {{< /tabs >}}
 
-## Untagged/Access Ports
+## Access Ports and Tagged Packets
 
 Access ports ignore all tagged packets. In the configuration below, swp1 and swp2 are configured as access ports, while all untagged traffic goes to VLAN 10:
 
@@ -394,6 +394,8 @@ When configuring the VLAN attributes for the bridge, specify the attributes for 
 
 The following example commands declare native VLAN 10 with IPv4 address 10.1.10.2/24 and IPv6 address 2001:db8::1/32.
 
+The NVUE and Linux commands also show an example with multiple VLAN-aware bridges.
+
 {{< tabs "TabID370 ">}}
 {{< tab "NCLU Commands ">}}
 
@@ -407,6 +409,9 @@ cumulus@switch:~$ net commit
 {{< /tab >}}
 {{< tab "NVUE Commands ">}}
 
+{{< tabs "TabID419 ">}}
+{{< tab "Single Bridge ">}}
+
 ```
 cumulus@switch:~$ nv set interface vlan10 ip address 10.1.10.2/24
 cumulus@switch:~$ nv set interface vlan10 ip address 2001:db8::1/32
@@ -414,7 +419,28 @@ cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
+{{< tab "Multiple Bridges ">}}
+
+```
+cumulus@switch:~$ nv set interface bridge2_vlan10 type svi
+cumulus@switch:~$ nv set interface bridge2_vlan10 vlan 10
+cumulus@switch:~$ nv set interface bridge2_vlan10 base-interface bridge2
+cumulus@switch:~$ nv set interface bridge2_vlan10 ip address 10.1.10.2/24
+cumulus@switch:~$ nv set interface bridge1_vlan10 type svi
+cumulus@switch:~$ nv set interface bridge1_vlan10 vlan 10
+cumulus@switch:~$ nv set interface bridge1_vlan10 base-interface bridge1
+cumulus@switch:~$ nv set interface bridge1_vlan10 ip address 12.1.10.2/24
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+{{< /tab >}}
 {{< tab "Linux Commands ">}}
+
+{{< tabs "TabID431 ">}}
+{{< tab "Single Bridge ">}}
 
 Edit the `/etc/network/interfaces` file, then run the `ifreload -a` command.
 
@@ -440,6 +466,28 @@ iface vlan10
 ```
 cumulus@switch:~$ ifreload -a
 ```
+
+{{< /tab >}}
+{{< tab "Multiple Bridges ">}}
+
+```
+auto bridge2_vlan10
+iface bridge2_vlan10
+    address 10.1.10.2/24
+    hwaddress 1c:34:da:1d:e6:fd
+    vlan-raw-device bridge2
+    vlan-id 10
+
+auto bridge1_vlan10
+iface bridge1_vlan10
+    address 12.1.10.2/24
+    hwaddress 1c:34:da:1d:e6:fd
+    vlan-raw-device bridge1
+    vlan-id 10
+```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 {{< /tab >}}
 {{< /tabs >}}
@@ -611,9 +659,7 @@ cumulus@switch:~$ sudo bridge fdb show
 12:12:12:12:12:12 dev bridge master bridge permanent
 ```
 
-## Example Configurations
-
-### VLAN Pruning
+## Example Configuration
 
 The following example configuration contains an access port and switch port that are *pruned*; they only send and receive traffic tagged to and from a specific set of VLANs declared by the `bridge-vids` attribute. It also contains other switch ports that send and receive traffic from all the defined VLANs.
 
@@ -660,56 +706,11 @@ iface swp49
 ...
 ```
 
-### Multiple VXLAN bridges with a Single VXLAN Device
-
-The following example shows a configuration with two VLAN-aware bridges and {{<link url="VXLAN-Devices/#single-vxlan-device" text="single VXLAN device">}}. For a more detailed example, see {{<link url="EVPN-Multihoming/#evpn-mh-with-head-end-replication" text="EVPN multihoming with head end replication">}}.
-
-{{%notice note%}}
-NCLU commands are not supported for single VXLAN devices.
-{{%/notice%}}
-
-{{< tabs "TabID169 ">}}
-{{< tab "NVUE Commands ">}}
-
-```
-cumulus@switch:~$ nv set interface bridge2_vlan10 type svi
-cumulus@switch:~$ nv set interface bridge2_vlan10 vlan 10
-cumulus@switch:~$ nv set interface bridge2_vlan10 base-interface bridge2
-cumulus@switch:~$ nv set interface bridge2_vlan10 ip address 10.1.10.2/24
-
-cumulus@switch:~$ nv set interface bridge1_vlan10 type svi
-cumulus@switch:~$ nv set interface bridge1_vlan10 vlan 10
-cumulus@switch:~$ nv set interface bridge1_vlan10 base-interface bridge1
-cumulus@switch:~$ nv set interface bridge1_vlan10 ip address 12.1.10.2/24
-```
-
-{{< /tab >}}
-{{< tab "vtysh Commands ">}}
-
-```
-auto bridge2_vlan10
-iface bridge2_vlan10
-    address 10.1.10.2/24
-    hwaddress 1c:34:da:1d:e6:fd
-    vlan-raw-device bridge2
-    vlan-id 10
-
-auto bridge1_vlan10
-iface bridge1_vlan10
-    address 12.1.10.2/24
-    hwaddress 1c:34:da:1d:e6:fd
-    vlan-raw-device bridge1
-    vlan-id 10
-```
-
-{{< /tab >}}
-{{< /tabs >}}
-
 ## Considerations
 
 ### Spanning Tree Protocol (STP)
 
-- STP is enabled on a per-bridge basis. A common practice when using a single STP instance for all VLANs is to define every VLAN on every switch in the spanning tree instance.
+- STP is enabled on a per-bridge basis.
 - `mstpd` remains the user space protocol daemon.
 - Cumulus Linux supports {{<link url="Spanning-Tree-and-Rapid-Spanning-Tree-STP" text="Rapid Spanning Tree Protocol (RSTP)">}}.
 

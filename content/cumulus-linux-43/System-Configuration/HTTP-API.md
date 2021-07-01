@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 270
 toc: 3
 ---
-Cumulus Linux implements an HTTP application programming interface to the {{<link url="OpenStack-Neutron-ML2-and-Cumulus-Linux" text="OpenStack ML2 driver">}} and {{<link url="Network-Command-Line-Utility-NCLU" text="NCLU">}}. Instead of accessing Cumulus Linux using SSH, you can interact with the switch using an HTTP client, such as cURL, HTTPie or a web browser.
+Cumulus Linux implements an HTTP application programming interface to the {{<link url="Network-Command-Line-Utility-NCLU" text="NCLU">}}. Instead of accessing Cumulus Linux using SSH, you can interact with the switch using an HTTP client, such as cURL, HTTPie or a web browser.
 
 ## HTTP API Basics
 

@@ -4,9 +4,9 @@ author: NVIDIA
 weight: 115
 toc: 3
 ---
-NVUE is an object-oriented, schema driven model of a complete Cumulus Linux system (hardware and software) providing a robust API that allows for multiple interfaces to both view (show) and configure (set and unset) any element within a system running the NVUE software. The NVUE CLI and the REST API leverage the same API to interface with Cumulus Linux.
+NVUE is an object-oriented, schema driven model of a complete Cumulus Linux system (hardware and software) providing a robust API that allows for multiple interfaces to both view (show) and configure (set and unset) any element within a system running the NVUE software. The NVUE command line interface (CLI) and the REST API leverage the same API to interface with Cumulus Linux.
 
-NVUE follows a declarative model, removing context-specific commands and settings. It is structured as a *big tree* that represents the entire state of a Cumulus Linux instance. At the base of the tree are high level branches representing objects, such as *router* and *interface*. Under each of these branches are further branches. As you navigate through the tree, you gain a more specific context. At the leaves of the tree are actual attributes, represented as key/value pairs. The path through the tree is similar to a filesystem path.
+NVUE follows a declarative model, removing context-specific commands and settings. It is structured as a *big tree* that represents the entire state of a Cumulus Linux instance. At the base of the tree are high level branches representing objects, such as *router* and *interface*. Under each of these branches are further branches. As you navigate through the tree, you gain a more specific context. At the leaves of the tree are actual attributes, represented as key-value pairs. The path through the tree is similar to a filesystem path.
 
 {{<img src = "/images/cumulus-linux/nvue-architecture.png">}}
 
@@ -20,15 +20,10 @@ cumulus@switch:~$ sudo systemctl start nvued
 ```
 
 {{%notice info%}}
-- NVIDIA recommends that do not run NVUE in a production environment.
-- Do not mix NVUE and NCLU commands to configure the switch; use either the NCLU CLI or the NVUE CLI.
+Do not mix NVUE and NCLU commands to configure the switch; use either the NCLU CLI or the NVUE CLI.
 {{%/notice%}}
 
 ## NVUE REST API
-
-{{%notice note%}}
-The NVUE REST API is currently is an early access feature. The REST API is not intended to run in production and is not supported through NVIDIA networking support.
-{{%/notice%}}
 
 To access the NVUE API, run these commands:
 
@@ -68,24 +63,26 @@ cumulus@switch:~$ curl  -u 'cumulus:CumulusLinux!' --insecure https://127.0.0.1:
 ...
 ```
 
-For information about using the NVUE API, refer to the {{<kb_link url="cumulus-linux-44/api" text="NVUE API documentation">}}.
+For information about using the NVUE API, refer to the {{<kb_link url="cumulus-linux-44/api" text="NVUE API documentation.">}}
 
-## Command Line Interface
+## NVUE CLI
 
-The NVUE Command line interface (CLI) has a flat structure as opposed to a modal structure. This means that you can run all commands from the primary prompt instead of only in a specific mode.
+The NVUE CLI has a flat structure as opposed to a modal structure. This means that you can run all commands from the primary prompt instead of only in a specific mode.
 
-The NVUE CLI is currently is an early access feature; the NVUE commands and outputs in this documentation are subject to change.
+{{%notice note%}}
+The NVUE commands and outputs in this documentation are subject to change.
+{{%/notice%}}
 
 ### Command Syntax
 
-NVUE Commands all begin with `nv` and fall into one of three syntax categories:
+NVUE commands all begin with `nv` and fall into one of three syntax categories:
 - Configuration (`nv set` and ` nv unset`)
 - Monitoring (`nv show`)
 - Configuration management (`nv config`).
 
 ### Command Completion
 
-As you enter commands, you can get help with the valid keywords or options using the Tab key. For example, using Tab completion with `nv set` displays the possible objects for the command, and returns you to the command prompt to complete the command.
+As you enter commands, you can get help with the valid keywords or options using the Tab key. For example, using Tab completion with `nv set` displays the possible options for the command, and returns you to the command prompt to complete the command.
 
 ```
 cumulus@switch:~$ nv set <<press Tab>>
@@ -116,7 +113,7 @@ General Options:
 
 ### Command List
 
-You can list all the NVUE Commands by running `nv list-commands`. See {{<link url="#list-all-nvue-commands" text="List All NVUE Commands">}} below.
+You can list all the NVUE commands by running `nv list-commands`. See {{<link url="#list-all-nvue-commands" text="List All NVUE Commands">}} below.
 
 ### Command History
 
@@ -124,7 +121,7 @@ At the command prompt, press the Up Arrow and Down Arrow keys to move back and f
 
 ## Command Categories
 
-The NVUE CLI has a flat structure; however, the commands are conceptually grouped into three functional categories:
+The NVUE CLI has a flat structure; however, the commands are grouped into three functional categories:
 
 - Configuration
 - Monitoring
@@ -167,7 +164,7 @@ The NVUE monitoring commands show various parts of the network configuration. Fo
 | `nv show qos` | Shows QoS RoCE configuration.|
 | `nv show router` | Shows router configuration, such as router policies, and global BGP and OSPF configuration. |
 | `nv show service` | Shows DHCP relays and server, NTP, PTP, LLDP, and syslog configuration. |
-| `nv show system` | Shows global system settings, such as the reserved routing table range for PBR and the reserved VLAN range for layer 3 VNIs, and switch reboot history with the reason why the switch rebooted. |
+| `nv show system` | Shows global system settings, such as the reserved routing table range for PBR and the reserved VLAN range for layer 3 VNIs. You can also see switch reboot history with the reason why the switch rebooted. |
 | `nv show vrf` | Shows VRF configuration.|
 
 The following example shows the `nv show router` commands after pressing the TAB key, then shows the output of the `nv show router bgp` command.
@@ -196,10 +193,10 @@ cumulus@leaf01:mgmt:~$
 ```
 
 {{%notice note%}}
-If there are no pending or applied configuration changes, the `nv show` command only shows the running configuration.
+If there are no pending or applied configuration changes, the `nv show` command only shows the running (opertional) configuration.
 {{%/notice%}}
 
-Aditional options are available for the `nv show` commands. For example, you can choose the configuration you want to show (pending, applied, startup, or running). You can also turn on colored output, and send specific output to a pager.
+Aditional options are available for the `nv show` commands. For example, you can choose the configuration you want to show (pending, applied, startup, or operational). You can also turn on colored output, and paginate specific output.
 
 | <div style="width:200px">Option | Description |
 | ------ | ----------- |
@@ -208,7 +205,7 @@ Aditional options are available for the `nv show` commands. For example, you can
 | `--help`          | Shows help for the NVUE commands. |
 | `--operational`   | Shows the running configuration (the actual system state). For example, `nv show --operational interface bond1` shows the running configuration for bond1. The running and applied configuration should be the same. If different, inspect the logs. |
 | `--output`        | Shows command output in table format (auto), json format or yaml format. For example:<br>`nv show --ouptut auto interface bond1`<br>`nv show --ouptut json interface bond1`<br>`nv show --ouptut yaml interface bond1` |
-| `--paginate`      | Sends output to a pager. For example, `nv show --paginate on interface bond1`. |
+| `--paginate`      | Paginates the output. For example, `nv show --paginate on interface bond1`. |
 | `--pending`       | Shows configuration that is `set` and `unset` but not yet applied or saved. For example, `nv show --pending interface bond1`.|
 | `--rev <revision>`| Shows a detached pending configuration. See the `nv config detach` configuration management command below. For example, `nv show --rev changeset/cumulus/2021-06-11_16.16.41_FPKK interface bond1`. |
 | `--startup`       | Shows configuration saved with the `nv config save` command. This is the configuration after the switch boots. |
@@ -227,7 +224,7 @@ stale-routes-time             360                           Specifies an upper-b
 
 ### Show Legacy Commands
 
-Cumulus Linux provides show legacy commands that provide the same output as the NCLU show commands. To use the show legacy commands, the NCLU service (`netd`) must be running.
+Cumulus Linux includes show legacy commands that provide the same output as the NCLU show commands. To use the show legacy commands, the NCLU service (`netd`) must be running.
 
 {{%notice note%}}
 When the NVUE service is running, NCLU commands (`net add`, `net del`, `net show`) are disabled to prevent you from configuring the switch with both NVUE and NVUE commands. For example, if you try to run the `net show interface` command, you see the error `Using NCLU with 'nvued' running is not supported`.
@@ -271,7 +268,7 @@ Routing
   protodown: off
 ```
 
-To see a summary of the layer 3 fabric connectivity, run the `nv show --legacy bgp` command:
+To see a summary of layer 3 fabric connectivity, run the `nv show --legacy bgp` command:
 
 ```
 cumulus@switch:~$ nv show --legacy bgp
@@ -314,9 +311,9 @@ The NVUE configuration management commands manage and apply configurations.
 | `nv config replace <nvue-file>` | Replaces the pending configuration with the specified YAML configuration file. |
 | `nv config save` | Overwrites the startup configuration with the applied configuration by writing to the `/etc/nvue.d/startup.yaml` file. The configuration persists after a reboot. |
 
-## List All NVUE Commands
+### List All NVUE Commands
 
-To show the full list of NVUE Commands, run `nv list-commands`. For example:
+To show the full list of NVUE commands, run `nv list-commands`. For example:
 
 ```
 cumulus@switch:~$ nv list-commands
@@ -364,13 +361,28 @@ cumulus@switch:~$ nv list-commands interface swp1 <<press Tab>>
 acl      bond     bridge   evpn     ip       link     qos      router   service
 ```
 
+## NVUE Configuration File
+
+When you save network configuration using NVUE, the configuration is written to the `/etc/nvue.d/startup.yaml` file.
+
+NVUE also writes to underlying Linux files, such as `/etc/network/interfaces` and `/etc/frr/frr.conf`, when you apply a configuration. You can view these configuration files; however NVIDIA recommends that you do not manually edit them while using NVUE.
+
+You can edit or replace the contents of the `/etc/nvue.d/startup.yaml` file. NVUE applies the configuration in the `/etc/nvue.d/startup.yaml` file during system boot only if the `nvue-startup.service` is running. If this service is not running, the running configuration that was last applied is loaded when the switch boots.
+
+To start `nvue-startup.service`:
+
+```
+cumulus@switch:~$ sudo systemctl enable nvue-startup.service
+cumulus@switch:~$ sudo systemctl start nvue-startup.service
+```
+
 ## Example Configuration Commands
 
-This section provides examples of how to configure a Cumulus Linux switch using NVUE Commands.
+This section provides examples of how to configure a Cumulus Linux switch using NVUE commands.
 
 ### Configure the System Hostname
 
-The example below shows the NVUE Commands required to change the hostname for the switch to leaf01:
+The example below shows the NVUE commands required to change the hostname for the switch to leaf01:
 
 ```
 cumulus@switch:~$ nv set platform hostname value leaf01
@@ -379,7 +391,7 @@ cumulus@switch:~$ nv config apply
 
 ### Configure the System DNS Server
 
-The example below shows the NVUE Commands required to define the DNS server for the switch:
+The example below shows the NVUE commands required to define the DNS server for the switch:
 
 ```
 cumulus@switch:~$ nv set service dhcp-server 192.168.200.1
@@ -388,7 +400,7 @@ cumulus@switch:~$ nv config apply
 
 ### Configure an Interface
 
-The example below shows the NVUE Commands required to bring up swp1.
+The example below shows the NVUE commands required to bring up swp1.
 
 ```
 cumulus@switch:~$ nv set interface swp1 link state up
@@ -397,7 +409,7 @@ cumulus@switch:~$ nv config apply
 
 ### Configure a Bond
 
-The example below shows the NVUE Commands required to configure the front panel port interfaces swp1 thru swp4 to be slaves in bond0.
+The example below shows the NVUE commands required to configure the front panel port interfaces swp1 thru swp4 to be slaves in bond0.
 
 ```
 cumulus@switch:~$ nv set interface bond0 bond member swp1-4
@@ -406,7 +418,7 @@ cumulus@switch:~$ nv config apply
 
 ### Configure a Bridge
 
-The example below shows the NVUE Commands required to create a VLAN-aware bridge that contains two switch ports (swp1 and swp2) and includes 3 VLANs; tagged VLANs 10 and 20 and an untagged (native) VLAN of 1.
+The example below shows the NVUE commands required to create a VLAN-aware bridge that contains two switch ports (swp1 and swp2) and includes 3 VLANs; tagged VLANs 10 and 20 and an untagged (native) VLAN of 1.
 
 With NVUE, there is a default bridge called `br_default`, which has no ports assigned to it. The example below configures this default bridge.
 
@@ -419,7 +431,7 @@ cumulus@switch:~$ nv config apply
 
 ### Configure MLAG
 
-The example below shows the NVUE Commands required to configure MLAG on leaf01. The commands:
+The example below shows the NVUE commands required to configure MLAG on leaf01. The commands:
 - Place swp1 into bond1 and swp2 into bond2.
 - Configure the MLAG ID to 1 for bond1 and to 2 for bond2.
 - Add bond1 and bond2 to the default bridge (br_default).
@@ -441,7 +453,7 @@ cumulus@leaf01:~$ nv config apply
 
 ### Configure BGP Unnumbered
 
-The example below shows the NVUE Commands required to configure BGP unnumbered on leaf01. The commands:
+The example below shows the NVUE commands required to configure BGP unnumbered on leaf01. The commands:
 - Assign the ASN for this BGP node to 65101.
 - Set the router ID to 10.10.10.1.
 - Distribute routing information to the peer on swp51.
@@ -488,7 +500,7 @@ cumulus@switch:~$ nv show platform software
 
 ### Show Interface Configuration
 
-The following example command shows the running and applied swp1 interface configuration. There is no pending configuration.
+The following example command shows the running (operationa), applied, and pending swp1 interface configuration.
 
 ```
 cumulus@leaf01:~$ nv show interface swp1
@@ -548,7 +560,7 @@ cumulus@switch:~$ nv config save
 
 ### Detach a Pending Configuration
 
-The following example configures the IP address of the loopback interface, then detaches the configuration from the current pending configuration. The detached configuration is saved to a file called `changeset/cumulus` that includes a timestamp with extra characters to distinguish it from other pending configurations; for example, `changeset/cumulus/2021-06-11_18.35.06_FPKP`.
+The following example configures the IP address of the loopback interface, then detaches the configuration from the current pending configuration. The detached configuration is saved to a file `changeset/cumulus/<date>_<time>_xxxx` that includes a timestamp with extra characters to distinguish it from other pending configurations; for example, `changeset/cumulus/2021-06-11_18.35.06_FPKP`.
 
 ```
 cumulus@switch:~$ nv set interface lo ip address 10.10.10.1
@@ -594,7 +606,7 @@ cumulus@switch:~$ nv config patch /deps/nv-02/13/2021.yaml
 
 ## How Is NVUE Different from NCLU?
 
-This section lists some of the differences between NVUE and the NCLU command line interface to help you navigate configuration.
+This section lists some of the differences between NVUE CLI and the NCLU CLI to help you navigate configuration.
 
 ### Configuration File
 

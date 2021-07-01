@@ -142,7 +142,11 @@ IGMP Snooping restricts multicast forwarding only to the ports where IGMP report
 To enable OMF:
 
 1. Configure an IGMP querier. See {{<link url="#configure-the-igmp-and-mld-querier" text="Configure the IGMP and MLD Querier">}} above.
-2. In the `/etc/cumulus/switchd.conf` file, uncomment and change the `bridge.unreg_mcast_init`,  `bridge.unreg_v4_mcast_prune`, and `bridge.unreg_v6_mcast_prune` settings to `TRUE`, then restart `switchd`.
+2. In the `IGMP snooping unregistered L2 multicast flood control` section of the `/etc/cumulus/switchd.conf` file, uncomment and change these settings to TRUE, then restart `switchd`.
+
+   - `bridge.unreg_mcast_init`
+   - `bridge.unreg_v4_mcast_prune`
+   - `bridge.unreg_v6_mcast_prune`
 
    ```
    cumulus@switch:~$ sudo nano /etc/cumulus/switchd.conf

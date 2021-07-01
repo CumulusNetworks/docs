@@ -1345,7 +1345,7 @@ cumulus@leaf01:~$
 The commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
 ```
-cumulus@leaf01:~$ sudo nano /etc/frr/frr.conf
+cumulus@leaf01:~$ sudo cat /etc/frr/frr.conf
 ...
 neighbor swp51 activate
 neighbor swp51 advertise-map ADVERTISEMAP exist-map EXIST
@@ -1379,7 +1379,7 @@ cumulus@leaf01:~$
 The commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
 ```
-cumulus@leaf01:~$ sudo nano /etc/frr/frr.conf
+cumulus@leaf01:~$ sudo cat /etc/frr/frr.conf
 ...
 router bgp 65101
  bgp router-id 10.10.10.1

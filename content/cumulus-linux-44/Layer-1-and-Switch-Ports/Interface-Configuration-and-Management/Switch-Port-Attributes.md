@@ -116,11 +116,7 @@ iface bridge
     bridge-vlan-aware yes
 ```
 
-For *bridge* to have an MTU of 9000, set the MTU for each of the member interfaces (bond1 to bond 4, and peer5) to 9000 at minimum.
-
-{{%notice tip%}}
-Two common MTUs for jumbo frames are 9216 (the default value) and 9000 bytes. The corresponding MTUs for the VNIs are 9166 and 8950.
-{{%/notice%}}
+For a *bridge* to have an MTU of 9000, set the MTU for each of the member interfaces (bond1 to bond 4, and peer5) to 9000 at minimum.
 
 When configuring MTU for a bond, configure the MTU value directly under the bond interface; the configured value is inherited by member links or slave interfaces. If you need a different MTU on the bond, set it on the bond interface, as this ensures the slave interfaces pick it up. You are not required to specify an MTU on the slave interfaces.
 

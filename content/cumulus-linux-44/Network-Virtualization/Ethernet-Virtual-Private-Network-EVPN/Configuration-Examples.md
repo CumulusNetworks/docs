@@ -1496,12 +1496,12 @@ cumulus@leaf01:~$ nv set evpn enable on
 cumulus@leaf01:~$ nv set router bgp autonomous-system 65101
 cumulus@leaf01:~$ nv set router bgp router-id 10.10.10.1
 cumulus@leaf01:~$ nv set vrf default router bgp peer-group underlay remote-as external
+cumulus@leaf01:~$ nv set vrf default router bgp peer peerlink.4094 peer-group underlay
 cumulus@leaf01:~$ nv set vrf default router bgp peer swp51 peer-group underlay
 cumulus@leaf01:~$ nv set vrf default router bgp peer swp52 peer-group underlay
 cumulus@leaf01:~$ nv set vrf default router bgp peer swp53 peer-group underlay
 cumulus@leaf01:~$ nv set vrf default router bgp peer swp54 peer-group underlay
 cumulus@leaf01:~$ nv set vrf default router bgp peer-group underlay address-family l2vpn-evpn enable on
-cumulus@leaf01:~$ nv set vrf default router bgp peer peerlink.4094 peer-group underlay
 cumulus@leaf01:~$ nv set vrf default router bgp address-family ipv4-unicast redistribute connected
 cumulus@leaf01:~$ nv config apply
 ```
@@ -1541,12 +1541,12 @@ cumulus@leaf02:~$ nv set evpn enable on
 cumulus@leaf02:~$ nv set router bgp autonomous-system 65102
 cumulus@leaf02:~$ nv set router bgp router-id 10.10.10.2
 cumulus@leaf02:~$ nv set vrf default router bgp peer-group underlay remote-as external
+cumulus@leaf02:~$ nv set vrf default router bgp peer peerlink.4094 peer-group underlay
 cumulus@leaf02:~$ nv set vrf default router bgp peer swp51 peer-group underlay
 cumulus@leaf02:~$ nv set vrf default router bgp peer swp52 peer-group underlay
 cumulus@leaf02:~$ nv set vrf default router bgp peer swp53 peer-group underlay
 cumulus@leaf02:~$ nv set vrf default router bgp peer swp54 peer-group underlay
 cumulus@leaf02:~$ nv set vrf default router bgp peer-group underlay address-family l2vpn-evpn enable on
-cumulus@leaf02:~$ nv set vrf default router bgp peer peerlink.4094 peer-group underlay
 cumulus@leaf02:~$ nv set vrf default router bgp address-family ipv4-unicast redistribute connected
 cumulus@leaf02:~$ nv config apply
 ```
@@ -1586,12 +1586,12 @@ cumulus@leaf03:~$ nv set evpn enable on
 cumulus@leaf03:~$ nv set router bgp autonomous-system 65103
 cumulus@leaf03:~$ nv set router bgp router-id 10.10.10.3
 cumulus@leaf03:~$ nv set vrf default router bgp peer-group underlay remote-as external
+cumulus@leaf03:~$ nv set vrf default router bgp peer peerlink.4094 peer-group underlay
 cumulus@leaf03:~$ nv set vrf default router bgp peer swp51 peer-group underlay
 cumulus@leaf03:~$ nv set vrf default router bgp peer swp52 peer-group underlay
 cumulus@leaf03:~$ nv set vrf default router bgp peer swp53 peer-group underlay
 cumulus@leaf03:~$ nv set vrf default router bgp peer swp54 peer-group underlay
 cumulus@leaf03:~$ nv set vrf default router bgp peer-group underlay address-family l2vpn-evpn enable on
-cumulus@leaf03:~$ nv set vrf default router bgp peer peerlink.4094 peer-group underlay
 cumulus@leaf03:~$ nv set vrf default router bgp address-family ipv4-unicast redistribute connected
 cumulus@leaf03:~$ nv config apply
 ```
@@ -1631,12 +1631,12 @@ cumulus@leaf04:~$ nv set evpn enable on
 cumulus@leaf04:~$ nv set router bgp autonomous-system 65104
 cumulus@leaf04:~$ nv set router bgp router-id 10.10.10.4
 cumulus@leaf04:~$ nv set vrf default router bgp peer-group underlay remote-as external
+cumulus@leaf04:~$ nv set vrf default router bgp peer peerlink.4094 peer-group underlay
 cumulus@leaf04:~$ nv set vrf default router bgp peer swp51 peer-group underlay
 cumulus@leaf04:~$ nv set vrf default router bgp peer swp52 peer-group underlay
 cumulus@leaf04:~$ nv set vrf default router bgp peer swp53 peer-group underlay
 cumulus@leaf04:~$ nv set vrf default router bgp peer swp54 peer-group underlay
 cumulus@leaf04:~$ nv set vrf default router bgp peer-group underlay address-family l2vpn-evpn enable on
-cumulus@leaf04:~$ nv set vrf default router bgp peer peerlink.4094 peer-group underlay
 cumulus@leaf04:~$ nv set vrf default router bgp address-family ipv4-unicast redistribute connected
 cumulus@leaf04:~$ nv config apply
 ```
@@ -1754,12 +1754,12 @@ cumulus@border01:~$ nv set evpn enable on
 cumulus@border01:~$ nv set router bgp autonomous-system 65253
 cumulus@border01:~$ nv set router bgp router-id 10.10.10.63
 cumulus@border01:~$ nv set vrf default router bgp peer-group underlay remote-as external
+cumulus@border01:~$ nv set vrf default router bgp peer peerlink.4094 peer-group underlay
 cumulus@border01:~$ nv set vrf default router bgp peer swp51 peer-group underlay
 cumulus@border01:~$ nv set vrf default router bgp peer swp52 peer-group underlay
 cumulus@border01:~$ nv set vrf default router bgp peer swp53 peer-group underlay
 cumulus@border01:~$ nv set vrf default router bgp peer swp54 peer-group underlay
 cumulus@border01:~$ nv set vrf default router bgp peer-group underlay address-family l2vpn-evpn enable on
-cumulus@border01:~$ nv set vrf default router bgp peer peerlink.4094 peer-group underlay
 cumulus@border01:~$ nv set vrf default router bgp address-family ipv4-unicast redistribute connected
 cumulus@border01:~$ nv config apply
 ```
@@ -1793,12 +1793,12 @@ cumulus@border02:~$ nv set evpn enable on
 cumulus@border02:~$ nv set router bgp autonomous-system 65254
 cumulus@border02:~$ nv set router bgp router-id 10.10.10.64
 cumulus@border02:~$ nv set vrf default router bgp peer-group underlay remote-as external
+cumulus@border02:~$ nv set vrf default router bgp peer peerlink.4094 peer-group underlay
 cumulus@border02:~$ nv set vrf default router bgp peer swp51 peer-group underlay
 cumulus@border02:~$ nv set vrf default router bgp peer swp52 peer-group underlay
 cumulus@border02:~$ nv set vrf default router bgp peer swp53 peer-group underlay
 cumulus@border02:~$ nv set vrf default router bgp peer swp54 peer-group underlay
 cumulus@border02:~$ nv set vrf default router bgp peer-group underlay address-family l2vpn-evpn enable on
-cumulus@border02:~$ nv set vrf default router bgp peer peerlink.4094 peer-group underlay
 cumulus@border02:~$ nv set vrf default router bgp address-family ipv4-unicast redistribute connected
 cumulus@border02:~$ nv config apply
 ```
@@ -3571,6 +3571,7 @@ neighbor underlay timers 3 9
 neighbor underlay timers connect 10
 neighbor underlay advertisement-interval 0
 no neighbor underlay capability extended-nexthop
+neighbor peerlink.4094 interface remote-as external
 neighbor peerlink.4094 interface peer-group underlay
 neighbor peerlink.4094 timers 3 9
 neighbor peerlink.4094 timers connect 10
@@ -3645,6 +3646,7 @@ neighbor underlay timers 3 9
 neighbor underlay timers connect 10
 neighbor underlay advertisement-interval 0
 no neighbor underlay capability extended-nexthop
+neighbor peerlink.4094 interface remote-as external
 neighbor peerlink.4094 interface peer-group underlay
 neighbor peerlink.4094 timers 3 9
 neighbor peerlink.4094 timers connect 10
@@ -3718,6 +3720,7 @@ neighbor underlay timers 3 9
 neighbor underlay timers connect 10
 neighbor underlay advertisement-interval 0
 no neighbor underlay capability extended-nexthop
+neighbor peerlink.4094 interface remote-as external
 neighbor peerlink.4094 interface peer-group underlay
 neighbor peerlink.4094 timers 3 9
 neighbor peerlink.4094 timers connect 10
@@ -3792,6 +3795,7 @@ neighbor underlay timers 3 9
 neighbor underlay timers connect 10
 neighbor underlay advertisement-interval 0
 no neighbor underlay capability extended-nexthop
+neighbor peerlink.4094 interface remote-as external
 neighbor peerlink.4094 interface peer-group underlay
 neighbor peerlink.4094 timers 3 9
 neighbor peerlink.4094 timers connect 10
@@ -4193,6 +4197,7 @@ neighbor underlay timers 3 9
 neighbor underlay timers connect 10
 neighbor underlay advertisement-interval 0
 no neighbor underlay capability extended-nexthop
+neighbor peerlink.4094 interface remote-as external
 neighbor peerlink.4094 interface peer-group underlay
 neighbor peerlink.4094 timers 3 9
 neighbor peerlink.4094 timers connect 10
@@ -4266,6 +4271,7 @@ neighbor underlay timers 3 9
 neighbor underlay timers connect 10
 neighbor underlay advertisement-interval 0
 no neighbor underlay capability extended-nexthop
+neighbor peerlink.4094 interface remote-as external
 neighbor peerlink.4094 interface peer-group underlay
 neighbor peerlink.4094 timers 3 9
 neighbor peerlink.4094 timers connect 10
@@ -5861,12 +5867,12 @@ cumulus@leaf01:~$ nv set evpn enable on
 cumulus@leaf01:~$ nv set router bgp autonomous-system 65101
 cumulus@leaf01:~$ nv set router bgp router-id 10.10.10.1
 cumulus@leaf01:~$ nv set vrf default router bgp peer-group underlay remote-as external
+cumulus@leaf01:~$ nv set vrf default router bgp peer peerlink.4094 peer-group underlay
 cumulus@leaf01:~$ nv set vrf default router bgp peer swp51 peer-group underlay
 cumulus@leaf01:~$ nv set vrf default router bgp peer swp52 peer-group underlay
 cumulus@leaf01:~$ nv set vrf default router bgp peer swp53 peer-group underlay
 cumulus@leaf01:~$ nv set vrf default router bgp peer swp54 peer-group underlay
 cumulus@leaf01:~$ nv set vrf default router bgp peer-group underlay address-family l2vpn-evpn enable on
-cumulus@leaf01:~$ nv set vrf default router bgp peer peerlink.4094 peer-group underlay
 cumulus@leaf01:~$ nv set vrf default router bgp address-family ipv4-unicast redistribute connected
 cumulus@leaf01:~$ nv config apply
 ```
@@ -5905,12 +5911,12 @@ cumulus@leaf02:~$ nv set evpn enable on
 cumulus@leaf02:~$ nv set router bgp autonomous-system 65102
 cumulus@leaf02:~$ nv set router bgp router-id 10.10.10.2
 cumulus@leaf02:~$ nv set vrf default router bgp peer-group underlay remote-as external
+cumulus@leaf02:~$ nv set vrf default router bgp peer peerlink.4094 peer-group underlay
 cumulus@leaf02:~$ nv set vrf default router bgp peer swp51 peer-group underlay
 cumulus@leaf02:~$ nv set vrf default router bgp peer swp52 peer-group underlay
 cumulus@leaf02:~$ nv set vrf default router bgp peer swp53 peer-group underlay
 cumulus@leaf02:~$ nv set vrf default router bgp peer swp54 peer-group underlay
 cumulus@leaf02:~$ nv set vrf default router bgp peer-group underlay address-family l2vpn-evpn enable on
-cumulus@leaf02:~$ nv set vrf default router bgp peer peerlink.4094 peer-group underlay
 cumulus@leaf02:~$ nv set vrf default router bgp address-family ipv4-unicast redistribute connected
 cumulus@leaf02:~$ nv config apply
 ```
@@ -5950,12 +5956,12 @@ cumulus@leaf03:~$ nv set evpn enable on
 cumulus@leaf03:~$ nv set router bgp autonomous-system 65103
 cumulus@leaf03:~$ nv set router bgp router-id 10.10.10.3
 cumulus@leaf03:~$ nv set vrf default router bgp peer-group underlay remote-as external
+cumulus@leaf03:~$ nv set vrf default router bgp peer peerlink.4094 peer-group underlay
 cumulus@leaf03:~$ nv set vrf default router bgp peer swp51 peer-group underlay
 cumulus@leaf03:~$ nv set vrf default router bgp peer swp52 peer-group underlay
 cumulus@leaf03:~$ nv set vrf default router bgp peer swp53 peer-group underlay
 cumulus@leaf03:~$ nv set vrf default router bgp peer swp54 peer-group underlay
 cumulus@leaf03:~$ nv set vrf default router bgp peer-group underlay address-family l2vpn-evpn enable on
-cumulus@leaf03:~$ nv set vrf default router bgp peer peerlink.4094 peer-group underlay
 cumulus@leaf03:~$ nv set vrf default router bgp address-family ipv4-unicast redistribute connected
 cumulus@leaf03:~$ nv config apply
 ```
@@ -5995,12 +6001,12 @@ cumulus@leaf04:~$ nv set evpn enable on
 cumulus@leaf04:~$ nv set router bgp autonomous-system 65104
 cumulus@leaf04:~$ nv set router bgp router-id 10.10.10.4
 cumulus@leaf04:~$ nv set vrf default router bgp peer-group underlay remote-as external
+cumulus@leaf04:~$ nv set vrf default router bgp peer peerlink.4094 peer-group underlay
 cumulus@leaf04:~$ nv set vrf default router bgp peer swp51 peer-group underlay
 cumulus@leaf04:~$ nv set vrf default router bgp peer swp52 peer-group underlay
 cumulus@leaf04:~$ nv set vrf default router bgp peer swp53 peer-group underlay
 cumulus@leaf04:~$ nv set vrf default router bgp peer swp54 peer-group underlay
 cumulus@leaf04:~$ nv set vrf default router bgp peer-group underlay address-family l2vpn-evpn enable on
-cumulus@leaf04:~$ nv set vrf default router bgp peer peerlink.4094 peer-group underlay
 cumulus@leaf04:~$ nv set vrf default router bgp address-family ipv4-unicast redistribute connected
 cumulus@leaf04:~$ nv config apply
 ```
@@ -6124,12 +6130,12 @@ cumulus@border01:~$ nv set evpn enable on
 cumulus@border01:~$ nv set router bgp autonomous-system 65253
 cumulus@border01:~$ nv set router bgp router-id 10.10.10.63
 cumulus@border01:~$ nv set vrf default router bgp peer-group underlay remote-as external
+cumulus@border01:~$ nv set vrf default router bgp peer peerlink.4094 peer-group underlay
 cumulus@border01:~$ nv set vrf default router bgp peer swp51 peer-group underlay
 cumulus@border01:~$ nv set vrf default router bgp peer swp52 peer-group underlay
 cumulus@border01:~$ nv set vrf default router bgp peer swp53 peer-group underlay
 cumulus@border01:~$ nv set vrf default router bgp peer swp54 peer-group underlay
 cumulus@border01:~$ nv set vrf default router bgp peer-group underlay address-family l2vpn-evpn enable on
-cumulus@border01:~$ nv set vrf default router bgp peer peerlink.4094 peer-group underlay
 cumulus@border01:~$ nv set vrf default router bgp address-family ipv4-unicast redistribute connected
 cumulus@border01:~$ nv set evpn route-advertise default-gateway on
 cumulus@border01:~$ nv config apply
@@ -6170,12 +6176,12 @@ cumulus@border02:~$ nv set evpn enable on
 cumulus@border02:~$ nv set router bgp autonomous-system 65254
 cumulus@border02:~$ nv set router bgp router-id 10.10.10.64
 cumulus@border02:~$ nv set vrf default router bgp peer-group underlay remote-as external
+cumulus@border02:~$ nv set vrf default router bgp peer peerlink.4094 peer-group underlay
 cumulus@border02:~$ nv set vrf default router bgp peer swp51 peer-group underlay
 cumulus@border02:~$ nv set vrf default router bgp peer swp52 peer-group underlay
 cumulus@border02:~$ nv set vrf default router bgp peer swp53 peer-group underlay
 cumulus@border02:~$ nv set vrf default router bgp peer swp54 peer-group underlay
 cumulus@border02:~$ nv set vrf default router bgp peer-group underlay address-family l2vpn-evpn enable on
-cumulus@border02:~$ nv set vrf default router bgp peer peerlink.4094 peer-group underlay
 cumulus@border02:~$ nv set vrf default router bgp address-family ipv4-unicast redistribute connected
 cumulus@border02:~$ nv set evpn route-advertise default-gateway on
 cumulus@border02:~$ nv config apply
@@ -8002,6 +8008,7 @@ neighbor underlay timers 3 9
 neighbor underlay timers connect 10
 neighbor underlay advertisement-interval 0
 no neighbor underlay capability extended-nexthop
+neighbor peerlink.4094 interface remote-as external
 neighbor peerlink.4094 interface peer-group underlay
 neighbor peerlink.4094 timers 3 9
 neighbor peerlink.4094 timers connect 10
@@ -8074,6 +8081,7 @@ neighbor underlay timers 3 9
 neighbor underlay timers connect 10
 neighbor underlay advertisement-interval 0
 no neighbor underlay capability extended-nexthop
+neighbor peerlink.4094 interface remote-as external
 neighbor peerlink.4094 interface peer-group underlay
 neighbor peerlink.4094 timers 3 9
 neighbor peerlink.4094 timers connect 10
@@ -8146,6 +8154,7 @@ neighbor underlay timers 3 9
 neighbor underlay timers connect 10
 neighbor underlay advertisement-interval 0
 no neighbor underlay capability extended-nexthop
+neighbor peerlink.4094 interface remote-as external
 neighbor peerlink.4094 interface peer-group underlay
 neighbor peerlink.4094 timers 3 9
 neighbor peerlink.4094 timers connect 10
@@ -8218,6 +8227,7 @@ neighbor underlay timers 3 9
 neighbor underlay timers connect 10
 neighbor underlay advertisement-interval 0
 no neighbor underlay capability extended-nexthop
+neighbor peerlink.4094 interface remote-as external
 neighbor peerlink.4094 interface peer-group underlay
 neighbor peerlink.4094 timers 3 9
 neighbor peerlink.4094 timers connect 10
@@ -8610,6 +8620,7 @@ neighbor underlay timers 3 9
 neighbor underlay timers connect 10
 neighbor underlay advertisement-interval 0
 no neighbor underlay capability extended-nexthop
+neighbor peerlink.4094 interface remote-as external
 neighbor peerlink.4094 interface peer-group underlay
 neighbor peerlink.4094 timers 3 9
 neighbor peerlink.4094 timers connect 10
@@ -8683,6 +8694,7 @@ neighbor underlay timers 3 9
 neighbor underlay timers connect 10
 neighbor underlay advertisement-interval 0
 no neighbor underlay capability extended-nexthop
+neighbor peerlink.4094 interface remote-as external
 neighbor peerlink.4094 interface peer-group underlay
 neighbor peerlink.4094 timers 3 9
 neighbor peerlink.4094 timers connect 10
@@ -11338,9 +11350,9 @@ cumulus@border02:~$ nv set vrf default router bgp peer swp51 peer-group underlay
 cumulus@border02:~$ nv set vrf default router bgp peer swp52 peer-group underlay
 cumulus@border02:~$ nv set vrf default router bgp peer swp53 peer-group underlay
 cumulus@border02:~$ nv set vrf default router bgp peer swp54 peer-group underlay
-cumulus@border01:~$ nv set vrf default router bgp peer-group underlay address-family l2vpn-evpn enable on
-cumulus@border01:~$ nv set vrf default router bgp peer peerlink.4094 peer-group underlay
-cumulus@border01:~$ nv set vrf default router bgp address-family ipv4-unicast redistribute connected enable on
+cumulus@border02:~$ nv set vrf default router bgp peer-group underlay address-family l2vpn-evpn enable on
+cumulus@border02:~$ nv set vrf default router bgp peer peerlink.4094 peer-group underlay
+cumulus@border02:~$ nv set vrf default router bgp address-family ipv4-unicast redistribute connected enable on
 cumulus@border02:~$ nv set vrf RED router bgp autonomous-system 65254
 cumulus@border02:~$ nv set vrf RED router bgp router-id 10.10.10.64
 cumulus@border02:~$ nv set vrf RED router bgp address-family ipv4-unicast redistribute connected enable on
@@ -11507,11 +11519,49 @@ cumulus@leaf01:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
           vni:
             '4001': {}
           enable: on
+        router:
+          bgp:
+            autonomous-system: 65101
+            enable: on
+            router-id: 10.10.10.1
+            address-family:
+              ipv4-unicast:
+                redistribute:
+                  connected:
+                    enable: on
+                enable: on
+                route-export:
+                  to-evpn:
+                    enable: on
+            peer-group:
+              underlay:
+                address-family:
+                  l2vpn-evpn:
+                    enable: on
       BLUE:
         evpn:
           vni:
             '4002': {}
           enable: on
+        router:
+          bgp:
+            autonomous-system: 65101
+            enable: on
+            router-id: 10.10.10.1
+            address-family:
+              ipv4-unicast:
+                redistribute:
+                  connected:
+                    enable: on
+                enable: on
+                route-export:
+                  to-evpn:
+                    enable: on
+            peer-group:
+              underlay:
+                address-family:
+                  l2vpn-evpn:
+                    enable: on
       default:
         router:
           bgp:
@@ -11711,11 +11761,49 @@ cumulus@leaf02:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
           vni:
             '4001': {}
           enable: on
+        router:
+          bgp:
+            autonomous-system: 65102
+            enable: on
+            router-id: 10.10.10.2
+            address-family:
+              ipv4-unicast:
+                redistribute:
+                  connected:
+                    enable: on
+                enable: on
+                route-export:
+                  to-evpn:
+                    enable: on
+            peer-group:
+              underlay:
+                address-family:
+                  l2vpn-evpn:
+                    enable: on
       BLUE:
         evpn:
           vni:
             '4002': {}
           enable: on
+        router:
+          bgp:
+            autonomous-system: 65102
+            enable: on
+            router-id: 10.10.10.2
+            address-family:
+              ipv4-unicast:
+                redistribute:
+                  connected:
+                    enable: on
+                enable: on
+                route-export:
+                  to-evpn:
+                    enable: on
+            peer-group:
+              underlay:
+                address-family:
+                  l2vpn-evpn:
+                    enable: on
       default:
         router:
           bgp:
@@ -11772,7 +11860,7 @@ cumulus@leaf02:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
 {{< tab "leaf03 ">}}
 
 ```
-cumulus@leaf03:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml 
+cumulus@leaf03:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
 - set:
     interface:
       lo:
@@ -11915,11 +12003,49 @@ cumulus@leaf03:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
           vni:
             '4001': {}
           enable: on
+        router:
+          bgp:
+            autonomous-system: 65103
+            enable: on
+            router-id: 10.10.10.3
+            address-family:
+              ipv4-unicast:
+                redistribute:
+                  connected:
+                    enable: on
+                enable: on
+                route-export:
+                  to-evpn:
+                    enable: on
+            peer-group:
+              underlay:
+                address-family:
+                  l2vpn-evpn:
+                    enable: on
       BLUE:
         evpn:
           vni:
             '4002': {}
           enable: on
+        router:
+          bgp:
+            autonomous-system: 65103
+            enable: on
+            router-id: 10.10.10.3
+            address-family:
+              ipv4-unicast:
+                redistribute:
+                  connected:
+                    enable: on
+                enable: on
+                route-export:
+                  to-evpn:
+                    enable: on
+            peer-group:
+              underlay:
+                address-family:
+                  l2vpn-evpn:
+                    enable: on
       default:
         router:
           bgp:
@@ -12119,11 +12245,49 @@ cumulus@leaf04:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
           vni:
             '4001': {}
           enable: on
+        router:
+          bgp:
+            autonomous-system: 65104
+            enable: on
+            router-id: 10.10.10.4
+            address-family:
+              ipv4-unicast:
+                redistribute:
+                  connected:
+                    enable: on
+                enable: on
+                route-export:
+                  to-evpn:
+                    enable: on
+            peer-group:
+              underlay:
+                address-family:
+                  l2vpn-evpn:
+                    enable: on
       BLUE:
         evpn:
           vni:
             '4002': {}
           enable: on
+        router:
+          bgp:
+            autonomous-system: 65104
+            enable: on
+            router-id: 10.10.10.4
+            address-family:
+              ipv4-unicast:
+                redistribute:
+                  connected:
+                    enable: on
+                enable: on
+                route-export:
+                  to-evpn:
+                    enable: on
+            peer-group:
+              underlay:
+                address-family:
+                  l2vpn-evpn:
+                    enable: on
       default:
         router:
           bgp:
@@ -12545,9 +12709,23 @@ cumulus@border01:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
           enable: on
         router:
           bgp:
-            autonomous-system: 651063
+            autonomous-system: 65253
             enable: on
             router-id: 10.10.10.63
+            address-family:
+              ipv4-unicast:
+                redistribute:
+                  connected:
+                    enable: on
+                enable: on
+                route-export:
+                  to-evpn:
+                    enable: on
+            peer-group:
+              underlay:
+                address-family:
+                  l2vpn-evpn:
+                    enable: on
       BLUE:
         evpn:
           vni:
@@ -12555,9 +12733,23 @@ cumulus@border01:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
           enable: on
         router:
           bgp:
-            autonomous-system: 65132
+            autonomous-system: 65253
             enable: on
             router-id: 10.10.10.63
+            address-family:
+              ipv4-unicast:
+                redistribute:
+                  connected:
+                    enable: on
+                enable: on
+                route-export:
+                  to-evpn:
+                    enable: on
+            peer-group:
+              underlay:
+                address-family:
+                  l2vpn-evpn:
+                    enable: on
       default:
         router:
           bgp:
@@ -12709,9 +12901,23 @@ cumulus@border02:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
           enable: on
         router:
           bgp:
-            autonomous-system: 65132
+            autonomous-system: 65254
             enable: on
-            router-id: 10.10.10.63
+            router-id: 10.10.10.64
+            address-family:
+              ipv4-unicast:
+                redistribute:
+                  connected:
+                    enable: on
+                enable: on
+                route-export:
+                  to-evpn:
+                    enable: on
+            peer-group:
+              underlay:
+                address-family:
+                  l2vpn-evpn:
+                    enable: on
       BLUE:
         evpn:
           vni:
@@ -12719,9 +12925,23 @@ cumulus@border02:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
           enable: on
         router:
           bgp:
-            autonomous-system: 65132
+            autonomous-system: 65254
             enable: on
-            router-id: 10.10.10.63
+            router-id: 10.10.10.64
+            address-family:
+              ipv4-unicast:
+                redistribute:
+                  connected:
+                    enable: on
+                enable: on
+                route-export:
+                  to-evpn:
+                    enable: on
+            peer-group:
+              underlay:
+                address-family:
+                  l2vpn-evpn:
+                    enable: on
       default:
         router:
           bgp:
@@ -13681,6 +13901,7 @@ neighbor underlay timers 3 9
 neighbor underlay timers connect 10
 neighbor underlay advertisement-interval 0
 no neighbor underlay capability extended-nexthop
+neighbor peerlink.4094 interface remote-as external
 neighbor peerlink.4094 interface peer-group underlay
 neighbor peerlink.4094 timers 3 9
 neighbor peerlink.4094 timers connect 10
@@ -13809,6 +14030,7 @@ neighbor underlay timers 3 9
 neighbor underlay timers connect 10
 neighbor underlay advertisement-interval 0
 no neighbor underlay capability extended-nexthop
+neighbor peerlink.4094 interface remote-as external
 neighbor peerlink.4094 interface peer-group underlay
 neighbor peerlink.4094 timers 3 9
 neighbor peerlink.4094 timers connect 10
@@ -13937,6 +14159,7 @@ neighbor underlay timers 3 9
 neighbor underlay timers connect 10
 neighbor underlay advertisement-interval 0
 no neighbor underlay capability extended-nexthop
+neighbor peerlink.4094 interface remote-as external
 neighbor peerlink.4094 interface peer-group underlay
 neighbor peerlink.4094 timers 3 9
 neighbor peerlink.4094 timers connect 10
@@ -14065,6 +14288,7 @@ neighbor underlay timers 3 9
 neighbor underlay timers connect 10
 neighbor underlay advertisement-interval 0
 no neighbor underlay capability extended-nexthop
+neighbor peerlink.4094 interface remote-as external
 neighbor peerlink.4094 interface peer-group underlay
 neighbor peerlink.4094 timers 3 9
 neighbor peerlink.4094 timers connect 10
@@ -14521,6 +14745,7 @@ neighbor underlay timers 3 9
 neighbor underlay timers connect 10
 neighbor underlay advertisement-interval 0
 no neighbor underlay capability extended-nexthop
+neighbor peerlink.4094 interface remote-as external
 neighbor peerlink.4094 interface peer-group underlay
 neighbor peerlink.4094 timers 3 9
 neighbor peerlink.4094 timers connect 10
@@ -14649,6 +14874,7 @@ neighbor underlay timers 3 9
 neighbor underlay timers connect 10
 neighbor underlay advertisement-interval 0
 no neighbor underlay capability extended-nexthop
+neighbor peerlink.4094 interface remote-as external
 neighbor peerlink.4094 interface peer-group underlay
 neighbor peerlink.4094 timers 3 9
 neighbor peerlink.4094 timers connect 10

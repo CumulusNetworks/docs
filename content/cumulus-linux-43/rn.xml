@@ -94,6 +94,12 @@ To work around this issue, configure the new BGP neighbors with vtysh.&lt;/p&gt;
 <td></td>
 </tr>
 <tr>
+<td>2710208</td>
+<td>On Broadcom switches, the {{net show bgp neighbor}} command output shows the BFD status as UP when the interface is down.</td>
+<td>4.2.1-4.3.0</td>
+<td></td>
+</tr>
+<tr>
 <td>2701000</td>
 <td>A default route learned from DHCP on eth0 in the management VRF might install in the default VRF if all the following conditions exist:
 - eth0 is disconnected

@@ -84,7 +84,6 @@ The configuration is saved in the `/etc/ptp4l.conf` file.
     ```
     cumulus@switch:~$ sudo systemctl enable ptp4l.service phc2sys.service
     cumulus@switch:~$ sudo systemctl start ptp4l.service phc2sys.service
-
     ```
 
 2. Edit the `Default interface options` section of the `/etc/ptp4l.conf` file to configure the interfaces on the switch that you want to use for PTP.
@@ -877,7 +876,7 @@ monitor
 To see the list of NVUE show commands for PTP, run `nv list-commands service ptp`:
 
 ```
-cumulus@leaf01:mgmt:~$ nv list-commands service ptp
+cumulus@switch:~$ nv list-commands service ptp
 nv show service ptp
 nv show service ptp <instance-id>
 nv show service ptp <instance-id> acceptable-master
@@ -956,6 +955,7 @@ cumulus@switch:~$ nv config apply
 {{< tab "/etc/nvue.d/startup.yaml file ">}}
 
 ```
+cumulus@switch:~$ sudo cat /etc/nvue.d/startup.yaml
 - set:
     interface:
       lo:
@@ -996,7 +996,7 @@ cumulus@switch:~$ nv config apply
 {{< tab "/etc/ptp4l.conf file ">}}
 
 ```
-cumulus@leaf02:mgmt:~$ sudo cat /etc/ptp4l.conf
+cumulus@switch:~$ sudo cat /etc/ptp4l.conf
 ...
 [global]
 #

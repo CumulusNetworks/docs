@@ -460,7 +460,6 @@ iface vlan10
     address 2001:db8::1/32
     vlan-id 10
     vlan-raw-device br_default
-...
 ```
 
 ```
@@ -471,6 +470,8 @@ cumulus@switch:~$ ifreload -a
 {{< tab "Multiple Bridges ">}}
 
 ```
+cumulus@switch:~$ sudo nano /etc/network/interfaces
+...
 auto bridge2_vlan10
 iface bridge2_vlan10
     address 10.1.10.2/24
@@ -503,7 +504,6 @@ Consider the following configuration, without a dummy interface in the bridge:
 ```
 cumulus@switch:~$ sudo cat /etc/network/interfaces
 ...
-
 auto br_default
 iface br_default
     bridge-vlan-aware yes
@@ -531,7 +531,6 @@ Now add the dummy interface to your network configuration:
     ```
     cumulus@switch:~$ sudo nano /etc/network/interfaces
     ...
-
     auto dummy
     iface dummy
         link-type dummy
@@ -673,13 +672,11 @@ iface br_default
       bridge-ports swp1 swp2 swp3 ... swp51 swp52
       bridge-vids 310 700 707 712 850 910
       bridge-vlan-aware yes
-
 auto swp1
 iface swp1
       bridge-access 310
       mstpctl-bpduguard yes
       mstpctl-portadminedge yes
-
 # The following is a trunk port that is "pruned".
 # native vlan is 1, but only .1q tags of 707, 712, 850 are
 # sent and received
@@ -689,14 +686,12 @@ iface swp2
       mstpctl-bpduguard yes
       mstpctl-portadminedge yes
       bridge-vids 707 712 850
-
 # The following port is the trunk uplink and inherits all vlans
 # from 'bridge'; bridge assurance is enabled using 'portnetwork' attribute
 auto swp49
 iface swp49
       mstpctl-portnetwork yes
       mstpctl-portpathcost 10
-
 # The following port is the trunk uplink and inherits all vlans
 # from 'br_default'; bridge assurance is enabled using 'portnetwork' attribute
  auto swp50

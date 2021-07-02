@@ -736,9 +736,11 @@ To configure a downstream VNI, you configure tenant VRFs as usual; however, to c
 
 ### Configure Route Targets
 
-The route target import or export statement is in the format `route-target import|export <asn>:<vni>`; for example, `route-target import 65101:6000`. As an alternative, you can use `route-target import|export *:<vni>`. The asterisk (*) uses any ASN as a wildcard.
+The route target import or export statement is in the format `route-target import|export <asn>:<vni>`; for example, `route-target import 65101:6000`. For route target *import* statements, you can use `route-target import *:<vni>` as an alternative. The asterisk (*) uses any ASN as a wildcard.
 
-To configure the downsteam VNI, you must manually edit the `/etc/frr/frr.conf` file; NCLU and NVUE commands are not supported.
+The NVUE commands are as follows:
+- To configure a route import statement: `nv set vrf <vrf> router bgp route-import from-evpn route-target <asn>:<vni>`
+- To configure a route export statement: `nv set vrf <vrf> router bgp route-export from-evpn route-target <asn>:<vni>`
 
 {{%notice note%}}
 - Downstream VNI is supported in EVPN symmetric mode with layer 3 VNIs and single VXLAN devices only.
@@ -747,13 +749,17 @@ To configure the downsteam VNI, you must manually edit the `/etc/frr/frr.conf` f
 - You cannot leak (import) overlapping tenant prefixes into the same destination VRF.
 {{%/notice%}}
 
-The following example shows a configuration with downstream VNI on leaf01 thru leaf04, and border01. Because the configuration is similar on all the leafs, only leaf01 and border01 configuration files are shown below.
+The following example shows a configuration with downstream VNI on leaf01 thru leaf04, and border01.
 
 |   Traffic Flow between VRF RED and VRF 10  |     |
 | ----------------------------------------------| ----|
 | <img width=1300/> {{< img src="/images/cumulus-linux/evpn-downstream-vni.png"  >}}| <br><ol><li>server01 forwards traffic to leaf01.</li><li>leaf01 encapsulates the packet with the VNI in its route-target import statement (6000) and tunnels the traffic over to border01.</li><li> border01 uses the VNI received from leaf01 to forward the packet.</li><li> The reverse traffic from border01 to server01 is encapsulated with the VNI in the route-target import statement on border01 (4001) and tunneled over to leaf01, where routing occurs in VRF RED.</li></ul> |
 
-This is the configuration for the example.
+The configuration for the example is shown below.
+- On leaf01, you can see the route target (`route-target import *:6000`) under the `router bgp 65101 vrf RED` and `router bgp 65101 vrf BLUE` stanza of the `/etc/frr/frr.conf` file.
+- On border01, you can see the route targets (`route-target import *:4001` and `route-target import *:4002`) under the `router bgp 65163 vrf VRF10` stanza of the `/etc/frr/frr.conf` file.
+
+Because the configuration is similar on all the leafs, only leaf01 and border01 configuration files are shown below. The spine configuration files are not shown for brevity.
 
 {{< tabs "TabID749 ">}}
 {{< tab "/etc/network/interfaces ">}}
@@ -1191,7 +1197,7 @@ To verify the configuration, check that the routes are properly received and tag
 {{< tabs "TabID1187 ">}}
 {{< tab "leaf01 ">}}
 
-The following vtysh command on leaf01 shows the routes tagged with route target 6000:
+The following vtysh command on leaf01 shows the route from border01 tagged with route target 6000
 
 ```
 cumulus@leaf01:~$ sudo vtysh
@@ -1214,7 +1220,7 @@ cumulus@leaf01:mgmt:~$ ip route show vrf RED 10.1.210.0/24
 {{< /tab >}}
 {{< tab "border01 ">}}
 
-The following vtysh command on border01 shows the routes tagged with route targets 4001 and 4002:
+The following vtysh command on border01 shows the routes from leaf01 tagged with route targets 4001 and 4002:
 
 ```
 cumulus@border01:~$ sudo vtysh

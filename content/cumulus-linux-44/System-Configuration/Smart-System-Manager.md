@@ -78,6 +78,9 @@ cumulus@switch:~$ sudo csmgrctl -f
 {{< /tabs >}}
 
 The following command restarts the system in warm mode:
+{{< notice warning >}}
+Warm boot will reset any manually configured FEC settings.
+{{< /notice >}}
 
 {{< tabs "76 ">}}
 {{< tab "NCLU Command ">}}

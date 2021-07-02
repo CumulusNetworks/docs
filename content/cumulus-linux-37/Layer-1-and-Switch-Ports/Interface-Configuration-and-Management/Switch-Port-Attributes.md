@@ -1552,6 +1552,10 @@ second to come down.
 On a Maverick switch, if auto-negotiation is configured on a 10G interface and the installed module does not support auto-negotiation (for example, 10G DAC, 10G Optical, 1G RJ45 SFP), the link breaks.
 To work around this issue, disable auto-negotiation on interfaces where it is not supported.
 
+### Dell Z9264F-ON 10G Interfaces are Unsupported
+
+The Dell Z9264F-ON has 64x100G + 2x 10G SFP+ ports. The 2x 10G SFP+ ports are not supported in Cumulus Linux.
+
 ## Related Information
 
 - {{<exlink url="http://wiki.debian.org/NetworkConfiguration" text="Debian - Network Configuration">}}

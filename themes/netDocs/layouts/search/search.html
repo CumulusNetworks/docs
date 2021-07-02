@@ -45,6 +45,7 @@
               <a class="rootLink" href={{ "cumulus-vx" | absURL }}>NVIDIA Cumulus VX</a>
               <a class="rootLink" href={{ .Site.Params.sonic_latest | absURL }}>SONiC</a>
               <a class="rootLink" href={{ "knowledge-base" | absURL }}>Knowledge Base</a>
+              <a class="rootLink" href={{ "guides" | absURL }}>Technical Guides</a>
             </li>
             <li class="navSection mobile">
               <div class="burger-menu">
@@ -63,6 +64,7 @@
           <li><a href={{ "cumulus-vx" | absURL }}>NVIDIA Cumulus VX</a></li>
           <li><a href={{ .Site.Params.sonic_latest | absURL }}>SONiC</a></li>
           <li><a href={{ "knowledge-base" | absURL }}>Knowledge Base</a></li>
+          <li><a href={{ "guides" | absURL }}>Technical Guides</a></li>
       </div>
     </div>
     <header class="home-banner" style="background-color: #76b900">
@@ -102,7 +104,7 @@
                 <div class="footer-content">
                     <div class="mb-4">
                       <img src={{"images/nvidia-logo-white.svg" | absURL }} />
-                        <p>© <script type="text/javascript">document.write(new Date().getFullYear());</script>&nbsp;&nbsp;NVIDIA Corporation.</p>
+                        <p>© {{ dateFormat "2006" now }}&nbsp;&nbsp;NVIDIA Corporation.</p>
                         <p><a href={{"license" | absURL }}><img src={{"images/by-nc-sa.svg" | absURL }} alt="Cumulus Networks CC-by-NC-SA License"></a></p>
                     </div>
                     <ul class="mb-4">

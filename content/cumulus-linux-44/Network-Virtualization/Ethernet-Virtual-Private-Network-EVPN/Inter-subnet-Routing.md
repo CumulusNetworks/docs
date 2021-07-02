@@ -736,7 +736,7 @@ To configure a downstream VNI, you configure tenant VRFs as usual; however, to c
 
 ### Configure Route Targets
 
-The route target import or export statement is in the format `route-target import|export <asn>:<vni>`; for example, `route-target import 65101:6000`. As an alternative, you can use `route-target import|export *:<vni>`. The asterisk (*) uses any ASN as a wildcard.
+The route target import or export statement is in the format `route-target import|export <asn>:<vni>`; for example, `route-target import 65101:6000`. For route target import statements, you can use `route-target import|export *:<vni>` as an alternative. The asterisk (*) uses any ASN as a wildcard.
 
 To configure the downsteam VNI, you must manually edit the `/etc/frr/frr.conf` file; NCLU and NVUE commands are not supported.
 

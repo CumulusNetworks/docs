@@ -1,7 +1,6 @@
 ---
 title: NX-OS to NVUE EVPN Configuration
 weight: 300
-Draft: true
 ---
 
 Cumulus Linux version 4.4 introduces a new CLI called {{<kb_link url="cumulus-linux-44/System-Configuration/NVIDIA-User-Experience-NVUE/" text="NVUE">}}.

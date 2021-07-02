@@ -736,11 +736,11 @@ To configure a downstream VNI, you configure tenant VRFs as usual; however, to c
 
 ### Configure Route Targets
 
-The route target import or export statement is in the format `route-target import|export <asn>:<vni>`; for example, `route-target import 65101:6000`. For route target import statements, you can use `route-target import|export *:<vni>` as an alternative. The asterisk (*) uses any ASN as a wildcard.
+The route target import or export statement is in the format `route-target import|export <asn>:<vni>`; for example, `route-target import 65101:6000`. For route target *import* statements, you can use `route-target import|export *:<vni>` as an alternative. The asterisk (*) uses any ASN as a wildcard.
 
 The NVUE commands are as follows:
-- To configure an route import statement: `nv set vrf <vrf> router bgp route-import from-evpn route-target <asn>:<vni>`
-- To configure an route export statement: `nv set vrf <vrf> router bgp route-export from-evpn route-target <asn>:<vni>`
+- To configure a route import statement: `nv set vrf <vrf> router bgp route-import from-evpn route-target <asn>:<vni>`
+- To configure a route export statement: `nv set vrf <vrf> router bgp route-export from-evpn route-target <asn>:<vni>`
 
 {{%notice note%}}
 - Downstream VNI is supported in EVPN symmetric mode with layer 3 VNIs and single VXLAN devices only.

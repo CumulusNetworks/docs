@@ -103,7 +103,7 @@ cumulus@leaf01:~$ ifreload -a
 With a single VXLAN device, a set of VNIs are included in a single device model. The single VXLAN device has a set of attributes that belong to the VXLAN construct. Individual VNIs are represented as a VLAN to VNI mapping and you can specify which VLANs map to the associated VNIs. Single VXLAN device simplifies the configuration and reduces the overhead by replacing multiple traditional VXLAN devices with a single VXLAN device.
 
 {{%notice note%}}
-Cumulus Linux supports multiple single VXLAN devices when configured with multiple VLAN-aware bridges. You configure multiple single VXLAN devices in the same way you configure a single VXLAN device. Make sure *not* to duplicate VNIs across single VXLAN configurations.
+Cumulus Linux supports multiple single VXLAN devices when configured with multiple VLAN-aware bridges. You configure multiple single VXLAN devices in the same way you configure a single VXLAN device. Make sure *not* to duplicate VNIs across single VXLAN device configurations.
 
 The limitations listed for {{<link url="VLAN-aware-Bridge-Mode" text="multiple VLAN-aware bridges">}} also apply to multiple single VXLAN devices.
 {{%/notice%}}

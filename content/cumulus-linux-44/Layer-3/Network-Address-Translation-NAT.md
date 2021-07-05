@@ -15,7 +15,7 @@ Static and dynamic NAT both support:
 - Basic NAT, which only translates the IP address in the packet: the source IP address in the outbound direction and the destination IP address in the inbound direction.
 - Port Address Translation (PAT), which translates both the IP address and layer 4 port: the source IP address and port in the outbound direction and the destination IP address and port in the inbound direction.
 
-Static NAT also also supports double NAT (also known as twice NAT) where both the source and destination IP addresses are translated as a packet crosses address realms. Double NAT is typically used when address space in a private network overlaps with IP addresses in the public space.
+Static NAT supports double NAT (also known as twice NAT) where both the source and destination IP addresses are translated as a packet crosses address realms. Double NAT is used typically when address space in a private network overlaps with IP addresses in the public space.
 
 The following illustration shows a basic NAT configuration.
 

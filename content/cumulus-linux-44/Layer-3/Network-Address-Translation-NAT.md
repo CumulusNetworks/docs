@@ -130,9 +130,9 @@ The following *double NAT* rule matches both the source and destination IP addre
 - For incoming messages, NAT changes the inside global IP address 130.1.100.10 to the inside local IP address 172.16.10.2 and the outside global IP address 140.1.1.2 to the outside local IP address 26.26.26.26.
 
 ```
-cumulus@switch:~$ net add nat static snat udp 172.16.10.2 translate 130.1.100.100
+cumulus@switch:~$ net add nat static snat icmp 172.16.10.2 translate 130.1.100.100
 cumulus@switch:~$ net add nat static dnat icmp 26.26.26.26 translate 140.1.1.2
-cumulus@switch:~$ net add nat static snat udp 140.1.1.2 translate 26.26.26.26
+cumulus@switch:~$ net add nat static snat icmp 140.1.1.2 translate 26.26.26.26
 cumulus@switch:~$ net add nat static dnat icmp 130.1.100.100 translate 172.16.10.2 
 cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit 

@@ -66,10 +66,6 @@ For NVIDIA Spectrum-2 switches, you can include the outgoing or incoming interfa
 
 To create rules, you can use either NCLU or `cl-acltool`.
 
-{{%notice note%}}
-NCLU is not supported for double NAT; use `cl-acltool` to configure double NAT.
-{{%/notice%}}
-
 {{< tabs "TabID68 ">}}
 {{< tab "NCLU Commands ">}}
 
@@ -127,6 +123,19 @@ The following rule matches UDP packets with destination IP address 172.30.58.80 
 cumulus@switch:~$ net add nat static dnat udp 172.30.58.80 6000 in-interface swp51 translate 10.0.0.1 5000
 cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
+```
+
+The following *double NAT* rule matches both the source and destination IP addresses of incoming and outgoing ICMP packets:  
+- For outgoing messages, NAT changes the inside local IP address 172.16.10.2 to the inside global IP address 130.1.100.10 and the outside local IP address 26.26.26.26 to the outside global IP address 140.1.1.2.
+- For incoming messages, NAT changes the inside global IP address 130.1.100.10 to the inside local IP address 172.16.10.2 and the outside global IP address 140.1.1.2 to the outside local IP address 26.26.26.26.
+
+```
+cumulus@switch:~$ net add nat static snat udp 172.16.10.2 translate 130.1.100.100
+cumulus@switch:~$ net add nat static dnat icmp 26.26.26.26 translate 140.1.1.2
+cumulus@switch:~$ net add nat static snat udp 140.1.1.2 translate 26.26.26.26
+cumulus@switch:~$ net add nat static dnat icmp 130.1.100.100 translate 172.16.10.2 
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit 
 ```
 
 To delete a static rule, run the `net del` command. For example:

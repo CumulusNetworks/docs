@@ -215,7 +215,7 @@ def sanatize_rn_for_xls(string):
     # output_string = TAG_RE.sub('', string)
     output_string = string.replace("<p>", "\015")
     output_string = output_string.replace("</p>", "")
-    output_string = string.replace("<br />", "\015")
+    output_string = output_string.replace("<br />", "\015")
 
     output_string = output_string.replace("`", "&apos;")
     output_string = output_string.replace("&", "&amp;")
@@ -224,22 +224,23 @@ def sanatize_rn_for_xls(string):
     output_string = output_string.replace("<", "&lt;")
     output_string = output_string.replace(">", "&gt;")
 
-    output_string = output_string.replace("<tt>", "")
-    output_string = output_string.replace("</tt>", "")
+    output_string = output_string.replace("&lt;tt&gt;", "")
+    output_string = output_string.replace("&lt;/tt&gt;", "")
 
-    output_string = output_string.replace("<pre>", "")
-    output_string = output_string.replace("</pre>", "")
-    output_string = output_string.replace("<pre class=\"code-java\">", "")
+    output_string = output_string.replace("&lt;pre&gt;", "")
+    output_string = output_string.replace("&lt;/pre&gt;", "")
+    output_string = output_string.replace("&lt;pre class=\"code-java\"&gt;", "")
 
-    output_string = output_string.replace('<div class=\"code panel\" style=\"border-width: 1px;\"><div class=\"codeContent panelContent\">', "")
-    output_string = output_string.replace('<div class=\"preformatted\" style=\"border-width: 1px;\"><div class=\"preformattedContent panelContent\">', "")
-    output_string = output_string.replace("</div>", "")
+    output_string = output_string.replace('&lt;div class=\"code panel\" style=\"border-width: 1px;\"&gt;&lt;div class=\"codeContent panelContent\"&gt;', "")
+    output_string = output_string.replace('&lt;div class=\"preformatted\" style=\"border-width: 1px;\"&gt;&lt;div class=\"preformattedContent panelContent\"&gt;', "")
+    output_string = output_string.replace("&lt;/div&gt;", "")
+    output_string = output_string.replace("&lt;span class=\"code-keyword\"&gt;", "")
+    output_string = output_string.replace("&lt;/span&gt;", "")
 
     # NetQ-5774 Fix. The use of "<>" in a string inside a code (<pre>) block disappears
-    output_string = output_string.replace("<ipaddr>", "[ipaddr]")
+    output_string = output_string.replace("&lt;ipaddr&gt;", "[ipaddr]")
 
     output_string = output_string.replace("{noformat}", "")
-
     return output_string
 
 def build_rn_markdown(json_file, version, file_type):

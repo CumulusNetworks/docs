@@ -8,83 +8,83 @@
 </tr>
 <tr>
 <td>CM-32516</td>
-<td>&lt;p&gt;When using NCLU to add new BGP neighbors to existing configurations, the existence of address-family statements are ignored and the neighbors are added at the end of these lines. This might cause a problem if you try to activate these new neighbors in any of the existing address-family configurations.&lt;br/&gt;
-To work around this issue, configure the new BGP neighbors with vtysh.&lt;/p&gt;</td>
+<td>When using NCLU to add new BGP neighbors to existing configurations, the existence of address-family statements are ignored and the neighbors are added at the end of these lines. This might cause a problem if you try to activate these new neighbors in any of the existing address-family configurations.&lt;br/&gt;
+To work around this issue, configure the new BGP neighbors with vtysh.</td>
 <td>3.7.14-3.7.15, 4.2.1-4.3.0</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-31420</td>
-<td>&lt;p&gt;On a Cumulus Linux switch with high load averages, cl-support might end without creating a tar file  and leave a temporary directory in &lt;tt&gt;/var/support&lt;/tt&gt; undeleted. Subsequent runs of cl-support do not clean up this directory.&lt;/p&gt;</td>
+<td>On a Cumulus Linux switch with high load averages, cl-support might end without creating a tar file  and leave a temporary directory in /var/support undeleted. Subsequent runs of cl-support do not clean up this directory.</td>
 <td>3.7.13-3.7.15</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-31073</td>
-<td>&lt;p&gt;When you set the &lt;tt&gt;sysctl&lt;/tt&gt; settings &lt;tt&gt;net.ipv6.conf.all.accept_ra_defrtr&lt;/tt&gt; (to prevent acceptance of IPv6 default route advertisements) and &lt;tt&gt;net.ipv6.conf.default.accept_ra_defrtr&lt;/tt&gt; (set for newly created interfaces), if you create a new virtual interface, any pre-existing interface does not start accepting IPv6 default route avertisements again.&lt;br/&gt;
-To work around this issue, when you create a new virtual interface, set &lt;tt&gt;net.ipv6.conf.&amp;lt;interface&amp;gt;.accept_ra_defrtr&lt;/tt&gt; to 0 for all interfaces and run &lt;tt&gt;sysctl -p --system&lt;/tt&gt;.&lt;/p&gt;</td>
+<td>When you set the sysctl settings net.ipv6.conf.all.accept_ra_defrtr (to prevent acceptance of IPv6 default route advertisements) and net.ipv6.conf.default.accept_ra_defrtr (set for newly created interfaces), if you create a new virtual interface, any pre-existing interface does not start accepting IPv6 default route avertisements again.&lt;br/&gt;
+To work around this issue, when you create a new virtual interface, set net.ipv6.conf.&amp;lt;interface&amp;gt;.accept_ra_defrtr to 0 for all interfaces and run sysctl -p --system.</td>
 <td>3.7.12-4.2.1</td>
 <td>4.3.0</td>
 </tr>
 <tr>
 <td>CM-29890</td>
-<td>&lt;p&gt;Multiple paths to identical EVPN prefixes are either not displayed or not accepted into the l2vpn evpn table if they are received from a different AS.&lt;/p&gt;</td>
+<td>Multiple paths to identical EVPN prefixes are either not displayed or not accepted into the l2vpn evpn table if they are received from a different AS.</td>
 <td>3.7.12-3.7.15, 4.1.1-4.3.0</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-28462</td>
-<td>&lt;p&gt;On rare occasions, when you upgrade Cumulus Linux with the &lt;tt&gt;apt-get upgrade&lt;/tt&gt; command, the upgrade fails and reports &lt;tt&gt;No space left on device&lt;/tt&gt;. Checking the disk utilization shows that the disk is not full.&lt;br/&gt;
-To work around this issue, run the &lt;tt&gt;apt-get upgrade&lt;/tt&gt; command again and reboot the device if prompted to complete the upgrade.&lt;/p&gt;</td>
+<td>On rare occasions, when you upgrade Cumulus Linux with the apt-get upgrade command, the upgrade fails and reports No space left on device. Checking the disk utilization shows that the disk is not full.&lt;br/&gt;
+To work around this issue, run the apt-get upgrade command again and reboot the device if prompted to complete the upgrade.</td>
 <td>3.7.10-3.7.15</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-28080</td>
-<td>&lt;p&gt;TACACS+ through ClearPass is not currently supported. Cumulus Linux sends authorization before authentication, but ClearPass does not accept an authorization before the user is authenticated.&lt;/p&gt;</td>
+<td>TACACS+ through ClearPass is not currently supported. Cumulus Linux sends authorization before authentication, but ClearPass does not accept an authorization before the user is authenticated.</td>
 <td>3.7.11-3.7.15, 4.0.0-4.3.0</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-23004</td>
-<td>&lt;p&gt;The local fallback account authenticates using the local password when the RADIUS or TACACS service is up. The expected behavior is for this to fail and only succeed when the RADIUS OR TACACS server fails to respond. &lt;/p&gt;
+<td>The local fallback account authenticates using the local password when the RADIUS or TACACS service is up. The expected behavior is for this to fail and only succeed when the RADIUS OR TACACS server fails to respond. 
 </td>
 <td>3.7.1-3.7.15</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-21678</td>
-<td>&lt;p&gt;On a Dell switch with a Maverick ASIC, NetQ might receive false alerts like the following via PagerDuty: &lt;/p&gt;
- &lt;div class="code panel" style="border-width: 1px;"&gt;&lt;div class="codeContent panelContent"&gt;
-&lt;pre class="code-java"&gt; 
- cumulus@&lt;span class="code-keyword"&gt;switch&lt;/span&gt;:~$ netq show sensors temp changes | grep absent | grep -v psu 
+<td>On a Dell switch with a Maverick ASIC, NetQ might receive false alerts like the following via PagerDuty: 
+ 
+ 
+ cumulus@switch:~$ netq show sensors temp changes | grep absent | grep -v psu 
  P2Leaf01 temp9 networking asic die temp sensor absent 43 105 100 5 Unable to find driver path: /cumulu Add 7d:22h:1m:41s 
  P2Leaf01 temp6 networking asic die temp sensor absent 45 105 100 5 Unable to find driver path: /cumulu Add 7d:22h:1m:41s 
  P2Leaf01 temp6 networking asic die temp sensor absent 47 105 100 5 Unable to read temp4_highest Add 9d:23h:26m:6s 
  P2Leaf01 temp6 networking asic die temp sensor absent 45 105 100 5 Unable to read temp4_highest Add 14d:22h:46m:45s 
- &lt;/pre&gt;
-&lt;/div&gt;&lt;/div&gt; 
-&lt;p&gt; This message might occur as a result of a timeout at the hardware level, or the switch might be reporting a failure to get a response. &lt;/p&gt;
+ 
+ 
+ This message might occur as a result of a timeout at the hardware level, or the switch might be reporting a failure to get a response. 
 </td>
 <td>3.5.3-3.7.15, 4.0.0-4.3.0</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-20508</td>
-<td>&lt;p&gt;The Cumulus-Resource-Query-MIB defines the ability to gather buffer utilization status but when these objects are polled, they return nothing. &lt;/p&gt;</td>
+<td>The Cumulus-Resource-Query-MIB defines the ability to gather buffer utilization status but when these objects are polled, they return nothing. </td>
 <td>3.5.3-3.7.15, 4.0.0-4.3.0</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-20033</td>
-<td>&lt;p&gt;The VLAN interface stays up even though the physical link carrying the VLAN is admin or carrier down.&lt;/p&gt;
+<td>The VLAN interface stays up even though the physical link carrying the VLAN is admin or carrier down.
 </td>
 <td>3.5.2-3.7.15, 4.0.0-4.3.0</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-15812</td>
-<td>&lt;p&gt;Multicast forwarding fails for IP addresses whose DMAC overlaps with reserved DIPs.&lt;/p&gt;</td>
+<td>Multicast forwarding fails for IP addresses whose DMAC overlaps with reserved DIPs.</td>
 <td>3.2.1-3.7.15, 4.0.0-4.3.0</td>
 <td></td>
 </tr>
@@ -117,9 +117,9 @@ Fixed: 1.6.2-2+dev8u9</td>
 <td>2699399</td>
 <td>When you run the vtysh {{show ip bgp vrf &lt;name&gt; &lt;afi&gt; &lt;safi&gt; statistics}} command, the {{bgpd}} service crashes if you use {{vrf all}}. For example:
 spine01# show ip bgp vrf all statistics 
-&lt;pre&gt;vtysh: error reading from bgpd: Success (0)Warning: closing connection to bgpd because of an I/O error!&lt;/pre&gt;
-&lt;pre&gt;spine01# show bgp vrf all ipv6 unicast statistics 
-vtysh: error reading from bgpd: Success (0)Warning: closing connection to bgpd because of an I/O error!&lt;/pre&gt;
+vtysh: error reading from bgpd: Success (0)Warning: closing connection to bgpd because of an I/O error!
+spine01# show bgp vrf all ipv6 unicast statistics 
+vtysh: error reading from bgpd: Success (0)Warning: closing connection to bgpd because of an I/O error!
 To workaround this issue, run the command against each VRF independently.</td>
 <td>3.7.15, 4.0.0-4.3.0</td>
 <td></td>
@@ -132,13 +132,13 @@ To workaround this issue, remove the aggregate-address summary-only configuratio
 
 Before:
 
-&lt;pre&gt;address-family ipv4 unicast
+address-family ipv4 unicast
    aggregate-address 10.10.0.0/16 summary-only
-   redistribute connected&lt;/pre&gt;
+   redistribute connected
 
 
 After:
-&lt;pre&gt;ip route 10.10.0.0/16 Null0
+ip route 10.10.0.0/16 Null0
    !
    address-family ipv4 unicast
    redistribute connected route-map DENY-COMPONENTS
@@ -149,7 +149,7 @@ After:
    route-map DENY-COMPONENTS deny 10
     match ip address prefix-list NO-COMPONENTS
    !
-   route-map DENY-COMPONENTS permit 20&lt;/pre&gt;
+   route-map DENY-COMPONENTS permit 20
 
 Note: this example assumes no other static routes are present. If other static routes are present, additional route maps may need to be configured to limit the static routes being redistributed. </td>
 <td>3.7.12-3.7.15</td>
@@ -1664,7 +1664,7 @@ To work around this issue, correct the bridge VIDs and restart {{switchd}} or de
 </tr>
 <tr>
 <td>CM-30832</td>
-<td>&lt;p&gt;The Mellanox SN2700 and SN2410 switch intermittently reports PSU fan state changes with &lt;tt&gt;Unable to read from device/fan1_input/pwm1&lt;/tt&gt; syslog messages.&lt;/p&gt;</td>
+<td>The Mellanox SN2700 and SN2410 switch intermittently reports PSU fan state changes with Unable to read from device/fan1_input/pwm1 syslog messages.</td>
 <td>3.7.11-3.7.14, 4.1.1-4.2.1</td>
 </tr>
 <tr>
@@ -2108,83 +2108,83 @@ These messages are harmless and can be ignored.</td>
 </tr>
 <tr>
 <td>CM-32516</td>
-<td>&lt;p&gt;When using NCLU to add new BGP neighbors to existing configurations, the existence of address-family statements are ignored and the neighbors are added at the end of these lines. This might cause a problem if you try to activate these new neighbors in any of the existing address-family configurations.&lt;br/&gt;
-To work around this issue, configure the new BGP neighbors with vtysh.&lt;/p&gt;</td>
+<td>When using NCLU to add new BGP neighbors to existing configurations, the existence of address-family statements are ignored and the neighbors are added at the end of these lines. This might cause a problem if you try to activate these new neighbors in any of the existing address-family configurations.&lt;br/&gt;
+To work around this issue, configure the new BGP neighbors with vtysh.</td>
 <td>3.7.14-3.7.14.2, 4.2.1-4.3.0</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-31420</td>
-<td>&lt;p&gt;On a Cumulus Linux switch with high load averages, cl-support might end without creating a tar file  and leave a temporary directory in &lt;tt&gt;/var/support&lt;/tt&gt; undeleted. Subsequent runs of cl-support do not clean up this directory.&lt;/p&gt;</td>
+<td>On a Cumulus Linux switch with high load averages, cl-support might end without creating a tar file  and leave a temporary directory in /var/support undeleted. Subsequent runs of cl-support do not clean up this directory.</td>
 <td>3.7.13-3.7.14.2</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-31073</td>
-<td>&lt;p&gt;When you set the &lt;tt&gt;sysctl&lt;/tt&gt; settings &lt;tt&gt;net.ipv6.conf.all.accept_ra_defrtr&lt;/tt&gt; (to prevent acceptance of IPv6 default route advertisements) and &lt;tt&gt;net.ipv6.conf.default.accept_ra_defrtr&lt;/tt&gt; (set for newly created interfaces), if you create a new virtual interface, any pre-existing interface does not start accepting IPv6 default route avertisements again.&lt;br/&gt;
-To work around this issue, when you create a new virtual interface, set &lt;tt&gt;net.ipv6.conf.&amp;lt;interface&amp;gt;.accept_ra_defrtr&lt;/tt&gt; to 0 for all interfaces and run &lt;tt&gt;sysctl -p --system&lt;/tt&gt;.&lt;/p&gt;</td>
+<td>When you set the sysctl settings net.ipv6.conf.all.accept_ra_defrtr (to prevent acceptance of IPv6 default route advertisements) and net.ipv6.conf.default.accept_ra_defrtr (set for newly created interfaces), if you create a new virtual interface, any pre-existing interface does not start accepting IPv6 default route avertisements again.&lt;br/&gt;
+To work around this issue, when you create a new virtual interface, set net.ipv6.conf.&amp;lt;interface&amp;gt;.accept_ra_defrtr to 0 for all interfaces and run sysctl -p --system.</td>
 <td>3.7.12-4.2.1</td>
 <td>4.3.0</td>
 </tr>
 <tr>
 <td>CM-29890</td>
-<td>&lt;p&gt;Multiple paths to identical EVPN prefixes are either not displayed or not accepted into the l2vpn evpn table if they are received from a different AS.&lt;/p&gt;</td>
+<td>Multiple paths to identical EVPN prefixes are either not displayed or not accepted into the l2vpn evpn table if they are received from a different AS.</td>
 <td>3.7.12-3.7.14.2, 4.1.1-4.3.0</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-28462</td>
-<td>&lt;p&gt;On rare occasions, when you upgrade Cumulus Linux with the &lt;tt&gt;apt-get upgrade&lt;/tt&gt; command, the upgrade fails and reports &lt;tt&gt;No space left on device&lt;/tt&gt;. Checking the disk utilization shows that the disk is not full.&lt;br/&gt;
-To work around this issue, run the &lt;tt&gt;apt-get upgrade&lt;/tt&gt; command again and reboot the device if prompted to complete the upgrade.&lt;/p&gt;</td>
+<td>On rare occasions, when you upgrade Cumulus Linux with the apt-get upgrade command, the upgrade fails and reports No space left on device. Checking the disk utilization shows that the disk is not full.&lt;br/&gt;
+To work around this issue, run the apt-get upgrade command again and reboot the device if prompted to complete the upgrade.</td>
 <td>3.7.10-3.7.14.2</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-28080</td>
-<td>&lt;p&gt;TACACS+ through ClearPass is not currently supported. Cumulus Linux sends authorization before authentication, but ClearPass does not accept an authorization before the user is authenticated.&lt;/p&gt;</td>
+<td>TACACS+ through ClearPass is not currently supported. Cumulus Linux sends authorization before authentication, but ClearPass does not accept an authorization before the user is authenticated.</td>
 <td>3.7.11-3.7.14.2, 4.0.0-4.3.0</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-23004</td>
-<td>&lt;p&gt;The local fallback account authenticates using the local password when the RADIUS or TACACS service is up. The expected behavior is for this to fail and only succeed when the RADIUS OR TACACS server fails to respond. &lt;/p&gt;
+<td>The local fallback account authenticates using the local password when the RADIUS or TACACS service is up. The expected behavior is for this to fail and only succeed when the RADIUS OR TACACS server fails to respond. 
 </td>
 <td>3.7.1-3.7.14.2</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-21678</td>
-<td>&lt;p&gt;On a Dell switch with a Maverick ASIC, NetQ might receive false alerts like the following via PagerDuty: &lt;/p&gt;
- &lt;div class="code panel" style="border-width: 1px;"&gt;&lt;div class="codeContent panelContent"&gt;
-&lt;pre class="code-java"&gt; 
- cumulus@&lt;span class="code-keyword"&gt;switch&lt;/span&gt;:~$ netq show sensors temp changes | grep absent | grep -v psu 
+<td>On a Dell switch with a Maverick ASIC, NetQ might receive false alerts like the following via PagerDuty: 
+ 
+ 
+ cumulus@switch:~$ netq show sensors temp changes | grep absent | grep -v psu 
  P2Leaf01 temp9 networking asic die temp sensor absent 43 105 100 5 Unable to find driver path: /cumulu Add 7d:22h:1m:41s 
  P2Leaf01 temp6 networking asic die temp sensor absent 45 105 100 5 Unable to find driver path: /cumulu Add 7d:22h:1m:41s 
  P2Leaf01 temp6 networking asic die temp sensor absent 47 105 100 5 Unable to read temp4_highest Add 9d:23h:26m:6s 
  P2Leaf01 temp6 networking asic die temp sensor absent 45 105 100 5 Unable to read temp4_highest Add 14d:22h:46m:45s 
- &lt;/pre&gt;
-&lt;/div&gt;&lt;/div&gt; 
-&lt;p&gt; This message might occur as a result of a timeout at the hardware level, or the switch might be reporting a failure to get a response. &lt;/p&gt;
+ 
+ 
+ This message might occur as a result of a timeout at the hardware level, or the switch might be reporting a failure to get a response. 
 </td>
 <td>3.5.3-3.7.14.2, 4.0.0-4.3.0</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-20508</td>
-<td>&lt;p&gt;The Cumulus-Resource-Query-MIB defines the ability to gather buffer utilization status but when these objects are polled, they return nothing. &lt;/p&gt;</td>
+<td>The Cumulus-Resource-Query-MIB defines the ability to gather buffer utilization status but when these objects are polled, they return nothing. </td>
 <td>3.5.3-3.7.14.2, 4.0.0-4.3.0</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-20033</td>
-<td>&lt;p&gt;The VLAN interface stays up even though the physical link carrying the VLAN is admin or carrier down.&lt;/p&gt;
+<td>The VLAN interface stays up even though the physical link carrying the VLAN is admin or carrier down.
 </td>
 <td>3.5.2-3.7.14.2, 4.0.0-4.3.0</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-15812</td>
-<td>&lt;p&gt;Multicast forwarding fails for IP addresses whose DMAC overlaps with reserved DIPs.&lt;/p&gt;</td>
+<td>Multicast forwarding fails for IP addresses whose DMAC overlaps with reserved DIPs.</td>
 <td>3.2.1-3.7.14.2, 4.0.0-4.3.0</td>
 <td></td>
 </tr>
@@ -2221,13 +2221,13 @@ To workaround this issue, remove the aggregate-address summary-only configuratio
 
 Before:
 
-&lt;pre&gt;address-family ipv4 unicast
+address-family ipv4 unicast
    aggregate-address 10.10.0.0/16 summary-only
-   redistribute connected&lt;/pre&gt;
+   redistribute connected
 
 
 After:
-&lt;pre&gt;ip route 10.10.0.0/16 Null0
+ip route 10.10.0.0/16 Null0
    !
    address-family ipv4 unicast
    redistribute connected route-map DENY-COMPONENTS
@@ -2238,7 +2238,7 @@ After:
    route-map DENY-COMPONENTS deny 10
     match ip address prefix-list NO-COMPONENTS
    !
-   route-map DENY-COMPONENTS permit 20&lt;/pre&gt;
+   route-map DENY-COMPONENTS permit 20
 
 Note: this example assumes no other static routes are present. If other static routes are present, additional route maps may need to be configured to limit the static routes being redistributed. </td>
 <td>3.7.12-3.7.15</td>
@@ -4177,7 +4177,7 @@ To work around this issue, correct the bridge VIDs and restart {{switchd}} or de
 </tr>
 <tr>
 <td>CM-30832</td>
-<td>&lt;p&gt;The Mellanox SN2700 and SN2410 switch intermittently reports PSU fan state changes with &lt;tt&gt;Unable to read from device/fan1_input/pwm1&lt;/tt&gt; syslog messages.&lt;/p&gt;</td>
+<td>The Mellanox SN2700 and SN2410 switch intermittently reports PSU fan state changes with Unable to read from device/fan1_input/pwm1 syslog messages.</td>
 <td>3.7.11-3.7.14, 4.1.1-4.2.1</td>
 </tr>
 <tr>
@@ -4244,89 +4244,89 @@ You can see the temperature reading in the output of the {{sensors}} command.</t
 </tr>
 <tr>
 <td>CM-32516</td>
-<td>&lt;p&gt;When using NCLU to add new BGP neighbors to existing configurations, the existence of address-family statements are ignored and the neighbors are added at the end of these lines. This might cause a problem if you try to activate these new neighbors in any of the existing address-family configurations.&lt;br/&gt;
-To work around this issue, configure the new BGP neighbors with vtysh.&lt;/p&gt;</td>
+<td>When using NCLU to add new BGP neighbors to existing configurations, the existence of address-family statements are ignored and the neighbors are added at the end of these lines. This might cause a problem if you try to activate these new neighbors in any of the existing address-family configurations.&lt;br/&gt;
+To work around this issue, configure the new BGP neighbors with vtysh.</td>
 <td>3.7.14-3.7.14.2, 4.2.1-4.3.0</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-31420</td>
-<td>&lt;p&gt;On a Cumulus Linux switch with high load averages, cl-support might end without creating a tar file  and leave a temporary directory in &lt;tt&gt;/var/support&lt;/tt&gt; undeleted. Subsequent runs of cl-support do not clean up this directory.&lt;/p&gt;</td>
+<td>On a Cumulus Linux switch with high load averages, cl-support might end without creating a tar file  and leave a temporary directory in /var/support undeleted. Subsequent runs of cl-support do not clean up this directory.</td>
 <td>3.7.13-3.7.14.2</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-31073</td>
-<td>&lt;p&gt;When you set the &lt;tt&gt;sysctl&lt;/tt&gt; settings &lt;tt&gt;net.ipv6.conf.all.accept_ra_defrtr&lt;/tt&gt; (to prevent acceptance of IPv6 default route advertisements) and &lt;tt&gt;net.ipv6.conf.default.accept_ra_defrtr&lt;/tt&gt; (set for newly created interfaces), if you create a new virtual interface, any pre-existing interface does not start accepting IPv6 default route avertisements again.&lt;br/&gt;
-To work around this issue, when you create a new virtual interface, set &lt;tt&gt;net.ipv6.conf.&amp;lt;interface&amp;gt;.accept_ra_defrtr&lt;/tt&gt; to 0 for all interfaces and run &lt;tt&gt;sysctl -p --system&lt;/tt&gt;.&lt;/p&gt;</td>
+<td>When you set the sysctl settings net.ipv6.conf.all.accept_ra_defrtr (to prevent acceptance of IPv6 default route advertisements) and net.ipv6.conf.default.accept_ra_defrtr (set for newly created interfaces), if you create a new virtual interface, any pre-existing interface does not start accepting IPv6 default route avertisements again.&lt;br/&gt;
+To work around this issue, when you create a new virtual interface, set net.ipv6.conf.&amp;lt;interface&amp;gt;.accept_ra_defrtr to 0 for all interfaces and run sysctl -p --system.</td>
 <td>3.7.12-4.2.1</td>
 <td>4.3.0</td>
 </tr>
 <tr>
 <td>CM-30832</td>
-<td>&lt;p&gt;The Mellanox SN2700 and SN2410 switch intermittently reports PSU fan state changes with &lt;tt&gt;Unable to read from device/fan1_input/pwm1&lt;/tt&gt; syslog messages.&lt;/p&gt;</td>
+<td>The Mellanox SN2700 and SN2410 switch intermittently reports PSU fan state changes with Unable to read from device/fan1_input/pwm1 syslog messages.</td>
 <td>3.7.11-3.7.14, 4.1.1-4.2.1</td>
 <td>3.7.14.2, 4.3.0</td>
 </tr>
 <tr>
 <td>CM-29890</td>
-<td>&lt;p&gt;Multiple paths to identical EVPN prefixes are either not displayed or not accepted into the l2vpn evpn table if they are received from a different AS.&lt;/p&gt;</td>
+<td>Multiple paths to identical EVPN prefixes are either not displayed or not accepted into the l2vpn evpn table if they are received from a different AS.</td>
 <td>3.7.12-3.7.14.2, 4.1.1-4.3.0</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-28462</td>
-<td>&lt;p&gt;On rare occasions, when you upgrade Cumulus Linux with the &lt;tt&gt;apt-get upgrade&lt;/tt&gt; command, the upgrade fails and reports &lt;tt&gt;No space left on device&lt;/tt&gt;. Checking the disk utilization shows that the disk is not full.&lt;br/&gt;
-To work around this issue, run the &lt;tt&gt;apt-get upgrade&lt;/tt&gt; command again and reboot the device if prompted to complete the upgrade.&lt;/p&gt;</td>
+<td>On rare occasions, when you upgrade Cumulus Linux with the apt-get upgrade command, the upgrade fails and reports No space left on device. Checking the disk utilization shows that the disk is not full.&lt;br/&gt;
+To work around this issue, run the apt-get upgrade command again and reboot the device if prompted to complete the upgrade.</td>
 <td>3.7.10-3.7.14.2</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-28080</td>
-<td>&lt;p&gt;TACACS+ through ClearPass is not currently supported. Cumulus Linux sends authorization before authentication, but ClearPass does not accept an authorization before the user is authenticated.&lt;/p&gt;</td>
+<td>TACACS+ through ClearPass is not currently supported. Cumulus Linux sends authorization before authentication, but ClearPass does not accept an authorization before the user is authenticated.</td>
 <td>3.7.11-3.7.14.2, 4.0.0-4.3.0</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-23004</td>
-<td>&lt;p&gt;The local fallback account authenticates using the local password when the RADIUS or TACACS service is up. The expected behavior is for this to fail and only succeed when the RADIUS OR TACACS server fails to respond. &lt;/p&gt;
+<td>The local fallback account authenticates using the local password when the RADIUS or TACACS service is up. The expected behavior is for this to fail and only succeed when the RADIUS OR TACACS server fails to respond. 
 </td>
 <td>3.7.1-3.7.14.2</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-21678</td>
-<td>&lt;p&gt;On a Dell switch with a Maverick ASIC, NetQ might receive false alerts like the following via PagerDuty: &lt;/p&gt;
- &lt;div class="code panel" style="border-width: 1px;"&gt;&lt;div class="codeContent panelContent"&gt;
-&lt;pre class="code-java"&gt; 
- cumulus@&lt;span class="code-keyword"&gt;switch&lt;/span&gt;:~$ netq show sensors temp changes | grep absent | grep -v psu 
+<td>On a Dell switch with a Maverick ASIC, NetQ might receive false alerts like the following via PagerDuty: 
+ 
+ 
+ cumulus@switch:~$ netq show sensors temp changes | grep absent | grep -v psu 
  P2Leaf01 temp9 networking asic die temp sensor absent 43 105 100 5 Unable to find driver path: /cumulu Add 7d:22h:1m:41s 
  P2Leaf01 temp6 networking asic die temp sensor absent 45 105 100 5 Unable to find driver path: /cumulu Add 7d:22h:1m:41s 
  P2Leaf01 temp6 networking asic die temp sensor absent 47 105 100 5 Unable to read temp4_highest Add 9d:23h:26m:6s 
  P2Leaf01 temp6 networking asic die temp sensor absent 45 105 100 5 Unable to read temp4_highest Add 14d:22h:46m:45s 
- &lt;/pre&gt;
-&lt;/div&gt;&lt;/div&gt; 
-&lt;p&gt; This message might occur as a result of a timeout at the hardware level, or the switch might be reporting a failure to get a response. &lt;/p&gt;
+ 
+ 
+ This message might occur as a result of a timeout at the hardware level, or the switch might be reporting a failure to get a response. 
 </td>
 <td>3.5.3-3.7.14.2, 4.0.0-4.3.0</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-20508</td>
-<td>&lt;p&gt;The Cumulus-Resource-Query-MIB defines the ability to gather buffer utilization status but when these objects are polled, they return nothing. &lt;/p&gt;</td>
+<td>The Cumulus-Resource-Query-MIB defines the ability to gather buffer utilization status but when these objects are polled, they return nothing. </td>
 <td>3.5.3-3.7.14.2, 4.0.0-4.3.0</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-20033</td>
-<td>&lt;p&gt;The VLAN interface stays up even though the physical link carrying the VLAN is admin or carrier down.&lt;/p&gt;
+<td>The VLAN interface stays up even though the physical link carrying the VLAN is admin or carrier down.
 </td>
 <td>3.5.2-3.7.14.2, 4.0.0-4.3.0</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-15812</td>
-<td>&lt;p&gt;Multicast forwarding fails for IP addresses whose DMAC overlaps with reserved DIPs.&lt;/p&gt;</td>
+<td>Multicast forwarding fails for IP addresses whose DMAC overlaps with reserved DIPs.</td>
 <td>3.2.1-3.7.14.2, 4.0.0-4.3.0</td>
 <td></td>
 </tr>
@@ -4363,13 +4363,13 @@ To workaround this issue, remove the aggregate-address summary-only configuratio
 
 Before:
 
-&lt;pre&gt;address-family ipv4 unicast
+address-family ipv4 unicast
    aggregate-address 10.10.0.0/16 summary-only
-   redistribute connected&lt;/pre&gt;
+   redistribute connected
 
 
 After:
-&lt;pre&gt;ip route 10.10.0.0/16 Null0
+ip route 10.10.0.0/16 Null0
    !
    address-family ipv4 unicast
    redistribute connected route-map DENY-COMPONENTS
@@ -4380,7 +4380,7 @@ After:
    route-map DENY-COMPONENTS deny 10
     match ip address prefix-list NO-COMPONENTS
    !
-   route-map DENY-COMPONENTS permit 20&lt;/pre&gt;
+   route-map DENY-COMPONENTS permit 20
 
 Note: this example assumes no other static routes are present. If other static routes are present, additional route maps may need to be configured to limit the static routes being redistributed. </td>
 <td>3.7.12-3.7.15</td>
@@ -6949,82 +6949,82 @@ To work around this issue, modify the routing design or policy such that routes 
 </tr>
 <tr>
 <td>CM-31420</td>
-<td>&lt;p&gt;On a Cumulus Linux switch with high load averages, cl-support might end without creating a tar file  and leave a temporary directory in &lt;tt&gt;/var/support&lt;/tt&gt; undeleted. Subsequent runs of cl-support do not clean up this directory.&lt;/p&gt;</td>
+<td>On a Cumulus Linux switch with high load averages, cl-support might end without creating a tar file  and leave a temporary directory in /var/support undeleted. Subsequent runs of cl-support do not clean up this directory.</td>
 <td>3.7.13-3.7.14.2</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-31073</td>
-<td>&lt;p&gt;When you set the &lt;tt&gt;sysctl&lt;/tt&gt; settings &lt;tt&gt;net.ipv6.conf.all.accept_ra_defrtr&lt;/tt&gt; (to prevent acceptance of IPv6 default route advertisements) and &lt;tt&gt;net.ipv6.conf.default.accept_ra_defrtr&lt;/tt&gt; (set for newly created interfaces), if you create a new virtual interface, any pre-existing interface does not start accepting IPv6 default route avertisements again.&lt;br/&gt;
-To work around this issue, when you create a new virtual interface, set &lt;tt&gt;net.ipv6.conf.&amp;lt;interface&amp;gt;.accept_ra_defrtr&lt;/tt&gt; to 0 for all interfaces and run &lt;tt&gt;sysctl -p --system&lt;/tt&gt;.&lt;/p&gt;</td>
+<td>When you set the sysctl settings net.ipv6.conf.all.accept_ra_defrtr (to prevent acceptance of IPv6 default route advertisements) and net.ipv6.conf.default.accept_ra_defrtr (set for newly created interfaces), if you create a new virtual interface, any pre-existing interface does not start accepting IPv6 default route avertisements again.&lt;br/&gt;
+To work around this issue, when you create a new virtual interface, set net.ipv6.conf.&amp;lt;interface&amp;gt;.accept_ra_defrtr to 0 for all interfaces and run sysctl -p --system.</td>
 <td>3.7.12-4.2.1</td>
 <td>4.3.0</td>
 </tr>
 <tr>
 <td>CM-30832</td>
-<td>&lt;p&gt;The Mellanox SN2700 and SN2410 switch intermittently reports PSU fan state changes with &lt;tt&gt;Unable to read from device/fan1_input/pwm1&lt;/tt&gt; syslog messages.&lt;/p&gt;</td>
+<td>The Mellanox SN2700 and SN2410 switch intermittently reports PSU fan state changes with Unable to read from device/fan1_input/pwm1 syslog messages.</td>
 <td>3.7.11-3.7.14, 4.1.1-4.2.1</td>
 <td>3.7.14.2, 4.3.0</td>
 </tr>
 <tr>
 <td>CM-29890</td>
-<td>&lt;p&gt;Multiple paths to identical EVPN prefixes are either not displayed or not accepted into the l2vpn evpn table if they are received from a different AS.&lt;/p&gt;</td>
+<td>Multiple paths to identical EVPN prefixes are either not displayed or not accepted into the l2vpn evpn table if they are received from a different AS.</td>
 <td>3.7.12-3.7.14.2, 4.1.1-4.3.0</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-28462</td>
-<td>&lt;p&gt;On rare occasions, when you upgrade Cumulus Linux with the &lt;tt&gt;apt-get upgrade&lt;/tt&gt; command, the upgrade fails and reports &lt;tt&gt;No space left on device&lt;/tt&gt;. Checking the disk utilization shows that the disk is not full.&lt;br/&gt;
-To work around this issue, run the &lt;tt&gt;apt-get upgrade&lt;/tt&gt; command again and reboot the device if prompted to complete the upgrade.&lt;/p&gt;</td>
+<td>On rare occasions, when you upgrade Cumulus Linux with the apt-get upgrade command, the upgrade fails and reports No space left on device. Checking the disk utilization shows that the disk is not full.&lt;br/&gt;
+To work around this issue, run the apt-get upgrade command again and reboot the device if prompted to complete the upgrade.</td>
 <td>3.7.10-3.7.14.2</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-28080</td>
-<td>&lt;p&gt;TACACS+ through ClearPass is not currently supported. Cumulus Linux sends authorization before authentication, but ClearPass does not accept an authorization before the user is authenticated.&lt;/p&gt;</td>
+<td>TACACS+ through ClearPass is not currently supported. Cumulus Linux sends authorization before authentication, but ClearPass does not accept an authorization before the user is authenticated.</td>
 <td>3.7.11-3.7.14.2, 4.0.0-4.3.0</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-23004</td>
-<td>&lt;p&gt;The local fallback account authenticates using the local password when the RADIUS or TACACS service is up. The expected behavior is for this to fail and only succeed when the RADIUS OR TACACS server fails to respond. &lt;/p&gt;
+<td>The local fallback account authenticates using the local password when the RADIUS or TACACS service is up. The expected behavior is for this to fail and only succeed when the RADIUS OR TACACS server fails to respond. 
 </td>
 <td>3.7.1-3.7.14.2</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-21678</td>
-<td>&lt;p&gt;On a Dell switch with a Maverick ASIC, NetQ might receive false alerts like the following via PagerDuty: &lt;/p&gt;
- &lt;div class="code panel" style="border-width: 1px;"&gt;&lt;div class="codeContent panelContent"&gt;
-&lt;pre class="code-java"&gt; 
- cumulus@&lt;span class="code-keyword"&gt;switch&lt;/span&gt;:~$ netq show sensors temp changes | grep absent | grep -v psu 
+<td>On a Dell switch with a Maverick ASIC, NetQ might receive false alerts like the following via PagerDuty: 
+ 
+ 
+ cumulus@switch:~$ netq show sensors temp changes | grep absent | grep -v psu 
  P2Leaf01 temp9 networking asic die temp sensor absent 43 105 100 5 Unable to find driver path: /cumulu Add 7d:22h:1m:41s 
  P2Leaf01 temp6 networking asic die temp sensor absent 45 105 100 5 Unable to find driver path: /cumulu Add 7d:22h:1m:41s 
  P2Leaf01 temp6 networking asic die temp sensor absent 47 105 100 5 Unable to read temp4_highest Add 9d:23h:26m:6s 
  P2Leaf01 temp6 networking asic die temp sensor absent 45 105 100 5 Unable to read temp4_highest Add 14d:22h:46m:45s 
- &lt;/pre&gt;
-&lt;/div&gt;&lt;/div&gt; 
-&lt;p&gt; This message might occur as a result of a timeout at the hardware level, or the switch might be reporting a failure to get a response. &lt;/p&gt;
+ 
+ 
+ This message might occur as a result of a timeout at the hardware level, or the switch might be reporting a failure to get a response. 
 </td>
 <td>3.5.3-3.7.14.2, 4.0.0-4.3.0</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-20508</td>
-<td>&lt;p&gt;The Cumulus-Resource-Query-MIB defines the ability to gather buffer utilization status but when these objects are polled, they return nothing. &lt;/p&gt;</td>
+<td>The Cumulus-Resource-Query-MIB defines the ability to gather buffer utilization status but when these objects are polled, they return nothing. </td>
 <td>3.5.3-3.7.14.2, 4.0.0-4.3.0</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-20033</td>
-<td>&lt;p&gt;The VLAN interface stays up even though the physical link carrying the VLAN is admin or carrier down.&lt;/p&gt;
+<td>The VLAN interface stays up even though the physical link carrying the VLAN is admin or carrier down.
 </td>
 <td>3.5.2-3.7.14.2, 4.0.0-4.3.0</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-15812</td>
-<td>&lt;p&gt;Multicast forwarding fails for IP addresses whose DMAC overlaps with reserved DIPs.&lt;/p&gt;</td>
+<td>Multicast forwarding fails for IP addresses whose DMAC overlaps with reserved DIPs.</td>
 <td>3.2.1-3.7.14.2, 4.0.0-4.3.0</td>
 <td></td>
 </tr>
@@ -7061,13 +7061,13 @@ To workaround this issue, remove the aggregate-address summary-only configuratio
 
 Before:
 
-&lt;pre&gt;address-family ipv4 unicast
+address-family ipv4 unicast
    aggregate-address 10.10.0.0/16 summary-only
-   redistribute connected&lt;/pre&gt;
+   redistribute connected
 
 
 After:
-&lt;pre&gt;ip route 10.10.0.0/16 Null0
+ip route 10.10.0.0/16 Null0
    !
    address-family ipv4 unicast
    redistribute connected route-map DENY-COMPONENTS
@@ -7078,7 +7078,7 @@ After:
    route-map DENY-COMPONENTS deny 10
     match ip address prefix-list NO-COMPONENTS
    !
-   route-map DENY-COMPONENTS permit 20&lt;/pre&gt;
+   route-map DENY-COMPONENTS permit 20
 
 Note: this example assumes no other static routes are present. If other static routes are present, additional route maps may need to be configured to limit the static routes being redistributed. </td>
 <td>3.7.12-3.7.15</td>
@@ -9843,76 +9843,76 @@ Typically, the destination MAC address 01:00:5e:xx:xx:xx is used only for PIM/IG
 </tr>
 <tr>
 <td>CM-31073</td>
-<td>&lt;p&gt;When you set the &lt;tt&gt;sysctl&lt;/tt&gt; settings &lt;tt&gt;net.ipv6.conf.all.accept_ra_defrtr&lt;/tt&gt; (to prevent acceptance of IPv6 default route advertisements) and &lt;tt&gt;net.ipv6.conf.default.accept_ra_defrtr&lt;/tt&gt; (set for newly created interfaces), if you create a new virtual interface, any pre-existing interface does not start accepting IPv6 default route avertisements again.&lt;br/&gt;
-To work around this issue, when you create a new virtual interface, set &lt;tt&gt;net.ipv6.conf.&amp;lt;interface&amp;gt;.accept_ra_defrtr&lt;/tt&gt; to 0 for all interfaces and run &lt;tt&gt;sysctl -p --system&lt;/tt&gt;.&lt;/p&gt;</td>
+<td>When you set the sysctl settings net.ipv6.conf.all.accept_ra_defrtr (to prevent acceptance of IPv6 default route advertisements) and net.ipv6.conf.default.accept_ra_defrtr (set for newly created interfaces), if you create a new virtual interface, any pre-existing interface does not start accepting IPv6 default route avertisements again.&lt;br/&gt;
+To work around this issue, when you create a new virtual interface, set net.ipv6.conf.&amp;lt;interface&amp;gt;.accept_ra_defrtr to 0 for all interfaces and run sysctl -p --system.</td>
 <td>3.7.12-4.2.1</td>
 <td>4.3.0</td>
 </tr>
 <tr>
 <td>CM-30832</td>
-<td>&lt;p&gt;The Mellanox SN2700 and SN2410 switch intermittently reports PSU fan state changes with &lt;tt&gt;Unable to read from device/fan1_input/pwm1&lt;/tt&gt; syslog messages.&lt;/p&gt;</td>
+<td>The Mellanox SN2700 and SN2410 switch intermittently reports PSU fan state changes with Unable to read from device/fan1_input/pwm1 syslog messages.</td>
 <td>3.7.11-3.7.14, 4.1.1-4.2.1</td>
 <td>3.7.14.2, 4.3.0</td>
 </tr>
 <tr>
 <td>CM-29890</td>
-<td>&lt;p&gt;Multiple paths to identical EVPN prefixes are either not displayed or not accepted into the l2vpn evpn table if they are received from a different AS.&lt;/p&gt;</td>
+<td>Multiple paths to identical EVPN prefixes are either not displayed or not accepted into the l2vpn evpn table if they are received from a different AS.</td>
 <td>3.7.12-3.7.14.2, 4.1.1-4.3.0</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-28462</td>
-<td>&lt;p&gt;On rare occasions, when you upgrade Cumulus Linux with the &lt;tt&gt;apt-get upgrade&lt;/tt&gt; command, the upgrade fails and reports &lt;tt&gt;No space left on device&lt;/tt&gt;. Checking the disk utilization shows that the disk is not full.&lt;br/&gt;
-To work around this issue, run the &lt;tt&gt;apt-get upgrade&lt;/tt&gt; command again and reboot the device if prompted to complete the upgrade.&lt;/p&gt;</td>
+<td>On rare occasions, when you upgrade Cumulus Linux with the apt-get upgrade command, the upgrade fails and reports No space left on device. Checking the disk utilization shows that the disk is not full.&lt;br/&gt;
+To work around this issue, run the apt-get upgrade command again and reboot the device if prompted to complete the upgrade.</td>
 <td>3.7.10-3.7.14.2</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-28080</td>
-<td>&lt;p&gt;TACACS+ through ClearPass is not currently supported. Cumulus Linux sends authorization before authentication, but ClearPass does not accept an authorization before the user is authenticated.&lt;/p&gt;</td>
+<td>TACACS+ through ClearPass is not currently supported. Cumulus Linux sends authorization before authentication, but ClearPass does not accept an authorization before the user is authenticated.</td>
 <td>3.7.11-3.7.14.2, 4.0.0-4.3.0</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-23004</td>
-<td>&lt;p&gt;The local fallback account authenticates using the local password when the RADIUS or TACACS service is up. The expected behavior is for this to fail and only succeed when the RADIUS OR TACACS server fails to respond. &lt;/p&gt;
+<td>The local fallback account authenticates using the local password when the RADIUS or TACACS service is up. The expected behavior is for this to fail and only succeed when the RADIUS OR TACACS server fails to respond. 
 </td>
 <td>3.7.1-3.7.14.2</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-21678</td>
-<td>&lt;p&gt;On a Dell switch with a Maverick ASIC, NetQ might receive false alerts like the following via PagerDuty: &lt;/p&gt;
- &lt;div class="code panel" style="border-width: 1px;"&gt;&lt;div class="codeContent panelContent"&gt;
-&lt;pre class="code-java"&gt; 
- cumulus@&lt;span class="code-keyword"&gt;switch&lt;/span&gt;:~$ netq show sensors temp changes | grep absent | grep -v psu 
+<td>On a Dell switch with a Maverick ASIC, NetQ might receive false alerts like the following via PagerDuty: 
+ 
+ 
+ cumulus@switch:~$ netq show sensors temp changes | grep absent | grep -v psu 
  P2Leaf01 temp9 networking asic die temp sensor absent 43 105 100 5 Unable to find driver path: /cumulu Add 7d:22h:1m:41s 
  P2Leaf01 temp6 networking asic die temp sensor absent 45 105 100 5 Unable to find driver path: /cumulu Add 7d:22h:1m:41s 
  P2Leaf01 temp6 networking asic die temp sensor absent 47 105 100 5 Unable to read temp4_highest Add 9d:23h:26m:6s 
  P2Leaf01 temp6 networking asic die temp sensor absent 45 105 100 5 Unable to read temp4_highest Add 14d:22h:46m:45s 
- &lt;/pre&gt;
-&lt;/div&gt;&lt;/div&gt; 
-&lt;p&gt; This message might occur as a result of a timeout at the hardware level, or the switch might be reporting a failure to get a response. &lt;/p&gt;
+ 
+ 
+ This message might occur as a result of a timeout at the hardware level, or the switch might be reporting a failure to get a response. 
 </td>
 <td>3.5.3-3.7.14.2, 4.0.0-4.3.0</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-20508</td>
-<td>&lt;p&gt;The Cumulus-Resource-Query-MIB defines the ability to gather buffer utilization status but when these objects are polled, they return nothing. &lt;/p&gt;</td>
+<td>The Cumulus-Resource-Query-MIB defines the ability to gather buffer utilization status but when these objects are polled, they return nothing. </td>
 <td>3.5.3-3.7.14.2, 4.0.0-4.3.0</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-20033</td>
-<td>&lt;p&gt;The VLAN interface stays up even though the physical link carrying the VLAN is admin or carrier down.&lt;/p&gt;
+<td>The VLAN interface stays up even though the physical link carrying the VLAN is admin or carrier down.
 </td>
 <td>3.5.2-3.7.14.2, 4.0.0-4.3.0</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-15812</td>
-<td>&lt;p&gt;Multicast forwarding fails for IP addresses whose DMAC overlaps with reserved DIPs.&lt;/p&gt;</td>
+<td>Multicast forwarding fails for IP addresses whose DMAC overlaps with reserved DIPs.</td>
 <td>3.2.1-3.7.14.2, 4.0.0-4.3.0</td>
 <td></td>
 </tr>
@@ -9949,13 +9949,13 @@ To workaround this issue, remove the aggregate-address summary-only configuratio
 
 Before:
 
-&lt;pre&gt;address-family ipv4 unicast
+address-family ipv4 unicast
    aggregate-address 10.10.0.0/16 summary-only
-   redistribute connected&lt;/pre&gt;
+   redistribute connected
 
 
 After:
-&lt;pre&gt;ip route 10.10.0.0/16 Null0
+ip route 10.10.0.0/16 Null0
    !
    address-family ipv4 unicast
    redistribute connected route-map DENY-COMPONENTS
@@ -9966,7 +9966,7 @@ After:
    route-map DENY-COMPONENTS deny 10
     match ip address prefix-list NO-COMPONENTS
    !
-   route-map DENY-COMPONENTS permit 20&lt;/pre&gt;
+   route-map DENY-COMPONENTS permit 20
 
 Note: this example assumes no other static routes are present. If other static routes are present, additional route maps may need to be configured to limit the static routes being redistributed. </td>
 <td>3.7.12-3.7.15</td>
@@ -12597,63 +12597,63 @@ net.ipv6.ip6frag_high_thresh = 262144
 </tr>
 <tr>
 <td>CM-30832</td>
-<td>&lt;p&gt;The Mellanox SN2700 and SN2410 switch intermittently reports PSU fan state changes with &lt;tt&gt;Unable to read from device/fan1_input/pwm1&lt;/tt&gt; syslog messages.&lt;/p&gt;</td>
+<td>The Mellanox SN2700 and SN2410 switch intermittently reports PSU fan state changes with Unable to read from device/fan1_input/pwm1 syslog messages.</td>
 <td>3.7.11-3.7.14, 4.1.1-4.2.1</td>
 <td>3.7.14.2, 4.3.0</td>
 </tr>
 <tr>
 <td>CM-28462</td>
-<td>&lt;p&gt;On rare occasions, when you upgrade Cumulus Linux with the &lt;tt&gt;apt-get upgrade&lt;/tt&gt; command, the upgrade fails and reports &lt;tt&gt;No space left on device&lt;/tt&gt;. Checking the disk utilization shows that the disk is not full.&lt;br/&gt;
-To work around this issue, run the &lt;tt&gt;apt-get upgrade&lt;/tt&gt; command again and reboot the device if prompted to complete the upgrade.&lt;/p&gt;</td>
+<td>On rare occasions, when you upgrade Cumulus Linux with the apt-get upgrade command, the upgrade fails and reports No space left on device. Checking the disk utilization shows that the disk is not full.&lt;br/&gt;
+To work around this issue, run the apt-get upgrade command again and reboot the device if prompted to complete the upgrade.</td>
 <td>3.7.10-3.7.14.2</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-28080</td>
-<td>&lt;p&gt;TACACS+ through ClearPass is not currently supported. Cumulus Linux sends authorization before authentication, but ClearPass does not accept an authorization before the user is authenticated.&lt;/p&gt;</td>
+<td>TACACS+ through ClearPass is not currently supported. Cumulus Linux sends authorization before authentication, but ClearPass does not accept an authorization before the user is authenticated.</td>
 <td>3.7.11-3.7.14.2, 4.0.0-4.3.0</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-23004</td>
-<td>&lt;p&gt;The local fallback account authenticates using the local password when the RADIUS or TACACS service is up. The expected behavior is for this to fail and only succeed when the RADIUS OR TACACS server fails to respond. &lt;/p&gt;
+<td>The local fallback account authenticates using the local password when the RADIUS or TACACS service is up. The expected behavior is for this to fail and only succeed when the RADIUS OR TACACS server fails to respond. 
 </td>
 <td>3.7.1-3.7.14.2</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-21678</td>
-<td>&lt;p&gt;On a Dell switch with a Maverick ASIC, NetQ might receive false alerts like the following via PagerDuty: &lt;/p&gt;
- &lt;div class="code panel" style="border-width: 1px;"&gt;&lt;div class="codeContent panelContent"&gt;
-&lt;pre class="code-java"&gt; 
- cumulus@&lt;span class="code-keyword"&gt;switch&lt;/span&gt;:~$ netq show sensors temp changes | grep absent | grep -v psu 
+<td>On a Dell switch with a Maverick ASIC, NetQ might receive false alerts like the following via PagerDuty: 
+ 
+ 
+ cumulus@switch:~$ netq show sensors temp changes | grep absent | grep -v psu 
  P2Leaf01 temp9 networking asic die temp sensor absent 43 105 100 5 Unable to find driver path: /cumulu Add 7d:22h:1m:41s 
  P2Leaf01 temp6 networking asic die temp sensor absent 45 105 100 5 Unable to find driver path: /cumulu Add 7d:22h:1m:41s 
  P2Leaf01 temp6 networking asic die temp sensor absent 47 105 100 5 Unable to read temp4_highest Add 9d:23h:26m:6s 
  P2Leaf01 temp6 networking asic die temp sensor absent 45 105 100 5 Unable to read temp4_highest Add 14d:22h:46m:45s 
- &lt;/pre&gt;
-&lt;/div&gt;&lt;/div&gt; 
-&lt;p&gt; This message might occur as a result of a timeout at the hardware level, or the switch might be reporting a failure to get a response. &lt;/p&gt;
+ 
+ 
+ This message might occur as a result of a timeout at the hardware level, or the switch might be reporting a failure to get a response. 
 </td>
 <td>3.5.3-3.7.14.2, 4.0.0-4.3.0</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-20508</td>
-<td>&lt;p&gt;The Cumulus-Resource-Query-MIB defines the ability to gather buffer utilization status but when these objects are polled, they return nothing. &lt;/p&gt;</td>
+<td>The Cumulus-Resource-Query-MIB defines the ability to gather buffer utilization status but when these objects are polled, they return nothing. </td>
 <td>3.5.3-3.7.14.2, 4.0.0-4.3.0</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-20033</td>
-<td>&lt;p&gt;The VLAN interface stays up even though the physical link carrying the VLAN is admin or carrier down.&lt;/p&gt;
+<td>The VLAN interface stays up even though the physical link carrying the VLAN is admin or carrier down.
 </td>
 <td>3.5.2-3.7.14.2, 4.0.0-4.3.0</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-15812</td>
-<td>&lt;p&gt;Multicast forwarding fails for IP addresses whose DMAC overlaps with reserved DIPs.&lt;/p&gt;</td>
+<td>Multicast forwarding fails for IP addresses whose DMAC overlaps with reserved DIPs.</td>
 <td>3.2.1-3.7.14.2, 4.0.0-4.3.0</td>
 <td></td>
 </tr>
@@ -15044,51 +15044,51 @@ To work around this issue, use {{net show interface}} command for LLDP output wh
 </tr>
 <tr>
 <td>CM-28462</td>
-<td>&lt;p&gt;On rare occasions, when you upgrade Cumulus Linux with the &lt;tt&gt;apt-get upgrade&lt;/tt&gt; command, the upgrade fails and reports &lt;tt&gt;No space left on device&lt;/tt&gt;. Checking the disk utilization shows that the disk is not full.&lt;br/&gt;
-To work around this issue, run the &lt;tt&gt;apt-get upgrade&lt;/tt&gt; command again and reboot the device if prompted to complete the upgrade.&lt;/p&gt;</td>
+<td>On rare occasions, when you upgrade Cumulus Linux with the apt-get upgrade command, the upgrade fails and reports No space left on device. Checking the disk utilization shows that the disk is not full.&lt;br/&gt;
+To work around this issue, run the apt-get upgrade command again and reboot the device if prompted to complete the upgrade.</td>
 <td>3.7.10-3.7.14.2</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-23004</td>
-<td>&lt;p&gt;The local fallback account authenticates using the local password when the RADIUS or TACACS service is up. The expected behavior is for this to fail and only succeed when the RADIUS OR TACACS server fails to respond. &lt;/p&gt;
+<td>The local fallback account authenticates using the local password when the RADIUS or TACACS service is up. The expected behavior is for this to fail and only succeed when the RADIUS OR TACACS server fails to respond. 
 </td>
 <td>3.7.1-3.7.14.2</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-21678</td>
-<td>&lt;p&gt;On a Dell switch with a Maverick ASIC, NetQ might receive false alerts like the following via PagerDuty: &lt;/p&gt;
- &lt;div class="code panel" style="border-width: 1px;"&gt;&lt;div class="codeContent panelContent"&gt;
-&lt;pre class="code-java"&gt; 
- cumulus@&lt;span class="code-keyword"&gt;switch&lt;/span&gt;:~$ netq show sensors temp changes | grep absent | grep -v psu 
+<td>On a Dell switch with a Maverick ASIC, NetQ might receive false alerts like the following via PagerDuty: 
+ 
+ 
+ cumulus@switch:~$ netq show sensors temp changes | grep absent | grep -v psu 
  P2Leaf01 temp9 networking asic die temp sensor absent 43 105 100 5 Unable to find driver path: /cumulu Add 7d:22h:1m:41s 
  P2Leaf01 temp6 networking asic die temp sensor absent 45 105 100 5 Unable to find driver path: /cumulu Add 7d:22h:1m:41s 
  P2Leaf01 temp6 networking asic die temp sensor absent 47 105 100 5 Unable to read temp4_highest Add 9d:23h:26m:6s 
  P2Leaf01 temp6 networking asic die temp sensor absent 45 105 100 5 Unable to read temp4_highest Add 14d:22h:46m:45s 
- &lt;/pre&gt;
-&lt;/div&gt;&lt;/div&gt; 
-&lt;p&gt; This message might occur as a result of a timeout at the hardware level, or the switch might be reporting a failure to get a response. &lt;/p&gt;
+ 
+ 
+ This message might occur as a result of a timeout at the hardware level, or the switch might be reporting a failure to get a response. 
 </td>
 <td>3.5.3-3.7.14.2, 4.0.0-4.3.0</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-20508</td>
-<td>&lt;p&gt;The Cumulus-Resource-Query-MIB defines the ability to gather buffer utilization status but when these objects are polled, they return nothing. &lt;/p&gt;</td>
+<td>The Cumulus-Resource-Query-MIB defines the ability to gather buffer utilization status but when these objects are polled, they return nothing. </td>
 <td>3.5.3-3.7.14.2, 4.0.0-4.3.0</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-20033</td>
-<td>&lt;p&gt;The VLAN interface stays up even though the physical link carrying the VLAN is admin or carrier down.&lt;/p&gt;
+<td>The VLAN interface stays up even though the physical link carrying the VLAN is admin or carrier down.
 </td>
 <td>3.5.2-3.7.14.2, 4.0.0-4.3.0</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-15812</td>
-<td>&lt;p&gt;Multicast forwarding fails for IP addresses whose DMAC overlaps with reserved DIPs.&lt;/p&gt;</td>
+<td>Multicast forwarding fails for IP addresses whose DMAC overlaps with reserved DIPs.</td>
 <td>3.2.1-3.7.14.2, 4.0.0-4.3.0</td>
 <td></td>
 </tr>
@@ -16922,44 +16922,44 @@ More information at https://security-tracker.debian.org/tracker/CVE-2018-6594 .<
 </tr>
 <tr>
 <td>CM-23004</td>
-<td>&lt;p&gt;The local fallback account authenticates using the local password when the RADIUS or TACACS service is up. The expected behavior is for this to fail and only succeed when the RADIUS OR TACACS server fails to respond. &lt;/p&gt;
+<td>The local fallback account authenticates using the local password when the RADIUS or TACACS service is up. The expected behavior is for this to fail and only succeed when the RADIUS OR TACACS server fails to respond. 
 </td>
 <td>3.7.1-3.7.14.2</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-21678</td>
-<td>&lt;p&gt;On a Dell switch with a Maverick ASIC, NetQ might receive false alerts like the following via PagerDuty: &lt;/p&gt;
- &lt;div class="code panel" style="border-width: 1px;"&gt;&lt;div class="codeContent panelContent"&gt;
-&lt;pre class="code-java"&gt; 
- cumulus@&lt;span class="code-keyword"&gt;switch&lt;/span&gt;:~$ netq show sensors temp changes | grep absent | grep -v psu 
+<td>On a Dell switch with a Maverick ASIC, NetQ might receive false alerts like the following via PagerDuty: 
+ 
+ 
+ cumulus@switch:~$ netq show sensors temp changes | grep absent | grep -v psu 
  P2Leaf01 temp9 networking asic die temp sensor absent 43 105 100 5 Unable to find driver path: /cumulu Add 7d:22h:1m:41s 
  P2Leaf01 temp6 networking asic die temp sensor absent 45 105 100 5 Unable to find driver path: /cumulu Add 7d:22h:1m:41s 
  P2Leaf01 temp6 networking asic die temp sensor absent 47 105 100 5 Unable to read temp4_highest Add 9d:23h:26m:6s 
  P2Leaf01 temp6 networking asic die temp sensor absent 45 105 100 5 Unable to read temp4_highest Add 14d:22h:46m:45s 
- &lt;/pre&gt;
-&lt;/div&gt;&lt;/div&gt; 
-&lt;p&gt; This message might occur as a result of a timeout at the hardware level, or the switch might be reporting a failure to get a response. &lt;/p&gt;
+ 
+ 
+ This message might occur as a result of a timeout at the hardware level, or the switch might be reporting a failure to get a response. 
 </td>
 <td>3.5.3-3.7.14.2, 4.0.0-4.3.0</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-20508</td>
-<td>&lt;p&gt;The Cumulus-Resource-Query-MIB defines the ability to gather buffer utilization status but when these objects are polled, they return nothing. &lt;/p&gt;</td>
+<td>The Cumulus-Resource-Query-MIB defines the ability to gather buffer utilization status but when these objects are polled, they return nothing. </td>
 <td>3.5.3-3.7.14.2, 4.0.0-4.3.0</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-20033</td>
-<td>&lt;p&gt;The VLAN interface stays up even though the physical link carrying the VLAN is admin or carrier down.&lt;/p&gt;
+<td>The VLAN interface stays up even though the physical link carrying the VLAN is admin or carrier down.
 </td>
 <td>3.5.2-3.7.14.2, 4.0.0-4.3.0</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-15812</td>
-<td>&lt;p&gt;Multicast forwarding fails for IP addresses whose DMAC overlaps with reserved DIPs.&lt;/p&gt;</td>
+<td>Multicast forwarding fails for IP addresses whose DMAC overlaps with reserved DIPs.</td>
 <td>3.2.1-3.7.14.2, 4.0.0-4.3.0</td>
 <td></td>
 </tr>
@@ -19113,44 +19113,44 @@ To work around this issue, run the {{sudo ethtool -S swp1}} command to collect i
 </tr>
 <tr>
 <td>CM-23004</td>
-<td>&lt;p&gt;The local fallback account authenticates using the local password when the RADIUS or TACACS service is up. The expected behavior is for this to fail and only succeed when the RADIUS OR TACACS server fails to respond. &lt;/p&gt;
+<td>The local fallback account authenticates using the local password when the RADIUS or TACACS service is up. The expected behavior is for this to fail and only succeed when the RADIUS OR TACACS server fails to respond. 
 </td>
 <td>3.7.1-3.7.14.2</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-21678</td>
-<td>&lt;p&gt;On a Dell switch with a Maverick ASIC, NetQ might receive false alerts like the following via PagerDuty: &lt;/p&gt;
- &lt;div class="code panel" style="border-width: 1px;"&gt;&lt;div class="codeContent panelContent"&gt;
-&lt;pre class="code-java"&gt; 
- cumulus@&lt;span class="code-keyword"&gt;switch&lt;/span&gt;:~$ netq show sensors temp changes | grep absent | grep -v psu 
+<td>On a Dell switch with a Maverick ASIC, NetQ might receive false alerts like the following via PagerDuty: 
+ 
+ 
+ cumulus@switch:~$ netq show sensors temp changes | grep absent | grep -v psu 
  P2Leaf01 temp9 networking asic die temp sensor absent 43 105 100 5 Unable to find driver path: /cumulu Add 7d:22h:1m:41s 
  P2Leaf01 temp6 networking asic die temp sensor absent 45 105 100 5 Unable to find driver path: /cumulu Add 7d:22h:1m:41s 
  P2Leaf01 temp6 networking asic die temp sensor absent 47 105 100 5 Unable to read temp4_highest Add 9d:23h:26m:6s 
  P2Leaf01 temp6 networking asic die temp sensor absent 45 105 100 5 Unable to read temp4_highest Add 14d:22h:46m:45s 
- &lt;/pre&gt;
-&lt;/div&gt;&lt;/div&gt; 
-&lt;p&gt; This message might occur as a result of a timeout at the hardware level, or the switch might be reporting a failure to get a response. &lt;/p&gt;
+ 
+ 
+ This message might occur as a result of a timeout at the hardware level, or the switch might be reporting a failure to get a response. 
 </td>
 <td>3.5.3-3.7.14.2, 4.0.0-4.3.0</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-20508</td>
-<td>&lt;p&gt;The Cumulus-Resource-Query-MIB defines the ability to gather buffer utilization status but when these objects are polled, they return nothing. &lt;/p&gt;</td>
+<td>The Cumulus-Resource-Query-MIB defines the ability to gather buffer utilization status but when these objects are polled, they return nothing. </td>
 <td>3.5.3-3.7.14.2, 4.0.0-4.3.0</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-20033</td>
-<td>&lt;p&gt;The VLAN interface stays up even though the physical link carrying the VLAN is admin or carrier down.&lt;/p&gt;
+<td>The VLAN interface stays up even though the physical link carrying the VLAN is admin or carrier down.
 </td>
 <td>3.5.2-3.7.14.2, 4.0.0-4.3.0</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-15812</td>
-<td>&lt;p&gt;Multicast forwarding fails for IP addresses whose DMAC overlaps with reserved DIPs.&lt;/p&gt;</td>
+<td>Multicast forwarding fails for IP addresses whose DMAC overlaps with reserved DIPs.</td>
 <td>3.2.1-3.7.14.2, 4.0.0-4.3.0</td>
 <td></td>
 </tr>
@@ -20738,44 +20738,44 @@ To work around this issue, use {{net show interface}} command for LLDP output wh
 </tr>
 <tr>
 <td>CM-23004</td>
-<td>&lt;p&gt;The local fallback account authenticates using the local password when the RADIUS or TACACS service is up. The expected behavior is for this to fail and only succeed when the RADIUS OR TACACS server fails to respond. &lt;/p&gt;
+<td>The local fallback account authenticates using the local password when the RADIUS or TACACS service is up. The expected behavior is for this to fail and only succeed when the RADIUS OR TACACS server fails to respond. 
 </td>
 <td>3.7.1-3.7.14.2</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-21678</td>
-<td>&lt;p&gt;On a Dell switch with a Maverick ASIC, NetQ might receive false alerts like the following via PagerDuty: &lt;/p&gt;
- &lt;div class="code panel" style="border-width: 1px;"&gt;&lt;div class="codeContent panelContent"&gt;
-&lt;pre class="code-java"&gt; 
- cumulus@&lt;span class="code-keyword"&gt;switch&lt;/span&gt;:~$ netq show sensors temp changes | grep absent | grep -v psu 
+<td>On a Dell switch with a Maverick ASIC, NetQ might receive false alerts like the following via PagerDuty: 
+ 
+ 
+ cumulus@switch:~$ netq show sensors temp changes | grep absent | grep -v psu 
  P2Leaf01 temp9 networking asic die temp sensor absent 43 105 100 5 Unable to find driver path: /cumulu Add 7d:22h:1m:41s 
  P2Leaf01 temp6 networking asic die temp sensor absent 45 105 100 5 Unable to find driver path: /cumulu Add 7d:22h:1m:41s 
  P2Leaf01 temp6 networking asic die temp sensor absent 47 105 100 5 Unable to read temp4_highest Add 9d:23h:26m:6s 
  P2Leaf01 temp6 networking asic die temp sensor absent 45 105 100 5 Unable to read temp4_highest Add 14d:22h:46m:45s 
- &lt;/pre&gt;
-&lt;/div&gt;&lt;/div&gt; 
-&lt;p&gt; This message might occur as a result of a timeout at the hardware level, or the switch might be reporting a failure to get a response. &lt;/p&gt;
+ 
+ 
+ This message might occur as a result of a timeout at the hardware level, or the switch might be reporting a failure to get a response. 
 </td>
 <td>3.5.3-3.7.14.2, 4.0.0-4.3.0</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-20508</td>
-<td>&lt;p&gt;The Cumulus-Resource-Query-MIB defines the ability to gather buffer utilization status but when these objects are polled, they return nothing. &lt;/p&gt;</td>
+<td>The Cumulus-Resource-Query-MIB defines the ability to gather buffer utilization status but when these objects are polled, they return nothing. </td>
 <td>3.5.3-3.7.14.2, 4.0.0-4.3.0</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-20033</td>
-<td>&lt;p&gt;The VLAN interface stays up even though the physical link carrying the VLAN is admin or carrier down.&lt;/p&gt;
+<td>The VLAN interface stays up even though the physical link carrying the VLAN is admin or carrier down.
 </td>
 <td>3.5.2-3.7.14.2, 4.0.0-4.3.0</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-15812</td>
-<td>&lt;p&gt;Multicast forwarding fails for IP addresses whose DMAC overlaps with reserved DIPs.&lt;/p&gt;</td>
+<td>Multicast forwarding fails for IP addresses whose DMAC overlaps with reserved DIPs.</td>
 <td>3.2.1-3.7.14.2, 4.0.0-4.3.0</td>
 <td></td>
 </tr>
@@ -22693,44 +22693,44 @@ If you need link pause or PFC functionality, you must use a switch that does not
 </tr>
 <tr>
 <td>CM-23004</td>
-<td>&lt;p&gt;The local fallback account authenticates using the local password when the RADIUS or TACACS service is up. The expected behavior is for this to fail and only succeed when the RADIUS OR TACACS server fails to respond. &lt;/p&gt;
+<td>The local fallback account authenticates using the local password when the RADIUS or TACACS service is up. The expected behavior is for this to fail and only succeed when the RADIUS OR TACACS server fails to respond. 
 </td>
 <td>3.7.1-3.7.14.2</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-21678</td>
-<td>&lt;p&gt;On a Dell switch with a Maverick ASIC, NetQ might receive false alerts like the following via PagerDuty: &lt;/p&gt;
- &lt;div class="code panel" style="border-width: 1px;"&gt;&lt;div class="codeContent panelContent"&gt;
-&lt;pre class="code-java"&gt; 
- cumulus@&lt;span class="code-keyword"&gt;switch&lt;/span&gt;:~$ netq show sensors temp changes | grep absent | grep -v psu 
+<td>On a Dell switch with a Maverick ASIC, NetQ might receive false alerts like the following via PagerDuty: 
+ 
+ 
+ cumulus@switch:~$ netq show sensors temp changes | grep absent | grep -v psu 
  P2Leaf01 temp9 networking asic die temp sensor absent 43 105 100 5 Unable to find driver path: /cumulu Add 7d:22h:1m:41s 
  P2Leaf01 temp6 networking asic die temp sensor absent 45 105 100 5 Unable to find driver path: /cumulu Add 7d:22h:1m:41s 
  P2Leaf01 temp6 networking asic die temp sensor absent 47 105 100 5 Unable to read temp4_highest Add 9d:23h:26m:6s 
  P2Leaf01 temp6 networking asic die temp sensor absent 45 105 100 5 Unable to read temp4_highest Add 14d:22h:46m:45s 
- &lt;/pre&gt;
-&lt;/div&gt;&lt;/div&gt; 
-&lt;p&gt; This message might occur as a result of a timeout at the hardware level, or the switch might be reporting a failure to get a response. &lt;/p&gt;
+ 
+ 
+ This message might occur as a result of a timeout at the hardware level, or the switch might be reporting a failure to get a response. 
 </td>
 <td>3.5.3-3.7.14.2, 4.0.0-4.3.0</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-20508</td>
-<td>&lt;p&gt;The Cumulus-Resource-Query-MIB defines the ability to gather buffer utilization status but when these objects are polled, they return nothing. &lt;/p&gt;</td>
+<td>The Cumulus-Resource-Query-MIB defines the ability to gather buffer utilization status but when these objects are polled, they return nothing. </td>
 <td>3.5.3-3.7.14.2, 4.0.0-4.3.0</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-20033</td>
-<td>&lt;p&gt;The VLAN interface stays up even though the physical link carrying the VLAN is admin or carrier down.&lt;/p&gt;
+<td>The VLAN interface stays up even though the physical link carrying the VLAN is admin or carrier down.
 </td>
 <td>3.5.2-3.7.14.2, 4.0.0-4.3.0</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-15812</td>
-<td>&lt;p&gt;Multicast forwarding fails for IP addresses whose DMAC overlaps with reserved DIPs.&lt;/p&gt;</td>
+<td>Multicast forwarding fails for IP addresses whose DMAC overlaps with reserved DIPs.</td>
 <td>3.2.1-3.7.14.2, 4.0.0-4.3.0</td>
 <td></td>
 </tr>
@@ -24392,44 +24392,44 @@ This issue was discovered on the Helix4 switch but applies to all switches.
 </tr>
 <tr>
 <td>CM-23004</td>
-<td>&lt;p&gt;The local fallback account authenticates using the local password when the RADIUS or TACACS service is up. The expected behavior is for this to fail and only succeed when the RADIUS OR TACACS server fails to respond. &lt;/p&gt;
+<td>The local fallback account authenticates using the local password when the RADIUS or TACACS service is up. The expected behavior is for this to fail and only succeed when the RADIUS OR TACACS server fails to respond. 
 </td>
 <td>3.7.1-3.7.14.2</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-21678</td>
-<td>&lt;p&gt;On a Dell switch with a Maverick ASIC, NetQ might receive false alerts like the following via PagerDuty: &lt;/p&gt;
- &lt;div class="code panel" style="border-width: 1px;"&gt;&lt;div class="codeContent panelContent"&gt;
-&lt;pre class="code-java"&gt; 
- cumulus@&lt;span class="code-keyword"&gt;switch&lt;/span&gt;:~$ netq show sensors temp changes | grep absent | grep -v psu 
+<td>On a Dell switch with a Maverick ASIC, NetQ might receive false alerts like the following via PagerDuty: 
+ 
+ 
+ cumulus@switch:~$ netq show sensors temp changes | grep absent | grep -v psu 
  P2Leaf01 temp9 networking asic die temp sensor absent 43 105 100 5 Unable to find driver path: /cumulu Add 7d:22h:1m:41s 
  P2Leaf01 temp6 networking asic die temp sensor absent 45 105 100 5 Unable to find driver path: /cumulu Add 7d:22h:1m:41s 
  P2Leaf01 temp6 networking asic die temp sensor absent 47 105 100 5 Unable to read temp4_highest Add 9d:23h:26m:6s 
  P2Leaf01 temp6 networking asic die temp sensor absent 45 105 100 5 Unable to read temp4_highest Add 14d:22h:46m:45s 
- &lt;/pre&gt;
-&lt;/div&gt;&lt;/div&gt; 
-&lt;p&gt; This message might occur as a result of a timeout at the hardware level, or the switch might be reporting a failure to get a response. &lt;/p&gt;
+ 
+ 
+ This message might occur as a result of a timeout at the hardware level, or the switch might be reporting a failure to get a response. 
 </td>
 <td>3.5.3-3.7.14.2, 4.0.0-4.3.0</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-20508</td>
-<td>&lt;p&gt;The Cumulus-Resource-Query-MIB defines the ability to gather buffer utilization status but when these objects are polled, they return nothing. &lt;/p&gt;</td>
+<td>The Cumulus-Resource-Query-MIB defines the ability to gather buffer utilization status but when these objects are polled, they return nothing. </td>
 <td>3.5.3-3.7.14.2, 4.0.0-4.3.0</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-20033</td>
-<td>&lt;p&gt;The VLAN interface stays up even though the physical link carrying the VLAN is admin or carrier down.&lt;/p&gt;
+<td>The VLAN interface stays up even though the physical link carrying the VLAN is admin or carrier down.
 </td>
 <td>3.5.2-3.7.14.2, 4.0.0-4.3.0</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-15812</td>
-<td>&lt;p&gt;Multicast forwarding fails for IP addresses whose DMAC overlaps with reserved DIPs.&lt;/p&gt;</td>
+<td>Multicast forwarding fails for IP addresses whose DMAC overlaps with reserved DIPs.</td>
 <td>3.2.1-3.7.14.2, 4.0.0-4.3.0</td>
 <td></td>
 </tr>
@@ -25743,44 +25743,44 @@ The NetQ agent has been removed from Cumulus VX 3.7.7. The NetQ agent will be bu
 </tr>
 <tr>
 <td>CM-23004</td>
-<td>&lt;p&gt;The local fallback account authenticates using the local password when the RADIUS or TACACS service is up. The expected behavior is for this to fail and only succeed when the RADIUS OR TACACS server fails to respond. &lt;/p&gt;
+<td>The local fallback account authenticates using the local password when the RADIUS or TACACS service is up. The expected behavior is for this to fail and only succeed when the RADIUS OR TACACS server fails to respond. 
 </td>
 <td>3.7.1-3.7.14.2</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-21678</td>
-<td>&lt;p&gt;On a Dell switch with a Maverick ASIC, NetQ might receive false alerts like the following via PagerDuty: &lt;/p&gt;
- &lt;div class="code panel" style="border-width: 1px;"&gt;&lt;div class="codeContent panelContent"&gt;
-&lt;pre class="code-java"&gt; 
- cumulus@&lt;span class="code-keyword"&gt;switch&lt;/span&gt;:~$ netq show sensors temp changes | grep absent | grep -v psu 
+<td>On a Dell switch with a Maverick ASIC, NetQ might receive false alerts like the following via PagerDuty: 
+ 
+ 
+ cumulus@switch:~$ netq show sensors temp changes | grep absent | grep -v psu 
  P2Leaf01 temp9 networking asic die temp sensor absent 43 105 100 5 Unable to find driver path: /cumulu Add 7d:22h:1m:41s 
  P2Leaf01 temp6 networking asic die temp sensor absent 45 105 100 5 Unable to find driver path: /cumulu Add 7d:22h:1m:41s 
  P2Leaf01 temp6 networking asic die temp sensor absent 47 105 100 5 Unable to read temp4_highest Add 9d:23h:26m:6s 
  P2Leaf01 temp6 networking asic die temp sensor absent 45 105 100 5 Unable to read temp4_highest Add 14d:22h:46m:45s 
- &lt;/pre&gt;
-&lt;/div&gt;&lt;/div&gt; 
-&lt;p&gt; This message might occur as a result of a timeout at the hardware level, or the switch might be reporting a failure to get a response. &lt;/p&gt;
+ 
+ 
+ This message might occur as a result of a timeout at the hardware level, or the switch might be reporting a failure to get a response. 
 </td>
 <td>3.5.3-3.7.14.2, 4.0.0-4.3.0</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-20508</td>
-<td>&lt;p&gt;The Cumulus-Resource-Query-MIB defines the ability to gather buffer utilization status but when these objects are polled, they return nothing. &lt;/p&gt;</td>
+<td>The Cumulus-Resource-Query-MIB defines the ability to gather buffer utilization status but when these objects are polled, they return nothing. </td>
 <td>3.5.3-3.7.14.2, 4.0.0-4.3.0</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-20033</td>
-<td>&lt;p&gt;The VLAN interface stays up even though the physical link carrying the VLAN is admin or carrier down.&lt;/p&gt;
+<td>The VLAN interface stays up even though the physical link carrying the VLAN is admin or carrier down.
 </td>
 <td>3.5.2-3.7.14.2, 4.0.0-4.3.0</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-15812</td>
-<td>&lt;p&gt;Multicast forwarding fails for IP addresses whose DMAC overlaps with reserved DIPs.&lt;/p&gt;</td>
+<td>Multicast forwarding fails for IP addresses whose DMAC overlaps with reserved DIPs.</td>
 <td>3.2.1-3.7.14.2, 4.0.0-4.3.0</td>
 <td></td>
 </tr>
@@ -27121,44 +27121,44 @@ The NetQ agent has been removed from Cumulus VX 3.7.7. The NetQ agent will be bu
 </tr>
 <tr>
 <td>CM-23004</td>
-<td>&lt;p&gt;The local fallback account authenticates using the local password when the RADIUS or TACACS service is up. The expected behavior is for this to fail and only succeed when the RADIUS OR TACACS server fails to respond. &lt;/p&gt;
+<td>The local fallback account authenticates using the local password when the RADIUS or TACACS service is up. The expected behavior is for this to fail and only succeed when the RADIUS OR TACACS server fails to respond. 
 </td>
 <td>3.7.1-3.7.14.2</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-21678</td>
-<td>&lt;p&gt;On a Dell switch with a Maverick ASIC, NetQ might receive false alerts like the following via PagerDuty: &lt;/p&gt;
- &lt;div class="code panel" style="border-width: 1px;"&gt;&lt;div class="codeContent panelContent"&gt;
-&lt;pre class="code-java"&gt; 
- cumulus@&lt;span class="code-keyword"&gt;switch&lt;/span&gt;:~$ netq show sensors temp changes | grep absent | grep -v psu 
+<td>On a Dell switch with a Maverick ASIC, NetQ might receive false alerts like the following via PagerDuty: 
+ 
+ 
+ cumulus@switch:~$ netq show sensors temp changes | grep absent | grep -v psu 
  P2Leaf01 temp9 networking asic die temp sensor absent 43 105 100 5 Unable to find driver path: /cumulu Add 7d:22h:1m:41s 
  P2Leaf01 temp6 networking asic die temp sensor absent 45 105 100 5 Unable to find driver path: /cumulu Add 7d:22h:1m:41s 
  P2Leaf01 temp6 networking asic die temp sensor absent 47 105 100 5 Unable to read temp4_highest Add 9d:23h:26m:6s 
  P2Leaf01 temp6 networking asic die temp sensor absent 45 105 100 5 Unable to read temp4_highest Add 14d:22h:46m:45s 
- &lt;/pre&gt;
-&lt;/div&gt;&lt;/div&gt; 
-&lt;p&gt; This message might occur as a result of a timeout at the hardware level, or the switch might be reporting a failure to get a response. &lt;/p&gt;
+ 
+ 
+ This message might occur as a result of a timeout at the hardware level, or the switch might be reporting a failure to get a response. 
 </td>
 <td>3.5.3-3.7.14.2, 4.0.0-4.3.0</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-20508</td>
-<td>&lt;p&gt;The Cumulus-Resource-Query-MIB defines the ability to gather buffer utilization status but when these objects are polled, they return nothing. &lt;/p&gt;</td>
+<td>The Cumulus-Resource-Query-MIB defines the ability to gather buffer utilization status but when these objects are polled, they return nothing. </td>
 <td>3.5.3-3.7.14.2, 4.0.0-4.3.0</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-20033</td>
-<td>&lt;p&gt;The VLAN interface stays up even though the physical link carrying the VLAN is admin or carrier down.&lt;/p&gt;
+<td>The VLAN interface stays up even though the physical link carrying the VLAN is admin or carrier down.
 </td>
 <td>3.5.2-3.7.14.2, 4.0.0-4.3.0</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-15812</td>
-<td>&lt;p&gt;Multicast forwarding fails for IP addresses whose DMAC overlaps with reserved DIPs.&lt;/p&gt;</td>
+<td>Multicast forwarding fails for IP addresses whose DMAC overlaps with reserved DIPs.</td>
 <td>3.2.1-3.7.14.2, 4.0.0-4.3.0</td>
 <td></td>
 </tr>
@@ -28600,44 +28600,44 @@ The NetQ agent has been removed from Cumulus VX 3.7.7. The NetQ agent will be bu
 </tr>
 <tr>
 <td>CM-23004</td>
-<td>&lt;p&gt;The local fallback account authenticates using the local password when the RADIUS or TACACS service is up. The expected behavior is for this to fail and only succeed when the RADIUS OR TACACS server fails to respond. &lt;/p&gt;
+<td>The local fallback account authenticates using the local password when the RADIUS or TACACS service is up. The expected behavior is for this to fail and only succeed when the RADIUS OR TACACS server fails to respond. 
 </td>
 <td>3.7.1-3.7.14.2</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-21678</td>
-<td>&lt;p&gt;On a Dell switch with a Maverick ASIC, NetQ might receive false alerts like the following via PagerDuty: &lt;/p&gt;
- &lt;div class="code panel" style="border-width: 1px;"&gt;&lt;div class="codeContent panelContent"&gt;
-&lt;pre class="code-java"&gt; 
- cumulus@&lt;span class="code-keyword"&gt;switch&lt;/span&gt;:~$ netq show sensors temp changes | grep absent | grep -v psu 
+<td>On a Dell switch with a Maverick ASIC, NetQ might receive false alerts like the following via PagerDuty: 
+ 
+ 
+ cumulus@switch:~$ netq show sensors temp changes | grep absent | grep -v psu 
  P2Leaf01 temp9 networking asic die temp sensor absent 43 105 100 5 Unable to find driver path: /cumulu Add 7d:22h:1m:41s 
  P2Leaf01 temp6 networking asic die temp sensor absent 45 105 100 5 Unable to find driver path: /cumulu Add 7d:22h:1m:41s 
  P2Leaf01 temp6 networking asic die temp sensor absent 47 105 100 5 Unable to read temp4_highest Add 9d:23h:26m:6s 
  P2Leaf01 temp6 networking asic die temp sensor absent 45 105 100 5 Unable to read temp4_highest Add 14d:22h:46m:45s 
- &lt;/pre&gt;
-&lt;/div&gt;&lt;/div&gt; 
-&lt;p&gt; This message might occur as a result of a timeout at the hardware level, or the switch might be reporting a failure to get a response. &lt;/p&gt;
+ 
+ 
+ This message might occur as a result of a timeout at the hardware level, or the switch might be reporting a failure to get a response. 
 </td>
 <td>3.5.3-3.7.14.2, 4.0.0-4.3.0</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-20508</td>
-<td>&lt;p&gt;The Cumulus-Resource-Query-MIB defines the ability to gather buffer utilization status but when these objects are polled, they return nothing. &lt;/p&gt;</td>
+<td>The Cumulus-Resource-Query-MIB defines the ability to gather buffer utilization status but when these objects are polled, they return nothing. </td>
 <td>3.5.3-3.7.14.2, 4.0.0-4.3.0</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-20033</td>
-<td>&lt;p&gt;The VLAN interface stays up even though the physical link carrying the VLAN is admin or carrier down.&lt;/p&gt;
+<td>The VLAN interface stays up even though the physical link carrying the VLAN is admin or carrier down.
 </td>
 <td>3.5.2-3.7.14.2, 4.0.0-4.3.0</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-15812</td>
-<td>&lt;p&gt;Multicast forwarding fails for IP addresses whose DMAC overlaps with reserved DIPs.&lt;/p&gt;</td>
+<td>Multicast forwarding fails for IP addresses whose DMAC overlaps with reserved DIPs.</td>
 <td>3.2.1-3.7.14.2, 4.0.0-4.3.0</td>
 <td></td>
 </tr>
@@ -30122,44 +30122,44 @@ Permanent MAC address sync between MLAG peers is now supported.</td>
 </tr>
 <tr>
 <td>CM-23004</td>
-<td>&lt;p&gt;The local fallback account authenticates using the local password when the RADIUS or TACACS service is up. The expected behavior is for this to fail and only succeed when the RADIUS OR TACACS server fails to respond. &lt;/p&gt;
+<td>The local fallback account authenticates using the local password when the RADIUS or TACACS service is up. The expected behavior is for this to fail and only succeed when the RADIUS OR TACACS server fails to respond. 
 </td>
 <td>3.7.1-3.7.14.2</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-21678</td>
-<td>&lt;p&gt;On a Dell switch with a Maverick ASIC, NetQ might receive false alerts like the following via PagerDuty: &lt;/p&gt;
- &lt;div class="code panel" style="border-width: 1px;"&gt;&lt;div class="codeContent panelContent"&gt;
-&lt;pre class="code-java"&gt; 
- cumulus@&lt;span class="code-keyword"&gt;switch&lt;/span&gt;:~$ netq show sensors temp changes | grep absent | grep -v psu 
+<td>On a Dell switch with a Maverick ASIC, NetQ might receive false alerts like the following via PagerDuty: 
+ 
+ 
+ cumulus@switch:~$ netq show sensors temp changes | grep absent | grep -v psu 
  P2Leaf01 temp9 networking asic die temp sensor absent 43 105 100 5 Unable to find driver path: /cumulu Add 7d:22h:1m:41s 
  P2Leaf01 temp6 networking asic die temp sensor absent 45 105 100 5 Unable to find driver path: /cumulu Add 7d:22h:1m:41s 
  P2Leaf01 temp6 networking asic die temp sensor absent 47 105 100 5 Unable to read temp4_highest Add 9d:23h:26m:6s 
  P2Leaf01 temp6 networking asic die temp sensor absent 45 105 100 5 Unable to read temp4_highest Add 14d:22h:46m:45s 
- &lt;/pre&gt;
-&lt;/div&gt;&lt;/div&gt; 
-&lt;p&gt; This message might occur as a result of a timeout at the hardware level, or the switch might be reporting a failure to get a response. &lt;/p&gt;
+ 
+ 
+ This message might occur as a result of a timeout at the hardware level, or the switch might be reporting a failure to get a response. 
 </td>
 <td>3.5.3-3.7.14.2, 4.0.0-4.3.0</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-20508</td>
-<td>&lt;p&gt;The Cumulus-Resource-Query-MIB defines the ability to gather buffer utilization status but when these objects are polled, they return nothing. &lt;/p&gt;</td>
+<td>The Cumulus-Resource-Query-MIB defines the ability to gather buffer utilization status but when these objects are polled, they return nothing. </td>
 <td>3.5.3-3.7.14.2, 4.0.0-4.3.0</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-20033</td>
-<td>&lt;p&gt;The VLAN interface stays up even though the physical link carrying the VLAN is admin or carrier down.&lt;/p&gt;
+<td>The VLAN interface stays up even though the physical link carrying the VLAN is admin or carrier down.
 </td>
 <td>3.5.2-3.7.14.2, 4.0.0-4.3.0</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-15812</td>
-<td>&lt;p&gt;Multicast forwarding fails for IP addresses whose DMAC overlaps with reserved DIPs.&lt;/p&gt;</td>
+<td>Multicast forwarding fails for IP addresses whose DMAC overlaps with reserved DIPs.</td>
 <td>3.2.1-3.7.14.2, 4.0.0-4.3.0</td>
 <td></td>
 </tr>
@@ -30962,37 +30962,37 @@ To work around this issue, remove the matching {{network}} statement. </td>
 </tr>
 <tr>
 <td>CM-21678</td>
-<td>&lt;p&gt;On a Dell switch with a Maverick ASIC, NetQ might receive false alerts like the following via PagerDuty: &lt;/p&gt;
- &lt;div class="code panel" style="border-width: 1px;"&gt;&lt;div class="codeContent panelContent"&gt;
-&lt;pre class="code-java"&gt; 
- cumulus@&lt;span class="code-keyword"&gt;switch&lt;/span&gt;:~$ netq show sensors temp changes | grep absent | grep -v psu 
+<td>On a Dell switch with a Maverick ASIC, NetQ might receive false alerts like the following via PagerDuty: 
+ 
+ 
+ cumulus@switch:~$ netq show sensors temp changes | grep absent | grep -v psu 
  P2Leaf01 temp9 networking asic die temp sensor absent 43 105 100 5 Unable to find driver path: /cumulu Add 7d:22h:1m:41s 
  P2Leaf01 temp6 networking asic die temp sensor absent 45 105 100 5 Unable to find driver path: /cumulu Add 7d:22h:1m:41s 
  P2Leaf01 temp6 networking asic die temp sensor absent 47 105 100 5 Unable to read temp4_highest Add 9d:23h:26m:6s 
  P2Leaf01 temp6 networking asic die temp sensor absent 45 105 100 5 Unable to read temp4_highest Add 14d:22h:46m:45s 
- &lt;/pre&gt;
-&lt;/div&gt;&lt;/div&gt; 
-&lt;p&gt; This message might occur as a result of a timeout at the hardware level, or the switch might be reporting a failure to get a response. &lt;/p&gt;
+ 
+ 
+ This message might occur as a result of a timeout at the hardware level, or the switch might be reporting a failure to get a response. 
 </td>
 <td>3.5.3-3.7.14.2, 4.0.0-4.3.0</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-20508</td>
-<td>&lt;p&gt;The Cumulus-Resource-Query-MIB defines the ability to gather buffer utilization status but when these objects are polled, they return nothing. &lt;/p&gt;</td>
+<td>The Cumulus-Resource-Query-MIB defines the ability to gather buffer utilization status but when these objects are polled, they return nothing. </td>
 <td>3.5.3-3.7.14.2, 4.0.0-4.3.0</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-20033</td>
-<td>&lt;p&gt;The VLAN interface stays up even though the physical link carrying the VLAN is admin or carrier down.&lt;/p&gt;
+<td>The VLAN interface stays up even though the physical link carrying the VLAN is admin or carrier down.
 </td>
 <td>3.5.2-3.7.14.2, 4.0.0-4.3.0</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-15812</td>
-<td>&lt;p&gt;Multicast forwarding fails for IP addresses whose DMAC overlaps with reserved DIPs.&lt;/p&gt;</td>
+<td>Multicast forwarding fails for IP addresses whose DMAC overlaps with reserved DIPs.</td>
 <td>3.2.1-3.7.14.2, 4.0.0-4.3.0</td>
 <td></td>
 </tr>

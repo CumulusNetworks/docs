@@ -8,13 +8,13 @@
 </tr>
 <tr>
 <td>NETQ-8317</td>
-<td>&lt;p&gt;NetQ Infra: When adding a data source with the Grafana plugin, an error message appears "Cannot read property 'status' of undefined" implying the data source is not added when, in fact, it has been. Ignore the error and continue with configuring the plugin.&lt;/p&gt;</td>
+<td>NetQ Infra: When adding a data source with the Grafana plugin, an error message appears "Cannot read property 'status' of undefined" implying the data source is not added when, in fact, it has been. Ignore the error and continue with configuring the plugin.</td>
 <td>3.3.0-3.3.1</td>
 <td></td>
 </tr>
 <tr>
 <td>NETQ-3451</td>
-<td>&lt;p&gt;UI: If either the peer_hostname or the peer_asn is invalid, the full screen BGP Service card does not provide the ability to open cards for a selected BGP session.&lt;/p&gt;</td>
+<td>UI: If either the peer_hostname or the peer_asn is invalid, the full screen BGP Service card does not provide the ability to open cards for a selected BGP session.</td>
 <td>2.3.0-2.4.1, 3.0.0-3.3.1</td>
 <td></td>
 </tr>
@@ -76,7 +76,7 @@ To work around this issue, run the following command on the NetQ telemetry serve
 Open the _armel-netq-commands.yml_ file in the _/etc/netq/commands/_ directory for editing.&lt;br&gt;
 
 Copy and append the following to the file:
-&lt;pre&gt; 
+ 
 - service: "inventory"
     commands:
       - key: "os-release"
@@ -107,15 +107,15 @@ Copy and append the following to the file:
         command: "cat /etc/app-release"
         isactive: true
         parser: "local"
-&lt;/pre&gt;
+
 Remove the existing generated command file.
-&lt;pre&gt;
+
 cumulus@switch:~$ rm /var/run/netq/netq-commands.yml
-&lt;/pre&gt;
+
 Restart the NetQ Agent.
-&lt;pre&gt;
+
 cumulus@switch:~$ netq config restart agent
-&lt;/pre&gt;</td>
+</td>
 <td>3.3.0</td>
 </tr>
 <tr>
@@ -147,15 +147,15 @@ cumulus@switch:~$ netq config restart agent
 <td>2556192</td>
 <td>NetQ UI: In multi-site on-premises deployments, when a new premises (created using the Premises card) is selected from the dropdown in the application header, the NetQ UI becomes unresponsive for many navigation tabs. To work around this issue, manually update the database as follows:&lt;br&gt;
 In a terminal window, open the database shell (cqlsh).
-&lt;pre&gt;
+
 $ CASSANDRA_POD=&amp;apos;kubectl get pods | grep cassandra | cut -f1 -d" "&amp;apos; ; kubectl exec -it $CASSANDRA_POD -- cqlsh
-&lt;/pre&gt;
+
 Display the premises table.
-&lt;pre&gt;
+
 cqlsh&gt; select opid,name,namespace from master.premises ;
-&lt;/pre&gt;
+
 The resulting output would be similar to this, with new premises having an empty namespace:
-&lt;pre&gt;
+
  opid  | name  | namespace
 -------+-------+-----------
  20001 | site1 |      null
@@ -164,13 +164,13 @@ The resulting output would be similar to this, with new premises having an empty
  20000 | site0 |      null
  20003 | site3 |          
 (5 rows)
-&lt;/pre&gt;
+
 For each new premises, insert a _null_ value into the database to resolve the issue. For example the new premises _site3_ has an empty namespace value, run following query against its opid _20003_ to change the value.
-&lt;pre&gt;
+
 cqlsh&gt; insert into master.premises (opid,namespace) values (20003,null);
-&lt;/pre&gt;
+
 Verify the new premises now have null values in the database.
-&lt;pre&gt;
+
 cqlsh&gt; select opid,name,namespace from master.premises ;
  opid  | name  | namespace
 -------+-------+-----------
@@ -180,7 +180,7 @@ cqlsh&gt; select opid,name,namespace from master.premises ;
  20000 | site0 |      null
  20003 | site3 |      null
 (5 rows)
-&lt;/pre&gt;</td>
+</td>
 <td>3.3.0</td>
 </tr>
 <tr>
@@ -188,36 +188,36 @@ cqlsh&gt; select opid,name,namespace from master.premises ;
 <td>NetQ Infra: The NetQ Agent fails to start when switch is running Cumulus Linux version 4.1.1 or 4.2.0. To work around this issue, run the following on each switch:&lt;br&gt;
 
 For CL 4.1.1, rename the WJH types file to the 4.3.3260 version:
-&lt;pre&gt;
+
 cumulus@switch:~$ sudo mv /usr/lib/cumulus/wjh/wjh_types_4.4.3260.py /usr/lib/cumulus/wjh/wjh_types_4.3.3260.py 
-&lt;/pre&gt;
+
 Then restart the NetQ Agent:
-&lt;pre&gt;
+
 cumulus@switch:~$ netq config restart agent
-&lt;/pre&gt;
+
 For CL 4.2.0, edit the following line in the /usr/sbin/netq-agent-prestart script to change the version from 4.4.095 to 4.4.0952:
-&lt;pre&gt;
+
 elif [ $sx_sdk_ver == “4.4.0952” ] || [  $sx_sdk_ver == “4.4.1624” ] || [ $sx_sdk_ver == “4.3.3260” ]; 
-&lt;/pre&gt;
+
 Then restart the NetQ Agent:
-&lt;pre&gt;
+
 cumulus@switch:~$ netq config restart agent
-&lt;/pre&gt;</td>
+</td>
 <td>3.3.0</td>
 </tr>
 <tr>
 <td>2556007</td>
 <td>NetQ API: Several APIs are presenting the following error when viewed in Swagger UI:
-&lt;pre&gt;
+
 Fetch errorundefined https://api.prod2.netq.cumulusnetworks.com/netq/telemetry/v1/api-docs/events/swagger.json
-&lt;/pre&gt;
+
 To correct this presentation issue:
 Open the netqui YAML file for editing.
-&lt;pre&gt;
+
 kubectl edit netquis netqui
-&lt;/pre&gt;
+
 Locate the _misc_ section. For example:
-&lt;pre&gt;
+
 misc:
   cassandraReconnectLogOnly: "true"
   clusterName: netq
@@ -225,9 +225,9 @@ misc:
   ...
   smtpSSL: "true"
   tlsEnabled: "true"
-&lt;/pre&gt;
+
 Add the {{document_namespace}} parameter below the {{tlsEnabled}} parameter.
-&lt;pre&gt;
+
 misc:
   cassandraReconnectLogOnly: "true"
   clusterName: netq
@@ -236,7 +236,7 @@ misc:
   smtpSSL: "true"
   tlsEnabled: "true"
   document_namespace: "default"
-&lt;/pre&gt;
+
 Save the file.</td>
 <td>3.3.0</td>
 </tr>
@@ -265,13 +265,13 @@ Save the file.</td>
 </tr>
 <tr>
 <td>NETQ-8317</td>
-<td>&lt;p&gt;NetQ Infra: When adding a data source with the Grafana plugin, an error message appears "Cannot read property 'status' of undefined" implying the data source is not added when, in fact, it has been. Ignore the error and continue with configuring the plugin.&lt;/p&gt;</td>
+<td>NetQ Infra: When adding a data source with the Grafana plugin, an error message appears "Cannot read property 'status' of undefined" implying the data source is not added when, in fact, it has been. Ignore the error and continue with configuring the plugin.</td>
 <td>3.3.0</td>
 <td></td>
 </tr>
 <tr>
 <td>NETQ-3451</td>
-<td>&lt;p&gt;UI: If either the peer_hostname or the peer_asn is invalid, the full screen BGP Service card does not provide the ability to open cards for a selected BGP session.&lt;/p&gt;</td>
+<td>UI: If either the peer_hostname or the peer_asn is invalid, the full screen BGP Service card does not provide the ability to open cards for a selected BGP session.</td>
 <td>2.3.0-2.4.1, 3.0.0-3.3.0</td>
 <td></td>
 </tr>
@@ -290,7 +290,7 @@ To work around this issue, run the following command on the NetQ telemetry serve
 Open the _armel-netq-commands.yml_ file in the _/etc/netq/commands/_ directory for editing.&lt;br&gt;
 
 Copy and append the following to the file:
-&lt;pre&gt; 
+ 
 - service: "inventory"
     commands:
       - key: "os-release"
@@ -321,15 +321,15 @@ Copy and append the following to the file:
         command: "cat /etc/app-release"
         isactive: true
         parser: "local"
-&lt;/pre&gt;
+
 Remove the existing generated command file.
-&lt;pre&gt;
+
 cumulus@switch:~$ rm /var/run/netq/netq-commands.yml
-&lt;/pre&gt;
+
 Restart the NetQ Agent.
-&lt;pre&gt;
+
 cumulus@switch:~$ netq config restart agent
-&lt;/pre&gt;</td>
+</td>
 <td>3.3.0</td>
 <td>3.3.1</td>
 </tr>
@@ -373,15 +373,15 @@ cumulus@switch:~$ netq config restart agent
 <td>2556192</td>
 <td>NetQ UI: In multi-site on-premises deployments, when a new premises (created using the Premises card) is selected from the dropdown in the application header, the NetQ UI becomes unresponsive for many navigation tabs. To work around this issue, manually update the database as follows:&lt;br&gt;
 In a terminal window, open the database shell (cqlsh).
-&lt;pre&gt;
+
 $ CASSANDRA_POD=&amp;apos;kubectl get pods | grep cassandra | cut -f1 -d" "&amp;apos; ; kubectl exec -it $CASSANDRA_POD -- cqlsh
-&lt;/pre&gt;
+
 Display the premises table.
-&lt;pre&gt;
+
 cqlsh&gt; select opid,name,namespace from master.premises ;
-&lt;/pre&gt;
+
 The resulting output would be similar to this, with new premises having an empty namespace:
-&lt;pre&gt;
+
  opid  | name  | namespace
 -------+-------+-----------
  20001 | site1 |      null
@@ -390,13 +390,13 @@ The resulting output would be similar to this, with new premises having an empty
  20000 | site0 |      null
  20003 | site3 |          
 (5 rows)
-&lt;/pre&gt;
+
 For each new premises, insert a _null_ value into the database to resolve the issue. For example the new premises _site3_ has an empty namespace value, run following query against its opid _20003_ to change the value.
-&lt;pre&gt;
+
 cqlsh&gt; insert into master.premises (opid,namespace) values (20003,null);
-&lt;/pre&gt;
+
 Verify the new premises now have null values in the database.
-&lt;pre&gt;
+
 cqlsh&gt; select opid,name,namespace from master.premises ;
  opid  | name  | namespace
 -------+-------+-----------
@@ -406,7 +406,7 @@ cqlsh&gt; select opid,name,namespace from master.premises ;
  20000 | site0 |      null
  20003 | site3 |      null
 (5 rows)
-&lt;/pre&gt;</td>
+</td>
 <td>3.3.0</td>
 <td>3.3.1</td>
 </tr>
@@ -415,37 +415,37 @@ cqlsh&gt; select opid,name,namespace from master.premises ;
 <td>NetQ Infra: The NetQ Agent fails to start when switch is running Cumulus Linux version 4.1.1 or 4.2.0. To work around this issue, run the following on each switch:&lt;br&gt;
 
 For CL 4.1.1, rename the WJH types file to the 4.3.3260 version:
-&lt;pre&gt;
+
 cumulus@switch:~$ sudo mv /usr/lib/cumulus/wjh/wjh_types_4.4.3260.py /usr/lib/cumulus/wjh/wjh_types_4.3.3260.py 
-&lt;/pre&gt;
+
 Then restart the NetQ Agent:
-&lt;pre&gt;
+
 cumulus@switch:~$ netq config restart agent
-&lt;/pre&gt;
+
 For CL 4.2.0, edit the following line in the /usr/sbin/netq-agent-prestart script to change the version from 4.4.095 to 4.4.0952:
-&lt;pre&gt;
+
 elif [ $sx_sdk_ver == “4.4.0952” ] || [  $sx_sdk_ver == “4.4.1624” ] || [ $sx_sdk_ver == “4.3.3260” ]; 
-&lt;/pre&gt;
+
 Then restart the NetQ Agent:
-&lt;pre&gt;
+
 cumulus@switch:~$ netq config restart agent
-&lt;/pre&gt;</td>
+</td>
 <td>3.3.0</td>
 <td>3.3.1</td>
 </tr>
 <tr>
 <td>2556007</td>
 <td>NetQ API: Several APIs are presenting the following error when viewed in Swagger UI:
-&lt;pre&gt;
+
 Fetch errorundefined https://api.prod2.netq.cumulusnetworks.com/netq/telemetry/v1/api-docs/events/swagger.json
-&lt;/pre&gt;
+
 To correct this presentation issue:
 Open the netqui YAML file for editing.
-&lt;pre&gt;
+
 kubectl edit netquis netqui
-&lt;/pre&gt;
+
 Locate the _misc_ section. For example:
-&lt;pre&gt;
+
 misc:
   cassandraReconnectLogOnly: "true"
   clusterName: netq
@@ -453,9 +453,9 @@ misc:
   ...
   smtpSSL: "true"
   tlsEnabled: "true"
-&lt;/pre&gt;
+
 Add the {{document_namespace}} parameter below the {{tlsEnabled}} parameter.
-&lt;pre&gt;
+
 misc:
   cassandraReconnectLogOnly: "true"
   clusterName: netq
@@ -464,7 +464,7 @@ misc:
   smtpSSL: "true"
   tlsEnabled: "true"
   document_namespace: "default"
-&lt;/pre&gt;
+
 Save the file.</td>
 <td>3.3.0</td>
 <td>3.3.1</td>

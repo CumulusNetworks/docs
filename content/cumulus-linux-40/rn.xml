@@ -8,33 +8,33 @@
 </tr>
 <tr>
 <td>CM-27719</td>
-<td>&lt;p&gt;Several vulnerabilities have been discovered in the interpreter for the Ruby language, which could result in unauthorized access by bypassing intended path matchings, denial of service, or the execution of arbitrary code.&lt;br/&gt;
+<td>Several vulnerabilities have been discovered in the interpreter for the Ruby language, which could result in unauthorized access by bypassing intended path matchings, denial of service, or the execution of arbitrary code.&lt;br/&gt;
 These vulnerabilities affect the ruby2.5 package that is available for optional installation in Cumulus Linux 4.x, but is not installed by default.&lt;br/&gt;
 CVE-2019-15845: Ruby through 2.4.7, 2.5.x through 2.5.6, and 2.6.x through 2.6.4 mishandles path checking within File.fnmatch functions.&lt;br/&gt;
 CVE-2019-16201: WEBrick::HTTPAuth::DigestAuth in Ruby through 2.4.7, 2.5.x through 2.5.6, and 2.6.x through 2.6.4 has a regular expression Denial of Service cause by looping/backtracking. A victim must expose a WEBrick server that uses DigestAuth to the Internet or a untrusted network.&lt;br/&gt;
 CVE-2019-16254: Ruby through 2.4.7, 2.5.x through 2.5.6, and 2.6.x through 2.6.4 allows HTTP Response Splitting. If a program using WEBrick inserts untrusted input into the response header, an attacker can exploit it to insert a newline character to split a header, and inject malicious content to deceive clients.&lt;br/&gt;
 CVE-2019-16255: Ruby through 2.4.7, 2.5.x through 2.5.6, and 2.6.x through 2.6.4 allows code injection if the first argument (aka the "command" argument) to Shell#[] or Shell#test in lib/shell.rb is untrusted data. An attacker can exploit this to call an arbitrary Ruby method.&lt;br/&gt;
-Vulnerable: 2.5.5-3&lt;/p&gt;</td>
+Vulnerable: 2.5.5-3</td>
 <td>4.0.0-4.0.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-27699</td>
-<td>&lt;p&gt;In a default VX instance, a ping to a device's hostname fails.&lt;br/&gt;
-To work around this issue, edit the &lt;tt&gt;/etc/gai.conf&lt;/tt&gt; file and uncomment &lt;tt&gt;precedence ::ffff:0:0/96  10&lt;/tt&gt;.&lt;/p&gt;</td>
+<td>In a default VX instance, a ping to a device's hostname fails.&lt;br/&gt;
+To work around this issue, edit the /etc/gai.conf file and uncomment precedence ::ffff:0:0/96  10.</td>
 <td>4.0.0-4.0.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-27678</td>
-<td>&lt;p&gt;The &lt;tt&gt;net show bridge macs&lt;/tt&gt; command returns an empty interface column.&lt;br/&gt;
-To work around this issue, run the &lt;tt&gt;bridge fdb show&lt;/tt&gt; command to show the interface.&lt;/p&gt;</td>
+<td>The net show bridge macs command returns an empty interface column.&lt;br/&gt;
+To work around this issue, run the bridge fdb show command to show the interface.</td>
 <td>4.0.0-4.0.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-27645</td>
-<td>&lt;p&gt;Several vulnerabilities have been discovered in git, a fast, scalable,&lt;br/&gt;
+<td>Several vulnerabilities have been discovered in git, a fast, scalable,&lt;br/&gt;
 distributed revision control system, which is installed by default on Cumulus Linux 4.x.&lt;br/&gt;
 CVE-2019-1348: export-marks is insecure, fix is to disable by default.&lt;br/&gt;
 CVE-2019-1349: .git / git~1 filename vulnerability on NTFS&lt;br/&gt;
@@ -42,655 +42,655 @@ CVE-2019-1352: .git vulnerability with NTFS Alternate Streams Accesses&lt;br/&gt
 CVE-2019-1353: NTFS filesystem protection should be on by default&lt;br/&gt;
 CVE-2019-1387: dubiously-nested submodule git directories should be disallowed&lt;br/&gt;
 CVE-2019-19604: submodule update repository code execution vulnerability&lt;br/&gt;
-Vulnerable: &amp;lt;= 2.20.1-2&lt;/p&gt;</td>
+Vulnerable: &amp;lt;= 2.20.1-2</td>
 <td>4.0.0-4.0.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-27642</td>
-<td>&lt;p&gt;The following CVEs were announced that affect the libssh package:&lt;br/&gt;
+<td>The following CVEs were announced that affect the libssh package:&lt;br/&gt;
 CVE-2019-14889 has been announced in the libssh library, where unsanitized user-provided scp command lines could allow an attacker to execute arbitrary commands on the server.&lt;br/&gt;
 The libssh library is not installed on Cumulus Linux by default, but is available in the Cumulus Linux 4 repository for optional installation. Note that libssh is distinct from libssh2 and openssh, which are present on the switches and in the repositories.&lt;br/&gt;
 See the following for more information:&lt;br/&gt;
 &lt;a href="https://www.libssh.org/security/advisories/CVE-2019-14889.txt" class="external-link" rel="nofollow"&gt;https://www.libssh.org/security/advisories/CVE-2019-14889.txt&lt;/a&gt;&lt;br/&gt;
-&lt;a href="https://security-tracker.debian.org/tracker/CVE-2019-14889" class="external-link" rel="nofollow"&gt;https://security-tracker.debian.org/tracker/CVE-2019-14889&lt;/a&gt;&lt;/p&gt;</td>
+&lt;a href="https://security-tracker.debian.org/tracker/CVE-2019-14889" class="external-link" rel="nofollow"&gt;https://security-tracker.debian.org/tracker/CVE-2019-14889&lt;/a&gt;</td>
 <td>4.0.0-4.0.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-27619</td>
-<td>&lt;p&gt;The following security vulnerabilities have been announced in the nss / libnss3 library, which is not installed by default but is available in the repository:&lt;br/&gt;
+<td>The following security vulnerabilities have been announced in the nss / libnss3 library, which is not installed by default but is available in the repository:&lt;br/&gt;
 CVE-2019-11745: Out-of-bounds write when passing an output buffer smaller than the block size to NSC_EncryptUpdate&lt;br/&gt;
 CVE-2019-17007: nss: Handling of Netscape Certificate Sequences in CERT_DecodeCertPackage() may crash with a NULL deref leading to DoS&lt;br/&gt;
 See &lt;a href="https://security-tracker.debian.org/tracker/source-package/nss" class="external-link" rel="nofollow"&gt;https://security-tracker.debian.org/tracker/source-package/nss&lt;/a&gt; for more information.&lt;br/&gt;
-Vulnerable: &amp;lt;= 3.42.1-1+deb10u1&lt;/p&gt;</td>
+Vulnerable: &amp;lt;= 3.42.1-1+deb10u1</td>
 <td>4.0.0-4.0.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-27422</td>
-<td>&lt;p&gt;The control plane ACL files uses variables that were not defined, which results in an error on boot.&lt;br/&gt;
-Add the following two lines to the top of the file &lt;tt&gt;/etc/cumulus/acl/policy.d/00control_plane.rules&lt;/tt&gt;:&lt;/p&gt;
-&lt;div class="preformatted" style="border-width: 1px;"&gt;&lt;div class="preformattedContent panelContent"&gt;
-&lt;pre&gt;BOOTPC_PORT = 67
+<td>The control plane ACL files uses variables that were not defined, which results in an error on boot.&lt;br/&gt;
+Add the following two lines to the top of the file /etc/cumulus/acl/policy.d/00control_plane.rules:
+
+BOOTPC_PORT = 67
 BOOTPS_PORT = 68
-&lt;/pre&gt;
-&lt;/div&gt;&lt;/div&gt;</td>
+
+</td>
 <td>4.0.0-4.0.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-27367</td>
-<td>&lt;p&gt;Under certain circumstances, &lt;tt&gt;switchd&lt;/tt&gt; might crash, then restart, on Mellanox switches with the Spectrum or Spectrum-2 ASIC.  &lt;/p&gt;</td>
+<td>Under certain circumstances, switchd might crash, then restart, on Mellanox switches with the Spectrum or Spectrum-2 ASIC.  </td>
 <td>4.0.0-4.0.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-27275</td>
-<td>&lt;p&gt;CVE-2018-12207: Improper invalidation for page table updates by a virtual guest operating system for multiple Intel(R) Processors may allow an authenticated user to potentially enable denial of service of the host system via local access.&lt;br/&gt;
-Running hypervisors for virtual guest operating systems is not supported on Cumulus Linux.  Additionally, an affected package qemu is not included in the image, although it is available on upstream repo mirrors.  &lt;/p&gt;</td>
+<td>CVE-2018-12207: Improper invalidation for page table updates by a virtual guest operating system for multiple Intel(R) Processors may allow an authenticated user to potentially enable denial of service of the host system via local access.&lt;br/&gt;
+Running hypervisors for virtual guest operating systems is not supported on Cumulus Linux.  Additionally, an affected package qemu is not included in the image, although it is available on upstream repo mirrors.  </td>
 <td>4.0.0-4.0.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-27254</td>
-<td>&lt;p&gt;On Mellanox switches with the Spectrum and Spectrum-2 ASIC, IPv6 egress ACLs are not supported on subinterfaces.&lt;/p&gt;</td>
+<td>On Mellanox switches with the Spectrum and Spectrum-2 ASIC, IPv6 egress ACLs are not supported on subinterfaces.</td>
 <td>4.0.0-4.0.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-27243</td>
-<td>&lt;p&gt;The length of the netlink message is not set properly for non-bridge family type messages. The same length is used for both bridge and non-bridge family type messages even though the bridge family type message has an extra attribute. This causes extra bytes to be left over in non-bridge family type netlink messages.&lt;/p&gt;</td>
+<td>The length of the netlink message is not set properly for non-bridge family type messages. The same length is used for both bridge and non-bridge family type messages even though the bridge family type message has an extra attribute. This causes extra bytes to be left over in non-bridge family type netlink messages.</td>
 <td>4.0.0-4.0.1</td>
 <td>3.7.11</td>
 </tr>
 <tr>
 <td>CM-27229</td>
-<td>&lt;p&gt;On a traditional bridge, VLAN tagged traffic is not discarded when it exceeds the port security MAC limit.&lt;/p&gt;</td>
+<td>On a traditional bridge, VLAN tagged traffic is not discarded when it exceeds the port security MAC limit.</td>
 <td>4.0.0-4.0.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-27184</td>
-<td>&lt;p&gt;With the port security feature, if you change the number of MAC addresses allowed to access a port with the NCLU &lt;tt&gt;net add interface &amp;lt;port&amp;gt; port-security mac-limit &amp;lt;number&amp;gt;&lt;/tt&gt; command, the &lt;tt&gt;net show configuration commands&lt;/tt&gt; command might fail.&lt;/p&gt;</td>
+<td>With the port security feature, if you change the number of MAC addresses allowed to access a port with the NCLU net add interface &amp;lt;port&amp;gt; port-security mac-limit &amp;lt;number&amp;gt; command, the net show configuration commands command might fail.</td>
 <td>4.0.0-4.0.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-27179</td>
-<td>&lt;p&gt;On rare occasions on a Mellanox SN3700C switch, if you insert and remove, then reinsert an AOC or QSFP28 optical transceiver quickly, port #32 might get stuck.&lt;br/&gt;
-To avoid this issue, wait 15 seconds before insertion and before removal of the module.&lt;/p&gt;</td>
+<td>On rare occasions on a Mellanox SN3700C switch, if you insert and remove, then reinsert an AOC or QSFP28 optical transceiver quickly, port #32 might get stuck.&lt;br/&gt;
+To avoid this issue, wait 15 seconds before insertion and before removal of the module.</td>
 <td>4.0.0-4.0.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-27143</td>
-<td>&lt;p&gt;The CPU core temperature sensors are absent on the Dell S5248F-ON switch.&lt;/p&gt;</td>
+<td>The CPU core temperature sensors are absent on the Dell S5248F-ON switch.</td>
 <td>4.0.0-4.0.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-27136</td>
-<td>&lt;p&gt;With a high number of active routes (20K or more), when you perform a networking restart, the FRR log files might become flooded with error messages associated with the restart. These logs are normal and are not directly a problem. However, the large number of messages can cause the logs to &lt;em&gt;rotate away&lt;/em&gt; any previous history, which prevents you from tracing back events leading up to the restart. In a troubleshooting environment, this can be problematic.&lt;/p&gt;</td>
+<td>With a high number of active routes (20K or more), when you perform a networking restart, the FRR log files might become flooded with error messages associated with the restart. These logs are normal and are not directly a problem. However, the large number of messages can cause the logs to &lt;em&gt;rotate away&lt;/em&gt; any previous history, which prevents you from tracing back events leading up to the restart. In a troubleshooting environment, this can be problematic.</td>
 <td>4.0.0-4.0.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-27131</td>
-<td>&lt;p&gt;On switches with the Broadcom Tomahawk3 ASIC, such as the EdgeCore Minipack AS8000, SPAN and ERSPAN functionality is not supported.&lt;/p&gt;</td>
+<td>On switches with the Broadcom Tomahawk3 ASIC, such as the EdgeCore Minipack AS8000, SPAN and ERSPAN functionality is not supported.</td>
 <td>4.0.0-4.0.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-27118</td>
-<td>&lt;p&gt;Switches with the Broadcom Tomahawk3 ASIC, such as the EdgeCore Minipack AS8000, might not learn all MAC address on a port configured for bridging when the hardware MAC table is near the maximum capacity.&lt;/p&gt;</td>
+<td>Switches with the Broadcom Tomahawk3 ASIC, such as the EdgeCore Minipack AS8000, might not learn all MAC address on a port configured for bridging when the hardware MAC table is near the maximum capacity.</td>
 <td>4.0.0-4.0.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-27099</td>
-<td>&lt;p&gt;Precision Time Protocol (PTP) is not currently supported on Mellanox switches with the Spectrum-2 ASIC. &lt;/p&gt;</td>
+<td>Precision Time Protocol (PTP) is not currently supported on Mellanox switches with the Spectrum-2 ASIC. </td>
 <td>4.0.0-4.0.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-27094</td>
-<td>&lt;p&gt;On the Delta AG9032v1 switch, smonctl and sensors report inaccurate PSU current and power.&lt;/p&gt;</td>
+<td>On the Delta AG9032v1 switch, smonctl and sensors report inaccurate PSU current and power.</td>
 <td>3.5.0-3.7.11, 4.0.0-4.0.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-27081</td>
-<td>&lt;p&gt;On the switches with the Broadcom Tomahawk3 ASIC, such as the EdgeCore Minipack AS8000, if you configure more than 96 ports in a layer 2 bridge, &lt;tt&gt;switchd&lt;/tt&gt; might hit a timeout error and restart.  &lt;/p&gt;</td>
+<td>On the switches with the Broadcom Tomahawk3 ASIC, such as the EdgeCore Minipack AS8000, if you configure more than 96 ports in a layer 2 bridge, switchd might hit a timeout error and restart.  </td>
 <td>4.0.0-4.0.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-27018</td>
-<td>&lt;p&gt;When more than one VRR interface is configured on an SVI interface, deleting one of the VRR addresses does not remove the interface/address. &lt;/p&gt;</td>
+<td>When more than one VRR interface is configured on an SVI interface, deleting one of the VRR addresses does not remove the interface/address. </td>
 <td>3.7.10-3.7.11, 4.0.0-4.0.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-26996</td>
-<td>&lt;p&gt;On Mellanox switches with the Spectrum ASIC, the &lt;tt&gt;--set-burst&lt;/tt&gt; parameter in an iptables rule does not take effect.&lt;/p&gt;</td>
+<td>On Mellanox switches with the Spectrum ASIC, the --set-burst parameter in an iptables rule does not take effect.</td>
 <td>3.7.10, 4.0.0-4.0.1</td>
 <td>3.7.11</td>
 </tr>
 <tr>
 <td>CM-26961</td>
-<td>&lt;p&gt;On Mellanox switches, error messages with &lt;tt&gt;hw-management-thermal-events.sh&lt;/tt&gt; are displayed on shutdown.&lt;/p&gt;</td>
+<td>On Mellanox switches, error messages with hw-management-thermal-events.sh are displayed on shutdown.</td>
 <td>4.0.0-4.0.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-26942</td>
-<td>&lt;p&gt;Port security is not currently supported on VX. The NCLU commands produce errors.&lt;/p&gt;</td>
+<td>Port security is not currently supported on VX. The NCLU commands produce errors.</td>
 <td>4.0.0-4.0.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-26921</td>
-<td>&lt;p&gt;If you delete an undefined bond, then add a bond slave, the &lt;tt&gt;net commit&lt;/tt&gt; command fails.&lt;/p&gt;</td>
+<td>If you delete an undefined bond, then add a bond slave, the net commit command fails.</td>
 <td>3.7.9-3.7.11, 4.0.0-4.0.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-26913</td>
-<td>&lt;p&gt;FRR configuration commands for an SVI interface might have the \n misplaced in the output.  For example:&lt;/p&gt;
-&lt;div class="preformatted" style="border-width: 1px;"&gt;&lt;div class="preformattedContent panelContent"&gt;
-&lt;pre&gt;sudo sh -c "printf 'interface 50\nvrf TEST description L3 routing interface\n' &amp;gt;&amp;gt; /etc/frr/frr.conf"
-&lt;/pre&gt;
-&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;should be:&lt;/p&gt;
-&lt;div class="preformatted" style="border-width: 1px;"&gt;&lt;div class="preformattedContent panelContent"&gt;
-&lt;pre&gt;sudo sh -c "printf 'interface 50 vrf TEST\ndescription L3 routing interface\n' &amp;gt;&amp;gt; /etc/frr/frr.conf"
-&lt;/pre&gt;
-&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;To work around this issue, configure the interface manually in the &lt;tt&gt;/etc/frr/frr.conf&lt;/tt&gt; file.&lt;/p&gt;</td>
+<td>FRR configuration commands for an SVI interface might have the \n misplaced in the output.  For example:
+
+sudo sh -c "printf 'interface 50\nvrf TEST description L3 routing interface\n' &amp;gt;&amp;gt; /etc/frr/frr.conf"
+
+
+should be:
+
+sudo sh -c "printf 'interface 50 vrf TEST\ndescription L3 routing interface\n' &amp;gt;&amp;gt; /etc/frr/frr.conf"
+
+
+To work around this issue, configure the interface manually in the /etc/frr/frr.conf file.</td>
 <td>3.7.9-3.7.11, 4.0.0-4.0.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-26907</td>
-<td>&lt;p&gt;NCLU incorrectly allows you to apply port security configuration on layer 2 and layer 3 ports that are not part of a bridge.&lt;/p&gt;</td>
+<td>NCLU incorrectly allows you to apply port security configuration on layer 2 and layer 3 ports that are not part of a bridge.</td>
 <td>4.0.0-4.0.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-26905</td>
-<td>&lt;p&gt;When you update the hostname of a switch with the NCLU &lt;tt&gt;net add hostname &amp;lt;hostname&amp;gt;&lt;/tt&gt; command, then run &lt;tt&gt;net commit&lt;/tt&gt;, the &lt;tt&gt;lldpd&lt;/tt&gt; service is not restarted and other devices still see the old name.&lt;br/&gt;
-To work around this issue, run the &lt;tt&gt;sudo systemctl restart lldpd.service&lt;/tt&gt; command.&lt;/p&gt;</td>
+<td>When you update the hostname of a switch with the NCLU net add hostname &amp;lt;hostname&amp;gt; command, then run net commit, the lldpd service is not restarted and other devices still see the old name.&lt;br/&gt;
+To work around this issue, run the sudo systemctl restart lldpd.service command.</td>
 <td>3.7.10-3.7.11, 4.0.0-4.0.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-26875</td>
-<td>&lt;p&gt;After deleting an IPv6 numbered BGP peer group neighbor, Cumulus Linux may continue to send RAs.  To address this, restart frr after removing IPv6 numbered configuration.&lt;/p&gt;</td>
+<td>After deleting an IPv6 numbered BGP peer group neighbor, Cumulus Linux may continue to send RAs.  To address this, restart frr after removing IPv6 numbered configuration.</td>
 <td>3.7.9-3.7.11, 4.0.0-4.0.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-26769</td>
-<td>&lt;p&gt;Setting ProtoDown on ports populated with SFP modules providing RJ-45 1000BASE-T interfaces does not cause the carrier to be dropped. The kernel shows carrier down; however, the remote device still shows a link.&lt;/p&gt;</td>
+<td>Setting ProtoDown on ports populated with SFP modules providing RJ-45 1000BASE-T interfaces does not cause the carrier to be dropped. The kernel shows carrier down; however, the remote device still shows a link.</td>
 <td>3.7.6-3.7.10, 4.0.0-4.0.1</td>
 <td>3.7.11</td>
 </tr>
 <tr>
 <td>CM-26702</td>
-<td>&lt;p&gt;On Mellanox switches with the Spectrum-2 ASIC, policy-based routing (PBR) is not currently supported.&lt;/p&gt;</td>
+<td>On Mellanox switches with the Spectrum-2 ASIC, policy-based routing (PBR) is not currently supported.</td>
 <td>4.0.0-4.0.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-26655</td>
-<td>&lt;p&gt;Reconfiguring an NTP server via NCLU with different trailing options (such as iburst) after the IP address causes an invalid configuration to be added to the &lt;tt&gt;/etc/ntp.conf&lt;/tt&gt; file.  As an example&lt;/p&gt;
-&lt;div class="preformatted" style="border-width: 1px;"&gt;&lt;div class="preformattedContent panelContent"&gt;
-&lt;pre&gt;net add time ntp server 1.2.3.4 iburst
+<td>Reconfiguring an NTP server via NCLU with different trailing options (such as iburst) after the IP address causes an invalid configuration to be added to the /etc/ntp.conf file.  As an example
+
+net add time ntp server 1.2.3.4 iburst
 net commit
 net add time ntp server 1.2.3.4
 net commit
-&lt;/pre&gt;
-&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;If you need to alter existing server configurations, first remove the server, commit, then re-add the server with any trailing options.&lt;/p&gt;</td>
+
+
+If you need to alter existing server configurations, first remove the server, commit, then re-add the server with any trailing options.</td>
 <td>3.7.9-3.7.11, 4.0.0-4.0.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-26599</td>
-<td>&lt;p&gt;Auto-negotiation does not work with the QSFP28 cables and a remote system opreating at 10G. Attempting to enable auto-negotiation via &lt;tt&gt;ethtool -s swp&amp;lt;#&amp;gt; autoneg on&lt;/tt&gt; returns &lt;tt&gt;Operation not supported&lt;/tt&gt;.&lt;/p&gt;
+<td>Auto-negotiation does not work with the QSFP28 cables and a remote system opreating at 10G. Attempting to enable auto-negotiation via ethtool -s swp&amp;lt;#&amp;gt; autoneg on returns Operation not supported.
 
-&lt;p&gt;As a workaround, do not use auto-negotiation and set the local port speed to 10G.&lt;/p&gt;</td>
+As a workaround, do not use auto-negotiation and set the local port speed to 10G.</td>
 <td>3.7.9-3.7.11, 4.0.0-4.0.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-26595</td>
-<td>&lt;p&gt;The NCLU &lt;tt&gt;net show lldp&lt;/tt&gt; command displays the speed of a ganged port group as the speed of one of the individual links, rather than the sum of their speeds.&lt;/p&gt;</td>
+<td>The NCLU net show lldp command displays the speed of a ganged port group as the speed of one of the individual links, rather than the sum of their speeds.</td>
 <td>3.7.9-3.7.11, 4.0.0-4.0.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-26525</td>
-<td>&lt;p&gt;When an MLAG peerlink frequently alternates states between learning and blocking, an excessive number of TCP sessions might be created, which results in the following error display:&lt;/p&gt;
-&lt;div class="preformatted" style="border-width: 1px;"&gt;&lt;div class="preformattedContent panelContent"&gt;
-&lt;pre&gt;OSError: [Errno 24] Too many open files
-&lt;/pre&gt;
-&lt;/div&gt;&lt;/div&gt;</td>
+<td>When an MLAG peerlink frequently alternates states between learning and blocking, an excessive number of TCP sessions might be created, which results in the following error display:
+
+OSError: [Errno 24] Too many open files
+
+</td>
 <td>3.6.2-3.7.10, 4.0.0-4.0.1</td>
 <td>3.7.11</td>
 </tr>
 <tr>
 <td>CM-26516</td>
-<td>&lt;p&gt;Applying a policy-based routing (PBR) rule for all traffic from a host might disrupt ARP refresh for that connected host.&lt;/p&gt;</td>
+<td>Applying a policy-based routing (PBR) rule for all traffic from a host might disrupt ARP refresh for that connected host.</td>
 <td>3.7.5-3.7.11, 4.0.0-4.0.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-26450</td>
-<td>&lt;p&gt;Cumulus Linux poed generates excessive debug log entries.  These will be reduced in a future release.&lt;/p&gt;</td>
+<td>Cumulus Linux poed generates excessive debug log entries.  These will be reduced in a future release.</td>
 <td>3.7.3-3.7.10, 4.0.0-4.0.1</td>
 <td>3.7.11</td>
 </tr>
 <tr>
 <td>CM-26437</td>
-<td>&lt;p&gt;NCLU crashes when you run the &lt;tt&gt;net add interface storage-optimized pfc&lt;/tt&gt; command because non-ascii quotes exist in the &lt;tt&gt;datapath.conf&lt;/tt&gt; file.&lt;br/&gt;
-To work around this issue, manually edit the &lt;tt&gt;/usr/lib/python2.7/dist-packages/cumulus/__chip_config/mlx/datapath.conf&lt;/tt&gt; file and replace the non-ascii single quotes  with ascii single quotes (standard single quote on the keyboard).&lt;/p&gt;</td>
+<td>NCLU crashes when you run the net add interface storage-optimized pfc command because non-ascii quotes exist in the datapath.conf file.&lt;br/&gt;
+To work around this issue, manually edit the /usr/lib/python2.7/dist-packages/cumulus/__chip_config/mlx/datapath.conf file and replace the non-ascii single quotes  with ascii single quotes (standard single quote on the keyboard).</td>
 <td>3.7.9-3.7.10, 4.0.0-4.0.1</td>
 <td>3.7.11</td>
 </tr>
 <tr>
 <td>CM-26423</td>
-<td>&lt;p&gt;NCLU requires you to specify an interface with multiple address-virtual statements in ascending MAC address order. &lt;/p&gt;
+<td>NCLU requires you to specify an interface with multiple address-virtual statements in ascending MAC address order. 
 </td>
 <td>3.7.5-3.7.11, 4.0.0-4.0.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-26412</td>
-<td>&lt;p&gt;Mac learning is not disabled by default on a double tagged peer link interface resulting in the MAC address flipping between the MLAG bond and the peer link.&lt;br/&gt;
-To work around this issue, disable MAC learning on QinQ VLANs by adding &lt;tt&gt;bridge-learning off&lt;/tt&gt; to the VLAN stanza in the &lt;tt&gt;etc/network/interfaces&lt;/tt&gt; file.&lt;/p&gt;</td>
+<td>Mac learning is not disabled by default on a double tagged peer link interface resulting in the MAC address flipping between the MLAG bond and the peer link.&lt;br/&gt;
+To work around this issue, disable MAC learning on QinQ VLANs by adding bridge-learning off to the VLAN stanza in the etc/network/interfaces file.</td>
 <td>3.7.9-3.7.11, 4.0.0-4.0.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-26308</td>
-<td>&lt;p&gt;An interface alias configured outside FRR using &lt;tt&gt;iproute2&lt;/tt&gt; is imported into the FRR running configuration and overrides the internal description. After an FRR reload, this causes FRR to delete the interface alias in an inefficient way. Depending on how many interfaces with aliases you have configured, this can cause a FRR reload to time out.&lt;br/&gt;
-To work around this issue, remove the interface alias description from &lt;tt&gt;iproute2&lt;/tt&gt;.&lt;/p&gt;</td>
+<td>An interface alias configured outside FRR using iproute2 is imported into the FRR running configuration and overrides the internal description. After an FRR reload, this causes FRR to delete the interface alias in an inefficient way. Depending on how many interfaces with aliases you have configured, this can cause a FRR reload to time out.&lt;br/&gt;
+To work around this issue, remove the interface alias description from iproute2.</td>
 <td>3.7.8-3.7.10, 4.0.0-4.0.1</td>
 <td>3.7.11</td>
 </tr>
 <tr>
 <td>CM-26288</td>
-<td>&lt;p&gt;On Mellanox switches, static VXLAN tunnels incorrectly allow traffic from any remote tunnel IP address.&lt;/p&gt;</td>
+<td>On Mellanox switches, static VXLAN tunnels incorrectly allow traffic from any remote tunnel IP address.</td>
 <td>3.7.8-3.7.11, 4.0.0-4.0.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-26256</td>
-<td>&lt;p&gt;The &lt;tt&gt;net show evpn vni detail json&lt;/tt&gt; command includes an extra empty dictionary at the end of the output. &lt;/p&gt;
+<td>The net show evpn vni detail json command includes an extra empty dictionary at the end of the output. 
 </td>
 <td>3.7.8-3.7.11, 4.0.0-4.0.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-26241</td>
-<td>&lt;p&gt;On the Dell S5248F-ON switch, &lt;tt&gt;smond&lt;/tt&gt; may generate syslog messages indicating that the fan input RPM is lower than the normal low speed of 2500 RPM.  Speeds as low as 1700 RPM are acceptable in normal thermal environments and so these messages can be disregarded.&lt;/p&gt;</td>
+<td>On the Dell S5248F-ON switch, smond may generate syslog messages indicating that the fan input RPM is lower than the normal low speed of 2500 RPM.  Speeds as low as 1700 RPM are acceptable in normal thermal environments and so these messages can be disregarded.</td>
 <td>3.7.6-3.7.11, 4.0.0-4.0.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-26225</td>
-<td>&lt;p&gt;On the EdgeCore AS5712, AS6712, AS5812 and AS6812 switch, support for multiple PSU types results in log messages similar to the following:&lt;/p&gt;
-&lt;div class="preformatted" style="border-width: 1px;"&gt;&lt;div class="preformattedContent panelContent"&gt;
-&lt;pre&gt;2019-09-05T05:15:17.246597+00:00 hp-6712-03 decode-syseeprom: Unable to find eeprom at /sys/bus/i2c/devices/11-0050/eeprom for psu2
+<td>On the EdgeCore AS5712, AS6712, AS5812 and AS6812 switch, support for multiple PSU types results in log messages similar to the following:
+
+2019-09-05T05:15:17.246597+00:00 hp-6712-03 decode-syseeprom: Unable to find eeprom at /sys/bus/i2c/devices/11-0050/eeprom for psu2
 2019-09-05T05:15:17.274521+00:00 hp-6712-03 decode-syseeprom: Unable to find eeprom at /sys/bus/i2c/devices/12-0053/eeprom for psu2
 2019-09-05T05:15:17.469556+00:00 hp-6712-03 decode-syseeprom: Unable to find eeprom at /sys/bus/i2c/devices/11-0050/eeprom for psu2
 2019-09-05T05:15:17.497514+00:00 hp-6712-03 decode-syseeprom: Unable to find eeprom at /sys/bus/i2c/devices/12-0053/eeprom for psu2
-&lt;/pre&gt;
-&lt;/div&gt;&lt;/div&gt;</td>
+
+</td>
 <td>3.7.9-3.7.11, 4.0.0-4.0.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-26217</td>
-<td>&lt;p&gt;NCLU does not allow you to configure OSPF NSSAs. For example: &lt;/p&gt;
-&lt;div class="preformatted" style="border-width: 1px;"&gt;&lt;div class="preformattedContent panelContent"&gt;
-&lt;pre&gt;cumulus@switch:~$ net add ospf area 0.0.0.1 nssa 
+<td>NCLU does not allow you to configure OSPF NSSAs. For example: 
+
+cumulus@switch:~$ net add ospf area 0.0.0.1 nssa 
 ERROR: Command not found. 
 net add ospf area 0.0.0.1 nssa
-&lt;/pre&gt;
-&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;To work around this issue, use FRR instead. For example: &lt;/p&gt;
-&lt;div class="preformatted" style="border-width: 1px;"&gt;&lt;div class="preformattedContent panelContent"&gt;
-&lt;pre&gt;switch# configure terminal 
+
+
+To work around this issue, use FRR instead. For example: 
+
+switch# configure terminal 
 switch(config)# router ospf 
 switch(config-router)# area 0.0.0.1 nssa 
-&lt;/pre&gt;
-&lt;/div&gt;&lt;/div&gt;</td>
+
+</td>
 <td>3.7.7-3.7.10, 4.0.0-4.0.1</td>
 <td>3.7.11</td>
 </tr>
 <tr>
 <td>CM-26200</td>
-<td>&lt;p&gt;The following CVEs were announced that affect the systemd-resolved package. &lt;br/&gt;
-Cumulus Linux does not enable &lt;tt&gt;systemd-resolved&lt;/tt&gt; by default, so Cumulus Linux is not vulnerable as shipped. &lt;br/&gt;
+<td>The following CVEs were announced that affect the systemd-resolved package. &lt;br/&gt;
+Cumulus Linux does not enable systemd-resolved by default, so Cumulus Linux is not vulnerable as shipped. &lt;br/&gt;
 CVE-2019-15718 &lt;br/&gt;
 Missing access controls on systemd-resolved's D-Bus interface &lt;br/&gt;
 Source Package Release Version Status: buster 241-7 vulnerable&lt;br/&gt;
 For the detailed security status, refer to the security tracker page at:&lt;br/&gt;
-&lt;a href="https://security-tracker.debian.org/tracker/CVE-2019-15718" class="external-link" rel="nofollow"&gt;https://security-tracker.debian.org/tracker/CVE-2019-15718&lt;/a&gt;&lt;/p&gt;</td>
+&lt;a href="https://security-tracker.debian.org/tracker/CVE-2019-15718" class="external-link" rel="nofollow"&gt;https://security-tracker.debian.org/tracker/CVE-2019-15718&lt;/a&gt;</td>
 <td>4.0.0-4.0.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-26179</td>
-<td>&lt;p&gt;If a hostname contains utf-8 characters, the NCLU &lt;tt&gt;net show lldp&lt;/tt&gt; command outputs the following error: &lt;/p&gt;
-&lt;div class="preformatted" style="border-width: 1px;"&gt;&lt;div class="preformattedContent panelContent"&gt;
-&lt;pre&gt;ERROR: 'ascii' codec can't encode character u'\xe9' in position 3: ordinal not in range(128) 
+<td>If a hostname contains utf-8 characters, the NCLU net show lldp command outputs the following error: 
+
+ERROR: 'ascii' codec can't encode character u'\xe9' in position 3: ordinal not in range(128) 
 See /var/log/netd.log for more details.  
-&lt;/pre&gt;
-&lt;/div&gt;&lt;/div&gt;</td>
+
+</td>
 <td>3.7.7-3.7.10, 4.0.0-4.0.1</td>
 <td>3.7.11</td>
 </tr>
 <tr>
 <td>CM-26158</td>
-<td>&lt;p&gt;On Mellanox switches, UFT profiles are unable to support the documented capacity for routes to addresses that are more than 64 bits in length. The listed capacities assume 64-bit destination IP addresses.&lt;/p&gt;</td>
+<td>On Mellanox switches, UFT profiles are unable to support the documented capacity for routes to addresses that are more than 64 bits in length. The listed capacities assume 64-bit destination IP addresses.</td>
 <td>3.7.8-3.7.10, 4.0.0-4.0.1</td>
 <td>3.7.11</td>
 </tr>
 <tr>
 <td>CM-26139</td>
-<td>&lt;p&gt;Selective ERSPAN does not work when you specify a bridge port.&lt;/p&gt;</td>
+<td>Selective ERSPAN does not work when you specify a bridge port.</td>
 <td>3.7.6-3.7.11, 4.0.0-4.0.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-26138</td>
-<td>&lt;p&gt;You cannot specify a source and destination MAC address in an ERSPAN ebtables rule. For example, the following rule does not work:&lt;/p&gt;
-&lt;div class="preformatted" style="border-width: 1px;"&gt;&lt;div class="preformattedContent panelContent"&gt;
-&lt;pre&gt;-A FORWARD -i swp5 -s 00:25:90:b2:bd:9d -d 50:6b:4b:96:c4:04 -j erspan --src-ip 100.1.1.2 --dst-ip 100.1.1.1 --ttl 64
-&lt;/pre&gt;
-&lt;/div&gt;&lt;/div&gt;</td>
+<td>You cannot specify a source and destination MAC address in an ERSPAN ebtables rule. For example, the following rule does not work:
+
+-A FORWARD -i swp5 -s 00:25:90:b2:bd:9d -d 50:6b:4b:96:c4:04 -j erspan --src-ip 100.1.1.2 --dst-ip 100.1.1.1 --ttl 64
+
+</td>
 <td>3.7.6-3.7.11, 4.0.0-4.0.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-26137</td>
-<td>&lt;p&gt;ERSPAN in ebtables does not work for VNIs. For example, the following rule does not work:&lt;/p&gt;
-&lt;div class="preformatted" style="border-width: 1px;"&gt;&lt;div class="preformattedContent panelContent"&gt;
-&lt;pre&gt;-A FORWARD -i vni10 -j erspan --src-ip 100.1.1.2 --dst-ip 100.1.1.1 --ttl 64
-&lt;/pre&gt;
-&lt;/div&gt;&lt;/div&gt;</td>
+<td>ERSPAN in ebtables does not work for VNIs. For example, the following rule does not work:
+
+-A FORWARD -i vni10 -j erspan --src-ip 100.1.1.2 --dst-ip 100.1.1.1 --ttl 64
+
+</td>
 <td>3.7.6-3.7.11, 4.0.0-4.0.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-26136</td>
-<td>&lt;p&gt;In an ebtables rule, ERSPAN (upper case) does not work. You need to specify erspan (lower case).&lt;/p&gt;</td>
+<td>In an ebtables rule, ERSPAN (upper case) does not work. You need to specify erspan (lower case).</td>
 <td>3.7.6-3.7.11, 4.0.0-4.0.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-26024</td>
-<td>&lt;p&gt;On switches with the Spectrum ASIC, the underlay hashes VXLAN packets for a given overlay flow randomly.&lt;br/&gt;
-To work around this issue, configure the ECMP hash seed to the same value on the EVPN egress leaf switches.&lt;/p&gt;</td>
+<td>On switches with the Spectrum ASIC, the underlay hashes VXLAN packets for a given overlay flow randomly.&lt;br/&gt;
+To work around this issue, configure the ECMP hash seed to the same value on the EVPN egress leaf switches.</td>
 <td>3.7.7-3.7.11, 4.0.0-4.0.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-25986</td>
-<td>&lt;p&gt;On the Mellanox SN3700C switch, the time required to establish a link (from the time a link is set to &lt;tt&gt;admin up&lt;/tt&gt; until the link becomes operationally up) can take between 5 and 10 seconds. &lt;/p&gt;
+<td>On the Mellanox SN3700C switch, the time required to establish a link (from the time a link is set to admin up until the link becomes operationally up) can take between 5 and 10 seconds. 
 </td>
 <td>4.0.0-4.0.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-25890</td>
-<td>&lt;p&gt;In some cases, the &lt;tt&gt;switchd&lt;/tt&gt; service might warn of excessive MAC moves from one switch port to itself (for example, from swp18 to swp18).&lt;/p&gt;</td>
+<td>In some cases, the switchd service might warn of excessive MAC moves from one switch port to itself (for example, from swp18 to swp18).</td>
 <td>3.7.0-3.7.11, 4.0.0-4.0.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-25859</td>
-<td>&lt;p&gt;The MTU of an SVI cannot be higher than the MTU on the bridge. Changing the MTU on the SVI with NCLU does not update the bridge MTU. The &lt;tt&gt;net commit&lt;/tt&gt; commands succeeds even though the MTU is not changed as expected.&lt;br/&gt;
-To work around this issue, change the MTU on all SVIs and the bridge manually in the &lt;tt&gt;/etc/network/interfaces&lt;/tt&gt; file, then apply the change with the &lt;tt&gt;ifreload -a&lt;/tt&gt; command.&lt;/p&gt;</td>
+<td>The MTU of an SVI cannot be higher than the MTU on the bridge. Changing the MTU on the SVI with NCLU does not update the bridge MTU. The net commit commands succeeds even though the MTU is not changed as expected.&lt;br/&gt;
+To work around this issue, change the MTU on all SVIs and the bridge manually in the /etc/network/interfaces file, then apply the change with the ifreload -a command.</td>
 <td>3.7.7-3.7.11, 4.0.0-4.0.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-25815</td>
-<td>&lt;p&gt;When an SVI with a virtual MAC is configured with a layer 2 VNI in an EVPN environment , if the &lt;tt&gt;/etc/network/interfaces&lt;/tt&gt; file is replaced with a different file that does not have the SVI and layer 2 VNI configuration anymore, the original virtual MAC does not get populated through the EVPN route until FRR is restarted. &lt;/p&gt;
+<td>When an SVI with a virtual MAC is configured with a layer 2 VNI in an EVPN environment , if the /etc/network/interfaces file is replaced with a different file that does not have the SVI and layer 2 VNI configuration anymore, the original virtual MAC does not get populated through the EVPN route until FRR is restarted. 
 </td>
 <td>3.7.6-3.7.11, 4.0.0-4.0.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-25766</td>
-<td>&lt;p&gt;When you run the &lt;tt&gt;apt upgrade&lt;/tt&gt; command on the Dell-N3048EP switch, the upgrade does not work. &lt;/p&gt;
+<td>When you run the apt upgrade command on the Dell-N3048EP switch, the upgrade does not work. 
 </td>
 <td>3.7.7-3.7.11, 4.0.0-4.0.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-25740</td>
-<td>&lt;p&gt;On Broadcom Maverick switches with a QinQ configuration, the packets coming into the CPU might be tagged incorrectly; for example, 802.1ad + 802.1q tags are expected in the packets but the packets have 802.1q + 802.1q tags. &lt;br/&gt;
- To work around this issue, configure the bridge with &lt;tt&gt;bridge-vlan-protocol 802.1ad&lt;/tt&gt;: &lt;/p&gt;
- &lt;div class="preformatted" style="border-width: 1px;"&gt;&lt;div class="preformattedContent panelContent"&gt;
-&lt;pre&gt; 
+<td>On Broadcom Maverick switches with a QinQ configuration, the packets coming into the CPU might be tagged incorrectly; for example, 802.1ad + 802.1q tags are expected in the packets but the packets have 802.1q + 802.1q tags. &lt;br/&gt;
+ To work around this issue, configure the bridge with bridge-vlan-protocol 802.1ad: 
+ 
+ 
  cumulus@switch:~$ net add bridge mybridge vlan-protocol 802.1ad 
- &lt;/pre&gt;
-&lt;/div&gt;&lt;/div&gt; 
+ 
+ 
 </td>
 <td>3.7.6-3.7.11, 4.0.0-4.0.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-25694</td>
-<td>&lt;p&gt;If a packet is policed by ebtables, it does not increment an ACL drop on the ingress interface. Instead, it increments the TDBGC3/6 drop counter to the CPU.&lt;/p&gt;</td>
+<td>If a packet is policed by ebtables, it does not increment an ACL drop on the ingress interface. Instead, it increments the TDBGC3/6 drop counter to the CPU.</td>
 <td>3.7.6-3.7.11, 4.0.0-4.0.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-25693</td>
-<td>&lt;p&gt;After you issue the NCLU &lt;tt&gt;net del bgp vrf &amp;lt;vrf&amp;gt; autonomous-system &amp;lt;AS&amp;gt;&lt;/tt&gt; command and commit the change, Cumulus Linux does not remove the configuration from the &lt;tt&gt;/etc/frr/frr.conf&lt;/tt&gt; file or the &lt;tt&gt;net show config commands&lt;/tt&gt;. &lt;/p&gt;
+<td>After you issue the NCLU net del bgp vrf &amp;lt;vrf&amp;gt; autonomous-system &amp;lt;AS&amp;gt; command and commit the change, Cumulus Linux does not remove the configuration from the /etc/frr/frr.conf file or the net show config commands. 
 </td>
 <td>3.7.3-3.7.10, 4.0.0-4.0.1</td>
 <td>3.7.11</td>
 </tr>
 <tr>
 <td>CM-25683</td>
-<td>&lt;p&gt;NCLU fails to remove the BGP neighbor statement when the BGP unnumbered interface belongs to a VRF. However, if the interface belongs to the default VRF, the BGP neighbor statement is removed. &lt;/p&gt;
+<td>NCLU fails to remove the BGP neighbor statement when the BGP unnumbered interface belongs to a VRF. However, if the interface belongs to the default VRF, the BGP neighbor statement is removed. 
 </td>
 <td>3.7.6-3.7.11, 4.0.0-4.0.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-25641</td>
-<td>&lt;p&gt;If the BMC operating system fails to respond to IPMI, you see a traceback in &lt;tt&gt;bmcd&lt;/tt&gt;, and all the sensors might report ABSENT devices in &lt;tt&gt;smonctl&lt;/tt&gt;. &lt;br/&gt;
- To work around this issue, power cycle the switch. &lt;/p&gt;
+<td>If the BMC operating system fails to respond to IPMI, you see a traceback in bmcd, and all the sensors might report ABSENT devices in smonctl. &lt;br/&gt;
+ To work around this issue, power cycle the switch. 
 </td>
 <td>3.7.6-3.7.11, 4.0.0-4.0.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-25505</td>
-<td>&lt;p&gt;During the bring-up sequence following a reboot, VXLAN routed packets (tenant traffic flows) transiting an MLAG peer are dropped until the &lt;tt&gt;clagd&lt;/tt&gt; &lt;tt&gt;init-delay&lt;/tt&gt; timer expires. &lt;br/&gt;
-The problem is caused by a race condition when programming the anycast IP address (used to terminate VXLAN tunnels), where the hardware is programmed before the software by &lt;tt&gt;clagd&lt;/tt&gt;. To route the tenant traffic flows, the kernel must perform address resolution but has to wait for the &lt;tt&gt;clagd&lt;/tt&gt; &lt;tt&gt;init-delay&lt;/tt&gt; timer to expire before the bonds can forward traffic. During the time when the ARP entry is unresolved, packets might be dropped. &lt;br/&gt;
-During the &lt;tt&gt;init-delay&lt;/tt&gt; period, the ARP cache is not yet populated so the problem exists until either the &lt;tt&gt;init-delay&lt;/tt&gt; timer expires or &lt;tt&gt;clagd&lt;/tt&gt; neighbor synchronization is complete. By default the &lt;tt&gt;clagd&lt;/tt&gt; &lt;tt&gt;init-delay&lt;/tt&gt; timer is set to 10 seconds and &lt;tt&gt;clagd&lt;/tt&gt; neighbor synchronization occurs halfway through the &lt;tt&gt;init-delay&lt;/tt&gt; period. Traffic resumes forwarding after one of the two criteria described above are met. &lt;br/&gt;
+<td>During the bring-up sequence following a reboot, VXLAN routed packets (tenant traffic flows) transiting an MLAG peer are dropped until the clagd init-delay timer expires. &lt;br/&gt;
+The problem is caused by a race condition when programming the anycast IP address (used to terminate VXLAN tunnels), where the hardware is programmed before the software by clagd. To route the tenant traffic flows, the kernel must perform address resolution but has to wait for the clagd init-delay timer to expire before the bonds can forward traffic. During the time when the ARP entry is unresolved, packets might be dropped. &lt;br/&gt;
+During the init-delay period, the ARP cache is not yet populated so the problem exists until either the init-delay timer expires or clagd neighbor synchronization is complete. By default the clagd init-delay timer is set to 10 seconds and clagd neighbor synchronization occurs halfway through the init-delay period. Traffic resumes forwarding after one of the two criteria described above are met. &lt;br/&gt;
 You might see this issue in EVPN symmetric or centralized configurations with BGP peering over a peer link. &lt;br/&gt;
 To work around this issue, configure the BGP path across the peer link to be less preferred. The example below uses AS path prepending and the MLAG switches are iBGP neighbors. However, other BGP configurations achieve the same result. &lt;br/&gt;
-In the &lt;tt&gt;/etc/frr/frr.conf&lt;/tt&gt; file, make a new AS path access list and route map to apply BGP pre-pending of the local ASN one or more times. For example: &lt;/p&gt;
-&lt;div class="preformatted" style="border-width: 1px;"&gt;&lt;div class="preformattedContent panelContent"&gt;
-&lt;pre&gt; 
+In the /etc/frr/frr.conf file, make a new AS path access list and route map to apply BGP pre-pending of the local ASN one or more times. For example: 
+
+ 
 ip as-path access-list MY_ASN permit ^$ 
 
 route-map peerlink-add-asn permit 10 
 match as-path MY_ASN 
 set as-path prepend 4200000101 
 route-map peerlink-add-asn permit 20 
-&lt;/pre&gt;
-&lt;/div&gt;&lt;/div&gt; </td>
+
+ </td>
 <td>3.7.6-3.7.10, 4.0.0-4.0.1</td>
 <td>3.7.11</td>
 </tr>
 <tr>
 <td>CM-25400</td>
-<td>&lt;p&gt;If an SVI exists in the configuration before you assign it an IP address, when you do assign the IP address with the NCLU command, the vlan-id and the raw-device bridge stanzas are not added automatically. &lt;/p&gt;
+<td>If an SVI exists in the configuration before you assign it an IP address, when you do assign the IP address with the NCLU command, the vlan-id and the raw-device bridge stanzas are not added automatically. 
 </td>
 <td>3.7.6-3.7.11, 4.0.0-4.0.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-25397</td>
-<td>&lt;p&gt;When first creating a bond and enslaving an interface, NCLU hides some of the bridge command suggestions, although they are still accepted. &lt;/p&gt;
+<td>When first creating a bond and enslaving an interface, NCLU hides some of the bridge command suggestions, although they are still accepted. 
 </td>
 <td>3.7.3-3.7.11, 4.0.0-4.0.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-24993</td>
-<td>&lt;p&gt;When you try to change the NTP time zone with the NCLU &lt;tt&gt;net add time zone &amp;lt;timezone&amp;gt;&lt;/tt&gt; command or by editing the &lt;tt&gt;/etc/timezone&lt;/tt&gt; file manually, the configuration does not take effect.&lt;br/&gt;
-To work around this issue, change the time zone with the &lt;tt&gt;sudo timedatectl set-timezone &amp;lt;timezone&amp;gt;&lt;/tt&gt; command. For example:&lt;/p&gt;
-&lt;div class="preformatted" style="border-width: 1px;"&gt;&lt;div class="preformattedContent panelContent"&gt;
-&lt;pre&gt;cumulus@switch:~$ sudo timedatectl set-timezone US/Eastern
-&lt;/pre&gt;
-&lt;/div&gt;&lt;/div&gt;</td>
+<td>When you try to change the NTP time zone with the NCLU net add time zone &amp;lt;timezone&amp;gt; command or by editing the /etc/timezone file manually, the configuration does not take effect.&lt;br/&gt;
+To work around this issue, change the time zone with the sudo timedatectl set-timezone &amp;lt;timezone&amp;gt; command. For example:
+
+cumulus@switch:~$ sudo timedatectl set-timezone US/Eastern
+
+</td>
 <td>4.0.0-4.0.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-24894</td>
-<td>&lt;p&gt;The &lt;tt&gt;maximum-prefix&lt;/tt&gt; configuration under the IPv4 address family has an optional restart value which you can configure. This configuration is ignored and, instead of restarting the sessions every x minutes, the peer constantly changes between established and idle due to the prefix count being exceeded. &lt;/p&gt;
+<td>The maximum-prefix configuration under the IPv4 address family has an optional restart value which you can configure. This configuration is ignored and, instead of restarting the sessions every x minutes, the peer constantly changes between established and idle due to the prefix count being exceeded. 
 </td>
 <td>3.7.5-3.7.11, 4.0.0-4.0.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-24803</td>
-<td>&lt;p&gt;When you execute the following command on the Dell N3048EP-ON, the switch reboots and then comes right back into Cumulus Linux without installing the new image. The install image is still in &lt;tt&gt;/var/lib/cumulus/installer&lt;/tt&gt;, which causes issues with cl-support. &lt;/p&gt;
- &lt;div class="preformatted" style="border-width: 1px;"&gt;&lt;div class="preformattedContent panelContent"&gt;
-&lt;pre&gt; 
+<td>When you execute the following command on the Dell N3048EP-ON, the switch reboots and then comes right back into Cumulus Linux without installing the new image. The install image is still in /var/lib/cumulus/installer, which causes issues with cl-support. 
+ 
+ 
  sudo onie-install -fai http://&amp;lt;path to image&amp;gt; 
  sudo reboot 
- &lt;/pre&gt;
-&lt;/div&gt;&lt;/div&gt; 
-&lt;p&gt; To work around this issue, use the &lt;tt&gt;onie-select&lt;/tt&gt; command to access ONIE, and then use the &lt;tt&gt;nos-install&lt;/tt&gt; command in ONIE to install a new binary image. &lt;br/&gt;
-The workaround only works when an out-of-band network is present.&lt;/p&gt;</td>
+ 
+ 
+ To work around this issue, use the onie-select command to access ONIE, and then use the nos-install command in ONIE to install a new binary image. &lt;br/&gt;
+The workaround only works when an out-of-band network is present.</td>
 <td>3.7.6-3.7.11, 4.0.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-24799</td>
-<td>&lt;p&gt;On switches using the Trident2 ASIC, 802.1Q-encapsulated control plane traffic received on an interface with 802.1AD configured subinterfaces might be dropped. &lt;br/&gt;
-This issue only affects QinQ configurations. &lt;/p&gt;
+<td>On switches using the Trident2 ASIC, 802.1Q-encapsulated control plane traffic received on an interface with 802.1AD configured subinterfaces might be dropped. &lt;br/&gt;
+This issue only affects QinQ configurations. 
 </td>
 <td>3.7.5-3.7.11, 4.0.0-4.0.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-24762</td>
-<td>&lt;p&gt;On the EdgeCore AS7326 switch, the 1000BASE-T SFP RJ-45 on a 25G port does not work at 1G. &lt;/p&gt;
+<td>On the EdgeCore AS7326 switch, the 1000BASE-T SFP RJ-45 on a 25G port does not work at 1G. 
 </td>
 <td>3.7.3-3.7.10, 4.0.0-4.0.1</td>
 <td>3.7.11</td>
 </tr>
 <tr>
 <td>CM-24751</td>
-<td>&lt;p&gt;On the QuantaMesh T4048-IX8 or EdgeCore AS7326-56X switches, when using a 1000BASE-T SFP module, the module LEDs do not light to reflect link status.&lt;/p&gt;
+<td>On the QuantaMesh T4048-IX8 or EdgeCore AS7326-56X switches, when using a 1000BASE-T SFP module, the module LEDs do not light to reflect link status.
 </td>
 <td>3.7.3-3.7.11, 4.0.0-4.0.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-24652</td>
-<td>&lt;p&gt;In an EVPN environment, the centralized MAC address is not getting installed on the MLAG pair because Cumulus Linux does not perform an SVI MAC check per VLAN. &lt;br/&gt;
- This issue does not manifest itself in a pure distributed routing (symmetric or asymmetric) environment or in a pure centralized routing environment. &lt;/p&gt;
+<td>In an EVPN environment, the centralized MAC address is not getting installed on the MLAG pair because Cumulus Linux does not perform an SVI MAC check per VLAN. &lt;br/&gt;
+ This issue does not manifest itself in a pure distributed routing (symmetric or asymmetric) environment or in a pure centralized routing environment. 
 </td>
 <td>3.7.0-3.7.11, 4.0.0-4.0.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-24618</td>
-<td>&lt;p&gt;If the interface alias contains a single or double quotation mark, or an apostrophe, the &lt;tt&gt;net show configuration&lt;/tt&gt; commands fail with the following error: &lt;/p&gt;
- &lt;div class="preformatted" style="border-width: 1px;"&gt;&lt;div class="preformattedContent panelContent"&gt;
-&lt;pre&gt; 
+<td>If the interface alias contains a single or double quotation mark, or an apostrophe, the net show configuration commands fail with the following error: 
+ 
+ 
  ERROR: No closing quotation 
  See /var/log/netd.log for more details. 
- &lt;/pre&gt;
-&lt;/div&gt;&lt;/div&gt; 
+ 
+ 
 </td>
 <td>3.6.1-3.7.11, 4.0.0-4.0.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-24473</td>
-<td>&lt;p&gt;SNMP incorrectly requires engine ID specification. &lt;/p&gt;
+<td>SNMP incorrectly requires engine ID specification. 
 </td>
 <td>3.7.4-3.7.11, 4.0.0-4.0.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-24435</td>
-<td>&lt;p&gt;When you use NCLU to configure a route map, the parser allows for glob matching of interfaces for a &lt;em&gt;match interface&lt;/em&gt; condition when there can only be a single interface matched. The proper syntax is to use multiple route map clauses, each matching a single interface, instead of a single clause matching multiple interfaces. &lt;br/&gt;
- For example, this command is incorrect: &lt;/p&gt;
- &lt;div class="preformatted" style="border-width: 1px;"&gt;&lt;div class="preformattedContent panelContent"&gt;
-&lt;pre&gt; 
+<td>When you use NCLU to configure a route map, the parser allows for glob matching of interfaces for a &lt;em&gt;match interface&lt;/em&gt; condition when there can only be a single interface matched. The proper syntax is to use multiple route map clauses, each matching a single interface, instead of a single clause matching multiple interfaces. &lt;br/&gt;
+ For example, this command is incorrect: 
+ 
+ 
  net add routing route-map Proxy-ARP permit 25 match interface swp9-10 
- &lt;/pre&gt;
-&lt;/div&gt;&lt;/div&gt; 
-&lt;p&gt; These commands are correct: &lt;/p&gt;
- &lt;div class="preformatted" style="border-width: 1px;"&gt;&lt;div class="preformattedContent panelContent"&gt;
-&lt;pre&gt; 
+ 
+ 
+ These commands are correct: 
+ 
+ 
  net add routing route-map Proxy-ARP permit 25 match interface swp9 
  net add routing route-map Proxy-ARP permit 30 match interface swp10 
- &lt;/pre&gt;
-&lt;/div&gt;&lt;/div&gt; 
+ 
+ 
 </td>
 <td>3.7.2-3.7.11, 4.0.0-4.0.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-24426</td>
-<td>&lt;p&gt;NCLU allows for the configuration of addresses on VRF interfaces, but tab completion for the &lt;tt&gt;net add vrf &amp;lt;name&amp;gt;&lt;/tt&gt; command just displays &amp;lt;ENTER&amp;gt;. For example: &lt;/p&gt;
- &lt;div class="preformatted" style="border-width: 1px;"&gt;&lt;div class="preformattedContent panelContent"&gt;
-&lt;pre&gt; 
+<td>NCLU allows for the configuration of addresses on VRF interfaces, but tab completion for the net add vrf &amp;lt;name&amp;gt; command just displays &amp;lt;ENTER&amp;gt;. For example: 
+ 
+ 
  cumulus@switch:~$ net add vrf mgmt 
  &amp;lt;ENTER&amp;gt; 
- &lt;/pre&gt;
-&lt;/div&gt;&lt;/div&gt; 
-&lt;p&gt; Tab completion for the &lt;tt&gt;net add vrf &amp;lt;name&amp;gt; ip address &amp;lt;address&amp;gt;&lt;/tt&gt; command works correctly. &lt;/p&gt;
+ 
+ 
+ Tab completion for the net add vrf &amp;lt;name&amp;gt; ip address &amp;lt;address&amp;gt; command works correctly. 
 </td>
 <td>3.7.4-3.7.11, 4.0.0-4.0.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-24379</td>
-<td>&lt;p&gt;On Maverick switches, CPU forwarded packets might be dropped when there is no route to a leaked host route.&lt;/p&gt;</td>
+<td>On Maverick switches, CPU forwarded packets might be dropped when there is no route to a leaked host route.</td>
 <td>3.7.5-3.7.11, 4.0.0-4.0.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-24343</td>
-<td>&lt;p&gt;The &lt;tt&gt;net del bridge bridge mcsnoop yes&lt;/tt&gt; command does not return the value to the default of disabled. &lt;br/&gt;
-To work around this issue, use the &lt;tt&gt;net add bridge bridge mcsnoop no&lt;/tt&gt; command to delete the &lt;tt&gt;mcsnoop attribute&lt;/tt&gt; and return to the default value.&lt;/p&gt;</td>
+<td>The net del bridge bridge mcsnoop yes command does not return the value to the default of disabled. &lt;br/&gt;
+To work around this issue, use the net add bridge bridge mcsnoop no command to delete the mcsnoop attribute and return to the default value.</td>
 <td>3.7.4-3.7.11, 4.0.0-4.0.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-24332</td>
-<td>&lt;p&gt;On Broadcom switches, when moving configuration from bridged to routed (or toggling from routed to bridged to routed), some traffic is not seen by the kernel. This can cause BGP to not establish on a transit node. &lt;/p&gt;
+<td>On Broadcom switches, when moving configuration from bridged to routed (or toggling from routed to bridged to routed), some traffic is not seen by the kernel. This can cause BGP to not establish on a transit node. 
 </td>
 <td>3.7.3-3.7.11, 4.0.0-4.0.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-24272</td>
-<td>&lt;p&gt;When you try to configure the VRRP priority and advertisement-interval with NCLU on a traditional mode bridge, the &lt;tt&gt;net commit&lt;/tt&gt; command fails. &lt;br/&gt;
- To work around this issue, use the vtysh command (inside FRR) to change the VRRP priority or advertisement-interval on traditional bridges. For example: &lt;/p&gt;
- &lt;div class="preformatted" style="border-width: 1px;"&gt;&lt;div class="preformattedContent panelContent"&gt;
-&lt;pre&gt; 
+<td>When you try to configure the VRRP priority and advertisement-interval with NCLU on a traditional mode bridge, the net commit command fails. &lt;br/&gt;
+ To work around this issue, use the vtysh command (inside FRR) to change the VRRP priority or advertisement-interval on traditional bridges. For example: 
+ 
+ 
  cumulus@switch:~$ sudo vtysh 
  switch# configure terminal 
  switch(config)# interface br0.100 
@@ -700,18 +700,18 @@ To work around this issue, use the &lt;tt&gt;net add bridge bridge mcsnoop no&lt
  switch# write memory 
  switch# exit 
  cumulus@switch:~ 
- &lt;/pre&gt;
-&lt;/div&gt;&lt;/div&gt; 
+ 
+ 
 </td>
 <td>3.7.4-3.7.11, 4.0.0-4.0.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-24271</td>
-<td>&lt;p&gt;On SVIs in a VLAN-aware bridge, you cannot change the VRRP priority with NCLU. &lt;br/&gt;
- To work around this issue, run the vtysh command inside FRR to change the default priority. For example: &lt;/p&gt;
- &lt;div class="preformatted" style="border-width: 1px;"&gt;&lt;div class="preformattedContent panelContent"&gt;
-&lt;pre&gt; 
+<td>On SVIs in a VLAN-aware bridge, you cannot change the VRRP priority with NCLU. &lt;br/&gt;
+ To work around this issue, run the vtysh command inside FRR to change the default priority. For example: 
+ 
+ 
  cumulus@switch:~$ sudo vtysh 
  switch# configure terminal 
  switch(config)# interface vlan100 
@@ -720,18 +720,18 @@ To work around this issue, use the &lt;tt&gt;net add bridge bridge mcsnoop no&lt
  switch# write memory 
  switch# exit 
  cumulus@switch:~ 
- &lt;/pre&gt;
-&lt;/div&gt;&lt;/div&gt; 
+ 
+ 
 </td>
 <td>3.7.4-3.7.11, 4.0.0-4.0.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-24270</td>
-<td>&lt;p&gt;Cumulus Linux uses VRRPv3 as the default version, and enables both preempt and accept mode by default. You cannot change these default values with NCLU. &lt;br/&gt;
-To work around this issue, run the vtysh commands (inside FRR) to change the default values. For example: &lt;/p&gt;
- &lt;div class="preformatted" style="border-width: 1px;"&gt;&lt;div class="preformattedContent panelContent"&gt;
-&lt;pre&gt; 
+<td>Cumulus Linux uses VRRPv3 as the default version, and enables both preempt and accept mode by default. You cannot change these default values with NCLU. &lt;br/&gt;
+To work around this issue, run the vtysh commands (inside FRR) to change the default values. For example: 
+ 
+ 
  cumulus@switch:~$ sudo vtysh 
  switch# configure terminal 
  switch(config)# interface swp4 
@@ -741,332 +741,332 @@ To work around this issue, run the vtysh commands (inside FRR) to change the def
  switch# write memory 
  switch# exit 
  cumulus@switch:~ 
- &lt;/pre&gt;
-&lt;/div&gt;&lt;/div&gt; 
+ 
+ 
 </td>
 <td>3.7.4-3.7.11, 4.0.0-4.0.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-24262</td>
-<td>&lt;p&gt;NCLU does not honor "auto all" in the &lt;tt&gt;/etc/network/interfaces&lt;/tt&gt; file and removes the existing configuration if no individual &lt;tt&gt;auto &amp;lt;iface&amp;gt;&lt;/tt&gt; lines exist. &lt;/p&gt;
+<td>NCLU does not honor "auto all" in the /etc/network/interfaces file and removes the existing configuration if no individual auto &amp;lt;iface&amp;gt; lines exist. 
 </td>
 <td>3.7.3-3.7.11, 4.0.0-4.0.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-24241</td>
-<td>&lt;p&gt;When you try to remove a BGP peer group configuration with NCLU, the command fails but no warning message is shown. For example: &lt;/p&gt;
- &lt;div class="preformatted" style="border-width: 1px;"&gt;&lt;div class="preformattedContent panelContent"&gt;
-&lt;pre&gt; 
+<td>When you try to remove a BGP peer group configuration with NCLU, the command fails but no warning message is shown. For example: 
+ 
+ 
  cumulus@switch:~$ net del bgp neighbor fabric peer-group 
  'router bgp 65001' configuration does not have 'neighbor fabric peer-group' 
- &lt;/pre&gt;
-&lt;/div&gt;&lt;/div&gt; 
+ 
+ 
 </td>
 <td>3.7.2-3.7.11, 4.0.0-4.0.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-24222</td>
-<td>&lt;p&gt;When an LDAP user that does not have NCLU privileges (either in the &lt;tt&gt;netshow&lt;/tt&gt; or &lt;tt&gt;netedit&lt;/tt&gt; group, or in the &lt;tt&gt;/etc/netd.conf&lt;/tt&gt; file) runs an NCLU command, a traceback occurs instead of a permissions error. &lt;/p&gt;
+<td>When an LDAP user that does not have NCLU privileges (either in the netshow or netedit group, or in the /etc/netd.conf file) runs an NCLU command, a traceback occurs instead of a permissions error. 
 </td>
 <td>3.7.0-3.7.11, 4.0.0-4.0.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-24035</td>
-<td>&lt;p&gt;On the Edgecore 4610-54P switch, automatic medium-dependent interface crossover (auto-MDIX) stops working on a 100M full duplex interface and does not detect the required cable connection type. &lt;/p&gt;
+<td>On the Edgecore 4610-54P switch, automatic medium-dependent interface crossover (auto-MDIX) stops working on a 100M full duplex interface and does not detect the required cable connection type. 
 </td>
 <td>3.7.2-3.7.11, 4.0.0-4.0.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-23825</td>
-<td>&lt;p&gt;The &lt;tt&gt;net add interface &amp;lt;interface&amp;gt; ptm-enable&lt;/tt&gt; command adds &lt;tt&gt;no ptm-enable&lt;/tt&gt; for that interface in the &lt;tt&gt;frr.conf&lt;/tt&gt; file. &lt;br/&gt;
- Running the &lt;tt&gt;net add&lt;/tt&gt; or the &lt;tt&gt;net del&lt;/tt&gt; command does not remove &lt;tt&gt;no ptm-enable&lt;/tt&gt; from the &lt;tt&gt;frr.conf&lt;/tt&gt; file. You have to remove it manually using vtysh. &lt;/p&gt;
+<td>The net add interface &amp;lt;interface&amp;gt; ptm-enable command adds no ptm-enable for that interface in the frr.conf file. &lt;br/&gt;
+ Running the net add or the net del command does not remove no ptm-enable from the frr.conf file. You have to remove it manually using vtysh. 
 </td>
 <td>3.7.2-3.7.11, 4.0.0-4.0.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-23665</td>
-<td>&lt;p&gt;NCLU automatically adds the VLAN ID (for the layer 3 VNI/SVI) to the bridge when using &lt;tt&gt;net add vxlan &lt;span class="error"&gt;&amp;#91;L3VNI&amp;#93;&lt;/span&gt; bridge access &lt;span class="error"&gt;&amp;#91;VLAN&amp;#93;&lt;/span&gt;&lt;/tt&gt; &lt;br/&gt;
+<td>NCLU automatically adds the VLAN ID (for the layer 3 VNI/SVI) to the bridge when using net add vxlan &lt;span class="error"&gt;&amp;#91;L3VNI&amp;#93; bridge access &lt;span class="error"&gt;&amp;#91;VLAN&amp;#93; &lt;br/&gt;
 This configuration breaks network connectivity in an MLAG system in an EVPN symmetric routing configuration. &lt;br/&gt;
-To restore connectivity, you need to remove the VLAN ID from the bridge. &lt;/p&gt;
+To restore connectivity, you need to remove the VLAN ID from the bridge. 
 </td>
 <td>3.7.2-3.7.11, 4.0.0-4.0.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-23661</td>
-<td>&lt;p&gt;When you configure a GRE tunnel on a Mellanox switch, the traffic behind the local tunnel endpoint destined through the GRE tunnel is software-forwarded. &lt;/p&gt;
+<td>When you configure a GRE tunnel on a Mellanox switch, the traffic behind the local tunnel endpoint destined through the GRE tunnel is software-forwarded. 
 </td>
 <td>3.7.2-3.7.11, 4.0.0-4.0.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-23651</td>
-<td>&lt;p&gt;In an EVPN symmetric routing configuration, when an IP address is frozen, kernel neighbor table information and kernel VRF routing table information about the frozen IP address might be out-of-sync. &lt;/p&gt;
+<td>In an EVPN symmetric routing configuration, when an IP address is frozen, kernel neighbor table information and kernel VRF routing table information about the frozen IP address might be out-of-sync. 
 </td>
 <td>3.7.3-3.7.11, 4.0.0-4.0.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-23584</td>
-<td>&lt;p&gt;When you configure a control plane ACL to define permit and deny rules destined to the local switch, NCLU programs the control plane ACL rules into the FORWARD chain. &lt;/p&gt;
+<td>When you configure a control plane ACL to define permit and deny rules destined to the local switch, NCLU programs the control plane ACL rules into the FORWARD chain. 
 </td>
 <td>3.7.2-3.7.11, 4.0.0-4.0.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-23570</td>
-<td>&lt;p&gt;On an RMP/1G-T switch, when you remove &lt;tt&gt;link-speed 100&lt;/tt&gt; with the NCLU command or by editing the &lt;tt&gt;etc/network/interfaces&lt;/tt&gt; file to revert the 100M interface to the default (1G auto), the interface fails to recover and does not come back up.&lt;br/&gt;
-After you remove the link-speed, &lt;tt&gt;ethtool&lt;/tt&gt; shows the advertised link modes as not reported and Speed/Duplex as unknown.&lt;br/&gt;
-To work around this issue and bring the interface back up, either restart &lt;tt&gt;switchd&lt;/tt&gt; or use ethtool to configure the speed, advertised, duplex or MDI-X settings. &lt;br/&gt;
-Note: The advertised link mode gets set incorrectly if you include 1000baseT/Half. The port will come up successfully at 1G.&lt;/p&gt;</td>
+<td>On an RMP/1G-T switch, when you remove link-speed 100 with the NCLU command or by editing the etc/network/interfaces file to revert the 100M interface to the default (1G auto), the interface fails to recover and does not come back up.&lt;br/&gt;
+After you remove the link-speed, ethtool shows the advertised link modes as not reported and Speed/Duplex as unknown.&lt;br/&gt;
+To work around this issue and bring the interface back up, either restart switchd or use ethtool to configure the speed, advertised, duplex or MDI-X settings. &lt;br/&gt;
+Note: The advertised link mode gets set incorrectly if you include 1000baseT/Half. The port will come up successfully at 1G.</td>
 <td>3.7.2-3.7.11, 4.0.0-4.0.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-23418</td>
-<td>&lt;p&gt;For QSFP modules, the &lt;tt&gt;sudo ifdown&lt;/tt&gt; command does not disable the Tx laser. &lt;/p&gt;
+<td>For QSFP modules, the sudo ifdown command does not disable the Tx laser. 
 </td>
 <td>3.7.2-3.7.11, 4.0.0-4.0.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-23417</td>
-<td>&lt;p&gt;When using NCLU to create an ibgp peering across the peerlink, the addition of the &lt;tt&gt;net add bgp l2vpn evpn neighbor peerlink.4094 activate&lt;/tt&gt; command creates a new EBGP neighborship when one has already been configured for IBGP. This is unexpected, the existing IBGP configuration is valid. &lt;/p&gt;
+<td>When using NCLU to create an ibgp peering across the peerlink, the addition of the net add bgp l2vpn evpn neighbor peerlink.4094 activate command creates a new EBGP neighborship when one has already been configured for IBGP. This is unexpected, the existing IBGP configuration is valid. 
 </td>
 <td>3.7.0-3.7.11, 4.0.0-4.0.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-23397</td>
-<td>&lt;p&gt;On Broadcom switches, when a link-local multicast frame is received on an access port with a VNI in the bridge, two copies of the packet are sent across the VNI to remote VTEPs and the receiving hosts observe duplicate packets. &lt;/p&gt;
+<td>On Broadcom switches, when a link-local multicast frame is received on an access port with a VNI in the bridge, two copies of the packet are sent across the VNI to remote VTEPs and the receiving hosts observe duplicate packets. 
 </td>
 <td>3.6.2-3.7.11, 4.0.0-4.0.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-23311</td>
-<td>&lt;p&gt;In an EVPN centralized routing configuration, where the layer 2 network extends beyond VTEPs, (for example, host with bridges), the gateway MAC address does not get refreshed in the network when ARP suppression is enabled on the gateway.&lt;br/&gt;
-To work around this issue, disable ARP suppression on the centralized gateway.&lt;/p&gt;</td>
+<td>In an EVPN centralized routing configuration, where the layer 2 network extends beyond VTEPs, (for example, host with bridges), the gateway MAC address does not get refreshed in the network when ARP suppression is enabled on the gateway.&lt;br/&gt;
+To work around this issue, disable ARP suppression on the centralized gateway.</td>
 <td>4.0.0-4.0.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-23075</td>
-<td>&lt;p&gt;There is a limitation on the number of SVI interfaces you can specify as DHCP relay interfaces in the &lt;tt&gt;/etc/default/isc-dhcp-relay&lt;/tt&gt; file. For example, 1500 SVI interfaces causes the &lt;tt&gt;dhcrelay&lt;/tt&gt; service to exit without a core file and logs similar to the following are generated for the interfaces: &lt;/p&gt;
- &lt;div class="preformatted" style="border-width: 1px;"&gt;&lt;div class="preformattedContent panelContent"&gt;
-&lt;pre&gt; 
+<td>There is a limitation on the number of SVI interfaces you can specify as DHCP relay interfaces in the /etc/default/isc-dhcp-relay file. For example, 1500 SVI interfaces causes the dhcrelay service to exit without a core file and logs similar to the following are generated for the interfaces: 
+ 
+ 
  2018-11-10T23:35:30.992370-08:00 Dev dhcrelay: Listening on LPF/vlan.101/a0:00:00:00:00:51 
  2018-11-10T23:35:30.993472-08:00 Dev dhcrelay: Sending on LPF/vlan.101/a0:00:00:00:00:51 
- &lt;/pre&gt;
-&lt;/div&gt;&lt;/div&gt; 
-&lt;p&gt; Eventually the &lt;tt&gt;dhcrelay&lt;/tt&gt; service stops. &lt;/p&gt;
+ 
+ 
+ Eventually the dhcrelay service stops. 
 </td>
 <td>3.7.1-3.7.11, 4.0.0-4.0.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-23021</td>
-<td>&lt;p&gt;When you run the &lt;tt&gt;mstpctl&lt;/tt&gt; command, you might see the bridge-port state as blocking when it is actually disabled. You might see the same incorrect bridge-port state when other programs or tools use the output of &lt;tt&gt;mstpctl&lt;/tt&gt;; for example, SNMP output from the BRIDGE-MIB.&lt;/p&gt;</td>
+<td>When you run the mstpctl command, you might see the bridge-port state as blocking when it is actually disabled. You might see the same incorrect bridge-port state when other programs or tools use the output of mstpctl; for example, SNMP output from the BRIDGE-MIB.</td>
 <td>3.7.1-3.7.11, 4.0.0-4.0.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-22926</td>
-<td>&lt;p&gt;The SNMP port state returns an incorrect value of blocking for an interface which is down. The correct value should be &lt;tt&gt;disabled&lt;/tt&gt;.&lt;/p&gt;</td>
+<td>The SNMP port state returns an incorrect value of blocking for an interface which is down. The correct value should be disabled.</td>
 <td>3.7.1-3.7.11, 4.0.0-4.0.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-22794</td>
-<td>&lt;p&gt;The Dell S5048F-ON switch (with reverse airflow, rear to front), shows the Temp-3 sensor as absent. &lt;/p&gt;
+<td>The Dell S5048F-ON switch (with reverse airflow, rear to front), shows the Temp-3 sensor as absent. 
 </td>
 <td>3.6.2-3.7.11, 4.0.0-4.0.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-22554</td>
-<td>&lt;p&gt;If you try to bring down several members of a bond remotely at the same time, the link state of one of the interfaces might not transition correctly to the down state; however, all links show down in hardware. &lt;/p&gt;
+<td>If you try to bring down several members of a bond remotely at the same time, the link state of one of the interfaces might not transition correctly to the down state; however, all links show down in hardware. 
 </td>
 <td>3.6.2-3.7.11, 4.0.0-4.0.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-22386</td>
-<td>&lt;p&gt;The BFD packet redirection logic used by OVSDB server high availability mode redirects BUM packets across the peerlink. The iptables rule for redirection does differentiate between BFD and non-BFD VXLAN inner packets because the service node sends all frames with its own IP address as the tunnel source IP address. The VXLAN encapsulated BUM packets do not get forwarded to the CPU and do not go through the iptable redirection rule; only VXLAN encapsulated BFD packets get forwarded to the CPU due to the inner MAC DA lookup in hardware. &lt;/p&gt;
+<td>The BFD packet redirection logic used by OVSDB server high availability mode redirects BUM packets across the peerlink. The iptables rule for redirection does differentiate between BFD and non-BFD VXLAN inner packets because the service node sends all frames with its own IP address as the tunnel source IP address. The VXLAN encapsulated BUM packets do not get forwarded to the CPU and do not go through the iptable redirection rule; only VXLAN encapsulated BFD packets get forwarded to the CPU due to the inner MAC DA lookup in hardware. 
 </td>
 <td>3.7.0-3.7.11, 4.0.0-4.0.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-22301</td>
-<td>&lt;p&gt;For an unresolved address, the IPROUTER default policer rule has been modified to &lt;em&gt;not&lt;/em&gt; match on packets exiting a TUNNEL and headed to the CPU to resolve the address via ARP. As a result, the following default rule no longer matches TUNNEL ingress packets. &lt;/p&gt;
- &lt;div class="preformatted" style="border-width: 1px;"&gt;&lt;div class="preformattedContent panelContent"&gt;
-&lt;pre&gt; 
+<td>For an unresolved address, the IPROUTER default policer rule has been modified to &lt;em&gt;not&lt;/em&gt; match on packets exiting a TUNNEL and headed to the CPU to resolve the address via ARP. As a result, the following default rule no longer matches TUNNEL ingress packets. 
+ 
+ 
  A $INGRESS_CHAIN --in-interface $INGRESS_INTF -m addrtype --dst-type 
  IPROUTER -j POLICE --set-mode pkt --set-rate 400 --set-burst 100 
- &lt;/pre&gt;
-&lt;/div&gt;&lt;/div&gt; 
-&lt;p&gt; These packets are now policed by catch all rules. &lt;br/&gt;
- To work around this issue, the VPORT value on a TRIDENT switch must be changed from binary 011 to 100. &lt;/p&gt;
+ 
+ 
+ These packets are now policed by catch all rules. &lt;br/&gt;
+ To work around this issue, the VPORT value on a TRIDENT switch must be changed from binary 011 to 100. 
 </td>
 <td>3.6.1-3.7.11, 4.0.0-4.0.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-22287</td>
-<td>&lt;p&gt;When a layer 3 ECMP path is brought down on the EdgeCore AS7712 (Tomahawk) switch running in atomic mode, traffic traversing the path stops working for about four seconds. When the switch is changed to non-atomic mode, the delay is less than one second. This issue is seen across OSPF and static ECMP routes. &lt;/p&gt;</td>
+<td>When a layer 3 ECMP path is brought down on the EdgeCore AS7712 (Tomahawk) switch running in atomic mode, traffic traversing the path stops working for about four seconds. When the switch is changed to non-atomic mode, the delay is less than one second. This issue is seen across OSPF and static ECMP routes. </td>
 <td>3.6.2-3.7.11, 4.0.0-4.0.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-22228</td>
-<td>&lt;p&gt;Counters associated with VLANs and VRFs are not working on Trident 2+ switches. &lt;/p&gt;
+<td>Counters associated with VLANs and VRFs are not working on Trident 2+ switches. 
 </td>
 <td>3.7.0-3.7.11, 4.0.0-4.0.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-22020</td>
-<td>&lt;p&gt;On the Trident3 platform, static PIM with IIF based on a layer 2 bridge does not work reliably. PIM Join via signaling is required for IPMC to work properly.&lt;br/&gt;
-To work around this issue, use dynamic signaling (joins) to manage IP multicast traffic.&lt;/p&gt;</td>
+<td>On the Trident3 platform, static PIM with IIF based on a layer 2 bridge does not work reliably. PIM Join via signaling is required for IPMC to work properly.&lt;br/&gt;
+To work around this issue, use dynamic signaling (joins) to manage IP multicast traffic.</td>
 <td>3.7.0-3.7.11, 4.0.0-4.0.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-21927</td>
-<td>&lt;p&gt;When running &lt;tt&gt;ifreload&lt;/tt&gt; after updating an interface configuration, sometimes VLANs are not programmed into the hardware data plane. The Linux control plane looks normal but the VLAN has not been programmed into the hardware and packets that arrive for the VLAN might be dropped. &lt;br/&gt;
-To work around this issue, remove and re-add the affected VLANs from the port. &lt;/p&gt;
+<td>When running ifreload after updating an interface configuration, sometimes VLANs are not programmed into the hardware data plane. The Linux control plane looks normal but the VLAN has not been programmed into the hardware and packets that arrive for the VLAN might be dropped. &lt;br/&gt;
+To work around this issue, remove and re-add the affected VLANs from the port. 
 </td>
 <td>3.5.3-3.7.11, 4.0.0-4.0.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-21898</td>
-<td>&lt;p&gt;On a Trident 3 switch, IGMP packets are not getting policed by the police rule in the 00control ACL file. The packets are policed by the catchall policer in the 99control ACL file instead. &lt;br/&gt;
- &lt;tt&gt;-A $INGRESS_CHAIN -p ipv4 -d 01:00:5e:00:00:00/ff:ff:ff:80:00:00 -j police --set-mode pkt --set-rate 100 --set-burst 100&lt;/tt&gt; &lt;br/&gt;
+<td>On a Trident 3 switch, IGMP packets are not getting policed by the police rule in the 00control ACL file. The packets are policed by the catchall policer in the 99control ACL file instead. &lt;br/&gt;
+ -A $INGRESS_CHAIN -p ipv4 -d 01:00:5e:00:00:00/ff:ff:ff:80:00:00 -j police --set-mode pkt --set-rate 100 --set-burst 100 &lt;br/&gt;
  To work around this issue, let the CPU bound IGMP packet hit the following rule and change the policer rate to a desired value for IGMP packets: &lt;br/&gt;
- &lt;tt&gt;-A $INGRESS_CHAIN -p ipv4 -d 01:00:5e:00:00:00/ff:ff:ff:80:00:00 -j police --set-mode pkt --set-rate 100 --set-burst 100&lt;/tt&gt; &lt;br/&gt;
- Typically, the destination MAC address 01:00:5e:xx:xx:xx is used only for PIM/IGMP control and data stream packets. However, this workaround cannot handle data stream multicast packets that are not TCP/UDP; this is not typically done. &lt;/p&gt;
+ -A $INGRESS_CHAIN -p ipv4 -d 01:00:5e:00:00:00/ff:ff:ff:80:00:00 -j police --set-mode pkt --set-rate 100 --set-burst 100 &lt;br/&gt;
+ Typically, the destination MAC address 01:00:5e:xx:xx:xx is used only for PIM/IGMP control and data stream packets. However, this workaround cannot handle data stream multicast packets that are not TCP/UDP; this is not typically done. 
 </td>
 <td>3.6.2-3.7.11, 4.0.0-4.0.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-21785</td>
-<td>&lt;p&gt;The source address of the ICMPv6 time exceeded message (traceroute hop) is sourced from the wrong VRF when the traceroute target resides on the same switch but in a different VRF.&lt;/p&gt;</td>
+<td>The source address of the ICMPv6 time exceeded message (traceroute hop) is sourced from the wrong VRF when the traceroute target resides on the same switch but in a different VRF.</td>
 <td>3.6.2-3.7.11, 4.0.0-4.0.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-21769</td>
-<td>&lt;p&gt;On a Mellanox switch, GRE tunneling does not work if the tunnel source is configured on an SVI interface. If  the tunnel source is configured on a physical switch port, then tunneling works as expected.&lt;/p&gt;</td>
+<td>On a Mellanox switch, GRE tunneling does not work if the tunnel source is configured on an SVI interface. If  the tunnel source is configured on a physical switch port, then tunneling works as expected.</td>
 <td>3.6.1-3.7.11, 4.0.0-4.0.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-21678</td>
-<td>&lt;p&gt;On a Dell switch with a Maverick ASIC, NetQ might receive false alerts like the following via PagerDuty: &lt;/p&gt;
- &lt;div class="code panel" style="border-width: 1px;"&gt;&lt;div class="codeContent panelContent"&gt;
-&lt;pre class="code-java"&gt; 
- cumulus@&lt;span class="code-keyword"&gt;switch&lt;/span&gt;:~$ netq show sensors temp changes | grep absent | grep -v psu 
+<td>On a Dell switch with a Maverick ASIC, NetQ might receive false alerts like the following via PagerDuty: 
+ 
+ 
+ cumulus@switch:~$ netq show sensors temp changes | grep absent | grep -v psu 
  P2Leaf01 temp9 networking asic die temp sensor absent 43 105 100 5 Unable to find driver path: /cumulu Add 7d:22h:1m:41s 
  P2Leaf01 temp6 networking asic die temp sensor absent 45 105 100 5 Unable to find driver path: /cumulu Add 7d:22h:1m:41s 
  P2Leaf01 temp6 networking asic die temp sensor absent 47 105 100 5 Unable to read temp4_highest Add 9d:23h:26m:6s 
  P2Leaf01 temp6 networking asic die temp sensor absent 45 105 100 5 Unable to read temp4_highest Add 14d:22h:46m:45s 
- &lt;/pre&gt;
-&lt;/div&gt;&lt;/div&gt; 
-&lt;p&gt; This message might occur as a result of a timeout at the hardware level, or the switch might be reporting a failure to get a response. &lt;/p&gt;
+ 
+ 
+ This message might occur as a result of a timeout at the hardware level, or the switch might be reporting a failure to get a response. 
 </td>
 <td>3.5.3-3.7.11, 4.0.0-4.0.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-21667</td>
-<td>&lt;p&gt;FRR does not add BGP &lt;tt&gt;ttl-security&lt;/tt&gt; to either the running configuration or to the &lt;tt&gt;/etc/frr/frr.conf&lt;/tt&gt; file when configured on a peer group instead of a specific neighbor. &lt;br/&gt;
-To work around this issue, add &lt;tt&gt;ttl-security&lt;/tt&gt; to individual neighbors instead of the peer group.&lt;/p&gt;</td>
+<td>FRR does not add BGP ttl-security to either the running configuration or to the /etc/frr/frr.conf file when configured on a peer group instead of a specific neighbor. &lt;br/&gt;
+To work around this issue, add ttl-security to individual neighbors instead of the peer group.</td>
 <td>3.6.1-3.7.11, 4.0.0-4.0.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-21278</td>
-<td>&lt;p&gt;The &lt;tt&gt;net show lldp&lt;/tt&gt; command sometimes shows the port description in the &lt;tt&gt;Remote Port&lt;/tt&gt; field. The &lt;tt&gt;net show interface&lt;/tt&gt; command shows the correct value in the &lt;tt&gt;Remote Host&lt;/tt&gt; field.&lt;br/&gt;
-To work around this issue, use &lt;tt&gt;net show interface&lt;/tt&gt; command for LLDP output when connected to Cisco equipment.&lt;/p&gt;</td>
+<td>The net show lldp command sometimes shows the port description in the Remote Port field. The net show interface command shows the correct value in the Remote Host field.&lt;br/&gt;
+To work around this issue, use net show interface command for LLDP output when connected to Cisco equipment.</td>
 <td>3.5.3-3.7.10, 4.0.0-4.0.1</td>
 <td>3.7.11</td>
 </tr>
 <tr>
 <td>CM-21058</td>
-<td>&lt;p&gt;The advertised routes list may be empty for an EVPN peering even though the remote switch reports received routes.&lt;/p&gt;</td>
+<td>The advertised routes list may be empty for an EVPN peering even though the remote switch reports received routes.</td>
 <td>3.6.0-3.7.11, 4.0.0-4.0.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-21055</td>
-<td>&lt;p&gt;On Mellanox switches, the destination MAC address of ERSPAN GRE packets is set to all zeros; therefore, the packets might be dropped by the first transit switch.&lt;/p&gt;</td>
+<td>On Mellanox switches, the destination MAC address of ERSPAN GRE packets is set to all zeros; therefore, the packets might be dropped by the first transit switch.</td>
 <td>3.6.0-3.7.11, 4.0.0-4.0.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-20813</td>
-<td>&lt;p&gt;Span rules matching the out-interface as a bond do not mirror packets.&lt;/p&gt;</td>
+<td>Span rules matching the out-interface as a bond do not mirror packets.</td>
 <td>3.6.0-3.7.11, 4.0.0-4.0.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-20508</td>
-<td>&lt;p&gt;The Cumulus-Resource-Query-MIB defines the ability to gather buffer utilization status but when these objects are polled, they return nothing. &lt;/p&gt;</td>
+<td>The Cumulus-Resource-Query-MIB defines the ability to gather buffer utilization status but when these objects are polled, they return nothing. </td>
 <td>3.5.3-3.7.11, 4.0.0-4.0.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-20033</td>
-<td>&lt;p&gt;The VLAN interface stays up even though the physical link carrying the VLAN is admin or carrier down.&lt;/p&gt;
+<td>The VLAN interface stays up even though the physical link carrying the VLAN is admin or carrier down.
 </td>
 <td>3.5.2-3.7.11, 4.0.0-4.0.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-19788</td>
-<td>&lt;p&gt;If you configure a VLAN under a VLAN-aware bridge and create a subinterface of the same VLAN on one of the bridge ports, the bridge and interface compete for the same VLAN and if the interface is flapped, it stops working. Correcting the configuration and running the ifreload command does not resolve the conflict. &lt;br/&gt;
-To work around this issue, correct the bridge VIDs and restart switchd or delete the subinterface. &lt;/p&gt;</td>
+<td>If you configure a VLAN under a VLAN-aware bridge and create a subinterface of the same VLAN on one of the bridge ports, the bridge and interface compete for the same VLAN and if the interface is flapped, it stops working. Correcting the configuration and running the ifreload command does not resolve the conflict. &lt;br/&gt;
+To work around this issue, correct the bridge VIDs and restart switchd or delete the subinterface. </td>
 <td>3.5.0-3.7.11, 4.0.0-4.0.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-19724</td>
-<td>&lt;p&gt;PIM and MSDP entries are set to the internal COS value of 6 so they are grouped together with the bulk traffic priority group in the default &lt;tt&gt;traffic.conf&lt;/tt&gt; file. However, PIM, IGMP, and MSDP are considered control-plane and should be set to the internal COS value of 7. &lt;/p&gt;</td>
+<td>PIM and MSDP entries are set to the internal COS value of 6 so they are grouped together with the bulk traffic priority group in the default traffic.conf file. However, PIM, IGMP, and MSDP are considered control-plane and should be set to the internal COS value of 7. </td>
 <td>3.5.2-3.7.11, 4.0.0-4.0.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-19454</td>
-<td>&lt;p&gt;When you use NCLU to bring a bond admin down (&lt;tt&gt;net add bond &amp;lt;bond&amp;gt; link down&lt;/tt&gt;), the bond interface goes into admin down state but the switch ports enslaved to the bond remain UP. If you are using bond-lacp-bypass-allow or balance-xor mode, the host might continue to send traffic. This traffic will be dropped because although the bond slaves are UP, they are not members of the bridge.&lt;br/&gt;
-To work around this issue, use the &lt;tt&gt;sudo ifdown &amp;lt;bondname&amp;gt;&lt;/tt&gt; command.&lt;/p&gt;</td>
+<td>When you use NCLU to bring a bond admin down (net add bond &amp;lt;bond&amp;gt; link down), the bond interface goes into admin down state but the switch ports enslaved to the bond remain UP. If you are using bond-lacp-bypass-allow or balance-xor mode, the host might continue to send traffic. This traffic will be dropped because although the bond slaves are UP, they are not members of the bridge.&lt;br/&gt;
+To work around this issue, use the sudo ifdown &amp;lt;bondname&amp;gt; command.</td>
 <td>3.5.0-3.7.11, 4.0.0-4.0.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-17494</td>
-<td>&lt;p&gt;In certain cases, a peer device sends an ARP request from a source IP address that is not on the connected subnet and the switch creates a STALE neighbor entry. Eventually, the switch attempts to keep the entry fresh and sends ARP requests to the host. If the host responds, the switch has REACHABLE neighbor entries for hosts that are not on the connected subnet. &lt;br/&gt;
-To work around this issue, change the value of &lt;tt&gt;arp_ignore&lt;/tt&gt; to 2. See &lt;a href="https://support.cumulusnetworks.com/hc/en-us/articles/203859616-Default-ARP-Settings-in-Cumulus-Linux" class="external-link" rel="nofollow"&gt;Default ARP Settings in Cumulus Linux&lt;/a&gt; for more information.&lt;/p&gt;</td>
+<td>In certain cases, a peer device sends an ARP request from a source IP address that is not on the connected subnet and the switch creates a STALE neighbor entry. Eventually, the switch attempts to keep the entry fresh and sends ARP requests to the host. If the host responds, the switch has REACHABLE neighbor entries for hosts that are not on the connected subnet. &lt;br/&gt;
+To work around this issue, change the value of arp_ignore to 2. See &lt;a href="https://support.cumulusnetworks.com/hc/en-us/articles/203859616-Default-ARP-Settings-in-Cumulus-Linux" class="external-link" rel="nofollow"&gt;Default ARP Settings in Cumulus Linux&lt;/a&gt; for more information.</td>
 <td>3.3.2-3.7.11, 4.0.0-4.0.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-16571</td>
-<td>&lt;p&gt;NCLU cannot manage &lt;tt&gt;rsyslog&lt;/tt&gt; to addresses routed via a VRF.  In Cumulus Linux 4.0.0 and later, management VRF is enabled by default.   To work around this issue, update the &lt;tt&gt;/etc/network/interfaces&lt;/tt&gt; file to disable management VRF.&lt;/p&gt;</td>
+<td>NCLU cannot manage rsyslog to addresses routed via a VRF.  In Cumulus Linux 4.0.0 and later, management VRF is enabled by default.   To work around this issue, update the /etc/network/interfaces file to disable management VRF.</td>
 <td>3.4.3-3.7.11, 4.0.0-4.0.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-15812</td>
-<td>&lt;p&gt;Multicast forwarding fails for IP addresses whose DMAC overlaps with reserved DIPs.&lt;/p&gt;</td>
+<td>Multicast forwarding fails for IP addresses whose DMAC overlaps with reserved DIPs.</td>
 <td>3.2.1-3.7.11, 4.0.0-4.0.1</td>
 <td></td>
 </tr>
@@ -1087,56 +1087,56 @@ To work around this issue, change the value of &lt;tt&gt;arp_ignore&lt;/tt&gt; t
 </tr>
 <tr>
 <td>CM-31073</td>
-<td>&lt;p&gt;When you set the &lt;tt&gt;sysctl&lt;/tt&gt; settings &lt;tt&gt;net.ipv6.conf.all.accept_ra_defrtr&lt;/tt&gt; (to prevent acceptance of IPv6 default route advertisements) and &lt;tt&gt;net.ipv6.conf.default.accept_ra_defrtr&lt;/tt&gt; (set for newly created interfaces), if you create a new virtual interface, any pre-existing interface does not start accepting IPv6 default route avertisements again.&lt;br/&gt;
-To work around this issue, when you create a new virtual interface, set &lt;tt&gt;net.ipv6.conf.&amp;lt;interface&amp;gt;.accept_ra_defrtr&lt;/tt&gt; to 0 for all interfaces and run &lt;tt&gt;sysctl -p --system&lt;/tt&gt;.&lt;/p&gt;</td>
+<td>When you set the sysctl settings net.ipv6.conf.all.accept_ra_defrtr (to prevent acceptance of IPv6 default route advertisements) and net.ipv6.conf.default.accept_ra_defrtr (set for newly created interfaces), if you create a new virtual interface, any pre-existing interface does not start accepting IPv6 default route avertisements again.&lt;br/&gt;
+To work around this issue, when you create a new virtual interface, set net.ipv6.conf.&amp;lt;interface&amp;gt;.accept_ra_defrtr to 0 for all interfaces and run sysctl -p --system.</td>
 <td>3.7.12-4.2.1</td>
 <td>4.3.0</td>
 </tr>
 <tr>
 <td>CM-28249</td>
-<td>&lt;p&gt;On the Mellanox switch, when you modify the buffer and queue configuration without restarting &lt;tt&gt;switchd&lt;/tt&gt;, you might see a one second interruption in forwarding.&lt;/p&gt;</td>
+<td>On the Mellanox switch, when you modify the buffer and queue configuration without restarting switchd, you might see a one second interruption in forwarding.</td>
 <td>4.0.0-4.3.0</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-28080</td>
-<td>&lt;p&gt;TACACS+ through ClearPass is not currently supported. Cumulus Linux sends authorization before authentication, but ClearPass does not accept an authorization before the user is authenticated.&lt;/p&gt;</td>
+<td>TACACS+ through ClearPass is not currently supported. Cumulus Linux sends authorization before authentication, but ClearPass does not accept an authorization before the user is authenticated.</td>
 <td>3.7.11-3.7.14.2, 4.0.0-4.3.0</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-21678</td>
-<td>&lt;p&gt;On a Dell switch with a Maverick ASIC, NetQ might receive false alerts like the following via PagerDuty: &lt;/p&gt;
- &lt;div class="code panel" style="border-width: 1px;"&gt;&lt;div class="codeContent panelContent"&gt;
-&lt;pre class="code-java"&gt; 
- cumulus@&lt;span class="code-keyword"&gt;switch&lt;/span&gt;:~$ netq show sensors temp changes | grep absent | grep -v psu 
+<td>On a Dell switch with a Maverick ASIC, NetQ might receive false alerts like the following via PagerDuty: 
+ 
+ 
+ cumulus@switch:~$ netq show sensors temp changes | grep absent | grep -v psu 
  P2Leaf01 temp9 networking asic die temp sensor absent 43 105 100 5 Unable to find driver path: /cumulu Add 7d:22h:1m:41s 
  P2Leaf01 temp6 networking asic die temp sensor absent 45 105 100 5 Unable to find driver path: /cumulu Add 7d:22h:1m:41s 
  P2Leaf01 temp6 networking asic die temp sensor absent 47 105 100 5 Unable to read temp4_highest Add 9d:23h:26m:6s 
  P2Leaf01 temp6 networking asic die temp sensor absent 45 105 100 5 Unable to read temp4_highest Add 14d:22h:46m:45s 
- &lt;/pre&gt;
-&lt;/div&gt;&lt;/div&gt; 
-&lt;p&gt; This message might occur as a result of a timeout at the hardware level, or the switch might be reporting a failure to get a response. &lt;/p&gt;
+ 
+ 
+ This message might occur as a result of a timeout at the hardware level, or the switch might be reporting a failure to get a response. 
 </td>
 <td>3.5.3-3.7.14.2, 4.0.0-4.3.0</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-20508</td>
-<td>&lt;p&gt;The Cumulus-Resource-Query-MIB defines the ability to gather buffer utilization status but when these objects are polled, they return nothing. &lt;/p&gt;</td>
+<td>The Cumulus-Resource-Query-MIB defines the ability to gather buffer utilization status but when these objects are polled, they return nothing. </td>
 <td>3.5.3-3.7.14.2, 4.0.0-4.3.0</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-20033</td>
-<td>&lt;p&gt;The VLAN interface stays up even though the physical link carrying the VLAN is admin or carrier down.&lt;/p&gt;
+<td>The VLAN interface stays up even though the physical link carrying the VLAN is admin or carrier down.
 </td>
 <td>3.5.2-3.7.14.2, 4.0.0-4.3.0</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-15812</td>
-<td>&lt;p&gt;Multicast forwarding fails for IP addresses whose DMAC overlaps with reserved DIPs.&lt;/p&gt;</td>
+<td>Multicast forwarding fails for IP addresses whose DMAC overlaps with reserved DIPs.</td>
 <td>3.2.1-3.7.14.2, 4.0.0-4.3.0</td>
 <td></td>
 </tr>
@@ -1144,9 +1144,9 @@ To work around this issue, when you create a new virtual interface, set &lt;tt&g
 <td>2699399</td>
 <td>When you run the vtysh {{show ip bgp vrf &lt;name&gt; &lt;afi&gt; &lt;safi&gt; statistics}} command, the {{bgpd}} service crashes if you use {{vrf all}}. For example:
 spine01# show ip bgp vrf all statistics 
-&lt;pre&gt;vtysh: error reading from bgpd: Success (0)Warning: closing connection to bgpd because of an I/O error!&lt;/pre&gt;
-&lt;pre&gt;spine01# show bgp vrf all ipv6 unicast statistics 
-vtysh: error reading from bgpd: Success (0)Warning: closing connection to bgpd because of an I/O error!&lt;/pre&gt;
+vtysh: error reading from bgpd: Success (0)Warning: closing connection to bgpd because of an I/O error!
+spine01# show bgp vrf all ipv6 unicast statistics 
+vtysh: error reading from bgpd: Success (0)Warning: closing connection to bgpd because of an I/O error!
 To workaround this issue, run the command against each VRF independently.</td>
 <td>3.7.15, 4.0.0-4.3.0</td>
 <td></td>

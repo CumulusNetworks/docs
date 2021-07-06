@@ -8,7 +8,7 @@
 </tr>
 <tr>
 <td>NETQ-3451</td>
-<td>&lt;p&gt;UI: If either the peer_hostname or the peer_asn is invalid, the full screen BGP Service card does not provide the ability to open cards for a selected BGP session.&lt;/p&gt;</td>
+<td>UI: If either the peer_hostname or the peer_asn is invalid, the full screen BGP Service card does not provide the ability to open cards for a selected BGP session.</td>
 <td>2.3.0-2.4.1, 3.0.0-3.3.0</td>
 <td></td>
 </tr>
@@ -68,7 +68,7 @@
 </tr>
 <tr>
 <td>NETQ-3451</td>
-<td>&lt;p&gt;UI: If either the peer_hostname or the peer_asn is invalid, the full screen BGP Service card does not provide the ability to open cards for a selected BGP session.&lt;/p&gt;</td>
+<td>UI: If either the peer_hostname or the peer_asn is invalid, the full screen BGP Service card does not provide the ability to open cards for a selected BGP session.</td>
 <td>2.3.0-2.4.1, 3.0.0-3.3.0</td>
 <td></td>
 </tr>
@@ -122,20 +122,20 @@ To work around this issue, apply the update to your existing 2.3.1 build as foll
 
 * Download the update tarball.
 If your server or appliance has internet access, use {{wget}} to perform the download. Be sure to use your download directory in place of _/home/cumulus_ indicated in this example.
-&lt;pre&gt;
+
 cumulus@opta:~$ wget http://netq-shared.s3-us-west-2.amazonaws.com/NetQ-2.3.1.1.tgz -O /home/cumulus/NetQ-2.3.1.1.tgz
-&lt;/pre&gt;
+
 If your server or appliance is air-gapped, first download the tarball and then, as a root user, copy it to the appropriate directory on your server or appliance.
-&lt;pre&gt;
+
 root@opta:~# cd /mnt/swinstalls/
 root@opta:/mnt/swinstalls# cp /home/cumulus/NetQ-2.3.1.1.tgz ./ 
-&lt;/pre&gt;
+
 * Extract the script.
-&lt;pre&gt;
+
 cumulus@opta:~$ tar -xvzf /home/cumulus/NetQ-2.3.1.1.tgz update-app.sh
-&lt;/pre&gt;
+
 * Run the script. On completion, a new GUI container will be running and the card will display the trace result.
-&lt;pre&gt;
+
 cumulus@opta:~$ ./update-app.sh /home/cumulus/NetQ-2.3.1.1.tgz
 Loading the new app
 e9b2c1648ab5: Loading layer [==================================================&gt;]  2.048kB/2.048kB
@@ -147,7 +147,7 @@ deployment.extensions/netq-gui-deploy scaled
 Sleeping for 15 seconds
 Confirming the app is running with new image
 Found the container running with new image.
-&lt;/pre&gt;
+
 * Close and reopen the NetQ UI to run the new image. 
 *Note*: You may need to press Cmd+Shift+R to fully clear the cache on the Chrome browser.</td>
 <td></td>

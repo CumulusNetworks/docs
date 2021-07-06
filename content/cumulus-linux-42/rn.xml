@@ -3051,7 +3051,7 @@ If you flap the link with the {{ip link set vni10100 down; ip link set vni10100 
 <td>2549784</td>
 <td>On Mellanox switches, when the networking service and {{switchd}} starts up, a rare condition might occur where {{switchd}} crashes and the following log message is generated:
 
-{{CRIT backend/mlx/hal_mlx_nexthop.c:294: hal_mlx_ecmp_data_reinit: Assertion &amp;apos;(num_next_hops)' failed.}}
+{{CRIT backend/mlx/hal_mlx_nexthop.c:294: hal_mlx_ecmp_data_reinit: Assertion &apos;(num_next_hops)' failed.}}
 </td>
 <td>4.1.0-4.2.1</td>
 <td>4.3.0</td>
@@ -5759,7 +5759,7 @@ asic-monitor[7389]: File "/usr/lib/python2.7/dist-packages/cumulus/asic_monitor.
 <td>2549784</td>
 <td>On Mellanox switches, when the networking service and {{switchd}} starts up, a rare condition might occur where {{switchd}} crashes and the following log message is generated:
 
-{{CRIT backend/mlx/hal_mlx_nexthop.c:294: hal_mlx_ecmp_data_reinit: Assertion &amp;apos;(num_next_hops)' failed.}}
+{{CRIT backend/mlx/hal_mlx_nexthop.c:294: hal_mlx_ecmp_data_reinit: Assertion &apos;(num_next_hops)' failed.}}
 </td>
 <td>4.1.0-4.2.1</td>
 <td>4.3.0</td>

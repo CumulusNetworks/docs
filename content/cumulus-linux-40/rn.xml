@@ -2870,7 +2870,7 @@ Fixed: 1.8.4.1</td>
 <td>2547147</td>
 <td>The {{ospfd}} daemon might crash with the following kernel trace: 
 
-2019-11-06T23:00:08.261749+09:00 cumulus ospfd[5339]: Assertion &amp;apos;node' failed in file ospfd/ospf_packet.c, line 671, function ospf_write
+2019-11-06T23:00:08.261749+09:00 cumulus ospfd[5339]: Assertion &apos;node' failed in file ospfd/ospf_packet.c, line 671, function ospf_write
 </td>
 <td>3.7.11-3.7.12, 4.0.0-4.0.1</td>
 <td>3.7.13-3.7.15, 4.1.0-4.3.0</td>

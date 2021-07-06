@@ -215,10 +215,11 @@ def sanatize_rn_for_xls(string):
     # output_string = TAG_RE.sub('', string)
     output_string = string.replace("<p>", "\015")
     output_string = output_string.replace("</p>", "")
+    output_string = output_string.replace("<br>", "\015")
     output_string = output_string.replace("<br />", "\015")
 
-    output_string = output_string.replace("`", "&apos;")
     output_string = output_string.replace("&", "&amp;")
+    output_string = output_string.replace("`", "&apos;")
     output_string = output_string.replace("\\<", "&lt;")
     output_string = output_string.replace("\\>", "&gt;")
     output_string = output_string.replace("<", "&lt;")

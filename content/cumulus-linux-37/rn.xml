@@ -6622,7 +6622,7 @@ To work around this issue, disable ARP/ND suppression to remove the internal ACL
 </tr>
 <tr>
 <td>2552840</td>
-<td>CVE-2020-14350: In PostgreSQL 9.4, an uncontrolled search path could allow users to run arbitrary SQL functions with elevated priviledges when a superuser runs certain &amp;apos;CREATE EXTENSION’ statements.
+<td>CVE-2020-14350: In PostgreSQL 9.4, an uncontrolled search path could allow users to run arbitrary SQL functions with elevated priviledges when a superuser runs certain &apos;CREATE EXTENSION’ statements.
 Vulnerable: &lt;= 9.4.26-0+deb8u2
 Fixed: 9.4.26-0+deb8u3</td>
 <td>3.7.13</td>
@@ -7788,7 +7788,7 @@ To work around this issue, use the {{ethtool -m &lt;interface&gt;}} command.</td
 </tr>
 <tr>
 <td>2552840</td>
-<td>CVE-2020-14350: In PostgreSQL 9.4, an uncontrolled search path could allow users to run arbitrary SQL functions with elevated priviledges when a superuser runs certain &amp;apos;CREATE EXTENSION’ statements.
+<td>CVE-2020-14350: In PostgreSQL 9.4, an uncontrolled search path could allow users to run arbitrary SQL functions with elevated priviledges when a superuser runs certain &apos;CREATE EXTENSION’ statements.
 Vulnerable: &lt;= 9.4.26-0+deb8u2
 Fixed: 9.4.26-0+deb8u3</td>
 <td>3.7.13</td>
@@ -9404,7 +9404,7 @@ Fixed: 5.43-2+deb9u2~deb8u1</td>
 <tr>
 <td>2550693</td>
 <td>The following vulnerabilities have been announced in the {{cups}} package:
-CVE-2019-8842: The &amp;apos;ippReadIO&amp;apos; function may under-read an extension field
+CVE-2019-8842: The &apos;ippReadIO&apos; function may under-read an extension field
 CVE-2020-3898: heap based buffer overflow in libcups's ppdFindOption() in ppd-mark.c
 Vulnerable: &lt;= 1.7.5-11+deb8u7
 Fixed: 1.7.5-11+deb8u8</td>
@@ -9420,7 +9420,7 @@ Fixed: 1.8.22-0+deb8u3</td>
 <tr>
 <td>2550512</td>
 <td>The {{python-httplib2}} package, which is available in the repository for optional installation, has the following vulnerability:
-CVE-2020-11078: In httplib2 before version 0.18.0, an attacker controlling unescaped part of uri for &amp;apos;httplib2.Http.request()&amp;apos; could change request headers and body, send additional hidden requests to same server. This vulnerability impacts software that uses httplib2 with uri constructed by string concatenation, as opposed to proper urllib building with escaping. This has been fixed in 0.18.0.
+CVE-2020-11078: In httplib2 before version 0.18.0, an attacker controlling unescaped part of uri for &apos;httplib2.Http.request()&apos; could change request headers and body, send additional hidden requests to same server. This vulnerability impacts software that uses httplib2 with uri constructed by string concatenation, as opposed to proper urllib building with escaping. This has been fixed in 0.18.0.
 Vulnerable: 0.9+dfsg-2
 Fixed: 0.9+dfsg-2+deb8u1</td>
 <td>3.7.12</td>
@@ -9738,7 +9738,7 @@ CVE-2020-1711: block: iscsi: OOB heap access via an unexpected response of iSCSI
 <td>2547147</td>
 <td>The {{ospfd}} daemon might crash with the following kernel trace: 
 
-2019-11-06T23:00:08.261749+09:00 cumulus ospfd[5339]: Assertion &amp;apos;node' failed in file ospfd/ospf_packet.c, line 671, function ospf_write
+2019-11-06T23:00:08.261749+09:00 cumulus ospfd[5339]: Assertion &apos;node' failed in file ospfd/ospf_packet.c, line 671, function ospf_write
 </td>
 <td>3.7.11-3.7.12, 4.0.0-4.0.1</td>
 </tr>
@@ -10701,7 +10701,7 @@ Fixed: 5.43-2+deb9u2~deb8u1</td>
 <tr>
 <td>2550693</td>
 <td>The following vulnerabilities have been announced in the {{cups}} package:
-CVE-2019-8842: The &amp;apos;ippReadIO&amp;apos; function may under-read an extension field
+CVE-2019-8842: The &apos;ippReadIO&apos; function may under-read an extension field
 CVE-2020-3898: heap based buffer overflow in libcups's ppdFindOption() in ppd-mark.c
 Vulnerable: &lt;= 1.7.5-11+deb8u7
 Fixed: 1.7.5-11+deb8u8</td>
@@ -10719,7 +10719,7 @@ Fixed: 1.8.22-0+deb8u3</td>
 <tr>
 <td>2550512</td>
 <td>The {{python-httplib2}} package, which is available in the repository for optional installation, has the following vulnerability:
-CVE-2020-11078: In httplib2 before version 0.18.0, an attacker controlling unescaped part of uri for &amp;apos;httplib2.Http.request()&amp;apos; could change request headers and body, send additional hidden requests to same server. This vulnerability impacts software that uses httplib2 with uri constructed by string concatenation, as opposed to proper urllib building with escaping. This has been fixed in 0.18.0.
+CVE-2020-11078: In httplib2 before version 0.18.0, an attacker controlling unescaped part of uri for &apos;httplib2.Http.request()&apos; could change request headers and body, send additional hidden requests to same server. This vulnerability impacts software that uses httplib2 with uri constructed by string concatenation, as opposed to proper urllib building with escaping. This has been fixed in 0.18.0.
 Vulnerable: 0.9+dfsg-2
 Fixed: 0.9+dfsg-2+deb8u1</td>
 <td>3.7.12</td>
@@ -11444,7 +11444,7 @@ RTM_NEWNEIGH with unconfigured vlan XXXX on port peerlink
 <td>2547147</td>
 <td>The {{ospfd}} daemon might crash with the following kernel trace: 
 
-2019-11-06T23:00:08.261749+09:00 cumulus ospfd[5339]: Assertion &amp;apos;node' failed in file ospfd/ospf_packet.c, line 671, function ospf_write
+2019-11-06T23:00:08.261749+09:00 cumulus ospfd[5339]: Assertion &apos;node' failed in file ospfd/ospf_packet.c, line 671, function ospf_write
 </td>
 <td>3.7.11-3.7.12, 4.0.0-4.0.1</td>
 <td>3.7.13-3.7.15, 4.1.0-4.3.0</td>
@@ -13402,7 +13402,7 @@ Fixed: 0.9.3.13</td>
 <td>2547147</td>
 <td>The {{ospfd}} daemon might crash with the following kernel trace: 
 
-2019-11-06T23:00:08.261749+09:00 cumulus ospfd[5339]: Assertion &amp;apos;node' failed in file ospfd/ospf_packet.c, line 671, function ospf_write
+2019-11-06T23:00:08.261749+09:00 cumulus ospfd[5339]: Assertion &apos;node' failed in file ospfd/ospf_packet.c, line 671, function ospf_write
 </td>
 <td>3.7.11-3.7.12, 4.0.0-4.0.1</td>
 <td>3.7.13-3.7.15, 4.1.0-4.3.0</td>
@@ -14582,7 +14582,7 @@ https://security-tracker.debian.org/tracker/linux</td>
 <td>2545405</td>
 <td>The {{ospfd}} daemon might crash with the following kernel trace: 
 
-2019-11-06T23:00:08.261749+09:00 cumulus ospfd[5339]: Assertion &amp;apos;node' failed in file ospfd/ospf_packet.c, line 671, function ospf_write
+2019-11-06T23:00:08.261749+09:00 cumulus ospfd[5339]: Assertion &apos;node' failed in file ospfd/ospf_packet.c, line 671, function ospf_write
 </td>
 <td>3.7.6-3.7.10</td>
 </tr>
@@ -15777,7 +15777,7 @@ To work around this issue, reboot the switch, then remove the static routes or s
 <td>2545405</td>
 <td>The {{ospfd}} daemon might crash with the following kernel trace: 
 
-2019-11-06T23:00:08.261749+09:00 cumulus ospfd[5339]: Assertion &amp;apos;node' failed in file ospfd/ospf_packet.c, line 671, function ospf_write
+2019-11-06T23:00:08.261749+09:00 cumulus ospfd[5339]: Assertion &apos;node' failed in file ospfd/ospf_packet.c, line 671, function ospf_write
 </td>
 <td>3.7.6-3.7.10</td>
 <td>3.7.11-3.7.15</td>
@@ -17405,7 +17405,7 @@ To work around this issue, reboot the switch, then remove the static routes or s
 <td>2545405</td>
 <td>The {{ospfd}} daemon might crash with the following kernel trace: 
 
-2019-11-06T23:00:08.261749+09:00 cumulus ospfd[5339]: Assertion &amp;apos;node' failed in file ospfd/ospf_packet.c, line 671, function ospf_write
+2019-11-06T23:00:08.261749+09:00 cumulus ospfd[5339]: Assertion &apos;node' failed in file ospfd/ospf_packet.c, line 671, function ospf_write
 </td>
 <td>3.7.6-3.7.10</td>
 <td>3.7.11-3.7.15</td>
@@ -18828,7 +18828,7 @@ Note: qemu is not installed by default, but is available in the repository for o
 <td>2541604</td>
 <td>The {{snmpd}} service exits with a message similar to the following: 
   
- Error in &amp;apos;/usr/sbin/snmpd': double free or corruption (fasttop): 0x00000000018a4e50 *** 
+ Error in &apos;/usr/sbin/snmpd': double free or corruption (fasttop): 0x00000000018a4e50 *** 
   
  This problem might occur during or after network convergence events. For example, when {{bgpd}} needs to process a high number of updates and the CPU cannot keep up, {{bgpd}} is disconnected and {{agentx}} generates a core dump in {{snmpd}} due to a memory allocation problem. 
  To work around this issue, disable {{agentx}} by commenting out the following lines in the {{/etc/snmp/snmpd.conf}} file. Then, restart the {{snmpd}} service with the {{systemctl restart snmpd}} command. 
@@ -19513,7 +19513,7 @@ To work around this issue, run the {{cl-support -M}} command to disable timeouts
 <td>2545405</td>
 <td>The {{ospfd}} daemon might crash with the following kernel trace: 
 
-2019-11-06T23:00:08.261749+09:00 cumulus ospfd[5339]: Assertion &amp;apos;node' failed in file ospfd/ospf_packet.c, line 671, function ospf_write
+2019-11-06T23:00:08.261749+09:00 cumulus ospfd[5339]: Assertion &apos;node' failed in file ospfd/ospf_packet.c, line 671, function ospf_write
 </td>
 <td>3.7.6-3.7.10</td>
 <td>3.7.11-3.7.15</td>
@@ -20206,7 +20206,7 @@ route-map peerlink-add-asn permit 20
 <td>2541604</td>
 <td>The {{snmpd}} service exits with a message similar to the following: 
   
- Error in &amp;apos;/usr/sbin/snmpd': double free or corruption (fasttop): 0x00000000018a4e50 *** 
+ Error in &apos;/usr/sbin/snmpd': double free or corruption (fasttop): 0x00000000018a4e50 *** 
   
  This problem might occur during or after network convergence events. For example, when {{bgpd}} needs to process a high number of updates and the CPU cannot keep up, {{bgpd}} is disconnected and {{agentx}} generates a core dump in {{snmpd}} due to a memory allocation problem. 
  To work around this issue, disable {{agentx}} by commenting out the following lines in the {{/etc/snmp/snmpd.conf}} file. Then, restart the {{snmpd}} service with the {{systemctl restart snmpd}} command. 
@@ -21120,7 +21120,7 @@ To work around this issue, run the {{cl-support -M}} command to disable timeouts
 <td>2545405</td>
 <td>The {{ospfd}} daemon might crash with the following kernel trace: 
 
-2019-11-06T23:00:08.261749+09:00 cumulus ospfd[5339]: Assertion &amp;apos;node' failed in file ospfd/ospf_packet.c, line 671, function ospf_write
+2019-11-06T23:00:08.261749+09:00 cumulus ospfd[5339]: Assertion &apos;node' failed in file ospfd/ospf_packet.c, line 671, function ospf_write
 </td>
 <td>3.7.6-3.7.10</td>
 <td>3.7.11-3.7.15</td>
@@ -21724,7 +21724,7 @@ route-map peerlink-add-asn permit 20
 <td>2541604</td>
 <td>The {{snmpd}} service exits with a message similar to the following: 
   
- Error in &amp;apos;/usr/sbin/snmpd': double free or corruption (fasttop): 0x00000000018a4e50 *** 
+ Error in &apos;/usr/sbin/snmpd': double free or corruption (fasttop): 0x00000000018a4e50 *** 
   
  This problem might occur during or after network convergence events. For example, when {{bgpd}} needs to process a high number of updates and the CPU cannot keep up, {{bgpd}} is disconnected and {{agentx}} generates a core dump in {{snmpd}} due to a memory allocation problem. 
  To work around this issue, disable {{agentx}} by commenting out the following lines in the {{/etc/snmp/snmpd.conf}} file. Then, restart the {{snmpd}} service with the {{systemctl restart snmpd}} command. 
@@ -23043,7 +23043,7 @@ To work around this issue, run the {{cl-support -M}} command to disable timeouts
 <td>2545405</td>
 <td>The {{ospfd}} daemon might crash with the following kernel trace: 
 
-2019-11-06T23:00:08.261749+09:00 cumulus ospfd[5339]: Assertion &amp;apos;node' failed in file ospfd/ospf_packet.c, line 671, function ospf_write
+2019-11-06T23:00:08.261749+09:00 cumulus ospfd[5339]: Assertion &apos;node' failed in file ospfd/ospf_packet.c, line 671, function ospf_write
 </td>
 <td>3.7.6-3.7.10</td>
 <td>3.7.11-3.7.15</td>
@@ -23578,7 +23578,7 @@ route-map peerlink-add-asn permit 20
 <td>2541604</td>
 <td>The {{snmpd}} service exits with a message similar to the following: 
   
- Error in &amp;apos;/usr/sbin/snmpd': double free or corruption (fasttop): 0x00000000018a4e50 *** 
+ Error in &apos;/usr/sbin/snmpd': double free or corruption (fasttop): 0x00000000018a4e50 *** 
   
  This problem might occur during or after network convergence events. For example, when {{bgpd}} needs to process a high number of updates and the CPU cannot keep up, {{bgpd}} is disconnected and {{agentx}} generates a core dump in {{snmpd}} due to a memory allocation problem. 
  To work around this issue, disable {{agentx}} by commenting out the following lines in the {{/etc/snmp/snmpd.conf}} file. Then, restart the {{snmpd}} service with the {{systemctl restart snmpd}} command. 
@@ -24916,7 +24916,7 @@ To work around this issue, either:
 <td>2541604</td>
 <td>The {{snmpd}} service exits with a message similar to the following: 
   
- Error in &amp;apos;/usr/sbin/snmpd': double free or corruption (fasttop): 0x00000000018a4e50 *** 
+ Error in &apos;/usr/sbin/snmpd': double free or corruption (fasttop): 0x00000000018a4e50 *** 
   
  This problem might occur during or after network convergence events. For example, when {{bgpd}} needs to process a high number of updates and the CPU cannot keep up, {{bgpd}} is disconnected and {{agentx}} generates a core dump in {{snmpd}} due to a memory allocation problem. 
  To work around this issue, disable {{agentx}} by commenting out the following lines in the {{/etc/snmp/snmpd.conf}} file. Then, restart the {{snmpd}} service with the {{systemctl restart snmpd}} command. 
@@ -25677,7 +25677,7 @@ The NetQ agent has been removed from Cumulus VX 3.7.7. The NetQ agent will be bu
 <td>2540520</td>
 <td>When IGMP snooping is enabled on a Broadcom switch, after multiple PIM join and leave messages are sent, {{switchd}} crashes and reports log messages similar to the following: 
   
- var/log/switchd.log:2019-04-05T03:03:35.563891-05:00 SWITCH1 switchd[1067]: *** Error in &amp;apos;/usr/sbin/switchd': free(): invalid next size (fast): 0x000000000191e4d0 *** 
+ var/log/switchd.log:2019-04-05T03:03:35.563891-05:00 SWITCH1 switchd[1067]: *** Error in &apos;/usr/sbin/switchd': free(): invalid next size (fast): 0x000000000191e4d0 *** 
  var/log/switchd.log-2019-04-05T03:03:35.564456-05:00 SWITCH1 switchd[1067]: linux-user-bde:new probed device unit 0 dev_no 0 _ndevices 1 
  var/log/switchd.log-2019-04-05T03:03:35.564855-05:00 SWITCH1 switchd[1067]: DMA pool size: 67108864 
  var/log/syslog:2019-04-05T03:03:36.046102-05:00 SWITCH1 systemd[1]: heartbeat-failed@switchd.service.service: main process exited, code=exited, status=1/FAILURE 
@@ -26182,7 +26182,7 @@ You can prevent EVPN next hops from not being removed when the contributing peer
 <td>2541604</td>
 <td>The {{snmpd}} service exits with a message similar to the following: 
   
- Error in &amp;apos;/usr/sbin/snmpd': double free or corruption (fasttop): 0x00000000018a4e50 *** 
+ Error in &apos;/usr/sbin/snmpd': double free or corruption (fasttop): 0x00000000018a4e50 *** 
   
  This problem might occur during or after network convergence events. For example, when {{bgpd}} needs to process a high number of updates and the CPU cannot keep up, {{bgpd}} is disconnected and {{agentx}} generates a core dump in {{snmpd}} due to a memory allocation problem. 
  To work around this issue, disable {{agentx}} by commenting out the following lines in the {{/etc/snmp/snmpd.conf}} file. Then, restart the {{snmpd}} service with the {{systemctl restart snmpd}} command. 
@@ -26289,7 +26289,7 @@ To work around this issue, restart {{switchd}}.</td>
 <td>2540520</td>
 <td>When IGMP snooping is enabled on a Broadcom switch, after multiple PIM join and leave messages are sent, {{switchd}} crashes and reports log messages similar to the following: 
   
- var/log/switchd.log:2019-04-05T03:03:35.563891-05:00 SWITCH1 switchd[1067]: *** Error in &amp;apos;/usr/sbin/switchd': free(): invalid next size (fast): 0x000000000191e4d0 *** 
+ var/log/switchd.log:2019-04-05T03:03:35.563891-05:00 SWITCH1 switchd[1067]: *** Error in &apos;/usr/sbin/switchd': free(): invalid next size (fast): 0x000000000191e4d0 *** 
  var/log/switchd.log-2019-04-05T03:03:35.564456-05:00 SWITCH1 switchd[1067]: linux-user-bde:new probed device unit 0 dev_no 0 _ndevices 1 
  var/log/switchd.log-2019-04-05T03:03:35.564855-05:00 SWITCH1 switchd[1067]: DMA pool size: 67108864 
  var/log/syslog:2019-04-05T03:03:36.046102-05:00 SWITCH1 systemd[1]: heartbeat-failed@switchd.service.service: main process exited, code=exited, status=1/FAILURE 
@@ -27548,7 +27548,7 @@ You can prevent EVPN next hops from not being removed when the contributing peer
 <td>2541604</td>
 <td>The {{snmpd}} service exits with a message similar to the following: 
   
- Error in &amp;apos;/usr/sbin/snmpd': double free or corruption (fasttop): 0x00000000018a4e50 *** 
+ Error in &apos;/usr/sbin/snmpd': double free or corruption (fasttop): 0x00000000018a4e50 *** 
   
  This problem might occur during or after network convergence events. For example, when {{bgpd}} needs to process a high number of updates and the CPU cannot keep up, {{bgpd}} is disconnected and {{agentx}} generates a core dump in {{snmpd}} due to a memory allocation problem. 
  To work around this issue, disable {{agentx}} by commenting out the following lines in the {{/etc/snmp/snmpd.conf}} file. Then, restart the {{snmpd}} service with the {{systemctl restart snmpd}} command. 
@@ -28974,7 +28974,7 @@ You can prevent EVPN next hops from not being removed when the contributing peer
 <td>2541604</td>
 <td>The {{snmpd}} service exits with a message similar to the following: 
   
- Error in &amp;apos;/usr/sbin/snmpd': double free or corruption (fasttop): 0x00000000018a4e50 *** 
+ Error in &apos;/usr/sbin/snmpd': double free or corruption (fasttop): 0x00000000018a4e50 *** 
   
  This problem might occur during or after network convergence events. For example, when {{bgpd}} needs to process a high number of updates and the CPU cannot keep up, {{bgpd}} is disconnected and {{agentx}} generates a core dump in {{snmpd}} due to a memory allocation problem. 
  To work around this issue, disable {{agentx}} by commenting out the following lines in the {{/etc/snmp/snmpd.conf}} file. Then, restart the {{snmpd}} service with the {{systemctl restart snmpd}} command. 

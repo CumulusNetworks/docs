@@ -504,6 +504,12 @@ Cumulus Linux currently supports the following PTP message modes:
 
 Multicast mode is the default setting. To set the message mode to *mixed* on an interface:
 
+{{%notice warning%}}
+
+Mixed Mode PTP is an [early access feature]({{<ref "/knowledge-base/Support/Support-Offerings/Early-Access-Features-Defined" >}}) in Cumulus Linux.
+
+{{%/notice%}}
+
 {{< tabs "TabID494 ">}}
 {{< tab "NVUE Commands ">}}
 
@@ -552,6 +558,12 @@ cumulus@switch:~$ sudo systemctl restart ptp4l.service
 {{< /tabs >}}
 
 ### TTL for a PTP Message
+
+{{%notice warning%}}
+
+TTL configuration for PTP is an [early access feature]({{<ref "/knowledge-base/Support/Support-Offerings/Early-Access-Features-Defined" >}}) in Cumulus Linux.
+
+{{%/notice%}}
 
 To restrict the number of hops a PTP message can travel, set the TTL on the PTP interface. You can set a value between 1 and 255.
 
@@ -772,6 +784,12 @@ cumulus@switch:~$ sudo systemctl restart ptp4l.service
 ## PTP on a VRF
 
 By default, PTP is enabled on the default VRF and on any VRFs you create. You can isolate traffic to a specific VRF by disabling PTP on any other VRFs.
+
+{{%notice warning%}}
+
+PTP in a VRF other than the default is an [early access feature]({{<ref "/knowledge-base/Support/Support-Offerings/Early-Access-Features-Defined" >}}) in Cumulus Linux.
+
+{{%/notice%}}
 
 {{< tabs "TabID777 ">}}
 {{< tab "NVUE Commands ">}}

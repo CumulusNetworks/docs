@@ -32,6 +32,7 @@ frontend:
         - if [ "${AWS_BRANCH}" = "master" ]; then python3 utils/pdf_page_editor.py public/ ; fi
         # Default is /public/networking-ethernet-software
         - if [ "${AWS_BRANCH}" != "master" ]; then python3 utils/pdf_page_editor.py ; fi
+        - tree
   artifacts:
     files:
       - '**/*'

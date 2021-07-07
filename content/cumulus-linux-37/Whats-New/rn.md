@@ -8,7 +8,7 @@ toc: 1
 type: rn
 pdfhidden: True
 ---
-<a href="/cumulus-linux-37/rn.xls"> {{<rn_icon alt="Download 3.7 Release Notes xls" >}}</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="/cumulus-linux-37/rn.xls">Download all 3.7 release notes as .xls</a>
+{{<rn_xls_link dir="cumulus-linux-37" >}}
 ## 3.7.15 Release Notes
 ### Open issues in 3.7.15
 

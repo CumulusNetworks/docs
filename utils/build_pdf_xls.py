@@ -123,7 +123,7 @@ def get_xls_files():
                     }
                 })
                 xls_file = file.replace(".xml", ".xls")
-                destination_file = "content/{}/{}".format(directory, xls_file)
+                destination_file = "public/content/{}/{}".format(directory, xls_file)
                 print("Writing {} to {}\n".format(file, destination_file))
                 file = open(destination_file, "wb")
                 file.write(create_response)

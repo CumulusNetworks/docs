@@ -8,7 +8,7 @@ toc: 1
 type: rn
 pdfhidden: True
 ---
-<a href="/cumulus-linux-42/rn.xls"> {{<rn_icon alt="Download 4.2 Release Notes xls" >}}</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="/cumulus-linux-42/rn.xls">Download all 4.2 release notes as .xls</a>
+{{<rn_xls_link dir="cumulus-linux-42" >}}
 ## 4.2.1.6 Release Notes
 ### Open issues in 4.2.1.6
 

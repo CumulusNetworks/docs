@@ -95,7 +95,7 @@ systemctl restart netqd.service
 <td>2549319</td>
 <td>NetQ UI: The legend and segment colors on Switches and Upgrade History card graphs sometimes do not match. These cards appear on the lifecycle management dashboard (Manage Switch Assets view). Hover over graph to view the correct values.</td>
 <td>3.0.0-3.3.1</td>
-<td></td>
+<td>4.0.0</td>
 </tr>
 <tr>
 <td>2549246</td>

@@ -42,7 +42,7 @@ To work around this issue, run the following command on the NetQ telemetry serve
 <td>2553453</td>
 <td>The {{netqd}} daemon logs a traceback to _/var/log/netqd.log_ when the OPTA server is unreachable and {{netq show}} commands are run.</td>
 <td>3.1.0-3.3.1</td>
-<td></td>
+<td>4.0.0</td>
 </tr>
 <tr>
 <td>2549649</td>
@@ -54,7 +54,7 @@ To work around this issue, run the following command on the NetQ telemetry serve
 <td>2549319</td>
 <td>NetQ UI: The legend and segment colors on Switches and Upgrade History card graphs sometimes do not match. These cards appear on the lifecycle management dashboard (Manage Switch Assets view). Hover over graph to view the correct values.</td>
 <td>3.0.0-3.3.1</td>
-<td></td>
+<td>4.0.0</td>
 </tr>
 <tr>
 <td>2549246</td>
@@ -220,7 +220,7 @@ netq-cli:
 <td>2553453</td>
 <td>The {{netqd}} daemon logs a traceback to _/var/log/netqd.log_ when the OPTA server is unreachable and {{netq show}} commands are run.</td>
 <td>3.1.0-3.3.1</td>
-<td></td>
+<td>4.0.0</td>
 </tr>
 <tr>
 <td>2549649</td>
@@ -232,7 +232,7 @@ netq-cli:
 <td>2549319</td>
 <td>NetQ UI: The legend and segment colors on Switches and Upgrade History card graphs sometimes do not match. These cards appear on the lifecycle management dashboard (Manage Switch Assets view). Hover over graph to view the correct values.</td>
 <td>3.0.0-3.3.1</td>
-<td></td>
+<td>4.0.0</td>
 </tr>
 <tr>
 <td>2549246</td>

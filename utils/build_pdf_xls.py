@@ -115,7 +115,7 @@ def get_xls_files():
                 create_response = doc_api.create_doc({
                     "test": TEST,                                                   # test documents are free but watermarked
                     "document_url": "{}{}/{}".format(base_url, directory, file),
-                    "name": "{}-{}".format(directory, file),                                 # help you find a document later
+                    "name": "{}-{}".format(directory, file),                        # help you find a document later
                     "document_type": "xls",                                         # pdf or xls or xlsx
                     "prince_options": {
                         "http_user": http_user,

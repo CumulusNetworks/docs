@@ -8,7 +8,8 @@ toc: 1
 type: rn
 pdfhidden: True
 ---
-<a href="/cumulus-linux-43/rn.xls"><img src="/images/xls_icon.png" height="20px" width="20px" alt="Download 4.3 Release Notes xls" /></a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="/cumulus-linux-43/rn.xls">Download all 4.3 release notes as .xls</a>
+{{<rn_xls_link dir="cumulus-linux-44" >}}
+
 ## 4.3.0 Release Notes
 ### Open issues in 4.3.0
 

@@ -7,9 +7,9 @@ version: "1.0"
 
 Three demos are available in the Air simulation:
 
-1. NVIDIA Cumulus in the Cloud
-2. SONiC Spines
-3. SONiC Demo
+1. Cumulus in the Cloud
+2. Cumulus and SONiC in the Cloud
+3. SONiC in the Cloud
 
 All three demos are built on top of the NVIDIA Cumulus Linux {{<exlink url="https://gitlab.com/cumulus-consulting/goldenturtle/cldemo2" text=" reference topology">}}.
 
@@ -30,21 +30,21 @@ The reference topology provides a complete two-tier spine and leaf topology. It 
 
 When you start the reference topology simulation environment, all interfaces (except for the out-of-band management network) are unconfigured and administratively down. The golden standard configurations and demos provide interface and routing protocol configurations that are applied to this simulation topology.
 
-## NVIDIA Cumulus In The Cloud
+## Cumulus In The Cloud
 
 In the NVIDIA Cumulus in the Cloud demo, all nodes in the reference topology are set to use Cumulus Linux.
 
 {{<img src="/images/guides/nvidia-air/1CumulusInTheCloud.png">}}
 
-## SONiC Spines
+## Cumulus and SONiC In The Cloud
 
-In the SONiC Spines demo, two spines in the reference topology are set to use SONiC while all the remaining nodes are Cumulus Linux.
+In the Cumulus and SONiC In The Cloud demo, two spines in the reference topology are set to use SONiC while all the remaining nodes are Cumulus Linux.
 
 {{<img src="/images/guides/nvidia-air/2SonicSpines.png" >}}
 
-## SONiC Demo
+## SONiC In The Cloud
 
-In the SONiC demo, all nodes in the reference topology are set to use SONiC.
+In the SONiC In The Cloud demo, all nodes in the reference topology are set to use SONiC.
 
 {{<img src="/images/guides/nvidia-air/3SonicDemo.png" >}}
 

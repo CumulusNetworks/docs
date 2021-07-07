@@ -194,7 +194,7 @@ NVIDIA Spectrum switches currently support a maximum of 6000 VLAN elements. The 
 For hardware data plane internal operations, the switching silicon requires VLANs for every physical port, Linux bridge, and layer 3 subinterface. Cumulus Linux reserves a range of VLANs by default; the reserved range is 3725-3999.
 
 {{%notice tip%}}
-If the reserved VLAN range conflicts with any user-defined VLANs, you can modify the range. The new range must be a contiguous set of VLANs with IDs between 2 and 4094. For a single VLAN-aware bridge, the minimum size of the range is two VLANs.
+If the reserved VLAN range conflicts with any user-defined VLANs, you can modify the range. The new range must be a contiguous set of VLANs with IDs between 32 and 4094. For a single VLAN-aware bridge, the minimum size of the range is 32 VLANs.
 {{%/notice%}}
 
 To configure the reserved range, edit the `/etc/cumulus/switchd.conf` file to uncomment the `resv_vlan_range` line and specify a new range. After you save the file, you must restart `switchd`.

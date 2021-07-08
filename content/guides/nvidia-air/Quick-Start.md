@@ -31,7 +31,7 @@ The landing page offers the following options:
 
 - **Search Simulations**: If you have more than one simulation, the search box can help filter your simulations based on a text match.
 
-  {{<img src="/images/guides/nvidia-air/SearchSimulation.png" >}}
+  {{<img src="/images/guides/nvidia-air/SearchSimulation.png">}}
 
 - **Build a Simulation**: If you have no simulations, click the **Build a Simulation** button in the middle of the screen. The details of the demos are described in {{<link title="Pre-built Demos">}}.
 
@@ -39,9 +39,11 @@ The landing page offers the following options:
 
   This launches a new window from where you can choose one of the pre-built demos from the list.
 
-  {{<img src="/images/guides/nvidia-air/BuildSim_Demos.png" width="400px">}}
+  {{<img src="/images/guides/nvidia-air/BuildSim_Demos.png" width="800px">}}
 
-- **Sidebar**: The sidebar to the left has a **Create a Simulation** link to create new simulations, links to the current Cumulus Linux and NetQ user guides and a link to {{<exlink url="https://www.nvidia.com/en-us/networking/linux-on-demand/" text="self-paced labs">}}.
+- **Sidebar**: The sidebar to the left has a **Create a Simulation** link to create new simulations, links to the current Cumulus Linux and NetQ user guides and a link to [self-paced labs](https://www.nvidia.com/en-us/networking/linux-on-demand/).
+
+{{<img src="/images/guides/nvidia-air/SideBar.png">}}
 
 ## Simulation Views
 

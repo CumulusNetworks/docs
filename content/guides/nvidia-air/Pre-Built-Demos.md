@@ -11,7 +11,7 @@ Three demos are available in the Air simulation:
 2. Cumulus and SONiC in the Cloud
 3. SONiC in the Cloud
 
-All three demos are built on top of the NVIDIA Cumulus Linux {{<exlink url="https://gitlab.com/cumulus-consulting/goldenturtle/cldemo2" text=" reference topology">}}.
+All three demos are built on top of the NVIDIA Cumulus Linux [reference topology](https://gitlab.com/cumulus-consulting/goldenturtle/cldemo2).
 
 The reference topology provides a common and consistent pre-configured spine and leaf-based network topology, which serves as the basis for all supported NVIDIA demos and golden standards. This reference topology is intended to be a blank slate with minimal configuration to prepare the simulation to receive additional deployment and provisioning that demonstrates a feature or represents a fully operational production network.
 

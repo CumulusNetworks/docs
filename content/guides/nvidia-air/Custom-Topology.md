@@ -11,7 +11,7 @@ To access the custom topologies click on the `Create your own` card in the `Crea
 
 {{<img src="/images/guides/nvidia-air/BuildaTopology.png">}}
 
-Alternatively, go directly via the link {{<exlink url="https://air.nvidia.com/build" text="https://air.nvidia.com/build">}}.
+Alternatively, go directly via the link [https://air.nvidia.com/build](https://air.nvidia.com/build).
 
 ## Custom Topology Landing Page
 

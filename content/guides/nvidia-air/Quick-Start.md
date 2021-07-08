@@ -41,7 +41,7 @@ The landing page offers the following options:
 
   {{<img src="/images/guides/nvidia-air/BuildSim_Demos.png" width="800px">}}
 
-- **Sidebar**: The sidebar to the left has a **Create a Simulation** link to create new simulations, links to the current Cumulus Linux and NetQ user guides and a link to {{<exlink url="https://www.nvidia.com/en-us/networking/linux-on-demand/" text="self-paced labs">}}.
+- **Sidebar**: The sidebar to the left has a **Create a Simulation** link to create new simulations, links to the current Cumulus Linux and NetQ user guides and a link to [self-paced labs](https://www.nvidia.com/en-us/networking/linux-on-demand/).
 
 {{<img src="/images/guides/nvidia-air/SideBar.png">}}
 

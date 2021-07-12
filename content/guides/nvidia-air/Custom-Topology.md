@@ -72,14 +72,24 @@ To connect two nodes together, click a port on one node and drag it to the port 
 
 {{<img src="/images/guides/nvidia-air/CustomTopology_Link.png" width="1000px">}}
 
-## Export a Custom Topology
+## Build a Custom Topology
 
 To export a custom topology, click **Export Build** in the drop down referenced in {{<link text="Canvas Overview" title="#canvas-overview">}} above. This exports the custom topology in a GraphViz format so you can import it into the Air simulation platform to create a new custom topology.
 
-{{<img src="/images/guides/nvidia-air/CustomTopology_Export.png" width="1000px">}}
+{{<img src="/images/guides/nvidia-air/StartSimulation.png" width="500px">}}
 
-### Build a Custom Topology
+### Exporting a Custom Topology
 
 To build a custom topology, reach out to your local NVIDIA Solutions Architect to take the exported `topology.dot` file and load it into Air. If you don't know who your local Solutions Architect is, contact NVIDIA Air Support for assistance by clicking **Report an issue** on the landing page for your Air simulation.
 
+{{<img src="/images/guides/nvidia-air/CustomTopology_Export.png" width="1000px">}}
+
 {{<img src="/images/guides/nvidia-air/ReportAnIssue.png">}}
+
+## Ensuring Netq Functionality
+
+Netq can be included with any simulation. To do this, drag the `node` icon into the canvas and change the `OS` field to a Netq version.
+
+{{<img src="/images/guides/nvidia-air/NetqCustomTopo.png">}}
+
+No additional connectivity is required to get Netq functionality. The only thing that is required is the existance of a Netq node. The Netq agents and registration will automatically be created by the platform as long as the Netq node is defined in the simulation.

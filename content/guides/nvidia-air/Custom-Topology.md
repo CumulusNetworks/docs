@@ -74,22 +74,37 @@ To connect two nodes together, click a port on one node and drag it to the port 
 
 ## Build a Custom Topology
 
-To export a custom topology, click **Export Build** in the drop down referenced in {{<link text="Canvas Overview" title="#canvas-overview">}} above. This exports the custom topology in a GraphViz format so you can import it into the Air simulation platform to create a new custom topology.
+To build a custom topology, there are two options:
+
+* Start a simulation directly from the topology builder
+* Export the topology files and upload them directly into Air
 
 {{<img src="/images/guides/nvidia-air/StartSimulation.png" width="500px">}}
 
-### Exporting a Custom Topology
+### Start a Simulation Directly
 
-To build a custom topology, reach out to your local NVIDIA Solutions Architect to take the exported `topology.dot` file and load it into Air. If you don't know who your local Solutions Architect is, contact NVIDIA Air Support for assistance by clicking **Report an issue** on the landing page for your Air simulation.
+To start a simulation directly from the topology builder, click the `Start Simulation` button. This will automatically launch the simulation and redirect to the Air landing page. The topology and the diagram will automatically be linked to your simulation and no additional work is required.
 
-{{<img src="/images/guides/nvidia-air/CustomTopology_Export.png" width="1000px">}}
+### Export a Custom Topology
 
-{{<img src="/images/guides/nvidia-air/ReportAnIssue.png">}}
+To export a custom topology, first download the requisite files. Click `Export` in the top right button.
 
-## Ensuring Netq Functionality
+This will export two files for download:
+1. Topology.dot - Network definition in GraphViz format
+2. Topology.svg - Network diagram in Scalable Vector Graphics format
 
-Netq can be included with any simulation. To do this, drag the `node` icon into the canvas and change the `OS` field to a Netq version.
+Both files file can be uploaded into Air via the `Create Simulation` workflow. First, click the `Upload Topology` card:
+
+{{<img src="/images/guides/nvidia-air/UploadTopology1.png" width="480px">}}
+
+Then upload the `topology.dot` and `topology.svg` files to the proper locations:
+
+{{<img src="/images/guides/nvidia-air/UploadTopology2.png" width="480px">}}
+
+## NetQ Integration
+
+NetQ can be included with any simulation. To do this, drag the `node` icon into the canvas and change the `OS` field to a NetQ version.
 
 {{<img src="/images/guides/nvidia-air/NetqCustomTopo.png">}}
 
-No additional connectivity is required to get Netq functionality. The only thing that is required is the existance of a Netq node. The Netq agents and registration will automatically be created by the platform as long as the Netq node is defined in the simulation.
+No additional connectivity is required to get NetQ functionality. The only thing that is required is the existance of a NetQ node. The NetQ agents and registration will automatically be created by the platform as long as the NetQ node is defined in the simulation.

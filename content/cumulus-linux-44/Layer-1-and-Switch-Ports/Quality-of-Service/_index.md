@@ -111,7 +111,7 @@ traffic.cos_6.priority_source.8021p = [6]
 traffic.cos_7.priority_source.8021p = [7]
 ```
 
-{{<cl/qos-switchd>}}
+You can configure additional settings using [Port Groups](#trust-and-marking). {{<cl/qos-switchd>}}
 
 ### Trust DSCP
 
@@ -156,13 +156,13 @@ traffic.cos_6.priority_source.dscp = [48,49,50,51,52,53,54,55]
 traffic.cos_7.priority_source.dscp = [56,57,58,59,60,61,62,63]
 ```
 
-{{<cl/qos-switchd>}}
+You can configure additional settings using [Port Groups](#trust-and-marking). {{<cl/qos-switchd>}}
 
 ### Trust Port
 
 To assign all traffic to an internal COS queue, regardless of the ingress marking, configure `traffic.packet_priority_source_set = [port]`.
 
-All traffic is assigned to the COS value defined by `traffic.port_default_priority`. You can configure additional settings using [Port Groups](#using-port-groups).
+All traffic is assigned to the COS value defined by `traffic.port_default_priority`. You can configure additional settings using [Port Groups](#port-groups).
 
 {{<cl/qos-switchd>}}
 
@@ -305,7 +305,7 @@ traffic.cos_1.priority_remark.dscp = [40]
 traffic.cos_2.priority_remark.dscp = [40]
 ```
 
-{{<cl/qos-switchd>}}
+You can configure additional settings using [Port Groups](#remarking). {{<cl/qos-switchd>}}
 
 ## Flow Control
 
@@ -321,7 +321,7 @@ Cumulus Linux supports the following congestion control mechanisms:
 
 Before configuring Pause Frames or PFC, allocate buffer pools and limits for lossless flows.
 
-Edit the following lines in the `/etc/mlx/datapath/qos_infra.conf` file:
+Edit the following lines in the `/etc/mlx/datapath/qos/qos_infra.conf` file:
 
 1. Modify the existing `ingress_service_pool.0.percent` and `egress_service_pool.0.percent` buffer allocation. Change the existing ingress setting to `ingress_service_pool.0.percent = 50`. Change the existing egress setting to `egress_service_pool.0.percent = 50`.
 

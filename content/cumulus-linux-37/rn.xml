@@ -234,6 +234,12 @@ Fixed: 1.6.2-3+deb8u5</td>
 <td></td>
 </tr>
 <tr>
+<td>2663119</td>
+<td>If you update the MAC address of an SVI using {{ifreload}} and {{hwaddress}}, the kernel maintains a stale permanent fdb entry for the old MAC address.</td>
+<td>3.7.14-3.7.15, 4.3.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
 <td>2660693</td>
 <td>CVE-2021-22876: libcurl, an URL transfer library, does not strip off user credentials from the URL when automatically populating the Referer HTTP request header field in outgoing HTTP requests. Sensitive authentication data may leak to the server that is the target of the second HTTP request.
 Vulnerable: 7.38.0-4+deb8u19
@@ -293,6 +299,12 @@ Fixed: 0.4.1-1.2+deb8u1</td>
 <td>4.4.0</td>
 </tr>
 <tr>
+<td>2652003</td>
+<td>When 802.1x MAB and a parking VLAN are configured on an interface, hostapd might install a static fdb entry if the interface is down.  To work around this issue, delete 802.1x from the interface with the {{net del interface &lt;interface&gt; dot1x}} command, then add back the 802.1x configuration.</td>
+<td>3.7.10-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2648658</td>
 <td>If you try to use more than one percent of {{max-ecmp-nexthops}}, you get an error indicating a failure.</td>
 <td>3.7.15-4.3.0</td>
@@ -318,6 +330,12 @@ Fixed: 6.8.9.9-5+deb8u24</td>
 <td></td>
 </tr>
 <tr>
+<td>2645846</td>
+<td>When 802.1x MAB and a parking VLAN are configured on an interface, hostapd might install a static fdb entry if the interface is down.  To work around this issue, delete 802.1x from the interface with the {{net del interface &lt;interface&gt; dot1x}} command, then add back the 802.1x configuration.</td>
+<td>3.7.10-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2638400</td>
 <td>When you stop {{clagd}} on the MLAG primary switch (for example, when you reboot the switch), in rare conditions the MLAG secondary switch might fail to properly assert itself as the MLAG primary switch. To work around this issue, change the primary designation by configuring the {{clagd}} priorities to ensure that you only reboot a switch that is in the MLAG secondary role.</td>
 <td>3.7.15</td>
@@ -333,6 +351,12 @@ Fixed: 6.8.9.9-5+deb8u24</td>
 <td>2607965</td>
 <td>On the EdgeCore AS7726 switch, when you run the NCLU {{net show system}} command, you see the error {{Command not found}}.</td>
 <td>3.7.14.2-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2581473</td>
+<td>When netq-agent is installed on the Dell N3048EP platform, switchd might crash if pluggables are installed in the SFP+ ports.</td>
+<td>3.7.13-3.7.15</td>
 <td></td>
 </tr>
 <tr>
@@ -2323,6 +2347,12 @@ Fixed: 1.6.2-3+deb8u5</td>
 <td></td>
 </tr>
 <tr>
+<td>2663119</td>
+<td>If you update the MAC address of an SVI using {{ifreload}} and {{hwaddress}}, the kernel maintains a stale permanent fdb entry for the old MAC address.</td>
+<td>3.7.14-3.7.15, 4.3.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
 <td>2660693</td>
 <td>CVE-2021-22876: libcurl, an URL transfer library, does not strip off user credentials from the URL when automatically populating the Referer HTTP request header field in outgoing HTTP requests. Sensitive authentication data may leak to the server that is the target of the second HTTP request.
 Vulnerable: 7.38.0-4+deb8u19
@@ -2382,6 +2412,12 @@ Fixed: 0.4.1-1.2+deb8u1</td>
 <td>4.4.0</td>
 </tr>
 <tr>
+<td>2652003</td>
+<td>When 802.1x MAB and a parking VLAN are configured on an interface, hostapd might install a static fdb entry if the interface is down.  To work around this issue, delete 802.1x from the interface with the {{net del interface &lt;interface&gt; dot1x}} command, then add back the 802.1x configuration.</td>
+<td>3.7.10-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2648587</td>
 <td>The received PVST BPDU for a VLAN is flooded even though the ingress port doesn't have the VLAN tagged.</td>
 <td>3.7.8-3.7.14.2, 4.0.0-4.3.0</td>
@@ -2404,6 +2440,12 @@ Fixed: 9.9.5.dfsg-9+deb8u22</td>
 Vulnerable: &lt;= 6.8.9.9-5+deb8u23
 Fixed: 6.8.9.9-5+deb8u24</td>
 <td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2645846</td>
+<td>When 802.1x MAB and a parking VLAN are configured on an interface, hostapd might install a static fdb entry if the interface is down.  To work around this issue, delete 802.1x from the interface with the {{net del interface &lt;interface&gt; dot1x}} command, then add back the 802.1x configuration.</td>
+<td>3.7.10-3.7.15</td>
 <td></td>
 </tr>
 <tr>
@@ -2519,6 +2561,12 @@ Vulnerable: &lt;= 2.6.1-2+deb8u5
 FIxed: 2.6.1-2+deb8u6</td>
 <td>3.7.0-3.7.14.2</td>
 <td>3.7.15</td>
+</tr>
+<tr>
+<td>2581473</td>
+<td>When netq-agent is installed on the Dell N3048EP platform, switchd might crash if pluggables are installed in the SFP+ ports.</td>
+<td>3.7.13-3.7.15</td>
+<td></td>
 </tr>
 <tr>
 <td>2574294</td>
@@ -4454,6 +4502,12 @@ Fixed: 1.6.2-3+deb8u5</td>
 <td></td>
 </tr>
 <tr>
+<td>2663119</td>
+<td>If you update the MAC address of an SVI using {{ifreload}} and {{hwaddress}}, the kernel maintains a stale permanent fdb entry for the old MAC address.</td>
+<td>3.7.14-3.7.15, 4.3.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
 <td>2660693</td>
 <td>CVE-2021-22876: libcurl, an URL transfer library, does not strip off user credentials from the URL when automatically populating the Referer HTTP request header field in outgoing HTTP requests. Sensitive authentication data may leak to the server that is the target of the second HTTP request.
 Vulnerable: 7.38.0-4+deb8u19
@@ -4513,6 +4567,12 @@ Fixed: 0.4.1-1.2+deb8u1</td>
 <td>4.4.0</td>
 </tr>
 <tr>
+<td>2652003</td>
+<td>When 802.1x MAB and a parking VLAN are configured on an interface, hostapd might install a static fdb entry if the interface is down.  To work around this issue, delete 802.1x from the interface with the {{net del interface &lt;interface&gt; dot1x}} command, then add back the 802.1x configuration.</td>
+<td>3.7.10-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2648587</td>
 <td>The received PVST BPDU for a VLAN is flooded even though the ingress port doesn't have the VLAN tagged.</td>
 <td>3.7.8-3.7.14.2, 4.0.0-4.3.0</td>
@@ -4535,6 +4595,12 @@ Fixed: 9.9.5.dfsg-9+deb8u22</td>
 Vulnerable: &lt;= 6.8.9.9-5+deb8u23
 Fixed: 6.8.9.9-5+deb8u24</td>
 <td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2645846</td>
+<td>When 802.1x MAB and a parking VLAN are configured on an interface, hostapd might install a static fdb entry if the interface is down.  To work around this issue, delete 802.1x from the interface with the {{net del interface &lt;interface&gt; dot1x}} command, then add back the 802.1x configuration.</td>
+<td>3.7.10-3.7.15</td>
 <td></td>
 </tr>
 <tr>
@@ -4644,6 +4710,12 @@ Vulnerable: &lt;= 2.6.1-2+deb8u5
 FIxed: 2.6.1-2+deb8u6</td>
 <td>3.7.0-3.7.14.2</td>
 <td>3.7.15</td>
+</tr>
+<tr>
+<td>2581473</td>
+<td>When netq-agent is installed on the Dell N3048EP platform, switchd might crash if pluggables are installed in the SFP+ ports.</td>
+<td>3.7.13-3.7.15</td>
+<td></td>
 </tr>
 <tr>
 <td>2574294</td>
@@ -7192,6 +7264,12 @@ Fixed: 0.4.1-1.2+deb8u1</td>
 <td>4.4.0</td>
 </tr>
 <tr>
+<td>2652003</td>
+<td>When 802.1x MAB and a parking VLAN are configured on an interface, hostapd might install a static fdb entry if the interface is down.  To work around this issue, delete 802.1x from the interface with the {{net del interface &lt;interface&gt; dot1x}} command, then add back the 802.1x configuration.</td>
+<td>3.7.10-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2648587</td>
 <td>The received PVST BPDU for a VLAN is flooded even though the ingress port doesn't have the VLAN tagged.</td>
 <td>3.7.8-3.7.14.2, 4.0.0-4.3.0</td>
@@ -7214,6 +7292,12 @@ Fixed: 9.9.5.dfsg-9+deb8u22</td>
 Vulnerable: &lt;= 6.8.9.9-5+deb8u23
 Fixed: 6.8.9.9-5+deb8u24</td>
 <td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2645846</td>
+<td>When 802.1x MAB and a parking VLAN are configured on an interface, hostapd might install a static fdb entry if the interface is down.  To work around this issue, delete 802.1x from the interface with the {{net del interface &lt;interface&gt; dot1x}} command, then add back the 802.1x configuration.</td>
+<td>3.7.10-3.7.15</td>
 <td></td>
 </tr>
 <tr>
@@ -7307,6 +7391,12 @@ Vulnerable: &lt;= 2.6.1-2+deb8u5
 FIxed: 2.6.1-2+deb8u6</td>
 <td>3.7.0-3.7.14.2</td>
 <td>3.7.15</td>
+</tr>
+<tr>
+<td>2581473</td>
+<td>When netq-agent is installed on the Dell N3048EP platform, switchd might crash if pluggables are installed in the SFP+ ports.</td>
+<td>3.7.13-3.7.15</td>
+<td></td>
 </tr>
 <tr>
 <td>2562511</td>
@@ -10083,6 +10173,12 @@ Fixed: 0.4.1-1.2+deb8u1</td>
 <td>4.4.0</td>
 </tr>
 <tr>
+<td>2652003</td>
+<td>When 802.1x MAB and a parking VLAN are configured on an interface, hostapd might install a static fdb entry if the interface is down.  To work around this issue, delete 802.1x from the interface with the {{net del interface &lt;interface&gt; dot1x}} command, then add back the 802.1x configuration.</td>
+<td>3.7.10-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2648587</td>
 <td>The received PVST BPDU for a VLAN is flooded even though the ingress port doesn't have the VLAN tagged.</td>
 <td>3.7.8-3.7.14.2, 4.0.0-4.3.0</td>
@@ -10105,6 +10201,12 @@ Fixed: 9.9.5.dfsg-9+deb8u22</td>
 Vulnerable: &lt;= 6.8.9.9-5+deb8u23
 Fixed: 6.8.9.9-5+deb8u24</td>
 <td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2645846</td>
+<td>When 802.1x MAB and a parking VLAN are configured on an interface, hostapd might install a static fdb entry if the interface is down.  To work around this issue, delete 802.1x from the interface with the {{net del interface &lt;interface&gt; dot1x}} command, then add back the 802.1x configuration.</td>
+<td>3.7.10-3.7.15</td>
 <td></td>
 </tr>
 <tr>
@@ -12791,6 +12893,12 @@ Fixed: 0.4.1-1.2+deb8u1</td>
 <td>4.4.0</td>
 </tr>
 <tr>
+<td>2652003</td>
+<td>When 802.1x MAB and a parking VLAN are configured on an interface, hostapd might install a static fdb entry if the interface is down.  To work around this issue, delete 802.1x from the interface with the {{net del interface &lt;interface&gt; dot1x}} command, then add back the 802.1x configuration.</td>
+<td>3.7.10-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2648587</td>
 <td>The received PVST BPDU for a VLAN is flooded even though the ingress port doesn't have the VLAN tagged.</td>
 <td>3.7.8-3.7.14.2, 4.0.0-4.3.0</td>
@@ -12813,6 +12921,12 @@ Fixed: 9.9.5.dfsg-9+deb8u22</td>
 Vulnerable: &lt;= 6.8.9.9-5+deb8u23
 Fixed: 6.8.9.9-5+deb8u24</td>
 <td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2645846</td>
+<td>When 802.1x MAB and a parking VLAN are configured on an interface, hostapd might install a static fdb entry if the interface is down.  To work around this issue, delete 802.1x from the interface with the {{net del interface &lt;interface&gt; dot1x}} command, then add back the 802.1x configuration.</td>
+<td>3.7.10-3.7.15</td>
 <td></td>
 </tr>
 <tr>
@@ -15226,6 +15340,12 @@ Fixed: 0.4.1-1.2+deb8u1</td>
 <td>4.4.0</td>
 </tr>
 <tr>
+<td>2652003</td>
+<td>When 802.1x MAB and a parking VLAN are configured on an interface, hostapd might install a static fdb entry if the interface is down.  To work around this issue, delete 802.1x from the interface with the {{net del interface &lt;interface&gt; dot1x}} command, then add back the 802.1x configuration.</td>
+<td>3.7.10-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2648587</td>
 <td>The received PVST BPDU for a VLAN is flooded even though the ingress port doesn't have the VLAN tagged.</td>
 <td>3.7.8-3.7.14.2, 4.0.0-4.3.0</td>
@@ -15248,6 +15368,12 @@ Fixed: 9.9.5.dfsg-9+deb8u22</td>
 Vulnerable: &lt;= 6.8.9.9-5+deb8u23
 Fixed: 6.8.9.9-5+deb8u24</td>
 <td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2645846</td>
+<td>When 802.1x MAB and a parking VLAN are configured on an interface, hostapd might install a static fdb entry if the interface is down.  To work around this issue, delete 802.1x from the interface with the {{net del interface &lt;interface&gt; dot1x}} command, then add back the 802.1x configuration.</td>
+<td>3.7.10-3.7.15</td>
 <td></td>
 </tr>
 <tr>

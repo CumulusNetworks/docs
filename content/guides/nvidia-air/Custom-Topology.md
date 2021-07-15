@@ -82,7 +82,7 @@ To upload a ZTP script, click the ZTP script button in the top right of the canv
 
 This will open up a popup window to put in the ZTP script. The popup window will already be populated with a default script. The default script is designed as a guide to implement common ZTP features on Cumulus Linux, including:
 
-* Disable password expirey
+* Disable password expiry
 * Make `cumulus` user passwordless sudo
 * Download SSH keys for key based SSH
 

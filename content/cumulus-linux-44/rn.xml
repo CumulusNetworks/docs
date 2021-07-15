@@ -37,6 +37,15 @@ To work around this issue, delete the DHCP lease file for eth0 with the {{sudo r
 <td></td>
 </tr>
 <tr>
+<td>2700701</td>
+<td>A default route learned from DHCP on eth0 in the management VRF might install in the default VRF if all the following conditions exist:
+- eth0 is disconnected
+- the original next hop is reachable in the default VRF
+To work around this issue, delete the DHCP lease file for eth0 with the {{sudo rm /var/lib/dhcp/dhclient.eth0.leases}} command.</td>
+<td>4.3.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
 <td>2699399</td>
 <td>When you run the vtysh {{show ip bgp vrf &lt;name&gt; &lt;afi&gt; &lt;safi&gt; statistics}} command, the {{bgpd}} service crashes if you use {{vrf all}}. For example:
 spine01# show ip bgp vrf all statistics 
@@ -77,6 +86,12 @@ Fixed: 4.11.4+107-gef32c7afa2-1</td>
 <td></td>
 </tr>
 <tr>
+<td>2685584</td>
+<td>A host migrated to an 802.1x port within the same broadcast domain does not have the correct static FDB entry installed if a dynamic FDB entry for that MAC address exists from previous connectivity in the broadcast domain.</td>
+<td>4.2.1-4.4.0</td>
+<td></td>
+</tr>
+<tr>
 <td>2685036</td>
 <td>In a PIM configuration where the RP configuration includes an anycast IP address, if the route to that anycast IP address changes while joined to a multicast stream, you might receive the multicast stream from both the old and the new anycast source.</td>
 <td>4.4.0</td>
@@ -86,6 +101,13 @@ Fixed: 4.11.4+107-gef32c7afa2-1</td>
 <td>2682976</td>
 <td>CVE-2021-28902, CVE-2021-28903, CVE-2021-28904, CVE-2021-28905, CVE-2021-28906: Several vulnerabilities have been announced in libyang that can cause a crash.
 Vulnerable: &lt;= 1.0.184-2+cl4.3.0u1</td>
+<td>4.0.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2682973</td>
+<td>CVE-2020-12762: integer overflow in the json-c JSON library, which could result in denial of service or potentially the execution of arbitrary code if large malformed JSON files are processed.
+Vulnerable: 0.12.2+cl4u1</td>
 <td>4.0.0-4.4.0</td>
 <td></td>
 </tr>
@@ -143,6 +165,12 @@ https://security-tracker.debian.org/tracker/CVE-2019-14889</td>
 <td></td>
 </tr>
 <tr>
+<td>2663119</td>
+<td>If you update the MAC address of an SVI using {{ifreload}} and {{hwaddress}}, the kernel maintains a stale permanent fdb entry for the old MAC address.</td>
+<td>3.7.14-3.7.15, 4.3.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
 <td>2639303</td>
 <td>When you use NCLU to delete a bond, then add an interface, NCLU reports an error similar to the following:
 ERROR: 'NoneType' object has no attribute 'conf_key_value_multiple_values'
@@ -183,10 +211,23 @@ To work around this issue, disable pruning for IPv6 multicast by setting {{bridg
 <td></td>
 </tr>
 <tr>
+<td>2556659</td>
+<td>CVE-2020-35498: A vulnerability was found in openvswitch. A limitation in the implementation of userspace packet parsing can allow a malicious user to send a specially crafted packet causing the resulting megaflow in the kernel to be too wide, potentially causing a denial of service. The highest threat from this vulnerability is to system availability.
+Vulnerable: &lt;= 2.8.90-1-cl4u5</td>
+<td>4.0.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
 <td>2556591</td>
 <td>After upgrading to Cumulus Linux 4.3.0, MLAG ports might remain down with {{clagctl}} and {{net show clag}} reporting {{bridge-priority-mismatch}}.
 To work around this issue, run the {{sudo ifreload -a}} command on both peers, or configure {{bridge-bridgeprio}} to be the same value as {{mstpcl-treeprio}} on the bridge interface in /etc/network/interfaces followed by {{sudo ifreload -a}}.</td>
 <td>4.3.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2556462</td>
+<td>{{smonctl}} and {{sensors}} display different information about removed fans when a fan tray is removed.</td>
+<td>4.2.1-4.4.0</td>
 <td></td>
 </tr>
 <tr>
@@ -1229,6 +1270,13 @@ Fixed: 0.6.1-2+deb10u1</td>
 <td>4.3.0</td>
 </tr>
 <tr>
+<td>2682971</td>
+<td>CVE-2020-12762: integer overflow in the json-c JSON library, which could result in denial of service or potentially the execution of arbitrary code if large malformed JSON files are processed.
+Vulnerable: 0.12.2+cl4u1
+Fixed: 0.12.2+cl4.4.0u1</td>
+<td>4.0.0-4.3.0</td>
+</tr>
+<tr>
 <td>2682780</td>
 <td>Adding a route map configuration after a MAC access list configuration line causes the route map configuration to be applied incorrectly.
 To work around this issue, add the MAC access list configuration to the end of the {{/etc/frr/frr.conf}} file.</td>
@@ -1493,6 +1541,12 @@ within an X509 certificate. However it fails to correctly handle any errors that
 CVE-2019-1551: There is an overflow bug in the x64_64 Montgomery squaring procedure used in exponentiation with 512-bit moduli. No EC algorithms are affected. Analysis suggests that attacks against 2-prime RSA1024, 3-prime RSA1536, and DSA1024 as a result of this defect would be very difficult to perform and are not believed likely. Attacks against DH512 are considered just feasible. However, for an attack the target would have to re-use the DH512 private key, which is not recommended anyway. Also applications directly using the low level API BN_mod_exp may be affected if they use BN_FLG_CONSTTIME.
 Vulnerable: &lt;= 1.1.1d-0+deb10u4
 Fixed: 1.1.1d-0+deb10u5</td>
+<td>4.0.0-4.3.0</td>
+</tr>
+<tr>
+<td>2556658</td>
+<td>CVE-2020-35498: A vulnerability was found in openvswitch. A limitation in the implementation of userspace packet parsing can allow a malicious user to send a specially crafted packet causing the resulting megaflow in the kernel to be too wide, potentially causing a denial of service. The highest threat from this vulnerability is to system availability.
+Vulnerable: &lt;= 2.8.90-1-cl4u5</td>
 <td>4.0.0-4.3.0</td>
 </tr>
 <tr>

@@ -68,6 +68,15 @@ Fixed: 4.11.4+107-gef32c7afa2-1</td>
 <td></td>
 </tr>
 <tr>
+<td>2685994</td>
+<td>The {{nv set interface lo router ospf area}} command fails to apply the configuration when attempting to configure OSPF on a loopback interface using NVUE. To work around this issue, bring the loopback interface into the desired OSPF area using the {{nv set vrf default router ospf area 0 network}} command, referencing the assigned prefix of the loopback interface. Example:
+
+   nv set vrf default router ospf area 0 network 10.10.10.1/32
+   nv config apply</td>
+<td>4.0.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
 <td>2685036</td>
 <td>In a PIM configuration where the RP configuration includes an anycast IP address, if the route to that anycast IP address changes while joined to a multicast stream, you might receive the multicast stream from both the old and the new anycast source.</td>
 <td>4.4.0</td>
@@ -174,26 +183,10 @@ To work around this issue, disable pruning for IPv6 multicast by setting {{bridg
 <td></td>
 </tr>
 <tr>
-<td>2556776</td>
-<td>CVE-2021-27212: A vulnerability in the Certificate List Exact Assertion validation was discovered in OpenLDAP, a free implementation of the Lightweight Directory Access Protocol. An unauthenticated remote attacker can take advantage of this flaw to cause a denial of service (slapd daemon crash) via specially crafted packets.
-Vulnerable: &lt;= 2.4.47+dfsg-3+deb10u5
-Fixed: 2.4.47+dfsg-3+deb10u6</td>
-<td>4.0.0-4.4.0</td>
-<td></td>
-</tr>
-<tr>
 <td>2556591</td>
 <td>After upgrading to Cumulus Linux 4.3.0, MLAG ports might remain down with {{clagctl}} and {{net show clag}} reporting {{bridge-priority-mismatch}}.
 To work around this issue, run the {{sudo ifreload -a}} command on both peers, or configure {{bridge-bridgeprio}} to be the same value as {{mstpcl-treeprio}} on the bridge interface in /etc/network/interfaces followed by {{sudo ifreload -a}}.</td>
 <td>4.3.0-4.4.0</td>
-<td></td>
-</tr>
-<tr>
-<td>2556456</td>
-<td>CVE-2020-36221, CVE-2020-36222, CVE-2020-36223, CVE-2020-36224, CVE-2020-36225, CVE-2020-36226, CVE-2020-36227, CVE-2020-36228, CVE-2020-36229, CVE-2020-36230:  Several vulnerabilities were discovered in OpenLDAP, a free implementation of the Lightweight Directory Access Protocol. An unauthenticated remote attacker can take advantage of these flaws to cause a denial of service (slapd daemon crash, infinite loops) via specially crafted packets.
-Vulnerable: &lt;= 2.4.47+dfsg-3+deb10u4
-Fixed: 2.4.47+dfsg-3+deb10u5</td>
-<td>4.0.0-4.4.0</td>
 <td></td>
 </tr>
 <tr>
@@ -1201,6 +1194,20 @@ To work around this issue, change the value of {{arp_ignore}} to 2. See [Address
 <th> Issue ID </th>
 <th> Description </th>
 <th> Affects </th>
+</tr>
+<tr>
+<td>2728138</td>
+<td>CVE-2020-36221, CVE-2020-36222, CVE-2020-36223, CVE-2020-36224, CVE-2020-36225, CVE-2020-36226, CVE-2020-36227, CVE-2020-36228, CVE-2020-36229, CVE-2020-36230:  Several vulnerabilities were discovered in OpenLDAP, a free implementation of the Lightweight Directory Access Protocol. An unauthenticated remote attacker can take advantage of these flaws to cause a denial of service (slapd daemon crash, infinite loops) via specially crafted packets.
+Vulnerable: &lt;= 2.4.47+dfsg-3+deb10u4
+Fixed: 2.4.47+dfsg-3+deb10u5</td>
+<td>4.0.0-4.3.0</td>
+</tr>
+<tr>
+<td>2728134</td>
+<td>CVE-2021-27212: A vulnerability in the Certificate List Exact Assertion validation was discovered in OpenLDAP, a free implementation of the Lightweight Directory Access Protocol. An unauthenticated remote attacker can take advantage of this flaw to cause a denial of service (slapd daemon crash) via specially crafted packets.
+Vulnerable: &lt;= 2.4.47+dfsg-3+deb10u5
+Fixed: 2.4.47+dfsg-3+deb10u6</td>
+<td>4.0.0-4.3.0</td>
 </tr>
 <tr>
 <td>2695527</td>

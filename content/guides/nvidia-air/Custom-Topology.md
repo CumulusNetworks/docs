@@ -9,9 +9,9 @@ NVIDIA Air fully supports the creation of custom topologies. This feature augmen
 
 To access the custom topologies click on the `Create your own` card in the `Create a Simulation` menu:
 
-{{<img src="/images/guides/nvidia-air/BuildaTopology.png">}}
+{{<img src="/images/guides/nvidia-air/BuildaTopology.png" width="800px">}}
 
-Alternatively, go directly via the link [https://air.nvidia.com/build](https://air.nvidia.com/build).
+Alternatively, go directly by following this link:  {{<exlink url="https://air.nvidia.com/build" text="air.nvidia.com/build">}}.
 
 ## Custom Topology Landing Page
 
@@ -28,11 +28,11 @@ The left panel for custom topologies contains the supported nodes used for creat
 - SONiC switches
 - Generic nodes
 
-{{<img src="/images/guides/nvidia-air/CustomTopology_LeftPanel.png" >}}
+{{<img src="/images/guides/nvidia-air/CustomTopology_LeftPanel.png" width="150px">}}
 
 The toolbar at the top manages the topology. Clicking the default name **My Topology Project** provides additional management options.
 
-{{<img src="/images/guides/nvidia-air/CustomTopology_Management.png" >}}
+{{<img src="/images/guides/nvidia-air/CustomTopology_Management.png" width="500px">}}
 
 - **Open Build**: Uploads a JSON-structured custom topology build. This is not the same as importing a `topology.dot` GraphViz format document. The JSON format structure is unique to the custom topology builder tool.
 - **Save Build**: Exports a JSON-structured custom topology that represents the canvas. This exported JSON file is designed to be read in only by the custom topology builder application. While you can open and edit it in a text editor, it should only be interpreted by the custom topology builder application.
@@ -45,24 +45,24 @@ The toolbar at the top manages the topology. Clicking the default name **My Topo
 
 To add a node, drag and drop it from the left panel.
 
-{{<img src="/images/guides/nvidia-air/CustomTopology_AddingNodes.png" width="1000px">}}
+{{<img src="/images/guides/nvidia-air/CustomTopology_AddingNodes.png" width="800px">}}
 
 ### Edit Nodes
 
 Once a node has been added, you can edit it as needed. Click the node to select it and configure it using the options in the right panel.
 
-{{<img src="/images/guides/nvidia-air/CustomTopology_EditingNodes.png" width="1000px">}}
+{{<img src="/images/guides/nvidia-air/CustomTopology_EditingNodes.png" width="800px">}}
 
 - **Name**: The hostname of the node.
 - **OS**: The operating system version on the node. The supported OS versions are in a drop down list.
 
-  {{<img src="/images/guides/nvidia-air/CustomTopology_NodeOS.png" width="1000px">}}
+  {{<img src="/images/guides/nvidia-air/CustomTopology_NodeOS.png" width="800px">}}
 
 - **Memory**: The amount of RAM on the node. The default is 1GB.
 - **CPU**: The number of CPUs allocated to the node. The default is 1 CPU.
 - **Role**: This is an advanced feature to define the role of the node to affect boot order. You typically don't have to assign a role.
 
-  {{<img src="/images/guides/nvidia-air/CustomTopology_Role.png" width="1000px">}}
+  {{<img src="/images/guides/nvidia-air/CustomTopology_Role.png" width="800px">}}
 
 - **Ports**: Add, rename and edit port location and information for the diagram.
 
@@ -70,41 +70,42 @@ Once a node has been added, you can edit it as needed. Click the node to select 
 
 To connect two nodes together, click a port on one node and drag it to the port on the other node. This draws a line between the two ports to show the connection.
 
-{{<img src="/images/guides/nvidia-air/CustomTopology_Link.png" width="1000px">}}
+{{<img src="/images/guides/nvidia-air/CustomTopology_Link.png" width="800px">}}
 
 ## Build a Custom Topology
 
-To build a custom topology, there are two options:
+To build a custom topology, choose one of these two options:
 
-* Start a simulation directly from the topology builder
-* Export the topology files and upload them directly into Air
+- Start a simulation directly from the topology builder
+- Export the topology files and upload them directly into Air
 
 {{<img src="/images/guides/nvidia-air/StartSimulation.png" width="500px">}}
 
 ### Start a Simulation Directly
 
-To start a simulation directly from the topology builder, click the `Start Simulation` button. This will automatically launch the simulation and redirect to the Air landing page. The topology and the diagram will automatically be linked to your simulation and no additional work is required.
+To start a simulation directly from the topology builder, click the `Start Simulation` button. This automatically launches the simulation and redirects to the Air landing page. The topology and the diagram are automatically linked to your simulation, so no additional work is required.
 
 ### Export a Custom Topology
 
 To export a custom topology, first download the requisite files. Click `Export` in the top right button.
 
-This will export two files for download:
-1. Topology.dot - Network definition in GraphViz format
-2. Topology.svg - Network diagram in Scalable Vector Graphics format
+This exports two files for download:
 
-Both files file can be uploaded into Air via the `Create Simulation` workflow. First, click the `Upload Topology` card:
+- `topology.dot` - Network definition in GraphViz format
+- `topology.svg` - Network diagram in Scalable Vector Graphics format
 
-{{<img src="/images/guides/nvidia-air/UploadTopology1.png" width="480px">}}
+You can upload both files file into Air via the `Create Simulation` workflow. First, click the `Upload Topology` card:
 
-Then upload the `topology.dot` and `topology.svg` files to the proper locations:
+{{<img src="/images/guides/nvidia-air/UploadTopology1.png" width="400px">}}
 
-{{<img src="/images/guides/nvidia-air/UploadTopology2.png" width="480px">}}
+Then upload the `topology.dot` and `topology.svg` files to the proper locations (drag the `topology.dot` file onto the **Drop a topology file here...** card and the `topology.svg` file onto the **Drop a diagram here...** card):
+
+{{<img src="/images/guides/nvidia-air/UploadTopology2.png" width="400px">}}
 
 ## NetQ Integration
 
-NetQ can be included with any simulation. To do this, drag the `node` icon into the canvas and change the `OS` field to a NetQ version.
+You can include NetQ with any simulation. To do this, drag the `node` icon into the canvas and change the `OS` field to a NetQ version.
 
-{{<img src="/images/guides/nvidia-air/NetqCustomTopo.png">}}
+{{<img src="/images/guides/nvidia-air/NetqCustomTopo.png" width="225px">}}
 
-No additional connectivity is required to get NetQ functionality. The only thing that is required is the existance of a NetQ node. The NetQ agents and registration will automatically be created by the platform as long as the NetQ node is defined in the simulation.
+No additional connectivity is required to get NetQ functionality. The only requirement is the existence of a NetQ node. As long as the NetQ node is defined in the simulation, the platform automatically creates the NetQ agents and does the registration.

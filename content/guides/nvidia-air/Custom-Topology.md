@@ -74,23 +74,23 @@ To connect two nodes together, click a port on one node and drag it to the port 
 
 ### ZTP Script
 
-A custom ZTP script can be included as part of the network design. This ZTP script will be copied, exactly as pasted into the text box, onto the `oob-mgmt-server` during simulation creation. Any network node making a ZTP request on the OOB management  network will have access to this ZTP script through a DHCP server and WWW server running on the `oob-mgmt-server`.
+You can include a custom ZTP script as part of the network design. When the simulation is created, the ZTP script is copied, exactly as pasted into the text box, onto the `oob-mgmt-server`. Any network node making a ZTP request on the OOB management network has access to this ZTP script through a DHCP server and web server running on the `oob-mgmt-server`.
 
 To upload a ZTP script, click the ZTP script button in the top right of the canvas:
 
-{{<img src="/images/guides/nvidia-air/ZTP.png" width="500px">}}
+{{<img src="/images/guides/nvidia-air/ZTP.png" width="400px">}}
 
-This will open up a popup window to put in the ZTP script. The popup window will already be populated with a default script. The default script is designed as a guide to implement common ZTP features on Cumulus Linux, including:
+This opens up a popup window where you paste the contents of the ZTP script. The popup window is already populated with a default script. The default script is designed as a guide to implement common ZTP features on Cumulus Linux, including:
 
-* Disable password expiry
-* Make `cumulus` user passwordless sudo
-* Download SSH keys for key based SSH
+- Disabling password expiry
+- Making the `cumulus` user passwordless for `sudo`
+- Downloading SSH keys for key based SSH
 
 {{<img src="/images/guides/nvidia-air/ZTPPopup.png" width="800px">}}
 
-Once a ZTP script is applied, the ZTP button will change colors from grey to green, indicating that ZTP is now active on your `oob-mgmt-server`.
+Once a ZTP script is applied, the ZTP button changes color from grey to green, indicating that ZTP is now active on your `oob-mgmt-server`.
 
-{{<img src="/images/guides/nvidia-air/ZTPActive.png" width="500px">}}
+{{<img src="/images/guides/nvidia-air/ZTPActive.png" width="400px">}}
 
 ## Build a Custom Topology
 
@@ -99,7 +99,7 @@ To build a custom topology, choose one of these two options:
 - Start a simulation directly from the topology builder
 - Export the topology files and upload them directly into Air
 
-{{<img src="/images/guides/nvidia-air/StartSimulation.png" width="500px">}}
+{{<img src="/images/guides/nvidia-air/StartSimulation.png" width="400px">}}
 
 ### Start a Simulation Directly
 

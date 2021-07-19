@@ -367,8 +367,10 @@ Setting `link_pause.pause_port_group.tx_enable = true` supports the sending of p
 Pause frames can be supported for either receive (`rx`), transmit (`tx`) or both.
 
 {{% notice note %}}
-By default, link pause is enabled for `rx` and `tx` and automatically derives the following settings:
+Cumulus Linux automatically enables or derives the following settings when link pause is enabled on an interface via `link_pause.port_group_list`:
 
+* `link_pause.pause_port_group.rx_enable`
+* `link_pause.pause_port_group.tx_enable`
 * `link_pause.pause_port_group.port_buffer_bytes`
 * `link_pause.pause_port_group.xoff_size`
 * `link_pause.pause_port_group.xon_delta`
@@ -426,13 +428,14 @@ Setting `pfc.pfc_port_group.tx_enable = true` supports the sending of PFC pause 
 PFC pause frames can be supported for either receive (`rx`), transmit (`tx`) or both.
 
 {{% notice note %}}
-By default, PFC is enabled for `rx` and `tx` and automatically derives the following settings:
+Cumulus Linux automatically enables or derives the following settings when PFC is enabled on an interface via `pfc.port_group_list`:
 
+* `pfc.pause_port_group.rx_enable`
+* `pfc.pause_port_group.tx_enable`
 * `pfc.pause_port_group.port_buffer_bytes`
 * `pfc.pause_port_group.xoff_size`
 * `pfc.pause_port_group.xon_delta`
 
-PFC must still be enabled on the specific interfaces to process pause frames.
 {{% /notice %}}
 
 The following is an example `pfc` configuration.

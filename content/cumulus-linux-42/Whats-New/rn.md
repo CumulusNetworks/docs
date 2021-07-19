@@ -10,7 +10,7 @@ pdfhidden: True
 ---
 {{<rn_xls_link dir="cumulus-linux-42" >}}
 ## 4.2.1.6 Release Notes
-### Open issues in 4.2.1.6
+### Open Issues in 4.2.1.6
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
@@ -224,7 +224,7 @@ pdfhidden: True
 | <a name="2589685"></a> [2589685](#2589685) <a name="2589685"></a> <br /> | If you use NCLU to replace the outbound route map of a BGP neighbor, there is an intermediate period during the replacement where there is no outbound route map associated with that neighbor. This might result in unnecessary route withdrawals and advertisements. |  | |
 
 ## 4.2.1 Release Notes
-### Open issues in 4.2.1
+### Open Issues in 4.2.1
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
@@ -582,7 +582,7 @@ pdfhidden: True
 | <a name="2546985"></a> [2546985](#2546985) <a name="2546985"></a> <br />CM-27999 | On the EdgeCore AS7326-56X switch, the PSU fans show constant LOW warnings. | 3.7.10-3.7.12, 4.0.0-4.2.0 | |
 
 ## 4.2.0 Release Notes
-### Open issues in 4.2.0
+### Open Issues in 4.2.0
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |

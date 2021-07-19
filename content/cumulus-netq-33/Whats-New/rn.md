@@ -10,7 +10,7 @@ pdfhidden: True
 ---
 {{<rn_xls_link dir="cumulus-netq-33" >}}
 ## 3.3.1 Release Notes
-### Open issues in 3.3.1
+### Open Issues in 3.3.1
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
@@ -42,7 +42,7 @@ pdfhidden: True
 | <a name="2555587"></a> [2555587](#2555587) <a name="2555587"></a> <br />NETQ-8117 | NetQ UI: Switches with LLDP enabled only on eth0 are not shown on the topology diagram. | 3.3.0 | |
 
 ## 3.3.0 Release Notes
-### Open issues in 3.3.0
+### Open Issues in 3.3.0
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |

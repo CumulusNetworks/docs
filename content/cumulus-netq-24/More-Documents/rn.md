@@ -10,7 +10,7 @@ pdfhidden: True
 ---
 {{<rn_xls_link dir="cumulus-netq-24" >}}
 ## 2.4.1 Release Notes
-### Open issues in 2.4.1
+### Open Issues in 2.4.1
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
@@ -28,7 +28,7 @@ pdfhidden: True
 | <a name="2545119"></a> [2545119](#2545119) <a name="2545119"></a> <br />NETQ-3916 | NetQ UI and CLI: EVPN failure details do not appear in the full screen EVPN Service card or when running 'netq show validation results type evpn' in the NetQ CLI, even though the EVPN failure is seen on validation. | 2.3.1-2.4.0 | |
 
 ## 2.4.0 Release Notes
-### Open issues in 2.4.0
+### Open Issues in 2.4.0
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |

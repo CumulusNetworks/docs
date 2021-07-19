@@ -110,7 +110,7 @@ systemctl restart netqd.service
 <td></td>
 </tr>
 </table>
-<table name="Fixed issues in 3.0.0">
+<table name="Fixed Issues in 3.0.0">
 <tr>
 <th> Issue ID </th>
 <th> Description </th>

@@ -10,7 +10,7 @@ pdfhidden: True
 ---
 {{<rn_xls_link dir="cumulus-netq-31" >}}
 ## 3.1.0 Release Notes
-### Open issues in 3.1.0
+### Open Issues in 3.1.0
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |

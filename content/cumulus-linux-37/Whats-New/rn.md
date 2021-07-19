@@ -10,7 +10,7 @@ pdfhidden: True
 ---
 {{<rn_xls_link dir="cumulus-linux-37" >}}
 ## 3.7.15 Release Notes
-### Open issues in 3.7.15
+### Open Issues in 3.7.15
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
@@ -288,7 +288,7 @@ pdfhidden: True
 | <a name="2549226"></a> [2549226](#2549226) <a name="2549226"></a> <br />CM-29259 | You might see the following <code>gport</code> error messages in <code>switchd.log</code>:<br /><pre><br />2020-04-10T19:50:01.011224+09:00 E1PDX0V1ELF0001 6 switchd&#91;925&#93;: hal_bcm_mdb.c:530 gport 0x800007a find failed<br />2020-04-10T19:50:01.011631+09:00 E1PDX0V1ELF0001 6 switchd&#91;925&#93;: hal_bcm_mdb.c:530 gport 0x8000009 find failed<br /></pre><br />These messages are harmless and can be ignored. | 3.7.12-3.7.14.2, 4.0.0-4.2.1 | |
 
 ## 3.7.14.2 Release Notes
-### Open issues in 3.7.14.2
+### Open Issues in 3.7.14.2
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
@@ -564,7 +564,7 @@ pdfhidden: True
 | <a name="2552214"></a> [2552214](#2552214) <a name="2552214"></a> <br /> | The Mellanox SN2700 and SN2410 switch intermittently reports PSU fan state changes with <code>Unable to read from device/fan1_input/pwm1</code> syslog messages. | 3.7.11-3.7.14, 4.1.1-4.4.0 | |
 
 ## 3.7.14 Release Notes
-### Open issues in 3.7.14
+### Open Issues in 3.7.14
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
@@ -915,7 +915,7 @@ pdfhidden: True
 | <a name="2529322"></a> [2529322](#2529322) <a name="2529322"></a> <br />CM-15601 | On a Mellanox switch in an MLAG configuration, routed packets that arrive on one switch to be forwarded to a destination MAC across the peer link are dropped due to MLAG loop prevention. This affects both routed unicast and multicast packets.<br /><br />To work around this issue, modify the routing design or policy such that routes do not have a next hop of an MLAG peer switch that traverses the MLAG peer link.  |  | |
 
 ## 3.7.13 Release Notes
-### Open issues in 3.7.13
+### Open Issues in 3.7.13
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
@@ -1281,7 +1281,7 @@ pdfhidden: True
 | <a name="2535845"></a> [2535845](#2535845) <a name="2535845"></a> <br />CM-21898 | On a Trident3 switch, IGMP packets are not policed by the police rule in the 00control ACL file. The packets are policed by the catchall policer in the 99control ACL file instead. <br /> <code>-A $INGRESS_CHAIN -p ipv4 -d 01:00:5e:00:00:00/ff:ff:ff:80:00:00 -j police --set-mode pkt --set-rate 100 --set-burst 100</code> <br />To work around this issue, let the CPU bound IGMP packet hit the following rule and change the policer rate to a desired value for IGMP packets: <br /> <code>-A $INGRESS_CHAIN -p ipv4 -d 01:00:5e:00:00:00/ff:ff:ff:80:00:00 -j police --set-mode pkt --set-rate 100 --set-burst 100</code> <br />Typically, the destination MAC address 01:00:5e:xx:xx:xx is used only for PIM/IGMP control and data stream packets. However, this workaround cannot handle data stream multicast packets that are not TCP/UDP; this is not typically done.  | 4.0.0-4.0.1 | |
 
 ## 3.7.12 Release Notes
-### Open issues in 3.7.12
+### Open Issues in 3.7.12
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
@@ -1633,7 +1633,7 @@ pdfhidden: True
 | <a name="2536617"></a> [2536617](#2536617) <a name="2536617"></a> <br />CM-22591 | CVE-2018-5391 (FragmentSmack) is a network vulnerability where an attacker can trigger time and calculation expensive fragment reassembly with specially crafted packets, leading to a denial of service. On a Cumulus Linux switch, the impact is limited to control plane and management plane traffic. Any control plane traffic coming in the front panel ports will be limited by existing policer ACLs.<br />To work around this issue, create a file called <code>/etc/sysctl.d/ip.conf</code> and add these settings:<br /><pre><br />net.ipv4.ipfrag_low_thresh = 196608<br />net.ipv6.ip6frag_low_thresh = 196608<br />net.ipv4.ipfrag_high_thresh = 262144<br />net.ipv6.ip6frag_high_thresh = 262144<br /></pre> | 3.7.0-3.7.11, 4.0.0-4.0.1 | |
 
 ## 3.7.11 Release Notes
-### Open issues in 3.7.11
+### Open Issues in 3.7.11
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
@@ -1952,7 +1952,7 @@ pdfhidden: True
 | <a name="2526985"></a> [2526985](#2526985) <a name="2526985"></a> <br />CM-13316 | When you try to remove a VNI from a bridge using a regex match, the VNI is added back when you run the <code>ifreload -a</code> command. |  | |
 
 ## 3.7.10 Release Notes
-### Open issues in 3.7.10
+### Open Issues in 3.7.10
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
@@ -2198,7 +2198,7 @@ pdfhidden: True
 | <a name="2544073"></a> [2544073](#2544073) <a name="2544073"></a> <br />CM-26383 | After upgrading to Cumulus Linux 3.7.9 on a Broadcom switch, CPU generated traffic (such as ICMP, OSPF, ARP, and so on) egresses access ports with a 802.1Q header or interfaces with a bridge-pvid, with a VLAN ID of 0. Equipment from other vendors might drop this traffic. | 3.7.9 | |
 
 ## 3.7.9 Release Notes
-### Open issues in 3.7.9
+### Open Issues in 3.7.9
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
@@ -2453,7 +2453,7 @@ pdfhidden: True
 | <a name="2532396"></a> [2532396](#2532396) <a name="2532396"></a> <br />CM-18537 | Drops due to congestion do not appear to be counted on a Mellanox switch. To work around this issue, run the <code>sudo ethtool -S swp1</code> command to collect interface traffic statistics.  |  | |
 
 ## 3.7.8 Release Notes
-### Open issues in 3.7.8
+### Open Issues in 3.7.8
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
@@ -2662,7 +2662,7 @@ pdfhidden: True
 | <a name="2543061"></a> [2543061](#2543061) <a name="2543061"></a> <br />CM-25801 | When you run the <code>hostnamectl status</code> command or start the <code>systemd-hostnamed</code> process, you see constant <code>unregister_netdevice</code> kernel messages in syslog and on the console. This causes syslog to become filled with these messages and makes troubleshooting difficult.  | 3.7.7 | |
 
 ## 3.7.7 Release Notes
-### Open issues in 3.7.7
+### Open Issues in 3.7.7
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
@@ -2908,7 +2908,7 @@ pdfhidden: True
 | <a name="2526631"></a> [2526631](#2526631) <a name="2526631"></a> <br />CM-12967 | When link pause or priority flow control (PFC) is enabled on a Broadcom Tomahawk-based switch and there is over-subscription on a link, the ASIC sends pause frames aggressively, causing the upstream switch to not throttle enough. If you need link pause or PFC functionality, you must use a switch that does not use the Tomahawk ASIC. |  | |
 
 ## 3.7.6 Release Notes
-### Open issues in 3.7.6
+### Open Issues in 3.7.6
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
@@ -3127,7 +3127,7 @@ pdfhidden: True
 | <a name="2519945"></a> [2519945](#2519945) <a name="2519945"></a> <br />CM-6366 | In testing, it was determined that the MD5 password configured against a BGP listen-range peer-group (used to accept and create dynamic BGP neighbors) is not enforced (connections are accepted from peers that do not specify a password).  |  | |
 
 ## 3.7.5 Release Notes
-### Open issues in 3.7.5
+### Open Issues in 3.7.5
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
@@ -3302,7 +3302,7 @@ pdfhidden: True
 | <a name="2539128"></a> [2539128](#2539128) <a name="2539128"></a> <br />CM-23829 | The following CVEs were announced in Debian Security Advisory DSA-4387-1 and affect the openssh package. <br />--------------------------------------------------------------------------------------- <br />Debian Security Advisory DSA-4387-1 security&#64;debian.org <br />https://www.debian.org/security/ Yves-Alexis Perez <br />February 09, 2019 https://www.debian.org/security/faq <br />---------------------------------------------------------------------------------------- <br />Package: openssh <br />CVE ID: CVE-2018-20685 CVE-2019-6109 CVE-2019-6111 <br />Debian Bug: 793412 919101 <br />Harry Sintonen from F-Secure Corporation discovered multiple vulnerabilities in OpenSSH, an implementation of the SSH protocol suite. All the vulnerabilities are in found in the scp client implementing the SCP protocol. <br />CVE-2018-20685 <br />Due to improper directory name validation, the scp client allows servers tovmodify permissions of the target directory by using empty or dotvdirectory name. <br />CVE-2019-6109 <br />Due to missing character encoding in the progress display, the object name can be used to manipulate the client output, for example to employ ANSI codes to hide additional files being transferred. <br />CVE-2019-6111 <br />Due to scp client insufficient input validation in path names sent by server, a malicious server can do arbitrary file overwrites in target directory. If the recursive (-r) option is provided, the server can also manipulate subdirectories as well. <br />The check added in this version can lead to regression if the client and the server have differences in wildcard expansion rules. If the server is trusted for that purpose, the check can be disabled with a new -T option to the scp client. <br />For the stable distribution (stretch), these problems have been fixed in version 1:7.4p1-10+deb9u5. <br />We recommend that you upgrade your openssh packages. <br />For the detailed security status of openssh please refer to its security tracker page at: <br />https://security-tracker.debian.org/tracker/openssh |  | |
 
 ## 3.7.4 Release Notes
-### Open issues in 3.7.4
+### Open Issues in 3.7.4
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
@@ -3486,7 +3486,7 @@ pdfhidden: True
 | <a name="2532861"></a> [2532861](#2532861) <a name="2532861"></a> <br />CM-18989 | OSFP might improperly determine the LSA recency (CVE-2017-3224). |  | |
 
 ## 3.7.3 Release Notes
-### Open issues in 3.7.3
+### Open Issues in 3.7.3
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
@@ -3684,7 +3684,7 @@ pdfhidden: True
 | <a name="2530923"></a> [2530923](#2530923) <a name="2530923"></a> <br />CM-17157 | The upstream OVSDB VTEP schema has been updated multiple times and now contains a patch to support source-node replication. This patch is not included with the latest version of Cumulus Linux. |  | |
 
 ## 3.7.2 Release Notes
-### Open issues in 3.7.2
+### Open Issues in 3.7.2
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
@@ -3875,7 +3875,7 @@ pdfhidden: True
 | <a name="2529692"></a> [2529692](#2529692) <a name="2529692"></a> <br />CM-15959 | In some instances, ARP requests are not suppressed in a VXLAN active-active configuration but get flooded over VXLAN tunnels instead. This issue occurs because there is no control plane syncing the snooped local neighbor entries between the MLAG pair; MLAG does not perform this sync and neither does EVPN.  |  | |
 
 ## 3.7.1 Release Notes
-### Open issues in 3.7.1
+### Open Issues in 3.7.1
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
@@ -3986,7 +3986,7 @@ pdfhidden: True
 | <a name="2534501"></a> [2534501](#2534501) <a name="2534501"></a> <br />CM-20585 | Routes that are learned from an EVPN cloud do not get summarized. Only routes that reside on, or are owned by, a switch get summarized.  |  | |
 
 ## 3.7.0 Release Notes
-### Open issues in 3.7.0
+### Open Issues in 3.7.0
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |

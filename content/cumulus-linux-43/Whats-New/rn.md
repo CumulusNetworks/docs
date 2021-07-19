@@ -10,7 +10,7 @@ pdfhidden: True
 ---
 {{<rn_xls_link dir="cumulus-linux-43" >}}
 ## 4.3.0.1 Release Notes
-### Open issues in 4.3.0.1
+### Open Issues in 4.3.0.1
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
@@ -179,7 +179,7 @@ pdfhidden: True
 | <a name="2547903"></a> [2547903](#2547903) <a name="2547903"></a> <br />CM-28506 | CVE-2019-19956: xmlParseBalancedChunkMemoryRecover in parser.c in libxml2 before 2.9.10 has a memory leak related to newDoc->oldNs<br />Vulnerable: 2.9.4+dfsg1-7Fixed: 2.9.4+dfsg1-7+deb10u1 | 4.0.0-4.3.0 | |
 
 ## 4.3.0 Release Notes
-### Open issues in 4.3.0
+### Open Issues in 4.3.0
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |

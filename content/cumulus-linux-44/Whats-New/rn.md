@@ -10,7 +10,7 @@ pdfhidden: True
 ---
 {{<rn_xls_link dir="cumulus-linux-44" >}}
 ## 4.4.0 Release Notes
-### Open issues in 4.4.0
+### Open Issues in 4.4.0
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |

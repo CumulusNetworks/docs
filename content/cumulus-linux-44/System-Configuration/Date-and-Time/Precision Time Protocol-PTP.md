@@ -503,7 +503,7 @@ Cumulus Linux currently supports the following PTP message modes:
 - *Mixed*, where Sync and Announce messages are sent as multicast messages but Delay Request and Response messages are sent as unicast. This avoids the issue seen in multicast message mode where every slave port sees Delay Requests and Responses from every other slave port.
 
    {{%notice warning%}}
-Mixed Mode PTP is an [early access feature]({{<ref "/knowledge-base/Support/Support-Offerings/Early-Access-Features-Defined" >}}) in Cumulus Linux.
+Mixed mode is an [early access feature]({{<ref "/knowledge-base/Support/Support-Offerings/Early-Access-Features-Defined" >}}) in Cumulus Linux.
 {{%/notice%}}
 
 Multicast mode is the default setting. To set the message mode to *mixed* on an interface:

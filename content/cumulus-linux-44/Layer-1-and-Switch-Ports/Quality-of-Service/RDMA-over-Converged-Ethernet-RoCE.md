@@ -26,8 +26,15 @@ cumulus@switch:~$ net commit
 ```
 {{< /tab >}}
 {{< tab "NVUE Commands">}}
+
+{{% notice note %}}
+NVUE defaults to `roce mode lossless`. The command `nv set qos roce` and `nv set qos roce mode lossless` are equivalent.
+<br /><br />
+If `mode lossy` is enabled, configuring `nv set qos roce` without a `mode` will not change the RoCE mode. To change to lossless, `mode lossless` must be explicitly configured.
+{{% /notice %}}
+
 ```
-cumulus@switch:~$ nv set qos roce mode lossless
+cumulus@switch:~$ nv set qos roce
 cumulus@switch:~$ nv config apply
 ```
 {{< /tab >}}

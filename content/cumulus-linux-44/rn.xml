@@ -7,17 +7,57 @@
 <th> Fixed </th>
 </tr>
 <tr>
-<td>2719356</td>
-<td>VLANs may fail to be created in hardware with the log message {{hal_mlx_l2.c:3045 ERR vlan create failed}} after making multiple VLAN or bridge configuration changes when the reserved VLAN range in {{/etc/cumulus/switchd.conf}} is reduced below 32.
-The minimum supported size of the reserved VLAN range configured in {{/etc/cumulus/switchd.conf}} is 32 VLANs in Cumulus Linux 4.4.0, for single vlan aware bridge deployments.</td>
+<td>2732587</td>
+<td>The bridge MAC address is updated during a port change on bridge interfaces.</td>
+<td>4.3.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2728207</td>
+<td>CVE-2021-3570: A flaw was found in the ptp4l program of the linuxptp package. A missing length check when forwarding a PTP message between ports allows a remote attacker to cause an information leak, crash, or potentially remote code execution. The highest threat from this vulnerability is to data confidentiality and integrity as well as system availability. </td>
+<td>3.7.0-3.7.15, 4.0.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2724191</td>
+<td>On the Celestica Seastone switch, when you run {{ smonctl -v}}, the DIMM 1 Temp Sensor shows as absent .
+This is a cosmetic software issue and not indicative of a hardware failure on the system.</td>
+<td>4.3.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2722457</td>
+<td>When you apply a bridge interface configuration change with a higher scale of VLANs in quick succession in any of the following scenarios, you might see the error message {{ERR bridge creation for vlan &lt;vlan&gt; failed: No more resources}} in the {{switchd}} log file and forwarding might not work as expected (some of the VLANs might not be programmed in hardware).
+- You apply an empty {{bridge-vlan}} configuration in the {{/etc/network/interfaces}} file, then apply the scale {{bridge-vlan}} configuration.
+- You use NCLU commands, such as {{net del bridge bridge vids 3-3700}} to remove, then add back most of the {{bridge-vlan}} configuration.</td>
 <td>4.4.0</td>
 <td></td>
 </tr>
 <tr>
+<td>2722322</td>
+<td>When you change the scaled VLAN configuration,  restart networking instead of running the {{ifreload -a}} command to make sure that resources are allocated correctly.</td>
+<td>4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2719356</td>
+<td>If you reduce the reserved VLAN range in the {{/etc/cumulus/switchd.conf}} file to below 32 and you make multiple VLAN or bridge configuration changes, the VLANs might not be created in hardware and you might see the log message {{hal_mlx_l2.c:3045 ERR vlan create failed}}.
+The minimum supported size of the reserved VLAN range in the {{/etc/cumulus/switchd.conf}} file is 32 VLANs for single VLAN-aware bridge configurations.</td>
+<td>4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2716838</td>
+<td>CVE-2021-22918: An out-of-bounds read was discovered in the uv__idna_to_ascii() function of Libuv, an asynchronous event notification library, which could result in denial of service or information disclosure.
+Vulnerable: 1.24.1-1
+Fixed: 1.24.1-1+deb 10u1</td>
+<td>4.0.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
 <td>2710927</td>
-<td>Traffic loss might occur when route leaking between VRFs across different VTEPs using the Downstream VNI feature when the same originating and target VRF(s) exists on both the route receiver and the route originator. For example, when leaking from VRF A on VTEP1 to VRFs B and C on VTEP2, and VRFs A,B,C are configured both on VTEP1 and VTEP2)
-
-To work around this issue, use traditional route-leaking with the {{import vrf}} command instead of the {{route-target import asn:vni}} command used with the Downstream VNI feature.</td>
+<td>With downstream VNI, if you route leak between VRFs across different VTEPs when the same originating and target VRFs exist on both the route receiver and the route originator, you might experience traffic loss. For example, if you route leak from VRF RED on VTEP1 to VRF BLUE and GREEN on VTEP2 and VRFs RED, BLUE, and GREEN are configured both on VTEP1 and VTEP2.
+To work around this issue, use traditional route leaking with the {{import vrf}} command instead of the {{route-target import asn:vni}} command used with downstream VNI.</td>
 <td>4.4.0</td>
 <td></td>
 </tr>
@@ -25,6 +65,12 @@ To work around this issue, use traditional route-leaking with the {{import vrf}}
 <td>2710208</td>
 <td>On Broadcom switches, the {{net show bgp neighbor}} command output shows the BFD status as UP when the interface is down.</td>
 <td>4.2.1-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2707895</td>
+<td>If you use {{cl-resource-query}} under the non-root user,  you see errors.</td>
+<td>4.4.0</td>
 <td></td>
 </tr>
 <tr>
@@ -78,10 +124,10 @@ Fixed: 4.11.4+107-gef32c7afa2-1</td>
 </tr>
 <tr>
 <td>2685994</td>
-<td>The {{nv set interface lo router ospf area}} command fails to apply the configuration when attempting to configure OSPF on a loopback interface using NVUE. To work around this issue, bring the loopback interface into the desired OSPF area using the {{nv set vrf default router ospf area 0 network}} command, referencing the assigned prefix of the loopback interface. Example:
-
-   nv set vrf default router ospf area 0 network 10.10.10.1/32
-   nv config apply</td>
+<td>When you use the NVUE command {{nv set interface lo router ospf area}} to configure OSPF on a loopback interface, the configuration fails to apply.
+To work around this issue, configure the loopback interface in the desired OSPF area with the {{nv set vrf default router ospf area 0 network}} command and reference the assigned prefix of the loopback interface. For example:
+cumulus@leaf01:~$ nv set vrf default router ospf area 0 network 10.10.10.1/32
+cumulus@leaf01:~$ nv config apply</td>
 <td>4.0.0-4.4.0</td>
 <td></td>
 </tr>
@@ -208,6 +254,12 @@ To work around this issue, disable pruning for IPv6 multicast by setting {{bridg
 <td>2558184</td>
 <td>The Mellanox SN2700 and SN2410 switch intermittently reports PSU fan state changes with {{Unable to read from device/fan1_input/pwm1}} syslog messages.</td>
 <td>3.7.11-3.7.15, 4.1.1-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2556811</td>
+<td>Under certain high scale conditions, various modules might experience timetouts during cl-support collection, which results in missing data in the cl-support file.</td>
+<td>3.7.12-3.7.15, 4.1.1-4.4.0</td>
 <td></td>
 </tr>
 <tr>

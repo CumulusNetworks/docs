@@ -11,24 +11,28 @@ frontend:
         - echo Successfully installed Hugo
     build:
       commands:
-        # Embed the git commit ID into the PDF for future troubleshooting
-        - sed -i "s/COMMIT_INFO/$AWS_COMMIT_ID/g" themes/netDocs/layouts/partials/pdf-head.html
-        - pip3 install beautifulsoup4
         # Install docraptor and requests libraries
-        #- if [ "${AWS_BRANCH}" = "plumbis-stage" ]; then pip3 install --upgrade docraptor requests ; fi
+        - if [ "${AWS_BRANCH}" = "master" ]; then pip3 install --upgrade docraptor requests ; fi
         # This only runs in the master branch, and assumes that stage was merged into master to trigger the build
         # build_pdfs.py <DOCRAPTOR_API_KEY> <BASE_URL>
         # If PDF/XLS generation is failing, comment out the following line to build the site.
-        #- if [ "${AWS_BRANCH}" = "plumbis-stage" ]; then python3 utils/build_pdf_xls.py $DOCRAPTOR_KEY https://plumbis-stage.dxpqhdvalo8nj.amplifyapp.com/networking-ethernet-software/ ; fi
+        - if [ "${AWS_BRANCH}" = "master" ]; then python3 utils/build_pdf_xls.py $DOCRAPTOR_KEY https://stage.d1l3582pfvms7p.amplifyapp.com/networking-ethernet-software/ x x ; fi
+        #
         # Don't minify in non-prod branches to simplify troubleshooting
         - if [ "${AWS_BRANCH}" != "master" ]; then hugo -D --baseURL $BASEURL -d public/networking-ethernet-software/ ; fi
         - if [ "${AWS_BRANCH}" = "master" ]; then hugo --minify --baseURL $BASEURL ; fi
+        #
+        # Amplify requires that an index page exists. Generate one for stage.
         - if [ "${AWS_BRANCH}" != "master" ]; then echo "<html><head></head><body><a href='networking-ethernet-software/''>click here</a></body></html>" > public/index.html ; fi
+        #
         # Modify the PDF pages
+        # Install python beautifulsoup for html parsing
+        - pip3 install beautifulsoup4
         # Pass the /public root directory for master
         - if [ "${AWS_BRANCH}" = "master" ]; then python3 utils/pdf_page_editor.py public/ ; fi
         # Default is /public/networking-ethernet-software
         - if [ "${AWS_BRANCH}" != "master" ]; then python3 utils/pdf_page_editor.py ; fi
+        - tree
   artifacts:
     files:
       - '**/*'

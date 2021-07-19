@@ -323,15 +323,7 @@ iface bridge
     bridge-vlan-aware yes
 ```
 
-For *bridge* to have an MTU of 9000, set the MTU for each of the member interfaces (bond1 to bond 4, and peer5), to 9000 at minimum.
-
-{{%notice tip%}}
-
-**Use MTU 9216 for a bridge**
-
-Two common MTUs for jumbo frames are 9216 and 9000 bytes. The corresponding MTUs for the VNIs would be 9166 and 8950.
-
-{{%/notice%}}
+For a *bridge* to have an MTU of 9000, set the MTU for each of the member interfaces (bond1 to bond 4, and peer5), to 9000 at minimum.
 
 When configuring MTU for a bond, configure the MTU value directly under the bond interface; the configured value is inherited by member links/slave interfaces. If you need a different MTU on the bond, set it on the bond interface, as this ensures the slave interfaces pick it up. There is no need to specify MTU on the slave interfaces.
 
@@ -1412,6 +1404,10 @@ The Mellanox Spectrum-2 (25G) switch only supports RS FEC. The Tomahawk-based sw
 
 On a Maverick switch, if auto-negotiation is configured on a 10G interface and the installed module does not support auto-negotiation (for example, 10G DAC, 10G Optical, 1G RJ45 SFP), the link breaks.
 To work around this issue, disable auto-negotiation on interfaces where it is not supported.
+
+### Dell Z9264F-ON 10G Interfaces are Unsupported
+
+The Dell Z9264F-ON has 64x100G + 2x 10G SFP+ ports. The 2x 10G SFP+ ports are not supported in Cumulus Linux.
 
 ## Related Information
 

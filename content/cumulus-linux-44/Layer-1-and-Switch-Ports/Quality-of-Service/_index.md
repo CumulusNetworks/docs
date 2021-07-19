@@ -111,7 +111,7 @@ traffic.cos_6.priority_source.8021p = [6]
 traffic.cos_7.priority_source.8021p = [7]
 ```
 
-{{<cl/qos-switchd>}}
+You can configure additional settings using [Port Groups](#trust-and-marking). {{<cl/qos-switchd>}}
 
 ### Trust DSCP
 
@@ -156,13 +156,13 @@ traffic.cos_6.priority_source.dscp = [48,49,50,51,52,53,54,55]
 traffic.cos_7.priority_source.dscp = [56,57,58,59,60,61,62,63]
 ```
 
-{{<cl/qos-switchd>}}
+You can configure additional settings using [Port Groups](#trust-and-marking). {{<cl/qos-switchd>}}
 
 ### Trust Port
 
 To assign all traffic to an internal COS queue, regardless of the ingress marking, configure `traffic.packet_priority_source_set = [port]`.
 
-All traffic is assigned to the COS value defined by `traffic.port_default_priority`. You can configure additional settings using [Port Groups](#using-port-groups).
+All traffic is assigned to the COS value defined by `traffic.port_default_priority`. You can configure additional settings using [Port Groups](#port-groups).
 
 {{<cl/qos-switchd>}}
 
@@ -305,7 +305,7 @@ traffic.cos_1.priority_remark.dscp = [40]
 traffic.cos_2.priority_remark.dscp = [40]
 ```
 
-{{<cl/qos-switchd>}}
+You can configure additional settings using [Port Groups](#remarking). {{<cl/qos-switchd>}}
 
 ## Flow Control
 
@@ -321,7 +321,7 @@ Cumulus Linux supports the following congestion control mechanisms:
 
 Before configuring Pause Frames or PFC, allocate buffer pools and limits for lossless flows.
 
-Edit the following lines in the `/etc/mlx/datapath/qos_infra.conf` file:
+Edit the following lines in the `/etc/mlx/datapath/qos/qos_infra.conf` file:
 
 1. Modify the existing `ingress_service_pool.0.percent` and `egress_service_pool.0.percent` buffer allocation. Change the existing ingress setting to `ingress_service_pool.0.percent = 50`. Change the existing egress setting to `egress_service_pool.0.percent = 50`.
 
@@ -367,8 +367,10 @@ Setting `link_pause.pause_port_group.tx_enable = true` supports the sending of p
 Pause frames can be supported for either receive (`rx`), transmit (`tx`) or both.
 
 {{% notice note %}}
-By default, link pause is enabled for `rx` and `tx` and automatically derives the following settings:
+Cumulus Linux automatically enables or derives the following settings when link pause is enabled on an interface via `link_pause.port_group_list`:
 
+* `link_pause.pause_port_group.rx_enable`
+* `link_pause.pause_port_group.tx_enable`
 * `link_pause.pause_port_group.port_buffer_bytes`
 * `link_pause.pause_port_group.xoff_size`
 * `link_pause.pause_port_group.xon_delta`
@@ -403,8 +405,8 @@ Unless directed by NVIDIA support or engineering, it is not recommended that you
 |`link_pause.my_pause_ports.port_buffer_bytes`|`link_pause.my_pause_ports.port_buffer_bytes = 25000`|The amount of reserved buffer space for the set of ports defined in the port_group_list. This is reserved from the global shared buffer. |
 |`link_pause.my_pause_ports.xoff_size`  |`link_pause.my_pause_ports.xoff_size = 10000` | Set the amount of reserved buffer that must be consumed before a pause frame is sent out the set of interfaces defined in the port_group_list, if transmitting pause frames is enabled. In this example, after 10000 bytes of reserved buffer is consumed, pause frames are sent. |
 |`link_pause.my_pause_ports.xon_delta` |`link_pause.my_pause_ports.xon_delta = 2000`  |The number of bytes below the `xoff` threshold that the buffer consumption must drop below before the sending of pause frame stops, if transmitting pause frames is enabled. In this example, the buffer congestion must reduce by 2000 bytes (to 8000 bytes) before pause frame stops.  |
-|`link_pause.my_pause_ports.rx_enable` |`link_pause.my_pause_ports.tx_enable = true` |Enable (`true`) or disable (`false`) the sending of pause frames. The default value is `false`. In this example, the sending of pause frames is enabled. |
-|`link_pause.my_pause_ports.tx_enable`   |`link_pause.my_pause_ports.rx_enable = true`  |Enable (`true`) or disable (`false`) acting to the reception of a pause frame. The default value is `false`. In this example, the reception of pause frames is enabled. |
+|`link_pause.my_pause_ports.rx_enable` |`link_pause.my_pause_ports.tx_enable = true` |Enable (`true`) or disable (`false`) the sending of pause frames. The default value is `true`. In this example, the sending of pause frames is enabled. |
+|`link_pause.my_pause_ports.tx_enable`   |`link_pause.my_pause_ports.rx_enable = true`  |Enable (`true`) or disable (`false`) acting to the reception of a pause frame. The default value is `true`. In this example, the reception of pause frames is enabled. |
 |`link_pause.my_pause_ports.cable_length` |`link_pause.pause_port_group.cable_length = 5` | The length, in meters, of the cable attached to the port defined in the port_group_list. This value is used internally to determine the latency between generating a pause frame and the reception of the pause frame. The default is `100` meters. In this example the cable attached has been defined as `5` meters.|
 </details>
 
@@ -426,13 +428,14 @@ Setting `pfc.pfc_port_group.tx_enable = true` supports the sending of PFC pause 
 PFC pause frames can be supported for either receive (`rx`), transmit (`tx`) or both.
 
 {{% notice note %}}
-By default, PFC is enabled for `rx` and `tx` and automatically derives the following settings:
+Cumulus Linux automatically enables or derives the following settings when PFC is enabled on an interface via `pfc.port_group_list`:
 
+* `pfc.pause_port_group.rx_enable`
+* `pfc.pause_port_group.tx_enable`
 * `pfc.pause_port_group.port_buffer_bytes`
 * `pfc.pause_port_group.xoff_size`
 * `pfc.pause_port_group.xon_delta`
 
-PFC must still be enabled on the specific interfaces to process pause frames.
 {{% /notice %}}
 
 The following is an example `pfc` configuration.
@@ -463,8 +466,8 @@ Unless directed by NVIDIA support or engineering, it is not recommended that you
 | `pfc.my_pfc_ports.port_buffer_bytes` | `pfc.my_pfc_ports.port_buffer_bytes = 25000` | The amount of reserved buffer space for the set of ports defined in the port_group_list. This is reserved from the global shared buffer. |
 | `pfc.my_pfc_ports.xoff_size` | `pfc.my_pfc_ports.xoff_size = 10000` | Set the amount of reserved buffer that must be consumed before a PFC pause frame is sent out the set of interfaces defined in the port_group_list, if transmitting pause frames is enabled. In this example, after 10000 bytes of reserved buffer is consumed, PFC pause frames are sent.|
 | `pfc.my_pfc_ports.xon_delta` | `pfc.my_pfc_ports.xon_delta = 2000` | The number of bytes below the `xoff` threshold that the buffer consumption must drop below before the sending of PFC pause frames stops, if transmitting pause frames is enabled. In this example, the buffer congestion must reduce by 2000 bytes (to 8000 bytes) before PFC pause frame stop. |
-| `pfc.my_pfc_ports.rx_enable` | `pfc.my_pfc_ports.tx_enable = true` | Enable (`true`) or disable (`false`) the sending of PFC pause frames. The default value is `false`. In this example, the sending of PFC pause frames is enabled. |
-| `pfc.my_pfc_ports.tx_enable` | `pfc.my_pfc_ports.rx_enable = true` | Enable (`true`) or disable (`false`) acting to the reception of a PFC pause frame. For `rx_enable`, the COS values do not need to be defined. Any COS value for which a PFC pause is received, is respected. The default value is `false`. In this example, the reception of PFC pause frames is enabled. |
+| `pfc.my_pfc_ports.rx_enable` | `pfc.my_pfc_ports.tx_enable = true` | Enable (`true`) or disable (`false`) the sending of PFC pause frames. The default value is `true`. In this example, the sending of PFC pause frames is enabled. |
+| `pfc.my_pfc_ports.tx_enable` | `pfc.my_pfc_ports.rx_enable = true` | Enable (`true`) or disable (`false`) acting to the reception of a PFC pause frame. For `rx_enable`, the COS values do not need to be defined. Any COS value for which a PFC pause is received, is respected. The default value is `true`. In this example, the reception of PFC pause frames is enabled. |
 | `pfc.my_pfc_ports.cable_length` | `pfc.my_pfc_ports.cable_length = 5` | The length, in meters, of the cable attached to the port defined in the port_group_list. This value is used internally to determine the latency between generating a PFC pause frame and the reception of the PFC pause frame. The default is `10` meters. In this example, the cable attached is defined as `5` meters.|
 </details>
 

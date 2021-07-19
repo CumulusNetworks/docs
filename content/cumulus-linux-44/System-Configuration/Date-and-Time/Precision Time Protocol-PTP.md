@@ -502,6 +502,10 @@ Cumulus Linux currently supports the following PTP message modes:
 - *Multicast*, where the ports subscribe to two multicast addresses, one for event messages that are timestamped and the other for general messages that are not timestamped. The Sync message sent by the master is a multicast message and is received by all slave ports. This is required because the slaves need the master's time. The slave ports in turn generate a Delay Request to the master. This is a multicast message and is received not only by the master for which the message is intended, but also by other slave ports. Similarly, the master's Delay Response is also received by all slave ports in addition to the intended slave port. The slave ports receiving the unintended Delay Requests and Responses need to drop the packets. This can affect network bandwidth, especially if there are hundreds of slave ports.
 - *Mixed*, where Sync and Announce messages are sent as multicast messages but Delay Request and Response messages are sent as unicast. This avoids the issue seen in multicast message mode where every slave port sees Delay Requests and Responses from every other slave port.
 
+   {{%notice warning%}}
+Mixed mode is an [early access feature]({{<ref "/knowledge-base/Support/Support-Offerings/Early-Access-Features-Defined" >}}) in Cumulus Linux.
+{{%/notice%}}
+
 Multicast mode is the default setting. To set the message mode to *mixed* on an interface:
 
 {{< tabs "TabID494 ">}}
@@ -552,6 +556,10 @@ cumulus@switch:~$ sudo systemctl restart ptp4l.service
 {{< /tabs >}}
 
 ### TTL for a PTP Message
+
+{{%notice warning%}}
+TTL for a PTP message is an [early access feature]({{<ref "/knowledge-base/Support/Support-Offerings/Early-Access-Features-Defined" >}}) in Cumulus Linux.
+{{%/notice%}}
 
 To restrict the number of hops a PTP message can travel, set the TTL on the PTP interface. You can set a value between 1 and 255.
 
@@ -772,6 +780,10 @@ cumulus@switch:~$ sudo systemctl restart ptp4l.service
 ## PTP on a VRF
 
 By default, PTP is enabled on the default VRF and on any VRFs you create. You can isolate traffic to a specific VRF by disabling PTP on any other VRFs.
+
+{{%notice warning%}}
+PTP in a VRF other than the default is an [early access feature]({{<ref "/knowledge-base/Support/Support-Offerings/Early-Access-Features-Defined" >}}) in Cumulus Linux.
+{{%/notice%}}
 
 {{< tabs "TabID777 ">}}
 {{< tab "NVUE Commands ">}}

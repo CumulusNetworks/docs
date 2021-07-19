@@ -1,0 +1,2 @@
+{{ .Scratch.Set "url" (printf "%s/rn.xls" ((.Get "dir") | absURL)) }}
+<a href="{{.Scratch.Get "url"}}"><img src={{"images/xls_icon.png" | absURL}} height="20px" width="20px" alt="Download {{.Page.Params.version}} Release Notes xls" ></a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="{{.Scratch.Get "url"}}">Download all {{.Page.Params.version}} release notes as .xls</a>

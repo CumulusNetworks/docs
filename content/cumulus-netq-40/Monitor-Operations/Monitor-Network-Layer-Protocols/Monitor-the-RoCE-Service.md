@@ -267,7 +267,29 @@ switch            swp1s1               661                  61856               
 
 {{</tabs>}}
 
-## Related Information 
+## Disable RoCE Monitoring
+
+If you need to disable RoCE monitoring, do the following:
+
+1. Edit `/etc/netq/commands/cl4-netq-commands.yml` and comment out the following lines:
+
+        cumulus@netq-ts:~$ sudo nano /etc/netq/commands/cl4-netq-commands.yml
+
+        #- period: "60"
+        #  key: "roce"
+        #  isactive: true
+        #  command: "/usr/lib/cumulus/mlxcmd --json roce counters"
+        #  parser: "local"
+
+1. Delete the `/var/run/netq/netq_commands.yml` file:
+
+        cumulus@netq-ts:~$ sudo rm /var/run/netq/netq_commands.yml
+
+1. Restart the NetQ agent:
+
+       cumulus@netq-ts:~$ netq config agent restart
+
+## Related Information
 
 - {{<link title="Configure Threshold-Based Event Notifications" text="Configure notifications for TCA events">}}
 - {{<link title="TCA Event Messages Reference#roce" text="RoCE TCA event reference">}}

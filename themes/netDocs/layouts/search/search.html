@@ -45,6 +45,7 @@
               <a class="rootLink" href={{ "cumulus-vx" | absURL }}>NVIDIA Cumulus VX</a>
               <a class="rootLink" href={{ .Site.Params.sonic_latest | absURL }}>SONiC</a>
               <a class="rootLink" href={{ "knowledge-base" | absURL }}>Knowledge Base</a>
+              <a class="rootLink" href={{ "guides" | absURL }}>Technical Guides</a>
             </li>
             <li class="navSection mobile">
               <div class="burger-menu">
@@ -63,6 +64,7 @@
           <li><a href={{ "cumulus-vx" | absURL }}>NVIDIA Cumulus VX</a></li>
           <li><a href={{ .Site.Params.sonic_latest | absURL }}>SONiC</a></li>
           <li><a href={{ "knowledge-base" | absURL }}>Knowledge Base</a></li>
+          <li><a href={{ "guides" | absURL }}>Technical Guides</a></li>
       </div>
     </div>
     <header class="home-banner" style="background-color: #76b900">
@@ -78,15 +80,17 @@
       <div class="container">
         <div class="row">
           <div class="col-12">
-            <script async src="https://cse.google.com/cse.js?cx=002929300794741444210:sy0sz3qlwdc"></script>
-            <div class="gcse-searchbox-only" enableAutoComplete="true" data-resultsUrl={{"search" | absURL}}></div>
-
-            <p class="search-hint">
-              <!--<b>Hint:</b> For better results, include your version number in your query.-->
-              Search is currently disabled and will return soon.
-            </p>
-
-            <div id="search-results"></div>
+            <div id="nvidia-search-page-widget"></div>
+            <script src="https://app.nvidia.com/search/nvidia-search-page-widget.js"></script>
+            <script>
+              NvidiaSearchPageWidget.mount({
+                  site: "https://docs.nvidia.com",
+                  language:  "en-us",
+                  apiUrl: 'https://appqa.nvidia.com/search/graphql',
+                  facets: "site,docs_version",
+                  path:"/networking-ethernet-software/"
+                });
+            </script>
           </div>
         </div>
       </div>
@@ -100,7 +104,7 @@
                 <div class="footer-content">
                     <div class="mb-4">
                       <img src={{"images/nvidia-logo-white.svg" | absURL }} />
-                        <p>© <script type="text/javascript">document.write(new Date().getFullYear());</script>&nbsp;&nbsp;NVIDIA Corporation.</p>
+                        <p>© {{ dateFormat "2006" now }}&nbsp;&nbsp;NVIDIA Corporation.</p>
                         <p><a href={{"license" | absURL }}><img src={{"images/by-nc-sa.svg" | absURL }} alt="Cumulus Networks CC-by-NC-SA License"></a></p>
                     </div>
                     <ul class="mb-4">
@@ -205,94 +209,6 @@
         </div>
     </div>
 </div>
-
-  <script>
-    function buildResult(url, htmlUrl, title, digest) {
-      var html = "";
-      html = "<p>";
-      html +=   "<a href='" +url+ "'>" +title+ "</a>";
-      html +=   "<br><small>" +htmlUrl+ "</small>";
-      html +=   "<br>" +digest;
-      html += "</p>";
-      return html;
-    };
-
-    function buildResultList (data) {
-      var html = "";
-      $.each(data, function(index, row) {
-        var url = row.link;
-        var htmlUrl = row.htmlFormattedUrl;
-        var title = row.htmlTitle;
-        var digest = row.htmlSnippet;
-        html += buildResult(url, htmlUrl, title, digest);
-      });
-      return html;
-    };
-
-    /*!
-    * Sanitize and encode all HTML in a user-submitted string
-    * (c) 2018 Chris Ferdinandi, MIT License, https://gomakethings.com
-    * @param  {String} str  The user-submitted string
-    * @return {String} str  The sanitized string
-    */
-    function sanatizeHTML (str) {
-      var temp = document.createElement('div');
-      temp.textContent = str;
-      return temp.innerHTML;
-    };
-
-    function searchResults() {
-      var searchParams = new URLSearchParams(window.location.search);
-      var query = sanatizeHTML(searchParams.get('q'));
-      var params = {
-        q: query,
-        cx: "002929300794741444210:sy0sz3qlwdc",
-        key: "SEARCH_KEY",
-      }
-      if (searchParams.has('start'))
-        var start = parseInt(searchParams.get('start'));
-        if (!isNaN(start)) {
-          params['start'] = start;
-        }
-
-      $.get(
-        "https://www.googleapis.com/customsearch/v1/siterestrict",
-        params,
-        function(data, status){
-          console.log(data)
-          var html = "";
-
-          if (status === 'success' && data.items && data.items.length > 0) {
-            var totalResults = data.queries.request[0].totalResults
-            html += "<p><small>About " +totalResults+ " results</small></p>";
-
-            html += buildResultList(data.items);
-
-            if (data.queries && data.queries.previousPage) {
-              var prev = data.queries.previousPage[0].startIndex;
-              html += '<a href="{{printf "?q=" ("search/" | absURL) }}' +query+ '&start=' +prev+ '">Previous</a> | '
-            }
-
-            if (data.queries && data.queries.nextPage) {
-              var next = data.queries.nextPage[0].startIndex;
-              html += '<a href="{{printf "?q=" ("search/" | absURL) }}' +query+ '&start=' +next+ '">Next</a>'
-            }
-          } else {
-            html += '<h4>No results were found for "' +data.queries.request[0].searchTerms+ '"<h4>';
-          }
-
-          $('#search-results').html(html)
-      });
-    }
-
-    searchResults();
-  </script>
-
-  <!-- Announcement bars -->
-  <!-- {{ $jsAnnouncementBar := resources.Get "js/announcement-bar.js" }}
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
-  <script src = "{{ $jsAnnouncementBar.Permalink }}"> </script> -->
-
 </body>
 
 </html>

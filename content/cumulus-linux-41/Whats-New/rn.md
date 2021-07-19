@@ -10,7 +10,7 @@ pdfhidden: True
 ---
 {{<rn_xls_link dir="cumulus-linux-41" >}}
 ## 4.1.1 Release Notes
-### Open issues in 4.1.1
+### Open Issues in 4.1.1
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
@@ -376,7 +376,7 @@ pdfhidden: True
 | <a name="2548579"></a> [2548579](#2548579) <a name="2548579"></a> <br />CM-28992 | The following security vulnerability has been announced:<br />CVE-2020-10531: An issue was discovered in International Components for Unicode (ICU) for C/C++ through 66.1. An integer overflow, leading to a heap-based buffer overflow, exists in the UnicodeString::doAppend() function in common/unistr.cpp. | 3.7.12, 4.0.0-4.1.0 | |
 
 ## 4.1.0 Release Notes
-### Open issues in 4.1.0
+### Open Issues in 4.1.0
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |

@@ -2882,7 +2882,7 @@ To work around this issue, change the value of {{arp_ignore}} to 2. See [Address
 <td></td>
 </tr>
 </table>
-<table name="Fixed issues in 4.1.1">
+<table name="Fixed Issues in 4.1.1">
 <tr>
 <th> Issue ID </th>
 <th> Description </th>
@@ -5671,7 +5671,7 @@ To work around this issue, change the value of {{arp_ignore}} to 2. See [Address
 <td></td>
 </tr>
 </table>
-<table name="Fixed issues in 4.1.0">
+<table name="Fixed Issues in 4.1.0">
 <tr>
 <th> Issue ID </th>
 <th> Description </th>

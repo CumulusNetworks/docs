@@ -1708,7 +1708,7 @@ To work around this issue, correct the bridge VIDs and restart {{switchd}} or de
 <td>4.1.0-4.4.0</td>
 </tr>
 </table>
-<table name="Fixed issues in 3.7.15">
+<table name="Fixed Issues in 3.7.15">
 <tr>
 <th> Issue ID </th>
 <th> Description </th>
@@ -4273,7 +4273,7 @@ To work around this issue, correct the bridge VIDs and restart {{switchd}} or de
 <td>4.1.0-4.4.0</td>
 </tr>
 </table>
-<table name="Fixed issues in 3.7.14.2">
+<table name="Fixed Issues in 3.7.14.2">
 <tr>
 <th> Issue ID </th>
 <th> Description </th>
@@ -6506,7 +6506,7 @@ To work around this issue, correct the bridge VIDs and restart {{switchd}} or de
 <td>4.1.0-4.4.0</td>
 </tr>
 </table>
-<table name="Fixed issues in 3.7.14">
+<table name="Fixed Issues in 3.7.14">
 <tr>
 <th> Issue ID </th>
 <th> Description </th>
@@ -9465,7 +9465,7 @@ To work around this issue, correct the bridge VIDs and restart {{switchd}} or de
 <td>4.1.0-4.4.0</td>
 </tr>
 </table>
-<table name="Fixed issues in 3.7.13">
+<table name="Fixed Issues in 3.7.13">
 <tr>
 <th> Issue ID </th>
 <th> Description </th>
@@ -12595,7 +12595,7 @@ To work around this issue, correct the bridge VIDs and restart {{switchd}} or de
 <td>4.1.0-4.4.0</td>
 </tr>
 </table>
-<table name="Fixed issues in 3.7.12">
+<table name="Fixed Issues in 3.7.12">
 <tr>
 <th> Issue ID </th>
 <th> Description </th>
@@ -14775,7 +14775,7 @@ More information at https://security-tracker.debian.org/tracker/CVE-2018-6594 .<
 <td>4.1.0-4.4.0</td>
 </tr>
 </table>
-<table name="Fixed issues in 3.7.11">
+<table name="Fixed Issues in 3.7.11">
 <tr>
 <th> Issue ID </th>
 <th> Description </th>
@@ -17230,7 +17230,7 @@ More information at https://security-tracker.debian.org/tracker/CVE-2018-6594 .<
 <td>3.7.11-3.7.15</td>
 </tr>
 </table>
-<table name="Fixed issues in 3.7.10">
+<table name="Fixed Issues in 3.7.10">
 <tr>
 <th> Issue ID </th>
 <th> Description </th>
@@ -18813,7 +18813,7 @@ More information at https://security-tracker.debian.org/tracker/CVE-2018-6594 .<
 <td>3.7.11-3.7.15</td>
 </tr>
 </table>
-<table name="Fixed issues in 3.7.9">
+<table name="Fixed Issues in 3.7.9">
 <tr>
 <th> Issue ID </th>
 <th> Description </th>
@@ -21090,7 +21090,7 @@ To work around this issue, use {{net show interface}} command for LLDP output wh
 <td>3.7.11-3.7.15</td>
 </tr>
 </table>
-<table name="Fixed issues in 3.7.8">
+<table name="Fixed Issues in 3.7.8">
 <tr>
 <th> Issue ID </th>
 <th> Description </th>
@@ -22617,7 +22617,7 @@ To work around this issue, use {{net show interface}} command for LLDP output wh
 <td>3.7.11-3.7.15</td>
 </tr>
 </table>
-<table name="Fixed issues in 3.7.7">
+<table name="Fixed Issues in 3.7.7">
 <tr>
 <th> Issue ID </th>
 <th> Description </th>
@@ -24697,7 +24697,7 @@ The NetQ agent has been removed from Cumulus VX 3.7.7. The NetQ agent will be bu
 <td>3.7.11-3.7.15</td>
 </tr>
 </table>
-<table name="Fixed issues in 3.7.6">
+<table name="Fixed Issues in 3.7.6">
 <tr>
 <th> Issue ID </th>
 <th> Description </th>
@@ -26086,7 +26086,7 @@ The NetQ agent has been removed from Cumulus VX 3.7.7. The NetQ agent will be bu
 <td>3.7.7-3.7.15</td>
 </tr>
 </table>
-<table name="Fixed issues in 3.7.5">
+<table name="Fixed Issues in 3.7.5">
 <tr>
 <th> Issue ID </th>
 <th> Description </th>
@@ -27286,7 +27286,7 @@ The NetQ agent has been removed from Cumulus VX 3.7.7. The NetQ agent will be bu
 <td>3.7.7-3.7.15</td>
 </tr>
 </table>
-<table name="Fixed issues in 3.7.4">
+<table name="Fixed Issues in 3.7.4">
 <tr>
 <th> Issue ID </th>
 <th> Description </th>
@@ -28711,7 +28711,7 @@ The NetQ agent has been removed from Cumulus VX 3.7.7. The NetQ agent will be bu
 <td>3.7.7-3.7.15</td>
 </tr>
 </table>
-<table name="Fixed issues in 3.7.3">
+<table name="Fixed Issues in 3.7.3">
 <tr>
 <th> Issue ID </th>
 <th> Description </th>
@@ -30204,7 +30204,7 @@ The NetQ agent has been removed from Cumulus VX 3.7.7. The NetQ agent will be bu
 <td>3.7.7-3.7.15</td>
 </tr>
 </table>
-<table name="Fixed issues in 3.7.2">
+<table name="Fixed Issues in 3.7.2">
 <tr>
 <th> Issue ID </th>
 <th> Description </th>
@@ -31402,7 +31402,7 @@ The NetQ agent has been removed from Cumulus VX 3.7.7. The NetQ agent will be bu
 <td>3.7.7-3.7.15</td>
 </tr>
 </table>
-<table name="Fixed issues in 3.7.1">
+<table name="Fixed Issues in 3.7.1">
 <tr>
 <th> Issue ID </th>
 <th> Description </th>
@@ -32175,7 +32175,7 @@ The NetQ agent has been removed from Cumulus VX 3.7.7. The NetQ agent will be bu
 <td>3.7.7-3.7.15</td>
 </tr>
 </table>
-<table name="Fixed issues in 3.7.0">
+<table name="Fixed Issues in 3.7.0">
 <tr>
 <th> Issue ID </th>
 <th> Description </th>

@@ -10,7 +10,7 @@ pdfhidden: True
 ---
 {{<rn_xls_link dir="cumulus-linux-40" >}}
 ## 4.0.1 Release Notes
-### Open issues in 4.0.1
+### Open Issues in 4.0.1
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
@@ -147,7 +147,7 @@ pdfhidden: True
 |---	        |---	        |---	    |
 
 ## 4.0.0 Release Notes
-### Open issues in 4.0.0
+### Open Issues in 4.0.0
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |

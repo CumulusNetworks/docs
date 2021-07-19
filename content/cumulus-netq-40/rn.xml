@@ -7,6 +7,26 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2711101</td>
+<td>When RoCE (RDMA over Converged Ethernet) data collection is enabled in Cumulus Linux 4.3.z and 4.4.z, you can experience high dual uplink convergence times.
+To work around this issue, disable RoCE monitoring:
+
+1. Edit &apos;/etc/netq/commands/cl4-netq-commands.yml&apos; and comment out the following lines:
+        #- period: "60"
+        #  key: "roce"
+        #  isactive: true
+        #  command: "/usr/lib/cumulus/mlxcmd --json roce counters"
+        #  parser: "local"
+
+2. Delete the &apos;/var/run/netq/netq_commands.yml&apos; file:
+        $ sudo rm /var/run/netq/netq_commands.yml
+
+3. Restart the NetQ agent:
+       $ netq config agent restart</td>
+<td>4.0.0</td>
+<td></td>
+</tr>
+<tr>
 <td>2690469</td>
 <td>While upgrading an on-premises deployment from version 2.4.x to 3.x.y then to 4.x, the upgrade fails during the NetQ application stage.
 To work around this issue, run the following command on the NetQ telemetry server, then start the upgrade again:

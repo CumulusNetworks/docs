@@ -21,7 +21,7 @@ To configure RoCE with PFC and ECN:
 {{< tabs "roce lossless commands">}}
 {{< tab "NCLU Commands">}}
 ```
-cumulus@switch:~$ net add roce mode lossless
+cumulus@switch:~$ net add roce lossless
 cumulus@switch:~$ net commit
 ```
 {{< /tab >}}

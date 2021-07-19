@@ -1141,6 +1141,12 @@ To work around this issue, when you create a new virtual interface, set net.ipv6
 <td></td>
 </tr>
 <tr>
+<td>2728207</td>
+<td>CVE-2021-3570: A flaw was found in the ptp4l program of the linuxptp package. A missing length check when forwarding a PTP message between ports allows a remote attacker to cause an information leak, crash, or potentially remote code execution. The highest threat from this vulnerability is to data confidentiality and integrity as well as system availability. </td>
+<td>3.7.0-3.7.15, 4.0.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
 <td>2728138</td>
 <td>CVE-2020-36221, CVE-2020-36222, CVE-2020-36223, CVE-2020-36224, CVE-2020-36225, CVE-2020-36226, CVE-2020-36227, CVE-2020-36228, CVE-2020-36229, CVE-2020-36230:  Several vulnerabilities were discovered in OpenLDAP, a free implementation of the Lightweight Directory Access Protocol. An unauthenticated remote attacker can take advantage of these flaws to cause a denial of service (slapd daemon crash, infinite loops) via specially crafted packets.
 Vulnerable: &lt;= 2.4.47+dfsg-3+deb10u4
@@ -1155,6 +1161,14 @@ Vulnerable: &lt;= 2.4.47+dfsg-3+deb10u5
 Fixed: 2.4.47+dfsg-3+deb10u6</td>
 <td>4.0.0-4.3.0</td>
 <td>4.4.0</td>
+</tr>
+<tr>
+<td>2716838</td>
+<td>CVE-2021-22918: An out-of-bounds read was discovered in the uv__idna_to_ascii() function of Libuv, an asynchronous event notification library, which could result in denial of service or information disclosure.
+Vulnerable: 1.24.1-1
+Fixed: 1.24.1-1+deb 10u1</td>
+<td>4.0.0-4.4.0</td>
+<td></td>
 </tr>
 <tr>
 <td>2699399</td>
@@ -1193,10 +1207,10 @@ Fixed: 0.6.1-2+deb10u1</td>
 </tr>
 <tr>
 <td>2685994</td>
-<td>The {{nv set interface lo router ospf area}} command fails to apply the configuration when attempting to configure OSPF on a loopback interface using NVUE. To work around this issue, bring the loopback interface into the desired OSPF area using the {{nv set vrf default router ospf area 0 network}} command, referencing the assigned prefix of the loopback interface. Example:
-
-   nv set vrf default router ospf area 0 network 10.10.10.1/32
-   nv config apply</td>
+<td>When you use the NVUE command {{nv set interface lo router ospf area}} to configure OSPF on a loopback interface, the configuration fails to apply.
+To work around this issue, configure the loopback interface in the desired OSPF area with the {{nv set vrf default router ospf area 0 network}} command and reference the assigned prefix of the loopback interface. For example:
+cumulus@leaf01:~$ nv set vrf default router ospf area 0 network 10.10.10.1/32
+cumulus@leaf01:~$ nv config apply</td>
 <td>4.0.0-4.4.0</td>
 <td></td>
 </tr>

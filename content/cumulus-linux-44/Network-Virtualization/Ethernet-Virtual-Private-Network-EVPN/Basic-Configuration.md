@@ -20,7 +20,7 @@ For a non-VTEP device that is only participating in EVPN route exchange, such as
 {{< tabs "TabID20 ">}}
 {{< tab "NCLU Commands ">}}
 
-1. Configure VXLAN Interfaces. The following example creates two VXLAN interfaces (vni10 and vni20), adds the VXLAN devices to the bridge, and sets the VXLAN local tunnel IP address to 10.10.10.1.
+1. Configure VXLAN Interfaces. The following example creates two VXLAN interfaces (vni10 and vni20), adds the VXLAN devices to the bridge, and sets the VXLAN local tunnel IP address to 10.10.10.1. For more information on how to configure VXLAN interfaces, see {{<link url="VXLAN-Devices" text="VXLAN Devices">}}.
 
    ```
    cumulus@leaf01:~$ net add vxlan vni10 vxlan id 10

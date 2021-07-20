@@ -77,18 +77,18 @@ cumulus@switch:~$ net commit
 The following example configures BFD for swp51 and uses the default intervals.
 
 ```
-cumulus@leaf01:~$ nv set vrf default router bgp peer swp51 bfd enable on
-cumulus@leaf01:~$ nv config apply
+cumulus@switch:~$ nv set vrf default router bgp peer swp51 bfd enable on
+cumulus@switch:~$ nv config apply
 ```
 
 The following example configures BFD for the peer group `fabric` and sets the interval multiplier to 4, the minimum interval between received BFD control packets to 400, and the minimum interval for sending BFD control packets to 400.
 
 ```
-cumulus@leaf01:~$ nv set vrf default router bgp peer fabric bfd enable on
-cumulus@leaf01:~$ nv set vrf default router bgp peer fabric bfd detect-multiplier 4 
-cumulus@leaf01:~$ nv set vrf default router bgp peer fabric bfd min-rx-interval 400 
-cumulus@leaf01:~$ nv set vrf default router bgp peer fabric bfd min-tx-interval 400
-cumulus@leaf01:~$ nv config apply
+cumulus@switch:~$ nv set vrf default router bgp peer fabric bfd enable on
+cumulus@switch:~$ nv set vrf default router bgp peer fabric bfd detect-multiplier 4 
+cumulus@switch:~$ nv set vrf default router bgp peer fabric bfd min-rx-interval 400 
+cumulus@switch:~$ nv set vrf default router bgp peer fabric bfd min-tx-interval 400
+cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}

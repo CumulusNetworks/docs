@@ -448,13 +448,17 @@ The following example command removes private ASNs from routes sent to the neigh
 {{< tab "NCLU Commands ">}}
 
 ```
-cumulus@switch:~$ net add bgp neighbor swp51 remove-private-AS
+cumulus@leaf01:~$ net add bgp neighbor swp51 remove-private-AS
+cumulus@leaf01:~$ net pending
+cumulus@leaf01:~$ net commit
 ```
 
 You can replace the private ASNs with your public ASN with the following command:
 
 ```
-cumulus@switch:~$ net add bgp neighbor swp51 remove-private-AS replace-AS
+cumulus@leaf01:~$ net add bgp neighbor swp51 remove-private-AS replace-AS
+cumulus@leaf01:~$ net pending
+cumulus@leaf01:~$ net commit
 ```
 
 {{< /tab >}}
@@ -1053,9 +1057,9 @@ You can configure BGP to wait for a response from the RIB indicating that the ro
 {{< tab "NCLU Commands ">}}
 
 ```
-cumulus@switch:~$ net add bgp wait-for-install
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
+cumulus@leaf01:~$ net add bgp wait-for-install
+cumulus@leaf01:~$ net pending
+cumulus@leaf01:~$ net commit
 ```
 
 The NCLU commands save the configuration in the `/etc/frr/frr.conf` file. For example:
@@ -1867,9 +1871,9 @@ The following example commands enable global graceful BGP restart:
 {{< tab "NCLU Commands ">}}
 
 ```
-cumulus@switch:~$ net add routing bgp graceful-restart-mode helper-and-restarter
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
+cumulus@leaf01:~$ net add routing bgp graceful-restart-mode helper-and-restarter
+cumulus@leaf01:~$ net pending
+cumulus@leaf01:~$ net commit
 ```
 
 {{< /tab >}}
@@ -1884,7 +1888,7 @@ cumulus@leaf01:~$ nv config apply
 {{< tab "vtysh Commands ">}}
 
 ```
-cumulus@eaf01:~$ sudo vtysh
+cumulus@leaf01:~$ sudo vtysh
 leaf01# configure terminal
 leaf01(config)# router bgp 65101
 leaf01(config-router)# bgp graceful-restart
@@ -1903,9 +1907,9 @@ The following example commands enable BGP graceful restart on the BGP peer conne
 {{< tab "NCLU Commands ">}}
 
 ```
-cumulus@switch:~$ net add bgp neighbor swp51 graceful-restart-mode helper-and-restarter
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
+cumulus@leaf01:~$ net add bgp neighbor swp51 graceful-restart-mode helper-and-restarter
+cumulus@leaf01:~$ net pending
+cumulus@leaf01:~$ net commit
 ```
 
 {{< /tab >}}
@@ -1939,9 +1943,9 @@ The following example commands enable helper mode only for the BGP peer connecte
 {{< tab "NCLU Commands ">}}
 
 ```
-cumulus@switch:~$ net add bgp neighbor swp51 graceful-restart-mode helper
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
+cumulus@leaf01:~$ net add bgp neighbor swp51 graceful-restart-mode helper
+cumulus@leaf01:~$ net pending
+cumulus@leaf01:~$ net commit
 ```
 
 The NCLU commands save the configuration in the `/etc/frr/frr.conf` file. For example:
@@ -2005,11 +2009,11 @@ The following example commands set the `restart-time` to 400 seconds, `pathselec
 {{< tab "NCLU Commands ">}}
 
 ```
-cumulus@switch:~$ net add routing bgp graceful-restart restart-time 400
-cumulus@switch:~$ net add routing bgp graceful-restart pathselect-defer-time 300
-cumulus@switch:~$ net add routing bgp graceful-restart stalepath-time 400
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
+cumulus@leaf01:~$ net add routing bgp graceful-restart restart-time 400
+cumulus@leaf01:~$ net add routing bgp graceful-restart pathselect-defer-time 300
+cumulus@leaf01:~$ net add routing bgp graceful-restart stalepath-time 400
+cumulus@leaf01:~$ net pending
+cumulus@leaf01:~$ net commit
 ```
 
 The NCLU commands save the configuration in the `/etc/frr/frr.conf` file. For example:
@@ -2073,9 +2077,9 @@ The following example commands disable global graceful restart:
 {{< tab "NCLU Commands ">}}
 
 ```
-cumulus@switch:~$ net add routing bgp graceful-restart-mode disabled
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
+cumulus@leaf01:~$ net add routing bgp graceful-restart-mode disabled
+cumulus@leaf01:~$ net pending
+cumulus@leaf01:~$ net commit
 ```
 
 {{< /tab >}}
@@ -2109,9 +2113,9 @@ The following example commands disable graceful BGP restart on a BGP peer:
 {{< tab "NCLU Commands ">}}
 
 ```
-cumulus@switch:~$ net add bgp neighbor swp51 graceful-restart-disable
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
+cumulus@leaf01:~$ net add bgp neighbor swp51 graceful-restart-disable
+cumulus@leaf01:~$ net pending
+cumulus@leaf01:~$ net commit
 ```
 
 {{< /tab >}}
@@ -2188,9 +2192,9 @@ The following example commands enable read-only mode:
 {{< tab "NCLU Commands ">}}
 
 ```
-cumulus@switch:~$ net add bgp update-delay 300 90
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
+cumulus@leaf01:~$ net add bgp update-delay 300 90
+cumulus@leaf01:~$ net pending
+cumulus@leaf01:~$ net commit
 ```
 
 The NCLU commands save the configuration in the `/etc/frr/frr.conf` file. For example:
@@ -2284,9 +2288,9 @@ Here is an example of a standard community list filter:
 {{< tab "NCLU Commands ">}}
 
 ```
-cumulus@switch:~$ net add routing community-list standard COMMUNITY1 permit 100:100
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
+cumulus@leaf01:~$ net add routing community-list standard COMMUNITY1 permit 100:100
+cumulus@leaf01:~$ net pending
+cumulus@leaf01:~$ net commit
 ```
 
 {{< /tab >}}
@@ -2320,9 +2324,9 @@ You can apply the community list to a route map to define the routing policy:
 {{< tab "NCLU Commands ">}}
 
 ```
-cumulus@switch:~$ net add bgp table-map ROUTE-MAP1
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
+cumulus@leaf01:~$ net add bgp table-map ROUTE-MAP1
+cumulus@leaf01:~$ net pending
+cumulus@leaf01:~$ net commit
 ```
 
 {{< /tab >}}

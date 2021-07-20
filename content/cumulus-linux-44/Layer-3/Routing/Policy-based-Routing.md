@@ -160,7 +160,7 @@ pbr-policy map1
 1. Enable the `pbrd` service in the `/etc/frr/daemons` file:
 
     ```
-    cumulus@leaf01:~$ sudo nano /etc/frr/daemons
+    cumulus@switch:~$ sudo nano /etc/frr/daemons
     ...
     bgpd=yes
     ospfd=no
@@ -474,7 +474,7 @@ Run the `ip rule show` command to verify the entry in the kernel:
 Run the following command to verify `switchd`:
 
 ```
-cumulus@mlx-2400-91:~$ cat /cumulus/switchd/run/iprule/show | grep 302 -A 1
+cumulus@switch:~$ cat /cumulus/switchd/run/iprule/show | grep 302 -A 1
 302: from 10.1.4.1/24 to 10.1.2.0 iif swp16 lookup 10013
      [hwstatus: unit: 0, installed: yes, route-present: yes, resolved: yes, nh-valid: yes, nh-type: nh, ecmp/rif: 0x1, action: route,  hitcount: 0]
 ```
@@ -796,11 +796,11 @@ pbr-policy map1
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@leaf01:~$ nv set router pbr map map1 rule 1 match source-ip 0.0.0.0/0
-cumulus@leaf01:~$ nv set router pbr nexthop-group group1 via 192.168.0.32
-cumulus@leaf01:~$ nv set router pbr map map1 rule 1 action nexthop-group group1
-cumulus@leaf01:~$ nv set interface swp51 router pbr map map1
-cumulus@leaf01:~$ nv config
+cumulus@switch:~$ nv set router pbr map map1 rule 1 match source-ip 0.0.0.0/0
+cumulus@switch:~$ nv set router pbr nexthop-group group1 via 192.168.0.32
+cumulus@switch:~$ nv set router pbr map map1 rule 1 action nexthop-group group1
+cumulus@switch:~$ nv set interface swp51 router pbr map map1
+cumulus@switch:~$ nv config
 ```
 
 {{< /tab >}}

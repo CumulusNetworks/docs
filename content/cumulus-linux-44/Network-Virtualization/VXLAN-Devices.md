@@ -139,7 +139,7 @@ cumulus@leaf01:~$ nv config apply
 The `nv config save` command creates the following configuration snippet in the `/etc/nvue.d/startup.yaml` file:
 
 ```
-cumulus@spine01:~$ sudo cat /etc/nvue.d/startup.yaml
+cumulus@leaf01:~$ sudo cat /etc/nvue.d/startup.yaml
 - set:
     bridge:
       domain:

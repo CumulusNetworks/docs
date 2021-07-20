@@ -92,7 +92,8 @@ cumulus@leaf03:~$ net add vxlan vni-10 vxlan local-tunnelip 10.10.10.3
 cumulus@leaf03:~$ net add vxlan vni-10 vxlan remoteip 10.10.10.1
 cumulus@leaf03:~$ net add vxlan vni-10 vxlan remoteip 10.10.10.2
 cumulus@leaf03:~$ net add vxlan vni-10 vxlan remoteip 10.10.10.4
-cumulus@leaf03:~$ net add vxlan vni-20 bridge access 10
+cumulus@leaf03:~$ net add vxlan vni-10 bridge access 10
+cumulus@leaf03:~$ net add vxlan vni-20 vxlan id 20
 cumulus@leaf03:~$ net add vxlan vni-20 bridge learning on
 cumulus@leaf03:~$ net add vxlan vni-20 vxlan local-tunnelip 10.10.10.3
 cumulus@leaf03:~$ net add vxlan vni-20 vxlan remoteip 10.10.10.1
@@ -476,8 +477,8 @@ cumulus@leaf01:~$ nv set nve vxlan source address 10.10.10.1
 cumulus@leaf01:~$ nv set bridge domain br_default vlan 10 vni 10 flooding head-end-replication 10.10.10.2
 cumulus@leaf01:~$ nv set bridge domain br_default vlan 10 vni 10 flooding head-end-replication 10.10.10.3
 cumulus@leaf01:~$ nv set bridge domain br_default vlan 20 vni 20 flooding head-end-replication 10.10.10.4
-cumulus@leaf04:~$ nv set interface swp1 bridge domain br_default access 10
-cumulus@leaf04:~$ nv set interface swp2 bridge domain br_default access 20
+cumulus@leaf01:~$ nv set interface swp1 bridge domain br_default access 10
+cumulus@leaf01:~$ nv set interface swp2 bridge domain br_default access 20
 cumulus@leaf01:~$ nv config apply
 ```
 
@@ -490,9 +491,9 @@ cumulus@leaf02:~$ nv set bridge domain br_default vlan 10 vni 10
 cumulus@leaf02:~$ nv set bridge domain br_default vlan 20 vni 20
 cumulus@leaf02:~$ nv set nve vxlan mac-learning on
 cumulus@leaf02:~$ nv set nve vxlan source address 10.10.10.2
-cumulus@leaf01:~$ nv set bridge domain br_default vlan 10 vni 10 flooding head-end-replication 10.10.10.1
-cumulus@leaf01:~$ nv set bridge domain br_default vlan 10 vni 10 flooding head-end-replication 10.10.10.3
-cumulus@leaf01:~$ nv set bridge domain br_default vlan 20 vni 20 flooding head-end-replication 10.10.10.4
+cumulus@leaf02:~$ nv set bridge domain br_default vlan 10 vni 10 flooding head-end-replication 10.10.10.1
+cumulus@leaf02:~$ nv set bridge domain br_default vlan 10 vni 10 flooding head-end-replication 10.10.10.3
+cumulus@leaf02:~$ nv set bridge domain br_default vlan 20 vni 20 flooding head-end-replication 10.10.10.4
 cumulus@leaf02:~$ nv set interface swp1 bridge domain br_default access 10
 cumulus@leaf02:~$ nv set interface swp2 bridge domain br_default access 20
 cumulus@leaf02:~$ nv config apply
@@ -507,9 +508,9 @@ cumulus@leaf03:~$ nv set bridge domain br_default vlan 10 vni 10
 cumulus@leaf03:~$ nv set bridge domain br_default vlan 20 vni 20
 cumulus@leaf03:~$ nv set nve vxlan mac-learning on
 cumulus@leaf03:~$ nv set nve vxlan source address 10.10.10.3
-cumulus@leaf01:~$ nv set bridge domain br_default vlan 10 vni 10 flooding head-end-replication 10.10.10.1
-cumulus@leaf01:~$ nv set bridge domain br_default vlan 10 vni 10 flooding head-end-replication 10.10.10.2
-cumulus@leaf01:~$ nv set bridge domain br_default vlan 20 vni 20 flooding head-end-replication 10.10.10.4
+cumulus@leaf03:~$ nv set bridge domain br_default vlan 10 vni 10 flooding head-end-replication 10.10.10.1
+cumulus@leaf03:~$ nv set bridge domain br_default vlan 10 vni 10 flooding head-end-replication 10.10.10.2
+cumulus@leaf03:~$ nv set bridge domain br_default vlan 20 vni 20 flooding head-end-replication 10.10.10.4
 cumulus@leaf03:~$ nv set interface swp1 bridge domain br_default access 10
 cumulus@leaf03:~$ nv set interface swp2 bridge domain br_default access 20
 cumulus@leaf03:~$ nv config apply
@@ -524,9 +525,9 @@ cumulus@leaf04:~$ nv set bridge domain br_default vlan 10 vni 10
 cumulus@leaf04:~$ nv set bridge domain br_default vlan 20 vni 20
 cumulus@leaf01:~$ nv set nve vxlan mac-learning on
 cumulus@leaf04:~$ nv set nve vxlan source address 10.10.10.4
-cumulus@leaf01:~$ nv set bridge domain br_default vlan 10 vni 10 flooding head-end-replication 10.10.10.1
-cumulus@leaf01:~$ nv set bridge domain br_default vlan 10 vni 10 flooding head-end-replication 10.10.10.2
-cumulus@leaf01:~$ nv set bridge domain br_default vlan 20 vni 20 flooding head-end-replication 10.10.10.3
+cumulus@leaf04:~$ nv set bridge domain br_default vlan 10 vni 10 flooding head-end-replication 10.10.10.1
+cumulus@leaf04:~$ nv set bridge domain br_default vlan 10 vni 10 flooding head-end-replication 10.10.10.2
+cumulus@leaf04:~$ nv set bridge domain br_default vlan 20 vni 20 flooding head-end-replication 10.10.10.3
 cumulus@leaf04:~$ nv set interface swp1 bridge domain br_default access 10
 cumulus@leaf04:~$ nv set interface swp2 bridge domain br_default access 20
 cumulus@leaf04:~$ nv config apply

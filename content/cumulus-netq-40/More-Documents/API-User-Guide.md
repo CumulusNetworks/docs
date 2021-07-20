@@ -46,9 +46,9 @@ The API is embedded in the NetQ software, making it easy to access from the Swag
 
 3. Open a new browser tab or window, and enter one of the following in the address bar:
 
-    - Cloud deployments:  https://api.prod1.netq.cumulusnetworks.com
+    - Cloud deployments:  https://api.netq.cumulusnetworks.com/swagger/
     - On-premises deployments: https://\<hostname-or-ipaddr\>/swagger/
-    - Cumulus in the Cloud (CITC): https://api.air.netq.cumulusnetworks.com
+    - Cumulus in the Cloud (CITC): https://api.air.netq.cumulusnetworks.com/swagger/
 
     This opens the Swagger interface.
 

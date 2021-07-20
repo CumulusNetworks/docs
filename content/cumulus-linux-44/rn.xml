@@ -7,6 +7,21 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2734126</td>
+<td>CVE-2021-33910: The Qualys Research Labs discovered that an attacker-controlled allocation using the alloca() function could result in memory
+corruption, allowing to crash systemd and hence the entire operating system.  Details can be found at https://www.qualys.com/2021/07/20/cve-2021-33910/denial-of-service-systemd.txt .
+Vulnerable: &lt;= 241-7~deb10u7
+Fixed: 241-7~deb10u8</td>
+<td>4.0.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2734121</td>
+<td>Only some BUM traffic arriving on a layer 2 VNI is decapsulated and flooded. ARP requests are forwarded and flooded as expected but DHCP Discovers (Ethernet broadcast DMAC, IP broadcast DIP) and broadcast pings (IP broadcast + subnet broadcast) are not forwarded or decapsulated.</td>
+<td>4.3.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
 <td>2732587</td>
 <td>The bridge MAC address is updated during a port change on bridge interfaces.</td>
 <td>4.3.0-4.4.0</td>

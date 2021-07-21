@@ -56,9 +56,7 @@ Hit any key to stop autoboot:  2
 3.  Select **Cumulus Linux GNU/Linux, with Linux 4.1.0-cl-7-amd64
     (recovery mode)**.
 
-4.  Press ctrl-x to reboot.
-
-5.  After the system reboots, set a new **root** password. This is
+4.  After the system reboots, set a new **root** password. This is
     useful since the root user provides complete control over the
     switch, and providing a new password now helps in case the current
     password has been forgotten, which is a common problem.
@@ -78,7 +76,7 @@ You may want to take this opportunity to reset the password for the
        passwd: password updated successfully
     {{%/notice%}}
 
-6.  Sync the `/etc` directory using `btrfs`, then reboot the system:
+5.  Sync the `/etc` directory using `btrfs`, then reboot the system:
 
         root@switch:~# btrfs filesystem sync /etc
         root@switch:~# reboot -f

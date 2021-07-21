@@ -41,8 +41,7 @@ Hit any key to stop autoboot:  2
        |                                                                            |
        +----------------------------------------------------------------------------+  
 
-4. Press **ctrl-d** to reboot.
-5. After the system reboots, set a new **root** password. The root user provides complete control over the switch.
+3. After the system reboots, set a new **root** password. The root user provides complete control over the switch.
 
        root@switch:~# passwd
        Enter new UNIX password:
@@ -60,7 +59,7 @@ You can take this opportunity to reset the password for the *cumulus* account.
 
 {{%/notice%}}
 
-6. Sync the `/etc` directory, then reboot the system:
+4. Sync the `/etc` directory, then reboot the system:
 
        root@switch:~# sync
        root@switch:~# reboot -f

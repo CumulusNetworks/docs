@@ -71,7 +71,7 @@ To work around this issue, run the following command on the NetQ telemetry serve
 <td></td>
 </tr>
 </table>
-<table name="Fixed issues in 4.0.0">
+<table name="Fixed Issues in 4.0.0">
 <tr>
 <th> Issue ID </th>
 <th> Description </th>

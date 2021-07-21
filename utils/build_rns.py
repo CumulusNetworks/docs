@@ -256,7 +256,7 @@ def build_rn_markdown(json_file, version, file_type):
     output = []
 
     if file_type == "affects":
-        output.append("### Open issues in {}".format(version))
+        output.append("### Open Issues in {}".format(version))
         output.append("\n")
         # output.append("<div class=\"table-wrapper\" markdown=\"block\">")
         output.append("\n")
@@ -469,7 +469,7 @@ def build_rn_xls(json_file, version, file_type):
     if file_type == "affects":
         output.append("<table name=\"Open Issues in {}\">\n".format(version))
     else:
-        output.append("<table name=\"Fixed issues in {}\">\n".format(version))
+        output.append("<table name=\"Fixed Issues in {}\">\n".format(version))
     output.append("<tr>\n")
     output.append("<th> Issue ID </th>\n")
     output.append("<th> Description </th>\n")

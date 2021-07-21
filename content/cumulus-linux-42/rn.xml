@@ -68,6 +68,21 @@ To work around this issue, configure the new BGP neighbors with vtysh.</td>
 <td></td>
 </tr>
 <tr>
+<td>2734126</td>
+<td>CVE-2021-33910: The Qualys Research Labs discovered that an attacker-controlled allocation using the alloca() function could result in memory
+corruption, allowing to crash systemd and hence the entire operating system.  Details can be found at https://www.qualys.com/2021/07/20/cve-2021-33910/denial-of-service-systemd.txt .
+Vulnerable: &lt;= 241-7~deb10u7
+Fixed: 241-7~deb10u8</td>
+<td>4.0.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2728207</td>
+<td>CVE-2021-3570: A flaw was found in the ptp4l program of the linuxptp package. A missing length check when forwarding a PTP message between ports allows a remote attacker to cause an information leak, crash, or potentially remote code execution. The highest threat from this vulnerability is to data confidentiality and integrity as well as system availability. </td>
+<td>3.7.0-3.7.15, 4.0.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
 <td>2728138</td>
 <td>CVE-2020-36221, CVE-2020-36222, CVE-2020-36223, CVE-2020-36224, CVE-2020-36225, CVE-2020-36226, CVE-2020-36227, CVE-2020-36228, CVE-2020-36229, CVE-2020-36230:  Several vulnerabilities were discovered in OpenLDAP, a free implementation of the Lightweight Directory Access Protocol. An unauthenticated remote attacker can take advantage of these flaws to cause a denial of service (slapd daemon crash, infinite loops) via specially crafted packets.
 Vulnerable: &lt;= 2.4.47+dfsg-3+deb10u4
@@ -84,8 +99,16 @@ Fixed: 2.4.47+dfsg-3+deb10u6</td>
 <td>4.4.0</td>
 </tr>
 <tr>
+<td>2716838</td>
+<td>CVE-2021-22918: An out-of-bounds read was discovered in the uv__idna_to_ascii() function of Libuv, an asynchronous event notification library, which could result in denial of service or information disclosure.
+Vulnerable: 1.24.1-1
+Fixed: 1.24.1-1+deb 10u1</td>
+<td>4.0.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
 <td>2710208</td>
-<td>On Broadcom switches, the {{net show bgp neighbor}} command output shows the BFD status as UP when the interface is down.</td>
+<td>The {{net show bgp neighbor}} command output shows the BFD status as UP even when the BGP neighbor is not established such as when the interface is down.</td>
 <td>4.2.1-4.4.0</td>
 <td></td>
 </tr>
@@ -101,12 +124,12 @@ To workaround this issue, run the command against each VRF independently.</td>
 <td></td>
 </tr>
 <tr>
-<td>2695527</td>
+<td>2695526</td>
 <td>CVE-2021-3580 CVE-2021-20305: Multiple vulnerabilities were discovered in nettle, a low level cryptographic library, which could result in denial of service (remote crash in RSA decryption via specially crafted ciphertext, crash on ECDSA signature verification) or incorrect verification of ECDSA signatures.
 Vulnerable: 3.4.1-1
 Fixed: 3.4.1-1+deb10u1</td>
-<td>4.0.0-4.3.0</td>
-<td>4.4.0</td>
+<td>4.0.0-4.4.0</td>
+<td></td>
 </tr>
 <tr>
 <td>2691590</td>
@@ -117,19 +140,19 @@ Fixed: 4.11.4+107-gef32c7afa2-1</td>
 <td></td>
 </tr>
 <tr>
-<td>2687160</td>
+<td>2687159</td>
 <td>CVE-2018-25009 CVE-2018-25010 CVE-2018-25011 CVE-2018-25013 CVE-2018-25014 CVE-2020-36328 CVE-2020-36329 CVE-2020-36330 CVE-2020-36331 CVE-2020-36332: Multiple vulnerabilities were discovered in libwebp, the implementation of the WebP image format, which could result in denial of service, memory disclosure or potentially the execution of arbitrary code if malformed images are processed.
 Vulnerable: 0.6.1-2
 Fixed: 0.6.1-2+deb10u1</td>
-<td>4.0.0-4.3.0</td>
-<td>4.4.0</td>
+<td>4.0.0-4.4.0</td>
+<td></td>
 </tr>
 <tr>
 <td>2685994</td>
-<td>The {{nv set interface lo router ospf area}} command fails to apply the configuration when attempting to configure OSPF on a loopback interface using NVUE. To work around this issue, bring the loopback interface into the desired OSPF area using the {{nv set vrf default router ospf area 0 network}} command, referencing the assigned prefix of the loopback interface. Example:
-
-   nv set vrf default router ospf area 0 network 10.10.10.1/32
-   nv config apply</td>
+<td>When you use the NVUE command {{nv set interface lo router ospf area}} to configure OSPF on a loopback interface, the configuration fails to apply.
+To work around this issue, configure the loopback interface in the desired OSPF area with the {{nv set vrf default router ospf area 0 network}} command and reference the assigned prefix of the loopback interface. For example:
+cumulus@leaf01:~$ nv set vrf default router ospf area 0 network 10.10.10.1/32
+cumulus@leaf01:~$ nv config apply</td>
 <td>4.0.0-4.4.0</td>
 <td></td>
 </tr>
@@ -169,12 +192,12 @@ To work around this issue, add the MAC access list configuration to the end of t
 <td>4.4.0</td>
 </tr>
 <tr>
-<td>2679950</td>
+<td>2679948</td>
 <td>CVE-2021-25217: parsing of stored leases by dhclient or dhcpd has an incorrect length check that may cause a crash.
 Vulnerable: &lt;= 4.3.1-6-cl3.7.14u1
 Fixed: 4.3.1-6-cl3.7.16u1</td>
-<td>3.7.0-4.3.0</td>
-<td>4.4.0</td>
+<td>3.7.0-3.7.15, 4.0.0-4.4.0</td>
+<td></td>
 </tr>
 <tr>
 <td>2677049</td>
@@ -183,13 +206,13 @@ Fixed: 4.3.1-6-cl3.7.16u1</td>
 <td>4.4.0</td>
 </tr>
 <tr>
-<td>2671668</td>
+<td>2671667</td>
 <td>CVE-2021-23017: off-by-one in Nginx, a high-performance web and reverse proxy server, which could
 result in denial of service and potentially the execution of arbitrary code.
 Vulnerable: &lt;= 1.14.2-2+deb10u3
 Fixed: 1.14.2-2+deb10u4</td>
-<td>4.0.0-4.3.0</td>
-<td>4.4.0</td>
+<td>4.0.0-4.4.0</td>
+<td></td>
 </tr>
 <tr>
 <td>2669863</td>
@@ -225,47 +248,28 @@ https://security-tracker.debian.org/tracker/CVE-2019-14889</td>
 <td></td>
 </tr>
 <tr>
-<td>2666839</td>
+<td>2666838</td>
 <td>CVE-2021-31535: missing length validation in various functions provided by libx11, the X11 client-side library, allow to inject X11 protocol commands on X clients, leading to authentication bypass, denial of service or potentially the execution of arbitrary code.
 Vulnerable: &lt;= 1.6.7-1+deb10u1
 Fixed: 1.6.7-1+deb10u2</td>
-<td>4.0.0-4.3.0</td>
-<td>4.4.0</td>
+<td>4.0.0-4.4.0</td>
+<td></td>
 </tr>
 <tr>
-<td>2663480</td>
+<td>2663479</td>
 <td>CVE-2021-3520: integer overflow flaw in lz4, a fast LZ compression algorithm library, resulting in memory corruption.
 Vulnerable: 1.8.3-1
 Fixed: 1.8.3-1+deb10u1</td>
-<td>4.0.0-4.3.0</td>
-<td>4.4.0</td>
+<td>4.0.0-4.4.0</td>
+<td></td>
 </tr>
 <tr>
-<td>2660583</td>
-<td>In an MLAG configuration, the secondary MLAG switch does not use a unique address instead of the MLAG system MAC address when there is a double-failure (peer link failure and backup IP failure)</td>
-<td>3.7.14-4.3.0</td>
-<td>4.4.0</td>
-</tr>
-<tr>
-<td>2656530</td>
+<td>2656527</td>
 <td>CVE-2020-18032: A buffer overflow was discovered in Graphviz, which could potentially result in the execution of arbitrary code when processing a malformed file.
 Vulnerable: 2.40.1-6
 Fixed: 2.40.1-6+deb10u1</td>
-<td>4.0.0-4.3.0</td>
-<td>4.4.0</td>
-</tr>
-<tr>
-<td>2654715</td>
-<td>The {{cl-acltool}} takes a significant amount of time to run, which can slow down automation scripts.</td>
-<td>4.2.0-4.3.0</td>
-<td>4.4.0</td>
-</tr>
-<tr>
-<td>2653493</td>
-<td>After running the {{systemctl restart networking service}} command on the MLAG primary switch, the secondary switch also closes its ports.
-To work around this issue, run the {{ifreload -a}} command to restart networking.</td>
-<td>4.2.1-4.3.0</td>
-<td>4.4.0</td>
+<td>4.0.0-4.4.0</td>
+<td></td>
 </tr>
 <tr>
 <td>2653400</td>
@@ -286,52 +290,65 @@ To work around this issue, run the {{ifreload -a}} command to restart networking
 <td>3.7.15, 4.4.0</td>
 </tr>
 <tr>
-<td>2644054</td>
+<td>2644053</td>
 <td>The following vulnerabilities have been announced in BIND:
 CVE-2021-25214: a malformed incoming IXFR transfer could trigger an assertion failure in named, resulting in denial of service.
 CVE-2021-25215: named could crash when a DNAME record placed in the ANSWER section during DNAME chasing turned out to be the final answer to a client query.
 CVE-2021-25216: the SPNEGO implementation used by BIND is prone to a buffer overflow vulnerability. This update switches to use the SPNEGO implementation from the Kerberos libraries.
 Vulnerable: &lt;= 9.11.5.P4+dfsg-5.1+deb10u4
 Fixed: 9.11.5.P4+dfsg-5.1+deb10u5</td>
-<td>4.0.0-4.3.0</td>
-<td>4.4.0</td>
+<td>4.0.0-4.4.0</td>
+<td></td>
 </tr>
 <tr>
-<td>2633062</td>
+<td>2643822</td>
+<td>After running the {{systemctl restart networking service}} command on the MLAG primary switch, the secondary switch also closes its ports.
+To work around this issue, run the {{ifreload -a}} command to restart networking.</td>
+<td>4.2.1-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2637554</td>
+<td>The {{cl-acltool}} takes a significant amount of time to run, which can slow down automation scripts.</td>
+<td>4.2.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2633061</td>
 <td>The following vulnerability affects the libgstreamer-plugins-base1.0-0 package.  There is no CVE yet; the Debian advisory number is DSA-4903-1.
 Multiple vulnerabilities were discovered in plugins for the GStreamer media framework, which may result in denial of service or potentially the execution of arbitrary code if a malformed media file is opened.
 Vulnerable: 1.14.4-2
 Fixed: 1.14.4-2+deb10u1</td>
-<td>4.0.0-4.3.0</td>
-<td>4.4.0</td>
+<td>4.0.0-4.4.0</td>
+<td></td>
 </tr>
 <tr>
-<td>2617001</td>
+<td>2617000</td>
 <td>CVE-2021-26933 CVE-2021-27379
 Multiple vulnerabilities have been discovered in the Xen hypervisor, which could result in denial of service, privilege escalation or memory disclosure.
 Vulnerable: &lt; 4.11.4+99-g8bce4698f6-1
 Fixed: 4.11.4+99-g8bce4698f6-1</td>
-<td>4.0.0-4.3.0</td>
-<td>4.4.0</td>
+<td>4.0.0-4.4.0</td>
+<td></td>
 </tr>
 <tr>
-<td>2616999</td>
+<td>2616998</td>
 <td>CVE-2021-23358: missing input sanitising in the template() function of the Underscore JavaScript library could result in the execution of arbitrary code.
 Vulnerable: 1.9.1~dfsg-1
 Fixed: 1.9.1~dfsg-1+deb10u1</td>
-<td>4.0.0-4.3.0</td>
-<td>4.4.0</td>
+<td>4.0.0-4.4.0</td>
+<td></td>
 </tr>
 <tr>
-<td>2616988</td>
+<td>2616987</td>
 <td>CVE-2020-6851 CVE-2020-8112 CVE-2020-15389 CVE-2020-27814 CVE-2020-27823 CVE-2020-27824 CVE-2020-27841 CVE-2020-27842 CVE-2020-27843 CVE-2020-27845: Multiple vulnerabilities have been discovered in openjpeg2, the open-source JPEG 2000 codec, which could result in denial of service or the execution of arbitrary code when opening a malformed image.
 Vulnerable: &lt;= 2.3.0-2+deb10u1
 Fixed: 2.3.0-2+deb10u2</td>
-<td>4.0.0-4.3.0</td>
-<td>4.4.0</td>
+<td>4.0.0-4.4.0</td>
+<td></td>
 </tr>
 <tr>
-<td>2616977</td>
+<td>2616976</td>
 <td>Multiple vulnerabilities were discovered in cURL, an URL transfer library:
 CVE-2020-8169: partial password leak to DNS servers.
 CVE-2020-8177: malicious server could cause curl -J -i to overwrite a local file.
@@ -343,32 +360,32 @@ CVE-2021-22876: libcurl did not strip user credentials from URL when populating 
 CVE-2021-22890: libcurl using HTTPS proxy with TLS1.3 could use the wrong session ticket and bypass server TLS certificate check.
 Vulnerable: &lt;= 7.64.0-4+deb10u1
 Fixed: 7.64.0-4+deb10u2</td>
-<td>4.0.0-4.3.0</td>
-<td>4.4.0</td>
+<td>4.0.0-4.4.0</td>
+<td></td>
 </tr>
 <tr>
-<td>2616968</td>
+<td>2616967</td>
 <td>CVE-2021-28957: lxml, a Python binding for the libxml2 and libxslt libraries, did not properly sanitize its input. This would allow a malicious user to mount a cross-site scripting attack.
 Vulnerable: &lt;= 4.3.2-1+deb10u2
 Fixed: 4.3.2-1+deb10u3</td>
-<td>4.0.0-4.3.0</td>
-<td>4.4.0</td>
+<td>4.0.0-4.4.0</td>
+<td></td>
 </tr>
 <tr>
-<td>2616965</td>
+<td>2616964</td>
 <td>CVE-2021-27291: Pygments, a syntax highlighting package written in Python 3, used regular expressions which could result in denial of service.
 Vulnerable: &lt;= 2.3.1+dfsg-1+deb10u1
 Fixed: 2.3.1+dfsg-1+deb10u2</td>
-<td>4.0.0-4.3.0</td>
-<td>4.4.0</td>
+<td>4.0.0-4.4.0</td>
+<td></td>
 </tr>
 <tr>
-<td>2616955</td>
+<td>2616954</td>
 <td>CVE-2021-3449: A NULL pointer dereference was found in the signature_algorithms processing in OpenSSL, a Secure Sockets Layer toolkit, which could result in denial of service.
 Vulnerable: &lt;= 1.1.1d-0+deb10u5
 Fixed: 1.1.1d-0+deb10u6</td>
-<td>4.0.0-4.3.0</td>
-<td>4.4.0</td>
+<td>4.0.0-4.4.0</td>
+<td></td>
 </tr>
 <tr>
 <td>2614016</td>
@@ -400,13 +417,13 @@ To work around this issue, either use the {{vtysh}} commands or edit the {{/etc/
 <td>4.4.0</td>
 </tr>
 <tr>
-<td>2566880</td>
+<td>2566878</td>
 <td>CVE-2021-27803: A vulnerability was discovered in how p2p/p2p_pd.c in wpa_supplicant before 2.10 processes P2P (Wi-Fi Direct) provision discovery requests. It could result in denial of service or other impact (potentially execution of arbitrary code), for an attacker within radio range.</td>
-<td>3.7.14-3.7.14.2, 4.0.0-4.3.0</td>
-<td>3.7.15, 4.4.0</td>
+<td>3.7.14-3.7.14.2, 4.0.0-4.4.0</td>
+<td>3.7.15</td>
 </tr>
 <tr>
-<td>2564839</td>
+<td>2564534</td>
 <td>Several vulnerabilities have been discovered in the GRUB2 bootloader:
 CVE-2020-14372: It was discovered that the acpi command allows a privileged user to load crafted ACPI tables when Secure Boot is enabled.
 CVE-2020-25632: A use-after-free vulnerability was found in the rmmod command.
@@ -415,8 +432,8 @@ CVE-2020-27749: A stack buffer overflow flaw was found in grub_parser_split_cmdl
 CVE-2020-27779: It was discovered that the cutmem command allows a privileged user  to remove memory regions when Secure Boot is enabled.
 CVE-2021-20225: A heap out-of-bounds write vulnerability was found in the short form option parser.
 CVE-2021-20233: A heap out-of-bound write flaw was found caused by mis-calculation of space required for quoting in the menu rendering.</td>
-<td>4.0.0-4.3.0</td>
-<td>4.4.0</td>
+<td>4.0.0-4.4.0</td>
+<td></td>
 </tr>
 <tr>
 <td>2558184</td>
@@ -425,27 +442,33 @@ CVE-2021-20233: A heap out-of-bound write flaw was found caused by mis-calculati
 <td></td>
 </tr>
 <tr>
-<td>2556783</td>
-<td>CVE-2021-0326: An issue has been found in wpa, a set of tools to support WPA and WPA2 (IEEE 802.11i). Missing validation of data can result in a buffer over-write, which might lead to a DoS of the wpa_supplicant process or potentially arbitrary code execution.
-Vulnerable: &lt;= 2.8.0-cl3.7.14u1, &lt;= 2.8.0-cl4.2.1u1</td>
-<td>3.7.14-3.7.14.2, 4.0.0-4.3.0</td>
-<td>3.7.15, 4.4.0</td>
+<td>2556811</td>
+<td>Under certain high scale conditions, various modules might experience timetouts during cl-support collection, which results in missing data in the cl-support file.</td>
+<td>3.7.12-3.7.15, 4.1.1-4.4.0</td>
+<td></td>
 </tr>
 <tr>
-<td>2556778</td>
+<td>2556781</td>
+<td>CVE-2021-0326: An issue has been found in wpa, a set of tools to support WPA and WPA2 (IEEE 802.11i). Missing validation of data can result in a buffer over-write, which might lead to a DoS of the wpa_supplicant process or potentially arbitrary code execution.
+Vulnerable: &lt;= 2.8.0-cl3.7.14u1, &lt;= 2.8.0-cl4.2.1u1</td>
+<td>3.7.14-3.7.14.2, 4.0.0-4.4.0</td>
+<td>3.7.15</td>
+</tr>
+<tr>
+<td>2556777</td>
 <td>CVE-2021-26937: A  flaw in the handling of combining characters in screen, a terminal multiplexer with VT100/ANSI terminal emulation can result in denial of service, or potentially the execution of arbitrary code via a specially crafted UTF-8 character sequence.
 Vulnerable: 4.6.2-3
 Fixed: 4.6.2-3+deb10u1</td>
-<td>4.0.0-4.3.0</td>
-<td>4.4.0</td>
+<td>4.0.0-4.4.0</td>
+<td></td>
 </tr>
 <tr>
-<td>2556775</td>
+<td>2556774</td>
 <td>DSA-4859-1 (no CVE): zstd, a compression utility, was vulnerable to a race condition: it temporarily exposed, during a very short timeframe, a world-readable version of its input even if the original file had restrictive permissions.
 Vulnerable: &lt;= 1.3.8+dfsg-3+deb10u1
 Fixed: 1.3.8+dfsg-3+deb10u2</td>
-<td>4.0.0-4.3.0</td>
-<td>4.4.0</td>
+<td>4.0.0-4.4.0</td>
+<td></td>
 </tr>
 <tr>
 <td>2556772</td>
@@ -459,21 +482,21 @@ To work around this issue, run the {{/usr/bin/clagctl verifyvlans}} command or t
 <td>4.4.0</td>
 </tr>
 <tr>
-<td>2556764</td>
+<td>2556762</td>
 <td>In a configuration with both traditional and vlan-aware bridges, the VLAN membership check on a vlan-aware switch does not drop PVST BPBUs that come from a traditional bridge.</td>
-<td>3.7.14-3.7.14.2, 4.0.0-4.3.0</td>
-<td>3.7.15, 4.4.0</td>
+<td>3.7.14-3.7.14.2, 4.0.0-4.4.0</td>
+<td>3.7.15</td>
 </tr>
 <tr>
-<td>2556731</td>
+<td>2556730</td>
 <td>CVE-2020-8625: A buffer overflow vulnerability was discovered in the SPNEGO implementation affecting the GSSAPI security policy negotiation in BIND, a DNS server implementation, which could result in denial of service (daemon crash), or potentially the execution of arbitrary code.
 Vulnerable: &lt;= 9.11.5.P4+dfsg-5.1+deb10u2
 Fixed: 9.11.5.P4+dfsg-5.1+deb10u3</td>
-<td>4.0.0-4.3.0</td>
-<td>4.4.0</td>
+<td>4.0.0-4.4.0</td>
+<td></td>
 </tr>
 <tr>
-<td>2556691</td>
+<td>2556690</td>
 <td>The following vulnerabilities have been announced in the openssl packages:
 CVE-2021-23840: Calls to EVP_CipherUpdate, EVP_EncryptUpdate and EVP_DecryptUpdate may overflow the output length argument in some cases where the input length is close to the maximum permissable length for an integer on the platform. In such cases the return value from the function call will be 1 (indicating success), but the output length value will be negative. This could cause applications to behave incorrectly or crash.
 CVE-2021-23841: The OpenSSL public API function X509_issuer_and_serial_hash() attempts to create a unique hash value based on the issuer and serial number data contained
@@ -481,8 +504,8 @@ within an X509 certificate. However it fails to correctly handle any errors that
 CVE-2019-1551: There is an overflow bug in the x64_64 Montgomery squaring procedure used in exponentiation with 512-bit moduli. No EC algorithms are affected. Analysis suggests that attacks against 2-prime RSA1024, 3-prime RSA1536, and DSA1024 as a result of this defect would be very difficult to perform and are not believed likely. Attacks against DH512 are considered just feasible. However, for an attack the target would have to re-use the DH512 private key, which is not recommended anyway. Also applications directly using the low level API BN_mod_exp may be affected if they use BN_FLG_CONSTTIME.
 Vulnerable: &lt;= 1.1.1d-0+deb10u4
 Fixed: 1.1.1d-0+deb10u5</td>
-<td>4.0.0-4.3.0</td>
-<td>4.4.0</td>
+<td>4.0.0-4.4.0</td>
+<td></td>
 </tr>
 <tr>
 <td>2556659</td>
@@ -499,18 +522,18 @@ Vulnerable: &lt;= 2.8.90-1-cl4u5</td>
 <td>4.4.0</td>
 </tr>
 <tr>
-<td>2556569</td>
+<td>2556568</td>
 <td>DSA-4850-1 (no CVE): libzstd adds read permissions to files while being compressed or uncompressed.
 Vulnerable: 1.3.8+dfsg-3
 Fixed: 1.3.8+dfsg-3+deb10u1</td>
-<td>4.0.0-4.3.0</td>
-<td>4.4.0</td>
+<td>4.0.0-4.4.0</td>
+<td></td>
 </tr>
 <tr>
-<td>2556500</td>
+<td>2556499</td>
 <td>Cumulus Linux does not support bond members at 200G or greater.</td>
-<td>4.0.0-4.3.0</td>
-<td>4.4.0</td>
+<td>4.0.0-4.4.0</td>
+<td></td>
 </tr>
 <tr>
 <td>2556462</td>
@@ -531,6 +554,14 @@ To work around this issue, manually create an ACL in the {{/etc/cumulus/acl/poli
 To work around this issue, disable OSPF debugs from global configuration mode (config t).</td>
 <td>4.2.1-4.4.0</td>
 <td></td>
+</tr>
+<tr>
+<td>2556217</td>
+<td>The following vulnerability affects lldpd:
+CVE-2020-27827: A packet that contains multiple instances of certain TLVs will cause lldpd to continually allocate memory and leak the old memory.  As an example, multiple instances of system name TLV will cause old values to be dropped by the decoding routine.
+Fixed: 1.0.4-0-cl4.3.0u2</td>
+<td>3.7.14-3.7.14.2, 4.0.0-4.4.0</td>
+<td>3.7.15</td>
 </tr>
 <tr>
 <td>2556082</td>
@@ -555,10 +586,22 @@ ERROR: Command not found
 <td></td>
 </tr>
 <tr>
+<td>2556010</td>
+<td>On Broadcom switches, after repeated VLAN or VXLAN configuration changes, {{switchd}} memory might not free up appropriately, which can lead to a crash. </td>
+<td>3.7.14, 4.0.0-4.4.0</td>
+<td>3.7.14.2-3.7.15</td>
+</tr>
+<tr>
 <td>2555932</td>
 <td>On Mellanox switches, you can't ping the SVI of the MLAG peer over the peer link after the packet is VXLAN decapsulated.</td>
 <td>4.2.1-4.4.0</td>
 <td></td>
+</tr>
+<tr>
+<td>2555690</td>
+<td>The NET-SNMP-EXTEND-MIB, disabled in Cumulus Linux 4.2.1 and 3.7.14 to prevent security vulnerability CVE-2020-15862, is re-enabled read-only.</td>
+<td>3.7.14-3.7.14.2, 4.2.1-4.4.0</td>
+<td>3.7.15</td>
 </tr>
 <tr>
 <td>2555613</td>
@@ -570,6 +613,31 @@ net add vlan 1 ip6-forward off
 The correct NCLU command to disable IPv6 forwarding is {{net add vlan 1 ipv6 forward off}} (without the hyphen).</td>
 <td>4.2.1-4.4.0</td>
 <td></td>
+</tr>
+<tr>
+<td>2555588</td>
+<td>You can't delete a BGP community list created with NCLU.</td>
+<td>4.2.1-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2555531</td>
+<td>QinQ (802.1Q) packets routed to a layer 3 subinterface are still double tagged with the VLAN of the subinterface and the original inner VLAN when they leave the subinterface.</td>
+<td>4.2.0-4.4.0</td>
+<td>3.7.15</td>
+</tr>
+<tr>
+<td>2555400</td>
+<td>On the Edgecore AS7312 switch, eth0 and swp use the same MAC address.</td>
+<td>3.7.14-3.7.14.2, 4.0.0-4.4.0</td>
+<td>3.7.15</td>
+</tr>
+<tr>
+<td>2554990</td>
+<td>When running traditional mode bridges at scale (for example, when you have more than 200 bridges and a large number of MAC addresses), MLAG bonds flap intermittently from dual to single connected, then back to dual connected, which causes a layer 2 loop and STP state changes.
+To work around this issue, either shut down one side of the MLAG bond or prune out VLANS over the bond.</td>
+<td>3.7.13-3.7.14.2, 4.0.0-4.4.0</td>
+<td>3.7.15</td>
 </tr>
 <tr>
 <td>2554986</td>
@@ -584,10 +652,17 @@ The correct NCLU command to disable IPv6 forwarding is {{net add vlan 1 ipv6 for
 <td></td>
 </tr>
 <tr>
-<td>2554798</td>
+<td>2554809</td>
+<td>Some non-Mellanox ethernet modules do not link up on the Mellanox SN3420 switch with Cumulus PSID in the Hardware revision. To see if a Mellanox SN3420 switch has the Cumulus PSID, check the output of {{mlxfwmanager}} for {{MSN3420-CxxxC_Ax}} in the {{Part Number}} Field.  A Mellanox SN3420 switch with {{MSN3420-CxxxO_Ax}} has an Onie PSID and is unaffected by this issue.
+To work around this issue, use Mellanox ethernet modules with the Mellanox SN3420 switch,</td>
+<td>4.2.1-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2554797</td>
 <td>On the Mellanox SN3700C switch, PIM multicast packets are duplicated at the egress VTEP.</td>
-<td>4.2.0-4.3.0</td>
-<td>4.4.0</td>
+<td>4.2.0-4.4.0</td>
+<td></td>
 </tr>
 <tr>
 <td>2554783</td>
@@ -595,6 +670,12 @@ The correct NCLU command to disable IPv6 forwarding is {{net add vlan 1 ipv6 for
 This might trigger AS path loop prevention on the peer, where the peer ignores locally-originated prefixes.</td>
 <td>4.2.1-4.4.0</td>
 <td></td>
+</tr>
+<tr>
+<td>2554720</td>
+<td>If {{switchd}} successfully signals {{clagd}} that it is going down, {{clagd}} stops responding to keepalive echo requests from the peer instead of sending a good bye to the peer over both the peerlink and the backup switch. Eventually, the keepalive timer expires and the secondary switch becomes the primary, and brings the bonds and VNIs back up. However, if {{switchd}} does not successfully signal it is going down, (in the event of a crash), the primary switch continues to respond to keepalives, and the bonds and VNIs are down on both peers. </td>
+<td>3.7.12-3.7.14.2, 4.0.0-4.4.0</td>
+<td>3.7.15</td>
 </tr>
 <tr>
 <td>2554709</td>
@@ -624,10 +705,22 @@ To work around this issue, configure a static route in FRR.
 <td></td>
 </tr>
 <tr>
+<td>2554333</td>
+<td>The INPUT chain POLICE target acts as ACCEPT instead of continue.</td>
+<td>4.2.1-4.4.0</td>
+<td></td>
+</tr>
+<tr>
 <td>2554299</td>
 <td>In a VRRP configuration, BGP unnumbered sessions for VRFs fail to establish after a networking restart.</td>
 <td>4.2.0-4.3.0</td>
 <td>4.4.0</td>
+</tr>
+<tr>
+<td>2554258</td>
+<td>Interfaces configured to get an IP address with DHCP try only three times to secure a DHCP lease (instead of retrying indefinitely). If unsuccessful after the third try, the switch stops trying.</td>
+<td>4.2.1-4.4.0</td>
+<td></td>
 </tr>
 <tr>
 <td>2554222</td>
@@ -661,6 +754,12 @@ iface vni-30
 <td></td>
 </tr>
 <tr>
+<td>2553952</td>
+<td>On Mellanox Spectrum based switches running 4.1.0 or higher, if FORWARD chain ACLs are configured on the system, a switch port breakout action applied with a reload of the switchd service may cause switchd to crash.</td>
+<td>4.2.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
 <td>2553887</td>
 <td>When using TACACS+ configured with a DEFAULT user providing privilege level lower than 16, TACACS+ configured users with privilege level 16 access might not be able to run privilege level 16 NCLU commands, such as {{net add}} and {{net del}} and see an error similar to the following:
 
@@ -669,6 +768,25 @@ ERROR: You do not have permission to execute that command.
 To work around this issue, remove the DEFAULT user from the TACACS+ server.</td>
 <td>3.7.7-3.7.15, 4.0.0-4.4.0</td>
 <td></td>
+</tr>
+<tr>
+<td>2553747</td>
+<td>On switches with the Spectrum ASIC, the IPv6 default route might be present in the kernel but missing in 
+hardware when IPv6 RAs are received on SVIs configured with {{ip-forward off}}.</td>
+<td>3.7.11-3.7.14.2, 4.2.1-4.4.0</td>
+<td>3.7.15</td>
+</tr>
+<tr>
+<td>2553742</td>
+<td>The next hop for static routes configured in a non-default VRF might be incorrectly flagged as inactive. Remove and reconfigure the static VRF route to recover from this condition. </td>
+<td>4.2.1-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2553731</td>
+<td>A ping via a dual-connected bond fails, and the audio stream is not routed or encapsulated through the layer 3 VNI.</td>
+<td>3.7.12-3.7.13, 4.0.0-4.4.0</td>
+<td>3.7.14-3.7.15</td>
 </tr>
 <tr>
 <td>2553677</td>
@@ -691,6 +809,29 @@ Alternatively, directly edit the {{/etc/snmp/snmpd.conf}} file as described in t
 <td>4.4.0</td>
 </tr>
 <tr>
+<td>2553586</td>
+<td>Multicast traffic on a VPN is sent to remote VTEPs that are not part of the VPN and the remote VTEPs receive multicast traffic encapsulated in a VXLAN ID that doesn't exist.
+To work around this issue, disable IGMP snooping on the switch.</td>
+<td>3.7.12-3.7.13, 4.0.0-4.4.0</td>
+<td>3.7.14-3.7.15</td>
+</tr>
+<tr>
+<td>2553529</td>
+<td>In an MLAG configuration with a layer 3 VNI, when you bounce the peer link, all layer 2 VNIs listed under the layer 3 VNI are duplicated. 
+To work around this issue, restart FRR with the {{sudo systemctl restart frr.service}} command.
+
+</td>
+<td>3.7.10-3.7.13, 4.1.1-4.4.0</td>
+<td>3.7.14-3.7.15</td>
+</tr>
+<tr>
+<td>2553449</td>
+<td>On the the Dell N3248-PXE switch, when you insert two PSUs at different times, the newly inserted PSU is detected as OK but the fan and temp sensors are ABSENT.
+To work around this issue, remove power to both PSUs at the same time, then reinsert power simultaneously.</td>
+<td>3.7.12-3.7.13, 4.2.1-4.4.0</td>
+<td>3.7.14-3.7.15</td>
+</tr>
+<tr>
 <td>2553237</td>
 <td>The default NTP configuration is to use eth0 as the NTP source interface. In Cumulus Linux 4.0 and later, eth0 is in the management VRF by default; therefore the NTP service runs automatically in the management VRF. 
 NVIDIA does not recommend running NTP with a source interface other than eth0 as this can expose a security vulnerability. Changing the NTP source interface name with NCLU to a non-management VRF interface might result in NTP not functioning because the NTP service is still running in the management VRF.
@@ -698,6 +839,12 @@ NVIDIA does not recommend running NTP with a source interface other than eth0 as
 </td>
 <td>4.2.0-4.4.0</td>
 <td></td>
+</tr>
+<tr>
+<td>2553228</td>
+<td>On the Dell N3248PXE switch, RJ45 fixed copper ports that auto-negotiate with a 100M or 10M neighbor incorrectly negotiate a half-duplex link that generates errors. Half duplex modes are not supported on this platform.</td>
+<td>3.7.12-3.7.13, 4.2.1-4.4.0</td>
+<td>3.7.14-3.7.15</td>
 </tr>
 <tr>
 <td>2553116</td>
@@ -713,10 +860,29 @@ To work around this issue, reboot the switch to clear the condition. Avoid setti
 <td></td>
 </tr>
 <tr>
+<td>2552880</td>
+<td>IPv6 TCP or UDP connections (sourcing from an ephemeral port in the range 34048 to 35071) are not forwarded if the switch has more than one layer 2 VNI defined. The traffic might be locally switched on the bridge and dropped. 
+To work around this issue, disable ARP/ND suppression to remove the internal ACL rule that affects the ports.</td>
+<td>3.7.13, 4.2.1-4.4.0</td>
+<td>3.7.14-3.7.15</td>
+</tr>
+<tr>
+<td>2552853</td>
+<td>Tenant VRF BGP peers appear in the EVPN RMAC and nexthop tables, which causes the kernel RMAC to point at invalid IP address.</td>
+<td>3.7.12-3.7.14.2, 4.0.0-4.4.0</td>
+<td>3.7.15</td>
+</tr>
+<tr>
 <td>2552739</td>
 <td>Counters for IPROUTER rules do not increase when traffic is forwarded to the CPU because there is no IP neighbor.</td>
 <td>3.7.2-4.3.0</td>
 <td>4.4.0</td>
+</tr>
+<tr>
+<td>2552704</td>
+<td>In a traditional bridge configuration with {{ip-forward off}}, neighbors are synchronized to hardware with a {{switchd}} restart but are cleared when you flap the bridge interface.</td>
+<td>3.7.10-3.7.14.2, 4.0.0-4.4.0</td>
+<td>3.7.15</td>
 </tr>
 <tr>
 <td>2552691</td>
@@ -724,6 +890,12 @@ To work around this issue, reboot the switch to clear the condition. Avoid setti
 To work around this issue, configure the link speed to 1000 and set auto-negotiation on for the eth0 interface, then flap eth0 with the {{ip link set eth0 down/up}} command to bring up the port.</td>
 <td>4.2.0-4.4.0</td>
 <td></td>
+</tr>
+<tr>
+<td>2552527</td>
+<td>Ingress SPAN/ERSPAN does not mirror packets when the next hop is EVPN encapsulated.</td>
+<td>3.7.7-3.7.13, 4.0.0-4.4.0</td>
+<td>3.7.14-3.7.15</td>
 </tr>
 <tr>
 <td>2552453</td>
@@ -777,6 +949,12 @@ To disable scp completely, use {{/bin/chmod 0 /usr/bin/scp}} .</td>
 <td>The Mellanox SN2700 and SN2410 switch intermittently reports PSU fan state changes with {{Unable to read from device/fan1_input/pwm1}} syslog messages.</td>
 <td>3.7.11-3.7.14.2, 4.1.1-4.4.0</td>
 <td>3.7.15</td>
+</tr>
+<tr>
+<td>2551747</td>
+<td>In OVSDB high availability mode, deleting &gt; 200 VLAN bindings might cause {{ovs-vtepd}} to crash.  Limit the deletion to 200 or fewer VLAN bindings.</td>
+<td>3.7.12-3.7.13, 4.0.0-4.4.0</td>
+<td>3.7.14-3.7.15</td>
 </tr>
 <tr>
 <td>2551666</td>
@@ -861,6 +1039,14 @@ To work around this issue, look for your string in the output of the {{net show 
 <td></td>
 </tr>
 <tr>
+<td>2550374</td>
+<td>CPU utilization may increase when clag-managed bond interfaces are operationally/LACP down but the physical carrier remains up on the bond member switchports. This condition occurs when clag bond redirection is enabled and bond members remain up while the parent bond does not negotiate LACP.
+
+This issue is resolved in Cumulus Linux 3.7.14.</td>
+<td>3.7.9-3.7.13, 4.0.0-4.4.0</td>
+<td>3.7.14-3.7.15</td>
+</tr>
+<tr>
 <td>2550243</td>
 <td>When you use {{nginx}} and {{restserver}} in management VRF to provide a REST API for the switch, {{nginx}} starts but {{restserver}} fails to start.
 To work around this issue, comment out the {{Requires=}} line in the {{/lib/systemd/system/restserver.service}}. For example:
@@ -925,6 +1111,17 @@ To work around this issue, manually edit the {{etc/frr/frr.conf}} file to define
 <td>When Optimized Multicast Flooding (OMF) is enabled with the {{bridge.optimized_mcast_flood = TRUE}} setting in the {{/etc/cumulus/switchd.conf}} file, the switch continues to flood IPv6 multicast traffic to all slave ports when there is no MLD join receive.</td>
 <td>3.7.11-4.3.0</td>
 <td>4.4.0</td>
+</tr>
+<tr>
+<td>2549225</td>
+<td>You might see the following {{gport}} error messages in {{switchd.log}}:
+{code}
+2020-04-10T19:50:01.011224+09:00 E1PDX0V1ELF0001 6 switchd[925]: hal_bcm_mdb.c:530 gport 0x800007a find failed
+2020-04-10T19:50:01.011631+09:00 E1PDX0V1ELF0001 6 switchd[925]: hal_bcm_mdb.c:530 gport 0x8000009 find failed
+{code}
+These messages are harmless and can be ignored.</td>
+<td>3.7.12-3.7.14.2, 4.0.0-4.4.0</td>
+<td>3.7.15</td>
 </tr>
 <tr>
 <td>2548924</td>
@@ -1551,6 +1748,12 @@ To work around this issue, use {{net show interface}} command for LLDP output wh
 <td>3.7.11-3.7.15</td>
 </tr>
 <tr>
+<td>2534977</td>
+<td>On the Mellanox switch, the destination MAC address of ERSPAN GRE packets is set to all zeros; therefore, the first transit switch might drop packets.</td>
+<td>4.0.0-4.4.0</td>
+<td>3.7.14-3.7.15</td>
+</tr>
+<tr>
 <td>2534734</td>
 <td>Span rules matching the out-interface as a bond do not mirror packets.</td>
 <td>4.0.0-4.4.0</td>
@@ -1584,21 +1787,21 @@ To work around this issue, change the value of {{arp_ignore}} to 2. See [Address
 <td></td>
 </tr>
 </table>
-<table name="Fixed issues in 4.2.1.6">
+<table name="Fixed Issues in 4.2.1.6">
 <tr>
 <th> Issue ID </th>
 <th> Description </th>
 <th> Affects </th>
 </tr>
 <tr>
-<td>2597962</td>
-<td>Interfaces configured to get an IP address with DHCP try only three times to secure a DHCP lease (instead of retrying indefinitely). If unsuccessful after the third try, the switch stops trying.</td>
-<td>4.2.1</td>
-</tr>
-<tr>
 <td>2589685</td>
 <td>If you use NCLU to replace the outbound route map of a BGP neighbor, there is an intermediate period during the replacement where there is no outbound route map associated with that neighbor. This might result in unnecessary route withdrawals and advertisements.</td>
 <td></td>
+</tr>
+<tr>
+<td>2554258</td>
+<td>Interfaces configured to get an IP address with DHCP try only three times to secure a DHCP lease (instead of retrying indefinitely). If unsuccessful after the third try, the switch stops trying.</td>
+<td>4.2.1</td>
 </tr>
 </table>
 <table name="Open Issues in 4.2.1">
@@ -1683,6 +1886,21 @@ To work around this issue, when you create a new virtual interface, set net.ipv6
 <td></td>
 </tr>
 <tr>
+<td>2734126</td>
+<td>CVE-2021-33910: The Qualys Research Labs discovered that an attacker-controlled allocation using the alloca() function could result in memory
+corruption, allowing to crash systemd and hence the entire operating system.  Details can be found at https://www.qualys.com/2021/07/20/cve-2021-33910/denial-of-service-systemd.txt .
+Vulnerable: &lt;= 241-7~deb10u7
+Fixed: 241-7~deb10u8</td>
+<td>4.0.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2728207</td>
+<td>CVE-2021-3570: A flaw was found in the ptp4l program of the linuxptp package. A missing length check when forwarding a PTP message between ports allows a remote attacker to cause an information leak, crash, or potentially remote code execution. The highest threat from this vulnerability is to data confidentiality and integrity as well as system availability. </td>
+<td>3.7.0-3.7.15, 4.0.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
 <td>2728138</td>
 <td>CVE-2020-36221, CVE-2020-36222, CVE-2020-36223, CVE-2020-36224, CVE-2020-36225, CVE-2020-36226, CVE-2020-36227, CVE-2020-36228, CVE-2020-36229, CVE-2020-36230:  Several vulnerabilities were discovered in OpenLDAP, a free implementation of the Lightweight Directory Access Protocol. An unauthenticated remote attacker can take advantage of these flaws to cause a denial of service (slapd daemon crash, infinite loops) via specially crafted packets.
 Vulnerable: &lt;= 2.4.47+dfsg-3+deb10u4
@@ -1699,8 +1917,16 @@ Fixed: 2.4.47+dfsg-3+deb10u6</td>
 <td>4.4.0</td>
 </tr>
 <tr>
+<td>2716838</td>
+<td>CVE-2021-22918: An out-of-bounds read was discovered in the uv__idna_to_ascii() function of Libuv, an asynchronous event notification library, which could result in denial of service or information disclosure.
+Vulnerable: 1.24.1-1
+Fixed: 1.24.1-1+deb 10u1</td>
+<td>4.0.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
 <td>2710208</td>
-<td>On Broadcom switches, the {{net show bgp neighbor}} command output shows the BFD status as UP when the interface is down.</td>
+<td>The {{net show bgp neighbor}} command output shows the BFD status as UP even when the BGP neighbor is not established such as when the interface is down.</td>
 <td>4.2.1-4.4.0</td>
 <td></td>
 </tr>
@@ -1716,12 +1942,12 @@ To workaround this issue, run the command against each VRF independently.</td>
 <td></td>
 </tr>
 <tr>
-<td>2695527</td>
+<td>2695526</td>
 <td>CVE-2021-3580 CVE-2021-20305: Multiple vulnerabilities were discovered in nettle, a low level cryptographic library, which could result in denial of service (remote crash in RSA decryption via specially crafted ciphertext, crash on ECDSA signature verification) or incorrect verification of ECDSA signatures.
 Vulnerable: 3.4.1-1
 Fixed: 3.4.1-1+deb10u1</td>
-<td>4.0.0-4.3.0</td>
-<td>4.4.0</td>
+<td>4.0.0-4.4.0</td>
+<td></td>
 </tr>
 <tr>
 <td>2691590</td>
@@ -1732,19 +1958,19 @@ Fixed: 4.11.4+107-gef32c7afa2-1</td>
 <td></td>
 </tr>
 <tr>
-<td>2687160</td>
+<td>2687159</td>
 <td>CVE-2018-25009 CVE-2018-25010 CVE-2018-25011 CVE-2018-25013 CVE-2018-25014 CVE-2020-36328 CVE-2020-36329 CVE-2020-36330 CVE-2020-36331 CVE-2020-36332: Multiple vulnerabilities were discovered in libwebp, the implementation of the WebP image format, which could result in denial of service, memory disclosure or potentially the execution of arbitrary code if malformed images are processed.
 Vulnerable: 0.6.1-2
 Fixed: 0.6.1-2+deb10u1</td>
-<td>4.0.0-4.3.0</td>
-<td>4.4.0</td>
+<td>4.0.0-4.4.0</td>
+<td></td>
 </tr>
 <tr>
 <td>2685994</td>
-<td>The {{nv set interface lo router ospf area}} command fails to apply the configuration when attempting to configure OSPF on a loopback interface using NVUE. To work around this issue, bring the loopback interface into the desired OSPF area using the {{nv set vrf default router ospf area 0 network}} command, referencing the assigned prefix of the loopback interface. Example:
-
-   nv set vrf default router ospf area 0 network 10.10.10.1/32
-   nv config apply</td>
+<td>When you use the NVUE command {{nv set interface lo router ospf area}} to configure OSPF on a loopback interface, the configuration fails to apply.
+To work around this issue, configure the loopback interface in the desired OSPF area with the {{nv set vrf default router ospf area 0 network}} command and reference the assigned prefix of the loopback interface. For example:
+cumulus@leaf01:~$ nv set vrf default router ospf area 0 network 10.10.10.1/32
+cumulus@leaf01:~$ nv config apply</td>
 <td>4.0.0-4.4.0</td>
 <td></td>
 </tr>
@@ -1784,12 +2010,12 @@ To work around this issue, add the MAC access list configuration to the end of t
 <td>4.4.0</td>
 </tr>
 <tr>
-<td>2679950</td>
+<td>2679948</td>
 <td>CVE-2021-25217: parsing of stored leases by dhclient or dhcpd has an incorrect length check that may cause a crash.
 Vulnerable: &lt;= 4.3.1-6-cl3.7.14u1
 Fixed: 4.3.1-6-cl3.7.16u1</td>
-<td>3.7.0-4.3.0</td>
-<td>4.4.0</td>
+<td>3.7.0-3.7.15, 4.0.0-4.4.0</td>
+<td></td>
 </tr>
 <tr>
 <td>2677049</td>
@@ -1798,13 +2024,13 @@ Fixed: 4.3.1-6-cl3.7.16u1</td>
 <td>4.4.0</td>
 </tr>
 <tr>
-<td>2671668</td>
+<td>2671667</td>
 <td>CVE-2021-23017: off-by-one in Nginx, a high-performance web and reverse proxy server, which could
 result in denial of service and potentially the execution of arbitrary code.
 Vulnerable: &lt;= 1.14.2-2+deb10u3
 Fixed: 1.14.2-2+deb10u4</td>
-<td>4.0.0-4.3.0</td>
-<td>4.4.0</td>
+<td>4.0.0-4.4.0</td>
+<td></td>
 </tr>
 <tr>
 <td>2669863</td>
@@ -1840,47 +2066,28 @@ https://security-tracker.debian.org/tracker/CVE-2019-14889</td>
 <td></td>
 </tr>
 <tr>
-<td>2666839</td>
+<td>2666838</td>
 <td>CVE-2021-31535: missing length validation in various functions provided by libx11, the X11 client-side library, allow to inject X11 protocol commands on X clients, leading to authentication bypass, denial of service or potentially the execution of arbitrary code.
 Vulnerable: &lt;= 1.6.7-1+deb10u1
 Fixed: 1.6.7-1+deb10u2</td>
-<td>4.0.0-4.3.0</td>
-<td>4.4.0</td>
+<td>4.0.0-4.4.0</td>
+<td></td>
 </tr>
 <tr>
-<td>2663480</td>
+<td>2663479</td>
 <td>CVE-2021-3520: integer overflow flaw in lz4, a fast LZ compression algorithm library, resulting in memory corruption.
 Vulnerable: 1.8.3-1
 Fixed: 1.8.3-1+deb10u1</td>
-<td>4.0.0-4.3.0</td>
-<td>4.4.0</td>
+<td>4.0.0-4.4.0</td>
+<td></td>
 </tr>
 <tr>
-<td>2660583</td>
-<td>In an MLAG configuration, the secondary MLAG switch does not use a unique address instead of the MLAG system MAC address when there is a double-failure (peer link failure and backup IP failure)</td>
-<td>3.7.14-4.3.0</td>
-<td>4.4.0</td>
-</tr>
-<tr>
-<td>2656530</td>
+<td>2656527</td>
 <td>CVE-2020-18032: A buffer overflow was discovered in Graphviz, which could potentially result in the execution of arbitrary code when processing a malformed file.
 Vulnerable: 2.40.1-6
 Fixed: 2.40.1-6+deb10u1</td>
-<td>4.0.0-4.3.0</td>
-<td>4.4.0</td>
-</tr>
-<tr>
-<td>2654715</td>
-<td>The {{cl-acltool}} takes a significant amount of time to run, which can slow down automation scripts.</td>
-<td>4.2.0-4.3.0</td>
-<td>4.4.0</td>
-</tr>
-<tr>
-<td>2653493</td>
-<td>After running the {{systemctl restart networking service}} command on the MLAG primary switch, the secondary switch also closes its ports.
-To work around this issue, run the {{ifreload -a}} command to restart networking.</td>
-<td>4.2.1-4.3.0</td>
-<td>4.4.0</td>
+<td>4.0.0-4.4.0</td>
+<td></td>
 </tr>
 <tr>
 <td>2653400</td>
@@ -1901,52 +2108,65 @@ To work around this issue, run the {{ifreload -a}} command to restart networking
 <td>3.7.15, 4.4.0</td>
 </tr>
 <tr>
-<td>2644054</td>
+<td>2644053</td>
 <td>The following vulnerabilities have been announced in BIND:
 CVE-2021-25214: a malformed incoming IXFR transfer could trigger an assertion failure in named, resulting in denial of service.
 CVE-2021-25215: named could crash when a DNAME record placed in the ANSWER section during DNAME chasing turned out to be the final answer to a client query.
 CVE-2021-25216: the SPNEGO implementation used by BIND is prone to a buffer overflow vulnerability. This update switches to use the SPNEGO implementation from the Kerberos libraries.
 Vulnerable: &lt;= 9.11.5.P4+dfsg-5.1+deb10u4
 Fixed: 9.11.5.P4+dfsg-5.1+deb10u5</td>
-<td>4.0.0-4.3.0</td>
-<td>4.4.0</td>
+<td>4.0.0-4.4.0</td>
+<td></td>
 </tr>
 <tr>
-<td>2633062</td>
+<td>2643822</td>
+<td>After running the {{systemctl restart networking service}} command on the MLAG primary switch, the secondary switch also closes its ports.
+To work around this issue, run the {{ifreload -a}} command to restart networking.</td>
+<td>4.2.1-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2637554</td>
+<td>The {{cl-acltool}} takes a significant amount of time to run, which can slow down automation scripts.</td>
+<td>4.2.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2633061</td>
 <td>The following vulnerability affects the libgstreamer-plugins-base1.0-0 package.  There is no CVE yet; the Debian advisory number is DSA-4903-1.
 Multiple vulnerabilities were discovered in plugins for the GStreamer media framework, which may result in denial of service or potentially the execution of arbitrary code if a malformed media file is opened.
 Vulnerable: 1.14.4-2
 Fixed: 1.14.4-2+deb10u1</td>
-<td>4.0.0-4.3.0</td>
-<td>4.4.0</td>
+<td>4.0.0-4.4.0</td>
+<td></td>
 </tr>
 <tr>
-<td>2617001</td>
+<td>2617000</td>
 <td>CVE-2021-26933 CVE-2021-27379
 Multiple vulnerabilities have been discovered in the Xen hypervisor, which could result in denial of service, privilege escalation or memory disclosure.
 Vulnerable: &lt; 4.11.4+99-g8bce4698f6-1
 Fixed: 4.11.4+99-g8bce4698f6-1</td>
-<td>4.0.0-4.3.0</td>
-<td>4.4.0</td>
+<td>4.0.0-4.4.0</td>
+<td></td>
 </tr>
 <tr>
-<td>2616999</td>
+<td>2616998</td>
 <td>CVE-2021-23358: missing input sanitising in the template() function of the Underscore JavaScript library could result in the execution of arbitrary code.
 Vulnerable: 1.9.1~dfsg-1
 Fixed: 1.9.1~dfsg-1+deb10u1</td>
-<td>4.0.0-4.3.0</td>
-<td>4.4.0</td>
+<td>4.0.0-4.4.0</td>
+<td></td>
 </tr>
 <tr>
-<td>2616988</td>
+<td>2616987</td>
 <td>CVE-2020-6851 CVE-2020-8112 CVE-2020-15389 CVE-2020-27814 CVE-2020-27823 CVE-2020-27824 CVE-2020-27841 CVE-2020-27842 CVE-2020-27843 CVE-2020-27845: Multiple vulnerabilities have been discovered in openjpeg2, the open-source JPEG 2000 codec, which could result in denial of service or the execution of arbitrary code when opening a malformed image.
 Vulnerable: &lt;= 2.3.0-2+deb10u1
 Fixed: 2.3.0-2+deb10u2</td>
-<td>4.0.0-4.3.0</td>
-<td>4.4.0</td>
+<td>4.0.0-4.4.0</td>
+<td></td>
 </tr>
 <tr>
-<td>2616977</td>
+<td>2616976</td>
 <td>Multiple vulnerabilities were discovered in cURL, an URL transfer library:
 CVE-2020-8169: partial password leak to DNS servers.
 CVE-2020-8177: malicious server could cause curl -J -i to overwrite a local file.
@@ -1958,62 +2178,38 @@ CVE-2021-22876: libcurl did not strip user credentials from URL when populating 
 CVE-2021-22890: libcurl using HTTPS proxy with TLS1.3 could use the wrong session ticket and bypass server TLS certificate check.
 Vulnerable: &lt;= 7.64.0-4+deb10u1
 Fixed: 7.64.0-4+deb10u2</td>
-<td>4.0.0-4.3.0</td>
-<td>4.4.0</td>
+<td>4.0.0-4.4.0</td>
+<td></td>
 </tr>
 <tr>
-<td>2616968</td>
+<td>2616967</td>
 <td>CVE-2021-28957: lxml, a Python binding for the libxml2 and libxslt libraries, did not properly sanitize its input. This would allow a malicious user to mount a cross-site scripting attack.
 Vulnerable: &lt;= 4.3.2-1+deb10u2
 Fixed: 4.3.2-1+deb10u3</td>
-<td>4.0.0-4.3.0</td>
-<td>4.4.0</td>
+<td>4.0.0-4.4.0</td>
+<td></td>
 </tr>
 <tr>
-<td>2616965</td>
+<td>2616964</td>
 <td>CVE-2021-27291: Pygments, a syntax highlighting package written in Python 3, used regular expressions which could result in denial of service.
 Vulnerable: &lt;= 2.3.1+dfsg-1+deb10u1
 Fixed: 2.3.1+dfsg-1+deb10u2</td>
-<td>4.0.0-4.3.0</td>
-<td>4.4.0</td>
+<td>4.0.0-4.4.0</td>
+<td></td>
 </tr>
 <tr>
-<td>2616955</td>
+<td>2616954</td>
 <td>CVE-2021-3449: A NULL pointer dereference was found in the signature_algorithms processing in OpenSSL, a Secure Sockets Layer toolkit, which could result in denial of service.
 Vulnerable: &lt;= 1.1.1d-0+deb10u5
 Fixed: 1.1.1d-0+deb10u6</td>
-<td>4.0.0-4.3.0</td>
-<td>4.4.0</td>
+<td>4.0.0-4.4.0</td>
+<td></td>
 </tr>
 <tr>
 <td>2614016</td>
 <td>The switch firmware incorrectly identifies Lenovo LR4 transceivers (part number 00YD278) and does not set the laser levels properly, which can prevent the link from coming up or might cause the transceiver to be identified as a 1G module.</td>
 <td>4.2.0-4.3.0</td>
 <td>4.4.0</td>
-</tr>
-<tr>
-<td>2597962</td>
-<td>Interfaces configured to get an IP address with DHCP try only three times to secure a DHCP lease (instead of retrying indefinitely). If unsuccessful after the third try, the switch stops trying.</td>
-<td>4.2.1</td>
-<td>4.3.0-4.4.0</td>
-</tr>
-<tr>
-<td>2595889</td>
-<td>In a traditional bridge configuration with {{ip-forward off}}, neighbors are synchronized to hardware with a {{switchd}} restart but are cleared when you flap the bridge interface.</td>
-<td>3.7.10-3.7.14.2, 4.0.0-4.2.1</td>
-<td>3.7.15, 4.3.0-4.4.0</td>
-</tr>
-<tr>
-<td>2595816</td>
-<td>Tenant VRF BGP peers appear in the EVPN RMAC and nexthop tables, which causes the kernel RMAC to point at invalid IP address.</td>
-<td>3.7.12-3.7.14.2, 4.0.0-4.2.1</td>
-<td>3.7.15, 4.3.0-4.4.0</td>
-</tr>
-<tr>
-<td>2589747</td>
-<td>If {{switchd}} successfully signals {{clagd}} that it is going down, {{clagd}} stops responding to keepalive echo requests from the peer instead of sending a good bye to the peer over both the peerlink and the backup switch. Eventually, the keepalive timer expires and the secondary switch becomes the primary, and brings the bonds and VNIs back up. However, if {{switchd}} does not successfully signal it is going down, (in the event of a crash), the primary switch continues to respond to keepalives, and the bonds and VNIs are down on both peers. </td>
-<td>3.7.12-3.7.14.2, 4.0.0-4.2.1</td>
-<td>3.7.15, 4.3.0-4.4.0</td>
 </tr>
 <tr>
 <td>2578872</td>
@@ -2039,13 +2235,13 @@ To work around this issue, either use the {{vtysh}} commands or edit the {{/etc/
 <td>4.4.0</td>
 </tr>
 <tr>
-<td>2566880</td>
+<td>2566878</td>
 <td>CVE-2021-27803: A vulnerability was discovered in how p2p/p2p_pd.c in wpa_supplicant before 2.10 processes P2P (Wi-Fi Direct) provision discovery requests. It could result in denial of service or other impact (potentially execution of arbitrary code), for an attacker within radio range.</td>
-<td>3.7.14-3.7.14.2, 4.0.0-4.3.0</td>
-<td>3.7.15, 4.4.0</td>
+<td>3.7.14-3.7.14.2, 4.0.0-4.4.0</td>
+<td>3.7.15</td>
 </tr>
 <tr>
-<td>2564839</td>
+<td>2564534</td>
 <td>Several vulnerabilities have been discovered in the GRUB2 bootloader:
 CVE-2020-14372: It was discovered that the acpi command allows a privileged user to load crafted ACPI tables when Secure Boot is enabled.
 CVE-2020-25632: A use-after-free vulnerability was found in the rmmod command.
@@ -2054,8 +2250,8 @@ CVE-2020-27749: A stack buffer overflow flaw was found in grub_parser_split_cmdl
 CVE-2020-27779: It was discovered that the cutmem command allows a privileged user  to remove memory regions when Secure Boot is enabled.
 CVE-2021-20225: A heap out-of-bounds write vulnerability was found in the short form option parser.
 CVE-2021-20233: A heap out-of-bound write flaw was found caused by mis-calculation of space required for quoting in the menu rendering.</td>
-<td>4.0.0-4.3.0</td>
-<td>4.4.0</td>
+<td>4.0.0-4.4.0</td>
+<td></td>
 </tr>
 <tr>
 <td>2558184</td>
@@ -2064,27 +2260,33 @@ CVE-2021-20233: A heap out-of-bound write flaw was found caused by mis-calculati
 <td></td>
 </tr>
 <tr>
-<td>2556783</td>
-<td>CVE-2021-0326: An issue has been found in wpa, a set of tools to support WPA and WPA2 (IEEE 802.11i). Missing validation of data can result in a buffer over-write, which might lead to a DoS of the wpa_supplicant process or potentially arbitrary code execution.
-Vulnerable: &lt;= 2.8.0-cl3.7.14u1, &lt;= 2.8.0-cl4.2.1u1</td>
-<td>3.7.14-3.7.14.2, 4.0.0-4.3.0</td>
-<td>3.7.15, 4.4.0</td>
+<td>2556811</td>
+<td>Under certain high scale conditions, various modules might experience timetouts during cl-support collection, which results in missing data in the cl-support file.</td>
+<td>3.7.12-3.7.15, 4.1.1-4.4.0</td>
+<td></td>
 </tr>
 <tr>
-<td>2556778</td>
+<td>2556781</td>
+<td>CVE-2021-0326: An issue has been found in wpa, a set of tools to support WPA and WPA2 (IEEE 802.11i). Missing validation of data can result in a buffer over-write, which might lead to a DoS of the wpa_supplicant process or potentially arbitrary code execution.
+Vulnerable: &lt;= 2.8.0-cl3.7.14u1, &lt;= 2.8.0-cl4.2.1u1</td>
+<td>3.7.14-3.7.14.2, 4.0.0-4.4.0</td>
+<td>3.7.15</td>
+</tr>
+<tr>
+<td>2556777</td>
 <td>CVE-2021-26937: A  flaw in the handling of combining characters in screen, a terminal multiplexer with VT100/ANSI terminal emulation can result in denial of service, or potentially the execution of arbitrary code via a specially crafted UTF-8 character sequence.
 Vulnerable: 4.6.2-3
 Fixed: 4.6.2-3+deb10u1</td>
-<td>4.0.0-4.3.0</td>
-<td>4.4.0</td>
+<td>4.0.0-4.4.0</td>
+<td></td>
 </tr>
 <tr>
-<td>2556775</td>
+<td>2556774</td>
 <td>DSA-4859-1 (no CVE): zstd, a compression utility, was vulnerable to a race condition: it temporarily exposed, during a very short timeframe, a world-readable version of its input even if the original file had restrictive permissions.
 Vulnerable: &lt;= 1.3.8+dfsg-3+deb10u1
 Fixed: 1.3.8+dfsg-3+deb10u2</td>
-<td>4.0.0-4.3.0</td>
-<td>4.4.0</td>
+<td>4.0.0-4.4.0</td>
+<td></td>
 </tr>
 <tr>
 <td>2556772</td>
@@ -2098,21 +2300,21 @@ To work around this issue, run the {{/usr/bin/clagctl verifyvlans}} command or t
 <td>4.4.0</td>
 </tr>
 <tr>
-<td>2556764</td>
+<td>2556762</td>
 <td>In a configuration with both traditional and vlan-aware bridges, the VLAN membership check on a vlan-aware switch does not drop PVST BPBUs that come from a traditional bridge.</td>
-<td>3.7.14-3.7.14.2, 4.0.0-4.3.0</td>
-<td>3.7.15, 4.4.0</td>
+<td>3.7.14-3.7.14.2, 4.0.0-4.4.0</td>
+<td>3.7.15</td>
 </tr>
 <tr>
-<td>2556731</td>
+<td>2556730</td>
 <td>CVE-2020-8625: A buffer overflow vulnerability was discovered in the SPNEGO implementation affecting the GSSAPI security policy negotiation in BIND, a DNS server implementation, which could result in denial of service (daemon crash), or potentially the execution of arbitrary code.
 Vulnerable: &lt;= 9.11.5.P4+dfsg-5.1+deb10u2
 Fixed: 9.11.5.P4+dfsg-5.1+deb10u3</td>
-<td>4.0.0-4.3.0</td>
-<td>4.4.0</td>
+<td>4.0.0-4.4.0</td>
+<td></td>
 </tr>
 <tr>
-<td>2556691</td>
+<td>2556690</td>
 <td>The following vulnerabilities have been announced in the openssl packages:
 CVE-2021-23840: Calls to EVP_CipherUpdate, EVP_EncryptUpdate and EVP_DecryptUpdate may overflow the output length argument in some cases where the input length is close to the maximum permissable length for an integer on the platform. In such cases the return value from the function call will be 1 (indicating success), but the output length value will be negative. This could cause applications to behave incorrectly or crash.
 CVE-2021-23841: The OpenSSL public API function X509_issuer_and_serial_hash() attempts to create a unique hash value based on the issuer and serial number data contained
@@ -2120,8 +2322,8 @@ within an X509 certificate. However it fails to correctly handle any errors that
 CVE-2019-1551: There is an overflow bug in the x64_64 Montgomery squaring procedure used in exponentiation with 512-bit moduli. No EC algorithms are affected. Analysis suggests that attacks against 2-prime RSA1024, 3-prime RSA1536, and DSA1024 as a result of this defect would be very difficult to perform and are not believed likely. Attacks against DH512 are considered just feasible. However, for an attack the target would have to re-use the DH512 private key, which is not recommended anyway. Also applications directly using the low level API BN_mod_exp may be affected if they use BN_FLG_CONSTTIME.
 Vulnerable: &lt;= 1.1.1d-0+deb10u4
 Fixed: 1.1.1d-0+deb10u5</td>
-<td>4.0.0-4.3.0</td>
-<td>4.4.0</td>
+<td>4.0.0-4.4.0</td>
+<td></td>
 </tr>
 <tr>
 <td>2556659</td>
@@ -2138,18 +2340,18 @@ Vulnerable: &lt;= 2.8.90-1-cl4u5</td>
 <td>4.4.0</td>
 </tr>
 <tr>
-<td>2556569</td>
+<td>2556568</td>
 <td>DSA-4850-1 (no CVE): libzstd adds read permissions to files while being compressed or uncompressed.
 Vulnerable: 1.3.8+dfsg-3
 Fixed: 1.3.8+dfsg-3+deb10u1</td>
-<td>4.0.0-4.3.0</td>
-<td>4.4.0</td>
+<td>4.0.0-4.4.0</td>
+<td></td>
 </tr>
 <tr>
-<td>2556500</td>
+<td>2556499</td>
 <td>Cumulus Linux does not support bond members at 200G or greater.</td>
-<td>4.0.0-4.3.0</td>
-<td>4.4.0</td>
+<td>4.0.0-4.4.0</td>
+<td></td>
 </tr>
 <tr>
 <td>2556462</td>
@@ -2180,12 +2382,12 @@ Fixed: 1.8.27-1+deb10u3</td>
 <td>4.3.0-4.4.0</td>
 </tr>
 <tr>
-<td>2556218</td>
+<td>2556217</td>
 <td>The following vulnerability affects lldpd:
 CVE-2020-27827: A packet that contains multiple instances of certain TLVs will cause lldpd to continually allocate memory and leak the old memory.  As an example, multiple instances of system name TLV will cause old values to be dropped by the decoding routine.
 Fixed: 1.0.4-0-cl4.3.0u2</td>
-<td>3.7.14-3.7.14.2, 4.0.0-4.2.1</td>
-<td>3.7.15, 4.3.0-4.4.0</td>
+<td>3.7.14-3.7.14.2, 4.0.0-4.4.0</td>
+<td>3.7.15</td>
 </tr>
 <tr>
 <td>2556215</td>
@@ -2216,10 +2418,10 @@ ERROR: Command not found
 <td></td>
 </tr>
 <tr>
-<td>2556012</td>
+<td>2556010</td>
 <td>On Broadcom switches, after repeated VLAN or VXLAN configuration changes, {{switchd}} memory might not free up appropriately, which can lead to a crash. </td>
-<td>3.7.14, 4.0.0-4.2.1</td>
-<td>3.7.14.2-3.7.15, 4.3.0-4.4.0</td>
+<td>3.7.14, 4.0.0-4.4.0</td>
+<td>3.7.14.2-3.7.15</td>
 </tr>
 <tr>
 <td>2555932</td>
@@ -2239,10 +2441,10 @@ Fixed: 0.23.15-2_deb10u1</td>
 <td>4.3.0-4.4.0</td>
 </tr>
 <tr>
-<td>2555691</td>
+<td>2555690</td>
 <td>The NET-SNMP-EXTEND-MIB, disabled in Cumulus Linux 4.2.1 and 3.7.14 to prevent security vulnerability CVE-2020-15862, is re-enabled read-only.</td>
-<td>3.7.14-3.7.14.2, 4.2.1</td>
-<td>3.7.15, 4.3.0-4.4.0</td>
+<td>3.7.14-3.7.14.2, 4.2.1-4.4.0</td>
+<td>3.7.15</td>
 </tr>
 <tr>
 <td>2555613</td>
@@ -2256,16 +2458,16 @@ The correct NCLU command to disable IPv6 forwarding is {{net add vlan 1 ipv6 for
 <td></td>
 </tr>
 <tr>
-<td>2555589</td>
+<td>2555588</td>
 <td>You can't delete a BGP community list created with NCLU.</td>
-<td>4.2.1</td>
-<td>4.3.0-4.4.0</td>
+<td>4.2.1-4.4.0</td>
+<td></td>
 </tr>
 <tr>
-<td>2555532</td>
+<td>2555531</td>
 <td>QinQ (802.1Q) packets routed to a layer 3 subinterface are still double tagged with the VLAN of the subinterface and the original inner VLAN when they leave the subinterface.</td>
-<td>4.2.0-4.2.1</td>
-<td>3.7.15, 4.3.0-4.4.0</td>
+<td>4.2.0-4.4.0</td>
+<td>3.7.15</td>
 </tr>
 <tr>
 <td>2555528</td>
@@ -2306,10 +2508,10 @@ EVPN Multihoming is supported on Mellanox switches only.</td>
 <td>4.3.0-4.4.0</td>
 </tr>
 <tr>
-<td>2555401</td>
+<td>2555400</td>
 <td>On the Edgecore AS7312 switch, eth0 and swp use the same MAC address.</td>
-<td>3.7.14-3.7.14.2, 4.0.0-4.2.1</td>
-<td>3.7.15, 4.3.0-4.4.0</td>
+<td>3.7.14-3.7.14.2, 4.0.0-4.4.0</td>
+<td>3.7.15</td>
 </tr>
 <tr>
 <td>2555380</td>
@@ -2366,11 +2568,11 @@ Fixed: 1.0.7-2+deb10u1</td>
 <td>4.3.0-4.4.0</td>
 </tr>
 <tr>
-<td>2554992</td>
+<td>2554990</td>
 <td>When running traditional mode bridges at scale (for example, when you have more than 200 bridges and a large number of MAC addresses), MLAG bonds flap intermittently from dual to single connected, then back to dual connected, which causes a layer 2 loop and STP state changes.
 To work around this issue, either shut down one side of the MLAG bond or prune out VLANS over the bond.</td>
-<td>3.7.13-3.7.14.2, 4.0.0-4.2.1</td>
-<td>3.7.15, 4.3.0-4.4.0</td>
+<td>3.7.13-3.7.14.2, 4.0.0-4.4.0</td>
+<td>3.7.15</td>
 </tr>
 <tr>
 <td>2554986</td>
@@ -2407,17 +2609,17 @@ Fixed: 2.4.47+dfsg-3+deb10u4</td>
 <td></td>
 </tr>
 <tr>
-<td>2554810</td>
+<td>2554809</td>
 <td>Some non-Mellanox ethernet modules do not link up on the Mellanox SN3420 switch with Cumulus PSID in the Hardware revision. To see if a Mellanox SN3420 switch has the Cumulus PSID, check the output of {{mlxfwmanager}} for {{MSN3420-CxxxC_Ax}} in the {{Part Number}} Field.  A Mellanox SN3420 switch with {{MSN3420-CxxxO_Ax}} has an Onie PSID and is unaffected by this issue.
 To work around this issue, use Mellanox ethernet modules with the Mellanox SN3420 switch,</td>
-<td>4.2.1</td>
-<td>4.3.0-4.4.0</td>
+<td>4.2.1-4.4.0</td>
+<td></td>
 </tr>
 <tr>
-<td>2554798</td>
+<td>2554797</td>
 <td>On the Mellanox SN3700C switch, PIM multicast packets are duplicated at the egress VTEP.</td>
-<td>4.2.0-4.3.0</td>
-<td>4.4.0</td>
+<td>4.2.0-4.4.0</td>
+<td></td>
 </tr>
 <tr>
 <td>2554785</td>
@@ -2462,6 +2664,12 @@ This might trigger AS path loop prevention on the peer, where the peer ignores l
 <td>In an EVPN multihoming configuration, reloading FRR causes brief traffic loss.</td>
 <td>4.2.1</td>
 <td>4.3.0-4.4.0</td>
+</tr>
+<tr>
+<td>2554720</td>
+<td>If {{switchd}} successfully signals {{clagd}} that it is going down, {{clagd}} stops responding to keepalive echo requests from the peer instead of sending a good bye to the peer over both the peerlink and the backup switch. Eventually, the keepalive timer expires and the secondary switch becomes the primary, and brings the bonds and VNIs back up. However, if {{switchd}} does not successfully signal it is going down, (in the event of a crash), the primary switch continues to respond to keepalives, and the bonds and VNIs are down on both peers. </td>
+<td>3.7.12-3.7.14.2, 4.0.0-4.4.0</td>
+<td>3.7.15</td>
 </tr>
 <tr>
 <td>2554711</td>
@@ -2548,10 +2756,10 @@ To work around this issue, use both PSUs.</td>
 <td>4.3.0-4.4.0</td>
 </tr>
 <tr>
-<td>2554334</td>
+<td>2554333</td>
 <td>The INPUT chain POLICE target acts as ACCEPT instead of continue.</td>
-<td>4.2.1</td>
-<td>4.3.0-4.4.0</td>
+<td>4.2.1-4.4.0</td>
+<td></td>
 </tr>
 <tr>
 <td>2554307</td>
@@ -2582,6 +2790,12 @@ Vulnerable: 10.3.25-0
 Fixed: 10.3.25-0+deb10u1</td>
 <td>4.0.0-4.2.1</td>
 <td>4.3.0-4.4.0</td>
+</tr>
+<tr>
+<td>2554258</td>
+<td>Interfaces configured to get an IP address with DHCP try only three times to secure a DHCP lease (instead of retrying indefinitely). If unsuccessful after the third try, the switch stops trying.</td>
+<td>4.2.1-4.4.0</td>
+<td></td>
 </tr>
 <tr>
 <td>2554253</td>
@@ -2642,10 +2856,10 @@ Fixed: 0.14.0-1.3+deb10u1</td>
 <td>4.3.0-4.4.0</td>
 </tr>
 <tr>
-<td>2553953</td>
+<td>2553952</td>
 <td>On Mellanox Spectrum based switches running 4.1.0 or higher, if FORWARD chain ACLs are configured on the system, a switch port breakout action applied with a reload of the switchd service may cause switchd to crash.</td>
-<td>4.2.0-4.2.1</td>
-<td>4.3.0-4.4.0</td>
+<td>4.2.0-4.4.0</td>
+<td></td>
 </tr>
 <tr>
 <td>2553887</td>
@@ -2666,23 +2880,23 @@ Fixed: 4.11.4+37-g3263f257ca-1</td>
 <td>4.3.0-4.4.0</td>
 </tr>
 <tr>
-<td>2553748</td>
+<td>2553747</td>
 <td>On switches with the Spectrum ASIC, the IPv6 default route might be present in the kernel but missing in 
 hardware when IPv6 RAs are received on SVIs configured with {{ip-forward off}}.</td>
-<td>3.7.11-3.7.14.2, 4.2.1</td>
-<td>3.7.15, 4.3.0-4.4.0</td>
+<td>3.7.11-3.7.14.2, 4.2.1-4.4.0</td>
+<td>3.7.15</td>
 </tr>
 <tr>
-<td>2553743</td>
+<td>2553742</td>
 <td>The next hop for static routes configured in a non-default VRF might be incorrectly flagged as inactive. Remove and reconfigure the static VRF route to recover from this condition. </td>
-<td>4.2.1</td>
-<td>4.3.0-4.4.0</td>
+<td>4.2.1-4.4.0</td>
+<td></td>
 </tr>
 <tr>
-<td>2553732</td>
+<td>2553731</td>
 <td>A ping via a dual-connected bond fails, and the audio stream is not routed or encapsulated through the layer 3 VNI.</td>
-<td>3.7.12-3.7.13, 4.0.0-4.2.1</td>
-<td>3.7.14-3.7.15, 4.3.0-4.4.0</td>
+<td>3.7.12-3.7.13, 4.0.0-4.4.0</td>
+<td>3.7.14-3.7.15</td>
 </tr>
 <tr>
 <td>2553677</td>
@@ -2705,11 +2919,11 @@ Alternatively, directly edit the {{/etc/snmp/snmpd.conf}} file as described in t
 <td>4.4.0</td>
 </tr>
 <tr>
-<td>2553588</td>
+<td>2553586</td>
 <td>Multicast traffic on a VPN is sent to remote VTEPs that are not part of the VPN and the remote VTEPs receive multicast traffic encapsulated in a VXLAN ID that doesn't exist.
 To work around this issue, disable IGMP snooping on the switch.</td>
-<td>3.7.12-3.7.13, 4.0.0-4.2.1</td>
-<td>3.7.14-3.7.15, 4.3.0-4.4.0</td>
+<td>3.7.12-3.7.13, 4.0.0-4.4.0</td>
+<td>3.7.14-3.7.15</td>
 </tr>
 <tr>
 <td>2553568</td>
@@ -2718,13 +2932,13 @@ To work around this issue, disable IGMP snooping on the switch.</td>
 <td>4.3.0-4.4.0</td>
 </tr>
 <tr>
-<td>2553530</td>
+<td>2553529</td>
 <td>In an MLAG configuration with a layer 3 VNI, when you bounce the peer link, all layer 2 VNIs listed under the layer 3 VNI are duplicated. 
 To work around this issue, restart FRR with the {{sudo systemctl restart frr.service}} command.
 
 </td>
-<td>3.7.10-3.7.13, 4.1.1-4.2.1</td>
-<td>3.7.14-3.7.15, 4.3.0-4.4.0</td>
+<td>3.7.10-3.7.13, 4.1.1-4.4.0</td>
+<td>3.7.14-3.7.15</td>
 </tr>
 <tr>
 <td>2553468</td>
@@ -2733,11 +2947,11 @@ To work around this issue, restart FRR with the {{sudo systemctl restart frr.ser
 <td>4.3.0-4.4.0</td>
 </tr>
 <tr>
-<td>2553450</td>
+<td>2553449</td>
 <td>On the the Dell N3248-PXE switch, when you insert two PSUs at different times, the newly inserted PSU is detected as OK but the fan and temp sensors are ABSENT.
 To work around this issue, remove power to both PSUs at the same time, then reinsert power simultaneously.</td>
-<td>3.7.12-3.7.13, 4.2.1</td>
-<td>3.7.14-3.7.15, 4.3.0-4.4.0</td>
+<td>3.7.12-3.7.13, 4.2.1-4.4.0</td>
+<td>3.7.14-3.7.15</td>
 </tr>
 <tr>
 <td>2553349</td>
@@ -2762,10 +2976,10 @@ NVIDIA does not recommend running NTP with a source interface other than eth0 as
 <td></td>
 </tr>
 <tr>
-<td>2553229</td>
+<td>2553228</td>
 <td>On the Dell N3248PXE switch, RJ45 fixed copper ports that auto-negotiate with a 100M or 10M neighbor incorrectly negotiate a half-duplex link that generates errors. Half duplex modes are not supported on this platform.</td>
-<td>3.7.12-3.7.13, 4.2.1</td>
-<td>3.7.14-3.7.15, 4.3.0-4.4.0</td>
+<td>3.7.12-3.7.13, 4.2.1-4.4.0</td>
+<td>3.7.14-3.7.15</td>
 </tr>
 <tr>
 <td>2553219</td>
@@ -2799,11 +3013,11 @@ To work around this issue, reboot the switch to clear the condition. Avoid setti
 <td>4.3.0-4.4.0</td>
 </tr>
 <tr>
-<td>2552881</td>
+<td>2552880</td>
 <td>IPv6 TCP or UDP connections (sourcing from an ephemeral port in the range 34048 to 35071) are not forwarded if the switch has more than one layer 2 VNI defined. The traffic might be locally switched on the bridge and dropped. 
 To work around this issue, disable ARP/ND suppression to remove the internal ACL rule that affects the ports.</td>
-<td>3.7.13, 4.2.1</td>
-<td>3.7.14-3.7.15, 4.3.0-4.4.0</td>
+<td>3.7.13, 4.2.1-4.4.0</td>
+<td>3.7.14-3.7.15</td>
 </tr>
 <tr>
 <td>2552869</td>
@@ -2811,6 +3025,12 @@ To work around this issue, disable ARP/ND suppression to remove the internal ACL
 To work around this issue, use the {{ethtool -m &lt;interface&gt;}} command.</td>
 <td>3.7.13-4.2.1</td>
 <td>4.3.0-4.4.0</td>
+</tr>
+<tr>
+<td>2552853</td>
+<td>Tenant VRF BGP peers appear in the EVPN RMAC and nexthop tables, which causes the kernel RMAC to point at invalid IP address.</td>
+<td>3.7.12-3.7.14.2, 4.0.0-4.4.0</td>
+<td>3.7.15</td>
 </tr>
 <tr>
 <td>2552744</td>
@@ -2840,6 +3060,12 @@ To work around this issue, restart {{switchd}}.</td>
 <td>4.3.0-4.4.0</td>
 </tr>
 <tr>
+<td>2552704</td>
+<td>In a traditional bridge configuration with {{ip-forward off}}, neighbors are synchronized to hardware with a {{switchd}} restart but are cleared when you flap the bridge interface.</td>
+<td>3.7.10-3.7.14.2, 4.0.0-4.4.0</td>
+<td>3.7.15</td>
+</tr>
+<tr>
 <td>2552691</td>
 <td>On the EdgeCore AS4610 switch, the eth0 interface remains down when physically connected to a 1G interface.
 To work around this issue, configure the link speed to 1000 and set auto-negotiation on for the eth0 interface, then flap eth0 with the {{ip link set eth0 down/up}} command to bring up the port.</td>
@@ -2854,10 +3080,10 @@ To work around this issue, boot the switch, manually change the password, then r
 <td>4.3.0-4.4.0</td>
 </tr>
 <tr>
-<td>2552528</td>
+<td>2552527</td>
 <td>Ingress SPAN/ERSPAN does not mirror packets when the next hop is EVPN encapsulated.</td>
-<td>3.7.7-3.7.13, 4.0.0-4.2.1</td>
-<td>3.7.14-3.7.15, 4.3.0-4.4.0</td>
+<td>3.7.7-3.7.13, 4.0.0-4.4.0</td>
+<td>3.7.14-3.7.15</td>
 </tr>
 <tr>
 <td>2552453</td>
@@ -2926,10 +3152,10 @@ To work around this issue, delete the community list sequence before trying to a
 <td>4.3.0-4.4.0</td>
 </tr>
 <tr>
-<td>2551748</td>
+<td>2551747</td>
 <td>In OVSDB high availability mode, deleting &gt; 200 VLAN bindings might cause {{ovs-vtepd}} to crash.  Limit the deletion to 200 or fewer VLAN bindings.</td>
-<td>3.7.12-3.7.13, 4.0.0-4.2.1</td>
-<td>3.7.14-3.7.15, 4.3.0-4.4.0</td>
+<td>3.7.12-3.7.13, 4.0.0-4.4.0</td>
+<td>3.7.14-3.7.15</td>
 </tr>
 <tr>
 <td>2551687</td>
@@ -3096,12 +3322,12 @@ To work around this issue, look for your string in the output of the {{net show 
 <td></td>
 </tr>
 <tr>
-<td>2550375</td>
+<td>2550374</td>
 <td>CPU utilization may increase when clag-managed bond interfaces are operationally/LACP down but the physical carrier remains up on the bond member switchports. This condition occurs when clag bond redirection is enabled and bond members remain up while the parent bond does not negotiate LACP.
 
 This issue is resolved in Cumulus Linux 3.7.14.</td>
-<td>3.7.9-3.7.13, 4.0.0-4.2.1</td>
-<td>3.7.14-3.7.15, 4.3.0-4.4.0</td>
+<td>3.7.9-3.7.13, 4.0.0-4.4.0</td>
+<td>3.7.14-3.7.15</td>
 </tr>
 <tr>
 <td>2550348</td>
@@ -3206,15 +3432,15 @@ To work around this issue, manually edit the {{etc/frr/frr.conf}} file to define
 <td>4.4.0</td>
 </tr>
 <tr>
-<td>2549226</td>
+<td>2549225</td>
 <td>You might see the following {{gport}} error messages in {{switchd.log}}:
 {code}
 2020-04-10T19:50:01.011224+09:00 E1PDX0V1ELF0001 6 switchd[925]: hal_bcm_mdb.c:530 gport 0x800007a find failed
 2020-04-10T19:50:01.011631+09:00 E1PDX0V1ELF0001 6 switchd[925]: hal_bcm_mdb.c:530 gport 0x8000009 find failed
 {code}
 These messages are harmless and can be ignored.</td>
-<td>3.7.12-3.7.14.2, 4.0.0-4.2.1</td>
-<td>3.7.15, 4.3.0-4.4.0</td>
+<td>3.7.12-3.7.14.2, 4.0.0-4.4.0</td>
+<td>3.7.15</td>
 </tr>
 <tr>
 <td>2548930</td>
@@ -3942,10 +4168,10 @@ To work around this issue, use {{net show interface}} command for LLDP output wh
 <td>3.7.11-3.7.15</td>
 </tr>
 <tr>
-<td>2534978</td>
+<td>2534977</td>
 <td>On the Mellanox switch, the destination MAC address of ERSPAN GRE packets is set to all zeros; therefore, the first transit switch might drop packets.</td>
-<td>4.0.0-4.2.1</td>
-<td>3.7.14-3.7.15, 4.3.0-4.4.0</td>
+<td>4.0.0-4.4.0</td>
+<td>3.7.14-3.7.15</td>
 </tr>
 <tr>
 <td>2534734</td>
@@ -3981,7 +4207,7 @@ To work around this issue, change the value of {{arp_ignore}} to 2. See [Address
 <td></td>
 </tr>
 </table>
-<table name="Fixed issues in 4.2.1">
+<table name="Fixed Issues in 4.2.1">
 <tr>
 <th> Issue ID </th>
 <th> Description </th>
@@ -4036,7 +4262,7 @@ Fixed: 9.11.5.P4+dfsg-5.1+deb10u2</td>
 <td>4.0.0-4.2.0</td>
 </tr>
 <tr>
-<td>2552856</td>
+<td>2552855</td>
 <td>FDB entries with type _static_ are installed in hardware as dynamic entries with no aging instead of truly static, which might result in the entries being occasionally flushed from hardware and the kernel. For example, this might happen when a port is in the STP Blocking state during a MAC sync.</td>
 <td>4.2.0</td>
 </tr>
@@ -4056,7 +4282,7 @@ Fixed: 9.27~dfsg-2+deb10u4</td>
 <td>4.0.0-4.2.0</td>
 </tr>
 <tr>
-<td>2552647</td>
+<td>2552646</td>
 <td>When you add a member to a bond that has a subinterface configured (such as peerlink.4094), the new member is assigned only the VLAN of the subinterface for forwarding.
 To work around this issue, bounce the bond or shutdown the new interface and use the remaining members over the bond.</td>
 <td>3.7.10-3.7.13, 4.2.0</td>
@@ -4068,7 +4294,7 @@ CVE-2019-11360: A buffer overflow in {{iptables-restore}} in netfilter iptables 
 <td>3.7.13-4.2.0</td>
 </tr>
 <tr>
-<td>2552608</td>
+<td>2552607</td>
 <td>The following vulnerability has been announced:
 CVE-2019-20892: net-snmp before 5.8.1.pre1 has a double free in usm_free_usmStateReference in snmplib/snmpusm.c via an SNMPv3 GetBulk request. 
 Fixed:  5.8.0-cl4.2.1u1,  5.8.0-cl3.7.14u1</td>
@@ -4087,7 +4313,7 @@ Vulnerable: &lt;= 4.19.0-cl4u3</td>
 <td>4.2.0</td>
 </tr>
 <tr>
-<td>2552506</td>
+<td>2552505</td>
 <td>Changing the order of the bridge ports might cause the bridge MAC address to change, which flaps the bridge and its ports.
 To work around this issue, manually set the MAC address of the bridge interface by adding {{hwaddress &lt;mac-address&gt;}} to the bridge stanza in the {{/etc/network/interfaces}} file.</td>
 <td>3.7.11-3.7.13, 4.0.0-4.2.0</td>
@@ -4101,7 +4327,7 @@ Fixed: 0.12.1+ds-2+deb10u1</td>
 <td>4.0.0-4.2.0</td>
 </tr>
 <tr>
-<td>2552298</td>
+<td>2552297</td>
 <td>The following vulnerability has been announced in net-snmp:
 CVE-2020-15862: A privilege escalation involving the NET-SNMP-EXTEND-MIB support (which is enabled by default at compile-time).
 The fixed versions disable NET-SNMP-EXTEND-MIB support.
@@ -4133,7 +4359,7 @@ Fixed: 1.14.2-2+deb10u2</td>
 <td>4.0.0-4.2.0</td>
 </tr>
 <tr>
-<td>2552206</td>
+<td>2552204</td>
 <td>If the MAC address of an SVI changes, {{clagd}} does not update its permanent neighbor entry for the local interface, and it does not report the change to its MLAG peer. This leaves the MLAG peer in a state where its permanent neighbor for the MLAG peer's SVI IP address continues to use the old MAC address, which causes routed traffic over this SVI to be dropped.
 To work around this issue, ifdown/ifup the SVI when a MAC address changes.</td>
 <td>3.7.12-3.7.13, 4.0.0-4.2.0</td>
@@ -4147,7 +4373,7 @@ Fixed: 3.1+dfsg-8+deb10u7</td>
 <td>4.0.0-4.2.0</td>
 </tr>
 <tr>
-<td>2551912</td>
+<td>2551911</td>
 <td>{{ifupdown2}} does not account for link status or link down configuration when running {{dhclient}}. For example, {{ifupdown2}} ignores {{link-down yes}} during {{ifup/ifreload}} and runs the DHCP module if {{inet dhcp}} is configured on the interface. {{ifupdown2}} also runs the DHCP module even when the physical link configured for DHCP is down.</td>
 <td>3.7.12-4.2.0</td>
 </tr>
@@ -4182,22 +4408,22 @@ Fixed: 3.42.1-1+deb10u3</td>
 <td>4.0.0-4.2.0</td>
 </tr>
 <tr>
-<td>2551732</td>
+<td>2551730</td>
 <td>When the OVSDB VTEP scale increases, the CPU utilization increases and eventually the switch ({{ptmd}}) fails to respond to the BFD, causing the BFD session to go down. As a result OVSDB cannot read the BFD socket status and outputs a warning in the {{ovs-vtepd}} debugs: {{PTM socket error: Bad file descriptor}}.</td>
 <td>3.7.12-3.7.13, 4.0.0-4.2.0</td>
 </tr>
 <tr>
-<td>2551729</td>
+<td>2551727</td>
 <td>In OVSDB high availability mode, if you create, then delete a binding, the FDB entry is not replaced and you see an error.</td>
 <td>3.7.12-3.7.13, 4.0.0-4.2.0</td>
 </tr>
 <tr>
-<td>2551715</td>
+<td>2551713</td>
 <td>There is a change to the default OVSDB bootstrapping process, where the script created now defaults to VLAN-aware bridge mode. If you want to use traditional bride mode, you need to force it by editing the {{ovs-vtep-ctl}} script generated by the bootstrap process.</td>
 <td>3.7.12-3.7.13, 4.0.0-4.2.0</td>
 </tr>
 <tr>
-<td>2551693</td>
+<td>2551692</td>
 <td>A host migrated to an 802.1X MAB port within the same broadcast domain fails to have the correct FDB entry installed if a dynamic FDB entry for that MAC address exists from previous connectivity in the broadcast domain.
 To work around this issue, manually delete the dynamic FDB entry that is associated with the uplink trunk port.</td>
 <td>3.7.12-3.7.13, 4.1.1-4.2.0</td>
@@ -4212,7 +4438,7 @@ Fixed: 4.11.4+24-gddaaccbbab-1~deb10u1</td>
 <td>4.0.0-4.2.0</td>
 </tr>
 <tr>
-<td>2551675</td>
+<td>2551674</td>
 <td>When you restart {{clagd}}, the edge port setting on the peer link changes.</td>
 <td>3.7.2-3.7.13, 4.0.0-4.2.0</td>
 </tr>
@@ -4223,7 +4449,7 @@ To workaround this issue, downgrade to Cumulus Linux 3.7 ESR.</td>
 <td>4.0.0-4.2.0</td>
 </tr>
 <tr>
-<td>2551651</td>
+<td>2551650</td>
 <td>The {{net show dot1x interface summary}} command output shows a MAC address with all zeros associated with a port.</td>
 <td>3.7.12-3.7.13, 4.0.0-4.2.0</td>
 </tr>
@@ -4255,17 +4481,17 @@ To work around this issue, correct the cause of the frequent link flaps. You can
 <td>3.7.11-4.2.0</td>
 </tr>
 <tr>
-<td>2550873</td>
+<td>2550872</td>
 <td>In an MLAG configuration with static VXLAN, static tunnels become unreachable.</td>
 <td>3.7.13, 4.1.1-4.2.0</td>
 </tr>
 <tr>
-<td>2550606</td>
+<td>2550605</td>
 <td>A VRRP role change over the EVPN network causes excessive BGP updates and connectivity issues to VIP for about one minute.</td>
 <td>4.1.1-4.2.0</td>
 </tr>
 <tr>
-<td>2550479</td>
+<td>2550478</td>
 <td>VXLAN interface as in-interface or out-interface in an ACL is not supported in Spectrum-based switches.</td>
 <td>3.7.7-4.2.0</td>
 </tr>
@@ -4280,7 +4506,7 @@ To work around this issue, correct the cause of the frequent link flaps. You can
 <td>4.2.0</td>
 </tr>
 <tr>
-<td>2549794</td>
+<td>2549793</td>
 <td>The {{asic-monitor.service}} fails when you configure {{/etc/cumulus/datapath/monitor.conf}} with {{monitor.histogram_pg.collect.port_group_list  = [all_packet_pg]}} and there is traffic passing through the buffer. When the service fails, you see the following traceback in {{journalctl}}:
 
 asic-monitor[7389]: asic-monitor-module INFO: 2020-05-01 18:28:12.548734: Egress queue(s) greater than 500 bytes in monitor port group histogram_pg
@@ -4383,6 +4609,21 @@ To work around this issue, when you create a new virtual interface, set net.ipv6
 <td></td>
 </tr>
 <tr>
+<td>2734126</td>
+<td>CVE-2021-33910: The Qualys Research Labs discovered that an attacker-controlled allocation using the alloca() function could result in memory
+corruption, allowing to crash systemd and hence the entire operating system.  Details can be found at https://www.qualys.com/2021/07/20/cve-2021-33910/denial-of-service-systemd.txt .
+Vulnerable: &lt;= 241-7~deb10u7
+Fixed: 241-7~deb10u8</td>
+<td>4.0.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2728207</td>
+<td>CVE-2021-3570: A flaw was found in the ptp4l program of the linuxptp package. A missing length check when forwarding a PTP message between ports allows a remote attacker to cause an information leak, crash, or potentially remote code execution. The highest threat from this vulnerability is to data confidentiality and integrity as well as system availability. </td>
+<td>3.7.0-3.7.15, 4.0.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
 <td>2728138</td>
 <td>CVE-2020-36221, CVE-2020-36222, CVE-2020-36223, CVE-2020-36224, CVE-2020-36225, CVE-2020-36226, CVE-2020-36227, CVE-2020-36228, CVE-2020-36229, CVE-2020-36230:  Several vulnerabilities were discovered in OpenLDAP, a free implementation of the Lightweight Directory Access Protocol. An unauthenticated remote attacker can take advantage of these flaws to cause a denial of service (slapd daemon crash, infinite loops) via specially crafted packets.
 Vulnerable: &lt;= 2.4.47+dfsg-3+deb10u4
@@ -4399,6 +4640,14 @@ Fixed: 2.4.47+dfsg-3+deb10u6</td>
 <td>4.4.0</td>
 </tr>
 <tr>
+<td>2716838</td>
+<td>CVE-2021-22918: An out-of-bounds read was discovered in the uv__idna_to_ascii() function of Libuv, an asynchronous event notification library, which could result in denial of service or information disclosure.
+Vulnerable: 1.24.1-1
+Fixed: 1.24.1-1+deb 10u1</td>
+<td>4.0.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
 <td>2699399</td>
 <td>When you run the vtysh {{show ip bgp vrf &lt;name&gt; &lt;afi&gt; &lt;safi&gt; statistics}} command, the {{bgpd}} service crashes if you use {{vrf all}}. For example:
 spine01# show ip bgp vrf all statistics 
@@ -4410,12 +4659,12 @@ To workaround this issue, run the command against each VRF independently.</td>
 <td></td>
 </tr>
 <tr>
-<td>2695527</td>
+<td>2695526</td>
 <td>CVE-2021-3580 CVE-2021-20305: Multiple vulnerabilities were discovered in nettle, a low level cryptographic library, which could result in denial of service (remote crash in RSA decryption via specially crafted ciphertext, crash on ECDSA signature verification) or incorrect verification of ECDSA signatures.
 Vulnerable: 3.4.1-1
 Fixed: 3.4.1-1+deb10u1</td>
-<td>4.0.0-4.3.0</td>
-<td>4.4.0</td>
+<td>4.0.0-4.4.0</td>
+<td></td>
 </tr>
 <tr>
 <td>2691590</td>
@@ -4426,19 +4675,19 @@ Fixed: 4.11.4+107-gef32c7afa2-1</td>
 <td></td>
 </tr>
 <tr>
-<td>2687160</td>
+<td>2687159</td>
 <td>CVE-2018-25009 CVE-2018-25010 CVE-2018-25011 CVE-2018-25013 CVE-2018-25014 CVE-2020-36328 CVE-2020-36329 CVE-2020-36330 CVE-2020-36331 CVE-2020-36332: Multiple vulnerabilities were discovered in libwebp, the implementation of the WebP image format, which could result in denial of service, memory disclosure or potentially the execution of arbitrary code if malformed images are processed.
 Vulnerable: 0.6.1-2
 Fixed: 0.6.1-2+deb10u1</td>
-<td>4.0.0-4.3.0</td>
-<td>4.4.0</td>
+<td>4.0.0-4.4.0</td>
+<td></td>
 </tr>
 <tr>
 <td>2685994</td>
-<td>The {{nv set interface lo router ospf area}} command fails to apply the configuration when attempting to configure OSPF on a loopback interface using NVUE. To work around this issue, bring the loopback interface into the desired OSPF area using the {{nv set vrf default router ospf area 0 network}} command, referencing the assigned prefix of the loopback interface. Example:
-
-   nv set vrf default router ospf area 0 network 10.10.10.1/32
-   nv config apply</td>
+<td>When you use the NVUE command {{nv set interface lo router ospf area}} to configure OSPF on a loopback interface, the configuration fails to apply.
+To work around this issue, configure the loopback interface in the desired OSPF area with the {{nv set vrf default router ospf area 0 network}} command and reference the assigned prefix of the loopback interface. For example:
+cumulus@leaf01:~$ nv set vrf default router ospf area 0 network 10.10.10.1/32
+cumulus@leaf01:~$ nv config apply</td>
 <td>4.0.0-4.4.0</td>
 <td></td>
 </tr>
@@ -4472,12 +4721,12 @@ To work around this issue, add the MAC access list configuration to the end of t
 <td>4.4.0</td>
 </tr>
 <tr>
-<td>2679950</td>
+<td>2679948</td>
 <td>CVE-2021-25217: parsing of stored leases by dhclient or dhcpd has an incorrect length check that may cause a crash.
 Vulnerable: &lt;= 4.3.1-6-cl3.7.14u1
 Fixed: 4.3.1-6-cl3.7.16u1</td>
-<td>3.7.0-4.3.0</td>
-<td>4.4.0</td>
+<td>3.7.0-3.7.15, 4.0.0-4.4.0</td>
+<td></td>
 </tr>
 <tr>
 <td>2677049</td>
@@ -4486,13 +4735,13 @@ Fixed: 4.3.1-6-cl3.7.16u1</td>
 <td>4.4.0</td>
 </tr>
 <tr>
-<td>2671668</td>
+<td>2671667</td>
 <td>CVE-2021-23017: off-by-one in Nginx, a high-performance web and reverse proxy server, which could
 result in denial of service and potentially the execution of arbitrary code.
 Vulnerable: &lt;= 1.14.2-2+deb10u3
 Fixed: 1.14.2-2+deb10u4</td>
-<td>4.0.0-4.3.0</td>
-<td>4.4.0</td>
+<td>4.0.0-4.4.0</td>
+<td></td>
 </tr>
 <tr>
 <td>2669863</td>
@@ -4528,40 +4777,28 @@ https://security-tracker.debian.org/tracker/CVE-2019-14889</td>
 <td></td>
 </tr>
 <tr>
-<td>2666839</td>
+<td>2666838</td>
 <td>CVE-2021-31535: missing length validation in various functions provided by libx11, the X11 client-side library, allow to inject X11 protocol commands on X clients, leading to authentication bypass, denial of service or potentially the execution of arbitrary code.
 Vulnerable: &lt;= 1.6.7-1+deb10u1
 Fixed: 1.6.7-1+deb10u2</td>
-<td>4.0.0-4.3.0</td>
-<td>4.4.0</td>
+<td>4.0.0-4.4.0</td>
+<td></td>
 </tr>
 <tr>
-<td>2663480</td>
+<td>2663479</td>
 <td>CVE-2021-3520: integer overflow flaw in lz4, a fast LZ compression algorithm library, resulting in memory corruption.
 Vulnerable: 1.8.3-1
 Fixed: 1.8.3-1+deb10u1</td>
-<td>4.0.0-4.3.0</td>
-<td>4.4.0</td>
+<td>4.0.0-4.4.0</td>
+<td></td>
 </tr>
 <tr>
-<td>2660583</td>
-<td>In an MLAG configuration, the secondary MLAG switch does not use a unique address instead of the MLAG system MAC address when there is a double-failure (peer link failure and backup IP failure)</td>
-<td>3.7.14-4.3.0</td>
-<td>4.4.0</td>
-</tr>
-<tr>
-<td>2656530</td>
+<td>2656527</td>
 <td>CVE-2020-18032: A buffer overflow was discovered in Graphviz, which could potentially result in the execution of arbitrary code when processing a malformed file.
 Vulnerable: 2.40.1-6
 Fixed: 2.40.1-6+deb10u1</td>
-<td>4.0.0-4.3.0</td>
-<td>4.4.0</td>
-</tr>
-<tr>
-<td>2654715</td>
-<td>The {{cl-acltool}} takes a significant amount of time to run, which can slow down automation scripts.</td>
-<td>4.2.0-4.3.0</td>
-<td>4.4.0</td>
+<td>4.0.0-4.4.0</td>
+<td></td>
 </tr>
 <tr>
 <td>2653400</td>
@@ -4582,52 +4819,58 @@ Fixed: 2.40.1-6+deb10u1</td>
 <td>3.7.15, 4.4.0</td>
 </tr>
 <tr>
-<td>2644054</td>
+<td>2644053</td>
 <td>The following vulnerabilities have been announced in BIND:
 CVE-2021-25214: a malformed incoming IXFR transfer could trigger an assertion failure in named, resulting in denial of service.
 CVE-2021-25215: named could crash when a DNAME record placed in the ANSWER section during DNAME chasing turned out to be the final answer to a client query.
 CVE-2021-25216: the SPNEGO implementation used by BIND is prone to a buffer overflow vulnerability. This update switches to use the SPNEGO implementation from the Kerberos libraries.
 Vulnerable: &lt;= 9.11.5.P4+dfsg-5.1+deb10u4
 Fixed: 9.11.5.P4+dfsg-5.1+deb10u5</td>
-<td>4.0.0-4.3.0</td>
-<td>4.4.0</td>
+<td>4.0.0-4.4.0</td>
+<td></td>
 </tr>
 <tr>
-<td>2633062</td>
+<td>2637554</td>
+<td>The {{cl-acltool}} takes a significant amount of time to run, which can slow down automation scripts.</td>
+<td>4.2.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2633061</td>
 <td>The following vulnerability affects the libgstreamer-plugins-base1.0-0 package.  There is no CVE yet; the Debian advisory number is DSA-4903-1.
 Multiple vulnerabilities were discovered in plugins for the GStreamer media framework, which may result in denial of service or potentially the execution of arbitrary code if a malformed media file is opened.
 Vulnerable: 1.14.4-2
 Fixed: 1.14.4-2+deb10u1</td>
-<td>4.0.0-4.3.0</td>
-<td>4.4.0</td>
+<td>4.0.0-4.4.0</td>
+<td></td>
 </tr>
 <tr>
-<td>2617001</td>
+<td>2617000</td>
 <td>CVE-2021-26933 CVE-2021-27379
 Multiple vulnerabilities have been discovered in the Xen hypervisor, which could result in denial of service, privilege escalation or memory disclosure.
 Vulnerable: &lt; 4.11.4+99-g8bce4698f6-1
 Fixed: 4.11.4+99-g8bce4698f6-1</td>
-<td>4.0.0-4.3.0</td>
-<td>4.4.0</td>
+<td>4.0.0-4.4.0</td>
+<td></td>
 </tr>
 <tr>
-<td>2616999</td>
+<td>2616998</td>
 <td>CVE-2021-23358: missing input sanitising in the template() function of the Underscore JavaScript library could result in the execution of arbitrary code.
 Vulnerable: 1.9.1~dfsg-1
 Fixed: 1.9.1~dfsg-1+deb10u1</td>
-<td>4.0.0-4.3.0</td>
-<td>4.4.0</td>
+<td>4.0.0-4.4.0</td>
+<td></td>
 </tr>
 <tr>
-<td>2616988</td>
+<td>2616987</td>
 <td>CVE-2020-6851 CVE-2020-8112 CVE-2020-15389 CVE-2020-27814 CVE-2020-27823 CVE-2020-27824 CVE-2020-27841 CVE-2020-27842 CVE-2020-27843 CVE-2020-27845: Multiple vulnerabilities have been discovered in openjpeg2, the open-source JPEG 2000 codec, which could result in denial of service or the execution of arbitrary code when opening a malformed image.
 Vulnerable: &lt;= 2.3.0-2+deb10u1
 Fixed: 2.3.0-2+deb10u2</td>
-<td>4.0.0-4.3.0</td>
-<td>4.4.0</td>
+<td>4.0.0-4.4.0</td>
+<td></td>
 </tr>
 <tr>
-<td>2616977</td>
+<td>2616976</td>
 <td>Multiple vulnerabilities were discovered in cURL, an URL transfer library:
 CVE-2020-8169: partial password leak to DNS servers.
 CVE-2020-8177: malicious server could cause curl -J -i to overwrite a local file.
@@ -4639,56 +4882,38 @@ CVE-2021-22876: libcurl did not strip user credentials from URL when populating 
 CVE-2021-22890: libcurl using HTTPS proxy with TLS1.3 could use the wrong session ticket and bypass server TLS certificate check.
 Vulnerable: &lt;= 7.64.0-4+deb10u1
 Fixed: 7.64.0-4+deb10u2</td>
-<td>4.0.0-4.3.0</td>
-<td>4.4.0</td>
+<td>4.0.0-4.4.0</td>
+<td></td>
 </tr>
 <tr>
-<td>2616968</td>
+<td>2616967</td>
 <td>CVE-2021-28957: lxml, a Python binding for the libxml2 and libxslt libraries, did not properly sanitize its input. This would allow a malicious user to mount a cross-site scripting attack.
 Vulnerable: &lt;= 4.3.2-1+deb10u2
 Fixed: 4.3.2-1+deb10u3</td>
-<td>4.0.0-4.3.0</td>
-<td>4.4.0</td>
+<td>4.0.0-4.4.0</td>
+<td></td>
 </tr>
 <tr>
-<td>2616965</td>
+<td>2616964</td>
 <td>CVE-2021-27291: Pygments, a syntax highlighting package written in Python 3, used regular expressions which could result in denial of service.
 Vulnerable: &lt;= 2.3.1+dfsg-1+deb10u1
 Fixed: 2.3.1+dfsg-1+deb10u2</td>
-<td>4.0.0-4.3.0</td>
-<td>4.4.0</td>
+<td>4.0.0-4.4.0</td>
+<td></td>
 </tr>
 <tr>
-<td>2616955</td>
+<td>2616954</td>
 <td>CVE-2021-3449: A NULL pointer dereference was found in the signature_algorithms processing in OpenSSL, a Secure Sockets Layer toolkit, which could result in denial of service.
 Vulnerable: &lt;= 1.1.1d-0+deb10u5
 Fixed: 1.1.1d-0+deb10u6</td>
-<td>4.0.0-4.3.0</td>
-<td>4.4.0</td>
+<td>4.0.0-4.4.0</td>
+<td></td>
 </tr>
 <tr>
 <td>2614016</td>
 <td>The switch firmware incorrectly identifies Lenovo LR4 transceivers (part number 00YD278) and does not set the laser levels properly, which can prevent the link from coming up or might cause the transceiver to be identified as a 1G module.</td>
 <td>4.2.0-4.3.0</td>
 <td>4.4.0</td>
-</tr>
-<tr>
-<td>2595889</td>
-<td>In a traditional bridge configuration with {{ip-forward off}}, neighbors are synchronized to hardware with a {{switchd}} restart but are cleared when you flap the bridge interface.</td>
-<td>3.7.10-3.7.14.2, 4.0.0-4.2.1</td>
-<td>3.7.15, 4.3.0-4.4.0</td>
-</tr>
-<tr>
-<td>2595816</td>
-<td>Tenant VRF BGP peers appear in the EVPN RMAC and nexthop tables, which causes the kernel RMAC to point at invalid IP address.</td>
-<td>3.7.12-3.7.14.2, 4.0.0-4.2.1</td>
-<td>3.7.15, 4.3.0-4.4.0</td>
-</tr>
-<tr>
-<td>2589747</td>
-<td>If {{switchd}} successfully signals {{clagd}} that it is going down, {{clagd}} stops responding to keepalive echo requests from the peer instead of sending a good bye to the peer over both the peerlink and the backup switch. Eventually, the keepalive timer expires and the secondary switch becomes the primary, and brings the bonds and VNIs back up. However, if {{switchd}} does not successfully signal it is going down, (in the event of a crash), the primary switch continues to respond to keepalives, and the bonds and VNIs are down on both peers. </td>
-<td>3.7.12-3.7.14.2, 4.0.0-4.2.1</td>
-<td>3.7.15, 4.3.0-4.4.0</td>
 </tr>
 <tr>
 <td>2578872</td>
@@ -4714,13 +4939,13 @@ To work around this issue, either use the {{vtysh}} commands or edit the {{/etc/
 <td>4.4.0</td>
 </tr>
 <tr>
-<td>2566880</td>
+<td>2566878</td>
 <td>CVE-2021-27803: A vulnerability was discovered in how p2p/p2p_pd.c in wpa_supplicant before 2.10 processes P2P (Wi-Fi Direct) provision discovery requests. It could result in denial of service or other impact (potentially execution of arbitrary code), for an attacker within radio range.</td>
-<td>3.7.14-3.7.14.2, 4.0.0-4.3.0</td>
-<td>3.7.15, 4.4.0</td>
+<td>3.7.14-3.7.14.2, 4.0.0-4.4.0</td>
+<td>3.7.15</td>
 </tr>
 <tr>
-<td>2564839</td>
+<td>2564534</td>
 <td>Several vulnerabilities have been discovered in the GRUB2 bootloader:
 CVE-2020-14372: It was discovered that the acpi command allows a privileged user to load crafted ACPI tables when Secure Boot is enabled.
 CVE-2020-25632: A use-after-free vulnerability was found in the rmmod command.
@@ -4729,8 +4954,8 @@ CVE-2020-27749: A stack buffer overflow flaw was found in grub_parser_split_cmdl
 CVE-2020-27779: It was discovered that the cutmem command allows a privileged user  to remove memory regions when Secure Boot is enabled.
 CVE-2021-20225: A heap out-of-bounds write vulnerability was found in the short form option parser.
 CVE-2021-20233: A heap out-of-bound write flaw was found caused by mis-calculation of space required for quoting in the menu rendering.</td>
-<td>4.0.0-4.3.0</td>
-<td>4.4.0</td>
+<td>4.0.0-4.4.0</td>
+<td></td>
 </tr>
 <tr>
 <td>2558184</td>
@@ -4739,44 +4964,50 @@ CVE-2021-20233: A heap out-of-bound write flaw was found caused by mis-calculati
 <td></td>
 </tr>
 <tr>
-<td>2556783</td>
-<td>CVE-2021-0326: An issue has been found in wpa, a set of tools to support WPA and WPA2 (IEEE 802.11i). Missing validation of data can result in a buffer over-write, which might lead to a DoS of the wpa_supplicant process or potentially arbitrary code execution.
-Vulnerable: &lt;= 2.8.0-cl3.7.14u1, &lt;= 2.8.0-cl4.2.1u1</td>
-<td>3.7.14-3.7.14.2, 4.0.0-4.3.0</td>
-<td>3.7.15, 4.4.0</td>
+<td>2556811</td>
+<td>Under certain high scale conditions, various modules might experience timetouts during cl-support collection, which results in missing data in the cl-support file.</td>
+<td>3.7.12-3.7.15, 4.1.1-4.4.0</td>
+<td></td>
 </tr>
 <tr>
-<td>2556778</td>
+<td>2556781</td>
+<td>CVE-2021-0326: An issue has been found in wpa, a set of tools to support WPA and WPA2 (IEEE 802.11i). Missing validation of data can result in a buffer over-write, which might lead to a DoS of the wpa_supplicant process or potentially arbitrary code execution.
+Vulnerable: &lt;= 2.8.0-cl3.7.14u1, &lt;= 2.8.0-cl4.2.1u1</td>
+<td>3.7.14-3.7.14.2, 4.0.0-4.4.0</td>
+<td>3.7.15</td>
+</tr>
+<tr>
+<td>2556777</td>
 <td>CVE-2021-26937: A  flaw in the handling of combining characters in screen, a terminal multiplexer with VT100/ANSI terminal emulation can result in denial of service, or potentially the execution of arbitrary code via a specially crafted UTF-8 character sequence.
 Vulnerable: 4.6.2-3
 Fixed: 4.6.2-3+deb10u1</td>
-<td>4.0.0-4.3.0</td>
-<td>4.4.0</td>
+<td>4.0.0-4.4.0</td>
+<td></td>
 </tr>
 <tr>
-<td>2556775</td>
+<td>2556774</td>
 <td>DSA-4859-1 (no CVE): zstd, a compression utility, was vulnerable to a race condition: it temporarily exposed, during a very short timeframe, a world-readable version of its input even if the original file had restrictive permissions.
 Vulnerable: &lt;= 1.3.8+dfsg-3+deb10u1
 Fixed: 1.3.8+dfsg-3+deb10u2</td>
-<td>4.0.0-4.3.0</td>
-<td>4.4.0</td>
+<td>4.0.0-4.4.0</td>
+<td></td>
 </tr>
 <tr>
-<td>2556764</td>
+<td>2556762</td>
 <td>In a configuration with both traditional and vlan-aware bridges, the VLAN membership check on a vlan-aware switch does not drop PVST BPBUs that come from a traditional bridge.</td>
-<td>3.7.14-3.7.14.2, 4.0.0-4.3.0</td>
-<td>3.7.15, 4.4.0</td>
+<td>3.7.14-3.7.14.2, 4.0.0-4.4.0</td>
+<td>3.7.15</td>
 </tr>
 <tr>
-<td>2556731</td>
+<td>2556730</td>
 <td>CVE-2020-8625: A buffer overflow vulnerability was discovered in the SPNEGO implementation affecting the GSSAPI security policy negotiation in BIND, a DNS server implementation, which could result in denial of service (daemon crash), or potentially the execution of arbitrary code.
 Vulnerable: &lt;= 9.11.5.P4+dfsg-5.1+deb10u2
 Fixed: 9.11.5.P4+dfsg-5.1+deb10u3</td>
-<td>4.0.0-4.3.0</td>
-<td>4.4.0</td>
+<td>4.0.0-4.4.0</td>
+<td></td>
 </tr>
 <tr>
-<td>2556691</td>
+<td>2556690</td>
 <td>The following vulnerabilities have been announced in the openssl packages:
 CVE-2021-23840: Calls to EVP_CipherUpdate, EVP_EncryptUpdate and EVP_DecryptUpdate may overflow the output length argument in some cases where the input length is close to the maximum permissable length for an integer on the platform. In such cases the return value from the function call will be 1 (indicating success), but the output length value will be negative. This could cause applications to behave incorrectly or crash.
 CVE-2021-23841: The OpenSSL public API function X509_issuer_and_serial_hash() attempts to create a unique hash value based on the issuer and serial number data contained
@@ -4784,8 +5015,8 @@ within an X509 certificate. However it fails to correctly handle any errors that
 CVE-2019-1551: There is an overflow bug in the x64_64 Montgomery squaring procedure used in exponentiation with 512-bit moduli. No EC algorithms are affected. Analysis suggests that attacks against 2-prime RSA1024, 3-prime RSA1536, and DSA1024 as a result of this defect would be very difficult to perform and are not believed likely. Attacks against DH512 are considered just feasible. However, for an attack the target would have to re-use the DH512 private key, which is not recommended anyway. Also applications directly using the low level API BN_mod_exp may be affected if they use BN_FLG_CONSTTIME.
 Vulnerable: &lt;= 1.1.1d-0+deb10u4
 Fixed: 1.1.1d-0+deb10u5</td>
-<td>4.0.0-4.3.0</td>
-<td>4.4.0</td>
+<td>4.0.0-4.4.0</td>
+<td></td>
 </tr>
 <tr>
 <td>2556659</td>
@@ -4802,18 +5033,18 @@ Vulnerable: &lt;= 2.8.90-1-cl4u5</td>
 <td>4.4.0</td>
 </tr>
 <tr>
-<td>2556569</td>
+<td>2556568</td>
 <td>DSA-4850-1 (no CVE): libzstd adds read permissions to files while being compressed or uncompressed.
 Vulnerable: 1.3.8+dfsg-3
 Fixed: 1.3.8+dfsg-3+deb10u1</td>
-<td>4.0.0-4.3.0</td>
-<td>4.4.0</td>
+<td>4.0.0-4.4.0</td>
+<td></td>
 </tr>
 <tr>
-<td>2556500</td>
+<td>2556499</td>
 <td>Cumulus Linux does not support bond members at 200G or greater.</td>
-<td>4.0.0-4.3.0</td>
-<td>4.4.0</td>
+<td>4.0.0-4.4.0</td>
+<td></td>
 </tr>
 <tr>
 <td>2556279</td>
@@ -4824,12 +5055,12 @@ Fixed: 1.8.27-1+deb10u3</td>
 <td>4.3.0-4.4.0</td>
 </tr>
 <tr>
-<td>2556218</td>
+<td>2556217</td>
 <td>The following vulnerability affects lldpd:
 CVE-2020-27827: A packet that contains multiple instances of certain TLVs will cause lldpd to continually allocate memory and leak the old memory.  As an example, multiple instances of system name TLV will cause old values to be dropped by the decoding routine.
 Fixed: 1.0.4-0-cl4.3.0u2</td>
-<td>3.7.14-3.7.14.2, 4.0.0-4.2.1</td>
-<td>3.7.15, 4.3.0-4.4.0</td>
+<td>3.7.14-3.7.14.2, 4.0.0-4.4.0</td>
+<td>3.7.15</td>
 </tr>
 <tr>
 <td>2556081</td>
@@ -4846,10 +5077,10 @@ Fixed: 1.0.4-0-cl4.3.0u2</td>
 <td>4.2.1-4.4.0</td>
 </tr>
 <tr>
-<td>2556012</td>
+<td>2556010</td>
 <td>On Broadcom switches, after repeated VLAN or VXLAN configuration changes, {{switchd}} memory might not free up appropriately, which can lead to a crash. </td>
-<td>3.7.14, 4.0.0-4.2.1</td>
-<td>3.7.14.2-3.7.15, 4.3.0-4.4.0</td>
+<td>3.7.14, 4.0.0-4.4.0</td>
+<td>3.7.14.2-3.7.15</td>
 </tr>
 <tr>
 <td>2555761</td>
@@ -4863,10 +5094,10 @@ Fixed: 0.23.15-2_deb10u1</td>
 <td>4.3.0-4.4.0</td>
 </tr>
 <tr>
-<td>2555532</td>
+<td>2555531</td>
 <td>QinQ (802.1Q) packets routed to a layer 3 subinterface are still double tagged with the VLAN of the subinterface and the original inner VLAN when they leave the subinterface.</td>
-<td>4.2.0-4.2.1</td>
-<td>3.7.15, 4.3.0-4.4.0</td>
+<td>4.2.0-4.4.0</td>
+<td>3.7.15</td>
 </tr>
 <tr>
 <td>2555528</td>
@@ -4900,10 +5131,10 @@ This operation is not supported in the kernel without recreating the SVI. To app
 <td>4.3.0-4.4.0</td>
 </tr>
 <tr>
-<td>2555401</td>
+<td>2555400</td>
 <td>On the Edgecore AS7312 switch, eth0 and swp use the same MAC address.</td>
-<td>3.7.14-3.7.14.2, 4.0.0-4.2.1</td>
-<td>3.7.15, 4.3.0-4.4.0</td>
+<td>3.7.14-3.7.14.2, 4.0.0-4.4.0</td>
+<td>3.7.15</td>
 </tr>
 <tr>
 <td>2555373</td>
@@ -4940,11 +5171,11 @@ Fixed: 1.0.7-2+deb10u1</td>
 <td>4.3.0-4.4.0</td>
 </tr>
 <tr>
-<td>2554992</td>
+<td>2554990</td>
 <td>When running traditional mode bridges at scale (for example, when you have more than 200 bridges and a large number of MAC addresses), MLAG bonds flap intermittently from dual to single connected, then back to dual connected, which causes a layer 2 loop and STP state changes.
 To work around this issue, either shut down one side of the MLAG bond or prune out VLANS over the bond.</td>
-<td>3.7.13-3.7.14.2, 4.0.0-4.2.1</td>
-<td>3.7.15, 4.3.0-4.4.0</td>
+<td>3.7.13-3.7.14.2, 4.0.0-4.4.0</td>
+<td>3.7.15</td>
 </tr>
 <tr>
 <td>2554982</td>
@@ -4963,10 +5194,10 @@ Fixed: 2.4.47+dfsg-3+deb10u4</td>
 <td>4.3.0-4.4.0</td>
 </tr>
 <tr>
-<td>2554798</td>
+<td>2554797</td>
 <td>On the Mellanox SN3700C switch, PIM multicast packets are duplicated at the egress VTEP.</td>
-<td>4.2.0-4.3.0</td>
-<td>4.4.0</td>
+<td>4.2.0-4.4.0</td>
+<td></td>
 </tr>
 <tr>
 <td>2554785</td>
@@ -4998,6 +5229,12 @@ c) Run the command 'update-grub'
 d) Reboot the switch</td>
 <td>3.7.11-4.2.1</td>
 <td>4.3.0-4.4.0</td>
+</tr>
+<tr>
+<td>2554720</td>
+<td>If {{switchd}} successfully signals {{clagd}} that it is going down, {{clagd}} stops responding to keepalive echo requests from the peer instead of sending a good bye to the peer over both the peerlink and the backup switch. Eventually, the keepalive timer expires and the secondary switch becomes the primary, and brings the bonds and VNIs back up. However, if {{switchd}} does not successfully signal it is going down, (in the event of a crash), the primary switch continues to respond to keepalives, and the bonds and VNIs are down on both peers. </td>
+<td>3.7.12-3.7.14.2, 4.0.0-4.4.0</td>
+<td>3.7.15</td>
 </tr>
 <tr>
 <td>2554707</td>
@@ -5100,10 +5337,10 @@ Fixed: 0.14.0-1.3+deb10u1</td>
 <td>4.3.0-4.4.0</td>
 </tr>
 <tr>
-<td>2553953</td>
+<td>2553952</td>
 <td>On Mellanox Spectrum based switches running 4.1.0 or higher, if FORWARD chain ACLs are configured on the system, a switch port breakout action applied with a reload of the switchd service may cause switchd to crash.</td>
-<td>4.2.0-4.2.1</td>
-<td>4.3.0-4.4.0</td>
+<td>4.2.0-4.4.0</td>
+<td></td>
 </tr>
 <tr>
 <td>2553887</td>
@@ -5124,10 +5361,10 @@ Fixed: 4.11.4+37-g3263f257ca-1</td>
 <td>4.3.0-4.4.0</td>
 </tr>
 <tr>
-<td>2553732</td>
+<td>2553731</td>
 <td>A ping via a dual-connected bond fails, and the audio stream is not routed or encapsulated through the layer 3 VNI.</td>
-<td>3.7.12-3.7.13, 4.0.0-4.2.1</td>
-<td>3.7.14-3.7.15, 4.3.0-4.4.0</td>
+<td>3.7.12-3.7.13, 4.0.0-4.4.0</td>
+<td>3.7.14-3.7.15</td>
 </tr>
 <tr>
 <td>2553677</td>
@@ -5150,11 +5387,11 @@ Alternatively, directly edit the {{/etc/snmp/snmpd.conf}} file as described in t
 <td>4.4.0</td>
 </tr>
 <tr>
-<td>2553588</td>
+<td>2553586</td>
 <td>Multicast traffic on a VPN is sent to remote VTEPs that are not part of the VPN and the remote VTEPs receive multicast traffic encapsulated in a VXLAN ID that doesn't exist.
 To work around this issue, disable IGMP snooping on the switch.</td>
-<td>3.7.12-3.7.13, 4.0.0-4.2.1</td>
-<td>3.7.14-3.7.15, 4.3.0-4.4.0</td>
+<td>3.7.12-3.7.13, 4.0.0-4.4.0</td>
+<td>3.7.14-3.7.15</td>
 </tr>
 <tr>
 <td>2553568</td>
@@ -5163,13 +5400,13 @@ To work around this issue, disable IGMP snooping on the switch.</td>
 <td>4.3.0-4.4.0</td>
 </tr>
 <tr>
-<td>2553530</td>
+<td>2553529</td>
 <td>In an MLAG configuration with a layer 3 VNI, when you bounce the peer link, all layer 2 VNIs listed under the layer 3 VNI are duplicated. 
 To work around this issue, restart FRR with the {{sudo systemctl restart frr.service}} command.
 
 </td>
-<td>3.7.10-3.7.13, 4.1.1-4.2.1</td>
-<td>3.7.14-3.7.15, 4.3.0-4.4.0</td>
+<td>3.7.10-3.7.13, 4.1.1-4.4.0</td>
+<td>3.7.14-3.7.15</td>
 </tr>
 <tr>
 <td>2553468</td>
@@ -5275,10 +5512,16 @@ Fixed: 9.11.5.P4+dfsg-5.1+deb10u2</td>
 <td>4.2.1-4.4.0</td>
 </tr>
 <tr>
-<td>2552856</td>
+<td>2552855</td>
 <td>FDB entries with type _static_ are installed in hardware as dynamic entries with no aging instead of truly static, which might result in the entries being occasionally flushed from hardware and the kernel. For example, this might happen when a port is in the STP Blocking state during a MAC sync.</td>
-<td>4.2.0</td>
-<td>4.2.1-4.4.0</td>
+<td>4.2.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2552853</td>
+<td>Tenant VRF BGP peers appear in the EVPN RMAC and nexthop tables, which causes the kernel RMAC to point at invalid IP address.</td>
+<td>3.7.12-3.7.14.2, 4.0.0-4.4.0</td>
+<td>3.7.15</td>
 </tr>
 <tr>
 <td>2552817</td>
@@ -5325,6 +5568,12 @@ To work around this issue, restart {{switchd}}.</td>
 <td>4.3.0-4.4.0</td>
 </tr>
 <tr>
+<td>2552704</td>
+<td>In a traditional bridge configuration with {{ip-forward off}}, neighbors are synchronized to hardware with a {{switchd}} restart but are cleared when you flap the bridge interface.</td>
+<td>3.7.10-3.7.14.2, 4.0.0-4.4.0</td>
+<td>3.7.15</td>
+</tr>
+<tr>
 <td>2552691</td>
 <td>On the EdgeCore AS4610 switch, the eth0 interface remains down when physically connected to a 1G interface.
 To work around this issue, configure the link speed to 1000 and set auto-negotiation on for the eth0 interface, then flap eth0 with the {{ip link set eth0 down/up}} command to bring up the port.</td>
@@ -5339,11 +5588,11 @@ To work around this issue, boot the switch, manually change the password, then r
 <td>4.3.0-4.4.0</td>
 </tr>
 <tr>
-<td>2552647</td>
+<td>2552646</td>
 <td>When you add a member to a bond that has a subinterface configured (such as peerlink.4094), the new member is assigned only the VLAN of the subinterface for forwarding.
 To work around this issue, bounce the bond or shutdown the new interface and use the remaining members over the bond.</td>
-<td>3.7.10-3.7.13, 4.2.0</td>
-<td>3.7.14-3.7.15, 4.2.1-4.4.0</td>
+<td>3.7.10-3.7.13, 4.2.0-4.4.0</td>
+<td>3.7.14-3.7.15</td>
 </tr>
 <tr>
 <td>2552610</td>
@@ -5353,12 +5602,12 @@ CVE-2019-11360: A buffer overflow in {{iptables-restore}} in netfilter iptables 
 <td>4.2.1-4.4.0</td>
 </tr>
 <tr>
-<td>2552608</td>
+<td>2552607</td>
 <td>The following vulnerability has been announced:
 CVE-2019-20892: net-snmp before 5.8.1.pre1 has a double free in usm_free_usmStateReference in snmplib/snmpusm.c via an SNMPv3 GetBulk request. 
 Fixed:  5.8.0-cl4.2.1u1,  5.8.0-cl3.7.14u1</td>
-<td>3.7.13, 4.0.0-4.2.0</td>
-<td>3.7.14-3.7.15, 4.2.1-4.4.0</td>
+<td>3.7.13, 4.0.0-4.4.0</td>
+<td>3.7.14-3.7.15</td>
 </tr>
 <tr>
 <td>2552555</td>
@@ -5369,10 +5618,10 @@ Vulnerable: &lt;= 4.19.0-cl4u3</td>
 <td>4.2.1-4.4.0</td>
 </tr>
 <tr>
-<td>2552528</td>
+<td>2552527</td>
 <td>Ingress SPAN/ERSPAN does not mirror packets when the next hop is EVPN encapsulated.</td>
-<td>3.7.7-3.7.13, 4.0.0-4.2.1</td>
-<td>3.7.14-3.7.15, 4.3.0-4.4.0</td>
+<td>3.7.7-3.7.13, 4.0.0-4.4.0</td>
+<td>3.7.14-3.7.15</td>
 </tr>
 <tr>
 <td>2552524</td>
@@ -5381,11 +5630,11 @@ Vulnerable: &lt;= 4.19.0-cl4u3</td>
 <td>4.2.1-4.4.0</td>
 </tr>
 <tr>
-<td>2552506</td>
+<td>2552505</td>
 <td>Changing the order of the bridge ports might cause the bridge MAC address to change, which flaps the bridge and its ports.
 To work around this issue, manually set the MAC address of the bridge interface by adding {{hwaddress &lt;mac-address&gt;}} to the bridge stanza in the {{/etc/network/interfaces}} file.</td>
-<td>3.7.11-3.7.13, 4.0.0-4.2.0</td>
-<td>3.7.14-3.7.15, 4.2.1-4.4.0</td>
+<td>3.7.11-3.7.13, 4.0.0-4.4.0</td>
+<td>3.7.14-3.7.15</td>
 </tr>
 <tr>
 <td>2552453</td>
@@ -5419,15 +5668,15 @@ These messages are for internal validation purposes only and can be safely ignor
 <td></td>
 </tr>
 <tr>
-<td>2552298</td>
+<td>2552297</td>
 <td>The following vulnerability has been announced in net-snmp:
 CVE-2020-15862: A privilege escalation involving the NET-SNMP-EXTEND-MIB support (which is enabled by default at compile-time).
 The fixed versions disable NET-SNMP-EXTEND-MIB support.
 
 Vulnerable: &lt;= 5.8.0-cl3u11, &lt;= 5.8.0-cl4u4
 Fixed: 5.8.0-cl3.7.14u3, 5.8.0-cl4.2.1u1</td>
-<td>3.7.13, 4.0.0-4.2.0</td>
-<td>3.7.14-3.7.15, 4.2.1-4.4.0</td>
+<td>3.7.13, 4.0.0-4.4.0</td>
+<td>3.7.14-3.7.15</td>
 </tr>
 <tr>
 <td>2552294</td>
@@ -5485,11 +5734,11 @@ Fixed: 1.14.2-2+deb10u2</td>
 <td>3.7.15</td>
 </tr>
 <tr>
-<td>2552206</td>
+<td>2552204</td>
 <td>If the MAC address of an SVI changes, {{clagd}} does not update its permanent neighbor entry for the local interface, and it does not report the change to its MLAG peer. This leaves the MLAG peer in a state where its permanent neighbor for the MLAG peer's SVI IP address continues to use the old MAC address, which causes routed traffic over this SVI to be dropped.
 To work around this issue, ifdown/ifup the SVI when a MAC address changes.</td>
-<td>3.7.12-3.7.13, 4.0.0-4.2.0</td>
-<td>3.7.14-3.7.15, 4.2.1-4.4.0</td>
+<td>3.7.12-3.7.13, 4.0.0-4.4.0</td>
+<td>3.7.14-3.7.15</td>
 </tr>
 <tr>
 <td>2552203</td>
@@ -5501,10 +5750,10 @@ Fixed: 3.1+dfsg-8+deb10u7</td>
 <td>4.2.1-4.4.0</td>
 </tr>
 <tr>
-<td>2551912</td>
+<td>2551911</td>
 <td>{{ifupdown2}} does not account for link status or link down configuration when running {{dhclient}}. For example, {{ifupdown2}} ignores {{link-down yes}} during {{ifup/ifreload}} and runs the DHCP module if {{inet dhcp}} is configured on the interface. {{ifupdown2}} also runs the DHCP module even when the physical link configured for DHCP is down.</td>
-<td>3.7.12-4.2.0</td>
-<td>4.2.1-4.4.0</td>
+<td>3.7.12-3.7.15, 4.2.0-4.4.0</td>
+<td></td>
 </tr>
 <tr>
 <td>2551896</td>
@@ -5548,35 +5797,35 @@ Fixed: 3.42.1-1+deb10u3</td>
 <td>4.2.1-4.4.0</td>
 </tr>
 <tr>
-<td>2551748</td>
+<td>2551747</td>
 <td>In OVSDB high availability mode, deleting &gt; 200 VLAN bindings might cause {{ovs-vtepd}} to crash.  Limit the deletion to 200 or fewer VLAN bindings.</td>
-<td>3.7.12-3.7.13, 4.0.0-4.2.1</td>
-<td>3.7.14-3.7.15, 4.3.0-4.4.0</td>
+<td>3.7.12-3.7.13, 4.0.0-4.4.0</td>
+<td>3.7.14-3.7.15</td>
 </tr>
 <tr>
-<td>2551732</td>
+<td>2551730</td>
 <td>When the OVSDB VTEP scale increases, the CPU utilization increases and eventually the switch ({{ptmd}}) fails to respond to the BFD, causing the BFD session to go down. As a result OVSDB cannot read the BFD socket status and outputs a warning in the {{ovs-vtepd}} debugs: {{PTM socket error: Bad file descriptor}}.</td>
-<td>3.7.12-3.7.13, 4.0.0-4.2.0</td>
-<td>3.7.14-3.7.15, 4.2.1-4.4.0</td>
+<td>3.7.12-3.7.13, 4.0.0-4.4.0</td>
+<td>3.7.14-3.7.15</td>
 </tr>
 <tr>
-<td>2551729</td>
+<td>2551727</td>
 <td>In OVSDB high availability mode, if you create, then delete a binding, the FDB entry is not replaced and you see an error.</td>
-<td>3.7.12-3.7.13, 4.0.0-4.2.0</td>
-<td>3.7.14-3.7.15, 4.2.1-4.4.0</td>
+<td>3.7.12-3.7.13, 4.0.0-4.4.0</td>
+<td>3.7.14-3.7.15</td>
 </tr>
 <tr>
-<td>2551715</td>
+<td>2551713</td>
 <td>There is a change to the default OVSDB bootstrapping process, where the script created now defaults to VLAN-aware bridge mode. If you want to use traditional bride mode, you need to force it by editing the {{ovs-vtep-ctl}} script generated by the bootstrap process.</td>
-<td>3.7.12-3.7.13, 4.0.0-4.2.0</td>
-<td>3.7.14-3.7.15, 4.2.1-4.4.0</td>
+<td>3.7.12-3.7.13, 4.0.0-4.4.0</td>
+<td>3.7.14-3.7.15</td>
 </tr>
 <tr>
-<td>2551693</td>
+<td>2551692</td>
 <td>A host migrated to an 802.1X MAB port within the same broadcast domain fails to have the correct FDB entry installed if a dynamic FDB entry for that MAC address exists from previous connectivity in the broadcast domain.
 To work around this issue, manually delete the dynamic FDB entry that is associated with the uplink trunk port.</td>
-<td>3.7.12-3.7.13, 4.1.1-4.2.0</td>
-<td>3.7.14-3.7.15, 4.2.1-4.4.0</td>
+<td>3.7.12-3.7.13, 4.1.1-4.4.0</td>
+<td>3.7.14-3.7.15</td>
 </tr>
 <tr>
 <td>2551687</td>
@@ -5595,10 +5844,10 @@ Fixed: 4.11.4+24-gddaaccbbab-1~deb10u1</td>
 <td>4.2.1-4.4.0</td>
 </tr>
 <tr>
-<td>2551675</td>
+<td>2551674</td>
 <td>When you restart {{clagd}}, the edge port setting on the peer link changes.</td>
-<td>3.7.2-3.7.13, 4.0.0-4.2.0</td>
-<td>3.7.14-3.7.15, 4.2.1-4.4.0</td>
+<td>3.7.2-3.7.13, 4.0.0-4.4.0</td>
+<td>3.7.14-3.7.15</td>
 </tr>
 <tr>
 <td>2551666</td>
@@ -5618,10 +5867,10 @@ To workaround this issue, downgrade to Cumulus Linux 3.7 ESR.</td>
 <td>4.2.1-4.4.0</td>
 </tr>
 <tr>
-<td>2551651</td>
+<td>2551650</td>
 <td>The {{net show dot1x interface summary}} command output shows a MAC address with all zeros associated with a port.</td>
-<td>3.7.12-3.7.13, 4.0.0-4.2.0</td>
-<td>3.7.14-3.7.15, 4.2.1-4.4.0</td>
+<td>3.7.12-3.7.13, 4.0.0-4.4.0</td>
+<td>3.7.14-3.7.15</td>
 </tr>
 <tr>
 <td>2551578</td>
@@ -5763,10 +6012,10 @@ To work around this issue, perform a full switch restart.</td>
 <td>4.3.0-4.4.0</td>
 </tr>
 <tr>
-<td>2550873</td>
+<td>2550872</td>
 <td>In an MLAG configuration with static VXLAN, static tunnels become unreachable.</td>
-<td>3.7.13, 4.1.1-4.2.0</td>
-<td>3.7.14-3.7.15, 4.2.1-4.4.0</td>
+<td>3.7.13, 4.1.1-4.4.0</td>
+<td>3.7.14-3.7.15</td>
 </tr>
 <tr>
 <td>2550796</td>
@@ -5795,16 +6044,16 @@ To work around this issue, do not enslave the subinterface of a VXLAN layer 3 up
 <td>4.3.0-4.4.0</td>
 </tr>
 <tr>
-<td>2550606</td>
+<td>2550605</td>
 <td>A VRRP role change over the EVPN network causes excessive BGP updates and connectivity issues to VIP for about one minute.</td>
-<td>4.1.1-4.2.0</td>
-<td>3.7.14-3.7.15, 4.2.1-4.4.0</td>
+<td>4.1.1-4.4.0</td>
+<td>3.7.14-3.7.15</td>
 </tr>
 <tr>
-<td>2550479</td>
+<td>2550478</td>
 <td>VXLAN interface as in-interface or out-interface in an ACL is not supported in Spectrum-based switches.</td>
 <td>3.7.7-4.2.0</td>
-<td>4.2.1-4.4.0, 4.3.0-4.4.0</td>
+<td>4.2.1-4.4.0</td>
 </tr>
 <tr>
 <td>2550444</td>
@@ -5821,12 +6070,12 @@ To work around this issue, look for your string in the output of the {{net show 
 <td></td>
 </tr>
 <tr>
-<td>2550375</td>
+<td>2550374</td>
 <td>CPU utilization may increase when clag-managed bond interfaces are operationally/LACP down but the physical carrier remains up on the bond member switchports. This condition occurs when clag bond redirection is enabled and bond members remain up while the parent bond does not negotiate LACP.
 
 This issue is resolved in Cumulus Linux 3.7.14.</td>
-<td>3.7.9-3.7.13, 4.0.0-4.2.1</td>
-<td>3.7.14-3.7.15, 4.3.0-4.4.0</td>
+<td>3.7.9-3.7.13, 4.0.0-4.4.0</td>
+<td>3.7.14-3.7.15</td>
 </tr>
 <tr>
 <td>2550348</td>
@@ -5905,7 +6154,7 @@ If you flap the link with the {{ip link set vni10100 down; ip link set vni10100 
 <td>4.3.0-4.4.0</td>
 </tr>
 <tr>
-<td>2549794</td>
+<td>2549793</td>
 <td>The {{asic-monitor.service}} fails when you configure {{/etc/cumulus/datapath/monitor.conf}} with {{monitor.histogram_pg.collect.port_group_list  = [all_packet_pg]}} and there is traffic passing through the buffer. When the service fails, you see the following traceback in {{journalctl}}:
 
 asic-monitor[7389]: asic-monitor-module INFO: 2020-05-01 18:28:12.548734: Egress queue(s) greater than 500 bytes in monitor port group histogram_pg
@@ -5920,8 +6169,8 @@ asic-monitor[7389]: monitor.run()
 asic-monitor[7389]: File "/usr/lib/python2.7/dist-packages/cumulus/asic_monitor.py", line 158, in run
 ...
 </td>
-<td>3.7.11-3.7.13, 4.1.1-4.2.0</td>
-<td>3.7.14-3.7.15, 4.2.1-4.4.0</td>
+<td>3.7.11-3.7.13, 4.1.1-4.4.0</td>
+<td>3.7.14-3.7.15</td>
 </tr>
 <tr>
 <td>2549784</td>
@@ -5962,15 +6211,15 @@ To work around this issue, manually edit the {{etc/frr/frr.conf}} file to define
 <td>4.4.0</td>
 </tr>
 <tr>
-<td>2549226</td>
+<td>2549225</td>
 <td>You might see the following {{gport}} error messages in {{switchd.log}}:
 {code}
 2020-04-10T19:50:01.011224+09:00 E1PDX0V1ELF0001 6 switchd[925]: hal_bcm_mdb.c:530 gport 0x800007a find failed
 2020-04-10T19:50:01.011631+09:00 E1PDX0V1ELF0001 6 switchd[925]: hal_bcm_mdb.c:530 gport 0x8000009 find failed
 {code}
 These messages are harmless and can be ignored.</td>
-<td>3.7.12-3.7.14.2, 4.0.0-4.2.1</td>
-<td>3.7.15, 4.3.0-4.4.0</td>
+<td>3.7.12-3.7.14.2, 4.0.0-4.4.0</td>
+<td>3.7.15</td>
 </tr>
 <tr>
 <td>2548930</td>
@@ -6710,10 +6959,10 @@ To work around this issue, use {{net show interface}} command for LLDP output wh
 <td>3.7.11-3.7.15</td>
 </tr>
 <tr>
-<td>2534978</td>
+<td>2534977</td>
 <td>On the Mellanox switch, the destination MAC address of ERSPAN GRE packets is set to all zeros; therefore, the first transit switch might drop packets.</td>
-<td>4.0.0-4.2.1</td>
-<td>3.7.14-3.7.15, 4.3.0-4.4.0</td>
+<td>4.0.0-4.4.0</td>
+<td>3.7.14-3.7.15</td>
 </tr>
 <tr>
 <td>2534734</td>
@@ -6749,14 +6998,14 @@ To work around this issue, change the value of {{arp_ignore}} to 2. See [Address
 <td></td>
 </tr>
 </table>
-<table name="Fixed issues in 4.2.0">
+<table name="Fixed Issues in 4.2.0">
 <tr>
 <th> Issue ID </th>
 <th> Description </th>
 <th> Affects </th>
 </tr>
 <tr>
-<td>2553001</td>
+<td>2553000</td>
 <td>When the following conditions exist, {{clagd}} might fail to establish a TCP control session across the subinterface (such as, peerlink.4094): 
 * {{clagd}} uses an IPv6 link-local address (LLA) to establish the TCP connection (the {{clagd-peer-ip linklocal}} command configures an IPv6 LLA connection)
 
@@ -6831,7 +7080,7 @@ Fixed: 1.9.0-2+deb10u2</td>
 <td>4.0.0-4.1.1</td>
 </tr>
 <tr>
-<td>2550350</td>
+<td>2550349</td>
 <td>Unicast traffic from downlink hosts is flooded to multiple remote VTEPs, which might also cause high HwIfOutQDrops/TX_DRP on the uplink ports.
 To work around this issue, restart {{switchd}}.</td>
 <td>3.7.10-3.7.13, 4.0.0-4.1.1</td>
@@ -7170,7 +7419,7 @@ For the detailed security status of linux, refer to its security tracker page at
 <td>4.1.0-4.1.1</td>
 </tr>
 <tr>
-<td>2548152</td>
+<td>2548151</td>
 <td>On the Mellanox Spectrum switch in an EVPN symmetric configuration with MLAG, simultaneously shutting down the layer 3 interfaces that serve as uplinks to the VXLAN fabric might result in traffic loss of up to 15 seconds.</td>
 <td>4.1.0-4.1.1</td>
 </tr>
@@ -7192,7 +7441,7 @@ To work around this issue, move 100G SR4 modules to one of the ports not affecte
 <td>3.7.11-4.1.1</td>
 </tr>
 <tr>
-<td>2547784</td>
+<td>2547783</td>
 <td>PTM mis-detects incorrect hostnames of LLDP neighbors and does not fail them as expected. Instead they end up in an N/A cabling status.</td>
 <td>3.7.11-3.7.13, 4.0.0-4.1.1</td>
 </tr>
@@ -7208,7 +7457,7 @@ Mellanox switches with the Spectrum A1 ASIC do **not** have this issue.</td>
 <td>3.7.11-3.7.12, 4.0.0-4.1.1</td>
 </tr>
 <tr>
-<td>2547341</td>
+<td>2547340</td>
 <td>When {{host-resources}} and {{ucd-snmp-mib}} are polled, you see permission denied messages similar to the following:
 
 Jan 30 19:22:53 switch123 snmpd[23172]: Cannot statfs /sys/kernel/debug/tracing: Permission denied
@@ -7216,7 +7465,7 @@ Jan 30 19:22:53 switch123 snmpd[23172]: Cannot statfs /sys/kernel/debug/tracing:
 <td>3.7.13, 4.0.0-4.1.1</td>
 </tr>
 <tr>
-<td>2547246</td>
+<td>2547245</td>
 <td>The MLAG switch pair has VLANs defined that are not used on MLAG bonds. These VLANs still synchronize MAC addresses across to the peer switch. This results in log messages that indicate a MAC address is installed and the VLAN is not defined; for example:
 
 RTM_NEWNEIGH with unconfigured vlan XXXX on port peerlink
@@ -7265,13 +7514,13 @@ To work around this issue, run the {{bridge fdb show}} command to show the inter
 <td>4.0.0-4.1.1</td>
 </tr>
 <tr>
-<td>2545934</td>
+<td>2545933</td>
 <td>Mellanox switches might experience higher CPU usage from the {{sx_sdk}} service or when BFD is in use.
 To work around this issue, disable BFD to alleviate some of the CPU load.</td>
 <td>3.7.13, 4.0.0-4.1.1</td>
 </tr>
 <tr>
-<td>2545537</td>
+<td>2545536</td>
 <td>On the Mellanox switch with the Spectrum and Spectrum-2 ASIC, IPv6 egress ACLs are not supported on subinterfaces.</td>
 <td>4.0.0-4.1.1</td>
 </tr>
@@ -7358,7 +7607,7 @@ To work around this issue, rely on a different source of default route other tha
 <td>3.7.3-4.1.1</td>
 </tr>
 <tr>
-<td>2535707</td>
+<td>2535706</td>
 <td>On the Mellanox switch, GRE tunneling does not work if the tunnel source is configured on an SVI interface. If  the tunnel source is configured on a physical switch port, then tunneling works as expected.</td>
 <td>4.0.0-4.1.1</td>
 </tr>

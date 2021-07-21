@@ -76,8 +76,8 @@ interface on each switch in the MLAG pair.
 | One of the switches goes down.        | The other operational switch continues to use the anycast IP address.        |
 | `clagd` is stopped.                    | All VXLAN interfaces are put in a PROTO\_DOWN state. The anycast IP address is removed from the loopback interface and the local IP addresses of the VXLAN interfaces are changed from the anycast IP address to unique non-virtual IP addresses.           |
 | MLAG peering could not be established between the switches.                         | `clagd` brings up all the VXLAN interfaces after the reload timer expires with the configured anycast IP address. This allows the VXLAN interface to be up and running on both switches even though peering is not established.        |
-| When the peer link goes down but the peer switch is up (the backup link is active). | All VXLAN interfaces are put into a PROTO\_DOWN state on the secondary switch.          |
-| A configuration mismatch between the MLAG switches        | The VXLAN interface is placed into a PROTO\_DOWN state on the secondary switch.  |
+| The peer link goes down but the peer switch is up (the backup link is active). | All VXLAN interfaces are put into a PROTO\_DOWN state on the secondary switch.          |
+| The anycast IP address is different on the MLAG peers.  | The VXLAN interface is placed into a PROTO\_DOWN state on the secondary switch.  |
 
 ### Check VXLAN Interface Configuration Consistency
 

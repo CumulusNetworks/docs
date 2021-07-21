@@ -10,7 +10,7 @@ pdfhidden: True
 ---
 {{<rn_xls_link dir="cumulus-netq-32" >}}
 ## 3.2.1 Release Notes
-### Open issues in 3.2.1
+### Open Issues in 3.2.1
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
@@ -33,7 +33,7 @@ pdfhidden: True
 | <a name="2553758"></a> [2553758](#2553758) <a name="2553758"></a> <br />NETQ-7489 | NetQ CLI: When the NetQ Collector is configured with a proxy server for the CLI to access cloud APIs the SSL certificate validation fails because the proxy provides its own self-signed certificate. This causes the CLI to fail with the following error:<pre>cumulus&#64;switch:~# netq show agentsFailed to process command. Check /var/log/netqd.log for more details<br /></pre>You also see an error in _/var/log/netqd.log_ similar to this:<pre>2020-10-01T01:44:51.534875+00:00 leaf01 netqd&#91;4782&#93;: ERROR: GET request failed https://st-ts-01:32708/netq/telemetry/v1/object/bgp?count=2000&offset=02020-10-01T01:44:51.535251+00:00 leaf01 netqd&#91;4782&#93;: ERROR: HTTPSConnectionPool(host='st-ts-01', port=32708): Max retries exceeded with url: /netq/telemetry/v1/object/bgp?count=2000&offset=0 (Caused by SSLError(SSLCertVerificationError(1, '&#91;SSL: {color:#d04437}CERTIFICATE_VERIFY_FAILED{color}&#93; certificate verify failed: self signed certificate (_ssl.c:1056)')))</pre>Two options are available to work around this issue:* If the NetQ Collector has Internet access, configure the CLI to point to the cloud API instance directly:<br />  <pre>cumulus&#64;switch:~# netq config add cli server api.netq.cumulusnetworks.com port 443cumulus&#64;switch:~# netq config restart cli<br />  </pre>* To use the proxy server:<br />  1. Delete the token file. Run <code>sudo rm /tmp/token.aes</code>.<br />  2. Edit the _/etc/netq/netq.yml_ file as follows. The password is entered as cleartext.<br />      <pre>netq-cli:<br /> port: 32708<br /> server: \<cloud-appliance-IP-address\><br /> vrf: \<default/mgmt\><br /> premises: \<customer-premise\><br /> username: \<customer-email-address\><br /> password: \<password\><br /> opid: \<opid-here\><br />      </pre><br />          Note: OPID is not directly visible to user. File a &#91;support ticket\|https://cumulusnetworks.com/support/file-a-ticket/&#93; for assistance with completing the configuration.<br />  3. Restart the the CLI. Run <code>netq config restart cli</code>. | 3.2.0 | |
 
 ## 3.2.0 Release Notes
-### Open issues in 3.2.0
+### Open Issues in 3.2.0
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |

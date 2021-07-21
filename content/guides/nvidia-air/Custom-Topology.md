@@ -64,7 +64,18 @@ Once a node has been added, you can edit it as needed. Click the node to select 
 
   {{<img src="/images/guides/nvidia-air/CustomTopology_Role.png" width="800px">}}
 
+- **Hardware Model**: Pre-populate the ports based on a specific hardware model of switch selected. This does not affect the simulation, it acts as a macro to pre-populate the number of ports per switch model.
+
+{{<img src="/images/guides/nvidia-air/CustomTopology_HardwareModel.png" width="800px">}}
+
 - **Ports**: Add, rename and edit port location and information for the diagram.
+
+{{<img src="/images/guides/nvidia-air/CustomTopology_Ports.png" width="800px">}}
+
+Press the breakout button to simulate breaking out a port into a group of 4.
+
+{{<img src="/images/guides/nvidia-air/CustomTopology_PortsBreakout.png" width="800px">}}
+
 
 ### Connect Nodes
 

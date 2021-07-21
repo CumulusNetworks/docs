@@ -85,13 +85,11 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< /tabs >}}
 
-## Validate RoCE Configuration
-Validate RoCE configuration with `nv show` commands.
+## Verify RoCE Configuration
 
-### nv show qos roce
-`nv show qos roce` command provides detailed information about the configured buffers, utilization and DSCP markings.
-<details>
-    <summary>nv show qos roce output</summary>
+You can verify RoCE configuration with NVUE `nv show` commands.
+
+To show detailed information about the configured buffers, utilization and DSCP markings, run the `nv show qos roce` command:
 
 ```
 cumulus@switch:mgmt:~$ nv show qos roce
@@ -156,13 +154,8 @@ Exception List
         description
     --  -----------
 ```
-</details>
 
-### nv show interface roce status
-`nv show interface qos roce status` provides detailed RoCE information about a single interface.
-
-<details>
-    <summary>nv show interface qos roce status output</summary>
+To show detailed RoCE information about a single interface, run the `nv show interface qos roce status` command.
 
 ```
 cumulus@switch:mgmt:~$ nv show interface swp16 qos roce status
@@ -208,13 +201,9 @@ RoCE Pool Status
     3   roce-reserved-egress   DYNAMIC  14       -                  3              inf       7.29 MB        13.47 MB
 ```
 
-</details>
-
 ### nv show interface qos roce counters
-`nv show interface qos roce counters` provides detailed information about current buffer utilization as well as historic RoCE byte and packet counts.
 
-<details>
-    <summary>nv show interface qos roce counters output</summary>
+To show detailed information about current buffer utilization as well as historic RoCE byte and packet counts, run the `nv show interface qos roce counters` command:
 
 ```
 cumulus@switch:mgmt:~$ nv show interface swp16 qos roce counters
@@ -263,8 +252,6 @@ tx-stats
     tc-usage                   7.29 MB                Current TC-buffer usage for RoCE traffic
     unicast-no-buffer-discard  663060754115           Tx buffer discards for RoCE traffic
 ```
-
-</details>
 
 ## Related Information
 

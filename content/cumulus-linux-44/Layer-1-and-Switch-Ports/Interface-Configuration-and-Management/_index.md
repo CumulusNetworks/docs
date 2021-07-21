@@ -411,6 +411,10 @@ A VLAN subinterface only receives traffic  {{<link url="VLAN-Tagging" text="tagg
 
 In an {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="MLAG">}} configuration, the peer link interface that connects the two switches in the MLAG pair has a VLAN subinterface named 4094. The peerlink.4094 subinterface only receives traffic tagged for VLAN 4094.
 
+{{%notice note%}}
+If you using a VLAN subinterface, do not add that VLAN under the bridge stanza.
+{{%/notice%}}
+
 ## Parent Interfaces
 
 When you run `ifup` on a logical interface (like a bridge, bond, or VLAN interface), if the `ifup` results in the creation of the logical interface, it implicitly tries to execute on the interface's upper (or parent) interfaces as well.

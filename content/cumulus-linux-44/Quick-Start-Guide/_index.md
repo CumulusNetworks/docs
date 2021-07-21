@@ -178,52 +178,6 @@ Verify that the date and time on the switch are correct, and {{<link url="Settin
 Warning: Unit file of switchd.service changed on disk, 'systemctl daemon-reload' recommended.
 ```
 
-<!--### Install the License
-
-Cumulus Linux is licensed on a per-instance basis. Each network system is fully operational, enabling any capability to be utilized on the switch with the exception of forwarding on switch panel ports. Only eth0 and console ports are activated on an unlicensed instance of Cumulus Linux. Enabling front panel ports requires a license.
-
-You receive a license key from NVIDIA or an authorized reseller. Here is a sample license key:
-
-```
-user@company.com|thequickbrownfoxjumpsoverthelazydog312
-```
-
-There are three ways to install the license onto the switch:
-
-- Copy the license from a local server. Create a text file with the license and copy it to a server accessible from the switch. On the switch, use the following command to transfer the file directly on the switch, then install the license file:
-
-    ```
-    cumulus@switch:~$ scp user@my_server:/home/user/my_license_file.txt .
-    cumulus@switch:~$ sudo cl-license -i my_license_file.txt
-    ```
-
-- Copy the file to an HTTP server (not HTTPS), then reference the URL when you run `cl-license`:
-
-    ```
-    cumulus@switch:~$ sudo cl-license -i <URL>
-    ```
-
-- Copy and paste the license key into the `cl-license` command:
-
-    ```
-    cumulus@switch:~$ sudo cl-license -i
-    <paste license key>
-    ^+d
-    ```
-
-Check that your license is installed with the `cl-license` command.
-
-    cumulus@switch:~$ cl-license
-    user@example.com|$ampleL1cen$et3xt
-
-{{%notice note%}}
-It is not necessary to reboot the switch to activate the switch ports. After you install the license, restart the `switchd` service. All front panel ports become active and show up as swp1, swp2, and so on.
-
-{{<cl/restart-switchd>}}
-
-If a license is not installed on a Cumulus Linux switch, the `switchd` service does not start. After you install the license, start `switchd` as described above.
-{{%/notice%}}-->
-
 ## Configure Breakout Ports with Splitter Cables
 
 If you are using 4x10G DAC or AOC cables, or you want to break out 100G or 40G switch ports, configure the breakout ports. For more details, see {{<link url="Switch-Port-Attributes/#breakout-ports">}}.
@@ -331,15 +285,6 @@ You can add a range of ports in one command. For example, to add swp1 through sw
 ```
 cumulus@switch:~$ nv set interface swp1-3,swp6,swp14-20 bridge domain br_default
 cumulus@switch:~$ nv config apply
-```
-
-To show the bridges configured on the switch, run the `nv show bridge` command:
-
-```
-cumulus@switch:~$ nv show bridge
-          running     applied      description
---------  -------     ----------   --------------
-[domain]  br_default  br_default   Bridge domains
 ```
 
 {{< /tab >}}

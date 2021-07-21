@@ -17,7 +17,6 @@ toc: 3
 | exit leaf | A switch dedicated to peering the Clos network to an outside network; also referred to as a border leaf, service leaf, or edge leaf. |
 | anycast | An IP address that is advertised from multiple locations. Anycast enables multiple devices to share the same IP address and effectively load balance traffic across them. With VXLAN, anycast is used to share a VTEP IP address between a pair of MLAG switches. |
 | VXLAN routing | The industry standard term for the ability to route in and out of a VXLAN. |
-| clagd-vxlan-anycast-ip | The anycast address for the MLAG pair to share and bind to when MLAG is up and running. |
 
 ## Configure VXLAN Active-active Mode
 

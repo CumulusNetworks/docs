@@ -690,12 +690,12 @@ For example, to configure a dual-rate, three-color policer, with a 3 Mbps CIR, 5
 
 ## Port Groups
 
-`qos_features.conf` supports the use of *port groups* to apply similar QoS configurations to a set of ports. Port groups are supported for all features including [ECN](#explicit-congestion-notification-ecn) and [RED](#random-early-detection-red) . 
+`qos_features.conf` supports the use of *port groups* to apply similar QoS configurations to a set of ports. Port groups are supported for all features including [ECN](#explicit-congestion-notification-ecn) and [RED](#random-early-detection-red) .
 
 {{% notice note %}}
-- Any configurations used with port groups override the global settings for the ingress ports defined in the port group.
-- Any ports that are not defined in a port group use the global settings.
-- All ports can be added to a `port_set` with the `allports` value. 
+- Configurations with port groups override the global settings for the ingress ports defined in the port group.
+- Ports not defined in a port group use the global settings.
+- You can add all ports to a `port_set` with the `allports` value.
 {{% /notice %}}
 
 ### Trust and Marking

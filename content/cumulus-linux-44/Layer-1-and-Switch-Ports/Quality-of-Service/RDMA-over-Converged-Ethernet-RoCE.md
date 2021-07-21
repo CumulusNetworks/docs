@@ -201,8 +201,6 @@ RoCE Pool Status
     3   roce-reserved-egress   DYNAMIC  14       -                  3              inf       7.29 MB        13.47 MB
 ```
 
-### nv show interface qos roce counters
-
 To show detailed information about current buffer utilization as well as historic RoCE byte and packet counts, run the `nv show interface qos roce counters` command:
 
 ```

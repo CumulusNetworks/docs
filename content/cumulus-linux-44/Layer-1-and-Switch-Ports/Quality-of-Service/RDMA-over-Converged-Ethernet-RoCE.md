@@ -84,6 +84,188 @@ cumulus@switch:~$ nv config apply
 ```
 {{< /tab >}}
 {{< /tabs >}}
+
+## Validate RoCE Configuration
+Validate RoCE configuration with `nv show` commands.
+
+### nv show qos roce
+`nv show qos roce` command provides detailed information about the configured buffers, utilization and DSCP markings.
+<details>
+    <summary>nv show qos roce output</summary>
+
+```
+cumulus@switch:mgmt:~$ nv show qos roce
+                    operational  applied   description
+------------------  -----------  --------  ------------------------------------------------------
+enable                           on        Turn the feature 'on' or 'off'.  The default is 'off'.
+mode                lossless     lossless  Roce Mode
+cable-length        100          100       Cable Length(in meters) for Roce Lossless Config
+congestion-control
+  congestion-mode   ECN                    Congestion config mode
+  enabled-tc        0,3                    Congestion config enabled Traffic Class
+  max-threshold     1.43 MB                Congestion config max-threshold
+  min-threshold     146.48 KB              Congestion config min-threshold
+pfc
+  pfc-priority      3                      switch-prio on which PFC is enabled
+  rx-enabled        enabled                PFC Rx Enabled status
+  tx-enabled        enabled                PFC Tx Enabled status
+trust
+  trust-mode        pcp,dscp               Trust Setting on the port for packet classification
+ 
+ 
+RoCE PCP/DSCP->SP mapping configurations
+===========================================
+        pcp  dscp                     switch-prio
+    --  ---  -----------------------  -----------
+    0   0    0,1,2,3,4,5,6,7          0
+    1   1    8,9,10,11,12,13,14,15    1
+    2   2    16,17,18,19,20,21,22,23  2
+    3   3    24,25,26,27,28,29,30,31  3
+    4   4    32,33,34,35,36,37,38,39  4
+    5   5    40,41,42,43,44,45,46,47  5
+    6   6    48,49,50,51,52,53,54,55  6
+    7   7    56,57,58,59,60,61,62,63  7
+ 
+ 
+RoCE SP->TC mapping and ETS configurations
+=============================================
+        switch-prio  traffic-class  scheduler-weight
+    --  -----------  -------------  ----------------
+    0   0            0              DWRR-50%
+    1   1            0              DWRR-50%
+    2   2            0              DWRR-50%
+    3   3            3              DWRR-50%
+    4   4            0              DWRR-50%
+    5   5            0              DWRR-50%
+    6   6            6              strict-priority
+    7   7            0              DWRR-50%
+ 
+ 
+RoCE pool config
+===================
+        name                   mode     size   switch-priorities  traffic-class
+    --  ---------------------  -------  -----  -----------------  -------------
+    0   lossy-default-ingress  Dynamic  50.0%  0,1,2,4,5,6,7      -
+    1   roce-reserved-ingress  Dynamic  50.0%  3                  -
+    2   lossy-default-egress   Dynamic  50.0%  -                  0,6
+    3   roce-reserved-egress   Dynamic  inf    -                  3
+ 
+ 
+Exception List
+=================
+        description
+    --  -----------
+```
+</details>
+
+### nv show interface roce status
+`nv show interface qos roce status` provides detailed RoCE information about a single interface.
+
+<details>
+    <summary>nv show interface qos roce status output</summary>
+
+```
+cumulus@switch:mgmt:~$ nv show interface swp16 qos roce status
+                    operational    applied  description
+------------------  -------------  -------  ---------------------------------------------------
+congestion-control
+  congestion-mode   ecn, absolute           Congestion config mode
+  enabled-tc        0,3                     Congestion config enabled Traffic Class
+  max-threshold     1.43 MB                 Congestion config max-threshold
+  min-threshold     153.00 KB               Congestion config min-threshold
+pfc
+  pfc-priority      3                       switch-prio on which PFC is enabled
+  rx-enabled        yes                     PFC Rx Enabled status
+  tx-enabled        yes                     PFC Tx Enabled status
+trust
+  trust-mode        pcp,dscp                Trust Setting on the port for packet classification
+mode                lossless                Roce Mode
+ 
+ 
+RoCE PCP/DSCP->SP mapping configurations
+===========================================
+          pcp  dscp  switch-prio
+    ----  ---  ----  -----------
+    cnp   6    48    6
+    roce  3    26    3
+ 
+ 
+RoCE SP->TC mapping and ETS configurations
+=============================================
+          switch-prio  traffic-class  scheduler-weight
+    ----  -----------  -------------  ----------------
+    cnp   6            6              strict priority
+    roce  3            3              dwrr-50%
+ 
+ 
+RoCE Pool Status
+===================
+        name                   mode     pool-id  switch-priorities  traffic-class  size      current-usage  max-usage
+    --  ---------------------  -------  -------  -----------------  -------------  --------  -------------  ---------
+    0   lossy-default-ingress  DYNAMIC  2        0,1,2,4,5,6,7      -              15.16 MB  0 Bytes        16.00 MB
+    1   roce-reserved-ingress  DYNAMIC  3        3                  -              15.16 MB  7.30 MB        7.90 MB
+    2   lossy-default-egress   DYNAMIC  13       -                  0,6            15.16 MB  0 Bytes        16.01 MB
+    3   roce-reserved-egress   DYNAMIC  14       -                  3              inf       7.29 MB        13.47 MB
+```
+
+</details>
+
+### nv show interface qos roce counters
+`nv show interface qos roce counters` provides detailed information about current buffer utilization as well as historic RoCE byte and packet counts.
+
+<details>
+    <summary>nv show interface qos roce counters output</summary>
+
+```
+cumulus@switch:mgmt:~$ nv show interface swp16 qos roce counters
+                               operational   applied  description
+-----------------------------  ------------  -------  ------------------------------------------------------
+rx-stats
+  rx-non-roce-stats
+    buffer-max-usage           144 Bytes              Max Ingress Pool-buffer usage for non-RoCE traffic
+    buffer-usage               0 Bytes                Current Ingress Pool-buffer usage for non-RoCE traffic
+    no-buffer-discard          55                     Rx buffer discards for non-RoCE traffic
+    non-roce-bytes             56.52 MB               non-roce rx bytes
+    non-roce-packets           462975                 non-roce rx packets
+    pg-max-usage               144 Bytes              Max PG-buffer usage for non-RoCE traffic
+    pg-usage                   0 Bytes                Current PG-buffer usage for non-RoCE traffic
+  rx-pfc-stats
+    pause-duration             0                      Rx PFC pause duration for RoCE traffic
+    pause-packets              0                      Rx PFC pause packets for RoCE traffic
+  rx-roce-stats
+    buffer-max-usage           0 Bytes                Max Ingress Pool-buffer usage for RoCE traffic
+    buffer-usage               0 Bytes                Current Ingress Pool-buffer usage for RoCE traffic
+    no-buffer-discard          0                      Rx buffer discards for RoCE traffic
+    pg-max-usage               0 Bytes                Max PG-buffer usage for RoCE traffic
+    pg-usage                   0 Bytes                Current PG-buffer usage for RoCE traffic
+    roce-bytes                 0 Bytes                Rx RoCE Bytes
+    roce-packets               0                      Rx RoCE Packets
+tx-stats
+  tx-cnp-stats
+    buffer-max-usage           16.02 MB               Max Egress Pool-buffer usage for CNP traffic
+    buffer-usage               0 Bytes                Current Egress Pool-buffer usage for CNP traffic
+    cnp-bytes                  0 Bytes                Tx CNP Packet Bytes
+    cnp-packets                0                      Tx CNP Packets
+    tc-max-usage               0 Bytes                Max TC-buffer usage for CNP traffic
+    tc-usage                   0 Bytes                Current TC-buffer usage for CNP traffic
+    unicast-no-buffer-discard  0                      Tx buffer discards for CNP traffic
+  tx-ecn-stats
+    ecn-marked-packets         693777677344           Tx ECN marked packets
+  tx-pfc-stats
+    pause-duration             0                      Tx PFC pause duration for RoCE traffic
+    pause-packets              0                      Tx PFC pause packets for RoCE traffic
+  tx-roce-stats
+    buffer-max-usage           13.47 MB               Max Egress Pool-buffer usage for RoCE traffic
+    buffer-usage               7.29 MB                Current Egress Pool-buffer usage for RoCE traffic
+    roce-bytes                 92824.38 GB            Tx RoCE Packet bytes
+    roce-packets               803785675319           Tx RoCE Packets
+    tc-max-usage               16.02 MB               Max TC-buffer usage for RoCE traffic
+    tc-usage                   7.29 MB                Current TC-buffer usage for RoCE traffic
+    unicast-no-buffer-discard  663060754115           Tx buffer discards for RoCE traffic
+```
+
+</details>
+
 ## Related Information
 
 - {{<exlink url="http://www.roceinitiative.org/roce-introduction/" text="RoCE introduction">}} - roceinitiative.org

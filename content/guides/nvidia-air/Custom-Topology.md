@@ -140,3 +140,73 @@ You can include NetQ with any simulation. To do this, drag the `node` icon into 
 {{<img src="/images/guides/nvidia-air/NetqCustomTopo.png" width="225px">}}
 
 No additional connectivity is required to get NetQ functionality. The only requirement is the existence of a NetQ node. As long as the NetQ node is defined in the simulation, the platform automatically creates the NetQ agents and does the registration.
+
+## Creating Custom Topology From Production Network
+
+A common request for the Air custom topology is to create a simulation based on an existing production deployment. The steps below outline how this can be accomplished.
+
+### Gather cl-support from production network
+
+Gathering cl-supports can be accomplished by using the playbooks accessible here:
+https://gitlab.com/cumulus-consulting/features/cl_support_ansible
+
+The `ReadMe` in that repo provide instructions how to run the playbook to gather cl-supports.
+
+### Create topology.dot from production network
+
+Once the cl-supports are obtained, a `topology.dot` can be created using the script located here:
+https://gitlab.com/cumulus-consulting/features/cl_support_lldp_parser
+
+The script can be run using python3 with a sample output below:
+
+```
+$ python3 cl_support_lldp_parser.py 
+Extracting: /home/cumulus/cl_support_lldp_parser/cl_support_leaf01_20210721_164553.txz
+Extracting: /home/cumulus/cl_support_lldp_parser/cl_support_spine02_20210721_164553.txz
+Extracting: /home/cumulus/cl_support_lldp_parser/cl_support_leaf02_20210721_164553.txz
+Extracting: /home/cumulus/cl_support_lldp_parser/cl_support_spine01_20210721_084129.txz
+folder is: /home/cumulus/cl_support_lldp_parser/cl_support_leaf01_20210721_164553
+leaf01
+    leaf01:eth0 -- oob-mgmt-switch:swp2
+    leaf01:swp31 -- spine01:swp1
+    leaf01:swp32 -- spine02:swp1
+folder is: /home/cumulus/cl_support_lldp_parser/cl_support_spine02_20210721_164553
+spine02
+    spine02:eth0 -- oob-mgmt-switch:swp6
+    spine02:swp1 -- leaf01:swp32
+    spine02:swp2 -- leaf02:swp32
+folder is: /home/cumulus/cl_support_lldp_parser/cl_support_leaf02_20210721_164553
+leaf02
+    leaf02:eth0 -- oob-mgmt-switch:swp4
+    leaf02:swp31 -- spine01:swp2
+    leaf02:swp32 -- spine02:swp2
+folder is: /home/cumulus/cl_support_lldp_parser/cl_support_spine01_20210721_084129
+spine01
+    spine01:eth0 -- oob-mgmt-switch:swp5
+    spine01:swp1 -- leaf01:swp31
+    spine01:swp2 -- leaf02:swp31
+DOTFILE: cl_support_lldp_parser.dot
+```
+
+The output of the file will be `cl_support_lldp_parser.dot`. This file will require manual intervention to define the node versions and clean up any superfluous configurations.
+
+Example output is below:
+
+```
+$ cat cl_support_lldp_parser.dot
+graph dc1 {
+"leaf01" [function="leaf" ]
+"oob-mgmt-switch" [function="leaf" ]
+"spine01" [function="leaf" ]
+"spine02" [function="leaf" ]
+"leaf02" [function="leaf" ]
+    "leaf01":"eth0" -- "oob-mgmt-switch":"swp2"
+    "leaf01":"swp31" -- "spine01":"swp1"
+    "leaf01":"swp32" -- "spine02":"swp1"
+    "spine02":"eth0" -- "oob-mgmt-switch":"swp6"
+    "spine02":"swp2" -- "leaf02":"swp32"
+    "leaf02":"eth0" -- "oob-mgmt-switch":"swp4"
+    "leaf02":"swp31" -- "spine01":"swp2"
+    "spine01":"eth0" -- "oob-mgmt-switch":"swp5"
+}
+```

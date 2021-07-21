@@ -108,7 +108,7 @@ Fixed: 1.24.1-1+deb 10u1</td>
 </tr>
 <tr>
 <td>2710208</td>
-<td>The {{net show bgp neighbor}} command output shows the BFD status as UP even when the BGP neighbor is not established such as when the interface is down.</td>
+<td>The {{net show bgp neighbor}} command output shows the BFD status as UP even when the BGP neighbor is not established, such as when the interface is down.</td>
 <td>4.2.1-4.4.0</td>
 <td></td>
 </tr>
@@ -1926,7 +1926,7 @@ Fixed: 1.24.1-1+deb 10u1</td>
 </tr>
 <tr>
 <td>2710208</td>
-<td>The {{net show bgp neighbor}} command output shows the BFD status as UP even when the BGP neighbor is not established such as when the interface is down.</td>
+<td>The {{net show bgp neighbor}} command output shows the BFD status as UP even when the BGP neighbor is not established, such as when the interface is down.</td>
 <td>4.2.1-4.4.0</td>
 <td></td>
 </tr>

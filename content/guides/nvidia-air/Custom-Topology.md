@@ -141,23 +141,21 @@ You can include NetQ with any simulation. To do this, drag the `node` icon into 
 
 No additional connectivity is required to get NetQ functionality. The only requirement is the existence of a NetQ node. As long as the NetQ node is defined in the simulation, the platform automatically creates the NetQ agents and does the registration.
 
-## Creating Custom Topology From Production Network
+## Create a Custom Topology from the Production Network
 
-A common request for the Air custom topology is to create a simulation based on an existing production deployment. The steps below outline how this can be accomplished.
+A common request for the Air custom topology is to create a simulation based on an existing production deployment. The steps below outline how you can accomplish this.
 
-### Gather cl-support from production network
+### Gather cl-support from the Production Network
 
-Gathering cl-supports can be accomplished by using the playbooks accessible here:
-https://gitlab.com/cumulus-consulting/features/cl_support_ansible
+You can gather the `cl-support` script output by using {{<exlink url="https://gitlab.com/cumulus-consulting/features/cl_support_ansible" text="these playbooks">}}.
 
-The `ReadMe` in that repo provide instructions how to run the playbook to gather cl-supports.
+The `ReadMe` in that repository provides instructions how to run the playbook to gather the `cl-support` output.
 
-### Create topology.dot from production network
+### Create topology.dot from the eProduction Network
 
-Once the cl-supports are obtained, a `topology.dot` can be created using the script located here:
-https://gitlab.com/cumulus-consulting/features/cl_support_lldp_parser
+Once you get the `cl-support` output, you can create a `topology.dot` file using {{<exlink url="https://gitlab.com/cumulus-consulting/features/cl_support_lldp_parser" text="this script">}}.
 
-The script can be run using python3 with a sample output below:
+You can run the script using `python3`. Here is some sample output:
 
 ```
 $ python3 cl_support_lldp_parser.py 
@@ -188,9 +186,9 @@ spine01
 DOTFILE: cl_support_lldp_parser.dot
 ```
 
-The output of the file will be `cl_support_lldp_parser.dot`. This file will require manual intervention to define the node versions and clean up any superfluous configurations.
+The output of this command is written to `cl_support_lldp_parser.dot`. You need to manually edit this file to define the node versions and clean up any superfluous configurations.
 
-Example output is below:
+Here is more example output:
 
 ```
 $ cat cl_support_lldp_parser.dot

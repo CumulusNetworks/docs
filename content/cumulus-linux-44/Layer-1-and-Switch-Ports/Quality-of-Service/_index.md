@@ -695,6 +695,7 @@ For example, to configure a dual-rate, three-color policer, with a 3 Mbps CIR, 5
 {{% notice note %}}
 - Any configurations used with port groups override the global settings for the ingress ports defined in the port group.
 - Any ports that are not defined in a port group use the global settings.
+- All ports can be added to a `port_set` with the `allports` value. 
 {{% /notice %}}
 
 ### Trust and Marking

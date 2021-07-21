@@ -78,7 +78,7 @@ To work around this issue, use traditional route leaking with the {{import vrf}}
 </tr>
 <tr>
 <td>2710208</td>
-<td>On Broadcom switches, the {{net show bgp neighbor}} command output shows the BFD status as UP when the interface is down.</td>
+<td>The {{net show bgp neighbor}} command output shows the BFD status as UP even when the BGP neighbor is not established such as when the interface is down.</td>
 <td>4.2.1-4.4.0</td>
 <td></td>
 </tr>
@@ -1302,6 +1302,11 @@ To work around this issue, change the value of {{arp_ignore}} to 2. See [Address
 <th> Issue ID </th>
 <th> Description </th>
 <th> Affects </th>
+</tr>
+<tr>
+<td>2734173</td>
+<td>The Mellanox 100G transceiver MMA1L30-CM is not recognized on the SN4600 switch even though the link is up. The {{ethtool}} output shows the error {{Cannot get Module EEPROM data: Invalid argument}}.</td>
+<td></td>
 </tr>
 <tr>
 <td>2728138</td>

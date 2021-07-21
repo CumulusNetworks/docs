@@ -412,7 +412,7 @@ A VLAN subinterface only receives traffic  {{<link url="VLAN-Tagging" text="tagg
 In an {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="MLAG">}} configuration, the peer link interface that connects the two switches in the MLAG pair has a VLAN subinterface named 4094. The peerlink.4094 subinterface only receives traffic tagged for VLAN 4094.
 
 {{%notice note%}}
-If you using a VLAN subinterface, do not add that VLAN under the bridge stanza.
+If you are using a VLAN subinterface, do not add that VLAN under the bridge stanza.
 {{%/notice%}}
 
 ## Parent Interfaces

@@ -25,17 +25,17 @@ Cumulus Linux 4.4 supports supports new platforms, provides bug fixes, and conta
 The NVUE commands and outputs are subject to change.
 {{%/notice%}}
 - {{<link url="VLAN-aware-Bridge-Mode/" text="Multiple VLAN-aware bridges">}}
-- {{<link url="VXLAN-Devices/#single-vxlan-device" text="Single VXLAN Devices">}}
+- {{<link url="VXLAN-Devices/#single-vxlan-device" text="Single VXLAN devices">}}
 - {{<link url="Inter-subnet-Routing/#downstream-vni" text="Downstream VNI (symmetric EVPN route leaking)">}}
 - {{<link url="EVPN-Multihoming" text="EVPN multihoming Head End Replication">}}
 - {{<link url="Precision-Time-Protocol-PTP" text="PTP Boundary Clock">}} enhancements
 - {{<link url="Protocol-Independent-Multicast-PIM/#allow-rp" text="PIM Allow RP">}}
 - {{<link url="Optional-BGP-Configuration/#conditional-advertisement" text="BGP conditional route advertisement">}}
 - {{<link url="IGMP-and-MLD-Snooping/#optimized-multicast-flooding-omf" text="Optimized Multicast Flooding (OMF)">}}
-- Smart System Manager {{<link url="Smart-System-Manager" text="warm boot">}}
+- Smart System Manager {{<link url="Smart-System-Manager/#restart-mode" text="warm boot">}}
 - {{<link url="Installing-a-New-Cumulus-Linux-Image/#secure-boot" text="Secure Boot">}}
 - {{<link url="Quality-of-Service" text="QoS enhancements ">}} (`traffic.conf` and `datapath.conf` files removed and replaced)
-- {{<link url="Hybrid-Cloud-Connectivity-with-QinQ-and-VXLANs" text="QinQ Double-tagged translation ">}} is now supported on switches with the Spectrum-2 and Spectrum-3 ASIC
+- {{<link url="Hybrid-Cloud-Connectivity-with-QinQ-and-VXLANs/#double-tag-translation" text="QinQ double-tagged translation ">}} is now supported on switches with the Spectrum-2 and Spectrum-3 ASIC
 - {{<link url="Network-Address-Translation-NAT" text="Double (twice) NAT ">}}
 - ZTP enhancements include {{<link url="Zero-Touch-Provisioning-ZTP/#dhcp-on-front-panel-ports" text="DHCP on front panel ports">}}, the ability to {{<link url="Zero-Touch-Provisioning-ZTP/#continue-provisioning" text="continue provisioning after executing the script locally">}}, and improved logging
 - A specific software license key is no longer required to enable the `switchd` service. For more information, refer to [Licensing in Cumulus Linux 44 and Later]({{<ref "/knowledge-base/Installing-and-Upgrading/Installation/Licensing-in-Cumulus-Linux-44-and-Later" >}}).

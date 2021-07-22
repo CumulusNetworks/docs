@@ -242,6 +242,12 @@ See /var/log/netd.log for more details.</td>
 <td></td>
 </tr>
 <tr>
+<td>2628693</td>
+<td>After an apt upgrade, the OPTIONS configuration line in {{/etc/default/isc-dhcp-relay}} might be removed. To work around this issue, reconfigure the desired options in the file after the upgrade completes.</td>
+<td>3.7.12-3.7.15, 4.2.1-4.4.0</td>
+<td></td>
+</tr>
+<tr>
 <td>2618227</td>
 <td>The NCLU {{net show bridge macs}} command displays permanent MAC addresses for trunked VLANs.</td>
 <td>4.3.0-4.4.0</td>

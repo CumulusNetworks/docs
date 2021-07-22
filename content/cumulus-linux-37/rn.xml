@@ -370,6 +370,12 @@ Fixed: 6.8.9.9-5+deb8u24</td>
 <td></td>
 </tr>
 <tr>
+<td>2628693</td>
+<td>After an apt upgrade, the OPTIONS configuration line in {{/etc/default/isc-dhcp-relay}} might be removed. To work around this issue, reconfigure the desired options in the file after the upgrade completes.</td>
+<td>3.7.12-3.7.15, 4.2.1-4.4.0</td>
+<td></td>
+</tr>
+<tr>
 <td>2607965</td>
 <td>On the EdgeCore AS7726 switch, when you run the NCLU {{net show system}} command, you see the error {{Command not found}}.</td>
 <td>3.7.14.2-3.7.15</td>
@@ -2507,6 +2513,12 @@ Vulnerable: &lt;= 1.4.4-2+deb8u2
 Fixed: 1.4.4-2+deb8u3</td>
 <td>3.7.0-3.7.14.2</td>
 <td>3.7.15</td>
+</tr>
+<tr>
+<td>2628693</td>
+<td>After an apt upgrade, the OPTIONS configuration line in {{/etc/default/isc-dhcp-relay}} might be removed. To work around this issue, reconfigure the desired options in the file after the upgrade completes.</td>
+<td>3.7.12-3.7.15, 4.2.1-4.4.0</td>
+<td></td>
 </tr>
 <tr>
 <td>2628513</td>
@@ -4691,6 +4703,12 @@ Vulnerable: &lt;= 1.4.4-2+deb8u2
 Fixed: 1.4.4-2+deb8u3</td>
 <td>3.7.0-3.7.14.2</td>
 <td>3.7.15</td>
+</tr>
+<tr>
+<td>2628693</td>
+<td>After an apt upgrade, the OPTIONS configuration line in {{/etc/default/isc-dhcp-relay}} might be removed. To work around this issue, reconfigure the desired options in the file after the upgrade completes.</td>
+<td>3.7.12-3.7.15, 4.2.1-4.4.0</td>
+<td></td>
 </tr>
 <tr>
 <td>2628513</td>
@@ -7417,6 +7435,12 @@ Vulnerable: &lt;= 1.4.4-2+deb8u2
 Fixed: 1.4.4-2+deb8u3</td>
 <td>3.7.0-3.7.14.2</td>
 <td>3.7.15</td>
+</tr>
+<tr>
+<td>2628693</td>
+<td>After an apt upgrade, the OPTIONS configuration line in {{/etc/default/isc-dhcp-relay}} might be removed. To work around this issue, reconfigure the desired options in the file after the upgrade completes.</td>
+<td>3.7.12-3.7.15, 4.2.1-4.4.0</td>
+<td></td>
 </tr>
 <tr>
 <td>2617009</td>
@@ -10349,6 +10373,12 @@ Vulnerable: &lt;= 1.4.4-2+deb8u2
 Fixed: 1.4.4-2+deb8u3</td>
 <td>3.7.0-3.7.14.2</td>
 <td>3.7.15</td>
+</tr>
+<tr>
+<td>2628693</td>
+<td>After an apt upgrade, the OPTIONS configuration line in {{/etc/default/isc-dhcp-relay}} might be removed. To work around this issue, reconfigure the desired options in the file after the upgrade completes.</td>
+<td>3.7.12-3.7.15, 4.2.1-4.4.0</td>
+<td></td>
 </tr>
 <tr>
 <td>2617009</td>

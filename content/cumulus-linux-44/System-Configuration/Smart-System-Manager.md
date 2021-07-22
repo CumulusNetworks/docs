@@ -79,7 +79,7 @@ cumulus@switch:~$ sudo csmgrctl -f
 
 The following command restarts the system in warm mode:
 {{< notice warning >}}
-Warm boot will reset any manually configured FEC settings.
+Warm boot resets any manually configured FEC settings.
 {{< /notice >}}
 
 {{< tabs "76 ">}}

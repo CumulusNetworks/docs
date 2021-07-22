@@ -13,9 +13,8 @@ Port security is a layer 2 traffic control feature that enables you to manage ne
 You can specify what action to take when there is a port security violation (drop packets or put the port into ADMIN down state) and add a timeout for the action to take effect.
 
 {{%notice note%}}
-
-Layer 2 interfaces in trunk or access mode are currently supported. However, interfaces in a bond are *not* supported.
-
+- Port security is supported only on Broadcom switches.
+- Layer 2 interfaces in trunk or access mode are currently supported. However, interfaces in a bond are *not* supported.
 {{%/notice%}}
 
 ## Configure MAC Address Options

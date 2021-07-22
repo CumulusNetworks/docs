@@ -9,6 +9,7 @@ Cumulus Linux supports both single and traditional VXLAN devices.
 {{%notice note%}}
 - Single VXLAN devices are supported in VLAN-aware bridge mode only.
 - A combination of single and traditional VXLAN devices is not supported.
+- A traditional VXLAN device configuration supports up to 2000 VNIs and a single VXLAN device configuration supports up to 4000 VNIs.
 {{%/notice%}}
 
 ## Traditional VXLAN Device

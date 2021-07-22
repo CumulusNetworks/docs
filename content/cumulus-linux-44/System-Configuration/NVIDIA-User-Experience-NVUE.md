@@ -25,7 +25,7 @@ Do not mix NVUE and NCLU commands to configure the switch; use either the NCLU C
 
 ## NVUE REST API
 
-To access the NVUE API, run these commands:
+To access the NVUE API, run these commands on the switch:
 
 ```
 cumulus@switch:~$ sudo ln -s /etc/nginx/sites-{available,enabled}/nvue.conf
@@ -358,7 +358,7 @@ Use the Tab key to get help for the command lists you want to see. For example, 
 
 ```
 cumulus@switch:~$ nv list-commands interface swp1 <<press Tab>>
-acl      bond     bridge   evpn     ip       link     qos      router   service
+acl     bond    bridge  evpn    ip      link    ptp     qos     router 
 ```
 
 ## NVUE Configuration File
@@ -477,24 +477,23 @@ The following example command lists the software installed on the switch:
 
 ```
 cumulus@switch:~$ nv show platform software
-             running                                applied  description
------------  -------------------------------------  -------  --------------------------
-[installed]  acpi                                            List of installed software
-[installed]  acpi-support-base
-[installed]  acpid
-[installed]  adduser
-[installed]  apt
-[installed]  arping
-[installed]  arptables
-[installed]  auditd
-[installed]  base-files
-[installed]  base-passwd
-[installed]  bash
-[installed]  bash-completion
-[installed]  bind9-host
-[installed]  binutils
-[installed]  binutils-common
-[installed]  binutils-x86-64-linux-gnu
+Installed Software
+=====================
+                      description                                                     package                version
+--------------------- ----------------------------                                    --------------------   ------------
+acpi                  displays information on ACPI devices                            acpi                   1.7-1.1                   
+acpi-support-base     scripts for handling base ACPI events such as the power button  acpi-support-base      0.142-8
+acpid                 Advanced Configuration and Power Interface event daemon         acpid                  1:2.0.31-1
+adduser               add and remove users and groups                                 adduser                3.118
+apt                   commandline package manager                                     apt                    1.8.2.3
+arping                sends IP and/or ARP pings (to the MAC address)                  arping                 2.19-6
+arptables             ARP table administration                                        arptables              0.0.4+snapshot20181021-4
+atftp                 advanced TFTP client                                            atftp                  0.7.git20120829-3.2~deb10u1                 
+atftpd                advanced TFTP server                                            atftpd                 0.7.git20120829-3.2~deb10u1 
+auditd                User space tools for security auditing                          auditd                 1:2.8.4-3              
+base-files            Debian base system miscellaneous files                          base-files             10.3+deb10u9                 
+base-passwd           Debian base system master password and group files              base-passwd            3.5.46 
+bash                  GNU Bourne Again SHell                                          bash                   5.0-4
 ...
 ```
 
@@ -504,33 +503,24 @@ The following example command shows the running (operationa), applied, and pendi
 
 ```
 cumulus@leaf01:~$ nv show interface swp1
-                         operational  applied  pending  description
------------------------  -----------  -------  -------  ----------------------------------------------------------------------
-type                     swp                   swp      The type of interface
-[acl]                                                   Interface ACL rules
-evpn
-  multihoming
-    uplink                                     off      Enable evpn multihoming tracking to prevent traffic loss due to NVE...
+                         operational  applied  description
+-----------------------  -----------  -------  ----------------------------------------------------------------------
+type                     swp                   The type of interface
 ip
-  vrf                                          default  Virtual routing and forwarding
-  [address]                                             ipv4 and ipv6 address
-  [gateway]                                             default ipv4 and ipv6 gateways
-  ipv4
-    forward                                    on       Enable or disable forwarding.
-  ipv6
-    enable                                     on       Turn the feature 'on' or 'off'.  The default is 'on'.
-    forward                                    on       Enable or disable forwarding.
+  [address]                                    ipv4 and ipv6 address
 link
-  auto-negotiate                               on       Link speed and characteritic auto negotiation
-  breakout                                     1x       sub-divide or disable ports (only valid on plug interfaces)
-  duplex                                       full     Link duplex
-  fec                                          auto     Link forward error correction mechanism
-  mtu                    9216                  9216     interface mtu
-  speed                                        auto     Link speed
-  dot1x
-    mab                                        off      bypass MAC authentication
-    parking-vlan                               off      VLAN for unauthorized MAC addresses
-  state                  up                    up       The state of the interface
+  mtu                    9216                  interface mtu
+  state                  down                  The state of the interface
+  stats
+    carrier-transitions  3                     Number of times the interface state has transitioned between up and...
+    in-bytes             300 Bytes             total number of bytes received on the interface
+    in-drops             5                     number of received packets dropped
+    in-errors            0                     number of received packets with errors
+    in-pkts              5                     total number of packets received on the interface
+    out-bytes            0 Bytes               total number of bytes transmitted out of the interface
+    out-drops            0                     The number of outbound packets that were chosen to be discarded eve...
+    out-errors           0                     The number of outbound packets that could not be transmitted becaus...
+    out-pkts             0                     total number of packets transmitted out of the interface
 ...
 ```
 

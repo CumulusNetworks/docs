@@ -436,7 +436,7 @@ The example below shows the NVUE commands required to configure MLAG on leaf01. 
 - Configure the MLAG ID to 1 for bond1 and to 2 for bond2.
 - Add bond1 and bond2 to the default bridge (br_default).
 - Create the inter-chassis bond (swp49 and swp50) and the peer link (peerlink)
-- Set the peer link IP address to linklocal, the MLAG system MAC address to 44:38:39:BE:EF:AA, and the backup interface to 10.10.10.2.
+- Set the peer link IP address to `linklocal`, the MLAG system MAC address to 44:38:39:BE:EF:AA, and the backup interface to 10.10.10.2.
 
 ```
 cumulus@leaf01:~$ nv set interface bond1 bond member swp1

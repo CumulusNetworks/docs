@@ -298,6 +298,86 @@ Save your changes to the configuration:
 
     admin@switch:~$ sudo config save -y
 
+### Breakout Ports
+
+You can configure the physical ports as breakout ports, splitting each physical port into two or four logical ports.
+
+How you break out a port depends on the physical port's speed and what the switch hardware supports. For example, if Ethernet0 is a 100G port, you can break it out as follows:
+
+- 4 25G ports
+- 4 10G ports
+- 2 50G ports
+- 2 40G ports
+
+{{%notice tip%}}
+
+To see how the port can be broken out, press *Tab* twice when you issue the `config interface breakout` command:
+
+```
+admin@sonic:~$ sudo config interface breakout Ethernet0 <tab><tab>
+
+1x100G[40G]  2x50G        4x25G[10G]
+```
+
+{{%/notice%}}
+
+{{<tabs "Breakout ports">}}
+
+{{<tab "SONiC CLI">}}
+
+To configure a breakout port, run `config interface <port> breakout <options>`. For example, if Ethernet0 is a 100G port and you want to break it out into four 25G ports, run:
+
+    admin@leaf01:~$ sudo config interface Ethernet0 breakout 4X25G
+
+{{</tab>}}
+
+{{<tab "config_db.json">}}
+
+Configure the breakout ports in the PORT table in `/etc/sonic/config_db.json`. For example, if Ethernet0 is a 100G port and you want to break it out into four 25G ports, edit the file as follows:
+
+```
+admin@switch:~$ sudo vi /etc/sonic/config_db.json
+
+    "PORT": {
+        "Ethernet0": {
+            "admin_status": "up",
+            "alias": "Ethernet1/1/1",
+            "index": "1",
+            "lanes": "0",
+            "speed": "25000"
+        },
+        "Ethernet1": {
+            "admin_status": "up",
+            "alias": "Ethernet1/1/2",
+            "index": "1",
+            "lanes": "1",
+            "speed": "25000"
+        },
+        "Ethernet2": {
+            "admin_status": "up",
+            "alias": "Ethernet1/1/3",
+            "index": "1",
+            "lanes": "2",
+            "speed": "25000"
+        },
+        "Ethernet3": {
+            "admin_status": "up",
+            "alias": "Ethernet1/1/4",
+            "index": "1",
+            "lanes": "3",
+            "speed": "25000"
+        },
+```
+
+{{</tab>}}
+
+{{</tabs>}}
+
+Save your changes to the configuration:
+
+    admin@switch:~$ sudo config save -y
+
+
 ### Asymmetric Priority Flow Control
 
 *Priority flow control* (PFC), as defined in the {{<exlink url="http://www.ieee802.org/1/pages/802.1bb.html" text="IEEE 802.1Qbb">}} standard, provides a link-level flow control mechanism that can be controlled independently for each Class of Service (CoS) with the intention to ensure no data frames are lost when congestion occurs in a bridged network.

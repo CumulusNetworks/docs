@@ -83,27 +83,15 @@ To work around this issue, use traditional route leaking with the {{import vrf}}
 <td></td>
 </tr>
 <tr>
-<td>2707895</td>
-<td>If you use {{cl-resource-query}} under the non-root user,  you see errors.</td>
-<td>4.4.0</td>
-<td></td>
-</tr>
-<tr>
 <td>2701000</td>
-<td>A default route learned from DHCP on eth0 in the management VRF might install in the default VRF if all the following conditions exist:
-
-- eth0 is disconnected
-- the original next hop is reachable in the default VRF
-
+<td>A default route learned from DHCP on eth0 in the management VRF might install in the default VRF if eth0 is disconnected and the original next hop is reachable in the default VRF.
 To work around this issue, delete the DHCP lease file for eth0 with the {{sudo rm /var/lib/dhcp/dhclient.eth0.leases}} command.</td>
 <td>4.3.0-4.4.0</td>
 <td></td>
 </tr>
 <tr>
 <td>2700701</td>
-<td>A default route learned from DHCP on eth0 in the management VRF might install in the default VRF if all the following conditions exist:
-- eth0 is disconnected
-- the original next hop is reachable in the default VRF
+<td>A default route learned from DHCP on eth0 in the management VRF might install in the default VRF if eth0 is disconnected and the original next hop is reachable in the default VRF.
 To work around this issue, delete the DHCP lease file for eth0 with the {{sudo rm /var/lib/dhcp/dhclient.eth0.leases}} command.</td>
 <td>4.3.0-4.4.0</td>
 <td></td>
@@ -164,13 +152,6 @@ cumulus@leaf01:~$ nv config apply</td>
 <td>2682976</td>
 <td>CVE-2021-28902, CVE-2021-28903, CVE-2021-28904, CVE-2021-28905, CVE-2021-28906: Several vulnerabilities have been announced in libyang that can cause a crash.
 Vulnerable: &lt;= 1.0.184-2+cl4.3.0u1</td>
-<td>4.0.0-4.4.0</td>
-<td></td>
-</tr>
-<tr>
-<td>2682973</td>
-<td>CVE-2020-12762: integer overflow in the json-c JSON library, which could result in denial of service or potentially the execution of arbitrary code if large malformed JSON files are processed.
-Vulnerable: 0.12.2+cl4u1</td>
 <td>4.0.0-4.4.0</td>
 <td></td>
 </tr>
@@ -314,8 +295,8 @@ To work around this issue, manually create an ACL in the {{/etc/cumulus/acl/poli
 </tr>
 <tr>
 <td>2556353</td>
-<td>In vtysh you can enable and disable debugs from either exec mode or global configuration mode (config t). When disabling OSPF debugs from exec mode, the debug is disabled at runtime but left in the running-configuration.
-To work around this issue, disable OSPF debugs from global configuration mode (config t).</td>
+<td>You can enable and disable debugs from either exec mode or global configuration mode (config t) in vtysh. When disabling OSPF debugs from exec mode, the debug is disabled at runtime but left in the running configuration.
+To work around this issue, disable OSPF debugs from global configuration mode.</td>
 <td>4.2.1-4.4.0</td>
 <td></td>
 </tr>
@@ -1353,8 +1334,7 @@ Fixed: 0.6.1-2+deb10u1</td>
 <tr>
 <td>2682971</td>
 <td>CVE-2020-12762: integer overflow in the json-c JSON library, which could result in denial of service or potentially the execution of arbitrary code if large malformed JSON files are processed.
-Vulnerable: 0.12.2+cl4u1
-Fixed: 0.12.2+cl4.4.0u1</td>
+Vulnerable: 0.12.2+cl4u1</td>
 <td>4.0.0-4.3.0</td>
 </tr>
 <tr>

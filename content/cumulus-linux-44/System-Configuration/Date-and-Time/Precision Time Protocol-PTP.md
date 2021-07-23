@@ -360,7 +360,7 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Edit the `Default Data Set` section of the `/etc/ptp4l.conf` file to change the `dscp_event` setting for PTP messages that trigger a Time Stamp read from the clock and the `dscp_general` setting for PTP messages that carry commands, responses, information, or time stamps.
+Edit the `Default Data Set` section of the `/etc/ptp4l.conf` file to change the `dscp_event` setting for PTP messages that trigger a timestamp read from the clock and the `dscp_general` setting for PTP messages that carry commands, responses, information, or timestamps.
 
 After you save the `/etc/ptp4l.conf` file, restart the `ptp4l` service.
 

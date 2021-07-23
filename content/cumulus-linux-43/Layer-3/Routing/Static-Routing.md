@@ -58,7 +58,7 @@ cumulus@leaf01:~$
 {{< /tab >}}
 
 {{< tab "Try It " >}}
-    {{< simulation name="Static Routing" showNodes="leaf01,spine01" >}}
+    {{< simulation name="Try It - Static Routing" showNodes="leaf01,spine01" >}}
 {{< /tab >}}
 
 {{< /tabs >}}

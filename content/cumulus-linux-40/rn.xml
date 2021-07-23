@@ -1231,19 +1231,11 @@ Vulnerable: &lt;= 1.0.184-2+cl4.3.0u1</td>
 <td></td>
 </tr>
 <tr>
-<td>2682973</td>
+<td>2682971</td>
 <td>CVE-2020-12762: integer overflow in the json-c JSON library, which could result in denial of service or potentially the execution of arbitrary code if large malformed JSON files are processed.
 Vulnerable: 0.12.2+cl4u1</td>
 <td>4.0.0-4.4.0</td>
 <td></td>
-</tr>
-<tr>
-<td>2682971</td>
-<td>CVE-2020-12762: integer overflow in the json-c JSON library, which could result in denial of service or potentially the execution of arbitrary code if large malformed JSON files are processed.
-Vulnerable: 0.12.2+cl4u1
-Fixed: 0.12.2+cl4.4.0u1</td>
-<td>4.0.0-4.3.0</td>
-<td>4.4.0</td>
 </tr>
 <tr>
 <td>2679948</td>

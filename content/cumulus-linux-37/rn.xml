@@ -89,6 +89,18 @@ To work around this issue, run the apt-get upgrade command again and reboot the 
 <td></td>
 </tr>
 <tr>
+<td>2736265</td>
+<td>After an apt upgrade, the OPTIONS configuration line in {{/etc/default/isc-dhcp-relay}} might be removed. To work around this issue, reconfigure the desired options in the file after the upgrade completes.</td>
+<td>3.7.12-3.7.15, 4.2.1-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2736260</td>
+<td>After an apt upgrade, the OPTIONS configuration line in {{/etc/default/isc-dhcp-relay}} might be removed. To work around this issue, reconfigure the desired options in the file after the upgrade completes.</td>
+<td>3.7.12-3.7.15, 4.2.1-4.4.0</td>
+<td></td>
+</tr>
+<tr>
 <td>2728207</td>
 <td>CVE-2021-3570: A flaw was found in the ptp4l program of the linuxptp package. A missing length check when forwarding a PTP message between ports allows a remote attacker to cause an information leak, crash, or potentially remote code execution. The highest threat from this vulnerability is to data confidentiality and integrity as well as system availability. </td>
 <td>3.7.0-3.7.15, 4.0.0-4.4.0</td>
@@ -372,8 +384,8 @@ Fixed: 6.8.9.9-5+deb8u24</td>
 <tr>
 <td>2628693</td>
 <td>After an apt upgrade, the OPTIONS configuration line in {{/etc/default/isc-dhcp-relay}} might be removed. To work around this issue, reconfigure the desired options in the file after the upgrade completes.</td>
-<td>3.7.12-3.7.15, 4.2.1-4.4.0</td>
-<td></td>
+<td>3.7.12-4.3.0</td>
+<td>4.4.0</td>
 </tr>
 <tr>
 <td>2607965</td>
@@ -2248,6 +2260,18 @@ To work around this issue, run the apt-get upgrade command again and reboot the 
 <td></td>
 </tr>
 <tr>
+<td>2736265</td>
+<td>After an apt upgrade, the OPTIONS configuration line in {{/etc/default/isc-dhcp-relay}} might be removed. To work around this issue, reconfigure the desired options in the file after the upgrade completes.</td>
+<td>3.7.12-3.7.15, 4.2.1-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2736260</td>
+<td>After an apt upgrade, the OPTIONS configuration line in {{/etc/default/isc-dhcp-relay}} might be removed. To work around this issue, reconfigure the desired options in the file after the upgrade completes.</td>
+<td>3.7.12-3.7.15, 4.2.1-4.4.0</td>
+<td></td>
+</tr>
+<tr>
 <td>2728207</td>
 <td>CVE-2021-3570: A flaw was found in the ptp4l program of the linuxptp package. A missing length check when forwarding a PTP message between ports allows a remote attacker to cause an information leak, crash, or potentially remote code execution. The highest threat from this vulnerability is to data confidentiality and integrity as well as system availability. </td>
 <td>3.7.0-3.7.15, 4.0.0-4.4.0</td>
@@ -2517,8 +2541,8 @@ Fixed: 1.4.4-2+deb8u3</td>
 <tr>
 <td>2628693</td>
 <td>After an apt upgrade, the OPTIONS configuration line in {{/etc/default/isc-dhcp-relay}} might be removed. To work around this issue, reconfigure the desired options in the file after the upgrade completes.</td>
-<td>3.7.12-3.7.15, 4.2.1-4.4.0</td>
-<td></td>
+<td>3.7.12-4.3.0</td>
+<td>4.4.0</td>
 </tr>
 <tr>
 <td>2628513</td>
@@ -4449,6 +4473,18 @@ To work around this issue, run the apt-get upgrade command again and reboot the 
 <td></td>
 </tr>
 <tr>
+<td>2736265</td>
+<td>After an apt upgrade, the OPTIONS configuration line in {{/etc/default/isc-dhcp-relay}} might be removed. To work around this issue, reconfigure the desired options in the file after the upgrade completes.</td>
+<td>3.7.12-3.7.15, 4.2.1-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2736260</td>
+<td>After an apt upgrade, the OPTIONS configuration line in {{/etc/default/isc-dhcp-relay}} might be removed. To work around this issue, reconfigure the desired options in the file after the upgrade completes.</td>
+<td>3.7.12-3.7.15, 4.2.1-4.4.0</td>
+<td></td>
+</tr>
+<tr>
 <td>2728207</td>
 <td>CVE-2021-3570: A flaw was found in the ptp4l program of the linuxptp package. A missing length check when forwarding a PTP message between ports allows a remote attacker to cause an information leak, crash, or potentially remote code execution. The highest threat from this vulnerability is to data confidentiality and integrity as well as system availability. </td>
 <td>3.7.0-3.7.15, 4.0.0-4.4.0</td>
@@ -4707,8 +4743,8 @@ Fixed: 1.4.4-2+deb8u3</td>
 <tr>
 <td>2628693</td>
 <td>After an apt upgrade, the OPTIONS configuration line in {{/etc/default/isc-dhcp-relay}} might be removed. To work around this issue, reconfigure the desired options in the file after the upgrade completes.</td>
-<td>3.7.12-3.7.15, 4.2.1-4.4.0</td>
-<td></td>
+<td>3.7.12-4.3.0</td>
+<td>4.4.0</td>
 </tr>
 <tr>
 <td>2628513</td>
@@ -7206,6 +7242,18 @@ To work around this issue, run the apt-get upgrade command again and reboot the 
 <td></td>
 </tr>
 <tr>
+<td>2736265</td>
+<td>After an apt upgrade, the OPTIONS configuration line in {{/etc/default/isc-dhcp-relay}} might be removed. To work around this issue, reconfigure the desired options in the file after the upgrade completes.</td>
+<td>3.7.12-3.7.15, 4.2.1-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2736260</td>
+<td>After an apt upgrade, the OPTIONS configuration line in {{/etc/default/isc-dhcp-relay}} might be removed. To work around this issue, reconfigure the desired options in the file after the upgrade completes.</td>
+<td>3.7.12-3.7.15, 4.2.1-4.4.0</td>
+<td></td>
+</tr>
+<tr>
 <td>2728207</td>
 <td>CVE-2021-3570: A flaw was found in the ptp4l program of the linuxptp package. A missing length check when forwarding a PTP message between ports allows a remote attacker to cause an information leak, crash, or potentially remote code execution. The highest threat from this vulnerability is to data confidentiality and integrity as well as system availability. </td>
 <td>3.7.0-3.7.15, 4.0.0-4.4.0</td>
@@ -7439,8 +7487,8 @@ Fixed: 1.4.4-2+deb8u3</td>
 <tr>
 <td>2628693</td>
 <td>After an apt upgrade, the OPTIONS configuration line in {{/etc/default/isc-dhcp-relay}} might be removed. To work around this issue, reconfigure the desired options in the file after the upgrade completes.</td>
-<td>3.7.12-3.7.15, 4.2.1-4.4.0</td>
-<td></td>
+<td>3.7.12-4.3.0</td>
+<td>4.4.0</td>
 </tr>
 <tr>
 <td>2617009</td>
@@ -10156,6 +10204,18 @@ To work around this issue, run the apt-get upgrade command again and reboot the 
 <td></td>
 </tr>
 <tr>
+<td>2736265</td>
+<td>After an apt upgrade, the OPTIONS configuration line in {{/etc/default/isc-dhcp-relay}} might be removed. To work around this issue, reconfigure the desired options in the file after the upgrade completes.</td>
+<td>3.7.12-3.7.15, 4.2.1-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2736260</td>
+<td>After an apt upgrade, the OPTIONS configuration line in {{/etc/default/isc-dhcp-relay}} might be removed. To work around this issue, reconfigure the desired options in the file after the upgrade completes.</td>
+<td>3.7.12-3.7.15, 4.2.1-4.4.0</td>
+<td></td>
+</tr>
+<tr>
 <td>2728207</td>
 <td>CVE-2021-3570: A flaw was found in the ptp4l program of the linuxptp package. A missing length check when forwarding a PTP message between ports allows a remote attacker to cause an information leak, crash, or potentially remote code execution. The highest threat from this vulnerability is to data confidentiality and integrity as well as system availability. </td>
 <td>3.7.0-3.7.15, 4.0.0-4.4.0</td>
@@ -10377,8 +10437,8 @@ Fixed: 1.4.4-2+deb8u3</td>
 <tr>
 <td>2628693</td>
 <td>After an apt upgrade, the OPTIONS configuration line in {{/etc/default/isc-dhcp-relay}} might be removed. To work around this issue, reconfigure the desired options in the file after the upgrade completes.</td>
-<td>3.7.12-3.7.15, 4.2.1-4.4.0</td>
-<td></td>
+<td>3.7.12-4.3.0</td>
+<td>4.4.0</td>
 </tr>
 <tr>
 <td>2617009</td>

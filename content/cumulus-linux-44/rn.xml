@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>2736265</td>
+<td>After an apt upgrade, the OPTIONS configuration line in {{/etc/default/isc-dhcp-relay}} might be removed. To work around this issue, reconfigure the desired options in the file after the upgrade completes.</td>
+<td>3.7.12-3.7.15, 4.2.1-4.4.0</td>
+<td></td>
+</tr>
+<tr>
 <td>2734126</td>
 <td>CVE-2021-33910: The Qualys Research Labs discovered that an attacker-controlled allocation using the alloca() function could result in memory
 corruption, allowing to crash systemd and hence the entire operating system.  Details can be found at https://www.qualys.com/2021/07/20/cve-2021-33910/denial-of-service-systemd.txt .
@@ -220,12 +226,6 @@ https://security-tracker.debian.org/tracker/CVE-2019-14889</td>
 ERROR: 'NoneType' object has no attribute 'conf_key_value_multiple_values'
 See /var/log/netd.log for more details.</td>
 <td>4.3.0-4.4.0</td>
-<td></td>
-</tr>
-<tr>
-<td>2628693</td>
-<td>After an apt upgrade, the OPTIONS configuration line in {{/etc/default/isc-dhcp-relay}} might be removed. To work around this issue, reconfigure the desired options in the file after the upgrade completes.</td>
-<td>3.7.12-3.7.15, 4.2.1-4.4.0</td>
 <td></td>
 </tr>
 <tr>
@@ -1443,6 +1443,11 @@ Fixed: 1.14.4-2+deb10u1</td>
 <td>2632379</td>
 <td>When you upgrade the switch with {{apt-get upgrade}}, the {{kexec-tools}} package is not installed, which causes the Smart System Manager fast restart mode to work incorrectly.</td>
 <td>4.3.0</td>
+</tr>
+<tr>
+<td>2628693</td>
+<td>After an apt upgrade, the OPTIONS configuration line in {{/etc/default/isc-dhcp-relay}} might be removed. To work around this issue, reconfigure the desired options in the file after the upgrade completes.</td>
+<td>3.7.12-4.3.0</td>
 </tr>
 <tr>
 <td>2628588</td>

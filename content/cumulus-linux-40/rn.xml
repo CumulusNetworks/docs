@@ -1356,6 +1356,12 @@ Fixed: 1.14.4-2+deb10u1</td>
 <td></td>
 </tr>
 <tr>
+<td>2628693</td>
+<td>After an apt upgrade, the OPTIONS configuration line in {{/etc/default/isc-dhcp-relay}} might be removed. To work around this issue, reconfigure the desired options in the file after the upgrade completes.</td>
+<td>3.7.12-4.3.0</td>
+<td>4.4.0</td>
+</tr>
+<tr>
 <td>2617000</td>
 <td>CVE-2021-26933 CVE-2021-27379
 Multiple vulnerabilities have been discovered in the Xen hypervisor, which could result in denial of service, privilege escalation or memory disclosure.

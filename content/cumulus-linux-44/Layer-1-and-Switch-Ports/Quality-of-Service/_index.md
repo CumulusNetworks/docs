@@ -479,7 +479,7 @@ A common use case for ECN is {{<link title="RDMA over Converged Ethernet - RoCE"
 
 ECN operates by having a transit switch mark packets being sent between two end-hosts.
 1. Transmitting host indicates it is ECN-capable by setting the ECN bits in the outgoing IP header to `01` or `10`
-2. If the buffer of a transit switch is greater than the configured `min_threshold_bytes`, the switch remarks the ECN bits to `11` indicating "Congestion Encountered" or "CE".
+2. If the buffer of a transit switch is greater than the configured `min_threshold_bytes`, the switch remarks the ECN bits to `11` indicating *Congestion Encountered* or *CE*.
 3. The receiving host marks any reply packets, like a TCP-ACK, as CE (`11`)
 4. The original transmitting host reduces its transmission rate.
 5. When the switch buffer congestion falls below the configured `min_threshold_bytes`, the switch stops remarking ECN bits, setting them back to `01` or `10`.

@@ -46,8 +46,7 @@ You can configure `ptmd` parameters in the topology file. The parameters are cla
 <!-- Vale issue #253 -->
 ### Host-only Parameters
 <!-- vale on -->
-*Host-only parameters* apply to the entire host on which PTM is running. You can include the `hostnametype` host-only parameter, which specifies if PTM uses only the hostname (`hostname`) or the fully-qualified
-domain name (`fqdn`) while looking for the `self-node` in the graph file. For example, in the graph file below PTM ignores the FQDN and only looks for *switch04* because that is the hostname of the switch on which it is running:
+*Host-only parameters* apply to the entire host on which PTM is running. You can include the `hostnametype` host-only parameter, which specifies if PTM uses only the hostname (`hostname`) or the fully qualified domain name (`fqdn`) while looking for the `self-node` in the graph file. For example, in the graph file below PTM ignores the FQDN and only looks for *switch04* because that is the hostname of the switch on which it is running:
 
 {{%notice tip%}}
 - Always wrap the hostname in double quotes; for example, `"www.example.com"` to prevent `ptmd` from failing.
@@ -149,7 +148,7 @@ graph G {
 
 `ptmd` supports the following LLDP parameters:
 - `match_type`, which defaults to the interface name (`ifname`), but can accept a port description (`portdescr`) instead if you want `lldpd` to compare the topology against the port description instead of the interface name. You can set this parameter globally or at the per-port level.
-- `match_hostname`, which defaults to the hostname (`hostname`), but enables PTM to match the topology using the fully-qualified domain name (`fqdn`) supplied by LLDP.
+- `match_hostname`, which defaults to the hostname (`hostname`), but enables PTM to match the topology using the fully qualified domain name (`fqdn`) supplied by LLDP.
 
 The following is an example of a topology with LLDP applied at the port level:
 

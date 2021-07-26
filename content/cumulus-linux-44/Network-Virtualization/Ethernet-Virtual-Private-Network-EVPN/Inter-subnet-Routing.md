@@ -828,7 +828,7 @@ cumulus@leaf01:~$ nv set vrf BLUE router bgp router-id 10.10.10.1
 cumulus@leaf01:~$ nv set vrf BLUE router bgp address-family ipv4-unicast redistribute connected enable on
 cumulus@leaf01:~$ nv set vrf BLUE router bgp peer-group underlay address-family l2vpn-evpn enable on
 cumulus@leaf01:~$ nv set vrf BLUE router bgp address-family ipv4-unicast route-export to-evpn
-cumulus@leaf01:~$ nv set vrf BLUE router bgp route-import from-evpn route-target 65101:6000
+cumulus@leaf01:~$ nv set vrf BLUE router bgp route-import from-evpn route-target 65163:6000
 cumulus@leaf01:~$ nv set evpn multihoming enable on
 cumulus@leaf01:~$ nv set interface bond1 evpn multihoming segment local-id 1
 cumulus@leaf01:~$ nv set interface bond2 evpn multihoming segment local-id 2
@@ -888,8 +888,8 @@ cumulus@border01:~$ nv set vrf VRF10 router bgp router-id 10.10.10.63
 cumulus@border01:~$ nv set vrf VRF10 router bgp address-family ipv4-unicast redistribute connected enable on
 cumulus@border01:~$ nv set vrf VRF10 router bgp peer-group underlay address-family l2vpn-evpn enable on
 cumulus@border01:~$ nv set vrf VRF10 router bgp address-family ipv4-unicast route-export to-evpn
-cumulus@border01:~$ nv set vrf VRF10 router bgp route-import from-evpn route-target 65163:4001
-cumulus@border01:~$ nv set vrf VRF10 router bgp route-import from-evpn route-target 65163:4002
+cumulus@border01:~$ nv set vrf VRF10 router bgp route-import from-evpn route-target 65101:4001
+cumulus@border01:~$ nv set vrf VRF10 router bgp route-import from-evpn route-target 65101:4002
 cumulus@border01:~$ nv set vrf EXTERNAL1 router bgp autonomous-system 65163
 cumulus@border01:~$ nv set vrf EXTERNAL1 router bgp router-id 10.10.10.63
 cumulus@border01:~$ nv set vrf EXTERNAL1 router bgp address-family ipv4-unicast redistribute connected enable on
@@ -1224,7 +1224,7 @@ router bgp 65101 vrf RED
  !
  address-family l2vpn evpn
   advertise ipv4 unicast
-  route-target import 65101:6000
+  route-target import 65163:6000
  exit-address-family
 !
 router bgp 65101 vrf BLUE
@@ -1236,7 +1236,7 @@ router bgp 65101 vrf BLUE
  !
  address-family l2vpn evpn
   advertise ipv4 unicast
-  route-target import *:6000
+  route-target import 65163:6000
  exit-address-family
 ```
 
@@ -1308,8 +1308,8 @@ router bgp 65163 vrf VRF10
  !
  address-family l2vpn evpn
   advertise ipv4 unicast
-  route-target import 65163:4001
-  route-target import 65163:4002
+  route-target import 65101:4001
+  route-target import 65101:4002
  exit-address-family
 !
 router bgp 65163 vrf EXTERNAL1

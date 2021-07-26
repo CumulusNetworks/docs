@@ -38,7 +38,7 @@ Understanding the location of configuration data is required for successful upgr
 | `/etc/cumulus/switchd.conf` | `switchd` configuration | {{<link title="Configuring switchd">}} | N/A; read the guide on `switchd` configuration |
 
 {{< /tab >}}
-{{< tab "Commonly-Used Files ">}}
+{{< tab "Commonly Used Files ">}}
 
 | File Name and Location | Description| Cumulus Linux Documentation | Debian Documentation |
 | ---------------------- | ---------- | --------------------------- | -------------------- |

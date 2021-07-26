@@ -198,7 +198,7 @@ Several ZTP example scripts are available in the {{<exlink url="https://github.c
 
 ## Continue Provisioning
 
-Typically ZTP exits after executing the script locally and does not continue. To continue with provisioning so that you do not have to intervine manually or embed an Ansible callback into the script, you can add the CUMULUS-AUTOPROVISION-CASCADE directive.
+Typically ZTP exits after executing the script locally and does not continue. To continue with provisioning so that you do not have to intervine manually or embed an Ansible callback into the script, you can add the `CUMULUS-AUTOPROVISION-CASCADE` directive.
 
 ## Best Practices
 

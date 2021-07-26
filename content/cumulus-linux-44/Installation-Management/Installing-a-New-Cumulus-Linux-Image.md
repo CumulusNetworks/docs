@@ -37,7 +37,8 @@ To install Cumulus Linux using a DHCP/web server *with* DHCP options, set up a D
 1. The switch boots up and requests an IP address (DHCP request).
 2. The DHCP server acknowledges and responds with DHCP option 114 and the location of the installation image.
 3. ONIE downloads the Cumulus Linux image, installs, and reboots.
-4. Success! You are now running Cumulus Linux.
+
+   You are now running Cumulus Linux.
 
 {{< img src = "/images/cumulus-linux/install-image-onie-dhcp.png" >}}
 
@@ -395,7 +396,7 @@ If you use the `--ztp` option together with any of the other command line option
 
 ## Edit the Cumulus Linux Image (Advanced)
 
-The Cumulus Linux disk image file contains a BASH script that includes a set of variables. You can set these variables to be able to install a fully-configured system with a single image file.
+The Cumulus Linux disk image file contains a BASH script that includes a set of variables. You can set these variables to be able to install a fully configured system with a single image file.
 
 {{< expand "To edit the image"  >}}
 

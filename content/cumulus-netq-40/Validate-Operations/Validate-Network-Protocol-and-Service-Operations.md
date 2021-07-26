@@ -604,7 +604,7 @@ Using the `include <evpn-number-range-list>` and `exclude <evpn-number-range-lis
 | 7 | VRF Consistency |
 <!-- vale on -->
 
-Refer to {{<link url="#evpn-validation-tests" text="EVPN Validation Tests">}} for descriptions of these tests.
+Refer to {{<link url="cumulus-netq-40/Validate-Operations/Validation-Checks/#evpn-validation-tests" text="EVPN Validation Tests">}} for descriptions of these tests.
 
 To run only the EVPN Type 2 test:
 

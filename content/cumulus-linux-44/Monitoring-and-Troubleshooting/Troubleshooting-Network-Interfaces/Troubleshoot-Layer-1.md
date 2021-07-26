@@ -407,7 +407,7 @@ First, identify the faulty behavior at the lowest level possible, then design a 
 
 Try swapping the modules and fibers to determine which component is bad:
 
-- Swap the DAC, AOC or fiber patch cable(s) along the path with known good cables. Does the test indicate that the symptoms change?
+- Swap the DAC, AOC or fiber patch cables along the path with known good cables. Does the test indicate that the symptoms change?
 - Swap the modules between the local and remote. Does the test indicate the symptoms move with the module or stay on the same neighbor?
 - Loopback tests: Move one of the modules to the neighbor and connect the two modules back-to-back in the same switch, ideally with the same cable. What does the test indicate now? Now, move both modules to the other side and repeat. Try to isolate the issue to a single fiber, module, port, platform or configuration.
 - Replace each module one at a time with a different module of the same type; the current module could be bad.
@@ -556,7 +556,7 @@ Port Hardware State:
       - Check the configurations on both sides for an auto-negotiation or FEC configuration mismatch.
       - If the link is a fiber link and the module supports RX/TX Power DDM/DOM, check the *RX Power* and *TX Power* values in the *Operational State* output of `l1-show` to help determine which component might have failed.
       - Follow the steps in {{<link url="#isolate-faulty-hardware" text="Isolate Faulty Hardware">}}; use this value or the *RX/TX Power* DDM/DOM value as the test.
-    - `Force Mode no partner detected.` Auto-negotiation or autodetect is disabled, link is down because it does not see the neighbor.  This is not very helpful to determine the cause alone.
+    - `Force Mode no partner detected.` Auto-negotiation or autodetect is disabled, link is down because it does not see the neighbor. This is not very helpful to determine the cause alone.
       - Check the configurations on both sides for a speed, auto-negotiation, or FEC configuration mismatch.
       - If the link is a fiber link and the module supports RX/TX Power DDM/DOM, check the *RX Power* and *TX Power* values in the *Operational State* output of `l1-show` to help determine which component might have failed.
       - Follow the steps in {{<link url="#isolate-faulty-hardware" text="Isolate Faulty Hardware">}}; use this value or the *RX/TX Power* DDM/DOM value as the test.

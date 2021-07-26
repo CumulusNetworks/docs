@@ -54,7 +54,7 @@ More than one spanning tree instance enables switches to load balance and use di
 
 ## Configure STP
 
-There are a number of ways to customize STP in Cumulus Linux. Exercise caution when changing the settings below to prevent malfunctions in STP loop avoidance.
+There several ways to customize STP in Cumulus Linux. Exercise caution when changing the settings below to prevent malfunctions in STP loop avoidance.
 
 ### Spanning Tree Priority
 

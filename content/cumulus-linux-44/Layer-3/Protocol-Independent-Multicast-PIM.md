@@ -23,7 +23,7 @@ The following illustration shows a PIM configuration. The table below the illust
 |---------------- |-------------|
 | First Hop Router (FHR) | The router attached to the source. The FHR is responsible for the PIM register process. |
 | Last Hop Router (LHR) | The last router in the path, attached to an interested multicast receiver. There is a single LHR for each network subnet with an interested receiver, however multicast groups can have multiple LHRs throughout the network. |
-| Rendezvous Point (RP) | Allows for the discovery of multicast sources and multicast receivers. The RP is responsible for sending PIM Register Stop messages to FHRs. The PIM RP address must be globally routable. <br><br> <p>{{%notice warning%}}</p> <ul> <li><code>zebra</code> does not resolve the next hop for the RP through the default route. To prevent multicast forwarding from failing, either provide a specific route to the RP or specify the following command to be able to resolve the next hop for the RP through the default route:<pre>cumulus@switch:~$ sudo vtysh
+| Rendezvous Point (RP) | Allows for the discovery of multicast sources and multicast receivers. The RP sends PIM Register Stop messages to FHRs. The PIM RP address must be globally routable. <br><br> <p>{{%notice warning%}}</p> <ul> <li><code>zebra</code> does not resolve the next hop for the RP through the default route. To prevent multicast forwarding from failing, either provide a specific route to the RP or specify the following command to be able to resolve the next hop for the RP through the default route:<pre>cumulus@switch:~$ sudo vtysh
 switch# configure terminal
 switch(config)# ip nht resolve-via-default
 switch(config)# exit
@@ -43,7 +43,7 @@ switch# write memory</li><li><p>NVIDIA Cumulus Networks recommends you <b>not</b
 |------------ |------------ |
 | PIM Hello | Announce the presence of a multicast router on a segment. PIM hellos are sent every 30 seconds by default. For example:<pre>22.1.2.2 > 224.0.0.13<br>PIMv2, length 34<br>Hello, cksum 0xfdbb (correct)<br>Hold Time Option (1), length 2, Value: 1m45s<br>0x0000: 0069<br>LAN Prune Delay Option (2), length 4, Value: <br>T-bit=0, LAN delay 500ms, Override interval 2500ms<br>0x0000: 01f4 09c4<br>DR Priority Option (19), length 4, Value: 1<br>0x0000: 0000 0001<br>Generation ID Option (20), length 4, Value<br>0x2459b190<br>0x0000: 2459 b190</pre> |
 | PIM Join/Prune (J/P) | Indicate the groups that a multicast router wants to receive or no longer receive. Often PIM join/prune messages are described as distinct message types, but are actually a single PIM message with a list of groups to join and a second list of groups to leave. PIM J/P messages can be to join or prune from the SPT or RP trees (also called (*,G) joins or (S,G) joins).<br><br>**Note**: PIM join/prune messages are sent to PIM neighbors on individual interfaces. Join/prune messages are never unicast.<br>{{< figure src = "/images/cumulus-linux/pim-join-prune.png" >}}<br>This PIM join/prune is for group 239.1.1.9, with 1 join and 0 prunes for the group.<br>Join/prunes for multiple groups can exist in a single packet.<br> The following shows an S,G Prune example:<pre>21:49:59.470885 IP (tos 0x0, ttl 255, id 138, offset 0, flags [none], proto PIM (103), length 54)<br>22.1.2.2 > 224.0.0.13: PIMv2, length 34<br>Join / Prune, cksum 0xb9e5 (correct), upstream-neighbor: 22.1.2.1<br>1 group(s), holdtime: 3m30s<br>group #1: 225.1.0.0, joined sources: 0, pruned sources:<br>1 pruned source #1: 33.1.1.1(S)</pre> |
-| PIM Register | Unicast packets sent from an FHR destined to the RP to advertise a multicast group. The FHR fully encapsulates the original multicast packet in PIM register messages. The RP is responsible for decapsulating the PIM register message and forwarding it along the (*,G) tree towards the receivers. |
+| PIM Register | Unicast packets sent from an FHR destined to the RP to advertise a multicast group. The FHR fully encapsulates the original multicast packet in PIM register messages. The RP decapsulates the PIM register message and forwards it along the (*,G) tree towards the receivers. |
 | PIM Null Register |A special type of PIM register message where the Null-Register flag is set within the packet. Null register messages are used for an FHR to signal to an RP that a source is still sending multicast traffic. Unlike normal PIM register messages, null register messages do not encapsulate the original data packet. |
 | PIM Register Stop | Sent by an RP to the FHR to indicate that PIM register messages must no longer be sent. For example:<pre>21:37:00.419379 IP (tos 0x0, ttl 255, id 24, offset 0, flags [none], proto PIM (103), length 38)<br>100.1.2.1 > 33.1.1.10: PIMv2, length 18<br>Register Stop, cksum 0xd8db (correct) group=225.1.0.0 source=33.1.1.1</pre> |
 | IGMP Membership Report (IGMP Join) | Sent by multicast receivers to tell multicast routers of their interest in a specific multicast group. IGMP join messages trigger PIM *,G joins. IGMP version 2 queries are sent to the all hosts multicast address, 224.0.0.1. IGMP version 2 reports (joins) are sent to the group's multicast address. IGMP version 3 messages are sent to an IGMP v3 specific multicast address, 224.0.0.22. |
@@ -51,7 +51,7 @@ switch# write memory</li><li><p>NVIDIA Cumulus Networks recommends you <b>not</b
 
 ### PIM Neighbors
 
-When PIM is configured on an interface, `PIM Hello` messages are sent to the linklocal multicast group 224.0.0.13. Any other router configured with PIM on the segment that hears the PIM Hello messages builds a PIM neighbor with the sending device.
+When PIM is configured on an interface, `PIM Hello` messages are sent to the link-local multicast group 224.0.0.13. Any other router configured with PIM on the segment that hears the PIM Hello messages builds a PIM neighbor with the sending device.
 
 {{%notice note%}}
 PIM neighbors are stateless. No confirmation of neighbor relationship is exchanged between PIM endpoints.
@@ -70,7 +70,7 @@ To configure PIM, run the following commands:
    cumulus@switch:~$ net add interface swp1 pim
    ```
 
-2. Enable IGMP on all interfaces with hosts attached. IGMP version 3 is the default. Only specify the version if you exclusively want to use IGMP version 2. SSM requires the use of IGMP version 3.
+2. Enable IGMP on all interfaces with hosts attached. IGMP version 3 is the default. Only specify the version if you want to use IGMP version 2. SSM requires the use of IGMP version 3.
 
    You must configure IGMP on all interfaces where multicast receivers exist.
 
@@ -121,7 +121,7 @@ PIM is included in the FRRouting package. For proper PIM operation, PIM depends 
    switch(config-if)# ip pim
    ```
 
-4. Enable IGMP on all interfaces with hosts attached. IGMP version 3 is the default. Only specify the version if you exclusively want to use IGMP version 2. You must configure IGMP on all interfaces where multicast receivers exist.
+4. Enable IGMP on all interfaces with hosts attached. IGMP version 3 is the default. Only specify the version if you want to use IGMP version 2. You must configure IGMP on all interfaces where multicast receivers exist.
 
    ```
    switch(config-if)# ip igmp
@@ -387,7 +387,7 @@ Traffic from multicast sources attached to an MLAG bond is always sent over the 
 {{<link url="Multi-Chassis-Link-Aggregation-MLAG#peer-link-sizing" text="size the peerlink appropriately">}} to accommodate this traffic.
 {{%/notice%}}
 
-The PIM DR for the VLAN where the source resides is responsible for sending the PIM register towards the RP. The PIM DR is the PIM speaker with the highest IP address on the segment. After the PIM register process is complete and traffic is flowing along the Shortest Path Tree (SPT), either MLAG switch forwards traffic towards the receivers.
+The PIM DR for the VLAN where the source resides sends the PIM register towards the RP. The PIM DR is the PIM speaker with the highest IP address on the segment. After the PIM register process is complete and traffic is flowing along the Shortest Path Tree (SPT), either MLAG switch forwards traffic towards the receivers.
 
 Examples are provided below that show the flow of traffic between server02 and server03:
 
@@ -619,7 +619,7 @@ When an RP discovers a new source (typically a PIM-SM register message), a sourc
 - Cumulus Linux currently only supports one MSDP mesh group.
 {{%/notice%}}
 
-The following steps demonstrate how to configure a Cumulus switch to use the MSDP:
+The following steps configure a Cumulus switch to use the MSDP:
 
 {{< tabs "TabID1032 ">}}
 {{< tab "NCLU Commands ">}}
@@ -742,7 +742,7 @@ The following steps demonstrate how to configure a Cumulus switch to use the MSD
 
 {{<link url="Virtual-Routing-and-Forwarding-VRF" text="VRFs">}} divide the routing table on a per-tenant basis, ultimately providing for separate layer 3 networks over a single layer 3 infrastructure. With a VRF, each tenant has its own virtualized layer 3 network, so IP addresses can overlap between tenants.
 
-PIM in a VRF enables PIM trees and multicast data traffic to run inside a layer 3 virtualized network, with a separate tree per domain or tenant. Each VRF has its own multicast tree with its own RP(s), sources, and so on. Therefore, you can have one tenant per corporate division, client, or product; for example.
+PIM in a VRF enables PIM trees and multicast data traffic to run inside a layer 3 virtualized network, with a separate tree per domain or tenant. Each VRF has its own multicast tree with its own RPs, sources, and so on. Therefore, you can have one tenant per corporate division, client, or product; for example.
 
 VRFs on different switches typically connect or are peered over subinterfaces, where each subinterface is in its own VRF, provided MP-BGP VPN is not enabled or supported.
 

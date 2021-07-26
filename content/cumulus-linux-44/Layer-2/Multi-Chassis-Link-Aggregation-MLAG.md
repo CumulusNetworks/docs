@@ -34,9 +34,9 @@ On each of the peer switches, you must place the links that are connected to the
 
 {{< img src = "/images/cumulus-linux/mlag-dual-connect.png" >}}
 
-All of the dual-connected bonds on the peer switches have their system ID set to the MLAG system ID. Therefore, from the point of view of the hosts, each of the links in its bond is connected to the same system and so the host uses both links.
+The dual-connected bonds on the peer switches have their system ID set to the MLAG system ID. Therefore, from the point of view of the hosts, each of the links in its bond is connected to the same system and so the host uses both links.
 
-Each peer switch periodically makes a list of the LACP partner MAC addresses for all of their bonds and sends that list to its peer (using the `clagd` service). The LACP partner MAC address is the MAC address of the system at the other end of a bond (server01, server02, and server03 in the figure above). When a switch receives this list from its peer, it compares the list to the LACP partner MAC addresses on its switch. If any matches are found and the `clag-id` for those bonds match, then that bond is a dual-connected bond. You can find the LACP partner MAC address by the running `net show bridge macs` command.
+Each peer switch periodically makes a list of the LACP partner MAC addresses for its bonds and sends that list to its peer (using the `clagd` service). The LACP partner MAC address is the MAC address of the system at the other end of a bond (server01, server02, and server03 in the figure above). When a switch receives this list from its peer, it compares the list to the LACP partner MAC addresses on its switch. If any matches are found and the `clag-id` for those bonds match, then that bond is a dual-connected bond. You can find the LACP partner MAC address by the running `net show bridge macs` command.
 
 ### Requirements
 
@@ -205,7 +205,7 @@ iface bridge
 
 5. Create the inter-chassis bond and the peer link VLAN (as a VLAN subinterface). You also need to provide the peer link IP address, the MLAG bond interfaces, the MLAG system MAC address, and the backup interface.
    - By default, Cumulus Linux configures the inter-chassis bond with the name *peerlink* and the peer link VLAN with the name *peerlink.4094*. Use *peerlink.4094* to ensure that the VLAN is independent of the bridge and spanning tree forwarding decisions.
-   - The peer link IP address is an unrouteable linklocal address that provides layer 3 connectivity between the peer switches.
+   - The peer link IP address is an unrouteable link-local address that provides layer 3 connectivity between the peer switches.
    - NVIDIA provides a reserved range of MAC addresses for MLAG (between 44:38:39:ff:00:00 and 44:38:39:ff:ff:ff). Use a MAC address from this range to prevent conflicts with other interfaces in the same bridged network.
       - Do not to use a multicast MAC address.
       - Do not use the same MAC address for different MLAG pairs; make sure you specify a different MAC address for each MLAG pair in the network.  
@@ -227,7 +227,7 @@ When using BGP, to ensure IP connectivity between the loopbacks, the MLAG peer s
 
 The NCLU command is a macro command that:
 - Automatically creates the inter-chassis bond (`peerlink`) and the peer link VLAN subinterface (`peerlink.4094`), and adds the `peerlink` bond to the bridge
-- Configures the peer link IP address (`primary` is the linklocal address)
+- Configures the peer link IP address (`primary` is the link-local address)
 - Adds the MLAG system MAC address, the MLAG bond interfaces, and the backup IP address you specify
 
    {{< tabs "TabID230 ">}}
@@ -409,7 +409,7 @@ cumulus@leaf02:~$ sudo ifreload -a
 
 {{%notice note%}}
 - Do *not* add VLAN 4094 to the bridge VLAN list; VLAN 4094 for the peer link subinterface **cannot** be configured as a bridged VLAN with bridge VIDs under the bridge.
-- Do not use 169.254.0.1 as the MLAG peer link IP address; Cumulus Linux uses this address exclusively for {{<link url="Border-Gateway-Protocol-BGP#bgp-unnumbered" text="BGP unnumbered">}} interfaces.
+- Do not use 169.254.0.1 as the MLAG peer link IP address; Cumulus Linux uses this address for {{<link url="Border-Gateway-Protocol-BGP#bgp-unnumbered" text="BGP unnumbered">}} interfaces.
 - When you configure MLAG manually in the `/etc/network/interfaces` file, the changes take effect when you bring the peer link interface up with the `sudo ifreload -a` command. Do **not** use `systemctl restart clagd.service` to apply the new configuration.
 {{%/notice%}}
 
@@ -478,7 +478,7 @@ However, if the primary switch goes down without stopping the MLAG service for a
 
 ### Set clagctl Timers
 
-The `clagd` service has a number of timers that you can tune for enhanced performance:
+The `clagd` service has several timers that you can tune for enhanced performance:
 
 | <div style="width:250px">Timer | Description |
 | ----- | ----------- |
@@ -512,7 +512,7 @@ cumulus@leaf01:~$ nv config apply
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-To set the the `clagd` timers, edit the `/etc/network/interfaces` file to add the `clagd-args --<timer>` line to the peerlink.4094 stanza, then run the `ifreload -a` command.
+To set the `clagd` timers, edit the `/etc/network/interfaces` file to add the `clagd-args --<timer>` line to the peerlink.4094 stanza, then run the `ifreload -a` command.
 
 The following example command sets the initial delay timer to 100 seconds:
 

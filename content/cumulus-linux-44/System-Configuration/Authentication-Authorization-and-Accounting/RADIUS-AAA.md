@@ -72,7 +72,7 @@ As an optional step, you can set PAM configuration keywords by editing the `/usr
 
 {{%notice note%}}
 
-The privilege level for the user on the switch is determined by the value of the VSA (Vendor Specific Attribute)  `shell:priv-lvl`. If the attribute is not returned, the user is unprivileged. The following shows an example using the freeradius server for a fully-privileged user.
+The privilege level for the user on the switch is determined by the value of the VSA (Vendor Specific Attribute)  `shell:priv-lvl`. If the attribute is not returned, the user is unprivileged. The following shows an example using the freeradius server for a fully privileged user.
 
 ```
 Service-Type = Administrative-User,

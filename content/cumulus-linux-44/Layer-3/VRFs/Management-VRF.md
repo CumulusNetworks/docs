@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 950
 toc: 3
 ---
-*Management VRF* is a subset of {{<link url="Virtual-Routing-and-Forwarding-VRF">}} (virtual routing tables and forwarding) and provides a separation between the out-of-band management network and the in-band data plane network. For all VRFs, the *main* routing table is the default table for all of the data plane switch ports. With management VRF, a second table, *mgmt*, is used for routing through the Ethernet ports of the switch. The *mgmt* name is special cased to identify the management VRF from a data plane VRF. FIB rules are installed for DNS servers because this is the typical deployment case.
+*Management VRF* is a subset of {{<link url="Virtual-Routing-and-Forwarding-VRF">}} (virtual routing tables and forwarding) and provides a separation between the out-of-band management network and the in-band data plane network. For VRFs, the *main* routing table is the default table for all of the data plane switch ports. With management VRF, a second table, *mgmt*, is used for routing through the Ethernet ports of the switch. The *mgmt* name is special cased to identify the management VRF from a data plane VRF. FIB rules are installed for DNS servers because this is the typical deployment case.
 
 Cumulus Linux only supports eth0 (or eth1, depending on the switch platform) for *out-of-band management*. The Ethernet ports are software-only ports that are not hardware accelerated by `switchd`. VLAN subinterfaces, bonds, bridges, and the front panel switch ports are not supported as OOB management interfaces.
 
@@ -185,7 +185,7 @@ FRRouting is VRF-aware and sends packets based on the switch port routing table.
 
 Management VRF uses the mgmt table, including local routes. It does not affect how the routes are redistributed when using routing protocols such as OSPF and BGP.
 
-To redistribute the routes in your network, use the `redistribute connected` command under BGP or OSPF. This enables the directly-connected network out of eth0 to be advertised to its neighbor.
+To redistribute the routes in your network, use the `redistribute connected` command under BGP or OSPF. This enables the directly connected network out of eth0 to be advertised to its neighbor.
 
 {{%notice note%}}
 This also creates a route on the neighbor device to the management network through the data plane, which might not be desired.

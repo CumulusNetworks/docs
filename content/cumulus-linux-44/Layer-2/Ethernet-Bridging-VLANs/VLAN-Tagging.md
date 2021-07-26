@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 450
 toc: 4
 ---
-This topic shows two examples of VLAN tagging, one basic and one more advanced. They both demonstrate the streamlined interface configuration from `ifupdown2`.
+This topic shows two examples of VLAN tagging, one basic and one more advanced. Both examples show streamlined interface configuration from `ifupdown2`.
 
 ## VLAN Tagging, a Basic Example
 
@@ -41,7 +41,7 @@ iface swp2.130
 
 ## VLAN Tagging, an Advanced Example
 
-This example of VLAN tagging is more complex, involving three hosts and two switches, with a number of bridges and a bond connecting them all.
+This example of VLAN tagging is more complex, involving three hosts and two switches, with several bridges and a bond connecting them all.
 
 {{< img src = "/images/cumulus-linux/vlan-tagging-trunks-bond-adv.png" >}}
 

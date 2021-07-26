@@ -1033,7 +1033,7 @@ router ospf
 
 ### Stub Areas
 
-External routes are the routes redistributed into OSPF from another protocol. They have an AS-wide flooding scope. In many cases, external link states make up a large percentage of the link-state database (LSDB). Stub *areas* reduce the LSDB size by not flooding AS-external LSAs.
+External routes are the routes redistributed into OSPF from another protocol. They have an AS-wide flooding scope. Typically, external link states make up a large percentage of the link-state database (LSDB). Stub *areas* reduce the LSDB size by not flooding AS-external LSAs.
 
 All routers must agree that an area is a stub, otherwise they do not become OSPF neighbors.
 

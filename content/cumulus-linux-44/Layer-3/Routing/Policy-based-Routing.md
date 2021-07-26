@@ -418,7 +418,7 @@ cumulus@switch:~$ net del pbr-map pbr-policy seq 3 set nexthop 192.168.0.21
 cumulus@switch:~$ net commit
 ```
 
-Add back the source IP match and nexthop condition, and add the new destination IP match (dst-ip 10.1.2.0/24):
+Add back the source IP match and next hop condition, and add the new destination IP match (dst-ip 10.1.2.0/24):
 
 ```
 cumulus@switch:~$ net add pbr-map pbr-policy seq 3 match src-ip 10.1.4.1/24

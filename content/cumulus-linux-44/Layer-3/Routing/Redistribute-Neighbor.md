@@ -8,7 +8,7 @@ toc: 3
 
 The fundamental premise behind redistribute neighbor is to announce individual host /32 routes in the routed fabric. Other hosts on the fabric can then use this new path to access the hosts in the fabric. If multiple equal-cost paths (ECMP) are available, traffic can load balance across the available paths natively.
 
-The challenge is to accurately compile and update this list of reachable hosts or neighbors. Luckily, existing commonly-deployed protocols are available to solve this problem. Hosts use {{<link title="Address Resolution Protocol - ARP" text="ARP">}} to resolve MAC addresses when sending to an IPv4 address. A host then builds an ARP cache table of known MAC addresses: IPv4 tuples as they receive or respond to ARP requests.
+The challenge is to accurately compile and update this list of reachable hosts or neighbors. Luckily, existing commonly deployed protocols are available to solve this problem. Hosts use {{<link title="Address Resolution Protocol - ARP" text="ARP">}} to resolve MAC addresses when sending to an IPv4 address. A host then builds an ARP cache table of known MAC addresses: IPv4 tuples as they receive or respond to ARP requests.
 
 For a leaf switch, where the default gateway is used for hosts within the rack, the ARP cache table contains a list of all hosts that have ARP'd for their default gateway. In many scenarios, this table contains all the layer 3 information that is needed. Redistribute neighbor formats and synchronizes this table into the routing protocol.
 
@@ -284,7 +284,7 @@ cumulus@leaf01:~$ sudo systemctl restart rdnbrd.service
 
 ### Set the Routing Table ID
 
-The Linux kernel supports multiple routing tables and can utilize 0 through 255 as table IDs; however tables 0, 253, 254 and 255 are reserved, and 1 is usually the first one utilized. Therefore, `rdnbrd` only allows you to specify 2-252. Cumulus Linux uses table ID 10, however you can set the ID to any value between 2-252. You can see all the tables specified here:
+The Linux kernel supports multiple routing tables and can utilize 0 through 255 as table IDs; however tables 0, 253, 254 and 255 are reserved, and 1 is usually the first one utilized. Therefore, `rdnbrd` only allows you to specify between 2 and 252. Cumulus Linux uses table ID 10, however you can set the ID to any value between 2-252. You can see all the tables specified here:
 
 ```
 cumulus@leaf01:~$ cat /etc/iproute2/rt_tables

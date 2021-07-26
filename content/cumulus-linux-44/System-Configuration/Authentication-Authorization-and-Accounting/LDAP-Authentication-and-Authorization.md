@@ -4,17 +4,18 @@ author: NVIDIA
 weight: 170
 toc: 4
 ---
+<!-- vale off -->
 Cumulus Linux uses Pluggable Authentication Modules (PAM) and Name Service Switch (NSS) for user authentication. NSS enables PAM to use LDAP to provide user authentication, group mapping, and information for other services on the system.
-
+<!-- vale on -->
 - NSS specifies the order of the information sources that are used to resolve names for each service. Using NSS with authentication and authorization provides the order and location for user lookup and group mapping on the system.
 - PAM handles the interaction between the user and the system, providing login handling, session setup, authentication of users, and authorization of user actions.
 
 {{%notice note%}}
 There are three common ways to configure LDAP authentication on Linux: you can use `libnss-ldap`, `libnss-ldapd`, or `libnss-sss`. This chapter describes `libnss-ldapd` only. From internal testing, this library worked best with Cumulus Linux and is the easiest to configure, automate, and troubleshoot.
 {{%/notice%}}
-
+<!-- vale off -->
 ## Install libnss-ldapd
-
+<!-- vale on -->
 The `libldap-2.4-2` and `libldap-common` LDAP packages are already installed on the Cumulus Linux image; however you need to install these additional packages to use LDAP authentication:
 
 - `libnss-ldapd`
@@ -122,9 +123,9 @@ Instead of running the installer and following the interactive prompts, as descr
    ```
 
 {{< /expand >}}
-
+<!-- vale off -->
 ## Update the nslcd.conf File
-
+<!-- vale on -->
 After installation, update the main configuration file (`/etc/nslcd.conf`) to accommodate the expected LDAP server settings.
 
 This section documents some of the more important options that relate to security and how queries are handled. For details on all the available configuration options, read the {{<exlink url="http://linux.die.net/man/5/nslcd.conf" text="nslcd.conf man page">}}.
@@ -292,7 +293,7 @@ Linux uses the *sudo* command to allow non-administrator users (such as the defa
 
 ## Active Directory Configuration
 
-Active Directory (AD) is a fully featured LDAP-based NIS server create by Microsoft. It offers unique features that classic OpenLDAP servers do not have. AD can be more complicated to configure on the client and each version works a little differently with Linux-based LDAP clients. Some more advanced configuration examples, from testing LDAP clients on Cumulus Linux with Active Directory (AD/LDAP), are available in our [knowledge base]({{<ref "/knowledge-base/Security/Authentication/LDAP-on-Cumulus-Linux-Using-Server-2008-Active-Directory" >}}).
+Active Directory (AD) is a fully featured LDAP-based NIS server create by Microsoft. It offers unique features that classic OpenLDAP servers do not have. AD can be more complicated to configure on the client and each version works a little differently with Linux-based LDAP clients. Some more advanced configuration examples, from testing LDAP clients on Cumulus Linux with Active Directory (AD/LDAP), are available in the [knowledge base]({{<ref "/knowledge-base/Security/Authentication/LDAP-on-Cumulus-Linux-Using-Server-2008-Active-Directory" >}}).
 
 ## LDAP Verification Tools
 
@@ -341,7 +342,7 @@ The `ldapsearch` command performs LDAP operations directly on the LDAP server. T
 cumulus@switch:~$ ldapsearch -H ldap://ldap.example.com -b dc=example,dc=com -x uid=myuser
 ```
 
-{{< expand "Click to expand the command output ... "  >}}
+{{< expand "Click to expand the command output "  >}}
 
 ```
 # extended LDIF

@@ -7,7 +7,7 @@ toc: 4
 The `{{<link url="Understanding-the-cl-support-Output-File" text="cl-support">}}` script replicates the /`etc` directory, however, it deliberately excludes certain files, such as `/etc/nologin`, which prevents unprivileged users from logging into the system.
 
 This is the alphabetical list of the output from running `ls -l` on the `/etc` directory structure created by `cl-support`.
-
+<!-- vale off -->
 ## etc Directory Contents
 
 | **File**                  |
@@ -201,3 +201,4 @@ This is the alphabetical list of the output from running `ls -l` on the `/etc` d
 | xattr.conf |
 | xdg |
 | xml |
+<!-- vale on -->

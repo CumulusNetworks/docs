@@ -84,11 +84,11 @@ iface br-20 inet manual
 | <div style="width:300px">Benefits | Considerations |
 |----------| --------|
 | 100% of links utilized | <ul><li>More complicated (more moving parts) </li><li>More configuration</li><li>No interoperability between vendors</li><li>ISL (inter-switch link) required</li></ul> |
-
+<!-- vale off -->
 | Active-Active Mode | Active-Passive Mode | Layer 2 to layer 3 Demarcation| More Information|
 |---------------------|--------------------|---------------------|-----------------|
 | {{<link url="Virtual-Router-Redundancy-VRR-and-VRRP" text="VRR">}}| None | <ul><li>ToR layer (recommended)</li><li>Spine layer</li><li>Core/edge/exit</li><ul>|<ul><li>Can be done with either the {{<link url="Traditional-Bridge-Mode" text="traditional">}} or {{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware">}} bridge driver depending on overall STP needs.</li><li>There are a few different solutions including Cisco VPC and Arista MLAG, but none of them interoperate and are very vendor specific.</li><li>{{<exlink url=https://resource.nvidia.com/en-us-ethernet-switching/bgp-evpn-for-vxlan-techincal-overview" text="Cumulus Networks Layer 2 HA validated design guide">}}.</li></ul>|
-
+<!-- vale on -->
 **Example Configuration**
 
 {{< tabs "TabID99 ">}}
@@ -144,9 +144,9 @@ iface vm-br10 inet manual
 
 {{< /tab >}}
 {{< /tabs >}}
-
+<!-- vale off -->
 ## Layer 3 - Single-attached Hosts
-
+<!-- vale on -->
 | <div style="width:300px">Example| Summary|
 |----|----|
 |{{< img src = "/images/cumulus-linux/network-solutions-single-attached.png" >}} | The server (physical host) has only has one link to one ToR switch. |

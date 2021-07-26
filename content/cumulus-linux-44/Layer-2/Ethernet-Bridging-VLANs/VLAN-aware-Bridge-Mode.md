@@ -15,9 +15,9 @@ On NVIDIA Spectrum-2 and Spectrum-3 switches, Cumulus Linux supports multiple VL
 - Double tagged VLAN interfaces are not supported with multiple VLAN-aware bridges
 - You cannot associate multiple single VXLAN devices (SVDs) with a single VLAN-aware bridge
 - IGMPv3 is not supported
-
+<!-- vale off -->
 ## Configure a VLAN-aware Bridge
-
+<!-- vale on -->
 The example below shows the commands required to create a VLAN-aware bridge configured for STP that contains two switch ports and includes 3 VLANs; tagged VLANs 10 and 20, and untagged (native) VLAN 1.
 
 {{< img src = "/images/cumulus-linux/ethernet-bridging-basic-trunking1.png" >}}
@@ -113,9 +113,9 @@ iface br_default
 - If you specify `bridge-vids` or `bridge-pvid` at the bridge level, these configurations are inherited by all ports in the bridge. However, specifying any of these settings for a specific port overrides the setting in the bridge.
 - Do not bridge the management port eth0 with any switch ports. For example, if you create a bridge with eth0 and swp1, the bridge does not work correctly and might disrupt access to the management interface.
 {{%/notice%}}
-
+<!-- vale off -->
 ## Configure Multiple VLAN-aware Bridges
-
+<!-- vale on -->
 This example shows the commands required to create two VLAN-aware bridges on the switch.
 
 {{< img src = "/images/cumulus-linux/ethernet-bridging-vmvab.png" >}}
@@ -323,7 +323,7 @@ cumulus@switch:~$ ifreload -a
 
 ## Drop Untagged Frames
 
-With VLAN-aware bridge mode, you can configure a switch port to drop any untagged frames. To do this, add `bridge-allow-untagged no` to the **switch port** (not to the bridge). This leaves the bridge port without a PVID and drops untagged packets.
+With VLAN-aware bridge mode, you can configure a switch port to drop any untagged frames. To do this, add `bridge-allow-untagged no` to the **switch port** (not to the bridge). The bridge port is without a PVID and drops untagged packets.
 
 The following example command configures swp2 to drop untagged frames:
 
@@ -493,7 +493,7 @@ iface bridge1_vlan10
 {{< /tab >}}
 {{< /tabs >}}
 
-When you configure a switch initially, all southbound bridge ports might be down; therefore, by default, the SVI is also down. You can force the SVI to always be up by disabling interface state tracking, which leaves the SVI in the UP state always, even if all member ports are down. Other implementations describe this feature as *no autostate*. This is beneficial if you want to perform connectivity testing.
+When you configure a switch initially, all southbound bridge ports might be down; therefore, by default, the SVI is also down. You can force the SVI to always be up by disabling interface state tracking so that the SVI is always in the UP state, even if all member ports are down. Other implementations describe this feature as *no autostate*. This is beneficial if you want to perform connectivity testing.
 
 To keep the SVI perpetually UP, create a dummy interface, then make the dummy interface a member of the bridge.
 
@@ -572,9 +572,9 @@ Now add the dummy interface to your network configuration:
     ```
 
 {{< /expand >}}
-
+<!-- vale off -->
 ## IPv6 Link-local Address Generation
-
+<!-- vale on -->
 By default, Cumulus Linux automatically generates IPv6 *link-local* addresses on VLAN interfaces. If you want to use a different mechanism to assign link-local addresses, you can disable this feature. You can disable link-local automatic address generation for both regular IPv6 addresses and address-virtual (macvlan) addresses.
 
 To disable automatic address generation for a regular IPv6 address on a VLAN, run the following command. The following example command disables automatic address generation for a regular IPv6 address on VLAN 10.

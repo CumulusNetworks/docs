@@ -17,18 +17,20 @@ A network port LED indicates the state of the link, such as link UP or Tx/Rx act
 - **Signaling** - The table below shows the information you can convey with port LEDs.
     - **Max Speed** indicates the maximum speed at which the port can be run. For a 10G port, if the port speed is 10G, then it is running at its maximum speed. If the 10G port is running at 1G speed, then it is running at a *lower speed*.
     - **Physical Link Up/Down** displays layer 2 link status.
+    <!-- vale off -->
     - **Beaconing** provides a way for you to identify a particular link. You can *beacon* that port from a remote location so the network operator has visual indication for that port.
+    <!-- vale on -->
     - **Fault** can also be considered a form of beaconing. Both try to draw attention towards the port.
     - **Blinking amber** implies a blink rate of 33ms. *Slow blinking amber* indicates a blink rate of 500ms, with a 50% on and off duty cycle. For example, a slow blinking amber LED is amber for 500 ms and then off for 500ms.
-
+<!-- vale off -->
     | Activity            | Max Speed indication | Lower Speed Indication |
     | ------------------- | -------------------- | ---------------------- |
     | Physical Link Down  | Off                  | Off                    |
     | Physical Link UP    | Solid Green          | Solid Amber            |
     | Link Tx/Rx Activity | Blinking Green       | Blinking Amber         |
-    | Beaconing           | Slow Blinking Amber  | Slow Blinking Amber    |
+    | Beaconing          | Slow Blinking Amber  | Slow Blinking Amber    |
     | Fault               | Slow Blinking Amber  | Slow Blinking Amber    |
-
+<!-- vale on -->
 ## Status LEDs
 
 A set of status LEDs are typically located on one side of a network switch. The status LEDs provide a visual indication on what is physically wrong with the network switch. Typical LEDs on the front panel are for PSUs (power supply units), fans, and system. Locator LEDs are also found on the front panel of a switch. Each component that has an LED is known as a *unit* below.

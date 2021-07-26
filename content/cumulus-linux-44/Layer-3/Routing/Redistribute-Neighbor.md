@@ -60,7 +60,7 @@ The following example configuration is based on the following topology.
 
 ### Configure the Leafs
 
-The following steps demonstrate how to configure leaf01, but you can follow the same steps on any leaf.
+The following steps configure leaf01 but you can follow the same steps on any leaf.
 
 {{%notice note%}}
 NVUE Commands are currently unsupported.
@@ -219,7 +219,7 @@ iface eth2
 
 ### Install ifplugd
 
-Install and use `{{<link url="ifplugd">}}`, which modifies the behavior of the Linux routing table when an interface undergoes a link transition (carrier up/down). The Linux kernel by default leaves routes up even when the physical interface is unavailable (NO-CARRIER).
+Install and use `{{<link url="ifplugd">}}`, which modifies the behavior of the Linux routing table when an interface undergoes a link transition (carrier up/down). By default, the Linux kernel keeps routes up even when the physical interface is unavailable (NO-CARRIER).
 
 After you install `ifplugd`, edit `/etc/default/ifplugd` as follows, where *eth1* and *eth2* are the interface names that your host uses to connect to the leafs.
 
@@ -284,7 +284,7 @@ cumulus@leaf01:~$ sudo systemctl restart rdnbrd.service
 
 ### Set the Routing Table ID
 
-The Linux kernel supports multiple routing tables and can utilize 0 through 255 as table IDs; however tables 0, 253, 254 and 255 are reserved, and 1 is usually the first one utilized. Therefore, `rdnbrd` only allows you to specify between 2 and 252. Cumulus Linux uses table ID 10, however you can set the ID to any value between 2-252. You can see all the tables specified here:
+The Linux kernel supports multiple routing tables and can utilize 0 through 255 as table IDs; however tables 0, 253, 254 and 255 are reserved, and 1 is usually the first one used. Therefore, `rdnbrd` only allows you to specify between 2 and 252. Cumulus Linux uses table ID 10, however you can set the ID to any value between 2 and 252. You can see all the tables specified here:
 
 ```
 cumulus@leaf01:~$ cat /etc/iproute2/rt_tables

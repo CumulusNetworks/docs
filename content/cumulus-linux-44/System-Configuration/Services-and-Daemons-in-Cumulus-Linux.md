@@ -28,7 +28,7 @@ cumulus@switch:~$ sudo systemctl restart networking.service
 ```
 
 {{%notice note%}}
-The service name is written **after** the `systemctl` subcommand, not before it.
+The service name is written **after** the `systemctl` argument, not before it.
 {{%/notice%}}
 
 To show all the services currently running, run the `systemctl status` command. For example:

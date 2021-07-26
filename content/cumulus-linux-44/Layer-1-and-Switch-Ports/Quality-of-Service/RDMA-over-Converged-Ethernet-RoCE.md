@@ -24,13 +24,14 @@ To configure RoCE with PFC and ECN:
 cumulus@switch:~$ net add roce lossless
 cumulus@switch:~$ net commit
 ```
+
 {{< /tab >}}
 {{< tab "NVUE Commands">}}
 
 {{% notice note %}}
 NVUE defaults to `roce mode lossless`. The command `nv set qos roce` and `nv set qos roce mode lossless` are equivalent.
-<br /><br />
-If `mode lossy` is enabled, configuring `nv set qos roce` without a `mode` will not change the RoCE mode. To change to lossless, `mode lossless` must be explicitly configured.
+
+If `mode lossy` is enabled, configuring `nv set qos roce` without a `mode` does not change the RoCE mode. To change to lossless, you must configure `mode lossless`.
 {{% /notice %}}
 
 ```

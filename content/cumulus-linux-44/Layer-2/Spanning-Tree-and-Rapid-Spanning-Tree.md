@@ -18,9 +18,9 @@ Per VLAN Spanning Tree (PVST) creates a spanning tree instance for a bridge. Rap
 {{%notice note%}}
 For maximum interoperability, when connected to a switch that has a native VLAN configuration, the native VLAN **must** be configured to be VLAN 1 only.
 {{%/notice%}}
-
+<!-- vale off -->
 ## STP for a VLAN-aware Bridge
-
+<!-- vale on -->
 VLAN-aware bridges operate in RSTP mode only. RSTP on VLAN-aware bridges works with other modes in the following ways:
 
 ### RSTP and STP

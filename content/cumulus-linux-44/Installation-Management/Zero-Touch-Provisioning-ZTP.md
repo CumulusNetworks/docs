@@ -202,7 +202,7 @@ Typically ZTP exits after executing the script locally and does not continue. To
 
 ## Best Practices
 
-ZTP scripts come in different forms and frequently perform many of the same tasks. As BASH is the most common language used for ZTP scripts, the following BASH snippets are provided to accelerate your ability to perform common tasks with robust error checking.
+ZTP scripts come in different forms and frequently perform many of the same tasks. As BASH is the most common language used for ZTP scripts, the following BASH snippets are provided to help you perform common tasks with robust error checking.
 
 ### Set the Default Cumulus User Password
 

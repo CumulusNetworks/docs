@@ -10,9 +10,9 @@ You can monitor system hardware with the following commands and utilities:
 - `smond`
 - `sensors`
 - watchdog
-
+<!-- vale off -->
 ## decode-syseeprom Command
-
+<!-- vale on -->
 Use the `decode-syseeprom` command to retrieve information about the switch EEPROM. If the EEPROM is writable, you can set values on the EEPROM.
 
 The following is example `decode-syseeprom` command output. The output is different on different switches:
@@ -141,14 +141,14 @@ The following table shows the `sensors` command options.
 | Option<img width="200" /> | Description |
 | ----------- | ----------- |
 | `-c`, `--config-file` | Specify a configuration file; use `-` after `-c` to read the configuration file from `stdin`; by default, `sensors` references the configuration file in `/etc/sensors.d/`. |
-| `-s`, `--set` | Execute set statements in the configuration file (root only); `sensors -s` runs once at boot time and applies all the settings to the boot drivers. |
+| `-s`, `--set` | Execute set statements in the configuration file (root only); `sensors -s` runs one time at boot and applies all the settings to the boot drivers. |
 | `-f`, `--fahrenheit`  | Show temperatures in degrees Fahrenheit. |
 | `-A`, `--no-adapter`  | Do not show the adapter for each chip.|
 | `--bus-list`| Generate bus statements for `sensors.conf`. |
 
 ## Hardware Watchdog
 
-Cumulus Linux includes a simplified version of the `wd_keepalive(8)` daemon than the one provided in the standard `watchdog` Debian package. `wd_keepalive` writes to a file called `/dev/watchdog` periodically (at least once per minute) to prevent the switch from resetting. Each write delays the reboot time by another minute. After one minute of inactivity, where `wd_keepalive` does not write to `/dev/watchdog`, the switch resets itself.
+Cumulus Linux includes a simplified version of the `wd_keepalive(8)` daemon than the one provided in the standard `watchdog` Debian package. `wd_keepalive` writes to a file called `/dev/watchdog` periodically (at least one time per minute) to prevent the switch from resetting. Each write delays the reboot time by another minute. After one minute of inactivity, where `wd_keepalive` does not write to `/dev/watchdog`, the switch resets itself.
 
 The watchdog is enabled by default on all supported switches and starts when you boot the switch (before `switchd` starts).
 

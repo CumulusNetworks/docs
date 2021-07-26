@@ -5,7 +5,7 @@ weight: 490
 toc: 3
 ---
 {{%notice note%}}
-**MLAG or CLAG**: The Cumulus Linux implementation of MLAG is referred to by other vendors as CLAG, MC-LAG or VPC. You even see references to CLAG in Cumulus Linux, including the management daemon, named `clagd`, and other options in the code, such as `clag-id`, which exist for historical purposes. The Cumulus Linux implementation is truly a multi-chassis link aggregation protocol, so we call it MLAG.
+**MLAG or CLAG**: The Cumulus Linux implementation of MLAG is referred to by other vendors as CLAG, MC-LAG or VPC. You even see references to CLAG in Cumulus Linux, including the management daemon, named `clagd`, and other options in the code, such as `clag-id`, which exist for historical purposes. The Cumulus Linux implementation is truly a multi-chassis link aggregation protocol, so it is called MLAG.
 {{%/notice%}}
 
 Multi-Chassis Link Aggregation (MLAG) enables a server or switch with a two-port bond, such as a link aggregation group (LAG), EtherChannel, port group or trunk, to connect those ports to different switches and operate as if they are connected to a single, logical switch. This provides greater redundancy and greater system throughput.
@@ -25,9 +25,9 @@ More elaborate configurations are also possible. The number of links between the
 | | |
 |---|---|
 |<div style="width:400px">{{< img src="/images/cumulus-linux/mlag-two-pair.png" width="350" >}} |<br><br> <ul><li>leaf01 and leaf02 are also MLAG peer switches and present a two-port bond from a single logical system to spine01 and spine02.</li><li>spine01 and spine02 do the same as far as leaf01 and leaf02 are concerned.</li></ul>|
-
+<!-- vale off -->
 ### LACP and Dual-connected Links
-
+<!-- vale on -->
 {{<link url="Bonding-Link-Aggregation" text="Link Aggregation Control Protocol (LACP)">}}, the IEEE standard protocol for managing bonds, is used for verifying dual-connectedness. LACP runs on the dual-connected devices and on each of the MLAG peer switches. On a dual-connected device, the only configuration requirement is to create a bond that is managed by LACP.
 
 On each of the peer switches, you must place the links that are connected to the dual-connected host or switch in the bond. This is true even if the links are a single port on each peer switch, where each port is placed into a bond, as shown below:
@@ -315,7 +315,7 @@ cumulus@leaf02:~$ nv config apply
 Edit the `/etc/network/interfaces` file to add the following parameters, then run the `sudo ifreload -a` command.
 - The inter-chasis bond (`peerlink`) with two ports in the bond (swp49 and swp50 in the example command below)
 - The `peerlink` bond to the bridge
-- The peer link VLAN (`peerlink.4094`) with the backup IP address, the peer link IP address (linklocal), and the MLAG system MAC address (from the reserved range of addresses).
+- The peer link VLAN (`peerlink.4094`) with the backup IP address, the peer link IP address (`linklocal`), and the MLAG system MAC address (from the reserved range of addresses).
 
    {{< tabs "TabID315 ">}}
 {{< tab "leaf01 ">}}
@@ -703,15 +703,15 @@ However, there are some instances where a host is connected to only one switch i
 - The host does not support 802.3ad and you cannot create a bond on it.
 - You are accounting for a link failure, where the host becomes single connected until the failure is resolved.
 
-Determine how much bandwidth is traveling across the single-connected interfaces and allocate half of that bandwidth to the peer link. On average, one half of the traffic destined to the single-connected host arrives on the switch directly connected to the single-connected host and the other half arrives on the switch that is not directly connected to the single-connected host. When this happens, only the traffic that arrives on the switch that is not directly connected to the single-connected host needs to traverse the peer link.
+Determine how much bandwidth is traveling across the single-connected interfaces and set half of that bandwidth to the peer link. On average, one half of the traffic destined to the single-connected host arrives on the switch directly connected to the single-connected host and the other half arrives on the switch that is not directly connected to the single-connected host. When this happens, only the traffic that arrives on the switch that is not directly connected to the single-connected host needs to traverse the peer link.
 
 In addition, you might want to add extra links to the peer link bond to handle link failures in the peer link bond itself.
 
 | | |
 |---|---|
-|<div style="width:600px">{{< img src="/images/cumulus-linux/mlag-peerlink-sizing.png" width="800" >}}| <br><ul><li>Each host has two 10G links, with each 10G link going to each switch in the MLAG pair. </li><li>Each host has 20G of dual-connected bandwidth; all three hosts have a total of 60G of dual-connected bandwidth. </li><li>Allocate at least 15G of bandwidth to each peer link bond, which represents half of the single-connected bandwidth.</li></ul>
+|<div style="width:600px">{{< img src="/images/cumulus-linux/mlag-peerlink-sizing.png" width="800" >}}| <br><ul><li>Each host has two 10G links, with each 10G link going to each switch in the MLAG pair. </li><li>Each host has 20G of dual-connected bandwidth; all three hosts have a total of 60G of dual-connected bandwidth. </li><li>Set at least 15G of bandwidth for each peer link bond, which represents half of the single-connected bandwidth.</li></ul>
 
-When planning for link failures for a full rack, you need only allocate enough bandwidth to meet your site strategy for handling failure scenarios. For example, for a full rack with 40 servers and two switches, you might plan for four to six servers to lose connectivity to a single switch and become single connected before you respond to the event. Therefore, if you have 40 hosts each with 20G of bandwidth dual-connected to the MLAG pair, you might allocate between 20G and 30G of bandwidth to the peer link, which accounts for half of the single-connected bandwidth for four to six hosts.
+When planning for link failures for a full rack, you need only set enough bandwidth to meet your site strategy for handling failure scenarios. For example, for a full rack with 40 servers and two switches, you might plan for four to six servers to lose connectivity to a single switch and become single connected before you respond to the event. Therefore, if you have 40 hosts each with 20G of bandwidth dual-connected to the MLAG pair, you might set between 20G and 30G of bandwidth to the peer link, which accounts for half of the single-connected bandwidth for four to six hosts.
 
 ### Peer Link Routing
 

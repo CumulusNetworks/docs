@@ -23,7 +23,7 @@ cumulus@switch:~$ sudo config-backup
 
 If you run this command without any options, Cumulus Linux creates a backup of the current configuration and stores the backup file in the `/var/lib/config-backup/backups` directory. The filename includes the date and time you run the backup, and the switch name; for example, `config_backup-2019-04-23-21.30.47_leaf01`. You can restore the backup with the `config-restore` command, described below.
 
-The switch can store up to 30 *non-permanent* backup files (or can allocate a maximum of 25 MB of disc space) in addition to the permanent backup files (see the `-p` option below). When this limit is reached, Cumulus Linux keeps the oldest and the newest backup files, then starts removing the second oldest file up to the second newest file.
+The switch can store up to 30 *non-permanent* backup files (a maximum of 25 MB of disc space) in addition to the permanent backup files (see the `-p` option below). When this limit is reached, Cumulus Linux keeps the oldest and the newest backup files, then starts removing the second oldest file up to the second newest file.
 
 {{%notice note%}}
 
@@ -43,9 +43,9 @@ The `config-backup` command includes the following options:
 |`-t <type>`|Specifies the type of configuration, which is shown in the archive file list when you run the `config-restore -l` command. You can provide any short text. For example, you can specify `pre`, `post`, or `pre-restore`.|
 |`-v`|Enables verbose mode to show messages during the backup process.|
 |`-X <pattern>`|Excludes certain files that match a specified pattern. For example, to exclude all backup files ending with a tilde (~), use the `-X .*~$` option.|
-
+<!-- vale off -->
 ### config-backup Command Examples
-
+<!-- vale on -->
 The following command example creates a backup file in debugging mode and provides the description `myconfig`, which shows in the backup archive list.
 
 ```
@@ -109,9 +109,9 @@ The `config-restore` command includes the following options:
 | `-q`|Runs the command in quiet mode. No status messages are displayed, only errors.|
 | `-T`| Runs the command in test mode; does not restore the configuration but shows what would be restored.|
 | `-v`| Enables verbose mode to display status messages during restore.|
-
+<!-- vale off -->
 ### config-restore Command Examples
-
+<!-- vale on -->
 The following command example lists the backup files available on the switch. The list includes the file number (\#), type, description, and filename. Type is the text specified with the `config-backup -t` option.
 
 ```

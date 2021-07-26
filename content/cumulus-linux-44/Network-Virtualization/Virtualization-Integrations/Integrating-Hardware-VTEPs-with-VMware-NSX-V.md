@@ -25,22 +25,22 @@ Cumulus Linux supports security protocol version TLSv1.2 for SSL connections bet
 
 The OVSDB server cannot select the loopback interface as the source IP address, causing top of rack registration to the controller to fail. To work around this issue, run the NVUE `nv set vrf default router bgp address-family ipv4-unicast route-redistribute connected` command.
 {{%/notice%}}
-
+<!-- vale off -->
 ## Configure the Switch for NSX-V Integration
-
+<!-- vale on -->
 Before you start configuring the gateway service, and logical switches and ports that comprise the VXLAN, you need to enable and start the `openvswitch-vtep` service, and configure the NSX integration on the switch, either using the script or performing the manual configuration.
-
+<!-- vale off -->
 ### Start the openvswitch-vtep Service
-
+<!-- vale on -->
 To enable and start the `openvswitch-vtep` service, run the following command:
 
 ```
 cumulus@switch:~$ sudo systemctl enable openvswitch-vtep.service
 cumulus@switch:~$ sudo systemctl start openvswitch-vtep.service
 ```
-
-### Configure the NSX-V Integration Using the Configuration Script
-
+<!-- vale off -->
+### Configure the NSX-V Integration with the Configuration Script
+<!-- vale on -->
 A script is available so you can configure the NSX-V integration on the switch automatically.
 
 In a terminal session connected to the switch, run the `vtep-bootstrap` command with these options:
@@ -83,9 +83,9 @@ cumulus@switch:~$ sudo systemctl restart openvswitch-vtep.service
 cumulus@switch:~$ sudo ifreload -a
 cumulus@switch:~$ sudo systemctl restart networking.service
 ```
-
+<!-- vale off -->
 ### Configure the NSX-V Integration Manually
-
+<!-- vale on -->
 {{%notice note%}}
 You can configure the NSX-V integration manually for standalone mode only; manual configuration for OVSDB server high availability is not supported.
 {{%/notice%}}
@@ -158,9 +158,9 @@ In Cumulus Linux, generate a certificate that the NSX controller uses for authen
     ```
 
 After you generate the certificate, keep the terminal session active; you need to paste the certificate into NSX Manager when you configure the VTEP gateway.
-
+<!-- vale off -->
 #### Enable ovs-vtepd to Use the VLAN-aware Bridge
-
+<!-- vale on -->
 By default, in stand-alone mode, the ovs-vtep daemon creates traditional bridges for each VXLAN VTEP. To use the VLAN-aware bridge with the VTEPs, edit the `/usr/share/openvswitch/scripts/ovs-ctl-vtep` file and uncomment the `--enable-vlan-aware-mode` line:
 
 ```
@@ -175,9 +175,9 @@ Then restart the OVSDB server and VTEPd:
 ```
 cumulus@switch:~$ sudo systemctl restart openvswitch-vtep.service
 ```
-
+<!-- vale off -->
 ## Provision VMware NSX-V
-
+<!-- vale on -->
 ### Configure the Switch as a VTEP Gateway
 
 After you create a certificate, connect to NSX Manager in a browser to configure a Cumulus Linux switch as a hardware VTEP gateway. In this example, the IP address of the NSX Manager is 192.168.110.23.
@@ -188,7 +188,7 @@ After you create a certificate, connect to NSX Manager in a browser to configure
 
 2. In the **Name** field, provide a name for the HW VTEP gateway.
 3. Enable the BFD service to the service nodes. Select the **Enable BFD** checkbox.
-4. From the terminal session connected to the switch where you generated the certificate, copy the certificate and paste it into the **Certificate** text field. Copy only the bottom portion, including the `BEGIN CERTIFICATE` and `END CERTIFICATE` lines. For example, copy all the highlighted text in the terminal terminal and paste it into NSX Manager:
+4. From the terminal session connected to the switch where you generated the certificate, copy the certificate and paste it into the **Certificate** text field. Copy only the bottom portion, including the `BEGIN CERTIFICATE` and `END CERTIFICATE` lines. For example, copy all the highlighted text in the terminal and paste it into NSX Manager:
 
     ```
     cumulus@switch:~$ cd /var/lib/openvswitch

@@ -472,7 +472,7 @@ You can configure system settings for the SNMPv2 MIB. The example commands here 
 
 - The system physical location for the node in the SNMPv2-MIB system table (the `syslocation`).
 - The username and email address of the contact person for this managed node (the `syscontact`).
-- An administratively-assigned name for the managed node (the `sysname`).
+- An administratively assigned name for the managed node (the `sysname`).
 
 {{< tabs "sys-settings" >}}
 {{< tab "NCLU Commands" >}}
@@ -491,7 +491,7 @@ cumulus@switch:~$ net add snmp-server system-contact user X at myemail@example.c
 cumulus@switch:~$ net commit
 ```
 
-To set an administratively-assigned name for the managed node, run the following command. Typically, this is the fully-qualified domain name of the node.
+To set an administratively assigned name for the managed node, run the following command. Typically, this is the fully qualified domain name of the node.
 
 ```
 cumulus@switch:~$ net add snmp-server system-name CumulusBox number 1,543,567
@@ -611,7 +611,7 @@ To enable the .1.3.6.1.2.1 range, make sure the view commands include the requir
 
 ## Restore the Default SNMP Configuration
 
-The following command removes all custom entries in the `/etc/snmp/snmpd.conf` file and replaces them with defaults, including for all SNMPv3 usernames and readonly-communities. A `listening-address` for the localhost is configured in its place.
+The following command removes all custom entries in the `/etc/snmp/snmpd.conf` file and replaces them with defaults, including for all SNMPv3 usernames and read only communities. A `listening-address` for the localhost is configured in its place.
 
 ```
 cumulus@switch:~$ net del snmp-server all

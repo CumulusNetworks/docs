@@ -28,7 +28,7 @@ Cumulus Linux supports up to 255 VRFs on a switch.
 
 Each routing table is called a *VRF table*, and has its own table ID.
 
-To configure VRF, you associate each subset of interfaces to a VRF routing table and configure an instance of the routing protocol (BGP or OSPFv2) for each routing table.Configuring a VRF is similar to configuring other network interfaces. Keep in mind the following:
+To configure VRF, you associate each subset of interfaces to a VRF routing table and configure an instance of the routing protocol (BGP or OSPFv2) for each routing table. Configuring a VRF is similar to configuring other network interfaces. Keep in mind the following:
 
 - A VRF table can have an IP address, which is a loopback interface for the VRF.
 - Associated rules are added automatically.
@@ -243,7 +243,7 @@ Cumulus Linux supports dynamic VRF route leaking. Static route leaking is not su
 
 ### Configure Route Leaking
 
-For route leaking, a destination VRF is interested in the routes of a source VRF. As routes come and go in the source VRF, they are dynamically leaked to the destination VRF through BGP. If the routes in the source VRF are learned through BGP, no additional configuration is necessary. If the routes in the source VRF are learned through OSPF, or if they are statically configured or directly-connected networks have to be reached, you need to *redistribute* the routes first into BGP (in the source VRF) for them to be leaked.
+For route leaking, a destination VRF is interested in the routes of a source VRF. As routes come and go in the source VRF, they are dynamically leaked to the destination VRF through BGP. If the routes in the source VRF are learned through BGP, no additional configuration is necessary. If the routes in the source VRF are learned through OSPF, or if they are statically configured or directly connected networks have to be reached, you need to *redistribute* the routes first into BGP (in the source VRF) for them to be leaked.
 
 You can also use route leaking to reach remote destinations as well as directly connected destinations in another VRF. Multiple VRFs can import routes from a single source VRF and a VRF can import routes from multiple source VRFs. This is typically used when a single VRF provides connectivity to external networks or a shared service for many other VRFs. The routes that are leaked dynamically across VRFs can be controlled using a route-map.
 
@@ -909,7 +909,7 @@ router bgp 65001 vrf vrf1
 
 ## DHCP with VRF
 
-Because you can use VRF to bind IPv4 and IPv6 sockets to non-default VRF tables, you can start DHCP servers and relays in any non-default VRF table using the `dhcpd` and `dhcrelay` services.  These services must be managed by `systemd` to run in a VRF context. In addition, the services must be listed in the `/etc/vrf/systemd.conf` file. By default, this file already lists these two services, as well as others like `ntp`. You can add more services as needed, such as `dhcpd6` and `dhcrelay6` for IPv6.
+Because you can use VRF to bind IPv4 and IPv6 sockets to non-default VRF tables, you can start DHCP servers and relays in any non-default VRF table using the `dhcpd` and `dhcrelay` services. These services must be managed by `systemd` to run in a VRF context. In addition, the services must be listed in the `/etc/vrf/systemd.conf` file. By default, this file already lists these two services, as well as others like `ntp`. You can add more services as needed, such as `dhcpd6` and `dhcrelay6` for IPv6.
 
 If you edit `/etc/vrf/systemd.conf`, run `sudo systemctl daemon-reload` to generate the `systemd` instance files for the newly added services. Then you can start the service in the VRF using `systemctl start <service>@<vrf-name>.service`, where `<service>` is the name of the service (such as `dhcpd` or `dhcrelay`) and `<vrf-name>` is the name of the VRF.
 
@@ -1169,7 +1169,7 @@ cumulus@switch:~$ sudo traceroute -i turtle
 
 ## Troubleshooting
 
-You can use NCLU, vtysh, or Linux show commands commands to troubleshoot VRFs.
+You can use NCLU, vtysh, or Linux show commands to troubleshoot VRFs.
 
 {{< tabs "TabID642 ">}}
 {{< tab "NCLU Commands ">}}

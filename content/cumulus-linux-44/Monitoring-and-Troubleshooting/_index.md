@@ -285,7 +285,7 @@ This message is harmless, and can be ignored. It is logged when `systemd` attemp
 
 The `systemctl daemon-reload` command is often issued when Debian packages are installed, so the message may be seen multiple times when upgrading packages.
 
-### Syslog Troubleshooting Tips
+### Troubleshoot syslog
 
 You can use the following commands to troubleshoot `syslog` issues.
 

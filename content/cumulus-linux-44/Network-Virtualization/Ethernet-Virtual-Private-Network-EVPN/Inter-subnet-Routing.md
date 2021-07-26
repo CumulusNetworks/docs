@@ -124,7 +124,7 @@ For EVPN symmetric routing, additional configuration is required:
 
 Optional configuration includes {{<link url="#configure-rd-and-rts-for-the-tenant-vrf" text="configuring RD and RTs for the tenant VRF">}} and {{<link url="#advertise-locally-attached-subnets" text="advertising the locally-attached subnets">}}.
 
-### Configure a Per-tenant VXLAN Interface
+### Configure a Per Tenant VXLAN Interface
 
 {{< tabs "TabID113 ">}}
 {{< tab "NCLU Commands ">}}
@@ -352,7 +352,7 @@ router bgp 65101 vrf RED
 The tenant VRF RD and RTs are different from the RD and RTs for the layer 2 VNI. See {{<link url="EVPN-Enhancements#define-rds-and-rts" text="Define RDs and RTs">}}.
 {{%/notice%}}
 
-### Advertise Locally-attached Subnets
+### Advertise Locally Attached Subnets
 
 Symmetric routing presents a problem in the presence of silent hosts. If the ingress VTEP does not have the destination subnet and the host route is not advertised for the destination host, the ingress VTEP cannot route the packet to its destination. You can overcome this problem by having VTEPs announce the subnet prefixes corresponding to their connected subnets in addition to announcing host routes. These routes are announced as EVPN prefix (type-5) routes.
 

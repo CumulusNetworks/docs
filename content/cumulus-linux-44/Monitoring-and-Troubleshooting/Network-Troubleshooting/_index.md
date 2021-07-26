@@ -6,9 +6,9 @@ toc: 3
 ---
 Cumulus Linux includes a number of command line and analytical tools to help you troubleshoot issues with your network.
 
-## Check Reachability with ping
+## Use ping
 
-Use `ping` to check reachability of a host. `ping` also calculates the time it takes for packets to travel round trip. See `man ping` for details.
+Use `ping` to check that a host is reachable. `ping` also calculates the time it takes for packets to travel round trip. See `man ping` for details.
 
 To test the connection to an IPv4 host:
 

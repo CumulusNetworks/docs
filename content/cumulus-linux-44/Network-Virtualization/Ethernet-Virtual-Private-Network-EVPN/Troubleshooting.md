@@ -6,7 +6,7 @@ toc: 4
 ---
 This section provides various commands to help you examine your EVPN configuration and provides troubleshooting tips.
 
-All of the following outputs are from the {{<exlink url="https://gitlab.com/cumulus-consulting/goldenturtle/cumulus_ansible_modules/-/tree/master/inventories/evpn_symmetric" text="EVPN Symmetric Cumulus in the Cloud" >}} demo.
+The following outputs are from the {{<exlink url="https://gitlab.com/cumulus-consulting/goldenturtle/cumulus_ansible_modules/-/tree/master/inventories/evpn_symmetric" text="EVPN Symmetric Cumulus in the Cloud" >}} demo.
 
 ## General Linux Commands
 
@@ -34,7 +34,7 @@ The following example output for the `net show bridge macs` command shows:
 
 - bond1 is an access ports with VLAN ID 10. This is mapped to VXLAN interface vni10.
 - 26:76:e6:93:32:78 is the server01 host MAC learned on bond1.
-- A remote VTEP that participate in VLAN ID 10 is 10.0.1.2 (the FDB entries have a MAC address of 00:00:00:00:00:00). These entries are used for BUM traffic replication.
+- A remote VTEP that participates in VLAN ID 10 is 10.0.1.2 (the FDB entries have a MAC address of 00:00:00:00:00:00). These entries are used for BUM traffic replication.
 - 68:0f:31:ae:3d:7a is a remote host MAC of server04 reachable over the VXLAN tunnel via VTEP 10.0.1.2.
 
 ```
@@ -70,7 +70,7 @@ untagged          vni10      c8:7d:bc:96:71:f3  10.0.1.2    static     self, sti
 
 The following example output for the `net show neighbor` command shows:
 
-- 10.1.10.101 is a locally-attached host server01 on VLAN 10. Interface `vlan10-v0` is the virtual VRR address for VLAN10.
+- 10.1.10.101 is a locally attached host server01 on VLAN 10. Interface `vlan10-v0` is the virtual VRR address for VLAN10.
 - 10.1.10.104 is remote-host, server04 on VLAN10. This is indicated by the STATE `zebra` showing that it is an EVPN learned entry. Use `net show bridge macs` to see information about which VTEP the host is behind.
 - 10.1.20.105 is remote-host, server05 on VLAN 20.
 
@@ -191,9 +191,9 @@ B>* 10.10.10.103/32 [20/0] via fe80::2ef3:45ff:fef4:6f5f, swp53, weight 1, 00:42
 B>* 10.10.10.104/32 [20/0] via fe80::ae56:f0ff:fef3:590c, swp54, weight 1, 00:42:56
 ```
 
-## Show EVPN address-family Peers
+## Show EVPN Address Family Peers
 
-Run the NCLU `net show bgp l2vpn evpn summary` command or the vtysh `show bgp l2vpn evpn summary` command to see the BGP peers participating in the layer 2 VPN/EVPN address-family and their states. The following example output from a leaf switch shows eBGP peering with four spine switches to exchange EVPN routes; all peering sessions are in the *established* state.
+Run the NCLU `net show bgp l2vpn evpn summary` command or the vtysh `show bgp l2vpn evpn summary` command to see the BGP peers participating in the layer 2 VPN or EVPN address family and their states. The following example output from a leaf switch shows eBGP peering with four spine switches to exchange EVPN routes; all peering sessions are in the *established* state.
 
 ```
 cumulus@leaf01:mgmt:~$ net show bgp l2vpn evpn summary
@@ -216,7 +216,7 @@ Total number of neighbors 4
 
 Run the NCLU `net show bgp l2vpn evpn vni` command or the vtysh `show bgp l2vpn evpn vni` command to display the configured VNIs on a network device participating in BGP EVPN. This command is only relevant on a VTEP. If you have configured symmetric routing, this command displays the special layer 3 VNIs that are configured per tenant VRF.
 
-The following example from leaf01 shows three layer 2 VNIs (10, 20 and 30) as well as two layer 3 VNIs (4001, 4002). 
+The following example from leaf01 shows three layer 2 VNIs (10, 20 and 30) as well as two layer 3 VNIs (4001, 4002).
 
 ```
 cumulus@leaf01:mgmt:~$ net show bgp l2vpn evpn vni
@@ -544,7 +544,7 @@ Displayed 4 paths for requested prefix
 
 {{%/notice%}}
 
-## Show the per-VNI EVPN Routing Table
+## Show the VNI EVPN Routing Table
 
 Received EVPN routes are maintained in the global EVPN routing table (described above), even if there are no appropriate local VNIs to **import** them into. For example, a spine switch maintains the global EVPN routing table even though there are no VNIs present on it. When local VNIs are present, received EVPN routes are imported into the per-VNI routing tables based on the route target attributes. You can examine the per-VNI routing table with the `net show bgp l2vpn evpn route vni <vni>` command:
 
@@ -592,9 +592,9 @@ EVPN type-5 prefix: [5]:[EthTag]:[IPlen]:[IP]
 
 To display the VNI routing table for all VNIs, run the `net show bgp l2vpn evpn route vni all` command.
 
-## Show the per-VRF BGP Routing Table
+## Show the VRF BGP Routing Table
 
-For symmetric routing, received type-2 and type-5 routes are imported into the VRF routing table (against the corresponding address-family: IPv4 unicast or IPv6 unicast) based on a match on the route target attributes. Run the NCLU `net show bgp vrf <vrf-name> ipv4 unicast` command or the `net show bgp vrf <vrf-name> ipv6 unicast` command to examine the BGP VRF routing table. The equivalent vtysh commands are `show bgp vrf <vrf-name> ipv4 unicast` and `show bgp vrf <vrf-name> ipv6 unicast`.
+For symmetric routing, received type-2 and type-5 routes are imported into the VRF routing table (against the corresponding address family: IPv4 unicast or IPv6 unicast) based on a match on the route target attributes. Run the NCLU `net show bgp vrf <vrf-name> ipv4 unicast` command or the `net show bgp vrf <vrf-name> ipv6 unicast` command to examine the BGP VRF routing table. The equivalent vtysh commands are `show bgp vrf <vrf-name> ipv4 unicast` and `show bgp vrf <vrf-name> ipv6 unicast`.
 
 ```
 cumulus@leaf01:mgmt:~$ net show bgp vrf RED ipv4 unicast

@@ -178,7 +178,7 @@ details partner lacp pdu:
     system MAC address: 44:38:39:00:a4:95
 ```
 
-### Pseudo-wire Example
+### Pseudowire Example
 
 In this example:
 - There are only two VTEPs in the VXLAN. VTEP1 and VTEP2 point to each other as the only remote VTEP.
@@ -193,6 +193,6 @@ In this example:
 
 Use caution when enabling bridge layer 2 protocol tunneling:
 - Layer 2 protocol tunneling is not a full-featured pseudo-wire solution; there is no end-to-end link status tracking or feedback.
-- Layer 2 protocols typically run on a linklocal scope. Running the protocols through a tunnel across a layer 3 fabric incurs significantly higher latency, which might require you to tune protocol timers.
+- Layer 2 protocols typically run on a link-local scope. Running the protocols through a tunnel across a layer 3 fabric incurs significantly higher latency, which might require you to tune protocol timers.
 - The lack of end to end link or tunnel status feedback and the higher protocol timeout values make for a higher protocol convergence time when there are changes.
 - If the remote endpoint is a Cisco endpoint using LACP, you must configure `etherchannel misconfig guard` on the Cisco device.

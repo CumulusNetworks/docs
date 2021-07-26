@@ -18,7 +18,7 @@ To determine the current table sizes on a switch, use either the NCLU `net show 
 
 ## Supported Route Entries
 
-Cumulus Linux provides a number of generalized profiles, described below. These profiles work only with layer 2 and layer 3 unicast forwarding.
+Cumulus Linux provides several generalized profiles, described below. These profiles work only with layer 2 and layer 3 unicast forwarding.
 
 The following tables list the number of MAC addresses, layer 3 neighbors, and LPM routes validated for each forwarding table profile. If you do not specify any profiles as described below, the switch uses the *default* values.
 

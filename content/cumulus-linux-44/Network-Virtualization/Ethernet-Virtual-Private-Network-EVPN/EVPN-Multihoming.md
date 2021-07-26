@@ -8,7 +8,7 @@ toc: 4
 *EVPN multihoming* (EVPN-MH) provides support for all-active server redundancy. It is a standards-based replacement for MLAG in data centers deploying Clos topologies. Replacing MLAG provides these benefits:
 
 - Eliminates the need for peerlinks or inter-switch links between the top of rack switches
-- Allows more than two TOR switches to participate in a redundancy group
+- Allows more than two TOR switches a redundancy group
 - Provides a single BGP-EVPN control plane
 - Allows multi-vendor interoperability
 
@@ -25,7 +25,7 @@ To configure EVPN-MH, you set an Ethernet segment system MAC address and a local
 While you can specify a different system MAC address on different Ethernet segments attached to the same switch, the Ethernet segment system MAC address must be the same on the downlinks attached to the same server.
 
 {{%notice info%}}
-When using Spectrum 2 or Spectrum 3 switches, an Ethernet segment can span more than two switches. Each Ethernet segment is a distinct redundancy group. However, when using Spectrum A1 switches, a maximum of two switches can participate in a redundancy group or Ethernet segment.
+When using Spectrum 2 or Spectrum 3 switches, an Ethernet segment can span more than two switches. Each Ethernet segment is a distinct redundancy group. However, when using Spectrum A1 switches, you can include a maximum of two switches in a redundancy group or Ethernet segment.
 {{%/notice%}}
 
 ## Required and Supported Features
@@ -93,7 +93,7 @@ An Ethernet segment configuration has these characteristics:
 - Each interface (bond) needs its own Ethernet segment ID.
 - Static and LACP bonds can be associated with an Ethernet segment ID.
 
-A *designated forwarder* (DF) is elected for each Ethernet segment. The DF is responsible for forwarding flooded traffic received through the VXLAN overlay to the locally attached Ethernet segment. Specify a preference on an Ethernet segment for the DF election, as this leads to predictable failure scenarios. The EVPN VTEP with the highest DF preference setting becomes the DF. The DF preference setting defaults to _32767_.
+A *designated forwarder* (DF) is elected for each Ethernet segment. The DF forwards flooded traffic received through the VXLAN overlay to the locally attached Ethernet segment. Specify a preference on an Ethernet segment for the DF election, as this leads to predictable failure scenarios. The EVPN VTEP with the highest DF preference setting becomes the DF. The DF preference setting defaults to _32767_.
 
 NCLU (and NVUE) generates the EVPN-MH configuration and reloads FRR and `ifupdown2`. The configuration appears in both the `/etc/network/interfaces` file and in `/etc/frr/frr.conf` file.
 

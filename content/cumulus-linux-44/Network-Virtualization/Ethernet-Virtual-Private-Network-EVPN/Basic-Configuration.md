@@ -409,9 +409,9 @@ The `advertise-all-vni` option is only needed on leaf switches that are VTEPs. E
 
 {{< /tab >}}
 {{< /tabs >}}
-
+<!-- vale off -->
 ## EVPN and VXLAN Active-active Mode
-
+<!-- vale on -->
 For EVPN in VXLAN active-active mode, both switches in the MLAG pair establish EVPN peering with other EVPN speakers (for example, with spine switches if using hop-by-hop eBGP) and inform about their locally known VNIs and MACs. When MLAG is active, both switches announce this information with the shared anycast IP address.
 
 For active-active configuration, make sure that:

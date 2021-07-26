@@ -9,8 +9,6 @@ This chapter describes how to troubleshoot layer 1 issues that can affect the po
 
 ## High Speed Ethernet Technologies
 
-Before we describe various troubleshooting methods, it is helpful to understand some background information.
-
 ### Specifications
 
 The following specifications are useful in understanding and troubleshooting layer 1 problems:
@@ -33,12 +31,12 @@ The memory locations for the fields in the EEPROM and the common registers are d
 - QSFP: {{<exlink url="https://members.snia.org/document/dl/26418" text="SFF-8636">}} *Management Interface for 4-lane Modules and Cables* (PDF)
 
 Identifiers used in the first byte of the module memory map:
-
+<!-- vale off -->
 - 0x03: SFP/SFP+/SFP28 - One 10G or 25G lane - Small Form factor Pluggable
 - 0x0d: QSFP+ - Four 10G lanes - Quad SFP (40G total)
 - 0x11: QSFP28 - Four 25G or 50G lanes (100G or 200G total) - Quad SFP with 25G or 50G lanes
 - 0x18: QSFP-DD - Eight 50G lanes (400G total) - Quad SFP with a recessed extra card-edge connector to enable 8 lanes of 50G
-
+<!-- vale on -->
 ### Encoding
 
 Two parts of high-speed Ethernet are grouped under *encoding* in the output from the `ethtool -m <swp>` command:
@@ -362,9 +360,9 @@ The NVIDIA port firmware automatically troubleshoots link problems and displays 
 
 See {{<link url="#fec" text="FEC">}}, {{<link url="#auto-negotiation" text="Auto-negotiation">}} and {{<link url="#signal-integrity" text="Signal Integrity">}} above for more details.
 
-## Methodology to Troubleshoot Layer 1 Problems
+## Troubleshoot Layer 1 Problems
 
-This section provides a troubleshooting methodology and checklist to help resolve layer 1 issues for modules, whether or not they are on the {{<exlink url="https://www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="Cumulus Linux HCL">}}.
+This section provides a troubleshooting process and checklist to help resolve layer 1 issues for modules.
 
 The root cause of a layer 1 problem falls into one of these three categories:
 
@@ -415,7 +413,7 @@ Try swapping the modules and fibers to determine which component is bad:
 
 ## Troubleshoot Down or Flapping Links
 
-A down or flapping link can exhibit any or all of the following symptoms:
+A down or flapping link can exhibit any or all the following symptoms:
 
 - `l1-show` returns *Link Status: Kernel: Down* and *Hardware: Down* for the operational state.
 - `ip link show <swp>` returns *<NO-CARRIER,BROADCAST,MULTICAST,UP>*. An *up* link returns something like *<BROADCAST,MULTICAST,UP,LOWER_UP>*.
@@ -504,8 +502,8 @@ Operational State
   - When the link is down, the operational FEC is *None*.
   - When the link is up, this field shows the actual FEC value working on the link.
 - TX/RX Power (optical modules only): If the module supports laser power DDM/DOM, are these values in working ranges?
-  - Check the *Laser rx power high/low alarm* and *Laser rx power high/low warning* thresholds in the output of `ethtool -m <swp>` to see what the expected low and high values are.
-  - A short range module should TX in the range of 0.6-1.0 mW and should work with RX power in the range of > 0.05 mW.
+  - Check the *Laser send power high/low alarm* and *Laser receive power high/low warning* thresholds in the output of `ethtool -m <swp>` to see what the expected low and high values are.
+  - A short range module should send in the range of 0.6 and 1.0 mW and should work with receive power in the range of > 0.05 mW.
   - Long range optical modules have TX power above 1.0 mW.
   - When in doubt, consult the technical specifications for the particular module.
   - A value of *0.0000* or *0.0* indicates that the module does not support DDM/DOM TX or RX power, or no signal is being transmitted or received.
@@ -708,7 +706,7 @@ NVIDIA switches vary in their support of high power modules. For example, on som
 
 The total bus power rating is the default power rating per port type (SFP: 1.5W, QSFP: 3.5W) multiplied by the number of ports of each type present on the bus.
 
-To see the requested and enabled status for high power module, review the output of `sudo ethtool -m`. The following output is from a device of power class between 1-4 (1.5W to 3.5W). High power class is not requested by the module or enabled by the switch.
+To see the requested and enabled status for high power module, review the output of `sudo ethtool -m`. The following output is from a device of power class between 1 and 4 (1.5W to 3.5W). High power class is not requested by the module or enabled by the switch.
 
 ```
 cumulus@switch:mgmt:~# sudo ethtool -m swp53
@@ -751,7 +749,7 @@ On rare occasions, a port module with a defective I2C component or firmware can 
 
 Because I2C issues are in the low speed control circuitry of a module, they are not caused or affected by the high speed traffic rates on the data side of the module. They are not caused by software bugs in Cumulus Linux.
 
-When the I2C bus has issues or lockups, installed port modules might no longer show up in the output of `sudo l1-show <swp>` or `sudo ethtool -m <swp>`. A significant number of `smbus` or `i2c` or `EEPROM read` errors might be present in `/var/log/syslog`. After one module has locked up the bus, some or all of the other modules then exhibit problems, making it nearly impossible to tell which module is causing the failure.  
+When the I2C bus has issues or lockups, installed port modules might no longer show up in the output of `sudo l1-show <swp>` or `sudo ethtool -m <swp>`. A significant number of `smbus` or `i2c` or `EEPROM read` errors might be present in `/var/log/syslog`. After one module has locked up the bus, some or all the other modules then exhibit problems, making it nearly impossible to tell which module is causing the failure.  
 
 The overwhelming number of I2C lockups are caused by failed I2C components or defective designs in port modules. Most failures are caused by low priced vendor modules, but even high price, high quality modules can fail, only with much lower incidence; they have a higher MTBF rating. If an I2C issue is suspected, the first place to look is at the installed modules that are not on the {{<exlink url="https://www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="Cumulus Linux HCL">}}. The Cumulus Linux HCL is populated with modules that are known to work in Cumulus Linux switches, which also have a solid track record in customer networks.
 

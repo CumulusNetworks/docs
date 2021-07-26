@@ -273,7 +273,7 @@ You can use more aggressive detection times for echo packets because the round-t
 ### About the Echo Packet
 
 BFD echo packets are encapsulated into UDP packets over destination and source UDP port number 3785. The BFD echo packet format is vendor-specific and has not been defined in the RFC. BFD echo packets that originate from Cumulus Linux are 8 bytes long and have the following format:
-
+<!-- vale off -->
 |0|1|2|3|
 |---|---|---|---|
 |Version|Length|Reserved|Reserved|
@@ -283,8 +283,8 @@ Where:
 
 - **Version** is the version of the BFD echo packet.
 - **Length** is the length of the BFD echo packet.
-- **My Discriminator** is a non-zero value that uniquely identifies a BFD session on the transmitting side. When the originating node receives the packet after being looped back by the receiving system, this value uniquely identifies the BFD session.
-
+- **My Discriminator**is a non-zero value that uniquely identifies a BFD session on the transmitting side. When the originating node receives the packet after being looped back by the receiving system, this value uniquely identifies the BFD session.
+<!-- vale on -->
 ### Transmit and Receive Echo Packets
 
 BFD echo packets are transmitted for a BFD session only when the peer has advertised a non-zero value for the required minimum echo Rx interval (the `echoMinRx` setting) in the BFD control packet when the BFD session starts. The transmit rate of the echo packets is based on the peer advertised echo receive value in the control packet.

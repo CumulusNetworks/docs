@@ -100,9 +100,9 @@ NCLU (and NVUE) generates the EVPN-MH configuration and reloads FRR and `ifupdow
 {{%notice note%}}
 When EVPN-MH is enabled, all SVI MAC addresses are advertised as type 2 routes. You do not need to configure a unique SVI IP address or configure the BGP EVPN address family with `advertise-svi-ip`.
 {{%/notice%}}
-
+<!-- vale off -->
 ### Enable EVPN-MH
-
+<!-- vale on -->
 {{< tabs "TabID105 ">}}
 {{<tab "NCLU Commands">}}
 
@@ -134,9 +134,9 @@ cumulus@leaf01:~$ sudo systemctl restart switchd.service
 
 {{< /tab >}}
 {{< /tabs >}}
-
+<!-- vale off -->
 ### Configure the EVPN-MH Bonds
-
+<!-- vale on -->
 To configure bond interfaces for EVPN-MH, run commands similar to the following:
 
 {{<tabs "bond config">}}
@@ -464,7 +464,7 @@ evpn mh startup-delay 1800
 {{</tab>}}
 {{</tabs>}}
 
-### Enable Uplink Tracking
+### Enable uplink Tracking
 
 When all the uplinks go down, the VTEP loses connectivity to the VXLAN overlay. To prevent traffic loss in this state, the uplinks' oper-state is tracked. When all the uplinks are down, the Ethernet segment bonds on the switch are put into a protodown or error-disabled state. You can configure a link as an MH uplink to enable this tracking.
 
@@ -656,7 +656,7 @@ debug zebra vxlan
 {{</tab>}}
 {{</tabs>}}
 
-### Fast Failover
+### Fast failover
 
 When an Ethernet segment link goes down, the attached VTEP notifies all other VTEPs using a single EAD-ES withdraw. This is done by way of an Ethernet segment bond redirect.
 
@@ -681,9 +681,9 @@ evpn.multihoming.shared_l3_groups = FALSE
 
 cumulus@switch:~$ sudo systemctl restart switchd.service
 ```
-
+<!-- vale off -->
 ### Disable EAD-per-EVI Route Advertisements
-
+<!-- vale on -->
 {{<exlink url="https://tools.ietf.org/html/rfc7432" text="RFC 7432">}} requires type-1/EAD (Ethernet Auto-discovery) routes to be advertised two ways:
 
 - As EAD-per-ES (Ethernet Auto-discovery per Ethernet segment) routes
@@ -878,9 +878,9 @@ Route Distinguisher: 10.10.10.3:2
 The following configuration examples use the topology illustrated below.
 
 {{<img src="/images/cumulus-linux/EVPN-MH-example-config-citc.png">}}
-
+<!-- vale off -->
 ### EVPN-MH with Head End Replication
-
+<!-- vale on -->
 The following example commands configure EVPN multihoming with head end replication using single VXLAN devices.
 
 {{< tabs "TabID688 ">}}
@@ -3613,9 +3613,9 @@ bridge-vlan-aware yes
 ...
 ```
 {{%/notice%}}
-
+<!-- vale off -->
 ### EVPN-MH with EVPN-PIM
-
+<!-- vale on -->
 The following example commands configure EVPN multihoming with PIM using traditional VXLAN devices. NVUE commands are not supported currently for PIM.
 
 {{< tabs "TabID2213 ">}}

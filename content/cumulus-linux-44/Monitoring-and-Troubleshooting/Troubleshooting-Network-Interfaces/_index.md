@@ -6,7 +6,7 @@ toc: 3
 ---
 The following sections describe various ways you can troubleshoot `ifupdown2` and network interfaces.
 
-## Enable Logging for Networking
+## Enable Network Logging
 
 To obtain verbose logs when you run `systemctl` \[`start`|`restart`\] `networking.service` as well as when the switch boots, create an overrides file with the `systemctl edit networking.service` command and add the following lines:
 

@@ -41,7 +41,7 @@ When you run the `reload switchd.service` command, Cumulus Linux always runs the
 
 ## Classification
 
-When a frame or packet arrives on the switch, it is mapped to an *internal COS* value. This value is never written to the frame or packet but is used to classify and prioritize traffic internally through the switch.
+When a frame or packet arrives on the switch, it is mapped to an *internal COS* value. This value is never written to the frame or packet but is used to classify and schedule traffic internally through the switch.
 
 You can define which values are trusted in the `qos_features.conf` file by configuring the `traffic.packet_priority_source_set` setting.
 
@@ -310,13 +310,13 @@ Cumulus Linux supports the following congestion control mechanisms:
 
 ### Flow Control Buffers
 
-Before configuring Pause Frames or PFC, allocate buffer pools and limits for lossless flows.
+Before configuring pause frames or PFC, set buffer pools and limits for lossless flows.
 
 Edit the following lines in the `/etc/mlx/datapath/qos/qos_infra.conf` file:
 
 1. Modify the existing `ingress_service_pool.0.percent` and `egress_service_pool.0.percent` buffer allocation. Change the existing ingress setting to `ingress_service_pool.0.percent = 50`. Change the existing egress setting to `egress_service_pool.0.percent = 50`.
 
-2. Add the following lines to create a new `service_pool`, allocate `flow_control` to the service pool, and define buffer reservations:
+2. Add the following lines to create a new `service_pool`, set `flow_control` to the service pool, and define buffer reservations:
 
 ```
 ingress_service_pool.1.percent = 50.0
@@ -541,7 +541,7 @@ You can map multiple internal COS values to a single egress queue. You do not ha
 
 ## Egress Schedules
 
-Cumulus Linux supports 802.1Qaz, Enhanced Transmission Selection. This allows the switch to assign bandwidth to egress queues and then prioritize the transmission of traffic from each queue. This includes support for Priority Queuing.
+Cumulus Linux supports 802.1Qaz, Enhanced Transmission Selection. This allows the switch to assign bandwidth to egress queues and then schedule the transmission of traffic from each queue. This includes support for Priority Queuing.
 
 The egress scheduling policy is configured in the following section of the `qos_features.conf` file:
 
@@ -640,9 +640,9 @@ Traffic policing is configured using ebtables, iptables, or ip6table rules.
 {{% notice info %}}
 For more information on configuring and applying ACLs, refer to {{<link title="Netfilter - ACLs" text="Netfilter - ACLs" >}}.
 {{% /notice %}}
-
+<!-- vale off -->
 #### Single-rate Policer
-
+<!-- vale on -->
 To configure a single-rate policer, use iptables `JUMP` action `-j POLICE`.
 
 The following iptables flags are supported with a single-rate policer.
@@ -655,9 +655,9 @@ The following iptables flags are supported with a single-rate policer.
 
 For example to create a policer to allow 400 packets per second with 100 packet burst the following iptable rule would be used:  
 `-j POLICE --set-mode pkt --set-rate 400 --set-burst 100`
-
+<!-- vale off -->
 #### Dual-rate Policer
-
+<!-- vale on -->
 To configure a policer, use the iptables `JUMP` action `-j TRICOLORPOLICE`.
 
 The following iptables flags are supported with a dual-rate policer.
@@ -1356,7 +1356,7 @@ You must apply breakout port configuration before QoS configuration on the break
 If you apply QoS settings on bond member interfaces instead of the logical bond interface, the members must share identical QoS configuration. If the configuration is not identical between bond interfaces, the bond inherits the _last_ interface applied to the bond.
 
 If QoS settings do not match, `switchd reload` fails; however, `switchd restart` does not fail.
-
+<!-- vale off -->
 ### Cut-through Switching
-
+<!-- vale on -->
 You cannot disable cut-through switching on Spectrum ASICs. Cumulus Linux ignores the `cut_through_enable = false` setting in the `qos_features.conf` file.

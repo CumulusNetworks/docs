@@ -35,7 +35,7 @@ After installing Cumulus Linux, you are ready to:
 
 ## Get Started
 
-When starting Cumulus Linux for the first time, the management port makes a DHCPv4 request. To determine the IP address of the switch, you can cross reference the MAC address of the switch with your DHCP server. The MAC address is typically located on the side of the switch or on the box in which the unit ships.
+When starting Cumulus Linux for the first time, the management port makes a DHCPv4 request. To determine the IP address of the switch, you can cross reference the MAC address of the switch with your DHCP server. The MAC address is typically located on the side of the switch or on the <!-- vale off -->box<!-- vale on --> in which the unit ships.
 
 ### Login Credentials
 

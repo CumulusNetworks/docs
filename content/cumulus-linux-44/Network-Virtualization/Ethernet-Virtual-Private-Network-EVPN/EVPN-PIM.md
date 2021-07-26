@@ -64,9 +64,9 @@ cumulus@switch:~$ ifreload -a
 {{%notice note%}}
 One multicast group per layer 2 VNI is optimal configuration for underlay bandwidth utilization. However, you can specify the same multicast group for more than one layer 2 VNI.
 {{%/notice%}}
-
+<!-- vale off -->
 ## Verify EVPN-PIM
-
+<!-- vale on -->
 Run the NCLU `net show mroute` command or the vtysh `show ip mroute` command to review the multicast route information in FRRouting. When using EVPN-PIM, every VTEP acts as both source and destination for a VNI-MDT group, therefore, mroute entries on each VTEP should look like this:
 
 ```
@@ -392,9 +392,9 @@ iface bond3
 
 {{< /tab >}}
 {{< /tabs >}}
-
+<!-- vale off -->
 ## Configure EVPN-PIM in VXLAN Active-active Mode
-
+<!-- vale on -->
 {{< img src = "/images/cumulus-linux/evpn-pim-anycast-vteps.png" >}}
 
 To configure EVPN-PIM in VXLAN active-active mode, enable PIM on the peer link on each MLAG peer switch (**in addition to** the configuration described in {{<link url="#configure-multicast-vxlan-tunnels" text="Configure Multicast VXLAN Tunnels">}}, above).

@@ -53,9 +53,9 @@ For TCP/UDP frames, Cumulus Linux also hashes on:
 To prevent out of order packets, ECMP hashing is done on a per-flow basis; all packets with the same source and destination IP addresses and the same source and destination ports always hash to the same next hop. ECMP hashing does not keep a record of flow states.
 
 ECMP hashing does not keep a record of packets that have hashed to each next hop and does not guarantee that traffic sent to each next hop is equal.
-
+<!-- vale off -->
 ### Use cl-ecmpcalc to Determine the Hash Result
-
+<!-- vale on -->
 Because the hash is deterministic and always provides the same result for the same input, you can query the hardware and determine the hash result of a given input. This is useful when determining exactly which path a flow takes through a network.
 
 On Cumulus Linux, use the `cl-ecmpcalc` command to determine a hardware hash result.
@@ -83,9 +83,9 @@ usage: cl-ecmpcalc [-h] [-v] [-p PROTOCOL] [-s SRC] [--sport SPORT] [-d DST]
                    [-c MCOUNT]
 cl-ecmpcalc: error: --sport and --dport required for TCP and UDP frames
 ```
-
+<!-- vale off -->
 ### cl-ecmpcalc Limitations
-
+<!-- vale on -->
 `cl-ecmpcalc` can only take input interfaces that can be converted to a single physical port in the port tab file, such as the physical switch ports (swp). Virtual interfaces like bridges, bonds, and subinterfaces are not supported.
 
 ### ECMP Hash Buckets
@@ -285,7 +285,7 @@ The number of buckets can be configured as 64, 512, or 1024; the default is 64:
 A larger number of ECMP buckets reduces the impact on adding new next hops to an ECMP route. However, the system supports fewer ECMP routes. If the maximum number of ECMP routes have been installed, new ECMP routes log an error and are not installed.
 
 {{%notice note%}}
-Two custom options are provided to allocate route and MAC address hardware resources depending on ECMP bucket size changes. See {{%link title="Routing#NVIDIA Spectrum Switches" text="NVIDIA Spectrum routing resources" %}}.
+Two custom options are provided to configure route and MAC address hardware resources depending on ECMP bucket size changes. See {{%link title="Routing#NVIDIA Spectrum Switches" text="NVIDIA Spectrum routing resources" %}}.
 {{%/notice%}}
 
 To enable resilient hashing, edit `/etc/cumulus/datapath/traffic.conf`:

@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 200
 toc: 3
 ---
-{{<exlink url="http://www.netfilter.org/" text="Netfilter">}} is the packet filtering framework in Cumulus Linux as well as most other Linux distributions. There are a number of tools available for configuring ACLs in Cumulus Linux:
+{{<exlink url="http://www.netfilter.org/" text="Netfilter">}} is the packet filtering framework in Cumulus Linux and most other Linux distributions. There several tools available for configuring ACLs in Cumulus Linux:
 
 - `iptables`, `ip6tables`, and `ebtables` are Linux userspace tools used to administer filtering rules for IPv4 packets, IPv6 packets, and Ethernet frames (layer 2 using MAC addresses).
 - `cl-acltool` is a Cumulus Linux-specific userspace tool used to administer filtering rules and configure default ACLs. `cl-acltool` operates on various configuration files and uses `iptables`, `ip6tables`, and `ebtables` to install rules into the kernel. In addition, `cl-acltool` programs rules in hardware for interfaces involving switch port interfaces, which `iptables`, `ip6tables` and `ebtables` cannot do on their own.
@@ -33,7 +33,7 @@ When building rules to affect the flow of traffic, the individual chains can be 
 - **NAT** applies Network Address Translation rules
 - **Mangle** alters packets as they move through the switch
 
-Each table has a set of default chains that can be used to modify or inspect packets at different points of the path through the switch. Chains contain the individual rules to influence traffic. Each table and the default chains they support are shown below. Tables and chains in green are supported by Cumulus Linux, those in red are not supported (that is, they are not hardware accelerated) at this time.
+Each table has a set of default chains that can be used to modify or inspect packets at different points of the path through the switch. Chains contain the individual rules to influence traffic. Each table and the default chains they support are shown below. Tables and chains in green are supported by Cumulus Linux. Tables and chains in red are not supported currently (they are not hardware accelerated).
 
 {{< img src = "/images/cumulus-linux/acls-supported.png" >}}
 
@@ -118,9 +118,9 @@ error: line 2 : output interface specified with INPUT chain error processing rul
 
 However, removing the `-o` option and interface make it a valid rule.
 {{%/notice%}}
-
+<!-- vale off -->
 ### Nonatomic Update Mode and Atomic Update Mode
-
+<!-- vale on -->
 In Cumulus Linux, *atomic update mode* is enabled by default. However, this mode limits the number of ACL rules that you can configure.
 
 {{< img src = "/images/cumulus-linux/acl-update-operation-atomic.png" >}}
@@ -146,7 +146,7 @@ You can enable nonatomic updates for `switchd`, which offer better scaling becau
 The incremental nonatomic update operation follows this order:
 
 1. Updates are performed incrementally, one table at a time without stopping traffic.
-2. Cumulus Linux checks if the rules in a table have changed since the last time they were installed; if a table does not have any changes, it is not reinstalled.
+2. Cumulus Linux checks if the rules in a table have changed from the time they were last installed; if a table does not have any changes, it is not reinstalled.
 3. If there are changes in a table, the new rules are populated in new groups or slices in hardware, then that table is switched over to the new groups or slices.
 4. Finally, old resources for that table are freed. This process is repeated for each of the tables listed above.
 5. If sufficient resources do not exist to hold both the new rule set and old rule set, the regular nonatomic mode is attempted. This interrupts network traffic.
@@ -269,7 +269,7 @@ If you need to hand edit a rule, do not edit the `50_nclu_acl.rules` file. Inste
 
 {{%/notice%}}
 
-After you add the rule, you need to apply it to an inbound or outbound interface using `net add int acl`. The inbound interface in our example is swp1:
+After you add the rule, you need to apply it to an inbound or outbound interface with the `net add int acl` command. The inbound interface in the following example is swp1:
 
 ```
 cumulus@switch:~$ net add int swp1 acl ipv4 EXAMPLE1 inbound
@@ -287,7 +287,7 @@ interface swp1
 acl ipv4 EXAMPLE1 inbound
 ```
 
-Or you can see all of the rules installed by running `cat` on the `50_nclu_acl.rules` file:
+You can see all rules installed by running `cat` on the `50_nclu_acl.rules` file:
 
 ```
 cumulus@switch:~$ cat /etc/cumulus/acl/policy.d/50_nclu_acl.rules
@@ -313,9 +313,9 @@ cumulus@switch:~$ net commit
 ```
 
 This deletes all rules from the `50_nclu_acl.rules` file with that name. It also deletes the interfaces referenced in the `nclu_acl.conf` file.
-
+<!-- vale off -->
 ## Install and Manage ACL Rules with cl-acltool
-
+<!-- vale on -->
 You can manage Cumulus Linux ACLs with `cl-acltool`. Rules are first written to the `iptables` chains, as described above, and then synchronized to hardware via `switchd`.
 
 To examine the current state of chains and list all installed rules, run:
@@ -395,7 +395,7 @@ Here is an example ACL policy file:
 You can use wildcards or variables to specify chain and interface lists to ease administration of rules.
 
 {{%notice note%}}
-Currently only *swp+* and *bond+* are supported as wildcard names. There might be kernel restrictions in supporting more complex wildcards like *swp1+ etc*.
+Currently only *swp+* and *bond+* are supported as wildcard names.
 
 swp+ rules are applied as an aggregate, *not* per port. If you want to apply per port policing, specify a specific port instead of the wildcard.
 {{%/notice%}}
@@ -502,7 +502,7 @@ error: hw sync failed (sync_acl hardware installation failed) Rolling back .. fa
 In the table below, the default rules count toward the limits listed. The raw limits below assume only one ingress and one egress table are present.
 
 The NVIDIA Spectrum ASIC has one common {{<exlink url="https://en.wikipedia.org/wiki/Content-addressable_memory#Ternary_CAMs" text="TCAM">}} for both ingress and egress, which can be used for other non-ACL-related resources. However, the number of supported rules varies with the {{<link url="Supported-Route-Table-Entries#tcam-resource-profiles-for-spectrum-switches" text="TCAM profile">}} specified for the switch.
-
+<!-- vale off -->
 |Profile |Atomic Mode IPv4 Rules |Atomic Mode IPv6 Rules |Nonatomic Mode IPv4 Rules |Nonatomic Mode IPv6 Rules |
 |------------|-------------------|-------------------|-------------------|-------------------------|
 |default |500 |250 |1000 |500|
@@ -510,7 +510,7 @@ The NVIDIA Spectrum ASIC has one common {{<exlink url="https://en.wikipedia.org/
 |acl-heavy |1750 |1000 |3500 |2000|
 |ipmc-max |1000 |500 |2000 |1000 |
 |ip-acl-heavy |7500 |0 |15000 |0|
-
+<!-- vale on -->
 {{%notice note%}}
 Even though the table above specifies that zero IPv6 rules are supported with the ip-acl-heavy profile, Cumulus Linux does not prevent you from configuring IPv6 rules. However, there is no guarantee that IPv6 rules work under the ip-acl-heavy profile.
 {{%/notice%}}
@@ -616,9 +616,9 @@ For example, to rate limit the incoming traffic on swp1 to 400 packets per secon
 -A INPUT --in-interface swp1 -j POLICE --set-mode pkt --set-rate 400 --set-burst 100 --set-class 0
 ```
 
-Here is another example of control plane ACL rules to lock down the switch. You specify them in `/etc/cumulus/acl/policy.d/00control_plane.rules`:
+Here is another example of control plane ACL rules to lock down the switch. You specify the rules in `/etc/cumulus/acl/policy.d/00control_plane.rules`:
 
-{{< expand "View the contents of the file ... "  >}}
+{{< expand "View the contents of the file"  >}}
 
 ```
 INGRESS_INTF = swp+
@@ -937,7 +937,7 @@ This also becomes two ACLs and is the same as:
 -A OUTPUT -o swp+ -p tcp --sport 123 --dport 123 -j DROP
 ```
 
-### Layer 2-only Rules/ebtables
+### Layer 2 Rules/ebtables
 
 The following rule blocks any traffic with source MAC address 00:00:00:00:00:12 and destination MAC address 08:9e:01:ce:e2:04 going from any switch port egress/ingress.
 
@@ -966,9 +966,9 @@ Logged packets cannot be forwarded. The hardware cannot both forward a packet an
 ### SPAN Sessions that Reference an Outgoing Interface
 
 SPAN sessions that reference an outgoing interface create mirrored packets based on the ingress interface before the routing/switching decision. See {{<link url="SPAN-and-ERSPAN#span-sessions-that-reference-an-outgoing-interface" text="SPAN Sessions that Reference an Outgoing Interface">}} and {{<link url="SPAN-and-ERSPAN/#use-the-cpu-port-as-the-span-destination" text="Use the CPU Port as the SPAN Destination">}} in the Network Troubleshooting section.
-
+<!-- vale off -->
 ### iptables Interactions with cl-acltool
-
+<!-- vale on -->
 Because Cumulus Linux is a Linux operating system, the `iptables` commands can be used directly. However, consider using `cl-acltool` instead because:
 
 - Without using `cl-acltool`, rules are not installed into hardware.

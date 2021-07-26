@@ -195,9 +195,9 @@ While tab completion is enabled by default, you can also configure NCLU to use t
 ```
 cumulus@switch:~$ sudo nano ~/.inputrc
 ```
-
+<!-- vale off -->
 Uncomment the very last line in the `.inputrc` file so that the file changes from this:
-
+<!-- vale on -->
 ```
 # Uncomment to use ? as an alternative to
 # ?: complete
@@ -231,9 +231,9 @@ cumulus@switch:~$ net
 When the question mark is typed, NCLU autocompletes and shows all available options, but the question mark does not actually appear on the terminal. This is expected behavior.
 
 {{%/notice%}}
-
+<!-- vale off -->
 ### Built-in Examples
-
+<!-- vale on -->
 NCLU has built in examples to guide you through basic configuration setup:
 
 ```
@@ -359,9 +359,9 @@ If the user tries to run commands that are not allowed, the following error disp
 myuser@switch:~$ net add hostname host01
 ERROR: User username does not have permission to make networking changes.
 ```
-
+<!-- vale off -->
 ## Edit the netd.conf File
-
+<!-- vale on -->
 Instead of using the NCLU commands described above, you can manually configure users and groups to be able to run NCLU commands.
 
 Edit the `/etc/netd.conf` file to add users to the *users\_with\_edit* and *users\_with\_show* lines in the file, then save the file.

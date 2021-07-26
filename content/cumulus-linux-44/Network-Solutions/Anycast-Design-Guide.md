@@ -106,7 +106,7 @@ FTP data transfers require two connections: one for control and one for the file
 
 ### Initiating Traffic and Receiving Traffic
 
-Do not initiate an outbound TCP session over an anycast IP address; traffic that originates from an anycast IP address might not return to the same anycast server after the network hash. With inbound sessions, the network hash is the same for all packets in a flow, so the inbound traffic hashes to the same anycast server.
+Do not start an outbound TCP session over an anycast IP address; traffic that originates from an anycast IP address might not return to the same anycast server after the network hash. With inbound sessions, the network hash is the same for all packets in a flow, so the inbound traffic hashes to the same anycast server.
 
 ### TCP and Anycast
 

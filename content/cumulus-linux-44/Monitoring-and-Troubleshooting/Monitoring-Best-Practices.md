@@ -64,7 +64,7 @@ Not all switch models include a sensor for monitoring power consumption and volt
 
 ## System Data
 
-Cumulus Linux includes a number of ways to monitor various aspects of system data. In addition, alerts are issued in high risk situations.
+Cumulus Linux includes several ways to monitor system data. In addition, alerts are issued in high risk situations.
 
 ### CPU Idle Time
 
@@ -99,7 +99,7 @@ When monitoring disk utilization, you can exclude `tmpfs` from monitoring.
 
 ## Process Restart
 
-In Cumulus Linux, `systemd` is responsible for monitoring and restarting processes.
+In Cumulus Linux, `systemd` monitors and restarts processes.
 
 | Process Element | Monitoring Commands |
 |---------------- |-------------------- |
@@ -139,7 +139,7 @@ Interface counters are obtained from either querying the hardware or the Linux k
 | MLAG port negotiation Flapping | <pre>/var/log/syslog</pre>|<pre>mstpd: one_clag_cmd: setting (0) mac 00:00:00:00:00:00 <server01, None><br>mstpd: one_clag_cmd: setting (1) mac 44:38:39:00:00:03 <server01, None></pre> |
 | | <pre>/var/log/clagd.log</pre> | <pre>clagd[14291]: server01 is no longer dual connected<br>clagd[14291]: server01 is now dual connected.</pre> |
 
-Prescriptive Topology Manager (PTM) uses LLDP information to compare against a `topology.dot` file that describes the network. It has built in alerting capabilities, so it is preferable to use PTM on box rather than polling LLDP information regularly. The PTM code is available with the Cumulus Linux {{<exlink url="https://github.com/CumulusNetworks/ptm" text="GitHub repository">}}. Additional PTM, BFD, and associated logs are documented in the code.
+Prescriptive Topology Manager (PTM) uses LLDP information to compare against a `topology.dot` file that describes the network. It has built in alerting capabilities, so it is preferable to use PTM on the switch instead of polling LLDP information regularly. The PTM code is available with the Cumulus Linux {{<exlink url="https://github.com/CumulusNetworks/ptm" text="GitHub repository">}}. Additional PTM, BFD, and associated logs are documented in the code.
 
 {{%notice note%}}
 Consider tracking peering information through PTM. For more information, refer to the {{<link url="Prescriptive-Topology-Manager-PTM" text="Prescriptive Topology Manager documentation">}}.

@@ -25,7 +25,7 @@ The SNMP agent (the `snmpd` daemon) running on a Cumulus Linux switch gathers in
 
 ### Management Information Base (MIB)
 
-The MIB is a database for the `snmpd` daemon that runs on the agent. MIBs adhere to IETF standards but are flexible enough to allow vendor-specific additions. Cumulus Linux includes a number of custom enterprise MIB tables, which are defined in a set text files on the switch; the files are located in `/usr/share/snmp/mibs/` and their names all start with *Cumulus*. They include:
+The MIB is a database for the `snmpd` daemon that runs on the agent. MIBs adhere to IETF standards but are flexible enough to allow vendor-specific additions. Cumulus Linux includes custom enterprise MIB tables, which are defined in a set text files on the switch; the files are located in `/usr/share/snmp/mibs/` and their names all start with *Cumulus*. They include:
 
 - Cumulus-Counters-MIB.txt
 - Cumulus-POE-MIB.txt
@@ -52,7 +52,7 @@ sysLocation OBJECT-TYPE
 ::= { iso(1) org(3) dod(6) internet(1) mgmt(2) mib-2(1) system(1) 6 }
 ```
 
-In the last line above, the section *1.3.6.1* or *iso.org.dod.internet* is the OID that defines internet resources. The *2* or *mgmt* that follows is for a management subcategory. The *1* or *mib-2* under that defines the MIB-2 specification. And finally, the *1* or *system* is the parent for a number of child objects *sysDescr*, *sysObjectID*, *sysUpTime*, *sysContact*, *sysName*, *sysLocation*, *sysServices*, and so on, as seen in the tree output from the second `snmptranslate` command below, where *sysLocation* is defined as *6*.
+In the last line above, the section *1.3.6.1* or *iso.org.dod.internet* is the OID that defines internet resources. The *2* or *mgmt* that follows is for a management subcategory. The *1* or *mib-2* under that defines the MIB-2 specification. The *1* or *system* is the parent for child objects *sysDescr*, *sysObjectID*, *sysUpTime*, *sysContact*, *sysName*, *sysLocation*, *sysServices*, and so on, as seen in the tree output from the second `snmptranslate` command below, where *sysLocation* is defined as *6*.
 
 ```
 cumulus@leaf01:mgmt:~$ snmptranslate -Tp -IR system

@@ -42,7 +42,7 @@ You can change the ARP parameter settings in several places, including:
 
 The ARP parameter changes in Cumulus Linux use the *default* file locations.
 
-The *all* and *default* locations sound similar, with the exception of which interfaces are impacted, but they operate in significantly different ways. The all location can **potentially** change the value for **all** interfaces running IP, both now and in the future. The reason for this uncertainty is that the *all* value is applied to each parameter using either *MAX* or *OR* logic between the *all* and any *port-specific* settings, as the following table shows:
+The *all* and *default* locations sound similar but they operate in significantly different ways. The all location can **potentially** change the value for **all** interfaces running IP, both now and in the future. The reason for this uncertainty is that the *all* value is applied to each parameter using either *MAX* or *OR* logic between the *all* and any *port-specific* settings, as the following table shows:
 
 | ARP Parameter | Condition |
 | ------------- | --------- |
@@ -101,9 +101,9 @@ net.ipv4.conf.default.arp_notify = 1
 net.ipv4.conf.default.arp_ignore=1
 cumulus@switch:~$
 ```
-
+<!-- vale off -->
 ## Change Port-specific ARP Parameters
-
+<!-- vale on -->
 To configure port-specific ARP parameters in a running device, run the following command:
 
 ```

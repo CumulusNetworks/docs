@@ -72,7 +72,7 @@ Only messages with a value lower than the level specified are printed to the con
 cumulus@switch:~$ sudo dmesg -n 3
 ```
 
-Alternatively, you can run `dmesg --console-level <level>` command, where the log levels are `emerg`, `alert`, `crit`, `err`, `warn`, `notice`, `info`, or `debug`. For example, to print critical conditions, run the following command:
+You can also run `dmesg --console-level <level>` command, where the log levels are `emerg`, `alert`, `crit`, `err`, `warn`, `notice`, `info`, or `debug`. For example, to print critical conditions, run the following command:
 
 ```
 cumulus@switch:~$ sudo dmesg --console-level crit
@@ -96,7 +96,7 @@ DISTRIB_RELEASE=4.4.0
 DISTRIB_DESCRIPTION="Cumulus Linux 4.4.0"
 ```
 
-For general information about the switch, run `net show system`, which gathers information about the switch from a number of files in the system:
+For general information about the switch, run `net show system`, which gathers information about the switch from files in the system:
 
 ```
 cumulus@switch:~$ net show system
@@ -112,9 +112,9 @@ ASIC............. Mellanox Spectrum-2 MTxxxxxx
 Ports............ 32 x 100G-QSFP28
 ...
 ```
-
+<!-- vale off -->
 ## Diagnostics Using cl-support
-
+<!-- vale on -->
 You can use `cl-support` to generate a single export file that contains various details and the configuration from a switch. This is useful for remote debugging and troubleshooting. For more information about `cl-support`, read {{<link url="Understanding-the-cl-support-Output-File">}}.
 
 Run `cl-support` before you submit a support request as this file helps in the investigation of issues.
@@ -228,9 +228,9 @@ cumulus@switch:~$ cat /etc/rsyslog.d/11-remotesyslog.conf
 action(type="omfwd" Target="192.168.0.254" Device="mgmt" Port="514" Protocol="udp")
 action(type="omfwd" Target="10.0.0.1" Device="mgmt" Port="514" Protocol="udp")
 ```
-
+<!-- vale off -->
 ### Rate-limit syslog Messages
-
+<!-- vale on -->
 If you want to limit the number of `syslog` messages that can be written to the `syslog` file from individual processes, add the following configuration to the `/etc/rsyslog.conf` file. Adjust the interval and burst values to rate-limit messages to the appropriate levels required by your environment. For more information, read the {{<exlink url="http://www.rsyslog.com/doc/v8-stable/configuration/modules/imuxsock.html" text="rsyslog documentation">}}.
 
 ```
@@ -272,9 +272,9 @@ root@leaf1:mgmt-vrf:/home/cumulus# tail -n 60 /var/log/syslog
 ```
 
 {{< /expand >}}
-
+<!-- vale off -->
 ### Harmless syslog Error: Failed to reset devices.list
-
+<!-- vale on -->
 The following message is logged to `/var/log/syslog` when you run `systemctl daemon-reload` and during system boot:
 
 ```

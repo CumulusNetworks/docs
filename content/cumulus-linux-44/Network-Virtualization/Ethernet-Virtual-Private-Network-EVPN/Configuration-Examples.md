@@ -34,6 +34,7 @@ The following images shows traffic flow between tenants. The spines and other de
 
 The NCLU commands configure traditional VXLAN devices.
 
+<!-- vale off -->
 {{< tabs "TabID35 ">}}
 {{< tab "NCLU Commands">}}
 
@@ -4329,6 +4330,7 @@ exit-address-family
 
 {{< /tab >}}
 {{< /tabs >}}
+<!-- vale on -->
 
 ## EVPN Centralized Routing
 
@@ -4348,6 +4350,7 @@ The following images shows traffic flow between tenants. The spines and other de
 
 The NCLU commands configure traditional VXLAN devices.
 
+<!-- vale off -->
 {{< tabs "TabID3059 ">}}
 {{< tab "NCLU Commands ">}}
 
@@ -8753,6 +8756,7 @@ exit-address-family
 
 {{< /tab >}}
 {{< /tabs >}}
+<!-- vale on -->
 
 ## EVPN Symmetric Routing
 
@@ -8778,6 +8782,7 @@ The following images shows traffic flow between tenants. The spines and other de
 ### NCLU Commands
 
 The NCLU commands configure traditional VXLAN devices.
+<!-- vale off -->
 
 {{< tabs "TabID5728 ">}}
 {{< tab "NCLU Commands ">}}
@@ -14999,3 +15004,4 @@ exit-address-family
 
 {{< /tab >}}
 {{< /tabs >}}
+<!-- vale on -->

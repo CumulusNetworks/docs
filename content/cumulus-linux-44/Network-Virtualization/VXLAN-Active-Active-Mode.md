@@ -17,16 +17,16 @@ toc: 3
 | exit leaf | A switch dedicated to peering the Clos network to an outside network; also referred to as a border leaf, service leaf, or edge leaf. |
 | anycast | An IP address that is advertised from multiple locations. Anycast enables multiple devices to share the same IP address and effectively load balance traffic across them. With VXLAN, anycast is used to share a VTEP IP address between a pair of MLAG switches. |
 | VXLAN routing | The industry standard term for the ability to route in and out of a VXLAN. |
-
+<!-- vale off -->
 ## Configure VXLAN Active-active Mode
-
+<!-- vale on -->
 VXLAN active-active mode requires the following underlying technologies to work correctly.
 - MLAG. Refer to {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="MLAG">}} for more detailed configuration information.
 - OSPF or BGP. Refer to {{<link url="Open-Shortest-Path-First-OSPF" text="OSPF">}} or {{<link url="Border-Gateway-Protocol-BGP" text="BGP">}} for more detailed configuration information. 
 - STP. You must enable {{<link url="Spanning-Tree-and-Rapid-Spanning-Tree-STP#bpdu-filter" text="BPDU filter">}} and {{<link url="Spanning-Tree-and-Rapid-Spanning-Tree-STP#bpdu-guard" text="BPDU guard">}} in the VXLAN interfaces if STP is enabled in the bridge that is connected to the VXLAN.
-
+<!-- vale off -->
 ### Active-active VTEP Anycast IP Behavior
-
+<!-- vale on -->
 You must provision each individual switch within an MLAG pair with a virtual IP address in the form of an anycast IP address for VXLAN data-path termination. The VXLAN termination address is an anycast IP address that you configure as a `clagd` parameter (`clagd-vxlan-anycast-ip`) under the loopback interface. `clagd` dynamically adds and removes this address as the loopback interface address as follows:
 
 1. When the switches boot up, `ifupdown2` places all VXLAN interfaces in a PROTO_DOWN state. The configured anycast addresses are not configured yet.
@@ -139,9 +139,9 @@ iface lo inet loopback
 
 {{< /tab >}}
 {{< /tabs >}}
-
+<!-- vale off -->
 ## Example VXLAN Active-Active Configuration
-
+<!-- vale on -->
 {{< img src = "/images/cumulus-linux/vxlan-active-active-example.png" >}}
 
 The VXLAN interfaces are configured with individual IP addresses, which `clagd` changes to anycast upon MLAG peering.

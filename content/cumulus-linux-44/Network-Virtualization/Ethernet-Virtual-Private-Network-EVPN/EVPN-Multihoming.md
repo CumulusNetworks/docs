@@ -290,13 +290,13 @@ interface bond3
 {{</tab>}}
 {{</tabs>}}
 
-
 ### Enable uplink Tracking
 
-When all the uplinks go down, the VTEP loses connectivity to the VXLAN overlay. To prevent traffic loss in this state, the uplinks' oper-state is tracked. When all the uplinks are down, the Ethernet segment bonds on the switch are put into a protodown or error-disabled state. An MH uplink is any routed interface where locally-encapsulated VXLAN traffic will be routed (after encapsulation) or any routed interface receiving VXLAN traffic (before decapsulation) that will be decapsulated by the local device.
+When all uplinks go down, the VTEP loses connectivity to the VXLAN overlay. To prevent traffic loss, Cumulus Linux tracks the operational state of the uplink. When all the uplinks are down, the Ethernet segment bonds on the switch are in a protodown or error-disabled state. An MH uplink is any routed interface where locally-encapsulated VXLAN traffic is routed (after encapsulation) or any routed interface receiving VXLAN traffic (before decapsulation) that is decapsulated by the local device.
+
 {{%notice info%}}
-Split-horizon and Designated-Forwarder filters are only applied to interfaces that have been configured as MH uplinks.
-If EVPN-MH is configured without MH uplinks BUM traffic may be duplicated and/or looped back to the same ES where it was received. This may cause 'mac flaps' or other issues on multihomed devices.
+Split-horizon and Designated-Forwarder filters are only applied to interfaces configured as MH uplinks.
+If you configure EVPN-MH without MH uplinks, BUM traffic might be duplicated or looped back to the same ES where it is received. This can cause MAC flaps or other issues on multihomed devices.
 {{%/notice%}}
 
 {{<tabs "upink tracking">}}
@@ -397,7 +397,6 @@ interface swp4
 
 {{</tab>}}
 {{</tabs>}}
-
 
 ## Optional EVPN MH Configuration
 
@@ -573,7 +572,6 @@ evpn mh startup-delay 1800
 
 {{</tab>}}
 {{</tabs>}}
-
 
 ### Enable FRR Debugging
 

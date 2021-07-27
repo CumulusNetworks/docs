@@ -1256,15 +1256,22 @@ To remove a breakout port:
 {{< /tab >}}
 {{< tab "NVUE Commands ">}}
 
-Run the `nv unset interface <interface>` command. For example:
+1. Run the `nv unset interface <interface>` command. For example:
 
-    ```
-    cumulus@switch:~$ nv unset interface swp1s0
-    cumulus@switch:~$ nv unset interface swp1s1
-    cumulus@switch:~$ nv unset interface swp1s2
-    cumulus@switch:~$ nv unset interface swp1s3
-    cumulus@switch:~$ nv config apply
-    ```
+   ```
+   cumulus@switch:~$ nv unset interface swp1s0
+   cumulus@switch:~$ nv unset interface swp1s1
+   cumulus@switch:~$ nv unset interface swp1s2
+   cumulus@switch:~$ nv unset interface swp1s3
+   cumulus@switch:~$ nv config apply
+   ```
+
+2. Run the `nv unset interface <interface> link breakout` command to configure the interface for the original speed. For example:
+
+   ```
+   cumulus@switch:~$ nv unset interface swp1 link breakout
+   cumulus@switch:~$ nv config apply
+   ```
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}

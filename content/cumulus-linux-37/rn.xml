@@ -89,6 +89,18 @@ To work around this issue, run the apt-get upgrade command again and reboot the 
 <td></td>
 </tr>
 <tr>
+<td>2736265</td>
+<td>After an apt upgrade, the OPTIONS configuration line in {{/etc/default/isc-dhcp-relay}} might be removed. To work around this issue, reconfigure the desired options in the file after the upgrade completes.</td>
+<td>3.7.12-3.7.15, 4.2.1-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2736260</td>
+<td>After an apt upgrade, the OPTIONS configuration line in {{/etc/default/isc-dhcp-relay}} might be removed. To work around this issue, reconfigure the desired options in the file after the upgrade completes.</td>
+<td>3.7.12-3.7.15, 4.2.1-4.4.0</td>
+<td></td>
+</tr>
+<tr>
 <td>2728207</td>
 <td>CVE-2021-3570: A flaw was found in the ptp4l program of the linuxptp package. A missing length check when forwarding a PTP message between ports allows a remote attacker to cause an information leak, crash, or potentially remote code execution. The highest threat from this vulnerability is to data confidentiality and integrity as well as system availability. </td>
 <td>3.7.0-3.7.15, 4.0.0-4.4.0</td>
@@ -368,6 +380,12 @@ Fixed: 6.8.9.9-5+deb8u24</td>
 <td>When you delete a static route using NCLU, the configuration is not deleted from the running configuration or from the {{/etc/frr/frr.conf}} file. </td>
 <td>3.7.13-3.7.15</td>
 <td></td>
+</tr>
+<tr>
+<td>2628693</td>
+<td>After an apt upgrade, the OPTIONS configuration line in {{/etc/default/isc-dhcp-relay}} might be removed. To work around this issue, reconfigure the desired options in the file after the upgrade completes.</td>
+<td>3.7.12-4.3.0</td>
+<td>4.4.0</td>
 </tr>
 <tr>
 <td>2607965</td>
@@ -1011,8 +1029,9 @@ bq. systemd[1]: switchd.service watchdog timeout (limit 2min)!
 
 To workaround this issue, either reduce the number of configured interfaces and, or VLANs, or increase the {{systemd}} timeout for {{switchd.service}}.
 To increase the {{systemd}} timeout:
-1. Edit the {{/etc/systemd/system/switchd.service.d/override.conf}} file and increase the {{WatchdogSec}} parameter.
-2. Restart the {{switchd}} service with the {{sudo systemctl restart switchd.service}} command.
+
+1.Edit the {{/etc/systemd/system/switchd.service.d/override.conf}} file and increase the {{WatchdogSec}} parameter.
+2.Restart the {{switchd}} service with the {{sudo systemctl restart switchd.service}} command.
 {{systemd}} attempts to restart the {{switchd}} service automatically (after the watchdog timeout). If the restart fails multiple times in a short time period, run the {{sudo systemctl reset-failed}} command followed by the {{sudo systemctl restart switchd}} command.</td>
 <td>3.7.11-3.7.15, 4.0.0-4.4.0</td>
 <td></td>
@@ -2241,6 +2260,18 @@ To work around this issue, run the apt-get upgrade command again and reboot the 
 <td></td>
 </tr>
 <tr>
+<td>2736265</td>
+<td>After an apt upgrade, the OPTIONS configuration line in {{/etc/default/isc-dhcp-relay}} might be removed. To work around this issue, reconfigure the desired options in the file after the upgrade completes.</td>
+<td>3.7.12-3.7.15, 4.2.1-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2736260</td>
+<td>After an apt upgrade, the OPTIONS configuration line in {{/etc/default/isc-dhcp-relay}} might be removed. To work around this issue, reconfigure the desired options in the file after the upgrade completes.</td>
+<td>3.7.12-3.7.15, 4.2.1-4.4.0</td>
+<td></td>
+</tr>
+<tr>
 <td>2728207</td>
 <td>CVE-2021-3570: A flaw was found in the ptp4l program of the linuxptp package. A missing length check when forwarding a PTP message between ports allows a remote attacker to cause an information leak, crash, or potentially remote code execution. The highest threat from this vulnerability is to data confidentiality and integrity as well as system availability. </td>
 <td>3.7.0-3.7.15, 4.0.0-4.4.0</td>
@@ -2506,6 +2537,12 @@ Vulnerable: &lt;= 1.4.4-2+deb8u2
 Fixed: 1.4.4-2+deb8u3</td>
 <td>3.7.0-3.7.14.2</td>
 <td>3.7.15</td>
+</tr>
+<tr>
+<td>2628693</td>
+<td>After an apt upgrade, the OPTIONS configuration line in {{/etc/default/isc-dhcp-relay}} might be removed. To work around this issue, reconfigure the desired options in the file after the upgrade completes.</td>
+<td>3.7.12-4.3.0</td>
+<td>4.4.0</td>
 </tr>
 <tr>
 <td>2628513</td>
@@ -3576,8 +3613,9 @@ bq. systemd[1]: switchd.service watchdog timeout (limit 2min)!
 
 To workaround this issue, either reduce the number of configured interfaces and, or VLANs, or increase the {{systemd}} timeout for {{switchd.service}}.
 To increase the {{systemd}} timeout:
-1. Edit the {{/etc/systemd/system/switchd.service.d/override.conf}} file and increase the {{WatchdogSec}} parameter.
-2. Restart the {{switchd}} service with the {{sudo systemctl restart switchd.service}} command.
+
+1.Edit the {{/etc/systemd/system/switchd.service.d/override.conf}} file and increase the {{WatchdogSec}} parameter.
+2.Restart the {{switchd}} service with the {{sudo systemctl restart switchd.service}} command.
 {{systemd}} attempts to restart the {{switchd}} service automatically (after the watchdog timeout). If the restart fails multiple times in a short time period, run the {{sudo systemctl reset-failed}} command followed by the {{sudo systemctl restart switchd}} command.</td>
 <td>3.7.11-3.7.15, 4.0.0-4.4.0</td>
 <td></td>
@@ -4435,6 +4473,18 @@ To work around this issue, run the apt-get upgrade command again and reboot the 
 <td></td>
 </tr>
 <tr>
+<td>2736265</td>
+<td>After an apt upgrade, the OPTIONS configuration line in {{/etc/default/isc-dhcp-relay}} might be removed. To work around this issue, reconfigure the desired options in the file after the upgrade completes.</td>
+<td>3.7.12-3.7.15, 4.2.1-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2736260</td>
+<td>After an apt upgrade, the OPTIONS configuration line in {{/etc/default/isc-dhcp-relay}} might be removed. To work around this issue, reconfigure the desired options in the file after the upgrade completes.</td>
+<td>3.7.12-3.7.15, 4.2.1-4.4.0</td>
+<td></td>
+</tr>
+<tr>
 <td>2728207</td>
 <td>CVE-2021-3570: A flaw was found in the ptp4l program of the linuxptp package. A missing length check when forwarding a PTP message between ports allows a remote attacker to cause an information leak, crash, or potentially remote code execution. The highest threat from this vulnerability is to data confidentiality and integrity as well as system availability. </td>
 <td>3.7.0-3.7.15, 4.0.0-4.4.0</td>
@@ -4689,6 +4739,12 @@ Vulnerable: &lt;= 1.4.4-2+deb8u2
 Fixed: 1.4.4-2+deb8u3</td>
 <td>3.7.0-3.7.14.2</td>
 <td>3.7.15</td>
+</tr>
+<tr>
+<td>2628693</td>
+<td>After an apt upgrade, the OPTIONS configuration line in {{/etc/default/isc-dhcp-relay}} might be removed. To work around this issue, reconfigure the desired options in the file after the upgrade completes.</td>
+<td>3.7.12-4.3.0</td>
+<td>4.4.0</td>
 </tr>
 <tr>
 <td>2628513</td>
@@ -5809,8 +5865,9 @@ bq. systemd[1]: switchd.service watchdog timeout (limit 2min)!
 
 To workaround this issue, either reduce the number of configured interfaces and, or VLANs, or increase the {{systemd}} timeout for {{switchd.service}}.
 To increase the {{systemd}} timeout:
-1. Edit the {{/etc/systemd/system/switchd.service.d/override.conf}} file and increase the {{WatchdogSec}} parameter.
-2. Restart the {{switchd}} service with the {{sudo systemctl restart switchd.service}} command.
+
+1.Edit the {{/etc/systemd/system/switchd.service.d/override.conf}} file and increase the {{WatchdogSec}} parameter.
+2.Restart the {{switchd}} service with the {{sudo systemctl restart switchd.service}} command.
 {{systemd}} attempts to restart the {{switchd}} service automatically (after the watchdog timeout). If the restart fails multiple times in a short time period, run the {{sudo systemctl reset-failed}} command followed by the {{sudo systemctl restart switchd}} command.</td>
 <td>3.7.11-3.7.15, 4.0.0-4.4.0</td>
 <td></td>
@@ -7185,6 +7242,18 @@ To work around this issue, run the apt-get upgrade command again and reboot the 
 <td></td>
 </tr>
 <tr>
+<td>2736265</td>
+<td>After an apt upgrade, the OPTIONS configuration line in {{/etc/default/isc-dhcp-relay}} might be removed. To work around this issue, reconfigure the desired options in the file after the upgrade completes.</td>
+<td>3.7.12-3.7.15, 4.2.1-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2736260</td>
+<td>After an apt upgrade, the OPTIONS configuration line in {{/etc/default/isc-dhcp-relay}} might be removed. To work around this issue, reconfigure the desired options in the file after the upgrade completes.</td>
+<td>3.7.12-3.7.15, 4.2.1-4.4.0</td>
+<td></td>
+</tr>
+<tr>
 <td>2728207</td>
 <td>CVE-2021-3570: A flaw was found in the ptp4l program of the linuxptp package. A missing length check when forwarding a PTP message between ports allows a remote attacker to cause an information leak, crash, or potentially remote code execution. The highest threat from this vulnerability is to data confidentiality and integrity as well as system availability. </td>
 <td>3.7.0-3.7.15, 4.0.0-4.4.0</td>
@@ -7414,6 +7483,12 @@ Vulnerable: &lt;= 1.4.4-2+deb8u2
 Fixed: 1.4.4-2+deb8u3</td>
 <td>3.7.0-3.7.14.2</td>
 <td>3.7.15</td>
+</tr>
+<tr>
+<td>2628693</td>
+<td>After an apt upgrade, the OPTIONS configuration line in {{/etc/default/isc-dhcp-relay}} might be removed. To work around this issue, reconfigure the desired options in the file after the upgrade completes.</td>
+<td>3.7.12-4.3.0</td>
+<td>4.4.0</td>
 </tr>
 <tr>
 <td>2617009</td>
@@ -8743,8 +8818,9 @@ bq. systemd[1]: switchd.service watchdog timeout (limit 2min)!
 
 To workaround this issue, either reduce the number of configured interfaces and, or VLANs, or increase the {{systemd}} timeout for {{switchd.service}}.
 To increase the {{systemd}} timeout:
-1. Edit the {{/etc/systemd/system/switchd.service.d/override.conf}} file and increase the {{WatchdogSec}} parameter.
-2. Restart the {{switchd}} service with the {{sudo systemctl restart switchd.service}} command.
+
+1.Edit the {{/etc/systemd/system/switchd.service.d/override.conf}} file and increase the {{WatchdogSec}} parameter.
+2.Restart the {{switchd}} service with the {{sudo systemctl restart switchd.service}} command.
 {{systemd}} attempts to restart the {{switchd}} service automatically (after the watchdog timeout). If the restart fails multiple times in a short time period, run the {{sudo systemctl reset-failed}} command followed by the {{sudo systemctl restart switchd}} command.</td>
 <td>3.7.11-3.7.15, 4.0.0-4.4.0</td>
 <td></td>
@@ -10128,6 +10204,18 @@ To work around this issue, run the apt-get upgrade command again and reboot the 
 <td></td>
 </tr>
 <tr>
+<td>2736265</td>
+<td>After an apt upgrade, the OPTIONS configuration line in {{/etc/default/isc-dhcp-relay}} might be removed. To work around this issue, reconfigure the desired options in the file after the upgrade completes.</td>
+<td>3.7.12-3.7.15, 4.2.1-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2736260</td>
+<td>After an apt upgrade, the OPTIONS configuration line in {{/etc/default/isc-dhcp-relay}} might be removed. To work around this issue, reconfigure the desired options in the file after the upgrade completes.</td>
+<td>3.7.12-3.7.15, 4.2.1-4.4.0</td>
+<td></td>
+</tr>
+<tr>
 <td>2728207</td>
 <td>CVE-2021-3570: A flaw was found in the ptp4l program of the linuxptp package. A missing length check when forwarding a PTP message between ports allows a remote attacker to cause an information leak, crash, or potentially remote code execution. The highest threat from this vulnerability is to data confidentiality and integrity as well as system availability. </td>
 <td>3.7.0-3.7.15, 4.0.0-4.4.0</td>
@@ -10345,6 +10433,12 @@ Vulnerable: &lt;= 1.4.4-2+deb8u2
 Fixed: 1.4.4-2+deb8u3</td>
 <td>3.7.0-3.7.14.2</td>
 <td>3.7.15</td>
+</tr>
+<tr>
+<td>2628693</td>
+<td>After an apt upgrade, the OPTIONS configuration line in {{/etc/default/isc-dhcp-relay}} might be removed. To work around this issue, reconfigure the desired options in the file after the upgrade completes.</td>
+<td>3.7.12-4.3.0</td>
+<td>4.4.0</td>
 </tr>
 <tr>
 <td>2617009</td>
@@ -11809,8 +11903,9 @@ bq. systemd[1]: switchd.service watchdog timeout (limit 2min)!
 
 To workaround this issue, either reduce the number of configured interfaces and, or VLANs, or increase the {{systemd}} timeout for {{switchd.service}}.
 To increase the {{systemd}} timeout:
-1. Edit the {{/etc/systemd/system/switchd.service.d/override.conf}} file and increase the {{WatchdogSec}} parameter.
-2. Restart the {{switchd}} service with the {{sudo systemctl restart switchd.service}} command.
+
+1.Edit the {{/etc/systemd/system/switchd.service.d/override.conf}} file and increase the {{WatchdogSec}} parameter.
+2.Restart the {{switchd}} service with the {{sudo systemctl restart switchd.service}} command.
 {{systemd}} attempts to restart the {{switchd}} service automatically (after the watchdog timeout). If the restart fails multiple times in a short time period, run the {{sudo systemctl reset-failed}} command followed by the {{sudo systemctl restart switchd}} command.</td>
 <td>3.7.11-3.7.15, 4.0.0-4.4.0</td>
 <td></td>
@@ -13839,8 +13934,9 @@ bq. systemd[1]: switchd.service watchdog timeout (limit 2min)!
 
 To workaround this issue, either reduce the number of configured interfaces and, or VLANs, or increase the {{systemd}} timeout for {{switchd.service}}.
 To increase the {{systemd}} timeout:
-1. Edit the {{/etc/systemd/system/switchd.service.d/override.conf}} file and increase the {{WatchdogSec}} parameter.
-2. Restart the {{switchd}} service with the {{sudo systemctl restart switchd.service}} command.
+
+1.Edit the {{/etc/systemd/system/switchd.service.d/override.conf}} file and increase the {{WatchdogSec}} parameter.
+2.Restart the {{switchd}} service with the {{sudo systemctl restart switchd.service}} command.
 {{systemd}} attempts to restart the {{switchd}} service automatically (after the watchdog timeout). If the restart fails multiple times in a short time period, run the {{sudo systemctl reset-failed}} command followed by the {{sudo systemctl restart switchd}} command.</td>
 <td>3.7.11-3.7.15, 4.0.0-4.4.0</td>
 <td></td>

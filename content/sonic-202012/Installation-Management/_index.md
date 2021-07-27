@@ -13,11 +13,11 @@ This topic describes installing SONiC onto an {{<exlink url="https://opencompute
 
 The installation uses {{<exlink url="https://opencomputeproject.github.io/onie/user-guide/index.html" text="ONIE">}}, the Open Network Install Environment, which is a boot loader for installing open network operating systems.
 
-The NVIDIA Mellanox install images are available {{<exlink url="https://sonic-jenkins.westus2.cloudapp.azure.com/job/mellanox/job/buildimage-mlnx-all/" text="here">}}. Once you download the image, you can install SONiC from a USB drive or over the network.
+The NVIDIA Mellanox install images are available through your NVIDIA sales team. Once you get the image, you can install SONiC from a USB drive or over the network.
 
 {{%notice tip%}}
 
-If you need to build your own Pure (vendor independent) SONiC image, read this post on the {{<exlink url="https://developer.nvidia.com/blog/building-pure-sonic-image/" text="NVIDIA developer blog">}}.
+If you need more control over the install image, you can build your own Pure (vendor independent) SONiC image. {{<exlink url="https://sonic-build.azurewebsites.net/ui/sonic/pipelines" text="Download an image">}} that is automatically built from the SONiC development pipeline, then read this post from the NVIDIA developer blog on {{<exlink url="https://developer.nvidia.com/blog/building-pure-sonic-image/" text="how to build it">}}.
 
 {{%/notice%}}
 

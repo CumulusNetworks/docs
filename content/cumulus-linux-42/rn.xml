@@ -68,6 +68,18 @@ To work around this issue, configure the new BGP neighbors with vtysh.</td>
 <td></td>
 </tr>
 <tr>
+<td>2736265</td>
+<td>After an apt upgrade, the OPTIONS configuration line in {{/etc/default/isc-dhcp-relay}} might be removed. To work around this issue, reconfigure the desired options in the file after the upgrade completes.</td>
+<td>3.7.12-3.7.15, 4.2.1-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2736260</td>
+<td>After an apt upgrade, the OPTIONS configuration line in {{/etc/default/isc-dhcp-relay}} might be removed. To work around this issue, reconfigure the desired options in the file after the upgrade completes.</td>
+<td>3.7.12-3.7.15, 4.2.1-4.4.0</td>
+<td></td>
+</tr>
+<tr>
 <td>2734126</td>
 <td>CVE-2021-33910: The Qualys Research Labs discovered that an attacker-controlled allocation using the alloca() function could result in memory
 corruption, allowing to crash systemd and hence the entire operating system.  Details can be found at https://www.qualys.com/2021/07/20/cve-2021-33910/denial-of-service-systemd.txt .
@@ -170,19 +182,11 @@ Vulnerable: &lt;= 1.0.184-2+cl4.3.0u1</td>
 <td></td>
 </tr>
 <tr>
-<td>2682973</td>
+<td>2682971</td>
 <td>CVE-2020-12762: integer overflow in the json-c JSON library, which could result in denial of service or potentially the execution of arbitrary code if large malformed JSON files are processed.
 Vulnerable: 0.12.2+cl4u1</td>
 <td>4.0.0-4.4.0</td>
 <td></td>
-</tr>
-<tr>
-<td>2682971</td>
-<td>CVE-2020-12762: integer overflow in the json-c JSON library, which could result in denial of service or potentially the execution of arbitrary code if large malformed JSON files are processed.
-Vulnerable: 0.12.2+cl4u1
-Fixed: 0.12.2+cl4.4.0u1</td>
-<td>4.0.0-4.3.0</td>
-<td>4.4.0</td>
 </tr>
 <tr>
 <td>2682780</td>
@@ -321,6 +325,12 @@ Vulnerable: 1.14.4-2
 Fixed: 1.14.4-2+deb10u1</td>
 <td>4.0.0-4.4.0</td>
 <td></td>
+</tr>
+<tr>
+<td>2628693</td>
+<td>After an apt upgrade, the OPTIONS configuration line in {{/etc/default/isc-dhcp-relay}} might be removed. To work around this issue, reconfigure the desired options in the file after the upgrade completes.</td>
+<td>3.7.12-4.3.0</td>
+<td>4.4.0</td>
 </tr>
 <tr>
 <td>2617000</td>
@@ -550,8 +560,8 @@ To work around this issue, manually create an ACL in the {{/etc/cumulus/acl/poli
 </tr>
 <tr>
 <td>2556353</td>
-<td>In vtysh you can enable and disable debugs from either exec mode or global configuration mode (config t). When disabling OSPF debugs from exec mode, the debug is disabled at runtime but left in the running-configuration.
-To work around this issue, disable OSPF debugs from global configuration mode (config t).</td>
+<td>You can enable and disable debugs from either exec mode or global configuration mode (config t) in vtysh. When disabling OSPF debugs from exec mode, the debug is disabled at runtime but left in the running configuration.
+To work around this issue, disable OSPF debugs from global configuration mode.</td>
 <td>4.2.1-4.4.0</td>
 <td></td>
 </tr>
@@ -1219,8 +1229,9 @@ bq. systemd[1]: switchd.service watchdog timeout (limit 2min)!
 
 To workaround this issue, either reduce the number of configured interfaces and, or VLANs, or increase the {{systemd}} timeout for {{switchd.service}}.
 To increase the {{systemd}} timeout:
-1. Edit the {{/etc/systemd/system/switchd.service.d/override.conf}} file and increase the {{WatchdogSec}} parameter.
-2. Restart the {{switchd}} service with the {{sudo systemctl restart switchd.service}} command.
+
+1.Edit the {{/etc/systemd/system/switchd.service.d/override.conf}} file and increase the {{WatchdogSec}} parameter.
+2.Restart the {{switchd}} service with the {{sudo systemctl restart switchd.service}} command.
 {{systemd}} attempts to restart the {{switchd}} service automatically (after the watchdog timeout). If the restart fails multiple times in a short time period, run the {{sudo systemctl reset-failed}} command followed by the {{sudo systemctl restart switchd}} command.</td>
 <td>3.7.11-3.7.15, 4.0.0-4.4.0</td>
 <td></td>
@@ -1886,6 +1897,18 @@ To work around this issue, when you create a new virtual interface, set net.ipv6
 <td></td>
 </tr>
 <tr>
+<td>2736265</td>
+<td>After an apt upgrade, the OPTIONS configuration line in {{/etc/default/isc-dhcp-relay}} might be removed. To work around this issue, reconfigure the desired options in the file after the upgrade completes.</td>
+<td>3.7.12-3.7.15, 4.2.1-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2736260</td>
+<td>After an apt upgrade, the OPTIONS configuration line in {{/etc/default/isc-dhcp-relay}} might be removed. To work around this issue, reconfigure the desired options in the file after the upgrade completes.</td>
+<td>3.7.12-3.7.15, 4.2.1-4.4.0</td>
+<td></td>
+</tr>
+<tr>
 <td>2734126</td>
 <td>CVE-2021-33910: The Qualys Research Labs discovered that an attacker-controlled allocation using the alloca() function could result in memory
 corruption, allowing to crash systemd and hence the entire operating system.  Details can be found at https://www.qualys.com/2021/07/20/cve-2021-33910/denial-of-service-systemd.txt .
@@ -1988,19 +2011,11 @@ Vulnerable: &lt;= 1.0.184-2+cl4.3.0u1</td>
 <td></td>
 </tr>
 <tr>
-<td>2682973</td>
+<td>2682971</td>
 <td>CVE-2020-12762: integer overflow in the json-c JSON library, which could result in denial of service or potentially the execution of arbitrary code if large malformed JSON files are processed.
 Vulnerable: 0.12.2+cl4u1</td>
 <td>4.0.0-4.4.0</td>
 <td></td>
-</tr>
-<tr>
-<td>2682971</td>
-<td>CVE-2020-12762: integer overflow in the json-c JSON library, which could result in denial of service or potentially the execution of arbitrary code if large malformed JSON files are processed.
-Vulnerable: 0.12.2+cl4u1
-Fixed: 0.12.2+cl4.4.0u1</td>
-<td>4.0.0-4.3.0</td>
-<td>4.4.0</td>
 </tr>
 <tr>
 <td>2682780</td>
@@ -2139,6 +2154,12 @@ Vulnerable: 1.14.4-2
 Fixed: 1.14.4-2+deb10u1</td>
 <td>4.0.0-4.4.0</td>
 <td></td>
+</tr>
+<tr>
+<td>2628693</td>
+<td>After an apt upgrade, the OPTIONS configuration line in {{/etc/default/isc-dhcp-relay}} might be removed. To work around this issue, reconfigure the desired options in the file after the upgrade completes.</td>
+<td>3.7.12-4.3.0</td>
+<td>4.4.0</td>
 </tr>
 <tr>
 <td>2617000</td>
@@ -2368,8 +2389,8 @@ To work around this issue, manually create an ACL in the {{/etc/cumulus/acl/poli
 </tr>
 <tr>
 <td>2556353</td>
-<td>In vtysh you can enable and disable debugs from either exec mode or global configuration mode (config t). When disabling OSPF debugs from exec mode, the debug is disabled at runtime but left in the running-configuration.
-To work around this issue, disable OSPF debugs from global configuration mode (config t).</td>
+<td>You can enable and disable debugs from either exec mode or global configuration mode (config t) in vtysh. When disabling OSPF debugs from exec mode, the debug is disabled at runtime but left in the running configuration.
+To work around this issue, disable OSPF debugs from global configuration mode.</td>
 <td>4.2.1-4.4.0</td>
 <td></td>
 </tr>
@@ -3617,8 +3638,9 @@ bq. systemd[1]: switchd.service watchdog timeout (limit 2min)!
 
 To workaround this issue, either reduce the number of configured interfaces and, or VLANs, or increase the {{systemd}} timeout for {{switchd.service}}.
 To increase the {{systemd}} timeout:
-1. Edit the {{/etc/systemd/system/switchd.service.d/override.conf}} file and increase the {{WatchdogSec}} parameter.
-2. Restart the {{switchd}} service with the {{sudo systemctl restart switchd.service}} command.
+
+1.Edit the {{/etc/systemd/system/switchd.service.d/override.conf}} file and increase the {{WatchdogSec}} parameter.
+2.Restart the {{switchd}} service with the {{sudo systemctl restart switchd.service}} command.
 {{systemd}} attempts to restart the {{switchd}} service automatically (after the watchdog timeout). If the restart fails multiple times in a short time period, run the {{sudo systemctl reset-failed}} command followed by the {{sudo systemctl restart switchd}} command.</td>
 <td>3.7.11-3.7.15, 4.0.0-4.4.0</td>
 <td></td>
@@ -4699,19 +4721,11 @@ Vulnerable: &lt;= 1.0.184-2+cl4.3.0u1</td>
 <td></td>
 </tr>
 <tr>
-<td>2682973</td>
+<td>2682971</td>
 <td>CVE-2020-12762: integer overflow in the json-c JSON library, which could result in denial of service or potentially the execution of arbitrary code if large malformed JSON files are processed.
 Vulnerable: 0.12.2+cl4u1</td>
 <td>4.0.0-4.4.0</td>
 <td></td>
-</tr>
-<tr>
-<td>2682971</td>
-<td>CVE-2020-12762: integer overflow in the json-c JSON library, which could result in denial of service or potentially the execution of arbitrary code if large malformed JSON files are processed.
-Vulnerable: 0.12.2+cl4u1
-Fixed: 0.12.2+cl4.4.0u1</td>
-<td>4.0.0-4.3.0</td>
-<td>4.4.0</td>
 </tr>
 <tr>
 <td>2682780</td>
@@ -4843,6 +4857,12 @@ Vulnerable: 1.14.4-2
 Fixed: 1.14.4-2+deb10u1</td>
 <td>4.0.0-4.4.0</td>
 <td></td>
+</tr>
+<tr>
+<td>2628693</td>
+<td>After an apt upgrade, the OPTIONS configuration line in {{/etc/default/isc-dhcp-relay}} might be removed. To work around this issue, reconfigure the desired options in the file after the upgrade completes.</td>
+<td>3.7.12-4.3.0</td>
+<td>4.4.0</td>
 </tr>
 <tr>
 <td>2617000</td>
@@ -6408,8 +6428,9 @@ bq. systemd[1]: switchd.service watchdog timeout (limit 2min)!
 
 To workaround this issue, either reduce the number of configured interfaces and, or VLANs, or increase the {{systemd}} timeout for {{switchd.service}}.
 To increase the {{systemd}} timeout:
-1. Edit the {{/etc/systemd/system/switchd.service.d/override.conf}} file and increase the {{WatchdogSec}} parameter.
-2. Restart the {{switchd}} service with the {{sudo systemctl restart switchd.service}} command.
+
+1.Edit the {{/etc/systemd/system/switchd.service.d/override.conf}} file and increase the {{WatchdogSec}} parameter.
+2.Restart the {{switchd}} service with the {{sudo systemctl restart switchd.service}} command.
 {{systemd}} attempts to restart the {{switchd}} service automatically (after the watchdog timeout). If the restart fails multiple times in a short time period, run the {{sudo systemctl reset-failed}} command followed by the {{sudo systemctl restart switchd}} command.</td>
 <td>3.7.11-3.7.15, 4.0.0-4.4.0</td>
 <td></td>

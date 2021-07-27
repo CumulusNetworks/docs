@@ -455,12 +455,13 @@ This section describes how to configure ERSPAN.
      69  6804 ERSPAN     all  --  swp1   any     anywhere      anywhere       ERSPAN src-ip:10.0.0.1 dst-ip:10.10.10.234
      ```
 
-The `src-ip` option can be any IP address, even if it does not exist in the routing table. The `dst-ip` option must be an IP address reachable through the routing table. The destination IP address must be reachable from a front-panel port; not the management port. Use `ping` or `ip route get <ip>` to verify that the destination IP address is reachable. Setting the `--ttl` option is recommended.
+- `src-ip` can be any IP address, even if it does not exist in the routing table.
+- `dst-ip` must be an IP address reachable through the routing table and front-panel port (not the management port) or SVI. Use ping or ip route get <ip> to verify that the destination IP address is reachable. Setting the --ttl option is recommended.
 
-If a SPAN destination IP address is not available, or if the interface type prevents using a laptop as a SPAN destination, refer to [knowledge base article]({{<ref "/knowledge-base/Configuration-and-Usage/Administration/Configure-ERSPAN-to-a-Cumulus-Linux-Switch" >}}).
+If a SPAN destination IP address is not available, or if the interface type prevents you from using a laptop as a SPAN destination, refer to [knowledge base article]({{<ref "/knowledge-base/Configuration-and-Usage/Administration/Configure-ERSPAN-to-a-Cumulus-Linux-Switch" >}}).
 
 {{%notice note%}}
-- When using {{<exlink url="https://www.wireshark.org" text="Wireshark">}} to review the ERSPAN output, Wireshark might report the message "Unknown version, please report or test to use fake ERSPAN preference" and the trace is unreadable. To resolve this issue, go to the General preferences for Wireshark, then go to **Protocols \ ERSPAN** and check the **Force to decode fake ERSPAN frame** option.
+- If you use {{<exlink url="https://www.wireshark.org" text="Wireshark">}} to review the ERSPAN output, you might see the Wireshark error message `Unknown version, please report or test to use fake ERSPAN preference` and the trace might be unreadable. To resolve this issue, go to **Protocols \ ERSPAN** from the Wireshark General preferences and check the **Force to decode fake ERSPAN frame** option.
 - To set up a {{<exlink url="https://www.wireshark.org/docs/wsug_html_chunked/ChCapCaptureFilterSection.html" text="capture filter">}} on the destination switch that filters for a specific IP protocol, use `ip.proto == 47` to filter for GRE-encapsulated (IP protocol 47) traffic.
 {{%/notice%}}
 

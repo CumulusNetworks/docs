@@ -84,6 +84,7 @@ To configure EVPN-MH:
 1. Enable EVPN multihoming.
 2. Set the Ethernet segment ID.
 3. Set the Ethernet segment system MAC address.
+4. Configure multihoming uplinks.
 
 These settings are applied to interfaces, typically bonds.
 
@@ -289,6 +290,114 @@ interface bond3
 {{</tab>}}
 {{</tabs>}}
 
+### Enable uplink Tracking
+
+When all uplinks go down, the VTEP loses connectivity to the VXLAN overlay. To prevent traffic loss, Cumulus Linux tracks the operational state of the uplink. When all the uplinks are down, the Ethernet segment bonds on the switch are in a protodown or error-disabled state. An MH uplink is any routed interface where locally-encapsulated VXLAN traffic is routed (after encapsulation) or any routed interface receiving VXLAN traffic (before decapsulation) that is decapsulated by the local device.
+
+{{%notice info%}}
+Split-horizon and Designated-Forwarder filters are only applied to interfaces configured as MH uplinks.
+If you configure EVPN-MH without MH uplinks, BUM traffic might be duplicated or looped back to the same ES where it is received. This can cause MAC flaps or other issues on multihomed devices.
+{{%/notice%}}
+
+{{<tabs "upink tracking">}}
+{{<tab "NCLU Commands">}}
+
+```
+cumulus@leaf01:~$ net add interface swp1-4 evpn mh uplink
+cumulus@leaf01:~$ net add interface swp1-4 pim
+cumulus@leaf01:~$ net pending
+cumulus@leaf01:~$ net commit
+```
+
+The NCLU commands create the following configuration in the `/etc/frr/frr.conf` file:
+
+```
+cumulus@leaf01:~$ sudo cat /etc/frr/frr.conf
+...
+!
+interface swp1
+ evpn mh uplink
+!
+interface swp2
+ evpn mh uplink
+!
+interface swp3
+ evpn mh uplink
+!
+interface swp4
+ evpn mh uplink
+!
+...
+```
+
+{{</tab>}}
+{{<tab "NVUE Commands">}}
+
+```
+cumulus@leaf01:~$ nv set interface swp51-54 evpn multihoming uplink on
+cumulus@leaf01:~$ nv config apply
+```
+
+If you are configuring EVPN multihoming with EVPN-PIM, be sure to configure PIM on the interfaces.
+
+The NVUE Commands create the following configuration snippet in the `/etc/nvue.d/startup.yaml` file:
+
+```
+cumulus@leaf01:~$ sudo cat /etc/nvue.d/startup.yaml
+```
+
+{{</tab>}}
+{{<tab "vtysh Commands">}}
+
+```
+cumulus@leaf01:~$ sudo vtysh
+
+Hello, this is FRRouting (version 7.4+cl4u1).
+Copyright 1996-2005 Kunihiro Ishiguro, et al.
+
+leaf01# configure terminal
+leaf01(config)# interface swp51
+leaf01(config-if)# evpn mh uplink
+leaf01(config-if)# exit
+leaf01(config)# interface swp52
+leaf01(config-if)# evpn mh uplink
+leaf01(config-if)# exit
+leaf01(config)# interface swp53
+leaf01(config-if)# evpn mh uplink
+leaf01(config-if)# exit
+leaf01(config)# interface swp54
+leaf01(config-if)# evpn mh uplink
+leaf01(config-if)# exit
+leaf01(config)# write memory
+leaf01(config)# exit
+leaf01# exit
+cumulus@leaf01:~$
+```
+
+The vtysh commands create the following configuration in the `/etc/frr/frr.conf` file:
+
+```
+cumulus@leaf01:~$ sudo cat /etc/frr/frr.conf
+...
+!
+interface swp1
+ evpn mh uplink
+!
+interface swp2
+ evpn mh uplink
+!
+interface swp3
+ evpn mh uplink
+!
+interface swp4
+ evpn mh uplink
+!
+...
+```
+
+{{</tab>}}
+{{</tabs>}}
+
 ## Optional EVPN MH Configuration
 
 ### Global Settings
@@ -459,109 +568,6 @@ The vtysh commands create the following configuration in the `/etc/frr/frr.conf`
 cumulus@leaf01:~$ sudo cat /etc/frr/frr.conf
 ...
 evpn mh startup-delay 1800
-```
-
-{{</tab>}}
-{{</tabs>}}
-
-### Enable uplink Tracking
-
-When all the uplinks go down, the VTEP loses connectivity to the VXLAN overlay. To prevent traffic loss in this state, the uplinks' oper-state is tracked. When all the uplinks are down, the Ethernet segment bonds on the switch are put into a protodown or error-disabled state. You can configure a link as an MH uplink to enable this tracking.
-
-{{<tabs "upink tracking">}}
-{{<tab "NCLU Commands">}}
-
-```
-cumulus@leaf01:~$ net add interface swp1-4 evpn mh uplink
-cumulus@leaf01:~$ net add interface swp1-4 pim
-cumulus@leaf01:~$ net pending
-cumulus@leaf01:~$ net commit
-```
-
-The NCLU commands create the following configuration in the `/etc/frr/frr.conf` file:
-
-```
-cumulus@leaf01:~$ sudo cat /etc/frr/frr.conf
-...
-!
-interface swp1
- evpn mh uplink
-!
-interface swp2
- evpn mh uplink
-!
-interface swp3
- evpn mh uplink
-!
-interface swp4
- evpn mh uplink
-!
-...
-```
-
-{{</tab>}}
-{{<tab "NVUE Commands">}}
-
-```
-cumulus@leaf01:~$ nv set interface swp51-54 evpn multihoming uplink on
-cumulus@leaf01:~$ nv config apply
-```
-
-If you are configuring EVPN multihoming with EVPN-PIM, be sure to configure PIM on the interfaces.
-
-The NVUE Commands create the following configuration snippet in the `/etc/nvue.d/startup.yaml` file:
-
-```
-cumulus@leaf01:~$ sudo cat /etc/nvue.d/startup.yaml
-```
-
-{{</tab>}}
-{{<tab "vtysh Commands">}}
-
-```
-cumulus@leaf01:~$ sudo vtysh
-
-Hello, this is FRRouting (version 7.4+cl4u1).
-Copyright 1996-2005 Kunihiro Ishiguro, et al.
-
-leaf01# configure terminal
-leaf01(config)# interface swp51
-leaf01(config-if)# evpn mh uplink
-leaf01(config-if)# exit
-leaf01(config)# interface swp52
-leaf01(config-if)# evpn mh uplink
-leaf01(config-if)# exit
-leaf01(config)# interface swp53
-leaf01(config-if)# evpn mh uplink
-leaf01(config-if)# exit
-leaf01(config)# interface swp54
-leaf01(config-if)# evpn mh uplink
-leaf01(config-if)# exit
-leaf01(config)# write memory
-leaf01(config)# exit
-leaf01# exit
-cumulus@leaf01:~$
-```
-
-The vtysh commands create the following configuration in the `/etc/frr/frr.conf` file:
-
-```
-cumulus@leaf01:~$ sudo cat /etc/frr/frr.conf
-...
-!
-interface swp1
- evpn mh uplink
-!
-interface swp2
- evpn mh uplink
-!
-interface swp3
- evpn mh uplink
-!
-interface swp4
- evpn mh uplink
-!
-...
 ```
 
 {{</tab>}}

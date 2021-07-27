@@ -23440,6 +23440,22 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <td></td>
 </tr>
 <tr>
+<td>2736247</td>
+<td>CVE-2021-27845: A Divide-by-zero vulnerability exists in JasPer Image Coding Toolkit 2.0 in jasper/src/libjasper/jpc/jpc_enc.c
+Vulnerable: &lt;= 1.900.1-debian1-2.4+deb8u10
+Fixed: 1.900.1-debian1-2.4+deb8u11</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2736245</td>
+<td>CVE-2021-32761: It was discovered that there were several integer overflow issues in Redis, a popular key-value database system. Some BITFIELD-related commands were affected on 32-bit systems.
+Vulnerable: &lt;= 2.8.17-1+deb8u7
+Fixed: 2.8.17-1+deb8u8</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2728207</td>
 <td>CVE-2021-3570: A flaw was found in the ptp4l program of the linuxptp package. A missing length check when forwarding a PTP message between ports allows a remote attacker to cause an information leak, crash, or potentially remote code execution. The highest threat from this vulnerability is to data confidentiality and integrity as well as system availability. </td>
 <td>3.7.0-3.7.15, 4.0.0-4.4.0</td>
@@ -25161,6 +25177,22 @@ This issue was discovered on the Helix4 switch but applies to all switches.
 <td></td>
 </tr>
 <tr>
+<td>2736247</td>
+<td>CVE-2021-27845: A Divide-by-zero vulnerability exists in JasPer Image Coding Toolkit 2.0 in jasper/src/libjasper/jpc/jpc_enc.c
+Vulnerable: &lt;= 1.900.1-debian1-2.4+deb8u10
+Fixed: 1.900.1-debian1-2.4+deb8u11</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2736245</td>
+<td>CVE-2021-32761: It was discovered that there were several integer overflow issues in Redis, a popular key-value database system. Some BITFIELD-related commands were affected on 32-bit systems.
+Vulnerable: &lt;= 2.8.17-1+deb8u7
+Fixed: 2.8.17-1+deb8u8</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
 <td>2728207</td>
 <td>CVE-2021-3570: A flaw was found in the ptp4l program of the linuxptp package. A missing length check when forwarding a PTP message between ports allows a remote attacker to cause an information leak, crash, or potentially remote code execution. The highest threat from this vulnerability is to data confidentiality and integrity as well as system availability. </td>
 <td>3.7.0-3.7.15, 4.0.0-4.4.0</td>
@@ -26531,6 +26563,22 @@ The NetQ agent has been removed from Cumulus VX 3.7.7. The NetQ agent will be bu
 <td>CM-15812</td>
 <td>Multicast forwarding fails for IP addresses whose DMAC overlaps with reserved DIPs.</td>
 <td>3.2.1-3.7.14.2, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2736247</td>
+<td>CVE-2021-27845: A Divide-by-zero vulnerability exists in JasPer Image Coding Toolkit 2.0 in jasper/src/libjasper/jpc/jpc_enc.c
+Vulnerable: &lt;= 1.900.1-debian1-2.4+deb8u10
+Fixed: 1.900.1-debian1-2.4+deb8u11</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2736245</td>
+<td>CVE-2021-32761: It was discovered that there were several integer overflow issues in Redis, a popular key-value database system. Some BITFIELD-related commands were affected on 32-bit systems.
+Vulnerable: &lt;= 2.8.17-1+deb8u7
+Fixed: 2.8.17-1+deb8u8</td>
+<td>3.7.0-3.7.15</td>
 <td></td>
 </tr>
 <tr>
@@ -27931,6 +27979,22 @@ The NetQ agent has been removed from Cumulus VX 3.7.7. The NetQ agent will be bu
 <td>CM-15812</td>
 <td>Multicast forwarding fails for IP addresses whose DMAC overlaps with reserved DIPs.</td>
 <td>3.2.1-3.7.14.2, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2736247</td>
+<td>CVE-2021-27845: A Divide-by-zero vulnerability exists in JasPer Image Coding Toolkit 2.0 in jasper/src/libjasper/jpc/jpc_enc.c
+Vulnerable: &lt;= 1.900.1-debian1-2.4+deb8u10
+Fixed: 1.900.1-debian1-2.4+deb8u11</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2736245</td>
+<td>CVE-2021-32761: It was discovered that there were several integer overflow issues in Redis, a popular key-value database system. Some BITFIELD-related commands were affected on 32-bit systems.
+Vulnerable: &lt;= 2.8.17-1+deb8u7
+Fixed: 2.8.17-1+deb8u8</td>
+<td>3.7.0-3.7.15</td>
 <td></td>
 </tr>
 <tr>
@@ -29432,6 +29496,22 @@ The NetQ agent has been removed from Cumulus VX 3.7.7. The NetQ agent will be bu
 <td>CM-15812</td>
 <td>Multicast forwarding fails for IP addresses whose DMAC overlaps with reserved DIPs.</td>
 <td>3.2.1-3.7.14.2, 4.0.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2736247</td>
+<td>CVE-2021-27845: A Divide-by-zero vulnerability exists in JasPer Image Coding Toolkit 2.0 in jasper/src/libjasper/jpc/jpc_enc.c
+Vulnerable: &lt;= 1.900.1-debian1-2.4+deb8u10
+Fixed: 1.900.1-debian1-2.4+deb8u11</td>
+<td>3.7.0-3.7.15</td>
+<td></td>
+</tr>
+<tr>
+<td>2736245</td>
+<td>CVE-2021-32761: It was discovered that there were several integer overflow issues in Redis, a popular key-value database system. Some BITFIELD-related commands were affected on 32-bit systems.
+Vulnerable: &lt;= 2.8.17-1+deb8u7
+Fixed: 2.8.17-1+deb8u8</td>
+<td>3.7.0-3.7.15</td>
 <td></td>
 </tr>
 <tr>

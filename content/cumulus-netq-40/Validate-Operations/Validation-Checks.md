@@ -100,7 +100,7 @@ The NTP validation test looks for poor operational status of the NTP service. Th
 
 ## OSPF Validation Tests
 
-The EVPN validation tests look for indications of the service health and configuration consistency. This is accomplished with the following tests:
+The OSPF validation tests look for indications of the service health and configuration consistency. This is accomplished with the following tests:
 
 | Test Number | Test Name | Description |
 | :---------: | --------- | ----------- |

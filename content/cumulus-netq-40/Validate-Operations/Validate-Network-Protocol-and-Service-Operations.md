@@ -334,6 +334,8 @@ Warning nodes       : 0
 Agent Health Test   : passed
 ```
 
+Refer to {{<link url="Validation-Checks/#netq-agent-validation-tests" text="NetQ Agent Validation Tests">}} for descriptions of these tests.
+
 {{</tab>}}
 
 {{<tab "BGP">}}
@@ -395,7 +397,7 @@ Using the `include <bgp-number-range-list>` and `exclude <bgp-number-range-list>
 | 1 | Address Families |
 | 2 | Router ID |
 
-Refer to {{<link url="#bgp-validation-tests" text="BGP Validation Tests">}} for a description of these tests.
+Refer to {{<link url="Validation-Checks#bgp-validation-tests" text="BGP Validation Tests">}} for a description of these tests.
 
 To include only the session establishment and router ID tests during a validation, run either of these commands:
 
@@ -529,6 +531,8 @@ Warning nodes       : 0
 Cumulus Linux Image Version Test   : passed
 ```
 
+Refer to {{<link url="Validation-Checks/#cumulus-linux-version-tests" text="Cumulus Linux Version Tests">}} for descriptions of these tests.
+
 {{</tab>}}
 
 {{<tab "EVPN">}}
@@ -604,7 +608,7 @@ Using the `include <evpn-number-range-list>` and `exclude <evpn-number-range-lis
 | 7 | VRF Consistency |
 <!-- vale on -->
 
-Refer to {{<link url="#evpn-validation-tests" text="EVPN Validation Tests">}} for descriptions of these tests.
+Refer to {{<link url="Validation-Checks#evpn-validation-tests" text="EVPN Validation Tests">}} for descriptions of these tests.
 
 To run only the EVPN Type 2 test:
 
@@ -748,7 +752,7 @@ Using the `include <interface-number-range-list>` and `exclude <interface-number
 | 2 | Speed |
 | 3 | Autoneg |
 
-Refer to {{<link url="#interface-validation-tests" text="Interface Validation Tests">}} for descriptions of these tests.
+Refer to {{<link url="Validation-Checks#interface-validation-tests" text="Interface Validation Tests">}} for descriptions of these tests.
 
 {{</tab>}}
 
@@ -775,6 +779,8 @@ Link MTU Consistency Test   : passed,
 VLAN interface Test         : passed,
 Bridge interface Test       : passed,
 ```
+
+Refer to {{<link url="Validation-Checks/#link-mtu-validation-tests" text="Link MTU Validation Tests">}} for descriptions of these tests.
 
 {{</tab>}}
 
@@ -860,7 +866,7 @@ Using the `include <mlag-number-range-list>` and `exclude <mlag-number-range-lis
 | 9 | ProtoDown Bonds |
 | 10 | SVI |
 
-Refer to {{<link url="#mlag-validation-tests" text="MLAG Validation Tests">}} for descriptions of these tests.
+Refer to {{<link url="Validation-Checks#mlag-validation-tests" text="MLAG Validation Tests">}} for descriptions of these tests.
 
 To include only the CLAG SysMAC test during a validation:
 
@@ -948,6 +954,8 @@ Hostname          NTP Sync Connect Time
 server04          no       2019-09-17 19:21:47
 ```
 
+Refer to {{<link url="Validation-Checks#ntp-validation-tests" text="NTP Validation Tests">}} for descriptions of these tests.
+
 {{</tab>}}
 
 {{<tab "OSPF">}}
@@ -981,6 +989,8 @@ spine-2           downlink-6                0.0.0.22                  27.0.0.22 
 tor-2             uplink-2                  0.0.0.20                  27.0.0.20                 mtu mismatch                                  Mon Jul  1 16:19:37 2019
 ```
 
+Refer to {{<link url="Validation-Checks/#ospf-validation-tests" text="OSPF Validation Tests">}} for descriptions of these tests.
+
 {{</tab>}}
 
 {{<tab "Sensors">}}
@@ -1008,6 +1018,8 @@ Fan sensors Test           : passed,
 Temperature sensors Test   : passed,
 ```
 
+Refer to {{<link url="Validation-Checks/#sensor-validation-tests" text="Sensor Validation Tests">}} for descriptions of these tests.
+
 {{</tab>}}
 
 {{<tab "VLAN">}}
@@ -1032,6 +1044,8 @@ Link Neighbor VLAN Consistency Test   : passed,
 Clag Bond VLAN Consistency Test       : passed,
 ```
 
+Refer to {{<link url="Validation-Checks/#vlan-validation-tests" text="VLAN Validation Tests">}} for descriptions of these tests.
+
 {{</tab>}}
 
 {{<tab "VXLAN">}}
@@ -1055,6 +1069,8 @@ BUM replication Test    : passed,
 {{%notice tip%}}
 Both asymmetric and symmetric VXLAN configurations are validated with this command.
 {{%/notice%}}
+
+Refer to {{<link url="Validation-Checks/#vxlan-validation-tests" text="VXLAN Validation Tests">}} for descriptions of these tests.
 
 {{</tab>}}
 

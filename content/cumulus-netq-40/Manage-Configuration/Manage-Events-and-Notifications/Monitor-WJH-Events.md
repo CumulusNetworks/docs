@@ -678,7 +678,6 @@ The data NetQ sends to the gNMI agent is in the form of WJH drop reasons. The re
 | 403 | Overlay switch - Source MAC equals destination MAC | Error | Bad packet was received from the peer |
 | 404 | Decapsulation error | Error | Bad packet was received from the peer |
 
-
 #### ACL Drop Reasons
 
 | Reason ID | Reason | Severity | Description |
@@ -688,7 +687,6 @@ The data NetQ sends to the gNMI agent is in the form of WJH drop reasons. The re
 | 603 | Egress router ACL | Notice | Validate ACL configuration |
 | 604 | Egress port ACL | Notice | Validate ACL configuration |
 
-
 #### Buffer Drop Reasons
 
 | Reason ID | Reason | Severity | Description |
@@ -696,15 +694,6 @@ The data NetQ sends to the gNMI agent is in the form of WJH drop reasons. The re
 | 503 | Tail drop | Warning | Monitor network congestion |
 | 504 | WRED | Warning | Monitor network congestion |
 | 505 | Port TC Congestion Threshold Crossed | Notice | Monitor network congestion 506 Packet Latency Threshold Crossed Notice Monitor network congestion |
-
-
-#### RoCE Drop Reasons
-
-| Reason ID | Reason | Severity | Description |
-| --------- | ------ | -------- | ----------- |
-| 701 | RoCE traffic with wrong priority | Notice | Bad packet was received from the peer |
-| 702 | Non RoCE traffic on RoCE priority | Notice | Bad packet was received from the peer |
-| 703 | RoCE flood traffic | Notice | Unresolved IP address |
 
 ### Related Information
 

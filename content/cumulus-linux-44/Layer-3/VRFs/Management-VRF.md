@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 950
 toc: 3
 ---
-*Management VRF* is a subset of {{<link url="Virtual-Routing-and-Forwarding-VRF">}} (virtual routing tables and forwarding) and provides a separation between the out-of-band management network and the in-band data plane network. For all VRFs, the *main* routing table is the default table for all of the data plane switch ports. With management VRF, a second table, *mgmt*, is used for routing through the Ethernet ports of the switch. The *mgmt* name is special cased to identify the management VRF from a data plane VRF. FIB rules are installed for DNS servers because this is the typical deployment case.
+*Management VRF* is a subset of {{<link url="Virtual-Routing-and-Forwarding-VRF">}} (virtual routing tables and forwarding) and provides a separation between the out-of-band management network and the in-band data plane network. For VRFs, the *main* routing table is the default table for the data plane switch ports. With management VRF, a second table, *mgmt*, is used for routing through the Ethernet ports of the switch. The *mgmt* name is special cased to identify the management VRF from a data plane VRF. FIB rules are installed for DNS servers because this is the typical deployment case.
 
 Cumulus Linux only supports eth0 (or eth1, depending on the switch platform) for *out-of-band management*. The Ethernet ports are software-only ports that are not hardware accelerated by `switchd`. VLAN subinterfaces, bonds, bridges, and the front panel switch ports are not supported as OOB management interfaces.
 
@@ -147,9 +147,9 @@ cumulus@switch:~$ sudo traceroute -i mgmt -s <source-ip> <destination-ip>
 ```
 
 For additional information on using `ping` and `traceroute`, see {{<link url="Network-Troubleshooting">}}.
-
+<!-- vale off -->
 ### Run Services as a Non-root User
-
+<!-- vale on -->
 To run services in the management VRF as a non-root user, you need to create a custom service based on the original service file. The following example commands configure the SSH service to run in the management VRF as a non-root user.
 
 1. Run the following command to create a custom service file in the `/etc/systemd/system` direcotry.
@@ -185,7 +185,7 @@ FRRouting is VRF-aware and sends packets based on the switch port routing table.
 
 Management VRF uses the mgmt table, including local routes. It does not affect how the routes are redistributed when using routing protocols such as OSPF and BGP.
 
-To redistribute the routes in your network, use the `redistribute connected` command under BGP or OSPF. This enables the directly-connected network out of eth0 to be advertised to its neighbor.
+To redistribute the routes in your network, use the `redistribute connected` command under BGP or OSPF. This enables the directly connected network out of eth0 to be advertised to its neighbor.
 
 {{%notice note%}}
 This also creates a route on the neighbor device to the management network through the data plane, which might not be desired.
@@ -336,7 +336,7 @@ When you use `ip route get` to return information about a single route, the comm
 cumulus@switch:~$ ip route get <ip-address>
 ```
 
-Alternatively, you can run this command:
+You can also run this command:
 
 ```
 cumulus@switch:~$ sudo cl-rctl ip route show <ip-address>
@@ -350,9 +350,9 @@ cumulus@switch:~$ ip route get <ip-address> oif mgmt
 
 {{< /tab >}}
 {{< /tabs >}}
-
+<!-- vale off -->
 ## mgmt Interface Class
-
+<!-- vale on -->
 In `ifupdown2`, {{<link url="Interface-Configuration-and-Management#ifupdown2-interface-classes" text="interface classes">}} are used to create a user-defined grouping for interfaces. The special class *mgmt* is available to separate the management interfaces of the switch from the data interfaces. This allows you to manage the data interfaces by default using `ifupdown2` commands. Performing operations on the *mgmt* interfaces requires specifying the `--allow-mgmt` option, which prevents inadvertent outages on the management interfaces. Cumulus Linux by default brings up all interfaces in both the *auto* (default) class and the *mgmt* interface class when the switch boots.
 
 You configure the management interface in the `/etc/network/interfaces` file. In the example below, the management interface eth0 and the management VRF stanzas are added to the *mgmt* interface class:

@@ -210,7 +210,7 @@ You can upgrade the NetQ platform in one of two ways:
 
 ### Upgrade Using the NetQ CLI
 
-After completing the {{<link url="#prepare-for-upgrade" text="preparation steps">}}, upgrading your NetQ On-premises/Cloud Appliance(s) or VMs is simple using the NetQ CLI.
+After completing the {{<link url="#prepare-for-upgrade" text="preparation steps">}}, upgrading your NetQ On-premises, Cloud Appliances or VMs is simple using the NetQ CLI.
 
 To upgrade your NetQ software:
 

@@ -9,10 +9,10 @@ This document supports the Cumulus Linux 4.4 release, and lists new platforms an
 - For a list of all the platforms supported in Cumulus Linux 4.4, see the {{<exlink url="www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="Hardware Compatibility List (HCL)">}}.
 - For a list of open and fixed issues in Cumulus Linux 4.4, see the {{<link title="Cumulus Linux 4.4 Release Notes" text="Cumulus Linux 4.4 Release Notes">}}.
 - To upgrade to Cumulus Linux 4.4, follow the steps in {{<link url="Upgrading-Cumulus-Linux">}}.
-
+<!-- vale off -->
 ## What's New in Cumulus Linux 4.4
-
-Cumulus Linux 4.4 supports supports new platforms, provides bug fixes, and contains several new features and improvements.
+<!-- vale on -->
+Cumulus Linux 4.4 supports new platforms, provides bug fixes, and contains several new features and improvements.
 
 ### New Platforms
 
@@ -42,4 +42,4 @@ The NVUE commands and outputs are subject to change.
 
 ### Unsupported Platforms
 
-Cumulus Linux 4.4 supports NVIDIA Spectrum-based ASIC platforms only. This release removes support for Broadcom-based networking ASICs. Broadcom-based ASICs will continue to be supported throughout the life of the Cumulus Linux 3.7 and 4.3 releases.
+Cumulus Linux 4.4 supports NVIDIA Spectrum-based ASIC platforms only. This release removes support for Broadcom-based networking ASICs. Broadcom-based ASICs continue to be supported throughout the life of the Cumulus Linux 3.7 and 4.3 releases.

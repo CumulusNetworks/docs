@@ -13,7 +13,7 @@ Cumulus Linux exposes network interfaces for several types of physical and logic
 - (optional) `brN` are bridges (IEEE 802.1Q VLANs)
 - (optional) `bondN` are bonds (IEEE 802.3ad link aggregation trunks, or port channels)
 
-Each physical network interface (port) has a number of settings:
+Each physical network interface (port) has several settings:
 
 - Auto-negotiation
 - Duplex Mode
@@ -573,525 +573,737 @@ Setting the default MTU also applies to the management interface. Be sure to add
 
 ## Breakout Ports
 
-Cumulus Linux supports the following ports breakout options per platform
+Cumulus Linux supports the following ports breakout options:
 
 {{< tabs "Platforms ">}}
 {{< tab "SN2010">}}
-18x SFP+ 25G and 4x QSFP28 100G interfaces only support NRZ encoding. All speeds down to 1G are supported.<br>
 
-All 4x QSFP28 ports can breakout into 4x SFP28 or 2x QSFP28. 
+18x SFP+ 25G and 4x QSFP28 100G interfaces only support NRZ encoding. All speeds down to 1G are supported.
+
+All 4x QSFP28 ports can break out into 4x SFP28 or 2x QSFP28.
+
 {{< tabs "2010_ports ">}}
 {{< tab "10G ">}}
+
 - 18x 10G - 18x SFP28 set to 10G
 - 16x 10G - 4x QSFP28 configured as 4x25G breakouts and set to 10G
 
-Maximum 10G ports: 34 
+Maximum 10G ports: 34
+
 {{< /tab >}}
 {{< tab "25G ">}}
+
 - 18x 25G - 18x SFP28 (native speed)
 - 16x 25G - 4x QSFP28 breakouts to 4x25G
 
 Maximum 25G ports: 34
+
 {{< /tab >}}
 {{< tab "40G ">}}
-- 4x 40G - 4x QSFP28 set to 40G
+
+4x 40G - 4x QSFP28 set to 40G
 
 Maximum 40G ports: 4
+
 {{< /tab >}}
 {{< tab "50G ">}}
-- 8x 50G - 4x QSFP28 breakout into 2x 50G
+
+8x 50G - 4x QSFP28 break out into 2x 50G
 
 Maximum 50G ports: 8
+
 {{< /tab >}}
 {{< tab "100G ">}}
-- 4x 100G - 4x QSFP28 (native speed)
+
+4x 100G - 4x QSFP28 (native speed)
 
 Maximum 100G ports: 4
-{{< /tab >}}
-{{< /tab >}}
-{{< /tabs >}}
 
+{{< /tab >}}
+{{< /tab >}}
+
+{{< /tabs >}}
 {{< tab "SN2100">}}
-16x QSFP28 100G interfaces only support NRZ encoding. All speeds down to 1G are supported.<br>
-All QSFP28 ports can breakout into 4x SFP28 or 2x QSFP28. 
+
+16x QSFP28 100G interfaces only support NRZ encoding. All speeds down to 1G are supported.
+
+All QSFP28 ports can break out into 4x SFP28 or 2x QSFP28.
+
 {{< tabs "2100_ports ">}}
 {{< tab "10G ">}}
-- 64x 10G - 16x QSFP28 breakout into 4x 25G and set to 10G
+
+64x 10G - 16x QSFP28 break out into 4x 25G and set to 10G
 
 Maximum 10G ports: 64
+
 {{< /tab >}}
 {{< tab "25G ">}}
-- 64x 25G - 16x QSFP28 breakout into 4x 25G
+
+64x 25G - 16x QSFP28 break out into 4x 25G
 
 Maximum 25G ports: 64
+
 {{< /tab >}}
 {{< tab "40G ">}}
-- 16x 40G - 4x QSFP28 set to 40G
+
+16x 40G - 4x QSFP28 set to 40G
 
 Maximum 40G ports: 16
+
 {{< /tab >}}
 {{< tab "50G ">}}
-- 32x 50G - 16x QSFP28 breakout into 2x 50G 
+
+32x 50G - 16x QSFP28 break out into 2x 50G
 
 Maximum 50G ports: 32
+
 {{< /tab >}}
 {{< tab "100G ">}}
-- 16x 100G - 16x QSFP28 (native speed)
+
+16x 100G - 16x QSFP28 (native speed)
 
 Maximum 100G ports: 16
+
 {{< /tab >}}
 {{< /tab >}}
+
 {{< /tabs >}}
 {{< tab "SN2410">}}
-48x SFP28 25G and 8x QSFP28 100G interfaces only support NRZ encoding. All speeds down to 1G are supported.<br>
-The top 4x QSFP28 ports can breakout into 4x SFP28. The lower 4x QSFP28 ports are disabled and can not be used.<br> 
-All 8x QSFP28 ports can breakout into 2x QSFP28 without disabling ports. 
+
+48x SFP28 25G and 8x QSFP28 100G interfaces only support NRZ encoding. All speeds down to 1G are supported.
+
+The top 4x QSFP28 ports can break out into 4x SFP28. The lower 4x QSFP28 ports are disabled and can not be used.
+
+All 8x QSFP28 ports can break out into 2x QSFP28 without disabling ports.
+
 {{< tabs "2410_ports ">}}
 {{< tab "10G ">}}
+
 - 48x 10G - 48x SFP28 set to 10G
-- 16x 10G - 4x QSPF28 breakout into 4x25G and set to 10G
+- 16x 10G - 4x QSPF28 break out into 4x25G and set to 10G
 
 Maximum 10G ports: 64
+
 {{< /tab >}}
 {{< tab "25G ">}}
-- 48x 25G - 48x SFP28 (native speed) 
-- 16x 25G - Top 4x QSFP28 breakout into 4x25G (bottom 4x QSFP28 disabled)
+
+- 48x 25G - 48x SFP28 (native speed)
+- 16x 25G - Top 4x QSFP28 break out into 4x25G (bottom 4x QSFP28 disabled)
 
 Maximum 25G ports: 64
+
 {{< /tab >}}
 {{< tab "40G ">}}
-- 8x 40G - 8x QSFP28 set to 40G
+
+8x 40G - 8x QSFP28 set to 40G
 
 Maximum 40G ports: 8
+
 {{< /tab >}}
 {{< tab "50G ">}}
-- 16x 50G - 8x QSFP28 breakout into 2x 50G
+
+16x 50G - 8x QSFP28 break out into 2x 50G
 
 Maximum 50G ports: 16
+
 {{< /tab >}}
 {{< tab "100G ">}}
-- 8x 100G - 16x QSFP28 (native speed)
+
+8x 100G - 16x QSFP28 (native speed)
 
 Maximum 100G ports: 8
+
 {{< /tab >}}
 {{< /tab >}}
+
 {{< /tabs >}}
 {{< tab "SN2700">}}
-32x QSFP28 100G interfaces only support NRZ encoding. All speeds down to 1G are supported.<br>
-The top 16x QSFP28 ports can breakout into 4x SFP28. The lower 4x QSFP28 ports are disabled and can not be used.<br> 
-All 32x QSFP28 ports can breakout into 2x QSFP28 without disabling ports. 
+
+32x QSFP28 100G interfaces only support NRZ encoding. All speeds down to 1G are supported.
+
+The top 16x QSFP28 ports can break out into 4x SFP28. The lower 4x QSFP28 ports are disabled and can not be used.
+
+All 32x QSFP28 ports can break out into 2x QSFP28 without disabling ports.
+
 {{< tabs "2700_ports ">}}
 {{< tab "10G ">}}
-- 64x 10G - Top 16x QSFP28 breakout into 4x 25G and set to 10G (bottom 16x QSFP28 disabled)
+
+64x 10G - Top 16x QSFP28 break out into 4x 25G and set to 10G (bottom 16x QSFP28 disabled)
 
 Maximum 10G ports: 64
+
 {{< /tab >}}
 {{< tab "25G ">}}
-- 64x 25G - Top 16x QSFP28 breakout into 4x25G (bottom 16x QSFP28 disabled)
+
+64x 25G - Top 16x QSFP28 break out into 4x25G (bottom 16x QSFP28 disabled)
 
 Maximum 25G ports: 64
+
 {{< /tab >}}
 {{< tab "40G ">}}
-- 32x 40G - 32x QSFP28 set to 40G
+
+32x 40G - 32x QSFP28 set to 40G
 
 Maximum 40G ports: 32
+
 {{< /tab >}}
 {{< tab "50G ">}}
-- 64x 50G - 64x QSFP28 breakout into 2x 50G
+
+64x 50G - 64x QSFP28 break out into 2x 50G
 
 Maximum 50G ports: 64
+
 {{< /tab >}}
 {{< tab "100G ">}}
-- 32x 100G - 32x QSFP28 (native speed)
+
+32x 100G - 32x QSFP28 (native speed)
 
 Maximum 100G ports: 32
+
 {{< /tab >}}
 {{< /tab >}}
+
 {{< /tabs >}}
 {{< tab "SN3420">}}
-48x SFP28 25G and 12x QSFP28 100G interfaces only support NRZ encoding. All speeds down to 1G are supported.<br>
-All 12x QSFP28 ports can breakout into 4x SFP28 or 2x QSFP28. 
+
+48x SFP28 25G and 12x QSFP28 100G interfaces only support NRZ encoding. All speeds down to 1G are supported.
+
+All 12x QSFP28 ports can break out into 4x SFP28 or 2x QSFP28.
+
 {{< tabs "3420_ports ">}}
 {{< tab "10G ">}}
+
 - 48x 10G - 48x SFP28 set to 10G
-- 48x 10G - 12x QSPF28 breakout into 4x 25G and set to 10G
+- 48x 10G - 12x QSPF28 break out into 4x 25G and set to 10G
 
 Maximum 10G ports: 96
+
 {{< /tab >}}
 {{< tab "25G ">}}
+
 - 48x 25G - 48x SFP28 (native speed)
-- 48x 25G - 12x QSPF28 breakout into 4x 25G
+- 48x 25G - 12x QSPF28 break out into 4x 25G
 
 Maximum 25G ports: 96
+
 {{< /tab >}}
 {{< tab "40G ">}}
-- 12x 40G - 12x QSFP28 set to 40G
+
+12x 40G - 12x QSFP28 set to 40G
 
 Maximum 40G ports: 12
+
 {{< /tab >}}
 {{< tab "50G ">}}
-- 24x 50G - 12x QSFP28 breakout into 2x 50G
+
+24x 50G - 12x QSFP28 break out into 2x 50G
 
 Maximum 50G ports: 24
+
 {{< /tab >}}
 {{< tab "100G ">}}
-- 12x 100G - 12x QSFP28 (native speed)
+
+12x 100G - 12x QSFP28 (native speed)
 
 Maximum 100G ports: 12
+
 {{< /tab >}}
 {{< /tab >}}
+
 {{< /tabs >}}
 
 <!-- SN3510 PLATFORM DELAYED UNTILL FURTHER NOTICE
 {< tab "SN3510">}}
-SN3510 48xSFP56 (50GbE) and 6xQSFP-DD (400GbE) interfaces support both PAM4 and NRZ encodings with all speeds down to 1G.<br>
-For lower speeds, PAM4 automatically converted to NRZ encoding.<br>
-All 6xQSFP-DD ports can breakout into 8xSFP56 (8x50GbE), 4xQSFP56 (4x100GbE), or 2xQSFP56 (2x200GbE). 
+
+SN3510 48xSFP56 (50GbE) and 6xQSFP-DD (400GbE) interfaces support both PAM4 and NRZ encodings with all speeds down to 1G.
+
+For lower speeds, PAM4 is automatically converted to NRZ encoding.
+
+All 6xQSFP-DD ports can break out into 8xSFP56 (8x50GbE), 4xQSFP56 (4x100GbE), or 2xQSFP56 (2x200GbE).
+
 {< tabs "3510_ports ">}}
 {< tab "10G ">}}
-- 48x10G - 48xSFP56 set to 10G
-- 48x10G - 6xQSFP-DD breakout into 8x50G and set to 10G
 
-Maximum 10G ports - 96
+- 48x10G - 48xSFP56 set to 10G
+- 48x10G - 6xQSFP-DD break out into 8x50G and set to 10G
+
+Maximum 10G ports: 96
+
 {< /tab >}}
 {< tab "25G ">}}
-- 48x25G - 48xSFP56 set to 25G
-- 48x25G - 6xQSPF-DD breakout into 8x50G and set to 25G
 
-Maximum 25G ports - 96
+- 48x25G - 48xSFP56 set to 25G
+- 48x25G - 6xQSPF-DD break out into 8x50G and set to 25G
+
+Maximum 25G ports: 96
+
 {< /tab >}}
 {< tab "40G ">}}
-- 12x40G - 12xQSFP-DD set to 40G
 
-Maximum 40G ports - 12
+12x40G - 12xQSFP-DD set to 40G
+
+Maximum 40G ports: 12
+
 {< /tab >}}
 {< tab "50G ">}}
-- 48x50G - 48xSFP56 (native speed)
-- 48x50G - 6xQSFP-DD breakout into 8x50G
 
-Maximum 50G ports - 96
+- 48x50G - 48xSFP56 (native speed)
+- 48x50G - 6xQSFP-DD break out into 8x50G
+
+Maximum 50G ports: 96
+
 {< /tab >}}
 {< tab "100G ">}}
-- 24x100G - 6xQSFP-DD breakout into 4x100G
 
-Maximum 100G ports - 24
+24x100G - 6xQSFP-DD break out into 4x100G
+
+Maximum 100G ports: 24
+
 {< /tab >}}
 {< tab "200G ">}}
-- 12x200G - 6xQSFP-DD breakout into 4x200G
 
-Maximum 200G ports - 12
+12x200G - 6xQSFP-DD break out into 4x200G
+
+Maximum 200G ports: 12
+
 {< /tab >}}
 {< tab "400G ">}}
-- 6x400G - 6xQSFP-DD (native speed)
 
-Maximum 400G ports - 6
+6x400G - 6xQSFP-DD (native speed)
+
+Maximum 400G ports: 6
+
 {< /tab >}}
 {< /tab >}}
+
 {< /tabs >}}
 
 -->
 
 {{< tab "SN3700C">}}
-32x QSFP28 100G interfaces only support NRZ encoding. All speeds down to 1G are supported.<br>
-All 32x QSFP28 ports can breakout into 4x SFP28 or 2x QSFP28. 
+
+32x QSFP28 100G interfaces only support NRZ encoding. All speeds down to 1G are supported.
+
+All 32x QSFP28 ports can break out into 4x SFP28 or 2x QSFP28.
+
 {{< tabs "3700C_ports ">}}
 {{< tab "10G ">}}
-- 128x 10G - 32x QSFP28 breakout into 4x 25G and set to 10G
+
+128x 10G - 32x QSFP28 break out into 4x 25G and set to 10G
 
 Maximum 10G ports: 128
+
 {{< /tab >}}
 {{< tab "25G ">}}
-- 128x 25G - 32x QSFP28 breakout into 4x 25G
+
+128x 25G - 32x QSFP28 break out into 4x 25G
 
 Maximum 25G ports: 128
+
 {{< /tab >}}
 {{< tab "40G ">}}
-- 32x 40G - 32x QSFP28 set to 40G
+
+32x 40G - 32x QSFP28 set to 40G
 
 Maximum 40G ports: 32
+
 {{< /tab >}}
 {{< tab "50G ">}}
-- 64x 50G - 32x QSFP28 breakout into 2x 50G
+
+64x 50G - 32x QSFP28 break out into 2x 50G
 
 Maximum 50G ports: 64
+
 {{< /tab >}}
 {{< tab "100G ">}}
-- 32x 100G - 32x QSFP28 (native speed)
+
+32x 100G - 32x QSFP28 (native speed)
 
 Maximum 100G ports: 32
+
 {{< /tab >}}
 {{< /tab >}}
+
 {{< /tabs >}}
 {{< tab "SN3700">}}
-32x QSFP56 200G interfaces support both PAM4 and NRZ encodings. All speeds down to 1G are supported.<br>
-For lower speed interface configurations, PAM4 is automatically converted to NRZ encoding.<br>
-All 32x QSFP56 ports can breakout into 4xSFP56 or 2x QSFP56. 
+
+32x QSFP56 200G interfaces support both PAM4 and NRZ encodings. All speeds down to 1G are supported.
+
+For lower speed interface configurations, PAM4 is automatically converted to NRZ encoding.
+
+All 32x QSFP56 ports can break out into 4xSFP56 or 2x QSFP56.
+
 {{< tabs "3700_ports ">}}
 {{< tab "10G ">}}
-- 128x 10G - 32x QSFP56 breakout into 4x 50G and set to 10G
+
+128x 10G - 32x QSFP56 break out into 4x 50G and set to 10G
 
 Maximum 10G ports: 128
+
 {{< /tab >}}
 {{< tab "25G ">}}
-- 128x 25G - 32x QSFP56 breakout into 4x 50G and set to 25G
+
+128x 25G - 32x QSFP56 break out into 4x 50G and set to 25G
 
 Maximum 25G ports: 128
+
 {{< /tab >}}
 {{< tab "40G ">}}
-- 32x 40G - 32x QSFP56 set to 40G
+
+32x 40G - 32x QSFP56 set to 40G
 
 Maximum 40G ports: 32
+
 {{< /tab >}}
 {{< tab "50G ">}}
-- 128x 50G - 32x QSFP56 breakout into 4x 50G
+
+128x 50G - 32x QSFP56 break out into 4x 50G
 
 Maximum 50G ports: 128
+
 {{< /tab >}}
 {{< tab "100G ">}}
-- 64x 100G - 32x QSFP56 breakout into 2x 100G
+
+64x 100G - 32x QSFP56 break out into 2x 100G
 
 Maximum 100G ports: 64
+
 {{< /tab >}}
 {{< tab "200G ">}}
-- 32x 200G - 32x QSFP56 (native speed)
+
+32x 200G - 32x QSFP56 (native speed)
 
 Maximum 200G ports: 32
+
 {{< /tab >}}
 {{< /tab >}}
+
 {{< /tabs >}}
-
 <!-- SN4410 PLATFORM IS PLANNED TO AUG21 (CL4.4.1?)
-
 {< tab "SN4410">}}
-SN4410 24xQSFP28-DD (100GbE) interfaces [ports 1-24] only support NRZ encoding and wll speeds down to 1G.<br> 
-The 8xQSFP-DD (400GbE) interfaces [ports 25-32] support both PAM4 and NRZ encodings with all speeds down to 1G.<br> 
-For lower speeds, PAM4 automatically converted to NRZ encoding.<br>
-The 24xQSFP28-DD ports can breakout into 2xQSFP28 (2x100GbE) using special 2x100GbE breakout cable, or 4xSFP28 (4x25GbE).<br> 
-The top 4xQSFP-DD ports can breakout into 8xSFP56 (8x50GbE). But, in this case, the adjacent 4xQSFP-DD ports will be blocked.<br> 
-All the 8xQSFP-DD ports can breakout into 4xQSFP56 (4x100GbE), or 2xQSFP56 (2x200GbE) without blocking ports.
+
+SN4410 24xQSFP28-DD (100GbE) interfaces [ports 1-24] only support NRZ encoding and wll speeds down to 1G.
+
+The 8xQSFP-DD (400GbE) interfaces [ports 25-32] support both PAM4 and NRZ encodings with all speeds down to 1G.
+
+For lower speeds, PAM4 is automatically converted to NRZ encoding.
+
+The 24xQSFP28-DD ports can break out into 2xQSFP28 (2x100GbE) using special 2x100GbE breakout cable, or 4xSFP28 (4x25GbE).
+
+The top 4xQSFP-DD ports can break out into 8xSFP56 (8x50GbE). But, in this case, the adjacent 4xQSFP-DD ports are blocked.
+
+All the 8xQSFP-DD ports can break out into 4xQSFP56 (4x100GbE), or 2xQSFP56 (2x200GbE) without blocking ports.
+
 {< tabs "4410_ports ">}}
 {< tab "10G ">}}
-- 96x10G - 24xQSFP28-DD breakout into 4x25G and set to 10G
-- 32x10G - 4 top QSFP-DD breakout into 8x50G and set to 10G (bottom 4xQSFP-DD blocked*)
 
-Maximum 10G ports - 128<br>
-*Other QSFP-DD breakout combinations are available up to maximum of 128x10G ports.
-{< /tab >}}
-{< tab "25G ">}}
-- 96x25G - 24xQSFP28-DD breakout into 4x25G
-- 32x25G - 4 top QSFP-DD breakout into 8x50G and set to 25G (bottom 4xQSFP-DD blocked*)
-
-Maximum 25G ports - 128<br>
-*Other QSFP-DD breakout combinations are available up to maximum of 128x25G ports.
-{< /tab >}}
-{< tab "40G ">}}
-- 32x40G - 24xQSFP28-DD and 8xQSFP-DD set to 40G
-
-Maximum 40G ports - 32
-{< /tab >}}
-{< tab "50G ">}}
-- 48x50G - 24xQSFP28-DD breakout into 2x50G
-- 32x50G - 4 top QSFP-DD breakout into 8x50G (bottom 4xQSFP-DD blocked*)
-
-Maximum 50G ports - 80<br>
-*Other QSFP-DD breakout combinations are available up to maximum of 80x50G ports.
-{< /tab >}}
-{< tab "100G ">}}
-- 48x100G - 24xQSFP28-DD breakout into 2x100G (using special 2xQSFP28-DD breakout cable)
-- 32x100G - 8xQSFP-DD breakout into 4x100G
-
-Maximum 100G ports - 80
-{< /tab >}}
-{< tab "200G ">}}
-- 16x200G - 8xQSFP-DD breakout into 2x200G
-
-Maximum 200G ports - 16
-{< /tab >}}
-{< tab "400G ">}}
-- 8x400G - 8xQSFP-DD (native speed)
-
-Maximum 400G ports - 8
-{< /tab >}}
-{< /tab >}}
-{< /tabs >}}
-
--->
-
-{{< tab "SN4600C">}}
-64x QSFP28 100G interfaces only support NRZ encoding. All speeds down to 1G are supported.<br>
-Only 32x QSFP28 ports can breakout into 4x SFP28. The adjacent QSFP28 port will be disabled. Only the first and third or second and forth rows can breakout into 4xSFP28.<br>
-All 64x QSFP28 ports can breakout into 2x QSFP28 without disabling ports. 
-{{< tabs "4600C_ports ">}}
-{{< tab "10G ">}}
-- 128x 10G - 32x QSFP28 breakout into 4x 25G and set to 10G
+- 96x10G - 24xQSFP28-DD break out into 4x25G and set to 10G
+- 32x10G - 4 top QSFP-DD break out into 8x50G and set to 10G (bottom 4xQSFP-DD blocked*)
 
 Maximum 10G ports: 128
-{{< /tab >}}
-{{< tab "25G ">}}
-- 128x 25G - 32x QSFP28 breakout into 4x 25G
+
+*Other QSFP-DD breakout combinations are available up to maximum of 128x10G ports.
+
+{< /tab >}}
+{< tab "25G ">}}
+
+- 96x25G - 24xQSFP28-DD break out into 4x25G
+- 32x25G - 4 top QSFP-DD break out into 8x50G and set to 25G (bottom 4xQSFP-DD blocked*)
 
 Maximum 25G ports: 128
-{{< /tab >}}
-{{< tab "40G ">}}
-- 64x 40G - 64x QSFP28 set to 40G
 
-Maximum 40G ports: 64
-{{< /tab >}}
-{{< tab "50G ">}}
-- 128x 50G - 64x QSFP28 breakout into 2x 50G
+*Other QSFP-DD breakout combinations are available up to maximum of 128x25G ports.
 
-Maximum 50G ports: 128
-{{< /tab >}}
-{{< tab "100G ">}}
-- 64x 100G - 64x QSFP28 (native speed)
-
-Maximum 100G ports: 80
-{{< /tab >}}
-{{< /tab >}}
-{{< /tabs >}}
-
-<!-- SN4600 PLATFORM IS PLANNED TO AUG21 (CL4.4.1?)
-
-{< tab "SN4600">}}
-SN4600 64xQSFP56 (200GbE) interfaces support both PAM4 and NRZ encodings with all speeds down to 1G.<br>
-For lower speeds, PAM4 automatically converted to NRZ encoding.<br>
-Only 32xQSFP56 ports can breakout into 4xSFP56 (4x50GbE). But, in this case, the adjacent QSFP56 port will be blocked (only the 1st/3rd or 2nd/4th rows can breakout into 4xSFP56).<br>
-All 64xQSFP56 ports can breakout into 2xQSFP56 (2x100GbE) without blocking ports. 
-{< tabs "4600_ports ">}}
-{< tab "10G ">}}
-- 128x10G - 64xQSFP56 breakout into 4x50G and set to 10G
-
-Maximum 10G ports - 128
-{< /tab >}}
-{< tab "25G ">}}
-- 128x25G - 64xQSFP56 breakout into 4x50G and set to 25G
-
-Maximum 25G ports - 128
 {< /tab >}}
 {< tab "40G ">}}
-- 64x40G - 64xQSFP56 set to 40G
 
-Maximum 40G ports - 64
-{< /tab >}}
-{< tab "50G ">}}
-- 128x50G - 32xQSFP56 breakout into 4x50G
-
-Maximum 50G ports - 128
-{< /tab >}}
-{< tab "100G ">}}
-- 128x100G - 64xQSFP56 breakout into 2x100G
-- 64x100G - 64xQSFP28 set to 100G
-
-Maximum 100G ports - 128
-{< /tab >}}
-{< tab "200G ">}}
-- 64x200G - 64xQSFP56 (native speed)
-
-Maximum 200G ports - 64
-{< /tab >}}
-{< /tab >}}
-{< /tabs >}}
-
--->
-
-{{< tab "SN4700">}}
-SN4700 32x QSFP-DD 400GbE interfaces support both PAM4 and NRZ encodings. All speeds down to 1G are supported.<br> 
-For lower speed interface configurations, PAM4 is automatically converted to NRZ encoding.<br>
-Only the top or the bottom 16x QSFP-DD ports can breakout into 8x SFP56. The adjacent QSFP-DD port will be disabled.<br> 
-All 32x QSFP-DD ports can breakout into 2x QSFP56 at 2x200G or 4x QSFP56 at 4x 100G without disabling ports.
-{{< tabs "4700_ports ">}}
-{{< tab "10G ">}}
-- 128x 10G - 16x QSFP-DD breakout into 8x 50G and set to 10G
-
-Maximum 10G ports: 128<br>
-*Other QSFP-DD breakout combinations are supported up to maximum of 128x 10G ports.
-{{< /tab >}}
-{{< tab "25G ">}}
-- 128x 25G - 16x QSFP-DD breakout into 8x 50G and set to 25G
-
-Maximum 25G ports: 128<br>
-*Other QSFP-DD breakout combinations are supported up to maximum of 128x 25G ports.
-{{< /tab >}}
-{{< tab "40G ">}}
-- 32x 40G - 32x QSFP-DD set to 40G
+32x40G - 24xQSFP28-DD and 8xQSFP-DD set to 40G
 
 Maximum 40G ports: 32
-{{< /tab >}}
-{{< tab "50G ">}}
-- 128x 50G - 16x QSFP-DD breakout into 8x 50G
 
-Maximum 50G ports: 128<br>
-*Other QSFP-DD breakout combinations are supported up to maximum of 128x 50G ports.
-{{< /tab >}}
-{{< tab "100G ">}}
-- 128x 100G - 32x QSFP-DD breakout into 4x 100G
-
-Maximum 100G ports: 128
-{{< /tab >}}
-{{< tab "200G ">}}
-- 64x 200G - 64x QSFP-DD breakout into 2x 200G
-
-Maximum 200G ports: 64
-{{< /tab >}}
-{{< tab "400G ">}}
-- 32x 400G - 32x QSFP-DD (native speed)
-
-Maximum 400G ports: 32
-{{< /tab >}}
-{{< /tab >}}
-{{< /tabs >}}
-
-<!-- SN4800 PLATFORM IS PLANNED TO NOV21 (CL5.0?)
-
-{< tab "SN4800">}}
-SN4800 is a modular chassis with up to 8 line-cards. Each line-card can have up to 16 MAC addresses. Thus, each can be of a different port form-factor and speed.<br> 
-All line-cards supports both NRZ and PAM4 encodings with speeds down to 1G. For lower speeds, PAM4 automatically converted to NRZ encoding.<br>
-{< tabs "4800_ports ">}}
-{< tab "10G ">}}
-- 128x10G - 8 line-cards of 16xQSFP28* breakout into 4x25G and set to 10G
-
-Maximum 10G ports - 128<br>
-*Other combinations are possible by using higher-speed line-card with breakouts (up to 128x10G ports).
-{< /tab >}}
-{< tab "25G ">}}
-- 128x25G - 8 line-cards of 16xQSFP28* breakout into 4x25G
-
-Maximum 25G ports - 128<br>
-*Other combinations are possible by using higher-speed line-card with breakouts (up to 128x25G ports). 
-{< /tab >}}
-{< tab "40G ">}}
-- 128x40G - 8 line-cards of 16xQSFP28 set to 40G
-
-Maximum 40G ports - 128
 {< /tab >}}
 {< tab "50G ">}}
-- 128x50G - 8 line-cards of 8xQSFP56* breakout into 4x50G
 
-Maximum 50G ports - 128<br>
-*Other combinations are possible by using higher-speed line-card with breakouts (up to 128x50G ports). 
+- 48x50G - 24xQSFP28-DD break out into 2x50G
+- 32x50G - 4 top QSFP-DD break out into 8x50G (bottom 4xQSFP-DD blocked*)
+
+Maximum 50G ports: 80
+
+*Other QSFP-DD breakout combinations are available up to maximum of 80x50G ports.
+
 {< /tab >}}
 {< tab "100G ">}}
-- 128x100G - 8 line-cards of 16xQSFP28* (native speed)
 
-Maximum 100G ports - 128<br>
-*Other combinations are possible by using higher-speed line-card with breakouts (up to 128x100G ports). 
+- 48x100G - 24xQSFP28-DD break out into 2x100G (using special 2xQSFP28-DD breakout cable)
+- 32x100G - 8xQSFP-DD break out into 4x100G
+
+Maximum 100G ports: 80
+
 {< /tab >}}
 {< tab "200G ">}}
-- 64x200G - 8 line-cards of 8xQSFP56* (native speed)
 
-Maximum 200G ports - 64<br>
-*Other combinations arepossible by using higher-speed line-card with breakouts (up to 64x200G ports). 
+16x200G - 8xQSFP-DD break out into 2x200G
+
+Maximum 200G ports: 16
+
 {< /tab >}}
 {< tab "400G ">}}
-- 32x400G - 8 line-cards of 4xQSFP-DD (native speed)
 
-Maximum 400G ports - 32
+8x400G - 8xQSFP-DD (native speed)
+
+Maximum 400G ports: 8
+
 {< /tab >}}
 {< /tab >}}
+
 {< /tabs >}}
-
 -->
+{{< tab "SN4600C">}}
 
+64x QSFP28 100G interfaces only support NRZ encoding. All speeds down to 1G are supported.
+
+Only 32x QSFP28 ports can break out into 4x SFP28. The adjacent QSFP28 port is disabled. Only the first and third or second and forth rows can break out into 4xSFP28.
+
+All 64x QSFP28 ports can break out into 2x QSFP28 without disabling ports.
+
+{{< tabs "4600C_ports ">}}
+{{< tab "10G ">}}
+
+128x 10G - 32x QSFP28 break out into 4x 25G and set to 10G
+
+Maximum 10G ports: 128
+
+{{< /tab >}}
+{{< tab "25G ">}}
+
+128x 25G - 32x QSFP28 break out into 4x 25G
+
+Maximum 25G ports: 128
+
+{{< /tab >}}
+{{< tab "40G ">}}
+
+64x 40G - 64x QSFP28 set to 40G
+
+Maximum 40G ports: 64
+
+{{< /tab >}}
+{{< tab "50G ">}}
+
+128x 50G - 64x QSFP28 break out into 2x 50G
+
+Maximum 50G ports: 128
+
+{{< /tab >}}
+{{< tab "100G ">}}
+
+64x 100G - 64x QSFP28 (native speed)
+
+Maximum 100G ports: 80
+
+{{< /tab >}}
+{{< /tab >}}
+
+{{< /tabs >}}
+<!-- SN4600 PLATFORM IS PLANNED TO AUG21 (CL4.4.1?)
+{< tab "SN4600">}}
+
+SN4600 64xQSFP56 (200GbE) interfaces support both PAM4 and NRZ encodings with all speeds down to 1G.
+
+For lower speeds, PAM4 is automatically converted to NRZ encoding.
+
+Only 32xQSFP56 ports can brea kout into 4xSFP56 (4x50GbE). But, in this case, the adjacent QSFP56 port are blocked (only the 1st/3rd or 2nd/4th rows can break out into 4xSFP56).
+
+All 64xQSFP56 ports can break out into 2xQSFP56 (2x100GbE) without blocking ports. 
+
+{< tabs "4600_ports ">}}
+{< tab "10G ">}}
+
+128x10G - 64xQSFP56 break out into 4x50G and set to 10G
+
+Maximum 10G ports: 128
+
+{< /tab >}}
+{< tab "25G ">}}
+
+128x25G - 64xQSFP56 break out into 4x50G and set to 25G
+
+Maximum 25G ports: 128
+
+{< /tab >}}
+{< tab "40G ">}}
+
+64x40G - 64xQSFP56 set to 40G
+
+Maximum 40G ports: 64
+
+{< /tab >}}
+{< tab "50G ">}}
+
+128x50G - 32xQSFP56 break out into 4x50G
+
+Maximum 50G ports: 128
+
+{< /tab >}}
+{< tab "100G ">}}
+
+- 128x100G - 64xQSFP56 break out into 2x100G
+- 64x100G - 64xQSFP28 set to 100G
+
+Maximum 100G ports: 128
+
+{< /tab >}}
+{< tab "200G ">}}
+
+64x200G - 64xQSFP56 (native speed)
+
+Maximum 200G ports: 64
+
+{< /tab >}}
+{< /tab >}}
+
+{< /tabs >}}
+-->
+{{< tab "SN4700">}}
+
+SN4700 32x QSFP-DD 400GbE interfaces support both PAM4 and NRZ encodings. All speeds down to 1G are supported.
+
+For lower speed interface configurations, PAM4 is automatically converted to NRZ encoding.
+
+Only the top or the bottom 16x QSFP-DD ports can break out into 8x SFP56. The adjacent QSFP-DD port are disabled.
+
+All 32x QSFP-DD ports can break out into 2x QSFP56 at 2x200G or 4x QSFP56 at 4x 100G without disabling ports.
+
+{{< tabs "4700_ports ">}}
+{{< tab "10G ">}}
+
+128x 10G - 16x QSFP-DD break out into 8x 50G and set to 10G
+
+Maximum 10G ports: 128
+
+*Other QSFP-DD breakout combinations are supported up to maximum of 128x 10G ports.
+
+{{< /tab >}}
+{{< tab "25G ">}}
+
+128x 25G - 16x QSFP-DD break out into 8x 50G and set to 25G
+
+Maximum 25G ports: 128
+
+*Other QSFP-DD breakout combinations are supported up to maximum of 128x 25G ports.
+
+{{< /tab >}}
+{{< tab "40G ">}}
+
+32x 40G - 32x QSFP-DD set to 40G
+
+Maximum 40G ports: 32
+
+{{< /tab >}}
+{{< tab "50G ">}}
+
+128x 50G - 16x QSFP-DD break out into 8x 50G
+
+Maximum 50G ports: 128
+
+*Other QSFP-DD breakout combinations are supported up to maximum of 128x 50G ports.
+
+{{< /tab >}}
+{{< tab "100G ">}}
+
+128x 100G - 32x QSFP-DD break out into 4x 100G
+
+Maximum 100G ports: 128
+
+{{< /tab >}}
+{{< tab "200G ">}}
+
+64x 200G - 64x QSFP-DD break out into 2x 200G
+
+Maximum 200G ports: 64
+
+{{< /tab >}}
+{{< tab "400G ">}}
+
+32x 400G - 32x QSFP-DD (native speed)
+
+Maximum 400G ports: 32
+
+{{< /tab >}}
+{{< /tab >}}
+
+{{< /tabs >}}
+<!-- SN4800 PLATFORM IS PLANNED TO NOV21 (CL5.0?)
+{< tab "SN4800">}}
+
+SN4800 is a modular chassis with up to 8 line cards. Each line card can have up to 16 MAC addresses and can be of a different port form-factor and speed.
+
+All line cards supports both NRZ and PAM4 encodings with speeds down to 1G. For lower speeds, PAM4 is automatically converted to NRZ encoding.
+
+{< tabs "4800_ports ">}}
+{< tab "10G ">}}
+
+128x10G - 8 line cards of 16xQSFP28* break out into 4x25G and set to 10G
+
+Maximum 10G ports: 128
+
+*Other combinations are possible by using higher speed line card with breakouts (up to 128x10G ports).
+
+{< /tab >}}
+{< tab "25G ">}}
+
+128x25G - 8 line cards of 16xQSFP28* break out into 4x25G
+
+Maximum 25G ports: 128
+
+*Other combinations are possible by using higher speed line card with breakouts (up to 128x25G ports). 
+
+{< /tab >}}
+{< tab "40G ">}}
+
+128x40G - 8 line cards of 16xQSFP28 set to 40G
+
+Maximum 40G ports: 128
+
+{< /tab >}}
+{< tab "50G ">}}
+
+128x50G - 8 line cards of 8xQSFP56* break out into 4x50G
+
+Maximum 50G ports: 128
+
+*Other combinations are possible by using higher speed line card with breakouts (up to 128x50G ports). 
+
+{< /tab >}}
+{< tab "100G ">}}
+
+128x100G - 8 line cards of 16xQSFP28* (native speed)
+
+Maximum 100G ports:128
+
+*Other combinations are possible by using higher speed line card with breakouts (up to 128x100G ports).
+
+{< /tab >}}
+{< tab "200G ">}}
+
+64x200G - 8 line cards of 8xQSFP56* (native speed)
+
+Maximum 200G ports: 64
+
+*Other combinations are possible by using higher speed line card with breakouts (up to 64x200G ports). 
+
+{< /tab >}}
+{< tab "400G ">}}
+
+32x400G - 8 linecards of 4xQSFP-DD (native speed)
+
+Maximum 400G ports: 32
+
+{< /tab >}}
+{< /tab >}}
+
+{< /tabs >}}
+-->
 {{< /tabs >}}
 
 {{%notice note%}}
@@ -1099,8 +1311,8 @@ Maximum 400G ports - 32
 - Port ganging is not supported.
 - Switches with the Spectrum 1 ASIC have a limit of 64 logical ports. If you want to break ports out to 4x25G or 4x10G:
   - You can only break out odd-numbered ports into four logical ports.
-  - You must disable the next even-numbered port. For example, if you break out port 11 into four logical ports, you must disable port 12.
-  These restrictions do *not* apply to a 2x50G breakout configuration or to the NVIDIA SN2100 and SN2010 switches.
+  - You must disable the next even numbered port. For example, if you break out port 11 into four logical ports, you must disable port 12.
+  These restrictions do *not* apply to a 2x50G breakout configuration or to the NVIDIA SN2100 and SN2010 switch.
 - Switches with the Spectrum 2 and Spectrum 3 ASIC have a limit of 128 logical ports. To ensure that the number of total logical interfaces does not exceed the limit, if you split ports into four interfaces on Spectrum 2 and Spectrum 3 switches with 64 interfaces, you must disable the adjacent port. For example, when splitting port 1 into four 25G interfaces, you must disable port 2 in the `/etc/cumulus/ports.conf` file:
 
     ```
@@ -1256,15 +1468,22 @@ To remove a breakout port:
 {{< /tab >}}
 {{< tab "NVUE Commands ">}}
 
-Run the `nv unset interface <interface>` command. For example:
+1. Run the `nv unset interface <interface>` command. For example:
 
-    ```
-    cumulus@switch:~$ nv unset interface swp1s0
-    cumulus@switch:~$ nv unset interface swp1s1
-    cumulus@switch:~$ nv unset interface swp1s2
-    cumulus@switch:~$ nv unset interface swp1s3
-    cumulus@switch:~$ nv config apply
-    ```
+   ```
+   cumulus@switch:~$ nv unset interface swp1s0
+   cumulus@switch:~$ nv unset interface swp1s1
+   cumulus@switch:~$ nv unset interface swp1s2
+   cumulus@switch:~$ nv unset interface swp1s3
+   cumulus@switch:~$ nv config apply
+   ```
+
+2. Run the `nv unset interface <interface> link breakout` command to configure the interface for the original speed. For example:
+
+   ```
+   cumulus@switch:~$ nv unset interface swp1 link breakout
+   cumulus@switch:~$ nv config apply
+   ```
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}

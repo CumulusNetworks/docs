@@ -12,7 +12,7 @@ VXLAN uses a VLAN-like encapsulation technique to encapsulate MAC-based layer 2 
 
 Hosts on a given virtual network are joined together through an overlay protocol that initiates and terminates tunnels at the edge of the multi-tenant network, typically the hypervisor vSwitch or top of rack. These edge points are the VXLAN tunnel end points (VTEP).
 
-Cumulus Linux can initiate and terminate VTEPs in hardware and supports wire-rate VXLAN. VXLAN provides an efficient hashing scheme across the IP fabric during the encapsulation process; the source UDP port is unique, with the hash based on layer 2 through layer 4 information from the original frame. The UDP destination port is the standard port 4789.
+Cumulus Linux can start and stop VTEPs in hardware and supports wire-rate VXLAN. VXLAN provides an efficient hashing scheme across the IP fabric during the encapsulation process; the source UDP port is unique, with the hash based on layer 2 through layer 4 information from the original frame. The UDP destination port is the standard port 4789.
 
 Cumulus Linux includes the native Linux VXLAN kernel support and integrates with controller-based overlay solutions, such as {{<link url="Integrating-Hardware-VTEPs-with-VMware-NSX-V" text="VMware NSX">}}.
 
@@ -23,9 +23,9 @@ The VXLAN tunnel endpoints cannot share a common subnet; there must be at least 
 {{%/notice%}}
 
 ## Considerations
-
+<!-- vale off -->
 ### Cut-through Mode and Store and Forward Switching
-
+<!-- vale on -->
 On switches with the NVIDIA Spectrum ASICs, Cumulus Linux supports cut-through mode for VXLANs but does **not** support store and forward switching.
 
 ### MTU Size for Virtual Network Interfaces

@@ -198,11 +198,11 @@ Several ZTP example scripts are available in the {{<exlink url="https://github.c
 
 ## Continue Provisioning
 
-Typically ZTP exits after executing the script locally and does not continue. To continue with provisioning so that you do not have to intervine manually or embed an Ansible callback into the script, you can add the CUMULUS-AUTOPROVISION-CASCADE directive.
+Typically ZTP exits after executing the script locally and does not continue. To continue with provisioning so that you do not have to intervine manually or embed an Ansible callback into the script, you can add the `CUMULUS-AUTOPROVISION-CASCADE` directive.
 
 ## Best Practices
 
-ZTP scripts come in different forms and frequently perform many of the same tasks. As BASH is the most common language used for ZTP scripts, the following BASH snippets are provided to accelerate your ability to perform common tasks with robust error checking.
+ZTP scripts come in different forms and frequently perform many of the same tasks. As BASH is the most common language used for ZTP scripts, the following BASH snippets are provided to help you perform common tasks with robust error checking.
 
 ### Set the Default Cumulus User Password
 

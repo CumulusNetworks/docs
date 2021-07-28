@@ -24,9 +24,9 @@ The Net-SNMP agent provides a method to generate SNMP trap events using the Dist
 To enable specific types of traps, create the following configurations in `/etc/snmp/snmpd.conf`.
 
 ### Define Access Credentials
-
+<!-- vale off -->
 Although the traps are sent to an SNMPv2c receiver, the SNMPv3 username is still required to authorize the DisMan service. Starting with Net-SNMP 5.3, `snmptrapd` no longer accepts all traps by default. `snmptrapd` must be configured with authorized SNMPv1/v2c community strings and/or SNMPv3 users. Non-authorized traps/informs are dropped.
-
+<!-- vale on -->
 Follow the steps in {{<link url="Configure-SNMP/#configure-the-snmpv3-username">}} to define the username. You can refer to the {{<exlink url="http://www.net-snmp.org/docs/man/snmptrapd.conf.html" text="snmptrapd.conf(5) manual page">}} for more information.
 
 {{%notice note%}}
@@ -157,7 +157,7 @@ cumulus@switch:~$ sudo systemctl restart snmpd.service
 
 ### Monitor Fans, Power Supplies, Temperature and Transformers
 
-An SNMP agent (`snmpd`) waits for incoming SNMP requests and responds to them. If no requests are received, an agent does not initiate any actions. However, various commands can configure `snmpd` to send traps based on preconfigured settings (`load`, `file`, `proc`, `disk`, or `swap` commands), or customized `monitor` directives.
+An SNMP agent (`snmpd`) waits for incoming SNMP requests and responds to them. If no requests are received, an agent does not start any actions. However, various commands can configure `snmpd` to send traps based on preconfigured settings (`load`, `file`, `proc`, `disk`, or `swap` commands), or customized `monitor` directives.
 
 See the `snmpd.conf` {{<exlink url="http://www.net-snmp.org/docs/man/snmpd.conf.html" text="man page">}} for details on the `monitor` directive.
 
@@ -382,9 +382,9 @@ cumulus@switch:~$ sudo systemctl restart snmpd.service
 
 {{< /tab >}}
 {{< /tabs >}}
-
+<!-- vale off -->
 ### Monitor UCD-SNMP-MIB Tables
-
+<!-- vale on -->
 To configure the Event MIB tables to monitor the various UCD-SNMP-MIB tables for problems (as indicated by the appropriate xxErrFlag column objects) and send a trap, add `defaultMonitors yes` to the `snmpd.conf` file and provide a  configuration. You must first download the `snmp-mibs-downloader` Debian package and comment out the `mibs` line from the `/etc/snmp/snmpd.conf` file (see {{<link url="#enable-mib-to-oid-translation" text="below">}}). Then add a configuration like the following example:
 
 ```
@@ -407,7 +407,7 @@ cumulus@switch:~$ sudo systemctl restart snmpd.service
 
 ## Enable MIB to OID Translation
 
-MIB names can be used instead of OIDs, which greatly improves the readability of the `snmpd.conf` file. You enable this by installing the `snmp-mibs-downloader`, which downloads SNMP MIBs to the switch prior to enabling traps.
+You can use MIB names instead of OIDs, which greatly improves the readability of the `snmpd.conf` file. You enable this by installing the `snmp-mibs-downloader`, which downloads SNMP MIBs to the switch before enabling traps.
 
 1. Open `/etc/apt/sources.list` in a text editor.
 
@@ -456,9 +456,9 @@ MIB names can be used instead of OIDs, which greatly improves the readability of
    ```
 
 ## Configure Incoming SNMP Traps
-
-The Net-SNMP trap daemon configured in `/etc/snmp/snmpd.conf` *receives* SNMP traps. You configure how *incoming* traps are processed in the `/etc/snmp/snmptrapd.conf` file. Starting with Net-SNMP release 5.3, you must specify who is authorized to send traps and informs to the notification receiver (and what types of processing these are allowed to trigger). You can specify three processing types:
-
+<!-- vale off -->
+The Net-SNMP trap daemon configured in `/etc/snmp/snmpd.conf` *receives* SNMP traps. You configure how *incoming* traps are processed in the `/etc/snmp/snmptrapd.conf` file. With Net-SNMP release 5.3 and later, you must specify who is authorized to send traps and informs to the notification receiver (and what types of processing these are allowed to trigger). You can specify three processing types:
+<!-- vale on -->
 - *log* logs the details of the notification in a specified file to standard output (or stderr), or through syslog (or similar).
 - *execute* passes the details of the trap to a specified handler program, including embedded Perl.
 - *net* forwards the trap to another notification receiver.

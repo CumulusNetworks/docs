@@ -207,9 +207,9 @@ You can delete all SPAN or ERSPAN sessions with the `nv unset system port-mirror
 cumulus@switch:~$ nv unset system port-mirror 
 cumulus@switch:~$ nv config apply
 ```
-
+<!-- vale off -->
 ## cl-acltool Configuration
-
+<!-- vale on -->
 You can configure SPAN and ERSPAN with `cl-acltool`, the {{<link url="Netfilter-ACLs" text="same utility used for security ACL configuration">}}. The match criteria for SPAN and ERSPAN is usually an interface; for more granular match terms, use {{<link url="#selective-spanning" text="selective spanning">}}. The SPAN source interface can be a port, a subinterface, or a bond interface. Ingress traffic on interfaces can be matched, and on switches with {{<exlink url="www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="Spectrum ASICs">}}, egress traffic can be matched. See the {{<link url="#limitations-for-span-and-erspan" text="list of limitations">}} below.
 
 Cumulus Linux supports a maximum of two SPAN destinations. Multiple rules (SPAN sources) can point to the same SPAN destination, although a given SPAN source cannot specify two SPAN destinations. The SPAN destination (MTP) interface can be a physical port, subinterface, bond interface or CPU.  The SPAN and ERSPAN action is independent of security ACL actions. If packets match both a security ACL rule and a SPAN rule, both actions are carried out.
@@ -370,7 +370,7 @@ To use the CPU port as the SPAN destination, create a file in the `/etc/cumulus/
 ```
 
 This example rule matches on swp1 egress traffic that has the source IP Address 10.10.1.1.
-When a match occurs, the traffic is is mirrored to the CPU:
+When a match occurs, the traffic is mirrored to the CPU:
 
 ```
 [iptables]
@@ -455,12 +455,13 @@ This section describes how to configure ERSPAN.
      69  6804 ERSPAN     all  --  swp1   any     anywhere      anywhere       ERSPAN src-ip:10.0.0.1 dst-ip:10.10.10.234
      ```
 
-The `src-ip` option can be any IP address, even if it does not exist in the routing table. The `dst-ip` option must be an IP address reachable through the routing table. The destination IP address must be reachable from a front-panel port; not the management port. Use `ping` or `ip route get <ip>` to verify that the destination IP address is reachable. Setting the `--ttl` option is recommended.
+- `src-ip` can be any IP address, even if it does not exist in the routing table.
+- `dst-ip` must be an IP address reachable through the routing table and front-panel port (not the management port) or SVI. Use ping or ip route get <ip> to verify that the destination IP address is reachable. Setting the --ttl option is recommended.
 
-If a SPAN destination IP address is not available, or if the interface type prevents using a laptop as a SPAN destination, refer to [knowledge base article]({{<ref "/knowledge-base/Configuration-and-Usage/Administration/Configure-ERSPAN-to-a-Cumulus-Linux-Switch" >}}).
+If a SPAN destination IP address is not available, or if the interface type prevents you from using a laptop as a SPAN destination, refer to [knowledge base article]({{<ref "/knowledge-base/Configuration-and-Usage/Administration/Configure-ERSPAN-to-a-Cumulus-Linux-Switch" >}}).
 
 {{%notice note%}}
-- When using {{<exlink url="https://www.wireshark.org" text="Wireshark">}} to review the ERSPAN output, Wireshark might report the message "Unknown version, please report or test to use fake ERSPAN preference" and the trace is unreadable. To resolve this issue, go to the General preferences for Wireshark, then go to **Protocols \ ERSPAN** and check the **Force to decode fake ERSPAN frame** option.
+- If you use {{<exlink url="https://www.wireshark.org" text="Wireshark">}} to review the ERSPAN output, you might see the Wireshark error message `Unknown version, please report or test to use fake ERSPAN preference` and the trace might be unreadable. To resolve this issue, go to **Protocols \ ERSPAN** from the Wireshark General preferences and check the **Force to decode fake ERSPAN frame** option.
 - To set up a {{<exlink url="https://www.wireshark.org/docs/wsug_html_chunked/ChCapCaptureFilterSection.html" text="capture filter">}} on the destination switch that filters for a specific IP protocol, use `ip.proto == 47` to filter for GRE-encapsulated (IP protocol 47) traffic.
 {{%/notice%}}
 

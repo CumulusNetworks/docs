@@ -124,7 +124,7 @@ For EVPN symmetric routing, additional configuration is required:
 
 Optional configuration includes {{<link url="#configure-rd-and-rts-for-the-tenant-vrf" text="configuring RD and RTs for the tenant VRF">}} and {{<link url="#advertise-locally-attached-subnets" text="advertising the locally-attached subnets">}}.
 
-### Configure a Per-tenant VXLAN Interface
+### Configure a Per Tenant VXLAN Interface
 
 {{< tabs "TabID113 ">}}
 {{< tab "NCLU Commands ">}}
@@ -352,21 +352,21 @@ router bgp 65101 vrf RED
 The tenant VRF RD and RTs are different from the RD and RTs for the layer 2 VNI. See {{<link url="EVPN-Enhancements#define-rds-and-rts" text="Define RDs and RTs">}}.
 {{%/notice%}}
 
-### Advertise Locally-attached Subnets
+### Advertise Locally Attached Subnets
 
 Symmetric routing presents a problem in the presence of silent hosts. If the ingress VTEP does not have the destination subnet and the host route is not advertised for the destination host, the ingress VTEP cannot route the packet to its destination. You can overcome this problem by having VTEPs announce the subnet prefixes corresponding to their connected subnets in addition to announcing host routes. These routes are announced as EVPN prefix (type-5) routes.
 
 To advertise locally attached subnets:
-
-1. Enable advertisement of EVPN prefix (type-5) routes. Refer to {{<link url="#announce-evpn-type-5-routes" text="Prefix-based Routing - EVPN Type-5 Routes">}}, below.
+<!-- vale off -->
+1. Enable advertisement of EVPN prefix (type-5) routes. Refer to {{<link url="#announce-evpn-type-5-routes" text="Prefix-based Routing - EVPN Type-5 Routes">}}, below.<!-- vale on -->
 2. Ensure that the routes corresponding to the connected subnets are known in the BGP VRF routing table by injecting them using the `network` command or redistributing them using the `redistribute connected` command.
 
 {{%notice note%}}
 This configuration is recommended only if the deployment is known to have silent hosts. It is also recommended that you enable on only one VTEP per subnet, or two for redundancy.
 {{%/notice%}}
-
+<!-- vale off -->
 ## Prefix-based Routing
-
+<!-- vale on -->
 EVPN in Cumulus Linux supports prefix-based routing using EVPN type-5 (prefix) routes. Type-5 routes (or prefix routes) are primarily used to route to destinations outside of the data center fabric.
 
 EVPN prefix routes carry the layer 3 VNI and router MAC address and follow the symmetric routing model for routing to the destination prefix.
@@ -374,18 +374,18 @@ EVPN prefix routes carry the layer 3 VNI and router MAC address and follow the s
 {{%notice note%}}
 When connecting to a WAN edge router to reach destinations outside the data center, deploy specific border/exit leaf switches to originate the type-5 routes.
 {{%/notice%}}
-
+<!-- vale off -->
 ### Install EVPN Type-5 Routes
-
+<!-- vale on -->
 For a switch to be able to install EVPN type-5 routes into the routing table, you must configure it with the layer 3 VNI related information. This configuration is the same as for symmetric routing. You need to:
 
 1. Configure a per-tenant VXLAN interface that specifies the layer 3 VNI for the tenant. This VXLAN interface is part of the bridge; router MAC addresses of remote VTEPs are installed over this interface.
 2. Configure an SVI (layer 3 interface) corresponding to the per-tenant VXLAN interface. This is attached to the VRF of the tenant. The remote prefix routes are installed over this SVI.
 3. Specify the mapping of the VRF to layer 3 VNI. This configuration is for the BGP control plane.
-
+<!-- vale off -->
 ### Announce EVPN Type-5 Routes
-
-The following configuration is required in the tenant VRF to announce IP prefixes in the BGP RIB as EVPN type-5 routes.
+<!-- vale on -->
+The following configuration is required in the tenant VRF to announce IP prefixes in the BGP RIB as EVPN <!-- vale off -->type-5<!-- vale on --> routes.
 
 {{< tabs "TabID317 ">}}
 {{< tab "NCLU Commands ">}}
@@ -536,12 +536,12 @@ cumulus@leaf01:~$
 
 {{< /tab >}}
 {{< /tabs >}}
-
+<!-- vale off -->
 ### Originate Default EVPN Type-5 Routes
-
+<!-- vale on -->
 Cumulus Linux supports originating EVPN default type-5 routes. The default type-5 route is originated from a border (exit) leaf and advertised to all the other leafs within the pod. Any leaf within the pod follows the default route towards the border leaf for all external traffic (towards the Internet or a different pod).
 
-To originate a default type-5 route in EVPN, you need to execute FRRouting commands. The following shows an example:
+To originate a default <!-- vale off -->type-5<!-- vale on --> route in EVPN, you need to execute FRRouting commands. The following shows an example:
 
 ```
 cumulus@leaf01:~$ sudo vtysh
@@ -554,9 +554,9 @@ leaf01(config-router-af)# default-originate ipv6
 leaf01(config-router-af)# end
 leaf01# write memory
 ```
-
+<!-- vale off -->
 ### Advertise Primary IP address (VXLAN Active-Active Mode)
-
+<!-- vale on -->
 EVPN symmetric routing configurations with VXLAN active-active (MLAG), all EVPN routes are advertised with the anycast IP address ({{<link url="VXLAN-Active-active-Mode#terminology" text="clagd-vxlan-anycast-ip">}}) as the next hop IP address and the anycast MAC address as the router MAC address. In a failure scenario, this can lead to traffic being forwarded to a leaf switch that does not have the destination routes. Traffic has to traverse the peer link (with additional BGP sessions per VRF).
 
 To prevent sub-optimal routing, the next hop IP address of the VTEP is conditionally handled depending on the route type: host type-2 (MAC/IP advertisement) or type-5 (IP prefix route).
@@ -762,6 +762,158 @@ The configuration for the example is shown below.
 Because the configuration is similar on all the leafs, only leaf01 and border01 configuration files are shown below. The spine configuration files are not shown for brevity.
 
 {{< tabs "TabID749 ">}}
+{{< tab "NVUE Commands ">}}
+
+{{< tabs "TabID767 ">}}
+{{< tab "leaf01 ">}}
+
+```
+cumulus@leaf01:~$ nv set interface lo ip address 10.10.10.1/32
+cumulus@leaf01:~$ nv set interface swp1-3,swp51-52
+cumulus@leaf01:~$ nv set interface bond1 bond member swp1
+cumulus@leaf01:~$ nv set interface bond2 bond member swp2
+cumulus@leaf01:~$ nv set interface bond3 bond member swp3
+cumulus@leaf01:~$ nv set interface bond1 bond lacp-bypass on
+cumulus@leaf01:~$ nv set interface bond2 bond lacp-bypass on
+cumulus@leaf01:~$ nv set interface bond3 bond lacp-bypass on
+cumulus@leaf01:~$ nv set interface bond1 link mtu 9000
+cumulus@leaf01:~$ nv set interface bond2 link mtu 9000
+cumulus@leaf01:~$ nv set interface bond3 link mtu 9000
+cumulus@leaf01:~$ nv set interface bond1-3 bridge domain br_default
+cumulus@leaf01:~$ nv set interface bond1 bridge domain br_default access 10
+cumulus@leaf01:~$ nv set interface bond2 bridge domain br_default access 20
+cumulus@leaf01:~$ nv set interface bond3 bridge domain br_default access 30
+cumulus@leaf01:~$ nv set bridge domain br_default vlan 10,20,30
+cumulus@leaf01:~$ nv set interface vlan10 ip address 10.1.10.2/24
+cumulus@leaf01:~$ nv set interface vlan10 ip vrr address 10.1.10.1/24
+cumulus@leaf01:~$ nv set interface vlan10 ip vrr mac-address 00:00:00:00:00:10
+cumulus@leaf01:~$ nv set interface vlan10 ip vrr state up
+cumulus@leaf01:~$ nv set interface vlan20 ip address 10.1.20.2/24
+cumulus@leaf01:~$ nv set interface vlan20 ip vrr address 10.1.20.1/24
+cumulus@leaf01:~$ nv set interface vlan20 ip vrr mac-address 00:00:00:00:00:20
+cumulus@leaf01:~$ nv set interface vlan20 ip vrr state up
+cumulus@leaf01:~$ nv set interface vlan30 ip address 10.1.30.2/24
+cumulus@leaf01:~$ nv set interface vlan30 ip vrr address 10.1.30.1/24
+cumulus@leaf01:~$ nv set interface vlan30 ip vrr mac-address 00:00:00:00:00:30
+cumulus@leaf01:~$ nv set interface vlan30 ip vrr state up
+cumulus@leaf01:~$ nv set vrf RED
+cumulus@leaf01:~$ nv set vrf BLUE
+cumulus@leaf01:~$ nv set bridge domain br_default vlan 10 vni 10
+cumulus@leaf01:~$ nv set bridge domain br_default vlan 20 vni 20
+cumulus@leaf01:~$ nv set bridge domain br_default vlan 30 vni 30
+cumulus@leaf01:~$ nv set interface vlan10 ip vrf RED
+cumulus@leaf01:~$ nv set interface vlan20 ip vrf RED
+cumulus@leaf01:~$ nv set interface vlan30 ip vrf BLUE
+cumulus@leaf01:~$ nv set nve vxlan source address 10.10.10.1
+cumulus@leaf01:~$ nv set nve vxlan arp-nd-suppress on 
+cumulus@leaf01:~$ nv set vrf RED evpn vni 4001
+cumulus@leaf01:~$ nv set vrf BLUE evpn vni 4002
+cumulus@leaf01:~$ nv set system global anycast-mac 44:38:39:BE:EF:AA
+cumulus@leaf01:~$ nv set evpn enable on
+cumulus@leaf01:~$ nv set router bgp autonomous-system 65101
+cumulus@leaf01:~$ nv set router bgp router-id 10.10.10.1
+cumulus@leaf01:~$ nv set vrf default router bgp peer-group underlay remote-as external
+cumulus@leaf01:~$ nv set vrf default router bgp peer swp51 peer-group underlay
+cumulus@leaf01:~$ nv set vrf default router bgp peer swp52 peer-group underlay
+cumulus@leaf01:~$ nv set vrf default router bgp peer-group underlay address-family l2vpn-evpn enable on
+cumulus@leaf01:~$ nv set vrf default router bgp address-family ipv4-unicast redistribute connected enable on
+cumulus@leaf01:~$ nv set vrf RED router bgp autonomous-system 65101
+cumulus@leaf01:~$ nv set vrf RED router bgp router-id 10.10.10.1
+cumulus@leaf01:~$ nv set vrf RED router bgp address-family ipv4-unicast redistribute connected enable on
+cumulus@leaf01:~$ nv set vrf RED router bgp peer-group underlay address-family l2vpn-evpn enable on
+cumulus@leaf01:~$ nv set vrf RED router bgp address-family ipv4-unicast route-export to-evpn
+cumulus@leaf01:~$ nv set vrf RED router bgp route-import from-evpn route-target 65101:6000
+cumulus@leaf01:~$ nv set vrf BLUE router bgp autonomous-system 65101
+cumulus@leaf01:~$ nv set vrf BLUE router bgp router-id 10.10.10.1
+cumulus@leaf01:~$ nv set vrf BLUE router bgp address-family ipv4-unicast redistribute connected enable on
+cumulus@leaf01:~$ nv set vrf BLUE router bgp peer-group underlay address-family l2vpn-evpn enable on
+cumulus@leaf01:~$ nv set vrf BLUE router bgp address-family ipv4-unicast route-export to-evpn
+cumulus@leaf01:~$ nv set vrf BLUE router bgp route-import from-evpn route-target 65163:6000
+cumulus@leaf01:~$ nv set evpn multihoming enable on
+cumulus@leaf01:~$ nv set interface bond1 evpn multihoming segment local-id 1
+cumulus@leaf01:~$ nv set interface bond2 evpn multihoming segment local-id 2
+cumulus@leaf01:~$ nv set interface bond3 evpn multihoming segment local-id 3
+cumulus@leaf01:~$ nv set interface bond1-3 evpn multihoming segment mac-address 44:38:39:BE:EF:AA
+cumulus@leaf01:~$ nv set interface bond1-3 evpn multihoming segment df-preference 50000
+cumulus@leaf01:~$ nv set interface swp51-52 evpn multihoming uplink on
+cumulus@leaf01:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "border01 ">}}
+
+```
+cumulus@border01:~$ nv set interface lo ip address 10.10.10.63/32
+cumulus@border01:~$ nv set interface swp1-3,swp51-52
+cumulus@border01:~$ nv set interface bond1 bond member swp1
+cumulus@border01:~$ nv set interface bond2 bond member swp2
+cumulus@border01:~$ nv set interface bond3 bond member swp3
+cumulus@border01:~$ nv set interface bond1 bond lacp-bypass on
+cumulus@border01:~$ nv set interface bond2 bond lacp-bypass on
+cumulus@border01:~$ nv set interface bond3 bond lacp-bypass on
+cumulus@border01:~$ nv set interface bond1 link mtu 9000
+cumulus@border01:~$ nv set interface bond2 link mtu 9000
+cumulus@border01:~$ nv set interface bond3 link mtu 9000
+cumulus@border01:~$ nv set interface bond1-3 bridge domain br_default
+cumulus@border01:~$ nv set interface bond1 bridge domain br_default access 2001
+cumulus@border01:~$ nv set interface bond2 bridge domain br_default access 2002
+cumulus@border01:~$ nv set interface bond3 bridge domain br_default access 2010
+cumulus@border01:~$ nv set interface vlan2001 ip address 10.1.201.1/24
+cumulus@border01:~$ nv set interface vlan2002 ip address 10.1.202.1/24
+cumulus@border01:~$ nv set interface vlan2010 ip address 10.1.210.1/24
+cumulus@border01:~$ nv set bridge domain br_default vlan 2001,2002,2010
+cumulus@border01:~$ nv set vrf VRF10
+cumulus@border01:~$ nv set vrf EXTERNAL1
+cumulus@border01:~$ nv set vrf EXTERNAL2
+cumulus@border01:~$ nv set bridge domain br_default vlan 2001 vni 2001
+cumulus@border01:~$ nv set bridge domain br_default vlan 2002 vni 2002
+cumulus@border01:~$ nv set bridge domain br_default vlan 2010 vni 2010
+cumulus@border01:~$ nv set interface vlan2001 ip vrf EXTERNAL1
+cumulus@border01:~$ nv set interface vlan2002 ip vrf EXTERNAL2
+cumulus@border01:~$ nv set interface vlan2010 ip vrf VRF10
+cumulus@border01:~$ nv set nve vxlan source address 10.10.10.63
+cumulus@border01:~$ nv set nve vxlan arp-nd-suppress on 
+cumulus@border01:~$ nv set vrf VRF10 evpn vni 6000
+cumulus@border01:~$ nv set system global anycast-mac 44:38:39:BE:EF:FF
+cumulus@border01:~$ nv set evpn enable on
+cumulus@border01:~$ nv set router bgp autonomous-system 65163
+cumulus@border01:~$ nv set router bgp router-id 10.10.10.63
+cumulus@border01:~$ nv set vrf default router bgp peer-group underlay remote-as external
+cumulus@border01:~$ nv set vrf default router bgp peer swp51 peer-group underlay
+cumulus@border01:~$ nv set vrf default router bgp peer swp52 peer-group underlay
+cumulus@border01:~$ nv set vrf default router bgp peer-group underlay address-family l2vpn-evpn enable on
+cumulus@border01:~$ nv set vrf default router bgp address-family ipv4-unicast redistribute connected enable on
+cumulus@border01:~$ nv set vrf VRF10 router bgp autonomous-system 65163
+cumulus@border01:~$ nv set vrf VRF10 router bgp router-id 10.10.10.63
+cumulus@border01:~$ nv set vrf VRF10 router bgp address-family ipv4-unicast redistribute connected enable on
+cumulus@border01:~$ nv set vrf VRF10 router bgp peer-group underlay address-family l2vpn-evpn enable on
+cumulus@border01:~$ nv set vrf VRF10 router bgp address-family ipv4-unicast route-export to-evpn
+cumulus@border01:~$ nv set vrf VRF10 router bgp route-import from-evpn route-target 65101:4001
+cumulus@border01:~$ nv set vrf VRF10 router bgp route-import from-evpn route-target 65101:4002
+cumulus@border01:~$ nv set vrf EXTERNAL1 router bgp autonomous-system 65163
+cumulus@border01:~$ nv set vrf EXTERNAL1 router bgp router-id 10.10.10.63
+cumulus@border01:~$ nv set vrf EXTERNAL1 router bgp address-family ipv4-unicast redistribute connected enable on
+cumulus@border01:~$ nv set vrf EXTERNAL1 router bgp peer-group underlay address-family l2vpn-evpn enable on
+cumulus@border01:~$ nv set vrf EXTERNAL1 router bgp address-family ipv4-unicast route-export to-evpn
+cumulus@border01:~$ nv set vrf EXTERNAL2 router bgp autonomous-system 65163
+cumulus@border01:~$ nv set vrf EXTERNAL2 router bgp router-id 10.10.10.63
+cumulus@border01:~$ nv set vrf EXTERNAL2 router bgp address-family ipv4-unicast redistribute connected enable on
+cumulus@border01:~$ nv set vrf EXTERNAL2 router bgp peer-group underlay address-family l2vpn-evpn enable on
+cumulus@border01:~$ nv set vrf EXTERNAL2 router bgp address-family ipv4-unicast route-export to-evpn
+cumulus@border01:~$ nv set evpn multihoming enable on
+cumulus@border01:~$ nv set interface bond1 evpn multihoming segment local-id 1
+cumulus@border01:~$ nv set interface bond2 evpn multihoming segment local-id 2
+cumulus@border01:~$ nv set interface bond3 evpn multihoming segment local-id 3
+cumulus@border01:~$ nv set interface bond1-3 evpn multihoming segment mac-address 44:38:39:BE:EF:FF
+cumulus@border01:~$ nv set interface bond1-3 evpn multihoming segment df-preference 50000
+cumulus@border01:~$ nv set interface swp51-52 evpn multihoming uplink on
+cumulus@border01:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+{{< /tab >}}
 {{< tab "/etc/network/interfaces ">}}
 
 {{< tabs "TabID752 ">}}
@@ -1072,7 +1224,7 @@ router bgp 65101 vrf RED
  !
  address-family l2vpn evpn
   advertise ipv4 unicast
-  route-target import *:6000
+  route-target import 65163:6000
  exit-address-family
 !
 router bgp 65101 vrf BLUE
@@ -1084,7 +1236,7 @@ router bgp 65101 vrf BLUE
  !
  address-family l2vpn evpn
   advertise ipv4 unicast
-  route-target import *:6000
+  route-target import 65163:6000
  exit-address-family
 ```
 
@@ -1156,8 +1308,8 @@ router bgp 65163 vrf VRF10
  !
  address-family l2vpn evpn
   advertise ipv4 unicast
-  route-target import *:4001
-  route-target import *:4002
+  route-target import 65101:4001
+  route-target import 65101:4002
  exit-address-family
 !
 router bgp 65163 vrf EXTERNAL1
@@ -1258,9 +1410,9 @@ cumulus@border01:mgmt:~$ ip route show vrf VRF10
 ### Centralized Routing with ARP Suppression Enabled on the Gateway
 
 In an EVPN centralized routing configuration, where the layer 2 network extends beyond VTEPs, (for example, a host with bridges), the gateway MAC address is not refreshed in the network when ARP suppression is enabled on the gateway. To work around this issue, disable ARP suppression on the centralized gateway.
-
+<!-- vale off -->
 ### Type-5 Routes and ECMP
-
+<!-- vale on -->
 For VXLAN type-5 routes, ECMP does not work when the VTEP is directly connected to remote VTEPs.
 To work around this issue, add an additional device in the VXLAN fabric between the local and remote VTEPs, so that local and remote VTEPs are not directly connected.
 

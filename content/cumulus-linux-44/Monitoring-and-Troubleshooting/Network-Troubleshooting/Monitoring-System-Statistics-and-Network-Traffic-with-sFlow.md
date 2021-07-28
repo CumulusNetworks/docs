@@ -18,9 +18,9 @@ To configure `hsflowd` to send to the designated collectors, either:
 
 - Use DNS service discovery (DNS-SD)
 - Manually configure the `/etc/hsflowd.conf` file
-
+<!-- vale off -->
 ### Configure sFlow with DNS-SD
-
+<!-- vale on -->
 You can configure your DNS zone to advertise the collectors and polling information to all interested clients. Add the following content to the zone file on your DNS server:
 
 ```
@@ -57,9 +57,9 @@ cumulus@switch:~$ sudo systemctl start hsflowd.service
 ```
 
 No additional configuration is required in the `/etc/hsflowd.conf` file.
-
+<!-- vale off -->
 ### Manually Configure /etc/hsflowd.conf
-
+<!-- vale on -->
 You can set up the collectors and variables on each switch. Edit the `/etc/hsflowd.conf` file to set up your collectors and sampling rates in the `/etc/hsflowd.conf` file. For example:
 
 ```

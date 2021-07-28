@@ -31,11 +31,7 @@ Configuring EVPN-MH involves setting an Ethernet segment system MAC address (`es
 While you can specify a different `es-sys-mac` on different Ethernet segments attached to the same switch, the `es-sys-mac` must be the same on the downlinks attached to the same server.
 
 {{%notice info%}}
-
-When using Spectrum 2 or Spectrum 3 switches, an Ethernet segment can span more than two switches. Each Ethernet segment is a distinct redundancy group.
-
-However, when using Spectrum A1 switches, a maximum of two switches can participate in a redundancy group or Ethernet segment.
-
+When using Spectrum 2 or Spectrum 3 switches, an Ethernet segment can span more than two switches. Each Ethernet segment is a distinct redundancy group. However, when using Spectrum A1 switches, a maximum of two switches can participate in a redundancy group or Ethernet segment.
 {{%/notice%}}
 
 ## Required and Supported Features
@@ -51,15 +47,13 @@ The following features must be enabled in order to use EVPN-MH:
 - EVPN BUM traffic handling with {{<link title="EVPN BUM Traffic with PIM-SM" text="EVPN-PIM">}} on multihomed sites via Type-4/ESR routes, which includes split-horizon-filtering and designated forwarder election
 
 {{%notice warning%}}
+To use EVPN-MH, you must remove any MLAG configuration on the switch:
 
-In order to use EVPN-MH, you must remove any MLAG configuration on the switch. This entails:
-
-- Removing the `clag-id` from all interfaces in the `/etc/network/interfaces` file.
-- Removing the peerlink interfaces in the `/etc/network/interfaces` file.
-- Removing any existing `hwaddress` (from a Cumulus Linux 3.x MLAG configuration) or `address-virtual` (from a Cumulus Linux 4.x MLAG configuration) entries from all SVIs corresponding to a layer 3 VNI in the `/etc/network/interfaces` file.
-- Removing any `clagd-vxlan-anycast-ip` configuration in the `/etc/network/interfaces` file.
-- Then running `ifreload` to reload the configuration:<pre>cumulus@switch:~$ sudo ifreload</pre>
-
+- Remove the `clag-id` from all interfaces in the `/etc/network/interfaces` file.
+- Remove the peerlink interfaces from the `/etc/network/interfaces` file.
+- Remove any existing `hwaddress` (from a Cumulus Linux 3.x MLAG configuration) or `address-virtual` (from a Cumulus Linux 4.x MLAG configuration) entries from all SVIs corresponding to a layer 3 VNI in the `/etc/network/interfaces` file.
+- Remove any `clagd-vxlan-anycast-ip` configuration in the `/etc/network/interfaces` file.
+- Run `sudo ifreload` command to reload the configuration.
 {{%/notice%}}
 
 ### Other Supported Features
@@ -86,15 +80,12 @@ EVPN multihoming supports the following route types.
 ### Unsupported Features
 
 {{% notice note %}}
-EVPN MH can not coexist in an EVPN network with Broadcom based switches in an MLAG configuration.
-
-In mixed Broadcom-Spectrum networks EVPN-MH is not supported.
-
-In networks with all Spectrum based switches, EVPN and MLAG may coexist.
+- EVPN MH can not coexist in an EVPN network with Broadcom based switches in an MLAG configuration.
+- In mixed Broadcom-Spectrum networks EVPN-MH is not supported.
+- In networks with all Spectrum based switches, EVPN and MLAG can coexist.
 {{% /notice %}}
 
 The following features are not supported with EVPN-MH:
-
 - {{<link url="Traditional-Bridge-Mode" text="Traditional bridge mode">}}
 - {{<link url="Inter-subnet-Routing/#asymmetric-routing" text="Distributed asymmetric routing">}}
 - Head-end replication; use {{<link title="EVPN BUM Traffic with PIM-SM" text="EVPN-PIM">}} for BUM traffic handling instead
@@ -105,11 +96,11 @@ To configure EVPN-MH, first you need to enable the `evpn.multihoming.enable` var
 
 - The Ethernet segment ID (`es-id`)
 - The Ethernet segment system MAC address (`es-sys-mac`)
+- MH Uplinks (`evpn mh uplink`)
 
 These settings are applied to interfaces, typically bonds.
 
 An Ethernet segment configuration has these characteristics:
-
 - The `es-id` is a 24-bit integer (1-16777215).
 - Each interface (bond) needs its own `es-id`.
 - Static and LACP bonds can be associated with an `es-id`.
@@ -119,9 +110,7 @@ A *designated forwarder* (DF) is elected for each Ethernet segment. The DF is re
 NCLU generates the EVPN-MH configuration and reloads FRR and `ifupdown2`. The configuration appears in both the `/etc/network/interfaces` file and in `/etc/frr/frr.conf` file.
 
 {{%notice note%}}
-
 When EVPN-MH is enabled, all SVI MAC addresses are advertised as type 2 routes. You no longer need to configure a unique SVI IP address, or configure the BGP EVPN address family with `advertise-svi-ip`.
-
 {{%/notice%}}
 
 ### Enable EVPN-MH in switchd
@@ -144,7 +133,6 @@ cumulus@switch:~$ sudo systemctl restart switchd.service
 To configure bond interfaces for EVPN multihoming, run commands similar to the following:
 
 {{<tabs "bond config">}}
-
 {{<tab "NCLU Commands">}}
 
 ```
@@ -160,7 +148,6 @@ cumulus@switch:~$ net commit
 ```
 
 {{</tab>}}
-
 {{<tab "vtysh Commands">}}
 
 ```
@@ -192,7 +179,6 @@ cumulus@leaf01:~$
 ```
 
 {{</tab>}}
-
 {{</tabs>}}
 
 The NCLU commands create the following configuration in the `/etc/network/interfaces` file. If you are editing the `/etc/network/interfaces` file directly, apply a configuration like the following:
@@ -232,114 +218,16 @@ interface hostbond3
 !
 ```
 
-### EVPN MH Global Settings
-
-There are a few global settings for EVPN multihoming you can set, including:
-
-- `mac-holdtime`: MAC hold time, in seconds. This is the duration for which a switch maintains SYNC MAC entries after the Ethernet segment peer's EVPN type-2 route is deleted. During this time, the switch attempts to independently establish reachability of the MAC on the local Ethernet segment. The hold time can be between 0 and 86400 seconds. The default is 1080 seconds.
-- `neigh-holdtime`:  Neighbor entry hold time, in seconds. The duration for which a switch maintains SYNC neigh entries after the Ethernet segment peer's EVPN type-2 route is deleted. During this time, the switch attempts to independently establish reachability of the host on the local Ethernet segment. The hold time can be between 0 and 86400 seconds. The default is 1080 seconds.
-- `redirect-off`: **Cumulus VX only.** Disables fast failover of traffic destined to the access port via the VXLAN overlay. This knob only applies to Cumulus VX, since fast failover is only supported on the ASIC.
-- `startup-delay`:  Startup delay. The duration for which a switch holds the Ethernet segment-bond in a protodown state after a reboot or process restart. This allows the initialization of the VXLAN overlay to complete. The delay can be between 0 and 216000 seconds. The default is 180 seconds.
-
-To configure a MAC hold time for 1000 seconds, run the following commands:
-
-{{<tabs "MAC hold time">}}
-
-{{<tab "NCLU Commands">}}
-
-    cumulus@switch:~$ net add evpn mh mac-holdtime 1000
-    cumulus@switch:~$ net commit
-
-{{</tab>}}
-
-{{<tab "vtysh Commands">}}
-
-```
-cumulus@switch:~$ sudo vtysh
-switch# configure terminal
-switch(config)# evpn mh mac-holdtime 1000
-switch(config)# exit
-switch# write memory
-```
-
-{{</tab>}}
-
-{{</tabs>}}
-
-This creates the following configuration in the `/etc/frr/frr.conf` file:
-
-```
-evpn mh mac-holdtime 1200
-```
-
-To configure a neighbor hold time for 600 seconds, run the following commands:
-
-{{<tabs "Neighbor hold time">}}
-
-{{<tab "NCLU Commands">}}
-
-    cumulus@switch:~$ net add evpn mh neigh-holdtime 600
-    cumulus@switch:~$ net commit
-
-{{</tab>}}
-
-{{<tab "vtysh Commands">}}
-
-```
-cumulus@switch:~$ sudo vtysh
-switch# configure terminal
-switch(config)# evpn mh neigh-holdtime 600
-switch(config)# exit
-switch# write memory
-```
-
-{{</tab>}}
-
-{{</tabs>}}
-
-This creates the following configuration in the `/etc/frr/frr.conf` file:
-
-```
-evpn mh neigh-holdtime 600
-```
-
-To configure a startup delay for 1800 seconds, run the following commands:
-
-{{<tabs "startup delay">}}
-
-{{<tab "NCLU Commands">}}
-
-    cumulus@switch:~$ net add evpn mh startup-delay 1800
-    cumulus@switch:~$ net commit
-
-{{</tab>}}
-
-{{<tab "vtysh Commands">}}
-
-```
-cumulus@switch:~$ sudo vtysh
-switch# configure terminal
-switch(config)# evpn mh startup-delay 1800
-switch(config)# exit
-switch# write memory
-```
-
-{{</tab>}}
-
-{{</tabs>}}
-
-This creates the following configuration in the `/etc/frr/frr.conf` file:
-
-```
-evpn mh startup-delay 1800
-```
-
 ### Enable Uplink Tracking
 
-When all the uplinks go down, the VTEP loses connectivity to the VXLAN overlay. To prevent traffic loss in this state, the uplinks' oper-state is tracked. When all the uplinks are down, the Ethernet segment bonds on the switch are put into a protodown or error-disabled state. You can configure a link as an MH uplink to enable this tracking.
+When all uplinks go down, the VTEP loses connectivity to the VXLAN overlay. To prevent traffic loss, Cumulus Linux tracks the operational state of the uplink. When all the uplinks are down, the Ethernet segment bonds on the switch are in a protodown or error-disabled state. An MH uplink is any routed interface where locally-encapsulated VXLAN traffic is routed (after encapsulation) or any routed interface receiving VXLAN traffic (before decapsulation) that is decapsulated by the local device.
+
+{{%notice info%}}
+Split-horizon and Designated-Forwarder filters are only applied to interfaces configured as MH uplinks.
+If you configure EVPN-MH without MH uplinks, BUM traffic might be duplicated or looped back to the same ES where it is received. This can cause MAC flaps or other issues on multihomed devices.
+{{%/notice%}}
 
 {{<tabs "upink tracking">}}
-
 {{<tab "NCLU Commands">}}
 
     cumulus@switch:~$ net add interface swp1-4 evpn mh uplink
@@ -347,7 +235,6 @@ When all the uplinks go down, the VTEP loses connectivity to the VXLAN overlay. 
     cumulus@switch:~$ net commit
 
 {{</tab>}}
-
 {{<tab "vtysh Commands">}}
 
 ```
@@ -380,7 +267,6 @@ cumulus@leaf01:~$
 ```
 
 {{</tab>}}
-
 {{</tabs>}}
 
 These commands create the following configuration in the `/etc/frr/frr.conf` file:
@@ -407,12 +293,105 @@ interface swp4
 ...
 ```
 
+### EVPN MH Global Settings
+
+There are a few global settings for EVPN multihoming you can set, including:
+
+- `mac-holdtime`: MAC hold time, in seconds. This is the duration for which a switch maintains SYNC MAC entries after the Ethernet segment peer's EVPN type-2 route is deleted. During this time, the switch attempts to independently establish reachability of the MAC on the local Ethernet segment. The hold time can be between 0 and 86400 seconds. The default is 1080 seconds.
+- `neigh-holdtime`:  Neighbor entry hold time, in seconds. The duration for which a switch maintains SYNC neigh entries after the Ethernet segment peer's EVPN type-2 route is deleted. During this time, the switch attempts to independently establish reachability of the host on the local Ethernet segment. The hold time can be between 0 and 86400 seconds. The default is 1080 seconds.
+- `redirect-off`: **Cumulus VX only.** Disables fast failover of traffic destined to the access port via the VXLAN overlay. This knob only applies to Cumulus VX, since fast failover is only supported on the ASIC.
+- `startup-delay`:  Startup delay. The duration for which a switch holds the Ethernet segment-bond in a protodown state after a reboot or process restart. This allows the initialization of the VXLAN overlay to complete. The delay can be between 0 and 216000 seconds. The default is 180 seconds.
+
+To configure a MAC hold time for 1000 seconds, run the following commands:
+
+{{<tabs "MAC hold time">}}
+{{<tab "NCLU Commands">}}
+
+    cumulus@switch:~$ net add evpn mh mac-holdtime 1000
+    cumulus@switch:~$ net commit
+
+{{</tab>}}
+{{<tab "vtysh Commands">}}
+
+```
+cumulus@switch:~$ sudo vtysh
+switch# configure terminal
+switch(config)# evpn mh mac-holdtime 1000
+switch(config)# exit
+switch# write memory
+```
+
+{{</tab>}}
+{{</tabs>}}
+
+This creates the following configuration in the `/etc/frr/frr.conf` file:
+
+```
+evpn mh mac-holdtime 1200
+```
+
+To configure a neighbor hold time for 600 seconds, run the following commands:
+
+{{<tabs "Neighbor hold time">}}
+
+{{<tab "NCLU Commands">}}
+
+    cumulus@switch:~$ net add evpn mh neigh-holdtime 600
+    cumulus@switch:~$ net commit
+
+{{</tab>}}
+{{<tab "vtysh Commands">}}
+
+```
+cumulus@switch:~$ sudo vtysh
+switch# configure terminal
+switch(config)# evpn mh neigh-holdtime 600
+switch(config)# exit
+switch# write memory
+```
+
+{{</tab>}}
+{{</tabs>}}
+
+This creates the following configuration in the `/etc/frr/frr.conf` file:
+
+```
+evpn mh neigh-holdtime 600
+```
+
+To configure a startup delay for 1800 seconds, run the following commands:
+
+{{<tabs "startup delay">}}
+{{<tab "NCLU Commands">}}
+
+    cumulus@switch:~$ net add evpn mh startup-delay 1800
+    cumulus@switch:~$ net commit
+
+{{</tab>}}
+{{<tab "vtysh Commands">}}
+
+```
+cumulus@switch:~$ sudo vtysh
+switch# configure terminal
+switch(config)# evpn mh startup-delay 1800
+switch(config)# exit
+switch# write memory
+```
+
+{{</tab>}}
+{{</tabs>}}
+
+This creates the following configuration in the `/etc/frr/frr.conf` file:
+
+```
+evpn mh startup-delay 1800
+```
+
 ### Enable FRR Debugging
 
 You can add debug statements to the `/etc/frr/frr.conf` file to debug the Ethernet segments, routes and routing protocols (via Zebra).
 
 {{<tabs "debug">}}
-
 {{<tab "NCLU Commands">}}
 
 To debug Ethernet segments and routes, use the `net add bgp debug evpn mh (es|route)` command. To debug the routing protocols, use `net add evpn mh debug zebra (es|mac|neigh|nh)`.
@@ -427,7 +406,6 @@ To debug Ethernet segments and routes, use the `net add bgp debug evpn mh (es|ro
     cumulus@switch:~$ net commit
 
 {{</tab>}}
-
 {{<tab "vtysh Commands">}}
 
 ```
@@ -452,7 +430,6 @@ cumulus@leaf01:~$
 ```
 
 {{</tab>}}
-
 {{</tabs>}}
 
 These commands create the following configuration in the `/etc/frr/frr.conf` file:
@@ -481,10 +458,9 @@ debug zebra vxlan
 
 When an Ethernet segment link goes down, the attached VTEP notifies all other VTEPs via a single EAD-ES withdraw. This is done by way of an Ethernet segment bond redirect.
 
-Fast failover is also triggered by:
-
-- Rebooting a leaf switch or VTEP.
-- Uplink failure. When all uplinks are down, the Ethernet segment bonds on the switch are protodowned or error disabled.
+Fast failover also triggers:
+- When you reboot a leaf switch or VTEP.
+- When there is an uplink failure. When all uplinks are down, the Ethernet segment bonds on the switch are protodowned or error disabled.
 
 ### Disable Next Hop Group Sharing in the ASIC
 
@@ -508,7 +484,6 @@ cumulus@switch:~$ sudo systemctl restart switchd.service
 ### Disable EAD-per-EVI Route Advertisements
 
 {{<exlink url="https://tools.ietf.org/html/rfc7432" text="RFC 7432">}} requires type-1/EAD (Ethernet Auto-discovery) routes to be advertised two ways:
-
 - As EAD-per-ES (Ethernet Auto-discovery per Ethernet segment) routes
 - As EAD-per-EVI (Ethernet Auto-discovery per EVPN instance) routes
 
@@ -653,7 +628,6 @@ This section lists the NCLU commands to configure the switches and the network a
 If you are not using NCLU to configure the `/etc/network/interfaces` file, go to {{<link url="#etcnetworkinterfaces" text="/etc/network/interfaces">}} below and copy the configurations directly into the `interfaces` file on each switch and server in the topology.
 
 {{<tabs "example config commands">}}
-
 {{<tab "leaf01">}}
 
 **NCLU Commands**
@@ -977,7 +951,6 @@ cumulus@leaf01:~$
 ```
 
 {{</tab>}}
-
 {{<tab "leaf02">}}
 
 **NCLU Commands**
@@ -1344,7 +1317,6 @@ cumulus@leaf02:~$
 ```
 
 {{</tab>}}
-
 {{<tab "leaf03">}}
 
 **NCLU Commands**
@@ -1712,7 +1684,6 @@ cumulus@leaf03:~$
 ```
 
 {{</tab>}}
-
 {{<tab "spine01">}}
 
 **NCLU Commands**
@@ -1933,7 +1904,6 @@ cumulus@spine01:~$
 ```
 
 {{</tab>}}
-
 {{<tab "spine02">}}
 
 **NCLU Commands**
@@ -2154,7 +2124,6 @@ cumulus@spine02:~$
 ```
 
 {{</tab>}}
-
 {{</tabs>}}
 
 ### /etc/network/interfaces
@@ -2178,7 +2147,6 @@ If you are not using NCLU and are configuring the topology on the command line, 
        cumulus@switch:~$ sudo ifreload -a
 
 {{<tabs "/etc/network/interfaces">}}
-
 {{<tab "leaf01">}}
 
 ```
@@ -2542,7 +2510,6 @@ iface vlan4003
 ```
 
 {{</tab>}}
-
 {{<tab "leaf02">}}
 
 ```
@@ -2905,7 +2872,6 @@ iface vlan4003
 ```
 
 {{</tab>}}
-
 {{<tab "leaf03">}}
 
 ```
@@ -3270,7 +3236,6 @@ cumulus@leaf03:~$
 ```
 
 {{</tab>}}
-
 {{<tab "spine01">}}
 
 ```
@@ -3326,7 +3291,6 @@ cumulus@spine01:~$
 ```
 
 {{</tab>}}
-
 {{<tab "spine02">}}
 
 ```
@@ -3382,7 +3346,6 @@ cumulus@spine02:~$
 ```
 
 {{</tab>}}
-
 {{<tab "host01">}}
 
 ```
@@ -3549,7 +3512,6 @@ cumulus@host01:~$
 ```
 
 {{</tab>}}
-
 {{<tab "host02">}}
 
 ```
@@ -3716,7 +3678,6 @@ cumulus@host02:~$
 ```
 
 {{</tab>}}
-
 {{<tab "host03">}}
 
 ```
@@ -3883,7 +3844,6 @@ cumulus@host03:~$
 ```
 
 {{</tab>}}
-
 {{<tab "host04">}}
 
 ```
@@ -4050,7 +4010,6 @@ cumulus@host04:~$
 ```
 
 {{</tab>}}
-
 {{</tabs>}}
 
 ### /etc/frr/frr.conf
@@ -4058,7 +4017,6 @@ cumulus@host04:~$
 These `vtysh` commands create the following configuration in the `/etc/frr/frr.conf` file:
 
 {{<tabs "frr.conf Files">}}
-
 {{<tab "leaf01">}}
 
 ```
@@ -4167,7 +4125,6 @@ cumulus@leaf01:~$
 ```
 
 {{</tab>}}
-
 {{<tab "leaf02">}}
 
 ```
@@ -4317,7 +4274,6 @@ line vty
 ```
 
 {{</tab>}}
-
 {{<tab "leaf03">}}
 
 ```
@@ -4467,7 +4423,6 @@ line vty
 ```
 
 {{</tab>}}
-
 {{<tab "spine01">}}
 
 ```
@@ -4667,7 +4622,6 @@ line vty
 ```
 
 {{</tab>}}
-
 {{<tab "spine02">}}
 
 ```
@@ -4867,5 +4821,4 @@ line vty
 ```
 
 {{</tab>}}
-
 {{</tabs>}}

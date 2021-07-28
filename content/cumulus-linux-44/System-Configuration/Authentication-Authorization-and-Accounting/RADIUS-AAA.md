@@ -19,7 +19,7 @@ cumulus@switch:~$ sudo apt-get install libnss-mapuser libpam-radius-auth
 
 After installation is complete, either reboot the switch or run the `sudo systemctl restart netd` command.
 
-The `libpam-radius-auth` package supplied with the Cumulus Linux RADIUS client is a newer version than the one in {{<exlink url="https://packages.debian.org/buster/libpam-radius-auth" text="Debian Buster">}}. This package contains support for IPv6, the `src_ip` option described below, as well as a number of bug fixes and minor features. The package also includes VRF support, provides man pages describing the PAM and RADIUS configuration, and sets the `SUDO_PROMPT` environment variable to the login name for RADIUS mapping support.
+The `libpam-radius-auth` package supplied with the Cumulus Linux RADIUS client is a newer version than the one in {{<exlink url="https://packages.debian.org/buster/libpam-radius-auth" text="Debian Buster">}}. This package contains support for IPv6, the `src_ip` option described below, as well as bug fixes and minor features. The package also includes VRF support, provides man pages describing the PAM and RADIUS configuration, and sets the `SUDO_PROMPT` environment variable to the login name for RADIUS mapping support.
 
 The `libnss-mapuser` package is specific to Cumulus Linux and supports the `getgrent`, `getgrnam` and `getgrgid` library interfaces. These interfaces add logged in RADIUS users to the group member list for groups that contain the `mapped_user` (`radius_user`) if the RADIUS account is unprivileged, and add privileged RADIUS users to the group member list for groups that contain the `mapped_priv_user` (`radius_priv_user`) during the group lookups.
 
@@ -72,7 +72,7 @@ As an optional step, you can set PAM configuration keywords by editing the `/usr
 
 {{%notice note%}}
 
-The privilege level for the user on the switch is determined by the value of the VSA (Vendor Specific Attribute)  `shell:priv-lvl`. If the attribute is not returned, the user is unprivileged. The following shows an example using the freeradius server for a fully-privileged user.
+The privilege level for the user on the switch is determined by the value of the VSA (Vendor Specific Attribute)  `shell:priv-lvl`. If the attribute is not returned, the user is unprivileged. The following shows an example using the freeradius server for a fully privileged user.
 
 ```
 Service-Type = Administrative-User,
@@ -89,9 +89,9 @@ The VSA vendor name (Cisco-AVPair in the example above) can have any content. Th
 LDAP is not commonly used with switches and adding accounts locally is cumbersome, Cumulus Linux includes a mapping capability with the `libnss-mapuser` package.
 
 Mapping is done using two NSS (Name Service Switch) plugins, one for account name, and one for UID lookup. These accounts are configured automatically in `/etc/nsswitch.conf` during installation and are removed when the package is removed. See the `nss_mapuser (8)` man page for the full description of this plugin.
-
+<!-- vale off -->
 A username is mapped at login to a fixed account specified in the configuration file, with the fields of the fixed account used as a template for the user that is logging in.
-
+<!-- vale on -->
 For example, if the name being looked up is *dave* and the fixed account in the configuration file is *radius\_user*, and that entry in `/etc/passwd` is:
 
 ```

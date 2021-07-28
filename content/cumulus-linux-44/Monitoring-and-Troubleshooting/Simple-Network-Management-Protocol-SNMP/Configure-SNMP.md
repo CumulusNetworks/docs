@@ -361,7 +361,7 @@ To restrict MIB tree exposure, you can define a view for an SNMPv3 username or c
 
 You can define a specific view multiple times and fine tune to provide or restrict access using the `included` or `excluded` command to specify branches of certain MIB trees.
 
-By default, the `snmpd.conf` file contains numerous views within the *systemonly* view.
+By default, the `snmpd.conf` file contains many views within the *systemonly* view.
 
 {{< tabs "viewname" >}}
 {{< tab "NCLU Commands" >}}
@@ -472,7 +472,7 @@ You can configure system settings for the SNMPv2 MIB. The example commands here 
 
 - The system physical location for the node in the SNMPv2-MIB system table (the `syslocation`).
 - The username and email address of the contact person for this managed node (the `syscontact`).
-- An administratively-assigned name for the managed node (the `sysname`).
+- An administratively assigned name for the managed node (the `sysname`).
 
 {{< tabs "sys-settings" >}}
 {{< tab "NCLU Commands" >}}
@@ -491,7 +491,7 @@ cumulus@switch:~$ net add snmp-server system-contact user X at myemail@example.c
 cumulus@switch:~$ net commit
 ```
 
-To set an administratively-assigned name for the managed node, run the following command. Typically, this is the fully-qualified domain name of the node.
+To set an administratively assigned name for the managed node, run the following command. Typically, this is the fully qualified domain name of the node.
 
 ```
 cumulus@switch:~$ net add snmp-server system-name CumulusBox number 1,543,567
@@ -594,9 +594,9 @@ To verify the configuration, run `snmpwalk`. For example, if you have a running 
 ```
 cumulus@switch:~$ sudo snmpwalk -v2c -cpublic localhost 1.3.6.1.2.1.14
 ```
-
+<!-- vale off -->
 ### Enable the .1.3.6.1.2.1 Range
-
+<!-- vale on -->
 Some MIBs, including storage information, are not included by default in `snmpd.conf` in Cumulus Linux. This results in some default views on common network tools (like `librenms`) to return less than optimal data. You can include more MIBs by enabling the complete .1.3.6.1.2.1 range. This simplifies the configuration file, removing the concern that any required MIBs might be missed by the monitoring system. Various MIBs included were added to the default SNMPv3 configuration and include the following:
 
 - ENTITY-MIB
@@ -611,7 +611,7 @@ To enable the .1.3.6.1.2.1 range, make sure the view commands include the requir
 
 ## Restore the Default SNMP Configuration
 
-The following command removes all custom entries in the `/etc/snmp/snmpd.conf` file and replaces them with defaults, including for all SNMPv3 usernames and readonly-communities. A `listening-address` for the localhost is configured in its place.
+The following command removes all custom entries in the `/etc/snmp/snmpd.conf` file and replaces them with defaults, including for all SNMPv3 usernames and read only communities. A `listening-address` for the localhost is configured in its place.
 
 ```
 cumulus@switch:~$ net del snmp-server all

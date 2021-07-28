@@ -5,11 +5,8 @@ weight: 320
 right_toc_levels: 2
 ---
 
-{{< notice note >}}
 This section refers to frames for all internal QoS functionality. Unless explicitly stated, the actions are independent of layer 2 frames or layer 3 packets.
-{{< /notice >}}
 
-## Overview
 Cumulus Linux supports several different QoS features and standards including:
 - COS and DSCP marking and remarking
 - Shaping and policing
@@ -34,19 +31,19 @@ cumulus@switch:~$ sudo systemctl reload switchd.service
 ```
 
 Unlike the `restart` command, the `reload switchd.service` command does not impact traffic forwarding except when the following conditions occur:
-- The `qos_infra.conf` file changes
-- [Pause Frames](#pause-frames)
-- [Priority Flow Control](#priority-flow-control)
+- The `qos_infra.conf` file changes.
+- [Pause Frames](#pause-frames).
+- [Priority Flow Control](#priority-flow-control-pfc).
 
-These conditions require modification to the ASIC buffer which might result in momentary packet loss.
+These conditions require modifications to the ASIC buffer which might result in momentary packet loss.
 
 When you run the `reload switchd.service` command, Cumulus Linux always runs the [Syntax Checker](#syntax-checker) before applying changes.
 
 ## Classification
 
-When a frame or packet arrives on the switch, it is mapped to an *internal COS* value. This value is never written to the frame or packet but is used to classify and prioritize traffic internally through the switch.
+When a frame or packet arrives on the switch, it is mapped to an *internal COS* value. This value is never written to the frame or packet but is used to classify and schedule traffic internally through the switch.
 
-You can define which values are trusted in the `qos_features.conf` file by editing the `traffic.packet_priority_source_set` line.
+You can define which values are trusted in the `qos_features.conf` file by configuring the `traffic.packet_priority_source_set` setting.
 
 The `traffic.port_default_priority` setting accepts a value between 0 and 7 and defines which internal COS marking to use when the `port` value is used.
 
@@ -90,7 +87,7 @@ traffic.cos_7.priority_source.8021p = [7]
 ```
 
 The `traffic.cos_` number is the internal COS value; for example `traffic.cos_0` defines the mapping for internal COS 0.  
-To map ingress COS 0 to internal COS 4, the configuration `traffic.cos_4.priority_source.8021p = [0]` is used.
+To map ingress COS 0 to internal COS 4, configure the `traffic.cos_4.priority_source.8021p` setting.
 
 You can map multiple ingress COS values to the same internal value. For example, to map ingress COS values 0, 1, and 2 to internal COS 0:
 
@@ -111,7 +108,7 @@ traffic.cos_6.priority_source.8021p = [6]
 traffic.cos_7.priority_source.8021p = [7]
 ```
 
-You can configure additional settings using [Port Groups](#trust-and-marking). {{<cl/qos-switchd>}}
+You can configure additional settings using [Port Groups](#port-groups). {{<cl/qos-switchd>}}
 
 ### Trust DSCP
 
@@ -135,7 +132,7 @@ The `#` in the configuration file is a comment. By default, the `traffic.cos_*.p
 You must uncomment them for them to take effect.  
 {{% /notice %}}
 
-The `traffic.cos_` number is the internal COS value; for example `traffic.cos_0` defines the mapping for internal COS 0. To map ingress DSCP 22 to internal COS 4, the configuration `traffic.cos_4.priority_source.dscp = [22]` is used.
+The `traffic.cos_` number is the internal COS value; for example `traffic.cos_0` defines the mapping for internal COS 0. To map ingress DSCP 22 to internal COS 4, configure the `traffic.cos_4.priority_source.dscp` setting.
 
 You can map multiple ingress DSCP values to the same internal COS value. For example, to map ingress DSCP values 10, 21, and 36 to internal COS 0:
 
@@ -156,57 +153,57 @@ traffic.cos_6.priority_source.dscp = [48,49,50,51,52,53,54,55]
 traffic.cos_7.priority_source.dscp = [56,57,58,59,60,61,62,63]
 ```
 
-You can configure additional settings using [Port Groups](#trust-and-marking). {{<cl/qos-switchd>}}
+You can configure additional settings using [Port Groups](#port-groups). {{<cl/qos-switchd>}}
 
 ### Trust Port
 
-To assign all traffic to an internal COS queue, regardless of the ingress marking, configure `traffic.packet_priority_source_set = [port]`.
+To assign all traffic to an internal COS queue regardless of the ingress marking, configure `traffic.packet_priority_source_set = [port]`.
 
 All traffic is assigned to the COS value defined by `traffic.port_default_priority`. You can configure additional settings using [Port Groups](#port-groups).
 
 {{<cl/qos-switchd>}}
 
-## Traffic Marking and Remarking
+## Mark and Remark Traffic
 
-You can mark or remark traffic in two different ways:
+You can mark or remark traffic in two ways:
 
- * Use [iptables](#using-iptables-for-marking) to match packets and set COS or DSCP values.
+ * Use [iptables](#iptables) to match packets and set COS or DSCP values.
  * Use ingress COS or DSCP to remark an existing COS or DSCP value to a new value.
 
-### iptables for Marking
+### iptables
 
-Cumulus Linux supports the use of ACLs through `ebtables`, `iptables` or `ip6tables` for _egress_ packet marking and remarking.
+Cumulus Linux supports ACLs through `ebtables`, `iptables` or `ip6tables` for _egress_ packet marking and remarking.
 
-`ebtables` is used to mark layer-2, 802.1p COS values.
-`iptables` is used to match IPv4 traffic for DSCP marking while `ip6tables` is used to match IPv6 traffic for DSCP marking.
+`ebtables` is used to mark layer 2, 802.1p COS values.
+`iptables` is used to match IPv4 traffic for DSCP marking. `ip6tables` is used to match IPv6 traffic for DSCP marking.
 
 {{% notice info %}}
 For more information on configuring and applying ACLs, refer to {{<link title="Netfilter - ACLs" text="Netfilter - ACLs" >}}.
 {{% /notice %}}
 
-#### Marking Layer-2 COS
+#### Mark Layer 2 COS
 
 You must use `ebtables` to match and mark layer 2 bridged traffic. You can match traffic with any supported ebtables rule.  
 
 To set the new COS value when traffic is matched, use `-A FORWARD -o <interface> -j setqos --set-cos <value>`.
 
 {{% notice info %}}
-You can only set COS on a _per-egress interface_ basis. `ebtables` based matching is not supported on ingress.
+You can only set COS on a *per-egress interface* basis. `ebtables` based matching is not supported on ingress.
 {{% /notice %}}
 
 The configured action always has the following conditions:
-* the rule is always configured as part of the `FORWARD` chain
-* the interface (`<interface>`) is a physical swp port
-* the *jump* action is always `setqos` (lowercase)
-* the `--set-cos` value is a COS value between 0 and 7
+- The rule is always configured as part of the `FORWARD` chain.
+- The interface (`<interface>`) is a physical swp port.
+- The *jump* action is always `setqos` (lowercase).
+- The `--set-cos` value is a COS value between 0 and 7.
 
-For example, to set traffic leaving interface `swp5` to COS value `4`, use the following rule:
+For example, to set traffic leaving interface `swp5` to COS value `4`:
 
 ```
 -A FORWARD -o swp5 -j setqos --set-cos 4
 ```
 
-#### Marking Layer 3 DSCP
+#### Mark Layer 3 DSCP
 
 You must use `iptables` (for IPv4 traffic) or `ip6tables` (for IPv6 traffic) to match and mark layer 3 traffic.
 
@@ -214,9 +211,9 @@ You can match traffic with any supported iptable or ip6tables rule.
 To set the new COS or DSCP value when traffic is matched, use `-A FORWARD -o <interface> -j setqos [--set-dscp <value> | --set-cos <value> | --set-dscp-class <name>]`.
 
 The configured action always has the following conditions:
-* the rule is always configured as part of the `FORWARD` chain
-* the interface (`<interface>`) is a physical swp port
-* the *jump* action is always `setqos` (lowercase)
+- The rule is always configured as part of the `FORWARD` chain.
+- The interface (`<interface>`) is a physical swp port.
+- The *jump* action is always `setqos` (lowercase).
 
 You can configure COS markings with `--set-cos` and a value between 0 and 7 (inclusive).
 
@@ -228,13 +225,13 @@ You can use only one of `--set-dscp` or `--set-dscp-class`.
 You can specify either `--set-dscp` or `--set-dscp-class`, but not both.
 {{%/notice%}}
 
-For example, to set traffic leaving interface `swp5` to DSCP value `32`, use the following rule:
+For example, to set traffic leaving interface swp5 to DSCP value `32`:
 
 ```
 -A FORWARD -o swp5 -j setqos --set-dscp 32
 ```
 
-To set traffic leaving interface `swp11` to DSCP class value `CS6`, use the following rule:
+To set traffic leaving interface swp11 to DSCP class value `CS6`:
 
 ```
 -A FORWARD -o swp11 -j setqos --set-dscp-class cs6
@@ -257,13 +254,9 @@ traffic.packet_priority_remark_set = [dscp]
 
 You can remark both COS and DSCP with `traffic.packet_priority_remark_set = [cos,dscp]`.
 
-#### Remarking COS
+#### Remark COS
 
-COS is remarked with the `priority_remark.8021p` component of `qos_features.conf`.
-
-The internal `cos_` value determines the egress 802.1p COS remarking.
-
-For example, to remark internal COS 0 to egress COS 4:
+COS is remarked with the `priority_remark.8021p` setting in the `qos_features.conf` file. The internal `cos_` value determines the egress 802.1p COS remarking. For example, to remark internal COS 0 to egress COS 4:
 
 ```
 traffic.cos_0.priority_remark.8021p = [4]
@@ -283,11 +276,9 @@ traffic.cos_2.priority_remark.8021p = [3]
 
 {{<cl/qos-switchd>}}
 
-#### Remarking DSCP
+#### Remark DSCP
 
-DSCP is remarked with the `priority_remark.dscp` component of `qos_features.conf`. The internal `cos_` value determines the egress DSCP remarking.
-
-For example, to remark internal COS 0 to egress DSCP 22:
+You remark DSCP with the `priority_remark.dscp` component of the `qos_features.conf` file. The internal `cos_` value determines the egress DSCP remark. For example, to remark internal COS 0 to egress DSCP 22:
 
 ```
 traffic.cos_0.priority_remark.dscp = [22]
@@ -305,27 +296,27 @@ traffic.cos_1.priority_remark.dscp = [40]
 traffic.cos_2.priority_remark.dscp = [40]
 ```
 
-You can configure additional settings using [Port Groups](#remarking). {{<cl/qos-switchd>}}
+You can configure additional settings using [Port Groups](#port-groups). {{<cl/qos-switchd>}}
 
 ## Flow Control
 
-Congestion control helps prevent traffic loss during times of congestion or identify the traffic to be preserved if packets must be dropped.
+Congestion control helps prevent traffic loss during times of congestion and helps identify the traffic to be preserved if packets must be dropped.
 
 Cumulus Linux supports the following congestion control mechanisms:
 
-* Pause Frames, defined by IEEE 802.3x, uses specialized ethernet frames sent to an adjacent layer 2 switch to stop or *pause* **all** traffic on the link during times of congestion. Pause frames are generally not recommended due to their scope of impact.
-* Priority Flow Control (PFC), which is an upgrade of Pause Frames, defined by IEEE 802.1bb, extends the pause frame concept to act on a per-COS value basis instead of an entire link. A PFC pause frame indicates to the peer which specific COS value needs to pause, while other COS values or queues continue transmitting.
-* Explicit Congestion Notification (ECN). Unlike Pause Frames and PFC that operate only at layer 2, ECN is an end-to-end layer 3 congestion control protocol. Defined by RFC 3168, ECN relies on bits in the IPv4 header Traffic Class to signal congestion conditions. ECN requires one or both server endpoints to support ECN to be effective.
+- Pause Frames, defined by IEEE 802.3x, uses specialized ethernet frames sent to an adjacent layer 2 switch to stop or *pause* **all** traffic on the link during times of congestion. Pause frames are generally not recommended due to their scope of impact.
+- Priority Flow Control (PFC), which is an upgrade of Pause Frames, defined by IEEE 802.1bb, extends the pause frame concept to act on a per-COS value basis instead of an entire link. A PFC pause frame indicates to the peer which specific COS value needs to pause, while other COS values or queues continue transmitting.
+- Explicit Congestion Notification (ECN). Unlike Pause Frames and PFC that operate only at layer 2, ECN is an end-to-end layer 3 congestion control protocol. Defined by RFC 3168, ECN relies on bits in the IPv4 header Traffic Class to signal congestion conditions. ECN requires one or both server endpoints to support ECN to be effective.
 
 ### Flow Control Buffers
 
-Before configuring Pause Frames or PFC, allocate buffer pools and limits for lossless flows.
+Before configuring pause frames or PFC, set buffer pools and limits for lossless flows.
 
 Edit the following lines in the `/etc/mlx/datapath/qos/qos_infra.conf` file:
 
 1. Modify the existing `ingress_service_pool.0.percent` and `egress_service_pool.0.percent` buffer allocation. Change the existing ingress setting to `ingress_service_pool.0.percent = 50`. Change the existing egress setting to `egress_service_pool.0.percent = 50`.
 
-2. Add the following lines to create a new `service_pool`, allocate `flow_control` to the service pool, and define buffer reservations:
+2. Add the following lines to create a new `service_pool`, set `flow_control` to the service pool, and define buffer reservations:
 
 ```
 ingress_service_pool.1.percent = 50.0
@@ -351,23 +342,23 @@ flow_control.egress_buffer.dynamic_quota = ALPHA_INFINITY
 
 ### Pause Frames
 
-Pause frames are an older congestion control mechanism that causes all traffic on a link between two devices (two switches or a host and switch) to stop transmitting during times of congestion. Pause frames are started and stopped based on how congested the buffer is. The value that determines when pause frames start is called the `xoff` value (xoff for "transmit off"). When the buffer congestion reaches the `xoff` point, the switch sends a pause frame to one or more neighbors. When congestion drops below the `xon` point (xon for "transmit on") an updated pause frame is sent so that the neighbor resumes sending traffic.
+Pause frames are an older congestion control mechanism that causes all traffic on a link between two devices (two switches or a host and switch) to stop transmitting during times of congestion. Pause frames are started and stopped based on how congested the buffer is. The value that determines when pause frames start is called the `xoff` value (transmit off). When the buffer congestion reaches the `xoff` point, the switch sends a pause frame to one or more neighbors. When congestion drops below the `xon` point (transmit on), an updated pause frame is sent so that the neighbor resumes sending traffic.
 
 {{% notice note %}}
 Pause frames are not recommended due to the coarse nature of flow control. Priority Flow Control (PFC) is recommended over the use of pause frames.
 {{% /notice  %}}
 
 {{% notice note %}}
-Before configuring Pause Frames, you must first modify the switch buffer allocation. Refer to {{<link title="#Flow Control Buffers" text="Flow Control Buffers">}}.
+Before configuring pause frames, you must first modify the switch buffer allocation. Refer to {{<link title="#Flow Control Buffers" text="Flow Control Buffers">}}.
 {{% /notice %}}
 
-You configure Pause frames on a per-direction, per-interface basis under the `link_pause` section of the `qos_features.conf` file.  
+You configure pause frames on a per-direction, per-interface basis under the `link_pause` section of the `qos_features.conf` file.  
 Setting `link_pause.pause_port_group.rx_enable = true` supports the reception of pause frames causing the switch to stop transmitting when requested.
 Setting `link_pause.pause_port_group.tx_enable = true` supports the sending of pause frames causing the switch to request neighboring devices to stop transmitting.
-Pause frames can be supported for either receive (`rx`), transmit (`tx`) or both.
+Pause frames are supported for either receive (`rx`), transmit (`tx`), or both.
 
 {{% notice note %}}
-Cumulus Linux automatically enables or derives the following settings when link pause is enabled on an interface via `link_pause.port_group_list`:
+Cumulus Linux automatically enables or derives the following settings when link pause is enabled on an interface with `link_pause.port_group_list`:
 
 * `link_pause.pause_port_group.rx_enable`
 * `link_pause.pause_port_group.tx_enable`
@@ -375,7 +366,7 @@ Cumulus Linux automatically enables or derives the following settings when link 
 * `link_pause.pause_port_group.xoff_size`
 * `link_pause.pause_port_group.xon_delta`
 
-Link pause must still be enabled on the specific interfaces to process pause frames.
+To process pause frames, you must enable link pause on the specific interfaces.
 {{% /notice %}}
 
 The following is an example `link_pause` configuration.
@@ -386,11 +377,11 @@ link_pause.my_pause_ports.port_set = swp1-swp4,swp6
 ```
 
 {{% notice warning %}}
-Pause frame buffer calculation is a complex topic defined in IEEE 802.1Q-2012. This attempts to incorporate the delay between signaling congestion and the reception of the signal by the neighboring device. This calculation includes the delay introduced by the PHY and MAC layers (called the interface delay) as well as the distance between end points (cable length).
+Pause frame buffer calculation is a complex topic defined in IEEE 802.1Q-2012. This attempts to incorporate the delay between signaling congestion and the reception of the signal by the neighboring device. This calculation includes the delay introduced by the PHY and MAC layers (interface delay) as well as the distance between end points (cable length).
 
 Incorrect cable length settings can cause wasted buffer space (triggering congestion too early) or packet drops (congestion occurs before flow control is activated).
 
-Unless directed by NVIDIA support or engineering, it is not recommended that you change these values.
+Unless directed by NVIDIA support or engineering, do not change these values.
 {{% /notice %}}
 
 {{<cl/qos-switchd>}}
@@ -412,12 +403,12 @@ Unless directed by NVIDIA support or engineering, it is not recommended that you
 
 ### Priority Flow Control (PFC)
 
-Priority flow control extends the capabilities of pause frames by sending pause frames for a specific COS value instead of stopping all traffic on a link. If a switch supports PFC and receives a PFC pause frame for a given COS value, the switch stops transmitting frames from that queue, but continues transmitting frames for other queues.
+Priority flow control extends the capabilities of pause frames by the frames for a specific COS value instead of stopping all traffic on a link. If a switch supports PFC and receives a PFC pause frame for a given COS value, the switch stops transmitting frames from that queue, but continues transmitting frames for other queues.
 
-A common use case for PFC is {{<link title="RDMA over Converged Ethernet - RoCE" text="RDMA over Converged Ethernet - RoCE">}}. The RoCE section provides information to specifically deploy PFC and ECN for RoCE environments.
+PFC is typically used with {{<link title="RDMA over Converged Ethernet - RoCE" text="RDMA over Converged Ethernet - RoCE">}}. The RoCE section provides information to specifically deploy PFC and ECN for RoCE environments.
 
 {{% notice note %}}
-Before configuring PFC, you must first modify the switch buffer allocation according to {{<link title="#Flow Control Buffers" text="Flow Control Buffers">}}.
+Before configuring PFC, first modify the switch buffer allocation according to {{<link title="#Flow Control Buffers" text="Flow Control Buffers">}}.
 {{% /notice %}}
 
 You configure PFC pause frames on a per-direction, per-interface basis under the `pfc` section of the `qos_features.conf` file.  
@@ -425,16 +416,16 @@ Setting `pfc.pfc_port_group.rx_enable = true` supports the reception of PFC paus
 
 Setting `pfc.pfc_port_group.tx_enable = true` supports the sending of PFC pause frames for the defined COS values, causing the switch to request neighboring devices to stop transmitting.
 
-PFC pause frames can be supported for either receive (`rx`), transmit (`tx`) or both.
+PFC pause frames are supported for either receive (`rx`), transmit (`tx`), or both.
 
 {{% notice note %}}
-Cumulus Linux automatically enables or derives the following settings when PFC is enabled on an interface via `pfc.port_group_list`:
+Cumulus Linux automatically enables or derives the following settings when PFC is enabled on an interface with `pfc.port_group_list`:
 
-* `pfc.pause_port_group.rx_enable`
-* `pfc.pause_port_group.tx_enable`
-* `pfc.pause_port_group.port_buffer_bytes`
-* `pfc.pause_port_group.xoff_size`
-* `pfc.pause_port_group.xon_delta`
+- `pfc.pause_port_group.rx_enable`
+- `pfc.pause_port_group.tx_enable`
+- `pfc.pause_port_group.port_buffer_bytes`
+- `pfc.pause_port_group.xoff_size`
+- `pfc.pause_port_group.xon_delta`
 
 {{% /notice %}}
 
@@ -450,7 +441,7 @@ pfc.my_pfc_ports.port_set = swp1-swp4,swp6
 PFC buffer calculation is a complex topic defined in IEEE 802.1Q-2012. This attempts to incorporate the delay between signaling congestion and the reception of the signal by the neighboring device. This calculation includes the delay introduced by the PHY and MAC layers (called the interface delay) as well as the distance between end points (cable length).  
 Incorrect cable length settings can cause wasted buffer space (triggering congestion too early) or packet drops (congestion occurs before flow control is activated).
 
-Unless directed by NVIDIA support or engineering, it is not recommended that you change these values.
+Unless directed by NVIDIA support or engineering, do not change these values.
 {{% /notice %}}
 
 {{<cl/qos-switchd>}}
@@ -473,19 +464,19 @@ Unless directed by NVIDIA support or engineering, it is not recommended that you
 
 ### Explicit Congestion Notification (ECN)
 
-Unlike Pause Frames or PFC, ECN is an end-to-end flow control technology. Instead of telling adjacent devices to stop transmitting during times of buffer congestion, ECN sets the ECN bits of transit IPv4 or IPv6 header to indicate to end-hosts that congestion might occur. As a result, the sending hosts reduce their sending rate until the ECN bits are no longer being set by the transit switch.
+Unlike pause frames or PFC, ECN is an end-to-end flow control technology. Instead of telling adjacent devices to stop transmitting during times of buffer congestion, ECN sets the ECN bits of the transit IPv4 or IPv6 header to indicate to end-hosts that congestion might occur. As a result, the sending hosts reduce their sending rate until the ECN bits are no longer being set by the transit switch.
 
-A common use case for ECN is {{<link title="RDMA over Converged Ethernet - RoCE" text="RDMA over Converged Ethernet - RoCE">}}. The RoCE section provides information to specifically deploy PFC and ECN for RoCE environments.
+ECN is typically used with {{<link title="RDMA over Converged Ethernet - RoCE" text="RDMA over Converged Ethernet - RoCE">}}. The RoCE section provides information to specifically deploy PFC and ECN for RoCE environments.
 
-ECN operates by having a transit switch mark packets being sent between two end-hosts.
+ECN operates by having a transit switch mark packets that are sent between two end-hosts.
 1. Transmitting host indicates it is ECN-capable by setting the ECN bits in the outgoing IP header to `01` or `10`
-2. If the buffer of a transit switch is greater than the configured `min_threshold_bytes`, the switch remarks the ECN bits to `11` indicating "Congestion Encountered" or "CE".
-3. The receiving host marks any reply packets, like a TCP-ACK, as CE (`11`)
+2. If the buffer of a transit switch is greater than the configured `min_threshold_bytes`, the switch remarks the ECN bits to `11` indicating *Congestion Encountered* or *CE*.
+3. The receiving host marks any reply packets, like a TCP-ACK, as CE (`11`).
 4. The original transmitting host reduces its transmission rate.
 5. When the switch buffer congestion falls below the configured `min_threshold_bytes`, the switch stops remarking ECN bits, setting them back to `01` or `10`.
-6. A receiving host reflects this new ECN marking in the next reply, so that the transmitting host resumes sending at normal speeds.
+6. A receiving host reflects this new ECN marking in the next reply so that the transmitting host resumes sending at normal speeds.
 
-The following is the default ECN configuration.
+The default ECN configuration is shown below:
 
 ```
 default_ecn_conf.egress_queue_list = [0]
@@ -522,10 +513,11 @@ To configure RED, change the value of `default_ecn_conf.red_enable` to `true`.
 
 {{<cl/qos-switchd>}}
 
-## Egress Queuing
-Cumulus Linux supports eight egress queues to provide different classes of service. 
+## Egress Queues
 
-Egress queues are configured in the following section of `qos_infra.conf`.
+Cumulus Linux supports eight egress queues to provide different classes of service.
+
+Egress queues are configured in the following section of the `qos_infra.conf` file.
 
 ```
 cos_egr_queue.cos_0.uc  = 0
@@ -545,13 +537,13 @@ Maps internal COS value 0 to egress queue 0.
 You can remap queues by changing the `.cos_` to the corresponding queue value. For example, to assign internal COS 2 to queue 7:  
 `cos_egr_queue.cos_2.uc  = 7`
 
-You can map multiple internal COS values to a single egress queue. Not all egress queues must be assigned.
+You can map multiple internal COS values to a single egress queue. You do not have to assign all egress queues.
 
-## Egress Scheduling
+## Egress Schedules
 
-Cumulus Linux supports 802.1Qaz, Enhanced Transmission Selection. This allows the switch to assign bandwidth to egress queues and then prioritize the transmission of traffic from each queue. This includes support for Priority Queuing.
+Cumulus Linux supports 802.1Qaz, Enhanced Transmission Selection. This allows the switch to assign bandwidth to egress queues and then schedule the transmission of traffic from each queue. This includes support for Priority Queuing.
 
-The egress scheduling policy is configured in the following section of `qos_features.conf`:
+The egress scheduling policy is configured in the following section of the `qos_features.conf` file:
 
 ```
 default_egress_sched.egr_queue_0.bw_percent = 12
@@ -564,21 +556,21 @@ default_egress_sched.egr_queue_6.bw_percent = 12
 default_egress_sched.egr_queue_7.bw_percent = 13
 ```
 
-The `egr_queue_` value defines the [egress queue](#egress-queuing) to assign bandwidth to. For example, `default_egress_sched.egr_queue_0` defines the bandwidth allocation for egress queue 0.
+The `egr_queue_` value defines the [egress queue](#egress-queues) where you want to assign bandwidth. For example, `default_egress_sched.egr_queue_0` defines the bandwidth allocation for egress queue 0.
 
-The combined total of values assigned to `bw_percent` must be less than or equal to 100.
+The combined total of values you assign to `bw_percent` must be less than or equal to 100.
 
 If a queue is not defined, no bandwidth reservation is made.
 
 {{% notice note %}}
-If a value of `0` is used then strict priority scheduling is used. This queue is always be serviced ahead of other queues.
+A value of `0` uses strict priority scheduling. This queue is always serviced ahead of other queues.
 {{% /notice %}}
   
 {{% notice note %}}
 The use of strict priority does not define a maximum bandwidth allocation. This can lead to starvation of other queues.
 {{% /notice %}}
 
-Configured schedules are applied on a per-interface basis. Using the `default_egress_sched` applies the settings to all ports. To customize the scheduler for other interfaces configure a [port_group](#port-groups-for-egress-scheduling).
+Configured schedules are applied on a per-interface basis. Using the `default_egress_sched` applies the settings to all ports. To customize the scheduler for other interfaces configure a [port_group](#egress-scheduling).
 
 <details>
 <summary>All egress scheduling options</summary>
@@ -600,7 +592,7 @@ Configured schedules are applied on a per-interface basis. Using the `default_eg
 Traffic shaping and policing control the rate at which traffic is sent or received on a network to prevent congestion.
 
 {{% notice note %}}
-Traffic shaping is generally used at egress while traffic policing is used at ingress.
+Traffic shaping is typically used at egress and traffic policing at ingress.
 {{% /notice %}}
 
 ### Shaping
@@ -611,11 +603,11 @@ Traffic shaping works by holding packets in the buffer and releasing them at tim
 
 Cumulus Linux supports two-levels of hierarchical traffic shaping: one at the egress-queue level and one at the port level. This allows for minimum and maximum bandwidth guarantees for each egress-queue and a defined interface traffic shaping rate.
 
-Traffic shaping is configured in the `shaping` section of `qos_features.conf`. Traffic shaping configuration supports [Port Groups](#using-port-groups) so that you can apply different shaping profiles to different ports.
+Traffic shaping is configured in the `shaping` section of the `qos_features.conf` file. Traffic shaping configuration supports [Port Groups](#using-port-groups) so that you can apply different shaping profiles to different ports.
 
-The `egr_queue` value is based on the configured [egress queue](#egress-queuing).
+The `egr_queue` value is based on the configured [egress queue](#egress-queues).
 
-This is an example traffic shaping configuration:
+An example traffic shaping configuration is shown below:
 
 ```
 shaping.port_group_list = [shaper_port_group]
@@ -635,24 +627,22 @@ shaping.shaper_port_group.port.shaper = 900000
 |`shaping.shaper_port_group.port.shaper`       |`shaping.shaper_port_group.port.shaper = 900000`                | Applies the maximum packet shaper rate at the interface level. In this example, interfaces swp1, swp2, swp3 and swp5 do not transmit greater than `900000` kbps.          |
 </details>
 
-Defining a queue minimum shaping value of `0` means there is no bandwidth guarantee for this queue.
-The maximum queue shaping value can not exceed the interface shaping value defined by `port.shaper`.
-The `port.shaper` value can not exceed the physical interface speed.
+If you  define a queue minimum shaping value of `0`, there is no bandwidth guarantee for this queue. The maximum queue shaping value must not exceed the interface shaping value defined by `port.shaper`. The `port.shaper` value must not exceed the physical interface speed.
 
 ### Policing
 
 Traffic policing prevents an interface from receiving more traffic than intended. Policing is often used to enforce a maximum transmission rate on an interface. Any traffic sent above the policing level is dropped.
 
-Cumulus Linux supports both a single-rate policer as well as a dual-rate policer, often called a "tricolor policer".
+Cumulus Linux supports both a single-rate policer as well as a dual-rate policer, often called a *tricolor policer*.
 
-Traffic policing is configured using ebtables, iptables or ip6table rules.
+Traffic policing is configured using ebtables, iptables, or ip6table rules.
 
 {{% notice info %}}
 For more information on configuring and applying ACLs, refer to {{<link title="Netfilter - ACLs" text="Netfilter - ACLs" >}}.
 {{% /notice %}}
-
-#### Single-Rate Policer
-
+<!-- vale off -->
+#### Single-rate Policer
+<!-- vale on -->
 To configure a single-rate policer, use iptables `JUMP` action `-j POLICE`.
 
 The following iptables flags are supported with a single-rate policer.
@@ -665,9 +655,9 @@ The following iptables flags are supported with a single-rate policer.
 
 For example to create a policer to allow 400 packets per second with 100 packet burst the following iptable rule would be used:  
 `-j POLICE --set-mode pkt --set-rate 400 --set-burst 100`
-
-#### Dual-Rate Policer
-
+<!-- vale off -->
+#### Dual-rate Policer
+<!-- vale on -->
 To configure a policer, use the iptables `JUMP` action `-j TRICOLORPOLICE`.
 
 The following iptables flags are supported with a dual-rate policer.
@@ -690,7 +680,7 @@ For example, to configure a dual-rate, three-color policer, with a 3 Mbps CIR, 5
 
 ## Port Groups
 
-`qos_features.conf` supports the use of *port groups* to apply similar QoS configurations to a set of ports. Port groups are supported for all features including [ECN](#explicit-congestion-notification-ecn) and [RED](#random-early-detection-red) .
+The `qos_features.conf` file supports *port groups* to apply similar QoS configurations to a set of ports. Port groups are supported for all features including [ECN](#explicit-congestion-notification-ecn) and [RED](#random-early-detection-red) .
 
 {{% notice note %}}
 - Configurations with port groups override the global settings for the ingress ports defined in the port group.
@@ -704,7 +694,7 @@ You define port groups with the `source.port_group_list` configuration in the `q
 
 A `source.port_group_list` is one or more names used for group settings. The name is used as a label for configuration settings. For example, if a `source.port_group_list` includes `test`, the following `port_default_priority` is configured with `source.test.port_default_priority`.
 
-The following is an explanation of an example `source.port_group_list` configuration.
+The following is an example `source.port_group_list` configuration.
 
 ```
 source.port_group_list = [customer1,customer2]
@@ -724,7 +714,7 @@ source.customer2.cos_1.priority_source.8021p = [4]
 | `source.customer1.packet_priority_source_set` | `source.customer1.packet_priority_source_set = [dscp]` | Defines the ingress marking trust. In this example, ingress DSCP values are preserved for group `customer1`. |
 | `source.customer1.port_set` | `source.customer1.port_set = swp1-swp4,swp6` | The set of ports to which to apply the ingress marking trust policy. In this example, ports swp1, swp2, swp3, swp4 and swp6 are used for `customer1`. |
 | `source.customer1.port_default_priority` | `source.customer1.port_default_priority = 0` | Define the default internal COS marking for unmarked or untrusted traffic. In this example, unmarked traffic or layer 2 traffic for `customer1` ports are marked with internal COS 0. |
-| `source.customer1.cos_0.priority_source` | `source.customer1.cos_0.priority_source.dscp = [0,1,2,3,4,5,6,7]` | Map the ingress DSCP values to an internal COS value for `customer1`. In this example, the set of DSCP values from 0-7 are mapped to internal COS 0.  |
+| `source.customer1.cos_0.priority_source` | `source.customer1.cos_0.priority_source.dscp = [0,1,2,3,4,5,6,7]` | Map the ingress DSCP values to an internal COS value for `customer1`. In this example, the set of DSCP values from 0 through 7 are mapped to internal COS 0.  |
 | `source.customer2.packet_priority_source_set` | `source.packet_priority_source_set = [cos]` | Defines the ingress marking trust for `customer2`. In this example, COS is trusted. |
 | `source.customer2.port_set`  | `source.customer2.port_set = swp5,swp7` | The set of ports to which to apply the ingress marking trust policy. In this example, ports swp5 and swp7 are used for `customer2`. |
 | `source.customer2.port_default_priority` | `source.customer2.port_default_priority = 0` | Define the default internal COS marking for unmarked or untrusted traffic. In this example, unmarked tagged layer 2 traffic or unmarked VLAN tagged traffic for `customer1` ports are marked with internal COS 0. |
@@ -734,11 +724,11 @@ source.customer2.cos_1.priority_source.8021p = [4]
 
 ### Remarking
 
-You can also use port groups for remarking COS or DSCP on egress based on the internal COS value that assigned. These port groups are defined with `remark.port_group_list` in `qos_features.conf`.
+You can also use port groups for remarking COS or DSCP on egress based on the internal COS value assigned. These port groups are defined with `remark.port_group_list` in the `qos_features.conf` file.
 
-A `remark.port_group_list` is one or more names to be used for group settings. The name is used as a label for configuration settings. For example, if a `remark.port_group_list` includes `test`, the following `remark.port_set` is configured with `remark.test.port_set`.
+A `remark.port_group_list` includes the names for the group settings. The name is a label for configuration settings. For example, if a `remark.port_group_list` includes `test`, the following `remark.port_set` is configured with `remark.test.port_set`.
 
-The following is an explanation of an example `remark.group_list` configuration.
+The following is an example `remark.group_list` configuration.
 
 ```
 remark.port_group_list = [list1,list2]
@@ -761,11 +751,11 @@ remark.list2.cos_3.priority_remark.8021p = [2]
 
 ### Egress Scheduling
 
-You can also use port groups with egress scheduling weights to assign different profiles to different egress ports. These port groups are defined with `egress_sched.port_group_list ` in `qos_features.conf`.
+You can use port groups with egress scheduling weights to assign different profiles to different egress ports. These port groups are defined with `egress_sched.port_group_list ` in the `qos_features.conf` file.
 
-An `egress_sched.port_group_list` is one or more names to be used for group settings. The name is used as a label for configuration settings. For example, if an `egress_sched.port_group_list` includes `test`, the following `egress_sched.port_set` is configured with `egress_sched.test.port_set`.
+An `egress_sched.port_group_list` includes the names for the group settings. The name is a label for the configuration settings. For example, if an `egress_sched.port_group_list` includes `test`, the following `egress_sched.port_set` is configured with `egress_sched.test.port_set`.
 
-The following is an explanation of an example `egress_sched.group_list` configuration.
+The following is an example `egress_sched.group_list` configuration:
 
 ```
 egress_sched.port_group_list = [list1,list2]
@@ -802,11 +792,11 @@ egress_sched.list2.egr_queue_6.bw_percent = 0
 | `egress_sched.list2.egr_queue_5.bw_percent` | `egress_sched.list2.egr_queue_5.bw_percent = 50` | Assigns the percentage of bandwidth to egress queue 5. In this example, `50`% of egress bandwidth. |
 | `egress_sched.list2.egr_queue_6.bw_percent` | `egress_sched.list2.egr_queue_6.bw_percent = 0` | Assigns the percentage of bandwidth to egress queue 6. In this example, `0` indicates a strict priority queue. |
 
-In this example, the port group `list2` only assigns weights to queues 2, 5 and 6. The other queues are scheduled on a best-effort basis when there is no congestion in queues 2, 5 or 6.
+In the above example, the port group `list2` only assigns weights to queues 2, 5, and 6. The other queues are scheduled on a best-effort basis when there is no congestion in queues 2, 5, or 6.
 
 ## Syntax Checker
 
-Cumulus Linux provides a syntax checker for the `qos_features.conf` and `qos_infra.conf` files to check for errors, such missing parameters, or invalid parameter labels and values.
+Cumulus Linux provides a syntax checker for the `qos_features.conf` and `qos_infra.conf` files to check for errors, such missing parameters or invalid parameter labels and values.
 
 The syntax checker runs automatically with every `switchd reload`.
 
@@ -1355,7 +1345,7 @@ cos_egr_queue.cos_7.uc  = 7
 
 ## Caveats
 
-### Configuring QoS and Breakout Ports Simultaneously
+### Configure QoS and Breakout Ports Simultaneously
 
 If you configure both breakout ports by modifying `ports.conf` and QoS settings by modifying `qos_features.conf` then applying the settings with `reload switchd`, errors might occur.
 
@@ -1366,7 +1356,7 @@ You must apply breakout port configuration before QoS configuration on the break
 If you apply QoS settings on bond member interfaces instead of the logical bond interface, the members must share identical QoS configuration. If the configuration is not identical between bond interfaces, the bond inherits the _last_ interface applied to the bond.
 
 If QoS settings do not match, `switchd reload` fails; however, `switchd restart` does not fail.
-
-### Cut-Through Switching
-
-You cannot disable cut-through switching on Spectrum ASICs. Setting `cut_through_enable = false` in `qos_features.conf` is ignored.
+<!-- vale off -->
+### Cut-through Switching
+<!-- vale on -->
+You cannot disable cut-through switching on Spectrum ASICs. Cumulus Linux ignores the `cut_through_enable = false` setting in the `qos_features.conf` file.

@@ -10,7 +10,7 @@ NCLU resides in the Linux user space and provides consistent access to networkin
 
 - Embeds help, examples, and automatic command checking with suggestions in case you enter a typo.
 - Runs directly from and integrates with bash, while being interoperable with the regular way of accessing underlying configuration files and automation.
-- Configures dependent features automatically so that you don't have to.
+- Configures dependent features automatically so that you do not have to.
 
 {{<img src = "/images/cumulus-linux/nclu-architecture.png">}}
 
@@ -28,7 +28,7 @@ Use the following workflow to stage and commit changes to Cumulus Linux with NCL
 
 `net commit` applies the changes to the relevant configuration files, such as `/etc/network/interfaces`, then runs necessary follow on commands to enable the configuration, such as `ifreload -a`.
 
-If two different users try to commit a change at the same time, NCLU displays a warning but implements the change according to the first commit received. The second user will need to abort the commit.
+If two different users try to commit a change at the same time, NCLU displays a warning but implements the change according to the first commit received. The second user needs to abort the commit.
 
 {{%/notice%}}
 
@@ -147,7 +147,7 @@ The following commands contain keyword(s) 'bestpath'
 
 {{%notice note%}}
 
-You can configure multiple interfaces at once:
+You can configure multiple interfaces at the same time:
 
 ```
 cumulus@switch:~$ net add int swp7-9,12,15-17,22 mtu 9216
@@ -195,9 +195,9 @@ While tab completion is enabled by default, you can also configure NCLU to use t
 ```
 cumulus@switch:~$ sudo nano ~/.inputrc
 ```
-
+<!-- vale off -->
 Uncomment the very last line in the `.inputrc` file so that the file changes from this:
-
+<!-- vale on -->
 ```
 # Uncomment to use ? as an alternative to
 # ?: complete
@@ -210,7 +210,7 @@ to this:
 ?: complete
 ```
 
-Save the file and reconnect to the switch. The ? (question mark) ability will work on all subsequent sessions on the switch.
+Save the file and reconnect to the switch. The ? (question mark) ability does not work on all subsequent sessions on the switch.
 
 ```
 cumulus@switch:~$ net
@@ -228,13 +228,13 @@ cumulus@switch:~$ net
 
 {{%notice note%}}
 
-When the question mark is typed, NCLU will autocomplete and show all available options, but the question mark does not actually appear on the terminal. This is normal, expected behavior.
+When the question mark is typed, NCLU autocompletes and shows all available options, but the question mark does not actually appear on the terminal. This is expected behavior.
 
 {{%/notice%}}
-
-### Built-In Examples
-
-NCLU has a number of built in examples to guide you through basic configuration setup:
+<!-- vale off -->
+### Built-in Examples
+<!-- vale on -->
+NCLU has built in examples to guide you through basic configuration setup:
 
 ```
 cumulus@switch:~$ net example
@@ -309,7 +309,7 @@ You can configure user accounts in Cumulus Linux with read-only or edit permissi
 - You create user accounts with **read-only** permissions for NCLU by adding them to the `netshow` group. A user in the `netshow` group can run NCLU `net show` commands, such as `net show interface` or `net show config`, and certain general Linux commands, such as `ls`, `cd` or `man`, but cannot run `net add`, `net del` or `net commit` commands.
 - You create user accounts with **edit** permissions for NCLU by adding them to the `netedit` group. A user in the `netedit` group can run NCLU configuration commands, such `net add`, `net del` or `net commit` in addition to NCLU `net show` commands.
 
-The examples below demonstrate how to add a new user account or modify an existing user account called *myuser*.
+The examples below add a new user account and modify an existing user account called *myuser*.
 
 To add a new user account with NCLU show permissions:
 
@@ -359,9 +359,9 @@ If the user tries to run commands that are not allowed, the following error disp
 myuser@switch:~$ net add hostname host01
 ERROR: User username does not have permission to make networking changes.
 ```
-
+<!-- vale off -->
 ## Edit the netd.conf File
-
+<!-- vale on -->
 Instead of using the NCLU commands described above, you can manually configure users and groups to be able to run NCLU commands.
 
 Edit the `/etc/netd.conf` file to add users to the *users\_with\_edit* and *users\_with\_show* lines in the file, then save the file.
@@ -445,10 +445,13 @@ cumulus@switch:~$ sudo systemctl restart netd.service
 ## Considerations
 
 ### Unsupported Interface Names
+
 NCLU does not support interfaces named `dev`.
 
 ### Bonds With No Configured Members
-If a bond interface is configured and it contains no members NCLU will report the interface does not exist. 
+
+If a bond interface is configured and contains no members, NCLU reports that the interface does not exist.
 
 ### Large NCLU Inputs
-Each NCLU command must be parsed by the system. Large inputs, for example a large paste of NCLU commands can take some time, sometimes minutes, to process.
+
+Each NCLU command must be parsed by the system. Large inputs, such as a large paste of NCLU commands can take some time, sometimes minutes, to process.

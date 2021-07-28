@@ -24,9 +24,9 @@ BFD multihop sessions are built over arbitrary paths between two systems, which 
 You can configure BFD by either using {{<link url="FRRouting" text="FRRouting">}} (with NCLU, NVUE, or vtysh commands) or by specifying the configuration in the {{<link url="Prescriptive-Topology-Manager-PTM" text="PTM `topology.dot` file">}}. However, the topology file has some limitations:
 
 - The topology file supports BFD IPv4 and IPv6 *single* hop sessions only; you *cannot* specify IPv4 or IPv6 *multihop* sessions in the topology file.
-- The topology file supports BFD sessions for only linklocal IPv6 peers; BFD sessions for global IPv6 peers discovered on the link are not created.
+- The topology file supports BFD sessions for only link-local IPv6 peers; BFD sessions for global IPv6 peers discovered on the link are not created.
 
-Use FRRouting to register multihop peers with PTM and BFD as well as to monitor the connectivity to the remote BGP multihop peer. FRRouting can dynamically register and unregister both IPv4 and IPv6 peers with BFD when the BFD-enabled peer connectivity is established or de-established. Also, you can configure BFD parameters for each BGP or OSPF peer.
+Use FRRouting to register multihop peers with PTM and BFD as well as monitor the connectivity to the remote BGP multihop peer. FRRouting can dynamically register and unregister both IPv4 and IPv6 peers with BFD when the BFD-enabled peer connectivity is established or de-established. Also, you can configure BFD parameters for each BGP or OSPF peer.
 
 {{%notice note%}}
 The BFD parameter configured in the topology file is given higher precedence over the client-configured BFD parameters for a BFD session that has been created by both the topology file and FRRouting.
@@ -273,7 +273,7 @@ You can use more aggressive detection times for echo packets because the round-t
 ### About the Echo Packet
 
 BFD echo packets are encapsulated into UDP packets over destination and source UDP port number 3785. The BFD echo packet format is vendor-specific and has not been defined in the RFC. BFD echo packets that originate from Cumulus Linux are 8 bytes long and have the following format:
-
+<!-- vale off -->
 |0|1|2|3|
 |---|---|---|---|
 |Version|Length|Reserved|Reserved|
@@ -283,8 +283,8 @@ Where:
 
 - **Version** is the version of the BFD echo packet.
 - **Length** is the length of the BFD echo packet.
-- **My Discriminator** is a non-zero value that uniquely identifies a BFD session on the transmitting side. When the originating node receives the packet after being looped back by the receiving system, this value uniquely identifies the BFD session.
-
+- **My Discriminator**is a non-zero value that uniquely identifies a BFD session on the transmitting side. When the originating node receives the packet after being looped back by the receiving system, this value uniquely identifies the BFD session.
+<!-- vale on -->
 ### Transmit and Receive Echo Packets
 
 BFD echo packets are transmitted for a BFD session only when the peer has advertised a non-zero value for the required minimum echo Rx interval (the `echoMinRx` setting) in the BFD control packet when the BFD session starts. The transmit rate of the echo packets is based on the peer advertised echo receive value in the control packet.

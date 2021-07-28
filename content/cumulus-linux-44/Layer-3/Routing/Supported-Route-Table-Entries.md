@@ -18,14 +18,14 @@ To determine the current table sizes on a switch, use either the NCLU `net show 
 
 ## Supported Route Entries
 
-Cumulus Linux provides a number of generalized profiles, described below. These profiles work only with layer 2 and layer 3 unicast forwarding.
+Cumulus Linux provides several generalized profiles, described below. These profiles work only with layer 2 and layer 3 unicast forwarding.
 
 The following tables list the number of MAC addresses, layer 3 neighbors, and LPM routes validated for each forwarding table profile. If you do not specify any profiles as described below, the switch uses the *default* values.
 
 {{%notice note%}}
 The values in the following tables reflect results from testing, which might differ from published manufacturer specifications.
 {{%/notice%}}
-
+<!-- vale off -->
 ### Spectrum-2 and Spectrum-3
 
 | <div style="width:100px">Profile| MAC Addresses | <div style="width:190px">Layer 3 Neighbors| Longest Prefix Match (LPM)  |
@@ -39,11 +39,11 @@ The values in the following tables reflect results from testing, which might dif
 | lpm-balanced   | 16k           | 16k (IPv4) and 12k (IPv6) | 124k (IPv4), 124k (IPv6-long), 10K (IPv4-Mcast)|
 | ipmc-heavy      | 57k           | 41k (IPv4) and 20k (IPv6) | 82K (IPv4), 66K (IPv6), 8K (IPv4-Mcast) |
 | ipmc-max        | 41K           | 41k (IPv4) and 20k (IPv6) | 74K (IPv4), 66K (IPv6), 15K (IPv4-Mcast) |
-
+<!-- vale on -->
 The IPv6 number corresponds to the /64 IPv6 prefix. The /128 IPv6 prefix number is half of the /64 IPv6 prefix number.
 
 ### Spectrum
-
+<!-- vale off -->
 | <div style="width:100px">Profile| MAC Addresses | <div style="width:190px">Layer 3 Neighbors| Longest Prefix Match (LPM)  |
 | -------------- | ------------- | ------------------------- | ------------------------------ |
 | default        | 40k           | 32k (IPv4) and 16k (IPv6) | 64k (IPv4) and 28k (IPv6-long) |
@@ -53,13 +53,13 @@ The IPv6 number corresponds to the /64 IPv6 prefix. The /128 IPv6 prefix number 
 | v4-lpm-heavy-1 | 8k            | 8k (IPv4) and 2k (IPv6)   | 176k (IPv4) and 2k (IPv6-long) |
 | v6-lpm-heavy   | 40k           | 8k (IPv4) and 40k (IPv6)  | 8k (IPv4), 32k (IPv6-long) and 32K (IPv6/64) |
 | lpm-balanced   | 8k            | 8k (IPv4) and 8k (IPv6)   | 60k (IPv4), 60k (IPv6-long) and 120k (IPv6/64) |
-
+<!-- vale on -->
 ## Forwarding Resource Profiles
 
 You can configure forwarding resource allocation, which is shared between IP multicast forwarding entries and ACL tables. Choose the profile that best suits your network architecture.
-
+<!-- vale off -->
 ### Spectrum-2 and Spectrum-3
-
+<!-- vale on -->
 Specify the profile you want to use with the `forwarding_table.profile` variable in the `/etc/cumulus/datapath/traffic.conf` file. The following example specifies ipmc-max:
 
 ```

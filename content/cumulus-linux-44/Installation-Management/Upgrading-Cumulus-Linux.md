@@ -38,7 +38,7 @@ Understanding the location of configuration data is required for successful upgr
 | `/etc/cumulus/switchd.conf` | `switchd` configuration | {{<link title="Configuring switchd">}} | N/A; read the guide on `switchd` configuration |
 
 {{< /tab >}}
-{{< tab "Commonly-Used Files ">}}
+{{< tab "Commonly Used Files ">}}
 
 | File Name and Location | Description| Cumulus Linux Documentation | Debian Documentation |
 | ---------------------- | ---------- | --------------------------- | -------------------- |
@@ -328,7 +328,7 @@ This is due to a change in the bonding driver to handle how the *actor port key*
 
 ## Roll Back a Cumulus Linux Installation
 
-Even the most well planned and tested upgrades can result in unforeseen problems and sometimes the best solution is to roll back to the previous state. There are three main strategies, all of which require detailed planning and execution:
+Even the most well planned and tested upgrades can result in unforeseen problems and sometimes the best solution is to roll back to the previous state. These main strategies require detailed planning and execution:
 
 - Flatten and rebuild. If the OS becomes unusable, you can use orchestration tools to reinstall the previous OS release from scratch and then rebuild the configuration automatically.
 - Restore to a previous state using a backup configuration captured before the upgrade.

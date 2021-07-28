@@ -159,7 +159,7 @@ All slave interfaces within a bond have the same MAC address as the bond. Typica
 
 ## Configure Bond Options
 
-The configuration options for a bond are are described in the table below. To configure a bond, run the commands shown below or add the parameter to the bond stanza in the `/etc/network/interfaces` file.
+The table below describes the configuration options for a bond. To configure a bond, run the commands shown or add the parameter to the bond stanza in the `/etc/network/interfaces` file.
 
 The following example sets the bond mode for bond01 to balance-xor (static):
 

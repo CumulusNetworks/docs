@@ -48,8 +48,8 @@ Chain INPUT (policy ACCEPT 167 packets, 16481 bytes)
       0     0 POLICE     udp  --  any    any     anywhere             anywhere             udp dpt:10001 POLICE  mode:pkt rate:2000 burst:2000
       0     0 SETCLASS   igmp --  swp+   any     anywhere             anywhere             SETCLASS  class:6
       1    32 POLICE     igmp --  any    any     anywhere             anywhere             POLICE  mode:pkt rate:300 burst:100
-      0     0 POLICE     all  --  swp+   any     anywhere             anywhere             ADDRTYPE match dst-type LOCAL POLICE  mode:pkt rate:1000 burst:1000 class:0
-      0     0 POLICE     all  --  swp+   any     anywhere             anywhere             ADDRTYPE match dst-type IPROUTER POLICE  mode:pkt rate:400 burst:100 class:0
+      0     0 POLICE     all  --  swp+   any     anywhere             anywhere             addrtype match dst-type LOCAL POLICE  mode:pkt rate:1000 burst:1000 class:0
+      0     0 POLICE     all  --  swp+   any     anywhere             anywhere             addrtype match dst-type IPROUTER POLICE  mode:pkt rate:400 burst:100 class:0
       0     0 SETCLASS   all  --  swp+   any     anywhere             anywhere             SETCLASS  class:0
 
 Chain FORWARD (policy ACCEPT 0 packets, 0 bytes)
@@ -114,8 +114,8 @@ Chain INPUT (policy ACCEPT 0 packets, 0 bytes)
       0     0 POLICE     ipv6-icmp    swp+   any     anywhere             anywhere             POLICE  mode:pkt rate:64 burst:40 class:2
       0     0 POLICE     udp      swp+   any     anywhere             anywhere             udp dpts:dhcpv6-client:dhcpv6-server POLICE  mode:pkt rate:100 burst:100 class:2
       0     0 POLICE     tcp      swp+   any     anywhere             anywhere             tcp dpts:dhcpv6-client:dhcpv6-server POLICE  mode:pkt rate:100 burst:100 class:2
-      0     0 POLICE     all      swp+   any     anywhere             anywhere             ADDRTYPE match dst-type LOCAL POLICE  mode:pkt rate:1000 burst:1000 class:0
-      0     0 POLICE     all      swp+   any     anywhere             anywhere             ADDRTYPE match dst-type IPROUTER POLICE  mode:pkt rate:400 burst:100 class:0
+      0     0 POLICE     all      swp+   any     anywhere             anywhere             addrtype match dst-type LOCAL POLICE  mode:pkt rate:1000 burst:1000 class:0
+      0     0 POLICE     all      swp+   any     anywhere             anywhere             addrtype match dst-type IPROUTER POLICE  mode:pkt rate:400 burst:100 class:0
       0     0 SETCLASS   all      swp+   any     anywhere             anywhere             SETCLASS  class:0
 
 Chain FORWARD (policy ACCEPT 0 packets, 0 bytes)
@@ -193,8 +193,8 @@ Bridge chain: OUTPUT, entries: 0, policy: ACCEPT
 | Set Class: 6<br>Police: Rate 300 burst 100<br>Source IP: Any<br>Destination IP: Any | Protocol:<br>IGMP |
 | Set class: 2<br>Police: Rate 100 burst 40<br>Source IP : Any<br>Destination IP: Any | Protocol:<br>ICMP |
 | Set class: 2<br>Police: Rate 100 burst 100<br>Source IP: Any<br>Destination IP: Any | Protocol:<br>UDP/bootpc, bootps |
-| Set class: 0<br>Police: Rate 1000 burst 1000<br>Source IP: Any<br>Destination IP: Any | ADDRTYPE match dst-type LOCAL <br>**Note**: LOCAL is any local address -> Receiving a packet with a destination matching a local IP address on the switch goes to the CPU. |
-| Set class: 0<br>Police: Rate 400 burst 100<br>Source IP: Any<br>Destination IP: Any | ADDRTYPE match dst-type IPROUTER <br>**Note**: IPROUTER is any unresolved address -> On a layer 2 or layer3 boundary receiving a packet from layer 3 and needs to go to CPU to ARP for the destination. |
+| Set class: 0<br>Police: Rate 1000 burst 1000<br>Source IP: Any<br>Destination IP: Any | addrtype match dst-type LOCAL <br>**Note**: LOCAL is any local address -> Receiving a packet with a destination matching a local IP address on the switch goes to the CPU. |
+| Set class: 0<br>Police: Rate 400 burst 100<br>Source IP: Any<br>Destination IP: Any | addrtype match dst-type IPROUTER <br>**Note**: IPROUTER is any unresolved address -> On a layer 2 or layer3 boundary receiving a packet from layer 3 and needs to go to CPU to ARP for the destination. |
 | Set class 0 | All |
 
 {{%notice note%}}
@@ -213,8 +213,8 @@ Set class is internal to the switch - it does not set any precedence bits.
 | Set class: 2<br>Police: Packet rate: 400 burst 400<br>Source IPv6: Any<br>Destination IPv6: Any |Protocol:<br>ipv6-icmp neighbour-solicitation<br>ipv6-icmp neighbour-advertisement |
 | Set class: 2<br>Police: Packet rate: 64 burst: 40<br>Source IPv6: Any<br>Destination IPv6: Any |Protocol:<br>Ipv6 icmp |
 | Set class: 2<br>Police: Packet rate: 100 burst: 100<br>Source IPv6: Any<br>Destination IPv6: Any |Protocol:<br>UDP/dhcpv6-client:dhcpv6-server (Spts & dpts) |
-| Police: Packet rate: 1000 burst 1000<br>Source IPv6: Any<br>Destination IPv6: Any | ADDRTYPE match dst-type LOCAL<br> **Note**: LOCAL is any local address -> Receiving a packet with a destination matching a local IPv6 address on the switch goes to the CPU. |
-| Set class: 0<br>Police: Packet rate: 400 burst 100 | ADDRTYPE match dst-type IPROUTER<br> **Note:** IPROUTER is an unresolved address -> On a layer 2 or layer 3 boundary receiving a packet from layer 3 and needs to go to CPU to ARP for the destination. |
+| Police: Packet rate: 1000 burst 1000<br>Source IPv6: Any<br>Destination IPv6: Any | addrtype match dst-type LOCAL<br> **Note**: LOCAL is any local address -> Receiving a packet with a destination matching a local IPv6 address on the switch goes to the CPU. |
+| Set class: 0<br>Police: Packet rate: 400 burst 100 | addrtype match dst-type IPROUTER<br> **Note:** IPROUTER is an unresolved address -> On a layer 2 or layer 3 boundary receiving a packet from layer 3 and needs to go to CPU to ARP for the destination. |
 | Set class 0 | All |
 
 {{%notice note%}}

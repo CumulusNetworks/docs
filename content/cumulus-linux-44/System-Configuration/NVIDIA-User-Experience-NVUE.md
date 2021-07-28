@@ -5,9 +5,9 @@ weight: 115
 toc: 3
 ---
 NVUE is an object-oriented, schema driven model of a complete Cumulus Linux system (hardware and software) providing a robust API that allows for multiple interfaces to both view (show) and configure (set and unset) any element within a system running the NVUE software. The NVUE command line interface (CLI) and the REST API leverage the same API to interface with Cumulus Linux.
-
+<!-- vale off -->
 NVUE follows a declarative model, removing context-specific commands and settings. It is structured as a *big tree* that represents the entire state of a Cumulus Linux instance. At the base of the tree are high level branches representing objects, such as *router* and *interface*. Under each of these branches are further branches. As you navigate through the tree, you gain a more specific context. At the leaves of the tree are actual attributes, represented as key-value pairs. The path through the tree is similar to a filesystem path.
-
+<!-- vale on -->
 {{<img src = "/images/cumulus-linux/nvue-architecture.png">}}
 
 ## Start the NVUE Service
@@ -436,7 +436,7 @@ The example below shows the NVUE commands required to configure MLAG on leaf01. 
 - Configure the MLAG ID to 1 for bond1 and to 2 for bond2.
 - Add bond1 and bond2 to the default bridge (br_default).
 - Create the inter-chassis bond (swp49 and swp50) and the peer link (peerlink)
-- Set the peer link IP address to linklocal, the MLAG system MAC address to 44:38:39:BE:EF:AA, and the backup interface to 10.10.10.2.
+- Set the peer link IP address to `linklocal`, the MLAG system MAC address to 44:38:39:BE:EF:AA, and the backup interface to 10.10.10.2.
 
 ```
 cumulus@leaf01:~$ nv set interface bond1 bond member swp1

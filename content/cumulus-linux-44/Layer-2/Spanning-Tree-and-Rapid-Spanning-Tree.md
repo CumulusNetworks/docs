@@ -18,9 +18,9 @@ Per VLAN Spanning Tree (PVST) creates a spanning tree instance for a bridge. Rap
 {{%notice note%}}
 For maximum interoperability, when connected to a switch that has a native VLAN configuration, the native VLAN **must** be configured to be VLAN 1 only.
 {{%/notice%}}
-
+<!-- vale off -->
 ## STP for a VLAN-aware Bridge
-
+<!-- vale on -->
 VLAN-aware bridges operate in RSTP mode only. RSTP on VLAN-aware bridges works with other modes in the following ways:
 
 ### RSTP and STP
@@ -54,7 +54,7 @@ More than one spanning tree instance enables switches to load balance and use di
 
 ## Configure STP
 
-There are a number of ways to customize STP in Cumulus Linux. Exercise caution when changing the settings below to prevent malfunctions in STP loop avoidance.
+There several ways to customize STP in Cumulus Linux. Exercise caution when changing the settings below to prevent malfunctions in STP loop avoidance.
 
 ### Spanning Tree Priority
 

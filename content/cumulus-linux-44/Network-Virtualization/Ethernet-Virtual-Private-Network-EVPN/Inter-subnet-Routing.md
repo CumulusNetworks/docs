@@ -750,11 +750,11 @@ The NVUE commands are as follows:
 {{%/notice%}}
 
 The following example shows a configuration with downstream VNI on leaf01 thru leaf04, and border01.
-
+<!-- vale off -->
 |   Traffic Flow between VRF RED and VRF 10  |     |
 | ----------------------------------------------| ----|
 | <img width=1300/> {{< img src="/images/cumulus-linux/evpn-downstream-vni.png"  >}}| <br><ol><li>server01 forwards traffic to leaf01.</li><li>leaf01 encapsulates the packet with the VNI in its route-target import statement (6000) and tunnels the traffic over to border01.</li><li> border01 uses the VNI received from leaf01 to forward the packet.</li><li> The reverse traffic from border01 to server01 is encapsulated with the VNI in the route-target import statement on border01 (4001) and tunneled over to leaf01, where routing occurs in VRF RED.</li></ul> |
-
+<!-- vale on -->
 The configuration for the example is shown below.
 - On leaf01, you can see the route target (`route-target import *:6000`) under the `router bgp 65101 vrf RED` and `router bgp 65101 vrf BLUE` stanza of the `/etc/frr/frr.conf` file.
 - On border01, you can see the route targets (`route-target import *:4001` and `route-target import *:4002`) under the `router bgp 65163 vrf VRF10` stanza of the `/etc/frr/frr.conf` file.

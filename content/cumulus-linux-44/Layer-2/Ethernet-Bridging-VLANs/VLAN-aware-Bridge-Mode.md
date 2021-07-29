@@ -120,8 +120,8 @@ This example shows the commands required to create two VLAN-aware bridges on the
 
 {{< img src = "/images/cumulus-linux/ethernet-bridging-vmvab.png" >}}
 
-- bridge1 bridges swp1 and swp2, and includes 2 VLANs; vlan 10 and vlan 20
-- bridge2 bridges swp3 and contains one VLAN; vlan 10
+- bridge1 bridges swp1 and swp2, and includes 2 VLANs; `vlan 10` and `vlan 20`
+- bridge2 bridges swp3 and contains one VLAN; `vlan 10`
 
 Bridges are independent so you can reuse VLANs between bridges. Each VLAN-aware bridge maintains its own MAC address and VLAN tag table; MAC and VLAN tags in one bridge are not visibile to the other table.
 
@@ -202,9 +202,9 @@ To configure the reserved range, edit the `/etc/cumulus/switchd.conf` file to un
 ## VLAN Pruning
 
 By default, the bridge port inherits the bridge VIDs, however, you can configure a port to override the bridge VIDs.
-
+<!-- vale off -->
 {{< img src = "/images/cumulus-linux/ethernet-bridging-vlan-pruned1.png" >}}
-
+<!-- vale on -->
 This example commands configure swp3 to override the bridge VIDs:
 
 {{< tabs "TabID157 ">}}

@@ -3582,7 +3582,7 @@ cumulus@spine02:~$ cat /etc/nvue.d/startup.yaml
 When you run the `nv set vrf RED evpn vni 4001` and the `nv set vrf BLUE evpn vni 4002` commands, NVUE creates the following in the `/etc/network/interfaces` file:
 - Creates a single VXLAN device (vxlan99)
 - Assigns two VLANs automatically from the reserved VLAN range and adds `_l3` (layer 3) at the end (for example vlan220_l3 and vlan297_l3)
-- Maps the VLANs to the VNIs (bridge-vlan-vni-map 220=4001 297=4002)
+- Maps the VLANs to the VNIs (`bridge-vlan-vni-map 220=4001 297=4002`)
 - Creates a layer 3 bridge called br_l3vni
 - Reserves and assigns a dedicated hardware address for the layer 3 bridge from the pool of MAC addresses available on the switch
 - Adds the VXLAN device to the br_l3vni bridge
